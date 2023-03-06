@@ -1,4 +1,4 @@
-import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
+import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
 import {
   Box,
   Button,
@@ -8,28 +8,26 @@ import {
   UnorderedList,
   useDisclosure,
   useOutsideClick,
-} from '@chakra-ui/react';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { useRef } from 'react';
-import { NavLink } from 'react-router-dom';
-import { useAccount } from 'wagmi';
-import { ColorModeSwitcher } from '../../ColorModeSwitcher';
-import BtnVocdoniTokens from '../Buttons/BtnVocdoniTokens';
-import VocdoniIcon from '../Icons/VocdoniIcon';
-
-export const forceRenderNavbar = new CustomEvent('forceRenderNavbar');
+} from '@chakra-ui/react'
+import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { useRef } from 'react'
+import { NavLink } from 'react-router-dom'
+import { useAccount } from 'wagmi'
+import { ColorModeSwitcher } from '../../ColorModeSwitcher'
+import BtnVocdoniTokens from '../Buttons/BtnVocdoniTokens'
+import VocdoniIcon from '../Icons/VocdoniIcon'
 
 const Navbar = () => {
-  const { isConnected } = useAccount();
+  const { isConnected } = useAccount()
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
-  const refNav = useRef<HTMLDivElement>(null);
+  const refNav = useRef<HTMLDivElement>(null)
 
   useOutsideClick({
     ref: refNav,
     handler: () => onClose(),
-  });
+  })
 
   return (
     <Box as="nav" ref={refNav}>
@@ -56,10 +54,10 @@ const Navbar = () => {
             {isConnected && (
               <>
                 <ListItem listStyleType="none">
-                  <NavLink to="createprocess">Create Process</NavLink>
+                  <NavLink to="processes/create">Create Process</NavLink>
                 </ListItem>
                 <ListItem listStyleType="none">
-                  <NavLink to="processeslist">Processes List</NavLink>
+                  <NavLink to="processes">Processes List</NavLink>
                 </ListItem>
               </>
             )}
@@ -115,12 +113,12 @@ const Navbar = () => {
                 </ListItem>
                 <ListItem listStyleType="none">
                   <Button onClick={onClose}>
-                    <NavLink to="createprocess">Create Process</NavLink>
+                    <NavLink to="processes/create">Create Process</NavLink>
                   </Button>
                 </ListItem>
                 <ListItem listStyleType="none">
                   <Button onClick={onClose}>
-                    <NavLink to="processeslist">Processes List</NavLink>
+                    <NavLink to="processes">Processes List</NavLink>
                   </Button>
                 </ListItem>
               </>
@@ -132,7 +130,7 @@ const Navbar = () => {
         </Box>
       ) : null}
     </Box>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
