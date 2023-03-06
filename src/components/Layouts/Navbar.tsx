@@ -3,6 +3,7 @@ import {
   Box,
   Flex,
   IconButton,
+  Text,
   useDisclosure,
   useOutsideClick,
 } from '@chakra-ui/react';
@@ -29,13 +30,16 @@ const Navbar = () => {
         alignItems="center"
         gap={4}
         paddingTop={4}
-        mb={8}
+        mb={{ base: 2, sm: 4, md: 6 }}
       >
-        <Box marginRight="auto">
+        <Flex alignItems="center" gap={4} marginRight="auto">
           <NavLink to="/">
             <VocdoniIcon />
           </NavLink>
-        </Box>
+          <Text mt={1} display={{ base: 'none', sm: 'block' }} fontSize="0.8em">
+            Public voting protocol
+          </Text>
+        </Flex>
 
         <Desktop />
 
@@ -43,7 +47,7 @@ const Navbar = () => {
           size={'md'}
           icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
           aria-label={'Open Menu'}
-          display={{ lg: 'none' }}
+          display={{ md: 'none' }}
           onClick={isOpen ? onClose : onOpen}
         />
       </Flex>

@@ -11,7 +11,7 @@ const RootLayout = () => {
         paddingX={4}
         flexDirection="column"
         minHeight="100vh"
-        maxWidth="1000px"
+        maxWidth="1250px"
         margin="0 auto"
       >
         <Navbar />

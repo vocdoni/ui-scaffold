@@ -15,7 +15,7 @@ const Card = ({ card }: Props) => (
     p={2}
     cursor="pointer"
   >
-    <Box height="180px" overflow="hidden">
+    <Box height="170px" overflow="hidden">
       <Image
         borderRadius={8}
         height="100%"
@@ -26,7 +26,7 @@ const Card = ({ card }: Props) => (
     </Box>
     <Flex
       height="60px"
-      py={2}
+      pt={2}
       direction="column"
       justifyContent="space-between"
     >

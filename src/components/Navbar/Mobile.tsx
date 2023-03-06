@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 
 const Mobile = () => (
   <Flex
-    display={{ lg: 'none' }}
+    display={{ md: 'none' }}
     position="absolute"
     left={0}
     bg="white"

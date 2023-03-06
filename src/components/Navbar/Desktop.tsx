@@ -5,7 +5,7 @@ import { FaGlobeAmericas } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 
 const Desktop = () => (
-  <Box display={{ base: 'none', lg: 'flex' }}>
+  <Box display={{ base: 'none', md: 'flex' }}>
     <UnorderedList display="flex" alignItems="center" gap={4}>
       <ListItem listStyleType="none">
         <NavLink to="processes/create">Docs</NavLink>
