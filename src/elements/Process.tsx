@@ -1,16 +1,17 @@
-import { LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
-import ProcessElection from '../components/ProcessElection';
+import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { PublishedElection } from '@vocdoni/sdk'
+import { useLoaderData } from 'react-router-dom'
+import { ProcessView } from '../components/Process/View'
 
 const Process = () => {
-  let id = useLoaderData();
+  const election = (useLoaderData() as PublishedElection)
 
-  if (typeof id !== 'string') return null;
+  return (
+    <ProcessView
+      election={election}
+      ConnectButton={ConnectButton}
+    />
+  )
+}
 
-  return <ProcessElection id={id} />;
-};
-
-export const getProcessInfo = ({
-  params: { id },
-}: LoaderFunctionArgs): string => id!;
-
-export default Process;
+export default Process
