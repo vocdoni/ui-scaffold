@@ -1,4 +1,4 @@
-import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
+import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 import {
   Box,
   Button,
@@ -8,26 +8,26 @@ import {
   UnorderedList,
   useDisclosure,
   useOutsideClick,
-} from '@chakra-ui/react'
-import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { useRef } from 'react'
-import { NavLink } from 'react-router-dom'
-import { useAccount } from 'wagmi'
-import { ColorModeSwitcher } from '../../ColorModeSwitcher'
-import BtnVocdoniTokens from '../Buttons/BtnVocdoniTokens'
-import VocdoniIcon from '../Icons/VocdoniIcon'
+} from '@chakra-ui/react';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { useRef } from 'react';
+import { NavLink } from 'react-router-dom';
+import { useAccount } from 'wagmi';
+import { ColorModeSwitcher } from '../../ColorModeSwitcher';
+import BtnVocdoniTokens from '../Buttons/BtnVocdoniTokens';
+import VocdoniIcon from '../Icons/VocdoniIcon';
 
 const Navbar = () => {
-  const { isConnected } = useAccount()
+  const { isConnected } = useAccount();
 
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const refNav = useRef<HTMLDivElement>(null)
+  const refNav = useRef<HTMLDivElement>(null);
 
   useOutsideClick({
     ref: refNav,
     handler: () => onClose(),
-  })
+  });
 
   return (
     <Box as="nav" ref={refNav}>
@@ -37,11 +37,6 @@ const Navbar = () => {
         gap={4}
         paddingTop={4}
         mb={8}
-        sx={{
-          '& .active': {
-            color: 'green.vocdoni',
-          },
-        }}
       >
         <Box marginRight="auto">
           <NavLink to="/">
@@ -130,7 +125,7 @@ const Navbar = () => {
         </Box>
       ) : null}
     </Box>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
