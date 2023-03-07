@@ -1,7 +1,8 @@
 import { Button, Flex, Text } from '@chakra-ui/react'
 import { PublishedElection } from '@vocdoni/sdk'
+import { format } from 'date-fns'
 import { Link } from 'react-router-dom'
-import { formatDate } from '../../lib/processList/formatDate'
+import { FormatDate } from '../../constants'
 import { getStatusElectionName } from '../../lib/processList/statusElection'
 
 interface Props {
@@ -17,9 +18,9 @@ const ModalProcessInfo = ({ el }: Props) => (
     p={4}
   >
     <Text>{getStatusElectionName(el).toUpperCase()}</Text>
-    <Text>Creation date: {formatDate(el.creationTime)}</Text>
-    <Text>Start date: {formatDate(el.startDate)}</Text>
-    <Text>End date: {formatDate(el.endDate)}</Text>
+    <Text>Creation date: {format(el.creationTime, FormatDate)}</Text>
+    <Text>Start date: {format(el.startDate, FormatDate)}</Text>
+    <Text>End date: {format(el.endDate, FormatDate)}</Text>
     <Button alignSelf='center' mt={12}>
       <Link to={`/${el.id}`}>More info</Link>
     </Button>
