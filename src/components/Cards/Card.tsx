@@ -1,11 +1,17 @@
 import { Box, Flex, HStack, Image, Text } from '@chakra-ui/react'
-import { CardProps } from '../../elements/Home'
 
-interface Props {
-  card: CardProps
+export interface CardContents {
+  name: string
+  funded: string
+  rounds: string
+  imageURL: string
 }
 
-const Card = ({ card }: Props) => (
+export interface CardProps {
+  card: CardContents
+}
+
+const Card = ({ card }: CardProps) => (
   <Box
     width='200px'
     height='250px'

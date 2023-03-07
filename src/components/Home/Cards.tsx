@@ -1,12 +1,11 @@
 import { Grid, GridItem } from '@chakra-ui/react'
-import { CardProps } from '../../elements/Home'
-import Card from '../Cards/Card'
+import Card, { CardContents } from '../Cards/Card'
 
-interface Props {
-  cards: CardProps[]
+export interface CardsProps {
+  cards: CardContents[]
 }
 
-const Cards = ({ cards }: Props) => (
+const Cards = ({ cards }: CardsProps) => (
   <Grid
     templateColumns={{
       base: '1fr',
@@ -20,8 +19,9 @@ const Cards = ({ cards }: Props) => (
         justifyContent='center'
         alignItems='center'
         p={4}
+        key={index}
       >
-        <Card key={index} card={card} />
+        <Card card={card} />
       </GridItem>
     ))}
   </Grid>

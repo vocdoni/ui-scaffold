@@ -1,15 +1,9 @@
 import { Box } from '@chakra-ui/react'
+import { CardContents } from '../components/Cards/Card'
 import Cards from '../components/Home/Cards'
 import Header from '../components/Home/Header'
 
-export interface CardProps {
-  name: string
-  funded: string
-  rounds: string
-  imageURL: string
-}
-
-const CARDS = [
+const CARDS : CardContents[] = [
   {
     name: 'DAO1',
     funded: '500',
