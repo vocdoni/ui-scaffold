@@ -1,7 +1,7 @@
 import ProcessesList from '../components/ProcessesList';
 
 const List = () => {
-  return <ProcessesList />;
+	return <ProcessesList />;
 };
 
 export default List;

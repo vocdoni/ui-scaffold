@@ -3,32 +3,32 @@ import { useEffect, useState } from 'react';
 import { UpdatedBalanceContext } from '../../lib/contexts/UpdatedBalanceContext';
 
 interface Props {
-  children: JSX.Element;
+	children: JSX.Element;
 }
 
 const UpdateBalanceProvider = ({ children }: Props) => {
-  const { client, account } = useClientContext();
+	const { client, account } = useClientContext();
 
-  const [updatedBalance, setUpdatedBalance] = useState<number | undefined>();
+	const [updatedBalance, setUpdatedBalance] = useState<number | undefined>();
 
-  const updateBalance = () => setUpdatedBalance(0);
+	const updateBalance = () => setUpdatedBalance(0);
 
-  useEffect(() => {
-    if (!account) return;
+	useEffect(() => {
+		if (!account) return;
 
-    client
-      .fetchAccountInfo()
-      .then((res) => {
-        setUpdatedBalance(res.balance);
-      })
-      .catch(console.log);
-  }, [client, account, updatedBalance]);
+		client
+			.fetchAccountInfo()
+			.then(res => {
+				setUpdatedBalance(res.balance);
+			})
+			.catch(console.log);
+	}, [client, account, updatedBalance]);
 
-  return (
-    <UpdatedBalanceContext.Provider value={{ updatedBalance, updateBalance }}>
-      {children}
-    </UpdatedBalanceContext.Provider>
-  );
+	return (
+		<UpdatedBalanceContext.Provider value={{ updatedBalance, updateBalance }}>
+			{children}
+		</UpdatedBalanceContext.Provider>
+	);
 };
 
 export default UpdateBalanceProvider;

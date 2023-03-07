@@ -8,59 +8,59 @@ import ProcessesListFilters from './ProcessesListFilters';
 import ProcessListRow from './ProcessListRow';
 
 export interface PropsFilters {
-  search: string;
-  onlyCurrentElections: boolean;
+	search: string;
+	onlyCurrentElections: boolean;
 }
 
 const ProcessesList = () => {
-  const { client, account } = useClientContext();
-  const [electionsList, setElectionsList] = useState<PublishedElection[]>([]);
+	const { client, account } = useClientContext();
+	const [electionsList, setElectionsList] = useState<PublishedElection[]>([]);
 
-  const methodsFilters = useForm<PropsFilters>({
-    defaultValues: {
-      search: '',
-      onlyCurrentElections: false,
-    },
-  });
+	const methodsFilters = useForm<PropsFilters>({
+		defaultValues: {
+			search: '',
+			onlyCurrentElections: false
+		}
+	});
 
-  methodsFilters.watch(['onlyCurrentElections', 'search']);
+	methodsFilters.watch(['onlyCurrentElections', 'search']);
 
-  const electionsListFiltered = getElectionsToDisplay(
-    electionsList,
-    methodsFilters.getValues()
-  );
+	const electionsListFiltered = getElectionsToDisplay(
+		electionsList,
+		methodsFilters.getValues()
+	);
 
-  useEffect(() => {
-    if (!account || electionsList.length) return;
-    client
-      .fetchElections()
-      .then((res) => setElectionsList(res))
-      .catch((err) => {
-        throw new Error();
-      });
-  }, [client, account, electionsList.length]);
+	useEffect(() => {
+		if (!account || electionsList.length) return;
+		client
+			.fetchElections()
+			.then(res => setElectionsList(res))
+			.catch(err => {
+				throw new Error();
+			});
+	}, [client, account, electionsList.length]);
 
-  return (
-    <Box m="16px auto" p={4} width={{ base: '97%', md: '650px' }}>
-      <FormProvider {...methodsFilters}>
-        <ProcessesListFilters />
-      </FormProvider>
+	return (
+		<Box m='16px auto' p={4} width={{ base: '97%', md: '650px' }}>
+			<FormProvider {...methodsFilters}>
+				<ProcessesListFilters />
+			</FormProvider>
 
-      <HStack>
-        {!electionsList.length && <Spinner size="lg" marginX="auto" mt={12} />}
-      </HStack>
+			<HStack>
+				{!electionsList.length && <Spinner size='lg' marginX='auto' mt={12} />}
+			</HStack>
 
-      <Flex direction="column" gap={4} mt={8} mx="auto">
-        {electionsListFiltered?.map((el: PublishedElection) => (
-          <ProcessListRow
-            key={el.id}
-            el={el}
-            setElectionsList={setElectionsList}
-          />
-        ))}
-      </Flex>
-    </Box>
-  );
+			<Flex direction='column' gap={4} mt={8} mx='auto'>
+				{electionsListFiltered?.map((el: PublishedElection) => (
+					<ProcessListRow
+						key={el.id}
+						el={el}
+						setElectionsList={setElectionsList}
+					/>
+				))}
+			</Flex>
+		</Box>
+	);
 };
 
 export default ProcessesList;
