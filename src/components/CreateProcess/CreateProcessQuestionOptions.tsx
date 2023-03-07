@@ -1,4 +1,4 @@
-import { AddIcon, DeleteIcon } from '@chakra-ui/icons';
+import { AddIcon, DeleteIcon } from '@chakra-ui/icons'
 import {
   Flex,
   FormControl,
@@ -6,20 +6,20 @@ import {
   HStack,
   IconButton,
   Input,
-} from '@chakra-ui/react';
+} from '@chakra-ui/react'
 import {
   FieldValues,
   UseFieldArrayAppend,
   UseFieldArrayRemove,
   UseFormRegister,
-} from 'react-hook-form';
+} from 'react-hook-form'
 
 interface Props {
-  fields: Record<'id', string>[];
-  register: UseFormRegister<FieldValues>;
-  removeOption: UseFieldArrayRemove;
-  appendOption: UseFieldArrayAppend<FieldValues, `questions.${number}.options`>;
-  index: number;
+  fields: Record<'id', string>[]
+  register: UseFormRegister<FieldValues>
+  removeOption: UseFieldArrayRemove
+  appendOption: UseFieldArrayAppend<FieldValues, `questions.${number}.options`>
+  index: number
 }
 
 const CreateProcessQuestionOptions = ({
@@ -30,25 +30,25 @@ const CreateProcessQuestionOptions = ({
   index,
 }: Props) => (
   <>
-    <HStack justifyContent="space-between" mb={4} mt={8}>
+    <HStack justifyContent='space-between' mb={4} mt={8}>
       <FormLabel>Options</FormLabel>
       <IconButton
-        type="button"
+        type='button'
         icon={<AddIcon />}
-        aria-label="Add option"
+        aria-label='Add option'
         onClick={() => appendOption({ option: '' })}
       />
     </HStack>
     {fields.map((_, idx: number) => (
       <FormControl key={idx} mb={4}>
-        <Flex alignItems="center">
+        <Flex alignItems='center'>
           <FormLabel>Option {idx + 1}</FormLabel>
 
           <IconButton
-            ml="auto"
-            type="button"
+            ml='auto'
+            type='button'
             icon={<DeleteIcon />}
-            aria-label="delete option"
+            aria-label='delete option'
             onClick={() => removeOption(idx)}
           />
         </Flex>
@@ -61,5 +61,5 @@ const CreateProcessQuestionOptions = ({
       </FormControl>
     ))}
   </>
-);
-export default CreateProcessQuestionOptions;
+)
+export default CreateProcessQuestionOptions

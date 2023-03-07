@@ -3,7 +3,7 @@ import {
   createHashRouter,
   createRoutesFromElements,
   Route,
-  RouterProvider
+  RouterProvider,
 } from 'react-router-dom'
 import ProtectedRoutes from '../components/Layouts/ProtectedRoutes'
 import Create from '../elements/Create'
@@ -26,7 +26,7 @@ export const RoutesProvider = () => {
           <Route
             path='processes/:id'
             element={<Process />}
-            loader={async ({params}) => client.fetchElection(params.id)}
+            loader={async ({ params }) => client.fetchElection(params.id)}
           />
         </Route>
 

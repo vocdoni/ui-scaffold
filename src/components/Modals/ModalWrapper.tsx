@@ -4,19 +4,19 @@ import {
   ModalCloseButton,
   ModalContent,
   ModalOverlay,
-} from '@chakra-ui/react';
-import { PublishedElection } from '@vocdoni/sdk';
-import { MODAL_TYPE } from '../../constants/modalType';
-import ModalAddTokens from './ModalAddTokens';
-import ModalLoading from './ModalLoading';
-import ModalProcessInfo from './ModalProcessInfo';
-import ModalSuccess from './ModalSuccess';
+} from '@chakra-ui/react'
+import { PublishedElection } from '@vocdoni/sdk'
+import { MODAL_TYPE } from '../../constants/modalType'
+import ModalAddTokens from './ModalAddTokens'
+import ModalLoading from './ModalLoading'
+import ModalProcessInfo from './ModalProcessInfo'
+import ModalSuccess from './ModalSuccess'
 
 interface Props {
-  el?: PublishedElection;
-  type: number;
-  isOpen: boolean;
-  onClose: () => void;
+  el?: PublishedElection
+  type: number
+  isOpen: boolean
+  onClose: () => void
 }
 
 const ModalWrapper = ({ el, type, isOpen, onClose }: Props) => (
@@ -36,6 +36,6 @@ const ModalWrapper = ({ el, type, isOpen, onClose }: Props) => (
       </ModalBody>
     </ModalContent>
   </Modal>
-);
+)
 
-export default ModalWrapper;
+export default ModalWrapper

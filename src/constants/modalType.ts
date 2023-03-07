@@ -4,4 +4,4 @@ export const MODAL_TYPE = {
   INFO: 2,
   ADD_TOKENS: 3,
   SUCCESS: 4,
-};
+}

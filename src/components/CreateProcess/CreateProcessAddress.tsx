@@ -1,23 +1,23 @@
-import { DeleteIcon } from '@chakra-ui/icons';
+import { DeleteIcon } from '@chakra-ui/icons'
 import {
   Flex,
   FormControl,
   FormLabel,
   IconButton,
   Input,
-} from '@chakra-ui/react';
+} from '@chakra-ui/react'
 import {
   FieldValues,
   UseFieldArrayRemove,
   UseFormGetValues,
   UseFormRegister,
-} from 'react-hook-form';
+} from 'react-hook-form'
 
 interface Props {
-  fields: Record<'id', string>[];
-  getValues: UseFormGetValues<FieldValues>;
-  register: UseFormRegister<FieldValues>;
-  remove: UseFieldArrayRemove;
+  fields: Record<'id', string>[]
+  getValues: UseFormGetValues<FieldValues>
+  register: UseFormRegister<FieldValues>
+  remove: UseFieldArrayRemove
 }
 
 const CreateProcessAddress = ({
@@ -29,23 +29,23 @@ const CreateProcessAddress = ({
   <>
     {fields.map((add, i: number) => (
       <FormControl key={add.id} mb={4}>
-        <Flex alignItems="center">
-          <FormLabel whiteSpace="nowrap">{`Address ${i + 1}`}</FormLabel>
+        <Flex alignItems='center'>
+          <FormLabel whiteSpace='nowrap'>{`Address ${i + 1}`}</FormLabel>
           {getValues().weightedVote && (
-            <FormControl display="flex" alignItems="end" mb={2} ml={8}>
+            <FormControl display='flex' alignItems='end' mb={2} ml={8}>
               <FormLabel>Weight:</FormLabel>
               <Input
-                type="number"
+                type='number'
                 width={24}
                 {...register(`addresses.${i}.weight` as const)}
               />
             </FormControl>
           )}
           <IconButton
-            ml="auto"
-            type="button"
+            ml='auto'
+            type='button'
             icon={<DeleteIcon />}
-            aria-label="delete address"
+            aria-label='delete address'
             onClick={() => remove(i)}
           />
         </Flex>
@@ -56,6 +56,6 @@ const CreateProcessAddress = ({
       </FormControl>
     ))}
   </>
-);
+)
 
-export default CreateProcessAddress;
+export default CreateProcessAddress
