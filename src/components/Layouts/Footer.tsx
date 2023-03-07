@@ -1,3 +1,3 @@
-const Footer = () => null;
+const Footer = () => null
 
-export default Footer;
+export default Footer
