@@ -5,7 +5,7 @@ import {
   Route,
   RouterProvider
 } from 'react-router-dom'
-import ProtectedRoutes from '../components/Layouts/ProtectedRoutes'
+import ProtectedRoutes from './ProtectedRoutes'
 import Create from '../elements/Create'
 import Error from '../elements/Error'
 import Home from '../elements/Home'
