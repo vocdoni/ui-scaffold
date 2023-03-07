@@ -3,22 +3,23 @@ import {
   createHashRouter,
   createRoutesFromElements,
   Route,
-  RouterProvider,
+  RouterProvider
 } from 'react-router-dom'
 import ProtectedRoutes from '../components/Layouts/ProtectedRoutes'
 import Create from '../elements/Create'
+import Error from '../elements/Error'
 import Home from '../elements/Home'
+import Layout from '../elements/Layout'
 import List from '../elements/List'
 import NotFound from '../elements/NotFound'
 import Process from '../elements/Process'
-import RootLayout from '../elements/RootLayout'
 
 export const RoutesProvider = () => {
   const { client } = useClientContext()
 
   const router = createHashRouter(
     createRoutesFromElements(
-      <Route path='/' element={<RootLayout />}>
+      <Route path='/' element={<Layout />} errorElement={<Error />}>
         <Route index element={<Home />} />
         <Route element={<ProtectedRoutes />}>
           <Route path='processes/create' element={<Create />} />
