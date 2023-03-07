@@ -2,13 +2,13 @@ import {
   ChakraProvider,
   ColorModeScript,
   extendTheme,
-  useColorMode,
+  useColorMode
 } from '@chakra-ui/react'
 import { Signer } from '@ethersproject/abstract-signer'
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import { ClientProvider } from '@vocdoni/react-components'
 import { useSigner, WagmiConfig } from 'wagmi'
-import { chains, wagmiClient } from './lib/rainbow/rainbow'
+import { chains, wagmiClient } from './constants/rainbow'
 import { RoutesProvider } from './router/Router'
 import { rainbowStyles, theme } from './theme'
 

@@ -1,9 +1,8 @@
 import { Box, Flex, HStack, Spinner } from '@chakra-ui/react'
 import { useClientContext } from '@vocdoni/react-components'
-import { PublishedElection } from '@vocdoni/sdk'
+import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { getElectionsToDisplay } from '../../lib/processList/filterElections'
 import ProcessesListFilters from './ProcessesListFilters'
 import ProcessListRow from './ProcessListRow'
 
@@ -78,3 +77,38 @@ const ProcessesList = () => {
 }
 
 export default ProcessesList
+
+const filterActive = (
+  elections: PublishedElection[],
+  filters: PropsFilters
+) => {
+  if (!filters.onlyCurrentElections) return [...elections]
+
+  const now = new Date()
+
+  return elections.filter(
+    el =>
+      now.getTime() < el.endDate.getTime() &&
+      el.status !== ElectionStatus.CANCELED &&
+      el.status !== ElectionStatus.ENDED &&
+      el.status !== ElectionStatus.RESULTS
+  )
+}
+
+const filterByTitle = (
+  elections: PublishedElection[],
+  filters: PropsFilters
+) => {
+  if (!filters.search) return [...elections]
+
+  const lowerCaseSearch = filters.search.toLowerCase()
+
+  return elections.filter((el: PublishedElection) =>
+    el.title.default.toLowerCase().includes(lowerCaseSearch)
+  )
+}
+
+export const getElectionsToDisplay = (
+  elections: PublishedElection[],
+  filters: PropsFilters
+) => filterByTitle(filterActive(elections, filters), filters)

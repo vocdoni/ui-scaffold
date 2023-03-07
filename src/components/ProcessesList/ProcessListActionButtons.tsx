@@ -4,15 +4,13 @@ import {
   ButtonGroup,
   HStack,
   IconButton,
-  useDisclosure,
+  useDisclosure
 } from '@chakra-ui/react'
 import { useClientContext } from '@vocdoni/react-components'
 import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { FaPause, FaPlay, FaStop } from 'react-icons/fa'
-import { MODAL_TYPE } from '../../constants/modalType'
-import { UpdatedBalanceContext } from '../../lib/contexts/UpdatedBalanceContext'
-import { getButtonsDisabled } from '../../lib/processList/buttonsDisabled'
+import { ModalType } from '../../constants'
 import ModalWrapper from '../Modals/ModalWrapper'
 
 interface Props {
@@ -20,17 +18,41 @@ interface Props {
   setElectionsList: React.Dispatch<React.SetStateAction<PublishedElection[]>>
 }
 
+const getButtonsDisabled = (
+  el: PublishedElection,
+  electionStatus: ElectionStatus
+) => {
+  const now = new Date()
+
+  const isStarted = now.getTime() > el.startDate.getTime()
+
+  const allDisabled =
+    !isStarted ||
+    el.status === ElectionStatus.RESULTS ||
+    el.status === ElectionStatus.CANCELED ||
+    el.status === ElectionStatus.ENDED
+
+  const readyDisabled = el.status === ElectionStatus.READY
+  const pauseDisabled = el.status === ElectionStatus.PAUSED
+
+  if (electionStatus === ElectionStatus.READY)
+    return allDisabled || readyDisabled
+
+  if (electionStatus === ElectionStatus.PAUSED)
+    return allDisabled || pauseDisabled
+
+  if (electionStatus === ElectionStatus.CANCELED) return allDisabled
+}
+
 const ProcessListActionButtons = ({ el, setElectionsList }: Props) => {
   const { client } = useClientContext()
 
-  const { updateBalance } = useContext(UpdatedBalanceContext)
-
-  const [modalType, setModalType] = useState(MODAL_TYPE.CLOSED)
+  const [modalType, setModalType] = useState(ModalType.Closed)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const handleAction = async (action: string) => {
-    setModalType(MODAL_TYPE.LOADING)
+    setModalType(ModalType.Loading)
     onOpen()
     try {
       if (action === ElectionStatus.READY) await client.continueElection(el.id)
@@ -39,7 +61,6 @@ const ProcessListActionButtons = ({ el, setElectionsList }: Props) => {
     } catch (err) {
       console.log(err)
     } finally {
-      updateBalance()
       setElectionsList([])
       onClose()
     }
@@ -82,7 +103,7 @@ const ProcessListActionButtons = ({ el, setElectionsList }: Props) => {
         boxSize={6}
         cursor='pointer'
         onClick={() => {
-          setModalType(MODAL_TYPE.INFO)
+          setModalType(ModalType.Info)
           onOpen()
         }}
       />
