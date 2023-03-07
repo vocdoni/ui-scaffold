@@ -11,7 +11,7 @@ export interface CardProps {
   card: CardContents
 }
 
-const Card = ({ card }: CardProps) => (
+const OrganitzationCard = ({ card }: CardProps) => (
   <Box
     width='200px'
     height='250px'
@@ -57,4 +57,4 @@ const Card = ({ card }: CardProps) => (
   </Box>
 )
 
-export default Card
+export default OrganitzationCard

@@ -1,6 +1,6 @@
 import { Box, Flex, Grid, GridItem, Heading, Text } from '@chakra-ui/react'
 import ButtonGhost from '../components/Buttons/ButtonGhost'
-import Card, { CardContents } from '../components/Cards/Card'
+import Card, { CardContents } from '../components/Organitzation/Card'
 import InputSearch from '../components/Forms/InputSearch'
 import Counters from '../components/Home/Counters'
 
