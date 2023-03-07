@@ -3,8 +3,8 @@ import { useClientContext } from '@vocdoni/react-components'
 import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import ProcessesListFilters from './ProcessesListFilters'
-import ProcessListRow from './ProcessListRow'
+import ProcessesListFilters from './Filters'
+import ProcessListRow from './Row'
 
 export interface PropsFilters {
   search: string

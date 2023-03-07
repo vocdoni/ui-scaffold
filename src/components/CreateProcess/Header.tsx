@@ -1,6 +1,6 @@
 import { FormControl, FormLabel, Input } from '@chakra-ui/react'
 import { useFormContext } from 'react-hook-form'
-import WrapperFormSection from '../Wrappers/WrapperFormSection'
+import WrapperFormSection from './WrapperFormSection'
 
 const CreateProcessHeader = () => {
   const { register } = useFormContext()

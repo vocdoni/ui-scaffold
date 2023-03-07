@@ -1,7 +1,7 @@
 import { Flex, FormControl, FormLabel, Input, Text } from '@chakra-ui/react'
 import { useFormContext, useWatch } from 'react-hook-form'
-import WrapperFormSection from '../Wrappers/WrapperFormSection'
-import CreateProcessAdvancedSettings from './CreateProcessAdvancedSettings'
+import CreateProcessAdvancedSettings from './AdvancedSettings'
+import WrapperFormSection from './WrapperFormSection'
 
 const CreateProcessSettings = () => {
   const { register, getValues, watch } = useFormContext()

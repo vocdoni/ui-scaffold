@@ -1,8 +1,8 @@
 import { AddIcon } from '@chakra-ui/icons'
 import { HStack, IconButton, Text } from '@chakra-ui/react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
-import WrapperFormSection from '../Wrappers/WrapperFormSection'
-import CreateProcessAddress from './CreateProcessAddress'
+import CreateProcessAddress from './Address'
+import WrapperFormSection from './WrapperFormSection'
 
 const CreateProcessAddresses = () => {
   const { register, getValues } = useFormContext()

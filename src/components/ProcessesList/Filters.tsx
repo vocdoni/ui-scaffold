@@ -8,7 +8,7 @@ import {
   InputLeftElement,
 } from '@chakra-ui/react'
 import { useFormContext } from 'react-hook-form'
-import WrapperFiltersList from '../Wrappers/WrapperFiltersList'
+import WrapperFiltersList from './WrapperFilters'
 
 const ProcessesListFilters = () => {
   const { register } = useFormContext()

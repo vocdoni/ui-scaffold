@@ -1,8 +1,8 @@
 import { Box, Text } from '@chakra-ui/react'
 import { PublishedElection } from '@vocdoni/sdk'
 import { Link } from 'react-router-dom'
-import WrapperListRow from '../Wrappers/WrapperListRow'
-import ProcessListActionButtons from './ProcessListActionButtons'
+import WrapperListRow from './WrapperRow'
+import ProcessListActionButtons from './ActionButtons'
 
 interface Props {
   el: PublishedElection

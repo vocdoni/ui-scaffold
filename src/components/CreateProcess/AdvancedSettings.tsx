@@ -11,8 +11,8 @@ import {
   Input,
 } from '@chakra-ui/react'
 import { FieldValues, UseFormGetValues, UseFormRegister } from 'react-hook-form'
-import AdvancedSettingCheckbox from './AdvancedSettingCheckbox'
-import AdvancesSettignsAutostart from './AdvancedSettingsAutostart'
+import AdvancesSettignsAutostart from './Autostart'
+import AdvancedSettingCheckbox from './Checkbox'
 
 interface Props {
   register: UseFormRegister<FieldValues>
