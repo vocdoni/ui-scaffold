@@ -6,8 +6,8 @@ import {
   InputLeftElement,
 } from '@chakra-ui/react'
 
-const InputSearch = () => (
-  <FormControl mb={4}>
+const InputSearch = ({ ...props }) => (
+  <FormControl mb={4} {...props}>
     <InputGroup>
       <InputLeftElement
         pointerEvents='none'

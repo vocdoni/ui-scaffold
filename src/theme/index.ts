@@ -17,20 +17,24 @@ const colors = {
 const variants = {
   organization: definePartsStyle({
     container: {
-      width: '200px',
-      height: '250px',
-      padding: '8px',
+      width: '100%',
+      padding: '12px',
       borderRadius: '10px',
       border: '1px solid lightgray',
+      cursor: 'pointer',
+      transition: 'background .3s ease-in-out',
+      _hover: {
+        transition: 'background .3s ease-in-out',
+        backgroundColor: 'rgba(230, 230, 230, 0.8)',
+      },
     },
     header: {
       padding: '0',
-      height: '170px',
       overflow: 'hidden',
     },
     body: {
-      padding: '0',
-      paddingX: '2px',
+      py: '5px',
+      px: '3px',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-between',
@@ -40,11 +44,11 @@ const variants = {
       fontWeight: 'bold',
     },
     footer: {
-      padding: '0',
-      paddingX: '2px',
+      py: '5px',
+      px: '3px',
       display: 'flex',
       justifyContent: 'space-between',
-      fontSize: '.7em',
+      fontSize: '.8em',
     },
   }),
 }

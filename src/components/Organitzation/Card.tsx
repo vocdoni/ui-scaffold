@@ -1,4 +1,5 @@
 import {
+  AspectRatio,
   Card,
   CardBody,
   CardFooter,
@@ -21,13 +22,15 @@ export interface CardProps {
 const OrganitzationCard = ({ card }: CardProps) => (
   <Card variant='organization'>
     <CardHeader>
-      <Image
-        borderRadius={8}
-        height='100%'
-        src={card.imageURL}
-        alt={`Picture of ${card.name}`}
-        roundedTop='lg'
-      />
+      <AspectRatio ratio={1}>
+        <Image
+          borderRadius={8}
+          height='100%'
+          src={card.imageURL}
+          alt={`Picture of ${card.name}`}
+          roundedTop='lg'
+        />
+      </AspectRatio>
     </CardHeader>
     <CardBody>
       <Text>{card.name}</Text>
@@ -50,46 +53,3 @@ const OrganitzationCard = ({ card }: CardProps) => (
 )
 
 export default OrganitzationCard
-// <Box
-//   width='200px'
-//   height='250px'
-//   borderWidth='1px'
-//   borderRadius={8}
-//   position='relative'
-//   p={2}
-//   cursor='pointer'
-// >
-//   <Box height='170px' overflow='hidden'>
-// <Image
-//   borderRadius={8}
-//   height='100%'
-//   src={card.imageURL}
-//   alt={`Picture of ${card.name}`}
-//   roundedTop='lg'
-// />
-//   </Box>
-//   <Flex
-//     height='60px'
-//     pt={2}
-//     direction='column'
-//     justifyContent='space-between'
-//   >
-// <Text fontSize='.9em' fontWeight='bold'>
-//   {card.name}
-// </Text>
-// <HStack justifyContent='space-between'>
-//   <Text fontSize='.7em'>
-//     <Text as='span' fontWeight='bold'>
-//       {card.funded}
-//     </Text>{' '}
-//     Funded
-//   </Text>
-//   <Text fontSize='.7em'>
-//     <Text as='span' fontWeight='bold'>
-//       {card.rounds}
-//     </Text>{' '}
-//     Rounds
-//   </Text>
-// </HStack>
-//   </Flex>
-// </Box>

@@ -30,7 +30,7 @@ const Navbar = () => {
         alignItems='center'
         gap={4}
         paddingTop={4}
-        mb={{ base: 2, sm: 4, md: 6 }}
+        mb={{ base: 12, md: 16 }}
       >
         <Flex alignItems='center' gap={4} marginRight='auto'>
           <NavLink to='/'>
