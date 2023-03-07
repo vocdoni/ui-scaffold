@@ -8,10 +8,10 @@ const Desktop = () => (
 	<Box display={{ base: 'none', md: 'flex' }}>
 		<UnorderedList display='flex' alignItems='center' gap={4}>
 			<ListItem listStyleType='none'>
-				<NavLink to='processes/create'>Docs</NavLink>
+				<NavLink to='#'>Docs</NavLink>
 			</ListItem>
 			<ListItem listStyleType='none'>
-				<NavLink to='processes'>FAQ</NavLink>
+				<NavLink to='#'>FAQ</NavLink>
 			</ListItem>
 			<ListItem listStyleType='none' display='flex'>
 				<FaGlobeAmericas />

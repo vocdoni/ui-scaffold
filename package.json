@@ -18,7 +18,7 @@
 		"@types/react-dom": "^18.0.4",
 		"@types/react-router-dom": "^5.3.3",
 		"@vocdoni/react-components": "^0.0.5-alpha",
-		"@vocdoni/sdk": "file:./vocdoni-sdk-0.0.4.tgz",
+		"@vocdoni/sdk": "0.0.4-alpha",
 		"ethers": "^5.7.2",
 		"framer-motion": "^6.2.9",
 		"react": "^18.1.0",
