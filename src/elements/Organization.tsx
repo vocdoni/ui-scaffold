@@ -1,5 +1,5 @@
-const Organization = () => {
-  return <h2>Organization</h2>
+const Organitzation = () => {
+  return <h1>Oganization</h1>
 }
 
-export default Organization
+export default Organitzation

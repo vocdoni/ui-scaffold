@@ -11,6 +11,18 @@ const colors = {
 
 export const theme = extendTheme(vtheme, {
   colors,
+  components: {
+    Button: {
+      variants: {
+        ghost: {
+          border: '1px solid',
+          borderRadius: '20px',
+          height: '25px',
+          fontSize: '0.8em',
+        },
+      },
+    },
+  },
 })
 
 export const rainbowStyles = (colormode: ColorMode) => {

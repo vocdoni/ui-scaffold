@@ -1,8 +1,8 @@
-import { Box, Flex, Grid, GridItem, Heading, Text } from '@chakra-ui/react'
-import ButtonGhost from '../components/Buttons/ButtonGhost'
-import Card, { CardContents } from '../components/Organitzation/Card'
+import { Box, Button, Flex, Grid, GridItem, Heading } from '@chakra-ui/react'
+import { FaLongArrowAltRight } from 'react-icons/fa'
 import InputSearch from '../components/Forms/InputSearch'
 import Counters from '../components/Home/Counters'
+import Card, { CardContents } from '../components/Organitzation/Card'
 
 const CARDS: CardContents[] = [
   {
@@ -81,9 +81,13 @@ const Home = () => {
           <Heading as='h1' textAlign='center'>
             Let your community vote!
           </Heading>
-          <ButtonGhost>
-            <Text as='span'>Learn more</Text>
-          </ButtonGhost>
+          <Button
+            variant='ghost'
+            color='purple'
+            rightIcon={<FaLongArrowAltRight />}
+          >
+            Learn More
+          </Button>
         </Flex>
         <Counters />
         <InputSearch />
