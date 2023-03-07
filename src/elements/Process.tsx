@@ -4,14 +4,9 @@ import { useLoaderData } from 'react-router-dom'
 import { ProcessView } from '../components/Process/View'
 
 const Process = () => {
-  const election = (useLoaderData() as PublishedElection)
+  const election = useLoaderData() as PublishedElection
 
-  return (
-    <ProcessView
-      election={election}
-      ConnectButton={ConnectButton}
-    />
-  )
+  return <ProcessView election={election} ConnectButton={ConnectButton} />
 }
 
 export default Process

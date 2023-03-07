@@ -1,7 +1,7 @@
-import CreateProcess from '../components/CreateProcess';
+import CreateProcess from '../components/CreateProcess'
 
 const Create = () => {
-  return <CreateProcess />;
-};
+  return <CreateProcess />
+}
 
-export default Create;
+export default Create

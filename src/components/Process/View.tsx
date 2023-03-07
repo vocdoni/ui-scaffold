@@ -7,7 +7,7 @@ import {
   ElectionStatusBadge,
   ElectionTitle,
   HR,
-  QuestionsForm
+  QuestionsForm,
 } from '@vocdoni/react-components'
 
 export const ProcessView = (props: ElectionProviderComponentProps) => (

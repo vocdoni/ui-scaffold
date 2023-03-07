@@ -1,4 +1,4 @@
-import { DeleteIcon } from '@chakra-ui/icons';
+import { DeleteIcon } from '@chakra-ui/icons'
 import {
   Box,
   FormControl,
@@ -6,35 +6,35 @@ import {
   HStack,
   IconButton,
   Input,
-} from '@chakra-ui/react';
+} from '@chakra-ui/react'
 import {
   useFieldArray,
   UseFieldArrayRemove,
   useFormContext,
-} from 'react-hook-form';
-import CreateProcessQuestionOptions from './CreateProcessQuestionOptions';
+} from 'react-hook-form'
+import CreateProcessQuestionOptions from './CreateProcessQuestionOptions'
 
 interface Props {
-  index: number;
-  remove: UseFieldArrayRemove;
+  index: number
+  remove: UseFieldArrayRemove
 }
 const CreateProcessQuestion = ({ index, remove }: Props) => {
-  const { register } = useFormContext();
+  const { register } = useFormContext()
   const {
     fields,
     append: appendOption,
     remove: removeOption,
   } = useFieldArray({
     name: `questions.${index}.options`,
-  });
+  })
 
   return (
-    <Box bg="white" p={4} borderRadius={8} _dark={{ bg: 'black.c60' }}>
-      <HStack justify="space-between" mb={4}>
+    <Box bg='white' p={4} borderRadius={8} _dark={{ bg: 'black.c60' }}>
+      <HStack justify='space-between' mb={4}>
         <FormLabel>Question {index + 1}</FormLabel>
 
         <IconButton
-          type="button"
+          type='button'
           icon={<DeleteIcon />}
           aria-label={`Delete question ${index + 1}`}
           onClick={() => remove()}
@@ -46,7 +46,7 @@ const CreateProcessQuestion = ({ index, remove }: Props) => {
           {...register(`questions.${index}.titleQuestion` as const, {
             required: true,
           })}
-          placeholder="Title"
+          placeholder='Title'
         />
       </FormControl>
       <FormControl>
@@ -55,7 +55,7 @@ const CreateProcessQuestion = ({ index, remove }: Props) => {
           {...register(`questions.${index}.descriptionQuestion` as const, {
             required: true,
           })}
-          placeholder="Description"
+          placeholder='Description'
         />
       </FormControl>
 
@@ -67,7 +67,7 @@ const CreateProcessQuestion = ({ index, remove }: Props) => {
         index={index}
       />
     </Box>
-  );
-};
+  )
+}
 
-export default CreateProcessQuestion;
+export default CreateProcessQuestion

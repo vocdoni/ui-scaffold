@@ -1,25 +1,19 @@
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
 import {
   Box,
-  Button,
   Flex,
   IconButton,
-  ListItem,
-  UnorderedList,
+  Text,
   useDisclosure,
   useOutsideClick,
 } from '@chakra-ui/react'
-import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useRef } from 'react'
 import { NavLink } from 'react-router-dom'
-import { useAccount } from 'wagmi'
-import { ColorModeSwitcher } from '../../ColorModeSwitcher'
-import BtnVocdoniTokens from '../Buttons/BtnVocdoniTokens'
 import VocdoniIcon from '../Icons/VocdoniIcon'
+import Desktop from '../Navbar/Desktop'
+import Mobile from '../Navbar/Mobile'
 
 const Navbar = () => {
-  const { isConnected } = useAccount()
-
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const refNav = useRef<HTMLDivElement>(null)
@@ -30,105 +24,34 @@ const Navbar = () => {
   })
 
   return (
-    <Box as="nav" ref={refNav}>
+    <Box as='nav' ref={refNav}>
       <Flex
-        justifyContent="end"
-        alignItems="center"
+        justifyContent='end'
+        alignItems='center'
         gap={4}
         paddingTop={4}
-        mb={8}
-        sx={{
-          '& .active': {
-            color: 'green.vocdoni',
-          },
-        }}
+        mb={{ base: 2, sm: 4, md: 6 }}
       >
-        <Box marginRight="auto">
-          <NavLink to="/">
+        <Flex alignItems='center' gap={4} marginRight='auto'>
+          <NavLink to='/'>
             <VocdoniIcon />
           </NavLink>
-        </Box>
+          <Text mt={1} display={{ base: 'none', sm: 'block' }} fontSize='0.8em'>
+            Public voting protocol
+          </Text>
+        </Flex>
 
-        <Box display={{ base: 'none', lg: 'flex' }}>
-          <UnorderedList display="flex" alignItems="center" gap={4}>
-            {isConnected && (
-              <>
-                <ListItem listStyleType="none">
-                  <NavLink to="processes/create">Create Process</NavLink>
-                </ListItem>
-                <ListItem listStyleType="none">
-                  <NavLink to="processes">Processes List</NavLink>
-                </ListItem>
-              </>
-            )}
-            <ListItem listStyleType="none">
-              <ConnectButton accountStatus="avatar" chainStatus="icon" />
-            </ListItem>
-            <ListItem listStyleType="none">
-              {isConnected && <BtnVocdoniTokens />}
-            </ListItem>
-            <ListItem listStyleType="none">
-              <ColorModeSwitcher mb={1} size="sm" justifySelf="flex-end" />
-            </ListItem>
-          </UnorderedList>
-        </Box>
+        <Desktop />
 
         <IconButton
           size={'md'}
           icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
           aria-label={'Open Menu'}
-          display={{ lg: 'none' }}
+          display={{ md: 'none' }}
           onClick={isOpen ? onClose : onOpen}
         />
       </Flex>
-      {isOpen ? (
-        <Box
-          display={{ lg: 'none' }}
-          position="absolute"
-          left={0}
-          bg="white"
-          _dark={{
-            bg: 'black.c60',
-            borderBottomColor: 'black.c90',
-          }}
-          width="100%"
-          zIndex={10}
-          borderBottom="2px solid white"
-          borderBottomColor="gray.100"
-        >
-          <UnorderedList
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            gap={6}
-            p={4}
-          >
-            <ListItem listStyleType="none">
-              <ConnectButton accountStatus="avatar" chainStatus="icon" />
-            </ListItem>
-            {isConnected && (
-              <>
-                <ListItem listStyleType="none">
-                  <BtnVocdoniTokens />
-                </ListItem>
-                <ListItem listStyleType="none">
-                  <Button onClick={onClose}>
-                    <NavLink to="processes/create">Create Process</NavLink>
-                  </Button>
-                </ListItem>
-                <ListItem listStyleType="none">
-                  <Button onClick={onClose}>
-                    <NavLink to="processes">Processes List</NavLink>
-                  </Button>
-                </ListItem>
-              </>
-            )}
-            <ListItem listStyleType="none">
-              <ColorModeSwitcher mb={1} size="sm" justifySelf="flex-end" />
-            </ListItem>
-          </UnorderedList>
-        </Box>
-      ) : null}
+      {isOpen && <Mobile />}
     </Box>
   )
 }

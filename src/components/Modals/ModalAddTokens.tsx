@@ -1,5 +1,5 @@
-import { Text } from '@chakra-ui/react';
+import { Text } from '@chakra-ui/react'
 
-const ModalAddTokens = () => <Text textAlign="center">Insuficient tokens</Text>;
+const ModalAddTokens = () => <Text textAlign='center'>Insuficient tokens</Text>
 
-export default ModalAddTokens;
+export default ModalAddTokens

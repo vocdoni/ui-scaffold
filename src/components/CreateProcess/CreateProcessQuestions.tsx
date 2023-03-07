@@ -1,37 +1,37 @@
-import { AddIcon } from '@chakra-ui/icons';
-import { Flex, HStack, IconButton, Text } from '@chakra-ui/react';
-import { useFieldArray } from 'react-hook-form';
-import CreateProcessQuestion from './CreateProcessQuestion';
+import { AddIcon } from '@chakra-ui/icons'
+import { Flex, HStack, IconButton, Text } from '@chakra-ui/react'
+import { useFieldArray } from 'react-hook-form'
+import CreateProcessQuestion from './CreateProcessQuestion'
 
 const CreateProcessQuestions = () => {
   const { fields, append, remove } = useFieldArray({
     name: 'questions',
-  });
+  })
 
   return (
     <Flex
-      as="fieldset"
-      direction="column"
+      as='fieldset'
+      direction='column'
       gap={4}
       p={4}
-      bg="gray.100"
+      bg='gray.100'
       borderRadius={8}
       _dark={{ bg: 'black.c90' }}
     >
       <HStack
-        justifyContent="space-between"
-        bg="white"
+        justifyContent='space-between'
+        bg='white'
         p={4}
         borderRadius={8}
         _dark={{ bg: 'black.c60' }}
       >
-        <Text as="legend" fontSize="1.3em">
+        <Text as='legend' fontSize='1.3em'>
           Questions
         </Text>
         <IconButton
-          type="button"
+          type='button'
           icon={<AddIcon />}
-          aria-label="add question"
+          aria-label='add question'
           onClick={() =>
             append({
               titleQuestion: '',
@@ -49,7 +49,7 @@ const CreateProcessQuestions = () => {
         />
       ))}
     </Flex>
-  );
-};
+  )
+}
 
-export default CreateProcessQuestions;
+export default CreateProcessQuestions
