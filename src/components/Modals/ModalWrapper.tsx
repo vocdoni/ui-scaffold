@@ -3,10 +3,10 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalOverlay,
+  ModalOverlay
 } from '@chakra-ui/react'
 import { PublishedElection } from '@vocdoni/sdk'
-import { MODAL_TYPE } from '../../constants/modalType'
+import { ModalType } from '../../constants'
 import ModalAddTokens from './ModalAddTokens'
 import ModalLoading from './ModalLoading'
 import ModalProcessInfo from './ModalProcessInfo'
@@ -23,16 +23,16 @@ const ModalWrapper = ({ el, type, isOpen, onClose }: Props) => (
   <Modal
     isOpen={isOpen}
     onClose={onClose}
-    closeOnOverlayClick={type !== MODAL_TYPE.LOADING}
+    closeOnOverlayClick={type !== ModalType.Loading}
   >
     <ModalOverlay />
     <ModalContent py={12}>
-      {type !== MODAL_TYPE.LOADING && <ModalCloseButton />}
+      {type !== ModalType.Loading && <ModalCloseButton />}
       <ModalBody>
-        {type === MODAL_TYPE.INFO && el && <ModalProcessInfo el={el} />}
-        {type === MODAL_TYPE.LOADING && <ModalLoading />}
-        {type === MODAL_TYPE.ADD_TOKENS && <ModalAddTokens />}
-        {type === MODAL_TYPE.SUCCESS && <ModalSuccess />}
+        {type === ModalType.Info && el && <ModalProcessInfo el={el} />}
+        {type === ModalType.Loading && <ModalLoading />}
+        {type === ModalType.AddTokens && <ModalAddTokens />}
+        {type === ModalType.Success && <ModalSuccess />}
       </ModalBody>
     </ModalContent>
   </Modal>

@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 import Footer from '../components/Layouts/Footer'
 import Navbar from '../components/Layouts/Navbar'
 
-const RootLayout = () => {
+const Layout = () => {
   return (
     <Flex
       paddingX={4}
@@ -21,4 +21,4 @@ const RootLayout = () => {
   )
 }
 
-export default RootLayout
+export default Layout

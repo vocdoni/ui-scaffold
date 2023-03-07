@@ -1,16 +1,15 @@
 import { Button, useDisclosure } from '@chakra-ui/react'
 import { useClientContext } from '@vocdoni/react-components'
-import { VocdoniSDKClient } from '@vocdoni/sdk'
-import { useContext, useEffect, useState } from 'react'
-import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
-import { MODAL_TYPE } from '../../constants/modalType'
-import { UpdatedBalanceContext } from '../../lib/contexts/UpdatedBalanceContext'
 import {
-  addQuestions,
-  getPlainCensus,
-  getWeightedCensus,
-  handleElection,
-} from '../../lib/sdk/sdk'
+  Census,
+  Election,
+  PlainCensus,
+  UnpublishedElection,
+  WeightedCensus
+} from '@vocdoni/sdk'
+import { useEffect, useState } from 'react'
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
+import { ModalType } from '../../constants'
 import ModalWrapper from '../Modals/ModalWrapper'
 import WrapperForm from '../Wrappers/WrapperForm'
 import CreateProcessAddresses from './CreateProcessAddresses'
@@ -36,6 +35,17 @@ export interface FormValues {
   questions: Question[]
 }
 
+interface PropsQuestionFormatted {
+  title: string
+  description: string
+  options: PropsOptionsQuestionFormatted[]
+}
+
+interface PropsOptionsQuestionFormatted {
+  title: string
+  value: number
+}
+
 export interface Question {
   titleQuestion: string
   descriptionQuestion: string
@@ -51,12 +61,83 @@ export interface Address {
   weight: number
 }
 
+export const getPlainCensus = async (addresses: string[]) => {
+  const census = new PlainCensus()
+  census.add(addresses)
+
+  return census
+}
+export const getWeightedCensus = async (addresses: Address[]) => {
+  const census = new WeightedCensus()
+
+  addresses.forEach((add: Address) => {
+    census.add({
+      key: add.address,
+      weight: BigInt(add.weight),
+    })
+  })
+
+  return census
+}
+
+export const addQuestions = (
+  election: UnpublishedElection,
+  questions: Question[]
+) => {
+  const questionsFormatted = questions.map((question: Question) => ({
+    title: question.titleQuestion,
+    description: question.descriptionQuestion,
+    options: question.options.map((q: Option, i: number) => ({
+      title: q.option,
+      value: i,
+    })),
+  }))
+
+  questionsFormatted.forEach((questionFormatted: PropsQuestionFormatted) =>
+    election.addQuestion(
+      questionFormatted.title,
+      questionFormatted.description,
+      questionFormatted.options
+    )
+  )
+}
+
+export const createElection = (
+  formValues: FormValues,
+  census: Census
+) => {
+  const startDate = new Date(formValues.dates.start)
+  startDate.setHours(startDate.getHours())
+
+  const endDate = new Date(formValues.dates.end)
+  endDate.setHours(endDate.getHours())
+
+  const election = Election.from({
+    title: formValues.titleProcess,
+    description: formValues.descriptionProcess,
+    header: 'https://source.unsplash.com/random',
+    streamUri: 'https://source.unsplash.com/random',
+    startDate: formValues.electionType.autoStart
+      ? undefined
+      : startDate.getTime(),
+    endDate: endDate.getTime(),
+    electionType: {
+      autoStart: formValues.electionType.autoStart,
+      interruptible: formValues.electionType.interruptible,
+      secretUntilTheEnd: formValues.electionType.secretUntilTheEnd,
+    },
+    voteType: { maxVoteOverwrites: Number(formValues.maxVoteOverwrites) },
+    census,
+  })
+
+  return election
+}
+
 const CreateProcess = () => {
   const { client, account } = useClientContext()
-  const { updateBalance } = useContext(UpdatedBalanceContext)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [modalType, setModalType] = useState(MODAL_TYPE.LOADING)
+  const [modalType, setModalType] = useState(ModalType.Loading)
 
   const methods = useForm<FormValues>({
     defaultValues: {
@@ -90,10 +171,24 @@ const CreateProcess = () => {
   const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
     try {
       onOpen()
-      await handleSubmitElection(data, client)
-      updateBalance()
+
+      await client.createAccount()
+      let census
+
+      if (data.weightedVote) census = await getWeightedCensus(data.addresses)
+      else {
+        const addresses = data.addresses.map(add => add.address)
+        census = await getPlainCensus(addresses)
+      }
+
+      const election = createElection(data, census)
+
+      addQuestions(election, data.questions)
+
+      await client.createElection(election)
+
       onClose()
-      setModalType(MODAL_TYPE.SUCCESS)
+      setModalType(ModalType.Success)
       onOpen()
     } catch (err) {
       throw new Error()
@@ -122,26 +217,6 @@ const CreateProcess = () => {
       </WrapperForm>
     </FormProvider>
   )
-}
-
-const handleSubmitElection = async (
-  data: FormValues,
-  client: VocdoniSDKClient
-) => {
-  await client.createAccount()
-  let census
-
-  if (data.weightedVote) census = await getWeightedCensus(data.addresses)
-  else {
-    const addresses = data.addresses.map(add => add.address)
-    census = await getPlainCensus(addresses)
-  }
-
-  const election = await handleElection(data, census)
-
-  await addQuestions(election, data.questions)
-
-  await client.createElection(election)
 }
 
 export default CreateProcess
