@@ -10,8 +10,8 @@ import {
 import { useRef } from 'react'
 import { NavLink } from 'react-router-dom'
 import VocdoniIcon from '../Icons/VocdoniIcon'
-import Desktop from '../Navbar/Desktop'
-import Mobile from '../Navbar/Mobile'
+import Desktop from './Desktop'
+import Mobile from './Mobile'
 
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
