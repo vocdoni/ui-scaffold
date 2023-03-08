@@ -3,16 +3,17 @@ import {
   createHashRouter,
   createRoutesFromElements,
   Route,
-  RouterProvider
+  RouterProvider,
 } from 'react-router-dom'
-import ProtectedRoutes from '../components/Layouts/ProtectedRoutes'
 import Create from '../elements/Create'
 import Error from '../elements/Error'
 import Home from '../elements/Home'
 import Layout from '../elements/Layout'
 import List from '../elements/List'
 import NotFound from '../elements/NotFound'
+import Organization from '../elements/Organization'
 import Process from '../elements/Process'
+import ProtectedRoutes from './ProtectedRoutes'
 
 export const RoutesProvider = () => {
   const { client } = useClientContext()
@@ -29,6 +30,7 @@ export const RoutesProvider = () => {
             element={<Process />}
             loader={async ({ params }) => client.fetchElection(params.id)}
           />
+          <Route path='organization/test' element={<Organization />} />
         </Route>
 
         <Route path='*' element={<NotFound />} />

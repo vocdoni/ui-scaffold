@@ -12,7 +12,7 @@ import {
   UseFieldArrayRemove,
   useFormContext,
 } from 'react-hook-form'
-import CreateProcessQuestionOptions from './CreateProcessQuestionOptions'
+import CreateProcessQuestionOptions from './QuestionOptions'
 
 interface Props {
   index: number

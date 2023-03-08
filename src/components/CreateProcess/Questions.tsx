@@ -1,7 +1,7 @@
 import { AddIcon } from '@chakra-ui/icons'
 import { Flex, HStack, IconButton, Text } from '@chakra-ui/react'
 import { useFieldArray } from 'react-hook-form'
-import CreateProcessQuestion from './CreateProcessQuestion'
+import CreateProcessQuestion from './Question'
 
 const CreateProcessQuestions = () => {
   const { fields, append, remove } = useFieldArray({

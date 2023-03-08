@@ -10,8 +10,8 @@ import {
 import { useRef } from 'react'
 import { NavLink } from 'react-router-dom'
 import VocdoniIcon from '../Icons/VocdoniIcon'
-import Desktop from '../Navbar/Desktop'
-import Mobile from '../Navbar/Mobile'
+import Desktop from './Desktop'
+import Mobile from './Mobile'
 
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -30,7 +30,7 @@ const Navbar = () => {
         alignItems='center'
         gap={4}
         paddingTop={4}
-        mb={{ base: 2, sm: 4, md: 6 }}
+        mb={{ base: 4, sm: 8, lg: 0 }}
       >
         <Flex alignItems='center' gap={4} marginRight='auto'>
           <NavLink to='/'>
