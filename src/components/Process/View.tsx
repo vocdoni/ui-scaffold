@@ -1,23 +1,71 @@
 import {
+  Box,
+  Button,
+  Flex,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Text,
+} from '@chakra-ui/react'
+import {
   ElectionDescription,
-  ElectionHeader,
   ElectionProvider,
   ElectionProviderComponentProps,
   ElectionSchedule,
   ElectionStatusBadge,
   ElectionTitle,
-  HR,
   QuestionsForm,
+  useElection,
 } from '@vocdoni/react-components'
+import { ReactNode } from 'react'
+
+const ProcessViewTabContents = ({ children }: { children: ReactNode }) => {
+  const { election } = useElection()
+  const count = election?.results.reduce(
+    (acc, val) => val.reduce((cur, v) => acc + parseInt(v, 10), 0),
+    0
+  )
+
+  return (
+    <Flex justifyContent='space-between' alignItems='start'>
+      {children}
+      <Box>
+        <Box>
+          <ElectionStatusBadge />
+          <Text>{count} votes cast so far!</Text>
+        </Box>
+        <Button type='submit' form='election-create-form' width='full'>
+          Vote
+        </Button>
+      </Box>
+    </Flex>
+  )
+}
 
 export const ProcessView = (props: ElectionProviderComponentProps) => (
   <ElectionProvider {...props}>
-    <ElectionHeader />
-    <ElectionTitle />
-    <ElectionSchedule />
-    <ElectionStatusBadge />
-    <ElectionDescription />
-    <HR />
-    <QuestionsForm />
+    <Box>
+      <ElectionSchedule textAlign='left' />
+      <ElectionTitle textAlign='left' />
+      <ElectionDescription />
+    </Box>
+    <Tabs>
+      <TabList>
+        <Tab>Questions</Tab>
+        <Tab>Results</Tab>
+      </TabList>
+      <TabPanels>
+        <TabPanel>
+          <ProcessViewTabContents>
+            <QuestionsForm />
+          </ProcessViewTabContents>
+        </TabPanel>
+        <TabPanel>
+          <ProcessViewTabContents>TODO: Results</ProcessViewTabContents>
+        </TabPanel>
+      </TabPanels>
+    </Tabs>
   </ElectionProvider>
 )

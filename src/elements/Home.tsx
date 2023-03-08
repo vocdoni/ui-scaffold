@@ -1,4 +1,5 @@
 import { Box, Button, Flex, Grid, GridItem, Heading } from '@chakra-ui/react'
+import { useTranslation } from 'react-i18next'
 import { FaLongArrowAltRight } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import InputSearch from '../components/Forms/InputSearch'
@@ -65,6 +66,8 @@ const CARDS: CardContents[] = [
 ]
 
 const Home = () => {
+  const { t } = useTranslation()
+
   return (
     <Box pt={6}>
       <Flex
@@ -80,14 +83,14 @@ const Home = () => {
           gap={2}
         >
           <Heading as='h1' textAlign='center'>
-            Let your community vote!
+            {t('landing.intro')}
           </Heading>
           <Button
             variant='ghost'
             color='purple'
             rightIcon={<FaLongArrowAltRight />}
           >
-            Learn More
+            {t('learn_more')}
           </Button>
         </Flex>
         <Counters />
@@ -103,13 +106,12 @@ const Home = () => {
         }}
       >
         {CARDS.map((card, index) => (
-          <Link to='/organization/test'>
+          <Link to='/organization/test' key={index}>
             <GridItem
               display='flex'
               justifyContent='center'
               alignItems='center'
               p={4}
-              key={index}
             >
               <Card card={card} />
             </GridItem>

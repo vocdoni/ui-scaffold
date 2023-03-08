@@ -15,24 +15,24 @@ import {
 import { useClientContext } from '@vocdoni/react-components'
 import { PublishedElection } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import InputSearch from '../components/Forms/InputSearch'
 import ProcessCard from '../components/Process/Card'
 
 const IDS = [
   'c5d2460186f72e5b02237f4489d53a7fe4ae2134fabef8323507020400000000',
   'c5d2460186f72e5b02237f4489d53a7fe4ae2134fabef8323507020400000002',
+  'c5d2460186f738fcd83e29167c22910f7cff9df127641d605710020000000000',
 ]
 
 const Organitzation = () => {
   const { client, account } = useClientContext()
+  const navigate = useNavigate()
   const [electionsList, setElectionsList] = useState<PublishedElection[]>([])
 
   useEffect(() => {
     if (!account) return
-    Promise.allSettled([
-      client.fetchElection(IDS[0]),
-      client.fetchElection(IDS[1]),
-    ])
+    Promise.allSettled(IDS.map(id => client.fetchElection(id)))
       .then(res =>
         res.filter(el => el.status === 'fulfilled').map((el: any) => el.value)
       )
@@ -171,6 +171,8 @@ const Organitzation = () => {
                   alignItems='center'
                   p={4}
                   key={election.id}
+                  cursor='pointer'
+                  onClick={() => navigate(`/processes/${election.id}`)}
                 >
                   <ProcessCard election={election} />
                 </GridItem>
