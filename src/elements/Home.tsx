@@ -1,9 +1,11 @@
-import { Box } from '@chakra-ui/react'
-import { CardContents } from '../components/Cards/Card'
-import Cards from '../components/Home/Cards'
-import Header from '../components/Home/Header'
+import { Box, Button, Flex, Grid, GridItem, Heading } from '@chakra-ui/react'
+import { FaLongArrowAltRight } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
+import InputSearch from '../components/Forms/InputSearch'
+import Counters from '../components/Home/Counters'
+import Card, { CardContents } from '../components/Organitzation/Card'
 
-const CARDS : CardContents[] = [
+const CARDS: CardContents[] = [
   {
     name: 'DAO1',
     funded: '500',
@@ -65,8 +67,55 @@ const CARDS : CardContents[] = [
 const Home = () => {
   return (
     <Box pt={6}>
-      <Header />
-      <Cards cards={CARDS} />
+      <Flex
+        direction='column'
+        justifyContent='center'
+        alignItems='center'
+        gap={8}
+      >
+        <Flex
+          direction='column'
+          justifyContent='center'
+          alignItems='center'
+          gap={2}
+        >
+          <Heading as='h1' textAlign='center'>
+            Let your community vote!
+          </Heading>
+          <Button
+            variant='ghost'
+            color='purple'
+            rightIcon={<FaLongArrowAltRight />}
+          >
+            Learn More
+          </Button>
+        </Flex>
+        <Counters />
+        <InputSearch />
+      </Flex>
+
+      <Grid
+        templateColumns={{
+          base: '1fr',
+          sm: 'repeat(2, 1fr)',
+          md: 'repeat(3, 1fr)',
+          lg: 'repeat(4, 1fr)',
+        }}
+      >
+        {CARDS.map((card, index) => (
+          <Link to='/organization/test'>
+            <GridItem
+              display='flex'
+              justifyContent='center'
+              alignItems='center'
+              p={4}
+              key={index}
+            >
+              <Card card={card} />
+            </GridItem>
+          </Link>
+        ))}
+      </Grid>
     </Box>
   )
 }

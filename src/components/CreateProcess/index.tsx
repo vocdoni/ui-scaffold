@@ -11,11 +11,11 @@ import { useEffect, useState } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { ModalType } from '../../constants'
 import ModalWrapper from '../Modals/ModalWrapper'
-import WrapperForm from '../Wrappers/WrapperForm'
-import CreateProcessAddresses from './CreateProcessAddresses'
-import CreateProcessHeader from './CreateProcessHeader'
-import CreateProcessQuestions from './CreateProcessQuestions'
-import CreateProcessSettings from './CreateProcessSettings'
+import WrapperForm from './WrapperForm'
+import CreateProcessAddresses from './Addresses'
+import CreateProcessHeader from './Header'
+import CreateProcessQuestions from './Questions'
+import CreateProcessSettings from './Settings'
 
 export interface FormValues {
   titleProcess: string

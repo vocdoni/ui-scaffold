@@ -1,7 +1,6 @@
 import { Box, Flex } from '@chakra-ui/react'
 import { Outlet } from 'react-router-dom'
-import Footer from '../components/Layouts/Footer'
-import Navbar from '../components/Layouts/Navbar'
+import Navbar from '../components/Navbar'
 
 const Layout = () => {
   return (
@@ -16,7 +15,6 @@ const Layout = () => {
       <Box mb={8}>
         <Outlet />
       </Box>
-      <Footer />
     </Flex>
   )
 }
