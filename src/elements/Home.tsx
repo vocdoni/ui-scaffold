@@ -1,5 +1,6 @@
 import { Box, Button, Flex, Grid, GridItem, Heading } from '@chakra-ui/react'
 import { FaLongArrowAltRight } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 import InputSearch from '../components/Forms/InputSearch'
 import Counters from '../components/Home/Counters'
 import Card, { CardContents } from '../components/Organitzation/Card'
@@ -102,15 +103,17 @@ const Home = () => {
         }}
       >
         {CARDS.map((card, index) => (
-          <GridItem
-            display='flex'
-            justifyContent='center'
-            alignItems='center'
-            p={4}
-            key={index}
-          >
-            <Card card={card} />
-          </GridItem>
+          <Link to='/organization/test'>
+            <GridItem
+              display='flex'
+              justifyContent='center'
+              alignItems='center'
+              p={4}
+              key={index}
+            >
+              <Card card={card} />
+            </GridItem>
+          </Link>
         ))}
       </Grid>
     </Box>
