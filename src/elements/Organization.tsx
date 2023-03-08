@@ -47,6 +47,7 @@ const Organitzation = () => {
         maxWidth='1000px'
         mx='auto'
         mb={16}
+        mt={8}
       >
         <AspectRatio
           flexBasis={{ base: '200px', sm: '150px', md: '200px' }}
