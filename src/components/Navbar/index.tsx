@@ -4,14 +4,14 @@ import {
   Flex,
   IconButton,
   Text,
+  UnorderedList,
   useDisclosure,
   useOutsideClick,
 } from '@chakra-ui/react'
 import { useRef } from 'react'
 import { NavLink } from 'react-router-dom'
 import VocdoniIcon from '../Icons/VocdoniIcon'
-import Desktop from './Desktop'
-import Mobile from './Mobile'
+import NavList from './List'
 
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -30,18 +30,22 @@ const Navbar = () => {
         alignItems='center'
         gap={4}
         paddingTop={4}
-        mb={{ base: 4, sm: 8, lg: 0 }}
+        mb={8}
       >
         <Flex alignItems='center' gap={4} marginRight='auto'>
           <NavLink to='/'>
             <VocdoniIcon />
           </NavLink>
-          <Text mt={1} display={{ base: 'none', sm: 'block' }} fontSize='0.8em'>
+          <Text display={{ base: 'none', sm: 'block' }} fontSize='0.8em'>
             Public voting protocol
           </Text>
         </Flex>
 
-        <Desktop />
+        <Box display={{ base: 'none', md: 'flex' }}>
+          <UnorderedList display='flex' alignItems='center' gap={4}>
+            <NavList mobile={false} />
+          </UnorderedList>
+        </Box>
 
         <IconButton
           size={'md'}
@@ -51,7 +55,32 @@ const Navbar = () => {
           onClick={isOpen ? onClose : onOpen}
         />
       </Flex>
-      {isOpen && <Mobile />}
+      {isOpen && (
+        <Flex
+          display={{ md: 'none' }}
+          position='absolute'
+          left={0}
+          bg='white'
+          _dark={{
+            bg: 'black.c60',
+            borderBottomColor: 'black.c90',
+          }}
+          width='100%'
+          zIndex={10}
+          borderBottom='2px solid white'
+          borderBottomColor='gray.100'
+        >
+          <UnorderedList
+            display='flex'
+            flexDirection='column'
+            alignItems='center'
+            gap={4}
+            pb={8}
+          >
+            <NavList mobile={true} onClose={onClose} />
+          </UnorderedList>
+        </Flex>
+      )}
     </Box>
   )
 }
