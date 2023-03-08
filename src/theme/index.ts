@@ -1,8 +1,8 @@
 import { ColorMode, extendTheme } from '@chakra-ui/react'
 import { darkTheme, lightTheme } from '@rainbow-me/rainbowkit'
 import { theme as vtheme } from '@vocdoni/react-components'
-import { cardAnatomy } from '@chakra-ui/anatomy'
 import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
+import { cardAnatomy } from '@chakra-ui/anatomy'
 
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(cardAnatomy.keys)
@@ -14,14 +14,31 @@ const colors = {
   },
 }
 
+const cardCommonStyles = {
+  container: {
+    width: '100%',
+    padding: 0,
+    borderRadius: '10px',
+    border: '1px solid lightgray',
+  },
+  header: {
+    padding: 0,
+  },
+  body: {
+    padding: 0,
+  },
+  footer: {
+    padding: 0,
+  },
+}
+
 const variants = {
   organization: definePartsStyle({
+    ...cardCommonStyles,
     container: {
-      width: '100%',
+      ...cardCommonStyles.container,
       maxW: '275px',
       padding: '12px',
-      borderRadius: '10px',
-      border: '1px solid lightgray',
       cursor: 'pointer',
       transition: 'background .3s ease-in-out',
       _hover: {
@@ -30,10 +47,11 @@ const variants = {
       },
     },
     header: {
-      padding: '0',
+      ...cardCommonStyles.header,
       overflow: 'hidden',
     },
     body: {
+      ...cardCommonStyles.body,
       py: '5px',
       px: '3px',
       display: 'flex',
@@ -45,11 +63,37 @@ const variants = {
       fontWeight: 'bold',
     },
     footer: {
+      ...cardCommonStyles.footer,
       py: '5px',
       px: '3px',
       display: 'flex',
       justifyContent: 'space-between',
       fontSize: '.8em',
+    },
+  }),
+  process: definePartsStyle({
+    ...cardCommonStyles,
+    container: {
+      ...cardCommonStyles.container,
+      maxW: '600px',
+      display: 'flex',
+      direction: 'column',
+      gap: '15px',
+      px: '25px',
+      py: '20px',
+    },
+    header: {
+      ...cardCommonStyles.header,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      gap: '5px',
+    },
+    body: {
+      ...cardCommonStyles.body,
+    },
+    footer: {
+      ...cardCommonStyles.footer,
     },
   }),
 }

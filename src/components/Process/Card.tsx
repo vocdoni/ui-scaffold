@@ -24,7 +24,10 @@ const ProcessCard = ({ election }: Props) => (
       borderRadius='10px'
     >
       <HStack justifyContent='space-between'>
-        <ElectionTitle />
+        <ElectionTitle
+          maxWidth={{ base: '180px', sm: '200px', lg: '300px' }}
+          isTruncated
+        />
         <ElectionStatusBadge
           color='green'
           border='1px solid'
