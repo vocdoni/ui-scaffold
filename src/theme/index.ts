@@ -18,6 +18,7 @@ const variants = {
   organization: definePartsStyle({
     container: {
       width: '100%',
+      maxW: '275px',
       padding: '12px',
       borderRadius: '10px',
       border: '1px solid lightgray',
