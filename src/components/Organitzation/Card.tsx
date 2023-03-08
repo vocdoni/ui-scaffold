@@ -33,7 +33,9 @@ const OrganitzationCard = ({ card }: CardProps) => (
       </AspectRatio>
     </CardHeader>
     <CardBody>
-      <Text>{card.name}</Text>
+      <Text maxWidth='180px' isTruncated>
+        {card.name}
+      </Text>
     </CardBody>
     <CardFooter>
       <Text>
