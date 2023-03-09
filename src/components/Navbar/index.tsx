@@ -32,7 +32,12 @@ const Navbar = () => {
         paddingTop={4}
         mb={8}
       >
-        <Flex alignItems='center' gap={4} marginRight='auto'>
+        <Flex
+          alignItems='center'
+          gap={4}
+          marginRight='auto'
+          ml={{ base: 2, sm: 0 }}
+        >
           <NavLink to='/'>
             <VocdoniIcon />
           </NavLink>

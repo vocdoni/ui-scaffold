@@ -29,7 +29,12 @@ const CreateProcessQuestion = ({ index, remove }: Props) => {
   })
 
   return (
-    <Box bg='white' p={4} borderRadius={8} _dark={{ bg: 'black.c60' }}>
+    <Box
+      bg='white'
+      p={{ base: 2, sm: 4 }}
+      borderRadius={8}
+      _dark={{ bg: 'black.c60' }}
+    >
       <HStack justify='space-between' mb={4}>
         <FormLabel>Question {index + 1}</FormLabel>
 

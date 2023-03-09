@@ -6,7 +6,7 @@ interface Props {
 
 const WrapperFormSection = ({ children, ...props }: Props) => (
   <Box
-    p={4}
+    p={{ base: 1, sm: 4 }}
     bg='gray.100'
     borderRadius={8}
     _dark={{ bg: 'black.c90' }}
@@ -14,7 +14,7 @@ const WrapperFormSection = ({ children, ...props }: Props) => (
   >
     <Box
       as='fieldset'
-      p={4}
+      p={{ base: 2, sm: 4 }}
       pt={2}
       borderRadius={8}
       bg='white'

@@ -10,7 +10,7 @@ const WrapperFiltersList = ({ children, ...props }: Props) => (
     direction={{ base: 'column', md: 'row' }}
     gap={4}
     m='16px auto'
-    p={4}
+    p={{ base: 1, sm: 2, md: 4 }}
     borderRadius={12}
     border='2px solid'
     borderColor='gray.100'

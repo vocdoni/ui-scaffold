@@ -28,6 +28,8 @@ const Organitzation = () => {
 
   const [electionsList, setElectionsList] = useState<PublishedElection[]>([])
 
+  console.log(electionsList)
+
   useEffect(() => {
     if (!account) return
     Promise.allSettled(IDS.map((id) => client.fetchElection(id)))
@@ -35,6 +37,10 @@ const Organitzation = () => {
         res.filter((el) => el.status === 'fulfilled').map((el: any) => el.value)
       )
       .then((res) => setElectionsList(res))
+    // client
+    //   .fetchElections()
+    //   .then((res) => setElectionsList(res))
+    //   .catch(console.log)
   }, [client, account])
 
   return (
