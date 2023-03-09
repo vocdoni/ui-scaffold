@@ -1,17 +1,8 @@
 import { InfoIcon } from '@chakra-ui/icons'
-import {
-  Box,
-  ButtonGroup,
-  HStack,
-  IconButton,
-  useDisclosure
-} from '@chakra-ui/react'
+import { Box, ButtonGroup, HStack, IconButton } from '@chakra-ui/react'
 import { useClientContext } from '@vocdoni/react-components'
 import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
-import { useState } from 'react'
 import { FaPause, FaPlay, FaStop } from 'react-icons/fa'
-import { ModalType } from '../../constants'
-import ModalWrapper from '../Modals/ModalWrapper'
 
 interface Props {
   el: PublishedElection
@@ -47,13 +38,10 @@ const getButtonsDisabled = (
 const ProcessListActionButtons = ({ el, setElectionsList }: Props) => {
   const { client } = useClientContext()
 
-  const [modalType, setModalType] = useState(ModalType.Closed)
-
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  // const { isOpen, onOpen, onClose } = useDisclosure()
 
   const handleAction = async (action: string) => {
-    setModalType(ModalType.Loading)
-    onOpen()
+    // onOpen()
     try {
       if (action === ElectionStatus.READY) await client.continueElection(el.id)
       if (action === ElectionStatus.PAUSED) await client.pauseElection(el.id)
@@ -62,18 +50,16 @@ const ProcessListActionButtons = ({ el, setElectionsList }: Props) => {
       console.log(err)
     } finally {
       setElectionsList([])
-      onClose()
+      // onClose()
     }
   }
 
   return (
     <HStack spacing={4} justifyContent='end' flex='0 0 160px'>
-      <ModalWrapper
-        isOpen={isOpen}
-        onClose={onClose}
-        type={modalType}
-        el={el}
-      />
+      {/* <ModalWrapper isOpen={isOpen} onClose={onClose}>
+        <ModalLoading />
+        <ModalProcessInfo el={el} />
+      </ModalWrapper> */}
       <Box position='relative'>
         <ButtonGroup size='sm' isAttached variant='outline' position='relative'>
           <>
@@ -99,14 +85,8 @@ const ProcessListActionButtons = ({ el, setElectionsList }: Props) => {
         </ButtonGroup>
       </Box>
 
-      <InfoIcon
-        boxSize={6}
-        cursor='pointer'
-        onClick={() => {
-          setModalType(ModalType.Info)
-          onOpen()
-        }}
-      />
+      {/* <InfoIcon boxSize={6} cursor='pointer' onClick={() => onOpen()} /> */}
+      <InfoIcon boxSize={6} cursor='pointer' />
     </HStack>
   )
 }
