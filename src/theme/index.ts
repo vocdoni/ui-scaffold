@@ -20,6 +20,7 @@ const cardCommonStyles = {
     padding: 0,
     borderRadius: '10px',
     border: '1px solid lightgray',
+    cursor: 'pointer',
   },
   header: {
     padding: 0,
@@ -39,7 +40,6 @@ const variants = {
       ...cardCommonStyles.container,
       maxW: '275px',
       padding: '12px',
-      cursor: 'pointer',
       transition: 'background .3s ease-in-out',
       _hover: {
         transition: 'background .3s ease-in-out',
@@ -75,19 +75,17 @@ const variants = {
     ...cardCommonStyles,
     container: {
       ...cardCommonStyles.container,
-      maxW: '600px',
+      maxW: '500px',
       display: 'flex',
       direction: 'column',
-      gap: '15px',
       px: '25px',
       py: '20px',
     },
     header: {
       ...cardCommonStyles.header,
       display: 'flex',
-      alignItems: 'center',
       justifyContent: 'space-between',
-      gap: '5px',
+      gap: '7px',
     },
     body: {
       ...cardCommonStyles.body,

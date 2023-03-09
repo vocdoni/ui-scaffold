@@ -1,6 +1,5 @@
-import { Box, HStack } from '@chakra-ui/react'
+import { Card, CardHeader } from '@chakra-ui/react'
 import {
-  ElectionDescription,
   ElectionProvider,
   ElectionSchedule,
   ElectionStatusBadge,
@@ -15,29 +14,29 @@ interface Props {
 
 const ProcessCard = ({ election }: Props) => (
   <ElectionProvider election={election}>
-    <Box
-      border='1px solid lightgray'
-      width='100%'
-      maxW='600px'
-      px={4}
-      py={2}
-      borderRadius='10px'
-    >
-      <HStack justifyContent='space-between'>
+    <Card variant='process'>
+      <CardHeader flexDirection={{ base: 'column', sm: 'row' }}>
         <ElectionTitle
-          maxWidth={{ base: '180px', sm: '200px', lg: '300px' }}
-          isTruncated
+          fontSize='1.4em'
+          textAlign='start'
+          order={{ base: 2, sm: 1 }}
+          alignSelf='start'
+          noOfLines={1}
+          m={0}
+          width={{ base: '180px', sm: '75%' }}
         />
         <ElectionStatusBadge
+          order={{ base: 1, sm: 2 }}
+          alignSelf={{ base: 'end', sm: 'center' }}
           color='green'
           border='1px solid'
           bgColor='green.100'
         />
-      </HStack>
-      <ElectionDescription />
+      </CardHeader>
+      {/* <ElectionDescription noOfLines={3} fontSize='.3em' /> */}
       <HR />
       <ElectionSchedule />
-    </Box>
+    </Card>
   </ElectionProvider>
 )
 

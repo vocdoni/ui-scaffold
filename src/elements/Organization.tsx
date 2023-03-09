@@ -12,6 +12,7 @@ import {
 import { useClientContext } from '@vocdoni/react-components'
 import { PublishedElection } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import InputSearch from '../components/Forms/InputSearch'
 import Header from '../components/Organitzation/Header'
 import Card from '../components/Process/Card'
@@ -85,19 +86,18 @@ const Organitzation = () => {
                 base: '1fr',
                 lg: 'repeat(2, 1fr)',
               }}
+              gap={4}
             >
               {electionsList.map((election) => (
-                <GridItem
-                  display='flex'
-                  justifyContent='center'
-                  alignItems='center'
-                  p={4}
-                  key={election.id}
-                  border='1px solid red'
-                  maxW='100%'
-                >
-                  <Card election={election} />
-                </GridItem>
+                <Link to={`/processes/${election.id}`} key={election.id}>
+                  <GridItem
+                    display='flex'
+                    justifyContent='center'
+                    alignItems='center'
+                  >
+                    <Card election={election} />
+                  </GridItem>
+                </Link>
               ))}
             </Grid>
           </TabPanel>
