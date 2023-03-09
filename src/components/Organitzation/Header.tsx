@@ -79,19 +79,27 @@ const OrganizationHeader = () => {
         </Flex>
         <Text noOfLines={readMore ? undefined : 3}>
           {' '}
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet,
-          consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-          laboliquip ex ea commodo const dolore magna aliqua. Ut enim ad minim
+          <Text
+            as='span'
+            color='branding.pink'
+            fontWeight='bold'
+            _hover={{ textDecoration: 'underline', cursor: 'pointer' }}
+          >
+            The Organization Name
+          </Text>{' '}
+          ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
           veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          ea commodo consequat. Lorem ipsum dolor sit amet, consectetur
+          adipiscing elit, sed do eiusmod tempor incididunt ut laboliquip ex ea
+          commodo const dolore magna aliqua. Ut enim ad minim veniam, quis
+          nostrud exercitation ullamco laboris nisi ut aliquip ex Lorem ipsum
+          dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut labore exercitation
+          ullamco laboris.ncididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut labore
-          exercitation ullamco laboris.ncididunt ut labore et dolore magna
-          aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-          laboris nisi ut labore exercitation ullamco laboris
+          exercitation ullamco laboris
         </Text>
         <VStack>
           <Button
@@ -99,6 +107,8 @@ const OrganizationHeader = () => {
             bg='none'
             _hover={{ bg: 'none' }}
             onClick={() => setReadMore((prev) => !prev)}
+            color='branding.pink'
+            textDecoration='underline'
           >
             {readMore ? 'Read less' : 'Read more'}
           </Button>

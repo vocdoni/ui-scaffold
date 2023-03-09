@@ -12,6 +12,12 @@ const colors = {
     c60: '#1A202C',
     c90: '#0f141c',
   },
+  branding: {
+    pink: '#E035D0',
+    purple1: '#8428DA',
+    purple2: '#6F1FB9',
+    purple3: '#591699',
+  },
 }
 
 const cardCommonStyles = {
