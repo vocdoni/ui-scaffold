@@ -103,12 +103,8 @@ const OrganizationHeader = () => {
         </Text>
         <VStack>
           <Button
-            border='none'
-            bg='none'
-            _hover={{ bg: 'none' }}
+            variant='underline'
             onClick={() => setReadMore((prev) => !prev)}
-            color='branding.pink'
-            textDecoration='underline'
           >
             {readMore ? 'Read less' : 'Read more'}
           </Button>

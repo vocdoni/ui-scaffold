@@ -115,6 +115,12 @@ export const theme = extendTheme(vtheme, {
           height: '25px',
           fontSize: '0.8em',
         },
+        underline: {
+          border: 'none',
+          bg: 'none',
+          textDecoration: 'underline',
+          color: 'branding.pink',
+        },
       },
     },
     Card: cardTheme,
