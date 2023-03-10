@@ -33,7 +33,7 @@ const ProcessCard = ({ election }: Props) => (
           bgColor='green.100'
         />
       </CardHeader>
-      {/* <ElectionDescription noOfLines={3} fontSize='.3em' /> */}
+      {/* <ElectionDescription noOfLines={3} fontSize='1em' /> */}
       <HR />
       <ElectionSchedule />
     </Card>

@@ -23,10 +23,12 @@ import { ReactNode } from 'react'
 
 const ProcessViewTabContents = ({ children }: { children: ReactNode }) => {
   const { election } = useElection()
-  const count = election?.results.reduce(
-    (acc, val) => val.reduce((cur, v) => acc + parseInt(v, 10), 0),
-    0
-  )
+  // const count = election?.results.reduce(
+  //   (acc, val) => val.reduce((cur, v) => acc + parseInt(v, 10), 0),
+  //   0
+  // )
+
+  const count2 = election?.voteCount
 
   return (
     <Flex justifyContent='space-between' alignItems='start'>
@@ -34,7 +36,7 @@ const ProcessViewTabContents = ({ children }: { children: ReactNode }) => {
       <Box>
         <Box>
           <ElectionStatusBadge />
-          <Text>{count} votes cast so far!</Text>
+          <Text>{count2} votes cast so far!</Text>
         </Box>
         <Button type='submit' form='election-create-form' width='full'>
           Vote
@@ -47,7 +49,7 @@ const ProcessViewTabContents = ({ children }: { children: ReactNode }) => {
 export const ProcessView = (props: ElectionProviderComponentProps) => (
   <ElectionProvider {...props}>
     <Box>
-      <ElectionSchedule textAlign='left' />
+      <ElectionSchedule textAlign='left' color='branding.pink' />
       <ElectionTitle textAlign='left' />
       <ElectionDescription />
     </Box>
