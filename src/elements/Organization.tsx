@@ -25,7 +25,7 @@ import Card from '../components/Process/Card'
 
 const IDS = [
   'c5d2460186f71db4f9b8eaa385aaf35284e4c98ec41442090c61020000000000',
-  '',
+  'c5d2460186f72e5b02237f4489d53a7fe4ae2134fabef8323507020400000000',
 ]
 
 const Organitzation = () => {

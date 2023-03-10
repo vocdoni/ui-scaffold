@@ -1,5 +1,5 @@
+import { EmailIcon } from '@chakra-ui/icons'
 import {
-  Box,
   Button,
   Flex,
   Tab,
@@ -33,26 +33,39 @@ const ProcessViewTabContents = ({ children }: { children: ReactNode }) => {
   return (
     <Flex justifyContent='space-between' alignItems='start'>
       {children}
-      <Box>
-        <Box>
-          <ElectionStatusBadge />
-          <Text>{count2} votes cast so far!</Text>
-        </Box>
-        <Button type='submit' form='election-create-form' width='full'>
+      <Flex
+        direction='column'
+        justifyContent='center'
+        alignItems='center'
+        gap={4}
+        padding={8}
+        borderRadius='10px'
+        bgColor='branding.lightpink1'
+        position='sticky'
+        top={8}
+      >
+        <ElectionStatusBadge />
+        <Button
+          type='submit'
+          form='election-create-form'
+          variant='brandVote'
+          rightIcon={<EmailIcon _hover={{ size: '10px' }} />}
+        >
           Vote
         </Button>
-      </Box>
+        <Text color='branding.pink'>{count2} votes</Text>
+      </Flex>
     </Flex>
   )
 }
 
 export const ProcessView = (props: ElectionProviderComponentProps) => (
   <ElectionProvider {...props}>
-    <Box>
-      <ElectionSchedule textAlign='left' color='branding.pink' />
-      <ElectionTitle textAlign='left' />
+    <Flex direction='column' gap={5}>
+      <ElectionSchedule textAlign='left' color='branding.pink' isTruncated />
+      <ElectionTitle fontSize='1.5em' mb={0} textAlign='left' isTruncated />
       <ElectionDescription />
-    </Box>
+    </Flex>
     <Tabs>
       <TabList>
         <Tab>Questions</Tab>

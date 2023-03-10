@@ -179,7 +179,9 @@ const CreateProcess = () => {
 
       addQuestions(election, data.questions)
 
-      await client.createElection(election)
+      const id = await client.createElection(election)
+
+      console.log(id)
 
       // onClose()
       // onOpen()
