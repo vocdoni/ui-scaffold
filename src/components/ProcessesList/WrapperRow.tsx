@@ -1,10 +1,7 @@
 import { Flex } from '@chakra-ui/react'
+import { ReactNode } from 'react'
 
-interface Props {
-  children: JSX.Element
-}
-
-const WrapperListRow = ({ children, ...props }: Props) => (
+const WrapperListRow = ({ children, ...props }: { children: ReactNode }) => (
   <Flex
     mx='auto'
     py={3}

@@ -1,10 +1,12 @@
 import { Flex } from '@chakra-ui/react'
+import { ReactNode } from 'react'
 
-interface Props {
-  children: JSX.Element
-}
-
-const WrapperFiltersList = ({ children, ...props }: Props) => (
+const WrapperFiltersList = ({
+  children,
+  ...props
+}: {
+  children: ReactNode
+}) => (
   <Flex
     as='fieldset'
     direction={{ base: 'column', md: 'row' }}

@@ -8,11 +8,7 @@ import {
 } from '@vocdoni/react-components'
 import { PublishedElection } from '@vocdoni/sdk'
 
-interface Props {
-  election: PublishedElection
-}
-
-const ProcessCard = ({ election }: Props) => (
+const ProcessCard = ({ election }: { election: PublishedElection }) => (
   <ElectionProvider election={election}>
     <Card variant='process'>
       <CardHeader flexDirection={{ base: 'column', sm: 'row' }}>

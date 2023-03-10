@@ -3,6 +3,7 @@ import {
   Box,
   Flex,
   IconButton,
+  Img,
   Text,
   UnorderedList,
   useDisclosure,
@@ -10,7 +11,7 @@ import {
 } from '@chakra-ui/react'
 import { useRef } from 'react'
 import { NavLink } from 'react-router-dom'
-import VocdoniIcon from '../Icons/VocdoniIcon'
+import IconVocdoni from '../../vocdoni-icon.svg'
 import NavList from './List'
 
 const Navbar = () => {
@@ -39,7 +40,7 @@ const Navbar = () => {
           ml={{ base: 2, sm: 0 }}
         >
           <NavLink to='/'>
-            <VocdoniIcon />
+            <Img src={IconVocdoni} alt='vocdoni icon' />
           </NavLink>
           <Text display={{ base: 'none', sm: 'block' }} fontSize='0.8em'>
             Public voting protocol

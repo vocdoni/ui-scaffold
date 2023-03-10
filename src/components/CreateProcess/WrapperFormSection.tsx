@@ -1,10 +1,12 @@
 import { Box } from '@chakra-ui/layout'
+import { ReactNode } from 'react'
 
-interface Props {
-  children: JSX.Element
-}
-
-const WrapperFormSection = ({ children, ...props }: Props) => (
+const WrapperFormSection = ({
+  children,
+  ...props
+}: {
+  children: ReactNode
+}) => (
   <Box
     p={{ base: 1, sm: 4 }}
     bg='gray.100'
