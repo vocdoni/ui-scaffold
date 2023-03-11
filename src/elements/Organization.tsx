@@ -12,7 +12,7 @@ import {
 import { useClientContext } from '@vocdoni/react-components'
 import { PublishedElection } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import InputSearch from '../components/Forms/InputSearch'
 import Header from '../components/Organitzation/Header'
 import Card from '../components/Process/Card'
@@ -26,10 +26,12 @@ import Card from '../components/Process/Card'
 const IDS = [
   'c5d2460186f71db4f9b8eaa385aaf35284e4c98ec41442090c61020000000000',
   'c5d2460186f72e5b02237f4489d53a7fe4ae2134fabef8323507020400000000',
+  '0xc5d2460186f7ec716643e01de8c4ca979c04bcd8d6367a30dc84020200000000',
 ]
 
 const Organitzation = () => {
   const { client, account } = useClientContext()
+  const navigate = useNavigate()
 
   const [electionsList, setElectionsList] = useState<PublishedElection[]>([])
 
@@ -102,15 +104,15 @@ const Organitzation = () => {
               gap={4}
             >
               {electionsList.map((election) => (
-                <Link to={`/processes/${election.id}`} key={election.id}>
-                  <GridItem
-                    display='flex'
-                    justifyContent='center'
-                    alignItems='center'
-                  >
-                    <Card election={election} />
-                  </GridItem>
-                </Link>
+                <GridItem
+                  key={election.id}
+                  display='flex'
+                  justifyContent='center'
+                  alignItems='center'
+                  onClick={() => navigate(`/processes/${election.id}`)}
+                >
+                  <Card election={election} />
+                </GridItem>
               ))}
             </Grid>
           </TabPanel>
