@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar'
 const Layout = () => {
   return (
     <Flex
-      paddingX={4}
+      paddingX={{ base: 0, sm: 4 }}
       flexDirection='column'
       minHeight='100vh'
       maxWidth='1250px'

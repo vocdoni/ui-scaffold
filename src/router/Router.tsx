@@ -15,7 +15,6 @@ import { SuspenseLoader } from './SuspenseLoader'
 const ProtectedRoutes = lazy(() => import('./ProtectedRoutes'))
 const Create = lazy(() => import('../elements/Create'))
 const Home = lazy(() => import('../elements/Home'))
-const List = lazy(() => import('../elements/List'))
 const NotFound = lazy(() => import('../elements/NotFound'))
 const Organization = lazy(() => import('../elements/Organization'))
 const Process = lazy(() => import('../elements/Process'))
@@ -49,33 +48,24 @@ export const RoutesProvider = () => {
               </SuspenseLoader>
             }
           />
-          <Route
-            path='processes'
-            element={
-              <SuspenseLoader>
-                <List />
-              </SuspenseLoader>
-            }
-          />
-          <Route
-            path='processes/:id'
-            element={
-              <SuspenseLoader>
-                <Process />
-              </SuspenseLoader>
-            }
-            loader={async ({ params }) => client.fetchElection(params.id)}
-          />
-          <Route
-            path='organization/test'
-            element={
-              <SuspenseLoader>
-                <Organization />
-              </SuspenseLoader>
-            }
-          />
         </Route>
-
+        <Route
+          path='processes/:id'
+          element={
+            <SuspenseLoader>
+              <Process />
+            </SuspenseLoader>
+          }
+          loader={async ({ params }) => client.fetchElection(params.id)}
+        />
+        <Route
+          path='organization/test'
+          element={
+            <SuspenseLoader>
+              <Organization />
+            </SuspenseLoader>
+          }
+        />
         <Route
           path='*'
           element={

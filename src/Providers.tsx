@@ -26,7 +26,7 @@ export const AppProviders = () => {
 
   return (
     <RainbowKitProvider chains={chains} theme={rainbowStyles(colorMode)}>
-      <ClientProvider env='dev' signer={signer as Signer}>
+      <ClientProvider env='stg' signer={signer as Signer}>
         <ColorModeScript />
         <RoutesProvider />
       </ClientProvider>

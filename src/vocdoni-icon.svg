@@ -1,11 +1,9 @@
-const VocdoniIcon = ({ ...props }) => (
-  <svg
+<svg
     width='161'
     height='39'
     viewBox='0 0 161 39'
     fill='none'
     xmlns='http://www.w3.org/2000/svg'
-    {...props}
   >
     <path
       d='M57.0191 30.84H60.8877L66.9717 14.1752H62.7394L58.9369 26.0125L55.1343 14.1752H50.9351L57.0191 30.84Z'
@@ -66,6 +64,3 @@ const VocdoniIcon = ({ ...props }) => (
       </linearGradient>
     </defs>
   </svg>
-)
-
-export default VocdoniIcon
