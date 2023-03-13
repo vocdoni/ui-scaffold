@@ -23,10 +23,6 @@ import { ReactNode } from 'react'
 
 const ProcessViewTabContents = ({ children }: { children: ReactNode }) => {
   const { election } = useElection()
-  // const count = election?.results.reduce(
-  //   (acc, val) => val.reduce((cur, v) => acc + parseInt(v, 10), 0),
-  //   0
-  // )
 
   const count2 = election?.voteCount
 

@@ -20,7 +20,7 @@ interface Props {
 
 const NavList = ({ mobile, onClose }: Props) => {
   const { isConnected } = useAccount()
-  const { t } = useTranslation()
+  const { i18n, t } = useTranslation()
 
   return (
     <>
@@ -48,8 +48,15 @@ const NavList = ({ mobile, onClose }: Props) => {
             <FaGlobeAmericas />
           </MenuButton>
           <MenuList>
-            <MenuItem>English</MenuItem>
-            <MenuItem>Spanish</MenuItem>
+            <MenuItem onClick={() => i18n.changeLanguage('eng')}>
+              English
+            </MenuItem>
+            <MenuItem onClick={() => i18n.changeLanguage('cat')}>
+              Català
+            </MenuItem>
+            <MenuItem onClick={() => i18n.changeLanguage('esp')}>
+              Español
+            </MenuItem>
           </MenuList>
         </Menu>
       </ListItem>
