@@ -24,8 +24,6 @@ import { ReactNode } from 'react'
 const ProcessViewTabContents = ({ children }: { children: ReactNode }) => {
   const { election } = useElection()
 
-  const count2 = election?.voteCount
-
   return (
     <Flex justifyContent='space-between' alignItems='start'>
       {children}
@@ -49,7 +47,7 @@ const ProcessViewTabContents = ({ children }: { children: ReactNode }) => {
         >
           Vote
         </Button>
-        <Text color='branding.pink'>{count2} votes</Text>
+        <Text color='branding.pink'>{election?.voteCount} votes</Text>
       </Flex>
     </Flex>
   )

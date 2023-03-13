@@ -10,7 +10,6 @@ import {
 
 export interface CardContents {
   name: string
-  funded: string
   rounds: string
   imageURL: string
 }
@@ -23,32 +22,15 @@ const OrganitzationCard = ({ card }: CardProps) => (
   <Card variant='organization'>
     <CardHeader>
       <AspectRatio ratio={1}>
-        <Image
-          borderRadius={8}
-          height='100%'
-          src={card.imageURL}
-          alt={`Picture of ${card.name}`}
-          roundedTop='lg'
-        />
+        <Image src={card.imageURL} alt={`Picture of ${card.name}`} />
       </AspectRatio>
     </CardHeader>
     <CardBody>
-      <Text maxWidth='180px' isTruncated>
-        {card.name}
-      </Text>
+      <Text>{card.name}</Text>
     </CardBody>
     <CardFooter>
       <Text>
-        <Text as='span' fontWeight='bold'>
-          {card.funded}
-        </Text>{' '}
-        Funded
-      </Text>
-      <Text>
-        <Text as='span' fontWeight='bold'>
-          {card.rounds}
-        </Text>{' '}
-        Rounds
+        <Text as='span'>{card.rounds}</Text> Rounds
       </Text>
     </CardFooter>
   </Card>
