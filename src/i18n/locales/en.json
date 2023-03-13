@@ -1,6 +1,11 @@
 {
+  "menu": {
+    "create_process": "Create process",
+    "connect": "Connect"
+  },
   "landing": {
     "intro": "Let your community vote!"
   },
-  "learn_more": "Learn more"
+  "learn_more": "Learn more",
+  "loading": "Loading..."
 }

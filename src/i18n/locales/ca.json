@@ -1,6 +1,11 @@
 {
+  "menu": {
+    "create_process": "Crear procés",
+    "connect": "Connecta"
+  },
   "landing": {
     "intro": "Crea eleccions comunitàries!"
   },
-  "learn_more": "Descobreix més"
+  "learn_more": "Descobreix més",
+  "loading": "Carregant..."
 }

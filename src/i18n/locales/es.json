@@ -1,6 +1,11 @@
 {
-  "landing": {
-    "intro": ""
+  "menu": {
+    "create_process": "Crear proceso",
+    "connect": "Conectar"
   },
-  "learn_more": "Descubre más"
+  "landing": {
+    "intro": "¡Deja que la comunidad decida!"
+  },
+  "learn_more": "Descubre más",
+  "loading": "Cargando..."
 }
