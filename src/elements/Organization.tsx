@@ -15,7 +15,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import InputSearch from '../components/Forms/InputSearch'
 import Header from '../components/Organitzation/Header'
-import Card from '../components/Process/Card'
+import ProcessCard from '../components/Process/Card'
 
 const IDS = [
   'c5d2460186f71db4f9b8eaa385aaf35284e4c98ec41442090c61020000000000',
@@ -105,7 +105,7 @@ const Organitzation = () => {
                   alignItems='center'
                   onClick={() => navigate(`/processes/${election.id}`)}
                 >
-                  <Card election={election} />
+                  <ProcessCard election={election} />
                 </GridItem>
               ))}
             </Grid>
