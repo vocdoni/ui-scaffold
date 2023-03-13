@@ -74,7 +74,9 @@ export const ProcessView = (props: ElectionProviderComponentProps) => (
           </ProcessViewTabContents>
         </TabPanel>
         <TabPanel>
-          <ProcessViewTabContents>TODO: Results</ProcessViewTabContents>
+          <ProcessViewTabContents>
+            <p>TODO: Results</p>
+          </ProcessViewTabContents>
         </TabPanel>
       </TabPanels>
     </Tabs>

@@ -1,7 +1,8 @@
 import { Flex } from '@chakra-ui/layout'
+import { ReactNode } from 'react'
 
 interface Props {
-  children: JSX.Element
+  children: ReactNode
   onSubmit: () => void
 }
 
