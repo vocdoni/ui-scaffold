@@ -5,10 +5,9 @@ import WrapperFormSection from './WrapperFormSection'
 
 const CreateProcessSettings = () => {
   const { register, getValues, watch } = useFormContext()
-  // watch rerenders all the form
+
   watch('weightedVote')
 
-  // useWatch rerenders the component
   useWatch({
     name: ['electionType'],
   })

@@ -12,8 +12,8 @@ const CreateProcessQuestions = () => {
     <Flex
       as='fieldset'
       direction='column'
-      gap={4}
-      p={4}
+      gap={{ base: 1, sm: 4 }}
+      p={{ base: 1, sm: 4 }}
       bg='gray.100'
       borderRadius={8}
       _dark={{ bg: 'black.c90' }}
@@ -21,7 +21,7 @@ const CreateProcessQuestions = () => {
       <HStack
         justifyContent='space-between'
         bg='white'
-        p={4}
+        p={{ base: 2, sm: 4 }}
         borderRadius={8}
         _dark={{ bg: 'black.c60' }}
       >

@@ -1,21 +1,19 @@
-import { Button, useDisclosure } from '@chakra-ui/react'
+import { Button } from '@chakra-ui/react'
 import { useClientContext } from '@vocdoni/react-components'
 import {
   Census,
   Election,
   PlainCensus,
   UnpublishedElection,
-  WeightedCensus
+  WeightedCensus,
 } from '@vocdoni/sdk'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
-import { ModalType } from '../../constants'
-import ModalWrapper from '../Modals/ModalWrapper'
-import WrapperForm from './WrapperForm'
 import CreateProcessAddresses from './Addresses'
 import CreateProcessHeader from './Header'
 import CreateProcessQuestions from './Questions'
 import CreateProcessSettings from './Settings'
+import WrapperForm from './WrapperForm'
 
 export interface FormValues {
   titleProcess: string
@@ -102,10 +100,7 @@ export const addQuestions = (
   )
 }
 
-export const createElection = (
-  formValues: FormValues,
-  census: Census
-) => {
+export const createElection = (formValues: FormValues, census: Census) => {
   const startDate = new Date(formValues.dates.start)
   startDate.setHours(startDate.getHours())
 
@@ -135,9 +130,6 @@ export const createElection = (
 
 const CreateProcess = () => {
   const { client, account } = useClientContext()
-
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const [modalType, setModalType] = useState(ModalType.Loading)
 
   const methods = useForm<FormValues>({
     defaultValues: {
@@ -170,14 +162,12 @@ const CreateProcess = () => {
 
   const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
     try {
-      onOpen()
-
       await client.createAccount()
       let census
 
       if (data.weightedVote) census = await getWeightedCensus(data.addresses)
       else {
-        const addresses = data.addresses.map(add => add.address)
+        const addresses = data.addresses.map((add) => add.address)
         census = await getPlainCensus(addresses)
       }
 
@@ -186,10 +176,6 @@ const CreateProcess = () => {
       addQuestions(election, data.questions)
 
       await client.createElection(election)
-
-      onClose()
-      setModalType(ModalType.Success)
-      onOpen()
     } catch (err) {
       throw new Error()
     } finally {
@@ -203,7 +189,6 @@ const CreateProcess = () => {
 
   return (
     <FormProvider {...methods}>
-      <ModalWrapper type={modalType} isOpen={isOpen} onClose={onClose} />
       <WrapperForm onSubmit={methods.handleSubmit(onSubmit)}>
         <>
           <CreateProcessHeader />

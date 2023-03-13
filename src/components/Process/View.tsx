@@ -1,14 +1,5 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-  Text,
-} from '@chakra-ui/react'
+import { EmailIcon } from '@chakra-ui/icons'
+import { Button, Flex, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
 import {
   ElectionDescription,
   ElectionProvider,
@@ -23,34 +14,43 @@ import { ReactNode } from 'react'
 
 const ProcessViewTabContents = ({ children }: { children: ReactNode }) => {
   const { election } = useElection()
-  const count = election?.results.reduce(
-    (acc, val) => val.reduce((cur, v) => acc + parseInt(v, 10), 0),
-    0
-  )
 
   return (
     <Flex justifyContent='space-between' alignItems='start'>
       {children}
-      <Box>
-        <Box>
-          <ElectionStatusBadge />
-          <Text>{count} votes cast so far!</Text>
-        </Box>
-        <Button type='submit' form='election-create-form' width='full'>
+      <Flex
+        direction='column'
+        justifyContent='center'
+        alignItems='center'
+        gap={4}
+        padding={8}
+        borderRadius='10px'
+        bgColor='branding.lightpink1'
+        position='sticky'
+        top={8}
+      >
+        <ElectionStatusBadge />
+        <Button
+          type='submit'
+          form='election-create-form'
+          variant='brandVote'
+          rightIcon={<EmailIcon _hover={{ size: '10px' }} />}
+        >
           Vote
         </Button>
-      </Box>
+        <Text color='branding.pink'>{election?.voteCount} votes</Text>
+      </Flex>
     </Flex>
   )
 }
 
 export const ProcessView = (props: ElectionProviderComponentProps) => (
   <ElectionProvider {...props}>
-    <Box>
-      <ElectionSchedule textAlign='left' />
-      <ElectionTitle textAlign='left' />
+    <Flex direction='column' gap={5}>
+      <ElectionSchedule textAlign='left' color='branding.pink' isTruncated />
+      <ElectionTitle fontSize='1.5em' mb={0} textAlign='left' isTruncated />
       <ElectionDescription />
-    </Box>
+    </Flex>
     <Tabs>
       <TabList>
         <Tab>Questions</Tab>
@@ -63,7 +63,9 @@ export const ProcessView = (props: ElectionProviderComponentProps) => (
           </ProcessViewTabContents>
         </TabPanel>
         <TabPanel>
-          <ProcessViewTabContents>TODO: Results</ProcessViewTabContents>
+          <ProcessViewTabContents>
+            <p>TODO: Results</p>
+          </ProcessViewTabContents>
         </TabPanel>
       </TabPanels>
     </Tabs>
