@@ -131,8 +131,6 @@ export const createElection = (formValues: FormValues, census: Census) => {
 const CreateProcess = () => {
   const { client, account } = useClientContext()
 
-  // const { isOpen, onOpen, onClose } = useDisclosure()
-
   const methods = useForm<FormValues>({
     defaultValues: {
       titleProcess: '',
@@ -164,8 +162,6 @@ const CreateProcess = () => {
 
   const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
     try {
-      // onOpen()
-
       await client.createAccount()
       let census
 
@@ -179,12 +175,7 @@ const CreateProcess = () => {
 
       addQuestions(election, data.questions)
 
-      const id = await client.createElection(election)
-
-      console.log(id)
-
-      // onClose()
-      // onOpen()
+      await client.createElection(election)
     } catch (err) {
       throw new Error()
     } finally {
@@ -198,9 +189,6 @@ const CreateProcess = () => {
 
   return (
     <FormProvider {...methods}>
-      {/* <ModalWrapper isOpen={isOpen} onClose={onClose}>
-        <ModalLoading />
-      </ModalWrapper> */}
       <WrapperForm onSubmit={methods.handleSubmit(onSubmit)}>
         <>
           <CreateProcessHeader />

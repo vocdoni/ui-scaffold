@@ -29,7 +29,7 @@ const ProcessCard = ({ election }: { election: PublishedElection }) => (
           bgColor='green.100'
         />
       </CardHeader>
-      {/* <ElectionDescription noOfLines={3} fontSize='1em' /> */}
+
       <HR />
       <ElectionSchedule />
     </Card>

@@ -17,12 +17,6 @@ import InputSearch from '../components/Forms/InputSearch'
 import Header from '../components/Organitzation/Header'
 import Card from '../components/Process/Card'
 
-// const IDS = [
-//   'c5d2460186f76e3a49b5f8404c7bf9bee0784adcb2dc24bc74cb020000000000',
-//   'c5d2460186f73e252154f2f5c7f5eb21218259a88e6127dda7a9020000000000',
-//   'c5d2460186f719613b8a9995085316dac584ff0437b90b51883b020000000000',
-// ]
-
 const IDS = [
   'c5d2460186f71db4f9b8eaa385aaf35284e4c98ec41442090c61020000000000',
   'c5d2460186f72e5b02237f4489d53a7fe4ae2134fabef8323507020400000000',
