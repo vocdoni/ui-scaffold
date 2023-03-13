@@ -1,20 +1,9 @@
-import { EmailIcon } from '@chakra-ui/icons'
-import {
-  Button,
-  Flex,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-  Text,
-} from '@chakra-ui/react'
+import { Flex, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
 import {
   ElectionDescription,
   ElectionProvider,
   ElectionProviderComponentProps,
   ElectionSchedule,
-  ElectionStatusBadge,
   ElectionTitle,
   QuestionsForm,
   useElection,
@@ -27,7 +16,7 @@ const ProcessViewTabContents = ({ children }: { children: ReactNode }) => {
   return (
     <Flex justifyContent='space-between' alignItems='start'>
       {children}
-      <Flex
+      {/* <Flex
         direction='column'
         justifyContent='center'
         alignItems='center'
@@ -48,7 +37,7 @@ const ProcessViewTabContents = ({ children }: { children: ReactNode }) => {
           Vote
         </Button>
         <Text color='branding.pink'>{election?.voteCount} votes</Text>
-      </Flex>
+      </Flex> */}
     </Flex>
   )
 }
