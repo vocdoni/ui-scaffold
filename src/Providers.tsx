@@ -2,7 +2,7 @@ import {
   ChakraProvider,
   ColorModeScript,
   extendTheme,
-  useColorMode
+  useColorMode,
 } from '@chakra-ui/react'
 import { Signer } from '@ethersproject/abstract-signer'
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit'
