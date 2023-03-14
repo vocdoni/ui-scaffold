@@ -12,6 +12,7 @@ import {
   UseFormGetValues,
   UseFormRegister,
 } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 
 interface Props {
   fields: Record<'id', string>[]
@@ -25,38 +26,47 @@ const CreateProcessAddress = ({
   getValues,
   register,
   remove,
-}: Props) => (
-  <>
-    {fields.map((add, i: number) => (
-      <FormControl key={add.id} mb={4}>
-        <Flex alignItems='center'>
-          <FormLabel whiteSpace='nowrap'>{`Address ${i + 1}`}</FormLabel>
-          {getValues().weightedVote && (
-            <FormControl display='flex' alignItems='end' mb={2} ml={8}>
-              <FormLabel>Weight:</FormLabel>
-              <Input
-                type='number'
-                width={24}
-                {...register(`addresses.${i}.weight` as const)}
-              />
-            </FormControl>
-          )}
-          <IconButton
-            ml='auto'
-            type='button'
-            size='sm'
-            icon={<DeleteIcon />}
-            aria-label='delete address'
-            onClick={() => remove(i)}
+}: Props) => {
+  const { t } = useTranslation()
+  const rowTitle = (i: number) =>
+    t('process.create.address.row_title', { num: i + 1 })
+  return (
+    <>
+      {fields.map((add, i: number) => (
+        <FormControl key={add.id} mb={4}>
+          <Flex alignItems='center'>
+            <FormLabel whiteSpace='nowrap'>{rowTitle(i)}</FormLabel>
+            {getValues().weightedVote && (
+              <FormControl display='flex' alignItems='end' mb={2} ml={8}>
+                <FormLabel>{t('process.create.weight')}</FormLabel>
+                <Input
+                  type='number'
+                  width={24}
+                  {...register(`addresses.${i}.weight` as const)}
+                />
+              </FormControl>
+            )}
+            <IconButton
+              ml='auto'
+              type='button'
+              icon={<DeleteIcon />}
+              aria-label='delete address'
+              onClick={() => remove(i)}
+            />
+          </Flex>
+          <Input
+            {...register(`addresses.${i}.address` as const, {
+              required: {
+                value: true,
+                message: t('form.error.field_is_required'),
+              },
+            })}
+            placeholder={rowTitle(i)}
           />
-        </Flex>
-        <Input
-          {...register(`addresses.${i}.address` as const, { required: true })}
-          placeholder={`Address ${i + 1}`}
-        />
-      </FormControl>
-    ))}
-  </>
-)
+        </FormControl>
+      ))}
+    </>
+  )
+}
 
 export default CreateProcessAddress

@@ -1,12 +1,6 @@
 import { Button } from '@chakra-ui/react'
 import { useClientContext } from '@vocdoni/react-components'
-import {
-  Census,
-  Election,
-  PlainCensus,
-  UnpublishedElection,
-  WeightedCensus,
-} from '@vocdoni/sdk'
+import { Election, IQuestion, PlainCensus, WeightedCensus } from '@vocdoni/sdk'
 import { useEffect } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import CreateProcessAddresses from './Addresses'
@@ -16,8 +10,8 @@ import CreateProcessSettings from './Settings'
 import WrapperForm from './WrapperForm'
 
 export interface FormValues {
-  titleProcess: string
-  descriptionProcess: string
+  title: string
+  description: string
   dates: {
     start: Date
     end: Date
@@ -45,8 +39,8 @@ interface PropsOptionsQuestionFormatted {
 }
 
 export interface Question {
-  titleQuestion: string
-  descriptionQuestion: string
+  title: string
+  description: string
   options: Option[]
 }
 
@@ -59,13 +53,13 @@ export interface Address {
   weight: number
 }
 
-export const getPlainCensus = async (addresses: string[]) => {
+export const getPlainCensus = (addresses: string[]) => {
   const census = new PlainCensus()
   census.add(addresses)
 
   return census
 }
-export const getWeightedCensus = async (addresses: Address[]) => {
+export const getWeightedCensus = (addresses: Address[]) => {
   const census = new WeightedCensus()
 
   addresses.forEach((add: Address) => {
@@ -78,63 +72,13 @@ export const getWeightedCensus = async (addresses: Address[]) => {
   return census
 }
 
-export const addQuestions = (
-  election: UnpublishedElection,
-  questions: Question[]
-) => {
-  const questionsFormatted = questions.map((question: Question) => ({
-    title: question.titleQuestion,
-    description: question.descriptionQuestion,
-    options: question.options.map((q: Option, i: number) => ({
-      title: q.option,
-      value: i,
-    })),
-  }))
-
-  questionsFormatted.forEach((questionFormatted: PropsQuestionFormatted) =>
-    election.addQuestion(
-      questionFormatted.title,
-      questionFormatted.description,
-      questionFormatted.options
-    )
-  )
-}
-
-export const createElection = (formValues: FormValues, census: Census) => {
-  const startDate = new Date(formValues.dates.start)
-  startDate.setHours(startDate.getHours())
-
-  const endDate = new Date(formValues.dates.end)
-  endDate.setHours(endDate.getHours())
-
-  const election = Election.from({
-    title: formValues.titleProcess,
-    description: formValues.descriptionProcess,
-    header: 'https://source.unsplash.com/random',
-    streamUri: 'https://source.unsplash.com/random',
-    startDate: formValues.electionType.autoStart
-      ? undefined
-      : startDate.getTime(),
-    endDate: endDate.getTime(),
-    electionType: {
-      autoStart: formValues.electionType.autoStart,
-      interruptible: formValues.electionType.interruptible,
-      secretUntilTheEnd: formValues.electionType.secretUntilTheEnd,
-    },
-    voteType: { maxVoteOverwrites: Number(formValues.maxVoteOverwrites) },
-    census,
-  })
-
-  return election
-}
-
 const CreateProcess = () => {
   const { client, account } = useClientContext()
 
   const methods = useForm<FormValues>({
     defaultValues: {
-      titleProcess: '',
-      descriptionProcess: '',
+      title: '',
+      description: '',
       dates: {
         start: undefined,
         end: undefined,
@@ -152,8 +96,8 @@ const CreateProcess = () => {
       ],
       questions: [
         {
-          titleQuestion: '',
-          descriptionQuestion: '',
+          title: '',
+          description: '',
           options: [{ option: '' }, { option: '' }],
         },
       ],
@@ -165,15 +109,31 @@ const CreateProcess = () => {
       await client.createAccount()
       let census
 
-      if (data.weightedVote) census = await getWeightedCensus(data.addresses)
+      if (data.weightedVote) census = getWeightedCensus(data.addresses)
       else {
         const addresses = data.addresses.map((add) => add.address)
         census = await getPlainCensus(addresses)
       }
 
-      const election = createElection(data, census)
-
-      addQuestions(election, data.questions)
+      const election = Election.from({
+        ...data,
+        census,
+        // map questions back to IQuestion[]
+        questions: data.questions.map(
+          (question) =>
+            ({
+              title: { default: question.title },
+              description: { default: question.description },
+              choices: question.options.map((q: Option, i: number) => ({
+                title: { default: q.option },
+                value: i,
+              })),
+            } as IQuestion)
+        ),
+        startDate: data.electionType.autoStart ? undefined : Date.now(),
+        endDate: new Date(data.dates.end).getTime(),
+        voteType: { maxVoteOverwrites: Number(data.maxVoteOverwrites) },
+      })
 
       const id = await client.createElection(election)
 

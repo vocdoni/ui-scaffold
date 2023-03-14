@@ -34,8 +34,8 @@ const CreateProcessQuestions = () => {
           aria-label='add question'
           onClick={() =>
             append({
-              titleQuestion: '',
-              descriptionQuestion: '',
+              title: '',
+              description: '',
               options: [{ option: '' }, { option: '' }],
             })
           }

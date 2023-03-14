@@ -49,7 +49,7 @@ const CreateProcessQuestion = ({ index, remove }: Props) => {
       <FormControl mb={4}>
         <FormLabel>Title</FormLabel>
         <Input
-          {...register(`questions.${index}.titleQuestion` as const, {
+          {...register(`questions.${index}.title` as const, {
             required: true,
           })}
           placeholder='Title'
@@ -58,7 +58,7 @@ const CreateProcessQuestion = ({ index, remove }: Props) => {
       <FormControl>
         <FormLabel>Description</FormLabel>
         <Input
-          {...register(`questions.${index}.descriptionQuestion` as const, {
+          {...register(`questions.${index}.description` as const, {
             required: true,
           })}
           placeholder='Description'
