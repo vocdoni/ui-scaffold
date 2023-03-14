@@ -44,7 +44,7 @@ const ProcessAside = () => {
                 <Text as='span' color='branding.purple'>
                   {election?.voteCount}
                 </Text>{' '}
-                votes casts so far!
+                votes cast so far!
               </Text>
             )}
         </Box>
