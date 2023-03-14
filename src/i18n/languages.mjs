@@ -6,6 +6,12 @@
   to update locales/index.ts
 */
 
-const languages = ['ca', 'es', 'en']
+export const LanguagesSlice = {
+  ca: 'Català',
+  es: 'Castellano',
+  en: 'English',
+}
+
+const languages = Object.keys(LanguagesSlice)
 
 export default languages

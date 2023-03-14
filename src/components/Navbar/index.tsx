@@ -10,12 +10,14 @@ import {
   useOutsideClick,
 } from '@chakra-ui/react'
 import { useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 import IconVocdoni from '../../vocdoni-icon.svg'
 import NavList from './List'
 
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { t } = useTranslation()
 
   const refNav = useRef<HTMLDivElement>(null)
 
@@ -56,7 +58,7 @@ const Navbar = () => {
         <IconButton
           size={'md'}
           icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-          aria-label={'Open Menu'}
+          aria-label={t('menu.open_menu')}
           display={{ md: 'none' }}
           onClick={isOpen ? onClose : onOpen}
         />

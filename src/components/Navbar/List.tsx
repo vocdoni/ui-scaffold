@@ -1,6 +1,7 @@
 import { ChevronDownIcon } from '@chakra-ui/icons'
 import {
   Button,
+  Icon,
   ListItem,
   Menu,
   MenuButton,
@@ -9,9 +10,10 @@ import {
 } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useTranslation } from 'react-i18next'
-import { FaGlobeAmericas } from 'react-icons/fa'
+import { FaCheck, FaGlobeAmericas } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
+import { LanguagesSlice } from '../../i18n/languages.mjs'
 
 interface Props {
   mobile: boolean
@@ -21,6 +23,8 @@ interface Props {
 const NavList = ({ mobile, onClose }: Props) => {
   const { isConnected } = useAccount()
   const { i18n, t } = useTranslation()
+
+  const languages = LanguagesSlice as { [key: string]: string }
 
   return (
     <>
@@ -48,15 +52,20 @@ const NavList = ({ mobile, onClose }: Props) => {
             <FaGlobeAmericas />
           </MenuButton>
           <MenuList>
-            <MenuItem onClick={() => i18n.changeLanguage('eng')}>
-              English
-            </MenuItem>
-            <MenuItem onClick={() => i18n.changeLanguage('cat')}>
-              Català
-            </MenuItem>
-            <MenuItem onClick={() => i18n.changeLanguage('esp')}>
-              Español
-            </MenuItem>
+            {Object.keys(languages).map((k) => (
+              <MenuItem
+                key={k}
+                onClick={() => {
+                  if (window && 'localStorage' in window) {
+                    window.localStorage.setItem('vocdoni.lang', k)
+                  }
+                  i18n.changeLanguage(k)
+                }}
+              >
+                {languages[k]}
+                {k === i18n.language && <Icon ml={3} as={FaCheck} />}
+              </MenuItem>
+            ))}
           </MenuList>
         </Menu>
       </ListItem>
