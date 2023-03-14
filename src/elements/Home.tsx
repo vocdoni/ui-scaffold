@@ -2,9 +2,9 @@ import { Box, Button, Flex, Grid, GridItem, Heading } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { FaLongArrowAltRight } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
-import InputSearch from '../components/Forms/InputSearch'
 import Counters from '../components/Home/Counters'
 import Card, { CardContents } from '../components/Organitzation/Card'
+import SearchInput from '../components/Search/Input'
 
 const CARDS: CardContents[] = [
   {
@@ -87,7 +87,7 @@ const Home = () => {
           </Button>
         </Flex>
         <Counters />
-        <InputSearch />
+        <SearchInput />
       </Flex>
 
       <Grid

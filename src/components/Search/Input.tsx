@@ -7,7 +7,7 @@ import {
 } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 
-const InputSearch = ({ ...props }) => {
+const SearchInput = ({ ...props }) => {
   const { t } = useTranslation()
 
   return (
@@ -29,4 +29,4 @@ const InputSearch = ({ ...props }) => {
   )
 }
 
-export default InputSearch
+export default SearchInput
