@@ -8,15 +8,19 @@ import { useAccount } from 'wagmi'
 const ProcessAside = () => {
   const { isConnected } = useAccount()
   const { election } = useElection()
-  const { client, account } = useClientContext()
+  const { client } = useClientContext()
 
-  const [isAbleToVote, setIsAbleToVote] = useState()
+  const [isAbleToVote, setIsAbleToVote] = useState<boolean>(false)
+  const [abilityChecked, setAbilityChecked] = useState<boolean>(false)
 
   useEffect(() => {
-    if (!client) return
+    if (!client || abilityChecked) return
 
-    client.isAbleToVote().then((res: any) => setIsAbleToVote(res))
-  }, [client, account])
+    client.isAbleToVote().then((res: any) => {
+      setIsAbleToVote(res)
+      setAbilityChecked(true)
+    })
+  }, [client, abilityChecked])
 
   return (
     <Card variant='vote'>
@@ -33,12 +37,16 @@ const ProcessAside = () => {
           <Text fontSize='1.2em' fontWeight='bold'>
             Voting in progrees
           </Text>
-          <Text>
-            <Text as='span' color='branding.purple'>
-              {election?.voteCount}
-            </Text>{' '}
-            votes casts so far!
-          </Text>
+          {election?.creationTime &&
+            election?.creationTime &&
+            election.creationTime < election.startDate && (
+              <Text>
+                <Text as='span' color='branding.purple'>
+                  {election?.voteCount}
+                </Text>{' '}
+                votes casts so far!
+              </Text>
+            )}
         </Box>
       </Flex>
       <HR m={0} h='.2px' />

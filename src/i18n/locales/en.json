@@ -8,5 +8,10 @@
     "intro": "Let your community vote!"
   },
   "learn_more": "Learn more",
-  "loading": "Loading..."
+  "loading": "Loading...",
+  "process":{
+    "aside": {
+      
+    }
+  }
 }

@@ -1,4 +1,6 @@
+import { ArrowBackIcon } from '@chakra-ui/icons'
 import {
+  Box,
   ButtonGroup,
   Flex,
   IconButton,
@@ -7,6 +9,7 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
+  Text,
 } from '@chakra-ui/react'
 import {
   ElectionDescription,
@@ -19,15 +22,20 @@ import {
   useClientContext,
 } from '@vocdoni/react-components'
 import { FaPause, FaPlay, FaStop } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
 import ProcessAside from './Aside'
 import ProcessViewNav from './Nav'
 
 export const ProcessView = (props: ElectionProviderComponentProps) => {
-  const { account } = useClientContext()
+  const { client, account } = useClientContext()
+  const navigate = useNavigate()
 
   return (
     <ElectionProvider {...props}>
       <Flex direction='column' gap={5} mb={8}>
+        <Text onClick={() => navigate(-1)} cursor='pointer'>
+          <ArrowBackIcon /> Org Name
+        </Text>
         <ElectionSchedule textAlign='left' color='branding.pink' isTruncated />
         <ElectionTitle fontSize='1.5em' mb={0} textAlign='left' isTruncated />
         <ElectionDescription />
@@ -54,33 +62,30 @@ export const ProcessView = (props: ElectionProviderComponentProps) => {
                   <IconButton
                     aria-label='Search database'
                     icon={<FaPlay />}
-                    // onClick={() => handleAction(ElectionStatus.READY)}
-                    // isDisabled={getButtonsDisabled(el, ElectionStatus.READY)}
+                    onClick={async () => await client.continueElection()}
                   />
                   <IconButton
                     aria-label='Search database'
                     icon={<FaPause />}
-                    // onClick={() => handleAction(ElectionStatus.PAUSED)}
-                    // isDisabled={getButtonsDisabled(el, ElectionStatus.PAUSED)}
+                    onClick={async () => await client.pauseElection()}
                   />
                   <IconButton
                     aria-label='Search database'
                     icon={<FaStop />}
-                    // onClick={() => handleAction(ElectionStatus.CANCELED)}
-                    // isDisabled={getButtonsDisabled(el, ElectionStatus.CANCELED)}
+                    onClick={async () => await client.cancelElection()}
                   />
                 </ButtonGroup>
               )}
               <ElectionStatusBadge />
             </Flex>
-            <Flex gap={4} alignItems='start'>
-              <QuestionsForm />
+            <Flex gap={4} justifyContent='space-between' alignItems='start'>
+              <Box flex='1 1 500px'>
+                <QuestionsForm />
+              </Box>
               <ProcessAside />
             </Flex>
           </TabPanel>
-          <TabPanel>
-            <p>TODO: Results</p>
-          </TabPanel>
+          <TabPanel></TabPanel>
         </TabPanels>
       </Tabs>
     </ElectionProvider>

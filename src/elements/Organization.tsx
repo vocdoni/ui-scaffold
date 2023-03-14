@@ -24,7 +24,7 @@ const IDS = [
 ]
 
 const Organitzation = () => {
-  const { client, account } = useClientContext()
+  const { client } = useClientContext()
   const navigate = useNavigate()
 
   const [electionsList, setElectionsList] = useState<PublishedElection[]>([])
@@ -43,7 +43,7 @@ const Organitzation = () => {
     //   .fetchElections()
     //   .then((res) => setElectionsList(res))
     //   .catch(console.log)
-  }, [client, account])
+  }, [client])
 
   return (
     <Flex direction='column' gap={4}>

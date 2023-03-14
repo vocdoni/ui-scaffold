@@ -9,14 +9,7 @@ const baseStyle = definePartsStyle({
     bg: 'white',
     borderRadius: '20px',
     padding: '20px',
-    flex: '1 1 1400px',
   },
-  // wrapper: {
-  //   border: '1px solid red',
-  // },
-  // alert: {
-  //   border: '1px solid red',
-  // },
 
   description: {
     marginTop: '15px',
