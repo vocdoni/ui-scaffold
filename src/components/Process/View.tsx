@@ -20,9 +20,11 @@ import {
 } from '@vocdoni/react-components'
 import { FaPause, FaPlay, FaStop } from 'react-icons/fa'
 import ProcessAside from './Aside'
+import ProcessViewNav from './Nav'
 
 export const ProcessView = (props: ElectionProviderComponentProps) => {
   const { account } = useClientContext()
+
   return (
     <ElectionProvider {...props}>
       <Flex direction='column' gap={5} mb={8}>
@@ -31,9 +33,13 @@ export const ProcessView = (props: ElectionProviderComponentProps) => {
         <ElectionDescription />
       </Flex>
       <Tabs>
-        <TabList>
+        <TabList display='flex'>
           <Tab>Questions</Tab>
           <Tab>Results</Tab>
+          <ProcessViewNav
+            startDate={props.election?.startDate}
+            endDate={props.election?.endDate}
+          />
         </TabList>
         <TabPanels bg='gray.100'>
           <TabPanel>
