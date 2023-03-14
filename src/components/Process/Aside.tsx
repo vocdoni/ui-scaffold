@@ -22,6 +22,13 @@ const ProcessAside = () => {
     })
   }, [client, abilityChecked])
 
+  const hasVotingStarted =
+    election?.creationTime &&
+    election?.startDate &&
+    election.creationTime < election.startDate
+
+  const hasVotingFinished = election?.endDate && election.endDate < new Date()
+
   return (
     <Card variant='vote'>
       <Flex gap={4} alignItems='center'>
@@ -35,22 +42,25 @@ const ProcessAside = () => {
         </Circle>
         <Box>
           <Text fontSize='1.2em' fontWeight='bold'>
-            Voting in progrees
+            {hasVotingStarted && !hasVotingFinished
+              ? 'Process in progress'
+              : !hasVotingStarted
+              ? 'Process will start'
+              : 'Process finished'}
           </Text>
-          {election?.creationTime &&
-            election?.creationTime &&
-            election.creationTime < election.startDate && (
-              <Text>
-                <Text as='span' color='branding.purple'>
-                  {election?.voteCount}
-                </Text>{' '}
-                votes cast so far!
-              </Text>
-            )}
+          {hasVotingStarted && !hasVotingFinished && (
+            <Text>
+              <Text as='span' color='branding.purple'>
+                {election?.voteCount}
+              </Text>{' '}
+              votes cast so far!
+            </Text>
+          )}
         </Box>
       </Flex>
-      <HR m={0} h='.2px' />
-      {isConnected && (
+      {hasVotingStarted && !hasVotingFinished && <HR m={0} h='.2px' />}
+
+      {isConnected && hasVotingStarted && !hasVotingFinished && (
         <Flex direction='column' gap={4}>
           <Text fontSize='.9em' textAlign='center'>
             {isAbleToVote
@@ -67,7 +77,7 @@ const ProcessAside = () => {
           </Button>
         </Flex>
       )}
-      {!isConnected && (
+      {!isConnected && hasVotingStarted && !hasVotingFinished && (
         <Flex direction='column' alignItems='center' gap={4}>
           <Box>
             <Text fontWeight='bold'>Proposers: </Text>
