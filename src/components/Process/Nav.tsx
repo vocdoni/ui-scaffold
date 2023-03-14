@@ -18,7 +18,9 @@ const ProcessViewNav = ({
             ? 'Voting ends'
             : 'Voting finished'}
         </Text>
-        <Text>{formatDistance(new Date(), endDate!)}</Text>
+        <Text>
+          {formatDistance(new Date(), endDate!)} {new Date() > endDate && 'ago'}
+        </Text>
       </Box>
     </Flex>
   )
