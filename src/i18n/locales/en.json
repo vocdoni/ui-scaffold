@@ -1,5 +1,6 @@
 {
   "menu": {
+    "open_menu": "Open menu",
     "create_process": "Create process",
     "connect": "Connect"
   },
