@@ -1,5 +1,13 @@
-import { EmailIcon } from '@chakra-ui/icons'
-import { Button, Flex, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
+import {
+  ButtonGroup,
+  Flex,
+  IconButton,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+} from '@chakra-ui/react'
 import {
   ElectionDescription,
   ElectionProvider,
@@ -8,66 +16,67 @@ import {
   ElectionStatusBadge,
   ElectionTitle,
   QuestionsForm,
-  useElection,
+  useClientContext,
 } from '@vocdoni/react-components'
-import { ReactNode } from 'react'
+import { FaPause, FaPlay, FaStop } from 'react-icons/fa'
+import ProcessAside from './Aside'
 
-const ProcessViewTabContents = ({ children }: { children: ReactNode }) => {
-  const { election } = useElection()
-
+export const ProcessView = (props: ElectionProviderComponentProps) => {
+  const { account } = useClientContext()
   return (
-    <Flex justifyContent='space-between' alignItems='start'>
-      {children}
-      <Flex
-        direction='column'
-        justifyContent='center'
-        alignItems='center'
-        gap={4}
-        padding={8}
-        borderRadius='10px'
-        bgColor='branding.lightpink1'
-        position='sticky'
-        top={8}
-      >
-        <ElectionStatusBadge />
-        <Button
-          type='submit'
-          form='election-create-form'
-          variant='brandVote'
-          rightIcon={<EmailIcon _hover={{ size: '10px' }} />}
-        >
-          Vote
-        </Button>
-        <Text color='branding.pink'>{election?.voteCount} votes</Text>
+    <ElectionProvider {...props}>
+      <Flex direction='column' gap={5} mb={8}>
+        <ElectionSchedule textAlign='left' color='branding.pink' isTruncated />
+        <ElectionTitle fontSize='1.5em' mb={0} textAlign='left' isTruncated />
+        <ElectionDescription />
       </Flex>
-    </Flex>
+      <Tabs>
+        <TabList>
+          <Tab>Questions</Tab>
+          <Tab>Results</Tab>
+        </TabList>
+        <TabPanels bg='gray.100'>
+          <TabPanel>
+            <Flex justifyContent='center' gap={4} mb={4}>
+              {props.election?.organizationId === account && (
+                <ButtonGroup
+                  size='sm'
+                  isAttached
+                  variant='outline'
+                  position='relative'
+                >
+                  <IconButton
+                    aria-label='Search database'
+                    icon={<FaPlay />}
+                    // onClick={() => handleAction(ElectionStatus.READY)}
+                    // isDisabled={getButtonsDisabled(el, ElectionStatus.READY)}
+                  />
+                  <IconButton
+                    aria-label='Search database'
+                    icon={<FaPause />}
+                    // onClick={() => handleAction(ElectionStatus.PAUSED)}
+                    // isDisabled={getButtonsDisabled(el, ElectionStatus.PAUSED)}
+                  />
+                  <IconButton
+                    aria-label='Search database'
+                    icon={<FaStop />}
+                    // onClick={() => handleAction(ElectionStatus.CANCELED)}
+                    // isDisabled={getButtonsDisabled(el, ElectionStatus.CANCELED)}
+                  />
+                </ButtonGroup>
+              )}
+              <ElectionStatusBadge />
+            </Flex>
+            <Flex gap={4} alignItems='start'>
+              <QuestionsForm />
+              <ProcessAside />
+            </Flex>
+          </TabPanel>
+          <TabPanel>
+            <p>TODO: Results</p>
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
+    </ElectionProvider>
   )
 }
-
-export const ProcessView = (props: ElectionProviderComponentProps) => (
-  <ElectionProvider {...props}>
-    <Flex direction='column' gap={5}>
-      <ElectionSchedule textAlign='left' color='branding.pink' isTruncated />
-      <ElectionTitle fontSize='1.5em' mb={0} textAlign='left' isTruncated />
-      <ElectionDescription />
-    </Flex>
-    <Tabs>
-      <TabList>
-        <Tab>Questions</Tab>
-        <Tab>Results</Tab>
-      </TabList>
-      <TabPanels>
-        <TabPanel>
-          <ProcessViewTabContents>
-            <QuestionsForm />
-          </ProcessViewTabContents>
-        </TabPanel>
-        <TabPanel>
-          <ProcessViewTabContents>
-            <p>TODO: Results</p>
-          </ProcessViewTabContents>
-        </TabPanel>
-      </TabPanels>
-    </Tabs>
-  </ElectionProvider>
-)

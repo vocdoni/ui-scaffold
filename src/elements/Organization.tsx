@@ -37,7 +37,6 @@ const Organitzation = () => {
         res.filter((el) => el.status === 'fulfilled').map((el: any) => el.value)
       )
       .then((res) => {
-        console.log(res)
         setElectionsList(res)
       })
     // client
