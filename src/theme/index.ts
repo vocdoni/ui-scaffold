@@ -11,11 +11,6 @@ const colors = {
     c90: '#0f141c',
   },
   branding: {
-    lightpink1: '#fcf5fc',
-    lightpink2: '#f6e3f6',
-    lightpink3: '#fadef7',
-    lightpink4: '#ef9ae7',
-    lightpink: '#f5beef',
     pink: '#E035D0',
     purple: '#892BE2',
     lightpurple1: '#EDE4F4',
