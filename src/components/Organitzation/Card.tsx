@@ -30,7 +30,7 @@ const OrganitzationCard = ({ card }: CardProps) => (
     </CardBody>
     <CardFooter>
       <Text>
-        <Text as='span'>{card.rounds}</Text> Rounds
+        <Text as='span'>{card.rounds}</Text> Elections
       </Text>
     </CardFooter>
   </Card>

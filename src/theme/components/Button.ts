@@ -15,17 +15,9 @@ export const Button = {
     brandVote: {
       padding: '20px',
       height: '25px',
-      backgroundColor: 'branding.pink',
-      minWidth: 'none',
-      bgGradient: 'linear(to-b, branding.lightpink3, branding.pink)',
-      color: 'branding.lightpink1',
-      _hover: {
-        color: 'branding.pink',
-        bgGradient: 'linear(to-b, branding.lightpink2, branding.lightpink4)',
-      },
-      _active: {
-        transform: 'scale(0.95)',
-      },
+      backgroundColor: 'branding.purple',
+      minWidth: '60px',
+      color: 'white',
     },
   },
 }

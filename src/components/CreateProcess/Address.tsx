@@ -44,6 +44,7 @@ const CreateProcessAddress = ({
           <IconButton
             ml='auto'
             type='button'
+            size='sm'
             icon={<DeleteIcon />}
             aria-label='delete address'
             onClick={() => remove(i)}

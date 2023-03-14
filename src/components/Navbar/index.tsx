@@ -3,7 +3,7 @@ import {
   Box,
   Flex,
   IconButton,
-  Img,
+  Image,
   Text,
   UnorderedList,
   useDisclosure,
@@ -42,7 +42,7 @@ const Navbar = () => {
           ml={{ base: 2, sm: 0 }}
         >
           <NavLink to='/'>
-            <Img src={IconVocdoni} alt='vocdoni icon' />
+            <Image src={IconVocdoni} alt='vocdoni icon' />
           </NavLink>
           <Text display={{ base: 'none', sm: 'block' }} fontSize='0.8em'>
             Public voting protocol

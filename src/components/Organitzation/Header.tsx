@@ -27,7 +27,7 @@ const OrganizationHeader = () => {
       >
         <Image
           mx='auto'
-          borderRadius='10px'
+          borderRadius='md'
           src='https://images.pexels.com/photos/7103129/pexels-photo-7103129.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
           alt='organization X'
         />
@@ -54,7 +54,7 @@ const OrganizationHeader = () => {
             title='Ox431277732423bh4234'
             cursor='pointer'
           >
-            Ox431277732423bh4234
+            0x431277732423bh4234
           </Text>
         </Flex>
         <Flex

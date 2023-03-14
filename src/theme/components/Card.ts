@@ -87,9 +87,23 @@ const process = definePartsStyle({
   },
 })
 
+const vote = definePartsStyle({
+  container: {
+    direction: 'column',
+    minWidth: '320px',
+    gap: '20px',
+    border: '1px solid lightgray',
+    borderRadius: 'lg',
+    padding: '15px',
+    position: 'sticky',
+    top: '10px',
+  },
+})
+
 const variantsCards = {
   organization,
   process,
+  vote,
 }
 
 export const Card = defineMultiStyleConfig({ variants: variantsCards })
