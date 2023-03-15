@@ -3,6 +3,7 @@ import { useClientContext } from '@vocdoni/react-components'
 import { Election, IQuestion, PlainCensus, WeightedCensus } from '@vocdoni/sdk'
 import { useEffect } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import CreateProcessAddresses from './Addresses'
 import CreateProcessHeader from './Header'
 import CreateProcessQuestions from './Questions'
@@ -12,10 +13,8 @@ import WrapperForm from './WrapperForm'
 export interface FormValues {
   title: string
   description: string
-  dates: {
-    start: Date
-    end: Date
-  }
+  endDate: Date
+  startDate: Date
   electionType: {
     autoStart: boolean
     interruptible: boolean
@@ -25,17 +24,6 @@ export interface FormValues {
   weightedVote: boolean
   addresses: Address[]
   questions: Question[]
-}
-
-interface PropsQuestionFormatted {
-  title: string
-  description: string
-  options: PropsOptionsQuestionFormatted[]
-}
-
-interface PropsOptionsQuestionFormatted {
-  title: string
-  value: number
 }
 
 export interface Question {
@@ -74,15 +62,14 @@ export const getWeightedCensus = (addresses: Address[]) => {
 
 const CreateProcess = () => {
   const { client, account } = useClientContext()
+  const { t } = useTranslation()
 
   const methods = useForm<FormValues>({
     defaultValues: {
       title: '',
       description: '',
-      dates: {
-        start: undefined,
-        end: undefined,
-      },
+      startDate: undefined,
+      endDate: undefined,
       electionType: {
         autoStart: true,
         interruptible: true,
@@ -130,8 +117,10 @@ const CreateProcess = () => {
               })),
             } as IQuestion)
         ),
-        startDate: data.electionType.autoStart ? undefined : Date.now(),
-        endDate: new Date(data.dates.end).getTime(),
+        startDate: data.electionType.autoStart
+          ? undefined
+          : new Date(data.startDate).getTime(),
+        endDate: new Date(data.endDate).getTime(),
         voteType: { maxVoteOverwrites: Number(data.maxVoteOverwrites) },
       })
 
@@ -139,8 +128,7 @@ const CreateProcess = () => {
 
       console.log(id)
     } catch (err) {
-      throw new Error()
-    } finally {
+      console.error('could not create election:', err)
     }
   }
 
@@ -158,7 +146,7 @@ const CreateProcess = () => {
           <CreateProcessAddresses />
           <CreateProcessQuestions />
           <Button type='submit' _dark={{ bg: 'black.c90' }}>
-            Submit
+            {t('form.process_create.submit')}
           </Button>
         </>
       </WrapperForm>

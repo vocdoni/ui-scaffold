@@ -1,12 +1,14 @@
 import { AddIcon } from '@chakra-ui/icons'
 import { Flex, HStack, IconButton, Text } from '@chakra-ui/react'
 import { useFieldArray } from 'react-hook-form'
-import CreateProcessQuestion from './Question'
+import { useTranslation } from 'react-i18next'
+import QuestionsForm from './Form'
 
 const CreateProcessQuestions = () => {
   const { fields, append, remove } = useFieldArray({
     name: 'questions',
   })
+  const { t } = useTranslation()
 
   return (
     <Flex
@@ -26,10 +28,11 @@ const CreateProcessQuestions = () => {
         _dark={{ bg: 'black.c60' }}
       >
         <Text as='legend' fontSize='1.3em'>
-          Questions
+          {t('form.process_create.questions_title')}
         </Text>
         <IconButton
           type='button'
+          size='sm'
           icon={<AddIcon />}
           aria-label='add question'
           onClick={() =>
@@ -42,7 +45,7 @@ const CreateProcessQuestions = () => {
         />
       </HStack>
       {fields.map((question, index) => (
-        <CreateProcessQuestion
+        <QuestionsForm
           key={question.id}
           index={index}
           remove={() => remove(index)}

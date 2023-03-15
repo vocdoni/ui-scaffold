@@ -12,7 +12,7 @@ import {
   UseFieldArrayRemove,
   useFormContext,
 } from 'react-hook-form'
-import CreateProcessQuestionOptions from './QuestionOptions'
+import OptionsForm from './Questions/OptionsForm'
 
 interface Props {
   index: number
@@ -65,7 +65,7 @@ const CreateProcessQuestion = ({ index, remove }: Props) => {
         />
       </FormControl>
 
-      <CreateProcessQuestionOptions
+      <OptionsForm
         fields={fields}
         register={register}
         removeOption={removeOption}

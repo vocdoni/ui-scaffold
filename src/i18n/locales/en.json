@@ -10,6 +10,28 @@
     "vote": "Vote",
     "voters": "Voters"
   },
+  "form": {
+    "process_create": {
+      "address_title": "Address {{ num }}",
+      "address_weight": "Weight",
+      "addresses_title": "Addresses",
+      "process_title": "Title",
+      "process_title_placeholder": "The main process title",
+      "process_description": "Description",
+      "process_description_placeholder": "A thoroughly detailed description",
+      "submit": "Create process",
+      "question_title": "Title",
+      "question_delete": "Delete question {{ num }}",
+      "question_placeholder": "Question {{ num }} title",
+      "questions_title": "Questions",
+      "settings": "Election settings",
+      "date_start": "Start date:",
+      "date_end": "End date:"
+    },
+    "error": {
+      "field_is_required": "This field is required"
+    }
+  },
   "input_search": "Search",
   "icon": "{icon} icon",
   "landing": {
