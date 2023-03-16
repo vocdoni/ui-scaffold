@@ -9,9 +9,9 @@
   },
   "learn_more": "Learn more",
   "loading": "Loading...",
-  "process":{
-    "aside": {
-      
-    }
+  "process": {
+    "questions": "Questions",
+    "results": "Results",
+    "aside": {}
   }
 }

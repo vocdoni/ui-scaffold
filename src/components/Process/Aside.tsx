@@ -1,11 +1,19 @@
 import { EmailIcon } from '@chakra-ui/icons'
-import { Box, Button, Card, Circle, Flex, Text } from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Circle,
+  Text,
+} from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { HR, useClientContext, useElection } from '@vocdoni/react-components'
 import { useEffect, useState } from 'react'
 import { useAccount } from 'wagmi'
 
-const ProcessAside = () => {
+const ProcessAside = ({ ...props }) => {
   const { isConnected } = useAccount()
   const { election } = useElection()
   const { client } = useClientContext()
@@ -30,39 +38,29 @@ const ProcessAside = () => {
   const hasVotingFinished = election?.endDate && election.endDate < new Date()
 
   return (
-    <Card variant='vote'>
-      <Flex gap={4} alignItems='center'>
-        <Circle
-          bg='branding.lightpurple1'
-          size={16}
-          border='.1px solid'
-          borderColor='branding.purple'
-        >
-          <EmailIcon color='branding.purple' boxSize={8} />
+    <Card variant='vote' {...props}>
+      <CardHeader>
+        <Circle>
+          <EmailIcon />
         </Circle>
         <Box>
-          <Text fontSize='1.2em' fontWeight='bold'>
+          <Text>
             {hasVotingStarted && !hasVotingFinished
               ? 'Process in progress'
               : !hasVotingStarted
               ? 'Process will start'
               : 'Process finished'}
           </Text>
-          {hasVotingStarted && !hasVotingFinished && (
-            <Text>
-              <Text as='span' color='branding.purple'>
-                {election?.voteCount}
-              </Text>{' '}
-              votes cast so far!
-            </Text>
-          )}
+          <Text>
+            <Text as='span'>{election?.voteCount}</Text> votes cast so far!
+          </Text>
         </Box>
-      </Flex>
-      {hasVotingStarted && !hasVotingFinished && <HR m={0} h='.2px' />}
+      </CardHeader>
+      {hasVotingStarted && !hasVotingFinished && <HR />}
 
       {isConnected && hasVotingStarted && !hasVotingFinished && (
-        <Flex direction='column' gap={4}>
-          <Text fontSize='.9em' textAlign='center'>
+        <CardBody>
+          <Text>
             {isAbleToVote
               ? 'Connected. You are elegible for voting.'
               : 'You are not elegible for voting'}
@@ -75,10 +73,10 @@ const ProcessAside = () => {
           >
             Vote
           </Button>
-        </Flex>
+        </CardBody>
       )}
       {!isConnected && hasVotingStarted && !hasVotingFinished && (
-        <Flex direction='column' alignItems='center' gap={4}>
+        <CardBody>
           <Box>
             <Text fontWeight='bold'>Proposers: </Text>
             <Text>
@@ -92,7 +90,7 @@ const ProcessAside = () => {
             showBalance={false}
             label='Connect to vote'
           />
-        </Flex>
+        </CardBody>
       )}
     </Card>
   )

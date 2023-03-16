@@ -12,6 +12,7 @@ const colors = {
   },
   branding: {
     pink: '#E035D0',
+    pink2: '#C92FBB',
     purple: '#892BE2',
     lightpurple1: '#EDE4F4',
     purple1: '#8428DA',

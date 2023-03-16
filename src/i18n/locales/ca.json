@@ -8,5 +8,10 @@
     "intro": "Crea eleccions comunitàries!"
   },
   "learn_more": "Descobreix més",
-  "loading": "Carregant..."
+  "loading": "Carregant...",
+  "process": {
+    "questions": "Preguntas",
+    "results": "Resultats",
+    "aside": {}
+  }
 }

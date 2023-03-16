@@ -13,10 +13,10 @@ const ProcessViewNav = ({
       <Box px={4} pt={1}>
         <Text color='branding.purple'>
           {startDate > endDate
-            ? 'Voting starts'
+            ? 'Process starts'
             : new Date() < endDate
-            ? 'Voting ends'
-            : 'Voting finished'}
+            ? 'Process ends'
+            : 'Process finished'}
         </Text>
         <Text>
           {formatDistance(new Date(), endDate!)} {new Date() > endDate && 'ago'}

@@ -8,5 +8,10 @@
     "intro": "¡Deja que la comunidad decida!"
   },
   "learn_more": "Descubre más",
-  "loading": "Cargando..."
+  "loading": "Cargando...",
+  "process": {
+    "questions": "Preguntas",
+    "results": "Resultados",
+    "aside": {}
+  }
 }

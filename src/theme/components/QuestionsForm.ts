@@ -19,6 +19,7 @@ const baseStyle = definePartsStyle({
     color: 'gray',
   },
 })
+
 export const Questions = defineMultiStyleConfig({
   baseStyle,
 })
