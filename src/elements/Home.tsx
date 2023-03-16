@@ -1,7 +1,7 @@
 import { Box, Button, Flex, Grid, GridItem, Heading } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { FaLongArrowAltRight } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import InputSearch from '../components/Forms/InputSearch'
 import Counters from '../components/Home/Counters'
 import Card, { CardContents } from '../components/Organitzation/Card'
@@ -58,6 +58,7 @@ const CARDS: CardContents[] = [
 ]
 
 const Home = () => {
+  const navigate = useNavigate()
   const { t } = useTranslation()
 
   return (
@@ -98,16 +99,20 @@ const Home = () => {
         }}
       >
         {CARDS.map((card, index) => (
-          <Link to='/organization/test' key={index}>
-            <GridItem
-              display='flex'
-              justifyContent='center'
-              alignItems='center'
-              p={4}
-            >
-              <Card card={card} />
-            </GridItem>
-          </Link>
+          <GridItem
+            key={index}
+            display='flex'
+            justifyContent='center'
+            alignItems='center'
+            p={4}
+            onClick={() =>
+              navigate(
+                `/organization/0x4a081070E9D555b5D19629a6bcc8B77f4aE6d39c`
+              )
+            }
+          >
+            <Card card={card} />
+          </GridItem>
         ))}
       </Grid>
     </Box>
