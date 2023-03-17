@@ -1,11 +1,10 @@
-import { PublishedElection } from '@vocdoni/sdk'
-import { useLoaderData } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import OrganizationView from '../components/Organitzation/View'
 
 const Organitzation = () => {
-  const electionsList = useLoaderData() as PublishedElection[]
+  const { address } = useParams()
 
-  return <OrganizationView electionsList={electionsList} />
+  return <OrganizationView address={address} />
 }
 
 export default Organitzation

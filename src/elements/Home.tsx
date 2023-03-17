@@ -106,9 +106,7 @@ const Home = () => {
             alignItems='center'
             p={4}
             onClick={() =>
-              navigate(
-                `/organization/0x4a081070E9D555b5D19629a6bcc8B77f4aE6d39c`
-              )
+              navigate(`/organization/4a081070E9D555b5D19629a6bcc8B77f4aE6d39c`)
             }
           >
             <Card card={card} />

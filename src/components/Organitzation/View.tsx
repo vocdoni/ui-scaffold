@@ -1,7 +1,9 @@
+import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons'
 import {
   Flex,
   Grid,
   GridItem,
+  IconButton,
   Tab,
   TabList,
   TabPanel,
@@ -9,59 +11,41 @@ import {
   Tabs,
   Text,
 } from '@chakra-ui/react'
-import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
+import { useClientContext } from '@vocdoni/react-components'
+import { PublishedElection } from '@vocdoni/sdk'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import InputSearch from '../Forms/InputSearch'
 import ProcessCard from '../Process/Card'
 import Header from './Header'
 
-const OrganizationView = ({
-  electionsList,
-}: {
-  electionsList: PublishedElection[]
-}) => {
-  //   const { client } = useClientContext()
+const OrganizationView = ({ address }: { address: string | undefined }) => {
+  const { client } = useClientContext()
   const navigate = useNavigate()
 
-  //   const [electionsList2, setElectionsList] = useState<PublishedElection[]>([])
+  const [electionsList, setElectionsList] = useState<PublishedElection[]>()
+  const [page, setPage] = useState(0)
+  const [totalRounds, setTotalRounds] = useState<number | undefined>()
 
-  //   useEffect(() => {
-  //     if (!client) return
+  useEffect(() => {
+    if (!client) return
+    client
+      .fetchAccountInfo()
+      .then((res) => setTotalRounds(res.electionIndex))
+      .catch(console.log)
+  }, [client, address])
 
-  //     // Promise.allSettled(IDS.map((id) => client.fetchElection(id)))
-  //     //   .then((res) =>
-  //     //     res.filter((el) => el.status === 'fulfilled').map((el: any) => el.value)
-  //     //   )
-  //     //   .then((res) => {
-  //     //     setElectionsList(res)
-  //     //   })
-  //     client
-  //       .fetchElections('')
-  //       .then((res) => console.log(res))
-  //       .catch(console.log)
-  //   }, [client])
+  useEffect(() => {
+    if (!client) return
 
-  const electionsActive = electionsList.filter((el) => {
-    if (
-      el.status === ElectionStatus.READY ||
-      el.status === ElectionStatus.PAUSED
-    )
-      return el
-    else return null
-  })
-
-  const templateColumnsActive =
-    electionsActive.length === 1
-      ? {
-          base: '1fr',
-        }
-      : {
-          base: '1fr',
-          lg: 'repeat(2, 1fr)',
-        }
+    client
+      .fetchElections('0x' + address, page)
+      .then((res) => setElectionsList(res))
+      .catch(console.log)
+  }, [client, address, page])
 
   const templateColumnsAllRounds =
-    electionsList.length === 1
+    electionsList?.length === 1
       ? {
           base: '1fr',
         }
@@ -80,32 +64,21 @@ const OrganizationView = ({
           gap={{ md: 4 }}
         >
           <Tab whiteSpace='nowrap'>
-            Active{' '}
-            <Text
-              as='span'
-              display='inline-block'
-              width='25px'
-              ml={2}
-              bg='lightgray'
-              borderRadius='20%'
-            >
-              {electionsActive.length}
-            </Text>
-          </Tab>
-          <Tab whiteSpace='nowrap'>
             All rounds{' '}
-            <Text
-              as='span'
-              display='inline-block'
-              width='25px'
-              ml={2}
-              bg='lightgray'
-              borderRadius='20%'
-            >
-              {' '}
-              {electionsList.length}
-            </Text>
+            {totalRounds && (
+              <Text
+                as='span'
+                px={2}
+                display='inline-block'
+                ml={2}
+                bg='lightgray'
+                borderRadius='20%'
+              >
+                {totalRounds}
+              </Text>
+            )}
           </Tab>
+          <Tab whiteSpace='nowrap'>Active </Tab>
           <InputSearch
             marginRight={{ base: 'auto', md: 0 }}
             marginLeft='auto'
@@ -114,8 +87,8 @@ const OrganizationView = ({
         </TabList>
         <TabPanels bg='gray.100'>
           <TabPanel>
-            <Grid templateColumns={templateColumnsActive} gap={4}>
-              {electionsActive.map((election) => (
+            <Grid templateColumns={templateColumnsAllRounds} gap={4}>
+              {electionsList?.map((election) => (
                 <GridItem
                   key={election.id}
                   display='flex'
@@ -127,21 +100,26 @@ const OrganizationView = ({
                 </GridItem>
               ))}
             </Grid>
+            <Flex justifyContent='center' p={4} cursor='pointer' gap={4}>
+              <IconButton
+                icon={<ArrowBackIcon />}
+                onClick={() => setPage((prev) => prev - 1)}
+                aria-label='Call Segun'
+                size='lg'
+                isDisabled={page === 0}
+              />
+
+              <IconButton
+                icon={<ArrowForwardIcon />}
+                onClick={() => setPage((prev) => prev + 1)}
+                aria-label='Call Segun'
+                size='lg'
+                isDisabled={!electionsList?.length}
+              />
+            </Flex>
           </TabPanel>
           <TabPanel>
-            <Grid templateColumns={templateColumnsAllRounds} gap={4}>
-              {electionsList.map((election) => (
-                <GridItem
-                  key={election.id}
-                  display='flex'
-                  justifyContent='center'
-                  alignItems='center'
-                  onClick={() => navigate(`/processes/${election.id}`)}
-                >
-                  <ProcessCard election={election} />
-                </GridItem>
-              ))}
-            </Grid>
+            <Text textAlign='center'>Working...</Text>
           </TabPanel>
         </TabPanels>
       </Tabs>

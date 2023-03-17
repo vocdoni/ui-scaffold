@@ -24,7 +24,7 @@ const ProcessAside = ({ ...props }) => {
   useEffect(() => {
     if (!client || abilityChecked) return
 
-    client.isAbleToVote().then((res: any) => {
+    client.isAbleToVote().then((res) => {
       setIsAbleToVote(res)
       setAbilityChecked(true)
     })

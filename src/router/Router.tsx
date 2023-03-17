@@ -65,9 +65,6 @@ export const RoutesProvider = () => {
               <Organization />
             </SuspenseLoader>
           }
-          loader={async ({ params }) =>
-            client.fetchElections(params.address || undefined)
-          }
         />
         <Route
           path='*'

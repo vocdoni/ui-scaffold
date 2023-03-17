@@ -1,15 +1,18 @@
 {
+  "landing": {
+    "intro": "Let your community vote!"
+  },
+  "learn_more": "Learn more",
+  "loading": "Loading...",
   "menu": {
     "open_menu": "Open menu",
     "create_process": "Create process",
     "my_list": "My list",
     "connect": "Connect"
   },
-  "landing": {
-    "intro": "Let your community vote!"
+  "navbar":{
+    "protocolo": "Public voting protocol"
   },
-  "learn_more": "Learn more",
-  "loading": "Loading...",
   "process": {
     "questions": "Questions",
     "results": "Results",

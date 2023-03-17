@@ -9,13 +9,14 @@ interface Props {
 }
 
 const ProcessActions = ({ client, id, status }: Props) => {
+  console.log(status)
   return (
     <ButtonGroup size='sm' isAttached variant='outline' position='relative'>
       <IconButton
         aria-label='Search database'
         icon={<FaPlay />}
         onClick={async () => await client.continueElection(id)}
-        isDisabled={status === ElectionStatus.CONTINUE}
+        isDisabled={status === ElectionStatus.READY}
       />
       <IconButton
         aria-label='Search database'

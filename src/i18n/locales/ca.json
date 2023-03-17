@@ -1,15 +1,19 @@
 {
+  "landing": {
+    "intro": "Crea eleccions comunitàries!"
+  },
+  "learn_more": "Descobreix més",
+  "loading": "Carregant...",
   "menu": {
     "open_menu": "Obre menú",
     "create_process": "Crear procés",
     "my_list": "La meva llista",
     "connect": "Connecta"
   },
-  "landing": {
-    "intro": "Crea eleccions comunitàries!"
+
+  "navbar": {
+    "protocolo": "Protocol públic de votació"
   },
-  "learn_more": "Descobreix més",
-  "loading": "Carregant...",
   "process": {
     "questions": "Preguntas",
     "results": "Resultats",

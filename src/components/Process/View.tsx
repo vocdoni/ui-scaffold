@@ -33,9 +33,6 @@ export const ProcessView = (props: ElectionProviderComponentProps) => {
 
   const { election } = props
 
-  console.log(election?.organizationId, account?.address)
-  console.log(election?.electionType.interruptible)
-
   return (
     <ElectionProvider {...props}>
       <Flex direction='column' gap={5} mb={8}>

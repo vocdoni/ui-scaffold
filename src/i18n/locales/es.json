@@ -1,15 +1,18 @@
 {
+  "landing": {
+    "intro": "¡Deja que la comunidad decida!"
+  },
+  "learn_more": "Descubre más",
+  "loading": "Cargando...",
   "menu": {
     "open_menu": "Abrir menú",
     "create_process": "Crear proceso",
     "my_list": "Mi lista",
     "connect": "Conectar"
   },
-  "landing": {
-    "intro": "¡Deja que la comunidad decida!"
+  "navbar": {
+    "protocolo": "Protocolo público de votación"
   },
-  "learn_more": "Descubre más",
-  "loading": "Cargando...",
   "process": {
     "questions": "Preguntas",
     "results": "Resultados",
