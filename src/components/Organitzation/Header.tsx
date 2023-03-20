@@ -9,8 +9,10 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const OrganizationHeader = () => {
+  const { t } = useTranslation()
   const [readMore, setReadMore] = useState(false)
 
   return (
@@ -27,7 +29,7 @@ const OrganizationHeader = () => {
       >
         <Image
           mx='auto'
-          borderRadius='10px'
+          borderRadius='md'
           src='https://images.pexels.com/photos/7103129/pexels-photo-7103129.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
           alt='organization X'
         />
@@ -54,7 +56,7 @@ const OrganizationHeader = () => {
             title='Ox431277732423bh4234'
             cursor='pointer'
           >
-            Ox431277732423bh4234
+            0x431277732423bh4234
           </Text>
         </Flex>
         <Flex
@@ -67,14 +69,14 @@ const OrganizationHeader = () => {
             <Text as='span' fontWeight='bold'>
               20
             </Text>{' '}
-            Eelections
+            {t('organization.elections')}
           </Text>
 
           <Text>
             <Text as='span' fontWeight='bold'>
               627
             </Text>{' '}
-            Members
+            {t('organization.members')}
           </Text>
         </Flex>
         <Text noOfLines={readMore ? undefined : 3}>
@@ -106,7 +108,7 @@ const OrganizationHeader = () => {
             variant='underline'
             onClick={() => setReadMore((prev) => !prev)}
           >
-            {readMore ? 'Read less' : 'Read more'}
+            {readMore ? t('read_less') : t('read_more')}
           </Button>
         </VStack>
       </>

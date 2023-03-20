@@ -1,39 +1,58 @@
-import { Card, CardHeader } from '@chakra-ui/react'
 import {
+  Box,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Text,
+} from '@chakra-ui/react'
+import {
+  ElectionDescription,
   ElectionProvider,
-  ElectionSchedule,
   ElectionStatusBadge,
   ElectionTitle,
   HR,
 } from '@vocdoni/react-components'
 import { PublishedElection } from '@vocdoni/sdk'
+import { formatDistance } from 'date-fns'
+import { useTranslation } from 'react-i18next'
 
-const ProcessCard = ({ election }: { election: PublishedElection }) => (
-  <ElectionProvider election={election}>
-    <Card variant='process'>
-      <CardHeader flexDirection={{ base: 'column', sm: 'row' }}>
-        <ElectionTitle
-          fontSize='1.4em'
-          textAlign='start'
-          order={{ base: 2, sm: 1 }}
-          alignSelf='start'
-          noOfLines={1}
-          m={0}
-          width={{ base: '180px', sm: '75%' }}
-        />
-        <ElectionStatusBadge
-          order={{ base: 1, sm: 2 }}
-          alignSelf={{ base: 'end', sm: 'center' }}
-          color='green'
-          border='1px solid'
-          bgColor='green.100'
-        />
-      </CardHeader>
+const ProcessCard = ({ election }: { election: PublishedElection }) => {
+  const { t } = useTranslation()
+  return (
+    <ElectionProvider election={election}>
+      <Card variant='process'>
+        <CardHeader>
+          <ElectionTitle as='h4' />
+          <ElectionStatusBadge />
+        </CardHeader>
+        <CardBody>
+          <ElectionDescription />
+        </CardBody>
+        <HR />
+        <CardFooter>
+          <Box px={4} pt={1}>
+            <Text color='branding.purple'>
+              {election.startDate > election.endDate
+                ? t('process.date.starts')
+                : new Date() < election.endDate
+                ? t('process.date.ends')
+                : t('process.date.ended')}
+            </Text>
+            <Text>
+              {formatDistance(new Date(), election.endDate!)}{' '}
+              {new Date() > election.endDate && t('process.date.ago')}
+            </Text>
+          </Box>
 
-      <HR />
-      <ElectionSchedule />
-    </Card>
-  </ElectionProvider>
-)
+          <Box>
+            <Text color='branding.purple'>{t('process.votes')}</Text>
+            <Text>{election?.voteCount}</Text>
+          </Box>
+        </CardFooter>
+      </Card>
+    </ElectionProvider>
+  )
+}
 
 export default ProcessCard

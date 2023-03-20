@@ -1,12 +1,55 @@
 {
-  "menu": {
-    "open_menu": "Open menu",
-    "create_process": "Create process",
-    "connect": "Connect"
+  "alt_image": "{{img}} image",
+  "aside": {
+    "connect_your_wallet": "Connect your wallet to view the status of the proposal...",
+    "connect_to_vote": "Connect to vote",
+    "is_able_to_vote": "Connected. You are elegible for voting",
+    "is_not_abte_to_vote": "You are not elegible for voting",
+    "proposers": "Proposers",
+    "connect_and_vote": "Connect and vote on your favorite proposals",
+    "vote": "Vote",
+    "voters": "Voters"
   },
+  "input_search": "Search",
+  "icon": "{icon} icon",
   "landing": {
     "intro": "Let your community vote!"
   },
+  "link": "Link to {{link}}",
   "learn_more": "Learn more",
-  "loading": "Loading..."
+  "loading": "Loading...",
+  "menu": {
+    "connect": "Connect",
+    "create_process": "Create process",
+    "my_list": "My list",
+    "open_menu": "Open menu"
+  },
+  "organization": {
+    "elections": "Elections",
+    "members": "Members",
+    "rounds": { "all": "All rounds", "active": "Active" }
+  },
+  "process": {
+    "date": {
+      "ended": "Process ended",
+      "ends": "Process ends",
+      "starts": "Process starts",
+      "ago": "ago"
+    },
+    "status": {
+      "process_in_progress": "Process in progress",
+      "process_will_start": "Process will start in",
+      "process_finished": "Process finished"
+    },
+    "questions": "Questions",
+    "results": "Results",
+    "aside": {},
+    "votes": "Votes"
+  },
+  "read_less": "Read less",
+  "read_more": "Read more",
+
+  "submited_votes": "Submitted votes",
+  "voting_elections": "Voting elections",
+  "work_in_progress": "Work in progress"
 }

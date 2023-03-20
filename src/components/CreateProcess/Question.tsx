@@ -32,7 +32,7 @@ const CreateProcessQuestion = ({ index, remove }: Props) => {
     <Box
       bg='white'
       p={{ base: 2, sm: 4 }}
-      borderRadius={8}
+      borderRadius='md'
       _dark={{ bg: 'black.c60' }}
     >
       <HStack justify='space-between' mb={4}>
@@ -40,6 +40,7 @@ const CreateProcessQuestion = ({ index, remove }: Props) => {
 
         <IconButton
           type='button'
+          size='sm'
           icon={<DeleteIcon />}
           aria-label={`Delete question ${index + 1}`}
           onClick={() => remove()}

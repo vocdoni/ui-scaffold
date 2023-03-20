@@ -9,6 +9,7 @@ import {
   MenuList,
 } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { useClientContext } from '@vocdoni/react-components'
 import { useTranslation } from 'react-i18next'
 import { FaCheck, FaGlobeAmericas } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
@@ -23,19 +24,31 @@ interface Props {
 const NavList = ({ mobile, onClose }: Props) => {
   const { isConnected } = useAccount()
   const { i18n, t } = useTranslation()
+  const { account } = useClientContext()
 
   const languages = LanguagesSlice as { [key: string]: string }
 
   return (
     <>
       {isConnected && (
-        <ListItem
-          order={mobile ? 2 : undefined}
-          listStyleType='none'
-          onClick={onClose}
-        >
-          <NavLink to='/processes/create'>{t('menu.create_process')}</NavLink>
-        </ListItem>
+        <>
+          <ListItem
+            order={mobile ? 2 : undefined}
+            listStyleType='none'
+            onClick={onClose}
+          >
+            <NavLink to='/processes/create'>{t('menu.create_process')}</NavLink>
+          </ListItem>
+          <ListItem
+            order={mobile ? 2 : undefined}
+            listStyleType='none'
+            onClick={onClose}
+          >
+            <NavLink to={`/organization/${account?.address}`}>
+              {t('menu.my_list')}
+            </NavLink>
+          </ListItem>
+        </>
       )}
       <ListItem
         order={mobile ? 3 : undefined}

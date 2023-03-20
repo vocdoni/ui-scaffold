@@ -13,7 +13,7 @@ const WrapperForm = ({ children, onSubmit, ...props }: Props) => (
     gap={4}
     m='16px auto'
     p={{ base: 0, sm: 4 }}
-    borderRadius={12}
+    borderRadius='md'
     width={{ base: '98%', md: '650px' }}
     border={{ sm: '2px solid' }}
     borderColor={{ sm: 'gray.100' }}

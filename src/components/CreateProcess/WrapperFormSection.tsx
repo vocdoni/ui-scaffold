@@ -10,7 +10,7 @@ const WrapperFormSection = ({
   <Box
     p={{ base: 1, sm: 4 }}
     bg='gray.100'
-    borderRadius={8}
+    borderRadius='md'
     _dark={{ bg: 'black.c90' }}
     {...props}
   >
@@ -18,7 +18,7 @@ const WrapperFormSection = ({
       as='fieldset'
       p={{ base: 2, sm: 4 }}
       pt={2}
-      borderRadius={8}
+      borderRadius='md'
       bg='white'
       _dark={{ bg: 'black.c60' }}
     >
