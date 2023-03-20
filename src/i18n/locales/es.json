@@ -1,5 +1,4 @@
 {
-  "alt_image": "",
   "aside": {
     "connect_and_vote": "Connect and vote on your favorite proposals",
     "connect_to_vote": "Conectate para votar",
@@ -35,7 +34,6 @@
       "success_title": ""
     }
   },
-  "input_search": "",
   "landing": {
     "intro": "¡Deja que la comunidad decida!"
   },
@@ -50,6 +48,7 @@
   },
   "organization": {
     "elections": "Elecciones",
+    "header_image_alt": "",
     "members": "Miembros",
     "rounds": {
       "active": "Activas",
@@ -74,6 +73,9 @@
   },
   "read_less": "Leer menos",
   "read_more": "Leer mas",
+  "search": {
+    "input_placeholder": ""
+  },
   "submited_votes": "Votos emitidos",
   "voting_elections": "Votaciones",
   "work_in_progress": "Trabajo en progreso"

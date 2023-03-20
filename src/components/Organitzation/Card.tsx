@@ -28,7 +28,9 @@ const OrganitzationCard = ({ card }: CardProps) => {
         <AspectRatio ratio={1}>
           <Image
             src={card.imageURL}
-            alt={t('alt_image', { img: card.imageURL }).toString()}
+            alt={t('organization.header_image_alt', {
+              name: card.name,
+            }).toString()}
           />
         </AspectRatio>
       </CardHeader>
