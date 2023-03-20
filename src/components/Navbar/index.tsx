@@ -12,7 +12,7 @@ import {
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
-import IconVocdoni from '../../vocdoni-icon.svg'
+import vcd1 from '../../vcd1.png'
 import NavList from './List'
 
 const Navbar = ({ ...props }) => {
@@ -28,13 +28,7 @@ const Navbar = ({ ...props }) => {
 
   return (
     <Box as='nav' ref={refNav} {...props}>
-      <Flex
-        justifyContent='end'
-        alignItems='center'
-        gap={4}
-        paddingTop={4}
-        mb={8}
-      >
+      <Flex justifyContent='end' alignItems='center' gap={4} paddingY={4}>
         <Flex
           alignItems='center'
           gap={4}
@@ -42,14 +36,12 @@ const Navbar = ({ ...props }) => {
           ml={{ base: 2, sm: 0 }}
         >
           <NavLink to='/'>
-            <Img src={IconVocdoni} alt='vocdoni icon' />
+            <Img src={vcd1} maxWidth='50px' alt='vocdoni icon' />
           </NavLink>
-          <Text display={{ base: 'none', sm: 'block' }} fontSize='0.8em'>
-            Public voting protocol
-          </Text>
+          <Text fontSize='0.8em'>Public voting protocol</Text>
         </Flex>
 
-        <Box display={{ base: 'none', md: 'flex' }}>
+        <Box display={{ base: 'none', lg: 'flex' }}>
           <UnorderedList display='flex' alignItems='center' gap={4}>
             <NavList mobile={false} />
           </UnorderedList>
@@ -59,13 +51,13 @@ const Navbar = ({ ...props }) => {
           size={'md'}
           icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
           aria-label={t('menu.open_menu')}
-          display={{ md: 'none' }}
+          display={{ lg: 'none' }}
           onClick={isOpen ? onClose : onOpen}
         />
       </Flex>
       {isOpen && (
         <Flex
-          display={{ md: 'none' }}
+          display={{ lg: 'none' }}
           position='absolute'
           left={0}
           bg='white'

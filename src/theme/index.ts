@@ -33,14 +33,14 @@ export const theme = extendTheme(vtheme, {
 export const rainbowStyles = (colormode: ColorMode) => {
   if (colormode === 'light') {
     return lightTheme({
-      accentColor: '#E035D0',
+      accentColor: '#9526FC',
       accentColorForeground: 'white',
       borderRadius: 'medium',
     })
   }
 
   return darkTheme({
-    accentColor: '#E035D0',
+    accentColor: '#9526FC',
     accentColorForeground: 'white',
     borderRadius: 'medium',
   })
