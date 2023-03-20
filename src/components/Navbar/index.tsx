@@ -45,7 +45,7 @@ const Navbar = () => {
             <Img src={IconVocdoni} alt='vocdoni icon' />
           </NavLink>
           <Text display={{ base: 'none', sm: 'block' }} fontSize='0.8em'>
-            {t('menu.protocol')}
+            Public voting protocol
           </Text>
         </Flex>
 

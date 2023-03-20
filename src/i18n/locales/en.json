@@ -1,5 +1,15 @@
 {
   "alt_image": "{{img}} image",
+  "aside": {
+    "connect_your_wallet": "Connect your wallet to view the status of the proposal...",
+    "connect_to_vote": "Connect to vote",
+    "is_able_to_vote": "Connected. You are elegible for voting",
+    "is_not_abte_to_vote": "You are not elegible for voting",
+    "proposers": "Proposers",
+    "connect_and_vote": "Connect and vote on your favorite proposals",
+    "vote": "Vote",
+    "voters": "Voters"
+  },
   "input_search": "Search",
   "icon": "{icon} icon",
   "landing": {
@@ -12,8 +22,7 @@
     "connect": "Connect",
     "create_process": "Create process",
     "my_list": "My list",
-    "open_menu": "Open menu",
-    "protocol": "Public voting protocol"
+    "open_menu": "Open menu"
   },
   "organization": {
     "elections": "Elections",

@@ -219,11 +219,11 @@ const results = definePartsStyle({
   },
   body: {
     ...cardCommonStyles.body,
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '10px',
     backgroundColor: 'white',
     borderRadius: '10px',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '10px',
   },
 })
 

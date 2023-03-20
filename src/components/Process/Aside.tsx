@@ -64,8 +64,8 @@ const ProcessAside = ({ ...props }) => {
         <CardBody>
           <Text>
             {isAbleToVote
-              ? 'Connected. You are elegible for voting.'
-              : 'You are not elegible for voting'}
+              ? t('aside.is_able_to_vote')
+              : t('aside.is_not_able_to_vote')}
           </Text>
           <Button
             isDisabled={!isAbleToVote}
@@ -73,24 +73,22 @@ const ProcessAside = ({ ...props }) => {
             form='election-create-form'
             variant='brandVote'
           >
-            Vote
+            {t('aside.vote')}
           </Button>
         </CardBody>
       )}
       {!isConnected && hasVotingStarted && !hasVotingFinished && (
         <CardBody>
           <Box>
-            <Text fontWeight='bold'>Proposers: </Text>
-            <Text>
-              Connect your wallet to view the status of the proposal..
-            </Text>
-            <Text fontWeight='bold'>Voters: </Text>
-            <Text>Connect and vote on your favorite proposals</Text>
+            <Text fontWeight='bold'>{t('aside.proposers')}: </Text>
+            <Text>{t('aside.connect_your_wallet')}</Text>
+            <Text fontWeight='bold'>{t('aside.voters')}: </Text>
+            <Text>{t('aside.connect_and_vote')}</Text>
           </Box>
           <ConnectButton
             chainStatus='none'
             showBalance={false}
-            label='Connect to vote'
+            label={t('aside.connect_to_vote').toString()}
           />
         </CardBody>
       )}

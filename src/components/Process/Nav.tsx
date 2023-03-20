@@ -20,8 +20,12 @@ const ProcessViewNav = ({
             ? t('process.date.ends')
             : t('process.date.ended')}
         </Text>
-        <Text>{formatDistance(new Date(), endDate!)} </Text>
-        {new Date() > endDate ? t('process.date.ago') : ''}
+        <Text>
+          {formatDistance(new Date(), endDate!)}{' '}
+          {new Date() > endDate && (
+            <Text as='span'>{t('process.date.ago')}</Text>
+          )}{' '}
+        </Text>
       </Box>
     </Flex>
   )
