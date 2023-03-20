@@ -1,9 +1,8 @@
-import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons'
 import {
   Flex,
   Grid,
   GridItem,
-  IconButton,
+  Spinner,
   Tab,
   TabList,
   TabPanel,
@@ -12,8 +11,14 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { useClientContext } from '@vocdoni/react-components'
-import { PublishedElection } from '@vocdoni/sdk'
-import { useEffect, useState } from 'react'
+import {
+  Dispatch,
+  MutableRefObject,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import ProcessCard from '../Process/Card'
@@ -24,24 +29,22 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
   const { client } = useClientContext()
   const navigate = useNavigate()
 
-  const [electionsList, setElectionsList] = useState<PublishedElection[]>()
+  const [electionsList, setElectionsList] = useState<any>()
   const [page, setPage] = useState(0)
-  const [totalRounds, setTotalRounds] = useState<number | undefined>()
-
-  useEffect(() => {
-    if (!client) return
-    client
-      .fetchAccountInfo()
-      .then((res) => setTotalRounds(res.electionIndex))
-      .catch(console.log)
-  }, [client, address])
+  const refObserver = useRef<any>()
+  useObserver(refObserver, setPage)
 
   useEffect(() => {
     if (!client) return
 
     client
       .fetchElections('0x' + address, page)
-      .then((res) => setElectionsList(res))
+      .then((res) =>
+        setElectionsList((prev: any) => {
+          if (prev) return [...prev, ...res]
+          return res
+        })
+      )
       .catch(console.log)
   }, [client, address, page])
 
@@ -60,27 +63,18 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
       <Header />
       <Tabs variant='enclosed' mt={8}>
         <TabList>
-          <Tab whiteSpace='nowrap'>
-            {t('organization.rounds.all')}
-            {totalRounds && (
-              <Text
-                as='span'
-                px={2}
-                display='inline-block'
-                ml={2}
-                bg='lightgray'
-                borderRadius='20%'
-              >
-                {totalRounds}
-              </Text>
-            )}
-          </Tab>
+          <Tab whiteSpace='nowrap'>{t('organization.rounds.all')}</Tab>
           <Tab whiteSpace='nowrap'> {t('organization.rounds.active')} </Tab>
         </TabList>
         <TabPanels bg='gray.100'>
           <TabPanel>
+            {!electionsList && (
+              <Flex justifyContent='center'>
+                <Spinner />
+              </Flex>
+            )}
             <Grid templateColumns={templateColumnsAllRounds} gap={4}>
-              {electionsList?.map((election) => (
+              {electionsList?.map((election: any) => (
                 <GridItem
                   key={election.id}
                   display='flex'
@@ -91,24 +85,8 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
                   <ProcessCard election={election} />
                 </GridItem>
               ))}
+              <div ref={refObserver}></div>
             </Grid>
-            <Flex justifyContent='center' p={4} cursor='pointer' gap={4}>
-              <IconButton
-                icon={<ArrowBackIcon />}
-                onClick={() => setPage((prev) => prev - 1)}
-                aria-label='Call Segun'
-                size='lg'
-                isDisabled={page === 0}
-              />
-
-              <IconButton
-                icon={<ArrowForwardIcon />}
-                onClick={() => setPage((prev) => prev + 1)}
-                aria-label='Call Segun'
-                size='lg'
-                isDisabled={!electionsList?.length}
-              />
-            </Flex>
           </TabPanel>
           <TabPanel>
             <Text textAlign='center'>{t('work_in_progress')}</Text>
@@ -117,5 +95,33 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
       </Tabs>
     </Flex>
   )
+}
+
+const useObserver = (
+  refObserver: MutableRefObject<Element | null>,
+  setPage: Dispatch<SetStateAction<number>>
+) => {
+  useEffect(() => {
+    return () => {
+      if (refObserver.current) refObserver.current = null
+    }
+  }, [refObserver])
+
+  useEffect(() => {
+    if (!refObserver.current) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setPage((prev) => prev + 1)
+        }
+      },
+      {
+        threshold: 0.1,
+      }
+    )
+
+    observer.observe(refObserver.current)
+  }, [refObserver, setPage])
 }
 export default OrganizationView
