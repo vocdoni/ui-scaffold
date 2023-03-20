@@ -108,7 +108,7 @@ const OrganizationHeader = () => {
             variant='underline'
             onClick={() => setReadMore((prev) => !prev)}
           >
-            {readMore ? t('read.less') : t('read.more')}
+            {readMore ? t('read_less') : t('read_more')}
           </Button>
         </VStack>
       </>

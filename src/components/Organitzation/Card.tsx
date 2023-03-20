@@ -22,13 +22,14 @@ export interface CardProps {
 const OrganitzationCard = ({ card }: CardProps) => {
   const { t } = useTranslation()
 
-  const alt = t('alt_image', { img: card.imageURL })
-
   return (
     <Card variant='organization'>
       <CardHeader>
         <AspectRatio ratio={1}>
-          <Image src={card.imageURL} alt={alt} />
+          <Image
+            src={card.imageURL}
+            alt={t('alt_image', { img: card.imageURL }).toString()}
+          />
         </AspectRatio>
       </CardHeader>
       <CardBody>

@@ -11,14 +11,7 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { useClientContext } from '@vocdoni/react-components'
-import {
-  Dispatch,
-  MutableRefObject,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import ProcessCard from '../Process/Card'
@@ -39,12 +32,12 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
 
     client
       .fetchElections('0x' + address, page)
-      .then((res) =>
+      .then((res) => {
         setElectionsList((prev: any) => {
           if (prev) return [...prev, ...res]
           return res
         })
-      )
+      })
       .catch(console.log)
   }, [client, address, page])
 
@@ -61,7 +54,7 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
   return (
     <Flex direction='column' gap={4}>
       <Header />
-      <Tabs variant='enclosed' mt={8}>
+      <Tabs mt={8}>
         <TabList>
           <Tab whiteSpace='nowrap'>{t('organization.rounds.all')}</Tab>
           <Tab whiteSpace='nowrap'> {t('organization.rounds.active')} </Tab>
@@ -98,7 +91,7 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
 }
 
 const useObserver = (
-  refObserver: MutableRefObject<Element | null>,
+  refObserver: any,
   setPage: Dispatch<SetStateAction<number>>
 ) => {
   useEffect(() => {
@@ -122,6 +115,10 @@ const useObserver = (
     )
 
     observer.observe(refObserver.current)
+
+    // return () => {
+    //   observer.unobserve(refObserver.current)
+    // }
   }, [refObserver, setPage])
 }
 export default OrganizationView

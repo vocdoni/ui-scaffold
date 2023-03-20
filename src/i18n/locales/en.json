@@ -5,6 +5,7 @@
   "landing": {
     "intro": "Let your community vote!"
   },
+  "link": "Link to {{link}}",
   "learn_more": "Learn more",
   "loading": "Loading...",
   "menu": {
@@ -36,10 +37,9 @@
     "aside": {},
     "votes": "Votes"
   },
-  "read": {
-    "less": "Read less",
-    "more": "Read more"
-  },
+  "read_less": "Read less",
+  "read_more": "Read more",
+
   "submited_votes": "Submitted votes",
   "voting_elections": "Voting elections",
   "work_in_progress": "Work in progress"

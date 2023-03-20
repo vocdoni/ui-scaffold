@@ -8,6 +8,7 @@
     "starts": "Empieza",
     "ago": ""
   },
+  "link": "Enlance a {{link}}",
   "landing": {
     "intro": "¡Deja que la comunidad decida!"
   },
@@ -42,10 +43,8 @@
     "aside": {},
     "votes": "Votos"
   },
-  "read": {
-    "less": "Leer mas",
-    "more": "Leer menos"
-  },
+  "read_less": "Leer menos",
+  "read_more": "Leer mas",
   "submited_votes": "Votos emitidos",
   "voting_elections": "Votaciones",
   "work_in_progress": "Trabajo en progreso"
