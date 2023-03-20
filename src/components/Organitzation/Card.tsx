@@ -25,12 +25,10 @@ const OrganitzationCard = ({ card }: CardProps) => {
   return (
     <Card variant='organization'>
       <CardHeader>
-        <AspectRatio ratio={1}>
+        <AspectRatio ratio={2 / 1}>
           <Image
             src={card.imageURL}
-            alt={t('organization.header_image_alt', {
-              name: card.name,
-            }).toString()}
+            alt={t('alt_image', { img: card.imageURL }).toString()}
           />
         </AspectRatio>
       </CardHeader>
@@ -38,9 +36,8 @@ const OrganitzationCard = ({ card }: CardProps) => {
         <Text>{card.name}</Text>
       </CardBody>
       <CardFooter>
-        <Text>
-          <Text as='span'>{card.rounds}</Text> {t('organization.elections')}
-        </Text>
+        <Text>{t('organization.elections')}</Text>
+        <Text>{card.rounds}</Text>
       </CardFooter>
     </Card>
   )

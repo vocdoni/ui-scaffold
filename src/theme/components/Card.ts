@@ -28,37 +28,42 @@ const organization = definePartsStyle({
   container: {
     ...cardCommonStyles.container,
     maxW: '275px',
-    padding: '12px',
-    border: '1px solid lightgray',
     transition: 'background .3s ease-in-out',
-    _hover: {
-      transition: 'background .3s ease-in-out',
-      backgroundColor: 'rgba(230, 230, 230, 0.8)',
-    },
+    borderBottom: '10px',
+    overflow: 'hidden',
+    bgColor: 'transparent',
   },
   header: {
     ...cardCommonStyles.header,
+
     overflow: 'hidden',
-    borderRadius: '10px',
+    borderTopRadius: '10px',
   },
   body: {
     ...cardCommonStyles.body,
-    px: '3px',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    paddingTop: '8px',
+    bgColor: 'white',
+    px: '12px',
+    py: '6px',
     fontSize: '.9em',
     fontWeight: 'bold',
   },
   footer: {
     ...cardCommonStyles.footer,
-    py: '5px',
-    px: '3px',
     display: 'flex',
-    justifyContent: 'end',
+    flexDirection: 'column',
+    bgColor: 'white',
+    px: '12px',
+    pb: '6px',
     fontSize: '.8em',
-    '& span': {
+
+    '& p:first-of-type': {
+      width: 'min-content',
+      bgGradient: 'linear(to-r, #9526FC, #2ED3BF)',
+      bgClip: 'text',
+      fontWeight: 'normal',
+    },
+
+    '& p': {
       fontWeight: 'bold',
     },
   },
