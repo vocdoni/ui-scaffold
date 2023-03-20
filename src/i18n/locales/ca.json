@@ -1,17 +1,41 @@
 {
-  "alt_image": "Imatge de {{img}}",
+  "alt_image": "",
   "aside": {
-    "connect_your_wallet": "Connecteu la vostra cartera per veure l'estat de la proposta...",
-    "connect_to_vote": "Conecta't per votar",
-    "is_able_to_vote": "Conectat. Estàs en el cens",
-    "is_not_abte_to_vote": "No estàs en el cens",
-    "proposers": "Propòsits",
     "connect_and_vote": "Connect and vote on your favorite proposals",
+    "connect_to_vote": "Conecta't per votar",
+    "connect_your_wallet": "Connecteu la vostra cartera per veure l'estat de la proposta...",
+    "is_able_to_vote": "Conectat. Estàs en el cens",
+    "is_not_able_to_vote": "No estàs en el cens",
+    "proposers": "Propòsits",
     "vote": "Vota",
     "voters": "Votants"
   },
-  "icon": "Icone de {icon}",
-  "input_search": "Buscar",
+  "form": {
+    "error": {
+      "field_is_required": ""
+    },
+    "process_create": {
+      "address_title": "",
+      "address_weight": "",
+      "addresses_title": "",
+      "date_end": "",
+      "date_start": "",
+      "process_description": "",
+      "process_description_placeholder": "",
+      "process_title": "",
+      "process_title_placeholder": "",
+      "question_delete": "",
+      "question_identifier": "",
+      "question_placeholder": "",
+      "question_title": "",
+      "questions_title": "",
+      "settings": "",
+      "submit": "",
+      "success_description": "",
+      "success_title": ""
+    }
+  },
+  "input_search": "",
   "landing": {
     "intro": "Crea eleccions comunitàries!"
   },
@@ -19,31 +43,33 @@
   "link": "Enllaç a {{link}}",
   "loading": "Carregant...",
   "menu": {
-    "create_process": "Crear procés",
     "connect": "Connecta",
+    "create_process": "Crear procés",
     "my_list": "La meva llista",
     "open_menu": "Obre menú"
   },
   "organization": {
     "elections": "Eleccions",
     "members": "Membres",
-    "rounds": { "all": "Totes", "active": "Actives" }
+    "rounds": {
+      "active": "Actives",
+      "all": "Totes"
+    }
   },
   "process": {
     "date": {
+      "ago": " ",
       "ended": "Finalitzat fa",
       "ends": "Acaba en",
-      "starts": "Comença en",
-      "ago": " "
-    },
-    "status": {
-      "process_in_progress": "Process actiu",
-      "process_will_start": "El process comencça en",
-      "process_finished": "Procés finalitzat"
+      "starts": "Comença en"
     },
     "questions": "Preguntes",
     "results": "Resultats",
-    "aside": {},
+    "status": {
+      "process_finished": "Procés finalitzat",
+      "process_in_progress": "Process actiu",
+      "process_will_start": "El process comencça en"
+    },
     "votes": "Vots"
   },
   "read_less": "Llegir menys",

@@ -12,18 +12,11 @@ interface Props extends FormControlProps {
   field: any
 }
 
-const AdvancedSettingCheckbox = ({
-  register,
-  label,
-  field,
-  ...props
-}: Props) => (
+const SettingsCheckbox = ({ register, label, field, ...props }: Props) => (
   <FormControl display='flex' alignItems='center' {...props}>
-    <FormLabel pt={2} whiteSpace='nowrap'>
-      {label}
-    </FormLabel>
+    <FormLabel whiteSpace='nowrap'>{label}</FormLabel>
     <Checkbox {...register(field)} />
   </FormControl>
 )
 
-export default AdvancedSettingCheckbox
+export default SettingsCheckbox
