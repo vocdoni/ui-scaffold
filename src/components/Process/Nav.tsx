@@ -1,5 +1,6 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
 import { formatDistance } from 'date-fns'
+import { useTranslation } from 'react-i18next'
 
 const ProcessViewNav = ({
   startDate,
@@ -8,19 +9,19 @@ const ProcessViewNav = ({
   endDate: any
   startDate: any
 }) => {
+  const { t } = useTranslation()
   return (
     <Flex ml='auto'>
       <Box px={4} pt={1}>
         <Text color='branding.purple'>
           {startDate > endDate
-            ? 'Process starts'
-            : new Date() < endDate
-            ? 'Process ends'
-            : 'Process finished'}
+            ? t('process.date.starts')
+            : startDate < endDate
+            ? t('process.date.ends')
+            : t('process.date.ended')}
         </Text>
-        <Text>
-          {formatDistance(new Date(), endDate!)} {new Date() > endDate && 'ago'}
-        </Text>
+        <Text>{formatDistance(new Date(), endDate!)} </Text>
+        {new Date() > endDate ? t('process.date.ago') : ''}
       </Box>
     </Flex>
   )

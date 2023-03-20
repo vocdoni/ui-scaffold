@@ -9,8 +9,10 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const OrganizationHeader = () => {
+  const { t } = useTranslation()
   const [readMore, setReadMore] = useState(false)
 
   return (
@@ -67,14 +69,14 @@ const OrganizationHeader = () => {
             <Text as='span' fontWeight='bold'>
               20
             </Text>{' '}
-            Eelections
+            {t('organization.elections')}
           </Text>
 
           <Text>
             <Text as='span' fontWeight='bold'>
               627
             </Text>{' '}
-            Members
+            {t('organization.members')}
           </Text>
         </Flex>
         <Text noOfLines={readMore ? undefined : 3}>
@@ -106,7 +108,7 @@ const OrganizationHeader = () => {
             variant='underline'
             onClick={() => setReadMore((prev) => !prev)}
           >
-            {readMore ? 'Read less' : 'Read more'}
+            {readMore ? t('read.less') : t('read.more')}
           </Button>
         </VStack>
       </>

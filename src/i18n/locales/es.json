@@ -1,21 +1,50 @@
 {
+  "input_search": "Buscar",
+  "election_date": {
+    "ended": "Finalizado hace",
+    "ends": "Finaliza en",
+    "starts": "Empieza",
+    "ago": ""
+  },
   "landing": {
     "intro": "¡Deja que la comunidad decida!"
   },
   "learn_more": "Descubre más",
   "loading": "Cargando...",
   "menu": {
-    "open_menu": "Abrir menú",
+    "connect": "Conectar",
     "create_process": "Crear proceso",
     "my_list": "Mi lista",
-    "connect": "Conectar"
+    "open_menu": "Abrir menú",
+    "protocol": "Protocolo público de votación"
   },
-  "navbar": {
-    "protocolo": "Protocolo público de votación"
+  "organization": {
+    "elections": "Elecciones",
+    "members": "Miembros",
+    "rounds": { "all": "Todas", "active": "Activas" }
   },
   "process": {
+    "date": {
+      "ended": "Finalizado hace",
+      "ends": "Finaliza en",
+      "starts": "Empieza en",
+      "ago": " "
+    },
+    "status": {
+      "process_in_progress": "Proceso activo",
+      "process_will_start": "El proceso empieza en",
+      "process_finished": "Proceso finalizado"
+    },
     "questions": "Preguntas",
     "results": "Resultados",
-    "aside": {}
-  }
+    "aside": {},
+    "votes": "Votos"
+  },
+  "read": {
+    "less": "Leer mas",
+    "more": "Leer menos"
+  },
+  "submited_votes": "Votos emitidos",
+  "voting_elections": "Votaciones",
+  "work_in_progress": "Trabajo en progreso"
 }

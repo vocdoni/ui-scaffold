@@ -1,21 +1,44 @@
 {
+  "input_search": "Search",
   "landing": {
     "intro": "Let your community vote!"
   },
   "learn_more": "Learn more",
   "loading": "Loading...",
   "menu": {
-    "open_menu": "Open menu",
+    "connect": "Connect",
     "create_process": "Create process",
     "my_list": "My list",
-    "connect": "Connect"
+    "open_menu": "Open menu",
+    "protocol": "Public voting protocol"
   },
-  "navbar":{
-    "protocolo": "Public voting protocol"
+  "organization": {
+    "elections": "Elections",
+    "members": "Members",
+    "rounds": { "all": "All rounds", "active": "Active" }
   },
   "process": {
+    "date": {
+      "ended": "Process ended",
+      "ends": "Process ends",
+      "starts": "Process starts",
+      "ago": "ago"
+    },
+    "status": {
+      "process_in_progress": "Process in progress",
+      "process_will_start": "Process will start in",
+      "process_finished": "Process finished"
+    },
     "questions": "Questions",
     "results": "Results",
-    "aside": {}
-  }
+    "aside": {},
+    "votes": "Votes"
+  },
+  "read": {
+    "less": "Read less",
+    "more": "Read more"
+  },
+  "submited_votes": "Submitted votes",
+  "voting_elections": "Voting elections",
+  "work_in_progress": "Work in progress"
 }

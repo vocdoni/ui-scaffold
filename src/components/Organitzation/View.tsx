@@ -14,12 +14,13 @@ import {
 import { useClientContext } from '@vocdoni/react-components'
 import { PublishedElection } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import InputSearch from '../Forms/InputSearch'
 import ProcessCard from '../Process/Card'
 import Header from './Header'
 
 const OrganizationView = ({ address }: { address: string | undefined }) => {
+  const { t } = useTranslation()
   const { client } = useClientContext()
   const navigate = useNavigate()
 
@@ -58,13 +59,9 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
     <Flex direction='column' gap={4}>
       <Header />
       <Tabs variant='enclosed' mt={8}>
-        <TabList
-          display='flex'
-          flexDirection={{ base: 'column-reverse', md: 'row' }}
-          gap={{ md: 4 }}
-        >
+        <TabList>
           <Tab whiteSpace='nowrap'>
-            All rounds{' '}
+            {t('organization.rounds.all')}
             {totalRounds && (
               <Text
                 as='span'
@@ -78,12 +75,7 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
               </Text>
             )}
           </Tab>
-          <Tab whiteSpace='nowrap'>Active </Tab>
-          <InputSearch
-            marginRight={{ base: 'auto', md: 0 }}
-            marginLeft='auto'
-            maxWidth='300px'
-          />
+          <Tab whiteSpace='nowrap'> {t('organization.rounds.active')} </Tab>
         </TabList>
         <TabPanels bg='gray.100'>
           <TabPanel>
@@ -119,7 +111,7 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
             </Flex>
           </TabPanel>
           <TabPanel>
-            <Text textAlign='center'>Working...</Text>
+            <Text textAlign='center'>{t('work_in_progress')}</Text>
           </TabPanel>
         </TabPanels>
       </Tabs>

@@ -11,9 +11,11 @@ import {
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { HR, useClientContext, useElection } from '@vocdoni/react-components'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useAccount } from 'wagmi'
 
 const ProcessAside = ({ ...props }) => {
+  const { t } = useTranslation()
   const { isConnected } = useAccount()
   const { election } = useElection()
   const { client } = useClientContext()
@@ -46,13 +48,13 @@ const ProcessAside = ({ ...props }) => {
         <Box>
           <Text>
             {hasVotingStarted && !hasVotingFinished
-              ? 'Process in progress'
+              ? t('process.status.process_in_progress')
               : !hasVotingStarted
-              ? 'Process will start'
-              : 'Process finished'}
+              ? t('process.status.process_will_start')
+              : t('process.status.process_finished')}
           </Text>
           <Text>
-            <Text as='span'>{election?.voteCount}</Text> votes cast so far!
+            <Text as='span'>{election?.voteCount}</Text> {t('process.votes')}
           </Text>
         </Box>
       </CardHeader>

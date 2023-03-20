@@ -1,22 +1,44 @@
 {
+  "input_search": "Buscar",
   "landing": {
     "intro": "Crea eleccions comunitàries!"
   },
   "learn_more": "Descobreix més",
   "loading": "Carregant...",
   "menu": {
-    "open_menu": "Obre menú",
     "create_process": "Crear procés",
+    "connect": "Connecta",
     "my_list": "La meva llista",
-    "connect": "Connecta"
+    "open_menu": "Obre menú",
+    "protocol": "Protocol públic de votació"
   },
-
-  "navbar": {
-    "protocolo": "Protocol públic de votació"
+  "organization": {
+    "elections": "Eleccions",
+    "members": "Membres",
+    "rounds": { "all": "Totes", "active": "Actives" }
   },
   "process": {
-    "questions": "Preguntas",
+    "date": {
+      "ended": "Finalitzat fa",
+      "ends": "Acaba en",
+      "starts": "Comença en",
+      "ago": " "
+    },
+    "status": {
+      "process_in_progress": "Process actiu",
+      "process_will_start": "El process comencça en",
+      "process_finished": "Procés finalitzat"
+    },
+    "questions": "Preguntes",
     "results": "Resultats",
-    "aside": {}
-  }
+    "aside": {},
+    "votes": "Vots"
+  },
+  "read": {
+    "less": "Llegir menys",
+    "more": "Llegir més"
+  },
+  "submited_votes": "Vots emesos",
+  "voting_elections": "Votacions",
+  "work_in_progress": "Treball en progrés"
 }
