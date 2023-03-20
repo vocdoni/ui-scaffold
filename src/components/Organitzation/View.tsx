@@ -14,7 +14,9 @@ import { useClientContext } from '@vocdoni/react-components'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+
 import ProcessCard from '../Process/Card'
+import SearchInput from '../Search/Input'
 import Header from './Header'
 
 const OrganizationView = ({ address }: { address: string | undefined }) => {
@@ -55,11 +57,17 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
     <Flex direction='column' gap={4}>
       <Header />
       <Tabs mt={8}>
-        <TabList>
+        <TabList
+          display='flex'
+          position='relative'
+          justifyContent='center'
+          alignItems='end'
+        >
           <Tab whiteSpace='nowrap'>{t('organization.rounds.all')}</Tab>
           <Tab whiteSpace='nowrap'> {t('organization.rounds.active')} </Tab>
+          <SearchInput position='absolute' right={2} width='250px' />
         </TabList>
-        <TabPanels bg='gray.100'>
+        <TabPanels>
           <TabPanel>
             {!electionsList && (
               <Flex justifyContent='center'>
@@ -67,9 +75,9 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
               </Flex>
             )}
             <Grid templateColumns={templateColumnsAllRounds} gap={4}>
-              {electionsList?.map((election: any, key: number) => (
+              {electionsList?.map((election: any) => (
                 <GridItem
-                  key={key}
+                  key={election.id}
                   display='flex'
                   justifyContent='center'
                   alignItems='center'
