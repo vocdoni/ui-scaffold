@@ -37,15 +37,27 @@ export const fieldMapErrorMessage = (
 ) => {
   if (!errors) return null
 
-  // check first field to avoid undefined type errors
-  const [parent] = map.split('.')
-  if (!errors[parent]) return null
-
-  // check map (reduce solution is nice but crashes in some scenarios, may be changed to recursive function)
-  const obj = map.split('.').reduce((o: any, i: string) => o[i], errors)
-  if (!obj.message) {
-    return null
-  }
+  const obj = dotToObject(errors, map)
+  if (!obj || (obj && !obj.message)) return null
 
   return obj.message
+}
+
+/**
+ * Dot notation to object conversion. Takes any object as first argument and uses the string dot notation from the
+ * second argument (i.e. 'a.child.node') to access that given object value.
+ *
+ * @param {any} obj Object to be accessed by dot notation
+ * @param {string} dot Dot notation string to extract object data
+ * @returns
+ */
+const dotToObject = (obj: any, dot: string) => {
+  const rec = (obj: any, dot: string[]): any => {
+    if (dot.length && typeof obj[dot[0]] !== 'undefined') {
+      return rec(obj[dot[0]], dot.slice(1))
+    }
+    return obj
+  }
+
+  return rec(obj, dot.split('.'))
 }

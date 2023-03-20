@@ -36,7 +36,7 @@ const AddressesForm = ({ fields, getValues, register, remove }: Props) => {
     <>
       {fields.map((add, i: number) => (
         <FormControl
-          key={add.id}
+          key={i}
           mb={4}
           isInvalid={isInvalidFieldMap(errors, `addresses.${i}.address`)}
         >
