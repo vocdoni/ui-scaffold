@@ -59,7 +59,7 @@ export const RoutesProvider = () => {
           loader={async ({ params }) => client.fetchElection(params.id)}
         />
         <Route
-          path='organization/test'
+          path='organization/:address'
           element={
             <SuspenseLoader>
               <Organization />

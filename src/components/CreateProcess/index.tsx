@@ -175,7 +175,9 @@ const CreateProcess = () => {
 
       addQuestions(election, data.questions)
 
-      await client.createElection(election)
+      const id = await client.createElection(election)
+
+      console.log(id)
     } catch (err) {
       throw new Error()
     } finally {

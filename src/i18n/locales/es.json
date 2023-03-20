@@ -1,12 +1,60 @@
 {
-  "menu": {
-    "open_menu": "Abrir menú",
-    "create_process": "Crear proceso",
-    "connect": "Conectar"
+  "alt_image": "Imagen de {{img}}",
+  "aside": {
+    "connect_your_wallet": "Connectar vuestra cartera para ver el estado de la propuesta...",
+    "connect_to_vote": "Conectate para votar",
+    "is_able_to_vote": "Conectado. Estás en el censo",
+    "is_not_abte_to_vote": "No estás en el censo",
+    "proposers": "Propósitos",
+    "connect_and_vote": "Connect and vote on your favorite proposals",
+    "vote": "Vota",
+    "voters": "Votantes"
   },
+  "icon": "Icono de {icon}",
+  "input_search": "Buscar",
+  "election_date": {
+    "ended": "Finalizado hace",
+    "ends": "Finaliza en",
+    "starts": "Empieza",
+    "ago": ""
+  },
+  "link": "Enlance a {{link}}",
   "landing": {
     "intro": "¡Deja que la comunidad decida!"
   },
   "learn_more": "Descubre más",
-  "loading": "Cargando..."
+  "loading": "Cargando...",
+  "menu": {
+    "connect": "Conectar",
+    "create_process": "Crear proceso",
+    "my_list": "Mi lista",
+    "open_menu": "Abrir menú"
+  },
+  "organization": {
+    "elections": "Elecciones",
+    "members": "Miembros",
+    "rounds": { "all": "Todas", "active": "Activas" }
+  },
+  "process": {
+    "date": {
+      "ended": "Finalizado hace",
+      "ends": "Finaliza en",
+      "starts": "Empieza en",
+      "ago": " "
+    },
+    "status": {
+      "process_in_progress": "Proceso activo",
+      "process_will_start": "El proceso empieza en",
+      "process_finished": "Proceso finalizado"
+    },
+    "questions": "Preguntas",
+    "results": "Resultados",
+    "aside": {},
+    "votes": "Votos"
+  },
+  "read_less": "Leer menos",
+  "read_more": "Leer mas",
+  "submited_votes": "Votos emitidos",
+  "voting_elections": "Votaciones",
+  "work_in_progress": "Trabajo en progreso"
 }

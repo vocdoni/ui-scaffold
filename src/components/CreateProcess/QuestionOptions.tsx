@@ -47,6 +47,7 @@ const CreateProcessQuestionOptions = ({
           <IconButton
             ml='auto'
             type='button'
+            size='sm'
             icon={<DeleteIcon />}
             aria-label='delete option'
             onClick={() => removeOption(idx)}
