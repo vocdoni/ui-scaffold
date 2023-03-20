@@ -22,7 +22,7 @@ export interface CardProps {
 const OrganitzationCard = ({ card }: CardProps) => {
   const { t } = useTranslation()
 
-  const alt = t(`Image of ${card.name}`)
+  const alt = t('alt_image', { img: card.imageURL })
 
   return (
     <Card variant='organization'>

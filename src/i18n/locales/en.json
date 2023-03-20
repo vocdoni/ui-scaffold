@@ -1,5 +1,5 @@
 {
-  "alt_image": "{img} image",
+  "alt_image": "{{img}} image",
   "input_search": "Search",
   "icon": "{icon} icon",
   "landing": {
