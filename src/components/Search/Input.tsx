@@ -20,7 +20,7 @@ const SearchInput = ({ ...props }) => {
           children={<SearchIcon color='gray.300' />}
         />
         <Input
-          placeholder={t('input_search').toString()}
+          placeholder={t('search.input_placeholder').toString()}
           pl={10}
           borderRadius={10}
         />

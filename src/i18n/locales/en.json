@@ -1,5 +1,4 @@
 {
-  "alt_image": "",
   "aside": {
     "connect_and_vote": "Connect and vote on your favorite proposals",
     "connect_to_vote": "Connect to vote",
@@ -35,7 +34,6 @@
       "success_title": "Election process successfully created"
     }
   },
-  "input_search": "",
   "landing": {
     "intro": "Let your community vote!"
   },
@@ -50,6 +48,7 @@
   },
   "organization": {
     "elections": "Elections",
+    "header_image_alt": "Header image of {{ name }}",
     "members": "Members",
     "rounds": {
       "active": "Active",
@@ -74,6 +73,9 @@
   },
   "read_less": "Read less",
   "read_more": "Read more",
+  "search": {
+    "input_placeholder": "Search organizations, elections, votes..."
+  },
   "submited_votes": "Submitted votes",
   "voting_elections": "Voting elections",
   "work_in_progress": "Work in progress"

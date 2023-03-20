@@ -67,9 +67,9 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
               </Flex>
             )}
             <Grid templateColumns={templateColumnsAllRounds} gap={4}>
-              {electionsList?.map((election: any) => (
+              {electionsList?.map((election: any, key: number) => (
                 <GridItem
-                  key={election.id}
+                  key={key}
                   display='flex'
                   justifyContent='center'
                   alignItems='center'
