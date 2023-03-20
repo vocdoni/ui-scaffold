@@ -9,6 +9,20 @@
     "vote": "Vote",
     "voters": "Voters"
   },
+  "footer": {
+    "company": "company",
+    "about": "About",
+    "how_we_work": "How we work",
+    "blog": "Blog",
+    "developers": "developers",
+    "developer_portal": "Developers Portal",
+    "vocdoni_api": "Vocdoni API",
+    "vocdoni_app": "Vocdoni APP",
+    "resources": "resources",
+    "guides": "Guides",
+    "tutorials": "Tutorials",
+    "contact": "Contact"
+  },
   "form": {
     "error": {
       "field_is_required": "This field is required"

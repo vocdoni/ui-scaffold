@@ -9,6 +9,20 @@
     "vote": "Vota",
     "voters": "Votants"
   },
+  "footer": {
+    "about": "",
+    "blog": "",
+    "company": "",
+    "contact": "",
+    "developer_portal": "",
+    "developers": "",
+    "guides": "",
+    "how_we_work": "",
+    "resources": "",
+    "tutorials": "",
+    "vocdoni_api": "",
+    "vocdoni_app": ""
+  },
   "form": {
     "error": {
       "field_is_required": ""
