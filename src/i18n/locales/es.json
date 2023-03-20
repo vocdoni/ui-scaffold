@@ -1,33 +1,46 @@
 {
+  "alt_image": "",
+  "aside": {
+    "connect_and_vote": "Connect and vote on your favorite proposals",
+    "connect_to_vote": "Conectate para votar",
+    "connect_your_wallet": "Connectar vuestra cartera para ver el estado de la propuesta...",
+    "is_able_to_vote": "Conectado. Estás en el censo",
+    "is_not_able_to_vote": "No estás en el censo",
+    "proposers": "Propósitos",
+    "vote": "Vota",
+    "voters": "Votantes"
+  },
   "form": {
+    "error": {
+      "field_is_required": ""
+    },
     "process_create": {
       "address_title": "",
       "address_weight": "",
       "addresses_title": "",
-      "process_title": "",
-      "process_title_placeholder": "",
+      "date_end": "",
+      "date_start": "",
       "process_description": "",
       "process_description_placeholder": "",
-      "success_title": "",
-      "success_description": "",
-      "submit": "",
-      "question_identifier": "",
+      "process_title": "",
+      "process_title_placeholder": "",
       "question_delete": "",
-      "question_title": "",
+      "question_identifier": "",
       "question_placeholder": "",
+      "question_title": "",
       "questions_title": "",
       "settings": "",
-      "date_start": "",
-      "date_end": ""
-    },
-    "error": {
-      "field_is_required": ""
+      "submit": "",
+      "success_description": "",
+      "success_title": ""
     }
   },
+  "input_search": "",
   "landing": {
     "intro": "¡Deja que la comunidad decida!"
   },
   "learn_more": "Descubre más",
+  "link": "",
   "loading": "Cargando...",
   "menu": {
     "connect": "Conectar",
@@ -38,23 +51,25 @@
   "organization": {
     "elections": "Elecciones",
     "members": "Miembros",
-    "rounds": { "all": "Todas", "active": "Activas" }
+    "rounds": {
+      "active": "Activas",
+      "all": "Todas"
+    }
   },
   "process": {
     "date": {
+      "ago": " ",
       "ended": "Finalizado hace",
       "ends": "Finaliza en",
-      "starts": "Empieza en",
-      "ago": " "
-    },
-    "status": {
-      "process_in_progress": "Proceso activo",
-      "process_will_start": "El proceso empieza en",
-      "process_finished": "Proceso finalizado"
+      "starts": "Empieza en"
     },
     "questions": "Preguntas",
     "results": "Resultados",
-    "aside": {},
+    "status": {
+      "process_finished": "Proceso finalizado",
+      "process_in_progress": "Proceso activo",
+      "process_will_start": "El proceso empieza en"
+    },
     "votes": "Votos"
   },
   "read_less": "Leer menos",

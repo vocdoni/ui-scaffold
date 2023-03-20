@@ -1,8 +1,8 @@
 import { ColorMode, extendTheme } from '@chakra-ui/react'
 import { darkTheme, lightTheme } from '@rainbow-me/rainbowkit'
 import { theme as vtheme } from '@vocdoni/react-components'
-import { Card } from './components/Card'
 import { Button } from './components/Button'
+import { Card } from './components/Card'
 import { Questions } from './components/QuestionsForm'
 
 const colors = {
@@ -20,18 +20,9 @@ const colors = {
     purple3: '#591699',
   },
 }
-const borderRadius = {
-  radii: {
-    none: '0',
-    sm: '5px',
-    md: '10px',
-    lg: '20px',
-  },
-}
 
 export const theme = extendTheme(vtheme, {
   colors,
-  ...borderRadius,
   components: {
     Button,
     Card,
