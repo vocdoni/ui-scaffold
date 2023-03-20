@@ -47,7 +47,7 @@ const QuestionsForm = ({ index, remove }: Props) => {
     >
       <HStack justify='space-between' mb={4}>
         <FormLabel>
-          {t('form.process_create.question_title', { num })}
+          {t('form.process_create.question_identifier', { num })}
         </FormLabel>
 
         <IconButton

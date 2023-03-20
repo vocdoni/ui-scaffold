@@ -1,15 +1,4 @@
 {
-  "alt_image": "{{img}} image",
-  "aside": {
-    "connect_your_wallet": "Connect your wallet to view the status of the proposal...",
-    "connect_to_vote": "Connect to vote",
-    "is_able_to_vote": "Connected. You are elegible for voting",
-    "is_not_abte_to_vote": "You are not elegible for voting",
-    "proposers": "Proposers",
-    "connect_and_vote": "Connect and vote on your favorite proposals",
-    "vote": "Vote",
-    "voters": "Voters"
-  },
   "form": {
     "process_create": {
       "address_title": "Address {{ num }}",
@@ -19,9 +8,12 @@
       "process_title_placeholder": "The main process title",
       "process_description": "Description",
       "process_description_placeholder": "A thoroughly detailed description",
+      "success_title": "Election process successfully created",
+      "success_description": "Redirecting you to the election process page...",
       "submit": "Create process",
-      "question_title": "Title",
+      "question_identifier": "",
       "question_delete": "Delete question {{ num }}",
+      "question_title": "Title",
       "question_placeholder": "Question {{ num }} title",
       "questions_title": "Questions",
       "settings": "Election settings",
@@ -32,8 +24,6 @@
       "field_is_required": "This field is required"
     }
   },
-  "input_search": "Search",
-  "icon": "{icon} icon",
   "landing": {
     "intro": "Let your community vote!"
   },

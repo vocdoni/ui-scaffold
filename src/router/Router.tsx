@@ -13,7 +13,7 @@ import { SuspenseLoader } from './SuspenseLoader'
 
 // Lazy loading helps splitting the final code, which helps downloading the app (theoretically)
 const ProtectedRoutes = lazy(() => import('./ProtectedRoutes'))
-const Create = lazy(() => import('../elements/Create'))
+const ProcessCreate = lazy(() => import('../components/ProcessCreate'))
 const Home = lazy(() => import('../elements/Home'))
 const NotFound = lazy(() => import('../elements/NotFound'))
 const Organization = lazy(() => import('../elements/Organization'))
@@ -44,7 +44,7 @@ export const RoutesProvider = () => {
             path='processes/create'
             element={
               <SuspenseLoader>
-                <Create />
+                <ProcessCreate />
               </SuspenseLoader>
             }
           />

@@ -1,9 +1,10 @@
-import { Button } from '@chakra-ui/react'
+import { Alert, AlertIcon, Button, useToast } from '@chakra-ui/react'
 import { useClientContext } from '@vocdoni/react-components'
 import { Election, IQuestion, PlainCensus, WeightedCensus } from '@vocdoni/sdk'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 import CreateProcessAddresses from './Addresses'
 import CreateProcessHeader from './Header'
 import CreateProcessQuestions from './Questions'
@@ -60,9 +61,13 @@ export const getWeightedCensus = (addresses: Address[]) => {
   return census
 }
 
-const CreateProcess = () => {
+const ProcessCreate = () => {
   const { client, account } = useClientContext()
+  const [sending, setSending] = useState<boolean>(false)
+  const [error, setError] = useState<string>('')
+  const navigate = useNavigate()
   const { t } = useTranslation()
+  const toast = useToast()
 
   const methods = useForm<FormValues>({
     defaultValues: {
@@ -92,6 +97,8 @@ const CreateProcess = () => {
   })
 
   const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
+    setError('')
+    setSending(true)
     try {
       await client.createAccount()
       let census
@@ -124,11 +131,21 @@ const CreateProcess = () => {
         voteType: { maxVoteOverwrites: Number(data.maxVoteOverwrites) },
       })
 
-      const id = await client.createElection(election)
-
-      console.log(id)
-    } catch (err) {
+      const pid = await client.createElection(election)
+      toast({
+        title: t('form.process_create.success_title'),
+        description: t('form.process_create.success_description'),
+        status: 'success',
+        duration: 4000,
+      })
+      setTimeout(() => navigate(`/processes/${pid}`), 3000)
+    } catch (err: any) {
+      if ('message' in err) {
+        setError(err.message)
+      }
       console.error('could not create election:', err)
+    } finally {
+      setSending(false)
     }
   }
 
@@ -145,7 +162,18 @@ const CreateProcess = () => {
           <CreateProcessSettings />
           <CreateProcessAddresses />
           <CreateProcessQuestions />
-          <Button type='submit' _dark={{ bg: 'black.c90' }}>
+          {error.length > 0 && (
+            <Alert status='error'>
+              <AlertIcon />
+              {error}
+            </Alert>
+          )}
+          <Button
+            type='submit'
+            _dark={{ bg: 'black.c90' }}
+            isLoading={sending}
+            disabled={sending}
+          >
             {t('form.process_create.submit')}
           </Button>
         </>
@@ -154,4 +182,4 @@ const CreateProcess = () => {
   )
 }
 
-export default CreateProcess
+export default ProcessCreate
