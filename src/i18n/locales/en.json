@@ -1,5 +1,7 @@
 {
+  "alt_image": "{img} image",
   "input_search": "Search",
+  "icon": "{icon} icon",
   "landing": {
     "intro": "Let your community vote!"
   },

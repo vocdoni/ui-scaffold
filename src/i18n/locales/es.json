@@ -1,4 +1,6 @@
 {
+  "alt_image": "Imagen de {img}",
+  "icon": "Icono de {icon}",
   "input_search": "Buscar",
   "election_date": {
     "ended": "Finalizado hace",
