@@ -1,4 +1,5 @@
 {
+  "alt_image": "",
   "aside": {
     "connect_and_vote": "Connect and vote on your favorite proposals",
     "connect_to_vote": "Connect to vote",
@@ -10,18 +11,18 @@
     "voters": "Voters"
   },
   "footer": {
-    "company": "company",
     "about": "About",
-    "how_we_work": "How we work",
     "blog": "Blog",
-    "developers": "developers",
+    "company": "company",
+    "contact": "Contact",
     "developer_portal": "Developers Portal",
-    "vocdoni_api": "Vocdoni API",
-    "vocdoni_app": "Vocdoni APP",
-    "resources": "resources",
+    "developers": "developers",
     "guides": "Guides",
+    "how_we_work": "How we work",
+    "resources": "resources",
     "tutorials": "Tutorials",
-    "contact": "Contact"
+    "vocdoni_api": "Vocdoni API",
+    "vocdoni_app": "Vocdoni APP"
   },
   "form": {
     "error": {
@@ -48,10 +49,10 @@
       "success_title": "Election process successfully created"
     }
   },
-  "landing": {
-    "intro": "Let your community vote!"
+  "home": {
+    "active_voting": "Active voting",
+    "more_active_organizations": "More active organizations"
   },
-  "learn_more": "Learn more",
   "link": "Link to {{link}}",
   "loading": "Loading...",
   "menu": {
@@ -62,7 +63,6 @@
   },
   "organization": {
     "elections": "Elections",
-    "header_image_alt": "Header image of {{ name }}",
     "members": "Members",
     "rounds": {
       "active": "Active",

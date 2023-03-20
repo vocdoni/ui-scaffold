@@ -35,7 +35,7 @@ const organization = definePartsStyle({
   },
   header: {
     ...cardCommonStyles.header,
-
+    width: '50%',
     overflow: 'hidden',
     borderTopRadius: '10px',
   },

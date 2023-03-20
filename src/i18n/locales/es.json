@@ -1,4 +1,5 @@
 {
+  "alt_image": "",
   "aside": {
     "connect_and_vote": "Connect and vote on your favorite proposals",
     "connect_to_vote": "Conectate para votar",
@@ -48,10 +49,10 @@
       "success_title": ""
     }
   },
-  "landing": {
-    "intro": "¡Deja que la comunidad decida!"
+  "home": {
+    "active_voting": "",
+    "more_active_organizations": ""
   },
-  "learn_more": "Descubre más",
   "link": "",
   "loading": "Cargando...",
   "menu": {
@@ -62,7 +63,6 @@
   },
   "organization": {
     "elections": "Elecciones",
-    "header_image_alt": "",
     "members": "Miembros",
     "rounds": {
       "active": "Activas",

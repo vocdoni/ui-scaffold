@@ -14,15 +14,25 @@ const SearchInput = ({ ...props }) => {
     <FormControl mb={4} {...props}>
       <InputGroup>
         <InputLeftElement
+          p={0}
+          mt='10px'
+          height='10px'
           pointerEvents='none'
-          color='gray.300'
-          fontSize='1.2em'
-          children={<SearchIcon color='gray.300' />}
+          fontSize='1em'
+          children={<SearchIcon color='black' />}
         />
         <Input
+          variant='unstyled'
+          height='30px'
           placeholder={t('search.input_placeholder').toString()}
           pl={10}
-          borderRadius={10}
+          borderRadius={40}
+          bgColor='white'
+          border='1px solid black'
+          _focus={{
+            outline: '1px solid black',
+            outlineOffset: 0,
+          }}
         />
       </InputGroup>
     </FormControl>
