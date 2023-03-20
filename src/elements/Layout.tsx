@@ -5,18 +5,22 @@ import Navbar from '../components/Navbar'
 
 const Layout = () => {
   return (
-    <Flex
-      paddingX={{ base: 0, sm: 4 }}
-      flexDirection='column'
-      minHeight='100vh'
-      maxWidth='1250px'
-      margin='0 auto'
-    >
-      <Navbar />
-      <Box mb={8}>
-        <Outlet />
+    <Flex flexDirection='column' minHeight='100vh'>
+      <Box as='header'>
+        <Navbar
+          maxWidth='1400px'
+          margin='0 auto'
+          paddingX={{ base: 0, sm: 4 }}
+        />
       </Box>
-      <Footer />
+      <Outlet />
+      <Box as='footer' mt='auto'>
+        <Footer
+          maxWidth='1400px'
+          marginX='auto'
+          paddingX={{ base: 0, sm: 4 }}
+        />
+      </Box>
     </Flex>
   )
 }

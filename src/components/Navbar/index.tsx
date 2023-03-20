@@ -15,7 +15,7 @@ import { NavLink } from 'react-router-dom'
 import IconVocdoni from '../../vocdoni-icon.svg'
 import NavList from './List'
 
-const Navbar = () => {
+const Navbar = ({ ...props }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { t } = useTranslation()
 
@@ -27,7 +27,7 @@ const Navbar = () => {
   })
 
   return (
-    <Box as='nav' ref={refNav}>
+    <Box as='nav' ref={refNav} {...props}>
       <Flex
         justifyContent='end'
         alignItems='center'

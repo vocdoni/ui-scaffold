@@ -2,7 +2,7 @@ import { Flex, Icon } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa'
 
-const Footer = () => {
+const Footer = ({ ...props }) => {
   const { t } = useTranslation()
   return (
     <Flex
@@ -11,6 +11,7 @@ const Footer = () => {
       alignItems='center'
       gap={6}
       mb={4}
+      {...props}
     >
       <Icon
         aria-label={t('link', { link: 'twitter' }).toString()}
