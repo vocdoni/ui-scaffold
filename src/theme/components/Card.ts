@@ -35,7 +35,6 @@ const organization = definePartsStyle({
   },
   header: {
     ...cardCommonStyles.header,
-    width: '50%',
     overflow: 'hidden',
     borderTopRadius: '10px',
   },
@@ -86,11 +85,22 @@ const processImg = definePartsStyle({
   },
   body: {
     ...cardCommonStyles.body,
+    minH: '62px',
     bgColor: 'white',
     px: '12px',
-    py: '10px',
+    pt: '10px',
+    pb: '5px',
     fontSize: '.9em',
     fontWeight: 'bold',
+
+    '& p:first-of-type': {
+      textTransform: 'uppercase',
+      fontWeight: 'normal',
+      color: 'branding.blue',
+    },
+    '& p:nth-of-type(2)': {
+      lineHeight: '1.2',
+    },
   },
   footer: {
     ...cardCommonStyles.footer,
@@ -104,14 +114,16 @@ const processImg = definePartsStyle({
     '& div': {
       width: '100%',
       borderLeft: '1px solid lightgray',
-      pl: '12px',
+      pl: '24px',
     },
 
     '& div:first-of-type': {
       borderLeft: 'none',
       pl: '0px',
     },
-
+    '& div p': {
+      whiteSpace: 'nowrap',
+    },
     '& div p:nth-of-type(odd)': {
       width: 'min-content',
       bgGradient: 'linear(to-r, #9526FC, #2ED3BF)',

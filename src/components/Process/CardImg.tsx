@@ -11,6 +11,7 @@ import {
 import { useTranslation } from 'react-i18next'
 
 export interface CardPrImgContents {
+  organization: string
   name: string
   votingEnds: any
   voters: string
@@ -35,16 +36,17 @@ const ProcessCardImg = ({ card }: CardProps) => {
         </AspectRatio>
       </CardHeader>
       <CardBody>
-        <Text>{card.name}</Text>
+        <Text>{card.organization}</Text>
+        <Text noOfLines={2}>{card.name}</Text>
       </CardBody>
       <CardFooter>
         <Box>
-          <Text>{t('organization.elections')}</Text>
-          <Text>20</Text>
+          <Text>{t('process.date.ends')}</Text>
+          <Text>in days ago</Text>
         </Box>
         <Box>
-          <Text>{t('organization.elections')}</Text>
-          <Text>20</Text>
+          <Text>{t('process.voters')}</Text>
+          <Text>{card.voters}</Text>
         </Box>
         {/* <Text>{card.rounds}</Text> */}
       </CardFooter>

@@ -85,20 +85,23 @@ const CARDS_ORG: CardOrgContents[] = [
 
 const CARDS_PR: CardPrImgContents[] = [
   {
-    name: 'DAO1',
-    voters: '29',
-    votingEnds: '',
+    organization: 'gekko dako',
+    name: 'Der verspreiding van het christendom over Eruopa',
+    voters: '240',
+    votingEnds: 'xxx',
     imageURL:
       'https://images.pexels.com/photos/1550337/pexels-photo-1550337.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
   },
   {
-    name: 'Omnium Cultural',
+    organization: 'wayne enterprises',
+    name: 'Quelle faire? Maker Media is in Peril',
     voters: '20',
     votingEnds: '',
     imageURL:
       'https://images.pexels.com/photos/2115217/pexels-photo-2115217.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
   },
   {
+    organization: 'massive dynamic',
     name: 'Builder',
     voters: '8',
     votingEnds: '',
@@ -106,6 +109,7 @@ const CARDS_PR: CardPrImgContents[] = [
       'https://images.pexels.com/photos/390051/surfer-wave-sunset-the-indian-ocean-390051.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
   },
   {
+    organization: 'singletechno',
     name: 'Another One',
     voters: '7',
     votingEnds: '',
@@ -113,6 +117,7 @@ const CARDS_PR: CardPrImgContents[] = [
       'https://images.pexels.com/photos/13759651/pexels-photo-13759651.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
   },
   {
+    organization: 'acme corporation',
     name: 'UMA',
     voters: '34',
     votingEnds: '',
@@ -120,6 +125,7 @@ const CARDS_PR: CardPrImgContents[] = [
       'https://images.pexels.com/photos/1013326/pexels-photo-1013326.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
   },
   {
+    organization: 'cyberdine systems',
     name: 'OnChainMonkey',
     voters: '5',
     votingEnds: '',
@@ -127,6 +133,7 @@ const CARDS_PR: CardPrImgContents[] = [
       'https://images.pexels.com/photos/63238/pexels-photo-63238.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
   },
   {
+    organization: 'krusty krab',
     name: 'Meebits',
     voters: '3',
     votingEnds: '',
@@ -134,6 +141,7 @@ const CARDS_PR: CardPrImgContents[] = [
       'https://images.pexels.com/photos/6898858/pexels-photo-6898858.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
   },
   {
+    organization: 'bluth company',
     name: 'Anata',
     voters: '2',
     votingEnds: '',
@@ -141,6 +149,7 @@ const CARDS_PR: CardPrImgContents[] = [
       'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallsdesk.com%2Fwp-content%2Fuploads%2F2017%2F01%2FOslo-Images.jpg&f=1&nofb=1&ipt=49b18f7b744e463c3d8a331c1bcda53de4f02c92b88593007d60005252580f0d&ipo=images',
   },
   {
+    organization: 'hooli',
     name: 'DAO1',
     voters: '29',
     votingEnds: '',
@@ -148,6 +157,7 @@ const CARDS_PR: CardPrImgContents[] = [
       'https://images.pexels.com/photos/1550337/pexels-photo-1550337.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
   },
   {
+    organization: 'duff beer',
     name: 'Omnium Cultural',
     voters: '20',
     votingEnds: '',
@@ -155,6 +165,7 @@ const CARDS_PR: CardPrImgContents[] = [
       'https://images.pexels.com/photos/2115217/pexels-photo-2115217.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
   },
   {
+    organization: 'j-texon',
     name: 'Builder',
     voters: '8',
     votingEnds: '',
@@ -162,6 +173,7 @@ const CARDS_PR: CardPrImgContents[] = [
       'https://images.pexels.com/photos/390051/surfer-wave-sunset-the-indian-ocean-390051.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
   },
   {
+    organization: 'sterling cooper',
     name: 'Another One',
     voters: '7',
     votingEnds: '',

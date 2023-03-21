@@ -76,6 +76,7 @@
       "starts": "Empieza",
       "relative": "{{ date, relative(past: hace %time; future: en %time) }}"
     },
+    "ends": "",
     "questions": "Preguntas",
     "results": "Resultados",
     "status": {
@@ -83,6 +84,7 @@
       "process_in_progress": "Proceso activo",
       "process_will_start": "El proceso empieza en"
     },
+    "voters": "",
     "votes": "Votos"
   },
   "read_less": "Leer menos",

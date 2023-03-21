@@ -76,6 +76,7 @@
       "starts": "Comença",
       "relative": "{{ date, relative(past: fa %time; future: en %time) }}"
     },
+    "ends": "",
     "questions": "Preguntes",
     "results": "Resultats",
     "status": {
@@ -83,6 +84,7 @@
       "process_in_progress": "Process actiu",
       "process_will_start": "El process comencça en"
     },
+    "voters": "",
     "votes": "Vots"
   },
   "read_less": "Llegir menys",
