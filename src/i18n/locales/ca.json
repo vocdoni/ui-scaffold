@@ -59,9 +59,9 @@
     "date": {
       "ended": "Finalitzat",
       "ends": "Acaba",
-      "starts": "Comença"
+      "starts": "Comença",
+      "relative": "{{ date, relative(past: fa %time; future: en %time) }}"
     },
-    "date_relative": "{{ date, relative(past: fa %time; future: en %time) }}",
     "questions": "Preguntes",
     "results": "Resultats",
     "status": {

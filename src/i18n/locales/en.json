@@ -59,9 +59,9 @@
     "date": {
       "ended": "Process ended",
       "ends": "Process ends",
-      "starts": "Process starts"
+      "starts": "Process starts",
+      "relative": "{{ date, relative(past: %time ago; future: in %time) }}"
     },
-    "date_relative": "{{ date, relative(past: %time ago; future: in %time) }}",
     "questions": "Questions",
     "results": "Results",
     "status": {

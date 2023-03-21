@@ -59,9 +59,9 @@
     "date": {
       "ended": "Finalizado",
       "ends": "Finaliza",
-      "starts": "Empieza"
+      "starts": "Empieza",
+      "relative": "{{ date, relative(past: hace %time; future: en %time) }}"
     },
-    "date_relative": "{{ date, relative(past: hace %time; future: en %time) }}",
     "questions": "Preguntas",
     "results": "Resultados",
     "status": {
