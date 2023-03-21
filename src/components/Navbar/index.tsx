@@ -11,13 +11,16 @@ import {
 } from '@chakra-ui/react'
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { NavLink } from 'react-router-dom'
-import vcd1 from '../../vcd1.png'
+import { NavLink, useLocation } from 'react-router-dom'
+import vcd1 from '../../assets/vcd1.png'
 import NavList from './List'
 
 const Navbar = ({ ...props }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { t } = useTranslation()
+  const location = useLocation()
+
+  console.log(location)
 
   const refNav = useRef<HTMLDivElement>(null)
 

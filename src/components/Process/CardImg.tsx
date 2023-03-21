@@ -42,7 +42,7 @@ const ProcessCardImg = ({ card }: CardProps) => {
       <CardFooter>
         <Box>
           <Text>{t('process.date.ends')}</Text>
-          <Text>in days ago</Text>
+          <Text>in 6 days</Text>
         </Box>
         <Box>
           <Text>{t('process.voters')}</Text>

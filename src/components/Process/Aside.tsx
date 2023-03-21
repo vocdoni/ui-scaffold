@@ -26,11 +26,12 @@ const ProcessAside = ({ ...props }) => {
   useEffect(() => {
     if (!client || abilityChecked) return
 
-    client.isAbleToVote().then((res) => {
-      setIsAbleToVote(res)
-      setAbilityChecked(true)
-    })
-  }, [client, abilityChecked])
+    if (election)
+      client.isAbleToVote(election.id).then((res) => {
+        setIsAbleToVote(res)
+        setAbilityChecked(true)
+      })
+  }, [client, abilityChecked, election])
 
   const hasVotingStarted =
     election?.creationTime &&

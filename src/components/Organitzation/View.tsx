@@ -15,7 +15,7 @@ import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
-import ProcessCard from '../Process/Card'
+import ProcessCard from '../Process/CardDesc'
 import SearchInput from '../Search/Input'
 import Header from './Header'
 

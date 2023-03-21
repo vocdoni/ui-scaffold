@@ -11,6 +11,7 @@ const colors = {
     c90: '#0f141c',
   },
   branding: {
+    turquoise: '#52E4C2',
     blue: '#1752FE',
     pink: '#E035D0',
     pink2: '#C92FBB',

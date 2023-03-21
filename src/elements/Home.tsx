@@ -201,7 +201,10 @@ const Home = () => {
           alignItems='center'
           gap={1}
         >
-          <SearchInput width={{ base: '200px', md: '350px', lg: '500px' }} />
+          <SearchInput
+            width={{ base: '200px', md: '350px', lg: '500px' }}
+            placeholder='hola'
+          />
           <Link to='#'>
             <Text fontWeight='bold' fontSize='.7em'>
               or browser

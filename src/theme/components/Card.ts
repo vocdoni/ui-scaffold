@@ -134,54 +134,54 @@ const processImg = definePartsStyle({
     },
   },
 })
-const process = definePartsStyle({
+const processDescription = definePartsStyle({
   ...cardCommonStyles,
   container: {
     ...cardCommonStyles.container,
-    border: '1px solid lightgray',
-    maxW: '500px',
     display: 'flex',
-    direction: 'column',
-    px: '25px',
-    py: '20px',
-    transition: 'background .3s ease-in-out',
-    _hover: {
-      transition: 'background .3s ease-in-out',
-      backgroundColor: 'gray.100',
-    },
-
-    '& hr': {
-      height: '.2px',
-      mt: '20px',
-      mb: '15px',
-    },
+    flexDirection: 'column',
+    maxW: '500px',
   },
   header: {
     ...cardCommonStyles.header,
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'start',
-    gap: '5px',
-    overflow: 'hidden',
-    marginBottom: '15px',
-
-    '& h4': {
-      fontSize: '1.4em',
-      textAlign: 'start',
-      margin: 0,
-    },
-    '& span': {
-      flexShrink: 0,
-    },
+    alignSelf: 'end',
   },
+  // display: 'flex',
+  // flexDirection: 'column',
+  // justifyContent: 'space-between',
+  // alignItems: 'start',
+  // px: '25px',
+  // py: '20px',
+  // gap: '5px',
+  // overflow: 'hidden',
+  // marginBottom: '15px',
+  // '& p:first-of-type': {
+  //   color: 'branding.turquoise',
+  // },
+  // '& h4': {
+  //   fontSize: '1.4em',
+  //   textAlign: 'start',
+  //   margin: 0,
+  // },
+  // '& span': {
+  //   flexShrink: 0,
+  // },
+  // color: 'gray',
+  // overflow: 'hidden',
+  // noOfLines: 3,
   body: {
     ...cardCommonStyles.body,
-    color: 'gray',
-    overflow: 'hidden',
-    noOfLines: 3,
-
-    '& p': {
-      marginBottom: 0,
+    boxShadow: '1px 1px 10px 2px lightgray',
+    borderLeftRadius: '10px',
+    borderBottomRightRadius: '10px',
+    padding: '12px',
+    '& div:first-of-type': {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'start',
+      '& p:first-of-type': {
+        color: 'branding.turquoise',
+      },
     },
   },
   footer: {
@@ -300,7 +300,7 @@ const results = definePartsStyle({
 const variantsCards = {
   organization,
   processImg,
-  process,
+  processDescription,
   vote,
   results,
 }
