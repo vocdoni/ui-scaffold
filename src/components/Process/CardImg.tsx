@@ -1,5 +1,6 @@
 import {
   AspectRatio,
+  Box,
   Card,
   CardBody,
   CardFooter,
@@ -9,21 +10,22 @@ import {
 } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 
-export interface CardOrgContents {
+export interface CardPrImgContents {
   name: string
-  rounds: string
+  votingEnds: any
+  voters: string
   imageURL: string
 }
 
 export interface CardProps {
-  card: CardOrgContents
+  card: CardPrImgContents
 }
 
-const OrganitzationCard = ({ card }: CardProps) => {
+const ProcessCardImg = ({ card }: CardProps) => {
   const { t } = useTranslation()
 
   return (
-    <Card variant='organization'>
+    <Card variant='processImg'>
       <CardHeader>
         <AspectRatio ratio={2 / 1}>
           <Image
@@ -36,11 +38,18 @@ const OrganitzationCard = ({ card }: CardProps) => {
         <Text>{card.name}</Text>
       </CardBody>
       <CardFooter>
-        <Text>{t('organization.elections')}</Text>
-        <Text>{card.rounds}</Text>
+        <Box>
+          <Text>{t('organization.elections')}</Text>
+          <Text>20</Text>
+        </Box>
+        <Box>
+          <Text>{t('organization.elections')}</Text>
+          <Text>20</Text>
+        </Box>
+        {/* <Text>{card.rounds}</Text> */}
       </CardFooter>
     </Card>
   )
 }
 
-export default OrganitzationCard
+export default ProcessCardImg

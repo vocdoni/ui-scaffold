@@ -69,6 +69,59 @@ const organization = definePartsStyle({
   },
 })
 
+const processImg = definePartsStyle({
+  ...cardCommonStyles,
+  container: {
+    ...cardCommonStyles.container,
+    maxW: '275px',
+    transition: 'background .3s ease-in-out',
+    borderBottom: '10px',
+    overflow: 'hidden',
+    bgColor: 'transparent',
+  },
+  header: {
+    ...cardCommonStyles.header,
+    overflow: 'hidden',
+    borderTopRadius: '10px',
+  },
+  body: {
+    ...cardCommonStyles.body,
+    bgColor: 'white',
+    px: '12px',
+    py: '10px',
+    fontSize: '.9em',
+    fontWeight: 'bold',
+  },
+  footer: {
+    ...cardCommonStyles.footer,
+    display: 'flex',
+    justifyContent: 'center',
+    bgColor: 'white',
+    px: '12px',
+    pb: '6px',
+    fontSize: '.8em',
+
+    '& div': {
+      width: '100%',
+      borderLeft: '1px solid lightgray',
+      pl: '12px',
+    },
+
+    '& div:first-of-type': {
+      borderLeft: 'none',
+      pl: '0px',
+    },
+
+    '& div p:nth-of-type(odd)': {
+      width: 'min-content',
+      bgGradient: 'linear(to-r, #9526FC, #2ED3BF)',
+      bgClip: 'text',
+    },
+    '& div p:nth-of-type(even)': {
+      fontWeight: 'bold',
+    },
+  },
+})
 const process = definePartsStyle({
   ...cardCommonStyles,
   container: {
@@ -234,6 +287,7 @@ const results = definePartsStyle({
 
 const variantsCards = {
   organization,
+  processImg,
   process,
   vote,
   results,

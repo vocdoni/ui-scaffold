@@ -2,10 +2,13 @@ import { Box, Flex, Grid, GridItem, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate } from 'react-router-dom'
 import Counters from '../components/Home/Counters'
-import Card, { CardContents } from '../components/Organitzation/Card'
+import CardOrg, { CardOrgContents } from '../components/Organitzation/Card'
+import ProcessCardImg, {
+  CardPrImgContents,
+} from '../components/Process/CardImg'
 import SearchInput from '../components/Search/Input'
 
-const CARDS: CardContents[] = [
+const CARDS_ORG: CardOrgContents[] = [
   {
     name: 'DAO1',
     rounds: '29',
@@ -80,6 +83,93 @@ const CARDS: CardContents[] = [
   },
 ]
 
+const CARDS_PR: CardPrImgContents[] = [
+  {
+    name: 'DAO1',
+    voters: '29',
+    votingEnds: '',
+    imageURL:
+      'https://images.pexels.com/photos/1550337/pexels-photo-1550337.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+  },
+  {
+    name: 'Omnium Cultural',
+    voters: '20',
+    votingEnds: '',
+    imageURL:
+      'https://images.pexels.com/photos/2115217/pexels-photo-2115217.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+  },
+  {
+    name: 'Builder',
+    voters: '8',
+    votingEnds: '',
+    imageURL:
+      'https://images.pexels.com/photos/390051/surfer-wave-sunset-the-indian-ocean-390051.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+  },
+  {
+    name: 'Another One',
+    voters: '7',
+    votingEnds: '',
+    imageURL:
+      'https://images.pexels.com/photos/13759651/pexels-photo-13759651.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+  },
+  {
+    name: 'UMA',
+    voters: '34',
+    votingEnds: '',
+    imageURL:
+      'https://images.pexels.com/photos/1013326/pexels-photo-1013326.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+  },
+  {
+    name: 'OnChainMonkey',
+    voters: '5',
+    votingEnds: '',
+    imageURL:
+      'https://images.pexels.com/photos/63238/pexels-photo-63238.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+  },
+  {
+    name: 'Meebits',
+    voters: '3',
+    votingEnds: '',
+    imageURL:
+      'https://images.pexels.com/photos/6898858/pexels-photo-6898858.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+  },
+  {
+    name: 'Anata',
+    voters: '2',
+    votingEnds: '',
+    imageURL:
+      'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallsdesk.com%2Fwp-content%2Fuploads%2F2017%2F01%2FOslo-Images.jpg&f=1&nofb=1&ipt=49b18f7b744e463c3d8a331c1bcda53de4f02c92b88593007d60005252580f0d&ipo=images',
+  },
+  {
+    name: 'DAO1',
+    voters: '29',
+    votingEnds: '',
+    imageURL:
+      'https://images.pexels.com/photos/1550337/pexels-photo-1550337.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+  },
+  {
+    name: 'Omnium Cultural',
+    voters: '20',
+    votingEnds: '',
+    imageURL:
+      'https://images.pexels.com/photos/2115217/pexels-photo-2115217.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+  },
+  {
+    name: 'Builder',
+    voters: '8',
+    votingEnds: '',
+    imageURL:
+      'https://images.pexels.com/photos/390051/surfer-wave-sunset-the-indian-ocean-390051.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+  },
+  {
+    name: 'Another One',
+    voters: '7',
+    votingEnds: '',
+    imageURL:
+      'https://images.pexels.com/photos/13759651/pexels-photo-13759651.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+  },
+]
+
 const Home = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
@@ -120,7 +210,7 @@ const Home = () => {
           lg: 'repeat(4, 1fr)',
         }}
       >
-        {CARDS.map((card, index) => (
+        {CARDS_PR.map((card, index) => (
           <GridItem
             key={index}
             display='flex'
@@ -131,7 +221,7 @@ const Home = () => {
               navigate(`/organization/4a081070E9D555b5D19629a6bcc8B77f4aE6d39c`)
             }
           >
-            <Card card={card} />
+            <ProcessCardImg card={card} />
           </GridItem>
         ))}
       </Grid>
@@ -146,7 +236,7 @@ const Home = () => {
           lg: 'repeat(4, 1fr)',
         }}
       >
-        {CARDS.map((card, index) => (
+        {CARDS_ORG.map((card, index) => (
           <GridItem
             key={index}
             display='flex'
@@ -157,7 +247,7 @@ const Home = () => {
               navigate(`/organization/4a081070E9D555b5D19629a6bcc8B77f4aE6d39c`)
             }
           >
-            <Card card={card} />
+            <CardOrg card={card} />
           </GridItem>
         ))}
       </Grid>
