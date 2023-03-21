@@ -15,7 +15,7 @@ export const ProcessDate = () => {
       <Text color='branding.purple'>
         {election.startDate > now
           ? t('process.date.starts')
-          : now > election.endDate
+          : now < election.endDate
           ? t('process.date.ends')
           : t('process.date.ended')}
       </Text>
