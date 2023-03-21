@@ -134,6 +134,7 @@ const processImg = definePartsStyle({
     },
   },
 })
+
 const processDescription = definePartsStyle({
   ...cardCommonStyles,
   container: {
@@ -179,25 +180,49 @@ const processDescription = definePartsStyle({
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'start',
-      '& p:first-of-type': {
-        color: 'branding.turquoise',
-      },
     },
-  },
-  footer: {
-    ...cardCommonStyles.footer,
-    display: 'flex',
+    '& > div:first-of-type > p:first-of-type': {
+      color: 'branding.turquoise',
+      fontSize: '0.9em',
+      mb: '2px',
+    },
+    '& div:first-child  h4': {
+      fontSize: '1.4em',
+      noOfLines: 2,
+    },
 
-    '& div': {
-      flex: '1 1 10px',
+    '& > div:nth-of-type(1) > div:first-of-type > p': {
+      color: 'gray',
+      noOfLines: 3,
+      mb: '10px',
+    },
+
+    '& > div:nth-of-type(2)': {
       display: 'flex',
-      flexDirection: 'column',
       justifyContent: 'center',
-      alignItems: 'center',
-    },
+      bgColor: 'white',
 
-    '& div:nth-of-type(1)': {
-      borderRight: '1px solid rgb(203, 213, 224)',
+      '& div': {
+        width: '100%',
+        borderLeft: '1px solid lightgray',
+        pl: '24px',
+      },
+
+      '& div:first-of-type': {
+        borderLeft: 'none',
+        pl: '0px',
+      },
+      '& div p': {
+        whiteSpace: 'nowrap',
+      },
+      '& div p:nth-of-type(odd)': {
+        width: 'min-content',
+        bgGradient: 'linear(to-r, #9526FC, #2ED3BF)',
+        bgClip: 'text',
+      },
+      '& div p:nth-of-type(even)': {
+        fontWeight: 'bold',
+      },
     },
   },
 })

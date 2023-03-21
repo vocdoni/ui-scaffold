@@ -48,7 +48,6 @@ const ProcessCardImg = ({ card }: CardProps) => {
           <Text>{t('process.voters')}</Text>
           <Text>{card.voters}</Text>
         </Box>
-        {/* <Text>{card.rounds}</Text> */}
       </CardFooter>
     </Card>
   )
