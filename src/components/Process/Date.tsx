@@ -19,7 +19,7 @@ export const ProcessDate = () => {
           ? t('process.date.ends')
           : t('process.date.ended')}
       </Text>
-      <Text>{t('process.date_relative', { date: election.endDate })}</Text>
+      <Text>{t('process.date.relative', { date: election.endDate })}</Text>
     </Box>
   )
 }
