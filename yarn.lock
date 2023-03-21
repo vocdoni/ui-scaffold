@@ -4033,10 +4033,10 @@
     long "^5.2.1"
     protobufjs "^7.1.2"
 
-"@vocdoni/react-components@^0.0.8":
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/@vocdoni/react-components/-/react-components-0.0.8.tgz#91730a86b14eb565089af1f4e35c34a10f4a411c"
-  integrity sha512-gV0qpLJlht5EcT+85dqSuOxzR7rw5xnMC3EuWiZYzKRZBFl9EqAbL45CZ2SXQjiLpxrNMyqw9HzxWrcdJT9qGg==
+"@vocdoni/react-components@^0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@vocdoni/react-components/-/react-components-0.0.9.tgz#0130f7a8640560ab015d6975c138b6c5110e0ac3"
+  integrity sha512-j5JXcvFcubKUJ+P60r+PCNf23a7zT04mvF5D7pFKvk78VLVgK2INyw4TPooHeuhtOLR3gWfbyINAV1HxHL7Lrw==
 
 "@vocdoni/sdk@0.0.5":
   version "0.0.5"

@@ -10,7 +10,7 @@
     "@emotion/styled": "^11.0.0",
     "@ethersproject/abstract-signer": "^5.7.0",
     "@rainbow-me/rainbowkit": "^0.8.1",
-    "@vocdoni/react-components": "^0.0.8",
+    "@vocdoni/react-components": "^0.0.9",
     "@vocdoni/sdk": "0.0.5",
     "date-fns": "^2.29.3",
     "ethers": "^5.7.2",

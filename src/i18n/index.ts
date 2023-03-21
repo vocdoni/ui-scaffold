@@ -1,7 +1,8 @@
+import { formatDistance, Locale } from 'date-fns'
 import i18next from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import languages from './languages.mjs'
-import translations from './locales'
+import { dateLocales, translations } from './locales'
 
 const i18n = i18next.createInstance()
 const fallbackLng = 'en'
@@ -28,5 +29,26 @@ for (const lang of languages) {
     i18n.addResourceBundle(lang, 'translation', translations[lang])
   }
 }
+
+i18n.services.formatter?.add(
+  'relative',
+  (value: any, lng: string | undefined, options: any) => {
+    const opts: { locale?: Locale } = {}
+    const now = new Date()
+    if (lng && lng !== 'en') {
+      opts.locale = dateLocales[lng]
+    }
+
+    const relative = formatDistance(now, value as Date, opts)
+
+    if (!options.future && !options.past) {
+      return relative
+    }
+    if (now > (value as Date)) {
+      return options.future.replace('%time', relative)
+    }
+    return options.past.replace('%time', relative)
+  }
+)
 
 export default i18n

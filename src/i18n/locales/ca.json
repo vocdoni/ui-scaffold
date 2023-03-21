@@ -57,11 +57,11 @@
   },
   "process": {
     "date": {
-      "ago": " ",
-      "ended": "Finalitzat fa",
-      "ends": "Acaba en",
-      "starts": "Comença en"
+      "ended": "Finalitzat",
+      "ends": "Acaba",
+      "starts": "Comença"
     },
+    "date_relative": "{{ date, relative(past: fa %time; future: en %time) }}",
     "questions": "Preguntes",
     "results": "Resultats",
     "status": {
