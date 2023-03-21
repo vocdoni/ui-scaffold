@@ -24,7 +24,7 @@ import { useNavigate } from 'react-router-dom'
 import ProcessActions from './Actions'
 import ProcessAside from './Aside'
 import ProcessCardResults from './CardResults'
-import ProcessViewNav from './Nav'
+import { ProcessDate } from './Date'
 
 export const ProcessView = (props: ElectionProviderComponentProps) => {
   const { client, account } = useClientContext()
@@ -47,10 +47,9 @@ export const ProcessView = (props: ElectionProviderComponentProps) => {
         <TabList display='flex'>
           <Tab>{t('process.questions')}</Tab>
           <Tab>{t('process.results')}</Tab>
-          <ProcessViewNav
-            startDate={props.election?.startDate}
-            endDate={props.election?.endDate}
-          />
+          <Flex ml='auto'>
+            <ProcessDate />
+          </Flex>
         </TabList>
         <TabPanels bg='gray.100'>
           <TabPanel>
