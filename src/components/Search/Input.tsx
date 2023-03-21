@@ -11,7 +11,7 @@ const SearchInput = ({ ...props }) => {
   const { t } = useTranslation()
 
   return (
-    <FormControl mb={4} {...props}>
+    <FormControl {...props}>
       <InputGroup>
         <InputLeftElement
           p={0}

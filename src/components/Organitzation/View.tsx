@@ -58,14 +58,22 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
       <Header />
       <Tabs mt={8}>
         <TabList
-          display='flex'
           position='relative'
+          display='flex'
+          flexDirection={{ base: 'column', md: 'row' }}
           justifyContent='center'
-          alignItems='end'
+          alignItems='center'
         >
-          <Tab whiteSpace='nowrap'>{t('organization.rounds.all')}</Tab>
-          <Tab whiteSpace='nowrap'> {t('organization.rounds.active')} </Tab>
-          <SearchInput position='absolute' right={2} width='250px' />
+          <SearchInput
+            position={{ md: 'absolute' }}
+            right={4}
+            bottom={1}
+            width={{ base: '50%', md: '30%', lg: '20%' }}
+          />
+          <Flex>
+            <Tab whiteSpace='nowrap'>{t('organization.rounds.all')}</Tab>
+            <Tab whiteSpace='nowrap'> {t('organization.rounds.active')} </Tab>
+          </Flex>
         </TabList>
         <TabPanels>
           <TabPanel>
