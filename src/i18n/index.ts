@@ -39,12 +39,12 @@ i18n.services.formatter?.add(
       opts.locale = dateLocales[lng]
     }
 
-    const relative = formatDistance(now, value as Date, opts)
+    const relative = formatDistance(now, value, opts)
 
     if (!options.future && !options.past) {
       return relative
     }
-    if (now > (value as Date)) {
+    if (now < value) {
       return options.future.replace('%time', relative)
     }
     return options.past.replace('%time', relative)
