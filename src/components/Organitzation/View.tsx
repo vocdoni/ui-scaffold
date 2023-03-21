@@ -30,10 +30,14 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
   useObserver(refObserver, setPage)
 
   useEffect(() => {
-    if (!client) return
+    setElectionsList([])
+  }, [address])
+
+  useEffect(() => {
+    if (!client || page === 0) return
 
     client
-      .fetchElections('0x' + address, page)
+      .fetchElections('0x' + address, page - 1)
       .then((res) => {
         setElectionsList((prev: any) => {
           if (prev) return [...prev, ...res]
@@ -83,9 +87,9 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
               </Flex>
             )}
             <Grid templateColumns={templateColumnsAllRounds} gap={4}>
-              {electionsList?.map((election: any) => (
+              {electionsList?.map((election: any, idx: number) => (
                 <GridItem
-                  key={election.id}
+                  key={idx}
                   display='flex'
                   justifyContent='center'
                   alignItems='center'
@@ -122,6 +126,7 @@ const useObserver = (
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
+          console.log('intersaction')
           setPage((prev) => prev + 1)
         }
       },

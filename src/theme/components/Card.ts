@@ -186,7 +186,7 @@ const processDescription = definePartsStyle({
       fontSize: '0.9em',
       mb: '2px',
     },
-    '& div:first-child  h4': {
+    '& div:first-of-type  h4': {
       fontSize: '1.4em',
       noOfLines: 2,
     },
