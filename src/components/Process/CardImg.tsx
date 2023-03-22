@@ -31,7 +31,7 @@ const ProcessCardImg = ({ card }: CardProps) => {
         <AspectRatio ratio={2 / 1}>
           <Image
             src={card.imageURL}
-            alt={t('alt_image', { img: card.imageURL }).toString()}
+            alt={t('alt_image', { img: card.name }).toString()}
           />
         </AspectRatio>
       </CardHeader>

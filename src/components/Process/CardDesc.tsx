@@ -27,8 +27,10 @@ const ProcessCardDescription = ({
             <Text>
               {format(new Date(election.creationTime), 'dd MMM, yyyy')}
             </Text>
-            <ElectionTitle as='h4' />
-            <ElectionDescription />
+            <ElectionTitle as='h4' noOfLines={2}/>
+            <Box>
+              <ElectionDescription />
+            </Box>
           </Box>
           <Box>
             <Box>

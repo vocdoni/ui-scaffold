@@ -147,39 +147,19 @@ const processDescription = definePartsStyle({
     ...cardCommonStyles.header,
     alignSelf: 'end',
   },
-  // display: 'flex',
-  // flexDirection: 'column',
-  // justifyContent: 'space-between',
-  // alignItems: 'start',
-  // px: '25px',
-  // py: '20px',
-  // gap: '5px',
-  // overflow: 'hidden',
-  // marginBottom: '15px',
-  // '& p:first-of-type': {
-  //   color: 'branding.turquoise',
-  // },
-  // '& h4': {
-  //   fontSize: '1.4em',
-  //   textAlign: 'start',
-  //   margin: 0,
-  // },
-  // '& span': {
-  //   flexShrink: 0,
-  // },
-  // color: 'gray',
-  // overflow: 'hidden',
-  // noOfLines: 3,
+
   body: {
     ...cardCommonStyles.body,
     boxShadow: '1px 1px 10px 2px lightgray',
     borderLeftRadius: '10px',
     borderBottomRightRadius: '10px',
     padding: '12px',
+
     '& div:first-of-type': {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'start',
+      overflow: 'hidden',
     },
     '& > div:first-of-type > p:first-of-type': {
       color: 'branding.turquoise',
@@ -188,12 +168,15 @@ const processDescription = definePartsStyle({
     },
     '& div:first-of-type  h4': {
       fontSize: '1.4em',
-      noOfLines: 2,
+      textAlign: 'start',
     },
 
-    '& > div:nth-of-type(1) > div:first-of-type > p': {
+    '& > div:nth-of-type(1) > div:first-of-type > div': {
+      overflow: 'hidden',
+    },
+
+    '& > div:nth-of-type(1) > div:first-of-type > div > p': {
       color: 'gray',
-      noOfLines: 3,
       mb: '10px',
     },
 

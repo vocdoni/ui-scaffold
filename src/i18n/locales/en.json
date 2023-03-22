@@ -1,5 +1,5 @@
 {
-  "alt_image": "",
+  "alt_image": "image {{img}}",
   "aside": {
     "connect_and_vote": "Connect and vote on your favorite proposals",
     "connect_to_vote": "Connect to vote",
