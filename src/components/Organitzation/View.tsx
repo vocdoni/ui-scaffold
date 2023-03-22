@@ -70,7 +70,7 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
         >
           <SearchInput
             position={{ md: 'absolute' }}
-            right={4}
+            right={0}
             bottom={1}
             width={{ base: '50%', md: '30%', lg: '20%' }}
           />

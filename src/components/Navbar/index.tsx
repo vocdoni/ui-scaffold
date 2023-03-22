@@ -46,7 +46,7 @@ const Navbar = ({ ...props }) => {
         </Flex>
 
         {location.pathname.includes('organization') && (
-          <SearchInput width='50%' />
+          <SearchInput width={{ base: '30%', sm: '40%' }} />
         )}
         <Box display={{ base: 'none', lg: 'flex' }}>
           <UnorderedList display='flex' alignItems='center' gap={4}>

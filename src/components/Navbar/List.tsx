@@ -36,6 +36,7 @@ const NavList = ({ mobile, onClose }: Props) => {
             order={mobile ? 2 : undefined}
             listStyleType='none'
             onClick={onClose}
+            whiteSpace='nowrap'
           >
             <NavLink to='/processes/create'>{t('menu.create_process')}</NavLink>
           </ListItem>
@@ -43,6 +44,7 @@ const NavList = ({ mobile, onClose }: Props) => {
             order={mobile ? 2 : undefined}
             listStyleType='none'
             onClick={onClose}
+            whiteSpace='nowrap'
           >
             <NavLink to={`/organization/${account?.address}`}>
               {t('menu.my_list')}
