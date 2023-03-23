@@ -29,14 +29,19 @@ const ProcessAside = ({ ...props }) => {
     if (!client) return
 
     if (election) {
-      client.isInCensus(election.id).then((res) => {
-        console.log(res)
-        setIsInCensus(res)
-      })
+      client
+        .isInCensus(election.id)
+        .then((res) => {
+          setIsInCensus(res)
+        })
+        .catch(console.log)
 
-      // client.hasAlreadyVoted().then((res) => {
-      //   setHasAlreadyVoted(res)
-      // })
+      // client
+      //   .hasAlreadyVoted(election.id)
+      //   .then((res) => {
+      //     setHasAlreadyVoted(res)
+      //   })
+      //   .catch(console.log)
     }
   }, [client, election, isInCensus, hasAlreadyVoted])
 
@@ -68,9 +73,10 @@ const ProcessAside = ({ ...props }) => {
           </Text>
         </Box>
       </CardHeader>
+
       {election?.status === ElectionStatus.ONGOING && <HR />}
 
-      {isConnected && election?.status === ElectionStatus.ONGOING && (
+      {election?.status === ElectionStatus.ONGOING && isConnected && (
         <CardBody>
           <Text textAlign='center'>
             {isInCensus && !hasAlreadyVoted && t('aside.is_able_to_vote')}
@@ -87,7 +93,7 @@ const ProcessAside = ({ ...props }) => {
           </Button>
         </CardBody>
       )}
-      {!isConnected && election?.status === ElectionStatus.ONGOING && (
+      {election?.status === ElectionStatus.ONGOING && !isConnected && (
         <CardBody>
           <Box>
             <Text fontWeight='bold'>{t('aside.proposers')}: </Text>
