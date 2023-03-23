@@ -4,8 +4,9 @@
     "connect_and_vote": "Connect and vote on your favorite proposals",
     "connect_to_vote": "Connect to vote",
     "connect_your_wallet": "Connect your wallet to view the status of the proposal...",
+    "has_already_voted": "You have already voted",
     "is_able_to_vote": "Connected. You are elegible for voting",
-    "is_not_able_to_vote": "You are not elegible for voting",
+    "is_not_in_census": "You are not in census",
     "proposers": "Proposers",
     "vote": "Vote",
     "voters": "Voters"
@@ -73,15 +74,19 @@
     "date": {
       "ended": "Process ended",
       "ends": "Process ends",
-      "starts": "Process starts",
-      "relative": "{{ date, relative(past: %time ago; future: in %time) }}"
+      "relative": "{{ date, relative(past: %time ago; future: in %time) }}",
+      "starts": "Process starts"
     },
     "questions": "Questions",
     "results": "Results",
     "status": {
-      "process_finished": "Process finished",
-      "process_in_progress": "Process in progress",
-      "process_will_start": "Process will start in"
+      "canceled": "Process canceled",
+      "ended": "Process ended",
+      "ongoing": "Process ongoing",
+      "paused": "Process paused",
+      "results": "Results",
+      "unknown": "Unknown",
+      "upcoming": "Process is upcoming"
     },
     "voters": "Voters",
     "votes": "Votes"

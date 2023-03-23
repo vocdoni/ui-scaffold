@@ -92,12 +92,10 @@ export const ProcessView = (props: ElectionProviderComponentProps) => {
 
 const isOngoing = (election: PublishedElection | undefined) => {
   if (!election) return false
-  const now = new Date()
-
-  const isStarted = now.getTime() > election.startDate.getTime()
 
   return (
-    isStarted &&
+    election.status !== ElectionStatus.PROCESS_UNKNOWN &&
+    election.status !== ElectionStatus.UPCOMING &&
     election.status !== ElectionStatus.RESULTS &&
     election.status !== ElectionStatus.CANCELED &&
     election.status !== ElectionStatus.ENDED

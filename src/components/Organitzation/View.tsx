@@ -126,7 +126,6 @@ const useObserver = (
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          console.log('intersaction')
           setPage((prev) => prev + 1)
         }
       },
