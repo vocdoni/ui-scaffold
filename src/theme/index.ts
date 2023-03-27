@@ -15,7 +15,7 @@ const colors = {
     blue: '#1752FE',
     pink: '#E035D0',
     purple: '#892BE2',
-    lightpurple1: '#EDE4F4',
+    lightpurple: '#EDE4F4',
   },
 }
 
@@ -23,7 +23,6 @@ export const theme = extendTheme(vtheme, {
   styles: {
     global: {
       ':root': {
-        '--vcd-purple': '#9526FC',
         '--vcd-gradient-brand': 'linear-gradient(to right, #9526FC, #2ED3BF)',
       },
     },

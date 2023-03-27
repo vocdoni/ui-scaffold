@@ -246,7 +246,7 @@ const vote = definePartsStyle({
     gap: '10px',
 
     '& div:nth-of-type(1)': {
-      bg: 'branding.lightpurple1',
+      bg: 'branding.lightpurple',
       width: '50px',
       height: '50px',
       border: '.1px solid',

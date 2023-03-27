@@ -12,7 +12,6 @@ import {
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import vcd1 from '../../assets/vcd1.png'
 import SearchInput from '../Search/Input'
 import NavList from './List'
 
@@ -29,14 +28,7 @@ const Navbar = ({ ...props }) => {
   })
 
   return (
-    <Box
-      as='nav'
-      ref={refNav}
-      boxShadow='3px 3px 20px gray'
-      position='relative'
-      zIndex={10}
-      {...props}
-    >
+    <Box as='nav' ref={refNav} {...props}>
       <Flex
         justifyContent='space-between'
         alignItems='center'
@@ -45,7 +37,11 @@ const Navbar = ({ ...props }) => {
       >
         <Flex alignItems='center' gap={4} ml={{ base: 2, sm: 0 }}>
           <NavLink to='/'>
-            <Img src={vcd1} maxWidth='50px' alt='vocdoni icon' />
+            <Img
+              src={`${process.env.PUBLIC_URL}/assets/vcd1.png`}
+              maxWidth='50px'
+              alt='vocdoni icon'
+            />
           </NavLink>
           <Text fontSize={12} whiteSpace='nowrap'>
             Public voting protocol
