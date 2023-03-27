@@ -18,7 +18,7 @@ import {
   QuestionsForm,
   useClientContext,
 } from '@vocdoni/react-components'
-import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
+import { ElectionStatus } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import ProcessActions from './Actions'
@@ -35,12 +35,12 @@ export const ProcessView = (props: ElectionProviderComponentProps) => {
 
   return (
     <ElectionProvider {...props}>
-      <Flex direction='column' gap={5} mb={8}>
+      <Flex direction='column' gap={5}>
         <Text onClick={() => navigate(-1)} cursor='pointer'>
           <ArrowBackIcon /> Org Name
         </Text>
         <ElectionSchedule textAlign='left' color='branding.pink' isTruncated />
-        <ElectionTitle fontSize='1.5em' mb={0} textAlign='left' isTruncated />
+        <ElectionTitle fontSize={18} mb={0} textAlign='left' isTruncated />
         <ElectionDescription />
       </Flex>
       <Tabs>
@@ -55,7 +55,8 @@ export const ProcessView = (props: ElectionProviderComponentProps) => {
           <TabPanel>
             <Flex justifyContent='center' gap={4} mb={4}>
               {election?.organizationId === account?.address &&
-                isOngoing(election) && (
+                (election?.status === ElectionStatus.ONGOING ||
+                  election?.status === ElectionStatus.PAUSED) && (
                   <>
                     {election?.electionType.interruptible && (
                       <ProcessActions
@@ -87,17 +88,5 @@ export const ProcessView = (props: ElectionProviderComponentProps) => {
         </TabPanels>
       </Tabs>
     </ElectionProvider>
-  )
-}
-
-const isOngoing = (election: PublishedElection | undefined) => {
-  if (!election) return false
-
-  return (
-    election.status !== ElectionStatus.PROCESS_UNKNOWN &&
-    election.status !== ElectionStatus.UPCOMING &&
-    election.status !== ElectionStatus.RESULTS &&
-    election.status !== ElectionStatus.CANCELED &&
-    election.status !== ElectionStatus.ENDED
   )
 }

@@ -7,27 +7,27 @@ const Counters = () => {
     <HStack gap={{ base: '30px', sm: '60px', md: '120px' }}>
       <Box>
         <Text
-          bgGradient='linear(to-r, #9526FC, #2ED3BF)'
+          bgGradient='var(--vcd-gradient-brand)'
           bgClip='text'
           textAlign='center'
           whiteSpace='nowrap'
         >
           {t('voting_elections')}
         </Text>
-        <Text textAlign='center' fontSize='2.2em' fontWeight='bold'>
+        <Text textAlign='center' fontSize={20} fontWeight='bold'>
           147K+
         </Text>
       </Box>
       <Box>
         <Text
-          bgGradient='linear(to-r, #9526FC, #2ED3BF)'
+          bgGradient='var(--vcd-gradient-brand)'
           bgClip='text'
           textAlign='center'
           whiteSpace='nowrap'
         >
           {t('submited_votes')}
         </Text>
-        <Text textAlign='center' fontSize='2.2em' fontWeight='bold'>
+        <Text textAlign='center' fontSize={20} fontWeight='bold'>
           3K+
         </Text>
       </Box>

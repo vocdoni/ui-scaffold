@@ -14,18 +14,14 @@ const SearchInput = ({ ...props }) => {
     <FormControl {...props}>
       <InputGroup>
         <InputLeftElement
-          p={0}
-          mt='10px'
-          height='10px'
+          mt={-1}
           pointerEvents='none'
-          fontSize='1em'
           children={<SearchIcon color='black' />}
         />
         <Input
           variant='unstyled'
-          height='30px'
+          height={8}
           placeholder={t('search.input_placeholder').toString()}
-          pl={10}
           borderRadius={40}
           bgColor='white'
           border='1px solid black'

@@ -193,7 +193,6 @@ const Home = () => {
         justifyContent='center'
         alignItems='center'
         gap={8}
-        mb={12}
       >
         <Flex
           direction='column'
@@ -206,7 +205,7 @@ const Home = () => {
             placeholder='hola'
           />
           <Link to='#'>
-            <Text fontWeight='bold' fontSize='.7em'>
+            <Text fontWeight='bold' fontSize={12}>
               or browser
             </Text>
           </Link>

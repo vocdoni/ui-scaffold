@@ -29,7 +29,14 @@ const Navbar = ({ ...props }) => {
   })
 
   return (
-    <Box as='nav' ref={refNav} {...props}>
+    <Box
+      as='nav'
+      ref={refNav}
+      boxShadow='3px 3px 20px gray'
+      position='relative'
+      zIndex={10}
+      {...props}
+    >
       <Flex
         justifyContent='space-between'
         alignItems='center'
@@ -40,7 +47,7 @@ const Navbar = ({ ...props }) => {
           <NavLink to='/'>
             <Img src={vcd1} maxWidth='50px' alt='vocdoni icon' />
           </NavLink>
-          <Text fontSize='0.8em' whiteSpace='nowrap'>
+          <Text fontSize={12} whiteSpace='nowrap'>
             Public voting protocol
           </Text>
         </Flex>
@@ -54,7 +61,7 @@ const Navbar = ({ ...props }) => {
           >
             <SearchInput />
             <Link to='#'>
-              <Text whiteSpace='nowrap' fontWeight='bold' fontSize='.7em'>
+              <Text whiteSpace='nowrap' fontWeight='bold' fontSize={12}>
                 or browser
               </Text>
             </Link>

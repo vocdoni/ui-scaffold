@@ -10,9 +10,9 @@ import {
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FaEllipsisV } from 'react-icons/fa'
+import { HiOutlineEllipsisHorizontalCircle } from 'react-icons/hi2'
 
-const OrganizationHeader = () => {
+const OrganizationHeader = ({ address }: { address: string | undefined }) => {
   const { t } = useTranslation()
   const [readMore, setReadMore] = useState(false)
 
@@ -46,31 +46,35 @@ const OrganizationHeader = () => {
             alignItems={{ base: 'center', md: 'start' }}
           >
             <Button
-              borderRadius='30px'
+              borderRadius={12}
               variant='link'
               px={2}
               py={1}
-              bgGradient='linear(to-r, #9526FC, #2ED3BF)'
+              bgGradient='var(--vcd-gradient-brand)'
               maxWidth='130px'
               isTruncated
-              title='Ox431277732423bh4234'
+              title={address}
               cursor='pointer'
               color='white'
-              fontSize='.8em'
+              fontSize={13}
               mb={2}
-              rightIcon={<FaEllipsisV />}
+              rightIcon={
+                <HiOutlineEllipsisHorizontalCircle
+                  style={{ width: '1.2em', height: '1.2em' }}
+                />
+              }
               _hover={{
                 textDecoration: 'none',
               }}
             >
-              <Text isTruncated maxW='80%' as='span'>
-                0x431277732423bh4234
+              <Text isTruncated as='span'>
+                {address}
               </Text>
             </Button>
             <Text>DAO</Text>
             <Heading
               as='h1'
-              fontSize='2em'
+              fontSize={28}
               isTruncated
               title='The Organization Name'
               maxWidth='90%'
@@ -84,7 +88,7 @@ const OrganizationHeader = () => {
           >
             <Box>
               <Text
-                fontSize='.8em'
+                fontSize={14}
                 bgGradient='linear(to-r, #9526FC, #2ED3BF)'
                 bgClip='text'
               >
@@ -97,7 +101,7 @@ const OrganizationHeader = () => {
 
             <Box>
               <Text
-                fontSize='.8em'
+                fontSize={14}
                 bgGradient='linear(to-r, #9526FC, #2ED3BF)'
                 bgClip='text'
               >

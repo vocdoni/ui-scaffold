@@ -18,6 +18,7 @@ import vcd3 from '../../assets/vcd3.png'
 
 const Footer = ({ ...props }) => {
   const { t } = useTranslation()
+
   return (
     <Box pt='20px' {...props}>
       <Grid

@@ -59,7 +59,7 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
 
   return (
     <Flex direction='column' gap={4}>
-      <Header />
+      <Header address={address} />
       <Tabs mt={8}>
         <TabList
           position='relative'
@@ -81,11 +81,12 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
         </TabList>
         <TabPanels>
           <TabPanel>
-            {!electionsList && (
-              <Flex justifyContent='center'>
+            {(!electionsList || !electionsList.length) && (
+              <Flex justifyContent='center' mt={4}>
                 <Spinner />
               </Flex>
             )}
+
             <Grid templateColumns={templateColumnsAllRounds} gap={4}>
               {electionsList?.map((election: any, idx: number) => (
                 <GridItem
@@ -135,10 +136,6 @@ const useObserver = (
     )
 
     observer.observe(refObserver.current)
-
-    // return () => {
-    //   observer.unobserve(refObserver.current)
-    // }
   }, [refObserver, setPage])
 }
 export default OrganizationView
