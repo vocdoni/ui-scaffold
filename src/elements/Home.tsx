@@ -187,7 +187,7 @@ const Home = () => {
   const navigate = useNavigate()
 
   return (
-    <Box pt={20}>
+    <Box>
       <Flex
         direction='column'
         justifyContent='center'

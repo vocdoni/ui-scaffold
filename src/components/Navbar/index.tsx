@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react'
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { NavLink, useLocation } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import vcd1 from '../../assets/vcd1.png'
 import SearchInput from '../Search/Input'
 import NavList from './List'
@@ -46,7 +46,14 @@ const Navbar = ({ ...props }) => {
         </Flex>
 
         {location.pathname.includes('organization') && (
-          <SearchInput width={{ base: '30%', sm: '40%' }} />
+          <Flex width='30%' alignItems='center' gap={1}>
+            <SearchInput />
+            <Link to='#'>
+              <Text whiteSpace='nowrap' fontWeight='bold' fontSize='.7em'>
+                or browser
+              </Text>
+            </Link>
+          </Flex>
         )}
         <Box display={{ base: 'none', lg: 'flex' }}>
           <UnorderedList display='flex' alignItems='center' gap={4}>

@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { FaEllipsisV } from 'react-icons/fa'
 
 const OrganizationHeader = () => {
   const { t } = useTranslation()
@@ -25,7 +26,6 @@ const OrganizationHeader = () => {
         margin={{ base: 'auto' }}
         marginRight={{ md: 8 }}
         marginBottom={{ base: 8, md: 2 }}
-        marginTop={{ md: 2 }}
       >
         <Image
           mx='auto'
@@ -41,44 +41,80 @@ const OrganizationHeader = () => {
           gap={{ base: 2, md: 4 }}
           mb={{ base: 2, md: 4 }}
         >
-          <Heading
-            as='h1'
-            fontSize='2em'
-            isTruncated
-            title='The Organization Name'
-            maxWidth='90%'
+          <Flex
+            flexDirection='column'
+            alignItems={{ base: 'center', md: 'start' }}
           >
-            The Organization Name
-          </Heading>
-          <Text
-            maxWidth='100px'
-            isTruncated
-            title='Ox431277732423bh4234'
-            cursor='pointer'
+            <Button
+              borderRadius='30px'
+              variant='link'
+              px={2}
+              py={1}
+              bgGradient='linear(to-r, #9526FC, #2ED3BF)'
+              maxWidth='130px'
+              isTruncated
+              title='Ox431277732423bh4234'
+              cursor='pointer'
+              color='white'
+              fontSize='.8em'
+              mb={2}
+              rightIcon={<FaEllipsisV />}
+              _hover={{
+                textDecoration: 'none',
+              }}
+            >
+              <Text isTruncated maxW='80%' as='span'>
+                0x431277732423bh4234
+              </Text>
+            </Button>
+            <Text>DAO</Text>
+            <Heading
+              as='h1'
+              fontSize='2em'
+              isTruncated
+              title='The Organization Name'
+              maxWidth='90%'
+            >
+              The Organization Name
+            </Heading>
+          </Flex>
+          <Flex
+            flexDirection={{ base: 'row', md: 'column' }}
+            gap={{ base: 4, md: 0 }}
           >
-            0x431277732423bh4234
-          </Text>
+            <Box>
+              <Text
+                fontSize='.8em'
+                bgGradient='linear(to-r, #9526FC, #2ED3BF)'
+                bgClip='text'
+              >
+                {t('organization.elections')}
+              </Text>
+              <Text as='span' fontWeight='bold'>
+                20
+              </Text>
+            </Box>
+
+            <Box>
+              <Text
+                fontSize='.8em'
+                bgGradient='linear(to-r, #9526FC, #2ED3BF)'
+                bgClip='text'
+              >
+                {t('organization.members')}
+              </Text>
+              <Text as='span' fontWeight='bold'>
+                627
+              </Text>
+            </Box>
+          </Flex>
         </Flex>
         <Flex
           justifyContent={{ base: 'center', md: 'start' }}
           alignItems='center'
           gap={4}
           mb={{ base: 2, md: 4 }}
-        >
-          <Text>
-            <Text as='span' fontWeight='bold'>
-              20
-            </Text>{' '}
-            {t('organization.elections')}
-          </Text>
-
-          <Text>
-            <Text as='span' fontWeight='bold'>
-              627
-            </Text>{' '}
-            {t('organization.members')}
-          </Text>
-        </Flex>
+        ></Flex>
         <Text noOfLines={readMore ? undefined : 3}>
           {' '}
           <Text
