@@ -13,9 +13,10 @@ import {
   MenuList,
   Text,
   useClipboard,
+  useToast,
   VStack,
 } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa'
 import { HiOutlineEllipsisHorizontalCircle } from 'react-icons/hi2'
@@ -23,13 +24,9 @@ import { Link } from 'react-router-dom'
 
 const OrganizationHeader = ({ address }: { address: string | undefined }) => {
   const { t } = useTranslation()
+  const toast = useToast()
   const [readMore, setReadMore] = useState(false)
-  const { onCopy, setValue } = useClipboard('')
-
-  useEffect(() => {
-    if (!address) return
-    setValue(address)
-  }, [setValue, address])
+  const { onCopy } = useClipboard(address as string)
 
   return (
     <Box maxWidth={{ base: '90%', md: '1000px' }} m='auto'>
@@ -65,6 +62,9 @@ const OrganizationHeader = ({ address }: { address: string | undefined }) => {
                 as={Button}
                 borderRadius={12}
                 variant='link'
+                _active={{
+                  color: 'branding.lightpurple',
+                }}
                 px={2}
                 py={1}
                 bgGradient='var(--vcd-gradient-brand)'
@@ -93,22 +93,29 @@ const OrganizationHeader = ({ address }: { address: string | undefined }) => {
               <MenuList p='0' position='absolute' top='-120px' zIndex='10'>
                 <MenuItem p='0'>
                   <Button
-                    onClick={onCopy}
+                    onClick={() => {
+                      toast({
+                        status: 'info',
+                        title: t('copy.copied_title'),
+                        duration: 3000,
+                      })
+                      onCopy()
+                    }}
                     variant='unestyled'
                     leftIcon={<CopyIcon />}
                   >
-                    Address
+                    {t('copy.address')}
                   </Button>
                 </MenuItem>
                 <MenuItem p='0'>
                   <Button variant='unestyled' leftIcon={<ExternalLinkIcon />}>
-                    Open in Etherscan
+                    {t('open_in_explorer')}
                   </Button>
                 </MenuItem>
               </MenuList>
             </Menu>
 
-            <Text>DAO</Text>
+            <Text>{t('organization.dao_title')}</Text>
             <Heading
               as='h1'
               fontSize={28}

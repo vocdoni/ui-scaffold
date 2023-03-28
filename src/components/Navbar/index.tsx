@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react'
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import SearchInput from '../Search/Input'
 import NavList from './List'
 
@@ -56,11 +56,6 @@ const Navbar = ({ ...props }) => {
             display={{ base: 'none', lg: 'flex' }}
           >
             <SearchInput />
-            <Link to='#'>
-              <Text whiteSpace='nowrap' fontWeight='bold' fontSize={12}>
-                or browser
-              </Text>
-            </Link>
           </Flex>
         )}
         <Box display={{ base: 'none', lg: 'flex' }}>

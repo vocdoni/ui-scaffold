@@ -11,6 +11,10 @@
     "vote": "Vota",
     "voters": "Votantes"
   },
+  "copy": {
+    "address": "",
+    "copied_title": ""
+  },
   "footer": {
     "about": "",
     "blog": "",
@@ -62,7 +66,9 @@
     "my_list": "Mi lista",
     "open_menu": "Abrir menú"
   },
+  "open_in_explorer": "",
   "organization": {
+    "dao_title": "",
     "elections": "Elecciones",
     "members": "Miembros",
     "rounds": {

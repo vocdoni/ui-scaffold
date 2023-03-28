@@ -1,5 +1,5 @@
 {
-  "alt_image": "image {{img}}",
+  "alt_image": "{{ img }} image",
   "aside": {
     "connect_and_vote": "Connect and vote on your favorite proposals",
     "connect_to_vote": "Connect to vote",
@@ -10,6 +10,10 @@
     "proposers": "Proposers",
     "vote": "Vote",
     "voters": "Voters"
+  },
+  "copy": {
+    "address": "Copy address",
+    "copied_title": "Copied!"
   },
   "footer": {
     "about": "About",
@@ -62,7 +66,9 @@
     "my_list": "My list",
     "open_menu": "Open menu"
   },
+  "open_in_explorer": "Open in explorer",
   "organization": {
+    "dao_title": "DAO",
     "elections": "Elections",
     "members": "Members",
     "rounds": {

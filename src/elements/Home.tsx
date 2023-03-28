@@ -1,6 +1,6 @@
 import { Box, Flex, Grid, GridItem, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Counters from '../components/Home/Counters'
 import CardOrg, { CardOrgContents } from '../components/Organitzation/Card'
 import ProcessCardImg, {
@@ -204,11 +204,6 @@ const Home = () => {
             width={{ base: '200px', md: '350px', lg: '500px' }}
             placeholder='hola'
           />
-          <Link to='#'>
-            <Text fontWeight='bold' fontSize={12}>
-              or browser
-            </Text>
-          </Link>
         </Flex>
         <Counters />
       </Flex>
