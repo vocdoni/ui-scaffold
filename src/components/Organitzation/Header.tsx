@@ -21,6 +21,7 @@ import { useTranslation } from 'react-i18next'
 import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa'
 import { HiOutlineEllipsisHorizontalCircle } from 'react-icons/hi2'
 import { Link } from 'react-router-dom'
+import { ExplorerBaseURL } from '../../constants'
 
 const OrganizationHeader = ({ address }: { address: string | undefined }) => {
   const { t } = useTranslation()
@@ -91,26 +92,33 @@ const OrganizationHeader = ({ address }: { address: string | undefined }) => {
                 </Box>
               </MenuButton>
               <MenuList p='0' position='absolute' top='-120px' zIndex='10'>
-                <MenuItem p='0'>
-                  <Button
-                    onClick={() => {
-                      toast({
-                        status: 'info',
-                        title: t('copy.copied_title'),
-                        duration: 3000,
-                      })
-                      onCopy()
-                    }}
-                    variant='unestyled'
-                    leftIcon={<CopyIcon />}
-                  >
-                    {t('copy.address')}
-                  </Button>
+                <MenuItem
+                  as={Button}
+                  justifyContent='start'
+                  leftIcon={<CopyIcon />}
+                  onClick={() => {
+                    toast({
+                      status: 'info',
+                      title: t('copy.copied_title'),
+                      duration: 3000,
+                    })
+                    onCopy()
+                  }}
+                >
+                  {t('copy.address')}
                 </MenuItem>
-                <MenuItem p='0'>
-                  <Button variant='unestyled' leftIcon={<ExternalLinkIcon />}>
-                    {t('open_in_explorer')}
-                  </Button>
+                <MenuItem
+                  justifyContent='start'
+                  as={Button}
+                  onClick={() =>
+                    window.open(
+                      `${ExplorerBaseURL}/organizations/show/#/${address}`,
+                      '_blank'
+                    )
+                  }
+                  leftIcon={<ExternalLinkIcon />}
+                >
+                  {t('open_in_explorer')}
                 </MenuItem>
               </MenuList>
             </Menu>

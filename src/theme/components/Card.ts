@@ -253,13 +253,13 @@ const vote = definePartsStyle({
 
       '& svg': {
         color: 'branding.purple',
-        boxSize: 2,
+        boxSize: 8,
       },
     },
 
     '& div': {
       'p:nth-of-type(1)': {
-        fontSize: 5,
+        fontSize: 20,
         fontWeight: 'bold',
       },
 

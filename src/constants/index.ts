@@ -10,6 +10,14 @@ export enum ModalType {
   Success,
 }
 
+const evocdoni = process.env.REACT_APP_VOCDONI_ENVIRONMENT || 'stg'
+let explorer = 'https://explorer.vote'
+if (['stg', 'dev'].includes(evocdoni)) {
+  explorer = `https://${evocdoni}.explorer.vote`
+}
+
+export const ExplorerBaseURL = explorer
+
 /**
  * Given an object of react-hook-form errors, determines if the specified mapped field is invalid (returns an error)
  *
