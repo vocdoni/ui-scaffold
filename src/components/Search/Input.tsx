@@ -11,18 +11,24 @@ const SearchInput = ({ ...props }) => {
   const { t } = useTranslation()
 
   return (
-    <FormControl mb={4} {...props}>
+    <FormControl {...props}>
       <InputGroup>
         <InputLeftElement
+          mt={-1}
           pointerEvents='none'
-          color='gray.300'
-          fontSize='1.2em'
-          children={<SearchIcon color='gray.300' />}
+          children={<SearchIcon color='black' />}
         />
         <Input
+          variant='unstyled'
+          height={8}
           placeholder={t('search.input_placeholder').toString()}
-          pl={10}
-          borderRadius={10}
+          borderRadius={40}
+          bgColor='white'
+          border='1px solid black'
+          _focus={{
+            outline: '1px solid black',
+            outlineOffset: 0,
+          }}
         />
       </InputGroup>
     </FormControl>

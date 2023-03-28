@@ -4,31 +4,31 @@ import { useTranslation } from 'react-i18next'
 const Counters = () => {
   const { t } = useTranslation()
   return (
-    <HStack gap={6}>
+    <HStack gap={{ base: '30px', sm: '60px', md: '120px' }}>
       <Box>
         <Text
+          bgGradient='var(--vcd-gradient-brand)'
+          bgClip='text'
           textAlign='center'
-          fontSize='1.8em'
-          fontWeight='bold'
-          color='branding.purple2'
+          whiteSpace='nowrap'
         >
-          147K+
-        </Text>
-        <Text fontSize='.8em' textAlign='center'>
           {t('voting_elections')}
+        </Text>
+        <Text textAlign='center' fontSize={20} fontWeight='bold'>
+          147K+
         </Text>
       </Box>
       <Box>
         <Text
+          bgGradient='var(--vcd-gradient-brand)'
+          bgClip='text'
           textAlign='center'
-          fontSize='1.8em'
-          fontWeight='bold'
-          color='branding.purple3'
+          whiteSpace='nowrap'
         >
-          3K+
-        </Text>
-        <Text fontSize='.8em' textAlign='center'>
           {t('submited_votes')}
+        </Text>
+        <Text textAlign='center' fontSize={20} fontWeight='bold'>
+          3K+
         </Text>
       </Box>
     </HStack>

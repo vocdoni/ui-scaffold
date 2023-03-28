@@ -4038,10 +4038,10 @@
   resolved "https://registry.yarnpkg.com/@vocdoni/react-components/-/react-components-0.0.9.tgz#0130f7a8640560ab015d6975c138b6c5110e0ac3"
   integrity sha512-j5JXcvFcubKUJ+P60r+PCNf23a7zT04mvF5D7pFKvk78VLVgK2INyw4TPooHeuhtOLR3gWfbyINAV1HxHL7Lrw==
 
-"@vocdoni/sdk@0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@vocdoni/sdk/-/sdk-0.0.5.tgz#b1d356b236e60212295e2d631cd973422bbad9f1"
-  integrity sha512-KaqWDnChA2APeN4s3tdYEqVJ2xwGrKpY4aGY9OITChBHEyI3IKUwwRwstxbSSvGoCbGbBiqtpYIf1y3fFW9AJg==
+"@vocdoni/sdk@0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@vocdoni/sdk/-/sdk-0.0.6.tgz#027341bd433c31775eed7243ef592fe1f362ab01"
+  integrity sha512-5QoBcPDB9IrG83qznr31v+JZxUTNF+1QTZe1NBriNJPexTrTt8CffVacdQDE6a0R77BADMG4pwBQElxrlb5xWw==
   dependencies:
     "@ethersproject/abstract-signer" "^5.7.0"
     "@ethersproject/address" "^5.7.0"
@@ -11497,12 +11497,10 @@ react-i18next@^12.2.0:
     "@babel/runtime" "^7.20.6"
     html-parse-stringify "^3.0.1"
 
-react-icons@^3.0.0:
-  version "3.11.0"
-  resolved "https://registry.npmjs.org/react-icons/-/react-icons-3.11.0.tgz"
-  integrity sha512-JRgiI/vdF6uyBgyZhVyYJUZAop95Sy4XDe/jmT3R/bKliFWpO/uZBwvSjWEdxwzec7SYbEPNPck0Kff2tUGM2Q==
-  dependencies:
-    camelcase "^5.0.0"
+react-icons@^4.8.0:
+  version "4.8.0"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.8.0.tgz#621e900caa23b912f737e41be57f27f6b2bff445"
+  integrity sha512-N6+kOLcihDiAnj5Czu637waJqSnwlMNROzVZMhfX68V/9bu9qHaMIJC4UdozWoOk57gahFCNHwVvWzm0MTzRjg==
 
 react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"

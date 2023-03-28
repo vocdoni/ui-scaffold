@@ -4,7 +4,7 @@ import { FaPause, FaPlay, FaStop } from 'react-icons/fa'
 
 interface Props {
   client: VocdoniSDKClient
-  status: number
+  status: ElectionStatus
   id: string | undefined
 }
 
@@ -15,7 +15,7 @@ const ProcessActions = ({ client, id, status }: Props) => {
         aria-label='Search database'
         icon={<FaPlay />}
         onClick={async () => await client.continueElection(id)}
-        isDisabled={status === ElectionStatus.READY}
+        isDisabled={status === ElectionStatus.ONGOING}
       />
       <IconButton
         aria-label='Search database'

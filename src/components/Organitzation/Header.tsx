@@ -1,19 +1,32 @@
+import { CopyIcon, ExternalLinkIcon } from '@chakra-ui/icons'
 import {
   AspectRatio,
   Box,
   Button,
   Flex,
   Heading,
+  Icon,
   Image,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Text,
+  useClipboard,
+  useToast,
   VStack,
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa'
+import { HiOutlineEllipsisHorizontalCircle } from 'react-icons/hi2'
+import { Link } from 'react-router-dom'
 
-const OrganizationHeader = () => {
+const OrganizationHeader = ({ address }: { address: string | undefined }) => {
   const { t } = useTranslation()
+  const toast = useToast()
   const [readMore, setReadMore] = useState(false)
+  const { onCopy } = useClipboard(address as string)
 
   return (
     <Box maxWidth={{ base: '90%', md: '1000px' }} m='auto'>
@@ -25,7 +38,6 @@ const OrganizationHeader = () => {
         margin={{ base: 'auto' }}
         marginRight={{ md: 8 }}
         marginBottom={{ base: 8, md: 2 }}
-        marginTop={{ md: 2 }}
       >
         <Image
           mx='auto'
@@ -38,47 +50,149 @@ const OrganizationHeader = () => {
         <Flex
           direction={{ base: 'column', md: 'row' }}
           alignItems={{ base: 'center', md: 'center' }}
-          gap={{ base: 2, md: 4 }}
+          gap={{ base: 2, md: 8 }}
           mb={{ base: 2, md: 4 }}
         >
-          <Heading
-            as='h1'
-            fontSize='2em'
-            isTruncated
-            title='The Organization Name'
-            maxWidth='90%'
+          <Flex
+            flexDirection='column'
+            alignItems={{ base: 'center', md: 'start' }}
           >
-            The Organization Name
-          </Heading>
-          <Text
-            maxWidth='100px'
-            isTruncated
-            title='Ox431277732423bh4234'
-            cursor='pointer'
+            <Menu>
+              <MenuButton
+                as={Button}
+                borderRadius={12}
+                variant='link'
+                _active={{
+                  color: 'branding.lightpurple',
+                }}
+                px={2}
+                py={1}
+                bgGradient='var(--vcd-gradient-brand)'
+                maxWidth='130px'
+                isTruncated
+                title={address}
+                cursor='pointer'
+                color='white'
+                fontSize={13}
+                mb={2}
+                rightIcon={
+                  <HiOutlineEllipsisHorizontalCircle
+                    style={{ width: '1.2em', height: '1.2em' }}
+                  />
+                }
+                _hover={{
+                  textDecoration: 'none',
+                }}
+              >
+                <Box maxW='120px' isTruncated overflow='hidden'>
+                  <Text isTruncated as='span'>
+                    {address}
+                  </Text>
+                </Box>
+              </MenuButton>
+              <MenuList p='0' position='absolute' top='-120px' zIndex='10'>
+                <MenuItem p='0'>
+                  <Button
+                    onClick={() => {
+                      toast({
+                        status: 'info',
+                        title: t('copy.copied_title'),
+                        duration: 3000,
+                      })
+                      onCopy()
+                    }}
+                    variant='unestyled'
+                    leftIcon={<CopyIcon />}
+                  >
+                    {t('copy.address')}
+                  </Button>
+                </MenuItem>
+                <MenuItem p='0'>
+                  <Button variant='unestyled' leftIcon={<ExternalLinkIcon />}>
+                    {t('open_in_explorer')}
+                  </Button>
+                </MenuItem>
+              </MenuList>
+            </Menu>
+
+            <Text>{t('organization.dao_title')}</Text>
+            <Heading
+              as='h1'
+              fontSize={28}
+              isTruncated
+              title='The Organization Name'
+              maxWidth='90%'
+            >
+              The Organization Name
+            </Heading>
+          </Flex>
+          <Flex
+            flexDirection={{ base: 'row', md: 'column' }}
+            gap={{ base: 4, md: 0 }}
           >
-            0x431277732423bh4234
-          </Text>
+            <Box>
+              <Text
+                fontSize={14}
+                bgGradient='linear(to-r, #9526FC, #2ED3BF)'
+                bgClip='text'
+              >
+                {t('organization.elections')}
+              </Text>
+              <Text as='span' fontWeight='bold'>
+                20
+              </Text>
+            </Box>
+
+            <Box>
+              <Text
+                fontSize={14}
+                bgGradient='linear(to-r, #9526FC, #2ED3BF)'
+                bgClip='text'
+              >
+                {t('organization.members')}
+              </Text>
+              <Text as='span' fontWeight='bold'>
+                627
+              </Text>
+            </Box>
+          </Flex>
+          <Flex flexDirection={{ base: 'row', md: 'column' }} pt='1'>
+            <Link to='#'></Link>
+            <Icon
+              aria-label={t('link', { link: 'twitter' }).toString()}
+              as={FaTwitter}
+              w={6}
+              h={6}
+              cursor='pointer'
+            />
+            <Link to='#'>
+              <Icon
+                aria-label={t('link', { link: 'discord' }).toString()}
+                as={FaDiscord}
+                w={6}
+                h={6}
+                cursor='pointer'
+                mt={{ md: 1 }}
+                mx={{ base: 5, md: 0 }}
+              />
+            </Link>
+            <Link to='#'>
+              <Icon
+                aria-label={t('link', { link: 'github' }).toString()}
+                as={FaGithub}
+                w={6}
+                h={6}
+                cursor='pointer'
+              />
+            </Link>
+          </Flex>
         </Flex>
         <Flex
           justifyContent={{ base: 'center', md: 'start' }}
           alignItems='center'
           gap={4}
           mb={{ base: 2, md: 4 }}
-        >
-          <Text>
-            <Text as='span' fontWeight='bold'>
-              20
-            </Text>{' '}
-            {t('organization.elections')}
-          </Text>
-
-          <Text>
-            <Text as='span' fontWeight='bold'>
-              627
-            </Text>{' '}
-            {t('organization.members')}
-          </Text>
-        </Flex>
+        ></Flex>
         <Text noOfLines={readMore ? undefined : 3}>
           {' '}
           <Text

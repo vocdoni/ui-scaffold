@@ -1,5 +1,5 @@
 import { Box, Card, CardBody, CardHeader, Flex, Text } from '@chakra-ui/react'
-import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
+import { PublishedElection } from '@vocdoni/sdk'
 
 const ProcessCardResults = ({ election }: { election: PublishedElection }) => {
   const questions = [...election.questions]
@@ -10,9 +10,7 @@ const ProcessCardResults = ({ election }: { election: PublishedElection }) => {
 
   return (
     <>
-      {election?.electionType.secretUntilTheEnd &&
-      election.status === ElectionStatus.ENDED &&
-      election.status === ElectionStatus.PAUSED ? (
+      {election?.electionType.secretUntilTheEnd ? (
         <Text color='branding.purple' textAlign='center' fontWeight='bold'>
           Secret until the end
         </Text>
