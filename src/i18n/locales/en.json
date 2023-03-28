@@ -37,8 +37,10 @@
       "address_title": "Address {{ num }}",
       "address_weight": "Weight",
       "addresses_title": "Addresses",
+      "autostart": "Autostart",
       "date_end": "End date:",
       "date_start": "Start date:",
+      "interruptible": "Interruptible",
       "process_description": "Description",
       "process_description_placeholder": "A thoroughly detailed description",
       "process_title": "Title",
@@ -48,10 +50,12 @@
       "question_placeholder": "Question {{ num }} title",
       "question_title": "Title",
       "questions_title": "Questions",
+      "secret_until_the_end": "Secret until the end",
       "settings": "Election settings",
       "submit": "Create process",
       "success_description": "Redirecting you to the election process page...",
-      "success_title": "Election process successfully created"
+      "success_title": "Election process successfully created",
+      "weighted_vote": "Weighted vote"
     }
   },
   "home": {

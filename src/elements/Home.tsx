@@ -193,21 +193,15 @@ const Home = () => {
         justifyContent='center'
         alignItems='center'
         gap={8}
+        mb={8}
       >
-        <Flex
-          direction='column'
-          justifyContent='center'
-          alignItems='center'
-          gap={1}
-        >
-          <SearchInput
-            width={{ base: '200px', md: '350px', lg: '500px' }}
-            placeholder='hola'
-          />
-        </Flex>
+        <SearchInput
+          width={{ base: '200px', md: '350px', lg: '500px' }}
+          placeholder='hola'
+        />
         <Counters />
       </Flex>
-      <Text textAlign='center' mb={4} fontSize='2em' fontWeight='bold'>
+      <Text textAlign='center' mb={4} fontSize={30} fontWeight='bold'>
         {t('home.active_voting')}
       </Text>
       <Grid
@@ -234,7 +228,7 @@ const Home = () => {
           </GridItem>
         ))}
       </Grid>
-      <Text textAlign='center' mb={4} fontSize='1.1em' fontWeight='bold'>
+      <Text textAlign='center' mb={4} fontSize={20} fontWeight='bold'>
         {t('home.more_active_organizations')}
       </Text>
       <Grid

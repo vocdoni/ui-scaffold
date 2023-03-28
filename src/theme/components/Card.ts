@@ -229,7 +229,7 @@ const vote = definePartsStyle({
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: 'branding.purple',
-
+    cursor: 'normal',
     zIndex: 10,
 
     '& hr': {

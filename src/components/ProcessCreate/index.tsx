@@ -76,7 +76,7 @@ const ProcessCreate = () => {
       startDate: undefined,
       endDate: undefined,
       electionType: {
-        autoStart: true,
+        autoStart: false,
         interruptible: true,
         secretUntilTheEnd: true,
       },
