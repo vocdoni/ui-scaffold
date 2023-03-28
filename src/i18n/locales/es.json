@@ -77,6 +77,13 @@
     }
   },
   "process": {
+    "actions": {
+      "cancel_description": "",
+      "continue_description": "",
+      "error_title": "",
+      "pause_description": "",
+      "waiting_title": ""
+    },
     "date": {
       "ended": "Finalizado",
       "ends": "Finaliza",

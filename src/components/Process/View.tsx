@@ -27,7 +27,7 @@ import ProcessCardResults from './CardResults'
 import { ProcessDate } from './Date'
 
 export const ProcessView = (props: ElectionProviderComponentProps) => {
-  const { client, account } = useClientContext()
+  const { account } = useClientContext()
   const navigate = useNavigate()
   const { t } = useTranslation()
 
@@ -58,13 +58,7 @@ export const ProcessView = (props: ElectionProviderComponentProps) => {
                 (election?.status === ElectionStatus.ONGOING ||
                   election?.status === ElectionStatus.PAUSED) && (
                   <>
-                    {election?.electionType.interruptible && (
-                      <ProcessActions
-                        client={client}
-                        id={election?.id}
-                        status={election?.status}
-                      />
-                    )}
+                    {election?.electionType.interruptible && <ProcessActions />}
                     {!election?.electionType.interruptible && (
                       <Text fontWeight='bold'>Not interruptible</Text>
                     )}
