@@ -38,7 +38,7 @@ const Navbar = ({ ...props }) => {
         <Flex alignItems='center' gap={4} ml={{ base: 2, sm: 0 }}>
           <NavLink to='/'>
             <Img
-              src={`${process.env.PUBLIC_URL}/assets/vcd1.png`}
+              src={`${process.env.PUBLIC_URL}/assets/vocdoni_icon.png`}
               maxWidth='50px'
               alt='vocdoni icon'
             />

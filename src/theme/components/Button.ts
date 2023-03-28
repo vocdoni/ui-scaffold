@@ -2,9 +2,25 @@ export const Button = {
   variants: {
     ghost: {
       border: '1px solid',
-      borderRadius: '20px',
-      height: '25px',
-      fontSize: '0.8em',
+      borderColor: 'branding.pink',
+      color: 'branding.pink',
+
+      _hover: {
+        backgroundColor: 'branding.pink',
+        color: 'white',
+      },
+    },
+    branding: {
+      backgroundColor: 'branding.pink',
+      color: 'white',
+
+      _hover: {
+        backgroundColor: 'white',
+        color: 'branding.pink',
+        outline: '1px solid',
+        borderColor: 'branding.pink',
+        outlineOffset: '-1px',
+      },
     },
     underline: {
       border: 'none',
@@ -13,10 +29,9 @@ export const Button = {
       color: 'branding.pink',
     },
     brandVote: {
-      padding: '20px',
-      height: '25px',
+      padding: 6,
       backgroundColor: 'branding.purple',
-      minWidth: '60px',
+      minWidth: 18,
       color: 'white',
     },
   },

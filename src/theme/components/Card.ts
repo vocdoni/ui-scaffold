@@ -8,7 +8,7 @@ const cardCommonStyles = {
   container: {
     width: '100%',
     padding: 0,
-    borderRadius: '10',
+    borderRadius: 10,
 
     cursor: 'pointer',
   },
@@ -27,7 +27,7 @@ const organization = definePartsStyle({
   ...cardCommonStyles,
   container: {
     ...cardCommonStyles.container,
-    maxW: '275px',
+    maxW: 72,
     overflow: 'hidden',
     bgColor: 'transparent',
   },
@@ -39,9 +39,9 @@ const organization = definePartsStyle({
   body: {
     ...cardCommonStyles.body,
     bgColor: 'white',
-    px: '3',
-    py: '2',
-    fontSize: '.9em',
+    px: 3,
+    py: 2,
+    fontSize: 16,
     fontWeight: 'bold',
   },
   footer: {
@@ -49,9 +49,9 @@ const organization = definePartsStyle({
     display: 'flex',
     flexDirection: 'column',
     bgColor: 'white',
-    px: '3',
-    pb: '1',
-    fontSize: '14',
+    px: 3,
+    pb: 1,
+    fontSize: 14,
 
     '& p:first-of-type': {
       width: 'min-content',
@@ -70,9 +70,8 @@ const processImg = definePartsStyle({
   ...cardCommonStyles,
   container: {
     ...cardCommonStyles.container,
-    maxW: '275px',
+    maxW: 72,
     transition: 'background .3s ease-in-out',
-    // borderBottom: '5',
     overflow: 'hidden',
     bgColor: 'transparent',
   },
@@ -83,12 +82,12 @@ const processImg = definePartsStyle({
   },
   body: {
     ...cardCommonStyles.body,
-    minH: '20',
+    minH: 20,
     bgColor: 'white',
-    px: '3',
-    pt: '3',
-    pb: '1',
-    fontSize: '14',
+    px: 3,
+    pt: 3,
+    pb: 1,
+    fontSize: 16,
     fontWeight: 'bold',
 
     '& p:first-of-type': {
@@ -96,10 +95,10 @@ const processImg = definePartsStyle({
       isTruncated: true,
       fontWeight: 'normal',
       color: 'branding.blue',
-      pb: '1',
+      pb: 1,
     },
     '& p:nth-of-type(2)': {
-      lineHeight: '1.2',
+      lineHeight: 1.3,
     },
   },
   footer: {
@@ -107,19 +106,19 @@ const processImg = definePartsStyle({
     display: 'flex',
     justifyContent: 'center',
     bgColor: 'white',
-    px: '3',
-    pb: '2',
-    fontSize: '14',
+    px: 3,
+    pb: 2,
+    fontSize: 14,
 
     '& div': {
       width: '100%',
       borderLeft: '1px solid lightgray',
-      pl: '2',
+      pl: 2,
     },
 
     '& div:first-of-type': {
       borderLeft: 'none',
-      pl: '0',
+      pl: 0,
     },
     '& div p': {
       whiteSpace: 'nowrap',
@@ -153,8 +152,8 @@ const processDescription = definePartsStyle({
     boxShadow: '1px 1px 10px 2px lightgray',
     borderLeftRadius: '10',
     borderBottomRightRadius: '10',
-    py: '5',
-    px: '7',
+    py: 5,
+    px: 7,
 
     '& div:first-of-type': {
       display: 'flex',
@@ -164,22 +163,22 @@ const processDescription = definePartsStyle({
     },
 
     '& div:first-of-type > div': {
-      height: '14',
+      height: 14,
     },
     '& > div:first-of-type > p:first-of-type': {
       color: 'branding.turquoise',
-      fontSize: '14',
-      mb: '1',
+      fontSize: 14,
+      mb: 1,
     },
 
     '& div:first-of-type h4': {
-      fontSize: '20',
+      fontSize: 20,
       textAlign: 'start',
     },
 
     '& > div:nth-of-type(1) > div:first-of-type > div': {
       overflow: 'hidden',
-      mb: '1',
+      mb: 1,
     },
 
     '& > div:nth-of-type(1) > div:first-of-type > div > p': {
@@ -194,12 +193,12 @@ const processDescription = definePartsStyle({
       '& div': {
         width: '100%',
         borderLeft: '1px solid lightgray',
-        pl: '12',
+        pl: 12,
       },
 
       '& div:first-of-type': {
         borderLeft: 'none',
-        pl: '0',
+        pl: 0,
       },
       '& div p': {
         whiteSpace: 'nowrap',
@@ -221,12 +220,12 @@ const vote = definePartsStyle({
     ...cardCommonStyles.container,
     direction: 'column',
     width: 'auto',
-    maxWidth: '320px',
-    gap: '20px',
-    borderRadius: 'lg',
-    padding: '20px',
+    maxWidth: 80,
+    gap: 11,
+    borderRadius: 10,
+    padding: 5,
     position: 'sticky',
-    top: '10px',
+    top: 2,
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: 'branding.purple',
@@ -234,7 +233,7 @@ const vote = definePartsStyle({
     zIndex: 10,
 
     '& hr': {
-      height: '.2px',
+      height: 'px',
       m: 0,
     },
   },
@@ -247,20 +246,20 @@ const vote = definePartsStyle({
 
     '& div:nth-of-type(1)': {
       bg: 'branding.lightpurple',
-      width: '50px',
-      height: '50px',
+      width: 12,
+      height: 12,
       border: '.1px solid',
       borderColor: 'branding.purple',
 
       '& svg': {
         color: 'branding.purple',
-        boxSize: '30px',
+        boxSize: 2,
       },
     },
 
     '& div': {
       'p:nth-of-type(1)': {
-        fontSize: '1.2em',
+        fontSize: 5,
         fontWeight: 'bold',
       },
 
@@ -274,7 +273,7 @@ const vote = definePartsStyle({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'stretch',
-    gap: '20px',
+    gap: 5,
 
     '& btn': {
       alignSelf: 'center',
@@ -294,21 +293,21 @@ const vote = definePartsStyle({
 const results = definePartsStyle({
   container: {
     ...cardCommonStyles.container,
-    px: '6',
-    py: '5',
-    borderRadius: '25',
+    px: 6,
+    py: 5,
+    borderRadius: 25,
   },
   header: {
     ...cardCommonStyles.header,
-    fontSize: '20',
+    fontSize: 20,
   },
   body: {
     ...cardCommonStyles.body,
     display: 'flex',
     flexDirection: 'column',
-    gap: '3',
+    gap: 3,
     backgroundColor: 'white',
-    borderRadius: '10px',
+    borderRadius: 2.5,
   },
 })
 

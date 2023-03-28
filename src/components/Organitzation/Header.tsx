@@ -1,20 +1,35 @@
+import { CopyIcon, ExternalLinkIcon } from '@chakra-ui/icons'
 import {
   AspectRatio,
   Box,
   Button,
   Flex,
   Heading,
+  Icon,
   Image,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Text,
+  useClipboard,
   VStack,
 } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa'
 import { HiOutlineEllipsisHorizontalCircle } from 'react-icons/hi2'
+import { Link } from 'react-router-dom'
 
 const OrganizationHeader = ({ address }: { address: string | undefined }) => {
   const { t } = useTranslation()
   const [readMore, setReadMore] = useState(false)
+  const { onCopy, setValue } = useClipboard('')
+
+  useEffect(() => {
+    if (!address) return
+    setValue(address)
+  }, [setValue, address])
 
   return (
     <Box maxWidth={{ base: '90%', md: '1000px' }} m='auto'>
@@ -38,39 +53,61 @@ const OrganizationHeader = ({ address }: { address: string | undefined }) => {
         <Flex
           direction={{ base: 'column', md: 'row' }}
           alignItems={{ base: 'center', md: 'center' }}
-          gap={{ base: 2, md: 4 }}
+          gap={{ base: 2, md: 8 }}
           mb={{ base: 2, md: 4 }}
         >
           <Flex
             flexDirection='column'
             alignItems={{ base: 'center', md: 'start' }}
           >
-            <Button
-              borderRadius={12}
-              variant='link'
-              px={2}
-              py={1}
-              bgGradient='var(--vcd-gradient-brand)'
-              maxWidth='130px'
-              isTruncated
-              title={address}
-              cursor='pointer'
-              color='white'
-              fontSize={13}
-              mb={2}
-              rightIcon={
-                <HiOutlineEllipsisHorizontalCircle
-                  style={{ width: '1.2em', height: '1.2em' }}
-                />
-              }
-              _hover={{
-                textDecoration: 'none',
-              }}
-            >
-              <Text isTruncated as='span'>
-                {address}
-              </Text>
-            </Button>
+            <Menu>
+              <MenuButton
+                as={Button}
+                borderRadius={12}
+                variant='link'
+                px={2}
+                py={1}
+                bgGradient='var(--vcd-gradient-brand)'
+                maxWidth='130px'
+                isTruncated
+                title={address}
+                cursor='pointer'
+                color='white'
+                fontSize={13}
+                mb={2}
+                rightIcon={
+                  <HiOutlineEllipsisHorizontalCircle
+                    style={{ width: '1.2em', height: '1.2em' }}
+                  />
+                }
+                _hover={{
+                  textDecoration: 'none',
+                }}
+              >
+                <Box maxW='120px' isTruncated overflow='hidden'>
+                  <Text isTruncated as='span'>
+                    {address}
+                  </Text>
+                </Box>
+              </MenuButton>
+              <MenuList p='0' position='absolute' top='-120px' zIndex='10'>
+                <MenuItem p='0'>
+                  <Button
+                    onClick={onCopy}
+                    variant='unestyled'
+                    leftIcon={<CopyIcon />}
+                  >
+                    Address
+                  </Button>
+                </MenuItem>
+                <MenuItem p='0'>
+                  <Button variant='unestyled' leftIcon={<ExternalLinkIcon />}>
+                    Open in Etherscan
+                  </Button>
+                </MenuItem>
+              </MenuList>
+            </Menu>
+
             <Text>DAO</Text>
             <Heading
               as='h1'
@@ -111,6 +148,36 @@ const OrganizationHeader = ({ address }: { address: string | undefined }) => {
                 627
               </Text>
             </Box>
+          </Flex>
+          <Flex flexDirection={{ base: 'row', md: 'column' }} pt='1'>
+            <Link to='#'></Link>
+            <Icon
+              aria-label={t('link', { link: 'twitter' }).toString()}
+              as={FaTwitter}
+              w={6}
+              h={6}
+              cursor='pointer'
+            />
+            <Link to='#'>
+              <Icon
+                aria-label={t('link', { link: 'discord' }).toString()}
+                as={FaDiscord}
+                w={6}
+                h={6}
+                cursor='pointer'
+                mt={{ md: 1 }}
+                mx={{ base: 5, md: 0 }}
+              />
+            </Link>
+            <Link to='#'>
+              <Icon
+                aria-label={t('link', { link: 'github' }).toString()}
+                as={FaGithub}
+                w={6}
+                h={6}
+                cursor='pointer'
+              />
+            </Link>
           </Flex>
         </Flex>
         <Flex

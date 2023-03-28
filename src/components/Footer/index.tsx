@@ -13,7 +13,7 @@ import { HR } from '@vocdoni/react-components'
 import { useTranslation } from 'react-i18next'
 import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import vcd2 from '../../assets/vcd2.svg'
+import vocdoni_logo from '../../assets/vocdoni_logo.svg'
 
 const Footer = ({ ...props }) => {
   const { t } = useTranslation()
@@ -41,9 +41,9 @@ const Footer = ({ ...props }) => {
           gridColumn={{ base: '1/2', sm: '1/3', md: '1/5', lg: '1/2' }}
           gridRow={{ base: '5/6', md: '2/3', lg: '1/2' }}
         >
-          <Img src={vcd2} maxW='140px'></Img>
+          <Img src={vocdoni_logo} maxW='140px'></Img>
           <Img
-            src={`${process.env.PUBLIC_URL}/assets/vcd3.png`}
+            src={`${process.env.PUBLIC_URL}/assets/powered_by_aragon.png`}
             maxW='140px'
           ></Img>
         </Flex>
