@@ -1,13 +1,33 @@
 {
+  "alt_image": "",
   "aside": {
     "connect_and_vote": "Connect and vote on your favorite proposals",
     "connect_to_vote": "Conecta't per votar",
     "connect_your_wallet": "Connecteu la vostra cartera per veure l'estat de la proposta...",
+    "has_already_voted": "",
     "is_able_to_vote": "Conectat. Estàs en el cens",
-    "is_not_able_to_vote": "No estàs en el cens",
+    "is_not_in_census": "",
     "proposers": "Propòsits",
     "vote": "Vota",
     "voters": "Votants"
+  },
+  "copy": {
+    "address": "",
+    "copied_title": ""
+  },
+  "footer": {
+    "about": "",
+    "blog": "",
+    "company": "",
+    "contact": "",
+    "developer_portal": "",
+    "developers": "",
+    "guides": "",
+    "how_we_work": "",
+    "resources": "",
+    "tutorials": "",
+    "vocdoni_api": "",
+    "vocdoni_app": ""
   },
   "form": {
     "error": {
@@ -34,10 +54,10 @@
       "success_title": ""
     }
   },
-  "landing": {
-    "intro": "Crea eleccions comunitàries!"
+  "home": {
+    "active_voting": "",
+    "more_active_organizations": ""
   },
-  "learn_more": "Descobreix més",
   "link": "Enllaç a {{link}}",
   "loading": "Carregant...",
   "menu": {
@@ -46,9 +66,10 @@
     "my_list": "La meva llista",
     "open_menu": "Obre menú"
   },
+  "open_in_explorer": "",
   "organization": {
+    "dao_title": "",
     "elections": "Eleccions",
-    "header_image_alt": "",
     "members": "Membres",
     "rounds": {
       "active": "Actives",
@@ -59,16 +80,21 @@
     "date": {
       "ended": "Finalitzat",
       "ends": "Acaba",
-      "starts": "Comença",
-      "relative": "{{ date, relative(past: fa %time; future: en %time) }}"
+      "relative": "{{ date, relative(past: fa %time; future: en %time) }}",
+      "starts": "Comença"
     },
     "questions": "Preguntes",
     "results": "Resultats",
     "status": {
-      "process_finished": "Procés finalitzat",
-      "process_in_progress": "Process actiu",
-      "process_will_start": "El process comencça en"
+      "canceled": "",
+      "ended": "",
+      "ongoing": "",
+      "paused": "",
+      "results": "",
+      "unknown": "",
+      "upcoming": ""
     },
+    "voters": "",
     "votes": "Vots"
   },
   "read_less": "Llegir menys",

@@ -11,7 +11,6 @@ import {
   Input,
 } from '@chakra-ui/react'
 import { FieldValues, UseFormGetValues, UseFormRegister } from 'react-hook-form'
-import SettignsAutostart from './Autostart'
 import SettingCheckbox from './Checkbox'
 
 interface Props {
@@ -37,7 +36,6 @@ const SettingsAdvanced = ({ register, getValues }: Props) => (
           alignItems={{ base: 'start', md: 'end' }}
           mb={3}
         >
-          <SettignsAutostart register={register} getValues={getValues} />
           <SettingCheckbox
             register={register}
             label='Weighted vote'

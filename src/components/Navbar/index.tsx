@@ -11,13 +11,14 @@ import {
 } from '@chakra-ui/react'
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { NavLink } from 'react-router-dom'
-import IconVocdoni from '../../vocdoni-icon.svg'
+import { NavLink, useLocation } from 'react-router-dom'
+import SearchInput from '../Search/Input'
 import NavList from './List'
 
-const Navbar = () => {
+const Navbar = ({ ...props }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { t } = useTranslation()
+  const location = useLocation()
 
   const refNav = useRef<HTMLDivElement>(null)
 
@@ -27,29 +28,37 @@ const Navbar = () => {
   })
 
   return (
-    <Box as='nav' ref={refNav}>
+    <Box as='nav' ref={refNav} {...props}>
       <Flex
-        justifyContent='end'
+        justifyContent='space-between'
         alignItems='center'
         gap={4}
-        paddingTop={4}
-        mb={8}
+        paddingY={4}
       >
-        <Flex
-          alignItems='center'
-          gap={4}
-          marginRight='auto'
-          ml={{ base: 2, sm: 0 }}
-        >
+        <Flex alignItems='center' gap={4} ml={{ base: 2, sm: 0 }}>
           <NavLink to='/'>
-            <Img src={IconVocdoni} alt='vocdoni icon' />
+            <Img
+              src={`${process.env.PUBLIC_URL}/assets/vocdoni_icon.png`}
+              maxWidth='50px'
+              alt='vocdoni icon'
+            />
           </NavLink>
-          <Text display={{ base: 'none', sm: 'block' }} fontSize='0.8em'>
+          <Text fontSize={12} whiteSpace='nowrap'>
             Public voting protocol
           </Text>
         </Flex>
 
-        <Box display={{ base: 'none', md: 'flex' }}>
+        {location.pathname.includes('organization') && (
+          <Flex
+            width='30%'
+            alignItems='center'
+            gap={1}
+            display={{ base: 'none', lg: 'flex' }}
+          >
+            <SearchInput />
+          </Flex>
+        )}
+        <Box display={{ base: 'none', lg: 'flex' }}>
           <UnorderedList display='flex' alignItems='center' gap={4}>
             <NavList mobile={false} />
           </UnorderedList>
@@ -59,13 +68,13 @@ const Navbar = () => {
           size={'md'}
           icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
           aria-label={t('menu.open_menu')}
-          display={{ md: 'none' }}
+          display={{ lg: 'none' }}
           onClick={isOpen ? onClose : onOpen}
         />
       </Flex>
       {isOpen && (
         <Flex
-          display={{ md: 'none' }}
+          display={{ lg: 'none' }}
           position='absolute'
           left={0}
           bg='white'

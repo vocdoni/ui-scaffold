@@ -1,13 +1,33 @@
 {
+  "alt_image": "{{ img }} image",
   "aside": {
     "connect_and_vote": "Connect and vote on your favorite proposals",
     "connect_to_vote": "Connect to vote",
     "connect_your_wallet": "Connect your wallet to view the status of the proposal...",
+    "has_already_voted": "You have already voted",
     "is_able_to_vote": "Connected. You are elegible for voting",
-    "is_not_able_to_vote": "You are not elegible for voting",
+    "is_not_in_census": "You are not in census",
     "proposers": "Proposers",
     "vote": "Vote",
     "voters": "Voters"
+  },
+  "copy": {
+    "address": "Copy address",
+    "copied_title": "Copied!"
+  },
+  "footer": {
+    "about": "About",
+    "blog": "Blog",
+    "company": "company",
+    "contact": "Contact",
+    "developer_portal": "Developers Portal",
+    "developers": "developers",
+    "guides": "Guides",
+    "how_we_work": "How we work",
+    "resources": "resources",
+    "tutorials": "Tutorials",
+    "vocdoni_api": "Vocdoni API",
+    "vocdoni_app": "Vocdoni APP"
   },
   "form": {
     "error": {
@@ -34,10 +54,10 @@
       "success_title": "Election process successfully created"
     }
   },
-  "landing": {
-    "intro": "Let your community vote!"
+  "home": {
+    "active_voting": "Active voting",
+    "more_active_organizations": "More active organizations"
   },
-  "learn_more": "Learn more",
   "link": "Link to {{link}}",
   "loading": "Loading...",
   "menu": {
@@ -46,9 +66,10 @@
     "my_list": "My list",
     "open_menu": "Open menu"
   },
+  "open_in_explorer": "Open in explorer",
   "organization": {
+    "dao_title": "DAO",
     "elections": "Elections",
-    "header_image_alt": "Header image of {{ name }}",
     "members": "Members",
     "rounds": {
       "active": "Active",
@@ -59,22 +80,27 @@
     "date": {
       "ended": "Process ended",
       "ends": "Process ends",
-      "starts": "Process starts",
-      "relative": "{{ date, relative(past: %time ago; future: in %time) }}"
+      "relative": "{{ date, relative(past: %time ago; future: in %time) }}",
+      "starts": "Process starts"
     },
     "questions": "Questions",
     "results": "Results",
     "status": {
-      "process_finished": "Process finished",
-      "process_in_progress": "Process in progress",
-      "process_will_start": "Process will start in"
+      "canceled": "Process canceled",
+      "ended": "Process ended",
+      "ongoing": "Process ongoing",
+      "paused": "Process paused",
+      "results": "Results",
+      "unknown": "Unknown",
+      "upcoming": "Process is upcoming"
     },
+    "voters": "Voters",
     "votes": "Votes"
   },
   "read_less": "Read less",
   "read_more": "Read more",
   "search": {
-    "input_placeholder": "Search organizations, elections, votes..."
+    "input_placeholder": "Search"
   },
   "submited_votes": "Submitted votes",
   "voting_elections": "Voting elections",

@@ -14,7 +14,9 @@ import { useClientContext } from '@vocdoni/react-components'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import ProcessCard from '../Process/Card'
+
+import ProcessCard from '../Process/CardDesc'
+import SearchInput from '../Search/Input'
 import Header from './Header'
 
 const OrganizationView = ({ address }: { address: string | undefined }) => {
@@ -28,10 +30,14 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
   useObserver(refObserver, setPage)
 
   useEffect(() => {
-    if (!client) return
+    setElectionsList([])
+  }, [address])
+
+  useEffect(() => {
+    if (!client || page === 0) return
 
     client
-      .fetchElections('0x' + address, page)
+      .fetchElections('0x' + address, page - 1)
       .then((res) => {
         setElectionsList((prev: any) => {
           if (prev) return [...prev, ...res]
@@ -53,23 +59,38 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
 
   return (
     <Flex direction='column' gap={4}>
-      <Header />
+      <Header address={address} />
       <Tabs mt={8}>
-        <TabList>
-          <Tab whiteSpace='nowrap'>{t('organization.rounds.all')}</Tab>
-          <Tab whiteSpace='nowrap'> {t('organization.rounds.active')} </Tab>
+        <TabList
+          position='relative'
+          display='flex'
+          flexDirection={{ base: 'column', md: 'row' }}
+          justifyContent='center'
+          alignItems='center'
+        >
+          <SearchInput
+            position={{ md: 'absolute' }}
+            right={0}
+            bottom={1}
+            width={{ base: '50%', md: '30%', lg: '20%' }}
+          />
+          <Flex>
+            <Tab whiteSpace='nowrap'>{t('organization.rounds.all')}</Tab>
+            <Tab whiteSpace='nowrap'> {t('organization.rounds.active')} </Tab>
+          </Flex>
         </TabList>
-        <TabPanels bg='gray.100'>
+        <TabPanels>
           <TabPanel>
-            {!electionsList && (
-              <Flex justifyContent='center'>
+            {(!electionsList || !electionsList.length) && (
+              <Flex justifyContent='center' mt={4}>
                 <Spinner />
               </Flex>
             )}
+
             <Grid templateColumns={templateColumnsAllRounds} gap={4}>
-              {electionsList?.map((election: any, key: number) => (
+              {electionsList?.map((election: any, idx: number) => (
                 <GridItem
-                  key={key}
+                  key={idx}
                   display='flex'
                   justifyContent='center'
                   alignItems='center'
@@ -115,10 +136,6 @@ const useObserver = (
     )
 
     observer.observe(refObserver.current)
-
-    // return () => {
-    //   observer.unobserve(refObserver.current)
-    // }
   }, [refObserver, setPage])
 }
 export default OrganizationView

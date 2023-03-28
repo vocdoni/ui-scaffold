@@ -9,6 +9,8 @@ import {
 // These aren't lazy loaded to avoid excessive loaders in different locations
 import Error from '../elements/Error'
 import Layout from '../elements/Layout'
+import LayoutBody from '../elements/LayoutBody'
+import LayoutBodyBlue from '../elements/LayoutBodyBlue'
 import { SuspenseLoader } from './SuspenseLoader'
 
 // Lazy loading helps splitting the final code, which helps downloading the app (theoretically)
@@ -25,55 +27,59 @@ export const RoutesProvider = () => {
   const router = createHashRouter(
     createRoutesFromElements(
       <Route path='/' element={<Layout />} errorElement={<Error />}>
-        <Route
-          index
-          element={
-            <SuspenseLoader>
-              <Home />
-            </SuspenseLoader>
-          }
-        />
-        <Route
-          element={
-            <SuspenseLoader>
-              <ProtectedRoutes />
-            </SuspenseLoader>
-          }
-        >
+        <Route element={<LayoutBodyBlue />}>
           <Route
-            path='processes/create'
+            index
             element={
               <SuspenseLoader>
-                <ProcessCreate />
+                <Home />
               </SuspenseLoader>
             }
           />
         </Route>
-        <Route
-          path='processes/:id'
-          element={
-            <SuspenseLoader>
-              <Process />
-            </SuspenseLoader>
-          }
-          loader={async ({ params }) => client.fetchElection(params.id)}
-        />
-        <Route
-          path='organization/:address'
-          element={
-            <SuspenseLoader>
-              <Organization />
-            </SuspenseLoader>
-          }
-        />
-        <Route
-          path='*'
-          element={
-            <SuspenseLoader>
-              <NotFound />
-            </SuspenseLoader>
-          }
-        />
+        <Route element={<LayoutBody />}>
+          <Route
+            element={
+              <SuspenseLoader>
+                <ProtectedRoutes />
+              </SuspenseLoader>
+            }
+          >
+            <Route
+              path='processes/create'
+              element={
+                <SuspenseLoader>
+                  <ProcessCreate />
+                </SuspenseLoader>
+              }
+            />
+          </Route>
+          <Route
+            path='processes/:id'
+            element={
+              <SuspenseLoader>
+                <Process />
+              </SuspenseLoader>
+            }
+            loader={async ({ params }) => client.fetchElection(params.id)}
+          />
+          <Route
+            path='organization/:address'
+            element={
+              <SuspenseLoader>
+                <Organization />
+              </SuspenseLoader>
+            }
+          />
+          <Route
+            path='*'
+            element={
+              <SuspenseLoader>
+                <NotFound />
+              </SuspenseLoader>
+            }
+          />
+        </Route>
       </Route>
     )
   )

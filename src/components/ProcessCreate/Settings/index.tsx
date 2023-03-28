@@ -10,6 +10,7 @@ import { useFormContext, useWatch } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import WrapperFormSection from '../WrapperFormSection'
 import Advanced from './Advanced'
+import SettignsAutostart from './Autostart'
 
 const CreateProcessSettings = () => {
   const {
@@ -37,6 +38,7 @@ const CreateProcessSettings = () => {
         <Text as='legend' fontSize='1.3em'>
           {t('form.process_create.settings')}
         </Text>
+        <SettignsAutostart register={register} getValues={getValues} />
         {!getValues().electionType.autoStart && (
           <FormControl isInvalid={!!errors.startDate}>
             <FormLabel whiteSpace='nowrap'>

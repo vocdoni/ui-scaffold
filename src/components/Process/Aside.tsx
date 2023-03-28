@@ -10,34 +10,36 @@ import {
 } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { HR, useClientContext, useElection } from '@vocdoni/react-components'
+import { ElectionStatus } from '@vocdoni/sdk'
+import { TFunction } from 'i18next'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useAccount } from 'wagmi'
 
 const ProcessAside = ({ ...props }) => {
   const { t } = useTranslation()
-  const { isConnected } = useAccount()
   const { election } = useElection()
-  const { client } = useClientContext()
+  const { client, account } = useClientContext()
 
-  const [isAbleToVote, setIsAbleToVote] = useState<boolean>(false)
-  const [abilityChecked, setAbilityChecked] = useState<boolean>(false)
+  const [isInCensus, setIsInCensus] = useState<boolean>(false)
+  const [hasAlreadyVoted, setHasAlreadyVoted] = useState<boolean>(false)
 
   useEffect(() => {
-    if (!client || abilityChecked) return
+    if (!client || !election || !account) return
 
-    client.isAbleToVote().then((res) => {
-      setIsAbleToVote(res)
-      setAbilityChecked(true)
-    })
-  }, [client, abilityChecked])
+    client
+      .isInCensus(election?.id)
+      .then((res) => {
+        setIsInCensus(res)
+      })
+      .catch(console.log)
 
-  const hasVotingStarted =
-    election?.creationTime &&
-    election?.startDate &&
-    election.creationTime < election.startDate
-
-  const hasVotingFinished = election?.endDate && election.endDate < new Date()
+    client
+      .hasAlreadyVoted(election?.id)
+      .then((res) => {
+        setHasAlreadyVoted(res)
+      })
+      .catch(console.log)
+  }, [account, client, election, isInCensus, hasAlreadyVoted])
 
   return (
     <Card variant='vote' {...props}>
@@ -46,29 +48,25 @@ const ProcessAside = ({ ...props }) => {
           <EmailIcon />
         </Circle>
         <Box>
-          <Text>
-            {hasVotingStarted && !hasVotingFinished
-              ? t('process.status.process_in_progress')
-              : !hasVotingStarted
-              ? t('process.status.process_will_start')
-              : t('process.status.process_finished')}
-          </Text>
+          <Text>{getStatusText(t, election?.status)}</Text>
+
           <Text>
             <Text as='span'>{election?.voteCount}</Text> {t('process.votes')}
           </Text>
         </Box>
       </CardHeader>
-      {hasVotingStarted && !hasVotingFinished && <HR />}
 
-      {isConnected && hasVotingStarted && !hasVotingFinished && (
+      {election?.status === ElectionStatus.ONGOING && <HR />}
+
+      {election?.status === ElectionStatus.ONGOING && account && (
         <CardBody>
-          <Text>
-            {isAbleToVote
-              ? t('aside.is_able_to_vote')
-              : t('aside.is_not_able_to_vote')}
+          <Text textAlign='center'>
+            {isInCensus && !hasAlreadyVoted && t('aside.is_able_to_vote')}
+            {!isInCensus && t('aside.is_not_in_census')}
+            {hasAlreadyVoted && t('aside.has_already_voted')}
           </Text>
           <Button
-            isDisabled={!isAbleToVote}
+            isDisabled={!isInCensus || hasAlreadyVoted}
             type='submit'
             form='election-create-form'
             variant='brandVote'
@@ -77,7 +75,7 @@ const ProcessAside = ({ ...props }) => {
           </Button>
         </CardBody>
       )}
-      {!isConnected && hasVotingStarted && !hasVotingFinished && (
+      {election?.status === ElectionStatus.ONGOING && !account && (
         <CardBody>
           <Box>
             <Text fontWeight='bold'>{t('aside.proposers')}: </Text>
@@ -94,6 +92,29 @@ const ProcessAside = ({ ...props }) => {
       )}
     </Card>
   )
+}
+
+const getStatusText = (
+  t: TFunction<'translation', undefined, 'translation'>,
+  electionStatus: ElectionStatus | undefined
+) => {
+  console.log(electionStatus)
+  switch (electionStatus) {
+    case ElectionStatus.UPCOMING:
+      return t('process.status.upcoming')
+    case ElectionStatus.ENDED:
+      return t('process.status.ended')
+    case ElectionStatus.CANCELED:
+      return t('process.status.canceled')
+    case ElectionStatus.PAUSED:
+      return t('process.status.paused')
+    case ElectionStatus.ONGOING:
+      return t('process.status.ongoing')
+    case ElectionStatus.RESULTS:
+      return t('process.status.results')
+    default:
+      return t('process.status.unknown')
+  }
 }
 
 export default ProcessAside
