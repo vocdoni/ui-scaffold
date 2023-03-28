@@ -5,6 +5,21 @@
 This project was bootstrapped with
 [Create React App](https://github.com/facebook/create-react-app).
 
+### Environment variables
+
+You can create a `.env.local` file to set your custom environment variables
+there, here's a list of variables you can use:
+
+- `REACT_APP_VOCDONI_ENVIRONMENT`: the vocdoni environment to be used, either
+  `dev`, `stg` or `prod` (defaults to `stg`).
+
+You can also start the app by prefixing these vars instead of defining your
+custom `.env` file:
+
+```bash
+REACT_APP_VOCDONI_ENVIRONMENT=dev yarn start
+```
+
 ### Available Scripts
 
 In the project directory, you can run:

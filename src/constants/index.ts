@@ -17,6 +17,7 @@ if (['stg', 'dev'].includes(evocdoni)) {
 }
 
 export const ExplorerBaseURL = explorer
+export const VocdoniEnvironment = evocdoni
 
 /**
  * Given an object of react-hook-form errors, determines if the specified mapped field is invalid (returns an error)
