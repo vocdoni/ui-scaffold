@@ -77,6 +77,13 @@
     }
   },
   "process": {
+    "actions": {
+      "cancel_description": "cancelling the \"{{ election.title.default }}\" election process",
+      "continue_description": "continuing the \"{{ election.title.default }}\" election process",
+      "error_title": "There was some error while executing the transaction",
+      "pause_description": "pausing the \"{{ election.title.default }}\" election process",
+      "waiting_title": "Waiting for transaction confirmation..."
+    },
     "date": {
       "ended": "Process ended",
       "ends": "Process ends",

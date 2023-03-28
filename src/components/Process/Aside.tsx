@@ -95,10 +95,9 @@ const ProcessAside = ({ ...props }) => {
 }
 
 const getStatusText = (
-  t: TFunction<'translation', undefined, 'translation'>,
+  t: TFunction<string, undefined, string>,
   electionStatus: ElectionStatus | undefined
 ) => {
-  console.log(electionStatus)
   switch (electionStatus) {
     case ElectionStatus.UPCOMING:
       return t('process.status.upcoming')
