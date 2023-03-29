@@ -5,14 +5,14 @@ import {
   Grid,
   Icon,
   Img,
+  Link,
+  List,
   ListItem,
   Text,
-  UnorderedList,
 } from '@chakra-ui/react'
 import { HR } from '@vocdoni/react-components'
 import { useTranslation } from 'react-i18next'
 import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
 import vocdoni_logo from '../../assets/vocdoni_logo.svg'
 
 const Footer = ({ ...props }) => {
@@ -54,24 +54,24 @@ const Footer = ({ ...props }) => {
           <Text fontWeight='bold' mb={4}>
             {t('footer.company').toUpperCase()}
           </Text>
-          <UnorderedList
+          <List
             display='flex'
             flexDirection='column'
             alignItems={{ base: 'center', lg: 'start' }}
             ml={0}
           >
-            <ListItem listStyleType='none'>
-              <Link to='#'> {t('footer.about')} </Link>
+            <ListItem>
+              <Link href='#'> {t('footer.about')} </Link>
             </ListItem>
 
-            <ListItem listStyleType='none'>
-              <Link to='#'>{t('footer.how_we_work')}</Link>
+            <ListItem>
+              <Link href='#'>{t('footer.how_we_work')}</Link>
             </ListItem>
 
-            <ListItem listStyleType='none'>
-              <Link to='#'>{t('footer.blog')} </Link>
+            <ListItem>
+              <Link href='#'>{t('footer.blog')} </Link>
             </ListItem>
-          </UnorderedList>
+          </List>
         </Flex>
         <Flex
           flexDirection='column'
@@ -80,29 +80,29 @@ const Footer = ({ ...props }) => {
           <Text fontWeight='bold' mb={4}>
             {t('footer.developers').toUpperCase()}
           </Text>
-          <UnorderedList
+          <List
             display='flex'
             flexDirection='column'
             alignItems={{ base: 'center', lg: 'start' }}
             ml={0}
           >
-            <ListItem listStyleType='none'>
-              <Link to='https://developer.vocdoni.io/' target='_blank'>
+            <ListItem>
+              <Link href='https://developer.vocdoni.io/' target='_blank'>
                 {t('footer.developer_portal')}
               </Link>
             </ListItem>
-            <ListItem listStyleType='none'>
-              <Link to='https://vocdoni.io/api' target='_blank'>
+            <ListItem>
+              <Link href='https://vocdoni.io/api' target='_blank'>
                 {t('footer.vocdoni_api')}
               </Link>
             </ListItem>
 
-            <ListItem listStyleType='none'>
-              <Link to='https://vocdoni.app/' target='_blank'>
+            <ListItem>
+              <Link href='https://vocdoni.app/' target='_blank'>
                 {t('footer.vocdoni_app')}
               </Link>
             </ListItem>
-          </UnorderedList>
+          </List>
         </Flex>
         <Flex
           flexDirection='column'
@@ -111,19 +111,19 @@ const Footer = ({ ...props }) => {
           <Text fontWeight='bold' mb={4}>
             {t('footer.resources').toUpperCase()}
           </Text>
-          <UnorderedList
+          <List
             display='flex'
             flexDirection='column'
             alignItems={{ base: 'center', lg: 'start' }}
             ml={0}
           >
-            <ListItem listStyleType='none'>
-              <Link to='#'>{t('footer.guides')}</Link>
+            <ListItem>
+              <Link href='#'>{t('footer.guides')}</Link>
             </ListItem>
-            <ListItem listStyleType='none'>
-              <Link to='#'>{t('footer.tutorials')}</Link>
+            <ListItem>
+              <Link href='#'>{t('footer.tutorials')}</Link>
             </ListItem>
-          </UnorderedList>
+          </List>
         </Flex>
         <Flex
           flexDirection='column'
@@ -132,16 +132,16 @@ const Footer = ({ ...props }) => {
           <Text fontWeight='bold' mb={4}>
             {t('footer.contact').toUpperCase()}
           </Text>
-          <UnorderedList
+          <List
             display='flex'
             flexDirection='column'
             alignItems={{ base: 'center', lg: 'start' }}
             ml={0}
           >
-            <ListItem listStyleType='none'>
-              <Link to='mailto:info@vocdoni.com'>info@vocdoni.io</Link>
+            <ListItem>
+              <Link href='mailto:info@vocdoni.com'>info@vocdoni.io</Link>
             </ListItem>
-          </UnorderedList>
+          </List>
         </Flex>
       </Grid>
       <HR bgColor='black' />
@@ -157,13 +157,13 @@ const Footer = ({ ...props }) => {
           </Text>
         </Code>
         <Code bg='white'>
-          <Link to='#'>
+          <Link href='#'>
             <Text>Terms of use & Privacy Policy</Text>
           </Link>
         </Code>
 
         <Flex justifyContent='center' alignItems='center' gap={6} mb={4}>
-          <Link to='#'></Link>
+          <Link href='#'></Link>
           <Icon
             aria-label={t('link', { link: 'twitter' }).toString()}
             as={FaTwitter}
@@ -172,7 +172,7 @@ const Footer = ({ ...props }) => {
             cursor='pointer'
             mb={2}
           />
-          <Link to='#'>
+          <Link href='#'>
             <Icon
               aria-label={t('link', { link: 'discord' }).toString()}
               as={FaDiscord}
@@ -181,7 +181,7 @@ const Footer = ({ ...props }) => {
               cursor='pointer'
             />
           </Link>
-          <Link to='#'>
+          <Link href='#'>
             <Icon
               aria-label={t('link', { link: 'github' }).toString()}
               as={FaGithub}
