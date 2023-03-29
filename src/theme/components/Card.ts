@@ -312,8 +312,8 @@ const results = definePartsStyle({
 
 const variantsCards = {
   organization,
-  process_img,
-  process_description,
+  'process-img': process_img,
+  'process-description': process_description,
   vote,
   results,
 }

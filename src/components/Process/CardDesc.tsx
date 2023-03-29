@@ -19,7 +19,7 @@ const ProcessCardDescription = ({
 
   return (
     <ElectionProvider election={election}>
-      <Card variant='process_description'>
+      <Card variant='process-description'>
         <CardHeader>
           <ElectionStatusBadge />
         </CardHeader>
