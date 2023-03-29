@@ -4,7 +4,7 @@ import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(cardAnatomy.keys)
 
-const card_common_styles = {
+const cardCommonStyles = {
   container: {
     width: '100%',
     padding: 0,
@@ -24,19 +24,19 @@ const card_common_styles = {
 }
 
 const organization = definePartsStyle({
-  ...card_common_styles,
+  ...cardCommonStyles,
   container: {
-    ...card_common_styles.container,
+    ...cardCommonStyles.container,
     maxW: 72,
     overflow: 'hidden',
     bgColor: 'transparent',
   },
   header: {
-    ...card_common_styles.header,
+    ...cardCommonStyles.header,
     overflow: 'hidden',
   },
   body: {
-    ...card_common_styles.body,
+    ...cardCommonStyles.body,
     bgColor: 'white',
     px: 3,
     py: 2,
@@ -44,7 +44,7 @@ const organization = definePartsStyle({
     fontWeight: 'bold',
   },
   footer: {
-    ...card_common_styles.footer,
+    ...cardCommonStyles.footer,
     display: 'flex',
     flexDirection: 'column',
     bgColor: 'white',
@@ -65,22 +65,22 @@ const organization = definePartsStyle({
   },
 })
 
-const process_img = definePartsStyle({
-  ...card_common_styles,
+const processImg = definePartsStyle({
+  ...cardCommonStyles,
   container: {
-    ...card_common_styles.container,
+    ...cardCommonStyles.container,
     maxW: 72,
     transition: 'background .3s ease-in-out',
     overflow: 'hidden',
     bgColor: 'transparent',
   },
   header: {
-    ...card_common_styles.header,
+    ...cardCommonStyles.header,
     overflow: 'hidden',
     borderTopRadius: 10,
   },
   body: {
-    ...card_common_styles.body,
+    ...cardCommonStyles.body,
     minH: 20,
     bgColor: 'white',
     px: 3,
@@ -101,7 +101,7 @@ const process_img = definePartsStyle({
     },
   },
   footer: {
-    ...card_common_styles.footer,
+    ...cardCommonStyles.footer,
     display: 'flex',
     justifyContent: 'center',
     bgColor: 'white',
@@ -133,21 +133,21 @@ const process_img = definePartsStyle({
   },
 })
 
-const process_description = definePartsStyle({
-  ...card_common_styles,
+const processDescription = definePartsStyle({
+  ...cardCommonStyles,
   container: {
-    ...card_common_styles.container,
+    ...cardCommonStyles.container,
     display: 'flex',
     flexDirection: 'column',
     maxW: 124,
   },
   header: {
-    ...card_common_styles.header,
+    ...cardCommonStyles.header,
     alignSelf: 'end',
   },
 
   body: {
-    ...card_common_styles.body,
+    ...cardCommonStyles.body,
     boxShadow: '1px 1px 10px 2px lightgray',
     borderLeftRadius: 10,
     borderBottomRightRadius: 10,
@@ -216,7 +216,7 @@ const process_description = definePartsStyle({
 
 const vote = definePartsStyle({
   container: {
-    ...card_common_styles.container,
+    ...cardCommonStyles.container,
     direction: 'column',
     width: 'auto',
     maxWidth: 80,
@@ -237,7 +237,7 @@ const vote = definePartsStyle({
     },
   },
   header: {
-    ...card_common_styles.header,
+    ...cardCommonStyles.header,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -268,7 +268,7 @@ const vote = definePartsStyle({
     },
   },
   body: {
-    ...card_common_styles.body,
+    ...cardCommonStyles.body,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'stretch',
@@ -291,17 +291,17 @@ const vote = definePartsStyle({
 
 const results = definePartsStyle({
   container: {
-    ...card_common_styles.container,
+    ...cardCommonStyles.container,
     px: 6,
     py: 5,
     borderRadius: 25,
   },
   header: {
-    ...card_common_styles.header,
+    ...cardCommonStyles.header,
     fontSize: 20,
   },
   body: {
-    ...card_common_styles.body,
+    ...cardCommonStyles.body,
     display: 'flex',
     flexDirection: 'column',
     gap: 3,
@@ -312,8 +312,8 @@ const results = definePartsStyle({
 
 const variantsCards = {
   organization,
-  'process-img': process_img,
-  'process-description': process_description,
+  'process-img': processImg,
+  'process-description': processDescription,
   vote,
   results,
 }

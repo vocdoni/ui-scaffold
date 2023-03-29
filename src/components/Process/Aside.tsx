@@ -17,16 +17,17 @@ import { useTranslation } from 'react-i18next'
 import { useAccount } from 'wagmi'
 
 interface Props {
-  handleTabsChange: any
+  handleTabsChange: (index: number) => void
   order: any
   alignSelf: any
 }
 
 const ProcessAside = ({ handleTabsChange, order, alignSelf }: Props) => {
   const { t } = useTranslation()
-  const { election } = useElection()
+  const { election, isAbleToVote } = useElection()
   const { isConnected } = useAccount()
-  const { client, account } = useClientContext()
+
+  const { account, client } = useClientContext()
 
   const [isInCensus, setIsInCensus] = useState<boolean>(false)
   const [hasAlreadyVoted, setHasAlreadyVoted] = useState<boolean>(false)
@@ -76,12 +77,12 @@ const ProcessAside = ({ handleTabsChange, order, alignSelf }: Props) => {
       {election?.status === ElectionStatus.ONGOING && account && (
         <CardBody>
           <Text textAlign='center'>
-            {isInCensus && !hasAlreadyVoted && t('aside.is_able_to_vote')}
+            {isAbleToVote && t('aside.is_able_to_vote')}
             {!isInCensus && t('aside.is_not_in_census')}
             {hasAlreadyVoted && t('aside.has_already_voted')}
           </Text>
           <Button
-            isDisabled={!isInCensus || hasAlreadyVoted}
+            isDisabled={isAbleToVote}
             type='submit'
             form='election-create-form'
             variant='brand_vote'

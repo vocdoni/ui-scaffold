@@ -86,7 +86,10 @@
       "continue_description": "",
       "error_title": "",
       "pause_description": "",
-      "waiting_title": ""
+      "waiting_title": "",
+      "pause": "",
+      "play": "",
+      "stop": ""
     },
     "date": {
       "ended": "Finalitzat",

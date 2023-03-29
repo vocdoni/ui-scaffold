@@ -46,8 +46,8 @@ export const ProcessView = (props: ElectionProviderComponentProps) => {
         <Text onClick={() => navigate(-1)} cursor='pointer'>
           <ArrowBackIcon /> Org Name
         </Text>
-        <ElectionSchedule textAlign='left' color='branding.pink' isTruncated />
-        <ElectionTitle fontSize={18} mb={0} textAlign='left' isTruncated />
+        <ElectionSchedule textAlign='left' color='branding.pink' />
+        <ElectionTitle fontSize={18} mb={0} textAlign='left' />
         <ElectionDescription />
       </Flex>
       <Tabs index={tabIndex} onChange={handleTabsChange}>

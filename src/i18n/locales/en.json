@@ -86,7 +86,10 @@
       "continue_description": "continuing the \"{{ election.title.default }}\" election process",
       "error_title": "There was some error while executing the transaction",
       "pause_description": "pausing the \"{{ election.title.default }}\" election process",
-      "waiting_title": "Waiting for transaction confirmation..."
+      "waiting_title": "Waiting for transaction confirmation...",
+      "pause": "pause",
+      "play": "play",
+      "stop": "stop"
     },
     "date": {
       "ended": "Process ended",
