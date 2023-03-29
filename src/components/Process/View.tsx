@@ -19,6 +19,7 @@ import {
   useClientContext,
 } from '@vocdoni/react-components'
 import { ElectionStatus } from '@vocdoni/sdk'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import ProcessActions from './Actions'
@@ -31,6 +32,12 @@ export const ProcessView = (props: ElectionProviderComponentProps) => {
   const navigate = useNavigate()
   const { t } = useTranslation()
 
+  const [tabIndex, setTabIndex] = useState(0)
+
+  const handleTabsChange = (index: number) => {
+    setTabIndex(index)
+  }
+
   const { election } = props
 
   return (
@@ -39,11 +46,11 @@ export const ProcessView = (props: ElectionProviderComponentProps) => {
         <Text onClick={() => navigate(-1)} cursor='pointer'>
           <ArrowBackIcon /> Org Name
         </Text>
-        <ElectionSchedule textAlign='left' color='branding.pink' isTruncated />
-        <ElectionTitle fontSize={18} mb={0} textAlign='left' isTruncated />
+        <ElectionSchedule textAlign='left' color='branding.pink' />
+        <ElectionTitle fontSize={18} mb={0} textAlign='left' />
         <ElectionDescription />
       </Flex>
-      <Tabs>
+      <Tabs index={tabIndex} onChange={handleTabsChange}>
         <TabList display='flex'>
           <Tab>{t('process.questions')}</Tab>
           <Tab>{t('process.results')}</Tab>
@@ -71,6 +78,7 @@ export const ProcessView = (props: ElectionProviderComponentProps) => {
                 <QuestionsForm />
               </Box>
               <ProcessAside
+                handleTabsChange={handleTabsChange}
                 order={{ base: 1, lg: 2 }}
                 alignSelf={{ base: 'center', lg: 'start' }}
               />

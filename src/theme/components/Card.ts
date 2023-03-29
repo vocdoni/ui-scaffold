@@ -34,7 +34,6 @@ const organization = definePartsStyle({
   header: {
     ...cardCommonStyles.header,
     overflow: 'hidden',
-    // borderTopRadius: '5',
   },
   body: {
     ...cardCommonStyles.body,
@@ -78,7 +77,7 @@ const processImg = definePartsStyle({
   header: {
     ...cardCommonStyles.header,
     overflow: 'hidden',
-    borderTopRadius: '10',
+    borderTopRadius: 10,
   },
   body: {
     ...cardCommonStyles.body,
@@ -140,7 +139,7 @@ const processDescription = definePartsStyle({
     ...cardCommonStyles.container,
     display: 'flex',
     flexDirection: 'column',
-    maxW: '500px',
+    maxW: 124,
   },
   header: {
     ...cardCommonStyles.header,
@@ -150,8 +149,8 @@ const processDescription = definePartsStyle({
   body: {
     ...cardCommonStyles.body,
     boxShadow: '1px 1px 10px 2px lightgray',
-    borderLeftRadius: '10',
-    borderBottomRightRadius: '10',
+    borderLeftRadius: 10,
+    borderBottomRightRadius: 10,
     py: 5,
     px: 7,
 
@@ -229,7 +228,7 @@ const vote = definePartsStyle({
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: 'branding.purple',
-
+    cursor: 'normal',
     zIndex: 10,
 
     '& hr': {
@@ -242,7 +241,7 @@ const vote = definePartsStyle({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: '10px',
+    gap: 2.5,
 
     '& div:nth-of-type(1)': {
       bg: 'branding.lightpurple',
@@ -313,8 +312,8 @@ const results = definePartsStyle({
 
 const variantsCards = {
   organization,
-  processImg,
-  processDescription,
+  'process-img': processImg,
+  'process-description': processDescription,
   vote,
   results,
 }

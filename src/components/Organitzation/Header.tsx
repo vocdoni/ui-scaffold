@@ -50,7 +50,8 @@ const OrganizationHeader = ({ address }: { address: string | undefined }) => {
       <>
         <Flex
           direction={{ base: 'column', md: 'row' }}
-          alignItems={{ base: 'center', md: 'center' }}
+          justifyContent={{ md: 'space-between' }}
+          alignItems='center'
           gap={{ base: 2, md: 8 }}
           mb={{ base: 2, md: 4 }}
         >
@@ -138,7 +139,7 @@ const OrganizationHeader = ({ address }: { address: string | undefined }) => {
             flexDirection={{ base: 'row', md: 'column' }}
             gap={{ base: 4, md: 0 }}
           >
-            <Box>
+            <Flex flexDirection='column' alignItems='center'>
               <Text
                 fontSize={14}
                 bgGradient='linear(to-r, #9526FC, #2ED3BF)'
@@ -149,9 +150,9 @@ const OrganizationHeader = ({ address }: { address: string | undefined }) => {
               <Text as='span' fontWeight='bold'>
                 20
               </Text>
-            </Box>
+            </Flex>
 
-            <Box>
+            <Flex flexDirection='column' alignItems='center'>
               <Text
                 fontSize={14}
                 bgGradient='linear(to-r, #9526FC, #2ED3BF)'
@@ -162,7 +163,7 @@ const OrganizationHeader = ({ address }: { address: string | undefined }) => {
               <Text as='span' fontWeight='bold'>
                 627
               </Text>
-            </Box>
+            </Flex>
           </Flex>
           <Flex flexDirection={{ base: 'row', md: 'column' }} pt='1'>
             <Link to='#'></Link>

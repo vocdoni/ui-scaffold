@@ -1,26 +1,22 @@
-import { Flex } from '@chakra-ui/react'
+import { FormControl, FormLabel, Switch } from '@chakra-ui/react'
 import { FieldValues, UseFormGetValues, UseFormRegister } from 'react-hook-form'
-import SettingCheckbox from './Checkbox'
+import { useTranslation } from 'react-i18next'
 
 interface Props {
   register: UseFormRegister<FieldValues>
   getValues: UseFormGetValues<FieldValues>
 }
 
-const SettignsAutostart = ({ register, getValues }: Props) => (
-  <Flex
-    gap={{ base: 3, md: 8 }}
-    justifyContent='start'
-    flexDirection={{ base: 'column', md: 'row' }}
-    alignItems={{ base: 'start', md: 'end' }}
-  >
-    <SettingCheckbox
-      register={register}
-      label='Autostart'
-      field='electionType.autoStart'
-      width='auto'
-    />
-  </Flex>
-)
+const SettignsAutostart = ({ register, getValues }: Props) => {
+  const { t } = useTranslation()
+  return (
+    <FormControl display='flex' alignItems='center'>
+      <FormLabel htmlFor='autostart' mb='0'>
+        {t('form.process_create.autostart')}
+      </FormLabel>
+      <Switch {...register('electionType.autoStart')} id='autostart' />
+    </FormControl>
+  )
+}
 
 export default SettignsAutostart

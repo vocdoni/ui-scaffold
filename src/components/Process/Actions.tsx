@@ -43,7 +43,7 @@ const ProcessActions = () => {
   return (
     <ButtonGroup size='sm' isAttached variant='outline' position='relative'>
       <IconButton
-        aria-label='Search database'
+        aria-label={t('process.actions.play')}
         icon={<FaPlay />}
         onClick={async () => {
           infoToast(t('process.actions.continue_description', { election }))
@@ -62,7 +62,7 @@ const ProcessActions = () => {
         isDisabled={election.status === ElectionStatus.ONGOING}
       />
       <IconButton
-        aria-label='Search database'
+        aria-label={t('process.actions.pause')}
         icon={<FaPause />}
         onClick={async () => {
           infoToast(t('process.actions.pause_description', { election }))
@@ -81,7 +81,7 @@ const ProcessActions = () => {
         isDisabled={election.status === ElectionStatus.PAUSED}
       />
       <IconButton
-        aria-label='Search database'
+        aria-label={t('process.actions.stop')}
         icon={<FaStop />}
         onClick={async () => {
           infoToast(t('process.actions.cancel_description', { election }))

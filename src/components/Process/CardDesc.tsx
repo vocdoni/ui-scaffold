@@ -8,6 +8,7 @@ import {
 import { PublishedElection } from '@vocdoni/sdk'
 import { format } from 'date-fns'
 import { useTranslation } from 'react-i18next'
+import { ProcessDate } from './Date'
 
 const ProcessCardDescription = ({
   election,
@@ -18,7 +19,7 @@ const ProcessCardDescription = ({
 
   return (
     <ElectionProvider election={election}>
-      <Card variant='processDescription'>
+      <Card variant='process-description'>
         <CardHeader>
           <ElectionStatusBadge />
         </CardHeader>
@@ -27,19 +28,18 @@ const ProcessCardDescription = ({
             <Text>
               {format(new Date(election.creationTime), 'dd MMM, yyyy')}
             </Text>
-            <ElectionTitle as='h4' noOfLines={2}/>
+            <ElectionTitle as='h4' noOfLines={2} />
             <Box>
               <ElectionDescription />
             </Box>
           </Box>
           <Box>
             <Box>
-              <Text>{t('process.date.ends')}</Text>
-              <Text>in 6 days</Text>
+              <ProcessDate />
             </Box>
             <Box>
               <Text>{t('process.voters')}</Text>
-              <Text>20</Text>
+              <Text>{election.voteCount}</Text>
             </Box>
           </Box>
         </CardBody>
