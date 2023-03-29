@@ -26,7 +26,7 @@ const ProcessCardImg = ({ card }: CardProps) => {
   const { t } = useTranslation()
 
   return (
-    <Card variant='processImg'>
+    <Card variant='process-img'>
       <CardHeader>
         <AspectRatio ratio={2 / 1}>
           <Image

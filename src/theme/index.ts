@@ -18,6 +18,9 @@ const colors = {
     lightpurple: '#EDE4F4',
   },
 }
+const space = {
+  124: '31rem',
+}
 
 export const theme = extendTheme(vtheme, {
   styles: {
@@ -28,6 +31,9 @@ export const theme = extendTheme(vtheme, {
     },
   },
   colors,
+  sizes: {
+    ...space,
+  },
   components: {
     Button,
     Card,

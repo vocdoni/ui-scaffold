@@ -14,17 +14,26 @@ import { ElectionStatus } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useAccount } from 'wagmi'
 
-const ProcessAside = ({ ...props }) => {
+interface Props {
+  handleTabsChange: (index: number) => void
+  order: any
+  alignSelf: any
+}
+
+const ProcessAside = ({ handleTabsChange, order, alignSelf }: Props) => {
   const { t } = useTranslation()
-  const { election } = useElection()
-  const { client, account } = useClientContext()
+  const { election, isAbleToVote } = useElection()
+  const { isConnected } = useAccount()
+
+  const { account, client } = useClientContext()
 
   const [isInCensus, setIsInCensus] = useState<boolean>(false)
   const [hasAlreadyVoted, setHasAlreadyVoted] = useState<boolean>(false)
 
   useEffect(() => {
-    if (!client || !election || !account) return
+    if (!isConnected || !client || account || !election) return
 
     client
       .isInCensus(election?.id)
@@ -39,11 +48,18 @@ const ProcessAside = ({ ...props }) => {
         setHasAlreadyVoted(res)
       })
       .catch(console.log)
-  }, [account, client, election, isInCensus, hasAlreadyVoted])
+  }, [account, isConnected, client, election, isInCensus, hasAlreadyVoted])
 
   return (
-    <Card variant='vote' {...props}>
-      <CardHeader>
+    <Card variant='vote' order={order} alignSelf={alignSelf}>
+      <CardHeader
+        onClick={() => {
+          if (election?.status === ElectionStatus.RESULTS) handleTabsChange(1)
+        }}
+        cursor={
+          election?.status === ElectionStatus.RESULTS ? 'pointer' : 'normal'
+        }
+      >
         <Circle>
           <EmailIcon />
         </Circle>
@@ -61,15 +77,15 @@ const ProcessAside = ({ ...props }) => {
       {election?.status === ElectionStatus.ONGOING && account && (
         <CardBody>
           <Text textAlign='center'>
-            {isInCensus && !hasAlreadyVoted && t('aside.is_able_to_vote')}
+            {isAbleToVote && t('aside.is_able_to_vote')}
             {!isInCensus && t('aside.is_not_in_census')}
             {hasAlreadyVoted && t('aside.has_already_voted')}
           </Text>
           <Button
-            isDisabled={!isInCensus || hasAlreadyVoted}
+            isDisabled={isAbleToVote}
             type='submit'
             form='election-create-form'
-            variant='brandVote'
+            variant='brand_vote'
           >
             {t('aside.vote')}
           </Button>

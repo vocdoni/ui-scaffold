@@ -37,8 +37,10 @@
       "address_title": "",
       "address_weight": "",
       "addresses_title": "",
+      "autostart": "",
       "date_end": "",
       "date_start": "",
+      "interruptible": "",
       "process_description": "",
       "process_description_placeholder": "",
       "process_title": "",
@@ -48,10 +50,12 @@
       "question_placeholder": "",
       "question_title": "",
       "questions_title": "",
+      "secret_until_the_end": "",
       "settings": "",
       "submit": "",
       "success_description": "",
-      "success_title": ""
+      "success_title": "",
+      "weighted_vote": ""
     }
   },
   "home": {
@@ -82,7 +86,10 @@
       "continue_description": "",
       "error_title": "",
       "pause_description": "",
-      "waiting_title": ""
+      "waiting_title": "",
+      "pause": "",
+      "play": "",
+      "stop": ""
     },
     "date": {
       "ended": "Finalitzat",
@@ -103,6 +110,11 @@
     },
     "voters": "",
     "votes": "Vots"
+  },
+  "process_actions": {
+    "pause": "",
+    "play": "",
+    "stop": ""
   },
   "read_less": "Llegir menys",
   "read_more": "Llegir més",

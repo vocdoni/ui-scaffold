@@ -14,7 +14,9 @@ interface Props extends FormControlProps {
 
 const SettingsCheckbox = ({ register, label, field, ...props }: Props) => (
   <FormControl display='flex' alignItems='center' {...props}>
-    <FormLabel whiteSpace='nowrap'>{label}</FormLabel>
+    <FormLabel whiteSpace='nowrap' mb='0'>
+      {label}
+    </FormLabel>
     <Checkbox {...register(field)} />
   </FormControl>
 )
