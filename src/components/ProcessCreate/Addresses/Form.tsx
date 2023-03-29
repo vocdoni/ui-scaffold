@@ -1,19 +1,6 @@
 import { DeleteIcon } from '@chakra-ui/icons'
-import {
-  Flex,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  IconButton,
-  Input,
-} from '@chakra-ui/react'
-import {
-  FieldValues,
-  UseFieldArrayRemove,
-  useFormContext,
-  UseFormGetValues,
-  UseFormRegister,
-} from 'react-hook-form'
+import { Flex, FormControl, FormErrorMessage, FormLabel, IconButton, Input } from '@chakra-ui/react'
+import { FieldValues, UseFieldArrayRemove, useFormContext, UseFormGetValues, UseFormRegister } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { fieldMapErrorMessage, isInvalidFieldMap } from '../../../constants'
 
@@ -26,8 +13,7 @@ interface Props {
 
 const AddressesForm = ({ fields, getValues, register, remove }: Props) => {
   const { t } = useTranslation()
-  const rowTitle = (i: number) =>
-    t('form.process_create.address_title', { num: i + 1 })
+  const rowTitle = (i: number) => t('form.process_create.address_title', { num: i + 1 })
   const {
     formState: { errors },
   } = useFormContext()
@@ -35,11 +21,7 @@ const AddressesForm = ({ fields, getValues, register, remove }: Props) => {
   return (
     <>
       {fields.map((add, i: number) => (
-        <FormControl
-          key={i}
-          mb={4}
-          isInvalid={isInvalidFieldMap(errors, `addresses.${i}.address`)}
-        >
+        <FormControl key={i} mb={4} isInvalid={isInvalidFieldMap(errors, `addresses.${i}.address`)}>
           <Flex alignItems='center'>
             <FormLabel whiteSpace='nowrap'>{rowTitle(i)}</FormLabel>
             {getValues().weightedVote && (
@@ -50,15 +32,8 @@ const AddressesForm = ({ fields, getValues, register, remove }: Props) => {
                 isInvalid={isInvalidFieldMap(errors, `addresses.${i}.weight`)}
               >
                 <FormLabel>{t('form.process_create.address_weight')}</FormLabel>
-                <Input
-                  size='sm'
-                  type='number'
-                  width={24}
-                  {...register(`addresses.${i}.weight` as const)}
-                />
-                <FormErrorMessage>
-                  {fieldMapErrorMessage(errors, `addresses.${i}.weight`)}
-                </FormErrorMessage>
+                <Input size='sm' type='number' width={24} {...register(`addresses.${i}.weight` as const)} />
+                <FormErrorMessage>{fieldMapErrorMessage(errors, `addresses.${i}.weight`)}</FormErrorMessage>
               </FormControl>
             )}
             <IconButton
@@ -79,9 +54,7 @@ const AddressesForm = ({ fields, getValues, register, remove }: Props) => {
             })}
             placeholder={rowTitle(i)}
           />
-          <FormErrorMessage>
-            {fieldMapErrorMessage(errors, `addresses.${i}.address`)}
-          </FormErrorMessage>
+          <FormErrorMessage>{fieldMapErrorMessage(errors, `addresses.${i}.address`)}</FormErrorMessage>
         </FormControl>
       ))}
     </>

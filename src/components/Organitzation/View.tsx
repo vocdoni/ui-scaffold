@@ -1,15 +1,4 @@
-import {
-  Flex,
-  Grid,
-  GridItem,
-  Spinner,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-  Text,
-} from '@chakra-ui/react'
+import { Flex, Grid, GridItem, Spinner, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
 import { useClientContext } from '@vocdoni/react-components'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -111,10 +100,7 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
   )
 }
 
-const useObserver = (
-  refObserver: any,
-  setPage: Dispatch<SetStateAction<number>>
-) => {
+const useObserver = (refObserver: any, setPage: Dispatch<SetStateAction<number>>) => {
   useEffect(() => {
     return () => {
       if (refObserver.current) refObserver.current = null

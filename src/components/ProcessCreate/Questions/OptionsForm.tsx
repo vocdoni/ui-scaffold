@@ -1,20 +1,6 @@
 import { AddIcon, DeleteIcon } from '@chakra-ui/icons'
-import {
-  Flex,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  HStack,
-  IconButton,
-  Input,
-} from '@chakra-ui/react'
-import {
-  FieldValues,
-  UseFieldArrayAppend,
-  UseFieldArrayRemove,
-  useFormContext,
-  UseFormRegister,
-} from 'react-hook-form'
+import { Flex, FormControl, FormErrorMessage, FormLabel, HStack, IconButton, Input } from '@chakra-ui/react'
+import { FieldValues, UseFieldArrayAppend, UseFieldArrayRemove, useFormContext, UseFormRegister } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { fieldMapErrorMessage, isInvalidFieldMap } from '../../../constants'
 
@@ -26,13 +12,7 @@ interface Props {
   index: number
 }
 
-const OptionsForm = ({
-  fields,
-  register,
-  removeOption,
-  appendOption,
-  index,
-}: Props) => {
+const OptionsForm = ({ fields, register, removeOption, appendOption, index }: Props) => {
   const {
     formState: { errors },
   } = useFormContext()
@@ -50,14 +30,7 @@ const OptionsForm = ({
         />
       </HStack>
       {fields.map((_, idx: number) => (
-        <FormControl
-          key={idx}
-          mb={4}
-          isInvalid={isInvalidFieldMap(
-            errors,
-            `questions.${index}.options.${idx}.option`
-          )}
-        >
+        <FormControl key={idx} mb={4} isInvalid={isInvalidFieldMap(errors, `questions.${index}.options.${idx}.option`)}>
           <Flex alignItems='center'>
             <FormLabel>Option {idx + 1}</FormLabel>
 
@@ -80,10 +53,7 @@ const OptionsForm = ({
             placeholder={`Option ${idx + 1}`}
           />
           <FormErrorMessage>
-            {fieldMapErrorMessage(
-              errors,
-              `questions.${index}.options.${idx}.option`
-            )}
+            {fieldMapErrorMessage(errors, `questions.${index}.options.${idx}.option`)}
           </FormErrorMessage>
         </FormControl>
       ))}

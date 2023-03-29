@@ -1,10 +1,5 @@
 import { SearchIcon } from '@chakra-ui/icons'
-import {
-  FormControl,
-  Input,
-  InputGroup,
-  InputLeftElement,
-} from '@chakra-ui/react'
+import { FormControl, Input, InputGroup, InputLeftElement } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 
 const SearchInput = ({ ...props }) => {
@@ -13,11 +8,7 @@ const SearchInput = ({ ...props }) => {
   return (
     <FormControl {...props}>
       <InputGroup>
-        <InputLeftElement
-          mt={-1}
-          pointerEvents='none'
-          children={<SearchIcon color='black' />}
-        />
+        <InputLeftElement mt={-1} pointerEvents='none' children={<SearchIcon color='black' />} />
         <Input
           variant='unstyled'
           height={8}

@@ -1,14 +1,5 @@
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
-import {
-  Box,
-  Flex,
-  IconButton,
-  Img,
-  Text,
-  UnorderedList,
-  useDisclosure,
-  useOutsideClick,
-} from '@chakra-ui/react'
+import { Box, Flex, IconButton, Img, Text, UnorderedList, useDisclosure, useOutsideClick } from '@chakra-ui/react'
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink, useLocation } from 'react-router-dom'
@@ -29,28 +20,17 @@ const Navbar = ({ ...props }) => {
 
   return (
     <Box as='nav' ref={refNav} {...props}>
-      <Flex
-        justifyContent='space-between'
-        alignItems='center'
-        gap={4}
-        paddingY={4}
-      >
+      <Flex justifyContent='space-between' alignItems='center' gap={4} paddingY={4}>
         <Flex alignItems='center' gap={4} ml={{ base: 2, sm: 0 }}>
           <NavLink to='/'>
-            <Img
-              src={`${process.env.PUBLIC_URL}/assets/vocdoni_icon.png`}
-              maxWidth='50px'
-              alt='vocdoni icon'
-            />
+            <Img src={`${process.env.PUBLIC_URL}/assets/vocdoni_icon.png`} maxWidth='50px' alt='vocdoni icon' />
           </NavLink>
           <Text fontSize={12} whiteSpace='nowrap'>
             Public voting protocol
           </Text>
         </Flex>
 
-        {location.pathname.includes('organization') && (
-          <SearchInput width='50%' />
-        )}
+        {location.pathname.includes('organization') && <SearchInput width='50%' />}
         <Box display={{ base: 'none', lg: 'flex' }}>
           <UnorderedList display='flex' alignItems='center' gap={4}>
             <NavList mobile={false} />
@@ -80,13 +60,7 @@ const Navbar = ({ ...props }) => {
           borderBottom='2px solid white'
           borderBottomColor='gray.100'
         >
-          <UnorderedList
-            display='flex'
-            flexDirection='column'
-            alignItems='center'
-            gap={4}
-            pb={8}
-          >
+          <UnorderedList display='flex' flexDirection='column' alignItems='center' gap={4} pb={8}>
             <NavList mobile={true} onClose={onClose} />
           </UnorderedList>
         </Flex>

@@ -1,13 +1,5 @@
 import { ChevronDownIcon } from '@chakra-ui/icons'
-import {
-  Button,
-  Icon,
-  ListItem,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-} from '@chakra-ui/react'
+import { Button, Icon, ListItem, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useClientContext } from '@vocdoni/react-components'
 import { useTranslation } from 'react-i18next'
@@ -32,40 +24,21 @@ const NavList = ({ mobile, onClose }: Props) => {
     <>
       {isConnected && (
         <>
-          <ListItem
-            order={mobile ? 2 : undefined}
-            listStyleType='none'
-            onClick={onClose}
-            whiteSpace='nowrap'
-          >
+          <ListItem order={mobile ? 2 : undefined} listStyleType='none' onClick={onClose} whiteSpace='nowrap'>
             <NavLink to='/processes/create'>
               <Button variant='branding'>{t('menu.create_process')}</Button>
             </NavLink>
           </ListItem>
-          <ListItem
-            order={mobile ? 2 : undefined}
-            listStyleType='none'
-            onClick={onClose}
-            whiteSpace='nowrap'
-          >
+          <ListItem order={mobile ? 2 : undefined} listStyleType='none' onClick={onClose} whiteSpace='nowrap'>
             <NavLink to={`/organization/${account?.address}`}>
               <Button variant='ghost'>{t('menu.my_list')}</Button>
             </NavLink>
           </ListItem>
         </>
       )}
-      <ListItem
-        order={mobile ? 3 : undefined}
-        listStyleType='none'
-        display='flex'
-        cursor='pointer'
-      >
+      <ListItem order={mobile ? 3 : undefined} listStyleType='none' display='flex' cursor='pointer'>
         <Menu>
-          <MenuButton
-            as={Button}
-            rightIcon={<ChevronDownIcon />}
-            bgColor='transparent'
-          >
+          <MenuButton as={Button} rightIcon={<ChevronDownIcon />} bgColor='transparent'>
             <FaGlobeAmericas />
           </MenuButton>
           <MenuList>
@@ -86,16 +59,8 @@ const NavList = ({ mobile, onClose }: Props) => {
           </MenuList>
         </Menu>
       </ListItem>
-      <ListItem
-        order={mobile ? 1 : undefined}
-        listStyleType='none'
-        onClick={onClose}
-      >
-        <ConnectButton
-          chainStatus='none'
-          showBalance={false}
-          label={t('menu.connect').toString()}
-        />
+      <ListItem order={mobile ? 1 : undefined} listStyleType='none' onClick={onClose}>
+        <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />
       </ListItem>
     </>
   )

@@ -1,12 +1,4 @@
-import {
-  AspectRatio,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Image,
-  Text,
-} from '@chakra-ui/react'
+import { AspectRatio, Card, CardBody, CardFooter, CardHeader, Image, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 
 export interface CardOrgContents {
@@ -26,10 +18,7 @@ const OrganitzationCard = ({ card }: CardProps) => {
     <Card variant='organization'>
       <CardHeader>
         <AspectRatio ratio={2 / 1}>
-          <Image
-            src={card.imageURL}
-            alt={t('alt_image', { img: card.name }).toString()}
-          />
+          <Image src={card.imageURL} alt={t('alt_image', { img: card.name }).toString()} />
         </AspectRatio>
       </CardHeader>
       <CardBody>

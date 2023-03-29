@@ -6,25 +6,12 @@ import Navbar from '../components/Navbar'
 const Layout = () => {
   return (
     <Flex flexDirection='column' minHeight='100vh'>
-      <Box
-        as='header'
-        boxShadow='3px 3px 10px gray'
-        position='relative'
-        zIndex={10}
-      >
-        <Navbar
-          maxWidth='1400px'
-          margin='0 auto'
-          paddingX={{ base: 0, sm: 4 }}
-        />
+      <Box as='header' boxShadow='3px 3px 10px gray' position='relative' zIndex={10}>
+        <Navbar maxWidth='1400px' margin='0 auto' paddingX={{ base: 0, sm: 4 }} />
       </Box>
       <Outlet />
       <Box as='footer' mt='auto'>
-        <Footer
-          maxWidth='1400px'
-          marginX='auto'
-          paddingX={{ base: 0, sm: 4 }}
-        />
+        <Footer maxWidth='1400px' marginX='auto' paddingX={{ base: 0, sm: 4 }} />
       </Box>
     </Flex>
   )

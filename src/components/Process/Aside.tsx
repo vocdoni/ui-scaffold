@@ -1,13 +1,5 @@
 import { EmailIcon } from '@chakra-ui/icons'
-import {
-  Box,
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  Circle,
-  Text,
-} from '@chakra-ui/react'
+import { Box, Button, Card, CardBody, CardHeader, Circle, Text } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { HR, useClientContext, useElection } from '@vocdoni/react-components'
 import { ElectionStatus } from '@vocdoni/sdk'
@@ -56,9 +48,7 @@ const ProcessAside = ({ handleTabsChange, order, alignSelf }: Props) => {
         onClick={() => {
           if (election?.status === ElectionStatus.RESULTS) handleTabsChange(1)
         }}
-        cursor={
-          election?.status === ElectionStatus.RESULTS ? 'pointer' : 'normal'
-        }
+        cursor={election?.status === ElectionStatus.RESULTS ? 'pointer' : 'normal'}
       >
         <Circle>
           <EmailIcon />
@@ -81,12 +71,7 @@ const ProcessAside = ({ handleTabsChange, order, alignSelf }: Props) => {
             {!isInCensus && t('aside.is_not_in_census')}
             {hasAlreadyVoted && t('aside.has_already_voted')}
           </Text>
-          <Button
-            isDisabled={isAbleToVote}
-            type='submit'
-            form='election-create-form'
-            variant='brand_vote'
-          >
+          <Button isDisabled={isAbleToVote} type='submit' form='election-create-form' variant='brand_vote'>
             {t('aside.vote')}
           </Button>
         </CardBody>
@@ -99,21 +84,14 @@ const ProcessAside = ({ handleTabsChange, order, alignSelf }: Props) => {
             <Text fontWeight='bold'>{t('aside.voters')}: </Text>
             <Text>{t('aside.connect_and_vote')}</Text>
           </Box>
-          <ConnectButton
-            chainStatus='none'
-            showBalance={false}
-            label={t('aside.connect_to_vote').toString()}
-          />
+          <ConnectButton chainStatus='none' showBalance={false} label={t('aside.connect_to_vote').toString()} />
         </CardBody>
       )}
     </Card>
   )
 }
 
-const getStatusText = (
-  t: TFunction<string, undefined, string>,
-  electionStatus: ElectionStatus | undefined
-) => {
+const getStatusText = (t: TFunction<string, undefined, string>, electionStatus: ElectionStatus | undefined) => {
   switch (electionStatus) {
     case ElectionStatus.UPCOMING:
       return t('process.status.upcoming')

@@ -45,11 +45,7 @@ const CreateProcessQuestions = () => {
         />
       </HStack>
       {fields.map((question, index) => (
-        <QuestionsForm
-          key={question.id}
-          index={index}
-          remove={() => remove(index)}
-        />
+        <QuestionsForm key={question.id} index={index} remove={() => remove(index)} />
       ))}
     </Flex>
   )

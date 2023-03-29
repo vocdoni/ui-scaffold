@@ -1,9 +1,4 @@
-import {
-  Checkbox,
-  FormControl,
-  FormControlProps,
-  FormLabel,
-} from '@chakra-ui/react'
+import { Checkbox, FormControl, FormControlProps, FormLabel } from '@chakra-ui/react'
 import { FieldValues, UseFormRegister } from 'react-hook-form'
 
 interface Props extends FormControlProps {

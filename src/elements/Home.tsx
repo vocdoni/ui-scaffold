@@ -3,9 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import Counters from '../components/Home/Counters'
 import CardOrg, { CardOrgContents } from '../components/Organitzation/Card'
-import ProcessCardImg, {
-  CardPrImgContents,
-} from '../components/Process/CardImg'
+import ProcessCardImg, { CardPrImgContents } from '../components/Process/CardImg'
 import SearchInput from '../components/Search/Input'
 
 const CARDS_ORG: CardOrgContents[] = [
@@ -188,17 +186,8 @@ const Home = () => {
 
   return (
     <Box>
-      <Flex
-        direction='column'
-        justifyContent='center'
-        alignItems='center'
-        gap={8}
-        mb={8}
-      >
-        <SearchInput
-          width={{ base: '200px', md: '350px', lg: '500px' }}
-          placeholder='hola'
-        />
+      <Flex direction='column' justifyContent='center' alignItems='center' gap={8} mb={8}>
+        <SearchInput width={{ base: '200px', md: '350px', lg: '500px' }} placeholder='hola' />
         <Counters />
       </Flex>
       <Text textAlign='center' mb={4} fontSize={30} fontWeight='bold'>
@@ -220,9 +209,7 @@ const Home = () => {
             justifyContent='center'
             alignItems='center'
             p={4}
-            onClick={() =>
-              navigate(`/organization/4a081070E9D555b5D19629a6bcc8B77f4aE6d39c`)
-            }
+            onClick={() => navigate(`/organization/4a081070E9D555b5D19629a6bcc8B77f4aE6d39c`)}
           >
             <ProcessCardImg card={card} />
           </GridItem>
@@ -246,9 +233,7 @@ const Home = () => {
             justifyContent='center'
             alignItems='center'
             p={4}
-            onClick={() =>
-              navigate(`/organization/4a081070E9D555b5D19629a6bcc8B77f4aE6d39c`)
-            }
+            onClick={() => navigate(`/organization/4a081070E9D555b5D19629a6bcc8B77f4aE6d39c`)}
           >
             <CardOrg card={card} />
           </GridItem>
