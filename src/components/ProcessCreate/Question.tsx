@@ -1,17 +1,6 @@
 import { DeleteIcon } from '@chakra-ui/icons'
-import {
-  Box,
-  FormControl,
-  FormLabel,
-  HStack,
-  IconButton,
-  Input,
-} from '@chakra-ui/react'
-import {
-  useFieldArray,
-  UseFieldArrayRemove,
-  useFormContext,
-} from 'react-hook-form'
+import { Box, FormControl, FormLabel, HStack, IconButton, Input } from '@chakra-ui/react'
+import { useFieldArray, UseFieldArrayRemove, useFormContext } from 'react-hook-form'
 import OptionsForm from './Questions/OptionsForm'
 
 interface Props {
@@ -29,12 +18,7 @@ const CreateProcessQuestion = ({ index, remove }: Props) => {
   })
 
   return (
-    <Box
-      bg='white'
-      p={{ base: 2, sm: 4 }}
-      borderRadius='md'
-      _dark={{ bg: 'black.c60' }}
-    >
+    <Box bg='white' p={{ base: 2, sm: 4 }} borderRadius='md' _dark={{ bg: 'black.c60' }}>
       <HStack justify='space-between' mb={4}>
         <FormLabel>Question {index + 1}</FormLabel>
 

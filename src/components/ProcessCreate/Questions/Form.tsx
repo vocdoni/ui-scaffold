@@ -1,18 +1,6 @@
 import { DeleteIcon } from '@chakra-ui/icons'
-import {
-  Box,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  HStack,
-  IconButton,
-  Input,
-} from '@chakra-ui/react'
-import {
-  useFieldArray,
-  UseFieldArrayRemove,
-  useFormContext,
-} from 'react-hook-form'
+import { Box, FormControl, FormErrorMessage, FormLabel, HStack, IconButton, Input } from '@chakra-ui/react'
+import { useFieldArray, UseFieldArrayRemove, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { fieldMapErrorMessage, isInvalidFieldMap } from '../../../constants'
 import OptionsForm from './OptionsForm'
@@ -39,16 +27,9 @@ const QuestionsForm = ({ index, remove }: Props) => {
   const num = index + 1
 
   return (
-    <Box
-      bg='white'
-      p={{ base: 2, sm: 4 }}
-      borderRadius={8}
-      _dark={{ bg: 'black.c60' }}
-    >
+    <Box bg='white' p={{ base: 2, sm: 4 }} borderRadius={8} _dark={{ bg: 'black.c60' }}>
       <HStack justify='space-between' mb={4}>
-        <FormLabel>
-          {t('form.process_create.question_identifier', { num })}
-        </FormLabel>
+        <FormLabel>{t('form.process_create.question_identifier', { num })}</FormLabel>
 
         <IconButton
           type='button'
@@ -58,13 +39,8 @@ const QuestionsForm = ({ index, remove }: Props) => {
           onClick={() => remove()}
         />
       </HStack>
-      <FormControl
-        mb={4}
-        isInvalid={isInvalidFieldMap(errors, `questions.${index}.title`)}
-      >
-        <FormLabel>
-          {t('form.process_create.question_title', { num })}
-        </FormLabel>
+      <FormControl mb={4} isInvalid={isInvalidFieldMap(errors, `questions.${index}.title`)}>
+        <FormLabel>{t('form.process_create.question_title', { num })}</FormLabel>
         <Input
           {...register(`questions.${index}.title`, {
             required: {
@@ -76,16 +52,11 @@ const QuestionsForm = ({ index, remove }: Props) => {
             num,
           }).toString()}
         />
-        <FormErrorMessage>
-          {fieldMapErrorMessage(errors, `questions.${index}.title`)}
-        </FormErrorMessage>
+        <FormErrorMessage>{fieldMapErrorMessage(errors, `questions.${index}.title`)}</FormErrorMessage>
       </FormControl>
       <FormControl>
         <FormLabel>Description</FormLabel>
-        <Input
-          {...register(`questions.${index}.description`)}
-          placeholder='Description'
-        />
+        <Input {...register(`questions.${index}.description`)} placeholder='Description' />
       </FormControl>
 
       <OptionsForm

@@ -55,10 +55,7 @@ const OrganizationHeader = ({ address }: { address: string | undefined }) => {
           gap={{ base: 2, md: 8 }}
           mb={{ base: 2, md: 4 }}
         >
-          <Flex
-            flexDirection='column'
-            alignItems={{ base: 'center', md: 'start' }}
-          >
+          <Flex flexDirection='column' alignItems={{ base: 'center', md: 'start' }}>
             <Menu>
               <MenuButton
                 as={Button}
@@ -77,11 +74,7 @@ const OrganizationHeader = ({ address }: { address: string | undefined }) => {
                 color='white'
                 fontSize={13}
                 mb={2}
-                rightIcon={
-                  <HiOutlineEllipsisHorizontalCircle
-                    style={{ width: '1.2em', height: '1.2em' }}
-                  />
-                }
+                rightIcon={<HiOutlineEllipsisHorizontalCircle style={{ width: '1.2em', height: '1.2em' }} />}
                 _hover={{
                   textDecoration: 'none',
                 }}
@@ -111,12 +104,7 @@ const OrganizationHeader = ({ address }: { address: string | undefined }) => {
                 <MenuItem
                   justifyContent='start'
                   as={Button}
-                  onClick={() =>
-                    window.open(
-                      `${ExplorerBaseURL}/organizations/show/#/${address}`,
-                      '_blank'
-                    )
-                  }
+                  onClick={() => window.open(`${ExplorerBaseURL}/organizations/show/#/${address}`, '_blank')}
                   leftIcon={<ExternalLinkIcon />}
                 >
                   {t('open_in_explorer')}
@@ -125,26 +113,13 @@ const OrganizationHeader = ({ address }: { address: string | undefined }) => {
             </Menu>
 
             <Text>{t('organization.dao_title')}</Text>
-            <Heading
-              as='h1'
-              fontSize={28}
-              isTruncated
-              title='The Organization Name'
-              maxWidth='90%'
-            >
+            <Heading as='h1' fontSize={28} isTruncated title='The Organization Name' maxWidth='90%'>
               The Organization Name
             </Heading>
           </Flex>
-          <Flex
-            flexDirection={{ base: 'row', md: 'column' }}
-            gap={{ base: 4, md: 0 }}
-          >
+          <Flex flexDirection={{ base: 'row', md: 'column' }} gap={{ base: 4, md: 0 }}>
             <Flex flexDirection='column' alignItems='center'>
-              <Text
-                fontSize={14}
-                bgGradient='linear(to-r, #9526FC, #2ED3BF)'
-                bgClip='text'
-              >
+              <Text fontSize={14} bgGradient='linear(to-r, #9526FC, #2ED3BF)' bgClip='text'>
                 {t('organization.elections')}
               </Text>
               <Text as='span' fontWeight='bold'>
@@ -153,11 +128,7 @@ const OrganizationHeader = ({ address }: { address: string | undefined }) => {
             </Flex>
 
             <Flex flexDirection='column' alignItems='center'>
-              <Text
-                fontSize={14}
-                bgGradient='linear(to-r, #9526FC, #2ED3BF)'
-                bgClip='text'
-              >
+              <Text fontSize={14} bgGradient='linear(to-r, #9526FC, #2ED3BF)' bgClip='text'>
                 {t('organization.members')}
               </Text>
               <Text as='span' fontWeight='bold'>
@@ -167,13 +138,7 @@ const OrganizationHeader = ({ address }: { address: string | undefined }) => {
           </Flex>
           <Flex flexDirection={{ base: 'row', md: 'column' }} pt='1'>
             <Link to='#'></Link>
-            <Icon
-              aria-label={t('link', { link: 'twitter' }).toString()}
-              as={FaTwitter}
-              w={6}
-              h={6}
-              cursor='pointer'
-            />
+            <Icon aria-label={t('link', { link: 'twitter' }).toString()} as={FaTwitter} w={6} h={6} cursor='pointer' />
             <Link to='#'>
               <Icon
                 aria-label={t('link', { link: 'discord' }).toString()}
@@ -186,13 +151,7 @@ const OrganizationHeader = ({ address }: { address: string | undefined }) => {
               />
             </Link>
             <Link to='#'>
-              <Icon
-                aria-label={t('link', { link: 'github' }).toString()}
-                as={FaGithub}
-                w={6}
-                h={6}
-                cursor='pointer'
-              />
+              <Icon aria-label={t('link', { link: 'github' }).toString()} as={FaGithub} w={6} h={6} cursor='pointer' />
             </Link>
           </Flex>
         </Flex>
@@ -212,25 +171,17 @@ const OrganizationHeader = ({ address }: { address: string | undefined }) => {
           >
             The Organization Name
           </Text>{' '}
-          ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-          ea commodo consequat. Lorem ipsum dolor sit amet, consectetur
-          adipiscing elit, sed do eiusmod tempor incididunt ut laboliquip ex ea
-          commodo const dolore magna aliqua. Ut enim ad minim veniam, quis
-          nostrud exercitation ullamco laboris nisi ut aliquip ex Lorem ipsum
-          dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut labore exercitation
-          ullamco laboris.ncididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut labore
-          exercitation ullamco laboris
+          ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+          aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+          laboliquip ex ea commodo const dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+          laboris nisi ut aliquip ex Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+          laboris nisi ut labore exercitation ullamco laboris.ncididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut labore exercitation ullamco laboris
         </Text>
         <VStack>
-          <Button
-            variant='underline'
-            onClick={() => setReadMore((prev) => !prev)}
-          >
+          <Button variant='underline' onClick={() => setReadMore((prev) => !prev)}>
             {readMore ? t('read_less') : t('read_more')}
           </Button>
         </VStack>

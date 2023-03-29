@@ -1,9 +1,4 @@
-import {
-  ChakraProvider,
-  ColorModeScript,
-  extendTheme,
-  useColorMode,
-} from '@chakra-ui/react'
+import { ChakraProvider, ColorModeScript, extendTheme, useColorMode } from '@chakra-ui/react'
 import { Signer } from '@ethersproject/abstract-signer'
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import { ClientProvider } from '@vocdoni/react-components'
@@ -28,10 +23,7 @@ export const AppProviders = () => {
 
   return (
     <RainbowKitProvider chains={chains} theme={rainbowStyles(colorMode)}>
-      <ClientProvider
-        env={VocdoniEnvironment as EnvOptions}
-        signer={signer as Signer}
-      >
+      <ClientProvider env={VocdoniEnvironment as EnvOptions} signer={signer as Signer}>
         <ColorModeScript />
         <RoutesProvider />
       </ClientProvider>

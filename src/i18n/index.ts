@@ -30,25 +30,22 @@ for (const lang of languages) {
   }
 }
 
-i18n.services.formatter?.add(
-  'relative',
-  (value: any, lng: string | undefined, options: any) => {
-    const opts: { locale?: Locale } = {}
-    const now = new Date()
-    if (lng && lng !== 'en') {
-      opts.locale = dateLocales[lng]
-    }
-
-    const relative = formatDistance(now, value, opts)
-
-    if (!options.future && !options.past) {
-      return relative
-    }
-    if (now < value) {
-      return options.future.replace('%time', relative)
-    }
-    return options.past.replace('%time', relative)
+i18n.services.formatter?.add('relative', (value: any, lng: string | undefined, options: any) => {
+  const opts: { locale?: Locale } = {}
+  const now = new Date()
+  if (lng && lng !== 'en') {
+    opts.locale = dateLocales[lng]
   }
-)
+
+  const relative = formatDistance(now, value, opts)
+
+  if (!options.future && !options.past) {
+    return relative
+  }
+  if (now < value) {
+    return options.future.replace('%time', relative)
+  }
+  return options.past.replace('%time', relative)
+})
 
 export default i18n

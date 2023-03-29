@@ -26,10 +26,7 @@ export const VocdoniEnvironment = evocdoni
  * @param {string} map The field map in dot notation.
  * @returns {boolean}
  */
-export const isInvalidFieldMap = (
-  errors: FieldErrors<FieldValues>,
-  map: string
-) => {
+export const isInvalidFieldMap = (errors: FieldErrors<FieldValues>, map: string) => {
   return !!fieldMapErrorMessage(errors, map)
 }
 
@@ -40,10 +37,7 @@ export const isInvalidFieldMap = (
  * @param {string} map The field map in dot notation.
  * @returns {null|string} Either returns the error message or null
  */
-export const fieldMapErrorMessage = (
-  errors: FieldErrors<FieldValues>,
-  map: string
-) => {
+export const fieldMapErrorMessage = (errors: FieldErrors<FieldValues>, map: string) => {
   if (!errors) return null
 
   const obj = dotToObject(errors, map)

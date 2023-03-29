@@ -1,11 +1,4 @@
-import {
-  Flex,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Input,
-  Text,
-} from '@chakra-ui/react'
+import { Flex, FormControl, FormErrorMessage, FormLabel, Input, Text } from '@chakra-ui/react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import WrapperFormSection from '../WrapperFormSection'
@@ -41,26 +34,20 @@ const CreateProcessSettings = () => {
         <SettignsAutostart register={register} getValues={getValues} />
         {!getValues().electionType.autoStart && (
           <FormControl isInvalid={!!errors.startDate}>
-            <FormLabel whiteSpace='nowrap'>
-              {t('form.process_create.date_start')}
-            </FormLabel>
+            <FormLabel whiteSpace='nowrap'>{t('form.process_create.date_start')}</FormLabel>
             <Input
               type='date'
               {...register(`startDate`, {
                 required,
               })}
             />
-            <FormErrorMessage>
-              {errors.startDate?.message?.toString()}
-            </FormErrorMessage>
+            <FormErrorMessage>{errors.startDate?.message?.toString()}</FormErrorMessage>
           </FormControl>
         )}
         <FormControl isInvalid={!!errors.endDate}>
           <FormLabel>{t('form.process_create.date_end')}</FormLabel>
           <Input type='date' {...register(`endDate`, { required })} />
-          <FormErrorMessage>
-            {errors.endDate?.message?.toString()}
-          </FormErrorMessage>
+          <FormErrorMessage>{errors.endDate?.message?.toString()}</FormErrorMessage>
         </FormControl>
         <Advanced register={register} getValues={getValues} />
       </Flex>

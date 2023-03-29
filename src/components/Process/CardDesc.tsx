@@ -1,20 +1,11 @@
 import { Box, Card, CardBody, CardHeader, Text } from '@chakra-ui/react'
-import {
-  ElectionDescription,
-  ElectionProvider,
-  ElectionStatusBadge,
-  ElectionTitle,
-} from '@vocdoni/react-components'
+import { ElectionDescription, ElectionProvider, ElectionStatusBadge, ElectionTitle } from '@vocdoni/react-components'
 import { PublishedElection } from '@vocdoni/sdk'
 import { format } from 'date-fns'
 import { useTranslation } from 'react-i18next'
 import { ProcessDate } from './Date'
 
-const ProcessCardDescription = ({
-  election,
-}: {
-  election: PublishedElection
-}) => {
+const ProcessCardDescription = ({ election }: { election: PublishedElection }) => {
   const { t } = useTranslation()
 
   return (
@@ -25,9 +16,7 @@ const ProcessCardDescription = ({
         </CardHeader>
         <CardBody>
           <Box>
-            <Text>
-              {format(new Date(election.creationTime), 'dd MMM, yyyy')}
-            </Text>
+            <Text>{format(new Date(election.creationTime), 'dd MMM, yyyy')}</Text>
             <ElectionTitle as='h4' noOfLines={2} />
             <Box>
               <ElectionDescription />

@@ -1,14 +1,5 @@
 import { ArrowBackIcon } from '@chakra-ui/icons'
-import {
-  Box,
-  Flex,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-  Text,
-} from '@chakra-ui/react'
+import { Box, Flex, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
 import {
   ElectionDescription,
   ElectionProvider,
@@ -62,13 +53,10 @@ export const ProcessView = (props: ElectionProviderComponentProps) => {
           <TabPanel>
             <Flex justifyContent='center' gap={4} mb={4}>
               {election?.organizationId === account?.address &&
-                (election?.status === ElectionStatus.ONGOING ||
-                  election?.status === ElectionStatus.PAUSED) && (
+                (election?.status === ElectionStatus.ONGOING || election?.status === ElectionStatus.PAUSED) && (
                   <>
                     {election?.electionType.interruptible && <ProcessActions />}
-                    {!election?.electionType.interruptible && (
-                      <Text fontWeight='bold'>Not interruptible</Text>
-                    )}
+                    {!election?.electionType.interruptible && <Text fontWeight='bold'>Not interruptible</Text>}
                   </>
                 )}
             </Flex>
@@ -84,9 +72,7 @@ export const ProcessView = (props: ElectionProviderComponentProps) => {
               />
             </Flex>
           </TabPanel>
-          <TabPanel>
-            {election && <ProcessCardResults election={election} />}
-          </TabPanel>
+          <TabPanel>{election && <ProcessCardResults election={election} />}</TabPanel>
         </TabPanels>
       </Tabs>
     </ElectionProvider>

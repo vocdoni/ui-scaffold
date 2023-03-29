@@ -1,11 +1,6 @@
 import { useClientContext } from '@vocdoni/react-components'
 import { lazy } from 'react'
-import {
-  createHashRouter,
-  createRoutesFromElements,
-  Route,
-  RouterProvider,
-} from 'react-router-dom'
+import { createHashRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
 // These aren't lazy loaded to avoid excessive loaders in different locations
 import Error from '../elements/Error'
 import Layout from '../elements/Layout'

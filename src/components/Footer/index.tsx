@@ -1,15 +1,4 @@
-import {
-  Box,
-  Code,
-  Flex,
-  Grid,
-  Icon,
-  Img,
-  Link,
-  List,
-  ListItem,
-  Text,
-} from '@chakra-ui/react'
+import { Box, Code, Flex, Grid, Icon, Img, Link, List, ListItem, Text } from '@chakra-ui/react'
 import { HR } from '@vocdoni/react-components'
 import { useTranslation } from 'react-i18next'
 import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa'
@@ -42,24 +31,13 @@ const Footer = ({ ...props }) => {
           gridRow={{ base: '5/6', md: '2/3', lg: '1/2' }}
         >
           <Img src={vocdoni_logo} maxW='140px'></Img>
-          <Img
-            src={`${process.env.PUBLIC_URL}/assets/powered_by_aragon.png`}
-            maxW='140px'
-          ></Img>
+          <Img src={`${process.env.PUBLIC_URL}/assets/powered_by_aragon.png`} maxW='140px'></Img>
         </Flex>
-        <Flex
-          flexDirection='column'
-          alignItems={{ base: 'center', lg: 'start' }}
-        >
+        <Flex flexDirection='column' alignItems={{ base: 'center', lg: 'start' }}>
           <Text fontWeight='bold' mb={4}>
             {t('footer.company').toUpperCase()}
           </Text>
-          <List
-            display='flex'
-            flexDirection='column'
-            alignItems={{ base: 'center', lg: 'start' }}
-            ml={0}
-          >
+          <List display='flex' flexDirection='column' alignItems={{ base: 'center', lg: 'start' }} ml={0}>
             <ListItem>
               <Link href='#'> {t('footer.about')} </Link>
             </ListItem>
@@ -73,19 +51,11 @@ const Footer = ({ ...props }) => {
             </ListItem>
           </List>
         </Flex>
-        <Flex
-          flexDirection='column'
-          alignItems={{ base: 'center', lg: 'start' }}
-        >
+        <Flex flexDirection='column' alignItems={{ base: 'center', lg: 'start' }}>
           <Text fontWeight='bold' mb={4}>
             {t('footer.developers').toUpperCase()}
           </Text>
-          <List
-            display='flex'
-            flexDirection='column'
-            alignItems={{ base: 'center', lg: 'start' }}
-            ml={0}
-          >
+          <List display='flex' flexDirection='column' alignItems={{ base: 'center', lg: 'start' }} ml={0}>
             <ListItem>
               <Link href='https://developer.vocdoni.io/' target='_blank'>
                 {t('footer.developer_portal')}
@@ -104,19 +74,11 @@ const Footer = ({ ...props }) => {
             </ListItem>
           </List>
         </Flex>
-        <Flex
-          flexDirection='column'
-          alignItems={{ base: 'center', lg: 'start' }}
-        >
+        <Flex flexDirection='column' alignItems={{ base: 'center', lg: 'start' }}>
           <Text fontWeight='bold' mb={4}>
             {t('footer.resources').toUpperCase()}
           </Text>
-          <List
-            display='flex'
-            flexDirection='column'
-            alignItems={{ base: 'center', lg: 'start' }}
-            ml={0}
-          >
+          <List display='flex' flexDirection='column' alignItems={{ base: 'center', lg: 'start' }} ml={0}>
             <ListItem>
               <Link href='#'>{t('footer.guides')}</Link>
             </ListItem>
@@ -125,19 +87,11 @@ const Footer = ({ ...props }) => {
             </ListItem>
           </List>
         </Flex>
-        <Flex
-          flexDirection='column'
-          alignItems={{ base: 'center', lg: 'start' }}
-        >
+        <Flex flexDirection='column' alignItems={{ base: 'center', lg: 'start' }}>
           <Text fontWeight='bold' mb={4}>
             {t('footer.contact').toUpperCase()}
           </Text>
-          <List
-            display='flex'
-            flexDirection='column'
-            alignItems={{ base: 'center', lg: 'start' }}
-            ml={0}
-          >
+          <List display='flex' flexDirection='column' alignItems={{ base: 'center', lg: 'start' }} ml={0}>
             <ListItem>
               <Link href='mailto:info@vocdoni.com'>info@vocdoni.io</Link>
             </ListItem>
@@ -152,9 +106,7 @@ const Footer = ({ ...props }) => {
         gap={4}
       >
         <Code bg='white'>
-          <Text textAlign='center'>
-            Copyrights 2022 Vocdoni, Inc. All rights reserved
-          </Text>
+          <Text textAlign='center'>Copyrights 2022 Vocdoni, Inc. All rights reserved</Text>
         </Code>
         <Code bg='white'>
           <Link href='#'>
@@ -173,22 +125,10 @@ const Footer = ({ ...props }) => {
             mb={2}
           />
           <Link href='#'>
-            <Icon
-              aria-label={t('link', { link: 'discord' }).toString()}
-              as={FaDiscord}
-              w={6}
-              h={6}
-              cursor='pointer'
-            />
+            <Icon aria-label={t('link', { link: 'discord' }).toString()} as={FaDiscord} w={6} h={6} cursor='pointer' />
           </Link>
           <Link href='#'>
-            <Icon
-              aria-label={t('link', { link: 'github' }).toString()}
-              as={FaGithub}
-              w={6}
-              h={6}
-              cursor='pointer'
-            />
+            <Icon aria-label={t('link', { link: 'github' }).toString()} as={FaGithub} w={6} h={6} cursor='pointer' />
           </Link>
         </Flex>
       </Flex>

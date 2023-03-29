@@ -124,9 +124,7 @@ const ProcessCreate = () => {
               })),
             } as IQuestion)
         ),
-        startDate: data.electionType.autoStart
-          ? undefined
-          : new Date(data.startDate).getTime(),
+        startDate: data.electionType.autoStart ? undefined : new Date(data.startDate).getTime(),
         endDate: new Date(data.endDate).getTime(),
         voteType: { maxVoteOverwrites: Number(data.maxVoteOverwrites) },
       })
@@ -168,12 +166,7 @@ const ProcessCreate = () => {
               {error}
             </Alert>
           )}
-          <Button
-            type='submit'
-            _dark={{ bg: 'black.c90' }}
-            isLoading={sending}
-            disabled={sending}
-          >
+          <Button type='submit' _dark={{ bg: 'black.c90' }} isLoading={sending} disabled={sending}>
             {t('form.process_create.submit')}
           </Button>
         </>

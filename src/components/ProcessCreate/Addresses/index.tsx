@@ -27,12 +27,7 @@ const CreateProcessAddresses = () => {
           onClick={() => append({ address: '', weight: 0 })}
         />
       </HStack>
-      <AddressesForm
-        fields={fields}
-        getValues={getValues}
-        register={register}
-        remove={remove}
-      />
+      <AddressesForm fields={fields} getValues={getValues} register={register} remove={remove} />
     </WrapperFormSection>
   )
 }

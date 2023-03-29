@@ -39,11 +39,7 @@ const SettingsAdvanced = ({ register, getValues }: Props) => {
             alignItems={{ base: 'start', md: 'end' }}
             mb={3}
           >
-            <SettingCheckbox
-              register={register}
-              label={t('form.process_create.weighted_vote')}
-              field='weightedVote'
-            />
+            <SettingCheckbox register={register} label={t('form.process_create.weighted_vote')} field='weightedVote' />
             <SettingCheckbox
               register={register}
               label={t('form.process_create.interruptible')}
