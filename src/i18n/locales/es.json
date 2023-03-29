@@ -108,6 +108,11 @@
     "voters": "",
     "votes": "Votos"
   },
+  "process_actions": {
+    "pause": "",
+    "play": "",
+    "stop": ""
+  },
   "read_less": "Leer menos",
   "read_more": "Leer mas",
   "search": {

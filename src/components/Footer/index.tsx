@@ -60,18 +60,17 @@ const Footer = ({ ...props }) => {
             alignItems={{ base: 'center', lg: 'start' }}
             ml={0}
           >
-            <Link to='#'>
-              <ListItem listStyleType='none'> {t('footer.about')}</ListItem>
-            </Link>
-            <Link to='#'>
-              <ListItem listStyleType='none'>
-                {' '}
-                {t('footer.how_we_work')}
-              </ListItem>
-            </Link>
-            <Link to='#'>
-              <ListItem listStyleType='none'> {t('footer.blog')}</ListItem>
-            </Link>
+            <ListItem listStyleType='none'>
+              <Link to='#'> {t('footer.about')} </Link>
+            </ListItem>
+
+            <ListItem listStyleType='none'>
+              <Link to='#'>{t('footer.how_we_work')}</Link>
+            </ListItem>
+
+            <ListItem listStyleType='none'>
+              <Link to='#'>{t('footer.blog')} </Link>
+            </ListItem>
           </UnorderedList>
         </Flex>
         <Flex
@@ -87,23 +86,22 @@ const Footer = ({ ...props }) => {
             alignItems={{ base: 'center', lg: 'start' }}
             ml={0}
           >
-            <Link to='#'>
-              <ListItem listStyleType='none'>
+            <ListItem listStyleType='none'>
+              <Link to='https://developer.vocdoni.io/' target='_blank'>
                 {t('footer.developer_portal')}
-              </ListItem>
-            </Link>
-            <Link to='#'>
-              <ListItem listStyleType='none'>
-                {' '}
+              </Link>
+            </ListItem>
+            <ListItem listStyleType='none'>
+              <Link to='https://vocdoni.io/api' target='_blank'>
                 {t('footer.vocdoni_api')}
-              </ListItem>
-            </Link>
-            <Link to='#'>
-              <ListItem listStyleType='none'>
-                {' '}
+              </Link>
+            </ListItem>
+
+            <ListItem listStyleType='none'>
+              <Link to='https://vocdoni.app/' target='_blank'>
                 {t('footer.vocdoni_app')}
-              </ListItem>
-            </Link>
+              </Link>
+            </ListItem>
           </UnorderedList>
         </Flex>
         <Flex
@@ -119,12 +117,12 @@ const Footer = ({ ...props }) => {
             alignItems={{ base: 'center', lg: 'start' }}
             ml={0}
           >
-            <Link to='#'>
-              <ListItem listStyleType='none'> {t('footer.guides')}</ListItem>
-            </Link>
-            <Link to='#'>
-              <ListItem listStyleType='none'> {t('footer.tutorials')}</ListItem>
-            </Link>
+            <ListItem listStyleType='none'>
+              <Link to='#'>{t('footer.guides')}</Link>
+            </ListItem>
+            <ListItem listStyleType='none'>
+              <Link to='#'>{t('footer.tutorials')}</Link>
+            </ListItem>
           </UnorderedList>
         </Flex>
         <Flex
@@ -140,9 +138,9 @@ const Footer = ({ ...props }) => {
             alignItems={{ base: 'center', lg: 'start' }}
             ml={0}
           >
-            <Link to='#'>
-              <ListItem listStyleType='none'>info@vocdoni.io</ListItem>
-            </Link>
+            <ListItem listStyleType='none'>
+              <Link to='mailto:info@vocdoni.com'>info@vocdoni.io</Link>
+            </ListItem>
           </UnorderedList>
         </Flex>
       </Grid>

@@ -4,7 +4,7 @@ import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(cardAnatomy.keys)
 
-const cardCommonStyles = {
+const card_common_styles = {
   container: {
     width: '100%',
     padding: 0,
@@ -24,20 +24,19 @@ const cardCommonStyles = {
 }
 
 const organization = definePartsStyle({
-  ...cardCommonStyles,
+  ...card_common_styles,
   container: {
-    ...cardCommonStyles.container,
+    ...card_common_styles.container,
     maxW: 72,
     overflow: 'hidden',
     bgColor: 'transparent',
   },
   header: {
-    ...cardCommonStyles.header,
+    ...card_common_styles.header,
     overflow: 'hidden',
-    // borderTopRadius: '5',
   },
   body: {
-    ...cardCommonStyles.body,
+    ...card_common_styles.body,
     bgColor: 'white',
     px: 3,
     py: 2,
@@ -45,7 +44,7 @@ const organization = definePartsStyle({
     fontWeight: 'bold',
   },
   footer: {
-    ...cardCommonStyles.footer,
+    ...card_common_styles.footer,
     display: 'flex',
     flexDirection: 'column',
     bgColor: 'white',
@@ -66,22 +65,22 @@ const organization = definePartsStyle({
   },
 })
 
-const processImg = definePartsStyle({
-  ...cardCommonStyles,
+const process_img = definePartsStyle({
+  ...card_common_styles,
   container: {
-    ...cardCommonStyles.container,
+    ...card_common_styles.container,
     maxW: 72,
     transition: 'background .3s ease-in-out',
     overflow: 'hidden',
     bgColor: 'transparent',
   },
   header: {
-    ...cardCommonStyles.header,
+    ...card_common_styles.header,
     overflow: 'hidden',
-    borderTopRadius: '10',
+    borderTopRadius: 10,
   },
   body: {
-    ...cardCommonStyles.body,
+    ...card_common_styles.body,
     minH: 20,
     bgColor: 'white',
     px: 3,
@@ -102,7 +101,7 @@ const processImg = definePartsStyle({
     },
   },
   footer: {
-    ...cardCommonStyles.footer,
+    ...card_common_styles.footer,
     display: 'flex',
     justifyContent: 'center',
     bgColor: 'white',
@@ -134,24 +133,24 @@ const processImg = definePartsStyle({
   },
 })
 
-const processDescription = definePartsStyle({
-  ...cardCommonStyles,
+const process_description = definePartsStyle({
+  ...card_common_styles,
   container: {
-    ...cardCommonStyles.container,
+    ...card_common_styles.container,
     display: 'flex',
     flexDirection: 'column',
-    maxW: '500px',
+    maxW: 124,
   },
   header: {
-    ...cardCommonStyles.header,
+    ...card_common_styles.header,
     alignSelf: 'end',
   },
 
   body: {
-    ...cardCommonStyles.body,
+    ...card_common_styles.body,
     boxShadow: '1px 1px 10px 2px lightgray',
-    borderLeftRadius: '10',
-    borderBottomRightRadius: '10',
+    borderLeftRadius: 10,
+    borderBottomRightRadius: 10,
     py: 5,
     px: 7,
 
@@ -217,7 +216,7 @@ const processDescription = definePartsStyle({
 
 const vote = definePartsStyle({
   container: {
-    ...cardCommonStyles.container,
+    ...card_common_styles.container,
     direction: 'column',
     width: 'auto',
     maxWidth: 80,
@@ -238,11 +237,11 @@ const vote = definePartsStyle({
     },
   },
   header: {
-    ...cardCommonStyles.header,
+    ...card_common_styles.header,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: '10px',
+    gap: 2.5,
 
     '& div:nth-of-type(1)': {
       bg: 'branding.lightpurple',
@@ -269,7 +268,7 @@ const vote = definePartsStyle({
     },
   },
   body: {
-    ...cardCommonStyles.body,
+    ...card_common_styles.body,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'stretch',
@@ -292,17 +291,17 @@ const vote = definePartsStyle({
 
 const results = definePartsStyle({
   container: {
-    ...cardCommonStyles.container,
+    ...card_common_styles.container,
     px: 6,
     py: 5,
     borderRadius: 25,
   },
   header: {
-    ...cardCommonStyles.header,
+    ...card_common_styles.header,
     fontSize: 20,
   },
   body: {
-    ...cardCommonStyles.body,
+    ...card_common_styles.body,
     display: 'flex',
     flexDirection: 'column',
     gap: 3,
@@ -313,8 +312,8 @@ const results = definePartsStyle({
 
 const variantsCards = {
   organization,
-  processImg,
-  processDescription,
+  process_img,
+  process_description,
   vote,
   results,
 }
