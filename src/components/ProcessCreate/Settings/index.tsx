@@ -1,9 +1,14 @@
 import { Flex, FormControl, FormErrorMessage, FormLabel, Input, Text } from '@chakra-ui/react'
+import { useRef } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import WrapperFormSection from '../WrapperFormSection'
 import Advanced from './Advanced'
 import SettignsAutostart from './Autostart'
+
+// interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+//   // other props
+// }
 
 const CreateProcessSettings = () => {
   const {
@@ -12,6 +17,7 @@ const CreateProcessSettings = () => {
     watch,
     formState: { errors },
   } = useFormContext()
+
   const { t } = useTranslation()
 
   watch('weightedVote')
@@ -25,6 +31,12 @@ const CreateProcessSettings = () => {
     message: t('form.error.field_is_required'),
   }
 
+  const { ref: startRef } = register('startDate')
+  const { ref: endRef } = register('endDate')
+
+  const startDateRef = useRef<HTMLInputElement | null>(null)
+  const endDateRef = useRef<HTMLInputElement | null>(null)
+
   return (
     <WrapperFormSection>
       <Flex direction='column' gap={4}>
@@ -35,18 +47,45 @@ const CreateProcessSettings = () => {
         {!getValues().electionType.autoStart && (
           <FormControl isInvalid={!!errors.startDate}>
             <FormLabel whiteSpace='nowrap'>{t('form.process_create.date_start')}</FormLabel>
+
             <Input
               type='date'
               {...register(`startDate`, {
                 required,
               })}
+              ref={(e) => {
+                startRef(e)
+                startDateRef.current = e
+              }}
+              onClick={() => {
+                try {
+                  startDateRef.current?.showPicker()
+                } catch (err) {
+                  console.log(err)
+                }
+              }}
             />
+
             <FormErrorMessage>{errors.startDate?.message?.toString()}</FormErrorMessage>
           </FormControl>
         )}
         <FormControl isInvalid={!!errors.endDate}>
           <FormLabel>{t('form.process_create.date_end')}</FormLabel>
-          <Input type='date' {...register(`endDate`, { required })} />
+          <Input
+            type='date'
+            {...register(`endDate`, { required })}
+            ref={(e) => {
+              endRef(e)
+              endDateRef.current = e
+            }}
+            onClick={() => {
+              try {
+                endDateRef.current?.showPicker()
+              } catch (err) {
+                console.log(err)
+              }
+            }}
+          />
           <FormErrorMessage>{errors.endDate?.message?.toString()}</FormErrorMessage>
         </FormControl>
         <Advanced register={register} getValues={getValues} />
