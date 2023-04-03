@@ -30,8 +30,8 @@ const CreateProcessSettings = () => {
   const { ref: startRef } = register('startDate')
   const { ref: endRef } = register('endDate')
 
-  const startDateRef = useRef<HTMLInputElement | null>(null)
-  const endDateRef = useRef<HTMLInputElement | null>(null)
+  const startDateRef = useRef<HTMLInputElement | null>()
+  const endDateRef = useRef<HTMLInputElement | null>()
 
   return (
     <WrapperFormSection>
@@ -53,7 +53,7 @@ const CreateProcessSettings = () => {
                 startRef(e)
                 startDateRef.current = e
               }}
-              onClick={() => {
+              onFocus={() => {
                 try {
                   startDateRef.current?.showPicker()
                 } catch (err) {
@@ -74,7 +74,7 @@ const CreateProcessSettings = () => {
               endRef(e)
               endDateRef.current = e
             }}
-            onClick={() => {
+            onFocus={() => {
               try {
                 endDateRef.current?.showPicker()
               } catch (err) {
