@@ -3,8 +3,7 @@ import { useClientContext } from '@vocdoni/react-components'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-
-import ProcessCard from '../Process/CardDesc'
+import ProcessCardDesc from '../Process/CardDesc'
 import SearchInput from '../Search/Input'
 import Header from './Header'
 
@@ -70,9 +69,14 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
         </TabList>
         <TabPanels>
           <TabPanel>
-            {(!electionsList || !electionsList.length) && (
+            {!electionsList && (
               <Flex justifyContent='center' mt={4}>
                 <Spinner />
+              </Flex>
+            )}
+            {!electionsList?.length && (
+              <Flex justifyContent='center' mt={4}>
+                <Text>No elections</Text>
               </Flex>
             )}
 
@@ -85,7 +89,7 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
                   alignItems='center'
                   onClick={() => navigate(`/processes/${election.id}`)}
                 >
-                  <ProcessCard election={election} />
+                  <ProcessCardDesc election={election} />
                 </GridItem>
               ))}
               <div ref={refObserver}></div>

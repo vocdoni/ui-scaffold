@@ -1,6 +1,6 @@
 import { Box, Card, CardBody, CardHeader, Text } from '@chakra-ui/react'
 import { ElectionDescription, ElectionProvider, ElectionStatusBadge, ElectionTitle } from '@vocdoni/react-components'
-import { PublishedElection } from '@vocdoni/sdk'
+import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { format } from 'date-fns'
 import { useTranslation } from 'react-i18next'
 import { ProcessDate } from './Date'
@@ -22,15 +22,21 @@ const ProcessCardDescription = ({ election }: { election: PublishedElection }) =
               <ElectionDescription />
             </Box>
           </Box>
-          <Box>
+          {election.status !== ElectionStatus.CANCELED ? (
             <Box>
-              <ProcessDate />
+              <Box>
+                <ProcessDate />
+              </Box>
+              <Box>
+                <Text>{t('process.voters')}</Text>
+                <Text>{election.voteCount}</Text>
+              </Box>
             </Box>
+          ) : (
             <Box>
-              <Text>{t('process.voters')}</Text>
-              <Text>{election.voteCount}</Text>
+              <Text>{t('process.date.canceled')}</Text>
             </Box>
-          </Box>
+          )}
         </CardBody>
       </Card>
     </ElectionProvider>

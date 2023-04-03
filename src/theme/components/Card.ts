@@ -142,7 +142,13 @@ const processDescription = definePartsStyle({
   },
   header: {
     ...cardCommonStyles.header,
+    position: 'relative',
+    zIndex: 10,
     alignSelf: 'end',
+
+    '& span': {
+      borderBottomRadius: 'none',
+    },
   },
 
   body: {
@@ -186,7 +192,13 @@ const processDescription = definePartsStyle({
     '& > div:nth-of-type(2)': {
       display: 'flex',
       justifyContent: 'center',
+      alignItems: 'center',
       bgColor: 'white',
+      minH: 14,
+
+      '& > p': {
+        color: 'branding.red',
+      },
 
       '& div': {
         width: '100%',
@@ -207,18 +219,18 @@ const processDescription = definePartsStyle({
         bgClip: 'text',
       },
       '& div p:nth-of-type(even)': {
-        fontWeight: 'bold',
+        paddingLeft: 'px',
       },
     },
   },
 })
 
-const vote = definePartsStyle({
+const aside = definePartsStyle({
   container: {
     ...cardCommonStyles.container,
     direction: 'column',
     width: 'auto',
-    maxWidth: 80,
+    maxWidth: 88,
     gap: 11,
     borderRadius: 10,
     padding: 5,
@@ -259,6 +271,7 @@ const vote = definePartsStyle({
       'p:nth-of-type(1)': {
         fontSize: 20,
         fontWeight: 'bold',
+        whiteSpace: 'nowrap',
       },
 
       span: {
@@ -313,7 +326,7 @@ const variantsCards = {
   organization,
   'process-img': processImg,
   'process-description': processDescription,
-  vote,
+  aside,
   results,
 }
 

@@ -5,7 +5,6 @@ import {
   Button,
   Flex,
   Heading,
-  Icon,
   Image,
   Menu,
   MenuButton,
@@ -18,10 +17,9 @@ import {
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa'
 import { HiOutlineEllipsisHorizontalCircle } from 'react-icons/hi2'
-import { Link } from 'react-router-dom'
 import { ExplorerBaseURL } from '../../constants'
+import ShareRrss from '../Share/Rrss'
 
 const OrganizationHeader = ({ address }: { address: string | undefined }) => {
   const { t } = useTranslation()
@@ -51,7 +49,7 @@ const OrganizationHeader = ({ address }: { address: string | undefined }) => {
         <Flex
           direction={{ base: 'column', md: 'row' }}
           justifyContent={{ md: 'space-between' }}
-          alignItems='center'
+          alignItems={{ base: 'center', md: 'start' }}
           gap={{ base: 2, md: 8 }}
           mb={{ base: 2, md: 4 }}
         >
@@ -136,23 +134,8 @@ const OrganizationHeader = ({ address }: { address: string | undefined }) => {
               </Text>
             </Flex>
           </Flex>
-          <Flex flexDirection={{ base: 'row', md: 'column' }} pt='1'>
-            <Link to='#'></Link>
-            <Icon aria-label={t('link', { link: 'twitter' }).toString()} as={FaTwitter} w={6} h={6} cursor='pointer' />
-            <Link to='#'>
-              <Icon
-                aria-label={t('link', { link: 'discord' }).toString()}
-                as={FaDiscord}
-                w={6}
-                h={6}
-                cursor='pointer'
-                mt={{ md: 1 }}
-                mx={{ base: 5, md: 0 }}
-              />
-            </Link>
-            <Link to='#'>
-              <Icon aria-label={t('link', { link: 'github' }).toString()} as={FaGithub} w={6} h={6} cursor='pointer' />
-            </Link>
+          <Flex flexDirection={{ base: 'row', md: 'column' }} alignItems='start' gap={3} pt='1'>
+            <ShareRrss />
           </Flex>
         </Flex>
         <Flex

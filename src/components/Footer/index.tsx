@@ -115,19 +115,15 @@ const Footer = ({ ...props }) => {
         </Code>
 
         <Flex justifyContent='center' alignItems='center' gap={6} mb={4}>
-          <Link href='#'></Link>
-          <Icon
-            aria-label={t('link', { link: 'twitter' }).toString()}
-            as={FaTwitter}
-            w={6}
-            h={6}
-            cursor='pointer'
-            mb={2}
-          />
-          <Link href='#'>
+          <Link href='https://twitter.com/vocdoni'>
+            <Icon aria-label={t('link', { link: 'twitter' }).toString()} as={FaTwitter} w={6} h={6} cursor='pointer' />
+          </Link>
+
+          <Link href='https://chat.vocdoni.io/'>
             <Icon aria-label={t('link', { link: 'discord' }).toString()} as={FaDiscord} w={6} h={6} cursor='pointer' />
           </Link>
-          <Link href='#'>
+
+          <Link href='https://github.com/vocdoni'>
             <Icon aria-label={t('link', { link: 'github' }).toString()} as={FaGithub} w={6} h={6} cursor='pointer' />
           </Link>
         </Flex>

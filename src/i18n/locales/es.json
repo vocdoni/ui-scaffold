@@ -4,6 +4,7 @@
     "connect_and_vote": "Connect and vote on your favorite proposals",
     "connect_to_vote": "Conectate para votar",
     "connect_your_wallet": "Connectar vuestra cartera para ver el estado de la propuesta...",
+    "explorer": "",
     "has_already_voted": "",
     "is_able_to_vote": "Conectado. Estás en el censo",
     "is_not_in_census": "",
@@ -85,13 +86,14 @@
       "cancel_description": "",
       "continue_description": "",
       "error_title": "",
-      "pause_description": "",
-      "waiting_title": "",
       "pause": "",
+      "pause_description": "",
       "play": "",
-      "stop": ""
+      "stop": "",
+      "waiting_title": ""
     },
     "date": {
+      "canceled": "",
       "ended": "Finalizado",
       "ends": "Finaliza",
       "relative": "{{ date, relative(past: hace %time; future: en %time) }}",

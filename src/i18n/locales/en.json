@@ -4,6 +4,7 @@
     "connect_and_vote": "Connect and vote on your favorite proposals",
     "connect_to_vote": "Connect to vote",
     "connect_your_wallet": "Connect your wallet to view the status of the proposal...",
+    "explorer": "View your vote in explorer",
     "has_already_voted": "You have already voted",
     "is_able_to_vote": "Connected. You are elegible for voting",
     "is_not_in_census": "You are not in census",
@@ -85,13 +86,14 @@
       "cancel_description": "cancelling the \"{{ election.title.default }}\" election process",
       "continue_description": "continuing the \"{{ election.title.default }}\" election process",
       "error_title": "There was some error while executing the transaction",
-      "pause_description": "pausing the \"{{ election.title.default }}\" election process",
-      "waiting_title": "Waiting for transaction confirmation...",
       "pause": "pause",
+      "pause_description": "pausing the \"{{ election.title.default }}\" election process",
       "play": "play",
-      "stop": "stop"
+      "stop": "stop",
+      "waiting_title": "Waiting for transaction confirmation..."
     },
     "date": {
+      "canceled": "Process canceled",
       "ended": "Process ended",
       "ends": "Process ends",
       "relative": "{{ date, relative(past: %time ago; future: in %time) }}",
