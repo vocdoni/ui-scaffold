@@ -1,49 +1,27 @@
 import { EmailIcon } from '@chakra-ui/icons'
-import { Box, Button, Card, CardBody, CardHeader, Circle, Text } from '@chakra-ui/react'
+import { Box, Card, CardBody, CardHeader, Circle, Text } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { HR, useClientContext, useElection } from '@vocdoni/react-components'
 import { ElectionStatus } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
-import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useAccount } from 'wagmi'
 
 interface Props {
+  isInCensus: boolean
+  hasAlreadyVoted: boolean
   handleTabsChange: (index: number) => void
   order: any
   alignSelf: any
 }
 
-const ProcessAside = ({ handleTabsChange, order, alignSelf }: Props) => {
+const ProcessAside = ({ handleTabsChange, isInCensus, hasAlreadyVoted, order, alignSelf }: Props) => {
   const { t } = useTranslation()
   const { election, isAbleToVote } = useElection()
-  const { isConnected } = useAccount()
 
-  const { account, client } = useClientContext()
-
-  const [isInCensus, setIsInCensus] = useState<boolean>(false)
-  const [hasAlreadyVoted, setHasAlreadyVoted] = useState<boolean>(false)
-
-  useEffect(() => {
-    if (!isConnected || !client || account || !election) return
-
-    client
-      .isInCensus(election?.id)
-      .then((res) => {
-        setIsInCensus(res)
-      })
-      .catch(console.log)
-
-    client
-      .hasAlreadyVoted(election?.id)
-      .then((res) => {
-        setHasAlreadyVoted(res)
-      })
-      .catch(console.log)
-  }, [account, isConnected, client, election, isInCensus, hasAlreadyVoted])
+  const { account } = useClientContext()
 
   return (
-    <Card variant='vote' order={order} alignSelf={alignSelf}>
+    <Card variant='aside' order={order} alignSelf={alignSelf}>
       <CardHeader
         onClick={() => {
           if (election?.status === ElectionStatus.RESULTS) handleTabsChange(1)
@@ -56,9 +34,11 @@ const ProcessAside = ({ handleTabsChange, order, alignSelf }: Props) => {
         <Box>
           <Text>{getStatusText(t, election?.status)}</Text>
 
-          <Text>
-            <Text as='span'>{election?.voteCount}</Text> {t('process.votes')}
-          </Text>
+          {election?.status !== ElectionStatus.CANCELED && (
+            <Text>
+              <Text as='span'>{election?.voteCount}</Text> {t('process.votes')}
+            </Text>
+          )}
         </Box>
       </CardHeader>
 
@@ -68,12 +48,10 @@ const ProcessAside = ({ handleTabsChange, order, alignSelf }: Props) => {
         <CardBody>
           <Text textAlign='center'>
             {isAbleToVote && t('aside.is_able_to_vote')}
-            {!isInCensus && t('aside.is_not_in_census')}
-            {hasAlreadyVoted && t('aside.has_already_voted')}
+            {!isAbleToVote && !isInCensus && t('aside.is_not_in_census')}
+            {!isAbleToVote && hasAlreadyVoted && t('aside.has_already_voted')}
           </Text>
-          <Button isDisabled={isAbleToVote} type='submit' form='election-create-form' variant='brand_vote'>
-            {t('aside.vote')}
-          </Button>
+          <ConnectButton chainStatus='none' showBalance={false} label={t('aside.vote').toString()} />
         </CardBody>
       )}
       {election?.status === ElectionStatus.ONGOING && !account && (

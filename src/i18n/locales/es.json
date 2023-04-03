@@ -8,6 +8,7 @@
     "is_able_to_vote": "Conectado. Estás en el censo",
     "is_not_in_census": "",
     "proposers": "Propósitos",
+    "verify_vote_on_explorer": "",
     "vote": "Vota",
     "voters": "Votantes"
   },
@@ -62,7 +63,11 @@
     "active_voting": "",
     "more_active_organizations": ""
   },
-  "link": "",
+  "link": {
+    "discord": "",
+    "github": "",
+    "twitter": ""
+  },
   "loading": "Cargando...",
   "menu": {
     "connect": "Conectar",
@@ -85,13 +90,14 @@
       "cancel_description": "",
       "continue_description": "",
       "error_title": "",
-      "pause_description": "",
-      "waiting_title": "",
       "pause": "",
+      "pause_description": "",
       "play": "",
-      "stop": ""
+      "stop": "",
+      "waiting_title": ""
     },
     "date": {
+      "canceled": "",
       "ended": "Finalizado",
       "ends": "Finaliza",
       "relative": "{{ date, relative(past: hace %time; future: en %time) }}",
@@ -120,6 +126,10 @@
   "read_more": "Leer mas",
   "search": {
     "input_placeholder": ""
+  },
+  "share": {
+    "facebook": "",
+    "twitter": ""
   },
   "submited_votes": "Votos emitidos",
   "voting_elections": "Votaciones",
