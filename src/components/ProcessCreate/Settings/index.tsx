@@ -54,7 +54,7 @@ const CreateProcessSettings = () => {
                 startDateRef.current = e
               }}
               onFocus={() => {
-                if (startDateRef?.current) startDateRef.current?.showPicker()
+                if (startDateRef?.current && 'showPicker' in startDateRef.current) startDateRef.current?.showPicker()
               }}
             />
 
@@ -71,7 +71,7 @@ const CreateProcessSettings = () => {
               endDateRef.current = e
             }}
             onFocus={() => {
-              if (endDateRef?.current) endDateRef.current?.showPicker()
+              if (endDateRef?.current && 'showPicker' in endDateRef.current) endDateRef.current?.showPicker()
             }}
           />
           <FormErrorMessage>{errors.endDate?.message?.toString()}</FormErrorMessage>
