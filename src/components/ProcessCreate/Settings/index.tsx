@@ -53,7 +53,7 @@ const CreateProcessSettings = () => {
                 startRef(e)
                 startDateRef.current = e
               }}
-              onFocus={() => {
+              onClick={() => {
                 if (startDateRef.current && 'showPicker' in startDateRef.current) startDateRef.current.showPicker()
               }}
             />
@@ -70,7 +70,7 @@ const CreateProcessSettings = () => {
               endRef(e)
               endDateRef.current = e
             }}
-            onFocus={() => {
+            onClick={() => {
               if (endDateRef.current && 'showPicker' in endDateRef.current) endDateRef.current.showPicker()
             }}
           />
