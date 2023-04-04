@@ -6,12 +6,12 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 const baseStyle = definePartsStyle({
   question: {
     bg: 'white',
-    borderRadius: '20px',
-    padding: '20px',
+    borderRadius: 5,
+    padding: 5,
   },
 
   description: {
-    marginTop: '15px',
+    marginTop: 4,
     color: 'gray',
   },
   radioGroup: {

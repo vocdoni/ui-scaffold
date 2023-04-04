@@ -8,7 +8,7 @@ const Footer = ({ ...props }) => {
   const { t } = useTranslation()
 
   return (
-    <Box pt='20px' {...props}>
+    <Box pt={5} {...props}>
       <Grid
         gridTemplateColumns={{
           sm: 'repeat(2, 1fr)',
@@ -20,18 +20,18 @@ const Footer = ({ ...props }) => {
           md: 'repeat(2, 1fr)',
           lg: 'auto',
         }}
-        gap={{ base: '20px', md: '40px', lg: 0 }}
+        gap={{ base: 5, md: 10, lg: 0 }}
       >
         <Flex
           flexDirection='column'
           alignItems={{ base: 'center', lg: 'start' }}
-          px={4}
+          paddingX={4}
           gap={2}
           gridColumn={{ base: '1/2', sm: '1/3', md: '1/5', lg: '1/2' }}
           gridRow={{ base: '5/6', md: '2/3', lg: '1/2' }}
         >
-          <Img src={vocdoni_logo} maxW='140px'></Img>
-          <Img src={`${process.env.PUBLIC_URL}/assets/powered_by_aragon.png`} maxW='140px'></Img>
+          <Img src={vocdoni_logo} maxW={36}></Img>
+          <Img src={`${process.env.PUBLIC_URL}/assets/powered_by_aragon.png`} maxW={36}></Img>
         </Flex>
         <Flex flexDirection='column' alignItems={{ base: 'center', lg: 'start' }}>
           <Text fontWeight='bold' mb={4}>
@@ -115,20 +115,16 @@ const Footer = ({ ...props }) => {
         </Code>
 
         <Flex justifyContent='center' alignItems='center' gap={6} mb={4}>
-          <Link href='#'></Link>
-          <Icon
-            aria-label={t('link', { link: 'twitter' }).toString()}
-            as={FaTwitter}
-            w={6}
-            h={6}
-            cursor='pointer'
-            mb={2}
-          />
-          <Link href='#'>
-            <Icon aria-label={t('link', { link: 'discord' }).toString()} as={FaDiscord} w={6} h={6} cursor='pointer' />
+          <Link href='https://twitter.com/vocdoni'>
+            <Icon aria-label={t('link.twitter').toString()} as={FaTwitter} w={6} h={6} cursor='pointer' />
           </Link>
-          <Link href='#'>
-            <Icon aria-label={t('link', { link: 'github' }).toString()} as={FaGithub} w={6} h={6} cursor='pointer' />
+
+          <Link href='https://chat.vocdoni.io/'>
+            <Icon aria-label={t('link.discord').toString()} as={FaDiscord} w={6} h={6} cursor='pointer' />
+          </Link>
+
+          <Link href='https://github.com/vocdoni'>
+            <Icon aria-label={t('link.github').toString()} as={FaGithub} w={6} h={6} cursor='pointer' />
           </Link>
         </Flex>
       </Flex>

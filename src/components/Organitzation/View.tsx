@@ -1,10 +1,10 @@
 import { Flex, Grid, GridItem, Spinner, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
 import { useClientContext } from '@vocdoni/react-components'
+import { PublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-
-import ProcessCard from '../Process/CardDesc'
+import ProcessCardDescription from '../Process/CardDesc'
 import SearchInput from '../Search/Input'
 import Header from './Header'
 
@@ -13,9 +13,13 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
   const { client } = useClientContext()
   const navigate = useNavigate()
 
-  const [electionsList, setElectionsList] = useState<any>()
-  const [page, setPage] = useState(0)
+  const [electionsList, setElectionsList] = useState<PublishedElection[]>([])
+  const [loading, setLoading] = useState(false)
+  const [loaded, setLoaded] = useState(false)
+  const [error, setError] = useState(false)
+
   const refObserver = useRef<any>()
+  const [page, setPage] = useState(0)
   useObserver(refObserver, setPage)
 
   useEffect(() => {
@@ -23,18 +27,27 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
   }, [address])
 
   useEffect(() => {
-    if (!client || page === 0) return
+    setLoading(true)
+
+    if (!client || page === 0 || error) return
 
     client
-      .fetchElections('0x' + address, page - 1)
+      .fetchElections(address, page - 1)
       .then((res) => {
         setElectionsList((prev: any) => {
           if (prev) return [...prev, ...res]
           return res
         })
       })
-      .catch(console.log)
-  }, [client, address, page])
+      .catch((err) => {
+        console.log('fetch elections error', err)
+        setError(err.message)
+      })
+      .finally(() => {
+        setLoading(false)
+        setLoaded(true)
+      })
+  }, [client, address, page, error])
 
   const templateColumnsAllRounds =
     electionsList?.length === 1
@@ -70,12 +83,6 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
         </TabList>
         <TabPanels>
           <TabPanel>
-            {(!electionsList || !electionsList.length) && (
-              <Flex justifyContent='center' mt={4}>
-                <Spinner />
-              </Flex>
-            )}
-
             <Grid templateColumns={templateColumnsAllRounds} gap={4}>
               {electionsList?.map((election: any, idx: number) => (
                 <GridItem
@@ -85,11 +92,16 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
                   alignItems='center'
                   onClick={() => navigate(`/processes/${election.id}`)}
                 >
-                  <ProcessCard election={election} />
+                  <ProcessCardDescription election={election} />
                 </GridItem>
               ))}
               <div ref={refObserver}></div>
             </Grid>
+            <Flex justifyContent='center' mt={4}>
+              {loading && <Spinner />}
+              {loaded && !electionsList.length && <Text>{t('organization.elections_list_empty')}</Text>}
+              {error && <Text>{error}</Text>}
+            </Flex>
           </TabPanel>
           <TabPanel>
             <Text textAlign='center'>{t('work_in_progress')}</Text>

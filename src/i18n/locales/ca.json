@@ -8,6 +8,7 @@
     "is_able_to_vote": "Conectat. Estàs en el cens",
     "is_not_in_census": "",
     "proposers": "Propòsits",
+    "verify_vote_on_explorer": "",
     "vote": "Vota",
     "voters": "Votants"
   },
@@ -62,7 +63,11 @@
     "active_voting": "",
     "more_active_organizations": ""
   },
-  "link": "Enllaç a {{link}}",
+  "link": {
+    "discord": "",
+    "github": "",
+    "twitter": ""
+  },
   "loading": "Carregant...",
   "menu": {
     "connect": "Connecta",
@@ -85,13 +90,14 @@
       "cancel_description": "",
       "continue_description": "",
       "error_title": "",
-      "pause_description": "",
-      "waiting_title": "",
       "pause": "",
+      "pause_description": "",
       "play": "",
-      "stop": ""
+      "stop": "",
+      "waiting_title": ""
     },
     "date": {
+      "canceled": "",
       "ended": "Finalitzat",
       "ends": "Acaba",
       "relative": "{{ date, relative(past: fa %time; future: en %time) }}",
@@ -120,6 +126,10 @@
   "read_more": "Llegir més",
   "search": {
     "input_placeholder": ""
+  },
+  "share": {
+    "facebook": "",
+    "twitter": ""
   },
   "submited_votes": "Vots emesos",
   "voting_elections": "Votacions",

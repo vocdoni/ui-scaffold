@@ -8,6 +8,7 @@
     "is_able_to_vote": "Connected. You are elegible for voting",
     "is_not_in_census": "You are not in census",
     "proposers": "Proposers",
+    "verify_vote_on_explorer": "",
     "vote": "Vote",
     "voters": "Voters"
   },
@@ -62,7 +63,11 @@
     "active_voting": "Active voting",
     "more_active_organizations": "More active organizations"
   },
-  "link": "Link to {{link}}",
+  "link": {
+    "discord": "Link to Vocdoni's discord",
+    "github": "Link to Vocdoni's github",
+    "twitter": "Link to Vocdoni's twitter"
+  },
   "loading": "Loading...",
   "menu": {
     "connect": "Connect",
@@ -85,13 +90,14 @@
       "cancel_description": "cancelling the \"{{ election.title.default }}\" election process",
       "continue_description": "continuing the \"{{ election.title.default }}\" election process",
       "error_title": "There was some error while executing the transaction",
-      "pause_description": "pausing the \"{{ election.title.default }}\" election process",
-      "waiting_title": "Waiting for transaction confirmation...",
       "pause": "pause",
+      "pause_description": "pausing the \"{{ election.title.default }}\" election process",
       "play": "play",
-      "stop": "stop"
+      "stop": "stop",
+      "waiting_title": "Waiting for transaction confirmation..."
     },
     "date": {
+      "canceled": "Process canceled",
       "ended": "Process ended",
       "ends": "Process ends",
       "relative": "{{ date, relative(past: %time ago; future: in %time) }}",
@@ -120,6 +126,10 @@
   "read_more": "Read more",
   "search": {
     "input_placeholder": "Search"
+  },
+  "share": {
+    "facebook": "Share to twitter",
+    "twitter": "Share to twitter"
   },
   "submited_votes": "Submitted votes",
   "voting_elections": "Voting elections",
