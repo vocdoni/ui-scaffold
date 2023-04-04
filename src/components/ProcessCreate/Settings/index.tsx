@@ -1,4 +1,5 @@
 import { Flex, FormControl, FormErrorMessage, FormLabel, Input, Text } from '@chakra-ui/react'
+import { useRef } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import WrapperFormSection from '../WrapperFormSection'
@@ -12,6 +13,7 @@ const CreateProcessSettings = () => {
     watch,
     formState: { errors },
   } = useFormContext()
+
   const { t } = useTranslation()
 
   watch('weightedVote')
@@ -25,6 +27,12 @@ const CreateProcessSettings = () => {
     message: t('form.error.field_is_required'),
   }
 
+  const { ref: startRef } = register('startDate')
+  const { ref: endRef } = register('endDate')
+
+  const startDateRef = useRef<HTMLInputElement | null>()
+  const endDateRef = useRef<HTMLInputElement | null>()
+
   return (
     <WrapperFormSection>
       <Flex direction='column' gap={4}>
@@ -35,18 +43,37 @@ const CreateProcessSettings = () => {
         {!getValues().electionType.autoStart && (
           <FormControl isInvalid={!!errors.startDate}>
             <FormLabel whiteSpace='nowrap'>{t('form.process_create.date_start')}</FormLabel>
+
             <Input
               type='date'
               {...register(`startDate`, {
                 required,
               })}
+              ref={(e) => {
+                startRef(e)
+                startDateRef.current = e
+              }}
+              onClick={() => {
+                if (startDateRef.current && 'showPicker' in startDateRef.current) startDateRef.current.showPicker()
+              }}
             />
+
             <FormErrorMessage>{errors.startDate?.message?.toString()}</FormErrorMessage>
           </FormControl>
         )}
         <FormControl isInvalid={!!errors.endDate}>
           <FormLabel>{t('form.process_create.date_end')}</FormLabel>
-          <Input type='date' {...register(`endDate`, { required })} />
+          <Input
+            type='date'
+            {...register(`endDate`, { required })}
+            ref={(e) => {
+              endRef(e)
+              endDateRef.current = e
+            }}
+            onClick={() => {
+              if (endDateRef.current && 'showPicker' in endDateRef.current) endDateRef.current.showPicker()
+            }}
+          />
           <FormErrorMessage>{errors.endDate?.message?.toString()}</FormErrorMessage>
         </FormControl>
         <Advanced register={register} getValues={getValues} />
