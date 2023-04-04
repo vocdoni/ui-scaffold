@@ -1,5 +1,5 @@
 import { Flex, FormControl, FormErrorMessage, FormLabel, Input, Text } from '@chakra-ui/react'
-import { useRef } from 'react'
+import { MutableRefObject, useRef } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import WrapperFormSection from '../WrapperFormSection'
@@ -29,9 +29,12 @@ const CreateProcessSettings = () => {
 
   const { ref: startRef } = register('startDate')
   const { ref: endRef } = register('endDate')
-
   const startDateRef = useRef<HTMLInputElement | null>()
   const endDateRef = useRef<HTMLInputElement | null>()
+
+  const showPicker = (ref: MutableRefObject<HTMLInputElement | null | undefined>) => {
+    if (ref.current && 'showPicker' in ref.current) ref.current.showPicker()
+  }
 
   return (
     <WrapperFormSection>
@@ -39,11 +42,10 @@ const CreateProcessSettings = () => {
         <Text as='legend' fontSize='1.3em'>
           {t('form.process_create.settings')}
         </Text>
-        <SettignsAutostart register={register} getValues={getValues} />
+        <SettignsAutostart />
         {!getValues().electionType.autoStart && (
           <FormControl isInvalid={!!errors.startDate}>
             <FormLabel whiteSpace='nowrap'>{t('form.process_create.date_start')}</FormLabel>
-
             <Input
               type='date'
               {...register(`startDate`, {
@@ -53,9 +55,7 @@ const CreateProcessSettings = () => {
                 startRef(e)
                 startDateRef.current = e
               }}
-              onClick={() => {
-                if (startDateRef.current && 'showPicker' in startDateRef.current) startDateRef.current.showPicker()
-              }}
+              onClick={() => showPicker(startDateRef)}
             />
 
             <FormErrorMessage>{errors.startDate?.message?.toString()}</FormErrorMessage>
@@ -70,13 +70,11 @@ const CreateProcessSettings = () => {
               endRef(e)
               endDateRef.current = e
             }}
-            onClick={() => {
-              if (endDateRef.current && 'showPicker' in endDateRef.current) endDateRef.current.showPicker()
-            }}
+            onClick={() => showPicker(endDateRef)}
           />
           <FormErrorMessage>{errors.endDate?.message?.toString()}</FormErrorMessage>
         </FormControl>
-        <Advanced register={register} getValues={getValues} />
+        <Advanced />
       </Flex>
     </WrapperFormSection>
   )

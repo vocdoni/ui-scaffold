@@ -10,17 +10,14 @@ import {
   FormLabel,
   Input,
 } from '@chakra-ui/react'
-import { FieldValues, UseFormGetValues, UseFormRegister } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import SettingCheckbox from './Checkbox'
 
-interface Props {
-  register: UseFormRegister<FieldValues>
-  getValues: UseFormGetValues<FieldValues>
-}
-
-const SettingsAdvanced = ({ register, getValues }: Props) => {
+const SettingsAdvanced = () => {
   const { t } = useTranslation()
+  const { register } = useFormContext()
+
   return (
     <Accordion allowToggle>
       <AccordionItem>
@@ -39,14 +36,9 @@ const SettingsAdvanced = ({ register, getValues }: Props) => {
             alignItems={{ base: 'start', md: 'end' }}
             mb={3}
           >
-            <SettingCheckbox register={register} label={t('form.process_create.weighted_vote')} field='weightedVote' />
+            <SettingCheckbox label={t('form.process_create.weighted_vote')} field='weightedVote' />
+            <SettingCheckbox label={t('form.process_create.interruptible')} field='electionType.interruptible' />
             <SettingCheckbox
-              register={register}
-              label={t('form.process_create.interruptible')}
-              field='electionType.interruptible'
-            />
-            <SettingCheckbox
-              register={register}
               label={t('form.process_create.secret_until_the_end')}
               field='electionType.secretUntilTheEnd'
             />
