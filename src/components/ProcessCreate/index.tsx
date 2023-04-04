@@ -71,10 +71,6 @@ const ProcessCreate = () => {
 
   const methods = useForm<FormValues>({
     defaultValues: {
-      title: '',
-      description: '',
-      startDate: undefined,
-      endDate: undefined,
       electionType: {
         autoStart: false,
         interruptible: true,
@@ -82,15 +78,10 @@ const ProcessCreate = () => {
       },
       maxVoteOverwrites: 0,
       weightedVote: false,
-      addresses: [
-        { address: account?.address, weight: 0 },
-        { address: '', weight: 0 },
-      ],
+      addresses: [{ address: account?.address, weight: 0 }, {}],
       questions: [
         {
-          title: '',
-          description: '',
-          options: [{ option: '' }, { option: '' }],
+          options: [{}, {}],
         },
       ],
     },

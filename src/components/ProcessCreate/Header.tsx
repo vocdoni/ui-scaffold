@@ -31,7 +31,7 @@ const CreateProcessHeader = () => {
         <FormControl isInvalid={!!errors.description}>
           <FormLabel>{t('form.process_create.process_description')}</FormLabel>
           <Textarea
-            {...register('description', { required })}
+            {...register('description')}
             placeholder={t('form.process_create.process_description_placeholder').toString()}
           />
           <FormErrorMessage>{errors.description?.message?.toString()}</FormErrorMessage>
