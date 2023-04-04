@@ -23,7 +23,7 @@ const SettingsAdvanced = () => {
       <AccordionItem>
         <AccordionButton>
           <Box as='span' flex='1' textAlign='left'>
-            Advanced settings
+            {t('form.process_create.advanced_settings')}
           </Box>
           <AccordionIcon />
         </AccordionButton>
@@ -45,7 +45,7 @@ const SettingsAdvanced = () => {
           </Flex>
           <FormControl>
             <FormLabel pt={2} whiteSpace='nowrap'>
-              Max Vote Overwrites
+              {t('form.process_create.max_vote_overwrites')}
             </FormLabel>
             <Input w='full' type='number' {...register(`maxVoteOverwrites`)} />
           </FormControl>
