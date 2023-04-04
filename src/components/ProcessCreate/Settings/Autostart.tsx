@@ -1,14 +1,11 @@
 import { FormControl, FormLabel, Switch } from '@chakra-ui/react'
-import { FieldValues, UseFormGetValues, UseFormRegister } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
-interface Props {
-  register: UseFormRegister<FieldValues>
-  getValues: UseFormGetValues<FieldValues>
-}
-
-const SettignsAutostart = ({ register, getValues }: Props) => {
+const SettignsAutostart = () => {
   const { t } = useTranslation()
+  const { register } = useFormContext()
+
   return (
     <FormControl display='flex' alignItems='center'>
       <FormLabel htmlFor='autostart' mb='0'>
