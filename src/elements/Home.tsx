@@ -187,7 +187,7 @@ const Home = () => {
   return (
     <Box>
       <Flex direction='column' justifyContent='center' alignItems='center' gap={8} mb={8}>
-        <SearchInput width={{ base: '200px', md: '350px', lg: '500px' }} placeholder='hola' />
+        <SearchInput width={{ base: 48, md: 84, lg: 124 }} />
         <Counters />
       </Flex>
       <Text textAlign='center' mb={4} fontSize={30} fontWeight='bold'>

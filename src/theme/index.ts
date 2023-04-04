@@ -11,15 +11,22 @@ const colors = {
     c90: '#0f141c',
   },
   branding: {
-    turquoise: '#52E4C2',
     blue: '#1752FE',
+    lightpurple: '#EDE4F4',
+    red: '#961D1D',
     pink: '#E035D0',
     purple: '#892BE2',
-    lightpurple: '#EDE4F4',
+    turquoise: '#52E4C2',
   },
 }
 const space = {
+  84: '21rem',
+  88: '22rem',
   124: '31rem',
+  160: '40rem',
+  250: '62.5rem',
+  300: '75rem',
+  350: '87.5rem',
 }
 
 export const theme = extendTheme(vtheme, {

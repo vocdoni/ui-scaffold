@@ -23,7 +23,7 @@ const Navbar = ({ ...props }) => {
       <Flex justifyContent='space-between' alignItems='center' gap={4} paddingY={4}>
         <Flex alignItems='center' gap={4} ml={{ base: 2, sm: 0 }}>
           <NavLink to='/'>
-            <Img src={`${process.env.PUBLIC_URL}/assets/vocdoni_icon.png`} maxWidth='50px' alt='vocdoni icon' />
+            <Img src={`${process.env.PUBLIC_URL}/assets/vocdoni_icon.png`} maxWidth={12} alt='vocdoni icon' />
           </NavLink>
           <Text fontSize={12} whiteSpace='nowrap'>
             Public voting protocol
@@ -57,7 +57,9 @@ const Navbar = ({ ...props }) => {
           }}
           width='100%'
           zIndex={10}
-          borderBottom='2px solid white'
+          borderStyle='solid'
+          borderColor='white'
+          borderWidth={2}
           borderBottomColor='gray.100'
         >
           <UnorderedList display='flex' flexDirection='column' alignItems='center' gap={4} pb={8}>

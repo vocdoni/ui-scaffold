@@ -1,5 +1,6 @@
 import { Box, Text } from '@chakra-ui/react'
 import { useElection } from '@vocdoni/react-components'
+import { ElectionStatus } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 
 export const ProcessDate = () => {
@@ -8,10 +9,12 @@ export const ProcessDate = () => {
 
   if (!election) return null
 
+  if (election.status === ElectionStatus.CANCELED) return null
+
   const now = new Date()
 
   return (
-    <Box px={4}>
+    <Box paddingX={4}>
       <Text color='branding.purple'>
         {election.startDate > now
           ? t('process.date.starts')

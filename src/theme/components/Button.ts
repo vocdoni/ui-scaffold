@@ -1,5 +1,6 @@
 const ghost = {
-  border: '1px solid',
+  borderWidth: 1,
+  borderStyle: 'solid',
   borderColor: 'branding.pink',
   color: 'branding.pink',
 
@@ -12,13 +13,13 @@ const ghost = {
 const branding = {
   backgroundColor: 'branding.pink',
   color: 'white',
+  borderWidth: 1,
+  borderStyle: 'solid',
+  borderColor: 'branding.pink',
 
   _hover: {
     backgroundColor: 'white',
     color: 'branding.pink',
-    outline: '1px solid',
-    borderColor: 'branding.pink',
-    outlineOffset: '-1px',
   },
 }
 

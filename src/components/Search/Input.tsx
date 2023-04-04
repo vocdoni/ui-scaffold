@@ -10,14 +10,16 @@ const SearchInput = ({ ...props }) => {
       <InputGroup>
         <InputLeftElement mt={-1} pointerEvents='none' children={<SearchIcon color='black' />} />
         <Input
+          placeholder={t('search.input_placeholder').toString()}
           variant='unstyled'
           height={8}
-          placeholder={t('search.input_placeholder').toString()}
-          borderRadius={40}
           bgColor='white'
-          border='1px solid black'
+          borderRadius={40}
+          borderWidth={1}
+          borderColor='black'
+          borderStyle='solid'
           _focus={{
-            outline: '1px solid black',
+            borderWidth: 1.5,
             outlineOffset: 0,
           }}
         />

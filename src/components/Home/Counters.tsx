@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 const Counters = () => {
   const { t } = useTranslation()
   return (
-    <HStack gap={{ base: '30px', sm: '60px', md: '120px' }}>
+    <HStack gap={{ base: 7, sm: 14, md: 32 }}>
       <Box>
         <Text bgGradient='var(--vcd-gradient-brand)' bgClip='text' textAlign='center' whiteSpace='nowrap'>
           {t('voting_elections')}
