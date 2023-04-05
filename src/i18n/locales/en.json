@@ -8,7 +8,7 @@
     "is_able_to_vote": "Connected. You are elegible for voting",
     "is_not_in_census": "You are not in census",
     "proposers": "Proposers",
-    "verify_vote_on_explorer": "",
+    "verify_vote_on_explorer": "Verify vote on explorer",
     "vote": "Vote",
     "voters": "Voters"
   },
@@ -71,6 +71,7 @@
     "twitter": "Link to Vocdoni's twitter"
   },
   "loading": "Loading...",
+  "logout": "Logout",
   "menu": {
     "connect": "Connect",
     "create_process": "Create process",
@@ -81,6 +82,7 @@
   "organization": {
     "dao_title": "DAO",
     "elections": "Elections",
+    "elections_list_empty": "This organization has no elections yet",
     "members": "Members",
     "rounds": {
       "active": "Active",

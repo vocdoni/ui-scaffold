@@ -17,8 +17,8 @@ import { useAccount } from 'wagmi'
 import { ExplorerBaseURL } from '../../constants'
 import ProcessActions from './Actions'
 import ProcessAside from './Aside'
-import ProcessResults from './Results'
 import { ProcessDate } from './Date'
+import ProcessResults from './Results'
 
 export const ProcessView = (props: ElectionProviderComponentProps) => {
   const { election } = props
@@ -129,6 +129,7 @@ export const ProcessView = (props: ElectionProviderComponentProps) => {
 
                       <Box>
                         <Text>
+                          {/* TODO: update to send directly to /verify/#/:voteid when we have it from SDK */}
                           <Link to={`${ExplorerBaseURL}/verify`} target='_blank'>
                             {t('aside.verify_vote_on_explorer')}
                           </Link>
