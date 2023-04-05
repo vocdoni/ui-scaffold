@@ -1,9 +1,9 @@
 import { ChevronDownIcon } from '@chakra-ui/icons'
-import { Button, Icon, ListItem, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
+import { Button, ListItem, Menu, MenuButton, MenuItemOption, MenuList, MenuOptionGroup } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useClientContext } from '@vocdoni/react-components'
 import { useTranslation } from 'react-i18next'
-import { FaCheck, FaGlobeAmericas } from 'react-icons/fa'
+import { FaGlobeAmericas } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 import { LanguagesSlice } from '../../i18n/languages.mjs'
@@ -42,20 +42,22 @@ const NavList = ({ mobile, onClose }: Props) => {
             <FaGlobeAmericas />
           </MenuButton>
           <MenuList>
-            {Object.keys(languages).map((k) => (
-              <MenuItem
-                key={k}
-                onClick={() => {
-                  if (window && 'localStorage' in window) {
-                    window.localStorage.setItem('vocdoni.lang', k)
-                  }
-                  i18n.changeLanguage(k)
-                }}
-              >
-                {languages[k]}
-                {k === i18n.language && <Icon ml={3} as={FaCheck} />}
-              </MenuItem>
-            ))}
+            <MenuOptionGroup type='radio' defaultValue={i18n.language}>
+              {Object.keys(languages).map((k) => (
+                <MenuItemOption
+                  value={k}
+                  key={k}
+                  onClick={() => {
+                    if (window && 'localStorage' in window) {
+                      window.localStorage.setItem('vocdoni.lang', k)
+                    }
+                    i18n.changeLanguage(k)
+                  }}
+                >
+                  {languages[k]}
+                </MenuItemOption>
+              ))}
+            </MenuOptionGroup>
           </MenuList>
         </Menu>
       </ListItem>
