@@ -51,11 +51,7 @@ const Navbar = ({ ...props }) => {
           position='absolute'
           left={0}
           bg='white'
-          _dark={{
-            bg: 'black.c60',
-            borderBottomColor: 'black.c90',
-          }}
-          w='100%'
+          width='100%'
           zIndex={10}
           borderStyle='solid'
           borderColor='white'

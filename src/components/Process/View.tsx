@@ -104,7 +104,7 @@ export const ProcessView = (props: ElectionProviderComponentProps) => {
             {election && (
               <Flex gap={4} flexDirection={{ base: 'column', lg: 'row' }} alignItems='center'>
                 {election.status === ElectionStatus.CANCELED ? (
-                  <Text color='branding.red' textAlign='center' w='full'>
+                  <Text color='process.canceled' textAlign='center' w='full'>
                     {t('process.date.canceled')}
                   </Text>
                 ) : (
