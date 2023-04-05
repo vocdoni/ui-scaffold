@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+import { useAccount } from 'wagmi'
 import CreateProcessAddresses from './Addresses'
 import CreateProcessHeader from './Header'
 import CreateProcessQuestions from './Questions'
@@ -62,7 +63,8 @@ export const getWeightedCensus = (addresses: Address[]) => {
 }
 
 const ProcessCreate = () => {
-  const { client, account } = useClientContext()
+  const { address } = useAccount()
+  const { client } = useClientContext()
   const [sending, setSending] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
   const navigate = useNavigate()
@@ -78,14 +80,22 @@ const ProcessCreate = () => {
       },
       maxVoteOverwrites: 0,
       weightedVote: false,
-      addresses: [{ address: account?.address, weight: 0 }, {}],
+      // add two address fields by default
+      addresses: [{}, {}],
       questions: [
         {
+          // add two options by default
           options: [{}, {}],
         },
       ],
     },
   })
+
+  // fill account address to the census first address field
+  useEffect(() => {
+    if (!address) return
+    methods.setValue(`addresses.${0}.address`, address)
+  }, [address, methods])
 
   const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
     setError('')
@@ -137,11 +147,6 @@ const ProcessCreate = () => {
       setSending(false)
     }
   }
-
-  useEffect(() => {
-    if (!account) return
-    methods.setValue(`addresses.${0}.address`, account.address)
-  }, [account, methods])
 
   return (
     <FormProvider {...methods}>

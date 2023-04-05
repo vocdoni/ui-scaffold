@@ -30,7 +30,7 @@ const NavList = ({ mobile, onClose }: Props) => {
             </NavLink>
           </ListItem>
           <ListItem order={mobile ? 2 : undefined} listStyleType='none' onClick={onClose} whiteSpace='nowrap'>
-            <NavLink to={`/organization/${account?.address}`}>
+            <NavLink to={`/organization/0x${account?.address}`}>
               <Button variant='ghost'>{t('menu.my_list')}</Button>
             </NavLink>
           </ListItem>
