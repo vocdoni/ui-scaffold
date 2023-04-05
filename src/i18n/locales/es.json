@@ -71,6 +71,7 @@
     "twitter": ""
   },
   "loading": "Cargando...",
+  "logout": "",
   "menu": {
     "connect": "Conectar",
     "create_process": "Crear proceso",
@@ -81,6 +82,7 @@
   "organization": {
     "dao_title": "",
     "elections": "Elecciones",
+    "elections_list_empty": "",
     "members": "Miembros",
     "rounds": {
       "active": "Activas",
