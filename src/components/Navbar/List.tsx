@@ -1,12 +1,12 @@
 import { ChevronDownIcon } from '@chakra-ui/icons'
 import { Button, ListItem, Menu, MenuButton, MenuItemOption, MenuList, MenuOptionGroup } from '@chakra-ui/react'
-import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useClientContext } from '@vocdoni/react-components'
 import { useTranslation } from 'react-i18next'
 import { FaGlobeAmericas } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 import { LanguagesSlice } from '../../i18n/languages.mjs'
+import { Account } from './Account'
 
 interface Props {
   mobile: boolean
@@ -62,7 +62,7 @@ const NavList = ({ mobile, onClose }: Props) => {
         </Menu>
       </ListItem>
       <ListItem order={mobile ? 1 : undefined} listStyleType='none' onClick={onClose}>
-        <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />
+        <Account />
       </ListItem>
     </>
   )
