@@ -13,7 +13,7 @@ const ShareButtons = () => {
         h={6}
         cursor='pointer'
         onClick={() => {
-          const url = `https://twitter.com/intent/tweet?url=${window.location.href}&text=share`
+          const url = `https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}`
           window.open(url, '_blank')
         }}
       />
@@ -24,7 +24,7 @@ const ShareButtons = () => {
         h={6}
         cursor='pointer'
         onClick={() => {
-          const url = `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`
+          const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`
           window.open(url, '_blank')
         }}
       />
