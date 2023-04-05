@@ -11,7 +11,7 @@ const Layout = () => {
       </Box>
       <Outlet />
       <Box as='footer' mt='auto'>
-        <Footer maxWidth={350} marginY='auto' paddingX={{ base: 0, sm: 4 }} />
+        <Footer maxWidth={350} mx='auto' paddingX={{ base: 0, sm: 4 }} />
       </Box>
     </Flex>
   )
