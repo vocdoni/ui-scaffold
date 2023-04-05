@@ -12,7 +12,7 @@ import {
 import { ElectionStatus } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 import { ExplorerBaseURL } from '../../constants'
 import ProcessActions from './Actions'
@@ -24,8 +24,6 @@ export const ProcessView = (props: ElectionProviderComponentProps) => {
   const { election } = props
   const { isConnected } = useAccount()
   const { client, account } = useClientContext()
-
-  const navigate = useNavigate()
   const { t } = useTranslation()
 
   const [tabIndex, setTabIndex] = useState(0)
@@ -62,9 +60,9 @@ export const ProcessView = (props: ElectionProviderComponentProps) => {
   return (
     <ElectionProvider {...props}>
       <Flex direction='column' gap={5}>
-        <Text onClick={() => navigate(-1)} cursor='pointer'>
+        <Link to={`/organization/0x${election?.organizationId}`}>
           <ArrowBackIcon /> Org Name
-        </Text>
+        </Link>
         <ElectionSchedule textAlign='left' color='branding.pink' />
         <ElectionTitle fontSize={18} mb={0} textAlign='left' />
         <ElectionDescription />

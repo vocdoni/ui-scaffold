@@ -1,6 +1,6 @@
 import { Box, Flex, Grid, GridItem, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Counters from '../components/Home/Counters'
 import CardOrg, { CardOrgContents } from '../components/Organitzation/Card'
 import ProcessCardImg, { CardPrImgContents } from '../components/Process/CardImg'
@@ -182,7 +182,6 @@ const CARDS_PR: CardPrImgContents[] = [
 
 const Home = () => {
   const { t } = useTranslation()
-  const navigate = useNavigate()
 
   return (
     <Box>
@@ -203,16 +202,11 @@ const Home = () => {
         }}
       >
         {CARDS_PR.map((card, index) => (
-          <GridItem
-            key={index}
-            display='flex'
-            justifyContent='center'
-            alignItems='center'
-            p={4}
-            onClick={() => navigate(`/organization/4a081070E9D555b5D19629a6bcc8B77f4aE6d39c`)}
-          >
-            <ProcessCardImg card={card} />
-          </GridItem>
+          <Link to={`/organization/0x4a081070E9D555b5D19629a6bcc8B77f4aE6d39c`} key={index}>
+            <GridItem display='flex' justifyContent='center' alignItems='center' p={4}>
+              <ProcessCardImg card={card} />
+            </GridItem>
+          </Link>
         ))}
       </Grid>
       <Text textAlign='center' mb={4} fontSize={20} fontWeight='bold'>
@@ -227,16 +221,11 @@ const Home = () => {
         }}
       >
         {CARDS_ORG.map((card, index) => (
-          <GridItem
-            key={index}
-            display='flex'
-            justifyContent='center'
-            alignItems='center'
-            p={4}
-            onClick={() => navigate(`/organization/4a081070E9D555b5D19629a6bcc8B77f4aE6d39c`)}
-          >
-            <CardOrg card={card} />
-          </GridItem>
+          <Link to={`/organization/4a081070E9D555b5D19629a6bcc8B77f4aE6d39c`} key={index}>
+            <GridItem display='flex' justifyContent='center' alignItems='center' p={4}>
+              <CardOrg card={card} />
+            </GridItem>
+          </Link>
         ))}
       </Grid>
     </Box>

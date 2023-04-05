@@ -3,7 +3,7 @@ import { useClientContext } from '@vocdoni/react-components'
 import { PublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import ProcessCardDescription from '../Process/CardDesc'
 import SearchInput from '../Search/Input'
 import Header from './Header'
@@ -11,7 +11,6 @@ import Header from './Header'
 const OrganizationView = ({ address }: { address: string | undefined }) => {
   const { t } = useTranslation()
   const { client } = useClientContext()
-  const navigate = useNavigate()
 
   const [electionsList, setElectionsList] = useState<PublishedElection[]>([])
   const [loading, setLoading] = useState(false)
@@ -85,15 +84,11 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
           <TabPanel>
             <Grid templateColumns={templateColumnsAllRounds} gap={4}>
               {electionsList?.map((election: any, idx: number) => (
-                <GridItem
-                  key={idx}
-                  display='flex'
-                  justifyContent='center'
-                  alignItems='center'
-                  onClick={() => navigate(`/processes/${election.id}`)}
-                >
-                  <ProcessCardDescription election={election} />
-                </GridItem>
+                <Link to={`/processes/0x${election.id}`} key={idx}>
+                  <GridItem display='flex' justifyContent='center' alignItems='center'>
+                    <ProcessCardDescription election={election} />
+                  </GridItem>
+                </Link>
               ))}
               <div ref={refObserver}></div>
             </Grid>
