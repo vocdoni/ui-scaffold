@@ -1,7 +1,7 @@
 import { EmailIcon } from '@chakra-ui/icons'
 import { Box, Card, CardBody, CardHeader, Circle, Text } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { HR, useClientContext, useElection } from '@vocdoni/react-components'
+import { HR, useClientContext, useElection, VoteButton } from '@vocdoni/react-components'
 import { ElectionStatus } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
 import { useTranslation } from 'react-i18next'
@@ -51,7 +51,7 @@ const ProcessAside = ({ handleTabsChange, isInCensus, hasAlreadyVoted, order, al
             {!isAbleToVote && !isInCensus && t('aside.is_not_in_census')}
             {!isAbleToVote && hasAlreadyVoted && t('aside.has_already_voted')}
           </Text>
-          <ConnectButton chainStatus='none' showBalance={false} label={t('aside.vote').toString()} />
+          <VoteButton label={t('aside.vote').toString()} />
         </CardBody>
       )}
       {election?.status === ElectionStatus.ONGOING && !account && (
