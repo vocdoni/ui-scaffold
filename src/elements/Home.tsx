@@ -186,10 +186,10 @@ const Home = () => {
   return (
     <Box>
       <Flex direction='column' justifyContent='center' alignItems='center' gap={8} mb={8}>
-        <SearchInput width={{ base: 48, md: 84, lg: 124 }} />
+        <SearchInput width={{ base: '90%', sm: '80%', md: '70%', lg: 124 }} />
         <Counters />
       </Flex>
-      <Text textAlign='center' mb={4} fontSize={30} fontWeight='bold'>
+      <Text textAlign={{ base: 'center', sm: 'start' }} mb={4} fontSize={30} fontWeight='bold'>
         {t('home.active_voting')}
       </Text>
       <Grid
@@ -200,16 +200,17 @@ const Home = () => {
           md: 'repeat(3, 1fr)',
           lg: 'repeat(4, 1fr)',
         }}
+        gap={4}
       >
         {CARDS_PR.map((card, index) => (
           <Link to={`/organization/0x4a081070E9D555b5D19629a6bcc8B77f4aE6d39c`} key={index}>
-            <GridItem display='flex' justifyContent='center' alignItems='center' p={4}>
+            <GridItem px={{ base: 10, sm: 0 }}>
               <ProcessCardImg card={card} />
             </GridItem>
           </Link>
         ))}
       </Grid>
-      <Text textAlign='center' mb={4} fontSize={20} fontWeight='bold'>
+      <Text textAlign={{ base: 'center', sm: 'start' }} mb={4} fontSize={20} fontWeight='bold'>
         {t('home.more_active_organizations')}
       </Text>
       <Grid
@@ -219,10 +220,11 @@ const Home = () => {
           md: 'repeat(3, 1fr)',
           lg: 'repeat(4, 1fr)',
         }}
+        gap={4}
       >
         {CARDS_ORG.map((card, index) => (
           <Link to={`/organization/4a081070E9D555b5D19629a6bcc8B77f4aE6d39c`} key={index}>
-            <GridItem display='flex' justifyContent='center' alignItems='center' p={4}>
+            <GridItem px={{ base: 10, sm: 0 }}>
               <CardOrg card={card} />
             </GridItem>
           </Link>

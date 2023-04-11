@@ -33,8 +33,10 @@ const brand_vote = {
 const underline = {
   border: 'none',
   bg: 'none',
-  textDecoration: 'underline',
   color: 'branding.pink',
+  _hover: {
+    textDecoration: 'underline',
+  },
 }
 
 export const Button = {

@@ -55,7 +55,7 @@ const Navbar = ({ ...props }) => {
             bg: 'black.c60',
             borderBottomColor: 'black.c90',
           }}
-          width='100%'
+          w='100%'
           zIndex={10}
           borderStyle='solid'
           borderColor='white'
