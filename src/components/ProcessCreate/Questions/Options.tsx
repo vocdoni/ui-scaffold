@@ -1,19 +1,19 @@
 import { AddIcon, DeleteIcon } from '@chakra-ui/icons'
 import { Flex, FormControl, FormErrorMessage, FormLabel, HStack, IconButton, Input } from '@chakra-ui/react'
-import { FieldValues, UseFieldArrayAppend, UseFieldArrayRemove, useFormContext, UseFormRegister } from 'react-hook-form'
+import { FieldValues, UseFieldArrayAppend, UseFieldArrayRemove, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { fieldMapErrorMessage, isInvalidFieldMap } from '../../../constants'
 
 interface Props {
   fields: Record<'id', string>[]
-  register: UseFormRegister<FieldValues>
   removeOption: UseFieldArrayRemove
   appendOption: UseFieldArrayAppend<FieldValues, `questions.${number}.options`>
   index: number
 }
 
-const OptionsForm = ({ fields, register, removeOption, appendOption, index }: Props) => {
+const Options = ({ fields, removeOption, appendOption, index }: Props) => {
   const {
+    register,
     formState: { errors },
   } = useFormContext()
   const { t } = useTranslation()
@@ -60,4 +60,4 @@ const OptionsForm = ({ fields, register, removeOption, appendOption, index }: Pr
     </>
   )
 }
-export default OptionsForm
+export default Options
