@@ -3,14 +3,14 @@ import { Box, FormControl, FormErrorMessage, FormLabel, HStack, IconButton, Inpu
 import { useFieldArray, UseFieldArrayRemove, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { fieldMapErrorMessage, isInvalidFieldMap } from '../../../constants'
-import OptionsForm from './OptionsForm'
+import Options from './Options'
 
 interface Props {
   index: number
   remove: UseFieldArrayRemove
 }
 
-const QuestionsForm = ({ index, remove }: Props) => {
+const Question = ({ index, remove }: Props) => {
   const {
     register,
     formState: { errors },
@@ -27,7 +27,7 @@ const QuestionsForm = ({ index, remove }: Props) => {
   const num = index + 1
 
   return (
-    <Box bg='white' p={{ base: 2, sm: 4 }} borderRadius={8} _dark={{ bg: 'black.c60' }}>
+    <Box bg='white' p={{ base: 2, sm: 4 }} borderRadius={8}>
       <HStack justify='space-between' mb={4}>
         <FormLabel>{t('form.process_create.question_identifier', { num })}</FormLabel>
 
@@ -59,15 +59,9 @@ const QuestionsForm = ({ index, remove }: Props) => {
         <Input {...register(`questions.${index}.description`)} placeholder='Description' />
       </FormControl>
 
-      <OptionsForm
-        fields={fields}
-        register={register}
-        removeOption={removeOption}
-        appendOption={appendOption}
-        index={index}
-      />
+      <Options fields={fields} removeOption={removeOption} appendOption={appendOption} index={index} />
     </Box>
   )
 }
 
-export default QuestionsForm
+export default Question

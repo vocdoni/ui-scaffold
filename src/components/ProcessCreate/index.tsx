@@ -1,4 +1,4 @@
-import { Alert, AlertIcon, Button, useToast } from '@chakra-ui/react'
+import { Alert, AlertIcon, Button, Flex, useToast } from '@chakra-ui/react'
 import { useClientContext } from '@vocdoni/react-components'
 import { Election, IQuestion, PlainCensus, WeightedCensus } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
@@ -10,7 +10,6 @@ import CreateProcessAddresses from './Addresses'
 import CreateProcessHeader from './Header'
 import CreateProcessQuestions from './Questions'
 import CreateProcessSettings from './Settings'
-import WrapperForm from './WrapperForm'
 
 export interface FormValues {
   title: string
@@ -150,23 +149,34 @@ const ProcessCreate = () => {
 
   return (
     <FormProvider {...methods}>
-      <WrapperForm onSubmit={methods.handleSubmit(onSubmit)}>
-        <>
-          <CreateProcessHeader />
-          <CreateProcessSettings />
-          <CreateProcessAddresses />
-          <CreateProcessQuestions />
-          {error.length > 0 && (
-            <Alert status='error'>
-              <AlertIcon />
-              {error}
-            </Alert>
-          )}
-          <Button type='submit' _dark={{ bg: 'black.c90' }} isLoading={sending} disabled={sending}>
-            {t('form.process_create.submit')}
-          </Button>
-        </>
-      </WrapperForm>
+      <Flex
+        as='form'
+        direction='column'
+        gap={4}
+        mt={1}
+        mx='auto'
+        p={{ base: 0, sm: 4 }}
+        borderRadius='md'
+        width={{ base: '98%', md: 160 }}
+        borderWidth={{ sm: 2 }}
+        borderStyle={{ sm: 'solid' }}
+        borderColor={{ sm: 'gray.100' }}
+        onSubmit={methods.handleSubmit(onSubmit)}
+      >
+        <CreateProcessHeader />
+        <CreateProcessSettings />
+        <CreateProcessAddresses />
+        <CreateProcessQuestions />
+        {error.length > 0 && (
+          <Alert status='error'>
+            <AlertIcon />
+            {error}
+          </Alert>
+        )}
+        <Button type='submit' isLoading={sending} disabled={sending}>
+          {t('form.process_create.submit')}
+        </Button>
+      </Flex>
     </FormProvider>
   )
 }
