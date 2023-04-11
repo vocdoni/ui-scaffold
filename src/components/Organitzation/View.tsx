@@ -39,7 +39,7 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
         })
       })
       .catch((err) => {
-        console.log('fetch elections error', err)
+        console.error('fetch elections error', err)
         setError(err.message)
       })
       .finally(() => {
@@ -72,8 +72,8 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
           <SearchInput
             position={{ md: 'absolute' }}
             right={0}
-            bottom={1}
-            width={{ base: '50%', md: '30%', lg: '20%' }}
+            mb={{ base: 25, sm: 0 }}
+            w={{ base: '50%', md: '30%', lg: '20%' }}
           />
           <Flex>
             <Tab whiteSpace='nowrap'>{t('organization.rounds.all')}</Tab>

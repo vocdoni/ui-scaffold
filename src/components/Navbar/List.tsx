@@ -29,14 +29,14 @@ const NavList = ({ mobile, onClose }: Props) => {
               <Button variant='branding'>{t('menu.create_process')}</Button>
             </NavLink>
           </ListItem>
-          <ListItem order={mobile ? 2 : undefined} listStyleType='none' onClick={onClose} whiteSpace='nowrap'>
+          <ListItem order={mobile ? 1 : undefined} listStyleType='none' onClick={onClose} whiteSpace='nowrap'>
             <NavLink to={`/organization/0x${account?.address}`}>
               <Button variant='ghost'>{t('menu.my_list')}</Button>
             </NavLink>
           </ListItem>
         </>
       )}
-      <ListItem order={mobile ? 3 : undefined} listStyleType='none' display='flex' cursor='pointer'>
+      <ListItem order={mobile ? 4 : undefined} listStyleType='none' display='flex' cursor='pointer'>
         <Menu>
           <MenuButton as={Button} rightIcon={<ChevronDownIcon />} bgColor='transparent'>
             <FaGlobeAmericas />

@@ -5,13 +5,13 @@ import Navbar from '../components/Navbar'
 
 const Layout = () => {
   return (
-    <Flex flexDirection='column' minHeight='100vh'>
-      <Box as='header' boxShadow='3px 3px 10px gray' position='relative' zIndex={10}>
-        <Navbar maxWidth={350} marginY={0} marginX='auto' paddingX={{ base: 0, sm: 4 }} />
+    <Flex direction='column' minH='100vh'>
+      <Box as='header' position='relative' boxShadow='3px 3px 10px gray' zIndex={10}>
+        <Navbar maxW={350} mx='auto' px={{ base: 0, sm: 4 }} />
       </Box>
       <Outlet />
       <Box as='footer' mt='auto'>
-        <Footer maxWidth={350} mx='auto' paddingX={{ base: 0, sm: 4 }} />
+        <Footer mw={350} mx='auto' px={{ base: 0, sm: 4 }} />
       </Box>
     </Flex>
   )

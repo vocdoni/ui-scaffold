@@ -26,7 +26,6 @@ const organization = definePartsStyle({
   ...cardCommonStyles,
   container: {
     ...cardCommonStyles.container,
-    maxW: 72,
     overflow: 'hidden',
     bgColor: 'transparent',
   },
@@ -68,7 +67,6 @@ const processImg = definePartsStyle({
   ...cardCommonStyles,
   container: {
     ...cardCommonStyles.container,
-    maxW: 72,
     transition: 'background .3s ease-in-out',
     overflow: 'hidden',
     bgColor: 'transparent',
@@ -144,8 +142,6 @@ const processDescription = definePartsStyle({
   },
   header: {
     ...cardCommonStyles.header,
-    position: 'relative',
-    zIndex: 10,
     alignSelf: 'end',
 
     '& span': {

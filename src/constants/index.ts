@@ -2,14 +2,6 @@ import { FieldErrors, FieldValues } from 'react-hook-form'
 
 export const FormatDate = 'dd/MM/yyyy'
 
-export enum ModalType {
-  Closed = 0,
-  Loading,
-  Info,
-  AddTokens,
-  Success,
-}
-
 const evocdoni = process.env.REACT_APP_VOCDONI_ENVIRONMENT || 'stg'
 let explorer = 'https://explorer.vote'
 if (['stg', 'dev'].includes(evocdoni)) {
