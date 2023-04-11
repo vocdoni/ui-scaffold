@@ -12,7 +12,7 @@ interface Props {
   index: number
 }
 
-const OptionsForm = ({ fields, register, removeOption, appendOption, index }: Props) => {
+const Options = ({ fields, register, removeOption, appendOption, index }: Props) => {
   const {
     formState: { errors },
   } = useFormContext()
@@ -60,4 +60,4 @@ const OptionsForm = ({ fields, register, removeOption, appendOption, index }: Pr
     </>
   )
 }
-export default OptionsForm
+export default Options

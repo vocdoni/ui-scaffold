@@ -3,7 +3,7 @@ import { HStack, IconButton, Text } from '@chakra-ui/react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import WrapperFormSection from '../WrapperFormSection'
-import AddressesForm from './Form'
+import Address from './Address'
 
 const CreateProcessAddresses = () => {
   const { register, getValues } = useFormContext()
@@ -27,7 +27,15 @@ const CreateProcessAddresses = () => {
           onClick={() => append({ address: '', weight: 0 })}
         />
       </HStack>
-      <AddressesForm fields={fields} getValues={getValues} register={register} remove={remove} />
+      {fields.map((_, index: number) => (
+        <Address
+          key={index}
+          index={index}
+          weightedVote={getValues().weightedVote}
+          register={register}
+          remove={remove}
+        />
+      ))}
     </WrapperFormSection>
   )
 }
