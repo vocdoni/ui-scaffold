@@ -59,13 +59,7 @@ const Question = ({ index, remove }: Props) => {
         <Input {...register(`questions.${index}.description`)} placeholder='Description' />
       </FormControl>
 
-      <Options
-        fields={fields}
-        register={register}
-        removeOption={removeOption}
-        appendOption={appendOption}
-        index={index}
-      />
+      <Options fields={fields} removeOption={removeOption} appendOption={appendOption} index={index} />
     </Box>
   )
 }

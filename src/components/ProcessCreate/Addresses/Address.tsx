@@ -1,20 +1,20 @@
 import { DeleteIcon } from '@chakra-ui/icons'
 import { Flex, FormControl, FormErrorMessage, FormLabel, IconButton, Input } from '@chakra-ui/react'
-import { FieldValues, UseFieldArrayRemove, useFormContext, UseFormRegister } from 'react-hook-form'
+import { UseFieldArrayRemove, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { fieldMapErrorMessage, isInvalidFieldMap } from '../../../constants'
 
 interface Props {
   index: number
-  weightedVote: boolean
-  register: UseFormRegister<FieldValues>
   remove: UseFieldArrayRemove
 }
 
-const AddressForm = ({ index, weightedVote, register, remove }: Props) => {
+const AddressForm = ({ index, remove }: Props) => {
   const { t } = useTranslation()
   const rowTitle = (index: number) => t('form.process_create.address_title', { num: index + 1 })
   const {
+    register,
+    getValues,
     formState: { errors },
   } = useFormContext()
 
@@ -23,7 +23,7 @@ const AddressForm = ({ index, weightedVote, register, remove }: Props) => {
       <FormControl key={index} mb={4} isInvalid={isInvalidFieldMap(errors, `addresses.${index}.address`)}>
         <Flex alignItems='center'>
           <FormLabel whiteSpace='nowrap'>{rowTitle(index)}</FormLabel>
-          {weightedVote && (
+          {getValues().weightedVote && (
             <FormControl
               display='flex'
               alignItems='end'
