@@ -61,7 +61,7 @@ const NavList = ({ mobile, onClose }: Props) => {
           </MenuList>
         </Menu>
       </ListItem>
-      <ListItem order={mobile ? 1 : undefined} listStyleType='none' onClick={onClose}>
+      <ListItem order={mobile ? 1 : undefined} listStyleType='none'>
         <Account />
       </ListItem>
     </>
