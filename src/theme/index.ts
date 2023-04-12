@@ -5,20 +5,66 @@ import { Button } from './components/Button'
 import { Card } from './components/Card'
 import { Questions } from './components/QuestionsForm'
 
-const colors = {
-  black: {
-    c60: '#1A202C',
-    c90: '#0f141c',
+export const colorsBase = {
+  lightBlue: '#F2F5FF',
+  black: '#000000',
+  blue: '#1752FE',
+  grenade: '#961D1D',
+  pink: {
+    ultralight: '#EA7BDF',
+    light: '#E55BD8',
+    normal: '#E035D0',
   },
-  branding: {
-    blue: '#1752FE',
-    lightpurple: '#EDE4F4',
-    red: '#961D1D',
-    pink: '#E035D0',
-    purple: '#892BE2',
-    turquoise: '#52E4C2',
-  },
+  lightpurple: '#EDE4F4',
+  purple: '#892BE2',
+  turquoise: '#52E4C2',
+  white: '#ffffff',
 }
+
+const colors = {
+  ...colorsBase,
+  aside: {
+    card: colorsBase.purple,
+  },
+  buttons: {
+    primary: {
+      500: colorsBase.pink.normal,
+      600: colorsBase.pink.ultralight,
+      700: colorsBase.pink.light,
+    },
+  },
+  form: {
+    
+  },
+  home: {
+    background: colorsBase.lightBlue,
+  },
+  list: {
+    card: {
+      type: colorsBase.blue,
+      created_date: colorsBase.turquoise,
+      process_canceled: colorsBase.grenade,
+    },
+  },
+  header: {
+    organization: {
+      button_address_active: 'white',
+      link: colorsBase.pink.normal,
+      read_more: colorsBase.pink.normal,
+    },
+  },
+  pink: {
+    50: colorsBase.pink.normal,
+    600: colorsBase.pink.ultralight,
+  },
+  process: {
+    canceled: colorsBase.grenade,
+    date: colorsBase.purple,
+    secret_until_the_end: colorsBase.purple,
+  },
+  text_error: colorsBase.grenade,
+}
+
 const space = {
   84: '21rem',
   88: '22rem',

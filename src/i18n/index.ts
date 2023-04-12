@@ -5,7 +5,9 @@ import languages from './languages.mjs'
 import { dateLocales, translations } from './locales'
 
 const i18n = i18next.createInstance()
+
 const fallbackLng = 'en'
+
 const storedLang = () => {
   if (window && 'localStorage' in window) {
     return window.localStorage.getItem('vocdoni.lang') || fallbackLng

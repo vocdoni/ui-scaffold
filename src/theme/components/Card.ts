@@ -90,7 +90,7 @@ const processImg = definePartsStyle({
       textTransform: 'uppercase',
       isTruncated: true,
       fontWeight: 'normal',
-      color: 'branding.blue',
+      color: 'list.card.type',
       pb: 1,
     },
     '& p:nth-of-type(2)': {
@@ -168,7 +168,7 @@ const processDescription = definePartsStyle({
       height: 14,
     },
     '& > div:first-of-type > p:first-of-type': {
-      color: 'branding.turquoise',
+      color: 'list.card.created_date',
       fontSize: 14,
       mb: 1,
     },
@@ -195,7 +195,7 @@ const processDescription = definePartsStyle({
       minH: 14,
 
       '& > p': {
-        color: 'branding.red',
+        color: 'list.card.process_canceled',
       },
 
       '& div': {
@@ -238,7 +238,7 @@ const aside = definePartsStyle({
     top: 2,
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: 'branding.purple',
+    borderColor: 'aside.card',
     cursor: 'normal',
     zIndex: 10,
 
@@ -255,16 +255,15 @@ const aside = definePartsStyle({
     gap: 2.5,
 
     '& div:nth-of-type(1)': {
-      bg: 'branding.lightpurple',
       width: 12,
       height: 12,
 
       borderWidth: 1,
       sorderStyle: 'solid',
-      borderColor: 'branding.purple',
+      borderColor: 'aside.card',
 
       '& svg': {
-        color: 'branding.purple',
+        color: 'aside.card',
         boxSize: 8,
       },
     },
@@ -277,7 +276,7 @@ const aside = definePartsStyle({
       },
 
       span: {
-        color: 'branding.purple',
+        color: 'aside.card',
       },
     },
   },

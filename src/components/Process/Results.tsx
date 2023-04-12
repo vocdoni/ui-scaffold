@@ -9,7 +9,7 @@ const ProcessResults = () => {
   return (
     <>
       {election?.electionType.secretUntilTheEnd ? (
-        <Text color='branding.purple' textAlign='center' fontWeight='bold'>
+        <Text color='process.secret_until_the_end' textAlign='center' fontWeight='bold'>
           Secret until the end
         </Text>
       ) : (

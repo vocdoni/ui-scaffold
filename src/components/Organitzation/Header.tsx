@@ -67,12 +67,7 @@ const OrganizationHeader = ({ address }: { address: string | undefined }) => {
       </Flex>
       <Flex justifyContent={{ base: 'center', md: 'start' }} alignItems='center' gap={4} mb={{ base: 2, md: 4 }}></Flex>
       <Text noOfLines={readMore ? undefined : 3}>
-        <Text
-          as='span'
-          color='branding.pink'
-          fontWeight='bold'
-          _hover={{ textDecoration: 'underline', cursor: 'pointer' }}
-        >
+        <Text as='span' color='header.organization.link' fontWeight='bold'>
           The Organization Name
         </Text>{' '}
         ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
@@ -85,7 +80,7 @@ const OrganizationHeader = ({ address }: { address: string | undefined }) => {
         quis nostrud exercitation ullamco laboris nisi ut labore exercitation ullamco laboris
       </Text>
       <VStack>
-        <Button variant='underline' onClick={() => setReadMore((prev) => !prev)}>
+        <Button variant='underline' color='header.organization.read_more' onClick={() => setReadMore((prev) => !prev)}>
           {readMore ? t('read_less') : t('read_more')}
         </Button>
       </VStack>
