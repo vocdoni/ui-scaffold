@@ -4,8 +4,8 @@ import { createHashRouter, createRoutesFromElements, Route, RouterProvider } fro
 // These aren't lazy loaded to avoid excessive loaders in different locations
 import Error from '../elements/Error'
 import Layout from '../elements/Layout'
-import LayoutBody from '../elements/LayoutBody'
-import LayoutBodyBlue from '../elements/LayoutBodyBlue'
+import LayoutContents from '../elements/LayoutContents'
+import LayoutHome from '../elements/LayoutHome'
 import { SuspenseLoader } from './SuspenseLoader'
 
 // Lazy loading helps splitting the final code, which helps downloading the app (theoretically)
@@ -22,7 +22,7 @@ export const RoutesProvider = () => {
   const router = createHashRouter(
     createRoutesFromElements(
       <Route path='/' element={<Layout />} errorElement={<Error />}>
-        <Route element={<LayoutBodyBlue />}>
+        <Route element={<LayoutHome />}>
           <Route
             index
             element={
@@ -32,7 +32,7 @@ export const RoutesProvider = () => {
             }
           />
         </Route>
-        <Route element={<LayoutBody />}>
+        <Route element={<LayoutContents />}>
           <Route
             element={
               <SuspenseLoader>

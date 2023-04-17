@@ -9,7 +9,7 @@ const NotFound = () => {
       </Text>
       <Text>
         Go to
-        <Text display='inline' ml={1} color='blue' textDecoration='underline'>
+        <Text display='inline' ml={1} textDecoration='underline'>
           <Link to='/'>Home</Link>
         </Text>
       </Text>
