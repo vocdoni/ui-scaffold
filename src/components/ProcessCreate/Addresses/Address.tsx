@@ -50,6 +50,10 @@ const AddressForm = ({ index, remove }: Props) => {
               value: true,
               message: t('form.error.field_is_required'),
             },
+            pattern: {
+              value: /^(0x)?[0-9a-fA-F]{40}$/,
+              message: t('form.error.address_pattern'),
+            },
           })}
           placeholder={rowTitle(index)}
         />
