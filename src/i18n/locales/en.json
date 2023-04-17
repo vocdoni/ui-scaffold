@@ -32,6 +32,7 @@
   },
   "form": {
     "error": {
+      "address_pattern": "Only hex addresses are allowed",
       "field_is_required": "This field is required"
     },
     "process_create": {

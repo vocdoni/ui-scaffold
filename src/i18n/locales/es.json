@@ -32,6 +32,7 @@
   },
   "form": {
     "error": {
+      "address_pattern": "",
       "field_is_required": ""
     },
     "process_create": {
