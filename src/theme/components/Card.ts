@@ -8,44 +8,42 @@ const cardCommonStyles = {
     width: '100%',
     padding: 0,
     borderRadius: 10,
-
     cursor: 'pointer',
   },
   header: {
+    bgColor: 'card.bg',
     padding: 0,
   },
   body: {
+    bgColor: 'card.bg',
     padding: 0,
   },
   footer: {
+    bgColor: 'card.bg',
     padding: 0,
   },
 }
 
 const organization = definePartsStyle({
-  ...cardCommonStyles,
   container: {
     ...cardCommonStyles.container,
     overflow: 'hidden',
-    bgColor: 'transparent',
   },
   header: {
     ...cardCommonStyles.header,
-    overflow: 'hidden',
   },
   body: {
     ...cardCommonStyles.body,
-    bgColor: 'white',
     paddingX: 3,
     py: 2,
     fontSize: 16,
     fontWeight: 'bold',
+    color: 'card.title',
   },
   footer: {
     ...cardCommonStyles.footer,
     display: 'flex',
     flexDirection: 'column',
-    bgColor: 'white',
     paddingX: 3,
     pb: 1,
     fontSize: 14,
@@ -67,30 +65,26 @@ const processImg = definePartsStyle({
   ...cardCommonStyles,
   container: {
     ...cardCommonStyles.container,
-    transition: 'background .3s ease-in-out',
     overflow: 'hidden',
-    bgColor: 'transparent',
   },
   header: {
     ...cardCommonStyles.header,
-    overflow: 'hidden',
-    borderTopRadius: 10,
   },
   body: {
     ...cardCommonStyles.body,
     minH: 20,
-    bgColor: 'white',
     paddingX: 3,
     pt: 3,
     pb: 1,
     fontSize: 16,
     fontWeight: 'bold',
+    color: 'card.title',
 
     '& p:first-of-type': {
       textTransform: 'uppercase',
       isTruncated: true,
       fontWeight: 'normal',
-      color: 'list.card.type',
+      color: 'card.variant.process_image',
       pb: 1,
     },
     '& p:nth-of-type(2)': {
@@ -101,7 +95,6 @@ const processImg = definePartsStyle({
     ...cardCommonStyles.footer,
     display: 'flex',
     justifyContent: 'center',
-    bgColor: 'white',
     paddingX: 3,
     pb: 2,
     fontSize: 14,
@@ -110,7 +103,7 @@ const processImg = definePartsStyle({
       width: '100%',
       borderLeftStyle: 'solid',
       borderLeftWidth: 1,
-      borderLeftColor: 'lightgray',
+      borderLeftColor: 'card.footer_divider',
       pl: 2,
     },
 
@@ -168,7 +161,7 @@ const processDescription = definePartsStyle({
       height: 14,
     },
     '& > div:first-of-type > p:first-of-type': {
-      color: 'list.card.created_date',
+      color: 'card.variant.process_description',
       fontSize: 14,
       mb: 1,
     },
@@ -176,6 +169,7 @@ const processDescription = definePartsStyle({
     '& div:first-of-type h4': {
       fontSize: 20,
       textAlign: 'start',
+      color: 'card.title',
     },
 
     '& > div:nth-of-type(1) > div:first-of-type > div': {
@@ -184,7 +178,7 @@ const processDescription = definePartsStyle({
     },
 
     '& > div:nth-of-type(1) > div:first-of-type > div > p': {
-      color: 'gray',
+      color: 'card.description',
     },
 
     '& > div:nth-of-type(2)': {
@@ -195,14 +189,14 @@ const processDescription = definePartsStyle({
       minH: 14,
 
       '& > p': {
-        color: 'list.card.process_canceled',
+        color: 'card.process_canceled',
       },
 
       '& div': {
         width: '100%',
         borderLeftStyle: 'solid',
         borderLeftWidth: 1,
-        borderLeftColor: 'lightgray',
+        borderLeftColor: 'card.footer_divider',
         pl: 12,
       },
 
@@ -218,14 +212,11 @@ const processDescription = definePartsStyle({
         bgGradient: 'var(--vcd-gradient-brand)',
         bgClip: 'text',
       },
-      '& div p:nth-of-type(even)': {
-        paddingLeft: 1,
-      },
     },
   },
 })
 
-const aside = definePartsStyle({
+const processInfo = definePartsStyle({
   container: {
     ...cardCommonStyles.container,
     direction: 'column',
@@ -238,7 +229,7 @@ const aside = definePartsStyle({
     top: 2,
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: 'aside.card',
+    borderColor: 'card.variant.process_info',
     cursor: 'normal',
     zIndex: 10,
 
@@ -260,10 +251,10 @@ const aside = definePartsStyle({
 
       borderWidth: 1,
       sorderStyle: 'solid',
-      borderColor: 'aside.card',
+      borderColor: 'card.variant.process_info',
 
       '& svg': {
-        color: 'aside.card',
+        color: 'card.variant.process_info',
         boxSize: 8,
       },
     },
@@ -276,7 +267,7 @@ const aside = definePartsStyle({
       },
 
       span: {
-        color: 'aside.card',
+        color: 'cards.variants.process_info',
       },
     },
   },
@@ -307,7 +298,6 @@ const results = definePartsStyle({
     ...cardCommonStyles.container,
     paddingX: 6,
     py: 5,
-    borderRadius: 25,
   },
   header: {
     ...cardCommonStyles.header,
@@ -318,8 +308,6 @@ const results = definePartsStyle({
     display: 'flex',
     flexDirection: 'column',
     gap: 3,
-    backgroundColor: 'white',
-    borderRadius: 2.5,
   },
 })
 
@@ -327,7 +315,7 @@ const variantsCards = {
   organization,
   'process-img': processImg,
   'process-description': processDescription,
-  aside,
+  'process-info': processInfo,
   results,
 }
 

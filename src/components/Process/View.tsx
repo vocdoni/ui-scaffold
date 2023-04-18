@@ -116,7 +116,7 @@ export const ProcessView = (props: ElectionProviderComponentProps) => {
                 {hasAlreadyVoted && (
                   <Card
                     cursor='pointer'
-                    variant='aside'
+                    variant='process-info'
                     order={{ base: 1, lg: 2 }}
                     alignSelf={{ base: 'center', lg: 'start' }}
                   >

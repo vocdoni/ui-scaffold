@@ -31,6 +31,7 @@ const Navbar = ({ ...props }) => {
         </Flex>
 
         {location.pathname.includes('organization') && <SearchInput width='50%' />}
+
         <Box display={{ base: 'none', lg: 'flex' }}>
           <UnorderedList display='flex' alignItems='center' gap={4}>
             <NavList mobile={false} />
@@ -50,13 +51,13 @@ const Navbar = ({ ...props }) => {
           display={{ lg: 'none' }}
           position='absolute'
           left={0}
-          bg='white'
+          bg='navbar.bg'
           width='100%'
           zIndex={10}
           borderStyle='solid'
-          borderColor='white'
+          borderColor='navbar.border'
           borderWidth={2}
-          borderBottomColor='gray.100'
+          borderBottomColor='navbar.border_bottom'
         >
           <UnorderedList display='flex' flexDirection='column' alignItems='center' gap={4} pb={8}>
             <NavList mobile={true} onClose={onClose} />
