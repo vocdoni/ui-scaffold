@@ -21,7 +21,7 @@ const ProcessAside = ({ handleTabsChange, isInCensus, hasAlreadyVoted, order, al
   const { account } = useClientContext()
 
   return (
-    <Card variant='aside' order={order} alignSelf={alignSelf}>
+    <Card variant='process-info' order={order} alignSelf={alignSelf}>
       <CardHeader
         onClick={() => {
           if (election?.status === ElectionStatus.RESULTS) handleTabsChange(1)

@@ -31,7 +31,7 @@ const NavList = ({ mobile, onClose }: Props) => {
           </ListItem>
           <ListItem order={mobile ? 1 : undefined} listStyleType='none' onClick={onClose} whiteSpace='nowrap'>
             <NavLink to={`/organization/0x${account?.address}`}>
-              <Button variant='ghost' colorScheme='pink'>
+              <Button variant='ghost' colorScheme='buttons.primary'>
                 {t('menu.my_list')}
               </Button>
             </NavLink>
@@ -40,7 +40,7 @@ const NavList = ({ mobile, onClose }: Props) => {
       )}
       <ListItem order={mobile ? 4 : undefined} listStyleType='none' display='flex' cursor='pointer'>
         <Menu>
-          <MenuButton as={Button} rightIcon={<ChevronDownIcon />} bgColor='transparent'>
+          <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
             <FaGlobeAmericas />
           </MenuButton>
           <MenuList>

@@ -13,10 +13,10 @@ const SearchInput = ({ ...props }) => {
           placeholder={t('search.input_placeholder').toString()}
           variant='unstyled'
           height={8}
-          bgColor='white'
+          bgColor='input_search.bg'
           borderRadius={40}
           borderWidth={1}
-          borderColor='black'
+          borderColor='input_search.border'
           borderStyle='solid'
           _focus={{
             borderWidth: 1.5,
