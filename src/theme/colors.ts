@@ -19,8 +19,6 @@ export const colorsBase = {
 }
 
 export const colors = {
-  ...colorsBase,
-
   buttons: {
     default: colorsBase.pink.light,
     primary: {
@@ -46,7 +44,7 @@ export const colors = {
       process_image: colorsBase.blue,
     },
   },
-
+  footer_links: colorsBase.black,
   home: {
     bg: colorsBase.lightBlue,
   },
