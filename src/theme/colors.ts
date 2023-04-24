@@ -19,8 +19,6 @@ export const colorsBase = {
 }
 
 export const colors = {
-  ...colorsBase,
-
   buttons: {
     default: colorsBase.pink.light,
     primary: {
