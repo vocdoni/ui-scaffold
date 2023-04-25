@@ -1,6 +1,7 @@
 import { Box, Text } from '@chakra-ui/react'
 import { useElection } from '@vocdoni/react-components'
 import { ElectionStatus } from '@vocdoni/sdk'
+import { TFunction } from 'i18next'
 import { useTranslation } from 'react-i18next'
 
 export const ProcessDate = () => {
@@ -9,22 +10,33 @@ export const ProcessDate = () => {
 
   if (!election) return null
 
-  if (election.status === ElectionStatus.CANCELED) return null
+  const statusText = getStatusText(t, election.status)
 
-  const now = new Date()
+  if (election.status === ElectionStatus.CANCELED) return null
 
   return (
     <Box paddingX={4}>
-      <Text color='process.date'>
-        {election.startDate > now
-          ? t('process.date.starts')
-          : now < election.endDate
-          ? t('process.date.ends')
-          : t('process.date.ended')}
-      </Text>
+      <Text color='process.date'>{statusText}</Text>
       <Text>
-        {t('process.date.relative', { date: election.startDate > now ? election.startDate : election.endDate })}
+        {t('process.date.relative', { date: election.startDate > new Date() ? election.startDate : election.endDate })}
       </Text>
     </Box>
   )
+}
+
+const getStatusText = (t: TFunction<string, undefined, string>, electionStatus: ElectionStatus | undefined) => {
+  switch (electionStatus) {
+    case ElectionStatus.UPCOMING:
+      return t('process.date.starts')
+    case ElectionStatus.ONGOING:
+    case ElectionStatus.PAUSED:
+      return t('process.date.ends')
+    case ElectionStatus.RESULTS:
+    case ElectionStatus.ENDED:
+      return t('process.date.ended')
+    case ElectionStatus.CANCELED:
+      return t('process.status.canceled')
+    default:
+      return null
+  }
 }
