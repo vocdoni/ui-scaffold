@@ -44,7 +44,7 @@ export const colors = {
       process_image: colorsBase.blue,
     },
   },
-
+  footer_links: colorsBase.black,
   home: {
     bg: colorsBase.lightBlue,
   },
