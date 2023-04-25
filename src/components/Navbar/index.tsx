@@ -1,5 +1,5 @@
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
-import { Box, Flex, IconButton, Img, Text, UnorderedList, useDisclosure, useOutsideClick } from '@chakra-ui/react'
+import { Box, Flex, IconButton, Img, List, Text, UnorderedList, useDisclosure, useOutsideClick } from '@chakra-ui/react'
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink, useLocation } from 'react-router-dom'
@@ -32,11 +32,9 @@ const Navbar = ({ ...props }) => {
 
         {location.pathname.includes('organization') && <SearchInput width='50%' />}
 
-        <Box display={{ base: 'none', lg: 'flex' }}>
-          <UnorderedList display='flex' alignItems='center' gap={4}>
-            <NavList mobile={false} />
-          </UnorderedList>
-        </Box>
+        <List display={{ base: 'none', lg: 'flex' }} alignItems='center' gap={4}>
+          <NavList mobile={false} />
+        </List>
 
         <IconButton
           size={'md'}
