@@ -5,12 +5,12 @@ import { format } from 'date-fns'
 import { useTranslation } from 'react-i18next'
 import { ProcessDate } from './Date'
 
-const ProcessCardDescription = ({ election }: { election: PublishedElection }) => {
+const ProcessCardDetailed = ({ election }: { election: PublishedElection }) => {
   const { t } = useTranslation()
 
   return (
     <ElectionProvider election={election}>
-      <Card variant='process-description'>
+      <Card variant='detailed'>
         <CardHeader>
           <ElectionStatusBadge />
         </CardHeader>
@@ -43,4 +43,4 @@ const ProcessCardDescription = ({ election }: { election: PublishedElection }) =
   )
 }
 
-export default ProcessCardDescription
+export default ProcessCardDetailed

@@ -7,6 +7,7 @@ import { colors } from './colors'
 import { space } from './space'
 import { Button } from './components/Button'
 import { Link } from './components/Link'
+import { breakpoints } from './breakpoints'
 
 export const theme = extendTheme(vtheme, {
   styles: {
@@ -16,6 +17,7 @@ export const theme = extendTheme(vtheme, {
       },
     },
   },
+  breakpoints,
   colors,
   sizes: {
     ...space,

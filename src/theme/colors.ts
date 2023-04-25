@@ -4,16 +4,18 @@ export const colorsBase = {
   blue: '#1752FE',
   gray: {
     light: '#E2E8F0',
-    normal: '#718096',
+    normal: '#A7A7A7',
   },
   grenade: '#961D1D',
+  green: { normal: '#00DAAE', dark: '#00dac0', ultradark: '#00dad2' },
   lightpurple: '#EDE4F4',
   pink: {
     ultralight: '#EA7BDF',
     light: '#E55BD8',
     normal: '#E035D0',
   },
-  purple: '#892BE2',
+  purple: '#8E00FF',
+
   turquoise: '#52E4C2',
   white: '#ffffff',
 }
@@ -28,7 +30,13 @@ export const colors = {
       600: colorsBase.pink.ultralight,
       700: colorsBase.pink.light,
     },
+    black: {
+      50: colorsBase.pink.normal,
+      600: colorsBase.black,
+      100: colorsBase.pink.light,
+    },
     ghost_hover_color: colorsBase.white,
+    search: colorsBase.black,
   },
 
   card: {
@@ -41,7 +49,10 @@ export const colors = {
     variant: {
       process_info: colorsBase.purple,
       process_description: colorsBase.turquoise,
-      process_image: colorsBase.blue,
+      image: {
+        organization: colorsBase.blue,
+        footer: colorsBase.purple,
+      },
     },
   },
   footer_links: colorsBase.black,
@@ -58,6 +69,11 @@ export const colors = {
     bg: colorsBase.white,
     border: colorsBase.white,
     border_bottom: colorsBase.gray.light,
+    btn_create: {
+      500: colorsBase.green.normal,
+      600: colorsBase.green.dark,
+      700: colorsBase.green.ultradark,
+    },
   },
   organization: {
     button_address_active: colorsBase.white,

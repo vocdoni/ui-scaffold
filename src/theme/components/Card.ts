@@ -24,194 +24,199 @@ const cardCommonStyles = {
   },
 }
 
-const organization = definePartsStyle({
-  container: {
-    ...cardCommonStyles.container,
-    overflow: 'hidden',
-  },
-  header: {
-    ...cardCommonStyles.header,
-  },
-  body: {
-    ...cardCommonStyles.body,
-    paddingX: 3,
-    py: 2,
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: 'card.title',
-  },
-  footer: {
-    ...cardCommonStyles.footer,
-    display: 'flex',
-    flexDirection: 'column',
-    paddingX: 3,
-    pb: 1,
-    fontSize: 14,
-
-    '& p:first-of-type': {
-      width: 'min-content',
-      bgGradient: 'var(--vcd-gradient-brand)',
-      bgClip: 'text',
-      fontWeight: 'normal',
-    },
-
-    '& p': {
-      fontWeight: 'bold',
-    },
-  },
-})
-
-const processImg = definePartsStyle({
+const lite = definePartsStyle({
   ...cardCommonStyles,
   container: {
     ...cardCommonStyles.container,
+    width: '306px',
     overflow: 'hidden',
   },
   header: {
     ...cardCommonStyles.header,
+    overflow: 'hidden',
   },
   body: {
     ...cardCommonStyles.body,
-    minH: 20,
-    paddingX: 3,
-    pt: 3,
-    pb: 1,
-    fontSize: 16,
+    p: '16px',
     fontWeight: 'bold',
-    color: 'card.title',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'start',
+    padding: '16px',
+    gap: '16px',
 
-    '& p:first-of-type': {
+    '& > div:first-of-type': { height: '55px' },
+
+    '& > div:first-of-type p:first-of-type': {
       textTransform: 'uppercase',
       isTruncated: true,
-      fontWeight: 'normal',
-      color: 'card.variant.process_image',
-      pb: 1,
+      fontWeight: '400',
+      color: 'card.variant.image.organization',
+      fontSize: '12px',
+      lineHeight: '15px',
     },
-    '& p:nth-of-type(2)': {
-      lineHeight: 1.3,
-    },
-  },
-  footer: {
-    ...cardCommonStyles.footer,
-    display: 'flex',
-    justifyContent: 'center',
-    paddingX: 3,
-    pb: 2,
-    fontSize: 14,
-
-    '& div': {
-      width: '100%',
-      borderLeftStyle: 'solid',
-      borderLeftWidth: 1,
-      borderLeftColor: 'card.footer_divider',
-      pl: 2,
+    '& > div:first-of-type p:nth-of-type(2)': {
+      fontSize: '18px',
+      lineHeight: '22.5px',
+      fontWeight: 700,
     },
 
-    '& div:first-of-type': {
-      borderLeft: 'none',
-      pl: 0,
-    },
-    '& div p': {
-      whiteSpace: 'nowrap',
-    },
-    '& div p:nth-of-type(odd)': {
-      width: 'min-content',
-      bgGradient: 'var(--vcd-gradient-brand)',
-      bgClip: 'text',
-    },
-    '& div p:nth-of-type(even)': {
-      fontWeight: 'bold',
-    },
-  },
-})
-
-const processDescription = definePartsStyle({
-  ...cardCommonStyles,
-  container: {
-    ...cardCommonStyles.container,
-    display: 'flex',
-    flexDirection: 'column',
-    maxW: 124,
-  },
-  header: {
-    ...cardCommonStyles.header,
-    alignSelf: 'end',
-
-    '& span': {
-      borderBottomRadius: 'none',
-    },
-  },
-
-  body: {
-    ...cardCommonStyles.body,
-    boxShadow: '1px 1px 10px 2px lightgray',
-    borderLeftRadius: 10,
-    borderBottomRightRadius: 10,
-    py: 5,
-    paddingX: 7,
-
-    '& div:first-of-type': {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'start',
-      overflow: 'hidden',
-    },
-
-    '& div:first-of-type > div': {
-      height: 14,
-    },
-    '& > div:first-of-type > p:first-of-type': {
-      color: 'card.variant.process_description',
-      fontSize: 14,
-      mb: 1,
-    },
-
-    '& div:first-of-type h4': {
-      fontSize: 20,
-      textAlign: 'start',
-      color: 'card.title',
-    },
-
-    '& > div:nth-of-type(1) > div:first-of-type > div': {
-      overflow: 'hidden',
-      mb: 1,
-    },
-
-    '& > div:nth-of-type(1) > div:first-of-type > div > p': {
-      color: 'card.description',
+    '& > div > p:nth-of-type(2)': {
+      fontSize: '16px',
+      lineHeight: '22.5px',
+      fontWeight: '700',
     },
 
     '& > div:nth-of-type(2)': {
       display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      bgColor: 'white',
-      minH: 14,
+      flexDirection: 'row',
+      alignItems: 'start',
+      padding: '0px',
+      gap: '14px',
+
+      '& div': {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'start',
+        padding: '0px',
+        gap: '4px',
+
+        '& p:nth-of-type(odd)': {
+          color: 'card.variant.image.footer',
+          fontStyle: 'normal',
+          fontWeight: 400,
+          fontSize: '14px',
+          lineHeight: '100%',
+        },
+        '& p:nth-of-type(even)': {
+          fontWeight: '600',
+          fontSize: '16px',
+          lineHeight: '16px',
+          fontStyle: 'normal',
+        },
+      },
+      '& div:nth-of-type(even)': {
+        pl: '14px',
+        borderLeft: '1px solid gray',
+      },
+    },
+  },
+})
+
+const detailed = definePartsStyle({
+  ...cardCommonStyles,
+  container: {
+    ...cardCommonStyles.container,
+    display: 'flex',
+    flexDirection: 'column',
+    maxW: '416px',
+    minW: '348px',
+  },
+  header: {
+    ...cardCommonStyles.header,
+    alignSelf: 'start',
+    pl: '24px',
+
+    '& span': {
+      borderRadius: '4px 4px 0px 0px',
+    },
+  },
+
+  body: {
+    ...cardCommonStyles.body,
+    position: 'relative',
+    boxShadow: '1px 1px 10px 2px lightgray',
+    borderRadius: '8px',
+    p: '16px',
+
+    '& > div:first-of-type': {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'start',
+      overflow: 'hidden',
+
+      '& > p:first-of-type': {
+        fontSize: '16px',
+        color: 'card.variant.image.organization',
+        lineHeight: '20px',
+      },
+
+      '& > h4': {
+        textAlign: 'start',
+        fontWeight: 700,
+        fontSize: '32px',
+        lineHeight: '40px',
+        mb: '10px',
+      },
+
+      '& > div:first-of-type p': {
+        overflow: 'hidden',
+        fontStyle: 'normal',
+        fontWeight: '400',
+        fontSize: '16px',
+        lineHeight: '20px',
+        color: 'card.description',
+      },
+    },
+    '& > div:nth-of-type(2)': {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'start',
+      padding: '0px',
+      gap: '14px',
 
       '& > p': {
-        color: 'card.process_canceled',
+        color: 'card.variant.image.footer',
       },
 
       '& div': {
-        width: '100%',
-        borderLeftStyle: 'solid',
-        borderLeftWidth: 1,
-        borderLeftColor: 'card.footer_divider',
-        pl: 12,
-      },
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'start',
+        padding: '0px',
+        gap: '4px',
 
-      '& div:first-of-type': {
-        borderLeft: 'none',
-        pl: 0,
+        '& p:nth-of-type(odd)': {
+          color: 'card.variant.image.footer',
+          fontStyle: 'normal',
+          fontWeight: 400,
+          fontSize: '14px',
+          lineHeight: '100%',
+        },
+        '& p:nth-of-type(even)': {
+          fontWeight: '600',
+          fontSize: '16px',
+          lineHeight: '16px',
+          fontStyle: 'normal',
+        },
       },
-      '& div p': {
-        whiteSpace: 'nowrap',
+      '& div:nth-of-type(even)': {
+        pl: '14px',
+        borderLeft: '1px solid gray',
       },
-      '& div p:nth-of-type(odd)': {
-        width: 'min-content',
-        bgGradient: 'var(--vcd-gradient-brand)',
-        bgClip: 'text',
-      },
+    },
+  },
+
+  footer: {
+    width: '94%',
+    height: '48px',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: '16px',
+    padding: '4px',
+    backgroundColor: '#F5F5F5',
+    mx: 'auto',
+    borderRadius: '0px 0px 8px 8px',
+
+    '& button': {
+      border: '2px solid ',
+      borderRadius: '50%',
+    },
+
+    '& button:disabled': {
+      color: 'red',
     },
   },
 })
@@ -312,9 +317,8 @@ const results = definePartsStyle({
 })
 
 const variantsCards = {
-  organization,
-  'process-img': processImg,
-  'process-description': processDescription,
+  lite,
+  detailed,
   'process-info': processInfo,
   results,
 }

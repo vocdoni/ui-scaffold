@@ -1,5 +1,5 @@
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
-import { Box, Flex, IconButton, Img, List, Text, UnorderedList, useDisclosure, useOutsideClick } from '@chakra-ui/react'
+import { Box, Flex, IconButton, Img, List, Text, useDisclosure, useOutsideClick } from '@chakra-ui/react'
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink, useLocation } from 'react-router-dom'
@@ -57,9 +57,9 @@ const Navbar = ({ ...props }) => {
           borderWidth={2}
           borderBottomColor='navbar.border_bottom'
         >
-          <UnorderedList display='flex' flexDirection='column' alignItems='center' gap={4} pb={8}>
+          <List display='flex' flexDirection='column' alignItems='center' gap={4} pb={8}>
             <NavList mobile={true} onClose={onClose} />
-          </UnorderedList>
+          </List>
         </Flex>
       )}
     </Box>

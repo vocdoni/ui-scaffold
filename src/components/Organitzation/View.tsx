@@ -4,7 +4,7 @@ import { PublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import ProcessCardDescription from '../Process/CardDesc'
+import ProcessCardDetailed from '../Process/CardDetailed'
 import SearchInput from '../Search/Input'
 import Header from './Header'
 
@@ -86,7 +86,7 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
               {electionsList?.map((election: any, idx: number) => (
                 <Link to={`/processes/0x${election.id}`} key={idx}>
                   <GridItem display='flex' justifyContent='center' alignItems='center'>
-                    <ProcessCardDescription election={election} />
+                    <ProcessCardDetailed election={election} />
                   </GridItem>
                 </Link>
               ))}

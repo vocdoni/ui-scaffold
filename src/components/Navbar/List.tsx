@@ -24,12 +24,12 @@ const NavList = ({ mobile, onClose }: Props) => {
     <>
       {isConnected && (
         <>
-          <ListItem order={mobile ? 2 : undefined} listStyleType='none' onClick={onClose} whiteSpace='nowrap'>
+          <ListItem order={mobile ? 2 : undefined} onClick={onClose} whiteSpace='nowrap'>
             <NavLink to='/processes/create'>
               <Button colorScheme='buttons.primary'>{t('menu.create_process')}</Button>
             </NavLink>
           </ListItem>
-          <ListItem order={mobile ? 1 : undefined} listStyleType='none' onClick={onClose} whiteSpace='nowrap'>
+          <ListItem order={mobile ? 1 : undefined} onClick={onClose} whiteSpace='nowrap'>
             <NavLink to={`/organization/0x${account?.address}`}>
               <Button variant='ghost' colorScheme='buttons.primary'>
                 {t('menu.my_list')}
@@ -38,7 +38,7 @@ const NavList = ({ mobile, onClose }: Props) => {
           </ListItem>
         </>
       )}
-      <ListItem order={mobile ? 4 : undefined} listStyleType='none' display='flex' cursor='pointer'>
+      <ListItem order={mobile ? 4 : undefined} display='flex' cursor='pointer'>
         <Menu>
           <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
             <FaGlobeAmericas />
@@ -63,7 +63,7 @@ const NavList = ({ mobile, onClose }: Props) => {
           </MenuList>
         </Menu>
       </ListItem>
-      <ListItem order={mobile ? 1 : undefined} listStyleType='none'>
+      <ListItem order={mobile ? 1 : undefined}>
         <Account />
       </ListItem>
     </>
