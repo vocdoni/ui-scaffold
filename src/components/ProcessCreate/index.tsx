@@ -1,6 +1,6 @@
 import { Alert, AlertIcon, Button, Flex, useToast } from '@chakra-ui/react'
 import { useClientContext } from '@vocdoni/react-components'
-import { Election, IQuestion, PlainCensus, WeightedCensus } from '@vocdoni/sdk'
+import { Election, EnvOptions, IQuestion, PlainCensus, VocdoniCensus3Client, WeightedCensus } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -23,7 +23,7 @@ export interface FormValues {
   }
   maxVoteOverwrites: number
   weightedVote: boolean
-  addresses: Address[]
+  addresses: any
   selectedAddress: string | null
   questions: Question[]
 }
@@ -62,7 +62,7 @@ export const getWeightedCensus = (addresses: Address[]) => {
   return census
 }
 
-const ProcessCreate = () => {
+const ProcessCreateView = () => {
   const { address } = useAccount()
   const { client } = useClientContext()
   const [sending, setSending] = useState<boolean>(false)
@@ -70,6 +70,9 @@ const ProcessCreate = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
   const toast = useToast()
+  const [censusClient, setCensusClient] = useState<VocdoniCensus3Client>(
+    new VocdoniCensus3Client({ api_url: 'http://ci.vocdoni.net:7788/api', env: EnvOptions.DEV })
+  )
 
   const methods = useForm<FormValues>({
     defaultValues: {
@@ -81,7 +84,7 @@ const ProcessCreate = () => {
       maxVoteOverwrites: 0,
       weightedVote: false,
       // add two address fields by default
-      addresses: [{}, {}],
+      addresses: [],
       selectedAddress: null,
       questions: [
         {
@@ -92,22 +95,27 @@ const ProcessCreate = () => {
     },
   })
 
+  console.log(methods.watch())
+
   // fill account address to the census first address field
   useEffect(() => {
-    if (!address) return
-    methods.setValue(`addresses.${0}.address`, address)
-  }, [address, methods])
+    if (!address && censusClient) return
+    censusClient.getSupportedTokens().then((res) => {
+      methods.setValue('addresses', res)
+    })
+  }, [address, methods, censusClient])
 
   const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
     setError('')
     setSending(true)
+
     try {
       await client.createAccount()
       let census
 
       if (data.weightedVote) census = getWeightedCensus(data.addresses)
       else {
-        const addresses = data.addresses.map((add) => add.address)
+        const addresses = data.addresses.map((add: any) => add.address)
         census = await getPlainCensus(addresses)
       }
 
@@ -149,7 +157,7 @@ const ProcessCreate = () => {
     }
   }
 
-  console.log(methods.watch())
+  // console.log(methods.watch())
 
   return (
     <FormProvider {...methods}>
@@ -185,4 +193,4 @@ const ProcessCreate = () => {
   )
 }
 
-export default ProcessCreate
+export default ProcessCreateView

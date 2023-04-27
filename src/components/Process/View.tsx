@@ -48,7 +48,7 @@ export const ProcessView = (props: ElectionProviderComponentProps) => {
     client
       .hasAlreadyVoted(election?.id)
       .then((res) => {
-        setHasAlreadyVoted(res)
+        setHasAlreadyVoted(res as any)
       })
       .catch(console.log)
   }, [account, isConnected, client, election])

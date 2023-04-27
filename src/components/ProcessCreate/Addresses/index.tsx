@@ -12,19 +12,18 @@ const CreateProcessAddresses = () => {
 
   // const { t } = useTranslation()
 
-  const options = getValues().addresses.map((add: any, id: number) =>
-    add.address ? (
-      <option key={id} onClick={() => setValue(`selectedAddress`, 'hello')}>
-        {add.address}
-      </option>
-    ) : (
-      <option key={id}>Hard</option>
-    )
-  )
+  const options = getValues().addresses.map((add: any, id: number) => (
+    <option key={id} onClick={() => setValue(`selectedAddress`, add.id)}>
+      {add.name}
+    </option>
+  ))
 
   return (
     <WrapperFormSection>
-      <Select>{options}</Select>
+      <Select>
+        <option>Choose an option</option>
+        {options}
+      </Select>
       {/* <HStack justify='space-between' mb={2}>
         <Text as='legend' fontSize='1.3em'>
           {t('form.process_create.addresses_title')}
