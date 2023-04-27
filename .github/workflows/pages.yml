@@ -31,6 +31,7 @@ jobs:
         run: yarn build
         env:
           PUBLIC_URL: '/ui-scaffold'
+          REACT_APP_VOCDONI_ENVIRONMENT: ${{ vars.REACT_APP_VOCDONI_ENVIRONMENT }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
