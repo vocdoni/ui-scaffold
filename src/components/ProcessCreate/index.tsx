@@ -1,6 +1,15 @@
 import { Alert, AlertIcon, Button, Flex, useToast } from '@chakra-ui/react'
 import { useClientContext } from '@vocdoni/react-components'
-import { Election, EnvOptions, IQuestion, PlainCensus, VocdoniCensus3Client, WeightedCensus } from '@vocdoni/sdk'
+import {
+  CensusType,
+  Election,
+  EnvOptions,
+  IQuestion,
+  PlainCensus,
+  PublishedCensus,
+  VocdoniCensus3Client,
+  WeightedCensus,
+} from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -111,13 +120,10 @@ const ProcessCreateView = () => {
 
     try {
       await client.createAccount()
-      let census
 
-      if (data.weightedVote) census = getWeightedCensus(data.addresses)
-      else {
-        const addresses = data.addresses.map((add: any) => add.address)
-        census = await getPlainCensus(addresses)
-      }
+      let census3cesus = await censusClient.createTokenCensus(data.selectedAddress as string)
+
+      const census = new PublishedCensus(census3cesus.merkleRoot, census3cesus.uri, CensusType.WEIGHTED)
 
       const election = Election.from({
         ...data,
