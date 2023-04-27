@@ -10,8 +10,6 @@ const CreateProcessAddresses = () => {
 
   // console.log(getValues().addresses)
 
-  // const { t } = useTranslation()
-
   const options = getValues().addresses.map((add: any, id: number) => (
     <option key={id} onClick={() => setValue(`selectedAddress`, add.id)}>
       {add.name}
