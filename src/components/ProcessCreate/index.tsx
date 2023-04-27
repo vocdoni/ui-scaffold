@@ -24,6 +24,7 @@ export interface FormValues {
   maxVoteOverwrites: number
   weightedVote: boolean
   addresses: Address[]
+  selectedAddress: string | null
   questions: Question[]
 }
 
@@ -81,6 +82,7 @@ const ProcessCreate = () => {
       weightedVote: false,
       // add two address fields by default
       addresses: [{}, {}],
+      selectedAddress: null,
       questions: [
         {
           // add two options by default
@@ -146,6 +148,8 @@ const ProcessCreate = () => {
       setSending(false)
     }
   }
+
+  console.log(methods.watch())
 
   return (
     <FormProvider {...methods}>
