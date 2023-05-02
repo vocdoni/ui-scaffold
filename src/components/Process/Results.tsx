@@ -1,5 +1,5 @@
 import { Box, Card, CardBody, CardHeader, Flex, Text } from '@chakra-ui/react'
-import { useElection } from '@vocdoni/react-components'
+import { useElection } from '@vocdoni/chakra-components'
 
 const ProcessResults = () => {
   const { election } = useElection()

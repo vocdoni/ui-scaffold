@@ -1,5 +1,5 @@
 import { Box, Code, Flex, Grid, Icon, Img, Link, List, ListItem, Text } from '@chakra-ui/react'
-import { HR } from '@vocdoni/react-components'
+import { HR } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa'
 import vocdoni_logo from '../../assets/vocdoni_logo.svg'

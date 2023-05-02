@@ -2,28 +2,25 @@ import { ArrowBackIcon, ExternalLinkIcon } from '@chakra-ui/icons'
 import { Box, Card, CardHeader, Circle, Flex, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
 import {
   ElectionDescription,
-  ElectionProvider,
-  ElectionProviderComponentProps,
+  ElectionQuestions,
   ElectionSchedule,
   ElectionTitle,
-  QuestionsForm,
-  useClientContext,
-} from '@vocdoni/react-components'
+  useClient,
+  useElection,
+} from '@vocdoni/chakra-components'
 import { ElectionStatus } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import { useAccount } from 'wagmi'
 import { ExplorerBaseURL } from '../../constants'
 import ProcessActions from './Actions'
 import ProcessAside from './Aside'
 import { ProcessDate } from './Date'
 import ProcessResults from './Results'
 
-export const ProcessView = (props: ElectionProviderComponentProps) => {
-  const { election } = props
-  const { isConnected } = useAccount()
-  const { client, account } = useClientContext()
+export const ProcessView = () => {
+  const { election, isInCensus, voted } = useElection()
+  const { account } = useClient()
   const { t } = useTranslation()
 
   const [tabIndex, setTabIndex] = useState(0)
@@ -32,33 +29,12 @@ export const ProcessView = (props: ElectionProviderComponentProps) => {
     setTabIndex(index)
   }
 
-  const [isInCensus, setIsInCensus] = useState<boolean>(false)
-  const [hasAlreadyVoted, setHasAlreadyVoted] = useState<boolean>(false)
-
-  useEffect(() => {
-    if (!isConnected || !account || !election) return
-
-    client
-      .isInCensus(election?.id)
-      .then((res) => {
-        setIsInCensus(res)
-      })
-      .catch(console.log)
-
-    client
-      .hasAlreadyVoted(election?.id)
-      .then((res) => {
-        setHasAlreadyVoted(res)
-      })
-      .catch(console.log)
-  }, [account, isConnected, client, election])
-
   useEffect(() => {
     if (election?.status === ElectionStatus.RESULTS) setTabIndex(1)
   }, [election])
 
   return (
-    <ElectionProvider {...props}>
+    <>
       <Flex direction='column' gap={5}>
         <Link to={`/organization/0x${election?.organizationId}`}>
           <ArrowBackIcon /> Org Name
@@ -89,11 +65,11 @@ export const ProcessView = (props: ElectionProviderComponentProps) => {
 
             <Flex gap={4} flexDirection={{ base: 'column', lg: 'row' }}>
               <Box flexGrow={{ lg: 1 }} flexShrink={{ lg: 1 }} flexBasis={{ lg: 124 }} order={{ base: 2, lg: 1 }}>
-                <QuestionsForm />
+                <ElectionQuestions />
               </Box>
               <ProcessAside
                 isInCensus={isInCensus}
-                hasAlreadyVoted={hasAlreadyVoted}
+                hasAlreadyVoted={voted !== null && voted.length > 0}
                 handleTabsChange={handleTabsChange}
                 order={{ base: 1, lg: 2 }}
                 alignSelf={{ base: 'center', lg: 'start' }}
@@ -113,7 +89,7 @@ export const ProcessView = (props: ElectionProviderComponentProps) => {
                   </Box>
                 )}
 
-                {hasAlreadyVoted && (
+                {voted && (
                   <Card
                     cursor='pointer'
                     variant='process-info'
@@ -141,6 +117,6 @@ export const ProcessView = (props: ElectionProviderComponentProps) => {
           </TabPanel>
         </TabPanels>
       </Tabs>
-    </ElectionProvider>
+    </>
   )
 }

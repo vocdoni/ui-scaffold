@@ -1,5 +1,5 @@
 import { Flex, Grid, GridItem, Spinner, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
-import { useClientContext } from '@vocdoni/react-components'
+import { useClient } from '@vocdoni/chakra-components'
 import { PublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -10,7 +10,7 @@ import Header from './Header'
 
 const OrganizationView = ({ address }: { address: string | undefined }) => {
   const { t } = useTranslation()
-  const { client } = useClientContext()
+  const { client } = useClient()
 
   const [electionsList, setElectionsList] = useState<PublishedElection[]>([])
   const [loading, setLoading] = useState(false)
