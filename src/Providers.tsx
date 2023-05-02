@@ -1,7 +1,7 @@
 import { ChakraProvider, ColorModeScript, extendTheme, useColorMode } from '@chakra-ui/react'
 import { Signer } from '@ethersproject/abstract-signer'
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit'
-import { ClientProvider } from '@vocdoni/react-components'
+import { ClientProvider } from '@vocdoni/chakra-components'
 import { EnvOptions } from '@vocdoni/sdk'
 import { useSigner, WagmiConfig } from 'wagmi'
 import { VocdoniEnvironment } from './constants'

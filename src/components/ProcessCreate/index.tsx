@@ -1,5 +1,5 @@
 import { Alert, AlertIcon, Button, Flex, useToast } from '@chakra-ui/react'
-import { useClientContext } from '@vocdoni/react-components'
+import { useClient } from '@vocdoni/chakra-components'
 import { Election, IQuestion, PlainCensus, WeightedCensus } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
@@ -63,7 +63,7 @@ export const getWeightedCensus = (addresses: Address[]) => {
 
 const ProcessCreate = () => {
   const { address } = useAccount()
-  const { client } = useClientContext()
+  const { client } = useClient()
   const [sending, setSending] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
   const navigate = useNavigate()

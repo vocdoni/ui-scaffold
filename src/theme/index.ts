@@ -1,12 +1,12 @@
 import { ColorMode, extendTheme } from '@chakra-ui/react'
 import { darkTheme, lightTheme } from '@rainbow-me/rainbowkit'
-import { theme as vtheme } from '@vocdoni/react-components'
-import { Card } from './components/Card'
-import { Questions } from './components/QuestionsForm'
+import { theme as vtheme } from '@vocdoni/chakra-components'
 import { colors } from './colors'
-import { space } from './space'
 import { Button } from './components/Button'
+import { Card } from './components/Card'
 import { Link } from './components/Link'
+import { Questions } from './components/Questions'
+import { space } from './space'
 
 export const theme = extendTheme(vtheme, {
   styles: {

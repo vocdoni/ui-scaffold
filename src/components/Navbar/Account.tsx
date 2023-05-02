@@ -1,6 +1,6 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { Balance } from '@vocdoni/react-components'
+import { Balance } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import { BiChevronDown, BiCoinStack, BiLogOut } from 'react-icons/bi'
 import { useAccount, useDisconnect } from 'wagmi'
