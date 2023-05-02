@@ -1,12 +1,12 @@
 import { ButtonGroup, IconButton, ToastId, useToast } from '@chakra-ui/react'
-import { useClientContext, useElection } from '@vocdoni/react-components'
+import { useClient, useElection } from '@vocdoni/chakra-components'
 import { ElectionStatus } from '@vocdoni/sdk'
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaPause, FaPlay, FaStop } from 'react-icons/fa'
 
 const ProcessActions = () => {
-  const { client } = useClientContext()
+  const { client } = useClient()
   const { election } = useElection()
   const { t } = useTranslation()
   const toast = useToast()

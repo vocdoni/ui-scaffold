@@ -1,4 +1,4 @@
-import { useClientContext } from '@vocdoni/react-components'
+import { useClient } from '@vocdoni/chakra-components'
 import { lazy } from 'react'
 import { createHashRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
 // These aren't lazy loaded to avoid excessive loaders in different locations
@@ -17,7 +17,7 @@ const Organization = lazy(() => import('../elements/Organization'))
 const Process = lazy(() => import('../elements/Process'))
 
 export const RoutesProvider = () => {
-  const { client } = useClientContext()
+  const { client } = useClient()
 
   const router = createHashRouter(
     createRoutesFromElements(

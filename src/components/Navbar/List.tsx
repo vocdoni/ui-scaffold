@@ -1,6 +1,6 @@
 import { ChevronDownIcon } from '@chakra-ui/icons'
 import { Button, ListItem, Menu, MenuButton, MenuItemOption, MenuList, MenuOptionGroup } from '@chakra-ui/react'
-import { useClientContext } from '@vocdoni/react-components'
+import { useClient } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import { FaGlobeAmericas } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
@@ -16,7 +16,7 @@ interface Props {
 const NavList = ({ mobile, onClose }: Props) => {
   const { isConnected } = useAccount()
   const { i18n, t } = useTranslation()
-  const { account } = useClientContext()
+  const { account } = useClient()
 
   const languages = LanguagesSlice as { [key: string]: string }
 

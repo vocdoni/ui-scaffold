@@ -1,6 +1,6 @@
 import { ColorMode, extendTheme } from '@chakra-ui/react'
 import { darkTheme, lightTheme } from '@rainbow-me/rainbowkit'
-import { theme as vtheme } from '@vocdoni/react-components'
+import { theme as vtheme } from '@vocdoni/chakra-components'
 import { Card } from './components/Card'
 import { Questions } from './components/QuestionsForm'
 import { colors } from './colors'

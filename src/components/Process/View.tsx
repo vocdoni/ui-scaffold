@@ -4,11 +4,11 @@ import {
   ElectionDescription,
   ElectionProvider,
   ElectionProviderComponentProps,
+  ElectionQuestions,
   ElectionSchedule,
   ElectionTitle,
-  QuestionsForm,
-  useClientContext,
-} from '@vocdoni/react-components'
+  useClient,
+} from '@vocdoni/chakra-components'
 import { ElectionStatus } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -23,7 +23,7 @@ import ProcessResults from './Results'
 export const ProcessView = (props: ElectionProviderComponentProps) => {
   const { election } = props
   const { isConnected } = useAccount()
-  const { client, account } = useClientContext()
+  const { client, account } = useClient()
   const { t } = useTranslation()
 
   const [tabIndex, setTabIndex] = useState(0)
@@ -89,7 +89,7 @@ export const ProcessView = (props: ElectionProviderComponentProps) => {
 
             <Flex gap={4} flexDirection={{ base: 'column', lg: 'row' }}>
               <Box flexGrow={{ lg: 1 }} flexShrink={{ lg: 1 }} flexBasis={{ lg: 124 }} order={{ base: 2, lg: 1 }}>
-                <QuestionsForm />
+                <ElectionQuestions />
               </Box>
               <ProcessAside
                 isInCensus={isInCensus}

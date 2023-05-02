@@ -10,13 +10,10 @@ const CreateProcessSettings = () => {
   const {
     register,
     getValues,
-    // watch,
     formState: { errors },
   } = useFormContext()
 
   const { t } = useTranslation()
-
-  // console.log(watch('addresses'))
 
   useWatch({
     name: ['electionType'],
