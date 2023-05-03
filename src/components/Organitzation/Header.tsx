@@ -1,12 +1,14 @@
-import { AspectRatio, Box, Button, Flex, Heading, Image, Link, Text, VStack } from '@chakra-ui/react'
+import { AspectRatio, Box, Button, Flex, Heading, Image, Text, VStack } from '@chakra-ui/react'
+import { useOrganization } from '@vocdoni/chakra-components'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import ShareButtons from '../Layout/ShareButtons'
 import AddressBtn from './AddressBtn'
 
-const OrganizationHeader = ({ address }: { address: string | undefined }) => {
+const OrganizationHeader = () => {
   const { t } = useTranslation()
   const [readMore, setReadMore] = useState(false)
+  const { organization } = useOrganization()
 
   return (
     <Box maxWidth={{ base: '90%', md: 250 }} mx='auto'>
@@ -35,11 +37,11 @@ const OrganizationHeader = ({ address }: { address: string | undefined }) => {
         mb={{ base: 2, md: 4 }}
       >
         <Flex flexDirection='column' alignItems={{ base: 'center', md: 'start' }} mt={2}>
-          <AddressBtn address={address} />
+          <AddressBtn />
 
           <Text>{t('organization.dao_title')}</Text>
           <Heading as='h1' fontSize={28} isTruncated title='The Organization Name' maxWidth='90%'>
-            The Organization Name
+            {organization?.account.name.default || organization?.address}
           </Heading>
         </Flex>
         <Flex flexDirection={{ base: 'row', md: 'column' }} gap={{ base: 4, md: 0 }}>
@@ -48,7 +50,7 @@ const OrganizationHeader = ({ address }: { address: string | undefined }) => {
               {t('organization.elections')}
             </Text>
             <Text as='span' fontWeight='bold'>
-              20
+              {organization?.electionIndex}
             </Text>
           </Flex>
 
@@ -57,7 +59,7 @@ const OrganizationHeader = ({ address }: { address: string | undefined }) => {
               {t('organization.members')}
             </Text>
             <Text as='span' fontWeight='bold'>
-              627
+              ∞
             </Text>
           </Flex>
         </Flex>
@@ -66,19 +68,7 @@ const OrganizationHeader = ({ address }: { address: string | undefined }) => {
         </Flex>
       </Flex>
       <Flex justifyContent={{ base: 'center', md: 'start' }} alignItems='center' gap={4} mb={{ base: 2, md: 4 }}></Flex>
-      <Text noOfLines={readMore ? undefined : 3}>
-        <Link href='#' fontWeight='bold'>
-          The Organization Name
-        </Link>{' '}
-        ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-        laboliquip ex ea commodo const dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-        laboris nisi ut aliquip ex Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-        nisi ut labore exercitation ullamco laboris.ncididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut labore exercitation ullamco laboris
-      </Text>
+      <Text noOfLines={readMore ? undefined : 3}>{organization?.account.description.default}</Text>
       <VStack>
         <Button variant='link' onClick={() => setReadMore((prev) => !prev)}>
           {readMore ? t('read_less') : t('read_more')}
