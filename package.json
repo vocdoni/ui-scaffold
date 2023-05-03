@@ -10,7 +10,7 @@
     "@emotion/styled": "^11.0.0",
     "@ethersproject/abstract-signer": "^5.7.0",
     "@rainbow-me/rainbowkit": "^0.12.4",
-    "@vocdoni/chakra-components": "^0.1.0",
+    "@vocdoni/chakra-components": "^0.1.2",
     "@vocdoni/sdk": "0.0.11",
     "date-fns": "^2.29.3",
     "ethers": "^5.7.2",
@@ -66,8 +66,5 @@
     "i18next-parser": "^7.7.0",
     "prettier": "^2.8.7",
     "typescript": "^4.6.3"
-  },
-  "resolutions": {
-    "dotobject": "portal:/home/elboletaire/src/vocdoni/ui-library/packages/dotobject"
   }
 }

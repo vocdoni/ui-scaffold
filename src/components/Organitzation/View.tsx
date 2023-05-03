@@ -1,5 +1,5 @@
 import { Flex, Grid, GridItem, Spinner, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
-import { useClient } from '@vocdoni/chakra-components'
+import { useClient, useOrganization } from '@vocdoni/chakra-components'
 import { PublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -8,9 +8,10 @@ import ProcessCardDescription from '../Process/CardDesc'
 import SearchInput from '../Search/Input'
 import Header from './Header'
 
-const OrganizationView = ({ address }: { address: string | undefined }) => {
+const OrganizationView = () => {
   const { t } = useTranslation()
   const { client } = useClient()
+  const { organization } = useOrganization()
 
   const [electionsList, setElectionsList] = useState<PublishedElection[]>([])
   const [loading, setLoading] = useState(false)
@@ -22,18 +23,19 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
   useObserver(refObserver, setPage)
 
   useEffect(() => {
-    setElectionsList([])
-  }, [address])
-
-  useEffect(() => {
+    // start loading at first glance
+    setLoaded(false)
     setLoading(true)
 
-    if (!client || page === 0 || error) return
+    if (!client || page === 0 || error || !organization?.address) return
+
+    // empty list to ensure it's properly populated
+    setElectionsList([])
 
     client
-      .fetchElections(address, page - 1)
+      .fetchElections(organization?.address, page - 1)
       .then((res) => {
-        setElectionsList((prev: any) => {
+        setElectionsList((prev: PublishedElection[]) => {
           if (prev) return [...prev, ...res]
           return res
         })
@@ -46,7 +48,7 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
         setLoading(false)
         setLoaded(true)
       })
-  }, [client, address, page, error])
+  }, [client, organization?.address, page, error])
 
   const templateColumnsAllRounds =
     electionsList?.length === 1
@@ -60,7 +62,7 @@ const OrganizationView = ({ address }: { address: string | undefined }) => {
 
   return (
     <Flex direction='column' gap={4}>
-      <Header address={address} />
+      <Header />
       <Tabs mt={8}>
         <TabList
           position='relative'

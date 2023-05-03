@@ -1,13 +1,18 @@
 import { CopyIcon, ExternalLinkIcon } from '@chakra-ui/icons'
 import { Box, Button, Menu, MenuButton, MenuItem, MenuList, Text, useClipboard, useToast } from '@chakra-ui/react'
+import { enforceHexPrefix, useOrganization } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import { HiOutlineEllipsisHorizontalCircle } from 'react-icons/hi2'
 import { ExplorerBaseURL } from '../../constants'
 
-const AddressBtn = ({ address }: { address: string | undefined }) => {
+const AddressBtn = () => {
   const { t } = useTranslation()
+  const { organization } = useOrganization()
   const toast = useToast()
-  const { onCopy } = useClipboard(address as string)
+  const { onCopy } = useClipboard(organization?.address as string)
+
+  const address = enforceHexPrefix(organization?.address)
+
   return (
     <Menu>
       <MenuButton

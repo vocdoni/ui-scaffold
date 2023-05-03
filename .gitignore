@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .yarn
+.yarnrc.yml
 .pnp.js
 
 # testing

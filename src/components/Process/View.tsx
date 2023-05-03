@@ -1,26 +1,27 @@
 import { ArrowBackIcon, ExternalLinkIcon } from '@chakra-ui/icons'
 import { Box, Card, CardHeader, Circle, Flex, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
 import {
+  ElectionActions,
   ElectionDescription,
   ElectionQuestions,
   ElectionSchedule,
   ElectionTitle,
-  useClient,
+  enforceHexPrefix,
   useElection,
+  useOrganization,
 } from '@vocdoni/chakra-components'
 import { ElectionStatus } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { ExplorerBaseURL } from '../../constants'
-import ProcessActions from './Actions'
 import ProcessAside from './Aside'
 import { ProcessDate } from './Date'
 import ProcessResults from './Results'
 
 export const ProcessView = () => {
+  const { organization } = useOrganization()
   const { election, isInCensus, voted } = useElection()
-  const { account } = useClient()
   const { t } = useTranslation()
 
   const [tabIndex, setTabIndex] = useState(0)
@@ -37,7 +38,7 @@ export const ProcessView = () => {
     <>
       <Flex direction='column' gap={5}>
         <Link to={`/organization/0x${election?.organizationId}`}>
-          <ArrowBackIcon /> Org Name
+          <ArrowBackIcon /> {organization?.account.name.default || enforceHexPrefix(organization?.address)}
         </Link>
         <ElectionSchedule textAlign='left' color='branding.pink' />
         <ElectionTitle fontSize={18} mb={0} textAlign='left' />
@@ -54,13 +55,7 @@ export const ProcessView = () => {
         <TabPanels bg='gray.100'>
           <TabPanel>
             <Flex justifyContent='center' gap={4} mb={4}>
-              {election?.organizationId === account?.address &&
-                (election?.status === ElectionStatus.ONGOING || election?.status === ElectionStatus.PAUSED) && (
-                  <>
-                    {election?.electionType.interruptible && <ProcessActions />}
-                    {!election?.electionType.interruptible && <Text fontWeight='bold'>Not interruptible</Text>}
-                  </>
-                )}
+              <ElectionActions />
             </Flex>
 
             <Flex gap={4} flexDirection={{ base: 'column', lg: 'row' }}>
