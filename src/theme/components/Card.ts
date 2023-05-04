@@ -107,93 +107,119 @@ const lite = definePartsStyle({
   },
 })
 
-const processDescription = definePartsStyle({
+const detailed = definePartsStyle({
   ...cardCommonStyles,
   container: {
     ...cardCommonStyles.container,
     display: 'flex',
     flexDirection: 'column',
-    maxW: 124,
+    w: '416px',
   },
   header: {
     ...cardCommonStyles.header,
-    alignSelf: 'end',
+    alignSelf: 'start',
+    pl: '24px',
 
     '& span': {
-      borderBottomRadius: 'none',
+      borderRadius: '4px 4px 0px 0px',
+      boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.1)',
     },
   },
 
   body: {
     ...cardCommonStyles.body,
-    boxShadow: '1px 1px 10px 2px lightgray',
-    borderLeftRadius: 10,
-    borderBottomRightRadius: 10,
-    py: 5,
-    paddingX: 7,
+    boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.1)',
+    borderRadius: '8px',
+    p: '16px',
+    position: 'relative',
 
-    '& div:first-of-type': {
+    '& > div:first-of-type': {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'start',
       overflow: 'hidden',
-    },
 
-    '& div:first-of-type > div': {
-      height: 14,
-    },
-    '& > div:first-of-type > p:first-of-type': {
-      color: 'card.variant.process_description',
-      fontSize: 14,
-      mb: 1,
-    },
+      '& > p:first-of-type': {
+        fontSize: '16px',
+        color: 'card.top_header',
+        lineHeight: '20px',
+      },
 
-    '& div:first-of-type h4': {
-      fontSize: 20,
-      textAlign: 'start',
-      color: 'card.title',
-    },
+      '& > h4': {
+        textAlign: 'start',
+        fontWeight: 700,
+        fontSize: '26px',
+        mb: '10px',
+      },
 
-    '& > div:nth-of-type(1) > div:first-of-type > div': {
-      overflow: 'hidden',
-      mb: 1,
+      '& > div:first-of-type p': {
+        overflow: 'hidden',
+        fontStyle: 'normal',
+        fontWeight: '400',
+        fontSize: '16px',
+        lineHeight: '20px',
+        color: 'card.description',
+        textAlign: 'start',
+      },
     },
-
-    '& > div:nth-of-type(1) > div:first-of-type > div > p': {
-      color: 'card.description',
-    },
-
     '& > div:nth-of-type(2)': {
       display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      bgColor: 'white',
-      minH: 14,
+      flexDirection: 'row',
+      alignItems: 'start',
+      padding: '0px',
+      gap: '14px',
 
-      '& > p': {
-        color: 'card.process_canceled',
+      '& > div': {
+        border: '1px solid o',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'start',
+        padding: '0px',
+        gap: '4px',
+
+        '& p:nth-of-type(odd)': {
+          color: 'card.footer_title',
+          fontStyle: 'normal',
+          fontWeight: 400,
+          fontSize: '14px',
+          lineHeight: '100%',
+        },
+        '& p:nth-of-type(even)': {
+          fontWeight: '600',
+          fontSize: '16px',
+          lineHeight: '16px',
+          fontStyle: 'normal',
+        },
       },
 
-      '& div': {
-        width: '100%',
-        borderLeftStyle: 'solid',
-        borderLeftWidth: 1,
-        borderLeftColor: 'card.footer_divider',
-        pl: 12,
+      '& > div:first-of-type': {
+        pr: '14px',
+        borderRight: '1px solid',
+        borderColor: 'card.footer_divider',
       },
+    },
+  },
 
-      '& div:first-of-type': {
-        borderLeft: 'none',
-        pl: 0,
-      },
-      '& div p': {
-        whiteSpace: 'nowrap',
-      },
-      '& div p:nth-of-type(odd)': {
-        width: 'min-content',
-        bgGradient: 'var(--vcd-gradient-brand)',
-        bgClip: 'text',
-      },
+  footer: {
+    boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.1)',
+    width: '94%',
+    height: '48px',
+    padding: '4px',
+    backgroundColor: '#F5F5F5',
+    mx: 'auto',
+    borderRadius: '0px 0px 8px 8px',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: '16px',
+
+    '& button': {
+      border: '1px solid ',
+      borderRadius: '50%',
+    },
+
+    '& button:disabled': {
+      color: 'red',
     },
   },
 })
@@ -295,7 +321,7 @@ const results = definePartsStyle({
 
 const variantsCards = {
   lite,
-  'process-description': processDescription,
+  detailed,
   'process-info': processInfo,
   results,
 }

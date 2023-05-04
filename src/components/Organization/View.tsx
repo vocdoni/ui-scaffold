@@ -4,7 +4,7 @@ import { PublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
-import ProcessCardDescription from '../Process/CardDesc'
+import Card from '../Process/CardDetailed'
 import SearchButton from '../Search/Button'
 import SearchInput from '../Search/Input'
 import Header from './Header'
@@ -125,7 +125,7 @@ const OrganizationView = () => {
             >
               {electionsList?.map((election: PublishedElection, idx: number) => (
                 <GridItem key={idx} display='flex' justifyContent='center' alignItems='start'>
-                  <ProcessCardDescription election={election} />
+                  <Card election={election} />
                 </GridItem>
               ))}
               <div ref={refObserver}></div>
@@ -133,22 +133,22 @@ const OrganizationView = () => {
             <Flex justifyContent='center' mt={4}>
               {loading && <Spinner />}
               {loaded && !electionsList.length && (
-                <NavLink to='/processes/create'>
-                  <Flex
-                    direction='column'
-                    justifyContent='center'
-                    alignItems='center'
-                    gap={3}
-                    w={124}
-                    p={12}
-                    bgColor='organization.election_list_empty.bg'
-                    borderRadius={2}
-                    border='1px solid'
-                    borderColor='organization.election_list_empty.border'
-                  >
-                    <Text textAlign='center' fontSize='2xl'>
-                      {t('organization.elections_list_empty')}
-                    </Text>
+                <Flex
+                  direction='column'
+                  justifyContent='center'
+                  alignItems='center'
+                  gap={3}
+                  w={124}
+                  p={12}
+                  bgColor='organization.election_list_empty.bg'
+                  borderRadius={2}
+                  border='1px solid'
+                  borderColor='organization.election_list_empty.border'
+                >
+                  <Text textAlign='center' fontSize='2xl'>
+                    {t('organization.elections_list_empty')}
+                  </Text>
+                  <NavLink to='/processes/create'>
                     <Button
                       rightIcon={<AddIcon />}
                       variant='solid'
@@ -159,8 +159,8 @@ const OrganizationView = () => {
                         {t('menu.create')}
                       </Text>
                     </Button>
-                  </Flex>
-                </NavLink>
+                  </NavLink>
+                </Flex>
               )}
               {error && <Text>{error}</Text>}
             </Flex>
