@@ -1,12 +1,8 @@
-import { ArrowBackIcon, ExternalLinkIcon } from '@chakra-ui/icons'
-import { Box, Card, CardHeader, Circle, Flex, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
+import { Box, Flex, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
 import {
   ElectionActions,
-  ElectionDescription,
   ElectionQuestions,
   ElectionResults,
-  ElectionSchedule,
-  ElectionTitle,
   enforceHexPrefix,
   useElection,
   useOrganization,
@@ -17,7 +13,9 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { ExplorerBaseURL } from '../../constants'
 import ProcessAside from './Aside'
-import { ProcessDate } from './Date'
+import Header from './Header'
+
+import ProcessResults from './Results'
 
 export const ProcessView = () => {
   const { organization } = useOrganization()
@@ -36,82 +34,48 @@ export const ProcessView = () => {
 
   return (
     <>
-      <Flex direction='column' gap={5}>
-        <Link to={`/organization/0x${election?.organizationId}`}>
-          <ArrowBackIcon /> {organization?.account.name.default || enforceHexPrefix(organization?.address)}
-        </Link>
-        <ElectionSchedule textAlign='left' color='branding.pink' />
-        <ElectionTitle fontSize={18} mb={0} textAlign='left' />
-        <ElectionDescription />
-      </Flex>
-      <Tabs index={tabIndex} onChange={handleTabsChange}>
-        <TabList display='flex'>
-          <Tab>{t('process.questions')}</Tab>
-          <Tab>{t('process.results')}</Tab>
-          <Flex ml='auto'>
-            <ProcessDate />
-          </Flex>
-        </TabList>
-        <TabPanels bg='gray.100'>
-          <TabPanel>
-            <Flex justifyContent='center' gap={4} mb={4}>
-              <ElectionActions />
-            </Flex>
-
-            <Flex gap={4} flexDirection={{ base: 'column', lg: 'row' }}>
-              <Box flexGrow={{ lg: 1 }} flexShrink={{ lg: 1 }} flexBasis={{ lg: 124 }} order={{ base: 2, lg: 1 }}>
-                <ElectionQuestions />
-              </Box>
-              <ProcessAside
-                isInCensus={isInCensus}
-                hasAlreadyVoted={voted !== null && voted.length > 0}
-                handleTabsChange={handleTabsChange}
-                order={{ base: 1, lg: 2 }}
-                alignSelf={{ base: 'center', lg: 'start' }}
-              />
-            </Flex>
-          </TabPanel>
-          <TabPanel>
-            {election && (
-              <Flex gap={4} flexDirection={{ base: 'column', lg: 'row' }} alignItems='center'>
-                {election.status === ElectionStatus.CANCELED ? (
-                  <Text color='process.canceled' textAlign='center' w='full'>
-                    {t('process.date.canceled')}
-                  </Text>
-                ) : (
-                  <Box flexGrow={{ lg: 1 }} flexShrink={{ lg: 1 }} flexBasis={{ lg: 124 }} order={{ base: 2, lg: 1 }}>
-                    <ElectionResults />
-                  </Box>
-                )}
-
-                {voted && (
-                  <Card
-                    cursor='pointer'
-                    variant='process-info'
-                    order={{ base: 1, lg: 2 }}
-                    alignSelf={{ base: 'center', lg: 'start' }}
-                  >
-                    <CardHeader>
-                      <Circle>
-                        <ExternalLinkIcon />
-                      </Circle>
-
-                      <Box>
-                        <Text>
-                          {/* TODO: update to send directly to /verify/#/:voteid when we have it from SDK */}
-                          <Link to={`${ExplorerBaseURL}/verify`} target='_blank'>
-                            {t('aside.verify_vote_on_explorer')}
-                          </Link>
-                        </Text>
-                      </Box>
-                    </CardHeader>
-                  </Card>
-                )}
-              </Flex>
+      <Header election={election} />
+      <Flex direction={{ base: 'column', lg: 'row' }}>
+        <Tabs
+          index={tabIndex}
+          onChange={handleTabsChange}
+          align='center'
+          flexBasis={election?.status === ElectionStatus.ONGOING ? '70%' : '100%'}
+        >
+          <TabList>
+            <Tab whiteSpace='nowrap' color='process.tabs.color'>
+              {t('process.questions')}
+            </Tab>
+            {election?.status !== ElectionStatus.CANCELED && (
+              <>
+                <Box borderRight='1px solid' borderColor='process.tabs.divider' my={1} />
+                <Tab whiteSpace='nowrap' color='process.tabs.color'>
+                  {t('process.results')}
+                </Tab>
+              </>
             )}
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
+          </TabList>
+          <TabPanels p={5}>
+            <TabPanel>
+              <ElectionQuestions />
+            </TabPanel>
+            <TabPanel>
+            <ElectionResults />
+
+              {election?.electionType.secretUntilTheEnd && (
+                <Text color='process.secret_until_the_end' textAlign='center' fontWeight='bold' pt={25}>
+                  {t('process.secret_until_the_end')}
+                </Text>
+              )}
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+        {election?.status === ElectionStatus.ONGOING && (
+          <Box position='sticky' bottom='px' mx='auto' mt={10}>
+            <ProcessAside isInCensus={isInCensus}  hasAlreadyVoted={voted !== null && voted.length > 0} />
+          </Box>
+        )}
+      </Flex>
     </>
   )
 }

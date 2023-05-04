@@ -1,38 +1,39 @@
-import { EmailIcon } from '@chakra-ui/icons'
-import { Box, Card, CardBody, CardHeader, Circle, Text } from '@chakra-ui/react'
+import { Flex, Text } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { HR, useClient, useElection, VoteButton } from '@vocdoni/chakra-components'
 import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
 import { useTranslation } from 'react-i18next'
+import { useAccount } from 'wagmi'
 
 interface Props {
   isInCensus: boolean
-  hasAlreadyVoted?: boolean
-  handleTabsChange: (index: number) => void
-  order: any
-  alignSelf: any
+  hasAlreadyVoted: boolean
 }
 
-const ProcessAside = ({ handleTabsChange, isInCensus, hasAlreadyVoted, order, alignSelf }: Props) => {
+const ProcessAside = ({ isInCensus, hasAlreadyVoted }: Props) => {
   const { t } = useTranslation()
   const { election, isAbleToVote, votesLeft } = useElection()
 
   const { account } = useClient()
 
   return (
-    <Card variant='process-info' order={order} alignSelf={alignSelf}>
-      <CardHeader
-        onClick={() => {
-          if (election?.status === ElectionStatus.RESULTS) handleTabsChange(1)
-        }}
-        cursor={election?.status === ElectionStatus.RESULTS ? 'pointer' : 'normal'}
-      >
-        <Circle>
-          <EmailIcon />
-        </Circle>
-        <Box>
-          <Text>{getStatusText(t, election?.status)}</Text>
+    <Flex
+      direction='column'
+      justifyContent='center'
+      gap={4}
+      bgGradient='var(--vcd-gradient-brand)'
+      borderRadius={4}
+      p={4}
+      w={{ base: 80, lg: 64, xl: 80 }}
+      color='white'
+      position='sticky'
+      top='72px'
+    >
+      <Flex direction='column' alignItems='center'>
+        <Text textAlign='center' fontWeight='700' fontSize='25px' lineHeight=' 125%'>
+          {getStatusText(t, election?.status)}
+        </Text>
 
           {election?.status !== ElectionStatus.CANCELED && (
             <Text>
@@ -55,18 +56,14 @@ const ProcessAside = ({ handleTabsChange, isInCensus, hasAlreadyVoted, order, al
           <VoteButton />
         </CardBody>
       )}
-      {election?.status === ElectionStatus.ONGOING && !account && (
-        <CardBody>
-          <Box>
-            <Text fontWeight='bold'>{t('aside.proposers')}: </Text>
-            <Text>{t('aside.connect_your_wallet')}</Text>
-            <Text fontWeight='bold'>{t('aside.voters')}: </Text>
-            <Text>{t('aside.connect_and_vote')}</Text>
-          </Box>
-          <ConnectButton chainStatus='none' showBalance={false} label={t('aside.connect_to_vote').toString()} />
-        </CardBody>
+      {isConnected ? (
+        <VoteButton color='process.vote_btn' label={t('aside.vote').toString()} />
+      ) : (
+        <Flex justifyContent='center'>
+          <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />
+        </Flex>
       )}
-    </Card>
+    </Flex>
   )
 }
 

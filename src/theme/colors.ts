@@ -75,9 +75,28 @@ export const colors = {
   },
 
   process: {
-    canceled: colorsBase.grenade,
-    date: colorsBase.purple,
+    bar: colorsBase.gray.normal,
+    bar_progress: colorsBase.blue,
+    date: colorsBase.blue,
+    description: colorsBase.gray.dark,
+    header: {
+      btn_desktop_bg: colorsBase.white,
+      btn_desktop_color: colorsBase.black,
+      btn_mobile_bg: colorsBase.blue,
+      btn_mobile_color: colorsBase.white,
+    },
+    header_divider: colorsBase.gray.normal,
+    info: colorsBase.blue,
+    paused: colorsBase.grenade,
     secret_until_the_end: colorsBase.purple,
+    vote_btn: colorsBase.black,
+
+    btn_form_select: colorsBase.gray.normal,
+
+    tabs: {
+      color: colorsBase.black,
+      divider: colorsBase.gray.normal,
+    },
   },
 
   text_error: colorsBase.grenade,
