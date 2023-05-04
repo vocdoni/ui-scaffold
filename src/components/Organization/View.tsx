@@ -72,29 +72,29 @@ const OrganizationView = () => {
   }, [client, organization?.address, page, error, finished])
 
   return (
-    <Flex direction='column' gap={4}>
+    <>
       <Header address={address} />
-      <Tabs align='center' mt={8}>
+      <Tabs align='center'>
         {!isFullInput ? (
           <TabList position='sticky' top='72px' zIndex={10} bgColor='organization.tabs.bg'>
             <Flex>
               <Tab whiteSpace='nowrap' color='organization.tabs.color'>
                 {t('organization.rounds.all')}
               </Tab>
-              <Box borderRight='1px solid' borderColor='organization.tabs.divider' p={2} my={1} />
+              <Box p={2} my={1} borderRight='1px solid' borderColor='organization.tabs.divider' />
               <Tab whiteSpace='nowrap' color='organization.tabs.color'>
                 {t('organization.rounds.active')}
               </Tab>
 
               <SearchInput
-                display={{ base: 'none', md: 'inline-block' }}
                 position='absolute'
                 right={0}
+                display={{ base: 'none', md: 'inline-block' }}
                 mb={{ base: 25, sm: 0 }}
-                w={{ base: '50%', md: '30%', lg: '20%' }}
+                w={{ md: '30%', lg: '20%' }}
               />
 
-              <Box display={{ base: 'inline-block', md: 'none' }} justifyContent='center' position='absolute' right={0}>
+              <Box position='absolute' right={0} display={{ base: 'inline-block', md: 'none' }} justifyContent='center'>
                 <SearchButton displayFullInput={displayFullInput} aria={t('menu.search')} />
               </Box>
             </Flex>
@@ -102,13 +102,13 @@ const OrganizationView = () => {
         ) : (
           <Flex
             ref={refSearchInput}
-            justifyContent='center'
             position='sticky'
-            bgColor='organization.tabs.bg'
             top='72px'
             zIndex={10}
+            justifyContent='center'
+            bgColor='organization.tabs.bg'
           >
-            <SearchInput width='80vw' />
+            <SearchInput width='80%' />
           </Flex>
         )}
 
@@ -117,11 +117,11 @@ const OrganizationView = () => {
             <Grid
               templateColumns={{
                 base: '1fr',
-                lg: 'repeat(2, 1fr)',
+                '3md': 'repeat(2, 1fr)',
                 '2.1xl': 'repeat(3, 1fr)',
               }}
-              columnGap={6}
-              rowGap={8}
+              columnGap={{ base: 3, lg: 4 }}
+              rowGap={6}
             >
               {electionsList?.map((election: PublishedElection, idx: number) => (
                 <GridItem key={idx} display='flex' justifyContent='center' alignItems='start'>
@@ -150,10 +150,10 @@ const OrganizationView = () => {
                   </Text>
                   <NavLink to='/processes/create'>
                     <Button
-                      rightIcon={<AddIcon />}
                       variant='solid'
-                      colorScheme='navbar.btn_create'
                       sx={{ span: { margin: 0 } }}
+                      rightIcon={<AddIcon />}
+                      colorScheme='navbar.btn_create'
                     >
                       <Text as='span' display={{ base: 'none', md: 'inline-block' }} pr={2}>
                         {t('menu.create')}
@@ -170,7 +170,7 @@ const OrganizationView = () => {
           </TabPanel>
         </TabPanels>
       </Tabs>
-    </Flex>
+    </>
   )
 }
 

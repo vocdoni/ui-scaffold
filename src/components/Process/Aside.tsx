@@ -21,47 +21,43 @@ const ProcessAside = ({ isInCensus, hasAlreadyVoted }: Props) => {
     <Flex
       direction='column'
       justifyContent='center'
-      gap={4}
-      bgGradient='var(--vcd-gradient-brand)'
-      borderRadius={4}
-      p={4}
+      gap={2}
+      py={2}
+      px={3}
       w={{ base: 80, lg: 64, xl: 80 }}
       color='white'
-      position='sticky'
-      top='72px'
+      bgGradient='var(--vcd-gradient-brand)'
+      borderRadius={6}
     >
       <Flex direction='column' alignItems='center'>
         <Text textAlign='center' fontWeight='700' fontSize='25px' lineHeight=' 125%'>
           {getStatusText(t, election?.status)}
         </Text>
 
-          {election?.status !== ElectionStatus.CANCELED && (
-            <Text>
-              <Text as='span'>{election?.voteCount}</Text> {t('process.votes')}
-            </Text>
-          )}
-        </Box>
-      </CardHeader>
-
-      {election?.status === ElectionStatus.ONGOING && <HR />}
-
-      {election?.status === ElectionStatus.ONGOING && account && (
-        <CardBody>
-          <Text textAlign='center'>
-            {isAbleToVote && t('aside.is_able_to_vote').toString()}
-            {!isAbleToVote && !isInCensus && t('aside.is_not_in_census').toString()}
-            {!isAbleToVote && hasAlreadyVoted && t('aside.has_already_voted').toString()}{' '}
-            {hasOverwriteEnabled(election) && isInCensus && t('aside.overwrite_votes_left', { left: votesLeft })}
+        {election?.status !== ElectionStatus.CANCELED && (
+          <Text fontWeight='400' fontSize='md' lineHeight=' 125%'>
+            <Text as='span'>{election?.voteCount}</Text> {t('process.votes')}
           </Text>
-          <VoteButton />
-        </CardBody>
-      )}
+        )}
+      </Flex>
       {isConnected ? (
-        <VoteButton color='process.vote_btn' label={t('aside.vote').toString()} />
+        <>
+          <Text textAlign='center' fontWeight='400' fontSize='sm'>
+            {isAbleToVote && t('aside.is_able_to_vote')}
+            {!isAbleToVote && !isInCensus && t('aside.is_not_in_census')}
+            {!isAbleToVote && hasAlreadyVoted && t('aside.has_already_voted')}
+          </Text>
+          <VoteButton label={t('aside.vote').toString()} color='process.vote_btn' />
+        </>
       ) : (
-        <Flex justifyContent='center'>
-          <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />
-        </Flex>
+        <>
+          <Text textAlign='center' fontWeight='400' fontSize='sm'>
+            {t('aside.not_connected')}
+          </Text>
+          <Flex justifyContent='center'>
+            <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />
+          </Flex>
+        </>
       )}
     </Flex>
   )

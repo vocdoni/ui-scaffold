@@ -1,21 +1,10 @@
 import { Box, Flex, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
-import {
-  ElectionActions,
-  ElectionQuestions,
-  ElectionResults,
-  enforceHexPrefix,
-  useElection,
-  useOrganization,
-} from '@vocdoni/chakra-components'
+import { ElectionQuestions, ElectionResults, useElection, useOrganization } from '@vocdoni/chakra-components'
 import { ElectionStatus } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
-import { ExplorerBaseURL } from '../../constants'
 import ProcessAside from './Aside'
 import Header from './Header'
-
-import ProcessResults from './Results'
 
 export const ProcessView = () => {
   const { organization } = useOrganization()
@@ -35,12 +24,12 @@ export const ProcessView = () => {
   return (
     <>
       <Header election={election} />
-      <Flex direction={{ base: 'column', lg: 'row' }}>
+      <Flex direction={{ base: 'column', lg: 'row' }} alignItems='start'>
         <Tabs
           index={tabIndex}
           onChange={handleTabsChange}
           align='center'
-          flexBasis={election?.status === ElectionStatus.ONGOING ? '70%' : '100%'}
+          w={{ base: '100%', lg: election?.status === ElectionStatus.ONGOING ? '70%' : '100%' }}
         >
           <TabList>
             <Tab whiteSpace='nowrap' color='process.tabs.color'>
@@ -48,22 +37,22 @@ export const ProcessView = () => {
             </Tab>
             {election?.status !== ElectionStatus.CANCELED && (
               <>
-                <Box borderRight='1px solid' borderColor='process.tabs.divider' my={1} />
+                <Box my={1} borderRight='1px solid' borderColor='process.tabs.divider' />
                 <Tab whiteSpace='nowrap' color='process.tabs.color'>
                   {t('process.results')}
                 </Tab>
               </>
             )}
           </TabList>
-          <TabPanels p={5}>
+          <TabPanels>
             <TabPanel>
               <ElectionQuestions />
             </TabPanel>
-            <TabPanel>
-            <ElectionResults />
+            <TabPanel mb={5}>
+              <ElectionResults />
 
               {election?.electionType.secretUntilTheEnd && (
-                <Text color='process.secret_until_the_end' textAlign='center' fontWeight='bold' pt={25}>
+                <Text pt={25} textAlign='center' fontWeight='bold' color='process.secret_until_the_end'>
                   {t('process.secret_until_the_end')}
                 </Text>
               )}
@@ -72,7 +61,7 @@ export const ProcessView = () => {
         </Tabs>
         {election?.status === ElectionStatus.ONGOING && (
           <Box position='sticky' bottom='px' mx='auto' mt={10}>
-            <ProcessAside isInCensus={isInCensus}  hasAlreadyVoted={voted !== null && voted.length > 0} />
+            <ProcessAside isInCensus={isInCensus} hasAlreadyVoted={voted !== null && voted.length > 0} />
           </Box>
         )}
       </Flex>

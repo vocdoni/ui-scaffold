@@ -16,14 +16,14 @@ const OrganizationHeader = () => {
   const { organization } = useOrganization()
 
   return (
-    <Flex flexDirection={{ base: 'column', lg: 'row' }}>
-      <Box minW={{ base: 'full', sm: 100 }} p={{ base: 2, sm: 0 }} maxW={100} mx='auto'>
+    <Flex flexDirection={{ base: 'column', lg: 'row' }} mb={14}>
+      <Box minW={{ base: 'full', sm: 100 }} p={{ base: 2, sm: 0 }} maxW={100} mx='auto' mb={{ base: 8, lg: 0 }}>
         <AspectRatio ratio={{ base: 1.8 / 1, sm: 1.25 / 1 }}>
           <Image
-            mx='auto'
-            borderRadius='md'
             src='https://images.pexels.com/photos/7103129/pexels-photo-7103129.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
             alt='organization X'
+            mx='auto'
+            borderRadius='md'
           />
         </AspectRatio>
       </Box>
@@ -33,50 +33,64 @@ const OrganizationHeader = () => {
           direction={{ base: 'column', lg: 'row' }}
           justifyContent={{ lg: 'space-between' }}
           alignItems={{ base: 'center', lg: 'start' }}
-          gap={{ base: 0, lg: 0 }}
-          mb={{ base: 2, lg: 4 }}
           flexGrow={1}
+          gap={{ base: 2, lg: 0 }}
+          mb={{ base: 2, lg: 4 }}
         >
-          <Flex flexDirection='column' alignItems={{ base: 'center', lg: 'start' }} mt={2}>
-            <AddressBtn />
+          <Box textAlign={{ base: 'center', lg: 'start' }} w={{ base: 'full', lg: '60%' }}>
+            <AddressBtn address={address} />
 
-          <Text>{t('organization.dao_title')}</Text>
-          <OrganizationName
-            fontSize={28}
-            isTruncated
-            title={organization?.account.name.default || organization?.address}
-          />
-        </Flex>
-        <Flex flexDirection={{ base: 'row', md: 'column' }} gap={{ base: 4, md: 0 }}>
-          <Flex flexDirection='column' alignItems='center'>
-            <Text fontSize={14} bgGradient='var(--vcd-gradient-brand)' bgClip='text'>
-              {t('organization.elections')}
-            </Text>
-            <Text as='span' fontWeight='bold'>
-              {organization?.electionIndex}
-            </Text>
-          </Flex>
+            <Text>{t('organization.dao_title')}</Text>
+            <Heading
+              as='h1'
+              title='The Organization Name'
+              mx={{ base: 'auto', lg: 0 }}
+              width='90%'
+              fontSize={{ base: '3xl', md: '4xl' }}
+              isTruncated
+            >
+              The Organization Name
+            </Heading>
+          </Box>
+          <Flex flexDirection={{ base: 'row', lg: 'column' }} gap={{ base: 4, lg: 0 }}>
+            <Box textAlign='center'>
+              <Text fontSize={14} color='organization.header_text'>
+                {t('organization.elections')}
+              </Text>
+              <Text as='span' fontWeight='bold'>
+                20
+              </Text>
+            </Box>
 
-          <Flex flexDirection='column' alignItems='center'>
-            <Text fontSize={14} bgGradient='var(--vcd-gradient-brand)' bgClip='text'>
-              {t('organization.members')}
-            </Text>
-            <Text as='span' fontWeight='bold'>
-              ∞
-            </Text>
+            <Flex flexDirection='column' alignItems='center'>
+              <Text fontSize={14} color='organization.header_text'>
+                {t('organization.members')}
+              </Text>
+              <Text as='span' fontWeight='bold'>
+                627
+              </Text>
+            </Flex>
+          </Flex>
+          <Flex flexDirection={{ base: 'row', lg: 'column' }} alignItems='start' gap={3}>
+            <ShareButtons />
           </Flex>
         </Flex>
-        <Flex flexDirection={{ base: 'row', md: 'column' }} alignItems='start' gap={3}>
-          <ShareButtons />
-        </Flex>
-      </Flex>
-      <OrganizationDescription noOfLines={readMore ? undefined : 3} />
-      <VStack>
-        <Button variant='link' onClick={() => setReadMore((prev) => !prev)}>
-          {readMore ? t('read_less') : t('read_more')}
-        </Button>
-      </VStack>
-    </Box>
+
+        <Text mb={3} px={{ md: 10, lg: 0 }} color='organization.header_text' noOfLines={readMore ? undefined : 3}>
+          The Organization Name ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+          labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut laboliquip ex ea commodo const dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris nisi ut aliquip ex Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+          do eiusmod tempor
+        </Text>
+        <VStack>
+          <Button variant='link' onClick={() => setReadMore((prev) => !prev)} color='black'>
+            {readMore ? t('read_less') : t('read_more')}
+          </Button>
+        </VStack>
+      </Box>
+    </Flex>
   )
 }
 

@@ -22,7 +22,7 @@ export const Account = () => {
   return (
     <Menu>
       <MenuButton as={Button} variant='unstyled' colorScheme='buttons.black'>
-        <Box as='span' display='flex' alignItems='center' gap={1}>
+        <Box as='span' display='flex' gap={1} alignItems='center'>
           <Box
             as='span'
             display='inline-block'

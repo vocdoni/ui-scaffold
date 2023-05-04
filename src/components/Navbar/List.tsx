@@ -34,15 +34,15 @@ const NavList = ({ displayFullInput }: Props) => {
       <ListItem display={{ base: 'none', md: 'inline-block' }}>
         <Menu>
           <MenuButton
-            variant='unstyled'
             as={Button}
+            variant='unstyled'
             sx={{ span: { margin: 'px' } }}
-            pt={1}
             leftIcon={<FaGlobe />}
             rightIcon={<ChevronDownIcon />}
+            pt={1}
           />
           <MenuList minW='none'>
-            <List display='flex' flexDirection='column' alignItems='center' gap={2} textAlign='end' px={4} py={2}>
+            <List display='flex' flexDirection='column' alignItems='center' gap={2} px={4} py={2} textAlign='end'>
               <LanguagesList />
             </List>
           </MenuList>
@@ -58,10 +58,10 @@ const NavList = ({ displayFullInput }: Props) => {
           <ListItem>
             <NavLink to='/processes/create'>
               <Button
-                rightIcon={<AddIcon />}
                 variant='solid'
-                colorScheme='navbar.btn_create'
+                rightIcon={<AddIcon />}
                 sx={{ span: { margin: 0 } }}
+                colorScheme='navbar.btn_create'
               >
                 <Text as='span' display={{ base: 'none', md: 'inline-block' }} pr={2}>
                   {t('menu.create')}
@@ -79,12 +79,12 @@ const NavList = ({ displayFullInput }: Props) => {
           {({ isOpen }) => (
             <>
               <MenuButton
-                variant='unstyled'
-                minW='none'
                 as={Button}
+                variant='unstyled'
                 sx={{ span: { margin: 'px' } }}
-                pt={1}
                 rightIcon={isOpen ? <CloseIcon /> : <FaEllipsisV />}
+                minW='none'
+                pt={1}
               />
               <MenuList minW='none'>
                 <MenuDropdown />

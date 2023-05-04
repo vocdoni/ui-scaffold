@@ -21,7 +21,7 @@ const ProcessCardLite = ({ card }: CardProps) => {
     <Link to={`/organization/0x4a081070E9D555b5D19629a6bcc8B77f4aE6d39c`}>
       <Card variant='lite'>
         <CardHeader>
-          <AspectRatio ratio={2}>
+          <AspectRatio ratio={5 / 2}>
             <Image src={card.imageURL} alt={t('alt_image', { img: card.name }).toString()} />
           </AspectRatio>
         </CardHeader>

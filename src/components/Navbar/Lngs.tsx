@@ -15,8 +15,6 @@ const LanguagesList = ({ ...props }) => {
       </ListItem>
       {Object.keys(languages).map((k) => (
         <ListItem
-          cursor='pointer'
-          fontWeight={k === i18n.language ? 'bold' : ''}
           key={k}
           onClick={() => {
             if (window && 'localStorage' in window) {
@@ -24,6 +22,8 @@ const LanguagesList = ({ ...props }) => {
             }
             i18n.changeLanguage(k)
           }}
+          fontWeight={k === i18n.language ? 'bold' : ''}
+          cursor='pointer'
         >
           {k.toUpperCase()}
         </ListItem>

@@ -7,7 +7,7 @@ const Error = () => {
   console.error(error)
 
   return (
-    <Flex flexDirection='column' gap={4} alignItems='center' mt={12}>
+    <Flex flexDirection='column' gap={4} mt={12} alignItems='center'>
       <WarningIcon />
       <Text>Error loading the page</Text>
     </Flex>

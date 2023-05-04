@@ -21,12 +21,12 @@ const Navbar = ({ ...props }) => {
     <Flex as='nav' justifyContent='space-between' alignItems='center' gap={4} {...props}>
       <NavLink to='/'>
         <HStack>
-          <Img src={`${process.env.PUBLIC_URL}/assets/vocdoni_icon.png`} maxWidth={12} alt='vocdoni icon' />
+          <Img src={`${process.env.PUBLIC_URL}/assets/vocdoni_icon.png`} alt='vocdoni icon' maxWidth={12} />
           <Text
             display={{ base: 'none', md: 'flex' }}
             flexDirection={searchInputValues?.isSearchInScreen ? 'row' : 'column'}
             gap={searchInputValues?.isSearchInScreen ? 1 : 0}
-            fontSize={13}
+            fontSize='sm'
             fontWeight='bold'
             lineHeight={1.1}
           >

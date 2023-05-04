@@ -12,7 +12,7 @@ const MenuDropdown = () => {
   const { account } = useClientContext()
 
   return (
-    <List display='flex' flexDirection='column' alignItems='end' gap={2} textAlign='end' px={4} py={2} cursor='pointer'>
+    <List display='flex' flexDirection='column' alignItems='end' gap={2} px={4} py={2} textAlign='end' cursor='pointer'>
       {isConnected && (
         <ListItem display={{ md: 'none' }}>
           <NavLink to={`/organization/0x${account?.address}`}>{t('menu.my_list')}</NavLink>
@@ -21,7 +21,7 @@ const MenuDropdown = () => {
       <ListItem>FAQ's</ListItem>
       <ListItem>{t('menu.support')}</ListItem>
       <Box display={{ base: 'block', md: 'none' }} h='1px' w='100%' bgColor='lightgray' />
-      <List display={{ base: 'flex', md: 'none' }} flexDirection='column' alignItems='end' gap={2}>
+      <List display={{ base: 'flex', md: 'none' }} flexDirection='column' gap={2} alignItems='end'>
         <LanguagesList />
       </List>
       {isConnected && (

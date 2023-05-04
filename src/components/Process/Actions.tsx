@@ -43,9 +43,9 @@ const ProcessActions = () => {
   return (
     <>
       <IconButton
-        size='sm'
         aria-label={t('process.actions.play')}
         icon={<FaPlay />}
+        isDisabled={election.status === ElectionStatus.ONGOING}
         onClick={async () => {
           infoToast(t('process.actions.continue_description', { election }))
 
@@ -60,12 +60,12 @@ const ProcessActions = () => {
             closeToast()
           }
         }}
-        isDisabled={election.status === ElectionStatus.ONGOING}
+        size='sm'
       />
       <IconButton
-        size='sm'
         aria-label={t('process.actions.pause')}
         icon={<FaPause />}
+        isDisabled={election.status === ElectionStatus.PAUSED}
         onClick={async () => {
           infoToast(t('process.actions.pause_description', { election }))
 
@@ -80,11 +80,10 @@ const ProcessActions = () => {
             closeToast()
           }
         }}
-        isDisabled={election.status === ElectionStatus.PAUSED}
+        size='sm'
       />
 
       <IconButton
-        size='sm'
         aria-label={t('process.actions.stop')}
         icon={<FaStop />}
         onClick={async () => {
@@ -101,6 +100,7 @@ const ProcessActions = () => {
             closeToast()
           }
         }}
+        size='sm'
       />
     </>
   )

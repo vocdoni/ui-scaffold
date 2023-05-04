@@ -37,6 +37,16 @@ export const colors = {
     process_info: colorsBase.purple,
     title: colorsBase.black,
     top_header: colorsBase.blue,
+
+    detailed: {
+      footer: colorsBase.gray.light,
+      btn_disabled: colorsBase.grenade,
+    },
+  },
+
+  footer: {
+    divider: colorsBase.black,
+    code_bg: colorsBase.white,
   },
 
   input_search: {
@@ -80,19 +90,18 @@ export const colors = {
     date: colorsBase.blue,
     description: colorsBase.gray.dark,
     header: {
+      btn_border: colorsBase.black,
       btn_desktop_bg: colorsBase.white,
       btn_desktop_color: colorsBase.black,
       btn_mobile_bg: colorsBase.blue,
       btn_mobile_color: colorsBase.white,
+      divider: colorsBase.gray.normal,
     },
-    header_divider: colorsBase.gray.normal,
     info: colorsBase.blue,
     paused: colorsBase.grenade,
     secret_until_the_end: colorsBase.purple,
     vote_btn: colorsBase.black,
-
-    btn_form_select: colorsBase.gray.normal,
-
+    btn_form_selected: colorsBase.gray.normal,
     tabs: {
       color: colorsBase.black,
       divider: colorsBase.gray.normal,

@@ -4,6 +4,7 @@ export const breakpoints = {
   '2sm': '40em',
   md: '48em',
   '2md': '52em',
+  '3md': '57em',
   lg: '62em',
   xl: '80em',
   '2.1xl': '84em',

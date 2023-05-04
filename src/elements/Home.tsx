@@ -1,4 +1,4 @@
-import { Box, Flex, Grid, GridItem, Text } from '@chakra-ui/react'
+import { Box, Grid, GridItem, Text } from '@chakra-ui/react'
 import { Dispatch, SetStateAction, useContext, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
@@ -193,17 +193,14 @@ const Home = () => {
 
   return (
     <Box>
-      <Flex direction='column' justifyContent='center' alignItems='center' gap={8} mb={8}>
-        <Box ref={searchRef} width={{ base: '90%', sm: '80%', md: '70%', lg: 124 }}>
-          <SearchInput />
-        </Box>
-        <Counters />
-      </Flex>
-      <Text textAlign='center' mb={4} fontSize={30} fontWeight='bold'>
+      <Box ref={searchRef} width={{ base: '90%', sm: '80%', md: '70%', lg: 124 }} mx='auto' mb={8}>
+        <SearchInput />
+      </Box>
+      <Counters mb={8} />
+      <Text mb={4} textAlign='center' fontSize={{ base: '3xl', sm: '4xl' }} fontWeight='bold'>
         {t('home.active_voting')}
       </Text>
       <Grid
-        mb={12}
         templateColumns={{
           base: '1fr',
           '2sm': 'repeat(2, 1fr)',
@@ -212,6 +209,7 @@ const Home = () => {
         }}
         columnGap={4}
         rowGap={6}
+        mb={12}
       >
         {CARDS_PR.map((card, index) => (
           <GridItem key={index} display='flex' justifyContent='center'>
@@ -219,7 +217,7 @@ const Home = () => {
           </GridItem>
         ))}
       </Grid>
-      <Text textAlign='center' mb={4} fontSize={20} fontWeight='bold'>
+      <Text mb={4} textAlign='center' fontSize={{ base: '2xl', sm: '3xl' }} fontWeight='bold'>
         {t('home.more_active_organizations')}
       </Text>
       <Grid

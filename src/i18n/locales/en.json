@@ -1,9 +1,6 @@
 {
   "alt_image": "{{ img }} image",
   "aside": {
-    "connect_and_vote": "Connect and vote on your favorite proposals",
-    "connect_to_vote": "Connect to vote",
-    "connect_your_wallet": "Connect your wallet to view the status of the proposal...",
     "has_already_voted": "You have already voted",
     "is_able_to_vote": "Connected. You are elegible for voting",
     "is_not_in_census": "You are not in census",
@@ -132,7 +129,6 @@
   },
   "process": {
     "date": {
-      "canceled": "Process canceled",
       "ended": "Process ended",
       "ends": "Process ends",
       "relative": "{{ date, relative(past: %time ago; future: in %time) }}",
@@ -140,6 +136,7 @@
     },
     "questions": "Questions",
     "results": "Results",
+    "secret_until_the_end": "Secret until the end",
     "status": {
       "canceled": "Process canceled",
       "ended": "Process ended",

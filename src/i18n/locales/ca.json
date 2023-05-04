@@ -132,7 +132,6 @@
   },
   "process": {
     "date": {
-      "canceled": "",
       "ended": "Finalitzat",
       "ends": "Acaba",
       "relative": "{{ date, relative(past: fa %time; future: en %time) }}",
@@ -140,6 +139,7 @@
     },
     "questions": "Preguntes",
     "results": "Resultats",
+    "secret_until_the_end": "",
     "status": {
       "canceled": "",
       "ended": "",

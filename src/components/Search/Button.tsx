@@ -9,12 +9,12 @@ interface Props {
 const SearchButton = ({ displayFullInput, aria }: Props) => (
   <IconButton
     aria-label={aria}
-    variant='outline'
-    colorScheme='buttons.search'
-    borderRadius='50%'
     icon={<SearchIcon />}
     onClick={displayFullInput}
+    variant='outline'
     size='sm'
+    colorScheme='buttons.search'
+    borderRadius='50%'
   />
 )
 export default SearchButton
