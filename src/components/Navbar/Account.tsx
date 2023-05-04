@@ -1,34 +1,41 @@
-import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
+import { Box, Button, Menu, MenuButton, MenuList, Text } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { Balance } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
-import { BiChevronDown, BiCoinStack, BiLogOut } from 'react-icons/bi'
-import { useAccount, useDisconnect } from 'wagmi'
+import { useAccount } from 'wagmi'
+import MenuDropdown from './Menu'
 
-const addressTextOverflow = (address: string) =>
-  `${address.substring(0, 6)}...${address.substring(address.length - 4, address.length)}`
+const addressTextOverflow = (address: string) => `${address.substring(0, 6)}...`
 
 export const Account = () => {
   const { isConnected, address } = useAccount()
-  const { disconnect } = useDisconnect()
   const { t } = useTranslation()
 
   if (!isConnected) {
-    return <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />
+    return (
+      <Box as='span' whiteSpace='nowrap'>
+        <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />
+      </Box>
+    )
   }
 
   return (
     <Menu>
-      <MenuButton as={Button} variant='ghost' colorScheme='buttons.primary' rightIcon={<BiChevronDown />}>
-        {addressTextOverflow(address as string)}
+      <MenuButton as={Button} variant='unstyled' colorScheme='buttons.black'>
+        <Box as='span' display='flex' alignItems='center' gap={1}>
+          <Box
+            as='span'
+            display='inline-block'
+            w={6}
+            h={6}
+            borderRadius='50%'
+            bgGradient='var(--vcd-gradient-brand-tr)'
+          />
+          <Text fontWeight='light'>{addressTextOverflow(address as string)}</Text>
+        </Box>
       </MenuButton>
-      <MenuList>
-        <MenuItem icon={<BiCoinStack />}>
-          <Balance />
-        </MenuItem>
-        <MenuItem icon={<BiLogOut />} onClick={() => disconnect()}>
-          {t('logout')}
-        </MenuItem>
+      <MenuList minW='none'>
+        <MenuDropdown />
       </MenuList>
     </Menu>
   )

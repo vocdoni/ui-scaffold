@@ -1,68 +1,60 @@
-import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
-import { Box, Flex, IconButton, Img, List, Text, UnorderedList, useDisclosure, useOutsideClick } from '@chakra-ui/react'
-import { useRef } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Box, Flex, HStack, Img, List, Text, useOutsideClick } from '@chakra-ui/react'
+import { useContext, useRef } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
+import { SearchInputContext } from '../../Providers'
 import SearchInput from '../Search/Input'
 import NavList from './List'
 
 const Navbar = ({ ...props }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const { t } = useTranslation()
+  const searchInputValues = useContext(SearchInputContext)
+
   const location = useLocation()
 
-  const refNav = useRef<HTMLDivElement>(null)
+  const refSearchInput = useRef<HTMLDivElement>(null)
 
   useOutsideClick({
-    ref: refNav,
-    handler: () => onClose(),
+    ref: refSearchInput,
+    handler: () => searchInputValues?.removeFullInput(),
   })
 
   return (
-    <Box as='nav' ref={refNav} {...props}>
-      <Flex justifyContent='space-between' alignItems='center' gap={4} paddingY={4}>
-        <Flex alignItems='center' gap={4} ml={{ base: 2, sm: 0 }}>
-          <NavLink to='/'>
-            <Img src={`${process.env.PUBLIC_URL}/assets/vocdoni_icon.png`} maxWidth={12} alt='vocdoni icon' />
-          </NavLink>
-          <Text fontSize={12} whiteSpace='nowrap'>
-            Public voting protocol
+    <Flex as='nav' justifyContent='space-between' alignItems='center' gap={4} {...props}>
+      <NavLink to='/'>
+        <HStack>
+          <Img src={`${process.env.PUBLIC_URL}/assets/vocdoni_icon.png`} maxWidth={12} alt='vocdoni icon' />
+          <Text
+            display={{ base: 'none', md: 'flex' }}
+            flexDirection={searchInputValues?.isSearchInScreen ? 'row' : 'column'}
+            gap={searchInputValues?.isSearchInScreen ? 1 : 0}
+            fontSize={13}
+            fontWeight='bold'
+            lineHeight={1.1}
+          >
+            <Text as='span'>Public </Text> <Text as='span'>voting</Text> <Text as='span'>protocol</Text>
           </Text>
-        </Flex>
+        </HStack>
+      </NavLink>
 
-        {location.pathname.includes('organization') && <SearchInput width='50%' />}
+      {searchInputValues?.isFullInput && !searchInputValues?.isSearchInScreen && location.pathname === '/' ? (
+        <Box ref={refSearchInput} width='full'>
+          <SearchInput autofocus />
+        </Box>
+      ) : (
+        <>
+          {!searchInputValues?.isSearchInScreen && location.pathname === '/' && (
+            <SearchInput
+              display={{ base: 'none', md: 'inline-block' }}
+              width={95}
+              onClick={searchInputValues?.displayFullInput}
+            />
+          )}
 
-        <List display={{ base: 'none', lg: 'flex' }} alignItems='center' gap={4}>
-          <NavList mobile={false} />
-        </List>
-
-        <IconButton
-          size={'md'}
-          icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-          aria-label={t('menu.open_menu')}
-          display={{ lg: 'none' }}
-          onClick={isOpen ? onClose : onOpen}
-        />
-      </Flex>
-      {isOpen && (
-        <Flex
-          display={{ lg: 'none' }}
-          position='absolute'
-          left={0}
-          bg='navbar.bg'
-          width='100%'
-          zIndex={10}
-          borderStyle='solid'
-          borderColor='navbar.border'
-          borderWidth={2}
-          borderBottomColor='navbar.border_bottom'
-        >
-          <UnorderedList display='flex' flexDirection='column' alignItems='center' gap={4} pb={8}>
-            <NavList mobile={true} onClose={onClose} />
-          </UnorderedList>
-        </Flex>
+          <List display='flex' alignItems='center' gap={4}>
+            <NavList displayFullInput={searchInputValues?.displayFullInput} />
+          </List>
+        </>
       )}
-    </Box>
+    </Flex>
   )
 }
 

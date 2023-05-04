@@ -109,12 +109,14 @@
     "twitter": ""
   },
   "loading": "Carregant...",
-  "logout": "",
   "menu": {
     "connect": "Connecta",
+    "create": "",
     "create_process": "Crear procés",
+    "disconnect": "",
     "my_list": "La meva llista",
-    "open_menu": "Obre menú"
+    "search": "",
+    "support": ""
   },
   "open_in_explorer": "",
   "organization": {

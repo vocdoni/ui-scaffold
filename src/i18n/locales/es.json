@@ -109,12 +109,14 @@
     "twitter": ""
   },
   "loading": "Cargando...",
-  "logout": "",
   "menu": {
     "connect": "Conectar",
+    "create": "",
     "create_process": "Crear proceso",
+    "disconnect": "",
     "my_list": "Mi lista",
-    "open_menu": "Abrir menú"
+    "search": "",
+    "support": ""
   },
   "open_in_explorer": "",
   "organization": {

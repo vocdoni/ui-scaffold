@@ -109,12 +109,14 @@
     "twitter": "Link to Vocdoni's twitter"
   },
   "loading": "Loading...",
-  "logout": "Logout",
   "menu": {
     "connect": "Connect",
+    "create": "Create Process",
     "create_process": "Create process",
+    "disconnect": "Disconnect Wallet",
     "my_list": "My list",
-    "open_menu": "Open menu"
+    "search": "input search",
+    "support": "Support"
   },
   "open_in_explorer": "Open in explorer",
   "organization": {

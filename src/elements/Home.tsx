@@ -1,10 +1,12 @@
 import { Box, Flex, Grid, GridItem, Text } from '@chakra-ui/react'
+import { Dispatch, SetStateAction, useContext, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import Counters from '../components/Home/Counters'
 import CardOrg, { CardOrgContents } from '../components/Organization/Card'
 import ProcessCardImg, { CardPrImgContents } from '../components/Process/CardImg'
 import SearchInput from '../components/Search/Input'
+import { SearchInputContext } from '../Providers'
 
 const CARDS_ORG: CardOrgContents[] = [
   {
@@ -183,10 +185,18 @@ const CARDS_PR: CardPrImgContents[] = [
 const Home = () => {
   const { t } = useTranslation()
 
+  const searchRef = useRef<HTMLDivElement>(null)
+
+  const serachInputValues = useContext(SearchInputContext)
+
+  useObserver(searchRef, serachInputValues?.setIsSearchInScreen, serachInputValues?.removeFullInput)
+
   return (
     <Box>
       <Flex direction='column' justifyContent='center' alignItems='center' gap={8} mb={8}>
-        <SearchInput width={{ base: '90%', sm: '80%', md: '70%', lg: 124 }} />
+        <Box ref={searchRef} width={{ base: '90%', sm: '80%', md: '70%', lg: 124 }}>
+          <SearchInput />
+        </Box>
         <Counters />
       </Flex>
       <Text textAlign={{ base: 'center', sm: 'start' }} mb={4} fontSize={30} fontWeight='bold'>
@@ -232,6 +242,41 @@ const Home = () => {
       </Grid>
     </Box>
   )
+}
+
+const useObserver = (
+  refObserver: any,
+  setIsSearchInScreen: Dispatch<SetStateAction<boolean>> | undefined,
+  removeFullInput: any
+) => {
+  useEffect(() => {
+    return () => {
+      if (refObserver.current) refObserver.current = null
+    }
+  }, [refObserver])
+
+  useEffect(() => {
+    if (!refObserver.current || !setIsSearchInScreen) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          if (removeFullInput) removeFullInput()
+          setIsSearchInScreen(true)
+        }
+        if (entries[0].intersectionRatio === 0) {
+          setIsSearchInScreen(false)
+        }
+      },
+      {
+        root: null,
+        rootMargin: '-80px 0px 0px 0px',
+        threshold: 0,
+      }
+    )
+
+    observer.observe(refObserver.current)
+  }, [refObserver, setIsSearchInScreen, removeFullInput])
 }
 
 export default Home

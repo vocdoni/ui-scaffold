@@ -2,70 +2,97 @@ import { ChevronDownIcon } from '@chakra-ui/icons'
 import { Button, ListItem, Menu, MenuButton, MenuItemOption, MenuList, MenuOptionGroup } from '@chakra-ui/react'
 import { useClient } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
-import { FaGlobeAmericas } from 'react-icons/fa'
-import { NavLink } from 'react-router-dom'
+import { FaEllipsisV, FaGlobe } from 'react-icons/fa'
+import { NavLink, useLocation } from 'react-router-dom'
 import { useAccount } from 'wagmi'
-import { LanguagesSlice } from '../../i18n/languages.mjs'
+import { SearchInputContext } from '../../Providers'
+import SearchButton from '../Search/Button'
 import { Account } from './Account'
+import LanguagesList from './Lngs'
+import MenuDropdown from './Menu'
 
-interface Props {
-  mobile: boolean
-  onClose?: () => void
+type Props = {
+  displayFullInput?: () => void
 }
 
-const NavList = ({ mobile, onClose }: Props) => {
+const NavList = ({ displayFullInput }: Props) => {
+  const { t } = useTranslation()
   const { isConnected } = useAccount()
   const { i18n, t } = useTranslation()
   const { account } = useClient()
 
-  const languages = LanguagesSlice as { [key: string]: string }
+  const searchInputValues = useContext(SearchInputContext)
 
   return (
     <>
+      {!searchInputValues?.isSearchInScreen && location.pathname === '/' && (
+        <ListItem display={{ md: 'none' }}>
+          <SearchButton displayFullInput={displayFullInput} aria={t('menu.search')} />
+        </ListItem>
+      )}
+
+      <ListItem display={{ base: 'none', md: 'inline-block' }}>
+        <Menu>
+          <MenuButton
+            variant='unstyled'
+            as={Button}
+            sx={{ span: { margin: 'px' } }}
+            pt={1}
+            leftIcon={<FaGlobe />}
+            rightIcon={<ChevronDownIcon />}
+          />
+          <MenuList minW='none'>
+            <List display='flex' flexDirection='column' alignItems='center' gap={2} textAlign='end' px={4} py={2}>
+              <LanguagesList />
+            </List>
+          </MenuList>
+        </Menu>
+      </ListItem>
       {isConnected && (
         <>
-          <ListItem order={mobile ? 2 : undefined} listStyleType='none' onClick={onClose} whiteSpace='nowrap'>
-            <NavLink to='/processes/create'>
-              <Button colorScheme='buttons.primary'>{t('menu.create_process')}</Button>
+          <ListItem display={{ base: 'none', md: 'inline-block' }}>
+            <NavLink to={`/organization/0x${account?.address}`}>
+              <Button variant='unstyled'>{t('menu.my_list')}</Button>
             </NavLink>
           </ListItem>
-          <ListItem order={mobile ? 1 : undefined} listStyleType='none' onClick={onClose} whiteSpace='nowrap'>
-            <NavLink to={`/organization/0x${account?.address}`}>
-              <Button variant='ghost' colorScheme='buttons.primary'>
-                {t('menu.my_list')}
+          <ListItem>
+            <NavLink to='/processes/create'>
+              <Button
+                rightIcon={<AddIcon />}
+                variant='solid'
+                colorScheme='navbar.btn_create'
+                sx={{ span: { margin: 0 } }}
+              >
+                <Text as='span' display={{ base: 'none', md: 'inline-block' }} pr={2}>
+                  {t('menu.create')}
+                </Text>
               </Button>
             </NavLink>
           </ListItem>
         </>
       )}
-      <ListItem order={mobile ? 4 : undefined} listStyleType='none' display='flex' cursor='pointer'>
-        <Menu>
-          <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-            <FaGlobeAmericas />
-          </MenuButton>
-          <MenuList>
-            <MenuOptionGroup type='radio' defaultValue={i18n.language}>
-              {Object.keys(languages).map((k) => (
-                <MenuItemOption
-                  value={k}
-                  key={k}
-                  onClick={() => {
-                    if (window && 'localStorage' in window) {
-                      window.localStorage.setItem('vocdoni.lang', k)
-                    }
-                    i18n.changeLanguage(k)
-                  }}
-                >
-                  {languages[k]}
-                </MenuItemOption>
-              ))}
-            </MenuOptionGroup>
-          </MenuList>
-        </Menu>
-      </ListItem>
-      <ListItem order={mobile ? 1 : undefined} listStyleType='none'>
+      <ListItem>
         <Account />
       </ListItem>
+      {!isConnected && (
+        <Menu>
+          {({ isOpen }) => (
+            <>
+              <MenuButton
+                variant='unstyled'
+                minW='none'
+                as={Button}
+                sx={{ span: { margin: 'px' } }}
+                pt={1}
+                rightIcon={isOpen ? <CloseIcon /> : <FaEllipsisV />}
+              />
+              <MenuList minW='none'>
+                <MenuDropdown />
+              </MenuList>
+            </>
+          )}
+        </Menu>
+      )}
     </>
   )
 }
