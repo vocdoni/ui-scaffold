@@ -8,9 +8,13 @@ const Layout = () => (
     <Box as='header' position='relative' boxShadow='3px 3px 10px gray' zIndex={10}>
       <Navbar maxW={350} mx='auto' px={{ base: 0, sm: 4 }} />
     </Box>
-    <Outlet />
+    <Box as='main' py={8}>
+      <Box maxWidth={350} margin='0 auto' paddingX={{ base: 1, sm: 4 }}>
+        <Outlet />
+      </Box>
+    </Box>
     <Box as='footer' mt='auto'>
-      <Footer mw={350} mx='auto' px={{ base: 0, sm: 4 }} />
+      <Footer maxW={350} mx='auto' px={{ base: 0, sm: 4 }} />
     </Box>
   </Flex>
 )
