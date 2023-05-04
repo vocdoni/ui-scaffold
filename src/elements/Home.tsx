@@ -2,11 +2,11 @@ import { Box, Flex, Grid, GridItem, Text } from '@chakra-ui/react'
 import { Dispatch, SetStateAction, useContext, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import Counters from '../components/Home/Counters'
-import CardOrg, { CardOrgContents } from '../components/Organization/Card'
-import ProcessCardImg, { CardPrImgContents } from '../components/Process/CardImg'
-import SearchInput from '../components/Search/Input'
 import { SearchInputContext } from '../Providers'
+import Counters from '../components/Home/Counters'
+import OrganizationCard, { CardOrgContents } from '../components/Organization/Card'
+import ProcessCardLite, { CardPrImgContents } from '../components/Process/CardLite'
+import SearchInput from '../components/Search/Input'
 
 const CARDS_ORG: CardOrgContents[] = [
   {
@@ -199,43 +199,42 @@ const Home = () => {
         </Box>
         <Counters />
       </Flex>
-      <Text textAlign={{ base: 'center', sm: 'start' }} mb={4} fontSize={30} fontWeight='bold'>
+      <Text textAlign='center' mb={4} fontSize={30} fontWeight='bold'>
         {t('home.active_voting')}
       </Text>
       <Grid
         mb={12}
         templateColumns={{
           base: '1fr',
-          sm: 'repeat(2, 1fr)',
-          md: 'repeat(3, 1fr)',
-          lg: 'repeat(4, 1fr)',
+          '2sm': 'repeat(2, 1fr)',
+          lg: 'repeat(3, 1fr)',
+          '2.1xl': 'repeat(4, 1fr)',
         }}
-        gap={4}
+        columnGap={4}
+        rowGap={6}
       >
         {CARDS_PR.map((card, index) => (
-          <Link to={`/organization/0x4a081070E9D555b5D19629a6bcc8B77f4aE6d39c`} key={index}>
-            <GridItem px={{ base: 10, sm: 0 }}>
-              <ProcessCardImg card={card} />
-            </GridItem>
-          </Link>
+          <GridItem key={index} display='flex' justifyContent='center'>
+            <ProcessCardLite card={card} />
+          </GridItem>
         ))}
       </Grid>
-      <Text textAlign={{ base: 'center', sm: 'start' }} mb={4} fontSize={20} fontWeight='bold'>
+      <Text textAlign='center' mb={4} fontSize={20} fontWeight='bold'>
         {t('home.more_active_organizations')}
       </Text>
       <Grid
         templateColumns={{
           base: '1fr',
-          sm: 'repeat(2, 1fr)',
-          md: 'repeat(3, 1fr)',
-          lg: 'repeat(4, 1fr)',
+          '2sm': 'repeat(2, 1fr)',
+          lg: 'repeat(3, 1fr)',
+          xl: 'repeat(4, 1fr)',
         }}
         gap={4}
       >
         {CARDS_ORG.map((card, index) => (
           <Link to={`/organization/4a081070E9D555b5D19629a6bcc8B77f4aE6d39c`} key={index}>
-            <GridItem px={{ base: 10, sm: 0 }}>
-              <CardOrg card={card} />
+            <GridItem display='flex' justifyContent='center'>
+              <OrganizationCard card={card} />
             </GridItem>
           </Link>
         ))}

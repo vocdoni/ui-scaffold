@@ -24,37 +24,26 @@ export const colorsBase = {
 }
 export const colors = {
   buttons: {
-    default: colorsBase.pink.light,
-    primary: {
-      50: colorsBase.pink.normal,
-      100: colorsBase.pink.light,
-      500: colorsBase.pink.normal,
-      600: colorsBase.pink.ultralight,
-      700: colorsBase.pink.light,
-    },
     ghost_hover_color: colorsBase.white,
+    search: colorsBase.black,
   },
 
   card: {
     bg: colorsBase.white,
-    title: colorsBase.black,
-    description: colorsBase.gray.normal,
+    description: colorsBase.gray.dark,
+    footer_divider: colorsBase.gray.normal,
+    footer_title: colorsBase.purple,
     process_canceled: colorsBase.grenade,
-    footer_divider: colorsBase.gray.light,
-
-    variant: {
-      process_info: colorsBase.purple,
-      process_description: colorsBase.turquoise,
-      process_image: colorsBase.blue,
-    },
+    process_info: colorsBase.purple,
+    title: colorsBase.black,
+    top_header: colorsBase.blue,
   },
-  footer_links: colorsBase.black,
 
   input_search: {
     bg: colorsBase.white,
     border: colorsBase.black,
   },
-  link: colorsBase.pink.normal,
+
   navbar: {
     bg: colorsBase.white,
     border: colorsBase.white,

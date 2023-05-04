@@ -24,103 +24,85 @@ const cardCommonStyles = {
   },
 }
 
-const organization = definePartsStyle({
-  container: {
-    ...cardCommonStyles.container,
-    overflow: 'hidden',
-  },
-  header: {
-    ...cardCommonStyles.header,
-  },
-  body: {
-    ...cardCommonStyles.body,
-    paddingX: 3,
-    py: 2,
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: 'card.title',
-  },
-  footer: {
-    ...cardCommonStyles.footer,
-    display: 'flex',
-    flexDirection: 'column',
-    paddingX: 3,
-    pb: 1,
-    fontSize: 14,
-
-    '& p:first-of-type': {
-      width: 'min-content',
-      bgGradient: 'var(--vcd-gradient-brand)',
-      bgClip: 'text',
-      fontWeight: 'normal',
-    },
-
-    '& p': {
-      fontWeight: 'bold',
-    },
-  },
-})
-
-const processImg = definePartsStyle({
+const lite = definePartsStyle({
   ...cardCommonStyles,
   container: {
     ...cardCommonStyles.container,
+    width: '306px',
     overflow: 'hidden',
+    boxShadow: '0px 2px 4px lightgray',
+    backdropFilter: 'blur(10px)',
+    filter: 'dropShadow(0px 4px 8px #D9D9D9)',
   },
   header: {
     ...cardCommonStyles.header,
+    overflow: 'hidden',
   },
   body: {
     ...cardCommonStyles.body,
-    minH: 20,
-    paddingX: 3,
-    pt: 3,
-    pb: 1,
-    fontSize: 16,
+    p: '16px',
     fontWeight: 'bold',
-    color: 'card.title',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'start',
+    padding: '16px',
+    gap: '16px',
 
-    '& p:first-of-type': {
+    '& > div:first-of-type': { height: '55px' },
+
+    '& > div:first-of-type p:first-of-type': {
       textTransform: 'uppercase',
       isTruncated: true,
-      fontWeight: 'normal',
-      color: 'card.variant.process_image',
-      pb: 1,
+      fontWeight: 400,
+      color: 'card.top_header',
+      fontSize: 'xs',
+      lineHeight: 1,
     },
-    '& p:nth-of-type(2)': {
-      lineHeight: 1.3,
-    },
-  },
-  footer: {
-    ...cardCommonStyles.footer,
-    display: 'flex',
-    justifyContent: 'center',
-    paddingX: 3,
-    pb: 2,
-    fontSize: 14,
-
-    '& div': {
-      width: '100%',
-      borderLeftStyle: 'solid',
-      borderLeftWidth: 1,
-      borderLeftColor: 'card.footer_divider',
-      pl: 2,
+    '& > div:first-of-type p:nth-of-type(2)': {
+      fontSize: 'lg',
+      lineHeight: 6,
+      fontWeight: 700,
     },
 
-    '& div:first-of-type': {
-      borderLeft: 'none',
-      pl: 0,
+    '& > div > p:nth-of-type(2)': {
+      fontSize: 1,
+      lineHeight: 6,
+      fontWeight: 700,
     },
-    '& div p': {
-      whiteSpace: 'nowrap',
-    },
-    '& div p:nth-of-type(odd)': {
-      width: 'min-content',
-      bgGradient: 'var(--vcd-gradient-brand)',
-      bgClip: 'text',
-    },
-    '& div p:nth-of-type(even)': {
-      fontWeight: 'bold',
+
+    '& > div:nth-of-type(2)': {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'start',
+      padding: 0,
+      gap: 3.5,
+
+      '& div': {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'start',
+        padding: 0,
+        gap: 1,
+
+        '& p:nth-of-type(odd)': {
+          color: 'card.footer_title',
+          fontStyle: 'normal',
+          fontWeight: 400,
+          fontSize: 'sm',
+          lineHeight: '100%',
+        },
+        '& p:nth-of-type(even)': {
+          fontWeight: 600,
+          fontSize: 'md',
+          lineHeight: 4,
+          fontStyle: 'normal',
+        },
+      },
+      '& div:nth-of-type(even)': {
+        pl: 3.5,
+        borderLeft: '1px solid',
+        borderColor: 'card.footer_divider',
+      },
     },
   },
 })
@@ -312,8 +294,7 @@ const results = definePartsStyle({
 })
 
 const variantsCards = {
-  organization,
-  'process-img': processImg,
+  lite,
   'process-description': processDescription,
   'process-info': processInfo,
   results,

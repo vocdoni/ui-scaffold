@@ -3,6 +3,7 @@ import { darkTheme, lightTheme } from '@rainbow-me/rainbowkit'
 import { theme as vtheme } from '@vocdoni/chakra-components'
 import { colors } from './colors'
 import { sizes } from './space'
+import { breakpoints } from './breakpoints'
 import { Button } from './components/Button'
 import { Card } from './components/Card'
 import { Link } from './components/Link'
@@ -19,6 +20,7 @@ export const theme = extendTheme(vtheme, {
       },
     },
   },
+  breakpoints,
   colors,
   sizes,
   components: {
