@@ -21,6 +21,7 @@ export const theme = extendTheme(vtheme, {
     },
   },
   breakpoints,
+  fontSizes,
   colors,
   sizes,
   components: {

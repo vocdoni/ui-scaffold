@@ -55,14 +55,23 @@ export const colors = {
     },
   },
   organization: {
-    button_address_active: colorsBase.white,
+    button_address: {
+      active: colorsBase.white,
+      bg: colorsBase.blue,
+      color: colorsBase.white,
+    },
+    election_list_empty: {
+      bg: colorsBase.gray.light,
+      border: colorsBase.gray.normal,
+    },
+    header_text: colorsBase.gray.dark,
     link: colorsBase.pink.normal,
     read_more: colorsBase.pink.normal,
-  },
-
-  pink: {
-    50: colorsBase.pink.normal,
-    600: colorsBase.pink.ultralight,
+    tabs: {
+      bg: colorsBase.white,
+      color: colorsBase.black,
+      divider: colorsBase.gray.normal,
+    },
   },
 
   process: {

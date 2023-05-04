@@ -3,8 +3,9 @@ import { useClient, useOrganization } from '@vocdoni/chakra-components'
 import { PublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import ProcessCardDescription from '../Process/CardDesc'
+import SearchButton from '../Search/Button'
 import SearchInput from '../Search/Input'
 import Header from './Header'
 
@@ -18,6 +19,15 @@ const OrganizationView = () => {
   const [loaded, setLoaded] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
   const [finished, setFinished] = useState<boolean>(false)
+
+  const [isFullInput, setIsFullInput] = useState(false)
+  const displayFullInput = () => setIsFullInput(true)
+  const refSearchInput = useRef<HTMLDivElement>(null)
+
+  useOutsideClick({
+    ref: refSearchInput,
+    handler: () => setIsFullInput(false),
+  })
 
   const refObserver = useRef<any>()
   const [page, setPage] = useState<number>(-1)
@@ -61,53 +71,97 @@ const OrganizationView = () => {
       })
   }, [client, organization?.address, page, error, finished])
 
-  const templateColumnsAllRounds =
-    electionsList?.length === 1
-      ? {
-          base: '1fr',
-        }
-      : {
-          base: '1fr',
-          lg: 'repeat(2, 1fr)',
-        }
-
   return (
     <Flex direction='column' gap={4}>
-      <Header />
-      <Tabs mt={8}>
-        <TabList
-          position='relative'
-          display='flex'
-          flexDirection={{ base: 'column', md: 'row' }}
-          justifyContent='center'
-          alignItems='center'
-        >
-          <SearchInput
-            position={{ md: 'absolute' }}
-            right={0}
-            mb={{ base: 25, sm: 0 }}
-            w={{ base: '50%', md: '30%', lg: '20%' }}
-          />
-          <Flex>
-            <Tab whiteSpace='nowrap'>{t('organization.rounds.all')}</Tab>
-            <Tab whiteSpace='nowrap'> {t('organization.rounds.active')} </Tab>
+      <Header address={address} />
+      <Tabs align='center' mt={8}>
+        {!isFullInput ? (
+          <TabList position='sticky' top='72px' zIndex={10} bgColor='organization.tabs.bg'>
+            <Flex>
+              <Tab whiteSpace='nowrap' color='organization.tabs.color'>
+                {t('organization.rounds.all')}
+              </Tab>
+              <Box borderRight='1px solid' borderColor='organization.tabs.divider' p={2} my={1} />
+              <Tab whiteSpace='nowrap' color='organization.tabs.color'>
+                {t('organization.rounds.active')}
+              </Tab>
+
+              <SearchInput
+                display={{ base: 'none', md: 'inline-block' }}
+                position='absolute'
+                right={0}
+                mb={{ base: 25, sm: 0 }}
+                w={{ base: '50%', md: '30%', lg: '20%' }}
+              />
+
+              <Box display={{ base: 'inline-block', md: 'none' }} justifyContent='center' position='absolute' right={0}>
+                <SearchButton displayFullInput={displayFullInput} aria={t('menu.search')} />
+              </Box>
+            </Flex>
+          </TabList>
+        ) : (
+          <Flex
+            ref={refSearchInput}
+            justifyContent='center'
+            position='sticky'
+            bgColor='organization.tabs.bg'
+            top='72px'
+            zIndex={10}
+          >
+            <SearchInput width='80vw' />
           </Flex>
-        </TabList>
+        )}
+
         <TabPanels>
           <TabPanel>
-            <Grid templateColumns={templateColumnsAllRounds} gap={4}>
-              {electionsList?.map((election: any, idx: number) => (
-                <Link to={`/processes/0x${election.id}`} key={idx}>
-                  <GridItem display='flex' justifyContent='center' alignItems='center'>
-                    <ProcessCardDescription election={election} />
-                  </GridItem>
-                </Link>
+            <Grid
+              templateColumns={{
+                base: '1fr',
+                lg: 'repeat(2, 1fr)',
+                '2.1xl': 'repeat(3, 1fr)',
+              }}
+              columnGap={6}
+              rowGap={8}
+            >
+              {electionsList?.map((election: PublishedElection, idx: number) => (
+                <GridItem key={idx} display='flex' justifyContent='center' alignItems='start'>
+                  <ProcessCardDescription election={election} />
+                </GridItem>
               ))}
               <div ref={refObserver}></div>
             </Grid>
             <Flex justifyContent='center' mt={4}>
               {loading && <Spinner />}
-              {loaded && !electionsList.length && <Text>{t('organization.elections_list_empty')}</Text>}
+              {loaded && !electionsList.length && (
+                <NavLink to='/processes/create'>
+                  <Flex
+                    direction='column'
+                    justifyContent='center'
+                    alignItems='center'
+                    gap={3}
+                    w={124}
+                    p={12}
+                    bgColor='organization.election_list_empty.bg'
+                    borderRadius={2}
+                    border='1px solid'
+                    borderColor='organization.election_list_empty.border'
+                  >
+                    <Text textAlign='center' fontSize='2xl'>
+                      {t('organization.elections_list_empty')}
+                    </Text>
+                    <Button
+                      rightIcon={<AddIcon />}
+                      variant='solid'
+                      colorScheme='navbar.btn_create'
+                      sx={{ span: { margin: 0 } }}
+                    >
+                      <Text as='span' display={{ base: 'none', md: 'inline-block' }} pr={2}>
+                        {t('menu.create')}
+                      </Text>
+                    </Button>
+                  </Flex>
+                </NavLink>
+              )}
               {error && <Text>{error}</Text>}
             </Flex>
           </TabPanel>

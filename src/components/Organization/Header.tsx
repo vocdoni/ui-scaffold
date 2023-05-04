@@ -16,34 +16,29 @@ const OrganizationHeader = () => {
   const { organization } = useOrganization()
 
   return (
-    <Box maxWidth={{ base: '90%', md: 250 }} mx='auto'>
-      <AspectRatio
-        ratio={1}
-        h={{ base: 36, md: 48 }}
-        w={{ base: 36, md: 48 }}
-        float={{ base: 'none', md: 'left' }}
-        mx={{ base: 'auto' }}
-        mr={{ md: 8 }}
-        mb={{ base: 8, md: 2 }}
-      >
-        <Avatar
-          mx='auto'
-          borderRadius='md'
-          alt={t('organization.avatar_alt', {
-            name: organization?.account.name.default || organization?.address,
-          }).toString()}
-        />
-      </AspectRatio>
+    <Flex flexDirection={{ base: 'column', lg: 'row' }}>
+      <Box minW={{ base: 'full', sm: 100 }} p={{ base: 2, sm: 0 }} maxW={100} mx='auto'>
+        <AspectRatio ratio={{ base: 1.8 / 1, sm: 1.25 / 1 }}>
+          <Image
+            mx='auto'
+            borderRadius='md'
+            src='https://images.pexels.com/photos/7103129/pexels-photo-7103129.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+            alt='organization X'
+          />
+        </AspectRatio>
+      </Box>
 
-      <Flex
-        direction={{ base: 'column', md: 'row' }}
-        justifyContent={{ md: 'space-between' }}
-        alignItems={{ base: 'center', md: 'start' }}
-        gap={{ base: 2, md: 8 }}
-        mb={{ base: 2, md: 4 }}
-      >
-        <Flex flexDirection='column' alignItems={{ base: 'center', md: 'start' }} mt={2}>
-          <AddressBtn />
+      <Box pl={{ lg: 5 }}>
+        <Flex
+          direction={{ base: 'column', lg: 'row' }}
+          justifyContent={{ lg: 'space-between' }}
+          alignItems={{ base: 'center', lg: 'start' }}
+          gap={{ base: 0, lg: 0 }}
+          mb={{ base: 2, lg: 4 }}
+          flexGrow={1}
+        >
+          <Flex flexDirection='column' alignItems={{ base: 'center', lg: 'start' }} mt={2}>
+            <AddressBtn />
 
           <Text>{t('organization.dao_title')}</Text>
           <OrganizationName

@@ -17,23 +17,24 @@ const AddressBtn = () => {
     <Menu>
       <MenuButton
         as={Button}
-        borderRadius={12}
-        variant='link'
-        _active={{
-          color: 'branding.lightpurple',
-        }}
-        px={2}
-        py={1}
-        bgGradient='var(--vcd-gradient-brand)'
+        borderRadius={18}
+        py={2}
+        px={2.5}
+        bgColor='organization.button_address.bg'
+        w={30}
+        h={8}
         isTruncated
         title={address}
         cursor='pointer'
-        color='white'
-        fontSize={13}
+        color='organization.button_address.color'
+        fontSize='sm'
         mb={2}
         rightIcon={<HiOutlineEllipsisHorizontalCircle style={{ width: '1.2em', height: '1.2em' }} />}
         _hover={{
           textDecoration: 'none',
+        }}
+        _active={{
+          color: 'organization.button_address.active',
         }}
       >
         <Box maxW={20} isTruncated overflow='hidden'>
@@ -43,7 +44,7 @@ const AddressBtn = () => {
         </Box>
       </MenuButton>
 
-      <MenuList p='0' position='absolute' top={-28} zIndex='10'>
+      <MenuList p={0} position='absolute' top={-28} zIndex='10'>
         <MenuItem
           as={Button}
           justifyContent='start'
