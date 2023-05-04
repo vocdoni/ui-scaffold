@@ -24,7 +24,6 @@ export const theme = extendTheme(vtheme, {
     Card,
     Questions,
     Button,
-    Link,
   },
 })
 
