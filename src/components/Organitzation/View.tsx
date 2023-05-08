@@ -17,6 +17,7 @@ const OrganizationView = () => {
   const [loading, setLoading] = useState<boolean>(false)
   const [loaded, setLoaded] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
+  const [finished, setFinished] = useState<boolean>(false)
 
   const refObserver = useRef<any>()
   const [page, setPage] = useState<number>(-1)
@@ -30,6 +31,8 @@ const OrganizationView = () => {
 
   // loads elections. Note the load trigger is done via useObserver using a layer visibility.
   useEffect(() => {
+    if (finished) return
+
     // start loading at first glance
     setLoaded(false)
     setLoading(true)
@@ -39,6 +42,10 @@ const OrganizationView = () => {
     client
       .fetchElections(organization?.address, page)
       .then((res) => {
+        if (!res || (res && !res.length)) {
+          setFinished(true)
+        }
+
         setElectionsList((prev: PublishedElection[]) => {
           if (prev) return [...prev, ...res]
           return res
@@ -52,7 +59,7 @@ const OrganizationView = () => {
         setLoading(false)
         setLoaded(true)
       })
-  }, [client, organization?.address, page, error])
+  }, [client, organization?.address, page, error, finished])
 
   const templateColumnsAllRounds =
     electionsList?.length === 1
