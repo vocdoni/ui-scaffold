@@ -27,11 +27,22 @@ jobs:
       - name: Install
         run: yarn
 
-      - name: Build CRA app
+      - name: Build CRA app dev
         run: yarn build
         env:
-          PUBLIC_URL: '/ui-scaffold'
-          REACT_APP_VOCDONI_ENVIRONMENT: ${{ vars.REACT_APP_VOCDONI_ENVIRONMENT }}
+          PUBLIC_URL: '/ui-scaffold/dev/'
+          REACT_APP_VOCDONI_ENVIRONMENT: 'dev'
+          BUILD_PATH: 'build/dev'
+
+      - name: Build CRA app stg
+        run: yarn build
+        env:
+          PUBLIC_URL: '/ui-scaffold/stg/'
+          REACT_APP_VOCDONI_ENVIRONMENT: 'stg'
+          BUILD_PATH: 'build/stg'
+
+      - name: Create redirect index
+        run:  echo '<meta http-equiv="refresh" content="0;url=https://vocdoni.github.io/ui-scaffold/stg" />' > build/index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
