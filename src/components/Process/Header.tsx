@@ -1,13 +1,25 @@
 import { ExternalLinkIcon, WarningIcon } from '@chakra-ui/icons'
 import { Box, Button, Flex, Icon, Text } from '@chakra-ui/react'
-import { ElectionDescription, ElectionSchedule, ElectionTitle, useClientContext } from '@vocdoni/react-components'
+import {
+  ElectionActions,
+  ElectionDescription,
+  ElectionSchedule,
+  ElectionTitle,
+  enforceHexPrefix,
+  useClient,
+  useOrganization,
+} from '@vocdoni/chakra-components'
 import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
+import { useTranslation } from 'react-i18next'
 import { FaRegArrowAltCircleLeft } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { ProcessDate } from './Date'
 
 const ProcessHeader = ({ election }: { election?: PublishedElection }) => {
-  const { account } = useClientContext()
+  const { t } = useTranslation()
+
+  const { account } = useClient()
+  const { organization } = useOrganization()
 
   return (
     <Box mb={4}>
@@ -20,6 +32,7 @@ const ProcessHeader = ({ election }: { election?: PublishedElection }) => {
             justifyContent='center'
             alignItems='center'
             h={7}
+            maxW={30}
             py={2}
             px={2}
             fontSize='sm'
@@ -30,7 +43,9 @@ const ProcessHeader = ({ election }: { election?: PublishedElection }) => {
             borderRadius={18}
             borderColor={{ base: 'transparent', md: 'process.header.btn_border' }}
           >
-            <Text as='span'>{'Org Name'.toUpperCase()}</Text>
+            <Text as='span' overflow='hidden' isTruncated>
+              {organization?.account.name.default || enforceHexPrefix(organization?.address)}
+            </Text>
           </Button>
         </Link>
         <Link to='#'>
@@ -44,7 +59,7 @@ const ProcessHeader = ({ election }: { election?: PublishedElection }) => {
             fontWeight={400}
           >
             <Text as='span' mb='px'>
-              Share
+              {t('process.share')}
             </Text>
             <Flex
               justifyContent='center'
@@ -80,10 +95,11 @@ const ProcessHeader = ({ election }: { election?: PublishedElection }) => {
           {election?.status === ElectionStatus.PAUSED && election?.organizationId !== account?.address && (
             <Box color='process.paused'>
               <Icon as={WarningIcon} />
-              <Text>Election paused</Text>
-              <Text>It's not possible to vote right now</Text>
+              <Text>{t('preocess.status.canceled')}</Text>
+              <Text>{t('process.status.canceled_description')}</Text>
             </Box>
           )}
+          <ElectionActions />
         </Flex>
       </Flex>
     </Box>

@@ -173,19 +173,19 @@ const detailed = definePartsStyle({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'start',
-        gap: 3.5,
+        gap: 2,
         padding: 0,
 
         '& p:nth-of-type(odd)': {
           fontStyle: 'normal',
           fontWeight: 400,
-          fontSize: '14px',
+          fontSize: 'sm',
           lineHeight: '100%',
           color: 'card.footer_title',
         },
         '& p:nth-of-type(even)': {
           fontWeight: '600',
-          fontSize: 'sm',
+          fontSize: 'md',
           lineHeight: 4,
           fontStyle: 'normal',
         },

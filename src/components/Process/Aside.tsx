@@ -1,9 +1,10 @@
-import { Flex, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { HR, useClient, useElection, VoteButton } from '@vocdoni/chakra-components'
-import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
+import { useElection, VoteButton } from '@vocdoni/chakra-components'
+import { ElectionStatus } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 
 interface Props {
@@ -13,9 +14,8 @@ interface Props {
 
 const ProcessAside = ({ isInCensus, hasAlreadyVoted }: Props) => {
   const { t } = useTranslation()
-  const { election, isAbleToVote, votesLeft } = useElection()
-
-  const { account } = useClient()
+  const { election, isAbleToVote } = useElection()
+  const { isConnected } = useAccount()
 
   return (
     <Flex
@@ -42,12 +42,22 @@ const ProcessAside = ({ isInCensus, hasAlreadyVoted }: Props) => {
       </Flex>
       {isConnected ? (
         <>
-          <Text textAlign='center' fontWeight='400' fontSize='sm'>
-            {isAbleToVote && t('aside.is_able_to_vote')}
-            {!isAbleToVote && !isInCensus && t('aside.is_not_in_census')}
-            {!isAbleToVote && hasAlreadyVoted && t('aside.has_already_voted')}
-          </Text>
-          <VoteButton label={t('aside.vote').toString()} color='process.vote_btn' />
+          <Box textAlign='center' fontWeight='400' fontSize='sm'>
+            {isAbleToVote && (
+              <>
+                <Text mb={2}>{t('aside.is_able_to_vote')}</Text>
+                <VoteButton w='full' color='black' />
+              </>
+            )}
+            {!isInCensus && t('aside.is_not_in_census')}
+            {hasAlreadyVoted && (
+              <Link to='https://explorer.vote/verify/' target='_blank'>
+                <Button w='full' color='black'>
+                  Verify your vote
+                </Button>
+              </Link>
+            )}
+          </Box>
         </>
       ) : (
         <>

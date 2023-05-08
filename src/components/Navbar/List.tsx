@@ -1,6 +1,7 @@
-import { ChevronDownIcon } from '@chakra-ui/icons'
-import { Button, ListItem, Menu, MenuButton, MenuItemOption, MenuList, MenuOptionGroup } from '@chakra-ui/react'
+import { AddIcon, ChevronDownIcon, CloseIcon } from '@chakra-ui/icons'
+import { Button, List, ListItem, Menu, MenuButton, MenuList, Text } from '@chakra-ui/react'
 import { useClient } from '@vocdoni/chakra-components'
+import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaEllipsisV, FaGlobe } from 'react-icons/fa'
 import { NavLink, useLocation } from 'react-router-dom'
@@ -16,10 +17,10 @@ type Props = {
 }
 
 const NavList = ({ displayFullInput }: Props) => {
-  const { t } = useTranslation()
   const { isConnected } = useAccount()
-  const { i18n, t } = useTranslation()
+  const { t } = useTranslation()
   const { account } = useClient()
+  const location = useLocation()
 
   const searchInputValues = useContext(SearchInputContext)
 

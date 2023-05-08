@@ -1,7 +1,6 @@
 {
   "alt_image": "{{ img }} image",
   "aside": {
-    "has_already_voted": "You have already voted",
     "is_able_to_vote": "Connected. You are elegible for voting",
     "is_not_in_census": "You are not in census",
     "overwrite_votes_left": "You can correct your vote up to {{ left }} times.",
@@ -127,6 +126,11 @@
       "all": "All rounds"
     }
   },
+  "preocess": {
+    "status": {
+      "canceled": ""
+    }
+  },
   "process": {
     "date": {
       "ended": "Process ended",
@@ -137,8 +141,10 @@
     "questions": "Questions",
     "results": "Results",
     "secret_until_the_end": "Secret until the end",
+    "share": "Share",
     "status": {
       "canceled": "Process canceled",
+      "canceled_description": "It's not possible to vote right now",
       "ended": "Process ended",
       "ongoing": "Process ongoing",
       "paused": "Process paused",

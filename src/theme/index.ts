@@ -6,9 +6,8 @@ import { sizes } from './space'
 import { breakpoints } from './breakpoints'
 import { Button } from './components/Button'
 import { Card } from './components/Card'
-import { Link } from './components/Link'
 import { Questions } from './components/Questions'
-import { space } from './space'
+import { fontSizes } from './font'
 
 export const theme = extendTheme(vtheme, {
   styles: {

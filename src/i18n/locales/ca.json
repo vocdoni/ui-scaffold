@@ -130,6 +130,11 @@
       "all": "Totes"
     }
   },
+  "preocess": {
+    "status": {
+      "canceled": ""
+    }
+  },
   "process": {
     "date": {
       "ended": "Finalitzat",
@@ -140,8 +145,10 @@
     "questions": "Preguntes",
     "results": "Resultats",
     "secret_until_the_end": "",
+    "share": "",
     "status": {
       "canceled": "",
+      "canceled_description": "",
       "ended": "",
       "ongoing": "",
       "paused": "",

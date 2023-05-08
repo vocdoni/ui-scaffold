@@ -1,5 +1,5 @@
 import { Box, Flex, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
-import { ElectionQuestions, ElectionResults, useElection, useOrganization } from '@vocdoni/chakra-components'
+import { ElectionQuestions, ElectionResults, useElection } from '@vocdoni/chakra-components'
 import { ElectionStatus } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -7,7 +7,6 @@ import ProcessAside from './Aside'
 import Header from './Header'
 
 export const ProcessView = () => {
-  const { organization } = useOrganization()
   const { election, isInCensus, voted } = useElection()
   const { t } = useTranslation()
 
@@ -48,7 +47,7 @@ export const ProcessView = () => {
             <TabPanel>
               <ElectionQuestions />
             </TabPanel>
-            <TabPanel mb={5}>
+            <TabPanel>
               <ElectionResults />
 
               {election?.electionType.secretUntilTheEnd && (
@@ -60,9 +59,16 @@ export const ProcessView = () => {
           </TabPanels>
         </Tabs>
         {election?.status === ElectionStatus.ONGOING && (
-          <Box position='sticky' bottom='px' mx='auto' mt={10}>
+          <Flex
+            justifyContent='center'
+            position='sticky'
+            bottom={{ base: 'px', lg: undefined }}
+            top={{ lg: '80px' }}
+            w={{ base: '100%', lg: '30%' }}
+            mt={{ lg: 10 }}
+          >
             <ProcessAside isInCensus={isInCensus} hasAlreadyVoted={voted !== null && voted.length > 0} />
-          </Box>
+          </Flex>
         )}
       </Flex>
     </>

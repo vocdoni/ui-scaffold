@@ -24,7 +24,7 @@ const Navbar = ({ ...props }) => {
           <Img src={`${process.env.PUBLIC_URL}/assets/vocdoni_icon.png`} alt='vocdoni icon' maxWidth={12} />
           <Text
             display={{ base: 'none', md: 'flex' }}
-            flexDirection={searchInputValues?.isSearchInScreen ? 'row' : 'column'}
+            flexDirection={searchInputValues?.isSearchInScreen || location.pathname !== '/' ? 'row' : 'column'}
             gap={searchInputValues?.isSearchInScreen ? 1 : 0}
             fontSize='sm'
             fontWeight='bold'

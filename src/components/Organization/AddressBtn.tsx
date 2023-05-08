@@ -29,7 +29,6 @@ const AddressBtn = () => {
         color='organization.button_address.color'
         bgColor='organization.button_address.bg'
         cursor='pointer'
-        isTruncated
         _hover={{
           textDecoration: 'none',
         }}
@@ -38,9 +37,7 @@ const AddressBtn = () => {
         }}
       >
         <Box maxW={20} overflow='hidden' isTruncated>
-          <Text isTruncated as='span'>
-            {address}
-          </Text>
+          <Text as='span'>{address}</Text>
         </Box>
       </MenuButton>
 

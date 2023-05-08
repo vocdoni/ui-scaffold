@@ -1,16 +1,16 @@
 import { Box, Card, CardBody, CardFooter, CardHeader, Text } from '@chakra-ui/react'
 import {
+  ElectionActions,
   ElectionDescription,
   ElectionProvider,
   ElectionStatusBadge,
   ElectionTitle,
-  useClientContext,
-} from '@vocdoni/react-components'
+  useClient,
+} from '@vocdoni/chakra-components'
 import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { format } from 'date-fns'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import ProcessActions from './Actions'
 import { ProcessDate } from './Date'
 
 interface Props {
@@ -19,7 +19,7 @@ interface Props {
 
 const ProcessCardDetailed = ({ election }: Props) => {
   const { t } = useTranslation()
-  const { account } = useClientContext()
+  const { account } = useClient()
 
   return (
     <Link to={`/processes/0x${election.id}`}>
@@ -49,7 +49,7 @@ const ProcessCardDetailed = ({ election }: Props) => {
           {election?.organizationId === account?.address &&
             (election?.status === ElectionStatus.ONGOING || election?.status === ElectionStatus.PAUSED) && (
               <CardFooter>
-                <ProcessActions />
+                <ElectionActions />
               </CardFooter>
             )}
         </Card>

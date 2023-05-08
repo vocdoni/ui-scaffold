@@ -38,7 +38,7 @@ const OrganizationHeader = () => {
           mb={{ base: 2, lg: 4 }}
         >
           <Box textAlign={{ base: 'center', lg: 'start' }} w={{ base: 'full', lg: '60%' }}>
-            <AddressBtn address={address} />
+            <AddressBtn />
 
             <Text>{t('organization.dao_title')}</Text>
             <Heading
@@ -49,7 +49,7 @@ const OrganizationHeader = () => {
               fontSize={{ base: '3xl', md: '4xl' }}
               isTruncated
             >
-              The Organization Name
+              {organization?.account.name.default || organization?.address}
             </Heading>
           </Box>
           <Flex flexDirection={{ base: 'row', lg: 'column' }} gap={{ base: 4, lg: 0 }}>
@@ -58,7 +58,7 @@ const OrganizationHeader = () => {
                 {t('organization.elections')}
               </Text>
               <Text as='span' fontWeight='bold'>
-                20
+                {organization?.electionIndex}
               </Text>
             </Box>
 
@@ -67,7 +67,7 @@ const OrganizationHeader = () => {
                 {t('organization.members')}
               </Text>
               <Text as='span' fontWeight='bold'>
-                627
+                ∞
               </Text>
             </Flex>
           </Flex>
@@ -77,12 +77,7 @@ const OrganizationHeader = () => {
         </Flex>
 
         <Text mb={3} px={{ md: 10, lg: 0 }} color='organization.header_text' noOfLines={readMore ? undefined : 3}>
-          The Organization Name ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-          labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut laboliquip ex ea commodo const dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-          exercitation ullamco laboris nisi ut aliquip ex Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-          do eiusmod tempor
+          {organization?.account.description.default}
         </Text>
         <VStack>
           <Button variant='link' onClick={() => setReadMore((prev) => !prev)} color='black'>

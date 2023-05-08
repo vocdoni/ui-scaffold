@@ -1,4 +1,19 @@
-import { Flex, Grid, GridItem, Spinner, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
+import { AddIcon } from '@chakra-ui/icons'
+import {
+  Box,
+  Button,
+  Flex,
+  Grid,
+  GridItem,
+  Spinner,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Text,
+  useOutsideClick,
+} from '@chakra-ui/react'
 import { useClient, useOrganization } from '@vocdoni/chakra-components'
 import { PublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
@@ -73,7 +88,7 @@ const OrganizationView = () => {
 
   return (
     <>
-      <Header address={address} />
+      <Header />
       <Tabs align='center'>
         {!isFullInput ? (
           <TabList position='sticky' top='72px' zIndex={10} bgColor='organization.tabs.bg'>

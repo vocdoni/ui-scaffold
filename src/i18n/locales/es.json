@@ -127,6 +127,11 @@
       "all": "Todas"
     }
   },
+  "preocess": {
+    "status": {
+      "canceled": ""
+    }
+  },
   "process": {
     "date": {
       "ended": "Finalizado",
@@ -137,8 +142,10 @@
     "questions": "Preguntas",
     "results": "Resultados",
     "secret_until_the_end": "",
+    "share": "",
     "status": {
       "canceled": "",
+      "canceled_description": "",
       "ended": "",
       "ongoing": "",
       "paused": "",

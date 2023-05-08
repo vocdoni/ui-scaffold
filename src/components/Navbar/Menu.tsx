@@ -1,5 +1,5 @@
 import { Box, List, ListItem } from '@chakra-ui/react'
-import { useClientContext } from '@vocdoni/react-components'
+import { useClient } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 import { useAccount, useDisconnect } from 'wagmi'
@@ -9,7 +9,7 @@ const MenuDropdown = () => {
   const { t } = useTranslation()
   const { isConnected } = useAccount()
   const { disconnect } = useDisconnect()
-  const { account } = useClientContext()
+  const { account } = useClient()
 
   return (
     <List display='flex' flexDirection='column' alignItems='end' gap={2} px={4} py={2} textAlign='end' cursor='pointer'>

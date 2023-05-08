@@ -1,6 +1,5 @@
 import { Box, Button, Menu, MenuButton, MenuList, Text } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { Balance } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import { useAccount } from 'wagmi'
 import MenuDropdown from './Menu'
