@@ -4,6 +4,7 @@ import {
   ElectionActions,
   ElectionDescription,
   ElectionQuestions,
+  ElectionResults,
   ElectionSchedule,
   ElectionTitle,
   enforceHexPrefix,
@@ -17,7 +18,6 @@ import { Link } from 'react-router-dom'
 import { ExplorerBaseURL } from '../../constants'
 import ProcessAside from './Aside'
 import { ProcessDate } from './Date'
-import ProcessResults from './Results'
 
 export const ProcessView = () => {
   const { organization } = useOrganization()
@@ -80,7 +80,7 @@ export const ProcessView = () => {
                   </Text>
                 ) : (
                   <Box flexGrow={{ lg: 1 }} flexShrink={{ lg: 1 }} flexBasis={{ lg: 124 }} order={{ base: 2, lg: 1 }}>
-                    <ProcessResults />
+                    <ElectionResults />
                   </Box>
                 )}
 
