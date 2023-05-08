@@ -14,26 +14,30 @@ const OrganizationView = () => {
   const { organization } = useOrganization()
 
   const [electionsList, setElectionsList] = useState<PublishedElection[]>([])
-  const [loading, setLoading] = useState(false)
-  const [loaded, setLoaded] = useState(false)
-  const [error, setError] = useState(false)
+  const [loading, setLoading] = useState<boolean>(false)
+  const [loaded, setLoaded] = useState<boolean>(false)
+  const [error, setError] = useState<boolean>(false)
 
   const refObserver = useRef<any>()
-  const [page, setPage] = useState(0)
+  const [page, setPage] = useState<number>(-1)
   useObserver(refObserver, setPage)
 
+  // empties the list on account change
+  useEffect(() => {
+    // empty list to ensure it's properly populated
+    setElectionsList([])
+  }, [organization?.address])
+
+  // loads elections. Note the load trigger is done via useObserver using a layer visibility.
   useEffect(() => {
     // start loading at first glance
     setLoaded(false)
     setLoading(true)
 
-    if (!client || page === 0 || error || !organization?.address) return
-
-    // empty list to ensure it's properly populated
-    setElectionsList([])
+    if (!client || page === -1 || error || !organization?.address) return
 
     client
-      .fetchElections(organization?.address, page - 1)
+      .fetchElections(organization?.address, page)
       .then((res) => {
         setElectionsList((prev: PublishedElection[]) => {
           if (prev) return [...prev, ...res]
