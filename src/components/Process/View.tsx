@@ -7,7 +7,7 @@ import ProcessAside from './Aside'
 import Header from './Header'
 
 export const ProcessView = () => {
-  const { election, isInCensus, voted } = useElection()
+  const { election } = useElection()
   const { t } = useTranslation()
 
   const [tabIndex, setTabIndex] = useState(0)
@@ -22,7 +22,7 @@ export const ProcessView = () => {
 
   return (
     <>
-      <Header election={election} />
+      <Header />
       <Flex direction={{ base: 'column', lg: 'row' }} alignItems='start'>
         <Tabs
           index={tabIndex}
@@ -67,7 +67,7 @@ export const ProcessView = () => {
             w={{ base: '100%', lg: '30%' }}
             mt={{ lg: 10 }}
           >
-            <ProcessAside isInCensus={isInCensus} hasAlreadyVoted={voted !== null && voted.length > 0} />
+            <ProcessAside />
           </Flex>
         )}
       </Flex>

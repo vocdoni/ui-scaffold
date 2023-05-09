@@ -1,20 +1,15 @@
 import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { useElection, VoteButton } from '@vocdoni/chakra-components'
+import { VoteButton, useElection } from '@vocdoni/chakra-components'
 import { ElectionStatus } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 
-interface Props {
-  isInCensus: boolean
-  hasAlreadyVoted: boolean
-}
-
-const ProcessAside = ({ isInCensus, hasAlreadyVoted }: Props) => {
+const ProcessAside = () => {
   const { t } = useTranslation()
-  const { election, isAbleToVote } = useElection()
+  const { election, isAbleToVote, isInCensus, voted } = useElection()
   const { isConnected } = useAccount()
 
   return (
@@ -50,7 +45,7 @@ const ProcessAside = ({ isInCensus, hasAlreadyVoted }: Props) => {
               </>
             )}
             {!isInCensus && t('aside.is_not_in_census')}
-            {hasAlreadyVoted && (
+            {voted !== null && voted.length > 0 && (
               <Link to='https://explorer.vote/verify/' target='_blank'>
                 <Button w='full' color='black'>
                   Verify your vote

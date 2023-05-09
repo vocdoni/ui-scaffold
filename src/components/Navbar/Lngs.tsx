@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { FaGlobe } from 'react-icons/fa'
 import { LanguagesSlice } from '../../i18n/languages.mjs'
 
-const LanguagesList = ({ ...props }) => {
+const LanguagesList = () => {
   const { i18n } = useTranslation()
 
   const languages = LanguagesSlice as { [key: string]: string }

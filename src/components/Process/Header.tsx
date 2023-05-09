@@ -7,17 +7,18 @@ import {
   ElectionTitle,
   enforceHexPrefix,
   useClient,
+  useElection,
   useOrganization,
 } from '@vocdoni/chakra-components'
-import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
+import { ElectionStatus } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import { FaRegArrowAltCircleLeft } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { ProcessDate } from './Date'
 
-const ProcessHeader = ({ election }: { election?: PublishedElection }) => {
+const ProcessHeader = () => {
   const { t } = useTranslation()
-
+  const { election } = useElection()
   const { account } = useClient()
   const { organization } = useOrganization()
 
