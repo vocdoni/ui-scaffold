@@ -11,7 +11,7 @@ export interface CardProps {
   card: CardOrgContents
 }
 
-const OrganitzationCard = ({ card }: CardProps) => {
+const OrganizationCard = ({ card }: CardProps) => {
   const { t } = useTranslation()
 
   return (
@@ -32,4 +32,4 @@ const OrganitzationCard = ({ card }: CardProps) => {
   )
 }
 
-export default OrganitzationCard
+export default OrganizationCard

@@ -2,7 +2,7 @@ import { Box, Flex, Grid, GridItem, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import Counters from '../components/Home/Counters'
-import CardOrg, { CardOrgContents } from '../components/Organitzation/Card'
+import CardOrg, { CardOrgContents } from '../components/Organization/Card'
 import ProcessCardImg, { CardPrImgContents } from '../components/Process/CardImg'
 import SearchInput from '../components/Search/Input'
 
