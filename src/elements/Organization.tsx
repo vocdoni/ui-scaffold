@@ -1,8 +1,8 @@
 import { OrganizationProvider } from '@vocdoni/chakra-components'
 import { useParams } from 'react-router-dom'
-import OrganizationView from '../components/Organitzation/View'
+import OrganizationView from '../components/Organization/View'
 
-const Organitzation = () => {
+const Organization = () => {
   const { address } = useParams()
 
   return (
@@ -12,4 +12,4 @@ const Organitzation = () => {
   )
 }
 
-export default Organitzation
+export default Organization
