@@ -25,7 +25,7 @@ const Navbar = ({ ...props }) => {
           <Text
             display={{ base: 'none', md: 'flex' }}
             flexDirection={searchInputValues?.isSearchInScreen || location.pathname !== '/' ? 'row' : 'column'}
-            gap={searchInputValues?.isSearchInScreen ? 1 : 0}
+            gap={searchInputValues?.isSearchInScreen || location.pathname !== '/' ? 1 : 0}
             fontSize='sm'
             fontWeight='bold'
             lineHeight={1.1}
