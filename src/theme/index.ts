@@ -8,6 +8,7 @@ import { Button } from './components/Button'
 import { Card } from './components/Card'
 import { Questions } from './components/Questions'
 import { fontSizes } from './font'
+import { ElectionResults } from './components/Results'
 
 export const theme = extendTheme(vtheme, {
   styles: {
@@ -27,6 +28,7 @@ export const theme = extendTheme(vtheme, {
     Card,
     Questions,
     Button,
+    ElectionResults,
   },
 })
 

@@ -1,4 +1,4 @@
-import { Box, Flex, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
+import { Box, Flex, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
 import { ElectionQuestions, ElectionResults, useElection } from '@vocdoni/chakra-components'
 import { ElectionStatus } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
@@ -49,12 +49,6 @@ export const ProcessView = () => {
             </TabPanel>
             <TabPanel>
               <ElectionResults />
-
-              {election?.electionType.secretUntilTheEnd && (
-                <Text pt={25} textAlign='center' fontWeight='bold' color='process.secret_until_the_end'>
-                  {t('process.secret_until_the_end')}
-                </Text>
-              )}
             </TabPanel>
           </TabPanels>
         </Tabs>

@@ -99,7 +99,6 @@ export const colors = {
     },
     info: colorsBase.blue,
     paused: colorsBase.grenade,
-    secret_until_the_end: colorsBase.purple,
     vote_btn: colorsBase.black,
     btn_form_selected: colorsBase.gray.normal,
     tabs: {
