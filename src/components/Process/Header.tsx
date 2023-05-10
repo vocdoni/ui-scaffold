@@ -38,9 +38,9 @@ const ProcessHeader = () => {
             px={2}
             fontSize='sm'
             fontWeight={400}
-            border='1px solid black'
-            bgColor={{ base: 'process.header.btn_mobile_bg', lg: 'process.header.btn_desktop_bg' }}
-            color={{ base: 'process.header.btn_mobile_color', lg: 'process.header.btn_desktop_color' }}
+            border={{ md: '1px solid' }}
+            bgColor={{ base: 'process.header.btn_mobile_bg', md: 'process.header.btn_desktop_bg' }}
+            color={{ base: 'process.header.btn_mobile_color', md: 'process.header.btn_desktop_color' }}
             borderRadius={18}
             borderColor={{ base: 'transparent', md: 'process.header.btn_border' }}
           >
@@ -68,7 +68,7 @@ const ProcessHeader = () => {
               p={1}
               w={8}
               h={8}
-              bgColor={{ base: 'process.header.btn_mobile_bg', lg: 'process.header.btn_desktop_bg' }}
+              bgColor={{ base: 'process.header.btn_mobile_bg', md: 'process.header.btn_desktop_bg' }}
               borderRadius='50%'
               border='1px solid black'
               borderColor={{ base: 'transparent', md: 'process.header.btn_border' }}
@@ -76,7 +76,7 @@ const ProcessHeader = () => {
               <Icon
                 as={ExternalLinkIcon}
                 boxSize={5}
-                color={{ base: 'process.header.btn_mobile_color', lg: 'process.header.btn_desktop_color' }}
+                color={{ base: 'process.header.btn_mobile_color', md: 'process.header.btn_desktop_color' }}
               />
             </Flex>
           </Button>
