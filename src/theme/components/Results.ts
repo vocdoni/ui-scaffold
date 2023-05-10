@@ -25,42 +25,30 @@ const baseStyle = definePartsStyle({
       display: 'grid',
       gridTemplateRows: 'repeat(2, 1fr)',
       gridTemplateColumns: 'repeat(2, 1fr)',
+      rowGap: { base: 2, md: 0 },
       overflow: 'hidden',
 
       '& p:first-of-type': {
-        gridColumn: { base: '1/3', sm: '1/2' },
-        gridRow: { base: '1/2', sm: '1/3' },
+        gridColumn: { base: '1/3', md: '1/2' },
+        gridRow: { base: '1/2', md: '1/3' },
         display: 'flex',
-        justifyContent: { base: 'center', sm: 'start' },
+        justifyContent: { base: 'center', md: 'start' },
         alignItems: 'center',
         isTruncated: true,
       },
 
       '& p:nth-of-type(2)': {
-        gridColumn: '2/3',
-        gridRow: { base: '2/3', sm: '1/2' },
+        gridColumn: { base: '1/2', md: '2/3' },
+        gridRow: { base: '2/3', md: '1/2' },
+
         textAlign: 'center',
       },
 
       '& > div': {
-        gridColumn: { base: '1/2', sm: '2/3' },
+        gridColumn: '2/3',
         gridRow: '2/3',
         h: '100%',
       },
-    },
-  },
-
-  progress: {
-    label: {},
-    track: {
-      display: 'flex',
-      alignItems: 'center',
-      minH: '200px',
-      border: '5px solid red',
-    },
-    filledTrack: {
-      bg: 'orange',
-      h: '50%',
     },
   },
 })
