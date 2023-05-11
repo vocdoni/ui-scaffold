@@ -21,7 +21,7 @@ export const Account = () => {
 
   return (
     <Menu>
-      {({ isOpen }) => (
+      {({ isOpen, onClose }) => (
         <>
           <MenuButton as={Button} variant='unstyled' colorScheme='buttons.black'>
             <Box as='span' display='flex' gap={1} alignItems='center'>
@@ -37,7 +37,7 @@ export const Account = () => {
               {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
             </Box>
           </MenuButton>
-          <MenuList minW='none'>
+          <MenuList minW='none' onClick={onClose}>
             <MenuDropdown />
           </MenuList>
         </>

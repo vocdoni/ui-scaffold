@@ -34,19 +34,23 @@ const NavList = ({ displayFullInput }: Props) => {
 
       <ListItem display={{ base: 'none', md: 'inline-block' }}>
         <Menu>
-          <MenuButton
-            as={Button}
-            variant='unstyled'
-            sx={{ span: { margin: 'px' } }}
-            leftIcon={<FaGlobe />}
-            rightIcon={<ChevronDownIcon />}
-            pt={1}
-          />
-          <MenuList minW='none'>
-            <List display='flex' flexDirection='column' alignItems='center' gap={4} px={8} py={2} textAlign='end'>
-              <LanguagesList />
-            </List>
-          </MenuList>
+          {({ onClose }) => (
+            <>
+              <MenuButton
+                as={Button}
+                variant='unstyled'
+                sx={{ span: { margin: 'px' } }}
+                leftIcon={<FaGlobe />}
+                rightIcon={<ChevronDownIcon />}
+                pt={1}
+              />
+              <MenuList minW='none' onClick={onClose}>
+                <List display='flex' flexDirection='column' alignItems='center' gap={4} px={8} py={2} textAlign='end'>
+                  <LanguagesList />
+                </List>
+              </MenuList>
+            </>
+          )}
         </Menu>
       </ListItem>
       {isConnected && (
@@ -77,7 +81,7 @@ const NavList = ({ displayFullInput }: Props) => {
       </ListItem>
       {!isConnected && (
         <Menu>
-          {({ isOpen }) => (
+          {({ isOpen, onClose }) => (
             <>
               <MenuButton
                 as={Button}
@@ -87,7 +91,7 @@ const NavList = ({ displayFullInput }: Props) => {
                 minW='none'
                 pt={1}
               />
-              <MenuList minW='none'>
+              <MenuList minW='none' onClick={onClose}>
                 <MenuDropdown />
               </MenuList>
             </>
