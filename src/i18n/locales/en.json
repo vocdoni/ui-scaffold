@@ -1,7 +1,7 @@
 {
   "alt_image": "{{ img }} image",
   "aside": {
-    "is_able_to_vote": "Connected. You are elegible for voting",
+    "is_able_to_vote": "Connected. You are eligible for voting",
     "is_not_in_census": "You are not in census",
     "overwrite_votes_left": "You can correct your vote up to {{ left }} times.",
     "proposers": "Proposers",
@@ -120,15 +120,9 @@
     "dao_title": "DAO",
     "elections": "Elections",
     "elections_list_empty": "This organization has no elections yet",
-    "members": "Members",
     "rounds": {
       "active": "Active",
       "all": "All rounds"
-    }
-  },
-  "preocess": {
-    "status": {
-      "canceled": ""
     }
   },
   "process": {
@@ -145,22 +139,20 @@
       "canceled": "Process canceled",
       "canceled_description": "It's not possible to vote right now",
       "ended": "Process ended",
-      "ongoing": "Process ongoing",
+      "ongoing": "Process in progress",
       "paused": "Process paused",
       "results": "Results",
       "unknown": "Unknown",
       "upcoming": "Process is upcoming"
     },
     "voters": "Voters",
-    "votes": "Votes"
+    "votes": "Votes cast so far!"
   },
   "process_actions": {
     "pause": "pause",
     "play": "play",
     "stop": "stop"
   },
-  "read_less": "Read less",
-  "read_more": "Read more",
   "search": {
     "input_placeholder": "Search"
   },

@@ -121,15 +121,9 @@
     "dao_title": "",
     "elections": "Elecciones",
     "elections_list_empty": "",
-    "members": "Miembros",
     "rounds": {
       "active": "Activas",
       "all": "Todas"
-    }
-  },
-  "preocess": {
-    "status": {
-      "canceled": ""
     }
   },
   "process": {
@@ -160,8 +154,6 @@
     "play": "",
     "stop": ""
   },
-  "read_less": "Leer menos",
-  "read_more": "Leer mas",
   "search": {
     "input_placeholder": ""
   },

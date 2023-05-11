@@ -1,18 +1,11 @@
-import { AspectRatio, Box, Button, Flex, Text, VStack } from '@chakra-ui/react'
-import {
-  OrganizationDescription,
-  OrganizationHeader as Avatar,
-  OrganizationName,
-  useOrganization,
-} from '@vocdoni/chakra-components'
-import { useState } from 'react'
+import { AspectRatio, Box, Flex, Heading, Image, Text } from '@chakra-ui/react'
+import { useOrganization } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import ShareButtons from '../Layout/ShareButtons'
 import AddressBtn from './AddressBtn'
 
 const OrganizationHeader = () => {
   const { t } = useTranslation()
-  const [readMore, setReadMore] = useState(false)
   const { organization } = useOrganization()
 
   return (
@@ -61,29 +54,15 @@ const OrganizationHeader = () => {
                 {organization?.electionIndex}
               </Text>
             </Box>
-
-            <Flex flexDirection='column' alignItems='center'>
-              <Text fontSize={14} color='organization.header_text'>
-                {t('organization.members')}
-              </Text>
-              <Text as='span' fontWeight='bold'>
-                ∞
-              </Text>
-            </Flex>
           </Flex>
           <Flex flexDirection={{ base: 'row', lg: 'column' }} alignItems='start' gap={3}>
             <ShareButtons />
           </Flex>
         </Flex>
 
-        <Text mb={3} px={{ md: 10, lg: 0 }} color='organization.header_text' noOfLines={readMore ? undefined : 3}>
+        <Text mb={3} px={{ md: 10, lg: 0 }} color='organization.header_text'>
           {organization?.account.description.default}
         </Text>
-        <VStack>
-          <Button variant='link' onClick={() => setReadMore((prev) => !prev)} color='black'>
-            {readMore ? t('read_less') : t('read_more')}
-          </Button>
-        </VStack>
       </Box>
     </Flex>
   )

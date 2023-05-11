@@ -48,6 +48,12 @@ const OrganizationView = () => {
   const [page, setPage] = useState<number>(-1)
   useObserver(refObserver, setPage)
 
+  const [tabIndex, setTabIndex] = useState(0)
+
+  const handleTabsChange = (index: number) => {
+    setTabIndex(index)
+  }
+
   // empties the list on account change
   useEffect(() => {
     // empty list to ensure it's properly populated
@@ -89,15 +95,15 @@ const OrganizationView = () => {
   return (
     <>
       <Header />
-      <Tabs align='center'>
+      <Tabs align='center' index={tabIndex} onChange={handleTabsChange}>
         {!isFullInput ? (
           <TabList position='sticky' top='72px' zIndex={10} bgColor='organization.tabs.bg'>
             <Flex>
-              <Tab whiteSpace='nowrap' color='organization.tabs.color'>
+              <Tab whiteSpace='nowrap' color='organization.tabs.color' fontWeight={tabIndex === 0 ? 'bold' : 'normal'}>
                 {t('organization.rounds.all')}
               </Tab>
               <Box p={2} my={1} borderRight='1px solid' borderColor='organization.tabs.divider' />
-              <Tab whiteSpace='nowrap' color='organization.tabs.color'>
+              <Tab whiteSpace='nowrap' color='organization.tabs.color' fontWeight={tabIndex === 1 ? 'bold' : 'normal'}>
                 {t('organization.rounds.active')}
               </Tab>
 

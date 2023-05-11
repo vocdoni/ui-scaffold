@@ -22,9 +22,9 @@ const ProcessCardDetailed = ({ election }: Props) => {
   const { account } = useClient()
 
   return (
-    <Link to={`/processes/0x${election.id}`}>
-      <ElectionProvider election={election}>
-        <Card variant='detailed'>
+    <ElectionProvider election={election}>
+      <Card variant='detailed'>
+        <Link to={`/processes/0x${election.id}`}>
           <CardHeader>
             <ElectionStatusBadge />
           </CardHeader>
@@ -46,15 +46,15 @@ const ProcessCardDetailed = ({ election }: Props) => {
               </Box>
             )}
           </CardBody>
-          {election?.organizationId === account?.address &&
-            (election?.status === ElectionStatus.ONGOING || election?.status === ElectionStatus.PAUSED) && (
-              <CardFooter>
-                <ElectionActions />
-              </CardFooter>
-            )}
-        </Card>
-      </ElectionProvider>
-    </Link>
+        </Link>
+        {election?.organizationId === account?.address &&
+          (election?.status === ElectionStatus.ONGOING || election?.status === ElectionStatus.PAUSED) && (
+            <CardFooter>
+              <ElectionActions />
+            </CardFooter>
+          )}
+      </Card>
+    </ElectionProvider>
   )
 }
 

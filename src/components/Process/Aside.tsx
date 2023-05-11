@@ -17,8 +17,8 @@ const ProcessAside = () => {
       direction='column'
       justifyContent='center'
       gap={2}
-      py={2}
-      px={3}
+      py={4}
+      px={6}
       w={{ base: 80, lg: 64, xl: 80 }}
       color='white'
       bgGradient='var(--vcd-gradient-brand)'

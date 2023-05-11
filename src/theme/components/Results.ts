@@ -12,10 +12,12 @@ const baseStyle = definePartsStyle({
   card: {
     w: { base: 'full', lg: '80%' },
     px: { lg: 10 },
-    py: { lg: 5 },
+    py: { lg: 3 },
   },
   cardHeader: {},
-  title: {},
+  title: {
+    fontSize: 'xl',
+  },
   cardBody: {
     display: 'flex',
     flexDirection: 'column',

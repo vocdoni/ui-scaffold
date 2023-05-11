@@ -5,6 +5,8 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 
 const baseStyle = definePartsStyle({
   question: {
+    mt: 5,
+    mb: 14,
     '& > div': {
       display: 'flex',
       flexDirection: 'column',
@@ -13,6 +15,8 @@ const baseStyle = definePartsStyle({
   },
   title: {
     mb: 0,
+    fontSize: 'xl',
+    fontWeight: 'bold',
   },
 
   description: {
@@ -34,16 +38,26 @@ const baseStyle = definePartsStyle({
       position: 'relative',
       p: 0,
 
+      '& span:first-of-type': {
+        h: 10,
+      },
       '& input:checked + span': {
-        color: 'process.btn_form_selected',
+        color: 'process.btn_form_selected.bg',
         border: 'none',
-        bgColor: 'process.btn_form_selected',
+        bgColor: 'process.btn_form_selected.bg',
+
+        _hover: {
+          bg: 'process.btn_form_selected.bg',
+        },
       },
 
       '& span:nth-of-type(2)': {
         position: 'absolute',
         m: 0,
         w: '100%',
+      },
+      '& input:checked ~ span:nth-of-type(2)': {
+        color: 'process.btn_form_selected.color',
       },
     },
   },

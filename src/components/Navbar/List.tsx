@@ -43,7 +43,7 @@ const NavList = ({ displayFullInput }: Props) => {
             pt={1}
           />
           <MenuList minW='none'>
-            <List display='flex' flexDirection='column' alignItems='center' gap={2} px={4} py={2} textAlign='end'>
+            <List display='flex' flexDirection='column' alignItems='center' gap={4} px={8} py={2} textAlign='end'>
               <LanguagesList />
             </List>
           </MenuList>

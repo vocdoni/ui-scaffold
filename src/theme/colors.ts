@@ -100,7 +100,10 @@ export const colors = {
     info: colorsBase.blue,
     paused: colorsBase.grenade,
     vote_btn: colorsBase.black,
-    btn_form_selected: colorsBase.gray.normal,
+    btn_form_selected: {
+      bg: colorsBase.blue,
+      color: colorsBase.white,
+    },
     tabs: {
       color: colorsBase.black,
       divider: colorsBase.gray.normal,

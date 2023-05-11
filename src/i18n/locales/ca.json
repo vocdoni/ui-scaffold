@@ -124,15 +124,9 @@
     "dao_title": "",
     "elections": "Eleccions",
     "elections_list_empty": "",
-    "members": "Membres",
     "rounds": {
       "active": "Actives",
       "all": "Totes"
-    }
-  },
-  "preocess": {
-    "status": {
-      "canceled": ""
     }
   },
   "process": {
@@ -163,8 +157,6 @@
     "play": "",
     "stop": ""
   },
-  "read_less": "Llegir menys",
-  "read_more": "Llegir més",
   "search": {
     "input_placeholder": ""
   },

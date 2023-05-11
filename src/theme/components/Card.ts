@@ -113,6 +113,7 @@ const detailed = definePartsStyle({
     ...cardCommonStyles.container,
     display: 'flex',
     flexDirection: 'column',
+    minH: 48,
     w: { base: 84, sm: 100 },
   },
   header: {
@@ -123,13 +124,14 @@ const detailed = definePartsStyle({
     '& span': {
       borderRadius: '4px 4px 0px 0px',
       boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.1)',
+      px: 4,
     },
   },
 
   body: {
     ...cardCommonStyles.body,
     position: 'relative',
-    p: 4,
+    p: 5,
     boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.1)',
     borderRadius: 10,
 
@@ -140,16 +142,17 @@ const detailed = definePartsStyle({
       overflow: 'hidden',
 
       '& > p:first-of-type': {
-        fontSize: 'md',
+        fontSize: 'sm',
         lineHeight: 5,
         color: 'card.top_header',
+        mb: 1,
       },
 
       '& > h4': {
         mb: 2.5,
         textAlign: 'start',
         fontWeight: 700,
-        fontSize: '3xl',
+        fontSize: '2xl',
       },
 
       '& > div:first-of-type p': {
@@ -166,8 +169,8 @@ const detailed = definePartsStyle({
       display: 'flex',
       flexDirection: 'row',
       alignItems: 'start',
-      gap: '14px',
-      padding: '0px',
+      gap: 3.5,
+      padding: 0,
 
       '& > div': {
         display: 'flex',

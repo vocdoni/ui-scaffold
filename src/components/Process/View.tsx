@@ -31,13 +31,13 @@ export const ProcessView = () => {
           w={{ base: '100%', lg: election?.status === ElectionStatus.ONGOING ? '70%' : '100%' }}
         >
           <TabList>
-            <Tab whiteSpace='nowrap' color='process.tabs.color'>
+            <Tab whiteSpace='nowrap' color='process.tabs.color' fontWeight={tabIndex === 0 ? 'bold' : 'normal'}>
               {t('process.questions')}
             </Tab>
             {election?.status !== ElectionStatus.CANCELED && (
               <>
                 <Box my={1} borderRight='1px solid' borderColor='process.tabs.divider' />
-                <Tab whiteSpace='nowrap' color='process.tabs.color'>
+                <Tab whiteSpace='nowrap' color='process.tabs.color' fontWeight={tabIndex === 1 ? 'bold' : 'normal'}>
                   {t('process.results')}
                 </Tab>
               </>
