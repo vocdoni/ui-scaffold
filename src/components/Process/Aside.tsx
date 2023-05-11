@@ -37,22 +37,27 @@ const ProcessAside = () => {
       </Flex>
       {isConnected ? (
         <>
-          <Box textAlign='center' fontWeight='400' fontSize='sm'>
-            {isAbleToVote && (
-              <>
-                <Text mb={2}>{t('aside.is_able_to_vote')}</Text>
-                <VoteButton w='full' color='black' />
-              </>
-            )}
-            {!isInCensus && t('aside.is_not_in_census')}
-            {voted !== null && voted.length > 0 && (
-              <Link to='https://explorer.vote/verify/' target='_blank'>
-                <Button w='full' color='black'>
+          {isAbleToVote && (
+            <Box textAlign='center' fontWeight='400' fontSize='sm'>
+              <Text mb={2}>{t('aside.is_able_to_vote')}</Text>
+              <VoteButton w='full' color='black' />
+            </Box>
+          )}
+          {!isInCensus && election?.status !== ElectionStatus.CANCELED && (
+            <Text textAlign='center' fontWeight='400' fontSize='sm'>
+              t('aside.is_not_in_census')
+            </Text>
+          )}
+
+          {voted !== null && voted.length > 0 && (
+            <Box textAlign='center' fontWeight='400' fontSize='sm'>
+              <Button w='full' color='black'>
+                <Link to='https://explorer.vote/verify/' target='_blank'>
                   Verify your vote
-                </Button>
-              </Link>
-            )}
-          </Box>
+                </Link>
+              </Button>
+            </Box>
+          )}
         </>
       ) : (
         <>

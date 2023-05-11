@@ -89,10 +89,10 @@ const ProcessHeader = () => {
           <ElectionDescription mb={0} fontSize='lg' color='process.description' />
         </Box>
 
-        <Box bgColor='process.header.divider' w='2px'></Box>
+        {election?.status !== ElectionStatus.CANCELED && <Box bgColor='process.header.divider' w='2px'></Box>}
 
         <Flex flexDirection='column' gap={4} pl={{ lg: 5 }}>
-          {election?.status === ElectionStatus.CANCELED ? <Text color='process.info'>Canceled</Text> : <ProcessDate />}
+          {election?.status !== ElectionStatus.CANCELED && <ProcessDate />}
           {election?.status === ElectionStatus.PAUSED && election?.organizationId !== account?.address && (
             <Box color='process.paused'>
               <Icon as={WarningIcon} />
