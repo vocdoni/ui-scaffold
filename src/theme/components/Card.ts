@@ -113,15 +113,15 @@ const detailed = definePartsStyle({
     ...cardCommonStyles.container,
     display: 'flex',
     flexDirection: 'column',
-    minH: 48,
     w: { base: 84, sm: 100 },
   },
+
   header: {
     ...cardCommonStyles.header,
-    alignSelf: 'start',
-    pl: 6,
-
+    textAlign: 'start',
+    pl: 10,
     '& span': {
+      ml: 'auto',
       borderRadius: '4px 4px 0px 0px',
       boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.1)',
       px: 4,
@@ -134,6 +134,7 @@ const detailed = definePartsStyle({
     p: 5,
     boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.1)',
     borderRadius: 10,
+    minH: 44,
 
     '& > div:first-of-type': {
       display: 'flex',
