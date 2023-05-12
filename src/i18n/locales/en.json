@@ -146,7 +146,8 @@
       "upcoming": "Process is upcoming"
     },
     "voters": "Voters",
-    "votes": "Votes cast so far!"
+    "votes": "Votes cast so far!",
+    "votes_submited": "Votes submitted"
   },
   "process_actions": {
     "pause": "pause",

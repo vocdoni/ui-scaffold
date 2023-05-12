@@ -7,7 +7,7 @@ import ProcessAside from './Aside'
 import Header from './Header'
 
 export const ProcessView = () => {
-  const { election, isAbleToVote } = useElection()
+  const { election } = useElection()
   const { t } = useTranslation()
 
   const [tabIndex, setTabIndex] = useState(0)
@@ -24,8 +24,8 @@ export const ProcessView = () => {
     <>
       <Header />
       <Flex direction={{ base: 'column', lg: 'row' }} alignItems='start'>
-        <Tabs index={tabIndex} onChange={handleTabsChange} align='center' w={{ base: '100%', lg: '70%' }}>
-          <TabList>
+        <Tabs index={tabIndex} onChange={handleTabsChange} w={{ base: '100%', lg: '70%' }}>
+          <TabList display='flex' justifyContent='center' alignItems='center'>
             <Tab whiteSpace='nowrap' color='process.tabs.color' fontWeight={tabIndex === 0 ? 'bold' : 'normal'}>
               {t('process.questions')}
             </Tab>
@@ -49,7 +49,7 @@ export const ProcessView = () => {
         </Tabs>
         <Flex
           justifyContent='center'
-          position={{ base: isAbleToVote ? 'sticky' : 'relative', lg: 'sticky' }}
+          position={{ base: election?.status === 'ONGOING' ? 'sticky' : 'relative', lg: 'sticky' }}
           bottom={{ base: 'px', lg: undefined }}
           top={{ lg: '80px' }}
           w={{ base: '100%', lg: '30%' }}

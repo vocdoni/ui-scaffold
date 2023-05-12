@@ -147,7 +147,8 @@
       "upcoming": ""
     },
     "voters": "",
-    "votes": "Votos"
+    "votes": "Votos",
+    "votes_submited": ""
   },
   "process_actions": {
     "pause": "",

@@ -29,9 +29,12 @@ const ProcessAside = () => {
           {getStatusText(t, election?.status)}
         </Text>
 
-        {election?.status !== ElectionStatus.CANCELED && (
+        {election?.status !== ElectionStatus.CANCELED && election?.status !== ElectionStatus.UPCOMING && (
           <Text fontWeight='400' fontSize='md' lineHeight=' 125%'>
-            <Text as='span'>{election?.voteCount}</Text> {t('process.votes')}
+            <Text as='span'>{election?.voteCount}</Text>{' '}
+            {election?.status === ElectionStatus.ENDED || election?.status === ElectionStatus.RESULTS
+              ? t('process.votes')
+              : t('process.votes_submited')}
           </Text>
         )}
       </Flex>
@@ -43,12 +46,11 @@ const ProcessAside = () => {
               <VoteButton w='full' color='black' />
             </Box>
           )}
-          {!isInCensus && election?.status !== ElectionStatus.CANCELED && (
+          {!isInCensus && (
             <Text textAlign='center' fontWeight='400' fontSize='sm'>
-              t('aside.is_not_in_census')
+              {t('aside.is_not_in_census')}
             </Text>
           )}
-
           {voted !== null && voted.length > 0 && (
             <Box textAlign='center' fontWeight='400' fontSize='sm'>
               <Button w='full' color='black'>

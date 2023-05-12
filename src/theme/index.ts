@@ -29,6 +29,16 @@ export const theme = extendTheme(vtheme, {
     Questions,
     Button,
     ElectionResults,
+    Progress: {
+      baseStyle: {
+        track: {
+          maxH: 3,
+        },
+        filledTrack: {
+          bgColor: 'blue',
+        },
+      },
+    },
   },
 })
 

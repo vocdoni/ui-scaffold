@@ -150,7 +150,8 @@
       "upcoming": ""
     },
     "voters": "",
-    "votes": "Vots"
+    "votes": "Vots",
+    "votes_submited": ""
   },
   "process_actions": {
     "pause": "",

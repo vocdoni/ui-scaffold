@@ -5,6 +5,7 @@ import {
   ElectionProvider,
   ElectionStatusBadge,
   ElectionTitle,
+  areEqualHexStrings,
   useClient,
 } from '@vocdoni/chakra-components'
 import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
@@ -47,7 +48,7 @@ const ProcessCardDetailed = ({ election }: Props) => {
             )}
           </CardBody>
         </Link>
-        {election?.organizationId === account?.address &&
+        {areEqualHexStrings(election.organizationId, account?.address) &&
           (election?.status === ElectionStatus.ONGOING || election?.status === ElectionStatus.PAUSED) && (
             <CardFooter>
               <ElectionActions />

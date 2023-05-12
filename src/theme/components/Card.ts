@@ -131,6 +131,8 @@ const detailed = definePartsStyle({
   body: {
     ...cardCommonStyles.body,
     position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
     p: 5,
     boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.1)',
     borderRadius: 10,
@@ -172,6 +174,7 @@ const detailed = definePartsStyle({
       alignItems: 'start',
       gap: 3.5,
       padding: 0,
+      mt: 'auto',
 
       '& > div': {
         display: 'flex',

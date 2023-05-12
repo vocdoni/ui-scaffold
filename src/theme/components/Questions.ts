@@ -4,9 +4,14 @@ import { questionsAnatomy } from '@vocdoni/chakra-components'
 const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpers(questionsAnatomy)
 
 const baseStyle = definePartsStyle({
+  alert: {
+    mb: 10,
+  },
+  error: {
+    textAlign: 'center',
+  },
   question: {
     mt: 5,
-    mb: 14,
     '& > div': {
       display: 'flex',
       flexDirection: 'column',
@@ -33,6 +38,7 @@ const baseStyle = definePartsStyle({
     gap: 3,
     minW: 72,
     maxW: 96,
+    mb: 10,
 
     '& label': {
       position: 'relative',

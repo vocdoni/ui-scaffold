@@ -16,6 +16,7 @@ const baseStyle = definePartsStyle({
   },
   cardHeader: {},
   title: {
+    textAlign: 'center',
     fontSize: 'xl',
   },
   cardBody: {
