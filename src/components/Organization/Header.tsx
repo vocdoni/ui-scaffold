@@ -9,8 +9,14 @@ const OrganizationHeader = () => {
   const { organization } = useOrganization()
 
   return (
-    <Flex flexDirection={{ base: 'column', lg: 'row' }} mb={14}>
-      <Box minW={{ base: 'full', sm: 100 }} p={{ base: 2, sm: 0 }} maxW={100} mx='auto' mb={{ base: 8, lg: 0 }}>
+    <Flex flexDirection={{ base: 'column', lg: 'row' }} w='100%' justifyContent={{ lg: 'start' }} mb={14}>
+      <Box
+        minW={{ base: 80, lg: '30%' }}
+        p={{ base: 2, sm: 0 }}
+        maxW={{ base: 100, lg: '30%' }}
+        mx='auto'
+        mb={{ base: 8, lg: 0 }}
+      >
         <AspectRatio ratio={{ base: 1.8 / 1, sm: 1.25 / 1 }}>
           <Image
             src='https://images.pexels.com/photos/7103129/pexels-photo-7103129.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
@@ -21,12 +27,11 @@ const OrganizationHeader = () => {
         </AspectRatio>
       </Box>
 
-      <Box pl={{ lg: 5 }}>
+      <Box pl={{ lg: 5 }} maxW={{ lg: '70%' }}>
         <Flex
           direction={{ base: 'column', lg: 'row' }}
           justifyContent={{ lg: 'space-between' }}
           alignItems={{ base: 'center', lg: 'start' }}
-          flexGrow={1}
           gap={{ base: 2, lg: 0 }}
           mb={{ base: 2, lg: 4 }}
         >
@@ -37,8 +42,8 @@ const OrganizationHeader = () => {
             <Heading
               as='h1'
               title='The Organization Name'
+              w={{ base: '70%', lg: '100%' }}
               mx={{ base: 'auto', lg: 0 }}
-              width='90%'
               fontSize={{ base: '3xl', md: '4xl' }}
               isTruncated
             >
