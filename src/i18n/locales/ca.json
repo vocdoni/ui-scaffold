@@ -1,16 +1,52 @@
 {
   "alt_image": "",
   "aside": {
-    "connect_and_vote": "Connect and vote on your favorite proposals",
-    "connect_to_vote": "Conecta't per votar",
+    "connect_and_vote": "",
+    "connect_to_vote": "Connecta't per votar",
     "connect_your_wallet": "Connecteu la vostra cartera per veure l'estat de la proposta...",
     "has_already_voted": "",
-    "is_able_to_vote": "Conectat. Estàs en el cens",
+    "is_able_to_vote": "Connectat. Estàs en el cens",
     "is_not_in_census": "",
     "proposers": "Propòsits",
     "verify_vote_on_explorer": "",
-    "vote": "Vota",
     "voters": "Votants"
+  },
+  "cc": {
+    "actions": {
+      "cancel": "",
+      "cancel_description": "",
+      "continue": "",
+      "end": "",
+      "end_description": "",
+      "error_title": "",
+      "pause": "",
+      "pause_description": "",
+      "waiting_title": ""
+    },
+    "empty": "",
+    "required": "",
+    "results": {
+      "date_format": "",
+      "secret_until_the_end": "",
+      "title": "",
+      "votes": ""
+    },
+    "statuses": {
+      "CANCELED": "",
+      "ENDED": "",
+      "ONGOING": "",
+      "PAUSED": "",
+      "PROCESS_UNKNOWN": "",
+      "RESULTS": "",
+      "UPCOMING": ""
+    },
+    "vote": {
+      "button": "",
+      "button_update": "",
+      "missing_answers": "",
+      "voted_description": "",
+      "voted_title": ""
+    }
   },
   "copy": {
     "address": "",
@@ -91,16 +127,6 @@
     }
   },
   "process": {
-    "actions": {
-      "cancel_description": "",
-      "continue_description": "",
-      "error_title": "",
-      "pause": "",
-      "pause_description": "",
-      "play": "",
-      "stop": "",
-      "waiting_title": ""
-    },
     "date": {
       "canceled": "",
       "ended": "Finalitzat",

@@ -9,8 +9,44 @@
     "is_not_in_census": "You are not in census",
     "proposers": "Proposers",
     "verify_vote_on_explorer": "Verify vote on explorer",
-    "vote": "Vote",
     "voters": "Voters"
+  },
+  "cc": {
+    "actions": {
+      "cancel": "Cancel the process immediately, not allowing new votes and not counting any results (caution: it cannot be reverted)",
+      "cancel_description": "cancelling the \"{{ election.title.default }}\" election process",
+      "continue": "Resume the process immediately, in case it has been paused",
+      "end": "End the process immediately, preventing new votes to be submitted, and shows the voting results (caution: it cannot be reverted)",
+      "end_description": "ending the \"{{ election.title.default }}\" election process",
+      "error_title": "There was some error while executing the transaction",
+      "pause": "Pause the voting process temporarily, until resumed manually. While the process is paused, voters cannot submit votes.",
+      "pause_description": "pausing the \"{{ election.title.default }}\" election process",
+      "waiting_title": "Waiting for transaction confirmation..."
+    },
+    "empty": "Apparently this process has no questions 🤔",
+    "required": "This field is required",
+    "results": {
+      "date_format": "d-L-y HH:mm",
+      "secret_until_the_end": "Secret until the end. The results will be available when the process ends at {{ endDate }}",
+      "title": "Results for \"{{ title }}\"",
+      "votes": "Votes: {{ votes }} ({{ percent }})"
+    },
+    "statuses": {
+      "CANCELED": "Canceled",
+      "ENDED": "Ended",
+      "ONGOING": "Ongoing",
+      "PAUSED": "Paused",
+      "PROCESS_UNKNOWN": "Unknown",
+      "RESULTS": "Results",
+      "UPCOMING": "Upcoming"
+    },
+    "vote": {
+      "button": "Vote",
+      "button_update": "Re-submit vote",
+      "missing_answers": "You have to answer all the questions",
+      "voted_description": "Your vote id is {{ id }}. You can use it to verify your vote.",
+      "voted_title": "Your vote was successfully cast!"
+    }
   },
   "copy": {
     "address": "Copy address",
@@ -91,16 +127,6 @@
     }
   },
   "process": {
-    "actions": {
-      "cancel_description": "cancelling the \"{{ election.title.default }}\" election process",
-      "continue_description": "continuing the \"{{ election.title.default }}\" election process",
-      "error_title": "There was some error while executing the transaction",
-      "pause": "pause",
-      "pause_description": "pausing the \"{{ election.title.default }}\" election process",
-      "play": "play",
-      "stop": "stop",
-      "waiting_title": "Waiting for transaction confirmation..."
-    },
     "date": {
       "canceled": "Process canceled",
       "ended": "Process ended",
