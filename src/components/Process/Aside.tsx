@@ -47,9 +47,9 @@ const ProcessAside = ({ handleTabsChange, isInCensus, hasAlreadyVoted, order, al
       {election?.status === ElectionStatus.ONGOING && account && (
         <CardBody>
           <Text textAlign='center'>
-            {isAbleToVote && t('aside.is_able_to_vote')}
-            {!isAbleToVote && !isInCensus && t('aside.is_not_in_census')}
-            {!isAbleToVote && hasAlreadyVoted && t('aside.has_already_voted')}
+            {isAbleToVote && t('aside.is_able_to_vote').toString()}
+            {!isAbleToVote && !isInCensus && t('aside.is_not_in_census').toString()}
+            {!isAbleToVote && hasAlreadyVoted && t('aside.has_already_voted').toString()}
           </Text>
           <VoteButton />
         </CardBody>

@@ -9,7 +9,7 @@ const Process = () => {
 
   return (
     <OrganizationProvider id={election.organizationId}>
-      <ElectionProvider election={election} ConnectButton={ConnectButton} fetchCensus>
+      <ElectionProvider election={election} ConnectButton={ConnectButton} fetchCensus autoUpdate>
         <ProcessView />
       </ElectionProvider>
     </OrganizationProvider>

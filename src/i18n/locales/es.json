@@ -9,8 +9,44 @@
     "is_not_in_census": "",
     "proposers": "Propósitos",
     "verify_vote_on_explorer": "",
-    "vote": "Vota",
     "voters": "Votantes"
+  },
+  "cc": {
+    "actions": {
+      "cancel": "",
+      "cancel_description": "",
+      "continue": "",
+      "end": "",
+      "end_description": "",
+      "error_title": "",
+      "pause": "",
+      "pause_description": "",
+      "waiting_title": ""
+    },
+    "empty": "",
+    "required": "",
+    "results": {
+      "date_format": "",
+      "secret_until_the_end": "",
+      "title": "",
+      "votes": ""
+    },
+    "statuses": {
+      "CANCELED": "",
+      "ENDED": "",
+      "ONGOING": "",
+      "PAUSED": "",
+      "PROCESS_UNKNOWN": "",
+      "RESULTS": "",
+      "UPCOMING": ""
+    },
+    "vote": {
+      "button": "",
+      "button_update": "",
+      "missing_answers": "",
+      "voted_description": "",
+      "voted_title": ""
+    }
   },
   "copy": {
     "address": "",
@@ -91,16 +127,6 @@
     }
   },
   "process": {
-    "actions": {
-      "cancel_description": "",
-      "continue_description": "",
-      "error_title": "",
-      "pause": "",
-      "pause_description": "",
-      "play": "",
-      "stop": "",
-      "waiting_title": ""
-    },
     "date": {
       "canceled": "",
       "ended": "Finalizado",
