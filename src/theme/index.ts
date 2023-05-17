@@ -9,6 +9,7 @@ import { Card } from './components/Card'
 import { ElectionQuestions } from './components/Questions'
 import { fontSizes } from './font'
 import { ElectionResults } from './components/Results'
+import { ElectionActions } from './components/Actions'
 
 export const theme = extendTheme(vtheme, {
   styles: {
@@ -29,6 +30,7 @@ export const theme = extendTheme(vtheme, {
     ElectionQuestions,
     Button,
     ElectionResults,
+    ElectionActions,
   },
 })
 
