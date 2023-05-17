@@ -7,6 +7,7 @@
     "has_already_voted": "",
     "is_able_to_vote": "Connectat. Estàs en el cens",
     "is_not_in_census": "",
+    "overwrite_votes_left": "",
     "proposers": "Propòsits",
     "verify_vote_on_explorer": "",
     "voters": "Votants"

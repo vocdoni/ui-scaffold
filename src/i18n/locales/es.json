@@ -5,8 +5,9 @@
     "connect_to_vote": "Conectate para votar",
     "connect_your_wallet": "Connectar vuestra cartera para ver el estado de la propuesta...",
     "has_already_voted": "",
-    "is_able_to_vote": "Conectado. Estás en el censo",
+    "is_able_to_vote": "Conectado. Estás en el censo.",
     "is_not_in_census": "",
+    "overwrite_votes_left": "",
     "proposers": "Propósitos",
     "verify_vote_on_explorer": "",
     "voters": "Votantes"
