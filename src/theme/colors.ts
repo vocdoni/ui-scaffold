@@ -110,5 +110,9 @@ export const colors = {
     },
   },
 
+  progress_bar: colorsBase.blue,
+
+  questions_description: colorsBase.gray.dark,
+
   text_error: colorsBase.grenade,
 }

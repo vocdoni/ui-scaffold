@@ -1,10 +1,6 @@
 {
   "alt_image": "",
   "aside": {
-    "connect_and_vote": "",
-    "connect_to_vote": "Connecta't per votar",
-    "connect_your_wallet": "Connecteu la vostra cartera per veure l'estat de la proposta...",
-    "has_already_voted": "",
     "is_able_to_vote": "Connectat. Estàs en el cens",
     "is_not_in_census": "",
     "overwrite_votes_left": "",

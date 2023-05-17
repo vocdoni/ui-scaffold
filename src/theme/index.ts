@@ -6,7 +6,7 @@ import { sizes } from './space'
 import { breakpoints } from './breakpoints'
 import { Button } from './components/Button'
 import { Card } from './components/Card'
-import { Questions } from './components/Questions'
+import { ElectionQuestions } from './components/Questions'
 import { fontSizes } from './font'
 import { ElectionResults } from './components/Results'
 
@@ -26,19 +26,9 @@ export const theme = extendTheme(vtheme, {
   sizes,
   components: {
     Card,
-    Questions,
+    ElectionQuestions,
     Button,
     ElectionResults,
-    Progress: {
-      baseStyle: {
-        track: {
-          maxH: 3,
-        },
-        filledTrack: {
-          bgColor: 'blue',
-        },
-      },
-    },
   },
 })
 

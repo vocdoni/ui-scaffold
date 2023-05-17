@@ -4,34 +4,36 @@ import { questionsAnatomy } from '@vocdoni/chakra-components'
 const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpers(questionsAnatomy)
 
 const baseStyle = definePartsStyle({
-  alert: {
-    mb: 10,
-  },
-  error: {
-    textAlign: 'center',
+  wrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: 20,
   },
   question: {
-    mt: 5,
+    width: '100%',
+    maxW: 160,
+
     '& > div': {
       display: 'flex',
       flexDirection: 'column',
       gap: 4,
     },
   },
+
+  header: {
+    textAlign: 'center',
+  },
+
   title: {
-    mb: 0,
-    fontSize: 'xl',
-    fontWeight: 'bold',
+    fontWeight: 700,
+    fontSize: '2xl',
+    lineHeight: 7,
   },
 
   description: {
-    color: 'process.description',
-
-    '& p': {
-      mb: 0,
-    },
+    color: 'questions_description',
   },
-
   stack: {
     display: 'flex',
     flexDirection: 'column',
@@ -39,10 +41,12 @@ const baseStyle = definePartsStyle({
     minW: 72,
     maxW: 96,
     mb: 10,
+    mx: 'auto',
 
     '& label': {
       position: 'relative',
       p: 0,
+      textAlign: 'center',
 
       '& span:first-of-type': {
         h: 10,
@@ -78,6 +82,6 @@ const baseStyle = definePartsStyle({
   },
 })
 
-export const Questions = defineMultiStyleConfig({
+export const ElectionQuestions = defineMultiStyleConfig({
   baseStyle,
 })

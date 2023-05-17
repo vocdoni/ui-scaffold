@@ -5,30 +5,40 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 
 const baseStyle = definePartsStyle({
   wrapper: {
-    flexDirection: 'column',
-    alignItems: 'center',
-    gap: 6,
-  },
-  card: {
-    w: { base: 'full', lg: '80%' },
-    px: { lg: 10 },
-    py: { lg: 3 },
-  },
-  cardHeader: {},
-  title: {
-    textAlign: 'center',
-    fontSize: 'xl',
-  },
-  cardBody: {
     display: 'flex',
     flexDirection: 'column',
-    gap: 6,
+    alignItems: 'center',
+    gap: 20,
+  },
+
+  question: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 4,
+    width: '100%',
+    maxW: 160,
+  },
+
+  header: {
+    textAlign: 'center',
+  },
+
+  title: {
+    fontWeight: 700,
+    fontSize: '2xl',
+    lineHeight: 7,
+  },
+
+  body: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 4,
 
     '& > div': {
       display: 'grid',
       gridTemplateRows: 'repeat(2, 1fr)',
       gridTemplateColumns: 'repeat(2, 1fr)',
-      rowGap: { base: 2, md: 0 },
+      rowGap: 2,
       overflow: 'hidden',
 
       '& p:first-of-type': {
@@ -37,20 +47,23 @@ const baseStyle = definePartsStyle({
         display: 'flex',
         justifyContent: { base: 'center', md: 'start' },
         alignItems: 'center',
+        fontWeight: 'bold',
         isTruncated: true,
       },
 
       '& p:nth-of-type(2)': {
         gridColumn: { base: '1/2', md: '2/3' },
         gridRow: { base: '2/3', md: '1/2' },
-
         textAlign: 'center',
       },
 
       '& > div': {
         gridColumn: '2/3',
         gridRow: '2/3',
-        h: '100%',
+        mt: { base: 1, md: 0 },
+        '& div': {
+          bgColor: 'progress_bar',
+        },
       },
     },
   },

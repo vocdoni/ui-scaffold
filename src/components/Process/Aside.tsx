@@ -33,8 +33,8 @@ const ProcessAside = () => {
           <Text fontWeight='400' fontSize='md' lineHeight=' 125%'>
             <Text as='span'>{election?.voteCount}</Text>{' '}
             {election?.status === ElectionStatus.ENDED || election?.status === ElectionStatus.RESULTS
-              ? t('process.votes')
-              : t('process.votes_submited')}
+              ? t('process.votes_submited')
+              : t('process.votes')}
           </Text>
         )}
       </Flex>
