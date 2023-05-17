@@ -118,6 +118,7 @@
   },
   "open_in_explorer": "Open in explorer",
   "organization": {
+    "avatar_alt": "Avatar image of {{ name }} organization",
     "dao_title": "DAO",
     "elections": "Elections",
     "elections_list_empty": "This organization has no elections yet",

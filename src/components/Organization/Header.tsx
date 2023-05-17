@@ -1,5 +1,10 @@
-import { AspectRatio, Box, Button, Flex, Heading, Image, Text, VStack } from '@chakra-ui/react'
-import { useOrganization } from '@vocdoni/chakra-components'
+import { AspectRatio, Box, Button, Flex, Text, VStack } from '@chakra-ui/react'
+import {
+  OrganizationDescription,
+  OrganizationHeader as Avatar,
+  OrganizationName,
+  useOrganization,
+} from '@vocdoni/chakra-components'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import ShareButtons from '../Layout/ShareButtons'
@@ -21,11 +26,12 @@ const OrganizationHeader = () => {
         mr={{ md: 8 }}
         mb={{ base: 8, md: 2 }}
       >
-        <Image
+        <Avatar
           mx='auto'
           borderRadius='md'
-          src='https://images.pexels.com/photos/7103129/pexels-photo-7103129.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-          alt='organization X'
+          alt={t('organization.avatar_alt', {
+            name: organization?.account.name.default || organization?.address,
+          }).toString()}
         />
       </AspectRatio>
 
@@ -40,9 +46,11 @@ const OrganizationHeader = () => {
           <AddressBtn />
 
           <Text>{t('organization.dao_title')}</Text>
-          <Heading as='h1' fontSize={28} isTruncated title='The Organization Name' maxWidth='90%'>
-            {organization?.account.name.default || organization?.address}
-          </Heading>
+          <OrganizationName
+            fontSize={28}
+            isTruncated
+            title={organization?.account.name.default || organization?.address}
+          />
         </Flex>
         <Flex flexDirection={{ base: 'row', md: 'column' }} gap={{ base: 4, md: 0 }}>
           <Flex flexDirection='column' alignItems='center'>
@@ -67,8 +75,7 @@ const OrganizationHeader = () => {
           <ShareButtons />
         </Flex>
       </Flex>
-      <Flex justifyContent={{ base: 'center', md: 'start' }} alignItems='center' gap={4} mb={{ base: 2, md: 4 }}></Flex>
-      <Text noOfLines={readMore ? undefined : 3}>{organization?.account.description.default}</Text>
+      <OrganizationDescription noOfLines={readMore ? undefined : 3} />
       <VStack>
         <Button variant='link' onClick={() => setReadMore((prev) => !prev)}>
           {readMore ? t('read_less') : t('read_more')}
