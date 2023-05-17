@@ -2,7 +2,7 @@ import { EmailIcon } from '@chakra-ui/icons'
 import { Box, Card, CardBody, CardHeader, Circle, Text } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { HR, useClient, useElection, VoteButton } from '@vocdoni/chakra-components'
-import { ElectionStatus } from '@vocdoni/sdk'
+import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
 import { useTranslation } from 'react-i18next'
 
@@ -16,7 +16,7 @@ interface Props {
 
 const ProcessAside = ({ handleTabsChange, isInCensus, hasAlreadyVoted, order, alignSelf }: Props) => {
   const { t } = useTranslation()
-  const { election, isAbleToVote } = useElection()
+  const { election, isAbleToVote, votesLeft } = useElection()
 
   const { account } = useClient()
 
@@ -49,7 +49,8 @@ const ProcessAside = ({ handleTabsChange, isInCensus, hasAlreadyVoted, order, al
           <Text textAlign='center'>
             {isAbleToVote && t('aside.is_able_to_vote').toString()}
             {!isAbleToVote && !isInCensus && t('aside.is_not_in_census').toString()}
-            {!isAbleToVote && hasAlreadyVoted && t('aside.has_already_voted').toString()}
+            {!isAbleToVote && hasAlreadyVoted && t('aside.has_already_voted').toString()}{' '}
+            {hasOverwriteEnabled(election) && isInCensus && t('aside.overwrite_votes_left', { left: votesLeft })}
           </Text>
           <VoteButton />
         </CardBody>
@@ -68,6 +69,9 @@ const ProcessAside = ({ handleTabsChange, isInCensus, hasAlreadyVoted, order, al
     </Card>
   )
 }
+
+const hasOverwriteEnabled = (election: PublishedElection) =>
+  typeof election.voteType.maxVoteOverwrites !== 'undefined' && election.voteType.maxVoteOverwrites > 0
 
 const getStatusText = (t: TFunction<string, undefined, string>, electionStatus: ElectionStatus | undefined) => {
   switch (electionStatus) {

@@ -7,6 +7,7 @@
     "has_already_voted": "You have already voted",
     "is_able_to_vote": "Connected. You are elegible for voting",
     "is_not_in_census": "You are not in census",
+    "overwrite_votes_left": "You can correct your vote up to {{ left }} times.",
     "proposers": "Proposers",
     "verify_vote_on_explorer": "Verify vote on explorer",
     "voters": "Voters"
