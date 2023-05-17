@@ -4,6 +4,35 @@ import { questionsAnatomy } from '@vocdoni/chakra-components'
 const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpers(questionsAnatomy)
 
 const baseStyle = definePartsStyle({
+  alert: {
+    borderRadius: 'md',
+    color: 'questions.alert.color',
+    bgColor: 'questions.alert.bg',
+
+    // display: { base: 'initial', md: 'grid' },
+    // gridTemplateColumns: { md: 'auto 1fr' },
+    // gridTemplateRows: { md: 'auto auto' },
+
+    '& span': {
+      color: 'white',
+      // gridRow: { md: '1/3' },
+    },
+  },
+
+  alertTitle: {
+    mb: 1,
+  },
+
+  alertLink: {
+    color: 'questions.alert.link_color',
+    backgroundColor: 'questions.alert.link_bg',
+    px: 2,
+    py: 1,
+
+    _hover: {
+      textDecoration: 'none',
+    },
+  },
   wrapper: {
     display: 'flex',
     flexDirection: 'column',
@@ -32,7 +61,7 @@ const baseStyle = definePartsStyle({
   },
 
   description: {
-    color: 'questions_description',
+    color: 'questions.description',
   },
   stack: {
     display: 'flex',
@@ -79,6 +108,10 @@ const baseStyle = definePartsStyle({
     borderRadius: 6,
     border: 'none',
     boxShadow: '2px 2px 6px rgba(0, 0, 0, 0.1)',
+  },
+  error: {
+    display: 'flex',
+    justifyContent: 'center',
   },
 })
 

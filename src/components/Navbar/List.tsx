@@ -1,4 +1,4 @@
-import { AddIcon, ChevronDownIcon, CloseIcon } from '@chakra-ui/icons'
+import { AddIcon, ChevronDownIcon, ChevronUpIcon, CloseIcon } from '@chakra-ui/icons'
 import { Button, List, ListItem, Menu, MenuButton, MenuList, Text } from '@chakra-ui/react'
 import { useClient } from '@vocdoni/chakra-components'
 import { useContext } from 'react'
@@ -34,14 +34,14 @@ const NavList = ({ displayFullInput }: Props) => {
 
       <ListItem display={{ base: 'none', md: 'inline-block' }}>
         <Menu>
-          {({ onClose }) => (
+          {({ isOpen, onClose }) => (
             <>
               <MenuButton
                 as={Button}
                 variant='unstyled'
                 sx={{ span: { margin: 'px' } }}
                 leftIcon={<FaGlobe />}
-                rightIcon={<ChevronDownIcon />}
+                rightIcon={isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
                 pt={1}
               />
               <MenuList minW='none' onClick={onClose}>

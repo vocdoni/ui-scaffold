@@ -49,6 +49,7 @@
     "address": "Copy address",
     "copied_title": "Copied!"
   },
+  "error_text": "Sorry, the page you were looking for was not found",
   "footer": {
     "about": "About",
     "blog": "Blog",

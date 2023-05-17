@@ -18,6 +18,7 @@ export const theme = extendTheme(vtheme, {
         '--box-shadow-navbar': '0px 8px 24px rgba(0, 0, 0, 0.1)',
         '--vcd-gradient-brand': 'linear-gradient(to right, #9526FC, #2ED3BF)',
         '--vcd-gradient-brand-tr': 'linear-gradient(to top right, #8E00FF, #00DDB3)',
+        '--vcd-gradient-404': 'linear-gradient(to right, #8E00FF, #00DDB3)',
       },
     },
   },

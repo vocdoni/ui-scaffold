@@ -1,6 +1,10 @@
 export const colorsBase = {
   black: '#000000',
-  blue: '#0044FF',
+  blue: {
+    light: '#80a2ff',
+    normal2: '#3FB6C9',
+    normal: '#0044FF',
+  },
   gray: {
     light: '#F5F5F5',
     normal: '#D9D9D9',
@@ -67,7 +71,7 @@ export const colors = {
   organization: {
     button_address: {
       active: colorsBase.white,
-      bg: colorsBase.blue,
+      bg: colorsBase.blue.normal,
       color: colorsBase.white,
     },
     election_list_empty: {
@@ -86,22 +90,22 @@ export const colors = {
 
   process: {
     bar: colorsBase.gray.normal,
-    bar_progress: colorsBase.blue,
-    date: colorsBase.blue,
+    bar_progress: colorsBase.blue.normal,
+    date: colorsBase.blue.normal,
     description: colorsBase.gray.dark,
     header: {
       btn_border: colorsBase.black,
       btn_desktop_bg: colorsBase.white,
       btn_desktop_color: colorsBase.black,
-      btn_mobile_bg: colorsBase.blue,
+      btn_mobile_bg: colorsBase.blue.normal,
       btn_mobile_color: colorsBase.white,
       divider: colorsBase.gray.normal,
     },
-    info: colorsBase.blue,
+    info: colorsBase.blue.normal,
     paused: colorsBase.grenade,
     vote_btn: colorsBase.black,
     btn_form_selected: {
-      bg: colorsBase.blue,
+      bg: colorsBase.blue.normal2,
       color: colorsBase.white,
     },
     tabs: {
@@ -110,9 +114,18 @@ export const colors = {
     },
   },
 
-  progress_bar: colorsBase.blue,
+  progress_bar: colorsBase.blue.normal,
 
-  questions_description: colorsBase.gray.dark,
+  questions: {
+    alert: {
+      bg: colorsBase.blue.normal2,
+      color: colorsBase.white,
+      link_color: colorsBase.black,
+      link_bg: colorsBase.white,
+    },
+
+    description: colorsBase.gray.dark,
+  },
 
   text_error: colorsBase.grenade,
 }
