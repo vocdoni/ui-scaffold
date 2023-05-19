@@ -34,7 +34,7 @@ const ProcessCardDetailed = ({ election }: Props) => {
               <Text>{format(new Date(election?.creationTime), 'dd MMM, yyyy')}</Text>
               <ElectionTitle as='h4' noOfLines={2} />
               <Box>
-                <ElectionDescription noOfLines={3} />
+                <ElectionDescription />
               </Box>
             </Box>
             {election?.status !== ElectionStatus.CANCELED && (

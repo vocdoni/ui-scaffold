@@ -55,8 +55,9 @@ const lite = definePartsStyle({
       lineHeight: 1,
       fontWeight: 400,
       textTransform: 'uppercase',
-      color: 'card.top_header',
+      color: 'card.date',
       isTruncated: true,
+      // noOfLines: '2 !important',
     },
     '& > div:first-of-type p:nth-of-type(2)': {
       fontSize: 'lg',
@@ -111,8 +112,7 @@ const detailed = definePartsStyle({
   ...cardCommonStyles,
   container: {
     ...cardCommonStyles.container,
-    display: 'flex',
-    flexDirection: 'column',
+
     w: { base: 84, sm: 100 },
   },
 
@@ -139,16 +139,14 @@ const detailed = definePartsStyle({
     minH: 44,
 
     '& > div:first-of-type': {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'start',
       overflow: 'hidden',
 
       '& > p:first-of-type': {
         fontSize: 'sm',
         lineHeight: 5,
-        color: 'card.top_header',
+        color: 'card.date',
         mb: 1,
+        textAlign: 'start',
       },
 
       '& > h4': {

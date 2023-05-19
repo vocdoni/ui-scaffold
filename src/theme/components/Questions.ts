@@ -24,10 +24,14 @@ const baseStyle = definePartsStyle({
   },
 
   alertLink: {
-    color: 'questions.alert.link_color',
-    backgroundColor: 'questions.alert.link_bg',
+    display: 'block',
     px: 2,
     py: 1,
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    color: 'questions.alert.link_color',
+    backgroundColor: 'questions.alert.link_bg',
 
     _hover: {
       textDecoration: 'none',
@@ -36,32 +40,37 @@ const baseStyle = definePartsStyle({
   wrapper: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
-    gap: 20,
+    gap: 10,
   },
   question: {
-    width: '100%',
+    width: 'full',
     maxW: 160,
+    mx: 'auto',
 
     '& > div': {
       display: 'flex',
       flexDirection: 'column',
-      gap: 4,
+      overflow: 'hidden',
     },
   },
 
   header: {
-    textAlign: 'center',
+    minW: 0,
   },
 
   title: {
-    fontWeight: 700,
-    fontSize: '2xl',
-    lineHeight: 7,
+    display: 'block',
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textAlign: 'center',
   },
 
   description: {
     color: 'questions.description',
+    textAlign: 'center',
+    noOfLines: 3,
+    overflow: 'hidden',
   },
   stack: {
     display: 'flex',
@@ -92,8 +101,12 @@ const baseStyle = definePartsStyle({
 
       '& span:nth-of-type(2)': {
         position: 'absolute',
+        px: 2,
         m: 0,
         w: '100%',
+        textOverflow: 'ellipsis',
+        overflow: 'hidden',
+        whiteSpace: 'nowrap',
       },
       '& input:checked ~ span:nth-of-type(2)': {
         color: 'process.btn_form_selected.color',

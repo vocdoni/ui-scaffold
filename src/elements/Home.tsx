@@ -86,7 +86,7 @@ const CARDS_ORG: CardOrgContents[] = [
 const CARDS_PR: CardPrImgContents[] = [
   {
     organization: 'gekko dako',
-    name: 'Der verspreiding van het christendom over Eruopa',
+    name: 'Der verspreiding van het christendom over Eruopa asasasasas',
     voters: '240',
     votingEnds: 'xxx',
     imageURL:

@@ -40,7 +40,7 @@ export const colors = {
     process_canceled: colorsBase.grenade,
     process_info: colorsBase.purple,
     title: colorsBase.black,
-    top_header: colorsBase.blue,
+    date: colorsBase.blue.normal,
 
     detailed: {
       footer: colorsBase.gray.light,

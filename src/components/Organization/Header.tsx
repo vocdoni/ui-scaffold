@@ -9,15 +9,9 @@ const OrganizationHeader = () => {
   const { organization } = useOrganization()
 
   return (
-    <Flex flexDirection={{ base: 'column', lg: 'row' }} w='100%' justifyContent={{ lg: 'start' }} mb={14}>
-      <Box
-        minW={{ base: 80, lg: '30%' }}
-        p={{ base: 2, sm: 0 }}
-        maxW={{ base: 100, lg: '30%' }}
-        mx='auto'
-        mb={{ base: 8, lg: 0 }}
-      >
-        <AspectRatio ratio={{ base: 1.8 / 1, sm: 1.25 / 1 }}>
+    <Flex flexDirection={{ base: 'column', md: 'row' }} alignItems={{ base: 'center', md: 'start' }} gap={2} mb={10}>
+      <Box flex='1 1 30%' minW={60}>
+        <AspectRatio ratio={{ base: 1.8 / 1, md: 1.25 / 1 }}>
           <Image
             src='https://images.pexels.com/photos/7103129/pexels-photo-7103129.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
             alt='organization X'
@@ -27,30 +21,23 @@ const OrganizationHeader = () => {
         </AspectRatio>
       </Box>
 
-      <Box pl={{ lg: 5 }} maxW={{ lg: '70%' }}>
+      <Box flex='1 1 70%' maxW={{ base: '90%', md: '70%' }}>
         <Flex
-          direction={{ base: 'column', lg: 'row' }}
-          justifyContent={{ lg: 'space-between' }}
-          alignItems={{ base: 'center', lg: 'start' }}
-          gap={{ base: 2, lg: 0 }}
-          mb={{ base: 2, lg: 4 }}
+          direction={{ base: 'column', md: 'row' }}
+          justifyContent={{ md: 'space-between' }}
+          alignItems={{ base: 'center', md: 'start' }}
+          gap={{ base: 2, md: 0 }}
+          mb={{ base: 2, md: 4 }}
         >
-          <Box textAlign={{ base: 'center', lg: 'start' }} w={{ base: 'full', lg: '60%' }}>
+          <Box textAlign={{ base: 'center', md: 'start' }} w={{ base: 'full', md: '60%' }} minW={0}>
             <AddressBtn />
 
             <Text>{t('organization.dao_title')}</Text>
-            <Heading
-              as='h1'
-              title='The Organization Name'
-              w={{ base: '70%', lg: '100%' }}
-              mx={{ base: 'auto', lg: 0 }}
-              fontSize={{ base: '3xl', md: '4xl' }}
-              isTruncated
-            >
+            <Heading as='h1' title='The Organization Name' fontSize={{ base: '3xl', md: '4xl' }} isTruncated>
               {organization?.account.name.default || organization?.address}
             </Heading>
           </Box>
-          <Flex flexDirection={{ base: 'row', lg: 'column' }} gap={{ base: 4, lg: 0 }}>
+          <Flex flexDirection={{ base: 'row', md: 'column' }} gap={{ base: 4, md: 0 }}>
             <Box textAlign='center'>
               <Text fontSize={14} color='organization.header_text'>
                 {t('organization.elections')}
@@ -60,12 +47,12 @@ const OrganizationHeader = () => {
               </Text>
             </Box>
           </Flex>
-          <Flex flexDirection={{ base: 'row', lg: 'column' }} alignItems='start' gap={3}>
+          <Flex flexDirection={{ base: 'row', md: 'column' }} alignItems='start' gap={3}>
             <ShareButtons />
           </Flex>
         </Flex>
 
-        <Text mb={3} px={{ md: 10, lg: 0 }} color='organization.header_text'>
+        <Text mb={3} color='organization.header_text'>
           {organization?.account.description.default}
         </Text>
       </Box>
