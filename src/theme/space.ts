@@ -13,5 +13,6 @@ export const sizes = {
   250: '62.5rem',
   304: '76rem',
   350: '87.5rem',
+  440: '110rem',
   480: '120rem',
 }

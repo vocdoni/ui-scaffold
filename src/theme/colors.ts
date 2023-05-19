@@ -127,5 +127,10 @@ export const colors = {
     description: colorsBase.gray.dark,
   },
 
+  results: {
+    bg: colorsBase.blue.normal2,
+    color: colorsBase.white,
+  },
+
   text_error: colorsBase.grenade,
 }

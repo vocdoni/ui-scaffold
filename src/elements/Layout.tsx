@@ -17,7 +17,7 @@ const Layout = () => (
       <Navbar w='full' maxW={480} mx='auto' px={{ base: 2, sm: 4 }} />
     </HStack>
     <Box as='main' pt={8} pb={20}>
-      <Box maxWidth={350} m='0 auto' px={{ base: 2, sm: 4 }}>
+      <Box maxWidth={440} m='0 auto' px={{ base: 2, sm: 4 }}>
         <Outlet />
       </Box>
     </Box>

@@ -85,7 +85,7 @@ const ProcessHeader = () => {
       <Flex direction={{ base: 'column', lg: 'row' }} gap={{ lg: 2 }}>
         <Box flexBasis='70%'>
           <ElectionSchedule mb={1} fontSize='md' textAlign='left' color='process.date' />
-          <ElectionTitle mb={3} fontSize='5xl' lineHeight={1.2} textAlign='left' noOfLines={2} />
+          <ElectionTitle mb={3} fontSize='3xl' lineHeight={1.2} textAlign='left' noOfLines={2} />
           <ElectionDescription mb={0} fontSize='lg' color='process.description' />
         </Box>
 

@@ -101,6 +101,19 @@ const OrganizationView = () => {
             <Flex>
               <Tab whiteSpace='nowrap' color='organization.tabs.color' fontWeight={tabIndex === 0 ? 'bold' : 'normal'}>
                 {t('organization.rounds.all')}
+                <Flex
+                  justifyContent='center'
+                  alignItems='center'
+                  bgColor='black'
+                  ml={2}
+                  color='white'
+                  p={1}
+                  w={organization && organization?.electionIndex < 100 ? 8 : 10}
+                  h={organization && organization?.electionIndex < 100 ? 8 : 10}
+                  borderRadius='50%'
+                >
+                  {organization?.electionIndex}
+                </Flex>
               </Tab>
               <Box p={2} my={1} borderRight='1px solid' borderColor='organization.tabs.divider' />
               <Tab whiteSpace='nowrap' color='organization.tabs.color' fontWeight={tabIndex === 1 ? 'bold' : 'normal'}>

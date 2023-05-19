@@ -16,7 +16,9 @@ export const ProcessDate = () => {
 
   return (
     <Box>
-      <Text color='process.date'>{statusText}</Text>
+      <Text color='process.date' fontStyle='italic' fontWeight='bold'>
+        {statusText}
+      </Text>
       <Text>
         {t('process.date.relative', { date: election.startDate > new Date() ? election.startDate : election.endDate })}
       </Text>

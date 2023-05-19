@@ -5,17 +5,13 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 
 const baseStyle = definePartsStyle({
   alert: {
+    mt: 4,
     borderRadius: 'md',
     color: 'questions.alert.color',
     bgColor: 'questions.alert.bg',
 
-    // display: { base: 'initial', md: 'grid' },
-    // gridTemplateColumns: { md: 'auto 1fr' },
-    // gridTemplateRows: { md: 'auto auto' },
-
     '& span': {
       color: 'white',
-      // gridRow: { md: '1/3' },
     },
   },
 
@@ -38,6 +34,7 @@ const baseStyle = definePartsStyle({
     },
   },
   wrapper: {
+    mt: 6,
     display: 'flex',
     flexDirection: 'column',
     gap: 10,
@@ -64,6 +61,7 @@ const baseStyle = definePartsStyle({
     overflow: 'hidden',
     whiteSpace: 'nowrap',
     textAlign: 'center',
+    fontSize: 'xl',
   },
 
   description: {

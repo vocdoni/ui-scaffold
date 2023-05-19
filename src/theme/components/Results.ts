@@ -8,6 +8,7 @@ const baseStyle = definePartsStyle({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    mt: 6,
     gap: 20,
   },
 
@@ -25,7 +26,7 @@ const baseStyle = definePartsStyle({
 
   title: {
     fontWeight: 700,
-    fontSize: '2xl',
+    fontSize: 'xl',
     lineHeight: 7,
   },
 
@@ -66,6 +67,15 @@ const baseStyle = definePartsStyle({
         },
       },
     },
+  },
+  secret: {
+    mt: 4,
+    px: 2,
+    py: 3,
+    color: 'results.color',
+    bgColor: 'results.bg',
+    borderRadius: 'md',
+    whiteSpace: 'wrap',
   },
 })
 

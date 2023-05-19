@@ -1,7 +1,7 @@
 import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { VoteButton, useElection } from '@vocdoni/chakra-components'
-import { ElectionStatus } from '@vocdoni/sdk'
+import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
@@ -9,7 +9,7 @@ import { useAccount } from 'wagmi'
 
 const ProcessAside = () => {
   const { t } = useTranslation()
-  const { election, isAbleToVote, isInCensus, voted } = useElection()
+  const { election, isAbleToVote, isInCensus, voted, votesLeft } = useElection()
   const { isConnected } = useAccount()
 
   return (
@@ -60,6 +60,10 @@ const ProcessAside = () => {
               </Button>
             </Box>
           )}
+
+          {hasOverwriteEnabled(election) && isInCensus && (
+            <Text>{t('aside.overwrite_votes_left', { left: votesLeft })}</Text>
+          )}
         </>
       ) : (
         <>
@@ -75,8 +79,10 @@ const ProcessAside = () => {
   )
 }
 
-const hasOverwriteEnabled = (election: PublishedElection) =>
-  typeof election.voteType.maxVoteOverwrites !== 'undefined' && election.voteType.maxVoteOverwrites > 0
+const hasOverwriteEnabled = (election?: PublishedElection): boolean =>
+  typeof election !== 'undefined' &&
+  typeof election.voteType.maxVoteOverwrites !== 'undefined' &&
+  election.voteType.maxVoteOverwrites > 0
 
 const getStatusText = (t: TFunction<string, undefined, string>, electionStatus: ElectionStatus | undefined) => {
   switch (electionStatus) {
