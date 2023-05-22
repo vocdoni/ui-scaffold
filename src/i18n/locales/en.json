@@ -1,12 +1,14 @@
 {
   "alt_image": "{{ img }} image",
   "aside": {
+    "has_already_voted": "You have already voted",
     "is_able_to_vote": "Connected. You are eligible for voting",
     "is_not_in_census": "You are not in census",
+    "not_connected": "You are not connected",
     "overwrite_votes_left": "You can correct your vote up to {{ left }} times.",
-    "proposers": "Proposers",
     "verify_vote_on_explorer": "Verify vote on explorer",
-    "voters": "Voters"
+    "votes": "Votes cast so far!",
+    "votes_submited": "Votes submitted"
   },
   "cc": {
     "actions": {
@@ -146,9 +148,7 @@
       "unknown": "Unknown",
       "upcoming": "Process is upcoming"
     },
-    "voters": "Voters",
-    "votes": "Votes cast so far!",
-    "votes_submited": "Votes submitted"
+    "voters": "Voters"
   },
   "process_actions": {
     "pause": "pause",

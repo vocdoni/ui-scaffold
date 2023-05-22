@@ -1,12 +1,18 @@
 {
   "alt_image": "",
   "aside": {
+    "connect_and_vote": "",
+    "connect_to_vote": "",
+    "connect_your_wallet": "",
+    "has_already_voted": "",
     "is_able_to_vote": "Connectat. Estàs en el cens",
     "is_not_in_census": "",
     "overwrite_votes_left": "",
     "proposers": "Propòsits",
     "verify_vote_on_explorer": "",
-    "voters": "Votants"
+    "voters": "Votants",
+    "votes": "",
+    "votes_submited": ""
   },
   "cc": {
     "actions": {
@@ -146,9 +152,7 @@
       "unknown": "",
       "upcoming": ""
     },
-    "voters": "",
-    "votes": "Vots",
-    "votes_submited": ""
+    "voters": ""
   },
   "process_actions": {
     "pause": "",

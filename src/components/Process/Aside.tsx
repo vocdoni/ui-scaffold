@@ -33,8 +33,8 @@ const ProcessAside = () => {
           <Text fontWeight='400' fontSize='md' lineHeight=' 125%'>
             <Text as='span'>{election?.voteCount}</Text>{' '}
             {election?.status === ElectionStatus.ENDED || election?.status === ElectionStatus.RESULTS
-              ? t('process.votes_submited')
-              : t('process.votes')}
+              ? t('aside.votes_submited')
+              : t('aside.votes')}
           </Text>
         )}
       </Flex>
@@ -53,9 +53,10 @@ const ProcessAside = () => {
           )}
           {voted !== null && voted.length > 0 && (
             <Box textAlign='center' fontWeight='400' fontSize='sm'>
+              <Text mb={2}>{t('aside.has_already_voted').toString()}</Text>
               <Button w='full' color='black'>
                 <Link to='https://explorer.vote/verify/' target='_blank'>
-                  Verify your vote
+                  {t('aside.verify_vote_on_explorer')}
                 </Link>
               </Button>
             </Box>
