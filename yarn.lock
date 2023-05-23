@@ -5839,9 +5839,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vocdoni/chakra-components@npm:^0.2.1":
-  version: 0.2.1
-  resolution: "@vocdoni/chakra-components@npm:0.2.1"
+"@vocdoni/chakra-components@npm:^0.2.3":
+  version: 0.2.3
+  resolution: "@vocdoni/chakra-components@npm:0.2.3"
   peerDependencies:
     "@chakra-ui/alert": ^2.0.18
     "@chakra-ui/button": ^2.0.18
@@ -5861,7 +5861,7 @@ __metadata:
     react-dom: ">= 16.8.0"
     react-markdown: ">= 8.0.0"
     remark-gfm: ">= 2.0.0"
-  checksum: 0bbfb7ccbb8acfd5ffdf257878f26dc0e489616eff659b338fe13f65383b83da7f3e6ce61a077ca7e4f6a28408bc3dbcc594f302a0aab1425a7092e9b00e081d
+  checksum: 5ba9b8c273979c6d6b4cb9acf40dde653c8ad25c7f0cd97f8cdb9a1e9c1fd66a4d617b936fc0b910e427a18fa185d5926284e90fb5c08a55a7aef448657a547e
   languageName: node
   linkType: hard
 
@@ -5920,7 +5920,7 @@ __metadata:
     "@types/react": ^18.0.30
     "@types/react-dom": ^18.0.4
     "@types/react-router-dom": ^5.3.3
-    "@vocdoni/chakra-components": ^0.2.1
+    "@vocdoni/chakra-components": ^0.2.3
     "@vocdoni/sdk": 0.0.12
     date-fns: ^2.29.3
     ethers: ^5.7.2

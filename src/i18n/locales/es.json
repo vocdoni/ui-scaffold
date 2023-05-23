@@ -68,9 +68,16 @@
     "vocdoni_app": ""
   },
   "form": {
+    "account_create": {
+      "account_description": "",
+      "account_name": "",
+      "account_name_note": "",
+      "button_create": ""
+    },
     "error": {
       "address_pattern": "",
-      "field_is_required": ""
+      "field_is_required": "",
+      "field_is_too_long": ""
     },
     "process_create": {
       "address_title": "",
@@ -96,6 +103,7 @@
       "submit": "",
       "success_description": "",
       "success_title": "",
+      "unhealthy_account": "",
       "weighted_vote": ""
     }
   },

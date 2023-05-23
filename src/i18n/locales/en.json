@@ -68,9 +68,16 @@
     "vocdoni_app": "Vocdoni APP"
   },
   "form": {
+    "account_create": {
+      "account_description": "Description",
+      "account_name": "Name",
+      "account_name_note": "40 chars max. The name of your project / organization / DAO, etc",
+      "button_create": "Create organization account"
+    },
     "error": {
       "address_pattern": "Only hex addresses are allowed",
-      "field_is_required": "This field is required"
+      "field_is_required": "This field is required",
+      "field_is_too_long": "This field cannot be longer than {{ max }} chars"
     },
     "process_create": {
       "address_title": "Address {{ num }}",
@@ -96,6 +103,7 @@
       "submit": "Create process",
       "success_description": "Redirecting you to the election process page...",
       "success_title": "Election process successfully created",
+      "unhealthy_account": "You need to create an organization before creating the first election.",
       "weighted_vote": "Weighted vote"
     }
   },
