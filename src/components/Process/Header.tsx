@@ -1,4 +1,4 @@
-import { ExternalLinkIcon, WarningIcon } from '@chakra-ui/icons'
+import { WarningIcon } from '@chakra-ui/icons'
 import { Box, Button, Flex, Icon, Text } from '@chakra-ui/react'
 import {
   ElectionActions,
@@ -28,57 +28,23 @@ const ProcessHeader = () => {
         <Link to={`/organization/0x${election?.organizationId}`}>
           <Button
             leftIcon={<FaRegArrowAltCircleLeft />}
-            variant='unstyled'
             display='flex'
             justifyContent='center'
             alignItems='center'
-            h={7}
+            h={8}
             maxW={30}
             py={2}
             px={2}
             fontSize='sm'
             fontWeight={400}
-            border={{ md: '1px solid' }}
-            bgColor={{ base: 'process.header.btn_mobile_bg', md: 'process.header.btn_desktop_bg' }}
-            color={{ base: 'process.header.btn_mobile_color', md: 'process.header.btn_desktop_color' }}
+            border='1px solid'
+            bgColor='process.header.btn_bg'
+            color='process.header.btn_color'
             borderRadius={18}
-            borderColor={{ base: 'transparent', md: 'process.header.btn_border' }}
           >
             <Text as='span' overflow='hidden' isTruncated>
               {organization?.account.name.default || enforceHexPrefix(organization?.address)}
             </Text>
-          </Button>
-        </Link>
-        <Link to='#'>
-          <Button
-            variant='unstyled'
-            display='flex'
-            justifyContent='center'
-            alignItems='center'
-            gap={2}
-            fontSize='sm'
-            fontWeight={400}
-          >
-            <Text as='span' mb='px'>
-              {t('process.share')}
-            </Text>
-            <Flex
-              justifyContent='center'
-              alignItems='center'
-              p={1}
-              w={8}
-              h={8}
-              bgColor={{ base: 'process.header.btn_mobile_bg', md: 'process.header.btn_desktop_bg' }}
-              borderRadius='50%'
-              border='1px solid black'
-              borderColor={{ base: 'transparent', md: 'process.header.btn_border' }}
-            >
-              <Icon
-                as={ExternalLinkIcon}
-                boxSize={5}
-                color={{ base: 'process.header.btn_mobile_color', md: 'process.header.btn_desktop_color' }}
-              />
-            </Flex>
           </Button>
         </Link>
       </Flex>

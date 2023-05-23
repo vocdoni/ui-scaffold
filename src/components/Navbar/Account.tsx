@@ -24,7 +24,7 @@ export const Account = () => {
     <Menu>
       {({ isOpen, onClose }) => (
         <>
-          <MenuButton as={Button} variant='unstyled' colorScheme='buttons.black'>
+          <MenuButton as={Button} p={2}>
             <Box as='span' display='flex' gap={1} alignItems='center'>
               <Box
                 as='span'

@@ -1,14 +1,15 @@
 export const colorsBase = {
   black: '#000000',
   blue: {
+    alert: '#35CCC0',
     light: '#80a2ff',
-    normal2: '#3FB6C9',
-    normal: '#0044FF',
+    normal: '#F8F8F8',
+    dark: '#0044FF',
   },
   gray: {
-    light: '#F5F5F5',
+    light: '#E2E8F0',
     normal: '#D9D9D9',
-    dark: '#949494',
+    dark: '#A0AEC0',
   },
   grenade: '#961D1D',
   green: {
@@ -40,7 +41,7 @@ export const colors = {
     process_canceled: colorsBase.grenade,
     process_info: colorsBase.purple,
     title: colorsBase.black,
-    date: colorsBase.blue.normal,
+    date: colorsBase.blue.dark,
 
     detailed: {
       footer: colorsBase.gray.light,
@@ -71,7 +72,7 @@ export const colors = {
   organization: {
     button_address: {
       active: colorsBase.white,
-      bg: colorsBase.blue.normal,
+      bg: colorsBase.blue.dark,
       color: colorsBase.white,
     },
     election_list_empty: {
@@ -81,44 +82,32 @@ export const colors = {
     header_text: colorsBase.gray.dark,
     link: colorsBase.pink.normal,
     read_more: colorsBase.pink.normal,
-    tabs: {
-      bg: colorsBase.white,
-      color: colorsBase.black,
-      divider: colorsBase.gray.normal,
-    },
   },
 
   process: {
     bar: colorsBase.gray.normal,
-    bar_progress: colorsBase.blue.normal,
-    date: colorsBase.blue.normal,
+    bar_progress: colorsBase.blue.dark,
+    date: colorsBase.blue.dark,
     description: colorsBase.gray.dark,
     header: {
-      btn_border: colorsBase.black,
-      btn_desktop_bg: colorsBase.white,
-      btn_desktop_color: colorsBase.black,
-      btn_mobile_bg: colorsBase.blue.normal,
-      btn_mobile_color: colorsBase.white,
+      btn_bg: colorsBase.white,
+      btn_color: colorsBase.black,
       divider: colorsBase.gray.normal,
     },
-    info: colorsBase.blue.normal,
+    info: colorsBase.blue.dark,
     paused: colorsBase.grenade,
     vote_btn: colorsBase.black,
     btn_form_selected: {
-      bg: colorsBase.blue.normal2,
+      bg: colorsBase.green.normal,
       color: colorsBase.white,
-    },
-    tabs: {
-      color: colorsBase.black,
-      divider: colorsBase.gray.normal,
     },
   },
 
-  progress_bar: colorsBase.blue.normal,
+  progress_bar: colorsBase.blue.dark,
 
   questions: {
     alert: {
-      bg: colorsBase.blue.normal2,
+      bg: colorsBase.blue.alert,
       color: colorsBase.white,
       link_color: colorsBase.black,
       link_bg: colorsBase.white,
@@ -128,8 +117,15 @@ export const colors = {
   },
 
   results: {
-    bg: colorsBase.blue.normal2,
+    bg: colorsBase.blue.alert,
     color: colorsBase.white,
+  },
+
+  tabs: {
+    color: colorsBase.black,
+    divider: colorsBase.gray.normal,
+    hover: colorsBase.gray.light,
+    active: colorsBase.gray.dark,
   },
 
   text_error: colorsBase.grenade,

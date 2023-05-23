@@ -38,11 +38,11 @@ const NavList = ({ displayFullInput }: Props) => {
             <>
               <MenuButton
                 as={Button}
-                variant='unstyled'
                 sx={{ span: { margin: 'px' } }}
                 leftIcon={<FaGlobe />}
                 rightIcon={isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
-                pt={1}
+                p={2}
+                mt={1}
               />
               <MenuList minW='none' onClick={onClose}>
                 <List display='flex' flexDirection='column' alignItems='center' gap={4} px={8} py={2} textAlign='end'>
@@ -57,7 +57,7 @@ const NavList = ({ displayFullInput }: Props) => {
         <>
           <ListItem display={{ base: 'none', md: 'inline-block' }}>
             <NavLink to={`/organization/0x${account?.address}`}>
-              <Button variant='unstyled'>{t('menu.my_list')}</Button>
+              <Button p={2}>{t('menu.my_list')}</Button>
             </NavLink>
           </ListItem>
           <ListItem>

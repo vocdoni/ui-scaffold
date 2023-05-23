@@ -40,9 +40,7 @@ const OrganizationHeader = () => {
             <AddressBtn />
 
             <Text>{t('organization.dao_title')}</Text>
-            {/* <Heading as='h1' title='The Organization Name' fontSize={{ base: '3xl', md: '4xl' }} isTruncated>
-              {organization?.account.name.default || organization?.address}
-            </Heading> */}
+
             <OrganizationName
               fontSize={28}
               isTruncated
@@ -55,9 +53,6 @@ const OrganizationHeader = () => {
           </Flex>
         </Flex>
 
-        {/* <Text mb={3} color='organization.header_text'>
-          {organization?.account.description.default}
-        </Text> */}
         <OrganizationDescription />
       </Box>
     </Flex>

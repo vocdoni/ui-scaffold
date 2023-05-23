@@ -32,6 +32,10 @@ const lite = definePartsStyle({
     boxShadow: '0px 2px 4px lightgray',
     backdropFilter: 'blur(10px)',
     filter: 'dropShadow(0px 4px 8px #D9D9D9)',
+
+    _hover: {
+      boxShadow: 'gray 0px 2px 4px',
+    },
   },
   header: {
     ...cardCommonStyles.header,
@@ -114,6 +118,22 @@ const detailed = definePartsStyle({
     ...cardCommonStyles.container,
 
     w: { base: 84, sm: 100 },
+
+    _hover: {
+      '& > a > div:first-of-type > span': {
+        boxShadow: 'gray 0px 2px 4px',
+      },
+
+      '& > a > div:nth-of-type(2)': {
+        boxShadow: 'gray 0px 2px 4px',
+      },
+
+      '& > div': {
+        postion: 'relative',
+        zIndex: 10,
+        boxShadow: 'gray 0px 2px 4px',
+      },
+    },
   },
 
   header: {
@@ -125,6 +145,10 @@ const detailed = definePartsStyle({
       borderRadius: '4px 4px 0px 0px',
       boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.1)',
       px: 4,
+
+      _hover: {
+        boxShadow: 'gray 0px 2px 4px',
+      },
     },
   },
 
@@ -137,6 +161,9 @@ const detailed = definePartsStyle({
     boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.1)',
     borderRadius: 10,
     minH: 44,
+    _hover: {
+      boxShadow: 'gray 0px 2px 4px',
+    },
 
     '& > div:first-of-type': {
       overflow: 'hidden',

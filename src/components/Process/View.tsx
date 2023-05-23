@@ -26,17 +26,38 @@ export const ProcessView = () => {
       <Flex direction={{ base: 'column', lg: 'row' }} alignItems='start'>
         <Tabs index={tabIndex} onChange={handleTabsChange} w={{ base: '100%', lg: '70%' }}>
           <TabList display='flex' justifyContent='center' alignItems='center'>
-            <Tab whiteSpace='nowrap' color='process.tabs.color' fontWeight={tabIndex === 0 ? 'bold' : 'normal'}>
-              {t('process.questions')}
-            </Tab>
-            {election?.status !== ElectionStatus.CANCELED && (
-              <>
-                <Box my={1} borderRight='1px solid' borderColor='process.tabs.divider' />
-                <Tab whiteSpace='nowrap' color='process.tabs.color' fontWeight={tabIndex === 1 ? 'bold' : 'normal'}>
-                  {t('process.results')}
-                </Tab>
-              </>
-            )}
+            <Flex gap={2}>
+              <Tab
+                whiteSpace='nowrap'
+                color='tabs.color'
+                fontWeight={tabIndex === 0 ? 'bold' : 'normal'}
+                borderTopRadius={6}
+                _hover={{ bgColor: 'tabs.hover' }}
+                _active={{
+                  bgColor: 'tabs.active',
+                }}
+              >
+                {t('process.questions')}
+              </Tab>
+
+              {election?.status !== ElectionStatus.CANCELED && (
+                <>
+                  <Box my={1} borderRight='1px solid' borderColor='tabs.divider' />
+                  <Tab
+                    whiteSpace='nowrap'
+                    color='process.tabs.color'
+                    fontWeight={tabIndex === 1 ? 'bold' : 'normal'}
+                    borderTopRadius={6}
+                    _hover={{ bgColor: 'tabs.hover' }}
+                    _active={{
+                      bgColor: 'tabs.active',
+                    }}
+                  >
+                    {t('process.results')}
+                  </Tab>
+                </>
+              )}
+            </Flex>
           </TabList>
           <TabPanels>
             <TabPanel>
