@@ -1,8 +1,7 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { Balance } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
-import { BiChevronDown, BiCoinStack, BiLogOut } from 'react-icons/bi'
+import { BiChevronDown, BiLogOut } from 'react-icons/bi'
 import { useAccount, useDisconnect } from 'wagmi'
 
 const addressTextOverflow = (address: string) =>
@@ -23,9 +22,6 @@ export const Account = () => {
         {addressTextOverflow(address as string)}
       </MenuButton>
       <MenuList>
-        <MenuItem icon={<BiCoinStack />}>
-          <Balance />
-        </MenuItem>
         <MenuItem icon={<BiLogOut />} onClick={() => disconnect()}>
           {t('logout')}
         </MenuItem>

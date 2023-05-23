@@ -6,6 +6,7 @@ import { FaGlobeAmericas } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 import { LanguagesSlice } from '../../i18n/languages.mjs'
+import { useAccountHealthTools } from '../Account/use-account-health-tools'
 import { Account } from './Account'
 
 interface Props {
@@ -17,6 +18,7 @@ const NavList = ({ mobile, onClose }: Props) => {
   const { isConnected } = useAccount()
   const { i18n, t } = useTranslation()
   const { account } = useClient()
+  const { exists } = useAccountHealthTools()
 
   const languages = LanguagesSlice as { [key: string]: string }
 
@@ -29,13 +31,15 @@ const NavList = ({ mobile, onClose }: Props) => {
               <Button colorScheme='buttons.primary'>{t('menu.create_process')}</Button>
             </NavLink>
           </ListItem>
-          <ListItem order={mobile ? 1 : undefined} listStyleType='none' onClick={onClose} whiteSpace='nowrap'>
-            <NavLink to={`/organization/0x${account?.address}`}>
-              <Button variant='ghost' colorScheme='buttons.primary'>
-                {t('menu.my_list')}
-              </Button>
-            </NavLink>
-          </ListItem>
+          {exists && (
+            <ListItem order={mobile ? 1 : undefined} listStyleType='none' onClick={onClose} whiteSpace='nowrap'>
+              <NavLink to={`/organization/0x${account?.address}`}>
+                <Button variant='ghost' colorScheme='buttons.primary'>
+                  {t('menu.my_list')}
+                </Button>
+              </NavLink>
+            </ListItem>
+          )}
         </>
       )}
       <ListItem order={mobile ? 4 : undefined} listStyleType='none' display='flex' cursor='pointer'>

@@ -18,7 +18,7 @@ const CreateProcessHeader = () => {
   return (
     <WrapperFormSection>
       <>
-        <FormControl mb={4} isInvalid={!!errors.title}>
+        <FormControl mb={4} isInvalid={!!errors.title} isRequired>
           <FormLabel fontSize='1.3em'>{t('form.process_create.process_title')}</FormLabel>
           <Input
             {...register('title', {
