@@ -54,6 +54,7 @@ const OrganizationView = () => {
       .catch((err) => {
         console.error('fetch elections error', err)
         setError(err.message)
+        setFinished(true)
       })
       .finally(() => {
         setLoading(false)
@@ -107,7 +108,7 @@ const OrganizationView = () => {
             </Grid>
             <Flex justifyContent='center' mt={4}>
               {loading && <Spinner />}
-              {loaded && !electionsList.length && <Text>{t('organization.elections_list_empty')}</Text>}
+              {loaded && !electionsList.length && !error && <Text>{t('organization.elections_list_empty')}</Text>}
               {error && <Text>{error}</Text>}
             </Flex>
           </TabPanel>
