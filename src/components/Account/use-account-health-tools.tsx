@@ -10,18 +10,15 @@ export const useAccountHealthTools = () => {
     fetchAccount()
   }, [account, fetchAccount])
 
-  const isHealthy = () => account && balance > 0
-
-  const healthVariation = (healthy: any, unhealthy: any) => {
-    if (isHealthy()) {
-      return healthy
-    }
-    return unhealthy
-  }
+  const exists = typeof account !== 'undefined'
+  const isHealthy = exists && balance > 0
+  const existsVariation = (existant: any, notExistant: any) => (exists ? existant : notExistant)
+  const healthVariation = (healthy: any, unhealthy: any) => (isHealthy ? healthy : unhealthy)
 
   return {
-    exists: typeof account !== 'undefined',
-    isHealthy,
+    exists,
+    existsVariation,
     healthVariation,
+    isHealthy,
   }
 }
