@@ -1,7 +1,7 @@
 import { EmailIcon } from '@chakra-ui/icons'
 import { Box, Card, CardBody, CardHeader, Circle, Text } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { HR, useClient, useElection, VoteButton } from '@vocdoni/chakra-components'
+import { HR, useElection, VoteButton } from '@vocdoni/chakra-components'
 import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
 import { useTranslation } from 'react-i18next'
@@ -17,8 +17,6 @@ interface Props {
 const ProcessAside = ({ handleTabsChange, isInCensus, hasAlreadyVoted, order, alignSelf }: Props) => {
   const { t } = useTranslation()
   const { election, isAbleToVote, votesLeft } = useElection()
-
-  const { account } = useClient()
 
   return (
     <Card variant='process-info' order={order} alignSelf={alignSelf}>
@@ -44,7 +42,7 @@ const ProcessAside = ({ handleTabsChange, isInCensus, hasAlreadyVoted, order, al
 
       {election?.status === ElectionStatus.ONGOING && <HR />}
 
-      {election?.status === ElectionStatus.ONGOING && account && (
+      {election?.status === ElectionStatus.ONGOING && (
         <CardBody>
           <Text textAlign='center'>
             {isAbleToVote && t('aside.is_able_to_vote').toString()}
@@ -55,7 +53,7 @@ const ProcessAside = ({ handleTabsChange, isInCensus, hasAlreadyVoted, order, al
           <VoteButton />
         </CardBody>
       )}
-      {election?.status === ElectionStatus.ONGOING && !account && (
+      {election?.status === ElectionStatus.ONGOING && (
         <CardBody>
           <Box>
             <Text fontWeight='bold'>{t('aside.proposers')}: </Text>
