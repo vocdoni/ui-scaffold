@@ -5,10 +5,10 @@ import { useAccountHealthTools } from '../Account/use-account-health-tools'
 import { ProcessCreateForm } from './Form'
 
 const ProcessCreate = () => {
-  const { isHealthy, healthVariation } = useAccountHealthTools()
+  const { exists, existsVariation } = useAccountHealthTools()
   const { t } = useTranslation()
 
-  const Form = healthVariation(ProcessCreateForm, AccountCreate)
+  const Form = existsVariation(ProcessCreateForm, AccountCreate)
 
   return (
     <Flex
@@ -23,7 +23,7 @@ const ProcessCreate = () => {
       borderStyle={{ sm: 'solid' }}
       borderColor={{ sm: 'gray.100' }}
     >
-      {!isHealthy() && (
+      {!exists && (
         <Alert variant='subtle' status='error'>
           <AlertIcon />
           {t('form.process_create.unhealthy_account')}
