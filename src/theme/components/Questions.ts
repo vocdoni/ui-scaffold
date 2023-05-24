@@ -5,10 +5,12 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 
 const baseStyle = definePartsStyle({
   alert: {
-    mt: 4,
-    borderRadius: 'md',
-    color: 'questions.alert.color',
-    bgColor: 'questions.alert.bg',
+    px: '15px',
+    py: '30px',
+    my: '10px',
+    borderRadius: '8px',
+    color: 'process.questions.alert.color',
+    bgColor: 'process.questions.alert.bg',
 
     '& span': {
       color: 'white',
@@ -26,8 +28,8 @@ const baseStyle = definePartsStyle({
     textOverflow: 'ellipsis',
     overflow: 'hidden',
     whiteSpace: 'nowrap',
-    color: 'questions.alert.link_color',
-    backgroundColor: 'questions.alert.link_bg',
+    color: 'process.questions.alert.link_color',
+    backgroundColor: 'process.questions.alert.link_bg',
 
     _hover: {
       textDecoration: 'none',
@@ -65,7 +67,7 @@ const baseStyle = definePartsStyle({
   },
 
   description: {
-    color: 'questions.description',
+    color: 'process.questions.description',
     textAlign: 'center',
     noOfLines: 3,
     overflow: 'hidden',
@@ -74,7 +76,7 @@ const baseStyle = definePartsStyle({
     display: 'flex',
     flexDirection: 'column',
     gap: 3,
-    minW: 72,
+    w: '60%',
     maxW: 96,
     mb: 10,
     mx: 'auto',
@@ -84,16 +86,21 @@ const baseStyle = definePartsStyle({
       p: 0,
       textAlign: 'center',
 
+      _hover: {
+        boxShadow: '#808080b5 0px 2px 4px',
+      },
+
       '& span:first-of-type': {
         h: 10,
       },
+
       '& input:checked + span': {
-        color: 'process.btn_form_selected.bg',
+        color: 'process.questions.btn_form_selected.bg',
         border: 'none',
-        bgColor: 'process.btn_form_selected.bg',
+        bgColor: 'process.questions.btn_form_selected.bg',
 
         _hover: {
-          bg: 'process.btn_form_selected.bg',
+          bg: 'process.questions.btn_form_selected.bg',
         },
       },
 
@@ -106,8 +113,9 @@ const baseStyle = definePartsStyle({
         overflow: 'hidden',
         whiteSpace: 'nowrap',
       },
+
       '& input:checked ~ span:nth-of-type(2)': {
-        color: 'process.btn_form_selected.color',
+        color: 'process.questions.btn_form_selected.color',
       },
     },
   },

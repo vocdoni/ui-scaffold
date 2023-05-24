@@ -69,12 +69,12 @@ const baseStyle = definePartsStyle({
     },
   },
   secret: {
-    mt: 4,
-    px: 2,
-    py: 3,
-    color: 'results.color',
-    bgColor: 'results.bg',
-    borderRadius: 'md',
+    px: '15px',
+    py: '30px',
+    my: '10px',
+    color: 'process.results.alert_color',
+    bgColor: 'process.results.alert_bg',
+    borderRadius: '8px',
     whiteSpace: 'wrap',
   },
 })

@@ -26,22 +26,15 @@ const AddressBtn = () => {
         h={8}
         fontSize='sm'
         borderRadius={18}
-        color='organization.button_address.color'
-        bgColor='organization.button_address.bg'
         cursor='pointer'
-        _hover={{
-          textDecoration: 'none',
-        }}
-        _active={{
-          color: 'organization.button_address.active',
-        }}
+        colorScheme='organization.button_address'
       >
         <Box maxW={20} overflow='hidden' isTruncated>
           <Text as='span'>{address}</Text>
         </Box>
       </MenuButton>
 
-      <MenuList p={0} position='absolute' top={-28} zIndex='10'>
+      <MenuList p={0} position='absolute' top={-28} zIndex={30}>
         <MenuItem
           as={Button}
           leftIcon={<CopyIcon />}

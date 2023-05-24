@@ -32,9 +32,11 @@ const lite = definePartsStyle({
     boxShadow: '0px 2px 4px lightgray',
     backdropFilter: 'blur(10px)',
     filter: 'dropShadow(0px 4px 8px #D9D9D9)',
+    transition: 'box-shadow .2s  ',
 
     _hover: {
-      boxShadow: 'gray 0px 2px 4px',
+      boxShadow: '#808080b5 0px 2px 4px',
+      transition: 'box-shadow .2s  ',
     },
   },
   header: {
@@ -61,7 +63,6 @@ const lite = definePartsStyle({
       textTransform: 'uppercase',
       color: 'card.date',
       isTruncated: true,
-      // noOfLines: '2 !important',
     },
     '& > div:first-of-type p:nth-of-type(2)': {
       fontSize: 'lg',
@@ -116,22 +117,24 @@ const detailed = definePartsStyle({
   ...cardCommonStyles,
   container: {
     ...cardCommonStyles.container,
-
     w: { base: 84, sm: 100 },
+    display: 'flex',
+    flexDirection: 'row',
 
     _hover: {
       '& > a > div:first-of-type > span': {
-        boxShadow: 'gray 0px 2px 4px',
+        boxShadow: '#808080b5 0px 2px 4px',
+        transition: 'box-shadow .2s  ',
       },
 
       '& > a > div:nth-of-type(2)': {
-        boxShadow: 'gray 0px 2px 4px',
+        boxShadow: '#808080b5 0px 2px 4px',
+        transition: 'box-shadow .2s  ',
       },
 
       '& > div': {
-        postion: 'relative',
-        zIndex: 10,
-        boxShadow: 'gray 0px 2px 4px',
+        boxShadow: '#808080b5 0px 2px 4px',
+        transition: ' box-shadow .2s  ',
       },
     },
   },
@@ -143,29 +146,35 @@ const detailed = definePartsStyle({
     '& span': {
       ml: 'auto',
       borderRadius: '4px 4px 0px 0px',
-      boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.1)',
+      boxShadow: '0px 2px 4px lightgray',
+      backdropFilter: 'blur(10px)',
+      filter: 'dropShadow(0px 4px 8px #D9D9D9)',
+      transition: 'box-shadow .2s  ',
       px: 4,
-
-      _hover: {
-        boxShadow: 'gray 0px 2px 4px',
-      },
     },
   },
 
   body: {
     ...cardCommonStyles.body,
+    w: { base: 84, sm: 100 },
     position: 'relative',
     display: 'flex',
-    flexDirection: 'column',
+    justifyContent: 'space-between',
+    gap: 5,
     p: 5,
-    boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.1)',
+    boxShadow: '0px 2px 4px lightgray',
+    backdropFilter: 'blur(10px)',
+    filter: 'dropShadow(0px 4px 8px #D9D9D9)',
+    transition: 'box-shadow .2s  ',
     borderRadius: 10,
     minH: 44,
-    _hover: {
-      boxShadow: 'gray 0px 2px 4px',
-    },
 
     '& > div:first-of-type': {
+      display: 'flex',
+      flexDirection: 'column',
+    },
+
+    '& > div:first-of-type > div:first-of-type': {
       overflow: 'hidden',
 
       '& > p:first-of-type': {
@@ -193,7 +202,7 @@ const detailed = definePartsStyle({
         color: 'card.description',
       },
     },
-    '& > div:nth-of-type(2)': {
+    '& > div:first-of-type > div:nth-of-type(2)': {
       display: 'flex',
       flexDirection: 'row',
       alignItems: 'start',
@@ -223,7 +232,7 @@ const detailed = definePartsStyle({
         },
       },
 
-      '& > div:first-of-type': {
+      '& > div:first-of-type > div:first-of-type': {
         pr: '14px',
         borderRight: '1px solid',
         borderColor: 'card.footer_divider',
@@ -240,7 +249,10 @@ const detailed = definePartsStyle({
     h: 12,
     p: 1,
     mx: 'auto',
-    boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.1)',
+    boxShadow: '0px 2px 4px lightgray',
+    backdropFilter: 'blur(10px)',
+    filter: 'dropShadow(0px 4px 8px #D9D9D9)',
+    transition: 'box-shadow .2s  ',
     backgroundColor: 'card.detailed.footer',
     borderRadius: '0px 0px 8px 8px',
 

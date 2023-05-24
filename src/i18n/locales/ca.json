@@ -1,16 +1,12 @@
 {
   "alt_image": "",
   "aside": {
-    "connect_and_vote": "",
-    "connect_to_vote": "",
-    "connect_your_wallet": "",
     "has_already_voted": "",
     "is_able_to_vote": "Connectat. Estàs en el cens",
     "is_not_in_census": "",
+    "not_connected": "",
     "overwrite_votes_left": "",
-    "proposers": "Propòsits",
     "verify_vote_on_explorer": "",
-    "voters": "Votants",
     "votes": "",
     "votes_submited": ""
   },
@@ -54,6 +50,9 @@
   "copy": {
     "address": "",
     "copied_title": ""
+  },
+  "error": {
+    "return_to_home": ""
   },
   "error_text": "",
   "footer": {
@@ -141,7 +140,6 @@
     },
     "questions": "Preguntes",
     "results": "Resultats",
-    "share": "",
     "status": {
       "canceled": "",
       "canceled_description": "",

@@ -97,7 +97,7 @@ const OrganizationView = () => {
       <Header />
       <Tabs align='center' index={tabIndex} onChange={handleTabsChange}>
         {!isFullInput ? (
-          <TabList position='sticky' top='72px' zIndex={10} bgColor='organization.tabs.bg'>
+          <TabList position='sticky' top='72px' zIndex={10} bgColor='organization.tabs_bg'>
             <Flex gap={2}>
               <Tab
                 whiteSpace='nowrap'
@@ -113,7 +113,7 @@ const OrganizationView = () => {
                 <Flex
                   justifyContent='center'
                   alignItems='center'
-                  bgColor='black'
+                  bgColor='tabs.circle_bg'
                   color='white'
                   fontWeight='bold'
                   ml={2}
@@ -145,6 +145,7 @@ const OrganizationView = () => {
                 display={{ base: 'none', md: 'inline-block' }}
                 mb={{ base: 25, sm: 0 }}
                 w={{ md: '30%', lg: '20%' }}
+                mt={2}
               />
 
               <Box position='absolute' right={0} display={{ base: 'inline-block', md: 'none' }} justifyContent='center'>

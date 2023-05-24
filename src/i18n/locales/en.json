@@ -4,7 +4,7 @@
     "has_already_voted": "You have already voted",
     "is_able_to_vote": "Connected. You are eligible for voting",
     "is_not_in_census": "You are not in census",
-    "not_connected": "You are not connected",
+    "not_connected": "",
     "overwrite_votes_left": "You can correct your vote up to {{ left }} times.",
     "verify_vote_on_explorer": "Verify vote on explorer",
     "votes": "Votes cast so far!",
@@ -50,6 +50,9 @@
   "copy": {
     "address": "Copy address",
     "copied_title": "Copied!"
+  },
+  "error": {
+    "return_to_home": "Return to home"
   },
   "error_text": "Sorry, the page you were looking for was not found",
   "footer": {
@@ -137,7 +140,6 @@
     },
     "questions": "Questions",
     "results": "Results",
-    "share": "Share",
     "status": {
       "canceled": "Process canceled",
       "canceled_description": "It's not possible to vote right now",

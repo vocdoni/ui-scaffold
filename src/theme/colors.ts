@@ -1,9 +1,12 @@
 export const colorsBase = {
+  primary: {
+    normal: '#00624F',
+    dark: '#003128',
+  },
   black: '#000000',
   blue: {
     alert: '#35CCC0',
     light: '#80a2ff',
-    normal: '#F8F8F8',
     dark: '#0044FF',
   },
   gray: {
@@ -37,18 +40,18 @@ export const colors = {
     bg: colorsBase.white,
     description: colorsBase.gray.dark,
     footer_divider: colorsBase.gray.normal,
-    footer_title: colorsBase.purple,
+    footer_title: colorsBase.primary.normal,
     process_canceled: colorsBase.grenade,
     process_info: colorsBase.purple,
     title: colorsBase.black,
-    date: colorsBase.blue.dark,
+    date: colorsBase.primary.normal,
 
     detailed: {
       footer: colorsBase.gray.light,
       btn_disabled: colorsBase.grenade,
     },
   },
-
+  error_link: colorsBase.blue.dark,
   footer: {
     divider: colorsBase.black,
     code_bg: colorsBase.white,
@@ -63,17 +66,26 @@ export const colors = {
     bg: colorsBase.white,
     border: colorsBase.white,
     border_bottom: colorsBase.gray.light,
+    btn: {
+      500: 'transparent',
+      600: colorsBase.gray.light,
+      700: colorsBase.gray.normal,
+    },
+    btn_list: {
+      hover: colorsBase.gray.light,
+      active: colorsBase.gray.normal,
+    },
     btn_create: {
-      500: colorsBase.green.normal,
-      600: colorsBase.green.dark,
-      700: colorsBase.green.ultradark,
+      500: 'var(--vcd-gradient-brand)',
+      600: 'var(--vcd-gradient-brand-hover)',
+      700: 'var(--vcd-gradient-brand-active)',
     },
   },
   organization: {
     button_address: {
-      active: colorsBase.white,
-      bg: colorsBase.blue.dark,
-      color: colorsBase.white,
+      500: colorsBase.primary.normal,
+      600: colorsBase.primary.dark,
+      700: colorsBase.primary.dark,
     },
     election_list_empty: {
       bg: colorsBase.gray.light,
@@ -82,12 +94,13 @@ export const colors = {
     header_text: colorsBase.gray.dark,
     link: colorsBase.pink.normal,
     read_more: colorsBase.pink.normal,
+    tabs_bg: colorsBase.white,
   },
 
   process: {
     bar: colorsBase.gray.normal,
     bar_progress: colorsBase.blue.dark,
-    date: colorsBase.blue.dark,
+    date: colorsBase.primary.normal,
     description: colorsBase.gray.dark,
     header: {
       btn_bg: colorsBase.white,
@@ -97,35 +110,36 @@ export const colors = {
     info: colorsBase.blue.dark,
     paused: colorsBase.grenade,
     vote_btn: colorsBase.black,
-    btn_form_selected: {
-      bg: colorsBase.green.normal,
-      color: colorsBase.white,
+
+    questions: {
+      alert: {
+        bg: colorsBase.primary.normal,
+        color: colorsBase.white,
+        link_color: colorsBase.black,
+        link_bg: colorsBase.white,
+      },
+
+      btn_form_selected: {
+        bg: colorsBase.primary.normal,
+        color: colorsBase.white,
+      },
+      description: colorsBase.gray.dark,
+    },
+
+    results: {
+      alert_bg: colorsBase.primary.normal,
+      alert_color: colorsBase.white,
     },
   },
 
   progress_bar: colorsBase.blue.dark,
-
-  questions: {
-    alert: {
-      bg: colorsBase.blue.alert,
-      color: colorsBase.white,
-      link_color: colorsBase.black,
-      link_bg: colorsBase.white,
-    },
-
-    description: colorsBase.gray.dark,
-  },
-
-  results: {
-    bg: colorsBase.blue.alert,
-    color: colorsBase.white,
-  },
 
   tabs: {
     color: colorsBase.black,
     divider: colorsBase.gray.normal,
     hover: colorsBase.gray.light,
     active: colorsBase.gray.dark,
+    circle_bg: colorsBase.primary.normal,
   },
 
   text_error: colorsBase.grenade,

@@ -1,4 +1,4 @@
-import { Box, List, ListItem } from '@chakra-ui/react'
+import { Box, Button, List, ListItem } from '@chakra-ui/react'
 import { useClient } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
@@ -12,22 +12,33 @@ const MenuDropdown = () => {
   const { account } = useClient()
 
   return (
-    <List display='flex' flexDirection='column' alignItems='end' gap={2} px={4} py={2} textAlign='end' cursor='pointer'>
+    <List position='relative' cursor='pointer'>
       {isConnected && (
-        <ListItem display={{ md: 'none' }}>
-          <NavLink to={`/organization/0x${account?.address}`}>{t('menu.my_list')}</NavLink>
+        <ListItem display={{ lg: 'none' }} minW='full'>
+          <NavLink to={`/organization/0x${account?.address}`}>
+            <Button display='flex' justifyContent='end' variant='navbar_menu'>
+              {t('menu.my_list')}
+            </Button>
+          </NavLink>
         </ListItem>
       )}
-      <ListItem>FAQ's</ListItem>
-      <ListItem>{t('menu.support')}</ListItem>
-      <Box display={{ base: 'block', md: 'none' }} h='1px' w='100%' bgColor='lightgray' />
-      <List display={{ base: 'flex', md: 'none' }} flexDirection='column' gap={2} alignItems='end'>
+      <ListItem minW='full'>
+        <Button display='flex' justifyContent='end' variant='navbar_menu'>
+          {t('menu.support')}
+        </Button>
+      </ListItem>
+      <Box display={{ base: 'block', lg: 'none' }} h='1px' w='100%' bgColor='lightgray' />
+      <List display={{ base: 'flex', lg: 'none' }} flexDirection='column' alignItems='end' minW='full'>
         <LanguagesList />
       </List>
       {isConnected && (
         <>
           <Box h='1px' w='100%' bgColor='lightgray' />
-          <ListItem onClick={() => disconnect()}>{t('menu.disconnect')}</ListItem>
+          <ListItem onClick={() => disconnect()} minW='full'>
+            <Button display='flex' justifyContent='end' variant='navbar_menu'>
+              {t('menu.disconnect')}
+            </Button>
+          </ListItem>
         </>
       )}
     </List>

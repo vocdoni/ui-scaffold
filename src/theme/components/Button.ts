@@ -7,5 +7,18 @@ export const Button = defineStyle({
         color: 'buttons.ghost_hover_color',
       },
     },
+    navbar_menu: {
+      color: 'black',
+      borderRadius: 'none',
+      w: 'full',
+
+      _hover: {
+        bgColor: 'navbar.btn_list.hover',
+      },
+
+      _active: {
+        bgColor: 'navbar.btn_list.active',
+      },
+    },
   },
 })

@@ -27,12 +27,12 @@ const NavList = ({ displayFullInput }: Props) => {
   return (
     <>
       {!searchInputValues?.isSearchInScreen && location.pathname === '/' && (
-        <ListItem display={{ md: 'none' }}>
+        <ListItem display={{ lg: 'none' }}>
           <SearchButton displayFullInput={displayFullInput} aria={t('menu.search')} />
         </ListItem>
       )}
 
-      <ListItem display={{ base: 'none', md: 'inline-block' }}>
+      <ListItem display={{ base: 'none', lg: 'inline-block' }}>
         <Menu>
           {({ isOpen, onClose }) => (
             <>
@@ -43,9 +43,11 @@ const NavList = ({ displayFullInput }: Props) => {
                 rightIcon={isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
                 p={2}
                 mt={1}
+                colorScheme='navbar.btn'
+                color='black'
               />
-              <MenuList minW='none' onClick={onClose}>
-                <List display='flex' flexDirection='column' alignItems='center' gap={4} px={8} py={2} textAlign='end'>
+              <MenuList minW={24} w='full' p={0} onClick={onClose}>
+                <List display='flex' flexDirection='column' alignItems='center' textAlign='end'>
                   <LanguagesList />
                 </List>
               </MenuList>
@@ -55,20 +57,17 @@ const NavList = ({ displayFullInput }: Props) => {
       </ListItem>
       {isConnected && (
         <>
-          <ListItem display={{ base: 'none', md: 'inline-block' }}>
+          <ListItem display={{ base: 'none', lg: 'inline-block' }}>
             <NavLink to={`/organization/0x${account?.address}`}>
-              <Button p={2}>{t('menu.my_list')}</Button>
+              <Button p={4} mr={4} colorScheme='navbar.btn' color='black' borderRadius={{ base: 'none', lg: 'md' }}>
+                {t('menu.my_list')}
+              </Button>
             </NavLink>
           </ListItem>
           <ListItem>
             <NavLink to='/processes/create'>
-              <Button
-                variant='solid'
-                rightIcon={<AddIcon />}
-                sx={{ span: { margin: 0 } }}
-                colorScheme='navbar.btn_create'
-              >
-                <Text as='span' display={{ base: 'none', md: 'inline-block' }} pr={2}>
+              <Button rightIcon={<AddIcon />} sx={{ span: { margin: 0 } }} colorScheme='navbar.btn_create'>
+                <Text as='span' display={{ base: 'none', lg: 'inline-block' }} pr={2}>
                   {t('menu.create')}
                 </Text>
               </Button>
