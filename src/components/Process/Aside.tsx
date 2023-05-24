@@ -5,6 +5,7 @@ import { HR, useElection, VoteButton } from '@vocdoni/chakra-components'
 import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
 import { useTranslation } from 'react-i18next'
+import { useAccount } from 'wagmi'
 
 interface Props {
   isInCensus: boolean
@@ -17,6 +18,7 @@ interface Props {
 const ProcessAside = ({ handleTabsChange, isInCensus, hasAlreadyVoted, order, alignSelf }: Props) => {
   const { t } = useTranslation()
   const { election, isAbleToVote, votesLeft } = useElection()
+  const { isConnected } = useAccount()
 
   return (
     <Card variant='process-info' order={order} alignSelf={alignSelf}>
@@ -42,7 +44,7 @@ const ProcessAside = ({ handleTabsChange, isInCensus, hasAlreadyVoted, order, al
 
       {election?.status === ElectionStatus.ONGOING && <HR />}
 
-      {election?.status === ElectionStatus.ONGOING && (
+      {election?.status === ElectionStatus.ONGOING && isConnected && (
         <CardBody>
           <Text textAlign='center'>
             {isAbleToVote && t('aside.is_able_to_vote').toString()}
@@ -56,11 +58,9 @@ const ProcessAside = ({ handleTabsChange, isInCensus, hasAlreadyVoted, order, al
           <VoteButton />
         </CardBody>
       )}
-      {election?.status === ElectionStatus.ONGOING && (
+      {election?.status === ElectionStatus.ONGOING && !isConnected && (
         <CardBody>
           <Box>
-            <Text fontWeight='bold'>{t('aside.proposers')}: </Text>
-            <Text>{t('aside.connect_your_wallet')}</Text>
             <Text fontWeight='bold'>{t('aside.voters')}: </Text>
             <Text>{t('aside.connect_and_vote')}</Text>
           </Box>
