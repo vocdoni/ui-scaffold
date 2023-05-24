@@ -48,9 +48,9 @@ const ProcessAside = ({ handleTabsChange, isInCensus, hasAlreadyVoted, order, al
             {isAbleToVote && t('aside.is_able_to_vote').toString()}
             {!isAbleToVote && !isInCensus && t('aside.is_not_in_census').toString()}
             {!isAbleToVote && hasAlreadyVoted && t('aside.has_already_voted').toString()}{' '}
-            {hasAlreadyVoted &&
+            {isInCensus &&
+              hasAlreadyVoted &&
               hasOverwriteEnabled(election) &&
-              isInCensus &&
               t('aside.overwrite_votes_left', { left: votesLeft })}
           </Text>
           <VoteButton />
