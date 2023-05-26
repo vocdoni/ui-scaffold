@@ -53,11 +53,12 @@ const lite = definePartsStyle({
     fontWeight: 'bold',
 
     '& > div:first-of-type': {
-      h: 12,
+      h: 17,
     },
 
     '& > div:first-of-type p:first-of-type': {
       fontSize: 'xs',
+      mb: 1.5,
       lineHeight: 1,
       fontWeight: 400,
       textTransform: 'uppercase',
@@ -65,6 +66,7 @@ const lite = definePartsStyle({
       isTruncated: true,
     },
     '& > div:first-of-type p:nth-of-type(2)': {
+      mb: 5,
       fontSize: 'lg',
       lineHeight: 6,
       fontWeight: 700,
@@ -181,7 +183,7 @@ const detailed = definePartsStyle({
         fontSize: 'sm',
         lineHeight: 5,
         color: 'card.date',
-        mb: 1,
+        mb: 1.5,
         textAlign: 'start',
       },
 
@@ -196,6 +198,7 @@ const detailed = definePartsStyle({
         overflow: 'hidden',
         fontStyle: 'normal',
         fontWeight: '400',
+        mb: 5,
         fontSize: 'md',
         lineHeight: 5,
         textAlign: 'start',

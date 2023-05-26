@@ -8,73 +8,78 @@ const baseStyle = definePartsStyle({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    mt: 6,
     gap: 20,
+    maxW: { base: '100%', md: '76%', lg: '100%', xl: '76%' },
+    mt: 6,
+    mx: 'auto',
+    padding: 5,
+    paddingBottom: 7,
+    background: 'process.results.bg',
+    borderRadius: '8px',
   },
 
   question: {
     display: 'flex',
     flexDirection: 'column',
     gap: 4,
-    width: '100%',
-    maxW: 160,
+    minW: '100%',
   },
 
   header: {
-    textAlign: 'center',
+    textAlign: 'start',
   },
 
   title: {
     fontWeight: 700,
     fontSize: 'xl',
     lineHeight: 7,
+    color: 'process.results.title',
+    textAlign: { base: 'center', md: 'start' },
   },
 
   body: {
     display: 'flex',
     flexDirection: 'column',
-    gap: 4,
+
+    gap: { base: 7, md: 5 },
 
     '& > div': {
-      display: 'grid',
-      gridTemplateRows: 'repeat(2, 1fr)',
-      gridTemplateColumns: 'repeat(2, 1fr)',
-      rowGap: 2,
-      overflow: 'hidden',
+      display: 'flex',
+      flexDirection: { base: 'column', md: 'row' },
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      gap: { base: 2, md: 0 },
 
       '& p:first-of-type': {
-        gridColumn: { base: '1/3', md: '1/2' },
-        gridRow: { base: '1/2', md: '1/3' },
-        display: 'flex',
-        justifyContent: { base: 'center', md: 'start' },
-        alignItems: 'center',
-        fontWeight: 'bold',
+        width: { base: '100%', md: '25%' },
+        textAlign: { base: 'center', md: 'start' },
         isTruncated: true,
+        fontWeight: 600,
       },
 
       '& p:nth-of-type(2)': {
-        gridColumn: { base: '1/2', md: '2/3' },
-        gridRow: { base: '2/3', md: '1/2' },
-        textAlign: 'center',
+        fontWeight: 600,
       },
 
       '& > div': {
-        gridColumn: '2/3',
-        gridRow: '2/3',
-        mt: { base: 1, md: 0 },
+        minW: { base: '85%', sm: '60%', md: '40%' },
+        h: 6,
+        borderRadius: 8,
+        bgColor: 'progress_bar_bg',
+
         '& div': {
-          bgColor: 'progress_bar',
+          background: 'var(--vcd-gradien-progress-bar)',
         },
       },
     },
   },
   secret: {
-    px: '15px',
-    py: '30px',
-    my: '10px',
+    px: 8,
+    py: 8,
+    my: 4,
     color: 'process.results.alert_color',
     bgColor: 'process.results.alert_bg',
-    borderRadius: '8px',
+    borderRadius: 'lg',
     whiteSpace: 'wrap',
   },
 })

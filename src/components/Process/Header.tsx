@@ -66,7 +66,7 @@ const ProcessHeader = () => {
               <Text>{t('process.status.canceled_description')}</Text>
             </Box>
           )}
-          <ElectionActions />
+          <ElectionActions sx={{ '& div': { flexDirection: 'row', justifyContent: 'start' } }} />
         </Flex>
       </Flex>
     </Box>

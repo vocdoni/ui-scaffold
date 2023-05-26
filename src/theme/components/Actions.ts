@@ -8,6 +8,7 @@ const baseStyle = definePartsStyle({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+    alignItems: 'center',
   },
 
   buttons: {

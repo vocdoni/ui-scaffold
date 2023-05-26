@@ -25,7 +25,7 @@ const ProcessAside = () => {
       borderRadius={6}
     >
       <Flex direction='column' alignItems='center'>
-        <Text textAlign='center' fontWeight='700' fontSize='25px' lineHeight=' 125%'>
+        <Text textAlign='center' fontWeight='700' fontSize='25px' lineHeight=' 125%' mb={2}>
           {getStatusText(t, election?.status)}
         </Text>
 

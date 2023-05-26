@@ -43,7 +43,7 @@
       "button": "Vote",
       "button_update": "Re-submit vote",
       "missing_answers": "You have to answer all the questions",
-      "voted_description": "Your vote id is {{ id }}. You can use it to verify your vote.",
+      "voted_description": "You can use it to verify your vote. Your vote id is {{ id }}.",
       "voted_title": "Your vote was successfully cast!"
     }
   },

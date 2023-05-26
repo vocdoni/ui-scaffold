@@ -7,7 +7,7 @@ export const Button = defineStyle({
         color: 'buttons.ghost_hover_color',
       },
     },
-    navbar_menu: {
+    dropdown: {
       color: 'black',
       borderRadius: 'none',
       w: 'full',

@@ -4,6 +4,58 @@ import { questionsAnatomy } from '@vocdoni/chakra-components'
 const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpers(questionsAnatomy)
 
 const baseStyle = definePartsStyle({
+  // alert: {
+  //   p: 8,
+  //   my: 3,
+  //   borderRadius: 'lg',
+  //   color: 'process.questions.alert.color',
+  //   bgColor: 'process.questions.alert.bg',
+  //   display: 'grid',
+  //   columnGap: 10,
+  //   gridTemplateColumns: 'auto auto',
+  //   gridTemplateRows: 'auto auto',
+  //   border: '1px solid red',
+
+  //   '& span': {
+  //     color: 'white',
+  //     gridRow: '1 / 2',
+  //     gridColumn: '1 / 3',
+  //   },
+  // },
+
+  // alertTitle: {
+  //   gridRow: '1 / 2',
+  //   gridColumn: '1 / 3',
+  //   mb: 1,
+  // },
+
+  // alertDescription: {
+  //   gridColumn: '1 / 3',
+  //   display: 'flex',
+  //   flexDirection: 'column',
+  //   '& a': {
+  //     order: 2,
+  //   },
+  // },
+
+  // alertLink: {
+  //   mx: 'auto',
+  //   display: 'block',
+  //   px: 6,
+  //   py: 1,
+  //   my: 2,
+  //   textOverflow: 'ellipsis',
+  //   overflow: 'hidden',
+  //   whiteSpace: 'nowrap',
+  //   color: 'process.questions.alert.link_color',
+  //   backgroundColor: 'process.questions.alert.link_bg',
+  // borderRadius: '8px',
+  // fontSize: 'sm',
+
+  //   _hover: {
+  //     textDecoration: 'none',
+  //   },
+  // },
   alert: {
     px: '15px',
     py: '30px',
@@ -21,7 +73,13 @@ const baseStyle = definePartsStyle({
     mb: 1,
   },
 
+  alertDescription: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+
   alertLink: {
+    order: 1,
     display: 'block',
     px: 2,
     py: 1,
@@ -30,11 +88,14 @@ const baseStyle = definePartsStyle({
     whiteSpace: 'nowrap',
     color: 'process.questions.alert.link_color',
     backgroundColor: 'process.questions.alert.link_bg',
+    borderRadius: 'md',
+    fontSize: 'sm',
 
     _hover: {
       textDecoration: 'none',
     },
   },
+
   wrapper: {
     mt: 6,
     display: 'flex',
@@ -88,8 +149,11 @@ const baseStyle = definePartsStyle({
 
       _hover: {
         boxShadow: '#808080b5 0px 2px 4px',
+        borderRadius: 'lg',
       },
-
+      _disabled: {
+        boxShadow: 'none',
+      },
       '& span:first-of-type': {
         h: 10,
       },

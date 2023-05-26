@@ -20,6 +20,7 @@ export const ProcessView = () => {
     if (election?.status === ElectionStatus.RESULTS) setTabIndex(1)
   }, [election])
 
+  console.log(election)
   return (
     <>
       <Header />
@@ -42,7 +43,7 @@ export const ProcessView = () => {
 
               {election?.status !== ElectionStatus.CANCELED && (
                 <>
-                  <Box my={1} borderRight='1px solid' borderColor='tabs.divider' />
+                  <Box my={1} borderRight='2px solid' borderColor='tabs.divider' />
                   <Tab
                     whiteSpace='nowrap'
                     color='process.tabs.color'
@@ -63,7 +64,7 @@ export const ProcessView = () => {
             <TabPanel>
               <ElectionQuestions />
             </TabPanel>
-            <TabPanel>
+            <TabPanel mb={20}>
               <ElectionResults />
             </TabPanel>
           </TabPanels>
@@ -72,7 +73,7 @@ export const ProcessView = () => {
           justifyContent='center'
           position={{ base: election?.status === 'ONGOING' ? 'sticky' : 'relative', lg: 'sticky' }}
           bottom={{ base: 'px', lg: undefined }}
-          top={{ lg: '80px' }}
+          top={{ lg: 20 }}
           w={{ base: '100%', lg: '30%' }}
           mt={{ lg: 10 }}
         >

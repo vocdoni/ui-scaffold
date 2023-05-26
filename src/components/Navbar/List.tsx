@@ -42,7 +42,6 @@ const NavList = ({ displayFullInput }: Props) => {
                 leftIcon={<FaGlobe />}
                 rightIcon={isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
                 p={2}
-                mt={1}
                 colorScheme='navbar.btn'
                 color='black'
               />

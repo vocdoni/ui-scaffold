@@ -37,6 +37,7 @@ const AddressBtn = () => {
       <MenuList p={0} position='absolute' top={-28} zIndex={30}>
         <MenuItem
           as={Button}
+          variant='dropdown'
           leftIcon={<CopyIcon />}
           onClick={() => {
             toast({
@@ -52,6 +53,7 @@ const AddressBtn = () => {
         </MenuItem>
         <MenuItem
           as={Button}
+          variant='dropdown'
           leftIcon={<ExternalLinkIcon />}
           onClick={() => window.open(`${ExplorerBaseURL}/organizations/show/#/${address}`, '_blank')}
           justifyContent='start'

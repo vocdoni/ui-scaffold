@@ -16,14 +16,14 @@ const MenuDropdown = () => {
       {isConnected && (
         <ListItem display={{ lg: 'none' }} minW='full'>
           <NavLink to={`/organization/0x${account?.address}`}>
-            <Button display='flex' justifyContent='end' variant='navbar_menu'>
+            <Button display='flex' justifyContent='end' variant='dropdown'>
               {t('menu.my_list')}
             </Button>
           </NavLink>
         </ListItem>
       )}
       <ListItem minW='full'>
-        <Button display='flex' justifyContent='end' variant='navbar_menu'>
+        <Button display='flex' justifyContent='end' variant='dropdown'>
           {t('menu.support')}
         </Button>
       </ListItem>
@@ -35,7 +35,7 @@ const MenuDropdown = () => {
         <>
           <Box h='1px' w='100%' bgColor='lightgray' />
           <ListItem onClick={() => disconnect()} minW='full'>
-            <Button display='flex' justifyContent='end' variant='navbar_menu'>
+            <Button display='flex' justifyContent='end' variant='dropdown'>
               {t('menu.disconnect')}
             </Button>
           </ListItem>

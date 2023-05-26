@@ -21,6 +21,7 @@ export const theme = extendTheme(vtheme, {
         '--vcd-gradient-brand-active': 'linear-gradient(to right, #24aa9a, #7c03ec)',
         '--vcd-gradient-brand-tr': 'linear-gradient(to top right, #8E00FF, #00DDB3)',
         '--vcd-gradient-404': 'linear-gradient(to right, #8E00FF, #00DDB3)',
+        '--vcd-gradien-progress-bar': 'linear-gradient(to right, #2ed3bf, #00624e)',
       },
     },
   },

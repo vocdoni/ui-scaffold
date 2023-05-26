@@ -125,7 +125,7 @@ const OrganizationView = () => {
                   {organization?.electionIndex}
                 </Flex>
               </Tab>
-              <Box my={1} borderRight='1px solid' borderColor='tabs.divider' />
+              <Box my={1} borderRight='2px solid' borderColor='tabs.divider' />
               <Tab
                 whiteSpace='nowrap'
                 color='organization.tabs.color'

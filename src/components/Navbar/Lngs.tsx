@@ -26,7 +26,7 @@ const LanguagesList = () => {
           cursor='pointer'
           w='full'
         >
-          <Button display='flex' justifyContent={{ base: 'end', lg: 'center' }} variant='navbar_menu'>
+          <Button display='flex' justifyContent={{ base: 'end', lg: 'center' }} variant='dropdown'>
             {k.toUpperCase()}
           </Button>
         </ListItem>
