@@ -4,7 +4,7 @@
     "has_already_voted": "You have already voted",
     "is_able_to_vote": "Connected. You are eligible for voting",
     "is_not_in_census": "You are not in census",
-    "not_connected": "",
+    "not_connected": "You are not connected",
     "overwrite_votes_left": "You can correct your vote up to {{ left }} times.",
     "verify_vote_on_explorer": "Verify vote on explorer",
     "votes": "Votes cast so far!",
@@ -161,7 +161,7 @@
     "input_placeholder": "Search"
   },
   "share": {
-    "facebook": "Share to twitter",
+    "facebook": "Share to facebook",
     "twitter": "Share to twitter"
   },
   "submited_votes": "Submitted votes",

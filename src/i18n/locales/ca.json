@@ -1,131 +1,131 @@
 {
-  "alt_image": "",
+  "alt_image": "{{ img }} imatge",
   "aside": {
-    "has_already_voted": "",
-    "is_able_to_vote": "Connectat. Estàs en el cens",
-    "is_not_in_census": "",
-    "not_connected": "",
-    "overwrite_votes_left": "",
-    "verify_vote_on_explorer": "",
-    "votes": "",
-    "votes_submited": ""
+    "has_already_voted": "Ja has votat",
+    "is_able_to_vote": "Connectat. Ets elegible per votar",
+    "is_not_in_census": "No estàs al cens",
+    "not_connected": "No estàs connectat",
+    "overwrite_votes_left": "Pots corregir el teu vot fins a {{ left }} vegades.",
+    "verify_vote_on_explorer": "Verifica el vot a l'explorador",
+    "votes": "Vots realitzats fins ara!",
+    "votes_submited": "Vots enviats"
   },
   "cc": {
     "actions": {
-      "cancel": "",
-      "cancel_description": "",
-      "continue": "",
-      "end": "",
-      "end_description": "",
-      "error_title": "",
-      "pause": "",
-      "pause_description": "",
-      "waiting_title": ""
+      "cancel": "Cancel·la el procés immediatament, no permetent nous vots i sense comptabilitzar cap resultat (precaució: no es pot revertir)",
+      "cancel_description": "cancel·lant el procés electoral \"{{ election.title.default }}\"",
+      "continue": "Reprèn immediatament el procés, en cas que hagi estat pausat",
+      "end": "Finalitza el procés immediatament, impedint que es puguin enviar nous vots i mostra els resultats de votació (precaució: no es pot revertir)",
+      "end_description": "S'està finalitzant el procés electoral \"{{ election.title.default }}\"",
+      "error_title": "S'ha produït un error durant l'execució de la transacció",
+      "pause": "Pausa temporalment el procés de votació fins que es reprengui manualment. Mentre el procés estigui en pausa, els votants no podran enviar vots",
+      "pause_description": "pausant el procés electoral \"{{ election.title.default }}\"",
+      "waiting_title": "S'està esperant la confirmació de la transacció..."
     },
-    "empty": "",
-    "required": "",
+    "empty": "Sembla que aquest procés no té cap pregunta 🤔",
+    "required": "Aquest camp és obligatori",
     "results": {
-      "date_format": "",
-      "secret_until_the_end": "",
-      "title": "",
-      "votes": ""
+      "date_format": "d-L-y HH:mm",
+      "secret_until_the_end": "Secret fins al final. Els resultats estaran disponibles quan el procés finalitzi el {{ endDate }}",
+      "title": "Resultats per a \"{{ title }}\"",
+      "votes": "Vots: {{ votes }} ({{ percent }}) ("
     },
     "statuses": {
-      "CANCELED": "",
-      "ENDED": "",
-      "ONGOING": "",
-      "PAUSED": "",
-      "PROCESS_UNKNOWN": "",
-      "RESULTS": "",
-      "UPCOMING": ""
+      "CANCELED": "Cancel·lat",
+      "ENDED": "Finalitzat",
+      "ONGOING": "En curs",
+      "PAUSED": "En pausa",
+      "PROCESS_UNKNOWN": "Desconegut",
+      "RESULTS": "Resultats",
+      "UPCOMING": "Properament"
     },
     "vote": {
-      "button": "",
-      "button_update": "",
-      "missing_answers": "",
-      "voted_description": "",
-      "voted_title": ""
+      "button": "Votar",
+      "button_update": "Tornar a enviar el vot",
+      "missing_answers": "Heu de respondre totes les preguntes",
+      "voted_description": "La vostra identificació de vot és {{id}}. Podeu utilitzar-la per verificar el vostre vot",
+      "voted_title": "El vostre vot s'ha registrat amb èxit!"
     }
   },
   "copy": {
-    "address": "",
-    "copied_title": ""
+    "address": "Copiar adreça",
+    "copied_title": "Copiat!"
   },
   "error": {
-    "return_to_home": ""
+    "return_to_home": "Tornar a la pàgina d'inici"
   },
-  "error_text": "",
+  "error_text": "Ho sentim, no s'ha trobat la pàgina que busqueu",
   "footer": {
-    "about": "",
-    "blog": "",
-    "company": "",
-    "contact": "",
-    "developer_portal": "",
-    "developers": "",
-    "guides": "",
-    "how_we_work": "",
-    "resources": "",
-    "tutorials": "",
-    "vocdoni_api": "",
-    "vocdoni_app": ""
+    "about": "Sobre",
+    "blog": "Bloc",
+    "company": "Empresa",
+    "contact": "Contacte",
+    "developer_portal": "Portal de desenvolupadors",
+    "developers": "desenvolupadors",
+    "guides": "guies",
+    "how_we_work": "Com treballem",
+    "resources": "recursos",
+    "tutorials": "Tutorials",
+    "vocdoni_api": "Vocdoni API",
+    "vocdoni_app": "Vocdoni APP"
   },
   "form": {
     "error": {
-      "address_pattern": "",
-      "field_is_required": ""
+      "address_pattern": "Només són permeses adreces hex",
+      "field_is_required": "Aquest camp és obligatori"
     },
     "process_create": {
-      "address_title": "",
-      "address_weight": "",
-      "addresses_title": "",
-      "advanced_settings": "",
-      "autostart": "",
-      "date_end": "",
-      "date_start": "",
-      "interruptible": "",
-      "max_vote_overwrites": "",
-      "process_description": "",
-      "process_description_placeholder": "",
-      "process_title": "",
-      "process_title_placeholder": "",
-      "question_delete": "",
-      "question_identifier": "",
-      "question_placeholder": "",
-      "question_title": "",
-      "questions_title": "",
-      "secret_until_the_end": "",
-      "settings": "",
-      "submit": "",
-      "success_description": "",
-      "success_title": "",
-      "weighted_vote": ""
+      "address_title": "Adreça {{ num }}",
+      "address_weight": "Pes",
+      "addresses_title": "Adreces",
+      "advanced_settings": "Configuració avançada",
+      "autostart": "Inici automàtic",
+      "date_end": "Data de finalització",
+      "date_start": "Data d'inici",
+      "interruptible": "Interrumpible",
+      "max_vote_overwrites": "Màx. sobreescriptures per vot",
+      "process_description": "Descripció",
+      "process_description_placeholder": "Una descripció detallada exhaustiva",
+      "process_title": "Títol",
+      "process_title_placeholder": "Títol del procés principal",
+      "question_delete": "Esborra la pregunta {{ num }}",
+      "question_identifier": "Pregunta {{ num }}",
+      "question_placeholder": "Títol de la pregunta {{ num }}",
+      "question_title": "Títol",
+      "questions_title": "Preguntes",
+      "secret_until_the_end": "Secret fins al final",
+      "settings": "Configuració de l'elecció",
+      "submit": "Crea un procés",
+      "success_description": "Redirigint-vos a la pàgina del procés electoral...",
+      "success_title": "Procés electoral creat amb èxit",
+      "weighted_vote": "Vot ponderat"
     }
   },
   "home": {
-    "active_voting": "",
-    "more_active_organizations": ""
+    "active_voting": "Votació activa",
+    "more_active_organizations": "Més organitzacions actives"
   },
   "link": {
-    "discord": "",
-    "github": "",
-    "twitter": ""
+    "discord": "Enllaç al servidor de Discord de Vocdoni",
+    "github": "Enllaç al repositori de GitHub de Vocdoni",
+    "twitter": "Enllaç al perfil de Twitter de Vocdoni"
   },
   "loading": "Carregant...",
   "menu": {
     "connect": "Connecta",
-    "create": "",
+    "create": "Crear procés",
     "create_process": "Crear procés",
-    "disconnect": "",
+    "disconnect": "Desconnectar cartera",
     "my_list": "La meva llista",
-    "search": "",
-    "support": ""
+    "search": "Entrada de cerca",
+    "support": "Suport"
   },
-  "open_in_explorer": "",
+  "open_in_explorer": "Obrir a l'explorador",
   "organization": {
-    "avatar_alt": "",
-    "dao_title": "",
+    "avatar_alt": "Imatge de l'avatar de l'organització {{ name }}",
+    "dao_title": "DAO",
     "elections": "Eleccions",
-    "elections_list_empty": "",
+    "elections_list_empty": "Aquesta organització encara no té eleccions",
     "rounds": {
       "active": "Actives",
       "all": "Totes"
@@ -141,28 +141,28 @@
     "questions": "Preguntes",
     "results": "Resultats",
     "status": {
-      "canceled": "",
-      "canceled_description": "",
-      "ended": "",
-      "ongoing": "",
-      "paused": "",
-      "results": "",
-      "unknown": "",
-      "upcoming": ""
+      "canceled": "Procés cancel·lat",
+      "canceled_description": "No és possible votar ara mateix",
+      "ended": "Procés finalitzat",
+      "ongoing": "Procés en curs",
+      "paused": "Procés pausat",
+      "results": "Resultats",
+      "unknown": "Desconegut",
+      "upcoming": "Procés a prop"
     },
-    "voters": ""
+    "voters": "Votants"
   },
   "process_actions": {
-    "pause": "",
-    "play": "",
-    "stop": ""
+    "pause": "pausa",
+    "play": "reproduir",
+    "stop": "atura"
   },
   "search": {
-    "input_placeholder": ""
+    "input_placeholder": "Cerca"
   },
   "share": {
-    "facebook": "",
-    "twitter": ""
+    "facebook": "Comparteix a Facebook",
+    "twitter": " Comparteix a Twitter"
   },
   "submited_votes": "Vots emesos",
   "voting_elections": "Votacions",

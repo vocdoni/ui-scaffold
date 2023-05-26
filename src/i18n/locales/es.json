@@ -25,107 +25,107 @@
     "empty": "",
     "required": "",
     "results": {
-      "date_format": "",
-      "secret_until_the_end": "",
-      "title": "",
-      "votes": ""
+      "date_format": "d-L-y HH:mm",
+      "secret_until_the_end": "Secreto hasta el final. Los resultados estarán disponibles cuando el proceso termine el {{ endDate }}",
+      "title": "Resultados para \"{{ title }}\"",
+      "votes": "Votos: {{ votes }} ({{ percent }}) "
     },
     "statuses": {
-      "CANCELED": "",
-      "ENDED": "",
-      "ONGOING": "",
-      "PAUSED": "",
-      "PROCESS_UNKNOWN": "",
-      "RESULTS": "",
-      "UPCOMING": ""
+      "CANCELED": "Cancelado",
+      "ENDED": "Finalizado",
+      "ONGOING": "En curso",
+      "PAUSED": "Pausado",
+      "PROCESS_UNKNOWN": "Desconocido",
+      "RESULTS": "Resultados",
+      "UPCOMING": "Próximamente"
     },
     "vote": {
-      "button": "",
-      "button_update": "",
-      "missing_answers": "",
-      "voted_description": "",
-      "voted_title": ""
+      "button": "Votar",
+      "button_update": "Volver a enviar el voto",
+      "missing_answers": "Deben responder todas las preguntas",
+      "voted_description": "Tu identificación de voto es {{id}}. Puedes usarla para verificar tu voto",
+      "voted_title": "¡Tu voto se ha registrado correctamente!"
     }
   },
   "copy": {
-    "address": "",
-    "copied_title": ""
+    "address": "Copiar dirección",
+    "copied_title": "¡Copiado!"
   },
   "error": {
-    "return_to_home": ""
+    "return_to_home": "Volver a la página de inicio"
   },
-  "error_text": "",
+  "error_text": "Lo siento, no se encontró la página que buscabas.",
   "footer": {
-    "about": "",
-    "blog": "",
-    "company": "",
-    "contact": "",
-    "developer_portal": "",
-    "developers": "",
-    "guides": "",
-    "how_we_work": "",
-    "resources": "",
-    "tutorials": "",
-    "vocdoni_api": "",
-    "vocdoni_app": ""
+    "about": "Acerca de",
+    "blog": "Blog",
+    "company": "Empresa",
+    "contact": "Contacto",
+    "developer_portal": "Portal de desarrolladores",
+    "developers": "desarrolladores",
+    "guides": "guías",
+    "how_we_work": "Cómo trabajamos",
+    "resources": "recursos",
+    "tutorials": "Tutoriales",
+    "vocdoni_api": "Vocdoni API",
+    "vocdoni_app": "Vocdoni APP"
   },
   "form": {
     "error": {
-      "address_pattern": "",
-      "field_is_required": ""
+      "address_pattern": "Solo se permiten direcciones hex",
+      "field_is_required": "Este campo es obligatorio"
     },
     "process_create": {
-      "address_title": "",
-      "address_weight": "",
-      "addresses_title": "",
-      "advanced_settings": "",
-      "autostart": "",
-      "date_end": "",
-      "date_start": "",
-      "interruptible": "",
-      "max_vote_overwrites": "",
-      "process_description": "",
-      "process_description_placeholder": "",
-      "process_title": "",
-      "process_title_placeholder": "",
-      "question_delete": "",
-      "question_identifier": "",
-      "question_placeholder": "",
-      "question_title": "",
-      "questions_title": "",
-      "secret_until_the_end": "",
-      "settings": "",
-      "submit": "",
-      "success_description": "",
-      "success_title": "",
-      "weighted_vote": ""
+      "address_title": " Dirección {{ num }}",
+      "address_weight": "Peso",
+      "addresses_title": "Direcciones",
+      "advanced_settings": "Configuración avanzada",
+      "autostart": "Inicio automático",
+      "date_end": "Fecha de finalización",
+      "date_start": "Fecha de inicio",
+      "interruptible": "Interrumpible",
+      "max_vote_overwrites": "Máx. sobreescrituras por voto",
+      "process_description": "Descripción",
+      "process_description_placeholder": "Una descripción detallada exhaustiva",
+      "process_title": "Título",
+      "process_title_placeholder": "Título del proceso principal",
+      "question_delete": "Eliminar la pregunta {{ num }}",
+      "question_identifier": "Pregunta {{ num }}",
+      "question_placeholder": "Título de la pregunta {{ num }}",
+      "question_title": "Título",
+      "questions_title": "Preguntas",
+      "secret_until_the_end": "Secreto hasta el final",
+      "settings": "Configuración de la elección",
+      "submit": "Crear un proceso",
+      "success_description": "Redireccionándote a la página del proceso electoral...",
+      "success_title": "Proceso electoral creado exitosamente",
+      "weighted_vote": "Voto ponderado"
     }
   },
   "home": {
-    "active_voting": "",
-    "more_active_organizations": ""
+    "active_voting": "Votación activa",
+    "more_active_organizations": "Más organizaciones activas"
   },
   "link": {
-    "discord": "",
-    "github": "",
-    "twitter": ""
+    "discord": "Enlace al servidor de Discord de Vocdoni",
+    "github": "Enlace al repositorio de GitHub de Vocdoni",
+    "twitter": "Enlace al perfil de Twitter de Vocdoni"
   },
   "loading": "Cargando...",
   "menu": {
     "connect": "Conectar",
-    "create": "",
+    "create": "Crear proceso",
     "create_process": "Crear proceso",
-    "disconnect": "",
+    "disconnect": "Desconectar billetera",
     "my_list": "Mi lista",
-    "search": "",
-    "support": ""
+    "search": "Entrada de búsqueda",
+    "support": "Soporte"
   },
-  "open_in_explorer": "",
+  "open_in_explorer": "Abrir en el explorador",
   "organization": {
-    "avatar_alt": "",
-    "dao_title": "",
+    "avatar_alt": " Imagen de avatar de la organización {{ name }}",
+    "dao_title": "DAO",
     "elections": "Elecciones",
-    "elections_list_empty": "",
+    "elections_list_empty": " Esta organización aún no tiene elecciones",
     "rounds": {
       "active": "Activas",
       "all": "Todas"
@@ -141,28 +141,28 @@
     "questions": "Preguntas",
     "results": "Resultados",
     "status": {
-      "canceled": "",
-      "canceled_description": "",
-      "ended": "",
-      "ongoing": "",
-      "paused": "",
-      "results": "",
-      "unknown": "",
-      "upcoming": ""
+      "canceled": "Proceso cancelado",
+      "canceled_description": "No es posible votar en este momento",
+      "ended": "Proceso finalizado",
+      "ongoing": "Proceso en progreso",
+      "paused": "Proceso pausado",
+      "results": "Resultados",
+      "unknown": "Desconocido",
+      "upcoming": "Próximo proceso"
     },
-    "voters": ""
+    "voters": "Votantes"
   },
   "process_actions": {
-    "pause": "",
-    "play": "",
-    "stop": ""
+    "pause": "pausa",
+    "play": "reproducir",
+    "stop": "detener"
   },
   "search": {
-    "input_placeholder": ""
+    "input_placeholder": "Buscar"
   },
   "share": {
-    "facebook": "",
-    "twitter": ""
+    "facebook": "Compartir en Facebook",
+    "twitter": "Compartir en Twitter"
   },
   "submited_votes": "Votos emitidos",
   "voting_elections": "Votaciones",
