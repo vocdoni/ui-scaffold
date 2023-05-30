@@ -96,11 +96,10 @@ export const ProcessCreateForm = () => {
     methods.setValue(`addresses.${0}.address`, address)
   }, [address, methods])
 
-  const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
     setError('')
     setSending(true)
     try {
-      await client.createAccount()
       let census
 
       if (data.weightedVote) census = getWeightedCensus(data.addresses)
@@ -152,8 +151,8 @@ export const ProcessCreateForm = () => {
       <Flex as='form' direction='column' gap={4} onSubmit={methods.handleSubmit(onSubmit)}>
         <CreateProcessHeader />
         <CreateProcessSettings />
-        <CreateProcessAddresses />
         <CreateProcessQuestions />
+        <CreateProcessAddresses />
         {error.length > 0 && (
           <Alert status='error'>
             <AlertIcon />

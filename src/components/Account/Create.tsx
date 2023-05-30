@@ -23,7 +23,7 @@ interface FormFields {
   description: string
 }
 
-export const AccountCreate = () => {
+export const AccountCreate = ({ existsHandler }: { existsHandler?: () => void }) => {
   const {
     register,
     handleSubmit,
@@ -52,6 +52,7 @@ export const AccountCreate = () => {
     setLoading(true)
     try {
       await createAccount(new Account(values))
+      typeof existsHandler === 'function' && existsHandler()
     } catch (e: any) {
       // TODO remove after refactor when errors are managed via the client
       if (typeof e === 'string') {
@@ -68,7 +69,16 @@ export const AccountCreate = () => {
   }
 
   return (
-    <Flex as='form' direction='column' onSubmit={handleSubmit(onSubmit)} gap={3}>
+    <Flex
+      as='form'
+      direction='column'
+      onSubmit={(e) => {
+        e.stopPropagation()
+        e.preventDefault()
+        handleSubmit(onSubmit)(e)
+      }}
+      gap={3}
+    >
       <FormControl isRequired isInvalid={!!errors.name}>
         <FormLabel>{t('form.account_create.account_name')}</FormLabel>
         <Input type='text' {...register('name', { required, maxLength })} mb={1} />

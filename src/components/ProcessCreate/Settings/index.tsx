@@ -2,7 +2,6 @@ import { Flex, FormControl, FormErrorMessage, FormLabel, Input, Text } from '@ch
 import { MutableRefObject, useRef } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import WrapperFormSection from '../WrapperFormSection'
 import Advanced from './Advanced'
 import Autostart from './Autostart'
 
@@ -37,46 +36,44 @@ const CreateProcessSettings = () => {
   }
 
   return (
-    <WrapperFormSection>
-      <Flex direction='column' gap={4}>
-        <Text as='legend' fontSize='1.3em'>
-          {t('form.process_create.settings')}
-        </Text>
-        <Autostart />
-        {!getValues().electionType.autoStart && (
-          <FormControl isInvalid={!!errors.startDate}>
-            <FormLabel whiteSpace='nowrap'>{t('form.process_create.date_start')}</FormLabel>
-            <Input
-              type='date'
-              {...register(`startDate`, {
-                required,
-              })}
-              ref={(e) => {
-                startRef(e)
-                startDateRef.current = e
-              }}
-              onClick={() => showPicker(startDateRef)}
-            />
-
-            <FormErrorMessage>{errors.startDate?.message?.toString()}</FormErrorMessage>
-          </FormControl>
-        )}
-        <FormControl isInvalid={!!errors.endDate}>
-          <FormLabel>{t('form.process_create.date_end')}</FormLabel>
+    <Flex direction='column' gap={4}>
+      <Text as='legend' fontSize='1.3em'>
+        {t('form.process_create.settings')}
+      </Text>
+      <Autostart />
+      {!getValues().electionType.autoStart && (
+        <FormControl isInvalid={!!errors.startDate}>
+          <FormLabel whiteSpace='nowrap'>{t('form.process_create.date_start')}</FormLabel>
           <Input
             type='date'
-            {...register(`endDate`, { required })}
+            {...register(`startDate`, {
+              required,
+            })}
             ref={(e) => {
-              endRef(e)
-              endDateRef.current = e
+              startRef(e)
+              startDateRef.current = e
             }}
-            onClick={() => showPicker(endDateRef)}
+            onClick={() => showPicker(startDateRef)}
           />
-          <FormErrorMessage>{errors.endDate?.message?.toString()}</FormErrorMessage>
+
+          <FormErrorMessage>{errors.startDate?.message?.toString()}</FormErrorMessage>
         </FormControl>
-        <Advanced />
-      </Flex>
-    </WrapperFormSection>
+      )}
+      <FormControl isInvalid={!!errors.endDate}>
+        <FormLabel>{t('form.process_create.date_end')}</FormLabel>
+        <Input
+          type='date'
+          {...register(`endDate`, { required })}
+          ref={(e) => {
+            endRef(e)
+            endDateRef.current = e
+          }}
+          onClick={() => showPicker(endDateRef)}
+        />
+        <FormErrorMessage>{errors.endDate?.message?.toString()}</FormErrorMessage>
+      </FormControl>
+      <Advanced />
+    </Flex>
   )
 }
 
