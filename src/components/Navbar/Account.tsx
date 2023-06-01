@@ -1,14 +1,17 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { Balance } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import { BiChevronDown, BiLogOut } from 'react-icons/bi'
 import { useAccount, useDisconnect } from 'wagmi'
+import { useAccountHealthTools } from '../Account/use-account-health-tools'
 
 const addressTextOverflow = (address: string) =>
   `${address.substring(0, 6)}...${address.substring(address.length - 4, address.length)}`
 
 export const Account = () => {
   const { isConnected, address } = useAccount()
+  const { exists } = useAccountHealthTools()
   const { disconnect } = useDisconnect()
   const { t } = useTranslation()
 
@@ -22,6 +25,11 @@ export const Account = () => {
         {addressTextOverflow(address as string)}
       </MenuButton>
       <MenuList>
+        {isConnected && exists && (
+          <MenuItem>
+            <Balance />
+          </MenuItem>
+        )}
         <MenuItem icon={<BiLogOut />} onClick={() => disconnect()}>
           {t('logout')}
         </MenuItem>
