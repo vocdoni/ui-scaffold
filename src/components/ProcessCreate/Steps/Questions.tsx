@@ -1,31 +1,32 @@
 import { Box } from '@chakra-ui/react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { useProcessCreationSteps } from '.'
-import CreateProcessMeta from '../Meta'
-import CreateProcessSettings from '../Settings'
+import CreateProcessQuestions from '../Questions'
 import { StepsNavigation } from './Navigation'
 
-export interface InfoValues {
-  title: string
-  description: string
-  endDate: Date
-  startDate: Date
-  electionType: {
-    autoStart: boolean
-    interruptible: boolean
-    secretUntilTheEnd: boolean
-  }
-  maxVoteOverwrites: number
-  weightedVote: boolean
+export interface Option {
+  option: string
 }
 
-export const Info = () => {
+export interface Question {
+  title: string
+  description: string
+  options: Option[]
+}
+
+export interface QuestionsValues {
+  questions: Question[]
+}
+
+export const Questions = () => {
   const { form, setForm, next } = useProcessCreationSteps()
-  const methods = useForm<InfoValues>({
-    defaultValues: form,
+  const methods = useForm<QuestionsValues>({
+    defaultValues: {
+      questions: form.questions,
+    },
   })
 
-  const onSubmit: SubmitHandler<InfoValues> = (data) => {
+  const onSubmit: SubmitHandler<QuestionsValues> = (data) => {
     setForm({ ...form, ...data })
     next()
   }
@@ -33,8 +34,7 @@ export const Info = () => {
   return (
     <FormProvider {...methods}>
       <Box as='form' onSubmit={methods.handleSubmit(onSubmit)}>
-        <CreateProcessMeta />
-        <CreateProcessSettings />
+        <CreateProcessQuestions />
         <StepsNavigation />
       </Box>
     </FormProvider>

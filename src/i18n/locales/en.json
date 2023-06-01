@@ -3,12 +3,10 @@
   "aside": {
     "connect_and_vote": "Connect and vote on your favorite proposals",
     "connect_to_vote": "Connect to vote",
-    "connect_your_wallet": "Connect your wallet to view the status of the proposal...",
     "has_already_voted": "You have already voted",
     "is_able_to_vote": "Connected. You are elegible for voting",
     "is_not_in_census": "You are not in census",
     "overwrite_votes_left": "You can correct your vote up to {{ left }} times.",
-    "proposers": "Proposers",
     "verify_vote_on_explorer": "Verify vote on explorer",
     "voters": "Voters"
   },
@@ -49,6 +47,9 @@
       "voted_title": "Your vote was successfully cast!"
     }
   },
+  "census_type": {
+    "web3": ""
+  },
   "copy": {
     "address": "Copy address",
     "copied_title": "Copied!"
@@ -85,10 +86,21 @@
       "addresses_title": "Addresses",
       "advanced_settings": "Advanced settings",
       "autostart": "Autostart",
+      "confirm": {
+        "adding_census": "Adding the census...",
+        "completed": "Completed",
+        "creating": "Creating the process...",
+        "submitting": "Submitting to the blockchain...",
+        "validating": "Validating all data..."
+      },
+      "creating_process": "Creating process...",
       "date_end": "End date:",
       "date_start": "Start date:",
+      "do_not_close": "This action can take some time, don't close this tab",
       "interruptible": "Interruptible",
       "max_vote_overwrites": "Max. overwrites per vote",
+      "next_step": "Next »",
+      "previous_step": "« Previous",
       "process_description": "Description",
       "process_description_placeholder": "A thoroughly detailed description",
       "process_title": "Title",
@@ -98,8 +110,16 @@
       "question_placeholder": "Question {{ num }} title",
       "question_title": "Title",
       "questions_title": "Questions",
+      "running_checks": "Running required checks, please wait...",
       "secret_until_the_end": "Secret until the end",
       "settings": "Election settings",
+      "steps": {
+        "census": "Census",
+        "checks": "Checks",
+        "confirm": "Confirm",
+        "info": "Info",
+        "questions": "Questions"
+      },
       "submit": "Create process",
       "success_description": "Redirecting you to the election process page...",
       "success_title": "Election process successfully created",

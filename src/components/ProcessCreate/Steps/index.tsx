@@ -11,50 +11,18 @@ import {
   useStepContext,
   useSteps,
 } from '@chakra-ui/react'
-import { PlainCensus, WeightedCensus } from '@vocdoni/sdk'
-import { createContext, PropsWithChildren, useContext } from 'react'
-import { Checks } from './Checks'
-import { Info } from './Info'
+import { createContext, PropsWithChildren, useContext, useState } from 'react'
+import type { RecursivePartial } from '../../../constants'
+import { CensusValues } from './Census'
+import { CensusWeb3Values } from './CensusWeb3'
+import { InfoValues } from './Info'
+import { QuestionsValues } from './Questions'
+import { useStepContents } from './use-step-contents'
 
-interface FormValues {
-  title: string
-  description: string
-  endDate: Date
-  startDate: Date
-  electionType: {
-    autoStart: boolean
-    interruptible: boolean
-    secretUntilTheEnd: boolean
-  }
-  maxVoteOverwrites: number
-  weightedVote: boolean
-  addresses: Address[]
-  questions: Question[]
-}
-
-interface Question {
-  title: string
-  description: string
-  options: Option[]
-}
-
-interface Option {
-  option: string
-}
-
-interface Address {
-  address: string
-  weight: number
-}
+interface FormValues extends InfoValues, QuestionsValues, CensusValues, CensusWeb3Values {}
 
 const Steps = () => {
-  const steps = [
-    { title: 'Checks', Contents: Checks },
-    { title: 'Info', Contents: Info },
-    { title: 'Questions', Contents: Box },
-    { title: 'Census', Contents: Box },
-    { title: 'Review & Create', Contents: Box },
-  ]
+  const steps = useStepContents()
 
   const { activeStep, setActiveStep } = useSteps({
     index: 0,
@@ -75,7 +43,12 @@ const Steps = () => {
           </Step>
         ))}
       </Stepper>
-      <StepperForm steps={steps} activeStep={activeStep} next={() => setActiveStep(activeStep + 1)} />
+      <StepperForm
+        steps={steps}
+        activeStep={activeStep}
+        next={() => setActiveStep(activeStep + 1)}
+        prev={() => setActiveStep(activeStep - 1)}
+      />
     </Flex>
   )
 }
@@ -88,9 +61,11 @@ interface StepsState {
 
 interface StepsContextState {
   activeStep: number
+  form: FormValues
   next: () => void
+  prev: () => void
+  setForm: (vals: FormValues) => void
   steps: StepsState[]
-  // form: FormValues
 }
 
 const StepsContext = createContext<StepsContextState | undefined>(undefined)
@@ -106,8 +81,29 @@ export const useProcessCreationSteps = () => {
   return ctxt
 }
 
-const StepperForm = ({ steps, children, activeStep, next }: PropsWithChildren<StepsContextState>) => {
-  const value = { steps, activeStep, next }
+type StepperFormProps = PropsWithChildren<Omit<StepsContextState, 'form' | 'setForm'>>
+
+const StepperForm = ({ steps, children, activeStep, next, prev }: StepperFormProps) => {
+  const [form, setForm] = useState<RecursivePartial<FormValues>>({
+    electionType: {
+      autoStart: false,
+      interruptible: true,
+      secretUntilTheEnd: true,
+    },
+    maxVoteOverwrites: 0,
+    weightedVote: false,
+    questions: [{ options: [{}, {}] }],
+    addresses: [{}],
+    censusType: 'web3',
+  })
+  const value: StepsContextState = {
+    activeStep,
+    form: form as FormValues,
+    next,
+    prev,
+    setForm,
+    steps,
+  }
 
   return (
     <StepsContext.Provider value={value}>
@@ -129,31 +125,11 @@ export type StepContentsProps = {}
 export type StepProps = Partial<StepContentsProps>
 
 const StepContents = ({ children }: PropsWithChildren<StepContentsProps>) => {
-  const { status, isFirst, isLast } = useStepContext()
-  const { next } = useProcessCreationSteps()
+  const { status } = useStepContext()
 
   if (status !== 'active') {
     return null
   }
 
   return <Box flex='1'>{children}</Box>
-}
-
-export const getPlainCensus = (addresses: string[]) => {
-  const census = new PlainCensus()
-  census.add(addresses)
-
-  return census
-}
-export const getWeightedCensus = (addresses: Address[]) => {
-  const census = new WeightedCensus()
-
-  addresses.forEach((add: Address) => {
-    census.add({
-      key: add.address,
-      weight: BigInt(add.weight),
-    })
-  })
-
-  return census
 }

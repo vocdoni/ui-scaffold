@@ -6,8 +6,8 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { useAccount } from 'wagmi'
-import CreateProcessAddresses from './Addresses'
-import CreateProcessHeader from './Header'
+import { CensusWeb3Addresses } from './Census/Web3'
+import CreateProcessMeta from './Meta'
 import CreateProcessQuestions from './Questions'
 import CreateProcessSettings from './Settings'
 
@@ -149,10 +149,10 @@ export const ProcessCreateForm = () => {
   return (
     <FormProvider {...methods}>
       <Flex as='form' direction='column' gap={4} onSubmit={methods.handleSubmit(onSubmit)}>
-        <CreateProcessHeader />
+        <CreateProcessMeta />
         <CreateProcessSettings />
         <CreateProcessQuestions />
-        <CreateProcessAddresses />
+        <CensusWeb3Addresses />
         {error.length > 0 && (
           <Alert status='error'>
             <AlertIcon />

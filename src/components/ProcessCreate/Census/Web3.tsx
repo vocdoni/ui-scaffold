@@ -1,6 +1,8 @@
-import { DeleteIcon } from '@chakra-ui/icons'
-import { Flex, FormControl, FormErrorMessage, FormLabel, IconButton, Input } from '@chakra-ui/react'
-import { UseFieldArrayRemove, useFormContext } from 'react-hook-form'
+import { AddIcon, DeleteIcon } from '@chakra-ui/icons'
+import { Flex, FormControl, FormErrorMessage, FormLabel, HStack, IconButton, Input, Text } from '@chakra-ui/react'
+import { enforceHexPrefix, useClient } from '@vocdoni/chakra-components'
+import { useEffect } from 'react'
+import { useFieldArray, UseFieldArrayRemove, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { fieldMapErrorMessage, isInvalidFieldMap } from '../../../constants'
 
@@ -9,7 +11,43 @@ interface Props {
   remove: UseFieldArrayRemove
 }
 
-const AddressForm = ({ index, remove }: Props) => {
+export const CensusWeb3Addresses = () => {
+  const { account } = useClient()
+  const { setValue } = useFormContext()
+  const { fields, append, remove } = useFieldArray({
+    name: 'addresses',
+  })
+  const { t } = useTranslation()
+
+  // fill account address to the census first address field
+  useEffect(() => {
+    if (!account?.address) return
+    setValue(`addresses.${0}.address`, enforceHexPrefix(account.address))
+  }, [account?.address, setValue])
+
+  return (
+    <>
+      <HStack justify='space-between' mb={2}>
+        <Text as='legend' fontSize='1.3em'>
+          {t('form.process_create.addresses_title')}
+        </Text>
+        <IconButton
+          ml='auto'
+          size='sm'
+          type='button'
+          icon={<AddIcon />}
+          aria-label='addresses'
+          onClick={() => append({ address: '', weight: 0 })}
+        />
+      </HStack>
+      {fields.map((_, index: number) => (
+        <CensusWeb3Address key={index} index={index} remove={remove} />
+      ))}
+    </>
+  )
+}
+
+export const CensusWeb3Address = ({ index, remove }: Props) => {
   const { t } = useTranslation()
   const rowTitle = (index: number) => t('form.process_create.address_title', { num: index + 1 })
   const {
@@ -62,5 +100,3 @@ const AddressForm = ({ index, remove }: Props) => {
     </>
   )
 }
-
-export default AddressForm
