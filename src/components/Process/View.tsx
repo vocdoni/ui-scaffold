@@ -20,7 +20,6 @@ export const ProcessView = () => {
     if (election?.status === ElectionStatus.RESULTS) setTabIndex(1)
   }, [election])
 
-  console.log(election)
   return (
     <>
       <Header />

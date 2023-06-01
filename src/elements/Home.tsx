@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction, useContext, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { SearchInputContext } from '../Providers'
+import Banner from '../components/Home/Banner'
 import Counters from '../components/Home/Counters'
 import OrganizationCard, { CardOrgContents } from '../components/Organization/Card'
 import ProcessCardLite, { CardPrImgContents } from '../components/Process/CardLite'
@@ -193,6 +194,7 @@ const Home = () => {
 
   return (
     <Box>
+      <Banner />
       <Box ref={searchRef} width={{ base: '90%', sm: '80%', md: '70%', lg: 124 }} mx='auto' mb={8}>
         <SearchInput />
       </Box>
