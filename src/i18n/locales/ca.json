@@ -3,12 +3,10 @@
   "aside": {
     "connect_and_vote": "",
     "connect_to_vote": "Connecta't per votar",
-    "connect_your_wallet": "Connecteu la vostra cartera per veure l'estat de la proposta...",
     "has_already_voted": "",
     "is_able_to_vote": "Connectat. Estàs en el cens",
     "is_not_in_census": "",
     "overwrite_votes_left": "",
-    "proposers": "Propòsits",
     "verify_vote_on_explorer": "",
     "voters": "Votants"
   },
@@ -49,6 +47,9 @@
       "voted_title": ""
     }
   },
+  "census_type": {
+    "web3": ""
+  },
   "copy": {
     "address": "",
     "copied_title": ""
@@ -85,10 +86,21 @@
       "addresses_title": "",
       "advanced_settings": "",
       "autostart": "",
+      "confirm": {
+        "adding_census": "",
+        "completed": "",
+        "creating": "",
+        "submitting": "",
+        "validating": ""
+      },
+      "creating_process": "",
       "date_end": "",
       "date_start": "",
+      "do_not_close": "",
       "interruptible": "",
       "max_vote_overwrites": "",
+      "next_step": "",
+      "previous_step": "",
       "process_description": "",
       "process_description_placeholder": "",
       "process_title": "",
@@ -98,8 +110,16 @@
       "question_placeholder": "",
       "question_title": "",
       "questions_title": "",
+      "running_checks": "",
       "secret_until_the_end": "",
       "settings": "",
+      "steps": {
+        "census": "",
+        "checks": "",
+        "confirm": "",
+        "info": "",
+        "questions": ""
+      },
       "submit": "",
       "success_description": "",
       "success_title": "",

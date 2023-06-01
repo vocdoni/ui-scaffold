@@ -2,7 +2,7 @@ import { Box, FormControl, FormErrorMessage, FormLabel, Input, Textarea } from '
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
-const CreateProcessHeader = () => {
+const CreateProcessMeta = () => {
   const {
     register,
     formState: { errors },
@@ -38,4 +38,4 @@ const CreateProcessHeader = () => {
   )
 }
 
-export default CreateProcessHeader
+export default CreateProcessMeta
