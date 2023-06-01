@@ -10,6 +10,12 @@
     "votes": "Vots realitzats fins ara!",
     "votes_submited": "Vots enviats"
   },
+  "banner": {
+    "know_more": "Coneix més",
+    "start_now": "Comença ara!",
+    "subtitle": "Votar per a DAOs i comunitats Web3",
+    "title": "Utilitza adreces de cartera, vota amb un token ERC20 o amb NFTs!"
+  },
   "cc": {
     "actions": {
       "cancel": "Cancel·la el procés immediatament, no permetent nous vots i sense comptabilitzar cap resultat (precaució: no es pot revertir)",

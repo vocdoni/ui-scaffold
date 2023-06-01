@@ -1,6 +1,8 @@
 import { Box, Button, Flex, Image, Text } from '@chakra-ui/react'
+import { useTranslation } from 'react-i18next'
 
 const Banner = () => {
+  const { t } = useTranslation()
   return (
     <Box
       px={{ base: 5, sm: 7, md: 8 }}
@@ -36,7 +38,7 @@ const Banner = () => {
           textShadow='1px 2px 4px rgba(2,2,2,0.8)'
           textAlign={{ base: 'center', xl: 'start' }}
         >
-          Voting for DAOs &amp; Web3 communities
+          {t('banner.subtitle')}
         </Text>
       </Flex>
       <Text
@@ -46,7 +48,7 @@ const Banner = () => {
         textShadow='1px 2px 4px rgba(0,0,0,0.8)'
         textAlign={{ base: 'center', xl: 'start' }}
       >
-        Use <strong>wallet addresses</strong>, vote with a <strong>ERC20 token</strong> or with <strong>NFTs</strong>!
+        {t('banner.title')}
       </Text>
       <Flex
         flexDirection={{ base: 'column', sm: 'row' }}
@@ -62,7 +64,7 @@ const Banner = () => {
           borderRadius='12px'
           fontWeight='600'
         >
-          Know more
+          {t('banner.know_more')}
         </Button>
         <Button
           background='linear-gradient(to left, rgb(149, 38, 252), rgb(46, 211, 191));border:2px solid #000'
@@ -70,7 +72,7 @@ const Banner = () => {
           borderRadius='12px'
           fontWeight='900'
         >
-          Start now!
+          {t('banner.start_now')}
         </Button>
       </Flex>
       <Image

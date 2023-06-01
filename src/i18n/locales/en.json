@@ -10,6 +10,12 @@
     "votes": "Votes cast so far!",
     "votes_submited": "Votes submitted"
   },
+  "banner": {
+    "know_more": "Know more",
+    "start_now": "Start now!",
+    "subtitle": "Voting for DAOs & Web3 communities",
+    "title": "Use wallet addresses, vote with a ERC20 token or with NFTs!"
+  },
   "cc": {
     "actions": {
       "cancel": "Cancel the process immediately, not allowing new votes and not counting any results (caution: it cannot be reverted)",

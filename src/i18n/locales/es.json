@@ -1,14 +1,20 @@
 {
-  "alt_image": "",
+  "alt_image": "Imagen {{ img }}",
   "aside": {
-    "has_already_voted": "",
+    "has_already_voted": "Ya has votado",
     "is_able_to_vote": "Conectado. Estás en el censo.",
-    "is_not_in_census": "",
-    "not_connected": "",
-    "overwrite_votes_left": "",
-    "verify_vote_on_explorer": "",
-    "votes": "",
-    "votes_submited": ""
+    "is_not_in_census": "No estás en el censo",
+    "not_connected": "No estás conectado",
+    "overwrite_votes_left": "Puedes corregir tu voto hasta {{ left }} veces",
+    "verify_vote_on_explorer": "Verifica el voto en el explorador",
+    "votes": "¡Votos emitidos hasta ahora!",
+    "votes_submited": "Votos enviados"
+  },
+  "banner": {
+    "know_more": "Conoce más",
+    "start_now": "¡Empieza ahora!",
+    "subtitle": "Votar para DAOs y comunidades Web3",
+    "title": "¡Utiliza direcciones de cartera, vota con un token ERC20 o con NFTs!"
   },
   "cc": {
     "actions": {
