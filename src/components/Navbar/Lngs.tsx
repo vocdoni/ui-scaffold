@@ -1,6 +1,6 @@
 import { Button, ListItem } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import { FaGlobe } from 'react-icons/fa'
+import { FaGlobeAmericas } from 'react-icons/fa'
 import { LanguagesSlice } from '../../i18n/languages.mjs'
 
 const LanguagesList = () => {
@@ -10,8 +10,8 @@ const LanguagesList = () => {
 
   return (
     <>
-      <ListItem display='flex' justifyContent='end' pt={4} pb={2} mr={{ base: 4, lg: 0 }}>
-        <FaGlobe />
+      <ListItem display={{ base: 'flex', lg: 'none' }} justifyContent='end' pt={4} pb={2} mr={{ base: 4, lg: 0 }}>
+        <FaGlobeAmericas />
       </ListItem>
       {Object.keys(languages).map((k) => (
         <ListItem

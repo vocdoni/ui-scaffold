@@ -1,6 +1,7 @@
 import { Box, Button, List, ListItem } from '@chakra-ui/react'
 import { useClient } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
+import { BiLogOut } from 'react-icons/bi'
 import { NavLink } from 'react-router-dom'
 import { useAccount, useDisconnect } from 'wagmi'
 import LanguagesList from './Lngs'
@@ -35,7 +36,7 @@ const MenuDropdown = () => {
         <>
           <Box h='1px' w='100%' bgColor='lightgray' />
           <ListItem onClick={() => disconnect()} minW='full'>
-            <Button display='flex' justifyContent='end' variant='dropdown'>
+            <Button leftIcon={<BiLogOut />} display='flex' justifyContent='end' variant='dropdown'>
               {t('menu.disconnect')}
             </Button>
           </ListItem>

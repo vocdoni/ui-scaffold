@@ -3,7 +3,7 @@ import { Button, List, ListItem, Menu, MenuButton, MenuList, Text } from '@chakr
 import { useClient } from '@vocdoni/chakra-components'
 import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FaEllipsisV, FaGlobe } from 'react-icons/fa'
+import { FaEllipsisV, FaGlobeAmericas } from 'react-icons/fa'
 import { NavLink, useLocation } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 import { SearchInputContext } from '../../Providers'
@@ -39,7 +39,7 @@ const NavList = ({ displayFullInput }: Props) => {
               <MenuButton
                 as={Button}
                 sx={{ span: { margin: 'px' } }}
-                leftIcon={<FaGlobe />}
+                leftIcon={<FaGlobeAmericas />}
                 rightIcon={isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
                 p={2}
                 colorScheme='navbar.btn'
