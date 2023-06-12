@@ -1,8 +1,8 @@
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
-import { useProcessCreationSteps } from '.'
 import { CensusType, CensusTypes } from '../Census/TypeSelector'
 import { StepsCensusCSV } from './CensusCsv'
 import { StepsCensusWeb3 } from './CensusWeb3'
+import { useProcessCreationSteps } from './use-steps'
 
 export interface CensusValues {
   censusType: CensusType

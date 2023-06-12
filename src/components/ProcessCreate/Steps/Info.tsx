@@ -1,9 +1,9 @@
 import { Box } from '@chakra-ui/react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
-import { useProcessCreationSteps } from '.'
 import CreateProcessMeta from '../Meta'
 import CreateProcessSettings from '../Settings'
 import { StepsNavigation } from './Navigation'
+import { useProcessCreationSteps } from './use-steps'
 
 export interface InfoValues {
   title: string

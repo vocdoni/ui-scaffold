@@ -1,8 +1,8 @@
 import { Box } from '@chakra-ui/react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
-import { useProcessCreationSteps } from '.'
 import { CensusWeb3Addresses } from '../Census/Web3'
 import { StepsNavigation } from './Navigation'
+import { useProcessCreationSteps } from './use-steps'
 
 export interface CensusWeb3Values {
   addresses: Web3Address[]
