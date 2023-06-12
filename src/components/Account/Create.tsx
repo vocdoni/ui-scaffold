@@ -23,7 +23,7 @@ interface FormFields {
   description: string
 }
 
-export const AccountCreate = ({ existsHandler }: { existsHandler?: () => void }) => {
+export const AccountCreate = () => {
   const {
     register,
     handleSubmit,
@@ -52,7 +52,6 @@ export const AccountCreate = ({ existsHandler }: { existsHandler?: () => void })
     setLoading(true)
     try {
       await createAccount(new Account(values))
-      typeof existsHandler === 'function' && existsHandler()
     } catch (e: any) {
       // TODO remove after refactor when errors are managed via the client
       if (typeof e === 'string') {

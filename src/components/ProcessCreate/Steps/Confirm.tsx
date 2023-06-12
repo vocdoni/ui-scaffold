@@ -16,10 +16,10 @@ import { Election, IQuestion, PlainCensus, WeightedCensus } from '@vocdoni/sdk'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { useProcessCreationSteps } from '.'
 import { Address } from '../Form'
 import { CreationProgress } from './CreationProgress'
 import { Option } from './Questions'
+import { useProcessCreationSteps } from './use-steps'
 
 export const Confirm = () => {
   const { client } = useClient()
