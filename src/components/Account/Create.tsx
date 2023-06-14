@@ -1,22 +1,10 @@
-import {
-  Alert,
-  AlertIcon,
-  Button,
-  Flex,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Icon,
-  Input,
-  Text,
-  Textarea,
-} from '@chakra-ui/react'
+import { InfoOutlineIcon } from '@chakra-ui/icons'
+import { Alert, AlertIcon, Flex, FormControl, FormErrorMessage, Input, Text, Textarea } from '@chakra-ui/react'
 import { useClient } from '@vocdoni/chakra-components'
 import { Account } from '@vocdoni/sdk'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { FaInfoCircle } from 'react-icons/fa'
 
 interface FormFields {
   name: string
@@ -36,7 +24,6 @@ export const AccountCreate = () => {
   })
   const { createAccount } = useClient()
   const { t } = useTranslation()
-  const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | undefined>()
 
   const required = {
@@ -47,9 +34,12 @@ export const AccountCreate = () => {
     value: 40,
     message: t('form.error.field_is_too_long', { max: 40 }),
   }
+  const maxLengthDescription = {
+    value: 256,
+    message: t('form.error.field_is_too_long', { max: 256 }),
+  }
 
   const onSubmit = async (values: FormFields) => {
-    setLoading(true)
     try {
       await createAccount(new Account(values))
     } catch (e: any) {
@@ -62,38 +52,66 @@ export const AccountCreate = () => {
       }
 
       console.error('uncatched error:', e)
-    } finally {
-      setLoading(false)
     }
   }
 
   return (
     <Flex
       as='form'
+      id='process-create-form'
       direction='column'
+      gap={6}
+      mt={6}
       onSubmit={(e) => {
         e.stopPropagation()
         e.preventDefault()
         handleSubmit(onSubmit)(e)
       }}
-      gap={3}
     >
-      <FormControl isRequired isInvalid={!!errors.name}>
-        <FormLabel>{t('form.account_create.account_name')}</FormLabel>
-        <Input type='text' {...register('name', { required, maxLength })} mb={1} />
+      <FormControl isInvalid={!!errors.name}>
+        <Input
+          type='text'
+          {...register('name', { required, maxLength })}
+          mb={1}
+          placeholder={t('form.account_create.organization_title_placeholder').toString()}
+          _placeholder={{ color: 'process_create.input.color_placeholder' }}
+          fontWeight={700}
+          fontSize='2xl'
+          bgColor='process_create.input.bg'
+        />
         {!!errors.name ? (
           <FormErrorMessage>{errors.name?.message?.toString()}</FormErrorMessage>
         ) : (
-          <Text fontSize='sm' color='gray.400'>
-            <Icon as={FaInfoCircle} mr={1} />
-            {t('form.account_create.account_name_note')}
-          </Text>
+          <Flex alignItems='center' gap={1}>
+            <InfoOutlineIcon boxSize={3} color='process_create.account_name_note_logo' />
+            <Text fontWeight={400} fontSize='xs' color='process_create.account_name_note'>
+              {t('form.account_create.account_name_note')}
+            </Text>
+          </Flex>
         )}
       </FormControl>
+
       <FormControl isInvalid={!!errors.description}>
-        <FormLabel>{t('form.account_create.account_description')}</FormLabel>
-        <Textarea {...register('description')} />
-        <FormErrorMessage>{errors.description?.message?.toString()}</FormErrorMessage>
+        <Textarea
+          {...register('description', { maxLength: maxLengthDescription })}
+          placeholder={t('form.account_create.organization_description_placeholder').toString()}
+          _placeholder={{ color: 'process_create.input.color_placeholder' }}
+          fontWeight={400}
+          fontSize='lg'
+          resize='none'
+          rows={3}
+          bgColor='process_create.input.bg'
+        />
+        {!!errors.description ? (
+          <FormErrorMessage>{errors.description?.message?.toString()}</FormErrorMessage>
+        ) : (
+          <Flex alignItems='center' gap={1}>
+            <InfoOutlineIcon boxSize={3} color='process_create.account_name_note_logo' />
+            <Text fontWeight={400} fontSize='xs' color='process_create.account_name_note'>
+              {t('form.account_create.account_name_note_description')}
+            </Text>
+          </Flex>
+        )}
       </FormControl>
       {error && (
         <Alert>
@@ -101,9 +119,6 @@ export const AccountCreate = () => {
           {error}
         </Alert>
       )}
-      <Button type='submit' isLoading={loading}>
-        {t('form.account_create.button_create')}
-      </Button>
     </Flex>
   )
 }

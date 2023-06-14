@@ -1,57 +1,76 @@
-import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Box,
-  Flex,
-  FormControl,
-  FormLabel,
-  Input,
-} from '@chakra-ui/react'
+import { Checkbox, Flex, FormControl, FormLabel, Radio, RadioGroup, Stack, Text } from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import SettingCheckbox from './Checkbox'
 
 const SettingsAdvanced = () => {
   const { t } = useTranslation()
-  const { register } = useFormContext()
+  const { register, setValue } = useFormContext()
+
+  const [valueRadio, setValueRadio] = useState('1')
+
+  useEffect(() => {
+    if (valueRadio === '1') setValue('electionType.secretUntilTheEnd', false)
+    else setValue('electionType.secretUntilTheEnd', true)
+  }, [valueRadio, setValue])
 
   return (
-    <Accordion allowToggle>
-      <AccordionItem>
-        <AccordionButton>
-          <Box as='span' flex='1' textAlign='left'>
-            {t('form.process_create.advanced_settings')}
-          </Box>
-          <AccordionIcon />
-        </AccordionButton>
-
-        <AccordionPanel pb={4}>
-          <Flex
-            gap={{ base: 6, sm: 3 }}
-            justifyContent='space-between'
-            flexDirection={{ base: 'column', md: 'row' }}
-            alignItems={{ base: 'start', md: 'end' }}
-            mb={3}
-          >
-            <SettingCheckbox label={t('form.process_create.weighted_vote')} field='weightedVote' />
-            <SettingCheckbox label={t('form.process_create.interruptible')} field='electionType.interruptible' />
-            <SettingCheckbox
-              label={t('form.process_create.secret_until_the_end')}
-              field='electionType.secretUntilTheEnd'
-            />
+    <Flex flexDirection='column' gap={2}>
+      <Flex alignItems='center' gap={1}>
+        <Text as='span' fontWeight={700} fontSize='xl'>
+          {t('form.process_create.settings.settings')}
+        </Text>
+        <Text as='span' color='process_create.description' fontSize='xs'>
+          ({t('form.process_create.settings.settings_description')})
+        </Text>
+      </Flex>
+      <RadioGroup onChange={setValueRadio} value={valueRadio} mb={3}>
+        <Stack direction='column'>
+          <Flex flexDirection='column'>
+            <Radio value='1'>
+              <Text as='span' ml={1} fontWeight={700}>
+                {t('form.process_create.settings.real_time')}:
+              </Text>{' '}
+              <Text as='span' ml={1} fontSize='xs' color='process_create.description'>
+                {t('form.process_create.settings.real_time_description')}
+              </Text>
+            </Radio>
           </Flex>
-          <FormControl>
-            <FormLabel pt={2} whiteSpace='nowrap'>
-              {t('form.process_create.max_vote_overwrites')}
-            </FormLabel>
-            <Input w='full' type='number' {...register(`maxVoteOverwrites`)} />
-          </FormControl>
-        </AccordionPanel>
-      </AccordionItem>
-    </Accordion>
+          <Flex flexDirection='column'>
+            <Radio value='2'>
+              <Text as='span' ml={1} fontWeight={700}>
+                {t('form.process_create.settings.secret')}
+              </Text>{' '}
+              <Text as='span' ml={1} fontSize='xs' color='process_create.description'>
+                {t('form.process_create.settings.secret_description')}
+              </Text>
+            </Radio>
+          </Flex>
+        </Stack>
+      </RadioGroup>
+      <FormControl display='flex' alignItems='center'>
+        <Checkbox {...register('voteOverwrites')} />
+        <FormLabel whiteSpace='nowrap' mb='0' ml={3}>
+          <Text as='span' fontSize='xs'>
+            {t('form.process_create.settings.vote_overwrites')}:{' '}
+            <Text as='span' fontSize='xs' fontWeight={400} color='process_create.description'>
+              {t('form.process_create.settings.vote_overwrites_descripton')}
+            </Text>
+          </Text>
+        </FormLabel>
+      </FormControl>
+      <FormControl display='flex' alignItems='center'>
+        <Checkbox {...register('electionType.interruptible')} />
+        <FormLabel whiteSpace='nowrap' mb='0' ml={3}>
+          <Text as='span' fontSize='xs'>
+            {t('form.process_create.settings.interruptible')}:{' '}
+            <Text as='span' fontSize='xs' fontWeight={400} color='process_create.description'>
+              {t('form.process_create.settings.interruptible_description')}
+            </Text>
+          </Text>
+        </FormLabel>
+      </FormControl>
+    </Flex>
   )
 }
 export default SettingsAdvanced

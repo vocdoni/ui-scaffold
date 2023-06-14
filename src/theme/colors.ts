@@ -1,12 +1,21 @@
 export const colorsBase = {
-  lightBlue: '#F2F5FF',
   black: '#000000',
-  blue: '#1752FE',
+  blue: {
+    light2: '#F2F5FF',
+    light: '#B8CEF9',
+    normal: '#0044FF',
+    dark: '#002266',
+  },
   gray: {
-    light: '#E2E8F0',
-    normal: '#718096',
+    light: '#FAFAFA',
+    light2: '#F2F2F2',
+    normal: '#D9D9D9',
+    dark: '#718096',
   },
   grenade: '#961D1D',
+  green: {
+    vcd: '#00DAAE',
+  },
   lightpurple: '#EDE4F4',
   pink: {
     ultralight: '#EA7BDF',
@@ -19,6 +28,10 @@ export const colorsBase = {
 }
 
 export const colors = {
+  alert_info: {
+    color: colorsBase.blue.dark,
+    bg: colorsBase.blue.light,
+  },
   buttons: {
     default: colorsBase.pink.light,
     primary: {
@@ -41,19 +54,19 @@ export const colors = {
     variant: {
       process_info: colorsBase.purple,
       process_description: colorsBase.turquoise,
-      process_image: colorsBase.blue,
+      process_image: colorsBase.blue.normal,
     },
   },
   footer_links: colorsBase.black,
   home: {
-    bg: colorsBase.lightBlue,
+    bg: colorsBase.blue.light2,
   },
 
   input_search: {
     bg: colorsBase.white,
     border: colorsBase.black,
   },
-  link: colorsBase.pink.normal,
+  link: colorsBase.blue.normal,
   navbar: {
     bg: colorsBase.white,
     border: colorsBase.white,
@@ -74,6 +87,37 @@ export const colors = {
     canceled: colorsBase.grenade,
     date: colorsBase.purple,
     secret_until_the_end: colorsBase.purple,
+  },
+
+  process_create: {
+    bg: colorsBase.gray.light,
+    border: colorsBase.gray.normal,
+    btn_vcd: {
+      50: colorsBase.green.vcd,
+      500: colorsBase.green.vcd,
+      600: colorsBase.green.vcd,
+    },
+    btn_white: {
+      50: colorsBase.white,
+      500: colorsBase.white,
+      600: colorsBase.white,
+    },
+    account_name_note: colorsBase.gray.dark,
+    account_name_note_logo: colorsBase.blue.normal,
+    input: {
+      bg: colorsBase.white,
+      color_placeholder: colorsBase.black,
+    },
+    aside_questions_bg: colorsBase.gray.light2,
+    steps: {
+      separator: colorsBase.blue,
+      complete_or_active: {
+        bg: colorsBase.white,
+        border: colorsBase.purple,
+        colors: colorsBase.black,
+        separator: colorsBase.blue.normal,
+      },
+    },
   },
 
   text_error: colorsBase.grenade,

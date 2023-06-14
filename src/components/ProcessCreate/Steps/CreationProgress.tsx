@@ -1,7 +1,6 @@
-import { Box, Flex, Icon, Progress, Stack, Text } from '@chakra-ui/react'
+import { Progress, Stack, Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FaCheckCircle, FaDotCircle } from 'react-icons/fa'
 
 interface CreationProgressProps {
   error: string | null
@@ -39,14 +38,7 @@ export const CreationProgress = ({ error, sending }: CreationProgressProps) => {
     <>
       <Stack direction='column'>
         {!error && <Progress isIndeterminate />}
-        <Stack direction='column'>
-          {steps.map((cstep, index) => (
-            <Flex key={index}>
-              <Box mr={2}>{step < index ? <Icon as={FaDotCircle} /> : <Icon as={FaCheckCircle} />}</Box>
-              <Text>{cstep}</Text>
-            </Flex>
-          ))}
-        </Stack>
+
         {error ? <Text color='red.300'>{error}</Text> : <Text>{t('form.process_create.do_not_close')}</Text>}
       </Stack>
     </>

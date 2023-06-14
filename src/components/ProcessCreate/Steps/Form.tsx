@@ -16,7 +16,7 @@ export const StepsForm = ({ steps, children, activeStep, next, prev }: StepsForm
     maxVoteOverwrites: 0,
     weightedVote: false,
     questions: [{ options: [{}, {}] }],
-    addresses: [{}],
+    addresses: [],
     censusType: 'web3',
   })
   const value: StepsContextState = {
