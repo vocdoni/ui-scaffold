@@ -2,10 +2,10 @@ import {
   Box,
   Flex,
   Step,
-  StepIcon,
   StepIndicator,
   StepNumber,
   Stepper,
+  StepSeparator,
   StepStatus,
   StepTitle,
   useSteps,
@@ -20,17 +20,48 @@ const Steps = () => {
     count: steps.length,
   })
 
+  const getStepSeparatorColor = (stepIndex: any) => {
+    if (stepIndex < activeStep) {
+      return '#00DAAE'
+    }
+  }
+
+  const completeStepStyles = {
+    border: '2px solid',
+    borderColor: '#00DAAE',
+    color: 'white',
+    background: '#00DAAE',
+  }
+  const activeStepStyles = {
+    border: '2px solid',
+    borderColor: '#00DAAE',
+    color: 'black',
+    background: 'white',
+  }
+
+  const getStyles = (index: number) => {
+    if (index < activeStep) return completeStepStyles
+    if (activeStep === index) return activeStepStyles
+
+    return {}
+  }
+
   return (
-    <Flex alignItems='baseline'>
-      <Stepper index={activeStep} orientation='vertical' mr={6}>
+    <Flex alignItems='start'>
+      <Stepper index={activeStep} orientation='vertical' mr={6} my={14} minH='500px' p={2}>
         {steps.map((step, index) => (
           <Step key={index}>
-            <StepIndicator>
-              <StepStatus complete={<StepIcon />} incomplete={<StepNumber />} active={<StepNumber />} />
+            <StepIndicator style={getStyles(index)}>
+              <StepStatus complete={<StepNumber />} incomplete={<StepNumber />} active={<StepNumber />} />
             </StepIndicator>
-            <Box flexShrink='0'>
+            <Box flexShrink='0' mt={1}>
               <StepTitle>{step.title}</StepTitle>
             </Box>
+            <StepSeparator
+              style={{
+                backgroundColor: getStepSeparatorColor(index),
+              }}
+            />
           </Step>
         ))}
       </Stepper>
@@ -43,4 +74,5 @@ const Steps = () => {
     </Flex>
   )
 }
+
 export default Steps

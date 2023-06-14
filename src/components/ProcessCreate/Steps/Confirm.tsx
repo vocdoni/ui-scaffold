@@ -1,6 +1,7 @@
+import { ArrowBackIcon } from '@chakra-ui/icons'
 import {
-  Box,
   Button,
+  Flex,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -80,10 +81,45 @@ export const Confirm = () => {
   }
 
   return (
-    <Box>
-      <Button onClick={prev}>{t('form.process_create.previous_step')}</Button>
-      <Button onClick={create} isLoading={sending}>
-        Confirm!!
+    <Flex justifyContent='space-between' alignItems='end' minH='70vh'>
+      <Button
+        onClick={prev}
+        leftIcon={<ArrowBackIcon />}
+        colorScheme='process_create.btn_white'
+        borderRadius='md'
+        boxShadow='0px 2px 4px gray'
+        width={36}
+        fontWeight={600}
+        fontSize='md'
+        color='black'
+        _hover={{
+          fontSize: 'lg',
+        }}
+        _active={{
+          fontSize: 'md',
+        }}
+      >
+        {t('form.process_create.previous_step')}
+      </Button>
+
+      <Button
+        onClick={create}
+        isLoading={sending}
+        ml='auto'
+        colorScheme='process_create.btn_vcd'
+        borderRadius='md'
+        boxShadow='0px 2px 4px gray'
+        width={36}
+        fontWeight={600}
+        fontSize='md'
+        _hover={{
+          fontSize: 'lg',
+        }}
+        _active={{
+          fontSize: 'md',
+        }}
+      >
+        {t('form.process_create.create')}
       </Button>
       <Modal isOpen={isOpen} onClose={onClose} closeOnEsc={!!error}>
         <ModalOverlay />
@@ -93,7 +129,6 @@ export const Confirm = () => {
           <ModalBody>
             <CreationProgress error={error} sending={sending} />
           </ModalBody>
-
           {error && (
             <ModalFooter>
               <Button colorScheme='blue' mr={3} onClick={onClose}>
@@ -103,7 +138,7 @@ export const Confirm = () => {
           )}
         </ModalContent>
       </Modal>
-    </Box>
+    </Flex>
   )
 }
 
