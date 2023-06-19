@@ -3,8 +3,7 @@
 # dependencies
 /node_modules
 /.pnp
-.yarn
-.yarnrc.yml
+.yarn*
 .pnp.js
 
 # testing
