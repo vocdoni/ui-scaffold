@@ -5833,9 +5833,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vocdoni/chakra-components@npm:^0.2.3":
-  version: 0.2.3
-  resolution: "@vocdoni/chakra-components@npm:0.2.3"
+"@vocdoni/chakra-components@npm:^0.2.6":
+  version: 0.2.6
+  resolution: "@vocdoni/chakra-components@npm:0.2.6"
+  dependencies:
+    "@vocdoni/sdk": ^0.0.13
+    date-fns: ^2.29.3
+    react-hook-form: ^7.43.8
+    react-icons: ^4.8.0
+    react-markdown: ^8.0.6
+    react-string-replace: ^1.1.0
+    remark-gfm: ^3.0.1
+    ts-deepmerge: ^6.0.3
   peerDependencies:
     "@chakra-ui/alert": ^2.0.18
     "@chakra-ui/button": ^2.0.18
@@ -5850,12 +5859,12 @@ __metadata:
     "@chakra-ui/tag": ^3.0.0
     "@chakra-ui/theme": ^3.0.0
     "@chakra-ui/toast": ^6.1.1
-    "@vocdoni/sdk": ">= 0.0.10"
+    "@vocdoni/sdk": ">= 0.0.13"
     react: ">= 16.8.0"
     react-dom: ">= 16.8.0"
     react-markdown: ">= 8.0.0"
     remark-gfm: ">= 2.0.0"
-  checksum: 5ba9b8c273979c6d6b4cb9acf40dde653c8ad25c7f0cd97f8cdb9a1e9c1fd66a4d617b936fc0b910e427a18fa185d5926284e90fb5c08a55a7aef448657a547e
+  checksum: 7eca7bbe9110779edddd5216e68850a452e20e0f4620f2376b20242f1d564d62551c17769f28edcc7e5cbbbd521969d6956eeb71922eb7092d24e6d7350cb1f3
   languageName: node
   linkType: hard
 
@@ -5869,9 +5878,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vocdoni/sdk@npm:0.0.12":
-  version: 0.0.12
-  resolution: "@vocdoni/sdk@npm:0.0.12"
+"@vocdoni/sdk@npm:0.0.14":
+  version: 0.0.14
+  resolution: "@vocdoni/sdk@npm:0.0.14"
   dependencies:
     "@ethersproject/abstract-signer": ^5.7.0
     "@ethersproject/address": ^5.7.0
@@ -5889,7 +5898,31 @@ __metadata:
     tiny-invariant: ^1.3.1
     tweetnacl: ^1.0.3
     yup: ^0.32.11
-  checksum: 3f603ab756c20205aefb7d51f029418264513ac30996bd7d2276177887f0ee8f7217860215c26a73902ab9e7f7a6c52a7ba0aaa67dccf5df01873d54a65436e9
+  checksum: 4eb9aa56d591f349da36274c104a1a67df53891446d3c3caf605f4bf73f3b6956a23518ee74acbf2e44dfb3aea00c4d3c4a37ae7e81e55cd0d1fb851694db9c0
+  languageName: node
+  linkType: hard
+
+"@vocdoni/sdk@npm:^0.0.13":
+  version: 0.0.13
+  resolution: "@vocdoni/sdk@npm:0.0.13"
+  dependencies:
+    "@ethersproject/abstract-signer": ^5.7.0
+    "@ethersproject/address": ^5.7.0
+    "@ethersproject/bytes": ^5.7.0
+    "@ethersproject/keccak256": ^5.7.0
+    "@ethersproject/providers": ^5.7.1
+    "@ethersproject/signing-key": ^5.7.0
+    "@ethersproject/wallet": ^5.7.0
+    "@size-limit/file": ^8.2.4
+    "@vocdoni/proto": 1.14.1
+    axios: 0.27.2
+    blakejs: ^1.2.1
+    blindsecp256k1: ^0.0.9
+    iso-language-codes: ^1.1.0
+    tiny-invariant: ^1.3.1
+    tweetnacl: ^1.0.3
+    yup: ^0.32.11
+  checksum: 6e26070a5fd162fb12e866bc3300fbe2f162ab9553cb3a638ae4e8155640dc16f77d722c1cc995eb1de2e899bfb1c83c2d8618eb40de75efb3fe338368952959
   languageName: node
   linkType: hard
 
@@ -5914,8 +5947,8 @@ __metadata:
     "@types/react": ^18.0.30
     "@types/react-dom": ^18.0.4
     "@types/react-router-dom": ^5.3.3
-    "@vocdoni/chakra-components": ^0.2.3
-    "@vocdoni/sdk": 0.0.12
+    "@vocdoni/chakra-components": ^0.2.6
+    "@vocdoni/sdk": 0.0.14
     date-fns: ^2.29.3
     ethers: ^5.7.2
     framer-motion: ^10.9.2
@@ -16663,6 +16696,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-string-replace@npm:^1.1.0":
+  version: 1.1.1
+  resolution: "react-string-replace@npm:1.1.1"
+  checksum: fd5058bbb3953f4bb2daa7012630a154c6109e3e848f93925e146710cebf527647a7c1496c89ca0b5d9e4b4f8ffd5c55ca631539095039faaba0a7ba3787e7cb
+  languageName: node
+  linkType: hard
+
 "react-style-singleton@npm:^2.2.1":
   version: 2.2.1
   resolution: "react-style-singleton@npm:2.2.1"
@@ -18574,6 +18614,13 @@ __metadata:
   version: 1.0.1
   resolution: "tryer@npm:1.0.1"
   checksum: 1cf14d7f67c79613f054b569bfc9a89c7020d331573a812dfcf7437244e8f8e6eb6893b210cbd9cc217f67c1d72617f89793df231e4fe7d53634ed91cf3a89d1
+  languageName: node
+  linkType: hard
+
+"ts-deepmerge@npm:^6.0.3":
+  version: 6.0.3
+  resolution: "ts-deepmerge@npm:6.0.3"
+  checksum: 188120aac49a2d1bc0ef1a54365b01d0b720351cdd0e28cbb98dadcdd0cf8a65e0412154c66e08d87974471a24d559d384a1e49d7b4bcca7d22c826ffcf6690f
   languageName: node
   linkType: hard
 

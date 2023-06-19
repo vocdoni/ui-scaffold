@@ -1,14 +1,7 @@
 import { useClient } from '@vocdoni/chakra-components'
-import { useEffect } from 'react'
 
 export const useAccountHealthTools = () => {
-  const { account, balance, fetchAccount } = useClient()
-
-  useEffect(() => {
-    if (typeof account !== 'undefined') return
-
-    fetchAccount()
-  }, [account, fetchAccount])
+  const { account, balance } = useClient()
 
   const exists = typeof account !== 'undefined'
   const isHealthy = exists && balance > 0
