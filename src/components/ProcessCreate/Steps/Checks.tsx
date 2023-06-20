@@ -50,8 +50,8 @@ const NeedsAccount = () => {
           <AlertIcon />
           <Flex flexDirection='column'>
             <AlertTitle>
-              <Text>Info</Text>
-              <Text>{t('form.process_create.unhealthy_account')}</Text>
+              <Text as='span'>Info</Text>
+              {t('form.process_create.unhealthy_account')}
             </AlertTitle>
           </Flex>
         </Alert>
