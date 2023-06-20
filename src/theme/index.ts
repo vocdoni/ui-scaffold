@@ -9,6 +9,8 @@ import { Questions } from './components/Questions'
 import { space } from './space'
 import { Stepper } from './components/Stepper'
 import { Alert } from './components/Alert'
+import { Input } from './components/Input'
+import { Textarea } from './components/Textarea'
 
 export const theme = extendTheme(vtheme, {
   styles: {
@@ -26,8 +28,10 @@ export const theme = extendTheme(vtheme, {
     Alert,
     Button,
     Card,
+    Input,
     Questions,
     Link,
+    Textarea,
     Stepper,
   },
 })

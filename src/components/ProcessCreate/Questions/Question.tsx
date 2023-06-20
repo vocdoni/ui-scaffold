@@ -37,10 +37,7 @@ const Question = ({ index, remove }: Props) => {
             })}
             placeholder={t('form.process_create.question.title_placeholder').toString()}
             mb={1}
-            fontWeight={700}
-            fontSize='xl'
-            bgColor='process_create.input.bg'
-            _placeholder={{ color: 'black' }}
+            size='lg'
           />
           <FormErrorMessage>{fieldMapErrorMessage(errors, `questions.${index}.title`)}</FormErrorMessage>
         </FormControl>
@@ -48,13 +45,7 @@ const Question = ({ index, remove }: Props) => {
           <Textarea
             {...register(`questions.${index}.description`)}
             placeholder={t('form.process_create.question.description_placeholder').toString()}
-            resize='none'
-            rows={2}
             mb={1}
-            fontSize='md'
-            fontWeight={400}
-            bgColor='process_create.input.bg'
-            _placeholder={{ color: 'black', fontStyle: 'italic' }}
           />
         </FormControl>
       </Box>

@@ -25,10 +25,7 @@ const CreateProcessMeta = () => {
         <Input
           {...register('title', { required, maxLength })}
           placeholder={t('form.process_create.process_title_placeholder').toString()}
-          _placeholder={{ color: 'process_create.input.color_placeholder' }}
-          fontWeight={700}
-          fontSize='2xl'
-          bgColor='process_create.input.bg'
+          size='lg'
         />
         {!!errors.title ? (
           <FormErrorMessage fontWeight={400} fontSize='xs'>
@@ -48,12 +45,7 @@ const CreateProcessMeta = () => {
         <Textarea
           {...register('description', { maxLength })}
           placeholder={t('form.process_create.process_description_placeholder').toString()}
-          _placeholder={{ color: 'process_create.input.color_placeholder' }}
-          fontWeight={400}
-          fontSize='lg'
-          resize='none'
-          rows={2}
-          bgColor='process_create.input.bg'
+          variant='outline'
         />
         {!!errors.description ? (
           <FormErrorMessage fontWeight={400} fontSize='xs'>

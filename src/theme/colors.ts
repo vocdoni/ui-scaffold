@@ -66,6 +66,10 @@ export const colors = {
     bg: colorsBase.white,
     border: colorsBase.black,
   },
+  input: {
+    bg: colorsBase.white,
+    placeholder_color: colorsBase.gray.normal,
+  },
   link: colorsBase.blue.normal,
   navbar: {
     bg: colorsBase.white,
