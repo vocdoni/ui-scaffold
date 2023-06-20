@@ -17,6 +17,7 @@ export const { chains, provider } = configureChains([vocdoni], [publicProvider()
 
 export const { connectors } = getDefaultWallets({
   appName: "Vocdoni's Voting Protocol",
+  projectId: 'VOCDONI_UI_SCAFFOLD',
   chains,
 })
 
