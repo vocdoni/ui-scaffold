@@ -49,34 +49,21 @@ export const Census = () => {
           <Tabs
             defaultIndex={CensusTypes.findIndex((val) => val === censusType)}
             onChange={(index) => setForm({ ...form, censusType: CensusTypes[index] })}
-            w='full'
+            variant='card'
           >
-            <TabList display='flex' justifyContent='space-between' mb={10} borderBottom='none'>
+            <TabList>
               {CARDS.map((card: any, index: number) => (
-                <Box
-                  display='flex'
-                  flexDirection='column'
-                  justifyContent='start'
-                  alignItems='center'
-                  width='220px'
-                  height='190px'
-                  p={4}
-                  px={6}
-                  bgColor='white'
-                  boxShadow='2px 4px 8px gray'
-                  borderRadius='md'
-                  borderBottom='none'
-                >
-                  <Tab _selected={{ color: '#00DAAE' }}>
+                <>
+                  <Tab>
                     <Box textAlign='center'>
                       <Icon as={card.icon} boxSize={6} color='lightgray' />
                       <Text fontWeight={700}>{card.title}</Text>
                     </Box>
+                    <Text color='process_create.description' textAlign='center' fontSize='xs'>
+                      {card.description}
+                    </Text>
                   </Tab>
-                  <Text color='process_create.description' textAlign='center' fontSize='xs'>
-                    {card.description}
-                  </Text>
-                </Box>
+                </>
               ))}
             </TabList>
 

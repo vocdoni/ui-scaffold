@@ -95,8 +95,14 @@ export const colors = {
 
   process_create: {
     alert_small: colorsBase.blue.normal,
+    aside_questions_bg: colorsBase.gray.light2,
     bg: colorsBase.gray.light,
     border: colorsBase.gray.normal,
+    description_logo: colorsBase.blue.normal,
+    input: {
+      bg: colorsBase.white,
+      color_placeholder: colorsBase.black,
+    },
     prev_step: {
       bg: colorsBase.white,
       color: colorsBase.black,
@@ -105,19 +111,10 @@ export const colors = {
       bg: colorsBase.green.vcd,
       color: colorsBase.white,
     },
-    description_logo: colorsBase.blue.normal,
-    input: {
-      bg: colorsBase.white,
-      color_placeholder: colorsBase.black,
-    },
-    aside_questions_bg: colorsBase.gray.light2,
-    steps: {
-      separator: colorsBase.blue,
-      complete_or_active: {
-        bg: colorsBase.white,
-        border: colorsBase.purple,
-        colors: colorsBase.black,
-        separator: colorsBase.blue.normal,
+    tabs: {
+      card: {
+        color: colorsBase.black,
+        selected_color: colorsBase.green.vcd,
       },
     },
   },

@@ -57,7 +57,7 @@ export const StepsCensusWeb3 = () => {
       <FormProvider {...methods}>
         <Box as='form' id='process-create-form' onSubmit={methods.handleSubmit(onSubmit)}>
           <CensusWeb3Addresses />
-          <Text color='red' textAlign='center'>
+          <Text color='red' textAlign='center' mt={2}>
             {minAddresses}
           </Text>
         </Box>
