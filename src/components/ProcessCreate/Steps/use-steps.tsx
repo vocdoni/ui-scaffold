@@ -39,7 +39,6 @@ export const useProcessCreationSteps = () => {
 export const useStepContents = () => {
   const { t } = useTranslation()
   const steps = [
-    { title: t('form.process_create.steps.census'), Contents: Census },
     { title: t('form.process_create.steps.checks'), Contents: Checks },
     { title: t('form.process_create.steps.info'), Contents: Info, first: true },
     { title: t('form.process_create.steps.questions'), Contents: Questions },
