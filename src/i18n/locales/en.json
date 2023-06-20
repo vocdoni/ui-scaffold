@@ -83,9 +83,8 @@
     "process_create": {
       "calendar": {
         "end_date": "End date",
-        "end_date_description": "This election will start at dd/mm and end at dd/mm - During 3 days",
+        "end_date_description": "This election will start at dd/mm and end at dd/mm - Lasting 3 days",
         "now": "Now",
-        "start_date": "Start date",
         "start_date_description": "Define when the election should be active to recive votes. If 'Now' is selected, the proposal is immediatlely active after publishing.",
         "start_on_a_date": "Start on a date",
         "title": "Calendar"
@@ -129,16 +128,16 @@
       "questions_title": "Questions",
       "running_checks": "Running required checks, please wait...",
       "settings": {
-        "interruptible": "Interruptible",
-        "interruptible_description": "Allow to pause the election and resume it later.",
-        "real_time": "Real time",
-        "real_time_description": "'Realtime' results will allow everyone to see the results during the election process.",
-        "secret": "Secret",
-        "secret_description": "'Secret' results will not allow everyone to see the results during the election process.",
+        "interruptible": "Interruptible:",
+        "interruptible_description": "allow to pause the election and resume it later.",
+        "real_time": "Real time:",
+        "real_time_description": "results will allow everyone to see the results during the election process.",
+        "secret": "Secret:",
+        "secret_description": "results will not allow everyone to see the results during the election process.",
         "settings": "Advanced",
-        "settings_description": "No mandatory",
-        "vote_overwrites": "Vote overwrite",
-        "vote_overwrites_descripton": "Voters will be able to correct the vote once."
+        "settings_description": "Not mandatory",
+        "vote_overwrites": "Vote overwrite:",
+        "vote_overwrites_descripton": "voters will be able to correct the vote once."
       },
       "steps": {
         "census": "Census",
@@ -147,7 +146,6 @@
         "info": "Info",
         "questions": "Questions"
       },
-      "submit": "Create process",
       "success_description": "Redirecting you to the election process page...",
       "success_title": "Election process successfully created",
       "unhealthy_account": "You need to create an organization before creating the first election."
