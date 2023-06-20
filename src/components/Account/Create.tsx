@@ -22,9 +22,12 @@ export const AccountCreate = () => {
       description: '',
     },
   })
-  const { createAccount } = useClient()
+  const {
+    createAccount,
+    errors: { account: error },
+  } = useClient()
   const { t } = useTranslation()
-  const [error, setError] = useState<string | undefined>()
+  const [sent, setSent] = useState<boolean>(false)
 
   const required = {
     value: true,
@@ -39,21 +42,7 @@ export const AccountCreate = () => {
     message: t('form.error.field_is_too_long', { max: 256 }),
   }
 
-  const onSubmit = async (values: FormFields) => {
-    try {
-      await createAccount(new Account(values))
-    } catch (e: any) {
-      // TODO remove after refactor when errors are managed via the client
-      if (typeof e === 'string') {
-        return setError(e)
-      }
-      if (typeof e !== 'string' && 'message' in e) {
-        return setError(e.message)
-      }
-
-      console.error('uncatched error:', e)
-    }
-  }
+  const onSubmit = async (values: FormFields) => createAccount(new Account(values))?.finally(() => setSent(true))
 
   return (
     <Flex
@@ -104,8 +93,8 @@ export const AccountCreate = () => {
           </Flex>
         )}
       </FormControl>
-      {error && (
-        <Alert>
+      {sent && error && (
+        <Alert status='error'>
           <AlertIcon />
           {error}
         </Alert>
