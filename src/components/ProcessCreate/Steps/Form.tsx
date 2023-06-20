@@ -9,14 +9,14 @@ export type StepsFormProps = PropsWithChildren<Omit<StepsContextState, 'form' | 
 export const StepsForm = ({ steps, children, activeStep, next, prev }: StepsFormProps) => {
   const [form, setForm] = useState<RecursivePartial<StepsFormValues>>({
     electionType: {
-      autoStart: false,
+      autoStart: true,
       interruptible: true,
       secretUntilTheEnd: true,
     },
     maxVoteOverwrites: 0,
     weightedVote: false,
     questions: [{ options: [{}, {}] }],
-    addresses: [{}],
+    addresses: [],
     censusType: 'web3',
   })
   const value: StepsContextState = {

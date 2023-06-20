@@ -1,15 +1,16 @@
-import { Box } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import CreateProcessMeta from '../Meta'
 import CreateProcessSettings from '../Settings'
+import Wrapper from '../Wrapper'
 import { StepsNavigation } from './Navigation'
 import { useProcessCreationSteps } from './use-steps'
 
 export interface InfoValues {
   title: string
   description: string
-  endDate: Date
-  startDate: Date
+  endDate: string
+  startDate: string
   electionType: {
     autoStart: boolean
     interruptible: boolean
@@ -32,11 +33,20 @@ export const Info = () => {
 
   return (
     <FormProvider {...methods}>
-      <Box as='form' onSubmit={methods.handleSubmit(onSubmit)}>
-        <CreateProcessMeta />
-        <CreateProcessSettings />
-        <StepsNavigation />
-      </Box>
+      <Wrapper>
+        <Flex
+          as='form'
+          id='process-create-form'
+          onSubmit={methods.handleSubmit(onSubmit)}
+          flexDirection='column'
+          gap={12}
+        >
+          <CreateProcessMeta />
+          <CreateProcessSettings />
+        </Flex>
+      </Wrapper>
+
+      <StepsNavigation />
     </FormProvider>
   )
 }

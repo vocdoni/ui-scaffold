@@ -1,6 +1,8 @@
-import { Box, FormControl, FormErrorMessage, FormLabel, Input, Textarea } from '@chakra-ui/react'
+import { InfoOutlineIcon } from '@chakra-ui/icons'
+import { Flex, FormControl, FormErrorMessage, FormHelperText, Input, Text, Textarea } from '@chakra-ui/react'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { fieldMapErrorMessage, isInvalidFieldMap } from '../../constants'
 
 const CreateProcessMeta = () => {
   const {
@@ -13,28 +15,44 @@ const CreateProcessMeta = () => {
     value: true,
     message: t('form.error.field_is_required'),
   }
-
+  const maxLength = {
+    value: 40,
+    message: t('form.error.field_is_too_long', { max: 40 }),
+  }
   return (
-    <Box flex='1'>
-      <FormControl mb={4} isInvalid={!!errors.title} isRequired>
-        <FormLabel fontSize='1.3em'>{t('form.process_create.process_title')}</FormLabel>
+    <Flex flex='1' flexDirection='column' gap={4}>
+      <FormControl isInvalid={isInvalidFieldMap(errors, `title`)} mb={1}>
         <Input
-          {...register('title', {
-            required,
-          })}
+          {...register('title', { required, maxLength })}
           placeholder={t('form.process_create.process_title_placeholder').toString()}
+          size='lg'
         />
-        <FormErrorMessage>{errors.title?.message?.toString()}</FormErrorMessage>
+        {!!errors.title ? (
+          <FormErrorMessage>{fieldMapErrorMessage(errors, `title`)}</FormErrorMessage>
+        ) : (
+          <FormHelperText>
+            <InfoOutlineIcon />
+            <Text>{t('form.account_create.account_name_note')}</Text>
+          </FormHelperText>
+        )}
       </FormControl>
-      <FormControl isInvalid={!!errors.description}>
-        <FormLabel>{t('form.process_create.process_description')}</FormLabel>
+
+      <FormControl isInvalid={isInvalidFieldMap(errors, `description`)} mb={1}>
         <Textarea
-          {...register('description')}
+          {...register('description', { maxLength })}
           placeholder={t('form.process_create.process_description_placeholder').toString()}
+          variant='outline'
         />
-        <FormErrorMessage>{errors.description?.message?.toString()}</FormErrorMessage>
+        {!!errors.description ? (
+          <FormErrorMessage>{fieldMapErrorMessage(errors, `description`)}</FormErrorMessage>
+        ) : (
+          <FormHelperText>
+            <InfoOutlineIcon />
+            <Text>{t('form.account_create.account_name_note')}</Text>
+          </FormHelperText>
+        )}
       </FormControl>
-    </Box>
+    </Flex>
   )
 }
 

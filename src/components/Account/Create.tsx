@@ -1,12 +1,11 @@
+import { InfoOutlineIcon } from '@chakra-ui/icons'
 import {
   Alert,
   AlertIcon,
-  Button,
   Flex,
   FormControl,
   FormErrorMessage,
-  FormLabel,
-  Icon,
+  FormHelperText,
   Input,
   Text,
   Textarea,
@@ -16,7 +15,6 @@ import { Account } from '@vocdoni/sdk'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { FaInfoCircle } from 'react-icons/fa'
 
 interface FormFields {
   name: string
@@ -34,10 +32,12 @@ export const AccountCreate = () => {
       description: '',
     },
   })
-  const { createAccount } = useClient()
+  const {
+    createAccount,
+    errors: { account: error },
+  } = useClient()
   const { t } = useTranslation()
-  const [loading, setLoading] = useState<boolean>(false)
-  const [error, setError] = useState<string | undefined>()
+  const [sent, setSent] = useState<boolean>(false)
 
   const required = {
     value: true,
@@ -47,63 +47,64 @@ export const AccountCreate = () => {
     value: 40,
     message: t('form.error.field_is_too_long', { max: 40 }),
   }
-
-  const onSubmit = async (values: FormFields) => {
-    setLoading(true)
-    try {
-      await createAccount(new Account(values))
-    } catch (e: any) {
-      // TODO remove after refactor when errors are managed via the client
-      if (typeof e === 'string') {
-        return setError(e)
-      }
-      if (typeof e !== 'string' && 'message' in e) {
-        return setError(e.message)
-      }
-
-      console.error('uncatched error:', e)
-    } finally {
-      setLoading(false)
-    }
+  const maxLengthDescription = {
+    value: 256,
+    message: t('form.error.field_is_too_long', { max: 256 }),
   }
+
+  const onSubmit = async (values: FormFields) => createAccount(new Account(values))?.finally(() => setSent(true))
 
   return (
     <Flex
       as='form'
+      id='process-create-form'
       direction='column'
+      gap={6}
+      mt={6}
       onSubmit={(e) => {
         e.stopPropagation()
         e.preventDefault()
         handleSubmit(onSubmit)(e)
       }}
-      gap={3}
     >
-      <FormControl isRequired isInvalid={!!errors.name}>
-        <FormLabel>{t('form.account_create.account_name')}</FormLabel>
-        <Input type='text' {...register('name', { required, maxLength })} mb={1} />
+      <FormControl isInvalid={!!errors.name}>
+        <Input
+          type='text'
+          {...register('name', { required, maxLength })}
+          mb={1}
+          placeholder={t('form.account_create.organization_title_placeholder').toString()}
+          size='lg'
+        />
         {!!errors.name ? (
           <FormErrorMessage>{errors.name?.message?.toString()}</FormErrorMessage>
         ) : (
-          <Text fontSize='sm' color='gray.400'>
-            <Icon as={FaInfoCircle} mr={1} />
-            {t('form.account_create.account_name_note')}
-          </Text>
+          <FormHelperText>
+            <InfoOutlineIcon />
+            <Text>{t('form.account_create.account_name_note')}</Text>
+          </FormHelperText>
         )}
       </FormControl>
+
       <FormControl isInvalid={!!errors.description}>
-        <FormLabel>{t('form.account_create.account_description')}</FormLabel>
-        <Textarea {...register('description')} />
-        <FormErrorMessage>{errors.description?.message?.toString()}</FormErrorMessage>
+        <Textarea
+          {...register('description', { maxLength: maxLengthDescription })}
+          placeholder={t('form.account_create.organization_description_placeholder').toString()}
+        />
+        {!!errors.description ? (
+          <FormErrorMessage>{errors.description?.message?.toString()}</FormErrorMessage>
+        ) : (
+          <FormHelperText>
+            <InfoOutlineIcon />
+            <Text> {t('form.account_create.account_name_note_description')}</Text>
+          </FormHelperText>
+        )}
       </FormControl>
-      {error && (
-        <Alert>
+      {sent && error && (
+        <Alert status='error'>
           <AlertIcon />
           {error}
         </Alert>
       )}
-      <Button type='submit' isLoading={loading}>
-        {t('form.account_create.button_create')}
-      </Button>
     </Flex>
   )
 }

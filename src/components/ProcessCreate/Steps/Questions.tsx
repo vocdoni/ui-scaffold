@@ -33,10 +33,11 @@ export const Questions = () => {
 
   return (
     <FormProvider {...methods}>
-      <Box as='form' onSubmit={methods.handleSubmit(onSubmit)}>
+      <Box as='form' id='process-create-form' onSubmit={methods.handleSubmit(onSubmit)}>
         <CreateProcessQuestions />
-        <StepsNavigation />
       </Box>
+
+      <StepsNavigation />
     </FormProvider>
   )
 }

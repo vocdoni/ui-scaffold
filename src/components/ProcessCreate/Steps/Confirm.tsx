@@ -1,6 +1,7 @@
+import { ArrowBackIcon } from '@chakra-ui/icons'
 import {
-  Box,
   Button,
+  Flex,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -16,10 +17,14 @@ import { Election, IQuestion, PlainCensus, WeightedCensus } from '@vocdoni/sdk'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { Address } from '../Form'
 import { CreationProgress } from './CreationProgress'
 import { Option } from './Questions'
 import { useProcessCreationSteps } from './use-steps'
+
+interface Address {
+  address: string
+  weight: number
+}
 
 export const Confirm = () => {
   const { client } = useClient()
@@ -80,10 +85,13 @@ export const Confirm = () => {
   }
 
   return (
-    <Box>
-      <Button onClick={prev}>{t('form.process_create.previous_step')}</Button>
-      <Button onClick={create} isLoading={sending}>
-        Confirm!!
+    <Flex justifyContent='space-between' alignItems='end' minH='70vh'>
+      <Button variant='prev' onClick={prev} leftIcon={<ArrowBackIcon />}>
+        {t('form.process_create.previous_step')}
+      </Button>
+
+      <Button variant='next' onClick={create} isLoading={sending}>
+        {t('form.process_create.create')}
       </Button>
       <Modal isOpen={isOpen} onClose={onClose} closeOnEsc={!!error}>
         <ModalOverlay />
@@ -93,7 +101,6 @@ export const Confirm = () => {
           <ModalBody>
             <CreationProgress error={error} sending={sending} />
           </ModalBody>
-
           {error && (
             <ModalFooter>
               <Button colorScheme='blue' mr={3} onClick={onClose}>
@@ -103,7 +110,7 @@ export const Confirm = () => {
           )}
         </ModalContent>
       </Modal>
-    </Box>
+    </Flex>
   )
 }
 

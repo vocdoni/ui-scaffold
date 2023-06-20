@@ -70,10 +70,10 @@
   },
   "form": {
     "account_create": {
-      "account_description": "",
-      "account_name": "",
       "account_name_note": "",
-      "button_create": ""
+      "account_name_note_description": "",
+      "organization_description_placeholder": "",
+      "organization_title_placeholder": ""
     },
     "error": {
       "address_pattern": "",
@@ -81,11 +81,27 @@
       "field_is_too_long": ""
     },
     "process_create": {
-      "address_title": "",
-      "address_weight": "",
-      "addresses_title": "",
-      "advanced_settings": "",
-      "autostart": "",
+      "calendar": {
+        "date_format": "",
+        "end_date": "",
+        "end_date_description": "",
+        "now": "",
+        "now_description": "",
+        "start_date_description": "",
+        "start_on_a_date": "",
+        "title": ""
+      },
+      "census": {
+        "csv_description": "",
+        "csv_title": "",
+        "description": "",
+        "title": "",
+        "token_base_description": "",
+        "token_base_title": "",
+        "wallet_address_description": "",
+        "wallet_address_title": "",
+        "web3_title": ""
+      },
       "confirm": {
         "adding_census": "",
         "completed": "",
@@ -93,26 +109,38 @@
         "submitting": "",
         "validating": ""
       },
+      "create": "",
       "creating_process": "",
-      "date_end": "",
-      "date_start": "",
       "do_not_close": "",
-      "interruptible": "",
-      "max_vote_overwrites": "",
       "next_step": "",
       "previous_step": "",
-      "process_description": "",
       "process_description_placeholder": "",
-      "process_title": "",
       "process_title_placeholder": "",
+      "question": {
+        "add_new_option": "",
+        "aside": "",
+        "description_placeholder": "",
+        "option_placeholder": "",
+        "title_placeholder": ""
+      },
       "question_delete": "",
       "question_identifier": "",
       "question_placeholder": "",
       "question_title": "",
       "questions_title": "",
       "running_checks": "",
-      "secret_until_the_end": "",
-      "settings": "",
+      "settings": {
+        "interruptible": "",
+        "interruptible_description": "",
+        "real_time": "",
+        "real_time_description": "",
+        "secret": "",
+        "secret_description": "",
+        "settings": "",
+        "settings_description": "",
+        "vote_overwrites": "",
+        "vote_overwrites_descripton": ""
+      },
       "steps": {
         "census": "",
         "checks": "",
@@ -120,11 +148,9 @@
         "info": "",
         "questions": ""
       },
-      "submit": "",
       "success_description": "",
       "success_title": "",
-      "unhealthy_account": "",
-      "weighted_vote": ""
+      "unhealthy_account": ""
     }
   },
   "home": {
@@ -182,6 +208,20 @@
     "pause": "",
     "play": "",
     "stop": ""
+  },
+  "process_create": {
+    "census": {
+      "csv_description": "",
+      "csv_title": "",
+      "description": "",
+      "footer_description": "",
+      "footer_title": "",
+      "title": "",
+      "token_base_description": "",
+      "token_base_title": "",
+      "wallet_address_description": "",
+      "wallet_address_title": ""
+    }
   },
   "read_less": "Leer menos",
   "read_more": "Leer mas",
