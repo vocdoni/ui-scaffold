@@ -24,7 +24,7 @@ export const ProcessDate = () => {
   )
 }
 
-const getStatusText = (t: TFunction<string, undefined, string>, electionStatus: ElectionStatus | undefined) => {
+const getStatusText = (t: TFunction<string, string>, electionStatus: ElectionStatus | undefined) => {
   switch (electionStatus) {
     case ElectionStatus.UPCOMING:
       return t('process.date.starts')

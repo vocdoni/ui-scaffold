@@ -74,7 +74,7 @@ const ProcessAside = ({ handleTabsChange, isInCensus, hasAlreadyVoted, order, al
 const hasOverwriteEnabled = (election: PublishedElection) =>
   typeof election.voteType.maxVoteOverwrites !== 'undefined' && election.voteType.maxVoteOverwrites > 0
 
-const getStatusText = (t: TFunction<string, undefined, string>, electionStatus: ElectionStatus | undefined) => {
+const getStatusText = (t: TFunction<string, string>, electionStatus: ElectionStatus | undefined) => {
   switch (electionStatus) {
     case ElectionStatus.UPCOMING:
       return t('process.status.upcoming')

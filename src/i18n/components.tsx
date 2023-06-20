@@ -1,6 +1,6 @@
 import { TFunction } from 'i18next'
 
-export const translations = (t: TFunction<string, undefined, string>) => ({
+export const translations = (t: TFunction<string, string>) => ({
   actions: {
     cancel_description: t('cc.actions.cancel_description').toString(),
     cancel: t('cc.actions.cancel').toString(),
