@@ -19,6 +19,10 @@ const CreateProcessMeta = () => {
     value: 40,
     message: t('form.error.field_is_too_long', { max: 40 }),
   }
+  const maxLengthDescription = {
+    value: 256,
+    message: t('form.error.field_is_too_long', { max: 256 }),
+  }
   return (
     <Flex flex='1' flexDirection='column' gap={4}>
       <FormControl isInvalid={isInvalidFieldMap(errors, `title`)} mb={1}>
@@ -39,7 +43,7 @@ const CreateProcessMeta = () => {
 
       <FormControl isInvalid={isInvalidFieldMap(errors, `description`)} mb={1}>
         <Textarea
-          {...register('description', { maxLength })}
+          {...register('description', { maxLength: maxLengthDescription })}
           placeholder={t('form.process_create.process_description_placeholder').toString()}
           variant='outline'
         />
@@ -48,7 +52,7 @@ const CreateProcessMeta = () => {
         ) : (
           <FormHelperText>
             <InfoOutlineIcon />
-            <Text>{t('form.account_create.account_name_note')}</Text>
+            <Text> {t('form.account_create.account_name_note_description')}</Text>
           </FormHelperText>
         )}
       </FormControl>
