@@ -82,6 +82,7 @@
     },
     "process_create": {
       "calendar": {
+        "date_format": "",
         "end_date": "",
         "end_date_description": "",
         "now": "",

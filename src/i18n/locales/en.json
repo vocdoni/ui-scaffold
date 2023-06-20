@@ -82,8 +82,9 @@
     },
     "process_create": {
       "calendar": {
+        "date_format": "d/L",
         "end_date": "End date",
-        "end_date_description": "This election will start at dd/mm and end at dd/mm - Lasting 3 days",
+        "end_date_description": "This election will start at {{ date.begin, format }} and end at {{ date.end, format }} - Lasting {{ date, duration }}",
         "now": "Now",
         "start_date_description": "Define when the election should be active to recive votes. If 'Now' is selected, the proposal is immediatlely active after publishing.",
         "start_on_a_date": "Start on a date",
