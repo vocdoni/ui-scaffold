@@ -1,4 +1,4 @@
-import { formatDistance, Locale } from 'date-fns'
+import { format, formatDistance, Locale } from 'date-fns'
 import i18next from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import languages from './languages.mjs'
@@ -32,6 +32,9 @@ for (const lang of languages) {
   }
 }
 
+/**
+ * Configurable way of translating relative times (like "3 months ago" or "in 5 days")
+ */
 i18n.services.formatter?.add('relative', (value: any, lng: string | undefined, options: any) => {
   const opts: { locale?: Locale } = {}
   const now = new Date()
@@ -48,6 +51,30 @@ i18n.services.formatter?.add('relative', (value: any, lng: string | undefined, o
     return options.future.replace('%time', relative)
   }
   return options.past.replace('%time', relative)
+})
+
+/**
+ * Interpolates a duration between date.begin and date.end
+ */
+i18n.services.formatter?.add('duration', (value: any, lng: string | undefined, options: any) => {
+  const opts: { locale?: Locale } = {}
+  if (lng && lng !== 'en') {
+    opts.locale = dateLocales[lng]
+  }
+
+  return formatDistance(value.begin, value.end, opts)
+})
+
+/**
+ * A cooler way of formatting dates than the one provided by i18next
+ */
+i18n.services.formatter?.add('format', (value: any, lng: string | undefined, options: any) => {
+  const opts: { locale?: Locale } = {}
+  if (lng && lng !== 'en') {
+    opts.locale = dateLocales[lng]
+  }
+
+  return format(value, options.format, opts)
 })
 
 export default i18n

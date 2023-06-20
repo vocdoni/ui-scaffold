@@ -1,12 +1,21 @@
 export const colorsBase = {
-  lightBlue: '#F2F5FF',
   black: '#000000',
-  blue: '#1752FE',
+  blue: {
+    light2: '#F2F5FF',
+    light: '#B8CEF9',
+    normal: '#0044FF',
+    dark: '#002266',
+  },
   gray: {
-    light: '#E2E8F0',
-    normal: '#718096',
+    light: '#FAFAFA',
+    light2: '#F2F2F2',
+    normal: '#D9D9D9',
+    dark: '#718096',
   },
   grenade: '#961D1D',
+  green: {
+    vcd: '#00DAAE',
+  },
   lightpurple: '#EDE4F4',
   pink: {
     ultralight: '#EA7BDF',
@@ -19,6 +28,10 @@ export const colorsBase = {
 }
 
 export const colors = {
+  alert_info: {
+    color: colorsBase.blue.dark,
+    bg: colorsBase.blue.light,
+  },
   buttons: {
     default: colorsBase.pink.light,
     primary: {
@@ -41,19 +54,23 @@ export const colors = {
     variant: {
       process_info: colorsBase.purple,
       process_description: colorsBase.turquoise,
-      process_image: colorsBase.blue,
+      process_image: colorsBase.blue.normal,
     },
   },
   footer_links: colorsBase.black,
   home: {
-    bg: colorsBase.lightBlue,
+    bg: colorsBase.blue.light2,
   },
 
   input_search: {
     bg: colorsBase.white,
     border: colorsBase.black,
   },
-  link: colorsBase.pink.normal,
+  input: {
+    bg: colorsBase.white,
+    placeholder_color: colorsBase.gray.normal,
+  },
+  link: colorsBase.blue.normal,
   navbar: {
     bg: colorsBase.white,
     border: colorsBase.white,
@@ -74,6 +91,32 @@ export const colors = {
     canceled: colorsBase.grenade,
     date: colorsBase.purple,
     secret_until_the_end: colorsBase.purple,
+  },
+
+  process_create: {
+    alert_small: colorsBase.blue.normal,
+    aside_questions_bg: colorsBase.gray.light2,
+    bg: colorsBase.gray.light,
+    border: colorsBase.gray.normal,
+    description_logo: colorsBase.blue.normal,
+    input: {
+      bg: colorsBase.white,
+      color_placeholder: colorsBase.black,
+    },
+    prev_step: {
+      bg: colorsBase.white,
+      color: colorsBase.black,
+    },
+    next_step: {
+      bg: colorsBase.green.vcd,
+      color: colorsBase.white,
+    },
+    tabs: {
+      card: {
+        color: colorsBase.black,
+        selected_color: colorsBase.green.vcd,
+      },
+    },
   },
 
   text_error: colorsBase.grenade,

@@ -1,4 +1,4 @@
-import { FieldErrors, FieldValues } from 'react-hook-form'
+import { FieldErrors, FieldValues, useFormContext } from 'react-hook-form'
 
 export const FormatDate = 'dd/MM/yyyy'
 
@@ -55,4 +55,28 @@ const dotToObject = (obj: any, dot: string) => {
   }
 
   return rec(obj, dot.split('.'))
+}
+
+/**
+ * Helper hook used for radio inputs that are actually boolean inputs, converting
+ * their values to boolean as expected. Note you can't use boolean radio register
+ * for more than two radio buttons, since it wouldn't be binary.
+ *
+ * @param name Radio input field name
+ * @returns
+ */
+export const useBooleanRadioRegister = (name: string) => {
+  const { getValues, setValue } = useFormContext()
+  return {
+    defaultValue: Number(getValues(name)).toString(),
+    onChange: (val: string) => setValue(name, Boolean(Number(val))),
+  }
+}
+
+export type RecursivePartial<T> = {
+  [P in keyof T]?: T[P] extends (infer U)[]
+    ? RecursivePartial<U>[]
+    : T[P] extends object | undefined
+    ? RecursivePartial<T[P]>
+    : T[P]
 }
