@@ -1,5 +1,5 @@
 import { InfoOutlineIcon } from '@chakra-ui/icons'
-import { Flex, FormControl, FormErrorMessage, Input, Text, Textarea } from '@chakra-ui/react'
+import { Flex, FormControl, FormErrorMessage, FormHelperText, Input, Text, Textarea } from '@chakra-ui/react'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { fieldMapErrorMessage, isInvalidFieldMap } from '../../constants'
@@ -28,16 +28,12 @@ const CreateProcessMeta = () => {
           size='lg'
         />
         {!!errors.title ? (
-          <FormErrorMessage fontWeight={400} fontSize='xs'>
-            {fieldMapErrorMessage(errors, `title`)}
-          </FormErrorMessage>
+          <FormErrorMessage>{fieldMapErrorMessage(errors, `title`)}</FormErrorMessage>
         ) : (
-          <Flex alignItems='center' gap={1}>
-            <InfoOutlineIcon boxSize={3} color='process_create.account_name_note_logo' />
-            <Text fontWeight={400} fontSize='xs' color='process_create.account_name_note'>
-              {t('form.account_create.account_name_note')}
-            </Text>
-          </Flex>
+          <FormHelperText>
+            <InfoOutlineIcon />
+            <Text>{t('form.account_create.account_name_note')}</Text>
+          </FormHelperText>
         )}
       </FormControl>
 
@@ -48,16 +44,12 @@ const CreateProcessMeta = () => {
           variant='outline'
         />
         {!!errors.description ? (
-          <FormErrorMessage fontWeight={400} fontSize='xs'>
-            {fieldMapErrorMessage(errors, `description`)}
-          </FormErrorMessage>
+          <FormErrorMessage>{fieldMapErrorMessage(errors, `description`)}</FormErrorMessage>
         ) : (
-          <Flex alignItems='center' gap={1}>
-            <InfoOutlineIcon boxSize={3} color='process_create.account_name_note_logo' />
-            <Text fontWeight={400} fontSize='xs' color='process_create.account_name_note'>
-              {t('form.account_create.account_name_note')}
-            </Text>
-          </Flex>
+          <FormHelperText>
+            <InfoOutlineIcon />
+            <Text>{t('form.account_create.account_name_note')}</Text>
+          </FormHelperText>
         )}
       </FormControl>
     </Flex>

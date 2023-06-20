@@ -86,43 +86,11 @@ export const Confirm = () => {
 
   return (
     <Flex justifyContent='space-between' alignItems='end' minH='70vh'>
-      <Button
-        onClick={prev}
-        leftIcon={<ArrowBackIcon />}
-        colorScheme='process_create.btn_white'
-        borderRadius='md'
-        boxShadow='0px 2px 4px gray'
-        width={36}
-        fontWeight={600}
-        fontSize='md'
-        color='black'
-        _hover={{
-          fontSize: 'lg',
-        }}
-        _active={{
-          fontSize: 'md',
-        }}
-      >
+      <Button variant='prev' onClick={prev} leftIcon={<ArrowBackIcon />}>
         {t('form.process_create.previous_step')}
       </Button>
 
-      <Button
-        onClick={create}
-        isLoading={sending}
-        ml='auto'
-        colorScheme='process_create.btn_vcd'
-        borderRadius='md'
-        boxShadow='0px 2px 4px gray'
-        width={36}
-        fontWeight={600}
-        fontSize='md'
-        _hover={{
-          fontSize: 'lg',
-        }}
-        _active={{
-          fontSize: 'md',
-        }}
-      >
+      <Button variant='next' onClick={create} isLoading={sending}>
         {t('form.process_create.create')}
       </Button>
       <Modal isOpen={isOpen} onClose={onClose} closeOnEsc={!!error}>

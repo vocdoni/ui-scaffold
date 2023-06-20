@@ -1,5 +1,7 @@
-import { InfoOutlineIcon } from '@chakra-ui/icons'
 import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
   Box,
   Flex,
   FormControl,
@@ -23,11 +25,14 @@ const Calendar = () => {
     getValues,
     formState: { errors },
     clearErrors,
+    watch,
   } = useFormContext()
 
   useWatch({
     name: ['electionType'],
   })
+
+  console.log(watch())
 
   const { ref: startRef } = register('startDate')
   const { ref: endRef } = register('endDate')
@@ -76,12 +81,9 @@ const Calendar = () => {
                   startDateRef.current = e
                 }}
                 onClick={() => showPicker(startDateRef)}
-                bgColor='white'
               />
 
-              <FormErrorMessage fontWeight={400} fontSize='xs'>
-                {errors.startDate?.message?.toString()}
-              </FormErrorMessage>
+              <FormErrorMessage>{errors.startDate?.message?.toString()}</FormErrorMessage>
             </Box>
           </FormControl>
           <Flex flexDirection='column' gap={2}>
@@ -102,18 +104,14 @@ const Calendar = () => {
               endDateRef.current = e
             }}
             onClick={() => showPicker(endDateRef)}
-            bgColor='white'
           />
-          <FormErrorMessage fontWeight={400} fontSize='xs'>
-            {errors.endDate?.message?.toString()}
-          </FormErrorMessage>
+          <FormErrorMessage>{errors.endDate?.message?.toString()}</FormErrorMessage>
         </FormControl>
-        <Flex alignItems='center' gap={1} border='1px solid blue' p={2}>
-          <InfoOutlineIcon boxSize={3} color='process_create.account_name_note_logo' />
-          <Text fontWeight={400} fontSize='xs' color='process_create.description'>
-            {t('form.process_create.calendar.end_date_description')}
-          </Text>
-        </Flex>
+
+        <Alert variant='clarification' status='info'>
+          <AlertIcon />
+          <AlertTitle>{t('form.process_create.calendar.end_date_description')}</AlertTitle>
+        </Alert>
       </Box>
     </Flex>
   )

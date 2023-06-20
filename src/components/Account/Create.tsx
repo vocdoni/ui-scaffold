@@ -1,5 +1,15 @@
 import { InfoOutlineIcon } from '@chakra-ui/icons'
-import { Alert, AlertIcon, Flex, FormControl, FormErrorMessage, Input, Text, Textarea } from '@chakra-ui/react'
+import {
+  Alert,
+  AlertIcon,
+  Flex,
+  FormControl,
+  FormErrorMessage,
+  FormHelperText,
+  Input,
+  Text,
+  Textarea,
+} from '@chakra-ui/react'
 import { useClient } from '@vocdoni/chakra-components'
 import { Account } from '@vocdoni/sdk'
 import { useState } from 'react'
@@ -68,12 +78,10 @@ export const AccountCreate = () => {
         {!!errors.name ? (
           <FormErrorMessage>{errors.name?.message?.toString()}</FormErrorMessage>
         ) : (
-          <Flex alignItems='center' gap={1}>
-            <InfoOutlineIcon boxSize={3} color='process_create.account_name_note_logo' />
-            <Text fontWeight={400} fontSize='xs' color='process_create.account_name_note'>
-              {t('form.account_create.account_name_note')}
-            </Text>
-          </Flex>
+          <FormHelperText>
+            <InfoOutlineIcon />
+            <Text>{t('form.account_create.account_name_note')}</Text>
+          </FormHelperText>
         )}
       </FormControl>
 
@@ -85,12 +93,10 @@ export const AccountCreate = () => {
         {!!errors.description ? (
           <FormErrorMessage>{errors.description?.message?.toString()}</FormErrorMessage>
         ) : (
-          <Flex alignItems='center' gap={1}>
-            <InfoOutlineIcon boxSize={3} color='process_create.account_name_note_logo' />
-            <Text fontWeight={400} fontSize='xs' color='process_create.account_name_note'>
-              {t('form.account_create.account_name_note_description')}
-            </Text>
-          </Flex>
+          <FormHelperText>
+            <InfoOutlineIcon />
+            <Text> {t('form.account_create.account_name_note_description')}</Text>
+          </FormHelperText>
         )}
       </FormControl>
       {sent && error && (

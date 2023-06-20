@@ -46,7 +46,7 @@ const NeedsAccount = () => {
   return (
     <>
       <Wrapper>
-        <Alert variant='info' status='info' borderRadius='md'>
+        <Alert variant='info' status='info'>
           <AlertIcon />
           <Flex flexDirection='column'>
             <AlertTitle>
@@ -59,24 +59,13 @@ const NeedsAccount = () => {
       </Wrapper>
       <Flex justifyContent='end'>
         <Button
-          form='process-create-form'
           isLoading={loading}
-          rightIcon={<ArrowForwardIcon />}
+          variant='next'
           type='submit'
+          form='process-create-form'
+          rightIcon={<ArrowForwardIcon />}
+          colorScheme='process_create.next_step'
           mt={5}
-          ml='auto'
-          colorScheme='process_create.btn_vcd'
-          borderRadius='md'
-          boxShadow='0px 2px 4px gray'
-          width={36}
-          fontWeight={600}
-          fontSize='md'
-          _hover={{
-            fontSize: 'lg',
-          }}
-          _active={{
-            fontSize: 'md',
-          }}
         >
           {t('form.process_create.next_step')}
         </Button>
