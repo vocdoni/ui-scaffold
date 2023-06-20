@@ -42,7 +42,7 @@ const SettingsAdvanced = () => {
         </Stack>
       </RadioGroup>
       <FormControl display='flex' alignItems='center'>
-        <Checkbox {...register('voteOverwrites')} />
+        <Checkbox {...register('maxVoteOverwrites')} />
         <FormLabel whiteSpace='nowrap' mb='0' ml={3}>
           <Text as='span' fontSize='xs' fontWeight='bold'>
             {t('form.process_create.settings.vote_overwrites')}
