@@ -104,7 +104,7 @@ const Calendar = () => {
         </Stack>
       </RadioGroup>
       <Box>
-        <FormControl isInvalid={!!errors.endDate} width='180px' mb={3}>
+        <FormControl isInvalid={!!errors.endDate} width='180px' mb={1}>
           <FormLabel fontWeight={500}> {t('form.process_create.calendar.end_date')}</FormLabel>
           <Input
             type='date'
@@ -120,8 +120,8 @@ const Calendar = () => {
             {errors.endDate?.message?.toString()}
           </FormErrorMessage>
         </FormControl>
-        <Flex alignItems='center' gap={1} border='1px solid' p={2} color='process_create.account_name_note_logo'>
-          <InfoOutlineIcon boxSize={3} />
+        <Flex alignItems='center' gap={1} border='1px solid blue' p={2}>
+          <InfoOutlineIcon boxSize={3} color='process_create.account_name_note_logo' />
           <Text fontWeight={400} fontSize='xs' color='process_create.description'>
             {t('form.process_create.calendar.end_date_description')}
           </Text>

@@ -23,7 +23,7 @@ const Options = ({ fields, removeOption, appendOption, index }: Props) => {
       {fields.map((_, idx: number) => (
         <FormControl key={idx} isInvalid={isInvalidFieldMap(errors, `questions.${index}.options.${idx}.option`)} mb={2}>
           <Flex alignItems='center' justifyContent='start' gap={2}>
-            <FormLabel fontWeight={700} m={0}>
+            <FormLabel fontWeight='bold' m={0}>
               {idx + 1}
             </FormLabel>
 
@@ -36,7 +36,6 @@ const Options = ({ fields, removeOption, appendOption, index }: Props) => {
                   },
                 })}
                 placeholder={t('form.process_create.question.option_placeholder').toString()}
-                bgColor='process_create.input.bg'
               />
 
               <FormErrorMessage>
@@ -55,7 +54,7 @@ const Options = ({ fields, removeOption, appendOption, index }: Props) => {
           </Flex>
         </FormControl>
       ))}
-      <Button variant='link' onClick={() => appendOption({ option: '' })} fontWeight={400}>
+      <Button variant='link' onClick={() => appendOption({ option: '' })}>
         {t('form.process_create.question.add_new_option')}
       </Button>
     </Box>

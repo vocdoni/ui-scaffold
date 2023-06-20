@@ -74,10 +74,7 @@ export const AccountCreate = () => {
           {...register('name', { required, maxLength })}
           mb={1}
           placeholder={t('form.account_create.organization_title_placeholder').toString()}
-          _placeholder={{ color: 'process_create.input.color_placeholder' }}
-          fontWeight={700}
-          fontSize='2xl'
-          bgColor='process_create.input.bg'
+          size='lg'
         />
         {!!errors.name ? (
           <FormErrorMessage>{errors.name?.message?.toString()}</FormErrorMessage>
@@ -95,12 +92,6 @@ export const AccountCreate = () => {
         <Textarea
           {...register('description', { maxLength: maxLengthDescription })}
           placeholder={t('form.account_create.organization_description_placeholder').toString()}
-          _placeholder={{ color: 'process_create.input.color_placeholder' }}
-          fontWeight={400}
-          fontSize='lg'
-          resize='none'
-          rows={3}
-          bgColor='process_create.input.bg'
         />
         {!!errors.description ? (
           <FormErrorMessage>{errors.description?.message?.toString()}</FormErrorMessage>
