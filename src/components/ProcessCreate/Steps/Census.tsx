@@ -35,17 +35,15 @@ export const Census = () => {
           >
             <TabList>
               {list.map((ct: CensusType, index: number) => (
-                <>
-                  <Tab>
-                    <Box textAlign='center'>
-                      <Icon as={details[ct].icon} boxSize={6} color='lightgray' />
-                      <Text fontWeight={700}>{details[ct].title}</Text>
-                    </Box>
-                    <Text color='process_create.description' textAlign='center' fontSize='xs'>
-                      {details[ct].description}
-                    </Text>
-                  </Tab>
-                </>
+                <Tab key={index}>
+                  <Box textAlign='center'>
+                    <Icon as={details[ct].icon} boxSize={6} color='lightgray' />
+                    <Text fontWeight={700}>{details[ct].title}</Text>
+                  </Box>
+                  <Text color='process_create.description' textAlign='center' fontSize='xs'>
+                    {details[ct].description}
+                  </Text>
+                </Tab>
               ))}
             </TabList>
 
