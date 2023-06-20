@@ -1,7 +1,6 @@
 import { Box, Flex, Icon, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import { BiCoinStack, BiFile, BiWallet } from 'react-icons/bi'
-import { CensusType, CensusTypes } from '../Census/TypeSelector'
+import { CensusType, CensusTypes, useCensusTypes } from '../Census/TypeSelector'
 
 import Wrapper from '../Wrapper'
 import { StepsCensusWeb3 } from './CensusWeb3'
@@ -9,30 +8,13 @@ import { StepsNavigation } from './Navigation'
 import { useProcessCreationSteps } from './use-steps'
 
 export interface CensusValues {
-  censusType: CensusType
+  censusType: CensusType | null
 }
 
 export const Census = () => {
   const { t } = useTranslation()
-  const CARDS = [
-    {
-      title: t('form.process_create.census.csv_title'),
-      description: t('form.process_create.census.csv_description'),
-      icon: BiFile,
-    },
-    {
-      title: t('form.process_create.census.token_base_title'),
-      description: t('form.process_create.census.token_base_description'),
-      icon: BiCoinStack,
-    },
-    {
-      title: t('form.process_create.census.wallet_address_title'),
-      description: t('form.process_create.census.wallet_address_description'),
-      icon: BiWallet,
-    },
-  ]
-
   const { form, setForm } = useProcessCreationSteps()
+  const { list, details } = useCensusTypes()
 
   const { censusType } = form
 
@@ -52,15 +34,15 @@ export const Census = () => {
             variant='card'
           >
             <TabList>
-              {CARDS.map((card: any, index: number) => (
+              {list.map((ct: CensusType, index: number) => (
                 <>
                   <Tab>
                     <Box textAlign='center'>
-                      <Icon as={card.icon} boxSize={6} color='lightgray' />
-                      <Text fontWeight={700}>{card.title}</Text>
+                      <Icon as={details[ct].icon} boxSize={6} color='lightgray' />
+                      <Text fontWeight={700}>{details[ct].title}</Text>
                     </Box>
                     <Text color='process_create.description' textAlign='center' fontSize='xs'>
-                      {card.description}
+                      {details[ct].description}
                     </Text>
                   </Tab>
                 </>
