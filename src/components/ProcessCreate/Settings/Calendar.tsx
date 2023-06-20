@@ -11,15 +11,15 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react'
-import { MutableRefObject, useEffect, useRef, useState } from 'react'
+import { MutableRefObject, useRef } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { useBooleanRadioRegister } from '../../../constants'
 
 const Calendar = () => {
   const { t } = useTranslation()
   const {
     register,
-    setValue,
     getValues,
     formState: { errors },
     clearErrors,
@@ -43,40 +43,23 @@ const Calendar = () => {
     if (ref.current && 'showPicker' in ref.current) ref.current.showPicker()
   }
 
-  const [valueRadio, setValueRadio] = useState('1')
-
-  useEffect(() => {
-    if (valueRadio === '1') setValue('electionType.autoStart', true)
-    else setValue('electionType.autoStart', false)
-  }, [valueRadio, setValue])
-
   return (
     <Flex flexDirection='column' gap={2}>
       <Box>
-        <Text as='legend' fontSize='xl' fontWeight={700}>
+        <Text as='legend' fontSize='xl' fontWeight='bold'>
           {t('form.process_create.calendar.title')}
         </Text>
-        <Text as='legend' fontWeight={500}>
-          {t('form.process_create.calendar.start_date')}
-        </Text>
-        <Text fontWeight={400} fontSize='xs' color='process_create.description'>
+        <Text fontWeight='normal' fontSize='xs' color='process_create.description'>
           {t('form.process_create.calendar.start_date_description')}
         </Text>
       </Box>
-
-      <RadioGroup onChange={setValueRadio} value={valueRadio}>
+      <RadioGroup {...useBooleanRadioRegister('electionType.autoStart')}>
         <Stack direction='row' alignItems='start' gap={40}>
-          <Flex flexDirection='column' gap={2}>
-            <Radio value='1' onClick={() => clearErrors('startDate')}>
-              <Text fontWeight={700}>{t('form.process_create.calendar.now')}</Text>
-            </Radio>
-          </Flex>
-
           <FormControl isInvalid={!!errors.startDate} display='flex' flexDirection='column' gap={2} width='180px'>
-            <Radio value='2' alignItems='center'>
-              <FormLabel whiteSpace='nowrap' m={0} fontWeight='bold'>
+            <Radio value='0' alignItems='center'>
+              <Text whiteSpace='nowrap' m={0} fontWeight='bold'>
                 {t('form.process_create.calendar.start_on_a_date')}
-              </FormLabel>
+              </Text>
             </Radio>
             <Box>
               <Input
@@ -101,11 +84,16 @@ const Calendar = () => {
               </FormErrorMessage>
             </Box>
           </FormControl>
+          <Flex flexDirection='column' gap={2}>
+            <Radio value='1' onClick={() => clearErrors('startDate')}>
+              <Text fontWeight='bold'>{t('form.process_create.calendar.now')}</Text>
+            </Radio>
+          </Flex>
         </Stack>
       </RadioGroup>
       <Box>
-        <FormControl isInvalid={!!errors.endDate} width='180px' mb={1}>
-          <FormLabel fontWeight={500}> {t('form.process_create.calendar.end_date')}</FormLabel>
+        <FormControl isInvalid={!!errors.endDate} width='180px' mb={3}>
+          <FormLabel fontWeight='bold'> {t('form.process_create.calendar.end_date')}</FormLabel>
           <Input
             type='date'
             {...register(`endDate`, { required })}
