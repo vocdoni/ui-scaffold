@@ -12,6 +12,7 @@ import { Alert } from './components/Alert'
 import { Input } from './components/Input'
 import { Textarea } from './components/Textarea'
 import { Form } from './components/Form'
+import { Tabs } from './components/Tabs'
 
 export const theme = extendTheme(vtheme, {
   styles: {
@@ -33,6 +34,7 @@ export const theme = extendTheme(vtheme, {
     Input,
     Questions,
     Link,
+    Tabs,
     Textarea,
     Stepper,
   },
