@@ -5,6 +5,7 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 
 const info = definePartsStyle({
   container: {
+    borderRadius: 'md',
     border: '1px solid',
     borderColor: 'alert_info.color',
     bgColor: 'alert_info.bg',
@@ -27,8 +28,20 @@ const info = definePartsStyle({
   },
 })
 
+const clarification = definePartsStyle({
+  container: {
+    border: '1px solid',
+    color: 'process_create.alert_small',
+  },
+
+  title: {
+    fontWeight: 400,
+  },
+})
+
 const variantsAlert = {
   info,
+  clarification,
 }
 
 export const Alert = defineMultiStyleConfig({ variants: variantsAlert })

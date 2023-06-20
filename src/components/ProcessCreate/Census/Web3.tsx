@@ -94,22 +94,10 @@ export const CensusWeb3AddressesAddAddress = ({ onAddAddress }: { onAddAddress: 
                 },
               })}
               width='420px'
-              bgColor='process_create.input.bg'
             />
             <FormErrorMessage>{fieldMapErrorMessage(methods.formState.errors, 'address')}</FormErrorMessage>
           </Box>
-          <Button
-            type='submit'
-            colorScheme='process_create.btn_vcd'
-            width={16}
-            boxShadow='0px 2px 4px gray'
-            _hover={{
-              fontSize: 'lg',
-            }}
-            _active={{
-              fontSize: 'md',
-            }}
-          >
+          <Button type='submit' variant='next' width={16} ml='none'>
             Add
           </Button>
         </FormControl>

@@ -11,44 +11,11 @@ export const StepsNavigation = () => {
   return (
     <Flex justifyContent='space-between' mt={5}>
       {activeStep !== steps.findIndex((step) => step.first) && (
-        <Button
-          onClick={prev}
-          leftIcon={<ArrowBackIcon />}
-          colorScheme='process_create.btn_white'
-          borderRadius='md'
-          boxShadow='0px 2px 4px gray'
-          width={36}
-          fontWeight={600}
-          fontSize='md'
-          color='black'
-          _hover={{
-            fontSize: 'lg',
-          }}
-          _active={{
-            fontSize: 'md',
-          }}
-        >
+        <Button variant='prev' onClick={prev} leftIcon={<ArrowBackIcon />}>
           {t('form.process_create.previous_step')}
         </Button>
       )}
-      <Button
-        form='process-create-form'
-        rightIcon={<ArrowForwardIcon />}
-        type='submit'
-        ml='auto'
-        colorScheme='process_create.btn_vcd'
-        borderRadius='md'
-        boxShadow='0px 2px 4px gray'
-        width={36}
-        fontWeight={600}
-        fontSize='md'
-        _hover={{
-          fontSize: 'lg',
-        }}
-        _active={{
-          fontSize: 'md',
-        }}
-      >
+      <Button variant='next' type='submit' form='process-create-form' rightIcon={<ArrowForwardIcon />}>
         {t('form.process_create.next_step')}
       </Button>
     </Flex>

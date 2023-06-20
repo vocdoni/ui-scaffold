@@ -94,20 +94,18 @@ export const colors = {
   },
 
   process_create: {
+    alert_small: colorsBase.blue.normal,
     bg: colorsBase.gray.light,
     border: colorsBase.gray.normal,
-    btn_vcd: {
-      50: colorsBase.green.vcd,
-      500: colorsBase.green.vcd,
-      600: colorsBase.green.vcd,
+    prev_step: {
+      bg: colorsBase.white,
+      color: colorsBase.black,
     },
-    btn_white: {
-      50: colorsBase.white,
-      500: colorsBase.white,
-      600: colorsBase.white,
+    next_step: {
+      bg: colorsBase.green.vcd,
+      color: colorsBase.white,
     },
-    account_name_note: colorsBase.gray.dark,
-    account_name_note_logo: colorsBase.blue.normal,
+    description_logo: colorsBase.blue.normal,
     input: {
       bg: colorsBase.white,
       color_placeholder: colorsBase.black,
