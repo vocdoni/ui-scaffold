@@ -9,8 +9,8 @@ import { useProcessCreationSteps } from './use-steps'
 export interface InfoValues {
   title: string
   description: string
-  endDate: Date
-  startDate: Date
+  endDate: string
+  startDate: string
   electionType: {
     autoStart: boolean
     interruptible: boolean

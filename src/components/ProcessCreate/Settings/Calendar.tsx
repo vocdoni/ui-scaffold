@@ -32,8 +32,6 @@ const Calendar = () => {
     name: ['electionType'],
   })
 
-  console.log(watch())
-
   const { ref: startRef } = register('startDate')
   const { ref: endRef } = register('endDate')
   const startDateRef = useRef<HTMLInputElement | null>()
@@ -47,6 +45,11 @@ const Calendar = () => {
   const showPicker = (ref: MutableRefObject<HTMLInputElement | null | undefined>) => {
     if (ref.current && 'showPicker' in ref.current) ref.current.showPicker()
   }
+
+  const begin = watch('startDate')
+  const end = watch('endDate')
+  // translations parser can't take an "inception" of translations, that's why we define it here
+  const datef = t('form.process_create.calendar.date_format')
 
   return (
     <Flex flexDirection='column' gap={2}>
@@ -108,10 +111,20 @@ const Calendar = () => {
           <FormErrorMessage>{errors.endDate?.message?.toString()}</FormErrorMessage>
         </FormControl>
 
-        <Alert variant='clarification' status='info'>
-          <AlertIcon />
-          <AlertTitle>{t('form.process_create.calendar.end_date_description')}</AlertTitle>
-        </Alert>
+        {end && (
+          <Alert variant='clarification' status='info'>
+            <AlertIcon />
+            <AlertTitle>
+              {t('form.process_create.calendar.end_date_description', {
+                date: {
+                  begin: begin ? new Date(begin) : new Date(),
+                  end: end && new Date(end),
+                },
+                format: datef,
+              })}
+            </AlertTitle>
+          </Alert>
+        )}
       </Box>
     </Flex>
   )
