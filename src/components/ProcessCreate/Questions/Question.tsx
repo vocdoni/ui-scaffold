@@ -1,6 +1,5 @@
-import { DeleteIcon } from '@chakra-ui/icons'
-import { Box, FormControl, FormErrorMessage, FormLabel, HStack, IconButton, Input } from '@chakra-ui/react'
-import { useFieldArray, UseFieldArrayRemove, useFormContext } from 'react-hook-form'
+import { Box, FormControl, FormErrorMessage, Input, Textarea } from '@chakra-ui/react'
+import { UseFieldArrayRemove, useFieldArray, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { fieldMapErrorMessage, isInvalidFieldMap } from '../../../constants'
 import Options from './Options'
@@ -11,11 +10,12 @@ interface Props {
 }
 
 const Question = ({ index, remove }: Props) => {
+  const { t } = useTranslation()
   const {
     register,
     formState: { errors },
   } = useFormContext()
-  const { t } = useTranslation()
+
   const {
     fields,
     append: appendOption,
@@ -24,43 +24,34 @@ const Question = ({ index, remove }: Props) => {
     name: `questions.${index}.options`,
   })
 
-  const num = index + 1
-
   return (
-    <Box bg='white' p={{ base: 2, sm: 4 }} borderRadius={8}>
-      <HStack justify='space-between' mb={4}>
-        <FormLabel>{t('form.process_create.question_identifier', { num })}</FormLabel>
-
-        <IconButton
-          type='button'
-          size='sm'
-          icon={<DeleteIcon />}
-          aria-label={t('form.process_create.question_delete', { num })}
-          onClick={() => remove()}
-        />
-      </HStack>
-      <FormControl mb={4} isInvalid={isInvalidFieldMap(errors, `questions.${index}.title`)}>
-        <FormLabel>{t('form.process_create.question_title', { num })}</FormLabel>
-        <Input
-          {...register(`questions.${index}.title`, {
-            required: {
-              value: true,
-              message: t('form.error.field_is_required'),
-            },
-          })}
-          placeholder={t('form.process_create.question_placeholder', {
-            num,
-          }).toString()}
-        />
-        <FormErrorMessage>{fieldMapErrorMessage(errors, `questions.${index}.title`)}</FormErrorMessage>
-      </FormControl>
-      <FormControl>
-        <FormLabel>Description</FormLabel>
-        <Input {...register(`questions.${index}.description`)} placeholder='Description' />
-      </FormControl>
+    <>
+      <Box>
+        <FormControl isInvalid={isInvalidFieldMap(errors, `questions.${index}.title`)} mb={2}>
+          <Input
+            {...register(`questions.${index}.title`, {
+              required: {
+                value: true,
+                message: t('form.error.field_is_required'),
+              },
+            })}
+            placeholder={t('form.process_create.question.title_placeholder').toString()}
+            mb={1}
+            size='lg'
+          />
+          <FormErrorMessage>{fieldMapErrorMessage(errors, `questions.${index}.title`)}</FormErrorMessage>
+        </FormControl>
+        <FormControl>
+          <Textarea
+            {...register(`questions.${index}.description`)}
+            placeholder={t('form.process_create.question.description_placeholder').toString()}
+            mb={1}
+          />
+        </FormControl>
+      </Box>
 
       <Options fields={fields} removeOption={removeOption} appendOption={appendOption} index={index} />
-    </Box>
+    </>
   )
 }
 

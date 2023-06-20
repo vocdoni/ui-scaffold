@@ -7,6 +7,12 @@ import { Card } from './components/Card'
 import { Link } from './components/Link'
 import { Questions } from './components/Questions'
 import { space } from './space'
+import { Stepper } from './components/Stepper'
+import { Alert } from './components/Alert'
+import { Input } from './components/Input'
+import { Textarea } from './components/Textarea'
+import { Form } from './components/Form'
+import { Tabs } from './components/Tabs'
 
 export const theme = extendTheme(vtheme, {
   styles: {
@@ -21,10 +27,16 @@ export const theme = extendTheme(vtheme, {
     ...space,
   },
   components: {
-    Card,
-    Questions,
+    Alert,
     Button,
+    Card,
+    Form,
+    Input,
+    Questions,
     Link,
+    Tabs,
+    Textarea,
+    Stepper,
   },
 })
 

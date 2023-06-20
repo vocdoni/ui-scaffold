@@ -3,12 +3,10 @@
   "aside": {
     "connect_and_vote": "",
     "connect_to_vote": "Connecta't per votar",
-    "connect_your_wallet": "Connecteu la vostra cartera per veure l'estat de la proposta...",
     "has_already_voted": "",
     "is_able_to_vote": "Connectat. Estàs en el cens",
     "is_not_in_census": "",
     "overwrite_votes_left": "",
-    "proposers": "Propòsits",
     "verify_vote_on_explorer": "",
     "voters": "Votants"
   },
@@ -49,6 +47,9 @@
       "voted_title": ""
     }
   },
+  "census_type": {
+    "web3": ""
+  },
   "copy": {
     "address": "",
     "copied_title": ""
@@ -69,10 +70,10 @@
   },
   "form": {
     "account_create": {
-      "account_description": "",
-      "account_name": "",
       "account_name_note": "",
-      "button_create": ""
+      "account_name_note_description": "",
+      "organization_description_placeholder": "",
+      "organization_title_placeholder": ""
     },
     "error": {
       "address_pattern": "",
@@ -80,31 +81,76 @@
       "field_is_too_long": ""
     },
     "process_create": {
-      "address_title": "",
-      "address_weight": "",
-      "addresses_title": "",
-      "advanced_settings": "",
-      "autostart": "",
-      "date_end": "",
-      "date_start": "",
-      "interruptible": "",
-      "max_vote_overwrites": "",
-      "process_description": "",
+      "calendar": {
+        "date_format": "",
+        "end_date": "",
+        "end_date_description": "",
+        "now": "",
+        "now_description": "",
+        "start_date_description": "",
+        "start_on_a_date": "",
+        "title": ""
+      },
+      "census": {
+        "csv_description": "",
+        "csv_title": "",
+        "description": "",
+        "title": "",
+        "token_base_description": "",
+        "token_base_title": "",
+        "wallet_address_description": "",
+        "wallet_address_title": "",
+        "web3_title": ""
+      },
+      "confirm": {
+        "adding_census": "",
+        "completed": "",
+        "creating": "",
+        "submitting": "",
+        "validating": ""
+      },
+      "create": "",
+      "creating_process": "",
+      "do_not_close": "",
+      "next_step": "",
+      "previous_step": "",
       "process_description_placeholder": "",
-      "process_title": "",
       "process_title_placeholder": "",
+      "question": {
+        "add_new_option": "",
+        "aside": "",
+        "description_placeholder": "",
+        "option_placeholder": "",
+        "title_placeholder": ""
+      },
       "question_delete": "",
       "question_identifier": "",
       "question_placeholder": "",
       "question_title": "",
       "questions_title": "",
-      "secret_until_the_end": "",
-      "settings": "",
-      "submit": "",
+      "running_checks": "",
+      "settings": {
+        "interruptible": "",
+        "interruptible_description": "",
+        "real_time": "",
+        "real_time_description": "",
+        "secret": "",
+        "secret_description": "",
+        "settings": "",
+        "settings_description": "",
+        "vote_overwrites": "",
+        "vote_overwrites_descripton": ""
+      },
+      "steps": {
+        "census": "",
+        "checks": "",
+        "confirm": "",
+        "info": "",
+        "questions": ""
+      },
       "success_description": "",
       "success_title": "",
-      "unhealthy_account": "",
-      "weighted_vote": ""
+      "unhealthy_account": ""
     }
   },
   "home": {
@@ -162,6 +208,20 @@
     "pause": "",
     "play": "",
     "stop": ""
+  },
+  "process_create": {
+    "census": {
+      "csv_description": "",
+      "csv_title": "",
+      "description": "",
+      "footer_description": "",
+      "footer_title": "",
+      "title": "",
+      "token_base_description": "",
+      "token_base_title": "",
+      "wallet_address_description": "",
+      "wallet_address_title": ""
+    }
   },
   "read_less": "Llegir menys",
   "read_more": "Llegir més",
