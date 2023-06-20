@@ -6078,8 +6078,8 @@ __metadata:
     date-fns: ^2.29.3
     ethers: ^5.7.2
     framer-motion: ^10.12.16
-    i18next: ^22.4.13
-    i18next-parser: ^7.7.0
+    i18next: ^23.2.1
+    i18next-parser: ^8.0.0
     prettier: ^2.8.7
     react: ^18.1.0
     react-dom: ^18.1.0
@@ -11647,9 +11647,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next-parser@npm:^7.7.0":
-  version: 7.9.0
-  resolution: "i18next-parser@npm:7.9.0"
+"i18next-parser@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "i18next-parser@npm:8.0.0"
   dependencies:
     "@babel/runtime": ^7.15.4
     broccoli-plugin: ^4.0.7
@@ -11673,7 +11673,7 @@ __metadata:
     vue-template-compiler: ^2.6.11
   bin:
     i18next: bin/cli.js
-  checksum: da1ed8744b19c65783f76c5bcbf7b798d520ae3714865a307236338804e7c0aaf26e0a3df594e5a13ce72109feddf24a3fc5dd4a71e2dfd3250a84395da3480e
+  checksum: 6c24fd6767f8589b361484fa722f21a13c9faf6993235c7b3ed38b269556d5ad0ca8c336f21272bd7d8e98ed38a88f2b4c6cb7a9a72365fe9b09d4156162ecca
   languageName: node
   linkType: hard
 
@@ -11686,12 +11686,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next@npm:^22.0.4, i18next@npm:^22.4.13":
+"i18next@npm:^22.0.4":
   version: 22.5.1
   resolution: "i18next@npm:22.5.1"
   dependencies:
     "@babel/runtime": ^7.20.6
   checksum: 175f8ab7fac2abcee147b00cc2d8e7d4fa9b05cdc227f02cac841fc2fd9545ed4a6d88774f594f8ad12dc944e4d34cc8e88aa00c8b9947baef9e859d93abd305
+  languageName: node
+  linkType: hard
+
+"i18next@npm:^23.2.1":
+  version: 23.2.1
+  resolution: "i18next@npm:23.2.1"
+  dependencies:
+    "@babel/runtime": ^7.22.5
+  checksum: 392bd4989faefb2ec0431db0373e0030598a01f86ecca620b14da8c25b69b8c84937635e81b926bbde9e5b48f915cd7518d2bf89164ba9b159b7de316eee021f
   languageName: node
   linkType: hard
 

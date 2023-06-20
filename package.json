@@ -15,7 +15,7 @@
     "date-fns": "^2.29.3",
     "ethers": "^5.7.2",
     "framer-motion": "^10.12.16",
-    "i18next": "^22.4.13",
+    "i18next": "^23.2.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-hook-form": "^7.43.8",
@@ -63,7 +63,7 @@
     "@types/react": "^18.2.7",
     "@types/react-dom": "^18.2.4",
     "@types/react-router-dom": "^5.3.3",
-    "i18next-parser": "^7.7.0",
+    "i18next-parser": "^8.0.0",
     "prettier": "^2.8.7",
     "typescript": "^4.6.3"
   }

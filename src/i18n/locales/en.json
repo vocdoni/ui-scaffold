@@ -208,20 +208,6 @@
     "play": "play",
     "stop": "stop"
   },
-  "process_create": {
-    "census": {
-      "csv_description": "",
-      "csv_title": "",
-      "description": "",
-      "footer_description": "",
-      "footer_title": "",
-      "title": "",
-      "token_base_description": "",
-      "token_base_title": "",
-      "wallet_address_description": "",
-      "wallet_address_title": ""
-    }
-  },
   "read_less": "Read less",
   "read_more": "Read more",
   "search": {
