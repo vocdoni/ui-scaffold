@@ -86,7 +86,6 @@
         "end_date_description": "",
         "now": "",
         "now_description": "",
-        "start_date": "",
         "start_date_description": "",
         "start_on_a_date": "",
         "title": ""
@@ -148,7 +147,6 @@
         "info": "",
         "questions": ""
       },
-      "submit": "",
       "success_description": "",
       "success_title": "",
       "unhealthy_account": ""
