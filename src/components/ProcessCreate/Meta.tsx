@@ -52,7 +52,7 @@ const CreateProcessMeta = () => {
         ) : (
           <FormHelperText>
             <InfoOutlineIcon />
-            <Text> {t('form.account_create.account_name_note_description')}</Text>
+            <Text>{t('form.account_create.account_name_note_description')}</Text>
           </FormHelperText>
         )}
       </FormControl>
