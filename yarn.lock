@@ -5983,11 +5983,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vocdoni/chakra-components@npm:^0.2.6":
-  version: 0.2.6
-  resolution: "@vocdoni/chakra-components@npm:0.2.6"
+"@vocdoni/chakra-components@npm:^0.2.7":
+  version: 0.2.7
+  resolution: "@vocdoni/chakra-components@npm:0.2.7"
   dependencies:
-    "@vocdoni/sdk": ^0.0.13
+    "@vocdoni/sdk": ^0.0.15
     date-fns: ^2.29.3
     react-hook-form: ^7.43.8
     react-icons: ^4.8.0
@@ -6009,12 +6009,12 @@ __metadata:
     "@chakra-ui/tag": ^3.0.0
     "@chakra-ui/theme": ^3.0.0
     "@chakra-ui/toast": ^6.1.1
-    "@vocdoni/sdk": ">= 0.0.13"
+    "@vocdoni/sdk": ">= 0.0.15"
     react: ">= 16.8.0"
     react-dom: ">= 16.8.0"
     react-markdown: ">= 8.0.0"
     remark-gfm: ">= 2.0.0"
-  checksum: 7eca7bbe9110779edddd5216e68850a452e20e0f4620f2376b20242f1d564d62551c17769f28edcc7e5cbbbd521969d6956eeb71922eb7092d24e6d7350cb1f3
+  checksum: 7d9970d1c6c723f7265c4a75d6318439220f52ac8a838fea93fcdff8308efadbbfb40e84ef3efa33496e72c24997bf1409a69db3318daa699f532265fef43823
   languageName: node
   linkType: hard
 
@@ -6028,9 +6028,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vocdoni/sdk@npm:0.0.13, @vocdoni/sdk@npm:^0.0.13":
-  version: 0.0.13
-  resolution: "@vocdoni/sdk@npm:0.0.13"
+"@vocdoni/sdk@npm:^0.0.15":
+  version: 0.0.15
+  resolution: "@vocdoni/sdk@npm:0.0.15"
   dependencies:
     "@ethersproject/abstract-signer": ^5.7.0
     "@ethersproject/address": ^5.7.0
@@ -6048,7 +6048,7 @@ __metadata:
     tiny-invariant: ^1.3.1
     tweetnacl: ^1.0.3
     yup: ^0.32.11
-  checksum: 6e26070a5fd162fb12e866bc3300fbe2f162ab9553cb3a638ae4e8155640dc16f77d722c1cc995eb1de2e899bfb1c83c2d8618eb40de75efb3fe338368952959
+  checksum: 81e19c2904ba46b8b2caa3b6784ce6983eb29b2834f9520383c92746217fc0fe9f246ad15df0096452d9ade049de75e61672eff22d882a65cbcd16819ecf9d47
   languageName: node
   linkType: hard
 
@@ -6073,8 +6073,8 @@ __metadata:
     "@types/react": ^18.2.7
     "@types/react-dom": ^18.2.4
     "@types/react-router-dom": ^5.3.3
-    "@vocdoni/chakra-components": ^0.2.6
-    "@vocdoni/sdk": 0.0.13
+    "@vocdoni/chakra-components": ^0.2.7
+    "@vocdoni/sdk": ^0.0.15
     date-fns: ^2.29.3
     ethers: ^5.7.2
     framer-motion: ^10.12.16

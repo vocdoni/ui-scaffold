@@ -1,6 +1,6 @@
 import { Flex, Grid, GridItem, Spinner, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
 import { useClient, useOrganization } from '@vocdoni/chakra-components'
-import { PublishedElection } from '@vocdoni/sdk'
+import { InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
@@ -13,7 +13,7 @@ const OrganizationView = () => {
   const { client } = useClient()
   const { organization } = useOrganization()
 
-  const [electionsList, setElectionsList] = useState<PublishedElection[]>([])
+  const [electionsList, setElectionsList] = useState<(PublishedElection | InvalidElection)[]>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [loaded, setLoaded] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
@@ -46,7 +46,7 @@ const OrganizationView = () => {
           setFinished(true)
         }
 
-        setElectionsList((prev: PublishedElection[]) => {
+        setElectionsList((prev: (PublishedElection | InvalidElection)[]) => {
           if (prev) return [...prev, ...res]
           return res
         })
