@@ -1,7 +1,7 @@
 import {
   Alert,
+  AlertDescription,
   AlertIcon,
-  AlertTitle,
   Box,
   Flex,
   FormControl,
@@ -112,9 +112,9 @@ const Calendar = () => {
         </FormControl>
 
         {end && (
-          <Alert variant='info' status='info'>
+          <Alert status='info' colorScheme='info'>
             <AlertIcon />
-            <AlertTitle>
+            <AlertDescription>
               {t('form.process_create.calendar.end_date_description', {
                 date: {
                   begin: begin ? new Date(begin) : new Date(),
@@ -122,7 +122,7 @@ const Calendar = () => {
                 },
                 format: datef,
               })}
-            </AlertTitle>
+            </AlertDescription>
           </Alert>
         )}
       </Box>

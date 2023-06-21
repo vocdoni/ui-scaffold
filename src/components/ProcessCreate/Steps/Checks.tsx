@@ -1,5 +1,5 @@
 import { ArrowForwardIcon } from '@chakra-ui/icons'
-import { Alert, AlertIcon, AlertTitle, Box, Button, Flex, Spinner, Text } from '@chakra-ui/react'
+import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, Flex, Spinner, Text } from '@chakra-ui/react'
 import { useClient } from '@vocdoni/chakra-components'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -46,13 +46,15 @@ const NeedsAccount = () => {
   return (
     <>
       <Wrapper>
-        <Alert variant='info' status='info'>
+        <Alert status='info' colorScheme='info'>
           <AlertIcon />
           <Flex flexDirection='column'>
             <AlertTitle>
               <Text as='span'>Info</Text>
-              {t('form.process_create.unhealthy_account')}
             </AlertTitle>
+            <AlertDescription>
+              <Text> {t('form.process_create.unhealthy_account')}</Text>
+            </AlertDescription>
           </Flex>
         </Alert>
         <AccountCreate />

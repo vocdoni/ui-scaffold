@@ -28,6 +28,11 @@ export const colorsBase = {
 }
 
 export const colors = {
+  info: {
+    color: colorsBase.blue.dark,
+    100: colorsBase.blue.light,
+    500: colorsBase.blue.dark,
+  },
   alert_info: {
     color: colorsBase.blue.dark,
     bg: colorsBase.blue.light,
