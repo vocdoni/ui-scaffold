@@ -97,7 +97,7 @@ export const CensusWeb3AddressesAddAddress = ({ onAddAddress }: { onAddAddress: 
             />
             <FormErrorMessage>{fieldMapErrorMessage(methods.formState.errors, 'address')}</FormErrorMessage>
           </Box>
-          <Button type='submit' variant='next' width={16} ml='none'>
+          <Button type='submit' ml='none'>
             Add
           </Button>
         </FormControl>

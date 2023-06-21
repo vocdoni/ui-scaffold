@@ -55,7 +55,6 @@ const CreateProcessQuestions = () => {
           </Text>
           <IconButton
             type='button'
-            colorScheme='process_create.btn_vcd'
             size='sm'
             icon={<AddIcon />}
             aria-label='add question'
@@ -66,12 +65,6 @@ const CreateProcessQuestions = () => {
                 options: [{ option: '' }, { option: '' }],
               })
             }
-            _hover={{
-              fontSize: 'md',
-            }}
-            _active={{
-              fontSize: 'sm',
-            }}
           />
         </HStack>
         <TabList display='flex' flexDirection='column' gap={1} border='none' p={1}>

@@ -11,6 +11,7 @@ export const colorsBase = {
     light2: '#F2F2F2',
     normal: '#D9D9D9',
     dark: '#718096',
+    dark2: 'rgba(0, 0, 0, 0.6)',
   },
   grenade: '#961D1D',
   green: {
@@ -28,11 +29,6 @@ export const colorsBase = {
 }
 
 export const colors = {
-  alert_info: {
-    color: colorsBase.blue.dark,
-    bg: colorsBase.blue.light,
-  },
-
   buttons: {
     default: colorsBase.pink.light,
     primary: {
@@ -67,11 +63,7 @@ export const colors = {
     bg: colorsBase.white,
     border: colorsBase.black,
   },
-  input: {
-    bg: colorsBase.white,
-    placeholder_color: colorsBase.gray.normal,
-  },
-  link: colorsBase.blue.normal,
+  link: colorsBase.pink.normal,
   navbar: {
     bg: colorsBase.white,
     border: colorsBase.white,
@@ -95,27 +87,21 @@ export const colors = {
   },
 
   process_create: {
-    alert_small: colorsBase.blue.normal,
+    alert_info: {
+      color: colorsBase.blue.dark,
+      bg: colorsBase.blue.light,
+    },
+
     aside_questions_bg: colorsBase.gray.light2,
     bg: colorsBase.gray.light,
     border: colorsBase.gray.normal,
     description_logo: colorsBase.blue.normal,
-    input: {
-      bg: colorsBase.white,
-      color_placeholder: colorsBase.black,
-    },
-    prev_step: {
-      bg: colorsBase.white,
-      color: colorsBase.black,
-    },
-    next_step: {
-      bg: colorsBase.green.vcd,
-      color: colorsBase.white,
-    },
+    input_bg: colorsBase.white,
     tabs: {
       card: {
-        color: colorsBase.black,
-        selected_color: colorsBase.green.vcd,
+        color: colorsBase.gray.dark,
+        color_title: colorsBase.gray.dark2,
+        selected_color: colorsBase.pink.normal,
       },
     },
   },
