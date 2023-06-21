@@ -32,6 +32,7 @@ export const colors = {
     color: colorsBase.blue.dark,
     bg: colorsBase.blue.light,
   },
+
   buttons: {
     default: colorsBase.pink.light,
     primary: {
