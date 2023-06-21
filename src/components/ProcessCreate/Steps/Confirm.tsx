@@ -39,6 +39,7 @@ export const Confirm = () => {
   const create = async () => {
     onOpen()
     setSending(true)
+    setError(null)
     try {
       let census
 
