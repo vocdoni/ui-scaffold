@@ -49,12 +49,8 @@ const NeedsAccount = () => {
         <Alert status='info'>
           <AlertIcon />
           <Flex flexDirection='column'>
-            <AlertTitle>
-              <Text as='span'>Info</Text>
-            </AlertTitle>
-            <AlertDescription>
-              <Text> {t('form.process_create.unhealthy_account')}</Text>
-            </AlertDescription>
+            <AlertTitle>Info</AlertTitle>
+            <AlertDescription>{t('form.process_create.unhealthy_account')}</AlertDescription>
           </Flex>
         </Alert>
         <AccountCreate />
