@@ -19,7 +19,7 @@ import { useFormContext, useWatch } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useBooleanRadioRegister } from '../../../constants'
 
-const DateFormatHtml = 'yyyy-MM-dd'
+const DateFormatHtml = 'yyyy-MM-dd HH:mm'
 
 const Calendar = () => {
   const { t } = useTranslation()
@@ -31,30 +31,34 @@ const Calendar = () => {
     watch,
   } = useFormContext()
 
-  useWatch({
-    name: ['electionType'],
-  })
-
-  const { ref: startRef } = register('startDate')
-  const { ref: endRef } = register('endDate')
-  const startDateRef = useRef<HTMLInputElement | null>()
-  const endDateRef = useRef<HTMLInputElement | null>()
-  const [min, setMin] = useState<Date>(new Date())
-
   const required = {
     value: true,
     message: t('form.error.field_is_required'),
   }
-
-  const showPicker = (ref: MutableRefObject<HTMLInputElement | null | undefined>) => {
-    if (ref.current && 'showPicker' in ref.current) ref.current.showPicker()
-  }
-
+  const [min, setMin] = useState<Date>(new Date())
+  const startDateRef = useRef<HTMLInputElement | null>()
+  const endDateRef = useRef<HTMLInputElement | null>()
+  const startDate = register('startDate', {
+    onChange: (e) => setMin(new Date(e.target.value)),
+    required: {
+      value: !getValues().electionType.autoStart,
+      message: t('form.error.field_is_required'),
+    },
+  })
+  const endDate = register('endDate', { required })
   const begin = watch('startDate')
   const end = watch('endDate')
   // translations parser can't take an "inception" of translations, that's why we define it here
   const datef = t('form.process_create.calendar.date_format')
   const today = format(new Date(), DateFormatHtml)
+
+  useWatch({
+    name: ['electionType'],
+  })
+
+  const showPicker = (ref: MutableRefObject<HTMLInputElement | null | undefined>) => {
+    if (ref.current && 'showPicker' in ref.current) ref.current.showPicker()
+  }
 
   return (
     <Flex flexDirection='column' gap={2}>
@@ -68,7 +72,14 @@ const Calendar = () => {
       </Box>
       <RadioGroup {...useBooleanRadioRegister('electionType.autoStart')}>
         <Stack direction='row' alignItems='start' gap={40}>
-          <FormControl isInvalid={!!errors.startDate} display='flex' flexDirection='column' gap={2} width='180px'>
+          <FormControl
+            isInvalid={!!errors.startDate}
+            display='flex'
+            flexDirection='column'
+            gap={2}
+            width='180px'
+            flex='1'
+          >
             <Radio value='0' alignItems='center'>
               <Text
                 whiteSpace='nowrap'
@@ -88,26 +99,19 @@ const Calendar = () => {
             <Box>
               <Input
                 disabled={getValues().electionType.autoStart}
-                type='date'
-                {...register(`startDate`, {
-                  onChange: (e) => setMin(new Date(e.target.value)),
-                  required: {
-                    value: !getValues().electionType.autoStart,
-                    message: t('form.error.field_is_required'),
-                  },
-                })}
+                type='datetime-local'
+                {...startDate}
                 ref={(e) => {
-                  startRef(e)
+                  startDate.ref(e)
                   startDateRef.current = e
                 }}
                 min={today}
-                onClick={() => showPicker(startDateRef)}
+                onFocus={() => showPicker(startDateRef)}
               />
-
               <FormErrorMessage>{errors.startDate?.message?.toString()}</FormErrorMessage>
             </Box>
           </FormControl>
-          <Flex flexDirection='column' gap={2}>
+          <Flex flexDirection='column' gap={2} flex='1'>
             <Radio value='1' onClick={() => clearErrors('startDate')}>
               <Text fontWeight='bold'>{t('form.process_create.calendar.now')}</Text>
             </Radio>
@@ -115,17 +119,17 @@ const Calendar = () => {
         </Stack>
       </RadioGroup>
       <Box>
-        <FormControl isInvalid={!!errors.endDate} width='180px' mb={3}>
+        <FormControl isInvalid={!!errors.endDate} maxW='40%' mb={3}>
           <FormLabel fontWeight='bold'> {t('form.process_create.calendar.end_date')}</FormLabel>
           <Input
-            type='date'
-            {...register(`endDate`, { required })}
+            type='datetime-local'
+            {...endDate}
             ref={(e) => {
-              endRef(e)
+              endDate.ref(e)
               endDateRef.current = e
             }}
             min={format(min, DateFormatHtml)}
-            onClick={() => showPicker(endDateRef)}
+            onFocus={() => showPicker(endDateRef)}
           />
           <FormErrorMessage>{errors.endDate?.message?.toString()}</FormErrorMessage>
         </FormControl>

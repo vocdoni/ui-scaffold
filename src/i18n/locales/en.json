@@ -83,9 +83,9 @@
     "process_create": {
       "alert_info_title": "Info",
       "calendar": {
-        "date_format": "d/L",
+        "date_format": "PPPPpppp",
         "end_date": "End date",
-        "end_date_description": "This election will start at {{ date.begin, format }} and end at {{ date.end, format }} - Lasting {{ date, duration }}",
+        "end_date_description": "This election will start at {{ date.begin, format }} and end at {{ date.end, format }}, lasting ~{{ date, duration }}",
         "now": "Now",
         "start_date_description": "Define when the election should be active to recive votes. If 'Now' is selected, the proposal is immediatlely active after publishing.",
         "start_on_a_date": "Start on a date",

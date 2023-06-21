@@ -9,6 +9,7 @@ import { useProcessCreationSteps } from './use-steps'
 export interface InfoValues {
   title: string
   description: string
+  // dates need to be string to properly reset the values to the inputs
   endDate: string
   startDate: string
   electionType: {
