@@ -13,10 +13,13 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react'
-import { MutableRefObject, useRef } from 'react'
+import { format } from 'date-fns'
+import { MutableRefObject, useRef, useState } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useBooleanRadioRegister } from '../../../constants'
+
+const DateFormatHtml = 'yyyy-MM-dd'
 
 const Calendar = () => {
   const { t } = useTranslation()
@@ -36,6 +39,7 @@ const Calendar = () => {
   const { ref: endRef } = register('endDate')
   const startDateRef = useRef<HTMLInputElement | null>()
   const endDateRef = useRef<HTMLInputElement | null>()
+  const [min, setMin] = useState<Date>(new Date())
 
   const required = {
     value: true,
@@ -50,6 +54,7 @@ const Calendar = () => {
   const end = watch('endDate')
   // translations parser can't take an "inception" of translations, that's why we define it here
   const datef = t('form.process_create.calendar.date_format')
+  const today = format(new Date(), DateFormatHtml)
 
   return (
     <Flex flexDirection='column' gap={2}>
@@ -65,7 +70,18 @@ const Calendar = () => {
         <Stack direction='row' alignItems='start' gap={40}>
           <FormControl isInvalid={!!errors.startDate} display='flex' flexDirection='column' gap={2} width='180px'>
             <Radio value='0' alignItems='center'>
-              <Text whiteSpace='nowrap' m={0} fontWeight='bold'>
+              <Text
+                whiteSpace='nowrap'
+                m={0}
+                fontWeight='bold'
+                onClick={() =>
+                  // we need to use a timeout cos' triggering it immediately would not work, since this input is still disabled
+                  setTimeout(() => {
+                    startDateRef.current?.focus()
+                    startDateRef.current?.click()
+                  }, 75)
+                }
+              >
                 {t('form.process_create.calendar.start_on_a_date')}
               </Text>
             </Radio>
@@ -74,6 +90,7 @@ const Calendar = () => {
                 disabled={getValues().electionType.autoStart}
                 type='date'
                 {...register(`startDate`, {
+                  onChange: (e) => setMin(new Date(e.target.value)),
                   required: {
                     value: !getValues().electionType.autoStart,
                     message: t('form.error.field_is_required'),
@@ -83,6 +100,7 @@ const Calendar = () => {
                   startRef(e)
                   startDateRef.current = e
                 }}
+                min={today}
                 onClick={() => showPicker(startDateRef)}
               />
 
@@ -106,6 +124,7 @@ const Calendar = () => {
               endRef(e)
               endDateRef.current = e
             }}
+            min={format(min, DateFormatHtml)}
             onClick={() => showPicker(endDateRef)}
           />
           <FormErrorMessage>{errors.endDate?.message?.toString()}</FormErrorMessage>
