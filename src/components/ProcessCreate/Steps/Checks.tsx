@@ -46,7 +46,7 @@ const NeedsAccount = () => {
   return (
     <>
       <Wrapper>
-        <Alert status='error'>
+        <Alert status='info'>
           <AlertIcon />
           <Flex flexDirection='column'>
             <AlertTitle>
