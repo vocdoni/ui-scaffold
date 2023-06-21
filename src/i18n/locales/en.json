@@ -81,6 +81,7 @@
       "field_is_too_long": "This field cannot be longer than {{ max }} chars"
     },
     "process_create": {
+      "alert_info_title": "Info",
       "calendar": {
         "date_format": "d/L",
         "end_date": "End date",
