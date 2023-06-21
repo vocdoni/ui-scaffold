@@ -3,15 +3,6 @@ import { createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/react'
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(inputAnatomy.keys)
 
-const baseStyle = definePartsStyle({
-  field: {
-    _placeholder: {
-      opacity: 1,
-      color: 'input.placeholder_color',
-    },
-  },
-})
-
 const size = {
   lg: defineStyle({
     fontSize: '2xl',
@@ -28,9 +19,9 @@ const sizes = {
 const outline = definePartsStyle((props) => {
   return {
     field: {
-      bg: 'input.bg',
+      backgroundColor: 'process_create.input_bg',
     },
   }
 })
 
-export const Input = defineMultiStyleConfig({ baseStyle, variants: { outline }, sizes })
+export const Input = defineMultiStyleConfig({ variants: { outline }, sizes })

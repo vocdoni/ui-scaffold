@@ -11,11 +11,11 @@ export const StepsNavigation = () => {
   return (
     <Flex justifyContent='space-between' mt={5}>
       {activeStep !== steps.findIndex((step) => step.first) && (
-        <Button variant='prev' onClick={prev} leftIcon={<ArrowBackIcon />}>
+        <Button variant='outline' onClick={prev} leftIcon={<ArrowBackIcon />}>
           {t('form.process_create.previous_step')}
         </Button>
       )}
-      <Button variant='next' type='submit' form='process-create-form' rightIcon={<ArrowForwardIcon />}>
+      <Button type='submit' ml='auto' form='process-create-form' rightIcon={<ArrowForwardIcon />}>
         {t('form.process_create.next_step')}
       </Button>
     </Flex>

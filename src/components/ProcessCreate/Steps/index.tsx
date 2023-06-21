@@ -22,19 +22,19 @@ const Steps = () => {
 
   const getStepSeparatorColor = (stepIndex: any) => {
     if (stepIndex < activeStep) {
-      return '#00DAAE'
+      return '#E035D0'
     }
   }
 
   const completeStepStyles = {
-    border: '2px solid',
-    borderColor: '#00DAAE',
+    border: '2px solid steps',
+    borderColor: '#E035D0',
     color: 'white',
-    background: '#00DAAE',
+    background: '#E035D0',
   }
   const activeStepStyles = {
     border: '2px solid',
-    borderColor: '#00DAAE',
+    borderColor: '#E035D0',
     color: 'black',
     background: 'white',
   }
@@ -47,8 +47,8 @@ const Steps = () => {
   }
 
   return (
-    <Flex alignItems='start'>
-      <Stepper index={activeStep} orientation='vertical' mr={6} my={14} minH='500px' p={2}>
+    <Flex alignItems='start' gap={6}>
+      <Stepper index={activeStep} orientation='vertical' my={10} minH='500px'>
         {steps.map((step, index) => (
           <Step key={index}>
             <StepIndicator style={getStyles(index)}>

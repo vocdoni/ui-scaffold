@@ -56,15 +56,7 @@ const NeedsAccount = () => {
         <AccountCreate />
       </Wrapper>
       <Flex justifyContent='end'>
-        <Button
-          isLoading={loading}
-          variant='next'
-          type='submit'
-          form='process-create-form'
-          rightIcon={<ArrowForwardIcon />}
-          colorScheme='process_create.next_step'
-          mt={5}
-        >
+        <Button isLoading={loading} type='submit' form='process-create-form' rightIcon={<ArrowForwardIcon />} mt={5}>
           {t('form.process_create.next_step')}
         </Button>
       </Flex>
