@@ -4,14 +4,19 @@ import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
 const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpers(alertAnatomy.keys)
 
 const baseStyle = definePartsStyle((props) => {
-  const { colorScheme } = props
+  const { status } = props
 
-  if (colorScheme === 'info')
+  if (status === 'info')
     return {
       container: {
         borderRadius: 'md',
         border: '1px solid',
-        color: 'info.color',
+        color: 'alert_info.color',
+        bgColor: 'alert_info.bg',
+
+        '& span svg': {
+          color: 'alert_info.color',
+        },
       },
     }
   return {}

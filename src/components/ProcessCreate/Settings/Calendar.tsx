@@ -112,7 +112,7 @@ const Calendar = () => {
         </FormControl>
 
         {end && (
-          <Alert status='info' colorScheme='info'>
+          <Alert status='info'>
             <AlertIcon />
             <AlertDescription>
               {t('form.process_create.calendar.end_date_description', {
