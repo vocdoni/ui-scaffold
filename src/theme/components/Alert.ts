@@ -11,11 +11,11 @@ const baseStyle = definePartsStyle((props) => {
       container: {
         borderRadius: 'md',
         border: '1px solid',
-        color: 'alert_info.color',
-        bgColor: 'alert_info.bg',
+        color: 'process_create.alert_info.color',
+        bgColor: 'process_create.alert_info.bg',
 
         '& span svg': {
-          color: 'alert_info.color',
+          color: 'process_create.alert_info.color',
         },
       },
     }

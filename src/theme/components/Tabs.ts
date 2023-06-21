@@ -23,13 +23,16 @@ const card = definePartsStyle({
     boxShadow: '2px 4px 8px gray',
     borderRadius: 'md',
     borderBottom: 'none',
-
     color: 'process_create.tabs.card.color',
 
+    '& > p:nth-of-type(1)': {
+      fontWeight: 'bold',
+      color: 'rgba(0, 0, 0, 0.6)',
+    },
+
     _selected: {
-      color: 'process_create.tabs.card.selected_color',
-      '& > p': {
-        color: 'process_create.tabs.card.color',
+      '& > p:first-of-type': {
+        color: 'process_create.tabs.card.selected_color',
       },
     },
   },
@@ -40,4 +43,3 @@ const variants = {
 }
 
 export const Tabs = defineMultiStyleConfig({ variants })
-

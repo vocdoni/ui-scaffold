@@ -86,11 +86,11 @@ export const Confirm = () => {
 
   return (
     <Flex justifyContent='space-between' alignItems='end' minH='70vh'>
-      <Button variant='prev' onClick={prev} leftIcon={<ArrowBackIcon />}>
+      <Button variant='outline' onClick={prev} leftIcon={<ArrowBackIcon />}>
         {t('form.process_create.previous_step')}
       </Button>
 
-      <Button variant='next' onClick={create} isLoading={sending}>
+      <Button onClick={create} isLoading={sending}>
         {t('form.process_create.create')}
       </Button>
       <Modal isOpen={isOpen} onClose={onClose} closeOnEsc={!!error}>
