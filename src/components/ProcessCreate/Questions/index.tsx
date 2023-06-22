@@ -1,6 +1,6 @@
 import { AddIcon, DeleteIcon } from '@chakra-ui/icons'
 import { Box, Flex, HStack, IconButton, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { FieldError, FieldErrors, useFieldArray, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import Question from './Question'
@@ -9,6 +9,7 @@ interface CustomFieldError extends FieldError {
 }
 
 const CreateProcessQuestions = () => {
+  const { t } = useTranslation()
   const {
     watch,
     formState: { errors },
@@ -17,7 +18,8 @@ const CreateProcessQuestions = () => {
   const { fields, append, remove } = useFieldArray({
     name: 'questions',
   })
-  const { t } = useTranslation()
+
+  const [tabIndex, setTabIndex] = useState(0)
 
   const questions = watch('questions')
 
@@ -47,6 +49,8 @@ const CreateProcessQuestions = () => {
       border='1px solid'
       borderColor='process_create.border'
       minH='70vh'
+      index={tabIndex}
+      onChange={(index) => setTabIndex(index)}
     >
       <Box width='full' maxW='30%'>
         <HStack justifyContent='space-between' p={3} borderBottom='1px solid' borderColor='process_create.border'>
@@ -58,13 +62,14 @@ const CreateProcessQuestions = () => {
             size='sm'
             icon={<AddIcon />}
             aria-label='add question'
-            onClick={() =>
+            onClick={() => {
               append({
                 title: '',
                 description: '',
                 options: [{ option: '' }, { option: '' }],
               })
-            }
+              setTabIndex(questions.length)
+            }}
           />
         </HStack>
         <TabList display='flex' flexDirection='column' gap={1} border='none' p={1}>
