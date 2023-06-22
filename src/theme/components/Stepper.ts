@@ -1,10 +1,4 @@
 const baseStyle = {
-  separator: {
-    marginTop: 2,
-    '&[data-status=complete]': {
-      background: 'process_create.stepper',
-    },
-  },
   indicator: {
     '&[data-status=complete]': {
       background: 'process_create.stepper',
@@ -12,6 +6,15 @@ const baseStyle = {
     '&[data-status=active]': {
       borderColor: 'process_create.stepper',
     },
+  },
+  separator: {
+    marginTop: 2,
+    '&[data-status=complete]': {
+      background: 'process_create.stepper',
+    },
+  },
+  title: {
+    mt: 1,
   },
 }
 

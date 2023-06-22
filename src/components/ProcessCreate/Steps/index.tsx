@@ -1,5 +1,4 @@
 import {
-  Box,
   Flex,
   Step,
   StepIndicator,
@@ -28,9 +27,7 @@ const Steps = () => {
             <StepIndicator>
               <StepStatus complete={<StepNumber />} incomplete={<StepNumber />} active={<StepNumber />} />
             </StepIndicator>
-            <Box flexShrink='0' mt={1}>
-              <StepTitle>{step.title}</StepTitle>
-            </Box>
+            <StepTitle>{step.title}</StepTitle>
             <StepSeparator />
           </Step>
         ))}
