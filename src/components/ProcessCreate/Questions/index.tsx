@@ -38,6 +38,8 @@ const CreateProcessQuestions = () => {
         description: '',
         options: [{ option: '' }, { option: '' }],
       })
+    } else {
+      setTabIndex(questions.length - 1)
     }
   }, [questions, append])
 
@@ -68,7 +70,6 @@ const CreateProcessQuestions = () => {
                 description: '',
                 options: [{ option: '' }, { option: '' }],
               })
-              setTabIndex(questions.length)
             }}
           />
         </HStack>
