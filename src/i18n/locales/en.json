@@ -69,12 +69,6 @@
     "vocdoni_app": "Vocdoni APP"
   },
   "form": {
-    "account_create": {
-      "account_name_note": "40 chars max. The election title / purpose",
-      "account_name_note_description": "256 chars max. A brief description of your organization",
-      "organization_description_placeholder": "Description (Optional)",
-      "organization_title_placeholder": "The Election title"
-    },
     "error": {
       "address_pattern": "Only hex addresses are allowed",
       "field_is_required": "This field is required",
@@ -112,12 +106,22 @@
       "create": "Create",
       "creating_process": "Creating process...",
       "do_not_close": "This action can take some time, don't close this tab",
+      "election": {
+        "description_helper": "Describe the election theme",
+        "description_placeholder": "Your votes description",
+        "title_helper": "The election title / purpose",
+        "title_placeholder": "The Election title"
+      },
       "next_step": "Next",
+      "organization": {
+        "description_helper": "A brief description of your organization",
+        "description_placeholder": "Description (optional)",
+        "title_helper": "The organization title",
+        "title_placeholder": "The Organization title"
+      },
       "previous_step": "Previous",
-      "process_description_placeholder": "A thoroughly detailed description",
-      "process_title_placeholder": "The Election title",
       "question": {
-        "add_new_option": "Add a new option",
+        "add_new_option": "Add new option",
         "aside": "Title question",
         "description_placeholder": "Write here a description of your vote, although it is not strictly necessary, it can help you to better understand it... ",
         "option_placeholder": "Option",

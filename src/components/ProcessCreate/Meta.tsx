@@ -28,7 +28,7 @@ const CreateProcessMeta = () => {
       <FormControl isInvalid={isInvalidFieldMap(errors, `title`)} mb={1}>
         <Input
           {...register('title', { required, maxLength })}
-          placeholder={t('form.process_create.process_title_placeholder').toString()}
+          placeholder={t('form.process_create.election.title_placeholder').toString()}
           size='lg'
         />
         {!!errors.title ? (
@@ -36,7 +36,7 @@ const CreateProcessMeta = () => {
         ) : (
           <FormHelperText>
             <InfoOutlineIcon />
-            <Text>{t('form.account_create.account_name_note')}</Text>
+            <Text>{t('form.process_create.election.title_helper')}</Text>
           </FormHelperText>
         )}
       </FormControl>
@@ -44,7 +44,7 @@ const CreateProcessMeta = () => {
       <FormControl isInvalid={isInvalidFieldMap(errors, `description`)} mb={1}>
         <Textarea
           {...register('description', { maxLength: maxLengthDescription })}
-          placeholder={t('form.process_create.process_description_placeholder').toString()}
+          placeholder={t('form.process_create.election.description_placeholder').toString()}
           variant='outline'
         />
         {!!errors.description ? (
@@ -52,7 +52,7 @@ const CreateProcessMeta = () => {
         ) : (
           <FormHelperText>
             <InfoOutlineIcon />
-            <Text>{t('form.account_create.account_name_note_description')}</Text>
+            <Text>{t('form.process_create.election.description_helper')}</Text>
           </FormHelperText>
         )}
       </FormControl>

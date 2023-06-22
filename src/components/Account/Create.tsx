@@ -43,14 +43,6 @@ export const AccountCreate = () => {
     value: true,
     message: t('form.error.field_is_required'),
   }
-  const maxLength = {
-    value: 40,
-    message: t('form.error.field_is_too_long', { max: 40 }),
-  }
-  const maxLengthDescription = {
-    value: 256,
-    message: t('form.error.field_is_too_long', { max: 256 }),
-  }
 
   const onSubmit = async (values: FormFields) => createAccount(new Account(values))?.finally(() => setSent(true))
 
@@ -70,9 +62,9 @@ export const AccountCreate = () => {
       <FormControl isInvalid={!!errors.name}>
         <Input
           type='text'
-          {...register('name', { required, maxLength })}
+          {...register('name', { required })}
           mb={1}
-          placeholder={t('form.account_create.organization_title_placeholder').toString()}
+          placeholder={t('form.process_create.organization.title_placeholder').toString()}
           size='lg'
         />
         {!!errors.name ? (
@@ -80,22 +72,22 @@ export const AccountCreate = () => {
         ) : (
           <FormHelperText>
             <InfoOutlineIcon />
-            <Text>{t('form.account_create.account_name_note')}</Text>
+            <Text>{t('form.process_create.organization.title_helper')}</Text>
           </FormHelperText>
         )}
       </FormControl>
 
       <FormControl isInvalid={!!errors.description}>
         <Textarea
-          {...register('description', { maxLength: maxLengthDescription })}
-          placeholder={t('form.account_create.organization_description_placeholder').toString()}
+          {...register('description')}
+          placeholder={t('form.process_create.organization.description_placeholder').toString()}
         />
         {!!errors.description ? (
           <FormErrorMessage>{errors.description?.message?.toString()}</FormErrorMessage>
         ) : (
           <FormHelperText>
             <InfoOutlineIcon />
-            <Text> {t('form.account_create.account_name_note_description')}</Text>
+            <Text> {t('form.process_create.organization.description_helper')}</Text>
           </FormHelperText>
         )}
       </FormControl>
