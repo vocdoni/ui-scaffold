@@ -37,7 +37,6 @@ const Question = ({ index, remove }: Props) => {
             })}
             placeholder={t('form.process_create.question.title_placeholder').toString()}
             mb={1}
-            size='lg'
           />
           <FormErrorMessage>{fieldMapErrorMessage(errors, `questions.${index}.title`)}</FormErrorMessage>
         </FormControl>

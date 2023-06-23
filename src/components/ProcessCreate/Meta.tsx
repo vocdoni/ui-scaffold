@@ -29,7 +29,6 @@ const CreateProcessMeta = () => {
         <Input
           {...register('title', { required, maxLength })}
           placeholder={t('form.process_create.process_title_placeholder').toString()}
-          size='lg'
         />
         {!!errors.title ? (
           <FormErrorMessage>{fieldMapErrorMessage(errors, `title`)}</FormErrorMessage>

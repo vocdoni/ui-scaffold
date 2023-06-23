@@ -14,9 +14,6 @@ export const colorsBase = {
     dark2: 'rgba(0, 0, 0, 0.6)',
   },
   grenade: '#961D1D',
-  green: {
-    vcd: '#00DAAE',
-  },
   lightpurple: '#EDE4F4',
   pink: {
     ultralight: '#EA7BDF',
