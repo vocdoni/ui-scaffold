@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { FieldError, FieldErrors, useFieldArray, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import Question from './Question'
+
 interface CustomFieldError extends FieldError {
   index: number
 }
@@ -38,10 +39,9 @@ const CreateProcessQuestions = () => {
         description: '',
         options: [{ option: '' }, { option: '' }],
       })
-    } else {
-      setTabIndex(questions.length - 1)
     }
-  }, [questions, append])
+    if (tabIndex === questions.length) setTabIndex(questions.length - 1)
+  }, [questions, append, tabIndex])
 
   return (
     <Tabs
@@ -70,6 +70,7 @@ const CreateProcessQuestions = () => {
                 description: '',
                 options: [{ option: '' }, { option: '' }],
               })
+              setTabIndex(questions.length)
             }}
           />
         </HStack>
