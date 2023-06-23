@@ -1,4 +1,5 @@
 import { Box, Text } from '@chakra-ui/react'
+import { enforceHexPrefix, useClient } from '@vocdoni/chakra-components'
 import { useEffect, useState } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -16,6 +17,7 @@ export interface Web3Address {
 
 export const StepsCensusWeb3 = () => {
   const { t } = useTranslation()
+  const { account } = useClient()
   const { form, setForm, next } = useProcessCreationSteps()
   const methods = useForm<CensusWeb3Values>({
     defaultValues: {
@@ -23,9 +25,16 @@ export const StepsCensusWeb3 = () => {
     },
   })
 
+  const [initialized, setInitialized] = useState(false)
+  const [minAddresses, setMinAddresses] = useState('')
   const addresses = methods.watch('addresses')
 
-  const [minAddresses, setMinAddresses] = useState('')
+  useEffect(() => {
+    if (account?.address && !initialized && addresses.length === 0) {
+      methods.setValue('addresses', [{ address: enforceHexPrefix(account.address), weight: 0 }])
+      setInitialized(true)
+    }
+  }, [account?.address, methods, addresses, initialized])
 
   const onSubmit: SubmitHandler<CensusWeb3Values> = (data) => {
     if (addresses.length === 0) {
