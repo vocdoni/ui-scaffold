@@ -25,25 +25,18 @@ export const StepsCensusWeb3 = () => {
     },
   })
 
-  const [initialized, setInitialized] = useState(false)
-  const [minAddresses, setMinAddresses] = useState('')
   const addresses = methods.watch('addresses')
 
+  const [initialized, setInitialized] = useState(!!addresses.length)
+  const [minAddresses, setMinAddresses] = useState('')
+
   useEffect(() => {
+    if (addresses.length === 0) setForm({ ...form, addresses: [] })
     if (account?.address && !initialized && addresses.length === 0) {
       methods.setValue('addresses', [{ address: enforceHexPrefix(account.address), weight: 0 }])
       setInitialized(true)
     }
-  }, [account?.address, methods, addresses, initialized])
-
-  const onSubmit: SubmitHandler<CensusWeb3Values> = (data) => {
-    if (addresses.length === 0) {
-      setMinAddresses('Min 1 addresses')
-    } else {
-      setForm({ ...form, ...data })
-      next()
-    }
-  }
+  }, [account?.address, methods, addresses, initialized, setForm, form])
 
   useEffect(() => {
     if (addresses.length >= 2) setMinAddresses('')
@@ -52,7 +45,14 @@ export const StepsCensusWeb3 = () => {
   const handleAddAddress = (address: string) => {
     methods.setValue('addresses', [...methods.getValues().addresses, { address, weight: 0 }])
   }
-
+  const onSubmit: SubmitHandler<CensusWeb3Values> = (data) => {
+    if (addresses.length === 0) {
+      setMinAddresses('Min 1 addresses')
+    } else {
+      setForm({ ...form, ...data })
+      next()
+    }
+  }
   return (
     <>
       <Box mb={5}>
