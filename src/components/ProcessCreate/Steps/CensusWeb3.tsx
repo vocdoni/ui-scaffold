@@ -31,8 +31,7 @@ export const StepsCensusWeb3 = () => {
   const [minAddresses, setMinAddresses] = useState('')
 
   useEffect(() => {
-    if (addresses.length === 0) setForm({ ...form, addresses: [] })
-    else setForm({ ...form, addresses })
+    setForm({ ...form, addresses })
     if (account?.address && !initialized && addresses.length === 0) {
       methods.setValue('addresses', [{ address: enforceHexPrefix(account.address), weight: 0 }])
       setInitialized(true)
