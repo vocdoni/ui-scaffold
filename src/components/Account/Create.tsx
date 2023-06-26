@@ -64,14 +64,14 @@ export const AccountCreate = () => {
           type='text'
           {...register('name', { required })}
           mb={1}
-          placeholder={t('form.account_create.organization_title_placeholder').toString()}
+          placeholder={t('form.account_create.title_placeholder').toString()}
         />
         {!!errors.name ? (
           <FormErrorMessage>{errors.name?.message?.toString()}</FormErrorMessage>
         ) : (
           <FormHelperText>
             <InfoOutlineIcon />
-            <Text>{t('form.process_create.organization.title_helper')}</Text>
+            <Text>{t('form.account_create.title_helper')}</Text>
           </FormHelperText>
         )}
       </FormControl>
@@ -79,14 +79,14 @@ export const AccountCreate = () => {
       <FormControl isInvalid={!!errors.description}>
         <Textarea
           {...register('description')}
-          placeholder={t('form.process_create.organization.description_placeholder').toString()}
+          placeholder={t('form.account_create.description_placeholder').toString()}
         />
         {!!errors.description ? (
           <FormErrorMessage>{errors.description?.message?.toString()}</FormErrorMessage>
         ) : (
           <FormHelperText>
             <InfoOutlineIcon />
-            <Text> {t('form.process_create.organization.description_helper')}</Text>
+            <Text> {t('form.account_create.description_helper')}</Text>
           </FormHelperText>
         )}
       </FormControl>

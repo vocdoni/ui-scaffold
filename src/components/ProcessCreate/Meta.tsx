@@ -15,35 +15,28 @@ const CreateProcessMeta = () => {
     value: true,
     message: t('form.error.field_is_required'),
   }
-  const maxLength = {
-    value: 40,
-    message: t('form.error.field_is_too_long', { max: 40 }),
-  }
-  const maxLengthDescription = {
-    value: 256,
-    message: t('form.error.field_is_too_long', { max: 256 }),
-  }
+
   return (
     <Flex flex='1' flexDirection='column' gap={4}>
       <FormControl isInvalid={isInvalidFieldMap(errors, `title`)} mb={1}>
         <Input
-          {...register('title', { required, maxLength })}
-          placeholder={t('form.process_create.process_title_placeholder').toString()}
+          {...register('title', { required })}
+          placeholder={t('form.process_create.meta.title_placeholder').toString()}
         />
         {!!errors.title ? (
           <FormErrorMessage>{fieldMapErrorMessage(errors, `title`)}</FormErrorMessage>
         ) : (
           <FormHelperText>
             <InfoOutlineIcon />
-            <Text>{t('form.process_create.election.title_helper')}</Text>
+            <Text>{t('form.process_create.meta.title_helper')}</Text>
           </FormHelperText>
         )}
       </FormControl>
 
       <FormControl isInvalid={isInvalidFieldMap(errors, `description`)} mb={1}>
         <Textarea
-          {...register('description', { maxLength: maxLengthDescription })}
-          placeholder={t('form.process_create.election.description_placeholder').toString()}
+          {...register('description')}
+          placeholder={t('form.process_create.meta.description_placeholder').toString()}
           variant='outline'
         />
         {!!errors.description ? (
@@ -51,7 +44,7 @@ const CreateProcessMeta = () => {
         ) : (
           <FormHelperText>
             <InfoOutlineIcon />
-            <Text>{t('form.process_create.election.description_helper')}</Text>
+            <Text>{t('form.process_create.meta.description_helper')}</Text>
           </FormHelperText>
         )}
       </FormControl>

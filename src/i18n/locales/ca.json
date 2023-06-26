@@ -69,6 +69,12 @@
     "vocdoni_app": ""
   },
   "form": {
+    "account_create": {
+      "description_helper": "",
+      "description_placeholder": "",
+      "title_helper": "",
+      "title_placeholder": ""
+    },
     "error": {
       "address_pattern": "",
       "field_is_required": "",
@@ -108,19 +114,13 @@
       "create": "",
       "creating_process": "",
       "do_not_close": "",
-      "election": {
+      "meta": {
         "description_helper": "",
         "description_placeholder": "",
         "title_helper": "",
         "title_placeholder": ""
       },
       "next_step": "",
-      "organization": {
-        "description_helper": "",
-        "description_placeholder": "",
-        "title_helper": "",
-        "title_placeholder": ""
-      },
       "previous_step": "",
       "question": {
         "add_new_option": "",

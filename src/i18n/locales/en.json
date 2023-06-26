@@ -69,6 +69,12 @@
     "vocdoni_app": "Vocdoni APP"
   },
   "form": {
+    "account_create": {
+      "description_helper": "A brief description of your organization",
+      "description_placeholder": "Description (Optional)",
+      "title_helper": "The Organization name",
+      "title_placeholder": "The Organization name"
+    },
     "error": {
       "address_pattern": "Only hex addresses are allowed",
       "field_is_required": "This field is required",
@@ -107,19 +113,13 @@
       "create": "Create",
       "creating_process": "Creating process...",
       "do_not_close": "This action can take some time, don't close this tab",
-      "election": {
-        "description_helper": "Describe the election theme",
-        "description_placeholder": "Your votes description",
+      "meta": {
+        "description_helper": "A brief description of your election",
+        "description_placeholder": "Description (Optional)",
         "title_helper": "The election title / purpose",
         "title_placeholder": "The Election title"
       },
       "next_step": "Next",
-      "organization": {
-        "description_helper": "A brief description of your organization",
-        "description_placeholder": "Description (optional)",
-        "title_helper": "The organization title",
-        "title_placeholder": "The Organization title"
-      },
       "previous_step": "Previous",
       "question": {
         "add_new_option": "Add new option",
