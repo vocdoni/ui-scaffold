@@ -35,13 +35,15 @@ export const StepsCensusWeb3 = () => {
       methods.setValue('addresses', [{ address: enforceHexPrefix(account.address), weight: 0 }])
       setInitialized(true)
     }
-  }, [account?.address, methods, addresses, initialized, setForm, form])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [account?.address, addresses, initialized])
 
   useEffect(() => {
     if (methods.formState.errors.addresses?.type === 'manual') {
       methods.clearErrors('addresses')
     }
-  }, [addresses, methods])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [addresses])
 
   const handleAddAddress = (address: string) => {
     methods.setValue('addresses', [...methods.getValues().addresses, { address, weight: 0 }])
