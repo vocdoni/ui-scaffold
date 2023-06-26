@@ -10,7 +10,7 @@ const radiobox = definePartsStyle({
     width: 32,
     height: 24,
     p: 2,
-    boxShadow: '2px 4px 8px gray',
+    boxShadow: '2px 4px 8px lightgray',
     borderRadius: 'md',
   }),
   control: defineStyle({

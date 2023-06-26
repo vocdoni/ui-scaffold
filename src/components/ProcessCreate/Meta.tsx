@@ -1,5 +1,4 @@
-import { InfoOutlineIcon } from '@chakra-ui/icons'
-import { Box, Flex, FormControl, FormErrorMessage, FormHelperText, Input, Text, Textarea } from '@chakra-ui/react'
+import { Box, Flex, FormControl, FormErrorMessage, Input, Text, Textarea } from '@chakra-ui/react'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { fieldMapErrorMessage, isInvalidFieldMap } from '../../constants'
@@ -32,14 +31,7 @@ const CreateProcessMeta = () => {
             {...register('title', { required })}
             placeholder={t('form.process_create.meta.title_placeholder').toString()}
           />
-          {!!errors.title ? (
-            <FormErrorMessage>{fieldMapErrorMessage(errors, `title`)}</FormErrorMessage>
-          ) : (
-            <FormHelperText>
-              <InfoOutlineIcon />
-              <Text>{t('form.process_create.meta.title_helper')}</Text>
-            </FormHelperText>
-          )}
+          {errors.title && <FormErrorMessage>{fieldMapErrorMessage(errors, `title`)}</FormErrorMessage>}
         </FormControl>
 
         <FormControl isInvalid={isInvalidFieldMap(errors, `description`)} mb={1}>
@@ -48,14 +40,7 @@ const CreateProcessMeta = () => {
             placeholder={t('form.process_create.meta.description_placeholder').toString()}
             variant='outline'
           />
-          {!!errors.description ? (
-            <FormErrorMessage>{fieldMapErrorMessage(errors, `description`)}</FormErrorMessage>
-          ) : (
-            <FormHelperText>
-              <InfoOutlineIcon />
-              <Text>{t('form.process_create.meta.description_helper')}</Text>
-            </FormHelperText>
-          )}
+          {errors.description && <FormErrorMessage>{fieldMapErrorMessage(errors, `description`)}</FormErrorMessage>}
         </FormControl>
       </Flex>
     </Flex>
