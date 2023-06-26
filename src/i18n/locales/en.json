@@ -81,6 +81,17 @@
     },
     "process_create": {
       "alert_info_title": "Info",
+      "behavior": {
+        "overwrite": {
+          "description": "Vote overwrite: Allow voters to correct the vote once",
+          "title": "Vote overwite"
+        },
+        "secret": {
+          "description": "Secret: Results available when closing the voting",
+          "title": "Secret"
+        },
+        "title": "Behavior"
+      },
       "calendar": {
         "date_format": "PPPPpppp",
         "end_date": "End date",
@@ -113,8 +124,10 @@
       "creating_process": "Creating process...",
       "do_not_close": "This action can take some time, don't close this tab",
       "meta": {
+        "description": "Set the election title and description to allow voters to understand the voting purpose and extra info.",
         "description_helper": "A brief description of your election",
         "description_placeholder": "Description (Optional)",
+        "title": "Election Info",
         "title_helper": "The election title / purpose",
         "title_placeholder": "The Election title"
       },
@@ -133,18 +146,6 @@
       "question_title": "Title",
       "questions_title": "Questions",
       "running_checks": "Running required checks, please wait...",
-      "settings": {
-        "interruptible": "Interruptible:",
-        "interruptible_description": "allow to pause the election and resume it later.",
-        "real_time": "Real time:",
-        "real_time_description": "results will allow everyone to see the results during the election process.",
-        "secret": "Secret:",
-        "secret_description": "results will not allow everyone to see the results during the election process.",
-        "settings": "Advanced",
-        "settings_description": "Not mandatory",
-        "vote_overwrites": "Vote overwrite:",
-        "vote_overwrites_descripton": "voters will be able to correct the vote once."
-      },
       "steps": {
         "census": "Census",
         "checks": "Checks",

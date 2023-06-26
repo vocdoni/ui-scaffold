@@ -81,6 +81,17 @@
     },
     "process_create": {
       "alert_info_title": "",
+      "behavior": {
+        "overwrite": {
+          "description": "",
+          "title": ""
+        },
+        "secret": {
+          "description": "",
+          "title": ""
+        },
+        "title": ""
+      },
       "calendar": {
         "date_format": "",
         "end_date": "",
@@ -114,8 +125,10 @@
       "creating_process": "",
       "do_not_close": "",
       "meta": {
+        "description": "",
         "description_helper": "",
         "description_placeholder": "",
+        "title": "",
         "title_helper": "",
         "title_placeholder": ""
       },
@@ -134,18 +147,6 @@
       "question_title": "",
       "questions_title": "",
       "running_checks": "",
-      "settings": {
-        "interruptible": "",
-        "interruptible_description": "",
-        "real_time": "",
-        "real_time_description": "",
-        "secret": "",
-        "secret_description": "",
-        "settings": "",
-        "settings_description": "",
-        "vote_overwrites": "",
-        "vote_overwrites_descripton": ""
-      },
       "steps": {
         "census": "",
         "checks": "",
