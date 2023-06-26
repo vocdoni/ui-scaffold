@@ -6,6 +6,7 @@ export const colorsBase = {
     normal: '#0044FF',
     dark: '#002266',
   },
+  brand: '#E55BD8',
   gray: {
     light: '#FAFAFA',
     light2: '#F2F2F2',
@@ -26,6 +27,7 @@ export const colorsBase = {
 }
 
 export const colors = {
+  brand: colorsBase.pink.light,
   buttons: {
     default: colorsBase.pink.light,
     primary: {

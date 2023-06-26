@@ -47,12 +47,12 @@ export const Census = () => {
 
             <TabPanels>
               <TabPanel>
-                <Text textAlign='center' color='#E55BD8'>
+                <Text textAlign='center' color='brand'>
                   TO DO
                 </Text>
               </TabPanel>
               <TabPanel>
-                <Text textAlign='center' color='#E55BD8'>
+                <Text textAlign='center' color='brand'>
                   TO DO
                 </Text>
               </TabPanel>
