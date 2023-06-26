@@ -28,7 +28,6 @@ export const StepsCensusWeb3 = () => {
   const addresses = methods.watch('addresses')
 
   const [initialized, setInitialized] = useState(!!addresses.length)
-  const [minAddresses, setMinAddresses] = useState(false)
 
   useEffect(() => {
     setForm({ ...form, addresses })
@@ -39,15 +38,20 @@ export const StepsCensusWeb3 = () => {
   }, [account?.address, methods, addresses, initialized, setForm, form])
 
   useEffect(() => {
-    if (addresses.length >= 2) setMinAddresses(false)
-  }, [addresses])
+    if (methods.formState.errors.addresses?.type === 'manual') {
+      methods.clearErrors('addresses')
+    }
+  }, [addresses, methods])
 
   const handleAddAddress = (address: string) => {
     methods.setValue('addresses', [...methods.getValues().addresses, { address, weight: 0 }])
   }
   const onSubmit: SubmitHandler<CensusWeb3Values> = (data) => {
-    if (!addresses.length) {
-      setMinAddresses(true)
+    if (!data.addresses.length) {
+      methods.setError('addresses', {
+        type: 'manual',
+        message: t('form.process_create.census.web3_min_address'),
+      })
     } else {
       setForm({ ...form, ...data })
       next()
@@ -66,9 +70,9 @@ export const StepsCensusWeb3 = () => {
       <FormProvider {...methods}>
         <Box as='form' id='process-create-form' onSubmit={methods.handleSubmit(onSubmit)}>
           <CensusWeb3Addresses />
-          {minAddresses && (
+          {methods.formState.errors.addresses && (
             <Text color='red' textAlign='center' mt={2}>
-              {t('form.process_create.census.web3_min_address')}
+              {methods.formState.errors.addresses.message}
             </Text>
           )}
         </Box>
