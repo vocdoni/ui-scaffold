@@ -1,4 +1,5 @@
 import {
+  Box,
   Flex,
   Step,
   StepIndicator,
@@ -6,8 +7,8 @@ import {
   Stepper,
   StepSeparator,
   StepStatus,
-  StepTitle,
   Text,
+  useBreakpointValue,
   useSteps,
 } from '@chakra-ui/react'
 import { StepsForm } from './Form'
@@ -21,32 +22,36 @@ const Steps = () => {
   })
 
   return (
-    <Flex flexDirection={{ base: 'column', md: 'row' }} gap={6}>
-      <Stepper index={activeStep} display={{ base: 'none', md: 'flex' }} orientation='vertical' my={10} minH='500px'>
+    <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ md: 6 }}>
+      <Stepper
+        index={activeStep}
+        orientation={useBreakpointValue({ base: 'horizontal', md: 'vertical' })}
+        my={{ md: 10 }}
+        mb={{ base: 5 }}
+        minH={{ md: '500px' }}
+        mx='auto'
+      >
         {steps.map((step, index) => (
           <Step key={index}>
-            <StepIndicator>
-              <StepStatus complete={<StepNumber />} incomplete={<StepNumber />} active={<StepNumber />} />
-            </StepIndicator>
-            <StepTitle>{step.title}</StepTitle>
-            <StepSeparator />
-          </Step>
-        ))}
-      </Stepper>
-      <Stepper index={activeStep} display={{ base: 'flex', md: 'none' }} orientation='horizontal' mx='auto'>
-        {steps.map((step, index) => (
-          <Step key={index}>
-            <Flex width={14} flexDirection='column' alignItems='center'>
+            <Flex
+              width={{ base: 14, md: 'min-content' }}
+              flexDirection={{ base: 'column', md: 'row' }}
+              alignItems={{ base: 'center', md: 'initial' }}
+              gap={{ md: 2 }}
+            >
               <StepIndicator>
                 <StepStatus complete={<StepNumber />} incomplete={<StepNumber />} active={<StepNumber />} />
               </StepIndicator>
-              <StepTitle>
-                <Text fontSize='sm'>{step.title}</Text>
-              </StepTitle>
+              <Text fontSize={{ base: 'sm', md: 'md' }}>{step.title}</Text>
             </Flex>
+
+            <Box display={{ base: 'none', md: 'inline-block' }}>
+              <StepSeparator />
+            </Box>
           </Step>
         ))}
       </Stepper>
+
       <StepsForm
         steps={steps}
         activeStep={activeStep}
