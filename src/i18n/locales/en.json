@@ -70,10 +70,10 @@
   },
   "form": {
     "account_create": {
-      "account_name_note": "40 chars max. The election title / purpose",
-      "account_name_note_description": "256 chars max. A brief description of your organization",
-      "organization_description_placeholder": "Description (Optional)",
-      "organization_title_placeholder": "The Election title"
+      "description_helper": "A brief description of your organization",
+      "description_placeholder": "Description (Optional)",
+      "title_helper": "The Organization name",
+      "title_placeholder": "The Organization name"
     },
     "error": {
       "address_pattern": "Only hex addresses are allowed",
@@ -113,12 +113,16 @@
       "create": "Create",
       "creating_process": "Creating process...",
       "do_not_close": "This action can take some time, don't close this tab",
+      "meta": {
+        "description_helper": "A brief description of your election",
+        "description_placeholder": "Description (Optional)",
+        "title_helper": "The election title / purpose",
+        "title_placeholder": "The Election title"
+      },
       "next_step": "Next",
       "previous_step": "Previous",
-      "process_description_placeholder": "A thoroughly detailed description",
-      "process_title_placeholder": "The Election title",
       "question": {
-        "add_new_option": "Add a new option",
+        "add_new_option": "Add new option",
         "aside": "Title question",
         "description_placeholder": "Write here a description of your vote, although it is not strictly necessary, it can help you to better understand it... ",
         "option_placeholder": "Option",
