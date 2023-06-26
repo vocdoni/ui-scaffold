@@ -1,68 +1,40 @@
-import { Checkbox, Flex, FormControl, FormLabel, Radio, RadioGroup, Stack, Text } from '@chakra-ui/react'
+import { Box, Checkbox, Flex, Icon, Text } from '@chakra-ui/react'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { useBooleanRadioRegister } from '../../../constants'
+import { BiCheckDouble } from 'react-icons/bi'
+import { HiKey } from 'react-icons/hi2'
 
 const SettingsAdvanced = () => {
   const { t } = useTranslation()
   const { register } = useFormContext()
 
   return (
-    <Flex flexDirection='column' gap={2}>
-      <Flex alignItems='center' gap={1}>
-        <Text as='span' fontWeight='bold' fontSize='xl'>
-          {t('form.process_create.settings.settings')}
+    <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 4, md: 10 }}>
+      <Box flexBasis='30%'>
+        <Text fontWeight='bold' mb={1}>
+          {t('form.process_create.behavior.title')}
         </Text>
-        <Text as='span' color='process_create.description' fontSize='xs'>
-          ({t('form.process_create.settings.settings_description')})
+        <Text color='process_create.meta_description' fontSize='sm' mb={3}>
+          {t('form.process_create.behavior.secret.description')}
         </Text>
+        <Text color='process_create.meta_description' fontSize='sm'>
+          {t('form.process_create.behavior.overwrite.description')}
+        </Text>
+      </Box>
+      <Flex flexGrow={1} justifyContent={{ base: 'center', sm: 'start' }} gap={10}>
+        <Checkbox {...register('electionType.secretUntilTheEnd')} variant='radiobox'>
+          <Flex flexDirection='column' alignItems='center' gap={3} mt={1}>
+            <Icon as={HiKey} />
+            <Text fontSize='sm'>{t('form.process_create.behavior.secret.title')}</Text>
+          </Flex>
+        </Checkbox>
+        <Checkbox {...register('maxVoteOverwrites')} variant='radiobox'>
+          <Flex flexDirection='column' alignItems='center' gap={3} mt={1}>
+            <Icon as={BiCheckDouble} />
+            <Text fontSize='sm'>{t('form.process_create.behavior.overwrite.title')}</Text>
+          </Flex>
+        </Checkbox>
       </Flex>
-      <RadioGroup mb={3} {...useBooleanRadioRegister('electionType.secretUntilTheEnd')}>
-        <Stack direction='column'>
-          <Flex flexDirection='column'>
-            <Radio value='0'>
-              <Text as='span' ml={1} fontWeight='bold' fontSize='sm'>
-                {t('form.process_create.settings.real_time')}
-              </Text>
-              <Text as='span' ml={1} fontSize='xs' color='process_create.description'>
-                {t('form.process_create.settings.real_time_description')}
-              </Text>
-            </Radio>
-          </Flex>
-          <Flex flexDirection='column'>
-            <Radio value='1'>
-              <Text as='span' ml={1} fontWeight='bold' fontSize='sm'>
-                {t('form.process_create.settings.secret')}
-              </Text>
-              <Text as='span' ml={1} fontSize='xs' color='process_create.description'>
-                {t('form.process_create.settings.secret_description')}
-              </Text>
-            </Radio>
-          </Flex>
-        </Stack>
-      </RadioGroup>
-      <FormControl display='flex' alignItems='center'>
-        <Checkbox {...register('maxVoteOverwrites')} />
-        <FormLabel whiteSpace='nowrap' mb='0' ml={3}>
-          <Text as='span' fontSize='xs' fontWeight='bold'>
-            {t('form.process_create.settings.vote_overwrites')}
-            <Text as='span' ml={1} fontSize='xs' fontWeight='normal' color='process_create.description'>
-              {t('form.process_create.settings.vote_overwrites_descripton')}
-            </Text>
-          </Text>
-        </FormLabel>
-      </FormControl>
-      <FormControl display='flex' alignItems='center'>
-        <Checkbox {...register('electionType.interruptible')} />
-        <FormLabel whiteSpace='nowrap' mb='0' ml={3}>
-          <Text as='span' fontSize='xs' fontWeight='bold'>
-            {t('form.process_create.settings.interruptible')}
-            <Text as='span' ml={1} fontSize='xs' fontWeight='normal' color='process_create.description'>
-              {t('form.process_create.settings.interruptible_description')}
-            </Text>
-          </Text>
-        </FormLabel>
-      </FormControl>
     </Flex>
   )
 }

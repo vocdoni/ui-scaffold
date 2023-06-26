@@ -4,8 +4,8 @@ const Wrapper = ({ ...props }) => (
   <Flex
     flexDirection='column'
     w='full'
-    py={14}
-    px={24}
+    py={{ base: 6, md: 9, lg: 14 }}
+    px={{ base: 4, sm: 10, md: 12, lg: 24 }}
     minH='70vh'
     bgColor='process_create.bg'
     borderRadius='lg'

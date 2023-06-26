@@ -96,6 +96,7 @@ export const colors = {
     border: colorsBase.gray.normal,
     description_logo: colorsBase.blue.normal,
     input_bg: colorsBase.white,
+    meta_description: colorsBase.gray.dark,
     stepper: colorsBase.pink.normal,
     tabs: {
       card: {
