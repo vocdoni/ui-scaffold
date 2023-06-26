@@ -40,7 +40,7 @@ export const Info = () => {
           id='process-create-form'
           onSubmit={methods.handleSubmit(onSubmit)}
           flexDirection='column'
-          gap={12}
+          gap={{ base: 10, md: 20 }}
         >
           <CreateProcessMeta />
           <CreateProcessSettings />

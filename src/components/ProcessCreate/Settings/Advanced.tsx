@@ -1,23 +1,64 @@
-import { Checkbox, Flex, FormControl, FormLabel, Radio, RadioGroup, Stack, Text } from '@chakra-ui/react'
+import { PhoneIcon } from '@chakra-ui/icons'
+import { Box, Checkbox, Flex, Text } from '@chakra-ui/react'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { useBooleanRadioRegister } from '../../../constants'
 
 const SettingsAdvanced = () => {
   const { t } = useTranslation()
   const { register } = useFormContext()
 
   return (
-    <Flex flexDirection='column' gap={2}>
-      <Flex alignItems='center' gap={1}>
-        <Text as='span' fontWeight='bold' fontSize='xl'>
-          {t('form.process_create.settings.settings')}
+    <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 4, md: 10 }}>
+      <Box flexBasis='30%'>
+        <Text fontWeight='bold' mb={1}>
+          {t('form.process_create.behaivor.title')}
         </Text>
-        <Text as='span' color='process_create.description' fontSize='xs'>
-          ({t('form.process_create.settings.settings_description')})
+        <Text color='process_create.meta_description' fontSize='sm' mb={3}>
+          {t('form.process_create.behaivor.description_secret')}
         </Text>
+        <Text color='process_create.meta_description' fontSize='sm'>
+          {t('form.process_create.behaivor.description_overwrite')}
+        </Text>
+      </Box>
+      <Flex flexGrow={1} justifyContent={{ base: 'center', sm: 'start' }} gap={10}>
+        <Checkbox
+          {...register('electionType.secretUntilTheEnd')}
+          display='flex'
+          flexDirection='column'
+          justifyContent='start'
+          alignItems='center'
+          sx={{ 'span:nth-of-type(1)': { borderRadius: '50%', ml: 'auto' } }}
+          width={32}
+          height={24}
+          p={2}
+          boxShadow='2px 4px 8px gray'
+          borderRadius='md'
+        >
+          <Flex flexDirection='column' alignItems='center' gap={3} mt={1}>
+            <PhoneIcon />
+            <Text fontSize='sm'>Secret</Text>
+          </Flex>
+        </Checkbox>
+        <Checkbox
+          {...register('maxVoteOverwrites')}
+          display='flex'
+          flexDirection='column'
+          justifyContent='start'
+          alignItems='center'
+          sx={{ 'span:nth-of-type(1)': { borderRadius: '50%', ml: 'auto' } }}
+          width={32}
+          height={24}
+          p={2}
+          boxShadow='2px 4px 8px gray'
+          borderRadius='md'
+        >
+          <Flex flexDirection='column' alignItems='center' gap={3} mt={1}>
+            <PhoneIcon />
+            <Text fontSize='sm'>Vote overwrite</Text>
+          </Flex>
+        </Checkbox>
       </Flex>
-      <RadioGroup mb={3} {...useBooleanRadioRegister('electionType.secretUntilTheEnd')}>
+      {/* <RadioGroup mb={3} {...useBooleanRadioRegister('electionType.secretUntilTheEnd')}>
         <Stack direction='column'>
           <Flex flexDirection='column'>
             <Radio value='0'>
@@ -62,7 +103,7 @@ const SettingsAdvanced = () => {
             </Text>
           </Text>
         </FormLabel>
-      </FormControl>
+      </FormControl> */}
     </Flex>
   )
 }

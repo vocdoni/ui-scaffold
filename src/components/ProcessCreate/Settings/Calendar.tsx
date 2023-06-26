@@ -61,65 +61,67 @@ const Calendar = () => {
   }
 
   return (
-    <Flex flexDirection='column' gap={2}>
-      <Box>
-        <Text as='legend' fontSize='xl' fontWeight='bold'>
+    <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 4, md: 10 }}>
+      <Box flexBasis='30%' minW='30%'>
+        <Text as='legend' fontWeight='bold' mb={2}>
           {t('form.process_create.calendar.title')}
         </Text>
-        <Text fontWeight='normal' fontSize='xs' color='process_create.description'>
+        <Text fontWeight='normal' fontSize='sm' color='process_create.meta_description'>
           {t('form.process_create.calendar.start_date_description')}
         </Text>
       </Box>
-      <RadioGroup {...useBooleanRadioRegister('electionType.autoStart')}>
-        <Stack direction='row' alignItems='start' gap={40}>
-          <FormControl
-            isInvalid={!!errors.startDate}
-            display='flex'
-            flexDirection='column'
-            gap={2}
-            width='180px'
-            flex='1'
-          >
-            <Radio value='0' alignItems='center'>
-              <Text
-                whiteSpace='nowrap'
-                m={0}
-                fontWeight='bold'
-                onClick={() =>
-                  // we need to use a timeout cos' triggering it immediately would not work, since this input is still disabled
-                  setTimeout(() => {
-                    startDateRef.current?.focus()
-                    startDateRef.current?.click()
-                  }, 75)
-                }
-              >
-                {t('form.process_create.calendar.start_on_a_date')}
-              </Text>
-            </Radio>
-            <Box>
-              <Input
-                disabled={getValues().electionType.autoStart}
-                type='datetime-local'
-                {...startDate}
-                ref={(e) => {
-                  startDate.ref(e)
-                  startDateRef.current = e
-                }}
-                min={today}
-                onFocus={() => showPicker(startDateRef)}
-              />
-              <FormErrorMessage>{errors.startDate?.message?.toString()}</FormErrorMessage>
-            </Box>
-          </FormControl>
-          <Flex flexDirection='column' gap={2} flex='1'>
-            <Radio value='1' onClick={() => clearErrors('startDate')}>
-              <Text fontWeight='bold'>{t('form.process_create.calendar.now')}</Text>
-            </Radio>
-          </Flex>
-        </Stack>
-      </RadioGroup>
-      <Box>
-        <FormControl isInvalid={!!errors.endDate} maxW='40%' mb={3}>
+      <Box flexGrow={1}>
+        <RadioGroup {...useBooleanRadioRegister('electionType.autoStart')} mb={6}>
+          <Stack direction='row' alignItems='start' justifyContent='space-between' gap={{ base: 2, sm: 4, md: 6 }}>
+            <FormControl
+              isInvalid={!!errors.startDate}
+              display='flex'
+              flexDirection='column'
+              gap={2}
+              minW='250px'
+              maxW='250px'
+              flex='1'
+            >
+              <Radio value='0' alignItems='center'>
+                <Text
+                  whiteSpace='nowrap'
+                  m={0}
+                  fontWeight='bold'
+                  onClick={() =>
+                    // we need to use a timeout cos' triggering it immediately would not work, since this input is still disabled
+                    setTimeout(() => {
+                      startDateRef.current?.focus()
+                      startDateRef.current?.click()
+                    }, 75)
+                  }
+                >
+                  {t('form.process_create.calendar.start_on_a_date')}
+                </Text>
+              </Radio>
+              <Box minW='188px'>
+                <Input
+                  disabled={getValues().electionType.autoStart}
+                  type='datetime-local'
+                  {...startDate}
+                  ref={(e) => {
+                    startDate.ref(e)
+                    startDateRef.current = e
+                  }}
+                  min={today}
+                  onFocus={() => showPicker(startDateRef)}
+                />
+                <FormErrorMessage>{errors.startDate?.message?.toString()}</FormErrorMessage>
+              </Box>
+            </FormControl>
+            <Flex flexDirection='column' gap={2} flex='1'>
+              <Radio value='1' onClick={() => clearErrors('startDate')}>
+                <Text fontWeight='bold'>{t('form.process_create.calendar.now')}</Text>
+              </Radio>
+            </Flex>
+          </Stack>
+        </RadioGroup>
+
+        <FormControl isInvalid={!!errors.endDate} w='250px' mb={3}>
           <FormLabel fontWeight='bold'> {t('form.process_create.calendar.end_date')}</FormLabel>
           <Input
             type='datetime-local'

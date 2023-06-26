@@ -7,6 +7,7 @@ import {
   StepSeparator,
   StepStatus,
   StepTitle,
+  Text,
   useSteps,
 } from '@chakra-ui/react'
 import { StepsForm } from './Form'
@@ -20,8 +21,8 @@ const Steps = () => {
   })
 
   return (
-    <Flex alignItems='start' gap={6}>
-      <Stepper index={activeStep} orientation='vertical' my={10} minH='500px'>
+    <Flex flexDirection={{ base: 'column', md: 'row' }} gap={6}>
+      <Stepper index={activeStep} display={{ base: 'none', md: 'flex' }} orientation='vertical' my={10} minH='500px'>
         {steps.map((step, index) => (
           <Step key={index}>
             <StepIndicator>
@@ -29,6 +30,20 @@ const Steps = () => {
             </StepIndicator>
             <StepTitle>{step.title}</StepTitle>
             <StepSeparator />
+          </Step>
+        ))}
+      </Stepper>
+      <Stepper index={activeStep} display={{ base: 'flex', md: 'none' }} orientation='horizontal' mx='auto'>
+        {steps.map((step, index) => (
+          <Step key={index}>
+            <Flex width={14} flexDirection='column' alignItems='center'>
+              <StepIndicator>
+                <StepStatus complete={<StepNumber />} incomplete={<StepNumber />} active={<StepNumber />} />
+              </StepIndicator>
+              <StepTitle>
+                <Text fontSize='sm'>{step.title}</Text>
+              </StepTitle>
+            </Flex>
           </Step>
         ))}
       </Stepper>
