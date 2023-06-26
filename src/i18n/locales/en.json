@@ -81,10 +81,16 @@
     },
     "process_create": {
       "alert_info_title": "Info",
-      "behaivor": {
-        "description_overwrite": "Vote overwrite: Allow voters to correct the vote once",
-        "description_secret": "Secret: Results available when closing the voting",
-        "title": "Behaivor"
+      "behavior": {
+        "overwrite": {
+          "description": "Vote overwrite: Allow voters to correct the vote once",
+          "title": "Vote overwite"
+        },
+        "secret": {
+          "description": "Secret: Results available when closing the voting",
+          "title": "Secret"
+        },
+        "title": "Behavior"
       },
       "calendar": {
         "date_format": "PPPPpppp",

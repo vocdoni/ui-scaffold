@@ -81,9 +81,15 @@
     },
     "process_create": {
       "alert_info_title": "",
-      "behaivor": {
-        "description_overwrite": "",
-        "description_secret": "",
+      "behavior": {
+        "overwrite": {
+          "description": "",
+          "title": ""
+        },
+        "secret": {
+          "description": "",
+          "title": ""
+        },
         "title": ""
       },
       "calendar": {
