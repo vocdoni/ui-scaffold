@@ -1,4 +1,5 @@
 import { Box, Text } from '@chakra-ui/react'
+import { enforceHexPrefix, useClient } from '@vocdoni/chakra-components'
 import { useEffect, useState } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -16,6 +17,7 @@ export interface Web3Address {
 
 export const StepsCensusWeb3 = () => {
   const { t } = useTranslation()
+  const { account } = useClient()
   const { form, setForm, next } = useProcessCreationSteps()
   const methods = useForm<CensusWeb3Values>({
     defaultValues: {
@@ -25,25 +27,36 @@ export const StepsCensusWeb3 = () => {
 
   const addresses = methods.watch('addresses')
 
-  const [minAddresses, setMinAddresses] = useState('')
+  const [initialized, setInitialized] = useState(!!addresses.length)
 
+  useEffect(() => {
+    setForm({ ...form, addresses })
+    if (account?.address && !initialized && addresses.length === 0) {
+      methods.setValue('addresses', [{ address: enforceHexPrefix(account.address), weight: 0 }])
+      setInitialized(true)
+    }
+  }, [account?.address, methods, addresses, initialized, setForm, form])
+
+  useEffect(() => {
+    if (methods.formState.errors.addresses?.type === 'manual') {
+      methods.clearErrors('addresses')
+    }
+  }, [addresses, methods])
+
+  const handleAddAddress = (address: string) => {
+    methods.setValue('addresses', [...methods.getValues().addresses, { address, weight: 0 }])
+  }
   const onSubmit: SubmitHandler<CensusWeb3Values> = (data) => {
-    if (addresses.length === 0) {
-      setMinAddresses('Min 1 addresses')
+    if (!data.addresses.length) {
+      methods.setError('addresses', {
+        type: 'manual',
+        message: t('form.process_create.census.web3_min_address'),
+      })
     } else {
       setForm({ ...form, ...data })
       next()
     }
   }
-
-  useEffect(() => {
-    if (addresses.length >= 2) setMinAddresses('')
-  }, [addresses])
-
-  const handleAddAddress = (address: string) => {
-    methods.setValue('addresses', [...methods.getValues().addresses, { address, weight: 0 }])
-  }
-
   return (
     <>
       <Box mb={5}>
@@ -57,9 +70,11 @@ export const StepsCensusWeb3 = () => {
       <FormProvider {...methods}>
         <Box as='form' id='process-create-form' onSubmit={methods.handleSubmit(onSubmit)}>
           <CensusWeb3Addresses />
-          <Text color='red' textAlign='center' mt={2}>
-            {minAddresses}
-          </Text>
+          {methods.formState.errors.addresses && (
+            <Text color='red' textAlign='center' mt={2}>
+              {methods.formState.errors.addresses.message}
+            </Text>
+          )}
         </Box>
       </FormProvider>
     </>

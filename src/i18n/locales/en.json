@@ -100,6 +100,7 @@
         "token_base_title": "Token Base",
         "wallet_address_description": "Identify your voters by their wallets addresses. They will have to log in with a wallet provider like Metamask.",
         "wallet_address_title": "Wallet addresses",
+        "web3_min_address": "1 address minimum",
         "web3_title": "Add a wallet addresses"
       },
       "confirm": {

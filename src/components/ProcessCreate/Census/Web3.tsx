@@ -1,7 +1,5 @@
 import { DeleteIcon } from '@chakra-ui/icons'
 import { Box, Button, Flex, FormControl, FormErrorMessage, IconButton, Input, Text } from '@chakra-ui/react'
-import { enforceHexPrefix, useClient } from '@vocdoni/chakra-components'
-import { useEffect } from 'react'
 import { FormProvider, useFieldArray, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { fieldMapErrorMessage, isInvalidFieldMap } from '../../../constants'
@@ -42,7 +40,7 @@ export const CensusWeb3Addresses = () => {
             type='button'
             icon={<DeleteIcon />}
             aria-label='delete option'
-            onClick={() => remove()}
+            onClick={() => remove(index)}
             ml='auto'
           />
         </Flex>
@@ -53,19 +51,12 @@ export const CensusWeb3Addresses = () => {
 
 export const CensusWeb3AddressesAddAddress = ({ onAddAddress }: { onAddAddress: (address: string) => void }) => {
   const { t } = useTranslation()
-  const { account } = useClient()
 
   const methods = useForm<{ address: string }>({
     defaultValues: {
       address: '',
     },
   })
-
-  useEffect(() => {
-    if (account?.address) {
-      methods.setValue('address', enforceHexPrefix(account.address))
-    }
-  }, [account?.address, methods])
 
   const onSubmit = (data: { address: string }) => {
     onAddAddress(data.address)
