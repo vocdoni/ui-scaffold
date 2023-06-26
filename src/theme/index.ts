@@ -13,6 +13,7 @@ import { Input } from './components/Input'
 import { Textarea } from './components/Textarea'
 import { Form } from './components/Form'
 import { Tabs } from './components/Tabs'
+import { Checkbox } from './components/Checkbox'
 
 export const theme = extendTheme(vtheme, {
   styles: {
@@ -30,6 +31,7 @@ export const theme = extendTheme(vtheme, {
     Alert,
     Button,
     Card,
+    Checkbox,
     Form,
     Input,
     Questions,

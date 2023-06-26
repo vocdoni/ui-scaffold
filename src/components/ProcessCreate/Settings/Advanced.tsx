@@ -22,37 +22,13 @@ const SettingsAdvanced = () => {
         </Text>
       </Box>
       <Flex flexGrow={1} justifyContent={{ base: 'center', sm: 'start' }} gap={10}>
-        <Checkbox
-          {...register('electionType.secretUntilTheEnd')}
-          display='flex'
-          flexDirection='column'
-          justifyContent='start'
-          alignItems='center'
-          sx={{ 'span:nth-of-type(1)': { borderRadius: '50%', ml: 'auto' } }}
-          width={32}
-          height={24}
-          p={2}
-          boxShadow='2px 4px 8px gray'
-          borderRadius='md'
-        >
+        <Checkbox {...register('electionType.secretUntilTheEnd')} variant='radiobox'>
           <Flex flexDirection='column' alignItems='center' gap={3} mt={1}>
             <Icon as={HiKey} />
             <Text fontSize='sm'>{t('form.process_create.behavior.secret.title')}</Text>
           </Flex>
         </Checkbox>
-        <Checkbox
-          {...register('maxVoteOverwrites')}
-          display='flex'
-          flexDirection='column'
-          justifyContent='start'
-          alignItems='center'
-          sx={{ 'span:nth-of-type(1)': { borderRadius: '50%', ml: 'auto' } }}
-          width={32}
-          height={24}
-          p={2}
-          boxShadow='2px 4px 8px gray'
-          borderRadius='md'
-        >
+        <Checkbox {...register('maxVoteOverwrites')} variant='radiobox'>
           <Flex flexDirection='column' alignItems='center' gap={3} mt={1}>
             <Icon as={BiCheckDouble} />
             <Text fontSize='sm'>{t('form.process_create.behavior.overwrite.title')}</Text>
