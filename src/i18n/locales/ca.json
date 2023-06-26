@@ -115,11 +115,8 @@
         "web3_title": ""
       },
       "confirm": {
-        "adding_census": "",
-        "completed": "",
-        "creating": "",
-        "submitting": "",
-        "validating": ""
+        "close": "",
+        "preview_alert": ""
       },
       "create": "",
       "creating_process": "",
