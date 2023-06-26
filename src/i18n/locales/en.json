@@ -114,11 +114,8 @@
         "web3_title": "Add a wallet addresses"
       },
       "confirm": {
-        "adding_census": "Adding the census...",
-        "completed": "Completed",
-        "creating": "Creating the process...",
-        "submitting": "Submitting to the blockchain...",
-        "validating": "Validating all data..."
+        "close": "Close",
+        "preview_alert": "Here's a preview of your election. Please ensure everything is OK before confirming its creation."
       },
       "create": "Create",
       "creating_process": "Creating process...",
