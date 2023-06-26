@@ -124,7 +124,7 @@ const CreateProcessQuestions = () => {
       >
         {fields.map((question, index) => (
           <TabPanel key={question.id} display='flex' flexDirection='column' gap={5}>
-            <Question index={index} remove={() => remove(index)} />
+            <Question index={index} />
           </TabPanel>
         ))}
       </TabPanels>
