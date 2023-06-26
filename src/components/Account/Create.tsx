@@ -73,7 +73,6 @@ export const AccountCreate = () => {
           {...register('name', { required, maxLength })}
           mb={1}
           placeholder={t('form.account_create.organization_title_placeholder').toString()}
-          size='lg'
         />
         {!!errors.name ? (
           <FormErrorMessage>{errors.name?.message?.toString()}</FormErrorMessage>
