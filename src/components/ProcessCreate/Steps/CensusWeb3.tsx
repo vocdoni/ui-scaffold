@@ -46,8 +46,8 @@ export const StepsCensusWeb3 = () => {
     methods.setValue('addresses', [...methods.getValues().addresses, { address, weight: 0 }])
   }
   const onSubmit: SubmitHandler<CensusWeb3Values> = (data) => {
-    if (addresses.length === 0) {
-      setMinAddresses('Min 1 addresses')
+    if (!addresses.length) {
+      setMinAddresses(t('form.process_create.census.web3_min_address'))
     } else {
       setForm({ ...form, ...data })
       next()
