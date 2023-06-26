@@ -70,10 +70,10 @@
   },
   "form": {
     "account_create": {
-      "account_name_note": "",
-      "account_name_note_description": "",
-      "organization_description_placeholder": "",
-      "organization_title_placeholder": ""
+      "description_helper": "",
+      "description_placeholder": "",
+      "title_helper": "",
+      "title_placeholder": ""
     },
     "error": {
       "address_pattern": "",
@@ -114,10 +114,14 @@
       "create": "",
       "creating_process": "",
       "do_not_close": "",
+      "meta": {
+        "description_helper": "",
+        "description_placeholder": "",
+        "title_helper": "",
+        "title_placeholder": ""
+      },
       "next_step": "",
       "previous_step": "",
-      "process_description_placeholder": "",
-      "process_title_placeholder": "",
       "question": {
         "add_new_option": "",
         "aside": "",
