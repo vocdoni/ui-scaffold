@@ -1,15 +1,14 @@
 import { Box, FormControl, FormErrorMessage, Input, Textarea } from '@chakra-ui/react'
-import { UseFieldArrayRemove, useFieldArray, useFormContext } from 'react-hook-form'
+import { useFieldArray, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { fieldMapErrorMessage, isInvalidFieldMap } from '../../../constants'
 import Options from './Options'
 
 interface Props {
   index: number
-  remove: UseFieldArrayRemove
 }
 
-const Question = ({ index, remove }: Props) => {
+const Question = ({ index }: Props) => {
   const { t } = useTranslation()
   const {
     register,
@@ -37,7 +36,6 @@ const Question = ({ index, remove }: Props) => {
             })}
             placeholder={t('form.process_create.question.title_placeholder').toString()}
             mb={1}
-            size='lg'
           />
           <FormErrorMessage>{fieldMapErrorMessage(errors, `questions.${index}.title`)}</FormErrorMessage>
         </FormControl>

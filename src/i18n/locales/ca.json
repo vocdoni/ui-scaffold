@@ -95,6 +95,7 @@
         "token_base_title": "",
         "wallet_address_description": "",
         "wallet_address_title": "",
+        "web3_min_address": "",
         "web3_title": ""
       },
       "confirm": {

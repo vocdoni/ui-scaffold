@@ -28,8 +28,7 @@ const CreateProcessMeta = () => {
       <FormControl isInvalid={isInvalidFieldMap(errors, `title`)} mb={1}>
         <Input
           {...register('title', { required, maxLength })}
-          placeholder={t('form.process_create.election.title_placeholder').toString()}
-          size='lg'
+          placeholder={t('form.process_create.process_title_placeholder').toString()}
         />
         {!!errors.title ? (
           <FormErrorMessage>{fieldMapErrorMessage(errors, `title`)}</FormErrorMessage>
