@@ -77,8 +77,7 @@
     },
     "error": {
       "address_pattern": "",
-      "field_is_required": "",
-      "field_is_too_long": ""
+      "field_is_required": ""
     },
     "process_create": {
       "alert_info_title": "",
