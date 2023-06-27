@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next'
 import { CensusType, CensusTypes, useCensusTypes } from '../Census/TypeSelector'
 
 import Wrapper from '../Wrapper'
-import { StepsCensusWeb3 } from './CensusWeb3'
 import { StepsNavigation } from './Navigation'
 import { useProcessCreationSteps } from './use-steps'
 
@@ -32,6 +31,7 @@ export const Census = () => {
             defaultIndex={CensusTypes.findIndex((val) => val === censusType)}
             onChange={(index) => setForm({ ...form, censusType: CensusTypes[index] })}
             variant='card'
+            isLazy
           >
             <TabList display='flex' justifyContent='space-around' flexWrap='wrap' gap={5} alignItems='center'>
               {list.map((ct: CensusType, index: number) => (
@@ -46,19 +46,9 @@ export const Census = () => {
             </TabList>
 
             <TabPanels>
-              <TabPanel>
-                <Text textAlign='center' color='brand'>
-                  TO DO
-                </Text>
-              </TabPanel>
-              <TabPanel>
-                <Text textAlign='center' color='brand'>
-                  TO DO
-                </Text>
-              </TabPanel>
-              <TabPanel>
-                <StepsCensusWeb3 />
-              </TabPanel>
+              {list.map((ct: CensusType, index: number) => (
+                <TabPanel key={index}>{details[ct].component()}</TabPanel>
+              ))}
             </TabPanels>
           </Tabs>
         </Flex>

@@ -47,9 +47,6 @@
       "voted_title": ""
     }
   },
-  "census_type": {
-    "web3": ""
-  },
   "copy": {
     "address": "",
     "copied_title": ""
@@ -110,6 +107,7 @@
         "title": "",
         "token_base_description": "",
         "token_base_title": "",
+        "tokens_placeholder": "",
         "wallet_address_description": "",
         "wallet_address_title": ""
       },

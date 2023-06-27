@@ -47,9 +47,6 @@
       "voted_title": "Your vote was successfully cast!"
     }
   },
-  "census_type": {
-    "web3": ""
-  },
   "copy": {
     "address": "Copy address",
     "copied_title": "Copied!"
@@ -109,6 +106,7 @@
         "title": "Choose your census",
         "token_base_description": "Use a token (EVM based) to let users vote based on the amount their own.",
         "token_base_title": "Token Base",
+        "tokens_placeholder": "Select a token",
         "wallet_address_description": "Identify your voters by their wallets addresses. They will have to log in with a wallet provider like Metamask.",
         "wallet_address_title": "Wallet addresses"
       },
