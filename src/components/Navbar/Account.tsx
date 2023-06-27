@@ -4,10 +4,8 @@ import { Balance, useClient } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import { BiChevronDown, BiLogOut } from 'react-icons/bi'
 import { useAccount, useDisconnect } from 'wagmi'
+import { addressTextOverflow } from '../../constants'
 import { useAccountHealthTools } from '../Account/use-account-health-tools'
-
-const addressTextOverflow = (address: string) =>
-  `${address.substring(0, 6)}...${address.substring(address.length - 4, address.length)}`
 
 export const Account = () => {
   const { isConnected, address } = useAccount()

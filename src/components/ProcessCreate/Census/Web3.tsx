@@ -12,12 +12,7 @@ import {
 } from '@chakra-ui/react'
 import { FormProvider, useFieldArray, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { fieldMapErrorMessage, isInvalidFieldMap } from '../../../constants'
-
-const addressTextOverflow = (address: string, value: any) => {
-  if (!value.end) return address
-  return `${address.substring(0, value.start)}...${address.substring(address.length - value.end, address.length)}`
-}
+import { addressTextOverflow, fieldMapErrorMessage, isInvalidFieldMap } from '../../../constants'
 
 export const CensusWeb3Addresses = () => {
   const { fields, remove } = useFieldArray({
@@ -25,9 +20,9 @@ export const CensusWeb3Addresses = () => {
   })
 
   const value = useBreakpointValue({
-    base: { start: 6, end: 8 },
-    sm: { start: 8, end: 18 },
-    md: { start: undefined, end: undefined },
+    base: 6,
+    sm: 8,
+    md: null,
   })
 
   return (
