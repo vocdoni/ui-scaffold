@@ -62,7 +62,7 @@ const Calendar = () => {
 
   return (
     <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 4, md: 10 }}>
-      <Box flexBasis='30%' minW='30%'>
+      <Box flexBasis='30%' flexShrink={0}>
         <Text as='legend' fontWeight='bold' mb={2}>
           {t('form.process_create.calendar.title')}
         </Text>
@@ -72,15 +72,14 @@ const Calendar = () => {
       </Box>
       <Box flexGrow={1}>
         <RadioGroup {...useBooleanRadioRegister('electionType.autoStart')} mb={6}>
-          <Stack direction='row' alignItems='start' justifyContent='space-between' gap={{ base: 2, sm: 4, md: 6 }}>
+          <Stack direction={{ base: 'column', md: 'row' }} gap={2}>
             <FormControl
               isInvalid={!!errors.startDate}
               display='flex'
               flexDirection='column'
               gap={2}
-              minW='250px'
-              maxW='250px'
-              flex='1'
+              order={{ base: 2, md: 1 }}
+              flexGrow={0}
             >
               <Radio value='0' alignItems='center'>
                 <Text
@@ -98,7 +97,7 @@ const Calendar = () => {
                   {t('form.process_create.calendar.start_on_a_date')}
                 </Text>
               </Radio>
-              <Box minW='188px'>
+              <Box w='270px'>
                 <Input
                   disabled={getValues().electionType.autoStart}
                   type='datetime-local'
@@ -113,7 +112,7 @@ const Calendar = () => {
                 <FormErrorMessage>{errors.startDate?.message?.toString()}</FormErrorMessage>
               </Box>
             </FormControl>
-            <Flex flexDirection='column' gap={2} flex='1'>
+            <Flex order={{ base: 1, md: 2 }} flexBasis={{ md: '500px' }} flexDirection='column' gap={2}>
               <Radio value='1' onClick={() => clearErrors('startDate')}>
                 <Text fontWeight='bold'>{t('form.process_create.calendar.now')}</Text>
               </Radio>
@@ -121,7 +120,7 @@ const Calendar = () => {
           </Stack>
         </RadioGroup>
 
-        <FormControl isInvalid={!!errors.endDate} w='250px' mb={3}>
+        <FormControl isInvalid={!!errors.endDate} w='270px' mb={3}>
           <FormLabel fontWeight='bold'> {t('form.process_create.calendar.end_date')}</FormLabel>
           <Input
             type='datetime-local'

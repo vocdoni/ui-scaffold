@@ -6,7 +6,7 @@ const Wrapper = ({ ...props }) => (
     w='full'
     py={{ base: 6, md: 9, lg: 14 }}
     px={{ base: 4, sm: 10, md: 12, lg: 24 }}
-    minH='70vh'
+    minH={{ md: '70vh' }}
     bgColor='process_create.bg'
     borderRadius='lg'
     border='1px solid'
