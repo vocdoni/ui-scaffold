@@ -1,19 +1,35 @@
 import { DeleteIcon } from '@chakra-ui/icons'
-import { Box, Button, Flex, FormControl, FormErrorMessage, IconButton, Input, Text } from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  Flex,
+  FormControl,
+  FormErrorMessage,
+  IconButton,
+  Input,
+  Text,
+  useBreakpointValue,
+} from '@chakra-ui/react'
 import { FormProvider, useFieldArray, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { fieldMapErrorMessage, isInvalidFieldMap } from '../../../constants'
 
-const addressTextOverflowBase = (address: string) =>
-  `${address.substring(0, 6)}...${address.substring(address.length - 8, address.length)}`
-
-const addressTextOverflowSm = (address: string) =>
-  `${address.substring(0, 8)}...${address.substring(address.length - 18, address.length)}`
+const addressTextOverflow = (address: string, value: any) => {
+  if (!value.end) return address
+  return `${address.substring(0, value.start)}...${address.substring(address.length - value.end, address.length)}`
+}
 
 export const CensusWeb3Addresses = () => {
   const { fields, remove } = useFieldArray({
     name: 'addresses',
   })
+
+  const value = useBreakpointValue({
+    base: { start: 6, end: 8 },
+    sm: { start: 8, end: 18 },
+    md: { start: undefined, end: undefined },
+  })
+
   return (
     <Flex
       flexDirection='column'
@@ -29,6 +45,7 @@ export const CensusWeb3Addresses = () => {
     >
       {fields.map((address, index) => (
         <Flex
+          key={address.id}
           justifyContent='start'
           alignItems='center'
           gap={2}
@@ -39,11 +56,8 @@ export const CensusWeb3Addresses = () => {
           p={5}
         >
           <Text fontWeight='bold'>{index + 1}</Text>
-          <Text display={{ base: 'block', sm: 'none' }}>{addressTextOverflowBase((address as any).address)}</Text>
-          <Text display={{ base: 'none', sm: 'block', md: 'none' }}>
-            {addressTextOverflowSm((address as any).address)}
-          </Text>
-          <Text display={{ base: 'none', md: 'block' }}>{(address as any).address}</Text>
+          <Text>{addressTextOverflow((address as any).address, value)}</Text>
+
           <IconButton
             size='xs'
             type='button'
