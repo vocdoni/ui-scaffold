@@ -1,18 +1,35 @@
 import { DeleteIcon } from '@chakra-ui/icons'
-import { Box, Button, Flex, FormControl, FormErrorMessage, IconButton, Input, Text } from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  Flex,
+  FormControl,
+  FormErrorMessage,
+  IconButton,
+  Input,
+  Text,
+  useBreakpointValue,
+} from '@chakra-ui/react'
 import { FormProvider, useFieldArray, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { fieldMapErrorMessage, isInvalidFieldMap } from '../../../constants'
+import { addressTextOverflow, fieldMapErrorMessage, isInvalidFieldMap } from '../../../constants'
 
 export const CensusWeb3Addresses = () => {
   const { fields, remove } = useFieldArray({
     name: 'addresses',
   })
+
+  const value = useBreakpointValue({
+    base: 6,
+    sm: 8,
+    md: null,
+  })
+
   return (
     <Flex
       flexDirection='column'
       gap={3}
-      width='490px'
+      maxW='490px'
       height='400px'
       borderRadius='lg'
       border='1px solid'
@@ -23,7 +40,7 @@ export const CensusWeb3Addresses = () => {
     >
       {fields.map((address, index) => (
         <Flex
-          key={index}
+          key={address.id}
           justifyContent='start'
           alignItems='center'
           gap={2}
@@ -34,7 +51,8 @@ export const CensusWeb3Addresses = () => {
           p={5}
         >
           <Text fontWeight='bold'>{index + 1}</Text>
-          <Text>{(address as any).address}</Text>
+          <Text>{addressTextOverflow((address as any).address, value)}</Text>
+
           <IconButton
             size='xs'
             type='button'
@@ -84,7 +102,7 @@ export const CensusWeb3AddressesAddAddress = ({ onAddAddress }: { onAddAddress: 
                   message: t('form.error.address_pattern'),
                 },
               })}
-              width='420px'
+              w={{ base: '200px', sm: '300px', md: '420px' }}
             />
             <FormErrorMessage>{fieldMapErrorMessage(methods.formState.errors, 'address')}</FormErrorMessage>
           </Box>

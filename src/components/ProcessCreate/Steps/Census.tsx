@@ -33,7 +33,7 @@ export const Census = () => {
             onChange={(index) => setForm({ ...form, censusType: CensusTypes[index] })}
             variant='card'
           >
-            <TabList>
+            <TabList display='flex' justifyContent='space-around' flexWrap='wrap' gap={5} alignItems='center'>
               {list.map((ct: CensusType, index: number) => (
                 <Tab key={index}>
                   <Icon as={details[ct].icon} />
