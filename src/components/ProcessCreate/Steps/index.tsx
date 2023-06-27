@@ -28,7 +28,7 @@ const Steps = () => {
         orientation={useBreakpointValue({ base: 'horizontal', md: 'vertical' })}
         my={{ md: 10 }}
         mb={{ base: 5 }}
-        minH={{ md: '500px' }}
+        h={{ md: '500px' }}
         mx='auto'
       >
         {steps.map((step, index) => (

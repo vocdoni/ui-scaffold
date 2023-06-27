@@ -10,7 +10,7 @@ const SettingsAdvanced = () => {
 
   return (
     <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 4, md: 10 }}>
-      <Box flexBasis='30%'>
+      <Box flexBasis='30%' flexShrink={0}>
         <Text fontWeight='bold' mb={1}>
           {t('form.process_create.behavior.title')}
         </Text>

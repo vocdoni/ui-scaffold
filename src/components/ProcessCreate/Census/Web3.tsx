@@ -4,6 +4,12 @@ import { FormProvider, useFieldArray, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { fieldMapErrorMessage, isInvalidFieldMap } from '../../../constants'
 
+const addressTextOverflowBase = (address: string) =>
+  `${address.substring(0, 6)}...${address.substring(address.length - 8, address.length)}`
+
+const addressTextOverflowSm = (address: string) =>
+  `${address.substring(0, 8)}...${address.substring(address.length - 18, address.length)}`
+
 export const CensusWeb3Addresses = () => {
   const { fields, remove } = useFieldArray({
     name: 'addresses',
@@ -12,7 +18,7 @@ export const CensusWeb3Addresses = () => {
     <Flex
       flexDirection='column'
       gap={3}
-      width='490px'
+      maxW='490px'
       height='400px'
       borderRadius='lg'
       border='1px solid'
@@ -23,7 +29,6 @@ export const CensusWeb3Addresses = () => {
     >
       {fields.map((address, index) => (
         <Flex
-          key={index}
           justifyContent='start'
           alignItems='center'
           gap={2}
@@ -34,7 +39,11 @@ export const CensusWeb3Addresses = () => {
           p={5}
         >
           <Text fontWeight='bold'>{index + 1}</Text>
-          <Text>{(address as any).address}</Text>
+          <Text display={{ base: 'block', sm: 'none' }}>{addressTextOverflowBase((address as any).address)}</Text>
+          <Text display={{ base: 'none', sm: 'block', md: 'none' }}>
+            {addressTextOverflowSm((address as any).address)}
+          </Text>
+          <Text display={{ base: 'none', md: 'block' }}>{(address as any).address}</Text>
           <IconButton
             size='xs'
             type='button'
@@ -84,7 +93,7 @@ export const CensusWeb3AddressesAddAddress = ({ onAddAddress }: { onAddAddress: 
                   message: t('form.error.address_pattern'),
                 },
               })}
-              width='420px'
+              w={{ base: '200px', sm: '300px', md: '420px' }}
             />
             <FormErrorMessage>{fieldMapErrorMessage(methods.formState.errors, 'address')}</FormErrorMessage>
           </Box>
