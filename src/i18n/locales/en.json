@@ -22,7 +22,7 @@
       "pause_description": "pausing the \"{{ election.title.default }}\" election process",
       "waiting_title": "Waiting for transaction confirmation..."
     },
-    "empty": "Apparently this process has no questions 🤔",
+    "empty": "Apparently this process has no questions",
     "required": "This field is required",
     "results": {
       "date_format": "d-L-y HH:mm",
@@ -80,21 +80,21 @@
       "alert_info_title": "Info",
       "behavior": {
         "overwrite": {
-          "description": "Vote overwrite: Allow voters to correct the vote once",
+          "description": "Vote overwrite: Allow voters to correct the vote once.",
           "title": "Vote overwite"
         },
         "secret": {
-          "description": "Secret: Results available when closing the voting",
+          "description": "Secret: Results will be available only after the voting is closed.",
           "title": "Secret"
         },
-        "title": "Behavior"
+        "title": "Options"
       },
       "calendar": {
         "date_format": "PPPPpppp",
         "end_date": "End date",
         "end_date_description": "This election will start at {{ date.begin, format }} and end at {{ date.end, format }}, lasting ~{{ date, duration }}",
         "now": "Now",
-        "start_date_description": "Define when the election should be active to recive votes. If 'Now' is selected, the proposal is immediatlely active after publishing.",
+        "start_date_description": "Specify the active period for receiving votes. Select 'Now' to make the proposal immediately active after publishing.",
         "start_on_a_date": "Start on a date",
         "title": "Calendar"
       },
@@ -102,7 +102,7 @@
         "add_button": "Add",
         "csv_description": "Custom data like user and password or voter personal info.",
         "csv_title": "CSV",
-        "description": " How will the voters authenticate and identify themselves. Choose between custom data (CSV), by owning a token, by address or trough a social login like Github.",
+        "description": "Select how will the voters authenticate and identify themselves. Choose between custom data (CSV), by owning a token or by wallet address.",
         "max_census_slider_arialabel": "Total participation expected slider selector",
         "max_census_slider_label": "Total participation expected",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} eligible voters)",
@@ -112,22 +112,24 @@
         "token_title": "Token based census",
         "tokens_placeholder": "Select a token",
         "wallet_address_description": "Identify your voters by their wallets addresses. They will have to log in with a wallet provider like Metamask.",
-        "wallet_address_title": "Wallet addresses"
+        "wallet_address_title": "Wallet addresses",
+        "web3_min_address": "1 address minimum",
+        "web3_title": "Add wallet addresses"
       },
       "confirm": {
         "close": "Close",
-        "preview_alert": "Here's a preview of your election. Please ensure everything is OK before confirming its creation."
+        "preview_alert": "Please review the details of your election carefully. Ensure everything is correct before confirming its creation."
       },
       "create": "Create",
       "creating_process": "Creating process...",
       "do_not_close": "This action can take some time, don't close this tab",
       "meta": {
-        "description": "Set the election title and description to allow voters to understand the voting purpose and extra info.",
+        "description": "Provide a clear title & description. This will help voters understand the purpose of the vote.",
         "description_helper": "A brief description of your election",
-        "description_placeholder": "Description (Optional)",
+        "description_placeholder": "Description (optional)",
         "title": "Election Info",
         "title_helper": "The election title / purpose",
-        "title_placeholder": "The Election title"
+        "title_placeholder": "The election title"
       },
       "navbar": {
         "close_form_btn": "Close form"
@@ -137,7 +139,7 @@
       "question": {
         "add_new_option": "Add new option",
         "aside": "Title question",
-        "description_placeholder": "Write here a description of your vote, although it is not strictly necessary, it can help you to better understand it... ",
+        "description_placeholder": "Write here a description of your vote, although not strictly necessary, it can help provide better clarity and understanding",
         "option_placeholder": "Option",
         "title_placeholder": "The title of your question..."
       },
