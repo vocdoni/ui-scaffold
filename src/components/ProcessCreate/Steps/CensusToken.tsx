@@ -6,6 +6,7 @@ import { useProcessCreationSteps } from './use-steps'
 
 export interface CensusTokenValues {
   censusToken: string
+  maxCensusSize?: number
 }
 
 export const StepsCensusToken = () => {
@@ -14,6 +15,7 @@ export const StepsCensusToken = () => {
   const methods = useForm<CensusTokenValues>({
     defaultValues: {
       censusToken: form.censusToken,
+      maxCensusSize: form.maxCensusSize,
     },
   })
 
@@ -25,7 +27,7 @@ export const StepsCensusToken = () => {
     <>
       <Box mb={5}>
         <Text fontWeight='bold' fontSize='2xl' textAlign='center' mb={3}>
-          {t('form.process_create.census.token_base_title')}
+          {t('form.process_create.census.token_title')}
         </Text>
       </Box>
 

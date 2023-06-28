@@ -26,6 +26,7 @@ import {
 import {
   Election,
   ElectionStatus,
+  ensure0x,
   EnvOptions,
   IElectionParameters,
   IPublishedElectionParameters,
@@ -72,7 +73,7 @@ export const Confirm = () => {
         status: 'success',
         duration: 4000,
       })
-      setTimeout(() => navigate(`/processes/${pid}`), 3000)
+      setTimeout(() => navigate(`/processes/${ensure0x(pid)}`), 3000)
     } catch (err: any) {
       setError(errorToString(err))
       console.error('could not create election:', err)
@@ -146,25 +147,30 @@ export const Confirm = () => {
  * @returns
  */
 const getCensus = (env: EnvOptions, form: StepsFormValues) => {
-  if (form.censusType === 'token') {
-    const c3client = new VocdoniCensus3Client({
-      env,
-    })
+  switch (form.censusType) {
+    case 'token':
+      const c3client = new VocdoniCensus3Client({
+        env,
+      })
 
-    return c3client.createTokenCensus(form.censusToken)
+      return c3client.createTokenCensus(form.censusToken)
+
+    case 'web3':
+      if (form.weightedVote) {
+        const census = new WeightedCensus()
+        form.addresses.forEach(({ address, weight }) => census.add({ key: address, weight: BigInt(weight) }))
+
+        return census
+      }
+
+      const census = new PlainCensus()
+      form.addresses.forEach(({ address }) => census.add(address))
+
+      return census
+
+    default:
+      throw new Error(`census type ${form.censusType} is not allowed`)
   }
-
-  if (form.weightedVote) {
-    const census = new WeightedCensus()
-    form.addresses.forEach(({ address, weight }) => census.add({ key: address, weight: BigInt(weight) }))
-
-    return census
-  }
-
-  const census = new PlainCensus()
-  form.addresses.forEach(({ address }) => census.add(address))
-
-  return census
 }
 
 /**
