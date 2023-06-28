@@ -69,7 +69,7 @@ export const CensusWeb3Addresses = () => {
   return (
     <>
       <FormControl isInvalid={isInvalidFieldMap(errors, 'newAddress')} display='flex' justifyContent='center' gap={2}>
-        <Box>
+        <Box mb={3}>
           <Input
             {...register('newAddress', {
               pattern: {
@@ -82,7 +82,7 @@ export const CensusWeb3Addresses = () => {
           <FormErrorMessage>{fieldMapErrorMessage(errors, 'newAddress')}</FormErrorMessage>
         </Box>
         <Button type='button' ml='none' onClick={handleAddAddress}>
-          Add
+          {t('form.process_create.census.add_button')}
         </Button>
       </FormControl>
       <Flex

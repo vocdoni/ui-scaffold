@@ -102,6 +102,7 @@
         "title": "Calendar"
       },
       "census": {
+        "add_button": "Add",
         "csv_description": "Custom data like user and password or voter personal info.",
         "csv_title": "CSV",
         "description": " How will the voters authenticate and identify themselves. Choose between custom data (CSV), by owning a token, by address or trough a social login like Github.",
@@ -109,9 +110,7 @@
         "token_base_description": "Use a token (EVM based) to let users vote based on the amount their own.",
         "token_base_title": "Token Base",
         "wallet_address_description": "Identify your voters by their wallets addresses. They will have to log in with a wallet provider like Metamask.",
-        "wallet_address_title": "Wallet addresses",
-        "web3_min_address": "1 address minimum",
-        "web3_title": "Add a wallet addresses"
+        "wallet_address_title": "Wallet addresses"
       },
       "confirm": {
         "close": "Close",
