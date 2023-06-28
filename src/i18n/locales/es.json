@@ -103,6 +103,7 @@
         "title": ""
       },
       "census": {
+        "add_button": "",
         "csv_description": "",
         "csv_title": "",
         "description": "",
@@ -110,9 +111,7 @@
         "token_base_description": "",
         "token_base_title": "",
         "wallet_address_description": "",
-        "wallet_address_title": "",
-        "web3_min_address": "",
-        "web3_title": ""
+        "wallet_address_title": ""
       },
       "confirm": {
         "close": "",
