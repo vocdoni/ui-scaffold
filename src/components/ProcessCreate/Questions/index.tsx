@@ -1,5 +1,5 @@
 import { AddIcon, DeleteIcon } from '@chakra-ui/icons'
-import { Box, Flex, HStack, IconButton, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
+import { Box, HStack, IconButton, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { FieldError, FieldErrors, useFieldArray, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -64,7 +64,7 @@ const CreateProcessQuestions = () => {
       index={tabIndex}
       onChange={(index) => setTabIndex(index)}
     >
-      <Box width='full' maxW={{ md: '30%' }} mb={5}>
+      <Box flexBasis='30%' flexGrow={0} flexShrink={0} maxW={{ base: '100%', md: '30%' }} w='full'>
         <HStack justifyContent='space-between' p={3} borderBottom='1px solid' borderColor='process_create.border'>
           <Text as='legend' fontSize='xl'>
             {t('form.process_create.questions_title')}
@@ -86,32 +86,27 @@ const CreateProcessQuestions = () => {
         </HStack>
         <TabList display='flex' flexDirection='column' gap={1} border='none' p={1}>
           {questions.map((question: any, index: number) => (
-            <Flex
+            <Tab
               key={index}
               justifyContent='space-between'
-              bgColor='process_create.aside_questions_bg'
               p={2}
+              bgColor='process_create.aside_questions_bg'
               borderRadius={4}
+              _selected={{ color: getQuestionErrorIndex(index) !== null ? 'red' : 'black', fontWeight: 700 }}
+              color={getQuestionErrorIndex(index) !== null ? 'red' : 'black'}
             >
-              <Tab
-                p={0}
-                border='none'
-                w={{ base: '75vw', md: 56 }}
-                _selected={{ color: getQuestionErrorIndex(index) !== null ? 'red' : 'black', fontWeight: 700 }}
-                color={getQuestionErrorIndex(index) !== null ? 'red' : 'black'}
-              >
+              <Box w={{ base: '75vw', md: '16vw' }} maxW={304}>
                 <Text
-                  pl={0}
                   isTruncated
                   textAlign='start'
-                  w='full'
                   title={(question as any).title || t('form.process_create.question.aside')}
                 >
                   {index + 1}- {(question as any).title || t('form.process_create.question.aside')}
                 </Text>
-              </Tab>
+              </Box>
+
               <IconButton type='button' size='sm' icon={<DeleteIcon />} aria-label='' onClick={() => remove(index)} />
-            </Flex>
+            </Tab>
           ))}
         </TabList>
       </Box>
@@ -124,6 +119,7 @@ const CreateProcessQuestions = () => {
         borderTop={{ base: '1px solid', md: 'none' }}
         borderColor={{ base: 'process_create.border', md: 'process_create.border' }}
         minH={{ md: '70vh' }}
+        flexGrow={1}
       >
         {fields.map((question, index) => (
           <TabPanel key={question.id} display='flex' flexDirection='column' gap={5}>
