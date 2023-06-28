@@ -10,7 +10,7 @@ import {
   Text,
   useBreakpointValue,
 } from '@chakra-ui/react'
-import { FormProvider, useFieldArray, useForm } from 'react-hook-form'
+import { useFieldArray, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { addressTextOverflow, fieldMapErrorMessage, isInvalidFieldMap } from '../../../constants'
 
@@ -67,50 +67,35 @@ export const CensusWeb3Addresses = () => {
   )
 }
 
-export const CensusWeb3AddressesAddAddress = ({ onAddAddress }: { onAddAddress: (address: string) => void }) => {
+export const CensusWeb3AddressesAddAddress = () => {
   const { t } = useTranslation()
 
-  const methods = useForm<{ address: string }>({
-    defaultValues: {
-      address: '',
-    },
-  })
-
-  const onSubmit = (data: { address: string }) => {
-    onAddAddress(data.address)
-    methods.reset()
-  }
+  const {
+    formState: { errors },
+    register,
+  } = useFormContext()
 
   return (
-    <FormProvider {...methods}>
-      <Box as='form' onSubmit={methods.handleSubmit(onSubmit)}>
-        <FormControl
-          isInvalid={isInvalidFieldMap(methods.formState.errors, 'address')}
-          display='flex'
-          justifyContent='center'
-          gap={2}
-        >
-          <Box>
-            <Input
-              {...methods.register('address', {
-                required: {
-                  value: true,
-                  message: t('form.error.field_is_required'),
-                },
-                pattern: {
-                  value: /^(0x)?[0-9a-fA-F]{40}$/,
-                  message: t('form.error.address_pattern'),
-                },
-              })}
-              w={{ base: '200px', sm: '300px', md: '420px' }}
-            />
-            <FormErrorMessage>{fieldMapErrorMessage(methods.formState.errors, 'address')}</FormErrorMessage>
-          </Box>
-          <Button type='submit' ml='none'>
-            Add
-          </Button>
-        </FormControl>
+    <FormControl isInvalid={isInvalidFieldMap(errors, 'newAddress')} display='flex' justifyContent='center' gap={2}>
+      <Box>
+        <Input
+          {...register('newAddress', {
+            required: {
+              value: true,
+              message: t('form.error.field_is_required'),
+            },
+            pattern: {
+              value: /^(0x)?[0-9a-fA-F]{40}$/,
+              message: t('form.error.address_pattern'),
+            },
+          })}
+          w={{ base: '200px', sm: '300px', md: '420px' }}
+        />
+        <FormErrorMessage>{fieldMapErrorMessage(errors, 'newAddress')}</FormErrorMessage>
       </Box>
-    </FormProvider>
+      <Button type='submit' ml='none'>
+        Add
+      </Button>
+    </FormControl>
   )
 }

@@ -25,6 +25,12 @@ export const StepsCensusWeb3 = () => {
     },
   })
 
+  const methodsAddAddress = useForm<{ newAddress: string }>({
+    defaultValues: {
+      newAddress: '',
+    },
+  })
+
   const addresses = methods.watch('addresses')
 
   const [initialized, setInitialized] = useState(!!addresses.length)
@@ -45,9 +51,11 @@ export const StepsCensusWeb3 = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [addresses])
 
-  const handleAddAddress = (address: string) => {
-    methods.setValue('addresses', [...methods.getValues().addresses, { address, weight: 0 }])
+  const onSubmitAddAddress = (data: { newAddress: string }) => {
+    methods.setValue('addresses', [...methods.getValues().addresses, { address: data.newAddress, weight: 0 }])
+    methodsAddAddress.reset()
   }
+
   const onSubmit: SubmitHandler<CensusWeb3Values> = (data) => {
     if (!data.addresses.length) {
       methods.setError('addresses', {
@@ -65,8 +73,11 @@ export const StepsCensusWeb3 = () => {
         <Text fontWeight='bold' fontSize='2xl' textAlign='center' mb={3}>
           {t('form.process_create.census.web3_title')}
         </Text>
-
-        <CensusWeb3AddressesAddAddress onAddAddress={handleAddAddress} />
+        <FormProvider {...methodsAddAddress}>
+          <Box as='form' onSubmit={methodsAddAddress.handleSubmit(onSubmitAddAddress)}>
+            <CensusWeb3AddressesAddAddress />
+          </Box>
+        </FormProvider>
       </Box>
 
       <FormProvider {...methods}>
