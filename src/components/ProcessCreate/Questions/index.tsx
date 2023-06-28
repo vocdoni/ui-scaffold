@@ -1,5 +1,5 @@
 import { AddIcon, DeleteIcon } from '@chakra-ui/icons'
-import { Box, HStack, IconButton, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
+import { Box, Flex, HStack, IconButton, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { FieldError, FieldErrors, useFieldArray, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -86,16 +86,20 @@ const CreateProcessQuestions = () => {
         </HStack>
         <TabList display='flex' flexDirection='column' gap={1} border='none' p={1}>
           {questions.map((question: any, index: number) => (
-            <Tab
+            <Flex
               key={index}
               justifyContent='space-between'
-              p={2}
+              alignItems='center'
               bgColor='process_create.aside_questions_bg'
               borderRadius={4}
-              _selected={{ color: getQuestionErrorIndex(index) !== null ? 'red' : 'black', fontWeight: 700 }}
-              color={getQuestionErrorIndex(index) !== null ? 'red' : 'black'}
             >
-              <Box w={{ base: '75vw', md: '16vw' }} maxW={304}>
+              <Tab
+                display='block'
+                w={{ base: '85vw', md: '18vw' }}
+                maxW={304}
+                _selected={{ color: getQuestionErrorIndex(index) !== null ? 'red' : 'black', fontWeight: 700 }}
+                color={getQuestionErrorIndex(index) !== null ? 'red' : 'black'}
+              >
                 <Text
                   isTruncated
                   textAlign='start'
@@ -103,10 +107,9 @@ const CreateProcessQuestions = () => {
                 >
                   {index + 1}- {(question as any).title || t('form.process_create.question.aside')}
                 </Text>
-              </Box>
-
+              </Tab>
               <IconButton type='button' size='sm' icon={<DeleteIcon />} aria-label='' onClick={() => remove(index)} />
-            </Tab>
+            </Flex>
           ))}
         </TabList>
       </Box>
