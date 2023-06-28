@@ -56,8 +56,8 @@ export const CensusWeb3Addresses = () => {
   }, [account?.address, addresses, initialized])
 
   const handleAddAddress = async () => {
-    await trigger()
     // Trigger form validation
+    await trigger()
 
     if (!errors.newAddress) {
       // Perform any necessary actions
@@ -78,6 +78,14 @@ export const CensusWeb3Addresses = () => {
               },
             })}
             w={{ base: '200px', sm: '300px', md: '420px' }}
+            onKeyUp={(e) => {
+              // avoid submitting form on enter
+              if (e.key === 'Enter') {
+                e.preventDefault()
+                e.stopPropagation()
+                handleAddAddress()
+              }
+            }}
           />
           <FormErrorMessage>{fieldMapErrorMessage(errors, 'newAddress')}</FormErrorMessage>
         </Box>

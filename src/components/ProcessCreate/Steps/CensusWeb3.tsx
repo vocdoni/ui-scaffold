@@ -21,12 +21,10 @@ export const StepsCensusWeb3 = () => {
       newAddress: '',
     },
   })
-
   const addresses = methods.watch('addresses')
 
   useEffect(() => {
     setForm({ ...form, addresses })
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [addresses])
 
@@ -34,6 +32,7 @@ export const StepsCensusWeb3 = () => {
     setForm({ ...form, addresses: data.addresses })
     next()
   }
+
   return (
     <>
       <FormProvider {...methods}>
