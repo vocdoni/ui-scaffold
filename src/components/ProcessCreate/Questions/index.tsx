@@ -56,16 +56,21 @@ const CreateProcessQuestions = () => {
     <Tabs
       display='flex'
       flexDirection={{ base: 'column', md: 'row' }}
-      alignItems='start'
+      minH={{ md: '70vh' }}
       borderRadius='lg'
       border='1px solid'
       borderColor='process_create.border'
-      minH={{ md: '70vh' }}
       index={tabIndex}
       onChange={(index) => setTabIndex(index)}
     >
-      <Box flexBasis='30%' flexGrow={0} flexShrink={0} maxW={{ base: '100%', md: '30%' }} w='full'>
-        <HStack justifyContent='space-between' p={3} borderBottom='1px solid' borderColor='process_create.border'>
+      <Box flexBasis={{ md: '45%', lg: '35%' }} minW={0} flexGrow={1}>
+        <HStack
+          justifyContent='space-between'
+          p={3}
+          mb={1}
+          borderBottom='1px solid'
+          borderColor='process_create.border'
+        >
           <Text as='legend' fontSize='xl'>
             {t('form.process_create.questions_title')}
           </Text>
@@ -84,19 +89,22 @@ const CreateProcessQuestions = () => {
             }}
           />
         </HStack>
-        <TabList display='flex' flexDirection='column' gap={1} border='none' p={1}>
+        <TabList display='block' gap={1} minW={0} border='none'>
           {questions.map((question: any, index: number) => (
             <Flex
               key={index}
-              justifyContent='space-between'
               alignItems='center'
+              p={1}
+              px={3}
+              mb={1}
               bgColor='process_create.aside_questions_bg'
               borderRadius={4}
             >
               <Tab
                 display='block'
-                w={{ base: '85vw', md: '18vw' }}
-                maxW={304}
+                flexGrow={1}
+                minW={0}
+                p={0}
                 _selected={{ color: getQuestionErrorIndex(index) !== null ? 'red' : 'black', fontWeight: 700 }}
                 color={getQuestionErrorIndex(index) !== null ? 'red' : 'black'}
               >
