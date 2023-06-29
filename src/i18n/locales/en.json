@@ -73,7 +73,7 @@
       "title_placeholder": "The Organization name"
     },
     "error": {
-      "address_pattern": "Only hex addresses are allowed",
+      "address_pattern": "Only hex addresses are allowed (e.g 0x031101A...398)",
       "field_is_required": "This field is required"
     },
     "process_create": {
@@ -102,12 +102,12 @@
         "add_button": "Add",
         "csv_description": "Custom data like user and password or voter personal info.",
         "csv_title": "CSV",
-        "description": "Select how will the voters authenticate and identify themselves. Choose between custom data (CSV), by owning a token or by wallet address.",
+        "description": "Select how will the voters authenticate and identify themselves. Choose between custom data (CSV), by owning a token or by wallet addresses.",
         "max_census_slider_arialabel": "Total participation expected slider selector",
         "max_census_slider_label": "Total participation expected",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} eligible voters)",
         "title": "Choose your census",
-        "token_base_description": "Use a token (EVM based) to let users vote based on the amount their own.",
+        "token_base_description": "Use a token (EVM based) to let users vote based on the amount they own.",
         "token_base_title": "Token based",
         "token_title": "Token based census",
         "tokens_placeholder": "Select a token",
@@ -139,7 +139,7 @@
       "question": {
         "add_new_option": "Add new option",
         "aside": "Title question",
-        "description_placeholder": "Write here a description of your vote, although not strictly necessary, it can help provide better clarity and understanding",
+        "description_placeholder": "Write here a description of the question",
         "option_placeholder": "Option",
         "title_placeholder": "The title of your question..."
       },
