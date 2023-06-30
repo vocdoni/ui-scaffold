@@ -20,14 +20,15 @@ const LayoutProcessCreate = () => {
         px={4}
         w='full'
       >
-        <Flex alignItems='center' gap={4} ml={{ base: 2, sm: 0 }}>
-          <NavLink to='/'>
+        <NavLink to='/'>
+          <Flex alignItems='center' gap={4} ml={{ base: 2, sm: 0 }}>
             <Img src={`${process.env.PUBLIC_URL}/assets/vocdoni_icon.png`} maxWidth={12} alt='vocdoni icon' />
-          </NavLink>
-          <Text fontSize={12} whiteSpace='nowrap'>
-            Public voting protocol
-          </Text>
-        </Flex>
+            <Text fontSize={12} whiteSpace='nowrap'>
+              Public voting protocol
+            </Text>
+          </Flex>
+        </NavLink>
+
         <Link display='flex' alignItems='center' onClick={() => navigate(-1)}>
           <Icon as={IoCloseOutline} mt='1.5px' boxSize={5} />
           {t('form.process_create.navbar.close_form_btn')}

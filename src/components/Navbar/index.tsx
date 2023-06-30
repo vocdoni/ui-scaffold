@@ -21,14 +21,14 @@ const Navbar = ({ ...props }) => {
   return (
     <Box as='nav' ref={refNav} {...props}>
       <Flex justifyContent='space-between' alignItems='center' gap={4} paddingY={4}>
-        <Flex alignItems='center' gap={4} ml={{ base: 2, sm: 0 }}>
-          <NavLink to='/'>
+        <NavLink to='/'>
+          <Flex alignItems='center' gap={4} ml={{ base: 2, sm: 0 }}>
             <Img src={`${process.env.PUBLIC_URL}/assets/vocdoni_icon.png`} maxWidth={12} alt='vocdoni icon' />
-          </NavLink>
-          <Text fontSize={12} whiteSpace='nowrap'>
-            Public voting protocol
-          </Text>
-        </Flex>
+            <Text fontSize={12} whiteSpace='nowrap'>
+              Public voting protocol
+            </Text>
+          </Flex>
+        </NavLink>
 
         {location.pathname.includes('organization') && <SearchInput width='50%' />}
 
