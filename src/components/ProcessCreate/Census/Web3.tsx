@@ -29,22 +29,12 @@ export const CensusWeb3Addresses = () => {
     setValue,
     trigger,
     resetField,
+    setError,
   } = useFormContext()
 
   const { fields, remove } = useFieldArray({
     name: 'addresses',
   })
-
-  const validations = {
-    required: {
-      value: true,
-      message: t('form.error.field_is_required'),
-    },
-    pattern: {
-      value: /^(0x)?[0-9a-fA-F]{40}$/,
-      message: t('form.error.address_pattern'),
-    },
-  }
 
   const addresses = watch('addresses')
   const newAddress = watch('newAddress')
@@ -70,7 +60,9 @@ export const CensusWeb3Addresses = () => {
     // Trigger form validation
     await trigger()
 
-    if (!errors.newAddress) {
+    if (!newAddress) {
+      setError('newAddress', { type: 'custom', message: t('form.error.field_is_required') })
+    } else if (!errors.newAddress) {
       // Perform any necessary actions
       setValue('addresses', [...addresses, { address: newAddress, weight: 0 }])
       resetField('newAddress')
@@ -82,7 +74,12 @@ export const CensusWeb3Addresses = () => {
       <FormControl isInvalid={isInvalidFieldMap(errors, 'newAddress')} display='flex' justifyContent='center' gap={2}>
         <Box mb={3}>
           <Input
-            {...register('newAddress', validations)}
+            {...register('newAddress', {
+              pattern: {
+                value: /^(0x)?[0-9a-f]{40}$/i,
+                message: t('form.error.address_pattern'),
+              },
+            })}
             w={{ base: '200px', sm: '300px', md: '420px' }}
             onKeyUp={(e) => {
               // avoid submitting form on enter
