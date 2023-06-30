@@ -116,10 +116,25 @@
         "wallet_address_title": "Adreces de cartera"
       },
       "confirm": {
+        "census": "Censos",
         "close": "Tancar",
-        "preview_alert": "Revisa detingudament els detalls de la teva elecció abans de confirmar-ne la creació."
+        "configuration": "Configuració",
+        "confirmation": "Confirmació",
+        "confirmation_terms_and_conditions": "Accepto els <tos>termes i condicions</tos> de Vocdoni",
+        "confirmation_valid_info": "Confirmo que aquesta informació és correcta i vàlida",
+        "dates": "Data",
+        "description": "Descripció",
+        "edit": "Editar",
+        "election_info": "Informació",
+        "questions_one": "Pregunta",
+        "questions_many": "Preguntes",
+        "questions_other": "Preguntes",
+        "secret_until_the_end": "Secret fins el final",
+        "title": "Títol",
+        "vote_overwritte": "Sobreescriure vot",
+        "web3_number_addresses": "{{ addresses }} persones podran votar en aquesta votació"
       },
-      "create": "Crear",
+      "confrim_button": "",
       "creating_process": "Creant el procés...",
       "do_not_close": "Aquesta acció pot trigar una estona, no tanquis aquesta pestanya",
       "meta": {
@@ -218,6 +233,11 @@
     "pause": "Pausa",
     "play": "Reprodueix",
     "stop": "Atura"
+  },
+  "process_create": {
+    "confirm": {
+      "confirmation": ""
+    }
   },
   "read_less": "Llegir menys",
   "read_more": "Llegir més",

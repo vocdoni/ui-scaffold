@@ -10,11 +10,11 @@ import { Form } from './components/Form'
 import { Input } from './components/Input'
 import { Link } from './components/Link'
 import { ElectionQuestions } from './components/Questions'
+import { ElectionResults } from './components/Results'
 import { Stepper } from './components/Stepper'
 import { Tabs } from './components/Tabs'
 import { Textarea } from './components/Textarea'
 import { space } from './space'
-import { ElectionResults } from './components/Results'
 
 export const theme = extendTheme(vtheme, {
   styles: {

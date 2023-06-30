@@ -116,10 +116,24 @@
         "wallet_address_title": "Wallet addresses"
       },
       "confirm": {
+        "census": "Census",
         "close": "Close",
-        "preview_alert": "Please review the details of your election carefully. Ensure everything is correct before confirming its creation."
+        "configuration": "Configuration",
+        "confirmation": "Confirmation",
+        "confirmation_terms_and_conditions": "I accept the <tos>Terms and Conditions</tos> of Vocdoni",
+        "confirmation_valid_info": "I assure that this information is correct and valid",
+        "dates": "Dates",
+        "description": "Description",
+        "edit": "Edit",
+        "election_info": "Election Info",
+        "questions_one": "Question",
+        "questions_other": "Questions",
+        "secret_until_the_end": "Secret until the end",
+        "title": "Title",
+        "vote_overwritte": "Vote overwritte",
+        "web3_number_addresses": "{{ addresses }} people will be elegible for voting in this election"
       },
-      "create": "Create",
+      "confrim_button": "Confirm",
       "creating_process": "Creating process...",
       "do_not_close": "This action can take some time, don't close this tab",
       "meta": {
@@ -218,6 +232,11 @@
     "pause": "pause",
     "play": "play",
     "stop": "stop"
+  },
+  "process_create": {
+    "confirm": {
+      "confirmation": ""
+    }
   },
   "read_less": "Read less",
   "read_more": "Read more",

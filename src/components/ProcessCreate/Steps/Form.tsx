@@ -4,9 +4,11 @@ import type { RecursivePartial } from '../../../constants'
 import { StepContents } from './Contents'
 import { StepsContext, StepsContextState, StepsFormValues } from './use-steps'
 
-export type StepsFormProps = PropsWithChildren<Omit<StepsContextState, 'form' | 'setForm'>>
+export type StepsFormProps = PropsWithChildren<Omit<StepsContextState, 'form' | 'setForm'>> & {
+  setActiveStep: React.Dispatch<React.SetStateAction<number>>
+}
 
-export const StepsForm = ({ steps, children, activeStep, next, prev }: StepsFormProps) => {
+export const StepsForm = ({ steps, children, activeStep, next, prev, setActiveStep }: StepsFormProps) => {
   const [form, setForm] = useState<RecursivePartial<StepsFormValues>>({
     electionType: {
       autoStart: true,
@@ -26,6 +28,7 @@ export const StepsForm = ({ steps, children, activeStep, next, prev }: StepsForm
     prev,
     setForm,
     steps,
+    setActiveStep,
   }
 
   return (
