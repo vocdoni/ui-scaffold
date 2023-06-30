@@ -1,13 +1,19 @@
 import { createContext, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Census, CensusValues } from './Census'
+import { CensusTokenValues } from './CensusToken'
 import { CensusWeb3Values } from './CensusWeb3'
 import { Checks } from './Checks'
 import { Confirm } from './Confirm'
 import { Info, InfoValues } from './Info'
 import { Questions, QuestionsValues } from './Questions'
 
-export interface StepsFormValues extends InfoValues, QuestionsValues, CensusValues, CensusWeb3Values {}
+export interface StepsFormValues
+  extends InfoValues,
+    QuestionsValues,
+    CensusValues,
+    CensusWeb3Values,
+    CensusTokenValues {}
 
 export interface StepsState {
   title: string

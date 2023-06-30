@@ -3,9 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { CensusType, CensusTypes, useCensusTypes } from '../Census/TypeSelector'
 
 import Wrapper from '../Wrapper'
-import { StepsCensusWeb3 } from './CensusWeb3'
 import { StepsNavigation } from './Navigation'
-import { useProcessCreationSteps } from './use-steps'
+import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 
 export interface CensusValues {
   censusType: CensusType | null
@@ -30,8 +29,17 @@ export const Census = () => {
           </Box>
           <Tabs
             defaultIndex={CensusTypes.findIndex((val) => val === censusType)}
-            onChange={(index) => setForm({ ...form, censusType: CensusTypes[index] })}
+            onChange={(index) => {
+              const nform: StepsFormValues = { ...form, censusType: CensusTypes[index] }
+              // ensure maxCensusSize is only set on census3/token censuses
+              // all other cases are handled automatically via the SDK
+              if (CensusTypes[index] !== 'token' && 'maxCensusSize' in nform) {
+                delete nform?.maxCensusSize
+              }
+              setForm(nform)
+            }}
             variant='card'
+            isLazy
           >
             <TabList display='flex' justifyContent='space-around' flexWrap='wrap' gap={5} alignItems='center'>
               {list.map((ct: CensusType, index: number) => (
@@ -46,19 +54,9 @@ export const Census = () => {
             </TabList>
 
             <TabPanels>
-              <TabPanel>
-                <Text textAlign='center' color='brand'>
-                  TO DO
-                </Text>
-              </TabPanel>
-              <TabPanel>
-                <Text textAlign='center' color='brand'>
-                  TO DO
-                </Text>
-              </TabPanel>
-              <TabPanel>
-                <StepsCensusWeb3 />
-              </TabPanel>
+              {list.map((ct: CensusType, index: number) => (
+                <TabPanel key={index}>{details[ct].component()}</TabPanel>
+              ))}
             </TabPanels>
           </Tabs>
         </Flex>

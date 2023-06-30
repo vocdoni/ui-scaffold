@@ -26,10 +26,14 @@ import {
 import {
   Election,
   ElectionStatus,
+  ensure0x,
+  EnvOptions,
+  IElectionParameters,
   IPublishedElectionParameters,
   IQuestion,
   PlainCensus,
   PublishedElection,
+  VocdoniCensus3Client,
   WeightedCensus,
 } from '@vocdoni/sdk'
 import { useMemo, useState } from 'react'
@@ -40,43 +44,8 @@ import { CreationProgress } from './CreationProgress'
 import { Option } from './Questions'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 
-interface Address {
-  address: string
-  weight: number
-}
-
-const electionFromForm = (form: StepsFormValues) => {
-  let census
-
-  if (form.weightedVote) census = getWeightedCensus(form.addresses)
-  else {
-    const addresses = form.addresses.map((add) => add.address)
-    census = getPlainCensus(addresses)
-  }
-
-  return {
-    ...form,
-    census,
-    // map questions back to IQuestion[]
-    questions: form.questions.map(
-      (question) =>
-        ({
-          title: { default: question.title },
-          description: { default: question.description },
-          choices: question.options.map((q: Option, i: number) => ({
-            title: { default: q.option },
-            value: i,
-          })),
-        } as IQuestion)
-    ),
-    startDate: form.electionType.autoStart ? undefined : new Date(form.startDate).getTime(),
-    endDate: new Date(form.endDate).getTime(),
-    voteType: { maxVoteOverwrites: Number(form.maxVoteOverwrites) },
-  }
-}
-
 export const Confirm = () => {
-  const { client, account } = useClient()
+  const { env, client, account } = useClient()
   const { form, prev } = useProcessCreationSteps()
   const navigate = useNavigate()
   const { t } = useTranslation()
@@ -90,7 +59,12 @@ export const Confirm = () => {
     setSending(true)
     setError(null)
     try {
-      const election = Election.from(electionFromForm(form))
+      const census = await getCensus(env as EnvOptions, form)
+      const params: IElectionParameters = {
+        ...electionFromForm(form),
+        census,
+      }
+      const election = Election.from(params)
 
       const pid = await client.createElection(election)
       toast({
@@ -99,7 +73,7 @@ export const Confirm = () => {
         status: 'success',
         duration: 4000,
       })
-      setTimeout(() => navigate(`/processes/${pid}`), 3000)
+      setTimeout(() => navigate(`/processes/${ensure0x(pid)}`), 3000)
     } catch (err: any) {
       setError(errorToString(err))
       console.error('could not create election:', err)
@@ -165,21 +139,64 @@ export const Confirm = () => {
   )
 }
 
-const getPlainCensus = (addresses: string[]) => {
-  const census = new PlainCensus()
-  census.add(addresses)
+/**
+ * Returns the expected census. Note that it can return a promise (census3).
+ *
+ * @param {EnvOptions} env Current env (required by census3)
+ * @param {StepsFormValues} form The form object from where to generate the census
+ * @returns
+ */
+const getCensus = (env: EnvOptions, form: StepsFormValues) => {
+  switch (form.censusType) {
+    case 'token':
+      const c3client = new VocdoniCensus3Client({
+        env,
+      })
 
-  return census
+      return c3client.createTokenCensus(form.censusToken)
+
+    case 'web3':
+      if (form.weightedVote) {
+        const census = new WeightedCensus()
+        form.addresses.forEach(({ address, weight }) => census.add({ key: address, weight: BigInt(weight) }))
+
+        return census
+      }
+
+      const census = new PlainCensus()
+      form.addresses.forEach(({ address }) => census.add(address))
+
+      return census
+
+    default:
+      throw new Error(`census type ${form.censusType} is not allowed`)
+  }
 }
-const getWeightedCensus = (addresses: Address[]) => {
-  const census = new WeightedCensus()
 
-  addresses.forEach((add: Address) => {
-    census.add({
-      key: add.address,
-      weight: BigInt(add.weight),
-    })
-  })
-
-  return census
+/**
+ * Maps values from our form state back to the expected SDK object. It needs to
+ * stay as a syncronous function in order to be used in the preview.
+ *
+ * @param {StepsFormValues} form Form state contents
+ * @returns
+ */
+const electionFromForm = (form: StepsFormValues) => {
+  return {
+    ...form,
+    // map questions back to IQuestion[]
+    questions: form.questions.map(
+      (question) =>
+        ({
+          title: { default: question.title },
+          description: { default: question.description },
+          choices: question.options.map((q: Option, i: number) => ({
+            title: { default: q.option },
+            value: i,
+          })),
+        } as IQuestion)
+    ),
+    startDate: form.electionType.autoStart ? undefined : new Date(form.startDate).getTime(),
+    endDate: new Date(form.endDate).getTime(),
+    voteType: { maxVoteOverwrites: Number(form.maxVoteOverwrites) },
+  }
 }
