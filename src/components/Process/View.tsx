@@ -8,6 +8,8 @@ import {
   ElectionSchedule,
   ElectionTitle,
   enforceHexPrefix,
+  environment,
+  useClient,
   useElection,
   useOrganization,
 } from '@vocdoni/chakra-components'
@@ -15,12 +17,12 @@ import { ElectionStatus } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import { ExplorerBaseURL } from '../../constants'
 import ProcessAside from './Aside'
 import { ProcessDate } from './Date'
 
 export const ProcessView = () => {
   const { organization } = useOrganization()
+  const { env } = useClient()
   const { election, isInCensus, voted } = useElection()
   const { t } = useTranslation()
 
@@ -98,8 +100,7 @@ export const ProcessView = () => {
 
                       <Box>
                         <Text>
-                          {/* TODO: update to send directly to /verify/#/:voteid when we have it from SDK */}
-                          <Link to={`${ExplorerBaseURL}/verify`} target='_blank'>
+                          <Link to={environment.verifyVote(env, voted)} target='_blank'>
                             {t('aside.verify_vote_on_explorer')}
                           </Link>
                         </Text>
