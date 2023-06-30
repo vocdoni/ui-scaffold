@@ -3,7 +3,7 @@
   "aside": {
     "connect_and_vote": "Connect and vote on your favorite proposals",
     "connect_to_vote": "Connect to vote",
-    "has_already_voted": "You have already voted",
+    "has_already_voted": "Your vote is properly cast",
     "is_able_to_vote": "Connected. You are elegible for voting",
     "is_not_in_census": "You are not in census",
     "overwrite_votes_left": "You can correct your vote up to {{ left }} times.",
@@ -25,7 +25,7 @@
     "empty": "Apparently this process has no questions",
     "required": "This field is required",
     "results": {
-      "date_format": "d-L-y HH:mm",
+      "date_format": "PPpp",
       "secret_until_the_end": "Secret until the end. The results will be available when the process ends at {{ endDate }}",
       "title": "Results for \"{{ title }}\"",
       "votes": "Votes: {{ votes }} ({{ percent }})"
@@ -54,13 +54,13 @@
   "footer": {
     "about": "About",
     "blog": "Blog",
-    "company": "company",
+    "company": "Company",
     "contact": "Contact",
     "developer_portal": "Developers Portal",
-    "developers": "developers",
+    "developers": "Developers",
     "guides": "Guides",
     "how_we_work": "How we work",
-    "resources": "resources",
+    "resources": "Resources",
     "tutorials": "Tutorials",
     "vocdoni_api": "Vocdoni API",
     "vocdoni_app": "Vocdoni APP"
@@ -68,12 +68,12 @@
   "form": {
     "account_create": {
       "description_helper": "A brief description of your organization",
-      "description_placeholder": "Description (Optional)",
-      "title_helper": "The Organization name",
-      "title_placeholder": "The Organization name"
+      "description_placeholder": "Description (optional)",
+      "title_helper": "The organization name",
+      "title_placeholder": "The organization name"
     },
     "error": {
-      "address_pattern": "Only hex addresses are allowed (e.g 0x031101A...398)",
+      "address_pattern": "Only hex addresses are allowed (e.g 0x031101A...)",
       "field_is_required": "This field is required"
     },
     "process_create": {
@@ -81,7 +81,7 @@
       "behavior": {
         "overwrite": {
           "description": "Vote overwrite: Allow voters to correct the vote once.",
-          "title": "Vote overwite"
+          "title": "Vote overwrite"
         },
         "secret": {
           "description": "Secret: Results will be available only after the voting is closed.",
@@ -103,8 +103,8 @@
         "csv_description": "Custom data like user and password or voter personal info.",
         "csv_title": "CSV",
         "description": "Select how will the voters authenticate and identify themselves. Choose between custom data (CSV), by owning a token or by wallet addresses.",
-        "max_census_slider_arialabel": "Total participation expected slider selector",
-        "max_census_slider_label": "Total participation expected",
+        "max_census_slider_arialabel": "Maximum participation expected slider selector",
+        "max_census_slider_label": "Maximum participation expected:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} eligible voters)",
         "title": "Choose your census",
         "token_base_description": "Use a token (EVM based) to let users vote based on the amount they own.",
