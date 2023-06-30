@@ -1,7 +1,10 @@
-import { Box, Flex, Img, Link, Text } from '@chakra-ui/react'
+import { Box, Flex, Icon, Img, Link, Text } from '@chakra-ui/react'
+import { useTranslation } from 'react-i18next'
+import { IoCloseOutline } from 'react-icons/io5'
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 
 const LayoutProcessCreate = () => {
+  const { t } = useTranslation()
   const navigate = useNavigate()
 
   return (
@@ -25,8 +28,9 @@ const LayoutProcessCreate = () => {
             Public voting protocol
           </Text>
         </Flex>
-        <Link display='flex' alignItems='center' gap={1} onClick={() => navigate(-1)}>
-          Close form
+        <Link display='flex' alignItems='center' onClick={() => navigate(-1)}>
+          <Icon as={IoCloseOutline} mt='1.5px' boxSize={5} />
+          {t('form.process_create.navbar.close_form_btn')}
         </Link>
       </Flex>
 
