@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar'
 
 const Layout = () => (
   <Flex direction='column' minH='100vh'>
-    <Box as='header' position='relative' boxShadow='3px 3px 10px gray' zIndex={10}>
+    <Box as='header' position='relative' boxShadow='3px 3px 10px lightgray' zIndex={10}>
       <Navbar maxW={350} mx='auto' px={{ base: 4 }} />
     </Box>
     <Outlet />

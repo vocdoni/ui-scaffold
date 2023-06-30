@@ -20,10 +20,14 @@ const card = definePartsStyle({
     p: 4,
     px: 6,
     bgColor: 'white',
-    boxShadow: '2px 4px 8px gray',
+    boxShadow: '2px 4px 8px lightgray',
     borderRadius: 'md',
     borderBottom: 'none',
     color: 'process_create.tabs.card.color',
+
+    _active: {
+      boxShadow: '1px 2px 4px lightgray',
+    },
 
     '& > p:nth-of-type(1)': {
       fontWeight: 'bold',
@@ -31,6 +35,7 @@ const card = definePartsStyle({
     },
 
     _selected: {
+      boxShadow: '1px 2px 4px lightgray',
       '& > p:first-of-type': {
         color: 'process_create.tabs.card.selected_color',
       },

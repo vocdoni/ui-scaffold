@@ -1,11 +1,5 @@
-import { Box, Text } from '@chakra-ui/react'
-import { StepsNavigation } from './Navigation'
+import { Text } from '@chakra-ui/react'
 
 export const StepsCensusCSV = () => {
-  return (
-    <Box>
-      <Text>TODO CSV integration</Text>
-      <StepsNavigation />
-    </Box>
-  )
+  return <Text>TODO CSV integration</Text>
 }

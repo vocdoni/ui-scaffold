@@ -12,6 +12,7 @@
     "@rainbow-me/rainbowkit": "^0.12.4",
     "@vocdoni/chakra-components": "^0.2.7",
     "@vocdoni/sdk": "^0.0.15",
+    "chakra-react-select": "^4.6.0",
     "date-fns": "^2.29.3",
     "ethers": "^5.7.2",
     "framer-motion": "^10.12.16",

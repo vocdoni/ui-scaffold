@@ -47,9 +47,6 @@
       "voted_title": ""
     }
   },
-  "census_type": {
-    "web3": ""
-  },
   "copy": {
     "address": "",
     "copied_title": ""
@@ -107,9 +104,14 @@
         "csv_description": "",
         "csv_title": "",
         "description": "",
+        "max_census_slider_arialabel": "",
+        "max_census_slider_label": "",
+        "max_census_slider_tooltip": "",
         "title": "",
         "token_base_description": "",
         "token_base_title": "",
+        "token_title": "",
+        "tokens_placeholder": "",
         "wallet_address_description": "",
         "wallet_address_title": ""
       },
