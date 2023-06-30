@@ -35,6 +35,11 @@ export const CensusWeb3Addresses = () => {
     name: 'addresses',
   })
 
+  const required = {
+    value: true,
+    message: t('form.error.field_is_required'),
+  }
+
   const addresses = watch('addresses')
   const newAddress = watch('newAddress')
 
@@ -59,7 +64,7 @@ export const CensusWeb3Addresses = () => {
     // Trigger form validation
     await trigger()
 
-    if (!errors.newAddress && !!newAddress) {
+    if (!errors.newAddress) {
       // Perform any necessary actions
       setValue('addresses', [...addresses, { address: newAddress, weight: 0 }])
       resetField('newAddress')
@@ -72,6 +77,7 @@ export const CensusWeb3Addresses = () => {
         <Box mb={3}>
           <Input
             {...register('newAddress', {
+              required,
               pattern: {
                 value: /^(0x)?[0-9a-fA-F]{40}$/,
                 message: t('form.error.address_pattern'),
