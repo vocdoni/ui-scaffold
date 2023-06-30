@@ -130,6 +130,9 @@
         "title_helper": "",
         "title_placeholder": ""
       },
+      "navbar": {
+        "close_form_btn": ""
+      },
       "next_step": "",
       "previous_step": "",
       "question": {
