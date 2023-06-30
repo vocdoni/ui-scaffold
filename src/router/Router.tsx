@@ -22,46 +22,44 @@ export const RoutesProvider = () => {
 
   const router = createHashRouter(
     createRoutesFromElements(
-      <>
-        <Route path='/' element={<Layout />}>
-          <Route errorElement={<Error />}>
-            <Route element={<LayoutHome />}>
-              <Route
-                index
-                element={
-                  <SuspenseLoader>
-                    <Home />
-                  </SuspenseLoader>
-                }
-              />
-            </Route>
-            <Route element={<LayoutContents />}>
-              <Route
-                path='processes/:id'
-                element={
-                  <SuspenseLoader>
-                    <Process />
-                  </SuspenseLoader>
-                }
-                loader={async ({ params }) => client.fetchElection(params.id)}
-              />
-              <Route
-                path='organization/:address'
-                element={
-                  <SuspenseLoader>
-                    <Organization />
-                  </SuspenseLoader>
-                }
-              />
-              <Route
-                path='*'
-                element={
-                  <SuspenseLoader>
-                    <NotFound />
-                  </SuspenseLoader>
-                }
-              />
-            </Route>
+      <Route path='/'>
+        <Route errorElement={<Error />} element={<Layout />}>
+          <Route element={<LayoutHome />}>
+            <Route
+              index
+              element={
+                <SuspenseLoader>
+                  <Home />
+                </SuspenseLoader>
+              }
+            />
+          </Route>
+          <Route element={<LayoutContents />}>
+            <Route
+              path='processes/:id'
+              element={
+                <SuspenseLoader>
+                  <Process />
+                </SuspenseLoader>
+              }
+              loader={async ({ params }) => client.fetchElection(params.id)}
+            />
+            <Route
+              path='organization/:address'
+              element={
+                <SuspenseLoader>
+                  <Organization />
+                </SuspenseLoader>
+              }
+            />
+            <Route
+              path='*'
+              element={
+                <SuspenseLoader>
+                  <NotFound />
+                </SuspenseLoader>
+              }
+            />
           </Route>
         </Route>
         <Route element={<LayoutProcessCreate />}>
@@ -82,7 +80,7 @@ export const RoutesProvider = () => {
             />
           </Route>
         </Route>
-      </>
+      </Route>
     )
   )
 
