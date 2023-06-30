@@ -61,8 +61,10 @@ export const CensusWeb3Addresses = () => {
     await trigger()
 
     if (!newAddress) {
-      setError('newAddress', { type: 'custom', message: t('form.error.field_is_required') })
-    } else if (!errors.newAddress) {
+      return setError('newAddress', { type: 'custom', message: t('form.error.field_is_required') })
+    }
+
+    if (!errors.newAddress) {
       // Perform any necessary actions
       setValue('addresses', [...addresses, { address: newAddress, weight: 0 }])
       resetField('newAddress')
