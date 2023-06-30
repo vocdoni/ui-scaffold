@@ -33,7 +33,7 @@ const LayoutProcessCreate = () => {
         </Link>
       </Flex>
 
-      <Box as='main' py={14}>
+      <Box as='main' py={4}>
         <Box maxWidth={304} margin='0 auto' paddingX={{ base: 4 }}>
           <Outlet />
         </Box>
