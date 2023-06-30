@@ -29,6 +29,7 @@ export const CensusWeb3Addresses = () => {
     setValue,
     trigger,
     resetField,
+    setError,
   } = useFormContext()
 
   const { fields, remove } = useFieldArray({
@@ -59,6 +60,10 @@ export const CensusWeb3Addresses = () => {
     // Trigger form validation
     await trigger()
 
+    if (!newAddress) {
+      return setError('newAddress', { type: 'custom', message: t('form.error.field_is_required') })
+    }
+
     if (!errors.newAddress) {
       // Perform any necessary actions
       setValue('addresses', [...addresses, { address: newAddress, weight: 0 }])
@@ -73,7 +78,7 @@ export const CensusWeb3Addresses = () => {
           <Input
             {...register('newAddress', {
               pattern: {
-                value: /^(0x)?[0-9a-fA-F]{40}$/,
+                value: /^(0x)?[0-9a-f]{40}$/i,
                 message: t('form.error.address_pattern'),
               },
             })}
