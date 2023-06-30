@@ -129,6 +129,9 @@
         "title_helper": "The election title / purpose",
         "title_placeholder": "The Election title"
       },
+      "navbar": {
+        "close_form_btn": "Close form"
+      },
       "next_step": "Next",
       "previous_step": "Previous",
       "question": {

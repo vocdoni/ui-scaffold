@@ -6,6 +6,7 @@ import Error from '../elements/Error'
 import Layout from '../elements/Layout'
 import LayoutContents from '../elements/LayoutContents'
 import LayoutHome from '../elements/LayoutHome'
+import LayoutProcessCreate from '../elements/LayoutProcessCreate'
 import { SuspenseLoader } from './SuspenseLoader'
 
 // Lazy loading helps splitting the final code, which helps downloading the app (theoretically)
@@ -21,8 +22,8 @@ export const RoutesProvider = () => {
 
   const router = createHashRouter(
     createRoutesFromElements(
-      <Route path='/' element={<Layout />}>
-        <Route errorElement={<Error />}>
+      <Route path='/'>
+        <Route errorElement={<Error />} element={<Layout />}>
           <Route element={<LayoutHome />}>
             <Route
               index
@@ -34,22 +35,6 @@ export const RoutesProvider = () => {
             />
           </Route>
           <Route element={<LayoutContents />}>
-            <Route
-              element={
-                <SuspenseLoader>
-                  <ProtectedRoutes />
-                </SuspenseLoader>
-              }
-            >
-              <Route
-                path='processes/create'
-                element={
-                  <SuspenseLoader>
-                    <ProcessCreateSteps />
-                  </SuspenseLoader>
-                }
-              />
-            </Route>
             <Route
               path='processes/:id'
               element={
@@ -72,6 +57,24 @@ export const RoutesProvider = () => {
               element={
                 <SuspenseLoader>
                   <NotFound />
+                </SuspenseLoader>
+              }
+            />
+          </Route>
+        </Route>
+        <Route element={<LayoutProcessCreate />}>
+          <Route
+            element={
+              <SuspenseLoader>
+                <ProtectedRoutes />
+              </SuspenseLoader>
+            }
+          >
+            <Route
+              path='processes/create'
+              element={
+                <SuspenseLoader>
+                  <ProcessCreateSteps />
                 </SuspenseLoader>
               }
             />
