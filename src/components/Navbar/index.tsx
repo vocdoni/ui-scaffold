@@ -1,8 +1,9 @@
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
-import { Box, Flex, IconButton, Img, List, Text, UnorderedList, useDisclosure, useOutsideClick } from '@chakra-ui/react'
+import { Box, Flex, IconButton, List, UnorderedList, useDisclosure, useOutsideClick } from '@chakra-ui/react'
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { NavLink, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
+import Logo from '../Layout/Logo'
 import SearchInput from '../Search/Input'
 import NavList from './List'
 
@@ -21,14 +22,7 @@ const Navbar = ({ ...props }) => {
   return (
     <Box as='nav' ref={refNav} {...props}>
       <Flex justifyContent='space-between' alignItems='center' gap={4} paddingY={4}>
-        <NavLink to='/'>
-          <Flex alignItems='center' gap={4} ml={{ base: 2, sm: 0 }}>
-            <Img src={`${process.env.PUBLIC_URL}/assets/vocdoni_icon.png`} maxWidth={12} alt='vocdoni icon' />
-            <Text fontSize={12} whiteSpace='nowrap'>
-              Public voting protocol
-            </Text>
-          </Flex>
-        </NavLink>
+        <Logo />
 
         {location.pathname.includes('organization') && <SearchInput width='50%' />}
 
