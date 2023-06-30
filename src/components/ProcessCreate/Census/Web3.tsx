@@ -59,7 +59,7 @@ export const CensusWeb3Addresses = () => {
     // Trigger form validation
     await trigger()
 
-    if (!errors.newAddress) {
+    if (!errors.newAddress && !!newAddress) {
       // Perform any necessary actions
       setValue('addresses', [...addresses, { address: newAddress, weight: 0 }])
       resetField('newAddress')
