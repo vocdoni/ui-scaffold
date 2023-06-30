@@ -23,7 +23,11 @@ const LayoutProcessCreate = () => {
       >
         <Logo />
 
-        <Link display='flex' alignItems='center' onClick={() => navigate(-1)}>
+        <Link
+          display='flex'
+          alignItems='center'
+          onClick={(e) => (window.history.state.idx ? navigate(-1) : navigate('/'))}
+        >
           <Icon as={IoCloseOutline} mt='1.5px' boxSize={5} />
           {t('form.process_create.navbar.close_form_btn')}
         </Link>
