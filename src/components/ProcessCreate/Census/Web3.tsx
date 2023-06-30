@@ -35,9 +35,15 @@ export const CensusWeb3Addresses = () => {
     name: 'addresses',
   })
 
-  const required = {
-    value: true,
-    message: t('form.error.field_is_required'),
+  const validations = {
+    required: {
+      value: true,
+      message: t('form.error.field_is_required'),
+    },
+    pattern: {
+      value: /^(0x)?[0-9a-fA-F]{40}$/,
+      message: t('form.error.address_pattern'),
+    },
   }
 
   const addresses = watch('addresses')
@@ -76,13 +82,7 @@ export const CensusWeb3Addresses = () => {
       <FormControl isInvalid={isInvalidFieldMap(errors, 'newAddress')} display='flex' justifyContent='center' gap={2}>
         <Box mb={3}>
           <Input
-            {...register('newAddress', {
-              required,
-              pattern: {
-                value: /^(0x)?[0-9a-fA-F]{40}$/,
-                message: t('form.error.address_pattern'),
-              },
-            })}
+            {...register('newAddress', validations)}
             w={{ base: '200px', sm: '300px', md: '420px' }}
             onKeyUp={(e) => {
               // avoid submitting form on enter
