@@ -15,6 +15,7 @@ import { Account } from '@vocdoni/sdk'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { fieldMapErrorMessage, isInvalidFieldMap } from '../../constants'
 
 interface FormFields {
   name: string
@@ -59,7 +60,7 @@ export const AccountCreate = () => {
         handleSubmit(onSubmit)(e)
       }}
     >
-      <FormControl isInvalid={!!errors.name}>
+      <FormControl isInvalid={isInvalidFieldMap(errors, `name`)}>
         <Input
           type='text'
           {...register('name', { required })}
@@ -67,7 +68,7 @@ export const AccountCreate = () => {
           placeholder={t('form.account_create.title_placeholder').toString()}
         />
         {!!errors.name ? (
-          <FormErrorMessage>{errors.name?.message?.toString()}</FormErrorMessage>
+          <FormErrorMessage>{fieldMapErrorMessage(errors, `name`)}</FormErrorMessage>
         ) : (
           <FormHelperText>
             <InfoOutlineIcon />
@@ -76,19 +77,15 @@ export const AccountCreate = () => {
         )}
       </FormControl>
 
-      <FormControl isInvalid={!!errors.description}>
+      <FormControl>
         <Textarea
           {...register('description')}
           placeholder={t('form.account_create.description_placeholder').toString()}
         />
-        {!!errors.description ? (
-          <FormErrorMessage>{errors.description?.message?.toString()}</FormErrorMessage>
-        ) : (
-          <FormHelperText>
-            <InfoOutlineIcon />
-            <Text> {t('form.account_create.description_helper')}</Text>
-          </FormHelperText>
-        )}
+        <FormHelperText>
+          <InfoOutlineIcon />
+          <Text>{t('form.account_create.description_helper')}</Text>
+        </FormHelperText>
       </FormControl>
       {sent && error && (
         <Alert status='error'>
