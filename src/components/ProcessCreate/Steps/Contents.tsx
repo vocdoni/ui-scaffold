@@ -10,5 +10,9 @@ export const StepContents = ({ children }: PropsWithChildren<StepContentsProps>)
     return null
   }
 
-  return <Box flex='1'>{children}</Box>
+  return (
+    <Box flex='1' minW={1}>
+      {children}
+    </Box>
+  )
 }
