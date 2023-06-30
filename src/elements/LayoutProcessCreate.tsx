@@ -1,7 +1,8 @@
-import { Box, Flex, Icon, Img, Link, Text } from '@chakra-ui/react'
+import { Box, Flex, Icon, Link } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { IoCloseOutline } from 'react-icons/io5'
-import { NavLink, Outlet, useNavigate } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
+import Logo from '../components/Layout/Logo'
 
 const LayoutProcessCreate = () => {
   const { t } = useTranslation()
@@ -20,14 +21,8 @@ const LayoutProcessCreate = () => {
         px={4}
         w='full'
       >
-        <Flex alignItems='center' gap={4} ml={{ base: 2, sm: 0 }}>
-          <NavLink to='/'>
-            <Img src={`${process.env.PUBLIC_URL}/assets/vocdoni_icon.png`} maxWidth={12} alt='vocdoni icon' />
-          </NavLink>
-          <Text fontSize={12} whiteSpace='nowrap'>
-            Public voting protocol
-          </Text>
-        </Flex>
+        <Logo />
+
         <Link display='flex' alignItems='center' onClick={() => navigate(-1)}>
           <Icon as={IoCloseOutline} mt='1.5px' boxSize={5} />
           {t('form.process_create.navbar.close_form_btn')}
