@@ -10,6 +10,14 @@ import { ElectionQuestions } from './components/Questions'
 import { fontSizes } from './font'
 import { ElectionResults } from './components/Results'
 import { ElectionActions } from './components/Actions'
+import { Stepper } from './components/Stepper'
+import { Alert } from './components/Alert'
+import { Input } from './components/Input'
+import { Textarea } from './components/Textarea'
+import { Form } from './components/Form'
+import { Tabs } from './components/Tabs'
+import { Checkbox } from './components/Checkbox'
+import { Link } from './components/Link'
 
 export const theme = extendTheme(vtheme, {
   styles: {
@@ -30,11 +38,19 @@ export const theme = extendTheme(vtheme, {
   colors,
   sizes,
   components: {
-    Card,
-    ElectionQuestions,
+    Alert,
     Button,
+    Card,
+    Checkbox,
+    ElectionQuestions,
     ElectionResults,
     ElectionActions,
+    Form,
+    Input,
+    Link,
+    Tabs,
+    Textarea,
+    Stepper,
   },
 })
 

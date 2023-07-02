@@ -4,21 +4,32 @@ export const colorsBase = {
     dark: '#0D4752',
   },
   black: '#000000',
-  blue: '#0044FF',
+  blue: {
+    light2: '#F2F5FF',
+    light: '#B8CEF9',
+    normal: '#0044FF',
+    dark: '#002266',
+  },
   gray: {
-    light: '#F5F7FA',
-    normal: '#E2E8F0',
-    dark: '#A7A7A7',
+    light: '#FAFAFA',
+    light2: '#F2F2F2',
+    normal: '#D9D9D9',
+    dark: '#718096',
+    dark2: 'rgba(0, 0, 0, 0.6)',
   },
 
   grenade: '#961D1D',
   pink: {
+    ultralight: '#EA7BDF',
+    light: '#E55BD8',
     normal: '#E035D0',
   },
   purple: '#8E00FF',
   white: '#ffffff',
 }
 export const colors = {
+  brand: colorsBase.pink.light,
+
   buttons: {
     ghost_hover_color: colorsBase.white,
     search: colorsBase.black,
@@ -29,7 +40,6 @@ export const colors = {
     description: colorsBase.gray.dark,
     footer_divider: colorsBase.gray.dark,
     footer_title: colorsBase.primary.normal,
-    process_info: colorsBase.purple,
     date: colorsBase.primary.normal,
 
     detailed: {
@@ -37,12 +47,13 @@ export const colors = {
       btn_disabled: colorsBase.grenade,
     },
   },
-  error_link: colorsBase.blue,
 
   input_search: {
     bg: colorsBase.white,
     border: colorsBase.black,
   },
+
+  link: colorsBase.pink.normal,
 
   navbar: {
     bg: colorsBase.white,
@@ -61,6 +72,7 @@ export const colors = {
       700: 'var(--vcd-gradient-brand-active)',
     },
   },
+
   organization: {
     button_address: {
       500: colorsBase.primary.normal,
@@ -105,6 +117,28 @@ export const colors = {
       alert_bg: colorsBase.primary.normal,
       alert_color: colorsBase.white,
       title: colorsBase.primary.dark,
+    },
+  },
+
+  process_create: {
+    alert_info: {
+      color: colorsBase.blue.dark,
+      bg: colorsBase.blue.light,
+    },
+
+    aside_questions_bg: colorsBase.gray.light2,
+    bg: colorsBase.gray.light,
+    border: colorsBase.gray.normal,
+    description_logo: colorsBase.blue.normal,
+    input_bg: colorsBase.white,
+    meta_description: colorsBase.gray.dark,
+    stepper: colorsBase.pink.normal,
+    tabs: {
+      card: {
+        color: colorsBase.gray.dark,
+        color_title: colorsBase.gray.dark2,
+        selected_color: colorsBase.pink.normal,
+      },
     },
   },
 

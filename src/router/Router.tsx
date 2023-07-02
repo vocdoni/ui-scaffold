@@ -4,11 +4,12 @@ import { createHashRouter, createRoutesFromElements, Route, RouterProvider } fro
 // These aren't lazy loaded to avoid excessive loaders in different locations
 import Error from '../elements/Error'
 import Layout from '../elements/Layout'
+import LayoutProcessCreate from '../elements/LayoutProcessCreate'
 import { SuspenseLoader } from './SuspenseLoader'
 
 // Lazy loading helps splitting the final code, which helps downloading the app (theoretically)
 const ProtectedRoutes = lazy(() => import('./ProtectedRoutes'))
-const ProcessCreate = lazy(() => import('../components/ProcessCreate'))
+const ProcessCreateSteps = lazy(() => import('../components/ProcessCreate/Steps'))
 const Home = lazy(() => import('../elements/Home'))
 const NotFound = lazy(() => import('../elements/NotFound'))
 const Organization = lazy(() => import('../elements/Organization'))
@@ -19,8 +20,8 @@ export const RoutesProvider = () => {
 
   const router = createHashRouter(
     createRoutesFromElements(
-      <Route path='/' element={<Layout />}>
-        <Route errorElement={<Error />}>
+      <Route path='/'>
+        <Route errorElement={<Error />} element={<Layout />}>
           <Route
             index
             element={
@@ -29,23 +30,6 @@ export const RoutesProvider = () => {
               </SuspenseLoader>
             }
           />
-
-          <Route
-            element={
-              <SuspenseLoader>
-                <ProtectedRoutes />
-              </SuspenseLoader>
-            }
-          >
-            <Route
-              path='processes/create'
-              element={
-                <SuspenseLoader>
-                  <ProcessCreate />
-                </SuspenseLoader>
-              }
-            />
-          </Route>
           <Route
             path='processes/:id'
             element={
@@ -71,6 +55,24 @@ export const RoutesProvider = () => {
               </SuspenseLoader>
             }
           />
+        </Route>
+        <Route element={<LayoutProcessCreate />}>
+          <Route
+            element={
+              <SuspenseLoader>
+                <ProtectedRoutes />
+              </SuspenseLoader>
+            }
+          >
+            <Route
+              path='processes/create'
+              element={
+                <SuspenseLoader>
+                  <ProcessCreateSteps />
+                </SuspenseLoader>
+              }
+            />
+          </Route>
         </Route>
       </Route>
     )

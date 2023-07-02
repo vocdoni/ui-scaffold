@@ -1,57 +1,41 @@
-import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Box,
-  Flex,
-  FormControl,
-  FormLabel,
-  Input,
-} from '@chakra-ui/react'
+import { Box, Checkbox, Flex, Icon, Text } from '@chakra-ui/react'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import SettingCheckbox from './Checkbox'
+import { BiCheckDouble } from 'react-icons/bi'
+import { HiKey } from 'react-icons/hi2'
 
 const SettingsAdvanced = () => {
   const { t } = useTranslation()
   const { register } = useFormContext()
 
   return (
-    <Accordion allowToggle>
-      <AccordionItem>
-        <AccordionButton>
-          <Box as='span' flex='1' textAlign='left'>
-            {t('form.process_create.advanced_settings')}
-          </Box>
-          <AccordionIcon />
-        </AccordionButton>
-
-        <AccordionPanel pb={4}>
-          <Flex
-            gap={{ base: 6, sm: 3 }}
-            justifyContent='space-between'
-            flexDirection={{ base: 'column', md: 'row' }}
-            alignItems={{ base: 'start', md: 'end' }}
-            mb={3}
-          >
-            <SettingCheckbox label={t('form.process_create.weighted_vote')} field='weightedVote' />
-            <SettingCheckbox label={t('form.process_create.interruptible')} field='electionType.interruptible' />
-            <SettingCheckbox
-              label={t('form.process_create.secret_until_the_end')}
-              field='electionType.secretUntilTheEnd'
-            />
+    <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 4, md: 10 }}>
+      <Box flexBasis='30%' flexShrink={0}>
+        <Text fontWeight='bold' mb={1}>
+          {t('form.process_create.behavior.title')}
+        </Text>
+        <Text color='process_create.meta_description' fontSize='sm' mb={3}>
+          {t('form.process_create.behavior.secret.description')}
+        </Text>
+        <Text color='process_create.meta_description' fontSize='sm'>
+          {t('form.process_create.behavior.overwrite.description')}
+        </Text>
+      </Box>
+      <Flex flexGrow={1} justifyContent={{ base: 'center', sm: 'start' }} gap={10}>
+        <Checkbox {...register('electionType.secretUntilTheEnd')} variant='radiobox'>
+          <Flex flexDirection='column' alignItems='center' gap={3} mt={1}>
+            <Icon as={HiKey} />
+            <Text fontSize='sm'>{t('form.process_create.behavior.secret.title')}</Text>
           </Flex>
-          <FormControl>
-            <FormLabel pt={2} whiteSpace='nowrap'>
-              {t('form.process_create.max_vote_overwrites')}
-            </FormLabel>
-            <Input w='full' type='number' {...register(`maxVoteOverwrites`)} />
-          </FormControl>
-        </AccordionPanel>
-      </AccordionItem>
-    </Accordion>
+        </Checkbox>
+        <Checkbox {...register('maxVoteOverwrites')} variant='radiobox'>
+          <Flex flexDirection='column' alignItems='center' gap={3} mt={1}>
+            <Icon as={BiCheckDouble} />
+            <Text fontSize='sm'>{t('form.process_create.behavior.overwrite.title')}</Text>
+          </Flex>
+        </Checkbox>
+      </Flex>
+    </Flex>
   )
 }
 export default SettingsAdvanced

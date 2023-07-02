@@ -1,8 +1,10 @@
 {
   "alt_image": "{{ img }} image",
   "aside": {
-    "has_already_voted": "You have already voted",
-    "is_able_to_vote": "Connected. You are eligible for voting",
+    "connect_and_vote": "Connect and vote on your favorite proposals",
+    "connect_to_vote": "Connect to vote",
+    "has_already_voted": "Your vote is properly cast",
+    "is_able_to_vote": "Connected. You are elegible for voting",
     "is_not_in_census": "You are not in census",
     "not_connected": "You are not connected",
     "overwrite_votes_left": "You can correct your vote up to {{ left }} times.",
@@ -28,10 +30,10 @@
       "pause_description": "pausing the \"{{ election.title.default }}\" election process",
       "waiting_title": "Waiting for transaction confirmation..."
     },
-    "empty": "Apparently this process has no questions 🤔",
+    "empty": "Apparently this process has no questions",
     "required": "This field is required",
     "results": {
-      "date_format": "d-L-y HH:mm",
+      "date_format": "PPpp",
       "secret_until_the_end": "Secret until the end. The results will be available when the process ends at {{ endDate }}",
       "title": "Results for \"{{ title }}\"",
       "votes": "Votes: {{ votes }} ({{ percent }})"
@@ -64,47 +66,111 @@
   "footer": {
     "about": "About",
     "blog": "Blog",
-    "company": "company",
+    "company": "Company",
     "contact": "Contact",
     "developer_portal": "Developers Portal",
-    "developers": "developers",
+    "developers": "Developers",
     "guides": "Guides",
     "how_we_work": "How we work",
-    "resources": "resources",
+    "resources": "Resources",
     "tutorials": "Tutorials",
     "vocdoni_api": "Vocdoni API",
     "vocdoni_app": "Vocdoni APP"
   },
   "form": {
+    "account_create": {
+      "description_helper": "A brief description of your organization",
+      "description_placeholder": "Description (optional)",
+      "title_helper": "The organization name",
+      "title_placeholder": "The organization name"
+    },
     "error": {
-      "address_pattern": "Only hex addresses are allowed",
+      "address_pattern": "Only hex addresses are allowed (e.g 0x031101A...)",
       "field_is_required": "This field is required"
     },
     "process_create": {
-      "address_title": "Address {{ num }}",
-      "address_weight": "Weight",
-      "addresses_title": "Addresses",
-      "advanced_settings": "Advanced settings",
-      "autostart": "Autostart",
-      "date_end": "End date:",
-      "date_start": "Start date:",
-      "interruptible": "Interruptible",
-      "max_vote_overwrites": "Max. overwrites per vote",
-      "process_description": "Description",
-      "process_description_placeholder": "A thoroughly detailed description",
-      "process_title": "Title",
-      "process_title_placeholder": "The main process title",
+      "alert_info_title": "Info",
+      "behavior": {
+        "overwrite": {
+          "description": "Vote overwrite: Allow voters to correct the vote once.",
+          "title": "Vote overwrite"
+        },
+        "secret": {
+          "description": "Secret: Results will be available only after the voting is closed.",
+          "title": "Secret"
+        },
+        "title": "Options"
+      },
+      "calendar": {
+        "date_format": "PPPPpppp",
+        "end_date": "End date",
+        "end_date_description": "This election will start at {{ date.begin, format }} and end at {{ date.end, format }}, lasting ~{{ date, duration }}",
+        "now": "Now",
+        "start_date_description": "Specify the active period for receiving votes. Select 'Now' to make the proposal immediately active after publishing.",
+        "start_on_a_date": "Start on a date",
+        "title": "Calendar"
+      },
+      "census": {
+        "add_button": "Add",
+        "csv_description": "Custom data like user and password or voter personal info.",
+        "csv_title": "CSV",
+        "description": "Select how will the voters authenticate and identify themselves. Choose between custom data (CSV), by owning a token or by wallet addresses.",
+        "max_census_slider_arialabel": "Maximum participation expected slider selector",
+        "max_census_slider_label": "Maximum participation expected:",
+        "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} eligible voters)",
+        "title": "Choose your census",
+        "token_base_description": "Use a token (EVM based) to let users vote based on the amount they own.",
+        "token_base_title": "Token based",
+        "token_title": "Token based census",
+        "tokens_placeholder": "Select a token",
+        "wallet_address_description": "Identify your voters by their wallets addresses. They will have to log in with a wallet provider like Metamask.",
+        "wallet_address_title": "Wallet addresses",
+        "web3_min_address": "1 address minimum",
+        "web3_title": "Add wallet addresses"
+      },
+      "confirm": {
+        "close": "Close",
+        "preview_alert": "Please review the details of your election carefully. Ensure everything is correct before confirming its creation."
+      },
+      "create": "Create",
+      "creating_process": "Creating process...",
+      "do_not_close": "This action can take some time, don't close this tab",
+      "meta": {
+        "description": "Provide a clear title & description. This will help voters understand the purpose of the vote.",
+        "description_helper": "A brief description of your election",
+        "description_placeholder": "Description (optional)",
+        "title": "Election Info",
+        "title_helper": "The election title / purpose",
+        "title_placeholder": "The election title"
+      },
+      "navbar": {
+        "close_form_btn": "Close form"
+      },
+      "next_step": "Next",
+      "previous_step": "Previous",
+      "question": {
+        "add_new_option": "Add new option",
+        "aside": "Title question",
+        "description_placeholder": "Write here a description of the question",
+        "option_placeholder": "Option",
+        "title_placeholder": "The title of your question..."
+      },
       "question_delete": "Delete question {{ num }}",
       "question_identifier": "Question {{ num }}",
       "question_placeholder": "Question {{ num }} title",
       "question_title": "Title",
       "questions_title": "Questions",
-      "secret_until_the_end": "Secret until the end",
-      "settings": "Election settings",
-      "submit": "Create process",
+      "running_checks": "Running required checks, please wait...",
+      "steps": {
+        "census": "Census",
+        "checks": "Checks",
+        "confirm": "Confirm",
+        "info": "Info",
+        "questions": "Questions"
+      },
       "success_description": "Redirecting you to the election process page...",
       "success_title": "Election process successfully created",
-      "weighted_vote": "Weighted vote"
+      "unhealthy_account": "You need to create an organization before creating the first election."
     }
   },
   "home": {

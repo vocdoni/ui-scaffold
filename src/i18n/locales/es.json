@@ -1,20 +1,14 @@
 {
   "alt_image": "Imagen {{ img }}",
   "aside": {
-    "has_already_voted": "Ya has votado",
+    "connect_and_vote": "Connect and vote on your favorite proposals",
+    "connect_to_vote": "Conectate para votar",
+    "has_already_voted": "",
     "is_able_to_vote": "Conectado. Estás en el censo.",
-    "is_not_in_census": "No estás en el censo",
-    "not_connected": "No estás conectado",
-    "overwrite_votes_left": "Puedes corregir tu voto hasta {{ left }} veces",
-    "verify_vote_on_explorer": "Verifica el voto en el explorador",
-    "votes": "¡Votos emitidos hasta ahora!",
-    "votes_submited": "Votos enviados"
-  },
-  "banner": {
-    "know_more": "Conoce más",
-    "start_now": "¡Empieza ahora!",
-    "subtitle": "Votar para DAOs y comunidades Web3",
-    "title": "¡Utiliza direcciones de cartera, vota con un token ERC20 o con NFTs!"
+    "is_not_in_census": "",
+    "overwrite_votes_left": "",
+    "verify_vote_on_explorer": "",
+    "voters": "Votantes"
   },
   "cc": {
     "actions": {
@@ -76,35 +70,98 @@
     "vocdoni_app": "Vocdoni APP"
   },
   "form": {
+    "account_create": {
+      "description_helper": "",
+      "description_placeholder": "",
+      "title_helper": "",
+      "title_placeholder": ""
+    },
     "error": {
       "address_pattern": "Solo se permiten direcciones hex",
       "field_is_required": "Este campo es obligatorio"
     },
     "process_create": {
-      "address_title": " Dirección {{ num }}",
-      "address_weight": "Peso",
-      "addresses_title": "Direcciones",
-      "advanced_settings": "Configuración avanzada",
-      "autostart": "Inicio automático",
-      "date_end": "Fecha de finalización",
-      "date_start": "Fecha de inicio",
-      "interruptible": "Interrumpible",
-      "max_vote_overwrites": "Máx. sobreescrituras por voto",
-      "process_description": "Descripción",
-      "process_description_placeholder": "Una descripción detallada exhaustiva",
-      "process_title": "Título",
-      "process_title_placeholder": "Título del proceso principal",
-      "question_delete": "Eliminar la pregunta {{ num }}",
-      "question_identifier": "Pregunta {{ num }}",
-      "question_placeholder": "Título de la pregunta {{ num }}",
-      "question_title": "Título",
-      "questions_title": "Preguntas",
-      "secret_until_the_end": "Secreto hasta el final",
-      "settings": "Configuración de la elección",
-      "submit": "Crear un proceso",
-      "success_description": "Redireccionándote a la página del proceso electoral...",
-      "success_title": "Proceso electoral creado exitosamente",
-      "weighted_vote": "Voto ponderado"
+      "alert_info_title": "",
+      "behavior": {
+        "overwrite": {
+          "description": "",
+          "title": ""
+        },
+        "secret": {
+          "description": "",
+          "title": ""
+        },
+        "title": ""
+      },
+      "calendar": {
+        "date_format": "",
+        "end_date": "",
+        "end_date_description": "",
+        "now": "",
+        "now_description": "",
+        "start_date_description": "",
+        "start_on_a_date": "",
+        "title": ""
+      },
+      "census": {
+        "add_button": "",
+        "csv_description": "",
+        "csv_title": "",
+        "description": "",
+        "max_census_slider_arialabel": "",
+        "max_census_slider_label": "",
+        "max_census_slider_tooltip": "",
+        "title": "",
+        "token_base_description": "",
+        "token_base_title": "",
+        "token_title": "",
+        "tokens_placeholder": "",
+        "wallet_address_description": "",
+        "wallet_address_title": ""
+      },
+      "confirm": {
+        "close": "",
+        "preview_alert": ""
+      },
+      "create": "",
+      "creating_process": "",
+      "do_not_close": "",
+      "meta": {
+        "description": "",
+        "description_helper": "",
+        "description_placeholder": "",
+        "title": "",
+        "title_helper": "",
+        "title_placeholder": ""
+      },
+      "navbar": {
+        "close_form_btn": ""
+      },
+      "next_step": "",
+      "previous_step": "",
+      "question": {
+        "add_new_option": "",
+        "aside": "",
+        "description_placeholder": "",
+        "option_placeholder": "",
+        "title_placeholder": ""
+      },
+      "question_delete": "",
+      "question_identifier": "",
+      "question_placeholder": "",
+      "question_title": "",
+      "questions_title": "",
+      "running_checks": "",
+      "steps": {
+        "census": "",
+        "checks": "",
+        "confirm": "",
+        "info": "",
+        "questions": ""
+      },
+      "success_description": "",
+      "success_title": "",
+      "unhealthy_account": ""
     }
   },
   "home": {

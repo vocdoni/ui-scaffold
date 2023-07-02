@@ -1,20 +1,14 @@
 {
   "alt_image": "{{ img }} imatge",
   "aside": {
-    "has_already_voted": "Ja has votat",
-    "is_able_to_vote": "Connectat. Ets elegible per votar",
-    "is_not_in_census": "No estàs al cens",
-    "not_connected": "No estàs connectat",
-    "overwrite_votes_left": "Pots corregir el teu vot fins a {{ left }} vegades.",
-    "verify_vote_on_explorer": "Verifica el vot a l'explorador",
-    "votes": "Vots realitzats fins ara!",
-    "votes_submited": "Vots enviats"
-  },
-  "banner": {
-    "know_more": "Coneix més",
-    "start_now": "Comença ara!",
-    "subtitle": "Votar per a DAOs i comunitats Web3",
-    "title": "Utilitza adreces de cartera, vota amb un token ERC20 o amb NFTs!"
+    "connect_and_vote": "",
+    "connect_to_vote": "Connecta't per votar",
+    "has_already_voted": "",
+    "is_able_to_vote": "Connectat. Estàs en el cens",
+    "is_not_in_census": "",
+    "overwrite_votes_left": "",
+    "verify_vote_on_explorer": "",
+    "voters": "Votants"
   },
   "cc": {
     "actions": {
@@ -76,35 +70,98 @@
     "vocdoni_app": "Vocdoni APP"
   },
   "form": {
+    "account_create": {
+      "description_helper": "",
+      "description_placeholder": "",
+      "title_helper": "",
+      "title_placeholder": ""
+    },
     "error": {
       "address_pattern": "Només són permeses adreces hex",
       "field_is_required": "Aquest camp és obligatori"
     },
     "process_create": {
-      "address_title": "Adreça {{ num }}",
-      "address_weight": "Pes",
-      "addresses_title": "Adreces",
-      "advanced_settings": "Configuració avançada",
-      "autostart": "Inici automàtic",
-      "date_end": "Data de finalització",
-      "date_start": "Data d'inici",
-      "interruptible": "Interrumpible",
-      "max_vote_overwrites": "Màx. sobreescriptures per vot",
-      "process_description": "Descripció",
-      "process_description_placeholder": "Una descripció detallada exhaustiva",
-      "process_title": "Títol",
-      "process_title_placeholder": "Títol del procés principal",
-      "question_delete": "Esborra la pregunta {{ num }}",
-      "question_identifier": "Pregunta {{ num }}",
-      "question_placeholder": "Títol de la pregunta {{ num }}",
-      "question_title": "Títol",
-      "questions_title": "Preguntes",
-      "secret_until_the_end": "Secret fins al final",
-      "settings": "Configuració de l'elecció",
-      "submit": "Crea un procés",
-      "success_description": "Redirigint-vos a la pàgina del procés electoral...",
-      "success_title": "Procés electoral creat amb èxit",
-      "weighted_vote": "Vot ponderat"
+      "alert_info_title": "",
+      "behavior": {
+        "overwrite": {
+          "description": "",
+          "title": ""
+        },
+        "secret": {
+          "description": "",
+          "title": ""
+        },
+        "title": ""
+      },
+      "calendar": {
+        "date_format": "",
+        "end_date": "",
+        "end_date_description": "",
+        "now": "",
+        "now_description": "",
+        "start_date_description": "",
+        "start_on_a_date": "",
+        "title": ""
+      },
+      "census": {
+        "add_button": "",
+        "csv_description": "",
+        "csv_title": "",
+        "description": "",
+        "max_census_slider_arialabel": "",
+        "max_census_slider_label": "",
+        "max_census_slider_tooltip": "",
+        "title": "",
+        "token_base_description": "",
+        "token_base_title": "",
+        "token_title": "",
+        "tokens_placeholder": "",
+        "wallet_address_description": "",
+        "wallet_address_title": ""
+      },
+      "confirm": {
+        "close": "",
+        "preview_alert": ""
+      },
+      "create": "",
+      "creating_process": "",
+      "do_not_close": "",
+      "meta": {
+        "description": "",
+        "description_helper": "",
+        "description_placeholder": "",
+        "title": "",
+        "title_helper": "",
+        "title_placeholder": ""
+      },
+      "navbar": {
+        "close_form_btn": ""
+      },
+      "next_step": "",
+      "previous_step": "",
+      "question": {
+        "add_new_option": "",
+        "aside": "",
+        "description_placeholder": "",
+        "option_placeholder": "",
+        "title_placeholder": ""
+      },
+      "question_delete": "",
+      "question_identifier": "",
+      "question_placeholder": "",
+      "question_title": "",
+      "questions_title": "",
+      "running_checks": "",
+      "steps": {
+        "census": "",
+        "checks": "",
+        "confirm": "",
+        "info": "",
+        "questions": ""
+      },
+      "success_description": "",
+      "success_title": "",
+      "unhealthy_account": ""
     }
   },
   "home": {
