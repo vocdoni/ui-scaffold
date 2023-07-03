@@ -160,6 +160,7 @@
       "unhealthy_account": ""
     }
   },
+  "go_to_home": "",
   "home": {
     "active_voting": "",
     "more_active_organizations": ""
@@ -177,6 +178,7 @@
     "my_list": "Mi lista",
     "open_menu": "Abrir menú"
   },
+  "not_found": "",
   "open_in_explorer": "",
   "organization": {
     "avatar_alt": "",
