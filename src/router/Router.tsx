@@ -23,7 +23,7 @@ export const RoutesProvider = () => {
   const router = createHashRouter(
     createRoutesFromElements(
       <Route path='/'>
-        <Route errorElement={<Error />} element={<Layout />}>
+        <Route element={<Layout />}>
           <Route element={<LayoutHome />}>
             <Route
               index
@@ -34,7 +34,7 @@ export const RoutesProvider = () => {
               }
             />
           </Route>
-          <Route element={<LayoutContents />}>
+          <Route element={<LayoutContents />} errorElement={<Error />}>
             <Route
               path='processes/:id'
               element={
@@ -62,7 +62,7 @@ export const RoutesProvider = () => {
             />
           </Route>
         </Route>
-        <Route element={<LayoutProcessCreate />}>
+        <Route element={<LayoutProcessCreate />} errorElement={<Error />}>
           <Route
             element={
               <SuspenseLoader>
