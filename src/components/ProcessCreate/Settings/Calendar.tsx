@@ -97,7 +97,7 @@ const Calendar = () => {
                   {t('form.process_create.calendar.start_on_a_date')}
                 </Text>
               </Radio>
-              <Box w='270px'>
+              <Box w={64}>
                 <Input
                   disabled={getValues().electionType.autoStart}
                   type='datetime-local'
@@ -112,7 +112,7 @@ const Calendar = () => {
                 <FormErrorMessage>{errors.startDate?.message?.toString()}</FormErrorMessage>
               </Box>
             </FormControl>
-            <Flex order={{ base: 1, md: 2 }} flexBasis={{ md: '500px' }} flexDirection='column' gap={2}>
+            <Flex order={{ base: 1, md: 2 }} flexBasis={{ md: 124 }} flexDirection='column' gap={2}>
               <Radio value='1' onClick={() => clearErrors('startDate')}>
                 <Text fontWeight='bold'>{t('form.process_create.calendar.now')}</Text>
               </Radio>
@@ -120,7 +120,7 @@ const Calendar = () => {
           </Stack>
         </RadioGroup>
 
-        <FormControl isInvalid={!!errors.endDate} w='270px' mb={3}>
+        <FormControl isInvalid={!!errors.endDate} w={64} mb={3}>
           <FormLabel fontWeight='bold'> {t('form.process_create.calendar.end_date')}</FormLabel>
           <Input
             type='datetime-local'

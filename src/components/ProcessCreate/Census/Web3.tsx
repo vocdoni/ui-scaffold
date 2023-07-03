@@ -82,7 +82,7 @@ export const CensusWeb3Addresses = () => {
                 message: t('form.error.address_pattern'),
               },
             })}
-            w={{ base: '200px', sm: '300px', md: '420px' }}
+            w={{ base: 52, sm: 72, md: 100 }}
             onKeyUp={(e) => {
               // avoid submitting form on enter
               if (e.key === 'Enter') {
@@ -101,14 +101,14 @@ export const CensusWeb3Addresses = () => {
       <Flex
         flexDirection='column'
         gap={3}
-        maxW='490px'
-        height='400px'
+        maxW={132}
+        height={100}
         borderRadius='lg'
         border='1px solid'
         borderColor='process_create.border'
         mx='auto'
         overflowY='scroll'
-        bgColor='process_create.input.bg'
+        bgColor='process_create.census_box_bg'
       >
         {fields.map((address, index) => (
           <Flex
