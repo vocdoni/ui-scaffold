@@ -234,11 +234,6 @@
     "play": "reproducir",
     "stop": "detener"
   },
-  "process_create": {
-    "confirm": {
-      "confirmation": ""
-    }
-  },
   "read_less": "Leer menos",
   "read_more": "Leer más",
   "search": {

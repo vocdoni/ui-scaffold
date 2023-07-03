@@ -233,11 +233,6 @@
     "play": "play",
     "stop": "stop"
   },
-  "process_create": {
-    "confirm": {
-      "confirmation": ""
-    }
-  },
   "read_less": "Read less",
   "read_more": "Read more",
   "search": {

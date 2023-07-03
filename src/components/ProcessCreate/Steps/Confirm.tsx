@@ -24,7 +24,6 @@ import { ElectionProvider, errorToString, useClient } from '@vocdoni/chakra-comp
 import {
   Election,
   ElectionStatus,
-  ensure0x,
   EnvOptions,
   IElectionParameters,
   IPublishedElectionParameters,
@@ -33,13 +32,14 @@ import {
   PublishedElection,
   VocdoniCensus3Client,
   WeightedCensus,
+  ensure0x,
 } from '@vocdoni/sdk'
 import { useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { cofirmTheme } from '../../../theme/confirmProvider'
-import Preview from '../Confirm/Preview'
+import Preview from '../Preview'
 import { CreationProgress } from './CreationProgress'
 import { Option } from './Questions'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'

@@ -1,10 +1,10 @@
-import { Box, ChakraProvider, Flex, Icon, Link, Text, extendTheme, useBreakpointValue } from '@chakra-ui/react'
+import { Box, ChakraProvider, extendTheme, Flex, Icon, Link, Text, useBreakpointValue } from '@chakra-ui/react'
 import { ElectionQuestions, ElectionTitle, useElection } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import { IoCheckmark, IoCloseOutline } from 'react-icons/io5'
-import { addressTextOverflow } from '../../../constants'
-import { cofirmTheme } from '../../../theme/confirmProvider'
-import { useProcessCreationSteps } from '../Steps/use-steps'
+import { addressTextOverflow } from '../../constants'
+import { cofirmTheme } from '../../theme/confirmProvider'
+import { useProcessCreationSteps } from './Steps/use-steps'
 
 const Preview = () => {
   const { t } = useTranslation()
