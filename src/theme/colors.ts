@@ -134,6 +134,7 @@ export const colors = {
     aside_questions_bg: colorsBase.gray.light2,
     bg: colorsBase.gray.light,
     border: colorsBase.gray.normal,
+    census_box_bg: colorsBase.white,
     description_logo: colorsBase.blue.normal,
     input_bg: colorsBase.white,
     meta_description: colorsBase.gray.dark,

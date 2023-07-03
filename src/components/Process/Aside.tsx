@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { VoteButton, useElection } from '@vocdoni/chakra-components'
+import { VoteButton, environment, useClient, useElection } from '@vocdoni/chakra-components'
 import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
 import { useTranslation } from 'react-i18next'
@@ -11,6 +11,7 @@ const ProcessAside = ({ ...props }) => {
   const { t } = useTranslation()
   const { election, isAbleToVote, isInCensus, voted, votesLeft } = useElection()
   const { isConnected } = useAccount()
+  const { env } = useClient()
 
   return (
     <Flex
@@ -55,7 +56,7 @@ const ProcessAside = ({ ...props }) => {
           {voted !== null && voted.length > 0 && (
             <Box textAlign='center' fontSize='sm'>
               <Text mb={2}>{t('aside.has_already_voted').toString()}</Text>
-              <Link to='https://explorer.vote/verify/' target='_blank'>
+              <Link to={environment.verifyVote(env, voted)} target='_blank'>
                 <Button w='full' color='process.results.aside.verify_color'>
                   {t('aside.verify_vote_on_explorer')}
                 </Button>
