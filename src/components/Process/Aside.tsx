@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 
-const ProcessAside = () => {
+const ProcessAside = ({ ...props }) => {
   const { t } = useTranslation()
   const { election, isAbleToVote, isInCensus, voted, votesLeft } = useElection()
   const { isConnected } = useAccount()
@@ -20,17 +20,18 @@ const ProcessAside = () => {
       py={4}
       px={6}
       w={{ base: 80, lg: 64, xl: 80 }}
-      color='white'
+      color='process.results.aside.color'
       bgGradient='var(--vcd-gradient-brand)'
       borderRadius={6}
+      {...props}
     >
       <Flex direction='column' alignItems='center'>
-        <Text textAlign='center' fontWeight='700' fontSize='25px' lineHeight=' 125%' mb={2}>
+        <Text textAlign='center' fontWeight='bold' fontSize='2xl' mb={2}>
           {getStatusText(t, election?.status)}
         </Text>
 
         {election?.status !== ElectionStatus.CANCELED && election?.status !== ElectionStatus.UPCOMING && (
-          <Text fontWeight='400' fontSize='md' lineHeight=' 125%'>
+          <Text>
             <Text as='span'>{election?.voteCount}</Text>{' '}
             {election?.status === ElectionStatus.ENDED || election?.status === ElectionStatus.RESULTS
               ? t('aside.votes_submited')
@@ -41,24 +42,24 @@ const ProcessAside = () => {
       {isConnected ? (
         <>
           {isAbleToVote && (
-            <Box textAlign='center' fontWeight='400' fontSize='sm'>
+            <Box textAlign='center' fontSize='sm'>
               <Text mb={2}>{t('aside.is_able_to_vote')}</Text>
-              <VoteButton w='full' color='black' />
+              <VoteButton w='full' color='process.results.aside.vote_btn_color' />
             </Box>
           )}
           {!isInCensus && (
-            <Text textAlign='center' fontWeight='400' fontSize='sm'>
+            <Text textAlign='center' fontSize='sm'>
               {t('aside.is_not_in_census')}
             </Text>
           )}
           {voted !== null && voted.length > 0 && (
-            <Box textAlign='center' fontWeight='400' fontSize='sm'>
+            <Box textAlign='center' fontSize='sm'>
               <Text mb={2}>{t('aside.has_already_voted').toString()}</Text>
-              <Button w='full' color='black'>
-                <Link to='https://explorer.vote/verify/' target='_blank'>
+              <Link to='https://explorer.vote/verify/' target='_blank'>
+                <Button w='full' color='process.results.aside.verify_color'>
                   {t('aside.verify_vote_on_explorer')}
-                </Link>
-              </Button>
+                </Button>
+              </Link>
             </Box>
           )}
 
@@ -68,7 +69,7 @@ const ProcessAside = () => {
         </>
       ) : (
         <>
-          <Text textAlign='center' fontWeight='400' fontSize='sm'>
+          <Text textAlign='center' fontSize='sm'>
             {t('aside.not_connected')}
           </Text>
           <Flex justifyContent='center'>

@@ -45,15 +45,21 @@ const baseStyle = definePartsStyle({
   },
 
   wrapper: {
-    mt: 6,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 10,
+    '& > form': {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 10,
+    },
   },
+
   question: {
     width: 'full',
     maxW: 160,
+    m: 0,
     mx: 'auto',
+    background: 'process.results.bg',
+    p: 4,
+    borderRadius: 'md',
 
     '& > div': {
       display: 'flex',

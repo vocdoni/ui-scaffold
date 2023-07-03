@@ -113,6 +113,11 @@ export const colors = {
     },
 
     results: {
+      aside: {
+        color: colorsBase.white,
+        vote_btn_color: colorsBase.black,
+        verify_color: colorsBase.black,
+      },
       bg: colorsBase.gray.light,
       alert_bg: colorsBase.primary.normal,
       alert_color: colorsBase.white,

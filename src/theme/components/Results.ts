@@ -4,75 +4,45 @@ import { resultsAnatomy } from '@vocdoni/chakra-components'
 const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpers(resultsAnatomy)
 
 const baseStyle = definePartsStyle({
-  wrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    gap: 20,
-    maxW: { base: '100%', md: '76%', lg: '100%', xl: '76%' },
-    mt: 6,
-    mx: 'auto',
-    padding: 5,
-    paddingBottom: 7,
-    background: 'process.results.bg',
-    borderRadius: '8px',
-  },
-
   question: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 4,
-    minW: '100%',
-  },
+    background: 'process.results.bg',
+    p: 4,
+    borderRadius: 'md',
+    width: 'full',
+    maxW: 160,
+    m: 0,
+    mx: 'auto',
 
-  header: {
-    textAlign: 'start',
-  },
-
-  title: {
-    fontWeight: 700,
-    fontSize: 'xl',
-    lineHeight: 7,
-    color: 'process.results.title',
-    textAlign: { base: 'center', md: 'start' },
-  },
-
-  body: {
-    display: 'flex',
-    flexDirection: 'column',
-
-    gap: { base: 7, md: 5 },
-
-    '& > div': {
+    '& > div:nth-child(2) > div': {
       display: 'flex',
-      flexDirection: { base: 'column', md: 'row' },
-      justifyContent: 'space-between',
       alignItems: 'center',
-      gap: { base: 2, md: 0 },
+      gap: 3,
+      mb: 5,
 
-      '& p:first-of-type': {
-        width: { base: '100%', md: '25%' },
-        textAlign: { base: 'center', md: 'start' },
+      '& p:nth-child(1)': {
+        flexBasis: '33%',
+        flexGrow: 1,
         isTruncated: true,
-        fontWeight: 600,
       },
-
-      '& p:nth-of-type(2)': {
-        fontWeight: 600,
-      },
-
-      '& > div': {
-        minW: { base: '85%', sm: '60%', md: '40%' },
-        h: 6,
-        borderRadius: 8,
+      '& div': {
+        flexBasis: '33%',
+        flexGrow: 0,
+        flexShrink: 0,
+        h: 4,
+        borderRadius: 'md',
         bgColor: 'progress_bar_bg',
 
         '& div': {
           background: 'var(--vcd-gradien-progress-bar)',
         },
       },
+
+      '& > div:nth-child(2) > div:last-of-type': {
+        mb: 0,
+      },
     },
   },
+
   secret: {
     px: 8,
     py: 8,
@@ -81,6 +51,21 @@ const baseStyle = definePartsStyle({
     bgColor: 'process.results.alert_bg',
     borderRadius: 'lg',
     whiteSpace: 'wrap',
+  },
+
+  title: {
+    fontWeight: 700,
+    fontSize: 'xl',
+    lineHeight: 7,
+    color: 'process.results.title',
+    textAlign: { base: 'center', md: 'start' },
+    mb: 3,
+  },
+
+  wrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 10,
   },
 })
 
