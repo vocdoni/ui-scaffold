@@ -1,11 +1,10 @@
-import { Flex, Grid, GridItem, Spinner, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
+import { Flex, Grid, GridItem, Spinner, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
 import { useClient, useOrganization } from '@vocdoni/chakra-components'
 import { InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import ProcessCardDescription from '../Process/CardDesc'
-import SearchInput from '../Search/Input'
 import Header from './Header'
 
 const OrganizationView = () => {
@@ -75,25 +74,7 @@ const OrganizationView = () => {
   return (
     <Flex direction='column' gap={4}>
       <Header />
-      <Tabs mt={8}>
-        <TabList
-          position='relative'
-          display='flex'
-          flexDirection={{ base: 'column', md: 'row' }}
-          justifyContent='center'
-          alignItems='center'
-        >
-          <SearchInput
-            position={{ md: 'absolute' }}
-            right={0}
-            mb={{ base: 25, sm: 0 }}
-            w={{ base: '50%', md: '30%', lg: '20%' }}
-          />
-          <Flex>
-            <Tab whiteSpace='nowrap'>{t('organization.rounds.all')}</Tab>
-            <Tab whiteSpace='nowrap'> {t('organization.rounds.active')} </Tab>
-          </Flex>
-        </TabList>
+      <Tabs>
         <TabPanels>
           <TabPanel>
             <Grid templateColumns={templateColumnsAllRounds} gap={4}>

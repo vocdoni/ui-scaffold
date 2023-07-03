@@ -1,18 +1,16 @@
-import { AspectRatio, Box, Button, Flex, Text, VStack } from '@chakra-ui/react'
+import { AspectRatio, Box, Flex, Text } from '@chakra-ui/react'
 import {
   OrganizationDescription,
   OrganizationHeader as Avatar,
   OrganizationName,
   useOrganization,
 } from '@vocdoni/chakra-components'
-import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import ShareButtons from '../Layout/ShareButtons'
 import AddressBtn from './AddressBtn'
 
 const OrganizationHeader = () => {
   const { t } = useTranslation()
-  const [readMore, setReadMore] = useState(false)
   const { organization } = useOrganization()
 
   return (
@@ -61,26 +59,12 @@ const OrganizationHeader = () => {
               {organization?.electionIndex}
             </Text>
           </Flex>
-
-          <Flex flexDirection='column' alignItems='center'>
-            <Text fontSize={14} bgGradient='var(--vcd-gradient-brand)' bgClip='text'>
-              {t('organization.members')}
-            </Text>
-            <Text as='span' fontWeight='bold'>
-              ∞
-            </Text>
-          </Flex>
         </Flex>
         <Flex flexDirection={{ base: 'row', md: 'column' }} alignItems='start' gap={3}>
           <ShareButtons />
         </Flex>
       </Flex>
-      <OrganizationDescription noOfLines={readMore ? undefined : 3} />
-      <VStack>
-        <Button variant='link' onClick={() => setReadMore((prev) => !prev)}>
-          {readMore ? t('read_less') : t('read_more')}
-        </Button>
-      </VStack>
+      <OrganizationDescription noOfLines={undefined} />
     </Box>
   )
 }
