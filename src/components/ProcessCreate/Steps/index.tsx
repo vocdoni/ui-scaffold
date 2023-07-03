@@ -22,30 +22,30 @@ const Steps = () => {
   })
 
   return (
-    <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ md: 6 }}>
+    <Flex flexDirection={{ base: 'column', lg: 'row' }} gap={{ lg: 6 }}>
       <Stepper
         index={activeStep}
-        orientation={useBreakpointValue({ base: 'horizontal', md: 'vertical' })}
-        my={{ md: 10 }}
+        orientation={useBreakpointValue({ base: 'horizontal', lg: 'vertical' })}
+        my={{ lg: 10 }}
         mb={{ base: 5 }}
-        h={{ md: '500px' }}
+        h={{ lg: 124 }}
         mx='auto'
       >
         {steps.map((step, index) => (
           <Step key={index}>
             <Flex
-              width={{ base: 14, md: 'min-content' }}
-              flexDirection={{ base: 'column', md: 'row' }}
-              alignItems={{ base: 'center', md: 'initial' }}
-              gap={{ md: 2 }}
+              width={{ base: 14, lg: 'min-content' }}
+              flexDirection={{ base: 'column', lg: 'row' }}
+              alignItems={{ base: 'center', lg: 'initial' }}
+              gap={{ lg: 2 }}
             >
               <StepIndicator>
                 <StepStatus complete={<StepNumber />} incomplete={<StepNumber />} active={<StepNumber />} />
               </StepIndicator>
-              <Text fontSize={{ base: 'sm', md: 'md' }}>{step.title}</Text>
+              <Text fontSize={{ base: 'sm', lg: 'md' }}>{step.title}</Text>
             </Flex>
 
-            <Box display={{ base: 'none', md: 'inline-block' }}>
+            <Box display={{ base: 'none', lg: 'inline-block' }}>
               <StepSeparator />
             </Box>
           </Step>
