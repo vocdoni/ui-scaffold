@@ -174,7 +174,7 @@ export const Confirm = () => {
         </Button>
 
         <Button type='submit' form='process-create-form' isLoading={sending}>
-          {t('form.process_create.confrim_button')}
+          {t('form.process_create.confirm.create_button')}
         </Button>
         <Modal isOpen={isOpen} onClose={onClose} closeOnEsc={!!error} closeOnOverlayClick={!!error} isCentered>
           <ModalOverlay />

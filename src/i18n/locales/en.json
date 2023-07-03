@@ -122,6 +122,7 @@
         "confirmation": "Confirmation",
         "confirmation_terms_and_conditions": "I accept the <tos>Terms and Conditions</tos> of Vocdoni",
         "confirmation_valid_info": "I assure that this information is correct and valid",
+        "create_button": "Create",
         "dates": "Dates",
         "description": "Description",
         "edit": "Edit",
@@ -133,7 +134,6 @@
         "vote_overwritte": "Vote overwritte",
         "web3_number_addresses": "{{ addresses }} people will be elegible for voting in this election"
       },
-      "confrim_button": "Confirm",
       "creating_process": "Creating process...",
       "do_not_close": "This action can take some time, don't close this tab",
       "meta": {

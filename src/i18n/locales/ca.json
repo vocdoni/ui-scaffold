@@ -122,6 +122,7 @@
         "confirmation": "Confirmació",
         "confirmation_terms_and_conditions": "Accepto els <tos>termes i condicions</tos> de Vocdoni",
         "confirmation_valid_info": "Confirmo que aquesta informació és correcta i vàlida",
+        "create_button": "Crea",
         "dates": "Data",
         "description": "Descripció",
         "edit": "Editar",
@@ -134,7 +135,6 @@
         "vote_overwritte": "Sobreescriure vot",
         "web3_number_addresses": "{{ addresses }} persones podran votar en aquesta votació"
       },
-      "confrim_button": "",
       "creating_process": "Creant el procés...",
       "do_not_close": "Aquesta acció pot trigar una estona, no tanquis aquesta pestanya",
       "meta": {
