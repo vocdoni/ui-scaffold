@@ -112,9 +112,7 @@
         "token_title": "Token based census",
         "tokens_placeholder": "Select a token",
         "wallet_address_description": "Identify your voters by their wallets addresses. They will have to log in with a wallet provider like Metamask.",
-        "wallet_address_title": "Wallet addresses",
-        "web3_min_address": "1 address minimum",
-        "web3_title": "Add wallet addresses"
+        "wallet_address_title": "Wallet addresses"
       },
       "confirm": {
         "close": "Close",
@@ -161,6 +159,7 @@
       "unhealthy_account": "You need to create an organization before creating the first election."
     }
   },
+  "go_to_home": "Go to <root>home</root>",
   "home": {
     "active_voting": "Active voting",
     "more_active_organizations": "More active organizations"
@@ -178,6 +177,7 @@
     "my_list": "My list",
     "open_menu": "Open menu"
   },
+  "not_found": "Not found",
   "open_in_explorer": "Open in explorer",
   "organization": {
     "avatar_alt": "Avatar image of {{ name }} organization",
