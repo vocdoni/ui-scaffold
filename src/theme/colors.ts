@@ -89,6 +89,6 @@ export const colors = {
       },
     },
   },
-
+  progress_bar_bg: colorsBase.gray.normal,
   text_error: colorsBase.grenade,
 }
