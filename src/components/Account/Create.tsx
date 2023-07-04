@@ -76,19 +76,15 @@ export const AccountCreate = () => {
         )}
       </FormControl>
 
-      <FormControl isInvalid={!!errors.description}>
+      <FormControl>
         <Textarea
           {...register('description')}
           placeholder={t('form.account_create.description_placeholder').toString()}
         />
-        {!!errors.description ? (
-          <FormErrorMessage>{errors.description?.message?.toString()}</FormErrorMessage>
-        ) : (
-          <FormHelperText>
-            <InfoOutlineIcon />
-            <Text> {t('form.account_create.description_helper')}</Text>
-          </FormHelperText>
-        )}
+        <FormHelperText>
+          <InfoOutlineIcon />
+          <Text> {t('form.account_create.description_helper')}</Text>
+        </FormHelperText>
       </FormControl>
       {sent && error && (
         <Alert status='error'>
