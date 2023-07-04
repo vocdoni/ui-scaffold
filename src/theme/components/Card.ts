@@ -50,8 +50,7 @@ const organization = definePartsStyle({
 
     '& p:first-of-type': {
       width: 'min-content',
-      bgGradient: 'var(--vcd-gradient-brand)',
-      bgClip: 'text',
+      color: 'brand.color',
       fontWeight: 'normal',
     },
 
@@ -116,8 +115,7 @@ const processImg = definePartsStyle({
     },
     '& div p:nth-of-type(odd)': {
       width: 'min-content',
-      bgGradient: 'var(--vcd-gradient-brand)',
-      bgClip: 'text',
+      color: 'brand.color',
     },
     '& div p:nth-of-type(even)': {
       fontWeight: 'bold',
@@ -209,8 +207,7 @@ const processDescription = definePartsStyle({
       },
       '& div p:nth-of-type(odd)': {
         width: 'min-content',
-        bgGradient: 'var(--vcd-gradient-brand)',
-        bgClip: 'text',
+        color: 'brand.color',
       },
     },
   },

@@ -75,7 +75,7 @@ const OrganizationView = () => {
   return (
     <Flex direction='column' gap={4}>
       <Header />
-      <Tabs mt={8}>
+      <Tabs mt={8} colorScheme='brand.scheme'>
         <TabList
           position='relative'
           display='flex'

@@ -46,7 +46,7 @@ export const ProcessView = () => {
         <ElectionTitle fontSize={18} mb={0} textAlign='left' />
         <ElectionDescription />
       </Flex>
-      <Tabs index={tabIndex} onChange={handleTabsChange}>
+      <Tabs index={tabIndex} onChange={handleTabsChange} colorScheme='brand.scheme'>
         <TabList display='flex'>
           <Tab>{t('process.questions')}</Tab>
           <Tab>{t('process.results')}</Tab>
@@ -77,7 +77,7 @@ export const ProcessView = () => {
             {election && (
               <Flex gap={4} flexDirection={{ base: 'column', lg: 'row' }} alignItems='center'>
                 {election.status === ElectionStatus.CANCELED ? (
-                  <Text color='process.canceled' textAlign='center' w='full'>
+                  <Text color='process_canceled' textAlign='center' w='full'>
                     {t('process.date.canceled')}
                   </Text>
                 ) : (
