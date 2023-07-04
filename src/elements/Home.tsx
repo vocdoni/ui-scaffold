@@ -2,6 +2,7 @@ import { Box, Flex, Grid, GridItem, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import Counters from '../components/Home/Counters'
+import { Disclaimer } from '../components/Layout/Disclaimer'
 import CardOrg, { CardOrgContents } from '../components/Organization/Card'
 import ProcessCardImg, { CardPrImgContents } from '../components/Process/CardImg'
 import SearchInput from '../components/Search/Input'
@@ -185,6 +186,7 @@ const Home = () => {
 
   return (
     <Box>
+      <Disclaimer />
       <Flex direction='column' justifyContent='center' alignItems='center' gap={8} mb={8}>
         <SearchInput width={{ base: '90%', sm: '80%', md: '70%', lg: 124 }} />
         <Counters />
