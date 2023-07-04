@@ -55,7 +55,7 @@ const ProcessAside = ({ handleTabsChange, isInCensus, hasAlreadyVoted, order, al
               hasOverwriteEnabled(election) &&
               t('aside.overwrite_votes_left', { left: votesLeft })}
           </Text>
-          <VoteButton />
+          <VoteButton colorScheme='brand.scheme' />
         </CardBody>
       )}
       {election?.status === ElectionStatus.ONGOING && !isConnected && (
