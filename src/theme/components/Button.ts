@@ -1,7 +1,7 @@
 import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
 
 const link = defineStyle({
-  color: 'link',
+  color: 'brand.scheme',
   textDecoration: 'underline',
 
   _hover: {

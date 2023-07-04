@@ -17,24 +17,15 @@ const AddressBtn = () => {
     <Menu>
       <MenuButton
         as={Button}
-        borderRadius={12}
-        variant='link'
-        _active={{
-          color: 'branding.lightpurple',
-        }}
-        px={2}
-        py={1}
-        bgGradient='var(--vcd-gradient-brand)'
+        borderRadius={30}
+        colorScheme='brand.scheme'
+        height={8}
         isTruncated
         title={address}
         cursor='pointer'
-        color='white'
         fontSize={13}
         mb={2}
         rightIcon={<HiOutlineEllipsisHorizontalCircle style={{ width: '1.2em', height: '1.2em' }} />}
-        _hover={{
-          textDecoration: 'none',
-        }}
       >
         <Box maxW={20} isTruncated overflow='hidden'>
           <Text isTruncated as='span'>

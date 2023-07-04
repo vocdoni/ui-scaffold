@@ -20,7 +20,7 @@ export const Account = () => {
 
   return (
     <Menu>
-      <MenuButton as={Button} variant='ghost' colorScheme='buttons.primary' rightIcon={<BiChevronDown />}>
+      <MenuButton as={Button} variant='ghost' colorScheme='brand.scheme' rightIcon={<BiChevronDown />}>
         {addressTextOverflow(address as string)}
       </MenuButton>
       <MenuList>
