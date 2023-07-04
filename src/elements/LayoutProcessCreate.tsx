@@ -24,6 +24,7 @@ const LayoutProcessCreate = () => {
         <Logo />
 
         <Link
+          variant='brand'
           display='flex'
           alignItems='center'
           onClick={(e) => (window.history.state.idx ? navigate(-1) : navigate('/'))}

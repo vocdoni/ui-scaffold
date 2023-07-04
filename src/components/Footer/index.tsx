@@ -8,15 +8,7 @@ const Footer = ({ ...props }) => {
   const { t } = useTranslation()
 
   return (
-    <Box
-      pt={5}
-      sx={{
-        a: {
-          color: 'footer_links',
-        },
-      }}
-      {...props}
-    >
+    <Box pt={5} {...props}>
       <Grid
         gridTemplateColumns={{
           sm: 'repeat(2, 1fr)',

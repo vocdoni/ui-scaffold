@@ -1,8 +1,9 @@
-import { defineStyle } from '@chakra-ui/react'
-import { colors } from '../colors'
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
 
-export const Link = defineStyle({
-  baseStyle: {
-    color: colors.link,
-  },
+const brand = defineStyle({
+  color: 'brand.color',
+})
+
+export const Link = defineStyleConfig({
+  variants: { brand },
 })
