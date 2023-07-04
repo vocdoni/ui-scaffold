@@ -14,8 +14,16 @@ import { Stepper } from './components/Stepper'
 import { Tabs } from './components/Tabs'
 import { Textarea } from './components/Textarea'
 import { space } from './space'
+import { ElectionResults } from './components/Results'
 
 export const theme = extendTheme(vtheme, {
+  styles: {
+    global: {
+      ':root': {
+        '--vcd-gradient-progress-bar': 'linear-gradient(to right, #2ed3bf, #00624e)',
+      },
+    },
+  },
   colors,
   sizes: {
     ...space,
@@ -25,6 +33,7 @@ export const theme = extendTheme(vtheme, {
     Button,
     Card,
     Checkbox,
+    ElectionResults,
     Form,
     Input,
     ElectionQuestions,
