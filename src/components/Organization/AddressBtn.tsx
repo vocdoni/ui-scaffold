@@ -18,9 +18,8 @@ const AddressBtn = () => {
       <MenuButton
         as={Button}
         borderRadius={30}
-        px={2}
-        maxH={10}
         colorScheme='brand.scheme'
+        height={8}
         isTruncated
         title={address}
         cursor='pointer'
