@@ -19,6 +19,6 @@ const baseStyle = definePartsStyle({
   },
 })
 
-export const Questions = defineMultiStyleConfig({
+export const ElectionQuestions = defineMultiStyleConfig({
   baseStyle,
 })
