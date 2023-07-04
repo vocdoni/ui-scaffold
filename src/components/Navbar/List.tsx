@@ -42,8 +42,8 @@ const NavList = ({ displayFullInput }: Props) => {
                 leftIcon={<FaGlobeAmericas />}
                 rightIcon={isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
                 p={2}
-                colorScheme='navbar.btn'
-                color='black'
+                colorScheme='navbar.button.scheme'
+                color='navbar.button.color'
               />
               <MenuList minW={24} w='full' p={0} onClick={onClose}>
                 <List display='flex' flexDirection='column' alignItems='center' textAlign='end'>
@@ -58,7 +58,13 @@ const NavList = ({ displayFullInput }: Props) => {
         <>
           <ListItem display={{ base: 'none', lg: 'inline-block' }}>
             <NavLink to={`/organization/0x${account?.address}`}>
-              <Button p={4} mr={4} colorScheme='navbar.btn' color='black' borderRadius={{ base: 'none', lg: 'md' }}>
+              <Button
+                p={4}
+                mr={4}
+                colorScheme='navbar.button.scheme'
+                color='navbar.button.color'
+                borderRadius={{ base: 'none', lg: 'md' }}
+              >
                 {t('menu.my_list')}
               </Button>
             </NavLink>

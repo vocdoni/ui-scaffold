@@ -6,17 +6,26 @@ const dropdown = {
   w: 'full',
 
   _hover: {
-    bgColor: 'navbar.btn_list.hover',
+    bgColor: 'button.dropdown.hover',
   },
 
   _active: {
-    bgColor: 'navbar.btn_list.active',
+    bgColor: 'button.dropdown.active',
   },
 }
 
 const ghost = {
+  h: 8,
+  maxW: 30,
+  py: 2,
+  px: 2,
+  border: '1px solid',
+  bgColor: 'process.header.btn_bg',
+  color: 'process.header.btn_color',
+  borderRadius: 18,
+
   _hover: {
-    color: 'buttons.ghost_hover_color',
+    color: 'process.header.btn_color',
   },
 }
 

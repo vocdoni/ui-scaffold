@@ -10,7 +10,7 @@ const LanguagesList = () => {
 
   return (
     <>
-      <ListItem display={{ base: 'flex', lg: 'none' }} justifyContent='end' pt={4} pb={2} mr={{ base: 4, lg: 0 }}>
+      <ListItem display={{ base: 'flex', lg: 'none' }} justifyContent='end' py={2} mr={{ base: 4, lg: 0 }}>
         <FaGlobeAmericas />
       </ListItem>
       {Object.keys(languages).map((k) => (

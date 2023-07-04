@@ -1,5 +1,5 @@
 import { CopyIcon, ExternalLinkIcon } from '@chakra-ui/icons'
-import { Box, Button, Menu, MenuButton, MenuItem, MenuList, Text, useClipboard, useToast } from '@chakra-ui/react'
+import { Button, Icon, Menu, MenuButton, MenuItem, MenuList, Text, useClipboard, useToast } from '@chakra-ui/react'
 import { enforceHexPrefix, useOrganization } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import { HiOutlineEllipsisHorizontalCircle } from 'react-icons/hi2'
@@ -14,27 +14,13 @@ const AddressBtn = () => {
   const address = enforceHexPrefix(organization?.address)
 
   return (
-    <Menu>
-      <MenuButton
-        as={Button}
-        title={address}
-        rightIcon={<HiOutlineEllipsisHorizontalCircle style={{ width: '1.2em', height: '1.2em' }} />}
-        mb={2}
-        py={2}
-        px={2.5}
-        w={30}
-        h={8}
-        fontSize='sm'
-        borderRadius={18}
-        cursor='pointer'
-        colorScheme='organization.button_address'
-      >
-        <Box maxW={20} overflow='hidden' isTruncated>
-          <Text as='span'>{address}</Text>
-        </Box>
+    <Menu variant='address'>
+      <MenuButton title={address}>
+        <Text isTruncated>{address}</Text>
+        <Icon as={HiOutlineEllipsisHorizontalCircle} />
       </MenuButton>
 
-      <MenuList p={0} position='absolute' top={-28} zIndex={30}>
+      <MenuList>
         <MenuItem
           as={Button}
           variant='dropdown'
@@ -47,7 +33,6 @@ const AddressBtn = () => {
             })
             onCopy()
           }}
-          justifyContent='start'
         >
           {t('copy.address')}
         </MenuItem>
@@ -56,7 +41,6 @@ const AddressBtn = () => {
           variant='dropdown'
           leftIcon={<ExternalLinkIcon />}
           onClick={() => window.open(`${ExplorerBaseURL}/organizations/show/#/${address}`, '_blank')}
-          justifyContent='start'
         >
           {t('open_in_explorer')}
         </MenuItem>

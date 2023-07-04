@@ -5,17 +5,16 @@ const Banner = () => {
   const { t } = useTranslation()
   return (
     <Box
-      px={{ base: 5, sm: 7, md: 8 }}
-      pt='20px'
-      paddingBottom='40px'
-      marginTop='20'
-      boxShadow='7px 6px 6px -3px rgba(0,0,0,0.37)'
-      background='linear-gradient(to right, rgb(149, 38, 252), rgb(46, 211, 191))'
-      marginBottom='16'
-      borderRadius='12px'
-      opacity='0.8'
-      maxH={{ xl: '300px' }}
-      maxW={{ xl: '1300px' }}
+      px={{ base: 5, sm: 6 }}
+      pt={5}
+      paddingBottom={10}
+      marginTop={20}
+      boxShadow='var(--box-shadow-banner)'
+      background='var(--vcd-gradient-brand)'
+      marginBottom={16}
+      borderRadius='lg'
+      opacity={0.8}
+      maxW={{ xl: 325 }}
       mx='auto'
     >
       <Flex
@@ -32,9 +31,9 @@ const Banner = () => {
         />
         <Text
           as='h1'
-          fontSize='45px'
-          fontWeight='900'
-          color='#fff'
+          fontSize='5xl'
+          fontWeight='extrabold'
+          color='banner.color'
           textShadow='1px 2px 4px rgba(2,2,2,0.8)'
           textAlign={{ base: 'center', xl: 'start' }}
         >
@@ -43,8 +42,8 @@ const Banner = () => {
       </Flex>
       <Text
         as='h3'
-        color='#fff'
-        fontSize='26px'
+        color='banner.color'
+        fontSize='2xl'
         textShadow='1px 2px 4px rgba(0,0,0,0.8)'
         textAlign={{ base: 'center', xl: 'start' }}
       >
@@ -52,25 +51,21 @@ const Banner = () => {
       </Text>
       <Flex
         flexDirection={{ base: 'column', sm: 'row' }}
-        gap='5'
+        gap={5}
         justifyContent={{ base: 'center', xl: 'start' }}
         alignItems='center'
-        marginTop='10'
+        marginTop={10}
       >
-        <Button
-          backgroundColor='#fffff5'
-          border='2px solid #000'
-          padding='16px 40px'
-          borderRadius='12px'
-          fontWeight='600'
-        >
+        <Button border='2px solid' color='banner.button_color' px={10} py={4} borderRadius='xl'>
           {t('banner.know_more')}
         </Button>
         <Button
-          background='linear-gradient(to left, rgb(149, 38, 252), rgb(46, 211, 191));border:2px solid #000'
-          padding='16px 40px'
-          borderRadius='12px'
-          fontWeight='900'
+          background='var(--vcd-gradient-brand-to-left)'
+          border='2px solid'
+          color='banner.button_color'
+          px={10}
+          py={4}
+          borderRadius='xl'
         >
           {t('banner.start_now')}
         </Button>

@@ -25,31 +25,15 @@ const ProcessHeader = () => {
   return (
     <Box mb={4}>
       <Link to={`/organization/0x${election?.organizationId}`}>
-        <Button
-          leftIcon={<FaRegArrowAltCircleLeft />}
-          display='flex'
-          justifyContent='center'
-          alignItems='center'
-          h={8}
-          maxW={30}
-          py={2}
-          px={2}
-          mb={4}
-          fontSize='sm'
-          fontWeight={400}
-          border='1px solid'
-          bgColor='process.header.btn_bg'
-          color='process.header.btn_color'
-          borderRadius={18}
-        >
-          <Text as='span' overflow='hidden' isTruncated>
+        <Button leftIcon={<FaRegArrowAltCircleLeft />} variant='ghost' mb={4}>
+          <Text as='span' overflow='hidden' fontSize='sm' isTruncated>
             {organization?.account.name.default || enforceHexPrefix(organization?.address)}
           </Text>
         </Button>
       </Link>
       <Flex direction={{ base: 'column', lg: 'row' }} gap={{ lg: 2 }}>
         <Box flexBasis='70%' flexGrow={0} flexShrink={0}>
-          <ElectionSchedule mb={1} fontSize='md' textAlign='left' color='process.date' />
+          <ElectionSchedule mb={1} textAlign='left' color='process.date' />
           <ElectionTitle mb={3} fontSize='3xl' lineHeight={1.2} textAlign='left' noOfLines={2} />
           <ElectionDescription mb={0} fontSize='lg' color='process.description' />
         </Box>

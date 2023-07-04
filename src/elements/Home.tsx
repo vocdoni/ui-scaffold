@@ -202,7 +202,6 @@ const Home = () => {
       <Text mb={4} textAlign='center' fontSize={{ base: '3xl', sm: '4xl' }} fontWeight='bold'>
         {t('home.active_voting')}
       </Text>
-
       <Grid
         templateColumns={{
           base: '1fr',

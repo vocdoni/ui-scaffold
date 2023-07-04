@@ -13,7 +13,7 @@ const SearchButton = ({ displayFullInput, aria }: Props) => (
     onClick={displayFullInput}
     variant='outline'
     size='sm'
-    colorScheme='buttons.search'
+    colorScheme='button.search'
     borderRadius='50%'
   />
 )

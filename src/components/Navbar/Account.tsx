@@ -32,7 +32,7 @@ export const Account = () => {
                 w={6}
                 h={6}
                 borderRadius='50%'
-                bgGradient='var(--vcd-gradient-brand-tr)'
+                bgGradient='var(--vcd-gradient-brand-to-top-right)'
               />
               <Text fontWeight='light'>{addressTextOverflow(address as string)}</Text>
               {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}

@@ -6,22 +6,14 @@ const Counters = ({ ...props }) => {
   return (
     <HStack gap={{ base: 7, sm: 14, md: 32 }} justifyContent='center' {...props}>
       <Box>
-        <Text
-          textAlign='center'
-          whiteSpace='nowrap'
-          fontStyle='normal'
-          fontWeight='400'
-          fontSize={{ base: 'lg', sm: '2xl' }}
-          lineHeight='100%'
-        >
+        <Text textAlign='center' whiteSpace='nowrap' fontSize={{ base: 'lg', sm: '2xl' }}>
           {t('voting_elections')}
         </Text>
         <Text
           textAlign='center'
           bgGradient='var(--vcd-gradient-brand)'
           bgClip='text'
-          fontStyle='normal'
-          fontWeight='700'
+          fontWeight='bold'
           fontSize={{ base: '5xl', sm: '5xl', md: '7xl' }}
           lineHeight='125%'
         >
@@ -29,21 +21,14 @@ const Counters = ({ ...props }) => {
         </Text>
       </Box>
       <Box>
-        <Text
-          textAlign='center'
-          whiteSpace='nowrap'
-          fontStyle='normal'
-          fontWeight='400'
-          fontSize={{ base: 'lg', sm: '2xl' }}
-          lineHeight='100%'
-        >
+        <Text textAlign='center' whiteSpace='nowrap' fontSize={{ base: 'lg', sm: '2xl' }}>
           {t('submited_votes')}
         </Text>
         <Text
           textAlign='center'
           bgGradient='var(--vcd-gradient-brand)'
           bgClip='text'
-          fontWeight='700'
+          fontWeight='bold'
           fontSize={{ base: '5xl', sm: '5xl', md: '7xl' }}
           lineHeight='125%'
         >

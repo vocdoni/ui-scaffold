@@ -28,10 +28,20 @@ export const colorsBase = {
   white: '#ffffff',
 }
 export const colors = {
+  banner: {
+    button_color: colorsBase.black,
+    color: colorsBase.white,
+  },
   brand: colorsBase.pink.light,
-
-  buttons: {
-    ghost_hover_color: colorsBase.white,
+  button: {
+    dropdown: {
+      hover: colorsBase.gray.normal,
+      active: colorsBase.gray.dark,
+    },
+    ghost: {
+      color: colorsBase.black,
+      bg: colorsBase.white,
+    },
     search: colorsBase.black,
   },
 
@@ -57,14 +67,13 @@ export const colors = {
 
   navbar: {
     bg: colorsBase.white,
-    btn: {
-      500: 'transparent',
-      600: colorsBase.gray.normal,
-      700: colorsBase.gray.dark,
-    },
-    btn_list: {
-      hover: colorsBase.gray.normal,
-      active: colorsBase.gray.dark,
+    button: {
+      color: colorsBase.black,
+      scheme: {
+        500: 'transparent',
+        600: colorsBase.gray.normal,
+        700: colorsBase.gray.dark,
+      },
     },
     btn_create: {
       500: 'var(--vcd-gradient-brand)',
@@ -75,28 +84,28 @@ export const colors = {
 
   organization: {
     button_address: {
-      500: colorsBase.primary.normal,
-      600: colorsBase.primary.dark,
-      700: colorsBase.primary.dark,
+      color: colorsBase.white,
+      bg: colorsBase.primary.normal,
+      bg_hover: colorsBase.primary.dark,
+      bg_active: colorsBase.primary.dark,
     },
     election_list_empty: {
       bg: colorsBase.gray.normal,
       border: colorsBase.gray.dark,
     },
-    tabs_bg: colorsBase.white,
+    tabs: {
+      color: colorsBase.black,
+      divider: colorsBase.gray.normal,
+      hover: colorsBase.gray.normal,
+      active: colorsBase.gray.dark,
+      circle_bg: colorsBase.primary.normal,
+    },
   },
 
   process: {
     date: colorsBase.primary.normal,
     description: colorsBase.gray.dark,
-    header: {
-      btn_bg: colorsBase.white,
-      btn_color: colorsBase.black,
-      divider: colorsBase.gray.normal,
-    },
-
     paused: colorsBase.grenade,
-
     questions: {
       alert: {
         bg: colorsBase.primary.normal,
@@ -104,7 +113,6 @@ export const colors = {
         link_color: colorsBase.black,
         link_bg: colorsBase.white,
       },
-
       btn_form_selected: {
         bg: colorsBase.primary.normal,
         color: colorsBase.white,
@@ -122,6 +130,15 @@ export const colors = {
       alert_bg: colorsBase.primary.normal,
       alert_color: colorsBase.white,
       title: colorsBase.primary.dark,
+    },
+
+    tabs: {
+      active: colorsBase.gray.dark,
+      color: colorsBase.black,
+      divider: colorsBase.gray.normal,
+      hover: colorsBase.gray.normal,
+      list_border_bottom: colorsBase.gray.normal,
+      selected_border: colorsBase.black,
     },
   },
 
@@ -149,12 +166,4 @@ export const colors = {
   },
 
   progress_bar_bg: colorsBase.gray.normal,
-
-  tabs: {
-    color: colorsBase.black,
-    divider: colorsBase.gray.normal,
-    hover: colorsBase.gray.normal,
-    active: colorsBase.gray.dark,
-    circle_bg: colorsBase.primary.normal,
-  },
 }

@@ -18,16 +18,19 @@ import { Form } from './components/Form'
 import { Tabs } from './components/Tabs'
 import { Checkbox } from './components/Checkbox'
 import { Link } from './components/Link'
+import { Menu } from './components/Menu'
 
 export const theme = extendTheme(vtheme, {
   styles: {
     global: {
       ':root': {
         '--box-shadow-navbar': '0px 8px 24px rgba(0, 0, 0, 0.1)',
+        '--box-shadow-banner': '7px 6px 6px -3px rgba(0,0,0,0.37)',
         '--vcd-gradient-brand': 'linear-gradient(to right, #9526FC, #2ED3BF)',
+        '--vcd-gradient-brand-to-left': 'linear-gradient(to right, #2ED3BF, #9526FC)',
         '--vcd-gradient-brand-hover': 'linear-gradient(to right,  #2ED3BF, #9526FC)',
         '--vcd-gradient-brand-active': 'linear-gradient(to right, #24aa9a, #7c03ec)',
-        '--vcd-gradient-brand-tr': 'linear-gradient(to top right, #8E00FF, #00DDB3)',
+        '--vcd-gradient-brand-to-top-right': 'linear-gradient(to top right, #8E00FF, #00DDB3)',
         '--vcd-gradient-404': 'linear-gradient(to right, #8E00FF, #00DDB3)',
         '--vcd-gradien-progress-bar': 'linear-gradient(to right, #2ed3bf, #00624e)',
       },
@@ -48,6 +51,7 @@ export const theme = extendTheme(vtheme, {
     Form,
     Input,
     Link,
+    Menu,
     Tabs,
     Textarea,
     Stepper,
