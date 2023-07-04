@@ -45,7 +45,7 @@ const Preview = () => {
         <Flex flexDirection='column' gap={6}>
           <Flex>
             <Text fontWeight='bold'>{t('form.process_create.confirm.election_info')}</Text>
-            <Link ml='auto' onClick={() => setActiveStep(1)}>
+            <Link variant='brand' ml='auto' onClick={() => setActiveStep(1)}>
               {t('form.process_create.confirm.edit')}
             </Link>
           </Flex>
@@ -98,7 +98,7 @@ const Preview = () => {
         <Flex flexDirection='column' gap={6}>
           <Flex>
             <Text fontWeight='bold'>{t('form.process_create.confirm.questions', { count: questions.length })}</Text>
-            <Link ml='auto' onClick={() => setActiveStep(1)}>
+            <Link variant='brand' ml='auto' onClick={() => setActiveStep(1)}>
               {t('form.process_create.confirm.edit')}
             </Link>
           </Flex>
@@ -110,7 +110,7 @@ const Preview = () => {
         <Flex flexDirection='column' gap={6}>
           <Flex>
             <Text fontWeight='semibold'>{t('form.process_create.confirm.census')}</Text>
-            <Link ml='auto' onClick={() => setActiveStep(1)}>
+            <Link variant='brand' ml='auto' onClick={() => setActiveStep(1)}>
               {t('form.process_create.confirm.edit')}
             </Link>
           </Flex>
