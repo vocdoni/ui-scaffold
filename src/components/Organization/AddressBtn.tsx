@@ -41,7 +41,6 @@ const AddressBtn = () => {
           leftIcon={<CopyIcon />}
           onClick={() => {
             toast({
-              status: 'info',
               title: t('copy.copied_title'),
               duration: 3000,
             })
