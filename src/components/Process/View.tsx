@@ -43,7 +43,7 @@ export const ProcessView = () => {
           <ArrowBackIcon /> {organization?.account.name.default || enforceHexPrefix(organization?.address)}
         </Link>
         <ElectionSchedule textAlign='left' color='branding.pink' />
-        <ElectionTitle fontSize={18} mb={0} textAlign='left' />
+        <ElectionTitle fontSize={36} mb={0} textAlign='left' />
         <ElectionDescription />
       </Flex>
       <Tabs index={tabIndex} onChange={handleTabsChange} colorScheme='brand.scheme'>
