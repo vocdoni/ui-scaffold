@@ -47,14 +47,13 @@ export const colors = {
       process_image: colorsBase.brand.main,
     },
   },
-  footer_links: colorsBase.black,
+
   home_bg: colorsBase.blue.light2,
 
   input_search: {
     bg: colorsBase.white,
     border: colorsBase.black,
   },
-  link: colorsBase.brand.main,
   navbar: {
     bg: colorsBase.white,
     border: colorsBase.white,
