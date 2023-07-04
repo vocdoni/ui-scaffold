@@ -141,13 +141,11 @@ export const Confirm = () => {
                     <Checkbox {...register('infoValid', { required: true })}>
                       {t('form.process_create.confirm.confirmation_valid_info')}
                     </Checkbox>
-                    {errors.infoValid && (
-                      <FormErrorMessage>
-                        <Text>{t('form.error.field_is_required')}</Text>
-                      </FormErrorMessage>
-                    )}
+                    <FormErrorMessage>
+                      <Text>{t('form.error.field_is_required')}</Text>
+                    </FormErrorMessage>
                   </FormControl>
-                  <FormControl isInvalid={!!errors.infoValid}>
+                  <FormControl isInvalid={!!errors.termsAndConditions}>
                     <Checkbox {...register('termsAndConditions', { required: true })}>
                       <Trans
                         i18nKey='form.process_create.confirm.confirmation_terms_and_conditions'
@@ -156,11 +154,9 @@ export const Confirm = () => {
                         }}
                       />
                     </Checkbox>
-                    {errors.infoValid && (
-                      <FormErrorMessage>
-                        <Text>{t('form.error.field_is_required')}</Text>
-                      </FormErrorMessage>
-                    )}
+                    <FormErrorMessage>
+                      <Text>{t('form.error.field_is_required')}</Text>
+                    </FormErrorMessage>
                   </FormControl>
                 </Flex>
               </Flex>
