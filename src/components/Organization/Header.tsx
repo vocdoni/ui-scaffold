@@ -1,7 +1,7 @@
 import { AspectRatio, Box, Button, Flex, Text, VStack } from '@chakra-ui/react'
 import {
-  OrganizationDescription,
   OrganizationHeader as Avatar,
+  OrganizationDescription,
   OrganizationName,
   useOrganization,
 } from '@vocdoni/chakra-components'
@@ -54,7 +54,7 @@ const OrganizationHeader = () => {
         </Flex>
         <Flex flexDirection={{ base: 'row', md: 'column' }} gap={{ base: 4, md: 0 }}>
           <Flex flexDirection='column' alignItems='center'>
-            <Text fontSize={14} bgGradient='var(--vcd-gradient-brand)' bgClip='text'>
+            <Text fontSize={14} color='brand.color'>
               {t('organization.elections')}
             </Text>
             <Text as='span' fontWeight='bold'>
@@ -63,7 +63,7 @@ const OrganizationHeader = () => {
           </Flex>
 
           <Flex flexDirection='column' alignItems='center'>
-            <Text fontSize={14} bgGradient='var(--vcd-gradient-brand)' bgClip='text'>
+            <Text fontSize={14} color='brand.color'>
               {t('organization.members')}
             </Text>
             <Text as='span' fontWeight='bold'>

@@ -28,13 +28,13 @@ const NavList = ({ mobile, onClose }: Props) => {
         <>
           <ListItem order={mobile ? 2 : undefined} listStyleType='none' onClick={onClose} whiteSpace='nowrap'>
             <NavLink to='/processes/create'>
-              <Button colorScheme='buttons.primary'>{t('menu.create_process')}</Button>
+              <Button colorScheme='brand.scheme'>{t('menu.create_process')}</Button>
             </NavLink>
           </ListItem>
           {exists && (
             <ListItem order={mobile ? 1 : undefined} listStyleType='none' onClick={onClose} whiteSpace='nowrap'>
               <NavLink to={`/organization/0x${account?.address}`}>
-                <Button variant='ghost' colorScheme='buttons.primary'>
+                <Button variant='ghost' colorScheme='brand.scheme'>
                   {t('menu.my_list')}
                 </Button>
               </NavLink>
