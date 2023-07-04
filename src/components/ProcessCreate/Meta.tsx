@@ -31,7 +31,7 @@ const CreateProcessMeta = () => {
             {...register('title', { required })}
             placeholder={t('form.process_create.meta.title_placeholder').toString()}
           />
-          {errors.title && <FormErrorMessage>{fieldMapErrorMessage(errors, `title`)}</FormErrorMessage>}
+          <FormErrorMessage>{fieldMapErrorMessage(errors, `title`)}</FormErrorMessage>
         </FormControl>
 
         <FormControl isInvalid={isInvalidFieldMap(errors, `description`)} mb={1}>
@@ -40,7 +40,7 @@ const CreateProcessMeta = () => {
             placeholder={t('form.process_create.meta.description_placeholder').toString()}
             variant='outline'
           />
-          {errors.description && <FormErrorMessage>{fieldMapErrorMessage(errors, `description`)}</FormErrorMessage>}
+          <FormErrorMessage>{fieldMapErrorMessage(errors, `description`)}</FormErrorMessage>
         </FormControl>
       </Flex>
     </Flex>
