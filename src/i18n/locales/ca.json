@@ -31,13 +31,14 @@
       "votes": "Vots: {{ votes }} ({{ percent }})"
     },
     "statuses": {
-      "CANCELED": "Cancel·lat",
-      "ENDED": "Finalitzat",
-      "ONGOING": "En curs",
-      "PAUSED": "Pausat",
-      "PROCESS_UNKNOWN": "Desconegut",
-      "RESULTS": "Resultats",
-      "UPCOMING": "Proper"
+      "canceled": "Cancel·lada",
+      "ended": "Finalitzada",
+      "invalid": "Invàlida",
+      "ongoing": "En curs",
+      "paused": "Pausada",
+      "process_unknown": "Desconeguda",
+      "results": "Resultats",
+      "upcoming": "Propera"
     },
     "vote": {
       "button": "Vota",
@@ -198,6 +199,7 @@
       "relative": "{{ date, relative(past: fa %time; future: en %time) }}",
       "starts": "Comença el procés"
     },
+    "is_invalid": "",
     "questions": "Preguntes",
     "results": "Resultats",
     "status": {

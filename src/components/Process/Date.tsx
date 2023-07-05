@@ -8,7 +8,7 @@ export const ProcessDate = () => {
   const { election } = useElection()
   const { t } = useTranslation()
 
-  if (!election) return null
+  if (!election?.startDate) return null
 
   const statusText = getStatusText(t, election.status)
 

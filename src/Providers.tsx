@@ -26,7 +26,7 @@ export const AppProviders = () => {
 
   return (
     <RainbowKitProvider chains={chains} theme={rainbowStyles(colorMode)}>
-      <ClientProvider env={VocdoniEnvironment as EnvOptions} signer={signer as Signer} translations={translations(t)}>
+      <ClientProvider env={VocdoniEnvironment as EnvOptions} signer={signer as Signer} locale={translations(t)}>
         <ColorModeScript />
         <RoutesProvider />
       </ClientProvider>
