@@ -1,10 +1,10 @@
 import { Flex, Grid, GridItem, Spinner, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
-import { useClient, useOrganization } from '@vocdoni/chakra-components'
+import { ElectionProvider, useClient, useOrganization } from '@vocdoni/chakra-components'
 import { InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import ProcessCardDescription from '../Process/CardDesc'
+import ProcessCard from '../Process/Card'
 import SearchInput from '../Search/Input'
 import Header from './Header'
 
@@ -100,7 +100,9 @@ const OrganizationView = () => {
               {electionsList?.map((election: any, idx: number) => (
                 <Link to={`/processes/0x${election.id}`} key={idx}>
                   <GridItem display='flex' justifyContent='center' alignItems='center'>
-                    <ProcessCardDescription election={election} />
+                    <ElectionProvider election={election}>
+                      <ProcessCard />
+                    </ElectionProvider>
                   </GridItem>
                 </Link>
               ))}

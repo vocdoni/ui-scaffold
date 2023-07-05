@@ -5981,11 +5981,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vocdoni/chakra-components@npm:0.2.8":
-  version: 0.2.8
-  resolution: "@vocdoni/chakra-components@npm:0.2.8"
+"@vocdoni/chakra-components@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "@vocdoni/chakra-components@npm:0.3.0"
   dependencies:
-    "@vocdoni/sdk": ^0.0.15
+    "@vocdoni/sdk": ^0.0.16
     date-fns: ^2.29.3
     react-hook-form: ^7.43.8
     react-icons: ^4.8.0
@@ -6007,12 +6007,12 @@ __metadata:
     "@chakra-ui/tag": ^3.0.0
     "@chakra-ui/theme": ^3.0.0
     "@chakra-ui/toast": ^6.1.1
-    "@vocdoni/sdk": ">= 0.0.15"
+    "@vocdoni/sdk": ">= 0.0.16"
     react: ">= 16.8.0"
     react-dom: ">= 16.8.0"
     react-markdown: ">= 8.0.0"
     remark-gfm: ">= 2.0.0"
-  checksum: 6c33b29316802c72aadc83487967c9987642a00760f2c71dc60e0242cf31244b16324ffbcb9903def288da8d8dfe2185cc75da1d74d886aa02b418745aa898f6
+  checksum: 61d791235fe402872d0179edb0f3bec0f928fce628ece38c4b0eb1aff2acb596e8fdaa64e442ea30bdf841c61075d42e860a87c1f0ac0ebab571c52a84130d91
   languageName: node
   linkType: hard
 
@@ -6023,30 +6023,6 @@ __metadata:
     long: ^5.2.1
     protobufjs: ^7.1.2
   checksum: 0a80ed6af9296702c8fe4cc4633bffd77c75bdbe3db6db056905f901a020cfa2372cd90e9f710abd90ec634cca30ba1507d8aa158dd0b145208450ff18d706e6
-  languageName: node
-  linkType: hard
-
-"@vocdoni/sdk@npm:^0.0.15":
-  version: 0.0.15
-  resolution: "@vocdoni/sdk@npm:0.0.15"
-  dependencies:
-    "@ethersproject/abstract-signer": ^5.7.0
-    "@ethersproject/address": ^5.7.0
-    "@ethersproject/bytes": ^5.7.0
-    "@ethersproject/keccak256": ^5.7.0
-    "@ethersproject/providers": ^5.7.1
-    "@ethersproject/signing-key": ^5.7.0
-    "@ethersproject/wallet": ^5.7.0
-    "@size-limit/file": ^8.2.4
-    "@vocdoni/proto": 1.14.1
-    axios: 0.27.2
-    blakejs: ^1.2.1
-    blindsecp256k1: ^0.0.9
-    iso-language-codes: ^1.1.0
-    tiny-invariant: ^1.3.1
-    tweetnacl: ^1.0.3
-    yup: ^0.32.11
-  checksum: 81e19c2904ba46b8b2caa3b6784ce6983eb29b2834f9520383c92746217fc0fe9f246ad15df0096452d9ade049de75e61672eff22d882a65cbcd16819ecf9d47
   languageName: node
   linkType: hard
 
@@ -6097,7 +6073,7 @@ __metadata:
     "@types/react": ^18.2.14
     "@types/react-dom": ^18.2.6
     "@types/react-router-dom": ^5.3.3
-    "@vocdoni/chakra-components": 0.2.8
+    "@vocdoni/chakra-components": ^0.3.0
     "@vocdoni/sdk": ^0.0.16
     chakra-react-select: ^4.6.0
     date-fns: ^2.30.0

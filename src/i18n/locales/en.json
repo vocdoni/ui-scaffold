@@ -31,13 +31,14 @@
       "votes": "Votes: {{ votes }} ({{ percent }})"
     },
     "statuses": {
-      "CANCELED": "Canceled",
-      "ENDED": "Ended",
-      "ONGOING": "Ongoing",
-      "PAUSED": "Paused",
-      "PROCESS_UNKNOWN": "Unknown",
-      "RESULTS": "Results",
-      "UPCOMING": "Upcoming"
+      "canceled": "Canceled",
+      "ended": "Ended",
+      "invalid": "Invalid",
+      "ongoing": "Ongoing",
+      "paused": "Paused",
+      "process_unknown": "Unknown",
+      "results": "Results",
+      "upcoming": "Upcoming"
     },
     "vote": {
       "button": "Vote",
@@ -198,6 +199,7 @@
       "relative": "{{ date, relative(past: %time ago; future: in %time) }}",
       "starts": "Process starts"
     },
+    "is_invalid": "This process has wrong data, thus making it invalid",
     "questions": "Questions",
     "results": "Results",
     "status": {
