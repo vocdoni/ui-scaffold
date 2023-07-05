@@ -5,21 +5,26 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 
 const baseStyle = definePartsStyle({
   description: {
+    bgColor: 'process_create.bg',
     fontSize: 'md',
     fontStyle: 'normal',
     fontWeight: 'normal',
-    color: 'gray',
+    color: 'process_create.confirm.preview.description',
+    marginBottom: 0,
   },
 
   radioGroup: {
-    color: 'gray',
+    bgColor: 'process_create.bg',
+    '& > div': {
+      gap: 0,
+    },
     '& > div > label > span:nth-of-type(1)': {
       display: 'none',
     },
 
     '& > div > label > span:nth-of-type(2)': {
       marginLeft: 0,
-      color: 'gray',
+      color: 'process_create.confirm.preview.option',
       opacity: 1,
     },
     '& > div > label > span:nth-of-type(2):before': {
@@ -33,33 +38,35 @@ const baseStyle = definePartsStyle({
       mt: 1,
     },
   },
+  question: {
+    bgColor: 'process_create.bg',
+    mb: 5,
+    '&:last-of-type': {
+      mb: 0,
+    },
+  },
   title: {
-    marginBottom: 4,
+    bgColor: 'process_create.bg',
+    marginBottom: 0,
     fontSize: 'md',
     fontStyle: 'normal',
     fontWeight: 'normal',
-
-    '&:before': {
-      content: '" "',
-      display: 'inline-block',
-      marginRight: 2,
-      bgColor: 'black',
-      width: 2,
-      height: 2,
-      borderRadius: '50%',
-    },
   },
+
   wrapper: {
-    '& form': {
-      display: 'flex',
-      flexDirection: 'column',
-      gap: 5,
-    },
+    bgColor: 'process_create.bg',
     '& form > div': {
-      mb: 0,
-    },
-    '& form > div > div > div:nth-of-type(1)': {
-      mb: 4,
+      pt: 0,
+      pl: 0,
+      pb: 0,
+
+      '& div:nth-of-type(2) > div': {
+        mt: 2,
+
+        '& > div > p': {
+          mb: 2,
+        },
+      },
     },
   },
 })
