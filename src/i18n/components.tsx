@@ -30,6 +30,7 @@ export const translations = (t: TFunction<string, string>) => ({
     title: t('cc.results.title').toString(),
     votes: t('cc.results.votes').toString(),
   },
+  schedule: t('cc.schedule').toString(),
   // status badge
   statuses: {
     canceled: t('cc.statuses.canceled').toString(),
