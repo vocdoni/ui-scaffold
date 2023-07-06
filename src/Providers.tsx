@@ -8,6 +8,7 @@ import { useSigner, WagmiConfig } from 'wagmi'
 import { VocdoniEnvironment } from './constants'
 import { chains, wagmiClient } from './constants/rainbow'
 import { translations } from './i18n/components'
+import { datesLocale } from './i18n/locales'
 import { RoutesProvider } from './router/Router'
 import { rainbowStyles, theme } from './theme'
 
@@ -22,11 +23,16 @@ export const Providers = () => (
 export const AppProviders = () => {
   const { data: signer } = useSigner()
   const { colorMode } = useColorMode()
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   return (
     <RainbowKitProvider chains={chains} theme={rainbowStyles(colorMode)}>
-      <ClientProvider env={VocdoniEnvironment as EnvOptions} signer={signer as Signer} locale={translations(t)}>
+      <ClientProvider
+        env={VocdoniEnvironment as EnvOptions}
+        signer={signer as Signer}
+        locale={translations(t)}
+        datesLocale={datesLocale(i18n.language)}
+      >
         <ColorModeScript />
         <RoutesProvider />
       </ClientProvider>
