@@ -57,6 +57,7 @@ const Steps = () => {
         activeStep={activeStep}
         next={() => setActiveStep(activeStep + 1)}
         prev={() => setActiveStep(activeStep - 1)}
+        setActiveStep={setActiveStep}
       />
     </Flex>
   )

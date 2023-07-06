@@ -93,7 +93,7 @@
       "calendar": {
         "date_format": "PPPPpppp",
         "end_date": "Fecha de finalización",
-        "end_date_description": "Esta elección comenzará en {{ date.begin, format }} y terminará en {{ date.end, format }}, durando ~{{ date, duration }}",
+        "end_date_description": "Esta votación comenzará en {{ date.begin, format }} y terminará en {{ date.end, format }}, durando ~{{ date, duration }}",
         "now": "Ahora",
         "start_date_description": "Especifique el período activo para recibir votos. Seleccione 'Ahora' para hacer que la propuesta sea inmediatamente activa después de publicarla.",
         "start_on_a_date": "Comenzar en una fecha",
@@ -116,19 +116,34 @@
         "wallet_address_title": "Direcciones de cartera"
       },
       "confirm": {
+        "census": "Censo",
         "close": "Cerrar",
-        "preview_alert": "Por favor, revisa detalladamente los detalles de tu elección. Asegúrate de que todo es correcto antes de confirmar su creación."
+        "configuration": "Configuración",
+        "confirmation": "Confirmación",
+        "confirmation_terms_and_conditions": "Acepto los <tos>términos y condiciones</tos> de Vocdoni",
+        "confirmation_valid_info": "Confirmo que esta información es correcta y válida",
+        "create_button": "Crear",
+        "dates": "Fecha",
+        "description": "Descripción",
+        "edit": "Editar",
+        "election_info": "Información",
+        "questions_one": "Pregunta",
+        "questions_many": "Preguntas",
+        "questions_other": "Preguntas",
+        "secret_until_the_end": "Secreto hasta el final",
+        "title": "Título",
+        "vote_overwritte": "Sobrescribir voto",
+        "web3_number_addresses": "{{ addresses }} personas podrán votar en esta votación"
       },
-      "create": "Crear",
       "creating_process": "Creando proceso...",
       "do_not_close": "Esta acción puede llevar algún tiempo, no cierres esta pestaña",
       "meta": {
         "description": "Proporciona un título y descripción claros. Esto ayudará a los votantes a entender el propósito de la votación.",
-        "description_helper": "Una breve descripción de tu elección",
+        "description_helper": "Una breve descripción de tu votación",
         "description_placeholder": "Descripción (opcional)",
-        "title": "Información de la Elección",
-        "title_helper": "El título / propósito de la elección",
-        "title_placeholder": "El título de la elección"
+        "title": "Información de la votación",
+        "title_helper": "El título / propósito de la votación",
+        "title_placeholder": "El título de la votación"
       },
       "navbar": {
         "close_form_btn": "Cerrar formulario"
@@ -157,7 +172,7 @@
       },
       "success_description": "Redirigiéndote a la página del proceso electoral...",
       "success_title": "Proceso electoral creado con éxito",
-      "unhealthy_account": "Necesitas crear una organización antes de crear la primera elección."
+      "unhealthy_account": "Necesitas crear una organización antes de crear la primera votación."
     }
   },
   "go_to_home": "Ir a <root>inicio</root>",

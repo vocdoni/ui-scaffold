@@ -1,9 +1,13 @@
 import { ArrowBackIcon } from '@chakra-ui/icons'
 import {
-  Alert,
-  AlertIcon,
+  Box,
   Button,
+  ChakraProvider,
+  Checkbox,
   Flex,
+  FormControl,
+  FormErrorMessage,
+  Link,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -11,22 +15,15 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Text,
+  extendTheme,
   useDisclosure,
   useToast,
 } from '@chakra-ui/react'
-import {
-  ElectionDescription,
-  ElectionProvider,
-  ElectionQuestions,
-  ElectionSchedule,
-  ElectionTitle,
-  errorToString,
-  useClient,
-} from '@vocdoni/chakra-components'
+import { ElectionProvider, errorToString, useClient } from '@vocdoni/chakra-components'
 import {
   Election,
   ElectionStatus,
-  ensure0x,
   EnvOptions,
   IElectionParameters,
   IPublishedElectionParameters,
@@ -35,11 +32,14 @@ import {
   PublishedElection,
   VocdoniCensus3Client,
   WeightedCensus,
+  ensure0x,
 } from '@vocdoni/sdk'
 import { useMemo, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { FormProvider, useForm } from 'react-hook-form'
+import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import Wrapper from '../Wrapper'
+import { cofirmTheme } from '../../../theme/confirmProvider'
+import Preview from '../Confirm/Preview'
 import { CreationProgress } from './CreationProgress'
 import { Option } from './Questions'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
@@ -54,7 +54,20 @@ export const Confirm = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [sending, setSending] = useState<boolean>(false)
 
-  const create = async () => {
+  const methods = useForm({
+    defaultValues: {
+      infoValid: false,
+      termsAndConditions: false,
+    },
+  })
+
+  const {
+    formState: { errors },
+    handleSubmit,
+    register,
+  } = methods
+
+  const onSubmit = async () => {
     onOpen()
     setSending(true)
     setError(null)
@@ -97,25 +110,61 @@ export const Confirm = () => {
 
   return (
     <>
-      <Wrapper>
-        <Alert status='info' mb={5}>
-          <AlertIcon />
-          {t('form.process_create.confirm.preview_alert')}
-        </Alert>
-        <ElectionProvider election={unpublished}>
-          <ElectionTitle />
-          <ElectionSchedule />
-          <ElectionDescription />
-          <ElectionQuestions />
-        </ElectionProvider>
-      </Wrapper>
+      <ElectionProvider election={unpublished}>
+        <ChakraProvider theme={extendTheme(cofirmTheme)}>
+          <Box>
+            <Preview />
+            <FormProvider {...methods}>
+              <Flex
+                as='form'
+                id='process-create-form'
+                flexDirection={{ base: 'column', md: 'row' }}
+                gap={{ base: 2, md: 0 }}
+                p={{ base: 2, md: 5, xl: 10 }}
+                bgColor='process_create.bg'
+                borderRadius='lg'
+                border='1px solid'
+                borderColor='process_create.border'
+                onSubmit={handleSubmit(onSubmit)}
+              >
+                <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='bold' fontSize='md'>
+                  {t('form.process_create.confirm.confirmation')}
+                </Text>
+                <Flex flexDirection='column' gap={2}>
+                  <FormControl isInvalid={!!errors.infoValid}>
+                    <Checkbox {...register('infoValid', { required: true })}>
+                      {t('form.process_create.confirm.confirmation_valid_info')}
+                    </Checkbox>
+                    <FormErrorMessage>
+                      <Text>{t('form.error.field_is_required')}</Text>
+                    </FormErrorMessage>
+                  </FormControl>
+                  <FormControl isInvalid={!!errors.termsAndConditions}>
+                    <Checkbox {...register('termsAndConditions', { required: true })}>
+                      <Trans
+                        i18nKey='form.process_create.confirm.confirmation_terms_and_conditions'
+                        components={{
+                          tos: <Link variant='brand' href='' target='_blank' />,
+                        }}
+                      />
+                    </Checkbox>
+                    <FormErrorMessage>
+                      <Text>{t('form.error.field_is_required')}</Text>
+                    </FormErrorMessage>
+                  </FormControl>
+                </Flex>
+              </Flex>
+            </FormProvider>
+          </Box>
+        </ChakraProvider>
+      </ElectionProvider>
       <Flex justifyContent='space-between' alignItems='end' mt={5}>
         <Button variant='outline' onClick={prev} leftIcon={<ArrowBackIcon />}>
           {t('form.process_create.previous_step')}
         </Button>
 
-        <Button onClick={create} isLoading={sending}>
-          {t('form.process_create.create')}
+        <Button type='submit' form='process-create-form' isLoading={sending}>
+          {t('form.process_create.confirm.create_button')}
         </Button>
         <Modal isOpen={isOpen} onClose={onClose} closeOnEsc={!!error} closeOnOverlayClick={!!error} isCentered>
           <ModalOverlay />
