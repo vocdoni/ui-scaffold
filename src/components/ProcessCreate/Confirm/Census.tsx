@@ -3,8 +3,9 @@ import TokenConfirm from './Token'
 import Web3Confirm from './Web3'
 
 const Census = () => {
-  const { form } = useProcessCreationSteps()
-  const { censusType } = form
+  const {
+    form: { censusType },
+  } = useProcessCreationSteps()
 
   if (censusType === 'token') return <TokenConfirm />
 
