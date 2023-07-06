@@ -1,5 +1,6 @@
-import { getDefaultWallets } from '@rainbow-me/rainbowkit'
+import { connectorsForWallets } from '@rainbow-me/rainbowkit'
 import '@rainbow-me/rainbowkit/styles.css'
+import { coinbaseWallet, metaMaskWallet, rainbowWallet } from '@rainbow-me/rainbowkit/wallets'
 import { configureChains, createClient } from 'wagmi'
 import type { Chain } from 'wagmi/chains'
 import { mainnet } from 'wagmi/chains'
@@ -14,12 +15,19 @@ const vocdoni = {
 } as const satisfies Chain
 
 export const { chains, provider } = configureChains([vocdoni], [publicProvider()])
+const appName = 'Vocdoni UI Scaffold'
+const projectId = '641a1f59121ad0b519cca3a699877a08'
 
-export const { connectors } = getDefaultWallets({
-  appName: "Vocdoni's Voting Protocol",
-  projectId: 'VOCDONI_UI_SCAFFOLD',
-  chains,
-})
+const connectors = connectorsForWallets([
+  {
+    groupName: 'Popular',
+    wallets: [
+      metaMaskWallet({ chains, projectId }),
+      rainbowWallet({ projectId, chains }),
+      coinbaseWallet({ chains, appName }),
+    ],
+  },
+])
 
 export const wagmiClient = createClient({
   autoConnect: true,
