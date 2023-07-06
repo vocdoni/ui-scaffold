@@ -54,6 +54,7 @@ export const CensusTokens = () => {
       try {
         const t = await client.getToken(token)
         setToken(t)
+        setValue('token', t)
         return t
       } catch (e: any) {
         setError(errorToString(e))
@@ -61,6 +62,7 @@ export const CensusTokens = () => {
         setLoading(false)
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [client]
   )
 
