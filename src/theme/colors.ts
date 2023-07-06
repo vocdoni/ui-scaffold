@@ -72,9 +72,17 @@ export const colors = {
       color: colorsBase.blue.dark,
       bg: colorsBase.blue.light,
     },
-
     aside_questions_bg: colorsBase.gray.light2,
     bg: colorsBase.gray.light,
+    confirm: {
+      census_web3_text_helper: colorsBase.gray.dark,
+      schedule: colorsBase.black,
+      pencil_icon: colorsBase.brand.main,
+      preview: {
+        description: colorsBase.gray.dark,
+        option: colorsBase.gray.dark,
+      },
+    },
     border: colorsBase.gray.normal,
     census_box_bg: colorsBase.white,
     description_logo: colorsBase.blue.normal,

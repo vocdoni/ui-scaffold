@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react'
+import { Dispatch, SetStateAction, createContext, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Census, CensusValues } from './Census'
 import { CensusTokenValues } from './CensusToken'
@@ -27,6 +27,7 @@ export interface StepsContextState {
   prev: () => void
   setForm: (vals: StepsFormValues) => void
   steps: StepsState[]
+  setActiveStep: Dispatch<SetStateAction<number>>
 }
 
 export const StepsContext = createContext<StepsContextState | undefined>(undefined)
