@@ -58,7 +58,7 @@ const TokenConfirm = () => {
 
           {sliderValue && (
             <Flex flexDirection={{ base: 'column', lg: 'row' }} mt={2}>
-              <Text>{t('form.process_create.census.max_census_slider_label')}</Text>{' '}
+              <Text mr={1}>{t('form.process_create.census.max_census_slider_label')}</Text>
               <Text>
                 {t('form.process_create.census.max_census_slider_tooltip', {
                   percent: Math.round((sliderValue / max) * 100),

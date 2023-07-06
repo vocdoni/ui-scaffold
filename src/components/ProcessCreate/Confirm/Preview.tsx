@@ -1,12 +1,11 @@
-import { Box, ChakraProvider, extendTheme, Flex, Icon, Link, Text } from '@chakra-ui/react'
+import { Box, ChakraProvider, Flex, Icon, Link, Text, extendTheme } from '@chakra-ui/react'
 import { ElectionQuestions, ElectionTitle, HR, useElection } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import { IoMdCheckmark, IoMdClose, IoMdCreate } from 'react-icons/io'
 import { IoCheckmarkSharp } from 'react-icons/io5'
 import { cofirmTheme } from '../../../theme/confirmProvider'
 import { useProcessCreationSteps } from '../Steps/use-steps'
-import TokenConfirm from './Token'
-import Web3Confirm from './Web3'
+import Census from './Census'
 
 const Preview = () => {
   const { t } = useTranslation()
@@ -17,7 +16,6 @@ const Preview = () => {
 
   const {
     description,
-    censusType,
     electionType: { secretUntilTheEnd },
     maxVoteOverwrites,
     questions,
@@ -98,50 +96,34 @@ const Preview = () => {
 
         <HR m={0} border='none' h='1px' bgColor='process_create.border' />
 
-        <Flex flexDirection='column' gap={2}>
-          <Flex>
-            <Text flexBasis='30%' flexShrink={0} flexGrow={0} fontWeight='extrabold'>
-              {t('form.process_create.confirm.questions', { count: questions.length })}
-            </Text>
-            <Box flexGrow={1} display={{ base: 'none', md: 'block' }}>
-              <ElectionQuestions />
-            </Box>
-            <Link variant='brand' ml='auto' onClick={() => setActiveStep(2)}>
-              <Icon
-                as={IoMdCreate}
-                title={t('form.process_create.confirm.edit')}
-                aria-label={t('form.process_create.confirm.edit')}
-              />
-            </Link>
-          </Flex>
-          <Box display={{ base: 'block', md: 'none' }}>
-            <ElectionQuestions />
-          </Box>
+        <Flex flexDirection={{ base: 'column', md: 'row' }} gap={2} position='relative'>
+          <Text flexBasis={{ base: '100%', md: '30%' }} flexShrink={0} flexGrow={0} fontWeight='extrabold'>
+            {t('form.process_create.confirm.questions', { count: questions.length })}
+          </Text>
+          <ElectionQuestions />
+          <Link variant='brand' position='absolute' top={0} right={0} onClick={() => setActiveStep(2)}>
+            <Icon
+              as={IoMdCreate}
+              title={t('form.process_create.confirm.edit')}
+              aria-label={t('form.process_create.confirm.edit')}
+            />
+          </Link>
         </Flex>
 
         <HR m={0} border='none' h='1px' bgColor='process_create.border' />
 
-        <Flex flexDirection='column' gap={2}>
-          <Flex>
-            <Text flexBasis='30%' flexShrink={0} flexGrow={0} fontWeight='extrabold'>
-              {t('form.process_create.confirm.census')}
-            </Text>
-            <Box display={{ base: 'none', md: 'block' }}>
-              {censusType === 'web3' && <Web3Confirm />}
-              {censusType === 'token' && <TokenConfirm />}
-            </Box>
-            <Link variant='brand' ml='auto' onClick={() => setActiveStep(3)}>
-              <Icon
-                as={IoMdCreate}
-                title={t('form.process_create.confirm.edit')}
-                aria-label={t('form.process_create.confirm.edit')}
-              />
-            </Link>
-          </Flex>
-          <Box display={{ base: 'block', md: 'none' }}>
-            {censusType === 'web3' && <Web3Confirm />}
-            {censusType === 'token' && <TokenConfirm />}
-          </Box>
+        <Flex flexDirection={{ base: 'column', md: 'row' }} gap={2} position='relative'>
+          <Text flexBasis={{ base: '100%', md: '30%' }} flexShrink={0} flexGrow={0} fontWeight='extrabold'>
+            {t('form.process_create.confirm.census')}
+          </Text>
+          <Census />
+          <Link variant='brand' position='absolute' top={0} right={0} onClick={() => setActiveStep(2)}>
+            <Icon
+              as={IoMdCreate}
+              title={t('form.process_create.confirm.edit')}
+              aria-label={t('form.process_create.confirm.edit')}
+            />
+          </Link>
         </Flex>
       </Flex>
     </ChakraProvider>
