@@ -30,6 +30,7 @@
       "title": "Results for \"{{ title }}\"",
       "votes": "Votes: {{ votes }} ({{ percent }})"
     },
+    "schedule": "Voting from {{ begin }} to {{ end }}",
     "statuses": {
       "canceled": "Canceled",
       "ended": "Ended",

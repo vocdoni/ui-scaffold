@@ -4,6 +4,7 @@ import {
   Button,
   ChakraProvider,
   Checkbox,
+  extendTheme,
   Flex,
   FormControl,
   FormErrorMessage,
@@ -16,7 +17,6 @@ import {
   ModalHeader,
   ModalOverlay,
   Text,
-  extendTheme,
   useDisclosure,
   useToast,
 } from '@chakra-ui/react'
@@ -24,6 +24,7 @@ import { ElectionProvider, errorToString, useClient } from '@vocdoni/chakra-comp
 import {
   Election,
   ElectionStatus,
+  ensure0x,
   EnvOptions,
   IElectionParameters,
   IPublishedElectionParameters,
@@ -32,7 +33,6 @@ import {
   PublishedElection,
   VocdoniCensus3Client,
   WeightedCensus,
-  ensure0x,
 } from '@vocdoni/sdk'
 import { useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'

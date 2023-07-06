@@ -1,8 +1,8 @@
 import { Box, Card, CardBody, CardHeader, Text } from '@chakra-ui/react'
 import { ElectionDescription, ElectionStatusBadge, ElectionTitle, useElection } from '@vocdoni/chakra-components'
 import { ElectionStatus, InvalidElection } from '@vocdoni/sdk'
-import { format } from 'date-fns'
 import { useTranslation } from 'react-i18next'
+import { useDateFns } from '../../i18n/use-date-fns'
 import { ProcessDate } from './Date'
 
 const ProcessCard = () => (
@@ -31,9 +31,11 @@ const ProcessCardHeading = () => (
 
 const ProcessCreationDate = () => {
   const { election } = useElection()
+  const { format } = useDateFns()
+
   if (!election?.creationTime) return null
 
-  return <Text>{format(new Date(election.creationTime), 'dd MMM, yyyy')}</Text>
+  return <Text>{format(new Date(election.creationTime), 'PPP')}</Text>
 }
 
 const ProcessCardBody = () => {

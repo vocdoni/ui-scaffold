@@ -13,13 +13,13 @@ const baseStyle = definePartsStyle({
     m: 0,
     mx: 'auto',
 
-    '& > div:nth-child(2) > div': {
+    '& > div:nth-of-type(2) > div': {
       display: 'flex',
       alignItems: 'start',
       gap: 3,
       mb: 5,
 
-      '& p:nth-child(1)': {
+      '& p:nth-of-type(1)': {
         flexBasis: '33%',
         flexGrow: 1,
       },
@@ -36,7 +36,7 @@ const baseStyle = definePartsStyle({
         },
       },
 
-      '& > div:nth-child(2) > div:last-of-type': {
+      '& > div:nth-of-type(2) > div:last-of-type': {
         mb: 0,
       },
     },
