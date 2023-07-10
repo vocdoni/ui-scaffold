@@ -9,7 +9,7 @@ const baseStyle = definePartsStyle({
     fontSize: 'md',
     fontStyle: 'normal',
     fontWeight: 'normal',
-    color: 'process_create.confirm.preview.description',
+    color: 'process_create.preview.description',
     marginBottom: 0,
   },
 
@@ -24,14 +24,14 @@ const baseStyle = definePartsStyle({
 
     '& > div > label > span:nth-of-type(2)': {
       marginLeft: 0,
-      color: 'process_create.confirm.preview.option',
+      color: 'process_create.preview.option',
       opacity: 1,
     },
     '& > div > label > span:nth-of-type(2):before': {
       content: '" "',
       display: 'inline-block',
       marginRight: 2,
-      color: 'black',
+      color: 'process_create.preview.option_before_color',
       width: 1.5,
       height: 1.5,
       border: '2px solid',
@@ -71,6 +71,6 @@ const baseStyle = definePartsStyle({
   },
 })
 
-export const ElectionQuestions = defineMultiStyleConfig({
+export const PreviewQuestions = defineMultiStyleConfig({
   baseStyle,
 })

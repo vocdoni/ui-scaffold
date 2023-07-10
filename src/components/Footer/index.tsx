@@ -11,7 +11,7 @@ const Footer = ({ ...props }) => {
     <Box pt={5} {...props}>
       <Grid
         gridTemplateColumns={{
-          sm: 'repeat(2, 1fr)',
+          base: 'repeat(2, 1fr)',
           md: 'repeat(4, 1fr)',
           lg: 'repeat(5, 1fr)',
         }}
@@ -20,24 +20,20 @@ const Footer = ({ ...props }) => {
           md: 'repeat(2, 1fr)',
           lg: 'auto',
         }}
-        gap={{ base: 5, md: 10, lg: 0 }}
       >
         <Flex
           flexDirection='column'
           alignItems={{ base: 'center', lg: 'start' }}
-          paddingX={4}
           gap={2}
-          gridColumn={{ base: '1/2', sm: '1/3', md: '1/5', lg: '1/2' }}
+          gridColumn={{ base: '1/3', sm: '1/3', md: '1/5', lg: '1/2' }}
           gridRow={{ base: '5/6', md: '2/3', lg: '1/2' }}
         >
           <Img src={vocdoni_logo} maxW={36}></Img>
           <Img src={`${process.env.PUBLIC_URL}/assets/powered_by_aragon.png`} maxW={36}></Img>
         </Flex>
-        <Flex flexDirection='column' alignItems={{ base: 'center', lg: 'start' }}>
-          <Text fontWeight='bold' mb={4}>
-            {t('footer.company').toUpperCase()}
-          </Text>
-          <List display='flex' flexDirection='column' alignItems={{ base: 'center', lg: 'start' }} ml={0}>
+        <Box textAlign={{ base: 'center', lg: 'start' }} mb={4}>
+          <Text fontWeight='bold'>{t('footer.company').toUpperCase()}</Text>
+          <List ml={0} textAlign={{ base: 'center', lg: 'start' }}>
             <ListItem>
               <Link href='#'> {t('footer.about')} </Link>
             </ListItem>
@@ -50,12 +46,10 @@ const Footer = ({ ...props }) => {
               <Link href='#'>{t('footer.blog')} </Link>
             </ListItem>
           </List>
-        </Flex>
-        <Flex flexDirection='column' alignItems={{ base: 'center', lg: 'start' }}>
-          <Text fontWeight='bold' mb={4}>
-            {t('footer.developers').toUpperCase()}
-          </Text>
-          <List display='flex' flexDirection='column' alignItems={{ base: 'center', lg: 'start' }} ml={0}>
+        </Box>
+        <Box textAlign={{ base: 'center', lg: 'start' }} mb={4}>
+          <Text fontWeight='bold'>{t('footer.developers').toUpperCase()}</Text>
+          <List ml={0} textAlign={{ base: 'center', lg: 'start' }}>
             <ListItem>
               <Link href='https://developer.vocdoni.io/' target='_blank'>
                 {t('footer.developer_portal')}
@@ -73,12 +67,10 @@ const Footer = ({ ...props }) => {
               </Link>
             </ListItem>
           </List>
-        </Flex>
-        <Flex flexDirection='column' alignItems={{ base: 'center', lg: 'start' }}>
-          <Text fontWeight='bold' mb={4}>
-            {t('footer.resources').toUpperCase()}
-          </Text>
-          <List display='flex' flexDirection='column' alignItems={{ base: 'center', lg: 'start' }} ml={0}>
+        </Box>
+        <Box textAlign={{ base: 'center', lg: 'start' }} mb={4}>
+          <Text fontWeight='bold'>{t('footer.resources').toUpperCase()}</Text>
+          <List ml={0} textAlign={{ base: 'center', lg: 'start' }}>
             <ListItem>
               <Link href='#'>{t('footer.guides')}</Link>
             </ListItem>
@@ -86,23 +78,21 @@ const Footer = ({ ...props }) => {
               <Link href='#'>{t('footer.tutorials')}</Link>
             </ListItem>
           </List>
-        </Flex>
-        <Flex flexDirection='column' alignItems={{ base: 'center', lg: 'start' }}>
-          <Text fontWeight='bold' mb={4}>
-            {t('footer.contact').toUpperCase()}
-          </Text>
+        </Box>
+        <Box textAlign={{ base: 'center', lg: 'start' }} mb={4}>
+          <Text fontWeight='bold'>{t('footer.contact').toUpperCase()}</Text>
           <List display='flex' flexDirection='column' alignItems={{ base: 'center', lg: 'start' }} ml={0}>
             <ListItem>
               <Link href='mailto:info@vocdoni.com'>info@vocdoni.io</Link>
             </ListItem>
           </List>
-        </Flex>
+        </Box>
       </Grid>
       <HR bgColor='black' />
       <Flex
+        flexDirection={{ base: 'column', lg: 'row' }}
         justifyContent={{ base: 'center', lg: 'space-between' }}
         alignItems={{ base: 'center', lg: 'start' }}
-        flexDirection={{ base: 'column', lg: 'row' }}
         gap={4}
       >
         <Code bg='white'>

@@ -1,62 +1,50 @@
-import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
-import { Box, Flex, IconButton, List, UnorderedList, useDisclosure, useOutsideClick } from '@chakra-ui/react'
-import { useRef } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Box, Flex, List, useOutsideClick } from '@chakra-ui/react'
+import { useContext, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
+import { SearchInputContext } from '../../Providers'
 import Logo from '../Layout/Logo'
 import SearchInput from '../Search/Input'
 import NavList from './List'
 
 const Navbar = ({ ...props }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const { t } = useTranslation()
+  const searchInputValues = useContext(SearchInputContext)
+
   const location = useLocation()
 
-  const refNav = useRef<HTMLDivElement>(null)
+  const refSearchInput = useRef<HTMLDivElement>(null)
 
   useOutsideClick({
-    ref: refNav,
-    handler: () => onClose(),
+    ref: refSearchInput,
+    handler: () => searchInputValues?.removeFullInput(),
   })
 
   return (
-    <Box as='nav' ref={refNav} {...props}>
-      <Flex justifyContent='space-between' alignItems='center' gap={4} paddingY={4}>
-        <Logo />
+    <Flex as='nav' justifyContent='space-between' alignItems='center' gap={4} {...props}>
+      <Logo
+        flexDirection={searchInputValues?.isSearchInScreen || location.pathname !== '/' ? 'row' : 'column'}
+        gap={searchInputValues?.isSearchInScreen || location.pathname !== '/' ? 1 : 0}
+      />
 
-        {location.pathname.includes('organization') && <SearchInput width='50%' />}
+      {searchInputValues?.isFullInput && !searchInputValues?.isSearchInScreen && location.pathname === '/' ? (
+        <Box ref={refSearchInput} width='full'>
+          <SearchInput autofocus />
+        </Box>
+      ) : (
+        <>
+          {!searchInputValues?.isSearchInScreen && location.pathname === '/' && (
+            <SearchInput
+              display={{ base: 'none', lg: 'inline-block' }}
+              width={95}
+              onClick={searchInputValues?.displayFullInput}
+            />
+          )}
 
-        <List display={{ base: 'none', lg: 'flex' }} alignItems='center' gap={4}>
-          <NavList mobile={false} />
-        </List>
-
-        <IconButton
-          size={'md'}
-          icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-          aria-label={t('menu.open_menu')}
-          display={{ lg: 'none' }}
-          onClick={isOpen ? onClose : onOpen}
-        />
-      </Flex>
-      {isOpen && (
-        <Flex
-          display={{ lg: 'none' }}
-          position='absolute'
-          left={0}
-          bg='navbar.bg'
-          width='100%'
-          zIndex={10}
-          borderStyle='solid'
-          borderColor='navbar.border'
-          borderWidth={2}
-          borderBottomColor='navbar.border_bottom'
-        >
-          <UnorderedList display='flex' flexDirection='column' alignItems='center' gap={4} pb={8}>
-            <NavList mobile={true} onClose={onClose} />
-          </UnorderedList>
-        </Flex>
+          <List display='flex' alignItems='center' gap={4}>
+            <NavList displayFullInput={searchInputValues?.displayFullInput} />
+          </List>
+        </>
       )}
-    </Box>
+    </Flex>
   )
 }
 

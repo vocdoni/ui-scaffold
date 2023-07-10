@@ -1,10 +1,26 @@
-import { Flex, Grid, GridItem, Spinner, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
-import { ElectionProvider, useClient, useOrganization } from '@vocdoni/chakra-components'
+import { AddIcon } from '@chakra-ui/icons'
+import {
+  Box,
+  Button,
+  Flex,
+  Grid,
+  GridItem,
+  Spinner,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Text,
+  useOutsideClick,
+} from '@chakra-ui/react'
+import { useClient, useOrganization } from '@vocdoni/chakra-components'
 import { InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
-import ProcessCard from '../Process/Card'
+import { NavLink } from 'react-router-dom'
+import Card from '../Process/CardDetailed'
+import SearchButton from '../Search/Button'
 import SearchInput from '../Search/Input'
 import Header from './Header'
 
@@ -19,9 +35,24 @@ const OrganizationView = () => {
   const [error, setError] = useState<boolean>(false)
   const [finished, setFinished] = useState<boolean>(false)
 
+  const [isFullInput, setIsFullInput] = useState(false)
+  const displayFullInput = () => setIsFullInput(true)
+  const refSearchInput = useRef<HTMLDivElement>(null)
+
+  useOutsideClick({
+    ref: refSearchInput,
+    handler: () => setIsFullInput(false),
+  })
+
   const refObserver = useRef<any>()
   const [page, setPage] = useState<number>(-1)
   useObserver(refObserver, setPage)
+
+  const [tabIndex, setTabIndex] = useState(0)
+
+  const handleTabsChange = (index: number) => {
+    setTabIndex(index)
+  }
 
   // empties the list on account change
   useEffect(() => {
@@ -62,55 +93,92 @@ const OrganizationView = () => {
       })
   }, [client, organization?.address, page, error, finished])
 
-  const templateColumnsAllRounds =
-    electionsList?.length === 1
-      ? {
-          base: '1fr',
-        }
-      : {
-          base: '1fr',
-          lg: 'repeat(2, 1fr)',
-        }
-
   return (
-    <Flex direction='column' gap={4}>
+    <>
       <Header />
-      <Tabs mt={8} colorScheme='brand.scheme'>
-        <TabList
-          position='relative'
-          display='flex'
-          flexDirection={{ base: 'column', md: 'row' }}
-          justifyContent='center'
-          alignItems='center'
-        >
-          <SearchInput
-            position={{ md: 'absolute' }}
-            right={0}
-            mb={{ base: 25, sm: 0 }}
-            w={{ base: '50%', md: '30%', lg: '20%' }}
-          />
-          <Flex>
-            <Tab whiteSpace='nowrap'>{t('organization.rounds.all')}</Tab>
-            <Tab whiteSpace='nowrap'> {t('organization.rounds.active')} </Tab>
+      <Tabs variant='organization' align='center' index={tabIndex} onChange={handleTabsChange}>
+        {!isFullInput ? (
+          <TabList>
+            <Tab>
+              {t('organization.rounds.all')}
+              <Box>{organization?.electionIndex}</Box>
+            </Tab>
+
+            <Tab>{t('organization.rounds.active')}</Tab>
+
+            <SearchInput
+              position='absolute'
+              zIndex={30}
+              right={0}
+              display={{ base: 'none', md: 'inline-block' }}
+              mb={{ base: 25, sm: 0 }}
+              w={{ md: '30%', lg: '20%' }}
+              mt={2}
+            />
+
+            <Box position='absolute' right={0} display={{ base: 'inline-block', md: 'none' }} justifyContent='center'>
+              <SearchButton displayFullInput={displayFullInput} aria={t('menu.search')} />
+            </Box>
+          </TabList>
+        ) : (
+          <Flex
+            ref={refSearchInput}
+            position='sticky'
+            top='72px'
+            zIndex={30}
+            justifyContent='center'
+            bgColor='organization.tabs.bg'
+          >
+            <SearchInput width='80%' />
           </Flex>
-        </TabList>
+        )}
+
         <TabPanels>
           <TabPanel>
-            <Grid templateColumns={templateColumnsAllRounds} gap={4}>
+            <Grid
+              templateColumns={{
+                base: '1fr',
+                md2: 'repeat(2, 1fr)',
+                xl2: 'repeat(3, 1fr)',
+              }}
+              columnGap={{ base: 3, lg: 4 }}
+              rowGap={6}
+            >
               {electionsList?.map((election: any, idx: number) => (
-                <Link to={`/processes/0x${election.id}`} key={idx}>
-                  <GridItem display='flex' justifyContent='center' alignItems='center'>
-                    <ElectionProvider election={election}>
-                      <ProcessCard />
-                    </ElectionProvider>
-                  </GridItem>
-                </Link>
+                <GridItem key={idx} display='flex' justifyContent='center' alignItems='start'>
+                  <Card election={election} />
+                </GridItem>
               ))}
               <div ref={refObserver}></div>
             </Grid>
+
             <Flex justifyContent='center' mt={4}>
               {loading && <Spinner />}
-              {loaded && !electionsList.length && !error && <Text>{t('organization.elections_list_empty')}</Text>}
+              {loaded && !electionsList.length && (
+                <Flex
+                  direction='column'
+                  justifyContent='center'
+                  alignItems='center'
+                  gap={3}
+                  w={124}
+                  p={12}
+                  bgColor='organization.election_list_empty.bg'
+                  borderRadius={2}
+                  border='1px solid'
+                  borderColor='organization.election_list_empty.border'
+                >
+                  <Text textAlign='center' fontSize='xl2'>
+                    {t('organization.elections_list_empty')}
+                  </Text>
+                  <NavLink to='/processes/create'>
+                    <Button sx={{ span: { margin: 0 } }} rightIcon={<AddIcon />}>
+                      <Text as='span' display={{ base: 'none', md: 'inline-block' }} pr={2}>
+                        {t('menu.create')}
+                      </Text>
+                    </Button>
+                  </NavLink>
+                </Flex>
+              )}
               {error && <Text>{error}</Text>}
             </Flex>
           </TabPanel>
@@ -119,7 +187,7 @@ const OrganizationView = () => {
           </TabPanel>
         </TabPanels>
       </Tabs>
-    </Flex>
+    </>
   )
 }
 

@@ -5,315 +5,190 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
 
 const cardCommonStyles = {
   container: {
-    width: '100%',
-    padding: 0,
-    borderRadius: 10,
+    p: 0,
     cursor: 'pointer',
   },
   header: {
-    bgColor: 'card.bg',
-    padding: 0,
+    p: 0,
   },
   body: {
-    bgColor: 'card.bg',
-    padding: 0,
+    p: 0,
   },
   footer: {
-    bgColor: 'card.bg',
-    padding: 0,
+    fontSize: 'sm',
   },
 }
 
-const organization = definePartsStyle({
-  container: {
-    ...cardCommonStyles.container,
-    overflow: 'hidden',
-  },
-  header: {
-    ...cardCommonStyles.header,
-  },
-  body: {
-    ...cardCommonStyles.body,
-    paddingX: 3,
-    py: 2,
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: 'card.title',
-  },
-  footer: {
-    ...cardCommonStyles.footer,
-    display: 'flex',
-    flexDirection: 'column',
-    paddingX: 3,
-    pb: 1,
-    fontSize: 14,
-
-    '& p:first-of-type': {
-      width: 'min-content',
-      color: 'brand.color',
-      fontWeight: 'normal',
-    },
-
-    '& p': {
-      fontWeight: 'bold',
-    },
-  },
-})
-
-const processImg = definePartsStyle({
+const lite = definePartsStyle({
   ...cardCommonStyles,
+
   container: {
     ...cardCommonStyles.container,
+    w: 72,
+    borderRadius: 'lg',
     overflow: 'hidden',
-  },
-  header: {
-    ...cardCommonStyles.header,
-  },
-  body: {
-    ...cardCommonStyles.body,
-    minH: 20,
-    paddingX: 3,
-    pt: 3,
-    pb: 1,
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: 'card.title',
+    boxShadow: 'var(--box-shadow)',
+    transition: 'box-shadow .2s  ',
 
-    '& p:first-of-type': {
+    _hover: {
+      boxShadow: 'var(--box-shadow-darker)',
+      transition: 'box-shadow .2s  ',
+    },
+  },
+
+  body: {
+    minH: 24,
+    p: 4,
+    pb: 0,
+
+    '& > p:first-of-type': {
+      fontSize: 'sm',
       textTransform: 'uppercase',
-      isTruncated: true,
-      fontWeight: 'normal',
-      color: 'card.variant.process_image',
-      pb: 1,
+      color: 'card.header',
+      noOfLines: 1,
+      overflow: 'hidden',
+      display: '-webkit-box',
+      WebkitBoxOrient: 'vertical',
+      WebkitLineClamp: 'var(--chakra-line-clamp)',
     },
-    '& p:nth-of-type(2)': {
-      lineHeight: 1.3,
+
+    '& > p:nth-of-type(2)': {
+      fontWeight: 'bold',
+      fontSize: 'lg',
+      noOfLines: 2,
+      overflow: 'hidden',
+      display: '-webkit-box',
+      WebkitBoxOrient: 'vertical',
+      WebkitLineClamp: 'var(--chakra-line-clamp)',
     },
   },
   footer: {
     ...cardCommonStyles.footer,
-    display: 'flex',
-    justifyContent: 'center',
-    paddingX: 3,
+    gap: 3.5,
+    px: 4,
+    pt: 0,
     pb: 2,
-    fontSize: 14,
+    fontWeight: 'bold',
 
-    '& div': {
-      width: '100%',
-      borderLeftStyle: 'solid',
-      borderLeftWidth: 1,
-      borderLeftColor: 'card.footer_divider',
-      pl: 2,
+    '& > div > p:first-of-type': {
+      color: 'card.footer_title',
+      fontWeight: 'normal',
     },
 
-    '& div:first-of-type': {
-      borderLeft: 'none',
-      pl: 0,
-    },
-    '& div p': {
-      whiteSpace: 'nowrap',
-    },
-    '& div p:nth-of-type(odd)': {
-      width: 'min-content',
-      color: 'brand.color',
-    },
-    '& div p:nth-of-type(even)': {
-      fontWeight: 'bold',
+    '& div:nth-of-type(even)': {
+      pl: 3.5,
+      borderLeft: '1px solid',
+      borderColor: 'card.footer_divider',
     },
   },
 })
 
-const processDescription = definePartsStyle({
+const detailed = definePartsStyle({
   ...cardCommonStyles,
+
   container: {
     ...cardCommonStyles.container,
-    display: 'flex',
-    flexDirection: 'column',
-    maxW: 124,
+    w: { base: 84, sm: 100 },
+    position: 'relative',
+    minH: 76,
   },
+
   header: {
     ...cardCommonStyles.header,
-    alignSelf: 'end',
+    textAlign: 'start',
+    pl: 10,
+    position: 'relative',
+    zIndex: 1,
 
     '& span': {
-      borderBottomRadius: 'none',
+      ml: 'auto',
+      borderRadius: '4px 4px 0px 0px',
+
+      px: 4,
     },
   },
 
   body: {
     ...cardCommonStyles.body,
-    boxShadow: '1px 1px 10px 2px lightgray',
-    borderLeftRadius: 10,
-    borderBottomRightRadius: 10,
-    py: 5,
-    paddingX: 7,
 
-    '& div:first-of-type': {
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    position: 'relative',
+    zIndex: 10,
+    p: 5,
+    boxShadow: 'var(--box-shadow)',
+    transition: 'box-shadow .2s',
+    borderRadius: 'lg',
+
+    _hover: {
+      boxShadow: 'var(--box-shadow-darker)',
+      transition: 'box-shadow .2s  ',
+    },
+
+    '& > div:first-of-type': {
       display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'start',
-      overflow: 'hidden',
-    },
+      gap: 5,
+      justifyContent: 'space-between',
 
-    '& div:first-of-type > div': {
-      height: 14,
-    },
-    '& > div:first-of-type > p:first-of-type': {
-      color: 'card.variant.process_description',
-      fontSize: 14,
-      mb: 1,
-    },
+      '& > div:first-of-type ': {
+        textAlign: 'start',
 
-    '& div:first-of-type h4': {
-      fontSize: 20,
-      textAlign: 'start',
-      color: 'card.title',
-    },
+        '& > p:first-of-type': {
+          color: 'card.header',
+          mb: 1,
+        },
 
-    '& > div:nth-of-type(1) > div:first-of-type > div': {
-      overflow: 'hidden',
-      mb: 1,
-    },
+        '& > p:nth-of-type(2)': {
+          mb: 1.5,
+          textAlign: 'start',
+          fontSize: 'xl2',
+          noOfLines: 2,
+          overflow: 'hidden',
+          display: '-webkit-box',
+          WebkitBoxOrient: 'vertical',
+          WebkitLineClamp: 'var(--chakra-line-clamp)',
+        },
 
-    '& > div:nth-of-type(1) > div:first-of-type > div > p': {
-      color: 'card.description',
+        '& > div': {
+          color: 'card.description',
+          noOfLines: 4,
+          overflow: 'hidden',
+          display: '-webkit-box',
+          WebkitBoxOrient: 'vertical',
+          WebkitLineClamp: 'var(--chakra-line-clamp)',
+        },
+      },
     },
 
     '& > div:nth-of-type(2)': {
+      mt: 'auto',
       display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      bgColor: 'white',
-      minH: 14,
-
-      '& > p': {
-        color: 'card.process_canceled',
-      },
+      gap: 3.5,
 
       '& div': {
-        width: '100%',
-        borderLeftStyle: 'solid',
-        borderLeftWidth: 1,
-        borderLeftColor: 'card.footer_divider',
-        pl: 12,
+        textAlign: 'start',
       },
 
-      '& div:first-of-type': {
-        borderLeft: 'none',
-        pl: 0,
+      '& > div > p:first-of-type': {
+        color: 'card.footer_title',
+        fontWeight: 'normal',
+        fontStyle: 'normal',
       },
-      '& div p': {
-        whiteSpace: 'nowrap',
-      },
-      '& div p:nth-of-type(odd)': {
-        width: 'min-content',
-        color: 'brand.color',
+
+      '& div:nth-of-type(even)': {
+        pl: 3.5,
+        textAlign: 'start',
+        borderLeft: '1px solid',
+        borderColor: 'card.footer_divider',
       },
     },
-  },
-})
-
-const processInfo = definePartsStyle({
-  container: {
-    ...cardCommonStyles.container,
-    direction: 'column',
-    width: 'auto',
-    maxWidth: 88,
-    gap: 11,
-    borderRadius: 10,
-    padding: 5,
-    position: 'sticky',
-    top: 2,
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: 'card.variant.process_info',
-    cursor: 'normal',
-    zIndex: 10,
-
-    '& hr': {
-      height: 1,
-      m: 0,
-    },
-  },
-  header: {
-    ...cardCommonStyles.header,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 2.5,
-
-    '& div:nth-of-type(1)': {
-      width: 12,
-      height: 12,
-
-      borderWidth: 1,
-      sorderStyle: 'solid',
-      borderColor: 'card.variant.process_info',
-
-      '& svg': {
-        color: 'card.variant.process_info',
-        boxSize: 8,
-      },
-    },
-
-    '& div': {
-      'p:nth-of-type(1)': {
-        fontSize: 20,
-        fontWeight: 'bold',
-        whiteSpace: 'nowrap',
-      },
-
-      span: {
-        color: 'cards.variants.process_info',
-      },
-    },
-  },
-  body: {
-    ...cardCommonStyles.body,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'stretch',
-    gap: 5,
-
-    '& btn': {
-      alignSelf: 'center',
-    },
-
-    '& div:last-child': {
-      display: 'flex',
-      flexDirection: 'column',
-
-      '& button': {
-        textAlign: 'center',
-      },
-    },
-  },
-})
-
-const results = definePartsStyle({
-  container: {
-    ...cardCommonStyles.container,
-    paddingX: 6,
-    py: 5,
-  },
-  header: {
-    ...cardCommonStyles.header,
-    fontSize: 20,
-  },
-  body: {
-    ...cardCommonStyles.body,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 3,
   },
 })
 
 const variantsCards = {
-  organization,
-  'process-img': processImg,
-  'process-description': processDescription,
-  'process-info': processInfo,
-  results,
+  lite,
+  detailed,
 }
 
 export const Card = defineMultiStyleConfig({ variants: variantsCards })

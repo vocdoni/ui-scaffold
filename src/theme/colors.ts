@@ -1,102 +1,161 @@
 export const colorsBase = {
   black: '#000000',
   blue: {
-    light2: '#F2F5FF',
     light: '#B8CEF9',
-    normal: '#0044FF',
+    main: '#0044FF',
     dark: '#002266',
   },
-  brand: {
-    light2: '#218491',
-    light: '#1c727e',
-    main: '#175b64',
-  },
+  gradient: 'var(--vcd-gradient-primary)',
   gray: {
-    light: '#FAFAFA',
-    light2: '#F2F2F2',
-    normal: '#D9D9D9',
-    dark: '#718096',
-    dark2: 'rgba(0, 0, 0, 0.6)',
+    light: '#EDF2F7',
+    main: '#E2E8F0',
+    dark: '#CBD5E0',
+    dark2: '#718096',
   },
-  grenade: '#961D1D',
+  primary: {
+    light: '#24656e',
+    main: '#175b64',
+    dark: '#2c545a',
+  },
   white: '#ffffff',
 }
-
 export const colors = {
-  brand: {
-    color: colorsBase.brand.main,
-    scheme: {
-      50: colorsBase.brand.light2,
-      100: colorsBase.brand.light,
-      500: colorsBase.brand.main,
-      600: colorsBase.black,
-      700: colorsBase.brand.light,
+  aside_bg: colorsBase.gradient,
+
+  primary: {
+    500: colorsBase.primary.main,
+    600: colorsBase.primary.light,
+    700: colorsBase.primary.dark,
+  },
+
+  button: {
+    drop_down: {
+      active: colorsBase.gray.dark,
+      hover: colorsBase.gray.main,
     },
   },
+
+  checkbox_radiobox_bg: colorsBase.white,
 
   card: {
-    bg: colorsBase.white,
-    title: colorsBase.black,
-    description: colorsBase.gray.normal,
-    process_canceled: colorsBase.grenade,
-    footer_divider: colorsBase.gray.light,
-
-    variant: {
-      process_info: colorsBase.brand.main,
-      process_description: colorsBase.brand.main,
-      process_image: colorsBase.brand.main,
-    },
+    description: colorsBase.gray.dark2,
+    footer_divider: colorsBase.gray.dark,
+    footer_title: colorsBase.primary.main,
+    header: colorsBase.primary.main,
   },
 
-  home_bg: colorsBase.blue.light2,
+  home: {
+    banner: {
+      bg: colorsBase.gradient,
+      button_bg: colorsBase.gradient,
+      color: colorsBase.white,
+    },
+    counter: colorsBase.gradient,
+  },
 
   input_search: {
     bg: colorsBase.white,
     border: colorsBase.black,
   },
+
+  language_selected_bg: colorsBase.gray.dark,
+
+  link: colorsBase.primary.main,
+
   navbar: {
+    account_icon: colorsBase.gradient,
     bg: colorsBase.white,
-    border: colorsBase.white,
-    border_bottom: colorsBase.gray.light,
-  },
-  organization: {
-    button_address_active: colorsBase.white,
-    link: colorsBase.brand.main,
-    read_more: colorsBase.brand.main,
   },
 
-  process_canceled: colorsBase.grenade,
+  organization: {
+    election_list_empty: {
+      bg: colorsBase.gray.light,
+      border: colorsBase.gray.main,
+    },
+    tabs: {
+      active: colorsBase.gray.dark,
+      bg: colorsBase.white,
+      circle_bg: colorsBase.primary.main,
+      divider: colorsBase.gray.dark,
+      hover: colorsBase.gray.main,
+      list_border_bottom: colorsBase.gray.dark,
+    },
+  },
+
+  process: {
+    canceled: colorsBase.primary.main,
+    date: colorsBase.primary.main,
+    description: colorsBase.gray.dark2,
+    header_divider: colorsBase.gray.dark,
+    paused: colorsBase.primary.main,
+    questions: {
+      bg: colorsBase.gray.light,
+      alert: {
+        bg: colorsBase.primary.main,
+        color: colorsBase.white,
+        link_color: colorsBase.black,
+        link_bg: colorsBase.white,
+      },
+      btn_form_selected: {
+        bg: colorsBase.primary.main,
+        color: colorsBase.white,
+      },
+      description: colorsBase.gray.dark2,
+      title: colorsBase.primary.main,
+    },
+
+    results: {
+      aside: {
+        color: colorsBase.white,
+        verify_color: colorsBase.black,
+        vote_btn_color: colorsBase.black,
+      },
+      alert_bg: colorsBase.primary.main,
+      alert_color: colorsBase.white,
+      bg: colorsBase.gray.light,
+      description: colorsBase.gray.dark2,
+      title: colorsBase.primary.main,
+    },
+
+    tabs: {
+      active: colorsBase.gray.dark,
+      divider: colorsBase.gray.dark,
+      circle_bg: colorsBase.primary.main,
+      hover: colorsBase.gray.main,
+      list_border_bottom: colorsBase.gray.dark,
+    },
+  },
 
   process_create: {
     alert_info: {
-      color: colorsBase.blue.dark,
       bg: colorsBase.blue.light,
+      color: colorsBase.blue.dark,
     },
-    aside_questions_bg: colorsBase.gray.light2,
+    aside_questions_bg: colorsBase.gray.light,
     bg: colorsBase.gray.light,
-    confirm: {
-      census_web3_text_helper: colorsBase.gray.dark,
-      schedule: colorsBase.black,
-      pencil_icon: colorsBase.brand.main,
-      preview: {
-        description: colorsBase.gray.dark,
-        option: colorsBase.gray.dark,
-      },
+    preview: {
+      census_web3_text_helper: colorsBase.gray.dark2,
+      description: colorsBase.gray.dark2,
+      option: colorsBase.gray.dark2,
+      option_before_color: colorsBase.black,
     },
-    border: colorsBase.gray.normal,
+    border: colorsBase.gray.dark,
     census_box_bg: colorsBase.white,
-    description_logo: colorsBase.blue.normal,
+    description_logo: colorsBase.blue.main,
     input_bg: colorsBase.white,
-    meta_description: colorsBase.gray.dark,
-    stepper: colorsBase.brand.main,
+    meta_description: colorsBase.gray.dark2,
+    stepper: colorsBase.primary.main,
     tabs: {
       card: {
-        color: colorsBase.gray.dark,
+        color: colorsBase.gray.dark2,
         color_title: colorsBase.gray.dark2,
-        selected_color: colorsBase.brand.main,
+        selected_color: colorsBase.primary.main,
       },
     },
   },
-  progress_bar_bg: colorsBase.gray.normal,
-  text_error: colorsBase.grenade,
+
+  progress_bar: {
+    bg: colorsBase.gray.main,
+    track: colorsBase.gradient,
+  },
 }

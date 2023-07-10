@@ -1,14 +1,18 @@
 import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
 
-const link = defineStyle({
-  color: 'brand.scheme',
-  textDecoration: 'underline',
+const dropdown = defineStyle({
+  borderRadius: 'none',
+  w: 'full',
 
   _hover: {
-    textDecoration: 'none',
+    bgColor: 'button.drop_down.hover',
+  },
+
+  _active: {
+    bgColor: 'button.drop_down.active',
   },
 })
 
 export const Button = defineStyleConfig({
-  variants: { link },
+  variants: { dropdown },
 })

@@ -1,8 +1,12 @@
 import { SearchIcon } from '@chakra-ui/icons'
-import { FormControl, Input, InputGroup, InputLeftElement } from '@chakra-ui/react'
+import { FormControl, FormControlProps, Input, InputGroup, InputLeftElement } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 
-const SearchInput = ({ ...props }) => {
+type InputProps = FormControlProps & {
+  autofocus?: boolean
+}
+
+const SearchInput = ({ autofocus, ...props }: InputProps) => {
   const { t } = useTranslation()
 
   return (
@@ -10,15 +14,16 @@ const SearchInput = ({ ...props }) => {
       <InputGroup>
         <InputLeftElement mt={-1} pointerEvents='none' children={<SearchIcon color='black' />} />
         <Input
+          autoFocus={autofocus}
           placeholder={t('search.input_placeholder').toString()}
           variant='unstyled'
           height={8}
-          bgColor='input_search.bg'
           borderRadius={40}
           borderWidth={1}
           borderColor='input_search.border'
           borderStyle='solid'
           _focus={{
+            bgColor: 'input_search.bg',
             borderWidth: 1.5,
             outlineOffset: 0,
           }}

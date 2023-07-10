@@ -28,7 +28,7 @@ export const StepsCensusToken = () => {
   return (
     <>
       <Box mb={5}>
-        <Text fontWeight='bold' fontSize='2xl' textAlign='center' mb={3}>
+        <Text fontWeight='bold' fontSize='xl2' textAlign='center' mb={3}>
           {t('form.process_create.census.token_title')}
         </Text>
       </Box>

@@ -22,7 +22,7 @@ export const Census = () => {
       <Wrapper>
         <Flex flexDirection='column' gap={16}>
           <Box>
-            <Text fontWeight='bold' fontSize='2xl' mb={2}>
+            <Text fontWeight='bold' fontSize='xl2' mb={2}>
               {t('form.process_create.census.title')}
             </Text>
             <Text color='process_create.description'>{t('form.process_create.census.description')}</Text>
