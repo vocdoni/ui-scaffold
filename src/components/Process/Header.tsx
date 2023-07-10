@@ -24,7 +24,7 @@ const ProcessHeader = () => {
 
   return (
     <Box mb={4}>
-      <Link to={`/organization/0x${election?.organizationId}`}>
+      <Link to={`/organization/${enforceHexPrefix(election?.organizationId)}`}>
         <Button leftIcon={<FaRegArrowAltCircleLeft />} mb={4}>
           <Text as='span' overflow='hidden' fontSize='sm' isTruncated>
             {organization?.account.name.default || enforceHexPrefix(organization?.address)}
