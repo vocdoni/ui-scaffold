@@ -15,8 +15,10 @@ export const ProcessDate = () => {
   if (election.status === ElectionStatus.CANCELED) return null
 
   return (
-    <Box paddingX={4}>
-      <Text color='process.date'>{statusText}</Text>
+    <Box>
+      <Text color='process.date' fontWeight='bold'>
+        {statusText}
+      </Text>
       <Text>
         {t('process.date.relative', { date: election.startDate > new Date() ? election.startDate : election.endDate })}
       </Text>

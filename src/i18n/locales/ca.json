@@ -1,14 +1,22 @@
 {
   "alt_image": "Imatge de {{ img }}",
   "aside": {
-    "connect_and_vote": "Connecta't i vota les teves propostes favorites",
-    "connect_to_vote": "Connecta't per votar",
     "has_already_voted": "El teu vot s'ha registrat correctament",
     "is_able_to_vote": "Connectat. Ets elegible per votar.",
     "is_not_in_census": "No ets al cens",
+    "not_connected": "",
     "overwrite_votes_left": "Pots corregir el teu vot {{ left }} vegades.",
     "verify_vote_on_explorer": "Verifica el vot a l'explorador",
-    "voters": "Votants"
+    "votes_one": "",
+    "votes_other": "",
+    "votes_submited_one": "",
+    "votes_submited_other": ""
+  },
+  "banner": {
+    "know_more": "",
+    "start_now": "",
+    "subtitle": "",
+    "title": ""
   },
   "cc": {
     "actions": {
@@ -53,6 +61,10 @@
     "address": "Copia l'adreça",
     "copied_title": "Copiat!"
   },
+  "error": {
+    "return_to_home": ""
+  },
+  "error_text": "Ho sentim, no s'ha trobat la pàgina que busqueu",
   "footer": {
     "about": "Sobre nosaltres",
     "blog": "Blog",
@@ -187,12 +199,14 @@
     "twitter": "Enllaç al Twitter de Vocdoni"
   },
   "loading": "Carregant...",
-  "logout": "Tancar sessió",
   "menu": {
     "connect": "Connecta",
+    "create": "Crear procés",
     "create_process": "Crear procés",
+    "disconnect": "Desconnectar cartera",
     "my_list": "La meva llista",
-    "open_menu": "Obre el menú"
+    "search": "",
+    "support": ""
   },
   "not_found": "No trobat",
   "open_in_explorer": "Obre a l'explorador",
@@ -201,7 +215,6 @@
     "dao_title": "DAO",
     "elections": "Eleccions",
     "elections_list_empty": "Aquesta organització encara no té eleccions",
-    "members": "Membres",
     "rounds": {
       "active": "Actives",
       "all": "Totes"
@@ -209,7 +222,6 @@
   },
   "process": {
     "date": {
-      "canceled": "Procés cancel·lat",
       "ended": "Procés finalitzat",
       "ends": "Finalitza",
       "relative": "{{ date, relative(past: fa %time; future: en %time) }}",
@@ -223,20 +235,18 @@
       "ended": "Procés finalitzat",
       "ongoing": "Procés en curs",
       "paused": "Procés en pausa",
+      "paused_description": "",
       "results": "Resultats",
       "unknown": "Desconegut",
       "upcoming": "Procés previst"
     },
-    "voters": "Votants",
-    "votes": "Vots"
+    "voters": "Votants"
   },
   "process_actions": {
     "pause": "Pausa",
     "play": "Reprodueix",
     "stop": "Atura"
   },
-  "read_less": "Llegir menys",
-  "read_more": "Llegir més",
   "search": {
     "input_placeholder": "Cerca"
   },

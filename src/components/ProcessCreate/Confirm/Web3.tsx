@@ -24,7 +24,7 @@ const Web3Confirm = () => {
           ))}
         </UnorderedList>
       </Box>
-      <Text color='process_create.confirm.census_web3_text_helper'>
+      <Text color='process_create.preview.census_web3_text_helper'>
         {t('form.process_create.confirm.web3_number_addresses', { addresses: addresses.length })}
       </Text>
     </Flex>

@@ -1,78 +1,89 @@
-import { EmailIcon } from '@chakra-ui/icons'
-import { Box, Card, CardBody, CardHeader, Circle, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { HR, useElection, VoteButton } from '@vocdoni/chakra-components'
+import { VoteButton, environment, useClient, useElection } from '@vocdoni/chakra-components'
 import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 
-interface Props {
-  isInCensus: boolean
-  hasAlreadyVoted?: boolean
-  handleTabsChange: (index: number) => void
-  order: any
-  alignSelf: any
-}
-
-const ProcessAside = ({ handleTabsChange, isInCensus, hasAlreadyVoted, order, alignSelf }: Props) => {
+const ProcessAside = ({ ...props }) => {
   const { t } = useTranslation()
-  const { election, isAbleToVote, votesLeft } = useElection()
+  const { election, isAbleToVote, isInCensus, voted, votesLeft } = useElection()
   const { isConnected } = useAccount()
+  const { env } = useClient()
 
   return (
-    <Card variant='process-info' order={order} alignSelf={alignSelf}>
-      <CardHeader
-        onClick={() => {
-          if (election?.status === ElectionStatus.RESULTS) handleTabsChange(1)
-        }}
-        cursor={election?.status === ElectionStatus.RESULTS ? 'pointer' : 'normal'}
-      >
-        <Circle>
-          <EmailIcon />
-        </Circle>
-        <Box>
-          <Text>{getStatusText(t, election?.status)}</Text>
+    <Flex
+      direction='column'
+      justifyContent='center'
+      gap={2}
+      py={4}
+      px={6}
+      w={76}
+      mt={7}
+      color='process.results.aside.color'
+      background='aside_bg'
+      borderRadius='lg'
+      {...props}
+    >
+      <Text textAlign='center' fontWeight='bold' fontSize='xl2'>
+        {getStatusText(t, election?.status)}
+      </Text>
 
-          {election?.status !== ElectionStatus.CANCELED && (
-            <Text>
-              <Text as='span'>{election?.voteCount}</Text> {t('process.votes')}
+      {election?.status !== ElectionStatus.CANCELED && election?.status !== ElectionStatus.UPCOMING && (
+        <Text textAlign='center'>
+          {election?.status === ElectionStatus.ENDED || election?.status === ElectionStatus.RESULTS
+            ? t('aside.votes_submited', { count: election?.voteCount })
+            : t('aside.votes', { count: election?.voteCount })}
+        </Text>
+      )}
+      {isConnected ? (
+        <>
+          {isAbleToVote && (
+            <Box textAlign='center' fontSize='sm'>
+              <Text mb={2}>{t('aside.is_able_to_vote')}</Text>
+              <VoteButton w='full' color='process.results.aside.vote_btn_color' />
+            </Box>
+          )}
+          {!isInCensus && (
+            <Text textAlign='center' fontSize='sm'>
+              {t('aside.is_not_in_census')}
             </Text>
           )}
-        </Box>
-      </CardHeader>
+          {voted !== null && voted.length > 0 && (
+            <Box textAlign='center' fontSize='sm'>
+              <Text mb={2}>{t('aside.has_already_voted').toString()}</Text>
+              <Link to={environment.verifyVote(env, voted)} target='_blank'>
+                <Button w='full' color='process.results.aside.verify_color'>
+                  {t('aside.verify_vote_on_explorer')}
+                </Button>
+              </Link>
+            </Box>
+          )}
 
-      {election?.status === ElectionStatus.ONGOING && <HR />}
-
-      {election?.status === ElectionStatus.ONGOING && isConnected && (
-        <CardBody>
-          <Text textAlign='center'>
-            {isAbleToVote && t('aside.is_able_to_vote').toString()}
-            {!isAbleToVote && !isInCensus && t('aside.is_not_in_census').toString()}
-            {!isAbleToVote && hasAlreadyVoted && t('aside.has_already_voted').toString()}{' '}
-            {isInCensus &&
-              hasAlreadyVoted &&
-              hasOverwriteEnabled(election) &&
-              t('aside.overwrite_votes_left', { left: votesLeft })}
+          {hasOverwriteEnabled(election) && isInCensus && (
+            <Text>{t('aside.overwrite_votes_left', { left: votesLeft })}</Text>
+          )}
+        </>
+      ) : (
+        <>
+          <Text textAlign='center' fontSize='sm'>
+            {t('aside.not_connected')}
           </Text>
-          <VoteButton colorScheme='brand.scheme' />
-        </CardBody>
+          <Flex justifyContent='center'>
+            <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />
+          </Flex>
+        </>
       )}
-      {election?.status === ElectionStatus.ONGOING && !isConnected && (
-        <CardBody>
-          <Box>
-            <Text fontWeight='bold'>{t('aside.voters')}: </Text>
-            <Text>{t('aside.connect_and_vote')}</Text>
-          </Box>
-          <ConnectButton chainStatus='none' showBalance={false} label={t('aside.connect_to_vote').toString()} />
-        </CardBody>
-      )}
-    </Card>
+    </Flex>
   )
 }
 
-const hasOverwriteEnabled = (election: PublishedElection) =>
-  typeof election.voteType.maxVoteOverwrites !== 'undefined' && election.voteType.maxVoteOverwrites > 0
+const hasOverwriteEnabled = (election?: PublishedElection): boolean =>
+  typeof election !== 'undefined' &&
+  typeof election.voteType.maxVoteOverwrites !== 'undefined' &&
+  election.voteType.maxVoteOverwrites > 0
 
 const getStatusText = (t: TFunction<string, string>, electionStatus: ElectionStatus | undefined) => {
   switch (electionStatus) {

@@ -1,9 +1,12 @@
-import { Box, Flex, Grid, GridItem, Text } from '@chakra-ui/react'
+import { Box, Grid, GridItem, Text } from '@chakra-ui/react'
+import { Dispatch, SetStateAction, useContext, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import { SearchInputContext } from '../Providers'
+import Banner from '../components/Home/Banner'
 import Counters from '../components/Home/Counters'
-import CardOrg, { CardOrgContents } from '../components/Organization/Card'
-import ProcessCardImg, { CardPrImgContents } from '../components/Process/CardImg'
+import OrganizationCard, { CardOrgContents } from '../components/Organization/Card'
+import ProcessCardLite, { CardPrImgContents } from '../components/Process/CardLite'
 import SearchInput from '../components/Search/Input'
 
 const CARDS_ORG: CardOrgContents[] = [
@@ -84,7 +87,7 @@ const CARDS_ORG: CardOrgContents[] = [
 const CARDS_PR: CardPrImgContents[] = [
   {
     organization: 'gekko dako',
-    name: 'Der verspreiding van het christendom over Eruopa',
+    name: 'Der verspreiding van het christendom over Eruopa asasasasas',
     voters: '240',
     votingEnds: 'xxx',
     imageURL:
@@ -183,55 +186,99 @@ const CARDS_PR: CardPrImgContents[] = [
 const Home = () => {
   const { t } = useTranslation()
 
+  const searchRef = useRef<HTMLDivElement>(null)
+
+  const serachInputValues = useContext(SearchInputContext)
+
+  useObserver(searchRef, serachInputValues?.setIsSearchInScreen, serachInputValues?.removeFullInput)
+
   return (
     <Box>
-      <Flex direction='column' justifyContent='center' alignItems='center' gap={8} mb={8}>
-        <SearchInput width={{ base: '90%', sm: '80%', md: '70%', lg: 124 }} />
-        <Counters />
-      </Flex>
-      <Text textAlign={{ base: 'center', sm: 'start' }} mb={4} fontSize={30} fontWeight='bold'>
+      <Banner />
+
+      <Box ref={searchRef} width={{ base: '90%', sm: '80%', md: '70%', lg: 124 }} mx='auto' mb={8}>
+        <SearchInput />
+      </Box>
+
+      <Counters mb={8} />
+
+      <Text mb={4} textAlign='center' fontSize={{ base: 'xl3', sm: 'xl4' }} fontWeight='bold'>
         {t('home.active_voting')}
       </Text>
+
       <Grid
-        mb={12}
         templateColumns={{
           base: '1fr',
-          sm: 'repeat(2, 1fr)',
-          md: 'repeat(3, 1fr)',
-          lg: 'repeat(4, 1fr)',
+          sm2: 'repeat(2, 1fr)',
+          lg: 'repeat(3, 1fr)',
+          xl: 'repeat(4, 1fr)',
         }}
-        gap={4}
+        rowGap={10}
+        mb={12}
       >
         {CARDS_PR.map((card, index) => (
-          <Link to={`/organization/0x4a081070E9D555b5D19629a6bcc8B77f4aE6d39c`} key={index}>
-            <GridItem px={{ base: 10, sm: 0 }}>
-              <ProcessCardImg card={card} />
-            </GridItem>
-          </Link>
+          <GridItem key={index} display='flex' justifyContent='center'>
+            <ProcessCardLite card={card} />
+          </GridItem>
         ))}
       </Grid>
-      <Text textAlign={{ base: 'center', sm: 'start' }} mb={4} fontSize={20} fontWeight='bold'>
+      <Text mb={4} textAlign='center' fontSize={{ base: 'xl2', sm: 'xl3' }} fontWeight='bold'>
         {t('home.more_active_organizations')}
       </Text>
       <Grid
         templateColumns={{
           base: '1fr',
-          sm: 'repeat(2, 1fr)',
-          md: 'repeat(3, 1fr)',
-          lg: 'repeat(4, 1fr)',
+          sm2: 'repeat(2, 1fr)',
+          lg: 'repeat(3, 1fr)',
+          xl: 'repeat(4, 1fr)',
         }}
-        gap={4}
+        rowGap={10}
       >
         {CARDS_ORG.map((card, index) => (
           <Link to={`/organization/4a081070E9D555b5D19629a6bcc8B77f4aE6d39c`} key={index}>
-            <GridItem px={{ base: 10, sm: 0 }}>
-              <CardOrg card={card} />
+            <GridItem display='flex' justifyContent='center'>
+              <OrganizationCard card={card} />
             </GridItem>
           </Link>
         ))}
       </Grid>
     </Box>
   )
+}
+
+const useObserver = (
+  refObserver: any,
+  setIsSearchInScreen: Dispatch<SetStateAction<boolean>> | undefined,
+  removeFullInput: any
+) => {
+  useEffect(() => {
+    return () => {
+      if (refObserver.current) refObserver.current = null
+    }
+  }, [refObserver])
+
+  useEffect(() => {
+    if (!refObserver.current || !setIsSearchInScreen) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          if (removeFullInput) removeFullInput()
+          setIsSearchInScreen(true)
+        }
+        if (entries[0].intersectionRatio === 0) {
+          setIsSearchInScreen(false)
+        }
+      },
+      {
+        root: null,
+        rootMargin: '-80px 0px 0px 0px',
+        threshold: 0,
+      }
+    )
+
+    observer.observe(refObserver.current)
+  }, [refObserver, setIsSearchInScreen, removeFullInput])
 }
 
 export default Home

@@ -1,29 +1,13 @@
-import { ArrowBackIcon, ExternalLinkIcon } from '@chakra-ui/icons'
-import { Box, Card, CardHeader, Circle, Flex, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
-import {
-  ElectionActions,
-  ElectionDescription,
-  ElectionQuestions,
-  ElectionResults,
-  ElectionSchedule,
-  ElectionTitle,
-  enforceHexPrefix,
-  environment,
-  useClient,
-  useElection,
-  useOrganization,
-} from '@vocdoni/chakra-components'
+import { Flex, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
+import { ElectionQuestions, ElectionResults, useElection } from '@vocdoni/chakra-components'
 import { ElectionStatus } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
 import ProcessAside from './Aside'
-import { ProcessDate } from './Date'
+import Header from './Header'
 
 export const ProcessView = () => {
-  const { organization } = useOrganization()
-  const { env } = useClient()
-  const { election, isInCensus, voted } = useElection()
+  const { election } = useElection()
   const { t } = useTranslation()
 
   const [tabIndex, setTabIndex] = useState(0)
@@ -38,81 +22,33 @@ export const ProcessView = () => {
 
   return (
     <>
-      <Flex direction='column' gap={5}>
-        <Link to={`/organization/0x${election?.organizationId}`}>
-          <ArrowBackIcon /> {organization?.account.name.default || enforceHexPrefix(organization?.address)}
-        </Link>
-        <ElectionSchedule textAlign='left' color='branding.pink' />
-        <ElectionTitle fontSize={36} mb={0} textAlign='left' />
-        <ElectionDescription />
+      <Header />
+      <Flex direction={{ base: 'column', xl: 'row' }} alignItems='start'>
+        <Tabs variant='process' index={tabIndex} onChange={handleTabsChange}>
+          <TabList>
+            <Tab>{t('process.questions')}</Tab>
+            {election?.status !== ElectionStatus.CANCELED && <Tab>{t('process.results')}</Tab>}
+          </TabList>
+          <TabPanels>
+            <TabPanel>
+              <ElectionQuestions />
+            </TabPanel>
+            <TabPanel mb={20}>
+              <ElectionResults />
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+        <Flex
+          justifyContent='center'
+          position='sticky'
+          bottom={{ base: 'px', xl: undefined }}
+          top={{ xl: 20 }}
+          w={{ base: '100%', xl: '30%' }}
+          mt={{ xl: 10 }}
+        >
+          <ProcessAside />
+        </Flex>
       </Flex>
-      <Tabs index={tabIndex} onChange={handleTabsChange} colorScheme='brand.scheme' isLazy>
-        <TabList display='flex'>
-          <Tab>{t('process.questions')}</Tab>
-          <Tab>{t('process.results')}</Tab>
-          <Flex ml='auto'>
-            <ProcessDate />
-          </Flex>
-        </TabList>
-        <TabPanels bg='gray.100'>
-          <TabPanel>
-            <Flex justifyContent='center' gap={4} mb={4}>
-              <ElectionActions />
-            </Flex>
-
-            <Flex gap={4} flexDirection={{ base: 'column', lg: 'row' }}>
-              <Box flexGrow={{ lg: 1 }} flexShrink={{ lg: 1 }} flexBasis={{ lg: 124 }} order={{ base: 2, lg: 1 }}>
-                <ElectionQuestions />
-              </Box>
-              <ProcessAside
-                isInCensus={isInCensus}
-                hasAlreadyVoted={voted !== null && voted.length > 0}
-                handleTabsChange={handleTabsChange}
-                order={{ base: 1, lg: 2 }}
-                alignSelf={{ base: 'center', lg: 'start' }}
-              />
-            </Flex>
-          </TabPanel>
-          <TabPanel>
-            {election && (
-              <Flex gap={4} flexDirection={{ base: 'column', lg: 'row' }} alignItems='center'>
-                {election.status === ElectionStatus.CANCELED ? (
-                  <Text color='process_canceled' textAlign='center' w='full'>
-                    {t('process.date.canceled')}
-                  </Text>
-                ) : (
-                  <Box flexGrow={{ lg: 1 }} flexShrink={{ lg: 1 }} flexBasis={{ lg: 124 }} order={{ base: 2, lg: 1 }}>
-                    <ElectionResults />
-                  </Box>
-                )}
-
-                {voted && (
-                  <Card
-                    cursor='pointer'
-                    variant='process-info'
-                    order={{ base: 1, lg: 2 }}
-                    alignSelf={{ base: 'center', lg: 'start' }}
-                  >
-                    <CardHeader>
-                      <Circle>
-                        <ExternalLinkIcon />
-                      </Circle>
-
-                      <Box>
-                        <Text>
-                          <Link to={environment.verifyVote(env, voted)} target='_blank'>
-                            {t('aside.verify_vote_on_explorer')}
-                          </Link>
-                        </Text>
-                      </Box>
-                    </CardHeader>
-                  </Card>
-                )}
-              </Flex>
-            )}
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
     </>
   )
 }

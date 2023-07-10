@@ -7,26 +7,26 @@ const ShareButtons = () => {
   return (
     <>
       <Icon
+        onClick={() => {
+          const url = `https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}`
+          window.open(url, '_blank')
+        }}
         aria-label={t('share.twitter').toString()}
         as={FaTwitter}
         w={6}
         h={6}
         cursor='pointer'
-        onClick={() => {
-          const url = `https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}`
-          window.open(url, '_blank')
-        }}
       />
       <Icon
+        onClick={() => {
+          const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`
+          window.open(url, '_blank')
+        }}
         aria-label={t('share.facebook').toString()}
         as={FaFacebook}
         w={6}
         h={6}
         cursor='pointer'
-        onClick={() => {
-          const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`
-          window.open(url, '_blank')
-        }}
       />
     </>
   )

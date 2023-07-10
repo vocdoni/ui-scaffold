@@ -1,14 +1,24 @@
 {
   "alt_image": "Imagen {{ img }}",
   "aside": {
-    "connect_and_vote": "Conéctate y vota tus propuestas favoritas",
-    "connect_to_vote": "Conéctate para votar",
     "has_already_voted": "Tu voto se ha registrado correctamente",
     "is_able_to_vote": "Conectado. Eres elegible para votar",
     "is_not_in_census": "No estás en el censo",
+    "not_connected": "",
     "overwrite_votes_left": "Puedes corregir tu voto hasta {{ left }} veces.",
     "verify_vote_on_explorer": "Verificar voto en el explorador",
-    "voters": "Votantes"
+    "votes_one": "",
+    "votes_many": "",
+    "votes_other": "",
+    "votes_submited_one": "",
+    "votes_submited_many": "",
+    "votes_submited_other": ""
+  },
+  "banner": {
+    "know_more": "",
+    "start_now": "",
+    "subtitle": "",
+    "title": ""
   },
   "cc": {
     "actions": {
@@ -53,6 +63,10 @@
     "address": "Copiar dirección",
     "copied_title": "¡Copiado!"
   },
+  "error": {
+    "return_to_home": ""
+  },
+  "error_text": "Lo siento, no se encontró la página que buscabas.",
   "footer": {
     "about": "Acerca de",
     "blog": "Blog",
@@ -187,12 +201,14 @@
     "twitter": "Enlace al twitter de Vocdoni"
   },
   "loading": "Cargando...",
-  "logout": "Cerrar sesión",
   "menu": {
     "connect": "Conectar",
+    "create": "Crear proceso",
     "create_process": "Crear proceso",
+    "disconnect": "Desconectar billetera",
     "my_list": "Mi lista",
-    "open_menu": "Abrir menú"
+    "search": "Entrada de búsqueda",
+    "support": "Soporte"
   },
   "not_found": "No encontrado",
   "open_in_explorer": "Abrir en explorador",
@@ -201,7 +217,6 @@
     "dao_title": "DAO",
     "elections": "Elecciones",
     "elections_list_empty": "Esta organización aún no tiene elecciones",
-    "members": "Miembros",
     "rounds": {
       "active": "Activas",
       "all": "Todas"
@@ -209,7 +224,6 @@
   },
   "process": {
     "date": {
-      "canceled": "Cancelado",
       "ended": "Finalizado",
       "ends": "Finaliza",
       "relative": "{{ date, relative(past: hace %time; future: en %time) }}",
@@ -223,20 +237,18 @@
       "ended": "Proceso finalizado",
       "ongoing": "Proceso en curso",
       "paused": "Proceso pausado",
+      "paused_description": "",
       "results": "Resultados",
       "unknown": "Desconocido",
       "upcoming": "Próximo proceso"
     },
-    "voters": "Votantes",
-    "votes": "Votos"
+    "voters": "Votantes"
   },
   "process_actions": {
     "pause": "pausar",
     "play": "reproducir",
     "stop": "detener"
   },
-  "read_less": "Leer menos",
-  "read_more": "Leer más",
   "search": {
     "input_placeholder": "Buscar"
   },

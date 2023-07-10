@@ -1,44 +1,42 @@
-import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
+import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
+import { Box, Button, Menu, MenuButton, MenuList, Text } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { Balance, useClient } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
-import { BiChevronDown, BiLogOut } from 'react-icons/bi'
-import { useAccount, useDisconnect } from 'wagmi'
-import { addressTextOverflow } from '../../constants'
-import { useAccountHealthTools } from '../Account/use-account-health-tools'
+import { useAccount } from 'wagmi'
+import MenuDropdown from './Menu'
+
+const addressTextOverflow = (address: string) =>
+  `${address.substring(0, 6)}...${address.substring(address.length - 4, address.length)}`
 
 export const Account = () => {
   const { isConnected, address } = useAccount()
-  const { clear } = useClient()
-  const { exists } = useAccountHealthTools()
-  const { disconnect } = useDisconnect()
   const { t } = useTranslation()
 
   if (!isConnected) {
-    return <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />
+    return (
+      <Box as='span' whiteSpace='nowrap'>
+        <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />
+      </Box>
+    )
   }
 
   return (
     <Menu>
-      <MenuButton as={Button} variant='ghost' colorScheme='brand.scheme' rightIcon={<BiChevronDown />}>
-        {addressTextOverflow(address as string)}
-      </MenuButton>
-      <MenuList>
-        {isConnected && exists && (
-          <MenuItem>
-            <Balance />
-          </MenuItem>
-        )}
-        <MenuItem
-          icon={<BiLogOut />}
-          onClick={() => {
-            disconnect()
-            clear()
-          }}
-        >
-          {t('logout')}
-        </MenuItem>
-      </MenuList>
+      {({ isOpen, onClose }) => (
+        <>
+          <MenuButton as={Button} p={2}>
+            <Box as='span' display='flex' gap={1} alignItems='center'>
+              <Box as='span' display='inline-block' w={6} h={6} borderRadius='50%' background='navbar.account_icon' />
+              <Text fontWeight='light'>{addressTextOverflow(address as string)}</Text>
+              {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+            </Box>
+          </MenuButton>
+
+          <MenuList minW='none' onClick={onClose}>
+            <MenuDropdown />
+          </MenuList>
+        </>
+      )}
     </Menu>
   )
 }

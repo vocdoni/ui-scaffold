@@ -1,10 +1,7 @@
 import { ArrowBackIcon } from '@chakra-ui/icons'
 import {
-  Box,
   Button,
-  ChakraProvider,
   Checkbox,
-  extendTheme,
   Flex,
   FormControl,
   FormErrorMessage,
@@ -38,7 +35,6 @@ import { useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { cofirmTheme } from '../../../theme/confirmProvider'
 import Preview from '../Confirm/Preview'
 import { CreationProgress } from './CreationProgress'
 import { Option } from './Questions'
@@ -111,52 +107,48 @@ export const Confirm = () => {
   return (
     <>
       <ElectionProvider election={unpublished}>
-        <ChakraProvider theme={extendTheme(cofirmTheme)}>
-          <Box>
-            <Preview />
-            <FormProvider {...methods}>
-              <Flex
-                as='form'
-                id='process-create-form'
-                flexDirection={{ base: 'column', md: 'row' }}
-                gap={{ base: 2, md: 0 }}
-                p={{ base: 2, md: 5, xl: 10 }}
-                bgColor='process_create.bg'
-                borderRadius='lg'
-                border='1px solid'
-                borderColor='process_create.border'
-                onSubmit={handleSubmit(onSubmit)}
-              >
-                <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='bold' fontSize='md'>
-                  {t('form.process_create.confirm.confirmation')}
-                </Text>
-                <Flex flexDirection='column' gap={2}>
-                  <FormControl isInvalid={!!errors.infoValid}>
-                    <Checkbox {...register('infoValid', { required: true })}>
-                      {t('form.process_create.confirm.confirmation_valid_info')}
-                    </Checkbox>
-                    <FormErrorMessage>
-                      <Text>{t('form.error.field_is_required')}</Text>
-                    </FormErrorMessage>
-                  </FormControl>
-                  <FormControl isInvalid={!!errors.termsAndConditions}>
-                    <Checkbox {...register('termsAndConditions', { required: true })}>
-                      <Trans
-                        i18nKey='form.process_create.confirm.confirmation_terms_and_conditions'
-                        components={{
-                          tos: <Link variant='brand' href='' target='_blank' />,
-                        }}
-                      />
-                    </Checkbox>
-                    <FormErrorMessage>
-                      <Text>{t('form.error.field_is_required')}</Text>
-                    </FormErrorMessage>
-                  </FormControl>
-                </Flex>
-              </Flex>
-            </FormProvider>
-          </Box>
-        </ChakraProvider>
+        <Preview />
+        <FormProvider {...methods}>
+          <Flex
+            as='form'
+            id='process-create-form'
+            flexDirection={{ base: 'column', md: 'row' }}
+            gap={{ base: 2, md: 0 }}
+            p={{ base: 2, md: 5, xl: 10 }}
+            bgColor='process_create.bg'
+            borderRadius='lg'
+            border='1px solid'
+            borderColor='process_create.border'
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='bold' fontSize='md'>
+              {t('form.process_create.confirm.confirmation')}
+            </Text>
+            <Flex flexDirection='column' gap={2}>
+              <FormControl isInvalid={!!errors.infoValid}>
+                <Checkbox {...register('infoValid', { required: true })}>
+                  {t('form.process_create.confirm.confirmation_valid_info')}
+                </Checkbox>
+                <FormErrorMessage>
+                  <Text>{t('form.error.field_is_required')}</Text>
+                </FormErrorMessage>
+              </FormControl>
+              <FormControl isInvalid={!!errors.termsAndConditions}>
+                <Checkbox {...register('termsAndConditions', { required: true })}>
+                  <Trans
+                    i18nKey='form.process_create.confirm.confirmation_terms_and_conditions'
+                    components={{
+                      tos: <Link variant='primary' href='' target='_blank' />,
+                    }}
+                  />
+                </Checkbox>
+                <FormErrorMessage>
+                  <Text>{t('form.error.field_is_required')}</Text>
+                </FormErrorMessage>
+              </FormControl>
+            </Flex>
+          </Flex>
+        </FormProvider>
       </ElectionProvider>
       <Flex justifyContent='space-between' alignItems='end' mt={5}>
         <Button variant='outline' onClick={prev} leftIcon={<ArrowBackIcon />}>

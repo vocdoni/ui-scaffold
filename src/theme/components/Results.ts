@@ -9,30 +9,62 @@ const baseStyle = definePartsStyle({
     p: 4,
     borderRadius: 'md',
     width: 'full',
-    maxW: 160,
     m: 0,
     mx: 'auto',
 
     '& > div:nth-of-type(2) > div': {
       display: 'flex',
-      alignItems: 'start',
+      flexDirection: { base: 'column', md: 'row' },
+      alignItems: 'center',
       gap: 3,
       mb: 5,
 
       '& p:nth-of-type(1)': {
+        maxW: '100%',
         flexBasis: '33%',
         flexGrow: 1,
+        color: 'process.results.description',
       },
       '& div': {
+        w: 'full',
         flexBasis: '33%',
         flexGrow: 0,
         flexShrink: 0,
         h: 4,
         borderRadius: 'md',
-        bgColor: 'progress_bar_bg',
+        bgColor: 'progress_bar.bg',
+        overflow: 'hidden',
+        position: 'relative',
 
         '& div': {
-          background: 'var(--vcd-gradient-progress-bar)',
+          h: 4,
+          background: {
+            base: `linear-gradient(-45deg,
+              rgba(255, 255, 255, 0.15) 25%,transparent 25%, 
+              transparent 50%, rgba(255, 255, 255, 0.15) 50%, 
+              rgba(255, 255, 255, 0.15) 75%,transparent 75%) 
+            left/30px 30px repeat-x,
+            linear-gradient(to right, red 0%, yellow 50%, green 100%) left/var(--p,100%) fixed,
+            lightgray;`,
+
+            md: `linear-gradient(-45deg,
+              rgba(255, 255, 255, 0.15) 25%,transparent 25%, 
+              transparent 50%, rgba(255, 255, 255, 0.15) 50%, 
+              rgba(255, 255, 255, 0.15) 75%,transparent 75%) 
+            left/30px 30px repeat-x,
+            linear-gradient(to right, red 65%, yellow 79.5%, green 94%) left/var(--p,100%) fixed,
+            lightgray;`,
+
+            xl: `linear-gradient(-45deg,
+              rgba(255, 255, 255, 0.15) 25%,transparent 25%, 
+              transparent 50%, rgba(255, 255, 255, 0.15) 50%, 
+              rgba(255, 255, 255, 0.15) 75%,transparent 75%) 
+            left/30px 30px repeat-x,
+            linear-gradient(to right, red 46%, yellow 56%, green 66%) left/var(--p,100%) fixed,
+            lightgray;`,
+          },
+
+          boxShadow: 'inset 0px -2px 5px rgba(0, 0, 0, 0.5)',
         },
       },
 
@@ -58,7 +90,7 @@ const baseStyle = definePartsStyle({
     lineHeight: 7,
     color: 'process.results.title',
     textAlign: { base: 'center', md: 'start' },
-    mb: 10,
+    mb: 3,
   },
 
   wrapper: {

@@ -1,5 +1,5 @@
 import { CopyIcon, ExternalLinkIcon } from '@chakra-ui/icons'
-import { Box, Button, Menu, MenuButton, MenuItem, MenuList, Text, useClipboard, useToast } from '@chakra-ui/react'
+import { Button, Menu, MenuButton, MenuItem, MenuList, Text, useClipboard, useToast } from '@chakra-ui/react'
 import { enforceHexPrefix, useOrganization } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import { HiOutlineEllipsisHorizontalCircle } from 'react-icons/hi2'
@@ -15,29 +15,18 @@ const AddressBtn = () => {
 
   return (
     <Menu>
-      <MenuButton
-        as={Button}
-        borderRadius={30}
-        colorScheme='brand.scheme'
-        height={8}
-        isTruncated
-        title={address}
-        cursor='pointer'
-        fontSize={13}
-        mb={2}
-        rightIcon={<HiOutlineEllipsisHorizontalCircle style={{ width: '1.2em', height: '1.2em' }} />}
-      >
-        <Box maxW={20} isTruncated overflow='hidden'>
-          <Text isTruncated as='span'>
-            {address}
-          </Text>
-        </Box>
+      <MenuButton as={Button} rightIcon={<HiOutlineEllipsisHorizontalCircle />} maxW={44}>
+        <Text isTruncated>{address}</Text>
       </MenuButton>
 
-      <MenuList p='0' position='absolute' top={-28} zIndex='10'>
+      <MenuList position='absolute' top='-32' zIndex={30}>
         <MenuItem
-          as={Button}
+          display='flex'
           justifyContent='start'
+          alignItems='center'
+          as={Button}
+          variant='dropdown'
+          textAlign='start'
           leftIcon={<CopyIcon />}
           onClick={() => {
             toast({
@@ -49,11 +38,15 @@ const AddressBtn = () => {
         >
           {t('copy.address')}
         </MenuItem>
+
         <MenuItem
-          justifyContent='start'
           as={Button}
-          onClick={() => window.open(`${ExplorerBaseURL}/organizations/show/#/${address}`, '_blank')}
+          variant='dropdown'
+          display='flex'
+          justifyContent='start'
+          alignItems='center'
           leftIcon={<ExternalLinkIcon />}
+          onClick={() => window.open(`${ExplorerBaseURL}/organizations/show/#/${address}`, '_blank')}
         >
           {t('open_in_explorer')}
         </MenuItem>
