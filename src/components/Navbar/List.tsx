@@ -38,6 +38,7 @@ const NavList = ({ displayFullInput }: Props) => {
             <>
               <MenuButton
                 as={Button}
+                variant='ghost'
                 sx={{ span: { margin: 'px' } }}
                 leftIcon={<FaGlobeAmericas />}
                 rightIcon={isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
@@ -57,14 +58,19 @@ const NavList = ({ displayFullInput }: Props) => {
         <>
           <ListItem display={{ base: 'none', lg: 'inline-block' }}>
             <NavLink to={`/organization/0x${account?.address}`}>
-              <Button>{t('menu.my_list')}</Button>
+              <Button variant='ghost'>{t('menu.my_list')}</Button>
             </NavLink>
           </ListItem>
 
           <ListItem>
             <NavLink to='/processes/create'>
-              <Button rightIcon={<AddIcon />} sx={{ span: { margin: 0 } }} title={t('menu.create')}>
-                <Text as='span' display={{ base: 'none', lg: 'inline-block' }} pr={2}>
+              <Button
+                colorScheme='primary'
+                rightIcon={<AddIcon />}
+                title={t('menu.create')}
+                sx={{ span: { margin: { base: 0, sm: 1 } } }}
+              >
+                <Text as='span' display={{ base: 'none', sm: 'inline-block' }}>
                   {t('menu.create')}
                 </Text>
               </Button>
@@ -83,6 +89,7 @@ const NavList = ({ displayFullInput }: Props) => {
             <>
               <MenuButton
                 as={Button}
+                variant='ghost'
                 sx={{ span: { margin: 'px' } }}
                 rightIcon={isOpen ? <CloseIcon /> : <FaEllipsisV />}
                 minW='none'
