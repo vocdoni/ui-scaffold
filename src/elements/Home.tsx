@@ -1,8 +1,6 @@
 import { Box, Grid, GridItem, Text } from '@chakra-ui/react'
-import { Dispatch, SetStateAction, useContext, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import { SearchInputContext } from '../Providers'
 import Banner from '../components/Home/Banner'
 import Counters from '../components/Home/Counters'
 import OrganizationCard, { CardOrgContents } from '../components/Organization/Card'
@@ -186,18 +184,12 @@ const CARDS_PR: CardPrImgContents[] = [
 const Home = () => {
   const { t } = useTranslation()
 
-  const searchRef = useRef<HTMLDivElement>(null)
-
-  const serachInputValues = useContext(SearchInputContext)
-
-  useObserver(searchRef, serachInputValues?.setIsSearchInScreen, serachInputValues?.removeFullInput)
-
   return (
     <Box>
       <Banner />
 
-      <Box ref={searchRef} width={{ base: '90%', sm: '80%', md: '70%', lg: 124 }} mx='auto' mb={8}>
-        <SearchInput />
+      <Box>
+        <SearchInput width={{ base: '90%', sm: '80%', md: '70%', lg: 124 }} mx='auto' mb={8} />
       </Box>
 
       <Counters mb={8} />
@@ -244,41 +236,6 @@ const Home = () => {
       </Grid>
     </Box>
   )
-}
-
-const useObserver = (
-  refObserver: any,
-  setIsSearchInScreen: Dispatch<SetStateAction<boolean>> | undefined,
-  removeFullInput: any
-) => {
-  useEffect(() => {
-    return () => {
-      if (refObserver.current) refObserver.current = null
-    }
-  }, [refObserver])
-
-  useEffect(() => {
-    if (!refObserver.current || !setIsSearchInScreen) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          if (removeFullInput) removeFullInput()
-          setIsSearchInScreen(true)
-        }
-        if (entries[0].intersectionRatio === 0) {
-          setIsSearchInScreen(false)
-        }
-      },
-      {
-        root: null,
-        rootMargin: '-80px 0px 0px 0px',
-        threshold: 0,
-      }
-    )
-
-    observer.observe(refObserver.current)
-  }, [refObserver, setIsSearchInScreen, removeFullInput])
 }
 
 export default Home
