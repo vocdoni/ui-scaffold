@@ -20,23 +20,19 @@ interface Props {
 const ProcessCardDetailed = ({ election }: Props) => {
   return (
     <ElectionProvider election={election}>
-      <Link to={`/processes/0x${election.id}`}>
-        <Card variant='detailed'>
-          <CardHeader>
-            <ElectionStatusBadge />
-          </CardHeader>
-          <CardBody>
-            <Box>
-              <Box>
-                <ProcessDetailedCreationDate />
-                <ProcessDetailedCardBody />
-              </Box>
-              <ElectionActions />
-            </Box>
+      <Card variant='detailed'>
+        <CardHeader>
+          <ElectionStatusBadge />
+        </CardHeader>
+        <CardBody>
+          <Link to={`/processes/0x${election.id}`}>
+            <ProcessDetailedCreationDate />
+            <ProcessDetailedCardBody />
             <ProcessDetailedCardFooter />
-          </CardBody>
-        </Card>
-      </Link>
+          </Link>
+          <ElectionActions />
+        </CardBody>
+      </Card>
     </ElectionProvider>
   )
 }
