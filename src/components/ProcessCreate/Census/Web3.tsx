@@ -60,6 +60,11 @@ export const CensusWeb3Addresses = () => {
     // Trigger form validation
     await trigger()
 
+    const addressesArray = addresses.map((add: any) => add.address)
+
+    if (addressesArray.includes(newAddress)) {
+      return setError('newAddress', { type: 'custom', message: t('form.error.address_already_in_use') })
+    }
     if (!newAddress) {
       return setError('newAddress', { type: 'custom', message: t('form.error.field_is_required') })
     }
