@@ -5,6 +5,7 @@ import {
   ElectionProvider,
   ElectionStatusBadge,
   ElectionTitle,
+  enforceHexPrefix,
   useElection,
 } from '@vocdoni/chakra-components'
 import { ElectionStatus, InvalidElection, PublishedElection } from '@vocdoni/sdk'
@@ -25,7 +26,7 @@ const ProcessCardDetailed = ({ election }: Props) => {
           <ElectionStatusBadge />
         </CardHeader>
         <CardBody>
-          <Link to={`/processes/0x${election.id}`}>
+          <Link to={`/processes/${enforceHexPrefix(election.id)}`}>
             <ProcessDetailedCreationDate />
             <ProcessDetailedCardBody />
             <ProcessDetailedCardFooter />
