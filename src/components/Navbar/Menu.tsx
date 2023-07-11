@@ -10,7 +10,7 @@ const MenuDropdown = () => {
   const { t } = useTranslation()
   const { isConnected } = useAccount()
   const { disconnect } = useDisconnect()
-  const { account } = useClient()
+  const { account, clear } = useClient()
 
   return (
     <List position='relative' cursor='pointer'>
@@ -43,7 +43,13 @@ const MenuDropdown = () => {
         <>
           <HR m={1} border='none' h='1px' bgColor='lightgray' />
 
-          <ListItem onClick={() => disconnect()} minW='full'>
+          <ListItem
+            onClick={() => {
+              disconnect()
+              clear()
+            }}
+            minW='full'
+          >
             <Button leftIcon={<BiLogOut />} display='flex' justifyContent='end' variant='dropdown'>
               {t('menu.disconnect')}
             </Button>
