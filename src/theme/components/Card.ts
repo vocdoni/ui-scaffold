@@ -19,70 +19,6 @@ const cardCommonStyles = {
   },
 }
 
-const lite = definePartsStyle({
-  ...cardCommonStyles,
-
-  container: {
-    ...cardCommonStyles.container,
-    w: 72,
-    borderRadius: 'lg',
-    overflow: 'hidden',
-    boxShadow: 'var(--box-shadow)',
-    transition: 'box-shadow .2s  ',
-
-    _hover: {
-      boxShadow: 'var(--box-shadow-darker)',
-      transition: 'box-shadow .2s  ',
-    },
-  },
-
-  body: {
-    minH: 24,
-    p: 4,
-    pb: 0,
-
-    '& > p:first-of-type': {
-      fontSize: 'sm',
-      textTransform: 'uppercase',
-      color: 'card.header',
-      noOfLines: 1,
-      overflow: 'hidden',
-      display: '-webkit-box',
-      WebkitBoxOrient: 'vertical',
-      WebkitLineClamp: 'var(--chakra-line-clamp)',
-    },
-
-    '& > p:nth-of-type(2)': {
-      fontWeight: 'bold',
-      fontSize: 'lg',
-      noOfLines: 2,
-      overflow: 'hidden',
-      display: '-webkit-box',
-      WebkitBoxOrient: 'vertical',
-      WebkitLineClamp: 'var(--chakra-line-clamp)',
-    },
-  },
-  footer: {
-    ...cardCommonStyles.footer,
-    gap: 3.5,
-    px: 4,
-    pt: 0,
-    pb: 2,
-    fontWeight: 'bold',
-
-    '& > div > p:first-of-type': {
-      color: 'card.footer_title',
-      fontWeight: 'normal',
-    },
-
-    '& div:nth-of-type(even)': {
-      pl: 3.5,
-      borderLeft: '1px solid',
-      borderColor: 'card.footer_divider',
-    },
-  },
-})
-
 const detailed = definePartsStyle({
   ...cardCommonStyles,
 
@@ -186,9 +122,96 @@ const detailed = definePartsStyle({
   },
 })
 
-const variantsCards = {
-  lite,
-  detailed,
-}
+const lite = definePartsStyle({
+  ...cardCommonStyles,
 
+  container: {
+    ...cardCommonStyles.container,
+    w: 72,
+    borderRadius: 'lg',
+    overflow: 'hidden',
+    boxShadow: 'var(--box-shadow)',
+    transition: 'box-shadow .2s  ',
+
+    _hover: {
+      boxShadow: 'var(--box-shadow-darker)',
+      transition: 'box-shadow .2s  ',
+    },
+  },
+
+  body: {
+    minH: 24,
+    p: 4,
+    pb: 0,
+
+    '& > p:first-of-type': {
+      fontSize: 'sm',
+      textTransform: 'uppercase',
+      color: 'card.header',
+      noOfLines: 1,
+      overflow: 'hidden',
+      display: '-webkit-box',
+      WebkitBoxOrient: 'vertical',
+      WebkitLineClamp: 'var(--chakra-line-clamp)',
+    },
+
+    '& > p:nth-of-type(2)': {
+      fontWeight: 'bold',
+      fontSize: 'lg',
+      noOfLines: 2,
+      overflow: 'hidden',
+      display: '-webkit-box',
+      WebkitBoxOrient: 'vertical',
+      WebkitLineClamp: 'var(--chakra-line-clamp)',
+    },
+  },
+  footer: {
+    ...cardCommonStyles.footer,
+    gap: 3.5,
+    px: 4,
+    pt: 0,
+    pb: 2,
+    fontWeight: 'bold',
+
+    '& > div > p:first-of-type': {
+      color: 'card.footer_title',
+      fontWeight: 'normal',
+    },
+
+    '& div:nth-of-type(even)': {
+      pl: 3.5,
+      borderLeft: '1px solid',
+      borderColor: 'card.footer_divider',
+    },
+  },
+})
+
+const noElections = definePartsStyle({
+  container: {
+    display: 'flex',
+    direction: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 3,
+    maxW: 160,
+    px: { base: 2, md: 4 },
+    py: { base: 4, md: 8 },
+    bgColor: 'organization.election_list_empty_bg',
+    borderRadius: 'lg',
+  },
+
+  body: {
+    '& > p:first-of-type': {
+      textAlign: 'center',
+      fontSize: 'xl2',
+      mb: { base: 2, md: 5 },
+    },
+  },
+})
+
+const variantsCards = {
+  detailed,
+  lite,
+  'no-elections': noElections,
+}
 export const Card = defineMultiStyleConfig({ variants: variantsCards })
