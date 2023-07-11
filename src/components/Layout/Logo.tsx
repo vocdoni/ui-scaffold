@@ -14,7 +14,7 @@ const Logo = ({ ...props }) => (
         lineHeight={1.1}
         {...props}
       >
-        <Text as='span'>Public </Text> <Text as='span'>voting</Text> <Text as='span'>protocol</Text>
+        Public voting protocol
       </Text>
     </Flex>
   </NavLink>
