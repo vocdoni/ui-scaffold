@@ -30,41 +30,19 @@ const baseStyle = definePartsStyle({
         flexBasis: '33%',
         flexGrow: 0,
         flexShrink: 0,
-        h: 4,
+        h: 5,
         borderRadius: 'md',
         bgColor: 'progress_bar.bg',
         overflow: 'hidden',
         position: 'relative',
 
         '& div': {
-          h: 4,
+          h: 5,
           background: {
-            base: `linear-gradient(-45deg,
-              rgba(255, 255, 255, 0.15) 25%,transparent 25%, 
-              transparent 50%, rgba(255, 255, 255, 0.15) 50%, 
-              rgba(255, 255, 255, 0.15) 75%,transparent 75%) 
-            left/30px 30px repeat-x,
-            linear-gradient(to right, red 0%, yellow 50%, green 100%) left/var(--p,100%) fixed,
-            lightgray;`,
-
-            md: `linear-gradient(-45deg,
-              rgba(255, 255, 255, 0.15) 25%,transparent 25%, 
-              transparent 50%, rgba(255, 255, 255, 0.15) 50%, 
-              rgba(255, 255, 255, 0.15) 75%,transparent 75%) 
-            left/30px 30px repeat-x,
-            linear-gradient(to right, red 65%, yellow 79.5%, green 94%) left/var(--p,100%) fixed,
-            lightgray;`,
-
-            xl: `linear-gradient(-45deg,
-              rgba(255, 255, 255, 0.15) 25%,transparent 25%, 
-              transparent 50%, rgba(255, 255, 255, 0.15) 50%, 
-              rgba(255, 255, 255, 0.15) 75%,transparent 75%) 
-            left/30px 30px repeat-x,
-            linear-gradient(to right, red 46%, yellow 56%, green 66%) left/var(--p,100%) fixed,
-            lightgray;`,
+            base: `linear-gradient(to right, #2DD1BD 0%, #179B87 50%, #006350 100%) left/var(--p,100%) fixed;`,
+            md: `linear-gradient(to right, #2DD1BD 65%, #179B87 79.5%, #006350 94%) left/var(--p,100%) fixed;`,
+            xl: `linear-gradient(to right, #2DD1BD 46%, #179B87 56%, #006350 66%) left/var(--p,100%) fixed;`,
           },
-
-          boxShadow: 'inset 0px -2px 5px rgba(0, 0, 0, 0.5)',
         },
       },
 
