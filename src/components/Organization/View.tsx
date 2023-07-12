@@ -65,6 +65,7 @@ const OrganizationView = () => {
   return (
     <>
       <Header />
+
       <Grid
         templateColumns={{
           base: '1fr',
@@ -84,15 +85,17 @@ const OrganizationView = () => {
 
       <Flex justifyContent='center' mt={4}>
         {loading && <Spinner />}
-        {loaded && !electionsList.length && areEqualHexStrings(account?.address, organization?.address) && (
+        {loaded && !electionsList.length && (
           <Card variant='no-elections'>
             <CardBody>
               <Text>{t('organization.elections_list_empty')}</Text>
-              <NavLink to='/processes/create'>
-                <Button colorScheme='primary' rightIcon={<AddIcon />}>
-                  {t('menu.create')}
-                </Button>
-              </NavLink>
+              {areEqualHexStrings(account?.address, organization?.address) && (
+                <NavLink to='/processes/create'>
+                  <Button colorScheme='primary' rightIcon={<AddIcon />}>
+                    {t('menu.create')}
+                  </Button>
+                </NavLink>
+              )}
             </CardBody>
           </Card>
         )}

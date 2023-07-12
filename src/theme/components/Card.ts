@@ -201,15 +201,26 @@ const noElections = definePartsStyle({
     maxW: 160,
     px: { base: 2, md: 4 },
     py: { base: 4, md: 8 },
+    mx: 'auto',
     bgColor: 'organization.election_list_empty_bg',
     borderRadius: 'lg',
   },
 
   body: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: { base: 2, md: 5 },
+
     '& > p:first-of-type': {
       textAlign: 'center',
       fontSize: 'xl2',
-      mb: { base: 2, md: 5 },
+      mb: 0,
+    },
+
+    '& > a': {
+      display: 'flex',
+      justifyContent: 'center',
+      mx: 'auto',
     },
   },
 })
