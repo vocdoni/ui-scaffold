@@ -30,16 +30,17 @@ const Steps = () => {
         mb={{ base: 5 }}
         h={{ lg: 124 }}
         mx='auto'
+        ml={{ lg: 2.5 }}
         gap={{ base: 3, sm: 5 }}
         justifyContent='center'
       >
         {steps.map((step, index) => (
           <Step key={index}>
-            <Flex flexDirection={{ base: 'column', lg: 'row' }} alignItems={{ base: 'center', lg: 'initial' }}>
+            <Flex flexDirection={{ base: 'column', lg: 'row' }} alignItems={{ base: 'center', lg: 'initial' }} gap={1}>
               <StepIndicator>
                 <StepStatus complete={<StepNumber />} incomplete={<StepNumber />} active={<StepNumber />} />
               </StepIndicator>
-              <Text as='span' fontSize={{ base: 'xs', md: 'sm', lg: 'md' }}>
+              <Text as='span' fontSize='xs' mt={{ lg: 2 }}>
                 {step.title}
               </Text>
             </Flex>
