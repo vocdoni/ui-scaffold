@@ -53,11 +53,6 @@ export const colors = {
     counter: colorsBase.gradient,
   },
 
-  input_search: {
-    bg: colorsBase.white,
-    border: colorsBase.black,
-  },
-
   language_selected_bg: colorsBase.gray.dark,
 
   link: colorsBase.primary.main,

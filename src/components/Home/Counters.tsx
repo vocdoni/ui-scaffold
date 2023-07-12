@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 const Counters = ({ ...props }) => {
   const { t } = useTranslation()
   return (
-    <HStack gap={{ base: 7, sm: 14, md: 32 }} justifyContent='center' {...props}>
+    <HStack gap={{ base: 7, sm: 14, md: 32 }} justifyContent='center' w='full' {...props}>
       <Box>
         <Text textAlign='center' whiteSpace='nowrap' fontSize={{ base: 'lg', sm: 'xl2' }}>
           {t('voting_elections')}
