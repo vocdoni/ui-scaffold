@@ -87,77 +87,10 @@ const process = definePartsStyle({
     borderColor: 'process.tabs.list_border_bottom',
   },
 })
-const organization = definePartsStyle({
-  root: {
-    justifyContent: 'center',
-  },
-  tab: {
-    position: 'relative',
-    whiteSpace: 'nowrap',
-    fontWeight: 'normal',
-    borderTopRadius: 'md',
-
-    '&:after': {
-      content: "''",
-      position: 'absolute',
-      mr: '-100.3%',
-      h: '28px',
-      borderRight: '1px solid',
-      borderColor: 'organization.tabs.divider',
-    },
-
-    '&:last-of-type:after': {
-      content: "''",
-      display: 'none',
-    },
-
-    // tab circle number
-    '& > div': {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      bgColor: 'organization.tabs.circle_bg',
-      color: 'white',
-      fontWeight: 'bold',
-      ml: 2,
-
-      px: 1,
-      borderRadius: 'md',
-      height: '100%',
-    },
-
-    _hover: {
-      bgColor: 'organization.tabs.hover',
-
-      '&:after': {
-        content: "''",
-        display: 'none',
-      },
-    },
-    _active: {
-      bgColor: 'organization.tabs.active',
-    },
-    _selected: {
-      fontWeight: 'bold',
-      borderBottom: '1px solid',
-    },
-  },
-  tablist: {
-    position: 'sticky',
-    display: 'flex',
-    top: '72px',
-    zIndex: 30,
-    alignItems: 'start',
-    borderBottom: '1px solid',
-    borderColor: 'organization.tabs.list_border_bottom',
-    bgColor: 'organization.tabs.bg',
-  },
-})
 
 const variants = {
   card,
   process,
-  organization,
 }
 
 export const Tabs = defineMultiStyleConfig({ variants })
