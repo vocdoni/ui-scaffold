@@ -24,7 +24,7 @@ export const Account = () => {
     <Menu>
       {({ isOpen, onClose }) => (
         <>
-          <MenuButton as={Button} p={2}>
+          <MenuButton as={Button} variant='ghost' p={2}>
             <Box as='span' display='flex' gap={1} alignItems='center'>
               <Box as='span' display='inline-block' w={6} h={6} borderRadius='50%' background='navbar.account_icon' />
               <Text fontWeight='light'>{addressTextOverflow(address as string)}</Text>

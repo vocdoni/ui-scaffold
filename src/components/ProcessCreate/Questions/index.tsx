@@ -40,7 +40,8 @@ const CreateProcessQuestions = () => {
         options: [{ option: '' }, { option: '' }],
       })
     }
-    if (tabIndex === questions.length) setTabIndex(questions.length - 1)
+
+    if (tabIndex === questions.length && tabIndex !== 0) setTabIndex(questions.length - 1)
   }, [questions, append, tabIndex])
 
   useEffect(() => {
