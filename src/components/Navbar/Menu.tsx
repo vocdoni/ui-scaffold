@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { BiLogOut } from 'react-icons/bi'
 import { NavLink } from 'react-router-dom'
 import { useAccount, useDisconnect } from 'wagmi'
-import LanguagesList from './Lngs'
+import LanguagesList from './LanguagesList'
 
 const MenuDropdown = () => {
   const { t } = useTranslation()
@@ -18,7 +18,7 @@ const MenuDropdown = () => {
         <Balance />
       </ListItem>
 
-      {isConnected && (
+      {account && (
         <ListItem display={{ lg: 'none' }} minW='full'>
           <NavLink to={`/organization/0x${account?.address}`}>
             <Button display='flex' justifyContent='end' variant='dropdown'>

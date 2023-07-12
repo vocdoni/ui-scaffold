@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 import Logo from '../Layout/Logo'
 import { Account } from './Account'
-import LanguagesList from './Lngs'
+import LanguagesList from './LanguagesList'
 import MenuDropdown from './Menu'
 
 const Navbar = ({ ...props }) => {
