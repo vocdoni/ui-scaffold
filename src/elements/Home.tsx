@@ -5,7 +5,6 @@ import Banner from '../components/Home/Banner'
 import Counters from '../components/Home/Counters'
 import OrganizationCard, { CardOrgContents } from '../components/Organization/Card'
 import ProcessCardLite, { CardPrImgContents } from '../components/Process/CardLite'
-import SearchInput from '../components/Search/Input'
 
 const CARDS_ORG: CardOrgContents[] = [
   {
@@ -187,10 +186,6 @@ const Home = () => {
   return (
     <Box>
       <Banner />
-
-      <Box>
-        <SearchInput width={{ base: '90%', sm: '80%', md: '70%', lg: 124 }} mx='auto' mb={8} />
-      </Box>
 
       <Counters mb={8} />
 
