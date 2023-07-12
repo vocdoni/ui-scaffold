@@ -5,10 +5,9 @@ import {
   ElectionDescription,
   ElectionSchedule,
   ElectionTitle,
-  enforceHexPrefix,
+  OrganizationName,
   useClient,
   useElection,
-  useOrganization,
 } from '@vocdoni/chakra-components'
 import { ElectionStatus } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
@@ -20,15 +19,12 @@ const ProcessHeader = () => {
   const { t } = useTranslation()
   const { election } = useElection()
   const { account } = useClient()
-  const { organization } = useOrganization()
 
   return (
     <Box mb={4}>
-      <Link to={`/organization/${enforceHexPrefix(election?.organizationId)}`}>
+      <Link to={`/organization/0x${election?.organizationId}`}>
         <Button leftIcon={<FaRegArrowAltCircleLeft />} mb={4}>
-          <Text as='span' overflow='hidden' fontSize='sm' isTruncated>
-            {organization?.account.name.default || enforceHexPrefix(organization?.address)}
-          </Text>
+          <OrganizationName as='span' overflow='hidden' fontSize='sm' isTruncated />
         </Button>
       </Link>
       <Flex direction={{ base: 'column', xl: 'row' }}>
