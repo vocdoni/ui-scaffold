@@ -87,6 +87,7 @@
       "title_placeholder": "El nom de l'organització"
     },
     "error": {
+      "address_already_in_use": "",
       "address_pattern": "Només s'admeten adreces hexadecimals (p. ex. 0x031101A...)",
       "field_is_required": "Aquest camp és obligatori"
     },

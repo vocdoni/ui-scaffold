@@ -89,6 +89,7 @@
       "title_placeholder": "El nombre de la organización"
     },
     "error": {
+      "address_already_in_use": "",
       "address_pattern": "Solo se permiten direcciones hexadecimales (p.ej. 0x031101A...)",
       "field_is_required": "Este campo es obligatorio"
     },
