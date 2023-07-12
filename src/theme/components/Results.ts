@@ -15,7 +15,7 @@ const baseStyle = definePartsStyle({
     '& > div:nth-of-type(2) > div': {
       display: 'flex',
       flexDirection: { base: 'column', md: 'row' },
-      alignItems: 'center',
+      alignItems: { base: 'center', md: 'start' },
       gap: 3,
       mb: 5,
 
