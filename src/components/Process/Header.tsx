@@ -27,10 +27,10 @@ const ProcessHeader = () => {
           <OrganizationName as='span' overflow='hidden' fontSize='sm' isTruncated />
         </Button>
       </Link>
-      <Flex direction={{ base: 'column', xl: 'row' }}>
+      <Flex direction={{ base: 'column', xl: 'row' }} mb={7}>
         <Box flexBasis='70%' flexGrow={0} flexShrink={0} mr={{ xl: 10 }}>
           <ElectionSchedule mb={1} textAlign='left' color='process.date' />
-          <ElectionTitle mb={3} fontSize='xl3' lineHeight={1.2} textAlign='left' noOfLines={2} />
+          <ElectionTitle mb={6} mt={3} fontSize='xl4' lineHeight={1.2} textAlign='left' noOfLines={2} />
           <ElectionDescription mb={0} fontSize='lg' color='process.description' />
         </Box>
 
