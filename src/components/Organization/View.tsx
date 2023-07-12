@@ -1,27 +1,11 @@
 import { AddIcon } from '@chakra-ui/icons'
-import {
-  Box,
-  Button,
-  Flex,
-  Grid,
-  GridItem,
-  Spinner,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-  Text,
-  useOutsideClick,
-} from '@chakra-ui/react'
+import { Button, Flex, Grid, GridItem, Spinner, Text } from '@chakra-ui/react'
 import { useClient, useOrganization } from '@vocdoni/chakra-components'
 import { InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 import Card from '../Process/CardDetailed'
-import SearchButton from '../Search/Button'
-import SearchInput from '../Search/Input'
 import Header from './Header'
 
 const OrganizationView = () => {
@@ -35,24 +19,9 @@ const OrganizationView = () => {
   const [error, setError] = useState<boolean>(false)
   const [finished, setFinished] = useState<boolean>(false)
 
-  const [isFullInput, setIsFullInput] = useState(false)
-  const displayFullInput = () => setIsFullInput(true)
-  const refSearchInput = useRef<HTMLDivElement>(null)
-
-  useOutsideClick({
-    ref: refSearchInput,
-    handler: () => setIsFullInput(false),
-  })
-
   const refObserver = useRef<any>()
   const [page, setPage] = useState<number>(-1)
   useObserver(refObserver, setPage)
-
-  const [tabIndex, setTabIndex] = useState(0)
-
-  const handleTabsChange = (index: number) => {
-    setTabIndex(index)
-  }
 
   // empties the list on account change
   useEffect(() => {
@@ -96,97 +65,52 @@ const OrganizationView = () => {
   return (
     <>
       <Header />
-      <Tabs variant='organization' align='center' index={tabIndex} onChange={handleTabsChange}>
-        {!isFullInput ? (
-          <TabList>
-            <Tab>
-              {t('organization.rounds.all')}
-              <Box>{organization?.electionIndex}</Box>
-            </Tab>
+      <Grid
+        templateColumns={{
+          base: '1fr',
+          md2: 'repeat(2, 1fr)',
+          xl2: 'repeat(3, 1fr)',
+        }}
+        columnGap={{ base: 3, lg: 4 }}
+        rowGap={6}
+      >
+        {electionsList?.map((election: any, idx: number) => (
+          <GridItem key={idx} display='flex' justifyContent='center' alignItems='start'>
+            <Card election={election} />
+          </GridItem>
+        ))}
+        <div ref={refObserver}></div>
+      </Grid>
 
-            <Tab>{t('organization.rounds.active')}</Tab>
-
-            <SearchInput
-              position='absolute'
-              zIndex={30}
-              right={0}
-              display={{ base: 'none', md: 'inline-block' }}
-              mb={{ base: 25, sm: 0 }}
-              w={{ md: '30%', lg: '20%' }}
-              mt={2}
-            />
-
-            <Box position='absolute' right={0} display={{ base: 'inline-block', md: 'none' }} justifyContent='center'>
-              <SearchButton displayFullInput={displayFullInput} aria={t('menu.search')} />
-            </Box>
-          </TabList>
-        ) : (
+      <Flex justifyContent='center' mt={4}>
+        {loading && <Spinner />}
+        {loaded && !electionsList.length && (
           <Flex
-            ref={refSearchInput}
-            position='sticky'
-            top='72px'
-            zIndex={30}
+            direction='column'
             justifyContent='center'
-            bgColor='organization.tabs.bg'
+            alignItems='center'
+            gap={3}
+            w={124}
+            p={12}
+            bgColor='organization.election_list_empty.bg'
+            borderRadius={2}
+            border='1px solid'
+            borderColor='organization.election_list_empty.border'
           >
-            <SearchInput width='80%' />
+            <Text textAlign='center' fontSize='xl2'>
+              {t('organization.elections_list_empty')}
+            </Text>
+            <NavLink to='/processes/create'>
+              <Button sx={{ span: { margin: 0 } }} rightIcon={<AddIcon />}>
+                <Text as='span' display={{ base: 'none', md: 'inline-block' }} pr={2}>
+                  {t('menu.create')}
+                </Text>
+              </Button>
+            </NavLink>
           </Flex>
         )}
-
-        <TabPanels>
-          <TabPanel>
-            <Grid
-              templateColumns={{
-                base: '1fr',
-                md2: 'repeat(2, 1fr)',
-                xl2: 'repeat(3, 1fr)',
-              }}
-              columnGap={{ base: 3, lg: 4 }}
-              rowGap={6}
-            >
-              {electionsList?.map((election: any, idx: number) => (
-                <GridItem key={idx} display='flex' justifyContent='center' alignItems='start'>
-                  <Card election={election} />
-                </GridItem>
-              ))}
-              <div ref={refObserver}></div>
-            </Grid>
-
-            <Flex justifyContent='center' mt={4}>
-              {loading && <Spinner />}
-              {loaded && !electionsList.length && (
-                <Flex
-                  direction='column'
-                  justifyContent='center'
-                  alignItems='center'
-                  gap={3}
-                  w={124}
-                  p={12}
-                  bgColor='organization.election_list_empty.bg'
-                  borderRadius={2}
-                  border='1px solid'
-                  borderColor='organization.election_list_empty.border'
-                >
-                  <Text textAlign='center' fontSize='xl2'>
-                    {t('organization.elections_list_empty')}
-                  </Text>
-                  <NavLink to='/processes/create'>
-                    <Button sx={{ span: { margin: 0 } }} rightIcon={<AddIcon />}>
-                      <Text as='span' display={{ base: 'none', md: 'inline-block' }} pr={2}>
-                        {t('menu.create')}
-                      </Text>
-                    </Button>
-                  </NavLink>
-                </Flex>
-              )}
-              {error && <Text>{error}</Text>}
-            </Flex>
-          </TabPanel>
-          <TabPanel>
-            <Text textAlign='center'>{t('work_in_progress')}</Text>
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
+        {error && <Text>{error}</Text>}
+      </Flex>
     </>
   )
 }
