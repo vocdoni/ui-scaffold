@@ -63,10 +63,8 @@ export const colors = {
   },
 
   organization: {
-    election_list_empty: {
-      bg: colorsBase.gray.light,
-      border: colorsBase.gray.main,
-    },
+    election_list_empty_bg: colorsBase.gray.light,
+
     tabs: {
       active: colorsBase.gray.dark,
       bg: colorsBase.white,
