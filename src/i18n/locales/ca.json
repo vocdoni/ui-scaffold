@@ -206,7 +206,6 @@
     "create_process": "Crear procés",
     "disconnect": "Desconnectar cartera",
     "my_list": "La meva llista",
-    "search": "",
     "support": ""
   },
   "not_found": "No trobat",
@@ -215,11 +214,7 @@
     "avatar_alt": "Imatge d'avatar de l'organització {{ name }}",
     "dao_title": "DAO",
     "elections": "Eleccions",
-    "elections_list_empty": "Aquesta organització encara no té eleccions",
-    "rounds": {
-      "active": "Actives",
-      "all": "Totes"
-    }
+    "elections_list_empty": "Aquesta organització encara no té eleccions"
   },
   "process": {
     "date": {
@@ -248,14 +243,10 @@
     "play": "Reprodueix",
     "stop": "Atura"
   },
-  "search": {
-    "input_placeholder": "Cerca"
-  },
   "share": {
     "facebook": "Comparteix a Facebook",
     "twitter": "Comparteix a Twitter"
   },
   "submited_votes": "Vots emesos",
-  "voting_elections": "Votacions",
-  "work_in_progress": "Treball en progrés"
+  "voting_elections": "Votacions"
 }
