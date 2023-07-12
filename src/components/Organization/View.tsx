@@ -1,16 +1,16 @@
 import { AddIcon } from '@chakra-ui/icons'
-import { Button, Flex, Grid, GridItem, Spinner, Text } from '@chakra-ui/react'
+import { Button, Card, CardBody, Flex, Grid, GridItem, Spinner, Text } from '@chakra-ui/react'
 import { useClient, useOrganization } from '@vocdoni/chakra-components'
-import { InvalidElection, PublishedElection } from '@vocdoni/sdk'
+import { InvalidElection, PublishedElection, areEqualHexStrings } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
-import Card from '../Process/CardDetailed'
+import ProcessCardDetailed from '../Process/CardDetailed'
 import Header from './Header'
 
 const OrganizationView = () => {
   const { t } = useTranslation()
-  const { client } = useClient()
+  const { client, account } = useClient()
   const { organization } = useOrganization()
 
   const [electionsList, setElectionsList] = useState<(PublishedElection | InvalidElection)[]>([])
@@ -65,6 +65,7 @@ const OrganizationView = () => {
   return (
     <>
       <Header />
+
       <Grid
         templateColumns={{
           base: '1fr',
@@ -76,7 +77,7 @@ const OrganizationView = () => {
       >
         {electionsList?.map((election: any, idx: number) => (
           <GridItem key={idx} display='flex' justifyContent='center' alignItems='start'>
-            <Card election={election} />
+            <ProcessCardDetailed election={election} />
           </GridItem>
         ))}
         <div ref={refObserver}></div>
@@ -85,29 +86,18 @@ const OrganizationView = () => {
       <Flex justifyContent='center' mt={4}>
         {loading && <Spinner />}
         {loaded && !electionsList.length && (
-          <Flex
-            direction='column'
-            justifyContent='center'
-            alignItems='center'
-            gap={3}
-            w={124}
-            p={12}
-            bgColor='organization.election_list_empty.bg'
-            borderRadius={2}
-            border='1px solid'
-            borderColor='organization.election_list_empty.border'
-          >
-            <Text textAlign='center' fontSize='xl2'>
-              {t('organization.elections_list_empty')}
-            </Text>
-            <NavLink to='/processes/create'>
-              <Button sx={{ span: { margin: 0 } }} rightIcon={<AddIcon />}>
-                <Text as='span' display={{ base: 'none', md: 'inline-block' }} pr={2}>
-                  {t('menu.create')}
-                </Text>
-              </Button>
-            </NavLink>
-          </Flex>
+          <Card variant='no-elections'>
+            <CardBody>
+              <Text>{t('organization.elections_list_empty')}</Text>
+              {areEqualHexStrings(account?.address, organization?.address) && (
+                <NavLink to='/processes/create'>
+                  <Button colorScheme='primary' rightIcon={<AddIcon />}>
+                    {t('menu.create')}
+                  </Button>
+                </NavLink>
+              )}
+            </CardBody>
+          </Card>
         )}
         {error && <Text>{error}</Text>}
       </Flex>

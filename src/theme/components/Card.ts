@@ -191,9 +191,43 @@ const detailed = definePartsStyle({
   },
 })
 
-const variantsCards = {
-  lite,
-  detailed,
-}
+const noElections = definePartsStyle({
+  container: {
+    display: 'flex',
+    direction: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 3,
+    maxW: 160,
+    px: { base: 2, md: 4 },
+    py: { base: 4, md: 8 },
+    mx: 'auto',
+    bgColor: 'organization.election_list_empty_bg',
+    borderRadius: 'lg',
+  },
 
+  body: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: { base: 2, md: 5 },
+
+    '& > p:first-of-type': {
+      textAlign: 'center',
+      fontSize: 'xl2',
+      mb: 0,
+    },
+
+    '& > a': {
+      display: 'flex',
+      justifyContent: 'center',
+      mx: 'auto',
+    },
+  },
+})
+
+const variantsCards = {
+  detailed,
+  lite,
+  'no-elections': noElections,
+}
 export const Card = defineMultiStyleConfig({ variants: variantsCards })
