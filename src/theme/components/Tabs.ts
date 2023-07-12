@@ -48,6 +48,7 @@ const process = definePartsStyle({
     color: 'process.tabs.color',
     fontWeight: 'normal',
     borderTopRadius: 'md',
+    fontSize: 'lg',
 
     '&:after': {
       content: "''",
