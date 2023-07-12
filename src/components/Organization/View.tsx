@@ -17,7 +17,7 @@ import {
   useOutsideClick,
 } from '@chakra-ui/react'
 import { useClient, useOrganization } from '@vocdoni/chakra-components'
-import { InvalidElection, PublishedElection } from '@vocdoni/sdk'
+import { InvalidElection, PublishedElection, areEqualHexStrings } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
@@ -28,7 +28,7 @@ import Header from './Header'
 
 const OrganizationView = () => {
   const { t } = useTranslation()
-  const { client } = useClient()
+  const { client, account } = useClient()
   const { organization } = useOrganization()
 
   const [electionsList, setElectionsList] = useState<(PublishedElection | InvalidElection)[]>([])
@@ -156,7 +156,7 @@ const OrganizationView = () => {
 
             <Flex justifyContent='center' mt={4}>
               {loading && <Spinner />}
-              {loaded && !electionsList.length && (
+              {loaded && !electionsList.length && areEqualHexStrings(account?.address, organization?.address) && (
                 <Card variant='no-elections'>
                   <CardBody>
                     <Text>{t('organization.elections_list_empty')}</Text>
