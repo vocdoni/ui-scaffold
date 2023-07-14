@@ -208,7 +208,6 @@
     "create_process": "Crear proceso",
     "disconnect": "Desconectar billetera",
     "my_list": "Mi lista",
-    "search": "Entrada de búsqueda",
     "support": "Soporte"
   },
   "not_found": "No encontrado",
@@ -217,11 +216,7 @@
     "avatar_alt": "Imagen de avatar de la organización {{ name }}",
     "dao_title": "DAO",
     "elections": "Elecciones",
-    "elections_list_empty": "Esta organización aún no tiene elecciones",
-    "rounds": {
-      "active": "Activas",
-      "all": "Todas"
-    }
+    "elections_list_empty": "Esta organización aún no tiene elecciones"
   },
   "process": {
     "date": {
@@ -250,14 +245,10 @@
     "play": "reproducir",
     "stop": "detener"
   },
-  "search": {
-    "input_placeholder": "Buscar"
-  },
   "share": {
     "facebook": "Compartir en Facebook",
     "twitter": "Compartir en Twitter"
   },
   "submited_votes": "Votos enviados",
-  "voting_elections": "Votaciones",
-  "work_in_progress": "Trabajo en progreso"
+  "voting_elections": "Votaciones"
 }
