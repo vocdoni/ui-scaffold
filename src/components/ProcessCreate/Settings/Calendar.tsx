@@ -49,6 +49,8 @@ const Calendar = () => {
   const endDate = register('endDate', { required })
   const begin = watch('startDate')
   const end = watch('endDate')
+  const autoStart = watch('electionType.autoStart')
+
   // translations parser can't take an "inception" of translations, that's why we define it here
   const datef = t('form.process_create.calendar.date_format')
   const today = format(new Date(), DateFormatHtml)
@@ -142,7 +144,7 @@ const Calendar = () => {
             <AlertDescription>
               {t('form.process_create.calendar.end_date_description', {
                 date: {
-                  begin: begin ? new Date(begin) : new Date(),
+                  begin: begin && !autoStart ? new Date(begin) : new Date(),
                   end: end && new Date(end),
                 },
                 format: datef,
