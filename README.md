@@ -12,30 +12,17 @@ there, here's a list of variables you can use:
 
 - `VOCDONI_ENVIRONMENT`: the vocdoni environment to be used, either
   `dev`, `stg` or `prod` (defaults to `stg`).
+- `BASE_URL` is used to specify the public base page during build.
+- `BUILD_PATH` Specifies the destination of built files.
 
 You can also start the app by prefixing these vars instead of defining your
 custom `.env` file:
 
 ```bash
 VOCDONI_ENVIRONMENT=dev yarn start
+# or an example using all of them...
+BUILD_PATH=build/dev BASE_URL=/ui-scaffold/dev VOCDONI_ENVIRONMENT=dev yarn build
 ```
-
-- `PUBLIC_URL` is used to specify the public base pase during the build.
-[From Vite docs](https://vitejs.dev/guide/build.html#public-base-path):
-
-> JS-imported asset URLs, CSS url() references, and asset references in
-> your .html files are all automatically adjusted to respect this option during build.
-
-```bash
-PUBLIC_URL=="/ui-scaffold/dev/" yarn build
-```
-
-- `BUILD_PATH` Specifies the where the destination of built files.
-
-```bash
-PUBLIC_URL=="/ui-scaffold/dev/" yarn build
-```
-
 
 ### Available Scripts
 
