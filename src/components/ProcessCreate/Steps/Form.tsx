@@ -1,6 +1,6 @@
 import { Stepper } from '@chakra-ui/react'
+import type { RecursivePartial } from '@constants'
 import { PropsWithChildren, useState } from 'react'
-import type { RecursivePartial } from '../../../constants'
 import { StepContents } from './Contents'
 import { StepsContext, StepsContextState, StepsFormValues } from './use-steps'
 

@@ -2,7 +2,8 @@ import { Box, Code, Flex, Grid, Icon, Img, Link, List, ListItem, Text } from '@c
 import { HR } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa'
-import vocdoni_logo from '../../assets/vocdoni_logo.svg'
+import poweredBy from '/assets/powered_by_aragon.png'
+import logo from '/assets/vocdoni_logo.svg'
 
 const Footer = ({ ...props }) => {
   const { t } = useTranslation()
@@ -28,8 +29,8 @@ const Footer = ({ ...props }) => {
           gridColumn={{ base: '1/3', sm: '1/3', md: '1/5', lg: '1/2' }}
           gridRow={{ base: '5/6', md: '2/3', lg: '1/2' }}
         >
-          <Img src={vocdoni_logo} maxW={36}></Img>
-          <Img src={`${process.env.PUBLIC_URL}/assets/powered_by_aragon.png`} maxW={36}></Img>
+          <Img src={logo} maxW={36}></Img>
+          <Img src={poweredBy} maxW={36}></Img>
         </Flex>
         <Box textAlign={{ base: 'center', lg: 'start' }} mb={4}>
           <Text fontWeight='bold'>{t('footer.company').toUpperCase()}</Text>

@@ -17,7 +17,7 @@ const storedLang = () => {
 
 i18n.use(initReactI18next).init({
   fallbackLng,
-  debug: process.env.NODE_ENV === 'development',
+  debug: import.meta.env.NODE_ENV === 'development',
   defaultNS: 'translation',
   lng: storedLang(),
   interpolation: {

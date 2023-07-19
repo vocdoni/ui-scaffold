@@ -1,24 +1,24 @@
 {
   "alt_image": "Imagen {{ img }}",
   "aside": {
-    "has_already_voted": "Tu voto se ha registrado correctamente",
-    "is_able_to_vote": "Conectado. Eres elegible para votar",
+    "has_already_voted": "Tu voto ha sido registrado correctamente",
+    "is_able_to_vote": "Conectado. Eres elegible para votar.",
     "is_not_in_census": "No estás en el censo",
-    "not_connected": "",
-    "overwrite_votes_left": "Puedes corregir tu voto hasta {{ left }} veces.",
-    "verify_vote_on_explorer": "Verificar voto en el explorador",
-    "votes_one": "",
+    "not_connected": "No estás conectado",
+    "overwrite_votes_left": "Puedes corregir tu voto {{ left }} veces.",
+    "verify_vote_on_explorer": "Verifica el voto en el explorador",
+    "votes_one": "¡ya hay un voto!",
     "votes_many": "",
-    "votes_other": "",
-    "votes_submited_one": "",
+    "votes_other": "¡ya hay {{ count }} votos!",
+    "votes_submited_one": "un voto enviado",
     "votes_submited_many": "",
-    "votes_submited_other": ""
+    "votes_submited_other": "{{ count }} votos enviados"
   },
   "banner": {
-    "know_more": "",
-    "start_now": "",
-    "subtitle": "",
-    "title": ""
+    "know_more": "Saber más",
+    "start_now": "¡Comenzar ahora!",
+    "subtitle": "¡Votando por DAOs y comunidades Web3!",
+    "title": "¡Usa direcciones de cartera, vota con un token ERC20 o con NFTs!"
   },
   "cc": {
     "actions": {
@@ -55,7 +55,7 @@
       "button": "Votar",
       "button_update": "Reenviar voto",
       "missing_answers": "Tienes que responder a todas las preguntas",
-      "voted_description": "Tu identificación de voto es {{ id }}. Puedes usarla para verificar tu voto.",
+      "voted_description": "Para verificar tu voto, puedes usar esta identificación única: {{ id }}",
       "voted_title": "¡Tu voto se ha registrado con éxito!"
     }
   },
@@ -89,7 +89,7 @@
       "title_placeholder": "El nombre de la organización"
     },
     "error": {
-      "address_already_in_use": "",
+      "address_already_in_use": "Esta dirección ya está en el censo",
       "address_pattern": "Solo se permiten direcciones hexadecimales (p.ej. 0x031101A...)",
       "field_is_required": "Este campo es obligatorio"
     },
@@ -208,7 +208,6 @@
     "create_process": "Crear proceso",
     "disconnect": "Desconectar billetera",
     "my_list": "Mi lista",
-    "search": "Entrada de búsqueda",
     "support": "Soporte"
   },
   "not_found": "No encontrado",
@@ -217,11 +216,7 @@
     "avatar_alt": "Imagen de avatar de la organización {{ name }}",
     "dao_title": "DAO",
     "elections": "Elecciones",
-    "elections_list_empty": "Esta organización aún no tiene elecciones",
-    "rounds": {
-      "active": "Activas",
-      "all": "Todas"
-    }
+    "elections_list_empty": "Esta organización aún no tiene elecciones"
   },
   "process": {
     "date": {
@@ -230,7 +225,7 @@
       "relative": "{{ date, relative(past: hace %time; future: en %time) }}",
       "starts": "Empieza"
     },
-    "is_invalid": "",
+    "is_invalid": "Este proceso tiene datos no válidos y no se puede cargar",
     "questions": "Preguntas",
     "results": "Resultados",
     "status": {
@@ -250,14 +245,6 @@
     "play": "reproducir",
     "stop": "detener"
   },
-  "search": {
-    "input_placeholder": "Buscar"
-  },
-  "share": {
-    "facebook": "Compartir en Facebook",
-    "twitter": "Compartir en Twitter"
-  },
   "submited_votes": "Votos enviados",
-  "voting_elections": "Votaciones",
-  "work_in_progress": "Trabajo en progreso"
+  "voting_elections": "Votaciones"
 }

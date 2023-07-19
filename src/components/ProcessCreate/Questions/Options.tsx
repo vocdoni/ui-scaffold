@@ -1,8 +1,8 @@
 import { DeleteIcon } from '@chakra-ui/icons'
 import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, IconButton, Input } from '@chakra-ui/react'
+import { fieldMapErrorMessage, isInvalidFieldMap } from '@constants'
 import { FieldValues, UseFieldArrayAppend, UseFieldArrayRemove, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { fieldMapErrorMessage, isInvalidFieldMap } from '../../../constants'
 
 interface Props {
   fields: Record<'id', string>[]
@@ -54,9 +54,7 @@ const Options = ({ fields, removeOption, appendOption, index }: Props) => {
           </Flex>
         </FormControl>
       ))}
-      <Button onClick={() => appendOption({ option: '' })}>
-        {t('form.process_create.question.add_new_option')}
-      </Button>
+      <Button onClick={() => appendOption({ option: '' })}>{t('form.process_create.question.add_new_option')}</Button>
     </Box>
   )
 }
