@@ -31,14 +31,14 @@ jobs:
         run: yarn build
         env:
           PUBLIC_URL: '/ui-scaffold/dev/'
-          REACT_APP_VOCDONI_ENVIRONMENT: 'dev'
+          VOCDONI_ENVIRONMENT: 'dev'
           BUILD_PATH: 'build/dev'
 
       - name: Build CRA app stg
         run: yarn build
         env:
           PUBLIC_URL: '/ui-scaffold/stg/'
-          REACT_APP_VOCDONI_ENVIRONMENT: 'stg'
+          VOCDONI_ENVIRONMENT: 'stg'
           BUILD_PATH: 'build/stg'
 
       - name: Create redirect index
