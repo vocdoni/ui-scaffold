@@ -7,16 +7,16 @@
     "not_connected": "You are not connected",
     "overwrite_votes_left": "You can correct your vote up to {{ left }} times.",
     "verify_vote_on_explorer": "Verify vote on explorer",
-    "votes_one": "{{ count }} Vote cast so far!",
-    "votes_other": "{{ count }} Votes cast so far!",
-    "votes_submited_one": "{{ count }} Votes submitted",
-    "votes_submited_other": "{{ count }} Votes submitted"
+    "votes_one": "one vote cast so far!",
+    "votes_other": "{{ count }} votes cast so far!",
+    "votes_submited_one": "one vote submitted",
+    "votes_submited_other": "{{ count }} votes submitted"
   },
   "banner": {
     "know_more": "Know more",
     "start_now": "Start now!",
     "subtitle": "Voting for DAOs & Web3 communities",
-    "title": "Use wallet addresses, vote with a ERC20 token or with NFTs!"
+    "title": "Use wallet addresses, vote with an ERC20 token or with NFTs!"
   },
   "cc": {
     "actions": {
@@ -241,10 +241,6 @@
     "pause": "pause",
     "play": "play",
     "stop": "stop"
-  },
-  "share": {
-    "facebook": "Share to facebook",
-    "twitter": "Share to twitter"
   },
   "submited_votes": "Submitted votes",
   "voting_elections": "Voting elections"
