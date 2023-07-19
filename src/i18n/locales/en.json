@@ -220,6 +220,7 @@
       "ended": "Process ended",
       "ends": "Process ends",
       "relative": "{{ date, relative(past: %time ago; future: in %time) }}",
+      "results": "Process manually closed",
       "starts": "Process starts"
     },
     "is_invalid": "This process has wrong data, thus making it invalid",
@@ -241,10 +242,6 @@
     "pause": "pause",
     "play": "play",
     "stop": "stop"
-  },
-  "share": {
-    "facebook": "Share to facebook",
-    "twitter": "Share to twitter"
   },
   "submited_votes": "Submitted votes",
   "voting_elections": "Voting elections"

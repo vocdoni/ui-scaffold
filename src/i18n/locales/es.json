@@ -223,6 +223,7 @@
       "ended": "Finalizado",
       "ends": "Finaliza",
       "relative": "{{ date, relative(past: hace %time; future: en %time) }}",
+      "results": "",
       "starts": "Empieza"
     },
     "is_invalid": "",
@@ -244,10 +245,6 @@
     "pause": "pausar",
     "play": "reproducir",
     "stop": "detener"
-  },
-  "share": {
-    "facebook": "Compartir en Facebook",
-    "twitter": "Compartir en Twitter"
   },
   "submited_votes": "Votos enviados",
   "voting_elections": "Votaciones"

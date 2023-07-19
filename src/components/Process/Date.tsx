@@ -14,14 +14,20 @@ export const ProcessDate = () => {
 
   if (election.status === ElectionStatus.CANCELED) return null
 
+  // if (election.status === ElectionStatus.RESULTS) return <Text color='process.date'>{statusText}</Text>
+
   return (
     <Box>
       <Text color='process.date' fontWeight='bold'>
         {statusText}
       </Text>
-      <Text>
-        {t('process.date.relative', { date: election.startDate > new Date() ? election.startDate : election.endDate })}
-      </Text>
+      {election.status !== ElectionStatus.RESULTS && (
+        <Text>
+          {t('process.date.relative', {
+            date: election.startDate > new Date() ? election.startDate : election.endDate,
+          })}
+        </Text>
+      )}
     </Box>
   )
 }
@@ -34,6 +40,7 @@ const getStatusText = (t: TFunction<string, string>, electionStatus: ElectionSta
     case ElectionStatus.PAUSED:
       return t('process.date.ends')
     case ElectionStatus.RESULTS:
+      return t('process.date.results')
     case ElectionStatus.ENDED:
       return t('process.date.ended')
     case ElectionStatus.CANCELED:

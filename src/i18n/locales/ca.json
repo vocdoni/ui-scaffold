@@ -221,6 +221,7 @@
       "ended": "Procés finalitzat",
       "ends": "Finalitza",
       "relative": "{{ date, relative(past: fa %time; future: en %time) }}",
+      "results": "",
       "starts": "Comença el procés"
     },
     "is_invalid": "",
@@ -242,10 +243,6 @@
     "pause": "Pausa",
     "play": "Reprodueix",
     "stop": "Atura"
-  },
-  "share": {
-    "facebook": "Comparteix a Facebook",
-    "twitter": "Comparteix a Twitter"
   },
   "submited_votes": "Vots emesos",
   "voting_elections": "Votacions"
