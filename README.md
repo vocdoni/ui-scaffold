@@ -10,15 +10,32 @@ This project was bootstrapped with
 You can create a `.env.local` file to set your custom environment variables
 there, here's a list of variables you can use:
 
-- `REACT_APP_VOCDONI_ENVIRONMENT`: the vocdoni environment to be used, either
+- `VOCDONI_ENVIRONMENT`: the vocdoni environment to be used, either
   `dev`, `stg` or `prod` (defaults to `stg`).
 
 You can also start the app by prefixing these vars instead of defining your
 custom `.env` file:
 
 ```bash
-REACT_APP_VOCDONI_ENVIRONMENT=dev yarn start
+VOCDONI_ENVIRONMENT=dev yarn start
 ```
+
+- `PUBLIC_URL` is used to specify the public base pase during the build.
+[From Vite docs](https://vitejs.dev/guide/build.html#public-base-path):
+
+> JS-imported asset URLs, CSS url() references, and asset references in
+> your .html files are all automatically adjusted to respect this option during build.
+
+```bash
+PUBLIC_URL=="/ui-scaffold/dev/" yarn build
+```
+
+- `BUILD_PATH` Specifies the where the destination of built files.
+
+```bash
+PUBLIC_URL=="/ui-scaffold/dev/" yarn build
+```
+
 
 ### Available Scripts
 
