@@ -29,7 +29,7 @@ const Footer = ({ ...props }) => {
           gridRow={{ base: '5/6', md: '2/3', lg: '1/2' }}
         >
           <Img src={vocdoni_logo} maxW={36}></Img>
-          <Img src={`/assets/powered_by_aragon.png`} maxW={36}></Img>
+          <Img src={`${import.meta.env.BASE_URL}/assets/powered_by_aragon.png`} maxW={36}></Img>
         </Flex>
         <Box textAlign={{ base: 'center', lg: 'start' }} mb={4}>
           <Text fontWeight='bold'>{t('footer.company').toUpperCase()}</Text>

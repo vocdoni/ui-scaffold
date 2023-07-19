@@ -24,7 +24,7 @@ const OrganizationHeader = () => {
           <Avatar
             mx='auto'
             borderRadius='md'
-            fallbackSrc={`/assets/default-avatar.png`}
+            fallbackSrc={`${import.meta.env.BASE_URL}/assets/default-avatar.png`}
             alt={t('organization.avatar_alt', {
               name: organization?.account.name.default || organization?.address,
             }).toString()}
