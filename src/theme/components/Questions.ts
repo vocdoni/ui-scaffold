@@ -5,29 +5,43 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 
 const baseStyle = definePartsStyle({
   alert: {
-    px: '15px',
-    py: '30px',
+    px: 5,
+    py: 7,
     my: '10px',
     borderRadius: '8px',
     color: 'process.questions.alert.color',
     bgColor: 'process.questions.alert.bg',
+    display: 'grid',
+    columnGap: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
+    gridTemplateColumns: 'auto 1fr',
+    gridTemplateRows: 'auto auto',
+    boxShadow: 'var(--box-shadow-darker)',
 
     '& span': {
       color: 'white',
+      ml: { base: 2, lg: 10, xl: 2 },
+      gridRow: '1/3',
+      gridColumn: '1/2',
     },
   },
 
   alertTitle: {
-    mb: 1,
+    fontSize: 'lg',
+    mb: 3,
   },
 
   alertDescription: {
     display: 'flex',
-    flexDirection: 'column',
+    gap: 2,
+    flexDirection: { base: 'column', md: 'row' },
+    justifyContent: 'center',
+    alignItems: { md: 'center' },
+    whiteSpace: { base: 'pre-wrap', md: 'nowrap' },
   },
 
   alertLink: {
-    order: 1,
     display: 'block',
     px: 2,
     py: 1,

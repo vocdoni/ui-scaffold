@@ -55,7 +55,7 @@
       "button": "Vota",
       "button_update": "Torna a enviar el vot",
       "missing_answers": "Has de respondre totes les preguntes",
-      "voted_description": "El teu ID de vot és {{ id }}. Pots utilitzar-lo per verificar el teu vot.",
+      "voted_description": "Per verificar el teu vot, pots utilitzar aquesta identificació única: {{ id }}",
       "voted_title": "El teu vot s'ha registrat amb èxit!"
     }
   },
