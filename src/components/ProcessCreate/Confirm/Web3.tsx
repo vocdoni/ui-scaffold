@@ -1,6 +1,6 @@
 import { Box, Flex, ListItem, Text, UnorderedList, useBreakpointValue } from '@chakra-ui/react'
+import { addressTextOverflow } from '@constants'
 import { useTranslation } from 'react-i18next'
-import { addressTextOverflow } from '../../../constants'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 
 const Web3Confirm = () => {

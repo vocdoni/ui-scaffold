@@ -1,10 +1,10 @@
 import { ArrowForwardIcon } from '@chakra-ui/icons'
 import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, Flex, Spinner, Text } from '@chakra-ui/react'
+import { AccountCreate } from '@components/Account/Create'
+import { useAccountHealthTools } from '@components/Account/use-account-health-tools'
 import { useClient } from '@vocdoni/chakra-components'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { AccountCreate } from '../../Account/Create'
-import { useAccountHealthTools } from '../../Account/use-account-health-tools'
 import Wrapper from '../Wrapper'
 import { useProcessCreationSteps } from './use-steps'
 

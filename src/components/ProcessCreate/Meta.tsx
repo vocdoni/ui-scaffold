@@ -1,7 +1,7 @@
 import { Box, Flex, FormControl, FormErrorMessage, Input, Text, Textarea } from '@chakra-ui/react'
+import { fieldMapErrorMessage, isInvalidFieldMap } from '@constants'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { fieldMapErrorMessage, isInvalidFieldMap } from '../../constants'
 
 const CreateProcessMeta = () => {
   const {

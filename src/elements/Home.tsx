@@ -1,10 +1,10 @@
 import { Box, Grid, GridItem, Text } from '@chakra-ui/react'
+import Banner from '@components/Home/Banner'
+import Counters from '@components/Home/Counters'
+import OrganizationCard, { CardOrgContents } from '@components/Organization/Card'
+import ProcessCardLite, { CardPrImgContents } from '@components/Process/CardLite'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import Banner from '../components/Home/Banner'
-import Counters from '../components/Home/Counters'
-import OrganizationCard, { CardOrgContents } from '../components/Organization/Card'
-import ProcessCardLite, { CardPrImgContents } from '../components/Process/CardLite'
 
 const CARDS_ORG: CardOrgContents[] = [
   {
