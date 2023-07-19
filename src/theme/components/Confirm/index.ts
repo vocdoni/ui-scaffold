@@ -1,6 +1,6 @@
 import { extendTheme, theme } from '@chakra-ui/react'
+import { colors } from '@theme/colors'
 import { PreviewQuestions } from './Questions'
-import { colors } from '../../colors'
 
 export const cofirmTheme = extendTheme(theme, {
   colors,

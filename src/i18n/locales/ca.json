@@ -4,19 +4,21 @@
     "has_already_voted": "El teu vot s'ha registrat correctament",
     "is_able_to_vote": "Connectat. Ets elegible per votar.",
     "is_not_in_census": "No ets al cens",
-    "not_connected": "",
+    "not_connected": "No estàs connectat",
     "overwrite_votes_left": "Pots corregir el teu vot {{ left }} vegades.",
     "verify_vote_on_explorer": "Verifica el vot a l'explorador",
-    "votes_one": "",
-    "votes_other": "",
-    "votes_submited_one": "",
-    "votes_submited_other": ""
+    "votes_one": "ja hi ha un vot!",
+    "votes_many": "",
+    "votes_other": "ja hi ha {{ count }} vots!",
+    "votes_submited_one": "un vot enviat",
+    "votes_submited_many": "",
+    "votes_submited_other": "{{ count }} vots enviats"
   },
   "banner": {
-    "know_more": "",
-    "start_now": "",
-    "subtitle": "",
-    "title": ""
+    "know_more": "Descobreix més",
+    "start_now": "Comença ara!",
+    "subtitle": "Vota per a les DAOs i les comunitats Web3",
+    "title": "Utilitza adreces web3, vota amb un token ERC20 o amb NFTs!"
   },
   "cc": {
     "actions": {
@@ -53,7 +55,7 @@
       "button": "Vota",
       "button_update": "Torna a enviar el vot",
       "missing_answers": "Has de respondre totes les preguntes",
-      "voted_description": "El teu ID de vot és {{ id }}. Pots utilitzar-lo per verificar el teu vot.",
+      "voted_description": "Per verificar el teu vot, pots utilitzar aquesta identificació única: {{ id }}",
       "voted_title": "El teu vot s'ha registrat amb èxit!"
     }
   },
@@ -87,7 +89,7 @@
       "title_placeholder": "El nom de l'organització"
     },
     "error": {
-      "address_already_in_use": "",
+      "address_already_in_use": "Aquesta adreça ja és al cens",
       "address_pattern": "Només s'admeten adreces hexadecimals (p. ex. 0x031101A...)",
       "field_is_required": "Aquest camp és obligatori"
     },
@@ -191,7 +193,7 @@
   },
   "go_to_home": "Vés a <root>l'inici</root>",
   "home": {
-    "active_voting": "Votació activa",
+    "active_voting": "Votacions actives",
     "more_active_organizations": "Més organitzacions actives"
   },
   "link": {
@@ -206,8 +208,7 @@
     "create_process": "Crear procés",
     "disconnect": "Desconnectar cartera",
     "my_list": "La meva llista",
-    "search": "",
-    "support": ""
+    "support": "Ajuda"
   },
   "not_found": "No trobat",
   "open_in_explorer": "Obre a l'explorador",
@@ -215,11 +216,7 @@
     "avatar_alt": "Imatge d'avatar de l'organització {{ name }}",
     "dao_title": "DAO",
     "elections": "Eleccions",
-    "elections_list_empty": "Aquesta organització encara no té eleccions",
-    "rounds": {
-      "active": "Actives",
-      "all": "Totes"
-    }
+    "elections_list_empty": "Aquesta organització encara no té eleccions"
   },
   "process": {
     "date": {
@@ -228,7 +225,7 @@
       "relative": "{{ date, relative(past: fa %time; future: en %time) }}",
       "starts": "Comença el procés"
     },
-    "is_invalid": "",
+    "is_invalid": "Aquest procés té dades no vàlides i per tant no pot carregar-se",
     "questions": "Preguntes",
     "results": "Resultats",
     "status": {
@@ -248,14 +245,6 @@
     "play": "Reprodueix",
     "stop": "Atura"
   },
-  "search": {
-    "input_placeholder": "Cerca"
-  },
-  "share": {
-    "facebook": "Comparteix a Facebook",
-    "twitter": "Comparteix a Twitter"
-  },
   "submited_votes": "Vots emesos",
-  "voting_elections": "Votacions",
-  "work_in_progress": "Treball en progrés"
+  "voting_elections": "Votacions"
 }

@@ -15,9 +15,10 @@ const baseStyle = definePartsStyle({
     '& > div:nth-of-type(2) > div': {
       display: 'flex',
       flexDirection: { base: 'column', md: 'row' },
-      alignItems: 'center',
+      alignItems: { base: 'center', md: 'start' },
       gap: 3,
       mb: 5,
+      px: 8,
 
       '& p:nth-of-type(1)': {
         maxW: '100%',
@@ -25,19 +26,22 @@ const baseStyle = definePartsStyle({
         flexGrow: 1,
         color: 'process.results.description',
       },
+      '& p:nth-of-type(2)': {
+        mx: 4,
+      },
       '& div': {
         w: 'full',
         flexBasis: '33%',
         flexGrow: 0,
         flexShrink: 0,
-        h: 5,
+        h: 6,
         borderRadius: 'md',
         bgColor: 'progress_bar.bg',
         overflow: 'hidden',
         position: 'relative',
 
         '& div': {
-          h: 5,
+          h: 6,
           background: {
             base: `linear-gradient(to right, #2DD1BD 0%, #179B87 50%, #006350 100%) left/var(--p,100%) fixed;`,
             md: `linear-gradient(to right, #2DD1BD 65%, #179B87 79.5%, #006350 94%) left/var(--p,100%) fixed;`,

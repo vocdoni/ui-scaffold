@@ -1,4 +1,4 @@
-import { AspectRatio, Box, Flex, Text } from '@chakra-ui/react'
+import { AspectRatio, Box, Flex } from '@chakra-ui/react'
 import {
   OrganizationAvatar as Avatar,
   OrganizationDescription,
@@ -6,21 +6,26 @@ import {
   useOrganization,
 } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
-import ShareButtons from '../Layout/ShareButtons'
 import AddressBtn from './AddressBtn'
+import fallback from '/assets/default-avatar.png'
 
 const OrganizationHeader = () => {
   const { t } = useTranslation()
   const { organization } = useOrganization()
 
   return (
-    <Flex flexDirection={{ base: 'column', md: 'row' }} alignItems={{ base: 'center', md: 'start' }} gap={2} mb={10}>
+    <Flex
+      flexDirection={{ base: 'column', md: 'row' }}
+      alignItems={{ base: 'center', md: 'start' }}
+      gap={{ base: 2, md: 10 }}
+      mb={10}
+    >
       <Box flex='1 1 20%' minW={40}>
         <AspectRatio ratio={1.25 / 1} maxW={56} mx='auto'>
           <Avatar
             mx='auto'
             borderRadius='md'
-            fallbackSrc={`${process.env.PUBLIC_URL}/assets/default-avatar.png`}
+            fallbackSrc={fallback}
             alt={t('organization.avatar_alt', {
               name: organization?.account.name.default || organization?.address,
             }).toString()}
@@ -33,24 +38,18 @@ const OrganizationHeader = () => {
           direction={{ base: 'column', md: 'row' }}
           justifyContent={{ md: 'space-between' }}
           alignItems={{ base: 'center', md: 'start' }}
-          gap={2}
           mb={{ base: 2, md: 4 }}
         >
           <Box textAlign={{ base: 'center', md: 'start' }} w={{ base: 'full', md: '80%' }} minW={0}>
             <AddressBtn />
 
-            <Text>{t('organization.dao_title')}</Text>
-
             <OrganizationName
+              mt={2}
               fontSize={28}
               isTruncated
               title={organization?.account.name.default || organization?.address}
             />
           </Box>
-
-          <Flex flexDirection={{ base: 'row', md: 'column' }} alignItems='start' gap={3}>
-            <ShareButtons />
-          </Flex>
         </Flex>
 
         <OrganizationDescription />

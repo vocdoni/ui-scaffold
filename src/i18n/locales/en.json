@@ -7,16 +7,16 @@
     "not_connected": "You are not connected",
     "overwrite_votes_left": "You can correct your vote up to {{ left }} times.",
     "verify_vote_on_explorer": "Verify vote on explorer",
-    "votes_one": "{{ count }} Vote cast so far!",
-    "votes_other": "{{ count }} Votes cast so far!",
-    "votes_submited_one": "{{ count }} Votes submitted",
-    "votes_submited_other": "{{ count }} Votes submitted"
+    "votes_one": "one vote cast so far!",
+    "votes_other": "{{ count }} votes cast so far!",
+    "votes_submited_one": "one vote submitted",
+    "votes_submited_other": "{{ count }} votes submitted"
   },
   "banner": {
     "know_more": "Know more",
     "start_now": "Start now!",
     "subtitle": "Voting for DAOs & Web3 communities",
-    "title": "Use wallet addresses, vote with a ERC20 token or with NFTs!"
+    "title": "Use wallet addresses, vote with an ERC20 token or with NFTs!"
   },
   "cc": {
     "actions": {
@@ -53,7 +53,7 @@
       "button": "Vote",
       "button_update": "Re-submit vote",
       "missing_answers": "You have to answer all the questions",
-      "voted_description": "You can use it to verify your vote. Your vote id is {{ id }}.",
+      "voted_description": "To verify your vote, you can use this unique id: {{ id }}",
       "voted_title": "Your vote was successfully cast!"
     }
   },
@@ -205,7 +205,6 @@
     "create_process": "Create process",
     "disconnect": "Disconnect Wallet",
     "my_list": "My list",
-    "search": "input search",
     "support": "Support"
   },
   "not_found": "Not found",
@@ -214,11 +213,7 @@
     "avatar_alt": "Avatar image of {{ name }} organization",
     "dao_title": "DAO",
     "elections": "Elections",
-    "elections_list_empty": "This organization has no elections yet",
-    "rounds": {
-      "active": "Active",
-      "all": "All"
-    }
+    "elections_list_empty": "This organization has no elections yet"
   },
   "process": {
     "date": {
@@ -247,14 +242,6 @@
     "play": "play",
     "stop": "stop"
   },
-  "search": {
-    "input_placeholder": "Search"
-  },
-  "share": {
-    "facebook": "Share to facebook",
-    "twitter": "Share to twitter"
-  },
   "submited_votes": "Submitted votes",
-  "voting_elections": "Voting elections",
-  "work_in_progress": "Work in progress"
+  "voting_elections": "Voting elections"
 }
