@@ -10,14 +10,18 @@ This project was bootstrapped with
 You can create a `.env.local` file to set your custom environment variables
 there, here's a list of variables you can use:
 
-- `REACT_APP_VOCDONI_ENVIRONMENT`: the vocdoni environment to be used, either
+- `VOCDONI_ENVIRONMENT`: the vocdoni environment to be used, either
   `dev`, `stg` or `prod` (defaults to `stg`).
+- `BASE_URL` is used to specify the public base page during build.
+- `BUILD_PATH` Specifies the destination of built files.
 
 You can also start the app by prefixing these vars instead of defining your
 custom `.env` file:
 
 ```bash
-REACT_APP_VOCDONI_ENVIRONMENT=dev yarn start
+VOCDONI_ENVIRONMENT=dev yarn start
+# or an example using all of them...
+BUILD_PATH=build/dev BASE_URL=/ui-scaffold/dev VOCDONI_ENVIRONMENT=dev yarn build
 ```
 
 ### Available Scripts

@@ -1,7 +1,7 @@
 import { Button, ListItem } from '@chakra-ui/react'
+import { LanguagesSlice } from '@i18n/languages.mjs'
 import { useTranslation } from 'react-i18next'
 import { FaGlobeAmericas } from 'react-icons/fa'
-import { LanguagesSlice } from '../../i18n/languages.mjs'
 
 const LanguagesList = () => {
   const { i18n } = useTranslation()

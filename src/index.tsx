@@ -9,10 +9,6 @@ const container = document.getElementById('root')
 if (!container) throw new Error('Failed to find the root element')
 const root = ReactDOM.createRoot(container)
 
-// we could rewrite webpack configuration, but this is waaay easier...
-// fixes "buffer is not defined" errors from rainbowkit (and any other dependency)
-window.Buffer = window.Buffer || require('buffer').Buffer
-
 root.render(
   <React.StrictMode>
     <Providers />

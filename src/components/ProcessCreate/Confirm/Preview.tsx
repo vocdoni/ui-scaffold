@@ -1,9 +1,9 @@
-import { Box, ChakraProvider, Flex, Icon, Link, Text, extendTheme } from '@chakra-ui/react'
+import { Box, ChakraProvider, extendTheme, Flex, Icon, Link, Text } from '@chakra-ui/react'
+import { cofirmTheme } from '@theme/components/Confirm'
 import { ElectionQuestions, ElectionTitle, HR, useElection } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import { IoMdCheckmark, IoMdClose, IoMdCreate } from 'react-icons/io'
 import { IoCheckmarkSharp } from 'react-icons/io5'
-import { cofirmTheme } from '../../../theme/components/Confirm'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 import Census from './Census'
 
