@@ -18,12 +18,16 @@ const baseStyle = definePartsStyle({
       alignItems: { base: 'center', md: 'start' },
       gap: 3,
       mb: 5,
+      px: 8,
 
       '& p:nth-of-type(1)': {
         maxW: '100%',
         flexBasis: '33%',
         flexGrow: 1,
         color: 'process.results.description',
+      },
+      '& p:nth-of-type(2)': {
+        mx: 4,
       },
       '& div': {
         w: 'full',
