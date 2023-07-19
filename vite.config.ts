@@ -8,7 +8,7 @@ if (!vocdoniEnvironment) {
 }
 
 const outDir = process.env.BUILD_PATH
-const base = process.env.PUBLIC_URL
+const base = process.env.BASE_URL
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -16,8 +16,8 @@ export default defineConfig({
   build: {
     outDir,
   },
-  // define: {
-  //   'import.meta.env.VOCDONI_ENVIRONMENT': `"${vocdoniEnvironment}"`,
-  // },
+  define: {
+    'import.meta.env.VOCDONI_ENVIRONMENT': JSON.stringify(vocdoniEnvironment),
+  },
   plugins: [tsconfigPaths(), react()],
 })
