@@ -8,7 +8,7 @@ if (!vocdoniEnvironment) {
 }
 
 const outDir = process.env.BUILD_PATH
-const base = process.env.BASE_URL
+const base = process.env.BASE_URL || ''
 
 // https://vitejs.dev/config/
 export default defineConfig({

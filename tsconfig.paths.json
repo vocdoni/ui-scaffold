@@ -2,11 +2,13 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
-      "@assets/*": ["assets/*"],
+      "@components/*": ["components/*"],
       "@constants": ["constants/index.ts"],
       "@constants/*": ["constants/*"],
       "@elements/*": ["elements/*"],
       "@hooks/*": ["hooks/*"],
+      "@i18n/*": ["i18n/*"],
+      "@theme/*": ["theme/*"],
       "@src/*": ["./*"]
     }
   }

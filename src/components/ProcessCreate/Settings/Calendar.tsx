@@ -13,11 +13,11 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react'
+import { useBooleanRadioRegister } from '@constants'
+import { useDateFns } from '@i18n/use-date-fns'
 import { MutableRefObject, useRef, useState } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { useBooleanRadioRegister } from '../../../constants'
-import { useDateFns } from '../../../i18n/use-date-fns'
 
 const DateFormatHtml = 'yyyy-MM-dd HH:mm'
 

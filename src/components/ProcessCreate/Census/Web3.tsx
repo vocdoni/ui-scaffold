@@ -10,11 +10,11 @@ import {
   Text,
   useBreakpointValue,
 } from '@chakra-ui/react'
+import { addressTextOverflow, fieldMapErrorMessage, isInvalidFieldMap } from '@constants'
 import { enforceHexPrefix, useClient } from '@vocdoni/chakra-components'
 import { useEffect, useState } from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { addressTextOverflow, fieldMapErrorMessage, isInvalidFieldMap } from '../../../constants'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 
 export const CensusWeb3Addresses = () => {

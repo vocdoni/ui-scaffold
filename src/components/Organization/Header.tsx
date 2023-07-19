@@ -7,6 +7,7 @@ import {
 } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import AddressBtn from './AddressBtn'
+import fallback from '/assets/default-avatar.png'
 
 const OrganizationHeader = () => {
   const { t } = useTranslation()
@@ -24,7 +25,7 @@ const OrganizationHeader = () => {
           <Avatar
             mx='auto'
             borderRadius='md'
-            fallbackSrc={`${import.meta.env.BASE_URL}/assets/default-avatar.png`}
+            fallbackSrc={fallback}
             alt={t('organization.avatar_alt', {
               name: organization?.account.name.default || organization?.address,
             }).toString()}
