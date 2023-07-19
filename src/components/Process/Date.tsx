@@ -14,8 +14,6 @@ export const ProcessDate = () => {
 
   if (election.status === ElectionStatus.CANCELED) return null
 
-  // if (election.status === ElectionStatus.RESULTS) return <Text color='process.date'>{statusText}</Text>
-
   return (
     <Box>
       <Text color='process.date' fontWeight='bold'>
