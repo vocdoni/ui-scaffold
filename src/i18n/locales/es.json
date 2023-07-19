@@ -55,7 +55,7 @@
       "button": "Votar",
       "button_update": "Reenviar voto",
       "missing_answers": "Tienes que responder a todas las preguntas",
-      "voted_description": "Tu identificación de voto es {{ id }}. Puedes usarla para verificar tu voto.",
+      "voted_description": "Para verificar tu voto, puedes usar esta identificación única: {{ id }}",
       "voted_title": "¡Tu voto se ha registrado con éxito!"
     }
   },
