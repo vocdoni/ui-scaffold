@@ -221,7 +221,7 @@
       "ended": "Procés finalitzat",
       "ends": "Finalitza",
       "relative": "{{ date, relative(past: fa %time; future: en %time) }}",
-      "results": "",
+      "results": "Procés tancat manualment",
       "starts": "Comença el procés"
     },
     "is_invalid": "",

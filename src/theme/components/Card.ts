@@ -162,6 +162,7 @@ const detailed = definePartsStyle({
       '& > div:last-of-type': {
         mt: 'auto',
         display: 'flex',
+        justifyContent: 'start',
         gap: 3.5,
 
         '& div': {
@@ -172,6 +173,8 @@ const detailed = definePartsStyle({
           color: 'card.footer_title',
           fontWeight: 'normal',
           fontStyle: 'normal',
+          width: 'auto',
+          whiteSpace: { sm: 'nowrap' },
         },
 
         '& div:nth-of-type(even)': {

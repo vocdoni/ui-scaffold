@@ -223,7 +223,7 @@
       "ended": "Finalizado",
       "ends": "Finaliza",
       "relative": "{{ date, relative(past: hace %time; future: en %time) }}",
-      "results": "",
+      "results": "Proceso cerrado manualmente",
       "starts": "Empieza"
     },
     "is_invalid": "",
