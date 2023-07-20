@@ -6,7 +6,7 @@ const NotFound = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
 
-  const { idx } = window.history.state
+  const { idx } = window.history.state ?? false
 
   return (
     <Flex flexDirection='column' justifyContent='center' alignItems='center' pt={20}>
@@ -27,7 +27,7 @@ const NotFound = () => {
         fontWeight={700}
         fontSize={{ base: 'xl4', sm: 'xl5', lg: 'xl7' }}
       >
-        {t('not_found')}
+        {t('error.not_found')}
       </Text>
       <Link onClick={() => (idx ? navigate(-1) : navigate('/'))}>
         {idx ? t('error.go_back') : t('error.return_to_home')}

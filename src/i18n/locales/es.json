@@ -65,9 +65,11 @@
   },
   "error": {
     "go_back": "Volver atrás",
-    "return_to_home": "Volver al inicio"
+    "loading_page": "Error al cargar la página",
+    "not_found": "Lo sentimos, la página que buscabas no fue encontrada.",
+    "return_to_home": "Ves al inicio"
   },
-  "error_text": "Lo siento, no se encontró la página que buscabas.",
+  "error_text": "Lo sentimos, no se encontró la página que buscabas.",
   "footer": {
     "about": "Acerca de",
     "blog": "Blog",
@@ -210,7 +212,6 @@
     "my_list": "Mi lista",
     "support": "Soporte"
   },
-  "not_found": "Lo siento, la página que buscabas no fue encontrada.",
   "open_in_explorer": "Abrir en explorador",
   "organization": {
     "avatar_alt": "Imagen de avatar de la organización {{ name }}",

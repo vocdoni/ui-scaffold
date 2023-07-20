@@ -63,6 +63,8 @@
   },
   "error": {
     "go_back": "Go back",
+    "loading_page": "Error loading the page",
+    "not_found": "Sorry, the page you were looking for was not found",
     "return_to_home": "Return to home"
   },
   "error_text": "Sorry, the page you were looking for was not found",
@@ -207,7 +209,6 @@
     "my_list": "My list",
     "support": "Support"
   },
-  "not_found": "Sorry, the page you were looking for was not found",
   "open_in_explorer": "Open in explorer",
   "organization": {
     "avatar_alt": "Avatar image of {{ name }} organization",

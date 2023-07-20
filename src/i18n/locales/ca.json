@@ -65,7 +65,9 @@
   },
   "error": {
     "go_back": "Torna enrere",
-    "return_to_home": "Torna a l'inici"
+    "loading_page": "Càrrega de pàgina errònia",
+    "not_found": "Ho sentim, no s'ha trobat la pàgina que estaves buscant.",
+    "return_to_home": "Ves a l'inici"
   },
   "error_text": "Ho sentim, no s'ha trobat la pàgina que busqueu",
   "footer": {
@@ -210,7 +212,6 @@
     "my_list": "La meva llista",
     "support": "Ajuda"
   },
-  "not_found": "Ho sento, no s'ha trobat la pàgina que estaves buscant.",
   "open_in_explorer": "Obre a l'explorador",
   "organization": {
     "avatar_alt": "Imatge d'avatar de l'organització {{ name }}",
