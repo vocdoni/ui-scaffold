@@ -64,7 +64,8 @@
     "copied_title": "Copiat!"
   },
   "error": {
-    "return_to_home": ""
+    "go_back": "Torna enrere",
+    "return_to_home": "Torna a l'inici"
   },
   "error_text": "Ho sentim, no s'ha trobat la pàgina que busqueu",
   "footer": {
@@ -191,7 +192,6 @@
       "unhealthy_account": "Has de crear una organització abans de crear la primera elecció."
     }
   },
-  "go_to_home": "Vés a <root>l'inici</root>",
   "home": {
     "active_voting": "Votacions actives",
     "more_active_organizations": "Més organitzacions actives"
@@ -210,7 +210,7 @@
     "my_list": "La meva llista",
     "support": "Ajuda"
   },
-  "not_found": "No trobat",
+  "not_found": "Ho sento, no s'ha trobat la pàgina que estaves buscant.",
   "open_in_explorer": "Obre a l'explorador",
   "organization": {
     "avatar_alt": "Imatge d'avatar de l'organització {{ name }}",
