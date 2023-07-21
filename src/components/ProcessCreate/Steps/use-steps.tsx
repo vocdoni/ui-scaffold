@@ -1,5 +1,6 @@
 import { createContext, Dispatch, SetStateAction, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
+import { CensusCsvValues } from '../StepForm/CensusCsv'
 import { CensusTokenValues } from '../StepForm/CensusToken'
 import { Info, InfoValues } from '../StepForm/Info'
 import { Questions, QuestionsValues } from '../StepForm/Questions'
@@ -13,7 +14,8 @@ export interface StepsFormValues
     QuestionsValues,
     CensusValues,
     CensusWeb3Values,
-    CensusTokenValues {}
+    CensusTokenValues,
+    CensusCsvValues {}
 
 export interface StepsState {
   title: string
