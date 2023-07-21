@@ -2,9 +2,9 @@ import { Box, Flex, Icon, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '
 import { useTranslation } from 'react-i18next'
 import { CensusType, CensusTypes, useCensusTypes } from '../Census/TypeSelector'
 
-import Wrapper from '../Wrapper'
 import { StepsNavigation } from './Navigation'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
+import Wrapper from './Wrapper'
 
 export interface CensusValues {
   censusType: CensusType | null
