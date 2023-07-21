@@ -62,7 +62,10 @@
     "copied_title": "Copied!"
   },
   "error": {
-    "return_to_home": "Return to home"
+    "go_back": "Go back",
+    "loading_page": "Error loading the page",
+    "not_found": "Sorry, the page you were looking for was not found",
+    "return_to_home": "Go to home"
   },
   "error_text": "Sorry, the page you were looking for was not found",
   "footer": {
@@ -188,7 +191,6 @@
       "unhealthy_account": "You need to create an organization before creating the first election."
     }
   },
-  "go_to_home": "Go to <root>home</root>",
   "home": {
     "active_voting": "Active voting",
     "more_active_organizations": "More active organizations"
@@ -207,7 +209,6 @@
     "my_list": "My list",
     "support": "Support"
   },
-  "not_found": "Not found",
   "open_in_explorer": "Open in explorer",
   "organization": {
     "avatar_alt": "Avatar image of {{ name }} organization",

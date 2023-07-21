@@ -64,9 +64,12 @@
     "copied_title": "¡Copiado!"
   },
   "error": {
-    "return_to_home": ""
+    "go_back": "Volver atrás",
+    "loading_page": "Error al cargar la página",
+    "not_found": "Lo sentimos, la página que buscabas no fue encontrada.",
+    "return_to_home": "Ves al inicio"
   },
-  "error_text": "Lo siento, no se encontró la página que buscabas.",
+  "error_text": "Lo sentimos, no se encontró la página que buscabas.",
   "footer": {
     "about": "Acerca de",
     "blog": "Blog",
@@ -191,7 +194,6 @@
       "unhealthy_account": "Necesitas crear una organización antes de crear la primera votación."
     }
   },
-  "go_to_home": "Ir a <root>inicio</root>",
   "home": {
     "active_voting": "Votación activa",
     "more_active_organizations": "Organizaciones más activas"
@@ -210,7 +212,6 @@
     "my_list": "Mi lista",
     "support": "Soporte"
   },
-  "not_found": "No encontrado",
   "open_in_explorer": "Abrir en explorador",
   "organization": {
     "avatar_alt": "Imagen de avatar de la organización {{ name }}",
