@@ -60,9 +60,12 @@
   },
   "error": {
     "go_back": "Go back",
+    "invalid_row_length": "Correct document lines {{rows,list(style: short)}} and load it again",
+    "invalid_weight_type": "Expecting weight in first column at lines {{rows,list(style:short)}}, but found unexpected data",
     "loading_page": "Error loading the page",
     "not_found": "Sorry, the page you were looking for was not found",
-    "return_to_home": "Go to home"
+    "return_to_home": "Go to home",
+    "wrong_spreadsheet_file": "File {{ filename }} has errors"
   },
   "error_text": "Sorry, the page you were looking for was not found",
   "footer": {
@@ -184,6 +187,8 @@
       "question_title": "Title",
       "questions_title": "Questions",
       "running_checks": "Running required checks, please wait...",
+      "spreadsheet_total_rows_one": "Census has a single record",
+      "spreadsheet_total_rows_other": "Census has {{ count }} records",
       "steps": {
         "census": "Census",
         "checks": "Checks",
@@ -257,5 +262,9 @@
     "stop": "stop"
   },
   "submited_votes": "Submitted votes",
+  "uploader": {
+    "click_or_drag_and_drop": "",
+    "drop_here": ""
+  },
   "voting_elections": "Voting elections"
 }
