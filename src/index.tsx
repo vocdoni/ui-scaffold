@@ -1,6 +1,6 @@
+import '@i18n'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom/client'
-import './i18n'
 import { Providers } from './Providers'
 import reportWebVitals from './reportWebVitals'
 import * as serviceWorker from './serviceWorker'

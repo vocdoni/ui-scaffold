@@ -8,10 +8,7 @@ export const CensusTypeCSV = 'csv'
 export const CensusTypeToken = 'token'
 export const CensusTypeWeb3 = 'web3'
 export type CensusType = typeof CensusTypeWeb3 | typeof CensusTypeCSV | typeof CensusTypeToken
-export const CensusTypes = [
-  /* CensusTypeCSV as CensusType,  */ CensusTypeToken as CensusType,
-  CensusTypeWeb3 as CensusType,
-]
+export const CensusTypes = [CensusTypeCSV as CensusType, CensusTypeToken as CensusType, CensusTypeWeb3 as CensusType]
 
 export const useCensusTypes = () => {
   const { t } = useTranslation()

@@ -61,9 +61,12 @@
   },
   "error": {
     "go_back": "Volver atrás",
+    "invalid_row_length": "Corrige las líneas {{rows, list}} del documento y vuelve a cargarlo",
+    "invalid_weight_type": "Se esperaba encontrar el peso en la primera columna en las líneas {{rows, list}}, pero se han encontrado datos inesperados",
     "loading_page": "Error al cargar la página",
     "not_found": "Lo sentimos, la página que buscabas no fue encontrada.",
-    "return_to_home": "Ves al inicio"
+    "return_to_home": "Ves al inicio",
+    "wrong_spreadsheet_file": "El fichero {{ filename }} contiene errores"
   },
   "error_text": "Lo sentimos, no se encontró la página que buscabas.",
   "footer": {
@@ -186,6 +189,9 @@
       "question_title": "Título",
       "questions_title": "Preguntas",
       "running_checks": "Ejecutando comprobaciones requeridas, por favor espera...",
+      "spreadsheet_total_rows_one": "",
+      "spreadsheet_total_rows_many": "",
+      "spreadsheet_total_rows_other": "",
       "steps": {
         "census": "Censo",
         "checks": "Comprobaciones",
@@ -259,5 +265,9 @@
     "stop": "detener"
   },
   "submited_votes": "Votos enviados",
+  "uploader": {
+    "click_or_drag_and_drop": "",
+    "drop_here": ""
+  },
   "voting_elections": "Votaciones"
 }
