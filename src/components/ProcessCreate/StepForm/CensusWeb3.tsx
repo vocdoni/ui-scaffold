@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { CensusWeb3Addresses } from '../Census/Web3'
-import { useProcessCreationSteps } from './use-steps'
+import { useProcessCreationSteps } from '../Steps/use-steps'
 
 export interface CensusWeb3Values {
   addresses: Web3Address[]
@@ -14,7 +14,7 @@ export interface Web3Address {
   weight: number
 }
 
-export const StepsCensusWeb3 = () => {
+export const CensusWeb3 = () => {
   const { t } = useTranslation()
   const { form, setForm, next } = useProcessCreationSteps()
   const methods = useForm({
