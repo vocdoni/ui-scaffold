@@ -3,7 +3,7 @@ import { ICensus3Token } from '@vocdoni/sdk'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { CensusTokens } from '../Census/Token'
-import { useProcessCreationSteps } from './use-steps'
+import { useProcessCreationSteps } from '../Steps/use-steps'
 
 export interface CensusTokenValues {
   censusToken: string
@@ -11,7 +11,7 @@ export interface CensusTokenValues {
   token?: ICensus3Token
 }
 
-export const StepsCensusToken = () => {
+export const CensusToken = () => {
   const { t } = useTranslation()
   const { form, setForm, next } = useProcessCreationSteps()
   const methods = useForm<CensusTokenValues>({

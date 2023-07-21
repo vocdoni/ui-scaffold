@@ -5,8 +5,8 @@ import { useAccountHealthTools } from '@components/Account/use-account-health-to
 import { useClient } from '@vocdoni/react-providers'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import Wrapper from '../Wrapper'
 import { useProcessCreationSteps } from './use-steps'
+import Wrapper from './Wrapper'
 
 export const Checks = () => {
   const {

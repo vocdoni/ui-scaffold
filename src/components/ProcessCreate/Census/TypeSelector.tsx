@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { BiCoinStack, BiFile, BiWallet } from 'react-icons/bi'
-import { StepsCensusCSV } from '../Steps/CensusCsv'
-import { StepsCensusToken } from '../Steps/CensusToken'
-import { StepsCensusWeb3 } from '../Steps/CensusWeb3'
+import { CensusCsv } from '../StepForm/CensusCsv'
+import { CensusToken } from '../StepForm/CensusToken'
+import { CensusWeb3 } from '../StepForm/CensusWeb3'
 
 export const CensusTypeCSV = 'csv'
 export const CensusTypeToken = 'token'
@@ -23,19 +23,19 @@ export const useCensusTypes = () => {
         title: t('form.process_create.census.csv_title'),
         description: t('form.process_create.census.csv_description'),
         icon: BiFile,
-        component: StepsCensusCSV,
+        component: CensusCsv,
       },
       [CensusTypeToken]: {
         title: t('form.process_create.census.token_base_title'),
         description: t('form.process_create.census.token_base_description'),
         icon: BiCoinStack,
-        component: StepsCensusToken,
+        component: CensusToken,
       },
       [CensusTypeWeb3]: {
         title: t('form.process_create.census.wallet_address_title'),
         description: t('form.process_create.census.wallet_address_description'),
         icon: BiWallet,
-        component: StepsCensusWeb3,
+        component: CensusWeb3,
       },
     },
   }

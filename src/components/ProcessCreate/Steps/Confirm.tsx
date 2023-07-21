@@ -36,8 +36,8 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import Preview from '../Confirm/Preview'
-import { CreationProgress } from './CreationProgress'
-import { Option } from './Questions'
+import { CreationProgress } from '../CreationProgress'
+import { Option } from '../StepForm/Questions'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 
 export const Confirm = () => {
