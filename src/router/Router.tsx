@@ -2,7 +2,7 @@ import { useClient } from '@vocdoni/chakra-components'
 import { lazy } from 'react'
 import { createHashRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
 // These aren't lazy loaded to avoid excessive loaders in different locations
-import Error from '../elements/Error'
+import Error from '@elements/Error'
 import Layout from '../elements/Layout'
 import LayoutProcessCreate from '../elements/LayoutProcessCreate'
 import { SuspenseLoader } from './SuspenseLoader'
@@ -21,7 +21,7 @@ export const RoutesProvider = () => {
   const router = createHashRouter(
     createRoutesFromElements(
       <Route path='/'>
-        <Route errorElement={<Error />} element={<Layout />}>
+        <Route element={<Layout />}>
           <Route
             index
             element={
@@ -38,6 +38,7 @@ export const RoutesProvider = () => {
               </SuspenseLoader>
             }
             loader={async ({ params }) => client.fetchElection(params.id)}
+            errorElement={<Error />}
           />
           <Route
             path='organization/:address'
@@ -46,6 +47,8 @@ export const RoutesProvider = () => {
                 <Organization />
               </SuspenseLoader>
             }
+            loader={async ({ params }) => client.fetchAccountInfo(params.address)}
+            errorElement={<Error />}
           />
           <Route
             path='*'

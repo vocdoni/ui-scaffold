@@ -1,12 +1,13 @@
 import { OrganizationProvider } from '@vocdoni/chakra-components'
-import { useParams } from 'react-router-dom'
+import { AccountData } from '@vocdoni/sdk'
+import { useLoaderData } from 'react-router-dom'
 import OrganizationView from '../components/Organization/View'
 
 const Organization = () => {
-  const { address } = useParams()
+  const organization = useLoaderData() as AccountData
 
   return (
-    <OrganizationProvider id={address}>
+    <OrganizationProvider organization={organization}>
       <OrganizationView />
     </OrganizationProvider>
   )
