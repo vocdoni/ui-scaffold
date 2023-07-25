@@ -11,16 +11,11 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react'
 import { addressTextOverflow, fieldMapErrorMessage, isInvalidFieldMap } from '@constants'
-import { enforceHexPrefix, useClient } from '@vocdoni/chakra-components'
-import { useEffect, useState } from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { useProcessCreationSteps } from '../Steps/use-steps'
 
 export const CensusWeb3Addresses = () => {
   const { t } = useTranslation()
-  const { account } = useClient()
-  const { form, setForm } = useProcessCreationSteps()
 
   const {
     register,
@@ -39,22 +34,11 @@ export const CensusWeb3Addresses = () => {
   const addresses = watch('addresses')
   const newAddress = watch('newAddress')
 
-  const [initialized, setInitialized] = useState(!!addresses.length)
-
   const value = useBreakpointValue({
     base: 6,
     sm: 8,
     md: null,
   })
-
-  useEffect(() => {
-    setForm({ ...form, addresses })
-    if (account?.address && !initialized && addresses.length === 0) {
-      setValue('addresses', [{ address: enforceHexPrefix(account.address), weight: 0 }])
-      setInitialized(true)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [account?.address, addresses, initialized])
 
   const handleAddAddress = async () => {
     // Trigger form validation

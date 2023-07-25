@@ -1,5 +1,6 @@
 import { Box, Text } from '@chakra-ui/react'
-import { useEffect } from 'react'
+import { enforceHexPrefix, useClient } from '@vocdoni/chakra-components'
+import { useEffect, useState } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { CensusWeb3Addresses } from '../Census/Web3'
 import { useProcessCreationSteps } from './use-steps'
@@ -15,13 +16,18 @@ export interface Web3Address {
 
 export const StepsCensusWeb3 = () => {
   const { form, setForm, next } = useProcessCreationSteps()
+  const { account } = useClient()
+
   const methods = useForm({
     defaultValues: {
       addresses: form.addresses,
       newAddress: '',
     },
   })
+
   const addresses = methods.watch('addresses')
+
+  const [initialized, setInitialized] = useState(!!addresses.length)
 
   useEffect(() => {
     setForm({ ...form, addresses })
@@ -32,6 +38,15 @@ export const StepsCensusWeb3 = () => {
     setForm({ ...form, addresses: data.addresses })
     next()
   }
+
+  useEffect(() => {
+    setForm({ ...form, addresses })
+    if (account?.address && !initialized && addresses.length === 0) {
+      methods.setValue('addresses', [{ address: enforceHexPrefix(account.address), weight: 0 }])
+      setInitialized(true)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [account?.address, addresses, initialized])
 
   return (
     <>
