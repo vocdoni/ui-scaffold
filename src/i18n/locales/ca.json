@@ -64,8 +64,7 @@
     "invalid_weight_type": "S'esperava trobar el pes a la primera col·lumna a les línies {{rows, list}}, però s'han trobat dades inesperades",
     "loading_page": "Càrrega de pàgina errònia",
     "not_found": "Ho sentim, no s'ha trobat la pàgina que estaves buscant.",
-    "return_to_home": "Ves a l'inici",
-    "wrong_spreadsheet_file": "El fitxer {{ filename }} conté errors"
+    "return_to_home": "Ves a l'inici"
   },
   "error_text": "Ho sentim, no s'ha trobat la pàgina que busqueu",
   "footer": {
@@ -126,12 +125,12 @@
       },
       "census": {
         "add_button": "Afegir",
-        "csv_description": "Dades personalitzades com a informació d'usuari i contrasenya o informació personal del votant.",
-        "csv_title": "CSV",
         "description": "Seleccioneu com autenticaran i s'identificaran els votants. Trieu entre dades personalitzades (CSV), a través de la propietat d'un token o amb adreces de cartera.",
         "max_census_slider_arialabel": "Selector de participació màxima esperada",
         "max_census_slider_label": "Participació màxima esperada:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} votants elegibles)",
+        "spreadsheet_description": "Dades personalitzades com a informació d'usuari i contrasenya o informació personal del votant.",
+        "spreadsheet_title": "CSV",
         "title": "Trieu el cens",
         "token_base_description": "Utilitza un token (basat en EVM) per permetre als usuaris votar en funció de la quantitat que posseeixin.",
         "token_base_title": "Basat en token",
@@ -142,6 +141,11 @@
       },
       "confirm": {
         "census": "Cens",
+        "census_preview_is_shortened": "(la llista prèvia està limitada a {{ limit }} resultats)",
+        "census_total_people": "{{ count }} persones podran votar en aquesta votació",
+        "census_total_people_one": "Una persona podrà votar en aquesta votació",
+        "census_total_people_many": "{{ count }} persones podran votar en aquesta votació",
+        "census_total_people_other": "",
         "close": "Tancar",
         "configuration": "Configuració",
         "confirmation": "Confirmació",
@@ -157,8 +161,7 @@
         "questions_other": "Preguntes",
         "secret_until_the_end": "Secret fins el final",
         "title": "Títol",
-        "vote_overwritte": "Sobreescriure vot",
-        "web3_number_addresses": "{{ addresses }} persones podran votar en aquesta votació"
+        "vote_overwritte": "Sobreescriure vot"
       },
       "creating_process": "Creant el procés...",
       "do_not_close": "Aquesta acció pot trigar una estona, no tanquis aquesta pestanya",

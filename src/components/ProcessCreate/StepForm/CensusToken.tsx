@@ -11,13 +11,14 @@ export interface CensusTokenValues {
   token?: ICensus3Token
 }
 
-export const CensusToken = () => {
+export const StepFormCensusToken = () => {
   const { t } = useTranslation()
   const { form, setForm, next } = useProcessCreationSteps()
   const methods = useForm<CensusTokenValues>({
     defaultValues: {
       censusToken: form.censusToken,
       maxCensusSize: form.maxCensusSize,
+      token: form.token,
     },
   })
 

@@ -1,15 +1,17 @@
 import { useProcessCreationSteps } from '../Steps/use-steps'
-import TokenConfirm from './Token'
-import Web3Confirm from './Web3'
+import PreviewCensusSpreadsheet from './CensusSpreadsheet'
+import PreviewCensusToken from './CensusToken'
+import PreviewCensusWeb3 from './CensusWeb3'
 
 const Census = () => {
   const {
     form: { censusType },
   } = useProcessCreationSteps()
 
-  if (censusType === 'token') return <TokenConfirm />
+  if (censusType === 'token') return <PreviewCensusToken />
+  if (censusType === 'spreadsheet') return <PreviewCensusSpreadsheet />
 
-  return <Web3Confirm />
+  return <PreviewCensusWeb3 />
 }
 
 export default Census

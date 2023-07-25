@@ -68,7 +68,7 @@ export const Confirm = () => {
     setSending(true)
     setError(null)
     try {
-      const census = await getCensus(env as EnvOptions, form)
+      const census = await getCensus(env as EnvOptions, form, account?.address)
       const params: IElectionParameters = {
         ...electionFromForm(form),
         census,
@@ -187,7 +187,13 @@ export const Confirm = () => {
  * @param {StepsFormValues} form The form object from where to generate the census
  * @returns
  */
-const getCensus = (env: EnvOptions, form: StepsFormValues) => {
+const getCensus = async (env: EnvOptions, form: StepsFormValues, organization: string) => {
+  if (form.censusType === 'spreadsheet') {
+    const wallets = await form.spreadsheet?.generateWallets(organization)
+
+    form.addresses = wallets
+  }
+
   switch (form.censusType) {
     case 'token':
       const c3client = new VocdoniCensus3Client({
@@ -196,6 +202,7 @@ const getCensus = (env: EnvOptions, form: StepsFormValues) => {
 
       return c3client.createTokenCensus(form.censusToken)
 
+    case 'spreadsheet':
     case 'web3':
       if (form.weightedVote) {
         const census = new WeightedCensus()
@@ -239,5 +246,11 @@ const electionFromForm = (form: StepsFormValues) => {
     startDate: form.electionType.autoStart ? undefined : new Date(form.startDate).getTime(),
     endDate: new Date(form.endDate).getTime(),
     voteType: { maxVoteOverwrites: Number(form.maxVoteOverwrites) },
+    meta: {
+      census: {
+        type: form.censusType,
+        fields: form.spreadsheet ? form.spreadsheet.header : undefined,
+      },
+    },
   }
 }

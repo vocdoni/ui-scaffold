@@ -14,7 +14,6 @@ export const Census = () => {
   const { t } = useTranslation()
   const { form, setForm } = useProcessCreationSteps()
   const { list, details } = useCensusTypes()
-
   const { censusType } = form
 
   return (
@@ -31,7 +30,7 @@ export const Census = () => {
             defaultIndex={CensusTypes.findIndex((val) => val === censusType)}
             onChange={(index) => {
               const nform: StepsFormValues = { ...form, censusType: CensusTypes[index] }
-              // ensure maxCensusSize is only set on census3/token censuses
+              // ensure maxCensusSize is only set on token-based censuses
               // all other cases are handled automatically via the SDK
               if (CensusTypes[index] !== 'token' && 'maxCensusSize' in nform) {
                 delete nform?.maxCensusSize

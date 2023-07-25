@@ -65,8 +65,7 @@
     "invalid_weight_type": "Se esperaba encontrar el peso en la primera columna en las líneas {{rows, list}}, pero se han encontrado datos inesperados",
     "loading_page": "Error al cargar la página",
     "not_found": "Lo sentimos, la página que buscabas no fue encontrada.",
-    "return_to_home": "Ves al inicio",
-    "wrong_spreadsheet_file": "El fichero {{ filename }} contiene errores"
+    "return_to_home": "Ves al inicio"
   },
   "error_text": "Lo sentimos, no se encontró la página que buscabas.",
   "footer": {
@@ -127,12 +126,12 @@
       },
       "census": {
         "add_button": "Añadir",
-        "csv_description": "Datos personalizados como usuario y contraseña o información personal del votante.",
-        "csv_title": "CSV",
         "description": "Selecciona cómo se autenticarán e identificarán los votantes. Elije entre datos personalizados (CSV), por poseer un token o por direcciones de carteras.",
         "max_census_slider_arialabel": "Selector deslizante de participación máxima esperada",
         "max_census_slider_label": "Participación máxima esperada:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} votantes elegibles)",
+        "spreadsheet_description": "Datos personalizados como usuario y contraseña o información personal del votante.",
+        "spreadsheet_title": "CSV",
         "title": "Elige tu censo",
         "token_base_description": "Usa un token (basado en EVM) para permitir a los usuarios votar en función de la cantidad que poseen.",
         "token_base_title": "Basado en tokens",
@@ -143,6 +142,11 @@
       },
       "confirm": {
         "census": "Censo",
+        "census_preview_is_shortened": "(la lista previa está limitada a {{ limit }} resultados)",
+        "census_total_people": "{{ count }} personas podrán votar en esta votación",
+        "census_total_people_one": "Una persona podrá votar en esta votación",
+        "census_total_people_many": "{{ count }} personas podrán votar en esta votación",
+        "census_total_people_other": "",
         "close": "Cerrar",
         "configuration": "Configuración",
         "confirmation": "Confirmación",
@@ -158,8 +162,7 @@
         "questions_other": "Preguntas",
         "secret_until_the_end": "Secreto hasta el final",
         "title": "Título",
-        "vote_overwritte": "Sobrescribir voto",
-        "web3_number_addresses": "{{ addresses }} personas podrán votar en esta votación"
+        "vote_overwritte": "Sobrescribir voto"
       },
       "creating_process": "Creando proceso...",
       "do_not_close": "Esta acción puede llevar algún tiempo, no cierres esta pestaña",
