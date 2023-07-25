@@ -1,3 +1,6 @@
+import { Wallet } from 'ethers'
+import { keccak256, toUtf8Bytes } from 'ethers/lib/utils.js'
+import latinize from 'latinize'
 import { read, utils, WorkBook } from 'xlsx'
 import ErrorRowLength from './errors/ErrorRowLength'
 import ErrorWeightType from './errors/ErrorWeightType'
@@ -89,19 +92,35 @@ export class SpreadsheetManager {
     return this.filedata.map((row) => row[WeightRowPosition])
   }
 
-  public generateWallets() {
+  public generateWallets(organization: string) {
     return Promise.all(
       this.filedata.map(
         (row: string[]) =>
           new Promise((resolve, reject) =>
-            setTimeout(() => {
-              const data = this.weighted ? row.slice(WeightColPosition) : row
+            setTimeout(async () => {
+              try {
+                const data = this.weighted ? row.slice(WeightColPosition) : row
+                const weight = this.weighted ? row[WeightRowPosition] : undefined
+                const address = await SpreadsheetManager.walletFromRow(organization, data)
 
-              resolve(data)
+                resolve({ address, weight })
+              } catch (e) {
+                reject(e)
+              }
             }, 50)
           )
       )
     )
+  }
+
+  public static walletFromRow(organization: string, row: string[]) {
+    // normalize
+    const normalized = row.map(normalizeText)
+    // reduce to a single string with the organization id concatenated
+    const payload = normalized.reduce((a, b) => a + b) + organization
+    const wallet = walletFromString(payload)
+
+    return wallet.getAddress()
   }
 
   private load(): Promise<SpreadSheetReader> {
@@ -131,4 +150,25 @@ export class SpreadsheetManager {
 
     return filteredEmptyRows
   }
+}
+
+export const normalizeText = (text?: string): string => {
+  if (!text) return text
+  if (typeof text !== 'string') return null
+
+  const result = text
+    .trim()
+    .replace(/\s+/g, ' ')
+    .replace(/[\.·:]/g, '.')
+    .replace(/[`´]/g, "'")
+    .normalize()
+    .toLowerCase()
+
+  return latinize(result)
+}
+
+const walletFromString = (data: string) => {
+  const bytes = toUtf8Bytes(data)
+  const hashed = keccak256(bytes)
+  return new Wallet(hashed)
 }

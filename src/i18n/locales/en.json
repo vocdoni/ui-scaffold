@@ -64,8 +64,7 @@
     "invalid_weight_type": "Expecting weight in first column at lines {{rows,list(style:short)}}, but found unexpected data",
     "loading_page": "Error loading the page",
     "not_found": "Sorry, the page you were looking for was not found",
-    "return_to_home": "Go to home",
-    "wrong_spreadsheet_file": "File {{ filename }} has errors"
+    "return_to_home": "Go to home"
   },
   "error_text": "Sorry, the page you were looking for was not found",
   "footer": {
@@ -126,12 +125,12 @@
       },
       "census": {
         "add_button": "Add",
-        "csv_description": "Custom data like user and password or voter personal info.",
-        "csv_title": "CSV",
         "description": "Select how will the voters authenticate and identify themselves. Choose between custom data (CSV), by owning a token or by wallet addresses.",
         "max_census_slider_arialabel": "Maximum participation expected slider selector",
         "max_census_slider_label": "Maximum participation expected:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} eligible voters)",
+        "spreadsheet_description": "Custom data like user and password or voter personal info.",
+        "spreadsheet_title": "CSV",
         "title": "Choose your census",
         "token_base_description": "Use a token (EVM based) to let users vote based on the amount they own.",
         "token_base_title": "Token based",
@@ -142,6 +141,10 @@
       },
       "confirm": {
         "census": "Census",
+        "census_preview_is_shortened": "(preview list is limited to {{ limit }} results)",
+        "census_total_people": "{{ count }} people will be elegible for voting in this election",
+        "census_total_people_one": "A single person will be elegible for voting in this election",
+        "census_total_people_other": "{{ count }} people will be elegible for voting in this election",
         "close": "Close",
         "configuration": "Configuration",
         "confirmation": "Confirmation",
@@ -156,8 +159,7 @@
         "questions_other": "Questions",
         "secret_until_the_end": "Secret until the end",
         "title": "Title",
-        "vote_overwritte": "Vote overwritte",
-        "web3_number_addresses": "{{ addresses }} people will be elegible for voting in this election"
+        "vote_overwritte": "Vote overwritte"
       },
       "creating_process": "Creating process...",
       "do_not_close": "This action can take some time, don't close this tab",
