@@ -14,7 +14,7 @@ export interface Web3Address {
   weight: number
 }
 
-export const CensusWeb3 = () => {
+export const StepFormCensusWeb3 = () => {
   const { t } = useTranslation()
   const { form, setForm, next } = useProcessCreationSteps()
   const methods = useForm({

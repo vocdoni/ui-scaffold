@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { TokenPreview } from '../Census/Token'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 
-const TokenConfirm = () => {
+const PreviewCensusToken = () => {
   const { t } = useTranslation()
   const {
     form: { maxCensusSize, token },
@@ -28,4 +28,4 @@ const TokenConfirm = () => {
   )
 }
 
-export default TokenConfirm
+export default PreviewCensusToken
