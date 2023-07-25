@@ -94,7 +94,8 @@
     "error": {
       "address_already_in_use": "Esta dirección ya está en el censo",
       "address_pattern": "Solo se permiten direcciones hexadecimales (p.ej. 0x031101A...)",
-      "field_is_required": "Este campo es obligatorio"
+      "field_is_required": "Este campo es obligatorio",
+      "min_address": "Por favor, proporciona al menos una dirección"
     },
     "process_create": {
       "alert_info_title": "Info",
