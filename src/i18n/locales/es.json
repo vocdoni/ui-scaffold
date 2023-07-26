@@ -206,7 +206,8 @@
     "create": "Crear proceso",
     "create_process": "Crear proceso",
     "disconnect": "Desconectar billetera",
-    "edit_profile": "Edit profile",
+    "edit_profile": "Editar perfil",
+    "edit_profile_btn": "Editar",
     "my_list": "Mi lista",
     "support": "Soporte"
   },

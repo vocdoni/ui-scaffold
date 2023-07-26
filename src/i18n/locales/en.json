@@ -204,7 +204,8 @@
     "create": "Create Process",
     "create_process": "Create process",
     "disconnect": "Disconnect Wallet",
-    "edit_profile": "Editar perfil",
+    "edit_profile": "Edit profile",
+    "edit_profile_btn": "Edit",
     "my_list": "My list",
     "support": "Support"
   },

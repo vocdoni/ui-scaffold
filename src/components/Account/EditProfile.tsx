@@ -21,7 +21,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import { useClient } from '@vocdoni/chakra-components'
-import { useEffect, useState } from 'react'
+import { useRef, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { BiTrash } from 'react-icons/bi'
@@ -38,11 +38,14 @@ const EditProfile = () => {
   const { t } = useTranslation()
   const { isOpen, onOpen, onClose } = useDisclosure()
 
+  const required = {
+    value: true,
+    message: t('form.error.field_is_required'),
+  }
+
   const {
-    watch,
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -52,39 +55,35 @@ const EditProfile = () => {
     },
   })
 
-  console.log(account, client)
+  const [preview, setPreview] = useState(account?.account.avatar)
+  const fileInputRef = useRef<HTMLInputElement | null>(null)
 
-  const [preview, setPreview] = useState<string>('')
-
-  const picture = watch('picture') as string | FileList | null
-
-  const handleUrl = async () => {
-    if (!(picture instanceof FileList)) return setPreview('')
-
+  const handleUrl = async (file: File) => {
     try {
-      const dataUrl = await fileToDataUrl(picture[0])
+      const dataUrl = await fileToDataUrl(file)
       setPreview(dataUrl as string)
     } catch (err) {
       setPreview('')
-      setValue('picture', undefined)
     }
   }
 
   const handleDelete = () => {
     setPreview('')
-    setValue('picture', undefined)
-    const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement
-    if (fileInput) {
-      fileInput.value = ''
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''
     }
   }
 
-  useEffect(() => {
-    handleUrl()
-  }, [picture])
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      handleUrl(file)
+    }
+  }
 
   const onSubmit: SubmitHandler<EditFormFields> = async (values: EditFormFields) => {
-    client.updateAccountInfo()
+    //Set picture before send
+    console.log(values)
   }
 
   return (
@@ -98,11 +97,9 @@ const EditProfile = () => {
           <Box>
             <ModalHeader>{t('menu.edit_profile')}</ModalHeader>
             <ModalCloseButton />
-
             <ModalBody pb={5}>
               <Flex
                 as='form'
-                id='process-create-form'
                 direction='column'
                 gap={6}
                 onSubmit={(e) => {
@@ -136,12 +133,21 @@ const EditProfile = () => {
                       />
                     )}
                   </Box>
-                  <Input type='file' {...register('picture')} border='none' mt={3} p={0} />
+                  <Input
+                    type='file'
+                    ref={(e) => {
+                      fileInputRef.current = e
+                    }}
+                    border='none'
+                    mt={3}
+                    p={0}
+                    onChange={handleFileChange}
+                  />
                 </Flex>
                 <FormControl isInvalid={!!errors.name}>
                   <Input
                     type='text'
-                    {...register('name')}
+                    {...register('name', { required })}
                     mb={1}
                     placeholder={t('form.account_create.title_placeholder').toString()}
                   />
@@ -166,7 +172,7 @@ const EditProfile = () => {
                   </FormHelperText>
                 </FormControl>
                 <Button type='submit' colorScheme='primary'>
-                  Edit
+                  {t('menu.edit_profile_btn')}
                 </Button>
               </Flex>
             </ModalBody>
@@ -178,12 +184,12 @@ const EditProfile = () => {
 }
 
 const fileToDataUrl = (file: File) =>
-  new Promise((resolve, reject) => {
+  new Promise<string>((resolve, reject) => {
     const fileReader = new FileReader()
 
-    fileReader.addEventListener('loadend', () => resolve(fileReader.result as string | ArrayBuffer))
-    fileReader.addEventListener('abort', () => reject(fileReader.result as string | ArrayBuffer))
-    fileReader.addEventListener('error', () => reject(fileReader.result as string | ArrayBuffer))
+    fileReader.addEventListener('loadend', () => resolve(fileReader.result as string))
+    fileReader.addEventListener('abort', () => reject())
+    fileReader.addEventListener('error', () => reject())
 
     fileReader.readAsDataURL(file)
   })
