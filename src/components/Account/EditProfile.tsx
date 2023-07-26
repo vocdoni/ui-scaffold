@@ -21,7 +21,8 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import { useClient } from '@vocdoni/chakra-components'
-import { useRef, useState } from 'react'
+import { CSSProperties, useCallback, useEffect, useState } from 'react'
+import { useDropzone } from 'react-dropzone'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { BiTrash } from 'react-icons/bi'
@@ -44,6 +45,8 @@ const EditProfile = () => {
   }
 
   const {
+    clearErrors,
+    setError,
     register,
     handleSubmit,
     formState: { errors },
@@ -56,29 +59,49 @@ const EditProfile = () => {
   })
 
   const [preview, setPreview] = useState(account?.account.avatar)
-  const fileInputRef = useRef<HTMLInputElement | null>(null)
-
-  const handleUrl = async (file: File) => {
-    try {
-      const dataUrl = await fileToDataUrl(file)
-      setPreview(dataUrl as string)
-    } catch (err) {
-      setPreview('')
-    }
-  }
 
   const handleDelete = () => {
     setPreview('')
-    if (fileInputRef.current) {
-      fileInputRef.current.value = ''
-    }
   }
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (file) {
-      handleUrl(file)
+  const onDrop = useCallback((acceptedFiles: any) => {
+    const file = acceptedFiles[0]
+    const fileReader = new FileReader()
+
+    fileReader.onload = () => {
+      const url = fileReader.result
+      if (typeof url === 'string') {
+        setPreview(url)
+      }
     }
+    fileReader.readAsDataURL(file)
+  }, [])
+
+  const { getRootProps, getInputProps, isDragAccept, isDragReject, fileRejections } = useDropzone({
+    accept: {
+      'image/*': ['.jpeg', '.png'],
+    },
+    onDrop,
+  })
+
+  useEffect(() => {
+    if (!fileRejections.length) return
+
+    setError('picture', { type: 'custom', message: 'Rejected is not a correct format' })
+
+    const cleanPictureError = setTimeout(() => {
+      clearErrors('picture')
+    }, 2000)
+
+    return () => {
+      clearTimeout(cleanPictureError)
+      clearErrors('picture')
+    }
+  }, [fileRejections.length])
+
+  const dropzoneStyle: CSSProperties = {
+    ...(isDragAccept && { borderColor: '#00e676' }),
+    ...(isDragReject && { borderColor: '#ff1744' }),
   }
 
   const onSubmit: SubmitHandler<EditFormFields> = async (values: EditFormFields) => {
@@ -133,16 +156,33 @@ const EditProfile = () => {
                       />
                     )}
                   </Box>
-                  <Input
-                    type='file'
-                    ref={(e) => {
-                      fileInputRef.current = e
-                    }}
-                    border='none'
-                    mt={3}
-                    p={0}
-                    onChange={handleFileChange}
-                  />
+                  <FormControl
+                    display='flex'
+                    flexDirection='column'
+                    justifyContent='center'
+                    alignItems='center'
+                    border='1px dashed'
+                    height='100px'
+                    borderColor='#eeeeee'
+                    backgroundColor='#fafafa'
+                    color='#bdbdbd'
+                    outline='none'
+                    transition='border .24s ease-in-out'
+                    {...getRootProps({ style: dropzoneStyle })}
+                    isInvalid={!!errors.picture}
+                  >
+                    <input {...getInputProps()} />
+                    {!errors.picture && (
+                      <>
+                        {!isDragAccept && !isDragReject && (
+                          <Text>Drag 'n' drop some files here, or click to select files</Text>
+                        )}
+                        {isDragAccept && <Text>.jpeg and .png will be accept</Text>}
+                        {isDragReject && <Text>Some files will be rejected</Text>}
+                      </>
+                    )}
+                    <FormErrorMessage>{errors?.picture?.message?.toString()}</FormErrorMessage>
+                  </FormControl>
                 </Flex>
                 <FormControl isInvalid={!!errors.name}>
                   <Input
