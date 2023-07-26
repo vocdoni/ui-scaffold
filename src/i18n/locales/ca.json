@@ -94,7 +94,8 @@
     "error": {
       "address_already_in_use": "Aquesta adreça ja és al cens",
       "address_pattern": "Només s'admeten adreces hexadecimals (p. ex. 0x031101A...)",
-      "field_is_required": "Aquest camp és obligatori"
+      "field_is_required": "Aquest camp és obligatori",
+      "min_address": "Si us plau, proporciona com a mínim una adreça"
     },
     "process_create": {
       "alert_info_title": "Informació",

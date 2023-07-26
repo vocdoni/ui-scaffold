@@ -92,7 +92,8 @@
     "error": {
       "address_already_in_use": "Address already in use",
       "address_pattern": "Only hex addresses are allowed (e.g 0x031101A...)",
-      "field_is_required": "This field is required"
+      "field_is_required": "This field is required",
+      "min_address": "Please, provide at least one address"
     },
     "process_create": {
       "alert_info_title": "Info",
