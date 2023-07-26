@@ -104,7 +104,7 @@ const Preview = () => {
             <ElectionQuestions />
           </ChakraProvider>
         </Box>
-        <Link variant='primary' position='absolute' top={0} right={0} onClick={() => setActiveStep(3)}>
+        <Link variant='primary' position='absolute' top={0} right={0} onClick={() => setActiveStep(2)}>
           <Icon
             as={IoMdCreate}
             title={t('form.process_create.confirm.edit')}
