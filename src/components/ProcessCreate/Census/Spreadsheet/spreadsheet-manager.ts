@@ -1,7 +1,6 @@
-import { Wallet } from 'ethers'
-import { keccak256, toUtf8Bytes } from 'ethers/lib/utils.js'
+import { VocdoniSDKClient } from '@vocdoni/sdk'
 import latinize from 'latinize'
-import { read, utils, WorkBook } from 'xlsx'
+import { WorkBook, read, utils } from 'xlsx'
 import ErrorRowLength from './errors/ErrorRowLength'
 import ErrorWeightType from './errors/ErrorWeightType'
 
@@ -116,9 +115,8 @@ export class SpreadsheetManager {
   public static walletFromRow(organization: string, row: string[]) {
     // normalize
     const normalized = row.map(normalizeText)
-    // reduce to a single string with the organization id concatenated
-    const payload = normalized.reduce((a, b) => a + b) + organization
-    const wallet = walletFromString(payload)
+    normalized.push(organization)
+    const wallet = VocdoniSDKClient.generateWalletFromData(normalized)
 
     return wallet.getAddress()
   }
@@ -165,10 +163,4 @@ export const normalizeText = (text?: string): string => {
     .toLowerCase()
 
   return latinize(result)
-}
-
-const walletFromString = (data: string) => {
-  const bytes = toUtf8Bytes(data)
-  const hashed = keccak256(bytes)
-  return new Wallet(hashed)
 }
