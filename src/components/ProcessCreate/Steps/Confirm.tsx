@@ -35,6 +35,7 @@ import { useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+import { CensusType } from '../Census/TypeSelector'
 import Preview from '../Confirm/Preview'
 import { CreationProgress } from '../CreationProgress'
 import { Option } from '../StepForm/Questions'
@@ -250,7 +251,12 @@ const electionFromForm = (form: StepsFormValues) => {
       census: {
         type: form.censusType,
         fields: form.spreadsheet ? form.spreadsheet.header : undefined,
-      },
+      } as CensusMeta,
     },
   }
+}
+
+export type CensusMeta = {
+  type: CensusType
+  fields: string[]
 }
