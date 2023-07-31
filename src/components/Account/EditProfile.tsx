@@ -223,15 +223,4 @@ const EditProfile = () => {
   )
 }
 
-const fileToDataUrl = (file: File) =>
-  new Promise<string>((resolve, reject) => {
-    const fileReader = new FileReader()
-
-    fileReader.addEventListener('loadend', () => resolve(fileReader.result as string))
-    fileReader.addEventListener('abort', () => reject())
-    fileReader.addEventListener('error', () => reject())
-
-    fileReader.readAsDataURL(file)
-  })
-
 export default EditProfile
