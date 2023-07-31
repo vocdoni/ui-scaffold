@@ -1,18 +1,23 @@
 import { Box, Button, Flex, Text } from '@chakra-ui/react'
+import { CensusMeta } from '@components/ProcessCreate/Steps/Confirm'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { environment, VoteButton } from '@vocdoni/chakra-components'
+import { VoteButton, environment } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
-import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
+import { ElectionStatus, PublishedElection, dotobject } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
+import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { useAccount } from 'wagmi'
+import { SpreadsheetAccess } from './SpreadsheetAccess'
 
 const ProcessAside = ({ ...props }) => {
   const { t } = useTranslation()
   const { election, isAbleToVote, isInCensus, voted, votesLeft } = useElection()
+  const [connected, setConnected] = useState<boolean>(false)
   const { isConnected } = useAccount()
   const { env } = useClient()
+  const census: CensusMeta = dotobject(election.meta || {}, 'census')
 
   return (
     <Flex
@@ -44,34 +49,39 @@ const ProcessAside = ({ ...props }) => {
           />
         </Flex>
       )}
-      {!isConnected && (
+      {census.type === 'spreadsheet' && !connected ? (
+        <SpreadsheetAccess setConnected={setConnected} />
+      ) : isConnected || connected ? (
+        <>
+          {isAbleToVote && <VoteButton w='full' borderRadius={30} p={7} color='process.results.aside.vote_btn_color' />}
+          {!isInCensus && (
+            <Text textAlign='center' fontSize='md'>
+              {t('aside.is_not_in_census')}
+            </Text>
+          )}
+          {voted !== null && voted.length > 0 && (
+            <Box textAlign='center' fontSize='md'>
+              <Link to={environment.verifyVote(env, voted)} target='_blank'>
+                <Button w='full' color='process.results.aside.verify_color' mb={4} borderRadius={30} p={7}>
+                  {t('aside.verify_vote_on_explorer')}
+                </Button>
+              </Link>
+              <Text>{t('aside.has_already_voted').toString()}</Text>
+            </Box>
+          )}
+          {hasOverwriteEnabled(election) && isInCensus && (
+            <Text textAlign='center' fontSize='md'>
+              {t('aside.overwrite_votes_left', { left: votesLeft })}
+            </Text>
+          )}
+        </>
+      ) : (
         <>
           <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />{' '}
           <Text textAlign='center' fontSize='sm'>
             {t('aside.not_connected')}
           </Text>
         </>
-      )}
-      {isAbleToVote && <VoteButton w='full' borderRadius={30} p={7} color='process.results.aside.vote_btn_color' />}
-      {!isInCensus && (
-        <Text textAlign='center' fontSize='md'>
-          {t('aside.is_not_in_census')}
-        </Text>
-      )}
-      {voted !== null && voted.length > 0 && (
-        <Box textAlign='center' fontSize='md'>
-          <Link to={environment.verifyVote(env, voted)} target='_blank'>
-            <Button w='full' color='process.results.aside.verify_color' mb={4} borderRadius={30} p={7}>
-              {t('aside.verify_vote_on_explorer')}
-            </Button>
-          </Link>
-          <Text>{t('aside.has_already_voted').toString()}</Text>
-        </Box>
-      )}
-      {hasOverwriteEnabled(election) && isInCensus && (
-        <Text textAlign='center' fontSize='md'>
-          {t('aside.overwrite_votes_left', { left: votesLeft })}
-        </Text>
       )}
     </Flex>
   )

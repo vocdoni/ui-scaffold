@@ -1,7 +1,7 @@
 import { Box, Checkbox, FormControl, FormErrorMessage, Text } from '@chakra-ui/react'
 import { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { useFormContext } from 'react-hook-form'
+import { Controller, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { CsvPreview } from './Preview'
 import { SpreadsheetManager } from './spreadsheet-manager'
@@ -15,6 +15,7 @@ export const CensusCsvManager = () => {
     watch,
     setError,
     formState: { errors },
+    control,
   } = useFormContext()
   const weighted: boolean = watch('weightedVote')
   const manager: SpreadsheetManager | undefined = watch('spreadsheet')
@@ -44,7 +45,31 @@ export const CensusCsvManager = () => {
   return (
     <Box>
       <FormControl>
-        <Checkbox {...register('weightedVote')}>Weighted vote</Checkbox>
+      <FormControl>
+        <Controller
+          control={control}
+          name='weightedVote'
+          render={({field: {onChange, onBlur, value, ref}}) =>
+            <Checkbox
+              onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                if (window.confirm('you sure? it\'ll be removed')) {
+                  setValue('spreadsheet', undefined)
+                  setFilename()
+                  onChange(event)
+                }
+                setValue('weightedVote', value)
+                event.preventDefault()
+                event.stopPropagation()
+              }}
+              onBlur={onBlur}
+              ref={ref}
+              value={value}
+            >
+                Weighted vote
+            </Checkbox>
+          }
+        />
+      </FormControl>
       </FormControl>
       <FormControl
         {...register('spreadsheet', { required: { value: true, message: t('form.error.field_is_required') } })}

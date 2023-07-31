@@ -1,6 +1,6 @@
 import { VocdoniSDKClient } from '@vocdoni/sdk'
 import latinize from 'latinize'
-import { WorkBook, read, utils } from 'xlsx'
+import { read, utils, WorkBook } from 'xlsx'
 import ErrorRowLength from './errors/ErrorRowLength'
 import ErrorWeightType from './errors/ErrorWeightType'
 
@@ -29,9 +29,7 @@ export class SpreadsheetManager {
   }
 
   public read() {
-    return this.load()
-      .then(() => this.validateDataIntegrity())
-      .then(() => this)
+    return this.load().then(() => this.validateDataIntegrity())
   }
 
   public static AcceptedTypes = [
@@ -100,7 +98,8 @@ export class SpreadsheetManager {
               try {
                 const data = this.weighted ? row.slice(WeightColPosition) : row
                 const weight = this.weighted ? row[WeightRowPosition] : undefined
-                const address = await SpreadsheetManager.walletFromRow(organization, data)
+                const wallet = SpreadsheetManager.walletFromRow(organization, data)
+                const address = await wallet.getAddress()
 
                 resolve({ address, weight })
               } catch (e) {
@@ -113,12 +112,9 @@ export class SpreadsheetManager {
   }
 
   public static walletFromRow(organization: string, row: string[]) {
-    // normalize
     const normalized = row.map(normalizeText)
     normalized.push(organization)
-    const wallet = VocdoniSDKClient.generateWalletFromData(normalized)
-
-    return wallet.getAddress()
+    return VocdoniSDKClient.generateWalletFromData(normalized)
   }
 
   private load(): Promise<SpreadSheetReader> {
