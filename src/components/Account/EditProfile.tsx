@@ -8,21 +8,23 @@ import {
   FormErrorMessage,
   FormHelperText,
   IconButton,
-  Img,
+  Image,
   Input,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
+  ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Spinner,
   Text,
   Textarea,
   useDisclosure,
 } from '@chakra-ui/react'
-import { useClient } from '@vocdoni/chakra-components'
-import { CSSProperties, useCallback, useEffect, useState } from 'react'
-import { useDropzone } from 'react-dropzone'
+import { errorToString, useClient } from '@vocdoni/chakra-components'
+import { Account } from '@vocdoni/sdk'
+import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { BiTrash } from 'react-icons/bi'
@@ -31,13 +33,18 @@ import fallback from '/assets/default-avatar.png'
 interface EditFormFields {
   name: string
   description: string
-  picture: string | FileList | undefined
+  avatar: string
 }
 
+const REGEX_AVATAR = /^(https?:\/\/|ipfs:\/\/)/i
+
 const EditProfile = () => {
-  const { account, client } = useClient()
+  const { account, client, createAccount } = useClient()
   const { t } = useTranslation()
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen: isOpenError, onOpen: onOpenError, onClose: onCloseError } = useDisclosure()
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const required = {
     value: true,
@@ -45,8 +52,8 @@ const EditProfile = () => {
   }
 
   const {
-    clearErrors,
-    setError,
+    watch,
+    setValue,
     register,
     handleSubmit,
     formState: { errors },
@@ -54,59 +61,27 @@ const EditProfile = () => {
     defaultValues: {
       name: account?.account.name.default || '',
       description: account?.account.description.default || '',
-      picture: account?.account.avatar,
+      avatar: account?.account.avatar || '',
     },
   })
 
-  const [preview, setPreview] = useState(account?.account.avatar)
+  const avatar = watch('avatar')
 
-  const handleDelete = () => {
-    setPreview('')
-  }
-
-  const onDrop = useCallback((acceptedFiles: any) => {
-    const file = acceptedFiles[0]
-    const fileReader = new FileReader()
-
-    fileReader.onload = () => {
-      const url = fileReader.result
-      if (typeof url === 'string') {
-        setPreview(url)
-      }
-    }
-    fileReader.readAsDataURL(file)
-  }, [])
-
-  const { getRootProps, getInputProps, isDragAccept, isDragReject, fileRejections } = useDropzone({
-    accept: {
-      'image/*': ['.jpeg', '.png'],
-    },
-    onDrop,
-  })
-
-  useEffect(() => {
-    if (!fileRejections.length) return
-
-    setError('picture', { type: 'custom', message: 'Rejected is not a correct format' })
-
-    const cleanPictureError = setTimeout(() => {
-      clearErrors('picture')
-    }, 2000)
-
-    return () => {
-      clearTimeout(cleanPictureError)
-      clearErrors('picture')
-    }
-  }, [fileRejections.length])
-
-  const dropzoneStyle: CSSProperties = {
-    ...(isDragAccept && { borderColor: '#00e676' }),
-    ...(isDragReject && { borderColor: '#ff1744' }),
-  }
+  const correctAvatarFormat = (val: string) => REGEX_AVATAR.test(val)
 
   const onSubmit: SubmitHandler<EditFormFields> = async (values: EditFormFields) => {
-    //Set picture before send
-    console.log(values)
+    setLoading(true)
+
+    try {
+      await client.updateAccountInfo(new Account({ ...account?.account, ...values }))
+      setLoading(false)
+      onClose()
+    } catch (err: any) {
+      setLoading(false)
+      onClose()
+      setError(errorToString(err))
+      onOpenError()
+    }
   }
 
   return (
@@ -132,7 +107,7 @@ const EditProfile = () => {
                 }}
               >
                 <Flex alignItems='center' gap={5}>
-                  <Box position='relative'>
+                  <Box position='relative' outline='none' border='none'>
                     <AspectRatio
                       flexShrink={0}
                       w={{ base: 20, md: 40 }}
@@ -140,48 +115,44 @@ const EditProfile = () => {
                       borderRadius='lg'
                       overflow='hidden'
                     >
-                      <Img src={preview ? preview : fallback} />
+                      <Image src={avatar} fallbackSrc={fallback} />
                     </AspectRatio>
-                    {preview && (
+                    {correctAvatarFormat(avatar) && (
                       <IconButton
                         aria-label='trash icon'
                         icon={<BiTrash />}
-                        onClick={handleDelete}
+                        onClick={() => setValue('avatar', '')}
                         position='absolute'
                         top={2}
                         right={2}
                         cursor='pointer'
                         size='xs'
-                        fontSize='17px'
+                        fontSize='md'
                       />
                     )}
                   </Box>
-                  <FormControl
-                    display='flex'
-                    flexDirection='column'
-                    justifyContent='center'
-                    alignItems='center'
-                    border='1px dashed'
-                    height='100px'
-                    borderColor='#eeeeee'
-                    backgroundColor='#fafafa'
-                    color='#bdbdbd'
-                    outline='none'
-                    transition='border .24s ease-in-out'
-                    {...getRootProps({ style: dropzoneStyle })}
-                    isInvalid={!!errors.picture}
-                  >
-                    <input {...getInputProps()} />
-                    {!errors.picture && (
-                      <>
-                        {!isDragAccept && !isDragReject && (
-                          <Text>Drag 'n' drop some files here, or click to select files</Text>
-                        )}
-                        {isDragAccept && <Text>.jpeg and .png will be accept</Text>}
-                        {isDragReject && <Text>Some files will be rejected</Text>}
-                      </>
+                  <FormControl isInvalid={!!errors.avatar}>
+                    <Input
+                      type='text'
+                      {...register('avatar', {
+                        validate: (val: string) => {
+                          if (val && !correctAvatarFormat(val)) {
+                            return t('form.error.avatar_error')
+                          }
+                        },
+                      })}
+                      mb={1}
+                      placeholder={t('form.edit_profile.avatar_placeholder').toString()}
+                    />
+
+                    {!!errors.avatar ? (
+                      <FormErrorMessage>{errors.avatar?.message?.toString()}</FormErrorMessage>
+                    ) : (
+                      <FormHelperText>
+                        <InfoOutlineIcon />
+                        <Text>{t('form.edit_profile.avatar_helper')}</Text>
+                      </FormHelperText>
                     )}
-                    <FormErrorMessage>{errors?.picture?.message?.toString()}</FormErrorMessage>
                   </FormControl>
                 </Flex>
                 <FormControl isInvalid={!!errors.name}>
@@ -211,12 +182,27 @@ const EditProfile = () => {
                     <Text> {t('form.account_create.description_helper')}</Text>
                   </FormHelperText>
                 </FormControl>
-                <Button type='submit' colorScheme='primary'>
-                  {t('menu.edit_profile_btn')}
+                <Button type='submit' colorScheme='primary' disabled={loading} cursor={loading ? 'auto' : 'pointer'}>
+                  {loading ? <Spinner /> : t('menu.edit_profile_btn')}
                 </Button>
               </Flex>
             </ModalBody>
           </Box>
+        </ModalContent>
+      </Modal>
+      <Modal isOpen={isOpenError} onClose={onCloseError} closeOnEsc={!!error} closeOnOverlayClick={!!error} isCentered>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>{t('form.error.edit_profile')}</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Text color='red.300'>{error}</Text>
+          </ModalBody>
+          <ModalFooter>
+            <Button mr={3} onClick={onCloseError} colorScheme='primary'>
+              {t('form.process_create.confirm.close')}
+            </Button>
+          </ModalFooter>
         </ModalContent>
       </Modal>
     </>

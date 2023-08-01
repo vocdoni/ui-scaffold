@@ -86,9 +86,15 @@
       "title_helper": "The organization name",
       "title_placeholder": "The organization name"
     },
+    "edit_profile": {
+      "avatar_helper": "Image of your organization",
+      "avatar_placeholder": "Image URL"
+    },
     "error": {
       "address_already_in_use": "Address already in use",
       "address_pattern": "Only hex addresses are allowed (e.g 0x031101A...)",
+      "avatar_error": "URL not valid",
+      "edit_profile": "Error editing the profile",
       "field_is_required": "This field is required",
       "min_address": "Please, provide at least one address"
     },
