@@ -11,7 +11,7 @@ import {
   ModalHeader,
   ModalOverlay,
   useDisclosure,
-  useToast
+  useToast,
 } from '@chakra-ui/react'
 import { SpreadsheetManager } from '@components/ProcessCreate/Census/Spreadsheet/spreadsheet-manager'
 import { useClient, useElection } from '@vocdoni/chakra-components'
@@ -28,7 +28,11 @@ export const SpreadsheetAccess = ({ setConnected }: { setConnected: SetStateActi
   const { env } = useClient()
   const { election, setClient } = useElection()
   const fields = dotobject(election, 'meta.census.fields')
-  const { register, handleSubmit, formState: { errors } } = useForm<any>()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<any>()
 
   const onSubmit = async (vals: any) => {
     try {
@@ -42,7 +46,7 @@ export const SpreadsheetAccess = ({ setConnected }: { setConnected: SetStateActi
         electionId: election?.id,
       })
       // check if is in census
-      if (!await client.isInCensus()) {
+      if (!(await client.isInCensus())) {
         return toast({
           status: 'error',
           title: t('error.wrong_data_title'),
@@ -67,37 +71,39 @@ export const SpreadsheetAccess = ({ setConnected }: { setConnected: SetStateActi
     }
   }
 
-  return (<>
-    <Button onClick={onOpen} colorScheme='primary'>
-      <Trans i18nKey='spreadsheet.access_button'>Identify</Trans>
-    </Button>
-    <Modal isOpen={isOpen} onClose={onClose}>
-      <ModalOverlay />
-      <ModalContent>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <ModalHeader><Trans i18nKey='spreadsheet.modal_title'>You need to log in first</Trans></ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            {
-              fields.map((field) => (
+  return (
+    <>
+      <Button onClick={onOpen} colorScheme='primary'>
+        <Trans i18nKey='spreadsheet.access_button'>Identify</Trans>
+      </Button>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <ModalHeader>
+              <Trans i18nKey='spreadsheet.modal_title'>You need to log in first</Trans>
+            </ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              {fields.map((field) => (
                 <FormControl key={field}>
                   <FormLabel>{field}</FormLabel>
                   <Input {...register(field)} />
                 </FormControl>
-              ))
-            }
-          </ModalBody>
+              ))}
+            </ModalBody>
 
-          <ModalFooter>
-            <Button variant='ghost' mr={3} onClick={onClose}>
-              {t('close')}
-            </Button>
-            <Button type='submit' colorScheme='primary'>
-              <Trans i18nKey='spreadsheet.access_button'>Identify</Trans>
-            </Button>
-          </ModalFooter>
-        </form>
-      </ModalContent>
-    </Modal>
-  </>)
+            <ModalFooter>
+              <Button variant='ghost' mr={3} onClick={onClose}>
+                {t('close')}
+              </Button>
+              <Button type='submit' colorScheme='primary'>
+                <Trans i18nKey='spreadsheet.access_button'>Identify</Trans>
+              </Button>
+            </ModalFooter>
+          </form>
+        </ModalContent>
+      </Modal>
+    </>
+  )
 }

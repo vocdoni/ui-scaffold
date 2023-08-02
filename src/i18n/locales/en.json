@@ -163,6 +163,7 @@
         "title": "Title",
         "vote_overwritte": "Vote overwritte"
       },
+      "confirm_spreadsheet_removal": "Are you sure? Take in mind that the uploaded file will be removed",
       "creating_process": "Creating process...",
       "do_not_close": "This action can take some time, don't close this tab",
       "meta": {
@@ -202,7 +203,8 @@
       },
       "success_description": "Redirecting you to the election process page...",
       "success_title": "Election process successfully created",
-      "unhealthy_account": "You need to create an organization before creating the first election."
+      "unhealthy_account": "You need to create an organization before creating the first election.",
+      "weighted": "Weighted vote"
     }
   },
   "home": {

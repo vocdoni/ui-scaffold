@@ -165,6 +165,7 @@
         "title": "Títol",
         "vote_overwritte": "Sobreescriure vot"
       },
+      "confirm_spreadsheet_removal": "Estàs segur que vols canviar-ho? Fent-ho s'esborrarà el fitxer que has carregat actualment.",
       "creating_process": "Creant el procés...",
       "do_not_close": "Aquesta acció pot trigar una estona, no tanquis aquesta pestanya",
       "meta": {
@@ -205,7 +206,8 @@
       },
       "success_description": "Redirigint-te a la pàgina del procés electoral...",
       "success_title": "Procés electoral creat amb èxit",
-      "unhealthy_account": "Has de crear una organització abans de crear la primera elecció."
+      "unhealthy_account": "Has de crear una organització abans de crear la primera elecció.",
+      "weighted": "Vot ponderat"
     }
   },
   "home": {

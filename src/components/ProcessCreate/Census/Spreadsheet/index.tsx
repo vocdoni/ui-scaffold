@@ -2,7 +2,7 @@ import { Box, Checkbox, FormControl, FormErrorMessage, Text } from '@chakra-ui/r
 import { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { Controller, useFormContext } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { CsvPreview } from './Preview'
 import { SpreadsheetManager } from './spreadsheet-manager'
 
@@ -24,6 +24,7 @@ export const CensusCsvManager = () => {
     async ([file]) => {
       setValue('spreadsheet', undefined)
       setFilename(file.name)
+      setError('spreadsheet', null)
       try {
         const spreadsheet = new SpreadsheetManager(file, weighted)
         await spreadsheet.read()
@@ -45,31 +46,30 @@ export const CensusCsvManager = () => {
   return (
     <Box>
       <FormControl>
-      <FormControl>
         <Controller
           control={control}
           name='weightedVote'
-          render={({field: {onChange, onBlur, value, ref}}) =>
+          defaultValue={weighted}
+          render={({ field: { onChange, onBlur, value, ref } }) => (
             <Checkbox
               onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                if (window.confirm('you sure? it\'ll be removed')) {
+                if (!manager) {
+                  return setValue('weightedVote', event.target.checked)
+                }
+                if (window.confirm(t('form.process_create.confirm_spreadsheet_removal'))) {
                   setValue('spreadsheet', undefined)
                   setFilename()
-                  onChange(event)
+                  setValue('weightedVote', event.target.checked)
                 }
-                setValue('weightedVote', value)
-                event.preventDefault()
-                event.stopPropagation()
               }}
               onBlur={onBlur}
               ref={ref}
-              value={value}
+              isChecked={value}
             >
-                Weighted vote
+              <Trans i18nKey='form.process_create.weighted'>Weighted vote</Trans>
             </Checkbox>
-          }
+          )}
         />
-      </FormControl>
       </FormControl>
       <FormControl
         {...register('spreadsheet', { required: { value: true, message: t('form.error.field_is_required') } })}
