@@ -45,8 +45,8 @@ export const SpreadsheetAccess = ({ setConnected }: { setConnected: SetStateActi
       if (!await client.isInCensus()) {
         return toast({
           status: 'error',
-          title: 'Wrong data',
-          description: 'The specified data is not correct',
+          title: t('error.wrong_data_title'),
+          description: t('error.wrong_data_description'),
         })
       }
       // in case of success, set connected and currently defined client
@@ -68,12 +68,14 @@ export const SpreadsheetAccess = ({ setConnected }: { setConnected: SetStateActi
   }
 
   return (<>
-    <Button onClick={onOpen}>Identifica't</Button>
+    <Button onClick={onOpen} colorScheme='primary'>
+      <Trans i18nKey='spreadsheet.access_button'>Identify</Trans>
+    </Button>
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <ModalHeader><Trans i18nKey='spreadsheet.login.title'>You need to log in first</Trans></ModalHeader>
+          <ModalHeader><Trans i18nKey='spreadsheet.modal_title'>You need to log in first</Trans></ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             {
@@ -88,9 +90,11 @@ export const SpreadsheetAccess = ({ setConnected }: { setConnected: SetStateActi
 
           <ModalFooter>
             <Button variant='ghost' mr={3} onClick={onClose}>
-              Close
+              {t('close')}
             </Button>
-            <Button type='submit'>Login</Button>
+            <Button type='submit' colorScheme='primary'>
+              <Trans i18nKey='spreadsheet.access_button'>Identify</Trans>
+            </Button>
           </ModalFooter>
         </form>
       </ModalContent>
