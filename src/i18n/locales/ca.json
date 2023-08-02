@@ -17,8 +17,8 @@
   "banner": {
     "know_more": "Descobreix més",
     "start_now": "Comença ara!",
-    "subtitle": "Vota per a les DAOs i les comunitats Web3",
-    "title": "Utilitza adreces web3, vota amb un token ERC20 o amb NFTs!"
+    "subtitle": "Utilitza adreces web3, vota amb un token ERC20 o amb NFTs!",
+    "title": "Vota per a les DAOs i les comunitats Web3"
   },
   "cc": {
     "actions": {
@@ -64,7 +64,10 @@
     "copied_title": "Copiat!"
   },
   "error": {
-    "return_to_home": ""
+    "go_back": "Torna enrere",
+    "loading_page": "Càrrega de pàgina errònia",
+    "not_found": "Ho sentim, no s'ha trobat la pàgina que estaves buscant.",
+    "return_to_home": "Ves a l'inici"
   },
   "error_text": "Ho sentim, no s'ha trobat la pàgina que busqueu",
   "footer": {
@@ -91,7 +94,8 @@
     "error": {
       "address_already_in_use": "Aquesta adreça ja és al cens",
       "address_pattern": "Només s'admeten adreces hexadecimals (p. ex. 0x031101A...)",
-      "field_is_required": "Aquest camp és obligatori"
+      "field_is_required": "Aquest camp és obligatori",
+      "min_address": "Si us plau, proporciona com a mínim una adreça"
     },
     "process_create": {
       "alert_info_title": "Informació",
@@ -191,7 +195,6 @@
       "unhealthy_account": "Has de crear una organització abans de crear la primera elecció."
     }
   },
-  "go_to_home": "Vés a <root>l'inici</root>",
   "home": {
     "active_voting": "Votacions actives",
     "more_active_organizations": "Més organitzacions actives"
@@ -210,7 +213,6 @@
     "my_list": "La meva llista",
     "support": "Ajuda"
   },
-  "not_found": "No trobat",
   "open_in_explorer": "Obre a l'explorador",
   "organization": {
     "avatar_alt": "Imatge d'avatar de l'organització {{ name }}",

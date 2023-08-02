@@ -17,8 +17,8 @@
   "banner": {
     "know_more": "Saber más",
     "start_now": "¡Comenzar ahora!",
-    "subtitle": "¡Votando por DAOs y comunidades Web3!",
-    "title": "¡Usa direcciones de cartera, vota con un token ERC20 o con NFTs!"
+    "subtitle": "Usa direcciones de cartera, vota con un token ERC20 o con NFTs",
+    "title": "¡Votando por DAOs y comunidades Web3!"
   },
   "cc": {
     "actions": {
@@ -64,9 +64,12 @@
     "copied_title": "¡Copiado!"
   },
   "error": {
-    "return_to_home": ""
+    "go_back": "Volver atrás",
+    "loading_page": "Error al cargar la página",
+    "not_found": "Lo sentimos, la página que buscabas no fue encontrada.",
+    "return_to_home": "Ves al inicio"
   },
-  "error_text": "Lo siento, no se encontró la página que buscabas.",
+  "error_text": "Lo sentimos, no se encontró la página que buscabas.",
   "footer": {
     "about": "Acerca de",
     "blog": "Blog",
@@ -91,7 +94,8 @@
     "error": {
       "address_already_in_use": "Esta dirección ya está en el censo",
       "address_pattern": "Solo se permiten direcciones hexadecimales (p.ej. 0x031101A...)",
-      "field_is_required": "Este campo es obligatorio"
+      "field_is_required": "Este campo es obligatorio",
+      "min_address": "Por favor, proporciona al menos una dirección"
     },
     "process_create": {
       "alert_info_title": "Info",
@@ -191,7 +195,6 @@
       "unhealthy_account": "Necesitas crear una organización antes de crear la primera votación."
     }
   },
-  "go_to_home": "Ir a <root>inicio</root>",
   "home": {
     "active_voting": "Votación activa",
     "more_active_organizations": "Organizaciones más activas"
@@ -210,7 +213,6 @@
     "my_list": "Mi lista",
     "support": "Soporte"
   },
-  "not_found": "No encontrado",
   "open_in_explorer": "Abrir en explorador",
   "organization": {
     "avatar_alt": "Imagen de avatar de la organización {{ name }}",

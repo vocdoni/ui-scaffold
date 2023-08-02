@@ -15,8 +15,8 @@
   "banner": {
     "know_more": "Know more",
     "start_now": "Start now!",
-    "subtitle": "Voting for DAOs & Web3 communities",
-    "title": "Use wallet addresses, vote with an ERC20 token or with NFTs!"
+    "subtitle": "Use wallet addresses, vote with an ERC20 token or with NFTs!",
+    "title": "Voting for DAOs & Web3 communities"
   },
   "cc": {
     "actions": {
@@ -62,7 +62,10 @@
     "copied_title": "Copied!"
   },
   "error": {
-    "return_to_home": "Return to home"
+    "go_back": "Go back",
+    "loading_page": "Error loading the page",
+    "not_found": "Sorry, the page you were looking for was not found",
+    "return_to_home": "Go to home"
   },
   "error_text": "Sorry, the page you were looking for was not found",
   "footer": {
@@ -89,7 +92,8 @@
     "error": {
       "address_already_in_use": "Address already in use",
       "address_pattern": "Only hex addresses are allowed (e.g 0x031101A...)",
-      "field_is_required": "This field is required"
+      "field_is_required": "This field is required",
+      "min_address": "Please, provide at least one address"
     },
     "process_create": {
       "alert_info_title": "Info",
@@ -188,7 +192,6 @@
       "unhealthy_account": "You need to create an organization before creating the first election."
     }
   },
-  "go_to_home": "Go to <root>home</root>",
   "home": {
     "active_voting": "Active voting",
     "more_active_organizations": "More active organizations"
@@ -207,7 +210,6 @@
     "my_list": "My list",
     "support": "Support"
   },
-  "not_found": "Not found",
   "open_in_explorer": "Open in explorer",
   "organization": {
     "avatar_alt": "Avatar image of {{ name }} organization",

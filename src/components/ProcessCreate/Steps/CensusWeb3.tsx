@@ -1,6 +1,7 @@
 import { Box, Text } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { CensusWeb3Addresses } from '../Census/Web3'
 import { useProcessCreationSteps } from './use-steps'
 
@@ -14,6 +15,7 @@ export interface Web3Address {
 }
 
 export const StepsCensusWeb3 = () => {
+  const { t } = useTranslation()
   const { form, setForm, next } = useProcessCreationSteps()
   const methods = useForm({
     defaultValues: {
@@ -29,8 +31,14 @@ export const StepsCensusWeb3 = () => {
   }, [addresses])
 
   const onSubmit: SubmitHandler<CensusWeb3Values> = (data) => {
-    setForm({ ...form, addresses: data.addresses })
-    next()
+    if (!addresses.length) {
+      methods.setError('addresses', {
+        type: 'manual',
+        message: t('form.error.min_address'),
+      })
+    } else {
+      next()
+    }
   }
 
   return (

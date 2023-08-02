@@ -18,9 +18,6 @@ const LanguagesList = () => {
         <ListItem
           key={k}
           onClick={() => {
-            if (window && 'localStorage' in window) {
-              window.localStorage.setItem('vocdoni.lang', k)
-            }
             i18n.changeLanguage(k)
           }}
           cursor='pointer'

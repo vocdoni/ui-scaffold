@@ -120,7 +120,7 @@ const Preview = () => {
           {t('form.process_create.confirm.census')}
         </Text>
         <Census />
-        <Link variant='primary' position='absolute' top={0} right={0} onClick={() => setActiveStep(2)}>
+        <Link variant='primary' position='absolute' top={0} right={0} onClick={() => setActiveStep(3)}>
           <Icon
             as={IoMdCreate}
             title={t('form.process_create.confirm.edit')}
