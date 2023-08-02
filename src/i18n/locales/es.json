@@ -166,6 +166,7 @@
         "title": "Título",
         "vote_overwritte": "Sobrescribir voto"
       },
+      "confirm_spreadsheet_removal": "Seguro? Piensa que al hacerlo se eliminará el fichero que has cargado.",
       "creating_process": "Creando proceso...",
       "do_not_close": "Esta acción puede llevar algún tiempo, no cierres esta pestaña",
       "meta": {
@@ -206,7 +207,8 @@
       },
       "success_description": "Redirigiéndote a la página del proceso electoral...",
       "success_title": "Proceso electoral creado con éxito",
-      "unhealthy_account": "Necesitas crear una organización antes de crear la primera votación."
+      "unhealthy_account": "Necesitas crear una organización antes de crear la primera votación.",
+      "weighted": "Voto ponderado"
     }
   },
   "home": {
