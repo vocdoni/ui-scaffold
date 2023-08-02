@@ -17,7 +17,7 @@ export const StepFormCensusSpreadsheet = () => {
   const methods = useForm<CensusSpreadsheetValues>({
     defaultValues: {
       spreadsheet: form.spreadsheet,
-      weightedVote: form.weightedVote
+      weightedVote: form.weightedVote,
     },
   })
 
