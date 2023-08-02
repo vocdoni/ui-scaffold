@@ -17,8 +17,11 @@ const OrganizationHeader = () => {
     <Flex
       flexDirection={{ base: 'column', md: 'row' }}
       alignItems={{ base: 'center', md: 'start' }}
-      gap={{ base: 2, md: 10 }}
+      gap={{ base: 2, md: 8 }}
       mb={10}
+      p={3}
+      borderRadius='lg'
+      boxShadow='var(--box-shadow)'
     >
       <Box flex='1 1 20%' minW={40}>
         <AspectRatio ratio={1.25 / 1} maxW={56} mx='auto'>
@@ -33,27 +36,36 @@ const OrganizationHeader = () => {
         </AspectRatio>
       </Box>
 
-      <Box flex='1 1 80%' maxW={{ base: '90%', md: '80%' }}>
+      <Flex
+        flex='1 1 80%'
+        justifyContent='space-between'
+        alignItems={{ base: 'center', md: 'start' }}
+        flexDirection={{ base: 'column', md: 'row' }}
+        gap={{ base: 2 }}
+        minW={0}
+        maxW='100%'
+      >
         <Flex
-          direction={{ base: 'column', md: 'row' }}
+          flex='1 1 100%'
+          direction='column'
           justifyContent={{ md: 'space-between' }}
           alignItems={{ base: 'center', md: 'start' }}
-          mb={{ base: 2, md: 4 }}
+          gap={2}
+          order={{ base: 2, md: 0 }}
+          maxW={{ base: '100%', md: '75%' }}
         >
-          <Box textAlign={{ base: 'center', md: 'start' }} w={{ base: 'full', md: '80%' }} minW={0}>
-            <AddressBtn />
-
+          <Box maxW='100%'>
             <OrganizationName
-              mt={2}
-              fontSize={28}
+              as='h1'
+              fontSize={32}
               isTruncated
               title={organization?.account.name.default || organization?.address}
             />
           </Box>
+          <OrganizationDescription />
         </Flex>
-
-        <OrganizationDescription />
-      </Box>
+        <AddressBtn />
+      </Flex>
     </Flex>
   )
 }

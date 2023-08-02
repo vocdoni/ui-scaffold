@@ -1,9 +1,10 @@
 import { AddIcon } from '@chakra-ui/icons'
-import { Button, Card, CardBody, Flex, Grid, GridItem, Spinner, Text } from '@chakra-ui/react'
+import { Box, Button, Card, CardBody, Flex, Grid, GridItem, Link, Spinner, Text } from '@chakra-ui/react'
+import Logo from '@components/Layout/Logo'
 import { useClient, useOrganization } from '@vocdoni/chakra-components'
 import { InvalidElection, PublishedElection, areEqualHexStrings } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 import ProcessCardDetailed from '../Process/CardDetailed'
 import Header from './Header'
@@ -63,8 +64,12 @@ const OrganizationView = () => {
   }, [client, organization?.address, page, error, finished])
 
   return (
-    <>
+    <Box maxW='1200px' mx='auto'>
       <Header />
+
+      <Text as='h2' fontSize='xl' fontWeight='bold' mb={8} textAlign={{ base: 'center', md2: 'start' }}>
+        {t('organization.elections')}
+      </Text>
 
       <Grid
         templateColumns={{
@@ -83,25 +88,44 @@ const OrganizationView = () => {
         <div ref={refObserver}></div>
       </Grid>
 
-      <Flex justifyContent='center' mt={4}>
+      <Flex justifyContent='center' my={4}>
         {loading && <Spinner />}
         {loaded && !electionsList.length && (
           <Card variant='no-elections'>
             <CardBody>
-              <Text>{t('organization.elections_list_empty')}</Text>
-              {areEqualHexStrings(account?.address, organization?.address) && (
-                <NavLink to='/processes/create'>
-                  <Button colorScheme='primary' rightIcon={<AddIcon />}>
-                    {t('menu.create')}
-                  </Button>
-                </NavLink>
-              )}
+              <Box>
+                <Logo />
+              </Box>
+              <Box>
+                {areEqualHexStrings(account?.address, organization?.address) ? (
+                  <>
+                    <Text>{t('organization.elections_list_empty.title')}</Text>
+                    <Text>{t('organization.elections_list_empty.description')}</Text>
+                    <Text>
+                      <Trans
+                        i18nKey='organization.elections_list_empty.footer'
+                        components={{
+                          tos: <Link variant='primary' href='' target='_blank' />,
+                        }}
+                      />
+                    </Text>
+                    <NavLink to='/processes/create'>
+                      <Button colorScheme='primary' rightIcon={<AddIcon />}>
+                        {t('menu.create')}
+                      </Button>
+                    </NavLink>
+                  </>
+                ) : (
+                  <Text>{t('organization.elections_list_empty.not_owner')}</Text>
+                )}
+              </Box>
             </CardBody>
           </Card>
         )}
+
         {error && <Text>{error}</Text>}
       </Flex>
-    </>
+    </Box>
   )
 }
 

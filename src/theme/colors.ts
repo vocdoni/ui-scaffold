@@ -40,7 +40,8 @@ export const colors = {
   card: {
     description: colorsBase.gray.dark2,
     footer_divider: colorsBase.gray.dark,
-    footer_title: colorsBase.primary.main,
+    footer_title: colorsBase.primary.dark,
+
     header: colorsBase.primary.main,
   },
 
@@ -63,6 +64,9 @@ export const colors = {
   },
 
   organization: {
+    card: {
+      footer_bg: colorsBase.gray.main,
+    },
     election_list_empty_bg: colorsBase.gray.light,
 
     tabs: {

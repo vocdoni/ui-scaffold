@@ -218,7 +218,12 @@
     "avatar_alt": "Imatge d'avatar de l'organització {{ name }}",
     "dao_title": "DAO",
     "elections": "Eleccions",
-    "elections_list_empty": "Aquesta organització encara no té eleccions"
+    "elections_list_empty": {
+      "description": "En començar fent la teva primera elecció, pots triar entre diferents tipus d'autenticació pel teu vot.",
+      "footer": "Obtén més informació sobre com crear eleccions <tos>en aquesta guia</tos>.",
+      "not_owner": "Aquesta organització encara no té eleccions.",
+      "title": "Crea la teva primera elecció"
+    }
   },
   "process": {
     "date": {
