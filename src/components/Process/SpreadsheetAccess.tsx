@@ -1,6 +1,7 @@
 import {
   Button,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Input,
   Modal,
@@ -11,17 +12,19 @@ import {
   ModalHeader,
   ModalOverlay,
   useDisclosure,
-  useToast,
+  useToast
 } from '@chakra-ui/react'
 import { SpreadsheetManager } from '@components/ProcessCreate/Census/Spreadsheet/spreadsheet-manager'
 import { useClient, useElection } from '@vocdoni/chakra-components'
 import { dotobject, VocdoniSDKClient } from '@vocdoni/sdk'
-import { SetStateAction, useState } from 'react'
+import { SetStateAction, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import { useSearchParams } from 'react-router-dom'
 
 export const SpreadsheetAccess = ({ setConnected }: { setConnected: SetStateAction<boolean> }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const [params] = useSearchParams()
   const [loading, setLoading] = useState<boolean>(false)
   const toast = useToast()
   const { t } = useTranslation()
@@ -33,6 +36,15 @@ export const SpreadsheetAccess = ({ setConnected }: { setConnected: SetStateActi
     handleSubmit,
     formState: { errors },
   } = useForm<any>()
+
+  // open modal when accessing via `?auth`
+  useEffect(() => {
+    if (isOpen) return
+
+    if (params.has('auth')) {
+      onOpen()
+    }
+  }, [params])
 
   const onSubmit = async (vals: any) => {
     try {
@@ -71,6 +83,11 @@ export const SpreadsheetAccess = ({ setConnected }: { setConnected: SetStateActi
     }
   }
 
+  const required = {
+    value: true,
+    message: t('form.error.field_is_required'),
+  }
+
   return (
     <>
       <Button onClick={onOpen} colorScheme='primary'>
@@ -86,9 +103,10 @@ export const SpreadsheetAccess = ({ setConnected }: { setConnected: SetStateActi
             <ModalCloseButton />
             <ModalBody>
               {fields.map((field) => (
-                <FormControl key={field}>
+                <FormControl key={field} isInvalid={!!errors[field]}>
                   <FormLabel>{field}</FormLabel>
-                  <Input {...register(field)} />
+                  <Input {...register(field, { required })} />
+                  <FormErrorMessage>{errors[field]?.message?.toString()}</FormErrorMessage>
                 </FormControl>
               ))}
             </ModalBody>
