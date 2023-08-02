@@ -55,6 +55,7 @@
       "voted_title": "¡Tu voto se ha registrado con éxito!"
     }
   },
+  "close": "Cerrar",
   "copy": {
     "address": "Copiar dirección",
     "copied_title": "¡Copiado!"
@@ -65,7 +66,9 @@
     "invalid_weight_type": "Se esperaba encontrar el peso en la primera columna en las líneas {{rows, list}}, pero se han encontrado datos inesperados",
     "loading_page": "Error al cargar la página",
     "not_found": "Lo sentimos, la página que buscabas no fue encontrada.",
-    "return_to_home": "Ves al inicio"
+    "return_to_home": "Ves al inicio",
+    "wrong_data_description": "Los datos introducidos no son correctos",
+    "wrong_data_title": "Datos incorrectos"
   },
   "error_text": "Lo sentimos, no se encontró la página que buscabas.",
   "footer": {
@@ -143,7 +146,6 @@
       "confirm": {
         "census": "Censo",
         "census_preview_is_shortened": "(la lista previa está limitada a {{ limit }} resultados)",
-        "census_total_people": "{{ count }} personas podrán votar en esta votación",
         "census_total_people_one": "Una persona podrá votar en esta votación",
         "census_total_people_many": "{{ count }} personas podrán votar en esta votación",
         "census_total_people_other": "",
@@ -266,6 +268,10 @@
     "pause": "pausar",
     "play": "reproducir",
     "stop": "detener"
+  },
+  "spreadsheet": {
+    "access_button": "Identificarse",
+    "modal_title": "Necesitas iniciar sesión primero"
   },
   "submited_votes": "Votos enviados",
   "uploader": {

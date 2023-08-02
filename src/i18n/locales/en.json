@@ -54,6 +54,7 @@
       "voted_title": "Your vote was successfully cast!"
     }
   },
+  "close": "Close",
   "copy": {
     "address": "Copy address",
     "copied_title": "Copied!"
@@ -64,7 +65,9 @@
     "invalid_weight_type": "Expecting weight in first column at lines {{rows,list(style:short)}}, but found unexpected data",
     "loading_page": "Error loading the page",
     "not_found": "Sorry, the page you were looking for was not found",
-    "return_to_home": "Go to home"
+    "return_to_home": "Go to home",
+    "wrong_data_description": "The specified data is not correct",
+    "wrong_data_title": "Wrong data"
   },
   "error_text": "Sorry, the page you were looking for was not found",
   "footer": {
@@ -142,7 +145,6 @@
       "confirm": {
         "census": "Census",
         "census_preview_is_shortened": "(preview list is limited to {{ limit }} results)",
-        "census_total_people": "{{ count }} people will be elegible for voting in this election",
         "census_total_people_one": "A single person will be elegible for voting in this election",
         "census_total_people_other": "{{ count }} people will be elegible for voting in this election",
         "close": "Close",
@@ -262,6 +264,10 @@
     "pause": "pause",
     "play": "play",
     "stop": "stop"
+  },
+  "spreadsheet": {
+    "access_button": "Identify",
+    "modal_title": "You need to log in first"
   },
   "submited_votes": "Submitted votes",
   "uploader": {
