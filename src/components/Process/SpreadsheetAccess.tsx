@@ -12,7 +12,7 @@ import {
   ModalHeader,
   ModalOverlay,
   useDisclosure,
-  useToast
+  useToast,
 } from '@chakra-ui/react'
 import { SpreadsheetManager } from '@components/ProcessCreate/Census/Spreadsheet/spreadsheet-manager'
 import { useClient, useElection } from '@vocdoni/chakra-components'
