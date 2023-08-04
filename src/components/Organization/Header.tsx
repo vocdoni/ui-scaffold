@@ -9,9 +9,30 @@ import { useTranslation } from 'react-i18next'
 import AddressBtn from './AddressBtn'
 import fallback from '/assets/default-avatar.png'
 
+import { Button } from '@chakra-ui/react'
+import { useEffect, useRef, useState } from 'react'
+
 const OrganizationHeader = () => {
   const { t } = useTranslation()
   const { organization } = useOrganization()
+
+  const {
+    containaerRef: containerRefTitle,
+    noOfLines: noOfLinesTitle,
+    readMore: readMoreTitle,
+    handleReadMore: handleReadMoreTitle,
+    isTruncated: isTruncatedTitle,
+  } = useReadMore(4, 1, 'h1')
+
+  console.log(noOfLinesTitle)
+
+  const {
+    containaerRef: containerRefDesc,
+    noOfLines: noOfLinesDesc,
+    readMore: readMoreDesc,
+    handleReadMore: handleReadMoreDesc,
+    isTruncated: isTruncatedDesc,
+  } = useReadMore(30, 4, 'p')
 
   return (
     <Flex
@@ -54,20 +75,96 @@ const OrganizationHeader = () => {
           order={{ base: 2, md: 0 }}
           maxW={{ base: '100%', md: '75%' }}
         >
-          <Box maxW='100%'>
+          <Flex
+            maxW='100%'
+            ref={containerRefTitle}
+            flexDirection='row'
+            justifyContent='space-between'
+            alignItems='center'
+            sx={{
+              h1: {
+                maxW: { base: '75%', sm: '80%', lg: '85%' },
+                noOfLines: noOfLinesTitle,
+                overflow: 'hidden',
+                display: '-webkit-box',
+                WebkitBoxOrient: 'vertical',
+                WebkitLineClamp: 'var(--chakra-line-clamp)',
+              },
+            }}
+          >
             <OrganizationName
               as='h1'
               fontSize={32}
-              isTruncated
+              lineHeight={1.5}
               title={organization?.account.name.default || organization?.address}
             />
-          </Box>
-          <OrganizationDescription />
+            {isTruncatedTitle && (
+              <Button float='right' variant='link' colorScheme='primary' alignSelf='end' onClick={handleReadMoreTitle}>
+                {readMoreTitle ? ' Read less' : 'Read more'}
+              </Button>
+            )}
+          </Flex>
+
+          <Flex
+            ref={containerRefDesc}
+            flexDirection='column'
+            sx={{
+              div: {
+                p: {
+                  noOfLines: noOfLinesDesc,
+                  overflow: 'hidden',
+                  display: '-webkit-box',
+                  WebkitBoxOrient: 'vertical',
+                  WebkitLineClamp: 'var(--chakra-line-clamp)',
+                },
+              },
+            }}
+          >
+            <OrganizationDescription fontSize='lg' lineHeight={1.7} />
+            {/* <ElectionDescription mb={0} fontSize='lg' lineHeight={2} color='process.description' /> */}
+            {isTruncatedDesc && (
+              <Button float='right' variant='link' colorScheme='primary' alignSelf='end' onClick={handleReadMoreDesc}>
+                {readMoreDesc ? ' Read less' : 'Read more'}
+              </Button>
+            )}
+          </Flex>
         </Flex>
         <AddressBtn />
       </Flex>
     </Flex>
   )
+}
+
+const useReadMore = (conatinerHeight: number, lines: number, tag: string) => {
+  const [readMore, setReadMore] = useState(false)
+  const [isTruncated, setIsTruncated] = useState(false)
+  const containaerRef = useRef<HTMLParagraphElement>(null)
+  const noOfLines = isTruncated ? (readMore ? 'none' : lines) : 'none'
+
+  const handleReadMore = () => setReadMore((prev) => !prev)
+
+  useEffect(() => {
+    if (containaerRef.current) {
+      const text = containaerRef.current.querySelector(tag)
+
+      if (text) {
+        const containerHeight = conatinerHeight
+        const textHeight = text.getBoundingClientRect().height
+
+        const isTextTaller = textHeight > containerHeight
+
+        if (isTextTaller) setIsTruncated(true)
+      }
+    }
+  }, [])
+
+  return {
+    containaerRef,
+    noOfLines,
+    readMore,
+    handleReadMore,
+    isTruncated,
+  }
 }
 
 export default OrganizationHeader

@@ -156,6 +156,8 @@ const detailed = definePartsStyle({
       display: 'flex',
       justifyContent: 'space-between',
       gap: 0.5,
+      w: 'full',
+
       '& > div': {
         display: 'flex',
         justifyContent: 'center',
@@ -163,8 +165,8 @@ const detailed = definePartsStyle({
         p: 1,
         px: 2,
         textAlign: 'center',
-        minW: 0,
-        w: '180px',
+
+        minW: '50%',
         bgColor: 'organization.card.footer_bg',
 
         '& p': {
