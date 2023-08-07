@@ -218,7 +218,12 @@
     "avatar_alt": "Imagen de avatar de la organización {{ name }}",
     "dao_title": "DAO",
     "elections": "Elecciones",
-    "elections_list_empty": "Esta organización aún no tiene elecciones"
+    "elections_list_empty": {
+      "description": "Al comenzar haciendo tu primera elección, puedes elegir entre diferentes tipos de autenticación para tu voto.",
+      "footer": "Obtén más información sobre cómo crear elecciones <tos>en esta guía</tos>.",
+      "not_owner": "Esta organización aún no tiene elecciones.",
+      "title": "Crea tu primera elección"
+    }
   },
   "process": {
     "date": {

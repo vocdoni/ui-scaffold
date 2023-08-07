@@ -215,7 +215,12 @@
     "avatar_alt": "Avatar image of {{ name }} organization",
     "dao_title": "DAO",
     "elections": "Elections",
-    "elections_list_empty": "This organization has no elections yet"
+    "elections_list_empty": {
+      "description": "Being by making your first election, you can choose between diferent auth types of your vote",
+      "footer": "Learn more about creating elections <tos>in this guide</tos>.",
+      "not_owner": "This organization has no elections yet",
+      "title": "Create your first election"
+    }
   },
   "process": {
     "date": {

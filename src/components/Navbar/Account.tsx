@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { useAccount } from 'wagmi'
 import MenuDropdown from './Menu'
 
-const addressTextOverflow = (address: string) =>
+export const addressTextOverflow = (address: string) =>
   `${address.substring(0, 6)}...${address.substring(address.length - 4, address.length)}`
 
 export const Account = () => {
