@@ -1,4 +1,5 @@
 import { Button, List, ListItem } from '@chakra-ui/react'
+import EditProfile from '@components/Account/EditProfile'
 import { Balance, HR, useClient } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import { BiLogOut } from 'react-icons/bi'
@@ -19,13 +20,18 @@ const MenuDropdown = () => {
       </ListItem>
 
       {account && (
-        <ListItem display={{ lg: 'none' }} minW='full'>
-          <NavLink to={`/organization/0x${account?.address}`}>
-            <Button display='flex' justifyContent='end' variant='dropdown'>
-              {t('menu.my_list')}
-            </Button>
-          </NavLink>
-        </ListItem>
+        <>
+          <ListItem display={{ lg: 'none' }} minW='full'>
+            <NavLink to={`/organization/0x${account?.address}`}>
+              <Button display='flex' justifyContent='end' variant='dropdown'>
+                {t('menu.my_list')}
+              </Button>
+            </NavLink>
+          </ListItem>
+          <ListItem minW='full'>
+            <EditProfile />
+          </ListItem>
+        </>
       )}
 
       <ListItem minW='full'>
