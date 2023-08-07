@@ -2,17 +2,12 @@
   "alt_image": "Imatge de {{ img }}",
   "aside": {
     "has_already_voted": "El teu vot s'ha registrat correctament",
-    "is_able_to_vote": "Connectat. Ets elegible per votar.",
     "is_not_in_census": "No ets al cens",
     "not_connected": "No estàs connectat",
     "overwrite_votes_left": "Pots corregir el teu vot {{ left }} vegades.",
     "verify_vote_on_explorer": "Verifica el vot a l'explorador",
-    "votes_one": "ja hi ha un vot!",
-    "votes_many": "",
-    "votes_other": "ja hi ha {{ count }} vots!",
-    "votes_submited_one": "un vot enviat",
-    "votes_submited_many": "",
-    "votes_submited_other": "{{ count }} vots enviats"
+    "votes_one": "<tos>1</tos> <tos2>vot</tos2>",
+    "votes_other": "<tos>{{ count }}</tos> <tos2>vots</tos2>"
   },
   "banner": {
     "know_more": "Descobreix més",
@@ -226,6 +221,7 @@
     }
   },
   "process": {
+    "created_by": "Creat per",
     "date": {
       "ended": "Procés finalitzat",
       "ends": "Finalitza",
@@ -236,16 +232,17 @@
     "questions": "Preguntes",
     "results": "Resultats",
     "status": {
+      "active": "Actiu",
       "canceled": "Procés cancel·lat",
-      "ended": "Procés finalitzat",
-      "ongoing": "Procés en curs",
+      "ended": "Finalitzat",
       "paused": "Procés en pausa",
       "paused_description": "",
-      "results": "Resultats",
       "unknown": "Desconegut",
-      "upcoming": "Procés previst"
+      "upcoming": "Previst"
     },
-    "voters": "Votants"
+    "strategy": "Estratègia",
+    "voters": "Votants",
+    "voting_type": "Tipo de elección"
   },
   "process_actions": {
     "pause": "Pausa",

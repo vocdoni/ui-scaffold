@@ -2,17 +2,13 @@
   "alt_image": "Imagen {{ img }}",
   "aside": {
     "has_already_voted": "Tu voto ha sido registrado correctamente",
-    "is_able_to_vote": "Conectado. Eres elegible para votar.",
     "is_not_in_census": "No estás en el censo",
     "not_connected": "No estás conectado",
     "overwrite_votes_left": "Puedes corregir tu voto {{ left }} veces.",
     "verify_vote_on_explorer": "Verifica el voto en el explorador",
-    "votes_one": "¡ya hay un voto!",
-    "votes_many": "",
-    "votes_other": "¡ya hay {{ count }} votos!",
-    "votes_submited_one": "un voto enviado",
-    "votes_submited_many": "",
-    "votes_submited_other": "{{ count }} votos enviados"
+    "votes_one": "<tos>1</tos> <tos2>voto</tos2>",
+    "votes_many": "<tos>{{ count }}</tos> <tos2>votos</tos2>",
+    "votes_other": "<tos>{{ count }}</tos> <tos2>votos</tos2>"
   },
   "banner": {
     "know_more": "Saber más",
@@ -226,6 +222,7 @@
     }
   },
   "process": {
+    "created_by": "Creado por",
     "date": {
       "ended": "Finalizado",
       "ends": "Finaliza",
@@ -236,16 +233,17 @@
     "questions": "Preguntas",
     "results": "Resultados",
     "status": {
+      "active": "Activo",
       "canceled": "Proceso cancelado",
-      "ended": "Proceso finalizado",
-      "ongoing": "Proceso en curso",
+      "ended": "Finalizado",
       "paused": "Proceso pausado",
       "paused_description": "",
-      "results": "Resultados",
       "unknown": "Desconocido",
-      "upcoming": "Próximo proceso"
+      "upcoming": "Próximo"
     },
-    "voters": "Votantes"
+    "strategy": "Estrategia",
+    "voters": "Votantes",
+    "voting_type": "Tipo de votación"
   },
   "process_actions": {
     "pause": "pausar",

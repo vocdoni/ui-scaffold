@@ -2,15 +2,12 @@
   "alt_image": "{{ img }} image",
   "aside": {
     "has_already_voted": "Your vote is properly cast",
-    "is_able_to_vote": "Connected. You are elegible for voting.",
     "is_not_in_census": "You are not in census",
     "not_connected": "You are not connected",
     "overwrite_votes_left": "You can correct your vote up to {{ left }} times.",
     "verify_vote_on_explorer": "Verify vote on explorer",
-    "votes_one": "one vote cast so far!",
-    "votes_other": "{{ count }} votes cast so far!",
-    "votes_submited_one": "one vote submitted",
-    "votes_submited_other": "{{ count }} votes submitted"
+    "votes_one": "<tos>1</tos> <tos2>vote</tos2>",
+    "votes_other": "<tos>{{ count }}</tos> <tos2>votes</tos2>"
   },
   "banner": {
     "know_more": "Know more",
@@ -223,6 +220,7 @@
     }
   },
   "process": {
+    "created_by": "Created by",
     "date": {
       "ended": "Process ended",
       "ends": "Process ends",
@@ -233,16 +231,17 @@
     "questions": "Questions",
     "results": "Results",
     "status": {
+      "active": "Active",
       "canceled": "Process canceled",
-      "ended": "Process ended",
-      "ongoing": "Process in progress",
+      "ended": "Ended",
       "paused": "Process paused",
       "paused_description": "It's not possible to vote right now",
-      "results": "Results",
       "unknown": "Unknown",
-      "upcoming": "Process is upcoming"
+      "upcoming": "Upcoming"
     },
-    "voters": "Voters"
+    "strategy": "Strategy",
+    "voters": "Voters",
+    "voting_type": "Voting type"
   },
   "process_actions": {
     "pause": "pause",

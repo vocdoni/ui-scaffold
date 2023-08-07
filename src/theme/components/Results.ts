@@ -5,20 +5,26 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 
 const baseStyle = definePartsStyle({
   question: {
-    background: 'process.results.bg',
     p: 4,
     borderRadius: 'md',
-    width: 'full',
+    w: { base: '100%', md: '80%' },
     m: 0,
     mx: 'auto',
 
+    '& > div:nth-of-type(1)': {
+      '& > p': {
+        fontSize: 'xl2',
+        mb: 5,
+        lineHeight: 1.3,
+        textAlign: 'start',
+      },
+    },
     '& > div:nth-of-type(2) > div': {
       display: 'flex',
       flexDirection: { base: 'column', md: 'row' },
       alignItems: { base: 'center', md: 'start' },
       gap: 3,
       mb: 5,
-      px: 8,
 
       '& p:nth-of-type(1)': {
         maxW: '100%',
