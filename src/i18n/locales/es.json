@@ -2,17 +2,13 @@
   "alt_image": "Imagen {{ img }}",
   "aside": {
     "has_already_voted": "Tu voto ha sido registrado correctamente",
-    "is_able_to_vote": "Conectado. Eres elegible para votar.",
     "is_not_in_census": "No estás en el censo",
     "not_connected": "No estás conectado",
     "overwrite_votes_left": "Puedes corregir tu voto {{ left }} veces.",
     "verify_vote_on_explorer": "Verifica el voto en el explorador",
-    "votes_one": "¡ya hay un voto!",
-    "votes_many": "",
-    "votes_other": "¡ya hay {{ count }} votos!",
-    "votes_submited_one": "un voto enviado",
-    "votes_submited_many": "",
-    "votes_submited_other": "{{ count }} votos enviados"
+    "votes_one": "<tos>1</tos> <tos2>voto</tos2>",
+    "votes_many": "<tos>{{ count }}</tos> <tos2>votos</tos2>",
+    "votes_other": "<tos>{{ count }}</tos> <tos2>votos</tos2>"
   },
   "banner": {
     "know_more": "Saber más",
@@ -91,9 +87,15 @@
       "title_helper": "El nombre de la organización",
       "title_placeholder": "El nombre de la organización"
     },
+    "edit_profile": {
+      "avatar_helper": "Imagen de tu organización",
+      "avatar_placeholder": "URL de la imagen"
+    },
     "error": {
       "address_already_in_use": "Esta dirección ya está en el censo",
       "address_pattern": "Solo se permiten direcciones hexadecimales (p.ej. 0x031101A...)",
+      "avatar_error": "URL no válida",
+      "edit_profile": "Error editando el perfil",
       "field_is_required": "Este campo es obligatorio",
       "min_address": "Por favor, proporciona al menos una dirección"
     },
@@ -210,6 +212,8 @@
     "create": "Crear proceso",
     "create_process": "Crear proceso",
     "disconnect": "Desconectar billetera",
+    "edit_profile": "Editar perfil",
+    "edit_profile_btn": "Editar",
     "my_list": "Mi lista",
     "support": "Soporte"
   },
@@ -218,9 +222,15 @@
     "avatar_alt": "Imagen de avatar de la organización {{ name }}",
     "dao_title": "DAO",
     "elections": "Elecciones",
-    "elections_list_empty": "Esta organización aún no tiene elecciones"
+    "elections_list_empty": {
+      "description": "Al comenzar haciendo tu primera elección, puedes elegir entre diferentes tipos de autenticación para tu voto.",
+      "footer": "Obtén más información sobre cómo crear elecciones <tos>en esta guía</tos>.",
+      "not_owner": "Esta organización aún no tiene elecciones.",
+      "title": "Crea tu primera elección"
+    }
   },
   "process": {
+    "created_by": "Creado por",
     "date": {
       "ended": "Finalizado",
       "ends": "Finaliza",
@@ -231,16 +241,17 @@
     "questions": "Preguntas",
     "results": "Resultados",
     "status": {
+      "active": "Activo",
       "canceled": "Proceso cancelado",
-      "ended": "Proceso finalizado",
-      "ongoing": "Proceso en curso",
+      "ended": "Finalizado",
       "paused": "Proceso pausado",
       "paused_description": "",
-      "results": "Resultados",
       "unknown": "Desconocido",
-      "upcoming": "Próximo proceso"
+      "upcoming": "Próximo"
     },
-    "voters": "Votantes"
+    "strategy": "Estrategia",
+    "voters": "Votantes",
+    "voting_type": "Tipo de votación"
   },
   "process_actions": {
     "pause": "pausar",

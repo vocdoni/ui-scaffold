@@ -3,7 +3,7 @@ import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { VoteButton, environment, useClient, useElection } from '@vocdoni/chakra-components'
 import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 
@@ -17,64 +17,60 @@ const ProcessAside = ({ ...props }) => {
     <Flex
       direction='column'
       justifyContent='center'
-      gap={2}
-      py={4}
-      px={6}
-      w={76}
+      alignItems='center'
+      gap={12}
+      p={12}
+      w={84}
       mt={7}
       color='process.results.aside.color'
       background='aside_bg'
       borderRadius='lg'
       {...props}
     >
-      <Text textAlign='center' fontWeight='bold' fontSize='xl2'>
-        {getStatusText(t, election?.status)}
+      <Text textAlign='center' fontSize='xl3' lineHeight={1}>
+        {getStatusText(t, election?.status).toUpperCase()}
       </Text>
 
       {election?.status !== ElectionStatus.CANCELED && election?.status !== ElectionStatus.UPCOMING && (
-        <Text textAlign='center'>
-          {election?.status === ElectionStatus.ENDED || election?.status === ElectionStatus.RESULTS
-            ? t('aside.votes_submited', { count: election?.voteCount })
-            : t('aside.votes', { count: election?.voteCount })}
-        </Text>
+        <Flex flexDirection='column' mb={1}>
+          <Trans
+            i18nKey='aside.votes'
+            components={{
+              tos: <Text as='span' fontWeight='bold' fontSize='xl6' textAlign='center' lineHeight={1} />,
+              tos2: <Text fontSize='xl2' lineHeight={1} textAlign='center' mt={3} />,
+            }}
+            count={election?.voteCount}
+          />
+        </Flex>
       )}
-      {isConnected ? (
+      {!isConnected && (
         <>
-          {isAbleToVote && (
-            <Box textAlign='center' fontSize='sm'>
-              <Text mb={2}>{t('aside.is_able_to_vote')}</Text>
-              <VoteButton w='full' color='process.results.aside.vote_btn_color' />
-            </Box>
-          )}
-          {!isInCensus && (
-            <Text textAlign='center' fontSize='sm'>
-              {t('aside.is_not_in_census')}
-            </Text>
-          )}
-          {voted !== null && voted.length > 0 && (
-            <Box textAlign='center' fontSize='sm'>
-              <Text mb={2}>{t('aside.has_already_voted').toString()}</Text>
-              <Link to={environment.verifyVote(env, voted)} target='_blank'>
-                <Button w='full' color='process.results.aside.verify_color'>
-                  {t('aside.verify_vote_on_explorer')}
-                </Button>
-              </Link>
-            </Box>
-          )}
-
-          {hasOverwriteEnabled(election) && isInCensus && (
-            <Text>{t('aside.overwrite_votes_left', { left: votesLeft })}</Text>
-          )}
-        </>
-      ) : (
-        <>
+          <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />{' '}
           <Text textAlign='center' fontSize='sm'>
             {t('aside.not_connected')}
           </Text>
-          <Flex justifyContent='center'>
-            <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />
-          </Flex>
         </>
+      )}
+      {isAbleToVote && <VoteButton w='full' borderRadius={30} p={7} color='process.results.aside.vote_btn_color' />}
+      {!isInCensus && (
+        <Text textAlign='center' fontSize='md'>
+          {t('aside.is_not_in_census')}
+        </Text>
+      )}
+      {voted !== null && voted.length > 0 && (
+        <Box textAlign='center' fontSize='md'>
+          <Link to={environment.verifyVote(env, voted)} target='_blank'>
+            <Button w='full' color='process.results.aside.verify_color' mb={4} borderRadius={30} p={7}>
+              {t('aside.verify_vote_on_explorer')}
+            </Button>
+          </Link>
+          <Text>{t('aside.has_already_voted').toString()}</Text>
+        </Box>
+      )}
+      {hasOverwriteEnabled(election) && isInCensus && (
+        <Text textAlign='center' fontSize='md'>
+          {t('aside.overwrite_votes_left', { left: votesLeft })}
+        </Text>
       )}
     </Flex>
   )
@@ -89,16 +85,13 @@ const getStatusText = (t: TFunction<string, string>, electionStatus: ElectionSta
   switch (electionStatus) {
     case ElectionStatus.UPCOMING:
       return t('process.status.upcoming')
-    case ElectionStatus.ENDED:
-      return t('process.status.ended')
-    case ElectionStatus.CANCELED:
-      return t('process.status.canceled')
     case ElectionStatus.PAUSED:
-      return t('process.status.paused')
     case ElectionStatus.ONGOING:
-      return t('process.status.ongoing')
+      return t('process.status.active')
+    case ElectionStatus.ENDED:
+    case ElectionStatus.CANCELED:
     case ElectionStatus.RESULTS:
-      return t('process.status.results')
+      return t('process.status.ended')
     default:
       return t('process.status.unknown')
   }

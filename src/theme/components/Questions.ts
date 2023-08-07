@@ -68,11 +68,10 @@ const baseStyle = definePartsStyle({
 
   question: {
     width: 'full',
-    maxW: 160,
+    w: { base: '100%', md: '80%' },
     m: 0,
     mx: 'auto',
-    background: 'process.questions.bg',
-    p: 8,
+    p: 4,
     borderRadius: 'md',
 
     '& > div': {
@@ -86,7 +85,9 @@ const baseStyle = definePartsStyle({
     px: 1,
     display: 'block',
     textAlign: 'start',
-    fontSize: 'xl',
+    fontSize: 'xl2',
+    lineHeight: 1.3,
+    mb: 5,
     color: 'process.questions.title',
   },
 
@@ -94,6 +95,8 @@ const baseStyle = definePartsStyle({
     px: 1,
     color: 'process.questions.description',
     textAlign: 'start',
+    fontSize: 'xl',
+    mb: 5,
   },
 
   radioGroup: {

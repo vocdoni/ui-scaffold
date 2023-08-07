@@ -2,15 +2,12 @@
   "alt_image": "{{ img }} image",
   "aside": {
     "has_already_voted": "Your vote is properly cast",
-    "is_able_to_vote": "Connected. You are elegible for voting.",
     "is_not_in_census": "You are not in census",
     "not_connected": "You are not connected",
     "overwrite_votes_left": "You can correct your vote up to {{ left }} times.",
     "verify_vote_on_explorer": "Verify vote on explorer",
-    "votes_one": "one vote cast so far!",
-    "votes_other": "{{ count }} votes cast so far!",
-    "votes_submited_one": "one vote submitted",
-    "votes_submited_other": "{{ count }} votes submitted"
+    "votes_one": "<tos>1</tos> <tos2>vote</tos2>",
+    "votes_other": "<tos>{{ count }}</tos> <tos2>votes</tos2>"
   },
   "banner": {
     "know_more": "Know more",
@@ -89,9 +86,15 @@
       "title_helper": "The organization name",
       "title_placeholder": "The organization name"
     },
+    "edit_profile": {
+      "avatar_helper": "Image of your organization",
+      "avatar_placeholder": "Image URL"
+    },
     "error": {
       "address_already_in_use": "Address already in use",
       "address_pattern": "Only hex addresses are allowed (e.g 0x031101A...)",
+      "avatar_error": "URL not valid",
+      "edit_profile": "Error editing the profile",
       "field_is_required": "This field is required",
       "min_address": "Please, provide at least one address"
     },
@@ -207,6 +210,8 @@
     "create": "Create Process",
     "create_process": "Create process",
     "disconnect": "Disconnect Wallet",
+    "edit_profile": "Edit profile",
+    "edit_profile_btn": "Edit",
     "my_list": "My list",
     "support": "Support"
   },
@@ -215,9 +220,15 @@
     "avatar_alt": "Avatar image of {{ name }} organization",
     "dao_title": "DAO",
     "elections": "Elections",
-    "elections_list_empty": "This organization has no elections yet"
+    "elections_list_empty": {
+      "description": "Being by making your first election, you can choose between diferent auth types of your vote",
+      "footer": "Learn more about creating elections <tos>in this guide</tos>.",
+      "not_owner": "This organization has no elections yet",
+      "title": "Create your first election"
+    }
   },
   "process": {
+    "created_by": "Created by",
     "date": {
       "ended": "Process ended",
       "ends": "Process ends",
@@ -228,16 +239,17 @@
     "questions": "Questions",
     "results": "Results",
     "status": {
+      "active": "Active",
       "canceled": "Process canceled",
-      "ended": "Process ended",
-      "ongoing": "Process in progress",
+      "ended": "Ended",
       "paused": "Process paused",
       "paused_description": "It's not possible to vote right now",
-      "results": "Results",
       "unknown": "Unknown",
-      "upcoming": "Process is upcoming"
+      "upcoming": "Upcoming"
     },
-    "voters": "Voters"
+    "strategy": "Strategy",
+    "voters": "Voters",
+    "voting_type": "Voting type"
   },
   "process_actions": {
     "pause": "pause",

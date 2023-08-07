@@ -1,4 +1,4 @@
-import { Box, Card, CardBody, CardHeader, Text } from '@chakra-ui/react'
+import { Box, Card, CardBody, CardFooter, Text } from '@chakra-ui/react'
 import { useDateFns } from '@i18n/use-date-fns'
 import {
   ElectionActions,
@@ -22,17 +22,21 @@ const ProcessCardDetailed = ({ election }: Props) => {
   return (
     <ElectionProvider election={election}>
       <Card variant='detailed'>
-        <CardHeader>
-          <ElectionStatusBadge />
-        </CardHeader>
         <CardBody>
           <Link to={`/processes/${enforceHexPrefix(election.id)}`}>
-            <ProcessDetailedCreationDate />
-            <ProcessDetailedCardBody />
-            <ProcessDetailedCardFooter />
+            <ProcessDetailedCardTitle />
+            <Box>
+              <ElectionStatusBadge />
+              <ProcessDetailedCreationDate />
+            </Box>
+            <ProcessDetailedCardDescription />
           </Link>
           <ElectionActions />
         </CardBody>
+
+        <CardFooter>
+          <ProcessDetailedCardFooter />
+        </CardFooter>
       </Card>
     </ElectionProvider>
   )
@@ -49,7 +53,7 @@ const ProcessDetailedCreationDate = () => {
   return <Text>{format(new Date(election.creationTime), 'PPP')}</Text>
 }
 
-const ProcessDetailedCardBody = () => {
+const ProcessDetailedCardTitle = () => {
   const { election } = useElection()
   const { t } = useTranslation()
 
@@ -61,13 +65,21 @@ const ProcessDetailedCardBody = () => {
     )
   }
 
+  return <ElectionTitle as='p' />
+}
+
+const ProcessDetailedCardDescription = () => {
+  const { election } = useElection()
+  const { t } = useTranslation()
+
+  if (election instanceof InvalidElection) {
+    return null
+  }
+
   return (
     <>
-      <ElectionTitle as='p' />
       {election?.status !== ElectionStatus.CANCELED ? (
-        <Box>
-          <ElectionDescription />
-        </Box>
+        <ElectionDescription />
       ) : (
         <Box>
           <Text>{t('process.status.canceled')}</Text>
