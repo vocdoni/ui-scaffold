@@ -1,38 +1,34 @@
-import { AspectRatio, Box, Flex } from '@chakra-ui/react'
+import { AspectRatio, Box, Button, Flex } from '@chakra-ui/react'
 import {
   OrganizationAvatar as Avatar,
   OrganizationDescription,
   OrganizationName,
   useOrganization,
 } from '@vocdoni/chakra-components'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import AddressBtn from './AddressBtn'
 import fallback from '/assets/default-avatar.png'
-
-import { Button } from '@chakra-ui/react'
-import { useEffect, useRef, useState } from 'react'
 
 const OrganizationHeader = () => {
   const { t } = useTranslation()
   const { organization } = useOrganization()
 
   const {
-    containaerRef: containerRefTitle,
+    containerRef: containerRefTitle,
     noOfLines: noOfLinesTitle,
     readMore: readMoreTitle,
     handleReadMore: handleReadMoreTitle,
     isTruncated: isTruncatedTitle,
-  } = useReadMore(4, 1, 'h1')
-
-  console.log(noOfLinesTitle)
+  } = useReadMore(96, 1, 'p')
 
   const {
-    containaerRef: containerRefDesc,
+    containerRef: containerRefDesc,
     noOfLines: noOfLinesDesc,
     readMore: readMoreDesc,
     handleReadMore: handleReadMoreDesc,
     isTruncated: isTruncatedDesc,
-  } = useReadMore(30, 4, 'p')
+  } = useReadMore(139, 4, 'p')
 
   return (
     <Flex
@@ -76,13 +72,13 @@ const OrganizationHeader = () => {
           maxW={{ base: '100%', md: '75%' }}
         >
           <Flex
-            maxW='100%'
+            w='100%'
             ref={containerRefTitle}
             flexDirection='row'
             justifyContent='space-between'
             alignItems='center'
             sx={{
-              h1: {
+              p: {
                 maxW: { base: '75%', sm: '80%', lg: '85%' },
                 noOfLines: noOfLinesTitle,
                 overflow: 'hidden',
@@ -93,7 +89,7 @@ const OrganizationHeader = () => {
             }}
           >
             <OrganizationName
-              as='h1'
+              as='p'
               fontSize={32}
               lineHeight={1.5}
               title={organization?.account.name.default || organization?.address}
@@ -121,7 +117,6 @@ const OrganizationHeader = () => {
             }}
           >
             <OrganizationDescription fontSize='lg' lineHeight={1.7} />
-            {/* <ElectionDescription mb={0} fontSize='lg' lineHeight={2} color='process.description' /> */}
             {isTruncatedDesc && (
               <Button float='right' variant='link' colorScheme='primary' alignSelf='end' onClick={handleReadMoreDesc}>
                 {readMoreDesc ? ' Read less' : 'Read more'}
@@ -135,20 +130,19 @@ const OrganizationHeader = () => {
   )
 }
 
-const useReadMore = (conatinerHeight: number, lines: number, tag: string) => {
+const useReadMore = (containerHeight: number, lines: number, tag: string) => {
   const [readMore, setReadMore] = useState(false)
   const [isTruncated, setIsTruncated] = useState(false)
-  const containaerRef = useRef<HTMLParagraphElement>(null)
+  const containerRef = useRef<HTMLParagraphElement>(null)
   const noOfLines = isTruncated ? (readMore ? 'none' : lines) : 'none'
 
   const handleReadMore = () => setReadMore((prev) => !prev)
 
   useEffect(() => {
-    if (containaerRef.current) {
-      const text = containaerRef.current.querySelector(tag)
+    if (containerRef.current) {
+      const text = containerRef.current.querySelector(tag)
 
       if (text) {
-        const containerHeight = conatinerHeight
         const textHeight = text.getBoundingClientRect().height
 
         const isTextTaller = textHeight > containerHeight
@@ -159,7 +153,7 @@ const useReadMore = (conatinerHeight: number, lines: number, tag: string) => {
   }, [])
 
   return {
-    containaerRef,
+    containerRef,
     noOfLines,
     readMore,
     handleReadMore,
