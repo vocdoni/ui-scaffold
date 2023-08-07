@@ -14,7 +14,7 @@ const cardCommonStyles = {
     p: 0,
   },
   footer: {
-    fontSize: 'sm',
+    p: 0,
   },
 }
 
@@ -69,6 +69,7 @@ const lite = definePartsStyle({
     pt: 0,
     pb: 2,
     fontWeight: 'bold',
+    fontSize: 'sm',
 
     '& > div > p:first-of-type': {
       color: 'card.footer_title',
@@ -88,36 +89,10 @@ const detailed = definePartsStyle({
 
   container: {
     ...cardCommonStyles.container,
-    w: { base: 84, sm: 100 },
-    position: 'relative',
-    height: 80,
-  },
-
-  header: {
-    ...cardCommonStyles.header,
-    textAlign: 'start',
-    pl: 10,
-    position: 'relative',
-    zIndex: 1,
-
-    '& span': {
-      ml: 'auto',
-      borderRadius: '4px 4px 0px 0px',
-
-      px: 4,
-    },
-  },
-
-  body: {
-    ...cardCommonStyles.body,
-
-    height: '100%',
+    w: { base: 84, sm: 96 },
+    height: 70,
     display: 'flex',
-    alignItems: 'start',
-    gap: 3,
-    position: 'relative',
-    zIndex: 10,
-    p: 5,
+    flexDirection: 'column',
     boxShadow: 'var(--box-shadow)',
     transition: 'box-shadow .2s',
     borderRadius: 'lg',
@@ -126,20 +101,20 @@ const detailed = definePartsStyle({
       boxShadow: 'var(--box-shadow-darker)',
       transition: 'box-shadow .2s  ',
     },
+  },
+
+  body: {
+    ...cardCommonStyles.body,
+
+    height: '100%',
+    display: 'flex',
+    gap: 3,
+    p: 3,
+    pb: 0,
+    justifyContent: 'space-between',
+
     '& a': {
-      height: '100%',
-      flexGrow: 1,
-      display: 'flex',
-      flexDirection: 'column',
-      cursor: 'pointer',
-
       '& > p:first-of-type': {
-        color: 'card.header',
-        mb: 1,
-        textAlign: 'start',
-      },
-
-      '& > p:nth-of-type(2)': {
         textAlign: 'start',
         fontSize: 'xl2',
         noOfLines: 2,
@@ -147,80 +122,112 @@ const detailed = definePartsStyle({
         display: '-webkit-box',
         WebkitBoxOrient: 'vertical',
         WebkitLineClamp: 'var(--chakra-line-clamp)',
+        mb: 5,
       },
 
-      '& > div:first-of-type': {
-        textAlign: 'start',
-        color: 'card.description',
-        noOfLines: 4,
-        overflow: 'hidden',
-        display: '-webkit-box',
-        WebkitBoxOrient: 'vertical',
-        WebkitLineClamp: 'var(--chakra-line-clamp)',
-      },
-
-      '& > div:last-of-type': {
-        mt: 'auto',
+      '& div:first-of-type': {
         display: 'flex',
-        gap: 3.5,
-
-        '& div': {
+        gap: 2,
+        mb: 3,
+      },
+      '& > div:nth-of-type(2)': {
+        '& > p': {
           textAlign: 'start',
+          color: 'card.description',
+          noOfLines: 4,
+          overflow: 'hidden',
+          display: '-webkit-box',
+          WebkitBoxOrient: 'vertical',
+          WebkitLineClamp: 'var(--chakra-line-clamp)',
         },
-
-        '& > div > p:first-of-type': {
-          color: 'card.footer_title',
-          fontWeight: 'normal',
-          fontStyle: 'normal',
-        },
-
-        '& div:nth-of-type(even)': {
-          pl: 3.5,
-          textAlign: 'start',
-          borderLeft: '1px solid',
-          borderColor: 'card.footer_divider',
-        },
+      },
+      '& > p:nth-of-type(2)': {
+        border: '1px solid red',
       },
     },
-    '& > div:last-of-type': {
-      mt: 7,
+  },
+  footer: {
+    ...cardCommonStyles.footer,
+    p: 2,
+    mt: 'auto',
+    fontSize: 'sm',
+
+    '& > div:first-of-type': {
       display: 'flex',
-      flexDirection: 'column',
-      gap: 1,
+      justifyContent: 'space-between',
+      gap: 0.5,
+      w: 'full',
+
+      '& > div': {
+        display: 'flex',
+        justifyContent: 'center',
+        gap: 1,
+        p: 1,
+        px: 2,
+        textAlign: 'center',
+
+        minW: '50%',
+        bgColor: 'organization.card.footer_bg',
+
+        '& p': {
+          whiteSpace: 'nowrap',
+          color: 'black',
+          fontWeight: 'normal',
+        },
+        '& p:nth-of-type(2)': {
+          isTruncated: true,
+          whiteSpace: 'nowrap',
+        },
+      },
+      '& > div:nth-of-type(1) ': {
+        borderBottomLeftRadius: 'md',
+      },
+      '& > div:nth-of-type(2) ': {
+        display: 'flex',
+        borderBottomRightRadius: 'md',
+        '& p:nth-of-type(1)': {
+          order: 2,
+        },
+        '& p:nth-of-type(2)': {
+          fontWeight: 'bold',
+        },
+      },
     },
   },
 })
 
 const noElections = definePartsStyle({
   container: {
-    display: 'flex',
-    direction: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 3,
-    maxW: 160,
-    px: { base: 2, md: 4 },
-    py: { base: 4, md: 8 },
-    mx: 'auto',
-    bgColor: 'organization.election_list_empty_bg',
+    p: 5,
+    boxShadow: 'var(--box-shadow)',
     borderRadius: 'lg',
+    minW: 'full',
   },
 
   body: {
     display: 'flex',
-    flexDirection: 'column',
-    gap: { base: 2, md: 5 },
+    flexDirection: { base: 'column', lg: 'row' },
+    gap: { base: 5, lg: 0 },
 
-    '& > p:first-of-type': {
-      textAlign: 'center',
-      fontSize: 'xl2',
-      mb: 0,
+    '& > div': {
+      flex: '1 1 50%',
+      px: 10,
     },
-
-    '& > a': {
+    '& > div:first-of-type': {
       display: 'flex',
-      justifyContent: 'center',
-      mx: 'auto',
+      justifyContent: { base: 'center', lg: 'end' },
+      alignItems: 'center',
+    },
+    '& > div:nth-of-type(2)': {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: { base: 'center', lg: 'start' },
+      gap: 5,
+
+      '& > p:first-of-type': {
+        fontSize: 'xl2',
+        fontWeight: 'bold',
+      },
     },
   },
 })
