@@ -17,7 +17,7 @@ const ProcessAside = ({ ...props }) => {
   const [connected, setConnected] = useState<boolean>(false)
   const { isConnected } = useAccount()
   const { env } = useClient()
-  const census: CensusMeta = dotobject(election.meta || {}, 'census')
+  const census: CensusMeta = dotobject(election?.meta || {}, 'census')
 
   return (
     <Flex
