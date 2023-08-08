@@ -15,7 +15,7 @@ import {
   useToast,
 } from '@chakra-ui/react'
 import { SpreadsheetManager } from '@components/ProcessCreate/Census/Spreadsheet/spreadsheet-manager'
-import { useClient, useElection } from '@vocdoni/chakra-components'
+import { useClient, useElection } from '@vocdoni/react-providers'
 import { dotobject, VocdoniSDKClient } from '@vocdoni/sdk'
 import { SetStateAction, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
