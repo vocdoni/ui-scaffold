@@ -1,5 +1,5 @@
+import { normalizeText } from '@vocdoni/react-providers'
 import { VocdoniSDKClient } from '@vocdoni/sdk'
-import latinize from 'latinize'
 import { read, utils, WorkBook } from 'xlsx'
 import ErrorRowLength from './errors/ErrorRowLength'
 import ErrorWeightType from './errors/ErrorWeightType'
@@ -14,18 +14,20 @@ const WeightRowPosition = 0
 
 export class SpreadsheetManager {
   protected readonly reader
-  protected readonly heading
-  protected readonly filedata
+  protected heading: string[]
+  protected filedata: string[][]
 
   public readonly file
-  public workBook: WorkBook
+  public workBook: WorkBook | undefined
   public readonly weighted: boolean
-  public errors = []
+  public errors: number[] = []
 
   constructor(file: File, weighted: boolean = false) {
     this.reader = new FileReader()
     this.file = file
     this.weighted = weighted
+    this.heading = []
+    this.filedata = [[]]
   }
 
   public read() {
@@ -117,7 +119,7 @@ export class SpreadsheetManager {
     return VocdoniSDKClient.generateWalletFromData(normalized)
   }
 
-  private load(): Promise<SpreadSheetReader> {
+  private load(): Promise<SpreadsheetManager> {
     return new Promise((resolve, reject): void => {
       this.reader.onload = (event) => {
         try {
@@ -139,24 +141,9 @@ export class SpreadsheetManager {
   private getSheetsData(xlsFile: WorkBook) {
     const firstSheetName = xlsFile.SheetNames[0]
     const worksheet = xlsFile.Sheets[firstSheetName]
-    const data = utils.sheet_to_json(worksheet, { header: 1, raw: false })
-    const filteredEmptyRows = data.filter((row: Array<any>) => row.length > 0)
+    const data: string[][] = utils.sheet_to_json(worksheet, { header: 1, raw: false })
+    const filtered = data.filter((row) => row.length > 0)
 
-    return filteredEmptyRows
+    return filtered
   }
-}
-
-export const normalizeText = (text?: string): string => {
-  if (!text) return text
-  if (typeof text !== 'string') return null
-
-  const result = text
-    .trim()
-    .replace(/\s+/g, ' ')
-    .replace(/[\.·:]/g, '.')
-    .replace(/[`´]/g, "'")
-    .normalize()
-    .toLowerCase()
-
-  return latinize(result)
 }
