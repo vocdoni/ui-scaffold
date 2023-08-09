@@ -1,5 +1,4 @@
-import { normalizeText } from '@vocdoni/react-providers'
-import { VocdoniSDKClient } from '@vocdoni/sdk'
+import { walletFromRow } from '@vocdoni/react-providers'
 import { read, utils, WorkBook } from 'xlsx'
 import ErrorRowLength from './errors/ErrorRowLength'
 import ErrorWeightType from './errors/ErrorWeightType'
@@ -100,7 +99,7 @@ export class SpreadsheetManager {
               try {
                 const data = this.weighted ? row.slice(WeightColPosition) : row
                 const weight = this.weighted ? row[WeightRowPosition] : undefined
-                const wallet = SpreadsheetManager.walletFromRow(organization, data)
+                const wallet = walletFromRow(organization, data)
                 const address = await wallet.getAddress()
 
                 resolve({ address, weight })
@@ -111,12 +110,6 @@ export class SpreadsheetManager {
           )
       )
     )
-  }
-
-  public static walletFromRow(organization: string, row: string[]) {
-    const normalized = row.map(normalizeText)
-    normalized.push(organization)
-    return VocdoniSDKClient.generateWalletFromData(normalized)
   }
 
   private load(): Promise<SpreadsheetManager> {
