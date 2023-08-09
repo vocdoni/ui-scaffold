@@ -1,20 +1,17 @@
 import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { CensusMeta } from '@components/ProcessCreate/Steps/Confirm'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { VoteButton, environment } from '@vocdoni/chakra-components'
+import { SpreadsheetAccess, VoteButton, environment } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
 import { ElectionStatus, PublishedElection, dotobject } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
-import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { useAccount } from 'wagmi'
-import { SpreadsheetAccess } from './SpreadsheetAccess'
 
 const ProcessAside = ({ ...props }) => {
   const { t } = useTranslation()
-  const { election, isAbleToVote, isInCensus, voted, votesLeft } = useElection()
-  const [connected, setConnected] = useState<boolean>(false)
+  const { election, connected, isAbleToVote, isInCensus, voted, votesLeft, clearClient } = useElection()
   const { isConnected } = useAccount()
   const { env } = useClient()
   const census: CensusMeta = dotobject(election?.meta || {}, 'census')
@@ -50,7 +47,7 @@ const ProcessAside = ({ ...props }) => {
         </Flex>
       )}
       {census.type === 'spreadsheet' && !connected ? (
-        <SpreadsheetAccess setConnected={setConnected} />
+        <SpreadsheetAccess />
       ) : isConnected || connected ? (
         <>
           {isAbleToVote && <VoteButton w='full' borderRadius={30} p={7} color='process.results.aside.vote_btn_color' />}
@@ -69,11 +66,12 @@ const ProcessAside = ({ ...props }) => {
               <Text>{t('aside.has_already_voted').toString()}</Text>
             </Box>
           )}
-          {hasOverwriteEnabled(election) && isInCensus && (
+          {hasOverwriteEnabled(election) && isInCensus && voted && (
             <Text textAlign='center' fontSize='md'>
               {t('aside.overwrite_votes_left', { left: votesLeft })}
             </Text>
           )}
+          {connected && <SpreadsheetAccess />}
         </>
       ) : (
         <>
