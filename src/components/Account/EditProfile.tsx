@@ -16,7 +16,6 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
-  Spinner,
   Text,
   Textarea,
   useDisclosure,
@@ -55,6 +54,7 @@ const EditProfile = () => {
     register,
     handleSubmit,
     formState: { errors },
+    clearErrors,
   } = useForm({
     defaultValues: {
       name: account?.account.name.default || '',
@@ -68,6 +68,8 @@ const EditProfile = () => {
       setValue('name', account?.account.name.default || '')
       setValue('description', account?.account.description.default || '')
       setValue('avatar', account?.account.avatar || '')
+      clearErrors()
+      setError(null)
     }
   }, [isOpen])
 
@@ -186,8 +188,8 @@ const EditProfile = () => {
                     <Text> {t('form.account_create.description_helper')}</Text>
                   </FormHelperText>
                 </FormControl>
-                <Button type='submit' colorScheme='primary' disabled={loading} cursor={loading ? 'auto' : 'pointer'}>
-                  {loading ? <Spinner /> : t('menu.edit_profile_btn')}
+                <Button type='submit' colorScheme='primary' isLoading={loading}>
+                  {t('menu.edit_profile_btn')}
                 </Button>
                 {error && (
                   <Text color='red.500' textAlign='center'>
