@@ -55,7 +55,6 @@
       "voted_title": "¡Tu voto se ha registrado con éxito!"
     }
   },
-  "close": "Cerrar",
   "copy": {
     "address": "Copiar dirección",
     "copied_title": "¡Copiado!"
@@ -66,9 +65,7 @@
     "invalid_weight_type": "Se esperaba encontrar el peso en la primera columna en las líneas {{rows, list}}, pero se han encontrado datos inesperados",
     "loading_page": "Error al cargar la página",
     "not_found": "Lo sentimos, la página que buscabas no fue encontrada.",
-    "return_to_home": "Ves al inicio",
-    "wrong_data_description": "Los datos introducidos no son correctos",
-    "wrong_data_title": "Datos incorrectos"
+    "return_to_home": "Ves al inicio"
   },
   "error_text": "Lo sentimos, no se encontró la página que buscabas.",
   "footer": {
@@ -195,6 +192,21 @@
       "question_title": "Título",
       "questions_title": "Preguntas",
       "running_checks": "Ejecutando comprobaciones requeridas, por favor espera...",
+      "spreadsheet": {
+        "download_template_btn": "Descargar plantilla",
+        "download_template_description": "Descarga la plantilla original para completar su lista de votantes ",
+        "preview": {
+          "description": "Los miembros deberan cumplir este formulario para acceder a la votación",
+          "title": "Vista previa del formulario",
+          "upload_new_list": "Subir una nueva lista de votantes"
+        },
+        "requirements": {
+          "list_one": "La primera fila se usará como el nombre de los campos que los votantes deberán rellenar.",
+          "list_two": "Los campos no distinguen entre mayúsculas y minúsculas, los espacios en blanco se ignoraran y los signos diacriticos se transformaran en letras simples.",
+          "list_three": "Si se selecciona 'Voto ponderado', la 1a columna debe ser un entero con el peso de voto del votante.",
+          "title": "Requisitos"
+        }
+      },
       "spreadsheet_total_rows_one": "",
       "spreadsheet_total_rows_many": "",
       "spreadsheet_total_rows_other": "",
@@ -271,14 +283,10 @@
     "play": "reproducir",
     "stop": "detener"
   },
-  "spreadsheet": {
-    "access_button": "Identificarse",
-    "modal_title": "Necesitas iniciar sesión primero"
-  },
   "submited_votes": "Votos enviados",
   "uploader": {
-    "click_or_drag_and_drop": "",
-    "drop_here": ""
+    "click_or_drag_and_drop": "<tos1>Sube o arrastra y suelta aqui la lista de votantes<tos1/><tos2>(Formatos permitidos: CSV, XLSX y ODS)</tos2>",
+    "drop_here": "Suelta aqui"
   },
   "voting_elections": "Votaciones"
 }

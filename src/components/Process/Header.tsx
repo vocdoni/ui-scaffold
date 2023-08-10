@@ -93,7 +93,7 @@ const ProcessHeader = () => {
             <Text color='process.date' fontWeight='bold'>
               {t('process.created_by')}
             </Text>
-            <OrganizationName textTransform='capitalize' isTruncated maxW={76} />
+            <OrganizationName isTruncated maxW={76} />
           </Box>
           {election?.status === ElectionStatus.PAUSED && election?.organizationId !== account?.address && (
             <Flex

@@ -54,7 +54,6 @@
       "voted_title": "Your vote was successfully cast!"
     }
   },
-  "close": "Close",
   "copy": {
     "address": "Copy address",
     "copied_title": "Copied!"
@@ -65,9 +64,7 @@
     "invalid_weight_type": "Expecting weight in first column at lines {{rows,list(style:short)}}, but found unexpected data",
     "loading_page": "Error loading the page",
     "not_found": "Sorry, the page you were looking for was not found",
-    "return_to_home": "Go to home",
-    "wrong_data_description": "The specified data is not correct",
-    "wrong_data_title": "Wrong data"
+    "return_to_home": "Go to home"
   },
   "error_text": "Sorry, the page you were looking for was not found",
   "footer": {
@@ -192,6 +189,21 @@
       "question_title": "Title",
       "questions_title": "Questions",
       "running_checks": "Running required checks, please wait...",
+      "spreadsheet": {
+        "download_template_btn": "Download template",
+        "download_template_description": "Download the original template to complete your voter list",
+        "preview": {
+          "description": "Members must complete this form to access the voting",
+          "title": "Form preview",
+          "upload_new_list": "Upload a new list of voters"
+        },
+        "requirements": {
+          "list_one": "The first row will be used as the name of the fields that voters will need to fill out.",
+          "list_two": "Fields do not distinguish between uppercase and lowercase letters, white spaces will be ignored, and diacritics will be transformed into simple letters.",
+          "list_three": "If 'Weighted Vote' is selected, the first column must be an integer indicating the voter's vote weight.",
+          "title": "Requirements"
+        }
+      },
       "spreadsheet_total_rows_one": "Census has a single record",
       "spreadsheet_total_rows_other": "Census has {{ count }} records",
       "steps": {
@@ -222,6 +234,8 @@
     "create": "Create Process",
     "create_process": "Create process",
     "disconnect": "Disconnect Wallet",
+    "edit_profile": "Edit Organization",
+    "edit_profile_btn": "Save",
     "my_list": "My list",
     "organization": "Edit Organization",
     "support": "Support"
@@ -267,14 +281,10 @@
     "play": "play",
     "stop": "stop"
   },
-  "spreadsheet": {
-    "access_button": "Identify",
-    "modal_title": "You need to log in first"
-  },
   "submited_votes": "Submitted votes",
   "uploader": {
-    "click_or_drag_and_drop": "",
-    "drop_here": ""
+    "click_or_drag_and_drop": "<tos1>Upload or drag and drop the voter list here<tos1/><tos2>(Allowed formats: CSV, XLSX, and ODS)</tos2>",
+    "drop_here": "Drop here"
   },
   "voting_elections": "Voting elections"
 }

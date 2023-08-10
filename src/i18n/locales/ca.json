@@ -54,7 +54,6 @@
       "voted_title": "El teu vot s'ha registrat amb èxit!"
     }
   },
-  "close": "Tanca",
   "copy": {
     "address": "Copia l'adreça",
     "copied_title": "Copiat!"
@@ -65,9 +64,7 @@
     "invalid_weight_type": "S'esperava trobar el pes a la primera col·lumna a les línies {{rows, list}}, però s'han trobat dades inesperades",
     "loading_page": "Càrrega de pàgina errònia",
     "not_found": "Ho sentim, no s'ha trobat la pàgina que estaves buscant.",
-    "return_to_home": "Ves a l'inici",
-    "wrong_data_description": "Les dades introduïdes no són correctes",
-    "wrong_data_title": "Dades incorrectes"
+    "return_to_home": "Ves a l'inici"
   },
   "error_text": "Ho sentim, no s'ha trobat la pàgina que busqueu",
   "footer": {
@@ -194,6 +191,21 @@
       "question_title": "Títol",
       "questions_title": "Preguntes",
       "running_checks": "Executant les comprovacions necessàries, espera...",
+      "spreadsheet": {
+        "download_template_btn": "Descarregar plantilla",
+        "download_template_description": "Descarrega la plantilla original per completar la teva llista de votants",
+        "preview": {
+          "description": "Els membres hauran de completar aquest formulari per accedir a la votació",
+          "title": "Vista prèvia del formulari",
+          "upload_new_list": "Pujar una nova llista de votants"
+        },
+        "requirements": {
+          "list_one": "La primera fila s'utilitzarà com el nom dels camps que els votants hauran de omplir.",
+          "list_two": "Els camps no distingeixen entre majúscules i minúscules, els espais en blanc s'ignoraran i els signes diacrítics es transformaran en lletres simples.",
+          "list_three": "Si es selecciona 'Vot ponderat', la primera columna ha de ser un enter amb el pes del vot del votant.",
+          "title": "Requisits"
+        }
+      },
       "spreadsheet_total_rows_one": "El cens només conté un votant",
       "spreadsheet_total_rows_many": "",
       "spreadsheet_total_rows_other": "Grandària del cens: {{count}} votants",
@@ -270,14 +282,10 @@
     "play": "Reprodueix",
     "stop": "Atura"
   },
-  "spreadsheet": {
-    "access_button": "Identifica't",
-    "modal_title": "Has d'iniciar sessió primer"
-  },
   "submited_votes": "Vots emesos",
   "uploader": {
-    "click_or_drag_and_drop": "",
-    "drop_here": ""
+    "click_or_drag_and_drop": "<tos1>Puja o arrossega i deixa anar aquí la llista de votants<tos1/><tos2>(Formats permesos: CSV, XLSX i ODS)</tos2>",
+    "drop_here": "Deixa anar aquí"
   },
   "voting_elections": "Votacions"
 }
