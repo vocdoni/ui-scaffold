@@ -93,13 +93,13 @@ const EditProfile = () => {
   return (
     <>
       <Button onClick={onOpen} display='flex' justifyContent='end' variant='dropdown'>
-        {t('menu.edit_profile')}
+        {t('menu.organization')}
       </Button>
       <Modal isOpen={isOpen} onClose={() => !loading && onClose()}>
         <ModalOverlay />
         <ModalContent p={3} minW={{ md: '700px' }}>
           <Box>
-            <ModalHeader>{t('menu.edit_profile')}</ModalHeader>
+            <ModalHeader>{t('menu.organization')}</ModalHeader>
             <ModalCloseButton />
             <ModalBody pb={5}>
               <Flex
@@ -189,7 +189,7 @@ const EditProfile = () => {
                   </FormHelperText>
                 </FormControl>
                 <Button type='submit' colorScheme='primary' isLoading={loading}>
-                  {t('menu.edit_profile_btn')}
+                  {t('form.edit_profile.btn')}
                 </Button>
                 {error && (
                   <Text color='red.500' textAlign='center'>

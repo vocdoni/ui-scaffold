@@ -87,8 +87,9 @@
       "title_placeholder": "El nom de l'organització"
     },
     "edit_profile": {
-      "avatar_helper": "Imatge de la teva organització",
-      "avatar_placeholder": "URL de la imatge"
+      "avatar_helper": "Imatge/Logotip de la teva organització",
+      "avatar_placeholder": "URL de la imatge",
+      "btn": "Desar"
     },
     "error": {
       "address_already_in_use": "Aquesta adreça ja és al cens",
@@ -211,9 +212,8 @@
     "create": "Crear procés",
     "create_process": "Crear procés",
     "disconnect": "Desconnectar cartera",
-    "edit_profile": "Editar perfil",
-    "edit_profile_btn": "Editar",
     "my_list": "La meva llista",
+    "organization": "Editar Organització",
     "support": "Ajuda"
   },
   "open_in_explorer": "Obre a l'explorador",
