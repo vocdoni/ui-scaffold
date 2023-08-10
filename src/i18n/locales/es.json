@@ -88,8 +88,9 @@
       "title_placeholder": "El nombre de la organización"
     },
     "edit_profile": {
-      "avatar_helper": "Imagen de tu organización",
-      "avatar_placeholder": "URL de la imagen"
+      "avatar_helper": "Imagen/Logotipo de tu organización",
+      "avatar_placeholder": "URL de la imagen",
+      "btn": "Guardar"
     },
     "error": {
       "address_already_in_use": "Esta dirección ya está en el censo",
@@ -212,9 +213,8 @@
     "create": "Crear proceso",
     "create_process": "Crear proceso",
     "disconnect": "Desconectar billetera",
-    "edit_profile": "Editar perfil",
-    "edit_profile_btn": "Editar",
     "my_list": "Mi lista",
+    "organization": "Editar Organización",
     "support": "Soporte"
   },
   "open_in_explorer": "Abrir en explorador",
