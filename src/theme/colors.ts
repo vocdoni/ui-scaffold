@@ -23,6 +23,7 @@ export const colors = {
   aside_bg: colorsBase.gradient,
 
   primary: {
+    main: colorsBase.primary.main,
     500: colorsBase.primary.main,
     600: colorsBase.primary.light,
     700: colorsBase.primary.dark,
@@ -84,6 +85,8 @@ export const colors = {
     date: colorsBase.primary.main,
     description: colorsBase.gray.dark2,
     header_divider: colorsBase.gray.dark,
+    identify_button_bg: colorsBase.primary.main,
+    identify_button_color: colorsBase.white,
     paused: colorsBase.primary.main,
     questions: {
       bg: colorsBase.gray.light,
@@ -104,8 +107,8 @@ export const colors = {
     results: {
       aside: {
         color: colorsBase.white,
-        verify_color: colorsBase.black,
         vote_btn_color: colorsBase.black,
+        vote_btn_bg: colorsBase.white,
       },
       alert_bg: colorsBase.primary.main,
       alert_color: colorsBase.white,
@@ -142,6 +145,18 @@ export const colors = {
     input_bg: colorsBase.white,
     meta_description: colorsBase.gray.dark2,
     stepper: colorsBase.primary.main,
+    spreadsheet: {
+      badge: {
+        bg: colorsBase.primary.main,
+        text: colorsBase.white,
+      },
+      drag_and_drop_text: colorsBase.gray.dark2,
+      file: colorsBase.primary.main,
+      preview_bg: colorsBase.white,
+      preview_bg_interior: colorsBase.gray.light,
+      requirements_text: colorsBase.primary.main,
+      total_rows_text: colorsBase.primary.main,
+    },
     tabs: {
       card: {
         color: colorsBase.gray.dark2,
@@ -154,5 +169,10 @@ export const colors = {
   progress_bar: {
     bg: colorsBase.gray.main,
     track: colorsBase.gradient,
+  },
+
+  spreadsheet: {
+    disconnect_bg: colorsBase.white,
+    diconnect_color: colorsBase.gray.dark2,
   },
 }

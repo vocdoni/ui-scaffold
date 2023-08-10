@@ -18,6 +18,10 @@ import { Checkbox } from './components/Checkbox'
 import { Link } from './components/Link'
 import { Input } from './components/Input'
 import { Alert } from './components/Alert'
+import { SpreadsheetAccess } from './components/SpreadSheet'
+import { ConfirmModal } from './components/ConfirmModal'
+import { QuestionsConfirmation } from './components/QuestionsConfirmation'
+import { Badge } from './components/Badge'
 
 export const theme = extendTheme(vtheme, {
   styles: {
@@ -37,17 +41,21 @@ export const theme = extendTheme(vtheme, {
   sizes,
   components: {
     Alert,
+    Badge,
     Button,
     Card,
     Checkbox,
+    ConfirmModal,
     ElectionQuestions,
     ElectionResults,
     ElectionActions,
     Form,
     Input,
     Link,
+    QuestionsConfirmation,
     Tabs,
     Textarea,
+    SpreadsheetAccess,
     Stepper,
   },
 })
