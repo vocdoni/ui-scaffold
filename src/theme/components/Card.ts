@@ -131,7 +131,7 @@ const detailed = definePartsStyle({
         mb: 3,
       },
       '& > div:nth-of-type(2)': {
-        '& > p': {
+        '& > p:first-of-type': {
           textAlign: 'start',
           color: 'card.description',
           noOfLines: 4,
@@ -139,6 +139,9 @@ const detailed = definePartsStyle({
           display: '-webkit-box',
           WebkitBoxOrient: 'vertical',
           WebkitLineClamp: 'var(--chakra-line-clamp)',
+        },
+        '& > p:not(:first-of-type)': {
+          display: 'none',
         },
       },
       '& > p:nth-of-type(2)': {
