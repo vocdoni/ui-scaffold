@@ -1,6 +1,7 @@
 import { Button, List, ListItem } from '@chakra-ui/react'
 import EditProfile from '@components/Account/EditProfile'
-import { Balance, HR, useClient } from '@vocdoni/chakra-components'
+import { Balance, HR } from '@vocdoni/chakra-components'
+import { useClient } from '@vocdoni/react-providers'
 import { useTranslation } from 'react-i18next'
 import { BiLogOut } from 'react-icons/bi'
 import { NavLink } from 'react-router-dom'

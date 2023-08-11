@@ -1,7 +1,7 @@
 import { AddIcon, ChevronDownIcon, ChevronUpIcon, CloseIcon } from '@chakra-ui/icons'
 import { Button, Flex, List, ListItem, Menu, MenuButton, MenuList, Text } from '@chakra-ui/react'
 import Logo from '@components/Layout/Logo'
-import { useClient } from '@vocdoni/chakra-components'
+import { useClient } from '@vocdoni/react-providers'
 import { useTranslation } from 'react-i18next'
 import { FaEllipsisV, FaGlobeAmericas } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'

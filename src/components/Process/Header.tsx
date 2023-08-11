@@ -7,9 +7,8 @@ import {
   ElectionStatusBadge,
   ElectionTitle,
   OrganizationName,
-  useClient,
-  useElection,
 } from '@vocdoni/chakra-components'
+import { useClient, useElection } from '@vocdoni/react-providers'
 import { ElectionStatus } from '@vocdoni/sdk'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
