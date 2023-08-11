@@ -201,6 +201,12 @@
           "list_two": "Fields do not distinguish between uppercase and lowercase letters, white spaces will be ignored, and diacritics will be transformed into simple letters.",
           "list_three": "If 'Weighted Vote' is selected, the first column must be an integer indicating the voter's vote weight.",
           "title": "Requirements"
+        },
+        "template": {
+          "email": "Email",
+          "firstname": "First name",
+          "lastname": "Last name",
+          "weight": "Weight"
         }
       },
       "spreadsheet_total_rows_one": "Census has a single record",

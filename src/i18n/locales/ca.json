@@ -204,6 +204,12 @@
           "list_two": "Els camps no distingeixen entre majúscules i minúscules, els espais en blanc s'ignoraran i els signes diacrítics es transformaran en lletres simples.",
           "list_three": "Si es selecciona 'Vot ponderat', la primera columna ha de ser un enter amb el pes del vot del votant.",
           "title": "Requisits"
+        },
+        "template": {
+          "email": "Email",
+          "firstname": "Nom",
+          "lastname": "Cognoms",
+          "weight": "Pes"
         }
       },
       "spreadsheet_total_rows_one": "El cens només conté un votant",

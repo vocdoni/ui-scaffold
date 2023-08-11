@@ -204,6 +204,12 @@
           "list_two": "Los campos no distinguen entre mayúsculas y minúsculas, los espacios en blanco se ignoraran y los signos diacriticos se transformaran en letras simples.",
           "list_three": "Si se selecciona 'Voto ponderado', la 1a columna debe ser un entero con el peso de voto del votante.",
           "title": "Requisitos"
+        },
+        "template": {
+          "email": "Email",
+          "firstname": "Nombre",
+          "lastname": "Apellidos",
+          "weight": "Peso"
         }
       },
       "spreadsheet_total_rows_one": "",
