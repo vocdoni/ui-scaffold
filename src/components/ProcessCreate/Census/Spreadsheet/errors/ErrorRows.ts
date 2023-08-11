@@ -1,6 +1,6 @@
 export default class ErrorRows extends Error {
   // stores the rows as they're received (array of numbers)
-  public rows: number[] = []
+  public rows: number[] | string[] = []
 
   constructor(rows: number[]) {
     super()

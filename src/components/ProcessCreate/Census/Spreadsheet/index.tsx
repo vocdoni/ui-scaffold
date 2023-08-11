@@ -10,7 +10,7 @@ import {
   Text,
   UnorderedList,
 } from '@chakra-ui/react'
-import { ChangeEvent, useCallback, useEffect, useState } from 'react'
+import { ChangeEvent, useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { Controller, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
@@ -21,9 +21,7 @@ import { CsvPreview } from './Preview'
 import { SpreadsheetManager } from './spreadsheet-manager'
 
 export const CensusCsvManager = () => {
-  const [filename, setFilename] = useState<string | undefined>()
   const { t } = useTranslation()
-  const [displayDragAndDrop, setDisplayDragAndDrop] = useState(true)
   const {
     register,
     setValue,
@@ -36,10 +34,9 @@ export const CensusCsvManager = () => {
   const manager: SpreadsheetManager | undefined = watch('spreadsheet')
 
   const onDrop = useCallback(
-    async ([file]) => {
+    async ([file]: File[]) => {
       setValue('spreadsheet', undefined)
-      setFilename(file.name)
-      setError('spreadsheet', null)
+      setError('spreadsheet', {})
       try {
         const spreadsheet = new SpreadsheetManager(file, weighted)
         await spreadsheet.read()
@@ -54,17 +51,16 @@ export const CensusCsvManager = () => {
         console.error('could not load file:', e)
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [weighted]
   )
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, multiple: false })
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    multiple: false,
+    accept: SpreadsheetManager.AcceptedTypes.reduce((prev, curr) => ({ ...prev, [curr]: [] }), {}),
+  })
 
-  useEffect(() => {
-    if (manager) {
-      setDisplayDragAndDrop(false)
-    } else {
-      setDisplayDragAndDrop(true)
-    }
-  }, [manager])
+  const upload = getRootProps()
 
   return (
     <Box>
@@ -109,7 +105,7 @@ export const CensusCsvManager = () => {
         </Flex>
       </Flex>
 
-      <FormControl display={displayDragAndDrop ? 'block' : 'none'}>
+      <FormControl>
         <Controller
           control={control}
           name='weightedVote'
@@ -122,7 +118,6 @@ export const CensusCsvManager = () => {
                 }
                 if (window.confirm(t('form.process_create.confirm_spreadsheet_removal'))) {
                   setValue('spreadsheet', undefined)
-                  setFilename(undefined)
                   setValue('weightedVote', event.target.checked)
                 }
               }}
@@ -137,9 +132,9 @@ export const CensusCsvManager = () => {
       </FormControl>
       <FormControl
         {...register('spreadsheet', { required: { value: true, message: t('form.error.field_is_required') } })}
-        {...getRootProps()}
+        {...upload}
         isInvalid={!!errors?.spreadsheet}
-        display={displayDragAndDrop ? 'block' : 'none'}
+        display={manager?.data.length ? 'none' : 'block'}
       >
         <Flex
           flexDirection='column'
@@ -152,7 +147,7 @@ export const CensusCsvManager = () => {
           borderRadius='lg'
           cursor='pointer'
         >
-          <input {...getInputProps()} accept={SpreadsheetManager.AcceptedTypes} />
+          <input {...getInputProps()} />
           <Icon as={RiFileExcel2Line} boxSize={20} color='process_create.spreadsheet.file' />
           <Box>
             {isDragActive ? (
@@ -172,7 +167,7 @@ export const CensusCsvManager = () => {
         </Flex>
         <FormErrorMessage>{errors?.spreadsheet?.message?.toString()}</FormErrorMessage>
       </FormControl>
-      <CsvPreview manager={manager} setValue={setValue} />
+      <CsvPreview manager={manager} upload={upload} />
     </Box>
   )
 }
