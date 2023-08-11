@@ -97,7 +97,6 @@
       "address_already_in_use": "Address already in use",
       "address_pattern": "Only hex addresses are allowed (e.g 0x031101A...)",
       "avatar_error": "URL not valid",
-      "edit_profile": "Error editing the profile",
       "field_is_required": "This field is required",
       "min_address": "Please, provide at least one address"
     },
@@ -234,8 +233,6 @@
     "create": "Create Process",
     "create_process": "Create process",
     "disconnect": "Disconnect Wallet",
-    "edit_profile": "Edit Organization",
-    "edit_profile_btn": "Save",
     "my_list": "My list",
     "organization": "Edit Organization",
     "support": "Support"
