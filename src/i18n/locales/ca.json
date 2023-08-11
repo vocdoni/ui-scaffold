@@ -7,6 +7,7 @@
     "overwrite_votes_left": "Pots corregir el teu vot {{ left }} vegades.",
     "verify_vote_on_explorer": "Verifica el vot a l'explorador",
     "votes_one": "<tos>1</tos> <tos2>vot</tos2>",
+    "votes_many": "",
     "votes_other": "<tos>{{ count }}</tos> <tos2>vots</tos2>"
   },
   "banner": {
@@ -97,7 +98,6 @@
       "address_already_in_use": "Aquesta adreça ja és al cens",
       "address_pattern": "Només s'admeten adreces hexadecimals (p. ex. 0x031101A...)",
       "avatar_error": "URL no vàlida",
-      "edit_profile": "Error editant el perfil",
       "field_is_required": "Aquest camp és obligatori",
       "min_address": "Si us plau, proporciona com a mínim una adreça"
     },
