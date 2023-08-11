@@ -1,10 +1,6 @@
 import { AspectRatio, Box, Button, Flex } from '@chakra-ui/react'
-import {
-  OrganizationAvatar as Avatar,
-  OrganizationDescription,
-  OrganizationName,
-  useOrganization,
-} from '@vocdoni/chakra-components'
+import { OrganizationAvatar as Avatar, OrganizationDescription, OrganizationName } from '@vocdoni/chakra-components'
+import { useOrganization } from '@vocdoni/react-providers'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import AddressBtn from './AddressBtn'

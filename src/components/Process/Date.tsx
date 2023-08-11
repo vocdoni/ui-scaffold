@@ -1,5 +1,5 @@
 import { Box, Text } from '@chakra-ui/react'
-import { useElection } from '@vocdoni/chakra-components'
+import { useElection } from '@vocdoni/react-providers'
 import { ElectionStatus } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
 import { useTranslation } from 'react-i18next'
