@@ -6,11 +6,12 @@ import {
   FormControl,
   FormErrorMessage,
   Icon,
+  Link,
   ListItem,
   Text,
   UnorderedList,
 } from '@chakra-ui/react'
-import { ChangeEvent, useCallback } from 'react'
+import { ChangeEvent, useCallback, useMemo } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { Controller, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
@@ -18,6 +19,7 @@ import { BiDownload } from 'react-icons/bi'
 import { PiWarningCircleLight } from 'react-icons/pi'
 import { RiFileExcel2Line } from 'react-icons/ri'
 import { CsvPreview } from './Preview'
+import { CsvGenerator } from './generator'
 import { SpreadsheetManager } from './spreadsheet-manager'
 
 export const CensusCsvManager = () => {
@@ -33,6 +35,7 @@ export const CensusCsvManager = () => {
   const weighted: boolean = watch('weightedVote')
   const manager: SpreadsheetManager | undefined = watch('spreadsheet')
 
+  // File dropzone
   const onDrop = useCallback(
     async ([file]: File[]) => {
       setValue('spreadsheet', undefined)
@@ -59,8 +62,27 @@ export const CensusCsvManager = () => {
     multiple: false,
     accept: SpreadsheetManager.AcceptedTypes.reduce((prev, curr) => ({ ...prev, [curr]: [] }), {}),
   })
-
   const upload = getRootProps()
+
+  // CSV templates
+  const template = useMemo(() => {
+    const header = [
+      t('form.process_create.spreadsheet.template.firstname'),
+      t('form.process_create.spreadsheet.template.lastname'),
+      t('form.process_create.spreadsheet.template.email'),
+    ]
+    let rows = [
+      ['John', 'Doe', 'john@doe.com'],
+      ['Joline', 'Doe', 'joline@doe.com'],
+    ]
+    if (weighted) {
+      header.unshift(t('form.process_create.spreadsheet.template.weight'))
+      rows = rows.map((row, k) => [(k + 1).toString(), ...row])
+    }
+
+    return new CsvGenerator(header, rows)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [weighted])
 
   return (
     <Box>
@@ -99,9 +121,11 @@ export const CensusCsvManager = () => {
           borderRadius='lg'
         >
           <Text textAlign='center'>{t('form.process_create.spreadsheet.download_template_description')}</Text>
-          <Button leftIcon={<BiDownload />} colorScheme='primary' variant='ghost' border='1px solid'>
-            {t('form.process_create.spreadsheet.download_template_btn')}
-          </Button>
+          <Link download={'census-template.csv'} href={template.url}>
+            <Button leftIcon={<BiDownload />} colorScheme='primary' variant='ghost' border='1px solid'>
+              {t('form.process_create.spreadsheet.download_template_btn')}
+            </Button>
+          </Link>
         </Flex>
       </Flex>
 
