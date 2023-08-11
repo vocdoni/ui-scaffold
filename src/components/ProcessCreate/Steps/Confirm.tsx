@@ -21,7 +21,6 @@ import { ElectionProvider, errorToString, useClient } from '@vocdoni/react-provi
 import {
   Election,
   ElectionStatus,
-  ensure0x,
   EnvOptions,
   IElectionParameters,
   IPublishedElectionParameters,
@@ -30,6 +29,7 @@ import {
   PublishedElection,
   VocdoniCensus3Client,
   WeightedCensus,
+  ensure0x,
 } from '@vocdoni/sdk'
 import { useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
@@ -38,6 +38,7 @@ import { useNavigate } from 'react-router-dom'
 import { CensusType } from '../Census/TypeSelector'
 import Preview from '../Confirm/Preview'
 import { CreationProgress } from '../CreationProgress'
+import { Web3Address } from '../StepForm/CensusWeb3'
 import { Option } from '../StepForm/Questions'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 
@@ -69,7 +70,7 @@ export const Confirm = () => {
     setSending(true)
     setError(null)
     try {
-      const census = await getCensus(env as EnvOptions, form, account?.address)
+      const census = await getCensus(env as EnvOptions, form, account!.address)
       const params: IElectionParameters = {
         ...electionFromForm(form),
         census,
@@ -192,7 +193,7 @@ const getCensus = async (env: EnvOptions, form: StepsFormValues, organization: s
   if (form.censusType === 'spreadsheet') {
     const wallets = await form.spreadsheet?.generateWallets(organization)
 
-    form.addresses = wallets
+    form.addresses = wallets as Web3Address[]
   }
 
   switch (form.censusType) {

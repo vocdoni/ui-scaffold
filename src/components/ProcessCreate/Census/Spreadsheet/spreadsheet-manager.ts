@@ -90,15 +90,15 @@ export class SpreadsheetManager {
     return this.filedata.map((row) => row[WeightRowPosition])
   }
 
-  public generateWallets(organization: string) {
+  public generateWallets(organization: string): Promise<{ address: string; weight: number | undefined }[]> {
     return Promise.all(
       this.filedata.map(
-        (row: string[]) =>
+        (row: string[]): Promise<{ address: string; weight: number | undefined }> =>
           new Promise((resolve, reject) =>
             setTimeout(async () => {
               try {
                 const data = this.weighted ? row.slice(WeightColPosition) : row
-                const weight = this.weighted ? row[WeightRowPosition] : undefined
+                const weight = this.weighted ? parseInt(row[WeightRowPosition], 10) : undefined
                 const wallet = walletFromRow(organization, data)
                 const address = await wallet.getAddress()
 
