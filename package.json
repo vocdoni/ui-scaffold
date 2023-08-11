@@ -10,7 +10,7 @@
     "@emotion/styled": "^11.11.0",
     "@ethersproject/abstract-signer": "^5.7.0",
     "@rainbow-me/rainbowkit": "^0.12.16",
-    "@vocdoni/chakra-components": "^0.3.0",
+    "@vocdoni/chakra-components": "^0.5.3",
     "@vocdoni/sdk": "^0.0.18",
     "chakra-react-select": "^4.6.0",
     "date-fns": "^2.30.0",

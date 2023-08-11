@@ -17,7 +17,7 @@ import {
   useDisclosure,
   useToast,
 } from '@chakra-ui/react'
-import { ElectionProvider, errorToString, useClient } from '@vocdoni/chakra-components'
+import { ElectionProvider, errorToString, useClient } from '@vocdoni/react-providers'
 import {
   Election,
   ElectionStatus,

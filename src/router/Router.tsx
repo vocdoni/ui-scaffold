@@ -1,4 +1,4 @@
-import { useClient } from '@vocdoni/chakra-components'
+import { useClient } from '@vocdoni/react-providers'
 import { lazy } from 'react'
 import { createHashRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
 // These aren't lazy loaded to avoid excessive loaders in different locations

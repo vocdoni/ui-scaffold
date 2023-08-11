@@ -20,7 +20,7 @@ import {
   Textarea,
   useDisclosure,
 } from '@chakra-ui/react'
-import { errorToString, useClient } from '@vocdoni/chakra-components'
+import { errorToString, useClient } from '@vocdoni/react-providers'
 import { Account } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
