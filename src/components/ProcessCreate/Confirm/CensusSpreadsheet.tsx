@@ -1,4 +1,4 @@
-import { Box, Flex, Table, Tbody, Td, Text, Th, Thead, Tr, useBreakpointValue } from '@chakra-ui/react'
+import { Box, Flex, Table, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useProcessCreationSteps } from '../Steps/use-steps'
@@ -10,16 +10,14 @@ const PreviewCensusSpreadsheet = () => {
   const {
     form: { spreadsheet },
   } = useProcessCreationSteps()
-  const overflow = useBreakpointValue({
-    base: 12,
-    sm: null,
-  })
 
-  if (!spreadsheet) return
   const data = useMemo(
-    () => (spreadsheet.data.length > RowsLimit ? spreadsheet.data.slice(0, RowsLimit) : spreadsheet.data),
-    [spreadsheet.data]
+    () => (spreadsheet!.data.length > RowsLimit ? spreadsheet?.data.slice(0, RowsLimit) : spreadsheet?.data),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [spreadsheet?.data]
   )
+
+  if (!spreadsheet || !data) return null
 
   return (
     <Flex flexDirection='column' gap={1}>

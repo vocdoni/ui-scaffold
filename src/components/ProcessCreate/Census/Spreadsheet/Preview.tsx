@@ -1,18 +1,18 @@
 import { Badge, Box, Button, Flex, FormControl, FormLabel, Icon, Input, Text } from '@chakra-ui/react'
-import { FieldValues, UseFormSetValue } from 'react-hook-form'
+import { DropzoneRootProps } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
 import { RiFileExcel2Line } from 'react-icons/ri'
 import { SpreadsheetManager } from './spreadsheet-manager'
 
-export const CsvPreview = ({
-  manager,
-  setValue,
-}: {
+type CsvPreviewProps = {
   manager?: SpreadsheetManager
-  setValue: UseFormSetValue<FieldValues>
-}) => {
+  upload: DropzoneRootProps
+}
+
+export const CsvPreview = ({ manager, upload }: CsvPreviewProps) => {
   const { t } = useTranslation()
-  if (!manager?.data) return null
+
+  if (!manager || !manager?.data) return null
 
   return (
     <Box p={10} borderRadius='lg' bgColor='process_create.spreadsheet.preview_bg'>
@@ -26,12 +26,7 @@ export const CsvPreview = ({
             {t('form.process_create.spreadsheet_total_rows', { count: manager.data.length })}
           </Text>
         </Box>
-        <Button
-          colorScheme='primary'
-          variant='ghost'
-          border='1px solid'
-          onClick={() => setValue('spreadsheet', undefined)}
-        >
+        <Button colorScheme='primary' variant='ghost' border='1px solid' {...upload}>
           {t('form.process_create.spreadsheet.preview.upload_new_list')}
         </Button>
       </Flex>

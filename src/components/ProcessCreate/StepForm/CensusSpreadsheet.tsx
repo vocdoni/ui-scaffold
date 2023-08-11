@@ -4,10 +4,9 @@ import { useTranslation } from 'react-i18next'
 import { CensusCsvManager } from '../Census/Spreadsheet'
 import { SpreadsheetManager } from '../Census/Spreadsheet/spreadsheet-manager'
 import { useProcessCreationSteps } from '../Steps/use-steps'
-import { Web3Address } from './CensusWeb3'
 
 export interface CensusSpreadsheetValues {
-  addresses: Web3Address[]
+  weightedVote: boolean
   spreadsheet?: SpreadsheetManager
 }
 
