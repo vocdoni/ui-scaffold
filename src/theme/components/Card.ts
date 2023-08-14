@@ -109,7 +109,7 @@ const detailed = definePartsStyle({
     height: '100%',
     display: 'flex',
     gap: 3,
-    p: 3,
+    p: 4,
     pb: 0,
     justifyContent: 'space-between',
 
@@ -122,7 +122,7 @@ const detailed = definePartsStyle({
         display: '-webkit-box',
         WebkitBoxOrient: 'vertical',
         WebkitLineClamp: 'var(--chakra-line-clamp)',
-        mb: 5,
+        mb: 3,
       },
 
       '& div:first-of-type': {
@@ -151,26 +151,25 @@ const detailed = definePartsStyle({
   },
   footer: {
     ...cardCommonStyles.footer,
-    p: 2,
     mt: 'auto',
     fontSize: 'sm',
+    borderTop: '.2px solid',
+    borderColor: 'organization.card_detailed.footer_border',
 
     '& > div:first-of-type': {
       display: 'flex',
       justifyContent: 'space-between',
-      gap: 0.5,
       w: 'full',
 
       '& > div': {
         display: 'flex',
         justifyContent: 'center',
         gap: 1,
-        p: 1,
+        py: 2.5,
         px: 2,
         textAlign: 'center',
-
         minW: '50%',
-        bgColor: 'organization.card.footer_bg',
+        bgColor: 'organization.card_detailed.footer_bg',
 
         '& p': {
           whiteSpace: 'nowrap',

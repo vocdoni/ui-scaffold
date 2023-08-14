@@ -8,9 +8,11 @@ export const colorsBase = {
   gradient: 'var(--vcd-gradient-primary)',
   gray: {
     light: '#EDF2F7',
+    light2: '#fefefe',
+    light3: '#f1f1f1',
     main: '#E2E8F0',
     dark: '#CBD5E0',
-    dark2: '#718096',
+    dark2: '#677680',
   },
   primary: {
     light: '#24656e',
@@ -42,7 +44,6 @@ export const colors = {
     description: colorsBase.gray.dark2,
     footer_divider: colorsBase.gray.dark,
     footer_title: colorsBase.primary.dark,
-
     header: colorsBase.primary.main,
   },
 
@@ -65,8 +66,9 @@ export const colors = {
   },
 
   organization: {
-    card: {
-      footer_bg: colorsBase.gray.main,
+    card_detailed: {
+      footer_bg: colorsBase.gray.light2,
+      footer_border: colorsBase.gray.light3,
     },
     election_list_empty_bg: colorsBase.gray.light,
 
@@ -172,7 +174,7 @@ export const colors = {
   },
 
   spreadsheet: {
-    disconnect_bg: colorsBase.white,
+    disconnect_bg: 'transparent',
     diconnect_color: colorsBase.gray.dark2,
   },
 }

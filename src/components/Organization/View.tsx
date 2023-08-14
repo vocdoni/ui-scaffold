@@ -1,11 +1,10 @@
 import { AddIcon } from '@chakra-ui/icons'
-import { Box, Button, Card, CardBody, Flex, Grid, GridItem, Link, Spinner, Text } from '@chakra-ui/react'
+import { Box, Card, CardBody, Flex, Grid, GridItem, Link, Spinner, Text } from '@chakra-ui/react'
 import Logo from '@components/Layout/Logo'
 import { useClient, useOrganization } from '@vocdoni/react-providers'
-import { areEqualHexStrings, InvalidElection, PublishedElection } from '@vocdoni/sdk'
+import { InvalidElection, PublishedElection, areEqualHexStrings } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { NavLink } from 'react-router-dom'
 import ProcessCardDetailed from '../Process/CardDetailed'
 import Header from './Header'
 
@@ -109,11 +108,10 @@ const OrganizationView = () => {
                         }}
                       />
                     </Text>
-                    <NavLink to='/processes/create'>
-                      <Button colorScheme='primary' rightIcon={<AddIcon />}>
-                        {t('menu.create')}
-                      </Button>
-                    </NavLink>
+                    <Link href='#/processes/create' variant='button' colorScheme='primary'>
+                      {t('menu.create')}
+                      <AddIcon />
+                    </Link>
                   </>
                 ) : (
                   <Text>{t('organization.elections_list_empty.not_owner')}</Text>
