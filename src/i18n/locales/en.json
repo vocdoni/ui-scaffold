@@ -286,7 +286,7 @@
   },
   "submited_votes": "Submitted votes",
   "uploader": {
-    "click_or_drag_and_drop": "<tos1>Upload or drag and drop the voter list here<tos1/><tos2>(Allowed formats: CSV, XLSX, and ODS)</tos2>",
+    "click_or_drag_and_drop": "<p1>Upload or drag and drop the voter list here</p1><p2>(Allowed formats: CSV, XLSX, and ODS)</p2>",
     "drop_here": "Drop here"
   },
   "voting_elections": "Voting elections"

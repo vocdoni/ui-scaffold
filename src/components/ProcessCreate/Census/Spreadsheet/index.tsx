@@ -119,6 +119,7 @@ export const CensusCsvManager = () => {
           p={6}
           bgColor='white'
           borderRadius='lg'
+          mx='auto'
         >
           <Text textAlign='center'>{t('form.process_create.spreadsheet.download_template_description')}</Text>
           <Link download={'census-template.csv'} href={template.url}>
@@ -182,14 +183,16 @@ export const CensusCsvManager = () => {
               <Trans
                 i18nKey='uploader.click_or_drag_and_drop'
                 components={{
-                  tos1: <Text textAlign='center' color='process_create.spreadsheet.drag_and_drop_text' />,
-                  tos2: <Text textAlign='center' fontSize='sm' color='process_create.spreadsheet.drag_and_drop_text' />,
+                  p1: <Text textAlign='center' color='process_create.spreadsheet.drag_and_drop_text' />,
+                  p2: <Text textAlign='center' fontSize='sm' color='process_create.spreadsheet.drag_and_drop_text' />,
                 }}
               />
             )}
           </Box>
         </Flex>
-        <FormErrorMessage>{errors?.spreadsheet?.message?.toString()}</FormErrorMessage>
+        <FormErrorMessage display='flex' justifyContent='center'>
+          {errors?.spreadsheet?.message?.toString()}
+        </FormErrorMessage>
       </FormControl>
       <CsvPreview manager={manager} upload={upload} />
     </Box>
