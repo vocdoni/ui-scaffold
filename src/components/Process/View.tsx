@@ -1,5 +1,6 @@
 import { Flex, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
-import { ElectionQuestions, ElectionResults, useElection } from '@vocdoni/chakra-components'
+import { ElectionQuestions, ElectionResults } from '@vocdoni/chakra-components'
+import { useElection } from '@vocdoni/react-providers'
 import { ElectionStatus } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'

@@ -7,6 +7,7 @@
     "overwrite_votes_left": "Pots corregir el teu vot {{ left }} vegades.",
     "verify_vote_on_explorer": "Verifica el vot a l'explorador",
     "votes_one": "<tos>1</tos> <tos2>vot</tos2>",
+    "votes_many": "",
     "votes_other": "<tos>{{ count }}</tos> <tos2>vots</tos2>"
   },
   "banner": {
@@ -60,6 +61,8 @@
   },
   "error": {
     "go_back": "Torna enrere",
+    "invalid_row_length": "Corregeix les línies {{rows, list}} del document i torna a carregar-lo",
+    "invalid_weight_type": "S'esperava trobar el pes a la primera col·lumna a les línies {{rows, list}}, però s'han trobat dades inesperades",
     "loading_page": "Càrrega de pàgina errònia",
     "not_found": "Ho sentim, no s'ha trobat la pàgina que estaves buscant.",
     "return_to_home": "Ves a l'inici"
@@ -87,14 +90,14 @@
       "title_placeholder": "El nom de l'organització"
     },
     "edit_profile": {
-      "avatar_helper": "Imatge de la teva organització",
-      "avatar_placeholder": "URL de la imatge"
+      "avatar_helper": "Imatge/Logotip de la teva organització",
+      "avatar_placeholder": "URL de la imatge",
+      "btn": "Desar"
     },
     "error": {
       "address_already_in_use": "Aquesta adreça ja és al cens",
       "address_pattern": "Només s'admeten adreces hexadecimals (p. ex. 0x031101A...)",
       "avatar_error": "URL no vàlida",
-      "edit_profile": "Error editant el perfil",
       "field_is_required": "Aquest camp és obligatori",
       "min_address": "Si us plau, proporciona com a mínim una adreça"
     },
@@ -122,12 +125,12 @@
       },
       "census": {
         "add_button": "Afegir",
-        "csv_description": "Dades personalitzades com a informació d'usuari i contrasenya o informació personal del votant.",
-        "csv_title": "CSV",
         "description": "Seleccioneu com autenticaran i s'identificaran els votants. Trieu entre dades personalitzades (CSV), a través de la propietat d'un token o amb adreces de cartera.",
         "max_census_slider_arialabel": "Selector de participació màxima esperada",
         "max_census_slider_label": "Participació màxima esperada:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} votants elegibles)",
+        "spreadsheet_description": "Dades personalitzades com a informació d'usuari i contrasenya o informació personal del votant.",
+        "spreadsheet_title": "CSV",
         "title": "Trieu el cens",
         "token_base_description": "Utilitza un token (basat en EVM) per permetre als usuaris votar en funció de la quantitat que posseeixin.",
         "token_base_title": "Basat en token",
@@ -138,7 +141,11 @@
       },
       "confirm": {
         "census": "Cens",
-        "close": "Tancar",
+        "census_preview_is_shortened": "(la llista prèvia està limitada a {{ limit }} resultats)",
+        "census_total_people_one": "Una persona podrà votar en aquesta votació",
+        "census_total_people_many": "{{ count }} persones podran votar en aquesta votació",
+        "census_total_people_other": "",
+        "close": "Tanca",
         "configuration": "Configuració",
         "confirmation": "Confirmació",
         "confirmation_terms_and_conditions": "Accepto els <tos>termes i condicions</tos> de Vocdoni",
@@ -153,9 +160,9 @@
         "questions_other": "Preguntes",
         "secret_until_the_end": "Secret fins el final",
         "title": "Títol",
-        "vote_overwritte": "Sobreescriure vot",
-        "web3_number_addresses": "{{ addresses }} persones podran votar en aquesta votació"
+        "vote_overwritte": "Sobreescriure vot"
       },
+      "confirm_spreadsheet_removal": "Estàs segur que vols canviar-ho? Fent-ho s'esborrarà el fitxer que has carregat actualment.",
       "creating_process": "Creant el procés...",
       "do_not_close": "Aquesta acció pot trigar una estona, no tanquis aquesta pestanya",
       "meta": {
@@ -184,6 +191,30 @@
       "question_title": "Títol",
       "questions_title": "Preguntes",
       "running_checks": "Executant les comprovacions necessàries, espera...",
+      "spreadsheet": {
+        "download_template_btn": "Descarregar plantilla",
+        "download_template_description": "Descarrega la plantilla original per completar la teva llista de votants",
+        "preview": {
+          "description": "Els membres hauran de completar aquest formulari per accedir a la votació",
+          "title": "Vista prèvia del formulari",
+          "upload_new_list": "Pujar una nova llista de votants"
+        },
+        "requirements": {
+          "list_one": "La primera fila s'utilitzarà com el nom dels camps que els votants hauran de omplir.",
+          "list_two": "Els camps no distingeixen entre majúscules i minúscules, els espais en blanc s'ignoraran i els signes diacrítics es transformaran en lletres simples.",
+          "list_three": "Si es selecciona 'Vot ponderat', la primera columna ha de ser un enter amb el pes del vot del votant.",
+          "title": "Requisits"
+        },
+        "template": {
+          "email": "Email",
+          "firstname": "Nom",
+          "lastname": "Cognoms",
+          "weight": "Pes"
+        }
+      },
+      "spreadsheet_total_rows_one": "El cens només conté un votant",
+      "spreadsheet_total_rows_many": "",
+      "spreadsheet_total_rows_other": "Grandària del cens: {{count}} votants",
       "steps": {
         "census": "Cens",
         "checks": "Comprovacions",
@@ -193,7 +224,8 @@
       },
       "success_description": "Redirigint-te a la pàgina del procés electoral...",
       "success_title": "Procés electoral creat amb èxit",
-      "unhealthy_account": "Has de crear una organització abans de crear la primera elecció."
+      "unhealthy_account": "Has de crear una organització abans de crear la primera elecció.",
+      "weighted": "Vot ponderat"
     }
   },
   "home": {
@@ -211,9 +243,8 @@
     "create": "Crear procés",
     "create_process": "Crear procés",
     "disconnect": "Desconnectar cartera",
-    "edit_profile": "Editar perfil",
-    "edit_profile_btn": "Editar",
     "my_list": "La meva llista",
+    "organization": "Editar Organització",
     "support": "Ajuda"
   },
   "open_in_explorer": "Obre a l'explorador",
@@ -258,5 +289,9 @@
     "stop": "Atura"
   },
   "submited_votes": "Vots emesos",
+  "uploader": {
+    "click_or_drag_and_drop": "<p1>Puja o arrossega i deixa anar aquí la llista de votants</p1><p2>(Formats permesos: CSV, XLSX i ODS)</p2>",
+    "drop_here": "Deixa anar aquí"
+  },
   "voting_elections": "Votacions"
 }

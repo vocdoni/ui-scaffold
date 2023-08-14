@@ -20,7 +20,7 @@ import {
   Text,
   Tooltip,
 } from '@chakra-ui/react'
-import { errorToString, useClient } from '@vocdoni/chakra-components'
+import { errorToString, useClient } from '@vocdoni/react-providers'
 import { EnvOptions, ICensus3Token, VocdoniCensus3Client } from '@vocdoni/sdk'
 import { AsyncSelect, GroupBase, SelectInstance } from 'chakra-react-select'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'

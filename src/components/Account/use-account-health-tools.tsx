@@ -1,4 +1,4 @@
-import { useClient } from '@vocdoni/chakra-components'
+import { useClient } from '@vocdoni/react-providers'
 
 export const useAccountHealthTools = () => {
   const { account, balance } = useClient()

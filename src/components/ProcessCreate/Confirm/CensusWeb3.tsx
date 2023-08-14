@@ -3,7 +3,7 @@ import { addressTextOverflow } from '@constants'
 import { useTranslation } from 'react-i18next'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 
-const Web3Confirm = () => {
+const PreviewCensusWeb3 = () => {
   const { t } = useTranslation()
 
   const { form } = useProcessCreationSteps()
@@ -25,10 +25,10 @@ const Web3Confirm = () => {
         </UnorderedList>
       </Box>
       <Text color='process_create.preview.census_web3_text_helper'>
-        {t('form.process_create.confirm.web3_number_addresses', { addresses: addresses.length })}
+        {t('form.process_create.confirm.census_total_people', { count: addresses.length })}
       </Text>
     </Flex>
   )
 }
 
-export default Web3Confirm
+export default PreviewCensusWeb3

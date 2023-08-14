@@ -1,41 +1,41 @@
 import { Box, Text } from '@chakra-ui/react'
-import { ICensus3Token } from '@vocdoni/sdk'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { CensusTokens } from '../Census/Token'
-import { useProcessCreationSteps } from './use-steps'
+import { CensusCsvManager } from '../Census/Spreadsheet'
+import { SpreadsheetManager } from '../Census/Spreadsheet/spreadsheet-manager'
+import { useProcessCreationSteps } from '../Steps/use-steps'
 
-export interface CensusTokenValues {
-  censusToken: string
-  maxCensusSize?: number
-  token?: ICensus3Token
+export interface CensusSpreadsheetValues {
+  weightedVote: boolean
+  spreadsheet?: SpreadsheetManager
 }
 
-export const StepsCensusToken = () => {
+export const StepFormCensusSpreadsheet = () => {
   const { t } = useTranslation()
   const { form, setForm, next } = useProcessCreationSteps()
-  const methods = useForm<CensusTokenValues>({
+  const methods = useForm<CensusSpreadsheetValues>({
     defaultValues: {
-      censusToken: form.censusToken,
-      maxCensusSize: form.maxCensusSize,
+      spreadsheet: form.spreadsheet,
+      weightedVote: form.weightedVote,
     },
   })
 
-  const onSubmit: SubmitHandler<CensusTokenValues> = (data) => {
+  const onSubmit: SubmitHandler<CensusSpreadsheetValues> = (data) => {
     setForm({ ...form, ...data })
     next()
   }
+
   return (
     <>
       <Box mb={5}>
         <Text fontWeight='bold' fontSize='xl2' textAlign='center' mb={3}>
-          {t('form.process_create.census.token_title')}
+          {t('form.process_create.census.spreadsheet_title')}
         </Text>
       </Box>
 
       <FormProvider {...methods}>
         <Box as='form' id='process-create-form' onSubmit={methods.handleSubmit(onSubmit)}>
-          <CensusTokens />
+          <CensusCsvManager />
         </Box>
       </FormProvider>
     </>

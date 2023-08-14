@@ -12,7 +12,15 @@ const dropdown = defineStyle({
     bgColor: 'button.drop_down.active',
   },
 })
+const process = defineStyle({
+  w: 'full',
+  color: 'process.results.aside.vote_btn_color',
+  mb: 4,
+  borderRadius: 30,
+  p: 7,
+  bgColor: 'process.results.aside.vote_btn_bg',
+})
 
 export const Button = defineStyleConfig({
-  variants: { dropdown },
+  variants: { dropdown, process },
 })

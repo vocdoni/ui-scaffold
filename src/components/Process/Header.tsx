@@ -7,9 +7,8 @@ import {
   ElectionStatusBadge,
   ElectionTitle,
   OrganizationName,
-  useClient,
-  useElection,
 } from '@vocdoni/chakra-components'
+import { useClient, useElection } from '@vocdoni/react-providers'
 import { ElectionStatus } from '@vocdoni/sdk'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -94,7 +93,7 @@ const ProcessHeader = () => {
             <Text color='process.date' fontWeight='bold'>
               {t('process.created_by')}
             </Text>
-            <OrganizationName textTransform='capitalize' isTruncated maxW={76} />
+            <OrganizationName isTruncated maxW={76} />
           </Box>
           {election?.status === ElectionStatus.PAUSED && election?.organizationId !== account?.address && (
             <Flex

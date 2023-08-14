@@ -1,19 +1,21 @@
-import { Dispatch, SetStateAction, createContext, useContext } from 'react'
+import { createContext, Dispatch, SetStateAction, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
+import { CensusSpreadsheetValues } from '../StepForm/CensusSpreadsheet'
+import { CensusTokenValues } from '../StepForm/CensusToken'
+import { CensusWeb3Values } from '../StepForm/CensusWeb3'
+import { Info, InfoValues } from '../StepForm/Info'
+import { Questions, QuestionsValues } from '../StepForm/Questions'
 import { Census, CensusValues } from './Census'
-import { CensusTokenValues } from './CensusToken'
-import { CensusWeb3Values } from './CensusWeb3'
 import { Checks } from './Checks'
 import { Confirm } from './Confirm'
-import { Info, InfoValues } from './Info'
-import { Questions, QuestionsValues } from './Questions'
 
 export interface StepsFormValues
   extends InfoValues,
     QuestionsValues,
     CensusValues,
     CensusWeb3Values,
-    CensusTokenValues {}
+    CensusTokenValues,
+    CensusSpreadsheetValues {}
 
 export interface StepsState {
   title: string

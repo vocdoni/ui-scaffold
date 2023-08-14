@@ -61,6 +61,8 @@
   },
   "error": {
     "go_back": "Volver atrás",
+    "invalid_row_length": "Corrige las líneas {{rows, list}} del documento y vuelve a cargarlo",
+    "invalid_weight_type": "Se esperaba encontrar el peso en la primera columna en las líneas {{rows, list}}, pero se han encontrado datos inesperados",
     "loading_page": "Error al cargar la página",
     "not_found": "Lo sentimos, la página que buscabas no fue encontrada.",
     "return_to_home": "Ves al inicio"
@@ -88,14 +90,14 @@
       "title_placeholder": "El nombre de la organización"
     },
     "edit_profile": {
-      "avatar_helper": "Imagen de tu organización",
-      "avatar_placeholder": "URL de la imagen"
+      "avatar_helper": "Imagen/Logotipo de tu organización",
+      "avatar_placeholder": "URL de la imagen",
+      "btn": "Guardar"
     },
     "error": {
       "address_already_in_use": "Esta dirección ya está en el censo",
       "address_pattern": "Solo se permiten direcciones hexadecimales (p.ej. 0x031101A...)",
       "avatar_error": "URL no válida",
-      "edit_profile": "Error editando el perfil",
       "field_is_required": "Este campo es obligatorio",
       "min_address": "Por favor, proporciona al menos una dirección"
     },
@@ -123,12 +125,12 @@
       },
       "census": {
         "add_button": "Añadir",
-        "csv_description": "Datos personalizados como usuario y contraseña o información personal del votante.",
-        "csv_title": "CSV",
         "description": "Selecciona cómo se autenticarán e identificarán los votantes. Elije entre datos personalizados (CSV), por poseer un token o por direcciones de carteras.",
         "max_census_slider_arialabel": "Selector deslizante de participación máxima esperada",
         "max_census_slider_label": "Participación máxima esperada:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} votantes elegibles)",
+        "spreadsheet_description": "Datos personalizados como usuario y contraseña o información personal del votante.",
+        "spreadsheet_title": "CSV",
         "title": "Elige tu censo",
         "token_base_description": "Usa un token (basado en EVM) para permitir a los usuarios votar en función de la cantidad que poseen.",
         "token_base_title": "Basado en tokens",
@@ -139,6 +141,10 @@
       },
       "confirm": {
         "census": "Censo",
+        "census_preview_is_shortened": "(la lista previa está limitada a {{ limit }} resultados)",
+        "census_total_people_one": "Una persona podrá votar en esta votación",
+        "census_total_people_many": "{{ count }} personas podrán votar en esta votación",
+        "census_total_people_other": "",
         "close": "Cerrar",
         "configuration": "Configuración",
         "confirmation": "Confirmación",
@@ -154,9 +160,9 @@
         "questions_other": "Preguntas",
         "secret_until_the_end": "Secreto hasta el final",
         "title": "Título",
-        "vote_overwritte": "Sobrescribir voto",
-        "web3_number_addresses": "{{ addresses }} personas podrán votar en esta votación"
+        "vote_overwritte": "Sobrescribir voto"
       },
+      "confirm_spreadsheet_removal": "Seguro? Piensa que al hacerlo se eliminará el fichero que has cargado.",
       "creating_process": "Creando proceso...",
       "do_not_close": "Esta acción puede llevar algún tiempo, no cierres esta pestaña",
       "meta": {
@@ -185,6 +191,30 @@
       "question_title": "Título",
       "questions_title": "Preguntas",
       "running_checks": "Ejecutando comprobaciones requeridas, por favor espera...",
+      "spreadsheet": {
+        "download_template_btn": "Descargar plantilla",
+        "download_template_description": "Descarga la plantilla original para completar su lista de votantes ",
+        "preview": {
+          "description": "Los miembros deberan cumplir este formulario para acceder a la votación",
+          "title": "Vista previa del formulario",
+          "upload_new_list": "Subir una nueva lista de votantes"
+        },
+        "requirements": {
+          "list_one": "La primera fila se usará como el nombre de los campos que los votantes deberán rellenar.",
+          "list_two": "Los campos no distinguen entre mayúsculas y minúsculas, los espacios en blanco se ignoraran y los signos diacriticos se transformaran en letras simples.",
+          "list_three": "Si se selecciona 'Voto ponderado', la 1a columna debe ser un entero con el peso de voto del votante.",
+          "title": "Requisitos"
+        },
+        "template": {
+          "email": "Email",
+          "firstname": "Nombre",
+          "lastname": "Apellidos",
+          "weight": "Peso"
+        }
+      },
+      "spreadsheet_total_rows_one": "",
+      "spreadsheet_total_rows_many": "",
+      "spreadsheet_total_rows_other": "",
       "steps": {
         "census": "Censo",
         "checks": "Comprobaciones",
@@ -194,7 +224,8 @@
       },
       "success_description": "Redirigiéndote a la página del proceso electoral...",
       "success_title": "Proceso electoral creado con éxito",
-      "unhealthy_account": "Necesitas crear una organización antes de crear la primera votación."
+      "unhealthy_account": "Necesitas crear una organización antes de crear la primera votación.",
+      "weighted": "Voto ponderado"
     }
   },
   "home": {
@@ -212,9 +243,8 @@
     "create": "Crear proceso",
     "create_process": "Crear proceso",
     "disconnect": "Desconectar billetera",
-    "edit_profile": "Editar perfil",
-    "edit_profile_btn": "Editar",
     "my_list": "Mi lista",
+    "organization": "Editar Organización",
     "support": "Soporte"
   },
   "open_in_explorer": "Abrir en explorador",
@@ -259,5 +289,9 @@
     "stop": "detener"
   },
   "submited_votes": "Votos enviados",
+  "uploader": {
+    "click_or_drag_and_drop": "<p1>Sube o arrastra y suelta aqui la lista de votantes</p1><p2>(Formap permitidos: CSV, XLSX y ODS)</p2>",
+    "drop_here": "Suelta aqui"
+  },
   "voting_elections": "Votaciones"
 }

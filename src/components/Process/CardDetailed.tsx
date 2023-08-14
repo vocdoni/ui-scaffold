@@ -1,14 +1,7 @@
 import { Box, Card, CardBody, CardFooter, Text } from '@chakra-ui/react'
 import { useDateFns } from '@i18n/use-date-fns'
-import {
-  ElectionActions,
-  ElectionDescription,
-  ElectionProvider,
-  ElectionStatusBadge,
-  ElectionTitle,
-  enforceHexPrefix,
-  useElection,
-} from '@vocdoni/chakra-components'
+import { ElectionActions, ElectionDescription, ElectionStatusBadge, ElectionTitle } from '@vocdoni/chakra-components'
+import { ElectionProvider, enforceHexPrefix, useElection } from '@vocdoni/react-providers'
 import { ElectionStatus, InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'

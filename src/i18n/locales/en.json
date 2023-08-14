@@ -60,6 +60,8 @@
   },
   "error": {
     "go_back": "Go back",
+    "invalid_row_length": "Correct document lines {{rows,list(style: short)}} and load it again",
+    "invalid_weight_type": "Expecting weight in first column at lines {{rows,list(style:short)}}, but found unexpected data",
     "loading_page": "Error loading the page",
     "not_found": "Sorry, the page you were looking for was not found",
     "return_to_home": "Go to home"
@@ -87,14 +89,14 @@
       "title_placeholder": "The organization name"
     },
     "edit_profile": {
-      "avatar_helper": "Image of your organization",
-      "avatar_placeholder": "Image URL"
+      "avatar_helper": "Image/Logo of your organization",
+      "avatar_placeholder": "Image URL",
+      "btn": "Save"
     },
     "error": {
       "address_already_in_use": "Address already in use",
       "address_pattern": "Only hex addresses are allowed (e.g 0x031101A...)",
       "avatar_error": "URL not valid",
-      "edit_profile": "Error editing the profile",
       "field_is_required": "This field is required",
       "min_address": "Please, provide at least one address"
     },
@@ -122,12 +124,12 @@
       },
       "census": {
         "add_button": "Add",
-        "csv_description": "Custom data like user and password or voter personal info.",
-        "csv_title": "CSV",
         "description": "Select how will the voters authenticate and identify themselves. Choose between custom data (CSV), by owning a token or by wallet addresses.",
         "max_census_slider_arialabel": "Maximum participation expected slider selector",
         "max_census_slider_label": "Maximum participation expected:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} eligible voters)",
+        "spreadsheet_description": "Custom data like user and password or voter personal info.",
+        "spreadsheet_title": "CSV",
         "title": "Choose your census",
         "token_base_description": "Use a token (EVM based) to let users vote based on the amount they own.",
         "token_base_title": "Token based",
@@ -138,6 +140,9 @@
       },
       "confirm": {
         "census": "Census",
+        "census_preview_is_shortened": "(preview list is limited to {{ limit }} results)",
+        "census_total_people_one": "A single person will be elegible for voting in this election",
+        "census_total_people_other": "{{ count }} people will be elegible for voting in this election",
         "close": "Close",
         "configuration": "Configuration",
         "confirmation": "Confirmation",
@@ -152,9 +157,9 @@
         "questions_other": "Questions",
         "secret_until_the_end": "Secret until the end",
         "title": "Title",
-        "vote_overwritte": "Vote overwritte",
-        "web3_number_addresses": "{{ addresses }} people will be elegible for voting in this election"
+        "vote_overwritte": "Vote overwritte"
       },
+      "confirm_spreadsheet_removal": "Are you sure? Take in mind that the uploaded file will be removed",
       "creating_process": "Creating process...",
       "do_not_close": "This action can take some time, don't close this tab",
       "meta": {
@@ -183,6 +188,29 @@
       "question_title": "Title",
       "questions_title": "Questions",
       "running_checks": "Running required checks, please wait...",
+      "spreadsheet": {
+        "download_template_btn": "Download template",
+        "download_template_description": "Download the original template to complete your voter list",
+        "preview": {
+          "description": "Members must complete this form to access the voting",
+          "title": "Form preview",
+          "upload_new_list": "Upload a new list of voters"
+        },
+        "requirements": {
+          "list_one": "The first row will be used as the name of the fields that voters will need to fill out.",
+          "list_two": "Fields do not distinguish between uppercase and lowercase letters, white spaces will be ignored, and diacritics will be transformed into simple letters.",
+          "list_three": "If 'Weighted Vote' is selected, the first column must be an integer indicating the voter's vote weight.",
+          "title": "Requirements"
+        },
+        "template": {
+          "email": "Email",
+          "firstname": "First name",
+          "lastname": "Last name",
+          "weight": "Weight"
+        }
+      },
+      "spreadsheet_total_rows_one": "Census has a single record",
+      "spreadsheet_total_rows_other": "Census has {{ count }} records",
       "steps": {
         "census": "Census",
         "checks": "Checks",
@@ -192,7 +220,8 @@
       },
       "success_description": "Redirecting you to the election process page...",
       "success_title": "Election process successfully created",
-      "unhealthy_account": "You need to create an organization before creating the first election."
+      "unhealthy_account": "You need to create an organization before creating the first election.",
+      "weighted": "Weighted vote"
     }
   },
   "home": {
@@ -210,9 +239,8 @@
     "create": "Create Process",
     "create_process": "Create process",
     "disconnect": "Disconnect Wallet",
-    "edit_profile": "Edit profile",
-    "edit_profile_btn": "Edit",
     "my_list": "My list",
+    "organization": "Edit Organization",
     "support": "Support"
   },
   "open_in_explorer": "Open in explorer",
@@ -257,5 +285,9 @@
     "stop": "stop"
   },
   "submited_votes": "Submitted votes",
+  "uploader": {
+    "click_or_drag_and_drop": "<p1>Upload or drag and drop the voter list here</p1><p2>(Allowed formats: CSV, XLSX, and ODS)</p2>",
+    "drop_here": "Drop here"
+  },
   "voting_elections": "Voting elections"
 }

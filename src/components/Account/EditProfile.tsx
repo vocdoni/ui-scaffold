@@ -14,17 +14,15 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Spinner,
   Text,
   Textarea,
   useDisclosure,
 } from '@chakra-ui/react'
-import { errorToString, useClient } from '@vocdoni/chakra-components'
+import { errorToString, useClient } from '@vocdoni/react-providers'
 import { Account } from '@vocdoni/sdk'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { BiTrash } from 'react-icons/bi'
@@ -39,10 +37,9 @@ interface EditFormFields {
 const REGEX_AVATAR = /^(https?:\/\/|ipfs:\/\/)/i
 
 const EditProfile = () => {
-  const { account, client, createAccount } = useClient()
+  const { account, client } = useClient()
   const { t } = useTranslation()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const { isOpen: isOpenError, onOpen: onOpenError, onClose: onCloseError } = useDisclosure()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -57,6 +54,7 @@ const EditProfile = () => {
     register,
     handleSubmit,
     formState: { errors },
+    clearErrors,
   } = useForm({
     defaultValues: {
       name: account?.account.name.default || '',
@@ -64,6 +62,16 @@ const EditProfile = () => {
       avatar: account?.account.avatar || '',
     },
   })
+
+  useEffect(() => {
+    if (isOpen) {
+      setValue('name', account?.account.name.default || '')
+      setValue('description', account?.account.description.default || '')
+      setValue('avatar', account?.account.avatar || '')
+      clearErrors()
+      setError(null)
+    }
+  }, [isOpen])
 
   const avatar = watch('avatar')
 
@@ -74,26 +82,24 @@ const EditProfile = () => {
 
     try {
       await client.updateAccountInfo(new Account({ ...account?.account, ...values }))
-      setLoading(false)
       onClose()
     } catch (err: any) {
-      setLoading(false)
-      onClose()
       setError(errorToString(err))
-      onOpenError()
+    } finally {
+      setLoading(false)
     }
   }
 
   return (
     <>
       <Button onClick={onOpen} display='flex' justifyContent='end' variant='dropdown'>
-        {t('menu.edit_profile')}
+        {t('menu.organization')}
       </Button>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={() => !loading && onClose()}>
         <ModalOverlay />
         <ModalContent p={3} minW={{ md: '700px' }}>
           <Box>
-            <ModalHeader>{t('menu.edit_profile')}</ModalHeader>
+            <ModalHeader>{t('menu.organization')}</ModalHeader>
             <ModalCloseButton />
             <ModalBody pb={5}>
               <Flex
@@ -182,27 +188,17 @@ const EditProfile = () => {
                     <Text> {t('form.account_create.description_helper')}</Text>
                   </FormHelperText>
                 </FormControl>
-                <Button type='submit' colorScheme='primary' disabled={loading} cursor={loading ? 'auto' : 'pointer'}>
-                  {loading ? <Spinner /> : t('menu.edit_profile_btn')}
+                <Button type='submit' colorScheme='primary' isLoading={loading}>
+                  {t('form.edit_profile.btn')}
                 </Button>
+                {error && (
+                  <Text color='red.500' textAlign='center'>
+                    {error}
+                  </Text>
+                )}
               </Flex>
             </ModalBody>
           </Box>
-        </ModalContent>
-      </Modal>
-      <Modal isOpen={isOpenError} onClose={onCloseError} closeOnEsc={!!error} closeOnOverlayClick={!!error} isCentered>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>{t('form.error.edit_profile')}</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Text color='red.300'>{error}</Text>
-          </ModalBody>
-          <ModalFooter>
-            <Button mr={3} onClick={onCloseError} colorScheme='primary'>
-              {t('form.process_create.confirm.close')}
-            </Button>
-          </ModalFooter>
         </ModalContent>
       </Modal>
     </>
