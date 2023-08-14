@@ -132,12 +132,6 @@ const OrganizationView = () => {
 
 const useObserver = (refObserver: any, setPage: Dispatch<SetStateAction<number>>) => {
   useEffect(() => {
-    return () => {
-      if (refObserver.current) refObserver.current = null
-    }
-  }, [refObserver])
-
-  useEffect(() => {
     if (!refObserver.current) return
 
     const observer = new IntersectionObserver(
@@ -152,6 +146,10 @@ const useObserver = (refObserver: any, setPage: Dispatch<SetStateAction<number>>
     )
 
     observer.observe(refObserver.current)
+
+    return () => {
+      if (refObserver.current) refObserver.current = null
+    }
   }, [refObserver, setPage])
 }
 export default OrganizationView
