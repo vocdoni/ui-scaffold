@@ -61,7 +61,7 @@ const OrganizationView = () => {
         setLoading(false)
         setLoaded(true)
       })
-  }, [client, organization?.address, page, error, finished])
+  }, [page, error, finished])
 
   return (
     <Box maxW='1200px' mx='auto'>
