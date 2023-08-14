@@ -290,7 +290,7 @@
   },
   "submited_votes": "Vots emesos",
   "uploader": {
-    "click_or_drag_and_drop": "<tos1>Puja o arrossega i deixa anar aquí la llista de votants<tos1/><tos2>(Formats permesos: CSV, XLSX i ODS)</tos2>",
+    "click_or_drag_and_drop": "<p1>Puja o arrossega i deixa anar aquí la llista de votants</p1><p2>(Formats permesos: CSV, XLSX i ODS)</p2>",
     "drop_here": "Deixa anar aquí"
   },
   "voting_elections": "Votacions"
