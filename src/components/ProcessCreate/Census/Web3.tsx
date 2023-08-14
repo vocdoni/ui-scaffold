@@ -5,20 +5,26 @@ import {
   Flex,
   FormControl,
   FormErrorMessage,
+  Icon,
   IconButton,
   Input,
   Text,
   useBreakpointValue,
 } from '@chakra-ui/react'
 import { addressTextOverflow, fieldMapErrorMessage, isInvalidFieldMap } from '@constants'
-import { enforceHexPrefix, useClient } from '@vocdoni/react-providers'
+import { enforceHexPrefix, errorToString, useClient } from '@vocdoni/react-providers'
 import { useEffect, useState } from 'react'
+import { useDropzone } from 'react-dropzone'
 import { useFieldArray, useFormContext } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
+import { RiFileExcel2Line } from 'react-icons/ri'
+import { CensusSpreadsheetManager } from './Spreadsheet/CensusSpreadsheetManager'
+import { Web3CensusSpreadsheetManager } from './Spreadsheet/Web3CensusSpreadsheetManager'
 
 export const CensusWeb3Addresses = () => {
   const { t } = useTranslation()
   const { account } = useClient()
+  const [fileErr, setFileErr] = useState<string | null>(null)
 
   const {
     register,
@@ -47,7 +53,7 @@ export const CensusWeb3Addresses = () => {
 
   useEffect(() => {
     if (account?.address && !initialized && addresses.length === 0) {
-      setValue('addresses', [{ address: enforceHexPrefix(account.address), weight: 0 }])
+      setValue('addresses', [{ address: enforceHexPrefix(account.address) }])
       setInitialized(true)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -68,10 +74,34 @@ export const CensusWeb3Addresses = () => {
 
     if (!errors.newAddress) {
       // Perform any necessary actions
-      setValue('addresses', [...addresses, { address: newAddress, weight: 0 }])
+      setValue('addresses', [...addresses, { address: newAddress }])
       resetField('newAddress')
     }
   }
+
+  // File dropzone
+  const onDrop = async ([file]: File[]) => {
+    try {
+      setFileErr(null)
+      // weighted set to false for now, since there's no weight management here yet
+      const spreadsheet = new Web3CensusSpreadsheetManager(file, false)
+      await spreadsheet.read()
+      setValue('addresses', [
+        ...addresses,
+        ...spreadsheet.data.map(([first, second]) => ({
+          address: first,
+        })),
+      ])
+    } catch (e) {
+      setFileErr(errorToString(e))
+      console.error('could not load file:', e)
+    }
+  }
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    multiple: false,
+    accept: CensusSpreadsheetManager.AcceptedTypes.reduce((prev, curr) => ({ ...prev, [curr]: [] }), {}),
+  })
 
   return (
     <>
@@ -138,6 +168,40 @@ export const CensusWeb3Addresses = () => {
           </Flex>
         ))}
       </Flex>
+      <FormControl isInvalid={!!fileErr}>
+        <Flex
+          flexDirection='column'
+          justifyContent='center'
+          alignItems='center'
+          gap={5}
+          p={10}
+          border='1px dotted lightgray'
+          bgColor='white'
+          borderRadius='lg'
+          mt={6}
+          cursor='pointer'
+          {...getRootProps()}
+        >
+          <input {...getInputProps()} />
+          <Icon as={RiFileExcel2Line} boxSize={20} color='process_create.spreadsheet.file' />
+          <Box>
+            {isDragActive ? (
+              <Text textAlign='center' color='process_create.spreadsheet.drag_and_drop_text'>
+                {t('uploader.drop_here')}
+              </Text>
+            ) : (
+              <Trans
+                i18nKey='uploader.click_or_drag_and_drop'
+                components={{
+                  p1: <Text textAlign='center' color='process_create.spreadsheet.drag_and_drop_text' />,
+                  p2: <Text textAlign='center' fontSize='sm' color='process_create.spreadsheet.drag_and_drop_text' />,
+                }}
+              />
+            )}
+          </Box>
+        </Flex>
+        <FormErrorMessage>{fileErr}</FormErrorMessage>
+      </FormControl>
     </>
   )
 }

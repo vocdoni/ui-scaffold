@@ -2,12 +2,12 @@ import { Box, Text } from '@chakra-ui/react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { CensusCsvManager } from '../Census/Spreadsheet'
-import { SpreadsheetManager } from '../Census/Spreadsheet/spreadsheet-manager'
+import { CensusSpreadsheetManager } from '../Census/Spreadsheet/CensusSpreadsheetManager'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 
 export interface CensusSpreadsheetValues {
   weightedVote: boolean
-  spreadsheet?: SpreadsheetManager
+  spreadsheet?: CensusSpreadsheetManager
 }
 
 export const StepFormCensusSpreadsheet = () => {
