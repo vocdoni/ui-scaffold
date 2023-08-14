@@ -1,10 +1,10 @@
-import { AddIcon } from '@chakra-ui/icons'
-import { Box, Card, CardBody, Flex, Grid, GridItem, Link, Spinner, Text } from '@chakra-ui/react'
+import { Box, Card, CardBody, Link as ChakraLink, Flex, Grid, GridItem, Link, Spinner, Text } from '@chakra-ui/react'
 import Logo from '@components/Layout/Logo'
 import { useClient, useOrganization } from '@vocdoni/react-providers'
 import { InvalidElection, PublishedElection, areEqualHexStrings } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { Link as ReactRouterLink } from 'react-router-dom'
 import ProcessCardDetailed from '../Process/CardDetailed'
 import Header from './Header'
 
@@ -98,8 +98,8 @@ const OrganizationView = () => {
               <Box>
                 {areEqualHexStrings(account?.address, organization?.address) ? (
                   <>
-                    <Text>{t('organization.elections_list_empty.title')}</Text>
-                    <Text>{t('organization.elections_list_empty.description')}</Text>
+                    <Text textAlign='center'>{t('organization.elections_list_empty.title')}</Text>
+                    <Text textAlign='center'>{t('organization.elections_list_empty.description')}</Text>
                     <Text>
                       <Trans
                         i18nKey='organization.elections_list_empty.footer'
@@ -108,13 +108,13 @@ const OrganizationView = () => {
                         }}
                       />
                     </Text>
-                    <Link href='#/processes/create' variant='button' colorScheme='primary'>
+
+                    <ChakraLink as={ReactRouterLink} to='/processes/create' variant='button' colorScheme='primary'>
                       {t('menu.create')}
-                      <AddIcon />
-                    </Link>
+                    </ChakraLink>
                   </>
                 ) : (
-                  <Text>{t('organization.elections_list_empty.not_owner')}</Text>
+                  <Text textAlign='center'>{t('organization.elections_list_empty.not_owner')}</Text>
                 )}
               </Box>
             </CardBody>

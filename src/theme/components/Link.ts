@@ -7,7 +7,7 @@ const primary = defineStyle({
 const button = defineStyle((props) => {
   const { colorScheme } = props
 
-  const linkBtn = {
+  const commonStyles = {
     display: 'flex',
     alignItems: 'center',
     gap: 2,
@@ -25,11 +25,11 @@ const button = defineStyle((props) => {
   }
   if (colorScheme === 'primary') {
     return {
-      ...linkBtn,
+      ...commonStyles,
       bgColor: `primary.500`,
 
       _hover: {
-        textDecoration: 'none',
+        ...commonStyles._hover,
         bgColor: `primary.600`,
       },
 
@@ -38,7 +38,9 @@ const button = defineStyle((props) => {
       },
     }
   }
-  return {}
+  return {
+    ...commonStyles,
+  }
 })
 
 export const Link = defineStyleConfig({
