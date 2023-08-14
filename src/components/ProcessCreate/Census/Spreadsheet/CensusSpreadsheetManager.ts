@@ -1,67 +1,40 @@
 import { walletFromRow } from '@vocdoni/react-providers'
-import { read, utils, WorkBook } from 'xlsx'
 import ErrorRowLength from './errors/ErrorRowLength'
 import ErrorWeightType from './errors/ErrorWeightType'
-
-export enum ErrorType {
-  InvalidRowLength,
-  InvalidWeight,
-}
+import { ErrorType, SpreadsheetManager } from './SpreadsheetManager'
 
 const WeightColPosition = 1
-const WeightRowPosition = 0
 
-export class SpreadsheetManager {
-  protected readonly reader
-  protected heading: string[]
-  protected filedata: string[][]
-
-  public readonly file
-  public workBook: WorkBook | undefined
+export class CensusSpreadsheetManager extends SpreadsheetManager {
   public readonly weighted: boolean
-  public errors: number[] = []
 
-  constructor(file: File, weighted: boolean = false) {
-    this.reader = new FileReader()
-    this.file = file
+  constructor(file: File, headed: boolean = true, weighted: boolean = false) {
+    super(file, headed)
     this.weighted = weighted
-    this.heading = []
-    this.filedata = [[]]
   }
-
-  public read() {
-    return this.load().then(() => this.validateDataIntegrity())
-  }
-
-  public static AcceptedTypes = [
-    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-    'application/vnd.ms-excel',
-    'text/csv',
-    'application/csv',
-    'application/x-csv',
-    'text/x-comma-separated-values',
-    'text/comma-separated-values',
-    'application/vnd.oasis.opendocument.spreadsheet',
-  ]
 
   public validateDataIntegrity(): void {
     const errorTypes: ErrorType[] = []
 
     this.filedata.forEach((row, index) => {
-      if (row.length !== this.heading.length) {
+      // actual index
+      const ai = this.headed ? index + 2 : index + 1
+      // check for different column size
+      if (this.heading.length && row.length !== this.heading.length) {
         if (!errorTypes.includes(ErrorType.InvalidRowLength)) {
           errorTypes.push(ErrorType.InvalidRowLength)
         }
-        this.errors.push(index + 2)
+        this.errors.push(ai)
       }
 
+      // check weight column
       if (this.weighted) {
         const regex = /^[0-9]+$/
-        if (!regex.test(row[WeightRowPosition])) {
+        if (!regex.test(row[WeightColPosition - 1])) {
           if (!errorTypes.includes(ErrorType.InvalidWeight)) {
             errorTypes.push(ErrorType.InvalidWeight)
           }
-          this.errors.push(index + 2)
+          this.errors.push(ai)
         }
       }
     })
@@ -87,7 +60,7 @@ export class SpreadsheetManager {
   }
 
   public get weights(): string[] {
-    return this.filedata.map((row) => row[WeightRowPosition])
+    return this.filedata.map((row) => row[WeightColPosition - 1])
   }
 
   public generateWallets(organization: string): Promise<{ address: string; weight: number | undefined }[]> {
@@ -98,7 +71,7 @@ export class SpreadsheetManager {
             setTimeout(async () => {
               try {
                 const data = this.weighted ? row.slice(WeightColPosition) : row
-                const weight = this.weighted ? parseInt(row[WeightRowPosition], 10) : undefined
+                const weight = this.weighted ? parseInt(row[WeightColPosition - 1], 10) : undefined
                 const wallet = walletFromRow(organization, data)
                 const address = await wallet.getAddress()
 
@@ -110,33 +83,5 @@ export class SpreadsheetManager {
           )
       )
     )
-  }
-
-  private load(): Promise<SpreadsheetManager> {
-    return new Promise((resolve, reject): void => {
-      this.reader.onload = (event) => {
-        try {
-          this.workBook = read(this.reader.result, {
-            type: 'binary',
-            codepage: 65001,
-          })
-          this.filedata = this.getSheetsData(this.workBook)
-          this.heading = this.filedata.splice(0, 1)[0]
-          resolve(this)
-        } catch (error) {
-          reject(error)
-        }
-      }
-      this.reader.readAsBinaryString(this.file)
-    })
-  }
-
-  private getSheetsData(xlsFile: WorkBook) {
-    const firstSheetName = xlsFile.SheetNames[0]
-    const worksheet = xlsFile.Sheets[firstSheetName]
-    const data: string[][] = utils.sheet_to_json(worksheet, { header: 1, raw: false })
-    const filtered = data.filter((row) => row.length > 0)
-
-    return filtered
   }
 }

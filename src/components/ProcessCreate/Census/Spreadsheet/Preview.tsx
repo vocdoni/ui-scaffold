@@ -2,10 +2,10 @@ import { Badge, Box, Button, Flex, FormControl, FormLabel, Icon, Input, Text } f
 import { DropzoneRootProps } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
 import { RiFileExcel2Line } from 'react-icons/ri'
-import { SpreadsheetManager } from './spreadsheet-manager'
+import { CensusSpreadsheetManager } from './CensusSpreadsheetManager'
 
 type CsvPreviewProps = {
-  manager?: SpreadsheetManager
+  manager?: CensusSpreadsheetManager
   upload: DropzoneRootProps
 }
 

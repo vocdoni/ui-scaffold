@@ -60,6 +60,7 @@
   },
   "error": {
     "go_back": "Go back",
+    "invalid_cell_data": "Some rows do not contain correct addresses: {{rows,list(style:short)}}",
     "invalid_row_length": "Correct document lines {{rows,list(style: short)}} and load it again",
     "invalid_weight_type": "Expecting weight in first column at lines {{rows,list(style:short)}}, but found unexpected data",
     "loading_page": "Error loading the page",

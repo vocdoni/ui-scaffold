@@ -1,9 +1,8 @@
 import { Box, Flex, Table, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
+import { CensusPreviewRowsLimit } from '@constants'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useProcessCreationSteps } from '../Steps/use-steps'
-
-const RowsLimit = 10
 
 const PreviewCensusSpreadsheet = () => {
   const { t } = useTranslation()
@@ -12,7 +11,10 @@ const PreviewCensusSpreadsheet = () => {
   } = useProcessCreationSteps()
 
   const data = useMemo(
-    () => (spreadsheet!.data.length > RowsLimit ? spreadsheet?.data.slice(0, RowsLimit) : spreadsheet?.data),
+    () =>
+      spreadsheet!.data.length > CensusPreviewRowsLimit
+        ? spreadsheet?.data.slice(0, CensusPreviewRowsLimit)
+        : spreadsheet?.data,
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [spreadsheet?.data]
   )
@@ -48,7 +50,7 @@ const PreviewCensusSpreadsheet = () => {
         <Text
           color='process_create.preview.census_web3_text_helper'
           children={t('form.process_create.confirm.census_preview_is_shortened', {
-            limit: RowsLimit,
+            limit: CensusPreviewRowsLimit,
           })}
         />
       )}

@@ -61,6 +61,7 @@
   },
   "error": {
     "go_back": "Torna enrere",
+    "invalid_cell_data": "Algunes fileres no contenen adreces correctes: {{rows, list}}",
     "invalid_row_length": "Corregeix les línies {{rows, list}} del document i torna a carregar-lo",
     "invalid_weight_type": "S'esperava trobar el pes a la primera col·lumna a les línies {{rows, list}}, però s'han trobat dades inesperades",
     "loading_page": "Càrrega de pàgina errònia",
