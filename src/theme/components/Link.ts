@@ -38,9 +38,7 @@ const button = defineStyle((props) => {
       },
     }
   }
-  return {
-    ...commonStyles,
-  }
+  return commonStyles
 })
 
 export const Link = defineStyleConfig({
