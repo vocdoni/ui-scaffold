@@ -268,6 +268,10 @@
       "relative": "{{ date, relative(past: %time ago; future: in %time) }}",
       "starts": "Process starts"
     },
+    "is_anonymous": {
+      "description": "Votes are encrypted",
+      "title": "Anonymous"
+    },
     "is_invalid": "This process has wrong data, thus making it invalid",
     "questions": "Questions",
     "results": "Results",

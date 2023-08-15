@@ -73,6 +73,14 @@ const ProcessHeader = () => {
               {t('process.status.canceled')}
             </Text>
           )}
+          {election?.electionType.anonymous && (
+            <Box>
+              <Text color='process.date' fontWeight='bold'>
+                {t('process.is_anonymous.title')}
+              </Text>
+              <Text>{t('process.is_anonymous.description')}</Text>
+            </Box>
+          )}
           {election?.meta?.token && (
             <Box>
               <Text color='process.date' fontWeight='bold'>

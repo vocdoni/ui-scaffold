@@ -272,6 +272,10 @@
       "relative": "{{ date, relative(past: fa %time; future: en %time) }}",
       "starts": "Comença el procés"
     },
+    "is_anonymous": {
+      "description": "Els vots són encriptats",
+      "title": "Anònim"
+    },
     "is_invalid": "Aquest procés té dades no vàlides i per tant no pot carregar-se",
     "questions": "Preguntes",
     "results": "Resultats",

@@ -15,17 +15,23 @@ const SettingsAdvanced = () => {
         <Text fontWeight='bold' mb={1}>
           {t('form.process_create.behavior.title')}
         </Text>
+        <Text color='process_create.meta_description' fontSize='sm'>
+          {t('form.process_create.behavior.anonymous.description')}
+        </Text>
         <Text color='process_create.meta_description' fontSize='sm' mb={3}>
           {t('form.process_create.behavior.secret.description')}
         </Text>
         <Text color='process_create.meta_description' fontSize='sm'>
           {t('form.process_create.behavior.overwrite.description')}
         </Text>
-        <Text color='process_create.meta_description' fontSize='sm'>
-          {t('form.process_create.behavior.anonymous.description')}
-        </Text>
       </Box>
       <Flex flexGrow={1} justifyContent={{ base: 'center', sm: 'start' }} gap={10}>
+        <Checkbox {...register('electionType.anonymous')} variant='radiobox'>
+          <Flex flexDirection='column' alignItems='center' gap={3} mt={1}>
+            <Icon as={FaUserSecret} />
+            <Text fontSize='sm'>{t('form.process_create.behavior.anonymous.title')}</Text>
+          </Flex>
+        </Checkbox>
         <Checkbox {...register('electionType.secretUntilTheEnd')} variant='radiobox'>
           <Flex flexDirection='column' alignItems='center' gap={3} mt={1}>
             <Icon as={HiKey} />
@@ -36,12 +42,6 @@ const SettingsAdvanced = () => {
           <Flex flexDirection='column' alignItems='center' gap={3} mt={1}>
             <Icon as={BiCheckDouble} />
             <Text fontSize='sm'>{t('form.process_create.behavior.overwrite.title')}</Text>
-          </Flex>
-        </Checkbox>
-        <Checkbox {...register('electionType.anonymous')} variant='radiobox'>
-          <Flex flexDirection='column' alignItems='center' gap={3} mt={1}>
-            <Icon as={FaUserSecret} />
-            <Text fontSize='sm'>{t('form.process_create.behavior.anonymous.title')}</Text>
           </Flex>
         </Checkbox>
       </Flex>
