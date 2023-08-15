@@ -2432,20 +2432,12 @@
     "@babel/plugin-transform-react-jsx-source" "^7.22.5"
     react-refresh "^0.14.0"
 
-"@vocdoni/chakra-components@^0.5.6":
-  version "0.5.6"
-  resolved "https://registry.yarnpkg.com/@vocdoni/chakra-components/-/chakra-components-0.5.6.tgz#6a97d53fbe3167803b4a5b1b297dea4b9fb5f425"
-  integrity sha512-unwvzGrKXTNbxIYf7lGyCV1CJqZvyw+g4sYc5eCtPlnl4tK5ZU3xfqmYVRvN1CmPZM1+3j8XuqnfMZb9y8thlw==
+"@vocdoni/chakra-components@^0.5.8":
+  version "0.5.8"
+  resolved "https://registry.yarnpkg.com/@vocdoni/chakra-components/-/chakra-components-0.5.8.tgz#4b9b458c3db4ce5a45c45498ac8da52654984f3e"
+  integrity sha512-IiSJ/bHSiRh5STwwp/RdnVqTCjniorogoytMO/QrFJi7QdTb5NVAVO1zWCORTU7yOaCEXJ/VqJleG0MP3zSZIg==
   dependencies:
-    "@vocdoni/react-providers" "0.1.3"
-
-"@vocdoni/proto@1.14.1":
-  version "1.14.1"
-  resolved "https://registry.yarnpkg.com/@vocdoni/proto/-/proto-1.14.1.tgz#19891e5fa84b5ec65058f47652a7af0fe5f99b05"
-  integrity sha512-Fojio2im4JC8YN6x31mA94Z4d7HKK65mzIZLn8bW2+cHS3fS+SEkE8HHF+Q8IuGG+1vY1KIEDj6v+CT8qAlVKw==
-  dependencies:
-    long "^5.2.1"
-    protobufjs "^7.1.2"
+    "@vocdoni/react-providers" "0.1.5"
 
 "@vocdoni/proto@1.15.3":
   version "1.15.3"
@@ -2455,39 +2447,12 @@
     long "^5.2.1"
     protobufjs "^7.1.2"
 
-"@vocdoni/react-providers@0.1.3", "@vocdoni/react-providers@0.1.4", "@vocdoni/react-providers@^0.1.4":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.1.4.tgz#2f99efed75bce1069e74ccb63a755bf3097bf7bb"
-  integrity sha512-pwToBfyyPq/niNi40g6XPheaSw7HIUl444ajSNNeduh1ZIXDHRs0Wna1Yw8eDlsoAui6kDw3+rugQnszqysTyg==
+"@vocdoni/react-providers@0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.1.5.tgz#4cc79593f0e35f7093306730aa089c7fdfc21d2b"
+  integrity sha512-HK/TxvGL6uZfCT328oH8vCH4c6jjKZOLT1Qegkn0LiUy8cKfh0wXNtOg//0+J68FmYVyurIFdT1WqldTafc6rg==
   dependencies:
-    "@vocdoni/sdk" "^0.0.18"
-
-"@vocdoni/sdk@^0.0.18":
-  version "0.0.18"
-  resolved "https://registry.yarnpkg.com/@vocdoni/sdk/-/sdk-0.0.18.tgz#0b4689236c7cc3b8833b23f4b7f4e3183b3105a1"
-  integrity sha512-Qad/uSASNC22+LXYA1OcRnwmII9SjOelwZIuTX2jdZJiX3O0hC1gYd8kmMeIU6KjVYS6Em5N4wsh7qpYe8Pk+Q==
-  dependencies:
-    "@ethersproject/abstract-signer" "^5.7.0"
-    "@ethersproject/address" "^5.7.0"
-    "@ethersproject/bignumber" "^5.7.0"
-    "@ethersproject/bytes" "^5.7.0"
-    "@ethersproject/keccak256" "^5.7.0"
-    "@ethersproject/providers" "^5.7.1"
-    "@ethersproject/sha2" "^5.7.0"
-    "@ethersproject/signing-key" "^5.7.0"
-    "@ethersproject/units" "^5.7.0"
-    "@ethersproject/wallet" "^5.7.0"
-    "@size-limit/file" "^8.2.4"
-    "@vocdoni/proto" "1.14.1"
-    axios "0.27.2"
-    blake2b "^2.1.4"
-    iso-language-codes "^1.1.0"
-    tiny-invariant "^1.3.1"
-    tweetnacl "^1.0.3"
-    wasmbuilder "^0.0.16"
-    wasmcurves "0.2.1"
-    web-worker "^1.2.0"
-    yup "^0.32.11"
+    "@vocdoni/sdk" "^0.1.1"
 
 "@vocdoni/sdk@^0.1.1":
   version "0.1.1"
