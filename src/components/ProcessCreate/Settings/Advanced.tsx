@@ -2,6 +2,7 @@ import { Box, Checkbox, Flex, Icon, Text } from '@chakra-ui/react'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { BiCheckDouble } from 'react-icons/bi'
+import { FaUserSecret } from 'react-icons/fa'
 import { HiKey } from 'react-icons/hi2'
 
 const SettingsAdvanced = () => {
@@ -20,6 +21,9 @@ const SettingsAdvanced = () => {
         <Text color='process_create.meta_description' fontSize='sm'>
           {t('form.process_create.behavior.overwrite.description')}
         </Text>
+        <Text color='process_create.meta_description' fontSize='sm'>
+          {t('form.process_create.behavior.anonymous.description')}
+        </Text>
       </Box>
       <Flex flexGrow={1} justifyContent={{ base: 'center', sm: 'start' }} gap={10}>
         <Checkbox {...register('electionType.secretUntilTheEnd')} variant='radiobox'>
@@ -32,6 +36,12 @@ const SettingsAdvanced = () => {
           <Flex flexDirection='column' alignItems='center' gap={3} mt={1}>
             <Icon as={BiCheckDouble} />
             <Text fontSize='sm'>{t('form.process_create.behavior.overwrite.title')}</Text>
+          </Flex>
+        </Checkbox>
+        <Checkbox {...register('electionType.anonymous')} variant='radiobox'>
+          <Flex flexDirection='column' alignItems='center' gap={3} mt={1}>
+            <Icon as={FaUserSecret} />
+            <Text fontSize='sm'>{t('form.process_create.behavior.anonymous.title')}</Text>
           </Flex>
         </Checkbox>
       </Flex>
