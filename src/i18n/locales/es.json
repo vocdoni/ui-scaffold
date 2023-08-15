@@ -105,6 +105,10 @@
     "process_create": {
       "alert_info_title": "Info",
       "behavior": {
+        "anonymous": {
+          "description": "Anónimo: los votos serán encriptados",
+          "title": "Anónimo"
+        },
         "overwrite": {
           "description": "Sobrescribir voto: Permitir a los votantes corregir el voto una vez.",
           "title": "Sobrescribir voto"
