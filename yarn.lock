@@ -2447,6 +2447,14 @@
     long "^5.2.1"
     protobufjs "^7.1.2"
 
+"@vocdoni/proto@1.15.3":
+  version "1.15.3"
+  resolved "https://registry.yarnpkg.com/@vocdoni/proto/-/proto-1.15.3.tgz#205fddbd4a754747ebcf5a87d85daee38e08a72f"
+  integrity sha512-2ieY2vm7IVpMuPRUEOuslWcqlUPfI0hTcTz5rReyYLIXEQ//tkjWUIQCa5c5eSo05+iPf7GPJMpkVBkOgH3kXw==
+  dependencies:
+    long "^5.2.1"
+    protobufjs "^7.1.2"
+
 "@vocdoni/react-providers@0.1.3":
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.1.3.tgz#13f3115cf0c7aee356d2270b815acae15df40fe1"
@@ -2474,6 +2482,35 @@
     axios "0.27.2"
     blake2b "^2.1.4"
     iso-language-codes "^1.1.0"
+    tiny-invariant "^1.3.1"
+    tweetnacl "^1.0.3"
+    wasmbuilder "^0.0.16"
+    wasmcurves "0.2.1"
+    web-worker "^1.2.0"
+    yup "^0.32.11"
+
+"@vocdoni/sdk@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@vocdoni/sdk/-/sdk-0.1.1.tgz#ebb40164c09a516a77f9222b92d912c578c224af"
+  integrity sha512-Z673X4lukKNO7EHFriI2JA0JVMfJ+AdS+UusawcZzNAdHAmCPdzrskjsL9MiYLRwOIYX+0osa/YsfnLvx/FwqA==
+  dependencies:
+    "@ethersproject/abstract-signer" "^5.7.0"
+    "@ethersproject/address" "^5.7.0"
+    "@ethersproject/bignumber" "^5.7.0"
+    "@ethersproject/bytes" "^5.7.0"
+    "@ethersproject/keccak256" "^5.7.0"
+    "@ethersproject/providers" "^5.7.1"
+    "@ethersproject/sha2" "^5.7.0"
+    "@ethersproject/signing-key" "^5.7.0"
+    "@ethersproject/strings" "^5.7.0"
+    "@ethersproject/units" "^5.7.0"
+    "@ethersproject/wallet" "^5.7.0"
+    "@size-limit/file" "^8.2.4"
+    "@vocdoni/proto" "1.15.3"
+    axios "0.27.2"
+    blake2b "^2.1.4"
+    iso-language-codes "^1.1.0"
+    readable-stream "^4.4.2"
     tiny-invariant "^1.3.1"
     tweetnacl "^1.0.3"
     wasmbuilder "^0.0.16"
@@ -2892,6 +2929,13 @@ abitype@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/abitype/-/abitype-0.3.0.tgz#75150e337d88cc0b2423ed0d3fc36935f139d04c"
   integrity sha512-0YokyAV4hKMcy97Pl+6QgZBlBdZJN2llslOs7kiFY+cu7kMlVXDBpxMExfv0krzBCQt2t7hNovpQ3y/zvEm18A==
+
+abort-controller@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/abort-controller/-/abort-controller-3.0.0.tgz#eaf54d53b62bae4138e809ca225c8439a6efb392"
+  integrity sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg==
+  dependencies:
+    event-target-shim "^5.0.0"
 
 adler-32@~1.3.0:
   version "1.3.1"
@@ -3927,6 +3971,11 @@ ethers@^5.7.2:
     "@ethersproject/wallet" "5.7.0"
     "@ethersproject/web" "5.7.1"
     "@ethersproject/wordlists" "5.7.0"
+
+event-target-shim@^5.0.0:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/event-target-shim/-/event-target-shim-5.0.1.tgz#5d4d3ebdf9583d63a5333ce2deb7480ab2b05789"
+  integrity sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==
 
 eventemitter3@^4.0.7:
   version "4.0.7"
@@ -5781,6 +5830,11 @@ process-warning@^1.0.0:
   resolved "https://registry.yarnpkg.com/process-warning/-/process-warning-1.0.0.tgz#980a0b25dc38cd6034181be4b7726d89066b4616"
   integrity sha512-du4wfLyj4yCZq1VupnVSZmRsPJsNuxoDQFdCFHLaYiEbFBD7QE0a+I4D7hOxrVnh78QE/YipFAj9lXHiXocV+Q==
 
+process@^0.11.10:
+  version "0.11.10"
+  resolved "https://registry.yarnpkg.com/process/-/process-0.11.10.tgz#7332300e840161bda3e69a1d1d91a7d4bc16f182"
+  integrity sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A==
+
 promise-map-series@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/promise-map-series/-/promise-map-series-0.3.0.tgz#41873ca3652bb7a042b387d538552da9b576f8a1"
@@ -6125,6 +6179,17 @@ readable-stream@^2.0.0, readable-stream@^2.0.1, readable-stream@^2.0.5, readable
     safe-buffer "~5.1.1"
     string_decoder "~1.1.1"
     util-deprecate "~1.0.1"
+
+readable-stream@^4.4.2:
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-4.4.2.tgz#e6aced27ad3b9d726d8308515b9a1b98dc1b9d13"
+  integrity sha512-Lk/fICSyIhodxy1IDK2HazkeGjSmezAWX2egdtJnYhtzKEsBPJowlI6F6LPb5tqIQILrMbx22S5o3GuJavPusA==
+  dependencies:
+    abort-controller "^3.0.0"
+    buffer "^6.0.3"
+    events "^3.3.0"
+    process "^0.11.10"
+    string_decoder "^1.3.0"
 
 real-require@^0.1.0:
   version "0.1.0"
@@ -6481,7 +6546,7 @@ string-width@^4.1.0, string-width@^4.2.0:
     is-fullwidth-code-point "^3.0.0"
     strip-ansi "^6.0.1"
 
-string_decoder@^1.1.1:
+string_decoder@^1.1.1, string_decoder@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-1.3.0.tgz#42f114594a46cf1a8e30b0a84f56c78c3edac21e"
   integrity sha512-hkRX8U1WjJFd8LsDJ2yQ/wWWxaopEsABU1XfkM8A+j0+85JAGppt16cr1Whg6KIbb4okU6Mql6BOj+uup/wKeA==
