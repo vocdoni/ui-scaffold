@@ -10,8 +10,7 @@
     "@emotion/styled": "^11.11.0",
     "@ethersproject/abstract-signer": "^5.7.0",
     "@rainbow-me/rainbowkit": "^0.12.16",
-    "@vocdoni/chakra-components": "^0.5.6",
-    "@vocdoni/react-providers": "^0.1.4",
+    "@vocdoni/chakra-components": "^0.5.8",
     "@vocdoni/sdk": "^0.1.1",
     "chakra-react-select": "^4.6.0",
     "date-fns": "^2.30.0",
@@ -79,7 +78,6 @@
   },
   "packageManager": "yarn@1.22.19",
   "resolutions": {
-    "i18next": "^23.2.11",
-    "@vocdoni/react-providers": "0.1.4"
+    "i18next": "^23.2.11"
   }
 }
