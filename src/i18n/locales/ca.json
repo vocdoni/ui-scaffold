@@ -266,6 +266,12 @@
     }
   },
   "process": {
+    "census": "",
+    "census_strategies": {
+      "spreadsheet": "",
+      "token": "",
+      "web3": ""
+    },
     "created_by": "Creat per",
     "date": {
       "ended": "Procés finalitzat",
@@ -290,6 +296,7 @@
       "upcoming": "Previst"
     },
     "strategy": "Estratègia",
+    "token_type": "",
     "voters": "Votants",
     "voting_type": "Tipo de elección"
   },

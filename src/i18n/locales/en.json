@@ -262,6 +262,12 @@
     }
   },
   "process": {
+    "census": "Census",
+    "census_strategies": {
+      "spreadsheet": "CSV/Spreadsheet",
+      "token": "Token",
+      "web3": "Web3 addresses"
+    },
     "created_by": "Created by",
     "date": {
       "ended": "Process ended",
@@ -286,6 +292,7 @@
       "upcoming": "Upcoming"
     },
     "strategy": "Strategy",
+    "token_type": "Type of token",
     "voters": "Voters",
     "voting_type": "Voting type"
   },
