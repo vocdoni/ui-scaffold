@@ -105,6 +105,10 @@
     "process_create": {
       "alert_info_title": "Informació",
       "behavior": {
+        "anonymous": {
+          "description": "Anònim: els vots seran xifrats",
+          "title": "Anònim"
+        },
         "overwrite": {
           "description": "Sobreescriptura del vot: Permet als votants corregir el vot un cop.",
           "title": "Sobreescriure"
