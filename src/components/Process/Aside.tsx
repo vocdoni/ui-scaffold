@@ -81,7 +81,7 @@ const ProcessAside = ({ ...props }) => {
                 <Text>{t('aside.has_already_voted').toString()}</Text>
               </Box>
             )}
-            {hasOverwriteEnabled(election) && isInCensus && voted && (
+            {hasOverwriteEnabled(election) && isInCensus && votesLeft > 0 && voted && (
               <Text>{t('aside.overwrite_votes_left', { left: votesLeft })}</Text>
             )}
           </Flex>
