@@ -89,12 +89,24 @@ const ProcessHeader = () => {
               <Text>{election.meta.token.defaultStrategy === 1 && 'Single choice'}</Text>
             </Box>
           )}
-          {election?.meta?.token && (
+          <Box>
+            <Text color='process.date' fontWeight='bold'>
+              {t('process.census')}
+            </Text>
+            <Text>{election?.maxCensusSize}</Text>
+          </Box>
+          <Box>
+            <Text color='process.date' fontWeight='bold'>
+              {t('process.strategy')}
+            </Text>
+            <Text>{useStrategy()}</Text>
+          </Box>
+          {typeof election?.get('token.type') === 'string' && (
             <Box>
               <Text color='process.date' fontWeight='bold'>
-                {t('process.strategy')}
+                {t('process.token_type')}
               </Text>
-              <Text textTransform='capitalize'>{election.meta?.token.type}</Text>
+              <Text textTransform='capitalize'>{election.get('token.type')}</Text>
             </Box>
           )}
           <Box>
@@ -156,6 +168,27 @@ const useReadMore = (containerHeight: number, lines: number, tag: string) => {
     handleReadMore,
     isTruncated,
   }
+}
+
+const useStrategy = () => {
+  const { t } = useTranslation()
+  const { election } = useElection()
+  const strategies = {
+    spreadsheet: t('process.census_strategies.spreadsheet'),
+    token: t('process.census_strategies.token'),
+    web3: t('process.census_strategies.web3'),
+  }
+
+  if (!election || (election && !election.meta.census)) return ''
+
+  const type = election.get('census.type')
+
+  if (typeof strategies[type] === 'undefined') {
+    console.warn('unknown census type:', type)
+    return ''
+  }
+
+  return strategies[type]
 }
 
 export default ProcessHeader
