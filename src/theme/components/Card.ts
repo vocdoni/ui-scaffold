@@ -114,6 +114,7 @@ const detailed = definePartsStyle({
     justifyContent: 'space-between',
 
     '& a': {
+      w: '100%',
       '& > p:first-of-type': {
         textAlign: 'start',
         fontSize: 'xl2',
