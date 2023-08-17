@@ -145,6 +145,7 @@
         "wallet_address_title": "Adreces de cartera"
       },
       "confirm": {
+        "anonymous": "Anònim",
         "census": "Cens",
         "census_preview_is_shortened": "(la llista prèvia està limitada a {{ limit }} resultats)",
         "census_total_people_one": "Una persona podrà votar en aquesta votació",
