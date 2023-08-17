@@ -263,14 +263,15 @@
       "footer": "Obtén més informació sobre com crear eleccions <tos>en aquesta guia</tos>.",
       "not_owner": "Aquesta organització encara no té eleccions.",
       "title": "Crea la teva primera elecció"
-    }
+    },
+    "name_long": "<strong>{{ name }}</strong> ({{ address }})"
   },
   "process": {
-    "census": "",
+    "census": "Cens",
     "census_strategies": {
-      "spreadsheet": "",
-      "token": "",
-      "web3": ""
+      "spreadsheet": "CSV",
+      "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
+      "web3": "Adreces Web3"
     },
     "created_by": "Creat per",
     "date": {
@@ -284,6 +285,9 @@
       "title": "Anònim"
     },
     "is_invalid": "Aquest procés té dades no vàlides i per tant no pot carregar-se",
+    "people_in_census_one": "Un votant",
+    "people_in_census_many": "",
+    "people_in_census_other": "{{ count }} votants",
     "questions": "Preguntes",
     "results": "Resultats",
     "status": {
@@ -296,9 +300,7 @@
       "upcoming": "Previst"
     },
     "strategy": "Estratègia",
-    "token_type": "",
-    "voters": "Votants",
-    "voting_type": "Tipo de elección"
+    "voters": "Votants"
   },
   "process_actions": {
     "pause": "Pausa",
