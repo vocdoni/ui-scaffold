@@ -39,9 +39,7 @@ const card = definePartsStyle({
   },
 })
 const process = definePartsStyle({
-  root: {
-    w: { base: '100%', xl: '70%' },
-  },
+  root: {},
   tab: {
     position: 'relative',
     whiteSpace: 'nowrap',
@@ -53,10 +51,10 @@ const process = definePartsStyle({
     '&:after': {
       content: "''",
       position: 'absolute',
-      mr: '-100.3%',
+      // mr: '-100.3%',
       h: '28px',
-      borderRight: '1px solid',
-      borderColor: 'process.tabs.divider',
+      // borderRight: '1px solid',
+      // borderColor: 'process.tabs.divider',
     },
 
     '&:last-of-type:after': {

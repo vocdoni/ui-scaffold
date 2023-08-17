@@ -30,9 +30,9 @@ const ProcessHeader = () => {
           <OrganizationName as='span' overflow='hidden' fontSize='sm' isTruncated />
         </Button>
       </Link>
-      <Flex direction={{ base: 'column', xl: 'row' }} mb={7} gap={{ base: 2, xl: 10 }}>
-        <Box flexBasis='70%' flexGrow={0} flexShrink={0}>
-          <ElectionTitle fontSize='xl5' textAlign='left' mb={5} />
+      <Flex direction={{ base: 'column', xl: 'row' }} mb={7} gap={{ xl: 10 }}>
+        <Box flexGrow={1}>
+          <ElectionTitle fontSize='xl4' textAlign='left' mb={5} />
           <Flex
             gap={4}
             flexDirection={{ base: 'column', md: 'row' }}
@@ -56,7 +56,7 @@ const ProcessHeader = () => {
               },
             }}
           >
-            <ElectionDescription mb={0} fontSize='lg' lineHeight={2} color='process.description' />
+            <ElectionDescription mb={0} fontSize='lg' lineHeight={2.5} color='process.description' />
             {isTruncated && (
               <Button variant='link' colorScheme='primary' alignSelf='center' onClick={handleReadMore}>
                 {readMore ? ' Read less' : 'Read more'}
@@ -65,7 +65,7 @@ const ProcessHeader = () => {
           </Flex>
         </Box>
 
-        <Flex flexDirection='column' alignItems='start' gap={4} pl={{ xl: 5 }}>
+        <Flex flexDirection='column' alignItems='start' gap={4} minW={96}>
           {election?.status !== ElectionStatus.CANCELED ? (
             <ProcessDate />
           ) : (

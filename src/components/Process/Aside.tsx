@@ -31,6 +31,7 @@ const ProcessAside = ({ ...props }) => {
         color='process.results.aside.color'
         background='aside_bg'
         borderRadius='lg'
+        boxShadow='var(--box-shadow-banner)'
         {...props}
       >
         <Text textAlign='center' fontSize='xl3' lineHeight={1}>

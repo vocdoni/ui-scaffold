@@ -1,4 +1,4 @@
-import { Flex, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
+import { Box, Flex, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
 import { ElectionQuestions, ElectionResults } from '@vocdoni/chakra-components'
 import { useElection } from '@vocdoni/react-providers'
 import { ElectionStatus } from '@vocdoni/sdk'
@@ -22,10 +22,10 @@ export const ProcessView = () => {
   }, [election])
 
   return (
-    <>
+    <Box>
       <Header />
-      <Flex direction={{ base: 'column', xl: 'row' }} alignItems='start'>
-        <Tabs variant='process' index={tabIndex} onChange={handleTabsChange}>
+      <Flex direction={{ base: 'column', xl: 'row' }} gap={{ xl: 10 }} alignItems='start'>
+        <Tabs variant='process' index={tabIndex} onChange={handleTabsChange} flexGrow={1}>
           <TabList>
             <Tab>{t('process.questions')}</Tab>
             {election?.status !== ElectionStatus.CANCELED && <Tab>{t('process.results')}</Tab>}
@@ -44,12 +44,12 @@ export const ProcessView = () => {
           position='sticky'
           bottom={{ base: 'px', xl: undefined }}
           top={{ xl: 20 }}
-          w={{ base: '100%', xl: '30%' }}
+          mx='auto'
           mt={{ xl: 10 }}
         >
           <ProcessAside />
         </Flex>
       </Flex>
-    </>
+    </Box>
   )
 }
