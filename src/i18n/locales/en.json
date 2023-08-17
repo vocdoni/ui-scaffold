@@ -259,13 +259,14 @@
       "footer": "Learn more about creating elections <tos>in this guide</tos>.",
       "not_owner": "This organization has no elections yet",
       "title": "Create your first election"
-    }
+    },
+    "name_long": "<strong>{{ name }}</strong> ({{ address }})"
   },
   "process": {
     "census": "Census",
     "census_strategies": {
       "spreadsheet": "CSV/Spreadsheet",
-      "token": "Token",
+      "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
       "web3": "Web3 addresses"
     },
     "created_by": "Created by",
@@ -280,6 +281,8 @@
       "title": "Anonymous"
     },
     "is_invalid": "This process has wrong data, thus making it invalid",
+    "people_in_census_one": "One voter",
+    "people_in_census_other": "{{ count }} voters",
     "questions": "Questions",
     "results": "Results",
     "status": {
@@ -292,9 +295,7 @@
       "upcoming": "Upcoming"
     },
     "strategy": "Strategy",
-    "token_type": "Type of token",
-    "voters": "Voters",
-    "voting_type": "Voting type"
+    "voters": "Voters"
   },
   "process_actions": {
     "pause": "pause",

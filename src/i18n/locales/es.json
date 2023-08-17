@@ -263,14 +263,15 @@
       "footer": "Obtén más información sobre cómo crear elecciones <tos>en esta guía</tos>.",
       "not_owner": "Esta organización aún no tiene elecciones.",
       "title": "Crea tu primera elección"
-    }
+    },
+    "name_long": "<strong>{{ name }}</strong> ({{ address }})"
   },
   "process": {
-    "census": "",
+    "census": "Censo",
     "census_strategies": {
-      "spreadsheet": "",
-      "token": "",
-      "web3": ""
+      "spreadsheet": "CSV",
+      "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
+      "web3": "Direcciones web3"
     },
     "created_by": "Creado por",
     "date": {
@@ -284,6 +285,9 @@
       "title": "Anónimo"
     },
     "is_invalid": "Este proceso tiene datos no válidos y no se puede cargar",
+    "people_in_census_one": "Un votante",
+    "people_in_census_many": "",
+    "people_in_census_other": "{{ count }} votantes",
     "questions": "Preguntas",
     "results": "Resultados",
     "status": {
@@ -296,9 +300,7 @@
       "upcoming": "Próximo"
     },
     "strategy": "Estrategia",
-    "token_type": "",
-    "voters": "Votantes",
-    "voting_type": "Tipo de votación"
+    "voters": "Votantes"
   },
   "process_actions": {
     "pause": "pausar",
