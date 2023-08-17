@@ -145,6 +145,7 @@
         "wallet_address_title": "Direcciones de cartera"
       },
       "confirm": {
+        "anonymous": "Anónimo",
         "census": "Censo",
         "census_preview_is_shortened": "(la lista previa está limitada a {{ limit }} resultados)",
         "census_total_people_one": "Una persona podrá votar en esta votación",

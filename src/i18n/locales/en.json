@@ -144,6 +144,7 @@
         "wallet_address_title": "Wallet addresses"
       },
       "confirm": {
+        "anonymous": "Anonymous",
         "census": "Census",
         "census_preview_is_shortened": "(preview list is limited to {{ limit }} results)",
         "census_total_people_one": "A single person will be elegible for voting in this election",
