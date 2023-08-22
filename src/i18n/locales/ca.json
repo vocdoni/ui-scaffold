@@ -107,6 +107,10 @@
     "process_create": {
       "alert_info_title": "Informació",
       "behavior": {
+        "anonymous": {
+          "description": "Anònim: els vots seran xifrats",
+          "title": "Anònim"
+        },
         "overwrite": {
           "description": "Sobreescriptura del vot: Permet als votants corregir el vot un cop.",
           "title": "Sobreescriure"
@@ -143,6 +147,7 @@
         "wallet_address_title": "Adreces de cartera"
       },
       "confirm": {
+        "anonymous": "Anònim",
         "census": "Cens",
         "census_preview_is_shortened": "(la llista prèvia està limitada a {{ limit }} resultats)",
         "census_total_people_one": "Una persona podrà votar en aquesta votació",
@@ -264,9 +269,16 @@
       "footer": "Obtén més informació sobre com crear eleccions <tos>en aquesta guia</tos>.",
       "not_owner": "Aquesta organització encara no té eleccions.",
       "title": "Crea la teva primera elecció"
-    }
+    },
+    "name_long": "<strong>{{ name }}</strong> ({{ address }})"
   },
   "process": {
+    "census": "Cens",
+    "census_strategies": {
+      "spreadsheet": "CSV",
+      "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
+      "web3": "Adreces Web3"
+    },
     "created_by": "Creat per",
     "date": {
       "ended": "Procés finalitzat",
@@ -274,7 +286,14 @@
       "relative": "{{ date, relative(past: fa %time; future: en %time) }}",
       "starts": "Comença el procés"
     },
+    "is_anonymous": {
+      "description": "Els vots són encriptats",
+      "title": "Anònim"
+    },
     "is_invalid": "Aquest procés té dades no vàlides i per tant no pot carregar-se",
+    "people_in_census_one": "Un votant",
+    "people_in_census_many": "",
+    "people_in_census_other": "{{ count }} votants",
     "questions": "Preguntes",
     "results": "Resultats",
     "status": {
@@ -287,8 +306,7 @@
       "upcoming": "Previst"
     },
     "strategy": "Estratègia",
-    "voters": "Votants",
-    "voting_type": "Tipo de elección"
+    "voters": "Votants"
   },
   "process_actions": {
     "pause": "Pausa",

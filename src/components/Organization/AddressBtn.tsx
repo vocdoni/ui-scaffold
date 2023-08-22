@@ -1,7 +1,6 @@
 import { CopyIcon, ExternalLinkIcon } from '@chakra-ui/icons'
 import { Button, Menu, MenuButton, MenuItem, MenuList, Text, useClipboard, useToast } from '@chakra-ui/react'
-import { addressTextOverflow } from '@components/Navbar/Account'
-import { ExplorerBaseURL } from '@constants'
+import { ExplorerBaseURL, addressTextOverflow } from '@constants'
 import { enforceHexPrefix, useOrganization } from '@vocdoni/react-providers'
 import { useTranslation } from 'react-i18next'
 import { HiOutlineEllipsisHorizontalCircle } from 'react-icons/hi2'

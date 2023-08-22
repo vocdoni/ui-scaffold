@@ -93,7 +93,7 @@ export const colors = {
 
   process: {
     canceled: colorsBase.primary.main,
-    date: colorsBase.primary.main,
+    info_title: colorsBase.primary.main,
     description: colorsBase.gray.dark2,
     header_divider: colorsBase.gray.dark,
     identify_button_bg: colorsBase.primary.main,
