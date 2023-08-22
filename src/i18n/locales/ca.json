@@ -90,6 +90,8 @@
       "title_helper": "El nom de l'organització",
       "title_placeholder": "El nom de l'organització"
     },
+    "delete_option": "Eliminar imatge",
+    "delete_picture": "Eliminar opció",
     "edit_profile": {
       "avatar_helper": "Imatge/Logotip de la teva organització",
       "avatar_placeholder": "URL de la imatge",
@@ -181,7 +183,9 @@
       "previous_step": "Anterior",
       "question": {
         "add_new_option": "Afegeix una nova opció",
+        "add_question": "Afegir pregunta",
         "aside": "Títol de la pregunta",
+        "delete_question": "Borrar pregunta {{ title }}",
         "description_placeholder": "Escriu aquí una descripció de la pregunta (opcional)",
         "option_placeholder": "Opció",
         "title_placeholder": "El títol de la teva pregunta..."
@@ -226,6 +230,7 @@
       "success_description": "Redirigint-te a la pàgina del procés electoral...",
       "success_title": "Procés electoral creat amb èxit",
       "unhealthy_account": "Has de crear una organització abans de crear la primera elecció.",
+      "web3_add_address": "Afegir nova adreça",
       "weighted": "Vot ponderat"
     }
   },
@@ -244,6 +249,7 @@
     "create": "Crear procés",
     "create_process": "Crear procés",
     "disconnect": "Desconnectar cartera",
+    "main_menu": "menú principal",
     "my_list": "La meva llista",
     "organization": "Editar Organització",
     "support": "Ajuda"

@@ -25,10 +25,7 @@ const AddressBtn = ({ ...props }) => {
           display='flex'
           justifyContent='start'
           alignItems='center'
-          as={Button}
-          variant='dropdown'
-          textAlign='start'
-          leftIcon={<CopyIcon />}
+          gap={2}
           onClick={() => {
             toast({
               title: t('copy.copied_title'),
@@ -37,18 +34,17 @@ const AddressBtn = ({ ...props }) => {
             onCopy()
           }}
         >
-          {t('copy.address')}
+          <CopyIcon /> {t('copy.address')}
         </MenuItem>
 
         <MenuItem
-          as={Button}
-          variant='dropdown'
           display='flex'
           justifyContent='start'
           alignItems='center'
-          leftIcon={<ExternalLinkIcon />}
+          gap={2}
           onClick={() => window.open(`${ExplorerBaseURL}/organizations/show/#/${address}`, '_blank')}
         >
+          <ExternalLinkIcon />
           {t('open_in_explorer')}
         </MenuItem>
       </MenuList>

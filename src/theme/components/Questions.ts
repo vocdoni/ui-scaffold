@@ -128,6 +128,10 @@ const baseStyle = definePartsStyle({
 
   radio: {
     display: 'none',
+
+    '&:focus': {
+      display: 'block',
+    },
   },
   error: {
     display: 'flex',

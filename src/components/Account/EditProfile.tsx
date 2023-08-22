@@ -10,6 +10,7 @@ import {
   IconButton,
   Image,
   Input,
+  MenuItem,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -92,9 +93,9 @@ const EditProfile = () => {
 
   return (
     <>
-      <Button onClick={onOpen} display='flex' justifyContent='end' variant='dropdown'>
+      <MenuItem onClick={onOpen} display='block' textAlign='end'>
         {t('menu.organization')}
-      </Button>
+      </MenuItem>
       <Modal isOpen={isOpen} onClose={() => !loading && onClose()}>
         <ModalOverlay />
         <ModalContent p={3} minW={{ md: '700px' }}>
@@ -125,7 +126,8 @@ const EditProfile = () => {
                     </AspectRatio>
                     {correctAvatarFormat(avatar) && (
                       <IconButton
-                        aria-label='trash icon'
+                        aria-label={t('form.delete_picture')}
+                        title={t('form.delete_picture')}
                         icon={<BiTrash />}
                         onClick={() => setValue('avatar', '')}
                         position='absolute'

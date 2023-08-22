@@ -1,5 +1,5 @@
 import { WarningIcon } from '@chakra-ui/icons'
-import { Box, Button, Flex, Icon, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Icon, Link, Text } from '@chakra-ui/react'
 import {
   ElectionActions,
   ElectionDescription,
@@ -13,7 +13,7 @@ import { ElectionStatus } from '@vocdoni/sdk'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaRegArrowAltCircleLeft } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { Link as ReactRouterLink } from 'react-router-dom'
 import { ProcessDate } from './Date'
 
 const ProcessHeader = () => {
@@ -25,10 +25,9 @@ const ProcessHeader = () => {
 
   return (
     <Box mb={4}>
-      <Link to={`/organization/0x${election?.organizationId}`}>
-        <Button leftIcon={<FaRegArrowAltCircleLeft />} mb={5} maxW={40}>
-          <OrganizationName as='span' overflow='hidden' fontSize='sm' isTruncated />
-        </Button>
+      <Link as={ReactRouterLink} variant='button' maxW={40} to={`/organization/0x${election?.organizationId}`}>
+        <Icon as={FaRegArrowAltCircleLeft} />
+        <OrganizationName as='span' overflow='hidden' fontSize='sm' isTruncated />
       </Link>
       <Flex direction={{ base: 'column', xl: 'row' }} mb={7} gap={{ base: 2, xl: 10 }}>
         <Box flexBasis='70%' flexGrow={0} flexShrink={0}>

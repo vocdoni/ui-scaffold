@@ -14,10 +14,10 @@ const SettingsAdvanced = () => {
         <Text fontWeight='bold' mb={1}>
           {t('form.process_create.behavior.title')}
         </Text>
-        <Text color='process_create.meta_description' fontSize='sm' mb={3}>
+        <Text color='process_create.description' fontSize='sm' mb={3}>
           {t('form.process_create.behavior.secret.description')}
         </Text>
-        <Text color='process_create.meta_description' fontSize='sm'>
+        <Text color='process_create.description' fontSize='sm'>
           {t('form.process_create.behavior.overwrite.description')}
         </Text>
       </Box>

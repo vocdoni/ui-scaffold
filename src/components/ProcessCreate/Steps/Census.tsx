@@ -27,7 +27,8 @@ export const Census = () => {
             <Text color='process_create.description'>{t('form.process_create.census.description')}</Text>
           </Box>
           <Tabs
-            defaultIndex={CensusTypes.findIndex((val) => val === censusType)}
+            // defaultIndex={CensusTypes.findIndex((val) => val === censusType)}
+            defaultIndex={!censusType ? 0 : CensusTypes.findIndex((val) => val === censusType)}
             onChange={(index) => {
               const nform: StepsFormValues = { ...form, censusType: CensusTypes[index] }
               // ensure maxCensusSize is only set on token-based censuses

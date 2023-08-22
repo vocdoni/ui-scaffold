@@ -8,11 +8,9 @@ export const colorsBase = {
   gradient: 'var(--vcd-gradient-primary)',
   gray: {
     light: '#EDF2F7',
-    light2: '#fefefe',
-    light3: '#f1f1f1',
     main: '#E2E8F0',
     dark: '#CBD5E0',
-    dark2: '#677680',
+    dark2: '#606f88',
   },
   primary: {
     light: '#24656e',
@@ -30,19 +28,14 @@ export const colors = {
     600: colorsBase.primary.light,
     700: colorsBase.primary.dark,
   },
-
   button: {
-    drop_down: {
-      active: colorsBase.gray.dark,
-      hover: colorsBase.gray.main,
-    },
+    dropdown_selected_color: colorsBase.gray.dark,
   },
 
   checkbox_radiobox_bg: colorsBase.white,
 
   card: {
-    description: colorsBase.gray.dark2,
-    footer_divider: colorsBase.gray.dark,
+    footer_divider: colorsBase.gray.main,
     footer_title: colorsBase.primary.dark,
     header: colorsBase.primary.main,
   },
@@ -56,10 +49,26 @@ export const colors = {
     counter: colorsBase.gradient,
   },
 
-  language_selected_bg: colorsBase.gray.dark,
+  link: {
+    primary: colorsBase.primary.main,
+    button: {
+      primary: {
+        500: colorsBase.primary.main,
+        600: colorsBase.primary.light,
+        700: colorsBase.primary.dark,
+      },
 
-  link: colorsBase.primary.main,
+      transparent: {
+        500: 'transparent',
+        600: colorsBase.gray.main,
+        700: colorsBase.gray.dark,
+      },
 
+      500: colorsBase.gray.light,
+      600: colorsBase.gray.main,
+      700: colorsBase.gray.dark,
+    },
+  },
   navbar: {
     account_icon: colorsBase.gradient,
     bg: colorsBase.white,
@@ -67,8 +76,8 @@ export const colors = {
 
   organization: {
     card_detailed: {
-      footer_bg: colorsBase.gray.light2,
-      footer_border: colorsBase.gray.light3,
+      description: colorsBase.gray.dark2,
+      footer_bg: colorsBase.gray.light,
     },
     election_list_empty_bg: colorsBase.gray.light,
 
@@ -135,17 +144,19 @@ export const colors = {
     },
     aside_questions_bg: colorsBase.gray.light,
     bg: colorsBase.gray.light,
-    preview: {
-      census_web3_text_helper: colorsBase.gray.dark2,
-      description: colorsBase.gray.dark2,
-      option: colorsBase.gray.dark2,
-      option_before_color: colorsBase.black,
-    },
+
     border: colorsBase.gray.dark,
     census_box_bg: colorsBase.white,
     description_logo: colorsBase.blue.main,
     input_bg: colorsBase.white,
-    meta_description: colorsBase.gray.dark2,
+    description: colorsBase.gray.dark2,
+    preview: {
+      census_web3_text_helper: colorsBase.gray.dark2,
+      edit_icon: colorsBase.primary.main,
+      question_description: colorsBase.gray.dark2,
+      option: colorsBase.gray.dark2,
+      option_before_color: colorsBase.black,
+    },
     stepper: colorsBase.primary.main,
     spreadsheet: {
       badge: {
@@ -161,8 +172,8 @@ export const colors = {
     },
     tabs: {
       card: {
-        color: colorsBase.gray.dark2,
-        color_title: colorsBase.gray.dark2,
+        color: colorsBase.gray.dark,
+        color_title: colorsBase.gray.dark,
         selected_color: colorsBase.primary.main,
       },
     },

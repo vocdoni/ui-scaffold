@@ -4,7 +4,6 @@ import Counters from '@components/Home/Counters'
 import OrganizationCard, { CardOrgContents } from '@components/Organization/Card'
 import ProcessCardLite, { CardPrImgContents } from '@components/Process/CardLite'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
 
 const CARDS_ORG: CardOrgContents[] = [
   {
@@ -222,11 +221,9 @@ const Home = () => {
         rowGap={10}
       >
         {CARDS_ORG.map((card, index) => (
-          <Link to={`/organization/4a081070E9D555b5D19629a6bcc8B77f4aE6d39c`} key={index}>
-            <GridItem display='flex' justifyContent='center'>
-              <OrganizationCard card={card} />
-            </GridItem>
-          </Link>
+          <GridItem key={index} display='flex' justifyContent='center'>
+            <OrganizationCard card={card} />
+          </GridItem>
         ))}
       </Grid>
     </Box>

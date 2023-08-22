@@ -114,6 +114,8 @@ export const CensusWeb3Addresses = () => {
                 message: t('form.error.address_pattern'),
               },
             })}
+            aria-label={t('form.process_create.web3_add_address')}
+            placeholder={t('form.process_create.web3_add_address')}
             w={{ base: 52, sm: 72, md: 100 }}
             onKeyUp={(e) => {
               // avoid submitting form on enter
@@ -161,7 +163,7 @@ export const CensusWeb3Addresses = () => {
               size='xs'
               type='button'
               icon={<DeleteIcon />}
-              aria-label='delete option'
+              aria-label={t('form.delete_option')}
               onClick={() => remove(index)}
               ml='auto'
             />

@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Checkbox,
   Flex,
   FormControl,
@@ -19,8 +18,8 @@ import { BiDownload } from 'react-icons/bi'
 import { PiWarningCircleLight } from 'react-icons/pi'
 import { RiFileExcel2Line } from 'react-icons/ri'
 import { CensusSpreadsheetManager } from './CensusSpreadsheetManager'
-import { CsvGenerator } from './generator'
 import { CsvPreview } from './Preview'
+import { CsvGenerator } from './generator'
 
 export const CensusCsvManager = () => {
   const { t } = useTranslation()
@@ -122,10 +121,10 @@ export const CensusCsvManager = () => {
           mx='auto'
         >
           <Text textAlign='center'>{t('form.process_create.spreadsheet.download_template_description')}</Text>
-          <Link download={'census-template.csv'} href={template.url}>
-            <Button leftIcon={<BiDownload />} colorScheme='primary' variant='ghost' border='1px solid'>
-              {t('form.process_create.spreadsheet.download_template_btn')}
-            </Button>
+
+          <Link download={'census-template.csv'} variant='button' colorScheme='primary-outlined' href={template.url}>
+            <BiDownload />
+            {t('form.process_create.spreadsheet.download_template_btn')}
           </Link>
         </Flex>
       </Flex>

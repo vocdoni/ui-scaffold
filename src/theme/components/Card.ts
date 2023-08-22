@@ -91,11 +91,20 @@ const detailed = definePartsStyle({
     ...cardCommonStyles.container,
     w: { base: 84, sm: 96 },
     height: 70,
+    position: 'relative',
     display: 'flex',
     flexDirection: 'column',
     boxShadow: 'var(--box-shadow)',
     transition: 'box-shadow .2s',
     borderRadius: 'lg',
+
+    '& > a': {
+      position: 'absolute',
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+    },
 
     _hover: {
       boxShadow: 'var(--box-shadow-darker)',
@@ -105,15 +114,15 @@ const detailed = definePartsStyle({
 
   body: {
     ...cardCommonStyles.body,
-
     height: '100%',
     display: 'flex',
+
     gap: 3,
     p: 4,
     pb: 0,
     justifyContent: 'space-between',
 
-    '& a': {
+    '& > div': {
       '& > p:first-of-type': {
         textAlign: 'start',
         fontSize: 'xl2',
@@ -133,7 +142,7 @@ const detailed = definePartsStyle({
       '& > div:nth-of-type(2)': {
         '& > p:first-of-type': {
           textAlign: 'start',
-          color: 'card.description',
+          color: 'organization.card_detailed.description',
           noOfLines: 4,
           overflow: 'hidden',
           display: '-webkit-box',
@@ -153,8 +162,6 @@ const detailed = definePartsStyle({
     ...cardCommonStyles.footer,
     mt: 'auto',
     fontSize: 'sm',
-    borderTop: '.2px solid',
-    borderColor: 'organization.card_detailed.footer_border',
 
     '& > div:first-of-type': {
       display: 'flex',

@@ -6,7 +6,7 @@ import { useAccount } from 'wagmi'
 import MenuDropdown from './Menu'
 
 export const addressTextOverflow = (address: string) =>
-  `${address.substring(0, 6)}...${address.substring(address.length - 4, address.length)}`
+  `${address.substring(0, 4)}...${address.substring(address.length - 4, address.length)}`
 
 export const Account = () => {
   const { isConnected, address } = useAccount()

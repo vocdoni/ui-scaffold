@@ -90,6 +90,8 @@
       "title_helper": "El nombre de la organización",
       "title_placeholder": "El nombre de la organización"
     },
+    "delete_option": "Eliminar opción",
+    "delete_picture": "Eliminar imagen",
     "edit_profile": {
       "avatar_helper": "Imagen/Logotipo de tu organización",
       "avatar_placeholder": "URL de la imagen",
@@ -181,7 +183,9 @@
       "previous_step": "Anterior",
       "question": {
         "add_new_option": "Añadir nueva opción",
+        "add_question": "Añadir pregunta",
         "aside": "Pregunta de título",
+        "delete_question": "Borrar pregunta {{ title }}",
         "description_placeholder": "Escribe aquí una descripción de la pregunta",
         "option_placeholder": "Opción",
         "title_placeholder": "El título de tu pregunta..."
@@ -226,6 +230,7 @@
       "success_description": "Redirigiéndote a la página del proceso electoral...",
       "success_title": "Proceso electoral creado con éxito",
       "unhealthy_account": "Necesitas crear una organización antes de crear la primera votación.",
+      "web3_add_address": "Agregar nueva dirección",
       "weighted": "Voto ponderado"
     }
   },
@@ -244,6 +249,7 @@
     "create": "Crear proceso",
     "create_process": "Crear proceso",
     "disconnect": "Desconectar billetera",
+    "main_menu": "menú principal",
     "my_list": "Mi lista",
     "organization": "Editar Organización",
     "support": "Soporte"

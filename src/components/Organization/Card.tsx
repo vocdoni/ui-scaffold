@@ -1,5 +1,6 @@
 import { AspectRatio, Box, Card, CardBody, CardFooter, CardHeader, Image, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
 export interface CardOrgContents {
   name: string
@@ -12,17 +13,19 @@ export interface CardProps {
 }
 
 const OrganizationCard = ({ card }: CardProps) => (
-  <Card variant='lite'>
-    <CardHeader>
-      <OrganizationLiteHeading card={card} />
-    </CardHeader>
-    <CardBody>
-      <OrganizationLiteBody card={card} />
-    </CardBody>
-    <CardFooter>
-      <OrganizationCardFooter card={card} />
-    </CardFooter>
-  </Card>
+  <Link to={`/organization/4a081070E9D555b5D19629a6bcc8B77f4aE6d39c`}>
+    <Card variant='lite'>
+      <CardHeader>
+        <OrganizationLiteHeading card={card} />
+      </CardHeader>
+      <CardBody>
+        <OrganizationLiteBody card={card} />
+      </CardBody>
+      <CardFooter>
+        <OrganizationCardFooter card={card} />
+      </CardFooter>
+    </Card>
+  </Link>
 )
 
 export default OrganizationCard

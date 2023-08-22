@@ -1,4 +1,4 @@
-import { Box, ChakraProvider, extendTheme, Flex, Icon, Link, Text } from '@chakra-ui/react'
+import { Box, Button, ChakraProvider, extendTheme, Flex, Icon, Text } from '@chakra-ui/react'
 import { cofirmTheme } from '@theme/components/Confirm'
 import { ElectionQuestions, ElectionTitle, HR } from '@vocdoni/chakra-components'
 import { useElection } from '@vocdoni/react-providers'
@@ -36,15 +36,24 @@ const Preview = () => {
       borderColor='process_create.border'
     >
       <Flex flexDirection='column' gap={6}>
-        <Flex>
+        <Flex position='relative'>
           <Text fontWeight='bold'>{t('form.process_create.confirm.election_info')}</Text>
-          <Link variant='primary' ml='auto' onClick={() => setActiveStep(1)}>
-            <Icon
-              as={IoMdCreate}
-              title={t('form.process_create.confirm.edit')}
-              aria-label={t('form.process_create.confirm.edit')}
-            />
-          </Link>
+
+          <Button
+            position='absolute'
+            top={0}
+            right={0}
+            onClick={() => setActiveStep(1)}
+            leftIcon={<IoMdCreate />}
+            title={t('form.process_create.confirm.edit')}
+            aria-label={t('form.process_create.confirm.edit')}
+            color='process_create.preview.edit_icon'
+            sx={{
+              span: {
+                m: 0,
+              },
+            }}
+          />
         </Flex>
         <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 2, md: 0 }}>
           <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='semibold' fontSize='md'>
@@ -100,18 +109,27 @@ const Preview = () => {
         <Text flexBasis={{ md: '30%' }} flexShrink={0} flexGrow={0} fontWeight='extrabold'>
           {t('form.process_create.confirm.questions', { count: questions.length })}
         </Text>
-        <Box flexBasis={{ base: '100%', md: '65%' }} flexShrink={0} flexGrow={0}>
+        <Box flexBasis={{ base: '100%', md: '60%' }} flexShrink={0} flexGrow={0}>
           <ChakraProvider theme={extendTheme(cofirmTheme)}>
             <ElectionQuestions />
           </ChakraProvider>
         </Box>
-        <Link variant='primary' position='absolute' top={0} right={0} onClick={() => setActiveStep(2)}>
-          <Icon
-            as={IoMdCreate}
-            title={t('form.process_create.confirm.edit')}
-            aria-label={t('form.process_create.confirm.edit')}
-          />
-        </Link>
+
+        <Button
+          position='absolute'
+          top={0}
+          right={0}
+          onClick={() => setActiveStep(2)}
+          leftIcon={<IoMdCreate />}
+          title={t('form.process_create.confirm.edit')}
+          aria-label={t('form.process_create.confirm.edit')}
+          color='process_create.preview.edit_icon'
+          sx={{
+            span: {
+              m: 0,
+            },
+          }}
+        />
       </Flex>
 
       <HR m={0} border='none' h='1px' bgColor='process_create.border' />
@@ -121,13 +139,21 @@ const Preview = () => {
           {t('form.process_create.confirm.census')}
         </Text>
         <Census />
-        <Link variant='primary' position='absolute' top={0} right={0} onClick={() => setActiveStep(3)}>
-          <Icon
-            as={IoMdCreate}
-            title={t('form.process_create.confirm.edit')}
-            aria-label={t('form.process_create.confirm.edit')}
-          />
-        </Link>
+        <Button
+          position='absolute'
+          top={0}
+          right={0}
+          onClick={() => setActiveStep(3)}
+          leftIcon={<IoMdCreate />}
+          title={t('form.process_create.confirm.edit')}
+          aria-label={t('form.process_create.confirm.edit')}
+          color='process_create.preview.edit_icon'
+          sx={{
+            span: {
+              m: 0,
+            },
+          }}
+        />
       </Flex>
     </Flex>
   )

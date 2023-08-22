@@ -69,7 +69,7 @@ const Calendar = () => {
         <Text as='legend' fontWeight='bold' mb={2}>
           {t('form.process_create.calendar.title')}
         </Text>
-        <Text fontWeight='normal' fontSize='sm' color='process_create.meta_description'>
+        <Text fontWeight='normal' fontSize='sm' color='process_create.description'>
           {t('form.process_create.calendar.start_date_description')}
         </Text>
       </Box>
@@ -86,6 +86,7 @@ const Calendar = () => {
             >
               <Radio value='0' alignItems='center'>
                 <Text
+                  id='start-on-date'
                   whiteSpace='nowrap'
                   m={0}
                   fontWeight='bold'
@@ -102,6 +103,7 @@ const Calendar = () => {
               </Radio>
               <Box w={64}>
                 <Input
+                  aria-labelledby='start-on-date'
                   disabled={getValues().electionType.autoStart}
                   type='datetime-local'
                   {...startDate}

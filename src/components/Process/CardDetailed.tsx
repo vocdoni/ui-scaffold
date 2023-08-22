@@ -15,15 +15,16 @@ const ProcessCardDetailed = ({ election }: Props) => {
   return (
     <ElectionProvider election={election}>
       <Card variant='detailed'>
+        <Link to={`/processes/${enforceHexPrefix(election.id)}`} aria-label={`link to process ${election.title}`} />
         <CardBody>
-          <Link to={`/processes/${enforceHexPrefix(election.id)}`}>
+          <Box>
             <ProcessDetailedCardTitle />
             <Box>
               <ElectionStatusBadge />
               <ProcessDetailedCreationDate />
             </Box>
             <ProcessDetailedCardDescription />
-          </Link>
+          </Box>
           <ElectionActions />
         </CardBody>
 

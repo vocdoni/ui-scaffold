@@ -1,10 +1,9 @@
-import { Button, List, ListItem } from '@chakra-ui/react'
+import { MenuItem } from '@chakra-ui/react'
 import EditProfile from '@components/Account/EditProfile'
 import { Balance, HR } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
 import { useTranslation } from 'react-i18next'
 import { BiLogOut } from 'react-icons/bi'
-import { NavLink } from 'react-router-dom'
 import { useAccount, useDisconnect } from 'wagmi'
 import LanguagesList from './LanguagesList'
 
@@ -15,55 +14,61 @@ const MenuDropdown = () => {
   const { account, clear } = useClient()
 
   return (
-    <List position='relative' cursor='pointer'>
-      <ListItem textAlign='end' pr={4}>
+    <>
+      <MenuItem display='flex' justifyContent='end'>
         <Balance />
-      </ListItem>
+      </MenuItem>
 
       {account && (
-        <>
-          <ListItem display={{ lg: 'none' }} minW='full'>
-            <NavLink to={`/organization/0x${account?.address}`}>
-              <Button display='flex' justifyContent='end' variant='dropdown'>
-                {t('menu.my_list')}
-              </Button>
-            </NavLink>
-          </ListItem>
-          <ListItem minW='full'>
-            <EditProfile />
-          </ListItem>
-        </>
+        <MenuItem
+          as='a'
+          href={`/organization/0x${account?.address}`}
+          display={{ base: 'block', lg: 'none' }}
+          textAlign='end'
+        >
+          {t('menu.my_list')}
+        </MenuItem>
       )}
+      {account && <EditProfile />}
 
-      <ListItem minW='full'>
-        <Button display='flex' justifyContent='end' variant='dropdown'>
-          {t('menu.support')}
-        </Button>
-      </ListItem>
+      <MenuItem as='a' href='#' display='block' textAlign='end'>
+        {t('menu.support')}
+      </MenuItem>
 
-      <HR m={1} display={{ base: 'block', lg: 'none' }} border='none' h='1px' bgColor='lightgray' />
+      <HR
+        my={1}
+        border='none'
+        h='1px'
+        mb={5}
+        bgColor='lightgray'
+        _before={{
+          content: `"🌎"`,
+          position: 'absolute',
+          right: 3,
+          pt: 2,
+        }}
+      />
 
-      <List display={{ base: 'flex', lg: 'none' }} flexDirection='column' alignItems='end' minW='full'>
-        <LanguagesList />
-      </List>
+      <LanguagesList />
       {isConnected && (
         <>
-          <HR m={1} border='none' h='1px' bgColor='lightgray' />
+          <HR my={1} border='none' h='1px' bgColor='lightgray' />
 
-          <ListItem
+          <MenuItem
             onClick={() => {
               disconnect()
               clear()
             }}
             minW='full'
+            display='flex'
+            gap={2}
           >
-            <Button leftIcon={<BiLogOut />} display='flex' justifyContent='end' variant='dropdown'>
-              {t('menu.disconnect')}
-            </Button>
-          </ListItem>
+            <BiLogOut />
+            {t('menu.disconnect')}
+          </MenuItem>
         </>
       )}
-    </List>
+    </>
   )
 }
 

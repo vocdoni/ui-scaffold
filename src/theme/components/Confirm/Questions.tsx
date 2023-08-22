@@ -9,7 +9,7 @@ const baseStyle = definePartsStyle({
     fontSize: 'md',
     fontStyle: 'normal',
     fontWeight: 'normal',
-    color: 'process_create.preview.description',
+    color: 'process_create.preview.question_description',
     marginBottom: 0,
   },
 

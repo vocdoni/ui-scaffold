@@ -16,6 +16,11 @@ const baseStyle = definePartsStyle({
     borderRadius: '50% !important',
     transform: 'scale(0.8) !important',
 
+    '& > div': {
+      m: '0 !important',
+      pt: '3 !important',
+    },
+
     _hover: {
       opacity: 0.75,
     },

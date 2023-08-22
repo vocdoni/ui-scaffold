@@ -1,4 +1,4 @@
-import { Box, Card, CardBody, Link as ChakraLink, Flex, Grid, GridItem, Link, Spinner, Text } from '@chakra-ui/react'
+import { Box, Card, CardBody, Flex, Grid, GridItem, Link, Spinner, Text } from '@chakra-ui/react'
 import Logo from '@components/Layout/Logo'
 import { useClient, useOrganization } from '@vocdoni/react-providers'
 import { InvalidElection, PublishedElection, areEqualHexStrings } from '@vocdoni/sdk'
@@ -110,9 +110,9 @@ const OrganizationView = () => {
                       />
                     </Text>
 
-                    <ChakraLink as={ReactRouterLink} to='/processes/create' variant='button' colorScheme='primary'>
+                    <Link as={ReactRouterLink} to='/processes/create' variant='button' colorScheme='primary'>
                       {t('menu.create')}
-                    </ChakraLink>
+                    </Link>
                   </>
                 ) : (
                   <Text textAlign='center'>{t('organization.elections_list_empty.not_owner')}</Text>

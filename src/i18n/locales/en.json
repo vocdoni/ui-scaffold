@@ -89,6 +89,8 @@
       "title_helper": "The organization name",
       "title_placeholder": "The organization name"
     },
+    "delete_option": "delete option",
+    "delete_picture": "delete picture",
     "edit_profile": {
       "avatar_helper": "Image/Logo of your organization",
       "avatar_placeholder": "Image URL",
@@ -178,7 +180,9 @@
       "previous_step": "Previous",
       "question": {
         "add_new_option": "Add new option",
+        "add_question": "Add new question",
         "aside": "Title question",
+        "delete_question": "Delete question {{ title }}",
         "description_placeholder": "Write here a description of the question (optional)",
         "option_placeholder": "Option",
         "title_placeholder": "The title of your question..."
@@ -222,6 +226,7 @@
       "success_description": "Redirecting you to the election process page...",
       "success_title": "Election process successfully created",
       "unhealthy_account": "You need to create an organization before creating the first election.",
+      "web3_add_address": "Add new address",
       "weighted": "Weighted vote"
     }
   },
@@ -240,6 +245,7 @@
     "create": "Create Process",
     "create_process": "Create process",
     "disconnect": "Disconnect Wallet",
+    "main_menu": "main menu",
     "my_list": "My list",
     "organization": "Edit Organization",
     "support": "Support"

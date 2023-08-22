@@ -79,7 +79,7 @@ const CreateProcessQuestions = () => {
             type='button'
             size='sm'
             icon={<AddIcon />}
-            aria-label='add question'
+            aria-label={t('form.process_create.question.add_question')}
             onClick={() => {
               append({
                 title: '',
@@ -90,22 +90,19 @@ const CreateProcessQuestions = () => {
             }}
           />
         </HStack>
-        <TabList display='block' gap={1} minW={0} border='none'>
-          {questions.map((question: any, index: number) => (
-            <Flex
-              key={index}
-              alignItems='center'
-              p={1}
-              px={3}
-              mb={1}
-              bgColor='process_create.aside_questions_bg'
-              borderRadius={4}
-            >
+        <Flex>
+          <TabList display='block' minW={0} border='none' w='full' pl={1}>
+            {questions.map((question: any, index: number) => (
               <Tab
-                display='block'
-                flexGrow={1}
-                minW={0}
-                p={0}
+                key={index}
+                display='flex'
+                justifyContent='space-between'
+                p={1}
+                px={3}
+                w='100%'
+                h={10}
+                mb={1}
+                bgColor='process_create.aside_questions_bg'
                 _selected={{ color: getQuestionErrorIndex(index) !== null ? 'red' : 'black', fontWeight: 700 }}
                 color={getQuestionErrorIndex(index) !== null ? 'red' : 'black'}
               >
@@ -117,10 +114,27 @@ const CreateProcessQuestions = () => {
                   {index + 1}- {(question as any).title || t('form.process_create.question.aside')}
                 </Text>
               </Tab>
-              <IconButton type='button' size='sm' icon={<DeleteIcon />} aria-label='' onClick={() => remove(index)} />
-            </Flex>
-          ))}
-        </TabList>
+            ))}
+          </TabList>
+          <Flex flexDirection='column' pr={1}>
+            {questions.map((question: any, index: number) => (
+              <IconButton
+                key={index}
+                h={10}
+                w={12}
+                mb={1}
+                borderRadius='none'
+                type='button'
+                size='sm'
+                icon={<DeleteIcon />}
+                aria-label={t('form.process_create.question.delete_question', {
+                  title: (question as any).title,
+                }).toString()}
+                onClick={() => remove(index)}
+              />
+            ))}
+          </Flex>
+        </Flex>
       </Box>
       <TabPanels
         bgColor='process_create.bg'

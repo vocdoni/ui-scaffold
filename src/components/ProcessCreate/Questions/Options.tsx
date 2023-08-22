@@ -47,7 +47,7 @@ const Options = ({ fields, removeOption, appendOption, index }: Props) => {
                 size='xs'
                 type='button'
                 icon={<DeleteIcon />}
-                aria-label='delete option'
+                aria-label={t('form.delete_option')}
                 onClick={() => removeOption(idx)}
               />
             )}

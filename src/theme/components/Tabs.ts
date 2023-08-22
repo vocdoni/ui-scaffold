@@ -36,6 +36,9 @@ const card = definePartsStyle({
         color: 'process_create.tabs.card.selected_color',
       },
     },
+    _focus: {
+      outline: '2px solid #8DC2ED',
+    },
   },
 })
 const process = definePartsStyle({

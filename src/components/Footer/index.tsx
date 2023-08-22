@@ -29,8 +29,8 @@ const Footer = ({ ...props }) => {
           gridColumn={{ base: '1/3', sm: '1/3', md: '1/5', lg: '1/2' }}
           gridRow={{ base: '5/6', md: '2/3', lg: '1/2' }}
         >
-          <Img src={logo} maxW={36}></Img>
-          <Img src={poweredBy} maxW={36}></Img>
+          <Img src={logo} alt='vocdoni icon' maxW={36} />
+          <Img src={poweredBy} alt='aragon icon' maxW={36} />
         </Flex>
         <Box textAlign={{ base: 'center', lg: 'start' }} mb={4}>
           <Text fontWeight='bold'>{t('footer.company').toUpperCase()}</Text>
@@ -100,9 +100,7 @@ const Footer = ({ ...props }) => {
           <Text textAlign='center'>Copyrights 2022 Vocdoni, Inc. All rights reserved</Text>
         </Code>
         <Code bg='white'>
-          <Link href='#'>
-            <Text>Terms of use & Privacy Policy</Text>
-          </Link>
+          <Link href='#'>Terms of use & Privacy Policy</Link>
         </Code>
 
         <Flex justifyContent='center' alignItems='center' gap={6} mb={4}>
