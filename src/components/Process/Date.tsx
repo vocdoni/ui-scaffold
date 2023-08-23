@@ -16,7 +16,7 @@ export const ProcessDate = () => {
 
   return (
     <Box>
-      <Text color='process.date' fontWeight='bold'>
+      <Text color='process.info_title' fontWeight='bold'>
         {statusText}
       </Text>
       <Text>

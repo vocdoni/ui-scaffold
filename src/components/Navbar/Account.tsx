@@ -1,12 +1,10 @@
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 import { Box, Button, Menu, MenuButton, MenuList, Text } from '@chakra-ui/react'
+import { addressTextOverflow } from '@constants'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useTranslation } from 'react-i18next'
 import { useAccount } from 'wagmi'
 import MenuDropdown from './Menu'
-
-export const addressTextOverflow = (address: string) =>
-  `${address.substring(0, 6)}...${address.substring(address.length - 4, address.length)}`
 
 export const Account = () => {
   const { isConnected, address } = useAccount()

@@ -23,16 +23,18 @@ const OrganizationView = () => {
   const [page, setPage] = useState<number>(-1)
   useObserver(refObserver, setPage)
 
-  // empties the list on account change
+  // resets fields on account change
   useEffect(() => {
-    // empty list to ensure it's properly populated
     setElectionsList([])
+    setFinished(false)
+    setPage(0)
+    setLoaded(false)
+    setLoading(false)
   }, [organization?.address])
 
   // loads elections. Note the load trigger is done via useObserver using a layer visibility.
   useEffect(() => {
     if (finished) return
-
     // start loading at first glance
     setLoaded(false)
     setLoading(true)
