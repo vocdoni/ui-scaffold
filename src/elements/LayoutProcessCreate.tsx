@@ -9,15 +9,13 @@ const LayoutProcessCreate = () => {
   const navigate = useNavigate()
 
   return (
-    <Flex direction='column' minH='100vh'>
+    <Flex direction='column' minH='100vh' maxW={360} mx='auto' bgColor='main_bg'>
       <Flex
         as='header'
         position='relative'
         justifyContent='space-between'
         alignItems='center'
         paddingY={4}
-        maxW={350}
-        mx='auto'
         px={4}
         w='full'
       >
@@ -34,10 +32,8 @@ const LayoutProcessCreate = () => {
         </Link>
       </Flex>
 
-      <Box as='main' py={4}>
-        <Box maxWidth={304} margin='0 auto' paddingX={{ base: 4 }}>
-          <Outlet />
-        </Box>
+      <Box as='main' maxW={360} mx='auto' p={4}>
+        <Outlet />
       </Box>
     </Flex>
   )
