@@ -53,10 +53,19 @@ const MenuDropdown = () => {
         _hover={{
           bgColor: 'white',
         }}
+        _active={{
+          '& button': {
+            outline: '2px solid transparent !important',
+            bgColor: 'lightgray',
+          },
+        }}
         _focus={{
           '& button': {
             outline: '2px solid #8DC2ED',
           },
+        }}
+        onClick={() => {
+          onCopy()
         }}
       >
         <Text fontWeight='bold'>{t('menu.wallet')}</Text>
@@ -95,14 +104,7 @@ const MenuDropdown = () => {
             <Flex>
               <Balance p={0} bg='white' fontWeight='bold' />
             </Flex>
-            <Button
-              colorScheme='primary'
-              leftIcon={<HiShoppingCart size={20} />}
-              p={2}
-              _focus={{
-                border: '1px solid blue',
-              }}
-            >
+            <Button colorScheme='primary' leftIcon={<HiShoppingCart size={20} />} p={2}>
               {t('menu.get_more')}
             </Button>
           </Flex>
