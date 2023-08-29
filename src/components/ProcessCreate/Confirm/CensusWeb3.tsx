@@ -17,7 +17,6 @@ const PreviewCensusWeb3 = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [addresses]
   )
-  console.log('addresses:', addresses)
 
   return (
     <Flex flexDirection='column' gap={1}>

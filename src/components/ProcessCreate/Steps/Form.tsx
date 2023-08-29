@@ -12,6 +12,7 @@ export const StepsForm = ({ steps, children, activeStep, next, prev, setActiveSt
       autoStart: true,
       interruptible: true,
       secretUntilTheEnd: true,
+      anonymous: false,
     },
     maxVoteOverwrites: 0,
     weightedVote: false,

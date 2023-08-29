@@ -14,6 +14,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaRegArrowAltCircleLeft } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import { CreatedBy } from './CreatedBy'
 import { ProcessDate } from './Date'
 
 const ProcessHeader = () => {
@@ -22,6 +23,7 @@ const ProcessHeader = () => {
   const { account } = useClient()
 
   const { readMore, isTruncated, containerRef, noOfLines, handleReadMore } = useReadMore(770, 20, 'p')
+  const strategy = useStrategy()
 
   return (
     <Box mb={4}>
@@ -40,7 +42,7 @@ const ProcessHeader = () => {
             mb={4}
           >
             <ElectionStatusBadge />
-            <ElectionSchedule textAlign='left' color='process.date' />
+            <ElectionSchedule textAlign='left' color='process.info_title' />
           </Flex>
 
           <Flex
@@ -73,27 +75,33 @@ const ProcessHeader = () => {
               {t('process.status.canceled')}
             </Text>
           )}
-          {election?.meta?.token && (
+          {election?.electionType.anonymous && (
             <Box>
-              <Text color='process.date' fontWeight='bold'>
-                {t('process.voting_type')}
+              <Text color='process.info_title' fontWeight='bold'>
+                {t('process.is_anonymous.title')}
               </Text>
-              <Text>{election.meta.token.defaultStrategy === 1 && 'Single choice'}</Text>
-            </Box>
-          )}
-          {election?.meta?.token && (
-            <Box>
-              <Text color='process.date' fontWeight='bold'>
-                {t('process.strategy')}
-              </Text>
-              <Text textTransform='capitalize'>{election.meta?.token.type}</Text>
+              <Text>{t('process.is_anonymous.description')}</Text>
             </Box>
           )}
           <Box>
-            <Text color='process.date' fontWeight='bold'>
+            <Text color='process.info_title' fontWeight='bold'>
+              {t('process.census')}
+            </Text>
+            <Text>{t('process.people_in_census', { count: election?.maxCensusSize })}</Text>
+          </Box>
+          {election?.meta?.census && (
+            <Box>
+              <Text color='process.info_title' fontWeight='bold'>
+                {t('process.strategy')}
+              </Text>
+              <Text>{strategy}</Text>
+            </Box>
+          )}
+          <Box>
+            <Text color='process.info_title' fontWeight='bold'>
               {t('process.created_by')}
             </Text>
-            <OrganizationName isTruncated maxW={76} />
+            <CreatedBy />
           </Box>
           {election?.status === ElectionStatus.PAUSED && election?.organizationId !== account?.address && (
             <Flex
@@ -139,6 +147,7 @@ const useReadMore = (containerHeight: number, lines: number, tag: string) => {
         if (isTextTaller) setIsTruncated(true)
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return {
@@ -148,6 +157,27 @@ const useReadMore = (containerHeight: number, lines: number, tag: string) => {
     handleReadMore,
     isTruncated,
   }
+}
+
+const useStrategy = () => {
+  const { t } = useTranslation()
+  const { election } = useElection()
+  const strategies: { [key: string]: string } = {
+    spreadsheet: t('process.census_strategies.spreadsheet'),
+    token: t('process.census_strategies.token', { token: election?.meta?.token }),
+    web3: t('process.census_strategies.web3'),
+  }
+
+  if (!election || (election && !election.meta.census)) return ''
+
+  const type = election.get('census.type')
+
+  if (typeof strategies[type] === 'undefined') {
+    console.warn('unknown census type:', type)
+    return ''
+  }
+
+  return strategies[type]
 }
 
 export default ProcessHeader
