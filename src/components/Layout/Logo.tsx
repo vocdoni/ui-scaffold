@@ -4,13 +4,13 @@ import icon from '/assets/vocdoni_icon.png'
 
 const Logo = ({ ...props }) => (
   <NavLink to='/'>
-    <Flex alignItems='center' gap={4} ml={{ base: 2, sm: 0 }}>
-      <Img src={icon} alt='vocdoni icon' maxWidth={12} />
+    <Flex alignItems='center' gap={2}>
+      <Img src={icon} alt='vocdoni icon' maxWidth={10} />
       <Text
         display={{ base: 'none', lg: 'flex' }}
         flexDirection='row'
         gap={1}
-        fontSize='sm'
+        fontSize='xs'
         fontWeight='bold'
         lineHeight={1.1}
         {...props}
