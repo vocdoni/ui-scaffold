@@ -51,10 +51,7 @@ const process = definePartsStyle({
     '&:after': {
       content: "''",
       position: 'absolute',
-      // mr: '-100.3%',
       h: '28px',
-      // borderRight: '1px solid',
-      // borderColor: 'process.tabs.divider',
     },
 
     '&:last-of-type:after': {

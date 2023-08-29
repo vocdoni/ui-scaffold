@@ -65,7 +65,7 @@ const ProcessHeader = () => {
           </Flex>
         </Box>
 
-        <Flex flexDirection='column' alignItems='start' gap={4} minW={96}>
+        <Flex flexDirection='column' alignItems='start' gap={4} minW={96} px={{ xl: 12 }}>
           {election?.status !== ElectionStatus.CANCELED ? (
             <ProcessDate />
           ) : (
