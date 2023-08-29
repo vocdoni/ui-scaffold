@@ -1,38 +1,31 @@
-import { Button, ListItem } from '@chakra-ui/react'
+import { MenuItem } from '@chakra-ui/react'
 import { LanguagesSlice } from '@i18n/languages.mjs'
 import { useTranslation } from 'react-i18next'
-import { FaGlobeAmericas } from 'react-icons/fa'
 
-const LanguagesList = () => {
+const LanguagesList = ({ closeOnSelect }: { closeOnSelect: boolean }) => {
   const { i18n } = useTranslation()
 
   const languages = LanguagesSlice as { [key: string]: string }
 
+  const isAnyLanguageSelected = Object.keys(languages).some((l) => l === i18n.language)
+
   return (
     <>
-      <ListItem display={{ base: 'flex', lg: 'none' }} justifyContent='end' py={2} mr={{ base: 4, lg: 0 }}>
-        <FaGlobeAmericas />
-      </ListItem>
-
       {Object.keys(languages).map((k) => (
-        <ListItem
+        <MenuItem
           key={k}
           onClick={() => {
             i18n.changeLanguage(k)
           }}
-          cursor='pointer'
+          closeOnSelect={closeOnSelect}
           w='full'
+          display='flex'
+          justifyContent={closeOnSelect ? 'center' : 'start'}
+          fontWeight={k === i18n.language || (k === 'en' && !isAnyLanguageSelected) ? 'extrabold' : ''}
+          borderRadius='none'
         >
-          <Button
-            display='flex'
-            justifyContent={{ base: 'end', lg: 'center' }}
-            variant='dropdown'
-            fontWeight={k === i18n.language ? 'extrabold' : ''}
-            bgColor={k === i18n.language ? 'language_selected_bg' : 'white'}
-          >
-            {k.toUpperCase()}
-          </Button>
-        </ListItem>
+          {k.toUpperCase()}
+        </MenuItem>
       ))}
     </>
   )
