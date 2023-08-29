@@ -10,6 +10,7 @@ import {
   IconButton,
   Image,
   Input,
+  MenuItem,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -92,9 +93,7 @@ const EditProfile = () => {
 
   return (
     <>
-      <Button onClick={onOpen} display='flex' justifyContent='end' variant='dropdown'>
-        {t('menu.organization')}
-      </Button>
+      <MenuItem onClick={onOpen}>{t('menu.organization')}</MenuItem>
       <Modal isOpen={isOpen} onClose={() => !loading && onClose()}>
         <ModalOverlay />
         <ModalContent p={3} minW={{ md: '700px' }}>
