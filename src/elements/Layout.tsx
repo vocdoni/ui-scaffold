@@ -16,7 +16,7 @@ const Layout = () => {
 
   return (
     <>
-      <Box minH='100vh' maxW={360} mx='auto'>
+      <Box minH='100vh' maxW={360} mx='auto' bgColor='main_bg'>
         <HStack
           as='header'
           position='sticky'
@@ -26,19 +26,17 @@ const Layout = () => {
           zIndex={20}
           h={18}
           px={{ base: 2, sm: 4 }}
-          bgColor='navbar.bg'
+          bgColor='main_bg'
           boxShadow={`${isScrolled ? '0px 0px 8px -3px gray' : 'none'}`}
         >
           <Navbar />
         </HStack>
-        <Box as='main' pt={8} pb={40}>
-          <Box maxWidth={440} m='0 auto' px={{ base: 2, sm: 4 }}>
-            <Outlet />
-          </Box>
+        <Box as='main' pt={8} pb={40} m='0 auto' px={{ base: 2, sm: 4 }}>
+          <Outlet />
         </Box>
       </Box>
-      <Box as='footer' mt='auto'>
-        <Footer mx='auto' px={{ base: 2, sm: 4 }} />
+      <Box as='footer' mt='auto' maxW={360} bgColor='main_bg' mx='auto' px={{ base: 2, sm: 4 }}>
+        <Footer />
       </Box>
     </>
   )
