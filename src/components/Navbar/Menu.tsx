@@ -1,19 +1,7 @@
 import { ChevronDownIcon, ChevronUpIcon, CopyIcon } from '@chakra-ui/icons'
-import {
-  Box,
-  Button,
-  Flex,
-  HStack,
-  Icon,
-  IconButton,
-  Link,
-  MenuItem,
-  MenuList,
-  Text,
-  useClipboard,
-} from '@chakra-ui/react'
+import { Box, Flex, HStack, Icon, IconButton, Link, MenuItem, MenuList, Text, useClipboard } from '@chakra-ui/react'
 import { useOrganizationModal } from '@components/Organization/OrganizationModalProvider'
-import { addressTextOverflow } from '@constants'
+import { addressTextOverflow, VocdoniFaucet } from '@constants'
 import { Balance, HR } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
 import { useState } from 'react'
@@ -107,9 +95,9 @@ const MenuDropdown = () => {
               <Flex>
                 <Balance p={0} bg='white' fontWeight='bold' />
               </Flex>
-              <Button colorScheme='primary' leftIcon={<HiShoppingCart size={20} />} p={2}>
-                {t('menu.get_more')}
-              </Button>
+              <Link colorScheme='primary' variant='button' p={2} href={VocdoniFaucet} target='_blank'>
+                <HiShoppingCart size={20} /> {t('menu.get_more')}
+              </Link>
             </Flex>
           </MenuItem>
           <MenuItem onClick={onOpen}>{t('menu.organization')}</MenuItem>
