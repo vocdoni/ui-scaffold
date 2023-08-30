@@ -5,11 +5,11 @@ import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa'
 import poweredBy from '/assets/powered_by_aragon.png'
 import logo from '/assets/vocdoni_logo.svg'
 
-const Footer = ({ ...props }) => {
+const Footer = () => {
   const { t } = useTranslation()
 
   return (
-    <Box pt={5} {...props}>
+    <Box>
       <Grid
         gridTemplateColumns={{
           base: 'repeat(2, 1fr)',
