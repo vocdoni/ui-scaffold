@@ -1,5 +1,4 @@
 {
-  "alt_image": "Imatge de {{ img }}",
   "aside": {
     "has_already_voted": "El teu vot s'ha registrat correctament",
     "is_not_in_census": "No ets al cens",
@@ -11,10 +10,17 @@
     "votes_other": "<tos>{{ count }}</tos> <tos2>vots</tos2>"
   },
   "banner": {
-    "know_more": "Descobreix més",
-    "start_now": "Comença ara!",
+    "start_now": "Crea ara un procés de votació!",
     "subtitle": "Utilitza adreces web3, vota amb un token ERC20 o amb NFTs!",
     "title": "Vota per a les DAOs i les comunitats Web3"
+  },
+  "banner_voting_types": {
+    "anonymous_description": "Els vostres votants romandran completament anònims, gràcies a la tecnologia de proofs zk. La privacitat hauria de ser la norma.",
+    "anonymous_title": "Votació Anònima",
+    "flexible_description": "Adapteu el vostre procés de votació i cens: elecció única, votació quadràtica, voteu amb una llista de carteres o creeu un cens personalitzat.",
+    "flexible_title": "Votació Flexible",
+    "token_description": "Voteu amb tokens ERC20/ERC721 (NFT) o importeu els vostres propis tokens i voteu sense gastar gas.",
+    "token_title": "Votació amb Tokens"
   },
   "cc": {
     "actions": {
@@ -234,10 +240,6 @@
       "weighted": "Vot ponderat"
     }
   },
-  "home": {
-    "active_voting": "Votacions actives",
-    "more_active_organizations": "Més organitzacions actives"
-  },
   "link": {
     "discord": "Enllaç al Discord de Vocdoni",
     "github": "Enllaç al Github de Vocdoni",
@@ -268,7 +270,6 @@
   "open_in_explorer": "Obre a l'explorador",
   "organization": {
     "avatar_alt": "Imatge d'avatar de l'organització {{ name }}",
-    "dao_title": "DAO",
     "elections": "Eleccions",
     "elections_list_empty": {
       "description": "En començar fent la teva primera elecció, pots triar entre diferents tipus d'autenticació pel teu vot.",
@@ -319,10 +320,8 @@
     "play": "Reprodueix",
     "stop": "Atura"
   },
-  "submited_votes": "Vots emesos",
   "uploader": {
     "click_or_drag_and_drop": "<p1>Puja o arrossega i deixa anar aquí la llista de votants</p1><p2>(Formats permesos: CSV, XLSX i ODS)</p2>",
     "drop_here": "Deixa anar aquí"
-  },
-  "voting_elections": "Votacions"
+  }
 }
