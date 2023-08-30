@@ -19,7 +19,10 @@ export const colorsBase = {
     dark: '#175b64',
     dark2: '#2c545a',
   },
-  white: '#ffffff',
+  white: {
+    pure: '#ffffff',
+    dark: '#fafafa',
+  },
 }
 export const colors = {
   aside_bg: colorsBase.gradient,
@@ -38,13 +41,13 @@ export const colors = {
     },
   },
 
-  checkbox_radiobox_bg: colorsBase.white,
+  checkbox_radiobox_bg: colorsBase.white.pure,
 
   home: {
     banner: {
       bg: colorsBase.gradient,
       button_bg: colorsBase.gradient,
-      color: colorsBase.white,
+      color: colorsBase.white.pure,
     },
   },
 
@@ -73,9 +76,10 @@ export const colors = {
     },
   },
 
+  main_bg: colorsBase.white.dark,
+
   navbar: {
     account_icon: colorsBase.gradient,
-    bg: colorsBase.white,
   },
 
   organization: {
@@ -84,10 +88,10 @@ export const colors = {
       footer_bg: colorsBase.gray.light2,
     },
     election_list_empty_bg: colorsBase.gray.light,
-
+    header: colorsBase.white.pure,
     tabs: {
       active: colorsBase.gray.dark,
-      bg: colorsBase.white,
+      bg: colorsBase.white.pure,
       circle_bg: colorsBase.primary.main,
       divider: colorsBase.gray.dark,
       hover: colorsBase.gray.main,
@@ -101,19 +105,19 @@ export const colors = {
     description: colorsBase.gray.dark2,
     header_divider: colorsBase.gray.dark,
     identify_button_bg: colorsBase.primary.main,
-    identify_button_color: colorsBase.white,
+    identify_button_color: colorsBase.white.pure,
     paused: colorsBase.primary.main,
     questions: {
       bg: colorsBase.gray.light,
       alert: {
         bg: colorsBase.primary.main,
-        color: colorsBase.white,
+        color: colorsBase.white.pure,
         link_color: colorsBase.black,
-        link_bg: colorsBase.white,
+        link_bg: colorsBase.white.pure,
       },
       btn_form_selected: {
         bg: colorsBase.primary.main,
-        color: colorsBase.white,
+        color: colorsBase.white.pure,
       },
       description: colorsBase.gray.dark2,
       title: colorsBase.primary.main,
@@ -121,12 +125,12 @@ export const colors = {
 
     results: {
       aside: {
-        color: colorsBase.white,
+        color: colorsBase.white.pure,
         vote_btn_color: colorsBase.black,
-        vote_btn_bg: colorsBase.white,
+        vote_btn_bg: colorsBase.white.pure,
       },
       alert_bg: colorsBase.primary.main,
-      alert_color: colorsBase.white,
+      alert_color: colorsBase.white.pure,
       bg: colorsBase.gray.light,
       description: colorsBase.gray.dark2,
       title: colorsBase.primary.main,
@@ -155,19 +159,19 @@ export const colors = {
       option_before_color: colorsBase.black,
     },
     border: colorsBase.gray.dark,
-    census_box_bg: colorsBase.white,
+    census_box_bg: colorsBase.white.pure,
     description_logo: colorsBase.blue.main,
-    input_bg: colorsBase.white,
+    input_bg: colorsBase.white.pure,
     meta_description: colorsBase.gray.dark2,
     stepper: colorsBase.primary.main,
     spreadsheet: {
       badge: {
         bg: colorsBase.primary.main,
-        text: colorsBase.white,
+        text: colorsBase.white.pure,
       },
       drag_and_drop_text: colorsBase.gray.dark2,
       file: colorsBase.primary.main,
-      preview_bg: colorsBase.white,
+      preview_bg: colorsBase.white.pure,
       preview_bg_interior: colorsBase.gray.light,
       requirements_text: colorsBase.primary.main,
       total_rows_text: colorsBase.primary.main,
