@@ -18,72 +18,6 @@ const cardCommonStyles = {
   },
 }
 
-const lite = definePartsStyle({
-  ...cardCommonStyles,
-
-  container: {
-    ...cardCommonStyles.container,
-    w: 72,
-    borderRadius: 'lg',
-    overflow: 'hidden',
-    boxShadow: 'var(--box-shadow)',
-    transition: 'box-shadow .2s  ',
-    cursor: 'pointer',
-
-    _hover: {
-      boxShadow: 'var(--box-shadow-darker)',
-      transition: 'box-shadow .2s  ',
-    },
-  },
-
-  body: {
-    minH: 24,
-    p: 4,
-    pb: 0,
-
-    '& > p:first-of-type': {
-      fontSize: 'sm',
-      textTransform: 'uppercase',
-      color: 'card.header',
-      noOfLines: 1,
-      overflow: 'hidden',
-      display: '-webkit-box',
-      WebkitBoxOrient: 'vertical',
-      WebkitLineClamp: 'var(--chakra-line-clamp)',
-    },
-
-    '& > p:nth-of-type(2)': {
-      fontWeight: 'bold',
-      fontSize: 'lg',
-      noOfLines: 2,
-      overflow: 'hidden',
-      display: '-webkit-box',
-      WebkitBoxOrient: 'vertical',
-      WebkitLineClamp: 'var(--chakra-line-clamp)',
-    },
-  },
-  footer: {
-    ...cardCommonStyles.footer,
-    gap: 3.5,
-    px: 4,
-    pt: 0,
-    pb: 2,
-    fontWeight: 'bold',
-    fontSize: 'sm',
-
-    '& > div > p:first-of-type': {
-      color: 'card.footer_title',
-      fontWeight: 'normal',
-    },
-
-    '& div:nth-of-type(even)': {
-      pl: 3.5,
-      borderLeft: '1px solid',
-      borderColor: 'card.footer_divider',
-    },
-  },
-})
-
 const detailed = definePartsStyle({
   ...cardCommonStyles,
 
@@ -134,7 +68,7 @@ const detailed = definePartsStyle({
       '& > div:nth-of-type(2)': {
         '& > p:first-of-type': {
           textAlign: 'start',
-          color: 'card.description',
+          color: 'organization.card.description',
           noOfLines: 4,
           overflow: 'hidden',
           display: '-webkit-box',
@@ -154,8 +88,6 @@ const detailed = definePartsStyle({
     ...cardCommonStyles.footer,
     mt: 'auto',
     fontSize: 'sm',
-    borderTop: '.2px solid',
-    borderColor: 'organization.card_detailed.footer_border',
 
     '& > div:first-of-type': {
       display: 'flex',
@@ -170,7 +102,7 @@ const detailed = definePartsStyle({
         px: 2,
         textAlign: 'center',
         minW: '50%',
-        bgColor: 'organization.card_detailed.footer_bg',
+        bgColor: 'organization.card.footer_bg',
 
         '& p': {
           whiteSpace: 'nowrap',
@@ -237,7 +169,6 @@ const noElections = definePartsStyle({
 
 const variantsCards = {
   detailed,
-  lite,
   'no-elections': noElections,
 }
 export const Card = defineMultiStyleConfig({ variants: variantsCards })

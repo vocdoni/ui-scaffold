@@ -40,20 +40,12 @@ export const colors = {
 
   checkbox_radiobox_bg: colorsBase.white,
 
-  card: {
-    description: colorsBase.gray.dark2,
-    footer_divider: colorsBase.gray.dark,
-    footer_title: colorsBase.primary.dark2,
-    header: colorsBase.primary.main,
-  },
-
   home: {
     banner: {
       bg: colorsBase.gradient,
       button_bg: colorsBase.gradient,
       color: colorsBase.white,
     },
-    counter: colorsBase.gradient,
   },
 
   language_selected_bg: colorsBase.gray.dark,
@@ -87,9 +79,9 @@ export const colors = {
   },
 
   organization: {
-    card_detailed: {
+    card: {
+      description: colorsBase.gray.dark2,
       footer_bg: colorsBase.gray.light2,
-      footer_border: colorsBase.gray.light3,
     },
     election_list_empty_bg: colorsBase.gray.light,
 

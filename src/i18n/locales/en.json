@@ -1,5 +1,4 @@
 {
-  "alt_image": "{{ img }} image",
   "aside": {
     "has_already_voted": "Your vote is properly cast",
     "is_not_in_census": "You are not in census",
@@ -10,10 +9,17 @@
     "votes_other": "<tos>{{ count }}</tos> <tos2>votes</tos2>"
   },
   "banner": {
-    "know_more": "Know more",
-    "start_now": "Start now!",
+    "start_now": "Create a voting process now!",
     "subtitle": "Use wallet addresses, vote with an ERC20 token or with NFTs!",
     "title": "Voting for DAOs & Web3 communities"
+  },
+  "banner_voting_types": {
+    "anonymous_description": "Your voters will be totally anonymous, thanks to the zk- proofs technology. Privacy should be normal.",
+    "anonymous_title": "Anonymous Voting",
+    "flexible_description": "Tailor your voting process & census: single choice, quadratic voting, vote with wallet list or create a custom census.",
+    "flexible_title": "Flexible Voting",
+    "token_description": "Vote with ERC20/ERC721 (NFT's) or import your own token and vote gasless with them.",
+    "token_title": "Token Voting"
   },
   "cc": {
     "actions": {
@@ -230,10 +236,6 @@
       "weighted": "Weighted vote"
     }
   },
-  "home": {
-    "active_voting": "Active voting",
-    "more_active_organizations": "More active organizations"
-  },
   "link": {
     "discord": "Link to Vocdoni's discord",
     "github": "Link to Vocdoni's github",
@@ -264,7 +266,6 @@
   "open_in_explorer": "Open in explorer",
   "organization": {
     "avatar_alt": "Avatar image of {{ name }} organization",
-    "dao_title": "DAO",
     "elections": "Elections",
     "elections_list_empty": {
       "description": "Being by making your first election, you can choose between diferent auth types of your vote",
@@ -314,10 +315,8 @@
     "play": "play",
     "stop": "stop"
   },
-  "submited_votes": "Submitted votes",
   "uploader": {
     "click_or_drag_and_drop": "<p1>Upload or drag and drop the voter list here</p1><p2>(Allowed formats: CSV, XLSX, and ODS)</p2>",
     "drop_here": "Drop here"
-  },
-  "voting_elections": "Voting elections"
+  }
 }
