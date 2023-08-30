@@ -1,5 +1,5 @@
 import { AddIcon, ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
-import { Box, Button, Icon, Link, List, ListItem, Menu, MenuButton, MenuList, Text } from '@chakra-ui/react'
+import { Avatar, Box, Button, Icon, Link, List, ListItem, Menu, MenuButton, MenuList, Text } from '@chakra-ui/react'
 import Logo from '@components/Layout/Logo'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { useClient } from '@vocdoni/react-providers'
@@ -108,13 +108,10 @@ const Navbar = () => {
                     p={2}
                   >
                     <Box as='span' display='flex' alignItems='center'>
-                      <Box
-                        as='span'
-                        display='inline-block'
-                        w={6}
-                        h={6}
-                        borderRadius='50%'
-                        background='navbar.account_icon'
+                      <Avatar
+                        src={account?.account.avatar}
+                        name={account?.account.name.default || account?.address}
+                        size='xs'
                       />
                       {isOpen ? <ChevronUpIcon boxSize={8} /> : <ChevronDownIcon boxSize={8} />}
                     </Box>
