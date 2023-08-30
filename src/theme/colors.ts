@@ -15,9 +15,9 @@ export const colorsBase = {
     dark2: '#677680',
   },
   primary: {
-    light: '#24656e',
-    main: '#175b64',
-    dark: '#2c545a',
+    main: '#24656e',
+    dark: '#175b64',
+    dark2: '#2c545a',
   },
   white: {
     pure: '#ffffff',
@@ -30,8 +30,8 @@ export const colors = {
   primary: {
     main: colorsBase.primary.main,
     500: colorsBase.primary.main,
-    600: colorsBase.primary.light,
-    700: colorsBase.primary.dark,
+    600: colorsBase.primary.dark,
+    700: colorsBase.primary.dark2,
   },
 
   button: {
@@ -43,25 +43,38 @@ export const colors = {
 
   checkbox_radiobox_bg: colorsBase.white.pure,
 
-  card: {
-    description: colorsBase.gray.dark2,
-    footer_divider: colorsBase.gray.dark,
-    footer_title: colorsBase.primary.dark,
-    header: colorsBase.primary.main,
-  },
-
   home: {
     banner: {
       bg: colorsBase.gradient,
       button_bg: colorsBase.gradient,
       color: colorsBase.white.pure,
     },
-    counter: colorsBase.gradient,
   },
 
   language_selected_bg: colorsBase.gray.dark,
 
-  link: colorsBase.primary.main,
+  link: {
+    primary: colorsBase.primary.main,
+    button: {
+      primary_bg: {
+        500: colorsBase.primary.main,
+        600: colorsBase.primary.dark,
+        700: colorsBase.primary.dark2,
+      },
+
+      primary_color: {
+        500: colorsBase.gray.light,
+        600: colorsBase.gray.main,
+        700: colorsBase.gray.dark,
+      },
+
+      transparent: {
+        500: 'transparent',
+        600: colorsBase.gray.main,
+        700: colorsBase.gray.dark,
+      },
+    },
+  },
 
   main_bg: colorsBase.white.dark,
 
@@ -70,9 +83,9 @@ export const colors = {
   },
 
   organization: {
-    card_detailed: {
+    card: {
+      description: colorsBase.gray.dark2,
       footer_bg: colorsBase.gray.light2,
-      footer_border: colorsBase.gray.light3,
     },
     election_list_empty_bg: colorsBase.gray.light,
     header: colorsBase.white.pure,
