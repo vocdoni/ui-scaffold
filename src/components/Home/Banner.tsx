@@ -9,9 +9,10 @@ const Banner = () => {
       flexDirection={{ base: 'column', md: 'row' }}
       justifyContent='space-between'
       alignItems='center'
-      maxW='1100px'
+      maxW={250}
       mx='auto'
-      px={{ md2: 10, lg: 14 }}
+      pl={{ md: 8 }}
+      mb={20}
     >
       <Img
         src={bannerLogo}
@@ -42,8 +43,9 @@ const Banner = () => {
           alignItems='center'
           marginTop={{ base: 10, md: 4 }}
         >
-          <Button colorScheme='primary'>{t('banner.start_now')}</Button>
-          <Button>{t('banner.know_more')}</Button>
+          <Button variant='rounded' colorScheme='primary'>
+            {t('banner.start_now')}
+          </Button>
         </Flex>
       </Box>
     </Flex>
