@@ -6,12 +6,14 @@ export const FormatDate = 'dd/MM/yyyy'
 const evocdoni = import.meta.env.VOCDONI_ENVIRONMENT || 'stg'
 
 let explorer = 'https://explorer.vote'
+let faucet = 'https://faucet.vocdoni.net'
 if (['stg', 'dev'].includes(evocdoni)) {
   explorer = `https://${evocdoni}.explorer.vote`
 }
 
 export const ExplorerBaseURL = explorer
 export const VocdoniEnvironment = evocdoni
+export const VocdoniFaucet = faucet
 export const CensusPreviewRowsLimit = 10
 
 /**
