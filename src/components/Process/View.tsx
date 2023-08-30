@@ -25,7 +25,7 @@ export const ProcessView = () => {
     <Box>
       <Header />
       <Flex direction={{ base: 'column', xl: 'row' }} gap={{ xl: 10 }} alignItems='start'>
-        <Tabs variant='process' index={tabIndex} onChange={handleTabsChange} flexGrow={1}>
+        <Tabs variant='process' index={tabIndex} onChange={handleTabsChange} flexGrow={1} w='full'>
           <TabList>
             <Tab>{t('process.questions')}</Tab>
             {election?.status !== ElectionStatus.CANCELED && <Tab>{t('process.results')}</Tab>}
