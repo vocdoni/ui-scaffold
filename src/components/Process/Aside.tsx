@@ -43,8 +43,8 @@ const ProcessAside = ({ ...props }) => {
             <Trans
               i18nKey='aside.votes'
               components={{
-                tos: <Text as='span' fontWeight='bold' fontSize='xl6' textAlign='center' lineHeight={1} />,
-                tos2: <Text fontSize='xl2' lineHeight={1} textAlign='center' mt={3} />,
+                span: <Text as='span' fontWeight='bold' fontSize='xl6' textAlign='center' lineHeight={1} />,
+                text: <Text fontSize='xl2' lineHeight={1} textAlign='center' mt={3} />,
               }}
               count={election?.voteCount}
             />

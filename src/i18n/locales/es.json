@@ -5,9 +5,9 @@
     "not_connected": "No estás conectado",
     "overwrite_votes_left": "Puedes corregir tu voto {{ left }} veces.",
     "verify_vote_on_explorer": "Verifica el voto en el explorador",
-    "votes_one": "<tos>1</tos> <tos2>voto</tos2>",
-    "votes_many": "<tos>{{ count }}</tos> <tos2>votos</tos2>",
-    "votes_other": "<tos>{{ count }}</tos> <tos2>votos</tos2>"
+    "votes_one": "<span>1</span> <text>voto</text>",
+    "votes_many": "<span>{{ count }}</span> <text>votos</text>",
+    "votes_other": "<span>{{ count }}</span> <text>votos</text>"
   },
   "banner": {
     "start_now": "¡Crea un proceso de votación ahora!",
@@ -160,7 +160,7 @@
         "close": "Cerrar",
         "configuration": "Configuración",
         "confirmation": "Confirmación",
-        "confirmation_terms_and_conditions": "Acepto los <tos>términos y condiciones</tos> de Vocdoni",
+        "confirmation_terms_and_conditions": "Acepto los <link>términos y condiciones</link> de Vocdoni",
         "confirmation_valid_info": "Confirmo que esta información es correcta y válida",
         "create_button": "Crear",
         "dates": "Fecha",
@@ -273,13 +273,14 @@
     "elections": "Elecciones",
     "elections_list_empty": {
       "description": "Al comenzar haciendo tu primera elección, puedes elegir entre diferentes tipos de autenticación para tu voto.",
-      "footer": "Obtén más información sobre cómo crear elecciones <tos>en esta guía</tos>.",
+      "footer": "Obtén más información sobre cómo crear elecciones <link>en esta guía</link>.",
       "not_owner": "Esta organización aún no tiene elecciones.",
       "title": "Crea tu primera elección"
     },
     "name_long": "<strong>{{ name }}</strong> ({{ address }})"
   },
   "process": {
+    "actions": "Acciones",
     "census": "Censo",
     "census_strategies": {
       "spreadsheet": "CSV",

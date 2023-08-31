@@ -107,7 +107,7 @@ const OrganizationView = () => {
                       <Trans
                         i18nKey='organization.elections_list_empty.footer'
                         components={{
-                          tos: <Link variant='primary' href='' target='_blank' />,
+                          link: <Link variant='primary' href='' target='_blank' />,
                         }}
                       />
                     </Text>

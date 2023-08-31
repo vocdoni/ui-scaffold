@@ -5,8 +5,8 @@
     "not_connected": "You are not connected",
     "overwrite_votes_left": "You can correct your vote up to {{ left }} times.",
     "verify_vote_on_explorer": "Verify vote on explorer",
-    "votes_one": "<tos>1</tos> <tos2>vote</tos2>",
-    "votes_other": "<tos>{{ count }}</tos> <tos2>votes</tos2>"
+    "votes_one": "<span>1</span> <text>vote</text>",
+    "votes_other": "<span>{{ count }}</span> <text>votes</text>"
   },
   "banner": {
     "start_now": "Create a voting process now!",
@@ -158,7 +158,7 @@
         "close": "Close",
         "configuration": "Configuration",
         "confirmation": "Confirmation",
-        "confirmation_terms_and_conditions": "I accept the <tos>Terms and Conditions</tos> of Vocdoni",
+        "confirmation_terms_and_conditions": "I accept the <link>Terms and Conditions</link> of Vocdoni",
         "confirmation_valid_info": "I assure that this information is correct and valid",
         "create_button": "Create",
         "dates": "Dates",
@@ -269,13 +269,14 @@
     "elections": "Elections",
     "elections_list_empty": {
       "description": "Being by making your first election, you can choose between diferent auth types of your vote",
-      "footer": "Learn more about creating elections <tos>in this guide</tos>.",
+      "footer": "Learn more about creating elections <link>in this guide</link>.",
       "not_owner": "This organization has no elections yet",
       "title": "Create your first election"
     },
     "name_long": "<strong>{{ name }}</strong> ({{ address }})"
   },
   "process": {
+    "actions": "Actions",
     "census": "Census",
     "census_strategies": {
       "spreadsheet": "CSV/Spreadsheet",
@@ -284,10 +285,10 @@
     },
     "created_by": "Created by",
     "date": {
-      "ended": "Process ended",
-      "ends": "Process ends",
+      "ended": "Ended",
+      "ends": "Ends",
       "relative": "{{ date, relative(past: %time ago; future: in %time) }}",
-      "starts": "Process starts"
+      "starts": "Starts"
     },
     "is_anonymous": {
       "description": "Votes are encrypted",

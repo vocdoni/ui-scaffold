@@ -106,7 +106,7 @@ const ProcessHeader = () => {
             </Box>
           )}
           <Box>
-            <Text color='process.info_title' fontWeight='bold'>
+            <Text color='process.info_title' fontWeight='bold' mb={1}>
               {t('process.created_by')}
             </Text>
             <CreatedBy />
@@ -128,7 +128,14 @@ const ProcessHeader = () => {
               </Box>
             </Flex>
           )}
-          <ElectionActions sx={{ '& div': { flexDirection: 'row', justifyContent: 'start' } }} />
+          {election?.organizationId === account?.address && (
+            <Box>
+              <Text color='process.info_title' fontWeight='bold' mb={1}>
+                {t('process.actions')}
+              </Text>
+              <ElectionActions sx={{ '& div': { flexDirection: 'row', justifyContent: 'start' } }} ml={-1} />
+            </Box>
+          )}
         </Flex>
       </Flex>
     </Box>
