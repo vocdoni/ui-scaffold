@@ -61,13 +61,21 @@ export const RoutesProvider = () => {
         </Route>
         <Route element={<LayoutProcessCreate />}>
           <Route
-            path='processes/create'
             element={
               <SuspenseLoader>
-                <ProcessCreateSteps />
+                <ProtectedRoutes />
               </SuspenseLoader>
             }
-          />
+          >
+            <Route
+              path='processes/create'
+              element={
+                <SuspenseLoader>
+                  <ProcessCreateSteps />
+                </SuspenseLoader>
+              }
+            />
+          </Route>
         </Route>
       </Route>
     )

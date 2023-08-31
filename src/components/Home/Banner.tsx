@@ -1,10 +1,13 @@
 import { Box, Flex, Img, Link, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
+import { useAccount } from 'wagmi'
 import bannerLogo from '/assets/banner.png'
 
 const Banner = () => {
   const { t } = useTranslation()
+  const { isConnected } = useAccount()
+
   return (
     <Flex
       flexDirection={{ base: 'column', md: 'row' }}
@@ -37,26 +40,28 @@ const Banner = () => {
         <Text as='h2' fontSize={{ base: 'xl', md: 'lg' }} textAlign={{ base: 'center', md: 'start' }}>
           {t('banner.subtitle')}
         </Text>
-        <Flex
-          flexDirection={{ base: 'column', sm: 'row' }}
-          gap={5}
-          justifyContent={{ base: 'center', md: 'start' }}
-          alignItems='center'
-          marginTop={{ base: 10, md: 4 }}
-        >
-          <Link
-            as={ReactRouterLink}
-            to='/processes/create'
-            variant='rounded'
-            colorScheme='primary'
-            aria-label={t('menu.new_process')}
-            title={t('menu.new_process')}
+        {isConnected && (
+          <Flex
+            flexDirection={{ base: 'column', sm: 'row' }}
+            gap={5}
+            justifyContent={{ base: 'center', md: 'start' }}
+            alignItems='center'
+            marginTop={{ base: 10, md: 4 }}
           >
-            <Text as='span' display={{ base: 'none', sm: 'inline-block' }}>
-              {t('banner.start_now')}
-            </Text>
-          </Link>
-        </Flex>
+            <Link
+              as={ReactRouterLink}
+              to='/processes/create'
+              variant='rounded'
+              colorScheme='primary'
+              aria-label={t('menu.new_process')}
+              title={t('menu.new_process')}
+            >
+              <Text as='span' display={{ base: 'none', sm: 'inline-block' }}>
+                {t('banner.start_now')}
+              </Text>
+            </Link>
+          </Flex>
+        )}
       </Box>
     </Flex>
   )
