@@ -8,11 +8,9 @@ export const colorsBase = {
   gradient: 'var(--vcd-gradient-primary)',
   gray: {
     light: '#EDF2F7',
-    light2: '#fefefe',
-    light3: '#f1f1f1',
     main: '#E2E8F0',
     dark: '#CBD5E0',
-    dark2: '#677680',
+    dark2: '#606f88',
   },
   primary: {
     main: '#24656e',
@@ -24,6 +22,7 @@ export const colorsBase = {
     dark: '#fafafa',
   },
 }
+
 export const colors = {
   aside_bg: colorsBase.gradient,
 
@@ -85,7 +84,7 @@ export const colors = {
   organization: {
     card: {
       description: colorsBase.gray.dark2,
-      footer_bg: colorsBase.gray.light2,
+      footer_bg: colorsBase.gray.light,
     },
     election_list_empty_bg: colorsBase.gray.light,
     header: colorsBase.white.pure,
@@ -104,8 +103,12 @@ export const colors = {
     info_title: colorsBase.primary.main,
     description: colorsBase.gray.dark2,
     header_divider: colorsBase.gray.dark,
-    identify_button_bg: colorsBase.primary.main,
-    identify_button_color: colorsBase.white.pure,
+    identify_btn: {
+      bg: colorsBase.primary.main,
+      bg_active: colorsBase.primary.dark2,
+      bg_hover: colorsBase.primary.dark,
+      color: colorsBase.white.pure,
+    },
     paused: colorsBase.primary.main,
     questions: {
       bg: colorsBase.gray.light,

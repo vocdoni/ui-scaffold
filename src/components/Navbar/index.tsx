@@ -104,7 +104,7 @@ const Navbar = () => {
                     as={Button}
                     aria-label={t('menu.languages_list')}
                     variant='rounded-ghost'
-                    boxShadow={`${isOpen ? '' : '0px 0px 10px -3px gray'}`}
+                    boxShadow={`${isOpen ? '' : 'var(--box-shadow-btn)'}`}
                     p={2}
                   >
                     <Box as='span' display='flex' alignItems='center'>
