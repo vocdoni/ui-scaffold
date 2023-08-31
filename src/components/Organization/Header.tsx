@@ -1,8 +1,12 @@
-import { AspectRatio, Box, Button, Flex } from '@chakra-ui/react'
+import { AspectRatio, Box, Button, Flex, IconButton } from '@chakra-ui/react'
 import { OrganizationAvatar as Avatar, OrganizationDescription, OrganizationName } from '@vocdoni/chakra-components'
 import { useOrganization } from '@vocdoni/react-providers'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
+
+import EditProfile from '@components/Account/EditProfile'
+import { IoMdCreate } from 'react-icons/io'
 import AddressBtn from './AddressBtn'
 import fallback from '/assets/default-avatar.png'
 
@@ -66,7 +70,6 @@ const OrganizationHeader = () => {
           alignItems={{ base: 'center', md: 'start' }}
           gap={2}
           order={{ base: 2, md: 0 }}
-          maxW={{ base: '100%', md: '75%' }}
         >
           <Flex
             w='100%'
@@ -76,7 +79,6 @@ const OrganizationHeader = () => {
             alignItems='center'
             sx={{
               p: {
-                maxW: { base: '75%', sm: '80%', lg: '85%' },
                 noOfLines: noOfLinesTitle,
                 overflow: 'hidden',
                 display: '-webkit-box',
@@ -92,10 +94,29 @@ const OrganizationHeader = () => {
               title={organization?.account.name.default || organization?.address}
             />
             {isTruncatedTitle && (
-              <Button float='right' variant='link' colorScheme='primary' alignSelf='end' onClick={handleReadMoreTitle}>
-                {readMoreTitle ? ' Read less' : 'Read more'}
-              </Button>
+              <IconButton
+                icon={readMoreTitle ? <FaEyeSlash /> : <FaEye />}
+                variant='ghost'
+                alignSelf='start'
+                color='primary.500'
+                title={t('organization.title.read_more')}
+                aria-label={t('organization.title.read_more')}
+                onClick={handleReadMoreTitle}
+              />
             )}
+            <EditProfile
+              tag={(onOpen: () => void) => (
+                <IconButton
+                  icon={<IoMdCreate />}
+                  alignSelf='start'
+                  variant='ghost'
+                  color='primary.500'
+                  title={t('organization.title.edit')}
+                  aria-label={t('organization.title.edit')}
+                  onClick={onOpen}
+                />
+              )}
+            />
           </Flex>
 
           <Flex

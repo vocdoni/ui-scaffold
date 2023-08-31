@@ -277,7 +277,11 @@
       "not_owner": "Aquesta organització encara no té eleccions.",
       "title": "Crea la teva primera elecció"
     },
-    "name_long": "<strong>{{ name }}</strong> ({{ address }})"
+    "name_long": "<strong>{{ name }}</strong> ({{ address }})",
+    "title": {
+      "edit": "Editar organització",
+      "read_more": "Expandir títol"
+    }
   },
   "process": {
     "actions": "Accions",

@@ -10,7 +10,6 @@ import {
   IconButton,
   Image,
   Input,
-  MenuItem,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -37,7 +36,7 @@ interface EditFormFields {
 
 const REGEX_AVATAR = /^(https?:\/\/|ipfs:\/\/)/i
 
-const EditProfile = () => {
+const EditProfile = ({ tag }: { tag: any }) => {
   const { account, client } = useClient()
   const { t } = useTranslation()
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -93,7 +92,7 @@ const EditProfile = () => {
 
   return (
     <>
-      <MenuItem onClick={onOpen}>{t('menu.organization')}</MenuItem>
+      {tag(onOpen)}
       <Modal isOpen={isOpen} onClose={() => !loading && onClose()}>
         <ModalOverlay />
         <ModalContent p={3} minW={{ md: '700px' }}>

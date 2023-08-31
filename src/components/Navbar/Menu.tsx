@@ -110,7 +110,7 @@ const MenuDropdown = () => {
               </Button>
             </Flex>
           </MenuItem>
-          <EditProfile />
+          <EditProfile tag={(onOpen: () => void) => <MenuItem onClick={onOpen}>{t('menu.organization')}</MenuItem>} />
         </>
       )}
 
