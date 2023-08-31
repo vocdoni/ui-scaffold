@@ -43,74 +43,77 @@ const MenuDropdown = () => {
         bgColor: 'none',
       }}
     >
-      <MenuItem
-        as='div'
-        display='flex'
-        flexDirection='column'
-        alignItems='start'
-        gap={2}
-        closeOnSelect={false}
-        _hover={{
-          bgColor: 'white',
-        }}
-        _active={{
-          '& button': {
-            outline: '2px solid transparent !important',
-            bgColor: 'lightgray',
-          },
-        }}
-        _focus={{
-          '& button': {
-            outline: '2px solid #8DC2ED',
-          },
-        }}
-        onClick={() => {
-          onCopy()
-        }}
-      >
-        <Text fontWeight='bold'>{t('menu.wallet')}</Text>
-        <Box display='flex' alignItems='center' gap={2}>
-          <HStack justifyContent='center' bgColor='primary.main' width={8} height={8} borderRadius='50%'>
-            <FaWallet size={18} color='white' />
-          </HStack>
-          {addressTextOverflow((account?.address as string) || '', 10)}
-          <IconButton
+      {account && (
+        <>
+          <MenuItem
+            as='div'
+            display='flex'
+            flexDirection='column'
+            alignItems='start'
+            gap={2}
+            closeOnSelect={false}
+            _hover={{
+              bgColor: 'white',
+            }}
+            _active={{
+              '& button': {
+                outline: '2px solid transparent !important',
+                bgColor: 'lightgray',
+              },
+            }}
+            _focus={{
+              '& button': {
+                outline: '2px solid #8DC2ED',
+              },
+            }}
             onClick={() => {
               onCopy()
             }}
-            aria-label={t('menu.copy_aria_label')}
-            icon={<CopyIcon />}
-            bgColor='white'
-            w={5}
-            h={5}
-            minW={0}
-          />
-        </Box>
-      </MenuItem>
-      {account && (
-        <MenuItem
-          as='div'
-          _hover={{
-            bgColor: 'white',
-          }}
-          _focus={{
-            '& button': {
-              outline: '2px solid #8DC2ED',
-            },
-          }}
-          mb={3}
-        >
-          <Flex alignItems='center' gap={7}>
-            <Flex>
-              <Balance p={0} bg='white' fontWeight='bold' />
+          >
+            <Text fontWeight='bold'>{t('menu.wallet')}</Text>
+            <Box display='flex' alignItems='center' gap={2}>
+              <HStack justifyContent='center' bgColor='primary.main' width={8} height={8} borderRadius='50%'>
+                <FaWallet size={18} color='white' />
+              </HStack>
+              {addressTextOverflow((account?.address as string) || '', 10)}
+              <IconButton
+                onClick={() => {
+                  onCopy()
+                }}
+                aria-label={t('menu.copy_aria_label')}
+                icon={<CopyIcon />}
+                bgColor='white'
+                w={5}
+                h={5}
+                minW={0}
+              />
+            </Box>
+          </MenuItem>
+          <MenuItem
+            as='div'
+            _hover={{
+              bgColor: 'white',
+            }}
+            _focus={{
+              '& button': {
+                outline: '2px solid #8DC2ED',
+              },
+            }}
+            mb={3}
+          >
+            <Flex alignItems='center' gap={7}>
+              <Flex>
+                <Balance p={0} bg='white' fontWeight='bold' />
+              </Flex>
+              <Button colorScheme='primary' leftIcon={<HiShoppingCart size={20} />} p={2}>
+                {t('menu.get_more')}
+              </Button>
             </Flex>
-            <Button colorScheme='primary' leftIcon={<HiShoppingCart size={20} />} p={2}>
-              {t('menu.get_more')}
-            </Button>
-          </Flex>
-        </MenuItem>
+          </MenuItem>
+          <EditProfile />
+        </>
       )}
-      <EditProfile />
+
       <MenuItem
         closeOnSelect={false}
         onClick={() => setIsOpenMenuLanguages((prev) => !prev)}

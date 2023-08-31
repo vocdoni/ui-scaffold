@@ -5,9 +5,9 @@
     "not_connected": "No estàs connectat",
     "overwrite_votes_left": "Pots corregir el teu vot {{ left }} vegades.",
     "verify_vote_on_explorer": "Verifica el vot a l'explorador",
-    "votes_one": "<tos>1</tos> <tos2>vot</tos2>",
+    "votes_one": "<span>1</span> <text>vot</text>",
     "votes_many": "",
-    "votes_other": "<tos>{{ count }}</tos> <tos2>vots</tos2>"
+    "votes_other": "<span>{{ count }}</span> <text>vots</text>"
   },
   "banner": {
     "start_now": "Crea ara un procés de votació!",
@@ -160,7 +160,7 @@
         "close": "Tanca",
         "configuration": "Configuració",
         "confirmation": "Confirmació",
-        "confirmation_terms_and_conditions": "Accepto els <tos>termes i condicions</tos> de Vocdoni",
+        "confirmation_terms_and_conditions": "Accepto els <link>termes i condicions</link> de Vocdoni",
         "confirmation_valid_info": "Confirmo que aquesta informació és correcta i vàlida",
         "create_button": "Crea",
         "dates": "Data",
@@ -273,13 +273,14 @@
     "elections": "Eleccions",
     "elections_list_empty": {
       "description": "En començar fent la teva primera elecció, pots triar entre diferents tipus d'autenticació pel teu vot.",
-      "footer": "Obtén més informació sobre com crear eleccions <tos>en aquesta guia</tos>.",
+      "footer": "Obtén més informació sobre com crear eleccions <link>en aquesta guia</link>.",
       "not_owner": "Aquesta organització encara no té eleccions.",
       "title": "Crea la teva primera elecció"
     },
     "name_long": "<strong>{{ name }}</strong> ({{ address }})"
   },
   "process": {
+    "actions": "Accions",
     "census": "Cens",
     "census_strategies": {
       "spreadsheet": "CSV",
@@ -288,7 +289,7 @@
     },
     "created_by": "Creat per",
     "date": {
-      "ended": "Procés finalitzat",
+      "ended": "Finalitzat",
       "ends": "Finalitza",
       "relative": "{{ date, relative(past: fa %time; future: en %time) }}",
       "starts": "Comença el procés"

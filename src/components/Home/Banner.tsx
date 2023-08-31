@@ -1,5 +1,6 @@
-import { Box, Button, Flex, Img, Text } from '@chakra-ui/react'
+import { Box, Flex, Img, Link, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
+import { Link as ReactRouterLink } from 'react-router-dom'
 import bannerLogo from '/assets/banner.png'
 
 const Banner = () => {
@@ -43,9 +44,18 @@ const Banner = () => {
           alignItems='center'
           marginTop={{ base: 10, md: 4 }}
         >
-          <Button variant='rounded' colorScheme='primary'>
-            {t('banner.start_now')}
-          </Button>
+          <Link
+            as={ReactRouterLink}
+            to='/processes/create'
+            variant='rounded'
+            colorScheme='primary'
+            aria-label={t('menu.new_process')}
+            title={t('menu.new_process')}
+          >
+            <Text as='span' display={{ base: 'none', sm: 'inline-block' }}>
+              {t('banner.start_now')}
+            </Text>
+          </Link>
         </Flex>
       </Box>
     </Flex>
