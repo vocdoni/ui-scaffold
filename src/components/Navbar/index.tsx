@@ -22,22 +22,24 @@ const Navbar = () => {
       <Logo />
 
       <List as='nav' display='flex' alignItems='center' gap={4}>
-        <ListItem>
-          <Link
-            as={ReactRouterLink}
-            to='/processes/create'
-            variant='rounded'
-            colorScheme='primary'
-            aria-label={t('menu.new_process')}
-            title={t('menu.new_process')}
-            px={{ base: 3.5, sm: 4 }}
-          >
-            <AddIcon boxSize={3} />
-            <Text as='span' display={{ base: 'none', sm: 'inline-block' }}>
-              {t('menu.new_process')}
-            </Text>
-          </Link>
-        </ListItem>
+        {isConnected && (
+          <ListItem>
+            <Link
+              as={ReactRouterLink}
+              to='/processes/create'
+              variant='rounded'
+              colorScheme='primary'
+              aria-label={t('menu.new_process')}
+              title={t('menu.new_process')}
+              px={{ base: 3.5, sm: 4 }}
+            >
+              <AddIcon boxSize={3} />
+              <Text as='span' display={{ base: 'none', sm: 'inline-block' }}>
+                {t('menu.new_process')}
+              </Text>
+            </Link>
+          </ListItem>
+        )}
 
         {account && (
           <ListItem>
