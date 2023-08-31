@@ -7,7 +7,7 @@ const VotingTypesBanner = ({ ...props }) => {
     <Flex
       flexDirection={{ base: 'column', md: 'row' }}
       justifyContent='space-around'
-      alignItems='center'
+      alignItems={{ base: 'center', md: 'start' }}
       gap={{ base: 10, md: 0 }}
       maxW={250}
       mx='auto'
