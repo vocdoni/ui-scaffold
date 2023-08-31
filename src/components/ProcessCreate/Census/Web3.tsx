@@ -64,10 +64,15 @@ export const CensusWeb3Addresses = () => {
     await trigger()
 
     const duplicateAddress = addresses.find((add: any) => add.address === newAddress)
-
     if (duplicateAddress) {
       return setError('newAddress', { type: 'custom', message: t('form.error.address_already_in_use') })
     }
+
+    const pattern = /^(0x)?[0-9a-f]{40}$/i
+    if (!pattern.test(newAddress)) {
+      return setError('newAddress', { type: 'custom', message: t('form.error.address_pattern') })
+    }
+
     if (!newAddress) {
       return setError('newAddress', { type: 'custom', message: t('form.error.field_is_required') })
     }
@@ -108,14 +113,9 @@ export const CensusWeb3Addresses = () => {
       <FormControl isInvalid={isInvalidFieldMap(errors, 'newAddress')} display='flex' justifyContent='center' gap={2}>
         <Box mb={3}>
           <Input
-            {...register('newAddress', {
-              pattern: {
-                value: /^(0x)?[0-9a-f]{40}$/i,
-                message: t('form.error.address_pattern'),
-              },
-            })}
+            {...register('newAddress')}
             w={{ base: 52, sm: 72, md: 100 }}
-            onKeyUp={(e) => {
+            onKeyDown={(e) => {
               // avoid submitting form on enter
               if (e.key === 'Enter') {
                 e.preventDefault()
