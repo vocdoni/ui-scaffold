@@ -273,7 +273,7 @@
     "elections": "Eleccions",
     "elections_list_empty": {
       "description": "En començar fent la teva primera elecció, pots triar entre diferents tipus d'autenticació pel teu vot.",
-      "footer": "Obtén més informació sobre com crear eleccions <link>en aquesta guia</link>.",
+      "footer": "Obtén més informació sobre com crear eleccions <customLink>en aquesta guia</customLink>.",
       "not_owner": "Aquesta organització encara no té eleccions.",
       "title": "Crea la teva primera elecció"
     },
