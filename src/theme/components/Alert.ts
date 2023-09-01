@@ -19,6 +19,15 @@ const baseStyle = definePartsStyle((props) => {
         },
       },
     }
+
+  if (status === 'error')
+    return {
+      container: {
+        borderRadius: 30,
+        w: 'fit-content',
+        mx: 'auto',
+      },
+    }
   return {}
 })
 
