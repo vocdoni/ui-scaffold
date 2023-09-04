@@ -1,6 +1,6 @@
 import { Box, Card, CardBody, Flex, Grid, GridItem, Img, Link, Spinner, Text } from '@chakra-ui/react'
 import { useClient, useOrganization } from '@vocdoni/react-providers'
-import { InvalidElection, PublishedElection, areEqualHexStrings } from '@vocdoni/sdk'
+import { areEqualHexStrings, InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
@@ -17,7 +17,7 @@ const OrganizationView = () => {
   const [electionsList, setElectionsList] = useState<(PublishedElection | InvalidElection)[]>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [loaded, setLoaded] = useState<boolean>(false)
-  const [error, setError] = useState<boolean>(false)
+  const [error, setError] = useState<string>()
   const [finished, setFinished] = useState<boolean>(false)
 
   const refObserver = useRef<any>()
@@ -127,9 +127,13 @@ const OrganizationView = () => {
             </CardBody>
           </Card>
         )}
-
-        {error && <Text>{error}</Text>}
       </Flex>
+      {error && (
+        <Alert status='error'>
+          <AlertIcon />
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
+      )}
     </Box>
   )
 }

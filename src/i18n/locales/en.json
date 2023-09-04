@@ -274,7 +274,11 @@
       "not_owner": "This organization has no elections yet",
       "title": "Create your first election"
     },
-    "name_long": "<strong>{{ name }}</strong> ({{ address }})"
+    "name_long": "<strong>{{ name }}</strong> ({{ address }})",
+    "title": {
+      "edit": "Edit organization",
+      "read_more": "Expand title"
+    }
   },
   "process": {
     "actions": "Actions",
