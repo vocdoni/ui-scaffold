@@ -2,11 +2,9 @@ import { useDisclosure } from '@chakra-ui/react'
 import EditProfile from '@components/Account/EditProfile'
 import { createContext, useContext } from 'react'
 
-const OrganizationModalContext = createContext({
-  isOpen: false,
-  onOpen: () => {},
-  onClose: () => {},
-})
+type OrganizationModalState = Pick<ReturnType<typeof useDisclosure>, 'isOpen' | 'onOpen' | 'onClose'>
+
+const OrganizationModalContext = createContext<OrganizationModalState | undefined>(undefined)
 
 export const OrganizationModalProvider = ({ children }: { children: React.ReactNode | React.ReactNode[] }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -16,6 +14,7 @@ export const OrganizationModalProvider = ({ children }: { children: React.ReactN
     onOpen,
     onClose,
   }
+
   return (
     <OrganizationModalContext.Provider value={modalValues}>
       <EditProfile />
@@ -25,7 +24,13 @@ export const OrganizationModalProvider = ({ children }: { children: React.ReactN
 }
 
 export const useOrganizationModal = () => {
-  const { isOpen, onOpen, onClose } = useContext(OrganizationModalContext)
+  const ctx = useContext(OrganizationModalContext)
 
-  return { isOpen, onOpen, onClose }
+  if (!ctx) {
+    throw new Error(
+      'useOrganizationModal returned `undefined`, maybe you forgot to wrap the component within <OrganizationModalProvider />?'
+    )
+  }
+
+  return ctx
 }
