@@ -1,13 +1,27 @@
-import { Alert, AlertDescription, AlertIcon, Box, Card, CardBody, Flex, Grid, GridItem, Img, Link, Spinner, Text } from '@chakra-ui/react'
+import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  Box,
+  Card,
+  CardBody,
+  Flex,
+  Grid,
+  GridItem,
+  Img,
+  Link,
+  Spinner,
+  Text,
+} from '@chakra-ui/react'
 import { useClient, useOrganization } from '@vocdoni/react-providers'
 import { areEqualHexStrings, InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
-import org from '../../../public/assets/empty-list-org.png'
-import user from '../../../public/assets/empty-list-user.png'
 import ProcessCardDetailed from '../Process/CardDetailed'
 import Header from './Header'
+import org from '/assets/empty-list-org.png'
+import user from '/assets/empty-list-user.png'
 
 const OrganizationView = () => {
   const { t } = useTranslation()
