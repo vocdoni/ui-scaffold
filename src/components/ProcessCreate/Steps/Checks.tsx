@@ -1,12 +1,12 @@
 import { ArrowForwardIcon } from '@chakra-ui/icons'
-import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, Flex, Spinner, Text } from '@chakra-ui/react'
+import { Alert, AlertDescription, AlertIcon, Box, Button, Flex, Spinner, Text } from '@chakra-ui/react'
 import { AccountCreate } from '@components/Account/Create'
 import { useAccountHealthTools } from '@components/Account/use-account-health-tools'
 import { useClient } from '@vocdoni/react-providers'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useProcessCreationSteps } from './use-steps'
 import Wrapper from './Wrapper'
+import { useProcessCreationSteps } from './use-steps'
 
 export const Checks = () => {
   const {
@@ -48,10 +48,7 @@ const NeedsAccount = () => {
       <Wrapper>
         <Alert status='info'>
           <AlertIcon />
-          <Flex flexDirection='column'>
-            <AlertTitle>{t('form.process_create.alert_info_title')}</AlertTitle>
-            <AlertDescription>{t('form.process_create.unhealthy_account')}</AlertDescription>
-          </Flex>
+          <AlertDescription>{t('form.process_create.unhealthy_account')}</AlertDescription>
         </Alert>
         <AccountCreate />
       </Wrapper>

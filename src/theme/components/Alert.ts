@@ -6,11 +6,17 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 const baseStyle = definePartsStyle((props) => {
   const { status } = props
 
+  const commonStyles = {
+    borderRadius: 'xl',
+    border: '1px solid',
+    w: 'fit-content',
+    mx: 'auto',
+  }
+
   if (status === 'info')
     return {
       container: {
-        borderRadius: 'md',
-        border: '1px solid',
+        ...commonStyles,
         color: 'process_create.alert_info.color',
         bgColor: 'process_create.alert_info.bg',
 
@@ -19,7 +25,12 @@ const baseStyle = definePartsStyle((props) => {
         },
       },
     }
-  return {}
+
+  return {
+    container: {
+      ...commonStyles,
+    },
+  }
 })
 
 export const Alert = defineMultiStyleConfig({
