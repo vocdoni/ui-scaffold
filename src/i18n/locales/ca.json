@@ -272,12 +272,17 @@
     "avatar_alt": "Imatge d'avatar de l'organització {{ name }}",
     "elections": "Eleccions",
     "elections_list_empty": {
+      "alt": "Imatge il·lustrant que l'organització és buida",
       "description": "En començar fent la teva primera elecció, pots triar entre diferents tipus d'autenticació pel teu vot.",
-      "footer": "Obtén més informació sobre com crear eleccions <link>en aquesta guia</link>.",
+      "footer": "Obtén més informació sobre com crear eleccions <customLink>en aquesta guia</customLink>.",
       "not_owner": "Aquesta organització encara no té eleccions.",
       "title": "Crea la teva primera elecció"
     },
-    "name_long": "<strong>{{ name }}</strong> ({{ address }})"
+    "name_long": "<strong>{{ name }}</strong> ({{ address }})",
+    "title": {
+      "edit": "Editar organització",
+      "read_more": "Expandir títol"
+    }
   },
   "process": {
     "actions": "Accions",

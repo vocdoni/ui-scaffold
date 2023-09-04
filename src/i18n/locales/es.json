@@ -272,12 +272,17 @@
     "avatar_alt": "Imagen de avatar de la organización {{ name }}",
     "elections": "Elecciones",
     "elections_list_empty": {
+      "alt": "Imagen que ilustra que la organización está vacía",
       "description": "Al comenzar haciendo tu primera elección, puedes elegir entre diferentes tipos de autenticación para tu voto.",
-      "footer": "Obtén más información sobre cómo crear elecciones <link>en esta guía</link>.",
+      "footer": "Obtén más información sobre cómo crear elecciones <customLink>en esta guía</customLink>.",
       "not_owner": "Esta organización aún no tiene elecciones.",
       "title": "Crea tu primera elección"
     },
-    "name_long": "<strong>{{ name }}</strong> ({{ address }})"
+    "name_long": "<strong>{{ name }}</strong> ({{ address }})",
+    "title": {
+      "edit": "Editar organización",
+      "read_more": "Expandir título"
+    }
   },
   "process": {
     "actions": "Acciones",

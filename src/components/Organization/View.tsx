@@ -1,10 +1,11 @@
-import { Box, Card, CardBody, Link as ChakraLink, Flex, Grid, GridItem, Link, Spinner, Text } from '@chakra-ui/react'
-import Logo from '@components/Layout/Logo'
+import { Alert, AlertDescription, AlertIcon, Box, Card, CardBody, Flex, Grid, GridItem, Img, Link, Spinner, Text } from '@chakra-ui/react'
 import { useClient, useOrganization } from '@vocdoni/react-providers'
-import { InvalidElection, PublishedElection, areEqualHexStrings } from '@vocdoni/sdk'
+import { areEqualHexStrings, InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
+import org from '../../../public/assets/empty-list-org.png'
+import user from '../../../public/assets/empty-list-user.png'
 import ProcessCardDetailed from '../Process/CardDetailed'
 import Header from './Header'
 
@@ -16,7 +17,7 @@ const OrganizationView = () => {
   const [electionsList, setElectionsList] = useState<(PublishedElection | InvalidElection)[]>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [loaded, setLoaded] = useState<boolean>(false)
-  const [error, setError] = useState<boolean>(false)
+  const [error, setError] = useState<string>()
   const [finished, setFinished] = useState<boolean>(false)
 
   const refObserver = useRef<any>()
@@ -96,25 +97,28 @@ const OrganizationView = () => {
           <Card variant='no-elections'>
             <CardBody>
               <Box>
-                <Logo />
+                <Img
+                  src={areEqualHexStrings(account?.address, organization?.address) ? org : user}
+                  alt={t('organization.elections_list_empty.alt')}
+                />
               </Box>
               <Box>
                 {areEqualHexStrings(account?.address, organization?.address) ? (
                   <>
-                    <Text textAlign='center'>{t('organization.elections_list_empty.title')}</Text>
-                    <Text textAlign='center'>{t('organization.elections_list_empty.description')}</Text>
+                    <Text>{t('organization.elections_list_empty.title')}</Text>
+                    <Text>{t('organization.elections_list_empty.description')}</Text>
                     <Text>
                       <Trans
                         i18nKey='organization.elections_list_empty.footer'
                         components={{
-                          link: <Link variant='primary' href='' target='_blank' />,
+                          customLink: <Link variant='primary' href='#' target='_blank' />,
                         }}
                       />
                     </Text>
 
-                    <ChakraLink as={ReactRouterLink} to='/processes/create' variant='button' colorScheme='primary'>
+                    <Link as={ReactRouterLink} to='/processes/create' variant='button' colorScheme='primary'>
                       {t('menu.create')}
-                    </ChakraLink>
+                    </Link>
                   </>
                 ) : (
                   <Text textAlign='center'>{t('organization.elections_list_empty.not_owner')}</Text>
@@ -123,9 +127,13 @@ const OrganizationView = () => {
             </CardBody>
           </Card>
         )}
-
-        {error && <Text>{error}</Text>}
       </Flex>
+      {error && (
+        <Alert status='error'>
+          <AlertIcon />
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
+      )}
     </Box>
   )
 }

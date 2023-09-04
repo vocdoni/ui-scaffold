@@ -1,4 +1,5 @@
 import { ChakraProvider, ColorModeScript, extendTheme, useColorMode } from '@chakra-ui/react'
+import { OrganizationModalProvider } from '@components/Organization/OrganizationModalProvider'
 import { Signer } from '@ethersproject/abstract-signer'
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import { ClientProvider } from '@vocdoni/chakra-components'
@@ -33,8 +34,10 @@ export const AppProviders = () => {
         locale={translations(t)}
         datesLocale={datesLocale(i18n.language)}
       >
-        <ColorModeScript />
-        <RoutesProvider />
+        <OrganizationModalProvider>
+          <ColorModeScript />
+          <RoutesProvider />
+        </OrganizationModalProvider>
       </ClientProvider>
     </RainbowKitProvider>
   )

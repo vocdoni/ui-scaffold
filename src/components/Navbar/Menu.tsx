@@ -12,7 +12,7 @@ import {
   Text,
   useClipboard,
 } from '@chakra-ui/react'
-import EditProfile from '@components/Account/EditProfile'
+import { useOrganizationModal } from '@components/Organization/OrganizationModalProvider'
 import { addressTextOverflow } from '@constants'
 import { Balance, HR } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
@@ -31,6 +31,8 @@ const MenuDropdown = () => {
   const { onCopy } = useClipboard(account?.address as string)
 
   const [isOpenMenuLanguages, setIsOpenMenuLanguages] = useState(false)
+
+  const { onOpen } = useOrganizationModal()
 
   return (
     <MenuList
@@ -110,7 +112,7 @@ const MenuDropdown = () => {
               </Button>
             </Flex>
           </MenuItem>
-          <EditProfile />
+          <MenuItem onClick={onOpen}>{t('menu.organization')}</MenuItem>
         </>
       )}
 
