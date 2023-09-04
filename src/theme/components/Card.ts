@@ -137,6 +137,7 @@ const noElections = definePartsStyle({
     boxShadow: 'var(--box-shadow)',
     borderRadius: 'lg',
     minW: 'full',
+    minH: 52,
   },
 
   body: {
@@ -156,12 +157,16 @@ const noElections = definePartsStyle({
     '& > div:nth-of-type(2)': {
       display: 'flex',
       flexDirection: 'column',
+      justifyContent: 'center',
       alignItems: { base: 'center', lg: 'start' },
       gap: 5,
 
       '& > p:first-of-type': {
-        fontSize: 'xl2',
         fontWeight: 'bold',
+      },
+
+      '& > p': {
+        textAlign: { base: 'center', lg: 'start' },
       },
     },
   },
