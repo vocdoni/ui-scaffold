@@ -97,11 +97,10 @@ const OrganizationView = () => {
           <Card variant='no-elections'>
             <CardBody>
               <Box>
-                {areEqualHexStrings(account?.address, organization?.address) ? (
-                  <Img src={org} alt='vocdoni icon' />
-                ) : (
-                  <Img src={user} alt='aragon icon' />
-                )}
+                <Img
+                  src={areEqualHexStrings(account?.address, organization?.address) ? org : user}
+                  alt={t('organization.elections_list_empty.alt')}
+                />
               </Box>
               <Box>
                 {areEqualHexStrings(account?.address, organization?.address) ? (

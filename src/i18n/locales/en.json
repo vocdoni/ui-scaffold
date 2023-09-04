@@ -268,6 +268,7 @@
     "avatar_alt": "Avatar image of {{ name }} organization",
     "elections": "Elections",
     "elections_list_empty": {
+      "alt": "Organization empty list",
       "description": "Being by making your first election, you can choose between diferent auth types of your vote",
       "footer": "Learn more about creating elections <customLink>in this guide</customLink>.",
       "not_owner": "This organization has no elections yet",

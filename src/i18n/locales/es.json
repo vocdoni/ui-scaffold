@@ -272,6 +272,7 @@
     "avatar_alt": "Imagen de avatar de la organización {{ name }}",
     "elections": "Elecciones",
     "elections_list_empty": {
+      "alt": "Lista vacía de organización",
       "description": "Al comenzar haciendo tu primera elección, puedes elegir entre diferentes tipos de autenticación para tu voto.",
       "footer": "Obtén más información sobre cómo crear elecciones <customLink>en esta guía</customLink>.",
       "not_owner": "Esta organización aún no tiene elecciones.",

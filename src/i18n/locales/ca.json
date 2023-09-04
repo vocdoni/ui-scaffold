@@ -272,6 +272,7 @@
     "avatar_alt": "Imatge d'avatar de l'organització {{ name }}",
     "elections": "Eleccions",
     "elections_list_empty": {
+      "alt": "Llista buida d'organització",
       "description": "En començar fent la teva primera elecció, pots triar entre diferents tipus d'autenticació pel teu vot.",
       "footer": "Obtén més informació sobre com crear eleccions <customLink>en aquesta guia</customLink>.",
       "not_owner": "Aquesta organització encara no té eleccions.",
