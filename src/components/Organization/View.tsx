@@ -1,4 +1,4 @@
-import { Box, Card, CardBody, Flex, Grid, GridItem, Img, Link, Spinner, Text } from '@chakra-ui/react'
+import { Alert, AlertDescription, AlertIcon, Box, Card, CardBody, Flex, Grid, GridItem, Img, Link, Spinner, Text } from '@chakra-ui/react'
 import { useClient, useOrganization } from '@vocdoni/react-providers'
 import { areEqualHexStrings, InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
