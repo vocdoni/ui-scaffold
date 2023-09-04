@@ -7,7 +7,7 @@ const primary = defineStyle({
 const rounded = defineStyle((props) => {
   const { colorScheme } = props
 
-  // Simulating the styles of a button variant rounded as we do in the "button" file, 
+  // Simulating the styles of a button variant rounded as we do in the "button" file,
   // but since Chakra doesn't default to passing a colorScheme to Links, we need to fallback to the base gray color of the buttons.
   // By default the color is white and if we want to change ir we can use the color prop
   return {
