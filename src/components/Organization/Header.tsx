@@ -1,18 +1,20 @@
 import { AspectRatio, Box, Button, Flex, IconButton } from '@chakra-ui/react'
 import { OrganizationAvatar as Avatar, OrganizationDescription, OrganizationName } from '@vocdoni/chakra-components'
-import { useOrganization } from '@vocdoni/react-providers'
+import { useClient, useOrganization } from '@vocdoni/react-providers'
+import { areEqualHexStrings } from '@vocdoni/sdk'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
-
-import EditProfile from '@components/Account/EditProfile'
 import { IoMdCreate } from 'react-icons/io'
 import AddressBtn from './AddressBtn'
+import { useOrganizationModal } from './OrganizationModalProvider'
 import fallback from '/assets/default-avatar.png'
 
 const OrganizationHeader = () => {
   const { t } = useTranslation()
   const { organization } = useOrganization()
+  const { onOpen } = useOrganizationModal()
+  const { account } = useClient()
 
   const {
     containerRef: containerRefTitle,
@@ -104,19 +106,17 @@ const OrganizationHeader = () => {
                 onClick={handleReadMoreTitle}
               />
             )}
-            <EditProfile
-              tag={(onOpen: () => void) => (
-                <IconButton
-                  icon={<IoMdCreate />}
-                  alignSelf='start'
-                  variant='ghost'
-                  color='primary.500'
-                  title={t('organization.title.edit')}
-                  aria-label={t('organization.title.edit')}
-                  onClick={onOpen}
-                />
-              )}
-            />
+            {areEqualHexStrings(account?.address, organization?.address) && (
+              <IconButton
+                icon={<IoMdCreate />}
+                alignSelf='start'
+                variant='ghost'
+                color='primary.500'
+                title={t('organization.title.edit')}
+                aria-label={t('organization.title.edit')}
+                onClick={onOpen}
+              />
+            )}
           </Flex>
 
           <Flex
