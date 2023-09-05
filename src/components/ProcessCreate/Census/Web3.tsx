@@ -18,7 +18,6 @@ import { useDropzone } from 'react-dropzone'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { RiFileExcel2Line } from 'react-icons/ri'
-import { CensusSpreadsheetManager } from './Spreadsheet/CensusSpreadsheetManager'
 import { Web3CensusSpreadsheetManager } from './Spreadsheet/Web3CensusSpreadsheetManager'
 
 export const CensusWeb3Addresses = () => {
@@ -91,12 +90,14 @@ export const CensusWeb3Addresses = () => {
       // weighted set to false for now, since there's no weight management here yet
       const spreadsheet = new Web3CensusSpreadsheetManager(file, false)
       await spreadsheet.read()
-      setValue('addresses', [
-        ...addresses,
-        ...spreadsheet.data.map(([first, second]) => ({
-          address: first,
-        })),
-      ])
+      const plain = addresses.map(({ address }) => address.toLowerCase())
+      spreadsheet.data.forEach((row) => {
+        const [address] = row
+        if (!plain.includes(address.toLowerCase())) {
+          addresses.push({ address })
+        }
+      })
+      setValue('addresses', addresses)
     } catch (e) {
       setFileErr(errorToString(e))
       console.error('could not load file:', e)
@@ -105,7 +106,7 @@ export const CensusWeb3Addresses = () => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     multiple: false,
-    accept: CensusSpreadsheetManager.AcceptedTypes.reduce((prev, curr) => ({ ...prev, [curr]: [] }), {}),
+    accept: Web3CensusSpreadsheetManager.AcceptedTypes.reduce((prev, curr) => ({ ...prev, [curr]: [] }), {}),
   })
 
   return (
