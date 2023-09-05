@@ -34,7 +34,16 @@
       "pause_description": "pausando el proceso electoral \"{{ election.title.default }}\"",
       "waiting_title": "Esperando la confirmación de la transacción..."
     },
+    "confirm": {
+      "cancel": "Cancelar",
+      "confirm": "Confirmar",
+      "title": "Confirmar"
+    },
     "empty": "Aparentemente este proceso no tiene preguntas",
+    "errors": {
+      "wrong_data_description": "Los datos especificados no son correctos",
+      "wrong_data_title": "Datos incorrectos"
+    },
     "required": "Este campo es obligatorio",
     "results": {
       "date_format": "d 'de' MMMM 'de' y 'a' 'las' H:mm",
@@ -43,6 +52,12 @@
       "votes": "Votos: {{ votes }} ({{ percent }})"
     },
     "schedule": "Votando desde el {{ begin }} hasta {{ end }}",
+    "spreadsheet": {
+      "access_button": "Identificarse",
+      "close": "Cerrar",
+      "logout": "Cerrar la sesión",
+      "modal_title": "Debes identificarte primero"
+    },
     "statuses": {
       "canceled": "Cancelada",
       "ended": "Finalizada",
@@ -56,7 +71,7 @@
     "vote": {
       "button": "Votar",
       "button_update": "Reenviar voto",
-      "missing_answers": "Tienes que responder a todas las preguntas",
+      "confirm": "Confirma tus selecciones:",
       "voted_description": "Para verificar tu voto, puedes usar esta identificación única: {{ id }}",
       "voted_title": "¡Tu voto se ha registrado con éxito!"
     }
@@ -109,7 +124,6 @@
       "min_address": "Por favor, proporciona al menos una dirección"
     },
     "process_create": {
-      "alert_info_title": "Info",
       "behavior": {
         "anonymous": {
           "description": "Anónimo: los votos serán encriptados",

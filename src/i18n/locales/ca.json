@@ -34,7 +34,16 @@
       "pause_description": "posant en pausa el procés electoral \"{{ election.title.default }}\"",
       "waiting_title": "Esperant la confirmació de la transacció..."
     },
+    "confirm": {
+      "cancel": "Cancel·la",
+      "confirm": "Confirma",
+      "title": "Confirmar"
+    },
     "empty": "Sembla que aquest procés no té preguntes",
+    "errors": {
+      "wrong_data_description": "Les dades especificades no són correctes",
+      "wrong_data_title": "Dades incorrectes"
+    },
     "required": "Aquest camp és obligatori",
     "results": {
       "date_format": "PPpp",
@@ -43,6 +52,12 @@
       "votes": "Vots: {{ votes }} ({{ percent }})"
     },
     "schedule": "Votant des del {{ begin }} al {{ end }}",
+    "spreadsheet": {
+      "access_button": "Identifica't",
+      "close": "Tanca",
+      "logout": "Tanca la sessió",
+      "modal_title": "T'has d'identificar primer"
+    },
     "statuses": {
       "canceled": "Cancel·lada",
       "ended": "Finalitzada",
@@ -56,7 +71,7 @@
     "vote": {
       "button": "Vota",
       "button_update": "Torna a enviar el vot",
-      "missing_answers": "Has de respondre totes les preguntes",
+      "confirm": "Confirma les teves seleccions:",
       "voted_description": "Per verificar el teu vot, pots utilitzar aquesta identificació única: {{ id }}",
       "voted_title": "El teu vot s'ha registrat amb èxit!"
     }
@@ -109,7 +124,6 @@
       "min_address": "Si us plau, proporciona com a mínim una adreça"
     },
     "process_create": {
-      "alert_info_title": "Informació",
       "behavior": {
         "anonymous": {
           "description": "Anònim: els vots seran xifrats",
