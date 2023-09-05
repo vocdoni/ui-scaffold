@@ -33,7 +33,16 @@
       "pause_description": "pausing the \"{{ election.title.default }}\" election process",
       "waiting_title": "Waiting for transaction confirmation..."
     },
+    "confirm": {
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "title": "Confirm"
+    },
     "empty": "Apparently this process has no questions",
+    "errors": {
+      "wrong_data_description": "The specified data is not correct",
+      "wrong_data_title": "Wrong data"
+    },
     "required": "This field is required",
     "results": {
       "date_format": "PPpp",
@@ -42,6 +51,12 @@
       "votes": "Votes: {{ votes }} ({{ percent }})"
     },
     "schedule": "Voting from {{ begin }} to {{ end }}",
+    "spreadsheet": {
+      "access_button": "Identify",
+      "close": "Close",
+      "logout": "Logout",
+      "modal_title": "You must identify first"
+    },
     "statuses": {
       "canceled": "Canceled",
       "ended": "Ended",
@@ -55,7 +70,7 @@
     "vote": {
       "button": "Vote",
       "button_update": "Re-submit vote",
-      "missing_answers": "You have to answer all the questions",
+      "confirm": "Please confirm your choices:",
       "voted_description": "To verify your vote, you can use this unique id: {{ id }}",
       "voted_title": "Your vote was successfully cast!"
     }
@@ -108,7 +123,6 @@
       "min_address": "Please, provide at least one address"
     },
     "process_create": {
-      "alert_info_title": "Info",
       "behavior": {
         "anonymous": {
           "description": "Anonymous: votes will be encrypted",

@@ -13,15 +13,24 @@ export const translations = (t: TFunction<string, string>) => ({
     pause: t('cc.actions.pause').toString(),
     waiting_title: t('cc.actions.waiting_title').toString(),
   },
+  confirm: {
+    title: t('cc.confirm.title').toString(),
+    cancel: t('cc.confirm.cancel').toString(),
+    confirm: t('cc.confirm.confirm').toString(),
+  },
   // questions and vote button
   vote: {
     button_update: t('cc.vote.button_update').toString(),
     button: t('cc.vote.button').toString(),
+    confirm: t('cc.vote.confirm').toString(),
     voted_description: t('cc.vote.voted_description').toString(),
     voted_title: t('cc.vote.voted_title').toString(),
-    missing_answers: t('cc.vote.missing_answers').toString(),
   },
   empty: t('cc.empty').toString(),
+  errors: {
+    wrong_data_title: t('cc.errors.wrong_data_title').toString(),
+    wrong_data_description: t('cc.errors.wrong_data_description').toString(),
+  },
   required: t('cc.required').toString(),
   // results component
   results: {
@@ -31,6 +40,12 @@ export const translations = (t: TFunction<string, string>) => ({
     votes: t('cc.results.votes').toString(),
   },
   schedule: t('cc.schedule').toString(),
+  spreadsheet: {
+    access_button: t('cc.spreadsheet.access_button').toString(),
+    close: t('cc.spreadsheet.close').toString(),
+    modal_title: t('cc.spreadsheet.modal_title').toString(),
+    logout: t('cc.spreadsheet.logout').toString(),
+  },
   // status badge
   statuses: {
     canceled: t('cc.statuses.canceled').toString(),
