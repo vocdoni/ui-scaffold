@@ -73,7 +73,7 @@ const rounded = defineStyle((props) => {
     px: 4,
     fontWeight: 'semibold',
     lineHeight: 1.2,
-    color: 'white',
+    color: colorScheme ? `${colorScheme}.50` : 'black',
     bgColor: colorScheme ? `${colorScheme}.500` : 'gray.100',
 
     _hover: {

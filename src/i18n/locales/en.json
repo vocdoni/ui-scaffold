@@ -318,6 +318,12 @@
     "people_in_census_other": "{{ count }} voters",
     "questions": "Questions",
     "results": "Results",
+    "spreadsheet": {
+      "confirm": {
+        "option": "Option",
+        "question": "Question"
+      }
+    },
     "status": {
       "active": "Active",
       "canceled": "Process canceled",
@@ -328,6 +334,10 @@
       "upcoming": "Upcoming"
     },
     "strategy": "Strategy",
+    "success_modal": {
+      "btn": "Finish",
+      "text": "<p>Your vote has been cast and stored securely in the Vocdoni Blockchain. You can check <customLink>here</customLink>.</p><p>Democracy is important, you can share it with your community and friends:</p>"
+    },
     "voters": "Voters"
   },
   "process_actions": {
