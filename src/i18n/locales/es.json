@@ -323,6 +323,12 @@
     "people_in_census_other": "{{ count }} votantes",
     "questions": "Preguntas",
     "results": "Resultados",
+    "spreadsheet": {
+      "confirm": {
+        "option": "Opción",
+        "question": "Pregunta"
+      }
+    },
     "status": {
       "active": "Activo",
       "canceled": "Proceso cancelado",
@@ -333,6 +339,10 @@
       "upcoming": "Próximo"
     },
     "strategy": "Estrategia",
+    "success_modal": {
+      "btn": "Finalizar",
+      "text": "<p>Tu voto ha sido emitido y almacenado de forma segura en la cadena de bloques de Vocdoni. Puedes comprobarlo <customLink>aquí</customLink>.</p><p>La democracia es importante, puedes compartirla con tu comunidad y amigos:</p>"
+    },
     "voters": "Votantes"
   },
   "process_actions": {

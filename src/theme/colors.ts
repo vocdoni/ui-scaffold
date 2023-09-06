@@ -28,6 +28,7 @@ export const colors = {
 
   primary: {
     main: colorsBase.primary.main,
+    50: colorsBase.white.pure,
     500: colorsBase.primary.main,
     600: colorsBase.primary.dark,
     700: colorsBase.primary.dark2,
@@ -54,25 +55,6 @@ export const colors = {
 
   link: {
     primary: colorsBase.primary.main,
-    button: {
-      primary_bg: {
-        500: colorsBase.primary.main,
-        600: colorsBase.primary.dark,
-        700: colorsBase.primary.dark2,
-      },
-
-      primary_color: {
-        500: colorsBase.gray.light,
-        600: colorsBase.gray.main,
-        700: colorsBase.gray.dark,
-      },
-
-      transparent: {
-        500: 'transparent',
-        600: colorsBase.gray.main,
-        700: colorsBase.gray.dark,
-      },
-    },
   },
 
   main_bg: colorsBase.white.dark,

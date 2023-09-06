@@ -323,6 +323,12 @@
     "people_in_census_other": "{{ count }} votants",
     "questions": "Preguntes",
     "results": "Resultats",
+    "spreadsheet": {
+      "confirm": {
+        "option": "Opció",
+        "question": "Pregunta"
+      }
+    },
     "status": {
       "active": "Actiu",
       "canceled": "Procés cancel·lat",
@@ -333,6 +339,10 @@
       "upcoming": "Previst"
     },
     "strategy": "Estratègia",
+    "success_modal": {
+      "btn": "Finalitzar",
+      "text": "<p>El teu vot ha estat emès i emmagatzemat de forma segura a la cadena de blocs de Vocdoni. Pots comprovar-ho <customLink>aquí</customLink>.</p><p>La democràcia és important, la pots compartir amb la teva comunitat i amics:</p>"
+    },
     "voters": "Votants"
   },
   "process_actions": {
