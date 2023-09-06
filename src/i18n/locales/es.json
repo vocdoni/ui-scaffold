@@ -97,9 +97,10 @@
       "title_placeholder": "El nombre de la organización"
     },
     "edit_profile": {
-      "avatar_helper": "Imagen/Logotipo de tu organización",
+      "avatar_helper": "Imagen/Logotipo de tu organización. Tamaño recomendado 300px x 300px. Archivo .JPG .PNG .GIF de un máximo de 2 MB",
       "avatar_placeholder": "URL de la imagen",
-      "btn": "Guardar"
+      "btn": "Guardar",
+      "links": "Enlaces"
     },
     "error": {
       "address_already_in_use": "Esta dirección ya está en el censo",

@@ -7,9 +7,12 @@ import {
   FormControl,
   FormErrorMessage,
   FormHelperText,
+  Icon,
   IconButton,
   Image,
   Input,
+  InputGroup,
+  InputLeftAddon,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -25,7 +28,9 @@ import { Account } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { BiTrash } from 'react-icons/bi'
+import { BiLink, BiTrash } from 'react-icons/bi'
+import { FaFacebook, FaTwitter } from 'react-icons/fa'
+
 import fallback from '/assets/default-avatar.png'
 
 interface EditFormFields {
@@ -49,7 +54,6 @@ const EditProfile = () => {
     value: true,
     message: t('form.error.field_is_required'),
   }
-
   const {
     watch,
     setValue,
@@ -62,6 +66,9 @@ const EditProfile = () => {
       name: account?.account.name.default || '',
       description: account?.account.description.default || '',
       avatar: account?.account.avatar || '',
+      url: '',
+      facebook: '',
+      twitter: '',
     },
   })
 
@@ -70,6 +77,9 @@ const EditProfile = () => {
       setValue('name', account?.account.name.default || '')
       setValue('description', account?.account.description.default || '')
       setValue('avatar', account?.account.avatar || '')
+      setValue('url', '')
+      setValue('facebook', '')
+      setValue('twitter', '')
       clearErrors()
       setError(null)
     }
@@ -186,6 +196,31 @@ const EditProfile = () => {
                     <InfoOutlineIcon />
                     <Text> {t('form.account_create.description_helper')}</Text>
                   </FormHelperText>
+                </FormControl>
+
+                <Text fontWeight='bold' fontSize='lg'>
+                  {t('form.edit_profile.links')}
+                </Text>
+                <FormControl>
+                  <InputGroup display='flex' alignItems='center'>
+                    <Icon aria-label='logo url' as={BiLink} mr={1} boxSize={6} />
+                    <InputLeftAddon children='Website URL' minW={52} />
+                    <Input type='text' {...register('url')} />
+                  </InputGroup>
+                </FormControl>
+                <FormControl>
+                  <InputGroup display='flex' alignItems='center'>
+                    <Icon aria-label='logo twitter' as={FaTwitter} color='twitter' mr={1} boxSize={6} />
+                    <InputLeftAddon children='https://twitter.com' bgColor='twitter' color='white' minW={52} />
+                    <Input type='text' {...register('twitter')} />
+                  </InputGroup>
+                </FormControl>
+                <FormControl>
+                  <InputGroup display='flex' alignItems='center'>
+                    <Icon aria-label='logo facebook' color='facebook' as={FaFacebook} mr={1} boxSize={6} />
+                    <InputLeftAddon children='https://facebook.com' bgColor='facebook' color='white' minW={52} />
+                    <Input type='facebook' {...register('facebook')} />
+                  </InputGroup>
                 </FormControl>
                 <Button type='submit' colorScheme='primary' isLoading={loading}>
                   {t('form.edit_profile.btn')}

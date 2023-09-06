@@ -97,9 +97,10 @@
       "title_placeholder": "El nom de l'organització"
     },
     "edit_profile": {
-      "avatar_helper": "Imatge/Logotip de la teva organització",
+      "avatar_helper": "Imatge/Logotip de la vostra organització. Mida recomanada de 300px x 300px. Fitxer .JPG .PNG .GIF de com a màxim 2MB",
       "avatar_placeholder": "URL de la imatge",
-      "btn": "Desar"
+      "btn": "Desar",
+      "links": "Enllaços"
     },
     "error": {
       "address_already_in_use": "Aquesta adreça ja és al cens",

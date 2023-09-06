@@ -4,6 +4,8 @@ export const colorsBase = {
     light: '#B8CEF9',
     main: '#0044FF',
     dark: '#002266',
+    facebook: '#1877F2',
+    twitter: '#1DA1F2',
   },
   gradient: 'var(--vcd-gradient-primary)',
   gray: {
@@ -41,6 +43,8 @@ export const colors = {
   },
 
   checkbox_radiobox_bg: colorsBase.white.pure,
+
+  facebook: colorsBase.blue.facebook,
 
   home: {
     banner: {
@@ -197,4 +201,5 @@ export const colors = {
     disconnect_bg: 'transparent',
     diconnect_color: colorsBase.gray.dark2,
   },
+  twitter: colorsBase.blue.twitter,
 }

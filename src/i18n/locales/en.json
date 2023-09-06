@@ -96,9 +96,10 @@
       "title_placeholder": "The organization name"
     },
     "edit_profile": {
-      "avatar_helper": "Image/Logo of your organization",
+      "avatar_helper": "Image/Logo of your organization. Recommended size 300px x 300px. File .JPG .PNG .GIF of max 2mb",
       "avatar_placeholder": "Image URL",
-      "btn": "Save"
+      "btn": "Save",
+      "links": "Links"
     },
     "error": {
       "address_already_in_use": "Address already in use",
