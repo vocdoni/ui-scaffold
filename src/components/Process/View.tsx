@@ -27,7 +27,7 @@ import { useClient, useElection } from '@vocdoni/react-providers'
 import { ElectionStatus } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { FaFacebook, FaTelegram, FaTwitter } from 'react-icons/fa'
+import { FaFacebook, FaReddit, FaTelegram, FaTwitter } from 'react-icons/fa'
 import ProcessAside from './Aside'
 import Header from './Header'
 import successImg from '/assets/success.png'
@@ -88,13 +88,10 @@ const SuccessVoteModal = () => {
   const { votesLeft, election, voted } = useElection()
   const { env } = useClient()
 
-  const [vLeft, setVLeft] = useState<number | undefined>(undefined)
-  const [isInitialized, setIsInitialized] = useState(false)
+  const [vLeft, setVLeft] = useState<number>(0)
 
   useEffect(() => {
-    if (votesLeft === -1) {
-      setIsInitialized(true)
-    } else if (isInitialized && !vLeft) {
+    if (!vLeft && votesLeft >= 0) {
       setVLeft(votesLeft)
     }
 
@@ -102,16 +99,19 @@ const SuccessVoteModal = () => {
       setVLeft(votesLeft)
       onOpen()
     }
-  }, [votesLeft])
+  }, [votesLeft, vLeft])
 
   if (!election || !voted) return null
 
-  const encodedTitle = encodeURIComponent(election?.title.default)
-  const url = environment.verifyVote(env, voted)
+  const verify = environment.verifyVote(env, voted)
+  const url = encodeURIComponent(document.location.href)
+  const caption = t('process.share_caption', { title: election?.title.default })
+  const linked = encodeURIComponent(`${caption} — ${document.location.href}`)
 
-  const twitterShareLink = `https://twitter.com/intent/tweet?text=${encodedTitle}-${url}`
-  const facebookShareLink = `https://www.facebook.com/sharer/sharer.php?u=${url}&t=${encodedTitle}`
-  const telegramShareLink = `https://t.me/share/url?url=${url}&text=${encodedTitle}`
+  const twitter = `https://twitter.com/intent/tweet?text=${linked}`
+  const facebook = `https://www.facebook.com/sharer/sharer.php?u=${url}`
+  const telegram = `https://t.me/share/url?url=${url}&text=${caption}`
+  const reddit = `https://reddit.com/submit?url=${url}&title=${caption}`
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -119,7 +119,7 @@ const SuccessVoteModal = () => {
       <ModalContent px={12}>
         <ModalHeader px={0}>
           <Text textAlign='center' fontSize='lg' mb={3}>
-            Vote successfull!
+            {t('process.success_modal.title')}
           </Text>
           <Image src={successImg} borderRadius='lg' />
         </ModalHeader>
@@ -128,24 +128,53 @@ const SuccessVoteModal = () => {
           <Trans
             i18nKey='process.success_modal.text'
             components={{
-              customLink: <Link variant='primary' href='' target='_blank' />,
+              verify: <Link variant='primary' href={verify} target='_blank' />,
               p: <Text mb={2} />,
             }}
           />
           <UnorderedList listStyleType='none' display='flex' justifyContent='center' gap={6} mt={6} mb={2} ml={0}>
             <ListItem>
-              <Link href={twitterShareLink} target='_blank' rel='noopener noreferrer' variant='button-ghost'>
+              <Link
+                href={twitter}
+                target='_blank'
+                title={t('process.share_title', { network: 'twitter' })}
+                rel='noopener noreferrer'
+                variant='button-ghost'
+              >
                 <Icon as={FaTwitter} w={6} h={6} cursor='pointer' />
               </Link>
             </ListItem>
             <ListItem>
-              <Link href={facebookShareLink} target='_blank' rel='noopener noreferrer' variant='button-ghost'>
+              <Link
+                href={facebook}
+                target='_blank'
+                title={t('process.share_title', { network: 'facebook' })}
+                rel='noopener noreferrer'
+                variant='button-ghost'
+              >
                 <Icon as={FaFacebook} w={6} h={6} cursor='pointer' />
               </Link>
             </ListItem>
             <ListItem>
-              <Link href={telegramShareLink} target='_blank' rel='noopener noreferrer' variant='button-ghost'>
+              <Link
+                href={telegram}
+                target='_blank'
+                title={t('process.share_title', { network: 'telegram' })}
+                rel='noopener noreferrer'
+                variant='button-ghost'
+              >
                 <Icon as={FaTelegram} w={6} h={6} cursor='pointer' />
+              </Link>
+            </ListItem>
+            <ListItem>
+              <Link
+                href={reddit}
+                target='_blank'
+                title={t('process.share_title', { network: 'reddit' })}
+                rel='noopener noreferrer'
+                variant='button-ghost'
+              >
+                <Icon as={FaReddit} w={6} h={6} cursor='pointer' />
               </Link>
             </ListItem>
           </UnorderedList>

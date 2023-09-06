@@ -323,6 +323,8 @@
     "people_in_census_other": "{{ count }} votants",
     "questions": "Preguntes",
     "results": "Resultats",
+    "share_caption": "Acabo d'emetre el meu vot a {{ title }}!!",
+    "share_title": "Comparteix a {{ network }}",
     "spreadsheet": {
       "confirm": {
         "option": "Opció",
@@ -341,7 +343,8 @@
     "strategy": "Estratègia",
     "success_modal": {
       "btn": "Finalitzar",
-      "text": "<p>El teu vot ha estat emès i emmagatzemat de forma segura a la cadena de blocs de Vocdoni. Pots comprovar-ho <customLink>aquí</customLink>.</p><p>La democràcia és important, la pots compartir amb la teva comunitat i amics:</p>"
+      "text": "<p>El teu vot ha estat emès i emmagatzemat de forma segura a la cadena de blocs de Vocdoni. Pots comprovar-ho <verify>aquí</verify>.</p><p>La democràcia és important, la pots compartir amb la teva comunitat i amics:</p>",
+      "title": "Vot emès correctament!"
     },
     "voters": "Votants"
   },
