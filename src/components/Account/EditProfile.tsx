@@ -18,8 +18,8 @@ import {
   ModalOverlay,
   Text,
   Textarea,
-  useDisclosure,
 } from '@chakra-ui/react'
+import { useOrganizationModal } from '@components/Organization/OrganizationModalProvider'
 import { errorToString, useClient } from '@vocdoni/react-providers'
 import { Account } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
@@ -39,9 +39,11 @@ const REGEX_AVATAR = /^(https?:\/\/|ipfs:\/\/)/i
 const EditProfile = () => {
   const { account, client } = useClient()
   const { t } = useTranslation()
-  const { isOpen, onOpen, onClose } = useDisclosure()
+
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  const { isOpen, onClose } = useOrganizationModal()
 
   const required = {
     value: true,
@@ -92,9 +94,6 @@ const EditProfile = () => {
 
   return (
     <>
-      <Button onClick={onOpen} display='flex' justifyContent='end' variant='dropdown'>
-        {t('menu.organization')}
-      </Button>
       <Modal isOpen={isOpen} onClose={() => !loading && onClose()}>
         <ModalOverlay />
         <ModalContent p={3} minW={{ md: '700px' }}>

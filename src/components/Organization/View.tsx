@@ -1,13 +1,27 @@
-import { AddIcon } from '@chakra-ui/icons'
-import { Box, Button, Card, CardBody, Flex, Grid, GridItem, Link, Spinner, Text } from '@chakra-ui/react'
-import Logo from '@components/Layout/Logo'
+import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  Box,
+  Card,
+  CardBody,
+  Flex,
+  Grid,
+  GridItem,
+  Img,
+  Link,
+  Spinner,
+  Text,
+} from '@chakra-ui/react'
 import { useClient, useOrganization } from '@vocdoni/react-providers'
 import { areEqualHexStrings, InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { NavLink } from 'react-router-dom'
+import { Link as ReactRouterLink } from 'react-router-dom'
 import ProcessCardDetailed from '../Process/CardDetailed'
 import Header from './Header'
+import org from '/assets/empty-list-org.png'
+import user from '/assets/empty-list-user.png'
 
 const OrganizationView = () => {
   const { t } = useTranslation()
@@ -17,23 +31,25 @@ const OrganizationView = () => {
   const [electionsList, setElectionsList] = useState<(PublishedElection | InvalidElection)[]>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [loaded, setLoaded] = useState<boolean>(false)
-  const [error, setError] = useState<boolean>(false)
+  const [error, setError] = useState<string>()
   const [finished, setFinished] = useState<boolean>(false)
 
   const refObserver = useRef<any>()
   const [page, setPage] = useState<number>(-1)
   useObserver(refObserver, setPage)
 
-  // empties the list on account change
+  // resets fields on account change
   useEffect(() => {
-    // empty list to ensure it's properly populated
     setElectionsList([])
+    setFinished(false)
+    setPage(0)
+    setLoaded(false)
+    setLoading(false)
   }, [organization?.address])
 
   // loads elections. Note the load trigger is done via useObserver using a layer visibility.
   useEffect(() => {
     if (finished) return
-
     // start loading at first glance
     setLoaded(false)
     setLoading(true)
@@ -61,10 +77,11 @@ const OrganizationView = () => {
         setLoading(false)
         setLoaded(true)
       })
-  }, [page, error, finished])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page, error, finished, organization?.address])
 
   return (
-    <Box maxW='1200px' mx='auto'>
+    <Box>
       <Header />
 
       <Text as='h2' fontSize='xl' fontWeight='bold' mb={8} textAlign={{ base: 'center', md2: 'start' }}>
@@ -94,7 +111,10 @@ const OrganizationView = () => {
           <Card variant='no-elections'>
             <CardBody>
               <Box>
-                <Logo />
+                <Img
+                  src={areEqualHexStrings(account?.address, organization?.address) ? org : user}
+                  alt={t('organization.elections_list_empty.alt')}
+                />
               </Box>
               <Box>
                 {areEqualHexStrings(account?.address, organization?.address) ? (
@@ -105,37 +125,34 @@ const OrganizationView = () => {
                       <Trans
                         i18nKey='organization.elections_list_empty.footer'
                         components={{
-                          tos: <Link variant='primary' href='' target='_blank' />,
+                          customLink: <Link variant='primary' href='#' target='_blank' />,
                         }}
                       />
                     </Text>
-                    <NavLink to='/processes/create'>
-                      <Button colorScheme='primary' rightIcon={<AddIcon />}>
-                        {t('menu.create')}
-                      </Button>
-                    </NavLink>
+
+                    <Link as={ReactRouterLink} to='/processes/create' variant='button' colorScheme='primary'>
+                      {t('menu.create')}
+                    </Link>
                   </>
                 ) : (
-                  <Text>{t('organization.elections_list_empty.not_owner')}</Text>
+                  <Text textAlign='center'>{t('organization.elections_list_empty.not_owner')}</Text>
                 )}
               </Box>
             </CardBody>
           </Card>
         )}
-
-        {error && <Text>{error}</Text>}
       </Flex>
+      {error && (
+        <Alert status='error'>
+          <AlertIcon />
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
+      )}
     </Box>
   )
 }
 
 const useObserver = (refObserver: any, setPage: Dispatch<SetStateAction<number>>) => {
-  useEffect(() => {
-    return () => {
-      if (refObserver.current) refObserver.current = null
-    }
-  }, [refObserver])
-
   useEffect(() => {
     if (!refObserver.current) return
 
@@ -151,6 +168,10 @@ const useObserver = (refObserver: any, setPage: Dispatch<SetStateAction<number>>
     )
 
     observer.observe(refObserver.current)
+
+    return () => {
+      if (refObserver.current) refObserver.current = null
+    }
   }, [refObserver, setPage])
 }
 export default OrganizationView

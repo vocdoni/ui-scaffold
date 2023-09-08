@@ -1,15 +1,40 @@
-import { Flex, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
-import { ElectionQuestions, ElectionResults } from '@vocdoni/chakra-components'
-import { useElection } from '@vocdoni/react-providers'
+import {
+  Box,
+  Button,
+  Flex,
+  Icon,
+  Image,
+  Link,
+  ListItem,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Text,
+  UnorderedList,
+  useDisclosure,
+} from '@chakra-ui/react'
+import { ElectionQuestions, ElectionResults, environment } from '@vocdoni/chakra-components'
+import { useClient, useElection } from '@vocdoni/react-providers'
 import { ElectionStatus } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
+import { FaFacebook, FaReddit, FaTelegram, FaTwitter } from 'react-icons/fa'
 import ProcessAside from './Aside'
 import Header from './Header'
+import successImg from '/assets/success.png'
 
 export const ProcessView = () => {
-  const { election } = useElection()
   const { t } = useTranslation()
+  const { election } = useElection()
 
   const [tabIndex, setTabIndex] = useState(0)
 
@@ -23,33 +48,144 @@ export const ProcessView = () => {
 
   return (
     <>
-      <Header />
-      <Flex direction={{ base: 'column', xl: 'row' }} alignItems='start'>
-        <Tabs variant='process' index={tabIndex} onChange={handleTabsChange}>
-          <TabList>
-            <Tab>{t('process.questions')}</Tab>
-            {election?.status !== ElectionStatus.CANCELED && <Tab>{t('process.results')}</Tab>}
-          </TabList>
-          <TabPanels>
-            <TabPanel>
-              <ElectionQuestions />
-            </TabPanel>
-            <TabPanel mb={20}>
-              <ElectionResults />
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
-        <Flex
-          justifyContent='center'
-          position='sticky'
-          bottom={{ base: 'px', xl: undefined }}
-          top={{ xl: 20 }}
-          w={{ base: '100%', xl: '30%' }}
-          mt={{ xl: 10 }}
-        >
-          <ProcessAside />
+      <Box>
+        <Header />
+        <Flex direction={{ base: 'column', xl: 'row' }} gap={{ xl: 10 }} alignItems='start'>
+          <Tabs variant='process' index={tabIndex} onChange={handleTabsChange} flexGrow={1} w='full'>
+            <TabList>
+              <Tab>{t('process.questions')}</Tab>
+              {election?.status !== ElectionStatus.CANCELED && <Tab>{t('process.results')}</Tab>}
+            </TabList>
+            <TabPanels>
+              <TabPanel>
+                <ElectionQuestions />
+              </TabPanel>
+              <TabPanel mb={20}>
+                <ElectionResults />
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
+          <Flex
+            justifyContent='center'
+            position='sticky'
+            bottom={{ base: 'px', xl: undefined }}
+            top={{ xl: 20 }}
+            mx='auto'
+            mt={{ xl: 10 }}
+          >
+            <ProcessAside />
+          </Flex>
         </Flex>
-      </Flex>
+      </Box>
+      <SuccessVoteModal />
     </>
+  )
+}
+
+const SuccessVoteModal = () => {
+  const { t } = useTranslation()
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { votesLeft, election, voted } = useElection()
+  const { env } = useClient()
+
+  const [vLeft, setVLeft] = useState<number>(0)
+
+  useEffect(() => {
+    if (!vLeft && votesLeft >= 0) {
+      setVLeft(votesLeft)
+    }
+
+    if (vLeft && votesLeft < vLeft) {
+      setVLeft(votesLeft)
+      onOpen()
+    }
+  }, [votesLeft, vLeft])
+
+  if (!election || !voted) return null
+
+  const verify = environment.verifyVote(env, voted)
+  const url = encodeURIComponent(document.location.href)
+  const caption = t('process.share_caption', { title: election?.title.default })
+  const linked = encodeURIComponent(`${caption} — ${document.location.href}`)
+
+  const twitter = `https://twitter.com/intent/tweet?text=${linked}`
+  const facebook = `https://www.facebook.com/sharer/sharer.php?u=${url}`
+  const telegram = `https://t.me/share/url?url=${url}&text=${caption}`
+  const reddit = `https://reddit.com/submit?url=${url}&title=${caption}`
+
+  return (
+    <Modal isOpen={isOpen} onClose={onClose}>
+      <ModalOverlay />
+      <ModalContent px={12}>
+        <ModalHeader px={0}>
+          <Text textAlign='center' fontSize='lg' mb={3}>
+            {t('process.success_modal.title')}
+          </Text>
+          <Image src={successImg} borderRadius='lg' />
+        </ModalHeader>
+        <ModalCloseButton />
+        <ModalBody p={0}>
+          <Trans
+            i18nKey='process.success_modal.text'
+            components={{
+              verify: <Link variant='primary' href={verify} target='_blank' />,
+              p: <Text mb={2} />,
+            }}
+          />
+          <UnorderedList listStyleType='none' display='flex' justifyContent='center' gap={6} mt={6} mb={2} ml={0}>
+            <ListItem>
+              <Link
+                href={twitter}
+                target='_blank'
+                title={t('process.share_title', { network: 'twitter' })}
+                rel='noopener noreferrer'
+                variant='button-ghost'
+              >
+                <Icon as={FaTwitter} w={6} h={6} cursor='pointer' />
+              </Link>
+            </ListItem>
+            <ListItem>
+              <Link
+                href={facebook}
+                target='_blank'
+                title={t('process.share_title', { network: 'facebook' })}
+                rel='noopener noreferrer'
+                variant='button-ghost'
+              >
+                <Icon as={FaFacebook} w={6} h={6} cursor='pointer' />
+              </Link>
+            </ListItem>
+            <ListItem>
+              <Link
+                href={telegram}
+                target='_blank'
+                title={t('process.share_title', { network: 'telegram' })}
+                rel='noopener noreferrer'
+                variant='button-ghost'
+              >
+                <Icon as={FaTelegram} w={6} h={6} cursor='pointer' />
+              </Link>
+            </ListItem>
+            <ListItem>
+              <Link
+                href={reddit}
+                target='_blank'
+                title={t('process.share_title', { network: 'reddit' })}
+                rel='noopener noreferrer'
+                variant='button-ghost'
+              >
+                <Icon as={FaReddit} w={6} h={6} cursor='pointer' />
+              </Link>
+            </ListItem>
+          </UnorderedList>
+        </ModalBody>
+
+        <ModalFooter justifyContent='center'>
+          <Button variant='rounded' colorScheme='primary' px={16} onClick={onClose}>
+            {t('process.success_modal.btn')}
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
   )
 }

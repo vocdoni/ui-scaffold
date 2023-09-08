@@ -11,10 +11,12 @@ import { useAccount } from 'wagmi'
 
 const ProcessAside = ({ ...props }) => {
   const { t } = useTranslation()
-  const { election, connected, isAbleToVote, isInCensus, voted, votesLeft, clearClient } = useElection()
+  const { election, connected, isAbleToVote, isInCensus, voted, votesLeft } = useElection()
   const { isConnected } = useAccount()
   const { env } = useClient()
   const census: CensusMeta = dotobject(election?.meta || {}, 'census')
+
+  const renderVoteMenu = isAbleToVote || voted || (hasOverwriteEnabled(election) && isInCensus && voted)
 
   return (
     <Flex flexDirection='column' alignItems='center' gap={2}>
@@ -29,6 +31,7 @@ const ProcessAside = ({ ...props }) => {
         color='process.results.aside.color'
         background='aside_bg'
         borderRadius='lg'
+        boxShadow='var(--box-shadow-banner)'
         {...props}
       >
         <Text textAlign='center' fontSize='xl3' lineHeight={1}>
@@ -40,19 +43,35 @@ const ProcessAside = ({ ...props }) => {
             <Trans
               i18nKey='aside.votes'
               components={{
-                tos: <Text as='span' fontWeight='bold' fontSize='xl6' textAlign='center' lineHeight={1} />,
-                tos2: <Text fontSize='xl2' lineHeight={1} textAlign='center' mt={3} />,
+                span: <Text as='span' fontWeight='bold' fontSize='xl6' textAlign='center' lineHeight={1} />,
+                text: <Text fontSize='xl2' lineHeight={1} textAlign='center' mt={3} />,
               }}
               count={election?.voteCount}
             />
           </Flex>
         )}
-        {census.type === 'spreadsheet' && !connected ? (
-          <SpreadsheetAccess />
-        ) : isConnected || connected ? (
+
+        {census.type === 'spreadsheet' && !connected && <SpreadsheetAccess />}
+
+        {census.type !== 'spreadsheet' &&
+          !isConnected &&
+          !connected &&
+          election?.status !== ElectionStatus.CANCELED && (
+            <Flex flexDirection='column' alignItems='center' gap={3} w='full'>
+              <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />
+              <Text textAlign='center' fontSize='sm'>
+                {t('aside.not_connected')}
+              </Text>
+            </Flex>
+          )}
+
+        {isConnected && census.type !== 'spreadsheet' && !isInCensus && (
+          <Text textAlign='center'>{t('aside.is_not_in_census')}</Text>
+        )}
+
+        {renderVoteMenu && (
           <Flex flexDirection='column' alignItems='center' gap={3} w='full'>
             {isAbleToVote && <VoteButton variant='process' mb={0} />}
-            {isConnected && !isInCensus && <Text textAlign='center'>{t('aside.is_not_in_census')}</Text>}
             {voted !== null && voted.length > 0 && (
               <Box textAlign='center'>
                 <Link to={environment.verifyVote(env, voted)} target='_blank'>
@@ -63,16 +82,9 @@ const ProcessAside = ({ ...props }) => {
                 <Text>{t('aside.has_already_voted').toString()}</Text>
               </Box>
             )}
-            {hasOverwriteEnabled(election) && isInCensus && voted && (
+            {hasOverwriteEnabled(election) && isInCensus && votesLeft > 0 && voted && (
               <Text>{t('aside.overwrite_votes_left', { left: votesLeft })}</Text>
             )}
-          </Flex>
-        ) : (
-          <Flex flexDirection='column' alignItems='center' gap={3} w='full'>
-            <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />{' '}
-            <Text textAlign='center' fontSize='sm'>
-              {t('aside.not_connected')}
-            </Text>
           </Flex>
         )}
       </Flex>

@@ -16,6 +16,7 @@ export interface InfoValues {
     autoStart: boolean
     interruptible: boolean
     secretUntilTheEnd: boolean
+    anonymous: boolean
   }
   maxVoteOverwrites: number
   weightedVote: boolean

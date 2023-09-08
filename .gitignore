@@ -30,3 +30,6 @@ package-lock.json
 
 # old translation files
 *_old.json
+
+# Local Netlify folder
+.netlify

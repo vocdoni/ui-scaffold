@@ -140,7 +140,7 @@ export const Confirm = () => {
                   <Trans
                     i18nKey='form.process_create.confirm.confirmation_terms_and_conditions'
                     components={{
-                      tos: <Link variant='primary' href='' target='_blank' />,
+                      link: <Link variant='primary' href='' target='_blank' />,
                     }}
                   />
                 </Checkbox>
@@ -202,7 +202,7 @@ const getCensus = async (env: EnvOptions, form: StepsFormValues, organization: s
         env,
       })
 
-      return c3client.createTokenCensus(form.censusToken)
+      return c3client.createTokenCensus(form.censusToken, form.electionType.anonymous)
 
     case 'spreadsheet':
     case 'web3':

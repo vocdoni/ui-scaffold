@@ -18,9 +18,9 @@ import { Trans, useTranslation } from 'react-i18next'
 import { BiDownload } from 'react-icons/bi'
 import { PiWarningCircleLight } from 'react-icons/pi'
 import { RiFileExcel2Line } from 'react-icons/ri'
-import { CsvPreview } from './Preview'
+import { CensusSpreadsheetManager } from './CensusSpreadsheetManager'
 import { CsvGenerator } from './generator'
-import { SpreadsheetManager } from './spreadsheet-manager'
+import { CsvPreview } from './Preview'
 
 export const CensusCsvManager = () => {
   const { t } = useTranslation()
@@ -33,7 +33,7 @@ export const CensusCsvManager = () => {
     control,
   } = useFormContext()
   const weighted: boolean = watch('weightedVote')
-  const manager: SpreadsheetManager | undefined = watch('spreadsheet')
+  const manager: CensusSpreadsheetManager | undefined = watch('spreadsheet')
 
   // File dropzone
   const onDrop = useCallback(
@@ -41,7 +41,7 @@ export const CensusCsvManager = () => {
       setValue('spreadsheet', undefined)
       setError('spreadsheet', {})
       try {
-        const spreadsheet = new SpreadsheetManager(file, weighted)
+        const spreadsheet = new CensusSpreadsheetManager(file, true, weighted)
         await spreadsheet.read()
         setValue('spreadsheet', spreadsheet)
       } catch (e) {
@@ -60,7 +60,7 @@ export const CensusCsvManager = () => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     multiple: false,
-    accept: SpreadsheetManager.AcceptedTypes.reduce((prev, curr) => ({ ...prev, [curr]: [] }), {}),
+    accept: CensusSpreadsheetManager.AcceptedTypes.reduce((prev, curr) => ({ ...prev, [curr]: [] }), {}),
   })
   const upload = getRootProps()
 

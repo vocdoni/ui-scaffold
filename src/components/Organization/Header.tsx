@@ -1,14 +1,20 @@
-import { AspectRatio, Box, Button, Flex } from '@chakra-ui/react'
+import { AspectRatio, Box, Button, Flex, IconButton } from '@chakra-ui/react'
 import { OrganizationAvatar as Avatar, OrganizationDescription, OrganizationName } from '@vocdoni/chakra-components'
-import { useOrganization } from '@vocdoni/react-providers'
+import { useClient, useOrganization } from '@vocdoni/react-providers'
+import { areEqualHexStrings } from '@vocdoni/sdk'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
+import { IoMdCreate } from 'react-icons/io'
 import AddressBtn from './AddressBtn'
+import { useOrganizationModal } from './OrganizationModalProvider'
 import fallback from '/assets/default-avatar.png'
 
 const OrganizationHeader = () => {
   const { t } = useTranslation()
   const { organization } = useOrganization()
+  const { onOpen } = useOrganizationModal()
+  const { account } = useClient()
 
   const {
     containerRef: containerRefTitle,
@@ -35,6 +41,7 @@ const OrganizationHeader = () => {
       p={3}
       borderRadius='lg'
       boxShadow='var(--box-shadow)'
+      bgColor='organization.header'
     >
       <Box flex='1 1 20%' minW={40}>
         <AspectRatio ratio={1.25 / 1} maxW={56} mx='auto'>
@@ -65,7 +72,6 @@ const OrganizationHeader = () => {
           alignItems={{ base: 'center', md: 'start' }}
           gap={2}
           order={{ base: 2, md: 0 }}
-          maxW={{ base: '100%', md: '75%' }}
         >
           <Flex
             w='100%'
@@ -75,7 +81,6 @@ const OrganizationHeader = () => {
             alignItems='center'
             sx={{
               p: {
-                maxW: { base: '75%', sm: '80%', lg: '85%' },
                 noOfLines: noOfLinesTitle,
                 overflow: 'hidden',
                 display: '-webkit-box',
@@ -91,9 +96,26 @@ const OrganizationHeader = () => {
               title={organization?.account.name.default || organization?.address}
             />
             {isTruncatedTitle && (
-              <Button float='right' variant='link' colorScheme='primary' alignSelf='end' onClick={handleReadMoreTitle}>
-                {readMoreTitle ? ' Read less' : 'Read more'}
-              </Button>
+              <IconButton
+                icon={readMoreTitle ? <FaEyeSlash /> : <FaEye />}
+                variant='ghost'
+                alignSelf='start'
+                color='primary.500'
+                title={t('organization.title.read_more')}
+                aria-label={t('organization.title.read_more')}
+                onClick={handleReadMoreTitle}
+              />
+            )}
+            {areEqualHexStrings(account?.address, organization?.address) && (
+              <IconButton
+                icon={<IoMdCreate />}
+                alignSelf='start'
+                variant='ghost'
+                color='primary.500'
+                title={t('organization.title.edit')}
+                aria-label={t('organization.title.edit')}
+                onClick={onOpen}
+              />
             )}
           </Flex>
 

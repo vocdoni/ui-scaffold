@@ -1,95 +1,131 @@
-import { AddIcon, ChevronDownIcon, ChevronUpIcon, CloseIcon } from '@chakra-ui/icons'
-import { Button, Flex, List, ListItem, Menu, MenuButton, MenuList, Text } from '@chakra-ui/react'
+import { AddIcon, ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
+import { Avatar, Box, Button, Icon, Link, List, ListItem, Menu, MenuButton, MenuList, Text } from '@chakra-ui/react'
 import Logo from '@components/Layout/Logo'
+import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { useClient } from '@vocdoni/react-providers'
 import { useTranslation } from 'react-i18next'
-import { FaEllipsisV, FaGlobeAmericas } from 'react-icons/fa'
-import { NavLink } from 'react-router-dom'
+import { FaGlobeAmericas } from 'react-icons/fa'
+import { MdHowToVote } from 'react-icons/md'
+import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
-import { Account } from './Account'
 import LanguagesList from './LanguagesList'
 import MenuDropdown from './Menu'
 
-const Navbar = ({ ...props }) => {
+const Navbar = () => {
   const { isConnected } = useAccount()
   const { t } = useTranslation()
   const { account } = useClient()
+  const { openConnectModal } = useConnectModal()
 
   return (
-    <Flex as='nav' justifyContent='space-between' alignItems='center' gap={4} {...props}>
+    <>
       <Logo />
-      <List display='flex' alignItems='center' gap={4}>
-        <ListItem display={{ base: 'none', lg: 'inline-block' }}>
-          <Menu>
-            {({ isOpen, onClose }) => (
-              <>
-                <MenuButton
-                  as={Button}
-                  variant='ghost'
-                  sx={{ span: { margin: 'px' } }}
-                  leftIcon={<FaGlobeAmericas />}
-                  rightIcon={isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
-                  p={2}
-                />
-                <MenuList minW={24} w='full' p={0} onClick={onClose}>
-                  <List display='flex' flexDirection='column' alignItems='center' textAlign='end'>
-                    <LanguagesList />
-                  </List>
-                </MenuList>
-              </>
-            )}
-          </Menu>
-        </ListItem>
 
-        {account && (
-          <ListItem display={{ base: 'none', lg: 'inline-block' }}>
-            <NavLink to={`/organization/0x${account?.address}`}>
-              <Button variant='ghost'>{t('menu.my_list')}</Button>
-            </NavLink>
-          </ListItem>
-        )}
-
+      <List as='nav' display='flex' alignItems='center' gap={4}>
         {isConnected && (
           <ListItem>
-            <NavLink to='/processes/create'>
-              <Button
-                colorScheme='primary'
-                rightIcon={<AddIcon ml={{ base: 0, sm: 2 }} />}
-                sx={{ span: { margin: 0 } }}
-                title={t('menu.create')}
-              >
-                <Text as='span' display={{ base: 'none', sm: 'inline-block' }}>
-                  {t('menu.create')}
-                </Text>
-              </Button>
-            </NavLink>
+            <Link
+              as={ReactRouterLink}
+              to='/processes/create'
+              variant='rounded'
+              colorScheme='primary'
+              aria-label={t('menu.new_process')}
+              title={t('menu.new_process')}
+              px={{ base: 3.5, sm: 4 }}
+            >
+              <AddIcon boxSize={3} />
+              <Text as='span' display={{ base: 'none', sm: 'inline-block' }}>
+                {t('menu.new_process')}
+              </Text>
+            </Link>
           </ListItem>
         )}
 
-        <ListItem>
-          <Account />
-        </ListItem>
+        {account && (
+          <ListItem>
+            <Link
+              as={ReactRouterLink}
+              to={`/organization/0x${account?.address}`}
+              variant='rounded'
+              color='primary.500'
+              aria-label={t('menu.my_org_aria_label')}
+              title={t('menu.my_org_aria_label')}
+              px={{ base: 3, sm: 4 }}
+            >
+              <Icon as={MdHowToVote} />
+              <Text as='span' display={{ base: 'none', sm: 'inline-block' }}>
+                {t('menu.my_org')}
+              </Text>
+            </Link>
+          </ListItem>
+        )}
 
         {!isConnected && (
-          <Menu>
-            {({ isOpen, onClose }) => (
-              <>
-                <MenuButton
-                  as={Button}
-                  sx={{ span: { margin: 'px' } }}
-                  rightIcon={isOpen ? <CloseIcon /> : <FaEllipsisV />}
-                  minW='none'
-                  pt={1}
-                />
-                <MenuList minW='none' onClick={onClose}>
+          <>
+            <ListItem>
+              <Button
+                variant='rounded'
+                color='primary.500'
+                onClick={() => {
+                  if (openConnectModal) openConnectModal()
+                }}
+              >
+                {t('menu.login').toString()}
+              </Button>
+            </ListItem>
+
+            <ListItem>
+              <Menu>
+                {({ isOpen, onClose }) => (
+                  <>
+                    <MenuButton
+                      as={Button}
+                      aria-label={t('menu.burger_aria_label')}
+                      variant='rounded-ghost'
+                      sx={{ span: { margin: 'px' } }}
+                      rightIcon={isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+                      minW='none'
+                    >
+                      <FaGlobeAmericas />
+                    </MenuButton>
+                    <MenuList minW={16} mt={2}>
+                      <LanguagesList closeOnSelect={true} />
+                    </MenuList>
+                  </>
+                )}
+              </Menu>
+            </ListItem>
+          </>
+        )}
+        {isConnected && (
+          <ListItem>
+            <Menu>
+              {({ isOpen, onClose }) => (
+                <>
+                  <MenuButton
+                    as={Button}
+                    aria-label={t('menu.languages_list')}
+                    variant='rounded-ghost'
+                    boxShadow={`${isOpen ? '' : 'var(--box-shadow-btn)'}`}
+                    p={2}
+                  >
+                    <Box as='span' display='flex' alignItems='center'>
+                      <Avatar
+                        src={account?.account.avatar}
+                        name={account?.account.name.default || account?.address}
+                        size='xs'
+                      />
+                      {isOpen ? <ChevronUpIcon boxSize={8} /> : <ChevronDownIcon boxSize={8} />}
+                    </Box>
+                  </MenuButton>
                   <MenuDropdown />
-                </MenuList>
-              </>
-            )}
-          </Menu>
+                </>
+              )}
+            </Menu>
+          </ListItem>
         )}
       </List>
-    </Flex>
+    </>
   )
 }
 

@@ -1,20 +1,26 @@
 {
-  "alt_image": "Imatge de {{ img }}",
   "aside": {
     "has_already_voted": "El teu vot s'ha registrat correctament",
     "is_not_in_census": "No ets al cens",
     "not_connected": "No estàs connectat",
     "overwrite_votes_left": "Pots corregir el teu vot {{ left }} vegades.",
     "verify_vote_on_explorer": "Verifica el vot a l'explorador",
-    "votes_one": "<tos>1</tos> <tos2>vot</tos2>",
+    "votes_one": "<span>1</span> <text>vot</text>",
     "votes_many": "",
-    "votes_other": "<tos>{{ count }}</tos> <tos2>vots</tos2>"
+    "votes_other": "<span>{{ count }}</span> <text>vots</text>"
   },
   "banner": {
-    "know_more": "Descobreix més",
-    "start_now": "Comença ara!",
+    "start_now": "Crea ara un procés de votació!",
     "subtitle": "Utilitza adreces web3, vota amb un token ERC20 o amb NFTs!",
     "title": "Vota per a les DAOs i les comunitats Web3"
+  },
+  "banner_voting_types": {
+    "anonymous_description": "Els vostres votants romandran completament anònims, gràcies a la tecnologia de proofs zk. La privacitat hauria de ser la norma.",
+    "anonymous_title": "Votació Anònima",
+    "flexible_description": "Adapteu el vostre procés de votació i cens: elecció única, votació quadràtica, voteu amb una llista de carteres o creeu un cens personalitzat.",
+    "flexible_title": "Votació Flexible",
+    "token_description": "Voteu amb tokens ERC20/ERC721 (NFT) o importeu els vostres propis tokens i voteu sense gastar gas.",
+    "token_title": "Votació amb Tokens"
   },
   "cc": {
     "actions": {
@@ -28,7 +34,16 @@
       "pause_description": "posant en pausa el procés electoral \"{{ election.title.default }}\"",
       "waiting_title": "Esperant la confirmació de la transacció..."
     },
+    "confirm": {
+      "cancel": "Cancel·la",
+      "confirm": "Confirma",
+      "title": "Confirmar"
+    },
     "empty": "Sembla que aquest procés no té preguntes",
+    "errors": {
+      "wrong_data_description": "Les dades especificades no són correctes",
+      "wrong_data_title": "Dades incorrectes"
+    },
     "required": "Aquest camp és obligatori",
     "results": {
       "date_format": "PPpp",
@@ -37,6 +52,12 @@
       "votes": "Vots: {{ votes }} ({{ percent }})"
     },
     "schedule": "Votant des del {{ begin }} al {{ end }}",
+    "spreadsheet": {
+      "access_button": "Identifica't",
+      "close": "Tanca",
+      "logout": "Tanca la sessió",
+      "modal_title": "T'has d'identificar primer"
+    },
     "statuses": {
       "canceled": "Cancel·lada",
       "ended": "Finalitzada",
@@ -50,7 +71,7 @@
     "vote": {
       "button": "Vota",
       "button_update": "Torna a enviar el vot",
-      "missing_answers": "Has de respondre totes les preguntes",
+      "confirm": "Confirma les teves seleccions:",
       "voted_description": "Per verificar el teu vot, pots utilitzar aquesta identificació única: {{ id }}",
       "voted_title": "El teu vot s'ha registrat amb èxit!"
     }
@@ -61,6 +82,7 @@
   },
   "error": {
     "go_back": "Torna enrere",
+    "invalid_cell_data": "Algunes fileres no contenen adreces correctes: {{rows, list}}",
     "invalid_row_length": "Corregeix les línies {{rows, list}} del document i torna a carregar-lo",
     "invalid_weight_type": "S'esperava trobar el pes a la primera col·lumna a les línies {{rows, list}}, però s'han trobat dades inesperades",
     "loading_page": "Càrrega de pàgina errònia",
@@ -102,8 +124,11 @@
       "min_address": "Si us plau, proporciona com a mínim una adreça"
     },
     "process_create": {
-      "alert_info_title": "Informació",
       "behavior": {
+        "anonymous": {
+          "description": "Anònim: els vots seran xifrats",
+          "title": "Anònim"
+        },
         "overwrite": {
           "description": "Sobreescriptura del vot: Permet als votants corregir el vot un cop.",
           "title": "Sobreescriure"
@@ -140,6 +165,7 @@
         "wallet_address_title": "Adreces de cartera"
       },
       "confirm": {
+        "anonymous": "Anònim",
         "census": "Cens",
         "census_preview_is_shortened": "(la llista prèvia està limitada a {{ limit }} resultats)",
         "census_total_people_one": "Una persona podrà votar en aquesta votació",
@@ -148,7 +174,7 @@
         "close": "Tanca",
         "configuration": "Configuració",
         "confirmation": "Confirmació",
-        "confirmation_terms_and_conditions": "Accepto els <tos>termes i condicions</tos> de Vocdoni",
+        "confirmation_terms_and_conditions": "Accepto els <link>termes i condicions</link> de Vocdoni",
         "confirmation_valid_info": "Confirmo que aquesta informació és correcta i vàlida",
         "create_button": "Crea",
         "dates": "Data",
@@ -228,10 +254,6 @@
       "weighted": "Vot ponderat"
     }
   },
-  "home": {
-    "active_voting": "Votacions actives",
-    "more_active_organizations": "Més organitzacions actives"
-  },
   "link": {
     "discord": "Enllaç al Discord de Vocdoni",
     "github": "Enllaç al Github de Vocdoni",
@@ -239,37 +261,76 @@
   },
   "loading": "Carregant...",
   "menu": {
-    "connect": "Connecta",
-    "create": "Crear procés",
-    "create_process": "Crear procés",
-    "disconnect": "Desconnectar cartera",
-    "my_list": "La meva llista",
+    "burger_aria_label": "menú d'usuari",
+    "connect": "Connectar",
+    "copy_aria_label": "copiar adreça",
+    "create": "Crear Procés",
+    "create_process": "Nou procés",
+    "documentation": "Documentació",
+    "get_more": "Obtenir-ne més",
+    "how_it_works": "Com funciona",
+    "languages": "Idiomes",
+    "languages_list": "",
+    "login": "Iniciar sessió",
+    "logout": "Tancar sessió",
+    "my_org": "La Meva Org",
+    "my_org_aria_label": "La meva organització",
+    "new_process": "Nou procés",
     "organization": "Editar Organització",
-    "support": "Ajuda"
+    "privacy": "Privadesa",
+    "terms": "Termes",
+    "wallet": "Cartera"
   },
   "open_in_explorer": "Obre a l'explorador",
   "organization": {
     "avatar_alt": "Imatge d'avatar de l'organització {{ name }}",
-    "dao_title": "DAO",
     "elections": "Eleccions",
     "elections_list_empty": {
+      "alt": "Imatge il·lustrant que l'organització és buida",
       "description": "En començar fent la teva primera elecció, pots triar entre diferents tipus d'autenticació pel teu vot.",
-      "footer": "Obtén més informació sobre com crear eleccions <tos>en aquesta guia</tos>.",
+      "footer": "Obtén més informació sobre com crear eleccions <customLink>en aquesta guia</customLink>.",
       "not_owner": "Aquesta organització encara no té eleccions.",
       "title": "Crea la teva primera elecció"
+    },
+    "name_long": "<strong>{{ name }}</strong> ({{ address }})",
+    "title": {
+      "edit": "Editar organització",
+      "read_more": "Expandir títol"
     }
   },
   "process": {
+    "actions": "Accions",
+    "census": "Cens",
+    "census_strategies": {
+      "spreadsheet": "CSV",
+      "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
+      "web3": "Adreces Web3"
+    },
     "created_by": "Creat per",
     "date": {
-      "ended": "Procés finalitzat",
+      "ended": "Finalitzat",
       "ends": "Finalitza",
       "relative": "{{ date, relative(past: fa %time; future: en %time) }}",
       "starts": "Comença el procés"
     },
+    "is_anonymous": {
+      "description": "Els vots són encriptats",
+      "title": "Anònim"
+    },
     "is_invalid": "Aquest procés té dades no vàlides i per tant no pot carregar-se",
+    "people_in_census_one": "Un votant",
+    "people_in_census_many": "",
+    "people_in_census_other": "{{ count }} votants",
     "questions": "Preguntes",
     "results": "Resultats",
+    "share_caption": "Acabo d'emetre el meu vot a {{ title }}!!",
+    "share_title": "Comparteix a {{ network }}",
+    "spreadsheet": {
+      "confirm": {
+        "option": "Opció",
+        "question": "Pregunta"
+      }
+    },
     "status": {
       "active": "Actiu",
       "canceled": "Procés cancel·lat",
@@ -280,18 +341,20 @@
       "upcoming": "Previst"
     },
     "strategy": "Estratègia",
-    "voters": "Votants",
-    "voting_type": "Tipo de elección"
+    "success_modal": {
+      "btn": "Finalitzar",
+      "text": "<p>El teu vot ha estat emès i emmagatzemat de forma segura a la cadena de blocs de Vocdoni. Pots comprovar-ho <verify>aquí</verify>.</p><p>La democràcia és important, la pots compartir amb la teva comunitat i amics:</p>",
+      "title": "Vot emès correctament!"
+    },
+    "voters": "Votants"
   },
   "process_actions": {
     "pause": "Pausa",
     "play": "Reprodueix",
     "stop": "Atura"
   },
-  "submited_votes": "Vots emesos",
   "uploader": {
     "click_or_drag_and_drop": "<p1>Puja o arrossega i deixa anar aquí la llista de votants</p1><p2>(Formats permesos: CSV, XLSX i ODS)</p2>",
     "drop_here": "Deixa anar aquí"
-  },
-  "voting_elections": "Votacions"
+  }
 }

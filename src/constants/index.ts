@@ -4,6 +4,7 @@ import { FieldErrors, FieldValues, useFormContext } from 'react-hook-form'
 export const FormatDate = 'dd/MM/yyyy'
 
 const evocdoni = import.meta.env.VOCDONI_ENVIRONMENT || 'stg'
+
 let explorer = 'https://explorer.vote'
 if (['stg', 'dev'].includes(evocdoni)) {
   explorer = `https://${evocdoni}.explorer.vote`
@@ -11,6 +12,7 @@ if (['stg', 'dev'].includes(evocdoni)) {
 
 export const ExplorerBaseURL = explorer
 export const VocdoniEnvironment = evocdoni
+export const CensusPreviewRowsLimit = 10
 
 /**
  * Given an object of react-hook-form errors, determines if the specified mapped field is invalid (returns an error)

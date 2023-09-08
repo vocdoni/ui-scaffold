@@ -1,20 +1,26 @@
 {
-  "alt_image": "Imagen {{ img }}",
   "aside": {
     "has_already_voted": "Tu voto ha sido registrado correctamente",
     "is_not_in_census": "No estás en el censo",
     "not_connected": "No estás conectado",
     "overwrite_votes_left": "Puedes corregir tu voto {{ left }} veces.",
     "verify_vote_on_explorer": "Verifica el voto en el explorador",
-    "votes_one": "<tos>1</tos> <tos2>voto</tos2>",
-    "votes_many": "<tos>{{ count }}</tos> <tos2>votos</tos2>",
-    "votes_other": "<tos>{{ count }}</tos> <tos2>votos</tos2>"
+    "votes_one": "<span>1</span> <text>voto</text>",
+    "votes_many": "<span>{{ count }}</span> <text>votos</text>",
+    "votes_other": "<span>{{ count }}</span> <text>votos</text>"
   },
   "banner": {
-    "know_more": "Saber más",
-    "start_now": "¡Comenzar ahora!",
+    "start_now": "¡Crea un proceso de votación ahora!",
     "subtitle": "Usa direcciones de cartera, vota con un token ERC20 o con NFTs",
     "title": "¡Votando por DAOs y comunidades Web3!"
+  },
+  "banner_voting_types": {
+    "anonymous_description": "Tus votantes serán completamente anónimos, gracias a la tecnología de pruebas zk. La privacidad debería ser lo normal.",
+    "anonymous_title": "Votación Anónima",
+    "flexible_description": "Ajusta tu proceso de votación y censo: elección única, votación cuadrática, vota con una lista de carteras o crea un censo personalizado.",
+    "flexible_title": "Votación Flexible",
+    "token_description": "Vota con tokens ERC20/ERC721 (NFT) o importa tus propios tokens y vota sin gastar gas.",
+    "token_title": "Votación con Tokens"
   },
   "cc": {
     "actions": {
@@ -28,7 +34,16 @@
       "pause_description": "pausando el proceso electoral \"{{ election.title.default }}\"",
       "waiting_title": "Esperando la confirmación de la transacción..."
     },
+    "confirm": {
+      "cancel": "Cancelar",
+      "confirm": "Confirmar",
+      "title": "Confirmar"
+    },
     "empty": "Aparentemente este proceso no tiene preguntas",
+    "errors": {
+      "wrong_data_description": "Los datos especificados no son correctos",
+      "wrong_data_title": "Datos incorrectos"
+    },
     "required": "Este campo es obligatorio",
     "results": {
       "date_format": "d 'de' MMMM 'de' y 'a' 'las' H:mm",
@@ -37,6 +52,12 @@
       "votes": "Votos: {{ votes }} ({{ percent }})"
     },
     "schedule": "Votando desde el {{ begin }} hasta {{ end }}",
+    "spreadsheet": {
+      "access_button": "Identificarse",
+      "close": "Cerrar",
+      "logout": "Cerrar la sesión",
+      "modal_title": "Debes identificarte primero"
+    },
     "statuses": {
       "canceled": "Cancelada",
       "ended": "Finalizada",
@@ -50,7 +71,7 @@
     "vote": {
       "button": "Votar",
       "button_update": "Reenviar voto",
-      "missing_answers": "Tienes que responder a todas las preguntas",
+      "confirm": "Confirma tus selecciones:",
       "voted_description": "Para verificar tu voto, puedes usar esta identificación única: {{ id }}",
       "voted_title": "¡Tu voto se ha registrado con éxito!"
     }
@@ -61,6 +82,7 @@
   },
   "error": {
     "go_back": "Volver atrás",
+    "invalid_cell_data": "Algunas filas no contienen direcciones correctas: {{rows, list}}",
     "invalid_row_length": "Corrige las líneas {{rows, list}} del documento y vuelve a cargarlo",
     "invalid_weight_type": "Se esperaba encontrar el peso en la primera columna en las líneas {{rows, list}}, pero se han encontrado datos inesperados",
     "loading_page": "Error al cargar la página",
@@ -102,8 +124,11 @@
       "min_address": "Por favor, proporciona al menos una dirección"
     },
     "process_create": {
-      "alert_info_title": "Info",
       "behavior": {
+        "anonymous": {
+          "description": "Anónimo: los votos serán encriptados",
+          "title": "Anónimo"
+        },
         "overwrite": {
           "description": "Sobrescribir voto: Permitir a los votantes corregir el voto una vez.",
           "title": "Sobrescribir voto"
@@ -140,6 +165,7 @@
         "wallet_address_title": "Direcciones de cartera"
       },
       "confirm": {
+        "anonymous": "Anónimo",
         "census": "Censo",
         "census_preview_is_shortened": "(la lista previa está limitada a {{ limit }} resultados)",
         "census_total_people_one": "Una persona podrá votar en esta votación",
@@ -148,7 +174,7 @@
         "close": "Cerrar",
         "configuration": "Configuración",
         "confirmation": "Confirmación",
-        "confirmation_terms_and_conditions": "Acepto los <tos>términos y condiciones</tos> de Vocdoni",
+        "confirmation_terms_and_conditions": "Acepto los <link>términos y condiciones</link> de Vocdoni",
         "confirmation_valid_info": "Confirmo que esta información es correcta y válida",
         "create_button": "Crear",
         "dates": "Fecha",
@@ -228,10 +254,6 @@
       "weighted": "Voto ponderado"
     }
   },
-  "home": {
-    "active_voting": "Votación activa",
-    "more_active_organizations": "Organizaciones más activas"
-  },
   "link": {
     "discord": "Enlace al discord de Vocdoni",
     "github": "Enlace al github de Vocdoni",
@@ -239,27 +261,51 @@
   },
   "loading": "Cargando...",
   "menu": {
+    "burger_aria_label": "menú de usuario",
     "connect": "Conectar",
-    "create": "Crear proceso",
-    "create_process": "Crear proceso",
-    "disconnect": "Desconectar billetera",
-    "my_list": "Mi lista",
+    "copy_aria_label": "copiar dirección",
+    "create": "Crear Proceso",
+    "create_process": "Nuevo proceso",
+    "documentation": "Documentación",
+    "get_more": "Obtener más",
+    "how_it_works": "Cómo funciona",
+    "languages": "Idiomas",
+    "languages_list": "",
+    "login": "Iniciar sesión",
+    "logout": "Cerrar sesión",
+    "my_org": "Mi Org",
+    "my_org_aria_label": "Mi organización",
+    "new_process": "Nuevo proceso",
     "organization": "Editar Organización",
-    "support": "Soporte"
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "wallet": "Billetera"
   },
   "open_in_explorer": "Abrir en explorador",
   "organization": {
     "avatar_alt": "Imagen de avatar de la organización {{ name }}",
-    "dao_title": "DAO",
     "elections": "Elecciones",
     "elections_list_empty": {
+      "alt": "Imagen que ilustra que la organización está vacía",
       "description": "Al comenzar haciendo tu primera elección, puedes elegir entre diferentes tipos de autenticación para tu voto.",
-      "footer": "Obtén más información sobre cómo crear elecciones <tos>en esta guía</tos>.",
+      "footer": "Obtén más información sobre cómo crear elecciones <customLink>en esta guía</customLink>.",
       "not_owner": "Esta organización aún no tiene elecciones.",
       "title": "Crea tu primera elección"
+    },
+    "name_long": "<strong>{{ name }}</strong> ({{ address }})",
+    "title": {
+      "edit": "Editar organización",
+      "read_more": "Expandir título"
     }
   },
   "process": {
+    "actions": "Acciones",
+    "census": "Censo",
+    "census_strategies": {
+      "spreadsheet": "CSV",
+      "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
+      "web3": "Direcciones web3"
+    },
     "created_by": "Creado por",
     "date": {
       "ended": "Finalizado",
@@ -267,9 +313,24 @@
       "relative": "{{ date, relative(past: hace %time; future: en %time) }}",
       "starts": "Empieza"
     },
+    "is_anonymous": {
+      "description": "Los votos son encriptados",
+      "title": "Anónimo"
+    },
     "is_invalid": "Este proceso tiene datos no válidos y no se puede cargar",
+    "people_in_census_one": "Un votante",
+    "people_in_census_many": "",
+    "people_in_census_other": "{{ count }} votantes",
     "questions": "Preguntas",
     "results": "Resultados",
+    "share_caption": "Acabo de emitir mi voto para {{ title }}!!",
+    "share_title": "Compartir en {{ network }}",
+    "spreadsheet": {
+      "confirm": {
+        "option": "Opción",
+        "question": "Pregunta"
+      }
+    },
     "status": {
       "active": "Activo",
       "canceled": "Proceso cancelado",
@@ -280,18 +341,20 @@
       "upcoming": "Próximo"
     },
     "strategy": "Estrategia",
-    "voters": "Votantes",
-    "voting_type": "Tipo de votación"
+    "success_modal": {
+      "btn": "Finalizar",
+      "text": "<p>Tu voto ha sido emitido y almacenado de forma segura en la cadena de bloques de Vocdoni. Puedes comprobarlo <verify>aquí</verify>.</p><p>La democracia es importante, puedes compartirla con tu comunidad y amigos:</p>",
+      "title": "Voto emitido correctamente!"
+    },
+    "voters": "Votantes"
   },
   "process_actions": {
     "pause": "pausar",
     "play": "reproducir",
     "stop": "detener"
   },
-  "submited_votes": "Votos enviados",
   "uploader": {
     "click_or_drag_and_drop": "<p1>Sube o arrastra y suelta aqui la lista de votantes</p1><p2>(Formap permitidos: CSV, XLSX y ODS)</p2>",
     "drop_here": "Suelta aqui"
-  },
-  "voting_elections": "Votaciones"
+  }
 }

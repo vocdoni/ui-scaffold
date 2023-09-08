@@ -71,4 +71,18 @@ i18n.services.formatter?.add('format', (value: any, lng: string | undefined, opt
   return format(value, options.format, opts)
 })
 
+/**
+ * Uppercase
+ */
+i18n.services.formatter?.add('uppercase', (value: string, lng: string | undefined, options: any) =>
+  value.toLocaleUpperCase(lng)
+)
+
+/**
+ * Lowercase
+ */
+i18n.services.formatter?.add('lowercase', (value: string, lng: string | undefined, options: any) =>
+  value.toLocaleLowerCase(lng)
+)
+
 export default i18n

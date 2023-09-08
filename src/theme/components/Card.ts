@@ -18,72 +18,6 @@ const cardCommonStyles = {
   },
 }
 
-const lite = definePartsStyle({
-  ...cardCommonStyles,
-
-  container: {
-    ...cardCommonStyles.container,
-    w: 72,
-    borderRadius: 'lg',
-    overflow: 'hidden',
-    boxShadow: 'var(--box-shadow)',
-    transition: 'box-shadow .2s  ',
-    cursor: 'pointer',
-
-    _hover: {
-      boxShadow: 'var(--box-shadow-darker)',
-      transition: 'box-shadow .2s  ',
-    },
-  },
-
-  body: {
-    minH: 24,
-    p: 4,
-    pb: 0,
-
-    '& > p:first-of-type': {
-      fontSize: 'sm',
-      textTransform: 'uppercase',
-      color: 'card.header',
-      noOfLines: 1,
-      overflow: 'hidden',
-      display: '-webkit-box',
-      WebkitBoxOrient: 'vertical',
-      WebkitLineClamp: 'var(--chakra-line-clamp)',
-    },
-
-    '& > p:nth-of-type(2)': {
-      fontWeight: 'bold',
-      fontSize: 'lg',
-      noOfLines: 2,
-      overflow: 'hidden',
-      display: '-webkit-box',
-      WebkitBoxOrient: 'vertical',
-      WebkitLineClamp: 'var(--chakra-line-clamp)',
-    },
-  },
-  footer: {
-    ...cardCommonStyles.footer,
-    gap: 3.5,
-    px: 4,
-    pt: 0,
-    pb: 2,
-    fontWeight: 'bold',
-    fontSize: 'sm',
-
-    '& > div > p:first-of-type': {
-      color: 'card.footer_title',
-      fontWeight: 'normal',
-    },
-
-    '& div:nth-of-type(even)': {
-      pl: 3.5,
-      borderLeft: '1px solid',
-      borderColor: 'card.footer_divider',
-    },
-  },
-})
-
 const detailed = definePartsStyle({
   ...cardCommonStyles,
 
@@ -109,11 +43,12 @@ const detailed = definePartsStyle({
     height: '100%',
     display: 'flex',
     gap: 3,
-    p: 3,
+    p: 4,
     pb: 0,
     justifyContent: 'space-between',
 
     '& a': {
+      w: '100%',
       '& > p:first-of-type': {
         textAlign: 'start',
         fontSize: 'xl2',
@@ -122,7 +57,7 @@ const detailed = definePartsStyle({
         display: '-webkit-box',
         WebkitBoxOrient: 'vertical',
         WebkitLineClamp: 'var(--chakra-line-clamp)',
-        mb: 5,
+        mb: 3,
       },
 
       '& div:first-of-type': {
@@ -133,7 +68,7 @@ const detailed = definePartsStyle({
       '& > div:nth-of-type(2)': {
         '& > p:first-of-type': {
           textAlign: 'start',
-          color: 'card.description',
+          color: 'organization.card.description',
           noOfLines: 4,
           overflow: 'hidden',
           display: '-webkit-box',
@@ -151,24 +86,21 @@ const detailed = definePartsStyle({
   },
   footer: {
     ...cardCommonStyles.footer,
-    p: 2,
     mt: 'auto',
     fontSize: 'sm',
 
     '& > div:first-of-type': {
       display: 'flex',
       justifyContent: 'space-between',
-      gap: 0.5,
       w: 'full',
 
       '& > div': {
         display: 'flex',
         justifyContent: 'center',
         gap: 1,
-        p: 1,
+        py: 2.5,
         px: 2,
         textAlign: 'center',
-
         minW: '50%',
         bgColor: 'organization.card.footer_bg',
 
@@ -205,6 +137,7 @@ const noElections = definePartsStyle({
     boxShadow: 'var(--box-shadow)',
     borderRadius: 'lg',
     minW: 'full',
+    minH: 52,
   },
 
   body: {
@@ -224,12 +157,16 @@ const noElections = definePartsStyle({
     '& > div:nth-of-type(2)': {
       display: 'flex',
       flexDirection: 'column',
+      justifyContent: 'center',
       alignItems: { base: 'center', lg: 'start' },
       gap: 5,
 
       '& > p:first-of-type': {
-        fontSize: 'xl2',
         fontWeight: 'bold',
+      },
+
+      '& > p': {
+        textAlign: { base: 'center', lg: 'start' },
       },
     },
   },
@@ -237,7 +174,6 @@ const noElections = definePartsStyle({
 
 const variantsCards = {
   detailed,
-  lite,
   'no-elections': noElections,
 }
 export const Card = defineMultiStyleConfig({ variants: variantsCards })

@@ -9,37 +9,35 @@ const LayoutProcessCreate = () => {
   const navigate = useNavigate()
 
   return (
-    <Flex direction='column' minH='100vh'>
-      <Flex
-        as='header'
-        position='relative'
-        justifyContent='space-between'
-        alignItems='center'
-        paddingY={4}
-        maxW={350}
-        mx='auto'
-        px={4}
-        w='full'
-      >
-        <Logo />
-
-        <Link
-          variant='primary'
-          display='flex'
+    <Box bgColor='main_bg'>
+      <Flex direction='column' minH='100vh' maxW={360} mx='auto'>
+        <Flex
+          as='header'
+          position='relative'
+          justifyContent='space-between'
           alignItems='center'
-          onClick={(e) => (window.history.state.idx ? navigate(-1) : navigate('/'))}
+          paddingY={4}
+          px={4}
+          w='full'
         >
-          <Icon as={IoCloseOutline} mt='1.5px' boxSize={5} />
-          {t('form.process_create.navbar.close_form_btn')}
-        </Link>
-      </Flex>
+          <Logo />
 
-      <Box as='main' py={4}>
-        <Box maxWidth={304} margin='0 auto' paddingX={{ base: 4 }}>
+          <Link
+            variant='primary'
+            display='flex'
+            alignItems='center'
+            onClick={(e) => (window.history.state.idx ? navigate(-1) : navigate('/'))}
+          >
+            <Icon as={IoCloseOutline} mt='1.5px' boxSize={5} />
+            {t('form.process_create.navbar.close_form_btn')}
+          </Link>
+        </Flex>
+
+        <Box as='main' maxW={360} w='full' mx='auto' p={4}>
           <Outlet />
         </Box>
-      </Box>
-    </Flex>
+      </Flex>
+    </Box>
   )
 }
 

@@ -14,6 +14,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaRegArrowAltCircleLeft } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import { CreatedBy } from './CreatedBy'
 import { ProcessDate } from './Date'
 
 const ProcessHeader = () => {
@@ -22,6 +23,7 @@ const ProcessHeader = () => {
   const { account } = useClient()
 
   const { readMore, isTruncated, containerRef, noOfLines, handleReadMore } = useReadMore(770, 20, 'p')
+  const strategy = useStrategy()
 
   return (
     <Box mb={4}>
@@ -30,9 +32,9 @@ const ProcessHeader = () => {
           <OrganizationName as='span' overflow='hidden' fontSize='sm' isTruncated />
         </Button>
       </Link>
-      <Flex direction={{ base: 'column', xl: 'row' }} mb={7} gap={{ base: 2, xl: 10 }}>
-        <Box flexBasis='70%' flexGrow={0} flexShrink={0}>
-          <ElectionTitle fontSize='xl5' textAlign='left' mb={5} />
+      <Flex direction={{ base: 'column', xl: 'row' }} justifyContent='space-between' mb={7} gap={{ xl: 10 }}>
+        <Box>
+          <ElectionTitle fontSize='xl4' textAlign='left' mb={5} />
           <Flex
             gap={4}
             flexDirection={{ base: 'column', md: 'row' }}
@@ -40,7 +42,7 @@ const ProcessHeader = () => {
             mb={4}
           >
             <ElectionStatusBadge />
-            <ElectionSchedule textAlign='left' color='process.date' />
+            <ElectionSchedule textAlign='left' color='process.info_title' />
           </Flex>
 
           <Flex
@@ -56,7 +58,7 @@ const ProcessHeader = () => {
               },
             }}
           >
-            <ElectionDescription mb={0} fontSize='lg' lineHeight={2} color='process.description' />
+            <ElectionDescription mb={0} fontSize='lg' lineHeight={2.5} color='process.description' />
             {isTruncated && (
               <Button variant='link' colorScheme='primary' alignSelf='center' onClick={handleReadMore}>
                 {readMore ? ' Read less' : 'Read more'}
@@ -65,7 +67,15 @@ const ProcessHeader = () => {
           </Flex>
         </Box>
 
-        <Flex flexDirection='column' alignItems='start' gap={4} pl={{ xl: 5 }}>
+        <Flex
+          flexDirection='column'
+          alignItems='start'
+          gap={4}
+          flexGrow={0}
+          flexShrink={0}
+          flexBasis={{ base: '100%', xl: 96 }}
+          px={{ xl: 12 }}
+        >
           {election?.status !== ElectionStatus.CANCELED ? (
             <ProcessDate />
           ) : (
@@ -73,27 +83,33 @@ const ProcessHeader = () => {
               {t('process.status.canceled')}
             </Text>
           )}
-          {election?.meta?.token && (
+          {election?.electionType.anonymous && (
             <Box>
-              <Text color='process.date' fontWeight='bold'>
-                {t('process.voting_type')}
+              <Text color='process.info_title' fontWeight='bold'>
+                {t('process.is_anonymous.title')}
               </Text>
-              <Text>{election.meta.token.defaultStrategy === 1 && 'Single choice'}</Text>
-            </Box>
-          )}
-          {election?.meta?.token && (
-            <Box>
-              <Text color='process.date' fontWeight='bold'>
-                {t('process.strategy')}
-              </Text>
-              <Text textTransform='capitalize'>{election.meta?.token.type}</Text>
+              <Text>{t('process.is_anonymous.description')}</Text>
             </Box>
           )}
           <Box>
-            <Text color='process.date' fontWeight='bold'>
+            <Text color='process.info_title' fontWeight='bold'>
+              {t('process.census')}
+            </Text>
+            <Text>{t('process.people_in_census', { count: election?.maxCensusSize })}</Text>
+          </Box>
+          {election?.meta?.census && (
+            <Box>
+              <Text color='process.info_title' fontWeight='bold'>
+                {t('process.strategy')}
+              </Text>
+              <Text>{strategy}</Text>
+            </Box>
+          )}
+          <Box>
+            <Text color='process.info_title' fontWeight='bold' mb={1}>
               {t('process.created_by')}
             </Text>
-            <OrganizationName isTruncated maxW={76} />
+            <CreatedBy />
           </Box>
           {election?.status === ElectionStatus.PAUSED && election?.organizationId !== account?.address && (
             <Flex
@@ -112,7 +128,14 @@ const ProcessHeader = () => {
               </Box>
             </Flex>
           )}
-          <ElectionActions sx={{ '& div': { flexDirection: 'row', justifyContent: 'start' } }} />
+          {election?.organizationId === account?.address && (
+            <Box>
+              <Text color='process.info_title' fontWeight='bold' mb={1}>
+                {t('process.actions')}
+              </Text>
+              <ElectionActions sx={{ '& div': { flexDirection: 'row', justifyContent: 'start' } }} ml={-1} />
+            </Box>
+          )}
         </Flex>
       </Flex>
     </Box>
@@ -139,6 +162,7 @@ const useReadMore = (containerHeight: number, lines: number, tag: string) => {
         if (isTextTaller) setIsTruncated(true)
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return {
@@ -148,6 +172,27 @@ const useReadMore = (containerHeight: number, lines: number, tag: string) => {
     handleReadMore,
     isTruncated,
   }
+}
+
+const useStrategy = () => {
+  const { t } = useTranslation()
+  const { election } = useElection()
+  const strategies: { [key: string]: string } = {
+    spreadsheet: t('process.census_strategies.spreadsheet'),
+    token: t('process.census_strategies.token', { token: election?.meta?.token }),
+    web3: t('process.census_strategies.web3'),
+  }
+
+  if (!election || (election && !election.meta.census)) return ''
+
+  const type = election.get('census.type')
+
+  if (typeof strategies[type] === 'undefined') {
+    console.warn('unknown census type:', type)
+    return ''
+  }
+
+  return strategies[type]
 }
 
 export default ProcessHeader
