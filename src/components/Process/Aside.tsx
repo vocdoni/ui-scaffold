@@ -51,9 +51,9 @@ const ProcessAside = ({ ...props }) => {
           </Flex>
         )}
 
-        {census.type === 'spreadsheet' && !connected && <SpreadsheetAccess />}
+        {census?.type === 'spreadsheet' && !connected && <SpreadsheetAccess />}
 
-        {census.type !== 'spreadsheet' &&
+        {census?.type !== 'spreadsheet' &&
           !isConnected &&
           !connected &&
           election?.status !== ElectionStatus.CANCELED && (
@@ -65,7 +65,7 @@ const ProcessAside = ({ ...props }) => {
             </Flex>
           )}
 
-        {isConnected && census.type !== 'spreadsheet' && !isInCensus && (
+        {isConnected && census?.type !== 'spreadsheet' && !isInCensus && (
           <Text textAlign='center'>{t('aside.is_not_in_census')}</Text>
         )}
 
