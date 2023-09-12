@@ -28,8 +28,8 @@ const ProcessAside = ({ ...props }) => {
         p={12}
         w={96}
         mt={7}
-        color='process.results.aside.color'
-        background='aside_bg'
+        color='process.aside.color'
+        background='process.aside.bg'
         borderRadius='lg'
         boxShadow='var(--box-shadow-banner)'
         {...props}
@@ -83,7 +83,7 @@ const ProcessAside = ({ ...props }) => {
               </Box>
             )}
             {hasOverwriteEnabled(election) && isInCensus && votesLeft > 0 && voted && (
-              <Text>{t('aside.overwrite_votes_left', { left: votesLeft })}</Text>
+              <Text textAlign='center'>{t('aside.overwrite_votes_left', { left: votesLeft })}</Text>
             )}
           </Flex>
         )}

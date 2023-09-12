@@ -6,16 +6,16 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 const baseStyle = definePartsStyle({
   button: {
     w: 'full',
-    color: 'process.results.aside.vote_btn_color',
+    color: 'process.aside.vote_btn_color',
     mb: 4,
     borderRadius: 30,
     p: 7,
-    bgColor: 'process.results.aside.vote_btn_bg',
+    bgColor: 'process.aside.vote_btn_bg',
   },
 
   disconnect: {
-    bgColor: 'spreadsheet.disconnect_bg',
-    color: 'spreadsheet.diconnect_color',
+    bgColor: 'process.spreadsheet.disconnect_bg',
+    color: 'process.spreadsheet.diconnect_color',
     textDecoration: 'underline',
   },
 

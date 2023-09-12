@@ -119,8 +119,8 @@ const baseStyle = definePartsStyle({
       },
 
       '& input:checked ~ span:nth-of-type(2)': {
-        color: 'process.questions.btn_form_selected.color',
-        bgColor: 'process.questions.btn_form_selected.bg',
+        color: 'process.questions.question_selected.color',
+        bgColor: 'process.questions.question_selected.bg',
         w: '100%',
       },
     },
