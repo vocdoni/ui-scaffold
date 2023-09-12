@@ -2,11 +2,11 @@ import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
 
 const process = defineStyle({
   w: 'full',
-  color: 'process.results.aside.vote_btn_color',
+  color: 'process.aside.vote_btn_color',
   mb: 4,
   borderRadius: 'full',
   p: 7,
-  bgColor: 'process.results.aside.vote_btn_bg',
+  bgColor: 'process.aside.vote_btn_bg',
 })
 
 const rounded = defineStyle((props) => {

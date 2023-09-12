@@ -47,7 +47,7 @@ const Navbar = () => {
               as={ReactRouterLink}
               to={`/organization/0x${account?.address}`}
               variant='rounded'
-              color='primary.500'
+              color='primary.main'
               aria-label={t('menu.my_org_aria_label')}
               title={t('menu.my_org_aria_label')}
               px={{ base: 3, sm: 4 }}
@@ -65,7 +65,7 @@ const Navbar = () => {
             <ListItem>
               <Button
                 variant='rounded'
-                color='primary.500'
+                color='primary.main'
                 onClick={() => {
                   if (openConnectModal) openConnectModal()
                 }}
@@ -100,7 +100,7 @@ const Navbar = () => {
         {isConnected && (
           <ListItem>
             <Menu>
-              {({ isOpen, onClose }) => (
+              {({ isOpen }) => (
                 <>
                   <MenuButton
                     as={Button}

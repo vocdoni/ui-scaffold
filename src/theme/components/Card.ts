@@ -148,6 +148,10 @@ const noElections = definePartsStyle({
     '& > div': {
       flex: '1 1 50%',
       px: 10,
+
+      '& img': {
+        width: { base: 52, lg: 84 },
+      },
     },
     '& > div:first-of-type': {
       display: 'flex',
