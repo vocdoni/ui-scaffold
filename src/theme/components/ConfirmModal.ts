@@ -30,7 +30,7 @@ const baseStyle = definePartsStyle({
     },
 
     '&::after': {
-      content: '"Before casting your vote review that everything is correct."',
+      content: `"${i18n.t('process.spreadsheet.confirm.text1')}- "`,
       position: 'absolute',
       top: 60,
       left: 0,
@@ -61,7 +61,7 @@ const baseStyle = definePartsStyle({
       w: '350px',
 
       '&::before': {
-        content: '"Remember that in this election mode, you are able to correct your vote X times."',
+        content: `"${i18n.t('process.spreadsheet.confirm.text2')}- "`,
         position: 'absolute',
         top: -16,
         left: 0,
