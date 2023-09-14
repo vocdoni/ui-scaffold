@@ -21,7 +21,9 @@ export class SpreadsheetManager {
   }
 
   public read() {
-    return this.load().then(() => this.validateDataIntegrity())
+    return this.load()
+      .then(() => this.validateFileType())
+      .then(() => this.validateDataIntegrity())
   }
 
   public static AcceptedTypes = [
@@ -36,6 +38,10 @@ export class SpreadsheetManager {
   ]
 
   public validateDataIntegrity(): void {}
+
+  public validateFileType(): void {
+    console.log(this.file) //mime type
+  }
 
   public get header(): string[] {
     return this.heading

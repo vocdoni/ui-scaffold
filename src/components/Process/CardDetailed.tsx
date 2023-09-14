@@ -1,4 +1,5 @@
 import { Box, Card, CardBody, CardFooter, Text } from '@chakra-ui/react'
+import { useReadMoreMD } from '@components/Organization/Header'
 import { useDateFns } from '@i18n/use-date-fns'
 import { ElectionActions, ElectionDescription, ElectionStatusBadge, ElectionTitle } from '@vocdoni/chakra-components'
 import { ElectionProvider, enforceHexPrefix, useElection } from '@vocdoni/react-providers'
@@ -64,6 +65,7 @@ const ProcessDetailedCardTitle = () => {
 const ProcessDetailedCardDescription = () => {
   const { election } = useElection()
   const { t } = useTranslation()
+  const { ReadMoreMDWrapper } = useReadMoreMD(100)
 
   if (election instanceof InvalidElection) {
     return null
@@ -72,7 +74,9 @@ const ProcessDetailedCardDescription = () => {
   return (
     <>
       {election?.status !== ElectionStatus.CANCELED ? (
-        <ElectionDescription />
+        <ReadMoreMDWrapper>
+          <ElectionDescription />
+        </ReadMoreMDWrapper>
       ) : (
         <Box>
           <Text>{t('process.status.canceled')}</Text>

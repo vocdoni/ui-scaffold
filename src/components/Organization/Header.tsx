@@ -16,166 +16,198 @@ const OrganizationHeader = () => {
   const { onOpen } = useOrganizationModal()
   const { account } = useClient()
 
-  const {
-    containerRef: containerRefTitle,
-    noOfLines: noOfLinesTitle,
-    readMore: readMoreTitle,
-    handleReadMore: handleReadMoreTitle,
-    isTruncated: isTruncatedTitle,
-  } = useReadMore(96, 1, 'p')
+  const { ReadMoreMDWrapper, ReadMoreMDBtn } = useReadMoreMD(110)
 
-  const {
-    containerRef: containerRefDesc,
-    noOfLines: noOfLinesDesc,
-    readMore: readMoreDesc,
-    handleReadMore: handleReadMoreDesc,
-    isTruncated: isTruncatedDesc,
-  } = useReadMore(139, 4, 'p')
+  const { containerRef, isTruncated, readMore, handleReadMore } = useReadMoreTitle()
 
   return (
-    <Flex
-      flexDirection={{ base: 'column', md: 'row' }}
-      alignItems={{ base: 'center', md: 'start' }}
-      gap={{ base: 2, md: 8 }}
-      mb={10}
-      p={3}
-      borderRadius='lg'
-      boxShadow='var(--box-shadow)'
-      bgColor='organization.header'
-    >
-      <Box flex='1 1 20%' minW={40}>
-        <AspectRatio ratio={1.25 / 1} maxW={56} mx='auto'>
-          <Avatar
-            mx='auto'
-            borderRadius='md'
-            fallbackSrc={fallback}
-            alt={t('organization.avatar_alt', {
-              name: organization?.account.name.default || organization?.address,
-            }).toString()}
-          />
-        </AspectRatio>
-      </Box>
-
+    <>
       <Flex
-        flex='1 1 80%'
-        justifyContent='space-between'
-        alignItems={{ base: 'center', md: 'start' }}
         flexDirection={{ base: 'column', md: 'row' }}
-        gap={{ base: 2 }}
-        minW={0}
-        maxW='100%'
+        alignItems={{ base: 'center', md: 'start' }}
+        gap={{ base: 2, md: 8 }}
+        mb={10}
+        p={3}
+        borderRadius='lg'
+        boxShadow='var(--box-shadow)'
+        bgColor='organization.header'
       >
+        <Box flex='1 1 20%' minW={40}>
+          <AspectRatio ratio={1.25 / 1} maxW={56} mx='auto'>
+            <Avatar
+              mx='auto'
+              borderRadius='md'
+              fallbackSrc={fallback}
+              alt={t('organization.avatar_alt', {
+                name: organization?.account.name.default || organization?.address,
+              }).toString()}
+            />
+          </AspectRatio>
+        </Box>
+
         <Flex
-          flex='1 1 100%'
-          direction='column'
-          justifyContent={{ md: 'space-between' }}
+          flex='1 1 80%'
+          justifyContent='space-between'
           alignItems={{ base: 'center', md: 'start' }}
-          gap={2}
-          order={{ base: 2, md: 0 }}
+          flexDirection={{ base: 'column', md: 'row' }}
+          gap={{ base: 2 }}
+          minW={0}
+          maxW='100%'
         >
           <Flex
-            w='100%'
-            ref={containerRefTitle}
-            flexDirection='row'
-            justifyContent='space-between'
-            alignItems='center'
-            sx={{
-              p: {
-                noOfLines: noOfLinesTitle,
-                overflow: 'hidden',
-                display: '-webkit-box',
-                WebkitBoxOrient: 'vertical',
-                WebkitLineClamp: 'var(--chakra-line-clamp)',
-              },
-            }}
+            flex='1 1 100%'
+            direction='column'
+            justifyContent={{ md: 'space-between' }}
+            alignItems={{ base: 'center', md: 'start' }}
+            gap={2}
+            order={{ base: 2, md: 0 }}
           >
-            <OrganizationName
-              as='p'
-              fontSize={32}
-              lineHeight={1.5}
-              title={organization?.account.name.default || organization?.address}
-            />
-            {isTruncatedTitle && (
-              <IconButton
-                icon={readMoreTitle ? <FaEyeSlash /> : <FaEye />}
-                variant='ghost'
-                alignSelf='start'
-                color='primary.500'
-                title={t('organization.title.read_more')}
-                aria-label={t('organization.title.read_more')}
-                onClick={handleReadMoreTitle}
-              />
-            )}
-            {areEqualHexStrings(account?.address, organization?.address) && (
-              <IconButton
-                icon={<IoMdCreate />}
-                alignSelf='start'
-                variant='ghost'
-                color='primary.500'
-                title={t('organization.title.edit')}
-                aria-label={t('organization.title.edit')}
-                onClick={onOpen}
-              />
-            )}
-          </Flex>
-
-          <Flex
-            ref={containerRefDesc}
-            flexDirection='column'
-            sx={{
-              div: {
+            <Flex
+              w='100%'
+              ref={containerRef}
+              flexDirection='row'
+              justifyContent='space-between'
+              alignItems='center'
+              sx={{
                 p: {
-                  noOfLines: noOfLinesDesc,
+                  noOfLines: readMore ? 1 : 'none',
                   overflow: 'hidden',
                   display: '-webkit-box',
                   WebkitBoxOrient: 'vertical',
                   WebkitLineClamp: 'var(--chakra-line-clamp)',
                 },
-              },
-            }}
-          >
-            <OrganizationDescription fontSize='lg' lineHeight={1.7} />
-            {isTruncatedDesc && (
-              <Button float='right' variant='link' colorScheme='primary' alignSelf='end' onClick={handleReadMoreDesc}>
-                {readMoreDesc ? ' Read less' : 'Read more'}
-              </Button>
-            )}
+              }}
+            >
+              <OrganizationName
+                as='p'
+                fontSize={32}
+                lineHeight={1.5}
+                title={organization?.account.name.default || organization?.address}
+              />
+              {isTruncated && (
+                <IconButton
+                  icon={readMore ? <FaEye /> : <FaEyeSlash />}
+                  variant='ghost'
+                  alignSelf='start'
+                  color='primary.500'
+                  title={t('organization.title.read_more')}
+                  aria-label={t('organization.title.read_more')}
+                  onClick={handleReadMore}
+                />
+              )}
+              {areEqualHexStrings(account?.address, organization?.address) && (
+                <IconButton
+                  icon={<IoMdCreate />}
+                  alignSelf='start'
+                  variant='ghost'
+                  color='primary.500'
+                  title={t('organization.title.edit')}
+                  aria-label={t('organization.title.edit')}
+                  onClick={onOpen}
+                />
+              )}
+            </Flex>
+            <ReadMoreMDWrapper>
+              <OrganizationDescription fontSize='lg' lineHeight={1.7} />
+            </ReadMoreMDWrapper>
+            <ReadMoreMDBtn colorScheme='primary' alignSelf='center' />
           </Flex>
+          <AddressBtn />
         </Flex>
-        <AddressBtn />
       </Flex>
-    </Flex>
+    </>
   )
 }
 
-const useReadMore = (containerHeight: number, lines: number, tag: string) => {
+const useReadMoreTitle = () => {
   const [readMore, setReadMore] = useState(false)
   const [isTruncated, setIsTruncated] = useState(false)
   const containerRef = useRef<HTMLParagraphElement>(null)
-  const noOfLines = isTruncated ? (readMore ? 'none' : lines) : 'none'
 
   const handleReadMore = () => setReadMore((prev) => !prev)
 
   useEffect(() => {
-    if (containerRef.current) {
-      const text = containerRef.current.querySelector(tag)
+    if (!containerRef.current) return
+    const containerHeight = containerRef.current.getBoundingClientRect().height
+    const text = containerRef.current.querySelector('p')
 
-      if (text) {
-        const textHeight = text.getBoundingClientRect().height
+    if (!text) return
+    const fontSizeTitle = Number(getComputedStyle(text).fontSize.split('px')[0])
 
-        const isTextTaller = textHeight > containerHeight
-
-        if (isTextTaller) setIsTruncated(true)
-      }
+    if (containerHeight > fontSizeTitle * 2) {
+      setReadMore(true)
+      setIsTruncated(true)
     }
   }, [])
 
   return {
     containerRef,
-    noOfLines,
+    readMore,
+    isTruncated,
+    handleReadMore,
+  }
+}
+
+export const useReadMoreMD = (containerMaxHeightPx: number, tantPerCentGradient?: number) => {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [isTruncated, setIsTruncated] = useState(false)
+  const [readMore, setReadMore] = useState(false)
+
+  const handleReadMore = () => setReadMore((prev) => !prev)
+
+  useEffect(() => {
+    if (containerRef.current) {
+      const containerHeight = containerRef.current.getBoundingClientRect().height
+
+      if (containerHeight > containerMaxHeightPx) {
+        setIsTruncated(true)
+        setReadMore(true)
+      }
+    }
+  }, [])
+
+  const ReadMoreMDWrapper = ({ children, from, to, ...props }: any) => (
+    <Box
+      {...props}
+      ref={containerRef}
+      position='relative'
+      height={readMore ? `${containerMaxHeightPx}px` : 'auto'}
+      overflow='hidden'
+      sx={{
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          height: isTruncated
+            ? `${(containerMaxHeightPx * (tantPerCentGradient ? tantPerCentGradient : containerMaxHeightPx)) / 100}px`
+            : '0',
+          width: '100%',
+          bottom: 0,
+          background:
+            isTruncated && readMore
+              ? `linear-gradient(to bottom, ${from ? from : 'rgba(255, 255, 255, 0)'} 0%, ${
+                  to ? to : 'rgba(255, 255, 255, 1)'
+                } 100%)`
+              : '',
+        },
+      }}
+    >
+      {children}
+    </Box>
+  )
+  const ReadMoreMDBtn = ({ ...props }: any) =>
+    isTruncated && (
+      <Button onClick={handleReadMore} variant='link' {...props}>
+        {readMore ? 'Read more' : 'Read less'}
+      </Button>
+    )
+
+  return {
+    containerRef,
+    isTruncated,
     readMore,
     handleReadMore,
-    isTruncated,
+    ReadMoreMDWrapper,
+    ReadMoreMDBtn,
   }
 }
 
