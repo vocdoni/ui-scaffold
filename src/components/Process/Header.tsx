@@ -1,6 +1,6 @@
 import { WarningIcon } from '@chakra-ui/icons'
 import { Box, Button, Flex, Icon, Text } from '@chakra-ui/react'
-import { useReadMoreMD } from '@components/Organization/Header'
+import { useReadMoreMD } from '@components/Layout/use-read-more'
 import {
   ElectionActions,
   ElectionDescription,

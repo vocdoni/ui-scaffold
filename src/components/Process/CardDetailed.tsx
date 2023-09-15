@@ -1,5 +1,5 @@
 import { Box, Card, CardBody, CardFooter, Text } from '@chakra-ui/react'
-import { useReadMoreMD } from '@components/Organization/Header'
+import { useReadMoreMD } from '@components/Layout/use-read-more'
 import { useDateFns } from '@i18n/use-date-fns'
 import { ElectionActions, ElectionDescription, ElectionStatusBadge, ElectionTitle } from '@vocdoni/chakra-components'
 import { ElectionProvider, enforceHexPrefix, useElection } from '@vocdoni/react-providers'
