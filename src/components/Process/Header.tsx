@@ -1,5 +1,6 @@
 import { WarningIcon } from '@chakra-ui/icons'
 import { Box, Button, Flex, Icon, Text } from '@chakra-ui/react'
+import { useReadMoreMarkdown } from '@components/Layout/use-read-more'
 import {
   ElectionActions,
   ElectionDescription,
@@ -10,7 +11,6 @@ import {
 } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
 import { ElectionStatus } from '@vocdoni/sdk'
-import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaRegArrowAltCircleLeft } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
@@ -21,8 +21,8 @@ const ProcessHeader = () => {
   const { t } = useTranslation()
   const { election } = useElection()
   const { account } = useClient()
+  const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(600, 20)
 
-  const { readMore, isTruncated, containerRef, noOfLines, handleReadMore } = useReadMore(770, 20, 'p')
   const strategy = useStrategy()
 
   return (
@@ -44,26 +44,11 @@ const ProcessHeader = () => {
             <ElectionStatusBadge />
             <ElectionSchedule textAlign='left' color='process.info_title' />
           </Flex>
-
-          <Flex
-            ref={containerRef}
-            flexDirection='column'
-            sx={{
-              p: {
-                noOfLines: noOfLines,
-                overflow: 'hidden',
-                display: '-webkit-box',
-                WebkitBoxOrient: 'vertical',
-                WebkitLineClamp: 'var(--chakra-line-clamp)',
-              },
-            }}
-          >
-            <ElectionDescription mb={0} fontSize='lg' lineHeight={2.5} color='process.description' />
-            {isTruncated && (
-              <Button variant='link' colorScheme='primary' alignSelf='center' onClick={handleReadMore}>
-                {readMore ? ' Read less' : 'Read more'}
-              </Button>
-            )}
+          <Flex flexDirection='column'>
+            <ReadMoreMarkdownWrapper from='rgba(250, 250, 250, 0)' to='rgba(250, 250, 250, 1)'>
+              <ElectionDescription mb={0} fontSize='lg' lineHeight={2.5} color='process.description' />
+            </ReadMoreMarkdownWrapper>
+            <ReadMoreMarkdownButton colorScheme='primary' alignSelf='center' />
           </Flex>
         </Box>
 
@@ -105,11 +90,27 @@ const ProcessHeader = () => {
               <Text>{strategy}</Text>
             </Box>
           )}
-          <Box>
+
+          <Box width='100%'>
             <Text color='process.info_title' fontWeight='bold' mb={1}>
               {t('process.created_by')}
             </Text>
-            <CreatedBy />
+            <CreatedBy
+              sx={{
+                '& p': {
+                  minW: 0,
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
+                  flexWrap: 'wrap',
+                },
+                '& p strong': {
+                  maxW: { base: '100%', xl: '300px' },
+                  isTruncated: true,
+                  mr: 1,
+                },
+              }}
+            />
           </Box>
           {election?.status === ElectionStatus.PAUSED && election?.organizationId !== account?.address && (
             <Flex
@@ -140,38 +141,6 @@ const ProcessHeader = () => {
       </Flex>
     </Box>
   )
-}
-
-const useReadMore = (containerHeight: number, lines: number, tag: string) => {
-  const [readMore, setReadMore] = useState(false)
-  const [isTruncated, setIsTruncated] = useState(false)
-  const containerRef = useRef<HTMLParagraphElement>(null)
-  const noOfLines = isTruncated ? (readMore ? 'none' : lines) : 'none'
-
-  const handleReadMore = () => setReadMore((prev) => !prev)
-
-  useEffect(() => {
-    if (containerRef.current) {
-      const text = containerRef.current.querySelector(tag)
-
-      if (text) {
-        const textHeight = text.getBoundingClientRect().height
-
-        const isTextTaller = textHeight > containerHeight
-
-        if (isTextTaller) setIsTruncated(true)
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  return {
-    containerRef,
-    noOfLines,
-    readMore,
-    handleReadMore,
-    isTruncated,
-  }
 }
 
 const useStrategy = () => {
