@@ -28,8 +28,8 @@ const ProcessAside = ({ ...props }) => {
         p={12}
         w={96}
         mt={7}
-        color='process.results.aside.color'
-        background='aside_bg'
+        color='process.aside.color'
+        background='process.aside.bg'
         borderRadius='lg'
         boxShadow='var(--box-shadow-banner)'
         {...props}
@@ -51,9 +51,9 @@ const ProcessAside = ({ ...props }) => {
           </Flex>
         )}
 
-        {census.type === 'spreadsheet' && !connected && <SpreadsheetAccess />}
+        {census?.type === 'spreadsheet' && !connected && <SpreadsheetAccess />}
 
-        {census.type !== 'spreadsheet' &&
+        {census?.type !== 'spreadsheet' &&
           !isConnected &&
           !connected &&
           election?.status !== ElectionStatus.CANCELED && (
@@ -65,7 +65,7 @@ const ProcessAside = ({ ...props }) => {
             </Flex>
           )}
 
-        {isConnected && census.type !== 'spreadsheet' && !isInCensus && (
+        {isConnected && census?.type !== 'spreadsheet' && !isInCensus && (
           <Text textAlign='center'>{t('aside.is_not_in_census')}</Text>
         )}
 
@@ -83,7 +83,7 @@ const ProcessAside = ({ ...props }) => {
               </Box>
             )}
             {hasOverwriteEnabled(election) && isInCensus && votesLeft > 0 && voted && (
-              <Text>{t('aside.overwrite_votes_left', { left: votesLeft })}</Text>
+              <Text textAlign='center'>{t('aside.overwrite_votes_left', { left: votesLeft })}</Text>
             )}
           </Flex>
         )}

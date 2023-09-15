@@ -323,7 +323,9 @@
     "spreadsheet": {
       "confirm": {
         "option": "Option",
-        "question": "Question"
+        "question": "Question",
+        "text1": "Before casting your vote review that everything is correct.",
+        "text2": "Remember that in this election mode, you are able to correct your vote X times."
       }
     },
     "status": {
