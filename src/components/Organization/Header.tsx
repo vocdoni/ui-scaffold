@@ -1,5 +1,5 @@
 import { AspectRatio, Box, Flex, IconButton } from '@chakra-ui/react'
-import { useReadMoreMD } from '@components/Layout/use-read-more'
+import { useReadMoreMarkdown } from '@components/Layout/use-read-more'
 import { OrganizationAvatar as Avatar, OrganizationDescription, OrganizationName } from '@vocdoni/chakra-components'
 import { useClient, useOrganization } from '@vocdoni/react-providers'
 import { areEqualHexStrings } from '@vocdoni/sdk'
@@ -17,106 +17,104 @@ const OrganizationHeader = () => {
   const { onOpen } = useOrganizationModal()
   const { account } = useClient()
 
-  const { ReadMoreMDWrapper, ReadMoreMDBtn } = useReadMoreMD(110)
+  const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(110)
 
   const { containerRef, isTruncated, readMore, handleReadMore } = useReadMoreTitle()
 
   return (
-    <>
-      <Flex
-        flexDirection={{ base: 'column', md: 'row' }}
-        alignItems={{ base: 'center', md: 'start' }}
-        gap={{ base: 2, md: 8 }}
-        mb={10}
-        p={3}
-        borderRadius='lg'
-        boxShadow='var(--box-shadow)'
-        bgColor='organization.header'
-      >
-        <Box flex='1 1 20%' minW={40}>
-          <AspectRatio ratio={1.25 / 1} maxW={56} mx='auto'>
-            <Avatar
-              mx='auto'
-              borderRadius='md'
-              fallbackSrc={fallback}
-              alt={t('organization.avatar_alt', {
-                name: organization?.account.name.default || organization?.address,
-              }).toString()}
-            />
-          </AspectRatio>
-        </Box>
+    <Flex
+      flexDirection={{ base: 'column', md: 'row' }}
+      alignItems={{ base: 'center', md: 'start' }}
+      gap={{ base: 2, md: 8 }}
+      mb={10}
+      p={3}
+      borderRadius='lg'
+      boxShadow='var(--box-shadow)'
+      bgColor='organization.header'
+    >
+      <Box flex='1 1 20%' minW={40}>
+        <AspectRatio ratio={1.25 / 1} maxW={56} mx='auto'>
+          <Avatar
+            mx='auto'
+            borderRadius='md'
+            fallbackSrc={fallback}
+            alt={t('organization.avatar_alt', {
+              name: organization?.account.name.default || organization?.address,
+            }).toString()}
+          />
+        </AspectRatio>
+      </Box>
 
+      <Flex
+        flex='1 1 80%'
+        justifyContent='space-between'
+        alignItems={{ base: 'center', md: 'start' }}
+        flexDirection={{ base: 'column', md: 'row' }}
+        gap={{ base: 2 }}
+        minW={0}
+        maxW='100%'
+      >
         <Flex
-          flex='1 1 80%'
-          justifyContent='space-between'
+          flex='1 1 100%'
+          direction='column'
+          justifyContent={{ md: 'space-between' }}
           alignItems={{ base: 'center', md: 'start' }}
-          flexDirection={{ base: 'column', md: 'row' }}
-          gap={{ base: 2 }}
-          minW={0}
-          maxW='100%'
+          gap={2}
+          order={{ base: 2, md: 0 }}
         >
           <Flex
-            flex='1 1 100%'
-            direction='column'
-            justifyContent={{ md: 'space-between' }}
-            alignItems={{ base: 'center', md: 'start' }}
-            gap={2}
-            order={{ base: 2, md: 0 }}
+            w='100%'
+            ref={containerRef}
+            flexDirection='row'
+            justifyContent='space-between'
+            alignItems='center'
+            sx={{
+              p: {
+                noOfLines: readMore ? 1 : 'none',
+                overflow: 'hidden',
+                display: '-webkit-box',
+                WebkitBoxOrient: 'vertical',
+                WebkitLineClamp: 'var(--chakra-line-clamp)',
+              },
+            }}
           >
-            <Flex
-              w='100%'
-              ref={containerRef}
-              flexDirection='row'
-              justifyContent='space-between'
-              alignItems='center'
-              sx={{
-                p: {
-                  noOfLines: readMore ? 1 : 'none',
-                  overflow: 'hidden',
-                  display: '-webkit-box',
-                  WebkitBoxOrient: 'vertical',
-                  WebkitLineClamp: 'var(--chakra-line-clamp)',
-                },
-              }}
-            >
-              <OrganizationName
-                as='p'
-                fontSize={32}
-                lineHeight={1.5}
-                title={organization?.account.name.default || organization?.address}
+            <OrganizationName
+              as='p'
+              fontSize={32}
+              lineHeight={1.5}
+              title={organization?.account.name.default || organization?.address}
+            />
+            {isTruncated && (
+              <IconButton
+                icon={readMore ? <FaEye /> : <FaEyeSlash />}
+                variant='ghost'
+                alignSelf='start'
+                color='primary.500'
+                title={t('organization.title.read_more')}
+                aria-label={t('organization.title.read_more')}
+                onClick={handleReadMore}
               />
-              {isTruncated && (
-                <IconButton
-                  icon={readMore ? <FaEye /> : <FaEyeSlash />}
-                  variant='ghost'
-                  alignSelf='start'
-                  color='primary.500'
-                  title={t('organization.title.read_more')}
-                  aria-label={t('organization.title.read_more')}
-                  onClick={handleReadMore}
-                />
-              )}
-              {areEqualHexStrings(account?.address, organization?.address) && (
-                <IconButton
-                  icon={<IoMdCreate />}
-                  alignSelf='start'
-                  variant='ghost'
-                  color='primary.500'
-                  title={t('organization.title.edit')}
-                  aria-label={t('organization.title.edit')}
-                  onClick={onOpen}
-                />
-              )}
-            </Flex>
-            <ReadMoreMDWrapper>
-              <OrganizationDescription fontSize='lg' lineHeight={1.7} />
-            </ReadMoreMDWrapper>
-            <ReadMoreMDBtn colorScheme='primary' alignSelf='center' />
+            )}
+            {areEqualHexStrings(account?.address, organization?.address) && (
+              <IconButton
+                icon={<IoMdCreate />}
+                alignSelf='start'
+                variant='ghost'
+                color='primary.500'
+                title={t('organization.title.edit')}
+                aria-label={t('organization.title.edit')}
+                onClick={onOpen}
+              />
+            )}
           </Flex>
-          <AddressBtn />
+          <ReadMoreMarkdownWrapper>
+            <OrganizationDescription fontSize='lg' lineHeight={1.7} />
+          </ReadMoreMarkdownWrapper>
+          <ReadMoreMarkdownButton colorScheme='primary' alignSelf='center' />
         </Flex>
+        <AddressBtn />
       </Flex>
-    </>
+    </Flex>
   )
 }
 

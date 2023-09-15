@@ -1,7 +1,9 @@
 import { Box, Button } from '@chakra-ui/react'
 import { useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
-export const useReadMoreMD = (containerMaxHeightPx: number, tantPerCentGradient?: number) => {
+export const useReadMoreMarkdown = (containerMaxHeightPx: number, tantPerCentGradient?: number) => {
+  const { t } = useTranslation()
   const containerRef = useRef<HTMLDivElement>(null)
   const [isTruncated, setIsTruncated] = useState(false)
   const [readMore, setReadMore] = useState(false)
@@ -19,7 +21,7 @@ export const useReadMoreMD = (containerMaxHeightPx: number, tantPerCentGradient?
     }
   }, [])
 
-  const ReadMoreMDWrapper = ({ children, from, to, ...props }: any) => (
+  const ReadMoreMarkdownWrapper = ({ children, from, to, ...props }: any) => (
     <Box
       {...props}
       ref={containerRef}
@@ -47,10 +49,10 @@ export const useReadMoreMD = (containerMaxHeightPx: number, tantPerCentGradient?
       {children}
     </Box>
   )
-  const ReadMoreMDBtn = ({ ...props }: any) =>
+  const ReadMoreMarkdownButton = ({ ...props }: any) =>
     isTruncated && (
       <Button onClick={handleReadMore} variant='link' {...props}>
-        {readMore ? 'Read more' : 'Read less'}
+        {readMore ? t('use_read_more.read_more') : t('use_read_more.read_less')}
       </Button>
     )
 
@@ -59,7 +61,7 @@ export const useReadMoreMD = (containerMaxHeightPx: number, tantPerCentGradient?
     isTruncated,
     readMore,
     handleReadMore,
-    ReadMoreMDWrapper,
-    ReadMoreMDBtn,
+    ReadMoreMarkdownWrapper,
+    ReadMoreMarkdownButton,
   }
 }

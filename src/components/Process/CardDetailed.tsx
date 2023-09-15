@@ -1,5 +1,4 @@
 import { Box, Card, CardBody, CardFooter, Text } from '@chakra-ui/react'
-import { useReadMoreMD } from '@components/Layout/use-read-more'
 import { useDateFns } from '@i18n/use-date-fns'
 import { ElectionActions, ElectionDescription, ElectionStatusBadge, ElectionTitle } from '@vocdoni/chakra-components'
 import { ElectionProvider, enforceHexPrefix, useElection } from '@vocdoni/react-providers'
@@ -7,6 +6,7 @@ import { ElectionStatus, InvalidElection, PublishedElection } from '@vocdoni/sdk
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { ProcessDate } from './Date'
+import { useReadMoreMarkdown } from '@components/Layout/use-read-more'
 
 interface Props {
   election: PublishedElection
@@ -65,7 +65,7 @@ const ProcessDetailedCardTitle = () => {
 const ProcessDetailedCardDescription = () => {
   const { election } = useElection()
   const { t } = useTranslation()
-  const { ReadMoreMDWrapper } = useReadMoreMD(100)
+  const { ReadMoreMarkdownWrapper } = useReadMoreMarkdown(100)
 
   if (election instanceof InvalidElection) {
     return null
@@ -74,9 +74,9 @@ const ProcessDetailedCardDescription = () => {
   return (
     <>
       {election?.status !== ElectionStatus.CANCELED ? (
-        <ReadMoreMDWrapper>
+        <ReadMoreMarkdownWrapper>
           <ElectionDescription />
-        </ReadMoreMDWrapper>
+        </ReadMoreMarkdownWrapper>
       ) : (
         <Box>
           <Text>{t('process.status.canceled')}</Text>

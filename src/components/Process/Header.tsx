@@ -1,6 +1,6 @@
 import { WarningIcon } from '@chakra-ui/icons'
 import { Box, Button, Flex, Icon, Text } from '@chakra-ui/react'
-import { useReadMoreMD } from '@components/Layout/use-read-more'
+import { useReadMoreMarkdown } from '@components/Layout/use-read-more'
 import {
   ElectionActions,
   ElectionDescription,
@@ -21,7 +21,7 @@ const ProcessHeader = () => {
   const { t } = useTranslation()
   const { election } = useElection()
   const { account } = useClient()
-  const { ReadMoreMDWrapper, ReadMoreMDBtn } = useReadMoreMD(600, 20)
+  const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(600, 20)
 
   const strategy = useStrategy()
 
@@ -45,10 +45,10 @@ const ProcessHeader = () => {
             <ElectionSchedule textAlign='left' color='process.info_title' />
           </Flex>
           <Flex flexDirection='column'>
-            <ReadMoreMDWrapper from='rgba(250, 250, 250, 0)' to='rgba(250, 250, 250, 1)'>
+            <ReadMoreMarkdownWrapper from='rgba(250, 250, 250, 0)' to='rgba(250, 250, 250, 1)'>
               <ElectionDescription mb={0} fontSize='lg' lineHeight={2.5} color='process.description' />
-            </ReadMoreMDWrapper>
-            <ReadMoreMDBtn colorScheme='primary' alignSelf='center' />
+            </ReadMoreMarkdownWrapper>
+            <ReadMoreMarkdownButton colorScheme='primary' alignSelf='center' />
           </Flex>
         </Box>
 
