@@ -49,6 +49,8 @@ const detailed = definePartsStyle({
 
     '& a': {
       w: '100%',
+      display: 'flex',
+      flexDirection: 'column',
       '& > p:first-of-type': {
         textAlign: 'start',
         fontSize: 'xl2',
@@ -60,27 +62,14 @@ const detailed = definePartsStyle({
         mb: 3,
       },
 
-      '& div:first-of-type': {
+      '& > div:first-of-type': {
         display: 'flex',
         gap: 2,
         mb: 3,
       },
+
       '& > div:nth-of-type(2)': {
-        '& > p:first-of-type': {
-          textAlign: 'start',
-          color: 'organization.card.description',
-          noOfLines: 4,
-          overflow: 'hidden',
-          display: '-webkit-box',
-          WebkitBoxOrient: 'vertical',
-          WebkitLineClamp: 'var(--chakra-line-clamp)',
-        },
-        '& > p:not(:first-of-type)': {
-          display: 'none',
-        },
-      },
-      '& > p:nth-of-type(2)': {
-        border: '1px solid red',
+        flexGrow: 1,
       },
     },
   },
