@@ -6,6 +6,7 @@ import { ElectionStatus, InvalidElection, PublishedElection } from '@vocdoni/sdk
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { ProcessDate } from './Date'
+import { useReadMoreMarkdown } from '@components/Layout/use-read-more'
 
 interface Props {
   election: PublishedElection
@@ -64,6 +65,7 @@ const ProcessDetailedCardTitle = () => {
 const ProcessDetailedCardDescription = () => {
   const { election } = useElection()
   const { t } = useTranslation()
+  const { ReadMoreMarkdownWrapper } = useReadMoreMarkdown(100)
 
   if (election instanceof InvalidElection) {
     return null
@@ -72,7 +74,9 @@ const ProcessDetailedCardDescription = () => {
   return (
     <>
       {election?.status !== ElectionStatus.CANCELED ? (
-        <ElectionDescription />
+        <ReadMoreMarkdownWrapper>
+          <ElectionDescription />
+        </ReadMoreMarkdownWrapper>
       ) : (
         <Box>
           <Text>{t('process.status.canceled')}</Text>

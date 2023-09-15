@@ -1,4 +1,5 @@
-import { AspectRatio, Box, Button, Flex, IconButton } from '@chakra-ui/react'
+import { AspectRatio, Box, Flex, IconButton } from '@chakra-ui/react'
+import { useReadMoreMarkdown } from '@components/Layout/use-read-more'
 import { OrganizationAvatar as Avatar, OrganizationDescription, OrganizationName } from '@vocdoni/chakra-components'
 import { useClient, useOrganization } from '@vocdoni/react-providers'
 import { areEqualHexStrings } from '@vocdoni/sdk'
@@ -16,21 +17,9 @@ const OrganizationHeader = () => {
   const { onOpen } = useOrganizationModal()
   const { account } = useClient()
 
-  const {
-    containerRef: containerRefTitle,
-    noOfLines: noOfLinesTitle,
-    readMore: readMoreTitle,
-    handleReadMore: handleReadMoreTitle,
-    isTruncated: isTruncatedTitle,
-  } = useReadMore(96, 1, 'p')
+  const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(110)
 
-  const {
-    containerRef: containerRefDesc,
-    noOfLines: noOfLinesDesc,
-    readMore: readMoreDesc,
-    handleReadMore: handleReadMoreDesc,
-    isTruncated: isTruncatedDesc,
-  } = useReadMore(139, 4, 'p')
+  const { containerRef, isTruncated, readMore, handleReadMore } = useReadMoreTitle()
 
   return (
     <Flex
@@ -41,7 +30,7 @@ const OrganizationHeader = () => {
       p={3}
       borderRadius='lg'
       boxShadow='var(--box-shadow)'
-      bgColor='organization.header_bg'
+      bgColor='organization.header'
     >
       <Box flex='1 1 20%' minW={40}>
         <AspectRatio ratio={1.25 / 1} maxW={56} mx='auto'>
@@ -75,13 +64,13 @@ const OrganizationHeader = () => {
         >
           <Flex
             w='100%'
-            ref={containerRefTitle}
+            ref={containerRef}
             flexDirection='row'
             justifyContent='space-between'
             alignItems='center'
             sx={{
               p: {
-                noOfLines: noOfLinesTitle,
+                noOfLines: readMore ? 1 : 'none',
                 overflow: 'hidden',
                 display: '-webkit-box',
                 WebkitBoxOrient: 'vertical',
@@ -95,15 +84,15 @@ const OrganizationHeader = () => {
               lineHeight={1.5}
               title={organization?.account.name.default || organization?.address}
             />
-            {isTruncatedTitle && (
+            {isTruncated && (
               <IconButton
-                icon={readMoreTitle ? <FaEyeSlash /> : <FaEye />}
+                icon={readMore ? <FaEye /> : <FaEyeSlash />}
                 variant='ghost'
                 alignSelf='start'
-                color='primary.main'
+                color='primary.500'
                 title={t('organization.title.read_more')}
                 aria-label={t('organization.title.read_more')}
-                onClick={handleReadMoreTitle}
+                onClick={handleReadMore}
               />
             )}
             {areEqualHexStrings(account?.address, organization?.address) && (
@@ -111,36 +100,17 @@ const OrganizationHeader = () => {
                 icon={<IoMdCreate />}
                 alignSelf='start'
                 variant='ghost'
-                color='primary.main'
+                color='primary.500'
                 title={t('organization.title.edit')}
                 aria-label={t('organization.title.edit')}
                 onClick={onOpen}
               />
             )}
           </Flex>
-
-          <Flex
-            ref={containerRefDesc}
-            flexDirection='column'
-            sx={{
-              div: {
-                p: {
-                  noOfLines: noOfLinesDesc,
-                  overflow: 'hidden',
-                  display: '-webkit-box',
-                  WebkitBoxOrient: 'vertical',
-                  WebkitLineClamp: 'var(--chakra-line-clamp)',
-                },
-              },
-            }}
-          >
+          <ReadMoreMarkdownWrapper>
             <OrganizationDescription fontSize='lg' lineHeight={1.7} />
-            {isTruncatedDesc && (
-              <Button float='right' variant='link' colorScheme='primary' alignSelf='end' onClick={handleReadMoreDesc}>
-                {readMoreDesc ? ' Read less' : 'Read more'}
-              </Button>
-            )}
-          </Flex>
+          </ReadMoreMarkdownWrapper>
+          <ReadMoreMarkdownButton colorScheme='primary' alignSelf='center' />
         </Flex>
         <AddressBtn />
       </Flex>
@@ -148,34 +118,32 @@ const OrganizationHeader = () => {
   )
 }
 
-const useReadMore = (containerHeight: number, lines: number, tag: string) => {
+const useReadMoreTitle = () => {
   const [readMore, setReadMore] = useState(false)
   const [isTruncated, setIsTruncated] = useState(false)
   const containerRef = useRef<HTMLParagraphElement>(null)
-  const noOfLines = isTruncated ? (readMore ? 'none' : lines) : 'none'
 
   const handleReadMore = () => setReadMore((prev) => !prev)
 
   useEffect(() => {
-    if (containerRef.current) {
-      const text = containerRef.current.querySelector(tag)
+    if (!containerRef.current) return
+    const containerHeight = containerRef.current.getBoundingClientRect().height
+    const text = containerRef.current.querySelector('p')
 
-      if (text) {
-        const textHeight = text.getBoundingClientRect().height
+    if (!text) return
+    const fontSizeTitle = Number(getComputedStyle(text).fontSize.split('px')[0])
 
-        const isTextTaller = textHeight > containerHeight
-
-        if (isTextTaller) setIsTruncated(true)
-      }
+    if (containerHeight > fontSizeTitle * 2) {
+      setReadMore(true)
+      setIsTruncated(true)
     }
   }, [])
 
   return {
     containerRef,
-    noOfLines,
     readMore,
-    handleReadMore,
     isTruncated,
+    handleReadMore,
   }
 }
 
