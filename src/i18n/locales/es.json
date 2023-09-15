@@ -127,14 +127,17 @@
       "behavior": {
         "anonymous": {
           "description": "Anónimo: los votos serán encriptados",
+          "description_info": "",
           "title": "Anónimo"
         },
         "overwrite": {
           "description": "Sobrescribir voto: Permitir a los votantes corregir el voto una vez.",
+          "description_info": "",
           "title": "Sobrescribir voto"
         },
         "secret": {
           "description": "Secreto: Los resultados estarán disponibles solo después de que se cierre la votación.",
+          "description_info": "",
           "title": "Secreto"
         },
         "title": "Opciones"
@@ -328,7 +331,9 @@
     "spreadsheet": {
       "confirm": {
         "option": "Opción",
-        "question": "Pregunta"
+        "question": "Pregunta",
+        "text1": "Antes de emitir tu voto, revisa que todo esté correcto.",
+        "text2": "Recuerda que en este modo de elección, puedes corregir tu voto X veces."
       }
     },
     "status": {
@@ -356,5 +361,9 @@
   "uploader": {
     "click_or_drag_and_drop": "<p1>Sube o arrastra y suelta aqui la lista de votantes</p1><p2>(Formap permitidos: CSV, XLSX y ODS)</p2>",
     "drop_here": "Suelta aqui"
+  },
+  "use_read_more": {
+    "read_less": "Leer menos",
+    "read_more": "Leer más"
   }
 }

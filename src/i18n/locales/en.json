@@ -126,14 +126,17 @@
       "behavior": {
         "anonymous": {
           "description": "Anonymous: votes will be encrypted",
+          "description_info": "",
           "title": "Anonymous"
         },
         "overwrite": {
           "description": "Vote overwrite: Allow voters to correct the vote once.",
+          "description_info": "",
           "title": "Vote overwrite"
         },
         "secret": {
           "description": "Secret: Results will be available only after the voting is closed.",
+          "description_info": "",
           "title": "Secret"
         },
         "title": "Options"
@@ -323,7 +326,9 @@
     "spreadsheet": {
       "confirm": {
         "option": "Option",
-        "question": "Question"
+        "question": "Question",
+        "text1": "Before casting your vote review that everything is correct.",
+        "text2": "Remember that in this election mode, you are able to correct your vote X times."
       }
     },
     "status": {
@@ -351,5 +356,9 @@
   "uploader": {
     "click_or_drag_and_drop": "<p1>Upload or drag and drop the voter list here</p1><p2>(Allowed formats: CSV, XLSX, and ODS)</p2>",
     "drop_here": "Drop here"
+  },
+  "use_read_more": {
+    "read_less": "Read less",
+    "read_more": "Read more"
   }
 }

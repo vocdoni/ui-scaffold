@@ -7,10 +7,10 @@ export const colorsBase = {
   },
   gradient: 'var(--vcd-gradient-primary)',
   gray: {
-    light: '#EDF2F7',
-    main: '#E2E8F0',
-    dark: '#CBD5E0',
-    dark2: '#606f88',
+    light2: '#EDF2F7',
+    light: '#E2E8F0',
+    main: '#CBD5E0',
+    dark: '#606f88',
   },
   primary: {
     main: '#24656e',
@@ -24,8 +24,6 @@ export const colorsBase = {
 }
 
 export const colors = {
-  aside_bg: colorsBase.gradient,
-
   primary: {
     main: colorsBase.primary.main,
     50: colorsBase.white.pure,
@@ -34,57 +32,31 @@ export const colors = {
     700: colorsBase.primary.dark2,
   },
 
-  button: {
-    drop_down: {
-      active: colorsBase.gray.dark,
-      hover: colorsBase.gray.main,
-    },
-  },
-
-  checkbox_radiobox_bg: colorsBase.white.pure,
-
-  home: {
-    banner: {
-      bg: colorsBase.gradient,
-      button_bg: colorsBase.gradient,
-      color: colorsBase.white.pure,
-    },
-  },
-
-  language_selected_bg: colorsBase.gray.dark,
-
   link: {
     primary: colorsBase.primary.main,
   },
 
   main_bg: colorsBase.white.dark,
 
-  navbar: {
-    account_icon: colorsBase.gradient,
-  },
-
   organization: {
     card: {
-      description: colorsBase.gray.dark2,
-      footer_bg: colorsBase.gray.light,
+      description: colorsBase.gray.dark,
+      footer_bg: colorsBase.gray.light2,
     },
-    election_list_empty_bg: colorsBase.gray.light,
-    header: colorsBase.white.pure,
-    tabs: {
-      active: colorsBase.gray.dark,
-      bg: colorsBase.white.pure,
-      circle_bg: colorsBase.primary.main,
-      divider: colorsBase.gray.dark,
-      hover: colorsBase.gray.main,
-      list_border_bottom: colorsBase.gray.dark,
-    },
+    election_list_empty_bg: colorsBase.gray.light2,
+    header_bg: colorsBase.white.pure,
   },
 
   process: {
+    aside: {
+      bg: colorsBase.gradient,
+      color: colorsBase.white.pure,
+      vote_btn_color: colorsBase.black,
+      vote_btn_bg: colorsBase.white.pure,
+    },
     canceled: colorsBase.primary.main,
     info_title: colorsBase.primary.main,
-    description: colorsBase.gray.dark2,
-    header_divider: colorsBase.gray.dark,
+    description: colorsBase.gray.dark,
     identify_btn: {
       bg: colorsBase.primary.main,
       bg_active: colorsBase.primary.dark2,
@@ -93,40 +65,35 @@ export const colors = {
     },
     paused: colorsBase.primary.main,
     questions: {
-      bg: colorsBase.gray.light,
       alert: {
         bg: colorsBase.primary.main,
         color: colorsBase.white.pure,
         link_color: colorsBase.black,
         link_bg: colorsBase.white.pure,
       },
-      btn_form_selected: {
+      question_selected: {
         bg: colorsBase.primary.main,
         color: colorsBase.white.pure,
       },
-      description: colorsBase.gray.dark2,
+      description: colorsBase.gray.dark,
       title: colorsBase.primary.main,
     },
-
     results: {
-      aside: {
-        color: colorsBase.white.pure,
-        vote_btn_color: colorsBase.black,
-        vote_btn_bg: colorsBase.white.pure,
-      },
       alert_bg: colorsBase.primary.main,
       alert_color: colorsBase.white.pure,
-      bg: colorsBase.gray.light,
-      description: colorsBase.gray.dark2,
+      bg: colorsBase.gray.light2,
+      description: colorsBase.gray.dark,
+      progressbar_bg: colorsBase.gray.light,
       title: colorsBase.primary.main,
     },
-
+    spreadsheet: {
+      disconnect_bg: 'transparent',
+      diconnect_color: colorsBase.gray.dark,
+    },
     tabs: {
-      active: colorsBase.gray.dark,
-      divider: colorsBase.gray.dark,
-      circle_bg: colorsBase.primary.main,
-      hover: colorsBase.gray.main,
-      list_border_bottom: colorsBase.gray.dark,
+      active_bg: colorsBase.gray.main,
+      hover_bg: colorsBase.gray.light,
+      border_bottom_list: colorsBase.gray.main,
     },
   },
 
@@ -135,48 +102,39 @@ export const colors = {
       bg: colorsBase.blue.light,
       color: colorsBase.blue.dark,
     },
-    aside_questions_bg: colorsBase.gray.light,
-    bg: colorsBase.gray.light,
+    aside_questions_bg: colorsBase.gray.light2,
+    bg: colorsBase.gray.light2,
+    checkbox_radiobox_bg: colorsBase.white.pure,
     preview: {
-      census_web3_text_helper: colorsBase.gray.dark2,
-      description: colorsBase.gray.dark2,
-      option: colorsBase.gray.dark2,
+      census_web3_text_helper: colorsBase.gray.dark,
+      description: colorsBase.gray.dark,
+      option: colorsBase.gray.dark,
       option_before_color: colorsBase.black,
     },
-    border: colorsBase.gray.dark,
+    border: colorsBase.gray.main,
     census_box_bg: colorsBase.white.pure,
     description_logo: colorsBase.blue.main,
     input_bg: colorsBase.white.pure,
-    meta_description: colorsBase.gray.dark2,
+    meta_description: colorsBase.gray.dark,
     stepper: colorsBase.primary.main,
     spreadsheet: {
       badge: {
         bg: colorsBase.primary.main,
         text: colorsBase.white.pure,
       },
-      drag_and_drop_text: colorsBase.gray.dark2,
+      drag_and_drop_text: colorsBase.gray.dark,
       file: colorsBase.primary.main,
       preview_bg: colorsBase.white.pure,
-      preview_bg_interior: colorsBase.gray.light,
+      preview_bg_interior: colorsBase.gray.light2,
       requirements_text: colorsBase.primary.main,
       total_rows_text: colorsBase.primary.main,
     },
     tabs: {
       card: {
-        color: colorsBase.gray.dark2,
-        color_title: colorsBase.gray.dark2,
+        color: colorsBase.gray.dark,
+        color_title: colorsBase.gray.dark,
         selected_color: colorsBase.primary.main,
       },
     },
-  },
-
-  progress_bar: {
-    bg: colorsBase.gray.main,
-    track: colorsBase.gradient,
-  },
-
-  spreadsheet: {
-    disconnect_bg: 'transparent',
-    diconnect_color: colorsBase.gray.dark2,
   },
 }

@@ -127,14 +127,17 @@
       "behavior": {
         "anonymous": {
           "description": "Anònim: els vots seran xifrats",
+          "description_info": "",
           "title": "Anònim"
         },
         "overwrite": {
           "description": "Sobreescriptura del vot: Permet als votants corregir el vot un cop.",
+          "description_info": "",
           "title": "Sobreescriure"
         },
         "secret": {
           "description": "Secret: Els resultats només seran accessibles després de tancar la votació.",
+          "description_info": "",
           "title": "Secret"
         },
         "title": "Opcions"
@@ -328,7 +331,9 @@
     "spreadsheet": {
       "confirm": {
         "option": "Opció",
-        "question": "Pregunta"
+        "question": "Pregunta",
+        "text1": "Abans de votar, reviseu que tot sigui correcte.",
+        "text2": "Recordeu que en aquest mode d'elecció, podeu corregir el vostre vot X vegades."
       }
     },
     "status": {
@@ -356,5 +361,9 @@
   "uploader": {
     "click_or_drag_and_drop": "<p1>Puja o arrossega i deixa anar aquí la llista de votants</p1><p2>(Formats permesos: CSV, XLSX i ODS)</p2>",
     "drop_here": "Deixa anar aquí"
+  },
+  "use_read_more": {
+    "read_less": "Llegeix menys",
+    "read_more": "Llegeix més"
   }
 }

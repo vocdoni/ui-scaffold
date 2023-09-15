@@ -48,27 +48,11 @@ const process = definePartsStyle({
     borderTopRadius: 'md',
     fontSize: 'lg',
 
-    '&:after': {
-      content: "''",
-      position: 'absolute',
-      h: '28px',
-    },
-
-    '&:last-of-type:after': {
-      content: "''",
-      display: 'none',
-    },
-
     _hover: {
       bgColor: 'process.tabs.hover',
-
-      '&:after': {
-        content: "''",
-        display: 'none',
-      },
     },
     _active: {
-      bgColor: 'process.tabs.active',
+      bgColor: 'process.tabs.active_bg',
     },
     _selected: {
       fontWeight: 'bold',
@@ -80,7 +64,7 @@ const process = definePartsStyle({
     justifyContent: 'center',
     alignItems: 'center',
     borderBottom: '1px solid',
-    borderColor: 'process.tabs.list_border_bottom',
+    borderColor: 'process.tabs.border_bottom_list',
   },
 })
 
