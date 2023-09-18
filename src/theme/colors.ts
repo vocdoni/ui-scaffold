@@ -20,6 +20,7 @@ export const colorsBase = {
   white: {
     pure: '#ffffff',
     dark: '#fafafa',
+    dark2: 'rgb(245, 247, 250)',
   },
 }
 
@@ -103,7 +104,8 @@ export const colors = {
       color: colorsBase.blue.dark,
     },
     aside_questions_bg: colorsBase.gray.light2,
-    bg: colorsBase.gray.light2,
+    bg: colorsBase.white.dark2,
+    calendar_start_date_selected: colorsBase.blue.main,
     checkbox_radiobox_bg: colorsBase.white.pure,
     preview: {
       census_web3_text_helper: colorsBase.gray.dark,
@@ -115,8 +117,13 @@ export const colors = {
     census_box_bg: colorsBase.white.pure,
     description_logo: colorsBase.blue.main,
     input_bg: colorsBase.white.pure,
-    meta_description: colorsBase.gray.dark,
-    stepper: colorsBase.primary.main,
+    description: colorsBase.gray.dark,
+    section: colorsBase.white.pure,
+    stepper: {
+      bg: colorsBase.primary.main,
+      color_active: colorsBase.white.pure,
+    },
+
     spreadsheet: {
       badge: {
         bg: colorsBase.primary.main,

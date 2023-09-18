@@ -1,5 +1,5 @@
-import { AddIcon, DeleteIcon } from '@chakra-ui/icons'
-import { Box, Flex, HStack, IconButton, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
+import { AddIcon } from '@chakra-ui/icons'
+import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { FieldError, FieldErrors, useFieldArray, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -54,92 +54,38 @@ const CreateProcessQuestions = () => {
   }, [errors.questions])
 
   return (
-    <Tabs
-      display='flex'
-      flexDirection={{ base: 'column', md: 'row' }}
-      minH={{ md: '70vh' }}
-      borderRadius='lg'
-      border='1px solid'
-      borderColor='process_create.border'
-      index={tabIndex}
-      onChange={(index) => setTabIndex(index)}
-    >
-      <Box flexBasis={{ md: '45%', lg: '35%' }} minW={0} flexGrow={1}>
-        <HStack
-          justifyContent='space-between'
-          p={3}
-          mb={1}
-          borderBottom='1px solid'
-          borderColor='process_create.border'
-        >
-          <Text as='legend' fontSize='xl'>
-            {t('form.process_create.questions_title')}
-          </Text>
-          <IconButton
-            type='button'
-            size='sm'
-            icon={<AddIcon />}
-            aria-label='add question'
-            onClick={() => {
-              append({
-                title: '',
-                description: '',
-                options: [{ option: '' }, { option: '' }],
-              })
-              setTabIndex(questions.length)
-            }}
-          />
-        </HStack>
-        <TabList display='block' gap={1} minW={0} border='none'>
-          {questions.map((question: any, index: number) => (
-            <Flex
-              key={index}
-              alignItems='center'
-              p={1}
-              px={3}
-              mb={1}
-              bgColor='process_create.aside_questions_bg'
-              borderRadius={4}
-            >
-              <Tab
-                display='block'
-                flexGrow={1}
-                minW={0}
-                p={0}
-                _selected={{ color: getQuestionErrorIndex(index) !== null ? 'red' : 'black', fontWeight: 700 }}
-                color={getQuestionErrorIndex(index) !== null ? 'red' : 'black'}
-              >
-                <Text
-                  isTruncated
-                  textAlign='start'
-                  title={(question as any).title || t('form.process_create.question.aside')}
-                >
-                  {index + 1}- {(question as any).title || t('form.process_create.question.aside')}
-                </Text>
-              </Tab>
-              <IconButton type='button' size='sm' icon={<DeleteIcon />} aria-label='' onClick={() => remove(index)} />
-            </Flex>
-          ))}
-        </TabList>
+    <Flex flexDirection='column' gap={5}>
+      <Box>
+        <Text fontSize='md' fontWeight='bold'>
+          {t('form.process_create.question.title')}
+        </Text>
+        <Text fontSize='sm' color='process_create.description'>
+          {t('form.process_create.question.description')}
+        </Text>
       </Box>
-      <TabPanels
-        bgColor='process_create.bg'
-        px={{ md: 18 }}
-        pt={{ md: 10 }}
-        pb={10}
-        borderLeft={{ md: '1px solid' }}
-        borderTop={{ base: '1px solid', md: 'none' }}
-        borderColor={{ base: 'process_create.border', md: 'process_create.border' }}
-        minH={{ md: '70vh' }}
-        flexGrow={1}
+      {fields.map((_, index) => (
+        <Question index={index} remove={remove} />
+      ))}
+
+      <Button
+        type='button'
+        rightIcon={<AddIcon boxSize={3} />}
+        aria-label='add question'
+        onClick={() => {
+          append({
+            title: '',
+            description: '',
+            options: [{ option: '' }, { option: '' }],
+          })
+          setTabIndex(questions.length)
+        }}
+        size='md'
+        alignSelf='center'
+        px={20}
       >
-        {fields.map((question, index) => (
-          <TabPanel key={question.id} display='flex' flexDirection='column' gap={5}>
-            <Question index={index} />
-          </TabPanel>
-        ))}
-      </TabPanels>
-    </Tabs>
+        {t('form.process_create.question.add_question')}
+      </Button>
+    </Flex>
   )
 }
 

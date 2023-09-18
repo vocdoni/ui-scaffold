@@ -1,6 +1,7 @@
-import { connectorsForWallets } from '@rainbow-me/rainbowkit'
+import { Wallet, connectorsForWallets } from '@rainbow-me/rainbowkit'
 import '@rainbow-me/rainbowkit/styles.css'
 import { coinbaseWallet, metaMaskWallet, rainbowWallet } from '@rainbow-me/rainbowkit/wallets'
+import { oAuthWallet } from '@vocdoni/rainbowkit-wallets'
 import { configureChains, createClient } from 'wagmi'
 import type { Chain } from 'wagmi/chains'
 import { mainnet } from 'wagmi/chains'
@@ -25,6 +26,17 @@ const connectors = connectorsForWallets([
       metaMaskWallet({ chains, projectId }),
       rainbowWallet({ projectId, chains }),
       coinbaseWallet({ chains, appName }),
+    ],
+  },
+  {
+    groupName: 'Social',
+    wallets: [
+      oAuthWallet({
+        chains,
+        name: 'Github',
+        iconUrl: 'https://i.ibb.co/db4ppPM/github-mark.png',
+        options: { oAuthServiceUrl: 'https://oauth.vocdoni.net/', oAuthServiceProvider: 'github' },
+      }) as Wallet,
     ],
   },
 ])
