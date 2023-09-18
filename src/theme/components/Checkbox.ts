@@ -5,11 +5,10 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
 
 const radiobox = definePartsStyle({
   container: defineStyle({
+    position: 'relative',
     display: 'flex',
     flexDirection: 'column',
-    width: 32,
-    height: 24,
-    p: 2,
+    p: 4,
     boxShadow: 'var(--box-shadow)',
     bgColor: 'process_create.checkbox_radiobox_bg',
     borderRadius: 'md',
@@ -19,11 +18,27 @@ const radiobox = definePartsStyle({
     },
   }),
   control: defineStyle({
+    position: 'absolute',
+    right: 1,
+    top: 1,
     rounded: 'full',
     ml: 'auto',
   }),
   label: defineStyle({
-    m: 0,
+    fontSize: 'sm',
+    alignSelf: 'start',
+    '& div': {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 2,
+      fontWeight: 'bold',
+      mb: 2,
+    },
+
+    '& > p': {
+      fontSize: '12px',
+      color: 'process_create.description',
+    },
   }),
 })
 

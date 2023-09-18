@@ -2,6 +2,7 @@ import {
   Box,
   Flex,
   Step,
+  StepIcon,
   StepIndicator,
   StepNumber,
   Stepper,
@@ -36,11 +37,11 @@ const Steps = () => {
       >
         {steps.map((step, index) => (
           <Step key={index}>
-            <Flex flexDirection={{ base: 'column', lg: 'row' }} alignItems={{ base: 'center', lg: 'initial' }} gap={1}>
+            <Flex flexDirection={{ base: 'column', lg: 'row' }} alignItems={{ base: 'center', lg: 'initial' }} gap={3}>
               <StepIndicator>
-                <StepStatus complete={<StepNumber />} incomplete={<StepNumber />} active={<StepNumber />} />
+                <StepStatus complete={<StepIcon />} incomplete={<StepNumber />} active={<StepNumber />} />
               </StepIndicator>
-              <Text as='span' fontSize='xs' mt={{ lg: 2 }}>
+              <Text as='span' fontSize='xs' mt={{ lg: 2 }} color='#555'>
                 {step.title}
               </Text>
             </Flex>
@@ -51,7 +52,6 @@ const Steps = () => {
           </Step>
         ))}
       </Stepper>
-
       <StepsForm
         steps={steps}
         activeStep={activeStep}

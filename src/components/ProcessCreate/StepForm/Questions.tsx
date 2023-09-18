@@ -2,6 +2,7 @@ import { Box } from '@chakra-ui/react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import CreateProcessQuestions from '../Questions'
 import { StepsNavigation } from '../Steps/Navigation'
+import Wrapper from '../Steps/Wrapper'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 
 export interface Option {
@@ -33,11 +34,13 @@ export const Questions = () => {
 
   return (
     <FormProvider {...methods}>
-      <Box as='form' id='process-create-form' onSubmit={methods.handleSubmit(onSubmit)}>
-        <CreateProcessQuestions />
-      </Box>
+      <Wrapper>
+        <Box as='form' id='process-create-form' onSubmit={methods.handleSubmit(onSubmit)}>
+          <CreateProcessQuestions />
+        </Box>
 
-      <StepsNavigation />
+        <StepsNavigation />
+      </Wrapper>
     </FormProvider>
   )
 }

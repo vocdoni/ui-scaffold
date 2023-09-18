@@ -50,11 +50,11 @@ export const useReadMoreMarkdown = (containerMaxHeightPx: number, tantPerCentGra
     </Box>
   )
   const ReadMoreMarkdownButton = ({ ...props }: any) =>
-    isTruncated && (
+    isTruncated ? (
       <Button onClick={handleReadMore} variant='link' {...props}>
         {readMore ? t('use_read_more.read_more') : t('use_read_more.read_less')}
       </Button>
-    )
+    ) : null
 
   return {
     containerRef,

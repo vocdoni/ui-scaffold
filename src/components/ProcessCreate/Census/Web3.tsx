@@ -90,7 +90,7 @@ export const CensusWeb3Addresses = () => {
       // weighted set to false for now, since there's no weight management here yet
       const spreadsheet = new Web3CensusSpreadsheetManager(file, false)
       await spreadsheet.read()
-      const plain = addresses.map(({ address }) => address.toLowerCase())
+      const plain = addresses.map(({ address }: { address: string }) => address.toLowerCase())
       spreadsheet.data.forEach((row) => {
         const [address] = row
         if (!plain.includes(address.toLowerCase())) {

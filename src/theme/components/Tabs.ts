@@ -10,13 +10,14 @@ const card = definePartsStyle({
     borderBottom: 'none',
   },
   tab: {
+    position: 'relative',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'start',
-    alignItems: 'center',
+    alignItems: 'start',
     gap: 2,
-    width: '220px',
-    height: '190px',
+    width: { base: '100%', md: '200px', lg: '100%', lg2: '220px', xl: '250px' },
+    height: { base: 'auto', md: '150px', lg: 'auto', lg2: '140px', xl: '120px' },
     p: 4,
     px: 6,
     bgColor: 'white',
@@ -26,13 +27,37 @@ const card = definePartsStyle({
     color: 'process_create.tabs.card.color',
 
     '& > p:nth-of-type(1)': {
-      fontWeight: 'bold',
-      color: 'rgba(0, 0, 0, 0.6)',
+      color: 'process_create.description',
+      textAlign: 'start',
+      fontSize: 'xs',
+    },
+
+    '& > div': {
+      display: 'flex',
+      alignItems: 'center',
+      w: 'full',
+      gap: 3,
+
+      '& p': {
+        fontWeight: 'bold',
+        textAlign: 'start',
+      },
+    },
+
+    '& > svg:first-of-type': {
+      display: 'none',
+      position: 'absolute',
+      top: 2,
+      right: 2,
+      color: 'primary.500',
     },
 
     _selected: {
       boxShadow: 'var(--box-shadow-darker)',
-      '& > p:first-of-type': {
+      '& > svg:first-of-type': {
+        display: 'block',
+      },
+      '& > div > p': {
         color: 'process_create.tabs.card.selected_color',
       },
     },

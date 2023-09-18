@@ -3,8 +3,8 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import CreateProcessMeta from '../Meta'
 import CreateProcessSettings from '../Settings'
 import { StepsNavigation } from '../Steps/Navigation'
-import { useProcessCreationSteps } from '../Steps/use-steps'
 import Wrapper from '../Steps/Wrapper'
+import { useProcessCreationSteps } from '../Steps/use-steps'
 
 export interface InfoValues {
   title: string
@@ -41,14 +41,14 @@ export const Info = () => {
           id='process-create-form'
           onSubmit={methods.handleSubmit(onSubmit)}
           flexDirection='column'
-          gap={{ base: 10, md: 20 }}
+          gap={5}
         >
           <CreateProcessMeta />
           <CreateProcessSettings />
         </Flex>
-      </Wrapper>
 
-      <StepsNavigation />
+        <StepsNavigation />
+      </Wrapper>
     </FormProvider>
   )
 }
