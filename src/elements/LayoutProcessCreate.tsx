@@ -9,7 +9,7 @@ const LayoutProcessCreate = () => {
   const navigate = useNavigate()
 
   return (
-    <Box bgColor='main_bg'>
+    <Box bgColor='process_create.bg'>
       <Flex direction='column' minH='100vh' maxW={360} mx='auto'>
         <Flex
           as='header'
@@ -23,7 +23,8 @@ const LayoutProcessCreate = () => {
           <Logo />
 
           <Link
-            variant='primary'
+            p={1}
+            bgColor='white'
             display='flex'
             alignItems='center'
             onClick={(e) => (window.history.state.idx ? navigate(-1) : navigate('/'))}

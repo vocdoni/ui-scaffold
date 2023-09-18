@@ -146,10 +146,13 @@
         "date_format": "PPPPpppp",
         "end_date": "Data de finalització",
         "end_date_description": "Aquesta elecció començarà el {{ date.begin, format }} i finalitzarà el {{ date.end, format }}, amb una durada d'aproximadament {{ date, duration }}",
+        "end_date_title_helper": "Definir la data i l'hora exactes de la conclusió.",
         "now": "Ara",
+        "start_date": "Hora d'inici",
         "start_date_description": "Especifica el període actiu per rebre vots. Selecciona 'Ara' per activar la proposta immediatament després de la publicació.",
         "start_on_a_date": "Començar en una data",
-        "title": "Calendari"
+        "title": "Calendari",
+        "title_description": "Especificar el període actiu per rebre vots."
       },
       "census": {
         "add_button": "Afegir",
@@ -164,7 +167,7 @@
         "token_base_title": "Basat en token",
         "token_title": "Cens basat en tokens",
         "tokens_placeholder": "Seleccioneu un token",
-        "wallet_address_description": "Identifica els teus votants per les seves adreces de cartera. Hauran d'iniciar la sessió amb un proveïdor de carteres com Metamask.",
+        "wallet_address_description": "Identifica els teus votants per les seves adreces de cartera.",
         "wallet_address_title": "Adreces de cartera"
       },
       "confirm": {
@@ -197,9 +200,11 @@
       "meta": {
         "description": "Proporciona un títol i una descripció clars. Això ajudarà als votants a entendre el propòsit del vot.",
         "description_helper": "Una breu descripció de la teva elecció",
+        "description_label": "Descripció",
         "description_placeholder": "Descripció (opcional)",
         "title": "Informació de l'elecció",
         "title_helper": "El títol / propòsit de l'elecció",
+        "title_label": "Títol",
         "title_placeholder": "El títol de l'elecció"
       },
       "navbar": {
@@ -208,17 +213,18 @@
       "next_step": "Següent",
       "previous_step": "Anterior",
       "question": {
-        "add_new_option": "Afegeix una nova opció",
-        "aside": "Títol de la pregunta",
+        "add_new_option": "Afegeix opció",
+        "add_question": "Afegir Pregunta",
+        "description": "Afegeix les preguntes que els teus votants hauran de triar. Pots afegir més d'una pregunta amb un nombre personalitzat d'opcions per seleccionar.",
         "description_placeholder": "Escriu aquí una descripció de la pregunta (opcional)",
         "option_placeholder": "Opció",
+        "title": "Preguntes",
         "title_placeholder": "El títol de la teva pregunta..."
       },
       "question_delete": "Elimina pregunta {{ num }}",
       "question_identifier": "Pregunta {{ num }}",
       "question_placeholder": "Títol de la pregunta {{ num }}",
       "question_title": "Títol",
-      "questions_title": "Preguntes",
       "running_checks": "Executant les comprovacions necessàries, espera...",
       "spreadsheet": {
         "download_template_btn": "Descarregar plantilla",

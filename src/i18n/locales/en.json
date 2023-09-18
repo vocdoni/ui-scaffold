@@ -145,10 +145,13 @@
         "date_format": "PPPPpppp",
         "end_date": "End date",
         "end_date_description": "This election will start at {{ date.begin, format }} and end at {{ date.end, format }}, lasting ~{{ date, duration }}",
+        "end_date_title_helper": "Define the exact date and time to conclude.",
         "now": "Now",
-        "start_date_description": "Specify the active period for receiving votes. Select 'Now' to make the proposal immediately active after publishing.",
+        "start_date": "Start time",
+        "start_date_description": "Define when a proposal should be active to recive approvals. If now is selected, the proposal is inmediatly ctive after publishing.",
         "start_on_a_date": "Start on a date",
-        "title": "Calendar"
+        "title": "Calendar",
+        "title_description": "Specify the active period to recive votes."
       },
       "census": {
         "add_button": "Add",
@@ -163,7 +166,7 @@
         "token_base_title": "Token based",
         "token_title": "Token based census",
         "tokens_placeholder": "Select a token",
-        "wallet_address_description": "Identify your voters by their wallets addresses. They will have to log in with a wallet provider like Metamask.",
+        "wallet_address_description": "Identify your voters by their wallets addresses.",
         "wallet_address_title": "Wallet addresses"
       },
       "confirm": {
@@ -194,9 +197,11 @@
       "meta": {
         "description": "Provide a clear title & description. This will help voters understand the purpose of the vote.",
         "description_helper": "A brief description of your election",
+        "description_label": "Description",
         "description_placeholder": "Description (optional)",
         "title": "Election Info",
         "title_helper": "The election title / purpose",
+        "title_label": "Title",
         "title_placeholder": "The election title"
       },
       "navbar": {
@@ -205,17 +210,18 @@
       "next_step": "Next",
       "previous_step": "Previous",
       "question": {
-        "add_new_option": "Add new option",
-        "aside": "Title question",
+        "add_new_option": "Add option",
+        "add_question": "Add Question",
+        "description": " Add the questions your voters will have to choose. You can add more than one question with custom nº of options to select.",
         "description_placeholder": "Write here a description of the question (optional)",
         "option_placeholder": "Option",
+        "title": "Questions",
         "title_placeholder": "The title of your question..."
       },
       "question_delete": "Delete question {{ num }}",
       "question_identifier": "Question {{ num }}",
       "question_placeholder": "Question {{ num }} title",
       "question_title": "Title",
-      "questions_title": "Questions",
       "running_checks": "Running required checks, please wait...",
       "spreadsheet": {
         "download_template_btn": "Download template",

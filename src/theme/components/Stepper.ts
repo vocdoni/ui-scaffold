@@ -1,16 +1,18 @@
 const baseStyle = {
   indicator: {
     '&[data-status=complete]': {
-      background: 'process_create.stepper',
+      background: 'process_create.stepper.bg',
     },
     '&[data-status=active]': {
-      borderColor: 'process_create.stepper',
+      borderColor: 'process_create.stepper.bg',
+      background: 'process_create.stepper.bg',
+      color: 'process_create.stepper.color_active',
     },
   },
   separator: {
     marginTop: 2,
     '&[data-status=complete]': {
-      background: 'process_create.stepper',
+      background: 'process_create.stepper.bg',
     },
   },
   title: {

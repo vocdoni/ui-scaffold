@@ -1,7 +1,5 @@
+import { InfoIcon } from '@chakra-ui/icons'
 import {
-  Alert,
-  AlertDescription,
-  AlertIcon,
   Box,
   Flex,
   FormControl,
@@ -64,84 +62,150 @@ const Calendar = () => {
   }
 
   return (
-    <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 4, md: 10 }}>
-      <Box flexBasis='30%' flexShrink={0}>
-        <Text as='legend' fontWeight='bold' mb={2}>
+    <Box>
+      <Box mb={4}>
+        <Text fontSize='md' fontWeight='bold'>
           {t('form.process_create.calendar.title')}
         </Text>
-        <Text fontWeight='normal' fontSize='sm' color='process_create.meta_description'>
-          {t('form.process_create.calendar.start_date_description')}
+        <Text fontWeight='normal' fontSize='sm' color='process_create.description'>
+          {t('form.process_create.calendar.title_description')}
         </Text>
       </Box>
-      <Box flexGrow={1}>
-        <RadioGroup {...useBooleanRadioRegister('electionType.autoStart')} mb={6}>
-          <Stack direction={{ base: 'column', md: 'row' }} gap={2}>
-            <FormControl
-              isInvalid={!!errors.startDate}
-              display='flex'
-              flexDirection='column'
-              gap={2}
-              order={{ base: 2, md: 1 }}
-              flexGrow={0}
+      <Flex
+        bgColor='process_create.section'
+        flexDirection={{ base: 'column', xl2: 'row' }}
+        justifyContent='space-between'
+        gap={{ xl2: 20 }}
+        p={4}
+        borderRadius='md'
+      >
+        <Box>
+          <Text fontWeight='bold' fontSize='sm'>
+            {t('form.process_create.calendar.start_date')}
+          </Text>
+          <Text fontSize='sm' mb={2} color='process_create.description'>
+            {t('form.process_create.calendar.start_date_description')}
+          </Text>
+          <RadioGroup {...useBooleanRadioRegister('electionType.autoStart')} mb={6}>
+            <Stack
+              direction={{ base: 'column', md: 'row' }}
+              gap={5}
+              alignItems='start'
+              justifyContent='start'
+              maxW='min-content'
             >
-              <Radio value='0' alignItems='center'>
-                <Text
-                  whiteSpace='nowrap'
-                  m={0}
-                  fontWeight='bold'
-                  onClick={() =>
-                    // we need to use a timeout cos' triggering it immediately would not work, since this input is still disabled
-                    setTimeout(() => {
-                      startDateRef.current?.focus()
-                      startDateRef.current?.click()
-                    }, 75)
-                  }
-                >
-                  {t('form.process_create.calendar.start_on_a_date')}
-                </Text>
-              </Radio>
-              <Box w={64}>
-                <Input
-                  disabled={getValues().electionType.autoStart}
-                  type='datetime-local'
-                  {...startDate}
-                  ref={(e) => {
-                    startDate.ref(e)
-                    startDateRef.current = e
+              <FormControl
+                p={0}
+                border='1px solid'
+                borderColor={autoStart ? 'process_create.calendar_start_date_selected' : 'lightgray'}
+                minW={70}
+                maxW={70}
+                borderRadius='md'
+                sx={{
+                  '& > label': {
+                    display: 'flex',
+                    p: 2,
+                  },
+                }}
+              >
+                <Radio value='1' w='full' onClick={() => clearErrors('startDate')}>
+                  <Text fontWeight='bold' fontSize='sm'>
+                    {t('form.process_create.calendar.now')}
+                  </Text>
+                </Radio>
+              </FormControl>
+              <FormControl
+                isInvalid={!!errors.startDate}
+                display='flex'
+                flexDirection='column'
+                alignItems='start'
+                gap={2}
+              >
+                <Box
+                  p={0}
+                  border='1px solid'
+                  borderColor={!autoStart ? 'process_create.calendar_start_date_selected' : 'lightgray'}
+                  minW={70}
+                  maxW={70}
+                  borderRadius='md'
+                  sx={{
+                    '& > label': {
+                      display: 'flex',
+                      p: 2,
+                    },
                   }}
-                  min={today}
-                  onFocus={() => showPicker(startDateRef)}
-                />
-                <FormErrorMessage>{errors.startDate?.message?.toString()}</FormErrorMessage>
-              </Box>
-            </FormControl>
-            <Flex order={{ base: 1, md: 2 }} flexBasis={{ md: 124 }} flexDirection='column' gap={2}>
-              <Radio value='1' onClick={() => clearErrors('startDate')}>
-                <Text fontWeight='bold'>{t('form.process_create.calendar.now')}</Text>
-              </Radio>
-            </Flex>
-          </Stack>
-        </RadioGroup>
+                >
+                  <Radio value='0'>
+                    <Text
+                      fontWeight='bold'
+                      fontSize='sm'
+                      onClick={() =>
+                        // we need to use a timeout cos' triggering it immediately would not work, since this input is still disabled
+                        setTimeout(() => {
+                          startDateRef.current?.focus()
+                        }, 100)
+                      }
+                    >
+                      {t('form.process_create.calendar.start_on_a_date')}
+                    </Text>
+                  </Radio>
+                </Box>
+                {!autoStart && (
+                  <Box minW={70} maxW={70}>
+                    <Input
+                      disabled={getValues().electionType.autoStart}
+                      type='datetime-local'
+                      {...startDate}
+                      ref={(e) => {
+                        startDate.ref(e)
+                        startDateRef.current = e
+                      }}
+                      min={today}
+                      onFocus={() => showPicker(startDateRef)}
+                    />
+                    <FormErrorMessage>{errors.startDate?.message?.toString()}</FormErrorMessage>
+                  </Box>
+                )}
+              </FormControl>
+            </Stack>
+          </RadioGroup>
 
-        <FormControl isInvalid={!!errors.endDate} w={64} mb={3}>
-          <FormLabel fontWeight='bold'> {t('form.process_create.calendar.end_date')}</FormLabel>
-          <Input
-            type='datetime-local'
-            {...endDate}
-            ref={(e) => {
-              endDate.ref(e)
-              endDateRef.current = e
-            }}
-            min={format(min, DateFormatHtml)}
-            onFocus={() => showPicker(endDateRef)}
-          />
-          <FormErrorMessage>{errors.endDate?.message?.toString()}</FormErrorMessage>
-        </FormControl>
+          <FormControl isInvalid={!!errors.endDate} minW={70} maxW={70}>
+            <FormLabel fontWeight='bold' m={0} fontSize='sm'>
+              {t('form.process_create.calendar.end_date')}
+            </FormLabel>
+            <Text whiteSpace='nowrap' fontSize='sm' mb={2} color='process_create.description'>
+              {t('form.process_create.calendar.end_date_title_helper')}
+            </Text>
+            <Input
+              type='datetime-local'
+              {...endDate}
+              ref={(e) => {
+                endDate.ref(e)
+                endDateRef.current = e
+              }}
+              min={format(min, DateFormatHtml)}
+              onFocus={() => showPicker(endDateRef)}
+            />
+            <FormErrorMessage>{errors.endDate?.message?.toString()}</FormErrorMessage>
+          </FormControl>
+        </Box>
 
         {end && (
-          <Alert status='info'>
-            <AlertIcon />
-            <AlertDescription>
+          <Box
+            position='relative'
+            maxW={{ xl2: 76 }}
+            display='flex'
+            flexDirection='column'
+            justifyContent='center'
+            alignItems='center'
+            border='1px solid lightgray'
+            borderRadius='md'
+            gap={2}
+            mt={{ base: 5, xl2: 0 }}
+          >
+            <InfoIcon color='process_create.alert_info.color' position='absolute' top={5} left={5} />
+            <Text color='process_create.description' p={5} pt={{ base: 10, xl2: 8 }}>
               {t('form.process_create.calendar.end_date_description', {
                 date: {
                   begin: begin && !autoStart ? new Date(begin) : new Date(),
@@ -149,11 +213,11 @@ const Calendar = () => {
                 },
                 format: datef,
               })}
-            </AlertDescription>
-          </Alert>
+            </Text>
+          </Box>
         )}
-      </Box>
-    </Flex>
+      </Flex>
+    </Box>
   )
 }
 
