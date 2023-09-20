@@ -34,8 +34,29 @@ const connectors = connectorsForWallets([
       oAuthWallet({
         chains,
         name: 'Github',
-        iconUrl: 'https://i.ibb.co/db4ppPM/github-mark.png',
-        options: { oAuthServiceUrl: 'https://oauth.vocdoni.net/', oAuthServiceProvider: 'github' },
+        iconUrl: 'https://authjs.dev/img/providers/github.svg',
+        options: {
+          oAuthServiceUrl: 'https://oauth.vocdoni.net/',
+          oAuthServiceProvider: 'github',
+        },
+      }) as Wallet,
+      oAuthWallet({
+        chains,
+        name: 'Google',
+        iconUrl: 'https://authjs.dev/img/providers/google.svg',
+        options: {
+          oAuthServiceUrl: 'https://oauth.vocdoni.net/',
+          oAuthServiceProvider: 'google',
+        },
+      }) as Wallet,
+      oAuthWallet({
+        chains,
+        name: 'Facebook',
+        iconUrl: 'https://authjs.dev/img/providers/facebook.svg',
+        options: {
+          oAuthServiceUrl: 'https://oauth.vocdoni.net/',
+          oAuthServiceProvider: 'facebook',
+        },
       }) as Wallet,
     ],
   },
