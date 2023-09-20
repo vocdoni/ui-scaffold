@@ -132,15 +132,8 @@ const MenuDropdown = () => {
       {isOpenMenuLanguages && <LanguagesList closeOnSelect={false} />}
       <MenuItem>
         <Link
-          _hover={{
-            textDecoration: 'none',
-          }}
-        >
-          {t('menu.how_it_works')}
-        </Link>
-      </MenuItem>
-      <MenuItem>
-        <Link
+          href='https://developer.vocdoni.io/'
+          target='_blank'
           _hover={{
             textDecoration: 'none',
           }}
@@ -160,10 +153,14 @@ const MenuDropdown = () => {
         {t('menu.logout')}
       </MenuItem>
       <MenuItem fontSize='xs' color='blackAlpha.700'>
-        {t('menu.terms')}
+        <Link href='https://aragon.org/terms-and-conditions' target='_blank'>
+          {t('menu.terms')}
+        </Link>
       </MenuItem>
       <MenuItem fontSize='xs' color='blackAlpha.700'>
-        {t('menu.privacy')}
+        <Link href='https://aragon.org/privacy-policy' target='_blank'>
+          {t('menu.privacy')}
+        </Link>
       </MenuItem>
     </MenuList>
   )
