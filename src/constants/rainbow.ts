@@ -32,11 +32,35 @@ const connectors = connectorsForWallets([
     groupName: 'Social',
     wallets: [
       oAuthWallet({
+        id: 'github',
         chains,
         name: 'Github',
-        iconUrl: 'https://i.ibb.co/db4ppPM/github-mark.png',
-        options: { oAuthServiceUrl: 'https://oauth.vocdoni.net/', oAuthServiceProvider: 'github' },
-      }) as Wallet,
+        iconUrl: 'https://authjs.dev/img/providers/github.svg',
+        options: {
+          oAuthServiceUrl: 'https://oauth.vocdoni.net/',
+          oAuthServiceProvider: 'github',
+        },
+      }) as unknown as Wallet,
+      oAuthWallet({
+        id: 'google',
+        chains,
+        name: 'Google',
+        iconUrl: 'https://authjs.dev/img/providers/google.svg',
+        options: {
+          oAuthServiceUrl: 'https://oauth.vocdoni.net/',
+          oAuthServiceProvider: 'google',
+        },
+      }) as unknown as Wallet,
+      oAuthWallet({
+        id: 'facebook',
+        chains,
+        name: 'Facebook',
+        iconUrl: 'https://authjs.dev/img/providers/facebook.svg',
+        options: {
+          oAuthServiceUrl: 'https://oauth.vocdoni.net/',
+          oAuthServiceProvider: 'facebook',
+        },
+      }),
     ],
   },
 ])
