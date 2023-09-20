@@ -196,7 +196,6 @@
       },
       "confirm_spreadsheet_removal": "Seguro? Piensa que al hacerlo se eliminará el fichero que has cargado.",
       "creating_process": "Creando proceso...",
-      "do_not_close": "Esta acción puede llevar algún tiempo, no cierres esta pestaña",
       "meta": {
         "description": "Proporciona un título y descripción claros. Esto ayudará a los votantes a entender el propósito de la votación.",
         "description_helper": "Una breve descripción de tu votación",
@@ -363,6 +362,16 @@
     "pause": "pausar",
     "play": "reproducir",
     "stop": "detener"
+  },
+  "process_create": {
+    "creation_steps": {
+      "census_created": "Creación del censo",
+      "done": "Creación del proceso",
+      "sign_tx": "Firmar transacción"
+    },
+    "creation_steps_description": "Se está creando el proceso de votación. Este procedimiento puede tardar un rato (no cierres esta ventana) mientras queda registrada toda la información en la blockchain privada y segura de Vocdoni.",
+    "creation_steps_title": "Progreso",
+    "do_not_close": "Esta acción puede llevar algún tiempo, no cierres esta ventana"
   },
   "uploader": {
     "click_or_drag_and_drop": "<p1>Sube o arrastra y suelta aqui la lista de votantes</p1><p2>(Formap permitidos: CSV, XLSX y ODS)</p2>",

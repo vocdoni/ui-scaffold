@@ -20,7 +20,9 @@ import {
 import { ElectionProvider, errorToString, useClient } from '@vocdoni/react-providers'
 import {
   Election,
+  ElectionCreationSteps,
   ElectionStatus,
+  ensure0x,
   EnvOptions,
   IElectionParameters,
   IPublishedElectionParameters,
@@ -29,7 +31,6 @@ import {
   PublishedElection,
   VocdoniCensus3Client,
   WeightedCensus,
-  ensure0x,
 } from '@vocdoni/sdk'
 import { useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
@@ -37,7 +38,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { CensusType } from '../Census/TypeSelector'
 import Preview from '../Confirm/Preview'
-import { CreationProgress } from '../CreationProgress'
+import { CreationProgress, Steps } from '../CreationProgress'
 import { Web3Address } from '../StepForm/CensusWeb3'
 import { Option } from '../StepForm/Questions'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
@@ -51,6 +52,7 @@ export const Confirm = () => {
   const [error, setError] = useState<string | null>(null)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [sending, setSending] = useState<boolean>(false)
+  const [step, setStep] = useState<Steps>()
 
   const methods = useForm({
     defaultValues: {
@@ -77,7 +79,18 @@ export const Confirm = () => {
       }
       const election = Election.from(params)
 
-      const pid = await client.createElection(election)
+      let pid: string
+      for await (const step of client.createElectionSteps(election)) {
+        switch (step.key) {
+          case ElectionCreationSteps.CENSUS_CREATED:
+          case ElectionCreationSteps.SIGN_TX:
+          case ElectionCreationSteps.DONE:
+            setStep(step.key)
+            if (step.key === ElectionCreationSteps.DONE) {
+              pid = step.electionId
+            }
+        }
+      }
       toast({
         title: t('form.process_create.success_title'),
         description: t('form.process_create.success_description'),
@@ -166,7 +179,7 @@ export const Confirm = () => {
             <ModalHeader>{t('form.process_create.creating_process')}</ModalHeader>
             {error && <ModalCloseButton />}
             <ModalBody>
-              <CreationProgress error={error} sending={sending} />
+              <CreationProgress error={error} sending={sending} step={step} />
             </ModalBody>
             {error && (
               <ModalFooter>
@@ -249,9 +262,10 @@ const electionFromForm = (form: StepsFormValues) => {
     endDate: new Date(form.endDate).getTime(),
     voteType: { maxVoteOverwrites: Number(form.maxVoteOverwrites) },
     meta: {
+      generated: 'ui-scaffold',
       census: {
         type: form.censusType,
-        fields: form.spreadsheet ? form.spreadsheet.header : undefined,
+        fields: form.spreadsheet?.header ?? undefined,
       } as CensusMeta,
     },
   }
