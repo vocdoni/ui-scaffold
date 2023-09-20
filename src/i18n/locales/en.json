@@ -193,7 +193,6 @@
       },
       "confirm_spreadsheet_removal": "Are you sure? Take in mind that the uploaded file will be removed",
       "creating_process": "Creating process...",
-      "do_not_close": "This action can take some time, don't close this tab",
       "meta": {
         "description": "Provide a clear title & description. This will help voters understand the purpose of the vote.",
         "description_helper": "A brief description of your election",
@@ -358,6 +357,16 @@
     "pause": "pause",
     "play": "play",
     "stop": "stop"
+  },
+  "process_create": {
+    "creation_steps": {
+      "census_created": "Census creation",
+      "done": "Process creation",
+      "sign_tx": "Sign transaction"
+    },
+    "creation_steps_description": "The voting process is being created. This process can last a bit (don't close this window), as it is registering all the information in the secure & private Vocdoni Blockchain.",
+    "creation_steps_title": "Progress",
+    "do_not_close": "This action can take some time, don't close this window"
   },
   "uploader": {
     "click_or_drag_and_drop": "<p1>Upload or drag and drop the voter list here</p1><p2>(Allowed formats: CSV, XLSX, and ODS)</p2>",
