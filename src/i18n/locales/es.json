@@ -10,9 +10,9 @@
     "votes_other": "<span>{{ count }}</span> <text>votos</text>"
   },
   "banner": {
-    "start_now": "¡Crea un proceso de votación ahora!",
-    "subtitle": "Usa direcciones de cartera, vota con un token ERC20 o con NFTs",
-    "title": "¡Votando por DAOs y comunidades Web3!"
+    "start_now": "¡Crea una votación ahora!",
+    "subtitle": "Usa direcciones de cartera, vota con un token ERC20 o con NFTs!",
+    "title": "Votaciones para DAOs y comunidades Web3"
   },
   "banner_voting_types": {
     "anonymous_description": "La identidad de los votantes permanece completamente confidencial, gracias a la tecnología zk-SNARKS.",

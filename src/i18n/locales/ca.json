@@ -12,7 +12,7 @@
   "banner": {
     "start_now": "Crea una votació!",
     "subtitle": "Utilitza adreces web3, vota amb un token ERC20 o amb NFTs!",
-    "title": "Vota per a les DAOs i les comunitats Web3"
+    "title": "Votacions per DAOs i comunitats Web3"
   },
   "banner_voting_types": {
     "anonymous_description": "La identitat dels votants serà completament confidencial, gràcies a la tecnologia zk-SNARKS.",
