@@ -221,13 +221,18 @@ const getCensus = async (env: EnvOptions, form: StepsFormValues, organization: s
     case 'web3':
       if (form.weightedVote) {
         const census = new WeightedCensus()
-        form.addresses.forEach(({ address, weight }) => census.add({ key: address, weight: BigInt(weight) }))
+        const addresses = form.addresses.map(({ address, weight }) => ({
+          key: address,
+          weight: BigInt(weight),
+        }))
+        census.add(addresses)
 
         return census
       }
 
       const census = new PlainCensus()
-      form.addresses.forEach(({ address }) => census.add(address))
+      const addresses = form.addresses.map(({ address }) => address)
+      census.add(addresses)
 
       return census
 
