@@ -334,8 +334,7 @@
       "confirm": {
         "option": "Opció",
         "question": "Pregunta",
-        "text1": "Abans de votar, reviseu que tot sigui correcte.",
-        "text2": "Recordeu que en aquest mode d'elecció, podeu corregir el vostre vot {{ vote_overwrite }} vegades."
+        "text1": "Abans de votar, reviseu que tot sigui correcte."
       }
     },
     "status": {

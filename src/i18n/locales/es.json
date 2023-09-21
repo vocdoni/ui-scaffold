@@ -334,8 +334,7 @@
       "confirm": {
         "option": "Opción",
         "question": "Pregunta",
-        "text1": "Antes de emitir tu voto, revisa que todo esté correcto.",
-        "text2": "Recuerda que en este modo de elección, puedes corregir tu voto {{vote_overwrite}} veces."
+        "text1": "Antes de emitir tu voto, revisa que todo esté correcto."
       }
     },
     "status": {
