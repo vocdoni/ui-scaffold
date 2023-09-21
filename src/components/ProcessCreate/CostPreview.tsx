@@ -2,11 +2,17 @@ import { Flex, Link, Spinner, Text } from '@chakra-ui/react'
 import { VocdoniFaucet } from '@constants'
 import { useClient } from '@vocdoni/react-providers'
 import { UnpublishedElection } from '@vocdoni/sdk'
-import { useEffect, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HiShoppingCart } from 'react-icons/hi'
 
-export const CostPreview = ({ unpublished }: { unpublished: UnpublishedElection }) => {
+export const CostPreview = ({
+  unpublished,
+  disable,
+}: {
+  unpublished: UnpublishedElection | undefined
+  disable: Dispatch<SetStateAction<boolean>>
+}) => {
   const { t } = useTranslation()
   const { account, client } = useClient()
   const [cost, setCost] = useState<number | undefined>()
@@ -17,7 +23,10 @@ export const CostPreview = ({ unpublished }: { unpublished: UnpublishedElection 
 
     client
       .estimateElectionCost(unpublished)
-      .then(setCost)
+      .then((cost) => {
+        setCost(cost)
+        disable(cost > account!.balance)
+      })
       .catch((e) => {
         console.error('could not estimate election cost:', e)
         setCost(NaN)
@@ -34,7 +43,7 @@ export const CostPreview = ({ unpublished }: { unpublished: UnpublishedElection 
         cost,
         balance: account?.balance,
       })}
-      {cost > account?.balance && (
+      {cost > account!.balance && (
         <Flex color='orange' direction='column'>
           <Text>{t('form.process_create.confirm.not_enough_tokens')}</Text>
           <Link variant='button' colorScheme='primary' alignSelf='self-start' target='_blank' href={VocdoniFaucet}>

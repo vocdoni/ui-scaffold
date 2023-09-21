@@ -55,6 +55,7 @@ export const Confirm = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [sending, setSending] = useState<boolean>(false)
   const [step, setStep] = useState<Steps>()
+  const [disabled, setDisabled] = useState<boolean>(false)
   const [unpublished, setUnpublished] = useState<UnpublishedElection | undefined>()
 
   const methods = useForm({
@@ -148,7 +149,7 @@ export const Confirm = () => {
           <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='bold' fontSize='md'>
             {t('form.process_create.confirm.cost_title')}
           </Text>
-          <CostPreview unpublished={unpublished} />
+          <CostPreview unpublished={unpublished} disable={setDisabled} />
         </Flex>
         <FormProvider {...methods}>
           <Flex
@@ -197,7 +198,7 @@ export const Confirm = () => {
           {t('form.process_create.previous_step')}
         </Button>
 
-        <Button type='submit' form='process-create-form' isLoading={sending}>
+        <Button type='submit' form='process-create-form' isLoading={sending} isDisabled={disabled}>
           {t('form.process_create.confirm.create_button')}
         </Button>
         <Modal isOpen={isOpen} onClose={onClose} closeOnEsc={!!error} closeOnOverlayClick={!!error} isCentered>
