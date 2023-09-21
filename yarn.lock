@@ -2540,12 +2540,12 @@
     "@babel/plugin-transform-react-jsx-source" "^7.22.5"
     react-refresh "^0.14.0"
 
-"@vocdoni/chakra-components@^0.5.12":
-  version "0.5.12"
-  resolved "https://registry.yarnpkg.com/@vocdoni/chakra-components/-/chakra-components-0.5.12.tgz#ae72b2e237913d233b820e04240a1ee90efee839"
-  integrity sha512-3qlPUVTsojQVzQnJZOwcDzTmT2OW8j4CULu1BldpYix9So5+hGCRs7YvHQ1+Z/tO3yehR2ACVNrFEcr9t9YO7Q==
+"@vocdoni/chakra-components@^0.5.13":
+  version "0.5.13"
+  resolved "https://registry.yarnpkg.com/@vocdoni/chakra-components/-/chakra-components-0.5.13.tgz#0bd9314423c6b38f203ca06be94744e76cbaaf08"
+  integrity sha512-nvNQsDDhTovcsk6H3sAUfKd+I2kENupa32ffkbxFXt5lNqFiHQaW9sg7uSQe/YreSS0uIVJljpts0kxGqXLhgA==
   dependencies:
-    "@vocdoni/react-providers" "0.1.8"
+    "@vocdoni/react-providers" "0.1.9"
 
 "@vocdoni/proto@1.15.3":
   version "1.15.3"
@@ -2560,41 +2560,12 @@
   resolved "https://registry.yarnpkg.com/@vocdoni/rainbowkit-wallets/-/rainbowkit-wallets-0.1.8.tgz#a35559ab5e079ce0acc8a2e02d01abcbed73442a"
   integrity sha512-kaAXAMO/ht0z2Z2wZJjyGQtETB21k9nbEPu89ElcHyzgWDCwZuoRi525qdhNqRKx4WWKJP/Zhun/0jT3eq7PVg==
 
-"@vocdoni/react-providers@0.1.8":
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.1.8.tgz#39159aac6497832e5a9646d294c32055bae5e5d6"
-  integrity sha512-c5xLFtFsOjE5d/T1Kr2g5Qu7BebKCuy6bnfRiH7j5LgC0S052An6THnahDV+3umgpzLuncX4qM808J0fzQ3b1g==
+"@vocdoni/react-providers@0.1.9":
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.1.9.tgz#3f322c17d52940bb883958e67db3dc09d2b5e20a"
+  integrity sha512-epEG6kiCHmI9S+lS6T8q9u+qmmgi5r0LZx3tVPDddQFKRy7Du5IDlgz1Ma9PJF95qrqX5mPHp9o78iCtSFE+bQ==
   dependencies:
-    "@vocdoni/sdk" "^0.3.0"
-
-"@vocdoni/sdk@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@vocdoni/sdk/-/sdk-0.3.0.tgz#fa02565b60ab9c76b6201a797d153005e94ca551"
-  integrity sha512-70OP9dbv4MpomSpJ/os2wfgSGshkG1e0PzemDPlTTNl90OEvJaRXzISndX5E80c5eFjtEUIYiSk9W1q+xDomGg==
-  dependencies:
-    "@ethersproject/abstract-signer" "^5.7.0"
-    "@ethersproject/address" "^5.7.0"
-    "@ethersproject/bignumber" "^5.7.0"
-    "@ethersproject/bytes" "^5.7.0"
-    "@ethersproject/keccak256" "^5.7.0"
-    "@ethersproject/providers" "^5.7.1"
-    "@ethersproject/sha2" "^5.7.0"
-    "@ethersproject/signing-key" "^5.7.0"
-    "@ethersproject/strings" "^5.7.0"
-    "@ethersproject/units" "^5.7.0"
-    "@ethersproject/wallet" "^5.7.0"
-    "@size-limit/file" "^8.2.4"
-    "@vocdoni/proto" "1.15.3"
-    axios "0.27.2"
-    blake2b "^2.1.4"
-    iso-language-codes "^1.1.0"
-    readable-stream "^4.4.2"
-    tiny-invariant "^1.3.1"
-    tweetnacl "^1.0.3"
-    wasmbuilder "^0.0.16"
-    wasmcurves "0.2.1"
-    web-worker "^1.2.0"
-    yup "^0.32.11"
+    "@vocdoni/sdk" "^0.3.1"
 
 "@vocdoni/sdk@^0.3.1":
   version "0.3.1"
