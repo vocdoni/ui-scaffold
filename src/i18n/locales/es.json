@@ -97,15 +97,13 @@
     "contact": "Contacto",
     "developer_portal": "Portal para desarrolladores",
     "developers": "Desarrolladores",
-    "guides": "Guías",
-    "how_we_work": "Cómo trabajamos",
+    "discord": "Discord",
+    "homepage": "Inicio",
+    "repos": "Código abierto",
     "resources": "Recursos",
     "tutorials": "Tutoriales",
     "vocdoni_api": "API de Vocdoni",
-    "vocdoni_app": "APP de Vocdoni",
-    "discord": "Discord",
-    "repos": "Código abierto",
-    "homepage": "Inicio"
+    "vocdoni_app": "APP de Vocdoni"
   },
   "form": {
     "account_create": {
@@ -115,7 +113,7 @@
       "title_placeholder": "El nombre de la organización"
     },
     "edit_profile": {
-      "avatar_helper": "Imagen/Logotipo de tu organización",
+      "avatar_helper": "Imagen/logotipo de tu organización",
       "avatar_placeholder": "URL de la imagen",
       "btn": "Guardar"
     },
@@ -130,17 +128,14 @@
       "behavior": {
         "anonymous": {
           "description": "La identidad de los votantes será completamente anonimizada, incluyendo para el organizador. Cada votante deberá establecer una contraseña para garantizar la confidencialidad de su identidad.",
-          "description_info": "",
           "title": "Anónimo"
         },
         "overwrite": {
           "description": "Si se selecciona, los votantes tendrán la opción de corregir su voto una vez.",
-          "description_info": "",
           "title": "Sobrescribir voto"
         },
         "secret": {
           "description": "Los resultados estarán disponibles cuando termine el proceso en lugar de estar disponibles en tiempo real.",
-          "description_info": "",
           "title": "Secreto hasta el final"
         },
         "title": "Opciones"
@@ -164,7 +159,7 @@
         "max_census_slider_label": "Participación máxima esperada:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} votantes elegibles)",
         "spreadsheet_description": "Datos personalizados, como nombres de usuario y contraseñas, o información personal de los votantes, pueden utilizarse para la autenticación mediante un formulario.",
-        "spreadsheet_title": "Datos Personalizados",
+        "spreadsheet_title": "Datos personalizados",
         "title": "Censo",
         "token_base_description": "Utiliza un token (basado en EVM) para permitir a los usuarios votar en función de la cantidad que poseen.",
         "token_base_title": "Basado en tokens",
@@ -215,8 +210,8 @@
       "next_step": "Siguiente",
       "previous_step": "Anterior",
       "question": {
-        "add_new_option": "Añadir Opción",
-        "add_question": "Añadir Pregunta",
+        "add_new_option": "Añadir opción",
+        "add_question": "Añadir pregunta",
         "description": "Agrega las preguntas junto con las opciones que tus votantes deberán elegir. Tienes la flexibilidad de agregar varias preguntas, cada una con un número personalizado de opciones seleccionables.",
         "description_placeholder": "Escribe aquí una descripción de la pregunta",
         "option_placeholder": "Opción",
@@ -279,7 +274,6 @@
     "create_process": "Nuevo proceso",
     "documentation": "Documentación",
     "get_more": "Obtener más",
-    "how_it_works": "Cómo funciona",
     "languages": "Idiomas",
     "languages_list": "",
     "login": "Iniciar sesión",

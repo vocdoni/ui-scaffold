@@ -96,15 +96,13 @@
     "contact": "Contact",
     "developer_portal": "Developers Portal",
     "developers": "Developers",
-    "guides": "Guides",
-    "how_we_work": "How we work",
+    "discord": "Discord",
+    "homepage": "Home",
+    "repos": "Open-source Code",
     "resources": "Resources",
     "tutorials": "Tutorials",
     "vocdoni_api": "Vocdoni API",
-    "vocdoni_app": "Vocdoni APP",
-    "discord": "Discord",
-    "repos": "Open-source Code",
-    "homepage": "Home"
+    "vocdoni_app": "Vocdoni APP"
   },
   "form": {
     "account_create": {
@@ -114,7 +112,7 @@
       "title_placeholder": "The organization name"
     },
     "edit_profile": {
-      "avatar_helper": "Image/Logo of your organization",
+      "avatar_helper": "Image/logo of your organization",
       "avatar_placeholder": "Image URL",
       "btn": "Save"
     },
@@ -129,17 +127,14 @@
       "behavior": {
         "anonymous": {
           "description": "Voters' identities will be fully anonymized, including for the organizer. They will be required to set a password to ensure the confidentiality of their identity.",
-          "description_info": "",
           "title": "Anonymous"
         },
         "overwrite": {
           "description": "If checked, the votes would have the option to correct their vote once.",
-          "description_info": "",
           "title": "Vote overwrite"
         },
         "secret": {
           "description": "Results will be available when the process ends instead of being available in realtime.",
-          "description_info": "",
           "title": "Secret until the end"
         },
         "title": "Options"
@@ -163,7 +158,7 @@
         "max_census_slider_label": "Maximum participation expected:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} eligible voters)",
         "spreadsheet_description": "Such as usernames and passwords, or voter personal information, can be utilized for authentication with a form.",
-        "spreadsheet_title": "Custom Data",
+        "spreadsheet_title": "Custom data",
         "title": "Census",
         "token_base_description": "Use a token (EVM based) to enable voting based on users' token ownership.",
         "token_base_title": "Token based",
@@ -212,8 +207,8 @@
       "next_step": "Next",
       "previous_step": "Previous",
       "question": {
-        "add_new_option": "Add Option",
-        "add_question": "Add Question",
+        "add_new_option": "Add option",
+        "add_question": "Add question",
         "description": "Add the question/s along with the options that your voters will need to choose from. You have the flexibility to add multiple questions, each with a customized number of selectable options.",
         "description_placeholder": "Write here a description of the question (optional)",
         "option_placeholder": "Option",
@@ -275,7 +270,6 @@
     "create_process": "New process",
     "documentation": "Documentation",
     "get_more": "Get More",
-    "how_it_works": "How it works",
     "languages": "Languages",
     "languages_list": "",
     "login": "Login",

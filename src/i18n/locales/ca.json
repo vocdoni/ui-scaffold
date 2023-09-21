@@ -97,15 +97,13 @@
     "contact": "Contacte",
     "developer_portal": "Portal de desenvolupadors",
     "developers": "Desenvolupadors",
-    "guides": "Guies",
-    "how_we_work": "Com treballem",
+    "discord": "Discord",
+    "homepage": "Inici",
+    "repos": "Codi Obert",
     "resources": "Recursos",
     "tutorials": "Tutorials",
     "vocdoni_api": "API de Vocdoni",
-    "vocdoni_app": "APP de Vocdoni",
-    "discord": "Discord",
-    "repos": "Codi Obert",
-    "homepage": "Inici"
+    "vocdoni_app": "APP de Vocdoni"
   },
   "form": {
     "account_create": {
@@ -115,7 +113,7 @@
       "title_placeholder": "El nom de l'organització"
     },
     "edit_profile": {
-      "avatar_helper": "Imatge/Logotip de la teva organització",
+      "avatar_helper": "Imatge/logotip de la teva organització",
       "avatar_placeholder": "URL de la imatge",
       "btn": "Desar"
     },
@@ -129,18 +127,15 @@
     "process_create": {
       "behavior": {
         "anonymous": {
-          "description": "La identitat dels votants serà completament anonimitzada, fins i tot per l'organitzador. Cada votant haurà d'establir una contrasenya per garantir la confidencialitat de la seva identitat.",
-          "description_info": "",
+          "description": "La identitat dels votants serà completament anonimitzada, incloent per a l'organitzador. Cada votant haurà d'establir una contrasenya per garantir la confidencialitat de la seva identitat.",
           "title": "Anònim"
         },
         "overwrite": {
           "description": "Si està marcat, els votants tindran l'opció de corregir el seu vot un cop.",
-          "description_info": "",
           "title": "Sobreescriure"
         },
         "secret": {
           "description": "Els resultats estaran disponibles quan el procés acabi en lloc d'estar disponibles en temps real.",
-          "description_info": "",
           "title": "Secret fins al final"
         },
         "title": "Opcions"
@@ -164,7 +159,7 @@
         "max_census_slider_label": "Participació màxima esperada:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} votants elegibles)",
         "spreadsheet_description": "Dades personalitzades, com ara noms d'usuari i contrasenyes, o informació personal dels votants, es poden utilitzar per a l'autenticació amb un formulari.",
-        "spreadsheet_title": "Dades Personalitzades",
+        "spreadsheet_title": "Dades personalitzades",
         "title": "Trieu el cens",
         "token_base_description": "Utilitza un token (basat en EVM) per permetre als usuaris votar en funció de la quantitat de tokens que posseeixin.",
         "token_base_title": "Basat en token",
@@ -215,8 +210,8 @@
       "next_step": "Següent",
       "previous_step": "Anterior",
       "question": {
-        "add_new_option": "Afegir Opció",
-        "add_question": "Afegir Pregunta",
+        "add_new_option": "Afegeix opció",
+        "add_question": "Afegeix pregunta",
         "description": "Afegeix les preguntes juntament amb les opcions que els teus votants hauran de triar. Tens la flexibilitat d'afegir diverses preguntes, cadascuna amb un nombre personalitzat d'opcions seleccionables.",
         "description_placeholder": "Escriu aquí una descripció de la pregunta (opcional)",
         "option_placeholder": "Opció",
@@ -279,7 +274,6 @@
     "create_process": "Nou procés",
     "documentation": "Documentació",
     "get_more": "Obtenir-ne més",
-    "how_it_works": "Com funciona",
     "languages": "Idiomes",
     "languages_list": "",
     "login": "Iniciar sessió",
@@ -341,7 +335,7 @@
         "option": "Opció",
         "question": "Pregunta",
         "text1": "Abans de votar, reviseu que tot sigui correcte.",
-        "text2": "Recordeu que en aquest mode d'elecció, podeu corregir el vostre vot {{vote_overwrite}} vegades."
+        "text2": "Recordeu que en aquest mode d'elecció, podeu corregir el vostre vot {{ vote_overwrite }} vegades."
       }
     },
     "status": {
