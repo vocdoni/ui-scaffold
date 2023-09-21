@@ -3,7 +3,8 @@
     "has_already_voted": "Your vote is properly cast",
     "is_not_in_census": "You are not in the census",
     "not_connected": "You are not connected",
-    "overwrite_votes_left": "You can correct your vote up to {{ left }} times.",
+    "overwrite_votes_left_one": "You can correct your vote once.",
+    "overwrite_votes_left_other": "You can correct your vote up to {{ count }} times.",
     "verify_vote_on_explorer": "Verify vote on explorer",
     "votes_one": "<span>1</span> <text>vote</text>",
     "votes_other": "<span>{{ count }}</span> <text>votes</text>"
