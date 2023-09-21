@@ -96,7 +96,8 @@ const MenuDropdown = () => {
                 <Balance p={0} bg='white' fontWeight='bold' />
               </Flex>
               <Link colorScheme='primary' variant='button' p={2} href={VocdoniFaucet} target='_blank'>
-                <HiShoppingCart size={20} /> {t('menu.get_more')}
+                <Icon as={HiShoppingCart} mt={1} mr={1} />
+                {t('menu.get_more')}
               </Link>
             </Flex>
           </MenuItem>
