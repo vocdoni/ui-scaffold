@@ -129,7 +129,7 @@
     "process_create": {
       "behavior": {
         "anonymous": {
-          "description": "La identitat dels votants serà completament anonimitzada, incloent per l'organitzador. Cada votant haurà de setejar una contrasenya per garantir la confidencialitat de la seva identitat.",
+          "description": "La identitat dels votants serà completament anonimitzada, fins i tot per l'organitzador. Cada votant haurà d'establir una contrasenya per garantir la confidencialitat de la seva identitat.",
           "description_info": "",
           "title": "Anònim"
         },
