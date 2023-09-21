@@ -1,7 +1,7 @@
 {
   "aside": {
     "has_already_voted": "El teu vot s'ha registrat correctament",
-    "is_not_in_census": "No ets al cens",
+    "is_not_in_census": "No estàs en el cens",
     "not_connected": "No estàs connectat",
     "overwrite_votes_left": "Pots corregir el teu vot {{ left }} vegades.",
     "verify_vote_on_explorer": "Verifica el vot a l'explorador",
@@ -10,28 +10,28 @@
     "votes_other": "<span>{{ count }}</span> <text>vots</text>"
   },
   "banner": {
-    "start_now": "Crea ara un procés de votació!",
+    "start_now": "Crea una votació!",
     "subtitle": "Utilitza adreces web3, vota amb un token ERC20 o amb NFTs!",
-    "title": "Vota per a les DAOs i les comunitats Web3"
+    "title": "Votacions per DAOs i comunitats Web3"
   },
   "banner_voting_types": {
-    "anonymous_description": "Els vostres votants romandran completament anònims, gràcies a la tecnologia de proofs zk. La privacitat hauria de ser la norma.",
-    "anonymous_title": "Votació Anònima",
-    "flexible_description": "Adapteu el vostre procés de votació i cens: elecció única, votació quadràtica, voteu amb una llista de carteres o creeu un cens personalitzat.",
+    "anonymous_description": "La identitat dels votants serà completament confidencial, gràcies a la tecnologia zk-SNARKS.",
+    "anonymous_title": "100% Anònim",
+    "flexible_description": "Personalitza el teu procés de votació i la llista de participants per adaptar-los als requisits únics de la teva comunitat.",
     "flexible_title": "Votació Flexible",
-    "token_description": "Voteu amb tokens ERC20/ERC721 (NFT) o importeu els vostres propis tokens i voteu sense gastar gas.",
+    "token_description": "Vota amb tokens ERC20/ERC721 (NFT) o afegeix els teus propis tokens i vota sense pagar.",
     "token_title": "Votació amb Tokens"
   },
   "cc": {
     "actions": {
-      "cancel": "Cancel·la immediatament el procés, sense permetre nous vots i sense comptabilitzar resultats (precaució: no es pot desfer)",
-      "cancel_description": "cancel·lant el procés electoral \"{{ election.title.default }}\"",
+      "cancel": "Cancel·la immediatament el procés de votació, sense permetre nous vots i sense comptabilitzar resultats (precaució: no es pot desfer)",
+      "cancel_description": "cancel·lant el procés de votació \"{{ election.title.default }}\"",
       "continue": "Continua el procés immediatament, si s'ha pausat",
       "end": "Finalitza immediatament el procés, impedint que es presentin nous vots, i mostra els resultats de votació (precaució: no es pot desfer)",
-      "end_description": "finalitzant el procés electoral \"{{ election.title.default }}\"",
+      "end_description": "finalitzant el procés de votació \"{{ election.title.default }}\"",
       "error_title": "S'ha produït algun error en executar la transacció",
       "pause": "Posa el procés de votació en pausa temporalment, fins que es reprengui manualment. Mentre el procés està en pausa, els votants no poden enviar vots.",
-      "pause_description": "posant en pausa el procés electoral \"{{ election.title.default }}\"",
+      "pause_description": "posant en pausa el procés de votació \"{{ election.title.default }}\"",
       "waiting_title": "Esperant la confirmació de la transacció..."
     },
     "confirm": {
@@ -97,8 +97,9 @@
     "contact": "Contacte",
     "developer_portal": "Portal de desenvolupadors",
     "developers": "Desenvolupadors",
-    "guides": "Guies",
-    "how_we_work": "Com treballem",
+    "discord": "Discord",
+    "homepage": "Inici",
+    "repos": "Codi Obert",
     "resources": "Recursos",
     "tutorials": "Tutorials",
     "vocdoni_api": "API de Vocdoni",
@@ -107,12 +108,12 @@
   "form": {
     "account_create": {
       "description_helper": "Una breu descripció de la teva organització",
-      "description_placeholder": "Descripció (opcional)",
+      "description_placeholder": "Descripció (opcional). Accepta text en format Markdown.",
       "title_helper": "El nom de l'organització",
       "title_placeholder": "El nom de l'organització"
     },
     "edit_profile": {
-      "avatar_helper": "Imatge/Logotip de la teva organització",
+      "avatar_helper": "Imatge/logotip de la teva organització",
       "avatar_placeholder": "URL de la imatge",
       "btn": "Desar"
     },
@@ -126,44 +127,41 @@
     "process_create": {
       "behavior": {
         "anonymous": {
-          "description": "Anònim: els vots seran xifrats",
-          "description_info": "",
+          "description": "La identitat dels votants serà completament anonimitzada, incloent per a l'organitzador. Cada votant haurà d'establir una contrasenya per garantir la confidencialitat de la seva identitat.",
           "title": "Anònim"
         },
         "overwrite": {
-          "description": "Sobreescriptura del vot: Permet als votants corregir el vot un cop.",
-          "description_info": "",
+          "description": "Si està marcat, els votants tindran l'opció de corregir el seu vot un cop.",
           "title": "Sobreescriure"
         },
         "secret": {
-          "description": "Secret: Els resultats només seran accessibles després de tancar la votació.",
-          "description_info": "",
-          "title": "Secret"
+          "description": "Els resultats estaran disponibles quan el procés acabi en lloc d'estar disponibles en temps real.",
+          "title": "Secret fins al final"
         },
         "title": "Opcions"
       },
       "calendar": {
         "date_format": "PPPPpppp",
         "end_date": "Data de finalització",
-        "end_date_description": "Aquesta elecció començarà el {{ date.begin, format }} i finalitzarà el {{ date.end, format }}, amb una durada d'aproximadament {{ date, duration }}",
+        "end_date_description": "Aquesta votació començarà el {{ date.begin, format }} i finalitzarà el {{ date.end, format }}, amb una durada d'aproximadament {{ date, duration }}",
         "end_date_title_helper": "Definir la data i l'hora exactes de la conclusió.",
         "now": "Ara",
         "start_date": "Hora d'inici",
-        "start_date_description": "Especifica el període actiu per rebre vots. Selecciona 'Ara' per activar la proposta immediatament després de la publicació.",
+        "start_date_description": "Especifica el període actiu per rebre vots. Selecciona 'Ara' per activar la votació immediatament després de la publicació.",
         "start_on_a_date": "Començar en una data",
         "title": "Calendari",
         "title_description": "Especificar el període actiu per rebre vots."
       },
       "census": {
         "add_button": "Afegir",
-        "description": "Seleccioneu com autenticaran i s'identificaran els votants. Trieu entre dades personalitzades (CSV), a través de la propietat d'un token o amb adreces de cartera.",
+        "description": "Selecciona com autenticaran i s'identificaran els votants. Les opcions inclouen dades personalitzades, propietat de tokens o adreces de cartera digital (wallet addresses).",
         "max_census_slider_arialabel": "Selector de participació màxima esperada",
         "max_census_slider_label": "Participació màxima esperada:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} votants elegibles)",
-        "spreadsheet_description": "Dades personalitzades com a informació d'usuari i contrasenya o informació personal del votant.",
-        "spreadsheet_title": "CSV",
+        "spreadsheet_description": "Dades personalitzades, com ara noms d'usuari i contrasenyes, o informació personal dels votants, es poden utilitzar per a l'autenticació amb un formulari.",
+        "spreadsheet_title": "Dades personalitzades",
         "title": "Trieu el cens",
-        "token_base_description": "Utilitza un token (basat en EVM) per permetre als usuaris votar en funció de la quantitat que posseeixin.",
+        "token_base_description": "Utilitza un token (basat en EVM) per permetre als usuaris votar en funció de la quantitat de tokens que posseeixin.",
         "token_base_title": "Basat en token",
         "token_title": "Cens basat en tokens",
         "tokens_placeholder": "Seleccioneu un token",
@@ -186,7 +184,7 @@
         "dates": "Data",
         "description": "Descripció",
         "edit": "Editar",
-        "election_info": "Informació",
+        "election_info": "Informació de la Votació",
         "questions_one": "Pregunta",
         "questions_many": "Preguntes",
         "questions_other": "Preguntes",
@@ -197,14 +195,14 @@
       "confirm_spreadsheet_removal": "Estàs segur que vols canviar-ho? Fent-ho s'esborrarà el fitxer que has carregat actualment.",
       "creating_process": "Creant el procés...",
       "meta": {
-        "description": "Proporciona un títol i una descripció clars. Això ajudarà als votants a entendre el propòsit del vot.",
-        "description_helper": "Una breu descripció de la teva elecció",
+        "description": "Proporciona un títol i una descripció clars. Això ajudarà als votants a entendre el propòsit del procés de votació.",
+        "description_helper": "Una breu descripció de la teva votació",
         "description_label": "Descripció",
         "description_placeholder": "Descripció (opcional)",
-        "title": "Informació de l'elecció",
-        "title_helper": "El títol / propòsit de l'elecció",
+        "title": "Informació de la votació",
+        "title_helper": "El títol / propòsit de la votació",
         "title_label": "Títol",
-        "title_placeholder": "El títol de l'elecció"
+        "title_placeholder": "El títol de la votació"
       },
       "navbar": {
         "close_form_btn": "Tanca el formulari"
@@ -213,8 +211,8 @@
       "previous_step": "Anterior",
       "question": {
         "add_new_option": "Afegeix opció",
-        "add_question": "Afegir Pregunta",
-        "description": "Afegeix les preguntes que els teus votants hauran de triar. Pots afegir més d'una pregunta amb un nombre personalitzat d'opcions per seleccionar.",
+        "add_question": "Afegeix pregunta",
+        "description": "Afegeix les preguntes juntament amb les opcions que els teus votants hauran de triar. Tens la flexibilitat d'afegir diverses preguntes, cadascuna amb un nombre personalitzat d'opcions seleccionables.",
         "description_placeholder": "Escriu aquí una descripció de la pregunta (opcional)",
         "option_placeholder": "Opció",
         "title": "Preguntes",
@@ -256,9 +254,9 @@
         "info": "Informació",
         "questions": "Preguntes"
       },
-      "success_description": "Redirigint-te a la pàgina del procés electoral...",
-      "success_title": "Procés electoral creat amb èxit",
-      "unhealthy_account": "Has de crear una organització abans de crear la primera elecció.",
+      "success_description": "Redirigint-te a la pàgina del procés de votació...",
+      "success_title": "Procés de votació creat amb èxit",
+      "unhealthy_account": "Has de crear una organització abans de crear la primera votació.",
       "weighted": "Vot ponderat"
     }
   },
@@ -276,7 +274,6 @@
     "create_process": "Nou procés",
     "documentation": "Documentació",
     "get_more": "Obtenir-ne més",
-    "how_it_works": "Com funciona",
     "languages": "Idiomes",
     "languages_list": "",
     "login": "Iniciar sessió",
@@ -292,12 +289,12 @@
   "open_in_explorer": "Obre a l'explorador",
   "organization": {
     "avatar_alt": "Imatge d'avatar de l'organització {{ name }}",
-    "elections": "Eleccions",
+    "elections": "Votacions",
     "elections_list_empty": {
       "alt": "Imatge il·lustrant que l'organització és buida",
-      "description": "En començar fent la teva primera elecció, pots triar entre diferents tipus d'autenticació pel teu vot.",
-      "footer": "Obtén més informació sobre com crear eleccions <customLink>en aquesta guia</customLink>.",
-      "not_owner": "Aquesta organització encara no té eleccions.",
+      "description": "Com a organitzador, tens la capacitat de crear processos de votació personalitzats per a la teva comunitat. Aquests procediments de votació ofereixen una àmplia gamma de flexibilitat, incloent opcions com un cens on els votants han d'autenticar-se utilitzant dades personalitzades (com ara nom d'usuari, contrasenya i data de naixement), un sistema basat en tokens que permet la participació de tots els titulars de tokens o una llista blanca que utilitza adreces de cartera per a l'eligibilitat.",
+      "footer": "Obtén més informació sobre com crear votacions <customLink>en aquesta guia</customLink>.",
+      "not_owner": "Aquesta organització encara no té votacions.",
       "title": "Crea la teva primera elecció"
     },
     "name_long": "<strong>{{ name }}</strong> ({{ address }})",
@@ -337,8 +334,7 @@
       "confirm": {
         "option": "Opció",
         "question": "Pregunta",
-        "text1": "Abans de votar, reviseu que tot sigui correcte.",
-        "text2": "Recordeu que en aquest mode d'elecció, podeu corregir el vostre vot X vegades."
+        "text1": "Abans de votar, reviseu que tot sigui correcte."
       }
     },
     "status": {

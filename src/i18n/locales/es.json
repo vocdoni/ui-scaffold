@@ -10,28 +10,28 @@
     "votes_other": "<span>{{ count }}</span> <text>votos</text>"
   },
   "banner": {
-    "start_now": "¡Crea un proceso de votación ahora!",
-    "subtitle": "Usa direcciones de cartera, vota con un token ERC20 o con NFTs",
-    "title": "¡Votando por DAOs y comunidades Web3!"
+    "start_now": "¡Crea una votación ahora!",
+    "subtitle": "Usa direcciones de cartera, vota con un token ERC20 o con NFTs!",
+    "title": "Votaciones para DAOs y comunidades Web3"
   },
   "banner_voting_types": {
-    "anonymous_description": "Tus votantes serán completamente anónimos, gracias a la tecnología de pruebas zk. La privacidad debería ser lo normal.",
-    "anonymous_title": "Votación Anónima",
-    "flexible_description": "Ajusta tu proceso de votación y censo: elección única, votación cuadrática, vota con una lista de carteras o crea un censo personalizado.",
+    "anonymous_description": "La identidad de los votantes permanece completamente confidencial, gracias a la tecnología zk-SNARKS.",
+    "anonymous_title": "100% Anónimo",
+    "flexible_description": "Personaliza tu proceso de votación y censo para satisfacer los requisitos únicos de tu comunidad.",
     "flexible_title": "Votación Flexible",
-    "token_description": "Vota con tokens ERC20/ERC721 (NFT) o importa tus propios tokens y vota sin gastar gas.",
+    "token_description": "Vota con tokens ERC20/ERC721 (NFT) o agrega tus propios tokens y vota sin coste de gas con ellos.",
     "token_title": "Votación con Tokens"
   },
   "cc": {
     "actions": {
       "cancel": "Cancelar el proceso inmediatamente, sin permitir nuevos votos y sin contar ningún resultado (precaución: no puede revertirse)",
-      "cancel_description": "cancelando el proceso electoral \"{{ election.title.default }}\"",
+      "cancel_description": "cancelando el proceso de votación \"{{ election.title.default }}\"",
       "continue": "Reanudar el proceso inmediatamente, en caso de que se haya pausado",
       "end": "Finalizar el proceso inmediatamente, impidiendo que se presenten nuevos votos, y muestra los resultados de la votación (precaución: no puede revertirse)",
-      "end_description": "finalizando el proceso electoral \"{{ election.title.default }}\"",
+      "end_description": "finalizando el proceso de votación \"{{ election.title.default }}\"",
       "error_title": "Hubo algún error al ejecutar la transacción",
       "pause": "Pausar el proceso de votación temporalmente, hasta que se reanude manualmente. Mientras el proceso está en pausa, los votantes no pueden enviar votos.",
-      "pause_description": "pausando el proceso electoral \"{{ election.title.default }}\"",
+      "pause_description": "pausando el proceso de votación \"{{ election.title.default }}\"",
       "waiting_title": "Esperando la confirmación de la transacción..."
     },
     "confirm": {
@@ -97,8 +97,9 @@
     "contact": "Contacto",
     "developer_portal": "Portal para desarrolladores",
     "developers": "Desarrolladores",
-    "guides": "Guías",
-    "how_we_work": "Cómo trabajamos",
+    "discord": "Discord",
+    "homepage": "Inicio",
+    "repos": "Código abierto",
     "resources": "Recursos",
     "tutorials": "Tutoriales",
     "vocdoni_api": "API de Vocdoni",
@@ -107,12 +108,12 @@
   "form": {
     "account_create": {
       "description_helper": "Una breve descripción de tu organización",
-      "description_placeholder": "Descripción (opcional)",
+      "description_placeholder": "Descripción (opcional). Acepta texto en formato Markdown.",
       "title_helper": "El nombre de la organización",
       "title_placeholder": "El nombre de la organización"
     },
     "edit_profile": {
-      "avatar_helper": "Imagen/Logotipo de tu organización",
+      "avatar_helper": "Imagen/logotipo de tu organización",
       "avatar_placeholder": "URL de la imagen",
       "btn": "Guardar"
     },
@@ -126,19 +127,16 @@
     "process_create": {
       "behavior": {
         "anonymous": {
-          "description": "Anónimo: los votos serán encriptados",
-          "description_info": "",
+          "description": "La identidad de los votantes será completamente anonimizada, incluyendo para el organizador. Cada votante deberá establecer una contraseña para garantizar la confidencialidad de su identidad.",
           "title": "Anónimo"
         },
         "overwrite": {
-          "description": "Sobrescribir voto: Permitir a los votantes corregir el voto una vez.",
-          "description_info": "",
+          "description": "Si se selecciona, los votantes tendrán la opción de corregir su voto una vez.",
           "title": "Sobrescribir voto"
         },
         "secret": {
-          "description": "Secreto: Los resultados estarán disponibles solo después de que se cierre la votación.",
-          "description_info": "",
-          "title": "Secreto"
+          "description": "Los resultados estarán disponibles cuando termine el proceso en lugar de estar disponibles en tiempo real.",
+          "title": "Secreto hasta el final"
         },
         "title": "Opciones"
       },
@@ -149,26 +147,26 @@
         "end_date_title_helper": "Definir la fecha y hora exactas de conclusión. ",
         "now": "Ahora",
         "start_date": "Hora de inicio",
-        "start_date_description": "Especifique el período activo para recibir votos. Seleccione 'Ahora' para hacer que la propuesta sea inmediatamente activa después de publicarla.",
+        "start_date_description": "Define el período activo para recibir votos. Si seleccionas \"Ahora\", la propuesta estará activa inmediatamente después de publicarla.",
         "start_on_a_date": "Comenzar en una fecha",
         "title": "Calendario",
         "title_description": "Especificar el período activo para recibir votos."
       },
       "census": {
         "add_button": "Añadir",
-        "description": "Selecciona cómo se autenticarán e identificarán los votantes. Elije entre datos personalizados (CSV), por poseer un token o por direcciones de carteras.",
+        "description": "Selecciona cómo los votantes se autenticarán e identificarán: las opciones incluyen datos personalizados, la propiedad de tokens o con direcciones de monedero (wallet addresses).",
         "max_census_slider_arialabel": "Selector deslizante de participación máxima esperada",
         "max_census_slider_label": "Participación máxima esperada:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} votantes elegibles)",
-        "spreadsheet_description": "Datos personalizados como usuario y contraseña o información personal del votante.",
-        "spreadsheet_title": "CSV",
-        "title": "Elige tu censo",
-        "token_base_description": "Usa un token (basado en EVM) para permitir a los usuarios votar en función de la cantidad que poseen.",
+        "spreadsheet_description": "Datos personalizados, como nombres de usuario y contraseñas, o información personal de los votantes, pueden utilizarse para la autenticación mediante un formulario.",
+        "spreadsheet_title": "Datos personalizados",
+        "title": "Censo",
+        "token_base_description": "Utiliza un token (basado en EVM) para permitir a los usuarios votar en función de la cantidad que poseen.",
         "token_base_title": "Basado en tokens",
         "token_title": "Censo basado en tokens",
         "tokens_placeholder": "Selecciona un token",
-        "wallet_address_description": "Identifica a tus votantes por sus direcciones de cartera.",
-        "wallet_address_title": "Direcciones de cartera"
+        "wallet_address_description": "Identifica a tus votantes por sus direcciones de monedero digital.",
+        "wallet_address_title": "Direcciones de monedero"
       },
       "confirm": {
         "anonymous": "Anónimo",
@@ -186,7 +184,7 @@
         "dates": "Fecha",
         "description": "Descripción",
         "edit": "Editar",
-        "election_info": "Información",
+        "election_info": "Información de Votación",
         "questions_one": "Pregunta",
         "questions_many": "Preguntas",
         "questions_other": "Preguntas",
@@ -202,9 +200,9 @@
         "description_label": "Descripción",
         "description_placeholder": "Descripción (opcional)",
         "title": "Información de la votación",
-        "title_helper": "El título / propósito de la votación",
+        "title_helper": "Título / propósito del proceso de votación",
         "title_label": "Título",
-        "title_placeholder": "El título de la votación"
+        "title_placeholder": "Título del proceso de votación"
       },
       "navbar": {
         "close_form_btn": "Cerrar formulario"
@@ -213,12 +211,12 @@
       "previous_step": "Anterior",
       "question": {
         "add_new_option": "Añadir opción",
-        "add_question": "Agregar Pregunta",
-        "description": "Añade las preguntas que tus votantes deberán elegir. Puedes agregar más de una pregunta con un número personalizado de opciones para seleccionar.",
+        "add_question": "Añadir pregunta",
+        "description": "Agrega las preguntas junto con las opciones que tus votantes deberán elegir. Tienes la flexibilidad de agregar varias preguntas, cada una con un número personalizado de opciones seleccionables.",
         "description_placeholder": "Escribe aquí una descripción de la pregunta",
         "option_placeholder": "Opción",
         "title": "Preguntas",
-        "title_placeholder": "El título de tu pregunta..."
+        "title_placeholder": "Título de tu pregunta"
       },
       "question_delete": "Eliminar pregunta {{ num }}",
       "question_identifier": "Pregunta {{ num }}",
@@ -256,16 +254,16 @@
         "info": "Info",
         "questions": "Preguntas"
       },
-      "success_description": "Redirigiéndote a la página del proceso electoral...",
-      "success_title": "Proceso electoral creado con éxito",
-      "unhealthy_account": "Necesitas crear una organización antes de crear la primera votación.",
+      "success_description": "Redirigiéndote a la página del proceso de votación...",
+      "success_title": "Proceso de votación creado con éxito",
+      "unhealthy_account": "Debes crear una organización antes de crear la primera votación.",
       "weighted": "Voto ponderado"
     }
   },
   "link": {
-    "discord": "Enlace al discord de Vocdoni",
-    "github": "Enlace al github de Vocdoni",
-    "twitter": "Enlace al twitter de Vocdoni"
+    "discord": "Enlace al Discord de Vocdoni",
+    "github": "Enlace al Github de Vocdoni",
+    "twitter": "Enlace al Twitter de Vocdoni"
   },
   "loading": "Cargando...",
   "menu": {
@@ -276,7 +274,6 @@
     "create_process": "Nuevo proceso",
     "documentation": "Documentación",
     "get_more": "Obtener más",
-    "how_it_works": "Cómo funciona",
     "languages": "Idiomas",
     "languages_list": "",
     "login": "Iniciar sesión",
@@ -295,10 +292,10 @@
     "elections": "Elecciones",
     "elections_list_empty": {
       "alt": "Imagen que ilustra que la organización está vacía",
-      "description": "Al comenzar haciendo tu primera elección, puedes elegir entre diferentes tipos de autenticación para tu voto.",
-      "footer": "Obtén más información sobre cómo crear elecciones <customLink>en esta guía</customLink>.",
-      "not_owner": "Esta organización aún no tiene elecciones.",
-      "title": "Crea tu primera elección"
+      "description": "Al comenzar haciendo tu primera votación, puedes elegir entre diferentes tipos de autenticación para tu voto.",
+      "footer": "Obtén más información sobre cómo crear una votación <customLink>en esta guía</customLink>.",
+      "not_owner": "Esta organización aún no tiene votaciones.",
+      "title": "Crea tu primer proceso de votación"
     },
     "name_long": "<strong>{{ name }}</strong> ({{ address }})",
     "title": {
@@ -322,7 +319,7 @@
       "starts": "Empieza"
     },
     "is_anonymous": {
-      "description": "Los votos son encriptados",
+      "description": "Identidad 100% anonimizada",
       "title": "Anónimo"
     },
     "is_invalid": "Este proceso tiene datos no válidos y no se puede cargar",
@@ -337,8 +334,7 @@
       "confirm": {
         "option": "Opción",
         "question": "Pregunta",
-        "text1": "Antes de emitir tu voto, revisa que todo esté correcto.",
-        "text2": "Recuerda que en este modo de elección, puedes corregir tu voto X veces."
+        "text1": "Antes de emitir tu voto, revisa que todo esté correcto."
       }
     },
     "status": {
