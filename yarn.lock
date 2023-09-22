@@ -2540,10 +2540,10 @@
     "@babel/plugin-transform-react-jsx-source" "^7.22.5"
     react-refresh "^0.14.0"
 
-"@vocdoni/chakra-components@^0.5.13":
-  version "0.5.13"
-  resolved "https://registry.yarnpkg.com/@vocdoni/chakra-components/-/chakra-components-0.5.13.tgz#0bd9314423c6b38f203ca06be94744e76cbaaf08"
-  integrity sha512-nvNQsDDhTovcsk6H3sAUfKd+I2kENupa32ffkbxFXt5lNqFiHQaW9sg7uSQe/YreSS0uIVJljpts0kxGqXLhgA==
+"@vocdoni/chakra-components@^0.5.14":
+  version "0.5.14"
+  resolved "https://registry.yarnpkg.com/@vocdoni/chakra-components/-/chakra-components-0.5.14.tgz#63ca3e1cdf9e94ad8883b1539659066087141412"
+  integrity sha512-6VngTWo1QyK4AUaSpFVGYVBaQ9tgWO4p35+AoG1ZpxXG1Bl7XGBZkoEbeFHBJuiLQrm/UhTtRJ4elz+tyBFCLA==
   dependencies:
     "@vocdoni/react-providers" "0.1.9"
 
