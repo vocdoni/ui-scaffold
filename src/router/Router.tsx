@@ -14,6 +14,7 @@ const Home = lazy(() => import('../elements/Home'))
 const NotFound = lazy(() => import('../elements/NotFound'))
 const Organization = lazy(() => import('../elements/Organization'))
 const Process = lazy(() => import('../elements/Process'))
+const Faucet = lazy(() => import('../elements/Faucet'))
 
 export const RoutesProvider = () => {
   const { client } = useClient()
@@ -49,6 +50,14 @@ export const RoutesProvider = () => {
             }
             loader={async ({ params }) => client.fetchAccountInfo(params.address)}
             errorElement={<Error />}
+          />
+          <Route
+            path='faucet'
+            element={
+              <SuspenseLoader>
+                <Faucet />
+              </SuspenseLoader>
+            }
           />
           <Route
             path='*'
