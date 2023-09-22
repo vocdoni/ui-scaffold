@@ -14,7 +14,7 @@ export const useFaucet = () => {
       window.location.hash
     }`
 
-    const response = await fetch(`${import.meta.env.VITE_FAUCET_URL}/oauth/authUrl/${provider}`, {
+    const response = await fetch(`${import.meta.env.FAUCET_URL}/oauth/authUrl/${provider}`, {
       method: 'POST',
       body: JSON.stringify({
         redirectURL,
@@ -30,7 +30,7 @@ export const useFaucet = () => {
     code: string,
     recipient: string
   ): Promise<{ amount: string; faucetPackage: string }> => {
-    const response = await fetch(`${import.meta.env.VITE_FAUCET_URL}/oauth/claim/${provider}/${code}/${recipient}`)
+    const response = await fetch(`${import.meta.env.FAUCET_URL}/oauth/claim/${provider}/${code}/${recipient}`)
     const res = await response.json()
     if (!res.ok) throw new Error(res.reason)
     return res.data

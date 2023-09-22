@@ -92,6 +92,19 @@
     "return_to_home": "Ves al inicio"
   },
   "error_text": "Lo sentimos, no se encontró la página que buscabas.",
+  "faucet": {
+    "description": "Para desarrollar con Vocdoni, necesitas tokens para ciertas acciones (crear una elección, cambiar el estado de una elección, etc.). El número de diferentes factores como el tamaño del censo, la duración de la elección, los parámetros de la elección, etc.",
+    "general_information": {
+      "description": "Cuando solicites tokens de desarrollo, recibirás 250 tokens. Puedes reclamar desde el faucet una vez cada 24 horas.",
+      "description2": "Si necesitas más tokens para desarrollar sobre la plataforma de Vocdoni, puedes ponerte en contacto con nosotros en tokens (at) vocdoni.io",
+      "title": "Información General"
+    },
+    "request_tokens": {
+      "description": "Para evitar el uso indebido del faucet, debes conectar tu billetera web3 e iniciar sesión. Solicitamos acceso de solo lectura.",
+      "title": "Solicitar Tokens"
+    },
+    "title": "Faucet de Tokens Vocdoni"
+  },
   "footer": {
     "about": "Acerca de",
     "blog": "Blog",
@@ -113,6 +126,14 @@
       "description_placeholder": "Descripción (opcional). Acepta texto en formato Markdown.",
       "title_helper": "El nombre de la organización",
       "title_placeholder": "El nombre de la organización"
+    },
+    "claim": {
+      "error_description": "",
+      "error_title": "",
+      "loading_description": "",
+      "loading_title": "",
+      "success_description": "",
+      "success_title": ""
     },
     "edit_profile": {
       "avatar_helper": "Imagen/logotipo de tu organización",
@@ -371,6 +392,7 @@
     "creation_steps_title": "Progreso",
     "do_not_close": "Esta acción puede llevar algún tiempo, no cierres esta ventana"
   },
+  "Sign In with Github": "",
   "uploader": {
     "click_or_drag_and_drop": "<p1>Sube o arrastra y suelta aqui la lista de votantes</p1><p2>(Formap permitidos: CSV, XLSX y ODS)</p2>",
     "drop_here": "Suelta aqui"
