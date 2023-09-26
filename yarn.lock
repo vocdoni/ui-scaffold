@@ -2540,12 +2540,12 @@
     "@babel/plugin-transform-react-jsx-source" "^7.22.5"
     react-refresh "^0.14.0"
 
-"@vocdoni/chakra-components@^0.5.13":
-  version "0.5.13"
-  resolved "https://registry.yarnpkg.com/@vocdoni/chakra-components/-/chakra-components-0.5.13.tgz#0bd9314423c6b38f203ca06be94744e76cbaaf08"
-  integrity sha512-nvNQsDDhTovcsk6H3sAUfKd+I2kENupa32ffkbxFXt5lNqFiHQaW9sg7uSQe/YreSS0uIVJljpts0kxGqXLhgA==
+"@vocdoni/chakra-components@^0.5.15":
+  version "0.5.15"
+  resolved "https://registry.yarnpkg.com/@vocdoni/chakra-components/-/chakra-components-0.5.15.tgz#55c17d7764552761126c15e1922965f4ad22d3aa"
+  integrity sha512-EFd1B4tosEX+r0VEXsAsyE2uquqVjCe2krVPQACeo83BCiUkzsuGPdq1TF/zwyv59aHXv5XW05kOsBC/7BJ9Gg==
   dependencies:
-    "@vocdoni/react-providers" "0.1.9"
+    "@vocdoni/react-providers" "0.1.10"
 
 "@vocdoni/proto@1.15.3":
   version "1.15.3"
@@ -2560,10 +2560,10 @@
   resolved "https://registry.yarnpkg.com/@vocdoni/rainbowkit-wallets/-/rainbowkit-wallets-0.1.8.tgz#a35559ab5e079ce0acc8a2e02d01abcbed73442a"
   integrity sha512-kaAXAMO/ht0z2Z2wZJjyGQtETB21k9nbEPu89ElcHyzgWDCwZuoRi525qdhNqRKx4WWKJP/Zhun/0jT3eq7PVg==
 
-"@vocdoni/react-providers@0.1.9":
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.1.9.tgz#3f322c17d52940bb883958e67db3dc09d2b5e20a"
-  integrity sha512-epEG6kiCHmI9S+lS6T8q9u+qmmgi5r0LZx3tVPDddQFKRy7Du5IDlgz1Ma9PJF95qrqX5mPHp9o78iCtSFE+bQ==
+"@vocdoni/react-providers@0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.1.10.tgz#6ea6561c45027af2d605e896dd67c9c1699a0e3f"
+  integrity sha512-/qZ+XCmW5WBYUSWqLCWGFLHtwyYibR3YaRKJS6cEEg+q2XUNSsPzGNiYW5cmUZVRlifzwEHmHuPWXmo5AzkN/A==
   dependencies:
     "@vocdoni/sdk" "^0.3.1"
 

@@ -50,7 +50,7 @@ export const CreationProgress = ({ error, sending, step }: CreationProgressProps
       </Heading>
       <List spacing={3}>
         {Object.keys(labels).map((key) => (
-          <ListItem>
+          <ListItem key={key}>
             <ListIcon
               as={steps[key as keyof CreationStepsState] ? AiFillCheckCircle : AiFillCloseCircle}
               fontSize={22}
