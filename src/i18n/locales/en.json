@@ -90,6 +90,19 @@
     "return_to_home": "Go to home"
   },
   "error_text": "Sorry, the page you were looking for was not found",
+  "faucet": {
+    "description": "For developing with Vocdoni, you need tokens for certain actions (create an election, change election status, etc.). The nº of  different factors lik census size, election duration, election params, etc.",
+    "general_information": {
+      "description": "When you request dev tokens, you'll receive 250 tokens. You can claim from the faucet once every 24 hours.",
+      "description2": "If you need more tokens for developing on top of the Vocdoni stack, you can connect with us at tokens (at) vocdoni.io",
+      "title": "General Information"
+    },
+    "request_tokens": {
+      "description": "To prevent faucet botting, you must connect your web3 wallet and sign in. We request read-only access.",
+      "title": "Request Tokens"
+    },
+    "title": "Vocdoni Tokens Faucet"
+  },
   "footer": {
     "about": "About",
     "blog": "Blog",
@@ -111,6 +124,14 @@
       "description_placeholder": "Description (optional). Accepts Markdown text.",
       "title_helper": "The organization name",
       "title_placeholder": "The organization name"
+    },
+    "claim": {
+      "error_description": "",
+      "error_title": "",
+      "loading_description": "",
+      "loading_title": "",
+      "success_description": "",
+      "success_title": ""
     },
     "edit_profile": {
       "avatar_helper": "Image/logo of your organization",
@@ -369,6 +390,7 @@
     "creation_steps_title": "Progress",
     "do_not_close": "This action can take some time, don't close this window"
   },
+  "Sign In with Github": "",
   "uploader": {
     "click_or_drag_and_drop": "<p1>Upload or drag and drop the voter list here</p1><p2>(Allowed formats: CSV, XLSX, and ODS)</p2>",
     "drop_here": "Drop here"

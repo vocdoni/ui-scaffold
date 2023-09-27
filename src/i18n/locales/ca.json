@@ -92,6 +92,19 @@
     "return_to_home": "Ves a l'inici"
   },
   "error_text": "Ho sentim, no s'ha trobat la pàgina que busqueu",
+  "faucet": {
+    "description": "Per desenvolupar amb Vocdoni, necessites tokens per a certes accions (crear una elecció, canviar l'estat d'una elecció, etc.). El nombre de diferents factors com la mida del cens, la durada de l'elecció, els paràmetres de l'elecció, etc.",
+    "general_information": {
+      "description": "Quan sol·licites tokens de desenvolupament, rebràs 250 tokens. Pots reclamar des del faucet una vegada cada 24 hores.",
+      "description2": "Si necessites més tokens per desenvolupar sobre la plataforma de Vocdoni, pots posar-te en contacte amb nosaltres a tokens (at) vocdoni.io",
+      "title": "Informació General"
+    },
+    "request_tokens": {
+      "description": "Per evitar l'ús indegut del faucet, has de connectar la teva cartera web3 i iniciar sessió. Sol·licitem accés de només lectura.",
+      "title": "Sol·licitar Tokens"
+    },
+    "title": "Faucet de Tokens Vocdoni"
+  },
   "footer": {
     "about": "Sobre nosaltres",
     "blog": "Blog",
@@ -113,6 +126,14 @@
       "description_placeholder": "Descripció (opcional). Accepta text en format Markdown.",
       "title_helper": "El nom de l'organització",
       "title_placeholder": "El nom de l'organització"
+    },
+    "claim": {
+      "error_description": "",
+      "error_title": "",
+      "loading_description": "",
+      "loading_title": "",
+      "success_description": "",
+      "success_title": ""
     },
     "edit_profile": {
       "avatar_helper": "Imatge/logotip de la teva organització",
@@ -375,6 +396,7 @@
     "creation_steps_title": "Progrés",
     "do_not_close": "Aquesta acció pot trigar una estona, no tanquis aquesta finestra"
   },
+  "Sign In with Github": "",
   "uploader": {
     "click_or_drag_and_drop": "<p1>Puja o arrossega i deixa anar aquí la llista de votants</p1><p2>(Formats permesos: CSV, XLSX i ODS)</p2>",
     "drop_here": "Deixa anar aquí"
