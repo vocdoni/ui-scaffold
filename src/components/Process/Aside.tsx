@@ -1,9 +1,9 @@
 import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { CensusMeta } from '@components/ProcessCreate/Steps/Confirm'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { SpreadsheetAccess, VoteButton, environment } from '@vocdoni/chakra-components'
+import { environment, SpreadsheetAccess, VoteButton } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
-import { ElectionStatus, PublishedElection, dotobject } from '@vocdoni/sdk'
+import { dotobject, ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
@@ -83,7 +83,7 @@ const ProcessAside = ({ ...props }) => {
               </Box>
             )}
             {hasOverwriteEnabled(election) && isInCensus && votesLeft > 0 && voted && (
-              <Text textAlign='center'>{t('aside.overwrite_votes_left', { left: votesLeft })}</Text>
+              <Text textAlign='center'>{t('aside.overwrite_votes_left', { count: votesLeft })}</Text>
             )}
           </Flex>
         )}
