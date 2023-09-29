@@ -3,16 +3,24 @@ import { useClient } from '@vocdoni/react-providers'
 export const useFaucet = () => {
   const { connected, signer } = useClient()
 
-  const oAuthSignInURL = async (provider: string): Promise<string> => {
+  const oAuthSignInURL = async (
+    provider: string,
+    redirectURLParams?: { param: string; value: any }[]
+  ): Promise<string> => {
     if (!connected) throw new Error('Wallet not connected')
 
     const params: URLSearchParams = new URLSearchParams()
-
     params.append('provider', provider)
     params.append('recipient', await signer.getAddress())
-    const redirectURL: string = `${window.location.origin}${window.location.pathname}?${params.toString()}${
+    if (redirectURLParams) {
+      for (var p of redirectURLParams) {
+        params.append(p.param, p.value)
+      }
+    }
+
+    const redirectURL: string = `${window.location.origin}${window.location.pathname}${
       window.location.hash
-    }`
+    }?${params.toString()}`
 
     const response = await fetch(`${import.meta.env.FAUCET_URL}/oauth/authUrl/${provider}`, {
       method: 'POST',

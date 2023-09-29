@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
-import { useClient } from '@vocdoni/react-providers'
-import { useFaucet } from './use-faucet'
 import { Button, Flex, Icon, useToast } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa'
+import { useClient } from '@vocdoni/react-providers'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { FaGithub } from 'react-icons/fa'
+import { useFaucet } from './use-faucet'
 
 export const Claim = () => {
   const { client, connected, account, loading: accoutLoading, loaded: accoutLoaded } = useClient()
@@ -20,18 +20,26 @@ export const Claim = () => {
     if (!client.wallet) return
     if (accoutLoading.account || pendingClaim) return // If it's loading, we know it's not ready yet
     if (!accoutLoaded.account) return // We need the account to be loaded (final status)
-
     setPendingClaim(true)
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [client, accoutLoading])
 
   useEffect(() => {
     if (!pendingClaim) return
-    const params: URLSearchParams = new URLSearchParams(window.location.search)
-    const provider: string | null = params.get('provider')
-    const code: string | null = params.get('code')
-    const recipient: string | null = params.get('recipient')
+    const searchParams: URLSearchParams = new URLSearchParams(window.location.search)
+
+    const hash = window.location.hash
+    const hashWithoutHashSign = hash.slice(1)
+    const [route, queryString] = hashWithoutHashSign.split('?')
+    const hashParams: URLSearchParams = new URLSearchParams(queryString)
+
+    const provider: string | null = searchParams.get('provider')
+      ? searchParams.get('provider')
+      : hashParams.get('provider')
+    const code: string | null = searchParams.get('code') ? searchParams.get('code') : hashParams.get('code')
+    const recipient: string | null = searchParams.get('recipient')
+      ? searchParams.get('recipient')
+      : hashParams.get('recipient')
     if (!code || !provider || !recipient) return
 
     claimTokens(provider, code, recipient)
@@ -40,7 +48,7 @@ export const Claim = () => {
   const handleSignIn = async (provider: string) => {
     setLoading(true)
     try {
-      window.location.href = await oAuthSignInURL(provider)
+      window.location.href = await oAuthSignInURL(provider, [{ param: 'loadDraft', value: 1 }])
     } catch (error) {
       console.log(error)
     }

@@ -1,6 +1,6 @@
 import { Stepper } from '@chakra-ui/react'
 import type { RecursivePartial } from '@constants'
-import { PropsWithChildren, useState } from 'react'
+import { PropsWithChildren, useEffect, useState } from 'react'
 import { StepContents } from './Contents'
 import { StepsContext, StepsContextState, StepsFormValues } from './use-steps'
 
@@ -19,12 +19,32 @@ export const StepsForm = ({ steps, children, activeStep, next, prev, setActiveSt
     questions: [{ options: [{}, {}] }],
     addresses: [],
   })
+
+  useEffect(() => {
+    const hash = window.location.hash
+    const hashWithoutHashSign = hash.slice(1)
+    const [route, queryString] = hashWithoutHashSign.split('?')
+    if (new URLSearchParams(queryString).get('loadDraft')) {
+      const localForm = localStorage.getItem('form-draft')
+      if (localForm) {
+        setForm(JSON.parse(localForm))
+        setActiveStep(parseInt(localStorage.getItem('form-draft-step') || '0'))
+      }
+    }
+  }, [])
+
+  const setFormInStateAndLocalstorage = async (data: StepsFormValues) => {
+    setForm(data)
+    localStorage.setItem('form-draft', JSON.stringify(data))
+    localStorage.setItem('form-draft-step', (activeStep + 1).toString())
+  }
+
   const value: StepsContextState = {
     activeStep,
     form: form as StepsFormValues,
     next,
     prev,
-    setForm,
+    setForm: setFormInStateAndLocalstorage,
     steps,
     setActiveStep,
   }

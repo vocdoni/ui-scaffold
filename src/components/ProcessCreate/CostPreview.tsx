@@ -1,10 +1,9 @@
-import { Flex, Link, Spinner, Text } from '@chakra-ui/react'
-import { VocdoniFaucet } from '@constants'
+import { Flex, Spinner, Text } from '@chakra-ui/react'
+import { Claim } from '@components/Faucet/Claim'
 import { useClient } from '@vocdoni/react-providers'
 import { UnpublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { HiShoppingCart } from 'react-icons/hi'
 
 export const CostPreview = ({
   unpublished,
@@ -46,9 +45,8 @@ export const CostPreview = ({
       {cost > account!.balance && (
         <Flex color='orange' direction='column'>
           <Text>{t('form.process_create.confirm.not_enough_tokens')}</Text>
-          <Link variant='button' colorScheme='primary' alignSelf='self-start' target='_blank' href={VocdoniFaucet}>
-            <HiShoppingCart size={20} /> {t('form.process_create.confirm.get_more_tokens')}
-          </Link>
+          <Text>{t('faucet.request_tokens.description')}</Text>
+          <Claim />
         </Flex>
       )}
     </Flex>
