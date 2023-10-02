@@ -6,11 +6,21 @@ import { ErrorType, SpreadsheetManager } from './SpreadsheetManager'
 const WeightColPosition = 1
 
 export class CensusSpreadsheetManager extends SpreadsheetManager {
-  public readonly weighted: boolean
+  public weighted: boolean
 
   constructor(file: File, headed: boolean = true, weighted: boolean = false) {
     super(file, headed)
     this.weighted = weighted
+  }
+
+  public loadFromStorage(manager: string | InstanceType<typeof CensusSpreadsheetManager>) {
+    let mi = typeof manager === 'string' ? JSON.parse(manager) : manager
+
+    this.heading = mi.heading
+    this.filedata = mi.filedata
+    this.file = new File([], mi.file.path)
+    this.headed = mi.headed
+    this.weighted = mi.weighted
   }
 
   public validateDataIntegrity(): void {

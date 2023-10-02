@@ -1,5 +1,4 @@
 import { Button, Flex, Icon, useToast } from '@chakra-ui/react'
-import { urlParam } from '@constants'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useClient } from '@vocdoni/react-providers'
 import { useEffect, useState } from 'react'
@@ -8,7 +7,7 @@ import { FaGithub } from 'react-icons/fa'
 import { useFaucet } from './use-faucet'
 
 export const Claim = () => {
-  const { client, connected, account, loading: accoutLoading, loaded: accoutLoaded } = useClient()
+  const { client, connected, account, loading: accoutLoading, loaded: accoutLoaded, fetchBalance } = useClient()
 
   const toast = useToast()
   const { t } = useTranslation()
@@ -27,9 +26,10 @@ export const Claim = () => {
 
   useEffect(() => {
     if (!pendingClaim) return
-    const provider: string | null = urlParam('provider')
-    const code: string | null = urlParam('code')
-    const recipient: string | null = urlParam('recipient')
+    const url = new URL(window.location.href)
+    const provider: string | null = url.searchParams.get('provider')
+    const code: string | null = url.searchParams.get('code')
+    const recipient: string | null = url.searchParams.get('recipient')
 
     if (!code || !provider || !recipient) return
 
@@ -39,7 +39,7 @@ export const Claim = () => {
   const handleSignIn = async (provider: string) => {
     setLoading(true)
     try {
-      window.location.href = await oAuthSignInURL(provider, [{ param: 'loadDraft', value: 1 }])
+      window.location.href = await oAuthSignInURL(provider, [{ param: 'loadDraft', value: '' }])
     } catch (error) {
       console.error('could not generate OAuth signin URL', error)
     }
@@ -55,10 +55,10 @@ export const Claim = () => {
     })
 
     try {
-      // Get the faucet receipt
+      // get the faucet receipt
       const { faucetPackage } = await faucetReceipt(provider, code, recipient)
 
-      // Claim the tokens with the SDK
+      // claim the tokens with the SDK
       if (typeof account !== 'undefined') {
         await client.collectFaucetTokens(faucetPackage)
       } else {
@@ -72,6 +72,13 @@ export const Claim = () => {
         status: 'success',
         duration: 4000,
       })
+
+      // cleanup params from url
+      const url = new URL(window.location.href)
+      window.history.replaceState({}, '', `/${url.hash}`)
+
+      // and update stored balance
+      await fetchBalance()
     } catch (error) {
       console.error('could not claim faucet package:', error)
       toast.close(loadingToast)

@@ -101,6 +101,12 @@ export const Confirm = () => {
         status: 'success',
         duration: 4000,
       })
+
+      // clear draft data from storage
+      localStorage.removeItem('form-draft')
+      localStorage.removeItem('form-draft-step')
+
+      // redirect (with delay to allow the user to see the success toast)
       setTimeout(() => navigate(`/processes/${ensure0x(pid)}`), 3000)
     } catch (err: any) {
       setError(errorToString(err))

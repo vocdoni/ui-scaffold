@@ -9,23 +9,19 @@ export const useFaucet = () => {
   ): Promise<string> => {
     if (!connected) throw new Error('Wallet not connected')
 
-    const params: URLSearchParams = new URLSearchParams()
-    params.append('provider', provider)
-    params.append('recipient', await signer.getAddress())
+    const redirectURL = new URL(window.location.href)
+    redirectURL.searchParams.append('provider', provider)
+    redirectURL.searchParams.append('recipient', await signer.getAddress())
     if (redirectURLParams) {
       for (const p of redirectURLParams) {
-        params.append(p.param, p.value)
+        redirectURL.searchParams.append(p.param, p.value)
       }
     }
-
-    const redirectURL: string = `${window.location.origin}${window.location.pathname}${
-      window.location.hash
-    }?${params.toString()}`
 
     const response = await fetch(`${import.meta.env.FAUCET_URL}/oauth/authUrl/${provider}`, {
       method: 'POST',
       body: JSON.stringify({
-        redirectURL,
+        redirectURL: redirectURL.toString(),
       }),
     })
     const res = await response.json()
