@@ -71,6 +71,23 @@ export const addressTextOverflow = (address: string, length: number | null = 4) 
 }
 
 /**
+ * Allows you to access params defined either as query string or as hash params.
+ *
+ * @param param Param to be searched in the URL
+ * @returns Expected value or undefined
+ */
+export const urlParam = (param: string) => {
+  const search: URLSearchParams = new URLSearchParams(window.location.search)
+
+  const hash = window.location.hash
+  const nohash = hash.slice(1)
+  const [route, queryString] = nohash.split('?')
+  const hparams: URLSearchParams = new URLSearchParams(queryString)
+
+  return search.get(param) ?? hparams.get(param)
+}
+
+/**
  * RecursivePartial is quite self-explanatory.. it's a recursive Partial type
  */
 export type RecursivePartial<T> = {

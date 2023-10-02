@@ -1,4 +1,5 @@
 import { Button, Flex, Icon, useToast } from '@chakra-ui/react'
+import { urlParam } from '@constants'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useClient } from '@vocdoni/react-providers'
 import { useEffect, useState } from 'react'
@@ -26,20 +27,10 @@ export const Claim = () => {
 
   useEffect(() => {
     if (!pendingClaim) return
-    const searchParams: URLSearchParams = new URLSearchParams(window.location.search)
+    const provider: string | null = urlParam('provider')
+    const code: string | null = urlParam('code')
+    const recipient: string | null = urlParam('recipient')
 
-    const hash = window.location.hash
-    const hashWithoutHashSign = hash.slice(1)
-    const [route, queryString] = hashWithoutHashSign.split('?')
-    const hashParams: URLSearchParams = new URLSearchParams(queryString)
-
-    const provider: string | null = searchParams.get('provider')
-      ? searchParams.get('provider')
-      : hashParams.get('provider')
-    const code: string | null = searchParams.get('code') ? searchParams.get('code') : hashParams.get('code')
-    const recipient: string | null = searchParams.get('recipient')
-      ? searchParams.get('recipient')
-      : hashParams.get('recipient')
     if (!code || !provider || !recipient) return
 
     claimTokens(provider, code, recipient)
