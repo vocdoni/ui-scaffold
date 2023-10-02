@@ -115,10 +115,14 @@ export const Confirm = () => {
   useEffect(() => {
     if (typeof unpublished !== 'undefined') return
     ;(async () => {
+      const census = await getCensus(env, form, account!.address)
       setUnpublished(
         Election.from({
           ...corelection,
-          census: await getCensus(env, form, account!.address),
+          census,
+          // oroboros... getCensus ensures form.addresses is populated, that's why we need to set it again
+          // this could be avoided by defining corelection asynchronusly, but would delay the rendering
+          maxCensusSize: form.maxCensusSize ?? form.addresses.length,
         } as IElectionParameters)
       )
     })()
