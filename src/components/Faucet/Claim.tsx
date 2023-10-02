@@ -41,7 +41,7 @@ export const Claim = () => {
     try {
       window.location.href = await oAuthSignInURL(provider, [{ param: 'loadDraft', value: 1 }])
     } catch (error) {
-      console.log(error)
+      console.error('could not generate OAuth signin URL', error)
     }
     setLoading(false)
   }
@@ -73,7 +73,7 @@ export const Claim = () => {
         duration: 4000,
       })
     } catch (error) {
-      console.log(error)
+      console.error('could not claim faucet package:', error)
       toast.close(loadingToast)
       toast({
         title: t('form.claim.error_title'),
@@ -93,16 +93,8 @@ export const Claim = () => {
         <Flex direction='row' gap='2'>
           <Button type='submit' isLoading={loading} colorScheme='purple' onClick={() => handleSignIn('github')}>
             <Icon mr={2} as={FaGithub} />
-            {t('Sign In with Github')}
+            {t('login.github')}
           </Button>
-          {/* <Button type='submit' isLoading={loading} colorScheme='blackAlpha' onClick={() => handleSignIn('google')}>
-            <Icon mr={2} as={FaGoogle} />
-            {t('Sign In with Google')}
-          </Button>
-          <Button type='submit' isLoading={loading} colorScheme='facebook' onClick={() => handleSignIn('facebook')}>
-            <Icon mr={2} as={FaFacebook} />
-            {t('Sign In with Facebook')}
-          </Button> */}
         </Flex>
       )}
 

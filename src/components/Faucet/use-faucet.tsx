@@ -13,7 +13,7 @@ export const useFaucet = () => {
     params.append('provider', provider)
     params.append('recipient', await signer.getAddress())
     if (redirectURLParams) {
-      for (var p of redirectURLParams) {
+      for (const p of redirectURLParams) {
         params.append(p.param, p.value)
       }
     }

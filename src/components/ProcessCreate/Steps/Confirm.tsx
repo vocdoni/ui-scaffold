@@ -22,6 +22,7 @@ import {
   Election,
   ElectionCreationSteps,
   ElectionStatus,
+  ensure0x,
   EnvOptions,
   IElectionParameters,
   IPublishedElectionParameters,
@@ -31,7 +32,6 @@ import {
   UnpublishedElection,
   VocdoniCensus3Client,
   WeightedCensus,
-  ensure0x,
 } from '@vocdoni/sdk'
 import { useEffect, useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'

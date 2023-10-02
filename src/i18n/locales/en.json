@@ -207,7 +207,6 @@
         "description": "Description",
         "edit": "Edit",
         "election_info": "Voting Info",
-        "get_more_tokens": "Get VOC tokens",
         "not_enough_tokens": "You don't have enough tokens to create this process, please get some",
         "questions_one": "Question",
         "questions_other": "Questions",
@@ -288,6 +287,9 @@
     "twitter": "Link to Vocdoni's twitter"
   },
   "loading": "Loading...",
+  "login": {
+    "github": "Sign in with Github"
+  },
   "menu": {
     "burger_aria_label": "user menu",
     "connect": "Connect",
@@ -390,7 +392,6 @@
     "creation_steps_title": "Progress",
     "do_not_close": "This action can take some time, don't close this window"
   },
-  "Sign In with Github": "",
   "uploader": {
     "click_or_drag_and_drop": "<p1>Upload or drag and drop the voter list here</p1><p2>(Allowed formats: CSV, XLSX, and ODS)</p2>",
     "drop_here": "Drop here"

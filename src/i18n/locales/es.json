@@ -210,7 +210,6 @@
         "description": "Descripción",
         "edit": "Editar",
         "election_info": "Información de Votación",
-        "get_more_tokens": "Obtener más VOC tokens",
         "not_enough_tokens": "No tienes suficientes tokens para crear este proceso, por favor, obten algunos más",
         "questions_one": "Pregunta",
         "questions_many": "Preguntas",
@@ -293,6 +292,9 @@
     "twitter": "Enlace al Twitter de Vocdoni"
   },
   "loading": "Cargando...",
+  "login": {
+    "github": "Iniciar sesión con Github"
+  },
   "menu": {
     "burger_aria_label": "menú de usuario",
     "connect": "Conectar",
@@ -396,7 +398,6 @@
     "creation_steps_title": "Progreso",
     "do_not_close": "Esta acción puede llevar algún tiempo, no cierres esta ventana"
   },
-  "Sign In with Github": "",
   "uploader": {
     "click_or_drag_and_drop": "<p1>Sube o arrastra y suelta aqui la lista de votantes</p1><p2>(Formap permitidos: CSV, XLSX y ODS)</p2>",
     "drop_here": "Suelta aqui"

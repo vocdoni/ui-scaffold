@@ -210,7 +210,6 @@
         "description": "Descripció",
         "edit": "Editar",
         "election_info": "Informació de la Votació",
-        "get_more_tokens": "Obtingues més VOC tokens",
         "not_enough_tokens": "No tens prou tokens per a crear aquest procès, si et plau, aconsegueix-ne alguns més",
         "questions_one": "Pregunta",
         "questions_many": "Preguntes",
@@ -293,6 +292,9 @@
     "twitter": "Enllaç al Twitter de Vocdoni"
   },
   "loading": "Carregant...",
+  "login": {
+    "github": "Inicia sessió amb Github"
+  },
   "menu": {
     "burger_aria_label": "menú d'usuari",
     "connect": "Connectar",
@@ -396,7 +398,6 @@
     "creation_steps_title": "Progrés",
     "do_not_close": "Aquesta acció pot trigar una estona, no tanquis aquesta finestra"
   },
-  "Sign In with Github": "",
   "uploader": {
     "click_or_drag_and_drop": "<p1>Puja o arrossega i deixa anar aquí la llista de votants</p1><p2>(Formats permesos: CSV, XLSX i ODS)</p2>",
     "drop_here": "Deixa anar aquí"
