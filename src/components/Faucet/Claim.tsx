@@ -7,7 +7,7 @@ import { FaGithub } from 'react-icons/fa'
 import { useFaucet } from './use-faucet'
 
 export const Claim = () => {
-  const { client, connected, account, loading: accoutLoading, loaded: accoutLoaded, fetchBalance } = useClient()
+  const { client, connected, account, loading: accoutLoading, loaded: accoutLoaded, fetchAccount } = useClient()
 
   const toast = useToast()
   const { t } = useTranslation()
@@ -34,6 +34,7 @@ export const Claim = () => {
     if (!code || !provider || !recipient) return
 
     claimTokens(provider, code, recipient)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pendingClaim])
 
   const handleSignIn = async (provider: string) => {
@@ -78,7 +79,7 @@ export const Claim = () => {
       window.history.replaceState({}, '', `/${url.hash}`)
 
       // and update stored balance
-      await fetchBalance()
+      await fetchAccount()
     } catch (error) {
       console.error('could not claim faucet package:', error)
       toast.close(loadingToast)
