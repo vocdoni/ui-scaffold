@@ -1,6 +1,6 @@
 import { Button, Flex, Icon, useToast } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { useClient } from '@vocdoni/react-providers'
+import { errorToString, useClient } from '@vocdoni/react-providers'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaGithub } from 'react-icons/fa'
@@ -49,10 +49,11 @@ export const Claim = () => {
 
   const claimTokens = async (provider: string, code: string, recipient: string) => {
     setLoading(true)
-    const loadingToast = toast({
-      title: t('form.claim.loading_title'),
-      description: t('form.claim.loading_description'),
+    const tloading = toast({
+      title: t('claim.loading_title'),
+      description: t('claim.loading_description'),
       status: 'loading',
+      duration: null,
     })
 
     try {
@@ -66,12 +67,12 @@ export const Claim = () => {
         await client.createAccount({ faucetPackage })
       }
 
-      toast.close(loadingToast)
+      toast.close(tloading)
       toast({
-        title: t('form.claim.success_title'),
-        description: t('form.claim.success_description'),
+        title: t('claim.success_title'),
+        description: t('claim.success_description'),
         status: 'success',
-        duration: 4000,
+        duration: 6000,
       })
 
       // cleanup params from url
@@ -81,13 +82,14 @@ export const Claim = () => {
       // and update stored balance
       await fetchAccount()
     } catch (error) {
+      toast.close(tloading)
       console.error('could not claim faucet package:', error)
-      toast.close(loadingToast)
       toast({
-        title: t('form.claim.error_title'),
-        description: t('form.claim.error_description'),
+        title: t('claim.error_title'),
+        description: errorToString(error),
         status: 'error',
-        duration: 4000,
+        duration: 6000,
+        isClosable: true,
       })
     }
 

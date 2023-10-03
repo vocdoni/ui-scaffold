@@ -78,6 +78,13 @@
       "voted_title": "¡Tu voto se ha registrado con éxito!"
     }
   },
+  "claim": {
+    "error_title": "Error",
+    "loading_description": "Por favor espera mientras se reclaman los tokens",
+    "loading_title": "Reclamando",
+    "success_description": "Éxito",
+    "success_title": "Los tokens han sido reclamados correctamente"
+  },
   "copy": {
     "address": "Copiar dirección",
     "copied_title": "¡Copiado!"
@@ -126,14 +133,6 @@
       "description_placeholder": "Descripción (opcional). Acepta texto en formato Markdown.",
       "title_helper": "El nombre de la organización",
       "title_placeholder": "El nombre de la organización"
-    },
-    "claim": {
-      "error_description": "",
-      "error_title": "",
-      "loading_description": "",
-      "loading_title": "",
-      "success_description": "",
-      "success_title": ""
     },
     "edit_profile": {
       "avatar_helper": "Imagen/logotipo de tu organización",

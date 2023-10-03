@@ -76,6 +76,13 @@
       "voted_title": "Your vote was successfully cast!"
     }
   },
+  "claim": {
+    "error_title": "Error",
+    "loading_description": "Please wait while tokens are being claimed",
+    "loading_title": "Claiming",
+    "success_description": "Success",
+    "success_title": "Tokens were successfully claimed"
+  },
   "copy": {
     "address": "Copy address",
     "copied_title": "Copied!"
@@ -124,14 +131,6 @@
       "description_placeholder": "Description (optional). Accepts Markdown text.",
       "title_helper": "The organization name",
       "title_placeholder": "The organization name"
-    },
-    "claim": {
-      "error_description": "",
-      "error_title": "",
-      "loading_description": "",
-      "loading_title": "",
-      "success_description": "",
-      "success_title": ""
     },
     "edit_profile": {
       "avatar_helper": "Image/logo of your organization",

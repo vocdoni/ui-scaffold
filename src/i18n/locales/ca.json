@@ -78,6 +78,13 @@
       "voted_title": "El teu vot s'ha registrat amb èxit!"
     }
   },
+  "claim": {
+    "error_title": "Error",
+    "loading_description": "Si us plau, espera mentre els tokens s'estan reclamant",
+    "loading_title": "Reclamant",
+    "success_description": "Èxit",
+    "success_title": "Els tokens s'han reclamat amb èxit"
+  },
   "copy": {
     "address": "Copia l'adreça",
     "copied_title": "Copiat!"
@@ -126,14 +133,6 @@
       "description_placeholder": "Descripció (opcional). Accepta text en format Markdown.",
       "title_helper": "El nom de l'organització",
       "title_placeholder": "El nom de l'organització"
-    },
-    "claim": {
-      "error_description": "",
-      "error_title": "",
-      "loading_description": "",
-      "loading_title": "",
-      "success_description": "",
-      "success_title": ""
     },
     "edit_profile": {
       "avatar_helper": "Imatge/logotip de la teva organització",
