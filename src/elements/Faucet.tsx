@@ -38,10 +38,14 @@ const Faucet = () => {
                 {t('faucet.general_information.title')}
               </Heading>
               <Text variant='p' mb={5} mt={5}>
-                {t('faucet.general_information.description')}
+                {t('faucet.general_information.description', {
+                  amount: import.meta.env.FAUCET_AMOUNT,
+                })}
               </Text>
               <Text variant='p' mb={10}>
-                {t('faucet.general_information.description2')}
+                {t('faucet.general_information.description2', {
+                  amount: import.meta.env.FAUCET_AMOUNT,
+                })}
               </Text>
             </CardBody>
           </Card>

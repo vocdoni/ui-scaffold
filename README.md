@@ -15,6 +15,7 @@ there, here's a list of variables you can use:
 - `BASE_URL` is used to specify the public base page during build.
 - `BUILD_PATH` Specifies the destination of built files.
 - `FAUCET_URL` Specifies the faucet api url to be used (defaults to `https://api.faucet.vocdoni.net/v2`).
+- `FAUCET_AMOUNT` The amount given in the faucet, to change it in visible places (defaults to `800`)
 
 You can also start the app by prefixing these vars instead of defining your
 custom `.env` file:
