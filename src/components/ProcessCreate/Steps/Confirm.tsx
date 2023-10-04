@@ -29,16 +29,18 @@ import {
   IQuestion,
   PlainCensus,
   PublishedElection,
+  UnpublishedElection,
   VocdoniCensus3Client,
   WeightedCensus,
   ensure0x,
 } from '@vocdoni/sdk'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { CensusType } from '../Census/TypeSelector'
 import Preview from '../Confirm/Preview'
+import { CostPreview } from '../CostPreview'
 import { CreationProgress, Steps } from '../CreationProgress'
 import { Web3Address } from '../StepForm/CensusWeb3'
 import { Option } from '../StepForm/Questions'
@@ -55,6 +57,8 @@ export const Confirm = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [sending, setSending] = useState<boolean>(false)
   const [step, setStep] = useState<Steps>()
+  const [disabled, setDisabled] = useState<boolean>(false)
+  const [unpublished, setUnpublished] = useState<UnpublishedElection | undefined>()
 
   const methods = useForm({
     defaultValues: {
@@ -74,7 +78,7 @@ export const Confirm = () => {
     setSending(true)
     setError(null)
     try {
-      const census = await getCensus(env as EnvOptions, form, account!.address)
+      const census = await getCensus(env, form, account!.address)
       const params: IElectionParameters = {
         ...electionFromForm(form),
         census,
@@ -99,6 +103,12 @@ export const Confirm = () => {
         status: 'success',
         duration: 4000,
       })
+
+      // clear draft data from storage
+      localStorage.removeItem('form-draft')
+      localStorage.removeItem('form-draft-step')
+
+      // redirect (with delay to allow the user to see the success toast)
       setTimeout(() => navigate(`/processes/${ensure0x(pid)}`), 3000)
     } catch (err: any) {
       setError(errorToString(err))
@@ -107,19 +117,33 @@ export const Confirm = () => {
       setSending(false)
     }
   }
+  const corelection = useMemo(() => electionFromForm(form), [account?.address, form])
+
+  // fetches census for unpublished elections
+  useEffect(() => {
+    if (typeof unpublished !== 'undefined') return
+    ;(async () => {
+      const census = await getCensus(env, form, account!.address)
+      setUnpublished(
+        Election.from({
+          ...corelection,
+          census,
+          // oroboros... getCensus ensures form.addresses is populated, that's why we need to set it again
+          // this could be avoided by defining corelection asynchronusly, but would delay the rendering
+          maxCensusSize: form.maxCensusSize ?? form.addresses.length,
+        } as IElectionParameters)
+      )
+    })()
+  }, [corelection])
 
   // preview (fake) mapping
-  const unpublished = useMemo(
-    () =>
-      PublishedElection.build({
-        ...electionFromForm(form),
-        organizationId: account?.address as string,
-        status: ElectionStatus.PROCESS_UNKNOWN,
-        // needs to be redefined in order to set it when set as autoStart
-        startDate: form.electionType.autoStart ? new Date().getTime() : new Date(form.startDate).getTime(),
-      } as unknown as IPublishedElectionParameters),
-    [account?.address, form]
-  )
+  const published = PublishedElection.build({
+    ...corelection,
+    status: ElectionStatus.PROCESS_UNKNOWN,
+    organizationId: account?.address as string,
+    // needs to be redefined in order to set it when set as autoStart
+    startDate: form.electionType.autoStart ? new Date().getTime() : new Date(form.startDate).getTime(),
+  } as unknown as IPublishedElectionParameters)
 
   return (
     <Wrapper>
@@ -127,82 +151,74 @@ export const Confirm = () => {
         {t('form.process_create.confirm.title')}
       </Text>
       <Text mb={4}>{t('form.process_create.confirm.description')}</Text>
-      <ElectionProvider election={unpublished}>
-        <Flex flexDirection={{ base: 'column', xl2: 'row' }} gap={{ xl2: 5 }}>
+      <ElectionProvider election={published}>
+        <Flex flexDirection={{ base: 'column', xl2: 'row' }} gap={5}>
           <Preview />
           <Box flex={{ xl2: '0 0 25%' }}>
-            <Box mb={6}>
-              <Text fontWeight='bold' fontSize='md' px={2} mb={2}>
-                {t('form.process_create.confirm.cost_preview')}
-              </Text>
-              <Box p={{ base: 2, md: 5, xl: 10 }} bgColor='process_create.section' borderRadius='lg'>
-                COST PREVIEW
-              </Box>
-            </Box>
+            <CostPreview unpublished={unpublished} disable={setDisabled} />
+
             <FormProvider {...methods}>
               <Box>
-                <Text fontWeight='bold' fontSize='md' px={2} mb={2}>
+                <Text fontWeight='bold' px={2} mb={2}>
                   {t('form.process_create.confirm.confirmation')}
                 </Text>
                 <Flex
                   as='form'
                   id='process-create-form'
-                  flexDirection={{ base: 'column', md: 'row' }}
-                  gap={{ base: 2, md: 0 }}
-                  p={{ base: 2, md: 5, xl: 10 }}
-                  bgColor='process_create.section'
-                  borderRadius='lg'
                   onSubmit={handleSubmit(onSubmit)}
+                  flexDirection='column'
+                  gap={4}
+                  bgColor='process_create.section'
+                  borderRadius='md'
+                  p={{ base: 3, xl: 6 }}
                 >
-                  <Flex flexDirection='column' gap={6}>
-                    <FormControl
-                      isInvalid={!!errors.infoValid}
-                      sx={{
-                        '& label': {
-                          display: 'flex',
-                          alignItems: { xl2: 'start' },
+                  <FormControl
+                    isInvalid={!!errors.infoValid}
+                    sx={{
+                      '& label': {
+                        display: 'flex',
+                        alignItems: { xl2: 'start' },
 
-                          '& span:first-of-type': {
-                            mt: { xl2: 1.5 },
-                          },
+                        '& span:first-of-type': {
+                          mt: { xl2: 1.5 },
                         },
-                      }}
-                    >
-                      <Checkbox {...register('infoValid', { required: true })}>
-                        {t('form.process_create.confirm.confirmation_valid_info')}
-                      </Checkbox>
-                      <FormErrorMessage>
-                        <Text ml={6}>{t('form.error.field_is_required')}</Text>
-                      </FormErrorMessage>
-                    </FormControl>
-                    <FormControl
-                      isInvalid={!!errors.termsAndConditions}
-                      sx={{
-                        '& label': {
-                          display: 'flex',
-                          alignItems: { xl2: 'start' },
+                      },
+                    }}
+                  >
+                    <Checkbox {...register('infoValid', { required: true })}>
+                      {t('form.process_create.confirm.confirmation_valid_info')}
+                    </Checkbox>
+                    <FormErrorMessage>
+                      <Text ml={6}>{t('form.error.field_is_required')}</Text>
+                    </FormErrorMessage>
+                  </FormControl>
+                  <FormControl
+                    isInvalid={!!errors.termsAndConditions}
+                    sx={{
+                      '& label': {
+                        display: 'flex',
+                        alignItems: { xl2: 'start' },
 
-                          '& span:first-of-type': {
-                            mt: { xl2: 1.5 },
-                          },
+                        '& span:first-of-type': {
+                          mt: { xl2: 1.5 },
                         },
-                      }}
-                    >
-                      <Checkbox {...register('termsAndConditions', { required: true })}>
-                        <Trans
-                          i18nKey='form.process_create.confirm.confirmation_terms_and_conditions'
-                          components={{
-                            link: (
-                              <Link variant='primary' href='https://aragon.org/terms-and-conditions' target='_blank' />
-                            ),
-                          }}
-                        />
-                      </Checkbox>
-                      <FormErrorMessage>
-                        <Text ml={6}>{t('form.error.field_is_required')}</Text>
-                      </FormErrorMessage>
-                    </FormControl>
-                  </Flex>
+                      },
+                    }}
+                  >
+                    <Checkbox {...register('termsAndConditions', { required: true })}>
+                      <Trans
+                        i18nKey='form.process_create.confirm.confirmation_terms_and_conditions'
+                        components={{
+                          link: (
+                            <Link variant='primary' href='https://aragon.org/terms-and-conditions' target='_blank' />
+                          ),
+                        }}
+                      />
+                    </Checkbox>
+                    <FormErrorMessage>
+                      <Text ml={6}>{t('form.error.field_is_required')}</Text>
+                    </FormErrorMessage>
+                  </FormControl>
                 </Flex>
               </Box>
             </FormProvider>
@@ -314,6 +330,7 @@ const electionFromForm = (form: StepsFormValues) => {
           })),
         } as IQuestion)
     ),
+    maxCensusSize: form.maxCensusSize ?? form.addresses.length,
     startDate: form.electionType.autoStart ? undefined : new Date(form.startDate).getTime(),
     endDate: new Date(form.endDate).getTime(),
     voteType: { maxVoteOverwrites: Number(form.maxVoteOverwrites) },

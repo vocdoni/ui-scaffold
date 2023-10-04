@@ -162,10 +162,6 @@ export const CensusWeb3Addresses = () => {
                 borderColor='process_create.wallet_addresses_border'
                 w='full'
                 p={5}
-                bgColor={
-                  '0x' + account?.address === (address as any).address ? 'process_create.census.web3_owner_label' : ''
-                }
-                color={'0x' + account?.address === (address as any).address ? 'white' : 'black'}
               >
                 <Text fontWeight='bold'>{index + 1}</Text>
                 <Text>{addressTextOverflow((address as any).address, value)}</Text>
@@ -181,7 +177,9 @@ export const CensusWeb3Addresses = () => {
               </Flex>
             ))}
           </Flex>
-
+          <Text color='process_create.description' fontSize='sm' mb={1}>
+            {t('form.process_create.web3.your_wallet_is_added')}
+          </Text>
           <Flex gap={1}>
             <Trans
               i18nKey='form.process_create.web3.census_members'

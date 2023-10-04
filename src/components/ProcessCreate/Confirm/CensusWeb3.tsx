@@ -1,5 +1,5 @@
 import { Flex, ListItem, Text, UnorderedList, useBreakpointValue } from '@chakra-ui/react'
-import { addressTextOverflow, CensusPreviewRowsLimit } from '@constants'
+import { CensusPreviewRowsLimit, addressTextOverflow } from '@constants'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useProcessCreationSteps } from '../Steps/use-steps'

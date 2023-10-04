@@ -38,7 +38,12 @@ const baseStyle = definePartsStyle({
   },
   question: {
     bgColor: 'process_create.bg',
+    borderRadius: 'md',
     mb: 5,
+
+    '& > div': {
+      p: 2,
+    },
     '&:last-of-type': {
       mb: 0,
     },

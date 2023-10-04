@@ -84,6 +84,13 @@
     "token_title": "Token based census",
     "wallet_address_title": "Wallet addresses"
   },
+  "claim": {
+    "error_title": "Error",
+    "loading_description": "Please wait while tokens are being claimed",
+    "loading_title": "Claiming",
+    "success_description": "Success",
+    "success_title": "Tokens were successfully claimed"
+  },
   "copy": {
     "address": "Copy address",
     "copied_title": "Copied!"
@@ -98,6 +105,20 @@
     "return_to_home": "Go to home"
   },
   "error_text": "Sorry, the page you were looking for was not found",
+  "faucet": {
+    "description": "For developing with Vocdoni, you need tokens for certain actions (create an election, change election status, etc.). The nº of  different factors lik census size, election duration, election params, etc.",
+    "general_information": {
+      "description": "When you request dev tokens, you'll receive 250 tokens. You can claim from the faucet once every 24 hours.",
+      "description2": "If you need more tokens for developing on top of the Vocdoni stack, you can connect with us at tokens (at) vocdoni.io",
+      "title": "General Information"
+    },
+    "request_tokens": {
+      "description_one": "You own {{ count }} token. You don't have enough tokens for creating the process. To get more, you must sign-in with a social account (to prevent missuse of the faucet). We only request read access.",
+      "description_other": "You own {{ count }} tokens. You don't have enough tokens for creating the process. To get more, you must sign-in with a social account (to prevent missuse of the faucet). We only request read access.",
+      "title": "Request Tokens"
+    },
+    "title": "Vocdoni Tokens Faucet"
+  },
   "footer": {
     "about": "About",
     "blog": "Blog",
@@ -177,6 +198,8 @@
         "anonymous": "Anonymous",
         "census": "Census",
         "census_preview_is_shortened": "(preview list is limited to {{ limit }} results)",
+        "census_total_one": "<span>Voters:</span><span>{{ count }} voter</span>",
+        "census_total_other": "<span>Voters:</span><span>{{ count }} voters</span>",
         "census_total_people_one": "A single person will be elegible for voting in this process",
         "census_total_people_other": "{{ count }} people will be elegible for voting in this process",
         "close": "Close",
@@ -184,18 +207,23 @@
         "confirmation": "Confirmation",
         "confirmation_terms_and_conditions": "I accept the <link>Terms and Conditions</link> of Vocdoni",
         "confirmation_valid_info": "I assure that this information is correct and valid",
-        "cost_preview": "Cost preview",
+        "cost_description": "Based on diferent parameters, like the census size, election duration and it's behaivour you will see here the price of yor election.",
+        "cost_title": "Election Price Breakdown",
         "create_button": "Create",
         "dates": "Dates",
         "description": "In this page, you can review all the information is correct and edit it in case of something wrong. Also, you can check the cost of the voting process and purchase more credits in case you don't own enough.",
         "description_election": "Description",
+        "duration_total": "<span>Duration:</span> <span>{{ date, duration }}</span>",
         "edit": "Edit",
-        "election_info": "Election Info",
+        "election_info": "Voting Info",
+        "params": "<span>Params:</span><span>Anonymous</span>",
         "questions_one": "Question",
         "questions_other": "Questions",
         "secret_until_the_end": "Secret until the end",
         "title": "Voting preview and costs",
         "title_election": "Title",
+        "total_one": "<span>Total:</span> <span>{{ count }} token</span>",
+        "total_other": "<span>Total:</span> <span>{{ count }} tokens</span>",
         "vote_overwritte": "Vote overwritte"
       },
       "confirm_spreadsheet_removal": "Are you sure? Take in mind that the uploaded file will be removed",
@@ -264,7 +292,8 @@
       "unhealthy_account": "You need to create an organization before creating the first voting process.",
       "web3": {
         "census_members_one": "<span>1 member</span> <text> in the census</text>",
-        "census_members_other": "<span>{{ count }} members</span> <text> in the census</text>"
+        "census_members_other": "<span>{{ count }} members</span> <text> in the census</text>",
+        "your_wallet_is_added": "Your wallet address was automatically added into the census. You can remove it if you want."
       },
       "weighted": "Weighted vote"
     }
@@ -275,6 +304,9 @@
     "twitter": "Link to Vocdoni's twitter"
   },
   "loading": "Loading...",
+  "login": {
+    "github": "Sign in with Github"
+  },
   "menu": {
     "burger_aria_label": "user menu",
     "connect": "Connect",

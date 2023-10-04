@@ -54,7 +54,7 @@ export const Census = () => {
             ))}
           </TabList>
 
-          <TabPanels bgColor='process_create.section' borderRadius='xl'>
+          <TabPanels bgColor='process_create.section' borderRadius='md'>
             {list.map((ct: CensusType, index: number) => (
               <TabPanel key={index}>{details[ct].component()}</TabPanel>
             ))}

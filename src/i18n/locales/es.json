@@ -86,6 +86,13 @@
     "token_title": "Censo basado en tokens",
     "wallet_address_title": "Direcciones de billetera"
   },
+  "claim": {
+    "error_title": "Error",
+    "loading_description": "Por favor espera mientras se reclaman los tokens",
+    "loading_title": "Reclamando",
+    "success_description": "Éxito",
+    "success_title": "Los tokens han sido reclamados correctamente"
+  },
   "copy": {
     "address": "Copiar dirección",
     "copied_title": "¡Copiado!"
@@ -100,6 +107,21 @@
     "return_to_home": "Ves al inicio"
   },
   "error_text": "Lo sentimos, no se encontró la página que buscabas.",
+  "faucet": {
+    "description": "Para desarrollar con Vocdoni, necesitas tokens para ciertas acciones (crear una elección, cambiar el estado de una elección, etc.). El número de diferentes factores como el tamaño del censo, la duración de la elección, los parámetros de la elección, etc.",
+    "general_information": {
+      "description": "Cuando solicites tokens de desarrollo, recibirás 250 tokens. Puedes reclamar desde el faucet una vez cada 24 horas.",
+      "description2": "Si necesitas más tokens para desarrollar sobre la plataforma de Vocdoni, puedes ponerte en contacto con nosotros en tokens (at) vocdoni.io",
+      "title": "Información General"
+    },
+    "request_tokens": {
+      "description_one": "Tienes {{ count }} token. No tienes suficientes tokens para crear el proceso. Para obtener más, debes iniciar sesión con una cuenta social (para evitar el mal uso del grifo). Solo solicitamos acceso de lectura.",
+      "description_many": "",
+      "description_other": "Tienes {{ count }} tokens. No tienes suficientes tokens para crear el proceso. Para obtener más, debes iniciar sesión con una cuenta social (para evitar el mal uso del grifo). Solo solicitamos acceso de lectura.",
+      "title": "Solicitar Tokens"
+    },
+    "title": "Faucet de Tokens Vocdoni"
+  },
   "footer": {
     "about": "Acerca de",
     "blog": "Blog",
@@ -179,6 +201,9 @@
         "anonymous": "Anónimo",
         "census": "Censo",
         "census_preview_is_shortened": "(la lista previa está limitada a {{ limit }} resultados)",
+        "census_total_one": "<span>Votantes:</span><span>{{ count }} votante</span>",
+        "census_total_many": "",
+        "census_total_other": "<span>Votantes:</span><span>{{ count }} votantes</span>",
         "census_total_people_one": "Una persona podrá votar en esta votación",
         "census_total_people_many": "{{ count }} personas podrán votar en esta votación",
         "census_total_people_other": "",
@@ -187,19 +212,25 @@
         "confirmation": "Confirmación",
         "confirmation_terms_and_conditions": "Acepto los <link>términos y condiciones</link> de Vocdoni",
         "confirmation_valid_info": "Confirmo que esta información es correcta y válida",
-        "cost_preview": "Vista previa de costos",
+        "cost_description": "",
+        "cost_title": "Previsión de coste",
         "create_button": "Crear",
         "dates": "Fecha",
         "description": "En esta página, puedes revisar que toda la información sea correcta y editarla en caso de que haya algún error. También puedes verificar el costo del proceso de votación y comprar más créditos en caso de que no tengas suficientes.",
         "description_election": "Descripción",
+        "duration_total": "<span>Duración:</span> <span>{{ date, duration }}</span>",
         "edit": "Editar",
         "election_info": "Información de Votación",
+        "params": "<span>Parámetros:</span><span>Anónimo</span>",
         "questions_one": "Pregunta",
         "questions_many": "Preguntas",
         "questions_other": "Preguntas",
         "secret_until_the_end": "Secreto hasta el final",
         "title": "Vista previa y costos de votación",
         "title_election": "Título",
+        "total_one": "<span>Total:</span> <span>{{ count }} token</span>",
+        "total_many": "",
+        "total_other": "<span>Total:</span> <span>{{ count }} tokens</span>",
         "vote_overwritte": "Sobrescribir voto"
       },
       "confirm_spreadsheet_removal": "Seguro? Piensa que al hacerlo se eliminará el fichero que has cargado.",
@@ -270,7 +301,8 @@
       "web3": {
         "census_members_one": "<span>1 miembro</span> <text> en el censo</text>",
         "census_members_many": "",
-        "census_members_other": "<span>{{ count }} miembros</span> <text> en el censo</text>"
+        "census_members_other": "<span>{{ count }} miembros</span> <text> en el censo</text>",
+        "your_wallet_is_added": "Tu dirección de billetera se ha añadido automáticamente al censo. Puedes eliminarla si lo deseas."
       },
       "weighted": "Voto ponderado"
     }
@@ -281,6 +313,9 @@
     "twitter": "Enlace al Twitter de Vocdoni"
   },
   "loading": "Cargando...",
+  "login": {
+    "github": "Iniciar sesión con Github"
+  },
   "menu": {
     "burger_aria_label": "menú de usuario",
     "connect": "Conectar",
