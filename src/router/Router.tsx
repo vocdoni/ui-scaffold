@@ -2,6 +2,7 @@ import { useClient } from '@vocdoni/react-providers'
 import { lazy } from 'react'
 import { createHashRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
 // These aren't lazy loaded to avoid excessive loaders in different locations
+import { VocdoniEnvironment } from '@constants'
 import Error from '@elements/Error'
 import Layout from '../elements/Layout'
 import LayoutProcessCreate from '../elements/LayoutProcessCreate'
@@ -14,6 +15,7 @@ const Home = lazy(() => import('../elements/Home'))
 const NotFound = lazy(() => import('../elements/NotFound'))
 const Organization = lazy(() => import('../elements/Organization'))
 const Process = lazy(() => import('../elements/Process'))
+const Faucet = lazy(() => import('../elements/Faucet'))
 
 export const RoutesProvider = () => {
   const { client } = useClient()
@@ -50,6 +52,16 @@ export const RoutesProvider = () => {
             loader={async ({ params }) => client.fetchAccountInfo(params.address)}
             errorElement={<Error />}
           />
+          {VocdoniEnvironment === 'stg' && (
+            <Route
+              path='faucet'
+              element={
+                <SuspenseLoader>
+                  <Faucet />
+                </SuspenseLoader>
+              }
+            />
+          )}
           <Route
             path='*'
             element={

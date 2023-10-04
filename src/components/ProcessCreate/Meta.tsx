@@ -45,7 +45,6 @@ const CreateProcessMeta = () => {
             <Textarea
               {...register('description')}
               placeholder={t('form.process_create.meta.description_placeholder').toString()}
-              variant='outline'
             />
             <FormErrorMessage>{fieldMapErrorMessage(errors, `description`)}</FormErrorMessage>
           </FormControl>

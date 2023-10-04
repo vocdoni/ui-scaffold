@@ -1,4 +1,5 @@
 import { Box, Checkbox, Flex, Icon, Text } from '@chakra-ui/react'
+import { ChangeEvent } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { BiCheckDouble } from 'react-icons/bi'
@@ -7,7 +8,28 @@ import { HiKey } from 'react-icons/hi2'
 
 const SettingsAdvanced = () => {
   const { t } = useTranslation()
-  const { register } = useFormContext()
+  const { register, watch, setValue } = useFormContext()
+
+  const anonymous = watch('electionType.anonymous')
+  const voteOverwrite = watch('maxVoteOverwrites')
+
+  const handleAnonymousChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const isChecked = e.target.checked
+    setValue('electionType.anonymous', isChecked)
+
+    if (isChecked) {
+      setValue('maxVoteOverwrites', false)
+    }
+  }
+
+  const handleVoteOverwriteChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const isChecked = e.target.checked
+    setValue('maxVoteOverwrites', isChecked)
+
+    if (isChecked) {
+      setValue('electionType.anonymous', false)
+    }
+  }
 
   return (
     <Box>
@@ -17,7 +39,7 @@ const SettingsAdvanced = () => {
         </Text>
       </Box>
       <Flex gap={5} flexDirection={{ base: 'column', md: 'row' }} justifyContent='space-between'>
-        <Checkbox {...register('electionType.anonymous')} variant='radiobox' flex='0 0 30%'>
+        <Checkbox isChecked={anonymous} onChange={handleAnonymousChange} variant='radiobox' flex='0 0 30%'>
           <Box>
             <Icon as={FaUserSecret} />
             <Text>{t('form.process_create.behavior.anonymous.title')}</Text>
@@ -31,7 +53,7 @@ const SettingsAdvanced = () => {
           </Box>
           <Text>{t('form.process_create.behavior.secret.description')}</Text>
         </Checkbox>
-        <Checkbox {...register('maxVoteOverwrites')} variant='radiobox' flex='0 0 30%'>
+        <Checkbox isChecked={voteOverwrite} onChange={handleVoteOverwriteChange} variant='radiobox' flex='0 0 30%'>
           <Box>
             <Icon as={BiCheckDouble} />
             <Text>{t('form.process_create.behavior.overwrite.title')}</Text>
@@ -42,4 +64,5 @@ const SettingsAdvanced = () => {
     </Box>
   )
 }
+
 export default SettingsAdvanced

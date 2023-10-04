@@ -1,5 +1,6 @@
 import { ArrowBackIcon } from '@chakra-ui/icons'
 import {
+  Box,
   Button,
   Checkbox,
   Flex,
@@ -20,6 +21,7 @@ import {
 import { ElectionProvider, errorToString, useClient } from '@vocdoni/react-providers'
 import {
   Election,
+  ElectionCreationSteps,
   ElectionStatus,
   EnvOptions,
   IElectionParameters,
@@ -27,19 +29,22 @@ import {
   IQuestion,
   PlainCensus,
   PublishedElection,
+  UnpublishedElection,
   VocdoniCensus3Client,
   WeightedCensus,
   ensure0x,
 } from '@vocdoni/sdk'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { CensusType } from '../Census/TypeSelector'
 import Preview from '../Confirm/Preview'
-import { CreationProgress } from '../CreationProgress'
+import { CostPreview } from '../CostPreview'
+import { CreationProgress, Steps } from '../CreationProgress'
 import { Web3Address } from '../StepForm/CensusWeb3'
 import { Option } from '../StepForm/Questions'
+import Wrapper from './Wrapper'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 
 export const Confirm = () => {
@@ -51,6 +56,9 @@ export const Confirm = () => {
   const [error, setError] = useState<string | null>(null)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [sending, setSending] = useState<boolean>(false)
+  const [step, setStep] = useState<Steps>()
+  const [disabled, setDisabled] = useState<boolean>(false)
+  const [unpublished, setUnpublished] = useState<UnpublishedElection | undefined>()
 
   const methods = useForm({
     defaultValues: {
@@ -70,20 +78,37 @@ export const Confirm = () => {
     setSending(true)
     setError(null)
     try {
-      const census = await getCensus(env as EnvOptions, form, account!.address)
+      const census = await getCensus(env, form, account!.address)
       const params: IElectionParameters = {
         ...electionFromForm(form),
         census,
       }
       const election = Election.from(params)
 
-      const pid = await client.createElection(election)
+      let pid: string
+      for await (const step of client.createElectionSteps(election)) {
+        switch (step.key) {
+          case ElectionCreationSteps.CENSUS_CREATED:
+          case ElectionCreationSteps.SIGN_TX:
+          case ElectionCreationSteps.DONE:
+            setStep(step.key)
+            if (step.key === ElectionCreationSteps.DONE) {
+              pid = step.electionId
+            }
+        }
+      }
       toast({
         title: t('form.process_create.success_title'),
         description: t('form.process_create.success_description'),
         status: 'success',
         duration: 4000,
       })
+
+      // clear draft data from storage
+      localStorage.removeItem('form-draft')
+      localStorage.removeItem('form-draft-step')
+
+      // redirect (with delay to allow the user to see the success toast)
       setTimeout(() => navigate(`/processes/${ensure0x(pid)}`), 3000)
     } catch (err: any) {
       setError(errorToString(err))
@@ -92,72 +117,127 @@ export const Confirm = () => {
       setSending(false)
     }
   }
+  const corelection = useMemo(() => electionFromForm(form), [account?.address, form])
+
+  // fetches census for unpublished elections
+  useEffect(() => {
+    if (typeof unpublished !== 'undefined') return
+    ;(async () => {
+      const census = await getCensus(env, form, account!.address)
+      setUnpublished(
+        Election.from({
+          ...corelection,
+          census,
+          // oroboros... getCensus ensures form.addresses is populated, that's why we need to set it again
+          // this could be avoided by defining corelection asynchronusly, but would delay the rendering
+          maxCensusSize: form.maxCensusSize ?? form.addresses.length,
+        } as IElectionParameters)
+      )
+    })()
+  }, [corelection])
 
   // preview (fake) mapping
-  const unpublished = useMemo(
-    () =>
-      PublishedElection.build({
-        ...electionFromForm(form),
-        organizationId: account?.address as string,
-        status: ElectionStatus.PROCESS_UNKNOWN,
-        // needs to be redefined in order to set it when set as autoStart
-        startDate: form.electionType.autoStart ? new Date().getTime() : new Date(form.startDate).getTime(),
-      } as unknown as IPublishedElectionParameters),
-    [account?.address, form]
-  )
+  const published = PublishedElection.build({
+    ...corelection,
+    status: ElectionStatus.PROCESS_UNKNOWN,
+    organizationId: account?.address as string,
+    // needs to be redefined in order to set it when set as autoStart
+    startDate: form.electionType.autoStart ? new Date().getTime() : new Date(form.startDate).getTime(),
+  } as unknown as IPublishedElectionParameters)
 
   return (
-    <>
-      <ElectionProvider election={unpublished}>
-        <Preview />
-        <FormProvider {...methods}>
-          <Flex
-            as='form'
-            id='process-create-form'
-            flexDirection={{ base: 'column', md: 'row' }}
-            gap={{ base: 2, md: 0 }}
-            p={{ base: 2, md: 5, xl: 10 }}
-            bgColor='process_create.bg'
-            borderRadius='lg'
-            border='1px solid'
-            borderColor='process_create.border'
-            onSubmit={handleSubmit(onSubmit)}
-          >
-            <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='bold' fontSize='md'>
-              {t('form.process_create.confirm.confirmation')}
-            </Text>
-            <Flex flexDirection='column' gap={2}>
-              <FormControl isInvalid={!!errors.infoValid}>
-                <Checkbox {...register('infoValid', { required: true })}>
-                  {t('form.process_create.confirm.confirmation_valid_info')}
-                </Checkbox>
-                <FormErrorMessage>
-                  <Text>{t('form.error.field_is_required')}</Text>
-                </FormErrorMessage>
-              </FormControl>
-              <FormControl isInvalid={!!errors.termsAndConditions}>
-                <Checkbox {...register('termsAndConditions', { required: true })}>
-                  <Trans
-                    i18nKey='form.process_create.confirm.confirmation_terms_and_conditions'
-                    components={{
-                      link: <Link variant='primary' href='' target='_blank' />,
+    <Wrapper>
+      <Text fontWeight='bold' mb={2}>
+        {t('form.process_create.confirm.title')}
+      </Text>
+      <Text mb={4}>{t('form.process_create.confirm.description')}</Text>
+      <ElectionProvider election={published}>
+        <Flex flexDirection={{ base: 'column', xl2: 'row' }} gap={5}>
+          <Preview />
+          <Box flex={{ xl2: '0 0 25%' }}>
+            <CostPreview unpublished={unpublished} disable={setDisabled} />
+
+            <FormProvider {...methods}>
+              <Box>
+                <Text fontWeight='bold' px={2} mb={2}>
+                  {t('form.process_create.confirm.confirmation')}
+                </Text>
+                <Flex
+                  as='form'
+                  id='process-create-form'
+                  onSubmit={handleSubmit(onSubmit)}
+                  flexDirection='column'
+                  gap={4}
+                  bgColor='process_create.section'
+                  borderRadius='md'
+                  p={{ base: 3, xl: 6 }}
+                >
+                  <FormControl
+                    isInvalid={!!errors.infoValid}
+                    sx={{
+                      '& label': {
+                        display: 'flex',
+                        alignItems: { xl2: 'start' },
+
+                        '& span:first-of-type': {
+                          mt: { xl2: 1.5 },
+                        },
+                      },
                     }}
-                  />
-                </Checkbox>
-                <FormErrorMessage>
-                  <Text>{t('form.error.field_is_required')}</Text>
-                </FormErrorMessage>
-              </FormControl>
-            </Flex>
-          </Flex>
-        </FormProvider>
+                  >
+                    <Checkbox {...register('infoValid', { required: true })}>
+                      {t('form.process_create.confirm.confirmation_valid_info')}
+                    </Checkbox>
+                    <FormErrorMessage>
+                      <Text ml={6}>{t('form.error.field_is_required')}</Text>
+                    </FormErrorMessage>
+                  </FormControl>
+                  <FormControl
+                    isInvalid={!!errors.termsAndConditions}
+                    sx={{
+                      '& label': {
+                        display: 'flex',
+                        alignItems: { xl2: 'start' },
+
+                        '& span:first-of-type': {
+                          mt: { xl2: 1.5 },
+                        },
+                      },
+                    }}
+                  >
+                    <Checkbox {...register('termsAndConditions', { required: true })}>
+                      <Trans
+                        i18nKey='form.process_create.confirm.confirmation_terms_and_conditions'
+                        components={{
+                          link: (
+                            <Link variant='primary' href='https://aragon.org/terms-and-conditions' target='_blank' />
+                          ),
+                        }}
+                      />
+                    </Checkbox>
+                    <FormErrorMessage>
+                      <Text ml={6}>{t('form.error.field_is_required')}</Text>
+                    </FormErrorMessage>
+                  </FormControl>
+                </Flex>
+              </Box>
+            </FormProvider>
+          </Box>
+        </Flex>
       </ElectionProvider>
       <Flex justifyContent='space-between' alignItems='end' mt={5}>
         <Button variant='outline' onClick={prev} leftIcon={<ArrowBackIcon />}>
           {t('form.process_create.previous_step')}
         </Button>
 
-        <Button type='submit' form='process-create-form' isLoading={sending}>
+        <Button
+          type='submit'
+          form='process-create-form'
+          isLoading={sending}
+          variant='outline'
+          colorScheme='primary'
+          px={32}
+        >
           {t('form.process_create.confirm.create_button')}
         </Button>
         <Modal isOpen={isOpen} onClose={onClose} closeOnEsc={!!error} closeOnOverlayClick={!!error} isCentered>
@@ -166,7 +246,7 @@ export const Confirm = () => {
             <ModalHeader>{t('form.process_create.creating_process')}</ModalHeader>
             {error && <ModalCloseButton />}
             <ModalBody>
-              <CreationProgress error={error} sending={sending} />
+              <CreationProgress error={error} sending={sending} step={step} />
             </ModalBody>
             {error && (
               <ModalFooter>
@@ -178,7 +258,7 @@ export const Confirm = () => {
           </ModalContent>
         </Modal>
       </Flex>
-    </>
+    </Wrapper>
   )
 }
 
@@ -208,13 +288,18 @@ const getCensus = async (env: EnvOptions, form: StepsFormValues, organization: s
     case 'web3':
       if (form.weightedVote) {
         const census = new WeightedCensus()
-        form.addresses.forEach(({ address, weight }) => census.add({ key: address, weight: BigInt(weight) }))
+        const addresses = form.addresses.map(({ address, weight }) => ({
+          key: address,
+          weight: BigInt(weight),
+        }))
+        census.add(addresses)
 
         return census
       }
 
       const census = new PlainCensus()
-      form.addresses.forEach(({ address }) => census.add(address))
+      const addresses = form.addresses.map(({ address }) => address)
+      census.add(addresses)
 
       return census
 
@@ -245,13 +330,15 @@ const electionFromForm = (form: StepsFormValues) => {
           })),
         } as IQuestion)
     ),
+    maxCensusSize: form.maxCensusSize ?? form.addresses.length,
     startDate: form.electionType.autoStart ? undefined : new Date(form.startDate).getTime(),
     endDate: new Date(form.endDate).getTime(),
     voteType: { maxVoteOverwrites: Number(form.maxVoteOverwrites) },
     meta: {
+      generated: 'ui-scaffold',
       census: {
         type: form.censusType,
-        fields: form.spreadsheet ? form.spreadsheet.header : undefined,
+        fields: form.spreadsheet?.header ?? undefined,
       } as CensusMeta,
     },
   }

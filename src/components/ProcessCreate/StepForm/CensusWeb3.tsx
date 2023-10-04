@@ -43,16 +43,22 @@ export const StepFormCensusWeb3 = () => {
 
   return (
     <>
-      <FormProvider {...methods}>
-        <Box as='form' id='process-create-form' onSubmit={methods.handleSubmit(onSubmit)}>
-          <CensusWeb3Addresses />
-          {methods.formState.errors.addresses && (
-            <Text color='red' textAlign='center' mt={2}>
-              {methods.formState.errors.addresses.message}
-            </Text>
-          )}
-        </Box>
-      </FormProvider>
+      <Box px={7} py={4}>
+        <Text fontWeight='bold' mb={3} color='process_create.census.title'>
+          {t('census.wallet_address_title')}
+        </Text>
+
+        <FormProvider {...methods}>
+          <Box as='form' id='process-create-form' onSubmit={methods.handleSubmit(onSubmit)}>
+            <CensusWeb3Addresses />
+            {methods.formState.errors.addresses && (
+              <Text color='red' textAlign='center' mt={2}>
+                {methods.formState.errors.addresses.message}
+              </Text>
+            )}
+          </Box>
+        </FormProvider>
+      </Box>
     </>
   )
 }

@@ -5,9 +5,10 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
 const card = definePartsStyle({
   tablist: {
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
+    flexDirection: { base: 'column', md: 'row' },
     mb: 10,
-    borderBottom: 'none',
+    gap: { base: 5, xl: 0 },
   },
   tab: {
     position: 'relative',
@@ -16,15 +17,14 @@ const card = definePartsStyle({
     justifyContent: 'start',
     alignItems: 'start',
     gap: 2,
-    width: { base: '100%', md: '200px', lg: '100%', lg2: '220px', xl: '250px' },
-    height: { base: 'auto', md: '150px', lg: 'auto', lg2: '140px', xl: '120px' },
+    flex: { md: '0 0 30%' },
     p: 4,
     px: 6,
     bgColor: 'white',
     boxShadow: 'var(--box-shadow)',
     borderRadius: 'md',
     borderBottom: 'none',
-    color: 'process_create.tabs.card.color',
+    color: 'process_create.description',
 
     '& > p:nth-of-type(1)': {
       color: 'process_create.description',
@@ -58,7 +58,7 @@ const card = definePartsStyle({
         display: 'block',
       },
       '& > div > p': {
-        color: 'process_create.tabs.card.selected_color',
+        color: 'process_create.tabs_selected_color',
       },
     },
   },

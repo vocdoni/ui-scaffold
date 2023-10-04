@@ -103,45 +103,35 @@ export const colors = {
       bg: colorsBase.blue.light,
       color: colorsBase.blue.dark,
     },
-    aside_questions_bg: colorsBase.gray.light2,
+    advanced_checkbox_bg: colorsBase.white.pure,
     bg: colorsBase.white.dark2,
+    wallet_addresses_border: colorsBase.gray.main,
     calendar_start_date_selected: colorsBase.blue.main,
-    checkbox_radiobox_bg: colorsBase.white.pure,
-    preview: {
-      census_web3_text_helper: colorsBase.gray.dark,
-      description: colorsBase.gray.dark,
-      option: colorsBase.gray.dark,
-      option_before_color: colorsBase.black,
+    census: {
+      drag_and_drop_border: colorsBase.gray.main,
+      title: colorsBase.primary.main,
+      weighted_vote_checked: colorsBase.primary.main,
+      web3_owner_label: colorsBase.primary.main,
     },
-    border: colorsBase.gray.main,
-    census_box_bg: colorsBase.white.pure,
-    description_logo: colorsBase.blue.main,
-    input_bg: colorsBase.white.pure,
     description: colorsBase.gray.dark,
+    description_logo: colorsBase.blue.main,
+    preview_option_question_before: colorsBase.black,
     section: colorsBase.white.pure,
-    stepper: {
-      bg: colorsBase.primary.main,
-      color_active: colorsBase.white.pure,
-    },
-
     spreadsheet: {
       badge: {
         bg: colorsBase.primary.main,
         text: colorsBase.white.pure,
       },
-      drag_and_drop_text: colorsBase.gray.dark,
       file: colorsBase.primary.main,
       preview_bg: colorsBase.white.pure,
       preview_bg_interior: colorsBase.gray.light2,
       requirements_text: colorsBase.primary.main,
       total_rows_text: colorsBase.primary.main,
     },
-    tabs: {
-      card: {
-        color: colorsBase.gray.dark,
-        color_title: colorsBase.gray.dark,
-        selected_color: colorsBase.primary.main,
-      },
+    stepper: {
+      bg: colorsBase.primary.main,
+      color_active: colorsBase.white.pure,
     },
+    tabs_selected_color: colorsBase.primary.main,
   },
 }

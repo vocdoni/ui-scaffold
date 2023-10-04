@@ -1,7 +1,6 @@
-import { confirmAnatomy } from '@vocdoni/chakra-components'
 import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
+import { confirmAnatomy } from '@vocdoni/chakra-components'
 import i18n from '../../i18n/index'
-import { countReset } from 'console'
 
 const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpers(confirmAnatomy)
 
@@ -15,7 +14,7 @@ const baseStyle = definePartsStyle({
     minH: 40,
     borderRadius: 'lg',
     position: 'relative',
-    mb: 60,
+    mb: 40,
 
     '&::before': {
       content: '""',
@@ -30,7 +29,7 @@ const baseStyle = definePartsStyle({
     },
 
     '&::after': {
-      content: `"${i18n.t('process.spreadsheet.confirm.text1')}- "`,
+      content: `"${i18n.t('process.spreadsheet.confirm.text1')}"`,
       position: 'absolute',
       top: 60,
       left: 0,
@@ -59,19 +58,6 @@ const baseStyle = definePartsStyle({
       fontSize: 'lg',
       ml: -2,
       w: '350px',
-
-      '&::before': {
-        content: `"${i18n.t('process.spreadsheet.confirm.text2')}- "`,
-        position: 'absolute',
-        top: -16,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        fontWeight: 'normal',
-        fontSize: 'md',
-        textAlign: 'start',
-        w: 'full',
-      },
     },
 
     '& > div > div': {
@@ -83,7 +69,7 @@ const baseStyle = definePartsStyle({
         fontWeight: 'normal',
 
         '&:before': {
-          content: `"${i18n.t('process.spreadsheet.confirm.question')}- "`,
+          content: `"${i18n.t('process.spreadsheet.confirm.question')} - "`,
           fontWeight: 'bold',
         },
       },
@@ -92,7 +78,7 @@ const baseStyle = definePartsStyle({
         counterIncrement: 'section',
 
         '&:before': {
-          content: `"${i18n.t('process.spreadsheet.confirm.option')}- "`,
+          content: `"${i18n.t('process.spreadsheet.confirm.option')} - "`,
           fontWeight: 'bold',
         },
       },

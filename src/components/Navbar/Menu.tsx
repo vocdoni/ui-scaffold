@@ -1,19 +1,7 @@
 import { ChevronDownIcon, ChevronUpIcon, CopyIcon } from '@chakra-ui/icons'
-import {
-  Box,
-  Button,
-  Flex,
-  HStack,
-  Icon,
-  IconButton,
-  Link,
-  MenuItem,
-  MenuList,
-  Text,
-  useClipboard,
-} from '@chakra-ui/react'
+import { Box, Flex, HStack, Icon, IconButton, Link, MenuItem, MenuList, Text, useClipboard } from '@chakra-ui/react'
 import { useOrganizationModal } from '@components/Organization/OrganizationModalProvider'
-import { addressTextOverflow } from '@constants'
+import { addressTextOverflow, VocdoniEnvironment } from '@constants'
 import { Balance, HR } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
 import { useState } from 'react'
@@ -21,6 +9,7 @@ import { useTranslation } from 'react-i18next'
 import { FaWallet } from 'react-icons/fa'
 import { HiShoppingCart } from 'react-icons/hi'
 import { MdOutlineLogout } from 'react-icons/md'
+import { Link as ReactRouterLink } from 'react-router-dom'
 import { useDisconnect } from 'wagmi'
 import LanguagesList from './LanguagesList'
 
@@ -107,9 +96,21 @@ const MenuDropdown = () => {
               <Flex>
                 <Balance p={0} bg='white' fontWeight='bold' />
               </Flex>
-              <Button colorScheme='primary' leftIcon={<HiShoppingCart size={20} />} p={2}>
-                {t('menu.get_more')}
-              </Button>
+
+              {VocdoniEnvironment === 'stg' && (
+                <Link
+                  as={ReactRouterLink}
+                  to='/faucet'
+                  variant='rounded'
+                  colorScheme='primary'
+                  aria-label={t('menu.get_more')}
+                  title={t('menu.get_more')}
+                  p={2}
+                >
+                  <Icon as={HiShoppingCart} mt={1} mr={1} />
+                  {t('menu.get_more')}
+                </Link>
+              )}
             </Flex>
           </MenuItem>
           <MenuItem onClick={onOpen}>{t('menu.organization')}</MenuItem>
@@ -132,15 +133,8 @@ const MenuDropdown = () => {
       {isOpenMenuLanguages && <LanguagesList closeOnSelect={false} />}
       <MenuItem>
         <Link
-          _hover={{
-            textDecoration: 'none',
-          }}
-        >
-          {t('menu.how_it_works')}
-        </Link>
-      </MenuItem>
-      <MenuItem>
-        <Link
+          href='https://developer.vocdoni.io/'
+          target='_blank'
           _hover={{
             textDecoration: 'none',
           }}
@@ -160,10 +154,14 @@ const MenuDropdown = () => {
         {t('menu.logout')}
       </MenuItem>
       <MenuItem fontSize='xs' color='blackAlpha.700'>
-        {t('menu.terms')}
+        <Link href='https://aragon.org/terms-and-conditions' target='_blank'>
+          {t('menu.terms')}
+        </Link>
       </MenuItem>
       <MenuItem fontSize='xs' color='blackAlpha.700'>
-        {t('menu.privacy')}
+        <Link href='https://aragon.org/privacy-policy' target='_blank'>
+          {t('menu.privacy')}
+        </Link>
       </MenuItem>
     </MenuList>
   )

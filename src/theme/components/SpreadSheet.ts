@@ -18,6 +18,9 @@ const baseStyle = definePartsStyle({
     color: 'process.spreadsheet.diconnect_color',
     textDecoration: 'underline',
   },
+  label: {
+    textTransform: 'none',
+  },
 
   content: {
     p: 10,
