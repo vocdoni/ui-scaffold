@@ -42,6 +42,8 @@ export const ProcessView = () => {
     setTabIndex(index)
   }
 
+  const setQuestionsTab = () => setTabIndex(0)
+
   useEffect(() => {
     if (election?.status === ElectionStatus.RESULTS) setTabIndex(1)
   }, [election])
@@ -73,7 +75,7 @@ export const ProcessView = () => {
             mx='auto'
             mt={{ xl: 10 }}
           >
-            <ProcessAside />
+            <ProcessAside setQuestionsTab={setQuestionsTab}/>
           </Flex>
         </Flex>
       </Box>

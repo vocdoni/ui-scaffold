@@ -1,15 +1,15 @@
 import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { CensusMeta } from '@components/ProcessCreate/Steps/Confirm'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { environment, SpreadsheetAccess, VoteButton } from '@vocdoni/chakra-components'
+import { SpreadsheetAccess, VoteButton, environment } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
-import { dotobject, ElectionStatus, PublishedElection } from '@vocdoni/sdk'
+import { ElectionStatus, PublishedElection, dotobject } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 
-const ProcessAside = ({ ...props }) => {
+const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
   const { t } = useTranslation()
   const { election, connected, isAbleToVote, isInCensus, voted, votesLeft } = useElection()
   const { isConnected } = useAccount()
@@ -32,7 +32,6 @@ const ProcessAside = ({ ...props }) => {
         background='process.aside.bg'
         borderRadius='lg'
         boxShadow='var(--box-shadow-banner)'
-        {...props}
       >
         <Text textAlign='center' fontSize='xl3' lineHeight={1}>
           {getStatusText(t, election?.status).toUpperCase()}
@@ -71,7 +70,7 @@ const ProcessAside = ({ ...props }) => {
 
         {renderVoteMenu && (
           <Flex flexDirection='column' alignItems='center' gap={3} w='full'>
-            {isAbleToVote && <VoteButton variant='process' mb={0} />}
+            {isAbleToVote && <VoteButton variant='process' mb={0} onClick={setQuestionsTab} />}
             {voted !== null && voted.length > 0 && (
               <Box textAlign='center'>
                 <Link to={environment.verifyVote(env, voted)} target='_blank'>
