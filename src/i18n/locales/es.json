@@ -78,6 +78,14 @@
       "voted_title": "¡Tu voto se ha registrado con éxito!"
     }
   },
+  "census": {
+    "description": "Selecciona cómo los votantes se autenticarán e identificarán: las opciones incluyen datos personalizados, la propiedad de tokens o con direcciones de monedero (wallet addresses).",
+    "spreadsheet_title": "Datos personalizados",
+    "title": "Censo",
+    "token_description": "Seleccione un token de la lista para crear un censo basado en tokens, donde solo los propietarios de tokens serán elegibles para votar. ¿No encuentras tu token? <customLink>Haz clic aquí</customLink> para añadir más",
+    "token_title": "Censo basado en tokens",
+    "wallet_address_title": "Direcciones de billetera"
+  },
   "copy": {
     "address": "Copiar dirección",
     "copied_title": "¡Copiado!"
@@ -156,16 +164,13 @@
       },
       "census": {
         "add_button": "Añadir",
-        "description": "Selecciona cómo los votantes se autenticarán e identificarán: las opciones incluyen datos personalizados, la propiedad de tokens o con direcciones de monedero (wallet addresses).",
         "max_census_slider_arialabel": "Selector deslizante de participación máxima esperada",
         "max_census_slider_label": "Participación máxima esperada:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} votantes elegibles)",
         "spreadsheet_description": "Datos personalizados, como nombres de usuario y contraseñas, o información personal de los votantes, pueden utilizarse para la autenticación mediante un formulario.",
         "spreadsheet_title": "Datos personalizados",
-        "title": "Censo",
         "token_base_description": "Utiliza un token (basado en EVM) para permitir a los usuarios votar en función de la cantidad que poseen.",
         "token_base_title": "Basado en tokens",
-        "token_title": "Censo basado en tokens",
         "tokens_placeholder": "Selecciona un token",
         "wallet_address_description": "Identifica a tus votantes por sus direcciones de monedero digital.",
         "wallet_address_title": "Direcciones de monedero"
@@ -182,16 +187,19 @@
         "confirmation": "Confirmación",
         "confirmation_terms_and_conditions": "Acepto los <link>términos y condiciones</link> de Vocdoni",
         "confirmation_valid_info": "Confirmo que esta información es correcta y válida",
+        "cost_preview": "Vista previa de costos",
         "create_button": "Crear",
         "dates": "Fecha",
-        "description": "Descripción",
+        "description": "En esta página, puedes revisar que toda la información sea correcta y editarla en caso de que haya algún error. También puedes verificar el costo del proceso de votación y comprar más créditos en caso de que no tengas suficientes.",
+        "description_election": "Descripción",
         "edit": "Editar",
         "election_info": "Información de Votación",
         "questions_one": "Pregunta",
         "questions_many": "Preguntas",
         "questions_other": "Preguntas",
         "secret_until_the_end": "Secreto hasta el final",
-        "title": "Título",
+        "title": "Vista previa y costos de votación",
+        "title_election": "Título",
         "vote_overwritte": "Sobrescribir voto"
       },
       "confirm_spreadsheet_removal": "Seguro? Piensa que al hacerlo se eliminará el fichero que has cargado.",
@@ -259,6 +267,11 @@
       "success_description": "Redirigiéndote a la página del proceso de votación...",
       "success_title": "Proceso de votación creado con éxito",
       "unhealthy_account": "Debes crear una organización antes de crear la primera votación.",
+      "web3": {
+        "census_members_one": "<span>1 miembro</span> <text> en el censo</text>",
+        "census_members_many": "",
+        "census_members_other": "<span>{{ count }} miembros</span> <text> en el censo</text>"
+      },
       "weighted": "Voto ponderado"
     }
   },

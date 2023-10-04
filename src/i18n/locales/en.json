@@ -76,6 +76,14 @@
       "voted_title": "Your vote was successfully cast!"
     }
   },
+  "census": {
+    "description": "Select how voters will authenticate and identify themselves: options include custom data, token ownership or wallet addresses.",
+    "spreadsheet_title": "Custom data",
+    "title": "Census",
+    "token_description": "Select one token of the list to create a token-based census, where only token owners will be elegible to vote. Don't find your token? <customLink>Click here</customLink> to add more",
+    "token_title": "Token based census",
+    "wallet_address_title": "Wallet addresses"
+  },
   "copy": {
     "address": "Copy address",
     "copied_title": "Copied!"
@@ -154,16 +162,13 @@
       },
       "census": {
         "add_button": "Add",
-        "description": "Select how voters will authenticate and identify themselves: options include custom data, token ownership or wallet addresses.",
         "max_census_slider_arialabel": "Maximum participation expected slider selector",
         "max_census_slider_label": "Maximum participation expected:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} eligible voters)",
         "spreadsheet_description": "Such as usernames and passwords, or voter personal information, can be utilized for authentication with a form.",
         "spreadsheet_title": "Custom data",
-        "title": "Census",
         "token_base_description": "Use a token (EVM based) to enable voting based on users' token ownership.",
         "token_base_title": "Token based",
-        "token_title": "Token based census",
         "tokens_placeholder": "Select a token",
         "wallet_address_description": "Identify voters by their wallets addresses.",
         "wallet_address_title": "Wallet addresses"
@@ -179,15 +184,18 @@
         "confirmation": "Confirmation",
         "confirmation_terms_and_conditions": "I accept the <link>Terms and Conditions</link> of Vocdoni",
         "confirmation_valid_info": "I assure that this information is correct and valid",
+        "cost_preview": "Cost preview",
         "create_button": "Create",
         "dates": "Dates",
-        "description": "Description",
+        "description": "In this page, you can review all the information is correct and edit it in case of something wrong. Also, you can check the cost of the voting process and purchase more credits in case you don't own enough.",
+        "description_election": "Description",
         "edit": "Edit",
-        "election_info": "Voting Info",
+        "election_info": "Election Info",
         "questions_one": "Question",
         "questions_other": "Questions",
         "secret_until_the_end": "Secret until the end",
-        "title": "Title",
+        "title": "Voting preview and costs",
+        "title_election": "Title",
         "vote_overwritte": "Vote overwritte"
       },
       "confirm_spreadsheet_removal": "Are you sure? Take in mind that the uploaded file will be removed",
@@ -254,6 +262,10 @@
       "success_description": "Redirecting you to the voting process page...",
       "success_title": "Voting process successfully created",
       "unhealthy_account": "You need to create an organization before creating the first voting process.",
+      "web3": {
+        "census_members_one": "<span>1 member</span> <text> in the census</text>",
+        "census_members_other": "<span>{{ count }} members</span> <text> in the census</text>"
+      },
       "weighted": "Weighted vote"
     }
   },

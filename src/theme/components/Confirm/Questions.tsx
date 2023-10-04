@@ -5,16 +5,14 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 
 const baseStyle = definePartsStyle({
   description: {
-    bgColor: 'process_create.bg',
     fontSize: 'md',
     fontStyle: 'normal',
     fontWeight: 'normal',
-    color: 'process_create.preview.description',
+    color: 'process_create.description',
     marginBottom: 0,
   },
 
   radioGroup: {
-    bgColor: 'process_create.bg',
     '& > div': {
       gap: 0,
     },
@@ -24,14 +22,14 @@ const baseStyle = definePartsStyle({
 
     '& > div > label > span:nth-of-type(2)': {
       marginLeft: 0,
-      color: 'process_create.preview.option',
+      color: 'process_create.description',
       opacity: 1,
     },
     '& > div > label > span:nth-of-type(2):before': {
       content: '" "',
       display: 'inline-block',
       marginRight: 2,
-      color: 'process_create.preview.option_before_color',
+      color: 'process_create.preview_option_question_before',
       width: 1.5,
       height: 1.5,
       border: '2px solid',
@@ -46,7 +44,6 @@ const baseStyle = definePartsStyle({
     },
   },
   title: {
-    bgColor: 'process_create.bg',
     marginBottom: 0,
     fontSize: 'md',
     fontStyle: 'normal',
@@ -54,7 +51,6 @@ const baseStyle = definePartsStyle({
   },
 
   wrapper: {
-    bgColor: 'process_create.bg',
     '& form > div': {
       pt: 0,
       pl: 0,

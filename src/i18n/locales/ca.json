@@ -78,6 +78,14 @@
       "voted_title": "El teu vot s'ha registrat amb èxit!"
     }
   },
+  "census": {
+    "description": "Selecciona com autenticaran i s'identificaran els votants. Les opcions inclouen dades personalitzades, propietat de tokens o adreces de cartera digital (wallet addresses).",
+    "spreadsheet_title": "Dades personalitzades",
+    "title": "Trieu el cens",
+    "token_description": "Seleccioneu un token de la llista per crear un cens basat en tokens, on només els propietaris de tokens seran elegibles per votar. No trobeu el vostre token? <customLink>Cliqueu aquí</customLink> per afegir-ne més",
+    "token_title": "Cens basat en tokens",
+    "wallet_address_title": "Adreces de cartera"
+  },
   "copy": {
     "address": "Copia l'adreça",
     "copied_title": "Copiat!"
@@ -156,16 +164,13 @@
       },
       "census": {
         "add_button": "Afegir",
-        "description": "Selecciona com autenticaran i s'identificaran els votants. Les opcions inclouen dades personalitzades, propietat de tokens o adreces de cartera digital (wallet addresses).",
         "max_census_slider_arialabel": "Selector de participació màxima esperada",
         "max_census_slider_label": "Participació màxima esperada:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} votants elegibles)",
-        "spreadsheet_description": "Dades personalitzades, com ara noms d'usuari i contrasenyes, o informació personal dels votants, es poden utilitzar per a l'autenticació amb un formulari.",
         "spreadsheet_title": "Dades personalitzades",
-        "title": "Trieu el cens",
+        "spreadsheet_description": "Dades personalitzades, com ara noms d'usuari i contrasenyes, o informació personal dels votants, es poden utilitzar per a l'autenticació amb un formulari.",
         "token_base_description": "Utilitza un token (basat en EVM) per permetre als usuaris votar en funció de la quantitat de tokens que posseeixin.",
         "token_base_title": "Basat en token",
-        "token_title": "Cens basat en tokens",
         "tokens_placeholder": "Seleccioneu un token",
         "wallet_address_description": "Identifica els teus votants per les seves adreces de cartera.",
         "wallet_address_title": "Adreces de cartera"
@@ -182,16 +187,19 @@
         "confirmation": "Confirmació",
         "confirmation_terms_and_conditions": "Accepto els <link>termes i condicions</link> de Vocdoni",
         "confirmation_valid_info": "Confirmo que aquesta informació és correcta i vàlida",
+        "cost_preview": "Vista prèvia de costos",
         "create_button": "Crea",
         "dates": "Data",
-        "description": "Descripció",
+        "description": "En aquesta pàgina, podeu revisar que tota la informació sigui correcta i editar-la en cas que hi hagi algun error. També podeu comprovar el cost del procés de votació i comprar més crèdits en cas que no n'hi tingueu prou.",
+        "description_election": "Descripció",
         "edit": "Editar",
         "election_info": "Informació de la Votació",
         "questions_one": "Pregunta",
         "questions_many": "Preguntes",
         "questions_other": "Preguntes",
         "secret_until_the_end": "Secret fins el final",
-        "title": "Títol",
+        "title": "Vista prèvia i costos de votació",
+        "title_election": "Títol",
         "vote_overwritte": "Sobreescriure vot"
       },
       "confirm_spreadsheet_removal": "Estàs segur que vols canviar-ho? Fent-ho s'esborrarà el fitxer que has carregat actualment.",
@@ -259,6 +267,10 @@
       "success_description": "Redirigint-te a la pàgina del procés de votació...",
       "success_title": "Procés de votació creat amb èxit",
       "unhealthy_account": "Has de crear una organització abans de crear la primera votació.",
+      "web3": {
+        "census_members_one": "<span>1 membre</span> <text>al cens</text>",
+        "census_members_other": "<span>{{ count }} membres</span> <text>al cens</text>"
+      },
       "weighted": "Vot ponderat"
     }
   },

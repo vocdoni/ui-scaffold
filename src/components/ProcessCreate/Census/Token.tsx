@@ -93,44 +93,42 @@ export const CensusTokens = () => {
   }
 
   return (
-    <Flex justifyContent='center'>
-      <Stack maxW='50%' w='full' direction='column' gap={3} alignItems='center'>
-        <FormControl isInvalid={!!errors.censusToken}>
-          <AsyncSelect
-            ref={selectRef}
-            placeholder={t('form.process_create.census.tokens_placeholder')}
-            cacheOptions
-            defaultOptions
-            defaultValue={ct}
-            loadOptions={(input: string) => {
-              const regex = new RegExp(input, 'ig')
-              return client
-                .getSupportedTokens()
-                .then((res: object) =>
-                  (res as ICensus3Token[]).filter(
-                    (t) => t.name.match(regex) || t.symbol.match(regex) || t.id.match(regex)
-                  )
+    <Stack w='full' direction='column' gap={3} alignItems='center'>
+      <FormControl isInvalid={!!errors.censusToken}>
+        <AsyncSelect
+          ref={selectRef}
+          placeholder={t('form.process_create.census.tokens_placeholder')}
+          cacheOptions
+          defaultOptions
+          defaultValue={ct}
+          loadOptions={(input: string) => {
+            const regex = new RegExp(input, 'ig')
+            return client
+              .getSupportedTokens()
+              .then((res: object) =>
+                (res as ICensus3Token[]).filter(
+                  (t) => t.name.match(regex) || t.symbol.match(regex) || t.id.match(regex)
                 )
-            }}
-            getOptionValue={({ id }) => id}
-            getOptionLabel={({ name, symbol }) => `${name} (${symbol})`}
-            onChange={async (token) => setValue('censusToken', token?.id)}
-            name={ctoken.name}
-            onBlur={ctoken.onBlur}
-            chakraStyles={{ container: (p, state) => ({ ...p, w: 'full' }) }}
-          />
-          <FormErrorMessage>{errors.censusToken && errors.censusToken.message?.toString()}</FormErrorMessage>
-        </FormControl>
-        {loading ? (
-          <Spinner />
-        ) : (
-          <>
-            <TokenPreview token={token} />
-            <MaxCensusSizeSelector token={token} />
-          </>
-        )}
-      </Stack>
-    </Flex>
+              )
+          }}
+          getOptionValue={({ id }) => id}
+          getOptionLabel={({ name, symbol }) => `${name} (${symbol})`}
+          onChange={async (token) => setValue('censusToken', token?.id)}
+          name={ctoken.name}
+          onBlur={ctoken.onBlur}
+          chakraStyles={{ container: (p, state) => ({ ...p, w: 'full' }) }}
+        />
+        <FormErrorMessage>{errors.censusToken && errors.censusToken.message?.toString()}</FormErrorMessage>
+      </FormControl>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <>
+          <TokenPreview token={token} />
+          <MaxCensusSizeSelector token={token} />
+        </>
+      )}
+    </Stack>
   )
 }
 

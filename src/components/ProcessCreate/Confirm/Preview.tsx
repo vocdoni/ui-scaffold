@@ -1,6 +1,6 @@
 import { Box, ChakraProvider, extendTheme, Flex, Icon, Link, Text } from '@chakra-ui/react'
 import { cofirmTheme } from '@theme/components/Confirm'
-import { ElectionQuestions, ElectionTitle, HR } from '@vocdoni/chakra-components'
+import { ElectionDescription, ElectionQuestions, ElectionTitle } from '@vocdoni/chakra-components'
 import { useElection } from '@vocdoni/react-providers'
 import { useTranslation } from 'react-i18next'
 import { IoMdCheckmark, IoMdClose, IoMdCreate } from 'react-icons/io'
@@ -30,10 +30,8 @@ const Preview = () => {
       gap={5}
       p={{ base: 2, md: 5, xl: 10 }}
       mb={10}
-      bgColor='process_create.bg'
+      bgColor='process_create.section'
       borderRadius='lg'
-      border='1px solid'
-      borderColor='process_create.border'
     >
       <Flex flexDirection='column' gap={6}>
         <Flex>
@@ -48,19 +46,19 @@ const Preview = () => {
         </Flex>
         <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 2, md: 0 }}>
           <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='semibold' fontSize='md'>
-            {t('form.process_create.confirm.title')}
+            {t('form.process_create.confirm.title_election')}
           </Text>
           <ElectionTitle flexGrow={1} fontSize='md' textAlign='start' fontWeight='normal' />
         </Flex>
         {description && (
           <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 2, md: 0 }}>
             <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='semibold' fontSize='md'>
-              {t('form.process_create.confirm.description')}
+              {t('form.process_create.confirm.description_election')}
             </Text>
 
-            <Text flexGrow={1} fontSize='md' textAlign='start'>
-              {election?.description.default}
-            </Text>
+            <Box flexGrow={1} fontSize='md' textAlign='start'>
+              <ElectionDescription />
+            </Box>
           </Flex>
         )}
         <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 2, md: 0 }}>
@@ -98,8 +96,6 @@ const Preview = () => {
         </Flex>
       </Flex>
 
-      <HR m={0} border='none' h='1px' bgColor='process_create.border' />
-
       <Flex flexDirection={{ base: 'column', md: 'row' }} gap={2} position='relative'>
         <Text flexBasis={{ md: '30%' }} flexShrink={0} flexGrow={0} fontWeight='extrabold'>
           {t('form.process_create.confirm.questions', { count: questions.length })}
@@ -117,8 +113,6 @@ const Preview = () => {
           />
         </Link>
       </Flex>
-
-      <HR m={0} border='none' h='1px' bgColor='process_create.border' />
 
       <Flex flexDirection={{ base: 'column', md: 'row' }} gap={2} position='relative'>
         <Text flexBasis={{ md: '30%' }} flexShrink={0} flexGrow={0} fontWeight='extrabold'>
