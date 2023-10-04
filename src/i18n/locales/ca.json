@@ -102,7 +102,7 @@
   "faucet": {
     "description": "Per desenvolupar amb Vocdoni, necessites tokens per a certes accions (crear una elecció, canviar l'estat d'una elecció, etc.). El nombre de diferents factors com la mida del cens, la durada de l'elecció, els paràmetres de l'elecció, etc.",
     "general_information": {
-      "description": "Quan sol·licites tokens de desenvolupament, rebràs 250 tokens. Pots reclamar des del faucet una vegada cada 24 hores.",
+      "description": "Quan sol·licites tokens de desenvolupament, rebràs {{ amount }} tokens. Pots reclamar des del faucet una vegada cada 24 hores.",
       "description2": "Si necessites més tokens per desenvolupar sobre la plataforma de Vocdoni, pots posar-te en contacte amb nosaltres a tokens (at) vocdoni.io",
       "title": "Informació General"
     },

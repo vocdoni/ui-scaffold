@@ -100,7 +100,7 @@
   "faucet": {
     "description": "For developing with Vocdoni, you need tokens for certain actions (create an election, change election status, etc.). The nº of  different factors lik census size, election duration, election params, etc.",
     "general_information": {
-      "description": "When you request dev tokens, you'll receive 250 tokens. You can claim from the faucet once every 24 hours.",
+      "description": "When you request dev tokens, you'll receive {{ amount }} tokens. You can claim from the faucet once every 24 hours.",
       "description2": "If you need more tokens for developing on top of the Vocdoni stack, you can connect with us at tokens (at) vocdoni.io",
       "title": "General Information"
     },
