@@ -1,6 +1,7 @@
 import { Stepper } from '@chakra-ui/react'
 import type { RecursivePartial } from '@constants'
-import { PropsWithChildren, useState } from 'react'
+import { PropsWithChildren, useEffect, useState } from 'react'
+import { CensusSpreadsheetManager } from '../Census/Spreadsheet/CensusSpreadsheetManager'
 import { StepContents } from './Contents'
 import { StepsContext, StepsContextState, StepsFormValues } from './use-steps'
 
@@ -19,12 +20,41 @@ export const StepsForm = ({ steps, children, activeStep, next, prev, setActiveSt
     questions: [{ options: [{}, {}] }],
     addresses: [],
   })
+
+  // reinitialize form if we have a draft and `loadDraft` is set in the URL
+  useEffect(() => {
+    const url = new URL(window.location.href)
+    if (url.searchParams.has('loadDraft')) {
+      const form = localStorage.getItem('form-draft')
+      if (form) {
+        const parsed = JSON.parse(form)
+        let spreadsheet
+        if (parsed.spreadsheet) {
+          spreadsheet = new CensusSpreadsheetManager(new File([], 'spreadsheet.csv'))
+          spreadsheet.loadFromStorage(parsed.spreadsheet)
+        }
+        const proper: StepsFormValues = {
+          ...parsed,
+          spreadsheet,
+        }
+        setForm(proper)
+        setActiveStep(parseInt(localStorage.getItem('form-draft-step') || '0'))
+      }
+    }
+  }, [])
+
+  const setFormInStateAndLocalstorage = async (data: StepsFormValues) => {
+    setForm(data)
+    localStorage.setItem('form-draft', JSON.stringify(data))
+    localStorage.setItem('form-draft-step', (activeStep + 1).toString())
+  }
+
   const value: StepsContextState = {
     activeStep,
     form: form as StepsFormValues,
     next,
     prev,
-    setForm,
+    setForm: setFormInStateAndLocalstorage,
     steps,
     setActiveStep,
   }

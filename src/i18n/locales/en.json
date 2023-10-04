@@ -76,6 +76,13 @@
       "voted_title": "Your vote was successfully cast!"
     }
   },
+  "claim": {
+    "error_title": "Error",
+    "loading_description": "Please wait while tokens are being claimed",
+    "loading_title": "Claiming",
+    "success_description": "Success",
+    "success_title": "Tokens were successfully claimed"
+  },
   "copy": {
     "address": "Copy address",
     "copied_title": "Copied!"
@@ -90,6 +97,19 @@
     "return_to_home": "Go to home"
   },
   "error_text": "Sorry, the page you were looking for was not found",
+  "faucet": {
+    "description": "For developing with Vocdoni, you need tokens for certain actions (create an election, change election status, etc.). The nº of  different factors lik census size, election duration, election params, etc.",
+    "general_information": {
+      "description": "When you request dev tokens, you'll receive 250 tokens. You can claim from the faucet once every 24 hours.",
+      "description2": "If you need more tokens for developing on top of the Vocdoni stack, you can connect with us at tokens (at) vocdoni.io",
+      "title": "General Information"
+    },
+    "request_tokens": {
+      "description": "To prevent faucet botting, you must connect your web3 wallet and sign in. We request read-only access.",
+      "title": "Request Tokens"
+    },
+    "title": "Vocdoni Tokens Faucet"
+  },
   "footer": {
     "about": "About",
     "blog": "Blog",
@@ -179,11 +199,14 @@
         "confirmation": "Confirmation",
         "confirmation_terms_and_conditions": "I accept the <link>Terms and Conditions</link> of Vocdoni",
         "confirmation_valid_info": "I assure that this information is correct and valid",
+        "cost_preview": "Creating this process will have a cost of {{ cost }} votokens (you currently have {{ balance }})",
+        "cost_title": "Cost preview",
         "create_button": "Create",
         "dates": "Dates",
         "description": "Description",
         "edit": "Edit",
         "election_info": "Voting Info",
+        "not_enough_tokens": "You don't have enough tokens to create this process, please get some",
         "questions_one": "Question",
         "questions_other": "Questions",
         "secret_until_the_end": "Secret until the end",
@@ -263,6 +286,9 @@
     "twitter": "Link to Vocdoni's twitter"
   },
   "loading": "Loading...",
+  "login": {
+    "github": "Sign in with Github"
+  },
   "menu": {
     "burger_aria_label": "user menu",
     "connect": "Connect",

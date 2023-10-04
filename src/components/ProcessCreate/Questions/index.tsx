@@ -64,7 +64,7 @@ const CreateProcessQuestions = () => {
         </Text>
       </Box>
       {fields.map((_, index) => (
-        <Question index={index} remove={remove} />
+        <Question key={index} index={index} remove={remove} />
       ))}
 
       <Button
