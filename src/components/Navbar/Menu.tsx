@@ -1,7 +1,7 @@
 import { ChevronDownIcon, ChevronUpIcon, CopyIcon } from '@chakra-ui/icons'
 import { Box, Flex, HStack, Icon, IconButton, Link, MenuItem, MenuList, Text, useClipboard } from '@chakra-ui/react'
 import { useOrganizationModal } from '@components/Organization/OrganizationModalProvider'
-import { addressTextOverflow } from '@constants'
+import { addressTextOverflow, VocdoniEnvironment } from '@constants'
 import { Balance, HR } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
 import { useState } from 'react'
@@ -97,18 +97,20 @@ const MenuDropdown = () => {
                 <Balance p={0} bg='white' fontWeight='bold' />
               </Flex>
 
-              <Link
-                as={ReactRouterLink}
-                to='/faucet'
-                variant='rounded'
-                colorScheme='primary'
-                aria-label={t('menu.get_more')}
-                title={t('menu.get_more')}
-                p={2}
-              >
-                <Icon as={HiShoppingCart} mt={1} mr={1} />
-                {t('menu.get_more')}
-              </Link>
+              {VocdoniEnvironment === 'stg' && (
+                <Link
+                  as={ReactRouterLink}
+                  to='/faucet'
+                  variant='rounded'
+                  colorScheme='primary'
+                  aria-label={t('menu.get_more')}
+                  title={t('menu.get_more')}
+                  p={2}
+                >
+                  <Icon as={HiShoppingCart} mt={1} mr={1} />
+                  {t('menu.get_more')}
+                </Link>
+              )}
             </Flex>
           </MenuItem>
           <MenuItem onClick={onOpen}>{t('menu.organization')}</MenuItem>

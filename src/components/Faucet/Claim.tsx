@@ -1,4 +1,5 @@
-import { Button, Flex, Icon, useToast } from '@chakra-ui/react'
+import { Button, Flex, Icon, Text, useToast } from '@chakra-ui/react'
+import { VocdoniEnvironment } from '@constants'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { errorToString, useClient } from '@vocdoni/react-providers'
 import { useEffect, useState } from 'react'
@@ -97,8 +98,14 @@ export const Claim = () => {
     setPendingClaim(false)
   }
 
+  // only render in stage
+  if (VocdoniEnvironment !== 'stg') {
+    return
+  }
+
   return (
     <Flex direction='column' gap={3}>
+      <Text>{t('faucet.request_tokens.description')}</Text>
       {connected && (
         <Flex direction='row' gap='2'>
           <Button type='submit' isLoading={loading} colorScheme='purple' onClick={() => handleSignIn('github')}>

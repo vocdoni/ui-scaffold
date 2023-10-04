@@ -1,6 +1,6 @@
 import { Box, Card, CardBody, Flex, Grid, GridItem, Heading, Text } from '@chakra-ui/react'
-import { useTranslation } from 'react-i18next'
 import { Claim } from '@components/Faucet/Claim'
+import { useTranslation } from 'react-i18next'
 
 const Faucet = () => {
   const { t } = useTranslation()
@@ -25,9 +25,6 @@ const Faucet = () => {
               <Heading as={'h2'} size={'sm'}>
                 {t('faucet.request_tokens.title')}
               </Heading>
-              <Text variant='p' mb={5} mt={5}>
-                {t('faucet.request_tokens.description')}
-              </Text>
 
               <Claim />
             </CardBody>

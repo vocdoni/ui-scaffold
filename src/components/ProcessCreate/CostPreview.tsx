@@ -45,7 +45,6 @@ export const CostPreview = ({
       {cost > account!.balance && (
         <Flex color='orange' direction='column'>
           <Text>{t('form.process_create.confirm.not_enough_tokens')}</Text>
-          <Text>{t('faucet.request_tokens.description')}</Text>
           <Claim />
         </Flex>
       )}
