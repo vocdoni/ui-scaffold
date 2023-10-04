@@ -29,15 +29,17 @@ import {
   IQuestion,
   PlainCensus,
   PublishedElection,
+  UnpublishedElection,
   VocdoniCensus3Client,
   WeightedCensus,
 } from '@vocdoni/sdk'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { CensusType } from '../Census/TypeSelector'
 import Preview from '../Confirm/Preview'
+import { CostPreview } from '../CostPreview'
 import { CreationProgress, Steps } from '../CreationProgress'
 import { Web3Address } from '../StepForm/CensusWeb3'
 import { Option } from '../StepForm/Questions'
@@ -53,6 +55,8 @@ export const Confirm = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [sending, setSending] = useState<boolean>(false)
   const [step, setStep] = useState<Steps>()
+  const [disabled, setDisabled] = useState<boolean>(false)
+  const [unpublished, setUnpublished] = useState<UnpublishedElection | undefined>()
 
   const methods = useForm({
     defaultValues: {
@@ -72,7 +76,7 @@ export const Confirm = () => {
     setSending(true)
     setError(null)
     try {
-      const census = await getCensus(env as EnvOptions, form, account!.address)
+      const census = await getCensus(env, form, account!.address)
       const params: IElectionParameters = {
         ...electionFromForm(form),
         census,
@@ -97,6 +101,12 @@ export const Confirm = () => {
         status: 'success',
         duration: 4000,
       })
+
+      // clear draft data from storage
+      localStorage.removeItem('form-draft')
+      localStorage.removeItem('form-draft-step')
+
+      // redirect (with delay to allow the user to see the success toast)
       setTimeout(() => navigate(`/processes/${ensure0x(pid)}`), 3000)
     } catch (err: any) {
       setError(errorToString(err))
@@ -105,24 +115,52 @@ export const Confirm = () => {
       setSending(false)
     }
   }
+  const corelection = useMemo(() => electionFromForm(form), [account?.address, form])
+
+  // fetches census for unpublished elections
+  useEffect(() => {
+    if (typeof unpublished !== 'undefined') return
+    ;(async () => {
+      const census = await getCensus(env, form, account!.address)
+      setUnpublished(
+        Election.from({
+          ...corelection,
+          census,
+          // oroboros... getCensus ensures form.addresses is populated, that's why we need to set it again
+          // this could be avoided by defining corelection asynchronusly, but would delay the rendering
+          maxCensusSize: form.maxCensusSize ?? form.addresses.length,
+        } as IElectionParameters)
+      )
+    })()
+  }, [corelection])
 
   // preview (fake) mapping
-  const unpublished = useMemo(
-    () =>
-      PublishedElection.build({
-        ...electionFromForm(form),
-        organizationId: account?.address as string,
-        status: ElectionStatus.PROCESS_UNKNOWN,
-        // needs to be redefined in order to set it when set as autoStart
-        startDate: form.electionType.autoStart ? new Date().getTime() : new Date(form.startDate).getTime(),
-      } as unknown as IPublishedElectionParameters),
-    [account?.address, form]
-  )
+  const published = PublishedElection.build({
+    ...corelection,
+    status: ElectionStatus.PROCESS_UNKNOWN,
+    organizationId: account?.address as string,
+    // needs to be redefined in order to set it when set as autoStart
+    startDate: form.electionType.autoStart ? new Date().getTime() : new Date(form.startDate).getTime(),
+  } as unknown as IPublishedElectionParameters)
 
   return (
     <>
-      <ElectionProvider election={unpublished}>
+      <ElectionProvider election={published}>
         <Preview />
+        <Flex
+          p={{ base: 2, md: 5, xl: 10 }}
+          flexDirection={{ base: 'column', md: 'row' }}
+          bgColor='process_create.bg'
+          borderRadius='lg'
+          border='1px solid'
+          borderColor='process_create.border'
+          mb={10}
+        >
+          <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='bold' fontSize='md'>
+            {t('form.process_create.confirm.cost_title')}
+          </Text>
+          <CostPreview unpublished={unpublished} disable={setDisabled} />
+        </Flex>
         <FormProvider {...methods}>
           <Flex
             as='form'
@@ -170,7 +208,7 @@ export const Confirm = () => {
           {t('form.process_create.previous_step')}
         </Button>
 
-        <Button type='submit' form='process-create-form' isLoading={sending}>
+        <Button type='submit' form='process-create-form' isLoading={sending} isDisabled={disabled}>
           {t('form.process_create.confirm.create_button')}
         </Button>
         <Modal isOpen={isOpen} onClose={onClose} closeOnEsc={!!error} closeOnOverlayClick={!!error} isCentered>
@@ -263,6 +301,7 @@ const electionFromForm = (form: StepsFormValues) => {
           })),
         } as IQuestion)
     ),
+    maxCensusSize: form.maxCensusSize ?? form.addresses.length,
     startDate: form.electionType.autoStart ? undefined : new Date(form.startDate).getTime(),
     endDate: new Date(form.endDate).getTime(),
     voteType: { maxVoteOverwrites: Number(form.maxVoteOverwrites) },

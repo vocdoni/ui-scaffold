@@ -78,6 +78,13 @@
       "voted_title": "¡Tu voto se ha registrado con éxito!"
     }
   },
+  "claim": {
+    "error_title": "Error",
+    "loading_description": "Por favor espera mientras se reclaman los tokens",
+    "loading_title": "Reclamando",
+    "success_description": "Éxito",
+    "success_title": "Los tokens han sido reclamados correctamente"
+  },
   "copy": {
     "address": "Copiar dirección",
     "copied_title": "¡Copiado!"
@@ -92,6 +99,19 @@
     "return_to_home": "Ves al inicio"
   },
   "error_text": "Lo sentimos, no se encontró la página que buscabas.",
+  "faucet": {
+    "description": "Para desarrollar con Vocdoni, necesitas tokens para ciertas acciones (crear una elección, cambiar el estado de una elección, etc.). El número de diferentes factores como el tamaño del censo, la duración de la elección, los parámetros de la elección, etc.",
+    "general_information": {
+      "description": "Cuando solicites tokens de desarrollo, recibirás 250 tokens. Puedes reclamar desde el faucet una vez cada 24 horas.",
+      "description2": "Si necesitas más tokens para desarrollar sobre la plataforma de Vocdoni, puedes ponerte en contacto con nosotros en tokens (at) vocdoni.io",
+      "title": "Información General"
+    },
+    "request_tokens": {
+      "description": "Para evitar el uso indebido del faucet, debes conectar tu billetera web3 e iniciar sesión. Solicitamos acceso de solo lectura.",
+      "title": "Solicitar Tokens"
+    },
+    "title": "Faucet de Tokens Vocdoni"
+  },
   "footer": {
     "about": "Acerca de",
     "blog": "Blog",
@@ -182,11 +202,14 @@
         "confirmation": "Confirmación",
         "confirmation_terms_and_conditions": "Acepto los <link>términos y condiciones</link> de Vocdoni",
         "confirmation_valid_info": "Confirmo que esta información es correcta y válida",
+        "cost_preview": "Crear este proceso tendrá un coste de {{ cost }} (dispones de {{ balance }})",
+        "cost_title": "Previsión de coste",
         "create_button": "Crear",
         "dates": "Fecha",
         "description": "Descripción",
         "edit": "Editar",
         "election_info": "Información de Votación",
+        "not_enough_tokens": "No tienes suficientes tokens para crear este proceso, por favor, obten algunos más",
         "questions_one": "Pregunta",
         "questions_many": "Preguntas",
         "questions_other": "Preguntas",
@@ -268,6 +291,9 @@
     "twitter": "Enlace al Twitter de Vocdoni"
   },
   "loading": "Cargando...",
+  "login": {
+    "github": "Iniciar sesión con Github"
+  },
   "menu": {
     "burger_aria_label": "menú de usuario",
     "connect": "Conectar",

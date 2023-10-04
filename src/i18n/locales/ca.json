@@ -78,6 +78,13 @@
       "voted_title": "El teu vot s'ha registrat amb èxit!"
     }
   },
+  "claim": {
+    "error_title": "Error",
+    "loading_description": "Si us plau, espera mentre els tokens s'estan reclamant",
+    "loading_title": "Reclamant",
+    "success_description": "Èxit",
+    "success_title": "Els tokens s'han reclamat amb èxit"
+  },
   "copy": {
     "address": "Copia l'adreça",
     "copied_title": "Copiat!"
@@ -92,6 +99,19 @@
     "return_to_home": "Ves a l'inici"
   },
   "error_text": "Ho sentim, no s'ha trobat la pàgina que busqueu",
+  "faucet": {
+    "description": "Per desenvolupar amb Vocdoni, necessites tokens per a certes accions (crear una elecció, canviar l'estat d'una elecció, etc.). El nombre de diferents factors com la mida del cens, la durada de l'elecció, els paràmetres de l'elecció, etc.",
+    "general_information": {
+      "description": "Quan sol·licites tokens de desenvolupament, rebràs 250 tokens. Pots reclamar des del faucet una vegada cada 24 hores.",
+      "description2": "Si necessites més tokens per desenvolupar sobre la plataforma de Vocdoni, pots posar-te en contacte amb nosaltres a tokens (at) vocdoni.io",
+      "title": "Informació General"
+    },
+    "request_tokens": {
+      "description": "Per evitar l'ús indegut del faucet, has de connectar la teva cartera web3 i iniciar sessió. Sol·licitem accés de només lectura.",
+      "title": "Sol·licitar Tokens"
+    },
+    "title": "Faucet de Tokens Vocdoni"
+  },
   "footer": {
     "about": "Sobre nosaltres",
     "blog": "Blog",
@@ -182,11 +202,14 @@
         "confirmation": "Confirmació",
         "confirmation_terms_and_conditions": "Accepto els <link>termes i condicions</link> de Vocdoni",
         "confirmation_valid_info": "Confirmo que aquesta informació és correcta i vàlida",
+        "cost_preview": "Crear aquest procés costa {{ cost }} votokens (disposes de {{ balance }})",
+        "cost_title": "Previsió de cost",
         "create_button": "Crea",
         "dates": "Data",
         "description": "Descripció",
         "edit": "Editar",
         "election_info": "Informació de la Votació",
+        "not_enough_tokens": "No tens prou tokens per a crear aquest procès, si et plau, aconsegueix-ne alguns més",
         "questions_one": "Pregunta",
         "questions_many": "Preguntes",
         "questions_other": "Preguntes",
@@ -268,6 +291,9 @@
     "twitter": "Enllaç al Twitter de Vocdoni"
   },
   "loading": "Carregant...",
+  "login": {
+    "github": "Inicia sessió amb Github"
+  },
   "menu": {
     "burger_aria_label": "menú d'usuari",
     "connect": "Connectar",
@@ -283,7 +309,7 @@
     "my_org": "La Meva Org",
     "my_org_aria_label": "La meva organització",
     "new_process": "Nou procés",
-    "organization": "Editar Organització",
+    "organization": "Edita Organització",
     "privacy": "Privadesa",
     "terms": "Termes",
     "wallet": "Cartera"
