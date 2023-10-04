@@ -76,6 +76,14 @@
       "voted_title": "Your vote was successfully cast!"
     }
   },
+  "census": {
+    "description": "Select how voters will authenticate and identify themselves: options include custom data, token ownership or wallet addresses.",
+    "spreadsheet_title": "Custom data",
+    "title": "Census",
+    "token_description": "Select one token of the list to create a token-based census, where only token owners will be elegible to vote. Don't find your token? <customLink>Click here</customLink> to add more",
+    "token_title": "Token based census",
+    "wallet_address_title": "Wallet addresses"
+  },
   "claim": {
     "error_title": "Error",
     "loading_description": "Please wait while tokens are being claimed",
@@ -105,7 +113,7 @@
       "title": "General Information"
     },
     "request_tokens": {
-      "description": "To prevent faucet botting, you must connect your web3 wallet and sign in. We request read-only access.",
+      "description": "You own {{ balance }} tokens. You don't have enough tokens for creating the process. To get more, you must sign-in with a social account (to prevent missuse of the faucet). We only request read access.",
       "title": "Request Tokens"
     },
     "title": "Vocdoni Tokens Faucet"
@@ -174,16 +182,13 @@
       },
       "census": {
         "add_button": "Add",
-        "description": "Select how voters will authenticate and identify themselves: options include custom data, token ownership or wallet addresses.",
         "max_census_slider_arialabel": "Maximum participation expected slider selector",
         "max_census_slider_label": "Maximum participation expected:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} eligible voters)",
         "spreadsheet_description": "Such as usernames and passwords, or voter personal information, can be utilized for authentication with a form.",
         "spreadsheet_title": "Custom data",
-        "title": "Census",
         "token_base_description": "Use a token (EVM based) to enable voting based on users' token ownership.",
         "token_base_title": "Token based",
-        "token_title": "Token based census",
         "tokens_placeholder": "Select a token",
         "wallet_address_description": "Identify voters by their wallets addresses.",
         "wallet_address_title": "Wallet addresses"
@@ -192,6 +197,8 @@
         "anonymous": "Anonymous",
         "census": "Census",
         "census_preview_is_shortened": "(preview list is limited to {{ limit }} results)",
+        "census_total_one": "<span>Voters:</span><span>{{ count }} voter</span>",
+        "census_total_other": "<span>Voters:</span><span>{{ count }} voters</span>",
         "census_total_people_one": "A single person will be elegible for voting in this process",
         "census_total_people_other": "{{ count }} people will be elegible for voting in this process",
         "close": "Close",
@@ -199,18 +206,23 @@
         "confirmation": "Confirmation",
         "confirmation_terms_and_conditions": "I accept the <link>Terms and Conditions</link> of Vocdoni",
         "confirmation_valid_info": "I assure that this information is correct and valid",
-        "cost_preview": "Creating this process will have a cost of {{ cost }} votokens (you currently have {{ balance }})",
-        "cost_title": "Cost preview",
+        "cost_description": "Based on diferent parameters, like the census size, election duration and it's behaivour you will see here the price of yor election.",
+        "cost_title": "Election Price Breakdown",
         "create_button": "Create",
         "dates": "Dates",
-        "description": "Description",
+        "description": "In this page, you can review all the information is correct and edit it in case of something wrong. Also, you can check the cost of the voting process and purchase more credits in case you don't own enough.",
+        "description_election": "Description",
+        "duration_total": "<span>Duration:</span> <span>{{ date, duration }}</span>",
         "edit": "Edit",
         "election_info": "Voting Info",
-        "not_enough_tokens": "You don't have enough tokens to create this process, please get some",
+        "params": "<span>Params:</span><span>Anonymous</span>",
         "questions_one": "Question",
         "questions_other": "Questions",
         "secret_until_the_end": "Secret until the end",
-        "title": "Title",
+        "title": "Voting preview and costs",
+        "title_election": "Title",
+        "total_one": "<span>Total:</span> <span>{{ count }} token</span>",
+        "total_other": "<span>Total:</span> <span>{{ count }} tokens</span>",
         "vote_overwritte": "Vote overwritte"
       },
       "confirm_spreadsheet_removal": "Are you sure? Take in mind that the uploaded file will be removed",
@@ -277,6 +289,11 @@
       "success_description": "Redirecting you to the voting process page...",
       "success_title": "Voting process successfully created",
       "unhealthy_account": "You need to create an organization before creating the first voting process.",
+      "web3": {
+        "census_members_one": "<span>1 member</span> <text> in the census</text>",
+        "census_members_other": "<span>{{ count }} members</span> <text> in the census</text>",
+        "your_wallet_is_added": "Your wallet address was automatically added into the census. You can remove it if you want."
+      },
       "weighted": "Weighted vote"
     }
   },

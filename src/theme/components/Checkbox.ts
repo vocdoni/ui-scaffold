@@ -10,7 +10,7 @@ const radiobox = definePartsStyle({
     flexDirection: 'column',
     p: 4,
     boxShadow: 'var(--box-shadow)',
-    bgColor: 'process_create.checkbox_radiobox_bg',
+    bgColor: 'process_create.advanced_checkbox_bg',
     borderRadius: 'md',
 
     _hover: {

@@ -3,7 +3,7 @@ import { VocdoniEnvironment } from '@constants'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { errorToString, useClient } from '@vocdoni/react-providers'
 import { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { FaGithub } from 'react-icons/fa'
 import { useFaucet } from './use-faucet'
 
@@ -104,11 +104,24 @@ export const Claim = () => {
   }
 
   return (
-    <Flex direction='column' gap={3}>
-      <Text>{t('faucet.request_tokens.description')}</Text>
+    <Flex direction='column' gap={3} fontSize='sm'>
+      <Trans
+        i18nKey='faucet.request_tokens.description'
+        components={{
+          span: <Text as='span' />,
+        }}
+        values={{ balance: account?.balance }}
+      />
+
       {connected && (
         <Flex direction='row' gap='2'>
-          <Button type='submit' isLoading={loading} colorScheme='purple' onClick={() => handleSignIn('github')}>
+          <Button
+            type='submit'
+            w='full'
+            isLoading={loading}
+            colorScheme='primary'
+            onClick={() => handleSignIn('github')}
+          >
             <Icon mr={2} as={FaGithub} />
             {t('login.github')}
           </Button>

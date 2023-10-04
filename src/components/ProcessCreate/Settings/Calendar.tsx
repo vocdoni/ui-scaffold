@@ -195,17 +195,12 @@ const Calendar = () => {
           <Box
             position='relative'
             maxW={{ xl2: 76 }}
-            display='flex'
-            flexDirection='column'
-            justifyContent='center'
-            alignItems='center'
             border='1px solid lightgray'
             borderRadius='md'
-            gap={2}
             mt={{ base: 5, xl2: 0 }}
           >
-            <InfoIcon color='process_create.alert_info.color' position='absolute' top={5} left={5} />
-            <Text color='process_create.description' p={5} pt={{ base: 10, xl2: 8 }}>
+            <InfoIcon color='process_create.alert_info.color' position='absolute' top={4} left={4} />
+            <Text color='process_create.description' p={5} pt={{ base: 10, xl2: 10 }}>
               {t('form.process_create.calendar.end_date_description', {
                 date: {
                   begin: begin && !autoStart ? new Date(begin) : new Date(),

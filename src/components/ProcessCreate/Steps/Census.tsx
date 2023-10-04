@@ -21,10 +21,10 @@ export const Census = () => {
       <Flex flexDirection='column' gap={10}>
         <Box>
           <Text fontWeight='bold' fontSize='md' mb={2}>
-            {t('form.process_create.census.title')}
+            {t('census.title')}
           </Text>
           <Text fontSize='sm' color='process_create.description'>
-            {t('form.process_create.census.description')}
+            {t('census.description')}
           </Text>
         </Box>
         <Tabs
@@ -41,13 +41,7 @@ export const Census = () => {
           variant='card'
           isLazy
         >
-          <TabList
-            display='flex'
-            justifyContent='space-around'
-            flexWrap='wrap'
-            gap={{ base: 5, xl: 0 }}
-            alignItems='center'
-          >
+          <TabList>
             {list.map((ct: CensusType, index: number) => (
               <Tab key={index}>
                 <Icon as={HiCheckCircle} />
@@ -60,7 +54,7 @@ export const Census = () => {
             ))}
           </TabList>
 
-          <TabPanels>
+          <TabPanels bgColor='process_create.section' borderRadius='md'>
             {list.map((ct: CensusType, index: number) => (
               <TabPanel key={index}>{details[ct].component()}</TabPanel>
             ))}

@@ -16,7 +16,6 @@ import { Textarea } from './components/Textarea'
 import { Form } from './components/Form'
 import { Checkbox } from './components/Checkbox'
 import { Link } from './components/Link'
-import { Input } from './components/Input'
 import { Alert } from './components/Alert'
 import { SpreadsheetAccess } from './components/SpreadSheet'
 import { ConfirmModal } from './components/ConfirmModal'
@@ -49,7 +48,6 @@ export const theme = extendTheme(vtheme, {
     ElectionResults,
     ElectionActions,
     Form,
-    Input,
     Link,
     QuestionsConfirmation,
     Tabs,

@@ -111,98 +111,118 @@ export const CensusWeb3Addresses = () => {
 
   return (
     <>
-      <FormControl isInvalid={isInvalidFieldMap(errors, 'newAddress')} display='flex' justifyContent='center' gap={2}>
-        <Box mb={3}>
-          <Input
-            {...register('newAddress')}
-            w={{ base: 52, sm: 72, md: 100 }}
-            onKeyDown={(e) => {
-              // avoid submitting form on enter
-              if (e.key === 'Enter') {
-                e.preventDefault()
-                e.stopPropagation()
-                handleAddAddress()
-              }
-            }}
-          />
-          <FormErrorMessage>{fieldMapErrorMessage(errors, 'newAddress')}</FormErrorMessage>
-        </Box>
-        <Button type='button' ml='none' onClick={handleAddAddress}>
-          {t('form.process_create.census.add_button')}
-        </Button>
-      </FormControl>
-      <Flex
-        flexDirection='column'
-        gap={3}
-        maxW={132}
-        height={100}
-        borderRadius='lg'
-        border='1px solid'
-        borderColor='process_create.border'
-        mx='auto'
-        overflowY='scroll'
-        bgColor='process_create.census_box_bg'
-      >
-        {fields.map((address, index) => (
-          <Flex
-            key={address.id}
-            justifyContent='start'
-            alignItems='center'
+      <Flex flexDirection={{ base: 'column', xl: 'row' }} gap={5} alignItems='center'>
+        <Box flex='1 1 50%' w='100%'>
+          <FormControl
+            isInvalid={isInvalidFieldMap(errors, 'newAddress')}
+            display='flex'
+            justifyContent='center'
             gap={2}
-            mx='auto'
-            borderBottom='1px solid'
-            borderColor='process_create.border'
-            w='full'
-            p={5}
           >
-            <Text fontWeight='bold'>{index + 1}</Text>
-            <Text>{addressTextOverflow((address as any).address, value)}</Text>
-
-            <IconButton
-              size='xs'
-              type='button'
-              icon={<DeleteIcon />}
-              aria-label='delete option'
-              onClick={() => remove(index)}
-              ml='auto'
-            />
-          </Flex>
-        ))}
-      </Flex>
-      <FormControl isInvalid={!!fileErr}>
-        <Flex
-          flexDirection='column'
-          justifyContent='center'
-          alignItems='center'
-          gap={5}
-          p={10}
-          border='1px dotted lightgray'
-          bgColor='white'
-          borderRadius='lg'
-          mt={6}
-          cursor='pointer'
-          {...getRootProps()}
-        >
-          <input {...getInputProps()} />
-          <Icon as={RiFileExcel2Line} boxSize={20} color='process_create.spreadsheet.file' />
-          <Box>
-            {isDragActive ? (
-              <Text textAlign='center' color='process_create.spreadsheet.drag_and_drop_text'>
-                {t('uploader.drop_here')}
-              </Text>
-            ) : (
-              <Trans
-                i18nKey='uploader.click_or_drag_and_drop'
-                components={{
-                  p1: <Text textAlign='center' color='process_create.spreadsheet.drag_and_drop_text' />,
-                  p2: <Text textAlign='center' fontSize='sm' color='process_create.spreadsheet.drag_and_drop_text' />,
+            <Box mb={3} w='100%'>
+              <Input
+                {...register('newAddress')}
+                onKeyDown={(e) => {
+                  // avoid submitting form on enter
+                  if (e.key === 'Enter') {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    handleAddAddress()
+                  }
                 }}
               />
-            )}
-          </Box>
-        </Flex>
-        <FormErrorMessage>{fileErr}</FormErrorMessage>
-      </FormControl>
+              <FormErrorMessage>{fieldMapErrorMessage(errors, 'newAddress')}</FormErrorMessage>
+            </Box>
+            <Button type='button' ml='none' onClick={handleAddAddress}>
+              {t('form.process_create.census.add_button')}
+            </Button>
+          </FormControl>
+          <Flex
+            flexDirection='column'
+            height={100}
+            borderRadius='lg'
+            border='1px solid'
+            borderColor='process_create.wallet_addresses_border'
+            overflowY='scroll'
+            mb={1}
+          >
+            {fields.map((address, index) => (
+              <Flex
+                key={address.id}
+                justifyContent='start'
+                alignItems='center'
+                gap={2}
+                mx='auto'
+                borderBottom='1px solid'
+                borderColor='process_create.wallet_addresses_border'
+                w='full'
+                p={5}
+              >
+                <Text fontWeight='bold'>{index + 1}</Text>
+                <Text>{addressTextOverflow((address as any).address, value)}</Text>
+
+                <IconButton
+                  size='xs'
+                  type='button'
+                  icon={<DeleteIcon />}
+                  aria-label='delete option'
+                  onClick={() => remove(index)}
+                  ml='auto'
+                />
+              </Flex>
+            ))}
+          </Flex>
+          <Text color='process_create.description' fontSize='sm' mb={1}>
+            {t('form.process_create.web3.your_wallet_is_added')}
+          </Text>
+          <Flex gap={1}>
+            <Trans
+              i18nKey='form.process_create.web3.census_members'
+              components={{
+                span: <Text as='span' fontWeight='bold' />,
+                text: <Text />,
+              }}
+              count={fields.length}
+            />
+          </Flex>
+        </Box>
+
+        <FormControl isInvalid={!!fileErr} flex='1 1 50%'>
+          <Flex
+            flexDirection='column'
+            justifyContent='center'
+            alignItems='center'
+            gap={5}
+            p={10}
+            border='1px dotted'
+            borderColor='process_create.census.drag_and_drop_border'
+            bgColor='process_create.census.bg'
+            borderRadius='lg'
+            mt={6}
+            cursor='pointer'
+            {...getRootProps()}
+          >
+            <input {...getInputProps()} />
+            <Icon as={RiFileExcel2Line} boxSize={20} color='process_create.spreadsheet.file' />
+            <Box>
+              {isDragActive ? (
+                <Text textAlign='center' color='process_create.description'>
+                  {t('uploader.drop_here')}
+                </Text>
+              ) : (
+                <Trans
+                  i18nKey='uploader.click_or_drag_and_drop'
+                  components={{
+                    p1: <Text textAlign='center' color='process_create.description' />,
+                    p2: <Text textAlign='center' fontSize='sm' color='process_create.description' />,
+                  }}
+                />
+              )}
+            </Box>
+          </Flex>
+          <FormErrorMessage>{fileErr}</FormErrorMessage>
+        </FormControl>
+      </Flex>
     </>
   )
 }
