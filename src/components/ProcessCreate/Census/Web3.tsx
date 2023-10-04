@@ -44,11 +44,6 @@ export const CensusWeb3Addresses = () => {
 
   const [initialized, setInitialized] = useState(!!addresses.length)
 
-  addresses.map((add: any) => {
-    console.log(add.address)
-    console.log('0x' + account?.address === add.address)
-  })
-
   const value = useBreakpointValue({
     base: 6,
     sm: 8,

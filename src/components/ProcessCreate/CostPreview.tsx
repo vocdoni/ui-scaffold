@@ -24,8 +24,6 @@ export const CostPreview = ({
     electionType: { anonymous, autoStart },
   } = form
 
-  console.log(startDate, endDate)
-
   // election estimate cost
   useEffect(() => {
     if (typeof cost !== 'undefined' || typeof unpublished === 'undefined') return
@@ -51,61 +49,70 @@ export const CostPreview = ({
       <Text fontWeight='bold'>{t('form.process_create.confirm.cost_title')}</Text>
       <Text fontSize='sm'>{t('form.process_create.confirm.cost_description')}</Text>
       <Flex flexDirection='column' gap={4} p={{ base: 3, xl: 6 }} bgColor='process_create.section' borderRadius='md'>
-        <Box fontSize='sm'>
-          <Text mb={3}>Your voting process</Text>
-          <UnorderedList>
-            <ListItem>
-              <Text display='flex' justifyContent='space-between' fontSize='sm'>
-                <Trans
-                  i18nKey='form.process_create.confirm.census_total'
-                  components={{
-                    span: <Text as='span' />,
-                  }}
-                  count={addresses.length}
-                />
-              </Text>
-            </ListItem>
+        {typeof cost === 'undefined' && (
+          <Flex justifyContent='center'>
+            <Spinner textAlign='center' />
+          </Flex>
+        )}
+        {typeof cost !== 'undefined' && (
+          <>
+            <Box fontSize='sm'>
+              <Text mb={3}>Your voting process</Text>
+              <UnorderedList>
+                <ListItem>
+                  <Text display='flex' justifyContent='space-between' fontSize='sm'>
+                    <Trans
+                      i18nKey='form.process_create.confirm.census_total'
+                      components={{
+                        span: <Text as='span' />,
+                      }}
+                      count={addresses.length}
+                    />
+                  </Text>
+                </ListItem>
 
-            <ListItem>
-              <Text display='flex' justifyContent='space-between' fontSize='sm'>
-                <Trans
-                  i18nKey='form.process_create.confirm.duration_total'
-                  components={{
-                    span: <Text as='span' />,
-                  }}
-                  values={{
-                    date: {
-                      begin: startDate && !autoStart ? new Date(startDate) : new Date(),
-                      end: new Date(endDate),
-                    },
-                  }}
-                />
-              </Text>
-            </ListItem>
+                <ListItem>
+                  <Text display='flex' justifyContent='space-between' fontSize='sm'>
+                    <Trans
+                      i18nKey='form.process_create.confirm.duration_total'
+                      components={{
+                        span: <Text as='span' />,
+                      }}
+                      values={{
+                        date: {
+                          begin: startDate && !autoStart ? new Date(startDate) : new Date(),
+                          end: new Date(endDate),
+                        },
+                      }}
+                    />
+                  </Text>
+                </ListItem>
 
-            {anonymous && (
-              <ListItem fontSize='sm'>
-                <Text display='flex' justifyContent='space-between' fontSize='sm'>
-                  <Trans
-                    i18nKey='form.process_create.confirm.params'
-                    components={{
-                      span: <Text as='span' />,
-                    }}
-                  />
-                </Text>
-              </ListItem>
-            )}
-          </UnorderedList>
-        </Box>
-        <Text display='flex' justifyContent='space-between' fontWeight='bold' fontSize='sm'>
-          <Trans
-            i18nKey='form.process_create.confirm.total'
-            components={{
-              span: <Text as='span' />,
-            }}
-            count={cost}
-          />
-        </Text>
+                {anonymous && (
+                  <ListItem fontSize='sm'>
+                    <Text display='flex' justifyContent='space-between' fontSize='sm'>
+                      <Trans
+                        i18nKey='form.process_create.confirm.params'
+                        components={{
+                          span: <Text as='span' />,
+                        }}
+                      />
+                    </Text>
+                  </ListItem>
+                )}
+              </UnorderedList>
+            </Box>
+            <Text display='flex' justifyContent='space-between' fontWeight='bold' fontSize='sm'>
+              <Trans
+                i18nKey='form.process_create.confirm.total'
+                components={{
+                  span: <Text as='span' />,
+                }}
+                count={cost}
+              />
+            </Text>
+          </>
+        )}
       </Flex>
       <Text>{cost > account!.balance && <Claim />}</Text>
     </Flex>

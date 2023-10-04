@@ -113,8 +113,7 @@
       "title": "General Information"
     },
     "request_tokens": {
-      "description_one": "You own {{ count }} token. You don't have enough tokens for creating the process. To get more, you must sign-in with a social account (to prevent missuse of the faucet). We only request read access.",
-      "description_other": "You own {{ count }} tokens. You don't have enough tokens for creating the process. To get more, you must sign-in with a social account (to prevent missuse of the faucet). We only request read access.",
+      "description": "You own {{ balance }} tokens. You don't have enough tokens for creating the process. To get more, you must sign-in with a social account (to prevent missuse of the faucet). We only request read access.",
       "title": "Request Tokens"
     },
     "title": "Vocdoni Tokens Faucet"

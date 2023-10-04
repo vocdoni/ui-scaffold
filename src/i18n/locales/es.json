@@ -115,9 +115,7 @@
       "title": "Información General"
     },
     "request_tokens": {
-      "description_one": "Tienes {{ count }} token. No tienes suficientes tokens para crear el proceso. Para obtener más, debes iniciar sesión con una cuenta social (para evitar el mal uso del grifo). Solo solicitamos acceso de lectura.",
-      "description_many": "",
-      "description_other": "Tienes {{ count }} tokens. No tienes suficientes tokens para crear el proceso. Para obtener más, debes iniciar sesión con una cuenta social (para evitar el mal uso del grifo). Solo solicitamos acceso de lectura.",
+      "description": "Tienes {{ balance }} tokens. No tienes suficientes tokens para crear el proceso. Para obtener más, debes iniciar sesión con una cuenta social (para evitar el mal uso del grifo). Solo solicitamos acceso de lectura.",
       "title": "Solicitar Tokens"
     },
     "title": "Faucet de Tokens Vocdoni"

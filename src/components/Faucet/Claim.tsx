@@ -110,7 +110,7 @@ export const Claim = () => {
         components={{
           span: <Text as='span' />,
         }}
-        count={account?.balance}
+        values={{ balance: account?.balance }}
       />
 
       {connected && (

@@ -115,8 +115,7 @@
       "title": "Informació General"
     },
     "request_tokens": {
-      "description_one": "Tens {{ count }} token. No en tens prou per a crear el procés. Per aconseguir-ne més, has d'iniciar la sessió amb un compte de xarxes socials (per evitar un ús inadequat de la font). Només demanem accés de lectura.",
-      "description_other": "Tens {{ count }} tokens. No en tens prou per a crear el procés. Per aconseguir-ne més, has d'iniciar la sessió amb un compte de xarxes socials (per evitar un ús inadequat de la font). Només demanem accés de lectura.",
+      "description": "Tens {{ balance }} tokens. No en tens prou per a crear el procés. Per aconseguir-ne més, has d'iniciar la sessió amb un compte de xarxes socials (per evitar un ús inadequat de la font). Només demanem accés de lectura.",
       "title": "Sol·licita Tokens"
     },
     "title": "Faucet de Tokens Vocdoni"
