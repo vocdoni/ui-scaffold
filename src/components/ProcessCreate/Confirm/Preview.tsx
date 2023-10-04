@@ -1,6 +1,6 @@
 import { Box, ChakraProvider, extendTheme, Flex, Icon, Link, Text } from '@chakra-ui/react'
 import { cofirmTheme } from '@theme/components/Confirm'
-import { ElectionQuestions, ElectionTitle, HR } from '@vocdoni/chakra-components'
+import { ElectionDescription, ElectionQuestions, ElectionTitle } from '@vocdoni/chakra-components'
 import { useElection } from '@vocdoni/react-providers'
 import { useTranslation } from 'react-i18next'
 import { IoMdCheckmark, IoMdClose, IoMdCreate } from 'react-icons/io'
@@ -25,16 +25,7 @@ const Preview = () => {
   } = form
 
   return (
-    <Flex
-      flexDirection='column'
-      gap={5}
-      p={{ base: 2, md: 5, xl: 10 }}
-      mb={10}
-      bgColor='process_create.bg'
-      borderRadius='lg'
-      border='1px solid'
-      borderColor='process_create.border'
-    >
+    <Flex flexDirection='column' gap={5} p={{ base: 3, xl: 6 }} bgColor='process_create.section' borderRadius='md'>
       <Flex flexDirection='column' gap={6}>
         <Flex>
           <Text fontWeight='bold'>{t('form.process_create.confirm.election_info')}</Text>
@@ -48,26 +39,33 @@ const Preview = () => {
         </Flex>
         <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 2, md: 0 }}>
           <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='semibold' fontSize='md'>
-            {t('form.process_create.confirm.title')}
+            {t('form.process_create.confirm.title_election')}
           </Text>
-          <ElectionTitle flexGrow={1} fontSize='md' textAlign='start' fontWeight='normal' />
+          <ElectionTitle
+            flexBasis={{ base: '100%', md: '65%' }}
+            flexShrink={0}
+            flexGrow={1}
+            fontSize='md'
+            textAlign='start'
+            fontWeight='normal'
+          />
         </Flex>
         {description && (
           <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 2, md: 0 }}>
             <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='semibold' fontSize='md'>
-              {t('form.process_create.confirm.description')}
+              {t('form.process_create.confirm.description_election')}
             </Text>
 
-            <Text flexGrow={1} fontSize='md' textAlign='start'>
-              {election?.description.default}
-            </Text>
+            <Box flexBasis={{ base: '100%', md: '65%' }} flexShrink={0} flexGrow={0} fontSize='md' textAlign='start'>
+              <ElectionDescription />
+            </Box>
           </Flex>
         )}
         <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 2, md: 0 }}>
           <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='semibold' fontSize='md'>
             {t('form.process_create.confirm.dates')}
           </Text>
-          <Text>
+          <Text flexBasis={{ base: '100%', md: '65%' }} flexShrink={0} flexGrow={0}>
             {t('form.process_create.calendar.end_date_description', {
               date: {
                 begin: begin ? new Date(begin) : new Date(),
@@ -81,7 +79,7 @@ const Preview = () => {
           <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='semibold' fontSize='md'>
             {t('form.process_create.confirm.configuration')}
           </Text>
-          <Box>
+          <Box flexBasis={{ base: '100%', md: '65%' }}>
             <Flex gap={2} alignItems='center'>
               <Icon as={maxVoteOverwrites ? IoCheckmarkSharp : IoMdClose} boxSize={5} />
               <Text>{t('form.process_create.confirm.vote_overwritte')}</Text>
@@ -98,9 +96,7 @@ const Preview = () => {
         </Flex>
       </Flex>
 
-      <HR m={0} border='none' h='1px' bgColor='process_create.border' />
-
-      <Flex flexDirection={{ base: 'column', md: 'row' }} gap={2} position='relative'>
+      <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 2, md: 0 }} position='relative'>
         <Text flexBasis={{ md: '30%' }} flexShrink={0} flexGrow={0} fontWeight='extrabold'>
           {t('form.process_create.confirm.questions', { count: questions.length })}
         </Text>
@@ -118,9 +114,7 @@ const Preview = () => {
         </Link>
       </Flex>
 
-      <HR m={0} border='none' h='1px' bgColor='process_create.border' />
-
-      <Flex flexDirection={{ base: 'column', md: 'row' }} gap={2} position='relative'>
+      <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 2, md: 0 }} position='relative'>
         <Text flexBasis={{ md: '30%' }} flexShrink={0} flexGrow={0} fontWeight='extrabold'>
           {t('form.process_create.confirm.census')}
         </Text>

@@ -15,12 +15,12 @@ import { ChangeEvent, useCallback, useMemo } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { Controller, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { BiDownload } from 'react-icons/bi'
+import { BiCheckDouble, BiDownload } from 'react-icons/bi'
 import { PiWarningCircleLight } from 'react-icons/pi'
 import { RiFileExcel2Line } from 'react-icons/ri'
 import { CensusSpreadsheetManager } from './CensusSpreadsheetManager'
-import { CsvGenerator } from './generator'
 import { CsvPreview } from './Preview'
+import { CsvGenerator } from './generator'
 
 export const CensusCsvManager = () => {
   const { t } = useTranslation()
@@ -85,7 +85,7 @@ export const CensusCsvManager = () => {
   }, [weighted])
 
   return (
-    <Box>
+    <>
       <Flex
         gap={5}
         flexDirection={{ base: 'column', lg: 'row' }}
@@ -98,17 +98,68 @@ export const CensusCsvManager = () => {
             <Icon as={PiWarningCircleLight} />
             <Text>{t('form.process_create.spreadsheet.requirements.title')}</Text>
           </Flex>
-          <UnorderedList>
+          <UnorderedList mb={4} fontSize='sm'>
             <ListItem mb={2}>
               <Text>{t('form.process_create.spreadsheet.requirements.list_one')}</Text>
             </ListItem>
             <ListItem>
               <Text>{t('form.process_create.spreadsheet.requirements.list_two')}</Text>
             </ListItem>
-            <ListItem>
-              <Text>{t('form.process_create.spreadsheet.requirements.list_three')}</Text>
-            </ListItem>
           </UnorderedList>
+          <FormControl
+            bgColor='process_create.bg'
+            p={3}
+            borderRadius='md'
+            sx={{
+              '& > label': {
+                position: 'relative',
+
+                '& span:first-of-type': {
+                  position: 'absolute',
+                  top: 1,
+                  right: 1,
+                  borderRadius: '50%',
+                  borderColor: 'process_create.census.weighted_vote_checked',
+                },
+
+                '& > input:checked + span': {
+                  bgColor: 'process_create.census.weighted_vote_checked',
+                },
+              },
+            }}
+          >
+            <Controller
+              control={control}
+              name='weightedVote'
+              defaultValue={weighted}
+              render={({ field: { onChange, onBlur, value, ref } }) => (
+                <Checkbox
+                  onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                    if (!manager) {
+                      return setValue('weightedVote', event.target.checked)
+                    }
+                    if (window.confirm(t('form.process_create.confirm_spreadsheet_removal'))) {
+                      setValue('spreadsheet', undefined)
+                      setValue('weightedVote', event.target.checked)
+                    }
+                  }}
+                  onBlur={onBlur}
+                  ref={ref}
+                  isChecked={value}
+                >
+                  <Flex alignItems='center' gap={1}>
+                    <Icon as={BiCheckDouble} />
+                    <Text fontWeight='bold' mb={1}>
+                      <Trans i18nKey='form.process_create.weighted'>Weighted vote</Trans>
+                    </Text>
+                  </Flex>
+                  <Text color='process_create.description' fontSize='sm'>
+                    {t('form.process_create.spreadsheet.requirements.list_three')}
+                  </Text>
+                </Checkbox>
+              )}
+            />
+          </FormControl>
         </Box>
         <Flex
           flex='1 1 40%'
@@ -117,7 +168,6 @@ export const CensusCsvManager = () => {
           alignItems='center'
           gap={3}
           p={6}
-          bgColor='white'
           borderRadius='lg'
           mx='auto'
         >
@@ -130,31 +180,6 @@ export const CensusCsvManager = () => {
         </Flex>
       </Flex>
 
-      <FormControl>
-        <Controller
-          control={control}
-          name='weightedVote'
-          defaultValue={weighted}
-          render={({ field: { onChange, onBlur, value, ref } }) => (
-            <Checkbox
-              onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                if (!manager) {
-                  return setValue('weightedVote', event.target.checked)
-                }
-                if (window.confirm(t('form.process_create.confirm_spreadsheet_removal'))) {
-                  setValue('spreadsheet', undefined)
-                  setValue('weightedVote', event.target.checked)
-                }
-              }}
-              onBlur={onBlur}
-              ref={ref}
-              isChecked={value}
-            >
-              <Trans i18nKey='form.process_create.weighted'>Weighted vote</Trans>
-            </Checkbox>
-          )}
-        />
-      </FormControl>
       <FormControl
         {...register('spreadsheet', { required: { value: true, message: t('form.error.field_is_required') } })}
         {...upload}
@@ -167,8 +192,9 @@ export const CensusCsvManager = () => {
           alignItems='center'
           gap={5}
           p={10}
-          border='1px dotted lightgray'
-          bgColor='white'
+          border='1px dotted'
+          borderColor='process_create.census.drag_and_drop_border'
+          bgColor='process_create.bg'
           borderRadius='lg'
           cursor='pointer'
         >
@@ -176,15 +202,15 @@ export const CensusCsvManager = () => {
           <Icon as={RiFileExcel2Line} boxSize={20} color='process_create.spreadsheet.file' />
           <Box>
             {isDragActive ? (
-              <Text textAlign='center' color='process_create.spreadsheet.drag_and_drop_text'>
+              <Text textAlign='center' color='process_create.description'>
                 {t('uploader.drop_here')}
               </Text>
             ) : (
               <Trans
                 i18nKey='uploader.click_or_drag_and_drop'
                 components={{
-                  p1: <Text textAlign='center' color='process_create.spreadsheet.drag_and_drop_text' />,
-                  p2: <Text textAlign='center' fontSize='sm' color='process_create.spreadsheet.drag_and_drop_text' />,
+                  p1: <Text textAlign='center' color='process_create.description' />,
+                  p2: <Text textAlign='center' fontSize='sm' color='process_create.description' />,
                 }}
               />
             )}
@@ -195,6 +221,6 @@ export const CensusCsvManager = () => {
         </FormErrorMessage>
       </FormControl>
       <CsvPreview manager={manager} upload={upload} />
-    </Box>
+    </>
   )
 }

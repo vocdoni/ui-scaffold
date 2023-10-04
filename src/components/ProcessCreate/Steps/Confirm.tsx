@@ -1,5 +1,6 @@
 import { ArrowBackIcon } from '@chakra-ui/icons'
 import {
+  Box,
   Button,
   Checkbox,
   Flex,
@@ -22,7 +23,6 @@ import {
   Election,
   ElectionCreationSteps,
   ElectionStatus,
-  ensure0x,
   EnvOptions,
   IElectionParameters,
   IPublishedElectionParameters,
@@ -32,6 +32,7 @@ import {
   UnpublishedElection,
   VocdoniCensus3Client,
   WeightedCensus,
+  ensure0x,
 } from '@vocdoni/sdk'
 import { useEffect, useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
@@ -43,6 +44,7 @@ import { CostPreview } from '../CostPreview'
 import { CreationProgress, Steps } from '../CreationProgress'
 import { Web3Address } from '../StepForm/CensusWeb3'
 import { Option } from '../StepForm/Questions'
+import Wrapper from './Wrapper'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 
 export const Confirm = () => {
@@ -144,71 +146,98 @@ export const Confirm = () => {
   } as unknown as IPublishedElectionParameters)
 
   return (
-    <>
+    <Wrapper>
+      <Text fontWeight='bold' mb={2}>
+        {t('form.process_create.confirm.title')}
+      </Text>
+      <Text mb={4}>{t('form.process_create.confirm.description')}</Text>
       <ElectionProvider election={published}>
-        <Preview />
-        <Flex
-          p={{ base: 2, md: 5, xl: 10 }}
-          flexDirection={{ base: 'column', md: 'row' }}
-          bgColor='process_create.bg'
-          borderRadius='lg'
-          border='1px solid'
-          borderColor='process_create.border'
-          mb={10}
-        >
-          <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='bold' fontSize='md'>
-            {t('form.process_create.confirm.cost_title')}
-          </Text>
-          <CostPreview unpublished={unpublished} disable={setDisabled} />
-        </Flex>
-        <FormProvider {...methods}>
-          <Flex
-            as='form'
-            id='process-create-form'
-            flexDirection={{ base: 'column', md: 'row' }}
-            gap={{ base: 2, md: 0 }}
-            p={{ base: 2, md: 5, xl: 10 }}
-            bgColor='process_create.bg'
-            borderRadius='lg'
-            border='1px solid'
-            borderColor='process_create.border'
-            onSubmit={handleSubmit(onSubmit)}
-          >
-            <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='bold' fontSize='md'>
-              {t('form.process_create.confirm.confirmation')}
-            </Text>
-            <Flex flexDirection='column' gap={2}>
-              <FormControl isInvalid={!!errors.infoValid}>
-                <Checkbox {...register('infoValid', { required: true })}>
-                  {t('form.process_create.confirm.confirmation_valid_info')}
-                </Checkbox>
-                <FormErrorMessage>
-                  <Text>{t('form.error.field_is_required')}</Text>
-                </FormErrorMessage>
-              </FormControl>
-              <FormControl isInvalid={!!errors.termsAndConditions}>
-                <Checkbox {...register('termsAndConditions', { required: true })}>
-                  <Trans
-                    i18nKey='form.process_create.confirm.confirmation_terms_and_conditions'
-                    components={{
-                      link: <Link variant='primary' href='https://aragon.org/terms-and-conditions' target='_blank' />,
+        <Flex flexDirection={{ base: 'column', xl2: 'row' }} gap={5}>
+          <Preview />
+          <Box flex={{ xl2: '0 0 25%' }}>
+            <CostPreview unpublished={unpublished} disable={setDisabled} />
+
+            <FormProvider {...methods}>
+              <Box>
+                <Text fontWeight='bold' px={2} mb={2}>
+                  {t('form.process_create.confirm.confirmation')}
+                </Text>
+                <Flex
+                  as='form'
+                  id='process-create-form'
+                  onSubmit={handleSubmit(onSubmit)}
+                  flexDirection='column'
+                  gap={4}
+                  bgColor='process_create.section'
+                  borderRadius='md'
+                  p={{ base: 3, xl: 6 }}
+                >
+                  <FormControl
+                    isInvalid={!!errors.infoValid}
+                    sx={{
+                      '& label': {
+                        display: 'flex',
+                        alignItems: { xl2: 'start' },
+
+                        '& span:first-of-type': {
+                          mt: { xl2: 1.5 },
+                        },
+                      },
                     }}
-                  />
-                </Checkbox>
-                <FormErrorMessage>
-                  <Text>{t('form.error.field_is_required')}</Text>
-                </FormErrorMessage>
-              </FormControl>
-            </Flex>
-          </Flex>
-        </FormProvider>
+                  >
+                    <Checkbox {...register('infoValid', { required: true })}>
+                      {t('form.process_create.confirm.confirmation_valid_info')}
+                    </Checkbox>
+                    <FormErrorMessage>
+                      <Text ml={6}>{t('form.error.field_is_required')}</Text>
+                    </FormErrorMessage>
+                  </FormControl>
+                  <FormControl
+                    isInvalid={!!errors.termsAndConditions}
+                    sx={{
+                      '& label': {
+                        display: 'flex',
+                        alignItems: { xl2: 'start' },
+
+                        '& span:first-of-type': {
+                          mt: { xl2: 1.5 },
+                        },
+                      },
+                    }}
+                  >
+                    <Checkbox {...register('termsAndConditions', { required: true })}>
+                      <Trans
+                        i18nKey='form.process_create.confirm.confirmation_terms_and_conditions'
+                        components={{
+                          link: (
+                            <Link variant='primary' href='https://aragon.org/terms-and-conditions' target='_blank' />
+                          ),
+                        }}
+                      />
+                    </Checkbox>
+                    <FormErrorMessage>
+                      <Text ml={6}>{t('form.error.field_is_required')}</Text>
+                    </FormErrorMessage>
+                  </FormControl>
+                </Flex>
+              </Box>
+            </FormProvider>
+          </Box>
+        </Flex>
       </ElectionProvider>
       <Flex justifyContent='space-between' alignItems='end' mt={5}>
         <Button variant='outline' onClick={prev} leftIcon={<ArrowBackIcon />}>
           {t('form.process_create.previous_step')}
         </Button>
 
-        <Button type='submit' form='process-create-form' isLoading={sending} isDisabled={disabled}>
+        <Button
+          type='submit'
+          form='process-create-form'
+          isLoading={sending}
+          variant='outline'
+          colorScheme='primary'
+          px={32}
+        >
           {t('form.process_create.confirm.create_button')}
         </Button>
         <Modal isOpen={isOpen} onClose={onClose} closeOnEsc={!!error} closeOnOverlayClick={!!error} isCentered>
@@ -229,7 +258,7 @@ export const Confirm = () => {
           </ModalContent>
         </Modal>
       </Flex>
-    </>
+    </Wrapper>
   )
 }
 

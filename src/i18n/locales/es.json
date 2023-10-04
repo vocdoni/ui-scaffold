@@ -78,6 +78,14 @@
       "voted_title": "¡Tu voto se ha registrado con éxito!"
     }
   },
+  "census": {
+    "description": "Selecciona cómo los votantes se autenticarán e identificarán: las opciones incluyen datos personalizados, la propiedad de tokens o con direcciones de monedero (wallet addresses).",
+    "spreadsheet_title": "Datos personalizados",
+    "title": "Censo",
+    "token_description": "Seleccione un token de la lista para crear un censo basado en tokens, donde solo los propietarios de tokens serán elegibles para votar. ¿No encuentras tu token? <customLink>Haz clic aquí</customLink> para añadir más",
+    "token_title": "Censo basado en tokens",
+    "wallet_address_title": "Direcciones de billetera"
+  },
   "claim": {
     "error_title": "Error",
     "loading_description": "Por favor espera mientras se reclaman los tokens",
@@ -107,7 +115,7 @@
       "title": "Información General"
     },
     "request_tokens": {
-      "description": "Para evitar el uso indebido del faucet, debes conectar tu billetera web3 e iniciar sesión. Solicitamos acceso de solo lectura.",
+      "description": "Tienes {{ balance }} tokens. No tienes suficientes tokens para crear el proceso. Para obtener más, debes iniciar sesión con una cuenta social (para evitar el mal uso del grifo). Solo solicitamos acceso de lectura.",
       "title": "Solicitar Tokens"
     },
     "title": "Faucet de Tokens Vocdoni"
@@ -176,16 +184,13 @@
       },
       "census": {
         "add_button": "Añadir",
-        "description": "Selecciona cómo los votantes se autenticarán e identificarán: las opciones incluyen datos personalizados, la propiedad de tokens o con direcciones de monedero (wallet addresses).",
         "max_census_slider_arialabel": "Selector deslizante de participación máxima esperada",
         "max_census_slider_label": "Participación máxima esperada:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} votantes elegibles)",
         "spreadsheet_description": "Datos personalizados, como nombres de usuario y contraseñas, o información personal de los votantes, pueden utilizarse para la autenticación mediante un formulario.",
         "spreadsheet_title": "Datos personalizados",
-        "title": "Censo",
         "token_base_description": "Utiliza un token (basado en EVM) para permitir a los usuarios votar en función de la cantidad que poseen.",
         "token_base_title": "Basado en tokens",
-        "token_title": "Censo basado en tokens",
         "tokens_placeholder": "Selecciona un token",
         "wallet_address_description": "Identifica a tus votantes por sus direcciones de monedero digital.",
         "wallet_address_title": "Direcciones de monedero"
@@ -194,6 +199,9 @@
         "anonymous": "Anónimo",
         "census": "Censo",
         "census_preview_is_shortened": "(la lista previa está limitada a {{ limit }} resultados)",
+        "census_total_one": "<span>Votantes:</span><span>{{ count }} votante</span>",
+        "census_total_many": "",
+        "census_total_other": "<span>Votantes:</span><span>{{ count }} votantes</span>",
         "census_total_people_one": "Una persona podrá votar en esta votación",
         "census_total_people_many": "{{ count }} personas podrán votar en esta votación",
         "census_total_people_other": "",
@@ -202,19 +210,25 @@
         "confirmation": "Confirmación",
         "confirmation_terms_and_conditions": "Acepto los <link>términos y condiciones</link> de Vocdoni",
         "confirmation_valid_info": "Confirmo que esta información es correcta y válida",
-        "cost_preview": "Crear este proceso tendrá un coste de {{ cost }} (dispones de {{ balance }})",
+        "cost_description": "",
         "cost_title": "Previsión de coste",
         "create_button": "Crear",
         "dates": "Fecha",
-        "description": "Descripción",
+        "description": "En esta página, puedes revisar que toda la información sea correcta y editarla en caso de que haya algún error. También puedes verificar el costo del proceso de votación y comprar más créditos en caso de que no tengas suficientes.",
+        "description_election": "Descripción",
+        "duration_total": "<span>Duración:</span> <span>{{ date, duration }}</span>",
         "edit": "Editar",
         "election_info": "Información de Votación",
-        "not_enough_tokens": "No tienes suficientes tokens para crear este proceso, por favor, obten algunos más",
+        "params": "<span>Parámetros:</span><span>Anónimo</span>",
         "questions_one": "Pregunta",
         "questions_many": "Preguntas",
         "questions_other": "Preguntas",
         "secret_until_the_end": "Secreto hasta el final",
-        "title": "Título",
+        "title": "Vista previa y costos de votación",
+        "title_election": "Título",
+        "total_one": "<span>Total:</span> <span>{{ count }} token</span>",
+        "total_many": "",
+        "total_other": "<span>Total:</span> <span>{{ count }} tokens</span>",
         "vote_overwritte": "Sobrescribir voto"
       },
       "confirm_spreadsheet_removal": "Seguro? Piensa que al hacerlo se eliminará el fichero que has cargado.",
@@ -282,6 +296,12 @@
       "success_description": "Redirigiéndote a la página del proceso de votación...",
       "success_title": "Proceso de votación creado con éxito",
       "unhealthy_account": "Debes crear una organización antes de crear la primera votación.",
+      "web3": {
+        "census_members_one": "<span>1 miembro</span> <text> en el censo</text>",
+        "census_members_many": "",
+        "census_members_other": "<span>{{ count }} miembros</span> <text> en el censo</text>",
+        "your_wallet_is_added": "Tu dirección de billetera se ha añadido automáticamente al censo. Puedes eliminarla si lo deseas."
+      },
       "weighted": "Voto ponderado"
     }
   },

@@ -43,12 +43,12 @@ const PreviewCensusSpreadsheet = () => {
           </Tbody>
         </Table>
       </Box>
-      <Text color='process_create.preview.census_web3_text_helper'>
+      <Text color='process_create.description'>
         {t('form.process_create.confirm.census_total_people', { count: spreadsheet.data.length })}
       </Text>
       {data.length !== spreadsheet.data.length && (
         <Text
-          color='process_create.preview.census_web3_text_helper'
+          color='process_create.description'
           children={t('form.process_create.confirm.census_preview_is_shortened', {
             limit: CensusPreviewRowsLimit,
           })}

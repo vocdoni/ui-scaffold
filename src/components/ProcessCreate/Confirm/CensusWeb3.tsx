@@ -1,5 +1,5 @@
 import { Flex, ListItem, Text, UnorderedList, useBreakpointValue } from '@chakra-ui/react'
-import { addressTextOverflow, CensusPreviewRowsLimit } from '@constants'
+import { CensusPreviewRowsLimit, addressTextOverflow } from '@constants'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useProcessCreationSteps } from '../Steps/use-steps'
@@ -27,12 +27,12 @@ const PreviewCensusWeb3 = () => {
           </ListItem>
         ))}
       </UnorderedList>
-      <Text color='process_create.preview.census_web3_text_helper'>
+      <Text color='process_create.description'>
         {t('form.process_create.confirm.census_total_people', { count: addresses.length })}
       </Text>
       {data.length !== addresses.length && (
         <Text
-          color='process_create.preview.census_web3_text_helper'
+          color='process_create.description'
           children={t('form.process_create.confirm.census_preview_is_shortened', {
             limit: CensusPreviewRowsLimit,
           })}
