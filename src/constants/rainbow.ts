@@ -57,7 +57,7 @@ const connectors = connectorsForWallets([
         name: 'Facebook',
         iconUrl: 'https://authjs.dev/img/providers/facebook.svg',
         options: {
-          oAuthServiceUrl: 'https://oauth.vocdoni.net/',
+          oAuthServiceUrl: 'https://oauth.vocdoni.io/',
           oAuthServiceProvider: 'facebook',
         },
       }),
