@@ -27,6 +27,7 @@ jobs:
         uses: nwtgck/actions-netlify@v2.0
         with:
           publish-dir: './dist'
+          # keep as a non existant branch, because we don't want to publish this
           production-branch: master
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "DEV Deploy from GitHub Actions"
@@ -47,7 +48,7 @@ jobs:
         uses: nwtgck/actions-netlify@v2.0
         with:
           publish-dir: './dist'
-          production-branch: master
+          production-branch: develop
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "STG Deploy from GitHub Actions"
           enable-pull-request-comment: true
