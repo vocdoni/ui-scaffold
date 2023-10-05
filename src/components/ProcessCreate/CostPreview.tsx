@@ -40,10 +40,6 @@ export const CostPreview = ({
       })
   }, [cost, unpublished])
 
-  if (typeof cost === 'undefined') {
-    return <Spinner />
-  }
-
   return (
     <Flex flexDirection='column' gap={2} mb={5}>
       <Text fontWeight='bold'>{t('form.process_create.confirm.cost_title')}</Text>
@@ -114,7 +110,7 @@ export const CostPreview = ({
           </>
         )}
       </Flex>
-      <Text>{cost > account!.balance && <Claim />}</Text>
+      <Text>{cost && cost > account!.balance && <Claim />}</Text>
     </Flex>
   )
 }
