@@ -20,7 +20,7 @@ import {
   Textarea,
 } from '@chakra-ui/react'
 import { useOrganizationModal } from '@components/Organization/OrganizationModalProvider'
-import { errorToString, useClient } from '@vocdoni/react-providers'
+import { errorToString, useClient, useOrganization } from '@vocdoni/react-providers'
 import { Account } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -36,8 +36,9 @@ interface EditFormFields {
 
 const REGEX_AVATAR = /^(https?:\/\/|ipfs:\/\/)/i
 
-const EditProfile = () => {
-  const { account, client } = useClient()
+const EditProfile = ({ callback }: { callback?: any }) => {
+  const { account } = useClient()
+  const { update } = useOrganization()
   const { t } = useTranslation()
 
   const [loading, setLoading] = useState(false)
@@ -83,7 +84,8 @@ const EditProfile = () => {
     setLoading(true)
 
     try {
-      await client.updateAccountInfo(new Account({ ...account?.account, ...values }))
+      await update(new Account({ ...account?.account, ...values }))
+      if (typeof callback === 'function') callback()
       onClose()
     } catch (err: any) {
       setError(errorToString(err))
