@@ -37,7 +37,7 @@ const connectors = connectorsForWallets([
         name: 'Github',
         iconUrl: 'https://authjs.dev/img/providers/github.svg',
         options: {
-          oAuthServiceUrl: 'https://oauth.vocdoni.net/',
+          oAuthServiceUrl: 'https://oauth.vocdoni.io/',
           oAuthServiceProvider: 'github',
         },
       }) as unknown as Wallet,
@@ -47,7 +47,7 @@ const connectors = connectorsForWallets([
         name: 'Google',
         iconUrl: 'https://authjs.dev/img/providers/google.svg',
         options: {
-          oAuthServiceUrl: 'https://oauth.vocdoni.net/',
+          oAuthServiceUrl: 'https://oauth.vocdoni.io/',
           oAuthServiceProvider: 'google',
         },
       }) as unknown as Wallet,
