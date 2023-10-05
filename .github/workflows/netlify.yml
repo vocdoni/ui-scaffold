@@ -21,7 +21,7 @@ jobs:
       - name: Build CRA app dev
         run: yarn build
         env:
-          VOCDONI_ENVIRONMENT: 'dev'
+          VOCDONI_ENVIRONMENT: dev
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2.0
@@ -29,7 +29,27 @@ jobs:
           publish-dir: './dist'
           production-branch: master
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy from GitHub Actions"
+          deploy-message: "DEV Deploy from GitHub Actions"
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 1
+
+      - name: Build CRA app stg
+        run: yarn build
+        env:
+          VOCDONI_ENVIRONMENT: stg
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v2.0
+        with:
+          publish-dir: './dist'
+          production-branch: master
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "STG Deploy from GitHub Actions"
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: true

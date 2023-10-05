@@ -196,7 +196,7 @@ export const CensusWeb3Addresses = () => {
             p={10}
             border='1px dotted'
             borderColor='process_create.census.drag_and_drop_border'
-            bgColor='process_create.census.bg'
+            bgColor='process_create.bg'
             borderRadius='lg'
             mt={6}
             cursor='pointer'
