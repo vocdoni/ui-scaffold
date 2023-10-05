@@ -1,9 +1,11 @@
 import { Box, Card, CardBody, Flex, Grid, GridItem, Heading, Text } from '@chakra-ui/react'
 import { Claim } from '@components/Faucet/Claim'
-import { useTranslation } from 'react-i18next'
+import { useClient } from '@vocdoni/react-providers'
+import { Trans, useTranslation } from 'react-i18next'
 
 const Faucet = () => {
   const { t } = useTranslation()
+  const { account } = useClient()
 
   return (
     <Flex direction='column' gap={4}>
@@ -21,11 +23,27 @@ const Faucet = () => {
 
         <GridItem display='flex' justifyContent='center' alignItems='center'>
           <Card width={'80%'}>
-            <CardBody>
+            <CardBody display='flex' flexDir='column' gap={3}>
               <Heading as={'h2'} size={'sm'}>
                 {t('faucet.request_tokens.title')}
               </Heading>
-
+              <Text>
+                {account ? (
+                  <Text>
+                    <Trans i18nKey='faucet.tokens_you_own' values={{ balance: account?.balance }} />
+                    {` `}
+                    <Trans
+                      i18nKey='faucet.request_description'
+                      components={{
+                        span: <Text as='span' />,
+                      }}
+                      values={{ balance: account?.balance }}
+                    />
+                  </Text>
+                ) : (
+                  <Trans i18nKey='faucet.login_first' />
+                )}
+              </Text>
               <Claim />
             </CardBody>
           </Card>
@@ -33,16 +51,16 @@ const Faucet = () => {
 
         <GridItem display='flex' justifyContent='center' alignItems='center' mt={10}>
           <Card width={'80%'}>
-            <CardBody>
+            <CardBody display='flex' flexDir='column' gap={3}>
               <Heading as={'h2'} size={'sm'}>
                 {t('faucet.general_information.title')}
               </Heading>
-              <Text variant='p' mb={5} mt={5}>
+              <Text variant='p'>
                 {t('faucet.general_information.description', {
                   amount: import.meta.env.FAUCET_AMOUNT,
                 })}
               </Text>
-              <Text variant='p' mb={10}>
+              <Text variant='p'>
                 {t('faucet.general_information.description2', {
                   amount: import.meta.env.FAUCET_AMOUNT,
                 })}
