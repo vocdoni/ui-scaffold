@@ -14,7 +14,7 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { useClient, useOrganization } from '@vocdoni/react-providers'
-import { InvalidElection, PublishedElection, areEqualHexStrings } from '@vocdoni/sdk'
+import { areEqualHexStrings, InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
@@ -53,7 +53,7 @@ const OrganizationView = () => {
 
   // loads elections. Note the load trigger is done via useObserver using a layer visibility.
   useEffect(() => {
-    if (finished) return
+    if (finished || loading) return
     // start loading at first glance
     setLoaded(false)
     setLoading(true)
