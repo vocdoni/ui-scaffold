@@ -26,7 +26,7 @@ import user from '/assets/empty-list-user.png'
 const OrganizationView = () => {
   const { t } = useTranslation()
   const { client, account } = useClient()
-  const { organization } = useOrganization()
+  const { organization, fetch } = useOrganization()
 
   const [electionsList, setElectionsList] = useState<(PublishedElection | InvalidElection)[]>([])
   const [loading, setLoading] = useState<boolean>(false)
@@ -37,6 +37,10 @@ const OrganizationView = () => {
   const refObserver = useRef<any>()
   const [page, setPage] = useState<number>(-1)
   useObserver(refObserver, setPage)
+
+  useEffect(() => {
+    fetch()
+  }, [account])
 
   // resets fields on account change
   useEffect(() => {
