@@ -53,7 +53,15 @@ export const ProcessView = () => {
       <Box>
         <Header />
         <Flex direction={{ base: 'column', xl: 'row' }} gap={{ xl: 10 }} alignItems='start'>
-          <Tabs variant='process' index={tabIndex} onChange={handleTabsChange} flexGrow={1} w='full'>
+          <Tabs
+            variant='process'
+            index={tabIndex}
+            onChange={handleTabsChange}
+            flexGrow={0}
+            flexShrink={0}
+            flexBasis={{ base: '100%', xl: '75%' }}
+            w='full'
+          >
             <TabList>
               <Tab>{t('process.questions')}</Tab>
               {election?.status !== ElectionStatus.CANCELED && <Tab>{t('process.results')}</Tab>}
@@ -72,10 +80,10 @@ export const ProcessView = () => {
             position='sticky'
             bottom={{ base: 'px', xl: undefined }}
             top={{ xl: 20 }}
-            mx='auto'
             mt={{ xl: 10 }}
+            mx={{ base: 'auto', xl: 0 }}
           >
-            <ProcessAside setQuestionsTab={setQuestionsTab}/>
+            <ProcessAside setQuestionsTab={setQuestionsTab} />
           </Flex>
         </Flex>
       </Box>

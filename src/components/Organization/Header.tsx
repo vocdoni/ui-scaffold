@@ -30,7 +30,7 @@ const OrganizationHeader = () => {
       p={3}
       borderRadius='lg'
       boxShadow='var(--box-shadow)'
-      bgColor='organization.header'
+      bgColor='organization.header_bg'
     >
       <Box flex='1 1 20%' minW={40}>
         <AspectRatio ratio={1.25 / 1} maxW={56} mx='auto'>
