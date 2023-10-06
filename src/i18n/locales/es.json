@@ -114,11 +114,14 @@
       "description2": "Si necesitas más tokens para desarrollar sobre la plataforma de Vocdoni, puedes ponerte en contacto con nosotros en tokens (at) vocdoni.io",
       "title": "Información General"
     },
+    "login_first": "Debes iniciar sesión primero.",
+    "request_description": "Para obtener más tokens de Vocdoni, debes iniciar sesión con una cuenta social (para evitar el mal uso del grifo). Solo solicitamos acceso de lectura.",
     "request_tokens": {
       "description": "Tienes {{ balance }} tokens. No tienes suficientes tokens para crear el proceso. Para obtener más, debes iniciar sesión con una cuenta social (para evitar el mal uso del grifo). Solo solicitamos acceso de lectura.",
       "title": "Solicitar Tokens"
     },
-    "title": "Faucet de Tokens Vocdoni"
+    "title": "Faucet de Tokens Vocdoni",
+    "tokens_you_own": "Tienes {{ balance }} tokens."
   },
   "footer": {
     "about": "Acerca de",

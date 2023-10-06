@@ -1,4 +1,4 @@
-import { Wallet, connectorsForWallets } from '@rainbow-me/rainbowkit'
+import { connectorsForWallets, Wallet } from '@rainbow-me/rainbowkit'
 import '@rainbow-me/rainbowkit/styles.css'
 import { coinbaseWallet, metaMaskWallet, rainbowWallet } from '@rainbow-me/rainbowkit/wallets'
 import { oAuthWallet } from '@vocdoni/rainbowkit-wallets'
@@ -37,7 +37,7 @@ const connectors = connectorsForWallets([
         name: 'Github',
         iconUrl: 'https://authjs.dev/img/providers/github.svg',
         options: {
-          oAuthServiceUrl: 'https://oauth.vocdoni.net/',
+          oAuthServiceUrl: 'https://oauth.vocdoni.io/',
           oAuthServiceProvider: 'github',
         },
       }) as unknown as Wallet,
@@ -47,7 +47,7 @@ const connectors = connectorsForWallets([
         name: 'Google',
         iconUrl: 'https://authjs.dev/img/providers/google.svg',
         options: {
-          oAuthServiceUrl: 'https://oauth.vocdoni.net/',
+          oAuthServiceUrl: 'https://oauth.vocdoni.io/',
           oAuthServiceProvider: 'google',
         },
       }) as unknown as Wallet,
@@ -57,7 +57,7 @@ const connectors = connectorsForWallets([
         name: 'Facebook',
         iconUrl: 'https://authjs.dev/img/providers/facebook.svg',
         options: {
-          oAuthServiceUrl: 'https://oauth.vocdoni.net/',
+          oAuthServiceUrl: 'https://oauth.vocdoni.io/',
           oAuthServiceProvider: 'facebook',
         },
       }),
