@@ -112,11 +112,14 @@
       "description2": "If you need more tokens for developing on top of the Vocdoni stack, you can connect with us at tokens (at) vocdoni.io",
       "title": "General Information"
     },
+    "login_first": "You must login first.",
+    "request_description": "To get vocdoni tokens, you must sign-in with a social account (to prevent missuse of the faucet). We only request read access.",
     "request_tokens": {
       "description": "You own {{ balance }} tokens. You don't have enough tokens for creating the process. To get more, you must sign-in with a social account (to prevent missuse of the faucet). We only request read access.",
       "title": "Request Tokens"
     },
-    "title": "Vocdoni Tokens Faucet"
+    "title": "Vocdoni Tokens Faucet",
+    "tokens_you_own": "You own {{ balance }} tokens."
   },
   "footer": {
     "about": "About",
