@@ -208,7 +208,6 @@
         "census_total_people_one": "Una persona podrà votar en aquesta votació",
         "census_total_people_many": "{{ count }} persones podran votar en aquesta votació",
         "census_total_people_other": "",
-        "close": "Tanca",
         "configuration": "Configuració",
         "confirmation": "Confirmació",
         "confirmation_terms_and_conditions": "Accepto els <link>termes i condicions</link> de Vocdoni",
@@ -417,8 +416,7 @@
       "sign_tx": "Signar transacció"
     },
     "creation_steps_description": "Necessites signar les transaccions per crear el procés de votació a la cadena de blocs de Vocdoni. No tanquis aquesta finestra o finestra modal.",
-    "creation_steps_title": "Progrés",
-    "do_not_close": "Aquesta acció pot trigar una estona, no tanquis aquesta finestra"
+    "creation_steps_title": "Progrés"
   },
   "uploader": {
     "click_or_drag_and_drop": "<p1>Puja o arrossega i deixa anar aquí la llista de votants</p1><p2>(Formats permesos: CSV, XLSX i ODS)</p2>",

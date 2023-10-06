@@ -204,7 +204,6 @@
         "census_total_other": "<span>Voters:</span><span>{{ count }} voters</span>",
         "census_total_people_one": "A single person will be elegible for voting in this process",
         "census_total_people_other": "{{ count }} people will be elegible for voting in this process",
-        "close": "Close",
         "configuration": "Configuration",
         "confirmation": "Confirmation",
         "confirmation_terms_and_conditions": "I accept the <link>Terms and Conditions</link> of Vocdoni",
@@ -408,8 +407,7 @@
       "sign_tx": "Sign transaction"
     },
     "creation_steps_description": "You need to sign the transactions in order to create the voting process in the Vocdoni blockchain. Don't close this windows or modal.",
-    "creation_steps_title": "Progress",
-    "do_not_close": "This action can take some time, don't close this window"
+    "creation_steps_title": "Progress"
   },
   "uploader": {
     "click_or_drag_and_drop": "<p1>Upload or drag and drop the voter list here</p1><p2>(Allowed formats: CSV, XLSX, and ODS)</p2>",
