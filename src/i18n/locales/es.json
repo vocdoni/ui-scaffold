@@ -232,7 +232,7 @@
         "vote_overwritte": "Sobrescribir voto"
       },
       "confirm_spreadsheet_removal": "Seguro? Piensa que al hacerlo se eliminará el fichero que has cargado.",
-      "creating_process": "Creando proceso...",
+      "creating_process": "Creando Proceso de Votación...",
       "meta": {
         "description": "Proporciona un título y descripción claros. Esto ayudará a los votantes a entender el propósito de la votación.",
         "description_helper": "Una breve descripción de tu votación",
@@ -413,7 +413,7 @@
       "done": "Creación del proceso",
       "sign_tx": "Firmar transacción"
     },
-    "creation_steps_description": "Se está creando el proceso de votación. Este procedimiento puede tardar un rato (no cierres esta ventana) mientras queda registrada toda la información en la blockchain privada y segura de Vocdoni.",
+    "creation_steps_description": "Necesitas firmar las transacciones para crear el proceso de votación en la cadena de bloques de Vocdoni. No cierres esta ventana o modal.",
     "creation_steps_title": "Progreso",
     "do_not_close": "Esta acción puede llevar algún tiempo, no cierres esta ventana"
   },

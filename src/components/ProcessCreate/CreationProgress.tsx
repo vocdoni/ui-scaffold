@@ -1,4 +1,4 @@
-import { Heading, List, ListIcon, ListItem, Progress, Stack, Text } from '@chakra-ui/react'
+import { Box, List, ListIcon, ListItem, Stack, Text } from '@chakra-ui/react'
 import { ElectionCreationSteps } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -43,11 +43,9 @@ export const CreationProgress = ({ error, sending, step }: CreationProgressProps
   }, [step])
 
   return (
-    <Stack direction='column' gap={4}>
-      <Text>{t('process_create.creation_steps_description')}</Text>
-      <Heading as='h2' size='md' textAlign='center'>
-        {t('process_create.creation_steps_title')}
-      </Heading>
+    <Stack direction='column' gap={5} p={0}>
+      <Box bgImage='url(/assets/spreadsheet-confirm-modal.png)' height='200px' bgSize='cover' borderRadius='lg' />
+      <Text mb={6}>{t('process_create.creation_steps_description')}</Text>
       <List spacing={3}>
         {Object.keys(labels).map((key) => (
           <ListItem key={key}>
@@ -59,8 +57,7 @@ export const CreationProgress = ({ error, sending, step }: CreationProgressProps
           </ListItem>
         ))}
       </List>
-      {!error && <Progress isIndeterminate />}
-      {error ? <Text color='red.300'>{error}</Text> : <Text>{t('process_create.do_not_close')}</Text>}
+      {error && <Text color='red.300'>{error}</Text>}
     </Stack>
   )
 }

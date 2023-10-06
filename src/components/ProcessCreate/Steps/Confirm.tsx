@@ -240,12 +240,14 @@ export const Confirm = () => {
         >
           {t('form.process_create.confirm.create_button')}
         </Button>
-        <Modal isOpen={isOpen} onClose={onClose} closeOnEsc={!!error} closeOnOverlayClick={!!error} isCentered>
+        <Modal isOpen={true} onClose={onClose} closeOnEsc={!!error} closeOnOverlayClick={!!error} isCentered>
           <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>{t('form.process_create.creating_process')}</ModalHeader>
+          <ModalContent p={10}>
+            <ModalHeader p={0} mb={5} textAlign='center'>
+              {t('form.process_create.creating_process')}
+            </ModalHeader>
             {error && <ModalCloseButton />}
-            <ModalBody>
+            <ModalBody p={0}>
               <CreationProgress error={error} sending={sending} step={step} />
             </ModalBody>
             {error && (

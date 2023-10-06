@@ -226,7 +226,7 @@
         "vote_overwritte": "Vote overwritte"
       },
       "confirm_spreadsheet_removal": "Are you sure? Take in mind that the uploaded file will be removed",
-      "creating_process": "Creating process...",
+      "creating_process": "Creating Voting Process...",
       "meta": {
         "description": "Provide a clear title & description. This will help voters understand the purpose of the voting process.",
         "description_helper": "A brief description of your voting process",
@@ -404,7 +404,7 @@
       "done": "Process creation",
       "sign_tx": "Sign transaction"
     },
-    "creation_steps_description": "The voting process is being created. This process can last a bit (don't close this window), as it is registering all the information in the secure & private Vocdoni Blockchain.",
+    "creation_steps_description": "You need to sign the transactions in order to create the voting process in the Vocdoni blockchain. Don't close this windows or modal.",
     "creation_steps_title": "Progress",
     "do_not_close": "This action can take some time, don't close this window"
   },

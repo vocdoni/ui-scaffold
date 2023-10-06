@@ -230,7 +230,7 @@
         "vote_overwritte": "Sobreescriure vot"
       },
       "confirm_spreadsheet_removal": "Estàs segur que vols canviar-ho? Fent-ho s'esborrarà el fitxer que has carregat actualment.",
-      "creating_process": "Creant el procés...",
+      "creating_process": "Creant Procés de Votació...",
       "meta": {
         "description": "Proporciona un títol i una descripció clars. Això ajudarà als votants a entendre el propòsit del procés de votació.",
         "description_helper": "Una breu descripció de la teva votació",
@@ -410,7 +410,7 @@
       "done": "Creació del procés",
       "sign_tx": "Signar transacció"
     },
-    "creation_steps_description": "S'està creant el procés de votació. Aquest procediment pot trigar una mica (no tanquis aquesta finestra) mentre queda enregistrada tota la informació a la blockchain privada i segura de Vocdoni.",
+    "creation_steps_description": "Necessites signar les transaccions per crear el procés de votació a la cadena de blocs de Vocdoni. No tanquis aquesta finestra o finestra modal.",
     "creation_steps_title": "Progrés",
     "do_not_close": "Aquesta acció pot trigar una estona, no tanquis aquesta finestra"
   },
