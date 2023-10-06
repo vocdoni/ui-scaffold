@@ -14,7 +14,7 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { useClient, useOrganization } from '@vocdoni/react-providers'
-import { InvalidElection, PublishedElection, areEqualHexStrings } from '@vocdoni/sdk'
+import { areEqualHexStrings, InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
@@ -26,7 +26,7 @@ import user from '/assets/empty-list-user.png'
 const OrganizationView = () => {
   const { t } = useTranslation()
   const { client, account } = useClient()
-  const { organization } = useOrganization()
+  const { organization, fetch } = useOrganization()
 
   const [electionsList, setElectionsList] = useState<(PublishedElection | InvalidElection)[]>([])
   const [loading, setLoading] = useState<boolean>(false)
@@ -37,6 +37,10 @@ const OrganizationView = () => {
   const refObserver = useRef<any>()
   const [page, setPage] = useState<number>(-1)
   useObserver(refObserver, setPage)
+
+  useEffect(() => {
+    fetch()
+  }, [account])
 
   // resets fields on account change
   useEffect(() => {
@@ -49,7 +53,7 @@ const OrganizationView = () => {
 
   // loads elections. Note the load trigger is done via useObserver using a layer visibility.
   useEffect(() => {
-    if (finished) return
+    if (finished || loading) return
     // start loading at first glance
     setLoaded(false)
     setLoading(true)
