@@ -9,11 +9,10 @@ const baseStyle = definePartsStyle({
     position: 'relative',
     px: 12,
     py: 4,
-    minW: '35vw',
   },
   header: {
     textAlign: 'center',
-    minH: { base: 40, xl: 80 },
+    minH: '150px',
     borderRadius: 'lg',
     position: 'relative',
     mb: 40,
@@ -23,6 +22,7 @@ const baseStyle = definePartsStyle({
       backgroundImage: 'url(/assets/spreadsheet-confirm-modal.png)',
       backgroundSize: 'cover',
       position: 'absolute',
+
       top: 14,
       left: 0,
       width: '100%',
@@ -33,13 +33,14 @@ const baseStyle = definePartsStyle({
     '&::after': {
       content: `"${i18n.t('process.spreadsheet.confirm.text1')}"`,
       position: 'absolute',
-      top: { base: '240px', xl: '405px' },
+      textAlign: 'center',
+      top: '220px',
       left: 0,
       width: '100%',
       height: '100%',
       fontWeight: 'normal',
-      fontSize: 'md',
-      textAlign: 'start',
+      fontSize: 'sm',
+      color: 'modal_description',
     },
   },
   body: {
@@ -61,6 +62,7 @@ const baseStyle = definePartsStyle({
       fontSize: 'lg',
       ml: -2,
       w: '350px',
+      textAlign: 'center',
     },
 
     '& > div > div': {

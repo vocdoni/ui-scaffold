@@ -39,6 +39,8 @@ export const colors = {
 
   main_bg: colorsBase.white.dark,
 
+  modal_description: colorsBase.gray.dark,
+
   organization: {
     card: {
       description: colorsBase.gray.dark,
