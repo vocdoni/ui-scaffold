@@ -16,7 +16,7 @@ export const Checks = () => {
   const { exists } = useAccountHealthTools()
   const { next } = useProcessCreationSteps()
   const { t } = useTranslation()
-  return <NeedsAccount />
+
   useEffect(() => {
     if (!exists) return
 
@@ -52,8 +52,8 @@ const NeedsAccount = () => {
         <Box p={10} borderRadius='md' bgColor='process_create.section'>
           <AccountCreate />
         </Box>
-      </Wrapper>
-      <Flex justifyContent='end'>
+      </Wrapper>{' '}
+      <Flex justifyContent='end' mt={5} px={{ base: 4, sm: 8, md: 10, lg: 16 }}>
         <Button
           isLoading={loading}
           type='submit'

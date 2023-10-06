@@ -326,12 +326,18 @@
     "wallet": "Wallet"
   },
   "new_organization": {
+    "anonyomus": "anonyomus",
+    "censorship": "<span>censorship</span><span>resistance</span>",
     "create_organization_btn": "Create Organization",
     "description1": "Before starting creating your voting process, <span>you need to create an organization</span>, it's free With an organization, you will be able to create a wide range of elections and give voice to your comumnity members.",
     "description2": "As a <span>welcome pack</span> you will recive 1000 tokens for free to start using our platform.",
     "footer": "<span>Vocdoni</span> is a secure, privacy-friendly & open-source public voting protocol.",
+    "inexpensive": "inexpensive",
     "name": "Organization name",
-    "title": "New Organization"
+    "open_source": "<span>open</span><span>source</span>",
+    "scalable": "scalable",
+    "title": "New Organization",
+    "verificable": "verificable"
   },
   "open_in_explorer": "Open in explorer",
   "organization": {
