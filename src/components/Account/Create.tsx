@@ -2,10 +2,12 @@ import { InfoOutlineIcon } from '@chakra-ui/icons'
 import {
   Alert,
   AlertIcon,
+  Box,
   Flex,
   FormControl,
   FormErrorMessage,
   FormHelperText,
+  FormLabel,
   Input,
   Text,
   Textarea,
@@ -14,7 +16,7 @@ import { useClient } from '@vocdoni/react-providers'
 import { Account } from '@vocdoni/sdk'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 interface FormFields {
   name: string
@@ -52,40 +54,60 @@ export const AccountCreate = () => {
       id='process-create-form'
       direction='column'
       gap={6}
-      mt={6}
       onSubmit={(e) => {
         e.stopPropagation()
         e.preventDefault()
         handleSubmit(onSubmit)(e)
       }}
     >
-      <FormControl isInvalid={!!errors.name}>
-        <Input
-          type='text'
-          {...register('name', { required })}
-          mb={1}
-          placeholder={t('form.account_create.title_placeholder').toString()}
+      <Text fontWeight='light'>
+        <Trans
+          i18nKey='new_organization.description1'
+          components={{
+            span: <Text as='span' fontWeight='bold' />,
+          }}
         />
-        {!!errors.name ? (
-          <FormErrorMessage>{errors.name?.message?.toString()}</FormErrorMessage>
-        ) : (
+      </Text>
+      <Text fontWeight='light'>
+        <Trans
+          i18nKey='new_organization.description2'
+          components={{
+            span: <Text as='span' fontWeight='bold' />,
+          }}
+        />
+      </Text>
+      <Box px={10} pt={5} pb={10}>
+        <FormControl isInvalid={!!errors.name} mb={5}>
+          <FormLabel fontWeight='bold'>{t('new_organization.name')}</FormLabel>
+          <Input
+            type='text'
+            {...register('name', { required })}
+            mb={1}
+            placeholder={t('form.account_create.title_placeholder').toString()}
+          />
+          {!!errors.name && <FormErrorMessage>{errors.name?.message?.toString()}</FormErrorMessage>}
+        </FormControl>
+
+        <FormControl>
+          <Textarea
+            {...register('description')}
+            placeholder={t('form.account_create.description_placeholder').toString()}
+          />
           <FormHelperText>
             <InfoOutlineIcon />
-            <Text>{t('form.account_create.title_helper')}</Text>
+            <Text> {t('form.account_create.description_helper')}</Text>
           </FormHelperText>
-        )}
-      </FormControl>
-
-      <FormControl>
-        <Textarea
-          {...register('description')}
-          placeholder={t('form.account_create.description_placeholder').toString()}
+        </FormControl>
+      </Box>
+      <Text fontWeight='light'>
+        <Trans
+          i18nKey='new_organization.footer'
+          components={{
+            span: <Text as='span' fontWeight='bold' />,
+          }}
         />
-        <FormHelperText>
-          <InfoOutlineIcon />
-          <Text> {t('form.account_create.description_helper')}</Text>
-        </FormHelperText>
-      </FormControl>
+      </Text>
+
       {sent && error && (
         <Alert status='error'>
           <AlertIcon />

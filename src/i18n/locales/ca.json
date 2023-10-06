@@ -138,7 +138,7 @@
   "form": {
     "account_create": {
       "description_helper": "Una breu descripció de la teva organització",
-      "description_placeholder": "Descripció (opcional). Accepta text en format Markdown.",
+      "description_placeholder": "Descripció (opcional)",
       "title_helper": "El nom de l'organització",
       "title_placeholder": "El nom de l'organització"
     },
@@ -286,14 +286,13 @@
       "spreadsheet_total_rows_other": "Grandària del cens: {{count}} votants",
       "steps": {
         "census": "Cens",
-        "checks": "Comprovacions",
+        "checks": "Organització",
         "confirm": "Confirmar",
         "info": "Informació",
         "questions": "Preguntes"
       },
       "success_description": "Redirigint-te a la pàgina del procés de votació...",
       "success_title": "Procés de votació creat amb èxit",
-      "unhealthy_account": "Has de crear una organització abans de crear la primera votació.",
       "web3": {
         "census_members_one": "<span>1 membre</span> <text>al cens</text>",
         "census_members_other": "<span>{{ count }} membres</span> <text>al cens</text>",
@@ -330,6 +329,14 @@
     "privacy": "Privadesa",
     "terms": "Termes",
     "wallet": "Cartera"
+  },
+  "new_organization": {
+    "create_organization_btn": "Crear Organització",
+    "description1": "Abans de començar a crear el vostre procés de votació, <span>heu de crear una organització</span>, és gratuït. Amb una organització, podreu crear una àmplia gamma d'eleccions i donar veu als membres de la vostra comunitat.",
+    "description2": "Com a <span>paquet de benvinguda</span>, rebràs 1000 tokens gratuïts per començar a utilitzar la nostra plataforma.",
+    "footer": "<span>Vocdoni</span> és un protocol de votació públic segur, respectuós amb la privadesa i de codi obert.",
+    "name": "Nom de l'organització",
+    "title": "Nova Organització"
   },
   "open_in_explorer": "Obre a l'explorador",
   "organization": {
