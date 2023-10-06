@@ -1,5 +1,6 @@
 import { useDisclosure } from '@chakra-ui/react'
 import EditProfile from '@components/Account/EditProfile'
+import { OrganizationProvider, useClient } from '@vocdoni/react-providers'
 import { createContext, useContext } from 'react'
 
 type OrganizationModalState = Pick<ReturnType<typeof useDisclosure>, 'isOpen' | 'onOpen' | 'onClose'>
@@ -8,6 +9,7 @@ const OrganizationModalContext = createContext<OrganizationModalState | undefine
 
 export const OrganizationModalProvider = ({ children }: { children: React.ReactNode | React.ReactNode[] }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { account, fetchAccount } = useClient()
 
   const modalValues = {
     isOpen,
@@ -16,10 +18,12 @@ export const OrganizationModalProvider = ({ children }: { children: React.ReactN
   }
 
   return (
-    <OrganizationModalContext.Provider value={modalValues}>
-      <EditProfile />
-      {children}
-    </OrganizationModalContext.Provider>
+    <OrganizationProvider organization={account}>
+      <OrganizationModalContext.Provider value={modalValues}>
+        <EditProfile callback={fetchAccount} />
+        {children}
+      </OrganizationModalContext.Provider>
+    </OrganizationProvider>
   )
 }
 

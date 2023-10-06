@@ -36,13 +36,11 @@ export const CostPreview = ({
       })
       .catch((e) => {
         console.error('could not estimate election cost:', e)
+        // set as NaN to ensure the "create" button is enabled (because it checks for a number)
+        // this way the user can still create the election even tho the cost could not be estimated
         setCost(NaN)
       })
   }, [cost, unpublished])
-
-  if (typeof cost === 'undefined') {
-    return <Spinner />
-  }
 
   return (
     <Flex flexDirection='column' gap={2} mb={5}>
@@ -114,7 +112,20 @@ export const CostPreview = ({
           </>
         )}
       </Flex>
-      <Text>{cost > account!.balance && <Claim />}</Text>
+      {cost && cost > account!.balance && (
+        <Flex flexDir='column' gap={2}>
+          <Text>
+            <Trans
+              i18nKey='faucet.request_tokens.description'
+              components={{
+                span: <Text as='span' />,
+              }}
+              values={{ balance: account?.balance }}
+            />
+          </Text>
+          <Claim />
+        </Flex>
+      )}
     </Flex>
   )
 }
