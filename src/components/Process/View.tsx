@@ -76,9 +76,9 @@ export const ProcessView = () => {
             </TabPanels>
           </Tabs>
           <Flex
+            w='full'
             justifyContent='center'
-            position='sticky'
-            bottom={{ base: 'px', xl: undefined }}
+            position={{ xl: 'sticky' }}
             top={{ xl: 20 }}
             mt={{ xl: 10 }}
             mx={{ base: 'auto', xl: 0 }}

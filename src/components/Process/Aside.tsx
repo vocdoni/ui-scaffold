@@ -19,13 +19,14 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
   const renderVoteMenu = isAbleToVote || voted || (hasOverwriteEnabled(election) && isInCensus && voted)
 
   return (
-    <Flex flexDirection='column' alignItems='center' gap={2}>
+    <Flex flexDirection='column' alignItems='center' gap={2} w='full'>
       <Flex
         direction='column'
         justifyContent='center'
         alignItems='center'
         p={{ base: 6, xl: 12 }}
-        width={{ xl: 76 }}
+        w='full'
+        maxW={{ base: 52, xl: 76 }}
         mt={7}
         color='process.aside.color'
         background='process.aside.bg'
