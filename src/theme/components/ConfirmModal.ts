@@ -8,10 +8,12 @@ const baseStyle = definePartsStyle({
   content: {
     position: 'relative',
     px: 12,
+    py: 4,
+    minW: '35vw',
   },
   header: {
     textAlign: 'center',
-    minH: 40,
+    minH: { base: 40, xl: 80 },
     borderRadius: 'lg',
     position: 'relative',
     mb: 40,
@@ -31,7 +33,7 @@ const baseStyle = definePartsStyle({
     '&::after': {
       content: `"${i18n.t('process.spreadsheet.confirm.text1')}"`,
       position: 'absolute',
-      top: 60,
+      top: { base: '240px', xl: '405px' },
       left: 0,
       width: '100%',
       height: '100%',
@@ -47,9 +49,10 @@ const baseStyle = definePartsStyle({
     p: 2,
     overflowY: 'scroll',
     maxH: 40,
-    boxShadow: '2px 2px 4px 2px #808080b5',
+    boxShadow: 'rgba(128, 128, 128, 0.42) 1px 1px 1px 1px',
     borderRadius: 'md',
     mb: 3,
+    mt: { base: 4, xl3: 0 },
 
     '& > div > p': {
       fontWeight: 'bold',
@@ -61,9 +64,11 @@ const baseStyle = definePartsStyle({
     },
 
     '& > div > div': {
-      pr: 2,
-      pb: 4,
+      pl: 2,
+      pt: 1,
+      pb: 5,
       borderBottom: '.1px solid lightgray',
+      // border: '1px solid red',
 
       '& > div:first-of-type': {
         fontWeight: 'normal',
