@@ -11,7 +11,6 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   ModalOverlay,
   Text,
@@ -240,9 +239,9 @@ export const Confirm = () => {
         >
           {t('form.process_create.confirm.create_button')}
         </Button>
-        <Modal isOpen={true} onClose={onClose} closeOnEsc={!!error} closeOnOverlayClick={!!error} isCentered>
+        <Modal isOpen={isOpen} onClose={onClose} closeOnEsc={!!error} closeOnOverlayClick={!!error} isCentered>
           <ModalOverlay />
-          <ModalContent p={10}>
+          <ModalContent p={12}>
             <ModalHeader p={0} mb={5} textAlign='center'>
               {t('form.process_create.creating_process')}
             </ModalHeader>
@@ -250,13 +249,6 @@ export const Confirm = () => {
             <ModalBody p={0}>
               <CreationProgress error={error} sending={sending} step={step} />
             </ModalBody>
-            {error && (
-              <ModalFooter>
-                <Button colorScheme='blue' mr={3} onClick={onClose}>
-                  {t('form.process_create.confirm.close')}
-                </Button>
-              </ModalFooter>
-            )}
           </ModalContent>
         </Modal>
       </Flex>
