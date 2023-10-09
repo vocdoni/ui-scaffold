@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react'
 import { useClient, useOrganization } from '@vocdoni/react-providers'
 import { areEqualHexStrings, InvalidElection, PublishedElection } from '@vocdoni/sdk'
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
+import { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import ProcessCardDetailed from '../Process/CardDetailed'
@@ -33,11 +33,15 @@ const OrganizationView = () => {
   const [loaded, setLoaded] = useState<boolean>(false)
   const [error, setError] = useState<string>()
   const [finished, setFinished] = useState<boolean>(false)
+  // we need refobserver to be in state to ensure the observer is assigned when rendering the ref layer
+  // otherwise, the observer is not assigned and the intersection is not triggered
+  const [refObserver, setRefObserver] = useState<HTMLDivElement | null>(null)
+  const ref = useCallback(setRefObserver, [])
 
-  const refObserver = useRef<any>()
   const [page, setPage] = useState<number>(-1)
-  useObserver(refObserver, setPage)
+  useObserver(refObserver, setPage, setRefObserver)
 
+  // refetch account info in case it changes in client (i.e. when editing the account profile in this same page)
   useEffect(() => {
     fetch()
   }, [account])
@@ -53,12 +57,9 @@ const OrganizationView = () => {
 
   // loads elections. Note the load trigger is done via useObserver using a layer visibility.
   useEffect(() => {
-    if (finished || loading) return
-    // start loading at first glance
-    setLoaded(false)
-    setLoading(true)
+    if (finished || loading || !client || page === -1 || error || !organization?.address) return
 
-    if (!client || page === -1 || error || !organization?.address) return
+    setLoading(true)
 
     client
       .fetchElections(organization?.address, page)
@@ -106,7 +107,8 @@ const OrganizationView = () => {
             <ProcessCardDetailed election={election} />
           </GridItem>
         ))}
-        <div ref={refObserver}></div>
+        {/* we need to render only when loaded, to avoid loading pages when there's no content */}
+        {loaded && <div className='ref-observer-buddy' ref={setRefObserver}></div>}
       </Grid>
 
       <Flex justifyContent='center' my={4}>
@@ -156,9 +158,13 @@ const OrganizationView = () => {
   )
 }
 
-const useObserver = (refObserver: any, setPage: Dispatch<SetStateAction<number>>) => {
+const useObserver = (
+  refObserver: any,
+  setPage: Dispatch<SetStateAction<number>>,
+  setRefObserver: Dispatch<SetStateAction<HTMLDivElement | null>>
+) => {
   useEffect(() => {
-    if (!refObserver.current) return
+    if (!refObserver) return
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -171,10 +177,10 @@ const useObserver = (refObserver: any, setPage: Dispatch<SetStateAction<number>>
       }
     )
 
-    observer.observe(refObserver.current)
+    observer.observe(refObserver)
 
     return () => {
-      if (refObserver.current) refObserver.current = null
+      if (refObserver) setRefObserver(null)
     }
   }, [refObserver, setPage])
 }

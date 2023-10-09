@@ -100,7 +100,7 @@ export const Claim = () => {
 
   // only render in stage
   if (VocdoniEnvironment !== 'stg') {
-    return
+    return null
   }
 
   return (
