@@ -103,7 +103,7 @@ export const AccountCreate = () => {
           />
           <FormHelperText>
             <InfoOutlineIcon />
-            <Text> {t('form.account_create.description_helper')}</Text>
+            <Text>{t('form.account_create.description_helper')}</Text>
           </FormHelperText>
         </FormControl>
       </Box>
