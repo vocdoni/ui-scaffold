@@ -70,7 +70,6 @@ const baseStyle = definePartsStyle({
       pt: 1,
       pb: 5,
       borderBottom: '.1px solid lightgray',
-      // border: '1px solid red',
 
       '& > div:first-of-type': {
         fontWeight: 'normal',
