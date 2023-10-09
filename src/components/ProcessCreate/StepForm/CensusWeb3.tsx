@@ -26,6 +26,7 @@ export const StepFormCensusWeb3 = () => {
   const addresses = methods.watch('addresses')
 
   useEffect(() => {
+    methods.clearErrors('addresses')
     setForm({ ...form, addresses })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [addresses])
