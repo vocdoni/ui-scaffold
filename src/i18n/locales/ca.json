@@ -415,7 +415,7 @@
       "done": "Creació del procés",
       "sign_tx": "Signar transacció"
     },
-    "creation_steps_description": "Necessites signar les transaccions per crear el procés de votació a la cadena de blocs de Vocdoni. No tanquis aquesta finestra o finestra modal.",
+    "creation_steps_description": "Necessites signar les transaccions per crear el procés de votació a la cadena de blocs de Vocdoni. No tanquis aquesta finestra.",
     "creation_steps_title": "Progrés"
   },
   "uploader": {

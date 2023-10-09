@@ -2,7 +2,7 @@ import { Box, List, ListIcon, ListItem, Spinner, Stack, Text } from '@chakra-ui/
 import { ElectionCreationSteps } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { AiFillCheckCircle } from 'react-icons/ai'
+import { AiFillCheckCircle, AiFillCloseCircle } from 'react-icons/ai'
 
 export type Steps =
   | ElectionCreationSteps.CENSUS_CREATED
@@ -49,14 +49,14 @@ export const CreationProgress = ({ error, sending, step }: CreationProgressProps
         {t('process_create.creation_steps_description')}
       </Text>
       <List spacing={3}>
-        {Object.keys(labels).map((key) => (
-          <ListItem key={key} display='flex'>
+        {Object.keys(labels).map((key, index) => (
+          <ListItem key={key} display='flex' alignItems='center' gap={2}>
             {steps[key as keyof CreationStepsState] ? (
-              <ListIcon as={AiFillCheckCircle} fontSize={22} />
+              <ListIcon as={AiFillCheckCircle} fontSize={23} m={0} />
             ) : (
-              <Spinner boxSize={5} />
+              <>{!error ? <Spinner boxSize={5} mr='3px' /> : <ListIcon as={AiFillCloseCircle} fontSize={23} m={0} />}</>
             )}
-            <Text ml={2}>{labels[key]}</Text>
+            <Text>{labels[key]}</Text>
           </ListItem>
         ))}
       </List>

@@ -415,7 +415,7 @@
       "done": "Creación del proceso",
       "sign_tx": "Firmar transacción"
     },
-    "creation_steps_description": "Necesitas firmar las transacciones para crear el proceso de votación en la cadena de bloques de Vocdoni. No cierres esta ventana o modal.",
+    "creation_steps_description": "Necesitas firmar las transacciones para crear el proceso de votación en la cadena de bloques de Vocdoni. No cierres esta ventana.",
     "creation_steps_title": "Progreso"
   },
   "uploader": {
