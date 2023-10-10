@@ -227,13 +227,13 @@ const ConfirmVoteModal = ({ questions, answers }: { questions: IQuestion[]; answ
               <Box py={2}>
                 <Text mb={1}>
                   <Text as='span' fontWeight='bold'>
-                    {t('process.spreadsheet.confirm.question')}:{' '}
+                    {t('process.spreadsheet.confirm.question')} {i + 1}:{' '}
                   </Text>
                   {q.title.default}
                 </Text>
                 <Text>
                   <Text as='span' fontWeight='bold'>
-                    {t('process.spreadsheet.confirm.option')}:
+                    {t('process.spreadsheet.confirm.option')} {i + 1}:{' '}
                   </Text>{' '}
                   {q.choices[Number(answers[i])].title.default}
                 </Text>
