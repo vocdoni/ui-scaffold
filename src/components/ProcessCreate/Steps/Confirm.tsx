@@ -11,7 +11,6 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   ModalOverlay,
   Text,
@@ -23,7 +22,6 @@ import {
   Election,
   ElectionCreationSteps,
   ElectionStatus,
-  ensure0x,
   EnvOptions,
   IElectionParameters,
   IPublishedElectionParameters,
@@ -33,6 +31,7 @@ import {
   UnpublishedElection,
   VocdoniCensus3Client,
   WeightedCensus,
+  ensure0x,
 } from '@vocdoni/sdk'
 import { useEffect, useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
@@ -44,8 +43,8 @@ import { CostPreview } from '../CostPreview'
 import { CreationProgress, Steps } from '../CreationProgress'
 import { Web3Address } from '../StepForm/CensusWeb3'
 import { Option } from '../StepForm/Questions'
-import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 import Wrapper from './Wrapper'
+import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 
 export const Confirm = () => {
   const { env, client, account } = useClient()
@@ -243,19 +242,14 @@ export const Confirm = () => {
         </Button>
         <Modal isOpen={isOpen} onClose={onClose} closeOnEsc={!!error} closeOnOverlayClick={!!error} isCentered>
           <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>{t('form.process_create.creating_process')}</ModalHeader>
+          <ModalContent p={12}>
+            <ModalHeader p={0} mb={5} textAlign='center'>
+              {t('form.process_create.creating_process')}
+            </ModalHeader>
             {error && <ModalCloseButton />}
-            <ModalBody>
+            <ModalBody p={0}>
               <CreationProgress error={error} sending={sending} step={step} />
             </ModalBody>
-            {error && (
-              <ModalFooter>
-                <Button colorScheme='blue' mr={3} onClick={onClose}>
-                  {t('form.process_create.confirm.close')}
-                </Button>
-              </ModalFooter>
-            )}
           </ModalContent>
         </Modal>
       </Flex>

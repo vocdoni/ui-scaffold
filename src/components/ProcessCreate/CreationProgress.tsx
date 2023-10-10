@@ -1,8 +1,9 @@
-import { Heading, List, ListIcon, ListItem, Progress, Stack, Text } from '@chakra-ui/react'
+import { Box, List, ListIcon, ListItem, Spinner, Stack, Text } from '@chakra-ui/react'
 import { ElectionCreationSteps } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AiFillCheckCircle, AiFillCloseCircle } from 'react-icons/ai'
+import imageHeader from '/assets/spreadsheet-confirm-modal.png'
 
 export type Steps =
   | ElectionCreationSteps.CENSUS_CREATED
@@ -43,24 +44,28 @@ export const CreationProgress = ({ error, sending, step }: CreationProgressProps
   }, [step])
 
   return (
-    <Stack direction='column' gap={4}>
-      <Text>{t('process_create.creation_steps_description')}</Text>
-      <Heading as='h2' size='md' textAlign='center'>
-        {t('process_create.creation_steps_title')}
-      </Heading>
+    <Stack direction='column' gap={5} p={0}>
+      <Box bgImage={imageHeader} height='150px' bgSize='cover' borderRadius='lg' />
+      <Text mb={6} textAlign='center'>
+        {t('process_create.creation_steps_description')}
+      </Text>
       <List spacing={3}>
-        {Object.keys(labels).map((key) => (
-          <ListItem key={key}>
-            <ListIcon
-              as={steps[key as keyof CreationStepsState] ? AiFillCheckCircle : AiFillCloseCircle}
-              fontSize={22}
-            />
-            {labels[key]}
+        {Object.keys(labels).map((key, index) => (
+          <ListItem key={key} display='flex' alignItems='center' gap={2}>
+            {steps[key as keyof CreationStepsState] ? (
+              <ListIcon as={AiFillCheckCircle} fontSize={23} m={0} />
+            ) : (
+              <>{!error ? <Spinner boxSize={5} mr='3px' /> : <ListIcon as={AiFillCloseCircle} fontSize={23} m={0} />}</>
+            )}
+            <Text>{labels[key]}</Text>
           </ListItem>
         ))}
       </List>
-      {!error && <Progress isIndeterminate />}
-      {error ? <Text color='red.300'>{error}</Text> : <Text>{t('process_create.do_not_close')}</Text>}
+      {error && (
+        <Text color='red.300' textAlign='center' mt={5}>
+          {error}
+        </Text>
+      )}
     </Stack>
   )
 }
