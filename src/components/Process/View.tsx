@@ -24,8 +24,9 @@ import {
 } from '@chakra-ui/react'
 import { ElectionQuestions, ElectionResults, environment } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
-import { ElectionStatus } from '@vocdoni/sdk'
+import { ElectionStatus, IQuestion } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
+import { FieldValues } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaFacebook, FaReddit, FaTelegram, FaTwitter } from 'react-icons/fa'
 import ProcessAside from './Aside'
@@ -68,7 +69,9 @@ export const ProcessView = () => {
             </TabList>
             <TabPanels>
               <TabPanel>
-                <ElectionQuestions />
+                <ElectionQuestions
+                  confirmContents={(questions, answers) => <ConfirmModal questions={questions} answers={answers} />}
+                />
               </TabPanel>
               <TabPanel mb={20}>
                 <ElectionResults />
@@ -198,4 +201,8 @@ const SuccessVoteModal = () => {
       </ModalContent>
     </Modal>
   )
+}
+
+const ConfirmModal = ({ questions, answers }: { questions: IQuestion[]; answers: FieldValues }) => {
+  return <Text>asas</Text>
 }
