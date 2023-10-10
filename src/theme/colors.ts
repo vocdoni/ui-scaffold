@@ -39,6 +39,8 @@ export const colors = {
 
   main_bg: colorsBase.white.dark,
 
+  modal_description: colorsBase.gray.dark,
+
   organization: {
     card: {
       description: colorsBase.gray.dark,
@@ -56,6 +58,12 @@ export const colors = {
       vote_btn_bg: colorsBase.white.pure,
     },
     canceled: colorsBase.primary.main,
+    confirm_vote: {
+      active: colorsBase.primary.dark2,
+      bg: colorsBase.primary.main,
+      color: colorsBase.white.pure,
+      hover: colorsBase.primary.dark,
+    },
     info_title: colorsBase.primary.main,
     description: colorsBase.gray.dark,
     identify_btn: {
