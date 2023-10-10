@@ -31,6 +31,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { FaFacebook, FaReddit, FaTelegram, FaTwitter } from 'react-icons/fa'
 import ProcessAside from './Aside'
 import Header from './Header'
+import confirmImg from '/assets/spreadsheet-confirm-modal.png'
 import successImg from '/assets/success.png'
 
 export const ProcessView = () => {
@@ -70,7 +71,7 @@ export const ProcessView = () => {
             <TabPanels>
               <TabPanel>
                 <ElectionQuestions
-                  confirmContents={(questions, answers) => <ConfirmModal questions={questions} answers={answers} />}
+                  confirmContents={(questions, answers) => <ConfirmVoteModal questions={questions} answers={answers} />}
                 />
               </TabPanel>
               <TabPanel mb={20}>
@@ -203,6 +204,45 @@ const SuccessVoteModal = () => {
   )
 }
 
-const ConfirmModal = ({ questions, answers }: { questions: IQuestion[]; answers: FieldValues }) => {
-  return <Text>asas</Text>
+const ConfirmVoteModal = ({ questions, answers }: { questions: IQuestion[]; answers: FieldValues }) => {
+  const { t } = useTranslation()
+
+  return (
+    <>
+      <ModalBody display='flex' flexDirection='column' gap={5} p={0} mb={2}>
+        <Box bgImage={`url(${confirmImg})`} height='150px' bgSize='cover' borderRadius='lg' />
+        <Text textAlign='center' color='modal_description'>
+          {t('process.spreadsheet.confirm.description')}
+        </Text>
+        <Flex
+          flexDirection='column'
+          maxH='200px'
+          overflowY='scroll'
+          boxShadow='rgba(128, 128, 128, 0.42) 1px 1px 1px 1px'
+          px={2}
+          borderRadius='lg'
+        >
+          {questions.map((q, i) => (
+            <Box>
+              <Box py={2}>
+                <Text mb={1}>
+                  <Text as='span' fontWeight='bold'>
+                    {t('process.spreadsheet.confirm.question')}:{' '}
+                  </Text>
+                  {q.title.default}
+                </Text>
+                <Text>
+                  <Text as='span' fontWeight='bold'>
+                    {t('process.spreadsheet.confirm.option')}:
+                  </Text>{' '}
+                  {q.choices[Number(answers[i])].title.default}
+                </Text>
+              </Box>
+              {i + 1 !== questions.length && <Box h='1px' bgColor='lightgray' />}
+            </Box>
+          ))}
+        </Flex>
+      </ModalBody>
+    </>
+  )
 }

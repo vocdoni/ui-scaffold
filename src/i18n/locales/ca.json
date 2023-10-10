@@ -397,7 +397,7 @@
       "confirm": {
         "option": "Opció",
         "question": "Pregunta",
-        "text1": "Abans de votar, reviseu que tot sigui correcte."
+        "description": "Abans de votar, reviseu que tot sigui correcte."
       }
     },
     "status": {

@@ -388,7 +388,7 @@
       "confirm": {
         "option": "Option",
         "question": "Question",
-        "text1": "Before casting your vote review that everything is correct."
+        "description": "Before casting your vote review that everything is correct."
       }
     },
     "status": {
