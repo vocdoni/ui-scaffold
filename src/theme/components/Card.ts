@@ -138,28 +138,33 @@ const noElections = definePartsStyle({
       flex: '1 1 50%',
       px: 10,
 
-      '& img': {
-        width: { base: 52, lg: 84 },
-      },
-    },
-    '& > div:first-of-type': {
-      display: 'flex',
-      justifyContent: { base: 'center', lg: 'end' },
-      alignItems: 'center',
-    },
-    '& > div:nth-of-type(2)': {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: { base: 'center', lg: 'start' },
-      gap: 5,
+      '&:first-of-type': {
+        display: 'flex',
+        justifyContent: { base: 'center', lg: 'end' },
+        alignItems: 'center',
+        px: 36,
 
-      '& > p:first-of-type': {
-        fontWeight: 'bold',
+        '& img': {
+          width: 52,
+        },
       },
 
-      '& > p': {
-        textAlign: { base: 'center', lg: 'start' },
+      '&:nth-of-type(2)': {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: { base: 'center', lg: 'start' },
+        gap: 5,
+
+        '& > p:first-of-type': {
+          fontWeight: 'bold',
+          fontSize: 'md',
+        },
+
+        '& > p': {
+          textAlign: { base: 'center', lg: 'start' },
+          fontSize: 'sm',
+        },
       },
     },
   },

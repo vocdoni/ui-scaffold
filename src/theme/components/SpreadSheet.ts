@@ -9,7 +9,7 @@ const baseStyle = definePartsStyle({
     color: 'process.aside.vote_btn_color',
     mb: 4,
     borderRadius: 30,
-    p: 7,
+    fontSize: { base: 'sm', xl2: 'md' },
     bgColor: 'process.aside.vote_btn_bg',
   },
 

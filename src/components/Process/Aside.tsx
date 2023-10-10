@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Text } from '@chakra-ui/react'
+import { Flex, Link, Text } from '@chakra-ui/react'
 import { CensusMeta } from '@components/ProcessCreate/Steps/Confirm'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { SpreadsheetAccess, VoteButton, environment } from '@vocdoni/chakra-components'
@@ -6,7 +6,7 @@ import { useClient, useElection } from '@vocdoni/react-providers'
 import { ElectionStatus, PublishedElection, dotobject } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
 import { Trans, useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 
 const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
@@ -19,31 +19,31 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
   const renderVoteMenu = isAbleToVote || voted || (hasOverwriteEnabled(election) && isInCensus && voted)
 
   return (
-    <Flex flexDirection='column' alignItems='center' gap={2}>
+    <Flex flexDirection='column' alignItems='center' gap={2} w='full'>
       <Flex
         direction='column'
         justifyContent='center'
         alignItems='center'
-        gap={12}
-        p={12}
-        w={96}
+        p={{ base: 6, xl: 12 }}
+        w='full'
+        maxW={{ base: 52, xl: 76 }}
         mt={7}
         color='process.aside.color'
         background='process.aside.bg'
         borderRadius='lg'
         boxShadow='var(--box-shadow-banner)'
       >
-        <Text textAlign='center' fontSize='xl3' lineHeight={1}>
+        <Text textAlign='center' fontSize={{ base: 'xl2', xl: 'xl3' }}>
           {getStatusText(t, election?.status).toUpperCase()}
         </Text>
 
         {election?.status !== ElectionStatus.CANCELED && election?.status !== ElectionStatus.UPCOMING && (
-          <Flex flexDirection='column' mb={1}>
+          <Flex flexDirection='column' mb={{ base: 3, xl: 5 }}>
             <Trans
               i18nKey='aside.votes'
               components={{
-                span: <Text as='span' fontWeight='bold' fontSize='xl6' textAlign='center' lineHeight={1} />,
-                text: <Text fontSize='xl2' lineHeight={1} textAlign='center' mt={3} />,
+                span: <Text as='span' fontWeight='bold' fontSize={{ base: 'xl3', xl: 'xl6' }} textAlign='center' />,
+                text: <Text fontSize={{ base: 'xl', xl: 'xl2' }} textAlign='center' />,
               }}
               count={election?.voteCount}
             />
@@ -65,24 +65,37 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
           )}
 
         {isConnected && census?.type !== 'spreadsheet' && !isInCensus && (
-          <Text textAlign='center'>{t('aside.is_not_in_census')}</Text>
+          <Text textAlign='center' fontSize='sm'>
+            {t('aside.is_not_in_census')}
+          </Text>
         )}
 
         {renderVoteMenu && (
           <Flex flexDirection='column' alignItems='center' gap={3} w='full'>
-            {isAbleToVote && <VoteButton variant='process' mb={0} onClick={setQuestionsTab} />}
             {voted !== null && voted.length > 0 && (
-              <Box textAlign='center'>
-                <Link to={environment.verifyVote(env, voted)} target='_blank'>
-                  <Button w='full' variant='process'>
-                    {t('aside.verify_vote_on_explorer')}
-                  </Button>
-                </Link>
-                <Text>{t('aside.has_already_voted').toString()}</Text>
-              </Box>
+              <Text fontSize='sm' textAlign='center'>
+                {t('aside.has_already_voted').toString()}
+              </Text>
             )}
+            {isAbleToVote && <VoteButton variant='process' mb={0} onClick={setQuestionsTab} />}
             {hasOverwriteEnabled(election) && isInCensus && votesLeft > 0 && voted && (
-              <Text textAlign='center'>{t('aside.overwrite_votes_left', { count: votesLeft })}</Text>
+              <Text fontSize='sm' textAlign='center'>
+                {t('aside.overwrite_votes_left', { count: votesLeft })}
+              </Text>
+            )}
+            {voted !== null && voted.length > 0 && (
+              <Link
+                as={ReactRouterLink}
+                to={environment.verifyVote(env, voted)}
+                target='_blank'
+                whiteSpace='nowrap'
+                textDecoration='underline'
+                _hover={{
+                  textDecoration: 'none',
+                }}
+              >
+                {t('aside.verify_vote_on_explorer')}
+              </Link>
             )}
           </Flex>
         )}
