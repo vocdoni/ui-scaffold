@@ -36,7 +36,7 @@
     },
     "confirm": {
       "cancel": "Cancel",
-      "confirm": "Confirm",
+      "confirm": "Confirm Vote",
       "title": "Confirm"
     },
     "empty": "Apparently this process has no questions",
@@ -386,9 +386,9 @@
     "share_title": "Share on {{ network }}",
     "spreadsheet": {
       "confirm": {
-        "option": "Option",
-        "question": "Question",
-        "text1": "Before casting your vote review that everything is correct."
+        "description": "Before casting your vote review that everything is correct.",
+        "option": "<strong>Option {{ number }}:</strong> {{ answer }}",
+        "question": "<strong>Question {{ number }}:</strong> {{ answer }}"
       }
     },
     "status": {

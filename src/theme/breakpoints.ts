@@ -8,5 +8,6 @@ export const breakpoints = {
   lg2: '70em',
   xl: '80em',
   xl2: '84em',
+  xl3: '95em',
   xl5: '115em',
 }
