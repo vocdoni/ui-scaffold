@@ -46,26 +46,28 @@ const NeedsAccount = () => {
   return (
     <>
       <Wrapper>
-        <Heading fontSize='md' my={5}>
-          {t('new_organization.title')}
-        </Heading>
-        <Box p={10} borderRadius='md' bgColor='process_create.section'>
-          <AccountCreate />
+        <Box>
+          <Heading fontSize='md' my={5}>
+            {t('new_organization.title')}
+          </Heading>
+          <Box p={10} borderRadius='md' bgColor='process_create.section'>
+            <AccountCreate />
+          </Box>
         </Box>
-      </Wrapper>{' '}
-      <Flex justifyContent='end' mt={5} px={{ base: 4, sm: 8, md: 10, lg: 16 }}>
-        <Button
-          isLoading={loading}
-          type='submit'
-          form='process-create-form'
-          rightIcon={<ArrowForwardIcon />}
-          variant='outline'
-          colorScheme='primary'
-          px={12}
-        >
-          {t('new_organization.create_organization_btn')}
-        </Button>
-      </Flex>
+        <Flex justifyContent='end' mt='auto'>
+          <Button
+            isLoading={loading}
+            type='submit'
+            form='process-create-form'
+            rightIcon={<ArrowForwardIcon />}
+            variant='outline'
+            colorScheme='primary'
+            px={12}
+          >
+            {t('new_organization.create_organization_btn')}
+          </Button>
+        </Flex>
+      </Wrapper>
     </>
   )
 }
