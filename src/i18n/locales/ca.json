@@ -208,7 +208,6 @@
         "census_total_people_one": "Una persona podrà votar en aquesta votació",
         "census_total_people_many": "{{ count }} persones podran votar en aquesta votació",
         "census_total_people_other": "",
-        "close": "Tanca",
         "configuration": "Configuració",
         "confirmation": "Confirmació",
         "confirmation_terms_and_conditions": "Accepto els <link>termes i condicions</link> de Vocdoni",
@@ -235,7 +234,7 @@
         "vote_overwritte": "Sobreescriure vot"
       },
       "confirm_spreadsheet_removal": "Estàs segur que vols canviar-ho? Fent-ho s'esborrarà el fitxer que has carregat actualment.",
-      "creating_process": "Creant el procés...",
+      "creating_process": "Creant Procés de Votació...",
       "meta": {
         "description": "Proporciona un títol i una descripció clars. Això ajudarà als votants a entendre el propòsit del procés de votació.",
         "description_helper": "Una breu descripció de la teva votació",
@@ -429,9 +428,8 @@
       "done": "Creació del procés",
       "sign_tx": "Signar transacció"
     },
-    "creation_steps_description": "S'està creant el procés de votació. Aquest procediment pot trigar una mica (no tanquis aquesta finestra) mentre queda enregistrada tota la informació a la blockchain privada i segura de Vocdoni.",
-    "creation_steps_title": "Progrés",
-    "do_not_close": "Aquesta acció pot trigar una estona, no tanquis aquesta finestra"
+    "creation_steps_description": "Necessites signar les transaccions per crear el procés de votació a la cadena de blocs de Vocdoni. No tanquis aquesta finestra.",
+    "creation_steps_title": "Progrés"
   },
   "uploader": {
     "click_or_drag_and_drop": "<p1>Puja o arrossega i deixa anar aquí la llista de votants</p1><p2>(Formats permesos: CSV, XLSX i ODS)</p2>",

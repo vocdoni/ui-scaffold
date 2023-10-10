@@ -208,7 +208,6 @@
         "census_total_people_one": "Una persona podrá votar en esta votación",
         "census_total_people_many": "{{ count }} personas podrán votar en esta votación",
         "census_total_people_other": "",
-        "close": "Cerrar",
         "configuration": "Configuración",
         "confirmation": "Confirmación",
         "confirmation_terms_and_conditions": "Acepto los <link>términos y condiciones</link> de Vocdoni",
@@ -235,7 +234,7 @@
         "vote_overwritte": "Sobrescribir voto"
       },
       "confirm_spreadsheet_removal": "Seguro? Piensa que al hacerlo se eliminará el fichero que has cargado.",
-      "creating_process": "Creando proceso...",
+      "creating_process": "Creando Proceso de Votación...",
       "meta": {
         "description": "Proporciona un título y descripción claros. Esto ayudará a los votantes a entender el propósito de la votación.",
         "description_helper": "Una breve descripción de tu votación",
@@ -429,9 +428,8 @@
       "done": "Creación del proceso",
       "sign_tx": "Firmar transacción"
     },
-    "creation_steps_description": "Se está creando el proceso de votación. Este procedimiento puede tardar un rato (no cierres esta ventana) mientras queda registrada toda la información en la blockchain privada y segura de Vocdoni.",
-    "creation_steps_title": "Progreso",
-    "do_not_close": "Esta acción puede llevar algún tiempo, no cierres esta ventana"
+    "creation_steps_description": "Necesitas firmar las transacciones para crear el proceso de votación en la cadena de bloques de Vocdoni. No cierres esta ventana.",
+    "creation_steps_title": "Progreso"
   },
   "uploader": {
     "click_or_drag_and_drop": "<p1>Sube o arrastra y suelta aqui la lista de votantes</p1><p2>(Formap permitidos: CSV, XLSX y ODS)</p2>",
