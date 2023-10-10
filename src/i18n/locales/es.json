@@ -141,7 +141,7 @@
   "form": {
     "account_create": {
       "description_helper": "Una breve descripción de tu organización",
-      "description_placeholder": "Descripción (opcional). Acepta texto en formato Markdown.",
+      "description_placeholder": "Descripción (opcional)",
       "title_helper": "El nombre de la organización",
       "title_placeholder": "El nombre de la organización"
     },
@@ -291,14 +291,13 @@
       "spreadsheet_total_rows_other": "",
       "steps": {
         "census": "Censo",
-        "checks": "Comprobaciones",
+        "checks": "Organización",
         "confirm": "Confirmar",
         "info": "Info",
         "questions": "Preguntas"
       },
       "success_description": "Redirigiéndote a la página del proceso de votación...",
       "success_title": "Proceso de votación creado con éxito",
-      "unhealthy_account": "Debes crear una organización antes de crear la primera votación.",
       "web3": {
         "census_members_one": "<span>1 miembro</span> <text> en el censo</text>",
         "census_members_many": "",
@@ -336,6 +335,20 @@
     "privacy": "Privacidad",
     "terms": "Términos",
     "wallet": "Billetera"
+  },
+  "new_organization": {
+    "anonyomus": "anónimo",
+    "censorship": "<span>censura</span><span>resistencia</span>",
+    "create_organization_btn": "Crear Organización",
+    "description1": "Antes de comenzar a crear su proceso de votación, <span>debe crear una organización</span>, es gratuito. Con una organización, podrá crear una amplia gama de elecciones y dar voz a los miembros de su comunidad.",
+    "description2": "Como <span>paquete de bienvenida</span>, recibirá 1000 tokens gratis para comenzar a utilizar nuestra plataforma.",
+    "footer": "<span>Vocdoni</span> es un protocolo de votación público seguro, respetuoso con la privacidad y de código abierto.",
+    "inexpensive": "económico",
+    "name": "Nombre de la organización",
+    "open_source": "<span>código</span><span>abierto</span>",
+    "scalable": "escalable",
+    "title": "Nueva Organización",
+    "verificable": "verificable"
   },
   "open_in_explorer": "Abrir en explorador",
   "organization": {
