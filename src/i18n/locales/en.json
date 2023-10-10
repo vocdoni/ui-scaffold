@@ -139,7 +139,7 @@
   "form": {
     "account_create": {
       "description_helper": "A brief description of your organization",
-      "description_placeholder": "Description (optional). Accepts Markdown text.",
+      "description_placeholder": "Description (optional)",
       "title_helper": "The organization name",
       "title_placeholder": "The organization name"
     },
@@ -284,14 +284,13 @@
       "spreadsheet_total_rows_other": "Census has {{ count }} records",
       "steps": {
         "census": "Census",
-        "checks": "Checks",
+        "checks": "Organization",
         "confirm": "Confirm",
         "info": "Info",
         "questions": "Questions"
       },
       "success_description": "Redirecting you to the voting process page...",
       "success_title": "Voting process successfully created",
-      "unhealthy_account": "You need to create an organization before creating the first voting process.",
       "web3": {
         "census_members_one": "<span>1 member</span> <text> in the census</text>",
         "census_members_other": "<span>{{ count }} members</span> <text> in the census</text>",
@@ -328,6 +327,20 @@
     "privacy": "Privacy",
     "terms": "Terms",
     "wallet": "Wallet"
+  },
+  "new_organization": {
+    "anonyomus": "anonyomus",
+    "censorship": "<span>censorship</span><span>resistance</span>",
+    "create_organization_btn": "Create Organization",
+    "description1": "Before starting creating your voting process, <span>you need to create an organization</span>, it's free With an organization, you will be able to create a wide range of elections and give voice to your comumnity members.",
+    "description2": "As a <span>welcome pack</span> you will recive 1000 tokens for free to start using our platform.",
+    "footer": "<span>Vocdoni</span> is a secure, privacy-friendly & open-source public voting protocol.",
+    "inexpensive": "inexpensive",
+    "name": "Organization name",
+    "open_source": "<span>open</span><span>source</span>",
+    "scalable": "scalable",
+    "title": "New Organization",
+    "verificable": "verificable"
   },
   "open_in_explorer": "Open in explorer",
   "organization": {

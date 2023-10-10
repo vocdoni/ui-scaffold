@@ -237,7 +237,7 @@ export const Confirm = () => {
           isLoading={sending}
           variant='outline'
           colorScheme='primary'
-          px={32}
+          px={{ base: 12, xl2: 32 }}
         >
           {t('form.process_create.confirm.create_button')}
         </Button>

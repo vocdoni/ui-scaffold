@@ -1,5 +1,5 @@
 import { ArrowForwardIcon } from '@chakra-ui/icons'
-import { Alert, AlertDescription, AlertIcon, Box, Button, Flex, Spinner, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Heading, Spinner, Text } from '@chakra-ui/react'
 import { AccountCreate } from '@components/Account/Create'
 import { useAccountHealthTools } from '@components/Account/use-account-health-tools'
 import { useClient } from '@vocdoni/react-providers'
@@ -46,15 +46,24 @@ const NeedsAccount = () => {
   return (
     <>
       <Wrapper>
-        <Alert status='info'>
-          <AlertIcon />
-          <AlertDescription>{t('form.process_create.unhealthy_account')}</AlertDescription>
-        </Alert>
-        <AccountCreate />
-      </Wrapper>
-      <Flex justifyContent='end'>
-        <Button isLoading={loading} type='submit' form='process-create-form' rightIcon={<ArrowForwardIcon />} mt={5}>
-          {t('form.process_create.next_step')}
+        <Heading fontSize='md' my={5}>
+          {t('new_organization.title')}
+        </Heading>
+        <Box p={10} borderRadius='md' bgColor='process_create.section'>
+          <AccountCreate />
+        </Box>
+      </Wrapper>{' '}
+      <Flex justifyContent='end' mt={5} px={{ base: 4, sm: 8, md: 10, lg: 16 }}>
+        <Button
+          isLoading={loading}
+          type='submit'
+          form='process-create-form'
+          rightIcon={<ArrowForwardIcon />}
+          variant='outline'
+          colorScheme='primary'
+          px={12}
+        >
+          {t('new_organization.create_organization_btn')}
         </Button>
       </Flex>
     </>
