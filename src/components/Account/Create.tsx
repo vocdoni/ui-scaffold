@@ -115,7 +115,14 @@ export const AccountCreate = () => {
           }}
         />
       </Text>
-      <Flex fontSize='xs' flexWrap='wrap' justifyContent={{ base: 'center', md: 'start' }} lineHeight={1} gap={5}>
+      <Flex
+        fontSize='xs'
+        flexWrap='wrap'
+        justifyContent={{ base: 'center', md: 'start' }}
+        lineHeight={1}
+        gap={5}
+        textTransform='capitalize'
+      >
         <VStack>
           <Image src={censorship} alt={t('new_organization.censorship')} boxSize={16} />
           <Text display='flex' flexDirection='column' alignItems='center' gap={1}>
