@@ -3,6 +3,7 @@ import { ElectionCreationSteps } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AiFillCheckCircle, AiFillCloseCircle } from 'react-icons/ai'
+import imageHeader from '/assets/spreadsheet-confirm-modal.png'
 
 export type Steps =
   | ElectionCreationSteps.CENSUS_CREATED
@@ -44,7 +45,7 @@ export const CreationProgress = ({ error, sending, step }: CreationProgressProps
 
   return (
     <Stack direction='column' gap={5} p={0}>
-      <Box bgImage='url(/assets/spreadsheet-confirm-modal.png)' height='150px' bgSize='cover' borderRadius='lg' />
+      <Box bgImage={imageHeader} height='150px' bgSize='cover' borderRadius='lg' />
       <Text mb={6} textAlign='center'>
         {t('process_create.creation_steps_description')}
       </Text>
