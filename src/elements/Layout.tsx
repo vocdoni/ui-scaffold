@@ -21,11 +21,11 @@ const Layout = () => {
           >
             <Navbar />
           </HStack>
-          <Box as='main' pt={6} pb={40} m='0 auto' px={{ base: 2, sm: 4 }}>
+          <Box as='main' pt={6} pb={40} m='0 auto'>
             <Outlet />
           </Box>
         </Box>
-        <Box as='footer' mt='auto' maxW={360} mx='auto' px={{ base: 2, sm: 4 }}>
+        <Box as='footer' mt='auto' maxW={360} mx='auto' px={{ base: 2, sm: 4 }} pb={24}>
           <Footer />
         </Box>
       </Box>

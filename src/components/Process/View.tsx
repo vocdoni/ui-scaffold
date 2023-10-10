@@ -28,7 +28,7 @@ import { ElectionStatus } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaFacebook, FaReddit, FaTelegram, FaTwitter } from 'react-icons/fa'
-import ProcessAside from './Aside'
+import ProcessAside, { ProcessAsideBodyMbl, ProcessAsideFooterMbl } from './Aside'
 import Header from './Header'
 import successImg from '/assets/success.png'
 
@@ -50,8 +50,11 @@ export const ProcessView = () => {
 
   return (
     <>
-      <Box>
+      <Box px={{ base: 2, sm: 4 }}>
         <Header />
+        <Flex display={{ base: 'block', xl: 'none' }} mb={5}>
+          <ProcessAsideBodyMbl setQuestionsTab={setQuestionsTab} />
+        </Flex>
         <Flex direction={{ base: 'column', xl: 'row' }} gap={{ xl: 10 }} alignItems='start'>
           <Tabs
             variant='process'
@@ -76,17 +79,28 @@ export const ProcessView = () => {
             </TabPanels>
           </Tabs>
           <Flex
+            display={{ base: 'none', xl: 'block' }}
             w='full'
             justifyContent='center'
-            position={{ xl: 'sticky' }}
-            top={{ xl: 20 }}
-            mt={{ xl: 10 }}
-            mx={{ base: 'auto', xl: 0 }}
+            position='sticky'
+            top={20}
+            mt={10}
           >
             <ProcessAside setQuestionsTab={setQuestionsTab} />
           </Flex>
         </Flex>
       </Box>
+      <Flex
+        display={{ base: 'block', xl: 'none' }}
+        w='100%'
+        minH='100px'
+        position='fixed'
+        // border='1px solid red'
+        left={0}
+        bottom='-25px'
+      >
+        <ProcessAsideFooterMbl setQuestionsTab={setQuestionsTab} />
+      </Flex>
       <SuccessVoteModal />
     </>
   )
