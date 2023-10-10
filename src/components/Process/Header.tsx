@@ -33,7 +33,7 @@ const ProcessHeader = () => {
         </Button>
       </Link>
       <Flex direction={{ base: 'column', xl: 'row' }} justifyContent='space-between' mb={7} gap={{ xl: 10 }}>
-        <Box>
+        <Box flexGrow={0} flexShrink={0} flexBasis={{ base: '100%', xl: '75%' }}>
           <ElectionTitle fontSize='xl4' textAlign='left' mb={5} />
           <Flex
             gap={4}
@@ -52,15 +52,7 @@ const ProcessHeader = () => {
           </Flex>
         </Box>
 
-        <Flex
-          flexDirection='column'
-          alignItems='start'
-          gap={4}
-          flexGrow={0}
-          flexShrink={0}
-          flexBasis={{ base: '100%', xl: 96 }}
-          px={{ xl: 12 }}
-        >
+        <Flex flexDirection='column' alignItems='start' gap={4}>
           {election?.status !== ElectionStatus.CANCELED ? (
             <ProcessDate />
           ) : (
@@ -105,7 +97,7 @@ const ProcessHeader = () => {
                   flexWrap: 'wrap',
                 },
                 '& p strong': {
-                  maxW: { base: '100%', xl: '300px' },
+                  maxW: { base: '100%', xl: '250px' },
                   isTruncated: true,
                   mr: 1,
                 },
