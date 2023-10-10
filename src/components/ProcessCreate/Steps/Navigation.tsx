@@ -21,7 +21,6 @@ export const StepsNavigation = () => {
           ml='auto'
           form='process-create-form'
           rightIcon={<ArrowForwardIcon />}
-          px={20}
           color='primary.500'
           bgColor='white'
         >
