@@ -395,9 +395,9 @@
     "share_title": "Compartir en {{ network }}",
     "spreadsheet": {
       "confirm": {
-        "option": "Opción",
-        "question": "Pregunta",
-        "description": "Antes de emitir tu voto, revisa que todo esté correcto."
+        "description": "Antes de emitir tu voto, revisa que todo esté correcto.",
+        "option": "<strong>Opción {{ number }}:</strong> {{ answer }}",
+        "question": "<strong>Pregunta {{ number }}:</strong> {{ answer }}"
       }
     },
     "status": {

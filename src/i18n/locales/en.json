@@ -386,9 +386,9 @@
     "share_title": "Share on {{ network }}",
     "spreadsheet": {
       "confirm": {
-        "option": "Option",
-        "question": "Question",
-        "description": "Before casting your vote review that everything is correct."
+        "description": "Before casting your vote review that everything is correct.",
+        "option": "<strong>Option {{ number }}:</strong> {{ answer }}",
+        "question": "<strong>Question {{ number }}:</strong> {{ answer }}"
       }
     },
     "status": {

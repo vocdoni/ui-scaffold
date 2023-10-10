@@ -225,17 +225,29 @@ const ConfirmVoteModal = ({ questions, answers }: { questions: IQuestion[]; answ
           {questions.map((q, i) => (
             <Box>
               <Box py={2}>
-                <Text mb={1}>
-                  <Text as='span' fontWeight='bold'>
-                    {t('process.spreadsheet.confirm.question')} {i + 1}:{' '}
-                  </Text>
-                  {q.title.default}
+                <Text display='flex' flexDirection='column' gap={1} mb={1}>
+                  <Trans
+                    i18nKey='process.spreadsheet.confirm.question'
+                    components={{
+                      span: <Text as='span' fontWeight='bold' whiteSpace='nowrap' />,
+                    }}
+                    values={{
+                      answer: q.title.default,
+                      number: i + 1,
+                    }}
+                  />
                 </Text>
-                <Text>
-                  <Text as='span' fontWeight='bold'>
-                    {t('process.spreadsheet.confirm.option')} {i + 1}:{' '}
-                  </Text>{' '}
-                  {q.choices[Number(answers[i])].title.default}
+                <Text display='flex' flexDirection='column' gap={1}>
+                  <Trans
+                    i18nKey='process.spreadsheet.confirm.option'
+                    components={{
+                      span: <Text as='span' fontWeight='bold' whiteSpace='nowrap' />,
+                    }}
+                    values={{
+                      answer: q.choices[Number(answers[i])].title.default,
+                      number: i + 1,
+                    }}
+                  />
                 </Text>
               </Box>
               {i + 1 !== questions.length && <Box h='1px' bgColor='lightgray' />}
