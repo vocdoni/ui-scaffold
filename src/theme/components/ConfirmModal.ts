@@ -4,17 +4,6 @@ import { confirmAnatomy } from '@vocdoni/chakra-components'
 const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpers(confirmAnatomy)
 
 const baseStyle = definePartsStyle({
-  content: {
-    px: 12,
-    py: 4,
-  },
-
-  header: {
-    textAlign: 'center',
-  },
-  footer: {
-    justifyContent: 'center',
-  },
   confirm: {
     bgColor: 'process.confirm_vote.bg',
     color: 'process.confirm_vote.color',
@@ -29,6 +18,9 @@ const baseStyle = definePartsStyle({
   },
   cancel: {
     display: 'none',
+  },
+  footer: {
+    justifyContent: 'center',
   },
 })
 

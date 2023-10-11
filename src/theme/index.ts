@@ -21,6 +21,8 @@ import { SpreadsheetAccess } from './components/SpreadSheet'
 import { ConfirmModal } from './components/ConfirmModal'
 import { QuestionsConfirmation } from './components/QuestionsConfirmation'
 import { Badge } from './components/Badge'
+import { Modal } from './components/Modal'
+
 export const theme = extendTheme(vtheme, {
   styles: {
     global: {
@@ -49,6 +51,7 @@ export const theme = extendTheme(vtheme, {
     ElectionActions,
     Form,
     Link,
+    Modal,
     QuestionsConfirmation,
     Tabs,
     Textarea,
