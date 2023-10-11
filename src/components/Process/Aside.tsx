@@ -1,4 +1,4 @@
-import { Box, Flex, Link, Spinner, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Link, Spinner, Text } from '@chakra-ui/react'
 import { CensusMeta } from '@components/ProcessCreate/Steps/Confirm'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { SpreadsheetAccess, VoteButton, environment } from '@vocdoni/chakra-components'
@@ -25,7 +25,7 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
         direction='column'
         justifyContent='center'
         alignItems='center'
-        p={{ base: 6, xl: 12 }}
+        p={12}
         w='full'
         maxW={100}
         mt={7}
@@ -233,7 +233,7 @@ export const ProcessAsideFooterMbl = ({ setQuestionsTab }: { setQuestionsTab: ()
               const connected =
                 ready && account && chain && (!authenticationStatus || authenticationStatus === 'authenticated')
               return (
-                <div
+                <Box
                   {...(!ready && {
                     'aria-hidden': true,
                     style: {
@@ -242,38 +242,25 @@ export const ProcessAsideFooterMbl = ({ setQuestionsTab }: { setQuestionsTab: ()
                       userSelect: 'none',
                     },
                   })}
+                  w='full'
                 >
                   {(() => {
                     if (!connected) {
                       return (
-                        <button
-                          onClick={openConnectModal}
-                          type='button'
-                          style={{
-                            height: '40px',
-                            width: '100vw',
-                            padding: 4,
-                            color: 'black',
-                            borderRadius: '30px',
-                            fontSize: '16px',
-                            fontWeight: 600,
-                            backgroundColor: 'white',
-                            display: 'inline-block',
-                          }}
-                        >
+                        <Button onClick={openConnectModal} variant='process' fontSize='lg'>
                           {t('menu.connect').toString()}
-                        </button>
+                        </Button>
                       )
                     }
                   })()}
-                </div>
+                </Box>
               )
             }}
           </ConnectButton.Custom>
         )}
         {census?.type === 'spreadsheet' && !connected && <SpreadsheetAccess />}
         {isAbleToVote ? (
-          <VoteButton variant='process' mb={0} fontSize='md' onClick={setQuestionsTab} />
+          <VoteButton variant='process' fontSize='lg' onClick={setQuestionsTab} />
         ) : (
           connected && (
             <Flex
