@@ -25,7 +25,7 @@ const Layout = () => {
             <Outlet />
           </Box>
         </Box>
-        <Box as='footer' mt='auto' maxW={360} mx='auto' px={{ base: 2, sm: 4 }} pb={24}>
+        <Box as='footer' mt='auto' maxW={360} mx='auto' px={{ base: 2, sm: 4 }} pb={{ base: 20, xl: 0 }}>
           <Footer />
         </Box>
       </Box>

@@ -8,6 +8,7 @@ import { TFunction } from 'i18next'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
+import { ProcessDate } from './Date'
 
 const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
   const { t } = useTranslation()
@@ -43,7 +44,7 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
               i18nKey='aside.votes'
               components={{
                 span: <Text as='span' fontWeight='bold' fontSize='xl6' textAlign='center' lineHeight={1} />,
-                text: <Text fontSize='xl3' textAlign='center' lineHeight={1.3} />,
+                text: <Text fontSize='xl2' textAlign='center' lineHeight={1.3} />,
               }}
               count={election?.voteCount}
             />
@@ -115,7 +116,6 @@ export const ProcessAsideBodyMbl = ({ setQuestionsTab }: { setQuestionsTab: () =
   return (
     <Box
       p={4}
-      pb={8}
       background='process.aside.bg'
       borderRadius='xl'
       color='process.aside.color'
@@ -123,20 +123,37 @@ export const ProcessAsideBodyMbl = ({ setQuestionsTab }: { setQuestionsTab: () =
       maxW={88}
       mx='auto'
     >
-      <Flex w='full' justifyContent='space-between' alignItems='center' mb={5}>
+      <Flex w='full' justifyContent='space-between' alignItems='center'>
         <Text textAlign='center' fontSize='xl'>
           {getStatusText(t, election?.status).toUpperCase()}
         </Text>
-        <Text>Queden 5 dies</Text>
+
+        {election?.status !== 'CANCELED' && (
+          <Box
+            sx={{
+              '& > div': {
+                display: 'flex',
+                gap: 1.5,
+
+                '& p': {
+                  color: 'white',
+                  fontWeight: 'normal',
+                },
+              },
+            }}
+          >
+            <ProcessDate />
+          </Box>
+        )}
       </Flex>
 
       {election?.status !== ElectionStatus.CANCELED && election?.status !== ElectionStatus.UPCOMING && (
-        <Flex flexDirection='row' justifyContent='center' alignItems='center' gap={2} mb={{ base: 3, xl: 5 }}>
+        <Flex flexDirection='row' justifyContent='center' alignItems='center' gap={2}>
           <Trans
             i18nKey='aside.votes'
             components={{
               span: <Text as='span' fontWeight='bold' fontSize='xl6' textAlign='center' />,
-              text: <Text fontSize='xl3' textAlign='center' />,
+              text: <Text fontSize='xl2' textAlign='center' />,
             }}
             count={election?.voteCount}
           />
@@ -198,22 +215,76 @@ export const ProcessAsideFooterMbl = ({ setQuestionsTab }: { setQuestionsTab: ()
   const { isConnected } = useAccount()
   const { t } = useTranslation()
 
-  console.log(voted, census?.type !== 'spreadsheet' && !isAbleToVote, isConnected)
-
-  if (voted || isConnected) return null
+  if (
+    (isConnected && census.type !== 'spreadsheet' && !isAbleToVote) ||
+    (census.type === 'spreadsheet' && voted) ||
+    election?.status !== ElectionStatus.ONGOING
+  )
+    return null
 
   return (
-    <Box bgColor='white' pt={1}>
+    <Box bgColor='white'>
       <Flex justifyContent='center' alignItems='center' p={4} background='process.aside.bg' color='process.aside.color'>
-        {census?.type === 'spreadsheet' && !connected ? (
-          <SpreadsheetAccess />
-        ) : isAbleToVote ? (
+        {census?.type !== 'spreadsheet' && !connected && (
+          <ConnectButton.Custom>
+            {({ account, chain, openConnectModal, authenticationStatus, mounted }) => {
+              const ready = mounted && authenticationStatus !== 'loading'
+              const connected =
+                ready && account && chain && (!authenticationStatus || authenticationStatus === 'authenticated')
+              return (
+                <div
+                  {...(!ready && {
+                    'aria-hidden': true,
+                    style: {
+                      opacity: 0,
+                      pointerEvents: 'none',
+                      userSelect: 'none',
+                    },
+                  })}
+                >
+                  {(() => {
+                    if (!connected) {
+                      return (
+                        <button
+                          onClick={openConnectModal}
+                          type='button'
+                          style={{
+                            height: '40px',
+                            width: '100vw',
+                            padding: 4,
+                            color: 'black',
+                            borderRadius: '30px',
+                            fontSize: '16px',
+                            fontWeight: 600,
+                            backgroundColor: 'white',
+                            display: 'inline-block',
+                          }}
+                        >
+                          {t('menu.connect').toString()}
+                        </button>
+                      )
+                    }
+                  })()}
+                </div>
+              )
+            }}
+          </ConnectButton.Custom>
+        )}
+        {census?.type === 'spreadsheet' && !connected && <SpreadsheetAccess />}
+        {census?.type === 'spreadsheet' && connected && isAbleToVote ? (
           <VoteButton variant='process' mb={0} fontSize='md' onClick={setQuestionsTab} />
-        ) : census?.type === 'spreadsheet' ? (
-          <Spinner />
         ) : (
-          election?.status !== ElectionStatus.CANCELED && (
-            <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />
+          connected && (
+            <Flex
+              justifyContent='center'
+              alignItems='center'
+              height='40px'
+              borderRadius='30px'
+              bgColor='white'
+              w='full'
+            >
+              <Spinner color='primary.500' />
+            </Flex>
           )
         )}
       </Flex>

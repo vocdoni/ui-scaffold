@@ -90,17 +90,10 @@ export const ProcessView = () => {
           </Flex>
         </Flex>
       </Box>
-      <Flex
-        display={{ base: 'block', xl: 'none' }}
-        w='100%'
-        minH='100px'
-        position='fixed'
-        // border='1px solid red'
-        left={0}
-        bottom='-25px'
-      >
+      <Box position='fixed' bottom={0} left={0} w='100%' bgColor='white' pt={1} display={{ base: 'block', xl: 'none' }}>
         <ProcessAsideFooterMbl setQuestionsTab={setQuestionsTab} />
-      </Flex>
+      </Box>
+
       <SuccessVoteModal />
     </>
   )
