@@ -36,7 +36,7 @@
     },
     "confirm": {
       "cancel": "Cancel",
-      "confirm": "Confirm",
+      "confirm": "Confirm Vote",
       "title": "Confirm"
     },
     "empty": "Apparently this process has no questions",
@@ -139,7 +139,7 @@
   "form": {
     "account_create": {
       "description_helper": "A brief description of your organization",
-      "description_placeholder": "Description (optional). Accepts Markdown text.",
+      "description_placeholder": "Description (optional)",
       "title_helper": "The organization name",
       "title_placeholder": "The organization name"
     },
@@ -204,7 +204,6 @@
         "census_total_other": "<span>Voters:</span><span>{{ count }} voters</span>",
         "census_total_people_one": "A single person will be elegible for voting in this process",
         "census_total_people_other": "{{ count }} people will be elegible for voting in this process",
-        "close": "Close",
         "configuration": "Configuration",
         "confirmation": "Confirmation",
         "confirmation_terms_and_conditions": "I accept the <link>Terms and Conditions</link> of Vocdoni",
@@ -229,7 +228,7 @@
         "vote_overwritte": "Vote overwritte"
       },
       "confirm_spreadsheet_removal": "Are you sure? Take in mind that the uploaded file will be removed",
-      "creating_process": "Creating process...",
+      "creating_process": "Creating Voting Process...",
       "meta": {
         "description": "Provide a clear title & description. This will help voters understand the purpose of the voting process.",
         "description_helper": "A brief description of your voting process",
@@ -284,14 +283,13 @@
       "spreadsheet_total_rows_other": "Census has {{ count }} records",
       "steps": {
         "census": "Census",
-        "checks": "Checks",
+        "checks": "Organization",
         "confirm": "Confirm",
         "info": "Info",
         "questions": "Questions"
       },
       "success_description": "Redirecting you to the voting process page...",
       "success_title": "Voting process successfully created",
-      "unhealthy_account": "You need to create an organization before creating the first voting process.",
       "web3": {
         "census_members_one": "<span>1 member</span> <text> in the census</text>",
         "census_members_other": "<span>{{ count }} members</span> <text> in the census</text>",
@@ -328,6 +326,20 @@
     "privacy": "Privacy",
     "terms": "Terms",
     "wallet": "Wallet"
+  },
+  "new_organization": {
+    "anonyomus": "anonyomus",
+    "censorship": "<span>censorship</span><span>resistance</span>",
+    "create_organization_btn": "Create Organization",
+    "description1": "Before starting creating your voting process, <span>you need to create an organization</span>, it's free With an organization, you will be able to create a wide range of elections and give voice to your comumnity members.",
+    "description2": "As a <span>welcome pack</span> you will recive 1000 tokens for free to start using our platform.",
+    "footer": "<span>Vocdoni</span> is a secure, privacy-friendly & open-source public voting protocol.",
+    "inexpensive": "inexpensive",
+    "name": "Organization name",
+    "open_source": "<span>open</span><span>source</span>",
+    "scalable": "scalable",
+    "title": "New Organization",
+    "verificable": "verificable"
   },
   "open_in_explorer": "Open in explorer",
   "organization": {
@@ -374,9 +386,9 @@
     "share_title": "Share on {{ network }}",
     "spreadsheet": {
       "confirm": {
-        "option": "Option",
-        "question": "Question",
-        "text1": "Before casting your vote review that everything is correct."
+        "description": "Before casting your vote review that everything is correct.",
+        "option": "<strong>Option {{ number }}:</strong> {{ answer }}",
+        "question": "<strong>Question {{ number }}:</strong> {{ answer }}"
       }
     },
     "status": {
@@ -407,9 +419,8 @@
       "done": "Process creation",
       "sign_tx": "Sign transaction"
     },
-    "creation_steps_description": "The voting process is being created. This process can last a bit (don't close this window), as it is registering all the information in the secure & private Vocdoni Blockchain.",
-    "creation_steps_title": "Progress",
-    "do_not_close": "This action can take some time, don't close this window"
+    "creation_steps_description": "You need to sign the transactions in order to create the voting process in the Vocdoni blockchain. Don't close this windows.",
+    "creation_steps_title": "Progress"
   },
   "uploader": {
     "click_or_drag_and_drop": "<p1>Upload or drag and drop the voter list here</p1><p2>(Allowed formats: CSV, XLSX, and ODS)</p2>",

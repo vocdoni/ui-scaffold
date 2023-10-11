@@ -7,6 +7,7 @@ import { ElectionStatus, PublishedElection, dotobject } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
+import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 import { ProcessDate } from './Date'
 
@@ -69,6 +70,9 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
           <Text textAlign='center' fontSize='sm'>
             {t('aside.is_not_in_census')}
           </Text>
+          <Text textAlign='center' fontSize='sm'>
+            {t('aside.is_not_in_census')}
+          </Text>
         )}
 
         {renderVoteMenu && (
@@ -79,7 +83,29 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
               </Text>
             )}
             {isAbleToVote && <VoteButton variant='process' mb={0} onClick={setQuestionsTab} />}
+              <Text fontSize='sm' textAlign='center'>
+                {t('aside.has_already_voted').toString()}
+              </Text>
+            )}
+            {isAbleToVote && <VoteButton variant='process' mb={0} onClick={setQuestionsTab} />}
             {hasOverwriteEnabled(election) && isInCensus && votesLeft > 0 && voted && (
+              <Text fontSize='sm' textAlign='center'>
+                {t('aside.overwrite_votes_left', { count: votesLeft })}
+              </Text>
+            )}
+            {voted !== null && voted.length > 0 && (
+              <Link
+                as={ReactRouterLink}
+                to={environment.verifyVote(env, voted)}
+                target='_blank'
+                whiteSpace='nowrap'
+                textDecoration='underline'
+                _hover={{
+                  textDecoration: 'none',
+                }}
+              >
+                {t('aside.verify_vote_on_explorer')}
+              </Link>
               <Text fontSize='sm' textAlign='center'>
                 {t('aside.overwrite_votes_left', { count: votesLeft })}
               </Text>

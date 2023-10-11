@@ -38,7 +38,7 @@
     },
     "confirm": {
       "cancel": "Cancel·la",
-      "confirm": "Confirma",
+      "confirm": "Confirma Vot",
       "title": "Confirmar"
     },
     "empty": "Sembla que aquest procés no té preguntes",
@@ -141,7 +141,7 @@
   "form": {
     "account_create": {
       "description_helper": "Una breu descripció de la teva organització",
-      "description_placeholder": "Descripció (opcional). Accepta text en format Markdown.",
+      "description_placeholder": "Descripció (opcional)",
       "title_helper": "El nom de l'organització",
       "title_placeholder": "El nom de l'organització"
     },
@@ -208,7 +208,6 @@
         "census_total_people_one": "Una persona podrà votar en aquesta votació",
         "census_total_people_many": "{{ count }} persones podran votar en aquesta votació",
         "census_total_people_other": "",
-        "close": "Tanca",
         "configuration": "Configuració",
         "confirmation": "Confirmació",
         "confirmation_terms_and_conditions": "Accepto els <link>termes i condicions</link> de Vocdoni",
@@ -235,7 +234,7 @@
         "vote_overwritte": "Sobreescriure vot"
       },
       "confirm_spreadsheet_removal": "Estàs segur que vols canviar-ho? Fent-ho s'esborrarà el fitxer que has carregat actualment.",
-      "creating_process": "Creant el procés...",
+      "creating_process": "Creant Procés de Votació...",
       "meta": {
         "description": "Proporciona un títol i una descripció clars. Això ajudarà als votants a entendre el propòsit del procés de votació.",
         "description_helper": "Una breu descripció de la teva votació",
@@ -291,14 +290,13 @@
       "spreadsheet_total_rows_other": "Grandària del cens: {{count}} votants",
       "steps": {
         "census": "Cens",
-        "checks": "Comprovacions",
+        "checks": "Organització",
         "confirm": "Confirmar",
         "info": "Informació",
         "questions": "Preguntes"
       },
       "success_description": "Redirigint-te a la pàgina del procés de votació...",
       "success_title": "Procés de votació creat amb èxit",
-      "unhealthy_account": "Has de crear una organització abans de crear la primera votació.",
       "web3": {
         "census_members_one": "<span>1 membre</span> <text>al cens</text>",
         "census_members_many": "",
@@ -336,6 +334,20 @@
     "privacy": "Privadesa",
     "terms": "Termes",
     "wallet": "Cartera"
+  },
+  "new_organization": {
+    "anonyomus": "anònim",
+    "censorship": "<span>censura</span><span>resistència</span>",
+    "create_organization_btn": "Crear Organització",
+    "description1": "Abans de començar a crear el vostre procés de votació, <span>heu de crear una organització</span>, és gratuït. Amb una organització, podreu crear una àmplia gamma d'eleccions i donar veu als membres de la vostra comunitat.",
+    "description2": "Com a <span>paquet de benvinguda</span>, rebràs 1000 tokens gratuïts per començar a utilitzar la nostra plataforma.",
+    "footer": "<span>Vocdoni</span> és un protocol de votació públic segur, respectuós amb la privadesa i de codi obert.",
+    "inexpensive": "econòmic",
+    "name": "Nom de l'organització",
+    "open_source": "<span>codi</span><span>obert</span>",
+    "scalable": "escalable",
+    "title": "Nova Organització",
+    "verificable": "verificable"
   },
   "open_in_explorer": "Obre a l'explorador",
   "organization": {
@@ -383,9 +395,9 @@
     "share_title": "Comparteix a {{ network }}",
     "spreadsheet": {
       "confirm": {
-        "option": "Opció",
-        "question": "Pregunta",
-        "text1": "Abans de votar, reviseu que tot sigui correcte."
+        "description": "Abans de votar, reviseu que tot sigui correcte.",
+        "option": "<strong>Opció {{ number }}:</strong> {{ answer }}",
+        "question": "<strong>Pregunta {{ number }}:</strong> {{ answer }}"
       }
     },
     "status": {
@@ -416,9 +428,8 @@
       "done": "Creació del procés",
       "sign_tx": "Signar transacció"
     },
-    "creation_steps_description": "S'està creant el procés de votació. Aquest procediment pot trigar una mica (no tanquis aquesta finestra) mentre queda enregistrada tota la informació a la blockchain privada i segura de Vocdoni.",
-    "creation_steps_title": "Progrés",
-    "do_not_close": "Aquesta acció pot trigar una estona, no tanquis aquesta finestra"
+    "creation_steps_description": "Necessites signar les transaccions per crear el procés de votació a la cadena de blocs de Vocdoni. No tanquis aquesta finestra.",
+    "creation_steps_title": "Progrés"
   },
   "uploader": {
     "click_or_drag_and_drop": "<p1>Puja o arrossega i deixa anar aquí la llista de votants</p1><p2>(Formats permesos: CSV, XLSX i ODS)</p2>",

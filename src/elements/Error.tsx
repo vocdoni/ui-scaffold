@@ -1,9 +1,11 @@
 import { WarningIcon } from '@chakra-ui/icons'
 import { Flex, Text } from '@chakra-ui/react'
 import { ErrAccountNotFound, ErrAddressMalformed, ErrCantParseElectionID, ErrElectionNotFound } from '@vocdoni/sdk'
+import { lazy } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useRouteError } from 'react-router-dom'
-import NotFound from './NotFound'
+
+const NotFound = lazy(() => import('./NotFound'))
 
 const Error = () => {
   const { t } = useTranslation()
