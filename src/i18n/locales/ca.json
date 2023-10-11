@@ -336,18 +336,18 @@
     "wallet": "Cartera"
   },
   "new_organization": {
-    "anonyomus": "anònim",
-    "censorship": "<span>censura</span><span>resistència</span>",
+    "anonyomus": "Anònim",
+    "censorship": "<span>Resistència</span><span>a la Censura</span>",
     "create_organization_btn": "Crear Organització",
     "description1": "Abans de començar a crear el vostre procés de votació, <span>heu de crear una organització</span>, és gratuït. Amb una organització, podreu crear una àmplia gamma d'eleccions i donar veu als membres de la vostra comunitat.",
     "description2": "Com a <span>paquet de benvinguda</span>, rebràs 1000 tokens gratuïts per començar a utilitzar la nostra plataforma.",
     "footer": "<span>Vocdoni</span> és un protocol de votació públic segur, respectuós amb la privadesa i de codi obert.",
-    "inexpensive": "econòmic",
+    "inexpensive": "Econòmic",
     "name": "Nom de l'organització",
-    "open_source": "<span>codi</span><span>obert</span>",
-    "scalable": "escalable",
+    "open_source": "<span>Codi</span><span>Obert</span>",
+    "scalable": "Escalable",
     "title": "Nova Organització",
-    "verificable": "verificable"
+    "verificable": "Verificable"
   },
   "open_in_explorer": "Obre a l'explorador",
   "organization": {
