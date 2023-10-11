@@ -22,10 +22,6 @@ const baseStyle = definePartsStyle({
     textTransform: 'none',
   },
 
-  content: {
-    p: 10,
-  },
-
   body: {
     display: 'flex',
     flexDirection: 'column',
@@ -39,6 +35,7 @@ const baseStyle = definePartsStyle({
     mx: 'auto',
     bgColor: 'process.identify_btn.bg',
     color: 'process.identify_btn.color',
+    borderRadius: '30px',
 
     _hover: {
       bgColor: 'process.identify_btn.bg_hover',

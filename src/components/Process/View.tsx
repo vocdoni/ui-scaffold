@@ -3,7 +3,6 @@ import {
   Button,
   Flex,
   Icon,
-  Image,
   Link,
   ListItem,
   Modal,
@@ -130,15 +129,13 @@ const SuccessVoteModal = () => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent px={12}>
-        <ModalHeader px={0}>
-          <Text textAlign='center' fontSize='lg' mb={3}>
-            {t('process.success_modal.title')}
-          </Text>
-          <Image src={successImg} borderRadius='lg' />
+      <ModalContent>
+        <ModalHeader>
+          <Text>{t('process.success_modal.title')}</Text>
+          <Box bgImage={successImg} minH='300px' />
         </ModalHeader>
         <ModalCloseButton />
-        <ModalBody p={0}>
+        <ModalBody>
           <Trans
             i18nKey='process.success_modal.text'
             components={{
@@ -194,7 +191,7 @@ const SuccessVoteModal = () => {
           </UnorderedList>
         </ModalBody>
 
-        <ModalFooter justifyContent='center'>
+        <ModalFooter mt={4}>
           <Button variant='rounded' colorScheme='primary' px={16} onClick={onClose}>
             {t('process.success_modal.btn')}
           </Button>
@@ -209,8 +206,10 @@ const ConfirmVoteModal = ({ questions, answers }: { questions: IQuestion[]; answ
 
   return (
     <>
+      <ModalHeader>
+        <Box bgImage={`url(${confirmImg})`} />
+      </ModalHeader>
       <ModalBody display='flex' flexDirection='column' gap={5} p={0} mb={2}>
-        <Box bgImage={`url(${confirmImg})`} height='150px' bgSize='cover' borderRadius='lg' />
         <Text textAlign='center' color='modal_description'>
           {t('process.spreadsheet.confirm.description')}
         </Text>
