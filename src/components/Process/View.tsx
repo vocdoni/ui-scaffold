@@ -24,14 +24,12 @@ import {
 } from '@chakra-ui/react'
 import { ElectionQuestions, ElectionResults, environment } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
-import { ElectionStatus, IQuestion } from '@vocdoni/sdk'
+import { ElectionStatus } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
-import { FieldValues } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaFacebook, FaReddit, FaTelegram, FaTwitter } from 'react-icons/fa'
 import ProcessAside, { ProcessAsideBodyMbl, ProcessAsideFooterMbl } from './Aside'
 import Header from './Header'
-import confirmImg from '/assets/spreadsheet-confirm-modal.png'
 import successImg from '/assets/success.png'
 
 export const ProcessView = () => {
@@ -67,24 +65,13 @@ export const ProcessView = () => {
             flexBasis={{ base: '100%', xl: '75%' }}
             w='full'
           >
-          <Tabs
-            variant='process'
-            index={tabIndex}
-            onChange={handleTabsChange}
-            flexGrow={0}
-            flexShrink={0}
-            flexBasis={{ base: '100%', xl: '75%' }}
-            w='full'
-          >
             <TabList>
               <Tab>{t('process.questions')}</Tab>
               {election?.status !== ElectionStatus.CANCELED && <Tab>{t('process.results')}</Tab>}
             </TabList>
             <TabPanels>
               <TabPanel>
-                <ElectionQuestions
-                  confirmContents={(questions, answers) => <ConfirmVoteModal questions={questions} answers={answers} />}
-                />
+                <ElectionQuestions />
               </TabPanel>
               <TabPanel mb={20}>
                 <ElectionResults />
@@ -100,11 +87,18 @@ export const ProcessView = () => {
             mt={10}
           >
             <ProcessAside setQuestionsTab={setQuestionsTab} />
-            <ProcessAside setQuestionsTab={setQuestionsTab} />
           </Flex>
         </Flex>
       </Box>
-      <Box position='fixed' bottom={0} left={0} w='100%' bgColor='white' pt={1} display={{ base: 'block', xl: 'none' }}>
+      <Box
+        position='fixed'
+        bottom={0}
+        left={0}
+        w='100%'
+        bgColor='process.aside.aside_footer_mbl_border'
+        pt={1}
+        display={{ base: 'block', xl: 'none' }}
+      >
         <ProcessAsideFooterMbl setQuestionsTab={setQuestionsTab} />
       </Box>
 
@@ -218,60 +212,5 @@ const SuccessVoteModal = () => {
         </ModalFooter>
       </ModalContent>
     </Modal>
-  )
-}
-
-const ConfirmVoteModal = ({ questions, answers }: { questions: IQuestion[]; answers: FieldValues }) => {
-  const { t } = useTranslation()
-
-  return (
-    <>
-      <ModalBody display='flex' flexDirection='column' gap={5} p={0} mb={2}>
-        <Box bgImage={`url(${confirmImg})`} height='150px' bgSize='cover' borderRadius='lg' />
-        <Text textAlign='center' color='modal_description'>
-          {t('process.spreadsheet.confirm.description')}
-        </Text>
-        <Flex
-          flexDirection='column'
-          maxH='200px'
-          overflowY='scroll'
-          boxShadow='rgba(128, 128, 128, 0.42) 1px 1px 1px 1px'
-          px={2}
-          borderRadius='lg'
-        >
-          {questions.map((q, i) => (
-            <Box>
-              <Box py={2}>
-                <Text display='flex' flexDirection='column' gap={1} mb={1}>
-                  <Trans
-                    i18nKey='process.spreadsheet.confirm.question'
-                    components={{
-                      span: <Text as='span' fontWeight='bold' whiteSpace='nowrap' />,
-                    }}
-                    values={{
-                      answer: q.title.default,
-                      number: i + 1,
-                    }}
-                  />
-                </Text>
-                <Text display='flex' flexDirection='column' gap={1}>
-                  <Trans
-                    i18nKey='process.spreadsheet.confirm.option'
-                    components={{
-                      span: <Text as='span' fontWeight='bold' whiteSpace='nowrap' />,
-                    }}
-                    values={{
-                      answer: q.choices[Number(answers[i])].title.default,
-                      number: i + 1,
-                    }}
-                  />
-                </Text>
-              </Box>
-              {i + 1 !== questions.length && <Box h='1px' bgColor='lightgray' />}
-            </Box>
-          ))}
-        </Flex>
-      </ModalBody>
-    </>
   )
 }

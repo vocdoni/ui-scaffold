@@ -7,7 +7,6 @@ import { ElectionStatus, PublishedElection, dotobject } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
-import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 import { ProcessDate } from './Date'
 
@@ -70,9 +69,6 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
           <Text textAlign='center' fontSize='sm'>
             {t('aside.is_not_in_census')}
           </Text>
-          <Text textAlign='center' fontSize='sm'>
-            {t('aside.is_not_in_census')}
-          </Text>
         )}
 
         {renderVoteMenu && (
@@ -83,29 +79,7 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
               </Text>
             )}
             {isAbleToVote && <VoteButton variant='process' mb={0} onClick={setQuestionsTab} />}
-              <Text fontSize='sm' textAlign='center'>
-                {t('aside.has_already_voted').toString()}
-              </Text>
-            )}
-            {isAbleToVote && <VoteButton variant='process' mb={0} onClick={setQuestionsTab} />}
             {hasOverwriteEnabled(election) && isInCensus && votesLeft > 0 && voted && (
-              <Text fontSize='sm' textAlign='center'>
-                {t('aside.overwrite_votes_left', { count: votesLeft })}
-              </Text>
-            )}
-            {voted !== null && voted.length > 0 && (
-              <Link
-                as={ReactRouterLink}
-                to={environment.verifyVote(env, voted)}
-                target='_blank'
-                whiteSpace='nowrap'
-                textDecoration='underline'
-                _hover={{
-                  textDecoration: 'none',
-                }}
-              >
-                {t('aside.verify_vote_on_explorer')}
-              </Link>
               <Text fontSize='sm' textAlign='center'>
                 {t('aside.overwrite_votes_left', { count: votesLeft })}
               </Text>
@@ -146,7 +120,7 @@ export const ProcessAsideBodyMbl = ({ setQuestionsTab }: { setQuestionsTab: () =
       borderRadius='xl'
       color='process.aside.color'
       boxShadow='var(--box-shadow-banner)'
-      maxW={88}
+      maxW={96}
       mx='auto'
     >
       <Flex w='full' justifyContent='space-between' alignItems='center'>
@@ -236,20 +210,14 @@ export const ProcessAsideBodyMbl = ({ setQuestionsTab }: { setQuestionsTab: () =
 }
 
 export const ProcessAsideFooterMbl = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
-  const { election, connected, isAbleToVote, isInCensus, voted, votesLeft } = useElection()
+  const { election, connected, isAbleToVote, isInCensus, voted } = useElection()
   const census: CensusMeta = dotobject(election?.meta || {}, 'census')
-  const { isConnected } = useAccount()
   const { t } = useTranslation()
 
-  if (
-    (isConnected && census.type !== 'spreadsheet' && !isAbleToVote) ||
-    (census.type === 'spreadsheet' && voted) ||
-    election?.status !== ElectionStatus.ONGOING
-  )
-    return null
+  if (election?.status !== ElectionStatus.ONGOING || !!voted || !isInCensus) return null
 
   return (
-    <Box bgColor='white'>
+    <Box>
       <Flex justifyContent='center' alignItems='center' p={4} background='process.aside.bg' color='process.aside.color'>
         {census?.type !== 'spreadsheet' && !connected && (
           <ConnectButton.Custom>
@@ -297,7 +265,7 @@ export const ProcessAsideFooterMbl = ({ setQuestionsTab }: { setQuestionsTab: ()
           </ConnectButton.Custom>
         )}
         {census?.type === 'spreadsheet' && !connected && <SpreadsheetAccess />}
-        {census?.type === 'spreadsheet' && connected && isAbleToVote ? (
+        {isAbleToVote ? (
           <VoteButton variant='process' mb={0} fontSize='md' onClick={setQuestionsTab} />
         ) : (
           connected && (
