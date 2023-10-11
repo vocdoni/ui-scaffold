@@ -1,9 +1,8 @@
-import { Box, List, ListIcon, ListItem, Spinner, Stack, Text } from '@chakra-ui/react'
+import { List, ListIcon, ListItem, Spinner, Stack, Text } from '@chakra-ui/react'
 import { ElectionCreationSteps } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AiFillCheckCircle, AiFillCloseCircle } from 'react-icons/ai'
-import imageHeader from '/assets/spreadsheet-confirm-modal.png'
 
 export type Steps =
   | ElectionCreationSteps.CENSUS_CREATED
@@ -44,9 +43,8 @@ export const CreationProgress = ({ error, sending, step }: CreationProgressProps
   }, [step])
 
   return (
-    <Stack direction='column' gap={5} p={0}>
-      <Box bgImage={imageHeader} height='150px' bgSize='cover' borderRadius='lg' />
-      <Text mb={6} textAlign='center'>
+    <Stack>
+      <Text mb={6} textAlign='center' color='modal_description'>
         {t('process_create.creation_steps_description')}
       </Text>
       <List spacing={3}>

@@ -2567,10 +2567,10 @@
   dependencies:
     "@vocdoni/sdk" "^0.3.1"
 
-"@vocdoni/sdk@^0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@vocdoni/sdk/-/sdk-0.3.1.tgz#94f137d6bc554c990123c70e2833b5ebd47be2f9"
-  integrity sha512-CAZ1d9wqjoeubSN0GTHTbsXLZTFeInrsNpYPHVczVxxqjnlccQnsfyWQqSfu4kQOSCd91in/ywNS3BuuWEob+w==
+"@vocdoni/sdk@^0.3.1", "@vocdoni/sdk@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@vocdoni/sdk/-/sdk-0.4.0.tgz#48c86b45ea31fca0c1bedcf8a8187d5c1df1e691"
+  integrity sha512-deqrsDT8pZ7y9W2+03WPDr8B2/ts0KProiFkQ7xbJ4FxS6JdlTnsd70sI+n6EZaxvwlUSZTsF7lNRzlbOdjkDA==
   dependencies:
     "@ethersproject/abstract-signer" "^5.7.0"
     "@ethersproject/address" "^5.7.0"

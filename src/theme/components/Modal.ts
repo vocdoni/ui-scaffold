@@ -4,9 +4,38 @@ import { createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/styled-sy
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(parts.keys)
 
 const baseStyle = definePartsStyle({
+  overlay: {
+    bgColor: 'rgba(0 ,0 ,0, 0.8)',
+  },
   dialog: {
-    borderRadius: 'md',
-    border: '2px solid red',
+    p: { base: 10, lg: 14 },
+  },
+  header: {
+    padding: 0,
+    margin: 0,
+    textAlign: 'center',
+
+    '& p': {
+      mb: 5,
+      fontSize: '20px',
+      fontWeight: 600,
+      lineHeight: '30px',
+    },
+
+    '& > div': {
+      height: '150px',
+      bgSize: 'cover',
+      borderRadius: 'lg',
+    },
+  },
+  body: {
+    padding: 0,
+    mt: 5,
+  },
+  footer: {
+    justifyContent: 'center',
+    padding: 0,
+    mt: 8,
   },
 })
 

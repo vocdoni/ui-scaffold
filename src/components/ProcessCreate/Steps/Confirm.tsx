@@ -45,6 +45,7 @@ import { Web3Address } from '../StepForm/CensusWeb3'
 import { Option } from '../StepForm/Questions'
 import Wrapper from './Wrapper'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
+import imageHeader from '/assets/spreadsheet-confirm-modal.png'
 
 export const Confirm = () => {
   const { env, client, account } = useClient()
@@ -242,14 +243,15 @@ export const Confirm = () => {
         >
           {t('form.process_create.confirm.create_button')}
         </Button>
-        <Modal isOpen={isOpen} onClose={onClose} closeOnEsc={!!error} closeOnOverlayClick={!!error} isCentered>
+        <Modal isOpen={true} onClose={onClose} closeOnEsc={!!error} closeOnOverlayClick={!!error} isCentered>
           <ModalOverlay />
-          <ModalContent p={12}>
-            <ModalHeader p={0} mb={5} textAlign='center'>
-              {t('form.process_create.creating_process')}
+          <ModalContent>
+            <ModalHeader>
+              <Text>{t('form.process_create.creating_process')}</Text>
+              <Box bgImage={imageHeader} />
             </ModalHeader>
             {error && <ModalCloseButton />}
-            <ModalBody p={0}>
+            <ModalBody>
               <CreationProgress error={error} sending={sending} step={step} />
             </ModalBody>
           </ModalContent>
