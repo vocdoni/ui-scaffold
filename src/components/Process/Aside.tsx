@@ -210,11 +210,18 @@ export const ProcessAsideBodyMbl = ({ setQuestionsTab }: { setQuestionsTab: () =
 }
 
 export const ProcessAsideFooterMbl = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
-  const { election, connected, isAbleToVote, isInCensus, voted } = useElection()
-  const census: CensusMeta = dotobject(election?.meta || {}, 'census')
   const { t } = useTranslation()
 
-  if (election?.status !== ElectionStatus.ONGOING || !!voted || !isInCensus) return null
+  const { election, connected, isAbleToVote, isInCensus, voted } = useElection()
+  const census: CensusMeta = dotobject(election?.meta || {}, 'census')
+  const { isConnected } = useAccount()
+
+  if (
+    election?.status !== ElectionStatus.ONGOING ||
+    !!voted ||
+    (isConnected && !isInCensus && census?.type !== 'spreadsheet')
+  )
+    return null
 
   return (
     <Box>
