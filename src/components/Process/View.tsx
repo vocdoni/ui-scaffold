@@ -23,12 +23,14 @@ import {
 } from '@chakra-ui/react'
 import { ElectionQuestions, ElectionResults, environment } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
-import { ElectionStatus } from '@vocdoni/sdk'
+import { ElectionStatus, IQuestion } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
+import { FieldValues } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaFacebook, FaReddit, FaTelegram, FaTwitter } from 'react-icons/fa'
-import ProcessAside, { ProcessAsideBodyMbl, ProcessAsideFooterMbl } from './Aside'
+import ProcessAside, { ProcessAsideFooterMbl } from './Aside'
 import Header from './Header'
+import confirmImg from '/assets/spreadsheet-confirm-modal.png'
 import successImg from '/assets/success.png'
 
 export const ProcessView = () => {
@@ -51,9 +53,9 @@ export const ProcessView = () => {
     <>
       <Box px={{ base: 2, sm: 4 }}>
         <Header />
-        <Flex display={{ base: 'block', xl: 'none' }} mb={5}>
-          <ProcessAsideBodyMbl setQuestionsTab={setQuestionsTab} />
-        </Flex>
+        <Box display={{ base: 'flex', xl: 'none' }} justifyContent='center' mb={5}>
+          <ProcessAside setQuestionsTab={setQuestionsTab} />
+        </Box>
         <Flex direction={{ base: 'column', xl: 'row' }} gap={{ xl: 10 }} alignItems='start'>
           <Tabs
             variant='process'
@@ -70,7 +72,9 @@ export const ProcessView = () => {
             </TabList>
             <TabPanels>
               <TabPanel>
-                <ElectionQuestions />
+                <ElectionQuestions
+                  confirmContents={(questions, answers) => <ConfirmVoteModal questions={questions} answers={answers} />}
+                />
               </TabPanel>
               <TabPanel mb={20}>
                 <ElectionResults />
@@ -88,6 +92,17 @@ export const ProcessView = () => {
             <ProcessAside setQuestionsTab={setQuestionsTab} />
           </Flex>
         </Flex>
+      </Box>
+      <Box
+        position='fixed'
+        bottom={0}
+        left={0}
+        w='100vw'
+        bgColor='process.aside.aside_footer_mbl_border'
+        pt={1}
+        display={{ base: 'block', xl: 'none' }}
+      >
+        <ProcessAsideFooterMbl setQuestionsTab={setQuestionsTab} />
       </Box>
       <Box
         position='fixed'
