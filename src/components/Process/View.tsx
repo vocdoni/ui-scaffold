@@ -94,7 +94,7 @@ export const ProcessView = () => {
         position='fixed'
         bottom={0}
         left={0}
-        w='100%'
+        w='100vw'
         bgColor='process.aside.aside_footer_mbl_border'
         pt={1}
         display={{ base: 'block', xl: 'none' }}
