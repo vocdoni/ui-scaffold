@@ -32,6 +32,11 @@ export const CreationProgress = ({ error, sending, step }: CreationProgressProps
     [ElectionCreationSteps.DONE]: t('process_create.creation_steps.done'),
   }
 
+  // clear steps on render
+  useEffect(() => {
+    setSteps(EmptyCreationStepsState)
+  }, [])
+
   // step status changes
   useEffect(() => {
     if (!step || steps[step]) return
