@@ -53,11 +53,9 @@ export const ProcessView = () => {
     <>
       <Box px={{ base: 2, sm: 4 }}>
         <Header />
-        <Box display={{ base: 'flex', xl: 'none' }} justifyContent='center' mb={5}>
-          <ProcessAside setQuestionsTab={setQuestionsTab} />
-        </Box>
         <Flex direction={{ base: 'column', xl: 'row' }} gap={{ xl: 10 }} alignItems='start'>
           <Tabs
+            order={{ base: 2, xl: 1 }}
             variant='process'
             index={tabIndex}
             onChange={handleTabsChange}
@@ -82,27 +80,20 @@ export const ProcessView = () => {
             </TabPanels>
           </Tabs>
           <Flex
-            display={{ base: 'none', xl: 'block' }}
+            flexDirection='column'
+            alignItems={{ base: 'center', xl: 'start' }}
+            order={{ base: 1, xl: 2 }}
+            gap={2}
             w='full'
-            justifyContent='center'
-            position='sticky'
+            maxW={{ base: 112, xl: 64 }}
+            mx={{ base: 'auto', xl: 0 }}
+            position={{ xl: 'sticky' }}
             top={20}
             mt={10}
           >
             <ProcessAside setQuestionsTab={setQuestionsTab} />
           </Flex>
         </Flex>
-      </Box>
-      <Box
-        position='fixed'
-        bottom={0}
-        left={0}
-        w='100vw'
-        bgColor='process.aside.aside_footer_mbl_border'
-        pt={1}
-        display={{ base: 'block', xl: 'none' }}
-      >
-        <ProcessAsideFooterMbl setQuestionsTab={setQuestionsTab} />
       </Box>
       <Box
         position='fixed'
