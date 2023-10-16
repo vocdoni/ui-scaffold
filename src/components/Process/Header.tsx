@@ -39,7 +39,7 @@ const ProcessHeader = () => {
         </Button>
       </Link>
       <Flex direction={{ base: 'column', md: 'row' }} mb={7} gap={{ md: 10 }}>
-        <Box flexGrow={0} flexShrink={0} flexBasis={{ base: '100%', md: '60%', lg2: '75%' }}>
+        <Box flexGrow={0} flexShrink={0} flexBasis={{ base: '100%', md: '60%', lg2: '70%', xl2: '75%' }}>
           <ElectionTitle fontSize='xl4' textAlign='left' mb={5} />
           <Flex
             gap={4}

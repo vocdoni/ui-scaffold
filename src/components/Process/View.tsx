@@ -69,7 +69,7 @@ export const ProcessView = () => {
             onChange={handleTabsChange}
             flexGrow={0}
             flexShrink={0}
-            flexBasis={{ base: '100%', md: '60%', lg2: '75%' }}
+            flexBasis={{ base: '100%', md: '60%', lg2: '70%', xl2: '75%' }}
             w='full'
           >
             <TabList>
@@ -90,11 +90,11 @@ export const ProcessView = () => {
           <Flex
             flexGrow={1}
             flexDirection='column'
-            alignItems={{ base: 'center', lg2: 'start' }}
-            order={{ base: 1, lg2: 2 }}
+            alignItems={{ base: 'center', md: 'start' }}
+            order={{ base: 1, md: 2 }}
             gap={2}
-            mx={{ base: 'auto', lg2: 0 }}
-            position={{ lg2: 'sticky' }}
+            mx={{ base: 'auto', md: 0 }}
+            position={{ md: 'sticky' }}
             top={20}
             mt={10}
           >

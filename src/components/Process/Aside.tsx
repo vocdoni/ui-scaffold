@@ -27,12 +27,13 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
         direction='column'
         justifyContent='center'
         alignItems='center'
-        px={{ base: 6, xl: 12 }}
-        py={{ base: 4, xl: 12 }}
+        px={{ base: 6, md: 12 }}
+        py={{ base: 4, md: 12 }}
         w='full'
         gap={4}
-        mt={{ xl: 7 }}
-        mb={{ base: 7, xl: 0 }}
+        mt={{ md: 7 }}
+        mb={{ base: 7, md: 0 }}
+        minW={{ base: '370px', md: '0' }}
         color='process.aside.color'
         background='process.aside.bg'
         borderRadius='lg'
