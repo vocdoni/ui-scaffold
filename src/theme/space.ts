@@ -3,6 +3,7 @@ export const sizes = {
   17: '4.25rem',
   18: '4.5rem',
   30: '7.5rem',
+  '67.5': '16.875rem',
   70: '17.5rem',
   76: '19rem',
   84: '21rem',

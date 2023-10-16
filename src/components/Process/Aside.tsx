@@ -1,4 +1,4 @@
-import { Flex, Link, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Link, Spinner, Text, useMediaQuery } from '@chakra-ui/react'
 import { CensusMeta } from '@components/ProcessCreate/Steps/Confirm'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { SpreadsheetAccess, VoteButton, environment } from '@vocdoni/chakra-components'
@@ -8,6 +8,7 @@ import { TFunction } from 'i18next'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
+import { ProcessDate } from './Date'
 
 const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
   const { t } = useTranslation()
@@ -18,46 +19,85 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
 
   const renderVoteMenu = isAbleToVote || voted || (hasOverwriteEnabled(election) && isInCensus && voted)
 
+  const [isLargerThanMd] = useMediaQuery('(min-width: 768px)')
+
   return (
-    <Flex flexDirection='column' alignItems='center' gap={2} w='full'>
+    <>
       <Flex
         direction='column'
         justifyContent='center'
         alignItems='center'
-        p={{ base: 6, xl: 12 }}
+        px={{ base: 6, md: 12 }}
+        py={{ base: 4, md: 12 }}
         w='full'
-        maxW={{ base: 52, xl: 76 }}
-        mt={7}
+        gap={4}
+        mt={{ md: 7 }}
+        mb={{ base: 7, md: 0 }}
+        minW={{ base: '370px', md: '0' }}
         color='process.aside.color'
         background='process.aside.bg'
         borderRadius='lg'
         boxShadow='var(--box-shadow-banner)'
       >
-        <Text textAlign='center' fontSize={{ base: 'xl2', xl: 'xl3' }}>
-          {getStatusText(t, election?.status).toUpperCase()}
-        </Text>
+        <Flex
+          w='full'
+          justifyContent='space-between'
+          alignItems='center'
+          flexDirection={{ base: 'row', md: 'column' }}
+          gap={{ md: 5 }}
+        >
+          <Text textAlign='center' fontSize={{ base: 'xl', xl: 'xl3' }}>
+            {getStatusText(t, election?.status).toUpperCase()}
+          </Text>
+
+          {election?.status !== 'CANCELED' && (
+            <Box
+              display={{ md: 'none' }}
+              sx={{
+                '& > div': {
+                  display: 'flex',
+                  gap: 1,
+
+                  '& p': {
+                    color: 'white',
+                    fontWeight: 'normal',
+                    whiteSpace: 'no-wrap',
+                  },
+                },
+              }}
+            >
+              <ProcessDate />
+            </Box>
+          )}
+        </Flex>
 
         {election?.status !== ElectionStatus.CANCELED && election?.status !== ElectionStatus.UPCOMING && (
-          <Flex flexDirection='column' mb={{ base: 3, xl: 5 }}>
+          <Box display='flex' flexDirection='row' justifyContent='center' alignItems='center' gap={2}>
             <Trans
               i18nKey='aside.votes'
               components={{
-                span: <Text as='span' fontWeight='bold' fontSize={{ base: 'xl3', xl: 'xl6' }} textAlign='center' />,
-                text: <Text fontSize={{ base: 'xl', xl: 'xl2' }} textAlign='center' />,
+                span: <Text as='span' fontWeight='bold' fontSize='xl6' textAlign='center' lineHeight={1} />,
+                text: <Text fontSize='xl2' textAlign='center' lineHeight={1.3} />,
               }}
               count={election?.voteCount}
             />
-          </Flex>
+          </Box>
         )}
 
-        {census?.type === 'spreadsheet' && !connected && <SpreadsheetAccess />}
+        {census?.type === 'spreadsheet' && !connected && (
+          <Box w='full' maxW='250px' display={{ base: 'none', md: 'block' }}>
+            <SpreadsheetAccess />
+          </Box>
+        )}
 
         {census?.type !== 'spreadsheet' &&
           !isConnected &&
           !connected &&
           election?.status !== ElectionStatus.CANCELED && (
             <Flex flexDirection='column' alignItems='center' gap={3} w='full'>
-              <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />
+              <Box display={{ base: 'none', md: 'block' }}>
+                <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />
+              </Box>
               <Text textAlign='center' fontSize='sm'>
                 {t('aside.not_connected')}
               </Text>
@@ -77,7 +117,7 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
                 {t('aside.has_already_voted').toString()}
               </Text>
             )}
-            {isAbleToVote && <VoteButton variant='process' mb={0} onClick={setQuestionsTab} />}
+            {isAbleToVote && isLargerThanMd && <VoteButton variant='process' mb={0} onClick={setQuestionsTab} />}
             {hasOverwriteEnabled(election) && isInCensus && votesLeft > 0 && voted && (
               <Text fontSize='sm' textAlign='center'>
                 {t('aside.overwrite_votes_left', { count: votesLeft })}
@@ -97,10 +137,81 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
                 {t('aside.verify_vote_on_explorer')}
               </Link>
             )}
+            {connected && (
+              <Box display={{ base: 'inline-block', md: 'none' }} alignSelf='center'>
+                <SpreadsheetAccess />
+              </Box>
+            )}
           </Flex>
         )}
       </Flex>
-      {connected && <SpreadsheetAccess />}
+      {connected && (
+        <Box display={{ base: 'none', md: 'inline-block' }} alignSelf='center'>
+          <SpreadsheetAccess />
+        </Box>
+      )}
+    </>
+  )
+}
+
+export const ProcessAsideFooterMbl = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
+  const { t } = useTranslation()
+
+  const { election, connected, isAbleToVote, isInCensus, voted } = useElection()
+  const census: CensusMeta = dotobject(election?.meta || {}, 'census')
+  const { isConnected } = useAccount()
+
+  if (
+    election?.status === ElectionStatus.CANCELED ||
+    !!voted ||
+    (isConnected && !isInCensus && census?.type !== 'spreadsheet')
+  )
+    return null
+
+  return (
+    <Flex justifyContent='center' alignItems='center' p={4} background='process.aside.bg' color='process.aside.color'>
+      {census?.type !== 'spreadsheet' && !connected && (
+        <ConnectButton.Custom>
+          {({ account, chain, openConnectModal, authenticationStatus, mounted }) => {
+            const ready = mounted && authenticationStatus !== 'loading'
+            const connected =
+              ready && account && chain && (!authenticationStatus || authenticationStatus === 'authenticated')
+            return (
+              <Box
+                {...(!ready && {
+                  'aria-hidden': true,
+                  style: {
+                    opacity: 0,
+                    pointerEvents: 'none',
+                    userSelect: 'none',
+                  },
+                })}
+                w='full'
+              >
+                {(() => {
+                  if (!connected) {
+                    return (
+                      <Button onClick={openConnectModal} variant='process' fontSize='lg'>
+                        {t('menu.connect').toString()}
+                      </Button>
+                    )
+                  }
+                })()}
+              </Box>
+            )
+          }}
+        </ConnectButton.Custom>
+      )}
+      {census?.type === 'spreadsheet' && !connected && <SpreadsheetAccess />}
+      {isAbleToVote ? (
+        <VoteButton variant='process' fontSize='lg' onClick={setQuestionsTab} />
+      ) : (
+        connected && (
+          <Flex justifyContent='center' alignItems='center' height='40px' borderRadius='30px' bgColor='white' w='full'>
+            <Spinner color='primary.500' />
+          </Flex>
+        )
+      )}
     </Flex>
   )
 }

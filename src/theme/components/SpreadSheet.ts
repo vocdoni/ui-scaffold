@@ -5,18 +5,23 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 
 const baseStyle = definePartsStyle({
   button: {
-    w: 'full',
+    w: '100%',
     color: 'process.aside.vote_btn_color',
-    mb: 4,
     borderRadius: 30,
-    fontSize: { base: 'sm', xl2: 'md' },
+    fontSize: { base: 'lg', xl: 'md' },
     bgColor: 'process.aside.vote_btn_bg',
   },
 
   disconnect: {
-    bgColor: 'process.spreadsheet.disconnect_bg',
-    color: 'process.spreadsheet.diconnect_color',
+    w: 'min-content',
+    bgColor: { base: 'transparent', xl: 'process.spreadsheet.disconnect_bg' },
+    color: { base: 'white', xl: 'process.spreadsheet.diconnect_color' },
     textDecoration: 'underline',
+
+    _hover: {
+      bgColor: { base: 'transparent', xl: 'process.spreadsheet.disconnect_bg' },
+      textDecoration: 'none',
+    },
   },
   label: {
     textTransform: 'none',

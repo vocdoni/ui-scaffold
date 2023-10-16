@@ -28,7 +28,7 @@ import { useEffect, useState } from 'react'
 import { FieldValues } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaFacebook, FaReddit, FaTelegram, FaTwitter } from 'react-icons/fa'
-import ProcessAside from './Aside'
+import ProcessAside, { ProcessAsideFooterMbl } from './Aside'
 import Header from './Header'
 import confirmImg from '/assets/spreadsheet-confirm-modal.png'
 import successImg from '/assets/success.png'
@@ -53,14 +53,23 @@ export const ProcessView = () => {
     <>
       <Box>
         <Header />
-        <Flex direction={{ base: 'column', xl: 'row' }} gap={{ xl: 10 }} alignItems='start'>
+        <Flex
+          direction={{ base: 'column', md: 'row' }}
+          alignItems='start'
+          gap={{ md: 10 }}
+          px={{
+            base: 2,
+            sm: 4,
+          }}
+        >
           <Tabs
+            order={{ base: 2, md: 1 }}
             variant='process'
             index={tabIndex}
             onChange={handleTabsChange}
             flexGrow={0}
             flexShrink={0}
-            flexBasis={{ base: '100%', xl: '75%' }}
+            flexBasis={{ base: '100%', md: '60%', lg2: '70%', xl2: '75%' }}
             w='full'
           >
             <TabList>
@@ -79,17 +88,31 @@ export const ProcessView = () => {
             </TabPanels>
           </Tabs>
           <Flex
-            w='full'
-            justifyContent='center'
-            position={{ xl: 'sticky' }}
-            top={{ xl: 20 }}
-            mt={{ xl: 10 }}
-            mx={{ base: 'auto', xl: 0 }}
+            flexGrow={1}
+            flexDirection='column'
+            alignItems={{ base: 'center', md: 'start' }}
+            order={{ base: 1, md: 2 }}
+            gap={2}
+            mx={{ base: 'auto', md: 0 }}
+            position={{ md: 'sticky' }}
+            top={20}
+            mt={10}
           >
             <ProcessAside setQuestionsTab={setQuestionsTab} />
           </Flex>
         </Flex>
       </Box>
+      <Box
+        position='sticky'
+        bottom={0}
+        left={0}
+        bgColor='process.aside.aside_footer_mbl_border'
+        pt={1}
+        display={{ base: 'block', md: 'none' }}
+      >
+        <ProcessAsideFooterMbl setQuestionsTab={setQuestionsTab} />
+      </Box>
+
       <SuccessVoteModal />
     </>
   )
@@ -219,7 +242,7 @@ const ConfirmVoteModal = ({ questions, answers }: { questions: IQuestion[]; answ
           overflowY='scroll'
           boxShadow='rgba(128, 128, 128, 0.42) 1px 1px 1px 1px'
           px={2}
-          borderRadius='lg'
+          borderRadius='lg2'
         >
           {questions.map((q, i) => (
             <Box>
