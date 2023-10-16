@@ -53,15 +53,23 @@ export const ProcessView = () => {
     <>
       <Box>
         <Header />
-        <Flex direction={{ base: 'column', xl: 'row' }} gap={{ xl: 10 }} alignItems='start'>
+        <Flex
+          direction={{ base: 'column', md: 'row' }}
+          alignItems='start'
+          gap={{ md: 10 }}
+          px={{
+            base: 2,
+            sm: 4,
+          }}
+        >
           <Tabs
-            order={{ base: 2, xl: 1 }}
+            order={{ base: 2, md: 1 }}
             variant='process'
             index={tabIndex}
             onChange={handleTabsChange}
             flexGrow={0}
             flexShrink={0}
-            flexBasis={{ base: '100%', xl: '75%' }}
+            flexBasis={{ base: '100%', md: '60%', lg2: '75%' }}
             w='full'
           >
             <TabList>
@@ -81,15 +89,12 @@ export const ProcessView = () => {
           </Tabs>
           <Flex
             flexGrow={1}
-            flexShrink={0}
             flexDirection='column'
-            alignItems={{ base: 'center', xl: 'start' }}
-            order={{ base: 1, xl: 2 }}
+            alignItems={{ base: 'center', lg2: 'start' }}
+            order={{ base: 1, lg2: 2 }}
             gap={2}
-            maxW={{ base: 112, xl: 67.5 }}
-            minW={{ base: 112, xl: 67.5 }}
-            mx={{ base: 'auto', xl: 0 }}
-            position={{ xl: 'sticky' }}
+            mx={{ base: 'auto', lg2: 0 }}
+            position={{ lg2: 'sticky' }}
             top={20}
             mt={10}
           >
@@ -103,7 +108,7 @@ export const ProcessView = () => {
         left={0}
         bgColor='process.aside.aside_footer_mbl_border'
         pt={1}
-        display={{ base: 'block', xl: 'none' }}
+        display={{ base: 'block', md: 'none' }}
       >
         <ProcessAsideFooterMbl setQuestionsTab={setQuestionsTab} />
       </Box>
@@ -237,7 +242,7 @@ const ConfirmVoteModal = ({ questions, answers }: { questions: IQuestion[]; answ
           overflowY='scroll'
           boxShadow='rgba(128, 128, 128, 0.42) 1px 1px 1px 1px'
           px={2}
-          borderRadius='lg'
+          borderRadius='lg2'
         >
           {questions.map((q, i) => (
             <Box>

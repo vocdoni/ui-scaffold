@@ -19,7 +19,7 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
 
   const renderVoteMenu = isAbleToVote || voted || (hasOverwriteEnabled(election) && isInCensus && voted)
 
-  const [isLargerThanXl] = useMediaQuery('(min-width: 1280px)')
+  const [isLargerThanMd] = useMediaQuery('(min-width: 768px)')
 
   return (
     <>
@@ -38,14 +38,20 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
         borderRadius='lg'
         boxShadow='var(--box-shadow-banner)'
       >
-        <Flex w='full' justifyContent='space-between' alignItems='center' flexDirection={{ base: 'row', xl: 'column' }}>
+        <Flex
+          w='full'
+          justifyContent='space-between'
+          alignItems='center'
+          flexDirection={{ base: 'row', md: 'column' }}
+          gap={{ md: 5 }}
+        >
           <Text textAlign='center' fontSize={{ base: 'xl', xl: 'xl3' }}>
             {getStatusText(t, election?.status).toUpperCase()}
           </Text>
 
           {election?.status !== 'CANCELED' && (
             <Box
-              display={{ xl: 'none' }}
+              display={{ md: 'none' }}
               sx={{
                 '& > div': {
                   display: 'flex',
@@ -78,7 +84,7 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
         )}
 
         {census?.type === 'spreadsheet' && !connected && (
-          <Box w='full' maxW='250px' display={{ base: 'none', xl: 'block' }}>
+          <Box w='full' maxW='250px' display={{ base: 'none', md: 'block' }}>
             <SpreadsheetAccess />
           </Box>
         )}
@@ -88,7 +94,7 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
           !connected &&
           election?.status !== ElectionStatus.CANCELED && (
             <Flex flexDirection='column' alignItems='center' gap={3} w='full'>
-              <Box display={{ base: 'none', xl: 'block' }}>
+              <Box display={{ base: 'none', md: 'block' }}>
                 <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />
               </Box>
               <Text textAlign='center' fontSize='sm'>
@@ -110,7 +116,7 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
                 {t('aside.has_already_voted').toString()}
               </Text>
             )}
-            {isAbleToVote && isLargerThanXl && <VoteButton variant='process' mb={0} onClick={setQuestionsTab} />}
+            {isAbleToVote && isLargerThanMd && <VoteButton variant='process' mb={0} onClick={setQuestionsTab} />}
             {hasOverwriteEnabled(election) && isInCensus && votesLeft > 0 && voted && (
               <Text fontSize='sm' textAlign='center'>
                 {t('aside.overwrite_votes_left', { count: votesLeft })}
@@ -131,7 +137,7 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
               </Link>
             )}
             {connected && (
-              <Box display={{ base: 'inline-block', xl: 'none' }} alignSelf='center'>
+              <Box display={{ base: 'inline-block', md: 'none' }} alignSelf='center'>
                 <SpreadsheetAccess />
               </Box>
             )}
@@ -139,7 +145,7 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
         )}
       </Flex>
       {connected && (
-        <Box display={{ base: 'none', xl: 'inline-block' }} alignSelf='center'>
+        <Box display={{ base: 'none', md: 'inline-block' }} alignSelf='center'>
           <SpreadsheetAccess />
         </Box>
       )}
@@ -162,59 +168,50 @@ export const ProcessAsideFooterMbl = ({ setQuestionsTab }: { setQuestionsTab: ()
     return null
 
   return (
-    <Box>
-      <Flex justifyContent='center' alignItems='center' p={4} background='process.aside.bg' color='process.aside.color'>
-        {census?.type !== 'spreadsheet' && !connected && (
-          <ConnectButton.Custom>
-            {({ account, chain, openConnectModal, authenticationStatus, mounted }) => {
-              const ready = mounted && authenticationStatus !== 'loading'
-              const connected =
-                ready && account && chain && (!authenticationStatus || authenticationStatus === 'authenticated')
-              return (
-                <Box
-                  {...(!ready && {
-                    'aria-hidden': true,
-                    style: {
-                      opacity: 0,
-                      pointerEvents: 'none',
-                      userSelect: 'none',
-                    },
-                  })}
-                  w='full'
-                >
-                  {(() => {
-                    if (!connected) {
-                      return (
-                        <Button onClick={openConnectModal} variant='process' fontSize='lg'>
-                          {t('menu.connect').toString()}
-                        </Button>
-                      )
-                    }
-                  })()}
-                </Box>
-              )
-            }}
-          </ConnectButton.Custom>
-        )}
-        {census?.type === 'spreadsheet' && !connected && <SpreadsheetAccess />}
-        {isAbleToVote ? (
-          <VoteButton variant='process' fontSize='lg' onClick={setQuestionsTab} />
-        ) : (
-          connected && (
-            <Flex
-              justifyContent='center'
-              alignItems='center'
-              height='40px'
-              borderRadius='30px'
-              bgColor='white'
-              w='full'
-            >
-              <Spinner color='primary.500' />
-            </Flex>
-          )
-        )}
-      </Flex>
-    </Box>
+    <Flex justifyContent='center' alignItems='center' p={4} background='process.aside.bg' color='process.aside.color'>
+      {census?.type !== 'spreadsheet' && !connected && (
+        <ConnectButton.Custom>
+          {({ account, chain, openConnectModal, authenticationStatus, mounted }) => {
+            const ready = mounted && authenticationStatus !== 'loading'
+            const connected =
+              ready && account && chain && (!authenticationStatus || authenticationStatus === 'authenticated')
+            return (
+              <Box
+                {...(!ready && {
+                  'aria-hidden': true,
+                  style: {
+                    opacity: 0,
+                    pointerEvents: 'none',
+                    userSelect: 'none',
+                  },
+                })}
+                w='full'
+              >
+                {(() => {
+                  if (!connected) {
+                    return (
+                      <Button onClick={openConnectModal} variant='process' fontSize='lg'>
+                        {t('menu.connect').toString()}
+                      </Button>
+                    )
+                  }
+                })()}
+              </Box>
+            )
+          }}
+        </ConnectButton.Custom>
+      )}
+      {census?.type === 'spreadsheet' && !connected && <SpreadsheetAccess />}
+      {isAbleToVote ? (
+        <VoteButton variant='process' fontSize='lg' onClick={setQuestionsTab} />
+      ) : (
+        connected && (
+          <Flex justifyContent='center' alignItems='center' height='40px' borderRadius='30px' bgColor='white' w='full'>
+            <Spinner color='primary.500' />
+          </Flex>
+        )
+      )}
+    </Flex>
   )
 }
 
