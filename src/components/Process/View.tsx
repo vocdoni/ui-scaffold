@@ -69,7 +69,7 @@ export const ProcessView = () => {
             onChange={handleTabsChange}
             flexGrow={0}
             flexShrink={0}
-            flexBasis={{ base: '100%', md: '60%', lg2: '70%', xl2: '75%' }}
+            flexBasis={{ base: '100%', md: '60%', lg: '65%', lg2: '70%', xl2: '75%' }}
             w='full'
           >
             <TabList>

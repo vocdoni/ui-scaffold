@@ -33,7 +33,8 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
         gap={4}
         mt={{ md: 7 }}
         mb={{ base: 7, md: 0 }}
-        minW={{ base: '370px', md: '0' }}
+        minW={{ base: '370px', md: '0px' }}
+        maxW={{ md: '265px', md2: '290px' }}
         color='process.aside.color'
         background='process.aside.bg'
         borderRadius='lg'
