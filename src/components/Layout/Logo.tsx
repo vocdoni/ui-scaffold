@@ -15,7 +15,7 @@ const Logo = ({ ...props }) => (
         lineHeight={1.1}
         {...props}
       >
-        Public voting protocol
+        Public
       </Text>
     </Flex>
   </NavLink>
