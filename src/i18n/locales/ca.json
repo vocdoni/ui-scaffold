@@ -53,7 +53,7 @@
       "title": "Resultats per a \"{{ title }}\"",
       "votes": "Vots: {{ votes }} ({{ percent }})"
     },
-    "schedule": "Votant des del {{ begin }} al {{ end }}",
+    "schedule": "Votació del {{ begin }} al {{ end }}",
     "spreadsheet": {
       "access_button": "Identifica't",
       "close": "Tanca",
@@ -212,7 +212,7 @@
         "confirmation": "Confirmació",
         "confirmation_terms_and_conditions": "Accepto els <link>termes i condicions</link> de Vocdoni",
         "confirmation_valid_info": "Confirmo que aquesta informació és correcta i vàlida",
-        "cost_description": "",
+        "cost_description": "En funció de diferents paràmetres, com la grandària del cens, la durada de les eleccions i el seu comportament, aquí veureu el preu de les vostres eleccions.",
         "cost_title": "Previsió de cost",
         "create_button": "Crear",
         "dates": "Data",
