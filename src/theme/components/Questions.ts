@@ -18,6 +18,7 @@ const baseStyle = definePartsStyle({
     gridTemplateColumns: 'auto 1fr',
     gridTemplateRows: 'auto auto',
     boxShadow: 'var(--box-shadow-darker)',
+    border: 'none',
 
     '& span': {
       color: 'white',
@@ -67,12 +68,10 @@ const baseStyle = definePartsStyle({
   },
 
   question: {
-    width: 'full',
-    w: { base: '100%', md: '80%' },
+    width: { base: 'full', xl: '80%' },
     m: 0,
     mx: 'auto',
     p: 4,
-    borderRadius: 'md',
 
     '& > div': {
       display: 'flex',

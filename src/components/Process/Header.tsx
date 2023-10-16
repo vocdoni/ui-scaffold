@@ -26,14 +26,20 @@ const ProcessHeader = () => {
   const strategy = useStrategy()
 
   return (
-    <Box mb={4}>
+    <Box
+      mb={4}
+      px={{
+        base: 2,
+        sm: 4,
+      }}
+    >
       <Link to={`/organization/0x${election?.organizationId}`}>
         <Button leftIcon={<FaRegArrowAltCircleLeft />} mb={5} maxW={40}>
           <OrganizationName as='span' overflow='hidden' fontSize='sm' isTruncated />
         </Button>
       </Link>
-      <Flex direction={{ base: 'column', xl: 'row' }} justifyContent='space-between' mb={7} gap={{ xl: 10 }}>
-        <Box flexGrow={0} flexShrink={0} flexBasis={{ base: '100%', xl: '75%' }}>
+      <Flex direction={{ base: 'column', md: 'row' }} mb={7} gap={{ md: 10 }}>
+        <Box flexGrow={0} flexShrink={0} flexBasis={{ base: '100%', md: '60%', lg2: '70%', xl2: '75%' }}>
           <ElectionTitle fontSize='xl4' textAlign='left' mb={5} />
           <Flex
             gap={4}
@@ -41,7 +47,9 @@ const ProcessHeader = () => {
             alignItems={{ base: 'start', md: 'center' }}
             mb={4}
           >
-            <ElectionStatusBadge />
+            <Box>
+              <ElectionStatusBadge />
+            </Box>
             <ElectionSchedule textAlign='left' color='process.info_title' />
           </Flex>
           <Flex flexDirection='column'>
@@ -52,7 +60,7 @@ const ProcessHeader = () => {
           </Flex>
         </Box>
 
-        <Flex flexDirection='column' alignItems='start' gap={4}>
+        <Flex flexDirection='column' alignItems='start' gap={4} flexGrow={1}>
           {election?.status !== ElectionStatus.CANCELED ? (
             <ProcessDate />
           ) : (
@@ -97,7 +105,7 @@ const ProcessHeader = () => {
                   flexWrap: 'wrap',
                 },
                 '& p strong': {
-                  maxW: { base: '100%', xl: '250px' },
+                  maxW: { base: '100%', md: '150px', xl: '230px' },
                   isTruncated: true,
                   mr: 1,
                 },

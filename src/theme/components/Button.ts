@@ -3,7 +3,6 @@ import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
 const process = defineStyle({
   w: 'full',
   color: 'process.aside.vote_btn_color',
-  mb: 4,
   borderRadius: 'full',
   fontSize: { base: 'sm', xl2: 'md' },
   bgColor: 'process.aside.vote_btn_bg',
