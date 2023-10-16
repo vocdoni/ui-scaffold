@@ -4,7 +4,6 @@
     "is_not_in_census": "No estás en el censo",
     "not_connected": "No estás conectado",
     "overwrite_votes_left_one": "Puedes corregir tu voto una vez.",
-    "overwrite_votes_left_many": "",
     "overwrite_votes_left_other": "Puedes corregir tu voto {{ count }} veces.",
     "verify_vote_on_explorer": "Verifica el voto en el explorador",
     "votes_one": "<span>1</span> <text>voto</text>",
@@ -13,8 +12,8 @@
   },
   "banner": {
     "start_now": "¡Crea una votación ahora!",
-    "subtitle": "Usa direcciones de cartera, vota con un token ERC20 o con NFTs!",
-    "title": "Votaciones para DAOs y comunidades Web3"
+    "subtitle": "Permite que tu comunidad participe y decida de manera sencilla!",
+    "title": "Votación para DAOs, comunidades y organizaciones"
   },
   "banner_voting_types": {
     "anonymous_description": "La identidad de los votantes permanece completamente confidencial, gracias a la tecnología zk-SNARKS.",
@@ -53,7 +52,7 @@
       "title": "Resultados para \"{{ title }}\"",
       "votes": "Votos: {{ votes }} ({{ percent }})"
     },
-    "schedule": "Votando desde el {{ begin }} hasta {{ end }}",
+    "schedule": "Votación del {{ begin }} hasta el {{ end }}",
     "spreadsheet": {
       "access_button": "Identificarse",
       "close": "Cerrar",
@@ -108,16 +107,16 @@
   },
   "error_text": "Lo sentimos, no se encontró la página que buscabas.",
   "faucet": {
-    "description": "Para desarrollar con Vocdoni, necesitas tokens para ciertas acciones (crear una elección, cambiar el estado de una elección, etc.). El número de diferentes factores como el tamaño del censo, la duración de la elección, los parámetros de la elección, etc.",
+    "description": "Hemos desarrollado el protocolo de votación Vocdoni como un bien público de código abierto, con el objetivo de permitir la toma de decisiones seguras, privadas, verificables de extremo a extremo, resistentes a la censura y fáciles de usar, al mismo tiempo que reducimos las barreras económicas asociadas con tales procesos. Nuestro objetivo principal es promover una mayor participación en una amplia variedad de organizaciones y comunidades, ya sea que estén basadas en entornos Web2 o Web3, facilitando la creación de diversos procesos de votación. El protocolo es gratuito para los votantes, pero los organizadores requieren tokens para acciones específicas, como crear un proceso de votación, modificar el estado de votación o establecer una organización.",
     "general_information": {
-      "description": "Cuando solicites tokens de desarrollo, recibirás {{ amount }} tokens. Puedes reclamar desde el faucet una vez cada 24 horas.",
-      "description2": "Si necesitas más tokens para desarrollar sobre la plataforma de Vocdoni, puedes ponerte en contacto con nosotros en tokens (at) vocdoni.io",
+      "description": "Recibirás {{ amount }} tokens. Puedes solicitar tokens del 'faucet' una vez cada 24 horas.",
+      "description2": "Si necesitas más tokens para desarrollar sobre la plataforma Vocdoni, puedes ponerte en contacto con nosotros en info(at)vocdoni.io.",
       "title": "Información General"
     },
     "login_first": "Debes iniciar sesión primero.",
     "request_description": "Para obtener más tokens de Vocdoni, debes iniciar sesión con una cuenta social (para evitar el mal uso del grifo). Solo solicitamos acceso de lectura.",
     "request_tokens": {
-      "description": "Tienes {{ balance }} tokens. No tienes suficientes tokens para crear el proceso. Para obtener más, debes iniciar sesión con una cuenta social (para evitar el mal uso del grifo). Solo solicitamos acceso de lectura.",
+      "description": "Tienes {{ balance }} tokens. No tienes suficientes tokens para crear el proceso de votación. Para obtener más, debes iniciar sesión con una cuenta social o esperar 24 horas.",
       "title": "Solicitar Tokens"
     },
     "title": "Faucet de Tokens Vocdoni",
@@ -160,7 +159,7 @@
     "process_create": {
       "behavior": {
         "anonymous": {
-          "description": "La identidad de los votantes será completamente anonimizada, incluyendo para el organizador. Cada votante deberá establecer una contraseña para garantizar la confidencialidad de su identidad.",
+          "description": "Las identidades de los votantes permanecerán completamente confidenciales, gracias a la tecnología de vanguardia zk-SNARKS.",
           "title": "Anónimo"
         },
         "overwrite": {
@@ -190,7 +189,7 @@
         "max_census_slider_arialabel": "Selector deslizante de participación máxima esperada",
         "max_census_slider_label": "Participación máxima esperada:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} votantes elegibles)",
-        "spreadsheet_description": "Datos personalizados, como nombres de usuario y contraseñas, o información personal de los votantes, pueden utilizarse para la autenticación mediante un formulario.",
+        "spreadsheet_description": "Como nombres de usuario y contraseñas, o información personal de los votantes. Los votantes deberán proporcionarla para autenticarse a través de un formulario.",
         "spreadsheet_title": "Datos personalizados",
         "token_base_description": "Utiliza un token (basado en EVM) para permitir a los usuarios votar en función de la cantidad que poseen.",
         "token_base_title": "Basado en tokens",
@@ -340,7 +339,7 @@
     "censorship": "<span>Resistencia</span><span>a la Censura</span>",
     "create_organization_btn": "Crear Organización",
     "description1": "Antes de comenzar a crear su proceso de votación, <span>debe crear una organización</span>, es gratuito. Con una organización, podrá crear una amplia gama de elecciones y dar voz a los miembros de su comunidad.",
-    "description2": "Como <span>paquete de bienvenida</span>, recibirá 1000 tokens gratis para comenzar a utilizar nuestra plataforma.",
+    "description2": "Como <span>paquete de bienvenida</span>, recibirá 800 tokens gratis para comenzar a utilizar nuestra plataforma.",
     "footer": "<span>Vocdoni</span> es un protocolo de votación público seguro, respetuoso con la privacidad y de código abierto.",
     "inexpensive": "Económico",
     "name": "Nombre de la organización",

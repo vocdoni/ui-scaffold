@@ -4,17 +4,16 @@
     "is_not_in_census": "No estàs en el cens",
     "not_connected": "No estàs connectat",
     "overwrite_votes_left_one": "Pots corregir el teu vot una vegada.",
-    "overwrite_votes_left_many": "",
     "overwrite_votes_left_other": "Pots corregir el teu vot {{ count }} vegades.",
     "verify_vote_on_explorer": "Verifica el vot a l'explorador",
     "votes_one": "<span>1</span> <text>vot</text>",
-    "votes_many": "",
+    "votes_many": "<span>{{ count }}</span> <text>vots</text>",
     "votes_other": "<span>{{ count }}</span> <text>vots</text>"
   },
   "banner": {
     "start_now": "Crea una votació!",
-    "subtitle": "Utilitza adreces web3, vota amb un token ERC20 o amb NFTs!",
-    "title": "Votacions per DAOs i comunitats Web3"
+    "subtitle": "Permet que la teva comunitat participi i decideixi de manera fàcil!",
+    "title": "Votació per a DAOs, comunitats i organitzacions"
   },
   "banner_voting_types": {
     "anonymous_description": "La identitat dels votants serà completament confidencial, gràcies a la tecnologia zk-SNARKS.",
@@ -53,7 +52,7 @@
       "title": "Resultats per a \"{{ title }}\"",
       "votes": "Vots: {{ votes }} ({{ percent }})"
     },
-    "schedule": "Votant des del {{ begin }} al {{ end }}",
+    "schedule": "Votació del {{ begin }} al {{ end }}",
     "spreadsheet": {
       "access_button": "Identifica't",
       "close": "Tanca",
@@ -79,7 +78,7 @@
     }
   },
   "census": {
-    "description": "Selecciona com autenticaran i s'identificaran els votants. Les opcions inclouen dades personalitzades, propietat de tokens o adreces de cartera digital (wallet addresses).",
+    "description": "Selecciona com s'autenticaran i s'identificaran els votants. Les opcions inclouen dades personalitzades, propietat de tokens o adreces de cartera digital (wallet addresses).",
     "spreadsheet_title": "Dades personalitzades",
     "title": "Trieu el cens",
     "token_description": "Seleccioneu un token de la llista per crear un cens basat en tokens, on només els propietaris de tokens seran elegibles per votar. No trobeu el vostre token? <customLink>Cliqueu aquí</customLink> per afegir-ne més",
@@ -108,16 +107,16 @@
   },
   "error_text": "Ho sentim, no s'ha trobat la pàgina que busqueu",
   "faucet": {
-    "description": "Per desenvolupar amb Vocdoni, necessites tokens per a certes accions (crear una elecció, canviar l'estat d'una elecció, etc.). El nombre de diferents factors com la mida del cens, la durada de l'elecció, els paràmetres de l'elecció, etc.",
+    "description": "Hem desenvolupat el protocol de votació Vocdoni com un bé públic de codi obert, amb l'objectiu de possibilitar la presa de decisions segures, privades, verificables de punta a punta, resistents a la censura i fàcils d'utilitzar, al mateix temps que reduïm les barreres econòmiques associades amb aquests processos. El nostre objectiu principal és promoure una participació major dins d'una àmplia gamma d'organitzacions i comunitats, ja siguin basades en entorns Web2 o Web3, facilitant la creació de diversos processos de votació. El protocol és gratuït per als votants, però els organitzadors necessiten tokens per a accions específiques com la creació d'un procés de votació, la modificació de l'estat de votació o l'establiment d'una organització.",
     "general_information": {
-      "description": "Quan sol·licites tokens de desenvolupament, rebràs {{ amount }} tokens. Pots reclamar des del faucet una vegada cada 24 hores.",
-      "description2": "Si necessites més tokens per desenvolupar sobre la plataforma de Vocdoni, pots posar-te en contacte amb nosaltres a tokens (at) vocdoni.io",
+      "description": "Rebràs {{ amount }} tokens. Pots sol·licitar tokens del `faucet` (dipòsit) cada 24 hores.",
+      "description2": "Si necessites més tokens per desenvolupar a sobre de la plataforma Vocdoni, pots posar-te en contacte amb nosaltres a info(at)vocdoni.io.",
       "title": "Informació General"
     },
     "login_first": "Has d'iniciar sessió primer.",
     "request_description": "Per aconseguir més tokens de Vocdoni, has d'iniciar la sessió amb un compte de xarxes socials (per evitar-ne l'abús). Només demanem accés de lectura.",
     "request_tokens": {
-      "description": "Tens {{ balance }} tokens. No en tens prou per a crear el procés. Per aconseguir-ne més, has d'iniciar la sessió amb un compte de xarxes socials (per evitar-ne l'abús). Només demanem accés de lectura.",
+      "description": "Tens {{ balance }} tokens. No en tens prou per crear el procés de votació. Per obtenir-ne més, has d'iniciar sessió amb un compte social o esperar 24 hores.",
       "title": "Sol·licita Tokens"
     },
     "title": "Faucet de Tokens Vocdoni",
@@ -160,7 +159,7 @@
     "process_create": {
       "behavior": {
         "anonymous": {
-          "description": "La identitat dels votants serà completament anonimitzada, incloent per a l'organitzador. Cada votant haurà d'establir una contrasenya per garantir la confidencialitat de la seva identitat.",
+          "description": "Les identitats dels votants romanen completament confidencials, gràcies a la tecnologia d'avantguarda zk-SNARKS.",
           "title": "Anònim"
         },
         "overwrite": {
@@ -340,7 +339,7 @@
     "censorship": "<span>Resistència</span><span>a la Censura</span>",
     "create_organization_btn": "Crear Organització",
     "description1": "Abans de començar a crear el vostre procés de votació, <span>heu de crear una organització</span>, és gratuït. Amb una organització, podreu crear una àmplia gamma d'eleccions i donar veu als membres de la vostra comunitat.",
-    "description2": "Com a <span>paquet de benvinguda</span>, rebràs 1000 tokens gratuïts per començar a utilitzar la nostra plataforma.",
+    "description2": "Com a <span>paquet de benvinguda</span>, rebràs 800 tokens gratuïts per començar a utilitzar la nostra plataforma.",
     "footer": "<span>Vocdoni</span> és un protocol de votació públic segur, respectuós amb la privadesa i de codi obert.",
     "inexpensive": "Econòmic",
     "name": "Nom de l'organització",
