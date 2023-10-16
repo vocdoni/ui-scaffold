@@ -39,7 +39,7 @@ const ProcessHeader = () => {
         </Button>
       </Link>
       <Flex direction={{ base: 'column', md: 'row' }} mb={7} gap={{ md: 10 }}>
-        <Box flexGrow={0} flexShrink={0} flexBasis={{ base: '100%', md: '60%', lg2: '70%', xl2: '75%' }}>
+        <Box flexGrow={0} flexShrink={0} flexBasis={{ base: '100%', md: '60%', lg: '65%', lg2: '70%', xl2: '75%' }}>
           <ElectionTitle fontSize='xl4' textAlign='left' mb={5} />
           <Flex
             gap={4}
@@ -105,7 +105,7 @@ const ProcessHeader = () => {
                   flexWrap: 'wrap',
                 },
                 '& p strong': {
-                  maxW: { base: '100%', md: '150px', xl: '230px' },
+                  maxW: { base: '100%', md: '220px', md2: '250px' },
                   isTruncated: true,
                   mr: 1,
                 },
