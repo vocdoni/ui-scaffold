@@ -26,7 +26,13 @@ const ProcessHeader = () => {
   const strategy = useStrategy()
 
   return (
-    <Box mb={4}>
+    <Box
+      mb={4}
+      px={{
+        base: 2,
+        sm: 4,
+      }}
+    >
       <Link to={`/organization/0x${election?.organizationId}`}>
         <Button leftIcon={<FaRegArrowAltCircleLeft />} mb={5} maxW={40}>
           <OrganizationName as='span' overflow='hidden' fontSize='sm' isTruncated />

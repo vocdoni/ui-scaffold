@@ -1,9 +1,11 @@
 import { Box, HStack } from '@chakra-ui/react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 
 const Layout = () => {
+  const location = useLocation()
+
   return (
     <>
       <Box bgColor='main_bg'>
@@ -21,11 +23,20 @@ const Layout = () => {
           >
             <Navbar />
           </HStack>
-          <Box as='main' pt={6} pb={40} m='0 auto' px={{ base: 2, sm: 4 }}>
+          <Box
+            as='main'
+            pt={6}
+            pb={40}
+            m='0 auto'
+            px={{
+              base: !location.pathname.includes('processes') ? 2 : 0,
+              sm: !location.pathname.includes('processes') ? 4 : 0,
+            }}
+          >
             <Outlet />
           </Box>
         </Box>
-        <Box as='footer' mt='auto' maxW={360} mx='auto' px={{ base: 2, sm: 4 }} pb={{ base: 20, xl: 0 }}>
+        <Box as='footer' mt='auto' maxW={360} mx='auto' px={{ base: 2, sm: 4 }}>
           <Footer />
         </Box>
       </Box>
