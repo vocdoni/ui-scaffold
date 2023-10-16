@@ -21,7 +21,7 @@ const Layout = () => {
           >
             <Navbar />
           </HStack>
-          <Box as='main' pt={6} pb={40} m='0 auto'>
+          <Box as='main' pt={6} pb={40} m='0 auto' px={{ base: 2, sm: 4 }}>
             <Outlet />
           </Box>
         </Box>

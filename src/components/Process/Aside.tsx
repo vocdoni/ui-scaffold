@@ -77,8 +77,8 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
           </Box>
         )}
 
-        {census?.type === 'spreadsheet' && !connected && isLargerThanXl && (
-          <Box w='full' maxW='250px'>
+        {census?.type === 'spreadsheet' && !connected && (
+          <Box w='full' maxW='250px' display={{ base: 'none', xl: 'block' }}>
             <SpreadsheetAccess />
           </Box>
         )}
@@ -88,9 +88,9 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
           !connected &&
           election?.status !== ElectionStatus.CANCELED && (
             <Flex flexDirection='column' alignItems='center' gap={3} w='full'>
-              {isLargerThanXl && (
+              <Box display={{ base: 'none', xl: 'block' }}>
                 <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />
-              )}
+              </Box>
               <Text textAlign='center' fontSize='sm'>
                 {t('aside.not_connected')}
               </Text>
@@ -155,7 +155,7 @@ export const ProcessAsideFooterMbl = ({ setQuestionsTab }: { setQuestionsTab: ()
   const { isConnected } = useAccount()
 
   if (
-    election?.status !== ElectionStatus.ONGOING ||
+    election?.status === ElectionStatus.CANCELED ||
     !!voted ||
     (isConnected && !isInCensus && census?.type !== 'spreadsheet')
   )

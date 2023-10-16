@@ -51,7 +51,7 @@ export const ProcessView = () => {
 
   return (
     <>
-      <Box px={{ base: 2, sm: 4 }}>
+      <Box>
         <Header />
         <Flex direction={{ base: 'column', xl: 'row' }} gap={{ xl: 10 }} alignItems='start'>
           <Tabs
@@ -80,12 +80,14 @@ export const ProcessView = () => {
             </TabPanels>
           </Tabs>
           <Flex
+            flexGrow={1}
+            flexShrink={0}
             flexDirection='column'
             alignItems={{ base: 'center', xl: 'start' }}
             order={{ base: 1, xl: 2 }}
             gap={2}
-            w='full'
-            maxW={{ base: 112, xl: 64 }}
+            maxW={{ base: 112, xl: 67.5 }}
+            minW={{ base: 112, xl: 67.5 }}
             mx={{ base: 'auto', xl: 0 }}
             position={{ xl: 'sticky' }}
             top={20}

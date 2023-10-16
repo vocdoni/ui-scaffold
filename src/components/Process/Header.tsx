@@ -97,7 +97,7 @@ const ProcessHeader = () => {
                   flexWrap: 'wrap',
                 },
                 '& p strong': {
-                  maxW: { base: '100%', xl: '250px' },
+                  maxW: { base: '100%', xl: '230px' },
                   isTruncated: true,
                   mr: 1,
                 },
