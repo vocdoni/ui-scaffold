@@ -22,6 +22,7 @@ import {
   Election,
   ElectionCreationSteps,
   ElectionStatus,
+  ensure0x,
   EnvOptions,
   IElectionParameters,
   IPublishedElectionParameters,
@@ -31,7 +32,6 @@ import {
   UnpublishedElection,
   VocdoniCensus3Client,
   WeightedCensus,
-  ensure0x,
 } from '@vocdoni/sdk'
 import { useEffect, useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
@@ -43,8 +43,8 @@ import { CostPreview } from '../CostPreview'
 import { CreationProgress, Steps } from '../CreationProgress'
 import { Web3Address } from '../StepForm/CensusWeb3'
 import { Option } from '../StepForm/Questions'
-import Wrapper from './Wrapper'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
+import Wrapper from './Wrapper'
 import imageHeader from '/assets/spreadsheet-confirm-modal.png'
 
 export const Confirm = () => {
@@ -243,7 +243,7 @@ export const Confirm = () => {
         >
           {t('form.process_create.confirm.create_button')}
         </Button>
-        <Modal isOpen={true} onClose={onClose} closeOnEsc={!!error} closeOnOverlayClick={!!error} isCentered>
+        <Modal isOpen={isOpen} onClose={onClose} closeOnEsc={!!error} closeOnOverlayClick={!!error} isCentered>
           <ModalOverlay />
           <ModalContent>
             <ModalHeader>
