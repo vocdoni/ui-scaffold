@@ -97,6 +97,8 @@ export const ProcessView = () => {
             position={{ md: 'sticky' }}
             top={20}
             mt={10}
+            minW={{ base: '370px', md: '0px' }}
+            maxW={{ md: '265px', md2: '290px' }}
           >
             <ProcessAside setQuestionsTab={setQuestionsTab} />
           </Flex>

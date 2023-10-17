@@ -14,12 +14,9 @@ const baseStyle = definePartsStyle({
 
   disconnect: {
     w: 'min-content',
-    bgColor: { base: 'transparent', xl: 'process.spreadsheet.disconnect_bg' },
-    color: { base: 'white', xl: 'process.spreadsheet.diconnect_color' },
     textDecoration: 'underline',
 
     _hover: {
-      bgColor: { base: 'transparent', xl: 'process.spreadsheet.disconnect_bg' },
       textDecoration: 'none',
     },
   },

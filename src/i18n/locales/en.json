@@ -72,7 +72,7 @@
       "button": "Vote",
       "button_update": "Re-submit vote",
       "confirm": "Please confirm your choices:",
-      "voted_description": "To verify your vote, you can use this unique id: {{ id }}",
+      "voted_description": "To verify your vote, you can use this unique identifier: {{ id }}",
       "voted_title": "Your vote was successfully cast!"
     }
   },
