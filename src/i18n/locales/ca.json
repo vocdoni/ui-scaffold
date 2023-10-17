@@ -74,7 +74,7 @@
       "button": "Vota",
       "button_update": "Torna a enviar el vot",
       "confirm": "Confirma les teves seleccions:",
-      "voted_description": "Per verificar el teu vot, pots utilitzar aquesta identificador únic: {{ id }}",
+      "voted_description": "Per verificar el teu vot, pots utilitzar aquesta identificació única: {{ id }}",
       "voted_title": "El teu vot s'ha registrat amb èxit!"
     }
   },
