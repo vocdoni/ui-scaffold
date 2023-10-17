@@ -98,7 +98,8 @@ export const colors = {
     },
     spreadsheet: {
       disconnect_bg: 'transparent',
-      diconnect_color: colorsBase.gray.dark,
+      disconnect_color_desktop: colorsBase.gray.dark,
+      disconnect_color_mbl: colorsBase.white.pure,
     },
     tabs: {
       active_bg: colorsBase.gray.main,
