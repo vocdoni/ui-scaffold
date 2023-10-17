@@ -74,7 +74,7 @@
       "button": "Votar",
       "button_update": "Reenviar voto",
       "confirm": "Confirma tus selecciones:",
-      "voted_description": "Para verificar tu voto, puedes usar esta identificación única: {{ id }}",
+      "voted_description": "Para verificar tu voto, puedes utilizar este identificador único: {{ id }}",
       "voted_title": "¡Tu voto se ha registrado con éxito!"
     }
   },
