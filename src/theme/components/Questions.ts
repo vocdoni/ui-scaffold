@@ -5,7 +5,7 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 
 const baseStyle = definePartsStyle({
   alert: {
-    px: 5,
+    px: { base: 3, sm: 5 },
     py: 7,
     my: '10px',
     borderRadius: '8px',
@@ -36,14 +36,15 @@ const baseStyle = definePartsStyle({
   alertDescription: {
     display: 'flex',
     gap: 2,
-    flexDirection: { base: 'column', md: 'row' },
+    flexDirection: { base: 'column', lg2: 'row' },
     justifyContent: 'center',
     alignItems: { md: 'center' },
-    whiteSpace: { base: 'pre-wrap', md: 'nowrap' },
+    whiteSpace: { base: 'pre-wrap', lg2: 'nowrap' },
   },
 
   alertLink: {
     display: 'block',
+    w: '100%',
     px: 2,
     py: 1,
     textOverflow: 'ellipsis',
