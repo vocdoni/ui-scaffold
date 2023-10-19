@@ -19,6 +19,9 @@ const baseStyle = definePartsStyle({
     _hover: {
       textDecoration: 'none',
     },
+    _active: {
+      bgColor: 'transparent',
+    },
   },
   label: {
     textTransform: 'none',

@@ -8,7 +8,6 @@ import { TFunction } from 'i18next'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
-import { ProcessDate } from './Date'
 
 const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
   const { t } = useTranslation()
@@ -27,8 +26,8 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
         direction='column'
         justifyContent='center'
         alignItems='center'
-        px={{ base: 6, md: 12 }}
-        py={{ base: 4, md: 12 }}
+        px={{ base: 12, md: 12 }}
+        py={{ base: 8, md: 12 }}
         w='full'
         gap={4}
         mt={{ md: 7 }}
@@ -38,37 +37,9 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
         borderRadius='lg'
         boxShadow='var(--box-shadow-banner)'
       >
-        <Flex
-          w='full'
-          justifyContent='space-between'
-          alignItems='center'
-          flexDirection={{ base: 'row', md: 'column' }}
-          gap={{ md: 5 }}
-        >
-          <Text textAlign='center' fontSize={{ base: 'xl', xl: 'xl3' }}>
-            {getStatusText(t, election?.status).toUpperCase()}
-          </Text>
-
-          {election?.status !== 'CANCELED' && (
-            <Box
-              display={{ md: 'none' }}
-              sx={{
-                '& > div': {
-                  display: 'flex',
-                  gap: 1,
-
-                  '& p': {
-                    color: 'white',
-                    fontWeight: 'normal',
-                    whiteSpace: 'no-wrap',
-                  },
-                },
-              }}
-            >
-              <ProcessDate />
-            </Box>
-          )}
-        </Flex>
+        <Text textAlign='center' fontSize='xl3'>
+          {getStatusText(t, election?.status).toUpperCase()}
+        </Text>
 
         {election?.status !== ElectionStatus.CANCELED && election?.status !== ElectionStatus.UPCOMING && (
           <Box display='flex' flexDirection='row' justifyContent='center' alignItems='center' gap={2}>
