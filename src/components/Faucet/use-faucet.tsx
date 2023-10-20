@@ -24,9 +24,10 @@ export const useFaucet = () => {
         redirectURL: redirectURL.toString(),
       }),
     })
+
     const res = await response.json()
-    if (!res.ok) throw new Error(res.reason)
-    return res.data
+    if (res.error) throw new Error(res.error)
+    return res.url
   }
 
   const faucetReceipt = async (
@@ -36,8 +37,8 @@ export const useFaucet = () => {
   ): Promise<{ amount: string; faucetPackage: string }> => {
     const response = await fetch(`${import.meta.env.FAUCET_URL}/oauth/claim/${provider}/${code}/${recipient}`)
     const res = await response.json()
-    if (!res.ok) throw new Error(res.reason)
-    return res.data
+    if (res.error) throw new Error(res.error)
+    return res
   }
 
   return {
