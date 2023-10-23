@@ -50,7 +50,7 @@ export const ProcessView = () => {
   }, [election])
 
   return (
-    <>
+    <div>
       <Box>
         <Header />
         <Flex
@@ -115,7 +115,7 @@ export const ProcessView = () => {
       </Box>
 
       <SuccessVoteModal />
-    </>
+    </div>
   )
 }
 
