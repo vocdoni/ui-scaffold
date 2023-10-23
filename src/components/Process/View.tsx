@@ -30,8 +30,8 @@ import { Trans, useTranslation } from 'react-i18next'
 import { FaFacebook, FaReddit, FaTelegram, FaTwitter } from 'react-icons/fa'
 import ProcessAside, { ProcessAsideFooterMbl } from './Aside'
 import Header from './Header'
-import confirmImg from '/assets/spreadsheet-confirm-modal.png'
-import successImg from '/assets/success.png'
+import confirmImg from '/assets/spreadsheet-confirm-modal.jpeg'
+import successImg from '/assets/success.jpeg'
 
 export const ProcessView = () => {
   const { t } = useTranslation()
