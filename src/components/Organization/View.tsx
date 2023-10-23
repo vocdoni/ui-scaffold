@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react'
 import { useClient, useOrganization } from '@vocdoni/react-providers'
 import { areEqualHexStrings, InvalidElection, PublishedElection } from '@vocdoni/sdk'
-import { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import ProcessCardDetailed from '../Process/CardDetailed'
@@ -36,14 +36,17 @@ const OrganizationView = () => {
   // we need refobserver to be in state to ensure the observer is assigned when rendering the ref layer
   // otherwise, the observer is not assigned and the intersection is not triggered
   const [refObserver, setRefObserver] = useState<HTMLDivElement | null>(null)
-  const ref = useCallback(setRefObserver, [])
 
   const [page, setPage] = useState<number>(-1)
   useObserver(refObserver, setPage, setRefObserver)
 
   // refetch account info in case it changes in client (i.e. when editing the account profile in this same page)
   useEffect(() => {
+    // only re-fetch if account is the same as the one rendered, otherwise it will load incorrect data
+    if (!areEqualHexStrings(account?.address, organization?.address)) return
+
     fetch()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account])
 
   // resets fields on account change
@@ -62,7 +65,7 @@ const OrganizationView = () => {
     setLoading(true)
 
     client
-      .fetchElections(organization?.address, page)
+      .fetchElections(organization.address, page)
       .then((res) => {
         if (!res || (res && !res.length)) {
           setFinished(true)
