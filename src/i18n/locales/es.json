@@ -335,6 +335,10 @@
     "terms": "Términos",
     "wallet": "Billetera"
   },
+  "meta": {
+    "length": "{{ length }} / {{ maxLength }} caracteres.",
+    "maxLength": "Longitud máxima alcanzada"
+  },
   "new_organization": {
     "anonyomus": "Anónimo",
     "censorship": "<span>Resistencia</span><span>a la Censura</span>",

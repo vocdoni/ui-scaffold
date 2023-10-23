@@ -335,6 +335,10 @@
     "terms": "Termes",
     "wallet": "Cartera"
   },
+  "meta": {
+    "length": "{{ length }} / {{ maxLength }} caràcters.",
+    "maxLength": "Longitud màxima assolida"
+  },
   "new_organization": {
     "anonyomus": "Anònim",
     "censorship": "<span>Resistència</span><span>a la Censura</span>",
