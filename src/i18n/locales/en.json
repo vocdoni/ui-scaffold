@@ -327,6 +327,10 @@
     "terms": "Terms",
     "wallet": "Wallet"
   },
+  "meta": {
+    "length": "{{ length }} / {{ maxLength }} chars.",
+    "maxLength": "Max. length reached"
+  },
   "new_organization": {
     "anonyomus": "Anonyomus",
     "censorship": "<span>Censorship</span><span>Resistance</span>",
