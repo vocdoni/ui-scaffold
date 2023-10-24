@@ -198,6 +198,8 @@
       },
       "confirm": {
         "anonymous": "Anonymous",
+        "balance_one": "<span>Your own:</span><span> {{ count }} token</span>",
+        "balance_other": "<span>Your own:</span><span> {{ count }} tokens</span>",
         "census": "Census",
         "census_preview_is_shortened": "(preview list is limited to {{ limit }} results)",
         "census_total_one": "<span>Voters:</span><span>{{ count }} voter</span>",
@@ -220,6 +222,8 @@
         "params": "<span>Params:</span><span>Anonymous</span>",
         "questions_one": "Question",
         "questions_other": "Questions",
+        "result_one": "<span>After creating the voting:</span><span2> {{ count }} token</span2>",
+        "result_other": "<span>After creating the voting:</span><span2> {{ count }} tokens</span2>",
         "secret_until_the_end": "Secret until the end",
         "title": "Voting preview and costs",
         "title_election": "Title",

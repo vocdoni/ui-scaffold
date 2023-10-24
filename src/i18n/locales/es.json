@@ -200,6 +200,8 @@
       },
       "confirm": {
         "anonymous": "Anónimo",
+        "balance_one": "<span>Tienes:</span><span> {{ count }} token</span>",
+        "balance_other": "<span>Tienes:</span><span> {{ count }} tokens</span>",
         "census": "Censo",
         "census_preview_is_shortened": "(la lista previa está limitada a {{ limit }} resultados)",
         "census_total_one": "<span>Votantes:</span><span>{{ count }} votante</span>",
@@ -225,6 +227,8 @@
         "questions_one": "Pregunta",
         "questions_many": "Preguntas",
         "questions_other": "Preguntas",
+        "result_one": "<span>Después de crear la votación:</span><span2> {{ count }} token</span2>",
+        "result_other": "<span>Después de crear la votación:</span><span2> {{ count }} tokens</span2>",
         "secret_until_the_end": "Secreto hasta el final",
         "title": "Vista previa y costos de votación",
         "title_election": "Título",

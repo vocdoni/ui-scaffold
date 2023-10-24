@@ -200,6 +200,8 @@
       },
       "confirm": {
         "anonymous": "Anònim",
+        "balance_one": "<span>Tens:</span><span> {{ count }} token</span>",
+        "balance_other": "<span>Tens:</span><span> {{ count }} tokens</span>",
         "census": "Cens",
         "census_preview_is_shortened": "(la llista prèvia està limitada a {{ limit }} resultats)",
         "census_total_one": "<span>Votants:</span><span>{{ count }} votant</span>",
@@ -225,6 +227,8 @@
         "questions_one": "Pregunta",
         "questions_many": "Preguntes",
         "questions_other": "Preguntes",
+        "result_one": "<span>Després de crear la votació:</span><span2> {{ count }} token</span2>",
+        "result_other": "<span>Després de crear la votació:</span><span2> {{ count }} tokens</span2>",
         "secret_until_the_end": "Secret fins el final",
         "title": "Vista prèvia i costos de votació",
         "title_election": "Títol",

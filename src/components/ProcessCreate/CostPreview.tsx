@@ -87,7 +87,7 @@ export const CostPreview = ({
                 </ListItem>
 
                 {anonymous && (
-                  <ListItem fontSize='sm'>
+                  <ListItem>
                     <Text display='flex' justifyContent='space-between' fontSize='sm'>
                       <Trans
                         i18nKey='form.process_create.confirm.params'
@@ -100,15 +100,41 @@ export const CostPreview = ({
                 )}
               </UnorderedList>
             </Box>
-            <Text display='flex' justifyContent='space-between' fontWeight='bold' fontSize='sm'>
-              <Trans
-                i18nKey='form.process_create.confirm.total'
-                components={{
-                  span: <Text as='span' />,
-                }}
-                count={cost}
-              />
-            </Text>
+            <UnorderedList m={0}>
+              <ListItem display='flex' justifyContent='space-between' fontWeight='bold' fontSize='sm'>
+                <Trans
+                  i18nKey='form.process_create.confirm.total'
+                  components={{
+                    span: <Text as='span' />,
+                  }}
+                  count={cost}
+                />
+              </ListItem>{' '}
+              <ListItem display='flex' justifyContent='space-between' fontWeight='bold' fontSize='sm'>
+                <Trans
+                  i18nKey='form.process_create.confirm.balance'
+                  components={{
+                    span: <Text as='span' />,
+                  }}
+                  count={account!.balance}
+                />
+              </ListItem>
+              <ListItem display='flex' justifyContent='space-between' fontWeight='bold' fontSize='sm'>
+                <Trans
+                  i18nKey='form.process_create.confirm.result'
+                  components={{
+                    span: <Text as='span' />,
+                    span2: (
+                      <Text
+                        as='span'
+                        color={account!.balance - cost < 0 ? 'process_create.preview_negative_balance' : ''}
+                      />
+                    ),
+                  }}
+                  count={account!.balance - cost}
+                />
+              </ListItem>
+            </UnorderedList>
           </>
         )}
       </Flex>
