@@ -1,6 +1,6 @@
 import { Stepper } from '@chakra-ui/react'
-import type { RecursivePartial } from '@constants'
 import { PropsWithChildren, useEffect, useState } from 'react'
+import type { RecursivePartial } from '~constants'
 import { CensusSpreadsheetManager } from '../Census/Spreadsheet/CensusSpreadsheetManager'
 import { StepContents } from './Contents'
 import { StepsContext, StepsContextState, StepsFormValues } from './use-steps'

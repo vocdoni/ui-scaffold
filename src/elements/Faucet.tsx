@@ -1,7 +1,7 @@
 import { Box, Card, CardBody, Flex, Grid, GridItem, Heading, Text } from '@chakra-ui/react'
-import { Claim } from '@components/Faucet/Claim'
 import { useClient } from '@vocdoni/react-providers'
 import { Trans, useTranslation } from 'react-i18next'
+import { Claim } from '~components/Faucet/Claim'
 
 const Faucet = () => {
   const { t } = useTranslation()

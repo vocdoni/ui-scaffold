@@ -19,13 +19,13 @@ import {
   Text,
   Textarea,
 } from '@chakra-ui/react'
-import { useOrganizationModal } from '@components/Organization/OrganizationModalProvider'
 import { errorToString, useClient, useOrganization } from '@vocdoni/react-providers'
 import { Account } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { BiTrash } from 'react-icons/bi'
+import { useOrganizationModal } from '~components/Organization/OrganizationModalProvider'
 import fallback from '/assets/default-avatar.png'
 
 interface EditFormFields {

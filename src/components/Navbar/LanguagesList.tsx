@@ -1,6 +1,6 @@
 import { MenuItem } from '@chakra-ui/react'
-import { LanguagesSlice } from '@i18n/languages.mjs'
 import { useTranslation } from 'react-i18next'
+import { LanguagesSlice } from '~i18n/languages.mjs'
 
 const LanguagesList = ({ closeOnSelect }: { closeOnSelect: boolean }) => {
   const { i18n } = useTranslation()

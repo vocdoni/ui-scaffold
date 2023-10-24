@@ -1,13 +1,13 @@
 import { Box, Button, Flex, Link, Spinner, Text, useMediaQuery } from '@chakra-ui/react'
-import { CensusMeta } from '@components/ProcessCreate/Steps/Confirm'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { SpreadsheetAccess, VoteButton, environment } from '@vocdoni/chakra-components'
+import { environment, SpreadsheetAccess, VoteButton } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
-import { ElectionStatus, PublishedElection, dotobject } from '@vocdoni/sdk'
+import { dotobject, ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
+import { CensusMeta } from '~components/ProcessCreate/Steps/Confirm'
 
 const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
   const { t } = useTranslation()
