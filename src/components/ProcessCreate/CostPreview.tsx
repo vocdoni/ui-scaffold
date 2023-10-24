@@ -64,7 +64,9 @@ export const CostPreview = ({
                       components={{
                         span: <Text as='span' />,
                       }}
-                      count={addresses.length}
+                      values={{
+                        count: addresses.length,
+                      }}
                     />
                   </Text>
                 </ListItem>
@@ -107,7 +109,9 @@ export const CostPreview = ({
                   components={{
                     span: <Text as='span' />,
                   }}
-                  count={cost}
+                  values={{
+                    cost,
+                  }}
                 />
               </ListItem>{' '}
               <ListItem display='flex' justifyContent='space-between' fontWeight='bold' fontSize='sm'>
@@ -116,7 +120,9 @@ export const CostPreview = ({
                   components={{
                     span: <Text as='span' />,
                   }}
-                  count={account!.balance}
+                  values={{
+                    balance: account!.balance,
+                  }}
                 />
               </ListItem>
               <ListItem display='flex' justifyContent='space-between' fontWeight='bold' fontSize='sm'>
@@ -131,7 +137,9 @@ export const CostPreview = ({
                       />
                     ),
                   }}
-                  count={account!.balance - cost}
+                  values={{
+                    remainTokens: account!.balance - cost,
+                  }}
                 />
               </ListItem>
             </UnorderedList>
