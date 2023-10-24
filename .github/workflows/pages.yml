@@ -41,6 +41,12 @@ jobs:
           VOCDONI_ENVIRONMENT: 'stg'
           BUILD_PATH: 'build/stg'
 
+      # required, otherwise routes won't work in gh pages
+      - name: Create 404 pages for GitHub Pages
+        run: |
+          cp build/dev/index.html build/dev/404.html
+          cp build/stg/index.html build/stg/404.html
+
       - name: Create redirect index
         run: echo '<meta http-equiv="refresh" content="0;url=https://vocdoni.github.io/ui-scaffold/stg" />' > build/index.html
 
