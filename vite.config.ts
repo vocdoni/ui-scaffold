@@ -10,7 +10,7 @@ if (!vocdoniEnvironment) {
 }
 
 const outDir = process.env.BUILD_PATH
-const base = process.env.BASE_URL || ''
+const base = process.env.BASE_URL || '/'
 
 const commit = execSync('git rev-parse --short HEAD').toString()
 
