@@ -1,9 +1,9 @@
 import { Box, Flex, ListItem, Spinner, Text, UnorderedList } from '@chakra-ui/react'
-import { Claim } from '@components/Faucet/Claim'
 import { useClient } from '@vocdoni/react-providers'
 import { UnpublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { Claim } from '~components/Faucet/Claim'
 import { useProcessCreationSteps } from './Steps/use-steps'
 
 export const CostPreview = ({
