@@ -17,6 +17,7 @@ export const colorsBase = {
     dark: '#175b64',
     dark2: '#2c545a',
   },
+  red: '#E53E3E',
   white: {
     pure: '#ffffff',
     dark: '#fafafa',
@@ -126,6 +127,7 @@ export const colors = {
     description: colorsBase.gray.dark,
     description_logo: colorsBase.blue.main,
     preview_option_question_before: colorsBase.black,
+    preview_negative_balance: colorsBase.red,
     section: colorsBase.white.pure,
     spreadsheet: {
       badge: {
