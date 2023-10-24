@@ -45,7 +45,7 @@ import { Web3Address } from '../StepForm/CensusWeb3'
 import { Option } from '../StepForm/Questions'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 import Wrapper from './Wrapper'
-import imageHeader from '/assets/spreadsheet-confirm-modal.png'
+import imageHeader from '/assets/spreadsheet-confirm-modal.jpeg'
 
 export const Confirm = () => {
   const { env, client, account } = useClient()
