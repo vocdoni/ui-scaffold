@@ -9,7 +9,7 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@ethersproject/abstract-signer": "^5.7.0",
-    "@rainbow-me/rainbowkit": "^0.12.16",
+    "@rainbow-me/rainbowkit": "^1.1.3",
     "@vocdoni/chakra-components": "^0.5.18",
     "@vocdoni/rainbowkit-wallets": "0.1.8",
     "@vocdoni/sdk": "^0.4.1",
@@ -29,7 +29,8 @@
     "react-markdown": "^8.0.7",
     "react-router-dom": "^6.14.1",
     "remark-gfm": "^3.0.1",
-    "wagmi": "^0.12.18",
+    "viem": "^1.16.6",
+    "wagmi": "^1.4.5",
     "web-vitals": "^3.3.2",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.0/xlsx-0.20.0.tgz"
   },
