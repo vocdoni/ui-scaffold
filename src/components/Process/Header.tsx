@@ -1,6 +1,5 @@
 import { WarningIcon } from '@chakra-ui/icons'
 import { Box, Button, Flex, Icon, Text } from '@chakra-ui/react'
-import { useReadMoreMarkdown } from '@components/Layout/use-read-more'
 import {
   ElectionActions,
   ElectionDescription,
@@ -14,6 +13,7 @@ import { ElectionStatus } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import { FaRegArrowAltCircleLeft } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
 import { CreatedBy } from './CreatedBy'
 import { ProcessDate } from './Date'
 

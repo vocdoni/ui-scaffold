@@ -1,7 +1,7 @@
 import { Box, Flex, Table, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
-import { CensusPreviewRowsLimit } from '@constants'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+import { CensusPreviewRowsLimit } from '~constants'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 
 const PreviewCensusSpreadsheet = () => {

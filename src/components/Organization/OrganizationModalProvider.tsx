@@ -1,7 +1,7 @@
 import { useDisclosure } from '@chakra-ui/react'
-import EditProfile from '@components/Account/EditProfile'
 import { OrganizationProvider, useClient } from '@vocdoni/react-providers'
 import { createContext, useContext } from 'react'
+import EditProfile from '~components/Account/EditProfile'
 
 type OrganizationModalState = Pick<ReturnType<typeof useDisclosure>, 'isOpen' | 'onOpen' | 'onClose'>
 

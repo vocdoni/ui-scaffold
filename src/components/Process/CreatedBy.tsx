@@ -1,7 +1,7 @@
 import { Avatar, Flex, FlexProps, Text, TextProps } from '@chakra-ui/react'
-import { addressTextOverflow } from '@constants'
 import { enforceHexPrefix, useOrganization } from '@vocdoni/react-providers'
 import { Trans } from 'react-i18next'
+import { addressTextOverflow } from '~constants'
 
 export const CreatedBy = (props: FlexProps) => {
   const { organization } = useOrganization()

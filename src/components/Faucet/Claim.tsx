@@ -1,10 +1,10 @@
 import { Button, Flex, Icon, useToast } from '@chakra-ui/react'
-import { VocdoniEnvironment } from '@constants'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { errorToString, useClient } from '@vocdoni/react-providers'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaGithub } from 'react-icons/fa'
+import { VocdoniEnvironment } from '~constants'
 import { useFaucet } from './use-faucet'
 
 export const Claim = () => {
