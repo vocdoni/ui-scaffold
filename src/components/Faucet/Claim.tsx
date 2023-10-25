@@ -4,7 +4,6 @@ import { errorToString, useClient } from '@vocdoni/react-providers'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaGithub } from 'react-icons/fa'
-import { VocdoniEnvironment } from '~constants'
 import { useFaucet } from './use-faucet'
 
 export const Claim = () => {
@@ -96,11 +95,6 @@ export const Claim = () => {
 
     setLoading(false)
     setPendingClaim(false)
-  }
-
-  // only render in stage
-  if (VocdoniEnvironment !== 'stg') {
-    return null
   }
 
   return (
