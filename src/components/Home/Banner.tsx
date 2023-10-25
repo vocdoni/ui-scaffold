@@ -56,7 +56,7 @@ const Banner = () => {
               aria-label={t('menu.new_process')}
               title={t('menu.new_process')}
             >
-              <Text as='span' display={{ base: 'none', sm: 'inline-block' }}>
+              <Text as='span' display='inline-block'>
                 {t('banner.start_now')}
               </Text>
             </Link>

@@ -6,8 +6,7 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 const baseStyle = definePartsStyle({
   question: {
     p: 4,
-    borderRadius: 'md',
-    w: { base: '100%', md: '80%' },
+    width: { base: 'full', xl: '80%' },
     m: 0,
     mx: 'auto',
 

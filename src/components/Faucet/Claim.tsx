@@ -1,9 +1,8 @@
-import { Button, Flex, Icon, Text, useToast } from '@chakra-ui/react'
-import { VocdoniEnvironment } from '@constants'
+import { Button, Flex, Icon, useToast } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { errorToString, useClient } from '@vocdoni/react-providers'
 import { useEffect, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { FaGithub } from 'react-icons/fa'
 import { useFaucet } from './use-faucet'
 
@@ -98,21 +97,8 @@ export const Claim = () => {
     setPendingClaim(false)
   }
 
-  // only render in stage
-  if (VocdoniEnvironment !== 'stg') {
-    return
-  }
-
   return (
     <Flex direction='column' gap={3} fontSize='sm'>
-      <Trans
-        i18nKey='faucet.request_tokens.description'
-        components={{
-          span: <Text as='span' />,
-        }}
-        values={{ balance: account?.balance }}
-      />
-
       {connected && (
         <Flex direction='row' gap='2'>
           <Button

@@ -1,7 +1,5 @@
 import { ChevronDownIcon, ChevronUpIcon, CopyIcon } from '@chakra-ui/icons'
 import { Box, Flex, HStack, Icon, IconButton, Link, MenuItem, MenuList, Text, useClipboard } from '@chakra-ui/react'
-import { useOrganizationModal } from '@components/Organization/OrganizationModalProvider'
-import { addressTextOverflow, VocdoniEnvironment } from '@constants'
 import { Balance, HR } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
 import { useState } from 'react'
@@ -11,6 +9,8 @@ import { HiShoppingCart } from 'react-icons/hi'
 import { MdOutlineLogout } from 'react-icons/md'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useDisconnect } from 'wagmi'
+import { useOrganizationModal } from '~components/Organization/OrganizationModalProvider'
+import { addressTextOverflow } from '~constants'
 import LanguagesList from './LanguagesList'
 
 const MenuDropdown = () => {
@@ -97,20 +97,18 @@ const MenuDropdown = () => {
                 <Balance p={0} bg='white' fontWeight='bold' />
               </Flex>
 
-              {VocdoniEnvironment === 'stg' && (
-                <Link
-                  as={ReactRouterLink}
-                  to='/faucet'
-                  variant='rounded'
-                  colorScheme='primary'
-                  aria-label={t('menu.get_more')}
-                  title={t('menu.get_more')}
-                  p={2}
-                >
-                  <Icon as={HiShoppingCart} mt={1} mr={1} />
-                  {t('menu.get_more')}
-                </Link>
-              )}
+              <Link
+                as={ReactRouterLink}
+                to='/faucet'
+                variant='rounded'
+                colorScheme='primary'
+                aria-label={t('menu.get_more')}
+                title={t('menu.get_more')}
+                p={2}
+              >
+                <Icon as={HiShoppingCart} mt={1} mr={1} />
+                {t('menu.get_more')}
+              </Link>
             </Flex>
           </MenuItem>
           <MenuItem onClick={onOpen}>{t('menu.organization')}</MenuItem>

@@ -38,7 +38,7 @@
     },
     "confirm": {
       "cancel": "Cancel·la",
-      "confirm": "Confirma",
+      "confirm": "Confirma Vot",
       "title": "Confirmar"
     },
     "empty": "Sembla que aquest procés no té preguntes",
@@ -53,7 +53,7 @@
       "title": "Resultats per a \"{{ title }}\"",
       "votes": "Vots: {{ votes }} ({{ percent }})"
     },
-    "schedule": "Votant des del {{ begin }} al {{ end }}",
+    "schedule": "Votació del {{ begin }} al {{ end }}",
     "spreadsheet": {
       "access_button": "Identifica't",
       "close": "Tanca",
@@ -114,11 +114,14 @@
       "description2": "Si necessites més tokens per desenvolupar sobre la plataforma de Vocdoni, pots posar-te en contacte amb nosaltres a tokens (at) vocdoni.io",
       "title": "Informació General"
     },
+    "login_first": "Has d'iniciar sessió primer.",
+    "request_description": "Per aconseguir més tokens de Vocdoni, has d'iniciar la sessió amb un compte de xarxes socials (per evitar-ne l'abús). Només demanem accés de lectura.",
     "request_tokens": {
-      "description": "Tens {{ balance }} tokens. No en tens prou per a crear el procés. Per aconseguir-ne més, has d'iniciar la sessió amb un compte de xarxes socials (per evitar un ús inadequat de la font). Només demanem accés de lectura.",
+      "description": "Tens {{ balance }} tokens. No en tens prou per a crear el procés. Per aconseguir-ne més, has d'iniciar la sessió amb un compte de xarxes socials (per evitar-ne l'abús). Només demanem accés de lectura.",
       "title": "Sol·licita Tokens"
     },
-    "title": "Faucet de Tokens Vocdoni"
+    "title": "Faucet de Tokens Vocdoni",
+    "tokens_you_own": "Tens {{ balance }} tokens."
   },
   "footer": {
     "about": "Sobre nosaltres",
@@ -138,7 +141,7 @@
   "form": {
     "account_create": {
       "description_helper": "Una breu descripció de la teva organització",
-      "description_placeholder": "Descripció (opcional). Accepta text en format Markdown.",
+      "description_placeholder": "Descripció (opcional)",
       "title_helper": "El nom de l'organització",
       "title_placeholder": "El nom de l'organització"
     },
@@ -197,19 +200,21 @@
       },
       "confirm": {
         "anonymous": "Anònim",
+        "balance": "<span>Disposes de:</span><span> {{ balance }} tokens</span>",
         "census": "Cens",
         "census_preview_is_shortened": "(la llista prèvia està limitada a {{ limit }} resultats)",
+        "census_total": "",
         "census_total_one": "<span>Votants:</span><span>{{ count }} votant</span>",
+        "census_total_many": "",
         "census_total_other": "<span>Votants:</span><span>{{ count }} votants</span>",
         "census_total_people_one": "Una persona podrà votar en aquesta votació",
         "census_total_people_many": "{{ count }} persones podran votar en aquesta votació",
         "census_total_people_other": "",
-        "close": "Tanca",
         "configuration": "Configuració",
         "confirmation": "Confirmació",
         "confirmation_terms_and_conditions": "Accepto els <link>termes i condicions</link> de Vocdoni",
         "confirmation_valid_info": "Confirmo que aquesta informació és correcta i vàlida",
-        "cost_description": "",
+        "cost_description": "En funció de diferents paràmetres, com la grandària del cens, la durada de les eleccions i el seu comportament, aquí veureu el preu de les vostres eleccions.",
         "cost_title": "Previsió de cost",
         "create_button": "Crear",
         "dates": "Data",
@@ -222,15 +227,15 @@
         "questions_one": "Pregunta",
         "questions_many": "Preguntes",
         "questions_other": "Preguntes",
+        "result": "<span>Després de crear la votació:</span><span2>{{ remainTokens }} tokens</span2>",
         "secret_until_the_end": "Secret fins el final",
         "title": "Vista prèvia i costos de votació",
         "title_election": "Títol",
-        "total_one": "<span>Total:</span> <span>{{ count }} token</span>",
-        "total_other": "<span>Total:</span> <span>{{ count }} tokens</span>",
+        "total": "<span>Total:</span> <span>{{ cost }} tokens</span>",
         "vote_overwritte": "Sobreescriure vot"
       },
       "confirm_spreadsheet_removal": "Estàs segur que vols canviar-ho? Fent-ho s'esborrarà el fitxer que has carregat actualment.",
-      "creating_process": "Creant el procés...",
+      "creating_process": "Creant Procés de Votació...",
       "meta": {
         "description": "Proporciona un títol i una descripció clars. Això ajudarà als votants a entendre el propòsit del procés de votació.",
         "description_helper": "Una breu descripció de la teva votació",
@@ -286,16 +291,16 @@
       "spreadsheet_total_rows_other": "Grandària del cens: {{count}} votants",
       "steps": {
         "census": "Cens",
-        "checks": "Comprovacions",
+        "checks": "Organització",
         "confirm": "Confirmar",
         "info": "Informació",
         "questions": "Preguntes"
       },
       "success_description": "Redirigint-te a la pàgina del procés de votació...",
       "success_title": "Procés de votació creat amb èxit",
-      "unhealthy_account": "Has de crear una organització abans de crear la primera votació.",
       "web3": {
         "census_members_one": "<span>1 membre</span> <text>al cens</text>",
+        "census_members_many": "",
         "census_members_other": "<span>{{ count }} membres</span> <text>al cens</text>",
         "your_wallet_is_added": "La teva adreça de cartera s'ha afegit automàticament al cens. La pots eliminar si ho desitges."
       },
@@ -330,6 +335,24 @@
     "privacy": "Privadesa",
     "terms": "Termes",
     "wallet": "Cartera"
+  },
+  "meta": {
+    "length": "{{ length }} / {{ maxLength }} caràcters.",
+    "maxLength": "Longitud màxima assolida"
+  },
+  "new_organization": {
+    "anonyomus": "Anònim",
+    "censorship": "<span>Resistència</span><span>a la Censura</span>",
+    "create_organization_btn": "Crear Organització",
+    "description1": "Abans de començar a crear el vostre procés de votació, <span>heu de crear una organització</span>, és gratuït. Amb una organització, podreu crear una àmplia gamma d'eleccions i donar veu als membres de la vostra comunitat.",
+    "description2": "Com a <span>paquet de benvinguda</span>, rebràs 1000 tokens gratuïts per començar a utilitzar la nostra plataforma.",
+    "footer": "<span>Vocdoni</span> és un protocol de votació públic segur, respectuós amb la privadesa i de codi obert.",
+    "inexpensive": "Econòmic",
+    "name": "Nom de l'organització",
+    "open_source": "<span>Codi</span><span>Obert</span>",
+    "scalable": "Escalable",
+    "title": "Nova Organització",
+    "verificable": "Verificable"
   },
   "open_in_explorer": "Obre a l'explorador",
   "organization": {
@@ -377,9 +400,9 @@
     "share_title": "Comparteix a {{ network }}",
     "spreadsheet": {
       "confirm": {
-        "option": "Opció",
-        "question": "Pregunta",
-        "text1": "Abans de votar, reviseu que tot sigui correcte."
+        "description": "Abans de votar, reviseu que tot sigui correcte.",
+        "option": "<strong>Opció {{ number }}:</strong> {{ answer }}",
+        "question": "<strong>Pregunta {{ number }}:</strong> {{ answer }}"
       }
     },
     "status": {
@@ -410,9 +433,8 @@
       "done": "Creació del procés",
       "sign_tx": "Signar transacció"
     },
-    "creation_steps_description": "S'està creant el procés de votació. Aquest procediment pot trigar una mica (no tanquis aquesta finestra) mentre queda enregistrada tota la informació a la blockchain privada i segura de Vocdoni.",
-    "creation_steps_title": "Progrés",
-    "do_not_close": "Aquesta acció pot trigar una estona, no tanquis aquesta finestra"
+    "creation_steps_description": "Necessites signar les transaccions per crear el procés de votació a la cadena de blocs de Vocdoni. No tanquis aquesta finestra.",
+    "creation_steps_title": "Progrés"
   },
   "uploader": {
     "click_or_drag_and_drop": "<p1>Puja o arrossega i deixa anar aquí la llista de votants</p1><p2>(Formats permesos: CSV, XLSX i ODS)</p2>",

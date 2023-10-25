@@ -1,5 +1,4 @@
 import { AspectRatio, Box, Flex, IconButton } from '@chakra-ui/react'
-import { useReadMoreMarkdown } from '@components/Layout/use-read-more'
 import { OrganizationAvatar as Avatar, OrganizationDescription, OrganizationName } from '@vocdoni/chakra-components'
 import { useClient, useOrganization } from '@vocdoni/react-providers'
 import { areEqualHexStrings } from '@vocdoni/sdk'
@@ -7,6 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { IoMdCreate } from 'react-icons/io'
+import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
 import AddressBtn from './AddressBtn'
 import { useOrganizationModal } from './OrganizationModalProvider'
 import fallback from '/assets/default-avatar.png'
@@ -30,7 +30,7 @@ const OrganizationHeader = () => {
       p={3}
       borderRadius='lg'
       boxShadow='var(--box-shadow)'
-      bgColor='organization.header'
+      bgColor='organization.header_bg'
     >
       <Box flex='1 1 20%' minW={40}>
         <AspectRatio ratio={1.25 / 1} maxW={56} mx='auto'>

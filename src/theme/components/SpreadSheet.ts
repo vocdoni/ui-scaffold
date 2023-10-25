@@ -5,25 +5,26 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 
 const baseStyle = definePartsStyle({
   button: {
-    w: 'full',
+    w: '100%',
     color: 'process.aside.vote_btn_color',
-    mb: 4,
     borderRadius: 30,
-    p: 7,
+    fontSize: { base: 'lg', xl: 'md' },
     bgColor: 'process.aside.vote_btn_bg',
   },
 
   disconnect: {
-    bgColor: 'process.spreadsheet.disconnect_bg',
-    color: 'process.spreadsheet.diconnect_color',
+    w: 'min-content',
     textDecoration: 'underline',
+
+    _hover: {
+      textDecoration: 'none',
+    },
+    _active: {
+      bgColor: 'transparent',
+    },
   },
   label: {
     textTransform: 'none',
-  },
-
-  content: {
-    p: 10,
   },
 
   body: {
@@ -39,6 +40,7 @@ const baseStyle = definePartsStyle({
     mx: 'auto',
     bgColor: 'process.identify_btn.bg',
     color: 'process.identify_btn.color',
+    borderRadius: '30px',
 
     _hover: {
       bgColor: 'process.identify_btn.bg_hover',

@@ -1,13 +1,13 @@
-import { Box, Button, Flex, Text } from '@chakra-ui/react'
-import { CensusMeta } from '@components/ProcessCreate/Steps/Confirm'
+import { Box, Button, Flex, Link, Spinner, Text, useMediaQuery } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { SpreadsheetAccess, VoteButton, environment } from '@vocdoni/chakra-components'
+import { environment, SpreadsheetAccess, VoteButton } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
-import { ElectionStatus, PublishedElection, dotobject } from '@vocdoni/sdk'
+import { dotobject, ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
 import { Trans, useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
+import { CensusMeta } from '~components/ProcessCreate/Steps/Confirm'
 
 const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
   const { t } = useTranslation()
@@ -18,46 +18,56 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
 
   const renderVoteMenu = isAbleToVote || voted || (hasOverwriteEnabled(election) && isInCensus && voted)
 
+  const [isLargerThanMd] = useMediaQuery('(min-width: 768px)')
+
   return (
-    <Flex flexDirection='column' alignItems='center' gap={2}>
+    <>
       <Flex
         direction='column'
         justifyContent='center'
         alignItems='center'
-        gap={12}
-        p={12}
-        w={96}
-        mt={7}
+        px={{ base: 12, md: 12 }}
+        py={{ base: 8, md: 12 }}
+        w='full'
+        gap={4}
+        mt={{ md: 7 }}
+        mb={{ base: 7, md: 0 }}
         color='process.aside.color'
         background='process.aside.bg'
         borderRadius='lg'
         boxShadow='var(--box-shadow-banner)'
       >
-        <Text textAlign='center' fontSize='xl3' lineHeight={1}>
+        <Text textAlign='center' fontSize='xl3'>
           {getStatusText(t, election?.status).toUpperCase()}
         </Text>
 
         {election?.status !== ElectionStatus.CANCELED && election?.status !== ElectionStatus.UPCOMING && (
-          <Flex flexDirection='column' mb={1}>
+          <Box display='flex' flexDirection='row' justifyContent='center' alignItems='center' gap={2}>
             <Trans
               i18nKey='aside.votes'
               components={{
                 span: <Text as='span' fontWeight='bold' fontSize='xl6' textAlign='center' lineHeight={1} />,
-                text: <Text fontSize='xl2' lineHeight={1} textAlign='center' mt={3} />,
+                text: <Text fontSize='xl2' textAlign='center' lineHeight={1.3} />,
               }}
               count={election?.voteCount}
             />
-          </Flex>
+          </Box>
         )}
 
-        {census?.type === 'spreadsheet' && !connected && <SpreadsheetAccess />}
+        {census?.type === 'spreadsheet' && !connected && (
+          <Box w='full' maxW='250px' display={{ base: 'none', md: 'block' }}>
+            <SpreadsheetAccess />
+          </Box>
+        )}
 
         {census?.type !== 'spreadsheet' &&
           !isConnected &&
           !connected &&
           election?.status !== ElectionStatus.CANCELED && (
             <Flex flexDirection='column' alignItems='center' gap={3} w='full'>
-              <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />
+              <Box display={{ base: 'none', md: 'block' }}>
+                <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />
+              </Box>
               <Text textAlign='center' fontSize='sm'>
                 {t('aside.not_connected')}
               </Text>
@@ -65,29 +75,131 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
           )}
 
         {isConnected && census?.type !== 'spreadsheet' && !isInCensus && (
-          <Text textAlign='center'>{t('aside.is_not_in_census')}</Text>
+          <Text textAlign='center' fontSize='sm'>
+            {t('aside.is_not_in_census')}
+          </Text>
         )}
 
         {renderVoteMenu && (
           <Flex flexDirection='column' alignItems='center' gap={3} w='full'>
-            {isAbleToVote && <VoteButton variant='process' mb={0} onClick={setQuestionsTab} />}
             {voted !== null && voted.length > 0 && (
-              <Box textAlign='center'>
-                <Link to={environment.verifyVote(env, voted)} target='_blank'>
-                  <Button w='full' variant='process'>
-                    {t('aside.verify_vote_on_explorer')}
-                  </Button>
-                </Link>
-                <Text>{t('aside.has_already_voted').toString()}</Text>
-              </Box>
+              <Text fontSize='sm' textAlign='center'>
+                {t('aside.has_already_voted').toString()}
+              </Text>
             )}
+            {isAbleToVote && isLargerThanMd && <VoteButton variant='process' mb={0} onClick={setQuestionsTab} />}
             {hasOverwriteEnabled(election) && isInCensus && votesLeft > 0 && voted && (
-              <Text textAlign='center'>{t('aside.overwrite_votes_left', { count: votesLeft })}</Text>
+              <Text fontSize='sm' textAlign='center'>
+                {t('aside.overwrite_votes_left', { count: votesLeft })}
+              </Text>
+            )}
+            {voted !== null && voted.length > 0 && (
+              <Link
+                as={ReactRouterLink}
+                to={environment.verifyVote(env, voted)}
+                target='_blank'
+                whiteSpace='nowrap'
+                textDecoration='underline'
+                _hover={{
+                  textDecoration: 'none',
+                }}
+              >
+                {t('aside.verify_vote_on_explorer')}
+              </Link>
+            )}
+            {connected && (
+              <Box
+                display={{ base: 'inline-block', md: 'none' }}
+                alignSelf='center'
+                sx={{
+                  '& button': {
+                    color: 'process.spreadsheet.disconnect_color_mbl',
+                    bgColor: 'transparent',
+                  },
+                }}
+              >
+                <SpreadsheetAccess />
+              </Box>
             )}
           </Flex>
         )}
       </Flex>
-      {connected && <SpreadsheetAccess />}
+      {connected && (
+        <Box
+          display={{ base: 'none', md: 'block' }}
+          alignSelf='center'
+          sx={{
+            '& button': {
+              color: 'process.spreadsheet.disconnect_color_desktop',
+              bgColor: 'transparent',
+            },
+          }}
+        >
+          <SpreadsheetAccess />
+        </Box>
+      )}
+    </>
+  )
+}
+
+export const ProcessAsideFooterMbl = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
+  const { t } = useTranslation()
+
+  const { election, connected, isAbleToVote, isInCensus, voted } = useElection()
+  const census: CensusMeta = dotobject(election?.meta || {}, 'census')
+  const { isConnected } = useAccount()
+
+  if (
+    election?.status === ElectionStatus.CANCELED ||
+    !!voted ||
+    (isConnected && !isInCensus && census?.type !== 'spreadsheet')
+  )
+    return null
+
+  return (
+    <Flex justifyContent='center' alignItems='center' p={4} background='process.aside.bg' color='process.aside.color'>
+      {census?.type !== 'spreadsheet' && !connected && (
+        <ConnectButton.Custom>
+          {({ account, chain, openConnectModal, authenticationStatus, mounted }) => {
+            const ready = mounted && authenticationStatus !== 'loading'
+            const connected =
+              ready && account && chain && (!authenticationStatus || authenticationStatus === 'authenticated')
+            return (
+              <Box
+                {...(!ready && {
+                  'aria-hidden': true,
+                  style: {
+                    opacity: 0,
+                    pointerEvents: 'none',
+                    userSelect: 'none',
+                  },
+                })}
+                w='full'
+              >
+                {(() => {
+                  if (!connected) {
+                    return (
+                      <Button onClick={openConnectModal} variant='process' fontSize='lg'>
+                        {t('menu.connect').toString()}
+                      </Button>
+                    )
+                  }
+                })()}
+              </Box>
+            )
+          }}
+        </ConnectButton.Custom>
+      )}
+      {census?.type === 'spreadsheet' && !connected && <SpreadsheetAccess />}
+      {isAbleToVote ? (
+        <VoteButton variant='process' fontSize='lg' onClick={setQuestionsTab} />
+      ) : (
+        connected && (
+          <Flex justifyContent='center' alignItems='center' height='40px' borderRadius='30px' bgColor='white' w='full'>
+            <Spinner color='primary.500' />
+          </Flex>
+        )
+      )}
     </Flex>
   )
 }

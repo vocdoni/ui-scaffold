@@ -2,7 +2,7 @@ import { Box, Flex, Icon, Link } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { IoCloseOutline } from 'react-icons/io5'
 import { Outlet, useNavigate } from 'react-router-dom'
-import Logo from '../components/Layout/Logo'
+import Logo from '~components/Layout/Logo'
 
 const LayoutProcessCreate = () => {
   const { t } = useTranslation()

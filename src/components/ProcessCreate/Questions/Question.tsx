@@ -1,8 +1,8 @@
 import { DeleteIcon } from '@chakra-ui/icons'
 import { Box, FormControl, FormErrorMessage, IconButton, Input, Text, Textarea } from '@chakra-ui/react'
-import { fieldMapErrorMessage, isInvalidFieldMap } from '@constants'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { fieldMapErrorMessage, isInvalidFieldMap } from '~constants'
 import Options from './Options'
 
 interface Props {
