@@ -35,7 +35,7 @@ const connectors = connectorsForWallets([
         id: 'github',
         chains,
         name: 'Github',
-        iconUrl: 'https://authjs.dev/img/providers/github.svg',
+        iconUrl: 'https://authjs.dev/img/providers/github-dark.svg',
         options: {
           oAuthServiceUrl: 'https://oauth.vocdoni.io/',
           oAuthServiceProvider: 'github',

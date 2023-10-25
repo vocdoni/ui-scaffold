@@ -1,9 +1,9 @@
 import { Box, Flex, ListItem, Spinner, Text, UnorderedList } from '@chakra-ui/react'
-import { Claim } from '@components/Faucet/Claim'
 import { useClient } from '@vocdoni/react-providers'
 import { UnpublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { Claim } from '~components/Faucet/Claim'
 import { useProcessCreationSteps } from './Steps/use-steps'
 
 export const CostPreview = ({
@@ -36,13 +36,11 @@ export const CostPreview = ({
       })
       .catch((e) => {
         console.error('could not estimate election cost:', e)
+        // set as NaN to ensure the "create" button is enabled (because it checks for a number)
+        // this way the user can still create the election even tho the cost could not be estimated
         setCost(NaN)
       })
   }, [cost, unpublished])
-
-  if (typeof cost === 'undefined') {
-    return <Spinner />
-  }
 
   return (
     <Flex flexDirection='column' gap={2} mb={5}>
@@ -66,7 +64,9 @@ export const CostPreview = ({
                       components={{
                         span: <Text as='span' />,
                       }}
-                      count={addresses.length}
+                      values={{
+                        count: addresses.length,
+                      }}
                     />
                   </Text>
                 </ListItem>
@@ -89,7 +89,7 @@ export const CostPreview = ({
                 </ListItem>
 
                 {anonymous && (
-                  <ListItem fontSize='sm'>
+                  <ListItem>
                     <Text display='flex' justifyContent='space-between' fontSize='sm'>
                       <Trans
                         i18nKey='form.process_create.confirm.params'
@@ -102,19 +102,64 @@ export const CostPreview = ({
                 )}
               </UnorderedList>
             </Box>
-            <Text display='flex' justifyContent='space-between' fontWeight='bold' fontSize='sm'>
-              <Trans
-                i18nKey='form.process_create.confirm.total'
-                components={{
-                  span: <Text as='span' />,
-                }}
-                count={cost}
-              />
-            </Text>
+            <UnorderedList m={0}>
+              <ListItem display='flex' justifyContent='space-between' fontWeight='bold' fontSize='sm'>
+                <Trans
+                  i18nKey='form.process_create.confirm.total'
+                  components={{
+                    span: <Text as='span' />,
+                  }}
+                  values={{
+                    cost,
+                  }}
+                />
+              </ListItem>{' '}
+              <ListItem display='flex' justifyContent='space-between' fontWeight='bold' fontSize='sm'>
+                <Trans
+                  i18nKey='form.process_create.confirm.balance'
+                  components={{
+                    span: <Text as='span' />,
+                  }}
+                  values={{
+                    balance: account!.balance,
+                  }}
+                />
+              </ListItem>
+              <ListItem display='flex' justifyContent='space-between' fontWeight='bold' fontSize='sm'>
+                <Trans
+                  i18nKey='form.process_create.confirm.result'
+                  components={{
+                    span: <Text as='span' />,
+                    span2: (
+                      <Text
+                        as='span'
+                        color={account!.balance - cost < 0 ? 'process_create.preview_negative_balance' : ''}
+                      />
+                    ),
+                  }}
+                  values={{
+                    remainTokens: account!.balance - cost,
+                  }}
+                />
+              </ListItem>
+            </UnorderedList>
           </>
         )}
       </Flex>
-      <Text>{cost > account!.balance && <Claim />}</Text>
+      {cost && cost > account!.balance && (
+        <Flex flexDir='column' gap={2}>
+          <Text>
+            <Trans
+              i18nKey='faucet.request_tokens.description'
+              components={{
+                span: <Text as='span' />,
+              }}
+              values={{ balance: account?.balance }}
+            />
+          </Text>
+          <Claim />
+        </Flex>
+      )}
     </Flex>
   )
 }

@@ -38,7 +38,7 @@
     },
     "confirm": {
       "cancel": "Cancelar",
-      "confirm": "Confirmar",
+      "confirm": "Confirmar Voto",
       "title": "Confirmar"
     },
     "empty": "Aparentemente este proceso no tiene preguntas",
@@ -53,7 +53,7 @@
       "title": "Resultados para \"{{ title }}\"",
       "votes": "Votos: {{ votes }} ({{ percent }})"
     },
-    "schedule": "Votando desde el {{ begin }} hasta {{ end }}",
+    "schedule": "Votación desde el {{ begin }} hasta {{ end }}",
     "spreadsheet": {
       "access_button": "Identificarse",
       "close": "Cerrar",
@@ -74,7 +74,7 @@
       "button": "Votar",
       "button_update": "Reenviar voto",
       "confirm": "Confirma tus selecciones:",
-      "voted_description": "Para verificar tu voto, puedes usar esta identificación única: {{ id }}",
+      "voted_description": "Para verificar tu voto, puedes utilizar este identificador único: {{ id }}",
       "voted_title": "¡Tu voto se ha registrado con éxito!"
     }
   },
@@ -114,11 +114,14 @@
       "description2": "Si necesitas más tokens para desarrollar sobre la plataforma de Vocdoni, puedes ponerte en contacto con nosotros en tokens (at) vocdoni.io",
       "title": "Información General"
     },
+    "login_first": "Debes iniciar sesión primero.",
+    "request_description": "Para obtener más tokens de Vocdoni, debes iniciar sesión con una cuenta social (para evitar el mal uso del grifo). Solo solicitamos acceso de lectura.",
     "request_tokens": {
       "description": "Tienes {{ balance }} tokens. No tienes suficientes tokens para crear el proceso. Para obtener más, debes iniciar sesión con una cuenta social (para evitar el mal uso del grifo). Solo solicitamos acceso de lectura.",
       "title": "Solicitar Tokens"
     },
-    "title": "Faucet de Tokens Vocdoni"
+    "title": "Faucet de Tokens Vocdoni",
+    "tokens_you_own": "Tienes {{ balance }} tokens."
   },
   "footer": {
     "about": "Acerca de",
@@ -138,7 +141,7 @@
   "form": {
     "account_create": {
       "description_helper": "Una breve descripción de tu organización",
-      "description_placeholder": "Descripción (opcional). Acepta texto en formato Markdown.",
+      "description_placeholder": "Descripción (opcional)",
       "title_helper": "El nombre de la organización",
       "title_placeholder": "El nombre de la organización"
     },
@@ -197,20 +200,21 @@
       },
       "confirm": {
         "anonymous": "Anónimo",
+        "balance": "<span>Dispones de:</span><span> {{ balance }} tokens</span>",
         "census": "Censo",
         "census_preview_is_shortened": "(la lista previa está limitada a {{ limit }} resultados)",
+        "census_total": "",
         "census_total_one": "<span>Votantes:</span><span>{{ count }} votante</span>",
         "census_total_many": "",
         "census_total_other": "<span>Votantes:</span><span>{{ count }} votantes</span>",
         "census_total_people_one": "Una persona podrá votar en esta votación",
         "census_total_people_many": "{{ count }} personas podrán votar en esta votación",
         "census_total_people_other": "",
-        "close": "Cerrar",
         "configuration": "Configuración",
         "confirmation": "Confirmación",
         "confirmation_terms_and_conditions": "Acepto los <link>términos y condiciones</link> de Vocdoni",
         "confirmation_valid_info": "Confirmo que esta información es correcta y válida",
-        "cost_description": "",
+        "cost_description": "Basado en diferentes parámetros, como el tamaño del censo, la duración de las elecciones y su comportamiento, aquí veréis el precio de vuestras elecciones.",
         "cost_title": "Previsión de coste",
         "create_button": "Crear",
         "dates": "Fecha",
@@ -223,16 +227,15 @@
         "questions_one": "Pregunta",
         "questions_many": "Preguntas",
         "questions_other": "Preguntas",
+        "result": "<span>Después de crear la votación:</span><span2>{{ remainTokens }} tokens</span2>",
         "secret_until_the_end": "Secreto hasta el final",
         "title": "Vista previa y costos de votación",
         "title_election": "Título",
-        "total_one": "<span>Total:</span> <span>{{ count }} token</span>",
-        "total_many": "",
-        "total_other": "<span>Total:</span> <span>{{ count }} tokens</span>",
+        "total": "<span>Total:</span> <span>{{ cost }} tokens</span>",
         "vote_overwritte": "Sobrescribir voto"
       },
       "confirm_spreadsheet_removal": "Seguro? Piensa que al hacerlo se eliminará el fichero que has cargado.",
-      "creating_process": "Creando proceso...",
+      "creating_process": "Creando Proceso de Votación...",
       "meta": {
         "description": "Proporciona un título y descripción claros. Esto ayudará a los votantes a entender el propósito de la votación.",
         "description_helper": "Una breve descripción de tu votación",
@@ -288,14 +291,13 @@
       "spreadsheet_total_rows_other": "",
       "steps": {
         "census": "Censo",
-        "checks": "Comprobaciones",
+        "checks": "Organización",
         "confirm": "Confirmar",
         "info": "Info",
         "questions": "Preguntas"
       },
       "success_description": "Redirigiéndote a la página del proceso de votación...",
       "success_title": "Proceso de votación creado con éxito",
-      "unhealthy_account": "Debes crear una organización antes de crear la primera votación.",
       "web3": {
         "census_members_one": "<span>1 miembro</span> <text> en el censo</text>",
         "census_members_many": "",
@@ -333,6 +335,24 @@
     "privacy": "Privacidad",
     "terms": "Términos",
     "wallet": "Billetera"
+  },
+  "meta": {
+    "length": "{{ length }} / {{ maxLength }} caracteres.",
+    "maxLength": "Longitud máxima alcanzada"
+  },
+  "new_organization": {
+    "anonyomus": "Anónimo",
+    "censorship": "<span>Resistencia</span><span>a la Censura</span>",
+    "create_organization_btn": "Crear Organización",
+    "description1": "Antes de comenzar a crear su proceso de votación, <span>debe crear una organización</span>, es gratuito. Con una organización, podrá crear una amplia gama de elecciones y dar voz a los miembros de su comunidad.",
+    "description2": "Como <span>paquete de bienvenida</span>, recibirá 1000 tokens gratis para comenzar a utilizar nuestra plataforma.",
+    "footer": "<span>Vocdoni</span> es un protocolo de votación público seguro, respetuoso con la privacidad y de código abierto.",
+    "inexpensive": "Económico",
+    "name": "Nombre de la organización",
+    "open_source": "<span>Código</span><span>Abierto</span>",
+    "scalable": "Escalable",
+    "title": "Nueva Organización",
+    "verificable": "Verificable"
   },
   "open_in_explorer": "Abrir en explorador",
   "organization": {
@@ -380,9 +400,9 @@
     "share_title": "Compartir en {{ network }}",
     "spreadsheet": {
       "confirm": {
-        "option": "Opción",
-        "question": "Pregunta",
-        "text1": "Antes de emitir tu voto, revisa que todo esté correcto."
+        "description": "Antes de emitir tu voto, revisa que todo esté correcto.",
+        "option": "<strong>Opción {{ number }}:</strong> {{ answer }}",
+        "question": "<strong>Pregunta {{ number }}:</strong> {{ answer }}"
       }
     },
     "status": {
@@ -413,9 +433,8 @@
       "done": "Creación del proceso",
       "sign_tx": "Firmar transacción"
     },
-    "creation_steps_description": "Se está creando el proceso de votación. Este procedimiento puede tardar un rato (no cierres esta ventana) mientras queda registrada toda la información en la blockchain privada y segura de Vocdoni.",
-    "creation_steps_title": "Progreso",
-    "do_not_close": "Esta acción puede llevar algún tiempo, no cierres esta ventana"
+    "creation_steps_description": "Necesitas firmar las transacciones para crear el proceso de votación en la cadena de bloques de Vocdoni. No cierres esta ventana.",
+    "creation_steps_title": "Progreso"
   },
   "uploader": {
     "click_or_drag_and_drop": "<p1>Sube o arrastra y suelta aqui la lista de votantes</p1><p2>(Formap permitidos: CSV, XLSX y ODS)</p2>",

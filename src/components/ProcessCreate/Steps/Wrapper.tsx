@@ -8,6 +8,7 @@ const Wrapper = ({ ...props }) => (
     display='flex'
     justifyContent='start'
     minH={{ md: '85vh' }}
+    gap={5}
     {...props}
   />
 )

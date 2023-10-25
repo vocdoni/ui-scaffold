@@ -1,12 +1,14 @@
-import { Box, FormControl, FormErrorMessage, FormLabel, Input, Text, Textarea } from '@chakra-ui/react'
-import { fieldMapErrorMessage, isInvalidFieldMap } from '@constants'
+import { InfoOutlineIcon } from '@chakra-ui/icons'
+import { Box, FormControl, FormErrorMessage, FormHelperText, FormLabel, Input, Text, Textarea } from '@chakra-ui/react'
 import { useFormContext } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
+import { fieldMapErrorMessage, isInvalidFieldMap } from '~constants'
 
 const CreateProcessMeta = () => {
   const {
     register,
     formState: { errors },
+    watch,
   } = useFormContext()
   const { t } = useTranslation()
 
@@ -15,6 +17,11 @@ const CreateProcessMeta = () => {
     message: t('form.error.field_is_required'),
   }
 
+  const title = watch('title')
+  const description = watch('description')
+
+  const maxLengthTitle = 500
+  const maxLengthDescription = 10000
   return (
     <>
       <Box>
@@ -33,8 +40,21 @@ const CreateProcessMeta = () => {
             </FormLabel>
             <Input
               {...register('title', { required })}
+              maxLength={20}
               placeholder={t('form.process_create.meta.title_placeholder').toString()}
             />
+            {title && title.length > (maxLengthTitle * 70) / 100 && (
+              <FormHelperText>
+                <InfoOutlineIcon />
+                <Text>
+                  {title.length !== maxLengthTitle ? (
+                    <Trans i18nKey='meta.length' values={{ maxLength: maxLengthTitle, length: title.length }} />
+                  ) : (
+                    <Trans i18nKey='meta.maxLength' />
+                  )}
+                </Text>
+              </FormHelperText>
+            )}
             <FormErrorMessage>{fieldMapErrorMessage(errors, `title`)}</FormErrorMessage>
           </FormControl>
 
@@ -44,9 +64,21 @@ const CreateProcessMeta = () => {
             </FormLabel>
             <Textarea
               {...register('description')}
+              maxLength={50}
               placeholder={t('form.process_create.meta.description_placeholder').toString()}
             />
-            <FormErrorMessage>{fieldMapErrorMessage(errors, `description`)}</FormErrorMessage>
+            {description && description.length > (maxLengthDescription * 70) / 100 && (
+              <FormHelperText>
+                <InfoOutlineIcon />
+                <Text>
+                  {title.length !== maxLengthTitle ? (
+                    <Trans i18nKey='meta.length' values={{ maxLength: maxLengthTitle, length: title.length }} />
+                  ) : (
+                    <Trans i18nKey='meta.maxLength' />
+                  )}
+                </Text>
+              </FormHelperText>
+            )}
           </FormControl>
         </Box>
       </Box>

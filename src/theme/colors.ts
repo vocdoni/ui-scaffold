@@ -17,6 +17,7 @@ export const colorsBase = {
     dark: '#175b64',
     dark2: '#2c545a',
   },
+  red: '#E53E3E',
   white: {
     pure: '#ffffff',
     dark: '#fafafa',
@@ -39,6 +40,8 @@ export const colors = {
 
   main_bg: colorsBase.white.dark,
 
+  modal_description: colorsBase.gray.dark,
+
   organization: {
     card: {
       description: colorsBase.gray.dark,
@@ -54,8 +57,15 @@ export const colors = {
       color: colorsBase.white.pure,
       vote_btn_color: colorsBase.black,
       vote_btn_bg: colorsBase.white.pure,
+      aside_footer_mbl_border: colorsBase.white.dark,
     },
     canceled: colorsBase.primary.main,
+    confirm_vote: {
+      active: colorsBase.primary.dark2,
+      bg: colorsBase.primary.main,
+      color: colorsBase.white.pure,
+      hover: colorsBase.primary.dark,
+    },
     info_title: colorsBase.primary.main,
     description: colorsBase.gray.dark,
     identify_btn: {
@@ -89,7 +99,8 @@ export const colors = {
     },
     spreadsheet: {
       disconnect_bg: 'transparent',
-      diconnect_color: colorsBase.gray.dark,
+      disconnect_color_desktop: colorsBase.gray.dark,
+      disconnect_color_mbl: colorsBase.white.pure,
     },
     tabs: {
       active_bg: colorsBase.gray.main,
@@ -116,6 +127,7 @@ export const colors = {
     description: colorsBase.gray.dark,
     description_logo: colorsBase.blue.main,
     preview_option_question_before: colorsBase.black,
+    preview_negative_balance: colorsBase.red,
     section: colorsBase.white.pure,
     spreadsheet: {
       badge: {

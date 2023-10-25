@@ -21,6 +21,8 @@ import { SpreadsheetAccess } from './components/SpreadSheet'
 import { ConfirmModal } from './components/ConfirmModal'
 import { QuestionsConfirmation } from './components/QuestionsConfirmation'
 import { Badge } from './components/Badge'
+import { Modal } from './components/Modal'
+
 export const theme = extendTheme(vtheme, {
   styles: {
     global: {
@@ -29,7 +31,7 @@ export const theme = extendTheme(vtheme, {
         '--box-shadow-banner': '7px 6px 6px -3px rgba(0,0,0,0.37)',
         '--box-shadow': '0px 2px 4px lightgray',
         '--box-shadow-darker': '0px 2px 4px #808080b5',
-        '--vcd-gradient-primary': 'linear-gradient(to right, #9526FC, #2ED3BF)',
+        '--vcd-gradient-primary': 'linear-gradient(to right, #24656e, #2c545a)',
       },
     },
   },
@@ -49,6 +51,7 @@ export const theme = extendTheme(vtheme, {
     ElectionActions,
     Form,
     Link,
+    Modal,
     QuestionsConfirmation,
     Tabs,
     Textarea,
@@ -60,15 +63,15 @@ export const theme = extendTheme(vtheme, {
 export const rainbowStyles = (colormode: ColorMode) => {
   if (colormode === 'light') {
     return lightTheme({
-      accentColor: colorsBase.primary.main,
-      accentColorForeground: colorsBase.white.pure,
+      accentColor: colorsBase.white.pure,
+      accentColorForeground: colorsBase.primary.main,
       borderRadius: 'medium',
     })
   }
 
   return darkTheme({
-    accentColor: colorsBase.primary.main,
-    accentColorForeground: colorsBase.white.pure,
+    accentColor: colorsBase.white.pure,
+    accentColorForeground: colorsBase.primary.main,
     borderRadius: 'medium',
   })
 }

@@ -11,13 +11,13 @@ import {
   Text,
   useBreakpointValue,
 } from '@chakra-ui/react'
-import { addressTextOverflow, fieldMapErrorMessage, isInvalidFieldMap } from '@constants'
 import { enforceHexPrefix, errorToString, useClient } from '@vocdoni/react-providers'
 import { useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { RiFileExcel2Line } from 'react-icons/ri'
+import { addressTextOverflow, fieldMapErrorMessage, isInvalidFieldMap } from '~constants'
 import { Web3CensusSpreadsheetManager } from './Spreadsheet/Web3CensusSpreadsheetManager'
 
 export const CensusWeb3Addresses = () => {
@@ -196,7 +196,7 @@ export const CensusWeb3Addresses = () => {
             p={10}
             border='1px dotted'
             borderColor='process_create.census.drag_and_drop_border'
-            bgColor='process_create.census.bg'
+            bgColor='process_create.bg'
             borderRadius='lg'
             mt={6}
             cursor='pointer'
