@@ -22,7 +22,6 @@ export default defineConfig({
   },
   define: {
     'import.meta.env.VOCDONI_ENVIRONMENT': JSON.stringify(vocdoniEnvironment),
-    'import.meta.env.FAUCET_URL': JSON.stringify(process.env.FAUCET_URL || 'https://api.faucet.vocdoni.io/v2'),
     'import.meta.env.FAUCET_AMOUNT': JSON.stringify(process.env.FAUCET_AMOUNT || 800),
   },
   plugins: [
