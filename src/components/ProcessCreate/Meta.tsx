@@ -40,7 +40,7 @@ const CreateProcessMeta = () => {
             </FormLabel>
             <Input
               {...register('title', { required })}
-              maxLength={20}
+              maxLength={maxLengthTitle}
               placeholder={t('form.process_create.meta.title_placeholder').toString()}
             />
             {title && title.length > (maxLengthTitle * 70) / 100 && (
@@ -64,7 +64,7 @@ const CreateProcessMeta = () => {
             </FormLabel>
             <Textarea
               {...register('description')}
-              maxLength={50}
+              maxLength={maxLengthDescription}
               placeholder={t('form.process_create.meta.description_placeholder').toString()}
             />
             {description && description.length > (maxLengthDescription * 70) / 100 && (
