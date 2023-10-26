@@ -8,7 +8,7 @@ const Faucet = () => {
   const { account } = useClient()
 
   return (
-    <Flex direction='column' gap={4}>
+    <Flex direction='column' gap={4} mt={10}>
       <Grid templateColumns={'repeat(1, 1fr)'} gap={2}>
         <GridItem display='flex' justifyContent='center' alignItems='center'>
           <Box width={'80%'}>
