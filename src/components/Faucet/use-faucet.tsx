@@ -3,6 +3,12 @@ import { useClient } from '@vocdoni/react-providers'
 export const useFaucet = () => {
   const { connected, signer, client } = useClient()
 
+  // TODO: Remove this when the client is updated
+  let {
+    faucetService: { url },
+  } = client
+  url = url.replace(/v2.*/, 'v2')
+
   const oAuthSignInURL = async (
     provider: string,
     redirectURLParams?: { param: string; value: any }[]
@@ -18,7 +24,7 @@ export const useFaucet = () => {
       }
     }
 
-    const response = await fetch(`${client.faucetService.url}/oauth/authUrl/${provider}`, {
+    const response = await fetch(`${url}/oauth/authUrl/${provider}`, {
       method: 'POST',
       body: JSON.stringify({
         redirectURL: redirectURL.toString(),
@@ -35,7 +41,7 @@ export const useFaucet = () => {
     code: string,
     recipient: string
   ): Promise<{ amount: string; faucetPackage: string }> => {
-    const response = await fetch(`${client.faucetService.url}/oauth/claim/${provider}/${code}/${recipient}`)
+    const response = await fetch(`${url}/oauth/claim/${provider}/${code}/${recipient}`)
     const res = await response.json()
     if (res.error) throw new Error(res.error)
     return res
