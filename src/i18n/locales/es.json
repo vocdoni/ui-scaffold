@@ -82,16 +82,16 @@
     "description": "Selecciona cómo los votantes se autenticarán e identificarán: las opciones incluyen datos personalizados, la propiedad de tokens o con direcciones de monedero (wallet addresses).",
     "spreadsheet_title": "Datos personalizados",
     "title": "Censo",
-    "token_description": "Seleccione un token de la lista para crear un censo basado en tokens, donde solo los propietarios de tokens serán elegibles para votar. ¿No encuentras tu token? <customLink>Haz clic aquí</customLink> para añadir más",
+    "token_description": "Seleccione un token de la lista para crear un censo basado en VOC tokens, donde solo los propietarios de VOC tokens serán elegibles para votar. ¿No encuentras tu token? <customLink>Haz clic aquí</customLink> para añadir más",
     "token_title": "Censo basado en tokens",
     "wallet_address_title": "Direcciones de billetera"
   },
   "claim": {
     "error_title": "Error",
-    "loading_description": "Por favor espera mientras se reclaman los tokens",
+    "loading_description": "Por favor espera mientras se reclaman los VOC tokens",
     "loading_title": "Reclamando",
     "success_description": "Éxito",
-    "success_title": "Los tokens han sido reclamados correctamente"
+    "success_title": "Los VOC tokens han sido reclamados correctamente"
   },
   "copy": {
     "address": "Copiar dirección",
@@ -108,20 +108,20 @@
   },
   "error_text": "Lo sentimos, no se encontró la página que buscabas.",
   "faucet": {
-    "description": "Para desarrollar con Vocdoni, necesitas tokens para ciertas acciones (crear una elección, cambiar el estado de una elección, etc.). El número de diferentes factores como el tamaño del censo, la duración de la elección, los parámetros de la elección, etc.",
+    "description": "Para desarrollar con Vocdoni, necesitas VOC tokens para ciertas acciones (crear una elección, cambiar el estado de una elección, etc.). El número de diferentes factores como el tamaño del censo, la duración de la elección, los parámetros de la elección, etc.",
     "general_information": {
-      "description": "Cuando solicites tokens de desarrollo, recibirás {{ amount }} tokens. Puedes reclamar desde el faucet una vez cada 24 horas.",
-      "description2": "Si necesitas más tokens para desarrollar sobre la plataforma de Vocdoni, puedes ponerte en contacto con nosotros en tokens (at) vocdoni.io",
+      "description": "Cuando solicites VOC tokens de desarrollo, recibirás {{ amount }} VOC tokens. Puedes reclamar desde el faucet una vez cada 24 horas.",
+      "description2": "Si necesitas más VOC tokens para desarrollar sobre la plataforma de Vocdoni, puedes ponerte en contacto con nosotros en VOC tokens (at) vocdoni.io",
       "title": "Información General"
     },
     "login_first": "Debes iniciar sesión primero.",
-    "request_description": "Para obtener más tokens de Vocdoni, debes iniciar sesión con una cuenta social (para evitar el mal uso del grifo). Solo solicitamos acceso de lectura.",
+    "request_description": "Para obtener más VOC tokens de Vocdoni, debes iniciar sesión con una cuenta social (para evitar el mal uso del grifo). Solo solicitamos acceso de lectura.",
     "request_tokens": {
-      "description": "Tienes {{ balance }} tokens. No tienes suficientes tokens para crear el proceso. Para obtener más, debes iniciar sesión con una cuenta social (para evitar el mal uso del grifo). Solo solicitamos acceso de lectura.",
-      "title": "Solicitar Tokens"
+      "description": "Tienes {{ balance }} VOC tokens. No tienes suficientes VOC tokens para crear el proceso. Para obtener más, debes iniciar sesión con una cuenta social (para evitar el mal uso del grifo). Solo solicitamos acceso de lectura.",
+      "title": "Solicitar VOC Tokens"
     },
-    "title": "Faucet de Tokens Vocdoni",
-    "tokens_you_own": "Tienes {{ balance }} tokens."
+    "title": "Faucet de VOC Tokens Vocdoni",
+    "tokens_you_own": "Tienes {{ balance }} VOC tokens."
   },
   "footer": {
     "about": "Acerca de",
@@ -200,7 +200,7 @@
       },
       "confirm": {
         "anonymous": "Anónimo",
-        "balance": "<span>Dispones de:</span><span> {{ balance }} tokens</span>",
+        "balance": "<span>Dispones de:</span><span> {{ balance }} VOC tokens</span>",
         "census": "Censo",
         "census_preview_is_shortened": "(la lista previa está limitada a {{ limit }} resultados)",
         "census_total": "",
@@ -227,11 +227,11 @@
         "questions_one": "Pregunta",
         "questions_many": "Preguntas",
         "questions_other": "Preguntas",
-        "result": "<span>Después de crear la votación:</span><span2>{{ remainTokens }} tokens</span2>",
+        "result": "<span>Después de crear la votación:</span><span2>{{ remainTokens }} VOC tokens</span2>",
         "secret_until_the_end": "Secreto hasta el final",
         "title": "Vista previa y costos de votación",
         "title_election": "Título",
-        "total": "<span>Total:</span> <span>{{ cost }} tokens</span>",
+        "total": "<span>Total:</span> <span>{{ cost }} VOC tokens</span>",
         "vote_overwritte": "Sobrescribir voto"
       },
       "confirm_spreadsheet_removal": "Seguro? Piensa que al hacerlo se eliminará el fichero que has cargado.",

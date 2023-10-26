@@ -86,10 +86,10 @@
   },
   "claim": {
     "error_title": "Error",
-    "loading_description": "Please wait while tokens are being claimed",
+    "loading_description": "Please wait while VOC tokens are being claimed",
     "loading_title": "Claiming",
     "success_description": "Success",
-    "success_title": "Tokens were successfully claimed"
+    "success_title": "VOC tokens were successfully claimed"
   },
   "copy": {
     "address": "Copy address",
@@ -106,20 +106,20 @@
   },
   "error_text": "Sorry, the page you were looking for was not found",
   "faucet": {
-    "description": "For developing with Vocdoni, you need tokens for certain actions (create an election, change election status, etc.). The nº of  different factors lik census size, election duration, election params, etc.",
+    "description": "For developing with Vocdoni, you need VOC tokens for certain actions (create an election, change election status, etc.). The nº of  different factors lik census size, election duration, election params, etc.",
     "general_information": {
-      "description": "When you request dev tokens, you'll receive {{ amount }} tokens. You can claim from the faucet once every 24 hours.",
-      "description2": "If you need more tokens for developing on top of the Vocdoni stack, you can connect with us at tokens (at) vocdoni.io",
+      "description": "When you request dev VOC tokens, you'll receive {{ amount }} VOC tokens. You can claim from the faucet once every 24 hours.",
+      "description2": "If you need more VOC tokens for developing on top of the Vocdoni stack, you can connect with us at VOC tokens (at) vocdoni.io",
       "title": "General Information"
     },
     "login_first": "You must login first.",
-    "request_description": "To get vocdoni tokens, you must sign-in with a social account (to prevent missuse of the faucet). We only request read access.",
+    "request_description": "To get vocdoni VOC tokens, you must sign-in with a social account (to prevent missuse of the faucet). We only request read access.",
     "request_tokens": {
-      "description": "You own {{ balance }} tokens. You don't have enough tokens for creating the process. To get more, you must sign-in with a social account (to prevent missuse of the faucet). We only request read access.",
-      "title": "Request Tokens"
+      "description": "You own {{ balance }} VOC tokens. You don't have enough VOC tokens for creating the process. To get more, you must sign-in with a social account (to prevent missuse of the faucet). We only request read access.",
+      "title": "Request VOC Tokens"
     },
-    "title": "Vocdoni Tokens Faucet",
-    "tokens_you_own": "You own {{ balance }} tokens."
+    "title": "Vocdoni VOC Tokens Faucet",
+    "tokens_you_own": "You own {{ balance }} VOC tokens."
   },
   "footer": {
     "about": "About",
@@ -198,7 +198,7 @@
       },
       "confirm": {
         "anonymous": "Anonymous",
-        "balance": "<span>Your own:</span><span> {{ balance }} tokens</span>",
+        "balance": "<span>Your own:</span><span> {{ balance }} VOC tokens</span>",
         "census": "Census",
         "census_preview_is_shortened": "(preview list is limited to {{ limit }} results)",
         "census_total": "",
@@ -222,11 +222,11 @@
         "params": "<span>Params:</span><span>Anonymous</span>",
         "questions_one": "Question",
         "questions_other": "Questions",
-        "result": "<span>After creating the voting:</span><span2>{{ remainTokens }} tokens</span2>",
+        "result": "<span>After creating the voting:</span><span2>{{ remainTokens }} VOC tokens</span2>",
         "secret_until_the_end": "Secret until the end",
         "title": "Voting preview and costs",
         "title_election": "Title",
-        "total": "<span>Total:</span> <span>{{ cost }} tokens</span>",
+        "total": "<span>Total:</span> <span>{{ cost }} VOC tokens</span>",
         "vote_overwritte": "Vote overwritte"
       },
       "confirm_spreadsheet_removal": "Are you sure? Take in mind that the uploaded file will be removed",
