@@ -209,7 +209,7 @@
         "census_total_other": "<span>Votants:</span><span>{{ count }} votants</span>",
         "census_total_people_one": "Una persona podrà votar en aquesta votació",
         "census_total_people_many": "{{ count }} persones podran votar en aquesta votació",
-        "census_total_people_other": "",
+        "census_total_people_other": "{{ count }} persones podran votar en aquesta votació",
         "configuration": "Configuració",
         "confirmation": "Confirmació",
         "confirmation_terms_and_conditions": "Accepto els <link>termes i condicions</link> de Vocdoni",
