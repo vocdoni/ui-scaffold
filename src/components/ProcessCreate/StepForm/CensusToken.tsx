@@ -35,7 +35,7 @@ export const StepFormCensusToken = () => {
         <Trans
           i18nKey='census.token_description'
           components={{
-            customLink: <Link variant='primary' href='https://tally.so/r/mO46VY' target='_blank' />,
+            customLink: <Link variant='primary' href='https://tally.so/r/mO46VY' target='_blank' fontWeight='bold' />,
           }}
         />
       </Text>
