@@ -119,6 +119,7 @@ export const CostPreview = ({
                   i18nKey='form.process_create.confirm.balance'
                   components={{
                     span: <Text as='span' />,
+                    span2: <Text as='span' flex='0 0 50%' display='flex' alignItems='end' justifyContent='end' />,
                   }}
                   values={{
                     balance: account!.balance,
@@ -134,6 +135,10 @@ export const CostPreview = ({
                       <Text
                         as='span'
                         color={account!.balance - cost < 0 ? 'process_create.preview_negative_balance' : ''}
+                        flex='0 0 50%'
+                        display='flex'
+                        alignItems='end'
+                        justifyContent='end'
                       />
                     ),
                   }}

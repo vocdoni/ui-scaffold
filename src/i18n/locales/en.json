@@ -198,7 +198,7 @@
       },
       "confirm": {
         "anonymous": "Anonymous",
-        "balance": "<span>Your own:</span><span> {{ balance }} tokens</span>",
+        "balance": "<span>Your own:</span><span2> {{ balance }} tokens</span2>",
         "census": "Census",
         "census_preview_is_shortened": "(preview list is limited to {{ limit }} results)",
         "census_total": "",
