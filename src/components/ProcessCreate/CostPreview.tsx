@@ -55,7 +55,7 @@ export const CostPreview = ({
         {typeof cost !== 'undefined' && (
           <>
             <Box fontSize='sm'>
-              <Text mb={3}>Your voting process</Text>
+              <Text mb={3}>{t('form.process_create.confirm.cost_subtitle')}</Text>
               <UnorderedList>
                 <ListItem>
                   <Text display='flex' justifyContent='space-between' fontSize='sm'>
