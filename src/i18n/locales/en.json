@@ -211,6 +211,7 @@
         "confirmation_terms_and_conditions": "I accept the <link>Terms and Conditions</link> of Vocdoni",
         "confirmation_valid_info": "I assure that this information is correct and valid",
         "cost_description": "Based on diferent parameters, like the census size, election duration and it's behaivour you will see here the price of yor election.",
+        "cost_subtitle": "Your voting process",
         "cost_title": "Election Price Breakdown",
         "create_button": "Create",
         "dates": "Dates",
