@@ -17,6 +17,7 @@
   "banner_voting_types": {
     "anonymous_description": "Voters' identities remain completely confidential, thanks to cutting-edge zk-SNARKS technology.",
     "anonymous_title": "100% Anonymous",
+    "bottom_text": "Privacy should be normal",
     "flexible_description": "Customize your voting process and participant list to fit your community unique requirements.",
     "flexible_title": "Flexible Voting",
     "token_description": "Vote with ERC20/ERC721 (NFT's) or add your own token and vote gasless with them.",
