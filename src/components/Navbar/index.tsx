@@ -31,10 +31,10 @@ const Navbar = () => {
               colorScheme='primary'
               aria-label={t('menu.new_process')}
               title={t('menu.new_process')}
-              px={{ base: 3.5, sm: 4 }}
+              px={{ base: 3.5, sm2: 4 }}
             >
               <AddIcon boxSize={3} />
-              <Text as='span' display={{ base: 'none', sm: 'inline-block' }}>
+              <Text as='span' display={{ base: 'none', sm2: 'inline-block' }}>
                 {t('menu.new_process')}
               </Text>
             </Link>
@@ -50,10 +50,10 @@ const Navbar = () => {
               color='primary.main'
               aria-label={t('menu.my_org_aria_label')}
               title={t('menu.my_org_aria_label')}
-              px={{ base: 3, sm: 4 }}
+              px={{ base: 3, sm2: 4 }}
             >
               <Icon as={MdHowToVote} />
-              <Text as='span' display={{ base: 'none', sm: 'inline-block' }}>
+              <Text as='span' display={{ base: 'none', sm2: 'inline-block' }}>
                 {t('menu.my_org')}
               </Text>
             </Link>
