@@ -23,7 +23,7 @@ const PreviewCensusSpreadsheet = () => {
 
   return (
     <Flex flexDirection='column' gap={1}>
-      <Box>
+      <Box overflowX='scroll'>
         <Table variant='striped' colorScheme='blackAlpha' fontSize='xs' size='sm'>
           <Thead>
             <Tr>
