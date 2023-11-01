@@ -22,6 +22,7 @@ import { ConfirmModal } from './components/ConfirmModal'
 import { QuestionsConfirmation } from './components/QuestionsConfirmation'
 import { Badge } from './components/Badge'
 import { Modal } from './components/Modal'
+import { Input } from './components/Input'
 
 export const theme = extendTheme(vtheme, {
   styles: {
@@ -50,6 +51,7 @@ export const theme = extendTheme(vtheme, {
     ElectionResults,
     ElectionActions,
     Form,
+    Input,
     Link,
     Modal,
     QuestionsConfirmation,
