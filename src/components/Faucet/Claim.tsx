@@ -7,7 +7,34 @@ import { FaGithub } from 'react-icons/fa'
 import { useFaucet } from './use-faucet'
 
 export const Claim = () => {
-  const { client, connected, account, loading: accoutLoading, loaded: accoutLoaded, fetchAccount } = useClient()
+  const { t } = useTranslation()
+  const { connected } = useClient()
+  const { loading, handleSignIn } = useClaim()
+
+  return (
+    <Flex direction='column' gap={3} fontSize='sm'>
+      {connected && (
+        <Flex direction='row' gap='2'>
+          <Button
+            type='submit'
+            w='full'
+            isLoading={loading}
+            colorScheme='primary'
+            onClick={() => handleSignIn('github')}
+          >
+            <Icon mr={2} as={FaGithub} />
+            {t('login.github')}
+          </Button>
+        </Flex>
+      )}
+
+      {!connected && <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />}
+    </Flex>
+  )
+}
+
+export const useClaim = () => {
+  const { client, account, loading: accoutLoading, loaded: accoutLoaded, fetchAccount } = useClient()
 
   const toast = useToast()
   const { t } = useTranslation()
@@ -97,24 +124,8 @@ export const Claim = () => {
     setPendingClaim(false)
   }
 
-  return (
-    <Flex direction='column' gap={3} fontSize='sm'>
-      {connected && (
-        <Flex direction='row' gap='2'>
-          <Button
-            type='submit'
-            w='full'
-            isLoading={loading}
-            colorScheme='primary'
-            onClick={() => handleSignIn('github')}
-          >
-            <Icon mr={2} as={FaGithub} />
-            {t('login.github')}
-          </Button>
-        </Flex>
-      )}
-
-      {!connected && <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />}
-    </Flex>
-  )
+  return {
+    loading,
+    handleSignIn,
+  }
 }

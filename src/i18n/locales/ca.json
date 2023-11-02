@@ -97,6 +97,17 @@
     "address": "Copia l'adreça",
     "copied_title": "Copiat!"
   },
+  "cost_preview": {
+    "balance": "<span>Disposes de:</span><span2> {{ balance }} tokens</span2>",
+    "button": "Obtenir més Tokens",
+    "census_total_one": "<span>Votants:</span><span>{{ count }} votant</span>",
+    "census_total_other": "<span>Votants:</span><span>{{ count }} votants</span>",
+    "duration": "<span>Durada:</span> <span>{{ date, duration }}</span>",
+    "not_enough_tokens": "No tens prou tokens per crear aquest procés.",
+    "result": "<span>Després de crear la votació:</span><span2>{{ remainTokens }} tokens</span2>",
+    "subtitle": "El teu procés de votació",
+    "total": "<span>Total:</span> <span>{{ cost }} tokens</span>"
+  },
   "error": {
     "go_back": "Torna enrere",
     "invalid_cell_data": "Algunes fileres no contenen adreces correctes: {{rows, list}}",
@@ -117,7 +128,6 @@
     "login_first": "Has d'iniciar sessió primer.",
     "request_description": "Per aconseguir més tokens de Vocdoni, has d'iniciar la sessió amb un compte de xarxes socials (per evitar-ne l'abús). Només demanem accés de lectura.",
     "request_tokens": {
-      "description": "Tens {{ balance }} tokens. No en tens prou per a crear el procés. Per aconseguir-ne més, has d'iniciar la sessió amb un compte de xarxes socials (per evitar-ne l'abús). Només demanem accés de lectura.",
       "title": "Sol·licita Tokens"
     },
     "title": "Faucet de Tokens Vocdoni",
@@ -200,7 +210,6 @@
       },
       "confirm": {
         "anonymous": "Anònim",
-        "balance": "<span>Disposes de:</span><span2> {{ balance }} tokens</span2>",
         "census": "Cens",
         "census_preview_is_shortened": "(la llista prèvia està limitada a {{ limit }} resultats)",
         "census_total": "",
@@ -215,24 +224,19 @@
         "confirmation_terms_and_conditions": "Accepto els <link>termes i condicions</link> de Vocdoni",
         "confirmation_valid_info": "Confirmo que aquesta informació és correcta i vàlida",
         "cost_description": "En funció de diferents paràmetres, com la grandària del cens, la durada de les eleccions i el seu comportament, aquí veureu el preu de les vostres eleccions.",
-        "cost_subtitle": "El vostre procés de votació",
         "cost_title": "Previsió de cost",
         "create_button": "Crear",
         "dates": "Data",
         "description": "En aquesta pàgina, podeu revisar que tota la informació sigui correcta i editar-la en cas que hi hagi algun error. També podeu comprovar el cost del procés de votació i comprar més crèdits en cas que no n'hi tingueu prou.",
         "description_election": "Descripció",
-        "duration_total": "<span>Durada:</span> <span>{{ date, duration }}</span>",
         "edit": "Editar",
         "election_info": "Informació de la Votació",
-        "params": "<span>Paràmetres:</span><span>Anònim</span>",
         "questions_one": "Pregunta",
         "questions_many": "Preguntes",
         "questions_other": "Preguntes",
-        "result": "<span>Després de crear la votació:</span><span2>{{ remainTokens }} tokens</span2>",
         "secret_until_the_end": "Secret fins el final",
         "title": "Vista prèvia i costos de votació",
         "title_election": "Títol",
-        "total": "<span>Total:</span> <span>{{ cost }} tokens</span>",
         "vote_overwritte": "Sobreescriure vot"
       },
       "confirm_spreadsheet_removal": "Estàs segur que vols canviar-ho? Fent-ho s'esborrarà el fitxer que has carregat actualment.",
@@ -307,6 +311,14 @@
       },
       "weighted": "Vot ponderat"
     }
+  },
+  "get_voc_tokens": {
+    "authentification_method": "Seleccioneu el vostre mètode d'autenticació preferit:",
+    "authentification_method_helper": "Podeu guanyar 50 tokens per mètode d'autenticació per setmana",
+    "button": "Sol·licitar Tokens",
+    "description": "<text>Per afegir més tokens, heu d'<strong>iniciar sessió</strong> amb un compte social (per evitar l'ús indegut del faucet).</text><text><strong>Només sol·licitem accés de lectura.</strong></text>",
+    "info": "<text>Si en necessiteu més, poseu-vos en contacte amb <customLink>info@onvote.app</customLink></text>",
+    "title": "Obtenir VOC Tokens"
   },
   "link": {
     "discord": "Enllaç al Discord de Vocdoni",

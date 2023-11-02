@@ -95,6 +95,17 @@
     "address": "Copy address",
     "copied_title": "Copied!"
   },
+  "cost_preview": {
+    "balance": "<span>Your own:</span><span2> {{ balance }} tokens</span2>",
+    "button": "Get more Tokens",
+    "census_total_one": "<span>Voters:</span><span>{{ count }} voter</span>",
+    "census_total_other": "<span>Voters:</span><span>{{ count }} voters</span>",
+    "duration": "<span>Duration:</span> <span>{{ date, duration }}</span>",
+    "not_enough_tokens": "You don't have enough tokens for creating this process.",
+    "result": "<span>After creating the voting:</span><span2>{{ remainTokens }} tokens</span2>",
+    "subtitle": "Your voting process",
+    "total": "<span>Total:</span> <span>{{ cost }} tokens</span>"
+  },
   "error": {
     "go_back": "Go back",
     "invalid_cell_data": "Some rows do not contain correct addresses: {{rows,list(style:short)}}",
@@ -115,7 +126,6 @@
     "login_first": "You must login first.",
     "request_description": "To get vocdoni tokens, you must sign-in with a social account (to prevent missuse of the faucet). We only request read access.",
     "request_tokens": {
-      "description": "You own {{ balance }} tokens. You don't have enough tokens for creating the process. To get more, you must sign-in with a social account (to prevent missuse of the faucet). We only request read access.",
       "title": "Request Tokens"
     },
     "title": "Vocdoni Tokens Faucet",
@@ -198,7 +208,6 @@
       },
       "confirm": {
         "anonymous": "Anonymous",
-        "balance": "<span>Your own:</span><span2> {{ balance }} tokens</span2>",
         "census": "Census",
         "census_preview_is_shortened": "(preview list is limited to {{ limit }} results)",
         "census_total": "",
@@ -211,23 +220,18 @@
         "confirmation_terms_and_conditions": "I accept the <link>Terms and Conditions</link> of Vocdoni",
         "confirmation_valid_info": "I assure that this information is correct and valid",
         "cost_description": "Based on diferent parameters, like the census size, election duration and it's behaivour you will see here the price of yor election.",
-        "cost_subtitle": "Your voting process",
         "cost_title": "Election Price Breakdown",
         "create_button": "Create",
         "dates": "Dates",
         "description": "In this page, you can review all the information is correct and edit it in case of something wrong. Also, you can check the cost of the voting process and purchase more credits in case you don't own enough.",
         "description_election": "Description",
-        "duration_total": "<span>Duration:</span> <span>{{ date, duration }}</span>",
         "edit": "Edit",
         "election_info": "Voting Info",
-        "params": "<span>Params:</span><span>Anonymous</span>",
         "questions_one": "Question",
         "questions_other": "Questions",
-        "result": "<span>After creating the voting:</span><span2>{{ remainTokens }} tokens</span2>",
         "secret_until_the_end": "Secret until the end",
         "title": "Voting preview and costs",
         "title_election": "Title",
-        "total": "<span>Total:</span> <span>{{ cost }} tokens</span>",
         "vote_overwritte": "Vote overwritte"
       },
       "confirm_spreadsheet_removal": "Are you sure? Take in mind that the uploaded file will be removed",
@@ -300,6 +304,14 @@
       },
       "weighted": "Weighted vote"
     }
+  },
+  "get_voc_tokens": {
+    "authentification_method": "Select your prefered authentification method:",
+    "authentification_method_helper": "You can earn 50 token by authetication method per week",
+    "button": "Request Tokens",
+    "description": "<text>To add more tokens you must <strong>sign in</strong> with a social account (to prevent missuse of the faucet).</text><text><strong>We only request read access.</strong></text>",
+    "info": "<text>If you need more, contact to <customLink>info@onvote.app</customLink></text>",
+    "title": "Get VOC Tokens"
   },
   "link": {
     "discord": "Link to Vocdoni's discord",
