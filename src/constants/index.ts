@@ -3,7 +3,7 @@ import { FieldErrors, FieldValues, useFormContext } from 'react-hook-form'
 
 export const FormatDate = 'dd/MM/yyyy'
 
-const evocdoni = import.meta.env.VOCDONI_ENVIRONMENT || 'stg'
+const evocdoni = import.meta.env.VOCDONI_ENVIRONMENT
 
 let explorer = 'https://explorer.vote'
 if (['stg', 'dev'].includes(evocdoni)) {
