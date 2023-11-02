@@ -98,11 +98,11 @@ const EditProfile = ({ callback }: { callback?: any }) => {
     <>
       <Modal isOpen={isOpen} onClose={() => !loading && onClose()}>
         <ModalOverlay />
-        <ModalContent p={3} minW={{ md: '700px' }}>
+        <ModalContent minW={{ md: '600px' }}>
           <Box>
             <ModalHeader>{t('menu.organization')}</ModalHeader>
             <ModalCloseButton />
-            <ModalBody pb={5}>
+            <ModalBody>
               <Flex
                 as='form'
                 direction='column'
