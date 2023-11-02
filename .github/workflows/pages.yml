@@ -2,7 +2,7 @@ name: Deploy to GH pages
 
 on:
   push:
-    branches: [main]
+    branches: [d/erc]
 
 permissions:
   contents: write
