@@ -132,6 +132,7 @@
     "homepage": "Home",
     "repos": "Open-source Code",
     "resources": "Resources",
+    "terms_and_privacy": "<link1>Terms of use</link1> & <link2>Privacy Policy</link2>",
     "tutorials": "Tutorials",
     "vocdoni_api": "Vocdoni API",
     "vocdoni_app": "Vocdoni APP"

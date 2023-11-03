@@ -1,6 +1,6 @@
 import { Box, Code, Flex, Icon, Img, Link, List, ListItem, Text } from '@chakra-ui/react'
 import { HR } from '@vocdoni/chakra-components'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa'
 import poweredBy from '/assets/powered_by_aragon.png'
 import logo from '/assets/vocdoni_logo.svg'
@@ -124,14 +124,13 @@ const Footer = () => {
           Copyrights 2023 Vocdoni, Inc. All rights reserved
         </Code>
         <Code bg='bg_main'>
-          <Link href='https://aragon.org/terms-and-conditions' target='_blank'>
-            Terms of use
-          </Link>{' '}
-          &
-          <Link href='https://aragon.org/privacy-policy' target='_blank'>
-            {' '}
-            Privacy Policy
-          </Link>
+          <Trans
+            i18nKey='footer.terms_and_privacy'
+            components={{
+              link1: <Link href='https://aragon.org/terms-and-conditions' target='_blank' />,
+              link2: <Link href='https://aragon.org/privacy-policy' target='_blank' />,
+            }}
+          />
         </Code>
 
         <Flex justifyContent='center' alignItems='center' gap={6} mb={4}>
