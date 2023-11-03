@@ -140,6 +140,7 @@
   },
   "form": {
     "account_create": {
+      "delete_image": "Eliminar imagen",
       "description_helper": "Una breve descripción de tu organización",
       "description_placeholder": "Descripción (opcional)",
       "title_helper": "El nombre de la organización",
@@ -187,6 +188,8 @@
       },
       "census": {
         "add_button": "Añadir",
+        "add_new_address": "Añade una nueva dirección",
+        "delete_web3_address": "",
         "max_census_slider_arialabel": "Selector deslizante de participación máxima esperada",
         "max_census_slider_label": "Participación máxima esperada:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} votantes elegibles)",
@@ -203,7 +206,7 @@
         "balance": "<span>Dispones de:</span><span2> {{ balance }} tokens</span2>",
         "census": "Censo",
         "census_preview_is_shortened": "(la lista previa está limitada a {{ limit }} resultados)",
-        "census_total": "",
+        "census_total": "Eliminar direccion con indice {{ index }}",
         "census_total_one": "<span>Votantes:</span><span>{{ count }} votante</span>",
         "census_total_many": "",
         "census_total_other": "<span>Votantes:</span><span>{{ count }} votantes</span>",
@@ -255,13 +258,14 @@
       "question": {
         "add_new_option": "Añadir opción",
         "add_question": "Añadir pregunta",
+        "delete_option": "Eliminar opcion número {{ option }} de la pregunta {{ question }}",
         "description": "Agrega las preguntas junto con las opciones que tus votantes deberán elegir. Tienes la flexibilidad de agregar varias preguntas, cada una con un número personalizado de opciones seleccionables.",
         "description_placeholder": "Escribe aquí una descripción de la pregunta",
         "option_placeholder": "Opción",
+        "question_delete": "Eliminar pregunta {{ num }}",
         "title": "Preguntas",
         "title_placeholder": "Título de tu pregunta"
       },
-      "question_delete": "Eliminar pregunta {{ num }}",
       "question_identifier": "Pregunta {{ num }}",
       "question_placeholder": "Título de la pregunta {{ num }}",
       "question_title": "Título",

@@ -126,7 +126,7 @@ const EditProfile = ({ callback }: { callback?: any }) => {
                     </AspectRatio>
                     {correctAvatarFormat(avatar) && (
                       <IconButton
-                        aria-label='trash icon'
+                        aria-label={t('form.account_create.delete_image')}
                         icon={<BiTrash />}
                         onClick={() => setValue('avatar', '')}
                         position='absolute'

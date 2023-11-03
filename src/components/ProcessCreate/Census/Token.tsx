@@ -98,6 +98,7 @@ export const CensusTokens = () => {
         <AsyncSelect
           ref={selectRef}
           placeholder={t('form.process_create.census.tokens_placeholder')}
+          aria-label={t('form.process_create.census.tokens_placeholder')}
           cacheOptions
           defaultOptions
           defaultValue={ct}

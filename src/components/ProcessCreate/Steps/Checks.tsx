@@ -5,8 +5,8 @@ import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AccountCreate } from '~components/Account/Create'
 import { useAccountHealthTools } from '~components/Account/use-account-health-tools'
-import { useProcessCreationSteps } from './use-steps'
 import Wrapper from './Wrapper'
+import { useProcessCreationSteps } from './use-steps'
 
 export const Checks = () => {
   const {

@@ -130,6 +130,7 @@ export const CensusWeb3Addresses = () => {
                     handleAddAddress()
                   }
                 }}
+                aria-label={t('form.process_create.census.add_new_address')}
               />
               <FormErrorMessage>{fieldMapErrorMessage(errors, 'newAddress')}</FormErrorMessage>
             </Box>
@@ -165,7 +166,9 @@ export const CensusWeb3Addresses = () => {
                   size='xs'
                   type='button'
                   icon={<DeleteIcon />}
-                  aria-label='delete option'
+                  aria-label={t('form.process_create.census.delete_web3_address', {
+                    values: { index: index },
+                  })}
                   onClick={() => remove(index)}
                   ml='auto'
                 />
