@@ -189,7 +189,7 @@
       "census": {
         "add_button": "Añadir",
         "add_new_address": "Añade una nueva dirección",
-        "delete_web3_address": "",
+        "delete_web3_address": "Eliminar direccion con índice {{ index }}",
         "max_census_slider_arialabel": "Selector deslizante de participación máxima esperada",
         "max_census_slider_label": "Participación máxima esperada:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} votantes elegibles)",
@@ -206,7 +206,7 @@
         "balance": "<span>Dispones de:</span><span2> {{ balance }} tokens</span2>",
         "census": "Censo",
         "census_preview_is_shortened": "(la lista previa está limitada a {{ limit }} resultados)",
-        "census_total": "Eliminar direccion con indice {{ index }}",
+        "census_total": "",
         "census_total_one": "<span>Votantes:</span><span>{{ count }} votante</span>",
         "census_total_many": "",
         "census_total_other": "<span>Votantes:</span><span>{{ count }} votantes</span>",
