@@ -134,6 +134,7 @@
     "homepage": "Inicio",
     "repos": "Código abierto",
     "resources": "Recursos",
+    "terms_and_privacy": "<link1>Términos de uso</link1> y <link2>Política de privacidad</link2>",
     "tutorials": "Tutoriales",
     "vocdoni_api": "API de Vocdoni",
     "vocdoni_app": "APP de Vocdoni"

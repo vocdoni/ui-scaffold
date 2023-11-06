@@ -134,6 +134,7 @@
     "homepage": "Inici",
     "repos": "Codi Obert",
     "resources": "Recursos",
+    "terms_and_privacy": "<link1>Termes d'ús</link1> i <link2>Política de privacitat</link2>",
     "tutorials": "Tutorials",
     "vocdoni_api": "API de Vocdoni",
     "vocdoni_app": "APP de Vocdoni"
