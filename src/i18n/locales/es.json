@@ -148,7 +148,8 @@
     "edit_profile": {
       "avatar_helper": "Imagen/logotipo de tu organización",
       "avatar_placeholder": "URL de la imagen",
-      "btn": "Guardar"
+      "btn": "Guardar",
+      "title": "Editar Organización"
     },
     "error": {
       "address_already_in_use": "Esta dirección ya está en el censo",

@@ -148,7 +148,8 @@
     "edit_profile": {
       "avatar_helper": "Imatge/logotip de la teva organització",
       "avatar_placeholder": "URL de la imatge",
-      "btn": "Desar"
+      "btn": "Desar",
+      "title": "Editar Orgnaització"
     },
     "error": {
       "address_already_in_use": "Aquesta adreça ja és al cens",
@@ -332,7 +333,7 @@
     "my_org": "La Meva Org",
     "my_org_aria_label": "La meva organització",
     "new_process": "Crear Votació",
-    "organization": "Editar Organització",
+    "organization": "Edita Organització",
     "privacy": "Privadesa",
     "terms": "Termes",
     "wallet": "Cartera"

@@ -100,7 +100,7 @@ const EditProfile = ({ callback }: { callback?: any }) => {
         <ModalOverlay />
         <ModalContent minW={{ md: '600px' }}>
           <Box>
-            <ModalHeader>{t('menu.organization')}</ModalHeader>
+            <ModalHeader>{t('form.edit_profile.title')}</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
               <Flex
