@@ -22,7 +22,6 @@ import {
   Election,
   ElectionCreationSteps,
   ElectionStatus,
-  ensure0x,
   EnvOptions,
   IElectionParameters,
   IPublishedElectionParameters,
@@ -32,6 +31,7 @@ import {
   UnpublishedElection,
   VocdoniCensus3Client,
   WeightedCensus,
+  ensure0x,
 } from '@vocdoni/sdk'
 import { useEffect, useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
@@ -43,8 +43,8 @@ import { CostPreview } from '../CostPreview'
 import { CreationProgress, Steps } from '../CreationProgress'
 import { Web3Address } from '../StepForm/CensusWeb3'
 import { Option } from '../StepForm/Questions'
-import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 import Wrapper from './Wrapper'
+import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 import imageHeader from '/assets/spreadsheet-confirm-modal.jpeg'
 
 export const Confirm = () => {
@@ -210,7 +210,7 @@ export const Confirm = () => {
                         <Trans
                           i18nKey='form.process_create.confirm.confirmation_terms_and_conditions'
                           components={{
-                            link: (
+                            customLink: (
                               <Link variant='primary' href='https://aragon.org/terms-and-conditions' target='_blank' />
                             ),
                           }}
