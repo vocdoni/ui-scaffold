@@ -215,7 +215,7 @@
         "census_total_people_other": "{{ count }} personas podrán votar en esta votación",
         "configuration": "Configuración",
         "confirmation": "Confirmación",
-        "confirmation_terms_and_conditions": "Acepto los <link>términos y condiciones</link> de Vocdoni",
+        "confirmation_terms_and_conditions": "Acepto los <customLink>términos y condiciones</customLink> de Vocdoni",
         "confirmation_valid_info": "Confirmo que esta información es correcta y válida",
         "cost_description": "Basado en diferentes parámetros, como el tamaño del censo, la duración de las elecciones y su comportamiento, aquí veréis el precio de vuestras elecciones.",
         "cost_subtitle": "Vuestro proceso de votación",

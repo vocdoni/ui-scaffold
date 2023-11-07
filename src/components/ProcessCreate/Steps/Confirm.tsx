@@ -210,13 +210,8 @@ export const Confirm = () => {
                         <Trans
                           i18nKey='form.process_create.confirm.confirmation_terms_and_conditions'
                           components={{
-                            link: (
-                              <Link
-                                variant='primary'
-                                href='https://aragon.org/terms-and-conditions'
-                                target='_blank'
-                                aria-label='link aragon.org'
-                              />
+                            customLink: (
+                              <Link variant='primary' href='https://aragon.org/terms-and-conditions' target='_blank' />
                             ),
                           }}
                         />
