@@ -39,6 +39,7 @@ export const CostPreview = ({
   const { account, client } = useClient()
   const [cost, setCost] = useState<number | undefined>()
   const { form } = useProcessCreationSteps()
+  const { loading, handleSignIn } = useClaim()
   const {
     addresses,
     startDate,
@@ -188,7 +189,7 @@ export const CostPreview = ({
             {t('cost_preview.button')}
           </Button>
           <Modal isOpen={isOpen} onClose={onClose}>
-            <GetVocTokens />
+            <GetVocTokens handleSignIn={handleSignIn} loading={loading} />
           </Modal>
         </Flex>
       )}
@@ -196,13 +197,15 @@ export const CostPreview = ({
   )
 }
 
-const GetVocTokens = () => {
+const GetVocTokens = ({
+  loading,
+  handleSignIn,
+}: {
+  loading: boolean
+  handleSignIn: (provider: string) => Promise<void>
+}) => {
   const { t } = useTranslation()
-
-  const { loading, handleSignIn } = useClaim()
   const [socialAccount, setSocialAccount] = useState('')
-
-  const faucetAmount = import.meta.env.FAUCET_AMOUNT
 
   return (
     <>
@@ -360,7 +363,7 @@ const GetVocTokens = () => {
             <Trans
               i18nKey='get_voc_tokens.authentification_method_helper'
               values={{
-                faucetAmount,
+                faucetAmount: import.meta.env.FAUCET_AMOUNT,
               }}
             />
           </Text>
