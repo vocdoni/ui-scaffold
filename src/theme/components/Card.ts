@@ -170,8 +170,38 @@ const noElections = definePartsStyle({
   },
 })
 
+const typesVoting = definePartsStyle({
+  container: {
+    border: '1px solid lightgray',
+    bgColor: 'transparent',
+    py: 3,
+    px: 5,
+    borderRadius: '3xl',
+    opacity: '0.8',
+  },
+  header: {
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: { base: 'lg', xl: 'xl' },
+    display: 'flex',
+    alignItems: 'center',
+    gap: 2,
+    p: 0,
+    py: 4,
+
+    '& svg': {
+      boxSize: { base: 7, xl: 9 },
+    },
+  },
+  body: {
+    p: 0,
+    pb: 3,
+  },
+})
+
 const variantsCards = {
   detailed,
   'no-elections': noElections,
+  'types-voting': typesVoting,
 }
 export const Card = defineMultiStyleConfig({ variants: variantsCards })
