@@ -22,8 +22,8 @@ const PreviewCensusSpreadsheet = () => {
   if (!spreadsheet || !data) return null
 
   return (
-    <Flex flexDirection='column' gap={1}>
-      <Box overflowX='scroll'>
+    <Flex flexDirection='column' gap={1} maxW='100%'>
+      <Box overflowX='scroll' maxW='100%'>
         <Table variant='striped' colorScheme='blackAlpha' fontSize='xs' size='sm'>
           <Thead>
             <Tr>
