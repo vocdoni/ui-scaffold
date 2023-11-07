@@ -98,6 +98,18 @@
     "address": "Copiar dirección",
     "copied_title": "¡Copiado!"
   },
+  "cost_preview": {
+    "balance": "<span>Dispones de:</span><span2> {{ balance }} tokens</span2>",
+    "button": "Obtener más Tokens",
+    "census_total_one": "<span>Votantes:</span><span>{{ count }} votante</span>",
+    "census_total_many": "<span>Votantes:</span><span>{{ count }} votantes</span>",
+    "census_total_other": "<span>Votantes:</span><span>{{ count }} votantes</span>",
+    "duration": "<span>Duración:</span> <span>{{ date, duration }}</span>",
+    "not_enough_tokens": "No tienes suficientes tokens para crear este proceso.",
+    "result": "<span>Después de crear la votación:</span><span2>{{ remainTokens }} tokens</span2>",
+    "subtitle": "Tu proceso de votación",
+    "total": "<span>Total:</span> <span>{{ cost }} tokens</span>"
+  },
   "error": {
     "go_back": "Volver atrás",
     "invalid_cell_data": "Algunas filas no contienen direcciones correctas: {{rows, list}}",
@@ -118,7 +130,6 @@
     "login_first": "Debes iniciar sesión primero.",
     "request_description": "Para obtener más tokens de Vocdoni, debes iniciar sesión con una cuenta social (para evitar el mal uso del grifo). Solo solicitamos acceso de lectura.",
     "request_tokens": {
-      "description": "Tienes {{ balance }} tokens. No tienes suficientes tokens para crear el proceso. Para obtener más, debes iniciar sesión con una cuenta social (para evitar el mal uso del grifo). Solo solicitamos acceso de lectura.",
       "title": "Solicitar Tokens"
     },
     "title": "Faucet de Tokens Vocdoni",
@@ -206,7 +217,6 @@
       },
       "confirm": {
         "anonymous": "Anónimo",
-        "balance": "<span>Dispones de:</span><span2> {{ balance }} tokens</span2>",
         "census": "Censo",
         "census_preview_is_shortened": "(la lista previa está limitada a {{ limit }} resultados)",
         "census_total": "",
@@ -221,24 +231,19 @@
         "confirmation_terms_and_conditions": "Acepto los <customLink>términos y condiciones</customLink> de Vocdoni",
         "confirmation_valid_info": "Confirmo que esta información es correcta y válida",
         "cost_description": "Basado en diferentes parámetros, como el tamaño del censo, la duración de las elecciones y su comportamiento, aquí veréis el precio de vuestras elecciones.",
-        "cost_subtitle": "Vuestro proceso de votación",
         "cost_title": "Previsión de coste",
         "create_button": "Crear",
         "dates": "Fecha",
         "description": "En esta página, puedes revisar que toda la información sea correcta y editarla en caso de que haya algún error. También puedes verificar el costo del proceso de votación y comprar más créditos en caso de que no tengas suficientes.",
         "description_election": "Descripción",
-        "duration_total": "<span>Duración:</span> <span>{{ date, duration }}</span>",
         "edit": "Editar",
         "election_info": "Información de Votación",
-        "params": "<span>Parámetros:</span><span>Anónimo</span>",
         "questions_one": "Pregunta",
         "questions_many": "Preguntas",
         "questions_other": "Preguntas",
-        "result": "<span>Después de crear la votación:</span><span2>{{ remainTokens }} tokens</span2>",
         "secret_until_the_end": "Secreto hasta el final",
         "title": "Vista previa y costos de votación",
         "title_election": "Título",
-        "total": "<span>Total:</span> <span>{{ cost }} tokens</span>",
         "vote_overwritte": "Sobrescribir voto"
       },
       "confirm_spreadsheet_removal": "Seguro? Piensa que al hacerlo se eliminará el fichero que has cargado.",
@@ -314,6 +319,15 @@
       },
       "weighted": "Voto ponderado"
     }
+  },
+  "get_voc_tokens": {
+    "authentification_method": "Seleccione su método de autenticación preferido:",
+    "authentification_method_helper": "Puede obtener {{ faucetAmount }} tokens por método de autenticación a la semana",
+    "button": "Solicitar Tokens",
+    "coming_soon": "Próximamente",
+    "description": "<text>Para agregar más tokens, debe <strong>iniciar sesión</strong> con una cuenta social (para prevenir el mal uso del grifo).</text><text><strong>Solo solicitamos acceso de lectura.</strong></text>",
+    "info": "<text>Si necesita más, contacte a <mailto>info@onvote.app</mailto></text>",
+    "title": "Obtener VOC Tokens"
   },
   "link": {
     "discord": "Enlace al Discord de Vocdoni",
