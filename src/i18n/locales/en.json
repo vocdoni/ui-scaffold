@@ -139,6 +139,7 @@
   },
   "form": {
     "account_create": {
+      "delete_image": "Delete image",
       "description_helper": "A brief description of your organization",
       "description_placeholder": "Description (optional)",
       "title_helper": "The organization name",
@@ -186,6 +187,8 @@
       },
       "census": {
         "add_button": "Add",
+        "add_new_address": "add a new address",
+        "delete_web3_address": "Delete address index {{ index }}",
         "max_census_slider_arialabel": "Maximum participation expected slider selector",
         "max_census_slider_label": "Maximum participation expected:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} eligible voters)",
@@ -209,7 +212,7 @@
         "census_total_people_other": "{{ count }} people will be elegible for voting in this process",
         "configuration": "Configuration",
         "confirmation": "Confirmation",
-        "confirmation_terms_and_conditions": "I accept the <link>Terms and Conditions</link> of Vocdoni",
+        "confirmation_terms_and_conditions": "I accept the <customLink>Terms and Conditions</customLink> of Vocdoni",
         "confirmation_valid_info": "I assure that this information is correct and valid",
         "cost_description": "Based on diferent parameters, like the census size, election duration and it's behaivour you will see here the price of yor election.",
         "cost_subtitle": "Your voting process",
@@ -251,13 +254,14 @@
       "question": {
         "add_new_option": "Add option",
         "add_question": "Add question",
+        "delete_option": "Delete option number {{ option }} in question {{ question }}",
         "description": "Add the question/s along with the options that your voters will need to choose from. You have the flexibility to add multiple questions, each with a customized number of selectable options.",
         "description_placeholder": "Write here a description of the question (optional)",
         "option_placeholder": "Option",
+        "question_delete": "Delete question {{ num }}",
         "title": "Questions",
         "title_placeholder": "The title of your question"
       },
-      "question_delete": "Delete question {{ num }}",
       "question_identifier": "Question {{ num }}",
       "question_placeholder": "Question {{ num }} title",
       "question_title": "Title",

@@ -70,7 +70,7 @@ const CreateProcessQuestions = () => {
       <Button
         type='button'
         rightIcon={<AddIcon boxSize={3} />}
-        aria-label='add question'
+        aria-label={t('form.process_create.question.add_question')}
         onClick={() => {
           append({
             title: '',
