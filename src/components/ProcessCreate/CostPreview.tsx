@@ -55,7 +55,6 @@ export const CostPreview = ({
       .estimateElectionCost(unpublished)
       .then((cost) => {
         setCost(cost)
-        disable(cost > account!.balance)
       })
       .catch((e) => {
         console.error('could not estimate election cost:', e)
@@ -64,6 +63,13 @@ export const CostPreview = ({
         setCost(NaN)
       })
   }, [cost, unpublished])
+
+  // disable button if cost is higher than account balance
+  useEffect(() => {
+    if (typeof cost === 'undefined' || !account?.balance) return
+
+    disable(cost > account!.balance)
+  }, [cost, account?.balance])
 
   return (
     <Flex flexDirection='column' gap={2} mb={5}>
