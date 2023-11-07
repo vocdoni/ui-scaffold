@@ -3,10 +3,19 @@ import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { errorToString, useClient } from '@vocdoni/react-providers'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FaGithub } from 'react-icons/fa'
+import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa'
 import { useFaucet } from './use-faucet'
 
-export const Claim = () => {
+type signinUrlParams = {
+  param: string
+  value: any
+}
+
+type ClaimProps = {
+  signinUrlParams?: signinUrlParams[]
+}
+
+export const Claim = (props: ClaimProps) => {
   const { client, connected, account, loading: accoutLoading, loaded: accoutLoaded, fetchAccount } = useClient()
 
   const toast = useToast()
@@ -40,7 +49,7 @@ export const Claim = () => {
   const handleSignIn = async (provider: string) => {
     setLoading(true)
     try {
-      window.location.href = await oAuthSignInURL(provider, [{ param: 'loadDraft', value: '' }])
+      window.location.href = await oAuthSignInURL(provider, props.signinUrlParams)
     } catch (error) {
       console.error('could not generate OAuth signin URL', error)
     }
@@ -110,6 +119,22 @@ export const Claim = () => {
           >
             <Icon mr={2} as={FaGithub} />
             {t('login.github')}
+          </Button>
+
+          <Button
+            type='submit'
+            w='full'
+            isLoading={loading}
+            colorScheme='facebook'
+            onClick={() => handleSignIn('facebook')}
+          >
+            <Icon mr={2} as={FaFacebook} />
+            {t('login.facebook')}
+          </Button>
+
+          <Button type='submit' w='full' isLoading={loading} colorScheme='red' onClick={() => handleSignIn('google')}>
+            <Icon mr={2} as={FaGoogle} />
+            {t('login.google')}
           </Button>
         </Flex>
       )}

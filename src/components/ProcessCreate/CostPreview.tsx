@@ -162,7 +162,7 @@ export const CostPreview = ({
               values={{ balance: account?.balance }}
             />
           </Text>
-          <Claim />
+          <Claim signinUrlParams={[{ param: 'loadDraft', value: '1' }]} />
         </Flex>
       )}
     </Flex>
