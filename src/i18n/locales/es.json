@@ -315,10 +315,11 @@
   },
   "get_voc_tokens": {
     "authentification_method": "Seleccione su método de autenticación preferido:",
-    "authentification_method_helper": "Puede obtener 50 tokens por método de autenticación a la semana",
+    "authentification_method_helper": "Puede obtener {{ faucetAmount }} tokens por método de autenticación a la semana",
     "button": "Solicitar Tokens",
+    "coming_soon": "Próximamente",
     "description": "<text>Para agregar más tokens, debe <strong>iniciar sesión</strong> con una cuenta social (para prevenir el mal uso del grifo).</text><text><strong>Solo solicitamos acceso de lectura.</strong></text>",
-    "info": "<text>Si necesita más, contacte a <customLink>info@onvote.app</customLink></text>",
+    "info": "<text>Si necesita más, contacte a <mailto>info@onvote.app</mailto></text>",
     "title": "Obtener VOC Tokens"
   },
   "link": {

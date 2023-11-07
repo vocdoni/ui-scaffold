@@ -13,6 +13,7 @@ import {
   ModalHeader,
   Spinner,
   Text,
+  Tooltip,
   UnorderedList,
   useDisclosure,
 } from '@chakra-ui/react'
@@ -201,6 +202,8 @@ const GetVocTokens = () => {
   const { loading, handleSignIn } = useClaim()
   const [socialAccount, setSocialAccount] = useState('')
 
+  const faucetAmount = import.meta.env.FAUCET_AMOUNT
+
   return (
     <>
       <ModalContent minW={{ md: '600px' }}>
@@ -263,70 +266,59 @@ const GetVocTokens = () => {
             >
               <Icon as={FaGithub} w={8} h={8} />
             </Button>
-            <Button
-              isDisabled
-              aria-label={t('link.twitter').toString()}
-              disabled
-              cursor='pointer'
-              onClick={() => setSocialAccount('twitter')}
-              sx={{
-                '&': {
-                  bgColor: socialAccount === 'twitter' ? 'primary.500' : '',
-
-                  '& svg': {
-                    color: socialAccount === 'twitter' ? 'white' : 'primary.500',
-                  },
-
-                  '&:disabled': {
-                    '& svg': {
-                      color: 'gray',
-                    },
-                  },
-
-                  '&:hover': {
-                    cursor: socialAccount === 'twitter' ? 'default' : 'pointer',
+            <Tooltip label={t('get_voc_tokens.coming_soon')}>
+              <Button
+                isDisabled
+                aria-label={t('link.twitter').toString()}
+                disabled
+                cursor='pointer'
+                onClick={() => setSocialAccount('twitter')}
+                sx={{
+                  '&': {
                     bgColor: socialAccount === 'twitter' ? 'primary.500' : '',
 
                     '& svg': {
                       color: socialAccount === 'twitter' ? 'white' : 'primary.500',
                     },
+
                     '&:disabled': {
-                      '&': {
-                        cursor: 'default',
-                      },
                       '& svg': {
                         color: 'gray',
                       },
                     },
-                  },
-                },
-              }}
-            >
-              <Icon as={FaTwitter} w={8} h={8} />
-            </Button>
 
-            <Button
-              isDisabled
-              aria-label={t('link.discord').toString()}
-              disabled
-              cursor='pointer'
-              onClick={() => setSocialAccount('discord')}
-              sx={{
-                '&': {
-                  bgColor: socialAccount === 'discord' ? 'primary.500' : '',
+                    '&:hover': {
+                      cursor: socialAccount === 'twitter' ? 'default' : 'pointer',
+                      bgColor: socialAccount === 'twitter' ? 'primary.500' : '',
 
-                  '& svg': {
-                    color: socialAccount === 'discord' ? 'white' : 'primary.500',
-                  },
-
-                  '&:disabled': {
-                    '& svg': {
-                      color: 'gray',
+                      '& svg': {
+                        color: socialAccount === 'twitter' ? 'white' : 'primary.500',
+                      },
+                      '&:disabled': {
+                        '&': {
+                          cursor: 'default',
+                        },
+                        '& svg': {
+                          color: 'gray',
+                        },
+                      },
                     },
                   },
-
-                  '&:hover': {
-                    cursor: socialAccount === 'discord' ? 'default' : 'pointer',
+                }}
+              >
+                <Icon as={FaTwitter} w={8} h={8} />
+              </Button>
+            </Tooltip>
+            <Tooltip label={t('get_voc_tokens.coming_soon')}>
+              <Button
+                isDisabled
+                aria-label={t('link.discord').toString()}
+                disabled
+                cursor='pointer'
+                onClick={() => setSocialAccount('discord')}
+                title='coming soon'
+                sx={{
+                  '&': {
                     bgColor: socialAccount === 'discord' ? 'primary.500' : '',
 
                     '& svg': {
@@ -334,22 +326,43 @@ const GetVocTokens = () => {
                     },
 
                     '&:disabled': {
-                      '&': {
-                        cursor: 'default',
-                      },
                       '& svg': {
                         color: 'gray',
                       },
                     },
+
+                    '&:hover': {
+                      cursor: socialAccount === 'discord' ? 'default' : 'pointer',
+                      bgColor: socialAccount === 'discord' ? 'primary.500' : '',
+
+                      '& svg': {
+                        color: socialAccount === 'discord' ? 'white' : 'primary.500',
+                      },
+
+                      '&:disabled': {
+                        '&': {
+                          cursor: 'default',
+                        },
+                        '& svg': {
+                          color: 'gray',
+                        },
+                      },
+                    },
                   },
-                },
-              }}
-            >
-              <Icon as={FaDiscord} w={8} h={8} />
-            </Button>
+                }}
+              >
+                <Icon as={FaDiscord} w={8} h={8} />
+              </Button>
+            </Tooltip>
           </Flex>
+
           <Text fontSize='sm' textAlign='center' color='gray'>
-            {t('get_voc_tokens.authentification_method_helper')}
+            <Trans
+              i18nKey='get_voc_tokens.authentification_method_helper'
+              values={{
+                faucetAmount,
+              }}
+            />
           </Text>
         </ModalBody>
 
@@ -368,7 +381,7 @@ const GetVocTokens = () => {
             i18nKey='get_voc_tokens.info'
             components={{
               text: <Text fontSize='sm' textAlign='center' />,
-              customLink: <Link href='mailto:info@onvote.app' fontWeight='bold' color='primary.500' />,
+              mailto: <Link href='mailto:info@onvote.app' fontWeight='bold' color='primary.500' />,
             }}
           />
         </ModalFooter>
