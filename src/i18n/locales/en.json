@@ -149,7 +149,8 @@
     "edit_profile": {
       "avatar_helper": "Image/logo of your organization",
       "avatar_placeholder": "Image URL",
-      "btn": "Save"
+      "btn": "Save",
+      "title": "Edit Organization"
     },
     "error": {
       "address_already_in_use": "Address already in use",
