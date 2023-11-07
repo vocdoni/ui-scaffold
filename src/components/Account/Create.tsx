@@ -81,6 +81,7 @@ export const AccountCreate = () => {
           i18nKey='new_organization.description2'
           components={{
             span: <Text as='span' fontWeight='bold' />,
+            faucetAmount: import.meta.env.FAUCET_AMOUNT,
           }}
         />
       </Text>

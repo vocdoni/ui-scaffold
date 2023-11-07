@@ -367,7 +367,7 @@
     "censorship": "<span>Resistencia</span><span>a la Censura</span>",
     "create_organization_btn": "Crear Organización",
     "description1": "Antes de comenzar a crear su proceso de votación, <span>debe crear una organización</span>, es gratuito. Con una organización, podrá crear una amplia gama de elecciones y dar voz a los miembros de su comunidad.",
-    "description2": "Como <span>paquete de bienvenida</span>, recibirá 1000 tokens gratis para comenzar a utilizar nuestra plataforma.",
+    "description2": "Como <span>paquete de bienvenida</span>, recibirá {{ faucetAmount }} tokens gratis para comenzar a utilizar nuestra plataforma.",
     "footer": "<span>Vocdoni</span> es un protocolo de votación público seguro, respetuoso con la privacidad y de código abierto.",
     "inexpensive": "Económico",
     "name": "Nombre de la organización",
