@@ -359,7 +359,7 @@
     "censorship": "<span>Censorship</span><span>Resistance</span>",
     "create_organization_btn": "Create Organization",
     "description1": "Before starting creating your voting process, <span>you need to create an organization</span>, it's free With an organization, you will be able to create a wide range of elections and give voice to your comumnity members.",
-    "description2": "As a <span>welcome pack</span> you will recive 1000 tokens for free to start using our platform.",
+    "description2": "As a <span>welcome pack</span> you will recive {{ faucetAmount }} tokens for free to start using our platform.",
     "footer": "<span>Vocdoni</span> is a secure, privacy-friendly & open-source public voting protocol.",
     "inexpensive": "Inexpensive",
     "name": "Organization name",
