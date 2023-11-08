@@ -33,12 +33,11 @@ export const CensusTokens = () => {
   const [token, setToken] = useState<Token | undefined>()
   const [error, setError] = useState<string | undefined>()
   const [loading, setLoading] = useState<boolean>(false)
+  const [loadingTk, setLoadinTk] = useState<boolean>(false)
   const selectTokenRef = useRef<SelectInstance<any, false, GroupBase<any>>>(null)
   const selectChainRef = useRef<SelectInstance<any, false, GroupBase<any>>>(null)
   const [chains, setChains] = useState<ICensus3SupportedChain[]>([])
   const [tokens, setTokens] = useState<Census3TokenSummary[]>([])
-  const [filteredTks, setFilteredTks] = useState<{ label: string; options: Census3TokenSummary[] }[]>([])
-  const [loadingFilteredTk, setLoadingFilteredTk] = useState(false)
   const [selectedChain, setSelectedChain] = useState<ICensus3SupportedChain | undefined>(undefined)
 
   const { t } = useTranslation()
@@ -74,56 +73,59 @@ export const CensusTokens = () => {
   useEffect(() => {
     // fetch tokens and chains
     ;(async () => {
-      const tk = await client.getSupportedTokens()
-      setTokens(tk)
-      const ch = await client.getSupportedChains()
-      setChains(ch)
+      setLoading(true)
+      try {
+        const tks = await client.getSupportedTokens()
+        setTokens(tks)
+        const chs = await client.getSupportedChains()
+        setChains(chs)
+      } catch (err) {
+        setError(errorToString(err))
+      }
+      setLoading(false)
     })()
   }, [])
 
-  useEffect(() => {
-    // filter tokens by chain and grouped by type
-    if (!selectedChain) return
-    setLoadingFilteredTk(true)
+  const processedTokens = useMemo(() => {
+    if (!selectedChain) return []
+
     setToken(undefined)
+
     const filteredAndSyncedTokens = Array.from(tokens)
       .map((token) => {
         const isSynced = token.status?.synced
-
         return {
           ...token,
           disabled: !isSynced,
         }
       })
-      .filter((token) => token.chainID === selectedChain?.chainID)
+      .filter((token) => token.chainID === selectedChain.chainID)
 
     const uniqueTypes = [...new Set(tokens.map((tk) => tk.type))].sort()
 
-    const orderedTokensByGroup: { label: string; options: Census3TokenSummary[] }[] = []
-
-    uniqueTypes.forEach((type) => {
-      const tokensWithType = Array.from(filteredAndSyncedTokens).filter((tk) => tk.type === type)
-
-      orderedTokensByGroup.push({ label: type.toUpperCase(), options: tokensWithType })
+    const orderedTokensByGroup = uniqueTypes.map((type) => {
+      const tokensWithType = filteredAndSyncedTokens.filter((tk) => tk.type === type)
+      return { label: type.toUpperCase(), options: tokensWithType }
     })
 
-    setFilteredTks(orderedTokensByGroup)
-    setLoadingFilteredTk(false)
+    return orderedTokensByGroup
   }, [selectedChain])
+
+  const filteredTks: { label: string; options: Census3TokenSummary[] }[] = processedTokens
 
   useEffect(() => {
     // get token
     if (!ct) return
     ;(async () => {
       if (!ct?.ID || !selectedChain?.chainID) return
-      setLoading(true)
+      setLoadinTk(true)
       try {
         const token = await client.getToken(ct.ID, selectedChain.chainID, ct.externalID)
         setToken(token)
       } catch (err) {
         setError(errorToString(err))
       } finally {
-        setLoading(false)
+        setLoadinTk(false)
       }
     })()
   }, [ct])
@@ -153,7 +155,7 @@ export const CensusTokens = () => {
           gap={1}
         >
           {selectedChain && <Text fontWeight='bold'>{t('form.process_create.census.network')}</Text>}
-          <FormControl isInvalid={!!errors.network}>
+          <FormControl>
             <Select
               ref={selectChainRef}
               placeholder={t('form.process_create.census.network')}
@@ -168,9 +170,8 @@ export const CensusTokens = () => {
               }}
               name={chain.name}
               onBlur={chain.onBlur}
-              isLoading={!chains}
+              isLoading={loading}
             />
-            <FormErrorMessage>{errors.censusToken && errors.censusToken.message?.toString()}</FormErrorMessage>
           </FormControl>
         </Flex>
         <Flex
@@ -181,7 +182,7 @@ export const CensusTokens = () => {
           gap={1}
         >
           {ct && <Text fontWeight='bold'>Token</Text>}
-          <FormControl isInvalid={!!errors.censusToken}>
+          <FormControl>
             <Select
               ref={selectTokenRef}
               key={`my_unique_select_key__${ct}`}
@@ -195,15 +196,13 @@ export const CensusTokens = () => {
               name={ctoken.name}
               onBlur={ctoken.onBlur}
               isDisabled={!selectedChain}
-              isLoading={loadingFilteredTk}
               value={ct}
               isOptionDisabled={(option) => option.disabled}
             />
-            <FormErrorMessage>{errors.censusToken && errors.censusToken.message?.toString()}</FormErrorMessage>
           </FormControl>
         </Flex>
       </Flex>
-      {loading ? (
+      {loadingTk ? (
         <Spinner />
       ) : (
         <>
