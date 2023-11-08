@@ -37,10 +37,9 @@ export const CensusTokens = () => {
   const selectChainRef = useRef<SelectInstance<any, false, GroupBase<any>>>(null)
   const [chains, setChains] = useState<ICensus3SupportedChain[]>([])
   const [tokens, setTokens] = useState<Census3TokenSummary[]>([])
-  const [filtredaAndGroupedTokens, setFilteredAndGroupedTokens] = useState<
-    { label: string; options: Census3TokenSummary[] }[]
-  >([])
-  const [isLoadingFiltredaAndGroupedTokens, setIsLoadingFiltredaAndGroupedTokens] = useState(false)
+  const [filteredTks, setFilteredTks] = useState<{ label: string; options: Census3TokenSummary[] }[]>([])
+  const [loadingFilteredTk, setLoadingFilteredTk] = useState(false)
+  const [selectedChain, setSelectedChain] = useState<ICensus3SupportedChain | undefined>(undefined)
 
   const { t } = useTranslation()
   const {
@@ -71,17 +70,21 @@ export const CensusTokens = () => {
       message: 'You need to select a token',
     },
   })
-  const ch: ICensus3SupportedChain | undefined = watch('network')
 
-  const getTokensAndChains = async () => {
-    const tk = await client.getSupportedTokens()
-    setTokens(tk)
-    const ch = await client.getSupportedChains()
-    setChains(ch)
-  }
+  useEffect(() => {
+    // fetch tokens and chains
+    ;(async () => {
+      const tk = await client.getSupportedTokens()
+      setTokens(tk)
+      const ch = await client.getSupportedChains()
+      setChains(ch)
+    })()
+  }, [])
 
-  const getFiltredAndGroupedTokens = () => {
-    setIsLoadingFiltredaAndGroupedTokens(true)
+  useEffect(() => {
+    // filter tokens by chain and grouped by type
+    if (!selectedChain) return
+    setLoadingFilteredTk(true)
     setToken(undefined)
     const filteredAndSyncedTokens = Array.from(tokens)
       .map((token) => {
@@ -92,7 +95,7 @@ export const CensusTokens = () => {
           disabled: !isSynced,
         }
       })
-      .filter((token) => token.chainID === ch?.chainID)
+      .filter((token) => token.chainID === selectedChain?.chainID)
 
     const uniqueTypes = [...new Set(tokens.map((tk) => tk.type))].sort()
 
@@ -104,35 +107,25 @@ export const CensusTokens = () => {
       orderedTokensByGroup.push({ label: type.toUpperCase(), options: tokensWithType })
     })
 
-    setFilteredAndGroupedTokens(orderedTokensByGroup)
-    setIsLoadingFiltredaAndGroupedTokens(false)
-  }
-
-  const getToken = async () => {
-    if (!ct?.ID || !ch?.chainID) return
-    setLoading(true)
-    try {
-      const token = await client.getToken(ct.ID, ch.chainID, ct.externalID)
-      setToken(token)
-    } catch (err) {
-      setError(errorToString(err))
-    } finally {
-      setLoading(false)
-    }
-  }
+    setFilteredTks(orderedTokensByGroup)
+    setLoadingFilteredTk(false)
+  }, [selectedChain])
 
   useEffect(() => {
-    getTokensAndChains()
-  }, [])
-
-  useEffect(() => {
-    if (!ch) return
-    getFiltredAndGroupedTokens()
-  }, [ch])
-
-  useEffect(() => {
+    // get token
     if (!ct) return
-    getToken()
+    ;(async () => {
+      if (!ct?.ID || !selectedChain?.chainID) return
+      setLoading(true)
+      try {
+        const token = await client.getToken(ct.ID, selectedChain.chainID, ct.externalID)
+        setToken(token)
+      } catch (err) {
+        setError(errorToString(err))
+      } finally {
+        setLoading(false)
+      }
+    })()
   }, [ct])
 
   if (error) {
@@ -159,22 +152,23 @@ export const CensusTokens = () => {
           justifyContent='end'
           gap={1}
         >
-          {ch && <Text fontWeight='bold'>{t('form.process_create.census.network')}</Text>}
+          {selectedChain && <Text fontWeight='bold'>{t('form.process_create.census.network')}</Text>}
           <FormControl isInvalid={!!errors.network}>
             <Select
               ref={selectChainRef}
               placeholder={t('form.process_create.census.network')}
               aria-label={t('form.process_create.census.network_aria_label')}
-              defaultValue={ch}
+              defaultValue={selectedChain}
               options={Array.isArray(chains) ? chains : [chains]}
               getOptionValue={(value) => value}
               getOptionLabel={({ name }) => `${name}`}
-              onChange={async (token) => {
-                setValue('network', token)
+              onChange={async (network) => {
+                setSelectedChain(network)
                 setValue('censusToken', undefined)
               }}
               name={chain.name}
               onBlur={chain.onBlur}
+              isLoading={!chains}
             />
             <FormErrorMessage>{errors.censusToken && errors.censusToken.message?.toString()}</FormErrorMessage>
           </FormControl>
@@ -194,14 +188,14 @@ export const CensusTokens = () => {
               placeholder={t('form.process_create.census.tokens_placeholder')}
               aria-label={t('form.process_create.census.tokens_placeholder')}
               defaultValue={ct}
-              options={filtredaAndGroupedTokens}
+              options={filteredTks}
               getOptionValue={(value) => value}
               getOptionLabel={({ name }) => name}
               onChange={async (token) => setValue('censusToken', token)}
               name={ctoken.name}
               onBlur={ctoken.onBlur}
-              isDisabled={!ch}
-              isLoading={isLoadingFiltredaAndGroupedTokens}
+              isDisabled={!selectedChain}
+              isLoading={loadingFilteredTk}
               value={ct}
               isOptionDisabled={(option) => option.disabled}
             />
@@ -213,7 +207,7 @@ export const CensusTokens = () => {
         <Spinner />
       ) : (
         <>
-          <TokenPreview token={token} chainName={ch?.name} />
+          <TokenPreview token={token} chainName={selectedChain?.name} />
           <MaxCensusSizeSelector token={token} />
         </>
       )}
@@ -306,9 +300,8 @@ export const MaxCensusSizeSelector = ({ token }: { token?: Token }) => {
   )
 }
 
-export const TokenPreview = ({ token, chainName }: { token?: Token; chainName: string | undefined }) => {
+export const TokenPreview = ({ token, chainName }: { token?: Token; chainName?: string }) => {
   if (!token) return null
-
   return (
     <Card mt={3} w='full'>
       <CardHeader>
@@ -365,7 +358,7 @@ export const TokenPreview = ({ token, chainName }: { token?: Token; chainName: s
               <Trans
                 i18nKey={'form.process_create.census.holders'}
                 values={{
-                  holders: formatNumber(token.size),
+                  holders: formatNumber((token as any).size),
                 }}
               />
             </Text>

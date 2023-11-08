@@ -283,7 +283,7 @@ const getCensus = async (env: EnvOptions, form: StepsFormValues, organization: s
 
       return c3client.createTokenCensus(
         form.censusToken.ID,
-        form.network.chainID,
+        form.censusToken.chainID,
         form.electionType.anonymous,
         form.censusToken.externalID
       )
