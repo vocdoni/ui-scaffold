@@ -177,7 +177,6 @@ export const CensusTokens = () => {
           />
         </FormControl>
 
-        <FormLabel fontWeight='bold'>Token</FormLabel>
         <FormControl
           w='full'
           maxW={{ base: '100%', md: '55%', lg: '100%', lg2: '58%' }}
@@ -186,6 +185,7 @@ export const CensusTokens = () => {
           justifyContent='end'
           gap={1}
         >
+          <FormLabel fontWeight='bold'>Token</FormLabel>
           <Select
             ref={selectTokenRef}
             key={`my_unique_select_key__${ct}`}
