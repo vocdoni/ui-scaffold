@@ -33,7 +33,7 @@ export const CensusTokens = () => {
   const [token, setToken] = useState<Token | undefined>()
   const [error, setError] = useState<string | undefined>()
   const [loading, setLoading] = useState<boolean>(false)
-  const [loadingTk, setLoadinTk] = useState<boolean>(false)
+  const [loadingTk, setLoadingTk] = useState<boolean>(false)
   const selectTokenRef = useRef<SelectInstance<any, false, GroupBase<any>>>(null)
   const selectChainRef = useRef<SelectInstance<any, false, GroupBase<any>>>(null)
   const [chains, setChains] = useState<ICensus3SupportedChain[]>([])
@@ -118,14 +118,14 @@ export const CensusTokens = () => {
     if (!ct) return
     ;(async () => {
       if (!ct?.ID || !selectedChain?.chainID) return
-      setLoadinTk(true)
+      setLoadingTk(true)
       try {
         const token = await client.getToken(ct.ID, selectedChain.chainID, ct.externalID)
         setToken(token)
       } catch (err) {
         setError(errorToString(err))
       } finally {
-        setLoadinTk(false)
+        setLoadingTk(false)
       }
     })()
   }, [ct])
