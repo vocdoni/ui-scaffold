@@ -2604,9 +2604,9 @@
   dependencies:
     "@vocdoni/sdk" "^0.3.1"
 
-"@vocdoni/sdk@./vocdoni-sdk-v0.5.0-beta.tgz", "@vocdoni/sdk@^0.3.1":
-  version "0.5.0-beta"
-  resolved "./vocdoni-sdk-v0.5.0-beta.tgz#a1b3c7a178a069e407c780252a90a19e1b18179f"
+"@vocdoni/sdk@./vocdoni-sdk-v0.5.0-beta1.tgz", "@vocdoni/sdk@^0.3.1":
+  version "0.5.0-beta1"
+  resolved "./vocdoni-sdk-v0.5.0-beta1.tgz#166426e409b172053710b78d58d558138a28f1e2"
   dependencies:
     "@ethersproject/abstract-signer" "^5.7.0"
     "@ethersproject/address" "^5.7.0"
