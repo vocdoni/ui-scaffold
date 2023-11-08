@@ -90,6 +90,7 @@ export const CensusTokens = () => {
     if (!selectedChain) return []
 
     setToken(undefined)
+    setValue('maxCensusSize', undefined)
 
     const filteredAndSyncedTokens = Array.from(tokens)
       .map((token) => {
@@ -114,6 +115,7 @@ export const CensusTokens = () => {
   const filteredTks: { label: string; options: Census3TokenSummary[] }[] = processedTokens
 
   useEffect(() => {
+    setValue('maxCensusSize', undefined)
     // get token
     if (!ct) return
     ;(async () => {
@@ -147,61 +149,62 @@ export const CensusTokens = () => {
         justifyContent='space-between'
         gap={3}
       >
-        <Flex
+        <FormControl
           w='full'
           maxW={{ base: '100%', md: '40%', lg: '100%', lg2: '38%' }}
+          display='flex'
           flexDirection='column'
           justifyContent='end'
           gap={1}
         >
-          {selectedChain && <Text fontWeight='bold'>{t('form.process_create.census.network')}</Text>}
-          <FormControl>
-            <Select
-              ref={selectChainRef}
-              placeholder={t('form.process_create.census.network')}
-              aria-label={t('form.process_create.census.network_aria_label')}
-              defaultValue={selectedChain}
-              options={Array.isArray(chains) ? chains : [chains]}
-              getOptionValue={(value) => value}
-              getOptionLabel={({ name }) => `${name}`}
-              onChange={async (network) => {
-                setSelectedChain(network)
-                setValue('censusToken', undefined)
-              }}
-              name={chain.name}
-              onBlur={chain.onBlur}
-              isLoading={loading}
-            />
-          </FormControl>
-        </Flex>
-        <Flex
+          <FormLabel fontWeight='bold'>{t('form.process_create.census.network')}</FormLabel>
+          <Select
+            ref={selectChainRef}
+            placeholder={t('form.process_create.census.network_placeholder')}
+            aria-label={t('form.process_create.census.network_placeholder')}
+            defaultValue={selectedChain}
+            options={Array.isArray(chains) ? chains : [chains]}
+            getOptionValue={(value) => value}
+            getOptionLabel={({ name }) => `${name}`}
+            onChange={async (network) => {
+              setSelectedChain(network)
+              setValue('censusToken', undefined)
+            }}
+            name={chain.name}
+            onBlur={chain.onBlur}
+            isLoading={loading}
+            isDisabled={loading}
+          />
+        </FormControl>
+
+        <FormLabel fontWeight='bold'>Token</FormLabel>
+        <FormControl
           w='full'
           maxW={{ base: '100%', md: '55%', lg: '100%', lg2: '58%' }}
+          display='flex'
           flexDirection='column'
           justifyContent='end'
           gap={1}
         >
-          {ct && <Text fontWeight='bold'>Token</Text>}
-          <FormControl>
-            <Select
-              ref={selectTokenRef}
-              key={`my_unique_select_key__${ct}`}
-              placeholder={t('form.process_create.census.tokens_placeholder')}
-              aria-label={t('form.process_create.census.tokens_placeholder')}
-              defaultValue={ct}
-              options={filteredTks}
-              getOptionValue={(value) => value}
-              getOptionLabel={({ name }) => name}
-              onChange={async (token) => setValue('censusToken', token)}
-              name={ctoken.name}
-              onBlur={ctoken.onBlur}
-              isDisabled={!selectedChain}
-              value={ct}
-              isOptionDisabled={(option) => option.disabled}
-            />
-          </FormControl>
-        </Flex>
+          <Select
+            ref={selectTokenRef}
+            key={`my_unique_select_key__${ct}`}
+            placeholder={t('form.process_create.census.tokens_placeholder')}
+            aria-label={t('form.process_create.census.tokens_placeholder')}
+            defaultValue={ct}
+            options={filteredTks}
+            getOptionValue={(value) => value}
+            getOptionLabel={({ name }) => name}
+            onChange={async (token) => setValue('censusToken', token)}
+            name={ctoken.name}
+            onBlur={ctoken.onBlur}
+            isDisabled={!selectedChain}
+            value={ct}
+            isOptionDisabled={(option) => option.disabled}
+          />
+        </FormControl>
       </Flex>
+
       {loadingTk ? (
         <Spinner />
       ) : (

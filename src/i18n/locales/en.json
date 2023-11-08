@@ -207,7 +207,7 @@
         "max_census_slider_label": "Maximum participation expected:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} eligible voters)",
         "network": "Network",
-        "network_aria_label": "Select a network",
+        "network_placeholder": "Select a network",
         "spreadsheet_description": "Such as usernames and passwords, or voter personal information, can be utilized for authentication with a form.",
         "spreadsheet_title": "Custom data",
         "token_base_description": "Use a token (EVM based) to enable voting based on users' token ownership.",

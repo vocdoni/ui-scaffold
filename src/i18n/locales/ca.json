@@ -209,7 +209,7 @@
         "max_census_slider_label": "Participació màxima esperada:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} votants elegibles)",
         "network": "Xarxa",
-        "network_aria_label": "Selecciona una xarxa",
+        "network_placeholder": "Selecciona una xarxa",
         "spreadsheet_description": "Dades personalitzades, com ara noms d'usuari i contrasenyes, o informació personal dels votants, es poden utilitzar per a l'autenticació amb un formulari.",
         "spreadsheet_title": "Dades personalitzades",
         "token_base_description": "Utilitza un token (basat en EVM) per permetre als usuaris votar en funció de la quantitat de tokens que posseeixin.",
