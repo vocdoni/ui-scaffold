@@ -36,9 +36,13 @@ export const Claim = (props: ClaimProps) => {
   useEffect(() => {
     if (!pendingClaim) return
     const url = new URL(window.location.href)
-    const provider: string | null = url.searchParams.get('provider')
+    let state: string | null = url.searchParams.get('state')
     const code: string | null = url.searchParams.get('code')
-    const recipient: string | null = url.searchParams.get('recipient')
+
+    state = atob(state || '')
+    const stateParams = JSON.parse(state || '[]')
+    const provider = stateParams.find((p: any) => p.param === 'provider')?.value
+    const recipient = stateParams.find((p: any) => p.param === 'recipient')?.value
 
     if (!code || !provider || !recipient) return
 
