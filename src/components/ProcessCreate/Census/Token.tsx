@@ -224,7 +224,7 @@ export const CensusTokens = () => {
             aria-label={t('form.process_create.census.tokens_placeholder')}
             defaultValue={ct}
             options={filteredTks}
-            getOptionValue={(value) => value.ID}
+            getOptionValue={({ chainAddress, chainID, externalID }) => chainAddress + chainID + externalID}
             getOptionLabel={({ name }) => name}
             onChange={async (token) => {
               setValue('censusToken', token)
