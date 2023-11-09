@@ -45,8 +45,6 @@ export const CensusTokens = () => {
   const [tokens, setTokens] = useState<Census3TokenSummary[]>([])
   const [totalTks, setTotalTks] = useState(0)
 
-  console.log(tokens)
-
   const { t } = useTranslation()
   const {
     setValue,
@@ -63,14 +61,14 @@ export const CensusTokens = () => {
       }),
     [env]
   )
-  const chain = register('network', {
+  const chain = register('chain', {
     required: {
       value: true,
       message: 'You need to select a network',
     },
   })
 
-  const network: ICensus3SupportedChain | undefined = watch('network')
+  const ch: ICensus3SupportedChain | undefined = watch('chain')
 
   const ctoken = register('censusToken', {
     required: {
@@ -97,12 +95,11 @@ export const CensusTokens = () => {
   }, [])
 
   const processedTokens = useMemo(() => {
-    if (!network) return []
+    if (!ch) return []
 
     setToken(undefined)
-    setValue('maxCensusSize', undefined)
 
-    let filteredByChainTokens = Array.from(tokens).filter((token) => token.chainID === network.chainID)
+    let filteredByChainTokens = Array.from(tokens).filter((token) => token.chainID === ch.chainID)
 
     const uniqueTypes = [...new Set(tokens.map((tk) => tk.type))].sort()
 
@@ -129,12 +126,11 @@ export const CensusTokens = () => {
     setTotalTks(totalTks)
 
     return orderedTokensByGroup
-  }, [network])
+  }, [ch])
 
   const filteredTks = processedTokens
 
   useEffect(() => {
-    setValue('maxCensusSize', undefined)
     // get token
     if (!ct) return
     ;(async () => {
@@ -164,14 +160,14 @@ export const CensusTokens = () => {
     <Stack w='full' direction='column' gap={3} alignItems='center'>
       <Flex
         w='full'
-        flexDirection={{ base: 'column', md: 'row', lg: 'column', lg2: 'row' }}
+        flexDirection={{ base: 'column', lg2: 'row' }}
         justifyContent='space-between'
-        gap={{ base: 8, md: 3, lg: 8, lg2: 3 }}
+        gap={{ base: 8, lg2: 0 }}
       >
         <FormControl
-          isInvalid={!!errors.network}
+          isInvalid={!!errors.chain}
           w='full'
-          maxW={{ base: '100%', md: '40%', lg: '100%', lg2: '38%' }}
+          maxW={{ base: '100%', lg2: '38%' }}
           display='flex'
           flexDirection='column'
           justifyContent='end'
@@ -183,11 +179,13 @@ export const CensusTokens = () => {
             placeholder={t('form.process_create.census.network_placeholder')}
             aria-label={t('form.process_create.census.network_placeholder')}
             options={Array.isArray(chains) ? chains : [chains]}
+            defaultValue={ch}
             getOptionValue={(value) => value}
             getOptionLabel={({ name }) => `${name}`}
             onChange={async (network) => {
               setValue('censusToken', undefined)
-              setValue('network', network)
+              setValue('chain', network)
+              setValue('maxCensusSize', undefined)
               clearErrors()
             }}
             name={chain.name}
@@ -197,13 +195,13 @@ export const CensusTokens = () => {
             components={customComponentsNetwork}
             chakraStyles={customStylesNetwork}
           />
-          <FormErrorMessage>{errors.network && errors.network.message?.toString()}</FormErrorMessage>
+          <FormErrorMessage>{errors.chain && errors.chain.message?.toString()}</FormErrorMessage>
         </FormControl>
 
         <FormControl
           isInvalid={!!errors.censusToken}
           w='full'
-          maxW={{ base: '100%', md: '55%', lg: '100%', lg2: '58%' }}
+          maxW={{ base: '100%', lg2: '60%' }}
           display='flex'
           flexDirection='column'
           justifyContent='end'
@@ -211,7 +209,7 @@ export const CensusTokens = () => {
         >
           <FormLabel display='flex' justifyContent='space-between' fontWeight='bold'>
             <Text as='span'>Token</Text>{' '}
-            {!!network && !!totalTks && (
+            {!!ch && !!totalTks && (
               <Text as='span' fontWeight='normal' ml={10} color='gray'>
                 {totalTks === 1 ? '1 token' : `${totalTks} tokens`}
               </Text>
@@ -228,11 +226,12 @@ export const CensusTokens = () => {
             getOptionLabel={({ name }) => name}
             onChange={async (token) => {
               setValue('censusToken', token)
+              setValue('maxCensusSize', undefined)
               clearErrors()
             }}
             name={ctoken.name}
             onBlur={ctoken.onBlur}
-            isDisabled={!network || loadingTk}
+            isDisabled={!ch || loadingTk}
             isOptionDisabled={(option) => !option.status?.synced}
             components={customComponentsTokens}
             chakraStyles={customStylesTokens}
@@ -245,7 +244,7 @@ export const CensusTokens = () => {
         <Spinner mt={10} />
       ) : (
         <>
-          <TokenPreview token={token} chainName={network?.name} />
+          <TokenPreview token={token} chainName={ch?.name} />
           <MaxCensusSizeSelector token={token} />
         </>
       )}
@@ -260,6 +259,7 @@ export const MaxCensusSizeSelector = ({ token }: { token?: Token }) => {
     watch,
     formState: { errors },
   } = useFormContext()
+
   const [sliderValue, setSliderValue] = useState<number>(getValues('maxCensusSize'))
   const [showTooltip, setShowTooltip] = useState<boolean>(false)
   const { t } = useTranslation()
