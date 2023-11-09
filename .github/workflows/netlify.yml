@@ -30,7 +30,7 @@ jobs:
           # keep as a non existant branch, because we don't want to publish this
           production-branch: master
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "DEV Deploy from GitHub Actions"
+          deploy-message: 'DEV Deploy from GitHub Actions'
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: true
@@ -50,7 +50,7 @@ jobs:
           publish-dir: './dist'
           production-branch: develop
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "STG Deploy from GitHub Actions"
+          deploy-message: 'STG Deploy from GitHub Actions'
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: true
