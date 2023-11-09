@@ -81,7 +81,7 @@
     "description": "Select how voters will authenticate and identify themselves: options include custom data, token ownership or wallet addresses.",
     "spreadsheet_title": "Custom data",
     "title": "Census",
-    "token_description": "Select one token of the list to create a token-based census, where only token owners will be elegible to vote. Don't find your token? <customLink>Click here</customLink> to add more",
+    "token_description": "Select the network and token to create a census where tokenholders will vote with their voting token power.",
     "token_title": "Token based census",
     "wallet_address_title": "Wallet addresses"
   },
@@ -212,7 +212,7 @@
         "spreadsheet_title": "Custom data",
         "token_base_description": "Use a token (EVM based) to enable voting based on users' token ownership.",
         "token_base_title": "Token based",
-        "tokens_placeholder": "Select a token",
+        "tokens_placeholder": "Search or paste token address",
         "wallet_address_description": "Identify voters by their wallets addresses.",
         "wallet_address_title": "Wallet addresses"
       },

@@ -1,3 +1,4 @@
+import { ChevronDownIcon, SearchIcon } from '@chakra-ui/icons'
 import {
   Alert,
   AlertIcon,
@@ -11,6 +12,7 @@ import {
   FormLabel,
   Grid,
   Heading,
+  Link,
   Slider,
   SliderFilledTrack,
   SliderMark,
@@ -23,10 +25,13 @@ import {
 } from '@chakra-ui/react'
 import { errorToString, useClient } from '@vocdoni/react-providers'
 import { Census3TokenSummary, EnvOptions, ICensus3SupportedChain, Token, VocdoniCensus3Client } from '@vocdoni/sdk'
-import { GroupBase, Select, SelectInstance } from 'chakra-react-select'
+import { ChakraStylesConfig, GroupBase, Select, SelectInstance, chakraComponents } from 'chakra-react-select'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import { BsImage } from 'react-icons/bs'
+import { FaEthereum } from 'react-icons/fa'
+import { FaPeopleGroup } from 'react-icons/fa6'
 
 export const CensusTokens = () => {
   const { env } = useClient()
@@ -39,6 +44,8 @@ export const CensusTokens = () => {
   const [chains, setChains] = useState<ICensus3SupportedChain[]>([])
   const [tokens, setTokens] = useState<Census3TokenSummary[]>([])
   const [totalTks, setTotalTks] = useState(0)
+
+  console.log(tokens)
 
   const { t } = useTranslation()
   const {
@@ -187,6 +194,8 @@ export const CensusTokens = () => {
             onBlur={chain.onBlur}
             isLoading={loading}
             isDisabled={loading || loadingTk}
+            components={customComponentsNetwork}
+            chakraStyles={customStylesNetwork}
           />
           <FormErrorMessage>{errors.network && errors.network.message?.toString()}</FormErrorMessage>
         </FormControl>
@@ -225,13 +234,15 @@ export const CensusTokens = () => {
             onBlur={ctoken.onBlur}
             isDisabled={!network || loadingTk}
             isOptionDisabled={(option) => !option.status?.synced}
+            components={customComponentsTokens}
+            chakraStyles={customStylesTokens}
           />
           <FormErrorMessage>{errors.censusToken && errors.censusToken.message?.toString()}</FormErrorMessage>
         </FormControl>
       </Flex>
 
       {loadingTk ? (
-        <Spinner />
+        <Spinner mt={10} />
       ) : (
         <>
           <TokenPreview token={token} chainName={network?.name} />
@@ -409,6 +420,143 @@ export const TokenPreview = ({ token, chainName }: { token?: Token; chainName?: 
       </CardHeader>
     </Card>
   )
+}
+
+const customComponentsTokens = {
+  GroupHeading: (props: any) => {
+    const poap = /poap/i
+    const nft = /nft/i
+
+    if (props.data.label === 'request') return
+
+    return (
+      <chakraComponents.GroupHeading {...props}>
+        <Flex alignItems='center' gap={2}>
+          {poap.test(props.data.label) && <FaPeopleGroup />}
+          {nft.test(props.data.label) && <BsImage />}
+          {!poap.test(props.data.label) && !nft.test(props.data.label) && <FaEthereum />}
+
+          {props.children}
+        </Flex>
+      </chakraComponents.GroupHeading>
+    )
+  },
+  Option: (props: any) => {
+    if (props.data.name === 'Request Custom Tokens') {
+      return (
+        <chakraComponents.Option {...props}>
+          <Flex justifyContent='center' w='full'>
+            <Link variant='primary' href='https://tally.so/r/mO46VY' target='_blank' fontWeight='bold'>
+              <Text as='span' fontSize='xl'>
+                +
+              </Text>{' '}
+              {props.children}
+            </Link>
+          </Flex>
+        </chakraComponents.Option>
+      )
+    } else {
+      return (
+        <chakraComponents.Option {...props}>
+          <Flex alignItems='center' gap={2}>
+            <Avatar
+              size='xs'
+              name={props.data.name}
+              src={`https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${props.data.ID}/logo.png`}
+            />
+            <Text>{props.children}</Text>
+          </Flex>
+        </chakraComponents.Option>
+      )
+    }
+  },
+
+  DropdownIndicator: (props: any) => {
+    return (
+      <>
+        <chakraComponents.DropdownIndicator {...props}>
+          <SearchIcon fontSize='sm' />
+        </chakraComponents.DropdownIndicator>
+        <chakraComponents.DropdownIndicator {...props}>
+          <ChevronDownIcon />
+        </chakraComponents.DropdownIndicator>
+      </>
+    )
+  },
+}
+
+const customComponentsNetwork = {
+  Option: (props: any) => {
+    return (
+      <chakraComponents.Option {...props}>
+        <Flex alignItems='center' gap={2}>
+          <FaEthereum />
+          <Text>{props.children}</Text>
+        </Flex>
+      </chakraComponents.Option>
+    )
+  },
+}
+const customStyles: ChakraStylesConfig = {
+  control: (base, state) => ({
+    ...base,
+    boxShadow: 'var(--box-shadow)',
+    // bgColor: 'red',
+    // match with the menu
+
+    fontWeight: 'bold',
+    // Overwrittes the different states of border
+    // borderColor: state.isFocused && 'yellow',
+    // Removes weird border around container
+    // boxShadow: state.isFocused ? null : null,
+    // borderColor: state.isActive && 'red',
+    // '&:hover': {
+    //   // Overwrittes the different states of border
+    //   borderColor: state.isFocused ? 'purple' : 'orange',
+    // },
+    // fontWeight: 'bold',
+  }),
+  placeholder: (base) => ({
+    ...base,
+    fontWeight: 'normal',
+  }),
+  menu: (base) => ({
+    ...base,
+    marginTop: 0,
+    zIndex: 10,
+    boxShadow: 'var(--box-shadow)',
+    borderRadius: 'md',
+  }),
+  menuList: (base) => ({
+    ...base,
+    padding: 0,
+  }),
+  option: (base, state) => ({
+    ...base,
+    fontWeight: 'bold',
+    bgColor: state.isSelected && 'primary.500',
+  }),
+  groupHeading: (base) => ({
+    ...base,
+    fontSize: 'lg',
+  }),
+  dropdownIndicator: (base) => ({
+    ...base,
+    bgColor: 'transparent',
+  }),
+}
+const customStylesNetwork: ChakraStylesConfig = {
+  ...customStyles,
+}
+
+const customStylesTokens: ChakraStylesConfig = {
+  ...customStyles,
+  option: (base, state) => ({
+    ...base,
+    fontWeight: 'bold',
+    bgColor: state.isSelected && 'primary.500',
+    pl: 10,
+  }),
 }
 
 const formatNumber = (numero: number) => {

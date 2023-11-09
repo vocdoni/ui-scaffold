@@ -83,7 +83,7 @@
     "description": "Selecciona cómo los votantes se autenticarán e identificarán: las opciones incluyen datos personalizados, la propiedad de tokens o con direcciones de monedero (wallet addresses).",
     "spreadsheet_title": "Datos personalizados",
     "title": "Censo",
-    "token_description": "Seleccione un token de la lista para crear un censo basado en tokens, donde solo los propietarios de tokens serán elegibles para votar. ¿No encuentras tu token? <customLink>Haz clic aquí</customLink> para añadir más",
+    "token_description": "Seleccioneu la xarxa i el token per crear un cens on els titulars del token votaran amb el seu poder de vot.",
     "token_title": "Censo basado en tokens",
     "wallet_address_title": "Direcciones de billetera"
   },
@@ -215,7 +215,7 @@
         "spreadsheet_title": "Datos personalizados",
         "token_base_description": "Utiliza un token (basado en EVM) para permitir a los usuarios votar en función de la cantidad que poseen.",
         "token_base_title": "Basado en tokens",
-        "tokens_placeholder": "Selecciona un token",
+        "tokens_placeholder": "Busca o pega la dirección del token",
         "wallet_address_description": "Identifica a tus votantes por sus direcciones de monedero digital.",
         "wallet_address_title": "Direcciones de monedero"
       },
