@@ -498,23 +498,10 @@ const customComponentsNetwork = {
   },
 }
 const customStyles: ChakraStylesConfig = {
-  control: (base, state) => ({
+  control: (base) => ({
     ...base,
     boxShadow: 'var(--box-shadow)',
-    // bgColor: 'red',
-    // match with the menu
-
     fontWeight: 'bold',
-    // Overwrittes the different states of border
-    // borderColor: state.isFocused && 'yellow',
-    // Removes weird border around container
-    // boxShadow: state.isFocused ? null : null,
-    // borderColor: state.isActive && 'red',
-    // '&:hover': {
-    //   // Overwrittes the different states of border
-    //   borderColor: state.isFocused ? 'purple' : 'orange',
-    // },
-    // fontWeight: 'bold',
   }),
   placeholder: (base) => ({
     ...base,
