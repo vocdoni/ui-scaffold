@@ -38,13 +38,14 @@ export const CensusTokens = () => {
   const selectChainRef = useRef<SelectInstance<any, false, GroupBase<any>>>(null)
   const [chains, setChains] = useState<ICensus3SupportedChain[]>([])
   const [tokens, setTokens] = useState<Census3TokenSummary[]>([])
-  const [selectedChain, setSelectedChain] = useState<ICensus3SupportedChain | undefined>(undefined)
+  const [totalTks, setTotalTks] = useState(0)
 
   const { t } = useTranslation()
   const {
     setValue,
     register,
     watch,
+    clearErrors,
     formState: { errors },
   } = useFormContext()
 
@@ -55,20 +56,22 @@ export const CensusTokens = () => {
       }),
     [env]
   )
+  const chain = register('network', {
+    required: {
+      value: true,
+      message: 'You need to select a network',
+    },
+  })
+
+  const network: ICensus3SupportedChain | undefined = watch('network')
+
   const ctoken = register('censusToken', {
     required: {
       value: true,
       message: 'You need to select a token',
     },
   })
-  const ct: Census3TokenSummary | undefined = watch('censusToken')
-
-  const chain = register('censusToken', {
-    required: {
-      value: true,
-      message: 'You need to select a token',
-    },
-  })
+  const ct: Token | undefined = watch('censusToken')
 
   useEffect(() => {
     // fetch tokens and chains
@@ -87,42 +90,51 @@ export const CensusTokens = () => {
   }, [])
 
   const processedTokens = useMemo(() => {
-    if (!selectedChain) return []
+    if (!network) return []
 
     setToken(undefined)
     setValue('maxCensusSize', undefined)
 
-    const filteredAndSyncedTokens = Array.from(tokens)
-      .map((token) => {
-        const isSynced = token.status?.synced
-        return {
-          ...token,
-          disabled: !isSynced,
-        }
-      })
-      .filter((token) => token.chainID === selectedChain.chainID)
+    let filteredByChainTokens = Array.from(tokens).filter((token) => token.chainID === network.chainID)
 
     const uniqueTypes = [...new Set(tokens.map((tk) => tk.type))].sort()
 
-    const orderedTokensByGroup = uniqueTypes.map((type) => {
-      const tokensWithType = filteredAndSyncedTokens.filter((tk) => tk.type === type)
+    const orderedTokensByGroup: {
+      label: string
+      options: Token[] | { name: string; status: { synced: boolean } }[]
+    }[] = uniqueTypes.map((type) => {
+      const tokensWithType = filteredByChainTokens.filter((tk) => tk.type === type)
       return { label: type.toUpperCase(), options: tokensWithType }
     })
 
-    return orderedTokensByGroup
-  }, [selectedChain])
+    orderedTokensByGroup.push({
+      label: 'request',
+      options: [{ name: 'Request Custom Tokens', status: { synced: true } }],
+    })
 
-  const filteredTks: { label: string; options: Census3TokenSummary[] }[] = processedTokens
+    const totalTks = orderedTokensByGroup.reduce((acc, curr) => {
+      if (curr.label !== 'request') {
+        return acc + curr.options.length
+      }
+      return acc
+    }, 0)
+
+    setTotalTks(totalTks)
+
+    return orderedTokensByGroup
+  }, [network])
+
+  const filteredTks = processedTokens
 
   useEffect(() => {
     setValue('maxCensusSize', undefined)
     // get token
     if (!ct) return
     ;(async () => {
-      if (!ct?.ID || !selectedChain?.chainID) return
+      if (!ct?.ID) return
       setLoadingTk(true)
       try {
-        const token = await client.getToken(ct.ID, selectedChain.chainID, ct.externalID)
+        const token = await client.getToken(ct.ID, ct.chainID, ct.externalID)
         setToken(token)
       } catch (err) {
         setError(errorToString(err))
@@ -147,9 +159,10 @@ export const CensusTokens = () => {
         w='full'
         flexDirection={{ base: 'column', md: 'row', lg: 'column', lg2: 'row' }}
         justifyContent='space-between'
-        gap={3}
+        gap={{ base: 8, md: 3, lg: 8, lg2: 3 }}
       >
         <FormControl
+          isInvalid={!!errors.network}
           w='full'
           maxW={{ base: '100%', md: '40%', lg: '100%', lg2: '38%' }}
           display='flex'
@@ -162,22 +175,24 @@ export const CensusTokens = () => {
             ref={selectChainRef}
             placeholder={t('form.process_create.census.network_placeholder')}
             aria-label={t('form.process_create.census.network_placeholder')}
-            defaultValue={selectedChain}
             options={Array.isArray(chains) ? chains : [chains]}
             getOptionValue={(value) => value}
             getOptionLabel={({ name }) => `${name}`}
             onChange={async (network) => {
-              setSelectedChain(network)
               setValue('censusToken', undefined)
+              setValue('network', network)
+              clearErrors()
             }}
             name={chain.name}
             onBlur={chain.onBlur}
             isLoading={loading}
-            isDisabled={loading}
+            isDisabled={loading || loadingTk}
           />
+          <FormErrorMessage>{errors.network && errors.network.message?.toString()}</FormErrorMessage>
         </FormControl>
 
         <FormControl
+          isInvalid={!!errors.censusToken}
           w='full'
           maxW={{ base: '100%', md: '55%', lg: '100%', lg2: '58%' }}
           display='flex'
@@ -185,7 +200,14 @@ export const CensusTokens = () => {
           justifyContent='end'
           gap={1}
         >
-          <FormLabel fontWeight='bold'>Token</FormLabel>
+          <FormLabel display='flex' justifyContent='space-between' fontWeight='bold'>
+            <Text as='span'>Token</Text>{' '}
+            {!!network && !!totalTks && (
+              <Text as='span' fontWeight='normal' ml={10} color='gray'>
+                {totalTks === 1 ? '1 token' : `${totalTks} tokens`}
+              </Text>
+            )}
+          </FormLabel>
           <Select
             ref={selectTokenRef}
             key={`my_unique_select_key__${ct}`}
@@ -193,15 +215,18 @@ export const CensusTokens = () => {
             aria-label={t('form.process_create.census.tokens_placeholder')}
             defaultValue={ct}
             options={filteredTks}
-            getOptionValue={(value) => value}
+            getOptionValue={(value) => value.ID}
             getOptionLabel={({ name }) => name}
-            onChange={async (token) => setValue('censusToken', token)}
+            onChange={async (token) => {
+              setValue('censusToken', token)
+              clearErrors()
+            }}
             name={ctoken.name}
             onBlur={ctoken.onBlur}
-            isDisabled={!selectedChain}
-            value={ct}
-            isOptionDisabled={(option) => option.disabled}
+            isDisabled={!network || loadingTk}
+            isOptionDisabled={(option) => !option.status?.synced}
           />
+          <FormErrorMessage>{errors.censusToken && errors.censusToken.message?.toString()}</FormErrorMessage>
         </FormControl>
       </Flex>
 
@@ -209,7 +234,7 @@ export const CensusTokens = () => {
         <Spinner />
       ) : (
         <>
-          <TokenPreview token={token} chainName={selectedChain?.name} />
+          <TokenPreview token={token} chainName={network?.name} />
           <MaxCensusSizeSelector token={token} />
         </>
       )}
@@ -247,8 +272,8 @@ export const MaxCensusSizeSelector = ({ token }: { token?: Token }) => {
 
   return (
     <>
-      <FormControl isInvalid={!!errors.maxCensusSize}>
-        <FormLabel>{t('form.process_create.census.max_census_slider_label')}</FormLabel>
+      <FormControl isInvalid={!!errors.maxCensusSize} mb={3}>
+        <FormLabel mb={3}>{t('form.process_create.census.max_census_slider_label')}</FormLabel>
         <Slider
           aria-label={t('form.process_create.census.max_census_slider_arialabel')}
           defaultValue={sliderValue}
@@ -271,11 +296,11 @@ export const MaxCensusSizeSelector = ({ token }: { token?: Token }) => {
             75%
           </SliderMark>
           <SliderTrack>
-            <SliderFilledTrack />
+            <SliderFilledTrack bg='primary.500' />
           </SliderTrack>
           <Tooltip
             hasArrow
-            bg='blue.500'
+            bg='primary.500'
             color='white'
             placement='top'
             isOpen={showTooltip}
@@ -305,7 +330,7 @@ export const MaxCensusSizeSelector = ({ token }: { token?: Token }) => {
 export const TokenPreview = ({ token, chainName }: { token?: Token; chainName?: string }) => {
   if (!token) return null
   return (
-    <Card mt={3} w='full'>
+    <Card my={5} w='full'>
       <CardHeader>
         <Grid
           gridTemplateColumns={{
@@ -385,6 +410,7 @@ export const TokenPreview = ({ token, chainName }: { token?: Token; chainName?: 
     </Card>
   )
 }
+
 const formatNumber = (numero: number) => {
   if (numero < 1000) {
     return numero.toString()
