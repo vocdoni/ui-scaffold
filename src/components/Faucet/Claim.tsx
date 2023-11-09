@@ -3,10 +3,14 @@ import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { errorToString, useClient } from '@vocdoni/react-providers'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FaGithub } from 'react-icons/fa'
-import { useFaucet } from './use-faucet'
+import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa'
+import { signinUrlParams, useFaucet } from './use-faucet'
 
-export const Claim = () => {
+type ClaimProps = {
+  signinUrlParams?: signinUrlParams[]
+}
+
+export const Claim = (props: ClaimProps) => {
   const { t } = useTranslation()
   const { connected } = useClient()
   const { loading, handleSignIn } = useClaim()
@@ -20,10 +24,32 @@ export const Claim = () => {
             w='full'
             isLoading={loading}
             colorScheme='primary'
-            onClick={() => handleSignIn('github')}
+            onClick={() => handleSignIn('github', props.signinUrlParams || [])}
           >
             <Icon mr={2} as={FaGithub} />
             {t('login.github')}
+          </Button>
+
+          <Button
+            type='submit'
+            w='full'
+            isLoading={loading}
+            colorScheme='facebook'
+            onClick={() => handleSignIn('facebook', props.signinUrlParams || [])}
+          >
+            <Icon mr={2} as={FaFacebook} />
+            {t('login.facebook')}
+          </Button>
+
+          <Button
+            type='submit'
+            w='full'
+            isLoading={loading}
+            colorScheme='red'
+            onClick={() => handleSignIn('google', props.signinUrlParams || [])}
+          >
+            <Icon mr={2} as={FaGoogle} />
+            {t('login.google')}
           </Button>
         </Flex>
       )}
@@ -54,9 +80,13 @@ export const useClaim = () => {
   useEffect(() => {
     if (!pendingClaim) return
     const url = new URL(window.location.href)
-    const provider: string | null = url.searchParams.get('provider')
+    let state: string | null = url.searchParams.get('state')
     const code: string | null = url.searchParams.get('code')
-    const recipient: string | null = url.searchParams.get('recipient')
+
+    state = atob(state || '')
+    const stateParams = JSON.parse(state || '[]')
+    const provider = stateParams.find((p: any) => p.param === 'provider')?.value
+    const recipient = stateParams.find((p: any) => p.param === 'recipient')?.value
 
     if (!code || !provider || !recipient) return
 
@@ -64,10 +94,10 @@ export const useClaim = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pendingClaim])
 
-  const handleSignIn = async (provider: string) => {
+  const handleSignIn = async (provider: string, signinUrlParams: signinUrlParams[]) => {
     setLoading(true)
     try {
-      window.location.href = await oAuthSignInURL(provider, [{ param: 'loadDraft', value: '' }])
+      window.location.href = await oAuthSignInURL(provider, signinUrlParams)
     } catch (error) {
       console.error('could not generate OAuth signin URL', error)
     }

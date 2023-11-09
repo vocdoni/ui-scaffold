@@ -26,6 +26,7 @@ import { TbDatabaseExclamation } from 'react-icons/tb'
 import { useClaim } from '~components/Faucet/Claim'
 import { useProcessCreationSteps } from './Steps/use-steps'
 import imageHeader from '/assets/voc-tokens.jpg'
+import { signinUrlParams } from '~components/Faucet/use-faucet'
 
 export const CostPreview = ({
   unpublished,
@@ -208,7 +209,7 @@ const GetVocTokens = ({
   handleSignIn,
 }: {
   loading: boolean
-  handleSignIn: (provider: string) => Promise<void>
+  handleSignIn: (provider: string, signinUrlParams: signinUrlParams[]) => Promise<void>
 }) => {
   const { t } = useTranslation()
   const [socialAccount, setSocialAccount] = useState('')
@@ -373,13 +374,12 @@ const GetVocTokens = ({
               }}
             />
           </Text>
-        </ModalBody>
-
+        </ModalBody>{' '}
         <ModalFooter flexDirection='column' alignItems='center' gap={3}>
           <Button
             variant='rounded'
             colorScheme='primary'
-            onClick={() => handleSignIn(socialAccount)}
+            onClick={() => handleSignIn(socialAccount, [{ param: 'loadDraft', value: '' }])}
             isLoading={loading}
             isDisabled={!socialAccount}
           >

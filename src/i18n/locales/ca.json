@@ -335,7 +335,9 @@
   },
   "loading": "Carregant...",
   "login": {
-    "github": "Inicia sessió amb Github"
+    "github": "Inicia sessió amb Github",
+    "facebook": "Inicia sessió amb Facebook",
+    "google": "Inicia sessió amb Google"
   },
   "menu": {
     "burger_aria_label": "menú d'usuari",

@@ -328,7 +328,9 @@
   },
   "loading": "Loading...",
   "login": {
-    "github": "Sign in with Github"
+    "github": "Sign in with Github",
+    "facebook": "Sign in with Facebook",
+    "google": "Sign in with Google"
   },
   "menu": {
     "burger_aria_label": "user menu",
