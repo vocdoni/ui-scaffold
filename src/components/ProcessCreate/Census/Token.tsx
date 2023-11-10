@@ -296,7 +296,7 @@ export const MaxCensusSizeSelector = ({ token }: { token?: Token }) => {
   useEffect(() => {
     if (sliderValue !== undefined || !token) return
 
-    const val = Number((token as any).size) / 2
+    const val = Number((token as any).size)
     setSliderValue(val)
     setValue('maxCensusSize', Math.round(val))
     // eslint-disable-next-line react-hooks/exhaustive-deps
