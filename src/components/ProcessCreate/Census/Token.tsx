@@ -81,13 +81,7 @@ export const CensusTokens = () => {
   })
   const ct: Token | undefined = watch('censusToken')
 
-  const formatGroupLabel = (data: any) => {
-    return (
-      <div style={{}}>
-        <span>{data.label}</span>
-      </div>
-    )
-  }
+  const formatGroupLabel = (data: any) => data.label
 
   const filterOptions = (candidate: any) => {
     if (ch) {
@@ -309,12 +303,9 @@ export const MaxCensusSizeSelector = ({ token, maxSize }: { token?: Token; maxSi
 
   // set slidervalue the very first time, based on token.size
   useEffect(() => {
-    if (sliderValue !== undefined || !token) return
+    if (sliderValue !== undefined || !maxSize) return
 
-    const val = Number((token as any).size)
-    setSliderValue(val)
-    setValue('maxCensusSize', Math.round(val))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setSliderValue(maxSize)
   }, [token, sliderValue])
 
   if (sliderValue === undefined || !token || !maxSize) return null
