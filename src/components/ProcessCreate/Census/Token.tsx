@@ -41,6 +41,7 @@ export const CensusTokens = () => {
   const [chains, setChains] = useState<ICensus3SupportedChain[]>([])
   const [tokens, setTokens] = useState<Census3TokenSummary[]>([])
   const [totalTks, setTotalTks] = useState(0)
+  const [maxSize, setMaxSize] = useState<number | undefined>()
 
   const { t } = useTranslation()
   const {
@@ -164,6 +165,9 @@ export const CensusTokens = () => {
       try {
         const token = await client.getToken(ct.ID, ct.chainID, ct.externalID)
         setToken(token)
+
+        const max = await client.getStrategySize(token.defaultStrategy)
+        setMaxSize(max)
       } catch (err) {
         setError(errorToString(err))
       } finally {
@@ -272,15 +276,15 @@ export const CensusTokens = () => {
         <Spinner mt={10} />
       ) : (
         <>
-          <TokenPreview token={token} chainName={ch?.name} />
-          <MaxCensusSizeSelector token={token} />
+          <TokenPreview token={token} chainName={ch?.name} maxSize={maxSize} />
+          <MaxCensusSizeSelector token={token} maxSize={maxSize} />
         </>
       )}
     </Stack>
   )
 }
 
-export const MaxCensusSizeSelector = ({ token }: { token?: Token }) => {
+export const MaxCensusSizeSelector = ({ token, maxSize }: { token?: Token; maxSize?: number }) => {
   const {
     setValue,
     getValues,
@@ -302,12 +306,11 @@ export const MaxCensusSizeSelector = ({ token }: { token?: Token }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token, sliderValue])
 
-  if (sliderValue === undefined || !token) return null
+  if (sliderValue === undefined || !token || !maxSize) return null
 
-  const max = Number((token as any).size)
   const uniTokenHolders = watch('maxCensusSize')
 
-  const percent = Math.round((sliderValue / max) * 100)
+  const percent = Math.round((sliderValue / maxSize) * 100)
 
   return (
     <>
@@ -317,7 +320,7 @@ export const MaxCensusSizeSelector = ({ token }: { token?: Token }) => {
           aria-label={t('form.process_create.census.max_census_slider_arialabel')}
           defaultValue={sliderValue}
           min={0}
-          max={max}
+          max={maxSize}
           onChange={(v) => {
             setSliderValue(v)
             setValue('maxCensusSize', v)
@@ -325,13 +328,13 @@ export const MaxCensusSizeSelector = ({ token }: { token?: Token }) => {
           onMouseEnter={() => setShowTooltip(true)}
           onMouseLeave={() => setShowTooltip(false)}
         >
-          <SliderMark value={max * 0.25} mt='1' ml='-2.5' fontSize='sm'>
+          <SliderMark value={maxSize * 0.25} mt='1' ml='-2.5' fontSize='sm'>
             25%
           </SliderMark>
-          <SliderMark value={max * 0.5} mt='1' ml='-2.5' fontSize='sm'>
+          <SliderMark value={maxSize * 0.5} mt='1' ml='-2.5' fontSize='sm'>
             50%
           </SliderMark>
-          <SliderMark value={max * 0.75} mt='1' ml='-2.5' fontSize='sm'>
+          <SliderMark value={maxSize * 0.75} mt='1' ml='-2.5' fontSize='sm'>
             75%
           </SliderMark>
           <SliderTrack>
@@ -367,8 +370,16 @@ export const MaxCensusSizeSelector = ({ token }: { token?: Token }) => {
   )
 }
 
-export const TokenPreview = ({ token, chainName }: { token?: Token; chainName?: string }) => {
-  if (!token) return null
+export const TokenPreview = ({
+  token,
+  chainName,
+  maxSize,
+}: {
+  token?: Token
+  chainName?: string
+  maxSize?: number
+}) => {
+  if (!token || !maxSize) return null
   return (
     <Card my={5} w='full'>
       <CardHeader>
@@ -425,7 +436,7 @@ export const TokenPreview = ({ token, chainName }: { token?: Token; chainName?: 
               <Trans
                 i18nKey={'form.process_create.census.holders'}
                 values={{
-                  holders: formatNumber((token as any).size),
+                  holders: formatNumber(maxSize),
                 }}
               />
             </Text>
