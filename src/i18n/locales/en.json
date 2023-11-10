@@ -202,7 +202,7 @@
         "add_new_address": "add a new address",
         "delete_web3_address": "Delete address index {{ index }}",
         "holders": "{{ holders }} holders",
-        "max_census_resum": "With this configuation, {{ uniTokenHolders }} UNI token holders will be able to vote, representing a {{ percent }}%of the total maximun turnout.",
+        "max_census_resum": "With this configuation, {{ uniTokenHolders }} {{ symbol }} token holders will be able to vote, representing a {{ percent }}% of the total maximum turnout.",
         "max_census_slider_arialabel": "Maximum participation expected slider selector",
         "max_census_slider_label": "Maximum participation expected:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} eligible voters)",

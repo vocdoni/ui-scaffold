@@ -357,6 +357,7 @@ export const MaxCensusSizeSelector = ({ token }: { token?: Token }) => {
         <Trans
           i18nKey={'form.process_create.census.max_census_resum'}
           values={{
+            symbol: token.symbol,
             uniTokenHolders: formatNumber(uniTokenHolders),
             percent,
           }}

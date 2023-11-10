@@ -204,7 +204,7 @@
         "add_new_address": "Afageix una nova adreça",
         "delete_web3_address": "Eliminar adreça amb index {{ index }}",
         "holders": "{{ holders }} titulars",
-        "max_census_resum": "Amb aquesta configuració, {{ uniTokenHolders }} titulars de tokens UNI podran votar, representant un {{ percent }}% del total del torn de votació màxim.",
+        "max_census_resum": "Amb aquesta configuració, {{ uniTokenHolders }} titulars de tokens {{ symbol }} podran votar, representant un {{ percent }}% del total del torn de votació màxim.",
         "max_census_slider_arialabel": "Selector de participació màxima esperada",
         "max_census_slider_label": "Participació màxima esperada:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} votants elegibles)",
