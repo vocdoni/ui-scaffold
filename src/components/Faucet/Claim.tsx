@@ -90,6 +90,9 @@ export const useClaim = () => {
 
     if (!code || !provider || !recipient) return
 
+    // Remove the querystring from the browser current url
+    window.history.replaceState({}, '', `${window.location.pathname}${window.location.hash}`)
+
     claimTokens(provider, code, recipient)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pendingClaim])

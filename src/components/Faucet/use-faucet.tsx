@@ -5,6 +5,12 @@ export type signinUrlParams = {
   value: any
 }
 
+export type authTypes = {
+  oauth?: number
+  open?: number
+  aragondao?: number
+}
+
 export const useFaucet = () => {
   const { connected, signer, client } = useClient()
 
@@ -14,6 +20,8 @@ export const useFaucet = () => {
   } = client
   url = url.replace(/v2.*/, 'v2')
 
+  url = 'http://localhost:8080/v2'
+  console.log('FAUCET URL:', url)
   const oAuthSignInURL = async (provider: string, redirectURLParams?: signinUrlParams[]): Promise<string> => {
     if (!connected) throw new Error('Wallet not connected')
 
@@ -25,9 +33,10 @@ export const useFaucet = () => {
       ...(redirectURLParams || []),
     ]
 
-    const response = await fetch(`${url}/oauth/authUrl/${provider}`, {
+    const response = await fetch(`${url}/oauth/authUrl`, {
       method: 'POST',
       body: JSON.stringify({
+        provider,
         redirectURL: redirectURL.toString(),
         state: btoa(JSON.stringify(stateParams)),
       }),
@@ -43,14 +52,32 @@ export const useFaucet = () => {
     code: string,
     recipient: string
   ): Promise<{ amount: string; faucetPackage: string }> => {
-    const response = await fetch(`${url}/oauth/claim/${provider}/${encodeURIComponent(code)}/${recipient}`)
+    const redirectURL = new URL(window.location.href)
+    redirectURL.search = ''
+    const response = await fetch(`${url}/oauth/claim`, {
+      method: 'POST',
+      body: JSON.stringify({
+        provider,
+        code: encodeURIComponent(code),
+        recipient,
+        redirectURL: redirectURL.toString(),
+      }),
+    })
     const res = await response.json()
     if (res.error) throw new Error(res.error)
     return res
   }
 
+  const getAuthTypes = async (): Promise<authTypes> => {
+    const response = await fetch(`${url}/authTypes`)
+    const res = await response.json()
+    if (res.error) throw new Error(res.error)
+    return res.auth
+  }
+
   return {
     oAuthSignInURL,
     faucetReceipt,
+    getAuthTypes,
   }
 }
