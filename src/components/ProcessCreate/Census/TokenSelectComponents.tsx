@@ -1,5 +1,5 @@
 import { ChevronDownIcon, SearchIcon } from '@chakra-ui/icons'
-import { Avatar, Circle, Flex, Link, Text } from '@chakra-ui/react'
+import { Avatar, Flex, Link, Text } from '@chakra-ui/react'
 import { chakraComponents } from 'chakra-react-select'
 import { BsImage } from 'react-icons/bs'
 import { FaEthereum } from 'react-icons/fa'
@@ -8,6 +8,19 @@ import ethIcon from '/assets/eth.jpg'
 import polygonIcon from '/assets/polygon-matic.jpg'
 
 export const customComponentsTokens = {
+  SingleValue: (props: any) => {
+    return (
+      <chakraComponents.SingleValue {...props}>
+        <Avatar
+          size='xs'
+          name={props.data.name}
+          src={`https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${props.data.ID}/logo.png`}
+          mr={2}
+        />
+        {props.children}
+      </chakraComponents.SingleValue>
+    )
+  },
   GroupHeading: (props: any) => {
     const poap = /poap/i
     const nft = /nft/i
@@ -77,17 +90,25 @@ const getIconSource = (shortName: string) => {
     case 'maticmum':
       return polygonIcon
     default:
-      return null
+      return undefined
   }
 }
 export const customComponentsNetwork = {
+  SingleValue: (props: any) => {
+    const iconSource = getIconSource(props.data.shortName)
+    return (
+      <chakraComponents.SingleValue {...props}>
+        <Avatar size='xs' name={props.data.name} src={iconSource} mr={2} />
+        {props.children}
+      </chakraComponents.SingleValue>
+    )
+  },
   Option: (props: any) => {
     const iconSource = getIconSource(props.data.shortName)
     return (
       <chakraComponents.Option {...props}>
         <Flex alignItems='center' gap={2}>
-          {iconSource && <Avatar size='xs' name={props.data.name} src={iconSource} />}
-          {!iconSource && <Circle size='22px' border='1px solid lightgray' bgColor='white' />}
+          <Avatar size='xs' name={props.data.name} src={iconSource} />
           <Text>{props.children}</Text>
         </Flex>
       </chakraComponents.Option>
