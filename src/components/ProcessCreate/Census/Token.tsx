@@ -82,7 +82,35 @@ export const CensusTokens = () => {
       try {
         const tks = await client.getSupportedTokens()
         setTokens(tks)
+
         const chs = await client.getSupportedChains()
+
+        // Sort chains with the order: eth, gor, matic, maticmum, and the rest in alphabetical order
+        const order: {
+          [key: string]: number
+          eth: number
+          gor: number
+          matic: number
+          maticmum: number
+        } = {
+          eth: 1,
+          gor: 2,
+          matic: 3,
+          maticmum: 4,
+        }
+
+        const defaultOrder: number = 10000
+
+        chs.sort((a, b) => {
+          const orderA = order[a.shortName as keyof typeof order] || defaultOrder
+          const orderB = order[b.shortName as keyof typeof order] || defaultOrder
+
+          if (orderA !== orderB) {
+            return orderA - orderB
+          }
+
+          return a.shortName.localeCompare(b.shortName)
+        })
         setChains(chs)
       } catch (err) {
         setError(errorToString(err))
