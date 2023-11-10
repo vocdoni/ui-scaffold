@@ -1,9 +1,11 @@
 import { ChevronDownIcon, SearchIcon } from '@chakra-ui/icons'
-import { Avatar, Flex, Link, Text } from '@chakra-ui/react'
+import { Avatar, Circle, Flex, Link, Text } from '@chakra-ui/react'
 import { chakraComponents } from 'chakra-react-select'
 import { BsImage } from 'react-icons/bs'
 import { FaEthereum } from 'react-icons/fa'
 import { FaPeopleGroup } from 'react-icons/fa6'
+import ethIcon from '/assets/eth.jpg'
+import polygonIcon from '/assets/polygon-matic.jpg'
 
 export const customComponentsTokens = {
   GroupHeading: (props: any) => {
@@ -66,13 +68,29 @@ export const customComponentsTokens = {
   ),
 }
 
+const getIconSource = (shortName: string) => {
+  switch (shortName) {
+    case 'eth':
+    case 'gor':
+      return ethIcon
+    case 'matic':
+    case 'maticmum':
+      return polygonIcon
+    default:
+      return null
+  }
+}
 export const customComponentsNetwork = {
-  Option: (props: any) => (
-    <chakraComponents.Option {...props}>
-      <Flex alignItems='center' gap={2}>
-        <FaEthereum />
-        <Text>{props.children}</Text>
-      </Flex>
-    </chakraComponents.Option>
-  ),
+  Option: (props: any) => {
+    const iconSource = getIconSource(props.data.shortName)
+    return (
+      <chakraComponents.Option {...props}>
+        <Flex alignItems='center' gap={2}>
+          {iconSource && <Avatar size='xs' name={props.data.name} src={iconSource} />}
+          {!iconSource && <Circle size='22px' border='1px solid lightgray' bgColor='white' />}
+          <Text>{props.children}</Text>
+        </Flex>
+      </chakraComponents.Option>
+    )
+  },
 }
