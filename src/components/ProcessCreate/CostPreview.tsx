@@ -11,6 +11,7 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
+  ModalOverlay,
   Spinner,
   Text,
   Tooltip,
@@ -215,6 +216,7 @@ const GetVocTokens = ({
 
   return (
     <>
+      <ModalOverlay />
       <ModalContent minW={{ md: '600px' }}>
         <ModalHeader>
           <Text>{t('get_voc_tokens.title')}</Text>
