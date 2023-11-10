@@ -220,7 +220,7 @@ export const CensusTokens = () => {
             defaultValue={ct}
             options={filteredTks}
             getOptionValue={({ chainAddress, chainID, externalID }) => chainAddress + chainID + externalID}
-            getOptionLabel={({ name }) => name}
+            getOptionLabel={({ name, symbol }) => `${name} (${symbol})`}
             onChange={async (token) => {
               setValue('censusToken', token)
               setValue('maxCensusSize', undefined)
