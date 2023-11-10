@@ -25,7 +25,7 @@ export const customComponentsTokens = {
     )
   },
   Option: (props: any) => {
-    if (props.data.name === 'Request Custom Tokens') {
+    if (props.data.ID === 'request') {
       return (
         <chakraComponents.Option {...props}>
           <Flex justifyContent='center' w='full'>

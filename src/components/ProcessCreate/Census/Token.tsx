@@ -130,7 +130,7 @@ export const CensusTokens = () => {
 
     const orderedTokensByGroup: {
       label: string
-      options: Token[] | { name: string; status: { synced: boolean } }[]
+      options: Token[] | { name: string; status: { synced: boolean }; ID: string }[]
     }[] = uniqueTypes.map((type) => {
       const tokensWithType = filteredByChainTokens.filter((tk) => tk.type === type)
       return { label: type.toUpperCase(), options: tokensWithType }
@@ -138,7 +138,7 @@ export const CensusTokens = () => {
 
     orderedTokensByGroup.push({
       label: 'request',
-      options: [{ name: 'Request Custom Tokens', status: { synced: true } }],
+      options: [{ name: 'Request Custom Tokens', status: { synced: true }, ID: 'request' }],
     })
 
     const totalTks = orderedTokensByGroup.reduce((acc, curr) => {
@@ -248,7 +248,10 @@ export const CensusTokens = () => {
             defaultValue={ct}
             options={filteredTks}
             getOptionValue={({ chainAddress, chainID, externalID }) => chainAddress + chainID + externalID}
-            getOptionLabel={({ name, symbol }) => `${name} (${symbol})`}
+            getOptionLabel={({ name, symbol }) => {
+              if (symbol) return `${name}  (${symbol})`
+              else return `${name}`
+            }}
             onChange={async (token) => {
               setValue('censusToken', token)
               setValue('maxCensusSize', undefined)
