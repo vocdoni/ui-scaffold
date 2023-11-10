@@ -29,7 +29,7 @@ export const Checks = () => {
   }
 
   return (
-    <Box display='flex'>
+    <Box display='flex' justifyContent='center' alignItems='center' mt={{ base: 20, lg: 0 }}>
       <Spinner />
       <Text ml={5}>{t('form.process_create.running_checks')}</Text>
     </Box>
