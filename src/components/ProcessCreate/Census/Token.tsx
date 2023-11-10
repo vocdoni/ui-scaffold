@@ -22,7 +22,7 @@ import {
   Tooltip,
 } from '@chakra-ui/react'
 import { errorToString, useClient } from '@vocdoni/react-providers'
-import { Census3TokenSummary, EnvOptions, ICensus3SupportedChain, Token, VocdoniCensus3Client } from '@vocdoni/sdk'
+import { EnvOptions, ICensus3SupportedChain, Token, VocdoniCensus3Client } from '@vocdoni/sdk'
 import { GroupBase, Select, SelectInstance } from 'chakra-react-select'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
@@ -39,9 +39,14 @@ export const CensusTokens = () => {
   const selectTokenRef = useRef<SelectInstance<any, false, GroupBase<any>>>(null)
   const selectChainRef = useRef<SelectInstance<any, false, GroupBase<any>>>(null)
   const [chains, setChains] = useState<ICensus3SupportedChain[]>([])
-  const [tokens, setTokens] = useState<Census3TokenSummary[]>([])
   const [totalTks, setTotalTks] = useState(0)
   const [maxSize, setMaxSize] = useState<number | undefined>()
+  const [groupedTokens, setGroupedTokens] = useState<
+    {
+      label: string
+      options: Token[] | { name: string; status: { synced: boolean }; ID: string }[]
+    }[]
+  >([])
 
   const { t } = useTranslation()
   const {
@@ -76,14 +81,26 @@ export const CensusTokens = () => {
   })
   const ct: Token | undefined = watch('censusToken')
 
+  const formatGroupLabel = (data: any) => {
+    return (
+      <div style={{}}>
+        <span>{data.label}</span>
+      </div>
+    )
+  }
+
+  const filterOptions = (candidate: any) => {
+    if (ch) {
+      return candidate.data.chainID === ch.chainID
+    }
+    return true
+  }
+
   useEffect(() => {
     // fetch tokens and chains
     ;(async () => {
       setLoading(true)
       try {
-        const tks = await client.getSupportedTokens()
-        setTokens(tks)
-
         const chs = await client.getSupportedChains()
 
         // Sort chains with the order: eth, gor, matic, maticmum, and the rest in alphabetical order
@@ -113,48 +130,40 @@ export const CensusTokens = () => {
           return a.shortName.localeCompare(b.shortName)
         })
         setChains(chs)
+
+        const tks = await client.getSupportedTokens()
+
+        const uniqueTypes = [...new Set(tks.map((tk) => tk.type))].sort()
+
+        const groupedTokens: {
+          label: string
+          options: Token[] | { name: string; status: { synced: boolean }; ID: string }[]
+        }[] = uniqueTypes.map((type) => {
+          const tokensWithType = tks.filter((tk) => tk.type === type)
+          return { label: type.toUpperCase(), options: tokensWithType }
+        })
+
+        groupedTokens.push({
+          label: 'request',
+          options: [{ name: 'Request Custom Tokens', status: { synced: true }, ID: 'request' }],
+        })
+
+        const totalTks = groupedTokens.reduce((acc, curr) => {
+          if (curr.label !== 'request') {
+            return acc + curr.options.length
+          }
+          return acc
+        }, 0)
+
+        setTotalTks(totalTks)
+
+        setGroupedTokens(groupedTokens)
       } catch (err) {
         setError(errorToString(err))
       }
       setLoading(false)
     })()
   }, [])
-
-  const processedTokens = useMemo(() => {
-    if (!ch) return []
-
-    setToken(undefined)
-
-    let filteredByChainTokens = Array.from(tokens).filter((token) => token.chainID === ch.chainID)
-
-    const uniqueTypes = [...new Set(tokens.map((tk) => tk.type))].sort()
-
-    const orderedTokensByGroup: {
-      label: string
-      options: Token[] | { name: string; status: { synced: boolean }; ID: string }[]
-    }[] = uniqueTypes.map((type) => {
-      const tokensWithType = filteredByChainTokens.filter((tk) => tk.type === type)
-      return { label: type.toUpperCase(), options: tokensWithType }
-    })
-
-    orderedTokensByGroup.push({
-      label: 'request',
-      options: [{ name: 'Request Custom Tokens', status: { synced: true }, ID: 'request' }],
-    })
-
-    const totalTks = orderedTokensByGroup.reduce((acc, curr) => {
-      if (curr.label !== 'request') {
-        return acc + curr.options.length
-      }
-      return acc
-    }, 0)
-
-    setTotalTks(totalTks)
-
-    return orderedTokensByGroup
-  }, [ch])
-
-  const filteredTks = processedTokens
 
   useEffect(() => {
     // get token
@@ -207,8 +216,10 @@ export const CensusTokens = () => {
             ref={selectChainRef}
             placeholder={t('form.process_create.census.network_placeholder')}
             aria-label={t('form.process_create.census.network_placeholder')}
-            options={Array.isArray(chains) ? chains : [chains]}
             defaultValue={ch}
+            name={chain.name}
+            onBlur={chain.onBlur}
+            options={Array.isArray(chains) ? chains : [chains]}
             getOptionValue={(value) => value}
             getOptionLabel={({ name }) => `${name}`}
             onChange={async (network) => {
@@ -217,8 +228,6 @@ export const CensusTokens = () => {
               setValue('maxCensusSize', undefined)
               clearErrors()
             }}
-            name={chain.name}
-            onBlur={chain.onBlur}
             isLoading={loading}
             isDisabled={loading || loadingTk}
             components={customComponentsNetwork}
@@ -250,7 +259,11 @@ export const CensusTokens = () => {
             placeholder={t('form.process_create.census.tokens_placeholder')}
             aria-label={t('form.process_create.census.tokens_placeholder')}
             defaultValue={ct}
-            options={filteredTks}
+            name={ctoken.name}
+            onBlur={ctoken.onBlur}
+            formatGroupLabel={formatGroupLabel}
+            options={groupedTokens}
+            filterOption={filterOptions}
             getOptionValue={({ chainAddress, chainID, externalID }) => chainAddress + chainID + externalID}
             getOptionLabel={({ name, symbol }) => {
               if (symbol) return `${name}  (${symbol})`
@@ -261,8 +274,6 @@ export const CensusTokens = () => {
               setValue('maxCensusSize', undefined)
               clearErrors()
             }}
-            name={ctoken.name}
-            onBlur={ctoken.onBlur}
             isDisabled={!ch || loadingTk}
             isOptionDisabled={(option) => !option.status?.synced}
             components={customComponentsTokens}
