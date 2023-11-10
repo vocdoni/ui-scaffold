@@ -12,7 +12,7 @@ export type authTypes = {
 }
 
 export const useFaucet = () => {
-  const { connected, signer, client } = useClient()
+  const { client } = useClient()
 
   // TODO: Remove this when the client is updated
   let {
@@ -20,16 +20,16 @@ export const useFaucet = () => {
   } = client
   url = url.replace(/v2.*/, 'v2')
 
-  url = 'http://localhost:8080/v2'
-  console.log('FAUCET URL:', url)
-  const oAuthSignInURL = async (provider: string, redirectURLParams?: signinUrlParams[]): Promise<string> => {
-    if (!connected) throw new Error('Wallet not connected')
-
+  const oAuthSignInURL = async (
+    provider: string,
+    recipient: string,
+    redirectURLParams?: signinUrlParams[]
+  ): Promise<string> => {
     const redirectURL = new URL(window.location.href)
 
     const stateParams = [
       { param: 'provider', value: provider },
-      { param: 'recipient', value: await signer.getAddress() },
+      { param: 'recipient', value: recipient },
       ...(redirectURLParams || []),
     ]
 

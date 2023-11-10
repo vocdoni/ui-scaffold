@@ -132,7 +132,9 @@
       "title": "Sol·licita Tokens"
     },
     "title": "Faucet de Tokens Vocdoni",
-    "tokens_you_own": "Tens {{ balance }} tokens."
+    "tokens_you_own": "Tens {{ balance }} tokens.",
+    "connect_or_set_recipient_address": "Si us plau, connecteu la vostra cartera o escriviu l'adreça del destinatari a continuació (ha de ser un compte de Vocdoni)",
+    "recipient_address": "Introduïu l'adreça del destinatari on voleu rebre els tokens."
   },
   "footer": {
     "about": "Sobre nosaltres",
@@ -169,7 +171,8 @@
       "address_pattern": "Només s'admeten adreces hexadecimals (p. ex. 0x031101A...)",
       "avatar_error": "URL no vàlida",
       "field_is_required": "Aquest camp és obligatori",
-      "min_address": "Si us plau, proporciona com a mínim una adreça"
+      "min_address": "Si us plau, proporciona com a mínim una adreça",
+      "recipient_address_invalid": "Adreça del destinatari no vàlida"
     },
     "process_create": {
       "behavior": {

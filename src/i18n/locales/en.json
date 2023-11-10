@@ -130,7 +130,9 @@
       "title": "Request Tokens"
     },
     "title": "Vocdoni Tokens Faucet",
-    "tokens_you_own": "You own {{ balance }} tokens."
+    "tokens_you_own": "You own {{ balance }} tokens.",
+    "connect_or_set_recipient_address": "Please, connect your wallet or write the recipient address below (must be a Vocdoni Account)",
+    "recipient_address": "Enter the recipient address you'd like to receive tokens on."
   },
   "footer": {
     "about": "About",
@@ -167,7 +169,8 @@
       "address_pattern": "Only hex addresses are allowed (e.g 0x031101A...)",
       "avatar_error": "URL not valid",
       "field_is_required": "This field is required",
-      "min_address": "Please, provide at least one address"
+      "min_address": "Please, provide at least one address",
+      "recipient_address_invalid": "Invalid recipient address"
     },
     "process_create": {
       "behavior": {

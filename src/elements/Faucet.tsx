@@ -38,20 +38,10 @@ const Faucet = () => {
                 {t('faucet.request_tokens.title')}
               </Heading>
               <Text>
-                {account ? (
+                {account && (
                   <Text>
                     <Trans i18nKey='faucet.tokens_you_own' values={{ balance: account?.balance }} />
-                    {` `}
-                    <Trans
-                      i18nKey='faucet.request_description'
-                      components={{
-                        span: <Text as='span' />,
-                      }}
-                      values={{ balance: account?.balance }}
-                    />
                   </Text>
-                ) : (
-                  <Trans i18nKey='faucet.login_first' />
                 )}
               </Text>
               <Claim />
