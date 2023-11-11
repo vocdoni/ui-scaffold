@@ -12,10 +12,8 @@ export const customStylesSelect: ChakraStylesConfig = {
   }),
   menu: (base) => ({
     ...base,
-    marginTop: 0,
     zIndex: 10,
     boxShadow: 'var(--box-shadow)',
-    borderRadius: 'md',
   }),
   menuList: (base) => ({
     ...base,
@@ -25,6 +23,7 @@ export const customStylesSelect: ChakraStylesConfig = {
     ...base,
     fontWeight: 'bold',
     bgColor: state.isSelected && 'primary.500',
+    color: state.isFocused && !state.isSelected ? 'primary.500' : state.isSelected && 'white',
   }),
   groupHeading: (base) => ({
     ...base,
@@ -42,6 +41,7 @@ export const customStylesTokensSelect: ChakraStylesConfig = {
     ...base,
     fontWeight: 'bold',
     bgColor: state.isSelected && 'primary.500',
+    color: state.isFocused && !state.isSelected ? 'primary.500' : state.isSelected && 'white',
     pl: 10,
   }),
 }

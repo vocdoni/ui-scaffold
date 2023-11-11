@@ -188,8 +188,6 @@ export const CensusTokens = () => {
     })()
   }, [ct])
 
-  console.log(token)
-
   if (error) {
     return (
       <Alert status='error'>
@@ -408,7 +406,7 @@ export const TokenPreview = ({
 }) => {
   if (!token || !maxSize) return null
   return (
-    <Card my={5} w='full'>
+    <Card my={5} w='full' boxShadow='var(--box-shadow)'>
       <CardHeader>
         <Grid
           gridTemplateColumns={{
