@@ -81,11 +81,9 @@ export const CensusTokens = () => {
   })
   const ct: Token | undefined = watch('censusToken')
 
-  const formatGroupLabel = (data: any) => data.label
-
   const filterOptions = (candidate: any) => {
     if (ch) {
-      return candidate.data.chainID === ch.chainID
+      return candidate.data.chainID === ch.chainID || candidate.data.ID === 'request'
     }
     return true
   }
@@ -255,7 +253,6 @@ export const CensusTokens = () => {
             defaultValue={ct}
             name={ctoken.name}
             onBlur={ctoken.onBlur}
-            formatGroupLabel={formatGroupLabel}
             options={groupedTokens}
             filterOption={filterOptions}
             getOptionValue={({ chainAddress, chainID, externalID }) => chainAddress + chainID + externalID}
