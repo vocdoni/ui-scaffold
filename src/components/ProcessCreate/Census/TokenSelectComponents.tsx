@@ -1,14 +1,22 @@
 import { ChevronDownIcon, SearchIcon } from '@chakra-ui/icons'
 import { Avatar, Flex, Link, Text } from '@chakra-ui/react'
-import { chakraComponents } from 'chakra-react-select'
+import {
+  DropdownIndicatorProps,
+  GroupBase,
+  GroupHeadingProps,
+  OptionProps,
+  SelectComponentsConfig,
+  SingleValueProps,
+  chakraComponents,
+} from 'chakra-react-select'
 import { BsImage } from 'react-icons/bs'
 import { FaEthereum } from 'react-icons/fa'
 import { FaPeopleGroup } from 'react-icons/fa6'
 import ethIcon from '/assets/eth.jpg'
 import polygonIcon from '/assets/polygon-matic.jpg'
 
-export const customComponentsTokens = {
-  SingleValue: (props: any) => {
+export const customComponentsTokens: Partial<SelectComponentsConfig<any, false, GroupBase<any>>> = {
+  SingleValue: (props: SingleValueProps<any, false, GroupBase<any>>) => {
     return (
       <chakraComponents.SingleValue {...props}>
         <Avatar
@@ -21,10 +29,10 @@ export const customComponentsTokens = {
       </chakraComponents.SingleValue>
     )
   },
-  GroupHeading: (props: any) => {
+  GroupHeading: (props: GroupHeadingProps<any, false, GroupBase<any>>) => {
     const poap = /poap/i
     const nft = /nft/i
-
+    if (!props.data || !props.data.label) return null
     if (props.data.label === 'request') return
 
     return (
@@ -39,7 +47,7 @@ export const customComponentsTokens = {
       </chakraComponents.GroupHeading>
     )
   },
-  Option: (props: any) => {
+  Option: (props: OptionProps<any, false, GroupBase<any>>) => {
     if (props.data.ID === 'request') {
       return (
         <chakraComponents.Option {...props}>
@@ -69,7 +77,7 @@ export const customComponentsTokens = {
     }
   },
 
-  DropdownIndicator: (props: any) => (
+  DropdownIndicator: (props: DropdownIndicatorProps<any, false, GroupBase<any>>) => (
     <>
       <chakraComponents.DropdownIndicator {...props}>
         <SearchIcon fontSize='sm' />
@@ -93,8 +101,8 @@ const getIconSource = (shortName: string) => {
       return undefined
   }
 }
-export const customComponentsNetwork = {
-  SingleValue: (props: any) => {
+export const customComponentsNetwork: Partial<SelectComponentsConfig<any, false, GroupBase<any>>> = {
+  SingleValue: (props: SingleValueProps<any, false, GroupBase<any>>) => {
     const iconSource = getIconSource(props.data.shortName)
     return (
       <chakraComponents.SingleValue {...props}>
@@ -103,7 +111,7 @@ export const customComponentsNetwork = {
       </chakraComponents.SingleValue>
     )
   },
-  Option: (props: any) => {
+  Option: (props: OptionProps<any, false, GroupBase<any>>) => {
     const iconSource = getIconSource(props.data.shortName)
     return (
       <chakraComponents.Option {...props}>
