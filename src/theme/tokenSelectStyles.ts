@@ -1,6 +1,6 @@
 import { ChakraStylesConfig } from 'chakra-react-select'
 
-export const customStyles: ChakraStylesConfig = {
+export const customStylesSelect: ChakraStylesConfig = {
   control: (base) => ({
     ...base,
     boxShadow: 'var(--box-shadow)',
@@ -36,8 +36,8 @@ export const customStyles: ChakraStylesConfig = {
   }),
 }
 
-export const customStylesTokens: ChakraStylesConfig = {
-  ...customStyles,
+export const customStylesTokensSelect: ChakraStylesConfig = {
+  ...customStylesSelect,
   option: (base, state) => ({
     ...base,
     fontWeight: 'bold',

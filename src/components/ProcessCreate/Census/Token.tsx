@@ -27,7 +27,7 @@ import { GroupBase, Select, SelectInstance } from 'chakra-react-select'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { customStyles, customStylesTokens } from '~theme/tokenSelectStyles'
+import { customStylesSelect, customStylesTokensSelect } from '~theme/tokenSelectStyles'
 import { customComponentsNetwork, customComponentsTokens } from './TokenSelectComponents'
 
 export const CensusTokens = () => {
@@ -228,7 +228,7 @@ export const CensusTokens = () => {
             isLoading={loading}
             isDisabled={loading || loadingTk}
             components={customComponentsNetwork}
-            chakraStyles={customStyles}
+            chakraStyles={customStylesSelect}
           />
           <FormErrorMessage>{errors.chain && errors.chain.message?.toString()}</FormErrorMessage>
         </FormControl>
@@ -274,7 +274,7 @@ export const CensusTokens = () => {
             isDisabled={!ch || loadingTk}
             isOptionDisabled={(option) => !option.status?.synced}
             components={customComponentsTokens}
-            chakraStyles={customStylesTokens}
+            chakraStyles={customStylesTokensSelect}
           />
           <FormErrorMessage>{errors.censusToken && errors.censusToken.message?.toString()}</FormErrorMessage>
         </FormControl>
