@@ -81,9 +81,14 @@ export const CensusTokens = () => {
   })
   const ct: Token | undefined = watch('censusToken')
 
-  const filterOptions = (candidate: any) => {
+  const filterOptions = (candidate: any, input: any) => {
+    const regex = new RegExp(input, 'ig')
     if (ch) {
-      return candidate.data.chainID === ch.chainID || candidate.data.ID === 'request'
+      return (
+        (candidate.data.chainID === ch.chainID &&
+          (candidate.data.name.match(regex) || candidate.data.symbol.match(regex) || candidate.data.ID.match(regex))) ||
+        candidate.data.ID === 'request'
+      )
     }
     return true
   }
@@ -216,7 +221,7 @@ export const CensusTokens = () => {
             getOptionLabel={({ name }) => `${name}`}
             onChange={async (network) => {
               setValue('censusToken', undefined)
-              setValue('chain', network)
+              setValue('chain', network || undefined)
               setValue('maxCensusSize', undefined)
               clearErrors()
             }}
@@ -261,10 +266,11 @@ export const CensusTokens = () => {
               else return `${name}`
             }}
             onChange={async (token) => {
-              setValue('censusToken', token)
+              setValue('censusToken', token || undefined)
               setValue('maxCensusSize', undefined)
               clearErrors()
             }}
+            isSearchable
             isDisabled={!ch || loadingTk}
             isOptionDisabled={(option) => !option.status?.synced}
             components={customComponentsTokens}
