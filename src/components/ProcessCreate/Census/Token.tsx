@@ -188,6 +188,8 @@ export const CensusTokens = () => {
     })()
   }, [ct])
 
+  console.log(token)
+
   if (error) {
     return (
       <Alert status='error'>
@@ -226,6 +228,7 @@ export const CensusTokens = () => {
             getOptionValue={(value: ICensus3SupportedChain) => String(value.chainID)}
             getOptionLabel={({ name }: ICensus3SupportedChain) => `${name}`}
             onChange={(network) => {
+              setToken(undefined)
               setValue('censusToken', undefined)
               setValue('chain', network || undefined)
               setValue('maxCensusSize', undefined)
@@ -283,6 +286,7 @@ export const CensusTokens = () => {
               else return `${props.name}`
             }}
             onChange={(token) => {
+              if (!token) setToken(undefined)
               setValue('censusToken', token || undefined)
               setValue('maxCensusSize', undefined)
               clearErrors()
