@@ -324,16 +324,13 @@ export const MaxCensusSizeSelector = ({ token, maxSize }: { token?: Token; maxSi
   const [showTooltip, setShowTooltip] = useState<boolean>(false)
   const { t } = useTranslation()
 
-  // set slidervalue the very first time, based on token.size
   useEffect(() => {
-    if (sliderValue !== undefined || !maxSize) return
-
-    setSliderValue(maxSize)
-  }, [token, sliderValue])
+    if (sliderValue !== undefined) return
+    setValue('maxCensusSize', maxSize)
+    setSliderValue(maxSize as number)
+  }, [])
 
   if (sliderValue === undefined || !token || !maxSize) return null
-
-  const uniTokenHolders = watch('maxCensusSize')
 
   const percent = Math.round((sliderValue / maxSize) * 100)
 
@@ -386,7 +383,7 @@ export const MaxCensusSizeSelector = ({ token, maxSize }: { token?: Token; maxSi
           i18nKey={'form.process_create.census.max_census_resum'}
           values={{
             symbol: token.symbol,
-            uniTokenHolders: formatNumber(uniTokenHolders),
+            uniTokenHolders: sliderValue,
             percent,
           }}
         />
