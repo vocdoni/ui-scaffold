@@ -50,7 +50,7 @@ export const CensusTokens = () => {
   const [groupedTokens, setGroupedTokens] = useState<
     {
       label: string
-      options: Token[] | { name: string; status: { synced: boolean }; ID: string }[]
+      options: Token[] | { name: string; status: { synced: boolean }; type: string }[]
     }[]
   >([])
 
@@ -87,25 +87,29 @@ export const CensusTokens = () => {
   })
   const ct: Token | undefined = watch('censusToken')
 
-  const formatGroupLabel = (data: any) => {
-    if (/erc20/gi.test(data.label)) {
-      return 'Tokens'
-    } else if (/erc721/gi.test(data.label)) {
-      return 'NFTs'
-    } else if (/poap/gi.test(data.label)) {
-      return 'POAPs'
-    } else {
-      return data.label
+  const formatGroupLabel = (data: GroupBase<any>) => {
+    const [opt] = data.options
+
+    switch (opt.type) {
+      case 'erc20':
+        return 'Tokens'
+      case 'erc721':
+        return 'NFTs'
+      case 'poap':
+        return 'POAPs'
+      default:
+        return data.label
     }
   }
 
   const filterOptions = (candidate: FilterOptionOption<any>, input: string) => {
     const regex = new RegExp(input, 'ig')
+    const { data } = candidate
+
     if (ch) {
       return (
-        (candidate.data.chainID === ch.chainID &&
-          (candidate.data.name.match(regex) || candidate.data.symbol.match(regex) || candidate.data.ID.match(regex))) ||
-        candidate.data.ID === 'request'
+        (data.chainID === ch.chainID && (data.name.match(regex) || data.symbol.match(regex) || data.ID.match(regex))) ||
+        data.type === 'request'
       )
     }
     return true
@@ -152,7 +156,7 @@ export const CensusTokens = () => {
 
         const groupedTokens: {
           label: string
-          options: Token[] | { name: string; status: { synced: boolean }; ID: string }[]
+          options: Token[] | { name: string; status: { synced: boolean }; type: string }[]
         }[] = uniqueTypes.map((type) => {
           const tokensWithType = tks.filter((tk) => tk.type === type)
           return { label: type.toUpperCase(), options: tokensWithType }
@@ -160,7 +164,7 @@ export const CensusTokens = () => {
 
         groupedTokens.push({
           label: 'request',
-          options: [{ name: 'Request Custom Tokens', status: { synced: true }, ID: 'request' }],
+          options: [{ name: 'Request Custom Tokens', status: { synced: true }, type: 'request' }],
         })
 
         const totalTks = groupedTokens.reduce((acc, curr) => {

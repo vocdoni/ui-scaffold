@@ -30,25 +30,33 @@ export const customComponentsTokens: Partial<SelectComponentsConfig<any, false, 
     )
   },
   GroupHeading: (props: GroupHeadingProps<any, false, GroupBase<any>>) => {
-    const poap = /poap/i
-    const nft = /erc721/i
-    if (!props.data || !props.data.label) return null
-    if (props.data.label === 'request') return
+    const { data } = props
+
+    if (!data || !data.label) return null
+
+    const [opt] = data.options
+
+    if (opt.type === 'request') return null
 
     return (
       <chakraComponents.GroupHeading {...props}>
         <Flex alignItems='center' gap={2}>
-          {poap.test(props.data.label) && <FaPeopleGroup />}
-          {nft.test(props.data.label) && <BsImage />}
-          {!poap.test(props.data.label) && !nft.test(props.data.label) && <FaEthereum />}
+          {opt.type === 'poap' && <FaPeopleGroup />}
+          {opt.type === 'erc721' && <BsImage />}
+          {!(opt.type === 'ecr721') && !(opt.type === 'poap') && <FaEthereum />}
 
           {props.children}
         </Flex>
       </chakraComponents.GroupHeading>
     )
   },
+
   Option: (props: OptionProps<any, false, GroupBase<any>>) => {
-    if (props.data.ID === 'request') {
+    const {
+      data: { type: groupType },
+    } = props
+
+    if (groupType === 'request') {
       return (
         <chakraComponents.Option {...props}>
           <Flex justifyContent='center' w='full'>
