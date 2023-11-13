@@ -87,6 +87,18 @@ export const CensusTokens = () => {
   })
   const ct: Token | undefined = watch('censusToken')
 
+  const formatGroupLabel = (data: any) => {
+    if (/erc20/gi.test(data.label)) {
+      return 'Tokens'
+    } else if (/erc721/gi.test(data.label)) {
+      return 'NFTs'
+    } else if (/poap/gi.test(data.label)) {
+      return 'POAPs'
+    } else {
+      return data.label
+    }
+  }
+
   const filterOptions = (candidate: FilterOptionOption<any>, input: string) => {
     const regex = new RegExp(input, 'ig')
     if (ch) {
@@ -276,6 +288,7 @@ export const CensusTokens = () => {
             defaultValue={ct}
             name={ctoken.name}
             onBlur={ctoken.onBlur}
+            formatGroupLabel={formatGroupLabel}
             options={groupedTokens}
             filterOption={filterOptions}
             getOptionValue={({ chainAddress, chainID, externalID }: Token) => chainAddress + chainID + externalID}
@@ -316,7 +329,6 @@ export const MaxCensusSizeSelector = ({ token, maxSize }: { token?: Token; maxSi
   const {
     setValue,
     getValues,
-    watch,
     formState: { errors },
   } = useFormContext()
 

@@ -31,7 +31,7 @@ export const customComponentsTokens: Partial<SelectComponentsConfig<any, false, 
   },
   GroupHeading: (props: GroupHeadingProps<any, false, GroupBase<any>>) => {
     const poap = /poap/i
-    const nft = /nft/i
+    const nft = /erc721/i
     if (!props.data || !props.data.label) return null
     if (props.data.label === 'request') return
 
