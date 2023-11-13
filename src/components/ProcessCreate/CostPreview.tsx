@@ -44,6 +44,7 @@ export const CostPreview = ({
     startDate,
     endDate,
     electionType: { anonymous, autoStart },
+    maxCensusSize,
   } = form
 
   // election estimate cost
@@ -87,7 +88,7 @@ export const CostPreview = ({
                       components={{
                         span: <Text as='span' />,
                       }}
-                      count={addresses.length}
+                      count={addresses.length || maxCensusSize}
                     />
                   </Text>
                 </ListItem>

@@ -10,6 +10,7 @@ import {
   FormErrorMessage,
   FormLabel,
   Grid,
+  GridItem,
   Heading,
   Slider,
   SliderFilledTrack,
@@ -46,7 +47,7 @@ export const CensusTokens = () => {
   const selectChainRef = useRef<SelectInstance<any, false, GroupBase<any>>>(null)
   const [chains, setChains] = useState<ICensus3SupportedChain[]>([])
   const [totalTks, setTotalTks] = useState(0)
-  const [maxSize, setMaxSize] = useState<number | undefined>()
+  const [strategySize, setStategySize] = useState<number | undefined>()
   const [groupedTokens, setGroupedTokens] = useState<
     {
       label: string
@@ -195,7 +196,8 @@ export const CensusTokens = () => {
         setToken(token)
 
         const max = await client.getStrategySize(token.defaultStrategy)
-        setMaxSize(max)
+        setStategySize(max)
+        setValue('strategySize', max)
       } catch (err) {
         setError(errorToString(err))
       } finally {
@@ -302,6 +304,7 @@ export const CensusTokens = () => {
             }}
             onChange={(token) => {
               if (!token) setToken(undefined)
+              else setValue('token', token)
               setValue('censusToken', token || undefined)
               setValue('maxCensusSize', undefined)
               clearErrors()
@@ -321,15 +324,15 @@ export const CensusTokens = () => {
         <Spinner mt={10} />
       ) : (
         <>
-          <TokenPreview token={token} chainName={ch?.name} maxSize={maxSize} />
-          <MaxCensusSizeSelector token={token} maxSize={maxSize} />
+          <TokenPreview token={token} chainName={ch?.name} strategySize={strategySize} />
+          <MaxCensusSizeSelector token={token} strategySize={strategySize} />
         </>
       )}
     </Stack>
   )
 }
 
-export const MaxCensusSizeSelector = ({ token, maxSize }: { token?: Token; maxSize?: number }) => {
+export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Token; strategySize?: number }) => {
   const {
     setValue,
     getValues,
@@ -342,13 +345,13 @@ export const MaxCensusSizeSelector = ({ token, maxSize }: { token?: Token; maxSi
 
   useEffect(() => {
     if (sliderValue !== undefined) return
-    setValue('maxCensusSize', maxSize)
-    setSliderValue(maxSize as number)
+    setValue('maxCensusSize', strategySize)
+    setSliderValue(strategySize as number)
   }, [])
 
-  if (sliderValue === undefined || !token || !maxSize) return null
+  if (sliderValue === undefined || !token || !strategySize) return null
 
-  const percent = Math.round((sliderValue / maxSize) * 100)
+  const percent = Math.round((sliderValue / strategySize) * 100)
 
   return (
     <>
@@ -358,7 +361,7 @@ export const MaxCensusSizeSelector = ({ token, maxSize }: { token?: Token; maxSi
           aria-label={t('form.process_create.census.max_census_slider_arialabel')}
           defaultValue={sliderValue}
           min={0}
-          max={maxSize}
+          max={strategySize}
           onChange={(v) => {
             setSliderValue(v)
             setValue('maxCensusSize', v)
@@ -366,13 +369,13 @@ export const MaxCensusSizeSelector = ({ token, maxSize }: { token?: Token; maxSi
           onMouseEnter={() => setShowTooltip(true)}
           onMouseLeave={() => setShowTooltip(false)}
         >
-          <SliderMark value={maxSize * 0.25} mt='1' ml='-2.5' fontSize='sm'>
+          <SliderMark value={strategySize * 0.25} mt='1' ml='-2.5' fontSize='sm'>
             25%
           </SliderMark>
-          <SliderMark value={maxSize * 0.5} mt='1' ml='-2.5' fontSize='sm'>
+          <SliderMark value={strategySize * 0.5} mt='1' ml='-2.5' fontSize='sm'>
             50%
           </SliderMark>
-          <SliderMark value={maxSize * 0.75} mt='1' ml='-2.5' fontSize='sm'>
+          <SliderMark value={strategySize * 0.75} mt='1' ml='-2.5' fontSize='sm'>
             75%
           </SliderMark>
           <SliderTrack>
@@ -411,45 +414,42 @@ export const MaxCensusSizeSelector = ({ token, maxSize }: { token?: Token; maxSi
 export const TokenPreview = ({
   token,
   chainName,
-  maxSize,
+  strategySize,
 }: {
   token?: Token
   chainName?: string
-  maxSize?: number
+  strategySize?: number
 }) => {
-  if (!token || !maxSize) return null
+  if (!token || !strategySize) return null
+
   return (
-    <Card my={5} w='full' boxShadow='var(--box-shadow)'>
+    <Card w='full' my={5} boxShadow='var(--box-shadow)'>
       <CardHeader>
         <Grid
-          gridTemplateColumns={{
-            base: 'min-content 1fr',
-            sm2: 'min-content min-content 1fr',
-            xl: 'min-content 1fr min-content min-content min-content',
-          }}
-          gridTemplateRows={{ base: 'repeat(4, min-content)', sm2: 'repeat(3, min-content)', xl: '1fr' }}
-          columnGap={{ base: 2, sm2: 3 }}
+          gridTemplateColumns='min-content 1fr min-content min-content'
+          gridColumn={{ base: 'min-content min-content', xl: 'min-content' }}
+          gap={3}
         >
-          <Flex
-            gridRowStart={1}
-            gridRowEnd={{ base: 3, sm2: 2 }}
+          <GridItem
             gridColumnStart={1}
             gridColumnEnd={2}
-            justifyContent='center'
+            gridRowStart={1}
+            gridRowEnd={2}
+            display='flex'
             alignItems='center'
           >
             <Avatar
               name={token.name}
               src={`https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${token.ID}/logo.png`}
             />
-          </Flex>
-          <Flex
+          </GridItem>
+          <GridItem
+            gridColumnStart={{ base: 2, xl: 3 }}
+            gridColumnEnd={{ base: 3, xl: 4 }}
             gridRowStart={1}
             gridRowEnd={2}
-            gridColumnStart={{ base: 2, xl: 5 }}
-            gridColumnEnd={{ base: 3, xl: 6 }}
-            justifyContent={{ base: 'center', sm2: 'start' }}
-            whiteSpace='nowrap'
+            display='flex'
+            alignItems='center'
           >
             <Badge
               variant='outline'
@@ -462,38 +462,45 @@ export const TokenPreview = ({
             >
               {chainName}
             </Badge>
-          </Flex>
-          <Flex
-            gridRowStart={{ base: 2, sm2: 1 }}
-            gridRowEnd={{ base: 3, sm2: 2 }}
-            gridColumnStart={{ base: 2, sm2: 3, xl: 6 }}
-            gridColumnEnd={{ base: 3, sm2: 4, xl: 7 }}
-            justifyContent={{ base: 'center', sm2: 'start' }}
+          </GridItem>
+          <GridItem
+            gridColumnStart={4}
+            gridColumnEnd={5}
+            gridRowStart={1}
+            gridRowEnd={2}
+            display='flex'
+            alignItems='center'
           >
-            <Text color='gray' alignSelf='center'>
+            <Text
+              color='gray'
+              alignSelf='center'
+              whiteSpace={{ base: 'pre-wrap', sm: 'nowrap' }}
+              overflow='hidden'
+              textOverflow='ellipsis'
+              textAlign='center'
+            >
               <Trans
                 i18nKey={'form.process_create.census.holders'}
                 values={{
-                  holders: formatNumber(maxSize),
+                  holders: formatNumber(strategySize),
                 }}
               />
             </Text>
-          </Flex>
-
-          <Flex
+          </GridItem>
+          <GridItem
             gridColumnStart={{ base: 1, xl: 2 }}
-            gridColumnEnd={{ base: 3, sm2: 4, xl: 3 }}
-            gridRowStart={{ base: 3, xl: 1 }}
-            gridRowEnd={{ base: 4, xl: 2 }}
-            justifyContent='start'
-            alignItems={{ base: 'start', xl: 'center' }}
-            flexDirection={{ base: 'column', xl: 'row' }}
-            gap={2}
-            mt={{ base: 3, xl: 0 }}
+            gridColumnEnd={{ base: 6, xl: 3 }}
+            gridRowStart={{ base: 2, xl: 1 }}
+            gridRowEnd={{ base: 3, xl: 2 }}
+            display='flex'
+            flexDirection='column'
+            justifyContent='center'
           >
-            <Heading size='sm'>{token.name}</Heading>
+            <Heading size='sm' mb={1}>
+              {token.name}
+            </Heading>
             <Text>({token.symbol})</Text>
-          </Flex>
+          </GridItem>
         </Grid>
       </CardHeader>
     </Card>
