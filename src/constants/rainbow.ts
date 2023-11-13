@@ -4,19 +4,50 @@ import { coinbaseWallet, metaMaskWallet, rainbowWallet, walletConnectWallet } fr
 // import { oAuthWallet } from '@vocdoni/rainbowkit-wallets'
 import { oAuthWallet } from '@vocdoni/rainbowkit-wallets'
 import { configureChains, createConfig } from 'wagmi'
-import type { Chain } from 'wagmi/chains'
-import { mainnet } from 'wagmi/chains'
+import {
+  arbitrum,
+  avalanche,
+  base,
+  bsc,
+  eos,
+  fantom,
+  gnosis,
+  goerli,
+  hardhat,
+  localhost,
+  mainnet,
+  optimism,
+  polygon,
+  polygonMumbai,
+  polygonZkEvm,
+  zkSync,
+  zora,
+} from 'wagmi/chains'
 import { publicProvider } from 'wagmi/providers/public'
 
-const vocdoni = {
-  ...mainnet,
-  // we need id zero to bypass the switch chain behavior
-  id: 0,
-  name: 'Vocdoni',
-  network: 'none',
-} as const satisfies Chain
+export const { chains, publicClient } = configureChains(
+  [
+    mainnet,
+    arbitrum,
+    avalanche,
+    base,
+    bsc,
+    eos,
+    fantom,
+    gnosis,
+    goerli,
+    hardhat,
+    localhost,
+    optimism,
+    polygon,
+    polygonMumbai,
+    polygonZkEvm,
+    zkSync,
+    zora,
+  ],
+  [publicProvider()]
+)
 
-export const { chains, publicClient } = configureChains([vocdoni], [publicProvider()])
 const appName = 'Vocdoni UI Scaffold'
 const projectId = '641a1f59121ad0b519cca3a699877a08'
 
