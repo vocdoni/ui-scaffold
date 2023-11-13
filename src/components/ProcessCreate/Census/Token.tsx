@@ -420,10 +420,30 @@ export const TokenPreview = ({
   chainName?: string
   strategySize?: number
 }) => {
+  const cardRef = useRef<HTMLDivElement>(null)
+  const [minCardSize800px, setMinCardSize800px] = useState(false)
+
+  useEffect(() => {
+    const obtenerDimensiones = () => {
+      if (cardRef.current) {
+        const { width } = cardRef.current.getBoundingClientRect()
+        setMinCardSize800px(width >= 800)
+      }
+    }
+
+    obtenerDimensiones()
+
+    window.addEventListener('resize', obtenerDimensiones)
+
+    return () => {
+      window.removeEventListener('resize', obtenerDimensiones)
+    }
+  }, [])
+
   if (!token || !strategySize) return null
 
   return (
-    <Card w='full' my={5} boxShadow='var(--box-shadow)'>
+    <Card ref={cardRef} w='full' my={5} boxShadow='var(--box-shadow)'>
       <CardHeader>
         <Grid
           gridTemplateColumns='min-content 1fr min-content min-content'
@@ -434,7 +454,7 @@ export const TokenPreview = ({
             gridColumnStart={1}
             gridColumnEnd={2}
             gridRowStart={1}
-            gridRowEnd={2}
+            gridRowEnd={{ base: 2, sm2: 3, xl: minCardSize800px ? 2 : 3 }}
             display='flex'
             alignItems='center'
           >
@@ -444,8 +464,8 @@ export const TokenPreview = ({
             />
           </GridItem>
           <GridItem
-            gridColumnStart={{ base: 2, xl: 3 }}
-            gridColumnEnd={{ base: 3, xl: 4 }}
+            gridColumnStart={{ base: 2, xl: minCardSize800px ? 3 : 2 }}
+            gridColumnEnd={{ base: 3, xl: minCardSize800px ? 4 : 3 }}
             gridRowStart={1}
             gridRowEnd={2}
             display='flex'
@@ -474,7 +494,7 @@ export const TokenPreview = ({
             <Text
               color='gray'
               alignSelf='center'
-              whiteSpace={{ base: 'pre-wrap', sm: 'nowrap' }}
+              whiteSpace={{ base: 'pre-wrap', sm2: 'nowrap' }}
               overflow='hidden'
               textOverflow='ellipsis'
               textAlign='center'
@@ -488,10 +508,10 @@ export const TokenPreview = ({
             </Text>
           </GridItem>
           <GridItem
-            gridColumnStart={{ base: 1, xl: 2 }}
-            gridColumnEnd={{ base: 6, xl: 3 }}
-            gridRowStart={{ base: 2, xl: 1 }}
-            gridRowEnd={{ base: 3, xl: 2 }}
+            gridColumnStart={{ base: 1, sm2: 2 }}
+            gridColumnEnd={{ base: 6, xl: minCardSize800px ? 3 : 6 }}
+            gridRowStart={{ base: 2, xl: minCardSize800px ? 1 : 2 }}
+            gridRowEnd={{ base: 3, xl: minCardSize800px ? 2 : 3 }}
             display='flex'
             flexDirection='column'
             justifyContent='center'
