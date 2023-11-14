@@ -17,12 +17,16 @@ import polygonIcon from '/assets/polygon-matic.jpg'
 
 export const customComponentsTokens: Partial<SelectComponentsConfig<any, false, GroupBase<any>>> = {
   SingleValue: (props: SingleValueProps<any, false, GroupBase<any>>) => {
+    console.log(props)
     return (
       <chakraComponents.SingleValue {...props}>
         <Avatar
           size='xs'
           name={props.data.name}
-          src={`https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${props.data.ID}/logo.png`}
+          src={
+            props.data.iconURI ||
+            `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${props.data.ID}/logo.png`
+          }
           mr={2}
         />
         {props.children}
@@ -76,7 +80,10 @@ export const customComponentsTokens: Partial<SelectComponentsConfig<any, false, 
             <Avatar
               size='xs'
               name={props.data.name}
-              src={`https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${props.data.ID}/logo.png`}
+              src={
+                props.data.iconURI ||
+                `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${props.data.ID}/logo.png`
+              }
             />
             <Text>{props.children}</Text>
           </Flex>
