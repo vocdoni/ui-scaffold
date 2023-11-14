@@ -22,6 +22,7 @@ import {
   Election,
   ElectionCreationSteps,
   ElectionStatus,
+  ensure0x,
   EnvOptions,
   IElectionParameters,
   IPublishedElectionParameters,
@@ -31,7 +32,6 @@ import {
   UnpublishedElection,
   VocdoniCensus3Client,
   WeightedCensus,
-  ensure0x,
 } from '@vocdoni/sdk'
 import { useEffect, useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
@@ -43,8 +43,8 @@ import { CostPreview } from '../CostPreview'
 import { CreationProgress, Steps } from '../CreationProgress'
 import { Web3Address } from '../StepForm/CensusWeb3'
 import { Option } from '../StepForm/Questions'
-import Wrapper from './Wrapper'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
+import Wrapper from './Wrapper'
 import imageHeader from '/assets/spreadsheet-confirm-modal.jpeg'
 
 export const Confirm = () => {
@@ -262,7 +262,7 @@ export const Confirm = () => {
 }
 
 /**
- * Returns the expected census. Note that it can return a promise (census3).
+ * Returns the expected census. Note that it returns a promise.
  *
  * @param {EnvOptions} env Current env (required by census3)
  * @param {StepsFormValues} form The form object from where to generate the census
@@ -333,6 +333,7 @@ const electionFromForm = (form: StepsFormValues) => {
     startDate: form.electionType.autoStart ? undefined : new Date(form.startDate).getTime(),
     endDate: new Date(form.endDate).getTime(),
     voteType: { maxVoteOverwrites: Number(form.maxVoteOverwrites) },
+    temporarySecretIdentity: form.censusType === 'spreadsheet' && form.electionType.anonymous,
     meta: {
       generated: 'ui-scaffold',
       census: {
