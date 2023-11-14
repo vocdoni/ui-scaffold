@@ -1,5 +1,5 @@
 import { Box, Text } from '@chakra-ui/react'
-import { Census3Token, ICensus3SupportedChain, Token } from '@vocdoni/sdk'
+import { Census3Token, ICensus3SupportedChain } from '@vocdoni/sdk'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { CensusTokens } from '../Census/Token'
@@ -9,7 +9,6 @@ export interface CensusTokenValues {
   censusToken: Census3Token
   maxCensusSize?: number
   chain: ICensus3SupportedChain
-  token: Token
   strategySize: number
 }
 
@@ -21,7 +20,6 @@ export const StepFormCensusToken = () => {
       censusToken: form.censusToken,
       maxCensusSize: form.maxCensusSize,
       chain: form.chain,
-      token: form.token,
       strategySize: form.strategySize,
     },
   })

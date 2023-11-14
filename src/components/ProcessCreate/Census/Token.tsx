@@ -23,7 +23,7 @@ import {
   Tooltip,
 } from '@chakra-ui/react'
 import { errorToString, useClient } from '@vocdoni/react-providers'
-import { EnvOptions, ICensus3SupportedChain, Token, VocdoniCensus3Client } from '@vocdoni/sdk'
+import { Census3Token, EnvOptions, ICensus3SupportedChain, Token, VocdoniCensus3Client } from '@vocdoni/sdk'
 import { ChakraStylesConfig, GroupBase, Select, SelectComponentsConfig, SelectInstance } from 'chakra-react-select'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
@@ -39,21 +39,19 @@ export interface FilterOptionOption<Option> {
 
 export const CensusTokens = () => {
   const { env } = useClient()
-  const [token, setToken] = useState<Token | undefined>()
   const [error, setError] = useState<string | undefined>()
   const [loading, setLoading] = useState<boolean>(false)
   const [loadingTk, setLoadingTk] = useState<boolean>(false)
   const selectTokenRef = useRef<SelectInstance<any, false, GroupBase<any>>>(null)
   const selectChainRef = useRef<SelectInstance<any, false, GroupBase<any>>>(null)
   const [chains, setChains] = useState<ICensus3SupportedChain[]>([])
-  const [totalTks, setTotalTks] = useState(0)
-  const [strategySize, setStategySize] = useState<number | undefined>()
   const [groupedTokens, setGroupedTokens] = useState<
     {
       label: string
       options: Token[] | { name: string; status: { synced: boolean }; type: string }[]
     }[]
   >([])
+  const [totalTks, setTotalTks] = useState(0)
 
   const { t } = useTranslation()
   const {
@@ -86,7 +84,9 @@ export const CensusTokens = () => {
       message: 'You need to select a token',
     },
   })
-  const ct: Token | undefined = watch('censusToken')
+  const ct = watch('censusToken')
+
+  const strategySize: number = watch('strategySize')
 
   const formatGroupLabel = (data: GroupBase<any>) => {
     const [opt] = data.options
@@ -192,11 +192,8 @@ export const CensusTokens = () => {
       if (!ct?.ID) return
       setLoadingTk(true)
       try {
-        const token = await client.getToken(ct.ID, ct.chainID, ct.externalID)
-        setToken(token)
+        const max = await client.getStrategySize(ct.defaultStrategy)
 
-        const max = await client.getStrategySize(token.defaultStrategy)
-        setStategySize(max)
         setValue('strategySize', max)
       } catch (err) {
         setError(errorToString(err))
@@ -244,7 +241,7 @@ export const CensusTokens = () => {
             getOptionValue={(value: ICensus3SupportedChain) => String(value.chainID)}
             getOptionLabel={({ name }: ICensus3SupportedChain) => `${name}`}
             onChange={(network) => {
-              setToken(undefined)
+              // setToken(undefined)
               setValue('censusToken', undefined)
               setValue('chain', network || undefined)
               setValue('maxCensusSize', undefined)
@@ -303,8 +300,6 @@ export const CensusTokens = () => {
               else return `${props.name}`
             }}
             onChange={(token) => {
-              if (!token) setToken(undefined)
-              else setValue('token', token)
               setValue('censusToken', token || undefined)
               setValue('maxCensusSize', undefined)
               clearErrors()
@@ -324,8 +319,8 @@ export const CensusTokens = () => {
         <Spinner mt={10} />
       ) : (
         <>
-          <TokenPreview token={token} chainName={ch?.name} strategySize={strategySize} />
-          <MaxCensusSizeSelector token={token} strategySize={strategySize} />
+          <TokenPreview token={ct} chainName={ch?.name} strategySize={strategySize} />
+          <MaxCensusSizeSelector token={ct} strategySize={strategySize} />
         </>
       )}
     </Stack>
@@ -416,7 +411,7 @@ export const TokenPreview = ({
   chainName,
   strategySize,
 }: {
-  token?: Token
+  token?: Census3Token
   chainName?: string
   strategySize?: number
 }) => {
@@ -460,7 +455,10 @@ export const TokenPreview = ({
           >
             <Avatar
               name={token.name}
-              src={`https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${token.ID}/logo.png`}
+              src={
+                token.iconURI ||
+                `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${token.ID}/logo.png`
+              }
             />
           </GridItem>
           <GridItem

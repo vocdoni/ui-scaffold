@@ -17,7 +17,6 @@ import polygonIcon from '/assets/polygon-matic.jpg'
 
 export const customComponentsTokens: Partial<SelectComponentsConfig<any, false, GroupBase<any>>> = {
   SingleValue: (props: SingleValueProps<any, false, GroupBase<any>>) => {
-    console.log(props)
     return (
       <chakraComponents.SingleValue {...props}>
         <Avatar

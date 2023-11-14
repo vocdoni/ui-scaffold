@@ -6,7 +6,7 @@ import { useProcessCreationSteps } from '../Steps/use-steps'
 const PreviewCensusToken = () => {
   const { t } = useTranslation()
   const {
-    form: { maxCensusSize, token, chain, strategySize },
+    form: { maxCensusSize, censusToken, chain, strategySize },
   } = useProcessCreationSteps()
 
   const size = maxCensusSize || 0
@@ -14,7 +14,7 @@ const PreviewCensusToken = () => {
 
   return (
     <>
-      <TokenPreview token={token} chainName={chain.name} strategySize={strategySize} />
+      <TokenPreview token={censusToken} chainName={chain.name} strategySize={strategySize} />
       <Flex flexWrap='wrap' mt={2}>
         <Text mr={1}>{t('form.process_create.census.max_census_slider_label')}</Text>
         <Text>
