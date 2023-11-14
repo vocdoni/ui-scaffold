@@ -1,7 +1,6 @@
 import { connectorsForWallets } from '@rainbow-me/rainbowkit'
 import '@rainbow-me/rainbowkit/styles.css'
 import { coinbaseWallet, metaMaskWallet, rainbowWallet, walletConnectWallet } from '@rainbow-me/rainbowkit/wallets'
-// import { oAuthWallet } from '@vocdoni/rainbowkit-wallets'
 import { oAuthWallet } from '@vocdoni/rainbowkit-wallets'
 import { configureChains, createConfig } from 'wagmi'
 import {
