@@ -424,19 +424,19 @@ export const TokenPreview = ({
   const [minCardSize800px, setMinCardSize800px] = useState(false)
 
   useEffect(() => {
-    const obtenerDimensiones = () => {
+    const getCardWidth = () => {
       if (cardRef.current) {
         const { width } = cardRef.current.getBoundingClientRect()
         setMinCardSize800px(width >= 800)
       }
     }
 
-    obtenerDimensiones()
+    getCardWidth()
 
-    window.addEventListener('resize', obtenerDimensiones)
+    window.addEventListener('resize', getCardWidth)
 
     return () => {
-      window.removeEventListener('resize', obtenerDimensiones)
+      window.removeEventListener('resize', getCardWidth)
     }
   }, [])
 
