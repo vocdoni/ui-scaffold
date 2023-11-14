@@ -1,9 +1,23 @@
+<div align="center">
+
+
+![vocdoni logo]
+
+[![GitHub commit activity (develop)][commit activity badge]][github commits]
+[![GitHub issues][github issues badge]][github issues]
+[![Join Discord][discord badge]][discord invite]
+[![Twitter Follow][twitter badge]][twitter follow]
+
+</div>
+
 # Vocdoni's UI Scaffold
+
 
 ## Development
 
 This project was bootstrapped with
-[Create React App](https://github.com/facebook/create-react-app).
+[Create React App](https://github.com/facebook/create-react-app), but we moved
+to [vitejs](https://vitejs.dev).
 
 ### Environment variables
 
@@ -72,3 +86,14 @@ such case, a hotfix should be created from the desired branch to be updated:
 [app-stg.vocdoni.io]: https://app-stg.vocdoni.io
 [app.vocdoni.io]: https://app.vocdoni.io
 [netlify]: https://vocdoni-ui-scaffold-develop.netlify.app/
+
+[vocdoni logo]: https://docs.vocdoni.io/Logotype.svg
+[commit activity badge]: https://img.shields.io/github/commit-activity/m/vocdoni/ui-scaffold
+[discord badge]: https://img.shields.io/badge/discord-join%20chat-blue.svg
+[github issues badge]: https://img.shields.io/github/issues/vocdoni/ui-scaffold
+[twitter badge]: https://img.shields.io/twitter/follow/vocdoni?style=social&label=Follow
+
+[discord invite]: https://discord.gg/xFTh8Np2ga
+[twitter follow]: https://twitter.com/intent/user?screen_name=vocdoni
+[github issues]: https://github.com/vocdoni/ui-scaffold/issues
+[github commits]: https://github.com/vocdoni/ui-scaffold/commits/main
