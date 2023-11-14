@@ -1,13 +1,13 @@
 import { ChevronDownIcon, SearchIcon } from '@chakra-ui/icons'
 import { Avatar, Flex, Link, Text } from '@chakra-ui/react'
 import {
+  chakraComponents,
   DropdownIndicatorProps,
   GroupBase,
   GroupHeadingProps,
   OptionProps,
   SelectComponentsConfig,
   SingleValueProps,
-  chakraComponents,
 } from 'chakra-react-select'
 import { BsImage } from 'react-icons/bs'
 import { FaEthereum } from 'react-icons/fa'
