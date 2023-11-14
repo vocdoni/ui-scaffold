@@ -1,23 +1,22 @@
 import {
   Button,
   Flex,
-  Icon,
-  useToast,
-  Text,
-  Input,
   FormControl,
-  FormHelperText,
   FormErrorMessage,
+  FormHelperText,
+  Icon,
+  Input,
+  Text,
+  useToast,
 } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { errorToString, useClient } from '@vocdoni/react-providers'
-import { useEffect, useState } from 'react'
+import { ethers } from 'ethers'
+import { useCallback, useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa'
 import { signinUrlParams, useFaucet } from './use-faucet'
-import { ethers } from 'ethers'
-import { useForm } from 'react-hook-form'
-import { isValid } from 'date-fns'
 
 type ClaimProps = {
   signinUrlParams?: signinUrlParams[]
@@ -42,22 +41,20 @@ export const Claim = (props: ClaimProps) => {
 
   useEffect(() => {
     setRecipientAddress(account?.address as string)
-  }, [account])
+  }, [account?.address])
 
   const isValidAddress = async (address: string) => {
     if (!ethers.utils.isAddress(address)) return false
 
-    let accountInfo
     try {
-      accountInfo = await client.accountService.fetchAccountInfo(address)
+      return !!(await client.accountService.fetchAccountInfo(address))
     } catch (error) {}
-
-    return !!accountInfo
   }
 
-  const auth = (provider: string) => {
-    return handleSignIn(provider, recipientAddress, props.signinUrlParams || [])
-  }
+  const auth = useCallback(
+    (provider: string) => handleSignIn(provider, recipientAddress, props.signinUrlParams || []),
+    [recipientAddress]
+  )
 
   return (
     <Flex direction='column' gap={3} fontSize='sm'>
@@ -127,6 +124,12 @@ export const Claim = (props: ClaimProps) => {
   )
 }
 
+export type HandleSignInFunction = (
+  provider: string,
+  recipient: string,
+  signinUrlParams: signinUrlParams[]
+) => Promise<void>
+
 export const useClaim = () => {
   const { client, account, loading: accoutLoading, loaded: accoutLoaded, fetchAccount } = useClient()
 
@@ -165,7 +168,7 @@ export const useClaim = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pendingClaim])
 
-  const handleSignIn = async (provider: string, recipient: string, signinUrlParams: signinUrlParams[]) => {
+  const handleSignIn: HandleSignInFunction = async (provider, recipient, signinUrlParams) => {
     setLoading(true)
     try {
       window.location.href = await oAuthSignInURL(provider, recipient, signinUrlParams)

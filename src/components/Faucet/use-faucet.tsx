@@ -11,6 +11,20 @@ export type authTypes = {
   aragondao?: number
 }
 
+export type oAuthSignInURLFunction = (
+  provider: string,
+  recipient: string,
+  redirectURLParams?: signinUrlParams[]
+) => Promise<string>
+
+export type faucetReceiptFunction = (
+  provider: string,
+  code: string,
+  recipient: string
+) => Promise<{ amount: string; faucetPackage: string }>
+
+export type getAuthTypesFunction = () => Promise<authTypes>
+
 export const useFaucet = () => {
   const { client } = useClient()
 
@@ -20,11 +34,7 @@ export const useFaucet = () => {
   } = client
   url = url.replace(/v2.*/, 'v2')
 
-  const oAuthSignInURL = async (
-    provider: string,
-    recipient: string,
-    redirectURLParams?: signinUrlParams[]
-  ): Promise<string> => {
+  const oAuthSignInURL: oAuthSignInURLFunction = async (provider, recipient, redirectURLParams?) => {
     const redirectURL = new URL(window.location.href)
 
     const stateParams = [
@@ -47,11 +57,7 @@ export const useFaucet = () => {
     return res.url
   }
 
-  const faucetReceipt = async (
-    provider: string,
-    code: string,
-    recipient: string
-  ): Promise<{ amount: string; faucetPackage: string }> => {
+  const faucetReceipt: faucetReceiptFunction = async (provider, code, recipient) => {
     const redirectURL = new URL(window.location.href)
     redirectURL.search = ''
     const response = await fetch(`${url}/oauth/claim`, {

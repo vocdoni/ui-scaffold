@@ -23,10 +23,9 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa'
 import { TbDatabaseExclamation } from 'react-icons/tb'
-import { useClaim } from '~components/Faucet/Claim'
+import { HandleSignInFunction, useClaim } from '~components/Faucet/Claim'
 import { useProcessCreationSteps } from './Steps/use-steps'
 import imageHeader from '/assets/voc-tokens.jpg'
-import { signinUrlParams } from '~components/Faucet/use-faucet'
 
 export const CostPreview = ({
   unpublished,
@@ -204,15 +203,10 @@ export const CostPreview = ({
   )
 }
 
-const GetVocTokens = ({
-  loading,
-  handleSignIn,
-}: {
-  loading: boolean
-  handleSignIn: (provider: string, signinUrlParams: signinUrlParams[]) => Promise<void>
-}) => {
+const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignIn: HandleSignInFunction }) => {
   const { t } = useTranslation()
   const [socialAccount, setSocialAccount] = useState('')
+  const { account } = useClient()
 
   return (
     <>
@@ -379,7 +373,7 @@ const GetVocTokens = ({
           <Button
             variant='rounded'
             colorScheme='primary'
-            onClick={() => handleSignIn(socialAccount, [{ param: 'loadDraft', value: '' }])}
+            onClick={() => handleSignIn(socialAccount, account?.address as string, [{ param: 'loadDraft', value: '' }])}
             isLoading={loading}
             isDisabled={!socialAccount}
           >
