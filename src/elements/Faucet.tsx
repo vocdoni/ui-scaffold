@@ -1,8 +1,8 @@
 import { Box, Card, CardBody, Flex, Grid, GridItem, Heading, Text } from '@chakra-ui/react'
 import { useClient } from '@vocdoni/react-providers'
+import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Claim } from '~components/Faucet/Claim'
-import { useEffect, useState } from 'react'
 import { authTypes, useFaucet } from '~components/Faucet/use-faucet'
 
 const Faucet = () => {
@@ -37,13 +37,13 @@ const Faucet = () => {
               <Heading as={'h2'} size={'sm'}>
                 {t('faucet.request_tokens.title')}
               </Heading>
-              <Text>
+              <Box>
                 {account && (
                   <Text>
                     <Trans i18nKey='faucet.tokens_you_own' values={{ balance: account?.balance }} />
                   </Text>
                 )}
-              </Text>
+              </Box>
               <Claim />
             </CardBody>
           </Card>
