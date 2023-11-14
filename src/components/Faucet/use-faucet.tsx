@@ -26,13 +26,10 @@ export type faucetReceiptFunction = (
 export type getAuthTypesFunction = () => Promise<authTypes>
 
 export const useFaucet = () => {
-  const { client } = useClient()
-
-  // TODO: Remove this when the client is updated
-  let {
+  const { connected, signer, client } = useClient()
+  const {
     faucetService: { url },
   } = client
-  url = url.replace(/v2.*/, 'v2')
 
   const oAuthSignInURL: oAuthSignInURLFunction = async (provider, recipient, redirectURLParams?) => {
     const redirectURL = new URL(window.location.href)
