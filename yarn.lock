@@ -2748,12 +2748,12 @@
     "@types/babel__core" "^7.20.3"
     react-refresh "^0.14.0"
 
-"@vocdoni/chakra-components@^0.5.19":
-  version "0.5.19"
-  resolved "https://registry.yarnpkg.com/@vocdoni/chakra-components/-/chakra-components-0.5.19.tgz#53b439306af76deb6fa928ebe5ccb3f3ee00eb47"
-  integrity sha512-1rO25EIVm926RhtnaVJ5aM4/GBLbOEuHGD18dB8D+0nE++Nzk/7sK5Q+pQXpft7yrt26PDknXNWegm+AKaI66w==
+"@vocdoni/chakra-components@~0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@vocdoni/chakra-components/-/chakra-components-0.6.0.tgz#7dd78d1f59c7ad95c26ab5d7bdc047a04b8a1ab4"
+  integrity sha512-6JyFR4jYruPvvpN8ODGb+U0RyTFYy0S94+5aPJYC38gcaw/zQBF/XKQI60NAXbv0PWl2VyyPoh9n/4bvMnMYIA==
   dependencies:
-    "@vocdoni/react-providers" "0.1.14"
+    "@vocdoni/react-providers" "~0.2.0"
 
 "@vocdoni/proto@1.15.4":
   version "1.15.4"
@@ -2768,14 +2768,12 @@
   resolved "https://registry.yarnpkg.com/@vocdoni/rainbowkit-wallets/-/rainbowkit-wallets-0.2.0.tgz#2689bd14f48d5cc8d5921c2aea980b5e67355546"
   integrity sha512-qVCZKAryG0rffh7uIbBFcpf8eh0nMCsbry7wtKUXmwQrKBdsHRZxnZ3+u9C0mQNM415wPXpOYz5Jd89mpjD+5Q==
 
-"@vocdoni/react-providers@0.1.14":
-  version "0.1.14"
-  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.1.14.tgz#abecb2cb439481b1504a88db33ad62921978ea8f"
-  integrity sha512-r14l9BJ16FgAcJ+42g8kYmVoQ4r/iyoCYUjLL1pWjLnZBSlJ1OZEgliDFUvS2SlqlV8Ij+l/6+jhmx0jjRM5aQ==
-  dependencies:
-    "@vocdoni/sdk" "^0.4.2"
+"@vocdoni/react-providers@~0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.2.0.tgz#f70b880ca9d05f0c2568599ad2a3eaefa65867bf"
+  integrity sha512-6gYLn6j5KahoIc2py38EAM0nvLqsLfnOIEkrS4AsRHXV90qWJFkgrWhzSTKjvQB1VRVg4cJVj1i0rSA25F08IQ==
 
-"@vocdoni/sdk@^0.4.2", "@vocdoni/sdk@~0.5.1":
+"@vocdoni/sdk@~0.5.1":
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/@vocdoni/sdk/-/sdk-0.5.1.tgz#804172608659d45d639e7cba50fa66faf329d909"
   integrity sha512-Ly0N9wRt7KFShmhnVDAFSDHJgU2mmTR0X8kbXygB3ytDxCh32XX/ougm6PO5tyMPL5k6egm8SkhwdRBamuXpHQ==
