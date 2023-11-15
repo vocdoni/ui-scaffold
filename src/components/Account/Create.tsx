@@ -3,6 +3,7 @@ import {
   Alert,
   AlertIcon,
   Box,
+  Button,
   Flex,
   FormControl,
   FormErrorMessage,
@@ -10,6 +11,8 @@ import {
   FormLabel,
   Image,
   Input,
+  InputGroup,
+  InputRightElement,
   Text,
   Textarea,
   VStack,
@@ -30,6 +33,7 @@ import verificable from '/assets/verificable.png'
 interface FormFields {
   name: string
   description: string
+  password: string
 }
 
 export const AccountCreate = () => {
@@ -41,9 +45,10 @@ export const AccountCreate = () => {
     defaultValues: {
       name: '',
       description: '',
-      sik: '',
+      password: '',
     },
   })
+  const [showPassword, setShowPassword] = useState<boolean>(false)
   const {
     createAccount,
     errors: { account: error },
@@ -67,6 +72,7 @@ export const AccountCreate = () => {
     })()
   }, [])
 
+  const togglePassword = () => setShowPassword(!showPassword)
   const onSubmit = async (values: FormFields) => createAccount(new Account(values))?.finally(() => setSent(true))
 
   return (
@@ -121,16 +127,23 @@ export const AccountCreate = () => {
           </FormHelperText>
         </FormControl>
 
-        <FormControl isInvalid={!!errors.sik}>
+        <FormControl isInvalid={!!errors.password}>
           <FormLabel fontWeight='bold'>*{t('account.label.sik')}</FormLabel>
-          <Input
-            type='text'
-            {...register('sik', { required })}
-            mb={1}
-            placeholder={t('account.placeholder.sik').toString()}
-          />
-          {!!errors.sik ? (
-            <FormErrorMessage>{errors.sik?.message?.toString()}</FormErrorMessage>
+          <InputGroup>
+            <Input
+              type={showPassword ? 'text' : 'password'}
+              {...register('password', { required })}
+              mb={1}
+              placeholder={t('account.placeholder.sik').toString()}
+            />
+            <InputRightElement width='4.5rem'>
+              <Button h='1.75rem' size='sm' onClick={togglePassword}>
+                {showPassword ? 'Hide' : 'Show'}
+              </Button>
+            </InputRightElement>
+          </InputGroup>
+          {!!errors.password ? (
+            <FormErrorMessage>{errors.password?.message?.toString()}</FormErrorMessage>
           ) : (
             <FormHelperText>{t('account.helper.sik')}</FormHelperText>
           )}

@@ -68,6 +68,8 @@
     "schedule": "Votació del {{ begin }} al {{ end }}",
     "spreadsheet": {
       "access_button": "Identifica't",
+      "anon_sik_helper": "Això garanteix que el teu vot sigui anònim",
+      "anon_sik_label": "Defineix una contrasenya per al teu vot",
       "close": "Tanca",
       "logout": "Tanca la sessió",
       "modal_title": "T'has d'identificar primer"
