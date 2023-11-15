@@ -1,14 +1,15 @@
-import { Box, Link, Text } from '@chakra-ui/react'
-import { ICensus3Token } from '@vocdoni/sdk'
+import { Box, Text } from '@chakra-ui/react'
+import { Census3Token, ICensus3SupportedChain } from '@vocdoni/sdk'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { CensusTokens } from '../Census/Token'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 
 export interface CensusTokenValues {
-  censusToken: string
+  censusToken: Census3Token
   maxCensusSize?: number
-  token?: ICensus3Token
+  chain: ICensus3SupportedChain
+  strategySize: number
 }
 
 export const StepFormCensusToken = () => {
@@ -18,7 +19,8 @@ export const StepFormCensusToken = () => {
     defaultValues: {
       censusToken: form.censusToken,
       maxCensusSize: form.maxCensusSize,
-      token: form.token,
+      chain: form.chain,
+      strategySize: form.strategySize,
     },
   })
 
@@ -32,12 +34,7 @@ export const StepFormCensusToken = () => {
         {t('census.token_title')}
       </Text>
       <Text fontSize='sm' color='process_create.description' mb={5}>
-        <Trans
-          i18nKey='census.token_description'
-          components={{
-            customLink: <Link variant='primary' href='https://tally.so/r/mO46VY' target='_blank' fontWeight='bold' />,
-          }}
-        />
+        {t('census.token_description')}
       </Text>
       <FormProvider {...methods}>
         <Box as='form' id='process-create-form' onSubmit={methods.handleSubmit(onSubmit)}>
