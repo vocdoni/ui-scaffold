@@ -1,4 +1,15 @@
 {
+  "account": {
+    "helper": {
+      "sik": "Only requested when you're gonna vote in anonymous processes"
+    },
+    "label": {
+      "sik": "Password for anonymous votings"
+    },
+    "placeholder": {
+      "sik": "Something safe and easy to remember"
+    }
+  },
   "aside": {
     "has_already_voted": "Your vote is properly cast",
     "is_not_in_census": "You are not in the census",
