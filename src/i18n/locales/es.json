@@ -68,6 +68,8 @@
     "schedule": "Votación desde el {{ begin }} hasta {{ end }}",
     "spreadsheet": {
       "access_button": "Identificarse",
+      "anon_sik_helper": "Esto garantiza que la votación sea anónima",
+      "anon_sik_label": "Define una contraseña para tu voto",
       "close": "Cerrar",
       "logout": "Cerrar la sesión",
       "modal_title": "Debes identificarte primero"

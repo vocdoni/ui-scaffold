@@ -42,9 +42,11 @@ export const translations = (t: TFunction<string, string>) => ({
   schedule: t('cc.schedule').toString(),
   spreadsheet: {
     access_button: t('cc.spreadsheet.access_button').toString(),
+    anon_sik_label: t('cc.spreadsheet.anon_sik_label').toString(),
+    anon_sik_helper: t('cc.spreadsheet.anon_sik_helper').toString(),
     close: t('cc.spreadsheet.close').toString(),
-    modal_title: t('cc.spreadsheet.modal_title').toString(),
     logout: t('cc.spreadsheet.logout').toString(),
+    modal_title: t('cc.spreadsheet.modal_title').toString(),
   },
   // status badge
   statuses: {
