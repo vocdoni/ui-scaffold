@@ -1,4 +1,15 @@
 {
+  "account": {
+    "helper": {
+      "sik": "Sólo se pedirá al votar en procesos anónimos"
+    },
+    "label": {
+      "sik": "Contraseña para votaciones anónimas"
+    },
+    "placeholder": {
+      "sik": "Algo seguro y fácil de recordar"
+    }
+  },
   "aside": {
     "has_already_voted": "Tu voto ha sido registrado correctamente",
     "is_not_in_census": "No estás en el censo",

@@ -41,6 +41,7 @@ export const AccountCreate = () => {
     defaultValues: {
       name: '',
       description: '',
+      sik: '',
     },
   })
   const {
@@ -109,7 +110,7 @@ export const AccountCreate = () => {
           {!!errors.name && <FormErrorMessage>{errors.name?.message?.toString()}</FormErrorMessage>}
         </FormControl>
 
-        <FormControl>
+        <FormControl mb={5}>
           <Textarea
             {...register('description')}
             placeholder={t('form.account_create.description_placeholder').toString()}
@@ -118,6 +119,21 @@ export const AccountCreate = () => {
             <InfoOutlineIcon />
             <Text>{t('form.account_create.description_helper')}</Text>
           </FormHelperText>
+        </FormControl>
+
+        <FormControl isInvalid={!!errors.sik}>
+          <FormLabel fontWeight='bold'>*{t('account.label.sik')}</FormLabel>
+          <Input
+            type='text'
+            {...register('sik', { required })}
+            mb={1}
+            placeholder={t('account.placeholder.sik').toString()}
+          />
+          {!!errors.sik ? (
+            <FormErrorMessage>{errors.sik?.message?.toString()}</FormErrorMessage>
+          ) : (
+            <FormHelperText>{t('account.helper.sik')}</FormHelperText>
+          )}
         </FormControl>
       </Box>
       <Text fontWeight='light'>
