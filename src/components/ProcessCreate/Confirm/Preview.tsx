@@ -118,7 +118,7 @@ const Preview = () => {
         <Text flexBasis={{ md: '30%' }} flexShrink={0} flexGrow={0} fontWeight='extrabold'>
           {t('form.process_create.confirm.census')}
         </Text>
-        <Box maxW={{ md: '65%' }}>
+        <Box w={{ md: '65%' }}>
           <Census />
         </Box>
         <Link variant='primary' position='absolute' top={0} right={0} onClick={() => setActiveStep(3)}>
