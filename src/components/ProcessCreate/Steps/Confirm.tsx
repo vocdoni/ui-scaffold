@@ -281,7 +281,12 @@ const getCensus = async (env: EnvOptions, form: StepsFormValues, organization: s
         env,
       })
 
-      return c3client.createTokenCensus(form.censusToken, form.electionType.anonymous)
+      return c3client.createTokenCensus(
+        form.censusToken.ID,
+        form.censusToken.chainID,
+        form.electionType.anonymous,
+        form.censusToken.externalID
+      )
 
     case 'spreadsheet':
     case 'web3':
