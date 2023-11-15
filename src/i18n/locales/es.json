@@ -133,7 +133,9 @@
       "title": "Solicitar Tokens"
     },
     "title": "Faucet de Tokens Vocdoni",
-    "tokens_you_own": "Tienes {{ balance }} tokens."
+    "tokens_you_own": "Tienes {{ balance }} tokens.",
+    "connect_or_set_recipient_address": "Por favor, conecta tu wallet o escribe la dirección del destinatario a continuación (debe ser una Cuenta Vocdoni)",
+    "recipient_address": "Ingrese la dirección del destinatario en el que desea recibir los tokens."
   },
   "footer": {
     "about": "Acerca de",
@@ -170,7 +172,8 @@
       "address_pattern": "Solo se permiten direcciones hexadecimales (p.ej. 0x031101A...)",
       "avatar_error": "URL no válida",
       "field_is_required": "Este campo es obligatorio",
-      "min_address": "Por favor, proporciona al menos una dirección"
+      "min_address": "Por favor, proporciona al menos una dirección",
+      "recipient_address_invalid": "Dirección de destinatario no válida"
     },
     "process_create": {
       "behavior": {
@@ -336,7 +339,9 @@
   },
   "loading": "Cargando...",
   "login": {
-    "github": "Iniciar sesión con Github"
+    "github": "Iniciar sesión con Github",
+    "facebook": "Iniciar sesión usando Facebook",
+    "google": "Iniciar sesión con Google"
   },
   "menu": {
     "burger_aria_label": "menú de usuario",

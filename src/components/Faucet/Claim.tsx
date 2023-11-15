@@ -1,37 +1,134 @@
-import { Button, Flex, Icon, useToast } from '@chakra-ui/react'
+import {
+  Button,
+  Flex,
+  FormControl,
+  FormErrorMessage,
+  FormHelperText,
+  Icon,
+  Input,
+  Text,
+  useToast,
+} from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { errorToString, useClient } from '@vocdoni/react-providers'
-import { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { FaGithub } from 'react-icons/fa'
-import { useFaucet } from './use-faucet'
+import { ethers } from 'ethers'
+import { useCallback, useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { Trans, useTranslation } from 'react-i18next'
+import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa'
+import { signinUrlParams, useFaucet } from './use-faucet'
 
-export const Claim = () => {
+type ClaimProps = {
+  signinUrlParams?: signinUrlParams[]
+}
+
+export const Claim = (props: ClaimProps) => {
   const { t } = useTranslation()
-  const { connected } = useClient()
+  const { account, connected, client } = useClient()
   const { loading, handleSignIn } = useClaim()
+
+  const [recipientAddress, setRecipientAddress] = useState<string>('')
+
+  const {
+    register,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      address: '',
+    },
+    mode: 'onChange',
+  })
+
+  useEffect(() => {
+    setRecipientAddress(account?.address as string)
+  }, [account?.address])
+
+  const isValidAddress = async (address: string) => {
+    if (!ethers.utils.isAddress(address)) return false
+
+    try {
+      return !!(await client.accountService.fetchAccountInfo(address))
+    } catch (error) {}
+  }
+
+  const auth = useCallback(
+    (provider: string) => handleSignIn(provider, recipientAddress, props.signinUrlParams || []),
+    [recipientAddress]
+  )
 
   return (
     <Flex direction='column' gap={3} fontSize='sm'>
-      {connected && (
-        <Flex direction='row' gap='2'>
-          <Button
-            type='submit'
-            w='full'
-            isLoading={loading}
-            colorScheme='primary'
-            onClick={() => handleSignIn('github')}
-          >
-            <Icon mr={2} as={FaGithub} />
-            {t('login.github')}
-          </Button>
-        </Flex>
+      {!connected && (
+        <>
+          <Text>
+            <Trans i18nKey='faucet.connect_or_set_recipient_address' />
+          </Text>
+          <Flex as='form' direction='row' gap='2'>
+            <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />
+            <FormControl isInvalid={!!errors.address}>
+              <Input
+                type='text'
+                {...register('address', {
+                  validate: async (val: string) => {
+                    if (val) {
+                      if (await isValidAddress(val)) {
+                        setRecipientAddress(val)
+                        return true
+                      } else {
+                        setRecipientAddress('')
+                        return t('form.error.recipient_address_invalid')
+                      }
+                    }
+                  },
+                })}
+                placeholder={'0x...'}
+              />
+              {!errors.address ? (
+                <FormHelperText>{t('faucet.recipient_address')}</FormHelperText>
+              ) : (
+                <FormErrorMessage>{t('form.error.recipient_address_invalid')}</FormErrorMessage>
+              )}
+            </FormControl>
+          </Flex>
+        </>
       )}
 
-      {!connected && <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />}
+      {recipientAddress && (
+        <>
+          <Trans
+            i18nKey='faucet.request_description'
+            components={{
+              span: <Text as='span' />,
+            }}
+            values={{ balance: account?.balance }}
+          />
+          <Flex direction='row' gap='2'>
+            <Button type='submit' w='full' isLoading={loading} colorScheme='primary' onClick={() => auth('github')}>
+              <Icon mr={2} as={FaGithub} />
+              {t('login.github')}
+            </Button>
+
+            <Button type='submit' w='full' isLoading={loading} colorScheme='facebook' onClick={() => auth('facebook')}>
+              <Icon mr={2} as={FaFacebook} />
+              {t('login.facebook')}
+            </Button>
+
+            <Button type='submit' w='full' isLoading={loading} colorScheme='red' onClick={() => auth('google')}>
+              <Icon mr={2} as={FaGoogle} />
+              {t('login.google')}
+            </Button>
+          </Flex>
+        </>
+      )}
     </Flex>
   )
 }
+
+export type HandleSignInFunction = (
+  provider: string,
+  recipient: string,
+  signinUrlParams: signinUrlParams[]
+) => Promise<void>
 
 export const useClaim = () => {
   const { client, account, loading: accoutLoading, loaded: accoutLoaded, fetchAccount } = useClient()
@@ -54,20 +151,27 @@ export const useClaim = () => {
   useEffect(() => {
     if (!pendingClaim) return
     const url = new URL(window.location.href)
-    const provider: string | null = url.searchParams.get('provider')
+    let state: string | null = url.searchParams.get('state')
     const code: string | null = url.searchParams.get('code')
-    const recipient: string | null = url.searchParams.get('recipient')
+
+    state = atob(state || '')
+    const stateParams = JSON.parse(state || '[]')
+    const provider = stateParams.find((p: any) => p.param === 'provider')?.value
+    const recipient = stateParams.find((p: any) => p.param === 'recipient')?.value
 
     if (!code || !provider || !recipient) return
+
+    // Remove the querystring from the browser current url
+    window.history.replaceState({}, '', `${window.location.pathname}${window.location.hash}`)
 
     claimTokens(provider, code, recipient)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pendingClaim])
 
-  const handleSignIn = async (provider: string) => {
+  const handleSignIn: HandleSignInFunction = async (provider, recipient, signinUrlParams) => {
     setLoading(true)
     try {
-      window.location.href = await oAuthSignInURL(provider, [{ param: 'loadDraft', value: '' }])
+      window.location.href = await oAuthSignInURL(provider, recipient, signinUrlParams)
     } catch (error) {
       console.error('could not generate OAuth signin URL', error)
     }
