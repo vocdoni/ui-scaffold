@@ -16,6 +16,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa'
+import { useAccount } from 'wagmi'
 import { signinUrlParams, useFaucet } from './use-faucet'
 
 type ClaimProps = {
@@ -24,7 +25,8 @@ type ClaimProps = {
 
 export const Claim = (props: ClaimProps) => {
   const { t } = useTranslation()
-  const { account, connected, client } = useClient()
+  const { account, client } = useClient()
+  const { isConnected } = useAccount()
   const { loading, handleSignIn } = useClaim()
 
   const [recipientAddress, setRecipientAddress] = useState<string>('')
@@ -58,7 +60,7 @@ export const Claim = (props: ClaimProps) => {
 
   return (
     <Flex direction='column' gap={3} fontSize='sm'>
-      {!connected && (
+      {!isConnected && (
         <>
           <Text>
             <Trans i18nKey='faucet.connect_or_set_recipient_address' />
