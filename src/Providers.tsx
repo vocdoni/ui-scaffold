@@ -4,7 +4,7 @@ import { ClientProvider } from '@vocdoni/chakra-components'
 import { EnvOptions } from '@vocdoni/sdk'
 import { Signer } from 'ethers'
 import { useTranslation } from 'react-i18next'
-import { useWalletClient, WagmiConfig } from 'wagmi'
+import { WagmiConfig, useWalletClient } from 'wagmi'
 import { OrganizationModalProvider } from '~components/Organization/OrganizationModalProvider'
 import { walletClientToSigner } from '~constants/wagmi-adapters'
 import { VocdoniEnvironment } from './constants'
@@ -27,7 +27,7 @@ export const AppProviders = () => {
   const { colorMode } = useColorMode()
   const { t, i18n } = useTranslation()
 
-  let signer = {} as Signer
+  let signer = null
   if (data) {
     signer = walletClientToSigner(data)
   }
@@ -36,7 +36,7 @@ export const AppProviders = () => {
     <RainbowKitProvider chains={chains} theme={rainbowStyles(colorMode)}>
       <ClientProvider
         env={VocdoniEnvironment as EnvOptions}
-        signer={signer}
+        signer={signer as Signer}
         locale={translations(t)}
         datesLocale={datesLocale(i18n.language)}
       >

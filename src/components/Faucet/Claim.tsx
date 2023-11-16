@@ -1,22 +1,10 @@
-import {
-  Button,
-  Flex,
-  FormControl,
-  FormErrorMessage,
-  FormHelperText,
-  Icon,
-  Input,
-  Text,
-  useToast,
-} from '@chakra-ui/react'
+import { Button, Flex, Icon, Text, useToast } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { errorToString, useClient } from '@vocdoni/react-providers'
 import { ethers } from 'ethers'
 import { useCallback, useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa'
-import { useAccount } from 'wagmi'
 import { signinUrlParams, useFaucet } from './use-faucet'
 
 type ClaimProps = {
@@ -25,21 +13,10 @@ type ClaimProps = {
 
 export const Claim = (props: ClaimProps) => {
   const { t } = useTranslation()
-  const { account, client } = useClient()
-  const { isConnected } = useAccount()
+  const { account, client, connected } = useClient()
   const { loading, handleSignIn } = useClaim()
 
   const [recipientAddress, setRecipientAddress] = useState<string>('')
-
-  const {
-    register,
-    formState: { errors },
-  } = useForm({
-    defaultValues: {
-      address: '',
-    },
-    mode: 'onChange',
-  })
 
   useEffect(() => {
     setRecipientAddress(account?.address as string)
@@ -60,37 +37,13 @@ export const Claim = (props: ClaimProps) => {
 
   return (
     <Flex direction='column' gap={3} fontSize='sm'>
-      {!isConnected && (
+      {!connected && (
         <>
           <Text>
             <Trans i18nKey='faucet.connect_or_set_recipient_address' />
           </Text>
           <Flex as='form' direction='row' gap='2'>
             <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />
-            <FormControl isInvalid={!!errors.address}>
-              <Input
-                type='text'
-                {...register('address', {
-                  validate: async (val: string) => {
-                    if (val) {
-                      if (await isValidAddress(val)) {
-                        setRecipientAddress(val)
-                        return true
-                      } else {
-                        setRecipientAddress('')
-                        return t('form.error.recipient_address_invalid')
-                      }
-                    }
-                  },
-                })}
-                placeholder={'0x...'}
-              />
-              {!errors.address ? (
-                <FormHelperText>{t('faucet.recipient_address')}</FormHelperText>
-              ) : (
-                <FormErrorMessage>{t('form.error.recipient_address_invalid')}</FormErrorMessage>
-              )}
-            </FormControl>
           </Flex>
         </>
       )}
@@ -192,9 +145,9 @@ export const useClaim = () => {
     try {
       // get the faucet receipt
       const { faucetPackage } = await faucetReceipt(provider, code, recipient)
-
+      let recipientAccount = await client.accountService.fetchAccountInfo(recipient)
       // claim the tokens with the SDK
-      if (typeof account !== 'undefined') {
+      if (typeof recipientAccount !== 'undefined') {
         await client.collectFaucetTokens(faucetPackage)
       } else {
         await client.createAccount({ faucetPackage })
