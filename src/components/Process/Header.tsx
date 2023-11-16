@@ -8,7 +8,7 @@ import {
   ElectionTitle,
   OrganizationName,
 } from '@vocdoni/chakra-components'
-import { useClient, useElection } from '@vocdoni/react-providers'
+import { useClient, useElection, useOrganization } from '@vocdoni/react-providers'
 import { ElectionStatus } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import { FaRegArrowAltCircleLeft } from 'react-icons/fa'
@@ -20,10 +20,12 @@ import { ProcessDate } from './Date'
 const ProcessHeader = () => {
   const { t } = useTranslation()
   const { election } = useElection()
+  const { organization, loaded } = useOrganization()
   const { account } = useClient()
   const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(600, 20)
-
   const strategy = useStrategy()
+
+  const showOrgInformation = !loaded || (loaded && organization?.account?.name)
 
   return (
     <Box
@@ -33,11 +35,13 @@ const ProcessHeader = () => {
         sm: 4,
       }}
     >
-      <Link to={`/organization/0x${election?.organizationId}`}>
-        <Button leftIcon={<FaRegArrowAltCircleLeft />} mb={5} maxW={40}>
-          <OrganizationName as='span' overflow='hidden' fontSize='sm' isTruncated />
-        </Button>
-      </Link>
+      {showOrgInformation && (
+        <Link to={`/organization/0x${election?.organizationId}`}>
+          <Button leftIcon={<FaRegArrowAltCircleLeft />} mb={5} maxW={40}>
+            <OrganizationName as='span' overflow='hidden' fontSize='sm' isTruncated />
+          </Button>
+        </Link>
+      )}
       <Flex direction={{ base: 'column', md: 'row' }} mb={7} gap={10}>
         <Box flexGrow={0} flexShrink={0} flexBasis={{ base: '100%', md: '60%', lg: '65%', lg2: '70%', xl2: '75%' }}>
           <ElectionTitle fontSize='xl4' textAlign='left' mb={5} />
@@ -91,27 +95,29 @@ const ProcessHeader = () => {
             </Box>
           )}
 
-          <Box width='100%'>
-            <Text color='process.info_title' fontWeight='bold' mb={1}>
-              {t('process.created_by')}
-            </Text>
-            <CreatedBy
-              sx={{
-                '& p': {
-                  minW: 0,
-                  display: 'flex',
-                  justifyContent: 'start',
-                  alignItems: 'center',
-                  flexWrap: 'wrap',
-                },
-                '& p strong': {
-                  maxW: { base: '100%', md: '220px', md2: '250px' },
-                  isTruncated: true,
-                  mr: 1,
-                },
-              }}
-            />
-          </Box>
+          {showOrgInformation && (
+            <Box width='100%'>
+              <Text color='process.info_title' fontWeight='bold' mb={1}>
+                {t('process.created_by')}
+              </Text>
+              <CreatedBy
+                sx={{
+                  '& p': {
+                    minW: 0,
+                    display: 'flex',
+                    justifyContent: 'start',
+                    alignItems: 'center',
+                    flexWrap: 'wrap',
+                  },
+                  '& p strong': {
+                    maxW: { base: '100%', md: '220px', md2: '250px' },
+                    isTruncated: true,
+                    mr: 1,
+                  },
+                }}
+              />
+            </Box>
+          )}
           {election?.status === ElectionStatus.PAUSED && election?.organizationId !== account?.address && (
             <Flex
               color='process.paused'

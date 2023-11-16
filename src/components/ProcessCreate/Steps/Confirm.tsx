@@ -210,7 +210,7 @@ export const Confirm = () => {
                         <Trans
                           i18nKey='form.process_create.confirm.confirmation_terms_and_conditions'
                           components={{
-                            link: (
+                            customLink: (
                               <Link variant='primary' href='https://aragon.org/terms-and-conditions' target='_blank' />
                             ),
                           }}
@@ -262,7 +262,7 @@ export const Confirm = () => {
 }
 
 /**
- * Returns the expected census. Note that it can return a promise (census3).
+ * Returns the expected census. Note that it returns a promise.
  *
  * @param {EnvOptions} env Current env (required by census3)
  * @param {StepsFormValues} form The form object from where to generate the census
@@ -281,7 +281,12 @@ const getCensus = async (env: EnvOptions, form: StepsFormValues, organization: s
         env,
       })
 
-      return c3client.createTokenCensus(form.censusToken, form.electionType.anonymous)
+      return c3client.createTokenCensus(
+        form.censusToken.ID,
+        form.censusToken.chainID,
+        form.electionType.anonymous,
+        form.censusToken.externalID
+      )
 
     case 'spreadsheet':
     case 'web3':
@@ -333,6 +338,7 @@ const electionFromForm = (form: StepsFormValues) => {
     startDate: form.electionType.autoStart ? undefined : new Date(form.startDate).getTime(),
     endDate: new Date(form.endDate).getTime(),
     voteType: { maxVoteOverwrites: Number(form.maxVoteOverwrites) },
+    temporarySecretIdentity: form.censusType === 'spreadsheet' && form.electionType.anonymous,
     meta: {
       generated: 'ui-scaffold',
       census: {
