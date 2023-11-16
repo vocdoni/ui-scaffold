@@ -2774,9 +2774,9 @@
   integrity sha512-6gYLn6j5KahoIc2py38EAM0nvLqsLfnOIEkrS4AsRHXV90qWJFkgrWhzSTKjvQB1VRVg4cJVj1i0rSA25F08IQ==
 
 "@vocdoni/sdk@~0.5.1":
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/@vocdoni/sdk/-/sdk-0.5.1.tgz#804172608659d45d639e7cba50fa66faf329d909"
-  integrity sha512-Ly0N9wRt7KFShmhnVDAFSDHJgU2mmTR0X8kbXygB3ytDxCh32XX/ougm6PO5tyMPL5k6egm8SkhwdRBamuXpHQ==
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/@vocdoni/sdk/-/sdk-0.5.2.tgz#36d7a01bb97ecb97db9f446fde167348ddf829b1"
+  integrity sha512-PBxjBWXo0r+niMaN/tehxo+tMpCtpw9jU4UJXgTpvkQdR4lVV2+216aGg42sqNTjnx7txm5Bye8O7bHC6/xLxQ==
   dependencies:
     "@ethersproject/abstract-signer" "^5.7.0"
     "@ethersproject/address" "^5.7.0"
