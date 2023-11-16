@@ -95,7 +95,8 @@
     "loading_description": "Por favor espera mientras se reclaman los tokens",
     "loading_title": "Reclamando",
     "success_description": "Éxito",
-    "success_title": "Los tokens han sido reclamados correctamente"
+    "success_title": "Los tokens han sido reclamados correctamente",
+    "success_faucetPackage_title": "El Faucet Package se obtuvo con éxito"
   },
   "copy": {
     "address": "Copiar dirección",
@@ -136,7 +137,14 @@
       "title": "Solicitar Tokens"
     },
     "title": "Faucet de Tokens Vocdoni",
-    "tokens_you_own": "Tienes {{ balance }} tokens."
+    "tokens_you_own": "Tienes {{ balance }} tokens.",
+    "connect_or_set_recipient_address": "Por favor, conecta tu wallet o escribe la dirección del destinatario a continuación (debe ser una Cuenta Vocdoni)",
+    "recipient_address": "Ingrese la dirección del destinatario en el que desea recibir los tokens.",
+    "copy_faucetPackage_done": "¡Copiado!",
+    "copy_faucetPackage": "Copiar Faucet Package",
+    "faucetPackage_success": "¡Felicidades! \nAquí está su paquete de grifo:",
+    "connect": "Por favor, conecta tu wallet",
+    "advanced_settings": "Avanzado..."
   },
   "footer": {
     "about": "Acerca de",

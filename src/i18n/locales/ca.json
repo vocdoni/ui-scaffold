@@ -95,7 +95,8 @@
     "loading_description": "Si us plau, espera mentre els tokens s'estan reclamant",
     "loading_title": "Reclamant",
     "success_description": "Èxit",
-    "success_title": "Els tokens s'han reclamat amb èxit"
+    "success_title": "Els tokens s'han reclamat amb èxit",
+    "success_faucetPackage_title": "El Faucet Package s'ha obtingut correctament"
   },
   "copy": {
     "address": "Copia l'adreça",
@@ -135,7 +136,14 @@
       "title": "Sol·licita Tokens"
     },
     "title": "Faucet de Tokens Vocdoni",
-    "tokens_you_own": "Tens {{ balance }} tokens."
+    "tokens_you_own": "Tens {{ balance }} tokens.",
+    "connect_or_set_recipient_address": "Si us plau, connecteu la vostra cartera o escriviu l'adreça del destinatari a continuació (ha de ser un compte de Vocdoni)",
+    "recipient_address": "Introduïu l'adreça del destinatari on voleu rebre els tokens.",
+    "copy_faucetPackage_done": "Copiat!",
+    "copy_faucetPackage": "Copia el Faucet Package",
+    "faucetPackage_success": "Felicitats! \nAquí teniu el vostre Faucet Package:",
+    "connect": "Si us plau, connecteu la vostra cartera",
+    "advanced_settings": "Avançat..."
   },
   "footer": {
     "about": "Sobre nosaltres",
