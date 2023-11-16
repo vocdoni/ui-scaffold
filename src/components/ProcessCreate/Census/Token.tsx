@@ -1,6 +1,7 @@
 import {
   Alert,
   AlertIcon,
+  Avatar,
   Badge,
   Card,
   CardHeader,
@@ -28,13 +29,17 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { customStylesSelect, customStylesTokensSelect } from '~theme/tokenSelectStyles'
-import { CustomAvatar, customComponentsNetwork, customComponentsTokens } from './TokenSelectComponents'
+import selectComponents from './select-components'
 
 export interface FilterOptionOption<Option> {
   readonly label: string
   readonly value: string
   readonly data: Option
 }
+type GrupedTokenTypes = {
+  label: string
+  options: Token[] | { name: string; status: { synced: boolean }; type: string }[]
+}[]
 
 export const CensusTokens = () => {
   const { t } = useTranslation()
@@ -45,12 +50,7 @@ export const CensusTokens = () => {
   const selectTokenRef = useRef<SelectInstance<any, false, GroupBase<any>>>(null)
   const selectChainRef = useRef<SelectInstance<any, false, GroupBase<any>>>(null)
   const [chains, setChains] = useState<ICensus3SupportedChain[]>([])
-  const [groupedTokens, setGroupedTokens] = useState<
-    {
-      label: string
-      options: Token[] | { name: string; status: { synced: boolean }; type: string }[]
-    }[]
-  >([])
+  const [groupedTokens, setGroupedTokens] = useState<GrupedTokenTypes>([])
   const [totalTks, setTotalTks] = useState(0)
 
   const {
@@ -60,6 +60,8 @@ export const CensusTokens = () => {
     clearErrors,
     formState: { errors },
   } = useFormContext()
+
+  const { tokens: selectComponentsTokens, networks: selectComponentsNetworks } = selectComponents
 
   const client = useMemo(
     () =>
@@ -250,7 +252,7 @@ export const CensusTokens = () => {
             isLoading={loading}
             isDisabled={loading || loadingTk}
             components={
-              customComponentsNetwork as Partial<
+              selectComponentsNetworks as Partial<
                 SelectComponentsConfig<ICensus3SupportedChain, boolean, GroupBase<ICensus3SupportedChain>>
               >
             }
@@ -284,7 +286,7 @@ export const CensusTokens = () => {
           </FormLabel>
           <Select
             ref={selectTokenRef}
-            key={`key__${ct}`}
+            key={ct}
             placeholder={t('form.process_create.census.tokens_placeholder')}
             aria-label={t('form.process_create.census.tokens_placeholder')}
             defaultValue={ct}
@@ -307,7 +309,7 @@ export const CensusTokens = () => {
             isSearchable
             isDisabled={!ch || loadingTk}
             isOptionDisabled={(option) => !(option as { status?: { synced?: boolean } })?.status?.synced}
-            components={customComponentsTokens as Partial<SelectComponentsConfig<unknown, boolean, GroupBase<unknown>>>}
+            components={selectComponentsTokens as Partial<SelectComponentsConfig<unknown, boolean, GroupBase<unknown>>>}
             chakraStyles={customStylesTokensSelect}
           />
           <FormErrorMessage>{errors.censusToken && errors.censusToken.message?.toString()}</FormErrorMessage>
@@ -517,7 +519,26 @@ export const TokenPreview = ({
     </Card>
   )
 }
-
+export const CustomAvatar = ({
+  name,
+  icon,
+  id,
+  size,
+}: {
+  name?: string
+  icon?: string
+  id?: string
+  size?: string
+}) => (
+  <Avatar
+    size={size || 'xs'}
+    name={name}
+    src={
+      icon || `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${id}/logo.png`
+    }
+    mr={2}
+  />
+)
 const formatNumber = (number: number) => {
   if (number < 1000) {
     return number.toString()
