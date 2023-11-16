@@ -98,11 +98,11 @@ const EditProfile = ({ callback }: { callback?: any }) => {
     <>
       <Modal isOpen={isOpen} onClose={() => !loading && onClose()}>
         <ModalOverlay />
-        <ModalContent p={3} minW={{ md: '700px' }}>
+        <ModalContent minW={{ md: '600px' }}>
           <Box>
-            <ModalHeader>{t('menu.organization')}</ModalHeader>
+            <ModalHeader>{t('form.edit_profile.title')}</ModalHeader>
             <ModalCloseButton />
-            <ModalBody pb={5}>
+            <ModalBody>
               <Flex
                 as='form'
                 direction='column'
@@ -126,7 +126,7 @@ const EditProfile = ({ callback }: { callback?: any }) => {
                     </AspectRatio>
                     {correctAvatarFormat(avatar) && (
                       <IconButton
-                        aria-label='trash icon'
+                        aria-label={t('form.account_create.delete_image')}
                         icon={<BiTrash />}
                         onClick={() => setValue('avatar', '')}
                         position='absolute'

@@ -47,7 +47,9 @@ const Options = ({ fields, removeOption, appendOption, index }: Props) => {
                 size='xs'
                 type='button'
                 icon={<DeleteIcon />}
-                aria-label='delete option'
+                aria-label={t('form.process_create.question.delete_option', {
+                  values: { question: index, option: idx },
+                })}
                 onClick={() => removeOption(idx)}
               />
             )}

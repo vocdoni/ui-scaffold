@@ -1,10 +1,32 @@
-import { Box, Flex, ListItem, Spinner, Text, UnorderedList } from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  Flex,
+  Icon,
+  Link,
+  ListItem,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  Spinner,
+  Text,
+  Tooltip,
+  UnorderedList,
+  useDisclosure,
+} from '@chakra-ui/react'
 import { useClient } from '@vocdoni/react-providers'
 import { UnpublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { Claim } from '~components/Faucet/Claim'
+import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa'
+import { TbDatabaseExclamation } from 'react-icons/tb'
+import { HandleSignInFunction, useClaim } from '~components/Faucet/Claim'
 import { useProcessCreationSteps } from './Steps/use-steps'
+import imageHeader from '/assets/voc-tokens.jpg'
 
 export const CostPreview = ({
   unpublished,
@@ -14,14 +36,17 @@ export const CostPreview = ({
   disable: Dispatch<SetStateAction<boolean>>
 }) => {
   const { t } = useTranslation()
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const { account, client } = useClient()
   const [cost, setCost] = useState<number | undefined>()
   const { form } = useProcessCreationSteps()
+  const { loading, handleSignIn } = useClaim()
   const {
     addresses,
     startDate,
     endDate,
     electionType: { anonymous, autoStart },
+    maxCensusSize,
   } = form
 
   // election estimate cost
@@ -32,7 +57,6 @@ export const CostPreview = ({
       .estimateElectionCost(unpublished)
       .then((cost) => {
         setCost(cost)
-        disable(cost > account!.balance)
       })
       .catch((e) => {
         console.error('could not estimate election cost:', e)
@@ -41,6 +65,13 @@ export const CostPreview = ({
         setCost(NaN)
       })
   }, [cost, unpublished])
+
+  // disable button if cost is higher than account balance
+  useEffect(() => {
+    if (typeof cost === 'undefined' || !account?.balance) return
+
+    disable(cost > account!.balance)
+  }, [cost, account?.balance])
 
   return (
     <Flex flexDirection='column' gap={2} mb={5}>
@@ -55,18 +86,17 @@ export const CostPreview = ({
         {typeof cost !== 'undefined' && (
           <>
             <Box fontSize='sm'>
-              <Text mb={3}>Your voting process</Text>
+              <Text mb={3}>{t('cost_preview.subtitle')}</Text>
+
               <UnorderedList>
                 <ListItem>
                   <Text display='flex' justifyContent='space-between' fontSize='sm'>
                     <Trans
-                      i18nKey='form.process_create.confirm.census_total'
+                      i18nKey='cost_preview.census_total'
                       components={{
                         span: <Text as='span' />,
                       }}
-                      values={{
-                        count: addresses.length,
-                      }}
+                      count={addresses.length || maxCensusSize}
                     />
                   </Text>
                 </ListItem>
@@ -74,7 +104,7 @@ export const CostPreview = ({
                 <ListItem>
                   <Text display='flex' justifyContent='space-between' fontSize='sm'>
                     <Trans
-                      i18nKey='form.process_create.confirm.duration_total'
+                      i18nKey='cost_preview.duration'
                       components={{
                         span: <Text as='span' />,
                       }}
@@ -92,7 +122,7 @@ export const CostPreview = ({
                   <ListItem>
                     <Text display='flex' justifyContent='space-between' fontSize='sm'>
                       <Trans
-                        i18nKey='form.process_create.confirm.params'
+                        i18nKey='form.process_create.confirm.anonymous'
                         components={{
                           span: <Text as='span' />,
                         }}
@@ -105,7 +135,7 @@ export const CostPreview = ({
             <UnorderedList m={0}>
               <ListItem display='flex' justifyContent='space-between' fontWeight='bold' fontSize='sm'>
                 <Trans
-                  i18nKey='form.process_create.confirm.total'
+                  i18nKey='cost_preview.total'
                   components={{
                     span: <Text as='span' />,
                   }}
@@ -116,9 +146,10 @@ export const CostPreview = ({
               </ListItem>{' '}
               <ListItem display='flex' justifyContent='space-between' fontWeight='bold' fontSize='sm'>
                 <Trans
-                  i18nKey='form.process_create.confirm.balance'
+                  i18nKey='cost_preview.balance'
                   components={{
                     span: <Text as='span' />,
+                    span2: <Text as='span' flex='0 0 50%' display='flex' alignItems='end' justifyContent='end' />,
                   }}
                   values={{
                     balance: account!.balance,
@@ -127,13 +158,17 @@ export const CostPreview = ({
               </ListItem>
               <ListItem display='flex' justifyContent='space-between' fontWeight='bold' fontSize='sm'>
                 <Trans
-                  i18nKey='form.process_create.confirm.result'
+                  i18nKey='cost_preview.result'
                   components={{
                     span: <Text as='span' />,
                     span2: (
                       <Text
                         as='span'
                         color={account!.balance - cost < 0 ? 'process_create.preview_negative_balance' : ''}
+                        flex='0 0 50%'
+                        display='flex'
+                        alignItems='end'
+                        justifyContent='end'
                       />
                     ),
                   }}
@@ -146,20 +181,217 @@ export const CostPreview = ({
           </>
         )}
       </Flex>
+
       {cost && cost > account!.balance && (
-        <Flex flexDir='column' gap={2}>
-          <Text>
-            <Trans
-              i18nKey='faucet.request_tokens.description'
-              components={{
-                span: <Text as='span' />,
-              }}
-              values={{ balance: account?.balance }}
-            />
+        <Flex flexDir='column' alignItems='center' gap={2}>
+          <Text color='red' textAlign='center'>
+            {t('cost_preview.not_enough_tokens')}
           </Text>
-          <Claim />
+          <Button
+            variant='rounded'
+            colorScheme='primary'
+            leftIcon={<TbDatabaseExclamation />}
+            maxW={64}
+            onClick={onOpen}
+          >
+            {t('cost_preview.button')}
+          </Button>
+          <Modal isOpen={isOpen} onClose={onClose}>
+            <GetVocTokens handleSignIn={handleSignIn} loading={loading} />
+          </Modal>
         </Flex>
       )}
     </Flex>
+  )
+}
+
+const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignIn: HandleSignInFunction }) => {
+  const { t } = useTranslation()
+  const [socialAccount, setSocialAccount] = useState('')
+  const { account } = useClient()
+
+  return (
+    <>
+      <ModalOverlay />
+      <ModalContent minW={{ md: '600px' }}>
+        <ModalHeader>
+          <Text>{t('get_voc_tokens.title')}</Text>
+          <Box bgImage={imageHeader} bgRepeat='no-repeat' minH={{ base: '180px', md: '200px' }} />
+        </ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+          <Box mb={8}>
+            <Trans
+              i18nKey='get_voc_tokens.description'
+              components={{
+                text: <Text />,
+                strong: <Text as='span' fontWeight='bold' />,
+              }}
+            />
+          </Box>
+          <Text fontSize='sm' fontWeight='bold' textAlign='center'>
+            {t('get_voc_tokens.authentification_method')}
+          </Text>
+          <Flex justifyContent='space-around' my={3}>
+            <Button
+              aria-label={t('link.github').toString()}
+              cursor='pointer'
+              onClick={() => setSocialAccount('github')}
+              sx={{
+                '&': {
+                  bgColor: socialAccount === 'github' ? 'primary.500' : '',
+
+                  '& svg': {
+                    color: socialAccount === 'github' ? 'white' : 'primary.500',
+                  },
+
+                  '&:disabled': {
+                    '& svg': {
+                      color: 'gray',
+                    },
+                  },
+
+                  '&:hover': {
+                    cursor: socialAccount === 'github' ? 'default' : 'pointer',
+                    bgColor: socialAccount === 'github' ? 'primary.500' : '',
+
+                    '& svg': {
+                      color: socialAccount === 'github' ? 'white' : 'primary.500',
+                    },
+
+                    '&:disabled': {
+                      '&': {
+                        cursor: 'default',
+                      },
+                      '& svg': {
+                        color: 'gray',
+                      },
+                    },
+                  },
+                },
+              }}
+            >
+              <Icon as={FaGithub} w={8} h={8} />
+            </Button>
+            <Tooltip label={t('get_voc_tokens.coming_soon')}>
+              <Button
+                isDisabled
+                aria-label={t('link.twitter').toString()}
+                disabled
+                cursor='pointer'
+                onClick={() => setSocialAccount('twitter')}
+                sx={{
+                  '&': {
+                    bgColor: socialAccount === 'twitter' ? 'primary.500' : '',
+
+                    '& svg': {
+                      color: socialAccount === 'twitter' ? 'white' : 'primary.500',
+                    },
+
+                    '&:disabled': {
+                      '& svg': {
+                        color: 'gray',
+                      },
+                    },
+
+                    '&:hover': {
+                      cursor: socialAccount === 'twitter' ? 'default' : 'pointer',
+                      bgColor: socialAccount === 'twitter' ? 'primary.500' : '',
+
+                      '& svg': {
+                        color: socialAccount === 'twitter' ? 'white' : 'primary.500',
+                      },
+                      '&:disabled': {
+                        '&': {
+                          cursor: 'default',
+                        },
+                        '& svg': {
+                          color: 'gray',
+                        },
+                      },
+                    },
+                  },
+                }}
+              >
+                <Icon as={FaTwitter} w={8} h={8} />
+              </Button>
+            </Tooltip>
+            <Tooltip label={t('get_voc_tokens.coming_soon')}>
+              <Button
+                isDisabled
+                aria-label={t('link.discord').toString()}
+                disabled
+                cursor='pointer'
+                onClick={() => setSocialAccount('discord')}
+                title='coming soon'
+                sx={{
+                  '&': {
+                    bgColor: socialAccount === 'discord' ? 'primary.500' : '',
+
+                    '& svg': {
+                      color: socialAccount === 'discord' ? 'white' : 'primary.500',
+                    },
+
+                    '&:disabled': {
+                      '& svg': {
+                        color: 'gray',
+                      },
+                    },
+
+                    '&:hover': {
+                      cursor: socialAccount === 'discord' ? 'default' : 'pointer',
+                      bgColor: socialAccount === 'discord' ? 'primary.500' : '',
+
+                      '& svg': {
+                        color: socialAccount === 'discord' ? 'white' : 'primary.500',
+                      },
+
+                      '&:disabled': {
+                        '&': {
+                          cursor: 'default',
+                        },
+                        '& svg': {
+                          color: 'gray',
+                        },
+                      },
+                    },
+                  },
+                }}
+              >
+                <Icon as={FaDiscord} w={8} h={8} />
+              </Button>
+            </Tooltip>
+          </Flex>
+
+          <Text fontSize='sm' textAlign='center' color='gray'>
+            <Trans
+              i18nKey='get_voc_tokens.authentification_method_helper'
+              values={{
+                faucetAmount: import.meta.env.FAUCET_AMOUNT,
+              }}
+            />
+          </Text>
+        </ModalBody>{' '}
+        <ModalFooter flexDirection='column' alignItems='center' gap={3}>
+          <Button
+            variant='rounded'
+            colorScheme='primary'
+            onClick={() => handleSignIn(socialAccount, account?.address as string, [{ param: 'loadDraft', value: '' }])}
+            isLoading={loading}
+            isDisabled={!socialAccount}
+          >
+            {t('get_voc_tokens.button')}
+          </Button>
+
+          <Trans
+            i18nKey='get_voc_tokens.info'
+            components={{
+              text: <Text fontSize='sm' textAlign='center' />,
+              mailto: <Link href='mailto:info@onvote.app' fontWeight='bold' color='primary.500' />,
+            }}
+          />
+        </ModalFooter>
+      </ModalContent>
+    </>
   )
 }

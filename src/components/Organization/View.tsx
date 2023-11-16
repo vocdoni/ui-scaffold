@@ -14,7 +14,7 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { useClient, useOrganization } from '@vocdoni/react-providers'
-import { areEqualHexStrings, InvalidElection, PublishedElection } from '@vocdoni/sdk'
+import { ArchivedElection, areEqualHexStrings, InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
@@ -28,7 +28,7 @@ const OrganizationView = () => {
   const { client, account } = useClient()
   const { organization, fetch } = useOrganization()
 
-  const [electionsList, setElectionsList] = useState<(PublishedElection | InvalidElection)[]>([])
+  const [electionsList, setElectionsList] = useState<(PublishedElection | InvalidElection | ArchivedElection)[]>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [loaded, setLoaded] = useState<boolean>(false)
   const [error, setError] = useState<string>()

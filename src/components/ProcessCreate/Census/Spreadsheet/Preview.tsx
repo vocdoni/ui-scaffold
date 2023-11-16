@@ -15,7 +15,7 @@ export const CsvPreview = ({ manager, upload }: CsvPreviewProps) => {
   if (!manager || !manager?.data) return null
 
   return (
-    <Box p={10} borderRadius='lg' bgColor='process_create.spreadsheet.preview_bg'>
+    <Box borderRadius='lg' bgColor='process_create.spreadsheet.preview_bg'>
       <Flex
         alignItems='center'
         flexDirection={{ base: 'column', xl: 'row' }}

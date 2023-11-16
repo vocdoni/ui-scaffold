@@ -1,14 +1,24 @@
 import { Box, Card, CardBody, Flex, Grid, GridItem, Heading, Text } from '@chakra-ui/react'
 import { useClient } from '@vocdoni/react-providers'
+import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Claim } from '~components/Faucet/Claim'
+import { authTypes, useFaucet } from '~components/Faucet/use-faucet'
 
 const Faucet = () => {
   const { t } = useTranslation()
   const { account } = useClient()
+  const { getAuthTypes } = useFaucet()
+
+  const [authTypes, setAuthTypes] = useState<authTypes>({ oauth: 0, open: 0, aragondao: 0 })
+  useEffect(() => {
+    ;(async () => {
+      setAuthTypes(await getAuthTypes())
+    })()
+  }, [])
 
   return (
-    <Flex direction='column' gap={4}>
+    <Flex direction='column' gap={4} mt={10}>
       <Grid templateColumns={'repeat(1, 1fr)'} gap={2}>
         <GridItem display='flex' justifyContent='center' alignItems='center'>
           <Box width={'80%'}>
@@ -27,23 +37,13 @@ const Faucet = () => {
               <Heading as={'h2'} size={'sm'}>
                 {t('faucet.request_tokens.title')}
               </Heading>
-              <Text>
-                {account ? (
+              <Box>
+                {account && (
                   <Text>
                     <Trans i18nKey='faucet.tokens_you_own' values={{ balance: account?.balance }} />
-                    {` `}
-                    <Trans
-                      i18nKey='faucet.request_description'
-                      components={{
-                        span: <Text as='span' />,
-                      }}
-                      values={{ balance: account?.balance }}
-                    />
                   </Text>
-                ) : (
-                  <Trans i18nKey='faucet.login_first' />
                 )}
-              </Text>
+              </Box>
               <Claim />
             </CardBody>
           </Card>
@@ -57,14 +57,10 @@ const Faucet = () => {
               </Heading>
               <Text variant='p'>
                 {t('faucet.general_information.description', {
-                  amount: import.meta.env.FAUCET_AMOUNT,
+                  amount: authTypes.oauth,
                 })}
               </Text>
-              <Text variant='p'>
-                {t('faucet.general_information.description2', {
-                  amount: import.meta.env.FAUCET_AMOUNT,
-                })}
-              </Text>
+              <Text variant='p'>{t('faucet.general_information.description2')}</Text>
             </CardBody>
           </Card>
         </GridItem>
