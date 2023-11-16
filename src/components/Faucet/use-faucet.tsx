@@ -26,7 +26,7 @@ export type faucetReceiptFunction = (
 export type getAuthTypesFunction = () => Promise<authTypes>
 
 export const useFaucet = () => {
-  const { connected, signer, client } = useClient()
+  const { client } = useClient()
   const {
     faucetService: { url },
   } = client
