@@ -80,10 +80,13 @@
     }
   },
   "census": {
+    "chain_required": "Necesitas seleccionar una red",
     "description": "Selecciona cómo los votantes se autenticarán e identificarán: las opciones incluyen datos personalizados, la propiedad de tokens o con direcciones de monedero (wallet addresses).",
+    "request_custom_token": "Solicitar Tokens Personalizados",
     "spreadsheet_title": "Datos personalizados",
     "title": "Censo",
     "token_description": "Seleccioneu la xarxa i el token per crear un cens on els titulars del token votaran amb el seu poder de vot.",
+    "token_required": "Necesitas seleccionar un token",
     "token_title": "Censo basado en tokens",
     "wallet_address_title": "Direcciones de billetera"
   },
@@ -121,21 +124,19 @@
   },
   "error_text": "Lo sentimos, no se encontró la página que buscabas.",
   "faucet": {
+    "connect_or_set_recipient_address": "Por favor, conecta tu wallet o escribe la dirección del destinatario a continuación (debe ser una Cuenta Vocdoni)",
     "description": "Para desarrollar con Vocdoni, necesitas tokens para ciertas acciones (crear una elección, cambiar el estado de una elección, etc.). El número de diferentes factores como el tamaño del censo, la duración de la elección, los parámetros de la elección, etc.",
     "general_information": {
       "description": "Cuando solicites tokens de desarrollo, recibirás {{ amount }} tokens. Puedes reclamar desde el faucet una vez cada 24 horas.",
       "description2": "Si necesitas más tokens para desarrollar sobre la plataforma de Vocdoni, puedes ponerte en contacto con nosotros en tokens (at) vocdoni.io",
       "title": "Información General"
     },
-    "login_first": "Debes iniciar sesión primero.",
     "request_description": "Para obtener más tokens de Vocdoni, debes iniciar sesión con una cuenta social (para evitar el mal uso del grifo). Solo solicitamos acceso de lectura.",
     "request_tokens": {
       "title": "Solicitar Tokens"
     },
     "title": "Faucet de Tokens Vocdoni",
-    "tokens_you_own": "Tienes {{ balance }} tokens.",
-    "connect_or_set_recipient_address": "Por favor, conecta tu wallet o escribe la dirección del destinatario a continuación (debe ser una Cuenta Vocdoni)",
-    "recipient_address": "Ingrese la dirección del destinatario en el que desea recibir los tokens."
+    "tokens_you_own": "Tienes {{ balance }} tokens."
   },
   "footer": {
     "about": "Acerca de",
@@ -172,8 +173,7 @@
       "address_pattern": "Solo se permiten direcciones hexadecimales (p.ej. 0x031101A...)",
       "avatar_error": "URL no válida",
       "field_is_required": "Este campo es obligatorio",
-      "min_address": "Por favor, proporciona al menos una dirección",
-      "recipient_address_invalid": "Dirección de destinatario no válida"
+      "min_address": "Por favor, proporciona al menos una dirección"
     },
     "process_create": {
       "behavior": {
@@ -343,8 +343,8 @@
   },
   "loading": "Cargando...",
   "login": {
-    "github": "Iniciar sesión con Github",
     "facebook": "Iniciar sesión usando Facebook",
+    "github": "Iniciar sesión con Github",
     "google": "Iniciar sesión con Google"
   },
   "menu": {

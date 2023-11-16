@@ -17,18 +17,14 @@ import polygonIcon from '/assets/polygon-matic.jpg'
 
 export const customComponentsTokens: Partial<SelectComponentsConfig<any, false, GroupBase<any>>> = {
   SingleValue: (props: SingleValueProps<any, false, GroupBase<any>>) => {
+    const {
+      data: { name, iconURI, ID },
+      children,
+    } = props
     return (
       <chakraComponents.SingleValue {...props}>
-        <Avatar
-          size='xs'
-          name={props.data.name}
-          src={
-            props.data.iconURI ||
-            `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${props.data.ID}/logo.png`
-          }
-          mr={2}
-        />
-        {props.children}
+        <CustomAvatar name={name} icon={iconURI} id={ID} />
+        {children}
       </chakraComponents.SingleValue>
     )
   },
@@ -56,7 +52,8 @@ export const customComponentsTokens: Partial<SelectComponentsConfig<any, false, 
 
   Option: (props: OptionProps<any, false, GroupBase<any>>) => {
     const {
-      data: { type: groupType },
+      children,
+      data: { type: groupType, name, iconURI, ID },
     } = props
 
     if (groupType === 'request') {
@@ -67,7 +64,7 @@ export const customComponentsTokens: Partial<SelectComponentsConfig<any, false, 
               <Text as='span' fontSize='xl'>
                 +
               </Text>{' '}
-              {props.children}
+              {children}
             </Link>
           </Flex>
         </chakraComponents.Option>
@@ -76,15 +73,9 @@ export const customComponentsTokens: Partial<SelectComponentsConfig<any, false, 
       return (
         <chakraComponents.Option {...props}>
           <Flex alignItems='center' gap={2}>
-            <Avatar
-              size='xs'
-              name={props.data.name}
-              src={
-                props.data.iconURI ||
-                `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${props.data.ID}/logo.png`
-              }
-            />
-            <Text>{props.children}</Text>
+            <CustomAvatar name={name} icon={iconURI} id={ID} />
+
+            <Text>{children}</Text>
           </Flex>
         </chakraComponents.Option>
       )
@@ -117,23 +108,53 @@ const getIconSource = (shortName: string) => {
 }
 export const customComponentsNetwork: Partial<SelectComponentsConfig<any, false, GroupBase<any>>> = {
   SingleValue: (props: SingleValueProps<any, false, GroupBase<any>>) => {
-    const iconSource = getIconSource(props.data.shortName)
+    const {
+      data: { name, shortName },
+      children,
+    } = props
+
+    const iconSource = getIconSource(shortName)
     return (
       <chakraComponents.SingleValue {...props}>
-        <Avatar size='xs' name={props.data.name} src={iconSource} mr={2} />
-        {props.children}
+        <CustomAvatar name={name} icon={iconSource} />
+        {children}
       </chakraComponents.SingleValue>
     )
   },
   Option: (props: OptionProps<any, false, GroupBase<any>>) => {
-    const iconSource = getIconSource(props.data.shortName)
+    const {
+      data: { name, shortName },
+      children,
+    } = props
+
+    const iconSource = getIconSource(shortName)
     return (
       <chakraComponents.Option {...props}>
         <Flex alignItems='center' gap={2}>
-          <Avatar size='xs' name={props.data.name} src={iconSource} />
-          <Text>{props.children}</Text>
+          <CustomAvatar name={name} icon={iconSource} />
+          <Text>{children}</Text>
         </Flex>
       </chakraComponents.Option>
     )
   },
 }
+export const CustomAvatar = ({
+  name,
+  icon,
+  id,
+  size,
+}: {
+  name?: string
+  icon?: string
+  id?: string
+  size?: string
+}) => (
+  <Avatar
+    size={size || 'xs'}
+    name={name}
+    src={
+      icon || `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${id}/logo.png`
+    }
+    mr={2}
+  />
+)

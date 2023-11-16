@@ -1,7 +1,6 @@
 import {
   Alert,
   AlertIcon,
-  Avatar,
   Badge,
   Card,
   CardHeader,
@@ -29,7 +28,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { customStylesSelect, customStylesTokensSelect } from '~theme/tokenSelectStyles'
-import { customComponentsNetwork, customComponentsTokens } from './TokenSelectComponents'
+import { CustomAvatar, customComponentsNetwork, customComponentsTokens } from './TokenSelectComponents'
 
 export interface FilterOptionOption<Option> {
   readonly label: string
@@ -38,6 +37,7 @@ export interface FilterOptionOption<Option> {
 }
 
 export const CensusTokens = () => {
+  const { t } = useTranslation()
   const { env } = useClient()
   const [error, setError] = useState<string | undefined>()
   const [loading, setLoading] = useState<boolean>(false)
@@ -53,7 +53,6 @@ export const CensusTokens = () => {
   >([])
   const [totalTks, setTotalTks] = useState(0)
 
-  const { t } = useTranslation()
   const {
     setValue,
     register,
@@ -72,7 +71,7 @@ export const CensusTokens = () => {
   const chain = register('chain', {
     required: {
       value: true,
-      message: 'You need to select a network',
+      message: t('census.chain_required'),
     },
   })
 
@@ -81,7 +80,7 @@ export const CensusTokens = () => {
   const ctoken = register('censusToken', {
     required: {
       value: true,
-      message: 'You need to select a token',
+      message: t('census.token_required'),
     },
   })
   const ct = watch('censusToken')
@@ -99,7 +98,7 @@ export const CensusTokens = () => {
       case 'poap':
         return 'POAPs'
       default:
-        return data.label
+        return opt.type
     }
   }
 
@@ -165,7 +164,7 @@ export const CensusTokens = () => {
 
         groupedTokens.push({
           label: 'request',
-          options: [{ name: 'Request Custom Tokens', status: { synced: true }, type: 'request' }],
+          options: [{ name: t('census.request_custom_token'), status: { synced: true }, type: 'request' }],
         })
 
         const totalTks = groupedTokens.reduce((acc, curr) => {
@@ -285,7 +284,7 @@ export const CensusTokens = () => {
           </FormLabel>
           <Select
             ref={selectTokenRef}
-            key={`my_unique_select_key__${ct}`}
+            key={`key__${ct}`}
             placeholder={t('form.process_create.census.tokens_placeholder')}
             aria-label={t('form.process_create.census.tokens_placeholder')}
             defaultValue={ct}
@@ -453,13 +452,7 @@ export const TokenPreview = ({
             display='flex'
             alignItems='center'
           >
-            <Avatar
-              name={token.name}
-              src={
-                token.iconURI ||
-                `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${token.ID}/logo.png`
-              }
-            />
+            <CustomAvatar name={token.name} icon={token.iconURI} id={token.ID} size='md' />
           </GridItem>
           <GridItem
             gridColumnStart={{ base: 2, xl: minCardSize800px ? 3 : 2 }}
@@ -525,14 +518,14 @@ export const TokenPreview = ({
   )
 }
 
-const formatNumber = (numero: number) => {
-  if (numero < 1000) {
-    return numero.toString()
-  } else if (numero < 1000000) {
-    const numEnK = Math.floor(numero / 1000)
+const formatNumber = (number: number) => {
+  if (number < 1000) {
+    return number.toString()
+  } else if (number < 1000000) {
+    const numEnK = Math.floor(number / 1000)
     return numEnK.toFixed(0) + 'K'
   } else {
-    const numEnM = Math.floor(numero / 1000000)
+    const numEnM = Math.floor(number / 1000000)
     return numEnM.toFixed(0) + 'M'
   }
 }
