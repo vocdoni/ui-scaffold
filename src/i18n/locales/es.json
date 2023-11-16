@@ -138,7 +138,6 @@
     },
     "title": "Faucet de Tokens Vocdoni",
     "tokens_you_own": "Tienes {{ balance }} tokens.",
-    "connect_or_set_recipient_address": "Por favor, conecta tu wallet o escribe la dirección del destinatario a continuación (debe ser una Cuenta Vocdoni)",
     "recipient_address": "Ingrese la dirección del destinatario en el que desea recibir los tokens.",
     "copy_faucetPackage_done": "¡Copiado!",
     "copy_faucetPackage": "Copiar Faucet Package",
