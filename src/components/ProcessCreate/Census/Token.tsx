@@ -1,7 +1,6 @@
 import {
   Alert,
   AlertIcon,
-  Avatar,
   Badge,
   Card,
   CardHeader,
@@ -29,15 +28,20 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { customStylesSelect, customStylesTokensSelect } from '~theme/tokenSelectStyles'
-import { customComponentsNetwork, customComponentsTokens } from './TokenSelectComponents'
+import selectComponents, { CryptoAvatar } from './select-components'
 
 export interface FilterOptionOption<Option> {
   readonly label: string
   readonly value: string
   readonly data: Option
 }
+type GrupedTokenTypes = {
+  label: string
+  options: Token[] | { name: string; status: { synced: boolean }; type: string }[]
+}[]
 
 export const CensusTokens = () => {
+  const { t } = useTranslation()
   const { env } = useClient()
   const [error, setError] = useState<string | undefined>()
   const [loading, setLoading] = useState<boolean>(false)
@@ -45,15 +49,9 @@ export const CensusTokens = () => {
   const selectTokenRef = useRef<SelectInstance<any, false, GroupBase<any>>>(null)
   const selectChainRef = useRef<SelectInstance<any, false, GroupBase<any>>>(null)
   const [chains, setChains] = useState<ICensus3SupportedChain[]>([])
-  const [groupedTokens, setGroupedTokens] = useState<
-    {
-      label: string
-      options: Token[] | { name: string; status: { synced: boolean }; type: string }[]
-    }[]
-  >([])
+  const [groupedTokens, setGroupedTokens] = useState<GrupedTokenTypes>([])
   const [totalTks, setTotalTks] = useState(0)
 
-  const { t } = useTranslation()
   const {
     setValue,
     register,
@@ -61,6 +59,8 @@ export const CensusTokens = () => {
     clearErrors,
     formState: { errors },
   } = useFormContext()
+
+  const { tokens: selectComponentsTokens, networks: selectComponentsNetworks } = selectComponents
 
   const client = useMemo(
     () =>
@@ -72,7 +72,7 @@ export const CensusTokens = () => {
   const chain = register('chain', {
     required: {
       value: true,
-      message: 'You need to select a network',
+      message: t('census.chain_required'),
     },
   })
 
@@ -81,7 +81,7 @@ export const CensusTokens = () => {
   const ctoken = register('censusToken', {
     required: {
       value: true,
-      message: 'You need to select a token',
+      message: t('census.token_required'),
     },
   })
   const ct = watch('censusToken')
@@ -99,7 +99,7 @@ export const CensusTokens = () => {
       case 'poap':
         return 'POAPs'
       default:
-        return data.label
+        return opt.type
     }
   }
 
@@ -165,7 +165,7 @@ export const CensusTokens = () => {
 
         groupedTokens.push({
           label: 'request',
-          options: [{ name: 'Request Custom Tokens', status: { synced: true }, type: 'request' }],
+          options: [{ name: t('census.request_custom_token'), status: { synced: true }, type: 'request' }],
         })
 
         const totalTks = groupedTokens.reduce((acc, curr) => {
@@ -251,7 +251,7 @@ export const CensusTokens = () => {
             isLoading={loading}
             isDisabled={loading || loadingTk}
             components={
-              customComponentsNetwork as Partial<
+              selectComponentsNetworks as Partial<
                 SelectComponentsConfig<ICensus3SupportedChain, boolean, GroupBase<ICensus3SupportedChain>>
               >
             }
@@ -285,7 +285,7 @@ export const CensusTokens = () => {
           </FormLabel>
           <Select
             ref={selectTokenRef}
-            key={`my_unique_select_key__${ct}`}
+            key={ct}
             placeholder={t('form.process_create.census.tokens_placeholder')}
             aria-label={t('form.process_create.census.tokens_placeholder')}
             defaultValue={ct}
@@ -308,7 +308,7 @@ export const CensusTokens = () => {
             isSearchable
             isDisabled={!ch || loadingTk}
             isOptionDisabled={(option) => !(option as { status?: { synced?: boolean } })?.status?.synced}
-            components={customComponentsTokens as Partial<SelectComponentsConfig<unknown, boolean, GroupBase<unknown>>>}
+            components={selectComponentsTokens as Partial<SelectComponentsConfig<unknown, boolean, GroupBase<unknown>>>}
             chakraStyles={customStylesTokensSelect}
           />
           <FormErrorMessage>{errors.censusToken && errors.censusToken.message?.toString()}</FormErrorMessage>
@@ -453,13 +453,7 @@ export const TokenPreview = ({
             display='flex'
             alignItems='center'
           >
-            <Avatar
-              name={token.name}
-              src={
-                token.iconURI ||
-                `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${token.ID}/logo.png`
-              }
-            />
+            <CryptoAvatar name={token.name} icon={token.iconURI} id={token.ID} size='md' />
           </GridItem>
           <GridItem
             gridColumnStart={{ base: 2, xl: minCardSize800px ? 3 : 2 }}
@@ -525,14 +519,14 @@ export const TokenPreview = ({
   )
 }
 
-const formatNumber = (numero: number) => {
-  if (numero < 1000) {
-    return numero.toString()
-  } else if (numero < 1000000) {
-    const numEnK = Math.floor(numero / 1000)
+const formatNumber = (number: number) => {
+  if (number < 1000) {
+    return number.toString()
+  } else if (number < 1000000) {
+    const numEnK = Math.floor(number / 1000)
     return numEnK.toFixed(0) + 'K'
   } else {
-    const numEnM = Math.floor(numero / 1000000)
+    const numEnM = Math.floor(number / 1000000)
     return numEnM.toFixed(0) + 'M'
   }
 }
