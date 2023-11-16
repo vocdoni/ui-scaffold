@@ -78,10 +78,13 @@
     }
   },
   "census": {
+    "chain_required": "You need to select a network",
     "description": "Select how voters will authenticate and identify themselves: options include custom data, token ownership or wallet addresses.",
+    "request_custom_token": "'Request Custom Tokens'",
     "spreadsheet_title": "Custom data",
     "title": "Census",
     "token_description": "Select the network and token to create a census where tokenholders will vote with their voting token power.",
+    "token_required": "You need to select a token",
     "token_title": "Token based census",
     "wallet_address_title": "Wallet addresses"
   },
@@ -119,13 +122,13 @@
   },
   "error_text": "Sorry, the page you were looking for was not found",
   "faucet": {
+    "connect_or_set_recipient_address": "Please, connect your wallet or write the recipient address below (must be a Vocdoni Account)",
     "description": "For developing with Vocdoni, you need tokens for certain actions (create an election, change election status, etc.). The nº of  different factors lik census size, election duration, election params, etc.",
     "general_information": {
       "description": "When you request dev tokens, you'll receive {{ amount }} tokens. You can claim from the faucet once every 24 hours.",
       "description2": "If you need more tokens for developing on top of the Vocdoni stack, you can connect with us at tokens (at) vocdoni.io",
       "title": "General Information"
     },
-    "login_first": "You must login first.",
     "request_description": "To get vocdoni tokens, you must sign-in with a social account (to prevent missuse of the faucet). We only request read access.",
     "request_tokens": {
       "title": "Request Tokens"
@@ -175,8 +178,7 @@
       "address_pattern": "Only hex addresses are allowed (e.g 0x031101A...)",
       "avatar_error": "URL not valid",
       "field_is_required": "This field is required",
-      "min_address": "Please, provide at least one address",
-      "recipient_address_invalid": "Invalid recipient address"
+      "min_address": "Please, provide at least one address"
     },
     "process_create": {
       "behavior": {
@@ -341,8 +343,8 @@
   },
   "loading": "Loading...",
   "login": {
-    "github": "Sign in with Github",
     "facebook": "Sign in with Facebook",
+    "github": "Sign in with Github",
     "google": "Sign in with Google"
   },
   "menu": {
