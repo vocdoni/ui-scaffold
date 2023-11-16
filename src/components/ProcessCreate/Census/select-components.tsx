@@ -1,5 +1,5 @@
 import { ChevronDownIcon, SearchIcon } from '@chakra-ui/icons'
-import { Flex, Link, Text } from '@chakra-ui/react'
+import { Avatar, Flex, Link, Text } from '@chakra-ui/react'
 import {
   chakraComponents,
   DropdownIndicatorProps,
@@ -11,7 +11,6 @@ import {
 import { BsImage } from 'react-icons/bs'
 import { FaEthereum } from 'react-icons/fa'
 import { FaPeopleGroup } from 'react-icons/fa6'
-import { CustomAvatar } from './Token'
 import ethIcon from '/assets/eth.jpg'
 import polygonIcon from '/assets/polygon-matic.jpg'
 
@@ -22,7 +21,7 @@ const SingleValueToken = (props: SingleValueProps<any, false, GroupBase<any>>) =
   } = props
   return (
     <chakraComponents.SingleValue {...props}>
-      <CustomAvatar name={name} icon={iconURI} id={ID} />
+      <CryptoAvatar name={name} icon={iconURI} id={ID} />
       {children}
     </chakraComponents.SingleValue>
   )
@@ -73,7 +72,7 @@ const OptionToken = (props: OptionProps<any, false, GroupBase<any>>) => {
     return (
       <chakraComponents.Option {...props}>
         <Flex alignItems='center' gap={2}>
-          <CustomAvatar name={name} icon={iconURI} id={ID} />
+          <CryptoAvatar name={name} icon={iconURI} id={ID} />
 
           <Text>{children}</Text>
         </Flex>
@@ -114,7 +113,7 @@ const SingleValueNetwork = (props: SingleValueProps<any, false, GroupBase<any>>)
   const iconSource = getIconSource(shortName)
   return (
     <chakraComponents.SingleValue {...props}>
-      <CustomAvatar name={name} icon={iconSource} />
+      <CryptoAvatar name={name} icon={iconSource} />
       {children}
     </chakraComponents.SingleValue>
   )
@@ -129,7 +128,7 @@ const OptionNetwork = (props: OptionProps<any, false, GroupBase<any>>) => {
   return (
     <chakraComponents.Option {...props}>
       <Flex alignItems='center' gap={2}>
-        <CustomAvatar name={name} icon={iconSource} />
+        <CryptoAvatar name={name} icon={iconSource} />
         <Text>{children}</Text>
       </Flex>
     </chakraComponents.Option>
@@ -148,3 +147,24 @@ export default {
     Option: OptionNetwork,
   },
 }
+
+export const CryptoAvatar = ({
+  name,
+  icon,
+  id,
+  size,
+}: {
+  name?: string
+  icon?: string
+  id?: string
+  size?: string
+}) => (
+  <Avatar
+    size={size || 'xs'}
+    name={name}
+    src={
+      icon || `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${id}/logo.png`
+    }
+    mr={2}
+  />
+)

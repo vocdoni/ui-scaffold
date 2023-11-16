@@ -1,7 +1,6 @@
 import {
   Alert,
   AlertIcon,
-  Avatar,
   Badge,
   Card,
   CardHeader,
@@ -29,7 +28,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { customStylesSelect, customStylesTokensSelect } from '~theme/tokenSelectStyles'
-import selectComponents from './select-components'
+import selectComponents, { CryptoAvatar } from './select-components'
 
 export interface FilterOptionOption<Option> {
   readonly label: string
@@ -454,7 +453,7 @@ export const TokenPreview = ({
             display='flex'
             alignItems='center'
           >
-            <CustomAvatar name={token.name} icon={token.iconURI} id={token.ID} size='md' />
+            <CryptoAvatar name={token.name} icon={token.iconURI} id={token.ID} size='md' />
           </GridItem>
           <GridItem
             gridColumnStart={{ base: 2, xl: minCardSize800px ? 3 : 2 }}
@@ -519,26 +518,7 @@ export const TokenPreview = ({
     </Card>
   )
 }
-export const CustomAvatar = ({
-  name,
-  icon,
-  id,
-  size,
-}: {
-  name?: string
-  icon?: string
-  id?: string
-  size?: string
-}) => (
-  <Avatar
-    size={size || 'xs'}
-    name={name}
-    src={
-      icon || `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${id}/logo.png`
-    }
-    mr={2}
-  />
-)
+
 const formatNumber = (number: number) => {
   if (number < 1000) {
     return number.toString()
