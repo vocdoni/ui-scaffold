@@ -168,15 +168,6 @@ export const CensusTokens = () => {
           options: [{ name: t('census.request_custom_token'), status: { synced: true }, type: 'request' }],
         })
 
-        const totalTks = groupedTokens.reduce((acc, curr) => {
-          if (curr.label !== 'request') {
-            return acc + curr.options.length
-          }
-          return acc
-        }, 0)
-
-        setTotalTks(totalTks)
-
         setGroupedTokens(groupedTokens)
       } catch (err) {
         setError(errorToString(err))
@@ -202,6 +193,17 @@ export const CensusTokens = () => {
       }
     })()
   }, [ct])
+
+  useEffect(() => {
+    const options = groupedTokens.map((token) => token.options).flat()
+    const totalOptions = options.filter((op) => {
+      if ('chainID' in op && op.chainID === ch?.chainID) {
+        return true
+      }
+      return false
+    }).length
+    setTotalTks(totalOptions)
+  }, [ch])
 
   if (error) {
     return (
@@ -241,7 +243,6 @@ export const CensusTokens = () => {
             getOptionValue={(value: ICensus3SupportedChain) => String(value.chainID)}
             getOptionLabel={({ name }: ICensus3SupportedChain) => `${name}`}
             onChange={(network) => {
-              // setToken(undefined)
               setValue('censusToken', undefined)
               setValue('chain', network || undefined)
               setValue('maxCensusSize', undefined)
