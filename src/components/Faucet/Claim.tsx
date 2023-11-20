@@ -111,17 +111,38 @@ export const Claim = (props: ClaimProps) => {
             values={{ balance: account?.balance }}
           />
           <Flex direction='row' gap='2'>
-            <Button type='submit' w='full' isLoading={loading} colorScheme='primary' onClick={() => auth('github')}>
+            <Button
+              type='submit'
+              variant='on-vote'
+              colorScheme='primary'
+              w='full'
+              isLoading={loading}
+              onClick={() => auth('github')}
+            >
               <Icon mr={2} as={FaGithub} />
               {t('login.github')}
             </Button>
 
-            <Button type='submit' w='full' isLoading={loading} colorScheme='facebook' onClick={() => auth('facebook')}>
+            <Button
+              type='submit'
+              variant='on-vote'
+              colorScheme='facebook'
+              w='full'
+              isLoading={loading}
+              onClick={() => auth('facebook')}
+            >
               <Icon mr={2} as={FaFacebook} />
               {t('login.facebook')}
             </Button>
 
-            <Button type='submit' w='full' isLoading={loading} colorScheme='red' onClick={() => auth('google')}>
+            <Button
+              type='submit'
+              variant='on-vote'
+              colorScheme='red'
+              w='full'
+              isLoading={loading}
+              onClick={() => auth('google')}
+            >
               <Icon mr={2} as={FaGoogle} />
               {t('login.google')}
             </Button>
