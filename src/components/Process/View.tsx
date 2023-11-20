@@ -246,7 +246,7 @@ const ConfirmVoteModal = ({ questions, answers }: { questions: IQuestion[]; answ
           borderRadius='lg2'
         >
           {questions.map((q, i) => (
-            <Box>
+            <Box key={i}>
               <Box py={2}>
                 <Text display='flex' flexDirection='column' gap={1} mb={1}>
                   <Trans
