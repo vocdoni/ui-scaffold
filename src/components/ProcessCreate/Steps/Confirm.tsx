@@ -117,6 +117,7 @@ export const Confirm = () => {
       setSending(false)
     }
   }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const corelection = useMemo(() => electionFromForm(form), [account?.address, form])
 
   // fetches census for unpublished elections
@@ -134,7 +135,7 @@ export const Confirm = () => {
         } as IElectionParameters)
       )
     })()
-  }, [corelection])
+  }, [account, corelection, env, form, unpublished])
 
   // preview (fake) mapping
   const published = PublishedElection.build({
