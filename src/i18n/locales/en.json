@@ -106,8 +106,8 @@
     "loading_description": "Please wait while tokens are being claimed",
     "loading_title": "Claiming",
     "success_description": "Success",
-    "success_title": "Tokens were successfully claimed",
-    "success_faucetPackage_title": "Faucet Package was successfully obtained"
+    "success_faucetPackage_title": "Faucet Package was successfully obtained",
+    "success_title": "Tokens were successfully claimed"
   },
   "copy": {
     "address": "Copy address",
@@ -142,18 +142,13 @@
       "description2": "If you need more tokens for developing on top of the Vocdoni stack, you can connect with us at tokens (at) vocdoni.io",
       "title": "General Information"
     },
+    "recipient_address": "Enter the recipient address you'd like to receive tokens on.",
     "request_description": "To get vocdoni tokens, you must sign-in with a social account (to prevent missuse of the faucet). We only request read access.",
     "request_tokens": {
       "title": "Request Tokens"
     },
     "title": "Vocdoni Tokens Faucet",
-    "tokens_you_own": "You own {{ balance }} tokens.",
-    "recipient_address": "Enter the recipient address you'd like to receive tokens on.",
-    "copy_faucetPackage_done": "Copied!",
-    "copy_faucetPackage": "Copy Faucet Package",
-    "faucetPackage_success": "Congratulations! Here is your Faucet Package:",
-    "connect": "Please, connect your wallet",
-    "advanced_settings": "Advanced..."
+    "tokens_you_own": "You own {{ balance }} tokens."
   },
   "footer": {
     "about": "About",
@@ -190,7 +185,8 @@
       "address_pattern": "Only hex addresses are allowed (e.g 0x031101A...)",
       "avatar_error": "URL not valid",
       "field_is_required": "This field is required",
-      "min_address": "Please, provide at least one address"
+      "min_address": "Please, provide at least one address",
+      "recipient_address_invalid": "Specified address does not seem to be valid"
     },
     "process_create": {
       "behavior": {
@@ -246,6 +242,7 @@
         "census_total": "",
         "census_total_one": "<span>Voters:</span><span>{{ count }} voter</span>",
         "census_total_other": "<span>Voters:</span><span>{{ count }} voters</span>",
+        "census_total_people": "{{ count }} people will be elegible for voting in this election",
         "census_total_people_one": "A single person will be elegible for voting in this process",
         "census_total_people_other": "{{ count }} people will be elegible for voting in this process",
         "configuration": "Configuration",
