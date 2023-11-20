@@ -12,8 +12,9 @@ const baseStyle = definePartsStyle({
   },
 
   buttons: {
-    border: '3px solid black !important',
-    borderRadius: '50% !important',
+    border: '3px solid !important',
+    borderColor: 'primary.500 !important',
+    borderRadius: 0,
     transform: 'scale(0.8) !important',
 
     _hover: {
@@ -22,7 +23,7 @@ const baseStyle = definePartsStyle({
   },
 
   icons: {
-    color: 'black !important',
+    color: 'primary.500 !important',
   },
 })
 
