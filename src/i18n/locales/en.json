@@ -17,7 +17,6 @@
   "banner_voting_types": {
     "anonymous_description": "Voters' identities remain completely confidential, thanks to cutting-edge zk-SNARKS technology.",
     "anonymous_title": "100% Anonymous",
-    "bottom_text": "Privacy should be normal",
     "flexible_description": "Customize your voting process and participant list to fit your community unique requirements.",
     "flexible_title": "Flexible Voting",
     "token_description": "Vote with ERC20/ERC721 (NFT's) or add your own token and vote gasless with them.",
@@ -93,8 +92,8 @@
     "loading_description": "Please wait while tokens are being claimed",
     "loading_title": "Claiming",
     "success_description": "Success",
-    "success_title": "Tokens were successfully claimed",
-    "success_faucetPackage_title": "Faucet Package was successfully obtained"
+    "success_faucetPackage_title": "Faucet Package was successfully obtained",
+    "success_title": "Tokens were successfully claimed"
   },
   "copy": {
     "address": "Copy address",
@@ -122,26 +121,24 @@
   },
   "error_text": "Sorry, the page you were looking for was not found",
   "faucet": {
-    "connect_or_set_recipient_address": "Please, connect your wallet or write the recipient address below (must be a Vocdoni Account)",
+    "advanced_settings": "Advanced...",
+    "connect": "Please, connect your wallet",
+    "copy_faucetPackage": "Copy Faucet Package",
+    "copy_faucetPackage_done": "Copied!",
     "description": "For developing with Vocdoni, you need tokens for certain actions (create an election, change election status, etc.). The nº of  different factors lik census size, election duration, election params, etc.",
+    "faucetPackage_success": "Congratulations! Here is your Faucet Package:",
     "general_information": {
       "description": "When you request dev tokens, you'll receive {{ amount }} tokens. You can claim from the faucet once every 24 hours.",
       "description2": "If you need more tokens for developing on top of the Vocdoni stack, you can connect with us at tokens (at) vocdoni.io",
       "title": "General Information"
     },
+    "recipient_address": "Enter the recipient address you'd like to receive tokens on.",
     "request_description": "To get vocdoni tokens, you must sign-in with a social account (to prevent missuse of the faucet). We only request read access.",
     "request_tokens": {
       "title": "Request Tokens"
     },
     "title": "Vocdoni Tokens Faucet",
-    "tokens_you_own": "You own {{ balance }} tokens.",
-    "connect_or_set_recipient_address": "Please, connect your wallet or write the recipient address below (must be a Vocdoni Account)",
-    "recipient_address": "Enter the recipient address you'd like to receive tokens on.",
-    "copy_faucetPackage_done": "Copied!",
-    "copy_faucetPackage": "Copy Faucet Package",
-    "faucetPackage_success": "Congratulations! Here is your Faucet Package:",
-    "connect": "Please, connect your wallet",
-    "advanced_settings": "Advanced..."
+    "tokens_you_own": "You own {{ balance }} tokens."
   },
   "footer": {
     "about": "About",
@@ -151,10 +148,12 @@
     "developer_portal": "Developers Portal",
     "developers": "Developers",
     "discord": "Discord",
+    "follow_us": "Follow us",
     "homepage": "Home",
     "repos": "Open-source Code",
     "resources": "Resources",
     "terms_and_privacy": "<link1>Terms of use</link1> & <link2>Privacy Policy</link2>",
+    "text": "<p1>The futur</p1><p2>on Web3 voting starts here</p2>",
     "tutorials": "Tutorials",
     "vocdoni_api": "Vocdoni API",
     "vocdoni_app": "Vocdoni APP"
@@ -178,7 +177,8 @@
       "address_pattern": "Only hex addresses are allowed (e.g 0x031101A...)",
       "avatar_error": "URL not valid",
       "field_is_required": "This field is required",
-      "min_address": "Please, provide at least one address"
+      "min_address": "Please, provide at least one address",
+      "recipient_address_invalid": ""
     },
     "process_create": {
       "behavior": {
@@ -372,18 +372,10 @@
     "maxLength": "Max. length reached"
   },
   "new_organization": {
-    "anonyomus": "Anonyomus",
-    "censorship": "<span>Censorship</span><span>Resistance</span>",
     "create_organization_btn": "Create Organization",
     "description1": "Before starting creating your voting process, <span>you need to create an organization</span>, it's free With an organization, you will be able to create a wide range of elections and give voice to your comumnity members.",
-    "description2": "As a <span>welcome pack</span> you will recive {{ faucetAmount }} tokens for free to start using our platform.",
-    "footer": "<span>Vocdoni</span> is a secure, privacy-friendly & open-source public voting protocol.",
-    "inexpensive": "Inexpensive",
     "name": "Organization name",
-    "open_source": "<span>Open</span><span>Source</span>",
-    "scalable": "Scalable",
-    "title": "New Organization",
-    "verificable": "Verificable"
+    "title": "New Organization"
   },
   "open_in_explorer": "Open in explorer",
   "organization": {

@@ -148,7 +148,7 @@ export const Confirm = () => {
   return (
     <Wrapper>
       <Box>
-        <Text fontWeight='bold' mb={2}>
+        <Text fontWeight='bold' mb={2} fontFamily='pixeloid' textTransform='uppercase'>
           {t('form.process_create.confirm.title')}
         </Text>
         <Text mb={4}>{t('form.process_create.confirm.description')}</Text>
@@ -160,7 +160,7 @@ export const Confirm = () => {
 
               <FormProvider {...methods}>
                 <Box>
-                  <Text fontWeight='bold' px={2} mb={2}>
+                  <Text fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase' px={2} mb={2}>
                     {t('form.process_create.confirm.confirmation')}
                   </Text>
                   <Flex
@@ -170,7 +170,7 @@ export const Confirm = () => {
                     flexDirection='column'
                     gap={4}
                     bgColor='process_create.section'
-                    borderRadius='md'
+                    borderRadius='none'
                     p={{ base: 3, xl: 6 }}
                   >
                     <FormControl
@@ -228,7 +228,7 @@ export const Confirm = () => {
         </ElectionProvider>
       </Box>
       <Flex justifyContent='space-between' alignItems='end' mt='auto'>
-        <Button variant='outline' onClick={prev} leftIcon={<ArrowBackIcon />}>
+        <Button variant='on-vote-ghost' color='primary.500' onClick={prev} leftIcon={<ArrowBackIcon />}>
           {t('form.process_create.previous_step')}
         </Button>
 
@@ -237,9 +237,9 @@ export const Confirm = () => {
           form='process-create-form'
           isDisabled={disabled}
           isLoading={sending}
-          variant='outline'
-          colorScheme='primary'
           px={{ base: 12, xl2: 28 }}
+          variant='on-vote'
+          colorScheme='primary'
         >
           {t('form.process_create.confirm.create_button')}
         </Button>

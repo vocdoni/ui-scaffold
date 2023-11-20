@@ -1,8 +1,8 @@
-import { Box, Flex, Icon, Link } from '@chakra-ui/react'
+import { Box, Flex, Img, Link } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import { IoCloseOutline } from 'react-icons/io5'
 import { Outlet, useNavigate } from 'react-router-dom'
 import Logo from '~components/Layout/Logo'
+import closeIcon from '/assets/close-icon.svg'
 
 const LayoutProcessCreate = () => {
   const { t } = useTranslation()
@@ -24,12 +24,12 @@ const LayoutProcessCreate = () => {
 
           <Link
             p={1}
-            bgColor='white'
             display='flex'
             alignItems='center'
             onClick={(e) => (window.history.state.idx ? navigate(-1) : navigate('/'))}
+            color='primary.500'
           >
-            <Icon as={IoCloseOutline} mt='1.5px' boxSize={5} />
+            <Img src={closeIcon} mr={1} />
             {t('form.process_create.navbar.close_form_btn')}
           </Link>
         </Flex>

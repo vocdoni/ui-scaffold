@@ -15,7 +15,13 @@ const AddressBtn = ({ ...props }) => {
 
   return (
     <Menu {...props}>
-      <MenuButton as={Button} rightIcon={<HiOutlineEllipsisHorizontalCircle />} minW={44}>
+      <MenuButton
+        as={Button}
+        variant='on-vote'
+        colorScheme='black'
+        rightIcon={<HiOutlineEllipsisHorizontalCircle />}
+        minW={44}
+      >
         <Text isTruncated>{addressTextOverflow(address as string)}</Text>
       </MenuButton>
 

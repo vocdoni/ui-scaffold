@@ -19,7 +19,6 @@
   "banner_voting_types": {
     "anonymous_description": "La identitat dels votants serà completament confidencial, gràcies a la tecnologia zk-SNARKS.",
     "anonymous_title": "100% Anònim",
-    "bottom_text": "La privadesa hauria de ser normal",
     "flexible_description": "Personalitza el teu procés de votació i la llista de participants per adaptar-los als requisits únics de la teva comunitat.",
     "flexible_title": "Votació Flexible",
     "token_description": "Vota amb tokens ERC20/ERC721 (NFT) o afegeix els teus propis tokens i vota sense pagar.",
@@ -95,8 +94,8 @@
     "loading_description": "Si us plau, espera mentre els tokens s'estan reclamant",
     "loading_title": "Reclamant",
     "success_description": "Èxit",
-    "success_title": "Els tokens s'han reclamat amb èxit",
-    "success_faucetPackage_title": "El Faucet Package s'ha obtingut correctament"
+    "success_faucetPackage_title": "El Faucet Package s'ha obtingut correctament",
+    "success_title": "Els tokens s'han reclamat amb èxit"
   },
   "copy": {
     "address": "Copia l'adreça",
@@ -124,25 +123,24 @@
   },
   "error_text": "Ho sentim, no s'ha trobat la pàgina que busqueu",
   "faucet": {
-    "connect_or_set_recipient_address": "Si us plau, connecteu la vostra cartera o escriviu l'adreça del destinatari a continuació (ha de ser un compte de Vocdoni)",
+    "advanced_settings": "Avançat...",
+    "connect": "Si us plau, connecteu la vostra cartera",
+    "copy_faucetPackage": "Copia el Faucet Package",
+    "copy_faucetPackage_done": "Copiat!",
     "description": "Per desenvolupar amb Vocdoni, necessites tokens per a certes accions (crear una elecció, canviar l'estat d'una elecció, etc.). El nombre de diferents factors com la mida del cens, la durada de l'elecció, els paràmetres de l'elecció, etc.",
+    "faucetPackage_success": "Felicitats! \nAquí teniu el vostre Faucet Package:",
     "general_information": {
       "description": "Quan sol·licites tokens de desenvolupament, rebràs {{ amount }} tokens. Pots reclamar des del faucet una vegada cada 24 hores.",
       "description2": "Si necessites més tokens per desenvolupar sobre la plataforma de Vocdoni, pots posar-te en contacte amb nosaltres a tokens (at) vocdoni.io",
       "title": "Informació General"
     },
+    "recipient_address": "Introduïu l'adreça del destinatari on voleu rebre els tokens.",
     "request_description": "Per aconseguir més tokens de Vocdoni, has d'iniciar la sessió amb un compte de xarxes socials (per evitar-ne l'abús). Només demanem accés de lectura.",
     "request_tokens": {
       "title": "Sol·licita Tokens"
     },
     "title": "Faucet de Tokens Vocdoni",
-    "tokens_you_own": "Tens {{ balance }} tokens.",
-    "recipient_address": "Introduïu l'adreça del destinatari on voleu rebre els tokens.",
-    "copy_faucetPackage_done": "Copiat!",
-    "copy_faucetPackage": "Copia el Faucet Package",
-    "faucetPackage_success": "Felicitats! \nAquí teniu el vostre Faucet Package:",
-    "connect": "Si us plau, connecteu la vostra cartera",
-    "advanced_settings": "Avançat..."
+    "tokens_you_own": "Tens {{ balance }} tokens."
   },
   "footer": {
     "about": "Sobre nosaltres",
@@ -152,10 +150,12 @@
     "developer_portal": "Portal de desenvolupadors",
     "developers": "Desenvolupadors",
     "discord": "Discord",
+    "follow_us": "Segueix-nos",
     "homepage": "Inici",
     "repos": "Codi Obert",
     "resources": "Recursos",
     "terms_and_privacy": "<link1>Termes d'ús</link1> i <link2>Política de privacitat</link2>",
+    "text": "<p1>El futur</p1><p2>de la votació en Web3 comença aquí</p2>",
     "tutorials": "Tutorials",
     "vocdoni_api": "API de Vocdoni",
     "vocdoni_app": "APP de Vocdoni"
@@ -179,7 +179,8 @@
       "address_pattern": "Només s'admeten adreces hexadecimals (p. ex. 0x031101A...)",
       "avatar_error": "URL no vàlida",
       "field_is_required": "Aquest camp és obligatori",
-      "min_address": "Si us plau, proporciona com a mínim una adreça"
+      "min_address": "Si us plau, proporciona com a mínim una adreça",
+      "recipient_address_invalid": ""
     },
     "process_create": {
       "behavior": {
@@ -378,18 +379,10 @@
     "maxLength": "Longitud màxima assolida"
   },
   "new_organization": {
-    "anonyomus": "Anònim",
-    "censorship": "<span>Resistència</span><span>a la Censura</span>",
     "create_organization_btn": "Crear Organització",
     "description1": "Abans de començar a crear el vostre procés de votació, <span>heu de crear una organització</span>, és gratuït. Amb una organització, podreu crear una àmplia gamma d'eleccions i donar veu als membres de la vostra comunitat.",
-    "description2": "Com a <span>paquet de benvinguda</span>, rebràs {{ faucetAmount }} tokens gratuïts per començar a utilitzar la nostra plataforma.",
-    "footer": "<span>Vocdoni</span> és un protocol de votació públic segur, respectuós amb la privadesa i de codi obert.",
-    "inexpensive": "Econòmic",
     "name": "Nom de l'organització",
-    "open_source": "<span>Codi</span><span>Obert</span>",
-    "scalable": "Escalable",
-    "title": "Nova Organització",
-    "verificable": "Verificable"
+    "title": "Nova Organització"
   },
   "open_in_explorer": "Obre a l'explorador",
   "organization": {

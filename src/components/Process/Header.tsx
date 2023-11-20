@@ -1,5 +1,5 @@
 import { WarningIcon } from '@chakra-ui/icons'
-import { Box, Button, Flex, Icon, Text } from '@chakra-ui/react'
+import { Box, Flex, Icon, Img, Link, Text } from '@chakra-ui/react'
 import {
   ElectionActions,
   ElectionDescription,
@@ -11,11 +11,10 @@ import {
 import { useClient, useElection, useOrganization } from '@vocdoni/react-providers'
 import { ElectionStatus } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
-import { FaRegArrowAltCircleLeft } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
 import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
 import { CreatedBy } from './CreatedBy'
 import { ProcessDate } from './Date'
+import goBack from '/assets/goback-icon.svg'
 
 const ProcessHeader = () => {
   const { t } = useTranslation()
@@ -36,15 +35,14 @@ const ProcessHeader = () => {
       }}
     >
       {showOrgInformation && (
-        <Link to={`/organization/0x${election?.organizationId}`}>
-          <Button leftIcon={<FaRegArrowAltCircleLeft />} mb={5} maxW={40}>
-            <OrganizationName as='span' overflow='hidden' fontSize='sm' isTruncated />
-          </Button>
+        <Link href={`/organization/0x${election?.organizationId}`} variant='on-vote-ghost' w='fit-content' mb={5}>
+          <Img src={goBack} mr={1} />
+          <OrganizationName color='organization.go_back_btn' as='span' overflow='hidden' fontSize='sm' isTruncated />
         </Link>
       )}
       <Flex direction={{ base: 'column', md: 'row' }} mb={7} gap={10}>
         <Box flexGrow={0} flexShrink={0} flexBasis={{ base: '100%', md: '60%', lg: '65%', lg2: '70%', xl2: '75%' }}>
-          <ElectionTitle fontSize='xl4' textAlign='left' mb={5} />
+          <ElectionTitle fontFamily='pixeloid' textTransform='uppercase' fontSize='xl4' textAlign='left' mb={5} />
           <Flex
             gap={4}
             flexDirection={{ base: 'column', md: 'row' }}
@@ -54,7 +52,7 @@ const ProcessHeader = () => {
             <Box>
               <ElectionStatusBadge />
             </Box>
-            <ElectionSchedule textAlign='left' color='process.info_title' />
+            <ElectionSchedule textAlign='left' fontStyle='normal' fontWeight='normal' color='gray' />
           </Flex>
           <Flex flexDirection='column'>
             <ReadMoreMarkdownWrapper from='rgba(250, 250, 250, 0)' to='rgba(250, 250, 250, 1)'>
@@ -74,30 +72,24 @@ const ProcessHeader = () => {
           )}
           {election?.electionType.anonymous && (
             <Box>
-              <Text color='process.info_title' fontWeight='bold'>
-                {t('process.is_anonymous.title')}
-              </Text>
+              <Text fontWeight='bold'>{t('process.is_anonymous.title')}</Text>
               <Text>{t('process.is_anonymous.description')}</Text>
             </Box>
           )}
           <Box>
-            <Text color='process.info_title' fontWeight='bold'>
-              {t('process.census')}
-            </Text>
+            <Text fontWeight='bold'>{t('process.census')}</Text>
             <Text>{t('process.people_in_census', { count: election?.maxCensusSize })}</Text>
           </Box>
           {election?.meta?.census && (
             <Box>
-              <Text color='process.info_title' fontWeight='bold'>
-                {t('process.strategy')}
-              </Text>
+              <Text fontWeight='bold'>{t('process.strategy')}</Text>
               <Text>{strategy}</Text>
             </Box>
           )}
 
           {showOrgInformation && (
             <Box width='100%'>
-              <Text color='process.info_title' fontWeight='bold' mb={1}>
+              <Text fontWeight='bold' mb={1}>
                 {t('process.created_by')}
               </Text>
               <CreatedBy
@@ -113,6 +105,7 @@ const ProcessHeader = () => {
                     maxW: { base: '100%', md: '220px', md2: '250px' },
                     isTruncated: true,
                     mr: 1,
+                    color: 'process.created_by',
                   },
                 }}
               />
@@ -137,7 +130,7 @@ const ProcessHeader = () => {
           )}
           {election?.organizationId === account?.address && (
             <Box>
-              <Text color='process.info_title' fontWeight='bold' mb={1}>
+              <Text fontWeight='bold' mb={1}>
                 {t('process.actions')}
               </Text>
               <ElectionActions sx={{ '& div': { flexDirection: 'row', justifyContent: 'start' } }} ml={-1} />

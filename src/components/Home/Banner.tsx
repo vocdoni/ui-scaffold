@@ -1,8 +1,7 @@
-import { Box, Flex, Img, Link, Text } from '@chakra-ui/react'
+import { Box, Flex, Link, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
-import bannerLogo from '/assets/banner.png'
 
 const Banner = () => {
   const { t } = useTranslation()
@@ -15,16 +14,10 @@ const Banner = () => {
       alignItems='center'
       maxW={250}
       mx='auto'
-      pl={{ md: 8 }}
-      mb={20}
+      mb={40}
+      mt={{ md: 20 }}
+      pl={{ md: 20 }}
     >
-      <Img
-        src={bannerLogo}
-        alt=''
-        width={{ base: '50%', sm: '40%', md: '300px', md2: '320px', lg: '350px', xl: '400px' }}
-        order={{ base: 0, md: 1 }}
-      />
-
       <Box pt={{ base: 5 }} px={{ sm: 10, md: 0 }}>
         <Text
           as='h1'
@@ -34,12 +27,19 @@ const Banner = () => {
           pb={{ base: 3, md: 1 }}
           width={{ md: '420px' }}
           lineHeight={{ md: 1.4 }}
+          fontFamily='pixeloid'
         >
           {t('banner.title')}
         </Text>
-        <Text as='h2' fontSize={{ base: 'xl', md: 'lg' }} textAlign={{ base: 'center', md: 'start' }}>
+        <Text
+          as='h2'
+          width={{ md: '370px' }}
+          fontSize={{ base: 'xl', md: 'xl2' }}
+          textAlign={{ base: 'center', md: 'start' }}
+        >
           {t('banner.subtitle')}
         </Text>
+
         {isConnected && (
           <Flex
             flexDirection={{ base: 'column', sm: 'row' }}
@@ -51,7 +51,7 @@ const Banner = () => {
             <Link
               as={ReactRouterLink}
               to='/processes/create'
-              variant='rounded'
+              variant='on-vote'
               colorScheme='primary'
               aria-label={t('menu.new_process')}
               title={t('menu.new_process')}

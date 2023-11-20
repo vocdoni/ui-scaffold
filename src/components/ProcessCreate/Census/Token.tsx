@@ -438,7 +438,7 @@ export const TokenPreview = ({
   if (!token || !strategySize) return null
 
   return (
-    <Card ref={cardRef} w='full' my={5} boxShadow='var(--box-shadow)'>
+    <Card ref={cardRef} borderRadius={0} w='full' my={5} boxShadow='var(--box-shadow)'>
       <CardHeader>
         <Grid
           gridTemplateColumns='min-content 1fr min-content min-content'
@@ -469,7 +469,7 @@ export const TokenPreview = ({
               py={1}
               px={3}
               maxW='min-content'
-              borderRadius='lg'
+              borderRadius='0'
               alignSelf='center'
             >
               {chainName}

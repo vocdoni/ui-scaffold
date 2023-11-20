@@ -75,7 +75,9 @@ export const CostPreview = ({
 
   return (
     <Flex flexDirection='column' gap={2} mb={5}>
-      <Text fontWeight='bold'>{t('form.process_create.confirm.cost_title')}</Text>
+      <Text fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase'>
+        {t('form.process_create.confirm.cost_title')}
+      </Text>
       <Text fontSize='sm'>{t('form.process_create.confirm.cost_description')}</Text>
       <Flex flexDirection='column' gap={4} p={{ base: 3, xl: 6 }} bgColor='process_create.section' borderRadius='md'>
         {typeof cost === 'undefined' && (
@@ -188,7 +190,7 @@ export const CostPreview = ({
             {t('cost_preview.not_enough_tokens')}
           </Text>
           <Button
-            variant='rounded'
+            variant='on-vote'
             colorScheme='primary'
             leftIcon={<TbDatabaseExclamation />}
             maxW={64}

@@ -26,7 +26,7 @@ const Question = ({ index, remove }: Props) => {
   })
 
   return (
-    <Box bgColor='process_create.section' borderRadius='md' p={6} position='relative'>
+    <Box bgColor='process_create.section' p={6} position='relative'>
       <IconButton
         aria-label={t('form.process_create.question.question_delete', { values: { num: index } })}
         type='button'
@@ -41,6 +41,7 @@ const Question = ({ index, remove }: Props) => {
             opacity: 1,
           },
         }}
+        borderRadius={0}
         onClick={() => remove(index)}
       />
 

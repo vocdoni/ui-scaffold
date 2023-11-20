@@ -28,15 +28,11 @@ const OrganizationHeader = () => {
       gap={{ base: 2, md: 8 }}
       mb={10}
       p={3}
-      borderRadius='lg'
-      boxShadow='var(--box-shadow)'
-      bgColor='organization.header_bg'
     >
       <Box flex='1 1 20%' minW={40}>
         <AspectRatio ratio={1.25 / 1} maxW={56} mx='auto'>
           <Avatar
             mx='auto'
-            borderRadius='md'
             fallbackSrc={fallback}
             alt={t('organization.avatar_alt', {
               name: organization?.account.name.default || organization?.address,
@@ -83,6 +79,7 @@ const OrganizationHeader = () => {
               fontSize={32}
               lineHeight={1.5}
               title={organization?.account.name.default || organization?.address}
+              fontFamily='pixeloid'
             />
             {isTruncated && (
               <IconButton
