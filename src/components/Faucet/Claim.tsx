@@ -204,7 +204,7 @@ export const useClaim = () => {
     setOauthStateParams({ code, provider, recipient, connected })
 
     // Remove the querystring from the browser current url
-    window.history.replaceState({}, '', `${window.location.pathname}${window.location.hash}`)
+    window.history.replaceState({}, '', `${window.location.pathname}`)
   }, [])
 
   useEffect(() => {
