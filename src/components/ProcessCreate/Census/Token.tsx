@@ -300,7 +300,6 @@ export const CensusTokens = () => {
               else return `${props.name}`
             }}
             onChange={(token) => {
-              console.log(token.type === 'request')
               if (token === null || token.type === 'request') setValue('censusToken', null)
               else setValue('censusToken', token)
               setValue('maxCensusSize', undefined)
