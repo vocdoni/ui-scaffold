@@ -37,11 +37,11 @@ export const theme = extendTheme(vtheme, {
         '@font-face': [
           {
             'font-family': 'pixeloid',
-            src: `url('/public/PixeloidMono.ttf') format('truetype')`,
+            src: `url('/PixeloidMono.ttf') format('truetype')`,
           },
           {
             'font-family': 'archivo',
-            src: `url('/public/Archivo.ttf') format('truetype')`,
+            src: `url('/Archivo.ttf') format('truetype')`,
           },
         ],
       },

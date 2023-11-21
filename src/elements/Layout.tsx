@@ -8,7 +8,7 @@ const Layout = () => {
 
   return (
     <Flex flexDirection='column' minH='100vh'>
-      <Box bgImage='/public/assets/home-bg.jpg' bgSize='cover' bgRepeat='no-repeat'>
+      <Box bgImage='/assets/home-bg.jpg' bgSize='cover' bgRepeat='no-repeat'>
         <Box bgColor='rgba(255,255,255, 0.4)'>
           <Flex flexDirection='column' position='relative' maxW={360} mx='auto'>
             <HStack
@@ -58,7 +58,7 @@ const Layout = () => {
         </Text>
       </Box>
 
-      <Box mt='auto' bgImage={'/public/assets/footer-bg.jpg'} bgSize='cover' bgPosition='center'>
+      <Box mt='auto' bgImage={'/assets/footer-bg.jpg'} bgSize='cover' bgPosition='center'>
         <Box as='footer' w='100%' maxW={360} mx='auto' px={{ base: 2, sm: 4 }}>
           <FooterOnVote />
         </Box>
