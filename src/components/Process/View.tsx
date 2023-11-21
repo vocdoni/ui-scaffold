@@ -50,8 +50,8 @@ export const ProcessView = () => {
   }, [election])
 
   return (
-    <div>
-      <Box>
+    <Box>
+      <Box mb={32}>
         <Header />
         <Flex
           direction={{ base: 'column', md: 'row' }}
@@ -115,7 +115,7 @@ export const ProcessView = () => {
       </Box>
 
       <SuccessVoteModal />
-    </div>
+    </Box>
   )
 }
 

@@ -1,4 +1,4 @@
-import { Box, Flex, Img, Link } from '@chakra-ui/react'
+import { Box, Flex, Img, Link, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { Outlet, useNavigate } from 'react-router-dom'
 import Logo from '~components/Layout/Logo'
@@ -38,6 +38,21 @@ const LayoutProcessCreate = () => {
           <Outlet />
         </Box>
       </Flex>
+      <Box
+        sx={{
+          '& p': {
+            'writing-mode': 'vertical-rl',
+            'text-orientation': 'upright',
+          },
+        }}
+        position='absolute'
+        top='calc(50vh - 148px)'
+        left={0}
+      >
+        <Text fontFamily='pixeloid' textTransform='uppercase'>
+          World wide voting
+        </Text>
+      </Box>
     </Box>
   )
 }

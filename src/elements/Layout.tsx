@@ -8,16 +8,7 @@ const Layout = () => {
 
   return (
     <Flex flexDirection='column' minH='100vh'>
-      <Box
-        bgImage={
-          !location.pathname.includes('processes') && !location.pathname.includes('organization')
-            ? '/public/assets/home-bg.jpg'
-            : ''
-        }
-        bgSize='cover'
-        bgPosition='center'
-        bgColor='#f2f2f2'
-      >
+      <Box bgImage='/public/assets/home-bg.jpg' bgSize='cover' bgRepeat='no-repeat'>
         <Box bgColor='rgba(255,255,255, 0.4)'>
           <Flex flexDirection='column' position='relative' maxW={360} mx='auto'>
             <HStack
@@ -34,21 +25,7 @@ const Layout = () => {
             >
               <Navbar />
             </HStack>
-            <Box
-              sx={{
-                '& p': {
-                  'writing-mode': 'vertical-rl',
-                  'text-orientation': 'upright',
-                },
-              }}
-              position='absolute'
-              top='calc(50vh - 148px)'
-              left={0}
-            >
-              <Text fontFamily='pixeloid' textTransform='uppercase'>
-                World wide voting
-              </Text>
-            </Box>
+
             <Box
               flexGrow={1}
               w='100%'
@@ -65,8 +42,24 @@ const Layout = () => {
           </Flex>
         </Box>
       </Box>
-      <Box bgImage={'/public/assets/footer-bg.jpg'} bgSize='cover' bgPosition='center'>
-        <Box as='footer' w='100%' maxW={360} mx='auto' mt='auto' px={{ base: 2, sm: 4 }}>
+      <Box
+        sx={{
+          '& p': {
+            'writing-mode': 'vertical-rl',
+            'text-orientation': 'upright',
+          },
+        }}
+        position='absolute'
+        top='calc(50vh - 148px)'
+        left={0}
+      >
+        <Text fontFamily='pixeloid' textTransform='uppercase'>
+          World wide voting
+        </Text>
+      </Box>
+
+      <Box mt='auto' bgImage={'/public/assets/footer-bg.jpg'} bgSize='cover' bgPosition='center'>
+        <Box as='footer' w='100%' maxW={360} mx='auto' px={{ base: 2, sm: 4 }}>
           <FooterOnVote />
         </Box>
       </Box>

@@ -78,7 +78,7 @@
   "census": {
     "chain_required": "You need to select a network",
     "description": "Select how voters will authenticate and identify themselves: options include custom data, token ownership or wallet addresses.",
-    "request_custom_token": "'Request Custom Tokens'",
+    "request_custom_token": "Request Custom Tokens",
     "spreadsheet_title": "Custom data",
     "title": "Census",
     "token_description": "Select the network and token to create a census where tokenholders will vote with their voting token power.",
@@ -350,7 +350,7 @@
     "multichain_title": "Multichain",
     "open_source_description": "We believe as something as important as your vote must be open-source and publicly audited to be trusted. We release everything under AGPLv3.",
     "open_source_title": "Opensource",
-    "title": "<p1>are you</p1><p2>Ready for a new Era on web3 governance?</p2>"
+    "title": "<p1>are you</p1><p2>Ready for a new Era on Web3 governance?</p2>"
   },
   "link": {
     "discord": "Link to Vocdoni's discord",

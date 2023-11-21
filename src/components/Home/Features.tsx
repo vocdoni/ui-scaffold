@@ -13,15 +13,18 @@ const Features = () => {
 
   return (
     <Box maxW='90%' mx='auto' mb={32}>
-      <Box maxW='640px' mx='auto' mb={16}>
-        <Trans
-          i18nKey='home_features.title'
-          components={{
-            p1: <Text textAlign='center' fontFamily='pixeloid' textTransform='uppercase' fontSize='24px' />,
-            p2: <Text textAlign='center' fontWeight='bold' fontSize='xl5' />,
-          }}
-        />
+      <Box bgImage='/assets/home-bg2.svg' py={10} mb={10}>
+        <Box maxW='640px' mx='auto'>
+          <Trans
+            i18nKey='home_features.title'
+            components={{
+              p1: <Text textAlign='center' fontFamily='pixeloid' textTransform='uppercase' fontSize='24px' />,
+              p2: <Text textAlign='center' fontWeight='bold' fontSize='xl5' />,
+            }}
+          />
+        </Box>
       </Box>
+      <Box></Box>
       <Flex alignItems={{ base: 'center', lg2: 'start' }} flexDirection='column'>
         <Flex maxW={{ lg2: '50%' }} alignItems='start' gap={5}>
           <Img src={anonymouse} mt={2} />

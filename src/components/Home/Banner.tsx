@@ -17,7 +17,7 @@ const Banner = () => {
       mb={32}
       mt={{ md: 5 }}
       pl={{ md: 20 }}
-      pt={{ base: 5 }}
+      pt={{ base: 5, md: '100px' }}
       px={{ sm: 10, md: 0 }}
     >
       <Flex justifyContent={{ base: 'center', md: 'start' }}>
