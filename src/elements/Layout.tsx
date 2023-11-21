@@ -41,8 +41,8 @@ const Layout = () => {
               pt={6}
               m='0 auto'
               px={{
-                base: 10,
-                sm: 14,
+                base: !location.pathname.includes('processes') ? 10 : 0,
+                sm: !location.pathname.includes('processes') ? 14 : 0,
               }}
             >
               <Outlet />

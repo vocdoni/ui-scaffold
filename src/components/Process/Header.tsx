@@ -30,8 +30,8 @@ const ProcessHeader = () => {
     <Box
       mb={4}
       px={{
-        base: 2,
-        sm: 4,
+        base: 10,
+        sm: 14,
       }}
     >
       {showOrgInformation && (
