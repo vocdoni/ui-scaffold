@@ -8,7 +8,15 @@ const Layout = () => {
 
   return (
     <Flex flexDirection='column' minH='100vh'>
-      <Box bgImage='/assets/home-bg.jpg' bgSize='cover' bgRepeat='no-repeat'>
+      <Box
+        bgImage={
+          !location.pathname.includes('processes') && !location.pathname.includes('organization')
+            ? '/assets/home-bg.jpg'
+            : 'none'
+        }
+        bgSize='cover'
+        bgRepeat='no-repeat'
+      >
         <Box bgColor='rgba(255,255,255, 0.4)' minH='73vh'>
           <Flex flexDirection='column' position='relative' maxW={360} mx='auto'>
             <HStack
@@ -33,8 +41,8 @@ const Layout = () => {
               pt={6}
               m='0 auto'
               px={{
-                base: !location.pathname.includes('processes') ? 10 : 2,
-                sm: !location.pathname.includes('processes') ? 16 : 3,
+                base: 10,
+                sm: 14,
               }}
             >
               <Outlet />
@@ -42,21 +50,17 @@ const Layout = () => {
           </Flex>
         </Box>
       </Box>
-      <Box
-        sx={{
-          '& p': {
-            'writing-mode': 'vertical-rl',
-            'text-orientation': 'upright',
-          },
-        }}
+
+      <Text
         position='absolute'
-        top='calc(50vh - 148px)'
-        left={0}
+        top='50vh'
+        left={-20}
+        transform='rotate(-90deg)'
+        fontFamily='pixeloid'
+        textTransform='uppercase'
       >
-        <Text fontFamily='pixeloid' textTransform='uppercase'>
-          World wide voting
-        </Text>
-      </Box>
+        World wide voting
+      </Text>
 
       <Box mt='auto' bgImage={'/assets/footer-bg.jpg'} bgSize='cover' bgPosition='center'>
         <Box as='footer' w='100%' maxW={360} mx='auto' px={{ base: 2, sm: 4 }}>
