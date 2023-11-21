@@ -300,7 +300,9 @@ export const CensusTokens = () => {
               else return `${props.name}`
             }}
             onChange={(token) => {
-              setValue('censusToken', token || undefined)
+              console.log(token.type === 'request')
+              if (token === null || token.type === 'request') setValue('censusToken', null)
+              else setValue('censusToken', token)
               setValue('maxCensusSize', undefined)
               clearErrors()
             }}
@@ -435,7 +437,7 @@ export const TokenPreview = ({
     }
   }, [])
 
-  if (!token || !strategySize) return null
+  if (!token || !strategySize || token.type === 'request') return null
 
   return (
     <Card ref={cardRef} w='full' my={5} boxShadow='var(--box-shadow)'>
