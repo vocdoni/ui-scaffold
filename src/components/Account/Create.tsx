@@ -19,7 +19,7 @@ import { Account } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { authTypes, useFaucet } from '~components/Faucet/use-faucet'
+import { useFaucet } from '~components/Faucet/use-faucet'
 import anonymous from '/assets/anonymous.png'
 import censorship from '/assets/censorship-resistance.png'
 import inexpensive from '/assets/inexpensive.png'
@@ -50,7 +50,7 @@ export const AccountCreate = () => {
   const { t } = useTranslation()
   const [sent, setSent] = useState<boolean>(false)
   const { getAuthTypes } = useFaucet()
-  const [faucetAuthTypes, setFaucetAuthTypes] = useState<authTypes>({ oauth: 0, open: 0, aragondao: 0 })
+  const [faucetAmount, setFaucetAmount] = useState<number>(0)
 
   const required = {
     value: true,
@@ -59,7 +59,10 @@ export const AccountCreate = () => {
 
   useEffect(() => {
     ;(async () => {
-      setFaucetAuthTypes(await getAuthTypes())
+      try {
+        const atypes = await getAuthTypes()
+        setFaucetAmount(atypes.oauth)
+      } catch (e) {}
     })()
   }, [])
 
@@ -90,8 +93,8 @@ export const AccountCreate = () => {
           i18nKey='new_organization.description2'
           components={{
             span: <Text as='span' fontWeight='bold' />,
-            faucetAmount: <>{faucetAuthTypes.oauth}</>,
           }}
+          values={{ faucetAmount }}
         />
       </Text>
       <Box px={{ base: 5, md: 10 }} pt={5} pb={10}>
