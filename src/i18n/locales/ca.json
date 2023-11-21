@@ -58,7 +58,6 @@
       "wrong_data_description": "Les dades especificades no són correctes",
       "wrong_data_title": "Dades incorrectes"
     },
-    "required": "Aquest camp és obligatori",
     "results": {
       "date_format": "PPpp",
       "secret_until_the_end": "Secret fins el final. Els resultats seran accessibles quan el procés finalitzi el {{ endDate }}",
@@ -83,6 +82,10 @@
       "process_unknown": "Desconeguda",
       "results": "Resultats",
       "upcoming": "Propera"
+    },
+    "validation": {
+      "required": "Aquest camp és obligatori",
+      "min_length": "Aquest camp ha de tenir com a mínim {{ min }} caràcters"
     },
     "vote": {
       "button": "Vota",

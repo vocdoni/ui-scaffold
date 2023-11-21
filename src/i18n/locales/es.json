@@ -58,7 +58,6 @@
       "wrong_data_description": "Los datos especificados no son correctos",
       "wrong_data_title": "Datos incorrectos"
     },
-    "required": "Este campo es obligatorio",
     "results": {
       "date_format": "d 'de' MMMM 'de' y 'a' 'las' H:mm",
       "secret_until_the_end": "Secreto hasta el final. Los resultados estarán disponibles cuando el proceso termine el {{ endDate }}",
@@ -83,6 +82,10 @@
       "process_unknown": "Desconocido",
       "results": "Resultados",
       "upcoming": "Próxima"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio",
+      "min_length": "Este campo debe tener al menos {{ min }} caracteres"
     },
     "vote": {
       "button": "Votar",
