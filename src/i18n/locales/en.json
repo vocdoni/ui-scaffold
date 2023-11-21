@@ -56,7 +56,6 @@
       "wrong_data_description": "The specified data is not correct",
       "wrong_data_title": "Wrong data"
     },
-    "required": "This field is required",
     "results": {
       "date_format": "PPpp",
       "secret_until_the_end": "Secret until the end. The results will be available when the process ends on {{ endDate }}",
@@ -81,6 +80,10 @@
       "process_unknown": "Unknown",
       "results": "Results",
       "upcoming": "Upcoming"
+    },
+    "validation": {
+      "required": "This field is required",
+      "min_length": "This field must be at least {{ min }} characters long"
     },
     "vote": {
       "button": "Vote",

@@ -31,7 +31,6 @@ export const translations = (t: TFunction<string, string>) => ({
     wrong_data_title: t('cc.errors.wrong_data_title').toString(),
     wrong_data_description: t('cc.errors.wrong_data_description').toString(),
   },
-  required: t('cc.required').toString(),
   // results component
   results: {
     date_format: t('cc.results.date_format').toString(),
@@ -58,5 +57,9 @@ export const translations = (t: TFunction<string, string>) => ({
     results: t('cc.statuses.results').toString(),
     upcoming: t('cc.statuses.upcoming').toString(),
     process_unknown: t('cc.statuses.process_unknown').toString(),
+  },
+  validation: {
+    required: t('cc.validation.required').toString(),
+    min_length: t('cc.validation.min_length').toString(),
   },
 })
