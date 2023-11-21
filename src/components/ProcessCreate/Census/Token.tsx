@@ -50,7 +50,6 @@ export const CensusTokens = () => {
   const selectChainRef = useRef<SelectInstance<any, false, GroupBase<any>>>(null)
   const [chains, setChains] = useState<ICensus3SupportedChain[]>([])
   const [groupedTokens, setGroupedTokens] = useState<GrupedTokenTypes>([])
-  const [totalTks, setTotalTks] = useState(0)
 
   const {
     setValue,
@@ -194,7 +193,7 @@ export const CensusTokens = () => {
     })()
   }, [ct])
 
-  useEffect(() => {
+  const totalTks = useMemo(() => {
     const options = groupedTokens.map((token) => token.options).flat()
     const totalOptions = options.filter((op) => {
       if ('chainID' in op && op.chainID === ch?.chainID) {
@@ -202,8 +201,8 @@ export const CensusTokens = () => {
       }
       return false
     }).length
-    setTotalTks(totalOptions)
-  }, [ch])
+    return totalOptions
+  }, [groupedTokens, ch])
 
   if (error) {
     return (
