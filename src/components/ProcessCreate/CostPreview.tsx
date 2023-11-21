@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  ButtonProps,
   Flex,
   Icon,
   Link,
@@ -22,9 +23,10 @@ import { useClient } from '@vocdoni/react-providers'
 import { UnpublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa'
+import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa'
 import { TbDatabaseExclamation } from 'react-icons/tb'
 import { HandleSignInFunction, useClaim } from '~components/Faucet/Claim'
+import { useFaucet } from '~components/Faucet/use-faucet'
 import { useProcessCreationSteps } from './Steps/use-steps'
 import imageHeader from '/assets/voc-tokens.jpg'
 
@@ -209,6 +211,17 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
   const { t } = useTranslation()
   const [socialAccount, setSocialAccount] = useState('')
   const { account } = useClient()
+  const { getAuthTypes } = useFaucet()
+  const [faucetAmount, setFaucetAmount] = useState<number>(0)
+
+  useEffect(() => {
+    ;(async () => {
+      try {
+        const atypes = await getAuthTypes()
+        setFaucetAmount(atypes.oauth)
+      } catch (e) {}
+    })()
+  }, [])
 
   return (
     <>
@@ -233,133 +246,30 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
             {t('get_voc_tokens.authentification_method')}
           </Text>
           <Flex justifyContent='space-around' my={3}>
-            <Button
-              aria-label={t('link.github').toString()}
-              cursor='pointer'
+            <OAuthLoginButton
+              aria-label={t('login.github').toString()}
               onClick={() => setSocialAccount('github')}
-              sx={{
-                '&': {
-                  bgColor: socialAccount === 'github' ? 'primary.500' : '',
-
-                  '& svg': {
-                    color: socialAccount === 'github' ? 'white' : 'primary.500',
-                  },
-
-                  '&:disabled': {
-                    '& svg': {
-                      color: 'gray',
-                    },
-                  },
-
-                  '&:hover': {
-                    cursor: socialAccount === 'github' ? 'default' : 'pointer',
-                    bgColor: socialAccount === 'github' ? 'primary.500' : '',
-
-                    '& svg': {
-                      color: socialAccount === 'github' ? 'white' : 'primary.500',
-                    },
-
-                    '&:disabled': {
-                      '&': {
-                        cursor: 'default',
-                      },
-                      '& svg': {
-                        color: 'gray',
-                      },
-                    },
-                  },
-                },
-              }}
+              selected={socialAccount === 'github'}
             >
               <Icon as={FaGithub} w={8} h={8} />
-            </Button>
-            <Tooltip label={t('get_voc_tokens.coming_soon')}>
-              <Button
-                isDisabled
-                aria-label={t('link.twitter').toString()}
-                disabled
-                cursor='pointer'
-                onClick={() => setSocialAccount('twitter')}
-                sx={{
-                  '&': {
-                    bgColor: socialAccount === 'twitter' ? 'primary.500' : '',
-
-                    '& svg': {
-                      color: socialAccount === 'twitter' ? 'white' : 'primary.500',
-                    },
-
-                    '&:disabled': {
-                      '& svg': {
-                        color: 'gray',
-                      },
-                    },
-
-                    '&:hover': {
-                      cursor: socialAccount === 'twitter' ? 'default' : 'pointer',
-                      bgColor: socialAccount === 'twitter' ? 'primary.500' : '',
-
-                      '& svg': {
-                        color: socialAccount === 'twitter' ? 'white' : 'primary.500',
-                      },
-                      '&:disabled': {
-                        '&': {
-                          cursor: 'default',
-                        },
-                        '& svg': {
-                          color: 'gray',
-                        },
-                      },
-                    },
-                  },
-                }}
+            </OAuthLoginButton>
+            <Tooltip>
+              <OAuthLoginButton
+                aria-label={t('login.google').toString()}
+                onClick={() => setSocialAccount('google')}
+                selected={socialAccount === 'google'}
               >
-                <Icon as={FaTwitter} w={8} h={8} />
-              </Button>
+                <Icon as={FaGoogle} w={8} h={8} />
+              </OAuthLoginButton>
             </Tooltip>
-            <Tooltip label={t('get_voc_tokens.coming_soon')}>
-              <Button
-                isDisabled
-                aria-label={t('link.discord').toString()}
-                disabled
-                cursor='pointer'
-                onClick={() => setSocialAccount('discord')}
-                title='coming soon'
-                sx={{
-                  '&': {
-                    bgColor: socialAccount === 'discord' ? 'primary.500' : '',
-
-                    '& svg': {
-                      color: socialAccount === 'discord' ? 'white' : 'primary.500',
-                    },
-
-                    '&:disabled': {
-                      '& svg': {
-                        color: 'gray',
-                      },
-                    },
-
-                    '&:hover': {
-                      cursor: socialAccount === 'discord' ? 'default' : 'pointer',
-                      bgColor: socialAccount === 'discord' ? 'primary.500' : '',
-
-                      '& svg': {
-                        color: socialAccount === 'discord' ? 'white' : 'primary.500',
-                      },
-
-                      '&:disabled': {
-                        '&': {
-                          cursor: 'default',
-                        },
-                        '& svg': {
-                          color: 'gray',
-                        },
-                      },
-                    },
-                  },
-                }}
+            <Tooltip>
+              <OAuthLoginButton
+                aria-label={t('login.facebook').toString()}
+                onClick={() => setSocialAccount('facebook')}
+                selected={socialAccount === 'facebook'}
               >
-                <Icon as={FaDiscord} w={8} h={8} />
-              </Button>
+                <Icon as={FaFacebook} w={8} h={8} />
+              </OAuthLoginButton>
             </Tooltip>
           </Flex>
 
@@ -367,7 +277,7 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
             <Trans
               i18nKey='get_voc_tokens.authentification_method_helper'
               values={{
-                faucetAmount: import.meta.env.FAUCET_AMOUNT,
+                faucetAmount,
               }}
             />
           </Text>
@@ -393,5 +303,51 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
         </ModalFooter>
       </ModalContent>
     </>
+  )
+}
+
+const OAuthLoginButton = (props: Partial<ButtonProps & { selected: boolean }>) => {
+  const { children, selected } = props
+  return (
+    <Button
+      {...props}
+      cursor='pointer'
+      title='coming soon'
+      sx={{
+        '&': {
+          bgColor: selected ? 'primary.500' : '',
+
+          '& svg': {
+            color: selected ? 'white' : 'primary.500',
+          },
+
+          '&:disabled': {
+            '& svg': {
+              color: 'gray',
+            },
+          },
+
+          '&:hover': {
+            cursor: selected ? 'default' : 'pointer',
+            bgColor: selected ? 'primary.500' : '',
+
+            '& svg': {
+              color: selected ? 'white' : 'primary.500',
+            },
+
+            '&:disabled': {
+              '&': {
+                cursor: 'default',
+              },
+              '& svg': {
+                color: 'gray',
+              },
+            },
+          },
+        },
+      }}
+    >
+      {children}
+    </Button>
   )
 }

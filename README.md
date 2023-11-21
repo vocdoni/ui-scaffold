@@ -28,7 +28,6 @@ there, here's a list of variables you can use:
   `dev`, `stg` or `prod` (defaults to `stg`).
 - `BASE_URL` is used to specify the public base page during build.
 - `BUILD_PATH` Specifies the destination of built files.
-- `FAUCET_AMOUNT` The amount given in the faucet, to change it in visible places (defaults to `800`)
 - `CUSTOM_ORGANIZATION_DOMAINS` A JSON.stringified object of custom domains mapped to organization ids, to
   replace the homepage with their profile page.
 
