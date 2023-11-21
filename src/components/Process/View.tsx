@@ -51,7 +51,7 @@ export const ProcessView = () => {
 
   return (
     <Box>
-      <Box mb={32}>
+      <Box mb={44}>
         <Header />
         <Flex
           direction={{ base: 'column', md: 'row' }}

@@ -34,25 +34,29 @@ const LayoutProcessCreate = () => {
           </Link>
         </Flex>
 
-        <Box as='main' maxW={360} w='full' mx='auto' p={4}>
+        <Box
+          as='main'
+          maxW={360}
+          w='full'
+          mx='auto'
+          px={{
+            base: 6,
+            md: 10,
+          }}
+        >
           <Outlet />
         </Box>
       </Flex>
-      <Box
-        sx={{
-          '& p': {
-            'writing-mode': 'vertical-rl',
-            'text-orientation': 'upright',
-          },
-        }}
+      <Text
         position='absolute'
-        top='calc(50vh - 148px)'
-        left={0}
+        top='50vh'
+        left={-20}
+        transform='rotate(-90deg)'
+        fontFamily='pixeloid'
+        textTransform='uppercase'
       >
-        <Text fontFamily='pixeloid' textTransform='uppercase'>
-          World wide voting
-        </Text>
-      </Box>
+        World wide voting
+      </Text>
     </Box>
   )
 }

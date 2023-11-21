@@ -12,7 +12,7 @@ const Features = () => {
   const { t } = useTranslation()
 
   return (
-    <Box maxW='90%' mx='auto' mb={32}>
+    <Box maxW='90%' mx='auto' mb={44}>
       <Box bgImage='/assets/home-bg2.svg' py={10} mb={10}>
         <Box maxW='640px' mx='auto'>
           <Trans
@@ -24,8 +24,7 @@ const Features = () => {
           />
         </Box>
       </Box>
-      <Box></Box>
-      <Flex alignItems={{ base: 'center', lg2: 'start' }} flexDirection='column'>
+      <Flex alignItems={{ base: 'center', lg2: 'start' }} flexDirection='column' gap={{ base: 8, lg2: 0 }}>
         <Flex maxW={{ lg2: '50%' }} alignItems='start' gap={5}>
           <Img src={anonymouse} mt={2} />
           <Box>

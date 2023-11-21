@@ -14,14 +14,14 @@ const Banner = () => {
       justifyContent={{ base: 'center', md: 'start' }}
       maxW={200}
       mx='auto'
-      mb={32}
+      mb={44}
       mt={{ md: 5 }}
       pl={{ md: 20 }}
       pt={{ base: 5, md: '100px' }}
       px={{ sm: 10, md: 0 }}
     >
       <Flex justifyContent={{ base: 'center', md: 'start' }}>
-        <Image src={onvoteIcon} w='330px' mb={18} />
+        <Image src={onvoteIcon} w='330px' mb={14} />
       </Flex>
       <Text
         as='h1'
