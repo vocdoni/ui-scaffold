@@ -18,19 +18,40 @@ const Faucet = lazy(() => import('../elements/Faucet'))
 
 export const RoutesProvider = () => {
   const { client } = useClient()
+  const domains = import.meta.env.CUSTOM_ORGANIZATION_DOMAINS
+
+  let home = (
+    <Route
+      index
+      element={
+        <SuspenseLoader>
+          <Home />
+        </SuspenseLoader>
+      }
+    />
+  )
+
+  // replace home in case it's overwriten via env var
+  if (domains[window.location.hostname]) {
+    home = (
+      <Route
+        index
+        element={
+          <SuspenseLoader>
+            <Organization />
+          </SuspenseLoader>
+        }
+        loader={async ({ params }) => client.fetchAccountInfo(domains[window.location.hostname])}
+        errorElement={<Error />}
+      />
+    )
+  }
 
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/'>
         <Route element={<Layout />}>
-          <Route
-            index
-            element={
-              <SuspenseLoader>
-                <Home />
-              </SuspenseLoader>
-            }
-          />
+          {home}
           <Route
             path='processes/:id'
             element={
