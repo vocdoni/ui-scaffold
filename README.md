@@ -15,9 +15,9 @@
 
 ## Development
 
-This project was bootstrapped with
-[Create React App](https://github.com/facebook/create-react-app), but we moved
-to [vitejs](https://vitejs.dev).
+This UI, known as Vocdoni's UI Scaffold, is a React application that uses our
+[SDK] and [related react packages] to provide a vitaminaized UI for the Vocdoni
+voting protocol.
 
 ### Environment variables
 
@@ -98,3 +98,6 @@ such case, a hotfix should be created from the desired branch to be updated:
 [twitter follow]: https://twitter.com/intent/user?screen_name=vocdoni
 [github issues]: https://github.com/vocdoni/ui-scaffold/issues
 [github commits]: https://github.com/vocdoni/ui-scaffold/commits/main
+
+[SDK]: https://developer.vocdoni.io/sdk
+[related react packages]: https://github.com/vocdoni/ui-components#vocdonis-ui-components
