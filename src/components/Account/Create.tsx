@@ -12,9 +12,16 @@ import {
 } from '@chakra-ui/react'
 import { useClient } from '@vocdoni/react-providers'
 import { Account } from '@vocdoni/sdk'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import { useFaucet } from '~components/Faucet/use-faucet'
+import anonymous from '/assets/anonymous.png'
+import censorship from '/assets/censorship-resistance.png'
+import inexpensive from '/assets/inexpensive.png'
+import openSource from '/assets/open-source.png'
+import scalable from '/assets/scalable.png'
+import verificable from '/assets/verificable.png'
 
 interface FormFields {
   name: string
@@ -38,11 +45,22 @@ export const AccountCreate = () => {
   } = useClient()
   const { t } = useTranslation()
   const [sent, setSent] = useState<boolean>(false)
+  const { getAuthTypes } = useFaucet()
+  const [faucetAmount, setFaucetAmount] = useState<number>(0)
 
   const required = {
     value: true,
     message: t('form.error.field_is_required'),
   }
+
+  useEffect(() => {
+    ;(async () => {
+      try {
+        const atypes = await getAuthTypes()
+        setFaucetAmount(atypes.oauth)
+      } catch (e) {}
+    })()
+  }, [])
 
   const onSubmit = async (values: FormFields) => createAccount(new Account(values))?.finally(() => setSent(true))
 
@@ -66,8 +84,16 @@ export const AccountCreate = () => {
           }}
         />
       </Text>
-
-      <Box pt={5} pb={10}>
+      <Text fontWeight='light'>
+        <Trans
+          i18nKey='new_organization.description2'
+          components={{
+            span: <Text as='span' fontWeight='bold' />,
+          }}
+          values={{ faucetAmount }}
+        />
+      </Text>
+      <Box px={{ base: 5, md: 10 }} pt={5} pb={10}>
         <FormControl isInvalid={!!errors.name} mb={5}>
           <FormLabel fontWeight='bold' textTransform='uppercase' fontFamily='pixeloid'>
             *{t('new_organization.name')}

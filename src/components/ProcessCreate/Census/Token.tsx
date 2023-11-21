@@ -50,7 +50,6 @@ export const CensusTokens = () => {
   const selectChainRef = useRef<SelectInstance<any, false, GroupBase<any>>>(null)
   const [chains, setChains] = useState<ICensus3SupportedChain[]>([])
   const [groupedTokens, setGroupedTokens] = useState<GrupedTokenTypes>([])
-  const [totalTks, setTotalTks] = useState(0)
 
   const {
     setValue,
@@ -168,15 +167,6 @@ export const CensusTokens = () => {
           options: [{ name: t('census.request_custom_token'), status: { synced: true }, type: 'request' }],
         })
 
-        const totalTks = groupedTokens.reduce((acc, curr) => {
-          if (curr.label !== 'request') {
-            return acc + curr.options.length
-          }
-          return acc
-        }, 0)
-
-        setTotalTks(totalTks)
-
         setGroupedTokens(groupedTokens)
       } catch (err) {
         setError(errorToString(err))
@@ -202,6 +192,17 @@ export const CensusTokens = () => {
       }
     })()
   }, [ct])
+
+  const totalTks = useMemo(() => {
+    const options = groupedTokens.map((token) => token.options).flat()
+    const totalOptions = options.filter((op) => {
+      if ('chainID' in op && op.chainID === ch?.chainID) {
+        return true
+      }
+      return false
+    }).length
+    return totalOptions
+  }, [groupedTokens, ch])
 
   if (error) {
     return (
@@ -241,7 +242,6 @@ export const CensusTokens = () => {
             getOptionValue={(value: ICensus3SupportedChain) => String(value.chainID)}
             getOptionLabel={({ name }: ICensus3SupportedChain) => `${name}`}
             onChange={(network) => {
-              // setToken(undefined)
               setValue('censusToken', undefined)
               setValue('chain', network || undefined)
               setValue('maxCensusSize', undefined)

@@ -137,7 +137,13 @@
       "title": "Request Tokens"
     },
     "title": "Vocdoni Tokens Faucet",
-    "tokens_you_own": "You own {{ balance }} tokens."
+    "tokens_you_own": "You own {{ balance }} tokens.",
+    "recipient_address": "Enter the recipient address you'd like to receive tokens on.",
+    "copy_faucetPackage_done": "Copied!",
+    "copy_faucetPackage": "Copy Faucet Package",
+    "faucetPackage_success": "Congratulations! Here is your Faucet Package:",
+    "connect": "Please, connect your wallet",
+    "advanced_settings": "Advanced..."
   },
   "footer": {
     "about": "About",

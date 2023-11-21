@@ -15,9 +15,9 @@
 
 ## Development
 
-This project was bootstrapped with
-[Create React App](https://github.com/facebook/create-react-app), but we moved
-to [vitejs](https://vitejs.dev).
+This UI, known as Vocdoni's UI Scaffold, is a React application that uses our
+[SDK] and [related react packages] to provide a vitaminaized UI for the Vocdoni
+voting protocol.
 
 ### Environment variables
 
@@ -28,7 +28,8 @@ there, here's a list of variables you can use:
   `dev`, `stg` or `prod` (defaults to `stg`).
 - `BASE_URL` is used to specify the public base page during build.
 - `BUILD_PATH` Specifies the destination of built files.
-- `FAUCET_AMOUNT` The amount given in the faucet, to change it in visible places (defaults to `800`)
+- `CUSTOM_ORGANIZATION_DOMAINS` A JSON.stringified object of custom domains mapped to organization ids, to
+  replace the homepage with their profile page.
 
 You can also start the app by prefixing these vars instead of defining your
 custom `.env` file:
@@ -97,3 +98,6 @@ such case, a hotfix should be created from the desired branch to be updated:
 [twitter follow]: https://twitter.com/intent/user?screen_name=vocdoni
 [github issues]: https://github.com/vocdoni/ui-scaffold/issues
 [github commits]: https://github.com/vocdoni/ui-scaffold/commits/main
+
+[SDK]: https://developer.vocdoni.io/sdk
+[related react packages]: https://github.com/vocdoni/ui-components#vocdonis-ui-components
