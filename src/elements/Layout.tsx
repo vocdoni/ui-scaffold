@@ -9,7 +9,7 @@ const Layout = () => {
   return (
     <Flex flexDirection='column' minH='100vh'>
       <Box bgImage='/assets/home-bg.jpg' bgSize='cover' bgRepeat='no-repeat'>
-        <Box bgColor='rgba(255,255,255, 0.4)'>
+        <Box bgColor='rgba(255,255,255, 0.4)' minH='73vh'>
           <Flex flexDirection='column' position='relative' maxW={360} mx='auto'>
             <HStack
               w='100%'
