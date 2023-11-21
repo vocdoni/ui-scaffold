@@ -16,9 +16,10 @@ import {
 } from '@chakra-ui/react'
 import { useClient } from '@vocdoni/react-providers'
 import { Account } from '@vocdoni/sdk'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import { authTypes, useFaucet } from '~components/Faucet/use-faucet'
 import anonymous from '/assets/anonymous.png'
 import censorship from '/assets/censorship-resistance.png'
 import inexpensive from '/assets/inexpensive.png'
@@ -48,11 +49,19 @@ export const AccountCreate = () => {
   } = useClient()
   const { t } = useTranslation()
   const [sent, setSent] = useState<boolean>(false)
+  const { getAuthTypes } = useFaucet()
+  const [faucetAuthTypes, setFaucetAuthTypes] = useState<authTypes>({ oauth: 0, open: 0, aragondao: 0 })
 
   const required = {
     value: true,
     message: t('form.error.field_is_required'),
   }
+
+  useEffect(() => {
+    ;(async () => {
+      setFaucetAuthTypes(await getAuthTypes())
+    })()
+  }, [])
 
   const onSubmit = async (values: FormFields) => createAccount(new Account(values))?.finally(() => setSent(true))
 
@@ -81,7 +90,7 @@ export const AccountCreate = () => {
           i18nKey='new_organization.description2'
           components={{
             span: <Text as='span' fontWeight='bold' />,
-            faucetAmount: import.meta.env.FAUCET_AMOUNT,
+            faucetAmount: <>{faucetAuthTypes.oauth}</>,
           }}
         />
       </Text>

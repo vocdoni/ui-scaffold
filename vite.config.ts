@@ -26,7 +26,6 @@ export default ({ mode }) => {
     },
     define: {
       'import.meta.env.VOCDONI_ENVIRONMENT': JSON.stringify(vocdoniEnvironment),
-      'import.meta.env.FAUCET_AMOUNT': JSON.stringify(process.env.FAUCET_AMOUNT || 800),
     },
     plugins: [
       tsconfigPaths(),

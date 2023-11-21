@@ -22,9 +22,10 @@ import { useClient } from '@vocdoni/react-providers'
 import { UnpublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa'
+import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa'
 import { TbDatabaseExclamation } from 'react-icons/tb'
 import { HandleSignInFunction, useClaim } from '~components/Faucet/Claim'
+import { authTypes, useFaucet } from '~components/Faucet/use-faucet'
 import { useProcessCreationSteps } from './Steps/use-steps'
 import imageHeader from '/assets/voc-tokens.jpg'
 
@@ -209,6 +210,14 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
   const { t } = useTranslation()
   const [socialAccount, setSocialAccount] = useState('')
   const { account } = useClient()
+  const { getAuthTypes } = useFaucet()
+  const [faucetAuthTypes, setFaucetAuthTypes] = useState<authTypes>({ oauth: 0, open: 0, aragondao: 0 })
+
+  useEffect(() => {
+    ;(async () => {
+      setFaucetAuthTypes(await getAuthTypes())
+    })()
+  }, [])
 
   return (
     <>
@@ -276,16 +285,16 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
             <Tooltip label={t('get_voc_tokens.coming_soon')}>
               <Button
                 isDisabled
-                aria-label={t('link.twitter').toString()}
+                aria-label={t('link.google').toString()}
                 disabled
                 cursor='pointer'
-                onClick={() => setSocialAccount('twitter')}
+                onClick={() => setSocialAccount('google')}
                 sx={{
                   '&': {
-                    bgColor: socialAccount === 'twitter' ? 'primary.500' : '',
+                    bgColor: socialAccount === 'google' ? 'primary.500' : '',
 
                     '& svg': {
-                      color: socialAccount === 'twitter' ? 'white' : 'primary.500',
+                      color: socialAccount === 'google' ? 'white' : 'primary.500',
                     },
 
                     '&:disabled': {
@@ -295,11 +304,11 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
                     },
 
                     '&:hover': {
-                      cursor: socialAccount === 'twitter' ? 'default' : 'pointer',
-                      bgColor: socialAccount === 'twitter' ? 'primary.500' : '',
+                      cursor: socialAccount === 'google' ? 'default' : 'pointer',
+                      bgColor: socialAccount === 'google' ? 'primary.500' : '',
 
                       '& svg': {
-                        color: socialAccount === 'twitter' ? 'white' : 'primary.500',
+                        color: socialAccount === 'google' ? 'white' : 'primary.500',
                       },
                       '&:disabled': {
                         '&': {
@@ -313,23 +322,23 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
                   },
                 }}
               >
-                <Icon as={FaTwitter} w={8} h={8} />
+                <Icon as={FaGoogle} w={8} h={8} />
               </Button>
             </Tooltip>
             <Tooltip label={t('get_voc_tokens.coming_soon')}>
               <Button
                 isDisabled
-                aria-label={t('link.discord').toString()}
+                aria-label={t('link.facebook').toString()}
                 disabled
                 cursor='pointer'
-                onClick={() => setSocialAccount('discord')}
+                onClick={() => setSocialAccount('facebook')}
                 title='coming soon'
                 sx={{
                   '&': {
-                    bgColor: socialAccount === 'discord' ? 'primary.500' : '',
+                    bgColor: socialAccount === 'facebook' ? 'primary.500' : '',
 
                     '& svg': {
-                      color: socialAccount === 'discord' ? 'white' : 'primary.500',
+                      color: socialAccount === 'facebook' ? 'white' : 'primary.500',
                     },
 
                     '&:disabled': {
@@ -339,11 +348,11 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
                     },
 
                     '&:hover': {
-                      cursor: socialAccount === 'discord' ? 'default' : 'pointer',
-                      bgColor: socialAccount === 'discord' ? 'primary.500' : '',
+                      cursor: socialAccount === 'facebook' ? 'default' : 'pointer',
+                      bgColor: socialAccount === 'facebook' ? 'primary.500' : '',
 
                       '& svg': {
-                        color: socialAccount === 'discord' ? 'white' : 'primary.500',
+                        color: socialAccount === 'facebook' ? 'white' : 'primary.500',
                       },
 
                       '&:disabled': {
@@ -358,7 +367,7 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
                   },
                 }}
               >
-                <Icon as={FaDiscord} w={8} h={8} />
+                <Icon as={FaFacebook} w={8} h={8} />
               </Button>
             </Tooltip>
           </Flex>
@@ -367,7 +376,7 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
             <Trans
               i18nKey='get_voc_tokens.authentification_method_helper'
               values={{
-                faucetAmount: import.meta.env.FAUCET_AMOUNT,
+                faucetAmount: faucetAuthTypes.oauth,
               }}
             />
           </Text>
