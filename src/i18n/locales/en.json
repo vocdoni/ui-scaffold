@@ -11,8 +11,7 @@
   },
   "banner": {
     "start_now": "Create a voting now!",
-    "subtitle": "Use wallet addresses, vote with an ERC20 token or with NFTs!",
-    "title": "Voting for DAOs & Web3 communities"
+    "title": "Anonymous, gasless and modular voting for web3"
   },
   "banner_voting_types": {
     "anonymous_description": "Voters' identities remain completely confidential, thanks to cutting-edge zk-SNARKS technology.",
@@ -153,7 +152,7 @@
     "repos": "Open-source Code",
     "resources": "Resources",
     "terms_and_privacy": "<link1>Terms of use</link1> & <link2>Privacy Policy</link2>",
-    "text": "<p1>The futur</p1><p2>on Web3 voting starts here</p2>",
+    "text": "<p1>The future</p1><p2>on Web3 voting starts here</p2>",
     "tutorials": "Tutorials",
     "vocdoni_api": "Vocdoni API",
     "vocdoni_app": "Vocdoni APP"
@@ -336,6 +335,23 @@
     "info": "<text>If you need more, contact to <mailto>info@onvote.app</mailto></text>",
     "title": "Get VOC Tokens"
   },
+  "home_features": {
+    "anonymous_description": "Unlock true democracy with zkSNARKs! Participants can cast their votes with complete anonymity, ensuring every voice is heard without compromise.",
+    "anonymous_title": "Anonymous",
+    "census_startegy_description": "Craft the perfect census strategy combining variables to determine voter eligibility. Leverage combinations of multiple tokens from EVM-based networks and other data.",
+    "census_startegy_title": "Census strategies",
+    "descentralized_description": "Onvote runs on top a specialized decentralized network built for digital voting. All the process is universally verifiable and the votes are completely tamper-proo",
+    "descentralized_title": "Decentralized",
+    "flexible_description": "Onvote leverages the Vocdoni Protocol a highly flexible ballot protocol that allows multiple voting methods (like simple, quadratic or ranked voting) as well as other customizations to fit your unique requirements. You can unleash all its potential with our user-friendly SDK.",
+    "flexible_title": "Flexible protocol",
+    "gas_less_description": "Paying for voting is wrong. To eliminate barriers and uphold governance, voting on Onvote is gasless. Only the initiators of voting processes bear the cost.",
+    "gas_less_title": "Gasless voting",
+    "multichain_description": "Combine tokens across any chain to maximize voting power. For example, holders can vote with all their $UNI on Polygon, Optimism, Ethereum and more!",
+    "multichain_title": "Multichain",
+    "open_source_description": "We believe as something as important as your vote must be open-source and publicly audited to be trusted. We release everything under AGPLv3.",
+    "open_source_title": "Opensource",
+    "title": "<p1>are you</p1><p2>Ready for a new Era on web3 governance?</p2>"
+  },
   "link": {
     "discord": "Link to Vocdoni's discord",
     "github": "Link to Vocdoni's github",
@@ -406,7 +422,7 @@
     "date": {
       "ended": "Ended",
       "ends": "Ends",
-      "relative": "{{ date, relative(past: %time ago; future: in %time) }}",
+      "relative": "{{ date, relative(past: %time ago; futuree: in %time) }}",
       "starts": "Starts"
     },
     "is_anonymous": {

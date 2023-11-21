@@ -35,6 +35,7 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
         color='process.aside.color'
         background='process.aside.bg'
         boxShadow='var(--box-shadow-banner)'
+        clipPath='polygon(0% 15px, 15px 15px, 15px 0%, calc(100% - 15px) 0%, calc(100% - 15px) 15px, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 15px calc(100% - 15px), 0% calc(100% - 15px))'
       >
         <Text textAlign='center' fontSize='xl3' fontFamily='pixeloid' textTransform='uppercase'>
           {getStatusText(t, election?.status).toUpperCase()}

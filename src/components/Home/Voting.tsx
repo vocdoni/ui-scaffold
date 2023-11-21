@@ -10,23 +10,28 @@ const VotingTypesBanner = () => {
         flexWrap='wrap'
         alignItems={{ base: 'center', md2: 'stretch' }}
         gap={{ base: 10, md2: 0 }}
-        mb={32}
-        fontWeight='bold'
         maxW={{ md: '900px' }}
+        mb={32}
         fontFamily='pixeloid'
         mx='auto'
         fontSize='sm'
       >
-        <Box w={{ base: '200px', md: '280px' }}>
-          <Text>{t('banner_voting_types.anonymous_title')}</Text>
+        <Box w='280px'>
+          <Text fontSize={22} mb={2} fontWeight='bold'>
+            {t('banner_voting_types.anonymous_title')}
+          </Text>
           <Text>{t('banner_voting_types.anonymous_description')}</Text>
         </Box>
-        <Box w={{ base: '200px', md: '280px' }}>
-          <Text>{t('banner_voting_types.token_title')}</Text>
+        <Box w='280px'>
+          <Text fontSize={22} mb={2} fontWeight='bold'>
+            {t('banner_voting_types.token_title')}
+          </Text>
           <Text> {t('banner_voting_types.token_description')}</Text>
         </Box>
-        <Box w={{ base: '200px', md: '280px' }}>
-          <Text>{t('banner_voting_types.flexible_title')}</Text>
+        <Box w='280px'>
+          <Text fontSize={22} mb={2} fontWeight='bold'>
+            {t('banner_voting_types.flexible_title')}
+          </Text>
           <Text>{t('banner_voting_types.flexible_description')}</Text>
         </Box>
       </Flex>

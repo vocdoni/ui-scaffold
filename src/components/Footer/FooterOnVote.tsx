@@ -31,13 +31,34 @@ const FooterOnVote = () => {
           <Text fontSize='xl' whiteSpace='nowrap'>
             <Trans i18nKey='footer.follow_us' />
           </Text>
-          <Link href='https://twitter.com/vocdoni' target='_blank' aria-label='link vocdoni twitter' m={0}>
+          <Link
+            href='https://twitter.com/onvoteapp'
+            target='_blank'
+            aria-label='link twitter'
+            _hover={{
+              opacity: '0.5',
+            }}
+          >
             <Image src={xIcon} w={4} />
           </Link>
-          <Link href='https://farcaster.com/' target='_blank' aria-label='link vocdoni twitter'>
+          <Link
+            href='https://warpcast.com/onvote'
+            target='_blank'
+            aria-label='link forecast'
+            _hover={{
+              opacity: '0.5',
+            }}
+          >
             <Image src={farcasterIcon} w={5} />
           </Link>
-          <Link href='https://mirror.xyz/onvote.eth' target='_blank' aria-label='link vocdoni mirror'>
+          <Link
+            href='https://mirror.xyz/onvote.eth'
+            target='_blank'
+            aria-label='link mirror'
+            _hover={{
+              opacity: '0.5',
+            }}
+          >
             <Image src={mirrorIcon} w={3} />
           </Link>
         </Flex>
