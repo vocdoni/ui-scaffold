@@ -26,6 +26,7 @@ export default ({ mode }) => {
     },
     define: {
       'import.meta.env.VOCDONI_ENVIRONMENT': JSON.stringify(vocdoniEnvironment),
+      'import.meta.env.CUSTOM_ORGANIZATION_DOMAINS': JSON.parse(process.env.CUSTOM_ORGANIZATION_DOMAINS || '{}'),
     },
     plugins: [
       tsconfigPaths(),
