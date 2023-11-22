@@ -7,7 +7,7 @@ const Layout = () => {
   const location = useLocation()
 
   return (
-    <Flex flexDirection='column' minH='100vh'>
+    <Flex flexDirection='column' minH='100vh' bgColor='bg'>
       <Box
         bgImage={
           !location.pathname.includes('processes') && !location.pathname.includes('organization')
