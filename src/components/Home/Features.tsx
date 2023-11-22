@@ -12,9 +12,16 @@ const Features = () => {
   const { t } = useTranslation()
 
   return (
-    <Box maxW='90%' mx='auto' mb={44}>
+    <Box mx='auto' mb={44}>
       <Box bgImage='/assets/home-bg2.svg' py={10} mb={10}>
-        <Box maxW='640px' mx='auto'>
+        <Box
+          maxW='640px'
+          mx='auto'
+          px={{
+            base: 10,
+            sm: 14,
+          }}
+        >
           <Trans
             i18nKey='home_features.title'
             components={{
@@ -24,11 +31,19 @@ const Features = () => {
           />
         </Box>
       </Box>
-      <Flex alignItems={{ base: 'center', lg2: 'start' }} flexDirection='column' gap={{ base: 8, lg2: 0 }}>
+      <Flex
+        alignItems={{ base: 'center', lg2: 'start' }}
+        flexDirection='column'
+        gap={{ base: 8, lg2: 0 }}
+        px={{
+          base: 10,
+          sm: 14,
+        }}
+      >
         <Flex maxW={{ lg2: '50%' }} alignItems='start' gap={5}>
           <Img src={anonymouse} mt={2} />
           <Box>
-            <Text fontSize='xl3' fontWeight='bold'>
+            <Text fontSize='xl3' fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase'>
               {t('home_features.anonymous_title')}
             </Text>
             <Text fontSize='lg'>{t('home_features.anonymous_description')}</Text>
@@ -37,7 +52,7 @@ const Features = () => {
         <Flex maxW={{ lg2: '50%' }} alignItems='start' gap={5} alignSelf={{ lg2: 'end' }}>
           <Img src={censorship} mt={2} />
           <Box>
-            <Text fontSize='xl3' fontWeight='bold'>
+            <Text fontSize='xl3' fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase'>
               {t('home_features.census_startegy_title')}
             </Text>
             <Text fontSize='lg'>{t('home_features.census_startegy_description')}</Text>
@@ -46,7 +61,7 @@ const Features = () => {
         <Flex maxW={{ lg2: '50%' }} alignItems='start' gap={5}>
           <Img src={descentralized} mt={2} />
           <Box>
-            <Text fontSize='xl3' fontWeight='bold'>
+            <Text fontSize='xl3' fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase'>
               {t('home_features.open_source_title')}
             </Text>
             <Text fontSize='lg'>{t('home_features.open_source_description')}</Text>
@@ -55,7 +70,7 @@ const Features = () => {
         <Flex maxW={{ lg2: '50%' }} alignItems='start' gap={5} alignSelf={{ lg2: 'end' }}>
           <Img src={gasless} mt={2} />
           <Box>
-            <Text fontSize='xl3' fontWeight='bold'>
+            <Text fontSize='xl3' fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase'>
               {t('home_features.gas_less_title')}
             </Text>
             <Text fontSize='lg'>{t('home_features.gas_less_description')}</Text>
@@ -64,7 +79,7 @@ const Features = () => {
         <Flex maxW={{ lg2: '50%' }} alignItems='start' gap={5}>
           <Img src={opensource} mt={2} />
           <Box>
-            <Text fontSize='xl3' fontWeight='bold'>
+            <Text fontSize='xl3' fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase'>
               {t('home_features.descentralized_title')}
             </Text>
             <Text fontSize='lg'>{t('home_features.descentralized_description')}</Text>
@@ -73,7 +88,7 @@ const Features = () => {
         <Flex maxW={{ lg2: '50%' }} alignItems='start' gap={5} alignSelf={{ lg2: 'end' }}>
           <Img src={multichain} mt={2} />
           <Box>
-            <Text fontSize='xl3' fontWeight='bold'>
+            <Text fontSize='xl3' fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase'>
               {t('home_features.multichain_title')}
             </Text>
             <Text fontSize='lg'>{t('home_features.multichain_description')}</Text>
@@ -82,7 +97,7 @@ const Features = () => {
         <Flex maxW={{ lg2: '50%' }} alignItems='start' gap={5}>
           <Img src={flexibleProtocol} mt={2} />
           <Box>
-            <Text fontSize='xl3' fontWeight='bold'>
+            <Text fontSize='xl3' fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase'>
               {t('home_features.flexible_title')}
             </Text>
             <Text fontSize='lg'>{t('home_features.flexible_description')}</Text>

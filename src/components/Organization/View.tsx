@@ -89,7 +89,13 @@ const OrganizationView = () => {
   }, [page, error, finished, organization?.address])
 
   return (
-    <Box mb={44}>
+    <Box
+      mb={44}
+      px={{
+        base: 10,
+        sm: 14,
+      }}
+    >
       <Header />
 
       <Text as='h2' fontSize='xl' fontWeight='bold' mb={4} textAlign={{ base: 'center', md2: 'start' }}>

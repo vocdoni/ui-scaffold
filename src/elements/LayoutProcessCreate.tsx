@@ -48,7 +48,7 @@ const LayoutProcessCreate = () => {
         </Box>
       </Flex>
       <Text
-        position='absolute'
+        position='fixed'
         top='50vh'
         left={-20}
         transform='rotate(-90deg)'

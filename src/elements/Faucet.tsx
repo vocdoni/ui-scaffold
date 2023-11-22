@@ -18,7 +18,16 @@ const Faucet = () => {
   }, [])
 
   return (
-    <Flex direction='column' gap={4} mt={10}>
+    <Flex
+      direction='column'
+      gap={4}
+      mt={10}
+      mb={44}
+      px={{
+        base: 10,
+        sm: 14,
+      }}
+    >
       <Grid templateColumns={'repeat(1, 1fr)'} gap={2}>
         <GridItem display='flex' justifyContent='center' alignItems='center'>
           <Box width={'80%'}>

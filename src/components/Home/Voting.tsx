@@ -15,6 +15,10 @@ const VotingTypesBanner = () => {
         fontFamily='pixeloid'
         mx='auto'
         fontSize='sm'
+        px={{
+          base: 10,
+          sm: 14,
+        }}
       >
         <Box textAlign={{ base: 'center', md2: 'start' }} w='260px'>
           <Text fontSize={22} mb={2} fontWeight='bold'>

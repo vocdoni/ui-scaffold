@@ -18,7 +18,10 @@ const Banner = () => {
       mt={{ md: 5 }}
       pl={{ md: 20 }}
       pt={{ base: 5, md: '100px' }}
-      px={{ sm: 10, md: 0 }}
+      px={{
+        base: 10,
+        sm: 14,
+      }}
     >
       <Flex justifyContent={{ base: 'center', md: 'start' }}>
         <Image src={onvoteIcon} w='330px' mb={14} />
