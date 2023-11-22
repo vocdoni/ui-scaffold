@@ -65,7 +65,7 @@ const Navbar = () => {
             <ListItem>
               <Button
                 variant='on-vote'
-                color='primary.main'
+                colorScheme='primary'
                 onClick={() => {
                   if (openConnectModal) openConnectModal()
                 }}

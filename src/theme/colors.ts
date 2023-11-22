@@ -7,6 +7,7 @@ export const colorsBase = {
   },
   gradient: 'var(--vcd-gradient-primary)',
   gray: {
+    bg: '#f2f2f2',
     light2: '#EDF2F7',
     light: '#E2E8F0',
     main: '#CBD5E0',
@@ -60,6 +61,7 @@ export const colors = {
       vote_btn_bg: colorsBase.white.pure,
       aside_footer_mbl_border: colorsBase.white.dark,
     },
+    bg: colorsBase.gray.light,
     canceled: colorsBase.primary.main,
     confirm_vote: {
       active: colorsBase.primary.dark2,

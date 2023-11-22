@@ -1,4 +1,4 @@
-import { Box, Flex, Img, Link } from '@chakra-ui/react'
+import { Box, Flex, Img, Link, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { Outlet, useNavigate } from 'react-router-dom'
 import Logo from '~components/Layout/Logo'
@@ -34,10 +34,29 @@ const LayoutProcessCreate = () => {
           </Link>
         </Flex>
 
-        <Box as='main' maxW={360} w='full' mx='auto' p={4}>
+        <Box
+          as='main'
+          maxW={360}
+          w='full'
+          mx='auto'
+          px={{
+            base: 6,
+            md: 10,
+          }}
+        >
           <Outlet />
         </Box>
       </Flex>
+      <Text
+        position='absolute'
+        top='50vh'
+        left={-20}
+        transform='rotate(-90deg)'
+        fontFamily='pixeloid'
+        textTransform='uppercase'
+      >
+        World wide voting
+      </Text>
     </Box>
   )
 }

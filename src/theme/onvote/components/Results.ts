@@ -40,7 +40,7 @@ const baseStyle = definePartsStyle({
         flexGrow: 0,
         flexShrink: 0,
         h: 6,
-        bgColor: 'results_progressbar_bg',
+        bgColor: 'process.results.progressbar',
         overflow: 'hidden',
         position: 'relative',
 

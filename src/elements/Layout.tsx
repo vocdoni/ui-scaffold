@@ -7,18 +7,17 @@ const Layout = () => {
   const location = useLocation()
 
   return (
-    <Flex flexDirection='column' minH='100vh'>
+    <Flex flexDirection='column' minH='100vh' bgColor='bg'>
       <Box
         bgImage={
           !location.pathname.includes('processes') && !location.pathname.includes('organization')
-            ? '/public/assets/home-bg.jpg'
-            : ''
+            ? '/assets/home-bg.jpg'
+            : 'none'
         }
         bgSize='cover'
-        bgPosition='center'
-        bgColor='#f2f2f2'
+        bgRepeat='no-repeat'
       >
-        <Box bgColor='rgba(255,255,255, 0.4)'>
+        <Box bgColor='rgba(255,255,255, 0.4)' minH='73vh'>
           <Flex flexDirection='column' position='relative' maxW={360} mx='auto'>
             <HStack
               w='100%'
@@ -34,21 +33,7 @@ const Layout = () => {
             >
               <Navbar />
             </HStack>
-            <Box
-              sx={{
-                '& p': {
-                  'writing-mode': 'vertical-rl',
-                  'text-orientation': 'upright',
-                },
-              }}
-              position='absolute'
-              top='calc(50vh - 148px)'
-              left={0}
-            >
-              <Text fontFamily='pixeloid' textTransform='uppercase'>
-                World wide voting
-              </Text>
-            </Box>
+
             <Box
               flexGrow={1}
               w='100%'
@@ -56,8 +41,8 @@ const Layout = () => {
               pt={6}
               m='0 auto'
               px={{
-                base: !location.pathname.includes('processes') ? 10 : 2,
-                sm: !location.pathname.includes('processes') ? 16 : 3,
+                base: !location.pathname.includes('processes') ? 10 : 0,
+                sm: !location.pathname.includes('processes') ? 14 : 0,
               }}
             >
               <Outlet />
@@ -65,8 +50,20 @@ const Layout = () => {
           </Flex>
         </Box>
       </Box>
-      <Box bgImage={'/public/assets/footer-bg.jpg'} bgSize='cover' bgPosition='center'>
-        <Box as='footer' w='100%' maxW={360} mx='auto' mt='auto' px={{ base: 2, sm: 4 }}>
+
+      <Text
+        position='absolute'
+        top='50vh'
+        left={-20}
+        transform='rotate(-90deg)'
+        fontFamily='pixeloid'
+        textTransform='uppercase'
+      >
+        World wide voting
+      </Text>
+
+      <Box mt='auto' bgImage={'/assets/footer-bg.jpg'} bgSize='cover' bgPosition='center'>
+        <Box as='footer' w='100%' maxW={360} mx='auto' px={{ base: 2, sm: 4 }}>
           <FooterOnVote />
         </Box>
       </Box>
