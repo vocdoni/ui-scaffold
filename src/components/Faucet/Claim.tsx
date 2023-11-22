@@ -124,7 +124,6 @@ export const Claim = (props: ClaimProps) => {
                 isLoading={loading}
                 colorScheme='facebook'
                 onClick={() => auth('facebook')}
-                isDisabled
               >
                 <Icon mr={2} as={FaFacebook} />
                 {t('login.facebook')}
@@ -132,14 +131,7 @@ export const Claim = (props: ClaimProps) => {
             </Tooltip>
 
             <Tooltip label={t('get_voc_tokens.coming_soon')}>
-              <Button
-                type='submit'
-                w='full'
-                isLoading={loading}
-                colorScheme='red'
-                onClick={() => auth('google')}
-                isDisabled
-              >
+              <Button type='submit' w='full' isLoading={loading} colorScheme='red' onClick={() => auth('google')}>
                 <Icon mr={2} as={FaGoogle} />
                 {t('login.google')}
               </Button>
