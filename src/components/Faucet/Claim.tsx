@@ -9,7 +9,6 @@ import {
   Input,
   Text,
   Textarea,
-  Tooltip,
   useClipboard,
   useDisclosure,
   useToast,
@@ -117,33 +116,15 @@ export const Claim = (props: ClaimProps) => {
               {t('login.github')}
             </Button>
 
-            <Tooltip label={t('get_voc_tokens.coming_soon')}>
-              <Button
-                type='submit'
-                w='full'
-                isLoading={loading}
-                colorScheme='facebook'
-                onClick={() => auth('facebook')}
-                isDisabled
-              >
-                <Icon mr={2} as={FaFacebook} />
-                {t('login.facebook')}
-              </Button>
-            </Tooltip>
+            <Button type='submit' w='full' isLoading={loading} colorScheme='facebook' onClick={() => auth('facebook')}>
+              <Icon mr={2} as={FaFacebook} />
+              {t('login.facebook')}
+            </Button>
 
-            <Tooltip label={t('get_voc_tokens.coming_soon')}>
-              <Button
-                type='submit'
-                w='full'
-                isLoading={loading}
-                colorScheme='red'
-                onClick={() => auth('google')}
-                isDisabled
-              >
-                <Icon mr={2} as={FaGoogle} />
-                {t('login.google')}
-              </Button>
-            </Tooltip>
+            <Button type='submit' w='full' isLoading={loading} colorScheme='red' onClick={() => auth('google')}>
+              <Icon mr={2} as={FaGoogle} />
+              {t('login.google')}
+            </Button>
           </Flex>
         </>
       )}
