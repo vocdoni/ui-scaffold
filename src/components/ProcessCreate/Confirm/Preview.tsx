@@ -4,7 +4,7 @@ import { useElection } from '@vocdoni/react-providers'
 import { useTranslation } from 'react-i18next'
 import { IoMdCheckmark, IoMdClose, IoMdCreate } from 'react-icons/io'
 import { IoCheckmarkSharp } from 'react-icons/io5'
-import { cofirmTheme } from '~theme/components/Confirm'
+import { cofirmTheme } from '~theme/onvote/components/Confirm'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 import Census from './Census'
 
@@ -28,7 +28,9 @@ const Preview = () => {
     <Flex flexDirection='column' gap={5} p={{ base: 3, xl: 6 }} bgColor='process_create.section' borderRadius='md'>
       <Flex flexDirection='column' gap={6}>
         <Flex>
-          <Text fontWeight='bold'>{t('form.process_create.confirm.election_info')}</Text>
+          <Text fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase'>
+            {t('form.process_create.confirm.election_info')}
+          </Text>
           <Link variant='primary' ml='auto' onClick={() => setActiveStep(1)}>
             <Icon
               as={IoMdCreate}

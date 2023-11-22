@@ -1,6 +1,6 @@
 import { Flex, Img } from '@chakra-ui/react'
 import { NavLink } from 'react-router-dom'
-import icon from '/assets/vocdoni_icon.png'
+import icon from '/assets/onvote-icon.svg'
 
 const Logo = ({ ...props }) => (
   <NavLink to='/'>

@@ -1,12 +1,15 @@
+import { Box } from '@chakra-ui/react'
 import Banner from '~components/Home/Banner'
+import Features from '~components/Home/Features'
 import VotingTypesBanner from '~components/Home/Voting'
 
 const Home = () => {
   return (
-    <div>
+    <Box>
       <Banner />
       <VotingTypesBanner />
-    </div>
+      <Features />
+    </Box>
   )
 }
 export default Home

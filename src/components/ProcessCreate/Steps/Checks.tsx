@@ -5,8 +5,8 @@ import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AccountCreate } from '~components/Account/Create'
 import { useAccountHealthTools } from '~components/Account/use-account-health-tools'
-import Wrapper from './Wrapper'
 import { useProcessCreationSteps } from './use-steps'
+import Wrapper from './Wrapper'
 
 export const Checks = () => {
   const {
@@ -23,7 +23,6 @@ export const Checks = () => {
     next()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [exists])
-
   if (connected && account && !exists) {
     return <NeedsAccount />
   }
@@ -47,10 +46,10 @@ const NeedsAccount = () => {
     <>
       <Wrapper>
         <Box>
-          <Heading fontSize='md' my={5}>
+          <Heading fontSize='md' my={5} fontFamily='pixeloid' textTransform='uppercase' color='primary.500'>
             {t('new_organization.title')}
           </Heading>
-          <Box p={10} borderRadius='md' bgColor='process_create.section'>
+          <Box p={10} bgColor='process_create.section'>
             <AccountCreate />
           </Box>
         </Box>
@@ -60,7 +59,7 @@ const NeedsAccount = () => {
             type='submit'
             form='process-create-form'
             rightIcon={<ArrowForwardIcon />}
-            variant='outline'
+            variant='on-vote'
             colorScheme='primary'
             px={12}
           >

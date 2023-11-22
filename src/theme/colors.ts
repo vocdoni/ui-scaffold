@@ -34,6 +34,7 @@ export const colors = {
     700: colorsBase.primary.dark2,
   },
 
+  checkbox: colorsBase.primary.main,
   link: {
     primary: colorsBase.primary.main,
   },

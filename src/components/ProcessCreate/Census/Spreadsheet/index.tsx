@@ -19,8 +19,8 @@ import { BiCheckDouble, BiDownload } from 'react-icons/bi'
 import { PiWarningCircleLight } from 'react-icons/pi'
 import { RiFileExcel2Line } from 'react-icons/ri'
 import { CensusSpreadsheetManager } from './CensusSpreadsheetManager'
-import { CsvPreview } from './Preview'
 import { CsvGenerator } from './generator'
+import { CsvPreview } from './Preview'
 
 export const CensusCsvManager = () => {
   const { t } = useTranslation()
@@ -109,7 +109,6 @@ export const CensusCsvManager = () => {
           <FormControl
             bgColor='process_create.bg'
             p={3}
-            borderRadius='md'
             sx={{
               '& > label': {
                 position: 'relative',
@@ -118,7 +117,6 @@ export const CensusCsvManager = () => {
                   position: 'absolute',
                   top: 1,
                   right: 1,
-                  borderRadius: '50%',
                   borderColor: 'process_create.census.weighted_vote_checked',
                 },
 
@@ -161,19 +159,10 @@ export const CensusCsvManager = () => {
             />
           </FormControl>
         </Box>
-        <Flex
-          flex='1 1 40%'
-          flexDirection='column'
-          justifyContent='center'
-          alignItems='center'
-          gap={3}
-          p={6}
-          borderRadius='lg'
-          mx='auto'
-        >
+        <Flex flex='1 1 40%' flexDirection='column' justifyContent='center' alignItems='center' gap={3} p={6} mx='auto'>
           <Text textAlign='center'>{t('form.process_create.spreadsheet.download_template_description')}</Text>
           <Link download={'census-template.csv'} href={template.url}>
-            <Button leftIcon={<BiDownload />} colorScheme='primary' variant='ghost' border='1px solid'>
+            <Button leftIcon={<BiDownload />} colorScheme='primary' variant='on-vote' border='1px solid'>
               {t('form.process_create.spreadsheet.download_template_btn')}
             </Button>
           </Link>
@@ -195,7 +184,6 @@ export const CensusCsvManager = () => {
           border='1px dotted'
           borderColor='process_create.census.drag_and_drop_border'
           bgColor='process_create.bg'
-          borderRadius='lg'
           cursor='pointer'
         >
           <input {...getInputProps()} />

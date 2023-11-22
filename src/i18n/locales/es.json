@@ -13,13 +13,11 @@
   },
   "banner": {
     "start_now": "¡Crea una votación ahora!",
-    "subtitle": "Usa direcciones de cartera, vota con un token ERC20 o con NFTs!",
     "title": "Votaciones para DAOs y comunidades Web3"
   },
   "banner_voting_types": {
     "anonymous_description": "La identidad de los votantes permanece completamente confidencial, gracias a la tecnología zk-SNARKS.",
     "anonymous_title": "100% Anónimo",
-    "bottom_text": "La privacidad debería ser normal",
     "flexible_description": "Personaliza tu proceso de votación y censo para satisfacer los requisitos únicos de tu comunidad.",
     "flexible_title": "Votación Flexible",
     "token_description": "Vota con tokens ERC20/ERC721 (NFT) o agrega tus propios tokens y vota sin coste de gas con ellos.",
@@ -95,8 +93,8 @@
     "loading_description": "Por favor espera mientras se reclaman los tokens",
     "loading_title": "Reclamando",
     "success_description": "Éxito",
-    "success_title": "Los tokens han sido reclamados correctamente",
-    "success_faucetPackage_title": "El Faucet Package se obtuvo con éxito"
+    "success_faucetPackage_title": "El Faucet Package se obtuvo con éxito",
+    "success_title": "Los tokens han sido reclamados correctamente"
   },
   "copy": {
     "address": "Copiar dirección",
@@ -125,25 +123,24 @@
   },
   "error_text": "Lo sentimos, no se encontró la página que buscabas.",
   "faucet": {
-    "connect_or_set_recipient_address": "Por favor, conecta tu wallet o escribe la dirección del destinatario a continuación (debe ser una Cuenta Vocdoni)",
+    "advanced_settings": "Avanzado...",
+    "connect": "Por favor, conecta tu wallet",
+    "copy_faucetPackage": "Copiar Faucet Package",
+    "copy_faucetPackage_done": "¡Copiado!",
     "description": "Para desarrollar con Vocdoni, necesitas tokens para ciertas acciones (crear una elección, cambiar el estado de una elección, etc.). El número de diferentes factores como el tamaño del censo, la duración de la elección, los parámetros de la elección, etc.",
+    "faucetPackage_success": "¡Felicidades! \nAquí está su paquete de grifo:",
     "general_information": {
       "description": "Cuando solicites tokens de desarrollo, recibirás {{ amount }} tokens. Puedes reclamar desde el faucet una vez cada 24 horas.",
       "description2": "Si necesitas más tokens para desarrollar sobre la plataforma de Vocdoni, puedes ponerte en contacto con nosotros en tokens (at) vocdoni.io",
       "title": "Información General"
     },
+    "recipient_address": "Ingrese la dirección del destinatario en el que desea recibir los tokens.",
     "request_description": "Para obtener más tokens de Vocdoni, debes iniciar sesión con una cuenta social (para evitar el mal uso del grifo). Solo solicitamos acceso de lectura.",
     "request_tokens": {
       "title": "Solicitar Tokens"
     },
     "title": "Faucet de Tokens Vocdoni",
-    "tokens_you_own": "Tienes {{ balance }} tokens.",
-    "recipient_address": "Ingrese la dirección del destinatario en el que desea recibir los tokens.",
-    "copy_faucetPackage_done": "¡Copiado!",
-    "copy_faucetPackage": "Copiar Faucet Package",
-    "faucetPackage_success": "¡Felicidades! \nAquí está su paquete de grifo:",
-    "connect": "Por favor, conecta tu wallet",
-    "advanced_settings": "Avanzado..."
+    "tokens_you_own": "Tienes {{ balance }} tokens."
   },
   "footer": {
     "about": "Acerca de",
@@ -153,10 +150,12 @@
     "developer_portal": "Portal para desarrolladores",
     "developers": "Desarrolladores",
     "discord": "Discord",
+    "follow_us": "Síguenos",
     "homepage": "Inicio",
     "repos": "Código abierto",
     "resources": "Recursos",
     "terms_and_privacy": "<link1>Términos de uso</link1> y <link2>Política de privacidad</link2>",
+    "text": "<p1>El futuro</p1><p2>de la votación en Web3 comienza aquí</p2>",
     "tutorials": "Tutoriales",
     "vocdoni_api": "API de Vocdoni",
     "vocdoni_app": "APP de Vocdoni"
@@ -180,7 +179,8 @@
       "address_pattern": "Solo se permiten direcciones hexadecimales (p.ej. 0x031101A...)",
       "avatar_error": "URL no válida",
       "field_is_required": "Este campo es obligatorio",
-      "min_address": "Por favor, proporciona al menos una dirección"
+      "min_address": "Por favor, proporciona al menos una dirección",
+      "recipient_address_invalid": ""
     },
     "process_create": {
       "behavior": {
@@ -343,6 +343,23 @@
     "info": "<text>Si necesita más, contacte a <mailto>info@onvote.app</mailto></text>",
     "title": "Obtener VOC Tokens"
   },
+  "home_features": {
+    "anonymous_description": "¡Desbloquea la verdadera democracia con zkSNARKs! Los participantes pueden emitir sus votos con completa anonimato, asegurando que cada voz sea escuchada sin compromisos.",
+    "anonymous_title": "Anónimo",
+    "census_startegy_description": "Elabora la estrategia de censo perfecta combinando variables para determinar la elegibilidad de los votantes. Aprovecha combinaciones de múltiples tokens de redes basadas en EVM y otros datos.",
+    "census_startegy_title": "Estrategias de censo",
+    "descentralized_description": "Onvote funciona sobre una red descentralizada especializada construida para votaciones digitales. Todo el proceso es universalmente verificable y los votos son completamente a prueba de manipulaciones.",
+    "descentralized_title": "Descentralizado",
+    "flexible_description": "Onvote utiliza el Protocolo Vocdoni, un protocolo de votación altamente flexible que permite múltiples métodos de votación (como simple, cuadrático o clasificado), así como otras personalizaciones para ajustarse a tus necesidades únicas. Puedes liberar todo su potencial con nuestro SDK fácil de usar.",
+    "flexible_title": "Protocolo Flexible",
+    "gas_less_description": "Pagar por votar está mal. Para eliminar barreras y mantener la gobernanza, votar en Onvote es sin coste de gas. Solo los iniciadores de los procesos de votación asumen el costo.",
+    "gas_less_title": "Votación sin gas",
+    "multichain_description": "Combina tokens a través de cualquier cadena para maximizar el poder de votación. ¡Por ejemplo, los titulares pueden votar con todos sus $UNI en Polygon, Optimism, Ethereum y más!",
+    "multichain_title": "Multicadena",
+    "open_source_description": "Creemos que algo tan importante como tu voto debe ser de código abierto y auditado públicamente para ser confiable. Liberamos todo bajo AGPLv3.",
+    "open_source_title": "Código Abierto",
+    "title": "<p1>¿Estás</p1><p2>listo para una nueva Era en la gobernanza web3?</p2>"
+  },
   "link": {
     "discord": "Enlace al Discord de Vocdoni",
     "github": "Enlace al Github de Vocdoni",
@@ -379,18 +396,10 @@
     "maxLength": "Longitud máxima alcanzada"
   },
   "new_organization": {
-    "anonyomus": "Anónimo",
-    "censorship": "<span>Resistencia</span><span>a la Censura</span>",
     "create_organization_btn": "Crear Organización",
     "description1": "Antes de comenzar a crear su proceso de votación, <span>debe crear una organización</span>, es gratuito. Con una organización, podrá crear una amplia gama de elecciones y dar voz a los miembros de su comunidad.",
-    "description2": "Como <span>paquete de bienvenida</span>, recibirá {{ faucetAmount }} tokens gratis para comenzar a utilizar nuestra plataforma.",
-    "footer": "<span>Vocdoni</span> es un protocolo de votación público seguro, respetuoso con la privacidad y de código abierto.",
-    "inexpensive": "Económico",
     "name": "Nombre de la organización",
-    "open_source": "<span>Código</span><span>Abierto</span>",
-    "scalable": "Escalable",
-    "title": "Nueva Organización",
-    "verificable": "Verificable"
+    "title": "Nueva Organización"
   },
   "open_in_explorer": "Abrir en explorador",
   "organization": {

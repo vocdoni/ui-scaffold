@@ -27,7 +27,7 @@ const Navbar = () => {
             <Link
               as={ReactRouterLink}
               to='/processes/create'
-              variant='rounded'
+              variant='on-vote'
               colorScheme='primary'
               aria-label={t('menu.new_process')}
               title={t('menu.new_process')}
@@ -46,7 +46,7 @@ const Navbar = () => {
             <Link
               as={ReactRouterLink}
               to={`/organization/0x${account?.address}`}
-              variant='rounded'
+              variant='on-vote-ghost'
               color='primary.main'
               aria-label={t('menu.my_org_aria_label')}
               title={t('menu.my_org_aria_label')}
@@ -64,7 +64,7 @@ const Navbar = () => {
           <>
             <ListItem>
               <Button
-                variant='rounded'
+                variant='on-vote'
                 color='primary.main'
                 onClick={() => {
                   if (openConnectModal) openConnectModal()
@@ -102,20 +102,18 @@ const Navbar = () => {
             <Menu>
               {({ isOpen }) => (
                 <>
-                  <MenuButton
-                    as={Button}
-                    aria-label={t('menu.languages_list')}
-                    variant='rounded-ghost'
-                    boxShadow={`${isOpen ? '' : 'var(--box-shadow-btn)'}`}
-                    p={2}
-                  >
+                  <MenuButton as={Button} variant='on-vote-ghost' aria-label={t('menu.languages_list')} p={2}>
                     <Box as='span' display='flex' alignItems='center'>
                       <Avatar
                         src={account?.account.avatar}
                         name={account?.account.name.default || account?.address}
                         size='xs'
                       />
-                      {isOpen ? <ChevronUpIcon boxSize={8} /> : <ChevronDownIcon boxSize={8} />}
+                      {isOpen ? (
+                        <ChevronUpIcon boxSize={8} color='navbar_chevron' />
+                      ) : (
+                        <ChevronDownIcon boxSize={8} color='navbar_chevron' />
+                      )}
                     </Box>
                   </MenuButton>
                   <MenuDropdown />

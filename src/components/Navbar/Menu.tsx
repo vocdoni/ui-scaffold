@@ -100,7 +100,7 @@ const MenuDropdown = () => {
               <Link
                 as={ReactRouterLink}
                 to='/faucet'
-                variant='rounded'
+                variant='on-vote'
                 colorScheme='primary'
                 aria-label={t('menu.get_more')}
                 title={t('menu.get_more')}

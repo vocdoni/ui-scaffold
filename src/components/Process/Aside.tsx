@@ -34,15 +34,22 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
         mb={{ base: 7, md: 0 }}
         color='process.aside.color'
         background='process.aside.bg'
-        borderRadius='lg'
         boxShadow='var(--box-shadow-banner)'
+        clipPath='polygon(0% 15px, 15px 15px, 15px 0%, calc(100% - 15px) 0%, calc(100% - 15px) 15px, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 15px calc(100% - 15px), 0% calc(100% - 15px))'
       >
-        <Text textAlign='center' fontSize='xl3'>
+        <Text textAlign='center' fontSize='xl3' fontFamily='pixeloid' textTransform='uppercase'>
           {getStatusText(t, election?.status).toUpperCase()}
         </Text>
 
         {election?.status !== ElectionStatus.CANCELED && election?.status !== ElectionStatus.UPCOMING && (
-          <Box display='flex' flexDirection='row' justifyContent='center' alignItems='center' gap={2}>
+          <Box
+            display='flex'
+            flexDirection='row'
+            justifyContent='center'
+            alignItems='center'
+            gap={2}
+            fontFamily='pixeloid'
+          >
             <Trans
               i18nKey='aside.votes'
               components={{
@@ -87,7 +94,9 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
                 {t('aside.has_already_voted').toString()}
               </Text>
             )}
-            {isAbleToVote && isLargerThanMd && <VoteButton variant='process' mb={0} onClick={setQuestionsTab} />}
+            {isAbleToVote && isLargerThanMd && (
+              <VoteButton variant='on-vote' w='full' mb={0} onClick={setQuestionsTab} />
+            )}
             {hasOverwriteEnabled(election) && isInCensus && votesLeft > 0 && voted && (
               <Text fontSize='sm' textAlign='center'>
                 {t('aside.overwrite_votes_left', { count: votesLeft })}
