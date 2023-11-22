@@ -15,10 +15,10 @@
     "title": "Voting for DAOs & Web3 communities"
   },
   "banner_voting_types": {
-    "anonymous_description": "Voters' identities remain completely confidential, thanks to cutting-edge zk-SNARKS technology.",
-    "anonymous_title": "100% Anonymous",
+    "anonymous_description": "Voters' identities remain completely confidential, thanks to cutting-edge zk-SNARK technology.",
+    "anonymous_title": "Fully Anonymous",
     "bottom_text": "Privacy should be normal",
-    "flexible_description": "Customize your voting process and participant list to fit your community unique requirements.",
+    "flexible_description": "Customize your voting process and participant list to fit your community's unique requirements.",
     "flexible_title": "Flexible Voting",
     "token_description": "Vote with ERC20/ERC721 (NFT's) or add your own token and vote gasless with them.",
     "token_title": "Token Voting"
@@ -26,7 +26,7 @@
   "cc": {
     "actions": {
       "cancel": "Cancel the process immediately, not allowing new votes and not counting any results (caution: it cannot be reverted)",
-      "cancel_description": "cancelling the \"{{ election.title.default }}\" voting process",
+      "cancel_description": "canceling the \"{{ election.title.default }}\" voting process",
       "continue": "Resume the process immediately, in case it has been paused",
       "end": "End the process immediately, preventing new votes to be submitted, and shows the voting results (caution: it cannot be reverted)",
       "end_description": "ending the \"{{ election.title.default }}\" voting process",
@@ -48,7 +48,7 @@
     "required": "This field is required",
     "results": {
       "date_format": "PPpp",
-      "secret_until_the_end": "Secret until the end. The results will be available when the process ends at {{ endDate }}",
+      "secret_until_the_end": "Secret until the end. The results will be available when the process ends on {{ endDate }}",
       "title": "Results for \"{{ title }}\"",
       "votes": "Votes: {{ votes }} ({{ percent }})"
     },
@@ -106,7 +106,7 @@
     "census_total_one": "<span>Voters:</span><span>{{ count }} voter</span>",
     "census_total_other": "<span>Voters:</span><span>{{ count }} voters</span>",
     "duration": "<span>Duration:</span> <span>{{ date, duration }}</span>",
-    "not_enough_tokens": "You don't have enough tokens for creating this process.",
+    "not_enough_tokens": "You don't have enough tokens to create this process.",
     "result": "<span>After creating the voting:</span><span2>{{ remainTokens }} tokens</span2>",
     "subtitle": "Your voting process",
     "total": "<span>Total:</span> <span>{{ cost }} tokens</span>"
@@ -117,7 +117,7 @@
     "invalid_row_length": "Correct document lines {{rows,list(style: short)}} and load it again",
     "invalid_weight_type": "Expecting weight in first column at lines {{rows,list(style:short)}}, but found unexpected data",
     "loading_page": "Error loading the page",
-    "not_found": "Sorry, the page you were looking for was not found",
+    "not_found": "Sorry, the page you are looking for was not found",
     "return_to_home": "Go to home"
   },
   "error_text": "Sorry, the page you were looking for was not found",
@@ -439,7 +439,7 @@
       "canceled": "Process canceled",
       "ended": "Ended",
       "paused": "Process paused",
-      "paused_description": "It's not possible to vote right now",
+      "paused_description": "Voting is not possible right now",
       "unknown": "Unknown",
       "upcoming": "Upcoming"
     },
