@@ -21,10 +21,10 @@ export const StepsForm = ({ steps, children, activeStep, next, prev, setActiveSt
     addresses: [],
   })
 
-  // reinitialize form if we have a draft and `loadDraft` is set in the URL
+  // reinitialize form if we have a draft and `state` is set in the URL
   useEffect(() => {
     const url = new URL(window.location.href)
-    if (url.searchParams.has('loadDraft')) {
+    if (url.searchParams.has('state')) {
       const form = localStorage.getItem('form-draft')
       if (form) {
         const parsed = JSON.parse(form)
