@@ -218,7 +218,7 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
     ;(async () => {
       try {
         const atypes = await getAuthTypes()
-        setFaucetAmount(atypes.oauth)
+        setFaucetAmount(atypes.oauth as number)
       } catch (e) {}
     })()
   }, [])
@@ -286,7 +286,7 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
           <Button
             variant='rounded'
             colorScheme='primary'
-            onClick={() => handleSignIn(socialAccount, account?.address as string, [{ param: 'loadDraft', value: '' }])}
+            onClick={() => handleSignIn(socialAccount, account?.address as string, [])}
             isLoading={loading}
             isDisabled={!socialAccount}
           >
