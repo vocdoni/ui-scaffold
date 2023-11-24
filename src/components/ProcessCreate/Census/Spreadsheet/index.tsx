@@ -19,8 +19,8 @@ import { BiCheckDouble, BiDownload } from 'react-icons/bi'
 import { PiWarningCircleLight } from 'react-icons/pi'
 import { RiFileExcel2Line } from 'react-icons/ri'
 import { CensusSpreadsheetManager } from './CensusSpreadsheetManager'
-import { CsvPreview } from './Preview'
 import { CsvGenerator } from './generator'
+import { CsvPreview } from './Preview'
 
 export const CensusCsvManager = () => {
   const { t } = useTranslation()
