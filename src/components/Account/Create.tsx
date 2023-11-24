@@ -61,9 +61,10 @@ export const AccountCreate = () => {
     ;(async () => {
       try {
         const atypes = await getAuthTypes()
-        setFaucetAmount(atypes.oauth)
+        setFaucetAmount(atypes.oauth as number)
       } catch (e) {}
     })()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const onSubmit = async (values: FormFields) =>
