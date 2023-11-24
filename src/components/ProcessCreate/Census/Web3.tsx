@@ -77,8 +77,8 @@ export const CensusWeb3Addresses = () => {
     }
 
     if (!errors.newAddress) {
-      // Perform any necessary actions
-      setValue('addresses', [...addresses, { address: newAddress }])
+      const naddresses = [...addresses, { address: newAddress }]
+      setValue('addresses', naddresses)
       resetField('newAddress')
     }
   }

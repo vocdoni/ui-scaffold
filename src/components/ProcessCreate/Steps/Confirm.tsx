@@ -124,14 +124,11 @@ export const Confirm = () => {
   useEffect(() => {
     if (typeof unpublished !== 'undefined') return
     ;(async () => {
-      const census = await getCensus(env, form, account!.address)
       setUnpublished(
         Election.from({
           ...corelection,
-          census,
-          // oroboros... getCensus ensures form.addresses is populated, that's why we need to set it again
-          // this could be avoided by defining corelection asynchronusly, but would delay the rendering
-          maxCensusSize: form.maxCensusSize ?? form.addresses.length,
+          // we really don't care about the census, but it's a requirement from the Election.from method
+          census: new WeightedCensus(),
         } as IElectionParameters)
       )
     })()
@@ -271,9 +268,7 @@ export const Confirm = () => {
  */
 const getCensus = async (env: EnvOptions, form: StepsFormValues, organization: string) => {
   if (form.censusType === 'spreadsheet') {
-    const wallets = await form.spreadsheet?.generateWallets(organization)
-
-    form.addresses = wallets as Web3Address[]
+    form.addresses = (await form.spreadsheet?.generateWallets(organization)) as Web3Address[]
   }
 
   switch (form.censusType) {
@@ -321,8 +316,12 @@ const getCensus = async (env: EnvOptions, form: StepsFormValues, organization: s
  * @returns
  */
 const electionFromForm = (form: StepsFormValues) => {
+  // max census size is calculated by the SDK when creating a process, but we need it to
+  // calculate the cost preview... so here we set it for all cases anyway
+  const maxCensusSize = form.maxCensusSize ?? form.spreadsheet?.data.length ?? form.addresses.length
   return {
     ...form,
+    maxCensusSize,
     // map questions back to IQuestion[]
     questions: form.questions.map(
       (question) =>
@@ -335,7 +334,6 @@ const electionFromForm = (form: StepsFormValues) => {
           })),
         } as IQuestion)
     ),
-    maxCensusSize: form.maxCensusSize ?? form.addresses.length,
     startDate: form.electionType.autoStart ? undefined : new Date(form.startDate).getTime(),
     endDate: new Date(form.endDate).getTime(),
     voteType: { maxVoteOverwrites: Number(form.maxVoteOverwrites) },
