@@ -5,7 +5,7 @@ import { createHtmlPlugin } from 'vite-plugin-html'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
 // https://vitejs.dev/config/
-export default ({ mode }) => {
+const viteconfig = ({ mode }) => {
   // load env variables from .env files
   process.env = { ...process.env, ...loadEnv(mode, process.cwd(), '') }
 
@@ -45,3 +45,5 @@ export default ({ mode }) => {
     ],
   })
 }
+
+export default viteconfig
