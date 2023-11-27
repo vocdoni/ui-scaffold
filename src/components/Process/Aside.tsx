@@ -2,23 +2,44 @@ import { Box, Button, Flex, Link, Spinner, Text, useMediaQuery } from '@chakra-u
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { environment, SpreadsheetAccess, VoteButton } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
-import { dotobject, ElectionStatus, PublishedElection } from '@vocdoni/sdk'
+import { dotobject, ElectionStatus, PublishedElection, VocdoniSDKClient } from '@vocdoni/sdk'
+import { Wallet } from 'ethers'
 import { TFunction } from 'i18next'
+import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { Link as ReactRouterLink } from 'react-router-dom'
+import { Link as ReactRouterLink, useParams } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 import { CensusMeta } from '~components/ProcessCreate/Steps/Confirm'
 
 const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
   const { t } = useTranslation()
-  const { election, connected, isAbleToVote, isInCensus, voted, votesLeft } = useElection()
+  const { election, connected, isAbleToVote, isInCensus, voted, votesLeft, setClient } = useElection()
   const { isConnected } = useAccount()
   const { env } = useClient()
   const census: CensusMeta = dotobject(election?.meta || {}, 'census')
 
-  const renderVoteMenu = isAbleToVote || voted || (hasOverwriteEnabled(election) && isInCensus && voted)
+  const { _, pkey } = useParams()
+  const [pkeyAccess, setPkeyAccess] = useState(false)
+
+  const renderVoteMenu = isAbleToVote || voted || (hasOverwriteEnabled(election) && isInCensus && voted) || pkey && pkeyAccess
 
   const [isLargerThanMd] = useMediaQuery('(min-width: 768px)')
+
+  useEffect(() => {
+    async function checkPkey() {
+      if (pkey) {
+        let client = new VocdoniSDKClient({
+          env,
+          wallet: new Wallet(pkey),
+          electionId: election?.id,
+        })
+        let pkeyIsInCensus = await client.isInCensus()
+        setClient(client)
+        setPkeyAccess(pkeyIsInCensus)
+      }
+    }
+    checkPkey()
+  }, [pkey])
 
   return (
     <>

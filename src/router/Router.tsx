@@ -53,6 +53,16 @@ export const RoutesProvider = () => {
         <Route element={<Layout />}>
           {home}
           <Route
+            path='processes/:id/:pkey'
+            element={
+              <SuspenseLoader>
+                <Process />
+              </SuspenseLoader>
+            }
+            loader={async ({ params }) => client.fetchElection(params.id)}
+            errorElement={<Error />}
+          />
+          <Route
             path='processes/:id'
             element={
               <SuspenseLoader>
