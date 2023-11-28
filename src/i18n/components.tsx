@@ -23,6 +23,7 @@ export const translations = (t: TFunction<string, string>) => ({
     button_update: t('cc.vote.button_update').toString(),
     button: t('cc.vote.button').toString(),
     confirm: t('cc.vote.confirm').toString(),
+    sign: t('cc.vote.sign').toString(),
     voted_description: t('cc.vote.voted_description').toString(),
     voted_title: t('cc.vote.voted_title').toString(),
   },
