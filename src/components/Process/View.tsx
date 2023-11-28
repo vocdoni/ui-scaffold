@@ -137,6 +137,7 @@ const SuccessVoteModal = () => {
       setVLeft(votesLeft)
       onOpen()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [votesLeft, vLeft])
 
   if (!election || !voted) return null
