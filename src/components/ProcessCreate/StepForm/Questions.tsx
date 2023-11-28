@@ -1,9 +1,9 @@
 import { Box } from '@chakra-ui/react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
-import CreateProcessQuestions from '../Questions'
+import CreateProcessQuestions from '../Questions/indexOnVote'
 import { StepsNavigation } from '../Steps/Navigation'
-import Wrapper from '../Steps/Wrapper'
 import { useProcessCreationSteps } from '../Steps/use-steps'
+import Wrapper from '../Steps/Wrapper'
 
 export interface Option {
   option: string

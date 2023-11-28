@@ -30,7 +30,7 @@ export const StepFormCensusToken = () => {
   }
   return (
     <Box px={7} py={4}>
-      <Text fontWeight='bold' mb={3} fontFamily='pixeloid' textTransform='uppercase' color='process_create.census.title'>
+      <Text fontWeight='bold' mb={3} color='process_create.census.title'>
         {t('census.token_title')}
       </Text>
       <Text fontSize='sm' color='process_create.description' mb={5}>

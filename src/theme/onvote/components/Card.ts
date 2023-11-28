@@ -124,7 +124,7 @@ const noElections = definePartsStyle({
   container: {
     p: 5,
     boxShadow: 'var(--box-shadow)',
-    borderRadius: 'lg',
+    borderRadius: 'none',
     minW: 'full',
     minH: 52,
   },

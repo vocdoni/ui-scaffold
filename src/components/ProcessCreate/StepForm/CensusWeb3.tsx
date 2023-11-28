@@ -2,7 +2,7 @@ import { Box, Text } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { CensusWeb3Addresses } from '../Census/Web3'
+import { CensusWeb3Addresses } from '../Census/Web3OnVote'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 
 export interface CensusWeb3Values {
@@ -45,13 +45,7 @@ export const StepFormCensusWeb3 = () => {
   return (
     <>
       <Box px={7} py={4}>
-        <Text
-          fontWeight='bold'
-          mb={3}
-          fontFamily='pixeloid'
-          textTransform='uppercase'
-          color='process_create.census.title'
-        >
+        <Text fontWeight='bold' mb={3} color='process_create.census.title'>
           {t('census.wallet_address_title')}
         </Text>
 

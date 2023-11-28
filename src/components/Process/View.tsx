@@ -28,8 +28,8 @@ import { useEffect, useState } from 'react'
 import { FieldValues } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaFacebook, FaReddit, FaTelegram, FaTwitter } from 'react-icons/fa'
-import ProcessAside, { ProcessAsideFooterMbl } from './Aside'
-import Header from './Header'
+import ProcessAside, { ProcessAsideFooterMbl } from './AsideOnVote'
+import Header from './HeaderOnVote'
 import confirmImg from '/assets/spreadsheet-confirm-modal.jpeg'
 import successImg from '/assets/success.jpeg'
 
@@ -50,8 +50,8 @@ export const ProcessView = () => {
   }, [election])
 
   return (
-    <Box>
-      <Box mb={44} px={0}>
+    <div>
+      <Box>
         <Header />
         <Flex
           direction={{ base: 'column', md: 'row' }}
@@ -115,7 +115,7 @@ export const ProcessView = () => {
       </Box>
 
       <SuccessVoteModal />
-    </Box>
+    </div>
   )
 }
 
@@ -216,7 +216,7 @@ const SuccessVoteModal = () => {
         </ModalBody>
 
         <ModalFooter mt={4}>
-          <Button variant='on-vote' colorScheme='primary' px={16} onClick={onClose}>
+          <Button variant='rounded' colorScheme='primary' px={16} onClick={onClose}>
             {t('process.success_modal.btn')}
           </Button>
         </ModalFooter>
@@ -234,7 +234,9 @@ const ConfirmVoteModal = ({ questions, answers }: { questions: IQuestion[]; answ
         <Box bgImage={`url(${confirmImg})`} />
       </ModalHeader>
       <ModalBody display='flex' flexDirection='column' gap={5} p={0} mb={2}>
-        <Text>{t('process.spreadsheet.confirm.description')}</Text>
+        <Text textAlign='center' color='modal_description'>
+          {t('process.spreadsheet.confirm.description')}
+        </Text>
         <Flex
           flexDirection='column'
           maxH='200px'

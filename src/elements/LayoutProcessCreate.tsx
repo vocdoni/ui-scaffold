@@ -1,8 +1,8 @@
-import { Box, Flex, Img, Link, Text } from '@chakra-ui/react'
+import { Box, Flex, Icon, Link } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
+import { IoCloseOutline } from 'react-icons/io5'
 import { Outlet, useNavigate } from 'react-router-dom'
-import Logo from '~components/Layout/Logo'
-import closeIcon from '/assets/close-icon.svg'
+import Logo from '~components/Layout/LogoOnVote'
 
 const LayoutProcessCreate = () => {
   const { t } = useTranslation()
@@ -24,39 +24,20 @@ const LayoutProcessCreate = () => {
 
           <Link
             p={1}
+            bgColor='white'
             display='flex'
             alignItems='center'
             onClick={(e) => (window.history.state.idx ? navigate(-1) : navigate('/'))}
-            color='primary.500'
           >
-            <Img src={closeIcon} mr={1} />
+            <Icon as={IoCloseOutline} mt='1.5px' boxSize={5} />
             {t('form.process_create.navbar.close_form_btn')}
           </Link>
         </Flex>
 
-        <Box
-          as='main'
-          maxW={360}
-          w='full'
-          mx='auto'
-          px={{
-            base: 6,
-            md: 10,
-          }}
-        >
+        <Box as='main' maxW={360} w='full' mx='auto' p={4}>
           <Outlet />
         </Box>
       </Flex>
-      <Text
-        position='fixed'
-        top='50vh'
-        left={-20}
-        transform='rotate(-90deg)'
-        fontFamily='pixeloid'
-        textTransform='uppercase'
-      >
-        World wide voting
-      </Text>
     </Box>
   )
 }

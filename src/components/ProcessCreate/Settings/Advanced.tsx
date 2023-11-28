@@ -34,7 +34,7 @@ const SettingsAdvanced = () => {
   return (
     <Box>
       <Box mb={4}>
-        <Text fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase' mb={1}>
+        <Text fontWeight='bold' mb={1}>
           {t('form.process_create.behavior.title')}
         </Text>
       </Box>
@@ -42,27 +42,21 @@ const SettingsAdvanced = () => {
         <Checkbox isChecked={anonymous} onChange={handleAnonymousChange} variant='radiobox' flex='0 0 30%'>
           <Box>
             <Icon as={FaUserSecret} />
-            <Text fontFamily='pixeloid' textTransform='uppercase'>
-              {t('form.process_create.behavior.anonymous.title')}
-            </Text>
+            <Text>{t('form.process_create.behavior.anonymous.title')}</Text>
           </Box>
           <Text>{t('form.process_create.behavior.anonymous.description')}</Text>
         </Checkbox>
         <Checkbox {...register('electionType.secretUntilTheEnd')} variant='radiobox' flex='0 0 30%'>
           <Box>
             <Icon as={HiKey} />
-            <Text fontFamily='pixeloid' textTransform='uppercase'>
-              {t('form.process_create.behavior.secret.title')}
-            </Text>
+            <Text>{t('form.process_create.behavior.secret.title')}</Text>
           </Box>
           <Text>{t('form.process_create.behavior.secret.description')}</Text>
         </Checkbox>
         <Checkbox isChecked={voteOverwrite} onChange={handleVoteOverwriteChange} variant='radiobox' flex='0 0 30%'>
           <Box>
             <Icon as={BiCheckDouble} />
-            <Text fontFamily='pixeloid' textTransform='uppercase'>
-              {t('form.process_create.behavior.overwrite.title')}
-            </Text>
+            <Text>{t('form.process_create.behavior.overwrite.title')}</Text>
           </Box>
           <Text>{t('form.process_create.behavior.overwrite.description')}</Text>
         </Checkbox>

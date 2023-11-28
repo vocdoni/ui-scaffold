@@ -6,15 +6,19 @@ export const colorsBase = {
     dark: '#0042CC',
   },
   gray: {
+    bg: '#f2f2f2',
     light2: '#EDF2F7',
     light: '#E2E8F0',
     main: '#CBD5E0',
     dark: '#606f88',
   },
   primary: {
-    light: '#d9e5ff',
+    gray_light: '#b8bdc7',
+    gray: '#656E81',
+    light2: '#B2CCFF',
+    light: '#3375ff',
     main: '#0053FF',
-    dark: '#0053FF',
+    dark: '#0042cc',
     dark2: '#003399',
   },
   red: '#E53E3E',
@@ -26,20 +30,32 @@ export const colorsBase = {
 }
 
 export const colors = {
+  button: {
+    black: colorsBase.black,
+    color: colorsBase.white.pure,
+    light2: colorsBase.primary.light2,
+    light: colorsBase.primary.light,
+    main: colorsBase.primary.main,
+    dark: colorsBase.primary.dark,
+
+    ghost: {
+      bg: colorsBase.white.pure,
+      border_active: colorsBase.primary.light2,
+      color: colorsBase.primary.main,
+      color_hover: colorsBase.primary.dark,
+    },
+
+    disabled: {
+      bg: colorsBase.primary.gray,
+      color: colorsBase.primary.gray_light,
+    },
+  },
+
   primary: {
     main: colorsBase.primary.main,
-    light: colorsBase.primary.light,
-    50: colorsBase.white.pure,
-    500: colorsBase.primary.main,
-    600: colorsBase.primary.dark,
-    700: colorsBase.primary.dark2,
   },
-  black: {
-    50: colorsBase.white.pure,
-    500: colorsBase.black,
-    600: colorsBase.black,
-    700: colorsBase.black,
-  },
+
+  bg: colorsBase.gray.bg,
 
   checkbox: colorsBase.primary.main,
 

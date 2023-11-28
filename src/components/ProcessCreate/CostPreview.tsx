@@ -25,7 +25,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa'
 import { TbDatabaseExclamation } from 'react-icons/tb'
-import { HandleSignInFunction, useClaim } from '~components/Faucet/Claim'
+import { HandleSignInFunction, useClaim } from '~components/Faucet/ClaimOnVote'
 import { useFaucet } from '~components/Faucet/use-faucet'
 import { useProcessCreationSteps } from './Steps/use-steps'
 import imageHeader from '/assets/voc-tokens.jpg'
@@ -77,9 +77,7 @@ export const CostPreview = ({
 
   return (
     <Flex flexDirection='column' gap={2} mb={5}>
-      <Text fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase'>
-        {t('form.process_create.confirm.cost_title')}
-      </Text>
+      <Text fontWeight='bold'>{t('form.process_create.confirm.cost_title')}</Text>
       <Text fontSize='sm'>{t('form.process_create.confirm.cost_description')}</Text>
       <Flex flexDirection='column' gap={4} p={{ base: 3, xl: 6 }} bgColor='process_create.section' borderRadius='md'>
         {typeof cost === 'undefined' && (
@@ -192,7 +190,7 @@ export const CostPreview = ({
             {t('cost_preview.not_enough_tokens')}
           </Text>
           <Button
-            variant='on-vote'
+            variant='rounded'
             colorScheme='primary'
             leftIcon={<TbDatabaseExclamation />}
             maxW={64}
@@ -220,7 +218,7 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
     ;(async () => {
       try {
         const atypes = await getAuthTypes()
-        setFaucetAmount(atypes.oauth)
+        setFaucetAmount(atypes.oauth as number)
       } catch (e) {}
     })()
   }, [])
@@ -288,7 +286,7 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
           <Button
             variant='rounded'
             colorScheme='primary'
-            onClick={() => handleSignIn(socialAccount, account?.address as string, [{ param: 'loadDraft', value: '' }])}
+            onClick={() => handleSignIn(socialAccount, account?.address as string, [])}
             isLoading={loading}
             isDisabled={!socialAccount}
           >

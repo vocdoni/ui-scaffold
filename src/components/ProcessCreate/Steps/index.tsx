@@ -1,8 +1,8 @@
 import {
   Box,
   Flex,
-  Img,
   Step,
+  StepIcon,
   StepIndicator,
   StepNumber,
   Stepper,
@@ -14,7 +14,6 @@ import {
 } from '@chakra-ui/react'
 import { StepsForm } from './Form'
 import { useStepContents } from './use-steps'
-import checkIcon from '/assets/check-icon.svg'
 
 const Steps = () => {
   const steps = useStepContents()
@@ -35,22 +34,12 @@ const Steps = () => {
         ml={{ lg: 2.5 }}
         gap={{ base: 3, sm: 5 }}
         justifyContent='center'
-        fontFamily='pixeloid'
-        textTransform='uppercase'
       >
         {steps.map((step, index) => (
           <Step key={index}>
             <Flex flexDirection={{ base: 'column', lg: 'row' }} alignItems={{ base: 'center', lg: 'initial' }} gap={3}>
               <StepIndicator>
-                <StepStatus
-                  complete={
-                    <Box>
-                      <Img src={checkIcon} />
-                    </Box>
-                  }
-                  incomplete={<StepNumber />}
-                  active={<StepNumber />}
-                />
+                <StepStatus complete={<StepIcon />} incomplete={<StepNumber />} active={<StepNumber />} />
               </StepIndicator>
               <Text as='span' fontSize='xs' mt={{ lg: 2 }} color='#555'>
                 {step.title}

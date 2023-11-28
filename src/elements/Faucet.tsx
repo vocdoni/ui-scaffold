@@ -2,7 +2,7 @@ import { Box, Card, CardBody, Flex, Grid, GridItem, Heading, Text } from '@chakr
 import { useClient } from '@vocdoni/react-providers'
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { Claim } from '~components/Faucet/Claim'
+import { Claim } from '~components/Faucet/ClaimOnVote'
 import { authTypes, useFaucet } from '~components/Faucet/use-faucet'
 
 const Faucet = () => {

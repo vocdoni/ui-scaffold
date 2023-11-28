@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { BiCoinStack, BiFile, BiWallet } from 'react-icons/bi'
-import { StepFormCensusSpreadsheet } from '../StepForm/CensusSpreadsheet'
-import { StepFormCensusToken } from '../StepForm/CensusToken'
-import { StepFormCensusWeb3 } from '../StepForm/CensusWeb3'
+import { StepFormCensusSpreadsheet } from '../StepForm/CensusSpreadsheetOnVote'
+import { StepFormCensusToken } from '../StepForm/CensusTokenOnVote'
+import { StepFormCensusWeb3 } from '../StepForm/CensusWeb3OnVote'
 
 export const CensusTypeSpreadsheet = 'spreadsheet'
 export const CensusTypeToken = 'token'

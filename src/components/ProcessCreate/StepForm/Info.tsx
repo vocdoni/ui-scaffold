@@ -1,10 +1,10 @@
 import { Flex } from '@chakra-ui/react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
-import CreateProcessMeta from '../Meta'
+import CreateProcessMeta from '../MetaOnVote'
 import CreateProcessSettings from '../Settings'
 import { StepsNavigation } from '../Steps/Navigation'
-import Wrapper from '../Steps/Wrapper'
 import { useProcessCreationSteps } from '../Steps/use-steps'
+import Wrapper from '../Steps/Wrapper'
 
 export interface InfoValues {
   title: string

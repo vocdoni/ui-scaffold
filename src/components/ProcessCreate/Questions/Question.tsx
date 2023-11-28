@@ -3,7 +3,7 @@ import { Box, FormControl, FormErrorMessage, IconButton, Input, Text, Textarea }
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { fieldMapErrorMessage, isInvalidFieldMap } from '~constants'
-import Options from './Options'
+import Options from './OptionsOnVote'
 
 interface Props {
   index: number

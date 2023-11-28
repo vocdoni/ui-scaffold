@@ -1,5 +1,5 @@
-import Advanced from './Advanced'
-import Calendar from './Calendar'
+import Advanced from './AdvancedOnVote'
+import Calendar from './CalendarOnVote'
 
 const CreateProcessSettings = () => (
   <>

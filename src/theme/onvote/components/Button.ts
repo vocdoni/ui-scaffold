@@ -1,4 +1,8 @@
-import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+import { defineStyle, defineStyleConfig } from '@chakra-ui/styled-system'
+
+const baseStyle = defineStyle({
+  borderRadius: 0,
+})
 
 const process = defineStyle({
   w: 'full',
@@ -8,105 +12,196 @@ const process = defineStyle({
   bgColor: 'process.aside.vote_btn_bg',
 })
 
-const onVote = defineStyle((props) => {
-  const { colorScheme } = props
-
-  // Chakra defaults to using the gray colorScheme, utilizing .100 for the background, .200 for hover, and .300 for active states.
-  // However, when a color scheme is provided, it employs the values 500/600/700.
-  // We replicate the same approach: if a colorScheme is specified, we use the values 500/600/700; otherwise, we use gray.100/gray.200/gray.300.
-  return {
+const onVoteCommonStyles = {
+  common: {
+    maxH: '38px',
+    lineHeight: '20px',
+    fontSize: '14px',
+    fontWeight: 700,
     fontFamily: 'pixeloid',
-    clipPath:
-      'polygon(0% 5px, 5px 5px, 5px 0%, calc(100% - 5px) 0%, calc(100% - 5px) 5px, 100% 5px, 100% calc(100% - 5px), calc(100% - 5px) calc(100% - 5px), calc(100% - 5px) 100%, 5px 100%, 5px calc(100% - 5px), 0% calc(100% - 5px))',
-
-    bgColor: colorScheme !== 'gray' ? `${colorScheme}.500` : `${colorScheme}.100`,
-
-    //By default, Chakra UI uses white color, and in the case of the gray colorScheme, it uses black. This can always be modified using the "color" prop.
-    color: colorScheme !== 'gray' ? 'white' : 'black',
-
-    _hover: {
-      bgColor: colorScheme !== 'gray' ? `${colorScheme}.600` : `${colorScheme}.200`,
-    },
-
-    _active: {
-      bgColor: colorScheme !== 'gray' ? `${colorScheme}.600` : `${colorScheme}.300`,
-      border: '5px solid',
-      borderColor: colorScheme !== 'gray' ? `${colorScheme}.700` : `${colorScheme}.500`,
-    },
-  }
-})
-
-const rounded = defineStyle((props) => {
-  const { colorScheme } = props
-
-  // Chakra defaults to using the gray colorScheme, utilizing .100 for the background, .200 for hover, and .300 for active states.
-  // However, when a color scheme is provided, it employs the values 500/600/700.
-  // We replicate the same approach: if a colorScheme is specified, we use the values 500/600/700; otherwise, we use gray.100/gray.200/gray.300.
-  return {
-    borderRadius: 'full',
-    bgColor: colorScheme !== 'gray' ? `${colorScheme}.500` : `${colorScheme}.100`,
-
-    //By default, Chakra UI uses white color, and in the case of the gray colorScheme, it uses black. This can always be modified using the "color" prop.
-    color: colorScheme !== 'gray' ? 'white' : 'black',
-
-    _hover: {
-      bgColor: colorScheme !== 'gray' ? `${colorScheme}.600` : `${colorScheme}.200`,
-    },
-
-    _active: {
-      bgColor: colorScheme !== 'gray' ? `${colorScheme}.700` : `${colorScheme}.300`,
-    },
-  }
-})
-
-const roundedGhost = defineStyle((props) => {
-  const { colorScheme } = props
-
-  // The same as in "rounded," but without a default bgColor.
-  return {
-    borderRadius: 'full',
-    bgColor: 'transparent',
-
-    _hover: {
-      bgColor: colorScheme !== 'gray' ? `${colorScheme}.500` : `${colorScheme}.100`,
-    },
-
-    _active: {
-      bgColor: colorScheme !== 'gray' ? `${colorScheme}.600` : `${colorScheme}.200`,
-    },
-  }
-})
-const onVoteGhost = defineStyle((props) => {
-  const { colorScheme } = props
-
-  //Similar to the case of "rounded" but without bgColor as a general style.
-  return {
+    cursor: 'pointer',
     display: 'flex',
+    justifyContent: 'center',
     alignItems: 'center',
-    gap: 1,
-    height: 10,
-    px: 4,
-    fontWeight: 'semibold',
-    lineHeight: 1.2,
-    clipPath:
-      'polygon(0% 5px, 5px 5px, 5px 0%, calc(100% - 5px) 0%, calc(100% - 5px) 5px, 100% 5px, 100% calc(100% - 5px), calc(100% - 5px) calc(100% - 5px), calc(100% - 5px) 100%, 5px 100%, 5px calc(100% - 5px), 0% calc(100% - 5px))',
-    fontFamily: 'pixeloid',
+    gap: 2,
+    borderLeft: '5px solid',
+    borderRight: '5px solid',
+  },
 
-    border: '5px solid',
-    borderColor: 'transparent',
+  before: {
+    content: '""',
+    position: 'absolute',
+    top: '-4px',
+    width: '100%',
+    height: '4px',
+    transition: 'width 0.3s ease',
+  },
+  after: {
+    content: '""',
+    position: 'absolute',
+    bottom: '-4px',
+    width: '100%',
+    height: '4px',
+    transition: 'width 0.3s ease',
+  },
+
+  hover: {
+    width: 'calc(100% + 10px)',
+  },
+
+  active: {
+    width: '100%',
+  },
+}
+const onVotePrimary = defineStyle((props) => {
+  const { colorScheme } = props
+
+  return {
+    ...onVoteCommonStyles.common,
+    bgColor: colorScheme === 'black' ? 'button.black' : 'button.main',
+    color: 'button.color',
+    borderColor: colorScheme === 'black' ? 'button.black' : 'button.main',
+
+    _before: {
+      ...onVoteCommonStyles.before,
+      bgColor: colorScheme === 'black' ? 'button.black' : 'button.main',
+    },
+
+    _after: {
+      ...onVoteCommonStyles.after,
+      bgColor: colorScheme === 'black' ? 'button.black' : 'button.main',
+    },
 
     _hover: {
-      textDecoration: 'none',
-      bgColor: 'gray.300',
-      borderColor: 'gray.300',
+      bgColor: colorScheme === 'black' ? 'button.black' : 'button.dark',
+      borderColor: colorScheme === 'black' ? 'button.black' : 'button.dark',
+
+      _before: {
+        ...onVoteCommonStyles.hover,
+        bgColor: colorScheme === 'black' ? 'button.black' : 'button.dark',
+      },
+
+      _after: {
+        ...onVoteCommonStyles.hover,
+        bgColor: colorScheme === 'black' ? 'button.black' : 'button.dark',
+      },
     },
 
     _active: {
-      bgColor: 'gray.400',
-      borderColor: 'gray.500',
+      bgColor: colorScheme === 'black' ? 'button.black' : 'button.main',
+      borderColor: colorScheme === 'black' ? 'button.black' : 'button.light',
+      _before: {
+        ...onVoteCommonStyles.active,
+        bgColor: colorScheme === 'black' ? 'button.black' : 'button.light',
+      },
+
+      _after: {
+        ...onVoteCommonStyles.active,
+        bgColor: colorScheme === 'black' ? 'button.black' : 'button.light',
+      },
+    },
+
+    _disabled: {
+      bgColor: 'button.disabled.bg',
+      color: 'button.disabled.color',
+      border: 'none',
+
+      _before: {
+        bgColor: 'button.disabled.bg',
+        transition: 'none',
+        borderColor: 'button.disabled.bg',
+      },
+      _after: {
+        bgColor: 'button.disabled.bg',
+        transition: 'none',
+        borderColor: 'button.disabled.bg',
+      },
+
+      _hover: {
+        transition: 'none',
+        color: 'transparent',
+        borderColor: 'button.disabled.bg',
+
+        _before: {
+          bgColor: 'transparent',
+        },
+        _after: {
+          bgColor: 'transparent',
+        },
+      },
+    },
+  }
+})
+
+const onVoteSecondary = defineStyle((props) => {
+  return {
+    ...onVoteCommonStyles.common,
+    bgColor: 'button.ghost.bg',
+    color: 'button.ghost.color',
+    borderColor: 'button.ghost.bg',
+
+    _before: {
+      ...onVoteCommonStyles.before,
+      bgColor: 'button.ghost.bg',
+    },
+
+    _after: {
+      ...onVoteCommonStyles.after,
+      bgColor: 'button.ghost.bg',
+    },
+
+    _hover: {
+      color: 'button.ghost.color_hover',
+      _before: {
+        ...onVoteCommonStyles.hover,
+      },
+
+      _after: {
+        ...onVoteCommonStyles.hover,
+      },
+    },
+
+    _active: {
+      borderColor: 'button.ghost.border_active',
+      _before: {
+        ...onVoteCommonStyles.active,
+        bgColor: 'button.ghost.border_active',
+      },
+
+      _after: {
+        ...onVoteCommonStyles.active,
+        bgColor: 'button.ghost.border_active',
+      },
+    },
+
+    _disabled: {
+      bgColor: 'button.disabled.bg',
+      color: 'button.disabled.color',
+
+      _before: {
+        bgColor: 'button.disabled.bg',
+        transition: 'none',
+      },
+      _after: {
+        bgColor: 'button.disabled.bg',
+        transition: 'none',
+      },
+
+      _hover: {
+        transition: 'none',
+        color: 'transparent',
+
+        _before: {
+          bgColor: 'transparent',
+        },
+        _after: {
+          bgColor: 'transparent',
+        },
+      },
     },
   }
 })
 export const Button = defineStyleConfig({
-  variants: { 'on-vote': onVote, process, 'on-vote-ghost': onVoteGhost, rounded, 'rounded-ghost': roundedGhost },
+  baseStyle,
+  variants: { 'onvote-primary': onVotePrimary, process, 'onvote-secondary': onVoteSecondary },
 })

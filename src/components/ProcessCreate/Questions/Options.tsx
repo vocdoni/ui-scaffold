@@ -51,19 +51,12 @@ const Options = ({ fields, removeOption, appendOption, index }: Props) => {
                   values: { question: index, option: idx },
                 })}
                 onClick={() => removeOption(idx)}
-                borderRadius={0}
               />
             )}
           </Flex>
         </FormControl>
       ))}
-      <Button
-        variant='on-vote-ghost'
-        color='primary.500'
-        ml={5}
-        onClick={() => appendOption({ option: '' })}
-        fontSize='sm'
-      >
+      <Button ml={5} onClick={() => appendOption({ option: '' })} fontSize='sm'>
         {t('form.process_create.question.add_new_option')}
       </Button>
     </Box>
