@@ -91,6 +91,7 @@
       "button": "Votar",
       "button_update": "Reenviar voto",
       "confirm": "Confirma tus selecciones:",
+      "sign": "Firma antes de votar",
       "voted_description": "Para verificar tu voto, puedes utilizar este identificador único: {{ id }}",
       "voted_title": "¡Tu voto se ha registrado con éxito!"
     }

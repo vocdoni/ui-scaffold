@@ -78,7 +78,8 @@ export const Confirm = () => {
     setSending(true)
     setError(null)
     try {
-      const census = await getCensus(env, form, account!.address)
+      const salt = await client.electionService.getElectionSalt(account!.address, account!.electionIndex)
+      const census = await getCensus(env, form, salt)
       const params: IElectionParameters = {
         ...electionFromForm(form),
         census,
@@ -266,9 +267,9 @@ export const Confirm = () => {
  * @param {StepsFormValues} form The form object from where to generate the census
  * @returns
  */
-const getCensus = async (env: EnvOptions, form: StepsFormValues, organization: string) => {
+const getCensus = async (env: EnvOptions, form: StepsFormValues, salt: string) => {
   if (form.censusType === 'spreadsheet') {
-    form.addresses = (await form.spreadsheet?.generateWallets(organization)) as Web3Address[]
+    form.addresses = (await form.spreadsheet?.generateWallets(salt)) as Web3Address[]
   }
 
   switch (form.censusType) {
