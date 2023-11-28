@@ -2763,10 +2763,10 @@
     long "^5.2.1"
     protobufjs "^7.1.2"
 
-"@vocdoni/rainbowkit-wallets@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@vocdoni/rainbowkit-wallets/-/rainbowkit-wallets-0.2.1.tgz#4ee022e1baf2eee2f8e0ee87cfe3b5580a238056"
-  integrity sha512-fqdyPzyQYu/jKzAJzbdHXTSMESF7wDAV9fvzC2gHpcuUe09CeUlBofcAgA0HezLQBWChshv50xBpuonFyaYNUA==
+"@vocdoni/rainbowkit-wallets@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@vocdoni/rainbowkit-wallets/-/rainbowkit-wallets-0.2.2.tgz#d470949b23f35f2933daecc648a53b3d3f23ef5c"
+  integrity sha512-mmVlkaCwrJONo95nSYSQ+GO9N+r9OVg9mX6zMQSyR7KGVkrcKkI5lEzkZXIsOx0gQv4q+tAN8nnSEYs9zNNvEg==
 
 "@vocdoni/react-providers@~0.2.0":
   version "0.2.0"
