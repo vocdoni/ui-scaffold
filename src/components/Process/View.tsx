@@ -20,8 +20,9 @@ import {
   Text,
   UnorderedList,
   useDisclosure,
+  useMultiStyleConfig,
 } from '@chakra-ui/react'
-import { ElectionQuestions, ElectionResults, environment } from '@vocdoni/chakra-components'
+import { ElectionQuestions, ElectionResults, environment, useConfirm } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
 import { ElectionStatus, IQuestion } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
@@ -227,6 +228,8 @@ const SuccessVoteModal = () => {
 
 const ConfirmVoteModal = ({ questions, answers }: { questions: IQuestion[]; answers: FieldValues }) => {
   const { t } = useTranslation()
+  const styles = useMultiStyleConfig('ConfirmModal')
+  const { cancel, proceed } = useConfirm()
 
   return (
     <>
@@ -278,6 +281,14 @@ const ConfirmVoteModal = ({ questions, answers }: { questions: IQuestion[]; answ
           ))}
         </Flex>
       </ModalBody>
+      <ModalFooter sx={styles.footer}>
+        <Button onClick={cancel!} variant='ghost' sx={styles.cancel}>
+          {t('cc.confirm.cancel')}
+        </Button>
+        <Button onClick={proceed!} sx={styles.confirm}>
+          {t('cc.confirm.confirm')}
+        </Button>
+      </ModalFooter>
     </>
   )
 }
