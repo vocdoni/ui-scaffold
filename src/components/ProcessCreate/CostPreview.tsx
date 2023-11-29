@@ -186,8 +186,10 @@ export const CostPreview = ({
       </Flex>
 
       {cost && cost > account!.balance && (
-        <Flex flexDir='column' alignItems='center' gap={2}>
-          <Text textAlign='center'>{t('cost_preview.not_enough_tokens')}</Text>
+        <Flex flexDir='column' alignItems='center' gap={2} mb={10}>
+          <Text textAlign='center' mb={3}>
+            {t('cost_preview.not_enough_tokens')}
+          </Text>
           <Button leftIcon={<TbDatabaseExclamation />} maxW={64} onClick={onOpen}>
             {t('cost_preview.button')}
           </Button>

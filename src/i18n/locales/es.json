@@ -179,6 +179,7 @@
       "avatar_helper": "Imagen/logotipo de tu organización",
       "avatar_placeholder": "URL de la imagen",
       "btn": "Guardar",
+      "footer": "Editar tu organización generará una solicitud de firma, con un coste de 1 token",
       "title": "Editar Organización"
     },
     "error": {

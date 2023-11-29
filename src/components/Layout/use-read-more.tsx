@@ -2,7 +2,12 @@ import { Box, Button } from '@chakra-ui/react'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-export const useReadMoreMarkdown = (containerMaxHeightPx: number, tantPerCentGradient?: number) => {
+export const useReadMoreMarkdown = (
+  colorFrom: string,
+  colorTo: string,
+  containerMaxHeightPx: number,
+  tantPerCentGradient?: number
+) => {
   const { t } = useTranslation()
   const containerRef = useRef<HTMLDivElement>(null)
   const [isTruncated, setIsTruncated] = useState(false)
@@ -39,9 +44,7 @@ export const useReadMoreMarkdown = (containerMaxHeightPx: number, tantPerCentGra
           bottom: 0,
           background:
             isTruncated && readMore
-              ? `linear-gradient(to bottom, ${from ? from : 'rgba(255, 255, 255, 0)'} 0%, ${
-                  to ? to : 'rgba(255, 255, 255, .8)'
-                } 100%)`
+              ? `linear-gradient(to bottom, ${from ? from : colorFrom} 0%, ${to ? to : colorTo} 100%)`
               : '',
         },
       }}
@@ -51,7 +54,7 @@ export const useReadMoreMarkdown = (containerMaxHeightPx: number, tantPerCentGra
   )
   const ReadMoreMarkdownButton = ({ ...props }: any) =>
     isTruncated ? (
-      <Button onClick={handleReadMore} variant='link' {...props}>
+      <Button onClick={handleReadMore} variant='' color='primary.600' {...props}>
         {readMore ? t('use_read_more.read_more') : t('use_read_more.read_less')}
       </Button>
     ) : null

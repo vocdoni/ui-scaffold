@@ -17,7 +17,11 @@ const OrganizationHeader = () => {
   const { onOpen } = useOrganizationModal()
   const { account } = useClient()
 
-  const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(110)
+  const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(
+    'rgba(242, 242, 242, 0)',
+    'rgba(242, 242, 242, 1)',
+    110
+  )
 
   const { containerRef, isTruncated, readMore, handleReadMore } = useReadMoreTitle()
 

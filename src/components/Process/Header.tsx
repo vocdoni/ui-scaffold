@@ -21,19 +21,18 @@ const ProcessHeader = () => {
   const { election } = useElection()
   const { organization, loaded } = useOrganization()
   const { account } = useClient()
-  const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(600, 20)
+  const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(
+    'rgba(242, 242, 242, 0)',
+    'rgba(242, 242, 242, 1)',
+    600,
+    20
+  )
   const strategy = useStrategy()
 
   const showOrgInformation = !loaded || (loaded && organization?.account?.name)
 
   return (
-    <Box
-      mb={4}
-      px={{
-        base: 10,
-        sm: 14,
-      }}
-    >
+    <Box mb={4} p={{ base: '12px 20px', md: '24px 40px' }}>
       {showOrgInformation && (
         <Button
           as='a'

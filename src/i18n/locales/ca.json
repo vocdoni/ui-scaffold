@@ -179,6 +179,7 @@
       "avatar_helper": "Imatge/logotip de la teva organització",
       "avatar_placeholder": "URL de la imatge",
       "btn": "Desar",
+      "footer": "Modificar la teva organització generarà una sol·licitud de signatura, amb un cost de 1 token",
       "title": "Editar Orgnaització"
     },
     "error": {
