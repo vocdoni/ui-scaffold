@@ -16,12 +16,6 @@ import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { useFaucet } from '~components/Faucet/use-faucet'
-import anonymous from '/assets/anonymous.png'
-import censorship from '/assets/censorship-resistance.png'
-import inexpensive from '/assets/inexpensive.png'
-import openSource from '/assets/open-source.png'
-import scalable from '/assets/scalable.png'
-import verificable from '/assets/verificable.png'
 
 interface FormFields {
   name: string
@@ -80,7 +74,7 @@ export const AccountCreate = () => {
         handleSubmit(onSubmit)(e)
       }}
     >
-      <Text fontWeight='light'>
+      <Text>
         <Trans
           i18nKey='new_organization.description1'
           components={{
@@ -88,7 +82,7 @@ export const AccountCreate = () => {
           }}
         />
       </Text>
-      <Text fontWeight='light'>
+      <Text>
         <Trans
           i18nKey='new_organization.description2'
           components={{
@@ -99,7 +93,7 @@ export const AccountCreate = () => {
       </Text>
       <Box px={{ base: 5, md: 10 }} pt={5} pb={10}>
         <FormControl isInvalid={!!errors.name} mb={5}>
-          <FormLabel fontWeight='bold' textTransform='uppercase' fontFamily='pixeloid'>
+          <FormLabel fontWeight='bold' textTransform='uppercase' fontFamily='pixeloidsans'>
             *{t('new_organization.name')}
           </FormLabel>
           <Input

@@ -18,14 +18,14 @@ const onVoteCommonStyles = {
     lineHeight: '20px',
     fontSize: '14px',
     fontWeight: 700,
-    fontFamily: 'pixeloid',
+    fontFamily: 'pixeloidsans',
     cursor: 'pointer',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     gap: 2,
-    borderLeft: '5px solid',
-    borderRight: '5px solid',
+    borderLeft: '4px solid',
+    borderRight: '4px solid',
   },
 
   before: {
@@ -46,7 +46,7 @@ const onVoteCommonStyles = {
   },
 
   hover: {
-    width: 'calc(100% + 10px)',
+    width: 'calc(100% + 8px)',
   },
 
   active: {
@@ -228,7 +228,7 @@ const icon = defineStyle((props) => {
     bgColor: 'transparent',
 
     _hover: {
-      bgColor: `${colorScheme}.500`,
+      bgColor: `${colorScheme}.600`,
       color: 'white',
     },
     _active: {
@@ -239,9 +239,67 @@ const icon = defineStyle((props) => {
     _disabled: {},
   }
 })
+
+const icon2 = defineStyle((props) => {
+  const { colorScheme } = props
+
+  return {
+    bgColor: 'black',
+    color: 'white',
+    width: '50px',
+    height: '50px',
+    borderRadius: 'full',
+
+    _hover: {
+      bgColor: `${colorScheme}.600`,
+    },
+
+    _active: {
+      bgColor: `${colorScheme}.700 `,
+    },
+
+    _selected: {
+      bgColor: `${colorScheme}.700 `,
+    },
+    _activeLink: {
+      bgColor: `${colorScheme}.700 `,
+    },
+
+    _disabled: {
+      bgColor: 'button_disabled.disabled.bg',
+      color: 'button_disabled.disabled.color',
+      border: 'none',
+
+      _before: {
+        bgColor: 'button_disabled.disabled.bg',
+        transition: 'none',
+        borderColor: 'button_disabled.disabled.bg',
+      },
+      _after: {
+        bgColor: 'button_disabled.disabled.bg',
+        transition: 'none',
+        borderColor: 'button_disabled.disabled.bg',
+      },
+
+      _hover: {
+        transition: 'none',
+        color: 'transparent',
+        borderColor: 'button_disabled.disabled.bg',
+
+        _before: {
+          bgColor: 'transparent',
+        },
+        _after: {
+          bgColor: 'transparent',
+        },
+      },
+    },
+  }
+})
+
 export const Button = defineStyleConfig({
   baseStyle,
-  variants: { icon, primary, process, secondary, transparent },
+  variants: { icon, icon2, primary, process, secondary, transparent },
   defaultProps: {
     colorScheme: 'primary',
     variant: 'primary',

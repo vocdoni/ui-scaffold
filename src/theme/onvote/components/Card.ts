@@ -49,7 +49,7 @@ const detailed = definePartsStyle({
     justifyContent: 'space-between',
 
     '& a': {
-      w: '100%',
+      w: '85%',
       display: 'flex',
       flexDirection: 'column',
 
@@ -196,7 +196,7 @@ const typesVoting = definePartsStyle({
         fontSize: 22,
         mb: 2,
         fontWeight: 'bold',
-        fontFamily: 'pixeloid',
+        fontFamily: 'pixeloidsans',
       },
     },
   },

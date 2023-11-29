@@ -1,15 +1,4 @@
 {
-  "account": {
-    "helper": {
-      "sik": "Only requested when you're gonna vote in anonymous processes"
-    },
-    "label": {
-      "sik": "Password for anonymous votings"
-    },
-    "placeholder": {
-      "sik": "Something safe and easy to remember"
-    }
-  },
   "aside": {
     "has_already_voted": "Your vote is properly cast",
     "is_not_in_census": "You are not in the census",
@@ -23,12 +12,11 @@
   "banner": {
     "start_now": "Create a voting now!",
     "subtitle": "Use wallet addresses, vote with an ERC20 token or with NFTs!",
-    "title": "Voting for DAOs & Web3 communities"
+    "title": "anonyomus, Gasless and Modular voting for Web3"
   },
   "banner_voting_types": {
     "anonymous_description": "Voters' identities remain completely confidential, thanks to cutting-edge zk-SNARK technology.",
     "anonymous_title": "Fully Anonymous",
-    "bottom_text": "Privacy should be normal",
     "flexible_description": "Customize your voting process and participant list to fit your community's unique requirements.",
     "flexible_title": "Flexible Voting",
     "token_description": "Vote with ERC20/ERC721 (NFT's) or add your own token and vote gasless with them.",
@@ -82,8 +70,8 @@
       "upcoming": "Upcoming"
     },
     "validation": {
-      "required": "This field is required",
-      "min_length": "This field must be at least {{ min }} characters long"
+      "min_length": "This field must be at least {{ min }} characters long",
+      "required": "This field is required"
     },
     "vote": {
       "button": "Vote",
@@ -188,6 +176,7 @@
       "avatar_helper": "Image/logo of your organization",
       "avatar_placeholder": "Image URL",
       "btn": "Save",
+      "footer": "Modifying your organization will prompt a signature request, incurring a cost of 1 token",
       "title": "Edit Organization"
     },
     "error": {
@@ -396,7 +385,6 @@
     "login": "Login",
     "logout": "Logout",
     "my_org": "My Org",
-    "my_org_aria_label": "My organization",
     "new_process": "New Voting",
     "organization": "Edit Organization",
     "privacy": "Privacy",
@@ -408,18 +396,11 @@
     "maxLength": "Max. length reached"
   },
   "new_organization": {
-    "anonyomus": "Anonyomus",
-    "censorship": "<span>Censorship</span><span>Resistance</span>",
     "create_organization_btn": "Create Organization",
     "description1": "Before starting creating your voting process, <span>you need to create an organization</span>, it's free With an organization, you will be able to create a wide range of elections and give voice to your comumnity members.",
     "description2": "As a <span>welcome pack</span> you will recive {{ faucetAmount }} tokens for free to start using our platform.",
-    "footer": "<span>Vocdoni</span> is a secure, privacy-friendly & open-source public voting protocol.",
-    "inexpensive": "Inexpensive",
     "name": "Organization name",
-    "open_source": "<span>Open</span><span>Source</span>",
-    "scalable": "Scalable",
-    "title": "New Organization",
-    "verificable": "Verificable"
+    "title": "New Organization"
   },
   "open_in_explorer": "Open in explorer",
   "organization": {
@@ -501,6 +482,31 @@
     },
     "creation_steps_description": "You need to sign the transactions in order to create the voting process in the Vocdoni blockchain. Don't close this windows.",
     "creation_steps_title": "Progress"
+  },
+  "roadmap": {
+    "census_description": "Create a trust-less off-chain zk-friendly census from an Ethereum block snapshot, with on-chain verification.",
+    "census_title": "zkCensus:",
+    "chainlink_description": "Enable automatic execution with optimistic support.",
+    "chainlink_title": "Chainlink Integration:",
+    "complex_startegies_description": "Integrate any token from any blockchain using a blend of logic and algebraic operations, out of the box. I.e.",
+    "complex_startegies_title": "Complex Strategies:",
+    "execution_description": "Submit the final proof on-chain for binding execution.",
+    "execution_title": "Execution:",
+    "milestone1": "Milestone 1: Flexible Gasless Governance",
+    "milestone2": "Milestone 2: zkRollup for Secure and Anonymous binding Voting",
+    "private_description": "Only display voting proposal content to your community members.",
+    "private_title": "Private Election Metadata:",
+    "registry_description": "A global on-chain registry for zk (zero-knowledge) identities.",
+    "registry_title": "zkRegistry:",
+    "rollup_description": "Consolidate all votes into a single, secure zkProof using custom zkRollup technology",
+    "rollup_title": "zkRollup:",
+    "social_census_desciption": "Enhance your census with social identities from platforms like Github or Twitter. Include Sybil resistance mechanisms such as Holonym or Proof-of-Humanity.",
+    "social_census_title": "Social Census:",
+    "title": "<p1>Road for 2024</p1> <p2>What's next?</p2>",
+    "versatil_description": "Whether it’s simple, ranged, or quadratic voting, Onvote supports multiple voting methods to adapt to diverse community needs.",
+    "versatil_title": "Versatile Voting Methods:",
+    "voting_description": "Facilitate anonymous, off-chain (gasless) voting for any eligible voter using the Vocdoni p2p network.",
+    "voting_title": "zkVoting:"
   },
   "uploader": {
     "click_or_drag_and_drop": "<p1>Upload or drag and drop the voter list here</p1><p2>(Allowed formats: CSV, XLSX, and ODS)</p2>",

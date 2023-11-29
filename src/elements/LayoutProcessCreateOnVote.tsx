@@ -59,9 +59,8 @@ const LayoutProcessCreate = () => {
         }}
         color='black'
         textTransform='uppercase'
-        fontFamily='pixeloid'
+        fontFamily='pixeloidsans'
         fontSize='16px'
-        fontWeight='bold'
       >
         World wide voting
       </Text>

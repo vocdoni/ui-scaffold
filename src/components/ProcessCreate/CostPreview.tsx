@@ -76,7 +76,7 @@ export const CostPreview = ({
 
   return (
     <Flex flexDirection='column' gap={2} mb={5}>
-      <Text fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase'>
+      <Text fontWeight='bold' fontFamily='pixeloidsans' textTransform='uppercase'>
         {t('form.process_create.confirm.cost_title')}
       </Text>
       <Text fontSize='sm'>{t('form.process_create.confirm.cost_description')}</Text>
@@ -186,17 +186,11 @@ export const CostPreview = ({
       </Flex>
 
       {cost && cost > account!.balance && (
-        <Flex flexDir='column' alignItems='center' gap={2}>
-          <Text color='red' textAlign='center'>
+        <Flex flexDir='column' alignItems='center' gap={2} mb={10}>
+          <Text textAlign='center' mb={3}>
             {t('cost_preview.not_enough_tokens')}
           </Text>
-          <Button
-            variant='on-vote'
-            colorScheme='primary'
-            leftIcon={<TbDatabaseExclamation />}
-            maxW={64}
-            onClick={onOpen}
-          >
+          <Button leftIcon={<TbDatabaseExclamation />} maxW={64} onClick={onOpen}>
             {t('cost_preview.button')}
           </Button>
           <Modal isOpen={isOpen} onClose={onClose}>
@@ -253,7 +247,7 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
                 onClick={() => setSocialAccount('github')}
                 selected={socialAccount === 'github'}
               >
-                <Icon as={FaGithub} w={8} h={8} />
+                <Icon as={FaGithub} />
               </OAuthLoginButton>
               <Tooltip>
                 <OAuthLoginButton
@@ -261,7 +255,7 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
                   onClick={() => setSocialAccount('google')}
                   selected={socialAccount === 'google'}
                 >
-                  <Icon as={FaGoogle} w={8} h={8} />
+                  <Icon as={FaGoogle} />
                 </OAuthLoginButton>
               </Tooltip>
               <Tooltip>
@@ -270,7 +264,7 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
                   onClick={() => setSocialAccount('facebook')}
                   selected={socialAccount === 'facebook'}
                 >
-                  <Icon as={FaFacebook} w={8} h={8} />
+                  <Icon as={FaFacebook} />
                 </OAuthLoginButton>
               </Tooltip>
             </Flex>
@@ -303,7 +297,7 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
             i18nKey='get_voc_tokens.info'
             components={{
               text: <Text fontSize='sm' textAlign='center' />,
-              mailto: <Link href='mailto:info@onvote.app' fontWeight='bold' color='primary.500' />,
+              mailto: <Link href='mailto:info@onvote.app' fontWeight='bold' variant='primary' />,
             }}
           />
         </ModalFooter>
@@ -317,14 +311,20 @@ const OAuthLoginButton = (props: Partial<ButtonProps & { selected: boolean }>) =
   return (
     <Button
       {...props}
+      variant=''
       cursor='pointer'
       title='coming soon'
       sx={{
         '&': {
-          bgColor: selected ? 'primary.500' : '',
+          bgColor: selected ? 'primary.700' : 'black',
+          width: '60px',
+          height: '60px',
+          borderRadius: 'full',
 
           '& svg': {
-            color: selected ? 'white' : 'primary.500',
+            color: 'white',
+            width: 12,
+            height: 12,
           },
 
           '&:disabled': {
@@ -335,20 +335,7 @@ const OAuthLoginButton = (props: Partial<ButtonProps & { selected: boolean }>) =
 
           '&:hover': {
             cursor: selected ? 'default' : 'pointer',
-            bgColor: selected ? 'primary.500' : '',
-
-            '& svg': {
-              color: selected ? 'white' : 'primary.500',
-            },
-
-            '&:disabled': {
-              '&': {
-                cursor: 'default',
-              },
-              '& svg': {
-                color: 'gray',
-              },
-            },
+            bgColor: selected ? 'primary.700' : 'primary.600',
           },
         },
       }}

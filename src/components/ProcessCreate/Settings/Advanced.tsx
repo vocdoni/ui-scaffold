@@ -12,7 +12,7 @@ const SettingsAdvanced = () => {
   return (
     <Box>
       <Box mb={4}>
-        <Text fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase' mb={1}>
+        <Text fontWeight='bold' fontFamily='pixeloidsans' textTransform='uppercase' mb={1}>
           {t('form.process_create.behavior.title')}
         </Text>
       </Box>
@@ -20,7 +20,7 @@ const SettingsAdvanced = () => {
         <Checkbox {...register('electionType.anonymous')} variant='radiobox' flex='0 0 30%'>
           <Box>
             <Icon as={FaUserSecret} />
-            <Text fontFamily='pixeloid' textTransform='uppercase'>
+            <Text fontFamily='pixeloidsans' textTransform='uppercase'>
               {t('form.process_create.behavior.anonymous.title')}
             </Text>
           </Box>
@@ -29,7 +29,7 @@ const SettingsAdvanced = () => {
         <Checkbox {...register('electionType.secretUntilTheEnd')} variant='radiobox' flex='0 0 30%'>
           <Box>
             <Icon as={HiKey} />
-            <Text fontFamily='pixeloid' textTransform='uppercase'>
+            <Text fontFamily='pixeloidsans' textTransform='uppercase'>
               {t('form.process_create.behavior.secret.title')}
             </Text>
           </Box>
@@ -38,7 +38,7 @@ const SettingsAdvanced = () => {
         <Checkbox {...register('maxVoteOverwrites')} variant='radiobox' flex='0 0 30%'>
           <Box>
             <Icon as={BiCheckDouble} />
-            <Text fontFamily='pixeloid' textTransform='uppercase'>
+            <Text fontFamily='pixeloidsans' textTransform='uppercase'>
               {t('form.process_create.behavior.overwrite.title')}
             </Text>
           </Box>

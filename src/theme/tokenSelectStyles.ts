@@ -22,8 +22,8 @@ export const customStylesSelect: ChakraStylesConfig = {
   option: (base, state) => ({
     ...base,
     fontWeight: 'bold',
-    bgColor: state.isSelected && 'primary.500',
-    color: state.isFocused && !state.isSelected ? 'primary.500' : state.isSelected && 'white',
+    bgColor: state.isSelected && 'primary.600',
+    color: state.isFocused && !state.isSelected ? 'primary.600' : state.isSelected && 'white',
   }),
   groupHeading: (base) => ({
     ...base,
@@ -40,8 +40,8 @@ export const customStylesTokensSelect: ChakraStylesConfig = {
   option: (base, state) => ({
     ...base,
     fontWeight: 'bold',
-    bgColor: state.isSelected && 'primary.500',
-    color: state.isFocused && !state.isSelected ? 'primary.500' : state.isSelected && 'white',
+    bgColor: state.isSelected && 'primary.600',
+    color: state.isFocused && !state.isSelected ? 'primary.600' : state.isSelected && 'white',
     pl: 10,
   }),
 }

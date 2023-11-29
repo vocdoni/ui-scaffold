@@ -64,7 +64,7 @@ const Calendar = () => {
   return (
     <Box>
       <Box mb={4}>
-        <Text fontSize='md' fontFamily='pixeloid' textTransform='uppercase' fontWeight='bold'>
+        <Text fontSize='md' fontFamily='pixeloidsans' textTransform='uppercase' fontWeight='bold'>
           {t('form.process_create.calendar.title')}
         </Text>
         <Text fontWeight='normal' fontSize='sm' color='process_create.description'>
@@ -79,7 +79,7 @@ const Calendar = () => {
         p={4}
       >
         <Box>
-          <Text fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase' fontSize='sm'>
+          <Text fontWeight='bold' fontFamily='pixeloidsans' textTransform='uppercase' fontSize='sm'>
             {t('form.process_create.calendar.start_date')}
           </Text>
           <Text fontSize='sm' mb={2} color='process_create.description'>
@@ -169,7 +169,7 @@ const Calendar = () => {
           </RadioGroup>
 
           <FormControl isInvalid={!!errors.endDate} minW={70} maxW={70}>
-            <FormLabel fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase' m={0} fontSize='sm'>
+            <FormLabel fontWeight='bold' fontFamily='pixeloidsans' textTransform='uppercase' m={0} fontSize='sm'>
               {t('form.process_create.calendar.end_date')}
             </FormLabel>
             <Text whiteSpace='nowrap' fontSize='sm' mb={2} color='process_create.description'>

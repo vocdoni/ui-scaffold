@@ -1,15 +1,4 @@
 {
-  "account": {
-    "helper": {
-      "sik": "Només se't demanarà quan vagis a votar en processos anònims"
-    },
-    "label": {
-      "sik": "Contrasenya per a votacions anònimes"
-    },
-    "placeholder": {
-      "sik": "Quelcom segur i fàcil de recordar"
-    }
-  },
   "aside": {
     "has_already_voted": "El teu vot s'ha registrat correctament",
     "is_not_in_census": "No estàs en el cens",
@@ -30,7 +19,6 @@
   "banner_voting_types": {
     "anonymous_description": "La identitat dels votants serà completament confidencial, gràcies a la tecnologia zk-SNARKS.",
     "anonymous_title": "100% Anònim",
-    "bottom_text": "La privadesa hauria de ser normal",
     "flexible_description": "Personalitza el teu procés de votació i la llista de participants per adaptar-los als requisits únics de la teva comunitat.",
     "flexible_title": "Votació Flexible",
     "token_description": "Vota amb tokens ERC20/ERC721 (NFT) o afegeix els teus propis tokens i vota sense pagar.",
@@ -84,8 +72,8 @@
       "upcoming": "Propera"
     },
     "validation": {
-      "required": "Aquest camp és obligatori",
-      "min_length": "Aquest camp ha de tenir com a mínim {{ min }} caràcters"
+      "min_length": "Aquest camp ha de tenir com a mínim {{ min }} caràcters",
+      "required": "Aquest camp és obligatori"
     },
     "vote": {
       "button": "Vota",
@@ -191,6 +179,7 @@
       "avatar_helper": "Imatge/logotip de la teva organització",
       "avatar_placeholder": "URL de la imatge",
       "btn": "Desar",
+      "footer": "Modificar la teva organització generarà una sol·licitud de signatura, amb un cost de 1 token",
       "title": "Editar Orgnaització"
     },
     "error": {
@@ -404,7 +393,6 @@
     "login": "Iniciar sessió",
     "logout": "Tancar sessió",
     "my_org": "La Meva Org",
-    "my_org_aria_label": "La meva organització",
     "new_process": "Crear Votació",
     "organization": "Edita Organització",
     "privacy": "Privadesa",
@@ -416,18 +404,11 @@
     "maxLength": "Longitud màxima assolida"
   },
   "new_organization": {
-    "anonyomus": "Anònim",
-    "censorship": "<span>Resistència</span><span>a la Censura</span>",
     "create_organization_btn": "Crear Organització",
     "description1": "Abans de començar a crear el vostre procés de votació, <span>heu de crear una organització</span>, és gratuït. Amb una organització, podreu crear una àmplia gamma d'eleccions i donar veu als membres de la vostra comunitat.",
     "description2": "Com a <span>paquet de benvinguda</span>, rebràs {{ faucetAmount }} tokens gratuïts per començar a utilitzar la nostra plataforma.",
-    "footer": "<span>Vocdoni</span> és un protocol de votació públic segur, respectuós amb la privadesa i de codi obert.",
-    "inexpensive": "Econòmic",
     "name": "Nom de l'organització",
-    "open_source": "<span>Codi</span><span>Obert</span>",
-    "scalable": "Escalable",
-    "title": "Nova Organització",
-    "verificable": "Verificable"
+    "title": "Nova Organització"
   },
   "open_in_explorer": "Obre a l'explorador",
   "organization": {
@@ -510,6 +491,31 @@
     },
     "creation_steps_description": "Necessites signar les transaccions per crear el procés de votació a la cadena de blocs de Vocdoni. No tanquis aquesta finestra.",
     "creation_steps_title": "Progrés"
+  },
+  "roadmap": {
+    "census_description": "Crear un cens descentralitzat fora de la cadena i compatible amb zk a partir d'una instantània de blocs d'Ethereum, amb verificació a la cadena.",
+    "census_title": "zkCensus:",
+    "chainlink_description": "Habilitar l'execució automàtica amb suport optimista.",
+    "chainlink_title": "Integració de Chainlink:",
+    "complex_startegies_description": "Integrar qualsevol token de qualsevol cadena de blocs utilitzant una combinació de lògica i operacions algebraiques, directament. Per exemple,",
+    "complex_startegies_title": "Estratègies complexes:",
+    "execution_description": "Enviar la prova final a la cadena per a una execució vinculant.",
+    "execution_title": "Execució:",
+    "milestone1": "Fita 1: Governança flexible sense gasos",
+    "milestone2": "Fita 2: zkRollup per a votacions segures i anònimes vinculants",
+    "private_description": "Mostrar el contingut de la proposta de votació només als membres de la comunitat.",
+    "private_title": "Metadades de votació privada:",
+    "registry_description": "Un registre global a la cadena per a identitats zk (coneixement zero).",
+    "registry_title": "zkRegistry:",
+    "rollup_description": "Consolidar tots els vots en una única prova zk segura mitjançant la tecnologia de zkRollup personalitzada.",
+    "rollup_title": "zkRollup:",
+    "social_census_desciption": "Millora el teu cens amb identitats socials de plataformes com ara Github o Twitter. Inclou mecanismes de resistència a Sybil com Holonym o Proof-of-Humanity.",
+    "social_census_title": "Cens social:",
+    "title": "<p1>Camí per a 2024</p1> <p2>Què ve després?</p2>",
+    "versatil_description": "Ja sigui votació simple, escalonada o quadràtica, Onvote admet diversos mètodes de votació per adaptar-se a les diverses necessitats de la comunitat.",
+    "versatil_title": "Mètodes de votació versàtils:",
+    "voting_description": "Facilitar la votació anònima, fora de la cadena (sense gasos) per a qualsevol votant eligible mitjançant la xarxa p2p de Vocdoni.",
+    "voting_title": "zkVoting:"
   },
   "uploader": {
     "click_or_drag_and_drop": "<p1>Puja o arrossega i deixa anar aquí la llista de votants</p1><p2>(Formats permesos: CSV, XLSX i ODS)</p2>",

@@ -21,19 +21,18 @@ const ProcessHeader = () => {
   const { election } = useElection()
   const { organization, loaded } = useOrganization()
   const { account } = useClient()
-  const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(600, 20)
+  const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(
+    'rgba(242, 242, 242, 0)',
+    'rgba(242, 242, 242, 1)',
+    600,
+    20
+  )
   const strategy = useStrategy()
 
   const showOrgInformation = !loaded || (loaded && organization?.account?.name)
 
   return (
-    <Box
-      mb={4}
-      px={{
-        base: 10,
-        sm: 14,
-      }}
-    >
+    <Box mb={4} p={{ base: '12px 20px', md: '24px 40px' }}>
       {showOrgInformation && (
         <Button
           as='a'
@@ -48,7 +47,7 @@ const ProcessHeader = () => {
       )}
       <Flex direction={{ base: 'column', lg2: 'row' }} mb={7} gap={10}>
         <Box flexGrow={0} flexShrink={0} flexBasis={{ base: '100%', md: '60%', lg: '65%', lg2: '70%', xl2: '75%' }}>
-          <ElectionTitle fontFamily='pixeloid' textTransform='uppercase' fontSize='xl4' textAlign='left' mb={5} />
+          <ElectionTitle fontFamily='pixeloidsans' textTransform='uppercase' fontSize='xl4' textAlign='left' mb={5} />
           <Flex
             gap={4}
             flexDirection={{ base: 'column', md: 'row' }}

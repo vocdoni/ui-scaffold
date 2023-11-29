@@ -35,7 +35,7 @@ const FooterOnVote = () => {
                     textAlign='center'
                     fontWeight='bold'
                     textTransform='uppercase'
-                    fontFamily='pixeloid'
+                    fontFamily='pixeloidsans'
                     fontSize='xl3'
                   />
                 ),

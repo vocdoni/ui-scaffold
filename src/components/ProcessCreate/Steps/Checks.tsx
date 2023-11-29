@@ -46,7 +46,7 @@ const NeedsAccount = () => {
     <>
       <Wrapper>
         <Box>
-          <Heading fontSize='md' my={5} fontFamily='pixeloid' textTransform='uppercase' color='primary.main'>
+          <Heading fontSize='md' my={5} fontFamily='pixeloidsans' textTransform='uppercase' color='primary.main'>
             {t('new_organization.title')}
           </Heading>
           <Box p={10} bgColor='process_create.section'>

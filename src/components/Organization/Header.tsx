@@ -17,7 +17,11 @@ const OrganizationHeader = () => {
   const { onOpen } = useOrganizationModal()
   const { account } = useClient()
 
-  const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(110)
+  const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(
+    'rgba(242, 242, 242, 0)',
+    'rgba(242, 242, 242, 1)',
+    110
+  )
 
   const { containerRef, isTruncated, readMore, handleReadMore } = useReadMoreTitle()
 
@@ -27,10 +31,10 @@ const OrganizationHeader = () => {
       alignItems={{ base: 'center', md: 'start' }}
       gap={{ base: 2, md: 8 }}
       mb={10}
-      p={3}
+      pt={10}
     >
-      <Box flex='1 1 20%' minW={40}>
-        <AspectRatio ratio={1.25 / 1} maxW={56} mx='auto'>
+      <Box flex='1 1 10%' minW={40}>
+        <AspectRatio ratio={1.25 / 1} maxW={56}>
           <Avatar
             mx='auto'
             fallbackSrc={fallback}
@@ -79,14 +83,14 @@ const OrganizationHeader = () => {
               fontSize={32}
               lineHeight={1.5}
               title={organization?.account.name.default || organization?.address}
-              fontFamily='pixeloid'
+              fontFamily='pixeloidsans'
             />
             {isTruncated && (
               <IconButton
                 icon={readMore ? <FaEye /> : <FaEyeSlash />}
                 variant='ghost'
                 alignSelf='start'
-                color='primary.500'
+                color='primary.600'
                 title={t('organization.title.read_more')}
                 aria-label={t('organization.title.read_more')}
                 onClick={handleReadMore}
@@ -97,7 +101,7 @@ const OrganizationHeader = () => {
                 icon={<IoMdCreate />}
                 alignSelf='start'
                 variant='ghost'
-                color='primary.500'
+                color='primary.600'
                 title={t('organization.title.edit')}
                 aria-label={t('organization.title.edit')}
                 onClick={onOpen}
