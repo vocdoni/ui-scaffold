@@ -36,12 +36,24 @@ export const theme = extendTheme(vtheme, {
 
         '@font-face': [
           {
-            'font-family': 'pixeloid',
-            src: `url('/PixeloidMono.ttf') format('truetype')`,
+            'font-family': 'pixeloidsans',
+            src: `url('/fonts/pixeloidsans/PixeloidSans.ttf') format('truetype')`,
+            'font-weight': 'normal',
+          },
+          {
+            'font-family': 'pixeloidsans',
+            src: `url('/fonts/pixeloidsans/PixeloidSans-Bold.ttf') format('truetype')`,
+            'font-weight': 'bold',
           },
           {
             'font-family': 'archivo',
-            src: `url('/Archivo.ttf') format('truetype')`,
+            src: `url('/fonts/archivo/Archivo.ttf') format('truetype')`,
+            'font-weight': 'normal',
+          },
+          {
+            'font-family': 'archivo',
+            src: `url('/fonts/archivo/Archivo-Bold.ttf') format('truetype')`,
+            'font-weight': 'bold',
           },
         ],
       },

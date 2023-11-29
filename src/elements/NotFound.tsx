@@ -34,7 +34,7 @@ const NotFound = () => {
       <Text
         textAlign='center'
         maxW={{ base: 84, sm: 112, lg: 160 }}
-        fontWeight={700}
+        fontWeight='bold'
         fontSize={{ base: 'xl4', sm: 'xl5', lg: 'xl7' }}
       >
         {t('error.not_found')}

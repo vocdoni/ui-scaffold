@@ -30,7 +30,7 @@ export const StepFormCensusSpreadsheet = () => {
       <Box px={7} py={4}>
         <Text
           fontWeight='bold'
-          fontFamily='pixeloid'
+          fontFamily='pixeloidsans'
           textTransform='uppercase'
           color='process_create.census.title'
           mb={5}

@@ -23,7 +23,7 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
   return (
     <>
       <Card variant='aside'>
-        <Text textAlign='center' fontSize='xl3' fontFamily='pixeloid' textTransform='uppercase'>
+        <Text textAlign='center' fontSize='xl3' fontFamily='pixeloidsans' textTransform='uppercase'>
           {getStatusText(t, election?.status).toUpperCase()}
         </Text>
 
@@ -34,7 +34,7 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
             justifyContent='center'
             alignItems='center'
             gap={2}
-            fontFamily='pixeloid'
+            fontFamily='pixeloidsans'
           >
             <Trans
               i18nKey='aside.votes'

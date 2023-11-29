@@ -76,7 +76,7 @@ export const CostPreview = ({
 
   return (
     <Flex flexDirection='column' gap={2} mb={5}>
-      <Text fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase'>
+      <Text fontWeight='bold' fontFamily='pixeloidsans' textTransform='uppercase'>
         {t('form.process_create.confirm.cost_title')}
       </Text>
       <Text fontSize='sm'>{t('form.process_create.confirm.cost_description')}</Text>

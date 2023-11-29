@@ -48,7 +48,7 @@ export const StepFormCensusWeb3 = () => {
         <Text
           fontWeight='bold'
           mb={3}
-          fontFamily='pixeloid'
+          fontFamily='pixeloidsans'
           textTransform='uppercase'
           color='process_create.census.title'
         >

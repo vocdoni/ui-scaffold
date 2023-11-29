@@ -20,7 +20,7 @@ export const Census = () => {
     <Wrapper>
       <Flex flexDirection='column' gap={10}>
         <Box>
-          <Text fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase' fontSize='md' mb={2}>
+          <Text fontWeight='bold' fontFamily='pixeloidsans' textTransform='uppercase' fontSize='md' mb={2}>
             {t('census.title')}
           </Text>
           <Text fontSize='sm' color='process_create.description'>
@@ -50,7 +50,7 @@ export const Census = () => {
 
                 <Box>
                   <Icon as={details[ct].icon} />
-                  <Text fontFamily='pixeloid' textTransform='uppercase'>
+                  <Text fontFamily='pixeloidsans' textTransform='uppercase'>
                     {details[ct].title}
                   </Text>
                 </Box>

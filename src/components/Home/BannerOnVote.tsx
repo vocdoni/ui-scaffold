@@ -16,11 +16,11 @@ const Banner = () => {
       <Text
         as='h1'
         fontSize='35px'
-        fontWeight={400}
         textAlign='center'
         lineHeight='44px'
-        fontFamily='pixeloid'
+        fontFamily='pixeloidsans'
         textTransform='uppercase'
+        fontWeight='bold'
         mb={!isConnected ? '130px' : '36px'}
       >
         {t('banner.title')}

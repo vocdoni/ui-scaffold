@@ -196,7 +196,7 @@ const typesVoting = definePartsStyle({
         fontSize: 22,
         mb: 2,
         fontWeight: 'bold',
-        fontFamily: 'pixeloid',
+        fontFamily: 'pixeloidsans',
       },
     },
   },

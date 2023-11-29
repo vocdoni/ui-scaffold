@@ -39,7 +39,7 @@ const Steps = () => {
         {steps.map((step, index) => (
           <Step key={index}>
             <Flex flexDirection={{ base: 'column', lg: 'row' }} alignItems={{ base: 'center', lg: 'initial' }} gap={3}>
-              <StepIndicator fontFamily='pixeloid'>
+              <StepIndicator fontFamily='pixeloidsans'>
                 <StepStatus
                   complete={
                     <Box>

@@ -18,14 +18,14 @@ const onVoteCommonStyles = {
     lineHeight: '20px',
     fontSize: '14px',
     fontWeight: 700,
-    fontFamily: 'pixeloid',
+    fontFamily: 'pixeloidsans',
     cursor: 'pointer',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     gap: 2,
-    borderLeft: '5px solid',
-    borderRight: '5px solid',
+    borderLeft: '4px solid',
+    borderRight: '4px solid',
   },
 
   before: {

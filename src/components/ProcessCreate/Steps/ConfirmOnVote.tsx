@@ -147,7 +147,7 @@ export const Confirm = () => {
   return (
     <Wrapper>
       <Box>
-        <Text fontWeight='bold' mb={2} fontFamily='pixeloid' textTransform='uppercase'>
+        <Text fontWeight='bold' mb={2} fontFamily='pixeloidsans' textTransform='uppercase'>
           {t('form.process_create.confirm.title')}
         </Text>
         <Text mb={4}>{t('form.process_create.confirm.description')}</Text>
@@ -159,7 +159,7 @@ export const Confirm = () => {
 
               <FormProvider {...methods}>
                 <Box>
-                  <Text fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase' px={2} mb={2}>
+                  <Text fontWeight='bold' fontFamily='pixeloidsans' textTransform='uppercase' px={2} mb={2}>
                     {t('form.process_create.confirm.confirmation')}
                   </Text>
                   <Flex

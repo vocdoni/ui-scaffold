@@ -29,7 +29,7 @@ const Layout = () => {
         color='white'
         mixBlendMode='difference'
         textTransform='uppercase'
-        fontFamily='pixeloid'
+        fontFamily='pixeloidsans'
         fontSize='16px'
         fontWeight='bold'
       >

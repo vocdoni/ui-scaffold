@@ -79,7 +79,7 @@ const OrganizationHeader = () => {
               fontSize={32}
               lineHeight={1.5}
               title={organization?.account.name.default || organization?.address}
-              fontFamily='pixeloid'
+              fontFamily='pixeloidsans'
             />
             {isTruncated && (
               <IconButton

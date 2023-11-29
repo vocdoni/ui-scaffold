@@ -27,7 +27,7 @@ const Features = () => {
         <Trans
           i18nKey='home_features.title'
           components={{
-            p1: <Text textAlign='center' fontFamily='pixeloid' textTransform='uppercase' fontSize='24px' />,
+            p1: <Text textAlign='center' fontFamily='pixeloidsans' textTransform='uppercase' fontSize='24px' />,
             p2: <Text textAlign='center' fontWeight='bold' fontSize='xl5' />,
           }}
         />
@@ -45,7 +45,7 @@ const Features = () => {
         <Flex maxW={{ lg: '50%' }} alignItems='start' gap={5}>
           <Img src={anonymouse} mt={2} />
           <Box>
-            <Text fontSize='32px' fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase' mb='10px'>
+            <Text fontSize='32px' fontWeight='bold' textTransform='uppercase' mb='10px'>
               {t('home_features.anonymous_title')}
             </Text>
             <Text fontSize='18px' color='#595959'>
@@ -56,7 +56,7 @@ const Features = () => {
         <Flex maxW={{ lg: '50%' }} alignItems='start' gap={5} alignSelf={{ lg: 'end' }}>
           <Img src={censorship} mt={2} />
           <Box>
-            <Text fontSize='32px' fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase' mb='10px'>
+            <Text fontSize='32px' fontWeight='bold' textTransform='uppercase' mb='10px'>
               {t('home_features.census_startegy_title')}
             </Text>
             <Text fontSize='18px' color='#595959'>
@@ -67,7 +67,7 @@ const Features = () => {
         <Flex maxW={{ lg: '50%' }} alignItems='start' gap={5}>
           <Img src={descentralized} mt={2} />
           <Box>
-            <Text fontSize='32px' fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase' mb='10px'>
+            <Text fontSize='32px' fontWeight='bold' textTransform='uppercase' mb='10px'>
               {t('home_features.open_source_title')}
             </Text>
             <Text fontSize='18px' color='#595959'>
@@ -78,7 +78,7 @@ const Features = () => {
         <Flex maxW={{ lg: '50%' }} alignItems='start' gap={5} alignSelf={{ lg: 'end' }}>
           <Img src={gasless} mt={2} />
           <Box>
-            <Text fontSize='32px' fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase' mb='10px'>
+            <Text fontSize='32px' fontWeight='bold' textTransform='uppercase' mb='10px'>
               {t('home_features.gas_less_title')}
             </Text>
             <Text fontSize='18px' color='#595959'>
@@ -89,7 +89,7 @@ const Features = () => {
         <Flex maxW={{ lg: '50%' }} alignItems='start' gap={5}>
           <Img src={opensource} mt={2} />
           <Box>
-            <Text fontSize='32px' fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase' mb='10px'>
+            <Text fontSize='32px' fontWeight='bold' textTransform='uppercase' mb='10px'>
               {t('home_features.descentralized_title')}
             </Text>
             <Text fontSize='18px' color='#595959'>
@@ -100,7 +100,7 @@ const Features = () => {
         <Flex maxW={{ lg: '50%' }} alignItems='start' gap={5} alignSelf={{ lg: 'end' }}>
           <Img src={multichain} mt={2} />
           <Box>
-            <Text fontSize='32px' fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase' mb='10px'>
+            <Text fontSize='32px' fontWeight='bold' textTransform='uppercase' mb='10px'>
               {t('home_features.multichain_title')}
             </Text>
             <Text fontSize='18px' color='#595959'>
@@ -111,7 +111,7 @@ const Features = () => {
         <Flex maxW={{ lg: '50%' }} alignItems='start' gap={5}>
           <Img src={flexibleProtocol} mt={2} />
           <Box>
-            <Text fontSize='32px' fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase'>
+            <Text fontSize='32px' fontWeight='bold' textTransform='uppercase'>
               {t('home_features.flexible_title')}
             </Text>
             <Text fontSize='18px' color='#595959'>
