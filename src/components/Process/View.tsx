@@ -20,8 +20,9 @@ import {
   Text,
   UnorderedList,
   useDisclosure,
+  useMultiStyleConfig,
 } from '@chakra-ui/react'
-import { ElectionQuestions, ElectionResults, environment } from '@vocdoni/chakra-components'
+import { ElectionQuestions, ElectionResults, environment, useConfirm } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
 import { ElectionStatus, IQuestion } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
@@ -136,6 +137,7 @@ const SuccessVoteModal = () => {
       setVLeft(votesLeft)
       onOpen()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [votesLeft, vLeft])
 
   if (!election || !voted) return null
@@ -227,6 +229,8 @@ const SuccessVoteModal = () => {
 
 const ConfirmVoteModal = ({ questions, answers }: { questions: IQuestion[]; answers: FieldValues }) => {
   const { t } = useTranslation()
+  const styles = useMultiStyleConfig('ConfirmModal')
+  const { cancel, proceed } = useConfirm()
 
   return (
     <>
@@ -244,7 +248,7 @@ const ConfirmVoteModal = ({ questions, answers }: { questions: IQuestion[]; answ
           borderRadius='lg2'
         >
           {questions.map((q, i) => (
-            <Box>
+            <Box key={i}>
               <Box py={2}>
                 <Text display='flex' flexDirection='column' gap={1} mb={1}>
                   <Trans
@@ -276,6 +280,14 @@ const ConfirmVoteModal = ({ questions, answers }: { questions: IQuestion[]; answ
           ))}
         </Flex>
       </ModalBody>
+      <ModalFooter sx={styles.footer}>
+        <Button onClick={cancel!} variant='ghost' sx={styles.cancel}>
+          {t('cc.confirm.cancel')}
+        </Button>
+        <Button onClick={proceed!} sx={styles.confirm}>
+          {t('cc.confirm.confirm')}
+        </Button>
+      </ModalFooter>
     </>
   )
 }

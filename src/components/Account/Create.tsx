@@ -57,12 +57,16 @@ export const AccountCreate = () => {
     ;(async () => {
       try {
         const atypes = await getAuthTypes()
-        setFaucetAmount(atypes.oauth)
+        setFaucetAmount(atypes.oauth as number)
       } catch (e) {}
     })()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const onSubmit = async (values: FormFields) => createAccount(new Account(values))?.finally(() => setSent(true))
+  const onSubmit = async (values: FormFields) =>
+    createAccount({
+      account: new Account(values),
+    })?.finally(() => setSent(true))
 
   return (
     <Flex
@@ -107,7 +111,7 @@ export const AccountCreate = () => {
           {!!errors.name && <FormErrorMessage>{errors.name?.message?.toString()}</FormErrorMessage>}
         </FormControl>
 
-        <FormControl>
+        <FormControl mb={5}>
           <Textarea
             {...register('description')}
             placeholder={t('form.account_create.description_placeholder').toString()}

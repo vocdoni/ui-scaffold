@@ -33,7 +33,7 @@ const Navbar = () => {
           </ListItem>
         )}
 
-        {account && (
+        {account && account?.account?.name?.default.length > 0 && (
           <ListItem>
             <Button
               as={ReactRouterLink}

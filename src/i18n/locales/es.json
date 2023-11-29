@@ -1,4 +1,15 @@
 {
+  "account": {
+    "helper": {
+      "sik": "Sólo se pedirá al votar en procesos anónimos"
+    },
+    "label": {
+      "sik": "Contraseña para votaciones anónimas"
+    },
+    "placeholder": {
+      "sik": "Algo seguro y fácil de recordar"
+    }
+  },
   "aside": {
     "has_already_voted": "Tu voto ha sido registrado correctamente",
     "is_not_in_census": "No estás en el censo",
@@ -47,7 +58,6 @@
       "wrong_data_description": "Los datos especificados no son correctos",
       "wrong_data_title": "Datos incorrectos"
     },
-    "required": "Este campo es obligatorio",
     "results": {
       "date_format": "d 'de' MMMM 'de' y 'a' 'las' H:mm",
       "secret_until_the_end": "Secreto hasta el final. Los resultados estarán disponibles cuando el proceso termine el {{ endDate }}",
@@ -57,6 +67,8 @@
     "schedule": "Votación desde el {{ begin }} hasta {{ end }}",
     "spreadsheet": {
       "access_button": "Identificarse",
+      "anon_sik_helper": "Esto garantiza que la votación sea anónima",
+      "anon_sik_label": "Define una contraseña para tu voto",
       "close": "Cerrar",
       "logout": "Cerrar la sesión",
       "modal_title": "Debes identificarte primero"
@@ -71,10 +83,15 @@
       "results": "Resultados",
       "upcoming": "Próxima"
     },
+    "validation": {
+      "required": "Este campo es obligatorio",
+      "min_length": "Este campo debe tener al menos {{ min }} caracteres"
+    },
     "vote": {
       "button": "Votar",
       "button_update": "Reenviar voto",
       "confirm": "Confirma tus selecciones:",
+      "sign": "Firma antes de votar",
       "voted_description": "Para verificar tu voto, puedes utilizar este identificador único: {{ id }}",
       "voted_title": "¡Tu voto se ha registrado con éxito!"
     }
@@ -182,7 +199,7 @@
       "avatar_error": "URL no válida",
       "field_is_required": "Este campo es obligatorio",
       "min_address": "Por favor, proporciona al menos una dirección",
-      "recipient_address_invalid": ""
+      "recipient_address_invalid": "La dirección especificada no parece válida"
     },
     "process_create": {
       "behavior": {
@@ -239,6 +256,7 @@
         "census_total_one": "<span>Votantes:</span><span>{{ count }} votante</span>",
         "census_total_many": "",
         "census_total_other": "<span>Votantes:</span><span>{{ count }} votantes</span>",
+        "census_total_people": "{{ count }} personas podrán votar en esta votación",
         "census_total_people_one": "Una persona podrá votar en esta votación",
         "census_total_people_many": "{{ count }} personas podrán votar en esta votación",
         "census_total_people_other": "{{ count }} personas podrán votar en esta votación",

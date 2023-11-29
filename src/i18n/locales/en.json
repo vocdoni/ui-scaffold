@@ -1,4 +1,15 @@
 {
+  "account": {
+    "helper": {
+      "sik": "Only requested when you're gonna vote in anonymous processes"
+    },
+    "label": {
+      "sik": "Password for anonymous votings"
+    },
+    "placeholder": {
+      "sik": "Something safe and easy to remember"
+    }
+  },
   "aside": {
     "has_already_voted": "Your vote is properly cast",
     "is_not_in_census": "You are not in the census",
@@ -15,10 +26,10 @@
     "title": "Voting for DAOs & Web3 communities"
   },
   "banner_voting_types": {
-    "anonymous_description": "Voters' identities remain completely confidential, thanks to cutting-edge zk-SNARKS technology.",
-    "anonymous_title": "100% Anonymous",
+    "anonymous_description": "Voters' identities remain completely confidential, thanks to cutting-edge zk-SNARK technology.",
+    "anonymous_title": "Fully Anonymous",
     "bottom_text": "Privacy should be normal",
-    "flexible_description": "Customize your voting process and participant list to fit your community unique requirements.",
+    "flexible_description": "Customize your voting process and participant list to fit your community's unique requirements.",
     "flexible_title": "Flexible Voting",
     "token_description": "Vote with ERC20/ERC721 (NFT's) or add your own token and vote gasless with them.",
     "token_title": "Token Voting"
@@ -26,7 +37,7 @@
   "cc": {
     "actions": {
       "cancel": "Cancel the process immediately, not allowing new votes and not counting any results (caution: it cannot be reverted)",
-      "cancel_description": "cancelling the \"{{ election.title.default }}\" voting process",
+      "cancel_description": "canceling the \"{{ election.title.default }}\" voting process",
       "continue": "Resume the process immediately, in case it has been paused",
       "end": "End the process immediately, preventing new votes to be submitted, and shows the voting results (caution: it cannot be reverted)",
       "end_description": "ending the \"{{ election.title.default }}\" voting process",
@@ -45,16 +56,17 @@
       "wrong_data_description": "The specified data is not correct",
       "wrong_data_title": "Wrong data"
     },
-    "required": "This field is required",
     "results": {
       "date_format": "PPpp",
-      "secret_until_the_end": "Secret until the end. The results will be available when the process ends at {{ endDate }}",
+      "secret_until_the_end": "Secret until the end. The results will be available when the process ends on {{ endDate }}",
       "title": "Results for \"{{ title }}\"",
       "votes": "Votes: {{ votes }} ({{ percent }})"
     },
     "schedule": "Voting from {{ begin }} to {{ end }}",
     "spreadsheet": {
       "access_button": "Identify",
+      "anon_sik_helper": "This ensures the vote to be anonymous",
+      "anon_sik_label": "Define a password for your vote",
       "close": "Close",
       "logout": "Logout",
       "modal_title": "You must identify first"
@@ -69,18 +81,23 @@
       "results": "Results",
       "upcoming": "Upcoming"
     },
+    "validation": {
+      "required": "This field is required",
+      "min_length": "This field must be at least {{ min }} characters long"
+    },
     "vote": {
       "button": "Vote",
       "button_update": "Re-submit vote",
       "confirm": "Please confirm your choices:",
+      "sign": "Sign first",
       "voted_description": "To verify your vote, you can use this unique identifier: {{ id }}",
       "voted_title": "Your vote was successfully cast!"
     }
   },
   "census": {
     "chain_required": "You need to select a network",
-    "description": "Select how voters will authenticate and identify themselves: options include custom data, token ownership or wallet addresses.",
-    "request_custom_token": "Request Custom Tokens",
+    "description": "Choose the method for voter authentication and identification. Options include custom data, token ownership, or wallet addresses.",
+    "request_custom_token": "'Request Custom Tokens'",
     "spreadsheet_title": "Custom data",
     "title": "Census",
     "token_description": "Select the network and token to create a census where tokenholders will vote with their voting token power.",
@@ -106,7 +123,7 @@
     "census_total_one": "<span>Voters:</span><span>{{ count }} voter</span>",
     "census_total_other": "<span>Voters:</span><span>{{ count }} voters</span>",
     "duration": "<span>Duration:</span> <span>{{ date, duration }}</span>",
-    "not_enough_tokens": "You don't have enough tokens for creating this process.",
+    "not_enough_tokens": "You don't have enough tokens to create this process.",
     "result": "<span>After creating the voting:</span><span2>{{ remainTokens }} tokens</span2>",
     "subtitle": "Your voting process",
     "total": "<span>Total:</span> <span>{{ cost }} tokens</span>"
@@ -117,7 +134,7 @@
     "invalid_row_length": "Correct document lines {{rows,list(style: short)}} and load it again",
     "invalid_weight_type": "Expecting weight in first column at lines {{rows,list(style:short)}}, but found unexpected data",
     "loading_page": "Error loading the page",
-    "not_found": "Sorry, the page you were looking for was not found",
+    "not_found": "Sorry, the page you are looking for was not found",
     "return_to_home": "Go to home"
   },
   "error_text": "Sorry, the page you were looking for was not found",
@@ -126,10 +143,10 @@
     "connect": "Please, connect your wallet",
     "copy_faucetPackage": "Copy Faucet Package",
     "copy_faucetPackage_done": "Copied!",
-    "description": "For developing with Vocdoni, you need tokens for certain actions (create an election, change election status, etc.). The nº of  different factors lik census size, election duration, election params, etc.",
+    "description": "When developing with Vocdoni, tokens are required for specific actions (such as creating an election, changing election status, etc.). The number of tokens is influenced by various factors, including census size, election duration, election parameters, etc.",
     "faucetPackage_success": "Congratulations! Here is your Faucet Package:",
     "general_information": {
-      "description": "When you request dev tokens, you'll receive {{ amount }} tokens. You can claim from the faucet once every 24 hours.",
+      "description": "When you request tokens, you'll receive {{ amount }} tokens, and you can claim from the faucet once every 24 hours.",
       "description2": "If you need more tokens for developing on top of the Vocdoni stack, you can connect with us at tokens (at) vocdoni.io",
       "title": "General Information"
     },
@@ -139,13 +156,7 @@
       "title": "Request Tokens"
     },
     "title": "Vocdoni Tokens Faucet",
-    "tokens_you_own": "You own {{ balance }} tokens.",
-    "recipient_address": "Enter the recipient address you'd like to receive tokens on.",
-    "copy_faucetPackage_done": "Copied!",
-    "copy_faucetPackage": "Copy Faucet Package",
-    "faucetPackage_success": "Congratulations! Here is your Faucet Package:",
-    "connect": "Please, connect your wallet",
-    "advanced_settings": "Advanced..."
+    "tokens_you_own": "You own {{ balance }} tokens."
   },
   "footer": {
     "about": "About",
@@ -185,20 +196,20 @@
       "avatar_error": "URL not valid",
       "field_is_required": "This field is required",
       "min_address": "Please, provide at least one address",
-      "recipient_address_invalid": ""
+      "recipient_address_invalid": "Specified address does not seem to be valid"
     },
     "process_create": {
       "behavior": {
         "anonymous": {
-          "description": "Voters' identities will be fully anonymized, including for the organizer. They will be required to set a password to ensure the confidentiality of their identity.",
+          "description": "Voters' identities will be fully anonymized, including for the organizer. A password or signature will be required to ensure the confidentiality of their identity.",
           "title": "Anonymous"
         },
         "overwrite": {
-          "description": "If checked, the votes would have the option to correct their vote once.",
+          "description": "If checked, voters will have the option to correct their vote once.",
           "title": "Vote overwrite"
         },
         "secret": {
-          "description": "Results will be available when the process ends instead of being available in realtime.",
+          "description": "Results will be available only after the process concludes, rather than in real-time.",
           "title": "Secret until the end"
         },
         "title": "Options"
@@ -206,14 +217,14 @@
       "calendar": {
         "date_format": "PPPPpppp",
         "end_date": "End date",
-        "end_date_description": "This voting will start at {{ date.begin, format }} and end at {{ date.end, format }}, lasting ~{{ date, duration }}",
-        "end_date_title_helper": "Define the exact date and time to conclude.",
+        "end_date_description": "This voting will start at {{ date.begin, format }} and end at {{ date.end, format }}, lasting approx. {{ date, duration }}",
+        "end_date_title_helper": "Specify the precise date and time for conclusion.",
         "now": "Now",
         "start_date": "Start time",
-        "start_date_description": "Define when the proposal should be active to recive votes. If \"Now\" is selected, the proposal is inmediatly active after publishing.",
+        "start_date_description": "Specify when the proposal should be active to receive votes. If \"Now\" is selected, the proposal becomes immediately active after publishing.",
         "start_on_a_date": "Start on a date",
         "title": "Calendar",
-        "title_description": "Specify the active period to recive votes."
+        "title_description": "Set the active period to receive votes."
       },
       "census": {
         "add_button": "Add",
@@ -226,12 +237,12 @@
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} eligible voters)",
         "network": "Network",
         "network_placeholder": "Select a network",
-        "spreadsheet_description": "Such as usernames and passwords, or voter personal information, can be utilized for authentication with a form.",
+        "spreadsheet_description": "Utilize information such as usernames, passwords, or voter personal details for authentication through a form.",
         "spreadsheet_title": "Custom data",
         "token_base_description": "Use a token (EVM based) to enable voting based on users' token ownership.",
         "token_base_title": "Token based",
         "tokens_placeholder": "Search or paste token address",
-        "wallet_address_description": "Identify voters by their wallets addresses.",
+        "wallet_address_description": "Identify voters through their wallet addresses.",
         "wallet_address_title": "Wallet addresses"
       },
       "confirm": {
@@ -241,17 +252,18 @@
         "census_total": "",
         "census_total_one": "<span>Voters:</span><span>{{ count }} voter</span>",
         "census_total_other": "<span>Voters:</span><span>{{ count }} voters</span>",
+        "census_total_people": "{{ count }} people will be elegible for voting in this election",
         "census_total_people_one": "A single person will be elegible for voting in this process",
         "census_total_people_other": "{{ count }} people will be elegible for voting in this process",
         "configuration": "Configuration",
         "confirmation": "Confirmation",
-        "confirmation_terms_and_conditions": "I accept the <customLink>Terms and Conditions</customLink> of Vocdoni",
-        "confirmation_valid_info": "I assure that this information is correct and valid",
-        "cost_description": "Based on diferent parameters, like the census size, election duration and it's behaivour you will see here the price of yor election.",
+        "confirmation_terms_and_conditions": "I accept the <customLink>Terms and Conditions</customLink>",
+        "confirmation_valid_info": "I confirm the information is correct and valid.",
+        "cost_description": "Here, you will find the price breakdown of your election based on various parameters such as census size, election duration, and its behavior.",
         "cost_title": "Election Price Breakdown",
         "create_button": "Create",
         "dates": "Dates",
-        "description": "In this page, you can review all the information is correct and edit it in case of something wrong. Also, you can check the cost of the voting process and purchase more credits in case you don't own enough.",
+        "description": "On this page, you can verify and edit your information if needed. Additionally, you can review the voting process cost and buy more credits if necessary.",
         "description_election": "Description",
         "edit": "Edit",
         "election_info": "Voting Info",
@@ -265,7 +277,7 @@
       "confirm_spreadsheet_removal": "Are you sure? Take in mind that the uploaded file will be removed",
       "creating_process": "Creating Voting Process...",
       "meta": {
-        "description": "Provide a clear title & description. This will help voters understand the purpose of the voting process.",
+        "description": "Ensure a clear title and description to help voters understand the purpose of the voting process.",
         "description_helper": "A brief description of your voting process",
         "description_label": "Description",
         "description_placeholder": "Description (optional)",
@@ -283,7 +295,7 @@
         "add_new_option": "Add option",
         "add_question": "Add question",
         "delete_option": "Delete option number {{ option }} in question {{ question }}",
-        "description": "Add the question/s along with the options that your voters will need to choose from. You have the flexibility to add multiple questions, each with a customized number of selectable options.",
+        "description": "Please provide the question(s) along with the options that your voters will need to choose from. You have the flexibility to add multiple questions, each with a customized number of  options.",
         "description_placeholder": "Write here a description of the question (optional)",
         "option_placeholder": "Option",
         "question_delete": "Delete question {{ num }}",
@@ -415,7 +427,7 @@
     "elections": "Votings",
     "elections_list_empty": {
       "alt": "Image illustrating that the organization is empty",
-      "description": "As an organizer, you possess the ability to create customized voting processes for your community. These voting procedures offer a wide range of flexibility, including options such as a census where voters are required to authenticate using custom data (such as username, password, and birthday), a token-based system that allows all tokenholders to participate, or a whitelist that utilizes wallet addresses for eligibility.",
+      "description": "As an organizer, you have the capability to design tailored voting processes for your community. These procedures provide extensive flexibility, allowing options such as a census where voters authenticate using custom data (such as username, password, and birthday), a token-based system enabling all tokenholders to participate, or a whitelist that uses wallet addresses for eligibility.",
       "footer": "Learn more about creating voting processes <customLink>in this guide</customLink>.",
       "not_owner": "This organization has no voting processes yet",
       "title": "Create your first voting process"
@@ -464,7 +476,7 @@
       "canceled": "Process canceled",
       "ended": "Ended",
       "paused": "Process paused",
-      "paused_description": "It's not possible to vote right now",
+      "paused_description": "Voting is not possible right now",
       "unknown": "Unknown",
       "upcoming": "Upcoming"
     },

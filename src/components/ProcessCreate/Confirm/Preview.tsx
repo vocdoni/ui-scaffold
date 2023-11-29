@@ -1,6 +1,5 @@
 import { Box, ChakraProvider, extendTheme, Flex, Icon, Link, Text } from '@chakra-ui/react'
 import { ElectionDescription, ElectionQuestions, ElectionTitle } from '@vocdoni/chakra-components'
-import { useElection } from '@vocdoni/react-providers'
 import { useTranslation } from 'react-i18next'
 import { IoMdCheckmark, IoMdClose, IoMdCreate } from 'react-icons/io'
 import { IoCheckmarkSharp } from 'react-icons/io5'
@@ -10,7 +9,6 @@ import Census from './Census'
 
 const Preview = () => {
   const { t } = useTranslation()
-  const { election } = useElection()
   const { form, setActiveStep } = useProcessCreationSteps()
 
   const datef = t('form.process_create.calendar.date_format')

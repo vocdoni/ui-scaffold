@@ -23,6 +23,7 @@ export const translations = (t: TFunction<string, string>) => ({
     button_update: t('cc.vote.button_update').toString(),
     button: t('cc.vote.button').toString(),
     confirm: t('cc.vote.confirm').toString(),
+    sign: t('cc.vote.sign').toString(),
     voted_description: t('cc.vote.voted_description').toString(),
     voted_title: t('cc.vote.voted_title').toString(),
   },
@@ -31,7 +32,6 @@ export const translations = (t: TFunction<string, string>) => ({
     wrong_data_title: t('cc.errors.wrong_data_title').toString(),
     wrong_data_description: t('cc.errors.wrong_data_description').toString(),
   },
-  required: t('cc.required').toString(),
   // results component
   results: {
     date_format: t('cc.results.date_format').toString(),
@@ -42,9 +42,11 @@ export const translations = (t: TFunction<string, string>) => ({
   schedule: t('cc.schedule').toString(),
   spreadsheet: {
     access_button: t('cc.spreadsheet.access_button').toString(),
+    anon_sik_label: t('cc.spreadsheet.anon_sik_label').toString(),
+    anon_sik_helper: t('cc.spreadsheet.anon_sik_helper').toString(),
     close: t('cc.spreadsheet.close').toString(),
-    modal_title: t('cc.spreadsheet.modal_title').toString(),
     logout: t('cc.spreadsheet.logout').toString(),
+    modal_title: t('cc.spreadsheet.modal_title').toString(),
   },
   // status badge
   statuses: {
@@ -56,5 +58,9 @@ export const translations = (t: TFunction<string, string>) => ({
     results: t('cc.statuses.results').toString(),
     upcoming: t('cc.statuses.upcoming').toString(),
     process_unknown: t('cc.statuses.process_unknown').toString(),
+  },
+  validation: {
+    required: t('cc.validation.required').toString(),
+    min_length: t('cc.validation.min_length').toString(),
   },
 })

@@ -44,11 +44,9 @@ export const CostPreview = ({
   const { form } = useProcessCreationSteps()
   const { loading, handleSignIn } = useClaim()
   const {
-    addresses,
     startDate,
     endDate,
     electionType: { anonymous, autoStart },
-    maxCensusSize,
   } = form
 
   // election estimate cost
@@ -66,13 +64,14 @@ export const CostPreview = ({
         // this way the user can still create the election even tho the cost could not be estimated
         setCost(NaN)
       })
-  }, [cost, unpublished])
+  }, [client, cost, unpublished])
 
   // disable button if cost is higher than account balance
   useEffect(() => {
     if (typeof cost === 'undefined' || !account?.balance) return
 
     disable(cost > account!.balance)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cost, account?.balance])
 
   return (
@@ -100,7 +99,7 @@ export const CostPreview = ({
                       components={{
                         span: <Text as='span' />,
                       }}
-                      count={addresses.length || maxCensusSize}
+                      count={unpublished?.maxCensusSize}
                     />
                   </Text>
                 </ListItem>

@@ -78,7 +78,8 @@ export const Confirm = () => {
     setSending(true)
     setError(null)
     try {
-      const census = await getCensus(env, form, account!.address)
+      const salt = await client.electionService.getElectionSalt(account!.address, account!.electionIndex)
+      const census = await getCensus(env, form, salt)
       const params: IElectionParameters = {
         ...electionFromForm(form),
         census,
@@ -117,24 +118,22 @@ export const Confirm = () => {
       setSending(false)
     }
   }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const corelection = useMemo(() => electionFromForm(form), [account?.address, form])
 
   // fetches census for unpublished elections
   useEffect(() => {
     if (typeof unpublished !== 'undefined') return
     ;(async () => {
-      const census = await getCensus(env, form, account!.address)
       setUnpublished(
         Election.from({
           ...corelection,
-          census,
-          // oroboros... getCensus ensures form.addresses is populated, that's why we need to set it again
-          // this could be avoided by defining corelection asynchronusly, but would delay the rendering
-          maxCensusSize: form.maxCensusSize ?? form.addresses.length,
+          // we really don't care about the census, but it's a requirement from the Election.from method
+          census: new WeightedCensus(),
         } as IElectionParameters)
       )
     })()
-  }, [corelection])
+  }, [account, corelection, env, form, unpublished])
 
   // preview (fake) mapping
   const published = PublishedElection.build({
@@ -267,11 +266,9 @@ export const Confirm = () => {
  * @param {StepsFormValues} form The form object from where to generate the census
  * @returns
  */
-const getCensus = async (env: EnvOptions, form: StepsFormValues, organization: string) => {
+const getCensus = async (env: EnvOptions, form: StepsFormValues, salt: string) => {
   if (form.censusType === 'spreadsheet') {
-    const wallets = await form.spreadsheet?.generateWallets(organization)
-
-    form.addresses = wallets as Web3Address[]
+    form.addresses = (await form.spreadsheet?.generateWallets(salt)) as Web3Address[]
   }
 
   switch (form.censusType) {
@@ -279,6 +276,10 @@ const getCensus = async (env: EnvOptions, form: StepsFormValues, organization: s
       const c3client = new VocdoniCensus3Client({
         env,
       })
+
+      let attempts = (form.censusToken as any).size / 1000
+      c3client.queueWait.attempts = Math.min(Math.max(attempts, 20), 100)
+      c3client.queueWait.retryTime = 5000
 
       return c3client.createTokenCensus(
         form.censusToken.ID,
@@ -319,8 +320,12 @@ const getCensus = async (env: EnvOptions, form: StepsFormValues, organization: s
  * @returns
  */
 const electionFromForm = (form: StepsFormValues) => {
+  // max census size is calculated by the SDK when creating a process, but we need it to
+  // calculate the cost preview... so here we set it for all cases anyway
+  const maxCensusSize = form.maxCensusSize ?? form.spreadsheet?.data.length ?? form.addresses.length
   return {
     ...form,
+    maxCensusSize,
     // map questions back to IQuestion[]
     questions: form.questions.map(
       (question) =>
@@ -333,7 +338,6 @@ const electionFromForm = (form: StepsFormValues) => {
           })),
         } as IQuestion)
     ),
-    maxCensusSize: form.maxCensusSize ?? form.addresses.length,
     startDate: form.electionType.autoStart ? undefined : new Date(form.startDate).getTime(),
     endDate: new Date(form.endDate).getTime(),
     voteType: { maxVoteOverwrites: Number(form.maxVoteOverwrites) },

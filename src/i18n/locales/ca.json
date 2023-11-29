@@ -1,4 +1,15 @@
 {
+  "account": {
+    "helper": {
+      "sik": "Només se't demanarà quan vagis a votar en processos anònims"
+    },
+    "label": {
+      "sik": "Contrasenya per a votacions anònimes"
+    },
+    "placeholder": {
+      "sik": "Quelcom segur i fàcil de recordar"
+    }
+  },
   "aside": {
     "has_already_voted": "El teu vot s'ha registrat correctament",
     "is_not_in_census": "No estàs en el cens",
@@ -47,7 +58,6 @@
       "wrong_data_description": "Les dades especificades no són correctes",
       "wrong_data_title": "Dades incorrectes"
     },
-    "required": "Aquest camp és obligatori",
     "results": {
       "date_format": "PPpp",
       "secret_until_the_end": "Secret fins el final. Els resultats seran accessibles quan el procés finalitzi el {{ endDate }}",
@@ -57,6 +67,8 @@
     "schedule": "Votació del {{ begin }} al {{ end }}",
     "spreadsheet": {
       "access_button": "Identifica't",
+      "anon_sik_helper": "Això garanteix que el teu vot sigui anònim",
+      "anon_sik_label": "Defineix una contrasenya per al teu vot",
       "close": "Tanca",
       "logout": "Tanca la sessió",
       "modal_title": "T'has d'identificar primer"
@@ -71,10 +83,15 @@
       "results": "Resultats",
       "upcoming": "Propera"
     },
+    "validation": {
+      "required": "Aquest camp és obligatori",
+      "min_length": "Aquest camp ha de tenir com a mínim {{ min }} caràcters"
+    },
     "vote": {
       "button": "Vota",
       "button_update": "Torna a enviar el vot",
       "confirm": "Confirma les teves seleccions:",
+      "sign": "Signa abans de votar",
       "voted_description": "Per verificar el teu vot, pots utilitzar aquesta identificació única: {{ id }}",
       "voted_title": "El teu vot s'ha registrat amb èxit!"
     }
@@ -106,6 +123,7 @@
     "balance": "<span>Disposes de:</span><span2> {{ balance }} tokens</span2>",
     "button": "Obtenir més Tokens",
     "census_total_one": "<span>Votants:</span><span>{{ count }} votant</span>",
+    "census_total_many": "",
     "census_total_other": "<span>Votants:</span><span>{{ count }} votants</span>",
     "duration": "<span>Durada:</span> <span>{{ date, duration }}</span>",
     "not_enough_tokens": "No tens prou tokens per crear aquest procés.",
@@ -181,7 +199,7 @@
       "avatar_error": "URL no vàlida",
       "field_is_required": "Aquest camp és obligatori",
       "min_address": "Si us plau, proporciona com a mínim una adreça",
-      "recipient_address_invalid": ""
+      "recipient_address_invalid": "L'adreça especificada no sembla vàlida"
     },
     "process_create": {
       "behavior": {
@@ -238,6 +256,7 @@
         "census_total_one": "<span>Votants:</span><span>{{ count }} votant</span>",
         "census_total_many": "",
         "census_total_other": "<span>Votants:</span><span>{{ count }} votants</span>",
+        "census_total_people": "{{ count }} persones podran votar en aquesta votació",
         "census_total_people_one": "Una persona podrà votar en aquesta votació",
         "census_total_people_many": "{{ count }} persones podran votar en aquesta votació",
         "census_total_people_other": "{{ count }} persones podran votar en aquesta votació",
