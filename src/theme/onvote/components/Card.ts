@@ -183,7 +183,7 @@ const noElections = definePartsStyle({
 const typesVoting = definePartsStyle({
   container: {
     bgColor: 'transparent',
-    textAlign: { base: 'center', md2: 'start' },
+    textAlign: { base: 'center', lg22: 'start' },
     w: '240px',
     minH: 'none',
 
@@ -206,12 +206,12 @@ const aside = definePartsStyle({
     direction: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    px: { base: 12, md: 12 },
-    py: { base: 8, md: 12 },
+    px: { base: 12, lg2: 12 },
+    py: { base: 8, lg2: 12 },
     w: 'full',
     gap: 4,
-    mt: { md: 7 },
-    mb: { base: 7, md: 0 },
+    mt: { lg2: 7 },
+    mb: { base: 7, lg2: 0 },
     color: 'process.aside.color',
     background: 'process.aside.bg',
     boxShadow: 'var(--box-shadow-banner)',

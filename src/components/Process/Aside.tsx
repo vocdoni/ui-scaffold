@@ -48,7 +48,7 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
         )}
 
         {census?.type === 'spreadsheet' && !connected && (
-          <Box w='full' maxW='250px' mx='auto' display={{ base: 'none', md: 'block' }}>
+          <Box w='full' maxW='250px' mx='auto' display={{ base: 'none', lg2: 'block' }}>
             <SpreadsheetAccess />
           </Box>
         )}
@@ -58,7 +58,7 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
           !connected &&
           election?.status !== ElectionStatus.CANCELED && (
             <Flex flexDirection='column' alignItems='center' gap={3} w='full'>
-              <Box display={{ base: 'none', md: 'block' }}>
+              <Box display={{ base: 'none', lg2: 'block' }}>
                 <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />
               </Box>
               <Text textAlign='center' fontSize='sm'>
@@ -104,7 +104,7 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
             )}
             {connected && (
               <Box
-                display={{ base: 'inline-block', md: 'none' }}
+                display={{ base: 'inline-block', lg2: 'none' }}
                 alignSelf='center'
                 sx={{
                   '& button': {

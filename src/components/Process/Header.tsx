@@ -46,7 +46,7 @@ const ProcessHeader = () => {
           <OrganizationName color='organization.go_back_btn' as='span' overflow='hidden' fontSize='sm' isTruncated />
         </Button>
       )}
-      <Flex direction={{ base: 'column', md: 'row' }} mb={7} gap={10}>
+      <Flex direction={{ base: 'column', lg2: 'row' }} mb={7} gap={10}>
         <Box flexGrow={0} flexShrink={0} flexBasis={{ base: '100%', md: '60%', lg: '65%', lg2: '70%', xl2: '75%' }}>
           <ElectionTitle fontFamily='pixeloid' textTransform='uppercase' fontSize='xl4' textAlign='left' mb={5} />
           <Flex

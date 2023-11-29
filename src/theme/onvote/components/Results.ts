@@ -6,7 +6,7 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 const baseStyle = definePartsStyle({
   question: {
     p: 4,
-    width: { base: 'full', xl: '80%' },
+    width: '80%',
     m: 0,
     mx: 'auto',
 
@@ -40,16 +40,17 @@ const baseStyle = definePartsStyle({
         flexGrow: 0,
         flexShrink: 0,
         h: 6,
-        bgColor: 'process.results.progressbar',
+        bgColor: 'white',
         overflow: 'hidden',
         position: 'relative',
 
         '& div': {
           h: 6,
           background: {
-            base: `linear-gradient(to right, #d9e5ff 0%, #0053FF 50%, #0053FF 100%) left/var(--p,100%) fixed;`,
-            md: `linear-gradient(to right, #d9e5ff 65%, #0053FF 79.5%, #0053FF 94%) left/var(--p,100%) fixed;`,
-            xl: `linear-gradient(to right, #d9e5ff 46%, #0053FF 56%, #0053FF 66%) left/var(--p,100%) fixed;`,
+            base: `linear-gradient(to right, #d9e5ff 30%, #0053FF 80%, #0053FF 100%) left/var(--p,100%) fixed;`,
+            md: `linear-gradient(to right, #d9e5ff 65%, #0053FF 85%, #0053FF 94%) left/var(--p,100%) fixed;`,
+            lg2: `linear-gradient(to right, #d9e5ff 45%, #0053FF 60%, #0053FF 94%) left/var(--p,100%) fixed;`,
+            xl: `linear-gradient(to right, #d9e5ff 50%, #0053FF 60%, #0053FF 66%) left/var(--p,100%) fixed;`,
           },
         },
       },
