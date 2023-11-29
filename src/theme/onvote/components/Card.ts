@@ -213,7 +213,7 @@ const aside = definePartsStyle({
     mt: { lg2: 7 },
     mb: { base: 7, lg2: 0 },
     color: 'process.aside.color',
-    background: 'process.aside.bg',
+    background: '#3375ff',
     boxShadow: 'var(--box-shadow-banner)',
     clipPath:
       'polygon(0% 15px, 15px 15px, 15px 0%, calc(100% - 15px) 0%, calc(100% - 15px) 15px, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 15px calc(100% - 15px), 0% calc(100% - 15px))',

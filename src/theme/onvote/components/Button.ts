@@ -244,5 +244,6 @@ export const Button = defineStyleConfig({
   variants: { icon, primary, process, secondary, transparent },
   defaultProps: {
     colorScheme: 'primary',
+    variant: 'primary',
   },
 })

@@ -152,7 +152,7 @@ export const ProcessAsideFooterMbl = ({ setQuestionsTab }: { setQuestionsTab: ()
     return null
 
   return (
-    <Flex justifyContent='center' alignItems='center' p={4} background='process.aside.bg' color='process.aside.color'>
+    <Flex justifyContent='center' alignItems='center' p={4} background='#3375ff' color='process.aside.color'>
       {census?.type !== 'spreadsheet' && !connected && (
         <ConnectButton.Custom>
           {({ account, chain, openConnectModal, authenticationStatus, mounted }) => {
