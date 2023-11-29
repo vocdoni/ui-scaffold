@@ -46,7 +46,7 @@ const onVoteCommonStyles = {
   },
 
   hover: {
-    width: 'calc(100% + 10px)',
+    width: 'calc(100% + 8px)',
   },
 
   active: {

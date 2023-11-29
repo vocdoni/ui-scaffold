@@ -20,7 +20,6 @@ const Banner = () => {
         lineHeight='44px'
         fontFamily='pixeloidsans'
         textTransform='uppercase'
-        fontWeight='bold'
         mb={!isConnected ? '130px' : '36px'}
       >
         {t('banner.title')}
