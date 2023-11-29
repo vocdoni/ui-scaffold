@@ -2,7 +2,7 @@ import { ChakraProvider, ColorModeScript, extendTheme, useColorMode } from '@cha
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import { ClientProvider } from '@vocdoni/chakra-components'
 import { EnvOptions } from '@vocdoni/sdk'
-import { Signer } from 'ethers'
+import { Signer } from '@ethersproject/abstract-signer';
 import { useTranslation } from 'react-i18next'
 import { WagmiConfig, useWalletClient } from 'wagmi'
 import { OrganizationModalProvider } from '~components/Organization/OrganizationModalProvider'

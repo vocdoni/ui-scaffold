@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { errorToString, useClient } from '@vocdoni/react-providers'
-import { ethers } from 'ethers'
+import { isAddress } from '@ethersproject/address';
 import { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
@@ -217,7 +217,7 @@ export const useClaim = () => {
   }
 
   const isValidAddress: IsValidAddressFunction = async (address: string) => {
-    if (!ethers.utils.isAddress(address)) return false
+    if (!isAddress(address)) return false
 
     try {
       return !!(await client.accountService.fetchAccountInfo(address))
