@@ -184,7 +184,7 @@ export const CostPreview = ({
           </>
         )}
       </Flex>
-
+      {/* cost && cost > account!.balance */}
       {cost && cost > account!.balance && (
         <Flex flexDir='column' alignItems='center' gap={2}>
           <Text color='red' textAlign='center'>

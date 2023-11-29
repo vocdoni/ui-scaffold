@@ -7,12 +7,12 @@ const Home = () => {
   return (
     <>
       <Box
-        bgImage='/assets/home-bg.png'
-        bgSize='cover'
+        bgImage='linear-gradient(rgb(242, 242, 242), rgba(242, 242, 242, 0) 25%, rgba(242, 242, 242, 0) 80%, rgb(242, 242, 242)), url("/assets/home-bg.png")'
+        bgSize='auto, cover'
+        backgroundPosition='0 0, 50%'
         bgRepeat='no-repeat'
         bgPosition='center'
         paddingTop='8rem'
-        marginTop='-8rem'
         paddingBottom='4rem'
       >
         <Box maxW='1920px' mx='auto' pt='120px' px='40px'>
