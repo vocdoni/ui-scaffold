@@ -347,7 +347,6 @@
     "authentification_method": "Seleccioneu el vostre mètode d'autenticació preferit:",
     "authentification_method_helper": "Podeu obtenir {{ faucetAmount }} tokens per mètode d'autenticació per setmana",
     "button": "Sol·licitar Tokens",
-    "coming_soon": "Properament",
     "description": "<text>Per afegir més tokens, heu d'<strong>iniciar sessió</strong> amb un compte social (per evitar l'ús indegut del faucet).</text><text><strong>Només sol·licitem accés de lectura.</strong></text>",
     "info": "<text>Si en necessiteu més, poseu-vos en contacte amb <mailto>info@onvote.app</mailto></text>",
     "title": "Obtenir VOC Tokens"

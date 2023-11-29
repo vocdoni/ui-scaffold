@@ -131,9 +131,8 @@
     "connect": "Please, connect your wallet",
     "copy_faucetPackage": "Copy Faucet Package",
     "copy_faucetPackage_done": "Copied!",
-    "faucetPackage_success": "Congratulations! Here is your Faucet Package:",
-    "connect_or_set_recipient_address": "Please, connect your wallet or write the recipient address below (must be a Vocdoni Account)",
     "description": "Tokens are necessary for specific actions like creating an election or changing its status. The number of tokens required is influenced by factors such as census size, election duration and its parameters.",
+    "faucetPackage_success": "Congratulations! Here is your Faucet Package:",
     "general_information": {
       "description": "Upon token request, you will receive {{ amount }} tokens, and you can claim from the faucet once every 24 hours.",
       "description2": "For additional tokens required in your development on the Vocdoni stack, please connect with us at info(at)vocdoni.io.",
@@ -191,7 +190,8 @@
     "process_create": {
       "behavior": {
         "anonymous": {
-          "description": "This setting ensures that votes remain unlinked to voter identities by utilizing advanced zkSNARKs technology on the Vocdoni Protocol."
+          "description": "This setting ensures that votes remain unlinked to voter identities by utilizing advanced zkSNARKs technology on the Vocdoni Protocol.",
+          "title": ""
         },
         "overwrite": {
           "description": "This setting allow voters to revise their vote a single time if needed, providing flexibility and protection against vote coercion.",
@@ -339,7 +339,6 @@
     "authentification_method": "Select your prefered authentification method:",
     "authentification_method_helper": "You can earn {{ faucetAmount }} token by authetication method per week",
     "button": "Request Tokens",
-    "coming_soon": "Coming soon",
     "description": "<text>To add more tokens you must <strong>sign in</strong> with a social account (to prevent missuse of the faucet).</text><text><strong>We only request read access.</strong></text>",
     "info": "<text>If you need more, contact to <mailto>info@onvote.app</mailto></text>",
     "title": "Get VOC Tokens"
@@ -399,13 +398,8 @@
     "create_organization_btn": "Create Organization",
     "description1": "Set up your <span>organization for free</span> and start creating voting processes to engage with your community.",
     "description2": "As a <span>welcome gift</span>, you'll get {{ faucetAmount }} tokens to begin creating votes on our platform!",
-    "footer": "<span>Vocdoni</span> is a secure, privacy-friendly & open-source public voting protocol.",
-    "inexpensive": "Inexpensive",
     "name": "Organization name",
-    "open_source": "<span>Open</span><span>Source</span>",
-    "scalable": "Scalable",
-    "title": "Create your organization",
-    "verificable": "Verificable"
+    "title": "Create your organization"
   },
   "open_in_explorer": "Open in explorer",
   "organization": {
