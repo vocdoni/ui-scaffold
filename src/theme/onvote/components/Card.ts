@@ -49,7 +49,7 @@ const detailed = definePartsStyle({
     justifyContent: 'space-between',
 
     '& a': {
-      w: '100%',
+      w: '85%',
       display: 'flex',
       flexDirection: 'column',
 

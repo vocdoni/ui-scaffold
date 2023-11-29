@@ -40,7 +40,7 @@ export const useReadMoreMarkdown = (containerMaxHeightPx: number, tantPerCentGra
           background:
             isTruncated && readMore
               ? `linear-gradient(to bottom, ${from ? from : 'rgba(255, 255, 255, 0)'} 0%, ${
-                  to ? to : 'rgba(255, 255, 255, 1)'
+                  to ? to : 'rgba(255, 255, 255, .8)'
                 } 100%)`
               : '',
         },

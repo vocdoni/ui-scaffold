@@ -15,7 +15,7 @@ const VotingTypesBanner = () => {
         maxW={{ md: '900px' }}
         mx='auto'
         fontSize='sm'
-        pb='100px'
+        pb={64}
       >
         <Card variant='types-voting'>
           <Box>

@@ -52,6 +52,8 @@ export const colors = {
 
   bg: colorsBase.gray.bg,
 
+  error: 'red.500',
+
   checkbox: colorsBase.primary.main,
 
   link: {

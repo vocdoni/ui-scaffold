@@ -92,8 +92,8 @@ const OrganizationView = () => {
     <Box
       mb={44}
       px={{
-        base: 10,
-        sm: 14,
+        base: '20px',
+        md: '40px',
       }}
     >
       <Header />

@@ -13,35 +13,41 @@ const Features = () => {
 
   return (
     <Box mb={44} position='relative' mt='100px'>
-      <Box bgImage='/assets/home-bg2.svg' bgSize='cover' minH='350px' position='absolute' w='full' filter='blur(4px)' />
+      <Img src='/assets/home-bg2.svg' position='absolute' w='full' filter='blur(.5px)' />
       <Box
         position='relative'
-        maxW='640px'
+        maxW='840px'
         mx='auto'
         px={{
           base: 10,
           sm: 14,
         }}
-        pb={22}
-        height='300px'
+        pt={20}
+        mb={32}
       >
         <Trans
           i18nKey='home_features.title'
           components={{
-            p1: <Text textAlign='center' fontFamily='pixeloidsans' textTransform='uppercase' fontSize='24px' />,
-            p2: <Text textAlign='center' fontWeight='bold' fontSize='xl5' />,
+            p1: (
+              <Text
+                textAlign='center'
+                fontFamily='pixeloidsans'
+                textTransform='uppercase'
+                fontSize='32px'
+                lineHeight='39.5px'
+              />
+            ),
+            p2: <Text textAlign='center' fontWeight='bold' fontSize='64px' lineHeight='80px' />,
           }}
         />
       </Box>
       <Flex
         alignItems={{ base: 'center', lg: 'start' }}
         flexDirection='column'
-        gap={{ base: 8, lg: 0 }}
-        px={{
-          base: 10,
-          sm: 14,
-        }}
+        mx='auto'
+        maxW='1124px'
         position='relative'
+        zIndex={10}
       >
         <Flex maxW={{ lg: '50%' }} alignItems='start' gap={5}>
           <Img src={anonymouse} mt={2} />

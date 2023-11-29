@@ -1,6 +1,7 @@
 import { Box } from '@chakra-ui/react'
 import Banner from '~components/Home/BannerOnVote'
-import Features from '~components/Home/FeaturesFeatures'
+import Features from '~components/Home/Features'
+import Roadmap from '~components/Home/Roadmap'
 import VotingTypesBanner from '~components/Home/Voting'
 
 const Home = () => {
@@ -21,6 +22,7 @@ const Home = () => {
         </Box>
       </Box>
       <Box maxW='1920px' mx='auto'>
+        <Roadmap />
         <Features />
       </Box>
     </>

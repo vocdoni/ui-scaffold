@@ -227,7 +227,7 @@ export const Confirm = () => {
         </ElectionProvider>
       </Box>
       <Flex justifyContent='space-between' alignItems='end' mt='auto'>
-        <Button variant='secondary' color='primary.500' onClick={prev} leftIcon={<ArrowBackIcon />}>
+        <Button variant='secondary' onClick={prev} leftIcon={<ArrowBackIcon />}>
           {t('form.process_create.previous_step')}
         </Button>
 

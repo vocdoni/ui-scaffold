@@ -191,7 +191,7 @@ export const ProcessAsideFooterMbl = ({ setQuestionsTab }: { setQuestionsTab: ()
       ) : (
         connected && (
           <Flex justifyContent='center' alignItems='center' height='40px' borderRadius='30px' bgColor='white' w='full'>
-            <Spinner color='primary.500' />
+            <Spinner color='primary.600' />
           </Flex>
         )
       )}

@@ -6,7 +6,6 @@ import {
   FormControl,
   FormErrorMessage,
   Icon,
-  Link,
   ListItem,
   Text,
   UnorderedList,
@@ -112,6 +111,7 @@ export const CensusCsvManager = () => {
             sx={{
               '& > label': {
                 position: 'relative',
+                w: 'full',
 
                 '& span:first-of-type': {
                   position: 'absolute',
@@ -161,11 +161,10 @@ export const CensusCsvManager = () => {
         </Box>
         <Flex flex='1 1 40%' flexDirection='column' justifyContent='center' alignItems='center' gap={3} p={6} mx='auto'>
           <Text textAlign='center'>{t('form.process_create.spreadsheet.download_template_description')}</Text>
-          <Link download={'census-template.csv'} href={template.url}>
-            <Button leftIcon={<BiDownload />} colorScheme='primary' variant='primary' border='1px solid'>
-              {t('form.process_create.spreadsheet.download_template_btn')}
-            </Button>
-          </Link>
+          <Button as='a' download={'census-template.csv'} href={template.url}>
+            <BiDownload />
+            {t('form.process_create.spreadsheet.download_template_btn')}
+          </Button>
         </Flex>
       </Flex>
 

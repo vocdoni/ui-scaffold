@@ -375,11 +375,11 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Token; 
             75%
           </SliderMark>
           <SliderTrack>
-            <SliderFilledTrack bg='primary.500' />
+            <SliderFilledTrack bg='primary.600' />
           </SliderTrack>
           <Tooltip
             hasArrow
-            bg='primary.500'
+            bg='primary.600'
             color='white'
             placement='top'
             isOpen={showTooltip}
