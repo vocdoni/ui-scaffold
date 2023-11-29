@@ -1,10 +1,10 @@
 import { ChakraProvider, ColorModeScript, extendTheme, useColorMode } from '@chakra-ui/react'
+import { Signer } from '@ethersproject/abstract-signer'
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import { ClientProvider } from '@vocdoni/chakra-components'
 import { EnvOptions } from '@vocdoni/sdk'
-import { Signer } from '@ethersproject/abstract-signer';
 import { useTranslation } from 'react-i18next'
-import { WagmiConfig, useWalletClient } from 'wagmi'
+import { useAccount, useWalletClient, WagmiConfig } from 'wagmi'
 import { OrganizationModalProvider } from '~components/Organization/OrganizationModalProvider'
 import { walletClientToSigner } from '~constants/wagmi-adapters'
 import { VocdoniEnvironment } from './constants'
@@ -24,11 +24,12 @@ export const Providers = () => (
 
 export const AppProviders = () => {
   const { data } = useWalletClient()
+  const { address } = useAccount()
   const { colorMode } = useColorMode()
   const { t, i18n } = useTranslation()
 
   let signer = null
-  if (data) {
+  if (data && address) {
     signer = walletClientToSigner(data)
   }
 
