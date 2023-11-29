@@ -61,7 +61,6 @@ const LayoutProcessCreate = () => {
         textTransform='uppercase'
         fontFamily='pixeloidsans'
         fontSize='16px'
-        fontWeight='bold'
       >
         World wide voting
       </Text>

@@ -12,7 +12,8 @@ const Features = () => {
   const { t } = useTranslation()
 
   return (
-    <Box mb={44} position='relative'>
+    <Box mb={44} position='relative' mt='100px'>
+      <Box bgImage='/assets/home-bg2.svg' bgSize='cover' minH='350px' position='absolute' w='full' filter='blur(4px)' />
       <Box
         position='relative'
         maxW='640px'

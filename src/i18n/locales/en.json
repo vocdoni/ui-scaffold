@@ -23,7 +23,7 @@
   "banner": {
     "start_now": "Create a voting now!",
     "subtitle": "Use wallet addresses, vote with an ERC20 token or with NFTs!",
-    "title": "Voting for DAOs & Web3 communities"
+    "title": "anonyomus, Gasless and Modular voting for Web3"
   },
   "banner_voting_types": {
     "anonymous_description": "Voters' identities remain completely confidential, thanks to cutting-edge zk-SNARK technology.",
