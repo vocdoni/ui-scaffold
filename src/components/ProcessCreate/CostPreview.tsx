@@ -15,7 +15,6 @@ import {
   ModalOverlay,
   Spinner,
   Text,
-  Tooltip,
   UnorderedList,
   useDisclosure,
 } from '@chakra-ui/react'
@@ -256,7 +255,7 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
               aria-label={t('login.github').toString()}
               onClick={() => setSocialAccount('github')}
               selected={socialAccount === 'github'}
-              title="Github"
+              title='Github'
             >
               <Icon as={FaGithub} w={8} h={8} />
             </OAuthLoginButton>
@@ -264,7 +263,7 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
               aria-label={t('login.google').toString()}
               onClick={() => setSocialAccount('google')}
               selected={socialAccount === 'google'}
-              title="Google"
+              title='Google'
             >
               <Icon as={FaGoogle} w={8} h={8} />
             </OAuthLoginButton>
@@ -272,7 +271,7 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
               aria-label={t('login.facebook').toString()}
               onClick={() => setSocialAccount('facebook')}
               selected={socialAccount === 'facebook'}
-              title="Facebook"
+              title='Facebook'
             >
               <Icon as={FaFacebook} w={8} h={8} />
             </OAuthLoginButton>
@@ -290,9 +289,13 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
         </ModalBody>{' '}
         <ModalFooter flexDirection='column' alignItems='center' gap={3}>
           <Button
-            variant='rounded'
-            colorScheme='primary'
-            onClick={() => handleSignIn(socialAccount, account?.address as string, [])}
+            variant='primary'
+            onClick={() =>
+              handleSignIn(socialAccount, account?.address as string, [
+                { param: 'connected', value: true },
+                { param: 'loadDraft', value: '' },
+              ])
+            }
             isLoading={loading}
             isDisabled={!socialAccount}
           >
@@ -318,7 +321,7 @@ const OAuthLoginButton = (props: Partial<ButtonProps & { selected: boolean }>) =
     <Button
       {...props}
       cursor='pointer'
-      title={title || 'coming soon'}
+      title={title || 'coming soon'}
       sx={{
         '&': {
           bgColor: selected ? 'primary.500' : '',
