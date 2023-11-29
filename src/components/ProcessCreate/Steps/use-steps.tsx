@@ -7,7 +7,7 @@ import { Info, InfoValues } from '../StepForm/Info'
 import { Questions, QuestionsValues } from '../StepForm/Questions'
 import { Census, CensusValues } from './Census'
 import { Checks } from './Checks'
-import { Confirm } from './Confirm'
+import { Confirm } from './ConfirmOnVote'
 
 export interface StepsFormValues
   extends InfoValues,

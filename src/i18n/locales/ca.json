@@ -169,10 +169,12 @@
     "developer_portal": "Portal de desenvolupadors",
     "developers": "Desenvolupadors",
     "discord": "Discord",
+    "follow_us": "Segueix-nos",
     "homepage": "Inici",
     "repos": "Codi Obert",
     "resources": "Recursos",
     "terms_and_privacy": "<link1>Termes d'ús</link1> i <link2>Política de privacitat</link2>",
+    "text": "<p1>El futur</p1><p2>de la votació en Web3 comença aquí</p2>",
     "tutorials": "Tutorials",
     "vocdoni_api": "API de Vocdoni",
     "vocdoni_app": "APP de Vocdoni"
@@ -360,6 +362,23 @@
     "description": "<text>Per afegir més tokens, heu d'<strong>iniciar sessió</strong> amb un compte social (per evitar l'ús indegut del faucet).</text><text><strong>Només sol·licitem accés de lectura.</strong></text>",
     "info": "<text>Si en necessiteu més, poseu-vos en contacte amb <mailto>info@onvote.app</mailto></text>",
     "title": "Obtenir VOC Tokens"
+  },
+  "home_features": {
+    "anonymous_description": "Desbloqueja la veritable democràcia amb zkSNARKs! Els participants poden emetre els seus vots amb total anonimat, assegurant que cada veu sigui escoltada sense compromisos.",
+    "anonymous_title": "Anònim",
+    "census_startegy_description": "Crea la estratègia de cens perfecta combinant variables per determinar l'elegibilitat dels votants. Aprofita les combinacions de múltiples tokens de xarxes basades en EVM i altres dades.",
+    "census_startegy_title": "Estratègies de cens",
+    "descentralized_description": "Onvote funciona sobre una xarxa descentralitzada especialitzada construïda per a votacions digitals. Tot el procés és universalment verificable i els vots són completament a prova de manipulacions.",
+    "descentralized_title": "Descentralitzat",
+    "flexible_description": "Onvote aprofita el Protocol Vocdoni, un protocol de votació altament flexible que permet diversos mètodes de votació (com ara simple, quadràtic o de votació classificada), així com altres personalitzacions per adaptar-se a les teves necessitats úniques. Pots desencadenar tot el seu potencial amb el nostre SDK fàcil d'ús.",
+    "flexible_title": "Protocol flexible",
+    "gas_less_description": "Pagar per votar està malament. Per eliminar barreres i mantenir la governança, votar a Onvote no requereix gas. Només els iniciadors dels processos de votació assumeixen el cost.",
+    "gas_less_title": "Votació sense gas",
+    "multichain_description": "Combina tokens a través de qualsevol cadena per maximitzar el poder de vot. Per exemple, els titulars poden votar amb tots els seus $UNI a Polygon, Optimism, Ethereum i més!",
+    "multichain_title": "Multi-cadena",
+    "open_source_description": "Creiem que algo tan important com el teu vot ha de ser de codi obert i auditat públicament per ser confiable. Alliberem tot sota AGPLv3.",
+    "open_source_title": "Codi obert",
+    "title": "<p1>Esteu</p1><p2>preparats per a una nova era en la governança Web3?</p2>"
   },
   "link": {
     "discord": "Enllaç al Discord de Vocdoni",

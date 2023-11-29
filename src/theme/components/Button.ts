@@ -8,17 +8,17 @@ const process = defineStyle({
   bgColor: 'process.aside.vote_btn_bg',
 })
 
-const rounded = defineStyle((props) => {
+const primary = defineStyle((props) => {
   const { colorScheme } = props
 
-  // Chakra defaults to using the gray colorScheme, utilizing .100 for the background, .200 for hover, and .300 for active states.
-  // However, when a color scheme is provided, it employs the values 500/600/700.
-  // We replicate the same approach: if a colorScheme is specified, we use the values 500/600/700; otherwise, we use gray.100/gray.200/gray.300.
   return {
     borderRadius: 'full',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 2,
     bgColor: colorScheme !== 'gray' ? `${colorScheme}.500` : `${colorScheme}.100`,
 
-    //By default, Chakra UI uses white color, and in the case of the gray colorScheme, it uses black. This can always be modified using the "color" prop.
     color: colorScheme !== 'gray' ? 'white' : 'black',
 
     _hover: {
@@ -31,24 +31,66 @@ const rounded = defineStyle((props) => {
   }
 })
 
-const roundedGhost = defineStyle((props) => {
+const secondary = defineStyle((props) => {
   const { colorScheme } = props
 
-  // The same as in "rounded," but without a default bgColor.
   return {
     borderRadius: 'full',
-    bgColor: 'transparent',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 2,
+    bgColor: 'gray.100',
+    color: colorScheme !== 'gray' ? `${colorScheme}.500` : `${colorScheme}.300`,
 
     _hover: {
-      bgColor: colorScheme !== 'gray' ? `${colorScheme}.500` : `${colorScheme}.100`,
+      bgColor: 'gray.200',
+      color: colorScheme !== 'gray' ? `${colorScheme}.600` : `${colorScheme}.300`,
     },
 
     _active: {
-      bgColor: colorScheme !== 'gray' ? `${colorScheme}.600` : `${colorScheme}.200`,
+      bgColor: 'gray.300',
+      color: colorScheme !== 'gray' ? `${colorScheme}.700` : `${colorScheme}.300`,
     },
   }
 })
+const transparent = defineStyle((props) => {
+  return {
+    bgColor: 'transparent',
 
+    _hover: {
+      bgColor: 'transparent',
+    },
+    _active: {
+      bgColor: 'transparent',
+    },
+
+    _disabled: {},
+  }
+})
+
+const icon = defineStyle((props) => {
+  const { colorScheme } = props
+
+  return {
+    color: `${colorScheme}.600`,
+    bgColor: 'transparent',
+
+    _hover: {
+      bgColor: `${colorScheme}.500`,
+      color: 'white',
+    },
+    _active: {
+      bgColor: `${colorScheme}.700`,
+      color: 'white',
+    },
+
+    _disabled: {},
+  }
+})
 export const Button = defineStyleConfig({
-  variants: { process, rounded, 'rounded-ghost': roundedGhost },
+  defaultProps: {
+    colorScheme: 'primary',
+  },
+  variants: { icon, process, primary, secondary, transparent },
 })

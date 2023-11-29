@@ -38,7 +38,7 @@ const Steps = () => {
         {steps.map((step, index) => (
           <Step key={index}>
             <Flex flexDirection={{ base: 'column', lg: 'row' }} alignItems={{ base: 'center', lg: 'initial' }} gap={3}>
-              <StepIndicator>
+              <StepIndicator fontFamily='pixeloid'>
                 <StepStatus complete={<StepIcon />} incomplete={<StepNumber />} active={<StepNumber />} />
               </StepIndicator>
               <Text as='span' fontSize='xs' mt={{ lg: 2 }} color='#555'>
@@ -52,13 +52,15 @@ const Steps = () => {
           </Step>
         ))}
       </Stepper>
-      <StepsForm
-        steps={steps}
-        activeStep={activeStep}
-        next={() => setActiveStep(activeStep + 1)}
-        prev={() => setActiveStep(activeStep - 1)}
-        setActiveStep={setActiveStep}
-      />
+      <Box>
+        <StepsForm
+          steps={steps}
+          activeStep={activeStep}
+          next={() => setActiveStep(activeStep + 1)}
+          prev={() => setActiveStep(activeStep - 1)}
+          setActiveStep={setActiveStep}
+        />
+      </Box>
     </Flex>
   )
 }

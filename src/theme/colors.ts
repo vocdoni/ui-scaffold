@@ -34,6 +34,13 @@ export const colors = {
     700: colorsBase.primary.dark2,
   },
 
+  black: {
+    50: colorsBase.white.pure,
+    500: colorsBase.black,
+    600: colorsBase.black,
+    700: colorsBase.black,
+  },
+
   link: {
     primary: colorsBase.primary.main,
   },
@@ -41,6 +48,8 @@ export const colors = {
   main_bg: colorsBase.white.dark,
 
   modal_description: colorsBase.gray.dark,
+
+  navbar_chevron: colorsBase.primary.main,
 
   organization: {
     card: {

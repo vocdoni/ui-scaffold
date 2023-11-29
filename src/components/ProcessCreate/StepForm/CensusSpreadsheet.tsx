@@ -1,8 +1,8 @@
 import { Box, Text } from '@chakra-ui/react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { CensusCsvManager } from '../Census/Spreadsheet'
 import { CensusSpreadsheetManager } from '../Census/Spreadsheet/CensusSpreadsheetManager'
+import { CensusCsvManager } from '../Census/Spreadsheet/indexOnVote'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 
 export interface CensusSpreadsheetValues {
@@ -28,7 +28,13 @@ export const StepFormCensusSpreadsheet = () => {
   return (
     <>
       <Box px={7} py={4}>
-        <Text fontWeight='bold' color='process_create.census.title' mb={5}>
+        <Text
+          fontWeight='bold'
+          fontFamily='pixeloid'
+          textTransform='uppercase'
+          color='process_create.census.title'
+          mb={5}
+        >
           {t('census.spreadsheet_title')}
         </Text>
         <FormProvider {...methods}>

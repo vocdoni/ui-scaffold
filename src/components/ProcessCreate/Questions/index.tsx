@@ -56,7 +56,7 @@ const CreateProcessQuestions = () => {
   return (
     <Flex flexDirection='column' gap={5}>
       <Box>
-        <Text fontSize='md' fontWeight='bold'>
+        <Text fontSize='md' fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase'>
           {t('form.process_create.question.title')}
         </Text>
         <Text fontSize='sm' color='process_create.description'>
@@ -79,9 +79,8 @@ const CreateProcessQuestions = () => {
           })
           setTabIndex(questions.length)
         }}
-        size='md'
         alignSelf='center'
-        px={20}
+        variant='secondary'
       >
         {t('form.process_create.question.add_question')}
       </Button>

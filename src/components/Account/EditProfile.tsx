@@ -14,6 +14,7 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
+  ModalFooter,
   ModalHeader,
   ModalOverlay,
   Text,
@@ -119,7 +120,7 @@ const EditProfile = ({ callback }: { callback?: any }) => {
                       flexShrink={0}
                       w={{ base: 20, md: 40 }}
                       ratio={1.25 / 1}
-                      borderRadius='lg'
+                      borderRadius={0}
                       overflow='hidden'
                     >
                       <Image src={avatar} fallbackSrc={fallback} />
@@ -189,9 +190,7 @@ const EditProfile = ({ callback }: { callback?: any }) => {
                     <Text> {t('form.account_create.description_helper')}</Text>
                   </FormHelperText>
                 </FormControl>
-                <Button type='submit' colorScheme='primary' isLoading={loading}>
-                  {t('form.edit_profile.btn')}
-                </Button>
+
                 {error && (
                   <Text color='red.500' textAlign='center'>
                     {error}
@@ -199,6 +198,11 @@ const EditProfile = ({ callback }: { callback?: any }) => {
                 )}
               </Flex>
             </ModalBody>
+            <ModalFooter>
+              <Button type='submit' variant='primary' isLoading={loading}>
+                {t('form.edit_profile.btn')}
+              </Button>
+            </ModalFooter>
           </Box>
         </ModalContent>
       </Modal>

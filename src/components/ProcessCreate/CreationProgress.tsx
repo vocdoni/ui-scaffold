@@ -1,8 +1,9 @@
-import { List, ListIcon, ListItem, Spinner, Stack, Text } from '@chakra-ui/react'
+import { Flex, Img, List, ListItem, Stack, Text } from '@chakra-ui/react'
 import { ElectionCreationSteps } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { AiFillCheckCircle, AiFillCloseCircle } from 'react-icons/ai'
+import checkIcon from '/assets/check-icon.svg'
+import closeIcon from '/assets/close-icon.svg'
 
 export type Steps =
   | ElectionCreationSteps.CENSUS_CREATED
@@ -52,15 +53,39 @@ export const CreationProgress = ({ error, sending, step }: CreationProgressProps
       <Text mb={6} textAlign='center' color='modal_description'>
         {t('process_create.creation_steps_description')}
       </Text>
-      <List spacing={3}>
+      <List spacing={3} pb={3}>
         {Object.keys(labels).map((key, index) => (
           <ListItem key={key} display='flex' alignItems='center' gap={2}>
             {steps[key as keyof CreationStepsState] ? (
-              <ListIcon as={AiFillCheckCircle} fontSize={23} m={0} />
+              <Flex justifyContent='center' alignItems='center' gap={2}>
+                <Flex justifyContent='center' alignItems='center' w={6} h={6} bgColor='primary.main'>
+                  <Img src={checkIcon} />
+                </Flex>
+                <Text fontWeight='bold' color='primary.main'>
+                  {labels[key]}
+                </Text>
+              </Flex>
             ) : (
-              <>{!error ? <Spinner boxSize={5} mr='3px' /> : <ListIcon as={AiFillCloseCircle} fontSize={23} m={0} />}</>
+              <>
+                {!error ? (
+                  <Flex justifyContent='center' alignItems='center' gap={2} color='lightgray'>
+                    <Flex justifyContent='center' alignItems='center' w={6} h={6} border='1px solid'>
+                      {index}
+                    </Flex>
+                    <Text fontWeight='bold'>{labels[key]}</Text>
+                  </Flex>
+                ) : (
+                  <Flex justifyContent='center' alignItems='center' gap={2}>
+                    <Flex justifyContent='center' alignItems='center' w={6} h={6} bgColor='red.300'>
+                      <Img src={closeIcon} />
+                    </Flex>
+                    <Text fontWeight='bold' color='red.300'>
+                      {labels[key]}
+                    </Text>
+                  </Flex>
+                )}
+              </>
             )}
-            <Text>{labels[key]}</Text>
           </ListItem>
         ))}
       </List>

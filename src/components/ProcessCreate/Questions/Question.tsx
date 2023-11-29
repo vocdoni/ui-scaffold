@@ -26,22 +26,18 @@ const Question = ({ index, remove }: Props) => {
   })
 
   return (
-    <Box bgColor='process_create.section' borderRadius='md' p={6} position='relative'>
+    <Box bgColor='process_create.section' p={6} position='relative'>
       <IconButton
-        aria-label={t('form.process_create.question.question_delete', { values: { num: index } })}
-        type='button'
+        variant='icon'
         position='absolute'
         right={2}
         top={2}
-        size='sm'
+        size='xs'
+        type='button'
         icon={<DeleteIcon />}
-        opacity={0.6}
-        _hover={{
-          '&': {
-            opacity: 1,
-          },
-        }}
+        aria-label={t('form.process_create.question.question_delete', { values: { num: index } })}
         onClick={() => remove(index)}
+        ml='auto'
       />
 
       <FormControl isInvalid={isInvalidFieldMap(errors, `questions.${index}.title`)} mb={2}>

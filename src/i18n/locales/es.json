@@ -169,10 +169,12 @@
     "developer_portal": "Portal para desarrolladores",
     "developers": "Desarrolladores",
     "discord": "Discord",
+    "follow_us": "Síguenos",
     "homepage": "Inicio",
     "repos": "Código abierto",
     "resources": "Recursos",
     "terms_and_privacy": "<link1>Términos de uso</link1> y <link2>Política de privacidad</link2>",
+    "text": "<p1>El futuro</p1><p2>de la votación en Web3 comienza aquí</p2>",
     "tutorials": "Tutoriales",
     "vocdoni_api": "API de Vocdoni",
     "vocdoni_app": "APP de Vocdoni"
@@ -360,6 +362,23 @@
     "description": "<text>Para agregar más tokens, debe <strong>iniciar sesión</strong> con una cuenta social (para prevenir el mal uso del grifo).</text><text><strong>Solo solicitamos acceso de lectura.</strong></text>",
     "info": "<text>Si necesita más, contacte a <mailto>info@onvote.app</mailto></text>",
     "title": "Obtener VOC Tokens"
+  },
+  "home_features": {
+    "anonymous_description": "¡Desbloquea la verdadera democracia con zkSNARKs! Los participantes pueden emitir sus votos con completa anonimato, asegurando que cada voz sea escuchada sin compromisos.",
+    "anonymous_title": "Anónimo",
+    "census_startegy_description": "Elabora la estrategia de censo perfecta combinando variables para determinar la elegibilidad de los votantes. Aprovecha combinaciones de múltiples tokens de redes basadas en EVM y otros datos.",
+    "census_startegy_title": "Estrategias de censo",
+    "descentralized_description": "Onvote funciona sobre una red descentralizada especializada construida para votaciones digitales. Todo el proceso es universalmente verificable y los votos son completamente a prueba de manipulaciones.",
+    "descentralized_title": "Descentralizado",
+    "flexible_description": "Onvote utiliza el Protocolo Vocdoni, un protocolo de votación altamente flexible que permite múltiples métodos de votación (como simple, cuadrático o clasificado), así como otras personalizaciones para ajustarse a tus necesidades únicas. Puedes liberar todo su potencial con nuestro SDK fácil de usar.",
+    "flexible_title": "Protocolo Flexible",
+    "gas_less_description": "Pagar por votar está mal. Para eliminar barreras y mantener la gobernanza, votar en Onvote es sin coste de gas. Solo los iniciadores de los procesos de votación asumen el costo.",
+    "gas_less_title": "Votación sin gas",
+    "multichain_description": "Combina tokens a través de cualquier cadena para maximizar el poder de votación. ¡Por ejemplo, los titulares pueden votar con todos sus $UNI en Polygon, Optimism, Ethereum y más!",
+    "multichain_title": "Multicadena",
+    "open_source_description": "Creemos que algo tan importante como tu voto debe ser de código abierto y auditado públicamente para ser confiable. Liberamos todo bajo AGPLv3.",
+    "open_source_title": "Código Abierto",
+    "title": "<p1>¿Estás</p1><p2>listo para una nueva Era en la gobernanza Web3?</p2>"
   },
   "link": {
     "discord": "Enlace al Discord de Vocdoni",

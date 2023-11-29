@@ -64,7 +64,7 @@ const Calendar = () => {
   return (
     <Box>
       <Box mb={4}>
-        <Text fontSize='md' fontWeight='bold'>
+        <Text fontSize='md' fontFamily='pixeloid' textTransform='uppercase' fontWeight='bold'>
           {t('form.process_create.calendar.title')}
         </Text>
         <Text fontWeight='normal' fontSize='sm' color='process_create.description'>
@@ -77,10 +77,9 @@ const Calendar = () => {
         justifyContent='space-between'
         gap={{ xl2: 20 }}
         p={4}
-        borderRadius='md'
       >
         <Box>
-          <Text fontWeight='bold' fontSize='sm'>
+          <Text fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase' fontSize='sm'>
             {t('form.process_create.calendar.start_date')}
           </Text>
           <Text fontSize='sm' mb={2} color='process_create.description'>
@@ -100,7 +99,6 @@ const Calendar = () => {
                 borderColor={autoStart ? 'process_create.calendar_start_date_selected' : 'lightgray'}
                 minW={70}
                 maxW={70}
-                borderRadius='md'
                 sx={{
                   '& > label': {
                     display: 'flex',
@@ -108,7 +106,7 @@ const Calendar = () => {
                   },
                 }}
               >
-                <Radio value='1' w='full' onClick={() => clearErrors('startDate')}>
+                <Radio value='1' w='full' onClick={() => clearErrors('startDate')} borderRadius={0}>
                   <Text fontWeight='bold' fontSize='sm'>
                     {t('form.process_create.calendar.now')}
                   </Text>
@@ -127,7 +125,6 @@ const Calendar = () => {
                   borderColor={!autoStart ? 'process_create.calendar_start_date_selected' : 'lightgray'}
                   minW={70}
                   maxW={70}
-                  borderRadius='md'
                   sx={{
                     '& > label': {
                       display: 'flex',
@@ -135,7 +132,7 @@ const Calendar = () => {
                     },
                   }}
                 >
-                  <Radio value='0'>
+                  <Radio value='0' borderRadius={0}>
                     <Text
                       fontWeight='bold'
                       fontSize='sm'
@@ -162,6 +159,7 @@ const Calendar = () => {
                       }}
                       min={today}
                       onFocus={() => showPicker(startDateRef)}
+                      borderRadius={0}
                     />
                     <FormErrorMessage>{errors.startDate?.message?.toString()}</FormErrorMessage>
                   </Box>
@@ -171,7 +169,7 @@ const Calendar = () => {
           </RadioGroup>
 
           <FormControl isInvalid={!!errors.endDate} minW={70} maxW={70}>
-            <FormLabel fontWeight='bold' m={0} fontSize='sm'>
+            <FormLabel fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase' m={0} fontSize='sm'>
               {t('form.process_create.calendar.end_date')}
             </FormLabel>
             <Text whiteSpace='nowrap' fontSize='sm' mb={2} color='process_create.description'>
@@ -186,19 +184,14 @@ const Calendar = () => {
               }}
               min={format(min, DateFormatHtml)}
               onFocus={() => showPicker(endDateRef)}
+              borderRadius={0}
             />
             <FormErrorMessage>{errors.endDate?.message?.toString()}</FormErrorMessage>
           </FormControl>
         </Box>
 
         {end && (
-          <Box
-            position='relative'
-            maxW={{ xl2: 76 }}
-            border='1px solid lightgray'
-            borderRadius='md'
-            mt={{ base: 5, xl2: 0 }}
-          >
+          <Box position='relative' maxW={{ xl2: 76 }} border='1px solid lightgray' mt={{ base: 5, xl2: 0 }}>
             <InfoIcon color='process_create.alert_info.color' position='absolute' top={4} left={4} />
             <Text color='process_create.description' p={5} pt={{ base: 10, xl2: 10 }}>
               {t('form.process_create.calendar.end_date_description', {
