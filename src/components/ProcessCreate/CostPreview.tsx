@@ -287,7 +287,12 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
         <ModalFooter flexDirection='column' alignItems='center' gap={3}>
           <Button
             variant='primary'
-            onClick={() => handleSignIn(socialAccount, account?.address as string, [{ param: 'loadDraft', value: '' }])}
+            onClick={() =>
+              handleSignIn(socialAccount, account?.address as string, [
+                { param: 'connected', value: true },
+                { param: 'loadDraft', value: '' },
+              ])
+            }
             isLoading={loading}
             isDisabled={!socialAccount}
           >
