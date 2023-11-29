@@ -1,5 +1,5 @@
 import { CopyIcon, ExternalLinkIcon } from '@chakra-ui/icons'
-import { Button, Menu, MenuButton, MenuItem, MenuList, Text, useClipboard, useToast } from '@chakra-ui/react'
+import { Button, Flex, Menu, MenuButton, MenuItem, MenuList, Text, useClipboard, useToast } from '@chakra-ui/react'
 import { enforceHexPrefix, useOrganization } from '@vocdoni/react-providers'
 import { useTranslation } from 'react-i18next'
 import { HiOutlineEllipsisHorizontalCircle } from 'react-icons/hi2'
@@ -15,8 +15,11 @@ const AddressBtn = ({ ...props }) => {
 
   return (
     <Menu {...props}>
-      <MenuButton as={Button} rightIcon={<HiOutlineEllipsisHorizontalCircle />} minW={44}>
-        <Text isTruncated>{addressTextOverflow(address as string)}</Text>
+      <MenuButton as={Button} variant='primary' colorScheme='black' minW={44}>
+        <Flex alignItems='center' gap={4}>
+          <Text isTruncated>{addressTextOverflow(address as string, 3)}</Text>
+          <HiOutlineEllipsisHorizontalCircle />
+        </Flex>
       </MenuButton>
 
       <MenuList position='absolute' top='-32' left={{ md: -9 }} zIndex={30}>

@@ -13,11 +13,13 @@
   },
   "banner": {
     "start_now": "Crea una votació!",
+    "subtitle": "Utilitza adreces web3, vota amb un token ERC20 o amb NFTs!",
     "title": "Votacions per DAOs i comunitats Web3"
   },
   "banner_voting_types": {
     "anonymous_description": "La identitat dels votants serà completament confidencial, gràcies a la tecnologia zk-SNARKS.",
     "anonymous_title": "100% Anònim",
+    "bottom_text": "La privadesa hauria de ser normal",
     "flexible_description": "Personalitza el teu procés de votació i la llista de participants per adaptar-los als requisits únics de la teva comunitat.",
     "flexible_title": "Votació Flexible",
     "token_description": "Vota amb tokens ERC20/ERC721 (NFT) o afegeix els teus propis tokens i vota sense pagar.",
@@ -395,10 +397,18 @@
     "maxLength": "Longitud màxima assolida"
   },
   "new_organization": {
+    "anonyomus": "Anònim",
+    "censorship": "<span>Resistència</span><span>a la Censura</span>",
     "create_organization_btn": "Crear Organització",
     "description1": "Abans de començar a crear el vostre procés de votació, <span>heu de crear una organització</span>, és gratuït. Amb una organització, podreu crear una àmplia gamma d'eleccions i donar veu als membres de la vostra comunitat.",
+    "description2": "Com a <span>paquet de benvinguda</span>, rebràs {{ faucetAmount }} tokens gratuïts per començar a utilitzar la nostra plataforma.",
+    "footer": "<span>Vocdoni</span> és un protocol de votació públic segur, respectuós amb la privadesa i de codi obert.",
+    "inexpensive": "Econòmic",
     "name": "Nom de l'organització",
-    "title": "Nova Organització"
+    "open_source": "<span>Codi</span><span>Obert</span>",
+    "scalable": "Escalable",
+    "title": "Nova Organització",
+    "verificable": "Verificable"
   },
   "open_in_explorer": "Obre a l'explorador",
   "organization": {

@@ -21,14 +21,14 @@ const Banner = () => {
         lineHeight='44px'
         fontFamily='pixeloid'
         textTransform='uppercase'
-        mb='36px'
+        mb={!isConnected ? '130px' : '36px'}
       >
         {t('banner.title')}
       </Text>
 
       {isConnected && (
         <Button
-          variant='onvote-primary'
+          variant='primary'
           as={ReactRouterLink}
           to='/processes/create'
           aria-label={t('menu.new_process')}

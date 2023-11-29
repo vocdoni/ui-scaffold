@@ -27,7 +27,7 @@ const LayoutProcessCreate = () => {
             display='flex'
             alignItems='center'
             onClick={(e) => (window.history.state.idx ? navigate(-1) : navigate('/'))}
-            color='primary.500'
+            color='primary.600'
           >
             <Img src={closeIcon} mr={1} />
             {t('form.process_create.navbar.close_form_btn')}

@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/react'
 import Banner from '~components/Home/BannerOnVote'
-import Features from '~components/Home/FeaturesOnVote'
-import VotingTypesBanner from '~components/Home/VotingOnVote'
+import Features from '~components/Home/FeaturesFeatures'
+import VotingTypesBanner from '~components/Home/Voting'
 
 const Home = () => {
   return (

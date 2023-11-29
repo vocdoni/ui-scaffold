@@ -162,7 +162,7 @@ export const CensusCsvManager = () => {
         <Flex flex='1 1 40%' flexDirection='column' justifyContent='center' alignItems='center' gap={3} p={6} mx='auto'>
           <Text textAlign='center'>{t('form.process_create.spreadsheet.download_template_description')}</Text>
           <Link download={'census-template.csv'} href={template.url}>
-            <Button leftIcon={<BiDownload />} colorScheme='primary' variant='onvote-primary' border='1px solid'>
+            <Button leftIcon={<BiDownload />} colorScheme='primary' variant='primary' border='1px solid'>
               {t('form.process_create.spreadsheet.download_template_btn')}
             </Button>
           </Link>

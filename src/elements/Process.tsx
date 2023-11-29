@@ -2,7 +2,7 @@ import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { ElectionProvider, OrganizationProvider } from '@vocdoni/react-providers'
 import { PublishedElection } from '@vocdoni/sdk'
 import { useLoaderData } from 'react-router-dom'
-import { ProcessView } from '../components/Process/ViewOnVote'
+import { ProcessView } from '../components/Process/View'
 
 const Process = () => {
   const election = useLoaderData() as PublishedElection

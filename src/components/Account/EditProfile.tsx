@@ -199,7 +199,7 @@ const EditProfile = ({ callback }: { callback?: any }) => {
               </Flex>
             </ModalBody>
             <ModalFooter>
-              <Button type='submit' colorScheme='primary' isLoading={loading}>
+              <Button type='submit' variant='primary' isLoading={loading}>
                 {t('form.edit_profile.btn')}
               </Button>
             </ModalFooter>

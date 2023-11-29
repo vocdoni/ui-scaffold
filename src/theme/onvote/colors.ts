@@ -7,7 +7,7 @@ export const colorsBase = {
   },
   gray: {
     bg: '#f2f2f2',
-    light2: '#EDF2F7',
+    light2: '#D9E5FF',
     light: '#E2E8F0',
     main: '#CBD5E0',
     dark: '#606f88',
@@ -15,7 +15,7 @@ export const colorsBase = {
   primary: {
     gray_light: '#b8bdc7',
     gray: '#656E81',
-    light2: '#B2CCFF',
+    light2: '#D9E5FF',
     light: '#3375ff',
     main: '#0053FF',
     dark: '#0042cc',
@@ -30,29 +30,24 @@ export const colorsBase = {
 }
 
 export const colors = {
-  button: {
-    black: colorsBase.black,
-    color: colorsBase.white.pure,
-    light2: colorsBase.primary.light2,
-    light: colorsBase.primary.light,
-    main: colorsBase.primary.main,
-    dark: colorsBase.primary.dark,
-
-    ghost: {
-      bg: colorsBase.white.pure,
-      border_active: colorsBase.primary.light2,
-      color: colorsBase.primary.main,
-      color_hover: colorsBase.primary.dark,
-    },
-
-    disabled: {
-      bg: colorsBase.primary.gray,
-      color: colorsBase.primary.gray_light,
-    },
+  button_disabled: {
+    bg: colorsBase.primary.gray,
+    color: colorsBase.primary.gray_light,
   },
 
   primary: {
     main: colorsBase.primary.main,
+    50: colorsBase.white.pure,
+    500: colorsBase.primary.light2,
+    600: colorsBase.primary.main,
+    700: colorsBase.primary.dark2,
+  },
+
+  black: {
+    50: colorsBase.white.pure,
+    500: colorsBase.black,
+    600: colorsBase.black,
+    700: colorsBase.black,
   },
 
   bg: colorsBase.gray.bg,
@@ -72,7 +67,7 @@ export const colors = {
   organization: {
     card: {
       description: colorsBase.gray.dark,
-      footer_bg: colorsBase.primary.light,
+      footer_bg: colorsBase.primary.light2,
       footer_color: colorsBase.primary.main,
     },
     election_list_empty_bg: colorsBase.gray.light2,

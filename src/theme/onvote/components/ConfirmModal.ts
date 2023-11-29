@@ -17,7 +17,7 @@ const baseStyle = definePartsStyle({
     },
   },
   cancel: {
-    display: 'none',
+    display: 'none !important',
   },
   footer: {
     justifyContent: 'center',

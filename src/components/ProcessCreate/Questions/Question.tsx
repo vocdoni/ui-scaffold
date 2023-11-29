@@ -3,7 +3,7 @@ import { Box, FormControl, FormErrorMessage, IconButton, Input, Text, Textarea }
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { fieldMapErrorMessage, isInvalidFieldMap } from '~constants'
-import Options from './OptionsOnVote'
+import Options from './Options'
 
 interface Props {
   index: number
@@ -28,21 +28,16 @@ const Question = ({ index, remove }: Props) => {
   return (
     <Box bgColor='process_create.section' p={6} position='relative'>
       <IconButton
-        aria-label={t('form.process_create.question.question_delete', { values: { num: index } })}
-        type='button'
+        variant='icon'
         position='absolute'
         right={2}
         top={2}
-        size='sm'
+        size='xs'
+        type='button'
         icon={<DeleteIcon />}
-        opacity={0.6}
-        _hover={{
-          '&': {
-            opacity: 1,
-          },
-        }}
-        borderRadius={0}
+        aria-label={t('form.process_create.question.question_delete', { values: { num: index } })}
         onClick={() => remove(index)}
+        ml='auto'
       />
 
       <FormControl isInvalid={isInvalidFieldMap(errors, `questions.${index}.title`)} mb={2}>

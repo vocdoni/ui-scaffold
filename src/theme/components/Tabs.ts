@@ -22,9 +22,9 @@ const card = definePartsStyle({
     px: 6,
     bgColor: 'white',
     boxShadow: 'var(--box-shadow)',
-    borderRadius: 'md',
     borderBottom: 'none',
     color: 'process_create.description',
+    borderRadius: 0,
 
     '& > p:nth-of-type(1)': {
       color: 'process_create.description',
@@ -44,17 +44,16 @@ const card = definePartsStyle({
       },
     },
 
-    '& > svg:first-of-type': {
+    '& > div:first-of-type': {
       display: 'none',
       position: 'absolute',
       top: 2,
       right: 2,
-      color: 'primary.500',
     },
 
     _selected: {
       boxShadow: 'var(--box-shadow-darker)',
-      '& > svg:first-of-type': {
+      '& > div:first-of-type': {
         display: 'block',
       },
       '& > div > p': {

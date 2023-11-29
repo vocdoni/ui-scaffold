@@ -178,28 +178,50 @@ const typesVoting = definePartsStyle({
     px: 5,
     borderRadius: '3xl',
     opacity: '0.8',
-  },
-  header: {
-    fontWeight: 'bold',
-    textAlign: 'center',
-    fontSize: { base: 'lg', xl: 'xl' },
-    display: 'flex',
-    alignItems: 'center',
-    gap: 2,
-    p: 0,
-    py: 4,
+    flex: { base: '0 0 100%', md2: '0 0 30%', xl: '0 0 25%' },
 
-    '& svg': {
-      boxSize: { base: 7, xl: 9 },
+    '& div': {
+      fontWeight: 'bold',
+      textAlign: 'center',
+      fontSize: { base: 'lg', xl: 'xl' },
+      display: 'flex',
+      alignItems: 'center',
+      gap: 2,
+      p: 0,
+      py: 4,
+
+      '& svg': {
+        boxSize: { base: 7, xl: 9 },
+      },
     },
   },
+
   body: {
     p: 0,
     pb: 3,
   },
 })
 
+const aside = definePartsStyle({
+  container: {
+    direction: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    px: { base: 12, md: 12 },
+    py: { base: 8, md: 12 },
+    w: 'full',
+    gap: 4,
+    mt: { md: 7 },
+    mb: { base: 7, md: 0 },
+    color: 'process.aside.color',
+    background: 'process.aside.bg',
+    boxShadow: 'var(--box-shadow-banner)',
+    borderRadius: 'lg',
+  },
+})
+
 const variantsCards = {
+  aside,
   detailed,
   'no-elections': noElections,
   'types-voting': typesVoting,

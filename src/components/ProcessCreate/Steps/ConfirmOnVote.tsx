@@ -39,12 +39,12 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { CensusType } from '../Census/TypeSelector'
 import Preview from '../Confirm/Preview'
-import { CostPreview } from '../CostPreviewOnVote'
-import { CreationProgress, Steps } from '../CreationProgressOnVote'
-import { Web3Address } from '../StepForm/CensusWeb3OnVote'
-import { Option } from '../StepForm/QuestionsOnVote'
+import { CostPreview } from '../CostPreview'
+import { CreationProgress, Steps } from '../CreationProgress'
+import { Web3Address } from '../StepForm/CensusWeb3'
+import { Option } from '../StepForm/Questions'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
-import Wrapper from './WrapperOnVote'
+import Wrapper from './Wrapper'
 import imageHeader from '/assets/onvote-modal-submitting.png'
 
 export const Confirm = () => {
@@ -228,7 +228,7 @@ export const Confirm = () => {
         </ElectionProvider>
       </Box>
       <Flex justifyContent='space-between' alignItems='end' mt='auto'>
-        <Button variant='onvote-secondary' color='primary.500' onClick={prev} leftIcon={<ArrowBackIcon />}>
+        <Button variant='secondary' color='primary.500' onClick={prev} leftIcon={<ArrowBackIcon />}>
           {t('form.process_create.previous_step')}
         </Button>
 
@@ -238,7 +238,7 @@ export const Confirm = () => {
           isDisabled={disabled}
           isLoading={sending}
           px={{ base: 12, xl2: 28 }}
-          variant='onvote-primary'
+          variant='primary'
         >
           {t('form.process_create.confirm.create_button')}
         </Button>

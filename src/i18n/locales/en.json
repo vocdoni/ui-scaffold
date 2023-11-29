@@ -11,11 +11,13 @@
   },
   "banner": {
     "start_now": "Create a voting now!",
-    "title": "Anonymous, gasless and modular voting for web3"
+    "subtitle": "Use wallet addresses, vote with an ERC20 token or with NFTs!",
+    "title": "Voting for DAOs & Web3 communities"
   },
   "banner_voting_types": {
     "anonymous_description": "Voters' identities remain completely confidential, thanks to cutting-edge zk-SNARKS technology.",
     "anonymous_title": "100% Anonymous",
+    "bottom_text": "Privacy should be normal",
     "flexible_description": "Customize your voting process and participant list to fit your community unique requirements.",
     "flexible_title": "Flexible Voting",
     "token_description": "Vote with ERC20/ERC721 (NFT's) or add your own token and vote gasless with them.",
@@ -394,10 +396,18 @@
     "maxLength": "Max. length reached"
   },
   "new_organization": {
+    "anonyomus": "Anonyomus",
+    "censorship": "<span>Censorship</span><span>Resistance</span>",
     "create_organization_btn": "Create Organization",
     "description1": "Before starting creating your voting process, <span>you need to create an organization</span>, it's free With an organization, you will be able to create a wide range of elections and give voice to your comumnity members.",
+    "description2": "As a <span>welcome pack</span> you will recive {{ faucetAmount }} tokens for free to start using our platform.",
+    "footer": "<span>Vocdoni</span> is a secure, privacy-friendly & open-source public voting protocol.",
+    "inexpensive": "Inexpensive",
     "name": "Organization name",
-    "title": "New Organization"
+    "open_source": "<span>Open</span><span>Source</span>",
+    "scalable": "Scalable",
+    "title": "New Organization",
+    "verificable": "Verificable"
   },
   "open_in_explorer": "Open in explorer",
   "organization": {

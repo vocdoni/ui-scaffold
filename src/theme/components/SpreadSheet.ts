@@ -10,6 +10,10 @@ const baseStyle = definePartsStyle({
     borderRadius: 30,
     fontSize: { base: 'lg', xl: 'md' },
     bgColor: 'process.aside.vote_btn_bg',
+
+    _hover: {
+      bgColor: 'process.aside.vote_btn_bg',
+    },
   },
 
   disconnect: {

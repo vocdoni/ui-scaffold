@@ -28,10 +28,10 @@ import { useEffect, useState } from 'react'
 import { FieldValues } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaFacebook, FaReddit, FaTelegram, FaTwitter } from 'react-icons/fa'
-import ProcessAside, { ProcessAsideFooterMbl } from './AsideOnVote'
-import Header from './HeaderOnVote'
-import confirmImg from '/assets/spreadsheet-confirm-modal.jpeg'
-import successImg from '/assets/success.jpeg'
+import ProcessAside, { ProcessAsideFooterMbl } from './Aside'
+import Header from './Header'
+import confirmImg from '/assets/onvote-modal-confirm-spreadsheet.jpg'
+import successImg from '/assets/onvote-modal-success-vote.jpg'
 
 export const ProcessView = () => {
   const { t } = useTranslation()
@@ -50,8 +50,8 @@ export const ProcessView = () => {
   }, [election])
 
   return (
-    <div>
-      <Box>
+    <Box>
+      <Box mb={44} px={0}>
         <Header />
         <Flex
           direction={{ base: 'column', md: 'row' }}
@@ -115,7 +115,7 @@ export const ProcessView = () => {
       </Box>
 
       <SuccessVoteModal />
-    </div>
+    </Box>
   )
 }
 
@@ -156,7 +156,7 @@ const SuccessVoteModal = () => {
       <ModalContent>
         <ModalHeader>
           <Text>{t('process.success_modal.title')}</Text>
-          <Box bgImage={successImg} minH='300px' />
+          <Box bgImage={successImg} />
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
@@ -216,7 +216,7 @@ const SuccessVoteModal = () => {
         </ModalBody>
 
         <ModalFooter mt={4}>
-          <Button variant='rounded' colorScheme='primary' px={16} onClick={onClose}>
+          <Button onClick={onClose} variant='primary'>
             {t('process.success_modal.btn')}
           </Button>
         </ModalFooter>
@@ -234,9 +234,7 @@ const ConfirmVoteModal = ({ questions, answers }: { questions: IQuestion[]; answ
         <Box bgImage={`url(${confirmImg})`} />
       </ModalHeader>
       <ModalBody display='flex' flexDirection='column' gap={5} p={0} mb={2}>
-        <Text textAlign='center' color='modal_description'>
-          {t('process.spreadsheet.confirm.description')}
-        </Text>
+        <Text>{t('process.spreadsheet.confirm.description')}</Text>
         <Flex
           flexDirection='column'
           maxH='200px'

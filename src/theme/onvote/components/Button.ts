@@ -53,74 +53,75 @@ const onVoteCommonStyles = {
     width: '100%',
   },
 }
-const onVotePrimary = defineStyle((props) => {
+
+const primary = defineStyle((props) => {
   const { colorScheme } = props
 
   return {
     ...onVoteCommonStyles.common,
-    bgColor: colorScheme === 'black' ? 'button.black' : 'button.main',
-    color: 'button.color',
-    borderColor: colorScheme === 'black' ? 'button.black' : 'button.main',
+    bgColor: `${colorScheme}.600`,
+    color: `${colorScheme}.50`,
+    borderColor: `${colorScheme}.600`,
 
     _before: {
       ...onVoteCommonStyles.before,
-      bgColor: colorScheme === 'black' ? 'button.black' : 'button.main',
+      bgColor: `${colorScheme}.600`,
     },
 
     _after: {
       ...onVoteCommonStyles.after,
-      bgColor: colorScheme === 'black' ? 'button.black' : 'button.main',
+      bgColor: `${colorScheme}.600`,
     },
 
     _hover: {
-      bgColor: colorScheme === 'black' ? 'button.black' : 'button.dark',
-      borderColor: colorScheme === 'black' ? 'button.black' : 'button.dark',
+      bgColor: `${colorScheme}.700`,
+      borderColor: `${colorScheme}.700`,
 
       _before: {
         ...onVoteCommonStyles.hover,
-        bgColor: colorScheme === 'black' ? 'button.black' : 'button.dark',
+        bgColor: `${colorScheme}.700`,
       },
 
       _after: {
         ...onVoteCommonStyles.hover,
-        bgColor: colorScheme === 'black' ? 'button.black' : 'button.dark',
+        bgColor: `${colorScheme}.700`,
       },
     },
 
     _active: {
-      bgColor: colorScheme === 'black' ? 'button.black' : 'button.main',
-      borderColor: colorScheme === 'black' ? 'button.black' : 'button.light',
+      bgColor: `${colorScheme}.600`,
+      borderColor: `${colorScheme}.700`,
       _before: {
         ...onVoteCommonStyles.active,
-        bgColor: colorScheme === 'black' ? 'button.black' : 'button.light',
+        borderColor: `${colorScheme}.700`,
       },
 
       _after: {
         ...onVoteCommonStyles.active,
-        bgColor: colorScheme === 'black' ? 'button.black' : 'button.light',
+        borderColor: `${colorScheme}.700`,
       },
     },
 
     _disabled: {
-      bgColor: 'button.disabled.bg',
-      color: 'button.disabled.color',
+      bgColor: 'button_disabled.disabled.bg',
+      color: 'button_disabled.disabled.color',
       border: 'none',
 
       _before: {
-        bgColor: 'button.disabled.bg',
+        bgColor: 'button_disabled.disabled.bg',
         transition: 'none',
-        borderColor: 'button.disabled.bg',
+        borderColor: 'button_disabled.disabled.bg',
       },
       _after: {
-        bgColor: 'button.disabled.bg',
+        bgColor: 'button_disabled.disabled.bg',
         transition: 'none',
-        borderColor: 'button.disabled.bg',
+        borderColor: 'button_disabled.disabled.bg',
       },
 
       _hover: {
         transition: 'none',
         color: 'transparent',
-        borderColor: 'button.disabled.bg',
+        borderColor: 'button_disabled.disabled.bg',
 
         _before: {
           bgColor: 'transparent',
@@ -133,25 +134,26 @@ const onVotePrimary = defineStyle((props) => {
   }
 })
 
-const onVoteSecondary = defineStyle((props) => {
+const secondary = defineStyle((props) => {
+  const { colorScheme } = props
   return {
     ...onVoteCommonStyles.common,
-    bgColor: 'button.ghost.bg',
-    color: 'button.ghost.color',
-    borderColor: 'button.ghost.bg',
+    bgColor: `${colorScheme}.50`,
+    color: `${colorScheme}.600`,
+    borderColor: `${colorScheme}.50`,
 
     _before: {
       ...onVoteCommonStyles.before,
-      bgColor: 'button.ghost.bg',
+      bgColor: `${colorScheme}.50`,
     },
 
     _after: {
       ...onVoteCommonStyles.after,
-      bgColor: 'button.ghost.bg',
+      bgColor: `${colorScheme}.50`,
     },
 
     _hover: {
-      color: 'button.ghost.color_hover',
+      color: `${colorScheme}.700`,
       _before: {
         ...onVoteCommonStyles.hover,
       },
@@ -162,28 +164,29 @@ const onVoteSecondary = defineStyle((props) => {
     },
 
     _active: {
-      borderColor: 'button.ghost.border_active',
+      color: `${colorScheme}.600`,
+      borderColor: `${colorScheme}.500`,
       _before: {
         ...onVoteCommonStyles.active,
-        bgColor: 'button.ghost.border_active',
+        bgColor: `${colorScheme}.500`,
       },
 
       _after: {
         ...onVoteCommonStyles.active,
-        bgColor: 'button.ghost.border_active',
+        bgColor: `${colorScheme}.500`,
       },
     },
 
     _disabled: {
-      bgColor: 'button.disabled.bg',
-      color: 'button.disabled.color',
+      bgColor: 'button_disabled.disabled.bg',
+      color: 'button_disabled.disabled.color',
 
       _before: {
-        bgColor: 'button.disabled.bg',
+        bgColor: 'button_disabled.disabled.bg',
         transition: 'none',
       },
       _after: {
-        bgColor: 'button.disabled.bg',
+        bgColor: 'button_disabled.disabled.bg',
         transition: 'none',
       },
 
@@ -199,9 +202,47 @@ const onVoteSecondary = defineStyle((props) => {
         },
       },
     },
+  }
+})
+
+const transparent = defineStyle((props) => {
+  return {
+    bgColor: 'transparent',
+
+    _hover: {
+      bgColor: 'transparent',
+    },
+    _active: {
+      bgColor: 'transparent',
+    },
+
+    _disabled: {},
+  }
+})
+
+const icon = defineStyle((props) => {
+  const { colorScheme } = props
+
+  return {
+    color: `${colorScheme}.600`,
+    bgColor: 'transparent',
+
+    _hover: {
+      bgColor: `${colorScheme}.500`,
+      color: 'white',
+    },
+    _active: {
+      bgColor: `${colorScheme}.700`,
+      color: 'white',
+    },
+
+    _disabled: {},
   }
 })
 export const Button = defineStyleConfig({
   baseStyle,
-  variants: { 'onvote-primary': onVotePrimary, process, 'onvote-secondary': onVoteSecondary },
+  variants: { icon, primary, process, secondary, transparent },
+  defaultProps: {
+    colorScheme: 'primary',
+  },
 })

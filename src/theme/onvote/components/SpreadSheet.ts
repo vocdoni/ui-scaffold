@@ -75,7 +75,53 @@ const baseStyle = definePartsStyle({
       },
     },
   },
+  // button: {
+  //   mx: 'auto',
+  //   w: 'calc(100%)',
+  //   maxH: '38px',
+  //   lineHeight: '20px',
+  //   fontSize: '14px',
+  //   fontWeight: 700,
+  //   fontFamily: 'pixeloid',
+  //   cursor: 'pointer',
+  //   display: 'flex',
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   gap: 2,
+  //   borderLeft: '5px solid',
+  //   borderRight: '5px solid',
+  //   bgColor: 'button.ghost.bg',
+  //   color: 'button.ghost.color',
+  //   borderColor: 'button.ghost.bg',
 
+  //   _before: {
+  //     content: '""',
+  //     position: 'absolute',
+  //     top: '-4px',
+  //     width: '100%',
+  //     height: '4px',
+  //     transition: 'width 0.3s ease',
+  //     bgColor: 'button.ghost.bg',
+  //   },
+  //   _after: {
+  //     content: '""',
+  //     position: 'absolute',
+  //     bottom: '-4px',
+  //     width: '100%',
+  //     height: '4px',
+  //     transition: 'width 0.3s ease',
+  //     bgColor: 'button.ghost.bg',
+  //   },
+
+  //   _hover: {
+  //     color: 'button.ghost.color_hover',
+  //     width: 'calc(100% + 10px)',
+  //   },
+
+  //   _active: {
+  //     width: '100%',
+  //   },
+  // },
   disconnect: {
     w: 'min-content',
     textDecoration: 'underline',
@@ -97,19 +143,79 @@ const baseStyle = definePartsStyle({
     gap: 5,
   },
   close: {
-    display: 'none',
+    display: 'none !important',
+  },
+  footer: {
+    border: '1px solid red',
   },
   submit: {
-    px: 16,
-    mx: 'auto',
-    bgColor: 'process.identify_btn.bg',
-    color: 'process.identify_btn.color',
+    // px: 16,
+    // mx: 'auto',
+    maxH: '38px',
+    lineHeight: '20px',
+    fontSize: '14px',
+    fontWeight: 700,
+    fontFamily: 'pixeloid',
+    cursor: 'pointer',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 2,
+    borderLeft: '5px solid',
+    borderRight: '5px solid',
+    bgColor: 'button.main',
+    color: 'button.color',
+    borderColor: 'button.main',
+
+    _before: {
+      content: '""',
+      position: 'absolute',
+      top: '-4px',
+      width: '100%',
+      height: '4px',
+      transition: 'width 0.3s ease',
+      bgColor: 'button.main',
+    },
+    _after: {
+      content: '""',
+      position: 'absolute',
+      bottom: '-4px',
+      width: '100%',
+      height: '4px',
+      transition: 'width 0.3s ease',
+      bgColor: 'button.main',
+    },
 
     _hover: {
-      bgColor: 'process.identify_btn.bg_hover',
+      bgColor: 'button.dark',
+      borderColor: 'button.dark',
+      // width: 'calc(100% + 10px)',
+
+      _before: {
+        width: '100%',
+        bgColor: 'button.dark',
+      },
+
+      _active: {
+        width: '100%',
+        bgColor: 'button.dark',
+      },
     },
+
     _active: {
-      bgColor: 'process.identify_btn.bg_active',
+      bgColor: 'button.main',
+      borderColor: 'button.light',
+      _before: {
+        // width: '100%',
+
+        bgColor: 'button.light',
+      },
+
+      _after: {
+        // width: '100%',
+
+        bgColor: 'button.light',
+      },
     },
   },
 })

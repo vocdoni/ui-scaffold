@@ -80,7 +80,7 @@ const FooterOnVote = () => {
           </Flex>
           {!isConnected && (
             <Button
-              variant='onvote-primary'
+              variant='primary'
               onClick={() => {
                 if (openConnectModal) openConnectModal()
               }}

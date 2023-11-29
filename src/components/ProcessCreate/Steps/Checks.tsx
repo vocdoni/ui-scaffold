@@ -3,7 +3,7 @@ import { Box, Button, Flex, Heading, Spinner, Text } from '@chakra-ui/react'
 import { useClient } from '@vocdoni/react-providers'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { AccountCreate } from '~components/Account/CreateOnVote'
+import { AccountCreate } from '~components/Account/Create'
 import { useAccountHealthTools } from '~components/Account/use-account-health-tools'
 import { useProcessCreationSteps } from './use-steps'
 import Wrapper from './Wrapper'
@@ -23,7 +23,6 @@ export const Checks = () => {
     next()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [exists])
-
   if (connected && account && !exists) {
     return <NeedsAccount />
   }
@@ -47,24 +46,17 @@ const NeedsAccount = () => {
     <>
       <Wrapper>
         <Box>
-          <Heading fontSize='md' my={5}>
+          <Heading fontSize='md' my={5} fontFamily='pixeloid' textTransform='uppercase' color='primary.main'>
             {t('new_organization.title')}
           </Heading>
-          <Box p={10} borderRadius='md' bgColor='process_create.section'>
+          <Box p={10} bgColor='process_create.section'>
             <AccountCreate />
           </Box>
         </Box>
         <Flex justifyContent='end' mt='auto'>
-          <Button
-            isLoading={loading}
-            type='submit'
-            form='process-create-form'
-            rightIcon={<ArrowForwardIcon />}
-            variant='outline'
-            colorScheme='primary'
-            px={12}
-          >
+          <Button isLoading={loading} type='submit' form='process-create-form' variant='primary' px={12}>
             {t('new_organization.create_organization_btn')}
+            <ArrowForwardIcon />
           </Button>
         </Flex>
       </Wrapper>

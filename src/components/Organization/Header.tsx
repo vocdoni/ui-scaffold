@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { IoMdCreate } from 'react-icons/io'
 import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
-import AddressBtn from './AddressBtnOnVote'
+import AddressBtn from './Address'
 import { useOrganizationModal } from './OrganizationModalProvider'
 import fallback from '/assets/default-avatar.png'
 

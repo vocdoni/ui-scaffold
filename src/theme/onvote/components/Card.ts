@@ -52,6 +52,7 @@ const detailed = definePartsStyle({
       w: '100%',
       display: 'flex',
       flexDirection: 'column',
+
       '& > p:first-of-type': {
         textAlign: 'start',
         fontSize: 'xl2',
@@ -78,9 +79,10 @@ const detailed = definePartsStyle({
     ...cardCommonStyles.footer,
     mt: 'auto',
     fontSize: 'sm',
-    color: 'red',
+    bgColor: 'organization.card.footer_bg',
 
     '& > div:first-of-type': {
+      padding: '12px 16px',
       display: 'flex',
       justifyContent: 'space-between',
       w: 'full',
@@ -93,7 +95,6 @@ const detailed = definePartsStyle({
         px: 2,
         textAlign: 'center',
         minW: '50%',
-        bgColor: 'organization.card.footer_bg',
 
         '& p': {
           whiteSpace: 'nowrap',
@@ -105,9 +106,12 @@ const detailed = definePartsStyle({
           whiteSpace: 'nowrap',
         },
       },
+      '& > div:first-of-type': {
+        justifyContent: 'start',
+      },
 
       '& > div:nth-of-type(2) ': {
-        display: 'flex',
+        justifyContent: 'end',
 
         '& p:nth-of-type(1)': {
           order: 2,
@@ -122,49 +126,55 @@ const detailed = definePartsStyle({
 
 const noElections = definePartsStyle({
   container: {
-    p: 5,
     boxShadow: 'var(--box-shadow)',
     borderRadius: 'none',
-    minW: 'full',
-    minH: 52,
+    maxW: '1440px',
+    mx: 'auto',
+    padding: '40px',
   },
 
   body: {
     display: 'flex',
-    flexDirection: { base: 'column', lg: 'row' },
-    gap: { base: 5, lg: 0 },
+    flexDirection: { base: 'column', lg2: 'row' },
+    gap: 10,
 
-    '& > div': {
+    '& > div:first-of-type': {
       flex: '1 1 50%',
-      px: 10,
 
       '&:first-of-type': {
-        display: 'flex',
-        justifyContent: { base: 'center', lg: 'end' },
-        alignItems: 'center',
-        px: 36,
-
         '& img': {
-          width: 52,
+          maxW: { base: '40%', lg2: '100%' },
+          mx: 'auto',
         },
       },
+    },
+    '& > div:nth-of-type(2)': {
+      flex: '1 1 50%',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: { base: 'start', lg2: 'start' },
+      alignItems: { base: 'center', lg2: 'start' },
 
-      '&:nth-of-type(2)': {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: { base: 'center', lg: 'start' },
-        gap: 5,
+      '& > p:first-of-type': {
+        fontWeight: 'bold',
+        fontSize: '40px',
+        lineHeight: '42.5px',
+        mb: '24px',
+      },
 
-        '& > p:first-of-type': {
-          fontWeight: 'bold',
-          fontSize: 'md',
-        },
-
-        '& > p': {
-          textAlign: { base: 'center', lg: 'start' },
-          fontSize: 'sm',
-        },
+      '& > p:nth-of-type(2)': {
+        textAlign: { base: 'center', lg2: 'start' },
+        fontSize: '18px',
+        lineHeight: '19.5px',
+        color: '#595959',
+        mb: '24px',
+      },
+      '& > p:nth-of-type(3)': {
+        textAlign: { base: 'center', lg2: 'start' },
+        fontSize: '18px',
+        lineHeight: '19.5px',
+        color: '#595959',
+        mb: '40px',
       },
     },
   },
@@ -172,34 +182,46 @@ const noElections = definePartsStyle({
 
 const typesVoting = definePartsStyle({
   container: {
-    border: '1px solid lightgray',
     bgColor: 'transparent',
-    py: 3,
-    px: 5,
-    borderRadius: '3xl',
-    opacity: '0.8',
-  },
-  header: {
-    fontWeight: 'bold',
-    textAlign: 'center',
-    fontSize: { base: 'lg', xl: 'xl' },
-    display: 'flex',
-    alignItems: 'center',
-    gap: 2,
-    p: 0,
-    py: 4,
+    textAlign: { base: 'center', md2: 'start' },
+    w: '240px',
+    minH: 'none',
 
-    '& svg': {
-      boxSize: { base: 7, xl: 9 },
+    '& div': {
+      '& svg': {
+        display: 'none',
+      },
+
+      '& p:first-of-type': {
+        fontSize: 22,
+        mb: 2,
+        fontWeight: 'bold',
+        fontFamily: 'pixeloid',
+      },
     },
   },
-  body: {
-    p: 0,
-    pb: 3,
+})
+const aside = definePartsStyle({
+  container: {
+    direction: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    px: { base: 12, md: 12 },
+    py: { base: 8, md: 12 },
+    w: 'full',
+    gap: 4,
+    mt: { md: 7 },
+    mb: { base: 7, md: 0 },
+    color: 'process.aside.color',
+    background: 'process.aside.bg',
+    boxShadow: 'var(--box-shadow-banner)',
+    clipPath:
+      'polygon(0% 15px, 15px 15px, 15px 0%, calc(100% - 15px) 0%, calc(100% - 15px) 15px, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 15px calc(100% - 15px), 0% calc(100% - 15px))',
   },
 })
 
 const variantsCards = {
+  aside,
   detailed,
   'no-elections': noElections,
   'types-voting': typesVoting,

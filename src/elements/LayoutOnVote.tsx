@@ -1,7 +1,7 @@
 import { Box, Flex, HStack, Text } from '@chakra-ui/react'
 import { Outlet } from 'react-router-dom'
 import FooterOnVote from '~components/Footer/FooterOnVote'
-import Navbar from '~components/Navbar/indexOnVote'
+import Navbar from '~components/Navbar/OnVote'
 
 const Layout = () => {
   return (

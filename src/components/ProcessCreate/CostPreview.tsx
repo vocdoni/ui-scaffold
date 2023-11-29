@@ -25,10 +25,10 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa'
 import { TbDatabaseExclamation } from 'react-icons/tb'
-import { HandleSignInFunction, useClaim } from '~components/Faucet/ClaimOnVote'
+import { HandleSignInFunction, useClaim } from '~components/Faucet/Claim'
 import { useFaucet } from '~components/Faucet/use-faucet'
 import { useProcessCreationSteps } from './Steps/use-steps'
-import imageHeader from '/assets/voc-tokens.jpg'
+import imageModal from '/assets/onvote-modal-get-voctokens.jpg'
 
 export const CostPreview = ({
   unpublished,
@@ -77,7 +77,9 @@ export const CostPreview = ({
 
   return (
     <Flex flexDirection='column' gap={2} mb={5}>
-      <Text fontWeight='bold'>{t('form.process_create.confirm.cost_title')}</Text>
+      <Text fontWeight='bold' fontFamily='pixeloid' textTransform='uppercase'>
+        {t('form.process_create.confirm.cost_title')}
+      </Text>
       <Text fontSize='sm'>{t('form.process_create.confirm.cost_description')}</Text>
       <Flex flexDirection='column' gap={4} p={{ base: 3, xl: 6 }} bgColor='process_create.section' borderRadius='md'>
         {typeof cost === 'undefined' && (
@@ -190,7 +192,7 @@ export const CostPreview = ({
             {t('cost_preview.not_enough_tokens')}
           </Text>
           <Button
-            variant='rounded'
+            variant='on-vote'
             colorScheme='primary'
             leftIcon={<TbDatabaseExclamation />}
             maxW={64}
@@ -218,7 +220,7 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
     ;(async () => {
       try {
         const atypes = await getAuthTypes()
-        setFaucetAmount(atypes.oauth as number)
+        setFaucetAmount(atypes.oauth)
       } catch (e) {}
     })()
   }, [])
@@ -226,14 +228,14 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
   return (
     <>
       <ModalOverlay />
-      <ModalContent minW={{ md: '600px' }}>
+      <ModalContent>
         <ModalHeader>
           <Text>{t('get_voc_tokens.title')}</Text>
-          <Box bgImage={imageHeader} bgRepeat='no-repeat' minH={{ base: '180px', md: '200px' }} />
+          <Box bgImage={imageModal} />
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <Box mb={8}>
+          <Box mb='32px'>
             <Trans
               i18nKey='get_voc_tokens.description'
               components={{
@@ -242,51 +244,51 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
               }}
             />
           </Box>
-          <Text fontSize='sm' fontWeight='bold' textAlign='center'>
-            {t('get_voc_tokens.authentification_method')}
-          </Text>
-          <Flex justifyContent='space-around' my={3}>
-            <OAuthLoginButton
-              aria-label={t('login.github').toString()}
-              onClick={() => setSocialAccount('github')}
-              selected={socialAccount === 'github'}
-            >
-              <Icon as={FaGithub} w={8} h={8} />
-            </OAuthLoginButton>
-            <Tooltip>
+          <Flex flexDirection='column' gap='16px'>
+            <Text fontSize='sm' fontWeight='bold' textAlign='center'>
+              {t('get_voc_tokens.authentification_method')}
+            </Text>
+            <Flex justifyContent='space-around'>
               <OAuthLoginButton
-                aria-label={t('login.google').toString()}
-                onClick={() => setSocialAccount('google')}
-                selected={socialAccount === 'google'}
+                aria-label={t('login.github').toString()}
+                onClick={() => setSocialAccount('github')}
+                selected={socialAccount === 'github'}
               >
-                <Icon as={FaGoogle} w={8} h={8} />
+                <Icon as={FaGithub} w={8} h={8} />
               </OAuthLoginButton>
-            </Tooltip>
-            <Tooltip>
-              <OAuthLoginButton
-                aria-label={t('login.facebook').toString()}
-                onClick={() => setSocialAccount('facebook')}
-                selected={socialAccount === 'facebook'}
-              >
-                <Icon as={FaFacebook} w={8} h={8} />
-              </OAuthLoginButton>
-            </Tooltip>
+              <Tooltip>
+                <OAuthLoginButton
+                  aria-label={t('login.google').toString()}
+                  onClick={() => setSocialAccount('google')}
+                  selected={socialAccount === 'google'}
+                >
+                  <Icon as={FaGoogle} w={8} h={8} />
+                </OAuthLoginButton>
+              </Tooltip>
+              <Tooltip>
+                <OAuthLoginButton
+                  aria-label={t('login.facebook').toString()}
+                  onClick={() => setSocialAccount('facebook')}
+                  selected={socialAccount === 'facebook'}
+                >
+                  <Icon as={FaFacebook} w={8} h={8} />
+                </OAuthLoginButton>
+              </Tooltip>
+            </Flex>
+            <Text fontSize='sm' textAlign='center' color='gray'>
+              <Trans
+                i18nKey='get_voc_tokens.authentification_method_helper'
+                values={{
+                  faucetAmount,
+                }}
+              />
+            </Text>
           </Flex>
-
-          <Text fontSize='sm' textAlign='center' color='gray'>
-            <Trans
-              i18nKey='get_voc_tokens.authentification_method_helper'
-              values={{
-                faucetAmount,
-              }}
-            />
-          </Text>
         </ModalBody>{' '}
         <ModalFooter flexDirection='column' alignItems='center' gap={3}>
           <Button
-            variant='rounded'
-            colorScheme='primary'
-            onClick={() => handleSignIn(socialAccount, account?.address as string, [])}
+            variant='primary'
+            onClick={() => handleSignIn(socialAccount, account?.address as string, [{ param: 'loadDraft', value: '' }])}
             isLoading={loading}
             isDisabled={!socialAccount}
           >

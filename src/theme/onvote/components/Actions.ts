@@ -13,7 +13,7 @@ const baseStyle = definePartsStyle({
 
   buttons: {
     border: '3px solid !important',
-    borderColor: 'primary.500 !important',
+    borderColor: 'black !important',
     borderRadius: 0,
     transform: 'scale(0.8) !important',
 
@@ -23,7 +23,7 @@ const baseStyle = definePartsStyle({
   },
 
   icons: {
-    color: 'primary.500 !important',
+    color: 'black !important',
   },
 })
 

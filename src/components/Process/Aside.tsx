@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Link, Spinner, Text, useMediaQuery } from '@chakra-ui/react'
+import { Box, Button, Card, Flex, Link, Spinner, Text, useMediaQuery } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { environment, SpreadsheetAccess, VoteButton } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
@@ -7,7 +7,7 @@ import { TFunction } from 'i18next'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
-import { CensusMeta } from '~components/ProcessCreate/Steps/Confirm'
+import { CensusMeta } from '~components/ProcessCreate/Steps/ConfirmOnVote'
 
 const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
   const { t } = useTranslation()
@@ -22,27 +22,20 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
 
   return (
     <>
-      <Flex
-        direction='column'
-        justifyContent='center'
-        alignItems='center'
-        px={{ base: 12, md: 12 }}
-        py={{ base: 8, md: 12 }}
-        w='full'
-        gap={4}
-        mt={{ md: 7 }}
-        mb={{ base: 7, md: 0 }}
-        color='process.aside.color'
-        background='process.aside.bg'
-        borderRadius='lg'
-        boxShadow='var(--box-shadow-banner)'
-      >
-        <Text textAlign='center' fontSize='xl3'>
+      <Card variant='aside'>
+        <Text textAlign='center' fontSize='xl3' fontFamily='pixeloid' textTransform='uppercase'>
           {getStatusText(t, election?.status).toUpperCase()}
         </Text>
 
         {election?.status !== ElectionStatus.CANCELED && election?.status !== ElectionStatus.UPCOMING && (
-          <Box display='flex' flexDirection='row' justifyContent='center' alignItems='center' gap={2}>
+          <Box
+            display='flex'
+            flexDirection='row'
+            justifyContent='center'
+            alignItems='center'
+            gap={2}
+            fontFamily='pixeloid'
+          >
             <Trans
               i18nKey='aside.votes'
               components={{
@@ -55,7 +48,7 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
         )}
 
         {census?.type === 'spreadsheet' && !connected && (
-          <Box w='full' maxW='250px' display={{ base: 'none', md: 'block' }}>
+          <Box w='full' maxW='250px' mx='auto' display={{ base: 'none', md: 'block' }}>
             <SpreadsheetAccess />
           </Box>
         )}
@@ -87,7 +80,9 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
                 {t('aside.has_already_voted').toString()}
               </Text>
             )}
-            {isAbleToVote && isLargerThanMd && <VoteButton variant='process' mb={0} onClick={setQuestionsTab} />}
+            {isAbleToVote && isLargerThanMd && (
+              <VoteButton variant='secondary' w='full' mb={0} onClick={setQuestionsTab} />
+            )}
             {hasOverwriteEnabled(election) && isInCensus && votesLeft > 0 && voted && (
               <Text fontSize='sm' textAlign='center'>
                 {t('aside.overwrite_votes_left', { count: votesLeft })}
@@ -123,7 +118,7 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
             )}
           </Flex>
         )}
-      </Flex>
+      </Card>
       {connected && (
         <Box
           display={{ base: 'none', md: 'block' }}

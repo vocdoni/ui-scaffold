@@ -9,7 +9,7 @@ import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 import Logo from '~components/Layout/LogoOnVote'
 import LanguagesList from './LanguagesList'
-import MenuDropdown from './MenuOnVote'
+import MenuDropdown from './Menu'
 
 const Navbar = () => {
   const { isConnected } = useAccount()
@@ -24,7 +24,7 @@ const Navbar = () => {
       <List as='nav' display='flex' alignItems='center' gap={4}>
         {isConnected && (
           <ListItem>
-            <Button variant='onvote-primary' as={ReactRouterLink} to='/processes/create'>
+            <Button variant='primary' as={ReactRouterLink} to='/processes/create' colorScheme='primary'>
               <AddIcon boxSize={{ base: 4, sm2: 3 }} />
               <Text as='span' display={{ base: 'none', sm2: 'inline-block' }}>
                 {t('menu.new_process')}
@@ -35,7 +35,12 @@ const Navbar = () => {
 
         {account && (
           <ListItem>
-            <Button as={ReactRouterLink} to={`/organization/0x${account?.address}`} variant='onvote-secondary'>
+            <Button
+              as={ReactRouterLink}
+              to={`/organization/0x${account?.address}`}
+              variant='secondary'
+              colorScheme='primary'
+            >
               <Icon as={MdHowToVote} boxSize={{ base: 4, sm2: 3 }} />
               <Text as='span' display={{ base: 'none', sm2: 'inline-block' }}>
                 {t('menu.my_org')}
@@ -48,7 +53,7 @@ const Navbar = () => {
           <>
             <ListItem>
               <Button
-                variant='onvote-primary'
+                variant='primary'
                 onClick={() => {
                   if (openConnectModal) openConnectModal()
                 }}
@@ -94,6 +99,9 @@ const Navbar = () => {
                     p={2}
                     bgColor='transparent'
                     _hover={{
+                      bgColor: 'transparent',
+                    }}
+                    _active={{
                       bgColor: 'transparent',
                     }}
                   >
