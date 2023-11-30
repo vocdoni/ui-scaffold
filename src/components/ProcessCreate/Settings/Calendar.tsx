@@ -80,27 +80,28 @@ const Calendar = () => {
         gap={{ xl2: 20 }}
         p={4}
       >
-        <Box>
+        <Box w='full'>
           <Text fontFamily='pixeloidsans' textTransform='uppercase' fontSize='sm'>
             {t('form.process_create.calendar.start_date')}
           </Text>
           <Text fontSize='sm' mb={2} color='process_create.description'>
             {t('form.process_create.calendar.start_date_description')}
           </Text>
-          <RadioGroup {...useBooleanRadioRegister('electionType.autoStart')} mb={6}>
+          <RadioGroup {...useBooleanRadioRegister('electionType.autoStart')} mb={6} w='full'>
             <Stack
               direction={{ base: 'column', md: 'row' }}
               gap={5}
               alignItems='start'
               justifyContent='start'
               maxW='min-content'
+              minW='full'
             >
               <FormControl
+                flex='1 1 50%'
+                maxW={70}
                 p={0}
                 border='1px solid'
                 borderColor={autoStart ? 'process_create.calendar_start_date_selected' : 'lightgray'}
-                minW={70}
-                maxW={70}
                 sx={{
                   '& > label': {
                     display: 'flex',
@@ -113,6 +114,7 @@ const Calendar = () => {
                 </Radio>
               </FormControl>
               <FormControl
+                flex='1 1 50%'
                 isInvalid={!!errors.startDate}
                 display='flex'
                 flexDirection='column'
@@ -120,10 +122,10 @@ const Calendar = () => {
                 gap={2}
               >
                 <Box
+                  w='full'
                   p={0}
                   border='1px solid'
                   borderColor={!autoStart ? 'process_create.calendar_start_date_selected' : 'lightgray'}
-                  minW={70}
                   maxW={70}
                   sx={{
                     '& > label': {
@@ -147,7 +149,7 @@ const Calendar = () => {
                   </Radio>
                 </Box>
                 {!autoStart && (
-                  <Box minW={70} maxW={70}>
+                  <Box flex='1 1 50%' maxW={70}>
                     <Input
                       disabled={getValues().electionType.autoStart}
                       type='datetime-local'
@@ -167,7 +169,7 @@ const Calendar = () => {
             </Stack>
           </RadioGroup>
 
-          <FormControl isInvalid={!!errors.endDate} minW={70} maxW={70}>
+          <FormControl isInvalid={!!errors.endDate} maxW={70}>
             <FormLabel fontFamily='pixeloidsans' textTransform='uppercase' m={0} fontSize='sm'>
               {t('form.process_create.calendar.end_date')}
             </FormLabel>
