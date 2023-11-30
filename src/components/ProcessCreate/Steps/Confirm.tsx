@@ -48,7 +48,7 @@ import Wrapper from './Wrapper'
 import imageHeader from '/assets/spreadsheet-confirm-modal.jpeg'
 
 export const Confirm = () => {
-  const { env, client, account, fetchAccount } = useClient()
+  const { env, client, account } = useClient()
   const { form, prev } = useProcessCreationSteps()
   const navigate = useNavigate()
   const { t } = useTranslation()
@@ -104,9 +104,6 @@ export const Confirm = () => {
         status: 'success',
         duration: 4000,
       })
-
-      // refresh account info (balance, election index, etc...)
-      await fetchAccount()
 
       // clear draft data from storage
       localStorage.removeItem('form-draft')
