@@ -9,7 +9,7 @@ const baseStyle = definePartsStyle({
     py: 7,
     my: '10px',
     color: 'process.questions.alert.color',
-    bgColor: 'process.questions.alert.bg',
+    bgColor: '#3375ff',
     display: 'grid',
     columnGap: 4,
     justifyContent: 'center',
@@ -19,6 +19,8 @@ const baseStyle = definePartsStyle({
     boxShadow: 'var(--box-shadow-darker)',
     border: 'none',
     borderRadius: 0,
+    maxW: '900px',
+    w: '90%',
 
     '& span': {
       color: 'white',
@@ -31,6 +33,7 @@ const baseStyle = definePartsStyle({
   alertTitle: {
     fontSize: 'lg',
     mb: 3,
+    whiteSpace: 'wrap',
   },
 
   alertDescription: {
@@ -64,6 +67,7 @@ const baseStyle = definePartsStyle({
       display: 'flex',
       flexDirection: 'column',
       gap: 10,
+      minH: '300px',
     },
   },
 
@@ -104,8 +108,10 @@ const baseStyle = definePartsStyle({
     '& label': {
       overflow: 'hidden',
       mb: 4,
-      boxShadow: 'var(--box-shadow-darker)',
+      boxShadow: 'var(--box-shadow-question)',
       bgColor: 'white',
+      border: '1px solid',
+      borderColor: 'process.questions.border',
 
       '& input:checked': {
         bgColor: 'red',

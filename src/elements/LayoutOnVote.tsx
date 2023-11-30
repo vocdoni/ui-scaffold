@@ -6,7 +6,7 @@ import Navbar from '~components/Navbar'
 const Layout = () => {
   return (
     <Flex bgColor='#f2f2f2' position='relative' flexDirection='column' minH='100vh'>
-      <HStack as='header' position='sticky' top={0} w='full' backdropFilter='blur(40px)' zIndex={10}>
+      <HStack as='header' position='sticky' top={0} w='full' backdropFilter='blur(40px)' zIndex={20}>
         <Navbar />
       </HStack>
       <Box as='main' flexGrow={1}>

@@ -191,7 +191,7 @@
       "behavior": {
         "anonymous": {
           "description": "This setting ensures that votes remain unlinked to voter identities by utilizing advanced zkSNARKs technology on the Vocdoni Protocol.",
-          "title": ""
+          "title": "Anonymous"
         },
         "overwrite": {
           "description": "This setting allow voters to revise their vote a single time if needed, providing flexibility and protection against vote coercion.",

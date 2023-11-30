@@ -140,7 +140,7 @@ export const CostPreview = ({
                 <Trans
                   i18nKey='cost_preview.total'
                   components={{
-                    span: <Text as='span' />,
+                    span: <Text as='span' color='process_create.confirm_total_cost' />,
                   }}
                   values={{
                     cost,

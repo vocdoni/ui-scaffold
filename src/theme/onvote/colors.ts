@@ -101,21 +101,22 @@ export const colors = {
     },
     paused: colorsBase.primary.main,
     questions: {
+      border: colorsBase.primary.gray_light,
       alert: {
-        bg: colorsBase.primary.main,
+        bg: colorsBase.primary.light,
         color: colorsBase.white.pure,
         link_color: colorsBase.black,
         link_bg: colorsBase.white.pure,
       },
       question_selected: {
-        bg: colorsBase.primary.main,
+        bg: colorsBase.primary.light,
         color: colorsBase.white.pure,
       },
       description: colorsBase.gray.dark,
       title: colorsBase.primary.main,
     },
     results: {
-      alert_bg: colorsBase.primary.main,
+      alert_bg: colorsBase.primary.light,
       alert_color: colorsBase.white.pure,
       bg: colorsBase.gray.light2,
       description: colorsBase.gray.dark,
@@ -142,6 +143,7 @@ export const colors = {
     },
     advanced_checkbox_bg: colorsBase.white.pure,
     bg: colorsBase.white.dark2,
+    confirm_total_cost: colorsBase.primary.main,
     creation_process_steps_loading: colorsBase.primary.gray,
     wallet_addresses_border: colorsBase.gray.main,
     calendar_start_date_selected: colorsBase.primary.main,
