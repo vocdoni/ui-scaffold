@@ -2705,12 +2705,12 @@
     "@types/babel__core" "^7.20.4"
     react-refresh "^0.14.0"
 
-"@vocdoni/chakra-components@^0.7.2":
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/@vocdoni/chakra-components/-/chakra-components-0.7.2.tgz#77aa865408ecee89aa2e53793c78f4411a81b380"
-  integrity sha512-4ZqbB/Kvxip73xhyFIamEqhz8ML6bZOR0PdbuQes8P8XuUPrwLlJdi//Vf25h9Pe17zkp2gXCaCub9IsKDJZlg==
+"@vocdoni/chakra-components@^0.7.3":
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/@vocdoni/chakra-components/-/chakra-components-0.7.3.tgz#b35567693dc8f16b0dcad95667769e5e91857802"
+  integrity sha512-oD9kTYAnE5oRLrCja5i7iF9NJe15qn2ywZ85F0KC02YBGMb8T/XjSZQc+KZGilPMeFdV4udqCmPmI+BJQDUo8w==
   dependencies:
-    "@vocdoni/react-providers" "~0.3.1"
+    "@vocdoni/react-providers" "~0.3.2"
 
 "@vocdoni/proto@1.15.4":
   version "1.15.4"
@@ -2725,15 +2725,15 @@
   resolved "https://registry.yarnpkg.com/@vocdoni/rainbowkit-wallets/-/rainbowkit-wallets-0.2.2.tgz#d470949b23f35f2933daecc648a53b3d3f23ef5c"
   integrity sha512-mmVlkaCwrJONo95nSYSQ+GO9N+r9OVg9mX6zMQSyR7KGVkrcKkI5lEzkZXIsOx0gQv4q+tAN8nnSEYs9zNNvEg==
 
-"@vocdoni/react-providers@0.3.1", "@vocdoni/react-providers@~0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.3.1.tgz#c4e4416926871d4f1ead7b022ffd1592b298115a"
-  integrity sha512-Q7Op4wf4Ig/Mf5ceDDxmyHShEhVuioQShW9GOwAcsIiUl7ijeuAuO89uLq6u/PlVuwGJkppHG07O5oUNlxe6UQ==
+"@vocdoni/react-providers@~0.3.2":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.3.2.tgz#b43bf84ff6c14f4ed7e2b15953edfcb1f7594c02"
+  integrity sha512-JAn2uE8OCYNUFKlb68g+KvYLEiO7DUfCu1sO4ZpQ3ve2jjcPp6Sp7YgMdM7q/PwVE6YhFPF7SV/JLANp/8CE5A==
 
-"@vocdoni/sdk@~0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@vocdoni/sdk/-/sdk-0.6.0.tgz#d0415740ab673fa73b704f944fcba49af29ac286"
-  integrity sha512-PuzrWjmh8ZxFMoOREAW3dASszYA2eU4u4Cns7lDSleQ3CxRcoyOw9iiY69Nw2Njis67b+8B2oT2yow1kp+cDoA==
+"@vocdoni/sdk@^0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@vocdoni/sdk/-/sdk-0.6.1.tgz#6d3eeb8f02cbe9d0974260dfea1108b77e633c35"
+  integrity sha512-nDayMEvEwA0OaamiHLemtet9ilPx8khv+kdAkChhKeDz64fEJp1QezfijsHKFKLcIfQIawK0/+CWcUiqvdmg8g==
   dependencies:
     "@ethersproject/abstract-signer" "^5.7.0"
     "@ethersproject/address" "^5.7.0"
