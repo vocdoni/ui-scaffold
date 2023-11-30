@@ -16,8 +16,8 @@ const LayoutProcessCreate = () => {
           position='relative'
           justifyContent='space-between'
           alignItems='center'
-          w='1920px'
           maxW='1920px'
+          w='full'
           mx='auto'
           p={{ base: '12px 40px', md: '24px 80px' }}
         >
@@ -35,16 +35,7 @@ const LayoutProcessCreate = () => {
           </Link>
         </Flex>
 
-        <Box
-          as='main'
-          maxW='1920px'
-          w='full'
-          mx='auto'
-          px={{
-            base: 6,
-            md: 10,
-          }}
-        >
+        <Box as='main' maxW='1920px' w='full' mx='auto' p={{ base: '12px 40px', md: '24px 80px' }}>
           <Outlet />
         </Box>
       </Flex>
