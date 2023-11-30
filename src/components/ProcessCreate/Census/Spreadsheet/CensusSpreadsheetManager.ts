@@ -73,7 +73,7 @@ export class CensusSpreadsheetManager extends SpreadsheetManager {
     return this.filedata.map((row) => row[WeightColPosition - 1])
   }
 
-  public generateWallets(organization: string): Promise<{ address: string; weight: number | undefined }[]> {
+  public generateWallets(salt: string): Promise<{ address: string; weight: number | undefined }[]> {
     return Promise.all(
       this.filedata.map(
         (row: string[]): Promise<{ address: string; weight: number | undefined }> =>
@@ -82,7 +82,7 @@ export class CensusSpreadsheetManager extends SpreadsheetManager {
               try {
                 const data = this.weighted ? row.slice(WeightColPosition) : row
                 const weight = this.weighted ? parseInt(row[WeightColPosition - 1], 10) : undefined
-                const wallet = walletFromRow(organization, data)
+                const wallet = walletFromRow(salt, data)
                 const address = await wallet.getAddress()
 
                 resolve({ address, weight })

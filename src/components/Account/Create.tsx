@@ -16,9 +16,10 @@ import {
 } from '@chakra-ui/react'
 import { useClient } from '@vocdoni/react-providers'
 import { Account } from '@vocdoni/sdk'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import { useFaucet } from '~components/Faucet/use-faucet'
 import anonymous from '/assets/anonymous.png'
 import censorship from '/assets/censorship-resistance.png'
 import inexpensive from '/assets/inexpensive.png'
@@ -48,13 +49,32 @@ export const AccountCreate = () => {
   } = useClient()
   const { t } = useTranslation()
   const [sent, setSent] = useState<boolean>(false)
+  const { getAuthTypes } = useFaucet()
+  const [faucetAmount, setFaucetAmount] = useState<number>(0)
 
   const required = {
     value: true,
     message: t('form.error.field_is_required'),
   }
 
-  const onSubmit = async (values: FormFields) => createAccount(new Account(values))?.finally(() => setSent(true))
+  useEffect(() => {
+    ;(async () => {
+      try {
+        const atypes = await getAuthTypes()
+        if (atypes.auth.oauth) {
+          setFaucetAmount(atypes.auth.oauth)
+        }
+      } catch (e) {
+        setFaucetAmount(NaN)
+      }
+    })()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const onSubmit = async (values: FormFields) =>
+    createAccount({
+      account: new Account(values),
+    })?.finally(() => setSent(true))
 
   return (
     <Flex
@@ -81,8 +101,8 @@ export const AccountCreate = () => {
           i18nKey='new_organization.description2'
           components={{
             span: <Text as='span' fontWeight='bold' />,
-            faucetAmount: import.meta.env.FAUCET_AMOUNT,
           }}
+          values={{ faucetAmount }}
         />
       </Text>
       <Box px={{ base: 5, md: 10 }} pt={5} pb={10}>
@@ -97,7 +117,7 @@ export const AccountCreate = () => {
           {!!errors.name && <FormErrorMessage>{errors.name?.message?.toString()}</FormErrorMessage>}
         </FormControl>
 
-        <FormControl>
+        <FormControl mb={5}>
           <Textarea
             {...register('description')}
             placeholder={t('form.account_create.description_placeholder').toString()}

@@ -129,16 +129,15 @@ const MenuDropdown = () => {
         </Box>
       </MenuItem>
       {isOpenMenuLanguages && <LanguagesList closeOnSelect={false} />}
-      <MenuItem>
-        <Link
-          href='https://developer.vocdoni.io/'
-          target='_blank'
-          _hover={{
-            textDecoration: 'none',
-          }}
-        >
-          {t('menu.documentation')}
-        </Link>
+      <MenuItem
+        as={Link}
+        href='https://developer.vocdoni.io/'
+        target='_blank'
+        _hover={{
+          textDecoration: 'none',
+        }}
+      >
+        {t('menu.documentation')}
       </MenuItem>
       <HR h={0} my={2} />
       <MenuItem
@@ -151,15 +150,17 @@ const MenuDropdown = () => {
         <Icon as={MdOutlineLogout} mr={1} />
         {t('menu.logout')}
       </MenuItem>
-      <MenuItem fontSize='xs' color='blackAlpha.700'>
-        <Link href='https://aragon.org/terms-and-conditions' target='_blank'>
-          {t('menu.terms')}
-        </Link>
+      <MenuItem
+        fontSize='xs'
+        color='blackAlpha.700'
+        as={Link}
+        href='https://aragon.org/terms-and-conditions'
+        target='_blank'
+      >
+        {t('menu.terms')}
       </MenuItem>
-      <MenuItem fontSize='xs' color='blackAlpha.700'>
-        <Link href='https://aragon.org/privacy-policy' target='_blank'>
-          {t('menu.privacy')}
-        </Link>
+      <MenuItem fontSize='xs' color='blackAlpha.700' as={Link} href='https://aragon.org/privacy-policy' target='_blank'>
+        {t('menu.privacy')}
       </MenuItem>
     </MenuList>
   )

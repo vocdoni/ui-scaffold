@@ -158,7 +158,7 @@ const useStrategy = () => {
     web3: t('process.census_strategies.web3'),
   }
 
-  if (!election || (election && !election.meta.census)) return ''
+  if (!election || (election && !election?.meta?.census)) return ''
 
   const type = election.get('census.type')
 
