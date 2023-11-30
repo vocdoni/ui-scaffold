@@ -19,7 +19,7 @@ const LayoutProcessCreate = () => {
           w='1920px'
           maxW='1920px'
           mx='auto'
-          p={{ base: '12px 20px', md: '24px 40px' }}
+          p={{ base: '12px 40px', md: '24px 80px' }}
         >
           <Logo />
 
