@@ -11,8 +11,8 @@ const VotingTypesBanner = () => {
         justifyContent='space-around'
         flexWrap='wrap'
         alignItems={{ base: 'center', md2: 'stretch' }}
-        gap={{ base: 10, md2: 0 }}
-        maxW={{ md: '900px' }}
+        gap={{ base: 10, md2: 5 }}
+        maxW={{ md: '990px' }}
         mx='auto'
         fontSize='sm'
         pb={64}
