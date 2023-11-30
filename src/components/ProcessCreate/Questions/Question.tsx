@@ -26,7 +26,13 @@ const Question = ({ index, remove }: Props) => {
   })
 
   return (
-    <Box bgColor='process_create.section' p={6} position='relative'>
+    <Box
+      bgColor='process_create.section'
+      border='1px solid'
+      borderColor='process_create.section_border'
+      p={6}
+      position='relative'
+    >
       <IconButton
         variant='icon'
         position='absolute'

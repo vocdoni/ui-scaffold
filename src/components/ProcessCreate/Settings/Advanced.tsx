@@ -12,7 +12,7 @@ const SettingsAdvanced = () => {
   return (
     <Box>
       <Box mb={4}>
-        <Text fontWeight='bold' fontFamily='pixeloidsans' textTransform='uppercase' mb={1}>
+        <Text fontFamily='pixeloidsans' textTransform='uppercase' mb={1} color='process_create.title'>
           {t('form.process_create.behavior.title')}
         </Text>
       </Box>

@@ -7,7 +7,7 @@ import { FaGlobeAmericas } from 'react-icons/fa'
 import { MdHowToVote } from 'react-icons/md'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
-import Logo from '~components/Layout/Logo'
+import Logo from '~components/Layout/LogoOnVote'
 import LanguagesList from './LanguagesList'
 import MenuDropdown from './Menu'
 
@@ -18,13 +18,13 @@ const Navbar = () => {
   const { openConnectModal } = useConnectModal()
 
   return (
-    <Flex justifyContent='space-between' w='1920px' maxW='1920px' p={{ base: '12px 20px', md: '24px 40px' }}>
+    <Flex justifyContent='space-between' w='1920px' maxW='1920px' mx='auto' p={{ base: '12px 20px', md: '24px 40px' }}>
       <Logo />
 
       <List as='nav' display='flex' alignItems='center' gap={4}>
         {isConnected && (
           <ListItem>
-            <Button variant='primary' as={ReactRouterLink} to='/processes/create' colorScheme='primary'>
+            <Button as={ReactRouterLink} to='/processes/create' colorScheme='primary'>
               <AddIcon boxSize={{ base: 4, sm2: 3 }} />
               <Text as='span' display={{ base: 'none', sm2: 'inline-block' }}>
                 {t('menu.new_process')}
@@ -35,12 +35,7 @@ const Navbar = () => {
 
         {account && account?.account?.name?.default.length > 0 && (
           <ListItem>
-            <Button
-              as={ReactRouterLink}
-              to={`/organization/0x${account?.address}`}
-              variant='secondary'
-              colorScheme='primary'
-            >
+            <Button as={ReactRouterLink} to={`/organization/0x${account?.address}`} variant='secondary'>
               <Icon as={MdHowToVote} boxSize={{ base: 4, sm2: 3 }} />
               <Text as='span' display={{ base: 'none', sm2: 'inline-block' }}>
                 {t('menu.my_org')}
@@ -53,7 +48,6 @@ const Navbar = () => {
           <>
             <ListItem>
               <Button
-                variant='primary'
                 onClick={() => {
                   if (openConnectModal) openConnectModal()
                 }}
@@ -68,14 +62,11 @@ const Navbar = () => {
                   <>
                     <MenuButton
                       as={Button}
+                      variant='transparent'
                       aria-label={t('menu.burger_aria_label')}
                       sx={{ span: { margin: 'px' } }}
                       rightIcon={isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
                       minW='none'
-                      bgColor='transparent'
-                      _hover={{
-                        bgColor: 'transparent',
-                      }}
                     >
                       <FaGlobeAmericas />
                     </MenuButton>
@@ -93,18 +84,7 @@ const Navbar = () => {
             <Menu>
               {({ isOpen }) => (
                 <>
-                  <MenuButton
-                    as={Button}
-                    aria-label={t('menu.languages_list')}
-                    p={2}
-                    bgColor='transparent'
-                    _hover={{
-                      bgColor: 'transparent',
-                    }}
-                    _active={{
-                      bgColor: 'transparent',
-                    }}
-                  >
+                  <MenuButton as={Button} variant='transparent' aria-label={t('menu.languages_list')} p={2}>
                     <Box as='span' display='flex' alignItems='center'>
                       <Avatar
                         src={account?.account.avatar}

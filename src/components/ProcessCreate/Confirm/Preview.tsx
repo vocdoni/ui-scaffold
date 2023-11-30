@@ -23,10 +23,17 @@ const Preview = () => {
   } = form
 
   return (
-    <Flex flexDirection='column' gap={5} p={{ base: 3, xl: 6 }} bgColor='process_create.section' borderRadius='md'>
+    <Flex
+      flexDirection='column'
+      gap={5}
+      p={{ base: 3, xl: 6 }}
+      bgColor='process_create.section'
+      border='1px solid'
+      borderColor='process_create.section_border'
+    >
       <Flex flexDirection='column' gap={6}>
         <Flex>
-          <Text fontWeight='bold' fontFamily='pixeloidsans' textTransform='uppercase'>
+          <Text fontFamily='pixeloidsans' textTransform='uppercase'>
             {t('form.process_create.confirm.election_info')}
           </Text>
           <Link variant='primary' ml='auto' onClick={() => setActiveStep(1)}>

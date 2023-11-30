@@ -147,7 +147,7 @@ export const Confirm = () => {
   return (
     <Wrapper>
       <Box>
-        <Text fontWeight='bold' mb={2} fontFamily='pixeloidsans' textTransform='uppercase'>
+        <Text mb={2} fontFamily='pixeloidsans' textTransform='uppercase' color='process_create.title'>
           {t('form.process_create.confirm.title')}
         </Text>
         <Text mb={4}>{t('form.process_create.confirm.description')}</Text>

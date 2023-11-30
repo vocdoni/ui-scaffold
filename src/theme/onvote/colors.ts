@@ -1,10 +1,6 @@
 export const colorsBase = {
   black: '#000000',
-  blue: {
-    light: '#d9e5ff',
-    main: '#0053FF',
-    dark: '#0042CC',
-  },
+
   gray: {
     bg: '#f2f2f2',
     light2: '#D9E5FF',
@@ -21,6 +17,7 @@ export const colorsBase = {
     dark: '#0042cc',
     dark2: '#003399',
   },
+
   red: '#E53E3E',
   white: {
     pure: '#ffffff',
@@ -140,13 +137,14 @@ export const colors = {
 
   process_create: {
     alert_info: {
-      bg: colorsBase.blue.light,
-      color: colorsBase.blue.dark,
+      bg: colorsBase.primary.light,
+      color: colorsBase.primary.dark,
     },
     advanced_checkbox_bg: colorsBase.white.pure,
     bg: colorsBase.white.dark2,
+    creation_process_steps_loading: colorsBase.primary.gray,
     wallet_addresses_border: colorsBase.gray.main,
-    calendar_start_date_selected: colorsBase.blue.main,
+    calendar_start_date_selected: colorsBase.primary.main,
     census: {
       drag_and_drop_border: colorsBase.gray.main,
       title: colorsBase.primary.main,
@@ -154,10 +152,11 @@ export const colors = {
       web3_owner_label: colorsBase.primary.main,
     },
     description: colorsBase.gray.dark,
-    description_logo: colorsBase.blue.main,
+    description_logo: colorsBase.primary.main,
     preview_option_question_before: colorsBase.black,
     preview_negative_balance: colorsBase.red,
     section: colorsBase.white.pure,
+    section_border: colorsBase.primary.gray_light,
     spreadsheet: {
       badge: {
         bg: colorsBase.primary.main,
@@ -175,6 +174,7 @@ export const colors = {
     },
 
     tabs_selected_color: colorsBase.primary.main,
+    title: colorsBase.primary.main,
   },
   results_progressbar_bg: colorsBase.white.pure,
 }

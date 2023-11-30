@@ -64,7 +64,7 @@ const Calendar = () => {
   return (
     <Box>
       <Box mb={4}>
-        <Text fontSize='md' fontFamily='pixeloidsans' textTransform='uppercase' fontWeight='bold'>
+        <Text fontSize='md' fontFamily='pixeloidsans' textTransform='uppercase' color='process_create.title'>
           {t('form.process_create.calendar.title')}
         </Text>
         <Text fontWeight='normal' fontSize='sm' color='process_create.description'>
@@ -73,13 +73,15 @@ const Calendar = () => {
       </Box>
       <Flex
         bgColor='process_create.section'
+        border='1px solid'
+        borderColor='process_create.section_border'
         flexDirection={{ base: 'column', xl2: 'row' }}
         justifyContent='space-between'
         gap={{ xl2: 20 }}
         p={4}
       >
         <Box>
-          <Text fontWeight='bold' fontFamily='pixeloidsans' textTransform='uppercase' fontSize='sm'>
+          <Text fontFamily='pixeloidsans' textTransform='uppercase' fontSize='sm'>
             {t('form.process_create.calendar.start_date')}
           </Text>
           <Text fontSize='sm' mb={2} color='process_create.description'>
@@ -107,9 +109,7 @@ const Calendar = () => {
                 }}
               >
                 <Radio value='1' w='full' onClick={() => clearErrors('startDate')} borderRadius={0}>
-                  <Text fontWeight='bold' fontSize='sm'>
-                    {t('form.process_create.calendar.now')}
-                  </Text>
+                  <Text fontSize='sm'>{t('form.process_create.calendar.now')}</Text>
                 </Radio>
               </FormControl>
               <FormControl
@@ -134,7 +134,6 @@ const Calendar = () => {
                 >
                   <Radio value='0' borderRadius={0}>
                     <Text
-                      fontWeight='bold'
                       fontSize='sm'
                       onClick={() =>
                         // we need to use a timeout cos' triggering it immediately would not work, since this input is still disabled
@@ -169,7 +168,7 @@ const Calendar = () => {
           </RadioGroup>
 
           <FormControl isInvalid={!!errors.endDate} minW={70} maxW={70}>
-            <FormLabel fontWeight='bold' fontFamily='pixeloidsans' textTransform='uppercase' m={0} fontSize='sm'>
+            <FormLabel fontFamily='pixeloidsans' textTransform='uppercase' m={0} fontSize='sm'>
               {t('form.process_create.calendar.end_date')}
             </FormLabel>
             <Text whiteSpace='nowrap' fontSize='sm' mb={2} color='process_create.description'>

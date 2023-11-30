@@ -5,15 +5,6 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 
 const baseStyle = definePartsStyle({
   button: {
-    // bgColor: 'white',
-    // color: 'black',
-    // _after: {
-    //   bgColor: 'white',
-    // },
-    // _before: {
-    //   bgColor: 'white',
-    // },
-    mx: 'auto',
     w: '100%',
   },
   disconnect: {

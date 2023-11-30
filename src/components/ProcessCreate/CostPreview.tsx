@@ -313,7 +313,6 @@ const OAuthLoginButton = (props: Partial<ButtonProps & { selected: boolean }>) =
       {...props}
       variant=''
       cursor='pointer'
-      title='coming soon'
       sx={{
         '&': {
           bgColor: selected ? 'primary.700' : 'black',
