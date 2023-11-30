@@ -333,7 +333,7 @@
   },
   "get_voc_tokens": {
     "authentification_method": "Select your prefered authentification method:",
-    "authentification_method_helper": "You can earn {{ faucetAmount }} token by authetication method per week",
+    "authentification_method_helper": "You can claim {{ faucetAmount }} tokens from the faucet once every {{ waitHours }} hours.",
     "button": "Request Tokens",
     "description": "<text>To add more tokens you must <strong>sign in</strong> with a social account (to prevent missuse of the faucet).</text><text><strong>We only request read access.</strong></text>",
     "info": "<text>If you need more, contact to <mailto>info@onvote.app</mailto></text>",
