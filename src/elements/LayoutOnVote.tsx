@@ -31,6 +31,7 @@ const Layout = () => {
         textTransform='uppercase'
         fontFamily='pixeloidsans'
         fontSize='16px'
+        display={{ base: 'none', sm: 'block' }}
       >
         World wide voting
       </Text>

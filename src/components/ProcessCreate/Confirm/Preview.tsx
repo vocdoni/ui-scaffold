@@ -45,7 +45,7 @@ const Preview = () => {
           </Link>
         </Flex>
         <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 2, md: 0 }}>
-          <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='bold' fontSize='md'>
+          <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='bold'>
             {t('form.process_create.confirm.title_election')}
           </Text>
           <ElectionTitle
@@ -59,17 +59,17 @@ const Preview = () => {
         </Flex>
         {description && (
           <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 2, md: 0 }}>
-            <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='bold' fontSize='md'>
+            <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='bold'>
               {t('form.process_create.confirm.description_election')}
             </Text>
 
-            <Box flexBasis={{ base: '100%', md: '65%' }} flexShrink={0} flexGrow={0} fontSize='md' textAlign='start'>
+            <Box flexBasis={{ base: '100%', md: '65%' }} flexShrink={0} flexGrow={0} textAlign='start'>
               <ElectionDescription />
             </Box>
           </Flex>
         )}
         <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 2, md: 0 }}>
-          <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='bold' fontSize='md'>
+          <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='bold'>
             {t('form.process_create.confirm.dates')}
           </Text>
           <Text flexBasis={{ base: '100%', md: '65%' }} flexShrink={0} flexGrow={0}>
@@ -83,7 +83,7 @@ const Preview = () => {
           </Text>
         </Flex>
         <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 2, md: 0 }}>
-          <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='bold' fontSize='md'>
+          <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='bold'>
             {t('form.process_create.confirm.configuration')}
           </Text>
           <Box flexBasis={{ base: '100%', md: '65%' }}>
