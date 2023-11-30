@@ -256,27 +256,26 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
               aria-label={t('login.github').toString()}
               onClick={() => setSocialAccount('github')}
               selected={socialAccount === 'github'}
+              title="Github"
             >
               <Icon as={FaGithub} w={8} h={8} />
             </OAuthLoginButton>
-            <Tooltip>
-              <OAuthLoginButton
-                aria-label={t('login.google').toString()}
-                onClick={() => setSocialAccount('google')}
-                selected={socialAccount === 'google'}
-              >
-                <Icon as={FaGoogle} w={8} h={8} />
-              </OAuthLoginButton>
-            </Tooltip>
-            <Tooltip>
-              <OAuthLoginButton
-                aria-label={t('login.facebook').toString()}
-                onClick={() => setSocialAccount('facebook')}
-                selected={socialAccount === 'facebook'}
-              >
-                <Icon as={FaFacebook} w={8} h={8} />
-              </OAuthLoginButton>
-            </Tooltip>
+            <OAuthLoginButton
+              aria-label={t('login.google').toString()}
+              onClick={() => setSocialAccount('google')}
+              selected={socialAccount === 'google'}
+              title="Google"
+            >
+              <Icon as={FaGoogle} w={8} h={8} />
+            </OAuthLoginButton>
+            <OAuthLoginButton
+              aria-label={t('login.facebook').toString()}
+              onClick={() => setSocialAccount('facebook')}
+              selected={socialAccount === 'facebook'}
+              title="Facebook"
+            >
+              <Icon as={FaFacebook} w={8} h={8} />
+            </OAuthLoginButton>
           </Flex>
 
           <Text fontSize='sm' textAlign='center' color='gray'>
@@ -314,12 +313,12 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
 }
 
 const OAuthLoginButton = (props: Partial<ButtonProps & { selected: boolean }>) => {
-  const { children, selected } = props
+  const { children, selected, title } = props
   return (
     <Button
       {...props}
       cursor='pointer'
-      title='coming soon'
+      title={title || 'coming soon'}
       sx={{
         '&': {
           bgColor: selected ? 'primary.500' : '',
