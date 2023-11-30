@@ -1,14 +1,12 @@
 import { AddIcon, ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
-import { Avatar, Box, Button, Flex, Icon, List, ListItem, Menu, MenuButton, MenuList, Text } from '@chakra-ui/react'
+import { Avatar, Box, Button, Flex, Icon, List, ListItem, Menu, MenuButton, Text } from '@chakra-ui/react'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { useClient } from '@vocdoni/react-providers'
 import { useTranslation } from 'react-i18next'
-import { FaGlobeAmericas } from 'react-icons/fa'
 import { MdHowToVote } from 'react-icons/md'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 import Logo from '~components/Layout/LogoOnVote'
-import LanguagesList from './LanguagesList'
 import MenuDropdown from './Menu'
 
 const Navbar = () => {
@@ -45,39 +43,15 @@ const Navbar = () => {
         )}
 
         {!isConnected && (
-          <>
-            <ListItem>
-              <Button
-                onClick={() => {
-                  if (openConnectModal) openConnectModal()
-                }}
-              >
-                {t('menu.login').toString()}
-              </Button>
-            </ListItem>
-
-            <ListItem>
-              <Menu>
-                {({ isOpen, onClose }) => (
-                  <>
-                    <MenuButton
-                      as={Button}
-                      variant='transparent'
-                      aria-label={t('menu.burger_aria_label')}
-                      sx={{ span: { margin: 'px' } }}
-                      rightIcon={isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
-                      minW='none'
-                    >
-                      <FaGlobeAmericas />
-                    </MenuButton>
-                    <MenuList minW={16} mt={2}>
-                      <LanguagesList closeOnSelect={true} />
-                    </MenuList>
-                  </>
-                )}
-              </Menu>
-            </ListItem>
-          </>
+          <ListItem>
+            <Button
+              onClick={() => {
+                if (openConnectModal) openConnectModal()
+              }}
+            >
+              {t('menu.login').toString()}
+            </Button>
+          </ListItem>
         )}
         {isConnected && (
           <ListItem>
