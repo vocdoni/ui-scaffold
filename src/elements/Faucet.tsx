@@ -10,7 +10,7 @@ const Faucet = () => {
   const { account } = useClient()
   const { getAuthTypes } = useFaucet()
 
-  const [authTypes, setAuthTypes] = useState<authTypes>({ oauth: 0, open: 0, aragondao: 0 })
+  const [authTypes, setAuthTypes] = useState<authTypes>({ auth: { oauth: 0, open: 0, aragondao: 0 }, waitSeconds: 0 })
   useEffect(() => {
     ;(async () => {
       setAuthTypes(await getAuthTypes())
@@ -57,7 +57,8 @@ const Faucet = () => {
               </Heading>
               <Text variant='p'>
                 {t('faucet.general_information.description', {
-                  amount: authTypes.oauth,
+                  amount: authTypes.auth.oauth,
+                  waitHours: Math.floor(authTypes.waitSeconds / 3600),
                 })}
               </Text>
               <Text variant='p'>{t('faucet.general_information.description2')}</Text>

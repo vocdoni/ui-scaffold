@@ -136,7 +136,7 @@
     "copy_package_done": "Copied!",
     "description": "Tokens are necessary for specific actions like creating an election or changing its status. The number of tokens required is influenced by factors such as census size, election duration and its parameters.",
     "general_information": {
-      "description": "Upon token request, you will receive {{ amount }} tokens, and you can claim from the faucet once every 24 hours.",
+      "description": "When you request dev tokens, you'll receive {{ amount }} tokens. You can claim from the faucet once every {{ waitHours }} hours.",
       "description2": "For additional tokens required in your development on the Vocdoni stack, please connect with us at info(at)vocdoni.io.",
       "title": "General Information"
     },

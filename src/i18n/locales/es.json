@@ -139,7 +139,7 @@
     "copy_package_done": "",
     "description": "Para desarrollar con Vocdoni, necesitas tokens para ciertas acciones (crear una elección, cambiar el estado de una elección, etc.). El número de diferentes factores como el tamaño del censo, la duración de la elección, los parámetros de la elección, etc.",
     "general_information": {
-      "description": "Cuando solicites tokens de desarrollo, recibirás {{ amount }} tokens. Puedes reclamar desde el faucet una vez cada 24 horas.",
+      "description": "Cuando solicites tokens de desarrollo, recibirás {{ amount }} tokens. Puedes reclamar desde el faucet una vez cada {{ waitHours }} horas.",
       "description2": "Si necesitas más tokens para desarrollar sobre la plataforma de Vocdoni, puedes ponerte en contacto con nosotros en tokens (at) vocdoni.io",
       "title": "Información General"
     },

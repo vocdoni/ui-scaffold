@@ -6,9 +6,12 @@ export type signinUrlParams = {
 }
 
 export type authTypes = {
-  oauth?: number
-  open?: number
-  aragondao?: number
+  auth: {
+    oauth?: number
+    open?: number
+    aragondao?: number
+  }
+  waitSeconds: number
 }
 
 export type oAuthSignInURLFunction = (
@@ -75,7 +78,7 @@ export const useFaucet = () => {
     const response = await fetch(`${url}/authTypes`)
     const res = await response.json()
     if (res.error) throw new Error(res.error)
-    return res.auth
+    return res
   }
 
   return {
