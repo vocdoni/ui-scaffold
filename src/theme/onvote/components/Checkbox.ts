@@ -29,12 +29,13 @@ const radiobox = definePartsStyle({
     display: 'flex',
     flexDirection: 'column',
     p: 4,
-    boxShadow: 'var(--box-shadow)',
     bgColor: 'process_create.advanced_checkbox_bg',
 
     _hover: {
       boxShadow: 'var(--box-shadow-darker)',
     },
+    border: '1px solid',
+    borderColor: 'process_create.advanced_checkbox_border',
   }),
   control: defineStyle({
     position: 'absolute',
@@ -55,7 +56,7 @@ const radiobox = definePartsStyle({
     },
 
     '& > p': {
-      fontSize: '12px',
+      fontSize: '14px',
       color: 'process_create.description',
     },
   }),

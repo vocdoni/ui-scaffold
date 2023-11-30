@@ -24,7 +24,7 @@ const detailed = definePartsStyle({
 
   container: {
     ...cardCommonStyles.container,
-    w: { base: 84, sm: 96 },
+    w: '350px',
     height: 70,
     display: 'flex',
     flexDirection: 'column',
@@ -187,18 +187,29 @@ const typesVoting = definePartsStyle({
     w: '240px',
     minH: 'none',
 
-    '& div': {
-      '& svg': {
-        display: 'none',
-      },
-
-      '& p:first-of-type': {
-        fontSize: 22,
-        mb: 2,
-        fontWeight: 'bold',
-        fontFamily: 'pixeloidsans',
-      },
+    '& p:nth-of-type(2)': {
+      color: 'red',
     },
+  },
+  body: {
+    flex: '0 0 0%',
+    p: 0,
+
+    svg: {
+      display: 'none',
+    },
+    'p:first-of-type': {
+      fontSize: 22,
+      mb: 2,
+      fontWeight: 'bold',
+      fontFamily: 'pixeloidsans',
+    },
+  },
+
+  footer: {
+    p: 0,
+    fontSize: '18px',
+    lineHeight: '24px',
   },
 })
 const aside = definePartsStyle({

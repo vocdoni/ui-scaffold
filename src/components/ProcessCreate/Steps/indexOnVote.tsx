@@ -50,7 +50,7 @@ const Steps = () => {
                   active={<StepNumber />}
                 />
               </StepIndicator>
-              <Text as='span' fontSize='xs' mt={{ lg: 2 }} whiteSpace='nowrap'>
+              <Text as='span' mt={{ lg: 2 }} whiteSpace='nowrap' fontSize='14px'>
                 {step.title}
               </Text>
             </Flex>

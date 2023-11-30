@@ -16,9 +16,10 @@ const LayoutProcessCreate = () => {
           position='relative'
           justifyContent='space-between'
           alignItems='center'
-          paddingY={4}
-          px={4}
-          w='full'
+          w='1920px'
+          maxW='1920px'
+          mx='auto'
+          p={{ base: '12px 20px', md: '24px 40px' }}
         >
           <Logo />
 

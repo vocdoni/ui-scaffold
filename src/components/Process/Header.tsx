@@ -32,7 +32,7 @@ const ProcessHeader = () => {
   const showOrgInformation = !loaded || (loaded && organization?.account?.name)
 
   return (
-    <Box mb={4} p={{ base: '12px 20px', md: '24px 40px' }}>
+    <Box mb={4}>
       {showOrgInformation && (
         <Button
           as='a'
@@ -47,7 +47,7 @@ const ProcessHeader = () => {
       )}
       <Flex direction={{ base: 'column', lg2: 'row' }} mb={7} gap={10}>
         <Box flexGrow={0} flexShrink={0} flexBasis={{ base: '100%', md: '60%', lg: '65%', lg2: '70%', xl2: '75%' }}>
-          <ElectionTitle fontFamily='pixeloidsans' textTransform='uppercase' fontSize='xl4' textAlign='left' mb={5} />
+          <ElectionTitle fontSize='40px' textAlign='left' mb={5} />
           <Flex
             gap={4}
             flexDirection={{ base: 'column', md: 'row' }}

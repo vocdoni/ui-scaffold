@@ -142,6 +142,7 @@ export const colors = {
       color: colorsBase.primary.dark,
     },
     advanced_checkbox_bg: colorsBase.white.pure,
+    advanced_checkbox_border: colorsBase.primary.gray_light,
     bg: colorsBase.white.dark2,
     confirm_total_cost: colorsBase.primary.main,
     creation_process_steps_loading: colorsBase.primary.gray,

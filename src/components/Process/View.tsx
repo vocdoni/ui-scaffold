@@ -51,7 +51,14 @@ export const ProcessView = () => {
   }, [election])
 
   return (
-    <Box>
+    <Box
+      maxW='1920px'
+      mx='auto'
+      px={{
+        base: '20px',
+        md: '40px',
+      }}
+    >
       <Box mb={44} px={0}>
         <Header />
         <Flex

@@ -95,6 +95,8 @@ const OrganizationView = () => {
         base: '20px',
         md: '40px',
       }}
+      maxW='1920px'
+      mx='auto'
     >
       <Header />
 
@@ -102,15 +104,7 @@ const OrganizationView = () => {
         {t('organization.elections')}
       </Text>
 
-      <Grid
-        templateColumns={{
-          base: '1fr',
-          md2: 'repeat(2, 1fr)',
-          xl2: 'repeat(3, 1fr)',
-        }}
-        columnGap={{ base: 3, lg: 4 }}
-        rowGap={12}
-      >
+      <Grid templateColumns='repeat(auto-fill, minmax(350px, 1fr))' columnGap={{ base: 3, lg: 4 }} rowGap={12}>
         {electionsList?.map((election: any, idx: number) => (
           <GridItem key={idx} display='flex' justifyContent='center' alignItems='start'>
             <ProcessCardDetailed election={election} />
