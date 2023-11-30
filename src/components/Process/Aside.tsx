@@ -11,7 +11,15 @@ import { CensusMeta } from '~components/ProcessCreate/Steps/Confirm'
 
 const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
   const { t } = useTranslation()
-  const { election, connected, isAbleToVote, isInCensus, voted, votesLeft } = useElection()
+  const {
+    election,
+    connected,
+    isAbleToVote,
+    isInCensus,
+    voted,
+    votesLeft,
+    loading: { voting },
+  } = useElection()
   const { isConnected } = useAccount()
   const { env } = useClient()
   const census: CensusMeta = dotobject(election?.meta || {}, 'census')
@@ -37,22 +45,26 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
         borderRadius='lg'
         boxShadow='var(--box-shadow-banner)'
       >
-        <Text textAlign='center' fontSize='xl3'>
-          {getStatusText(t, election?.status).toUpperCase()}
+        <Text textAlign='center' fontSize='xl3' textTransform='uppercase'>
+          {election?.electionType.anonymous && voting
+            ? t('aside.submitting')
+            : getStatusText(t, election?.status).toUpperCase()}
         </Text>
 
-        {election?.status !== ElectionStatus.CANCELED && election?.status !== ElectionStatus.UPCOMING && (
-          <Box display='flex' flexDirection='row' justifyContent='center' alignItems='center' gap={2}>
-            <Trans
-              i18nKey='aside.votes'
-              components={{
-                span: <Text as='span' fontWeight='bold' fontSize='xl6' textAlign='center' lineHeight={1} />,
-                text: <Text fontSize='xl2' textAlign='center' lineHeight={1.3} />,
-              }}
-              count={election?.voteCount}
-            />
-          </Box>
-        )}
+        {election?.status !== ElectionStatus.CANCELED &&
+          election?.status !== ElectionStatus.UPCOMING &&
+          !(election?.electionType.anonymous && voting) && (
+            <Box display='flex' flexDirection='row' justifyContent='center' alignItems='center' gap={2}>
+              <Trans
+                i18nKey='aside.votes'
+                components={{
+                  span: <Text as='span' fontWeight='bold' fontSize='xl6' textAlign='center' lineHeight={1} />,
+                  text: <Text fontSize='xl2' textAlign='center' lineHeight={1.3} />,
+                }}
+                count={election?.voteCount}
+              />
+            </Box>
+          )}
 
         {census?.type === 'spreadsheet' && !connected && (
           <Box w='full' maxW='250px' display={{ base: 'none', md: 'block' }}>
@@ -85,6 +97,11 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
             {voted !== null && voted.length > 0 && (
               <Text fontSize='sm' textAlign='center'>
                 {t('aside.has_already_voted').toString()}
+              </Text>
+            )}
+            {voting && election?.electionType.anonymous && (
+              <Text fontSize='sm' textAlign='center'>
+                {t('aside.voting_anonymous_advice')}
               </Text>
             )}
             {isAbleToVote && isLargerThanMd && <VoteButton variant='process' mb={0} onClick={setQuestionsTab} />}
