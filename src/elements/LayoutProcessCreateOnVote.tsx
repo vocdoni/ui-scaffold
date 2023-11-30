@@ -35,7 +35,7 @@ const LayoutProcessCreate = () => {
           </Link>
         </Flex>
 
-        <Box as='main' maxW='1920px' w='full' mx='auto' p={{ base: '12px 40px', md: '24px 80px' }}>
+        <Box as='main' maxW='1920px' w='full' mx='auto' px={{ base: '40px', md: '80px' }}>
           <Outlet />
         </Box>
       </Flex>
