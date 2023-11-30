@@ -1,15 +1,4 @@
 {
-  "account": {
-    "helper": {
-      "sik": "Només se't demanarà quan vagis a votar en processos anònims"
-    },
-    "label": {
-      "sik": "Contrasenya per a votacions anònimes"
-    },
-    "placeholder": {
-      "sik": "Quelcom segur i fàcil de recordar"
-    }
-  },
   "aside": {
     "has_already_voted": "El teu vot s'ha registrat correctament",
     "is_not_in_census": "No estàs en el cens",
@@ -17,10 +6,12 @@
     "overwrite_votes_left_one": "Pots corregir el teu vot una vegada.",
     "overwrite_votes_left_many": "",
     "overwrite_votes_left_other": "Pots corregir el teu vot {{ count }} vegades.",
+    "submitting": "",
     "verify_vote_on_explorer": "Verifica el vot a l'explorador",
     "votes_one": "<span>1</span> <text>vot</text>",
     "votes_many": "",
-    "votes_other": "<span>{{ count }}</span> <text>vots</text>"
+    "votes_other": "<span>{{ count }}</span> <text>vots</text>",
+    "voting_anonymous_advice": ""
   },
   "banner": {
     "start_now": "Crea una votació!",
@@ -84,8 +75,8 @@
       "upcoming": "Propera"
     },
     "validation": {
-      "required": "Aquest camp és obligatori",
-      "min_length": "Aquest camp ha de tenir com a mínim {{ min }} caràcters"
+      "min_length": "Aquest camp ha de tenir com a mínim {{ min }} caràcters",
+      "required": "Aquest camp és obligatori"
     },
     "vote": {
       "button": "Vota",
@@ -356,7 +347,6 @@
     "authentification_method": "Seleccioneu el vostre mètode d'autenticació preferit:",
     "authentification_method_helper": "Podeu obtenir {{ faucetAmount }} tokens per mètode d'autenticació per setmana",
     "button": "Sol·licitar Tokens",
-    "coming_soon": "Properament",
     "description": "<text>Per afegir més tokens, heu d'<strong>iniciar sessió</strong> amb un compte social (per evitar l'ús indegut del faucet).</text><text><strong>Només sol·licitem accés de lectura.</strong></text>",
     "info": "<text>Si en necessiteu més, poseu-vos en contacte amb <mailto>info@onvote.app</mailto></text>",
     "title": "Obtenir VOC Tokens"
