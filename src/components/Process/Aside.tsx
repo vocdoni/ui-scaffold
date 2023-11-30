@@ -32,7 +32,9 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
     <>
       <Card variant='aside'>
         <Text textAlign='center' fontSize='xl3' fontFamily='pixeloidsans' textTransform='uppercase'>
-          {getStatusText(t, election?.status).toUpperCase()}
+          {election?.electionType.anonymous && voting
+            ? t('aside.submitting')
+            : getStatusText(t, election?.status).toUpperCase()}
         </Text>
 
         {election?.status !== ElectionStatus.CANCELED &&

@@ -13,9 +13,9 @@ import {
   useDisclosure,
   useToast,
 } from '@chakra-ui/react'
+import { isAddress } from '@ethersproject/address'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { errorToString, useClient } from '@vocdoni/react-providers'
-import { isAddress } from '@ethersproject/address';
 import { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
@@ -132,12 +132,10 @@ export const Claim = (props: ClaimProps) => {
       {!connected && faucetPackage && (
         <Flex direction='column'>
           <Text>
-            <Trans i18nKey='faucet.faucetPackage_success' />
+            <Trans i18nKey='faucet.package_success' />
           </Text>
           <Textarea mt={2} value={faucetPackage} readOnly />
-          <Button onClick={onCopy}>
-            {hasCopied ? t('faucet.copy_faucetPackage_done') : t('faucet.copy_faucetPackage')}
-          </Button>
+          <Button onClick={onCopy}>{hasCopied ? t('faucet.copy_package_done') : t('faucet.copy_package')}</Button>
         </Flex>
       )}
     </Flex>
