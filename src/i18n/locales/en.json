@@ -17,13 +17,13 @@
     "title": "Voting for DAOs & Web3 communities"
   },
   "banner_voting_types": {
-    "anonymous_description": "Voters' identities remain completely confidential, thanks to cutting-edge zk-SNARK technology.",
-    "anonymous_title": "Fully Anonymous",
+    "anonymous_description": "We ensure that votes remain unlinked to voter identities by using advanced zkSNARKs technology.",
+    "anonymous_title": "Anonymous",
     "bottom_text": "Privacy should be normal",
-    "flexible_description": "Customize your voting process and participant list to fit your community's unique requirements.",
-    "flexible_title": "Flexible Voting",
-    "token_description": "Vote with ERC20/ERC721 (NFT's) or add your own token and vote gasless with them.",
-    "token_title": "Token Voting"
+    "flexible_description": "Our platform is built on top of the Vocdoni Protocol, ensuring secure, flexible, censorship-resistant and universally verifiable digital voting.",
+    "flexible_title": "Powered by Vocdoni Protocol",
+    "token_description": "Organizers can create votes using ERC20 tokens, NFTs, POAPs, wallet addresses, and custom data. Stay tuned for advanced voting strategies.",
+    "token_title": "Census strategies"
   },
   "cc": {
     "actions": {
@@ -109,15 +109,15 @@
     "copied_title": "Copied!"
   },
   "cost_preview": {
-    "balance": "<span>Your own:</span><span2> {{ balance }} tokens</span2>",
+    "balance": "<span>Your balance:</span><span2> {{ balance }} tokens</span2>",
     "button": "Get more Tokens",
     "census_total_one": "<span>Voters:</span><span>{{ count }} voter</span>",
     "census_total_other": "<span>Voters:</span><span>{{ count }} voters</span>",
     "duration": "<span>Duration:</span> <span>{{ date, duration }}</span>",
     "not_enough_tokens": "You don't have enough tokens to create this process.",
-    "result": "<span>After creating the voting:</span><span2>{{ remainTokens }} tokens</span2>",
+    "result": "<span>Remaining:</span><span2>{{ remainTokens }} tokens</span2>",
     "subtitle": "Your voting process",
-    "total": "<span>Total:</span> <span>{{ cost }} tokens</span>"
+    "total": "<span>Cost of the vote:</span> <span>{{ cost }} tokens</span>"
   },
   "error": {
     "go_back": "Go back",
@@ -134,15 +134,15 @@
     "connect": "Please, connect your wallet",
     "copy_package": "Copy Faucet Package",
     "copy_package_done": "Copied!",
-    "description": "Tokens are necessary for specific actions like creating an election or changing its status. The number of tokens required is influenced by factors such as census size, election duration and its parameters.",
+    "description": "Tokens are necessary for specific actions like creating an election or changing its status. Token requirements vary based on census size, election duration, and other parameters.",
     "general_information": {
-      "description": "Upon token request, you will receive {{ amount }} tokens, and you can claim from the faucet once every 24 hours.",
-      "description2": "For additional tokens required in your development on the Vocdoni stack, please connect with us at info(at)vocdoni.io.",
+      "description": "You can receive up to {{ amount }} tokens per claim, with one claim permitted every 24 hours.",
+      "description2": "Need more for a development project that uses the Vocdoni Protocol? Reach out to us at info(at)vocdoni.io.",
       "title": "General Information"
     },
     "package_success": "Congratulations! Here is your Faucet Package:",
     "recipient_address": "Enter the recipient address you'd like to receive tokens on.",
-    "request_description": "To get vocdoni tokens, you must sign-in with a social account (to prevent missuse of the faucet). We only request read access.",
+    "request_description": "Sign in with a social account (to prevent faucet misuse) if you want to request more Vocdoni tokens. We respect your privacy and only request read access.",
     "request_tokens": {
       "title": "Request Tokens"
     },
@@ -198,8 +198,8 @@
           "title": "Vote overwrite"
         },
         "secret": {
-          "description": "This setting ensures that the votes are encrypted until the end, so the results are only available after the voting process has officially ended.",
-          "title": "Results Post-Closure"
+          "description": "This setting ensures that the votes are encrypted until the end, so the results are only visible and available after the voting process has officially ended.",
+          "title": "Results at the end"
         },
         "title": "Other Settings"
       },
@@ -235,15 +235,19 @@
         "wallet_address_title": "Wallet addresses"
       },
       "confirm": {
-        "anonymous": "Anonymous",
+        "anonymous": "Anonymous voting active",
         "census": "Census",
         "census_preview_is_shortened": "(preview list is limited to {{ limit }} results)",
+        "census_total": "",
+        "census_total_one": "<span>Census:</span><span>{{ count }} voter</span>",
+        "census_total_other": "<span>Census:</span><span>{{ count }} voters</span>",
+        "census_total_people": "{{ count }} people will be elegible for voting in this election",
         "census_total_people_one": "A single person will be elegible for voting in this process",
         "census_total_people_other": "{{ count }} people will be elegible for voting in this process",
         "configuration": "Configuration",
         "confirmation": "Confirmation",
-        "confirmation_terms_and_conditions": "I accept the <customLink>Terms and Conditions</customLink>",
-        "confirmation_valid_info": "I confirm the information is correct and valid.",
+        "confirmation_terms_and_conditions": "I agree to the <customLink>Terms and Conditions</customLink>",
+        "confirmation_valid_info": "I confirm that all information provided is accurate",
         "cost_description": "Here's the pricing breakdown for your voting process, determined by parameters such as the census size and election duration.",
         "cost_title": "Election Price Breakdown",
         "create_button": "Create",
@@ -333,7 +337,7 @@
   },
   "get_voc_tokens": {
     "authentification_method": "Select your prefered authentification method:",
-    "authentification_method_helper": "You can earn {{ faucetAmount }} token by authetication method per week",
+    "authentification_method_helper": "You can claim {{ faucetAmount }} tokens from the faucet once every {{ waitHours }} hours.",
     "button": "Request Tokens",
     "description": "<text>To add more tokens you must <strong>sign in</strong> with a social account (to prevent missuse of the faucet).</text><text><strong>We only request read access.</strong></text>",
     "info": "<text>If you need more, contact to <mailto>info@onvote.app</mailto></text>",
@@ -379,7 +383,7 @@
     "censorship": "<span>Censorship</span><span>Resistance</span>",
     "create_organization_btn": "Create Organization",
     "description1": "Set up your <span>organization for free</span> and start creating voting processes to engage with your community.",
-    "description2": "As a <span>welcome gift</span>, you'll get {{ faucetAmount }} tokens to begin creating votes on our platform!",
+    "description2": "As a <span>welcome gift</span>, you'll get 50 tokens to begin creating votes on our platform & the chance to claim tokens for free in the faucet!",
     "footer": "<span>Vocdoni</span> is a secure, privacy-friendly & open-source public voting protocol.",
     "inexpensive": "Inexpensive",
     "name": "Organization name",
@@ -416,13 +420,13 @@
     "created_by": "Created by",
     "date": {
       "ended": "Ended",
-      "ends": "Ends",
+      "ends": "Ends on",
       "relative": "{{ date, relative(past: %time ago; future: in %time) }}",
       "starts": "Starts"
     },
     "is_anonymous": {
       "description": "Anonymous voting",
-      "title": "Anonymous voting"
+      "title": "Privacy"
     },
     "is_invalid": "This process has wrong data, thus making it invalid",
     "people_in_census_one": "One voter",
@@ -447,11 +451,11 @@
       "unknown": "Unknown",
       "upcoming": "Upcoming"
     },
-    "strategy": "Strategy",
+    "strategy": "Census strategy",
     "success_modal": {
-      "btn": "Finish",
-      "text": "<p>Your vote has been securely cast and stored in our Blockchain. You can verify it <verify>here</verify>.</p><p>Democracy is crucial; feel free to share your participation with your community and friends:</p>",
-      "title": "Vote cast successfully!"
+      "btn": "Close",
+      "text": "<p>We've securely processed and stored your vote on our Blockchain. Click <verify>here</verify> to verify your vote.</p>",
+      "title": "Vote submitted!"
     },
     "voters": "Voters"
   },
