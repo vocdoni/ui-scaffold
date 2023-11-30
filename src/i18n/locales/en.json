@@ -130,17 +130,17 @@
   },
   "error_text": "Sorry, the page you were looking for was not found",
   "faucet": {
-    "advanced_settings": "",
-    "connect": "",
-    "copy_faucetPackage": "",
-    "copy_faucetPackage_done": "",
+    "advanced_settings": "Advanced...",
+    "connect": "Please, connect your wallet",
+    "copy_package": "Copy Faucet Package",
+    "copy_package_done": "Copied!",
     "description": "Tokens are necessary for specific actions like creating an election or changing its status. The number of tokens required is influenced by factors such as census size, election duration and its parameters.",
-    "faucetPackage_success": "",
     "general_information": {
       "description": "Upon token request, you will receive {{ amount }} tokens, and you can claim from the faucet once every 24 hours.",
       "description2": "For additional tokens required in your development on the Vocdoni stack, please connect with us at info(at)vocdoni.io.",
       "title": "General Information"
     },
+    "package_success": "Congratulations! Here is your Faucet Package:",
     "recipient_address": "Enter the recipient address you'd like to receive tokens on.",
     "request_description": "To get vocdoni tokens, you must sign-in with a social account (to prevent missuse of the faucet). We only request read access.",
     "request_tokens": {
@@ -191,7 +191,7 @@
       "behavior": {
         "anonymous": {
           "description": "This setting ensures that votes remain unlinked to voter identities by utilizing advanced zkSNARKs technology on the Vocdoni Protocol.",
-          "title": ""
+          "title": "Anonymous"
         },
         "overwrite": {
           "description": "This setting allow voters to revise their vote a single time if needed, providing flexibility and protection against vote coercion.",
@@ -238,10 +238,6 @@
         "anonymous": "Anonymous",
         "census": "Census",
         "census_preview_is_shortened": "(preview list is limited to {{ limit }} results)",
-        "census_total": "",
-        "census_total_one": "<span>Voters:</span><span>{{ count }} voter</span>",
-        "census_total_other": "<span>Voters:</span><span>{{ count }} voters</span>",
-        "census_total_people": "{{ count }} people will be elegible for voting in this election",
         "census_total_people_one": "A single person will be elegible for voting in this process",
         "census_total_people_other": "{{ count }} people will be elegible for voting in this process",
         "configuration": "Configuration",
@@ -363,7 +359,7 @@
     "documentation": "Documentation",
     "get_more": "Get More",
     "languages": "Languages",
-    "languages_list": "",
+    "languages_list": "Show available languages",
     "login": "Login",
     "logout": "Logout",
     "my_org": "My Org",
