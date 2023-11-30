@@ -122,7 +122,7 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
               </Text>
             )}
             {voting && election?.electionType.anonymous && (
-              <Text fontSize='sm' textAlign='center'>
+              <Text fontSize='sm' textAlign='center' whiteSpace='pre-line'>
                 {t('aside.voting_anonymous_advice')}
               </Text>
             )}
