@@ -5,9 +5,11 @@
     "not_connected": "You are not connected",
     "overwrite_votes_left_one": "You can correct your vote only once.",
     "overwrite_votes_left_other": "You can correct your vote up to {{ count }} times.",
+    "submitting": "Submitting",
     "verify_vote_on_explorer": "Verify your vote on the explorer",
     "votes_one": "<span>1</span> <text>vote</text>",
-    "votes_other": "<span>{{ count }}</span> <text>votes</text>"
+    "votes_other": "<span>{{ count }}</span> <text>votes</text>",
+    "voting_anonymous_advice": "Please wait while some anonymous magic happens 🪄 This can take up to several minutes; don't close the window."
   },
   "banner": {
     "start_now": "Create a voting now!",

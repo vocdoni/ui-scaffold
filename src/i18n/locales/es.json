@@ -6,10 +6,12 @@
     "overwrite_votes_left_one": "Puedes corregir tu voto una vez.",
     "overwrite_votes_left_many": "",
     "overwrite_votes_left_other": "Puedes corregir tu voto {{ count }} veces.",
+    "submitting": "",
     "verify_vote_on_explorer": "Verifica el voto en el explorador",
     "votes_one": "<span>1</span> <text>voto</text>",
     "votes_many": "<span>{{ count }}</span> <text>votos</text>",
-    "votes_other": "<span>{{ count }}</span> <text>votos</text>"
+    "votes_other": "<span>{{ count }}</span> <text>votos</text>",
+    "voting_anonymous_advice": ""
   },
   "banner": {
     "start_now": "¡Crea una votación ahora!",
