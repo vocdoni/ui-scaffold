@@ -153,7 +153,7 @@ export const CostPreview = ({
                     span2: <Text as='span' flex='0 0 50%' display='flex' alignItems='end' justifyContent='end' />,
                   }}
                   values={{
-                    balance: account!.balance,
+                    balance: account?.balance || 0,
                   }}
                 />
               </ListItem>
@@ -165,7 +165,7 @@ export const CostPreview = ({
                     span2: (
                       <Text
                         as='span'
-                        color={account!.balance - cost < 0 ? 'process_create.preview_negative_balance' : ''}
+                        color={(account?.balance || 0) - cost < 0 ? 'process_create.preview_negative_balance' : ''}
                         flex='0 0 50%'
                         display='flex'
                         alignItems='end'
@@ -174,7 +174,7 @@ export const CostPreview = ({
                     ),
                   }}
                   values={{
-                    remainTokens: account!.balance - cost,
+                    remainTokens: (account?.balance || 0) - cost,
                   }}
                 />
               </ListItem>
@@ -183,7 +183,7 @@ export const CostPreview = ({
         )}
       </Flex>
 
-      {cost && cost > account!.balance && (
+      {cost && cost > (account?.balance || 0) && (
         <Flex flexDir='column' alignItems='center' gap={2}>
           <Text color='red' textAlign='center'>
             {t('cost_preview.not_enough_tokens')}
