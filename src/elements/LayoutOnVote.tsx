@@ -1,12 +1,12 @@
 import { Box, Flex, HStack, Text } from '@chakra-ui/react'
 import { Outlet } from 'react-router-dom'
 import FooterOnVote from '~components/Footer/FooterOnVote'
-import Navbar from '~components/Navbar/OnVote'
+import Navbar from '~components/Navbar'
 
 const Layout = () => {
   return (
     <Flex bgColor='#f2f2f2' position='relative' flexDirection='column' minH='100vh'>
-      <HStack as='header' position='sticky' top={0} w='full' backdropFilter='blur(40px)' zIndex={10}>
+      <HStack as='header' position='sticky' top={0} w='full' backdropFilter='blur(40px)' zIndex={20}>
         <Navbar />
       </HStack>
       <Box as='main' flexGrow={1}>
@@ -31,6 +31,7 @@ const Layout = () => {
         textTransform='uppercase'
         fontFamily='pixeloidsans'
         fontSize='16px'
+        display={{ base: 'none', sm: 'block' }}
       >
         World wide voting
       </Text>

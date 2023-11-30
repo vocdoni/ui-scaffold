@@ -28,8 +28,8 @@ const Roadmap = () => {
         }}
       />
 
-      <Flex flexDirection={{ base: 'column', lg: 'row' }} gap='80px' mx='auto' maxW='1280px'>
-        <Flex flex='1 1 50%' maxW='600px' flexDirection='column' gap='40px'>
+      <Flex flexDirection={{ base: 'column', lg: 'row' }} alignItems='start' gap='80px' mx='auto' maxW='1380px'>
+        <Flex flex='1 1 50%' maxW='650px' flexDirection='column' gap='40px'>
           <Text fontWeight='bold' fontSize='24px'>
             {t('roadmap.milestone1')}
           </Text>
@@ -89,7 +89,7 @@ const Roadmap = () => {
             </Box>
           </Flex>
         </Flex>
-        <Flex flex='1 1 50%' maxW='600px' flexDirection='column' gap='40px'>
+        <Flex flex='1 1 50%' maxW='650px' flexDirection='column' gap='40px'>
           <Text fontWeight='bold' fontSize='24px'>
             {t('roadmap.milestone2')}
           </Text>

@@ -7,7 +7,7 @@ import { TFunction } from 'i18next'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
-import { CensusMeta } from '~components/ProcessCreate/Steps/ConfirmOnVote'
+import { CensusMeta } from '~components/ProcessCreate/Steps/Confirm'
 
 const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
   const { t } = useTranslation()
@@ -71,7 +71,36 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
           election?.status !== ElectionStatus.CANCELED && (
             <Flex flexDirection='column' alignItems='center' gap={3} w='full'>
               <Box display={{ base: 'none', lg2: 'block' }}>
-                <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />
+                <ConnectButton.Custom>
+                  {({ account, chain, openConnectModal, authenticationStatus, mounted }) => {
+                    const ready = mounted && authenticationStatus !== 'loading'
+                    const connected =
+                      ready && account && chain && (!authenticationStatus || authenticationStatus === 'authenticated')
+                    return (
+                      <Box
+                        {...(!ready && {
+                          'aria-hidden': true,
+                          style: {
+                            opacity: 0,
+                            pointerEvents: 'none',
+                            userSelect: 'none',
+                          },
+                        })}
+                        w='full'
+                      >
+                        {(() => {
+                          if (!connected) {
+                            return (
+                              <Button onClick={openConnectModal} w='full' variant='secondary'>
+                                {t('menu.connect').toString()}
+                              </Button>
+                            )
+                          }
+                        })()}
+                      </Box>
+                    )
+                  }}
+                </ConnectButton.Custom>
               </Box>
               <Text textAlign='center' fontSize='sm'>
                 {t('aside.not_connected')}
@@ -191,7 +220,7 @@ export const ProcessAsideFooterMbl = ({ setQuestionsTab }: { setQuestionsTab: ()
                 {(() => {
                   if (!connected) {
                     return (
-                      <Button onClick={openConnectModal} variant='process' fontSize='lg'>
+                      <Button onClick={openConnectModal} w='full' variant='secondary'>
                         {t('menu.connect').toString()}
                       </Button>
                     )
@@ -204,11 +233,11 @@ export const ProcessAsideFooterMbl = ({ setQuestionsTab }: { setQuestionsTab: ()
       )}
       {census?.type === 'spreadsheet' && !connected && <SpreadsheetAccess />}
       {isAbleToVote ? (
-        <VoteButton variant='process' fontSize='lg' onClick={setQuestionsTab} />
+        <VoteButton w='full' variant='secondary' onClick={setQuestionsTab} />
       ) : (
         connected && (
           <Flex justifyContent='center' alignItems='center' height='40px' borderRadius='30px' bgColor='white' w='full'>
-            <Spinner color='primary.600' />
+            <Spinner color='primary.700' />
           </Flex>
         )
       )}

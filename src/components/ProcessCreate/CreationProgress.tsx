@@ -1,4 +1,4 @@
-import { Flex, Img, List, ListItem, Stack, Text } from '@chakra-ui/react'
+import { Flex, Img, List, ListItem, Spinner, Stack, Text } from '@chakra-ui/react'
 import { ElectionCreationSteps } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -68,11 +68,17 @@ export const CreationProgress = ({ error, sending, step }: CreationProgressProps
             ) : (
               <>
                 {!error ? (
-                  <Flex justifyContent='center' alignItems='center' gap={2} color='lightgray'>
+                  <Flex
+                    justifyContent='center'
+                    alignItems='center'
+                    gap={2}
+                    color='process_create.creation_process_steps_loading'
+                  >
                     <Flex justifyContent='center' alignItems='center' w={6} h={6} border='1px solid'>
                       {index}
                     </Flex>
                     <Text fontWeight='bold'>{labels[key]}</Text>
+                    <Spinner width={3} height={3} />
                   </Flex>
                 ) : (
                   <Flex justifyContent='center' alignItems='center' gap={2}>

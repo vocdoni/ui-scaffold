@@ -68,6 +68,9 @@ const baseStyle = definePartsStyle({
     color: 'process.results.alert_color',
     bgColor: 'process.results.alert_bg',
     whiteSpace: 'wrap',
+    maxW: '900px',
+    mx: 'auto',
+    w: '90%',
   },
 
   title: {

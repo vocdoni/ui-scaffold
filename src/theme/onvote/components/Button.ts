@@ -103,31 +103,30 @@ const primary = defineStyle((props) => {
     },
 
     _disabled: {
-      bgColor: 'button_disabled.disabled.bg',
-      color: 'button_disabled.disabled.color',
-      border: 'none',
+      bgColor: 'button_disabled.bg !important',
+      color: 'button_disabled.color',
+      borderColor: 'button_disabled.bg',
 
       _before: {
-        bgColor: 'button_disabled.disabled.bg',
+        bgColor: 'button_disabled.bg',
         transition: 'none',
-        borderColor: 'button_disabled.disabled.bg',
       },
       _after: {
-        bgColor: 'button_disabled.disabled.bg',
+        bgColor: 'button_disabled.bg ',
         transition: 'none',
-        borderColor: 'button_disabled.disabled.bg',
       },
 
       _hover: {
         transition: 'none',
-        color: 'transparent',
-        borderColor: 'button_disabled.disabled.bg',
+        borderColor: 'button_disabled.bg',
 
         _before: {
-          bgColor: 'transparent',
+          width: '100%',
+          bgColor: 'button_disabled.bg',
         },
         _after: {
-          bgColor: 'transparent',
+          width: '100%',
+          bgColor: 'button_disabled.bg',
         },
       },
     },

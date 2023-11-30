@@ -140,7 +140,7 @@ export const CostPreview = ({
                 <Trans
                   i18nKey='cost_preview.total'
                   components={{
-                    span: <Text as='span' />,
+                    span: <Text as='span' color='process_create.confirm_total_cost' />,
                   }}
                   values={{
                     cost,
@@ -313,7 +313,6 @@ const OAuthLoginButton = (props: Partial<ButtonProps & { selected: boolean }>) =
       {...props}
       variant=''
       cursor='pointer'
-      title='coming soon'
       sx={{
         '&': {
           bgColor: selected ? 'primary.700' : 'black',

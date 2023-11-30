@@ -14,19 +14,17 @@ const FooterOnVote = () => {
 
   return (
     <Box bgImage={'/assets/footer-bg.jpg'} bgSize='cover' bgPosition='center'>
-      <Flex
-        flexDirection='column'
-        alignItems='center'
-        justifyContent='center'
-        minH='60vh'
-        maxW='1920px'
-        mx='auto'
-        color='white'
-        pt='8rem'
-        px='2.5rem'
-      >
-        <Flex flex={1} flexDirection='column' alignItems='center' justifyContent='center' gap={5}>
-          <Box>
+      <Flex flexDirection='column' minH='597px' maxW='1920px' mx='auto' color='white'>
+        <Flex
+          flex={1}
+          flexDirection='column'
+          alignItems='center'
+          justifyContent='center'
+          py='128px'
+          px='40px'
+          gap='32px'
+        >
+          <Box mt='20px'>
             <Trans
               i18nKey='footer.text'
               components={{
@@ -43,6 +41,16 @@ const FooterOnVote = () => {
               }}
             />
           </Box>
+          {!isConnected && (
+            <Button
+              variant='primary'
+              onClick={() => {
+                if (openConnectModal) openConnectModal()
+              }}
+            >
+              {t('menu.login').toString()}
+            </Button>
+          )}
           <Flex gap={3} justifyContent='center' alignItems='center'>
             <Text fontSize='xl' whiteSpace='nowrap'>
               <Trans i18nKey='footer.follow_us' />
@@ -78,16 +86,6 @@ const FooterOnVote = () => {
               <Image src={mirrorIcon} w={3} />
             </Link>
           </Flex>
-          {!isConnected && (
-            <Button
-              variant='primary'
-              onClick={() => {
-                if (openConnectModal) openConnectModal()
-              }}
-            >
-              {t('menu.login').toString()}
-            </Button>
-          )}
         </Flex>
         <Flex
           justifyContent='center'

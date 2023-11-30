@@ -84,6 +84,8 @@ const process = definePartsStyle({
     },
   },
   tablist: {
+    width: '90%',
+    mx: 'auto',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

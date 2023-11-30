@@ -56,7 +56,7 @@ const CreateProcessQuestions = () => {
   return (
     <Flex flexDirection='column' gap={5}>
       <Box>
-        <Text fontSize='md' fontWeight='bold' fontFamily='pixeloidsans' textTransform='uppercase'>
+        <Text fontSize='md' color='process_create.title' fontFamily='pixeloidsans' textTransform='uppercase'>
           {t('form.process_create.question.title')}
         </Text>
         <Text fontSize='sm' color='process_create.description'>
