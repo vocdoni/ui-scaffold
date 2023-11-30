@@ -51,7 +51,7 @@ const Preview = () => {
           <ElectionTitle
             flexBasis={{ base: '100%', md: '65%' }}
             flexShrink={0}
-            flexGrow={1}
+            flexGrow={0}
             fontSize='md'
             textAlign='start'
             fontWeight='normal'

@@ -92,8 +92,8 @@ const OrganizationView = () => {
     <Box
       mb={44}
       px={{
-        base: '20px',
-        md: '40px',
+        base: '40px',
+        md: '80px',
       }}
       maxW='1920px'
       mx='auto'

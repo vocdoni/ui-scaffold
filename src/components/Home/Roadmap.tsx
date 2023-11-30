@@ -7,8 +7,8 @@ const Roadmap = () => {
     <Box
       mx='auto'
       px={{
-        base: 10,
-        sm: 14,
+        base: '40px',
+        md: '80px',
       }}
       mb={64}
     >

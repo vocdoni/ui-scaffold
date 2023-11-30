@@ -17,14 +17,14 @@ const Features = () => {
         src='/assets/home-bg2.svg'
         position='absolute'
         w='full'
-        filter='blur(2px)'
+        filter='blur(4px)'
         display={{ base: 'none', lg2: 'block' }}
       />
 
       <Box
         px={{
-          base: 10,
-          sm: 14,
+          base: '40px',
+          md: '80px',
         }}
       >
         <Box

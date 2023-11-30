@@ -16,7 +16,7 @@ const Navbar = () => {
   const { openConnectModal } = useConnectModal()
 
   return (
-    <Flex justifyContent='space-between' w='1920px' maxW='1920px' mx='auto' p={{ base: '12px 20px', md: '24px 40px' }}>
+    <Flex justifyContent='space-between' w='1920px' maxW='1920px' mx='auto' p={{ base: '12px 40px', md: '24px 80px' }}>
       <Logo />
 
       <List as='nav' display='flex' alignItems='center' gap={4}>

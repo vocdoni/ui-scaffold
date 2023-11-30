@@ -55,21 +55,13 @@ export const ProcessView = () => {
       maxW='1920px'
       mx='auto'
       px={{
-        base: '20px',
-        md: '40px',
+        base: '40px',
+        md: '80px',
       }}
     >
       <Box mb={44} px={0}>
         <Header />
-        <Flex
-          direction={{ base: 'column', lg2: 'row' }}
-          alignItems='start'
-          gap={{ lg2: 10 }}
-          px={{
-            base: 2,
-            sm: 4,
-          }}
-        >
+        <Flex direction={{ base: 'column', lg2: 'row' }} alignItems='start' gap={{ lg2: 10 }}>
           <Tabs
             order={{ base: 2, lg2: 1 }}
             variant='process'

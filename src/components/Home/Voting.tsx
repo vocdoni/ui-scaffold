@@ -16,6 +16,10 @@ const VotingTypesBanner = () => {
         mx='auto'
         fontSize='sm'
         pb={64}
+        px={{
+          base: '40px',
+          md: '80px',
+        }}
       >
         <Card variant='types-voting'>
           <CardBody>
