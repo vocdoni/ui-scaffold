@@ -15,7 +15,6 @@ import {
   ModalOverlay,
   Spinner,
   Text,
-  Tooltip,
   UnorderedList,
   useDisclosure,
 } from '@chakra-ui/react'
@@ -155,7 +154,7 @@ export const CostPreview = ({
                     span2: <Text as='span' flex='0 0 50%' display='flex' alignItems='end' justifyContent='end' />,
                   }}
                   values={{
-                    balance: account!.balance,
+                    balance: account?.balance || 0,
                   }}
                 />
               </ListItem>
@@ -167,7 +166,7 @@ export const CostPreview = ({
                     span2: (
                       <Text
                         as='span'
-                        color={account!.balance - cost < 0 ? 'process_create.preview_negative_balance' : ''}
+                        color={(account?.balance || 0) - cost < 0 ? 'process_create.preview_negative_balance' : ''}
                         flex='0 0 50%'
                         display='flex'
                         alignItems='end'
@@ -176,7 +175,7 @@ export const CostPreview = ({
                     ),
                   }}
                   values={{
-                    remainTokens: account!.balance - cost,
+                    remainTokens: (account?.balance || 0) - cost,
                   }}
                 />
               </ListItem>
@@ -185,7 +184,7 @@ export const CostPreview = ({
         )}
       </Flex>
 
-      {cost && cost > account!.balance && (
+      {cost && cost > (account?.balance || 0) && (
         <Flex flexDir='column' alignItems='center' gap={2} mb={10}>
           <Text textAlign='center' mb={3}>
             {t('cost_preview.not_enough_tokens')}
@@ -208,14 +207,22 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
   const { account } = useClient()
   const { getAuthTypes } = useFaucet()
   const [faucetAmount, setFaucetAmount] = useState<number>(0)
+  const [waitHours, setWaitHours] = useState<number>(0)
 
   useEffect(() => {
     ;(async () => {
       try {
         const atypes = await getAuthTypes()
-        setFaucetAmount(atypes.oauth)
-      } catch (e) {}
+        if (atypes.auth.oauth) {
+          setFaucetAmount(atypes.auth.oauth)
+        }
+        setWaitHours(Math.floor(atypes.waitSeconds / 3600))
+      } catch (e) {
+        setFaucetAmount(NaN)
+        setWaitHours(NaN)
+      }
     })()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
@@ -246,33 +253,33 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
                 aria-label={t('login.github').toString()}
                 onClick={() => setSocialAccount('github')}
                 selected={socialAccount === 'github'}
+                title='Github'
               >
                 <Icon as={FaGithub} />
               </OAuthLoginButton>
-              <Tooltip>
-                <OAuthLoginButton
-                  aria-label={t('login.google').toString()}
-                  onClick={() => setSocialAccount('google')}
-                  selected={socialAccount === 'google'}
-                >
-                  <Icon as={FaGoogle} />
-                </OAuthLoginButton>
-              </Tooltip>
-              <Tooltip>
-                <OAuthLoginButton
-                  aria-label={t('login.facebook').toString()}
-                  onClick={() => setSocialAccount('facebook')}
-                  selected={socialAccount === 'facebook'}
-                >
-                  <Icon as={FaFacebook} />
-                </OAuthLoginButton>
-              </Tooltip>
+              <OAuthLoginButton
+                aria-label={t('login.google').toString()}
+                onClick={() => setSocialAccount('google')}
+                selected={socialAccount === 'google'}
+                title='Google'
+              >
+                <Icon as={FaGoogle} />
+              </OAuthLoginButton>
+              <OAuthLoginButton
+                aria-label={t('login.facebook').toString()}
+                onClick={() => setSocialAccount('facebook')}
+                selected={socialAccount === 'facebook'}
+                title='Facebook'
+              >
+                <Icon as={FaFacebook} />
+              </OAuthLoginButton>
             </Flex>
             <Text fontSize='sm' textAlign='center' color='gray'>
               <Trans
                 i18nKey='get_voc_tokens.authentification_method_helper'
                 values={{
                   faucetAmount,
+                  waitHours,
                 }}
               />
             </Text>
@@ -307,12 +314,13 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
 }
 
 const OAuthLoginButton = (props: Partial<ButtonProps & { selected: boolean }>) => {
-  const { children, selected } = props
+  const { children, selected, title } = props
   return (
     <Button
       {...props}
       variant=''
       cursor='pointer'
+      title={title || 'coming soon'}
       sx={{
         '&': {
           bgColor: selected ? 'primary.700' : 'black',
