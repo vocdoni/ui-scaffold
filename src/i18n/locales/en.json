@@ -1,24 +1,15 @@
 {
-  "account": {
-    "helper": {
-      "sik": "Only requested when you're gonna vote in anonymous processes"
-    },
-    "label": {
-      "sik": "Password for anonymous votings"
-    },
-    "placeholder": {
-      "sik": "Something safe and easy to remember"
-    }
-  },
   "aside": {
     "has_already_voted": "Your vote is properly cast",
     "is_not_in_census": "You are not in the census",
     "not_connected": "You are not connected",
     "overwrite_votes_left_one": "You can correct your vote only once.",
     "overwrite_votes_left_other": "You can correct your vote up to {{ count }} times.",
+    "submitting": "Submitting",
     "verify_vote_on_explorer": "Verify your vote on the explorer",
     "votes_one": "<span>1</span> <text>vote</text>",
-    "votes_other": "<span>{{ count }}</span> <text>votes</text>"
+    "votes_other": "<span>{{ count }}</span> <text>votes</text>",
+    "voting_anonymous_advice": "Please wait while the anonymous magic 🪄 happens.\nThis can take up to several minutes; don't close the window."
   },
   "banner": {
     "start_now": "Create a voting now!",
@@ -82,8 +73,8 @@
       "upcoming": "Upcoming"
     },
     "validation": {
-      "required": "This field is required",
-      "min_length": "This field must be at least {{ min }} characters long"
+      "min_length": "This field must be at least {{ min }} characters long",
+      "required": "This field is required"
     },
     "vote": {
       "button": "Vote",
@@ -139,13 +130,17 @@
   },
   "error_text": "Sorry, the page you were looking for was not found",
   "faucet": {
-    "connect_or_set_recipient_address": "Please, connect your wallet or write the recipient address below (must be a Vocdoni Account)",
+    "advanced_settings": "Advanced...",
+    "connect": "Please, connect your wallet",
+    "copy_package": "Copy Faucet Package",
+    "copy_package_done": "Copied!",
     "description": "Tokens are necessary for specific actions like creating an election or changing its status. Token requirements vary based on census size, election duration, and other parameters.",
     "general_information": {
       "description": "You can receive up to {{ amount }} tokens per claim, with one claim permitted every 24 hours.",
       "description2": "Need more for a development project that uses the Vocdoni Protocol? Reach out to us at info(at)vocdoni.io.",
       "title": "General Information"
     },
+    "package_success": "Congratulations! Here is your Faucet Package:",
     "recipient_address": "Enter the recipient address you'd like to receive tokens on.",
     "request_description": "Sign in with a social account (to prevent faucet misuse) if you want to request more Vocdoni tokens. We respect your privacy and only request read access.",
     "request_tokens": {
@@ -196,7 +191,7 @@
       "behavior": {
         "anonymous": {
           "description": "This setting ensures that votes remain unlinked to voter identities by utilizing advanced zkSNARKs technology on the Vocdoni Protocol.",
-          "title": "Anonymous voting"
+          "title": "Anonymous"
         },
         "overwrite": {
           "description": "This setting allow voters to revise their vote a single time if needed, providing flexibility and protection against vote coercion.",
@@ -342,9 +337,8 @@
   },
   "get_voc_tokens": {
     "authentification_method": "Select your prefered authentification method:",
-    "authentification_method_helper": "You can earn {{ faucetAmount }} token by authetication method per week",
+    "authentification_method_helper": "You can claim {{ faucetAmount }} tokens from the faucet once every {{ waitHours }} hours.",
     "button": "Request Tokens",
-    "coming_soon": "Coming soon",
     "description": "<text>To add more tokens you must <strong>sign in</strong> with a social account (to prevent missuse of the faucet).</text><text><strong>We only request read access.</strong></text>",
     "info": "<text>If you need more, contact to <mailto>info@onvote.app</mailto></text>",
     "title": "Get VOC Tokens"
@@ -369,7 +363,7 @@
     "documentation": "Documentation",
     "get_more": "Get More",
     "languages": "Languages",
-    "languages_list": "",
+    "languages_list": "Show available languages",
     "login": "Login",
     "logout": "Logout",
     "my_org": "My Org",

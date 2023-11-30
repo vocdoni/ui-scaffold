@@ -1,15 +1,4 @@
 {
-  "account": {
-    "helper": {
-      "sik": "Només se't demanarà quan vagis a votar en processos anònims"
-    },
-    "label": {
-      "sik": "Contrasenya per a votacions anònimes"
-    },
-    "placeholder": {
-      "sik": "Quelcom segur i fàcil de recordar"
-    }
-  },
   "aside": {
     "has_already_voted": "El teu vot s'ha registrat correctament",
     "is_not_in_census": "No estàs en el cens",
@@ -17,10 +6,12 @@
     "overwrite_votes_left_one": "Pots corregir el teu vot una vegada.",
     "overwrite_votes_left_many": "",
     "overwrite_votes_left_other": "Pots corregir el teu vot {{ count }} vegades.",
+    "submitting": "",
     "verify_vote_on_explorer": "Verifica el vot a l'explorador",
     "votes_one": "<span>1</span> <text>vot</text>",
     "votes_many": "",
-    "votes_other": "<span>{{ count }}</span> <text>vots</text>"
+    "votes_other": "<span>{{ count }}</span> <text>vots</text>",
+    "voting_anonymous_advice": ""
   },
   "banner": {
     "start_now": "Crea una votació!",
@@ -84,8 +75,8 @@
       "upcoming": "Propera"
     },
     "validation": {
-      "required": "Aquest camp és obligatori",
-      "min_length": "Aquest camp ha de tenir com a mínim {{ min }} caràcters"
+      "min_length": "Aquest camp ha de tenir com a mínim {{ min }} caràcters",
+      "required": "Aquest camp és obligatori"
     },
     "vote": {
       "button": "Vota",
@@ -144,15 +135,15 @@
   "faucet": {
     "advanced_settings": "Avançat...",
     "connect": "Si us plau, connecteu la vostra cartera",
-    "copy_faucetPackage": "Copia el Faucet Package",
-    "copy_faucetPackage_done": "Copiat!",
+    "copy_package": "",
+    "copy_package_done": "",
     "description": "Per desenvolupar amb Vocdoni, necessites tokens per a certes accions (crear una elecció, canviar l'estat d'una elecció, etc.). El nombre de diferents factors com la mida del cens, la durada de l'elecció, els paràmetres de l'elecció, etc.",
-    "faucetPackage_success": "Felicitats! \nAquí teniu el vostre Faucet Package:",
     "general_information": {
-      "description": "Quan sol·licites tokens de desenvolupament, rebràs {{ amount }} tokens. Pots reclamar des del faucet una vegada cada 24 hores.",
+      "description": "Quan sol·licites tokens de desenvolupament, rebràs {{ amount }} tokens. Pots reclamar des del faucet una vegada cada {{ waitHours }} hores.",
       "description2": "Si necessites més tokens per desenvolupar sobre la plataforma de Vocdoni, pots posar-te en contacte amb nosaltres a tokens (at) vocdoni.io",
       "title": "Informació General"
     },
+    "package_success": "",
     "recipient_address": "Introduïu l'adreça del destinatari on voleu rebre els tokens.",
     "request_description": "Per aconseguir més tokens de Vocdoni, has d'iniciar la sessió amb un compte de xarxes socials (per evitar-ne l'abús). Només demanem accés de lectura.",
     "request_tokens": {
@@ -250,11 +241,6 @@
         "anonymous": "Anònim",
         "census": "Cens",
         "census_preview_is_shortened": "(la llista prèvia està limitada a {{ limit }} resultats)",
-        "census_total": "",
-        "census_total_one": "<span>Votants:</span><span>{{ count }} votant</span>",
-        "census_total_many": "",
-        "census_total_other": "<span>Votants:</span><span>{{ count }} votants</span>",
-        "census_total_people": "{{ count }} persones podran votar en aquesta votació",
         "census_total_people_one": "Una persona podrà votar en aquesta votació",
         "census_total_people_many": "{{ count }} persones podran votar en aquesta votació",
         "census_total_people_other": "{{ count }} persones podran votar en aquesta votació",
@@ -356,7 +342,6 @@
     "authentification_method": "Seleccioneu el vostre mètode d'autenticació preferit:",
     "authentification_method_helper": "Podeu obtenir {{ faucetAmount }} tokens per mètode d'autenticació per setmana",
     "button": "Sol·licitar Tokens",
-    "coming_soon": "Properament",
     "description": "<text>Per afegir més tokens, heu d'<strong>iniciar sessió</strong> amb un compte social (per evitar l'ús indegut del faucet).</text><text><strong>Només sol·licitem accés de lectura.</strong></text>",
     "info": "<text>Si en necessiteu més, poseu-vos en contacte amb <mailto>info@onvote.app</mailto></text>",
     "title": "Obtenir VOC Tokens"
