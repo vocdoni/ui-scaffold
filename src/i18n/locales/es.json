@@ -135,15 +135,15 @@
   "faucet": {
     "advanced_settings": "Avanzado...",
     "connect": "Por favor, conecta tu wallet",
-    "copy_faucetPackage": "Copiar Faucet Package",
-    "copy_faucetPackage_done": "¡Copiado!",
+    "copy_package": "",
+    "copy_package_done": "",
     "description": "Para desarrollar con Vocdoni, necesitas tokens para ciertas acciones (crear una elección, cambiar el estado de una elección, etc.). El número de diferentes factores como el tamaño del censo, la duración de la elección, los parámetros de la elección, etc.",
-    "faucetPackage_success": "¡Felicidades! \nAquí está su paquete de grifo:",
     "general_information": {
       "description": "Cuando solicites tokens de desarrollo, recibirás {{ amount }} tokens. Puedes reclamar desde el faucet una vez cada 24 horas.",
       "description2": "Si necesitas más tokens para desarrollar sobre la plataforma de Vocdoni, puedes ponerte en contacto con nosotros en tokens (at) vocdoni.io",
       "title": "Información General"
     },
+    "package_success": "",
     "recipient_address": "Ingrese la dirección del destinatario en el que desea recibir los tokens.",
     "request_description": "Para obtener más tokens de Vocdoni, debes iniciar sesión con una cuenta social (para evitar el mal uso del grifo). Solo solicitamos acceso de lectura.",
     "request_tokens": {
@@ -241,11 +241,6 @@
         "anonymous": "Anónimo",
         "census": "Censo",
         "census_preview_is_shortened": "(la lista previa está limitada a {{ limit }} resultados)",
-        "census_total": "",
-        "census_total_one": "<span>Votantes:</span><span>{{ count }} votante</span>",
-        "census_total_many": "",
-        "census_total_other": "<span>Votantes:</span><span>{{ count }} votantes</span>",
-        "census_total_people": "{{ count }} personas podrán votar en esta votación",
         "census_total_people_one": "Una persona podrá votar en esta votación",
         "census_total_people_many": "{{ count }} personas podrán votar en esta votación",
         "census_total_people_other": "{{ count }} personas podrán votar en esta votación",
