@@ -18,7 +18,7 @@
   },
   "banner_voting_types": {
     "anonymous_description": "We ensure that votes remain unlinked to voter identities by using advanced zkSNARKs technology.",
-    "anonymous_title": "Anonymous",
+    "anonymous_title": "Anonymous Voting",
     "bottom_text": "Privacy should be normal",
     "flexible_description": "Our platform is built on top of the Vocdoni Protocol, ensuring secure, flexible, censorship-resistant and universally verifiable digital voting.",
     "flexible_title": "Powered by Vocdoni Protocol",
@@ -136,7 +136,7 @@
     "copy_package_done": "Copied!",
     "description": "Tokens are necessary for specific actions like creating an election or changing its status. Token requirements vary based on census size, election duration, and other parameters.",
     "general_information": {
-      "description": "You can receive up to {{ amount }} tokens per claim, with one claim permitted every 24 hours.",
+      "description": "You can receive up to {{ amount }} tokens per claim, with one claim permitted every {{ waitHours }} hours.",
       "description2": "Need more for a development project that uses the Vocdoni Protocol? Reach out to us at info(at)vocdoni.io.",
       "title": "General Information"
     },

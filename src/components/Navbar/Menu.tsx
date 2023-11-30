@@ -122,16 +122,15 @@ const MenuDropdown = () => {
           <MenuItem onClick={onOpen}>{t('menu.organization')}</MenuItem>
         </>
       )}
-      <MenuItem>
-        <Link
-          href='https://developer.vocdoni.io/'
-          target='_blank'
-          _hover={{
-            textDecoration: 'none',
-          }}
-        >
-          {t('menu.documentation')}
-        </Link>
+      <MenuItem
+        as={Link}
+        href='https://developer.vocdoni.io/'
+        target='_blank'
+        _hover={{
+          textDecoration: 'none',
+        }}
+      >
+        {t('menu.documentation')}
       </MenuItem>
       <HR h={0} my={2} />
       <MenuItem
