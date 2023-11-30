@@ -15,18 +15,18 @@ const baseStyle = definePartsStyle({
     justifyContent: 'center',
     alignItems: 'center',
     gridTemplateColumns: 'auto 1fr',
-    gridTemplateRows: 'auto auto',
+    gridTemplateRows: 'auto auto auto',
     boxShadow: 'var(--box-shadow-darker)',
     border: 'none',
     borderRadius: 0,
     maxW: '900px',
-    w: '90%',
 
     '& span': {
       color: 'white',
       ml: { base: 2, lg: 10, xl: 2 },
-      gridRow: '1/3',
-      gridColumn: '1/2',
+      gridRow: { base: '1/2', sm: '1/3' },
+      gridColumn: { base: '1/3', sm: '1/2' },
+      mx: 'auto',
     },
   },
 
@@ -34,6 +34,8 @@ const baseStyle = definePartsStyle({
     fontSize: 'lg',
     mb: 3,
     whiteSpace: 'wrap',
+    gridRow: { base: '2/3', sm: '1/2' },
+    gridColumn: { base: '1/3', sm: '2/3' },
   },
 
   alertDescription: {
@@ -43,6 +45,8 @@ const baseStyle = definePartsStyle({
     justifyContent: 'center',
     alignItems: { md: 'center' },
     whiteSpace: { base: 'pre-wrap', lg2: 'nowrap' },
+    gridRow: { base: '3/4', sm: '2/3' },
+    gridColumn: { base: '1/3', sm: '2/3' },
   },
 
   alertLink: {
@@ -56,7 +60,6 @@ const baseStyle = definePartsStyle({
     color: 'process.questions.alert.link_color',
     backgroundColor: 'process.questions.alert.link_bg',
     fontSize: 'sm',
-
     _hover: {
       textDecoration: 'none',
     },

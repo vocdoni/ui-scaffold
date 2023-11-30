@@ -173,6 +173,14 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
             '& button': {
               color: 'process.spreadsheet.disconnect_color_desktop',
               bgColor: 'transparent',
+              borderColor: 'transparent',
+
+              _before: {
+                bgColor: 'transparent',
+              },
+              _after: {
+                bgColor: 'transparent',
+              },
             },
           }}
         >

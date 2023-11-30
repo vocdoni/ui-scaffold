@@ -64,6 +64,9 @@ const card = definePartsStyle({
 })
 const process = definePartsStyle({
   root: {},
+  tabpanel: {
+    px: { base: 0, sm: 4 },
+  },
   tab: {
     position: 'relative',
     whiteSpace: 'nowrap',

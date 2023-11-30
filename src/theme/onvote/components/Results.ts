@@ -70,7 +70,6 @@ const baseStyle = definePartsStyle({
     whiteSpace: 'wrap',
     maxW: '900px',
     mx: 'auto',
-    w: '90%',
   },
 
   title: {
