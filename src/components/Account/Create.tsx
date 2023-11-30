@@ -61,8 +61,12 @@ export const AccountCreate = () => {
     ;(async () => {
       try {
         const atypes = await getAuthTypes()
-        setFaucetAmount(atypes.oauth as number)
-      } catch (e) {}
+        if (atypes.auth.oauth) {
+          setFaucetAmount(atypes.auth.oauth)
+        }
+      } catch (e) {
+        setFaucetAmount(NaN)
+      }
     })()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
