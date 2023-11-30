@@ -51,7 +51,7 @@ const NeedsAccount = () => {
             my={5}
             fontFamily='pixeloidsans'
             textTransform='uppercase'
-            color='primary.main'
+            color='process_create.title'
             fontWeight='normal'
           >
             {t('new_organization.title')}
