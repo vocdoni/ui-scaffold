@@ -1,24 +1,20 @@
 import { format, formatDistance, Locale } from 'date-fns'
 import i18next from 'i18next'
-import BrowserLanguageDetector from 'i18next-browser-languagedetector'
 import { initReactI18next } from 'react-i18next'
 import languages from './languages.mjs'
 import { dateLocales, translations } from './locales'
 
 const i18n = i18next.createInstance()
 
-i18n
-  .use(BrowserLanguageDetector)
-  .use(initReactI18next)
-  .init({
-    fallbackLng: 'en',
-    debug: import.meta.env.NODE_ENV === 'development',
-    defaultNS: 'translation',
-    interpolation: {
-      escapeValue: false,
-    },
-    returnEmptyString: false,
-  })
+i18n.use(initReactI18next).init({
+  fallbackLng: 'en',
+  debug: import.meta.env.NODE_ENV === 'development',
+  defaultNS: 'translation',
+  interpolation: {
+    escapeValue: false,
+  },
+  returnEmptyString: false,
+})
 
 for (const lang of languages) {
   if (typeof translations[lang] !== 'undefined') {
