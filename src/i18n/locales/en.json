@@ -397,7 +397,7 @@
   "new_organization": {
     "create_organization_btn": "Create Organization",
     "description1": "Set up your <span>organization for free</span> and start creating voting processes to engage with your community.",
-    "description2": "As a <span>welcome gift</span>, you'll get {{ faucetAmount }} tokens to begin creating votes on our platform!",
+    "description2": "You will have the chance to claim tokens later from the faucet to create proposals and engage with your community.",
     "footer": "<span>Vocdoni</span> is a secure, privacy-friendly & open-source public voting protocol.",
     "inexpensive": "Inexpensive",
     "name": "Organization name",
