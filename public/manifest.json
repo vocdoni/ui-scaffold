@@ -1,6 +1,6 @@
 {
-  "short_name": "Vocdoni",
-  "name": "Vocdoni Public Voting Protocol",
+  "short_name": "ONVOTE",
+  "name": "ONVOTE - ANONYMOUS Gasless and Modular voting for Web3",
   "icons": [
     {
       "src": "favicon.ico",
