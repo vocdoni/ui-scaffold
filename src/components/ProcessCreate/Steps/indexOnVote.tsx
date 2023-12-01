@@ -24,17 +24,18 @@ const Steps = () => {
   })
 
   return (
-    <Flex flexDirection={{ base: 'column', lg: 'row' }} gap={{ lg: 6 }}>
+    <Flex flexDirection={{ base: 'column', lg: 'row' }} gap={{ lg: 6 }} pt={10}>
       <Stepper
         index={activeStep}
         orientation={useBreakpointValue({ base: 'horizontal', lg: 'vertical' })}
         my={{ lg: 10 }}
-        mb={{ base: 5 }}
+        mb={{ base: 10, lg: 0 }}
         h={{ lg: 124 }}
         mx='auto'
         ml={{ lg: 2.5 }}
         gap={{ base: 3, sm: 5 }}
         justifyContent='center'
+        flexWrap='wrap'
       >
         {steps.map((step, index) => (
           <Step key={index}>
