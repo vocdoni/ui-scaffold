@@ -11,6 +11,7 @@ import {
 import { useClient, useElection, useOrganization } from '@vocdoni/react-providers'
 import { ElectionStatus } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
 import { CreatedBy } from './CreatedBy'
 import { ProcessDate } from './Date'
@@ -35,8 +36,8 @@ const ProcessHeader = () => {
     <Box mb={4}>
       {showOrgInformation && (
         <Button
-          as='a'
-          href={`/organization/0x${election?.organizationId}`}
+          as={Link}
+          to={`/organization/0x${election?.organizationId}`}
           w='fit-content'
           my={5}
           variant='transparent'
