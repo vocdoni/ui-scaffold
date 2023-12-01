@@ -425,6 +425,7 @@
       "ended": "Finalizado",
       "ends": "Finaliza",
       "relative": "{{ date, relative(past: hace %time; future: en %time) }}",
+      "relative_inline": "{{ status }} {{ date, relative(past: hace %time; future: en %time) }}",
       "starts": "Empieza"
     },
     "is_anonymous": {
