@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
 import { useDateFns } from '~i18n/use-date-fns'
-import { ProcessDate } from './Date'
+import { ProcessDateInline } from './Date'
 
 interface Props {
   election: PublishedElection
@@ -98,7 +98,9 @@ const ProcessDetailedCardFooter = () => {
 
   return (
     <Box>
-      <ProcessDate />
+      <Box>
+        <ProcessDateInline />
+      </Box>
       <Box>
         <Text>{t('process.voters')}</Text>
         <Text>{election?.voteCount}</Text>

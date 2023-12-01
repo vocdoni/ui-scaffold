@@ -422,6 +422,7 @@
       "ended": "Ended",
       "ends": "Ends on",
       "relative": "{{ date, relative(past: %time ago; future: in %time) }}",
+      "relative_inline": "{{ status }} {{ date, relative(past: %time ago; future: in %time) }}",
       "starts": "Starts"
     },
     "is_anonymous": {

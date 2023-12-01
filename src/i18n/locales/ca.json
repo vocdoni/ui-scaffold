@@ -425,6 +425,7 @@
       "ended": "Finalitzat",
       "ends": "Finalitza",
       "relative": "{{ date, relative(past: fa %time; future: en %time) }}",
+      "relative_inline": "{{ status }} {{ date, relative(past: fa %time; future: en %time) }}",
       "starts": "Comença el procés"
     },
     "is_anonymous": {
