@@ -41,7 +41,7 @@ const Steps = () => {
               flexDirection={{ base: 'column', lg: 'row' }}
               alignItems={{ base: 'center', lg: 'initial' }}
               gap={3}
-              fontFamily='archivo'
+              fontFamily='"Archivo", sans-serif'
             >
               <StepIndicator>
                 <StepStatus complete={<StepIcon />} incomplete={<StepNumber />} active={<StepNumber />} />
