@@ -119,6 +119,7 @@ export const CensusTokens = () => {
     // fetch tokens and chains
     ;(async () => {
       setLoading(true)
+      setError(undefined)
       try {
         const chs = await client.getSupportedChains()
 
@@ -181,12 +182,15 @@ export const CensusTokens = () => {
     ;(async () => {
       if (!ct?.ID) return
       setLoadingTk(true)
+      setError(undefined)
       try {
         const max = await client.getStrategySize(ct.defaultStrategy)
 
         setValue('strategySize', max)
       } catch (err) {
         setError(errorToString(err))
+        setValue('strategySize', undefined)
+        setValue('censusToken', undefined)
       } finally {
         setLoadingTk(false)
       }
@@ -204,21 +208,13 @@ export const CensusTokens = () => {
     return totalOptions
   }, [groupedTokens, ch])
 
-  if (error) {
-    return (
-      <Alert status='error'>
-        <AlertIcon />
-        {error}
-      </Alert>
-    )
-  }
-
   return (
     <Stack w='full' direction='column' gap={3} alignItems='center'>
       <Flex
         w='full'
         flexDirection={{ base: 'column', lg2: 'row' }}
         justifyContent='space-between'
+        alignItems='start'
         gap={{ base: 8, lg2: 0 }}
       >
         <FormControl
@@ -319,10 +315,18 @@ export const CensusTokens = () => {
       {loadingTk ? (
         <Spinner mt={10} />
       ) : (
-        <>
-          <TokenPreview token={ct} chainName={ch?.name} strategySize={strategySize} />
-          <MaxCensusSizeSelector token={ct} strategySize={strategySize} />
-        </>
+        !error && (
+          <>
+            <TokenPreview token={ct} chainName={ch?.name} strategySize={strategySize} />
+            <MaxCensusSizeSelector token={ct} strategySize={strategySize} />
+          </>
+        )
+      )}
+      {error && (
+        <Alert status='error'>
+          <AlertIcon />
+          {error}
+        </Alert>
       )}
     </Stack>
   )
