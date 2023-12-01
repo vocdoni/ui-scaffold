@@ -98,7 +98,7 @@ export const AccountCreate = () => {
       <Box px={{ base: 5, md: 10 }} pt={5} pb={10}>
         <FormControl isInvalid={!!errors.name} mb={5}>
           <FormLabel fontWeight='bold' textTransform='uppercase' fontFamily='pixeloidsans'>
-            *{t('new_organization.name')}
+            {t('new_organization.name')}
           </FormLabel>
           <Input
             type='text'
