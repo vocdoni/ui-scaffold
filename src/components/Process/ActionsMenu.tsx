@@ -42,23 +42,22 @@ const ActionsMenuList = (props: MenuListProps) => {
 
   return (
     <MenuList p={0}>
-      {election.status === ElectionStatus.PAUSED ? (
+      {election.status === ElectionStatus.PAUSED && (
         <MenuItem
           as={Button}
           leftIcon={<ActionIcon icon={RiPlayCircleLine} />}
           onClick={resume}
           justifyContent='start'
           isLoading={loading.continue}
-          isDisabled={election.status !== ElectionStatus.PAUSED}
         >
           {t('process_actions.start')}
         </MenuItem>
-      ) : (
+      )}
+      {election.status === ElectionStatus.ONGOING && (
         <MenuItem
           as={Button}
           leftIcon={<ActionIcon icon={RiPauseCircleLine} />}
           onClick={pause}
-          isDisabled={election.status !== ElectionStatus.ONGOING}
           justifyContent='start'
           isLoading={loading.pause}
         >
