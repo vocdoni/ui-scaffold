@@ -410,7 +410,6 @@
     }
   },
   "process": {
-    "actions": "Actions",
     "census": "Census",
     "census_strategies": {
       "spreadsheet": "CSV/Spreadsheet",
@@ -461,12 +460,16 @@
     "voters": "Voters"
   },
   "process_actions": {
-    "pause": "Pause",
-    "start": "Start/Resume",
+    "cancel": "Cancel process",
     "end": "End voting",
-    "cancel": "Cancel process"
+    "pause": "Pause",
+    "start": "Start/Resume"
   },
   "process_create": {
+    "census": {
+      "total_tokens_one": "1 froken",
+      "total_tokens_other": "{{ count }} frokens"
+    },
     "creation_steps": {
       "census_created": "Census creation",
       "done": "Process creation",
