@@ -413,7 +413,6 @@
     }
   },
   "process": {
-    "actions": "Acciones",
     "census": "Censo",
     "census_strategies": {
       "spreadsheet": "CSV",
@@ -465,12 +464,17 @@
     "voters": "Votantes"
   },
   "process_actions": {
-    "pause": "Pausar",
-    "start": "Iniciar/Reanudar",
+    "cancel": "Cancelar proceso",
     "end": "Finalizar proceso",
-    "cancel": "Cancelar proceso"
+    "pause": "Pausar",
+    "start": "Iniciar/Reanudar"
   },
   "process_create": {
+    "census": {
+      "total_tokens_one": "1 token",
+      "total_tokens_many": "",
+      "total_tokens_other": "{{ count }} tokens"
+    },
     "creation_steps": {
       "census_created": "Creación del censo",
       "done": "Creación del proceso",

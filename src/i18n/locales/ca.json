@@ -413,7 +413,6 @@
     }
   },
   "process": {
-    "actions": "Accions",
     "census": "Cens",
     "census_strategies": {
       "spreadsheet": "CSV",
@@ -465,12 +464,17 @@
     "voters": "Votants"
   },
   "process_actions": {
-    "pause": "Pausa",
-    "start": "Inicia/Continua",
+    "cancel": "Cancel·la",
     "end": "Finalitza el procés",
-    "cancel": "Cancel·la"
+    "pause": "Pausa",
+    "start": "Inicia/Continua"
   },
   "process_create": {
+    "census": {
+      "total_tokens_one": "1 token",
+      "total_tokens_many": "",
+      "total_tokens_other": "{{ count }} tokens"
+    },
     "creation_steps": {
       "census_created": "Creació del cens",
       "done": "Creació del procés",
