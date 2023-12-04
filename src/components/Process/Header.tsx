@@ -1,7 +1,6 @@
 import { WarningIcon } from '@chakra-ui/icons'
 import { Box, Button, Flex, Icon, Text } from '@chakra-ui/react'
 import {
-  ElectionActions,
   ElectionDescription,
   ElectionSchedule,
   ElectionStatusBadge,
@@ -14,6 +13,7 @@ import { useTranslation } from 'react-i18next'
 import { FaRegArrowAltCircleLeft } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
+import { ActionsMenu } from './ActionsMenu'
 import { CreatedBy } from './CreatedBy'
 import { ProcessDate } from './Date'
 
@@ -65,13 +65,16 @@ const ProcessHeader = () => {
         </Box>
 
         <Flex flexDirection='column' alignItems='start' gap={4} flexGrow={1}>
-          {election?.status !== ElectionStatus.CANCELED ? (
-            <ProcessDate />
-          ) : (
-            <Text color='process.canceled' fontWeight='bold'>
-              {t('process.status.canceled')}
-            </Text>
-          )}
+          <Box flexDir='row' display='flex' justifyContent='space-between' w='full'>
+            {election?.status !== ElectionStatus.CANCELED ? (
+              <ProcessDate />
+            ) : (
+              <Text color='process.canceled' fontWeight='bold'>
+                {t('process.status.canceled')}
+              </Text>
+            )}
+            <ActionsMenu />
+          </Box>
           {election?.electionType.anonymous && (
             <Box>
               <Text color='process.info_title' fontWeight='bold'>
@@ -134,14 +137,6 @@ const ProcessHeader = () => {
                 <Text>{t('process.status.paused_description')}</Text>
               </Box>
             </Flex>
-          )}
-          {election?.organizationId === account?.address && (
-            <Box>
-              <Text color='process.info_title' fontWeight='bold' mb={1}>
-                {t('process.actions')}
-              </Text>
-              <ElectionActions sx={{ '& div': { flexDirection: 'row', justifyContent: 'start' } }} ml={-1} />
-            </Box>
           )}
         </Flex>
       </Flex>
