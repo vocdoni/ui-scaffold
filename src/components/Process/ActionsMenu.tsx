@@ -49,6 +49,7 @@ const ActionsMenuList = (props: MenuListProps) => {
           onClick={resume}
           justifyContent='start'
           isLoading={loading.continue}
+          variant=''
         >
           {t('process_actions.start')}
         </MenuItem>
@@ -60,6 +61,7 @@ const ActionsMenuList = (props: MenuListProps) => {
           onClick={pause}
           justifyContent='start'
           isLoading={loading.pause}
+          variant=''
         >
           {t('process_actions.pause')}
         </MenuItem>
@@ -70,6 +72,7 @@ const ActionsMenuList = (props: MenuListProps) => {
         onClick={end}
         justifyContent='start'
         isLoading={loading.end}
+        variant=''
       >
         {t('process_actions.end')}
       </MenuItem>
@@ -80,6 +83,7 @@ const ActionsMenuList = (props: MenuListProps) => {
         onClick={cancel}
         justifyContent='start'
         isLoading={loading.cancel}
+        variant=''
       >
         {t('process_actions.cancel')}
       </MenuItem>
