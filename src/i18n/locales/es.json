@@ -29,13 +29,13 @@
   "cc": {
     "actions": {
       "cancel": "Cancelar el proceso inmediatamente, sin permitir nuevos votos y sin contar ningún resultado (precaución: no puede revertirse)",
-      "cancel_description": "cancelando el proceso de votación \"{{ election.title.default }}\"",
+      "cancel_description": "Cancelando el proceso de votación \"{{ election.title.default }}\"...\nAtención: esta acción no se puede revertir y cancelará los votos que haya recibido.",
       "continue": "Reanudar el proceso inmediatamente, en caso de que se haya pausado",
       "end": "Finalizar el proceso inmediatamente, impidiendo que se presenten nuevos votos, y muestra los resultados de la votación (precaución: no puede revertirse)",
-      "end_description": "finalizando el proceso de votación \"{{ election.title.default }}\"",
+      "end_description": "Finalizando el proceso de votación \"{{ election.title.default }}\"...\nAtención: esta acción no se puede revertir y los votantes no podrán emitir más votos.",
       "error_title": "Hubo algún error al ejecutar la transacción",
       "pause": "Pausar el proceso de votación temporalmente, hasta que se reanude manualmente. Mientras el proceso está en pausa, los votantes no pueden enviar votos.",
-      "pause_description": "pausando el proceso de votación \"{{ election.title.default }}\"",
+      "pause_description": "Pausando el proceso de votación \"{{ election.title.default }}\"...",
       "waiting_title": "Esperando la confirmación de la transacción..."
     },
     "confirm": {
@@ -424,7 +424,6 @@
     }
   },
   "process": {
-    "actions": "Acciones",
     "census": "Censo",
     "census_strategies": {
       "spreadsheet": "CSV",
@@ -476,11 +475,17 @@
     "voters": "Votantes"
   },
   "process_actions": {
-    "pause": "pausar",
-    "play": "reproducir",
-    "stop": "detener"
+    "cancel": "Cancelar proceso",
+    "end": "Finalizar proceso",
+    "pause": "Pausar",
+    "start": "Iniciar/Reanudar"
   },
   "process_create": {
+    "census": {
+      "total_tokens_one": "1 token",
+      "total_tokens_many": "",
+      "total_tokens_other": "{{ count }} tokens"
+    },
     "creation_steps": {
       "census_created": "Creación del censo",
       "done": "Creación del proceso",
