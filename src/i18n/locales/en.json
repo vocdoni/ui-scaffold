@@ -467,8 +467,8 @@
   },
   "process_create": {
     "census": {
-      "total_tokens_one": "1 froken",
-      "total_tokens_other": "{{ count }} frokens"
+      "total_tokens_one": "1 token",
+      "total_tokens_other": "{{ count }} tokens"
     },
     "creation_steps": {
       "census_created": "Census creation",
