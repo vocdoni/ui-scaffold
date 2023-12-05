@@ -1,12 +1,13 @@
 import { Box, Card, CardBody, CardFooter, Text } from '@chakra-ui/react'
-import { ElectionActions, ElectionDescription, ElectionStatusBadge, ElectionTitle } from '@vocdoni/chakra-components'
+import { ElectionDescription, ElectionStatusBadge, ElectionTitle } from '@vocdoni/chakra-components'
 import { ElectionProvider, enforceHexPrefix, useElection } from '@vocdoni/react-providers'
 import { ElectionStatus, InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
 import { useDateFns } from '~i18n/use-date-fns'
-import { ProcessDate } from './Date'
+import { ActionsMenu } from './ActionsMenu'
+import { ProcessDateInline } from './Date'
 
 interface Props {
   election: PublishedElection
@@ -25,7 +26,7 @@ const ProcessCardDetailed = ({ election }: Props) => {
             </Box>
             <ProcessDetailedCardDescription />
           </Link>
-          <ElectionActions />
+          <ActionsMenu />
         </CardBody>
 
         <CardFooter>
@@ -98,7 +99,9 @@ const ProcessDetailedCardFooter = () => {
 
   return (
     <Box>
-      <ProcessDate />
+      <Box>
+        <ProcessDateInline />
+      </Box>
       <Box>
         <Text>{t('process.voters')}</Text>
         <Text>{election?.voteCount}</Text>

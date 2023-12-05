@@ -30,13 +30,13 @@
   "cc": {
     "actions": {
       "cancel": "Cancel·la immediatament el procés de votació, sense permetre nous vots i sense comptabilitzar resultats (precaució: no es pot desfer)",
-      "cancel_description": "cancel·lant el procés de votació \"{{ election.title.default }}\"",
+      "cancel_description": "cancel·lant el procés de votació \"{{ election.title.default }}\"...\nAtenció: aquesta acció no es pot desfer i cancel·larà els vots que s'hagin emès.",
       "continue": "Continua el procés immediatament, si s'ha pausat",
       "end": "Finalitza immediatament el procés, impedint que es presentin nous vots, i mostra els resultats de votació (precaució: no es pot desfer)",
-      "end_description": "finalitzant el procés de votació \"{{ election.title.default }}\"",
+      "end_description": "Finalitzant el procés de votació \"{{ election.title.default }}\"...\nAtenció: aquesta acció no es pot desfer i els votants no podran emetre nous vots.",
       "error_title": "S'ha produït algun error en executar la transacció",
       "pause": "Posa el procés de votació en pausa temporalment, fins que es reprengui manualment. Mentre el procés està en pausa, els votants no poden enviar vots.",
-      "pause_description": "posant en pausa el procés de votació \"{{ election.title.default }}\"",
+      "pause_description": "Pausant el procés de votació \"{{ election.title.default }}\"...",
       "waiting_title": "Esperant la confirmació de la transacció..."
     },
     "confirm": {
@@ -413,7 +413,6 @@
     }
   },
   "process": {
-    "actions": "Accions",
     "census": "Cens",
     "census_strategies": {
       "spreadsheet": "CSV",
@@ -425,6 +424,7 @@
       "ended": "Finalitzat",
       "ends": "Finalitza",
       "relative": "{{ date, relative(past: fa %time; future: en %time) }}",
+      "relative_inline": "{{ status }} {{ date, relative(past: fa %time; future: en %time) }}",
       "starts": "Comença el procés"
     },
     "is_anonymous": {
@@ -464,11 +464,17 @@
     "voters": "Votants"
   },
   "process_actions": {
+    "cancel": "Cancel·la",
+    "end": "Finalitza el procés",
     "pause": "Pausa",
-    "play": "Reprodueix",
-    "stop": "Atura"
+    "start": "Inicia/Continua"
   },
   "process_create": {
+    "census": {
+      "total_tokens_one": "1 token",
+      "total_tokens_many": "",
+      "total_tokens_other": "{{ count }} tokens"
+    },
     "creation_steps": {
       "census_created": "Creació del cens",
       "done": "Creació del procés",
