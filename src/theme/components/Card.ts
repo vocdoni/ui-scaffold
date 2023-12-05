@@ -87,14 +87,13 @@ const detailed = definePartsStyle({
         display: 'flex',
         justifyContent: 'center',
         gap: 1,
-        py: 2.5,
-        px: 2,
+        py: 3.5,
+        px: 3,
         textAlign: 'center',
         minW: '50%',
         bgColor: 'organization.card.footer_bg',
 
         '& p': {
-          whiteSpace: 'nowrap',
           color: 'black',
           fontWeight: 'normal',
         },
@@ -109,6 +108,7 @@ const detailed = definePartsStyle({
       '& > div:nth-of-type(2) ': {
         display: 'flex',
         borderBottomRightRadius: 'md',
+        alignItems: 'center',
         '& p:nth-of-type(1)': {
           order: 2,
         },

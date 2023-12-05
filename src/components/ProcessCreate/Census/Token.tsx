@@ -88,17 +88,17 @@ export const CensusTokens = () => {
   const strategySize: number = watch('strategySize')
 
   const formatGroupLabel = (data: GroupBase<any>) => {
-    const [opt] = data.options
-
-    switch (opt.type) {
+    switch (data.label?.toLowerCase()) {
       case 'erc20':
         return 'Tokens'
       case 'erc721':
         return 'NFTs'
       case 'poap':
         return 'POAPs'
+      case 'aragon':
+        return 'Aragon DAO'
       default:
-        return opt.type
+        return data.label
     }
   }
 
@@ -119,6 +119,7 @@ export const CensusTokens = () => {
     // fetch tokens and chains
     ;(async () => {
       setLoading(true)
+      setError(undefined)
       try {
         const chs = await client.getSupportedChains()
 
@@ -135,6 +136,7 @@ export const CensusTokens = () => {
           matic: 3,
           maticmum: 4,
         }
+        const filteredTag = 'aragon'
 
         const defaultOrder: number = 10000
 
@@ -151,15 +153,35 @@ export const CensusTokens = () => {
         setChains(chs)
 
         const tks = await client.getSupportedTokens()
-
+        const tags = [
+          ...new Set(
+            tks
+              .filter((tk) => tk.tags.length > 0)
+              .map((tk) => tk.tags)
+              .flat()
+          ),
+        ]
         const uniqueTypes = [...new Set(tks.map((tk) => tk.type))].sort()
 
-        const groupedTokens: {
-          label: string
-          options: Token[] | { name: string; status: { synced: boolean }; type: string }[]
-        }[] = uniqueTypes.map((type) => {
-          const tokensWithType = tks.filter((tk) => tk.type === type)
+        const groupedTokens: GrupedTokenTypes = uniqueTypes.map((type) => {
+          const tokensWithType = tks.filter(
+            (tk) => tk.type === type && (!tk.tags.length || (tk.tags.length > 0 && !tk.tags.includes(filteredTag)))
+          )
           return { label: type.toUpperCase(), options: tokensWithType }
+        })
+        if (tags.length) {
+          tags.forEach((tag) => {
+            if (tag !== filteredTag) return
+            groupedTokens.push({
+              label: tag.toUpperCase(),
+              options: tks.filter((tk) => tk.tags.includes(tag)),
+            })
+          })
+        }
+
+        // sort all grouped tokens ascending
+        groupedTokens.forEach((group, key) => {
+          groupedTokens[key].options = group.options.sort((a, b) => a.name.localeCompare(b.name))
         })
 
         groupedTokens.push({
@@ -173,6 +195,7 @@ export const CensusTokens = () => {
       }
       setLoading(false)
     })()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -181,16 +204,20 @@ export const CensusTokens = () => {
     ;(async () => {
       if (!ct?.ID) return
       setLoadingTk(true)
+      setError(undefined)
       try {
         const max = await client.getStrategySize(ct.defaultStrategy)
 
         setValue('strategySize', max)
       } catch (err) {
         setError(errorToString(err))
+        setValue('strategySize', undefined)
+        setValue('censusToken', undefined)
       } finally {
         setLoadingTk(false)
       }
     })()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ct])
 
   const totalTks = useMemo(() => {
@@ -204,21 +231,13 @@ export const CensusTokens = () => {
     return totalOptions
   }, [groupedTokens, ch])
 
-  if (error) {
-    return (
-      <Alert status='error'>
-        <AlertIcon />
-        {error}
-      </Alert>
-    )
-  }
-
   return (
     <Stack w='full' direction='column' gap={3} alignItems='center'>
       <Flex
         w='full'
         flexDirection={{ base: 'column', lg2: 'row' }}
         justifyContent='space-between'
+        alignItems='start'
         gap={{ base: 8, lg2: 0 }}
       >
         <FormControl
@@ -279,7 +298,9 @@ export const CensusTokens = () => {
             <Text as='span'>Token</Text>{' '}
             {!!ch && !!totalTks && (
               <Text as='span' fontWeight='normal' ml={10} color='gray'>
-                {totalTks === 1 ? '1 token' : `${totalTks} tokens`}
+                {t('process_create.census.total_tokens', {
+                  count: totalTks,
+                })}
               </Text>
             )}
           </FormLabel>
@@ -319,10 +340,18 @@ export const CensusTokens = () => {
       {loadingTk ? (
         <Spinner mt={10} />
       ) : (
-        <>
-          <TokenPreview token={ct} chainName={ch?.name} strategySize={strategySize} />
-          <MaxCensusSizeSelector token={ct} strategySize={strategySize} />
-        </>
+        !error && (
+          <>
+            <TokenPreview token={ct} chainName={ch?.name} strategySize={strategySize} />
+            <MaxCensusSizeSelector token={ct} strategySize={strategySize} />
+          </>
+        )
+      )}
+      {error && (
+        <Alert status='error'>
+          <AlertIcon />
+          {error}
+        </Alert>
       )}
     </Stack>
   )

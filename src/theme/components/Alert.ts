@@ -15,6 +15,9 @@ const baseStyle = definePartsStyle((props) => {
 
   if (status === 'info')
     return {
+      description: {
+        whiteSpace: 'pre-line',
+      },
       container: {
         ...commonStyles,
         color: 'process_create.alert_info.color',

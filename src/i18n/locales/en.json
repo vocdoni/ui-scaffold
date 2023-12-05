@@ -28,13 +28,13 @@
   "cc": {
     "actions": {
       "cancel": "Cancel the process immediately, not allowing new votes and not counting any results (caution: it cannot be reverted)",
-      "cancel_description": "canceling the \"{{ election.title.default }}\" voting process",
+      "cancel_description": "Canceling \"{{ election.title.default }}\"...\nAttention: this action is irreversible and will cancel all the previous votes on it",
       "continue": "Resume the process immediately, in case it has been paused",
       "end": "End the process immediately, preventing new votes to be submitted, and shows the voting results (caution: it cannot be reverted)",
-      "end_description": "ending the \"{{ election.title.default }}\" voting process",
+      "end_description": "Ending \"{{ election.title.default }}\" voting process...\nAttention: this action is irreversible and voters will no longer be able to vote.",
       "error_title": "There was some error while executing the transaction",
       "pause": "Pause the voting process temporarily, until resumed manually. While the process is paused, voters cannot submit votes.",
-      "pause_description": "pausing the \"{{ election.title.default }}\" voting process",
+      "pause_description": "Pausing \"{{ election.title.default }}\" voting process...",
       "waiting_title": "Waiting for transaction confirmation..."
     },
     "confirm": {
@@ -410,7 +410,6 @@
     }
   },
   "process": {
-    "actions": "Actions",
     "census": "Census",
     "census_strategies": {
       "spreadsheet": "CSV/Spreadsheet",
@@ -422,6 +421,7 @@
       "ended": "Ended",
       "ends": "Ends on",
       "relative": "{{ date, relative(past: %time ago; future: in %time) }}",
+      "relative_inline": "{{ status }} {{ date, relative(past: %time ago; future: in %time) }}",
       "starts": "Starts"
     },
     "is_anonymous": {
@@ -460,11 +460,16 @@
     "voters": "Voters"
   },
   "process_actions": {
-    "pause": "pause",
-    "play": "play",
-    "stop": "stop"
+    "cancel": "Cancel process",
+    "end": "End voting",
+    "pause": "Pause",
+    "start": "Start/Resume"
   },
   "process_create": {
+    "census": {
+      "total_tokens_one": "1 token",
+      "total_tokens_other": "{{ count }} tokens"
+    },
     "creation_steps": {
       "census_created": "Census creation",
       "done": "Process creation",
