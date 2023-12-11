@@ -28,8 +28,15 @@ const FooterOnVote = () => {
             <Trans
               i18nKey='footer.text'
               components={{
-                p1: <Text textAlign='center' textTransform='uppercase' fontFamily='pixeloidsans' fontSize='xl3' />,
-                p2: <Text textAlign='center' fontSize='56px' fontWeight='bold' />,
+                p1: (
+                  <Text
+                    textAlign='center'
+                    textTransform='uppercase'
+                    fontFamily='pixeloidsans'
+                    fontSize={{ base: '22.5px', lg: '30px' }}
+                  />
+                ),
+                p2: <Text textAlign='center' fontSize={{ base: '42px', lg: '56px' }} fontWeight='bold' />,
               }}
             />
           </Box>

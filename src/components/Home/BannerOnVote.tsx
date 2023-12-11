@@ -23,7 +23,7 @@ const Banner = () => {
       </Flex>
       <Text
         as='h1'
-        fontSize='35px'
+        fontSize={{ base: '25px', lg: '35px' }}
         textAlign='center'
         lineHeight='44px'
         fontFamily='pixeloidsans'

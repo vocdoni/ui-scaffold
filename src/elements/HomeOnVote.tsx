@@ -16,7 +16,7 @@ const Home = () => {
         paddingTop='8rem'
         paddingBottom='4rem'
       >
-        <Box maxW='1920px' mx='auto' pt='120px' px='40px'>
+        <Box maxW='1920px' mx='auto' pt={{ lg: '120px' }} px='40px'>
           <Banner />
           <VotingTypesBanner />
         </Box>

@@ -157,9 +157,10 @@ const noElections = definePartsStyle({
 
       '& > p:first-of-type': {
         fontWeight: 'bold',
-        fontSize: '40px',
-        lineHeight: '42.5px',
+        fontSize: { base: '30px', lg: '40px' },
+        lineHeight: { base: '32px', lg: '42.5px' },
         mb: '24px',
+        textAlign: { base: 'center', lg2: 'start' },
       },
 
       '& > p:nth-of-type(2)': {
