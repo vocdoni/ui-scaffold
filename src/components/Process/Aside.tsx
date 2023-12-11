@@ -127,8 +127,43 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
               </Text>
             )}
             {isAbleToVote && isLargerThanMd && (
-              <VoteButton variant='secondary' w='full' mb={0} onClick={setQuestionsTab} />
+              <VoteButton
+                variant='secondary'
+                w='full'
+                mb={0}
+                onClick={setQuestionsTab}
+                _disabled={{
+                  bgColor: 'button_disabled.bg !important',
+                  color: 'button_disabled.color',
+                  borderColor: 'button_disabled.bg',
+                  cursor: 'default',
+
+                  _before: {
+                    bgColor: 'button_disabled.bg',
+                    transition: 'none',
+                  },
+                  _after: {
+                    bgColor: 'button_disabled.bg ',
+                    transition: 'none',
+                  },
+
+                  _hover: {
+                    transition: 'none',
+                    borderColor: 'button_disabled.bg',
+
+                    _before: {
+                      width: '100%',
+                      bgColor: 'button_disabled.bg',
+                    },
+                    _after: {
+                      width: '100%',
+                      bgColor: 'button_disabled.bg',
+                    },
+                  },
+                }}
+              />
             )}
+
             {hasOverwriteEnabled(election) && isInCensus && votesLeft > 0 && voted && (
               <Text fontSize='sm' textAlign='center'>
                 {t('aside.overwrite_votes_left', { count: votesLeft })}
@@ -147,20 +182,6 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
               >
                 {t('aside.verify_vote_on_explorer')}
               </Link>
-            )}
-            {connected && (
-              <Box
-                display={{ base: 'inline-block', lg2: 'none' }}
-                alignSelf='center'
-                sx={{
-                  '& button': {
-                    color: 'process.spreadsheet.disconnect_color_mbl',
-                    bgColor: 'transparent',
-                  },
-                }}
-              >
-                <SpreadsheetAccess />
-              </Box>
             )}
           </Flex>
         )}
@@ -241,7 +262,40 @@ export const ProcessAsideFooterMbl = ({ setQuestionsTab }: { setQuestionsTab: ()
       )}
       {census?.type === 'spreadsheet' && !connected && <SpreadsheetAccess />}
       {isAbleToVote ? (
-        <VoteButton w='full' variant='secondary' onClick={setQuestionsTab} />
+        <VoteButton
+          w='full'
+          variant='secondary'
+          onClick={setQuestionsTab}
+          _disabled={{
+            bgColor: 'button_disabled.bg !important',
+            color: 'button_disabled.color',
+            borderColor: 'button_disabled.bg',
+            cursor: 'default',
+
+            _before: {
+              bgColor: 'button_disabled.bg',
+              transition: 'none',
+            },
+            _after: {
+              bgColor: 'button_disabled.bg ',
+              transition: 'none',
+            },
+
+            _hover: {
+              transition: 'none',
+              borderColor: 'button_disabled.bg',
+
+              _before: {
+                width: '100%',
+                bgColor: 'button_disabled.bg',
+              },
+              _after: {
+                width: '100%',
+                bgColor: 'button_disabled.bg',
+              },
+            },
+          }}
+        />
       ) : (
         connected && (
           <Flex justifyContent='center' alignItems='center' height='40px' borderRadius='30px' bgColor='white' w='full'>
