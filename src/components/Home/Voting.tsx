@@ -15,7 +15,7 @@ const VotingTypesBanner = () => {
         maxW={{ md: '990px' }}
         mx='auto'
         fontSize='sm'
-        pb={64}
+        pb={{ base: 24, lg: 64 }}
         px={{
           base: '40px',
           md: '80px',

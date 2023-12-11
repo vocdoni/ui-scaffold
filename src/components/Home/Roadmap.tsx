@@ -10,7 +10,7 @@ const Roadmap = () => {
         base: '40px',
         md: '80px',
       }}
-      mb={64}
+      pb={{ lg: 64 }}
     >
       <Trans
         i18nKey='roadmap.title'
@@ -24,13 +24,21 @@ const Roadmap = () => {
               textAlign='center'
             />
           ),
-          p2: <Text fontWeight='bold' fontSize='64px' lineHeight='80px' textAlign='center' mb={32} />,
+          p2: (
+            <Text
+              fontWeight='bold'
+              fontSize={{ base: '48px', lg: '64px' }}
+              lineHeight={{ base: '60px', lg: '80px' }}
+              textAlign='center'
+              mb={{ base: 10, lg: 32 }}
+            />
+          ),
         }}
       />
 
       <Flex flexDirection={{ base: 'column', lg: 'row' }} alignItems='start' gap='80px' mx='auto' maxW='1380px'>
-        <Flex flex='1 1 50%' maxW='650px' flexDirection='column' gap='40px'>
-          <Text fontWeight='bold' fontSize='24px'>
+        <Flex flex='1 1 50%' maxW='650px' flexDirection='column' gap='40px' mx='auto'>
+          <Text fontWeight='bold' fontSize='24px' textAlign={{ base: 'center', lg: 'start' }}>
             {t('roadmap.milestone1')}
           </Text>
           <Flex alignItems='start' gap={2}>
@@ -89,8 +97,8 @@ const Roadmap = () => {
             </Box>
           </Flex>
         </Flex>
-        <Flex flex='1 1 50%' maxW='650px' flexDirection='column' gap='40px'>
-          <Text fontWeight='bold' fontSize='24px'>
+        <Flex flex='1 1 50%' maxW='650px' flexDirection='column' gap='40px' mx='auto'>
+          <Text fontWeight='bold' fontSize='24px' textAlign={{ base: 'center', lg: 'start' }}>
             {t('roadmap.milestone2')}
           </Text>
 

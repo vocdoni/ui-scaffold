@@ -27,17 +27,7 @@ const Features = () => {
           md: '80px',
         }}
       >
-        <Box
-          position='relative'
-          maxW='840px'
-          mx='auto'
-          px={{
-            base: 10,
-            sm: 14,
-          }}
-          pt={{ base: 10, xl: 20 }}
-          mb={32}
-        >
+        <Box position='relative' maxW='840px' mx='auto' pt={{ base: 10, xl: 20 }} mb={{ base: 10, lg: 32 }}>
           <Trans
             i18nKey='home_features.title'
             components={{
@@ -46,11 +36,18 @@ const Features = () => {
                   textAlign='center'
                   fontFamily='pixeloidsans'
                   textTransform='uppercase'
-                  fontSize={{ base: '24px', md: '32px' }}
+                  fontSize={{ base: '32px', lg: '32px' }}
                   lineHeight='39.5px'
                 />
               ),
-              p2: <Text textAlign='center' fontWeight='bold' fontSize='64px' lineHeight='80px' />,
+              p2: (
+                <Text
+                  textAlign='center'
+                  fontWeight='bold'
+                  fontSize={{ base: '48px', lg: '64px' }}
+                  lineHeight={{ base: '60px', lg: '80px' }}
+                />
+              ),
             }}
           />
         </Box>
@@ -66,7 +63,7 @@ const Features = () => {
           <Flex maxW={{ lg: '50%' }} alignItems='start' gap={5}>
             <Img src={anonymouse} mt={2} />
             <Box>
-              <Text fontSize={{ base: '24px', sm2: '32px' }} fontWeight='bold' textTransform='uppercase' mb='10px'>
+              <Text fontSize={{ base: '22px', lg: '32px' }} fontWeight='bold' textTransform='uppercase' mb='10px'>
                 {t('home_features.anonymous_title')}
               </Text>
               <Text fontSize='18px' color='#595959'>
@@ -77,7 +74,7 @@ const Features = () => {
           <Flex maxW={{ lg: '50%' }} alignItems='start' gap={5} alignSelf={{ lg: 'end' }}>
             <Img src={censorship} mt={2} />
             <Box>
-              <Text fontSize={{ base: '24px', sm2: '32px' }} fontWeight='bold' textTransform='uppercase' mb='10px'>
+              <Text fontSize={{ base: '22px', lg: '32px' }} fontWeight='bold' textTransform='uppercase' mb='10px'>
                 {t('home_features.census_startegy_title')}
               </Text>
               <Text fontSize='18px' color='#595959'>
@@ -88,7 +85,7 @@ const Features = () => {
           <Flex maxW={{ lg: '50%' }} alignItems='start' gap={5}>
             <Img src={descentralized} mt={2} />
             <Box>
-              <Text fontSize={{ base: '24px', sm2: '32px' }} fontWeight='bold' textTransform='uppercase' mb='10px'>
+              <Text fontSize={{ base: '22px', lg: '32px' }} fontWeight='bold' textTransform='uppercase' mb='10px'>
                 {t('home_features.open_source_title')}
               </Text>
               <Text fontSize='18px' color='#595959'>
@@ -99,7 +96,7 @@ const Features = () => {
           <Flex maxW={{ lg: '50%' }} alignItems='start' gap={5} alignSelf={{ lg: 'end' }}>
             <Img src={gasless} mt={2} />
             <Box>
-              <Text fontSize={{ base: '24px', sm2: '32px' }} fontWeight='bold' textTransform='uppercase' mb='10px'>
+              <Text fontSize={{ base: '22px', lg: '32px' }} fontWeight='bold' textTransform='uppercase' mb='10px'>
                 {t('home_features.gas_less_title')}
               </Text>
               <Text fontSize='18px' color='#595959'>
@@ -110,7 +107,7 @@ const Features = () => {
           <Flex maxW={{ lg: '50%' }} alignItems='start' gap={5}>
             <Img src={opensource} mt={2} />
             <Box>
-              <Text fontSize={{ base: '24px', sm2: '32px' }} fontWeight='bold' textTransform='uppercase' mb='10px'>
+              <Text fontSize={{ base: '22px', lg: '32px' }} fontWeight='bold' textTransform='uppercase' mb='10px'>
                 {t('home_features.descentralized_title')}
               </Text>
               <Text fontSize='18px' color='#595959'>
@@ -121,7 +118,7 @@ const Features = () => {
           <Flex maxW={{ lg: '50%' }} alignItems='start' gap={5} alignSelf={{ lg: 'end' }}>
             <Img src={multichain} mt={2} />
             <Box>
-              <Text fontSize={{ base: '24px', sm2: '32px' }} fontWeight='bold' textTransform='uppercase' mb='10px'>
+              <Text fontSize={{ base: '22px', lg: '32px' }} fontWeight='bold' textTransform='uppercase' mb='10px'>
                 {t('home_features.multichain_title')}
               </Text>
               <Text fontSize='18px' color='#595959'>
@@ -132,7 +129,7 @@ const Features = () => {
           <Flex maxW={{ lg: '50%' }} alignItems='start' gap={5}>
             <Img src={flexibleProtocol} mt={2} />
             <Box>
-              <Text fontSize={{ base: '24px', sm2: '32px' }} fontWeight='bold' textTransform='uppercase'>
+              <Text fontSize={{ base: '22px', lg: '32px' }} fontWeight='bold' textTransform='uppercase' mb='10px'>
                 {t('home_features.flexible_title')}
               </Text>
               <Text fontSize='18px' color='#595959'>
