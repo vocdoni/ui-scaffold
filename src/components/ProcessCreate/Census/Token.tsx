@@ -206,9 +206,9 @@ export const CensusTokens = () => {
       setLoadingTk(true)
       setError(undefined)
       try {
-        const max = await client.getStrategySize(ct.defaultStrategy)
+        const { size } = await client.getStrategyEstimation(ct.defaultStrategy)
 
-        setValue('strategySize', max)
+        setValue('strategySize', size)
       } catch (err) {
         setError(errorToString(err))
         setValue('strategySize', undefined)
