@@ -48,7 +48,7 @@ import Wrapper from './Wrapper'
 import imageHeader from '/assets/spreadsheet-confirm-modal.jpeg'
 
 export const Confirm = () => {
-  const { env, client, account } = useClient()
+  const { env, client, account, fetchAccount } = useClient()
   const { form, prev } = useProcessCreationSteps()
   const navigate = useNavigate()
   const { t } = useTranslation()
@@ -56,6 +56,7 @@ export const Confirm = () => {
   const [error, setError] = useState<string | null>(null)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [sending, setSending] = useState<boolean>(false)
+  const [created, setCreated] = useState<string | null>(null)
   const [step, setStep] = useState<Steps>()
   const [disabled, setDisabled] = useState<boolean>(false)
   const [unpublished, setUnpublished] = useState<UnpublishedElection | undefined>()
@@ -95,6 +96,7 @@ export const Confirm = () => {
             setStep(step.key)
             if (step.key === ElectionCreationSteps.DONE) {
               pid = step.electionId
+              setCreated(pid)
             }
         }
       }
@@ -105,12 +107,17 @@ export const Confirm = () => {
         duration: 4000,
       })
 
+      // fetch account to update the election index and account balance
+      await fetchAccount()
+
       // clear draft data from storage
       localStorage.removeItem('form-draft')
       localStorage.removeItem('form-draft-step')
 
-      // redirect (with delay to allow the user to see the success toast)
-      setTimeout(() => navigate(`/processes/${ensure0x(pid)}`), 3000)
+      // NOTE: The redirect that was here has been moved to a useEffect block below, since
+      // trying to redirect here, in combination with our `fetchAccount` call, was making the
+      // redirect to not properly work. This is due to some weird interaction between
+      // react-hook-form, react-router-dom and our react-provider reducers (which apparently are ok).
     } catch (err: any) {
       setError(errorToString(err))
       console.error('could not create election:', err)
@@ -120,6 +127,13 @@ export const Confirm = () => {
   }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const corelection = useMemo(() => electionFromForm(form), [account?.address, form])
+
+  // redirects to the created process
+  useEffect(() => {
+    if (!created || localStorage.getItem('form-draft')) return
+    // wait a second just to ensure the user sees the toast
+    setTimeout(() => navigate(`/processes/${ensure0x(created)}`), 1000)
+  }, [created, navigate])
 
   // fetches census for unpublished elections
   useEffect(() => {
