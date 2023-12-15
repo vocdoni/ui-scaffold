@@ -1,6 +1,6 @@
 import { Box, Button, Card, Flex, Link, Spinner, Text, useMediaQuery } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { environment, SpreadsheetAccess, VoteButton } from '@vocdoni/chakra-components'
+import { environment, SpreadsheetAccess } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
 import { dotobject, ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
@@ -8,6 +8,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 import { CensusMeta } from '~components/ProcessCreate/Steps/Confirm'
+import VoteButton from './VoteButton'
 
 const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
   const { t } = useTranslation()
@@ -126,43 +127,7 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
                 {t('aside.voting_anonymous_advice')}
               </Text>
             )}
-            {isAbleToVote && isLargerThanMd && (
-              <VoteButton
-                variant='secondary'
-                w='full'
-                mb={0}
-                onClick={setQuestionsTab}
-                _disabled={{
-                  bgColor: 'button_disabled.bg !important',
-                  color: 'button_disabled.color',
-                  borderColor: 'button_disabled.bg',
-                  cursor: 'default',
-
-                  _before: {
-                    bgColor: 'button_disabled.bg',
-                    transition: 'none',
-                  },
-                  _after: {
-                    bgColor: 'button_disabled.bg ',
-                    transition: 'none',
-                  },
-
-                  _hover: {
-                    transition: 'none',
-                    borderColor: 'button_disabled.bg',
-
-                    _before: {
-                      width: '100%',
-                      bgColor: 'button_disabled.bg',
-                    },
-                    _after: {
-                      width: '100%',
-                      bgColor: 'button_disabled.bg',
-                    },
-                  },
-                }}
-              />
-            )}
+            {isAbleToVote && isLargerThanMd && <VoteButton w='full' mb={0} onClick={setQuestionsTab} />}
 
             {hasOverwriteEnabled(election) && isInCensus && votesLeft > 0 && voted && (
               <Text fontSize='sm' textAlign='center'>
@@ -262,40 +227,7 @@ export const ProcessAsideFooterMbl = ({ setQuestionsTab }: { setQuestionsTab: ()
       )}
       {census?.type === 'spreadsheet' && !connected && <SpreadsheetAccess />}
       {isAbleToVote ? (
-        <VoteButton
-          w='full'
-          variant='secondary'
-          onClick={setQuestionsTab}
-          _disabled={{
-            bgColor: 'button_disabled.bg !important',
-            color: 'button_disabled.color',
-            borderColor: 'button_disabled.bg',
-            cursor: 'default',
-
-            _before: {
-              bgColor: 'button_disabled.bg',
-              transition: 'none',
-            },
-            _after: {
-              bgColor: 'button_disabled.bg ',
-              transition: 'none',
-            },
-
-            _hover: {
-              transition: 'none',
-              borderColor: 'button_disabled.bg',
-
-              _before: {
-                width: '100%',
-                bgColor: 'button_disabled.bg',
-              },
-              _after: {
-                width: '100%',
-                bgColor: 'button_disabled.bg',
-              },
-            },
-          }}
-        />
+        <VoteButton w='full' onClick={setQuestionsTab} />
       ) : (
         connected && (
           <Flex justifyContent='center' alignItems='center' height='40px' borderRadius='30px' bgColor='white' w='full'>
