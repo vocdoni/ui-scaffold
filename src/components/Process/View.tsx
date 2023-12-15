@@ -51,15 +51,14 @@ export const ProcessView = () => {
   }, [election])
 
   return (
-    <Box
-      maxW='1920px'
-      mx='auto'
-      px={{
-        base: '40px',
-        md: '80px',
-      }}
-    >
-      <Box mb={44} px={0}>
+    <Box maxW='1920px' mx='auto'>
+      <Box
+        mb={44}
+        px={{
+          base: '40px',
+          md: '80px',
+        }}
+      >
         <Header />
         <Flex direction={{ base: 'column', lg2: 'row' }} alignItems='start' gap={{ lg2: 10 }}>
           <Tabs
@@ -92,12 +91,13 @@ export const ProcessView = () => {
             flexDirection='column'
             alignItems={{ base: 'center', lg2: 'start' }}
             order={{ base: 1, lg2: 2 }}
-            gap={2}
+            gap={0}
             mx={{ base: 'auto', lg2: 0 }}
             position={{ lg2: 'sticky' }}
             top={20}
             mt={10}
             maxW={{ md: '265px', lg2: '290px' }}
+            mb={10}
           >
             <ProcessAside setQuestionsTab={setQuestionsTab} />
           </Flex>
