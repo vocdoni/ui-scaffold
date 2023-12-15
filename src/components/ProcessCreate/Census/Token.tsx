@@ -50,6 +50,7 @@ export const CensusTokens = () => {
   const selectChainRef = useRef<SelectInstance<any, false, GroupBase<any>>>(null)
   const [chains, setChains] = useState<ICensus3SupportedChain[]>([])
   const [groupedTokens, setGroupedTokens] = useState<GrupedTokenTypes>([])
+  const [strategySize, setStrategySize] = useState<number>()
 
   const {
     setValue,
@@ -84,8 +85,6 @@ export const CensusTokens = () => {
     },
   })
   const ct = watch('censusToken')
-
-  const strategySize: number = watch('strategySize')
 
   const formatGroupLabel = (data: GroupBase<any>) => {
     switch (data.label?.toLowerCase()) {
@@ -206,12 +205,13 @@ export const CensusTokens = () => {
       setLoadingTk(true)
       setError(undefined)
       try {
-        const max = await client.getStrategySize(ct.defaultStrategy)
+        const { size, timeToCreateCensus } = await client.getStrategyEstimation(ct.defaultStrategy)
 
-        setValue('strategySize', max)
+        setStrategySize(size)
+        setValue('timeToCreateCensus', timeToCreateCensus)
       } catch (err) {
         setError(errorToString(err))
-        setValue('strategySize', undefined)
+        setStrategySize(undefined)
         setValue('censusToken', undefined)
       } finally {
         setLoadingTk(false)
