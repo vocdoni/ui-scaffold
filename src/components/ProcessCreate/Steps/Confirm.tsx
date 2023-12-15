@@ -292,9 +292,12 @@ const getCensus = async (env: EnvOptions, form: StepsFormValues, salt: string) =
         env,
       })
 
-      let attempts = form.strategySize / 1000
-      c3client.queueWait.attempts = Math.min(Math.max(attempts, 20), 100)
-      c3client.queueWait.retryTime = 5000
+      const retryTime = 5000
+      const attempts = form.timeToCreateCensus / retryTime
+
+      c3client.queueWait.retryTime = retryTime
+      // clamp attempts between 20 and 100
+      c3client.queueWait.attempts = Math.min(Math.max(Math.ceil(attempts), 20), 100)
 
       return c3client.createTokenCensus(
         form.censusToken.ID,

@@ -9,7 +9,7 @@ export interface CensusTokenValues {
   censusToken: Census3Token
   maxCensusSize?: number
   chain: ICensus3SupportedChain
-  strategySize: number
+  timeToCreateCensus: number
 }
 
 export const StepFormCensusToken = () => {
@@ -20,7 +20,6 @@ export const StepFormCensusToken = () => {
       censusToken: form.censusToken,
       maxCensusSize: form.maxCensusSize,
       chain: form.chain,
-      strategySize: form.strategySize,
     },
   })
 
