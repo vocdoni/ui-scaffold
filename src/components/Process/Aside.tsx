@@ -1,6 +1,6 @@
 import { Box, Button, Card, Flex, Link, Spinner, Text, useMediaQuery } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { environment, SpreadsheetAccess } from '@vocdoni/chakra-components'
+import { environment, SpreadsheetAccess, VoteButton } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
 import { dotobject, ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
@@ -8,7 +8,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 import { CensusMeta } from '~components/ProcessCreate/Steps/Confirm'
-import VoteButton from './VoteButton'
 
 const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
   const { t } = useTranslation()
@@ -127,8 +126,9 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
                 {t('aside.voting_anonymous_advice')}
               </Text>
             )}
-            {isAbleToVote && isLargerThanMd && <VoteButton w='full' mb={0} onClick={setQuestionsTab} />}
-
+            {isAbleToVote && isLargerThanMd && (
+              <VoteButton variant='secondary' w='full' mb={0} onClick={setQuestionsTab} />
+            )}
             {hasOverwriteEnabled(election) && isInCensus && votesLeft > 0 && voted && (
               <Text fontSize='sm' textAlign='center'>
                 {t('aside.overwrite_votes_left', { count: votesLeft })}
@@ -147,6 +147,20 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
               >
                 {t('aside.verify_vote_on_explorer')}
               </Link>
+            )}
+            {connected && (
+              <Box
+                display={{ base: 'inline-block', lg2: 'none' }}
+                alignSelf='center'
+                sx={{
+                  '& button': {
+                    color: 'process.spreadsheet.disconnect_color_mbl',
+                    bgColor: 'transparent',
+                  },
+                }}
+              >
+                <SpreadsheetAccess />
+              </Box>
             )}
           </Flex>
         )}
@@ -227,7 +241,7 @@ export const ProcessAsideFooterMbl = ({ setQuestionsTab }: { setQuestionsTab: ()
       )}
       {census?.type === 'spreadsheet' && !connected && <SpreadsheetAccess />}
       {isAbleToVote ? (
-        <VoteButton w='full' onClick={setQuestionsTab} />
+        <VoteButton w='full' variant='secondary' onClick={setQuestionsTab} />
       ) : (
         connected && (
           <Flex justifyContent='center' alignItems='center' height='40px' borderRadius='30px' bgColor='white' w='full'>
