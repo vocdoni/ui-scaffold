@@ -156,6 +156,7 @@ export const VoteButton = ({ setQuestionsTab }: { setQuestionsTab: () => void })
       alignItems='center'
       background={{ base: 'process.aside.bg', md: 'transparent' }}
       color='process.aside.color'
+      p={3}
     >
       {census?.type !== 'spreadsheet' && !connected && (
         <ConnectButton.Custom>
