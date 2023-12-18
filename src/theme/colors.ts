@@ -107,6 +107,12 @@ export const colors = {
       hover_bg: colorsBase.gray.light,
       border_bottom_list: colorsBase.gray.main,
     },
+    vote_button: {
+      mobile_bg: colorsBase.white.pure,
+      mobile_color: colorsBase.black,
+      desktop_bg: colorsBase.primary.main,
+      desktop_color: colorsBase.white.pure,
+    },
   },
 
   process_create: {
