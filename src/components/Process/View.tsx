@@ -29,7 +29,7 @@ import { useEffect, useState } from 'react'
 import { FieldValues } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaFacebook, FaReddit, FaTelegram, FaTwitter } from 'react-icons/fa'
-import ProcessAside, { ProcessAsideFooterMbl } from './Aside'
+import ProcessAside, { VoteButton } from './Aside'
 import Header from './Header'
 import confirmImg from '/assets/spreadsheet-confirm-modal.jpeg'
 import successImg from '/assets/success.jpeg'
@@ -82,6 +82,9 @@ export const ProcessView = () => {
                 <ElectionQuestions
                   confirmContents={(questions, answers) => <ConfirmVoteModal questions={questions} answers={answers} />}
                 />
+                <Box position='sticky' bottom={0} left={0} pb={1} pt={1} display={{ base: 'none', md: 'block' }}>
+                  <VoteButton setQuestionsTab={setQuestionsTab} />
+                </Box>
               </TabPanel>
               <TabPanel mb={20}>
                 <ElectionResults />
@@ -100,7 +103,7 @@ export const ProcessView = () => {
             mt={10}
             maxW={{ md: '265px', md2: '290px' }}
           >
-            <ProcessAside setQuestionsTab={setQuestionsTab} />
+            <ProcessAside />
           </Flex>
         </Flex>
       </Box>
@@ -112,7 +115,7 @@ export const ProcessView = () => {
         pt={1}
         display={{ base: 'block', md: 'none' }}
       >
-        <ProcessAsideFooterMbl setQuestionsTab={setQuestionsTab} />
+        <VoteButton setQuestionsTab={setQuestionsTab} />
       </Box>
 
       <SuccessVoteModal />
