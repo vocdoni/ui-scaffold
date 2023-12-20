@@ -41,8 +41,9 @@ const ProcessHeader = () => {
           w='fit-content'
           my={5}
           variant='transparent'
+          p={0}
         >
-          <Img src={goBack} mr={1} />
+          <Img src={goBack} mr={1} w='5px' />
           <OrganizationName color='organization.go_back_btn' as='span' overflow='hidden' fontSize='sm' isTruncated />
         </Button>
       )}
