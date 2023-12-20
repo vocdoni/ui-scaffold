@@ -63,7 +63,7 @@ const ProcessHeader = () => {
               gap={{ xl: 3 }}
             >
               <Text as='span' color='process.label'>
-                {t('process.scheudle')}
+                {t('process.schedule')}
               </Text>
               <ElectionSchedule textAlign='left' color='process.info_title' />
             </Flex>

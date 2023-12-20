@@ -434,7 +434,7 @@
     "people_in_census_other": "{{ count }} voters",
     "questions": "Questions",
     "results": "Results",
-    "scheudle": "SCHEUDLE",
+    "schedule": "SCHEDULE",
     "share_caption": "I've just cast my vote in {{ title }}!!",
     "share_title": "Share on {{ network }}",
     "spreadsheet": {
