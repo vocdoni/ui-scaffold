@@ -43,7 +43,7 @@
     "dev": "vite",
     "start": "vite",
     "build": "vite build",
-    "lint": "prettier --check src",
+    "lint": "tsc && prettier --check src",
     "lint:fix": "prettier --write src",
     "translations": "i18next"
   },
