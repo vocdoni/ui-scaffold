@@ -83,7 +83,7 @@ export const colors = {
       aside_footer_mbl_border: colorsBase.white.dark,
     },
     canceled: colorsBase.primary.main,
-    date: colorsBase.gray.dark,
+    date: colorsBase.black,
     created_by: colorsBase.primary.main,
     confirm_vote: {
       active: colorsBase.primary.dark2,
