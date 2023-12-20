@@ -27,8 +27,8 @@ const Roadmap = () => {
           p2: (
             <Text
               fontWeight='bold'
-              fontSize={{ base: '48px', lg: '64px' }}
-              lineHeight={{ base: '60px', lg: '80px' }}
+              fontSize={{ base: '38px', lg: '64px' }}
+              lineHeight={{ base: '47.5px', lg: '80px' }}
               textAlign='center'
               mb={{ base: 10, lg: 32 }}
             />

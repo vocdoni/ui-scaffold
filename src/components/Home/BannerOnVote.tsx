@@ -9,15 +9,7 @@ const Banner = () => {
   const { isConnected } = useAccount()
 
   return (
-    <Flex
-      flexDirection='column'
-      justifyContent='center'
-      alignItems='center'
-      px={{
-        base: '40px',
-        md: '80px',
-      }}
-    >
+    <Flex flexDirection='column' justifyContent='center' alignItems='center'>
       <Flex justifyContent={{ base: 'center', md: 'start' }}>
         <Image src={onvoteIcon} w='408px' mb={4} />
       </Flex>

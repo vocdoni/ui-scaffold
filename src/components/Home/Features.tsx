@@ -44,8 +44,8 @@ const Features = () => {
                 <Text
                   textAlign='center'
                   fontWeight='bold'
-                  fontSize={{ base: '48px', lg: '64px' }}
-                  lineHeight={{ base: '60px', lg: '80px' }}
+                  fontSize={{ base: '38px', lg: '64px' }}
+                  lineHeight={{ base: '47.5px', lg: '80px' }}
                 />
               ),
             }}
