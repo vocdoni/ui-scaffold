@@ -58,7 +58,7 @@ const ProcessHeader = () => {
           </Flex>
           <Flex flexDirection='column'>
             <ReadMoreMarkdownWrapper from='rgba(250, 250, 250, 0)' to='rgba(250, 250, 250, 1)'>
-              <ElectionDescription mb={0} fontSize='lg' lineHeight={2.5} color='process.description' />
+              <ElectionDescription mb={0} fontSize='lg' lineHeight={2} color='process.description' />
             </ReadMoreMarkdownWrapper>
             <ReadMoreMarkdownButton colorScheme='primary' alignSelf='center' />
           </Flex>
