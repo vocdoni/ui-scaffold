@@ -1,6 +1,7 @@
 import { Box, Button, Flex, Image, Link, Text } from '@chakra-ui/react'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { Trans, useTranslation } from 'react-i18next'
+import { BsGithub } from 'react-icons/bs'
 import { useAccount } from 'wagmi'
 import farcasterIcon from '/assets/farcaster-icon.svg'
 import mirrorIcon from '/assets/mirror-icon.svg'
@@ -83,6 +84,16 @@ const FooterOnVote = () => {
               }}
             >
               <Image src={mirrorIcon} w={3} />
+            </Link>
+            <Link
+              href='https://github.com/vocdoni'
+              target='_blank'
+              aria-label='link vocdoni github'
+              _hover={{
+                opacity: '0.5',
+              }}
+            >
+              <BsGithub size='17px' />
             </Link>
           </Flex>
         </Flex>
