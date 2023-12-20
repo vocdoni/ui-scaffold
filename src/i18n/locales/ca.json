@@ -437,6 +437,7 @@
     "people_in_census_other": "{{ count }} votants",
     "questions": "Preguntes",
     "results": "Resultats",
+    "scheudle": "HORARI",
     "share_caption": "Acabo d'emetre el meu vot a {{ title }}!!",
     "share_title": "Comparteix a {{ network }}",
     "spreadsheet": {
@@ -446,6 +447,7 @@
         "question": "<strong>Pregunta {{ number }}:</strong> {{ answer }}"
       }
     },
+    "state": "ESTAT",
     "status": {
       "active": "Actiu",
       "canceled": "Procés cancel·lat",

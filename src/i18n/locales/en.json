@@ -433,6 +433,7 @@
     "people_in_census_other": "{{ count }} voters",
     "questions": "Questions",
     "results": "Results",
+    "scheudle": "SCHEUDLE",
     "share_caption": "I've just cast my vote in {{ title }}!!",
     "share_title": "Share on {{ network }}",
     "spreadsheet": {
@@ -442,6 +443,7 @@
         "question": "<strong>Question {{ number }}:</strong> {{ answer }}"
       }
     },
+    "state": "STATE",
     "status": {
       "active": "Active",
       "canceled": "Process canceled",

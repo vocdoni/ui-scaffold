@@ -437,6 +437,7 @@
     "people_in_census_other": "{{ count }} votantes",
     "questions": "Preguntas",
     "results": "Resultados",
+    "scheudle": "HORARIO",
     "share_caption": "Acabo de emitir mi voto para {{ title }}!!",
     "share_title": "Compartir en {{ network }}",
     "spreadsheet": {
@@ -446,6 +447,7 @@
         "question": "<strong>Pregunta {{ number }}:</strong> {{ answer }}"
       }
     },
+    "state": "ESTADO",
     "status": {
       "active": "Activo",
       "canceled": "Proceso cancelado",

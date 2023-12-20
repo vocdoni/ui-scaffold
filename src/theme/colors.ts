@@ -74,6 +74,7 @@ export const colors = {
       bg_hover: colorsBase.primary.dark,
       color: colorsBase.white.pure,
     },
+    label: colorsBase.gray.dark,
     paused: colorsBase.primary.main,
     questions: {
       alert: {

@@ -47,14 +47,26 @@ const ProcessHeader = () => {
           <ElectionTitle fontSize='xl4' textAlign='left' mb={5} />
           <Flex
             gap={4}
-            flexDirection={{ base: 'column', md: 'row' }}
-            alignItems={{ base: 'start', md: 'center' }}
+            flexDirection={{ base: 'column', xl: 'row' }}
+            alignItems={{ base: 'start', xl: 'center' }}
             mb={4}
           >
-            <Box>
+            <Flex gap={3} alignItems='center'>
+              <Text as='span' color='process.label'>
+                {t('process.state')}
+              </Text>
               <ElectionStatusBadge />
-            </Box>
-            <ElectionSchedule textAlign='left' color='process.info_title' />
+            </Flex>
+            <Flex
+              flexDirection={{ base: 'column', xl: 'row' }}
+              alignItems={{ base: 'start', xl: 'center' }}
+              gap={{ xl: 3 }}
+            >
+              <Text as='span' color='process.label'>
+                {t('process.scheudle')}
+              </Text>
+              <ElectionSchedule textAlign='left' color='process.info_title' />
+            </Flex>
           </Flex>
           <Flex flexDirection='column'>
             <ReadMoreMarkdownWrapper from='rgba(250, 250, 250, 0)' to='rgba(250, 250, 250, 1)'>
@@ -64,7 +76,17 @@ const ProcessHeader = () => {
           </Flex>
         </Box>
 
-        <Flex flexDirection='column' alignItems='start' gap={4} flexGrow={1}>
+        <Flex
+          flexDirection='column'
+          alignItems='start'
+          gap={4}
+          flexGrow={1}
+          fontSize='sm'
+          opacity={0.85}
+          _hover={{
+            opacity: 1,
+          }}
+        >
           <Box flexDir='row' display='flex' justifyContent='space-between' w='full'>
             {election?.status !== ElectionStatus.CANCELED ? (
               <ProcessDate />
