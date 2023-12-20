@@ -57,7 +57,7 @@ const ProcessHeader = () => {
             mb={4}
           >
             <Box>
-              <ElectionStatusBadge />
+              <ElectionStatusBadge size='xl' />
             </Box>
             <ElectionSchedule textAlign='left' fontStyle='normal' fontWeight='normal' color='process.date' />
           </Flex>

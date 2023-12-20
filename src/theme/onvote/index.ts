@@ -27,6 +27,7 @@ import archivoBold from '/fonts/archivo/Archivo-Bold.ttf'
 import archivo from '/fonts/archivo/Archivo.ttf'
 import pixeloidSansBold from '/fonts/pixeloidsans/PixeloidSans-Bold.ttf'
 import pixeloidSans from '/fonts/pixeloidsans/PixeloidSans.ttf'
+import { Tag } from './components/Tag'
 
 export const theme = extendTheme(vtheme, {
   styles: {
@@ -88,6 +89,7 @@ export const theme = extendTheme(vtheme, {
     Modal,
     QuestionsConfirmation,
     Tabs,
+    Tag,
     Textarea,
     SpreadsheetAccess,
     Stepper,
