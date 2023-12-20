@@ -5,7 +5,7 @@ const isRealAccount = (account: AccountData | ArchivedAccountData): account is A
   return (account as AccountData).nonce !== undefined
 }
 
-export const useAccountHealthTools = () => {
+export const useOrganizationHealthTools = () => {
   const { account, balance } = useClient()
 
   const exists = typeof account !== 'undefined' && isRealAccount(account) && account.account.name.default.length > 0
