@@ -37,7 +37,6 @@ const ProcessAside = () => {
         w='full'
         gap={4}
         mt={{ md: 7 }}
-        mb={{ base: 7, md: 0 }}
         color='process.aside.color'
         background='process.aside.bg'
         borderRadius='lg'
@@ -120,7 +119,7 @@ const ProcessAside = () => {
       </Flex>
       {connected && (
         <Box
-          display={{ base: 'none', md: 'block' }}
+          // display={{ base: 'none', md: 'block' }}
           alignSelf='center'
           sx={{
             '& button': {
@@ -128,6 +127,7 @@ const ProcessAside = () => {
               bgColor: 'transparent',
             },
           }}
+          mb={{ base: 10, md: 0 }}
         >
           <SpreadsheetAccess />
         </Box>
