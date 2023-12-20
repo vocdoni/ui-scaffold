@@ -224,7 +224,7 @@ export const Confirm = () => {
                           i18nKey='form.process_create.confirm.confirmation_terms_and_conditions'
                           components={{
                             customLink: (
-                              <Link variant='primary' href='https://aragon.org/terms-and-conditions' target='_blank' />
+                              <Link href='https://aragon.org/terms-and-conditions' target='_blank' />
                             ),
                           }}
                         />
