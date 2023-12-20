@@ -90,6 +90,7 @@ export const colors = {
       description: colorsBase.gray.dark,
       title: colorsBase.primary.main,
     },
+    no_description: colorsBase.gray.dark,
     results: {
       alert_bg: colorsBase.primary.main,
       alert_color: colorsBase.white.pure,

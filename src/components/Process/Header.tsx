@@ -69,6 +69,11 @@ const ProcessHeader = () => {
             </Flex>
           </Flex>
           <Flex flexDirection='column'>
+            {!election?.description.length && (
+              <Text textAlign='center' mt={5} color='process.no_description'>
+                {t('process.no_description')}
+              </Text>
+            )}
             <ReadMoreMarkdownWrapper from='rgba(250, 250, 250, 0)' to='rgba(250, 250, 250, 1)'>
               <ElectionDescription mb={0} fontSize='lg' lineHeight={2} color='process.description' />
             </ReadMoreMarkdownWrapper>

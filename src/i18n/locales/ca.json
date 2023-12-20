@@ -432,6 +432,7 @@
       "title": "Anònim"
     },
     "is_invalid": "Aquest procés té dades no vàlides i per tant no pot carregar-se",
+    "no_description": "No hi ha cap descripció proporcionada",
     "people_in_census_one": "Un votant",
     "people_in_census_many": "",
     "people_in_census_other": "{{ count }} votants",

@@ -432,6 +432,7 @@
       "title": "Anónimo"
     },
     "is_invalid": "Este proceso tiene datos no válidos y no se puede cargar",
+    "no_description": "No hay ninguna descripción proporcionada",
     "people_in_census_one": "Un votante",
     "people_in_census_many": "",
     "people_in_census_other": "{{ count }} votantes",
