@@ -117,6 +117,7 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
                 target='_blank'
                 whiteSpace='nowrap'
                 textDecoration='underline'
+                color='process.aside.verify_link'
                 _hover={{
                   textDecoration: 'none',
                 }}

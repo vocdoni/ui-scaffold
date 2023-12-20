@@ -58,6 +58,7 @@ export const colors = {
       vote_btn_color: colorsBase.black,
       vote_btn_bg: colorsBase.white.pure,
       aside_footer_mbl_border: colorsBase.white.dark,
+      verify_link: colorsBase.white.pure,
     },
     canceled: colorsBase.primary.main,
     confirm_vote: {
