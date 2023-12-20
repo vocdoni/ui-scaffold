@@ -8,10 +8,7 @@ const isRealAccount = (account: AccountData | ArchivedAccountData): account is A
 export const useAccountHealthTools = () => {
   const { account, balance } = useClient()
 
-  const exists =
-    typeof account !== 'undefined' ||
-    (account && !isRealAccount(account)) ||
-    (account && (account as AccountData).account.name.length > 0)
+  const exists = typeof account !== 'undefined' && isRealAccount(account) && account.account.name.default.length > 0
   const isHealthy = exists && balance > 0
   const existsVariation = (existant: any, notExistant: any) => (exists ? existant : notExistant)
   const healthVariation = (healthy: any, unhealthy: any) => (isHealthy ? healthy : unhealthy)
