@@ -62,7 +62,7 @@ const ProcessHeader = () => {
             <ElectionSchedule textAlign='left' fontStyle='normal' fontWeight='normal' color='gray' />
           </Flex>
           <Flex flexDirection='column'>
-            <ReadMoreMarkdownWrapper from='rgba(250, 250, 250, 0)' to='rgba(250, 250, 250, 1)'>
+            <ReadMoreMarkdownWrapper>
               <ElectionDescription mb={0} fontSize='lg' lineHeight={2.5} color='process.description' />
             </ReadMoreMarkdownWrapper>
             <ReadMoreMarkdownButton colorScheme='primary' alignSelf='center' />
