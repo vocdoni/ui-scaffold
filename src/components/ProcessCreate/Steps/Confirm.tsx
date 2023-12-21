@@ -223,9 +223,7 @@ export const Confirm = () => {
                         <Trans
                           i18nKey='form.process_create.confirm.confirmation_terms_and_conditions'
                           components={{
-                            customLink: (
-                              <Link href='https://aragon.org/terms-and-conditions' target='_blank' />
-                            ),
+                            customLink: <Link href='https://aragon.org/terms-and-conditions' target='_blank' />,
                           }}
                         />
                       </Checkbox>
