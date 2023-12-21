@@ -116,11 +116,7 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
                 to={environment.verifyVote(env, voted)}
                 target='_blank'
                 whiteSpace='nowrap'
-                textDecoration='underline'
-                color='process.aside.verify_link'
-                _hover={{
-                  textDecoration: 'none',
-                }}
+                variant='contrast'
               >
                 {t('aside.verify_vote_on_explorer')}
               </Link>

@@ -36,6 +36,7 @@ export const colors = {
 
   link: {
     primary: colorsBase.primary.main,
+    contrast: colorsBase.white.pure,
   },
 
   main_bg: colorsBase.white.dark,

@@ -8,6 +8,12 @@ const baseStyle = defineStyle({
   },
 })
 
+const contrast = defineStyle((props) => {
+  return {
+    color: 'link.contrast',
+  }
+})
+
 const button = defineStyle((props) => {
   const { colorScheme } = props
 
@@ -122,5 +128,5 @@ const roundedGhost = defineStyle((props) => {
 
 export const Link = defineStyleConfig({
   baseStyle,
-  variants: { button, 'button-ghost': buttonGhost, rounded, 'rounded-ghost': roundedGhost },
+  variants: { button, 'button-ghost': buttonGhost, contrast, rounded, 'rounded-ghost': roundedGhost },
 })
