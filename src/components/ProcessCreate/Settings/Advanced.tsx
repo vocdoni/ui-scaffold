@@ -12,9 +12,7 @@ const SettingsAdvanced = () => {
   return (
     <Box>
       <Box mb={4}>
-        <Text fontFamily='pixeloidsans' textTransform='uppercase' mb={1} color='process_create.title'>
-          {t('form.process_create.behavior.title')}
-        </Text>
+        <Text className='process-create-title'>{t('form.process_create.behavior.title')}</Text>
       </Box>
       <Flex gap={5} flexDirection={{ base: 'column', md: 'row' }} justifyContent='space-between'>
         <Checkbox {...register('electionType.anonymous')} variant='radiobox' flex='0 0 30%'>

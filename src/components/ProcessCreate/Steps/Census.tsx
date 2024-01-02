@@ -20,9 +20,7 @@ export const Census = () => {
     <Wrapper>
       <Flex flexDirection='column' gap={10}>
         <Box>
-          <Text color='process_create.title' fontFamily='pixeloidsans' textTransform='uppercase' fontSize='md' mb={2}>
-            {t('census.title')}
-          </Text>
+          <Text className='process-create-title'>{t('census.title')}</Text>
           <Text fontSize='sm' color='process_create.description'>
             {t('census.description')}
           </Text>

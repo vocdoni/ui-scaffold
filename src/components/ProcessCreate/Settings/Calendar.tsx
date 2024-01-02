@@ -64,9 +64,7 @@ const Calendar = () => {
   return (
     <Box>
       <Box mb={4}>
-        <Text fontSize='md' fontFamily='pixeloidsans' textTransform='uppercase' color='process_create.title'>
-          {t('form.process_create.calendar.title')}
-        </Text>
+        <Text className='process-create-title'>{t('form.process_create.calendar.title')}</Text>
         <Text fontWeight='normal' fontSize='sm' color='process_create.description'>
           {t('form.process_create.calendar.title_description')}
         </Text>
@@ -81,9 +79,9 @@ const Calendar = () => {
         p={4}
       >
         <Box w='full'>
-          <Text fontFamily='pixeloidsans' textTransform='uppercase' fontSize='sm'>
-            {t('form.process_create.calendar.start_date')}
-          </Text>
+          <FormControl variant='process-create-label'>
+            <FormLabel>{t('form.process_create.calendar.start_date')}</FormLabel>
+          </FormControl>
           <Text fontSize='sm' mb={2} color='process_create.description'>
             {t('form.process_create.calendar.start_date_description')}
           </Text>
@@ -97,6 +95,7 @@ const Calendar = () => {
               minW='full'
             >
               <FormControl
+                variant='process-create-radio'
                 flex='1 1 50%'
                 maxW={70}
                 p={0}
@@ -109,24 +108,17 @@ const Calendar = () => {
                   },
                 }}
               >
-                <Radio value='1' w='full' onClick={() => clearErrors('startDate')} borderRadius={0}>
+                <Radio value='1' w='full' onClick={() => clearErrors('startDate')}>
                   <Text fontSize='sm'>{t('form.process_create.calendar.now')}</Text>
                 </Radio>
               </FormControl>
-              <FormControl
-                flex='1 1 50%'
-                isInvalid={!!errors.startDate}
-                display='flex'
-                flexDirection='column'
-                alignItems='start'
-                gap={2}
-              >
-                <Box
-                  w='full'
-                  p={0}
+
+              <Box flex='1 1 50%' maxW={70}>
+                <FormControl
+                  variant='process-create-radio'
                   border='1px solid'
                   borderColor={!autoStart ? 'process_create.calendar_start_date_selected' : 'lightgray'}
-                  maxW={70}
+                  mb={2}
                   sx={{
                     '& > label': {
                       display: 'flex',
@@ -134,7 +126,7 @@ const Calendar = () => {
                     },
                   }}
                 >
-                  <Radio value='0' borderRadius={0}>
+                  <Radio value='0'>
                     <Text
                       fontSize='sm'
                       onClick={() =>
@@ -147,9 +139,9 @@ const Calendar = () => {
                       {t('form.process_create.calendar.start_on_a_date')}
                     </Text>
                   </Radio>
-                </Box>
+                </FormControl>
                 {!autoStart && (
-                  <Box flex='1 1 50%' maxW={70}>
+                  <FormControl isInvalid={!!errors.startDate}>
                     <Input
                       disabled={getValues().electionType.autoStart}
                       type='datetime-local'
@@ -160,19 +152,16 @@ const Calendar = () => {
                       }}
                       min={today}
                       onFocus={() => showPicker(startDateRef)}
-                      borderRadius={0}
                     />
                     <FormErrorMessage>{errors.startDate?.message?.toString()}</FormErrorMessage>
-                  </Box>
+                  </FormControl>
                 )}
-              </FormControl>
+              </Box>
             </Stack>
           </RadioGroup>
 
-          <FormControl isInvalid={!!errors.endDate} maxW={70}>
-            <FormLabel fontFamily='pixeloidsans' textTransform='uppercase' m={0} fontSize='sm'>
-              {t('form.process_create.calendar.end_date')}
-            </FormLabel>
+          <FormControl variant='process-create-label' isInvalid={!!errors.endDate} maxW={70}>
+            <FormLabel>{t('form.process_create.calendar.end_date')}</FormLabel>
             <Text whiteSpace='nowrap' fontSize='sm' mb={2} color='process_create.description'>
               {t('form.process_create.calendar.end_date_title_helper')}
             </Text>
@@ -185,7 +174,6 @@ const Calendar = () => {
               }}
               min={format(min, DateFormatHtml)}
               onFocus={() => showPicker(endDateRef)}
-              borderRadius={0}
             />
             <FormErrorMessage>{errors.endDate?.message?.toString()}</FormErrorMessage>
           </FormControl>

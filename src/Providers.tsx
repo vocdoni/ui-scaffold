@@ -12,7 +12,7 @@ import { chains, wagmiConfig } from './constants/rainbow'
 import { translations } from './i18n/components'
 import { datesLocale } from './i18n/locales'
 import { RoutesProvider } from './router/Router'
-import { rainbowStyles, theme } from './theme/onvote'
+import { rainbowStyles, theme } from './theme'
 
 export const Providers = () => (
   <ChakraProvider theme={extendTheme(theme)}>

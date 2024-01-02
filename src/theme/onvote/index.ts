@@ -66,6 +66,11 @@ export const theme = extendTheme(vtheme, {
       body: {
         fontFamily: '"Archivo", sans-serif',
       },
+      '.process-create-title': {
+        fontFamily: 'pixeloidsans, monospace',
+        textTransform: 'uppercase',
+        color: colors.process_create.title,
+      },
     },
   },
   breakpoints,

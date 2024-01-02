@@ -147,10 +147,10 @@ export const Confirm = () => {
   return (
     <Wrapper>
       <Box>
-        <Text mb={2} fontFamily='pixeloidsans' textTransform='uppercase' color='process_create.title'>
-          {t('form.process_create.confirm.title')}
+        <Text className='process-create-title'>{t('form.process_create.confirm.title')}</Text>
+        <Text mb={4} color='process_create.description'>
+          {t('form.process_create.confirm.description')}
         </Text>
-        <Text mb={4}>{t('form.process_create.confirm.description')}</Text>
         <ElectionProvider election={published}>
           <Flex flexDirection={{ base: 'column', xl2: 'row' }} gap={5}>
             <Preview />

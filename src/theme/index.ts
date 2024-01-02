@@ -34,6 +34,9 @@ export const theme = extendTheme(vtheme, {
         '--box-shadow-darker': '0px 2px 4px #808080b5',
         '--vcd-gradient-primary': 'linear-gradient(to right, #24656e, #2c545a)',
       },
+      '.process-create-title': {
+        fontWeight: 'bold',
+      },
     },
   },
   breakpoints,

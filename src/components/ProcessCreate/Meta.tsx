@@ -26,18 +26,14 @@ const CreateProcessMeta = () => {
     <>
       <Box>
         <Box mb={4}>
-          <Text fontSize='md' fontFamily='pixeloidsans' textTransform='uppercase' color='process_create.title'>
-            {t('form.process_create.meta.title')}
-          </Text>
+          <Text className='process-create-title'>{t('form.process_create.meta.title')}</Text>
           <Text fontSize='sm' color='process_create.description'>
             {t('form.process_create.meta.description')}
           </Text>
         </Box>
         <Box bgColor='process_create.section' border='1px solid' borderColor='process_create.section_border' p={4}>
-          <FormControl isInvalid={isInvalidFieldMap(errors, `title`)} mb={3}>
-            <FormLabel fontSize='sm' fontFamily='pixeloidsans' textTransform='uppercase' mb={1}>
-              {t('form.process_create.meta.title_label')}
-            </FormLabel>
+          <FormControl variant='process-create-label' isInvalid={isInvalidFieldMap(errors, `title`)} mb={3}>
+            <FormLabel>{t('form.process_create.meta.title_label')}</FormLabel>
             <Input
               {...register('title', { required })}
               maxLength={maxLengthTitle}
@@ -58,10 +54,8 @@ const CreateProcessMeta = () => {
             <FormErrorMessage>{fieldMapErrorMessage(errors, `title`)}</FormErrorMessage>
           </FormControl>
 
-          <FormControl isInvalid={isInvalidFieldMap(errors, `description`)}>
-            <FormLabel fontSize='sm' fontFamily='pixeloidsans' textTransform='uppercase' mb={1}>
-              {t('form.process_create.meta.description_label')}
-            </FormLabel>
+          <FormControl variant='process-create-label' isInvalid={isInvalidFieldMap(errors, `description`)}>
+            <FormLabel>{t('form.process_create.meta.description_label')}</FormLabel>
             <Textarea
               {...register('description')}
               maxLength={maxLengthDescription}

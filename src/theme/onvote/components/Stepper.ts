@@ -3,6 +3,9 @@ const baseStyle = {
     borderRadius: '0px',
     '&[data-status=complete]': {
       background: 'process_create.stepper.bg',
+      bgImage: '/assets/check-icon.svg',
+      bgRepeat: 'no-repeat',
+      bgPosition: 'center',
     },
     '&[data-status=active]': {
       borderColor: 'process_create.stepper.bg',
