@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { HiCheckCircle } from 'react-icons/hi'
 import { CensusType, CensusTypes, useCensusTypes } from '../Census/TypeSelector'
 import { StepsNavigation } from './Navigation'
-import Wrapper from './Wrapper'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
+import Wrapper from './Wrapper'
 
 export interface CensusValues {
   censusType: CensusType | null
@@ -13,7 +13,7 @@ export interface CensusValues {
 export const Census = () => {
   const { t } = useTranslation()
   const { form, setForm } = useProcessCreationSteps()
-  const { list, details } = useCensusTypes()
+  const { defined, details } = useCensusTypes()
   const { censusType } = form
 
   return (
@@ -42,7 +42,7 @@ export const Census = () => {
           isLazy
         >
           <TabList>
-            {list.map((ct: CensusType, index: number) => (
+            {defined.map((ct: CensusType, index: number) => (
               <Tab key={index}>
                 <Icon as={HiCheckCircle} />
                 <Box>
@@ -55,7 +55,7 @@ export const Census = () => {
           </TabList>
 
           <TabPanels bgColor='process_create.section' borderRadius='md'>
-            {list.map((ct: CensusType, index: number) => (
+            {defined.map((ct: CensusType, index: number) => (
               <TabPanel key={index}>{details[ct].component()}</TabPanel>
             ))}
           </TabPanels>

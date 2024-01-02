@@ -1,5 +1,6 @@
 import react from '@vitejs/plugin-react'
 import { execSync } from 'node:child_process'
+import merge from 'ts-deepmerge'
 import { defineConfig, loadEnv } from 'vite'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import tsconfigPaths from 'vite-tsconfig-paths'
@@ -27,6 +28,7 @@ const viteconfig = ({ mode }) => {
     define: {
       'import.meta.env.VOCDONI_ENVIRONMENT': JSON.stringify(vocdoniEnvironment),
       'import.meta.env.CUSTOM_ORGANIZATION_DOMAINS': JSON.parse(process.env.CUSTOM_ORGANIZATION_DOMAINS || '{}'),
+      'import.meta.env.features': features(),
     },
     plugins: [
       tsconfigPaths(),
@@ -44,6 +46,41 @@ const viteconfig = ({ mode }) => {
       }),
     ],
   })
+}
+
+const features = () => {
+  const defaults = {
+    vote: {
+      anonymous: true,
+      overwrite: true,
+      secret: true,
+    },
+    login: ['web3', 'web2'],
+    census: ['spreadsheet', 'token', 'web3'],
+  }
+  const features = merge.withOptions({ mergeArrays: false }, defaults, JSON.parse(process.env.FEATURES || '{}'))
+  // Ensure that at least one login method is enabled
+  if (!features.login.length) {
+    features.login = ['web3']
+  }
+  // Ensure that at least one census method is enabled
+  if (!features.census.length) {
+    features.census = ['spreadsheet']
+  }
+  // We need pure booleans in order to ensure rollup tree-shakes non enabled features.
+  // Using functions like `.includes()` would prevent such tree-shaking, resulting in a bigger bundle.
+  features._census = {
+    spreadsheet: false,
+    token: false,
+    web3: false,
+  }
+  for (const census of features.census) {
+    features._census[census] = true
+  }
+
+  console.log('features:', features)
+
+  return features
 }
 
 export default viteconfig
