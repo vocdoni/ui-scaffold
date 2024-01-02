@@ -50,8 +50,8 @@ export const { chains, publicClient } = configureChains(
 const appName = 'Vocdoni UI Scaffold'
 const projectId = '641a1f59121ad0b519cca3a699877a08'
 
-const connectors = connectorsForWallets([
-  {
+const featuredConnectors = () => {
+  const web3 = {
     groupName: 'Popular',
     wallets: [
       metaMaskWallet({ chains, projectId }),
@@ -59,8 +59,9 @@ const connectors = connectorsForWallets([
       coinbaseWallet({ chains, appName }),
       walletConnectWallet({ chains, projectId }),
     ],
-  },
-  {
+  }
+
+  const web2 = {
     groupName: 'Social',
     wallets: [
       oAuthWallet({
@@ -94,8 +95,18 @@ const connectors = connectorsForWallets([
         },
       }),
     ],
-  },
-])
+  }
+
+  const connectors = { web2, web3 }
+  const wallets = []
+  for (const connector of import.meta.env.features.login) {
+    wallets.push(connectors[connector])
+  }
+
+  return wallets
+}
+
+const connectors = connectorsForWallets(featuredConnectors())
 
 export const wagmiConfig = createConfig({
   autoConnect: true,
