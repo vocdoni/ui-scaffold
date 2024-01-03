@@ -29,7 +29,7 @@ export const AppProviders = () => {
   const { t, i18n } = useTranslation()
 
   let signer = null
-  if (data && address) {
+  if (data && address && data.account.address === address) {
     signer = walletClientToSigner(data)
   }
 

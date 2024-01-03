@@ -23,6 +23,9 @@ export const ActionsMenu = (props: MenuListProps) => {
 
   if (!election || (election && election?.organizationId !== account?.address)) return null
 
+  // canceled and ended elections cannot be acted upon
+  if ([ElectionStatus.CANCELED, ElectionStatus.ENDED, ElectionStatus.RESULTS].includes(election.status)) return null
+
   return (
     <Menu closeOnSelect={false}>
       <MenuButton as={IconButton} aria-label='Actions' icon={<FaCog />} variant='ghost' />

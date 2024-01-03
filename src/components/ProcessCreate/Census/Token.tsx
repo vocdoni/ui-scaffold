@@ -37,7 +37,7 @@ export interface FilterOptionOption<Option> {
 }
 type GrupedTokenTypes = {
   label: string
-  options: Token[] | { name: string; status: { synced: boolean }; type: string }[]
+  options: Token[] | { name: string; synced: boolean; type: string }[]
 }[]
 
 export const CensusTokens = () => {
@@ -50,7 +50,6 @@ export const CensusTokens = () => {
   const selectChainRef = useRef<SelectInstance<any, false, GroupBase<any>>>(null)
   const [chains, setChains] = useState<ICensus3SupportedChain[]>([])
   const [groupedTokens, setGroupedTokens] = useState<GrupedTokenTypes>([])
-
   const {
     setValue,
     register,
@@ -58,7 +57,6 @@ export const CensusTokens = () => {
     clearErrors,
     formState: { errors },
   } = useFormContext()
-
   const { tokens: selectComponentsTokens, networks: selectComponentsNetworks } = selectComponents
 
   const client = useMemo(
@@ -84,7 +82,6 @@ export const CensusTokens = () => {
     },
   })
   const ct = watch('censusToken')
-
   const strategySize: number = watch('strategySize')
 
   const formatGroupLabel = (data: GroupBase<any>) => {
@@ -186,7 +183,7 @@ export const CensusTokens = () => {
 
         groupedTokens.push({
           label: 'request',
-          options: [{ name: t('census.request_custom_token'), status: { synced: true }, type: 'request' }],
+          options: [{ name: t('census.request_custom_token'), synced: true, type: 'request' }],
         })
 
         setGroupedTokens(groupedTokens)
@@ -206,9 +203,10 @@ export const CensusTokens = () => {
       setLoadingTk(true)
       setError(undefined)
       try {
-        const max = await client.getStrategySize(ct.defaultStrategy)
+        const { size, timeToCreateCensus } = await client.getStrategyEstimation(ct.defaultStrategy)
 
-        setValue('strategySize', max)
+        setValue('strategySize', size)
+        setValue('timeToCreateCensus', timeToCreateCensus)
       } catch (err) {
         setError(errorToString(err))
         setValue('strategySize', undefined)
@@ -329,7 +327,7 @@ export const CensusTokens = () => {
             isClearable
             isSearchable
             isDisabled={!ch || loadingTk}
-            isOptionDisabled={(option) => !(option as { status?: { synced?: boolean } })?.status?.synced}
+            isOptionDisabled={(option) => !(option as { synced?: boolean })?.synced}
             components={selectComponentsTokens as Partial<SelectComponentsConfig<unknown, boolean, GroupBase<unknown>>>}
             chakraStyles={customStylesTokensSelect}
           />

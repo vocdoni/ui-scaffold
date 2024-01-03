@@ -1,8 +1,9 @@
 name: Build and Deploy to Netlify
 on:
-  push:
-    branches: [develop]
-  pull_request:
+  workflow_run:
+    workflows: ["Lint and test"]
+    types:
+      - completed
 jobs:
   build:
     runs-on: ubuntu-22.04
