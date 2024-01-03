@@ -402,7 +402,6 @@
     "elections_list_empty": {
       "alt": "Imatge il·lustrant que l'organització és buida",
       "description": "Com a organitzador, tens la capacitat de crear processos de votació personalitzats per a la teva comunitat. Aquests procediments de votació ofereixen una àmplia gamma de flexibilitat, incloent opcions com un cens on els votants han d'autenticar-se utilitzant dades personalitzades (com ara nom d'usuari, contrasenya i data de naixement), un sistema basat en tokens que permet la participació de tots els titulars de tokens o una llista blanca que utilitza adreces de cartera per a l'eligibilitat.",
-      "footer": "Obtén més informació sobre com crear votacions <customLink>en aquesta guia</customLink>.",
       "not_owner": "Aquesta organització encara no té votacions.",
       "title": "Crea la teva primera elecció"
     },
@@ -432,11 +431,13 @@
       "title": "Anònim"
     },
     "is_invalid": "Aquest procés té dades no vàlides i per tant no pot carregar-se",
+    "no_description": "No hi ha cap descripció proporcionada",
     "people_in_census_one": "Un votant",
     "people_in_census_many": "",
     "people_in_census_other": "{{ count }} votants",
     "questions": "Preguntes",
     "results": "Resultats",
+    "schedule": "HORARI",
     "share_caption": "Acabo d'emetre el meu vot a {{ title }}!!",
     "share_title": "Comparteix a {{ network }}",
     "spreadsheet": {
@@ -446,6 +447,7 @@
         "question": "<strong>Pregunta {{ number }}:</strong> {{ answer }}"
       }
     },
+    "state": "ESTAT",
     "status": {
       "active": "Actiu",
       "canceled": "Procés cancel·lat",
