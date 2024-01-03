@@ -57,7 +57,7 @@ const Steps = () => {
           </Step>
         ))}
       </Stepper>
-      <Box>
+      <Box w='full'>
         <StepsForm
           steps={steps}
           activeStep={activeStep}
