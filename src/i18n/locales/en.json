@@ -94,7 +94,8 @@
     "token_description": "Configure the census by choosing a token from any available network. You can request a token here.",
     "token_required": "You need to select a token",
     "token_title": "Token based census",
-    "wallet_address_title": "Wallet addresses"
+    "wallet_address_title": "Wallet addresses",
+    "social_address_title": "Github users"
   },
   "claim": {
     "error_title": "Error",
@@ -232,7 +233,9 @@
         "token_base_title": "Token based",
         "tokens_placeholder": "Search or paste token address",
         "wallet_address_description": "Create a census of eligible voters providing a list of wallet addresses.",
-        "wallet_address_title": "Wallet addresses"
+        "wallet_address_title": "Wallet addresses",
+        "social_title": "Girhub Census",
+        "social_description": "Create a census of eligible voters providing a list of Github users."
       },
       "confirm": {
         "anonymous": "Anonymous voting active",
@@ -487,5 +490,10 @@
   "use_read_more": {
     "read_less": "Read less",
     "read_more": "Read more"
+  },
+  "csp_census": {
+    "github": {
+      "selected_users": "Selected users:"
+    }
   }
 }

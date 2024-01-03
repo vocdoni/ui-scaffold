@@ -1,15 +1,22 @@
 import { useTranslation } from 'react-i18next'
-import { BiCoinStack, BiFile, BiWallet } from 'react-icons/bi'
+import { BiCoinStack, BiFile, BiGroup, BiWallet } from 'react-icons/bi'
+import { StepFormCensusCsp } from '../StepForm/CensusCsp'
 import { SpreadsheetCensus, TokenCensus, Web3Census } from '../StepForm/Censuses'
 
 export const CensusTypeSpreadsheet = 'spreadsheet'
 export const CensusTypeToken = 'token'
 export const CensusTypeWeb3 = 'web3'
-export type CensusType = typeof CensusTypeWeb3 | typeof CensusTypeSpreadsheet | typeof CensusTypeToken
+export const CensusTypeCsp = 'csp'
+export type CensusType =
+  | typeof CensusTypeWeb3
+  | typeof CensusTypeSpreadsheet
+  | typeof CensusTypeToken
+  | typeof CensusTypeCsp
 export const CensusTypes = [
   CensusTypeSpreadsheet as CensusType,
   CensusTypeToken as CensusType,
   CensusTypeWeb3 as CensusType,
+  CensusTypeCsp as CensusType,
 ]
 
 export const useCensusTypes = () => {
@@ -36,6 +43,12 @@ export const useCensusTypes = () => {
         description: t('form.process_create.census.wallet_address_description'),
         icon: BiWallet,
         component: Web3Census,
+      },
+      [CensusTypeCsp]: {
+        title: t('form.process_create.census.social_title'),
+        description: t('form.process_create.census.social_description'),
+        icon: BiGroup,
+        component: StepFormCensusCsp,
       },
     },
   }

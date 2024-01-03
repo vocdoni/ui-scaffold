@@ -13,6 +13,7 @@ import { translations } from './i18n/components'
 import { datesLocale } from './i18n/locales'
 import { RoutesProvider } from './router/Router'
 import { rainbowStyles, theme } from './theme'
+import { CspAdminProvider } from '~components/ProcessCreate/Census/Csp/use-csp'
 
 export const Providers = () => (
   <ChakraProvider theme={extendTheme(theme)}>
@@ -35,17 +36,19 @@ export const AppProviders = () => {
 
   return (
     <RainbowKitProvider chains={chains} theme={rainbowStyles(colorMode)}>
-      <ClientProvider
-        env={VocdoniEnvironment as EnvOptions}
-        signer={signer as Signer}
-        locale={translations(t)}
-        datesLocale={datesLocale(i18n.language)}
-      >
-        <OrganizationModalProvider>
-          <ColorModeScript />
-          <RoutesProvider />
-        </OrganizationModalProvider>
-      </ClientProvider>
+      <CspAdminProvider signer={signer as Signer}>
+        <ClientProvider
+          env={VocdoniEnvironment as EnvOptions}
+          signer={signer as Signer}
+          locale={translations(t)}
+          datesLocale={datesLocale(i18n.language)}
+        >
+          <OrganizationModalProvider>
+            <ColorModeScript />
+            <RoutesProvider />
+          </OrganizationModalProvider>
+        </ClientProvider>
+      </CspAdminProvider>
     </RainbowKitProvider>
   )
 }
