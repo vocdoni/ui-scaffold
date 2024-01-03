@@ -203,7 +203,91 @@ const secondary = defineStyle((props) => {
     },
   }
 })
+const dropdown = defineStyle({
+  bgColor: 'transparent',
 
+  _hover: {
+    bgColor: 'transparent',
+  },
+  _active: {
+    bgColor: 'transparent',
+  },
+})
+const addressDropdown = defineStyle({
+  ...onVoteCommonStyles.common,
+  minW: 44,
+  bgColor: 'black.600',
+  color: 'black.50',
+  borderColor: 'black.600',
+
+  _before: {
+    ...onVoteCommonStyles.before,
+    bgColor: 'black.600',
+  },
+
+  _after: {
+    ...onVoteCommonStyles.after,
+    bgColor: 'black.600',
+  },
+
+  _hover: {
+    bgColor: 'black.700',
+    borderColor: 'black.700',
+
+    _before: {
+      ...onVoteCommonStyles.hover,
+      bgColor: 'black.700',
+    },
+
+    _after: {
+      ...onVoteCommonStyles.hover,
+      bgColor: 'black.700',
+    },
+  },
+
+  _active: {
+    bgColor: 'black.600',
+    borderColor: 'black.700',
+    _before: {
+      ...onVoteCommonStyles.active,
+      borderColor: 'black.700',
+    },
+
+    _after: {
+      ...onVoteCommonStyles.active,
+      borderColor: 'black.700',
+    },
+  },
+
+  _disabled: {
+    bgColor: 'button_disabled.bg !important',
+    color: 'button_disabled.color',
+    borderColor: 'button_disabled.bg',
+
+    _before: {
+      bgColor: 'button_disabled.bg',
+      transition: 'none',
+    },
+    _after: {
+      bgColor: 'button_disabled.bg ',
+      transition: 'none',
+    },
+
+    _hover: {
+      transition: 'none',
+      borderColor: 'button_disabled.bg',
+
+      _before: {
+        width: '100%',
+        bgColor: 'button_disabled.bg',
+      },
+      _after: {
+        width: '100%',
+        bgColor: 'button_disabled.bg',
+      },
+    },
+  },
+})
 const transparent = defineStyle((props) => {
   return {
     bgColor: 'transparent',
@@ -298,7 +382,7 @@ const icon2 = defineStyle((props) => {
 
 export const Button = defineStyleConfig({
   baseStyle,
-  variants: { icon, icon2, primary, process, secondary, transparent },
+  variants: { 'address-dropdown': addressDropdown, dropdown, icon, icon2, primary, process, secondary, transparent },
   defaultProps: {
     colorScheme: 'primary',
     variant: 'primary',

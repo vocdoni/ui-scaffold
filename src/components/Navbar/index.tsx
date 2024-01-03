@@ -22,7 +22,7 @@ const Navbar = () => {
       <List as='nav' display='flex' alignItems='center' gap={4}>
         {isConnected && (
           <ListItem>
-            <Button as={ReactRouterLink} to='/processes/create' colorScheme='primary'>
+            <Button as={ReactRouterLink} to='/processes/create'>
               <AddIcon boxSize={{ base: 4, sm2: 3 }} />
               <Text as='span' display={{ base: 'none', sm2: 'inline-block' }}>
                 {t('menu.new_process')}
@@ -58,7 +58,7 @@ const Navbar = () => {
             <Menu>
               {({ isOpen }) => (
                 <>
-                  <MenuButton as={Button} variant='transparent' aria-label={t('menu.languages_list')} p={2}>
+                  <MenuButton as={Button} variant='dropdown' aria-label={t('menu.languages_list')} p={2}>
                     <Box as='span' display='flex' alignItems='center'>
                       <Avatar
                         src={account?.account.avatar}

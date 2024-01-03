@@ -54,6 +54,34 @@ const secondary = defineStyle((props) => {
     },
   }
 })
+const dropdown = defineStyle({
+  borderRadius: 'full',
+  bgColor: 'transparent',
+  boxShadow: 'var(--box-shadow-btn)',
+
+  _hover: {
+    bgColor: 'gray.100',
+  },
+
+  _active: {
+    bgColor: 'gray.200',
+    boxShadow: 'none',
+  },
+})
+const addressDropdown = defineStyle((props) => {
+  return {
+    minW: 40,
+    bgColor: 'gray.100',
+
+    _hover: {
+      bgColor: 'gray.200',
+    },
+
+    _active: {
+      bgColor: 'gray.300',
+    },
+  }
+})
 const transparent = defineStyle((props) => {
   return {
     bgColor: 'transparent',
@@ -91,6 +119,7 @@ const icon = defineStyle((props) => {
 export const Button = defineStyleConfig({
   defaultProps: {
     colorScheme: 'primary',
+    variant: 'primary',
   },
-  variants: { icon, process, primary, secondary, transparent },
+  variants: { 'address-dropdown': addressDropdown, dropdown, icon, process, primary, secondary, transparent },
 })

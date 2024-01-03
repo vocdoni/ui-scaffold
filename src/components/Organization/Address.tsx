@@ -15,7 +15,7 @@ const AddressBtn = ({ ...props }) => {
 
   return (
     <Menu {...props}>
-      <MenuButton as={Button} variant='primary' colorScheme='black' minW={44}>
+      <MenuButton as={Button} variant='address-dropdown'>
         <Flex alignItems='center' gap={4}>
           <Text isTruncated>{addressTextOverflow(address as string, 3)}</Text>
           <HiOutlineEllipsisHorizontalCircle />
