@@ -1,4 +1,4 @@
-import { Alert, AlertIcon, Box, Button, Card, Flex, Link, Spinner, Text, useMediaQuery } from '@chakra-ui/react'
+import { Box, Button, Card, Flex, Link, Spinner, Text, useMediaQuery } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { environment, SpreadsheetAccess } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
@@ -127,16 +127,8 @@ const ProcessAside = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
                 {t('aside.voting_anonymous_advice')}
               </Text>
             )}
-            {isAbleToVote && isLargerThanMd && !election?.electionType.anonymous && (
-              <VoteButton w='full' mb={0} onClick={setQuestionsTab} />
-            )}
-            {isAbleToVote && isLargerThanMd && election?.electionType.anonymous && (
-              <Alert status='error' color='black'>
-                <AlertIcon />
-                We are upgrading the anonymous voting protocol, it remains temporary disabled. Sorry for the
-                inconvenience.
-              </Alert>
-            )}
+            {isAbleToVote && isLargerThanMd && <VoteButton w='full' mb={0} onClick={setQuestionsTab} />}
+
             {hasOverwriteEnabled(election) && isInCensus && votesLeft > 0 && voted && (
               <Text fontSize='sm' textAlign='center'>
                 {t('aside.overwrite_votes_left', { count: votesLeft })}
