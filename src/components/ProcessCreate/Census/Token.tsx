@@ -37,7 +37,7 @@ export interface FilterOptionOption<Option> {
 }
 type GrupedTokenTypes = {
   label: string
-  options: Token[] | { name: string; status: { synced: boolean }; type: string }[]
+  options: Token[] | { name: string; synced: boolean; type: string }[]
 }[]
 
 export const CensusTokens = () => {
@@ -183,7 +183,7 @@ export const CensusTokens = () => {
 
         groupedTokens.push({
           label: 'request',
-          options: [{ name: t('census.request_custom_token'), status: { synced: true }, type: 'request' }],
+          options: [{ name: t('census.request_custom_token'), synced: true, type: 'request' }],
         })
 
         setGroupedTokens(groupedTokens)
@@ -327,7 +327,7 @@ export const CensusTokens = () => {
             isClearable
             isSearchable
             isDisabled={!ch || loadingTk}
-            isOptionDisabled={(option) => !(option as { status?: { synced?: boolean } })?.status?.synced}
+            isOptionDisabled={(option) => !(option as { synced?: boolean })?.synced}
             components={selectComponentsTokens as Partial<SelectComponentsConfig<unknown, boolean, GroupBase<unknown>>>}
             chakraStyles={customStylesTokensSelect}
           />
