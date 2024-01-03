@@ -2,6 +2,7 @@ import { AddIcon, ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 import { Avatar, Box, Button, Icon, Link, List, ListItem, Menu, MenuButton, MenuList, Text } from '@chakra-ui/react'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { useClient } from '@vocdoni/react-providers'
+import { ensure0x } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import { FaGlobeAmericas } from 'react-icons/fa'
 import { MdHowToVote } from 'react-icons/md'
@@ -45,7 +46,7 @@ const Navbar = () => {
           <ListItem>
             <Link
               as={ReactRouterLink}
-              to={`/organization/0x${account?.address}`}
+              to={`/organization/${ensure0x(account?.address)}`}
               variant='rounded'
               color='primary.main'
               aria-label={t('menu.my_org_aria_label')}
