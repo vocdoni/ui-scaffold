@@ -399,7 +399,6 @@
     "elections_list_empty": {
       "alt": "Image illustrating that the organization is empty",
       "description": "As an organizer, you have the capability to design tailored voting processes for your community. These procedures provide extensive flexibility, allowing options such as a census where voters authenticate using custom data (such as username, password, and birthday), a token-based system enabling all tokenholders to participate, or a whitelist that uses wallet addresses for eligibility.",
-      "footer": "Learn more about creating voting processes <customLink>in this guide</customLink>.",
       "not_owner": "This organization has no voting processes yet",
       "title": "Create your first voting process"
     },

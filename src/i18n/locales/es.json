@@ -402,7 +402,6 @@
     "elections_list_empty": {
       "alt": "Imagen que ilustra que la organización está vacía",
       "description": "Al comenzar haciendo tu primera votación, puedes elegir entre diferentes tipos de autenticación para tu voto.",
-      "footer": "Obtén más información sobre cómo crear una votación <customLink>en esta guía</customLink>.",
       "not_owner": "Esta organización aún no tiene votaciones.",
       "title": "Crea tu primer proceso de votación"
     },
