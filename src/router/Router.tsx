@@ -3,14 +3,14 @@ import { lazy } from 'react'
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
 // These aren't lazy loaded to avoid excessive loaders in different locations
 import Error from '~elements/Error'
-import Layout from '../elements/Layout'
-import LayoutProcessCreate from '../elements/LayoutProcessCreate'
+import Layout from '../elements/LayoutOnVote'
+import LayoutProcessCreate from '../elements/LayoutProcessCreateOnVote'
 import { SuspenseLoader } from './SuspenseLoader'
 
 // Lazy loading helps splitting the final code, which helps downloading the app (theoretically)
 const ProtectedRoutes = lazy(() => import('./ProtectedRoutes'))
 const ProcessCreateSteps = lazy(() => import('../components/ProcessCreate/Steps'))
-const Home = lazy(() => import('../elements/Home'))
+const Home = lazy(() => import('../elements/HomeOnVote'))
 const NotFound = lazy(() => import('../elements/NotFound'))
 const Organization = lazy(() => import('../elements/Organization'))
 const Process = lazy(() => import('../elements/Process'))

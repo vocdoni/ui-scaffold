@@ -12,7 +12,7 @@ import { chains, wagmiConfig } from './constants/rainbow'
 import { translations } from './i18n/components'
 import { datesLocale } from './i18n/locales'
 import { RoutesProvider } from './router/Router'
-import { rainbowStyles, theme } from './theme'
+import { rainbowStyles, theme } from './theme/onvote'
 
 export const Providers = () => (
   <ChakraProvider theme={extendTheme(theme)}>
@@ -29,7 +29,7 @@ export const AppProviders = () => {
   const { t, i18n } = useTranslation()
 
   let signer = null
-  if (data && address) {
+  if (data && address && data.account.address === address) {
     signer = walletClientToSigner(data)
   }
 

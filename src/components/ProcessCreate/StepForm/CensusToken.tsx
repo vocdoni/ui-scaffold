@@ -9,6 +9,7 @@ export interface CensusTokenValues {
   censusToken: Census3Token
   maxCensusSize?: number
   chain: ICensus3SupportedChain
+  timeToCreateCensus: number
   strategySize: number
 }
 
