@@ -52,7 +52,7 @@ const ProcessHeader = () => {
             mb={4}
           >
             <Flex gap={3} alignItems='center'>
-              <Text as='span' color='process.label'>
+              <Text as='span' color='process.label' fontSize='sm'>
                 {t('process.state')}
               </Text>
               <ElectionStatusBadge />
@@ -62,7 +62,7 @@ const ProcessHeader = () => {
               alignItems={{ base: 'start', xl: 'center' }}
               gap={{ xl: 3 }}
             >
-              <Text as='span' color='process.label'>
+              <Text as='span' color='process.label' fontSize='sm'>
                 {t('process.schedule')}
               </Text>
               <ElectionSchedule textAlign='left' color='process.info_title' />
