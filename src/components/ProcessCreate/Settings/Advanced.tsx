@@ -1,4 +1,4 @@
-import { Box, Checkbox, Flex, Icon, Text } from '@chakra-ui/react'
+import { Box, Checkbox, Flex, Icon, Text, Tooltip } from '@chakra-ui/react'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { BiCheckDouble } from 'react-icons/bi'
@@ -17,15 +17,17 @@ const SettingsAdvanced = () => {
         </Text>
       </Box>
       <Flex gap={5} flexDirection={{ base: 'column', md: 'row' }} justifyContent='space-between'>
-        <Checkbox {...register('electionType.anonymous')} variant='radiobox' flex='0 0 30%'>
-          <Box>
-            <Icon as={FaUserSecret} />
-            <Text fontFamily='pixeloidsans' textTransform='uppercase'>
-              {t('form.process_create.behavior.anonymous.title')}
-            </Text>
-          </Box>
-          <Text>{t('form.process_create.behavior.anonymous.description')}</Text>
-        </Checkbox>
+        <Tooltip label='We are upgrading the anonymous voting protocol, it remains temporary disabled.'>
+          <Checkbox {...register('electionType.anonymous')} variant='radiobox' flex='0 0 30%' isDisabled>
+            <Box>
+              <Icon as={FaUserSecret} />
+              <Text fontFamily='pixeloidsans' textTransform='uppercase'>
+                {t('form.process_create.behavior.anonymous.title')}
+              </Text>
+            </Box>
+            <Text>{t('form.process_create.behavior.anonymous.description')}</Text>
+          </Checkbox>
+        </Tooltip>
         <Checkbox {...register('electionType.secretUntilTheEnd')} variant='radiobox' flex='0 0 30%'>
           <Box>
             <Icon as={HiKey} />
