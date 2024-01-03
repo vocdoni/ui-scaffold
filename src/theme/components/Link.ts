@@ -1,7 +1,17 @@
 import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
 
-const primary = defineStyle({
+const baseStyle = defineStyle({
   color: 'link.primary',
+  textDecoration: 'underline',
+  _hover: {
+    textDecoration: 'none',
+  },
+})
+
+const contrast = defineStyle((props) => {
+  return {
+    color: 'link.contrast',
+  }
 })
 
 const button = defineStyle((props) => {
@@ -21,6 +31,7 @@ const button = defineStyle((props) => {
     lineHeight: 1.2,
     color: 'white',
     bgColor: colorScheme ? `${colorScheme}.500` : 'gray.100',
+    textDecoration: 'none',
 
     _hover: {
       textDecoration: 'none',
@@ -46,6 +57,7 @@ const buttonGhost = defineStyle((props) => {
     px: 4,
     fontWeight: 'semibold',
     lineHeight: 1.2,
+    textDecoration: 'none',
 
     _hover: {
       textDecoration: 'none',
@@ -75,6 +87,7 @@ const rounded = defineStyle((props) => {
     lineHeight: 1.2,
     color: colorScheme ? `${colorScheme}.50` : 'black',
     bgColor: colorScheme ? `${colorScheme}.500` : 'gray.100',
+    textDecoration: 'none',
 
     _hover: {
       textDecoration: 'none',
@@ -100,6 +113,7 @@ const roundedGhost = defineStyle((props) => {
     px: 4,
     fontWeight: 'semibold',
     lineHeight: 1.2,
+    textDecoration: 'none',
 
     _hover: {
       textDecoration: 'none',
@@ -113,5 +127,6 @@ const roundedGhost = defineStyle((props) => {
 })
 
 export const Link = defineStyleConfig({
-  variants: { button, 'button-ghost': buttonGhost, primary, rounded, 'rounded-ghost': roundedGhost },
+  baseStyle,
+  variants: { button, 'button-ghost': buttonGhost, contrast, rounded, 'rounded-ghost': roundedGhost },
 })

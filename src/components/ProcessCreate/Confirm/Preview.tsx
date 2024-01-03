@@ -27,7 +27,7 @@ const Preview = () => {
       <Flex flexDirection='column' gap={6}>
         <Flex>
           <Text fontWeight='bold'>{t('form.process_create.confirm.election_info')}</Text>
-          <Link variant='primary' ml='auto' onClick={() => setActiveStep(1)}>
+          <Link ml='auto' onClick={() => setActiveStep(1)}>
             <Icon
               as={IoMdCreate}
               title={t('form.process_create.confirm.edit')}
@@ -103,7 +103,7 @@ const Preview = () => {
             <ElectionQuestions />
           </ChakraProvider>
         </Box>
-        <Link variant='primary' position='absolute' top={0} right={0} onClick={() => setActiveStep(2)}>
+        <Link position='absolute' top={0} right={0} onClick={() => setActiveStep(2)}>
           <Icon
             as={IoMdCreate}
             title={t('form.process_create.confirm.edit')}
@@ -119,7 +119,7 @@ const Preview = () => {
         <Box w={{ md: '65%' }}>
           <Census />
         </Box>
-        <Link variant='primary' position='absolute' top={0} right={0} onClick={() => setActiveStep(3)}>
+        <Link position='absolute' top={0} right={0} onClick={() => setActiveStep(3)}>
           <Icon
             as={IoMdCreate}
             title={t('form.process_create.confirm.edit')}

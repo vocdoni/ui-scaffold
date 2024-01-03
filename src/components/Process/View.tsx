@@ -168,7 +168,7 @@ const SuccessVoteModal = () => {
           <Trans
             i18nKey='process.success_modal.text'
             components={{
-              verify: <Link variant='primary' href={verify} target='_blank' />,
+              verify: <Link href={verify} target='_blank' />,
               p: <Text mb={2} />,
             }}
           />

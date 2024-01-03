@@ -106,10 +106,7 @@ const ProcessAside = () => {
                 to={environment.verifyVote(env, voted)}
                 target='_blank'
                 whiteSpace='nowrap'
-                textDecoration='underline'
-                _hover={{
-                  textDecoration: 'none',
-                }}
+                variant='contrast'
               >
                 {t('aside.verify_vote_on_explorer')}
               </Link>

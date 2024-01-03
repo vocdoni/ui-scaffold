@@ -40,7 +40,7 @@ export const CsvPreview = ({ manager, upload }: CsvPreviewProps) => {
       </Flex>
 
       <Box bgColor='process_create.spreadsheet.preview_bg_interior' p={5} borderRadius='lg'>
-        <Badge variant='primary'>{t('form.process_create.spreadsheet.preview.title')}</Badge>
+        <Badge>{t('form.process_create.spreadsheet.preview.title')}</Badge>
         <Text my={3}>{t('form.process_create.spreadsheet.preview.description')}</Text>
 
         <Flex flexDirection='column' gap={3} w={{ base: '70%', md: '50%' }} mx='auto'>
