@@ -52,8 +52,11 @@ const features = {
     overwrite: true,
     secret: true,
   },
+  // order matters in array features
   login: ['web3', 'web2'],
   census: ['spreadsheet', 'token', 'address'],
+  // first is also considered as the default language
+  languages: ['en', 'es', 'ca'],
 }
 ~~~
 

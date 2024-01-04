@@ -6,7 +6,7 @@ const Spreadsheet = lazy(() => {
     return import('./CensusSpreadsheet').then((module) => ({ default: module.StepFormCensusSpreadsheet }))
   }
 
-  return null
+  return Promise.resolve({ default: () => <></> })
 })
 
 export const SpreadsheetCensus = () => (
@@ -20,7 +20,7 @@ const Web3 = lazy(() => {
     return import('./CensusWeb3').then((module) => ({ default: module.StepFormCensusWeb3 }))
   }
 
-  return null
+  return Promise.resolve({ default: () => <></> })
 })
 
 export const Web3Census = () => (
@@ -34,7 +34,7 @@ const Token = lazy(() => {
     return import('./CensusToken').then((module) => ({ default: module.StepFormCensusToken }))
   }
 
-  return null
+  return Promise.resolve({ default: () => <></> })
 })
 
 export const TokenCensus = () => (

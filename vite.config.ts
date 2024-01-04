@@ -57,15 +57,18 @@ const features = () => {
     },
     login: ['web3', 'web2'],
     census: ['spreadsheet', 'token', 'web3'],
+    languages: ['ca', 'en', 'es'],
   }
   const features = merge.withOptions({ mergeArrays: false }, defaults, JSON.parse(process.env.FEATURES || '{}'))
-  // Ensure that at least one login method is enabled
+  // Ensure at least one item is loaded in each feature array
   if (!features.login.length) {
     features.login = ['web3']
   }
-  // Ensure that at least one census method is enabled
   if (!features.census.length) {
     features.census = ['spreadsheet']
+  }
+  if (!features.languages.length) {
+    features.languages = ['en']
   }
   // We need pure booleans in order to ensure rollup tree-shakes non enabled features.
   // Using functions like `.includes()` would prevent such tree-shaking, resulting in a bigger bundle.
