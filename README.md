@@ -37,7 +37,7 @@ custom `.env` file:
 
 ```bash
 VOCDONI_ENVIRONMENT=dev yarn start
-# or an example using all of them...
+# or an example using many of them...
 BUILD_PATH=build/dev BASE_URL=/ui-scaffold/dev VOCDONI_ENVIRONMENT=dev yarn build
 ```
 
