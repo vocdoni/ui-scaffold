@@ -87,7 +87,7 @@
   },
   "census": {
     "chain_required": "You need to select a network",
-    "description": "Choose how to authenticate and verify voters. At this moment, the methods available to create censuses are: custom data, token based and wallet addresses.",
+    "description": "Choose how to authenticate and verify voters.",
     "request_custom_token": "'Request Custom Tokens'",
     "spreadsheet_title": "Custom data",
     "title": "Census",
