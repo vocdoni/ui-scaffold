@@ -89,7 +89,7 @@
   },
   "census": {
     "chain_required": "Necesitas seleccionar una red",
-    "description": "Selecciona cómo los votantes se autenticarán e identificarán: las opciones incluyen datos personalizados, la propiedad de tokens o con direcciones de monedero (wallet addresses).",
+    "description": "Selecciona cómo los votantes se autenticarán e identificarán.",
     "request_custom_token": "Solicitar Tokens Personalizados",
     "spreadsheet_title": "Datos personalizados",
     "title": "Censo",

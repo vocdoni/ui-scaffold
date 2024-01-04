@@ -89,7 +89,7 @@
   },
   "census": {
     "chain_required": "Necessites seleccionar una xarxa",
-    "description": "Selecciona com autenticaran i s'identificaran els votants. Les opcions inclouen dades personalitzades, propietat de tokens o adreces de cartera digital (wallet addresses).",
+    "description": "Selecciona com s'autenticaran i identificaran els votants.",
     "request_custom_token": "Sol·licitar Tokens Personalitzats",
     "spreadsheet_title": "Dades personalitzades",
     "title": "Trieu el cens",
