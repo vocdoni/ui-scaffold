@@ -30,10 +30,10 @@ export const Census = () => {
         <Tabs
           defaultIndex={CensusTypes.findIndex((val) => val === censusType)}
           onChange={(index) => {
-            const nform: StepsFormValues = { ...form, censusType: CensusTypes[index] }
+            const nform: StepsFormValues = { ...form, censusType: defined[index] }
             // ensure maxCensusSize is only set on token-based censuses
             // all other cases are handled automatically via the SDK
-            if (CensusTypes[index] !== 'token' && 'maxCensusSize' in nform) {
+            if (defined[index] !== 'token' && 'maxCensusSize' in nform) {
               delete nform?.maxCensusSize
             }
             setForm(nform)
