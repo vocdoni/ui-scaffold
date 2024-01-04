@@ -22,6 +22,11 @@ const Preview = () => {
     endDate: end,
   } = form
 
+  const features =
+    import.meta.env.features.vote.anonymous ||
+    import.meta.env.features.vote.overwrite ||
+    import.meta.env.features.vote.secret
+
   return (
     <Flex flexDirection='column' gap={5} p={{ base: 3, xl: 6 }} bgColor='process_create.section' borderRadius='md'>
       <Flex flexDirection='column' gap={6}>
@@ -73,7 +78,7 @@ const Preview = () => {
             })}
           </Text>
         </Flex>
-        {Object.keys(import.meta.env.features.vote).some((k) => import.meta.env.features.vote[k]) && (
+        {features && (
           <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 2, md: 0 }}>
             <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='semibold' fontSize='md'>
               {t('form.process_create.confirm.configuration')}
