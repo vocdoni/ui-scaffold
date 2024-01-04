@@ -261,7 +261,7 @@
         "secret_until_the_end": "Secret until the end",
         "title": "Preview",
         "title_election": "Title",
-        "vote_overwritte": "Vote overwritte"
+        "vote_overwrite": "Vote overwrite"
       },
       "confirm_spreadsheet_removal": "Are you sure? Take in mind that the uploaded file will be removed",
       "creating_process": "Creating Voting Process...",
