@@ -46,7 +46,7 @@ export const StepFormCensusCsp = () => {
 
         <FormProvider {...methods}>
           <Box as='form' id='process-create-form' onSubmit={methods.handleSubmit(onSubmit)}>
-            <CensusCspList />
+            <CensusCspList initialUsers={userList} />
 
             {methods.formState.errors.userList && (
               <Text color='red' textAlign='center' mt={2}>

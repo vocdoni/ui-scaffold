@@ -1,8 +1,9 @@
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import GithubUserSearch from './GithubUserSearch'
 
-export const CensusCspList = () => {
+export const CensusCspList = ({ ...props }) => {
   const { setValue } = useFormContext()
+  const { initialUsers } = props
 
   const { fields, remove } = useFieldArray({
     name: 'userList',
@@ -14,7 +15,7 @@ export const CensusCspList = () => {
 
   return (
     <>
-      <GithubUserSearch onUpdateSelection={updatedUserSelection} showSelectedList={true} />
+      <GithubUserSearch onUpdateSelection={updatedUserSelection} showSelectedList={true} initialUsers={initialUsers} />
     </>
   )
 }

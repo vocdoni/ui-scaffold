@@ -41,9 +41,9 @@ export const Census = () => {
           variant='card'
           isLazy
         >
-          <TabList>
+          <TabList gap={2} flexWrap={'wrap'} justifyContent={'left'}>
             {defined.map((ct: CensusType, index: number) => (
-              <Tab key={index}>
+              <Tab key={index} height={36}>
                 <Icon as={HiCheckCircle} />
                 <Box>
                   <Icon as={details[ct].icon} />

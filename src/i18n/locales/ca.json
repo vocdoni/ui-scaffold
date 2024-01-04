@@ -419,7 +419,8 @@
     "census_strategies": {
       "spreadsheet": "CSV",
       "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
-      "web3": "Adreces Web3"
+      "web3": "Adreces Web3",
+      "csp": "CSP"
     },
     "created_by": "Creat per",
     "date": {

@@ -2,32 +2,16 @@ import { Flex, FormLabel, Input, List, ListItem, useToast } from '@chakra-ui/rea
 import { useEffect, useState } from 'react'
 import UserCard from './UserCard'
 import { useTranslation } from 'react-i18next'
-import { useFieldArray, useFormContext } from 'react-hook-form'
 
 const GithubUserSearch = ({ ...props }) => {
   const toast = useToast()
   const { t } = useTranslation()
+  const { initialUsers } = props
 
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [searchTimeout, setSearchTimeout] = useState<any>(null)
   const [userList, setUserList] = useState<any[]>([])
-  const [clickedUsers, setClickedUsers] = useState<any[]>([])
-
-  const {
-    register,
-    formState: { errors },
-    watch,
-    setValue,
-    trigger,
-    resetField,
-    setError,
-  } = useFormContext()
-
-  const { fields, remove } = useFieldArray({
-    name: 'addresses',
-  })
-
-  const addresses = watch('addresses')
+  const [clickedUsers, setClickedUsers] = useState<any[]>(initialUsers || [])
 
   useEffect(() => {
     if (searchTimeout) {

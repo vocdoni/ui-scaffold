@@ -416,7 +416,8 @@
     "census_strategies": {
       "spreadsheet": "CSV/Spreadsheet",
       "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
-      "web3": "Web3 addresses"
+      "web3": "Web3 addresses",
+      "csp": "CSP"
     },
     "created_by": "Created by",
     "date": {
