@@ -17,7 +17,7 @@ export const useCensusTypes = () => {
 
   return {
     list: CensusTypes,
-    defined: import.meta.env.features.census,
+    defined: import.meta.env.features.census as CensusType[],
     details: {
       [CensusTypeSpreadsheet]: {
         title: t('form.process_create.census.spreadsheet_title'),

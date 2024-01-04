@@ -50,6 +50,7 @@ const viteconfig = ({ mode }) => {
 
 const features = () => {
   const defaults = {
+    faucet: true,
     vote: {
       anonymous: true,
       overwrite: true,

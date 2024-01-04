@@ -262,7 +262,7 @@
         "secret_until_the_end": "Secret fins el final",
         "title": "Vista prèvia i costos de votació",
         "title_election": "Títol",
-        "vote_overwritte": "Sobreescriure vot"
+        "vote_overwrite": "Sobreescriure vot"
       },
       "confirm_spreadsheet_removal": "Estàs segur que vols canviar-ho? Fent-ho s'esborrarà el fitxer que has carregat actualment.",
       "creating_process": "Creant Procés de Votació...",

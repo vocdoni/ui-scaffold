@@ -187,18 +187,22 @@ export const CostPreview = ({
           <Text color='red' textAlign='center'>
             {t('cost_preview.not_enough_tokens')}
           </Text>
-          <Button
-            variant='rounded'
-            colorScheme='primary'
-            leftIcon={<TbDatabaseExclamation />}
-            maxW={64}
-            onClick={onOpen}
-          >
-            {t('cost_preview.button')}
-          </Button>
-          <Modal isOpen={isOpen} onClose={onClose}>
-            <GetVocTokens handleSignIn={handleSignIn} loading={loading} />
-          </Modal>
+          {import.meta.env.features.faucet && (
+            <>
+              <Button
+                variant='rounded'
+                colorScheme='primary'
+                leftIcon={<TbDatabaseExclamation />}
+                maxW={64}
+                onClick={onOpen}
+              >
+                {t('cost_preview.button')}
+              </Button>
+              <Modal isOpen={isOpen} onClose={onClose}>
+                <GetVocTokens handleSignIn={handleSignIn} loading={loading} />
+              </Modal>
+            </>
+          )}
         </Flex>
       )}
     </Flex>

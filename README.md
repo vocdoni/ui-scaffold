@@ -47,6 +47,7 @@ The following features can be enabled/disabled using the `FEATURES` environment 
 
 ~~~js
 const features = {
+  faucet: true,
   vote: {
     anonymous: true,
     overwrite: true,
