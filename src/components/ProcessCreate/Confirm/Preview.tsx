@@ -73,25 +73,33 @@ const Preview = () => {
             })}
           </Text>
         </Flex>
-        <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 2, md: 0 }}>
-          <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='semibold' fontSize='md'>
-            {t('form.process_create.confirm.configuration')}
-          </Text>
-          <Box flexBasis={{ base: '100%', md: '65%' }}>
-            <Flex gap={2} alignItems='center'>
-              <Icon as={maxVoteOverwrites ? IoCheckmarkSharp : IoMdClose} boxSize={5} />
-              <Text>{t('form.process_create.confirm.vote_overwritte')}</Text>
-            </Flex>
-            <Flex gap={2} alignItems='center'>
-              <Icon as={secretUntilTheEnd ? IoMdCheckmark : IoMdClose} boxSize={5} />
-              <Text>{t('form.process_create.confirm.secret_until_the_end')}</Text>
-            </Flex>
-            <Flex gap={2} alignItems='center'>
-              <Icon as={anonymous ? IoMdCheckmark : IoMdClose} boxSize={5} />
-              <Text>{t('form.process_create.confirm.anonymous')}</Text>
-            </Flex>
-          </Box>
-        </Flex>
+        {Object.keys(import.meta.env.features.vote).some((k) => import.meta.env.features.vote[k]) && (
+          <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 2, md: 0 }}>
+            <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='semibold' fontSize='md'>
+              {t('form.process_create.confirm.configuration')}
+            </Text>
+            <Box flexBasis={{ base: '100%', md: '65%' }}>
+              {import.meta.env.features.vote.overwrite && (
+                <Flex gap={2} alignItems='center'>
+                  <Icon as={maxVoteOverwrites ? IoCheckmarkSharp : IoMdClose} boxSize={5} />
+                  <Text>{t('form.process_create.confirm.vote_overwrite')}</Text>
+                </Flex>
+              )}
+              {import.meta.env.features.vote.secret && (
+                <Flex gap={2} alignItems='center'>
+                  <Icon as={secretUntilTheEnd ? IoMdCheckmark : IoMdClose} boxSize={5} />
+                  <Text>{t('form.process_create.confirm.secret_until_the_end')}</Text>
+                </Flex>
+              )}
+              {import.meta.env.features.vote.anonymous && (
+                <Flex gap={2} alignItems='center'>
+                  <Icon as={anonymous ? IoMdCheckmark : IoMdClose} boxSize={5} />
+                  <Text>{t('form.process_create.confirm.anonymous')}</Text>
+                </Flex>
+              )}
+            </Box>
+          </Flex>
+        )}
       </Flex>
 
       <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 2, md: 0 }} position='relative'>

@@ -1,7 +1,7 @@
 import { Box, Flex, Icon, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { HiCheckCircle } from 'react-icons/hi'
-import { CensusType, CensusTypes, useCensusTypes } from '../Census/TypeSelector'
+import { CensusType, useCensusTypes } from '../Census/TypeSelector'
 import { StepsNavigation } from './Navigation'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 import Wrapper from './Wrapper'
@@ -28,7 +28,7 @@ export const Census = () => {
           </Text>
         </Box>
         <Tabs
-          defaultIndex={CensusTypes.findIndex((val) => val === censusType)}
+          defaultIndex={defined.findIndex((val) => val === censusType)}
           onChange={(index) => {
             const nform: StepsFormValues = { ...form, censusType: defined[index] }
             // ensure maxCensusSize is only set on token-based censuses
