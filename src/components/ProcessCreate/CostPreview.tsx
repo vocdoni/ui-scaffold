@@ -287,7 +287,6 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
         </ModalBody>{' '}
         <ModalFooter flexDirection='column' alignItems='center' gap={3}>
           <Button
-            variant='primary'
             onClick={() =>
               handleSignIn(socialAccount, account?.address as string, [
                 { param: 'connected', value: true },

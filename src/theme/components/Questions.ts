@@ -106,16 +106,16 @@ const baseStyle = definePartsStyle({
     '& label': {
       borderRadius: 'lg',
       overflow: 'hidden',
-      mb: 4,
-      boxShadow: 'var(--box-shadow-darker)',
-
-      '& input:checked': {
-        bgColor: 'red',
-      },
+      display: 'flex',
+      alignItems: 'center',
+      gap: 2,
 
       '& span:nth-of-type(2)': {
-        p: 4,
+        p: 2,
         m: 0,
+        border: '1px solid lightgray',
+        w: '100%',
+        borderRadius: 'lg',
       },
 
       '& input:checked ~ span:nth-of-type(2)': {
@@ -127,7 +127,39 @@ const baseStyle = definePartsStyle({
   },
 
   radio: {
-    display: 'none',
+    width: '30px',
+    height: '30px',
+    background: 'white',
+    '&[data-checked=""]': {
+      '&:before': {
+        display: 'none',
+        bgColor: 'transparent',
+      },
+
+      border: 'none',
+      background: 'process.questions.question_selected.bg',
+      borderColor: 'process.questions.question_selected.bg',
+      bgSize: '20px',
+      bgRepeat: 'no-repeat',
+      bgPosition: 'center',
+
+      _hover: {
+        border: 'none',
+        background: 'process.questions.question_selected.bg',
+        borderColor: 'process.questions.question_selected.bg',
+        bgSize: '20px',
+        bgRepeat: 'no-repeat',
+        bgPosition: 'center',
+      },
+      _selected: {
+        bgColor: 'white',
+      },
+    },
+
+    '&[data-disabled=""]': {
+      bgColor: 'white !important',
+      border: 'none !important',
+    },
   },
   error: {
     display: 'flex',

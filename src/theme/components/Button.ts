@@ -2,10 +2,10 @@ import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
 
 const process = defineStyle({
   w: 'full',
-  color: 'process.aside.vote_btn_color',
+  color: { base: 'process.vote_button.mobile_color', md: 'process.vote_button.desktop_color' },
   borderRadius: 'full',
   fontSize: { base: 'sm', xl2: 'md' },
-  bgColor: 'process.aside.vote_btn_bg',
+  bgColor: { base: 'process.vote_button.mobile_bg', md: 'process.vote_button.desktop_bg' },
 })
 
 const primary = defineStyle((props) => {

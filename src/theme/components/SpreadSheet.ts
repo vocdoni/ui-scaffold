@@ -6,7 +6,6 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 const baseStyle = definePartsStyle({
   button: {
     w: '100%',
-    color: 'process.aside.vote_btn_color',
     borderRadius: 30,
     fontSize: { base: 'lg', xl: 'md' },
     bgColor: 'process.aside.vote_btn_bg',

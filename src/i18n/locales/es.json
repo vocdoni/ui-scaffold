@@ -413,7 +413,6 @@
     "elections_list_empty": {
       "alt": "Imagen que ilustra que la organización está vacía",
       "description": "Al comenzar haciendo tu primera votación, puedes elegir entre diferentes tipos de autenticación para tu voto.",
-      "footer": "Obtén más información sobre cómo crear una votación <customLink>en esta guía</customLink>.",
       "not_owner": "Esta organización aún no tiene votaciones.",
       "title": "Crea tu primer proceso de votación"
     },
@@ -443,11 +442,13 @@
       "title": "Anónimo"
     },
     "is_invalid": "Este proceso tiene datos no válidos y no se puede cargar",
+    "no_description": "No hay ninguna descripción proporcionada",
     "people_in_census_one": "Un votante",
     "people_in_census_many": "",
     "people_in_census_other": "{{ count }} votantes",
     "questions": "Preguntas",
     "results": "Resultados",
+    "schedule": "HORARIO",
     "share_caption": "Acabo de emitir mi voto para {{ title }}!!",
     "share_title": "Compartir en {{ network }}",
     "spreadsheet": {
@@ -457,6 +458,7 @@
         "question": "<strong>Pregunta {{ number }}:</strong> {{ answer }}"
       }
     },
+    "state": "ESTADO",
     "status": {
       "active": "Activo",
       "canceled": "Proceso cancelado",

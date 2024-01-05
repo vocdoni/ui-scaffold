@@ -29,7 +29,7 @@ import { useEffect, useState } from 'react'
 import { FieldValues } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaFacebook, FaReddit, FaTelegram, FaTwitter } from 'react-icons/fa'
-import ProcessAside, { ProcessAsideFooterMbl } from './Aside'
+import ProcessAside, { VoteButton } from './Aside'
 import Header from './Header'
 import confirmImg from '/assets/onvote-modal-confirm-spreadsheet.jpg'
 import successImg from '/assets/onvote-modal-success-vote.jpg'
@@ -80,6 +80,9 @@ export const ProcessView = () => {
                 <ElectionQuestions
                   confirmContents={(questions, answers) => <ConfirmVoteModal questions={questions} answers={answers} />}
                 />
+                <Box position='sticky' bottom={0} left={0} pb={1} pt={1} display={{ base: 'none', md: 'block' }}>
+                  <VoteButton setQuestionsTab={setQuestionsTab} />
+                </Box>
               </TabPanel>
               <TabPanel mb={20}>
                 <ElectionResults />
@@ -99,7 +102,7 @@ export const ProcessView = () => {
             maxW={{ md: '265px', lg2: '290px' }}
             mb={10}
           >
-            <ProcessAside setQuestionsTab={setQuestionsTab} />
+            <ProcessAside />
           </Flex>
         </Flex>
       </Box>
@@ -111,7 +114,7 @@ export const ProcessView = () => {
         pt={1}
         display={{ base: 'block', lg2: 'none' }}
       >
-        <ProcessAsideFooterMbl setQuestionsTab={setQuestionsTab} />
+        <VoteButton setQuestionsTab={setQuestionsTab} />
       </Box>
 
       <SuccessVoteModal />
@@ -164,7 +167,7 @@ const SuccessVoteModal = () => {
           <Trans
             i18nKey='process.success_modal.text'
             components={{
-              verify: <Link variant='primary' href={verify} target='_blank' />,
+              verify: <Link href={verify} target='_blank' />,
               p: <Text mb={2} />,
             }}
           />

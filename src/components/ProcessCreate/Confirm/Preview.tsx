@@ -112,7 +112,7 @@ const Preview = () => {
             <ElectionQuestions />
           </ChakraProvider>
         </Box>
-        <Link variant='primary' position='absolute' top={0} right={0} onClick={() => setActiveStep(2)}>
+        <Link position='absolute' top={0} right={0} onClick={() => setActiveStep(2)}>
           <Icon
             as={IoMdCreate}
             title={t('form.process_create.confirm.edit')}
@@ -128,7 +128,7 @@ const Preview = () => {
         <Box w={{ md: '65%' }}>
           <Census />
         </Box>
-        <Link variant='primary' position='absolute' top={0} right={0} onClick={() => setActiveStep(3)}>
+        <Link position='absolute' top={0} right={0} onClick={() => setActiveStep(3)}>
           <Icon
             as={IoMdCreate}
             title={t('form.process_create.confirm.edit')}

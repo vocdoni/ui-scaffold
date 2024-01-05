@@ -17,7 +17,7 @@ import {
 import { useClient, useOrganization } from '@vocdoni/react-providers'
 import { ArchivedElection, areEqualHexStrings, InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import ProcessCardDetailed from '../Process/CardDetailed'
 import Header from './Header'
@@ -128,14 +128,6 @@ const OrganizationView = () => {
                   <>
                     <Text>{t('organization.elections_list_empty.title')}</Text>
                     <Text>{t('organization.elections_list_empty.description')}</Text>
-                    <Text>
-                      <Trans
-                        i18nKey='organization.elections_list_empty.footer'
-                        components={{
-                          customLink: <Link variant='primary' href='#' target='_blank' />,
-                        }}
-                      />
-                    </Text>
 
                     <Button as={ReactRouterLink} to='/processes/create' variant='primary' colorScheme='primary'>
                       {t('menu.create')}

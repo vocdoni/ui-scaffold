@@ -43,6 +43,7 @@ export const colors = {
 
   link: {
     primary: colorsBase.primary.main,
+    contrast: colorsBase.white.pure,
   },
 
   main_bg: colorsBase.white.dark,
@@ -67,6 +68,7 @@ export const colors = {
       vote_btn_color: colorsBase.black,
       vote_btn_bg: colorsBase.white.pure,
       aside_footer_mbl_border: colorsBase.white.dark,
+      verify_link: colorsBase.white.pure,
     },
     canceled: colorsBase.primary.main,
     confirm_vote: {
@@ -83,6 +85,7 @@ export const colors = {
       bg_hover: colorsBase.primary.dark,
       color: colorsBase.white.pure,
     },
+    label: colorsBase.gray.dark,
     paused: colorsBase.primary.main,
     questions: {
       alert: {
@@ -98,6 +101,7 @@ export const colors = {
       description: colorsBase.gray.dark,
       title: colorsBase.primary.main,
     },
+    no_description: colorsBase.gray.dark,
     results: {
       alert_bg: colorsBase.primary.main,
       alert_color: colorsBase.white.pure,
@@ -115,6 +119,12 @@ export const colors = {
       active_bg: colorsBase.gray.main,
       hover_bg: colorsBase.gray.light,
       border_bottom_list: colorsBase.gray.main,
+    },
+    vote_button: {
+      mobile_bg: colorsBase.white.pure,
+      mobile_color: colorsBase.black,
+      desktop_bg: colorsBase.primary.main,
+      desktop_color: colorsBase.white.pure,
     },
   },
 

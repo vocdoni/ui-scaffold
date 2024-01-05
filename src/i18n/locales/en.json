@@ -410,7 +410,6 @@
     "elections_list_empty": {
       "alt": "Image illustrating that the organization is empty",
       "description": "As an organizer, you have the capability to design tailored voting processes for your community. These procedures provide extensive flexibility, allowing options such as a census where voters authenticate using custom data (such as username, password, and birthday), a token-based system enabling all tokenholders to participate, or a whitelist that uses wallet addresses for eligibility.",
-      "footer": "Learn more about creating voting processes <customLink>in this guide</customLink>.",
       "not_owner": "This organization has no voting processes yet",
       "title": "Create your first voting process"
     },
@@ -440,10 +439,12 @@
       "title": "Privacy"
     },
     "is_invalid": "This process has wrong data, thus making it invalid",
+    "no_description": "No description provided",
     "people_in_census_one": "One voter",
     "people_in_census_other": "{{ count }} voters",
     "questions": "Questions",
     "results": "Results",
+    "schedule": "SCHEDULE",
     "share_caption": "I've just cast my vote in {{ title }}!!",
     "share_title": "Share on {{ network }}",
     "spreadsheet": {
@@ -453,6 +454,7 @@
         "question": "<strong>Question {{ number }}:</strong> {{ answer }}"
       }
     },
+    "state": "STATE",
     "status": {
       "active": "Active",
       "canceled": "Process canceled",
