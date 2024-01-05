@@ -24,7 +24,9 @@ const ProcessAside = () => {
   const { env } = useClient()
   const census: CensusMeta = dotobject(election?.meta || {}, 'census')
 
-  const renderVoteMenu = isAbleToVote || voted || (hasOverwriteEnabled(election) && isInCensus && voted)
+  const renderVoteMenu =
+    (isAbleToVote || voted || (hasOverwriteEnabled(election) && isInCensus && voted)) &&
+    election?.status !== ElectionStatus.UPCOMING
 
   return (
     <>
@@ -129,7 +131,7 @@ export const VoteButton = ({ setQuestionsTab }: { setQuestionsTab: () => void })
 
   if (
     election?.status === ElectionStatus.CANCELED ||
-    !!voted ||
+    !isAbleToVote ||
     (isConnected && !isInCensus && census?.type !== 'spreadsheet')
   )
     return null
@@ -176,7 +178,7 @@ export const VoteButton = ({ setQuestionsTab }: { setQuestionsTab: () => void })
       )}
       {census?.type === 'spreadsheet' && !connected && <SpreadsheetAccess />}
       {isAbleToVote ? (
-        <CVoteButton variant='process' fontSize='lg' onClick={setQuestionsTab} />
+        <CVoteButton w='full' fontSize='lg' onClick={setQuestionsTab} />
       ) : (
         connected && (
           <Flex justifyContent='center' alignItems='center' height='40px' borderRadius='30px' bgColor='white' w='full'>
