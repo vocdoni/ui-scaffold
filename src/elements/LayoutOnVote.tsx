@@ -21,8 +21,8 @@ const Layout = () => {
         position='fixed'
         sx={{
           '&': {
-            'writing-mode': 'vertical-lr',
-            'text-orientation': 'mixed',
+            'writingMode': 'vertical-lr',
+            'textOrientation': 'mixed',
             transform: 'rotate(180deg)',
           },
         }}

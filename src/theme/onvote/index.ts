@@ -42,24 +42,24 @@ export const theme = extendTheme(vtheme, {
 
         '@font-face': [
           {
-            'font-family': 'pixeloidsans',
+            fontFamily: 'pixeloidsans',
             src: `url('${pixeloidSans}') format('truetype')`,
-            'font-weight': 'normal',
+            fontWeight: 'normal',
           },
           {
-            'font-family': 'pixeloidsans',
+            fontFamily: 'pixeloidsans',
             src: `url('${pixeloidSansBold}') format('truetype')`,
-            'font-weight': 'bold',
+            fontWeight: 'bold',
           },
           {
-            'font-family': 'Archivo',
+            fontFamily: 'Archivo',
             src: `url('${archivo}') format('truetype')`,
-            'font-weight': 'normal',
+            fontWeight: 'normal',
           },
           {
-            'font-family': 'Archivo',
+            fontFamily: 'Archivo',
             src: `url('${archivoBold}') format('truetype')`,
-            'font-weight': 'bold',
+            fontWeight: 'bold',
           },
         ],
       },
