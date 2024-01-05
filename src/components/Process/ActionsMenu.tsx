@@ -75,7 +75,8 @@ const ActionsMenuList = (props: MenuListProps) => {
         onClick={end}
         justifyContent='start'
         isLoading={loading.end}
-        variant=''
+        variant='solid'
+        colorScheme='gray'
       >
         {t('process_actions.end')}
       </MenuItem>
@@ -86,7 +87,8 @@ const ActionsMenuList = (props: MenuListProps) => {
         onClick={cancel}
         justifyContent='start'
         isLoading={loading.cancel}
-        variant=''
+        variant='solid'
+        colorScheme='gray'
       >
         {t('process_actions.cancel')}
       </MenuItem>
