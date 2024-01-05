@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Link, Spinner, Text } from '@chakra-ui/react'
+import { Box, Button, Card, Flex, Link, Spinner, Text } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { VoteButton as CVoteButton, environment, SpreadsheetAccess } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
@@ -8,7 +8,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 import { CensusMeta } from '~components/ProcessCreate/Steps/Confirm'
-import VoteButton from './VoteButton'
 
 const ProcessAside = () => {
   const { t } = useTranslation()
@@ -29,20 +28,7 @@ const ProcessAside = () => {
 
   return (
     <>
-      <Flex
-        direction='column'
-        justifyContent='center'
-        alignItems='center'
-        px={{ base: 12, md: 12 }}
-        py={{ base: 8, md: 12 }}
-        w='full'
-        gap={4}
-        mt={{ md: 7 }}
-        color='process.aside.color'
-        background='process.aside.bg'
-        borderRadius='lg'
-        boxShadow='var(--box-shadow-banner)'
-      >
+      <Card variant='aside'>
         <Text textAlign='center' fontSize='xl3' textTransform='uppercase'>
           {election?.electionType.anonymous && voting
             ? t('aside.submitting')
@@ -69,49 +55,6 @@ const ProcessAside = () => {
                 count={election?.voteCount}
               />
             </Box>
-          )}
-
-        {census?.type !== 'spreadsheet' &&
-          !isConnected &&
-          !connected &&
-          election?.status !== ElectionStatus.CANCELED && (
-            <Flex flexDirection='column' alignItems='center' gap={3} w='full'>
-              <Box display={{ base: 'none', lg2: 'block' }}>
-                <ConnectButton.Custom>
-                  {({ account, chain, openConnectModal, authenticationStatus, mounted }) => {
-                    const ready = mounted && authenticationStatus !== 'loading'
-                    const connected =
-                      ready && account && chain && (!authenticationStatus || authenticationStatus === 'authenticated')
-                    return (
-                      <Box
-                        {...(!ready && {
-                          'aria-hidden': true,
-                          style: {
-                            opacity: 0,
-                            pointerEvents: 'none',
-                            userSelect: 'none',
-                          },
-                        })}
-                        w='full'
-                      >
-                        {(() => {
-                          if (!connected) {
-                            return (
-                              <Button onClick={openConnectModal} w='full' variant='secondary'>
-                                {t('menu.connect').toString()}
-                              </Button>
-                            )
-                          }
-                        })()}
-                      </Box>
-                    )
-                  }}
-                </ConnectButton.Custom>
-              </Box>
-              <Text textAlign='center' fontSize='sm'>
-                {t('aside.not_connected')}
-              </Text>
-            </Flex>
           )}
 
         {isConnected && census?.type !== 'spreadsheet' && !isInCensus && (
@@ -153,7 +96,6 @@ const ProcessAside = () => {
       </Card>
       {connected && (
         <Box
-          // display={{ base: 'none', md: 'block' }}
           alignSelf='center'
           sx={{
             '& button': {
@@ -221,7 +163,7 @@ export const VoteButton = ({ setQuestionsTab }: { setQuestionsTab: () => void })
                 {(() => {
                   if (!connected) {
                     return (
-                      <Button onClick={openConnectModal} w='full' variant='secondary'>
+                      <Button onClick={openConnectModal} w='full'>
                         {t('menu.connect').toString()}
                       </Button>
                     )
