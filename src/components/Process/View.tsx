@@ -80,7 +80,7 @@ export const ProcessView = () => {
                 <ElectionQuestions
                   confirmContents={(questions, answers) => <ConfirmVoteModal questions={questions} answers={answers} />}
                 />
-                <Box position='sticky' bottom={0} left={0} pb={1} pt={1} display={{ base: 'none', md: 'block' }}>
+                <Box position='sticky' bottom={0} left={0} pb={1} pt={1} display={{ base: 'none', lg2: 'block' }}>
                   <VoteButton setQuestionsTab={setQuestionsTab} />
                 </Box>
               </TabPanel>

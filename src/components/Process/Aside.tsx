@@ -137,13 +137,7 @@ export const VoteButton = ({ setQuestionsTab }: { setQuestionsTab: () => void })
     return null
 
   return (
-    <Flex
-      justifyContent='center'
-      alignItems='center'
-      background={{ base: 'process.aside.bg', md: 'transparent' }}
-      color='process.aside.color'
-      p={3}
-    >
+    <Flex justifyContent='center' alignItems='center' background='transparent' color='process.aside.color' p={3}>
       {census?.type !== 'spreadsheet' && !connected && (
         <ConnectButton.Custom>
           {({ account, chain, openConnectModal, authenticationStatus, mounted }) => {
