@@ -4,8 +4,9 @@ import { RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import { ClientProvider } from '@vocdoni/chakra-components'
 import { EnvOptions } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
-import { useAccount, useWalletClient, WagmiConfig } from 'wagmi'
+import { WagmiConfig, useAccount, useWalletClient } from 'wagmi'
 import { OrganizationModalProvider } from '~components/Organization/OrganizationModalProvider'
+import { CspAdminProvider } from '~components/ProcessCreate/Census/Csp/use-csp'
 import { walletClientToSigner } from '~constants/wagmi-adapters'
 import { VocdoniEnvironment } from './constants'
 import { chains, wagmiConfig } from './constants/rainbow'
@@ -13,7 +14,6 @@ import { translations } from './i18n/components'
 import { datesLocale } from './i18n/locales'
 import { RoutesProvider } from './router/Router'
 import { rainbowStyles, theme } from './theme'
-import { CspAdminProvider } from '~components/ProcessCreate/Census/Csp/use-csp'
 
 export const Providers = () => (
   <ChakraProvider theme={extendTheme(theme)}>
