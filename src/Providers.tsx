@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { useAccount, useWalletClient, WagmiConfig } from 'wagmi'
 import { OrganizationModalProvider } from '~components/Organization/OrganizationModalProvider'
 import { walletClientToSigner } from '~constants/wagmi-adapters'
+import Fonts from '~theme/onvote/Fonts'
 import { VocdoniEnvironment } from './constants'
 import { chains, wagmiConfig } from './constants/rainbow'
 import { translations } from './i18n/components'
@@ -16,6 +17,7 @@ import { rainbowStyles, theme } from './theme/onvote'
 
 export const Providers = () => (
   <ChakraProvider theme={extendTheme(theme)}>
+    <Fonts />
     <WagmiConfig config={wagmiConfig}>
       <AppProviders />
     </WagmiConfig>

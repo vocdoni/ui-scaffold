@@ -23,10 +23,6 @@ import { Tabs } from './components/Tabs'
 import { Textarea } from './components/Textarea'
 import { fontSizes } from './font'
 import { sizes } from './space'
-import archivoBold from '/fonts/archivo/Archivo-Bold.ttf'
-import archivo from '/fonts/archivo/Archivo.ttf'
-import pixeloidSansBold from '/fonts/pixeloidsans/PixeloidSans-Bold.ttf'
-import pixeloidSans from '/fonts/pixeloidsans/PixeloidSans.ttf'
 import { Tag } from './components/Tag'
 
 export const theme = extendTheme(vtheme, {
@@ -39,32 +35,14 @@ export const theme = extendTheme(vtheme, {
         '--box-shadow-darker': '0px 2px 4px #808080b5',
         '--box-shadow-question': '0px 2px 4px 0px #0000001A',
         '--vcd-gradient-primary': 'linear-gradient(to right, #24656e, #2c545a)',
-
-        '@font-face': [
-          {
-            fontFamily: 'pixeloidsans',
-            src: `url('${pixeloidSans}') format('truetype')`,
-            fontWeight: 'normal',
-          },
-          {
-            fontFamily: 'pixeloidsans',
-            src: `url('${pixeloidSansBold}') format('truetype')`,
-            fontWeight: 'bold',
-          },
-          {
-            fontFamily: 'Archivo',
-            src: `url('${archivo}') format('truetype')`,
-            fontWeight: 'normal',
-          },
-          {
-            fontFamily: 'Archivo',
-            src: `url('${archivoBold}') format('truetype')`,
-            fontWeight: 'bold',
-          },
-        ],
       },
       body: {
         fontFamily: '"Archivo", sans-serif',
+        fontWeight: 'normal',
+      },
+      fonts: {
+        heading: '"Archivo", sans-serif',
+        body: '"Archivo", sans-serif',
       },
       '.process-create-title': {
         fontFamily: 'pixeloidsans, monospace',
