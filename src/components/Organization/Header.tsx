@@ -27,9 +27,9 @@ const OrganizationHeader = () => {
 
   return (
     <Flex
-      flexDirection={{ base: 'column', md: 'row' }}
-      alignItems={{ base: 'center', md: 'start' }}
-      gap={{ base: 2, md: 8 }}
+      flexDirection={{ base: 'column', lg: 'row' }}
+      alignItems={{ base: 'center', lg: 'start' }}
+      gap={{ base: 2, lg: 8 }}
       mb={10}
       pt={10}
     >
@@ -48,8 +48,8 @@ const OrganizationHeader = () => {
       <Flex
         flex='1 1 80%'
         justifyContent='space-between'
-        alignItems={{ base: 'center', md: 'start' }}
-        flexDirection={{ base: 'column', md: 'row' }}
+        alignItems={{ base: 'center', lg: 'start' }}
+        flexDirection={{ base: 'column', lg: 'row' }}
         gap={{ base: 2 }}
         minW={0}
         maxW='100%'
@@ -57,10 +57,10 @@ const OrganizationHeader = () => {
         <Flex
           flex='1 1 100%'
           direction='column'
-          justifyContent={{ md: 'space-between' }}
-          alignItems={{ base: 'center', md: 'start' }}
+          justifyContent={{ lg: 'space-between' }}
+          alignItems={{ base: 'center', lg: 'start' }}
           gap={2}
-          order={{ base: 2, md: 0 }}
+          order={{ base: 2, lg: 0 }}
         >
           <Flex
             w='100%'
@@ -84,29 +84,32 @@ const OrganizationHeader = () => {
               lineHeight={1.5}
               title={organization?.account.name.default || organization?.address}
               fontFamily='pixeloidsans'
+              maxW={{ base: '250px', sm: '300px', sm2: '350px', md: '450px', lg: '370px', lg2: '500px', xl: '650px' }}
             />
-            {isTruncated && (
-              <IconButton
-                icon={readMore ? <FaEye /> : <FaEyeSlash />}
-                variant='ghost'
-                alignSelf='start'
-                color='primary.600'
-                title={t('organization.title.read_more')}
-                aria-label={t('organization.title.read_more')}
-                onClick={handleReadMore}
-              />
-            )}
-            {areEqualHexStrings(account?.address, organization?.address) && (
-              <IconButton
-                icon={<IoMdCreate />}
-                alignSelf='start'
-                variant='ghost'
-                color='primary.600'
-                title={t('organization.title.edit')}
-                aria-label={t('organization.title.edit')}
-                onClick={onOpen}
-              />
-            )}
+            <Box>
+              {isTruncated && (
+                <IconButton
+                  icon={readMore ? <FaEye /> : <FaEyeSlash />}
+                  variant='ghost'
+                  alignSelf='start'
+                  color='primary.600'
+                  title={t('organization.title.read_more')}
+                  aria-label={t('organization.title.read_more')}
+                  onClick={handleReadMore}
+                />
+              )}
+              {areEqualHexStrings(account?.address, organization?.address) && (
+                <IconButton
+                  icon={<IoMdCreate />}
+                  alignSelf='start'
+                  variant='ghost'
+                  color='primary.600'
+                  title={t('organization.title.edit')}
+                  aria-label={t('organization.title.edit')}
+                  onClick={onOpen}
+                />
+              )}
+            </Box>
           </Flex>
           <ReadMoreMarkdownWrapper>
             <OrganizationDescription fontSize='lg' lineHeight={1.7} />
