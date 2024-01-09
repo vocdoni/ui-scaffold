@@ -6,7 +6,6 @@ import { EnvOptions } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import { WagmiConfig, useAccount, useWalletClient } from 'wagmi'
 import { OrganizationModalProvider } from '~components/Organization/OrganizationModalProvider'
-import { CspAdminProvider } from '~components/ProcessCreate/Census/Csp/use-csp'
 import { walletClientToSigner } from '~constants/wagmi-adapters'
 import { VocdoniEnvironment } from './constants'
 import { chains, wagmiConfig } from './constants/rainbow'
@@ -36,19 +35,17 @@ export const AppProviders = () => {
 
   return (
     <RainbowKitProvider chains={chains} theme={rainbowStyles(colorMode)}>
-      <CspAdminProvider signer={signer as Signer}>
-        <ClientProvider
-          env={VocdoniEnvironment as EnvOptions}
-          signer={signer as Signer}
-          locale={translations(t)}
-          datesLocale={datesLocale(i18n.language)}
-        >
-          <OrganizationModalProvider>
-            <ColorModeScript />
-            <RoutesProvider />
-          </OrganizationModalProvider>
-        </ClientProvider>
-      </CspAdminProvider>
+      <ClientProvider
+        env={VocdoniEnvironment as EnvOptions}
+        signer={signer as Signer}
+        locale={translations(t)}
+        datesLocale={datesLocale(i18n.language)}
+      >
+        <OrganizationModalProvider>
+          <ColorModeScript />
+          <RoutesProvider />
+        </OrganizationModalProvider>
+      </ClientProvider>
     </RainbowKitProvider>
   )
 }

@@ -13,7 +13,7 @@ export const CspAdminProvider = ({ children, signer }: CspAdminProviderProps) =>
   const [vocdoniAdminClient, setVocdoniAdminClient] = useState<any>(null)
 
   useEffect(() => {
-    ;(async function iife() {
+    ;(async () => {
       const opts: CspAdminClientOptions = {
         cspUrl: import.meta.env.CSP_URL + '/auth/elections/admin',
       }

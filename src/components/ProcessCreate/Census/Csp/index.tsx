@@ -14,8 +14,6 @@ export const CensusCspList = ({ ...props }) => {
   }
 
   return (
-    <>
-      <GithubUserSearch onUpdateSelection={updatedUserSelection} showSelectedList={true} initialUsers={initialUsers} />
-    </>
+    <GithubUserSearch onUpdateSelection={updatedUserSelection} showSelectedList={true} initialUsers={initialUsers} />
   )
 }

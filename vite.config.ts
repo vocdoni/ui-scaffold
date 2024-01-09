@@ -79,6 +79,7 @@ const features = () => {
     spreadsheet: false,
     token: false,
     web3: false,
+    csp: false,
   }
   for (const census of features.census) {
     features._census[census] = true
