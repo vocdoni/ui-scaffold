@@ -3,6 +3,7 @@ interface ImportMeta {
     NODE_ENV: string
     BASE_URL: string
     VOCDONI_ENVIRONMENT: string
+    CUSTOM_FAUCET_URL: string
     CUSTOM_ORGANIZATION_DOMAINS: {
       [key: string]: string
     }
