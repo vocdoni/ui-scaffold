@@ -30,15 +30,72 @@ there, here's a list of variables you can use:
 - `BUILD_PATH` Specifies the destination of built files.
 - `CUSTOM_ORGANIZATION_DOMAINS` A JSON.stringified object of custom domains mapped to organization ids, to
   replace the homepage with their profile page.
+- `FEATURES` A JSON.stringified object of features to be enabled/disabled. See [features] for more details.
 
 You can also start the app by prefixing these vars instead of defining your
 custom `.env` file:
 
 ```bash
 VOCDONI_ENVIRONMENT=dev yarn start
-# or an example using all of them...
+# or an example using many of them...
 BUILD_PATH=build/dev BASE_URL=/ui-scaffold/dev VOCDONI_ENVIRONMENT=dev yarn build
 ```
+
+### Features
+
+The following features can be enabled/disabled using the `FEATURES` environment var:
+
+~~~js
+const features = {
+  faucet: true,
+  vote: {
+    anonymous: true,
+    overwrite: true,
+    secret: true,
+  },
+  // order matters in array features
+  login: ['web3', 'web2'],
+  census: ['spreadsheet', 'token', 'address'],
+  // first is also considered as the default language
+  languages: ['en', 'es', 'ca'],
+}
+~~~
+
+All features come enabled by default, but you can overwrite any of them using the env var, i.e.:
+
+~~~bash
+FEATURES='{"vote":{"anonymous":false}}' yarn start
+~~~
+> Would disable anonymous process creation feature.
+
+The `login` field is an array so you can both enable/disable and sort the login methods:
+
+~~~bash
+FEATURES='{"login":["web2"]}' yarn start
+~~~
+
+The example above would just show web2 login methods.
+
+~~~bash
+FEATURES='{"login":["web2", "web3"]}' yarn start
+~~~
+
+Changing the order in the features array will effectively change the order in the UI.
+
+Note features are interpreted during build time, and the bundler will ensure to tree-shake any disabled features
+(meaning they won't be included in the final bundle).
+
+### Custom domain names
+
+The custom domain names environment variable allows to map custom domains to organization ids, so that the homepage
+rendered will be the mapped organization profile.
+
+~~~bash
+CUSTOM_ORGANIZATION_DOMAINS='{"deadcorp.com":"0x000000000000000000000000000000000000dead"}' yarn build
+~~~
+
+With the example above, accessing the app via the `deadcorp.com` domain would render the profile of the organization
+with id `0x000000000000000000000000000000000000dead` as the homepage of the app.
 
 ### Available Scripts
 
@@ -100,4 +157,5 @@ such case, a hotfix should be created from the desired branch to be updated:
 [github commits]: https://github.com/vocdoni/ui-scaffold/commits/main
 
 [SDK]: https://developer.vocdoni.io/sdk
+[features]: #features
 [related react packages]: https://github.com/vocdoni/ui-components#vocdonis-ui-components

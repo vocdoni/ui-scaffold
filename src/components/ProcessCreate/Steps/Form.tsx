@@ -12,7 +12,7 @@ export const StepsForm = ({ steps, children, activeStep, next, prev, setActiveSt
     electionType: {
       autoStart: true,
       interruptible: true,
-      secretUntilTheEnd: true,
+      secretUntilTheEnd: import.meta.env.features.vote.secret,
       anonymous: false,
     },
     maxVoteOverwrites: 0,

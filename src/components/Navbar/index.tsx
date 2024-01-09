@@ -8,6 +8,7 @@ import { MdHowToVote } from 'react-icons/md'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 import Logo from '~components/Layout/LogoOnVote'
+import { LanguagesMenu } from './LanguagesList'
 import MenuDropdown from './Menu'
 
 const Navbar = () => {
@@ -44,15 +45,20 @@ const Navbar = () => {
         )}
 
         {!isConnected && (
-          <ListItem>
-            <Button
-              onClick={() => {
-                if (openConnectModal) openConnectModal()
-              }}
-            >
-              {t('menu.login').toString()}
-            </Button>
-          </ListItem>
+          <>
+            <ListItem>
+              <Button
+                onClick={() => {
+                  if (openConnectModal) openConnectModal()
+                }}
+              >
+                {t('menu.login').toString()}
+              </Button>
+            </ListItem>
+            <ListItem>
+              <LanguagesMenu />
+            </ListItem>
+          </>
         )}
         {isConnected && (
           <ListItem>

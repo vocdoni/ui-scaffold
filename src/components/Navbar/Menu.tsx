@@ -1,4 +1,4 @@
-import { CopyIcon } from '@chakra-ui/icons'
+import { ChevronDownIcon, ChevronUpIcon, CopyIcon } from '@chakra-ui/icons'
 import {
   Box,
   Button,
@@ -23,6 +23,7 @@ import { Link as ReactRouterLink } from 'react-router-dom'
 import { useDisconnect } from 'wagmi'
 import { useOrganizationModal } from '~components/Organization/OrganizationModalProvider'
 import { addressTextOverflow } from '~constants'
+import { LanguagesList } from './LanguagesList'
 
 const MenuDropdown = () => {
   const { t } = useTranslation()
@@ -106,7 +107,7 @@ const MenuDropdown = () => {
               <Flex>
                 <Balance p={0} bg='white' fontWeight='bold' />
               </Flex>
-
+              {import.meta.env.features.faucet && (
               <Button
                 as={ReactRouterLink}
                 to='/faucet'
@@ -116,10 +117,29 @@ const MenuDropdown = () => {
               >
                 <Icon as={HiShoppingCart} />
                 {t('menu.get_more')}
-              </Button>
+              </Button>)}
             </Flex>
           </MenuItem>
           <MenuItem onClick={onOpen}>{t('menu.organization')}</MenuItem>
+        </>
+      )}
+
+      {import.meta.env.features.languages.length > 1 && (
+        <>
+          <MenuItem
+            closeOnSelect={false}
+            onClick={() => setIsOpenMenuLanguages((prev) => !prev)}
+            display='flex'
+            flexDirection='column'
+            px={0}
+            pb={0}
+          >
+            <Box as='span' px={3} display='flex' w='full' pb={2}>
+              <Text>{t('menu.languages')}</Text>
+              {isOpenMenuLanguages ? <ChevronUpIcon mt='5px' /> : <ChevronDownIcon mt='5px' />}
+            </Box>
+          </MenuItem>
+          {isOpenMenuLanguages && <LanguagesList closeOnSelect={false} />}
         </>
       )}
       <MenuItem

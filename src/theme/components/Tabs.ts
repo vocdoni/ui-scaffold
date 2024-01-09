@@ -5,10 +5,11 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
 const card = definePartsStyle({
   tablist: {
     display: 'flex',
-    justifyContent: 'space-around',
+    justifyContent: 'flex-start',
+    flexWrap: { base: 'unset', md: 'wrap' },
     flexDirection: { base: 'column', md: 'row' },
     mb: 10,
-    gap: { base: 5, xl: 0 },
+    gap: { base: 5 },
   },
   tab: {
     position: 'relative',

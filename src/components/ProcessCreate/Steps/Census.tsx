@@ -1,6 +1,6 @@
 import { Box, Flex, Icon, Img, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import { CensusType, CensusTypes, useCensusTypes } from '../Census/TypeSelector'
+import { CensusType, useCensusTypes } from '../Census/TypeSelector'
 import { StepsNavigation } from './Navigation'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 import Wrapper from './Wrapper'
@@ -13,7 +13,7 @@ export interface CensusValues {
 export const Census = () => {
   const { t } = useTranslation()
   const { form, setForm } = useProcessCreationSteps()
-  const { list, details } = useCensusTypes()
+  const { defined, details } = useCensusTypes()
   const { censusType } = form
 
   return (
@@ -26,12 +26,12 @@ export const Census = () => {
           </Text>
         </Box>
         <Tabs
-          defaultIndex={CensusTypes.findIndex((val) => val === censusType)}
+          defaultIndex={defined.findIndex((val) => val === censusType)}
           onChange={(index) => {
-            const nform: StepsFormValues = { ...form, censusType: CensusTypes[index] }
+            const nform: StepsFormValues = { ...form, censusType: defined[index] }
             // ensure maxCensusSize is only set on token-based censuses
             // all other cases are handled automatically via the SDK
-            if (CensusTypes[index] !== 'token' && 'maxCensusSize' in nform) {
+            if (defined[index] !== 'token' && 'maxCensusSize' in nform) {
               delete nform?.maxCensusSize
             }
             setForm(nform)
@@ -40,7 +40,7 @@ export const Census = () => {
           isLazy
         >
           <TabList>
-            {list.map((ct: CensusType, index: number) => (
+            {defined.map((ct: CensusType, index: number) => (
               <Tab key={index}>
                 <Box bgColor='checkbox' p={1} maxW='fit-content'>
                   <Img src={checkIcon} w={2} />
@@ -58,7 +58,7 @@ export const Census = () => {
           </TabList>
 
           <TabPanels bgColor='process_create.section'>
-            {list.map((ct: CensusType, index: number) => (
+            {defined.map((ct: CensusType, index: number) => (
               <TabPanel key={index}>{details[ct].component()}</TabPanel>
             ))}
           </TabPanels>

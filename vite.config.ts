@@ -1,5 +1,6 @@
 import react from '@vitejs/plugin-react'
 import { execSync } from 'node:child_process'
+import merge from 'ts-deepmerge'
 import { defineConfig, loadEnv } from 'vite'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import tsconfigPaths from 'vite-tsconfig-paths'
@@ -28,6 +29,7 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.VOCDONI_ENVIRONMENT': JSON.stringify(vocdoniEnvironment),
       'import.meta.env.CUSTOM_ORGANIZATION_DOMAINS': JSON.parse(process.env.CUSTOM_ORGANIZATION_DOMAINS || '{}'),
       'import.meta.env.CUSTOM_FAUCET_URL': JSON.stringify(process.env.CUSTOM_FAUCET_URL),
+      'import.meta.env.features': features(),
     },
     plugins: [
       tsconfigPaths(),
@@ -45,6 +47,45 @@ const viteconfig = ({ mode }) => {
       }),
     ],
   })
+}
+
+const features = () => {
+  const defaults = {
+    faucet: true,
+    vote: {
+      anonymous: true,
+      overwrite: true,
+      secret: true,
+    },
+    login: ['web3', 'web2'],
+    census: ['spreadsheet', 'token', 'web3'],
+    languages: ['ca', 'en', 'es'],
+  }
+  const features = merge.withOptions({ mergeArrays: false }, defaults, JSON.parse(process.env.FEATURES || '{}'))
+  // Ensure at least one item is loaded in each feature array
+  if (!features.login.length) {
+    features.login = ['web3']
+  }
+  if (!features.census.length) {
+    features.census = ['spreadsheet']
+  }
+  if (!features.languages.length) {
+    features.languages = ['en']
+  }
+  // We need pure booleans in order to ensure rollup tree-shakes non enabled features.
+  // Using functions like `.includes()` would prevent such tree-shaking, resulting in a bigger bundle.
+  features._census = {
+    spreadsheet: false,
+    token: false,
+    web3: false,
+  }
+  for (const census of features.census) {
+    features._census[census] = true
+  }
+
+  console.log('features:', features)
+
+  return features
 }
 
 export default viteconfig

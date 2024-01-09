@@ -72,14 +72,16 @@ export const RoutesProvider = () => {
             loader={async ({ params }) => client.fetchAccountInfo(params.address)}
             errorElement={<Error />}
           />
-          <Route
-            path='faucet'
-            element={
-              <SuspenseLoader>
-                <Faucet />
-              </SuspenseLoader>
-            }
-          />
+          {import.meta.env.features.faucet && (
+            <Route
+              path='faucet'
+              element={
+                <SuspenseLoader>
+                  <Faucet />
+                </SuspenseLoader>
+              }
+            />
+          )}
           <Route
             path='*'
             element={

@@ -87,7 +87,7 @@
   },
   "census": {
     "chain_required": "You need to select a network",
-    "description": "Choose how to authenticate and verify voters. At this moment, the methods available to create censuses are: custom data, token based and wallet addresses.",
+    "description": "Choose how to authenticate and verify voters.",
     "request_custom_token": "'Request Custom Tokens'",
     "spreadsheet_title": "Custom data",
     "title": "Census",
@@ -261,7 +261,7 @@
         "secret_until_the_end": "Secret until the end",
         "title": "Preview",
         "title_election": "Title",
-        "vote_overwritte": "Vote overwritte"
+        "vote_overwrite": "Vote overwrite"
       },
       "confirm_spreadsheet_removal": "Are you sure? Take in mind that the uploaded file will be removed",
       "creating_process": "Creating Voting Process...",

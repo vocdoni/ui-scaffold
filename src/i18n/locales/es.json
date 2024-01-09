@@ -88,7 +88,7 @@
   },
   "census": {
     "chain_required": "Necesitas seleccionar una red",
-    "description": "Selecciona cómo los votantes se autenticarán e identificarán: las opciones incluyen datos personalizados, la propiedad de tokens o con direcciones de monedero (wallet addresses).",
+    "description": "Selecciona cómo los votantes se autenticarán e identificarán.",
     "request_custom_token": "Solicitar Tokens Personalizados",
     "spreadsheet_title": "Datos personalizados",
     "title": "Censo",
@@ -264,7 +264,7 @@
         "secret_until_the_end": "Secreto hasta el final",
         "title": "Vista previa y costos de votación",
         "title_election": "Título",
-        "vote_overwritte": "Sobrescribir voto"
+        "vote_overwrite": "Sobrescribir voto"
       },
       "confirm_spreadsheet_removal": "Seguro? Piensa que al hacerlo se eliminará el fichero que has cargado.",
       "creating_process": "Creando Proceso de Votación...",
