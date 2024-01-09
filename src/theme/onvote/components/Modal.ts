@@ -20,7 +20,7 @@ const baseStyle = definePartsStyle({
     margin: 0,
     textAlign: 'center',
     textTransform: 'uppercase',
-    fontFamily:  'pixeloidsans, monospace',
+    fontFamily: 'pixeloidsans, monospace',
 
     '& p': {
       mb: 5,
