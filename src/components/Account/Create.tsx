@@ -97,7 +97,7 @@ export const AccountCreate = () => {
       </Text>
       <Box px={{ base: 5, md: 10 }} pt={5} pb={10}>
         <FormControl isInvalid={!!errors.name} mb={5}>
-          <FormLabel fontWeight='bold' textTransform='uppercase' fontFamily='pixeloidsans'>
+          <FormLabel className='brand-theme' fontWeight='bold' textTransform='uppercase'>
             {t('new_organization.name')}
           </FormLabel>
           <Input

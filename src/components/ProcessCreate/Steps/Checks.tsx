@@ -47,9 +47,9 @@ const NeedsAccount = () => {
       <Wrapper>
         <Box>
           <Heading
+            className='brand-theme'
             fontSize='md'
             my={5}
-            fontFamily='pixeloidsans'
             textTransform='uppercase'
             color='process_create.title'
             fontWeight='normal'

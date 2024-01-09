@@ -49,6 +49,9 @@ export const theme = extendTheme(vtheme, {
         textTransform: 'uppercase',
         color: colors.process_create.title,
       },
+      '.brand-theme': {
+        fontFamily: 'pixeloidsans, monospace',
+      },
     },
   },
   breakpoints,

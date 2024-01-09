@@ -41,6 +41,8 @@ const card = definePartsStyle({
       '& p': {
         fontWeight: 'bold',
         textAlign: 'start',
+        fontFamily: 'pixeloidsans',
+        textTransform: 'uppercase',
       },
     },
 

@@ -41,12 +41,12 @@ const ProcessAside = () => {
           election?.status !== ElectionStatus.UPCOMING &&
           !(election?.electionType.anonymous && voting) && (
             <Box
+              className='brand-theme'
               display='flex'
               flexDirection='row'
               justifyContent='center'
               alignItems='center'
               gap={2}
-              fontFamily='pixeloidsans'
             >
               <Trans
                 i18nKey='aside.votes'

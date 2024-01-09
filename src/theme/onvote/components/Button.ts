@@ -18,7 +18,7 @@ const onVoteCommonStyles = {
     lineHeight: '20px',
     fontSize: '14px',
     fontWeight: 700,
-    fontFamily: 'pixeloidsans',
+    fontFamily: 'pixeloidsans, monospace',
     cursor: 'pointer',
     display: 'flex',
     justifyContent: 'center',

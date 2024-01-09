@@ -53,6 +53,11 @@ const radiobox = definePartsStyle({
       gap: 2,
       fontWeight: 'bold',
       mb: 2,
+
+      '& p': {
+        fontFamily: 'pixeloidsans',
+        textTransform: 'uppercase',
+      },
     },
 
     '& > p': {

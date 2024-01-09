@@ -79,11 +79,11 @@ const OrganizationHeader = () => {
             }}
           >
             <OrganizationName
+              className='brand-theme'
               as='p'
               fontSize={32}
               lineHeight={1.5}
               title={organization?.account.name.default || organization?.address}
-              fontFamily='pixeloidsans'
               maxW={{ base: '250px', sm: '300px', sm2: '350px', md: '450px', lg: '370px', lg2: '500px', xl: '650px' }}
             />
             <Box>

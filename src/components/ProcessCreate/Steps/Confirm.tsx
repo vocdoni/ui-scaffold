@@ -173,7 +173,7 @@ export const Confirm = () => {
 
               <FormProvider {...methods}>
                 <Box>
-                  <Text fontWeight='bold' fontFamily='pixeloidsans' textTransform='uppercase' px={2} mb={2}>
+                  <Text className='brand-theme' fontWeight='bold' textTransform='uppercase' px={2} mb={2}>
                     {t('form.process_create.confirm.confirmation')}
                   </Text>
                   <Flex

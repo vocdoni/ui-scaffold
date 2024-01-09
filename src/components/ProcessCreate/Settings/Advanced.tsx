@@ -26,9 +26,7 @@ const SettingsAdvanced = () => {
           <Checkbox {...register('electionType.anonymous')} variant='radiobox' flex='0 0 30%'>
             <Box>
               <Icon as={FaUserSecret} />
-              <Text fontFamily='pixeloidsans' textTransform='uppercase'>
-                {t('form.process_create.behavior.anonymous.title')}
-              </Text>
+              <Text>{t('form.process_create.behavior.anonymous.title')}</Text>
             </Box>
             <Text>{t('form.process_create.behavior.anonymous.description')}</Text>
           </Checkbox>
@@ -37,9 +35,7 @@ const SettingsAdvanced = () => {
           <Checkbox {...register('electionType.secretUntilTheEnd')} variant='radiobox' flex='0 0 30%'>
             <Box>
               <Icon as={HiKey} />
-              <Text fontFamily='pixeloidsans' textTransform='uppercase'>
-                {t('form.process_create.behavior.secret.title')}
-              </Text>
+              <Text>{t('form.process_create.behavior.secret.title')}</Text>
             </Box>
             <Text>{t('form.process_create.behavior.secret.description')}</Text>
           </Checkbox>
@@ -48,9 +44,7 @@ const SettingsAdvanced = () => {
           <Checkbox {...register('maxVoteOverwrites')} variant='radiobox' flex='0 0 30%'>
             <Box>
               <Icon as={BiCheckDouble} />
-              <Text fontFamily='pixeloidsans' textTransform='uppercase'>
-                {t('form.process_create.behavior.overwrite.title')}
-              </Text>
+              <Text>{t('form.process_create.behavior.overwrite.title')}</Text>
             </Box>
             <Text>{t('form.process_create.behavior.overwrite.description')}</Text>
           </Checkbox>

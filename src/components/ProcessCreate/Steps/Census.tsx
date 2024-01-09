@@ -48,9 +48,7 @@ export const Census = () => {
 
                 <Box>
                   <Icon as={details[ct].icon} />
-                  <Text fontFamily='pixeloidsans' textTransform='uppercase'>
-                    {details[ct].title}
-                  </Text>
+                  <Text>{details[ct].title}</Text>
                 </Box>
                 <Text>{details[ct].description}</Text>
               </Tab>
