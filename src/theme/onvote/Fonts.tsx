@@ -9,22 +9,22 @@ const Fonts = () => (
     styles={`
       @font-face {
         font-family: 'pixeloidsans';
-        font-style: normal;
+        font-weight: normal;
         src: url('${pixeloidSans}') format('truetype');
       }
       @font-face {
         font-family: 'pixeloidsans';
-        font-style: bold;
+        font-weight: bold;
         src: url('${pixeloidSansBold}') format('truetype');
       }
       @font-face {
         font-family: 'Archivo';
-        font-style: normal;
+        font-weight: normal;
         src: url('${archivo}') format('truetype');
       }
       @font-face {
         font-family: 'Archivo';
-        font-style: bold;
+        font-weight: bold;
         src: url('${archivoBold}') format('truetype');
       }
     `}
