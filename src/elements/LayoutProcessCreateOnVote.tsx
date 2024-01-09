@@ -1,8 +1,7 @@
-import { Box, Flex, Img, Link, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Outlet, Link as ReactRouterLink, useNavigate } from 'react-router-dom'
 import Logo from '~components/Layout/LogoOnVote'
-import closeIcon from '/assets/close-icon.svg'
 
 const LayoutProcessCreate = () => {
   const { t } = useTranslation()
@@ -23,16 +22,14 @@ const LayoutProcessCreate = () => {
         >
           <Logo />
 
-          <Link
-            p={1}
-            display='flex'
-            alignItems='center'
+          <Button
+            as={ReactRouterLink}
+            variant='close-form'
             onClick={(e) => (window.history.state.idx ? navigate(-1) : navigate('/'))}
-            color='primary.600'
           >
-            <Img src={closeIcon} mr={1} />
-            {t('form.process_create.navbar.close_form_btn')}
-          </Link>
+            <Box />
+            <Text as='span'>{t('form.process_create.navbar.close_form_btn')}</Text>
+          </Button>
         </Flex>
 
         <Box as='main' maxW='1920px' w='full' mx='auto' px={{ base: '40px', md: '80px' }}>

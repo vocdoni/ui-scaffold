@@ -116,10 +116,57 @@ const icon = defineStyle((props) => {
     _disabled: {},
   }
 })
+
+const closeForm = defineStyle({
+  bgColor: 'white',
+  fontWeight: 'normal',
+  bgImage: '/assets/close-icon.svg',
+  bgRepeat: 'no-repeat',
+  bgSize: '10px',
+  bgPosition: '15px 52%',
+  pl: '30px',
+})
+
+const goBack = defineStyle({
+  fontWeight: 'normal',
+  bgImage: '/assets/goback-icon.svg',
+  bgRepeat: 'no-repeat',
+  bgSize: '5px',
+  bgPosition: '20px 50%',
+  pl: '30px',
+  bgColor: 'gray.100',
+
+  _hover: {
+    bgColor: 'gray.200',
+  },
+
+  _active: {
+    bgColor: 'gray.300',
+  },
+
+  '& span': {
+    color: 'organization.go_back_btn',
+    overflow: 'hidden',
+    fontSize: 'sm',
+    isTruncated: true,
+    maxW: '200px',
+  },
+})
+
 export const Button = defineStyleConfig({
   defaultProps: {
     colorScheme: 'primary',
     variant: 'primary',
   },
-  variants: { 'address-dropdown': addressDropdown, dropdown, icon, process, primary, secondary, transparent },
+  variants: {
+    'address-dropdown': addressDropdown,
+    'close-form': closeForm,
+    dropdown,
+    'go-back': goBack,
+    icon,
+    process,
+    primary,
+    secondary,
+    transparent,
+  },
 })

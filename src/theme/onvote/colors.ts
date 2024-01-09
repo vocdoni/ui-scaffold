@@ -54,6 +54,7 @@ export const colors = {
   checkbox: colorsBase.primary.main,
 
   link: {
+    contrast: colorsBase.white.pure,
     primary: colorsBase.primary.main,
   },
 
@@ -144,6 +145,7 @@ export const colors = {
     advanced_checkbox_bg: colorsBase.white.pure,
     advanced_checkbox_border: colorsBase.primary.gray_light,
     bg: colorsBase.white.dark2,
+    close_btn: colorsBase.primary.main,
     confirm_total_cost: colorsBase.primary.main,
     creation_process_steps_loading: colorsBase.primary.gray,
     wallet_addresses_border: colorsBase.gray.main,

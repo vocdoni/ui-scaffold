@@ -1,5 +1,5 @@
 import { WarningIcon } from '@chakra-ui/icons'
-import { Box, Button, Flex, Icon, Img, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Icon, Text } from '@chakra-ui/react'
 import {
   ElectionDescription,
   ElectionSchedule,
@@ -15,7 +15,6 @@ import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
 import { ActionsMenu } from './ActionsMenu'
 import { CreatedBy } from './CreatedBy'
 import { ProcessDate } from './Date'
-import goBack from '/assets/goback-icon.svg'
 
 const ProcessHeader = () => {
   const { t } = useTranslation()
@@ -35,16 +34,8 @@ const ProcessHeader = () => {
   return (
     <Box mb={4}>
       {showOrgInformation && (
-        <Button
-          as={Link}
-          to={`/organization/0x${election?.organizationId}`}
-          w='fit-content'
-          my={5}
-          variant='transparent'
-          p={0}
-        >
-          <Img src={goBack} mr={1} w='5px' />
-          <OrganizationName color='organization.go_back_btn' as='span' overflow='hidden' fontSize='sm' isTruncated />
+        <Button as={Link} to={`/organization/0x${election?.organizationId}`} variant='go-back' my={5}>
+          <OrganizationName as='span' />
         </Button>
       )}
       <Flex direction={{ base: 'column', lg2: 'row' }} mb={7} gap={10}>

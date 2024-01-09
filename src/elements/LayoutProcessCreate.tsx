@@ -1,7 +1,6 @@
-import { Box, Flex, Icon, Link } from '@chakra-ui/react'
+import { Box, Button, Flex } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import { IoCloseOutline } from 'react-icons/io5'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Outlet, Link as ReactRouterLink, useNavigate } from 'react-router-dom'
 import Logo from '~components/Layout/Logo'
 
 const LayoutProcessCreate = () => {
@@ -22,16 +21,13 @@ const LayoutProcessCreate = () => {
         >
           <Logo />
 
-          <Link
-            p={1}
-            bgColor='white'
-            display='flex'
-            alignItems='center'
+          <Button
+            as={ReactRouterLink}
+            variant='close-form'
             onClick={(e) => (window.history.state.idx ? navigate(-1) : navigate('/'))}
           >
-            <Icon as={IoCloseOutline} mt='1.5px' boxSize={5} />
             {t('form.process_create.navbar.close_form_btn')}
-          </Link>
+          </Button>
         </Flex>
 
         <Box as='main' maxW={360} w='full' mx='auto' p={4}>
