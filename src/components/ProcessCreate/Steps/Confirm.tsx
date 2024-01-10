@@ -91,7 +91,12 @@ export const Confirm = () => {
       }
       const election = Election.from(params)
 
-      let pid: string
+      let pid: string = ''
+      if (census instanceof CspCensus) {
+        pid = await client.electionService.nextElectionId(account!.address, election)
+        const createdCspElection: IElectionWithTokenResponse = await createElectionInCsp(pid, form.userList)
+      }
+
       for await (const step of client.createElectionSteps(election)) {
         switch (step.key) {
           case ElectionCreationSteps.CENSUS_CREATED:
@@ -99,12 +104,14 @@ export const Confirm = () => {
           case ElectionCreationSteps.DONE:
             setStep(step.key)
             if (step.key === ElectionCreationSteps.DONE) {
-              pid = step.electionId
-              setCreated(pid)
-
-              if (census instanceof CspCensus) {
-                const createdCspElection: IElectionWithTokenResponse = await createElectionInCsp(pid, form.userList)
+              if (pid !== step.electionId) {
+                pid = step.electionId
+                if (census instanceof CspCensus) {
+                  const createdCspElection: IElectionWithTokenResponse = await createElectionInCsp(pid, form.userList)
+                }
               }
+
+              setCreated(pid)
             }
         }
       }
