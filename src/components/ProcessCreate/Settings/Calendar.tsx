@@ -70,9 +70,8 @@ const Calendar = () => {
         </Text>
       </Box>
       <Flex
+        className='process-create-section'
         bgColor='process_create.section'
-        border='1px solid'
-        borderColor='process_create.section_border'
         flexDirection={{ base: 'column', xl2: 'row' }}
         justifyContent='space-between'
         gap={{ xl2: 20 }}

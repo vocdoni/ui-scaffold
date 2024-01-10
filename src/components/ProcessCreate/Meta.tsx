@@ -31,7 +31,7 @@ const CreateProcessMeta = () => {
             {t('form.process_create.meta.description')}
           </Text>
         </Box>
-        <Box bgColor='process_create.section' border='1px solid' borderColor='process_create.section_border' p={4}>
+        <Box className='process-create-section' bgColor='process_create.section' p={4}>
           <FormControl variant='process-create-label' isInvalid={isInvalidFieldMap(errors, `title`)} mb={3}>
             <FormLabel>{t('form.process_create.meta.title_label')}</FormLabel>
             <Input

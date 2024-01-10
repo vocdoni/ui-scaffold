@@ -52,6 +52,10 @@ export const theme = extendTheme(vtheme, {
       '.brand-theme': {
         fontFamily: 'pixeloidsans, monospace',
       },
+      '.process-create-section': {
+        border: '1px solid',
+        borderColor: 'process_create.section_border',
+      },
     },
   },
   breakpoints,
