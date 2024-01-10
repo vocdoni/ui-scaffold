@@ -43,7 +43,7 @@ export const Census = () => {
         >
           <TabList gap={2} flexWrap={'wrap'} justifyContent={'left'}>
             {defined.map((ct: CensusType, index: number) => (
-              <Tab key={index} height={36}>
+              <Tab key={index}>
                 <Icon as={HiCheckCircle} />
                 <Box>
                   <Icon as={details[ct].icon} />

@@ -42,3 +42,17 @@ export const TokenCensus = () => (
     <Token />
   </SuspenseLoader>
 )
+
+const Csp = lazy(() => {
+  if (import.meta.env.features._census.csp) {
+    return import('./CensusCsp').then((module) => ({ default: module.StepFormCensusCsp }))
+  }
+
+  return Promise.resolve({ default: () => <></> })
+})
+
+export const CspCensus = () => (
+  <SuspenseLoader>
+    <Csp />
+  </SuspenseLoader>
+)
