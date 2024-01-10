@@ -1,5 +1,6 @@
 import { checkboxAnatomy } from '@chakra-ui/anatomy'
 import { createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/react'
+import checkIcon from '/assets/check-icon.svg'
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(checkboxAnatomy.keys)
 const baseStyle = definePartsStyle({
@@ -8,7 +9,7 @@ const baseStyle = definePartsStyle({
 
     '&[data-checked=""]': {
       background: 'checkbox',
-      bgImage: '/assets/check-icon.svg',
+      bgImage: checkIcon,
       bgSize: '10px',
       bgRepeat: 'no-repeat',
       bgPosition: 'center',

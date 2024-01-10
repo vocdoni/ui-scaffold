@@ -1,5 +1,6 @@
 import { modalAnatomy as parts } from '@chakra-ui/anatomy'
-import { createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/styled-system'
+import { createMultiStyleConfigHelpers } from '@chakra-ui/styled-system'
+import closeIcon from '/assets/close-icon.svg'
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(parts.keys)
 
@@ -45,7 +46,7 @@ const baseStyle = definePartsStyle({
   },
   closeButton: {
     position: 'absolute',
-    bgImage: '/assets/close-icon.svg',
+    bgImage: closeIcon,
     bgRepeat: 'no-repeat',
     bgPosition: 'center',
     borderRadius: 0,

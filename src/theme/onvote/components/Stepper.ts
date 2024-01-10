@@ -1,9 +1,11 @@
+import checkIcon from '/assets/check-icon.svg'
+
 const baseStyle = {
   indicator: {
     borderRadius: '0px',
     '&[data-status=complete]': {
       background: 'process_create.stepper.bg',
-      bgImage: '/assets/check-icon.svg',
+      bgImage: checkIcon,
       bgRepeat: 'no-repeat',
       bgPosition: 'center',
     },

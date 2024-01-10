@@ -1,4 +1,5 @@
 import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+import closeIcon from '/assets/close-icon.svg'
 
 const process = defineStyle({
   w: 'full',
@@ -120,7 +121,7 @@ const icon = defineStyle((props) => {
 const closeForm = defineStyle({
   bgColor: 'white',
   fontWeight: 'normal',
-  bgImage: '/assets/close-icon.svg',
+  bgImage: closeIcon,
   bgRepeat: 'no-repeat',
   bgSize: '10px',
   bgPosition: '15px 52%',

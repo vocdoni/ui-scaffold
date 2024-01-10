@@ -1,4 +1,6 @@
 import { defineStyle, defineStyleConfig } from '@chakra-ui/styled-system'
+import closeIcon from '/assets/close-icon.svg'
+import gobackIcon from '/assets/goback-icon.svg'
 
 const baseStyle = defineStyle({
   borderRadius: 0,
@@ -383,7 +385,7 @@ const icon2 = defineStyle((props) => {
 const closeForm = defineStyle({
   color: 'process_create.close_btn',
   fontWeight: 'normal',
-  bgImage: '/assets/close-icon.svg',
+  bgImage: closeIcon,
   bgRepeat: 'no-repeat',
   bgSize: '10px',
   bgPosition: '15px 47%',
@@ -391,7 +393,7 @@ const closeForm = defineStyle({
 })
 
 const goBack = defineStyle({
-  bgImage: '/assets/goback-icon.svg',
+  bgImage: gobackIcon,
   bgRepeat: 'no-repeat',
   bgSize: '5px',
   bgPosition: '0px 47%',
