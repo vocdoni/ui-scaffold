@@ -40,7 +40,7 @@ export const colors = {
     600: colorsBase.black,
     700: colorsBase.black,
   },
-
+  checkbox: colorsBase.primary.main,
   link: {
     primary: colorsBase.primary.main,
     contrast: colorsBase.white.pure,

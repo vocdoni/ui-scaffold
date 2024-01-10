@@ -6,12 +6,8 @@ const baseStyle = definePartsStyle({
   control: {
     borderRadius: 0,
 
-    '&::checked': {
-      bgColor: 'red',
-    },
     '&[data-checked=""]': {
       background: 'checkbox',
-      borderColor: 'checkbox',
       bgImage: '/assets/check-icon.svg',
       bgSize: '10px',
       bgRepeat: 'no-repeat',

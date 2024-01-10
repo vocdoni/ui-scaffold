@@ -3,6 +3,16 @@ import { createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/react'
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(checkboxAnatomy.keys)
 
+const baseStyle = definePartsStyle({
+  control: {
+    borderRadius: 'full',
+
+    '&[data-checked=""]': {
+      background: 'checkbox',
+    },
+  },
+})
+
 const radiobox = definePartsStyle({
   container: defineStyle({
     position: 'relative',
@@ -43,5 +53,6 @@ const radiobox = definePartsStyle({
 })
 
 export const Checkbox = defineMultiStyleConfig({
+  baseStyle,
   variants: { radiobox },
 })
