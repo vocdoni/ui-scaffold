@@ -19,6 +19,7 @@ import {
 } from '@chakra-ui/react'
 import { ElectionProvider, errorToString, useClient } from '@vocdoni/react-providers'
 import {
+  CspCensus,
   Election,
   ElectionCreationSteps,
   ElectionStatus,
@@ -46,6 +47,8 @@ import { Option } from '../StepForm/Questions'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 import Wrapper from './Wrapper'
 import imageHeader from '/assets/spreadsheet-confirm-modal.jpeg'
+import { IElection, IElectionWithTokenResponse } from 'vocdoni-admin-sdk'
+import { useCspAdmin } from '../Census/Csp/use-csp'
 
 export const Confirm = () => {
   const { env, client, account, fetchAccount } = useClient()
@@ -60,6 +63,7 @@ export const Confirm = () => {
   const [step, setStep] = useState<Steps>()
   const [disabled, setDisabled] = useState<boolean>(false)
   const [unpublished, setUnpublished] = useState<UnpublishedElection | undefined>()
+  const { vocdoniAdminClient } = useCspAdmin()
 
   const methods = useForm({
     defaultValues: {
@@ -97,9 +101,14 @@ export const Confirm = () => {
             if (step.key === ElectionCreationSteps.DONE) {
               pid = step.electionId
               setCreated(pid)
+
+              if (census instanceof CspCensus) {
+                const createdCspElection: IElectionWithTokenResponse = await createElectionInCsp(pid, form.userList)
+              }
             }
         }
       }
+
       toast({
         title: t('form.process_create.success_title'),
         description: t('form.process_create.success_description'),
@@ -125,6 +134,28 @@ export const Confirm = () => {
       setSending(false)
     }
   }
+
+  const createElectionInCsp = async (
+    electionId: string,
+    users: { login: string }[]
+  ): Promise<IElectionWithTokenResponse> => {
+    if (!vocdoniAdminClient) throw new Error('Vocdoni Admin Client not initialized')
+
+    const cspElection: IElection = {
+      electionId: electionId,
+      handlers: [
+        {
+          handler: 'oauth',
+          service: 'github',
+          mode: 'usernames',
+          data: users.map((user) => user.login),
+        },
+      ],
+    }
+
+    return await vocdoniAdminClient.cspElectionCreate(cspElection)
+  }
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const corelection = useMemo(() => electionFromForm(form), [account?.address, form])
 
@@ -322,7 +353,8 @@ const getCensus = async (env: EnvOptions, form: StepsFormValues, salt: string) =
       census.add(addresses)
 
       return census
-
+    case 'csp':
+      return new CspCensus(import.meta.env.CSP_PUBKEY as string, import.meta.env.CSP_URL as string)
     default:
       throw new Error(`census type ${form.censusType} is not allowed`)
   }

@@ -20,7 +20,10 @@ interface ImportMeta {
         spreadsheet: boolean
         token: boolean
         web3: boolean
+        csp: boolean
       }
     }
+    CSP_URL: string
+    CSP_PUBKEY: string
   }
 }

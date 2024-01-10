@@ -8,6 +8,7 @@ import { Questions, QuestionsValues } from '../StepForm/Questions'
 import { Census, CensusValues } from './Census'
 import { Checks } from './Checks'
 import { Confirm } from './Confirm'
+import { CensusCspValues } from '../StepForm/CensusCsp'
 
 export interface StepsFormValues
   extends InfoValues,
@@ -15,6 +16,7 @@ export interface StepsFormValues
     CensusValues,
     CensusWeb3Values,
     CensusTokenValues,
+    CensusCspValues,
     CensusSpreadsheetValues {}
 
 export interface StepsState {

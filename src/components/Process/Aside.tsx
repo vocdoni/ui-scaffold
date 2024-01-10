@@ -77,7 +77,7 @@ const ProcessAside = () => {
             </Flex>
           )}
 
-        {isConnected && census?.type !== 'spreadsheet' && !isInCensus && (
+        {isConnected && !['spreadsheet', 'csp'].includes(census?.type) && !isInCensus && (
           <Text textAlign='center' fontSize='sm'>
             {t('aside.is_not_in_census')}
           </Text>
@@ -143,7 +143,7 @@ export const VoteButton = ({ setQuestionsTab }: { setQuestionsTab: () => void })
   if (
     election?.status === ElectionStatus.CANCELED ||
     !!voted ||
-    (isConnected && !isInCensus && census?.type !== 'spreadsheet')
+    (isConnected && !isInCensus && !['spreadsheet', 'csp'].includes(census?.type))
   )
     return null
 
