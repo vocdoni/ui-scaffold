@@ -29,6 +29,8 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.VOCDONI_ENVIRONMENT': JSON.stringify(vocdoniEnvironment),
       'import.meta.env.CUSTOM_ORGANIZATION_DOMAINS': JSON.parse(process.env.CUSTOM_ORGANIZATION_DOMAINS || '{}'),
       'import.meta.env.features': features(),
+      'import.meta.env.CSP_PUBKEY': JSON.stringify(process.env.CSP_PUBKEY),
+      'import.meta.env.CSP_URL': JSON.stringify(process.env.CSP_URL),
     },
     plugins: [
       tsconfigPaths(),
@@ -57,7 +59,7 @@ const features = () => {
       secret: true,
     },
     login: ['web3', 'web2'],
-    census: ['spreadsheet', 'token', 'web3'],
+    census: ['spreadsheet', 'token', 'web3', 'csp'],
     languages: ['ca', 'en', 'es'],
   }
   const features = merge.withOptions({ mergeArrays: false }, defaults, JSON.parse(process.env.FEATURES || '{}'))
@@ -77,6 +79,7 @@ const features = () => {
     spreadsheet: false,
     token: false,
     web3: false,
+    csp: false,
   }
   for (const census of features.census) {
     features._census[census] = true

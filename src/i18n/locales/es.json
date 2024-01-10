@@ -96,7 +96,8 @@
     "token_description": "Seleccioneu la xarxa i el token per crear un cens on els titulars del token votaran amb el seu poder de vot.",
     "token_required": "Necesitas seleccionar un token",
     "token_title": "Censo basado en tokens",
-    "wallet_address_title": "Direcciones de billetera"
+    "wallet_address_title": "Direcciones de billetera",
+    "social_address_title": "Usuarios de Github"
   },
   "claim": {
     "error_title": "Error",
@@ -235,7 +236,9 @@
         "token_base_title": "Basado en tokens",
         "tokens_placeholder": "Busca o pega la dirección del token",
         "wallet_address_description": "Identifica a tus votantes por sus direcciones de monedero digital.",
-        "wallet_address_title": "Direcciones de monedero"
+        "wallet_address_title": "Direcciones de monedero",
+        "social_title": "Censo de Github",
+        "social_description": "Cree un censo de votantes elegibles que proporcione una lista de usuarios de Github."
       },
       "confirm": {
         "anonymous": "Anónimo",
@@ -416,7 +419,8 @@
     "census_strategies": {
       "spreadsheet": "CSV",
       "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
-      "web3": "Direcciones web3"
+      "web3": "Direcciones web3",
+      "csp": "CSP"
     },
     "created_by": "Creado por",
     "date": {
@@ -492,5 +496,10 @@
   "use_read_more": {
     "read_less": "Leer menos",
     "read_more": "Leer más"
+  },
+  "csp_census": {
+    "github": {
+      "selected_users": "Usuarios seleccionados:"
+    }
   }
 }

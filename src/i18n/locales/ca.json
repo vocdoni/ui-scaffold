@@ -96,7 +96,8 @@
     "token_description": "Selecciona la red y el token para crear un censo donde los titulares de token votarán con su poder de voto.",
     "token_required": "Necessites seleccionar un token",
     "token_title": "Cens basat en tokens",
-    "wallet_address_title": "Adreces de cartera"
+    "wallet_address_title": "Adreces de cartera",
+    "social_address_title": "Usuaris de Github"
   },
   "claim": {
     "error_title": "Error",
@@ -235,7 +236,9 @@
         "token_base_title": "Basat en token",
         "tokens_placeholder": "Cerca o enganxa la direcció del token",
         "wallet_address_description": "Identifica els teus votants per les seves adreces de cartera.",
-        "wallet_address_title": "Adreces de cartera"
+        "wallet_address_title": "Adreces de cartera",
+        "social_title": "Cens de Github",
+        "social_description": "Creeu un cens d'electors elegibles proporcionant una llista d'usuaris de Github."
       },
       "confirm": {
         "anonymous": "Anònim",
@@ -416,7 +419,8 @@
     "census_strategies": {
       "spreadsheet": "CSV",
       "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
-      "web3": "Adreces Web3"
+      "web3": "Adreces Web3",
+      "csp": "CSP"
     },
     "created_by": "Creat per",
     "date": {
@@ -492,5 +496,10 @@
   "use_read_more": {
     "read_less": "Llegeix menys",
     "read_more": "Llegeix més"
+  },
+  "csp_census": {
+    "github": {
+      "selected_users": "Usuaris seleccionats:"
+    }
   }
 }
