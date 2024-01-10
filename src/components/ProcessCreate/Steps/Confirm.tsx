@@ -104,10 +104,9 @@ export const Confirm = () => {
           case ElectionCreationSteps.DONE:
             setStep(step.key)
             if (step.key === ElectionCreationSteps.DONE) {
-              if (pid != step.electionId) {
+              if (pid !== step.electionId) {
                 pid = step.electionId
                 if (census instanceof CspCensus) {
-                  console.log('creating census again!!!!')
                   const createdCspElection: IElectionWithTokenResponse = await createElectionInCsp(pid, form.userList)
                 }
               }
