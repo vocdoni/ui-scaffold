@@ -21,6 +21,10 @@ declare module '~theme/icons' {
   export const Logo: import('react').FC
 }
 
+declare module '~theme/Fonts' {
+  export default import('react').FC
+}
+
 declare module '~theme/components/Footer' {
   export default import('react').FC
 }

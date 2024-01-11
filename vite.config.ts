@@ -39,7 +39,7 @@ const viteconfig = ({ mode }) => {
       features(),
       react(),
       createHtmlPlugin({
-        template: `html/${process.env.THEME || 'default'}.html`,
+        template: `html/${process.env.THEME || 'default'}/index.html`,
         minify: {
           removeComments: false,
           collapseWhitespace: true,
