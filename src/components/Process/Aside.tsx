@@ -59,7 +59,21 @@ const ProcessAside = () => {
             </Box>
           )}
 
-        {isConnected && census?.type !== 'spreadsheet' && !isInCensus && (
+        {census?.type !== 'spreadsheet' &&
+          !isConnected &&
+          !connected &&
+          election?.status !== ElectionStatus.CANCELED && (
+            <Flex flexDirection='column' alignItems='center' gap={3} w='full'>
+              <Box display={{ base: 'none', md: 'block' }}>
+                <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />
+              </Box>
+              <Text textAlign='center' fontSize='sm'>
+                {t('aside.not_connected')}
+              </Text>
+            </Flex>
+          )}
+
+        {isConnected && !['spreadsheet', 'csp'].includes(census?.type) && !isInCensus && (
           <Text textAlign='center' fontSize='sm'>
             {t('aside.is_not_in_census')}
           </Text>
@@ -131,8 +145,8 @@ export const VoteButton = ({ setQuestionsTab }: { setQuestionsTab: () => void })
 
   if (
     election?.status === ElectionStatus.CANCELED ||
-    !isAbleToVote ||
-    (isConnected && !isInCensus && census?.type !== 'spreadsheet')
+    !!voted ||
+    (isConnected && !isInCensus && !['spreadsheet', 'csp'].includes(census?.type))
   )
     return null
 

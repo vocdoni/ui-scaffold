@@ -9,7 +9,7 @@ const features = () => {
       secret: true,
     },
     login: ['web3', 'web2'],
-    census: ['spreadsheet', 'token', 'web3'],
+    census: ['spreadsheet', 'token', 'web3', 'csp'],
     languages: ['ca', 'en', 'es'],
   }
   const features = merge.withOptions({ mergeArrays: false }, defaults, JSON.parse(process.env.FEATURES || '{}'))
@@ -29,6 +29,7 @@ const features = () => {
     spreadsheet: false,
     token: false,
     web3: false,
+    csp: false,
   }
   for (const census of features.census) {
     features._census[census] = true

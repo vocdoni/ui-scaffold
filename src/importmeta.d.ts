@@ -21,8 +21,11 @@ interface ImportMeta {
         spreadsheet: boolean
         token: boolean
         web3: boolean
+        csp: boolean
       }
     }
     theme: string
+    CSP_URL: string
+    CSP_PUBKEY: string
   }
 }

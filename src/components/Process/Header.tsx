@@ -169,6 +169,7 @@ const useStrategy = () => {
     spreadsheet: t('process.census_strategies.spreadsheet'),
     token: t('process.census_strategies.token', { token: election?.meta?.token }),
     web3: t('process.census_strategies.web3'),
+    csp: t('process.census_strategies.csp'),
   }
 
   if (!election || (election && !election?.meta?.census)) return ''

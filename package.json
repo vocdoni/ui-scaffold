@@ -31,6 +31,7 @@
     "react-router-dom": "^6.14.1",
     "remark-gfm": "^3.0.1",
     "viem": "^1.16.6",
+    "vocdoni-admin-sdk": "^0.0.2",
     "wagmi": "^1.4.5",
     "web-vitals": "^3.3.2",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.0/xlsx-0.20.0.tgz"
