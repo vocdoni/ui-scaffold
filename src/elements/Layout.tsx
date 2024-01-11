@@ -1,11 +1,11 @@
-import { Box, Flex, HStack } from '@chakra-ui/react'
+import { Box, Flex, HStack, Text } from '@chakra-ui/react'
 import { Outlet } from 'react-router-dom'
-import Footer from '~components/Footer'
 import Navbar from '~components/Navbar'
+import Footer from '~theme/components/Footer'
 
 const Layout = () => {
   return (
-    <Flex position='relative' flexDirection='column' minH='100vh'>
+    <Flex position='relative' flexDirection='column' minH='100vh' className='site-wrapper'>
       <HStack as='header' position='sticky' top={0} w='full' backdropFilter='blur(40px)' zIndex={10}>
         <Navbar />
       </HStack>
@@ -15,6 +15,28 @@ const Layout = () => {
       <Box as='footer' mt='auto'>
         <Footer />
       </Box>
+      {import.meta.env.theme === 'onvote' && (
+        <Text
+          ml={2}
+          top='calc(50vh - 90px)'
+          position='fixed'
+          sx={{
+            '&': {
+              writingMode: 'vertical-lr',
+              textOrientation: 'mixed',
+              transform: 'rotate(180deg)',
+            },
+          }}
+          color='white'
+          mixBlendMode='difference'
+          textTransform='uppercase'
+          fontFamily='pixeloidsans'
+          fontSize='16px'
+          display={{ base: 'none', sm: 'block' }}
+        >
+          World wide voting
+        </Text>
+      )}
     </Flex>
   )
 }

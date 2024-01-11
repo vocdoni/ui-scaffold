@@ -10,7 +10,6 @@ import {
   Grid,
   GridItem,
   Img,
-  Link,
   Spinner,
   Text,
 } from '@chakra-ui/react'
@@ -21,7 +20,7 @@ import { useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import ProcessCardDetailed from '../Process/CardDetailed'
 import Header from './Header'
-import noElections from '/assets/onvote-no-elections.png'
+import empty from '/assets/empty-list-org.png'
 
 const OrganizationView = () => {
   const { t } = useTranslation()
@@ -121,7 +120,7 @@ const OrganizationView = () => {
           <Card variant='no-elections'>
             <CardBody>
               <Box>
-                <Img src={noElections} alt={t('organization.elections_list_empty.alt')} />
+                <Img src={empty} alt={t('organization.elections_list_empty.alt')} />
               </Box>
               <Box>
                 {areEqualHexStrings(account?.address, organization?.address) ? (

@@ -1,9 +1,8 @@
-import { Flex, Img, List, ListItem, Spinner, Stack, Text } from '@chakra-ui/react'
+import { Flex, List, ListItem, Spinner, Stack, Text } from '@chakra-ui/react'
 import { ElectionCreationSteps } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import checkIcon from '/assets/check-icon.svg'
-import closeIcon from '/assets/close-icon.svg'
+import { Check, Close } from '~theme/icons'
 
 export type Steps =
   | ElectionCreationSteps.CENSUS_CREATED
@@ -59,7 +58,7 @@ export const CreationProgress = ({ error, sending, step }: CreationProgressProps
             {steps[key as keyof CreationStepsState] ? (
               <Flex justifyContent='center' alignItems='center' gap={2}>
                 <Flex justifyContent='center' alignItems='center' w={6} h={6} bgColor='primary.main'>
-                  <Img src={checkIcon} />
+                  <Check />
                 </Flex>
                 <Text fontWeight='bold' color='primary.main'>
                   {labels[key]}
@@ -83,7 +82,7 @@ export const CreationProgress = ({ error, sending, step }: CreationProgressProps
                 ) : (
                   <Flex justifyContent='center' alignItems='center' gap={2}>
                     <Flex justifyContent='center' alignItems='center' w={6} h={6} bgColor='error'>
-                      <Img src={closeIcon} />
+                      <Close />
                     </Flex>
                     <Text fontWeight='bold' color='error'>
                       {labels[key]}

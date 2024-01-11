@@ -1,33 +1,31 @@
-import { ChakraProvider, ColorModeScript, extendTheme, useColorMode } from '@chakra-ui/react'
+import { ColorModeScript } from '@chakra-ui/react'
 import { Signer } from '@ethersproject/abstract-signer'
-import { RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import { ClientProvider } from '@vocdoni/chakra-components'
 import { EnvOptions } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import { useAccount, useWalletClient, WagmiConfig } from 'wagmi'
 import { OrganizationModalProvider } from '~components/Organization/OrganizationModalProvider'
 import { walletClientToSigner } from '~constants/wagmi-adapters'
-import Fonts from '~theme/onvote/Fonts'
 import { VocdoniEnvironment } from './constants'
 import { chains, wagmiConfig } from './constants/rainbow'
 import { translations } from './i18n/components'
 import { datesLocale } from './i18n/locales'
 import { RoutesProvider } from './router/Router'
-import { rainbowStyles, theme } from './theme/onvote'
+import { RainbowKitTheme, Theme } from './Theme'
 
-export const Providers = () => (
-  <ChakraProvider theme={extendTheme(theme)}>
-    <Fonts />
-    <WagmiConfig config={wagmiConfig}>
-      <AppProviders />
-    </WagmiConfig>
-  </ChakraProvider>
-)
+export const Providers = () => {
+  return (
+    <Theme>
+      <WagmiConfig config={wagmiConfig}>
+        <AppProviders />
+      </WagmiConfig>
+    </Theme>
+  )
+}
 
 export const AppProviders = () => {
   const { data } = useWalletClient()
   const { address } = useAccount()
-  const { colorMode } = useColorMode()
   const { t, i18n } = useTranslation()
 
   let signer = null
@@ -36,7 +34,7 @@ export const AppProviders = () => {
   }
 
   return (
-    <RainbowKitProvider chains={chains} theme={rainbowStyles(colorMode)}>
+    <RainbowKitTheme chains={chains}>
       <ClientProvider
         env={VocdoniEnvironment as EnvOptions}
         signer={signer as Signer}
@@ -49,6 +47,6 @@ export const AppProviders = () => {
           <RoutesProvider />
         </OrganizationModalProvider>
       </ClientProvider>
-    </RainbowKitProvider>
+    </RainbowKitTheme>
   )
 }

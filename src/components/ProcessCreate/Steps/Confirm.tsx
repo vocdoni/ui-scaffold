@@ -45,7 +45,7 @@ import { Web3Address } from '../StepForm/CensusWeb3'
 import { Option } from '../StepForm/Questions'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 import Wrapper from './Wrapper'
-import imageHeader from '/assets/onvote-modal-submitting.png'
+// import imageHeader from '/assets/onvote-modal-submitting.png'
 
 export const Confirm = () => {
   const { env, client, account, fetchAccount } = useClient()
@@ -258,7 +258,7 @@ export const Confirm = () => {
           <ModalContent>
             <ModalHeader>
               <Text>{t('form.process_create.creating_process')}</Text>
-              <Box bgImage={imageHeader} />
+              {/* <Box bgImage={imageHeader} /> */}
             </ModalHeader>
             {error && <ModalCloseButton />}
             <ModalBody>

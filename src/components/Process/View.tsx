@@ -31,8 +31,8 @@ import { Trans, useTranslation } from 'react-i18next'
 import { FaFacebook, FaReddit, FaTelegram, FaTwitter } from 'react-icons/fa'
 import ProcessAside, { VoteButton } from './Aside'
 import Header from './Header'
-import confirmImg from '/assets/onvote-modal-confirm-spreadsheet.jpg'
-import successImg from '/assets/onvote-modal-success-vote.jpg'
+import confirmImg from '/assets/spreadsheet-confirm-modal.jpg'
+import successImg from '/assets/spreadsheet-success-modal.jpg'
 
 export const ProcessView = () => {
   const { t } = useTranslation()

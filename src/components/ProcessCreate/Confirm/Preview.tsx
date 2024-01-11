@@ -3,7 +3,7 @@ import { ElectionDescription, ElectionQuestions, ElectionTitle } from '@vocdoni/
 import { useTranslation } from 'react-i18next'
 import { IoMdCheckmark, IoMdClose, IoMdCreate } from 'react-icons/io'
 import { IoCheckmarkSharp } from 'react-icons/io5'
-import { cofirmTheme } from '~theme/onvote/components/Confirm'
+import { confirmTheme } from '~theme/components/Confirm'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 import Census from './Census'
 
@@ -121,7 +121,7 @@ const Preview = () => {
           {t('form.process_create.confirm.questions', { count: questions.length })}
         </Text>
         <Box flexBasis={{ base: '100%', md: '65%' }} flexShrink={0} flexGrow={0}>
-          <ChakraProvider theme={extendTheme(cofirmTheme)}>
+          <ChakraProvider theme={extendTheme(confirmTheme)}>
             <ElectionQuestions />
           </ChakraProvider>
         </Box>

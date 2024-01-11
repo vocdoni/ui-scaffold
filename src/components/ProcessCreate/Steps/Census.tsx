@@ -1,10 +1,10 @@
-import { Box, Flex, Icon, Img, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
+import { Box, Flex, Icon, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { CensusType, useCensusTypes } from '../Census/TypeSelector'
 import { StepsNavigation } from './Navigation'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 import Wrapper from './Wrapper'
-import checkIcon from '/assets/check-icon.svg'
+// import checkIcon from '/assets/check-icon.svg'
 
 export interface CensusValues {
   censusType: CensusType | null
@@ -43,7 +43,7 @@ export const Census = () => {
             {defined.map((ct: CensusType, index: number) => (
               <Tab key={index}>
                 <Box bgColor='checkbox' p={1} maxW='fit-content'>
-                  <Img src={checkIcon} w={2} />
+                  {/* <Img src={checkIcon} w={2} /> */}
                 </Box>
 
                 <Box>

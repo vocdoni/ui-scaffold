@@ -23,5 +23,6 @@ interface ImportMeta {
         web3: boolean
       }
     }
+    theme: string
   }
 }

@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { MdHowToVote } from 'react-icons/md'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
-import Logo from '~components/Layout/LogoOnVote'
+import Logo from '~components/Layout/Logo'
 import { LanguagesMenu } from './LanguagesList'
 import MenuDropdown from './Menu'
 
