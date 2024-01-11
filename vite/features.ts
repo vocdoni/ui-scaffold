@@ -42,7 +42,7 @@ const features = () => {
     config() {
       return {
         define: {
-          'import.meta.env.features': JSON.stringify(features),
+          'import.meta.env.features': features,
         },
       }
     },
