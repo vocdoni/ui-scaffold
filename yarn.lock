@@ -2780,9 +2780,10 @@
   resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.3.4.tgz#66c03bb05cb95cbadc2390f0d959c003f082ff6d"
   integrity sha512-dtrr0S1sugOkbCjBqbgqLHEWewRXhCL0TNGzf3W29HGzvkV6stLrBCCheX6n3y1X+vRjGaPaHwaGrAFwHiMIxw==
 
-"@vocdoni/sdk@./vocdoni-sdk-v0.7.1-beta.2.tgz":
-  version "0.7.1-beta.2"
-  resolved "./vocdoni-sdk-v0.7.1-beta.2.tgz#bb823d647d706c4d6c4d0ea53dd1b644fb61cb5d"
+"@vocdoni/sdk@0.7.1":
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/@vocdoni/sdk/-/sdk-0.7.1.tgz#99504b04222c521a65e5bd352bfc04379fb5b568"
+  integrity sha512-qgHZoFsaJBkwWsrJeu1EZM5iMqqB2DlvQKjtncwAR8PZK/7ueVvavBMoig1Zx5REBhEhY1MKWs1d253lMHjIpw==
   dependencies:
     "@ethersproject/abstract-signer" "^5.7.0"
     "@ethersproject/address" "^5.7.0"
