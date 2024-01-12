@@ -402,11 +402,11 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Token; 
             75%
           </SliderMark>
           <SliderTrack>
-            <SliderFilledTrack bg='primary.500' />
+            <SliderFilledTrack bg='primary.600' />
           </SliderTrack>
           <Tooltip
             hasArrow
-            bg='primary.500'
+            bg='primary.600'
             color='white'
             placement='top'
             isOpen={showTooltip}
@@ -466,7 +466,7 @@ export const TokenPreview = ({
   if (!token || !strategySize || token.type === 'request') return null
 
   return (
-    <Card ref={cardRef} w='full' my={5} boxShadow='var(--box-shadow)'>
+    <Card ref={cardRef} borderRadius={0} w='full' my={5} boxShadow='var(--box-shadow)'>
       <CardHeader>
         <Grid
           gridTemplateColumns='min-content 1fr min-content min-content'
@@ -497,7 +497,7 @@ export const TokenPreview = ({
               py={1}
               px={3}
               maxW='min-content'
-              borderRadius='lg'
+              borderRadius='0'
               alignSelf='center'
             >
               {chainName}

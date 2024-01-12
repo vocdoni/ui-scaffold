@@ -21,7 +21,6 @@
   "banner_voting_types": {
     "anonymous_description": "La identidad de los votantes permanece completamente confidencial, gracias a la tecnología zk-SNARKS.",
     "anonymous_title": "100% Anónimo",
-    "bottom_text": "La privacidad debería ser normal",
     "flexible_description": "Personaliza tu proceso de votación y censo para satisfacer los requisitos únicos de tu comunidad.",
     "flexible_title": "Votación Flexible",
     "token_description": "Vota con tokens ERC20/ERC721 (NFT) o agrega tus propios tokens y vota sin coste de gas con ellos.",
@@ -161,10 +160,12 @@
     "developer_portal": "Portal para desarrolladores",
     "developers": "Desarrolladores",
     "discord": "Discord",
+    "follow_us": "Síguenos",
     "homepage": "Inicio",
     "repos": "Código abierto",
     "resources": "Recursos",
     "terms_and_privacy": "<link1>Términos de uso</link1> y <link2>Política de privacidad</link2>",
+    "text": "<p1>El futuro</p1><p2>de la votación en Web3 comienza aquí</p2>",
     "tutorials": "Tutoriales",
     "vocdoni_api": "API de Vocdoni",
     "vocdoni_app": "APP de Vocdoni"
@@ -181,6 +182,7 @@
       "avatar_helper": "Imagen/logotipo de tu organización",
       "avatar_placeholder": "URL de la imagen",
       "btn": "Guardar",
+      "footer": "Editar tu organización generará una solicitud de firma, con un coste de 1 token",
       "title": "Editar Organización"
     },
     "error": {
@@ -349,6 +351,23 @@
     "info": "<text>Si necesita más, contacte a <mailto>info@onvote.app</mailto></text>",
     "title": "Obtener VOC Tokens"
   },
+  "home_features": {
+    "anonymous_description": "¡Desbloquea la verdadera democracia con zkSNARKs! Los participantes pueden emitir sus votos con completa anonimato, asegurando que cada voz sea escuchada sin compromisos.",
+    "anonymous_title": "Anónimo",
+    "census_startegy_description": "Elabora la estrategia de censo perfecta combinando variables para determinar la elegibilidad de los votantes. Aprovecha combinaciones de múltiples tokens de redes basadas en EVM y otros datos.",
+    "census_startegy_title": "Estrategias de censo",
+    "descentralized_description": "Onvote funciona sobre una red descentralizada especializada construida para votaciones digitales. Todo el proceso es universalmente verificable y los votos son completamente a prueba de manipulaciones.",
+    "descentralized_title": "Descentralizado",
+    "flexible_description": "Onvote utiliza el Protocolo Vocdoni, un protocolo de votación altamente flexible que permite múltiples métodos de votación (como simple, cuadrático o clasificado), así como otras personalizaciones para ajustarse a tus necesidades únicas. Puedes liberar todo su potencial con nuestro SDK fácil de usar.",
+    "flexible_title": "Protocolo Flexible",
+    "gas_less_description": "Pagar por votar está mal. Para eliminar barreras y mantener la gobernanza, votar en Onvote es sin coste de gas. Solo los iniciadores de los procesos de votación asumen el costo.",
+    "gas_less_title": "Votación sin gas",
+    "multichain_description": "Combina tokens a través de cualquier cadena para maximizar el poder de votación. ¡Por ejemplo, los titulares pueden votar con todos sus $UNI en Polygon, Optimism, Ethereum y más!",
+    "multichain_title": "Multicadena",
+    "open_source_description": "Creemos que algo tan importante como tu voto debe ser de código abierto y auditado públicamente para ser confiable. Liberamos todo bajo AGPLv3.",
+    "open_source_title": "Código Abierto",
+    "title": "<p1>¿Estás</p1><p2>listo para una nueva Era en la gobernanza Web3?</p2>"
+  },
   "link": {
     "discord": "Enlace al Discord de Vocdoni",
     "github": "Enlace al Github de Vocdoni",
@@ -373,7 +392,6 @@
     "login": "Iniciar sesión",
     "logout": "Cerrar sesión",
     "my_org": "Mi Org",
-    "my_org_aria_label": "Mi organización",
     "new_process": "Crear Votación",
     "organization": "Editar Organización",
     "privacy": "Privacidad",
@@ -385,18 +403,11 @@
     "maxLength": "Longitud máxima alcanzada"
   },
   "new_organization": {
-    "anonyomus": "Anónimo",
-    "censorship": "<span>Resistencia</span><span>a la Censura</span>",
     "create_organization_btn": "Crear Organización",
     "description1": "Antes de comenzar a crear su proceso de votación, <span>debe crear una organización</span>, es gratuito. Con una organización, podrá crear una amplia gama de elecciones y dar voz a los miembros de su comunidad.",
     "description2": "Como <span>paquete de bienvenida</span>, recibirá {{ faucetAmount }} tokens gratis para comenzar a utilizar nuestra plataforma.",
-    "footer": "<span>Vocdoni</span> es un protocolo de votación público seguro, respetuoso con la privacidad y de código abierto.",
-    "inexpensive": "Económico",
     "name": "Nombre de la organización",
-    "open_source": "<span>Código</span><span>Abierto</span>",
-    "scalable": "Escalable",
-    "title": "Nueva Organización",
-    "verificable": "Verificable"
+    "title": "Nueva Organización"
   },
   "open_in_explorer": "Abrir en explorador",
   "organization": {
@@ -488,6 +499,31 @@
     },
     "creation_steps_description": "Necesitas firmar las transacciones para crear el proceso de votación en la cadena de bloques de Vocdoni. No cierres esta ventana.",
     "creation_steps_title": "Progreso"
+  },
+  "roadmap": {
+    "census_description": "Crear un censo descentralizado fuera de la cadena y compatible con zk a partir de una instantánea de bloques de Ethereum, con verificación en cadena.",
+    "census_title": "zkCensus:",
+    "chainlink_description": "Habilitar la ejecución automática con soporte optimista.",
+    "chainlink_title": "Integración de Chainlink:",
+    "complex_startegies_description": "Integrar cualquier token de cualquier cadena de bloques utilizando una combinación de lógica y operaciones algebraicas, directamente. Por ejemplo,",
+    "complex_startegies_title": "Estrategias complejas:",
+    "execution_description": "Enviar la prueba final a la cadena para una ejecución vinculante.",
+    "execution_title": "Ejecución:",
+    "milestone1": "Hitos 1: Gobernanza flexible sin gas",
+    "milestone2": "Hitos 2: zkRollup para votaciones vinculantes seguras y anónimas",
+    "private_description": "Mostrar el contenido de la propuesta de votación solo a los miembros de la comunidad.",
+    "private_title": "Metadatos de elección privada:",
+    "registry_description": "Un registro global en cadena para identidades zk (conocimiento cero).",
+    "registry_title": "zkRegistry:",
+    "rollup_description": "Consolidar todos los votos en una única prueba zk segura mediante la tecnología de zkRollup personalizada.",
+    "rollup_title": "zkRollup:",
+    "social_census_desciption": "Mejora tu censo con identidades sociales de plataformas como Github o Twitter. Incluye mecanismos de resistencia a Sybil como Holonym o Proof-of-Humanity.",
+    "social_census_title": "Censo social:",
+    "title": "<p1>Hoja de ruta 2024</p1> <p2>¿Qué viene después?</p2>",
+    "versatil_description": "Ya sea votación simple, escalonada o cuadrática, Onvote admite múltiples métodos de votación para adaptarse a las diversas necesidades de la comunidad.",
+    "versatil_title": "Métodos de votación versátiles:",
+    "voting_description": "Facilitar la votación anónima, fuera de la cadena (sin gas) para cualquier votante elegible utilizando la red p2p de Vocdoni.",
+    "voting_title": "zkVoting:"
   },
   "uploader": {
     "click_or_drag_and_drop": "<p1>Sube o arrastra y suelta aqui la lista de votantes</p1><p2>(Formap permitidos: CSV, XLSX y ODS)</p2>",

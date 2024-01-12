@@ -9,7 +9,17 @@ const NotFound = () => {
   const { idx } = window.history.state ?? false
 
   return (
-    <Flex flexDirection='column' justifyContent='center' alignItems='center' pt={20}>
+    <Flex
+      flexDirection='column'
+      justifyContent='center'
+      alignItems='center'
+      pt={20}
+      mb={44}
+      px={{
+        base: 10,
+        sm: 14,
+      }}
+    >
       <Text
         fontSize={{ base: 'xl11', sm: 'xl12' }}
         lineHeight={0.9}
@@ -24,7 +34,7 @@ const NotFound = () => {
       <Text
         textAlign='center'
         maxW={{ base: 84, sm: 112, lg: 160 }}
-        fontWeight={700}
+        fontWeight='bold'
         fontSize={{ base: 'xl4', sm: 'xl5', lg: 'xl7' }}
       >
         {t('error.not_found')}

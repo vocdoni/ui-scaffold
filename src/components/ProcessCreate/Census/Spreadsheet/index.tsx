@@ -118,8 +118,6 @@ export const CensusCsvManager = () => {
                   position: 'absolute',
                   top: 1,
                   right: 1,
-                  borderRadius: '50%',
-                  borderColor: 'process_create.census.weighted_vote_checked',
                 },
 
                 '& > input:checked + span': {

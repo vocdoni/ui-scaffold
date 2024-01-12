@@ -12,10 +12,10 @@ import {
   useBreakpointValue,
   useSteps,
 } from '@chakra-ui/react'
-import { StepsForm } from './Form'
-import { useStepContents } from './use-steps'
 import { useClient } from '@vocdoni/react-providers'
 import { CspAdminProvider } from '../Census/Csp/use-csp'
+import { StepsForm } from './Form'
+import { useStepContents } from './use-steps'
 
 const Steps = () => {
   const steps = useStepContents()
@@ -23,7 +23,6 @@ const Steps = () => {
     index: 0,
     count: steps.length,
   })
-
   const { signer } = useClient()
 
   return (
@@ -46,6 +45,7 @@ const Steps = () => {
                 flexDirection={{ base: 'column', lg: 'row' }}
                 alignItems={{ base: 'center', lg: 'initial' }}
                 gap={3}
+                fontFamily='"Archivo", sans-serif'
               >
                 <StepIndicator>
                   <StepStatus complete={<StepIcon />} incomplete={<StepNumber />} active={<StepNumber />} />
@@ -61,13 +61,15 @@ const Steps = () => {
             </Step>
           ))}
         </Stepper>
-        <StepsForm
-          steps={steps}
-          activeStep={activeStep}
-          next={() => setActiveStep(activeStep + 1)}
-          prev={() => setActiveStep(activeStep - 1)}
-          setActiveStep={setActiveStep}
-        />
+        <Box w='full'>
+          <StepsForm
+            steps={steps}
+            activeStep={activeStep}
+            next={() => setActiveStep(activeStep + 1)}
+            prev={() => setActiveStep(activeStep - 1)}
+            setActiveStep={setActiveStep}
+          />
+        </Box>
       </Flex>
     </CspAdminProvider>
   )

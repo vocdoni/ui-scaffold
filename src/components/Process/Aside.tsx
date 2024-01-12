@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Link, Spinner, Text } from '@chakra-ui/react'
+import { Box, Button, Card, Flex, Link, Spinner, Text } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { VoteButton as CVoteButton, environment, SpreadsheetAccess } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
@@ -24,24 +24,13 @@ const ProcessAside = () => {
   const { env } = useClient()
   const census: CensusMeta = dotobject(election?.meta || {}, 'census')
 
-  const renderVoteMenu = isAbleToVote || voted || (hasOverwriteEnabled(election) && isInCensus && voted)
+  const renderVoteMenu =
+    (isAbleToVote || voted || (hasOverwriteEnabled(election) && isInCensus && voted)) &&
+    election?.status !== ElectionStatus.UPCOMING
 
   return (
     <>
-      <Flex
-        direction='column'
-        justifyContent='center'
-        alignItems='center'
-        px={{ base: 12, md: 12 }}
-        py={{ base: 8, md: 12 }}
-        w='full'
-        gap={4}
-        mt={{ md: 7 }}
-        color='process.aside.color'
-        background='process.aside.bg'
-        borderRadius='lg'
-        boxShadow='var(--box-shadow-banner)'
-      >
+      <Card variant='aside'>
         <Text textAlign='center' fontSize='xl3' textTransform='uppercase'>
           {election?.electionType.anonymous && voting
             ? t('aside.submitting')
@@ -51,7 +40,14 @@ const ProcessAside = () => {
         {election?.status !== ElectionStatus.CANCELED &&
           election?.status !== ElectionStatus.UPCOMING &&
           !(election?.electionType.anonymous && voting) && (
-            <Box display='flex' flexDirection='row' justifyContent='center' alignItems='center' gap={2}>
+            <Box
+              className='brand-theme'
+              display='flex'
+              flexDirection='row'
+              justifyContent='center'
+              alignItems='center'
+              gap={2}
+            >
               <Trans
                 i18nKey='aside.votes'
                 components={{
@@ -113,15 +109,22 @@ const ProcessAside = () => {
             )}
           </Flex>
         )}
-      </Flex>
+      </Card>
       {connected && (
         <Box
-          // display={{ base: 'none', md: 'block' }}
           alignSelf='center'
           sx={{
             '& button': {
               color: 'process.spreadsheet.disconnect_color_desktop',
               bgColor: 'transparent',
+              borderColor: 'transparent',
+
+              _before: {
+                bgColor: 'transparent',
+              },
+              _after: {
+                bgColor: 'transparent',
+              },
             },
           }}
           mb={{ base: 10, md: 0 }}
@@ -148,13 +151,7 @@ export const VoteButton = ({ setQuestionsTab }: { setQuestionsTab: () => void })
     return null
 
   return (
-    <Flex
-      justifyContent='center'
-      alignItems='center'
-      background={{ base: 'process.aside.bg', md: 'transparent' }}
-      color='process.aside.color'
-      p={3}
-    >
+    <Flex justifyContent='center' alignItems='center' background='transparent' color='process.aside.color' p={3}>
       {census?.type !== 'spreadsheet' && !connected && (
         <ConnectButton.Custom>
           {({ account, chain, openConnectModal, authenticationStatus, mounted }) => {
@@ -176,7 +173,7 @@ export const VoteButton = ({ setQuestionsTab }: { setQuestionsTab: () => void })
                 {(() => {
                   if (!connected) {
                     return (
-                      <Button onClick={openConnectModal} variant='process' fontSize='lg'>
+                      <Button onClick={openConnectModal} w='full'>
                         {t('menu.connect').toString()}
                       </Button>
                     )
@@ -189,11 +186,11 @@ export const VoteButton = ({ setQuestionsTab }: { setQuestionsTab: () => void })
       )}
       {census?.type === 'spreadsheet' && !connected && <SpreadsheetAccess />}
       {isAbleToVote ? (
-        <CVoteButton variant='process' fontSize='lg' onClick={setQuestionsTab} />
+        <CVoteButton w='full' fontSize='lg' onClick={setQuestionsTab} />
       ) : (
         connected && (
           <Flex justifyContent='center' alignItems='center' height='40px' borderRadius='30px' bgColor='white' w='full'>
-            <Spinner color='primary.500' />
+            <Spinner color='primary.700' />
           </Flex>
         )
       )}

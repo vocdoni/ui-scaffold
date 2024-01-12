@@ -1,10 +1,10 @@
 import { Box, Flex, Icon, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import { HiCheckCircle } from 'react-icons/hi'
 import { CensusType, useCensusTypes } from '../Census/TypeSelector'
 import { StepsNavigation } from './Navigation'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 import Wrapper from './Wrapper'
+// import checkIcon from '/assets/check-icon.svg'
 
 export interface CensusValues {
   censusType: CensusType | null
@@ -20,9 +20,7 @@ export const Census = () => {
     <Wrapper>
       <Flex flexDirection='column' gap={10}>
         <Box>
-          <Text fontWeight='bold' fontSize='md' mb={2}>
-            {t('census.title')}
-          </Text>
+          <Text className='process-create-title'>{t('census.title')}</Text>
           <Text fontSize='sm' color='process_create.description'>
             {t('census.description')}
           </Text>
@@ -44,7 +42,10 @@ export const Census = () => {
           <TabList gap={2} flexWrap={'wrap'} justifyContent={'left'}>
             {defined.map((ct: CensusType, index: number) => (
               <Tab key={index}>
-                <Icon as={HiCheckCircle} />
+                <Box bgColor='checkbox' p={1} maxW='fit-content'>
+                  {/* <Img src={checkIcon} w={2} /> */}
+                </Box>
+
                 <Box>
                   <Icon as={details[ct].icon} />
                   <Text>{details[ct].title}</Text>
@@ -54,14 +55,13 @@ export const Census = () => {
             ))}
           </TabList>
 
-          <TabPanels bgColor='process_create.section' borderRadius='md'>
+          <TabPanels className='process-create-section' bgColor='process_create.section'>
             {defined.map((ct: CensusType, index: number) => (
               <TabPanel key={index}>{details[ct].component()}</TabPanel>
             ))}
           </TabPanels>
         </Tabs>
       </Flex>
-
       <StepsNavigation />
     </Wrapper>
   )

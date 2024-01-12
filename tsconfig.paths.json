@@ -8,7 +8,6 @@
       "~elements/*": ["elements/*"],
       "~i18n": ["i18n/index.ts"],
       "~i18n/*": ["i18n/*"],
-      "~theme/*": ["theme/*"],
       "~src/*": ["./*"]
     }
   }

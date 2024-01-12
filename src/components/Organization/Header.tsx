@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { IoMdCreate } from 'react-icons/io'
 import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
-import AddressBtn from './AddressBtn'
+import AddressBtn from './Address'
 import { useOrganizationModal } from './OrganizationModalProvider'
 import fallback from '/assets/default-avatar.png'
 
@@ -17,26 +17,26 @@ const OrganizationHeader = () => {
   const { onOpen } = useOrganizationModal()
   const { account } = useClient()
 
-  const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(110)
+  const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(
+    'rgba(242, 242, 242, 0)',
+    'rgba(242, 242, 242, 1)',
+    110
+  )
 
   const { containerRef, isTruncated, readMore, handleReadMore } = useReadMoreTitle()
 
   return (
     <Flex
-      flexDirection={{ base: 'column', md: 'row' }}
-      alignItems={{ base: 'center', md: 'start' }}
-      gap={{ base: 2, md: 8 }}
+      flexDirection={{ base: 'column', lg: 'row' }}
+      alignItems={{ base: 'center', lg: 'start' }}
+      gap={{ base: 2, lg: 8 }}
       mb={10}
-      p={3}
-      borderRadius='lg'
-      boxShadow='var(--box-shadow)'
-      bgColor='organization.header_bg'
+      pt={10}
     >
-      <Box flex='1 1 20%' minW={40}>
-        <AspectRatio ratio={1.25 / 1} maxW={56} mx='auto'>
+      <Box flex='1 1 10%' minW={40}>
+        <AspectRatio ratio={1.25 / 1} maxW={56}>
           <Avatar
             mx='auto'
-            borderRadius='md'
             fallbackSrc={fallback}
             alt={t('organization.avatar_alt', {
               name: organization?.account.name.default || organization?.address,
@@ -48,8 +48,8 @@ const OrganizationHeader = () => {
       <Flex
         flex='1 1 80%'
         justifyContent='space-between'
-        alignItems={{ base: 'center', md: 'start' }}
-        flexDirection={{ base: 'column', md: 'row' }}
+        alignItems={{ base: 'center', lg: 'start' }}
+        flexDirection={{ base: 'column', lg: 'row' }}
         gap={{ base: 2 }}
         minW={0}
         maxW='100%'
@@ -57,10 +57,10 @@ const OrganizationHeader = () => {
         <Flex
           flex='1 1 100%'
           direction='column'
-          justifyContent={{ md: 'space-between' }}
-          alignItems={{ base: 'center', md: 'start' }}
+          justifyContent={{ lg: 'space-between' }}
+          alignItems={{ base: 'center', lg: 'start' }}
           gap={2}
-          order={{ base: 2, md: 0 }}
+          order={{ base: 2, lg: 0 }}
         >
           <Flex
             w='100%'
@@ -79,33 +79,37 @@ const OrganizationHeader = () => {
             }}
           >
             <OrganizationName
+              className='brand-theme'
               as='p'
               fontSize={32}
               lineHeight={1.5}
               title={organization?.account.name.default || organization?.address}
+              maxW={{ base: '250px', sm: '300px', sm2: '350px', md: '450px', lg: '370px', lg2: '500px', xl: '650px' }}
             />
-            {isTruncated && (
-              <IconButton
-                icon={readMore ? <FaEye /> : <FaEyeSlash />}
-                variant='ghost'
-                alignSelf='start'
-                color='primary.500'
-                title={t('organization.title.read_more')}
-                aria-label={t('organization.title.read_more')}
-                onClick={handleReadMore}
-              />
-            )}
-            {areEqualHexStrings(account?.address, organization?.address) && (
-              <IconButton
-                icon={<IoMdCreate />}
-                alignSelf='start'
-                variant='ghost'
-                color='primary.500'
-                title={t('organization.title.edit')}
-                aria-label={t('organization.title.edit')}
-                onClick={onOpen}
-              />
-            )}
+            <Box>
+              {isTruncated && (
+                <IconButton
+                  icon={readMore ? <FaEye /> : <FaEyeSlash />}
+                  variant='ghost'
+                  alignSelf='start'
+                  color='primary.600'
+                  title={t('organization.title.read_more')}
+                  aria-label={t('organization.title.read_more')}
+                  onClick={handleReadMore}
+                />
+              )}
+              {areEqualHexStrings(account?.address, organization?.address) && (
+                <IconButton
+                  icon={<IoMdCreate />}
+                  alignSelf='start'
+                  variant='ghost'
+                  color='primary.600'
+                  title={t('organization.title.edit')}
+                  aria-label={t('organization.title.edit')}
+                  onClick={onOpen}
+                />
+              )}
+            </Box>
           </Flex>
           <ReadMoreMarkdownWrapper>
             <OrganizationDescription fontSize='lg' lineHeight={1.7} />

@@ -31,8 +31,8 @@ import { Trans, useTranslation } from 'react-i18next'
 import { FaFacebook, FaReddit, FaTelegram, FaTwitter } from 'react-icons/fa'
 import ProcessAside, { VoteButton } from './Aside'
 import Header from './Header'
-import confirmImg from '/assets/spreadsheet-confirm-modal.jpeg'
-import successImg from '/assets/success.jpeg'
+import confirmImg from '/assets/spreadsheet-confirm-modal.jpg'
+import successImg from '/assets/spreadsheet-success-modal.jpg'
 
 export const ProcessView = () => {
   const { t } = useTranslation()
@@ -51,20 +51,18 @@ export const ProcessView = () => {
   }, [election])
 
   return (
-    <div>
-      <Box>
+    <Box maxW='1920px' mx='auto'>
+      <Box
+        mb={44}
+        px={{
+          base: '40px',
+          md: '80px',
+        }}
+      >
         <Header />
-        <Flex
-          direction={{ base: 'column', md: 'row' }}
-          alignItems='start'
-          gap={{ md: 10 }}
-          px={{
-            base: 2,
-            sm: 4,
-          }}
-        >
+        <Flex direction={{ base: 'column', lg2: 'row' }} alignItems='start' gap={{ lg2: 10 }}>
           <Tabs
-            order={{ base: 2, md: 1 }}
+            order={{ base: 2, lg2: 1 }}
             variant='process'
             index={tabIndex}
             onChange={handleTabsChange}
@@ -82,7 +80,7 @@ export const ProcessView = () => {
                 <ElectionQuestions
                   confirmContents={(questions, answers) => <ConfirmVoteModal questions={questions} answers={answers} />}
                 />
-                <Box position='sticky' bottom={0} left={0} pb={1} pt={1} display={{ base: 'none', md: 'block' }}>
+                <Box position='sticky' bottom={0} left={0} pb={1} pt={1} display={{ base: 'none', lg2: 'block' }}>
                   <VoteButton setQuestionsTab={setQuestionsTab} />
                 </Box>
               </TabPanel>
@@ -94,14 +92,15 @@ export const ProcessView = () => {
           <Flex
             flexGrow={1}
             flexDirection='column'
-            alignItems={{ base: 'center', md: 'start' }}
-            order={{ base: 1, md: 2 }}
-            gap={2}
-            mx={{ base: 'auto', md: 0 }}
-            position={{ md: 'sticky' }}
+            alignItems={{ base: 'center', lg2: 'start' }}
+            order={{ base: 1, lg2: 2 }}
+            gap={0}
+            mx={{ base: 'auto', lg2: 0 }}
+            position={{ lg2: 'sticky' }}
             top={20}
             mt={10}
-            maxW={{ md: '265px', md2: '290px' }}
+            maxW={{ md: '265px', lg2: '290px' }}
+            mb={10}
           >
             <ProcessAside />
           </Flex>
@@ -113,13 +112,13 @@ export const ProcessView = () => {
         left={0}
         bgColor='process.aside.aside_footer_mbl_border'
         pt={1}
-        display={{ base: 'block', md: 'none' }}
+        display={{ base: 'block', lg2: 'none' }}
       >
         <VoteButton setQuestionsTab={setQuestionsTab} />
       </Box>
 
       <SuccessVoteModal />
-    </div>
+    </Box>
   )
 }
 
@@ -161,7 +160,7 @@ const SuccessVoteModal = () => {
       <ModalContent>
         <ModalHeader>
           <Text>{t('process.success_modal.title')}</Text>
-          <Box bgImage={successImg} minH='300px' />
+          <Box bgImage={successImg} />
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
@@ -221,7 +220,7 @@ const SuccessVoteModal = () => {
         </ModalBody>
 
         <ModalFooter mt={4}>
-          <Button variant='rounded' colorScheme='primary' px={16} onClick={onClose}>
+          <Button onClick={onClose} variant='primary'>
             {t('process.success_modal.btn')}
           </Button>
         </ModalFooter>
@@ -241,9 +240,7 @@ const ConfirmVoteModal = ({ questions, answers }: { questions: IQuestion[]; answ
         <Box bgImage={`url(${confirmImg})`} />
       </ModalHeader>
       <ModalBody display='flex' flexDirection='column' gap={5} p={0} mb={2}>
-        <Text textAlign='center' color='modal_description'>
-          {t('process.spreadsheet.confirm.description')}
-        </Text>
+        <Text>{t('process.spreadsheet.confirm.description')}</Text>
         <Flex
           flexDirection='column'
           maxH='200px'
