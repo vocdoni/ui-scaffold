@@ -2776,9 +2776,9 @@
   integrity sha512-mmVlkaCwrJONo95nSYSQ+GO9N+r9OVg9mX6zMQSyR7KGVkrcKkI5lEzkZXIsOx0gQv4q+tAN8nnSEYs9zNNvEg==
 
 "@vocdoni/react-providers@~0.3.2":
-  version "0.3.4"
-  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.3.4.tgz#66c03bb05cb95cbadc2390f0d959c003f082ff6d"
-  integrity sha512-dtrr0S1sugOkbCjBqbgqLHEWewRXhCL0TNGzf3W29HGzvkV6stLrBCCheX6n3y1X+vRjGaPaHwaGrAFwHiMIxw==
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.3.5.tgz#1fa71656fbbad24041b6c20a7239f1fefbc4461c"
+  integrity sha512-z/hKATYAQ6MUA70ysyvRCwmhaLrkeMwRDumV3hITFFcbfF0kZEcT2sGs1M414rZRDHFW7U2t3NDJgTwsJI50jA==
 
 "@vocdoni/sdk@0.7.1":
   version "0.7.1"
