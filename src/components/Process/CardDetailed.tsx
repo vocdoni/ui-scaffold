@@ -66,7 +66,7 @@ const ProcessDetailedCardTitle = () => {
 const ProcessDetailedCardDescription = () => {
   const { election } = useElection()
   const { t } = useTranslation()
-  const { ReadMoreMarkdownWrapper } = useReadMoreMarkdown(100)
+  const { ReadMoreMarkdownWrapper } = useReadMoreMarkdown('rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 1)', 100)
 
   if (election instanceof InvalidElection) {
     return null

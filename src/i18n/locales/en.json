@@ -12,9 +12,9 @@
     "voting_anonymous_advice": "Please wait while the anonymous magic 🪄 happens.\nThis can take up to several minutes; don't close the window."
   },
   "banner": {
-    "start_now": "Create a voting now!",
+    "start_now": "Create a vote now!",
     "subtitle": "Use wallet addresses, vote with an ERC20 token or with NFTs!",
-    "title": "Voting for DAOs & Web3 communities"
+    "title": "anonyomus, Gasless and Modular voting for Web3"
   },
   "banner_voting_types": {
     "anonymous_description": "We ensure that votes remain unlinked to voter identities by using advanced zkSNARKs technology.",
@@ -158,10 +158,12 @@
     "developer_portal": "Developers Portal",
     "developers": "Developers",
     "discord": "Discord",
+    "follow_us": "Follow us",
     "homepage": "Home",
     "repos": "Open-source Code",
     "resources": "Resources",
     "terms_and_privacy": "<link1>Terms of use</link1> & <link2>Privacy Policy</link2>",
+    "text": "<p1>The future</p1><p2>of Web3 voting starts here</p2>",
     "tutorials": "Tutorials",
     "vocdoni_api": "Vocdoni API",
     "vocdoni_app": "Vocdoni APP"
@@ -178,6 +180,7 @@
       "avatar_helper": "Image/logo of your organization",
       "avatar_placeholder": "Image URL",
       "btn": "Save",
+      "footer": "Modifying your organization will prompt a signature request, incurring a cost of 1 token",
       "title": "Edit Organization"
     },
     "error": {
@@ -241,9 +244,6 @@
         "anonymous": "Anonymous voting active",
         "census": "Census",
         "census_preview_is_shortened": "(preview list is limited to {{ limit }} results)",
-        "census_total": "",
-        "census_total_one": "<span>Census:</span><span>{{ count }} voter</span>",
-        "census_total_other": "<span>Census:</span><span>{{ count }} voters</span>",
         "census_total_people": "{{ count }} people will be elegible for voting in this election",
         "census_total_people_one": "A single person will be elegible for voting in this process",
         "census_total_people_other": "{{ count }} people will be elegible for voting in this process",
@@ -346,6 +346,23 @@
     "info": "<text>If you need more, contact to <mailto>info@onvote.app</mailto></text>",
     "title": "Get VOC Tokens"
   },
+  "home_features": {
+    "anonymous_description": "Unlock true democracy with zkSNARKs! Participants can cast their votes with complete anonymity, ensuring every voice is heard without compromise.",
+    "anonymous_title": "Anonymous",
+    "census_startegy_description": "Craft the perfect census strategy combining variables to determine voter eligibility. Leverage combinations of multiple tokens from EVM-based networks and other data.",
+    "census_startegy_title": "Census strategies",
+    "descentralized_description": "Onvote runs on top of a specialized decentralized network built for digital voting. The entire process is universally verifiable and the votes are completely tamper-proof.",
+    "descentralized_title": "Decentralized",
+    "flexible_description": "Onvote leverages the Vocdoni Protocol: a highly flexible ballot protocol that allows multiple voting methods (like simple, quadratic or ranked voting) as well as other customizations to fit your unique requirements. You can unleash all its potential with our user-friendly SDK.",
+    "flexible_title": "Flexible protocol",
+    "gas_less_description": "Paying for voting is wrong. To eliminate barriers and uphold governance, voting on Onvote is gasless. Only the initiators of voting processes bear the cost.",
+    "gas_less_title": "Gasless voting",
+    "multichain_description": "Combine tokens across any chain to maximize voting power. For example, holders can vote with all their $UNI on Polygon, Optimism, Ethereum and more!",
+    "multichain_title": "Multichain",
+    "open_source_description": "We believe that something as important as your vote must be open-source and publicly audited to be trusted. We release everything under AGPLv3.",
+    "open_source_title": "Opensource",
+    "title": "<p1>are you</p1><p2>Ready for a new Era of Web3 governance?</p2>"
+  },
   "link": {
     "discord": "Link to Vocdoni's discord",
     "github": "Link to Vocdoni's github",
@@ -370,7 +387,6 @@
     "login": "Login",
     "logout": "Logout",
     "my_org": "My Org",
-    "my_org_aria_label": "My organization",
     "new_process": "New Voting",
     "organization": "Edit Organization",
     "privacy": "Privacy",
@@ -382,18 +398,13 @@
     "maxLength": "Max. length reached"
   },
   "new_organization": {
-    "anonyomus": "Anonyomus",
-    "censorship": "<span>Censorship</span><span>Resistance</span>",
     "create_organization_btn": "Create Organization",
     "description1": "Set up your <span>organization for free</span> and start creating voting processes to engage with your community.",
     "description2": "You will have the chance to claim tokens later from the faucet to create proposals and engage with your community.",
     "footer": "<span>Vocdoni</span> is a secure, privacy-friendly & open-source public voting protocol.",
     "inexpensive": "Inexpensive",
     "name": "Organization name",
-    "open_source": "<span>Open</span><span>Source</span>",
-    "scalable": "Scalable",
-    "title": "Create your organization",
-    "verificable": "Verificable"
+    "title": "Create your organization"
   },
   "open_in_explorer": "Open in explorer",
   "organization": {
@@ -422,7 +433,7 @@
     "created_by": "Created by",
     "date": {
       "ended": "Ended",
-      "ends": "Ends on",
+      "ends": "Ends",
       "relative": "{{ date, relative(past: %time ago; future: in %time) }}",
       "relative_inline": "{{ status }} {{ date, relative(past: %time ago; future: in %time) }}",
       "starts": "Starts"
@@ -483,6 +494,31 @@
     },
     "creation_steps_description": "Sign transaction to create the voting process. Generating the census can take a few minutes, please don't close this window.",
     "creation_steps_title": "Progress"
+  },
+  "roadmap": {
+    "census_description": "Create a trust-less off-chain zk-friendly census from an Ethereum block snapshot, with on-chain verification.",
+    "census_title": "zkCensus:",
+    "chainlink_description": "Enable automatic execution with optimistic support.",
+    "chainlink_title": "Chainlink Integration:",
+    "complex_startegies_description": "Integrate any token from any blockchain using a blend of logic and algebraic operations, out of the box. I.e.",
+    "complex_startegies_title": "Complex Strategies:",
+    "execution_description": "Submit the final proof on-chain for binding execution.",
+    "execution_title": "Execution:",
+    "milestone1": "Milestone 1: Flexible Gasless Governance",
+    "milestone2": "Milestone 2: Anonymous voting with binding execution",
+    "private_description": "Only display voting proposal content to your community members.",
+    "private_title": "Private Election Metadata:",
+    "registry_description": "A global on-chain registry for zk (zero-knowledge) identities.",
+    "registry_title": "zkRegistry:",
+    "rollup_description": "Consolidate all votes into a single, secure zkProof using custom zkRollup technology",
+    "rollup_title": "zkRollup:",
+    "social_census_desciption": "Enhance your census with social identities from platforms like Github or Twitter. Include Sybil resistance mechanisms such as Holonym or Proof-of-Humanity.",
+    "social_census_title": "Social Census:",
+    "title": "<p1>Roadmap 2024</p1> <p2>What's next?</p2>",
+    "versatil_description": "Whether it’s simple, ranged, or quadratic voting, Onvote supports multiple voting methods to adapt to diverse community needs.",
+    "versatil_title": "Versatile Voting Methods:",
+    "voting_description": "Facilitate anonymous, off-chain (gasless) voting for any eligible voter using the Vocdoni p2p network.",
+    "voting_title": "zkVoting:"
   },
   "uploader": {
     "click_or_drag_and_drop": "<p1>Upload or drag and drop the voter list here</p1><p2>(Allowed formats: CSV, XLSX, and ODS)</p2>",

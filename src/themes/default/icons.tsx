@@ -1,0 +1,9 @@
+import { Icon, Img } from '@chakra-ui/react'
+import { AiFillCheckCircle } from 'react-icons/ai'
+import { IoCloseOutline } from 'react-icons/io5'
+
+export const Close = () => <Icon as={IoCloseOutline} mt='1.5px' boxSize={5} />
+
+export const Check = AiFillCheckCircle
+
+export const Logo = () => <Img src='/assets/vocdoni_icon.png' alt='vocdoni icon' maxWidth={10} />

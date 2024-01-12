@@ -21,7 +21,17 @@ const Error = () => {
   }
 
   return (
-    <Flex flexDirection='column' gap={4} alignItems='center' mt={12}>
+    <Flex
+      flexDirection='column'
+      gap={4}
+      alignItems='center'
+      mt={12}
+      mb={44}
+      px={{
+        base: 10,
+        sm: 14,
+      }}
+    >
       <WarningIcon />
       <Text>{t('error.loading_page')}</Text>
       <Text>{(error as Error).toString()}</Text>

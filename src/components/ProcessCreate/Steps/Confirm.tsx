@@ -46,7 +46,7 @@ import { Web3Address } from '../StepForm/CensusWeb3'
 import { Option } from '../StepForm/Questions'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 import Wrapper from './Wrapper'
-import imageHeader from '/assets/spreadsheet-confirm-modal.jpeg'
+// import imageHeader from '/assets/onvote-modal-submitting.png'
 import { IElection, IElectionWithTokenResponse } from 'vocdoni-admin-sdk'
 import { useCspAdmin } from '../Census/Csp/use-csp'
 
@@ -199,10 +199,10 @@ export const Confirm = () => {
   return (
     <Wrapper>
       <Box>
-        <Text fontWeight='bold' mb={2}>
-          {t('form.process_create.confirm.title')}
+        <Text className='process-create-title'>{t('form.process_create.confirm.title')}</Text>
+        <Text mb={4} color='process_create.description'>
+          {t('form.process_create.confirm.description')}
         </Text>
-        <Text mb={4}>{t('form.process_create.confirm.description')}</Text>
         <ElectionProvider election={published}>
           <Flex flexDirection={{ base: 'column', xl2: 'row' }} gap={5}>
             <Preview />
@@ -211,7 +211,7 @@ export const Confirm = () => {
 
               <FormProvider {...methods}>
                 <Box>
-                  <Text fontWeight='bold' px={2} mb={2}>
+                  <Text className='brand-theme' fontWeight='bold' textTransform='uppercase' px={2} mb={2}>
                     {t('form.process_create.confirm.confirmation')}
                   </Text>
                   <Flex
@@ -221,7 +221,7 @@ export const Confirm = () => {
                     flexDirection='column'
                     gap={4}
                     bgColor='process_create.section'
-                    borderRadius='md'
+                    borderRadius='none'
                     p={{ base: 3, xl: 6 }}
                   >
                     <FormControl
@@ -277,7 +277,7 @@ export const Confirm = () => {
         </ElectionProvider>
       </Box>
       <Flex justifyContent='space-between' alignItems='end' mt='auto'>
-        <Button variant='outline' onClick={prev} leftIcon={<ArrowBackIcon />}>
+        <Button variant='secondary' onClick={prev} leftIcon={<ArrowBackIcon />}>
           {t('form.process_create.previous_step')}
         </Button>
 
@@ -286,9 +286,8 @@ export const Confirm = () => {
           form='process-create-form'
           isDisabled={disabled}
           isLoading={sending}
-          variant='outline'
-          colorScheme='primary'
           px={{ base: 12, xl2: 28 }}
+          variant='primary'
         >
           {t('form.process_create.confirm.create_button')}
         </Button>
@@ -297,7 +296,7 @@ export const Confirm = () => {
           <ModalContent>
             <ModalHeader>
               <Text>{t('form.process_create.creating_process')}</Text>
-              <Box bgImage={imageHeader} />
+              {/* <Box bgImage={imageHeader} /> */}
             </ModalHeader>
             {error && <ModalCloseButton />}
             <ModalBody>

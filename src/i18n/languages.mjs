@@ -7,8 +7,6 @@
 */
 
 export const LanguagesSlice = {
-  ca: 'Català',
-  es: 'Castellano',
   en: 'English',
 }
 

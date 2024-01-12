@@ -41,6 +41,37 @@ VOCDONI_ENVIRONMENT=dev yarn start
 BUILD_PATH=build/dev BASE_URL=/ui-scaffold/dev VOCDONI_ENVIRONMENT=dev yarn build
 ```
 
+### Theming
+
+This app has a bundled theming system, allowing to customize the entire look and feel of the app.
+
+The theme is loaded from the `src/themes` folder, and can be changed using the `THEME` env var. Defaults to `default`:
+
+~~~bash
+THEME=onvote yarn start
+~~~
+
+Important things to know when using the theming system:
+
+- A special `~theme` import alias is available to import the current theme files from anywhere in the app. Note your IDE
+won't recommend this import, instead it will try to recommend importing from an existing theme. Ensure you import from
+`~theme`, otherwise won't properly switch between themes. Due to this, tsc will complain about any import from `~theme`,
+if you need to add new exports to the theme, you'll need to add them to the `src/themes/theme.d.ts` file.
+- Assets are loaded from `src/public`, but also depending on the theme. Loading assets in the app is done as per vite
+standards, using the `/` root path (i.e. `import logo from '/assets/logo.svg'` would load the `logo.svg` file from the
+`src/public/default` directory, if no theme is specified).
+
+To create a new theme, just copy the `default` theme and start customizing it:
+
+~~~bash
+cp -frv src/themes/default src/themes/my-theme
+cp -frv src/public/default src/public/my-theme
+THEME=my-theme yarn start
+~~~
+
+Most themes logic is handled via the vite themes plugin (located in `vite/themes.ts`), except for the index.html
+template files, which are handled in `vite.config.ts` using an external plugin.
+
 ### Features
 
 The following features can be enabled/disabled using the `FEATURES` environment var:
@@ -84,6 +115,8 @@ Changing the order in the features array will effectively change the order in th
 
 Note features are interpreted during build time, and the bundler will ensure to tree-shake any disabled features
 (meaning they won't be included in the final bundle).
+
+All features logic is handled via the vite features plugin (located in `vite/features.ts`).
 
 ### Custom domain names
 

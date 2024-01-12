@@ -19,11 +19,9 @@ const SettingsAdvanced = () => {
   return (
     <Box>
       <Box mb={4}>
-        <Text fontWeight='bold' mb={1}>
-          {t('form.process_create.behavior.title')}
-        </Text>
+        <Text className='process-create-title'>{t('form.process_create.behavior.title')}</Text>
       </Box>
-      <Flex gap={5} flexDirection={{ base: 'column', md: 'row' }} justifyContent='flex-start'>
+      <Flex gap={5} flexDirection={{ base: 'column', md: 'row' }} justifyContent='space-between'>
         {import.meta.env.features.vote.anonymous && (
           <Checkbox {...register('electionType.anonymous')} variant='radiobox' flex='0 0 30%'>
             <Box>

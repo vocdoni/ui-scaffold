@@ -1,5 +1,17 @@
 import { ChevronDownIcon, ChevronUpIcon, CopyIcon } from '@chakra-ui/icons'
-import { Box, Flex, HStack, Icon, IconButton, Link, MenuItem, MenuList, Text, useClipboard } from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  Flex,
+  HStack,
+  Icon,
+  IconButton,
+  Link,
+  MenuItem,
+  MenuList,
+  Text,
+  useClipboard,
+} from '@chakra-ui/react'
 import { Balance, HR } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
 import { useState } from 'react'
@@ -68,15 +80,14 @@ const MenuDropdown = () => {
               </HStack>
               {addressTextOverflow((account?.address as string) || '', 10)}
               <IconButton
+                variant='icon'
+                size='xs'
+                type='button'
+                icon={<CopyIcon />}
+                aria-label={t('menu.copy_aria_label')}
                 onClick={() => {
                   onCopy()
                 }}
-                aria-label={t('menu.copy_aria_label')}
-                icon={<CopyIcon />}
-                bgColor='white'
-                w={5}
-                h={5}
-                minW={0}
               />
             </Box>
           </MenuItem>
@@ -96,20 +107,17 @@ const MenuDropdown = () => {
               <Flex>
                 <Balance p={0} bg='white' fontWeight='bold' />
               </Flex>
-
               {import.meta.env.features.faucet && (
-                <Link
+                <Button
                   as={ReactRouterLink}
                   to='/faucet'
-                  variant='rounded'
-                  colorScheme='primary'
                   aria-label={t('menu.get_more')}
                   title={t('menu.get_more')}
-                  p={2}
+                  variant='primary'
                 >
-                  <Icon as={HiShoppingCart} mt={1} mr={1} />
+                  <Icon as={HiShoppingCart} />
                   {t('menu.get_more')}
-                </Link>
+                </Button>
               )}
             </Flex>
           </MenuItem>

@@ -27,7 +27,7 @@ import { TbDatabaseExclamation } from 'react-icons/tb'
 import { HandleSignInFunction, useClaim } from '~components/Faucet/Claim'
 import { useFaucet } from '~components/Faucet/use-faucet'
 import { useProcessCreationSteps } from './Steps/use-steps'
-import imageHeader from '/assets/voc-tokens.jpg'
+// import imageModal from '/assets/onvote-modal-get-voctokens.jpg'
 
 export const CostPreview = ({
   unpublished,
@@ -75,7 +75,9 @@ export const CostPreview = ({
 
   return (
     <Flex flexDirection='column' gap={2} mb={5}>
-      <Text fontWeight='bold'>{t('form.process_create.confirm.cost_title')}</Text>
+      <Text className='brand-theme' fontWeight='bold' textTransform='uppercase'>
+        {t('form.process_create.confirm.cost_title')}
+      </Text>
       <Text fontSize='sm'>{t('form.process_create.confirm.cost_description')}</Text>
       <Flex flexDirection='column' gap={4} p={{ base: 3, xl: 6 }} bgColor='process_create.section' borderRadius='md'>
         {typeof cost === 'undefined' && (
@@ -137,7 +139,7 @@ export const CostPreview = ({
                 <Trans
                   i18nKey='cost_preview.total'
                   components={{
-                    span: <Text as='span' />,
+                    span: <Text as='span' color='process_create.confirm_total_cost' />,
                   }}
                   values={{
                     cost,
@@ -183,19 +185,13 @@ export const CostPreview = ({
       </Flex>
 
       {cost && cost > (account?.balance || 0) && (
-        <Flex flexDir='column' alignItems='center' gap={2}>
-          <Text color='red' textAlign='center'>
+        <Flex flexDir='column' alignItems='center' gap={2} mb={10}>
+          <Text textAlign='center' mb={3}>
             {t('cost_preview.not_enough_tokens')}
           </Text>
           {import.meta.env.features.faucet && (
             <>
-              <Button
-                variant='rounded'
-                colorScheme='primary'
-                leftIcon={<TbDatabaseExclamation />}
-                maxW={64}
-                onClick={onOpen}
-              >
+              <Button leftIcon={<TbDatabaseExclamation />} maxW={64} onClick={onOpen}>
                 {t('cost_preview.button')}
               </Button>
               <Modal isOpen={isOpen} onClose={onClose}>
@@ -230,19 +226,20 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
         setWaitHours(NaN)
       }
     })()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
     <>
       <ModalOverlay />
-      <ModalContent minW={{ md: '600px' }}>
+      <ModalContent>
         <ModalHeader>
           <Text>{t('get_voc_tokens.title')}</Text>
-          <Box bgImage={imageHeader} bgRepeat='no-repeat' minH={{ base: '180px', md: '200px' }} />
+          <Box /* bgImage={imageModal} */ />
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <Box mb={8}>
+          <Box mb='32px'>
             <Trans
               i18nKey='get_voc_tokens.description'
               components={{
@@ -251,45 +248,46 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
               }}
             />
           </Box>
-          <Text fontSize='sm' fontWeight='bold' textAlign='center'>
-            {t('get_voc_tokens.authentification_method')}
-          </Text>
-          <Flex justifyContent='space-around' my={3}>
-            <OAuthLoginButton
-              aria-label={t('login.github').toString()}
-              onClick={() => setSocialAccount('github')}
-              selected={socialAccount === 'github'}
-              title='Github'
-            >
-              <Icon as={FaGithub} w={8} h={8} />
-            </OAuthLoginButton>
-            <OAuthLoginButton
-              aria-label={t('login.google').toString()}
-              onClick={() => setSocialAccount('google')}
-              selected={socialAccount === 'google'}
-              title='Google'
-            >
-              <Icon as={FaGoogle} w={8} h={8} />
-            </OAuthLoginButton>
-            <OAuthLoginButton
-              aria-label={t('login.facebook').toString()}
-              onClick={() => setSocialAccount('facebook')}
-              selected={socialAccount === 'facebook'}
-              title='Facebook'
-            >
-              <Icon as={FaFacebook} w={8} h={8} />
-            </OAuthLoginButton>
+          <Flex flexDirection='column' gap='16px'>
+            <Text fontSize='sm' fontWeight='bold' textAlign='center'>
+              {t('get_voc_tokens.authentification_method')}
+            </Text>
+            <Flex justifyContent='space-around'>
+              <OAuthLoginButton
+                aria-label={t('login.github').toString()}
+                onClick={() => setSocialAccount('github')}
+                selected={socialAccount === 'github'}
+                title='Github'
+              >
+                <Icon as={FaGithub} />
+              </OAuthLoginButton>
+              <OAuthLoginButton
+                aria-label={t('login.google').toString()}
+                onClick={() => setSocialAccount('google')}
+                selected={socialAccount === 'google'}
+                title='Google'
+              >
+                <Icon as={FaGoogle} />
+              </OAuthLoginButton>
+              <OAuthLoginButton
+                aria-label={t('login.facebook').toString()}
+                onClick={() => setSocialAccount('facebook')}
+                selected={socialAccount === 'facebook'}
+                title='Facebook'
+              >
+                <Icon as={FaFacebook} />
+              </OAuthLoginButton>
+            </Flex>
+            <Text fontSize='sm' textAlign='center' color='gray'>
+              <Trans
+                i18nKey='get_voc_tokens.authentification_method_helper'
+                values={{
+                  faucetAmount,
+                  waitHours,
+                }}
+              />
+            </Text>
           </Flex>
-
-          <Text fontSize='sm' textAlign='center' color='gray'>
-            <Trans
-              i18nKey='get_voc_tokens.authentification_method_helper'
-              values={{
-                faucetAmount,
-                waitHours,
-              }}
-            />
-          </Text>
         </ModalBody>{' '}
         <ModalFooter flexDirection='column' alignItems='center' gap={3}>
           <Button
@@ -309,7 +307,7 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
             i18nKey='get_voc_tokens.info'
             components={{
               text: <Text fontSize='sm' textAlign='center' />,
-              mailto: <Link href='mailto:info@onvote.app' fontWeight='bold' color='primary.500' />,
+              mailto: <Link href='mailto:info@onvote.app' fontWeight='bold' variant='primary' />,
             }}
           />
         </ModalFooter>
@@ -323,14 +321,20 @@ const OAuthLoginButton = (props: Partial<ButtonProps & { selected: boolean }>) =
   return (
     <Button
       {...props}
+      variant=''
       cursor='pointer'
       title={title || 'coming soon'}
       sx={{
         '&': {
-          bgColor: selected ? 'primary.500' : '',
+          bgColor: selected ? 'primary.700' : 'black',
+          width: '60px',
+          height: '60px',
+          borderRadius: 'full',
 
           '& svg': {
-            color: selected ? 'white' : 'primary.500',
+            color: 'white',
+            width: 12,
+            height: 12,
           },
 
           '&:disabled': {
@@ -341,20 +345,7 @@ const OAuthLoginButton = (props: Partial<ButtonProps & { selected: boolean }>) =
 
           '&:hover': {
             cursor: selected ? 'default' : 'pointer',
-            bgColor: selected ? 'primary.500' : '',
-
-            '& svg': {
-              color: selected ? 'white' : 'primary.500',
-            },
-
-            '&:disabled': {
-              '&': {
-                cursor: 'default',
-              },
-              '& svg': {
-                color: 'gray',
-              },
-            },
+            bgColor: selected ? 'primary.700' : 'primary.600',
           },
         },
       }}
