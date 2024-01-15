@@ -17,13 +17,28 @@ export const theme = extendTheme(vtheme, {
         '--box-shadow-darker': '0px 2px 4px #808080b5',
         '--vcd-gradient-primary': 'linear-gradient(to right, #24656e, #2c545a)',
       },
+      '.voting-type': {
+        justifyContent: 'space-around',
+        flexWrap: 'wrap',
+        alignItems: { base: 'center', md2: 'stretch' },
+        gap: { base: 10, md2: 0 },
+        mb: 32,
+        maxW: '1250px',
+        mx: 'auto',
+      },
+      link: {
+        color: 'link.primary',
+        textDecoration: 'underline',
+        _hover: {
+          textDecoration: 'none',
+        },
+      },
       '.process-create-title': {
         fontWeight: 'bold',
       },
       '.site-wrapper': {
         width: 'full',
         m: '0 auto',
-        maxW: 360,
       },
       // '.site-wrapper': {
       //   width: 'full',

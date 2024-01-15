@@ -179,24 +179,22 @@ const typesVoting = definePartsStyle({
     borderRadius: '3xl',
     opacity: '0.8',
     flex: { base: '0 0 100%', md2: '0 0 30%', xl: '0 0 25%' },
+  },
+  body: {
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: { base: 'lg', xl: 'xl' },
+    display: 'flex',
+    alignItems: 'center',
+    gap: 2,
+    p: 0,
+    mb: 4,
 
-    '& div': {
-      fontWeight: 'bold',
-      textAlign: 'center',
-      fontSize: { base: 'lg', xl: 'xl' },
-      display: 'flex',
-      alignItems: 'center',
-      gap: 2,
-      p: 0,
-      py: 4,
-
-      '& svg': {
-        boxSize: { base: 7, xl: 9 },
-      },
+    '& svg': {
+      boxSize: { base: 7, xl: 9 },
     },
   },
-
-  body: {
+  footer: {
     p: 0,
     pb: 3,
   },

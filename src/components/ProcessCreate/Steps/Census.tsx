@@ -1,5 +1,6 @@
 import { Box, Flex, Icon, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
+import { Check } from '~theme/icons'
 import { CensusType, useCensusTypes } from '../Census/TypeSelector'
 import { StepsNavigation } from './Navigation'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
@@ -42,9 +43,7 @@ export const Census = () => {
           <TabList gap={2} flexWrap={'wrap'} justifyContent={'left'}>
             {defined.map((ct: CensusType, index: number) => (
               <Tab key={index}>
-                <Box bgColor='checkbox' p={1} maxW='fit-content'>
-                  {/* <Img src={checkIcon} w={2} /> */}
-                </Box>
+                <Check />
 
                 <Box>
                   <Icon as={details[ct].icon} />

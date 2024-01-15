@@ -38,6 +38,8 @@ import { useEffect, useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+import { IElection, IElectionWithTokenResponse } from 'vocdoni-admin-sdk'
+import { useCspAdmin } from '../Census/Csp/use-csp'
 import { CensusType } from '../Census/TypeSelector'
 import Preview from '../Confirm/Preview'
 import { CostPreview } from '../CostPreview'
@@ -47,8 +49,6 @@ import { Option } from '../StepForm/Questions'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 import Wrapper from './Wrapper'
 // import imageHeader from '/assets/onvote-modal-submitting.png'
-import { IElection, IElectionWithTokenResponse } from 'vocdoni-admin-sdk'
-import { useCspAdmin } from '../Census/Csp/use-csp'
 
 export const Confirm = () => {
   const { env, client, account, fetchAccount } = useClient()
@@ -261,7 +261,17 @@ export const Confirm = () => {
                         <Trans
                           i18nKey='form.process_create.confirm.confirmation_terms_and_conditions'
                           components={{
-                            customLink: <Link href='https://aragon.org/terms-and-conditions' target='_blank' />,
+                            customLink: (
+                              <Link
+                                href='https://aragon.org/terms-and-conditions'
+                                target='_blank'
+                                color='link.primary'
+                                textDecoration='underline'
+                                _hover={{
+                                  textDecoration: 'none',
+                                }}
+                              />
+                            ),
                           }}
                         />
                       </Checkbox>

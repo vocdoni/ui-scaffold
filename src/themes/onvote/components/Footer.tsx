@@ -89,6 +89,7 @@ const Footer = () => {
               href='https://github.com/vocdoni'
               target='_blank'
               aria-label='link vocdoni github'
+              color='footer_icon'
               _hover={{
                 opacity: '0.5',
               }}

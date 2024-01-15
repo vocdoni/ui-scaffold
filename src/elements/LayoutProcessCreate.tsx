@@ -10,14 +10,16 @@ const LayoutProcessCreate = () => {
 
   return (
     <Box bgColor='process_create.bg'>
-      <Flex direction='column' minH='100vh' mx='auto' className='process-create'>
+      <Flex direction='column' minH='100vh' maxW='1920px' mx='auto'>
         <Flex
           as='header'
           position='relative'
           justifyContent='space-between'
           alignItems='center'
-          maxW='inherit'
+          maxW='1920px'
           w='full'
+          mx='auto'
+          p={{ base: '12px 40px', md: '24px 80px' }}
         >
           <Logo />
 
@@ -31,7 +33,7 @@ const LayoutProcessCreate = () => {
           </Button>
         </Flex>
 
-        <Box as='main' w='full' mx='auto'>
+        <Box as='main' maxW='1920px' w='full' mx='auto' px={{ base: '40px', md: '80px' }}>
           <Outlet />
         </Box>
       </Flex>
