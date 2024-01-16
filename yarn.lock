@@ -2776,14 +2776,14 @@
   integrity sha512-mmVlkaCwrJONo95nSYSQ+GO9N+r9OVg9mX6zMQSyR7KGVkrcKkI5lEzkZXIsOx0gQv4q+tAN8nnSEYs9zNNvEg==
 
 "@vocdoni/react-providers@~0.3.2":
-  version "0.3.4"
-  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.3.4.tgz#66c03bb05cb95cbadc2390f0d959c003f082ff6d"
-  integrity sha512-dtrr0S1sugOkbCjBqbgqLHEWewRXhCL0TNGzf3W29HGzvkV6stLrBCCheX6n3y1X+vRjGaPaHwaGrAFwHiMIxw==
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.3.6.tgz#7f89f4e96cbac1c9f8e27d5a39d0945269c7591b"
+  integrity sha512-MxcaF0n8gvkHV5b/756vazB+4Hvy5t47fFyYM+TTbEteuTvZ5MuPHv9hgjmi6suWVPr1U/nF89Ehkl42vE5XZw==
 
-"@vocdoni/sdk@^0.7.0":
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/@vocdoni/sdk/-/sdk-0.7.0.tgz#39c14751b8097d0d0550d7816ff31df659b27758"
-  integrity sha512-hAF6pj+C2X6SFXKcN4xeS8WEWhcS55WTZunpZvu3VSp8tG15FRhH2+SFv3/2KvL5e0m5j18vpX+Wt6+gfMJhcQ==
+"@vocdoni/sdk@0.7.1":
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/@vocdoni/sdk/-/sdk-0.7.1.tgz#99504b04222c521a65e5bd352bfc04379fb5b568"
+  integrity sha512-qgHZoFsaJBkwWsrJeu1EZM5iMqqB2DlvQKjtncwAR8PZK/7ueVvavBMoig1Zx5REBhEhY1MKWs1d253lMHjIpw==
   dependencies:
     "@ethersproject/abstract-signer" "^5.7.0"
     "@ethersproject/address" "^5.7.0"

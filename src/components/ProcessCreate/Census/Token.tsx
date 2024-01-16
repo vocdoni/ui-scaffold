@@ -22,7 +22,7 @@ import {
   Tooltip,
 } from '@chakra-ui/react'
 import { errorToString, useClient } from '@vocdoni/react-providers'
-import { Census3Token, EnvOptions, ICensus3SupportedChain, Token, VocdoniCensus3Client } from '@vocdoni/sdk'
+import { Census3Token, EnvOptions, ICensus3SupportedChain, TokenSummary, VocdoniCensus3Client } from '@vocdoni/sdk'
 import { ChakraStylesConfig, GroupBase, Select, SelectComponentsConfig, SelectInstance } from 'chakra-react-select'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
@@ -37,7 +37,7 @@ export interface FilterOptionOption<Option> {
 }
 type GrupedTokenTypes = {
   label: string
-  options: Token[] | { name: string; synced: boolean; type: string }[]
+  options: TokenSummary[] | { name: string; synced: boolean; type: string }[]
 }[]
 
 export const CensusTokens = () => {
@@ -81,7 +81,7 @@ export const CensusTokens = () => {
       message: t('census.token_required'),
     },
   })
-  const ct = watch('censusToken')
+  const ct: Census3Token = watch('censusToken')
   const strategySize: number = watch('strategySize')
 
   const formatGroupLabel = (data: GroupBase<any>) => {
@@ -304,7 +304,6 @@ export const CensusTokens = () => {
           </FormLabel>
           <Select
             ref={selectTokenRef}
-            key={ct}
             placeholder={t('form.process_create.census.tokens_placeholder')}
             aria-label={t('form.process_create.census.tokens_placeholder')}
             defaultValue={ct}
@@ -313,8 +312,10 @@ export const CensusTokens = () => {
             formatGroupLabel={formatGroupLabel}
             options={groupedTokens}
             filterOption={filterOptions}
-            getOptionValue={({ chainAddress, chainID, externalID }: Token) => chainAddress + chainID + externalID}
-            getOptionLabel={(props: Token) => {
+            getOptionValue={({ chainAddress, chainID, externalID }: TokenSummary) =>
+              chainAddress + chainID + externalID
+            }
+            getOptionLabel={(props: TokenSummary) => {
               if (props.symbol) return `${props.name}  (${props.symbol})`
               else return `${props.name}`
             }}
@@ -355,7 +356,7 @@ export const CensusTokens = () => {
   )
 }
 
-export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Token; strategySize?: number }) => {
+export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3Token; strategySize?: number }) => {
   const {
     setValue,
     getValues,
