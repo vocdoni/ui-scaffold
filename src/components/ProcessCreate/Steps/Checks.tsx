@@ -4,7 +4,7 @@ import { useClient } from '@vocdoni/react-providers'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AccountCreate } from '~components/Account/Create'
-import { useAccountHealthTools } from '~components/Account/use-account-health-tools'
+import { useOrganizationHealthTools } from '~components/Account/use-account-health-tools'
 import { useProcessCreationSteps } from './use-steps'
 import Wrapper from './Wrapper'
 
@@ -13,7 +13,7 @@ export const Checks = () => {
     connected,
     loaded: { account },
   } = useClient()
-  const { exists } = useAccountHealthTools()
+  const { exists } = useOrganizationHealthTools()
   const { next } = useProcessCreationSteps()
   const { t } = useTranslation()
 
