@@ -40,8 +40,16 @@ export const theme = extendTheme(vtheme, {
         width: 'full',
         m: '0 auto',
       },
-      '.creating-process': {
+      '.creating-process-img': {
         bgImage: '/assets/spreadsheet-confirm-modal.jpg',
+      },
+      '.creating-process-check': {
+        color: 'primary.main',
+
+        '& svg': {
+          w: 6,
+          h: 6,
+        },
       },
     },
   },

@@ -305,7 +305,7 @@ export const Confirm = () => {
           <ModalContent>
             <ModalHeader>
               <Text>{t('form.process_create.creating_process')}</Text>
-              <Box className='creating-process' />
+              <Box className='creating-process-img' />
             </ModalHeader>
             {error && <ModalCloseButton />}
             <ModalBody>

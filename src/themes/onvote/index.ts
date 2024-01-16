@@ -55,8 +55,13 @@ export const theme = extendTheme(vtheme, {
         border: '1px solid',
         borderColor: 'process_create.section_border',
       },
-      '.creating-process': {
+      '.creating-process-img': {
         bgImage: '/assets/onvote-modal-submitting.png',
+      },
+      '.creating-process-check': {
+        w: 6,
+        h: 6,
+        bgColor: 'primary.main',
       },
     },
   },
