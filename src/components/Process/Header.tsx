@@ -12,6 +12,7 @@ import { ElectionStatus } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
+import { GoBack } from '~theme/icons'
 import { ActionsMenu } from './ActionsMenu'
 import { CreatedBy } from './CreatedBy'
 import { ProcessDate } from './Date'
@@ -35,6 +36,7 @@ const ProcessHeader = () => {
     <Box mb={4}>
       {showOrgInformation && (
         <Button as={Link} to={`/organization/0x${election?.organizationId}`} variant='go-back' my={5}>
+          <GoBack />
           <OrganizationName as='span' />
         </Button>
       )}

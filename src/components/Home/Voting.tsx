@@ -7,20 +7,7 @@ const VotingTypesBanner = () => {
   const { t } = useTranslation()
   return (
     <>
-      <Flex
-        justifyContent='space-around'
-        flexWrap='wrap'
-        alignItems={{ base: 'center', md2: 'stretch' }}
-        gap={{ base: 10, md2: 5 }}
-        maxW={{ md: '990px' }}
-        mx='auto'
-        fontSize='sm'
-        pb={{ base: 24, lg: 64 }}
-        px={{
-          base: '40px',
-          md: '80px',
-        }}
-      >
+      <Flex className='voting-type'>
         <Card variant='types-voting'>
           <CardBody>
             <Icon as={TbDiscountCheckFilled} />

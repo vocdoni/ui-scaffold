@@ -10,7 +10,7 @@ const baseStyle = definePartsStyle({
   },
 
   dialog: {
-    p: '16px',
+    p: 10,
     w: '420px',
     borderRadius: 0,
     clipPath:

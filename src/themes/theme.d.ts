@@ -19,6 +19,7 @@ declare module '~theme/icons' {
   export const Check: import('react').FC
   export const Close: import('react').FC
   export const Logo: import('react').FC
+  export const GoBack: import('react').FC
 }
 
 declare module '~theme/Fonts' {

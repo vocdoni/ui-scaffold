@@ -51,7 +51,7 @@ export const ProcessView = () => {
   }, [election])
 
   return (
-    <Box maxW='1920px' mx='auto'>
+    <Box>
       <Box
         mb={44}
         px={{

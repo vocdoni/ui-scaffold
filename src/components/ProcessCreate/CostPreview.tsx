@@ -27,7 +27,7 @@ import { TbDatabaseExclamation } from 'react-icons/tb'
 import { HandleSignInFunction, useClaim } from '~components/Faucet/Claim'
 import { useFaucet } from '~components/Faucet/use-faucet'
 import { useProcessCreationSteps } from './Steps/use-steps'
-// import imageModal from '/assets/onvote-modal-get-voctokens.jpg'
+import imageModal from '/assets/get-tokens.jpg'
 
 export const CostPreview = ({
   unpublished,
@@ -235,7 +235,7 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
       <ModalContent>
         <ModalHeader>
           <Text>{t('get_voc_tokens.title')}</Text>
-          <Box /* bgImage={imageModal} */ />
+          <Box bgImage={imageModal} />
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody>

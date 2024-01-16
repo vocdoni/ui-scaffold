@@ -15,7 +15,7 @@ const Footer = () => {
 
   return (
     <Box bgImage={'/assets/footer-bg.jpg'} bgSize='cover' bgPosition='center'>
-      <Flex flexDirection='column' minH='597px' maxW='1920px' mx='auto' color='white'>
+      <Flex flexDirection='column' minH='597px' color='white'>
         <Flex
           flex={1}
           flexDirection='column'
@@ -89,6 +89,7 @@ const Footer = () => {
               href='https://github.com/vocdoni'
               target='_blank'
               aria-label='link vocdoni github'
+              color='footer_icon'
               _hover={{
                 opacity: '0.5',
               }}

@@ -1,4 +1,4 @@
-import { Box, Flex, Img, Link, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Img, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
@@ -48,18 +48,16 @@ const Banner = () => {
             alignItems='center'
             marginTop={{ base: 10, md: 4 }}
           >
-            <Link
+            <Button
               as={ReactRouterLink}
               to='/processes/create'
-              variant='rounded'
-              colorScheme='primary'
               aria-label={t('menu.new_process')}
               title={t('menu.new_process')}
             >
               <Text as='span' display='inline-block'>
                 {t('banner.start_now')}
               </Text>
-            </Link>
+            </Button>
           </Flex>
         )}
       </Box>

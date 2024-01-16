@@ -1,5 +1,6 @@
 import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
 import { questionsAnatomy } from '@vocdoni/chakra-components'
+import checkIcon from '/assets/check-icon.svg'
 
 const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpers(questionsAnatomy)
 
@@ -9,7 +10,7 @@ const baseStyle = definePartsStyle({
     py: 7,
     my: '10px',
     color: 'process.questions.alert.color',
-    bgColor: '#3375ff',
+    bgColor: 'process.questions.alert.color',
     display: 'grid',
     columnGap: 4,
     justifyContent: 'center',
@@ -108,21 +109,19 @@ const baseStyle = definePartsStyle({
     p: 1,
   },
   stack: {
+    p: 1,
+
     '& label': {
       overflow: 'hidden',
-      mb: 4,
-      boxShadow: 'var(--box-shadow-question)',
-      bgColor: 'white',
-      border: '1px solid',
-      borderColor: 'process.questions.border',
-
-      '& input:checked': {
-        bgColor: 'red',
-      },
+      display: 'flex',
+      alignItems: 'center',
+      gap: 2,
 
       '& span:nth-of-type(2)': {
         p: 4,
         m: 0,
+        border: '1px solid lightgray',
+        w: '100%',
       },
 
       '& input:checked ~ span:nth-of-type(2)': {
@@ -134,7 +133,40 @@ const baseStyle = definePartsStyle({
   },
 
   radio: {
-    display: 'none',
+    width: '30px',
+    height: '30px',
+    background: 'transparent',
+    ml: '10px',
+
+    '&[data-checked=""]': {
+      '&:before': {
+        display: 'none',
+        bgColor: 'transparent',
+      },
+
+      border: 'none',
+      background: 'process.questions.question_selected.bg',
+      borderColor: 'process.questions.question_selected.bg',
+      bgSize: '20px',
+      bgRepeat: 'no-repeat',
+      bgPosition: 'center',
+      bgImage: checkIcon,
+
+      _hover: {
+        border: 'none',
+        background: 'process.questions.question_selected.bg',
+        borderColor: 'process.questions.question_selected.bg',
+        bgSize: '20px',
+        bgRepeat: 'no-repeat',
+        bgPosition: 'center',
+        bgImage: checkIcon,
+      },
+    },
+
+    '&[data-disabled=""]': {
+      bgColor: 'white !important',
+      border: 'none !important',
+    },
   },
   error: {
     display: 'flex',

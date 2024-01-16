@@ -9,15 +9,15 @@ const LayoutProcessCreate = () => {
   const navigate = useNavigate()
 
   return (
-    <Box bgColor='process_create.bg'>
-      <Flex direction='column' minH='100vh' mx='auto' className='process-create'>
+    <Box bgColor='process_create.bg' maxW='site-width' mx='auto'>
+      <Flex direction='column' minH='100vh'>
         <Flex
           as='header'
           position='relative'
           justifyContent='space-between'
           alignItems='center'
-          maxW='inherit'
           w='full'
+          p={{ base: '12px 40px', md: '24px 80px' }}
         >
           <Logo />
 
@@ -31,7 +31,7 @@ const LayoutProcessCreate = () => {
           </Button>
         </Flex>
 
-        <Box as='main' w='full' mx='auto'>
+        <Box as='main' w='full' px={{ base: '40px', md: '80px' }}>
           <Outlet />
         </Box>
       </Flex>

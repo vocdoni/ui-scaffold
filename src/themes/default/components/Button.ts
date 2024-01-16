@@ -123,8 +123,6 @@ const closeForm = defineStyle({
 })
 
 const goBack = defineStyle({
-  fontWeight: 'normal',
-  pl: '30px',
   bgColor: 'gray.100',
 
   _hover: {
@@ -135,6 +133,10 @@ const goBack = defineStyle({
     bgColor: 'gray.300',
   },
 
+  '& svg': {
+    mr: 1,
+    w: 3.5,
+  },
   '& span': {
     color: 'organization.go_back_btn',
     overflow: 'hidden',

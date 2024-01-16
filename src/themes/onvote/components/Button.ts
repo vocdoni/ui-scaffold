@@ -383,9 +383,24 @@ const icon2 = defineStyle((props) => {
 const closeForm = defineStyle({
   color: 'process_create.close_btn',
   fontWeight: 'normal',
+  display: 'flex',
+  justifyContent: 'space-between',
+  gap: 1,
+  alignItems: 'center',
+
+  '& img': {
+    mb: '3px',
+  },
 })
 
 const goBack = defineStyle({
+  p: 0,
+
+  '& img': {
+    w: 1.5,
+    mr: 1,
+    mb: '1px',
+  },
   '& span': {
     color: 'organization.go_back_btn',
     overflow: 'hidden',

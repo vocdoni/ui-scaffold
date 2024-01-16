@@ -10,7 +10,7 @@ const Roadmap = () => {
         base: '40px',
         md: '80px',
       }}
-      pb={{ lg: 64 }}
+      py={{ lg: 64 }}
     >
       <Trans
         i18nKey='roadmap.title'

@@ -5,8 +5,8 @@ import Footer from '~theme/components/Footer'
 
 const Layout = () => {
   return (
-    <Flex position='relative' flexDirection='column' minH='100vh' className='site-wrapper'>
-      <HStack as='header' position='sticky' top={0} w='full' backdropFilter='blur(40px)' zIndex={10}>
+    <Flex position='relative' flexDirection='column' minH='100vh' maxW='site-width'>
+      <HStack as='header' position='sticky' top={0} w='full' backdropFilter='blur(40px)' zIndex={20}>
         <Navbar />
       </HStack>
       <Box as='main' flexGrow={1}>

@@ -17,12 +17,12 @@ const Home = () => {
         paddingTop='8rem'
         paddingBottom='4rem'
       >
-        <Box maxW='1920px' mx='auto' pt={{ lg: '120px' }} px='40px'>
+        <Box pt={{ lg: '120px' }} px='40px'>
           <Banner />
           <VotingTypesBanner />
         </Box>
       </Box>
-      <Box maxW='1920px' mx='auto'>
+      <Box>
         <Roadmap />
         <Features />
       </Box>
