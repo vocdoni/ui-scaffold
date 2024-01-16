@@ -1,5 +1,6 @@
 import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
 import { questionsAnatomy } from '@vocdoni/chakra-components'
+import { Check } from '../icons'
 
 const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpers(questionsAnatomy)
 
@@ -103,6 +104,8 @@ const baseStyle = definePartsStyle({
     p: 1,
   },
   stack: {
+    p: 1,
+
     '& label': {
       borderRadius: 'lg',
       overflow: 'hidden',
@@ -129,30 +132,20 @@ const baseStyle = definePartsStyle({
   radio: {
     width: '30px',
     height: '30px',
-    background: 'white',
+    background: 'transparent',
+    ml: '10px',
     '&[data-checked=""]': {
       '&:before': {
         display: 'none',
         bgColor: 'transparent',
       },
 
-      border: 'none',
       background: 'process.questions.question_selected.bg',
       borderColor: 'process.questions.question_selected.bg',
-      bgSize: '20px',
-      bgRepeat: 'no-repeat',
-      bgPosition: 'center',
 
       _hover: {
-        border: 'none',
         background: 'process.questions.question_selected.bg',
         borderColor: 'process.questions.question_selected.bg',
-        bgSize: '20px',
-        bgRepeat: 'no-repeat',
-        bgPosition: 'center',
-      },
-      _selected: {
-        bgColor: 'white',
       },
     },
 

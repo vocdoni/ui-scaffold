@@ -53,6 +53,8 @@ export const colors = {
 
   checkbox: colorsBase.primary.main,
 
+  footer_icon: colorsBase.white.pure,
+
   link: {
     contrast: colorsBase.white.pure,
     primary: colorsBase.primary.main,
@@ -104,13 +106,13 @@ export const colors = {
     questions: {
       border: colorsBase.primary.gray_light,
       alert: {
-        bg: colorsBase.primary.light,
+        bg: colorsBase.primary.main,
         color: colorsBase.white.pure,
         link_color: colorsBase.black,
         link_bg: colorsBase.white.pure,
       },
       question_selected: {
-        bg: colorsBase.primary.light,
+        bg: colorsBase.primary.main,
         color: colorsBase.white.pure,
       },
       description: colorsBase.gray.dark,

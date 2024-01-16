@@ -94,7 +94,6 @@ const OrganizationView = () => {
         base: '40px',
         md: '80px',
       }}
-      maxW='1920px'
       mx='auto'
     >
       <Header />

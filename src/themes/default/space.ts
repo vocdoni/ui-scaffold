@@ -17,4 +17,5 @@ export const sizes = {
   175: '43.75rem',
   250: '62.5rem',
   360: '90rem',
+  'site-width': '1920px',
 }

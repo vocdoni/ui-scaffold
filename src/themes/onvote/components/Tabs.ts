@@ -1,5 +1,6 @@
 import { tabsAnatomy } from '@chakra-ui/anatomy'
 import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
+import checkIcon from '/assets/check-icon.svg'
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(tabsAnatomy.keys)
 
 const card = definePartsStyle({
@@ -46,16 +47,20 @@ const card = definePartsStyle({
       },
     },
 
-    '& > div:first-of-type': {
-      display: 'none',
+    '& > img': {
+      w: 5,
+      h: 5,
+      bgColor: 'checkbox',
+      p: 1,
       position: 'absolute',
       top: 2,
       right: 2,
+      display: 'none',
     },
 
     _selected: {
       boxShadow: 'var(--box-shadow-darker)',
-      '& > div:first-of-type': {
+      '& > img': {
         display: 'block',
       },
       '& > div > p': {

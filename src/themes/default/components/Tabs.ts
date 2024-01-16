@@ -45,16 +45,19 @@ const card = definePartsStyle({
       },
     },
 
-    '& > div:first-of-type': {
-      display: 'none',
+    '& > svg': {
+      w: 5,
+      h: 5,
+      color: 'checkbox',
       position: 'absolute',
       top: 2,
       right: 2,
+      display: 'none',
     },
 
     _selected: {
       boxShadow: 'var(--box-shadow-darker)',
-      '& > div:first-of-type': {
+      '& > svg': {
         display: 'block',
       },
       '& > div > p': {
