@@ -55,16 +55,9 @@ export const theme = extendTheme(vtheme, {
         border: '1px solid',
         borderColor: 'process_create.section_border',
       },
-      '.process-create': {
-        width: 'full',
-        maxWidth: '1920px',
-      },
-      '.process-create > header': {
-        padding: { base: '12px 40px', md: '24px 80px' },
-      },
-      '.process-create > main': {
-        px: { base: '40px', md: '80px' },
-      },
+      '.creating-process':{
+        bgImage: '/assets/onvote-modal-submitting.png'
+      }
     },
   },
   breakpoints,

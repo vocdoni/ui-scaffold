@@ -40,17 +40,9 @@ export const theme = extendTheme(vtheme, {
         width: 'full',
         m: '0 auto',
       },
-      // '.site-wrapper': {
-      //   width: 'full',
-      //   m: '0 auto',
-      //   maxW: 360,
-      // },
-      // '.site-wrapper > header': {
-      //   padding: { base: '12px 40px', md: '24px 80px' },
-      // },
-      // '.site-wrapper > main': {
-      //   px: { base: '40px', md: '80px' },
-      // },
+      '.creating-process': {
+        bgImage: '/assets/spreadsheet-confirm-modal.jpg',
+      },
     },
   },
   breakpoints,
