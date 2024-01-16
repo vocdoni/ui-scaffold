@@ -10,35 +10,37 @@ const Banner = () => {
 
   return (
     <Flex
-      flexDirection={{ base: 'column', md: 'row' }}
+      flexDirection={{ base: 'column' }}
       justifyContent='space-between'
       alignItems='center'
       maxW={250}
       mx='auto'
       pl={{ md: 8 }}
-      mb={20}
+      mb={30}
     >
       <Img
         src={bannerLogo}
         alt=''
-        width={{ base: '50%', sm: '40%', md: '300px', md2: '320px', lg: '350px', xl: '400px' }}
-        order={{ base: 0, md: 1 }}
+        width={{ base: '80%' }}
+        order={{ base: 0 }}
+        pt={{ base: 10 }}
       />
 
-      <Box pt={{ base: 5 }} px={{ sm: 10, md: 0 }}>
+      <Box pt={{ base: 10 }}  pb={{ base: 10}}>
         <Text
           as='h1'
-          fontSize={{ base: 'xl3', sm: 'xl4', md: 'xl3' }}
+          fontSize={{ base: 'xl5' }}
           fontWeight='extrabold'
           textAlign={{ base: 'center', md: 'start' }}
           pb={{ base: 3, md: 1 }}
-          width={{ md: '420px' }}
           lineHeight={{ md: 1.4 }}
+          fontFamily='"Archivo", sans-serif'
         >
           {t('banner.title')}
         </Text>
-        <Text as='h2' fontSize={{ base: 'xl', md: 'lg' }} textAlign={{ base: 'center', md: 'start' }}>
-          {t('banner.subtitle')}
+        <Text as='h2' fontSize={{ base: 'xl2' }} fontFamily='"Archivo", sans-serif' textAlign={{ base: 'center', md: 'start' }}>
+          {t('banner.subtitle')}<br />
+          {t('banner.subtitle1')}
         </Text>
         {isConnected && (
           <Flex
