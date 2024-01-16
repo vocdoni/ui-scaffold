@@ -55,9 +55,9 @@ export const theme = extendTheme(vtheme, {
         border: '1px solid',
         borderColor: 'process_create.section_border',
       },
-      '.creating-process':{
-        bgImage: '/assets/onvote-modal-submitting.png'
-      }
+      '.creating-process': {
+        bgImage: '/assets/onvote-modal-submitting.png',
+      },
     },
   },
   breakpoints,
