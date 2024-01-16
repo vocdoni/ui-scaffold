@@ -4,13 +4,13 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 // These aren't lazy loaded to avoid excessive loaders in different locations
 import Error from '~elements/Error'
 import LayoutProcessCreate from '~elements/LayoutProcessCreate'
-import Layout from '../elements/Layout'
 import { SuspenseLoader } from './SuspenseLoader'
 
 // Lazy loading helps splitting the final code, which helps downloading the app (theoretically)
 const ProtectedRoutes = lazy(() => import('./ProtectedRoutes'))
 const ProcessCreateSteps = lazy(() => import('../components/ProcessCreate/Steps'))
-const Home = lazy(() => import('~theme/components/Home'))
+// const Home = lazy(() => import('~theme/components/Home'))
+const Home = lazy(() => import('../components/Home/Berga'))
 const NotFound = lazy(() => import('../elements/NotFound'))
 const Organization = lazy(() => import('../elements/Organization'))
 const Process = lazy(() => import('../elements/Process'))
@@ -50,7 +50,7 @@ export const RoutesProvider = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/'>
-        <Route element={<Layout />}>
+        <Route>
           {home}
           <Route
             path='processes/:id'
