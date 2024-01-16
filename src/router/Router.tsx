@@ -4,17 +4,19 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 // These aren't lazy loaded to avoid excessive loaders in different locations
 import Error from '~elements/Error'
 import LayoutProcessCreate from '~elements/LayoutProcessCreate'
+import Layout from '../elements/Layout'
 import { SuspenseLoader } from './SuspenseLoader'
 
 // Lazy loading helps splitting the final code, which helps downloading the app (theoretically)
 const ProtectedRoutes = lazy(() => import('./ProtectedRoutes'))
 const ProcessCreateSteps = lazy(() => import('../components/ProcessCreate/Steps'))
 // const Home = lazy(() => import('~theme/components/Home'))
-const Home = lazy(() => import('../components/Home/Berga'))
+const Home = lazy(() => import('~theme/components/Home'))
 const NotFound = lazy(() => import('../elements/NotFound'))
 const Organization = lazy(() => import('../elements/Organization'))
 const Process = lazy(() => import('../elements/Process'))
 const Faucet = lazy(() => import('../elements/Faucet'))
+const Berga = lazy(() => import('../elements/landings/Berga'))
 
 export const RoutesProvider = () => {
   const { client } = useClient()
@@ -50,7 +52,8 @@ export const RoutesProvider = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/'>
-        <Route>
+        <Route path='pressuposts-participatius' element={<Berga />} />
+        <Route element={<Layout />}>
           {home}
           <Route
             path='processes/:id'

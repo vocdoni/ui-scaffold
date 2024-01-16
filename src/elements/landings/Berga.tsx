@@ -1,11 +1,11 @@
 import { Box, Flex, Image, Link, Text } from '@chakra-ui/react'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import bergaImg from '/assets/berga.jpg'
-import vocdoniIcon from '/assets/vocdoni.svg'
+import vocdoniIcon from '/assets/vocdoni.png'
 
 const Berga = () => {
   return (
-    <Flex flexDirection='column' gap={10} maxW='900px' mx='auto' p={5}>
+    <Flex flexDirection='column' gap={10} maxW='900px' mx='auto' p={5} minH='100vh'>
       <Image src={bergaImg} width='300px' alt='ajuntament berga escut' mx='auto' />
       <Box>
         <Text as='h1' fontWeight='bold' fontSize='24px' textAlign='center'>
@@ -52,10 +52,13 @@ const Berga = () => {
             <Text>+18 anys</Text>
           </Link>
         </Flex>
-        <Flex justifyContent='center'>
-          <Image src={vocdoniIcon} width='300px' alt='vocdoni logo' />
-        </Flex>
       </Box>
+      <Text>
+        Es demanarà el teu DNI + data de naixament un cop seleccionada una opció de pressupostos participatius
+      </Text>
+      <Flex justifyContent='center' mt='auto'>
+        <Image src={vocdoniIcon} width='200px' alt='vocdoni logo' />
+      </Flex>
     </Flex>
   )
 }
