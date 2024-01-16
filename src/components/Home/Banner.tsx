@@ -16,14 +16,14 @@ const Banner = () => {
       maxW={250}
       mx='auto'
       pl={{ md: 8 }}
-      mb={30}
+      mb={50}
     >
       <Img
         src={bannerLogo}
         alt=''
         width={{ base: '80%' }}
         order={{ base: 0 }}
-        pt={{ base: 10 }}
+        pt={{ base: 20 }}
       />
 
       <Box pt={{ base: 10 }}  pb={{ base: 10}}>
