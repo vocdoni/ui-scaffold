@@ -26,7 +26,7 @@ export const RoutesProvider = () => {
       index
       element={
         <SuspenseLoader>
-          <Home />
+          <Berga />
         </SuspenseLoader>
       }
     />
@@ -51,7 +51,6 @@ export const RoutesProvider = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/'>
-        <Route path='pressuposts-participatius' element={<Berga />} />
         <Route element={<Layout />}>
           {home}
           <Route
