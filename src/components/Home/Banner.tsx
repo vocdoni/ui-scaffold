@@ -13,43 +13,38 @@ const Banner = () => {
       flexDirection={{ base: 'column' }}
       justifyContent='space-between'
       alignItems='center'
-      maxW={250}
+      maxW='1250px'
       mx='auto'
-      pl={{ md: 8 }}
       mb={50}
+      pt={20}
     >
-      <Img
-        src={bannerLogo}
-        alt=''
-        width={{ base: '80%' }}
-        order={{ base: 0 }}
-        pt={{ base: 20 }}
-      />
+      <Img src={bannerLogo} alt='' width={{ base: '100%', md: '80%', lg: '60%' }} order={0} mb={10} />
 
-      <Box pt={{ base: 10 }}  pb={{ base: 10}}>
+      <Box pb={10} px={{ base: '32px', xl: 0 }}>
         <Text
           as='h1'
           fontSize={{ base: 'xl5' }}
           fontWeight='extrabold'
-          textAlign={{ base: 'center', md: 'start' }}
-          pb={{ base: 3, md: 1 }}
-          lineHeight={{ md: 1.4 }}
+          textAlign={{ base: 'center', lg: 'start' }}
+          pb={{ base: 3, lg: 1 }}
+          lineHeight={{ base: 1.3, lg: 1.4 }}
           fontFamily='"Archivo", sans-serif'
         >
           {t('banner.title')}
         </Text>
-        <Text as='h2' fontSize={{ base: 'xl2' }} fontFamily='"Archivo", sans-serif' textAlign={{ base: 'center', md: 'start' }}>
-          {t('banner.subtitle')}<br />
+        <Text
+          as='h2'
+          fontSize={{ base: 'xl2' }}
+          fontFamily='"Archivo", sans-serif'
+          textAlign={{ base: 'center', lg: 'start' }}
+          marginBottom={{ base: 10, lg: 4 }}
+        >
+          {t('banner.subtitle')}
+          <br />
           {t('banner.subtitle1')}
         </Text>
         {isConnected && (
-          <Flex
-            flexDirection={{ base: 'column', sm: 'row' }}
-            gap={5}
-            justifyContent={{ base: 'center', md: 'start' }}
-            alignItems='center'
-            marginTop={{ base: 10, md: 4 }}
-          >
+          <Flex gap={5} justifyContent={{ base: 'center', lg: 'start' }} alignItems='center'>
             <Button
               as={ReactRouterLink}
               to='/processes/create'
