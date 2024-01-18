@@ -74,10 +74,12 @@
       "upcoming": "Propera"
     },
     "validation": {
+      "choices_count": "Has de seleccionar {{ count }} opcions",
       "min_length": "Aquest camp ha de tenir com a mínim {{ min }} caràcters",
       "required": "Aquest camp és obligatori"
     },
     "vote": {
+      "abstain": "Abstenció",
       "button": "Vota",
       "button_update": "Torna a enviar el vot",
       "confirm": "Confirma les teves seleccions:",
@@ -459,6 +461,7 @@
       "confirm": {
         "description": "Abans de votar, reviseu que tot sigui correcte.",
         "option": "<strong>Opció {{ number }}:</strong> {{ answer }}",
+        "options": "<strong>Selecció:</strong> {{ answers }}",
         "question": "<strong>Pregunta {{ number }}:</strong> {{ answer }}"
       }
     },
