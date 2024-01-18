@@ -1,4 +1,5 @@
 import { Stepper } from '@chakra-ui/react'
+import { ElectionResultsTypeNames } from '@vocdoni/sdk'
 import { PropsWithChildren, useEffect, useState } from 'react'
 import type { RecursivePartial } from '~constants'
 import { CensusSpreadsheetManager } from '../Census/Spreadsheet/CensusSpreadsheetManager'
@@ -14,6 +15,10 @@ export const StepsForm = ({ steps, children, activeStep, next, prev, setActiveSt
       interruptible: true,
       secretUntilTheEnd: import.meta.env.features.vote.secret,
       anonymous: false,
+    },
+    // hardcoded while there's no support for creating other types
+    resultsType: {
+      name: ElectionResultsTypeNames.SINGLE_CHOICE_MULTIQUESTION,
     },
     maxVoteOverwrites: 0,
     weightedVote: false,
