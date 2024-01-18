@@ -172,13 +172,13 @@ const noElections = definePartsStyle({
 
 const typesVoting = definePartsStyle({
   container: {
-    border: '1px solid lightgray',
+    border: '0px solid lightgray',
     bgColor: 'transparent',
-    py: 3,
-    px: 5,
+    py: 5,
+    px: 8,
     borderRadius: '3xl',
     opacity: '0.8',
-    flex: { base: '0 0 100%', md2: '0 0 30%', xl: '0 0 25%' },
+    flex: { base: '0 0 100%', md2: '0 0 33%', xl: '0 0 33%' },
   },
   body: {
     fontWeight: 'bold',

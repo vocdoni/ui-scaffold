@@ -13,17 +13,18 @@
   },
   "banner": {
     "start_now": "Create a vote now!",
-    "subtitle": "Use wallet addresses, vote with an ERC20 token or with NFTs!",
-    "title": "anonyomus, Gasless and Modular voting for Web3"
+    "subtitle": "Save time, money and effort with our easy-to-use & customizable app.",
+    "subtitle1": "Boost election participation up by 30%.",
+    "title": "Secure, verificable and transparent online voting"
   },
   "banner_voting_types": {
-    "anonymous_description": "We ensure that votes remain unlinked to voter identities by using advanced zkSNARKs technology.",
-    "anonymous_title": "Anonymous Voting",
+    "anonymous_description": "Say goodbye to the high expenses of traditional voting methods. Vocdoni App brings you a more affordable way to conduct elections, cutting down on logistical and administrative costs while maintaining the highest standards of quality and security.",
+    "anonymous_title": "Cost-Effective Voting Solutions",
     "bottom_text": "Privacy should be normal",
-    "flexible_description": "Our platform is built on top of the Vocdoni Protocol, ensuring secure, flexible, censorship-resistant and universally verifiable digital voting.",
-    "flexible_title": "Powered by Vocdoni Protocol",
-    "token_description": "Organizers can create votes using ERC20 tokens, NFTs, POAPs, wallet addresses, and custom data. Stay tuned for advanced voting strategies.",
-    "token_title": "Census strategies"
+    "flexible_description": "Engagement is key in democratic processes, and our platform is designed to maximize it. With its user-friendly interface and accessibility, Vocdoni App encourages higher participation rates, ensuring a more representative and inclusive voting experience.",
+    "flexible_title": "Boosted Participation Rates",
+    "token_description": "At the heart of Vocdoni App is our commitment to security. Leveraging cutting-edge cryptographic methods, we ensure that every vote cast is not only secure but fully verifiable. This transparency builds unparalleled trust among participants, crucial for the legitimacy of any election.",
+    "token_title": "Enhanced Security and Trust"
   },
   "cc": {
     "actions": {
