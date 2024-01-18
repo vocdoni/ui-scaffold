@@ -20,8 +20,8 @@ export const theme = extendTheme(vtheme, {
       '.voting-type': {
         justifyContent: 'space-around',
         flexWrap: 'wrap',
-        alignItems: { base: 'center', md2: 'stretch' },
-        gap: { base: 10, md2: 0 },
+        alignItems: { base: 'center', md2: 'start' },
+        gap: { base: 5, md2: 0 },
         mb: 32,
         maxW: '1250px',
         mx: 'auto',
