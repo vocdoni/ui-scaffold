@@ -15,7 +15,6 @@ const NotFound = lazy(() => import('../elements/NotFound'))
 const Organization = lazy(() => import('../elements/Organization'))
 const Process = lazy(() => import('../elements/Process'))
 const Faucet = lazy(() => import('../elements/Faucet'))
-const Berga = lazy(() => import('../elements/landings/Berga'))
 
 export const RoutesProvider = () => {
   const { client } = useClient()
@@ -26,7 +25,7 @@ export const RoutesProvider = () => {
       index
       element={
         <SuspenseLoader>
-          <Berga />
+          <Home />
         </SuspenseLoader>
       }
     />
