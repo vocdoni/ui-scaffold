@@ -66,7 +66,7 @@ const Berga = () => {
             _active={{
               transform: 'scale(0.9)',
             }}
-            to='/processes/0x96bec154619138d2bc91b89928f78cbab3e4b1949e28787ec7a3020800000011'
+            to='/processes/0x6b342d99f2185fb10cc1027db85859b89153e55f3e3899d76e79020c00000001'
           >
             <Box>
               <Text fontSize='18px'>Accedeix a la votació Juvenil</Text>
@@ -94,7 +94,7 @@ const Berga = () => {
             _active={{
               transform: 'scale(0.9)',
             }}
-            to='/processes/0x96bec154619138d2bc91b89928f78cbab3e4b1949e28787ec7a3020800000010'
+            to='/processes/0x6b342d99f2185fb10cc1027db85859b89153e55f3e3899d76e79020400000000'
           >
             <Box>
               <Text fontSize='18px'>Accedeix a la votació General</Text>
