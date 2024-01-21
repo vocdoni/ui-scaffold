@@ -2,7 +2,6 @@ import { Box, Code, Flex, Icon, Img, Link, List, ListItem, Text } from '@chakra-
 import { HR } from '@vocdoni/chakra-components'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa'
-import poweredBy from '/assets/powered_by_aragon.png'
 import logo from '/assets/vocdoni_logo.svg'
 
 const Footer = () => {
@@ -13,7 +12,6 @@ const Footer = () => {
       <Flex flexWrap='wrap' justifyContent={{ base: 'space-around', lg: 'space-between' }} gap={{ base: 8, sm: 5 }}>
         <Flex order={{ base: 1, lg: 0 }} flexDirection='column' alignItems={{ base: 'center', lg: 'start' }} gap={2}>
           <Img src={logo} maxW={36} alt='vocdoni icon' />
-          <Img src={poweredBy} maxW={36} alt='aragon icon' />
         </Flex>
         <Box
           flexGrow={0}
