@@ -16,11 +16,13 @@
   "banner": {
     "start_now": "Crea una votació!",
     "subtitle": "Utilitza adreces web3, vota amb un token ERC20 o amb NFTs!",
+    "subtitle1": "",
     "title": "Votacions per DAOs i comunitats Web3"
   },
   "banner_voting_types": {
     "anonymous_description": "La identitat dels votants serà completament confidencial, gràcies a la tecnologia zk-SNARKS.",
     "anonymous_title": "100% Anònim",
+    "bottom_text": "",
     "flexible_description": "Personalitza el teu procés de votació i la llista de participants per adaptar-los als requisits únics de la teva comunitat.",
     "flexible_title": "Votació Flexible",
     "token_description": "Vota amb tokens ERC20/ERC721 (NFT) o afegeix els teus propis tokens i vota sense pagar.",
@@ -92,13 +94,13 @@
     "chain_required": "Necessites seleccionar una xarxa",
     "description": "Selecciona com s'autenticaran i identificaran els votants.",
     "request_custom_token": "Sol·licitar Tokens Personalitzats",
+    "social_address_title": "Usuaris de Github",
     "spreadsheet_title": "Dades personalitzades",
     "title": "Trieu el cens",
     "token_description": "Selecciona la red y el token para crear un censo donde los titulares de token votarán con su poder de voto.",
     "token_required": "Necessites seleccionar un token",
     "token_title": "Cens basat en tokens",
-    "wallet_address_title": "Adreces de cartera",
-    "social_address_title": "Usuaris de Github"
+    "wallet_address_title": "Adreces de cartera"
   },
   "claim": {
     "error_title": "Error",
@@ -123,6 +125,12 @@
     "result": "<span>Després de crear la votació:</span><span2>{{ remainTokens }} tokens</span2>",
     "subtitle": "El teu procés de votació",
     "total": "<span>Total:</span> <span>{{ cost }} tokens</span>"
+  },
+  "csp_census": {
+    "github": {
+      "error_fetching_users": "",
+      "selected_users": "Usuaris seleccionats:"
+    }
   },
   "error": {
     "go_back": "Torna enrere",
@@ -193,6 +201,7 @@
       "avatar_error": "URL no vàlida",
       "field_is_required": "Aquest camp és obligatori",
       "min_address": "Si us plau, proporciona com a mínim una adreça",
+      "min_users_address": "",
       "recipient_address_invalid": "L'adreça especificada no sembla vàlida"
     },
     "process_create": {
@@ -234,15 +243,15 @@
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} votants elegibles)",
         "network": "Xarxa",
         "network_placeholder": "Selecciona una xarxa",
+        "social_description": "Creeu un cens d'electors elegibles proporcionant una llista d'usuaris de Github.",
+        "social_title": "Cens de Github",
         "spreadsheet_description": "Dades personalitzades, com ara noms d'usuari i contrasenyes, o informació personal dels votants, es poden utilitzar per a l'autenticació amb un formulari.",
         "spreadsheet_title": "Dades personalitzades",
         "token_base_description": "Utilitza un token (basat en EVM) per permetre als usuaris votar en funció de la quantitat de tokens que posseeixin.",
         "token_base_title": "Basat en token",
         "tokens_placeholder": "Cerca o enganxa la direcció del token",
         "wallet_address_description": "Identifica els teus votants per les seves adreces de cartera.",
-        "wallet_address_title": "Adreces de cartera",
-        "social_title": "Cens de Github",
-        "social_description": "Creeu un cens d'electors elegibles proporcionant una llista d'usuaris de Github."
+        "wallet_address_title": "Adreces de cartera"
       },
       "confirm": {
         "anonymous": "Anònim",
@@ -430,10 +439,10 @@
   "process": {
     "census": "Cens",
     "census_strategies": {
+      "csp": "CSP",
       "spreadsheet": "CSV",
       "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
-      "web3": "Adreces Web3",
-      "csp": "CSP"
+      "web3": "Adreces Web3"
     },
     "created_by": "Creat per",
     "date": {
@@ -535,10 +544,5 @@
   "use_read_more": {
     "read_less": "Llegeix menys",
     "read_more": "Llegeix més"
-  },
-  "csp_census": {
-    "github": {
-      "selected_users": "Usuaris seleccionats:"
-    }
   }
 }

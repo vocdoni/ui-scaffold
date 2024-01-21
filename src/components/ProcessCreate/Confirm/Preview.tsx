@@ -95,7 +95,7 @@ const Preview = () => {
               {import.meta.env.features.vote.overwrite && (
                 <Flex gap={2} alignItems='center'>
                   <Icon as={maxVoteOverwrites ? IoCheckmarkSharp : IoMdClose} boxSize={5} />
-                  <Text>{t('form.process_create.confirm.vote_overwritte')}</Text>
+                  <Text>{t('form.process_create.confirm.vote_overwrite')}</Text>
                 </Flex>
               )}
               {import.meta.env.features.vote.secret && (
