@@ -1,18 +1,10 @@
 import { WarningIcon } from '@chakra-ui/icons'
-import { Box, Button, Flex, Icon, Text } from '@chakra-ui/react'
-import {
-  ElectionDescription,
-  ElectionSchedule,
-  ElectionStatusBadge,
-  ElectionTitle,
-  OrganizationName,
-} from '@vocdoni/chakra-components'
+import { Box, Flex, Icon, Text } from '@chakra-ui/react'
+import { ElectionDescription, ElectionSchedule, ElectionStatusBadge, ElectionTitle } from '@vocdoni/chakra-components'
 import { useClient, useElection, useOrganization } from '@vocdoni/react-providers'
 import { ElectionStatus } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
 import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
-import { GoBack } from '~theme/icons'
 import { ActionsMenu } from './ActionsMenu'
 import { CreatedBy } from './CreatedBy'
 import { ProcessDate } from './Date'
@@ -34,12 +26,6 @@ const ProcessHeader = () => {
 
   return (
     <Box mb={4}>
-      {showOrgInformation && (
-        <Button as={Link} to={`/organization/0x${election?.organizationId}`} variant='go-back' my={5}>
-          <GoBack />
-          <OrganizationName as='span' />
-        </Button>
-      )}
       <Flex direction={{ base: 'column', lg2: 'row' }} mb={7} gap={10}>
         <Box flexGrow={0} flexShrink={0} flexBasis={{ base: '100%', md: '60%', lg: '65%', lg2: '70%', xl2: '75%' }}>
           <ElectionTitle fontSize='40px' textAlign='left' mb={5} />

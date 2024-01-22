@@ -46,6 +46,14 @@ export const ProcessView = () => {
 
   const setQuestionsTab = () => setTabIndex(0)
 
+  // aaaah, yes... good old hardcoding
+  if (election && election.startDate) {
+    election._startDate = new Date('2024-01-22 12:00:00')
+  }
+  if (election && election.endDate) {
+    election._endDate = new Date('2024-02-05 00:00:00')
+  }
+
   useEffect(() => {
     if (election?.status === ElectionStatus.RESULTS) setTabIndex(1)
   }, [election])
