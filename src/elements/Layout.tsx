@@ -5,7 +5,7 @@ import Footer from '~theme/components/Footer'
 
 const Layout = () => {
   return (
-    <Flex position='relative' flexDirection='column' minH='100vh' maxW='site-width' mx='auto'>
+    <Flex position='relative' flexDirection='column' minH='100vh' maxW='site-width' mx='auto' bgColor='bg'>
       <HStack as='header' position='sticky' top={0} w='full' backdropFilter='blur(40px)' zIndex={20}>
         <Navbar />
       </HStack>

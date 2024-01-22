@@ -8,9 +8,9 @@
     "overwrite_votes_left_other": "Pots corregir el teu vot {{ count }} vegades.",
     "submitting": "",
     "verify_vote_on_explorer": "Verifica el vot a l'explorador",
-    "votes_one": "<span>1</span> <text>vot</text>",
-    "votes_many": "",
-    "votes_other": "<span>{{ count }}</span> <text>vots</text>",
+    "votes_one": "<span>1</span> <text>votant</text>",
+    "votes_many": "<span>{{ count }}</span> <text>votants</text>",
+    "votes_other": "<span>{{ count }}</span> <text>votants</text>",
     "voting_anonymous_advice": ""
   },
   "banner": {
