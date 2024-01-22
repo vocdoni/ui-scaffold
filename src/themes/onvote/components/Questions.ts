@@ -10,7 +10,7 @@ const baseStyle = definePartsStyle({
     py: 7,
     my: '10px',
     color: 'process.questions.alert.color',
-    bgColor: 'process.questions.alert.color',
+    bgColor: 'process.questions.alert.bg',
     display: 'grid',
     columnGap: 4,
     justifyContent: 'center',
