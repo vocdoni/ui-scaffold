@@ -3,25 +3,24 @@ import {
   AlertDescription,
   AlertIcon,
   Box,
+  Button,
   Card,
   CardBody,
   Flex,
   Grid,
   GridItem,
   Img,
-  Link,
   Spinner,
   Text,
 } from '@chakra-ui/react'
 import { useClient, useOrganization } from '@vocdoni/react-providers'
 import { ArchivedElection, areEqualHexStrings, InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import ProcessCardDetailed from '../Process/CardDetailed'
 import Header from './Header'
-import org from '/assets/empty-list-org.png'
-import user from '/assets/empty-list-user.png'
+import empty from '/assets/empty-list-org.png'
 
 const OrganizationView = () => {
   const { t } = useTranslation()
@@ -89,22 +88,21 @@ const OrganizationView = () => {
   }, [page, error, finished, organization?.address])
 
   return (
-    <Box>
+    <Box
+      mb={44}
+      px={{
+        base: '40px',
+        md: '80px',
+      }}
+      mx='auto'
+    >
       <Header />
 
       <Text as='h2' fontSize='xl' fontWeight='bold' mb={4} textAlign={{ base: 'center', md2: 'start' }}>
         {t('organization.elections')}
       </Text>
 
-      <Grid
-        templateColumns={{
-          base: '1fr',
-          md2: 'repeat(2, 1fr)',
-          xl2: 'repeat(3, 1fr)',
-        }}
-        columnGap={{ base: 3, lg: 4 }}
-        rowGap={6}
-      >
+      <Grid templateColumns='repeat(auto-fill, minmax(350px, 1fr))' columnGap={{ base: 3, lg: 4 }} rowGap={12}>
         {electionsList?.map((election: any, idx: number) => (
           <GridItem key={idx} display='flex' justifyContent='center' alignItems='start'>
             <ProcessCardDetailed election={election} />
@@ -116,32 +114,22 @@ const OrganizationView = () => {
 
       <Flex justifyContent='center' my={4}>
         {loading && <Spinner />}
+
         {loaded && !electionsList.length && (
           <Card variant='no-elections'>
             <CardBody>
               <Box>
-                <Img
-                  src={areEqualHexStrings(account?.address, organization?.address) ? org : user}
-                  alt={t('organization.elections_list_empty.alt')}
-                />
+                <Img src={empty} alt={t('organization.elections_list_empty.alt')} />
               </Box>
               <Box>
                 {areEqualHexStrings(account?.address, organization?.address) ? (
                   <>
                     <Text>{t('organization.elections_list_empty.title')}</Text>
                     <Text>{t('organization.elections_list_empty.description')}</Text>
-                    <Text>
-                      <Trans
-                        i18nKey='organization.elections_list_empty.footer'
-                        components={{
-                          customLink: <Link variant='primary' href='#' target='_blank' />,
-                        }}
-                      />
-                    </Text>
 
-                    <Link as={ReactRouterLink} to='/processes/create' variant='button' colorScheme='primary'>
+                    <Button as={ReactRouterLink} to='/processes/create' variant='primary' colorScheme='primary'>
                       {t('menu.create')}
-                    </Link>
+                    </Button>
                   </>
                 ) : (
                   <Text textAlign='center'>{t('organization.elections_list_empty.not_owner')}</Text>

@@ -1,8 +1,8 @@
-import { List, ListIcon, ListItem, Spinner, Stack, Text } from '@chakra-ui/react'
+import { Flex, List, ListItem, Spinner, Stack, Text } from '@chakra-ui/react'
 import { ElectionCreationSteps } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { AiFillCheckCircle, AiFillCloseCircle } from 'react-icons/ai'
+import { Check, Close } from '~theme/icons'
 
 export type Steps =
   | ElectionCreationSteps.CENSUS_CREATED
@@ -52,20 +52,50 @@ export const CreationProgress = ({ error, sending, step }: CreationProgressProps
       <Text mb={6} textAlign='center' color='modal_description'>
         {t('process_create.creation_steps_description')}
       </Text>
-      <List spacing={3}>
+      <List spacing={3} pb={3}>
         {Object.keys(labels).map((key, index) => (
           <ListItem key={key} display='flex' alignItems='center' gap={2}>
             {steps[key as keyof CreationStepsState] ? (
-              <ListIcon as={AiFillCheckCircle} fontSize={23} m={0} />
+              <Flex justifyContent='center' alignItems='center' gap={2}>
+                <Flex className='creating-process-check' justifyContent='center' alignItems='center'>
+                  <Check />
+                </Flex>
+                <Text fontWeight='bold' color='primary.main'>
+                  {labels[key]}
+                </Text>
+              </Flex>
             ) : (
-              <>{!error ? <Spinner boxSize={5} mr='3px' /> : <ListIcon as={AiFillCloseCircle} fontSize={23} m={0} />}</>
+              <>
+                {!error ? (
+                  <Flex
+                    justifyContent='center'
+                    alignItems='center'
+                    gap={2}
+                    color='process_create.creation_process_steps_loading'
+                  >
+                    <Flex justifyContent='center' alignItems='center' w={6} h={6} border='1px solid'>
+                      {index}
+                    </Flex>
+                    <Text fontWeight='bold'>{labels[key]}</Text>
+                    <Spinner width={3} height={3} />
+                  </Flex>
+                ) : (
+                  <Flex justifyContent='center' alignItems='center' gap={2}>
+                    <Flex justifyContent='center' alignItems='center' w={6} h={6} bgColor='error'>
+                      <Close />
+                    </Flex>
+                    <Text fontWeight='bold' color='error'>
+                      {labels[key]}
+                    </Text>
+                  </Flex>
+                )}
+              </>
             )}
-            <Text>{labels[key]}</Text>
           </ListItem>
         ))}
       </List>
       {error && (
-        <Text color='red.300' textAlign='center' mt={5}>
+        <Text color='error' textAlign='center' mt={5}>
           {error}
         </Text>
       )}

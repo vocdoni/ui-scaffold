@@ -134,14 +134,13 @@ export const CensusWeb3Addresses = () => {
               />
               <FormErrorMessage>{fieldMapErrorMessage(errors, 'newAddress')}</FormErrorMessage>
             </Box>
-            <Button type='button' ml='none' onClick={handleAddAddress}>
+            <Button type='button' variant='secondary' ml='none' onClick={handleAddAddress}>
               {t('form.process_create.census.add_button')}
             </Button>
           </FormControl>
           <Flex
             flexDirection='column'
             height={100}
-            borderRadius='lg'
             border='1px solid'
             borderColor='process_create.wallet_addresses_border'
             overflowY='scroll'
@@ -164,6 +163,7 @@ export const CensusWeb3Addresses = () => {
 
                 <IconButton
                   size='xs'
+                  variant='icon'
                   type='button'
                   icon={<DeleteIcon />}
                   aria-label={t('form.process_create.census.delete_web3_address', {
@@ -200,7 +200,6 @@ export const CensusWeb3Addresses = () => {
             border='1px dotted'
             borderColor='process_create.census.drag_and_drop_border'
             bgColor='process_create.bg'
-            borderRadius='lg'
             mt={6}
             cursor='pointer'
             {...getRootProps()}

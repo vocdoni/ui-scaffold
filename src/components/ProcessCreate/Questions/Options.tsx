@@ -44,6 +44,7 @@ const Options = ({ fields, removeOption, appendOption, index }: Props) => {
             </Box>
             {fields.length > 2 && (
               <IconButton
+                variant='icon'
                 size='xs'
                 type='button'
                 icon={<DeleteIcon />}
@@ -56,7 +57,7 @@ const Options = ({ fields, removeOption, appendOption, index }: Props) => {
           </Flex>
         </FormControl>
       ))}
-      <Button ml={5} onClick={() => appendOption({ option: '' })} fontSize='sm'>
+      <Button variant='secondary' ml={5} onClick={() => appendOption({ option: '' })} fontSize='sm'>
         {t('form.process_create.question.add_new_option')}
       </Button>
     </Box>

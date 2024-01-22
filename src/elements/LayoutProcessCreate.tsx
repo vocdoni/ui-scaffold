@@ -1,43 +1,60 @@
-import { Box, Flex, Icon, Link } from '@chakra-ui/react'
+import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import { IoCloseOutline } from 'react-icons/io5'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Outlet, Link as ReactRouterLink, useNavigate } from 'react-router-dom'
 import Logo from '~components/Layout/Logo'
+import { Close } from '~theme/icons'
 
 const LayoutProcessCreate = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
 
   return (
-    <Box bgColor='process_create.bg'>
-      <Flex direction='column' minH='100vh' maxW={360} mx='auto'>
+    <Box bgColor='process_create.bg' maxW='site-width' mx='auto'>
+      <Flex direction='column' minH='100vh'>
         <Flex
           as='header'
           position='relative'
           justifyContent='space-between'
           alignItems='center'
-          paddingY={4}
-          px={4}
           w='full'
+          p={{ base: '12px 40px', md: '24px 80px' }}
         >
           <Logo />
 
-          <Link
-            p={1}
-            bgColor='white'
-            display='flex'
-            alignItems='center'
+          <Button
+            as={ReactRouterLink}
+            variant='close-form'
             onClick={(e) => (window.history.state.idx ? navigate(-1) : navigate('/'))}
           >
-            <Icon as={IoCloseOutline} mt='1.5px' boxSize={5} />
+            <Close />
             {t('form.process_create.navbar.close_form_btn')}
-          </Link>
+          </Button>
         </Flex>
 
-        <Box as='main' maxW={360} w='full' mx='auto' p={4}>
+        <Box as='main' w='full' px={{ base: '40px', md: '80px' }}>
           <Outlet />
         </Box>
       </Flex>
+      {import.meta.env.theme === 'onvote' && (
+        <Text
+          top='calc(50vh - 90px)'
+          position='fixed'
+          sx={{
+            '&': {
+              writingMode: 'vertical-lr',
+              textOrientation: 'mixed',
+              transform: 'rotate(180deg)',
+            },
+          }}
+          color='black'
+          textTransform='uppercase'
+          fontFamily='pixeloidsans'
+          fontSize='16px'
+          display={{ base: 'none', sm: 'block' }}
+        >
+          World wide voting
+        </Text>
+      )}
     </Box>
   )
 }

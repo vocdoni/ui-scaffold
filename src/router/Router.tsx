@@ -3,14 +3,14 @@ import { lazy } from 'react'
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
 // These aren't lazy loaded to avoid excessive loaders in different locations
 import Error from '~elements/Error'
+import LayoutProcessCreate from '~elements/LayoutProcessCreate'
 import Layout from '../elements/Layout'
-import LayoutProcessCreate from '../elements/LayoutProcessCreate'
 import { SuspenseLoader } from './SuspenseLoader'
 
 // Lazy loading helps splitting the final code, which helps downloading the app (theoretically)
 const ProtectedRoutes = lazy(() => import('./ProtectedRoutes'))
 const ProcessCreateSteps = lazy(() => import('../components/ProcessCreate/Steps'))
-const Home = lazy(() => import('../elements/Home'))
+const Home = lazy(() => import('~theme/components/Home'))
 const NotFound = lazy(() => import('../elements/NotFound'))
 const Organization = lazy(() => import('../elements/Organization'))
 const Process = lazy(() => import('../elements/Process'))
@@ -72,14 +72,16 @@ export const RoutesProvider = () => {
             loader={async ({ params }) => client.fetchAccountInfo(params.address)}
             errorElement={<Error />}
           />
-          <Route
-            path='faucet'
-            element={
-              <SuspenseLoader>
-                <Faucet />
-              </SuspenseLoader>
-            }
-          />
+          {import.meta.env.features.faucet && (
+            <Route
+              path='faucet'
+              element={
+                <SuspenseLoader>
+                  <Faucet />
+                </SuspenseLoader>
+              }
+            />
+          )}
           <Route
             path='*'
             element={

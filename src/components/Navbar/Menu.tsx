@@ -1,5 +1,17 @@
 import { ChevronDownIcon, ChevronUpIcon, CopyIcon } from '@chakra-ui/icons'
-import { Box, Flex, HStack, Icon, IconButton, Link, MenuItem, MenuList, Text, useClipboard } from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  Flex,
+  HStack,
+  Icon,
+  IconButton,
+  Link,
+  MenuItem,
+  MenuList,
+  Text,
+  useClipboard,
+} from '@chakra-ui/react'
 import { Balance, HR } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
 import { useState } from 'react'
@@ -11,7 +23,7 @@ import { Link as ReactRouterLink } from 'react-router-dom'
 import { useDisconnect } from 'wagmi'
 import { useOrganizationModal } from '~components/Organization/OrganizationModalProvider'
 import { addressTextOverflow } from '~constants'
-import LanguagesList from './LanguagesList'
+import { LanguagesList } from './LanguagesList'
 
 const MenuDropdown = () => {
   const { t } = useTranslation()
@@ -68,15 +80,14 @@ const MenuDropdown = () => {
               </HStack>
               {addressTextOverflow((account?.address as string) || '', 10)}
               <IconButton
+                variant='icon'
+                size='xs'
+                type='button'
+                icon={<CopyIcon />}
+                aria-label={t('menu.copy_aria_label')}
                 onClick={() => {
                   onCopy()
                 }}
-                aria-label={t('menu.copy_aria_label')}
-                icon={<CopyIcon />}
-                bgColor='white'
-                w={5}
-                h={5}
-                minW={0}
               />
             </Box>
           </MenuItem>
@@ -96,39 +107,42 @@ const MenuDropdown = () => {
               <Flex>
                 <Balance p={0} bg='white' fontWeight='bold' />
               </Flex>
-
-              <Link
-                as={ReactRouterLink}
-                to='/faucet'
-                variant='rounded'
-                colorScheme='primary'
-                aria-label={t('menu.get_more')}
-                title={t('menu.get_more')}
-                p={2}
-              >
-                <Icon as={HiShoppingCart} mt={1} mr={1} />
-                {t('menu.get_more')}
-              </Link>
+              {import.meta.env.features.faucet && (
+                <Button
+                  as={ReactRouterLink}
+                  to='/faucet'
+                  aria-label={t('menu.get_more')}
+                  title={t('menu.get_more')}
+                  variant='primary'
+                >
+                  <Icon as={HiShoppingCart} />
+                  {t('menu.get_more')}
+                </Button>
+              )}
             </Flex>
           </MenuItem>
           <MenuItem onClick={onOpen}>{t('menu.organization')}</MenuItem>
         </>
       )}
 
-      <MenuItem
-        closeOnSelect={false}
-        onClick={() => setIsOpenMenuLanguages((prev) => !prev)}
-        display='flex'
-        flexDirection='column'
-        px={0}
-        pb={0}
-      >
-        <Box as='span' px={3} display='flex' w='full' pb={2}>
-          <Text>{t('menu.languages')}</Text>
-          {isOpenMenuLanguages ? <ChevronUpIcon mt='5px' /> : <ChevronDownIcon mt='5px' />}
-        </Box>
-      </MenuItem>
-      {isOpenMenuLanguages && <LanguagesList closeOnSelect={false} />}
+      {import.meta.env.features.languages.length > 1 && (
+        <>
+          <MenuItem
+            closeOnSelect={false}
+            onClick={() => setIsOpenMenuLanguages((prev) => !prev)}
+            display='flex'
+            flexDirection='column'
+            px={0}
+            pb={0}
+          >
+            <Box as='span' px={3} display='flex' w='full' pb={2}>
+              <Text>{t('menu.languages')}</Text>
+              {isOpenMenuLanguages ? <ChevronUpIcon mt='5px' /> : <ChevronDownIcon mt='5px' />}
+            </Box>
+          </MenuItem>
+          {isOpenMenuLanguages && <LanguagesList closeOnSelect={false} />}
+        </>
+      )}
       <MenuItem
         as={Link}
         href='https://developer.vocdoni.io/'

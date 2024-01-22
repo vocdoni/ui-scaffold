@@ -59,7 +59,7 @@ const OptionToken = (props: OptionProps<any, false, GroupBase<any>>) => {
     return (
       <chakraComponents.Option {...props}>
         <Flex justifyContent='center' w='full'>
-          <Link variant='primary' href='https://tally.so/r/mO46VY' target='_blank' fontWeight='bold'>
+          <Link href='https://tally.so/r/mO46VY' target='_blank' fontWeight='bold'>
             <Text as='span' fontSize='xl'>
               +
             </Text>{' '}
