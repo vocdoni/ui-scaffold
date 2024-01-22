@@ -7,8 +7,8 @@
     "overwrite_votes_left_other": "You can correct your vote up to {{ count }} times.",
     "submitting": "Submitting",
     "verify_vote_on_explorer": "Verify your vote on the explorer",
-    "votes_one": "<span>1</span> <text>vote</text>",
-    "votes_other": "<span>{{ count }}</span> <text>votes</text>",
+    "votes_one": "<span>1</span> <text>voter</text>",
+    "votes_other": "<span>{{ count }}</span> <text>voters</text>",
     "voting_anonymous_advice": "Please wait while the anonymous magic 🪄 happens.\nThis can take up to several minutes; don't close the window."
   },
   "banner": {
