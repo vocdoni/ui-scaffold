@@ -41,7 +41,7 @@ const AddressBtn = ({ ...props }) => {
           borderRadius='none'
           mb={1}
         >
-          {t('copy.address')}!!!
+          {t('copy.address')}
         </MenuItem>
 
         <MenuItem
