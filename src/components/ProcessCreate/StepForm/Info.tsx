@@ -1,4 +1,5 @@
 import { Flex } from '@chakra-ui/react'
+import { ElectionResultsTypeNames } from '@vocdoni/sdk'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import CreateProcessMeta from '../Meta'
 import CreateProcessSettings from '../Settings'
@@ -17,6 +18,9 @@ export interface InfoValues {
     interruptible: boolean
     secretUntilTheEnd: boolean
     anonymous: boolean
+  }
+  resultsType: {
+    name: ElectionResultsTypeNames
   }
   maxVoteOverwrites: number
   weightedVote: boolean

@@ -12,18 +12,19 @@
     "voting_anonymous_advice": "Please wait while the anonymous magic 🪄 happens.\nThis can take up to several minutes; don't close the window."
   },
   "banner": {
-    "start_now": "Create a voting now!",
-    "subtitle": "Use wallet addresses, vote with an ERC20 token or with NFTs!",
-    "title": "Voting for DAOs & Web3 communities"
+    "start_now": "Create a vote now!",
+    "subtitle": "Save time, money and effort with our easy-to-use & customizable app.",
+    "subtitle1": "Boost election participation up by 30%.",
+    "title": "Secure, verificable and transparent online voting"
   },
   "banner_voting_types": {
-    "anonymous_description": "We ensure that votes remain unlinked to voter identities by using advanced zkSNARKs technology.",
-    "anonymous_title": "Anonymous Voting",
+    "anonymous_description": "Say goodbye to the high expenses of traditional voting methods. Vocdoni App brings you a more affordable way to conduct elections, cutting down on logistical and administrative costs while maintaining the highest standards of quality and security.",
+    "anonymous_title": "Cost-Effective Voting Solutions",
     "bottom_text": "Privacy should be normal",
-    "flexible_description": "Our platform is built on top of the Vocdoni Protocol, ensuring secure, flexible, censorship-resistant and universally verifiable digital voting.",
-    "flexible_title": "Powered by Vocdoni Protocol",
-    "token_description": "Organizers can create votes using ERC20 tokens, NFTs, POAPs, wallet addresses, and custom data. Stay tuned for advanced voting strategies.",
-    "token_title": "Census strategies"
+    "flexible_description": "Engagement is key in democratic processes, and our platform is designed to maximize it. With its user-friendly interface and accessibility, Vocdoni App encourages higher participation rates, ensuring a more representative and inclusive voting experience.",
+    "flexible_title": "Boosted Participation Rates",
+    "token_description": "At the heart of Vocdoni App is our commitment to security. Leveraging cutting-edge cryptographic methods, we ensure that every vote cast is not only secure but fully verifiable. This transparency builds unparalleled trust among participants, crucial for the legitimacy of any election.",
+    "token_title": "Enhanced Security and Trust"
   },
   "cc": {
     "actions": {
@@ -73,10 +74,12 @@
       "upcoming": "Upcoming"
     },
     "validation": {
+      "choices_count": "You must select {{ count }} choices",
       "min_length": "This field must be at least {{ min }} characters long",
       "required": "This field is required"
     },
     "vote": {
+      "abstain": "Abstain",
       "button": "Vote",
       "button_update": "Re-submit vote",
       "confirm": "Please confirm your choices:",
@@ -87,8 +90,9 @@
   },
   "census": {
     "chain_required": "You need to select a network",
-    "description": "Choose how to authenticate and verify voters. At this moment, the methods available to create censuses are: custom data, token based and wallet addresses.",
+    "description": "Choose how to authenticate and verify voters.",
     "request_custom_token": "'Request Custom Tokens'",
+    "social_address_title": "Github users",
     "spreadsheet_title": "Custom data",
     "title": "Census",
     "token_description": "Configure the census by choosing a token from any available network. You can request a token here.",
@@ -118,6 +122,12 @@
     "result": "<span>Remaining:</span><span2>{{ remainTokens }} tokens</span2>",
     "subtitle": "Your voting process",
     "total": "<span>Cost of the vote:</span> <span>{{ cost }} tokens</span>"
+  },
+  "csp_census": {
+    "github": {
+      "error_fetching_users": "",
+      "selected_users": "Selected users:"
+    }
   },
   "error": {
     "go_back": "Go back",
@@ -157,10 +167,12 @@
     "developer_portal": "Developers Portal",
     "developers": "Developers",
     "discord": "Discord",
+    "follow_us": "Follow us",
     "homepage": "Home",
     "repos": "Open-source Code",
     "resources": "Resources",
     "terms_and_privacy": "<link1>Terms of use</link1> & <link2>Privacy Policy</link2>",
+    "text": "<p1>The future</p1><p2>of Web3 voting starts here</p2>",
     "tutorials": "Tutorials",
     "vocdoni_api": "Vocdoni API",
     "vocdoni_app": "Vocdoni APP"
@@ -177,6 +189,7 @@
       "avatar_helper": "Image/logo of your organization",
       "avatar_placeholder": "Image URL",
       "btn": "Save",
+      "footer": "Modifying your organization will prompt a signature request, incurring a cost of 1 token",
       "title": "Edit Organization"
     },
     "error": {
@@ -185,6 +198,7 @@
       "avatar_error": "URL not valid",
       "field_is_required": "This field is required",
       "min_address": "Please, provide at least one address",
+      "min_users_address": "",
       "recipient_address_invalid": "Specified address does not seem to be valid"
     },
     "process_create": {
@@ -226,6 +240,8 @@
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} eligible voters)",
         "network": "Network",
         "network_placeholder": "Select a network",
+        "social_description": "Create a census of eligible voters providing a list of Github users.",
+        "social_title": "Github Census",
         "spreadsheet_description": "Utilize information such as usernames, passwords, or voter personal details for authentication through a form.",
         "spreadsheet_title": "Custom data",
         "token_base_description": "Use ERC20, NFTs and POAPs from different EVM networks to create a census of eligible holders.",
@@ -238,10 +254,6 @@
         "anonymous": "Anonymous voting active",
         "census": "Census",
         "census_preview_is_shortened": "(preview list is limited to {{ limit }} results)",
-        "census_total": "",
-        "census_total_one": "<span>Census:</span><span>{{ count }} voter</span>",
-        "census_total_other": "<span>Census:</span><span>{{ count }} voters</span>",
-        "census_total_people": "{{ count }} people will be elegible for voting in this election",
         "census_total_people_one": "A single person will be elegible for voting in this process",
         "census_total_people_other": "{{ count }} people will be elegible for voting in this process",
         "configuration": "Configuration",
@@ -261,7 +273,7 @@
         "secret_until_the_end": "Secret until the end",
         "title": "Preview",
         "title_election": "Title",
-        "vote_overwritte": "Vote overwritte"
+        "vote_overwrite": "Vote overwrite"
       },
       "confirm_spreadsheet_removal": "Are you sure? Take in mind that the uploaded file will be removed",
       "creating_process": "Creating Voting Process...",
@@ -343,6 +355,23 @@
     "info": "<text>If you need more, contact to <mailto>info@onvote.app</mailto></text>",
     "title": "Get VOC Tokens"
   },
+  "home_features": {
+    "anonymous_description": "Unlock true democracy with zkSNARKs! Participants can cast their votes with complete anonymity, ensuring every voice is heard without compromise.",
+    "anonymous_title": "Anonymous",
+    "census_startegy_description": "Craft the perfect census strategy combining variables to determine voter eligibility. Leverage combinations of multiple tokens from EVM-based networks and other data.",
+    "census_startegy_title": "Census strategies",
+    "descentralized_description": "Onvote runs on top of a specialized decentralized network built for digital voting. The entire process is universally verifiable and the votes are completely tamper-proof.",
+    "descentralized_title": "Decentralized",
+    "flexible_description": "Onvote leverages the Vocdoni Protocol: a highly flexible ballot protocol that allows multiple voting methods (like simple, quadratic or ranked voting) as well as other customizations to fit your unique requirements. You can unleash all its potential with our user-friendly SDK.",
+    "flexible_title": "Flexible protocol",
+    "gas_less_description": "Paying for voting is wrong. To eliminate barriers and uphold governance, voting on Onvote is gasless. Only the initiators of voting processes bear the cost.",
+    "gas_less_title": "Gasless voting",
+    "multichain_description": "Combine tokens across any chain to maximize voting power. For example, holders can vote with all their $UNI on Polygon, Optimism, Ethereum and more!",
+    "multichain_title": "Multichain",
+    "open_source_description": "We believe that something as important as your vote must be open-source and publicly audited to be trusted. We release everything under AGPLv3.",
+    "open_source_title": "Opensource",
+    "title": "<p1>are you</p1><p2>Ready for a new Era of Web3 governance?</p2>"
+  },
   "link": {
     "discord": "Link to Vocdoni's discord",
     "github": "Link to Vocdoni's github",
@@ -367,7 +396,6 @@
     "login": "Login",
     "logout": "Logout",
     "my_org": "My Org",
-    "my_org_aria_label": "My organization",
     "new_process": "New Voting",
     "organization": "Edit Organization",
     "privacy": "Privacy",
@@ -379,18 +407,11 @@
     "maxLength": "Max. length reached"
   },
   "new_organization": {
-    "anonyomus": "Anonyomus",
-    "censorship": "<span>Censorship</span><span>Resistance</span>",
     "create_organization_btn": "Create Organization",
     "description1": "Set up your <span>organization for free</span> and start creating voting processes to engage with your community.",
     "description2": "You will have the chance to claim tokens later from the faucet to create proposals and engage with your community.",
-    "footer": "<span>Vocdoni</span> is a secure, privacy-friendly & open-source public voting protocol.",
-    "inexpensive": "Inexpensive",
     "name": "Organization name",
-    "open_source": "<span>Open</span><span>Source</span>",
-    "scalable": "Scalable",
-    "title": "Create your organization",
-    "verificable": "Verificable"
+    "title": "Create your organization"
   },
   "open_in_explorer": "Open in explorer",
   "organization": {
@@ -399,7 +420,6 @@
     "elections_list_empty": {
       "alt": "Image illustrating that the organization is empty",
       "description": "As an organizer, you have the capability to design tailored voting processes for your community. These procedures provide extensive flexibility, allowing options such as a census where voters authenticate using custom data (such as username, password, and birthday), a token-based system enabling all tokenholders to participate, or a whitelist that uses wallet addresses for eligibility.",
-      "footer": "Learn more about creating voting processes <customLink>in this guide</customLink>.",
       "not_owner": "This organization has no voting processes yet",
       "title": "Create your first voting process"
     },
@@ -412,6 +432,7 @@
   "process": {
     "census": "Census",
     "census_strategies": {
+      "csp": "CSP",
       "spreadsheet": "CSV/Spreadsheet",
       "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
       "web3": "Web3 addresses"
@@ -419,7 +440,7 @@
     "created_by": "Created by",
     "date": {
       "ended": "Ended",
-      "ends": "Ends on",
+      "ends": "Ends",
       "relative": "{{ date, relative(past: %time ago; future: in %time) }}",
       "relative_inline": "{{ status }} {{ date, relative(past: %time ago; future: in %time) }}",
       "starts": "Starts"
@@ -429,19 +450,23 @@
       "title": "Privacy"
     },
     "is_invalid": "This process has wrong data, thus making it invalid",
+    "no_description": "No description provided",
     "people_in_census_one": "One voter",
     "people_in_census_other": "{{ count }} voters",
     "questions": "Questions",
     "results": "Results",
+    "schedule": "SCHEDULE",
     "share_caption": "I've just cast my vote in {{ title }}!!",
     "share_title": "Share on {{ network }}",
     "spreadsheet": {
       "confirm": {
         "description": "Before casting your vote review that everything is correct.",
         "option": "<strong>Option {{ number }}:</strong> {{ answer }}",
+        "options": "<strong>Choices:</strong> {{ answers }}",
         "question": "<strong>Question {{ number }}:</strong> {{ answer }}"
       }
     },
+    "state": "STATE",
     "status": {
       "active": "Active",
       "canceled": "Process canceled",
@@ -477,6 +502,31 @@
     },
     "creation_steps_description": "Sign transaction to create the voting process. Generating the census can take a few minutes, please don't close this window.",
     "creation_steps_title": "Progress"
+  },
+  "roadmap": {
+    "census_description": "Create a trust-less off-chain zk-friendly census from an Ethereum block snapshot, with on-chain verification.",
+    "census_title": "zkCensus:",
+    "chainlink_description": "Enable automatic execution with optimistic support.",
+    "chainlink_title": "Chainlink Integration:",
+    "complex_startegies_description": "Integrate any token from any blockchain using a blend of logic and algebraic operations, out of the box. I.e.",
+    "complex_startegies_title": "Complex Strategies:",
+    "execution_description": "Submit the final proof on-chain for binding execution.",
+    "execution_title": "Execution:",
+    "milestone1": "Milestone 1: Flexible Gasless Governance",
+    "milestone2": "Milestone 2: Anonymous voting with binding execution",
+    "private_description": "Only display voting proposal content to your community members.",
+    "private_title": "Private Election Metadata:",
+    "registry_description": "A global on-chain registry for zk (zero-knowledge) identities.",
+    "registry_title": "zkRegistry:",
+    "rollup_description": "Consolidate all votes into a single, secure zkProof using custom zkRollup technology",
+    "rollup_title": "zkRollup:",
+    "social_census_desciption": "Enhance your census with social identities from platforms like Github or Twitter. Include Sybil resistance mechanisms such as Holonym or Proof-of-Humanity.",
+    "social_census_title": "Social Census:",
+    "title": "<p1>Roadmap 2024</p1> <p2>What's next?</p2>",
+    "versatil_description": "Whether it’s simple, ranged, or quadratic voting, Onvote supports multiple voting methods to adapt to diverse community needs.",
+    "versatil_title": "Versatile Voting Methods:",
+    "voting_description": "Facilitate anonymous, off-chain (gasless) voting for any eligible voter using the Vocdoni p2p network.",
+    "voting_title": "zkVoting:"
   },
   "uploader": {
     "click_or_drag_and_drop": "<p1>Upload or drag and drop the voter list here</p1><p2>(Allowed formats: CSV, XLSX, and ODS)</p2>",

@@ -1,4 +1,4 @@
-import { Box, Flex, Img, Link, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Img, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
@@ -10,56 +10,51 @@ const Banner = () => {
 
   return (
     <Flex
-      flexDirection={{ base: 'column', md: 'row' }}
+      flexDirection={{ base: 'column' }}
       justifyContent='space-between'
       alignItems='center'
-      maxW={250}
+      maxW='1250px'
       mx='auto'
-      pl={{ md: 8 }}
-      mb={20}
+      mb={50}
+      pt={20}
     >
-      <Img
-        src={bannerLogo}
-        alt=''
-        width={{ base: '50%', sm: '40%', md: '300px', md2: '320px', lg: '350px', xl: '400px' }}
-        order={{ base: 0, md: 1 }}
-      />
+      <Img src={bannerLogo} alt='' width={{ base: '100%', md: '80%', lg: '60%' }} order={0} mb={10} />
 
-      <Box pt={{ base: 5 }} px={{ sm: 10, md: 0 }}>
+      <Box pb={10} px={{ base: '32px', xl: 0 }}>
         <Text
           as='h1'
-          fontSize={{ base: 'xl3', sm: 'xl4', md: 'xl3' }}
+          fontSize={{ base: 'xl5' }}
           fontWeight='extrabold'
-          textAlign={{ base: 'center', md: 'start' }}
-          pb={{ base: 3, md: 1 }}
-          width={{ md: '420px' }}
-          lineHeight={{ md: 1.4 }}
+          textAlign={{ base: 'center', lg: 'start' }}
+          pb={{ base: 3, lg: 1 }}
+          lineHeight={{ base: 1.3, lg: 1.4 }}
+          fontFamily='"Archivo", sans-serif'
         >
           {t('banner.title')}
         </Text>
-        <Text as='h2' fontSize={{ base: 'xl', md: 'lg' }} textAlign={{ base: 'center', md: 'start' }}>
+        <Text
+          as='h2'
+          fontSize={{ base: 'xl2' }}
+          fontFamily='"Archivo", sans-serif'
+          textAlign={{ base: 'center', lg: 'start' }}
+          marginBottom={{ base: 10, lg: 4 }}
+        >
           {t('banner.subtitle')}
+          <br />
+          {t('banner.subtitle1')}
         </Text>
         {isConnected && (
-          <Flex
-            flexDirection={{ base: 'column', sm: 'row' }}
-            gap={5}
-            justifyContent={{ base: 'center', md: 'start' }}
-            alignItems='center'
-            marginTop={{ base: 10, md: 4 }}
-          >
-            <Link
+          <Flex gap={5} justifyContent={{ base: 'center', lg: 'start' }} alignItems='center'>
+            <Button
               as={ReactRouterLink}
               to='/processes/create'
-              variant='rounded'
-              colorScheme='primary'
               aria-label={t('menu.new_process')}
               title={t('menu.new_process')}
             >
               <Text as='span' display='inline-block'>
                 {t('banner.start_now')}
               </Text>
-            </Link>
+            </Button>
           </Flex>
         )}
       </Box>

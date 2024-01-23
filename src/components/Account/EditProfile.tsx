@@ -14,6 +14,7 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
+  ModalFooter,
   ModalHeader,
   ModalOverlay,
   Text,
@@ -102,103 +103,110 @@ const EditProfile = ({ callback }: { callback?: any }) => {
           <Box>
             <ModalHeader>{t('form.edit_profile.title')}</ModalHeader>
             <ModalCloseButton />
-            <ModalBody>
-              <Flex
-                as='form'
-                direction='column'
-                gap={6}
-                onSubmit={(e) => {
-                  e.stopPropagation()
-                  e.preventDefault()
-                  handleSubmit(onSubmit)(e)
-                }}
-              >
-                <Flex alignItems='center' gap={5}>
-                  <Box position='relative' outline='none' border='none'>
-                    <AspectRatio
-                      flexShrink={0}
-                      w={{ base: 20, md: 40 }}
-                      ratio={1.25 / 1}
-                      borderRadius='lg'
-                      overflow='hidden'
-                    >
-                      <Image src={avatar} fallbackSrc={fallback} />
-                    </AspectRatio>
-                    {correctAvatarFormat(avatar) && (
-                      <IconButton
-                        aria-label={t('form.account_create.delete_image')}
-                        icon={<BiTrash />}
-                        onClick={() => setValue('avatar', '')}
-                        position='absolute'
-                        top={2}
-                        right={2}
-                        cursor='pointer'
-                        size='xs'
-                        fontSize='md'
+            <Box
+              as='form'
+              onSubmit={(e) => {
+                console.log('asas')
+                e.stopPropagation()
+                e.preventDefault()
+                handleSubmit(onSubmit)(e)
+              }}
+            >
+              <ModalBody>
+                <Flex direction='column' gap={6}>
+                  <Flex alignItems='center' gap={5}>
+                    <Box position='relative' outline='none' border='none'>
+                      <AspectRatio
+                        flexShrink={0}
+                        w={{ base: 20, md: 40 }}
+                        ratio={1.25 / 1}
+                        borderRadius={0}
+                        overflow='hidden'
+                      >
+                        <Image src={avatar} fallbackSrc={fallback} />
+                      </AspectRatio>
+                      {correctAvatarFormat(avatar) && (
+                        <IconButton
+                          aria-label={t('form.account_create.delete_image')}
+                          icon={<BiTrash />}
+                          onClick={() => setValue('avatar', '')}
+                          position='absolute'
+                          top={2}
+                          right={2}
+                          cursor='pointer'
+                          size='xs'
+                          fontSize='md'
+                        />
+                      )}
+                    </Box>
+                    <FormControl isInvalid={!!errors.avatar}>
+                      <Input
+                        type='text'
+                        {...register('avatar', {
+                          validate: (val: string) => {
+                            if (val && !correctAvatarFormat(val)) {
+                              return t('form.error.avatar_error')
+                            }
+                          },
+                        })}
+                        mb={1}
+                        placeholder={t('form.edit_profile.avatar_placeholder').toString()}
                       />
-                    )}
-                  </Box>
-                  <FormControl isInvalid={!!errors.avatar}>
+
+                      {!!errors.avatar ? (
+                        <FormErrorMessage>{errors.avatar?.message?.toString()}</FormErrorMessage>
+                      ) : (
+                        <FormHelperText>
+                          <InfoOutlineIcon />
+                          <Text>{t('form.edit_profile.avatar_helper')}</Text>
+                        </FormHelperText>
+                      )}
+                    </FormControl>
+                  </Flex>
+                  <FormControl isInvalid={!!errors.name}>
                     <Input
                       type='text'
-                      {...register('avatar', {
-                        validate: (val: string) => {
-                          if (val && !correctAvatarFormat(val)) {
-                            return t('form.error.avatar_error')
-                          }
-                        },
-                      })}
+                      {...register('name', { required })}
                       mb={1}
-                      placeholder={t('form.edit_profile.avatar_placeholder').toString()}
+                      placeholder={t('form.account_create.title_placeholder').toString()}
                     />
-
-                    {!!errors.avatar ? (
-                      <FormErrorMessage>{errors.avatar?.message?.toString()}</FormErrorMessage>
+                    {!!errors.name ? (
+                      <FormErrorMessage>{errors.name?.message?.toString()}</FormErrorMessage>
                     ) : (
                       <FormHelperText>
                         <InfoOutlineIcon />
-                        <Text>{t('form.edit_profile.avatar_helper')}</Text>
+                        <Text>{t('form.account_create.title_helper')}</Text>
                       </FormHelperText>
                     )}
                   </FormControl>
-                </Flex>
-                <FormControl isInvalid={!!errors.name}>
-                  <Input
-                    type='text'
-                    {...register('name', { required })}
-                    mb={1}
-                    placeholder={t('form.account_create.title_placeholder').toString()}
-                  />
-                  {!!errors.name ? (
-                    <FormErrorMessage>{errors.name?.message?.toString()}</FormErrorMessage>
-                  ) : (
+
+                  <FormControl>
+                    <Textarea
+                      {...register('description')}
+                      placeholder={t('form.account_create.description_placeholder').toString()}
+                    />
                     <FormHelperText>
                       <InfoOutlineIcon />
-                      <Text>{t('form.account_create.title_helper')}</Text>
+                      <Text> {t('form.account_create.description_helper')}</Text>
                     </FormHelperText>
-                  )}
-                </FormControl>
+                  </FormControl>
 
-                <FormControl>
-                  <Textarea
-                    {...register('description')}
-                    placeholder={t('form.account_create.description_placeholder').toString()}
-                  />
-                  <FormHelperText>
-                    <InfoOutlineIcon />
-                    <Text> {t('form.account_create.description_helper')}</Text>
-                  </FormHelperText>
-                </FormControl>
-                <Button type='submit' colorScheme='primary' isLoading={loading}>
+                  {error && (
+                    <Text color='red.500' textAlign='center'>
+                      {error}
+                    </Text>
+                  )}
+                </Flex>
+              </ModalBody>
+              <ModalFooter display='flex' flexDirection='column' gap={5}>
+                <Button type='submit' isLoading={loading}>
                   {t('form.edit_profile.btn')}
                 </Button>
-                {error && (
-                  <Text color='red.500' textAlign='center'>
-                    {error}
-                  </Text>
-                )}
-              </Flex>
-            </ModalBody>
+                <Text textAlign='center' maxW='70%'>
+                  {t('form.edit_profile.footer')}
+                </Text>
+              </ModalFooter>
+            </Box>
           </Box>
         </ModalContent>
       </Modal>

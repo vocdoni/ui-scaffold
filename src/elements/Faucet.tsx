@@ -28,11 +28,20 @@ const Faucet = () => {
   }, [])
 
   return (
-    <Flex direction='column' gap={4} mt={10}>
+    <Flex
+      direction='column'
+      gap={4}
+      mt={10}
+      mb={44}
+      px={{
+        base: 10,
+        sm: 14,
+      }}
+    >
       <Grid templateColumns={'repeat(1, 1fr)'} gap={2}>
         <GridItem display='flex' justifyContent='center' alignItems='center'>
           <Box width={'80%'}>
-            <Heading as={'h1'} size={'xl'}>
+            <Heading as={'h1'} className='brand-theme' size={'xl'} textTransform='uppercase'>
               {t('faucet.title')}
             </Heading>
             <Text variant='p' mt={10} mb={10}>
@@ -40,11 +49,10 @@ const Faucet = () => {
             </Text>
           </Box>
         </GridItem>
-
         <GridItem display='flex' justifyContent='center' alignItems='center'>
           <Card width={'80%'}>
             <CardBody display='flex' flexDir='column' gap={3}>
-              <Heading as={'h2'} size={'sm'}>
+              <Heading as={'h2'} className='brand-theme' size={'sm'} textTransform='uppercase'>
                 {t('faucet.request_tokens.title')}
               </Heading>
               <Box>
@@ -58,11 +66,10 @@ const Faucet = () => {
             </CardBody>
           </Card>
         </GridItem>
-
         <GridItem display='flex' justifyContent='center' alignItems='center' mt={10}>
           <Card width={'80%'}>
             <CardBody display='flex' flexDir='column' gap={3}>
-              <Heading as={'h2'} size={'sm'}>
+              <Heading as={'h2'} className='brand-theme' size={'sm'} textTransform='uppercase'>
                 {t('faucet.general_information.title')}
               </Heading>
               <Text variant='p'>

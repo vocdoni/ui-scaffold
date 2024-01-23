@@ -19,6 +19,7 @@ import {
 } from '@chakra-ui/react'
 import { ElectionProvider, errorToString, useClient } from '@vocdoni/react-providers'
 import {
+  CspCensus,
   Election,
   ElectionCreationSteps,
   ElectionStatus,
@@ -37,6 +38,8 @@ import { useEffect, useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+import { IElection, IElectionWithTokenResponse } from 'vocdoni-admin-sdk'
+import { useCspAdmin } from '../Census/Csp/use-csp'
 import { CensusType } from '../Census/TypeSelector'
 import Preview from '../Confirm/Preview'
 import { CostPreview } from '../CostPreview'
@@ -45,7 +48,6 @@ import { Web3Address } from '../StepForm/CensusWeb3'
 import { Option } from '../StepForm/Questions'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 import Wrapper from './Wrapper'
-import imageHeader from '/assets/spreadsheet-confirm-modal.jpeg'
 
 export const Confirm = () => {
   const { env, client, account, fetchAccount } = useClient()
@@ -60,6 +62,7 @@ export const Confirm = () => {
   const [step, setStep] = useState<Steps>()
   const [disabled, setDisabled] = useState<boolean>(false)
   const [unpublished, setUnpublished] = useState<UnpublishedElection | undefined>()
+  const { vocdoniAdminClient } = useCspAdmin()
 
   const methods = useForm({
     defaultValues: {
@@ -87,7 +90,12 @@ export const Confirm = () => {
       }
       const election = Election.from(params)
 
-      let pid: string
+      let pid: string = ''
+      if (census instanceof CspCensus) {
+        pid = await client.electionService.nextElectionId(account!.address, election)
+        const createdCspElection: IElectionWithTokenResponse = await createElectionInCsp(pid, form.userList)
+      }
+
       for await (const step of client.createElectionSteps(election)) {
         switch (step.key) {
           case ElectionCreationSteps.CENSUS_CREATED:
@@ -95,11 +103,18 @@ export const Confirm = () => {
           case ElectionCreationSteps.DONE:
             setStep(step.key)
             if (step.key === ElectionCreationSteps.DONE) {
-              pid = step.electionId
+              if (pid !== step.electionId) {
+                pid = step.electionId
+                if (census instanceof CspCensus) {
+                  const createdCspElection: IElectionWithTokenResponse = await createElectionInCsp(pid, form.userList)
+                }
+              }
+
               setCreated(pid)
             }
         }
       }
+
       toast({
         title: t('form.process_create.success_title'),
         description: t('form.process_create.success_description'),
@@ -125,6 +140,28 @@ export const Confirm = () => {
       setSending(false)
     }
   }
+
+  const createElectionInCsp = async (
+    electionId: string,
+    users: { login: string }[]
+  ): Promise<IElectionWithTokenResponse> => {
+    if (!vocdoniAdminClient) throw new Error('Vocdoni Admin Client not initialized')
+
+    const cspElection: IElection = {
+      electionId: electionId,
+      handlers: [
+        {
+          handler: 'oauth',
+          service: 'github',
+          mode: 'usernames',
+          data: users.map((user) => user.login),
+        },
+      ],
+    }
+
+    return await vocdoniAdminClient.cspElectionCreate(cspElection)
+  }
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const corelection = useMemo(() => electionFromForm(form), [account?.address, form])
 
@@ -161,10 +198,10 @@ export const Confirm = () => {
   return (
     <Wrapper>
       <Box>
-        <Text fontWeight='bold' mb={2}>
-          {t('form.process_create.confirm.title')}
+        <Text className='process-create-title'>{t('form.process_create.confirm.title')}</Text>
+        <Text mb={4} color='process_create.description'>
+          {t('form.process_create.confirm.description')}
         </Text>
-        <Text mb={4}>{t('form.process_create.confirm.description')}</Text>
         <ElectionProvider election={published}>
           <Flex flexDirection={{ base: 'column', xl2: 'row' }} gap={5}>
             <Preview />
@@ -173,7 +210,7 @@ export const Confirm = () => {
 
               <FormProvider {...methods}>
                 <Box>
-                  <Text fontWeight='bold' px={2} mb={2}>
+                  <Text className='brand-theme' fontWeight='bold' textTransform='uppercase' px={2} mb={2}>
                     {t('form.process_create.confirm.confirmation')}
                   </Text>
                   <Flex
@@ -183,7 +220,7 @@ export const Confirm = () => {
                     flexDirection='column'
                     gap={4}
                     bgColor='process_create.section'
-                    borderRadius='md'
+                    borderRadius='none'
                     p={{ base: 3, xl: 6 }}
                   >
                     <FormControl
@@ -224,7 +261,15 @@ export const Confirm = () => {
                           i18nKey='form.process_create.confirm.confirmation_terms_and_conditions'
                           components={{
                             customLink: (
-                              <Link variant='primary' href='https://aragon.org/terms-and-conditions' target='_blank' />
+                              <Link
+                                href='https://aragon.org/terms-and-conditions'
+                                target='_blank'
+                                color='link.primary'
+                                textDecoration='underline'
+                                _hover={{
+                                  textDecoration: 'none',
+                                }}
+                              />
                             ),
                           }}
                         />
@@ -241,7 +286,7 @@ export const Confirm = () => {
         </ElectionProvider>
       </Box>
       <Flex justifyContent='space-between' alignItems='end' mt='auto'>
-        <Button variant='outline' onClick={prev} leftIcon={<ArrowBackIcon />}>
+        <Button variant='secondary' onClick={prev} leftIcon={<ArrowBackIcon />}>
           {t('form.process_create.previous_step')}
         </Button>
 
@@ -250,9 +295,8 @@ export const Confirm = () => {
           form='process-create-form'
           isDisabled={disabled}
           isLoading={sending}
-          variant='outline'
-          colorScheme='primary'
           px={{ base: 12, xl2: 28 }}
+          variant='primary'
         >
           {t('form.process_create.confirm.create_button')}
         </Button>
@@ -261,7 +305,7 @@ export const Confirm = () => {
           <ModalContent>
             <ModalHeader>
               <Text>{t('form.process_create.creating_process')}</Text>
-              <Box bgImage={imageHeader} />
+              <Box className='creating-process-img' />
             </ModalHeader>
             {error && <ModalCloseButton />}
             <ModalBody>
@@ -324,7 +368,8 @@ const getCensus = async (env: EnvOptions, form: StepsFormValues, salt: string) =
       census.add(addresses)
 
       return census
-
+    case 'csp':
+      return new CspCensus(import.meta.env.CSP_PUBKEY as string, import.meta.env.CSP_URL as string)
     default:
       throw new Error(`census type ${form.censusType} is not allowed`)
   }

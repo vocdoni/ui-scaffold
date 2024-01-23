@@ -1,4 +1,4 @@
-import { connectorsForWallets, Wallet } from '@rainbow-me/rainbowkit'
+import { connectorsForWallets, Wallet, WalletList } from '@rainbow-me/rainbowkit'
 import '@rainbow-me/rainbowkit/styles.css'
 import { coinbaseWallet, metaMaskWallet, rainbowWallet, walletConnectWallet } from '@rainbow-me/rainbowkit/wallets'
 import { oAuthWallet } from '@vocdoni/rainbowkit-wallets'
@@ -50,8 +50,13 @@ export const { chains, publicClient } = configureChains(
 const appName = 'Vocdoni UI Scaffold'
 const projectId = '641a1f59121ad0b519cca3a699877a08'
 
-const connectors = connectorsForWallets([
-  {
+type WalletGroup = {
+  groupName: string
+  wallets: Wallet[]
+}
+
+const featuredConnectors = () => {
+  const web3: WalletGroup = {
     groupName: 'Popular',
     wallets: [
       metaMaskWallet({ chains, projectId }),
@@ -59,8 +64,9 @@ const connectors = connectorsForWallets([
       coinbaseWallet({ chains, appName }),
       walletConnectWallet({ chains, projectId }),
     ],
-  },
-  {
+  }
+
+  const web2: WalletGroup = {
     groupName: 'Social',
     wallets: [
       oAuthWallet({
@@ -94,8 +100,18 @@ const connectors = connectorsForWallets([
         },
       }),
     ],
-  },
-])
+  }
+
+  const connectors: { [key: string]: WalletGroup } = { web2, web3 }
+  const wallets: WalletList = []
+  for (const connector of import.meta.env.features.login) {
+    wallets.push(connectors[connector])
+  }
+
+  return wallets
+}
+
+const connectors = connectorsForWallets(featuredConnectors())
 
 export const wagmiConfig = createConfig({
   autoConnect: true,

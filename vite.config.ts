@@ -3,6 +3,8 @@ import { execSync } from 'node:child_process'
 import { defineConfig, loadEnv } from 'vite'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import tsconfigPaths from 'vite-tsconfig-paths'
+import features from './vite/features'
+import themes from './vite/themes'
 
 // https://vitejs.dev/config/
 const viteconfig = ({ mode }) => {
@@ -27,11 +29,17 @@ const viteconfig = ({ mode }) => {
     define: {
       'import.meta.env.VOCDONI_ENVIRONMENT': JSON.stringify(vocdoniEnvironment),
       'import.meta.env.CUSTOM_ORGANIZATION_DOMAINS': JSON.parse(process.env.CUSTOM_ORGANIZATION_DOMAINS || '{}'),
+      'import.meta.env.CUSTOM_FAUCET_URL': JSON.stringify(process.env.CUSTOM_FAUCET_URL),
+      'import.meta.env.CSP_PUBKEY': JSON.stringify(process.env.CSP_PUBKEY),
+      'import.meta.env.CSP_URL': JSON.stringify(process.env.CSP_URL),
     },
     plugins: [
       tsconfigPaths(),
+      themes(),
+      features(),
       react(),
       createHtmlPlugin({
+        template: `public/${process.env.THEME || 'default'}/index.html`,
         minify: {
           removeComments: false,
           collapseWhitespace: true,
