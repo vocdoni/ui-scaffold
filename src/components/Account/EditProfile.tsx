@@ -106,7 +106,6 @@ const EditProfile = ({ callback }: { callback?: any }) => {
             <Box
               as='form'
               onSubmit={(e) => {
-                console.log('asas')
                 e.stopPropagation()
                 e.preventDefault()
                 handleSubmit(onSubmit)(e)
