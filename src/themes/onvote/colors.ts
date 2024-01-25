@@ -49,7 +49,7 @@ export const colors = {
 
   bg: colorsBase.gray.bg,
 
-  error: 'red.500',
+  error: colorsBase.red,
 
   checkbox: colorsBase.primary.main,
 
