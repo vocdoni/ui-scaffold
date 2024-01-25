@@ -81,12 +81,10 @@ export const CreationProgress = ({ error, sending, step }: CreationProgressProps
                   </Flex>
                 ) : (
                   <Flex justifyContent='center' alignItems='center' gap={2}>
-                    <Flex justifyContent='center' alignItems='center' w={6} h={6} bgColor='error'>
+                    <Flex justifyContent='center' alignItems='center' w={6} h={6}>
                       <Close />
                     </Flex>
-                    <Text fontWeight='bold' color='error'>
-                      {labels[key]}
-                    </Text>
+                    <Text fontWeight='bold'>{labels[key]}</Text>
                   </Flex>
                 )}
               </>
