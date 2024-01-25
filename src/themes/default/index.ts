@@ -17,6 +17,13 @@ export const theme = extendTheme(vtheme, {
         '--box-shadow-darker': '0px 2px 4px #808080b5',
         '--vcd-gradient-primary': 'linear-gradient(to right, #24656e, #2c545a)',
       },
+      '.padding-x': {
+        paddingX: {
+          base: '10px',
+          sm: '20px',
+          md: '60px',
+        },
+      },
       '.voting-type': {
         justifyContent: 'space-around',
         flexWrap: 'wrap',

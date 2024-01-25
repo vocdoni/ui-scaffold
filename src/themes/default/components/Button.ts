@@ -142,7 +142,7 @@ const goBack = defineStyle({
     overflow: 'hidden',
     fontSize: 'sm',
     isTruncated: true,
-    maxW: '200px',
+    maxW: { base: '100px', md: '200px' },
   },
 })
 

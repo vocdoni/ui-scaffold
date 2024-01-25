@@ -18,7 +18,13 @@ const Navbar = () => {
   const { openConnectModal } = useConnectModal()
 
   return (
-    <Flex justifyContent='space-between' w='full' mx='auto' p={{ base: '12px 40px', md: '24px 80px' }}>
+    <Flex
+      className='padding-x'
+      justifyContent='space-between'
+      w='full'
+      mx='auto'
+      py={{ base: '12px', md: '24px' }}
+    >
       <Logo />
 
       <List as='nav' display='flex' alignItems='center' gap={4}>

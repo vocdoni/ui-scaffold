@@ -31,33 +31,35 @@ const ProcessAside = () => {
   return (
     <>
       <Card variant='aside'>
-        <Text textAlign='center' fontSize='xl3' textTransform='uppercase'>
-          {election?.electionType.anonymous && voting
-            ? t('aside.submitting')
-            : getStatusText(t, election?.status).toUpperCase()}
-        </Text>
+        <Flex alignItems='center' gap={5} flexWrap='wrap' justifyContent='center'>
+          <Text textAlign='center' fontSize='xl3' textTransform='uppercase'>
+            {election?.electionType.anonymous && voting
+              ? t('aside.submitting')
+              : getStatusText(t, election?.status).toUpperCase()}
+          </Text>
 
-        {election?.status !== ElectionStatus.CANCELED &&
-          election?.status !== ElectionStatus.UPCOMING &&
-          !(election?.electionType.anonymous && voting) && (
-            <Box
-              className='brand-theme'
-              display='flex'
-              flexDirection='row'
-              justifyContent='center'
-              alignItems='center'
-              gap={2}
-            >
-              <Trans
-                i18nKey='aside.votes'
-                components={{
-                  span: <Text as='span' fontWeight='bold' fontSize='xl6' textAlign='center' lineHeight={1} />,
-                  text: <Text fontSize='xl2' textAlign='center' lineHeight={1.3} />,
-                }}
-                count={election?.voteCount}
-              />
-            </Box>
-          )}
+          {election?.status !== ElectionStatus.CANCELED &&
+            election?.status !== ElectionStatus.UPCOMING &&
+            !(election?.electionType.anonymous && voting) && (
+              <Box
+                className='brand-theme'
+                display='flex'
+                flexDirection='row'
+                justifyContent='center'
+                alignItems='center'
+                gap={2}
+              >
+                <Trans
+                  i18nKey='aside.votes'
+                  components={{
+                    span: <Text as='span' fontWeight='bold' fontSize='xl6' textAlign='center' lineHeight={1} />,
+                    text: <Text fontSize='xl2' textAlign='center' lineHeight={1.3} />,
+                  }}
+                  count={election?.voteCount}
+                />
+              </Box>
+            )}
+        </Flex>
 
         {census?.type !== 'spreadsheet' &&
           !isConnected &&

@@ -118,6 +118,7 @@ const baseStyle = definePartsStyle({
       gap: 2,
 
       '& span:nth-of-type(1)': {
+        display: { base: 'none', md: 'block' },
         width: '30px',
         height: '30px',
         borderRadius: 'none',
