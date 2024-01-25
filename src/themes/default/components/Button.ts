@@ -28,6 +28,9 @@ const primary = defineStyle((props) => {
     _active: {
       bgColor: colorScheme !== 'gray' ? `${colorScheme}.700` : `${colorScheme}.300`,
     },
+    _disabled: {
+      bgColor: colorScheme !== 'gray' ? `${colorScheme}.600` : `${colorScheme}.200`,
+    },
   }
 })
 
@@ -51,6 +54,10 @@ const secondary = defineStyle((props) => {
     _active: {
       bgColor: 'gray.300',
       color: colorScheme !== 'gray' ? `${colorScheme}.700` : `${colorScheme}.300`,
+    },
+    _disabled: {
+      bgColor: 'gray.200',
+      color: colorScheme !== 'gray' ? `${colorScheme}.600` : `${colorScheme}.300`,
     },
   }
 })
