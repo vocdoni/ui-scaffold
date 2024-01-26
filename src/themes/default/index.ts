@@ -21,7 +21,7 @@ export const theme = extendTheme(vtheme, {
         paddingX: {
           base: '10px',
           sm: '20px',
-          md: '60px',
+          md: '80px',
         },
       },
       '.voting-type': {
