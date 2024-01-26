@@ -24,7 +24,7 @@ const Navbar = () => {
       <List as='nav' display='flex' alignItems='center' gap={4}>
         {isConnected && (
           <ListItem>
-            <Button as={ReactRouterLink} to='/processes/create'>
+            <Button as={ReactRouterLink} to='/processes/create' isDisabled={true}>
               <AddIcon boxSize={{ base: 4, sm2: 3 }} />
               <Text as='span' display={{ base: 'none', sm2: 'inline-block' }}>
                 {t('menu.new_process')}
