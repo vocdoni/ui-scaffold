@@ -17,21 +17,16 @@ export const theme = extendTheme(vtheme, {
         '--box-shadow-darker': '0px 2px 4px #808080b5',
         '--vcd-gradient-primary': 'linear-gradient(to right, #24656e, #2c545a)',
       },
-      '.padding-x': {
-        paddingX: {
-          base: '10px',
-          sm: '20px',
-          md: '80px',
-        },
+      '.creating-process-img': {
+        bgImage: '/assets/spreadsheet-confirm-modal.jpg',
       },
-      '.voting-type': {
-        justifyContent: 'space-around',
-        flexWrap: 'wrap',
-        alignItems: { base: 'center', md2: 'start' },
-        gap: { base: 5, md2: 0 },
-        mb: 32,
-        maxW: '1250px',
-        mx: 'auto',
+      '.creating-process-check': {
+        color: 'primary.main',
+
+        '& svg': {
+          w: 6,
+          h: 6,
+        },
       },
       link: {
         color: 'link.primary',
@@ -46,17 +41,22 @@ export const theme = extendTheme(vtheme, {
       '.site-wrapper': {
         width: 'full',
         m: '0 auto',
-      },
-      '.creating-process-img': {
-        bgImage: '/assets/spreadsheet-confirm-modal.jpg',
-      },
-      '.creating-process-check': {
-        color: 'primary.main',
+        maxW: 'site-width',
 
-        '& svg': {
-          w: 6,
-          h: 6,
+        px: {
+          base: '10px',
+          sm: '20px',
+          md: '80px',
         },
+      },
+      '.voting-type': {
+        justifyContent: 'space-around',
+        flexWrap: 'wrap',
+        alignItems: { base: 'center', md2: 'start' },
+        gap: { base: 5, md2: 0 },
+        mb: 32,
+        maxW: '1250px',
+        mx: 'auto',
       },
     },
   },
