@@ -8,7 +8,7 @@ const Footer = () => {
   const { t } = useTranslation()
 
   return (
-    <Box p={{ base: '12px 40px', md: '24px 80px' }}>
+    <Box className='padding-x' py={{ base: '12px', md: '24px' }}>
       <Flex flexWrap='wrap' justifyContent={{ base: 'space-around', lg: 'space-between' }} gap={{ base: 8, sm: 5 }}>
         <Flex order={{ base: 1, lg: 0 }} flexDirection='column' alignItems={{ base: 'center', lg: 'start' }} gap={2}>
           <Img src={logo} maxW={36} alt='vocdoni icon' />
@@ -121,7 +121,7 @@ const Footer = () => {
         <Code bg='bg_main' textAlign='center'>
           Copyrights 2023 Vocdoni, Inc. All rights reserved
         </Code>
-        <Code bg='bg_main'>
+        <Code bg='bg_main' textAlign='center'>
           <Trans
             i18nKey='footer.terms_and_privacy'
             components={{

@@ -29,6 +29,13 @@ export const theme = extendTheme(vtheme, {
         heading: '"Archivo", sans-serif',
         body: '"Archivo", sans-serif',
       },
+      '.padding-x': {
+        paddingX: {
+          base: '10px',
+          sm: '20px',
+          md: '60px',
+        },
+      },
       '.voting-type': {
         justifyContent: 'space-around',
         flexWrap: 'wrap',

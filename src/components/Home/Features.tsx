@@ -21,12 +21,7 @@ const Features = () => {
         display={{ base: 'none', lg2: 'block' }}
       />
 
-      <Box
-        px={{
-          base: '40px',
-          md: '80px',
-        }}
-      >
+      <Box className='padding-x'>
         <Box position='relative' maxW='840px' mx='auto' pt={{ base: 10, xl: 20 }} mb={{ base: 10, lg: 32 }}>
           <Trans
             i18nKey='home_features.title'
