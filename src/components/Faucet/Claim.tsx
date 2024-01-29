@@ -1,5 +1,4 @@
 import {
-  Button,
   Collapse,
   Flex,
   FormControl,
@@ -15,6 +14,7 @@ import {
 } from '@chakra-ui/react'
 import { isAddress } from '@ethersproject/address'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { Button } from '@vocdoni/chakra-components'
 import { errorToString, useClient } from '@vocdoni/react-providers'
 import { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -29,7 +29,7 @@ type ClaimProps = {
 
 export const Claim = (props: ClaimProps) => {
   const { t } = useTranslation()
-  const { account, client, connected } = useClient()
+  const { account, connected } = useClient()
   const { address } = useAccount()
   const { loading, handleSignIn, faucetPackage, isValidAddress } = useClaim()
   const { onCopy, hasCopied } = useClipboard(faucetPackage)
