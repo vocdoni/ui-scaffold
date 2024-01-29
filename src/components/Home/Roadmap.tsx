@@ -4,7 +4,7 @@ import { Trans, useTranslation } from 'react-i18next'
 const Roadmap = () => {
   const { t } = useTranslation()
   return (
-    <Box className='padding-x' mx='auto' py={{ lg: 64 }}>
+    <Box className='site-wrapper' mx='auto' py={{ lg: 64 }}>
       <Trans
         i18nKey='roadmap.title'
         components={{

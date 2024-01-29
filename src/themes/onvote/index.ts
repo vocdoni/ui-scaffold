@@ -29,11 +29,35 @@ export const theme = extendTheme(vtheme, {
         heading: '"Archivo", sans-serif',
         body: '"Archivo", sans-serif',
       },
-      '.padding-x': {
-        paddingX: {
+      '.creating-process-img': {
+        bgImage: '/assets/onvote-modal-submitting.png',
+      },
+      '.creating-process-check': {
+        w: 6,
+        h: 6,
+        bgColor: 'primary.main',
+      },
+      '.process-create-title': {
+        fontFamily: 'pixeloidsans, monospace',
+        textTransform: 'uppercase',
+        color: colors.process_create.title,
+      },
+      '.brand-theme': {
+        fontFamily: 'pixeloidsans, monospace',
+      },
+      '.process-create-section': {
+        border: '1px solid',
+        borderColor: 'process_create.section_border',
+      },
+      '.site-wrapper': {
+        width: 'full',
+        m: '0 auto',
+        maxW: 'site-width',
+
+        px: {
           base: '10px',
           sm: '20px',
-          md: '60px',
+          md: '80px',
         },
       },
       '.voting-type': {
@@ -49,26 +73,6 @@ export const theme = extendTheme(vtheme, {
           base: '40px',
           md: '80px',
         },
-      },
-      '.process-create-title': {
-        fontFamily: 'pixeloidsans, monospace',
-        textTransform: 'uppercase',
-        color: colors.process_create.title,
-      },
-      '.brand-theme': {
-        fontFamily: 'pixeloidsans, monospace',
-      },
-      '.process-create-section': {
-        border: '1px solid',
-        borderColor: 'process_create.section_border',
-      },
-      '.creating-process-img': {
-        bgImage: '/assets/onvote-modal-submitting.png',
-      },
-      '.creating-process-check': {
-        w: 6,
-        h: 6,
-        bgColor: 'primary.main',
       },
     },
   },
