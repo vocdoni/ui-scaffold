@@ -396,6 +396,16 @@ const electionFromForm = (form: StepsFormValues) => {
   // max census size is calculated by the SDK when creating a process, but we need it to
   // calculate the cost preview... so here we set it for all cases anyway
   const maxCensusSize = form.maxCensusSize ?? form.spreadsheet?.data.length ?? form.addresses.length
+  let censusType: string = form.censusType as string
+  let extraMeta = {}
+  if (form.censusType === 'csp_github' || form.censusType === 'csp_google') {
+    censusType = 'csp'
+    extraMeta = {
+      csp: {
+        service: form.censusType.split('_')[1],
+      },
+    }
+  }
   return {
     ...form,
     maxCensusSize,
@@ -414,13 +424,14 @@ const electionFromForm = (form: StepsFormValues) => {
     startDate: form.electionType.autoStart ? undefined : new Date(form.startDate).getTime(),
     endDate: new Date(form.endDate).getTime(),
     voteType: { maxVoteOverwrites: Number(form.maxVoteOverwrites) },
-    temporarySecretIdentity: form.censusType === 'spreadsheet' && form.electionType.anonymous,
+    temporarySecretIdentity: censusType === 'spreadsheet' && form.electionType.anonymous,
     meta: {
       generated: 'ui-scaffold',
       census: {
-        type: form.censusType,
+        type: censusType,
         fields: form.spreadsheet?.header ?? undefined,
       } as CensusMeta,
+      ...extraMeta,
     },
   }
 }
