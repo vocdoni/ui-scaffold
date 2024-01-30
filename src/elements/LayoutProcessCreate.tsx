@@ -50,7 +50,7 @@ const LayoutProcessCreate = () => {
           textTransform='uppercase'
           fontFamily='pixeloidsans'
           fontSize='16px'
-          display={{ base: 'none', sm: 'block' }}
+          display={{ base: 'none', md: 'block' }}
         >
           World wide voting
         </Text>
