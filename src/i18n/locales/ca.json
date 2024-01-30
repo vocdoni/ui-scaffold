@@ -202,7 +202,8 @@
       "field_is_required": "Aquest camp és obligatori",
       "min_address": "Si us plau, proporciona com a mínim una adreça",
       "min_users_address": "",
-      "recipient_address_invalid": "L'adreça especificada no sembla vàlida"
+      "recipient_address_invalid": "L'adreça especificada no sembla vàlida",
+      "email_address_pattern": "Només es permeten adreces de correu electrònic (p. ex. john@appleseed.com)"
     },
     "process_create": {
       "behavior": {
@@ -251,7 +252,13 @@
         "token_base_title": "Basat en token",
         "tokens_placeholder": "Cerca o enganxa la direcció del token",
         "wallet_address_description": "Identifica els teus votants per les seves adreces de cartera.",
-        "wallet_address_title": "Adreces de cartera"
+        "wallet_address_title": "Adreces de cartera",
+        "csp": {
+          "github_title": "Cens de Github",
+          "github_description": "Els usuaris de Github poden autenticar-se amb el seu compte de Github per participar en el procés de votació.",
+          "google_title": "Cens de Google",
+          "google_description": "Els usuaris de Google poden autenticar-se amb el seu compte de Google per participar en el procés de votació."
+        }
       },
       "confirm": {
         "anonymous": "Anònim",
@@ -278,7 +285,12 @@
         "secret_until_the_end": "Secret fins el final",
         "title": "Vista prèvia i costos de votació",
         "title_election": "Títol",
-        "vote_overwrite": "Sobreescriure vot"
+        "vote_overwrite": "Sobreescriure vot",
+        "census_preview_list": {
+          "address": "Adreces de correu electrònic de Google",
+          "github_address": "Comptes Github",
+          "google_address": "Adreces de Google"
+        }
       },
       "confirm_spreadsheet_removal": "Estàs segur que vols canviar-ho? Fent-ho s'esborrarà el fitxer que has carregat actualment.",
       "creating_process": "Creant Procés de Votació...",

@@ -202,7 +202,8 @@
       "field_is_required": "Este campo es obligatorio",
       "min_address": "Por favor, proporciona al menos una dirección",
       "min_users_address": "",
-      "recipient_address_invalid": "La dirección especificada no parece válida"
+      "recipient_address_invalid": "La dirección especificada no parece válida",
+      "email_address_pattern": "Sólo se permiten direcciones de correo electrónico (por ejemplo, john@appleseed.com)"
     },
     "process_create": {
       "behavior": {
@@ -251,7 +252,13 @@
         "token_base_title": "Basado en tokens",
         "tokens_placeholder": "Busca o pega la dirección del token",
         "wallet_address_description": "Identifica a tus votantes por sus direcciones de monedero digital.",
-        "wallet_address_title": "Direcciones de monedero"
+        "wallet_address_title": "Direcciones de monedero",
+        "csp": {
+          "github_title": "Censo de github",
+          "github_description": "Los usuarios de Github pueden autenticarse con su cuenta de Github para participar en el proceso de votación.",
+          "google_title": "Censo de Google",
+          "google_description": "Los usuarios de Google pueden autenticarse con su cuenta de Google para participar en el proceso de votación."
+        }
       },
       "confirm": {
         "anonymous": "Anónimo",
@@ -278,7 +285,12 @@
         "secret_until_the_end": "Secreto hasta el final",
         "title": "Vista previa y costos de votación",
         "title_election": "Título",
-        "vote_overwrite": "Sobrescribir voto"
+        "vote_overwrite": "Sobrescribir voto",
+        "census_preview_list": {
+          "address": "Direcciones de correo electrónico de Google",
+          "github_address": "Cuentas de Github",
+          "google_address": "Direcciones de Google"
+        }
       },
       "confirm_spreadsheet_removal": "Seguro? Piensa que al hacerlo se eliminará el fichero que has cargado.",
       "creating_process": "Creando Proceso de Votación...",

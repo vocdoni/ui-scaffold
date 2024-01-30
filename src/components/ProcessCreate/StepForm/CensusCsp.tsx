@@ -3,13 +3,14 @@ import { useEffect } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useProcessCreationSteps } from '../Steps/use-steps'
-import { CensusCspList } from '../Census/Csp'
+import GithubUserSearch from '../Census/Csp/GithubUserSearch'
+import GoogleUsers from '../Census/Csp/GoogleUsers'
 
 export interface CensusCspValues {
   userList: { login: string }[]
 }
 
-export const StepFormCensusCsp = () => {
+export const StepFormCensusCsp = ({ provider }: { provider: 'github' | 'google' }) => {
   const { t } = useTranslation()
   const { form, setForm, next } = useProcessCreationSteps()
   const methods = useForm({
@@ -37,16 +38,24 @@ export const StepFormCensusCsp = () => {
     }
   }
 
+  const updatedUserSelection = (users: any) => {
+    methods.setValue('userList', users)
+  }
+
   return (
     <>
       <Box px={7} py={4}>
-        <Text fontWeight='bold' mb={3} color='process_create.census.title'>
-          {t('census.social_address_title')}
-        </Text>
-
         <FormProvider {...methods}>
           <Box as='form' id='process-create-form' onSubmit={methods.handleSubmit(onSubmit)}>
-            <CensusCspList initialUsers={userList} />
+            {provider === 'github' && (
+              <GithubUserSearch
+                onUpdateSelection={updatedUserSelection}
+                showSelectedList={true}
+                initialUsers={userList}
+              />
+            )}
+
+            {provider === 'google' && <GoogleUsers onUpdateSelection={updatedUserSelection} initialUsers={userList} />}
 
             {methods.formState.errors.userList && (
               <Text color='red' textAlign='center' mt={2}>

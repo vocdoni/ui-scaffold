@@ -21,7 +21,8 @@ interface ImportMeta {
         spreadsheet: boolean
         token: boolean
         web3: boolean
-        csp: boolean
+        csp_github: boolean
+        csp_google: boolean
       }
     }
     theme: string

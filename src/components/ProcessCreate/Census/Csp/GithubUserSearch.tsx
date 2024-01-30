@@ -1,4 +1,4 @@
-import { Flex, FormLabel, Input, List, ListItem, useToast } from '@chakra-ui/react'
+import { Flex, FormLabel, Input, List, ListItem, useToast, Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import UserCard from './UserCard'
 import { useTranslation } from 'react-i18next'
@@ -78,6 +78,10 @@ const GithubUserSearch = ({ ...props }) => {
 
   return (
     <>
+      <Text fontWeight='bold' mb={3} color='process_create.census.title'>
+        {t('census.social_address_title')}
+      </Text>
+
       <Input type='text' placeholder='Search...' onChange={(e) => handleInputChange(e.target.value)} />
 
       {userList && userList.length > 0 && (

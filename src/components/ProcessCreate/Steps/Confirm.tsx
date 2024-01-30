@@ -76,7 +76,6 @@ export const Confirm = () => {
     handleSubmit,
     register,
   } = methods
-
   const onSubmit = async () => {
     onOpen()
     setSending(true)
@@ -141,20 +140,30 @@ export const Confirm = () => {
     }
   }
 
-  const createElectionInCsp = async (
-    electionId: string,
-    users: { login: string }[]
-  ): Promise<IElectionWithTokenResponse> => {
+  const createElectionInCsp = async (electionId: string, users: any[]): Promise<IElectionWithTokenResponse> => {
     if (!vocdoniAdminClient) throw new Error('Vocdoni Admin Client not initialized')
+
+    let service: string = ''
+    let fieldName: string = ''
+    switch (form.censusType) {
+      case 'csp_github':
+        service = 'github'
+        fieldName = 'login'
+        break
+      case 'csp_google':
+        service = 'google'
+        fieldName = 'address'
+        break
+    }
 
     const cspElection: IElection = {
       electionId: electionId,
       handlers: [
         {
           handler: 'oauth',
-          service: 'github',
+          service,
           mode: 'usernames',
-          data: users.map((user) => user.login),
+          data: users.map((user) => user[fieldName]),
         },
       ],
     }
@@ -368,7 +377,8 @@ const getCensus = async (env: EnvOptions, form: StepsFormValues, salt: string) =
       census.add(addresses)
 
       return census
-    case 'csp':
+    case 'csp_github':
+    case 'csp_google':
       return new CspCensus(import.meta.env.CSP_PUBKEY as string, import.meta.env.CSP_URL as string)
     default:
       throw new Error(`census type ${form.censusType} is not allowed`)

@@ -199,7 +199,8 @@
       "field_is_required": "This field is required",
       "min_address": "Please, provide at least one address",
       "min_users_address": "",
-      "recipient_address_invalid": "Specified address does not seem to be valid"
+      "recipient_address_invalid": "Specified address does not seem to be valid",
+      "email_address_pattern": "Only email addresses are allowed (e.g john@appleseed.com)"
     },
     "process_create": {
       "behavior": {
@@ -240,15 +241,19 @@
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} eligible voters)",
         "network": "Network",
         "network_placeholder": "Select a network",
-        "social_description": "Create a census of eligible voters providing a list of Github users.",
-        "social_title": "Github Census",
         "spreadsheet_description": "Utilize information such as usernames, passwords, or voter personal details for authentication through a form.",
         "spreadsheet_title": "Custom data",
         "token_base_description": "Use ERC20, NFTs and POAPs from different EVM networks to create a census of eligible holders.",
         "token_base_title": "Token based",
         "tokens_placeholder": "Search or paste token address",
         "wallet_address_description": "Create a census of eligible voters providing a list of wallet addresses.",
-        "wallet_address_title": "Wallet addresses"
+        "wallet_address_title": "Wallet addresses",
+        "csp": {
+          "github_title": "Github Census",
+          "github_description": "Github users can authenticate with their Github account to participate in the voting process.",
+          "google_title": "Google Census",
+          "google_description": "Google users can authenticate with their Google account to participate in the voting process."
+        }
       },
       "confirm": {
         "anonymous": "Anonymous voting active",
@@ -273,7 +278,12 @@
         "secret_until_the_end": "Secret until the end",
         "title": "Preview",
         "title_election": "Title",
-        "vote_overwrite": "Vote overwrite"
+        "vote_overwrite": "Vote overwrite",
+        "census_preview_list": {
+          "address": "Google Email Addresses",
+          "github_address": "Github accounts",
+          "google_address": "Google Addresses"
+        }
       },
       "confirm_spreadsheet_removal": "Are you sure? Take in mind that the uploaded file will be removed",
       "creating_process": "Creating Voting Process...",
