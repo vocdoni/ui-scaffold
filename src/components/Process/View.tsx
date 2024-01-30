@@ -52,13 +52,7 @@ export const ProcessView = () => {
 
   return (
     <Box>
-      <Box
-        mb={44}
-        px={{
-          base: '40px',
-          md: '80px',
-        }}
-      >
+      <Box className='site-wrapper' mb={44}>
         <Header />
         <Flex direction={{ base: 'column', lg2: 'row' }} alignItems='start' gap={{ lg2: 10 }}>
           <Tabs
@@ -99,7 +93,7 @@ export const ProcessView = () => {
             position={{ lg2: 'sticky' }}
             top={20}
             mt={10}
-            maxW={{ md: '265px', lg2: '290px' }}
+            maxW={{ lg2: '290px' }}
             mb={10}
           >
             <ProcessAside />
