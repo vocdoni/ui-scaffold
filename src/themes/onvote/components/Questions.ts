@@ -79,7 +79,6 @@ const baseStyle = definePartsStyle({
     width: { base: 'full', xl: '80%' },
     m: 0,
     mx: 'auto',
-    p: 4,
 
     '& > div': {
       display: 'flex',
@@ -105,23 +104,20 @@ const baseStyle = definePartsStyle({
     mb: 5,
   },
 
-  radioGroup: {
-    p: 1,
-  },
   stack: {
-    p: 1,
-
     '& label': {
       overflow: 'hidden',
       display: 'flex',
       alignItems: 'center',
       gap: 2,
+      w: { lg2: '99%' },
 
       '& span:nth-of-type(1)': {
+        display: { base: 'none', md: 'block' },
         width: '30px',
         height: '30px',
         borderRadius: 'none',
-        ml: '10px',
+        ml: '5px',
 
         '&[data-checked=""]': {
           '&:before': {

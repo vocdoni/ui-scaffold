@@ -1,6 +1,5 @@
 import {
   As,
-  Button,
   Icon,
   IconButton,
   Menu,
@@ -10,7 +9,7 @@ import {
   MenuList,
   MenuListProps,
 } from '@chakra-ui/react'
-import { ActionsProvider } from '@vocdoni/chakra-components'
+import { ActionsProvider, Button } from '@vocdoni/chakra-components'
 import { useActions, useClient, useElection } from '@vocdoni/react-providers'
 import { ElectionStatus } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'

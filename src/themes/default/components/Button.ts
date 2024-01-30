@@ -23,6 +23,10 @@ const primary = defineStyle((props) => {
 
     _hover: {
       bgColor: colorScheme !== 'gray' ? `${colorScheme}.600` : `${colorScheme}.200`,
+
+      _disabled: {
+        bgColor: colorScheme !== 'gray' ? `${colorScheme}.600` : `${colorScheme}.200`,
+      },
     },
 
     _active: {
@@ -46,6 +50,11 @@ const secondary = defineStyle((props) => {
     _hover: {
       bgColor: 'gray.200',
       color: colorScheme !== 'gray' ? `${colorScheme}.600` : `${colorScheme}.300`,
+
+      _disabled: {
+        bgColor: 'gray.200',
+        color: colorScheme !== 'gray' ? `${colorScheme}.600` : `${colorScheme}.300`,
+      },
     },
 
     _active: {
@@ -88,6 +97,10 @@ const transparent = defineStyle((props) => {
 
     _hover: {
       bgColor: 'transparent',
+
+      _disabled: {
+        bgColor: 'transparent',
+      },
     },
     _active: {
       bgColor: 'transparent',
@@ -142,7 +155,7 @@ const goBack = defineStyle({
     overflow: 'hidden',
     fontSize: 'sm',
     isTruncated: true,
-    maxW: '200px',
+    maxW: { base: '100px', md: '200px' },
   },
 })
 
