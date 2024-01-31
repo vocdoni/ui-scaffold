@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { MdHowToVote } from 'react-icons/md'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
+import { useAccountCreator, useOrganizationHealthTools } from '~components/Account/use-account-health-tools'
 import Logo from '~components/Layout/Logo'
 import { LanguagesMenu } from './LanguagesList'
 import MenuDropdown from './Menu'
@@ -16,6 +17,10 @@ const Navbar = () => {
   const { t } = useTranslation()
   const { account } = useClient()
   const { openConnectModal } = useConnectModal()
+  const { exists } = useOrganizationHealthTools()
+
+  // checks if account exists and creates it if it does not
+  useAccountCreator()
 
   return (
     <Flex className='site-wrapper' justifyContent='space-between' w='full' mx='auto' py={{ base: '12px', md: '24px' }}>
@@ -33,9 +38,13 @@ const Navbar = () => {
           </ListItem>
         )}
 
-        {account && account?.account?.name?.default.length > 0 && (
+        {exists && (
           <ListItem>
-            <Button as={ReactRouterLink} to={`/organization/${ensure0x(account?.address)}`} variant='secondary'>
+            <Button
+              as={ReactRouterLink}
+              to={`/organization/${ensure0x(account?.address as string)}`}
+              variant='secondary'
+            >
               <Icon as={MdHowToVote} boxSize={{ base: 4, sm2: 3 }} />
               <Text as='span' display={{ base: 'none', sm2: 'inline-block' }}>
                 {t('menu.my_org')}
