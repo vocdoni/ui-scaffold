@@ -20,6 +20,7 @@ const Preview = () => {
     questions,
     startDate: begin,
     endDate: end,
+    accuracy,
   } = form
 
   const features =
@@ -139,7 +140,16 @@ const Preview = () => {
         </Text>
         <Box w={{ md: '65%' }}>
           <Census />
+          {form.electionType.anonymous && (
+            <Text>
+              <Text as='span' fontWeight='bold'>
+                {t('form.process_create.census.accuracy')}
+              </Text>
+              <Text as='span'>{accuracy.toFixed()}%</Text>
+            </Text>
+          )}
         </Box>
+
         <Link position='absolute' top={0} right={0} onClick={() => setActiveStep(3)}>
           <Icon
             as={IoMdCreate}

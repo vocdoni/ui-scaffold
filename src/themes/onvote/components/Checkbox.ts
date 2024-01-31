@@ -44,7 +44,8 @@ const radiobox = definePartsStyle({
   label: defineStyle({
     fontSize: 'sm',
     alignSelf: 'start',
-    '& div': {
+
+    '& div:first-of-type': {
       display: 'flex',
       alignItems: 'center',
       gap: 2,
@@ -60,6 +61,16 @@ const radiobox = definePartsStyle({
     '& > p': {
       fontSize: '14px',
       color: 'process_create.description',
+    },
+
+    '& div:nth-of-type(2)': {
+      mt: 2,
+      fontSize: '14px',
+      color: 'process_create.description',
+
+      '& span:first-of-type': {
+        fontWeight: 'bold',
+      },
     },
   }),
 })

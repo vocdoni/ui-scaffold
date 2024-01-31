@@ -205,6 +205,7 @@
       "behavior": {
         "anonymous": {
           "description": "This setting ensures that votes remain unlinked to voter identities by utilizing advanced zkSNARKs technology on the Vocdoni Protocol.",
+          "rounded_census": "<spanBold>Disclaimer: </spanBold><span>If voters use token voting power (public onchain), to enhance anonymity, weights are grouped into similar balances, rounded down. This sacrifices some accuracy but preserves identity by unlinking balances from wallets.</span>",
           "title": "Anonymous"
         },
         "overwrite": {
@@ -230,6 +231,7 @@
         "title_description": "Set up the voting schedule."
       },
       "census": {
+        "accuracy": "Anonymous Census Balance Accuracy: ",
         "add_button": "Add",
         "add_new_address": "add a new address",
         "delete_web3_address": "Delete address index {{ index }}",

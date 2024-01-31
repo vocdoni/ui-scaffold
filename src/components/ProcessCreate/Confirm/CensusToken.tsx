@@ -16,7 +16,9 @@ const PreviewCensusToken = () => {
     <>
       <TokenPreview token={censusToken} chainName={chain.name} strategySize={strategySize} />
       <Flex flexWrap='wrap' mt={2}>
-        <Text mr={1}>{t('form.process_create.census.max_census_slider_label')}</Text>
+        <Text mr={1} fontWeight='bold'>
+          {t('form.process_create.census.max_census_slider_label')}
+        </Text>
         <Text>
           {t('form.process_create.census.max_census_slider_tooltip', {
             percent: Math.round((size / max) * 100),

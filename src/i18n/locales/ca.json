@@ -208,6 +208,7 @@
       "behavior": {
         "anonymous": {
           "description": "La identitat dels votants serà completament anonimitzada, incloent per a l'organitzador. Cada votant haurà d'establir una contrasenya per garantir la confidencialitat de la seva identitat.",
+          "rounded_census": "<spanBold>Nota legal: </spanBold><span>En cas que els votants utilitzin el poder de vot dels tokens (públic a la cadena de blocs) per millorar l'anonimat, els pesos es grupen en funció dels saldos similars i s'arrodoneixen cap avall. Això sacrifica certa precisió però preserva la identitat desvinculant els saldos de les carteres.</span>",
           "title": "Anònim"
         },
         "overwrite": {
@@ -233,6 +234,7 @@
         "title_description": "Especificar el període actiu per rebre vots."
       },
       "census": {
+        "accuracy": "Precisió del Balanç del Cens Anònim: ",
         "add_button": "Afegir",
         "add_new_address": "Afageix una nova adreça",
         "delete_web3_address": "Eliminar adreça amb index {{ index }}",

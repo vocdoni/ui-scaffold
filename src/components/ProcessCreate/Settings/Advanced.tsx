@@ -1,13 +1,15 @@
 import { Box, Checkbox, Flex, Icon, Text } from '@chakra-ui/react'
 import { useFormContext } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { BiCheckDouble } from 'react-icons/bi'
 import { FaUserSecret } from 'react-icons/fa'
 import { HiKey } from 'react-icons/hi2'
 
 const SettingsAdvanced = () => {
   const { t } = useTranslation()
-  const { register } = useFormContext()
+  const { register, watch } = useFormContext()
+
+  const anonymous = watch('electionType.anonymous')
 
   const features =
     import.meta.env.features.vote.anonymous ||
@@ -29,6 +31,17 @@ const SettingsAdvanced = () => {
               <Text>{t('form.process_create.behavior.anonymous.title')}</Text>
             </Box>
             <Text>{t('form.process_create.behavior.anonymous.description')}</Text>
+            {anonymous && (
+              <Box>
+                <Trans
+                  i18nKey='form.process_create.behavior.anonymous.rounded_census'
+                  components={{
+                    spanBold: <Text as='span' />,
+                    span: <Text as='span' />,
+                  }}
+                />
+              </Box>
+            )}
           </Checkbox>
         )}
         {import.meta.env.features.vote.secret && (
