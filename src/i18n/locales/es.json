@@ -208,8 +208,6 @@
       "behavior": {
         "anonymous": {
           "description": "La identidad de los votantes será completamente anonimizada, incluyendo para el organizador. Cada votante deberá establecer una contraseña para garantizar la confidencialidad de su identidad.",
-          "rounded_census": "<spanBold>Nota legal: </spanBold><span>En caso de que los votantes utilicen el poder de voto de tokens (público en cadena) para mejorar el anonimato, los pesos se agrupan según saldos similares y se redondean hacia abajo. Esto sacrifica cierta precisión pero preserva la identidad al desvincular los saldos de las billeteras.</span>",
-          "rounded_census_title": "Nota legal: En caso de que los votantes utilicen el poder de voto de tokens (público en cadena) para mejorar el anonimato, los pesos se agrupan según saldos similares y se redondean hacia abajo. Esto sacrifica cierta precisión pero preserva la identidad al desvincular los saldos de las billeteras.",
           "title": "Anónimo"
         },
         "overwrite": {
@@ -235,7 +233,6 @@
         "title_description": "Especificar el período activo para recibir votos."
       },
       "census": {
-        "accuracy": "Exactitud del Balance del Censo Anónimo: ",
         "add_button": "Añadir",
         "add_new_address": "Añade una nueva dirección",
         "delete_web3_address": "Eliminar direccion con índice {{ index }}",
@@ -502,6 +499,10 @@
     "start": "Iniciar/Reanudar"
   },
   "process_create": {
+    "anonymous": {
+      "legal_disclaimer": "Si los votantes utilizan el poder de votación del token (público en cadena de bloques), para mejorar el anonimato, los pesos se agrupan en saldos similares, redondeados hacia abajo. Esto sacrifica cierta precisión pero preserva la identidad al desvincular los saldos de las carteras.",
+      "legal_note": "Aviso legal: "
+    },
     "census": {
       "total_tokens_one": "1 token",
       "total_tokens_many": "",
@@ -513,7 +514,10 @@
       "sign_tx": "Firmar transacción"
     },
     "creation_steps_description": "Necesitas firmar las transacciones para crear el proceso de votación en la cadena de bloques de Vocdoni. No cierres esta ventana.",
-    "creation_steps_title": "Progreso"
+    "creation_steps_title": "Progreso",
+    "preview": {
+      "accuracy": "Precisión de los Saldos de Censo Anónimo: "
+    }
   },
   "roadmap": {
     "census_description": "Crear un censo descentralizado fuera de la cadena y compatible con zk a partir de una instantánea de bloques de Ethereum, con verificación en cadena.",

@@ -1,4 +1,4 @@
-import { Box, ChakraProvider, extendTheme, Flex, Icon, Link, Text } from '@chakra-ui/react'
+import { Box, ChakraProvider, extendTheme, Flex, Icon, Link, Text, Tooltip } from '@chakra-ui/react'
 import { ElectionDescription, ElectionQuestions, ElectionTitle } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import { AiTwotoneQuestionCircle } from 'react-icons/ai'
@@ -144,17 +144,16 @@ const Preview = () => {
           {form.electionType.anonymous && (
             <Text display='flex' alignItems='center' flexWrap='wrap' gap={1}>
               <Text as='span' fontWeight='bold'>
-                {t('form.process_create.census.accuracy')}
+                {t('process_create.preview.accuracy')}
               </Text>
               {accuracy.toFixed()}%
-              <Text
-                as='span'
-                alignSelf='start'
-                mt='2px'
-                title={t('form.process_create.behavior.anonymous.rounded_census_title')}
+              <Tooltip
+                label={t('process_create.anonymous.legal_note') + t('process_create.anonymous.legal_disclaimer')}
               >
-                <AiTwotoneQuestionCircle />
-              </Text>
+                <Text as='span' mb='4px'>
+                  <AiTwotoneQuestionCircle />
+                </Text>
+              </Tooltip>
             </Text>
           )}
         </Box>

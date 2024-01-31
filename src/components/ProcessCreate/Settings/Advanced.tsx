@@ -1,6 +1,6 @@
 import { Box, Checkbox, Flex, Icon, Text } from '@chakra-ui/react'
 import { useFormContext } from 'react-hook-form'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { BiCheckDouble } from 'react-icons/bi'
 import { FaUserSecret } from 'react-icons/fa'
 import { HiKey } from 'react-icons/hi2'
@@ -33,13 +33,10 @@ const SettingsAdvanced = () => {
             <Text>{t('form.process_create.behavior.anonymous.description')}</Text>
             {anonymous && (
               <Box>
-                <Trans
-                  i18nKey='form.process_create.behavior.anonymous.rounded_census'
-                  components={{
-                    spanBold: <Text as='span' />,
-                    span: <Text as='span' />,
-                  }}
-                />
+                <Text as='span' fontWeight='bold'>
+                  {t('process_create.anonymous.legal_note')}
+                </Text>
+                <Text as='span'>{t('process_create.anonymous.legal_disclaimer')}</Text>
               </Box>
             )}
           </Checkbox>

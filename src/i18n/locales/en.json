@@ -205,8 +205,6 @@
       "behavior": {
         "anonymous": {
           "description": "This setting ensures that votes remain unlinked to voter identities by utilizing advanced zkSNARKs technology on the Vocdoni Protocol.",
-          "rounded_census": "<spanBold>Disclaimer: </spanBold><span>If voters use token voting power (public onchain), to enhance anonymity, weights are grouped into similar balances, rounded down. This sacrifices some accuracy but preserves identity by unlinking balances from wallets.</span>",
-          "rounded_census_title": "Disclaimer: If voters use token voting power (public onchain), to enhance anonymity, weights are grouped into similar balances, rounded down. This sacrifices some accuracy but preserves identity by unlinking balances from wallets.",
           "title": "Anonymous"
         },
         "overwrite": {
@@ -232,7 +230,6 @@
         "title_description": "Set up the voting schedule."
       },
       "census": {
-        "accuracy": "Anonymous Census Balance Accuracy: ",
         "add_button": "Add",
         "add_new_address": "add a new address",
         "delete_web3_address": "Delete address index {{ index }}",
@@ -494,6 +491,10 @@
     "start": "Start/Resume"
   },
   "process_create": {
+    "anonymous": {
+      "legal_disclaimer": "If voters use token voting power (public onchain), to enhance anonymity, weights are grouped into similar balances, rounded down. This sacrifices some accuracy but preserves identity by unlinking balances from wallets.",
+      "legal_note": "Disclaimer: "
+    },
     "census": {
       "total_tokens_one": "1 token",
       "total_tokens_other": "{{ count }} tokens"
@@ -504,7 +505,10 @@
       "sign_tx": "Sign transaction"
     },
     "creation_steps_description": "Sign transaction to create the voting process. Generating the census can take a few minutes, please don't close this window.",
-    "creation_steps_title": "Progress"
+    "creation_steps_title": "Progress",
+    "preview": {
+      "accuracy": "Anonymous Census Balance Accuracy: "
+    }
   },
   "roadmap": {
     "census_description": "Create a trust-less off-chain zk-friendly census from an Ethereum block snapshot, with on-chain verification.",
