@@ -1,6 +1,7 @@
 import { Box, ChakraProvider, extendTheme, Flex, Icon, Link, Text } from '@chakra-ui/react'
 import { ElectionDescription, ElectionQuestions, ElectionTitle } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
+import { AiTwotoneQuestionCircle } from 'react-icons/ai'
 import { IoMdCheckmark, IoMdClose, IoMdCreate } from 'react-icons/io'
 import { IoCheckmarkSharp } from 'react-icons/io5'
 import { confirmTheme } from '~theme/components/Confirm'
@@ -141,11 +142,19 @@ const Preview = () => {
         <Box w={{ md: '65%' }}>
           <Census />
           {form.electionType.anonymous && (
-            <Text>
+            <Text display='flex' alignItems='center' flexWrap='wrap' gap={1}>
               <Text as='span' fontWeight='bold'>
                 {t('form.process_create.census.accuracy')}
               </Text>
-              <Text as='span'>{accuracy.toFixed()}%</Text>
+              {accuracy.toFixed()}%
+              <Text
+                as='span'
+                alignSelf='start'
+                mt='2px'
+                title={t('form.process_create.behavior.anonymous.rounded_census_title')}
+              >
+                <AiTwotoneQuestionCircle />
+              </Text>
             </Text>
           )}
         </Box>

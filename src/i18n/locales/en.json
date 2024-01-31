@@ -206,6 +206,7 @@
         "anonymous": {
           "description": "This setting ensures that votes remain unlinked to voter identities by utilizing advanced zkSNARKs technology on the Vocdoni Protocol.",
           "rounded_census": "<spanBold>Disclaimer: </spanBold><span>If voters use token voting power (public onchain), to enhance anonymity, weights are grouped into similar balances, rounded down. This sacrifices some accuracy but preserves identity by unlinking balances from wallets.</span>",
+          "rounded_census_title": "Disclaimer: If voters use token voting power (public onchain), to enhance anonymity, weights are grouped into similar balances, rounded down. This sacrifices some accuracy but preserves identity by unlinking balances from wallets.",
           "title": "Anonymous"
         },
         "overwrite": {

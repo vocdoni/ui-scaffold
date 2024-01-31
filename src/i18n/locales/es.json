@@ -209,6 +209,7 @@
         "anonymous": {
           "description": "La identidad de los votantes será completamente anonimizada, incluyendo para el organizador. Cada votante deberá establecer una contraseña para garantizar la confidencialidad de su identidad.",
           "rounded_census": "<spanBold>Nota legal: </spanBold><span>En caso de que los votantes utilicen el poder de voto de tokens (público en cadena) para mejorar el anonimato, los pesos se agrupan según saldos similares y se redondean hacia abajo. Esto sacrifica cierta precisión pero preserva la identidad al desvincular los saldos de las billeteras.</span>",
+          "rounded_census_title": "Nota legal: En caso de que los votantes utilicen el poder de voto de tokens (público en cadena) para mejorar el anonimato, los pesos se agrupan según saldos similares y se redondean hacia abajo. Esto sacrifica cierta precisión pero preserva la identidad al desvincular los saldos de las billeteras.",
           "title": "Anónimo"
         },
         "overwrite": {
