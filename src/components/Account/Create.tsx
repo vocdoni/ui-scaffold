@@ -16,6 +16,7 @@ import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { useFaucet } from '~components/Faucet/use-faucet'
+import { useAccountHealthTools } from './use-account-health-tools'
 
 interface FormFields {
   name: string
@@ -35,12 +36,15 @@ export const AccountCreate = () => {
   })
   const {
     createAccount,
+    updateAccount,
     errors: { account: error },
   } = useClient()
   const { t } = useTranslation()
   const [sent, setSent] = useState<boolean>(false)
   const { getAuthTypes } = useFaucet()
   const [faucetAmount, setFaucetAmount] = useState<number>(0)
+  // we want to know if account exists, not the organization (slight difference)
+  const { exists } = useAccountHealthTools()
 
   const required = {
     value: true,
@@ -61,10 +65,18 @@ export const AccountCreate = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const onSubmit = async (values: FormFields) =>
-    createAccount({
-      account: new Account(values),
-    })?.finally(() => setSent(true))
+  const onSubmit = async (values: FormFields) => {
+    let call = () =>
+      createAccount({
+        account: new Account(values),
+      })
+
+    if (exists) {
+      call = () => updateAccount(new Account(values))
+    }
+
+    return call()?.finally(() => setSent(true))
+  }
 
   return (
     <Flex
