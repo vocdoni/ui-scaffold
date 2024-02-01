@@ -1,9 +1,7 @@
 import { $convertToMarkdownString } from '@lexical/markdown'
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
 import type { EditorState } from 'lexical'
-import debounce from 'lodash.debounce'
 import type { Dispatch, SetStateAction } from 'react'
-import { useMemo } from 'react'
 
 export type OnChangeMarkdownType = Dispatch<SetStateAction<string>> | ((value: string) => void)
 
@@ -16,11 +14,7 @@ export default function OnChangeMarkdown({
   onChange: OnChangeMarkdownType
   __UNSAFE_debounceTime?: number
 }) {
-  const OnChangeMarkdown = useMemo(() => {
-    return debounce((state: EditorState) => transformState(state, onChange, transformers), __UNSAFE_debounceTime ?? 200)
-  }, [onChange, __UNSAFE_debounceTime])
-
-  return <OnChangePlugin onChange={OnChangeMarkdown} ignoreInitialChange ignoreSelectionChange />
+  return <OnChangePlugin onChange={(state) => transformState(state, onChange, transformers)} ignoreSelectionChange />
 }
 
 function transformState(editorState: EditorState, onChange: OnChangeMarkdownType, transformers: any) {

@@ -49,6 +49,10 @@ export const colors = {
 
   bg: colorsBase.gray.bg,
 
+  editor: {
+    character_limit: colorsBase.gray.light,
+  },
+
   error: colorsBase.red,
 
   checkbox: colorsBase.primary.main,
