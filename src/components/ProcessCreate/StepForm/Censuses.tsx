@@ -44,9 +44,7 @@ export const TokenCensus = () => (
 )
 
 const Csp = lazy(() => {
-  return import('./CensusCsp').then((module) => ({
-    default: (props: any) => <module.StepFormCensusCsp {...props} />,
-  }))
+  return import('./CensusCsp').then((module) => ({ default: module.StepFormCensusCsp }))
 })
 
 export const CspCensusGithub = () => (

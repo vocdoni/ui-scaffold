@@ -91,8 +91,9 @@
   "census": {
     "chain_required": "You need to select a network",
     "description": "Choose how to authenticate and verify voters.",
+    "github_address_title": "Github Users",
+    "google_address_title": "Google Addresses",
     "request_custom_token": "'Request Custom Tokens'",
-    "social_address_title": "Github users",
     "spreadsheet_title": "Custom data",
     "title": "Census",
     "token_description": "Configure the census by choosing a token from any available network. You can request a token here.",
@@ -196,11 +197,11 @@
       "address_already_in_use": "Address already in use",
       "address_pattern": "Only hex addresses are allowed (e.g 0x031101A...)",
       "avatar_error": "URL not valid",
+      "email_address_pattern": "Only email addresses are allowed (e.g john@appleseed.com)",
       "field_is_required": "This field is required",
       "min_address": "Please, provide at least one address",
       "min_users_address": "",
-      "recipient_address_invalid": "Specified address does not seem to be valid",
-      "email_address_pattern": "Only email addresses are allowed (e.g john@appleseed.com)"
+      "recipient_address_invalid": "Specified address does not seem to be valid"
     },
     "process_create": {
       "behavior": {
@@ -233,6 +234,12 @@
       "census": {
         "add_button": "Add",
         "add_new_address": "add a new address",
+        "csp": {
+          "github_description": "Github users can authenticate with their Github account to participate in the voting process.",
+          "github_title": "Github Census",
+          "google_description": "Google users can authenticate with their Google account to participate in the voting process.",
+          "google_title": "Google Census"
+        },
         "delete_web3_address": "Delete address index {{ index }}",
         "holders": "{{ holders }} holders",
         "max_census_resum": "You have a pool of {{ uniTokenHolders }} {{ symbol }} potential voters. To reduce the cost of the voting process, you can opt to limit the total number of participants in the voting process. This will not affect specific voters; it will simply reduce the number of holders who can cast their votes.",
@@ -247,18 +254,16 @@
         "token_base_title": "Token based",
         "tokens_placeholder": "Search or paste token address",
         "wallet_address_description": "Create a census of eligible voters providing a list of wallet addresses.",
-        "wallet_address_title": "Wallet addresses",
-        "csp": {
-          "github_title": "Github Census",
-          "github_description": "Github users can authenticate with their Github account to participate in the voting process.",
-          "google_title": "Google Census",
-          "google_description": "Google users can authenticate with their Google account to participate in the voting process."
-        }
+        "wallet_address_title": "Wallet addresses"
       },
       "confirm": {
         "anonymous": "Anonymous voting active",
         "census": "Census",
         "census_preview_is_shortened": "(preview list is limited to {{ limit }} results)",
+        "census_preview_list": {
+          "github_address": "Github accounts",
+          "google_address": "Google Addresses"
+        },
         "census_total_people_one": "A single person will be elegible for voting in this process",
         "census_total_people_other": "{{ count }} people will be elegible for voting in this process",
         "configuration": "Configuration",
@@ -278,12 +283,7 @@
         "secret_until_the_end": "Secret until the end",
         "title": "Preview",
         "title_election": "Title",
-        "vote_overwrite": "Vote overwrite",
-        "census_preview_list": {
-          "address": "Google Email Addresses",
-          "github_address": "Github accounts",
-          "google_address": "Google Addresses"
-        }
+        "vote_overwrite": "Vote overwrite"
       },
       "confirm_spreadsheet_removal": "Are you sure? Take in mind that the uploaded file will be removed",
       "creating_process": "Creating Voting Process...",

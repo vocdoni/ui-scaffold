@@ -79,7 +79,7 @@ const GithubUserSearch = ({ ...props }) => {
   return (
     <>
       <Text fontWeight='bold' mb={3} color='process_create.census.title'>
-        {t('census.social_address_title')}
+        {t('census.github_address_title')}
       </Text>
 
       <Input type='text' placeholder='Search...' onChange={(e) => handleInputChange(e.target.value)} />

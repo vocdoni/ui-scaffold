@@ -117,6 +117,10 @@ const GoogleUsers = ({ ...props }) => {
 
   return (
     <>
+      <Text fontWeight='bold' mb={3} color='process_create.census.title'>
+        {t('census.google_address_title')}
+      </Text>
+
       <Flex flexDirection={{ base: 'column', xl: 'row' }} gap={5} alignItems='center'>
         <Box flex='1 1 50%' w='100%'>
           <FormControl

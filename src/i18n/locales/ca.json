@@ -93,8 +93,9 @@
   "census": {
     "chain_required": "Necessites seleccionar una xarxa",
     "description": "Selecciona com s'autenticaran i identificaran els votants.",
+    "github_address_title": "Usuaris de Github",
+    "google_address_title": "Adreces de Google",
     "request_custom_token": "Sol·licitar Tokens Personalitzats",
-    "social_address_title": "Usuaris de Github",
     "spreadsheet_title": "Dades personalitzades",
     "title": "Trieu el cens",
     "token_description": "Selecciona la red y el token para crear un censo donde los titulares de token votarán con su poder de voto.",
@@ -199,11 +200,11 @@
       "address_already_in_use": "Aquesta adreça ja és al cens",
       "address_pattern": "Només s'admeten adreces hexadecimals (p. ex. 0x031101A...)",
       "avatar_error": "URL no vàlida",
+      "email_address_pattern": "Només es permeten adreces de correu electrònic (p. ex. john@appleseed.com)",
       "field_is_required": "Aquest camp és obligatori",
       "min_address": "Si us plau, proporciona com a mínim una adreça",
       "min_users_address": "",
-      "recipient_address_invalid": "L'adreça especificada no sembla vàlida",
-      "email_address_pattern": "Només es permeten adreces de correu electrònic (p. ex. john@appleseed.com)"
+      "recipient_address_invalid": "L'adreça especificada no sembla vàlida"
     },
     "process_create": {
       "behavior": {
@@ -236,6 +237,12 @@
       "census": {
         "add_button": "Afegir",
         "add_new_address": "Afageix una nova adreça",
+        "csp": {
+          "github_description": "Els usuaris de Github poden autenticar-se amb el seu compte de Github per participar en el procés de votació.",
+          "github_title": "Cens de Github",
+          "google_description": "Els usuaris de Google poden autenticar-se amb el seu compte de Google per participar en el procés de votació.",
+          "google_title": "Cens de Google"
+        },
         "delete_web3_address": "Eliminar adreça amb index {{ index }}",
         "holders": "{{ holders }} titulars",
         "max_census_resum": "Amb aquesta configuració, {{ uniTokenHolders }} titulars de tokens {{ symbol }} podran votar, representant un {{ percent }}% del total del torn de votació màxim.",
@@ -244,26 +251,22 @@
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} votants elegibles)",
         "network": "Xarxa",
         "network_placeholder": "Selecciona una xarxa",
-        "social_description": "Creeu un cens d'electors elegibles proporcionant una llista d'usuaris de Github.",
-        "social_title": "Cens de Github",
         "spreadsheet_description": "Dades personalitzades, com ara noms d'usuari i contrasenyes, o informació personal dels votants, es poden utilitzar per a l'autenticació amb un formulari.",
         "spreadsheet_title": "Dades personalitzades",
         "token_base_description": "Utilitza un token (basat en EVM) per permetre als usuaris votar en funció de la quantitat de tokens que posseeixin.",
         "token_base_title": "Basat en token",
         "tokens_placeholder": "Cerca o enganxa la direcció del token",
         "wallet_address_description": "Identifica els teus votants per les seves adreces de cartera.",
-        "wallet_address_title": "Adreces de cartera",
-        "csp": {
-          "github_title": "Cens de Github",
-          "github_description": "Els usuaris de Github poden autenticar-se amb el seu compte de Github per participar en el procés de votació.",
-          "google_title": "Cens de Google",
-          "google_description": "Els usuaris de Google poden autenticar-se amb el seu compte de Google per participar en el procés de votació."
-        }
+        "wallet_address_title": "Adreces de cartera"
       },
       "confirm": {
         "anonymous": "Anònim",
         "census": "Cens",
         "census_preview_is_shortened": "(la llista prèvia està limitada a {{ limit }} resultats)",
+        "census_preview_list": {
+          "github_address": "Comptes Github",
+          "google_address": "Adreces de Google"
+        },
         "census_total_people_one": "Una persona podrà votar en aquesta votació",
         "census_total_people_many": "{{ count }} persones podran votar en aquesta votació",
         "census_total_people_other": "{{ count }} persones podran votar en aquesta votació",
@@ -285,12 +288,7 @@
         "secret_until_the_end": "Secret fins el final",
         "title": "Vista prèvia i costos de votació",
         "title_election": "Títol",
-        "vote_overwrite": "Sobreescriure vot",
-        "census_preview_list": {
-          "address": "Adreces de correu electrònic de Google",
-          "github_address": "Comptes Github",
-          "google_address": "Adreces de Google"
-        }
+        "vote_overwrite": "Sobreescriure vot"
       },
       "confirm_spreadsheet_removal": "Estàs segur que vols canviar-ho? Fent-ho s'esborrarà el fitxer que has carregat actualment.",
       "creating_process": "Creant Procés de Votació...",

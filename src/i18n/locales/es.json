@@ -93,8 +93,9 @@
   "census": {
     "chain_required": "Necesitas seleccionar una red",
     "description": "Selecciona cómo los votantes se autenticarán e identificarán.",
+    "github_address_title": "Usuarios de Github",
+    "google_address_title": "Direcciones de Google",
     "request_custom_token": "Solicitar Tokens Personalizados",
-    "social_address_title": "Usuarios de Github",
     "spreadsheet_title": "Datos personalizados",
     "title": "Censo",
     "token_description": "Seleccioneu la xarxa i el token per crear un cens on els titulars del token votaran amb el seu poder de vot.",
@@ -199,11 +200,11 @@
       "address_already_in_use": "Esta dirección ya está en el censo",
       "address_pattern": "Solo se permiten direcciones hexadecimales (p.ej. 0x031101A...)",
       "avatar_error": "URL no válida",
+      "email_address_pattern": "Sólo se permiten direcciones de correo electrónico (por ejemplo, john@appleseed.com)",
       "field_is_required": "Este campo es obligatorio",
       "min_address": "Por favor, proporciona al menos una dirección",
       "min_users_address": "",
-      "recipient_address_invalid": "La dirección especificada no parece válida",
-      "email_address_pattern": "Sólo se permiten direcciones de correo electrónico (por ejemplo, john@appleseed.com)"
+      "recipient_address_invalid": "La dirección especificada no parece válida"
     },
     "process_create": {
       "behavior": {
@@ -236,6 +237,12 @@
       "census": {
         "add_button": "Añadir",
         "add_new_address": "Añade una nueva dirección",
+        "csp": {
+          "github_description": "Los usuarios de Github pueden autenticarse con su cuenta de Github para participar en el proceso de votación.",
+          "github_title": "Censo de github",
+          "google_description": "Los usuarios de Google pueden autenticarse con su cuenta de Google para participar en el proceso de votación.",
+          "google_title": "Censo de Google"
+        },
         "delete_web3_address": "Eliminar direccion con índice {{ index }}",
         "holders": "{{ holders }} titulares",
         "max_census_resum": "Con esta configuración, {{ uniTokenHolders }} poseedores de tokens {{ symbol }} podrán votar, representando un {{ percent }}% del total de la participación máxima.",
@@ -244,26 +251,22 @@
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} votantes elegibles)",
         "network": "Red",
         "network_placeholder": "Selecciona una red",
-        "social_description": "Cree un censo de votantes elegibles que proporcione una lista de usuarios de Github.",
-        "social_title": "Censo de Github",
         "spreadsheet_description": "Datos personalizados, como nombres de usuario y contraseñas, o información personal de los votantes, pueden utilizarse para la autenticación mediante un formulario.",
         "spreadsheet_title": "Datos personalizados",
         "token_base_description": "Utiliza un token (basado en EVM) para permitir a los usuarios votar en función de la cantidad que poseen.",
         "token_base_title": "Basado en tokens",
         "tokens_placeholder": "Busca o pega la dirección del token",
         "wallet_address_description": "Identifica a tus votantes por sus direcciones de monedero digital.",
-        "wallet_address_title": "Direcciones de monedero",
-        "csp": {
-          "github_title": "Censo de github",
-          "github_description": "Los usuarios de Github pueden autenticarse con su cuenta de Github para participar en el proceso de votación.",
-          "google_title": "Censo de Google",
-          "google_description": "Los usuarios de Google pueden autenticarse con su cuenta de Google para participar en el proceso de votación."
-        }
+        "wallet_address_title": "Direcciones de monedero"
       },
       "confirm": {
         "anonymous": "Anónimo",
         "census": "Censo",
         "census_preview_is_shortened": "(la lista previa está limitada a {{ limit }} resultados)",
+        "census_preview_list": {
+          "github_address": "Cuentas de Github",
+          "google_address": "Direcciones de Google"
+        },
         "census_total_people_one": "Una persona podrá votar en esta votación",
         "census_total_people_many": "{{ count }} personas podrán votar en esta votación",
         "census_total_people_other": "{{ count }} personas podrán votar en esta votación",
@@ -285,12 +288,7 @@
         "secret_until_the_end": "Secreto hasta el final",
         "title": "Vista previa y costos de votación",
         "title_election": "Título",
-        "vote_overwrite": "Sobrescribir voto",
-        "census_preview_list": {
-          "address": "Direcciones de correo electrónico de Google",
-          "github_address": "Cuentas de Github",
-          "google_address": "Direcciones de Google"
-        }
+        "vote_overwrite": "Sobrescribir voto"
       },
       "confirm_spreadsheet_removal": "Seguro? Piensa que al hacerlo se eliminará el fichero que has cargado.",
       "creating_process": "Creando Proceso de Votación...",
