@@ -52,7 +52,7 @@
     },
     "results": {
       "date_format": "d 'de' MMMM 'de' y 'a' 'las' H:mm",
-      "secret_until_the_end": "Secreto hasta el final. Los resultados estarán disponibles cuando el proceso termine el {{ endDate }}",
+      "secret_until_the_end": "Los resultados se harán públicos cuando el proceso finalice el {{ endDate }}.",
       "title": "Resultados para \"{{ title }}\"",
       "votes": "Votos: {{ votes }} ({{ percent }})"
     },
@@ -63,7 +63,7 @@
       "anon_sik_label": "Define una contraseña para tu voto",
       "close": "Cerrar",
       "logout": "Cerrar la sesión",
-      "modal_title": "Debes identificarte primero"
+      "modal_title": "Autentificación"
     },
     "statuses": {
       "canceled": "Cancelada",
@@ -430,7 +430,7 @@
       "not_owner": "Esta organización aún no tiene votaciones.",
       "title": "Crea tu primer proceso de votación"
     },
-    "name_long": "<strong>{{ name }}</strong> ({{ address }})",
+    "name_long": "<strong>{{ name }}</strong>",
     "title": {
       "edit": "Editar organización",
       "read_more": "Expandir título"
@@ -476,7 +476,7 @@
     },
     "state": "ESTADO",
     "status": {
-      "active": "Activo",
+      "active": "Votación en curso",
       "canceled": "Proceso cancelado",
       "ended": "Finalizado",
       "paused": "Proceso pausado",
