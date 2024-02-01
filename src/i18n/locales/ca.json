@@ -500,7 +500,7 @@
   },
   "process_create": {
     "anonymous": {
-      "legal_disclaimer": "Si els votants utilitzen el poder de vot del token (públic a la cadena de blocs), per millorar l'anonimat, els pesos es agrupen en saldos similars, arrodonits cap avall. Això sacrifica una certa precisió però preserva la identitat desvinculant els saldos de les carteres.",
+      "legal_disclaimer": "Si els votants utilitzen el poder de vot del token (públic a la cadena de blocs), per millorar l'anonimat, els pesos s'agrupen en saldos similars, arrodonits cap avall. Això sacrifica una certa precisió però preserva la identitat desvinculant els saldos de les carteres.",
       "legal_note": "Avís legal: "
     },
     "census": {
