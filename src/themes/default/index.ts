@@ -17,6 +17,20 @@ export const theme = extendTheme(vtheme, {
         '--box-shadow-darker': '0px 2px 4px #808080b5',
         '--vcd-gradient-primary': 'linear-gradient(to right, #24656e, #2c545a)',
       },
+      '.md-sizes': {
+        'h2[level="1"]': {
+          fontSize: '24px',
+        },
+        'h2[level="2"]': {
+          fontSize: '20px',
+        },
+        'h3[level="3"]': {
+          fontSize: '18px',
+        },
+        p: {
+          fontSize: '16px',
+        },
+      },
       '.padding-x': {
         paddingX: {
           base: '10px',
