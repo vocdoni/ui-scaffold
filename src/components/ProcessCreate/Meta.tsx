@@ -1,11 +1,13 @@
 import { InfoOutlineIcon } from '@chakra-ui/icons'
-import { Box, FormControl, FormErrorMessage, FormHelperText, FormLabel, Input, Text, Textarea } from '@chakra-ui/react'
+import { Box, FormControl, FormErrorMessage, FormHelperText, FormLabel, Input, Text } from '@chakra-ui/react'
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import Editor from '~components/Editor/Editor'
 import { fieldMapErrorMessage, isInvalidFieldMap } from '~constants'
 
 const CreateProcessMeta = () => {
   const {
+    setValue,
     register,
     formState: { errors },
     watch,
@@ -21,7 +23,14 @@ const CreateProcessMeta = () => {
   const description = watch('description')
 
   const maxLengthTitle = 500
-  const maxLengthDescription = 10000
+  const maxLengthDescription = 20
+
+  const handleDescription = (text: string) => {
+    console.log(text.length)
+    if (text.length <= maxLengthDescription) {
+      setValue('description', text)
+    }
+  }
   return (
     <>
       <Box>
@@ -56,9 +65,10 @@ const CreateProcessMeta = () => {
 
           <FormControl variant='process-create-label' isInvalid={isInvalidFieldMap(errors, `description`)}>
             <FormLabel>{t('form.process_create.meta.description_label')}</FormLabel>
-            <Textarea
-              {...register('description')}
-              maxLength={maxLengthDescription}
+
+            <Editor
+              onChange={handleDescription}
+              value={description}
               placeholder={t('form.process_create.meta.description_placeholder').toString()}
             />
             {description && description.length > (maxLengthDescription * 70) / 100 && (
