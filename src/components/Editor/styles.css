@@ -1,58 +1,11 @@
-body {
-  margin: 0;
-  background: #eee;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, '.SFNSText-Regular', sans-serif;
-  font-weight: 500;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.other h2 {
-  font-size: 18px;
-  color: #444;
-  margin-bottom: 7px;
-}
-
-.other a {
-  color: #777;
-  text-decoration: underline;
-  font-size: 14px;
-}
-
-.other ul {
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
-}
-
-.App {
-  font-family: sans-serif;
-  text-align: center;
-}
-
-h1 {
-  font-size: 24px;
-  color: #333;
-}
-
-.ltr {
-  text-align: left;
-}
-
-.rtl {
-  text-align: right;
-}
-
 .editor-container {
-  border-radius: 2px;
-  color: #000;
+  border-radius: 5px;
   position: relative;
   line-height: 20px;
   font-weight: 400;
   text-align: left;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
   border: 1px solid #e2e8f0;
+  margin-bottom: 10px;
 }
 
 .editor-container:focus-within {
@@ -60,7 +13,6 @@ h1 {
 }
 
 .editor-inner {
-  background: #fff;
   position: relative;
 }
 
@@ -109,12 +61,12 @@ h1 {
   text-decoration: underline line-through;
 }
 
-.editor-text-code {
+/* .editor-text-code {
   background-color: rgb(240, 242, 245);
   padding: 1px 0.25rem;
   font-family: Menlo, Consolas, Monaco, monospace;
   font-size: 94%;
-}
+} */
 
 .editor-link {
   color: rgb(33, 111, 219);
@@ -137,78 +89,6 @@ h1 {
   line-height: 14px;
 }
 
-.editor-code {
-  background-color: rgb(240, 242, 245);
-  font-family: Menlo, Consolas, Monaco, monospace;
-  display: block;
-  padding: 8px 8px 8px 52px;
-  line-height: 1.53;
-  font-size: 13px;
-  margin: 0;
-  margin-top: 8px;
-  margin-bottom: 8px;
-  tab-size: 2;
-  /* white-space: pre; */
-  overflow-x: auto;
-  position: relative;
-}
-
-.editor-code:before {
-  content: attr(data-gutter);
-  position: absolute;
-  background-color: #eee;
-  left: 0;
-  top: 0;
-  border-right: 1px solid #ccc;
-  padding: 8px;
-  color: #777;
-  white-space: pre-wrap;
-  text-align: right;
-  min-width: 25px;
-}
-.editor-code:after {
-  content: attr(data-highlight-language);
-  top: 0;
-  right: 3px;
-  padding: 3px;
-  font-size: 10px;
-  text-transform: uppercase;
-  position: absolute;
-  color: rgba(0, 0, 0, 0.5);
-}
-
-.editor-tokenComment {
-  color: slategray;
-}
-
-.editor-tokenPunctuation {
-  color: #999;
-}
-
-.editor-tokenProperty {
-  color: #905;
-}
-
-.editor-tokenSelector {
-  color: #690;
-}
-
-.editor-tokenOperator {
-  color: #9a6e3a;
-}
-
-.editor-tokenAttr {
-  color: #07a;
-}
-
-.editor-tokenVariable {
-  color: #e90;
-}
-
-.editor-tokenFunction {
-  color: #dd4a68;
-}
-
 .editor-paragraph {
   margin: 0;
   margin-bottom: 8px;
@@ -219,23 +99,28 @@ h1 {
   margin-bottom: 0;
 }
 
+.editor-heading-h1,
+.editor-heading-h2,
+.editor-heading-h3 {
+  margin: 10px 0;
+  padding: 0;
+}
+
 .editor-heading-h1 {
   font-size: 24px;
   color: rgb(5, 5, 5);
   font-weight: 400;
-  margin: 0;
-  margin-bottom: 12px;
-  padding: 0;
 }
 
 .editor-heading-h2 {
   font-size: 15px;
   color: rgb(101, 103, 107);
   font-weight: 700;
-  margin: 0;
-  margin-top: 10px;
-  padding: 0;
-  text-transform: uppercase;
+}
+
+.editor-heading-h3 {
+  color: rgb(101, 103, 107);
+  font-weight: 700;
 }
 
 .editor-quote {
@@ -278,73 +163,6 @@ pre::-webkit-scrollbar-thumb {
   background: #999;
 }
 
-.debug-timetravel-panel {
-  overflow: hidden;
-  padding: 0 0 10px 0;
-  margin: auto;
-  display: flex;
-}
-
-.debug-timetravel-panel-slider {
-  padding: 0;
-  flex: 8;
-}
-
-.debug-timetravel-panel-button {
-  padding: 0;
-  border: 0;
-  background: none;
-  flex: 1;
-  color: #fff;
-  font-size: 12px;
-}
-
-.debug-timetravel-panel-button:hover {
-  text-decoration: underline;
-}
-
-.debug-timetravel-button {
-  border: 0;
-  padding: 0;
-  font-size: 12px;
-  top: 10px;
-  right: 15px;
-  position: absolute;
-  background: none;
-  color: #fff;
-}
-
-.debug-timetravel-button:hover {
-  text-decoration: underline;
-}
-
-.emoji {
-  color: transparent;
-  background-size: 16px 16px;
-  background-position: center;
-  background-repeat: no-repeat;
-  vertical-align: middle;
-  margin: 0 -1px;
-}
-
-.emoji-inner {
-  padding: 0 0.15em;
-}
-
-.emoji-inner::selection {
-  color: transparent;
-  background-color: rgba(150, 150, 150, 0.4);
-}
-
-.emoji-inner::moz-selection {
-  color: transparent;
-  background-color: rgba(150, 150, 150, 0.4);
-}
-
-.emoji.happysmile {
-  background-image: url(./images/emoji/1F642.png);
-}
-
 .toolbar {
   display: flex;
   margin-bottom: 1px;
@@ -359,7 +177,7 @@ pre::-webkit-scrollbar-thumb {
   border: 0;
   display: flex;
   background: none;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 8px;
   cursor: pointer;
   vertical-align: middle;
@@ -413,8 +231,7 @@ pre::-webkit-scrollbar-thumb {
   border-radius: 10px;
   padding: 8px;
   vertical-align: middle;
-  -webkit-appearance: none;
-  -moz-appearance: none;
+  appearance: none;
   width: 70px;
   font-size: 14px;
   color: #777;
@@ -589,8 +406,6 @@ i.chevron-down {
 .link-editor {
   position: absolute;
   z-index: 100;
-  top: -10000px;
-  left: -10000px;
   margin-top: -6px;
   max-width: 300px;
   width: 100%;
@@ -671,6 +486,13 @@ i.chevron-down {
   vertical-align: -0.25em;
 }
 
+.characters-limit {
+  pointer-events: none;
+  color: var(--chakra-colors-editor-character_limit);
+  font-size: 0.9em;
+  margin-left: 5px;
+}
+
 i.undo {
   background-image: url(/assets/editor/arrow-counterclockwise.svg);
 }
@@ -691,6 +513,11 @@ i.redo {
 .icon.small-heading,
 .icon.h2 {
   background-image: url(/assets/editor/type-h2.svg);
+}
+
+.icon.small-heading,
+.icon.h3 {
+  background-image: url(/assets/editor/type-h3.svg);
 }
 
 .icon.bullet-list,
@@ -749,4 +576,129 @@ i.right-align {
 
 i.justify-align {
   background-image: url(/assets/editor/justify.svg);
+}
+
+.link-editor .button.active,
+.toolbar .button.active {
+  background-color: rgb(223, 232, 250);
+}
+
+.link-editor .link-input {
+  display: block;
+  width: calc(100% - 75px);
+  box-sizing: border-box;
+  margin: 12px 12px;
+  padding: 8px 12px;
+  border-radius: 15px;
+  background-color: #eee;
+  font-size: 15px;
+  color: rgb(5, 5, 5);
+  border: 0;
+  outline: 0;
+  position: relative;
+  font-family: inherit;
+}
+
+.link-editor .link-view {
+  display: block;
+  width: calc(100% - 24px);
+  margin: 8px 12px;
+  padding: 8px 12px;
+  border-radius: 15px;
+  font-size: 15px;
+  color: rgb(5, 5, 5);
+  border: 0;
+  outline: 0;
+  position: relative;
+  font-family: inherit;
+}
+
+.link-editor .link-view a {
+  display: block;
+  word-break: break-word;
+  width: calc(100% - 33px);
+}
+
+.link-editor div.link-edit {
+  background-image: url(/assets/editor/pencil-fill.svg);
+  background-size: 16px;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 35px;
+  vertical-align: -0.25em;
+  position: absolute;
+  right: 30px;
+  top: 0;
+  bottom: 0;
+  cursor: pointer;
+}
+
+.link-editor div.link-trash {
+  background-image: url(/assets/editor/trash.svg);
+  background-size: 16px;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 35px;
+  vertical-align: -0.25em;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  cursor: pointer;
+}
+
+.link-editor div.link-cancel {
+  background-image: url(/assets/editor/close.svg);
+  background-size: 16px;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 35px;
+  vertical-align: -0.25em;
+  margin-right: 28px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  cursor: pointer;
+}
+
+.link-editor div.link-confirm {
+  background-image: url(/assets/editor/success-alt.svg);
+  background-size: 16px;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 35px;
+  vertical-align: -0.25em;
+  margin-right: 2px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  cursor: pointer;
+}
+
+.link-editor .link-input a {
+  color: rgb(33, 111, 219);
+  text-decoration: underline;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-right: 30px;
+  text-overflow: ellipsis;
+}
+
+.link-editor .link-input a:hover {
+  text-decoration: underline;
+}
+
+.link-editor .font-size-wrapper,
+.link-editor .font-family-wrapper {
+  display: flex;
+  margin: 0 4px;
+}
+
+.link-editor select {
+  padding: 6px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.075);
+  border-radius: 4px;
 }
