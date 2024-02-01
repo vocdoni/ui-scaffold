@@ -1,7 +1,8 @@
 import { DeleteIcon } from '@chakra-ui/icons'
-import { Box, FormControl, FormErrorMessage, IconButton, Input, Text, Textarea } from '@chakra-ui/react'
+import { Box, FormControl, FormErrorMessage, IconButton, Input, Text } from '@chakra-ui/react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import Editor from '~components/Editor/Editor'
 import { fieldMapErrorMessage, isInvalidFieldMap } from '~constants'
 import Options from './Options'
 
@@ -13,6 +14,8 @@ interface Props {
 const Question = ({ index, remove }: Props) => {
   const { t } = useTranslation()
   const {
+    watch,
+    setValue,
     register,
     formState: { errors },
   } = useFormContext()
@@ -24,6 +27,12 @@ const Question = ({ index, remove }: Props) => {
   } = useFieldArray({
     name: `questions.${index}.options`,
   })
+
+  const description = watch(`questions.${index}.description`)
+
+  const handleDescription = (text: string) => {
+    setValue(`questions.${index}.description`, text)
+  }
 
   return (
     <Box className='process-create-section' bgColor='process_create.section' p={6} position='relative'>
@@ -55,11 +64,16 @@ const Question = ({ index, remove }: Props) => {
         <FormErrorMessage>{fieldMapErrorMessage(errors, `questions.${index}.title`)}</FormErrorMessage>
       </FormControl>
       <FormControl mb={2}>
-        <Textarea
+        {/* <Textarea
           {...register(`questions.${index}.description`)}
           placeholder={t('form.process_create.question.description_placeholder').toString()}
           mb={1}
           maxW='90%'
+        /> */}
+        <Editor
+          onChange={handleDescription}
+          value={description}
+          placeholder={t('form.process_create.question.description_placeholder').toString()}
         />
       </FormControl>
 
