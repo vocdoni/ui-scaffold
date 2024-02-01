@@ -28,12 +28,6 @@ const Question = ({ index, remove }: Props) => {
     name: `questions.${index}.options`,
   })
 
-  const description = watch(`questions.${index}.description`)
-
-  const handleDescription = (text: string) => {
-    setValue(`questions.${index}.description`, text)
-  }
-
   return (
     <Box className='process-create-section' bgColor='process_create.section' p={6} position='relative'>
       <IconButton
@@ -63,19 +57,10 @@ const Question = ({ index, remove }: Props) => {
         />
         <FormErrorMessage>{fieldMapErrorMessage(errors, `questions.${index}.title`)}</FormErrorMessage>
       </FormControl>
-      <FormControl mb={2}>
-        {/* <Textarea
-          {...register(`questions.${index}.description`)}
-          placeholder={t('form.process_create.question.description_placeholder').toString()}
-          mb={1}
-          maxW='90%'
-        /> */}
-        <Editor
-          onChange={handleDescription}
-          value={description}
-          placeholder={t('form.process_create.question.description_placeholder').toString()}
-        />
-      </FormControl>
+      <Editor
+        onChange={(text: string) => setValue(`questions.${index}.description`, text)}
+        placeholder={t('form.process_create.question.description_placeholder').toString()}
+      />
 
       <Options fields={fields} removeOption={removeOption} appendOption={appendOption} index={index} />
 

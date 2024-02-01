@@ -20,17 +20,10 @@ const CreateProcessMeta = () => {
   }
 
   const title = watch('title')
-  const description = watch('description')
 
   const maxLengthTitle = 500
-  const maxLengthDescription = 20
+  const maxLengthDescription = 10000
 
-  const handleDescription = (text: string) => {
-    console.log(text.length)
-    if (text.length <= maxLengthDescription) {
-      setValue('description', text)
-    }
-  }
   return (
     <>
       <Box>
@@ -62,28 +55,13 @@ const CreateProcessMeta = () => {
             )}
             <FormErrorMessage>{fieldMapErrorMessage(errors, `title`)}</FormErrorMessage>
           </FormControl>
+          <FormLabel>{t('form.process_create.meta.description_label')}</FormLabel>
 
-          <FormControl variant='process-create-label' isInvalid={isInvalidFieldMap(errors, `description`)}>
-            <FormLabel>{t('form.process_create.meta.description_label')}</FormLabel>
-
-            <Editor
-              onChange={handleDescription}
-              value={description}
-              placeholder={t('form.process_create.meta.description_placeholder').toString()}
-            />
-            {description && description.length > (maxLengthDescription * 70) / 100 && (
-              <FormHelperText>
-                <InfoOutlineIcon />
-                <Text>
-                  {title.length !== maxLengthTitle ? (
-                    <Trans i18nKey='meta.length' values={{ maxLength: maxLengthTitle, length: title.length }} />
-                  ) : (
-                    <Trans i18nKey='meta.maxLength' />
-                  )}
-                </Text>
-              </FormHelperText>
-            )}
-          </FormControl>
+          <Editor
+            onChange={(text: string) => setValue('description', text)}
+            placeholder={t('form.process_create.meta.description_placeholder').toString()}
+            maxLength={maxLengthDescription}
+          />
         </Box>
       </Box>
     </>
