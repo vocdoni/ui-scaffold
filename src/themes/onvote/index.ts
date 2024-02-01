@@ -50,6 +50,20 @@ export const theme = extendTheme(vtheme, {
           md: '80px',
         },
       },
+      '.md-sizes': {
+        'h2[level="1"]': {
+          fontSize: '24px',
+        },
+        'h2[level="2"]': {
+          fontSize: '20px',
+        },
+        'h3[level="3"]': {
+          fontSize: '18px',
+        },
+        p: {
+          fontSize: '16px',
+        },
+      },
       '.process-create-title': {
         fontFamily: 'pixeloidsans, monospace',
         textTransform: 'uppercase',
