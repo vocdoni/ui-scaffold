@@ -8,21 +8,21 @@
     "overwrite_votes_left_other": "Puedes corregir tu voto {{ count }} veces.",
     "submitting": "",
     "verify_vote_on_explorer": "Verifica el voto en el explorador",
-    "votes_one": "<span>1</span> <text>voto</text>",
-    "votes_many": "<span>{{ count }}</span> <text>votos</text>",
-    "votes_other": "<span>{{ count }}</span> <text>votos</text>",
+    "votes_one": "<span>1</span> <text>votante</text>",
+    "votes_many": "<span>{{ count }}</span> <text>votantes</text>",
+    "votes_other": "<span>{{ count }}</span> <text>votantes</text>",
     "voting_anonymous_advice": ""
   },
   "banner": {
     "start_now": "¡Crea una votación ahora!",
     "subtitle": "Usa direcciones de cartera, vota con un token ERC20 o con NFTs!",
-    "subtitle1": "",
-    "title": "Votaciones para DAOs y comunidades Web3"
+    "subtitle1": "Aumenta la participación electoral un 30%",
+    "title": "Voto digital seguro, verificable y flexible"
   },
   "banner_voting_types": {
     "anonymous_description": "La identidad de los votantes permanece completamente confidencial, gracias a la tecnología zk-SNARKS.",
     "anonymous_title": "100% Anónimo",
-    "bottom_text": "",
+    "bottom_text": "La privacidad debería ser normal",
     "flexible_description": "Personaliza tu proceso de votación y censo para satisfacer los requisitos únicos de tu comunidad.",
     "flexible_title": "Votación Flexible",
     "token_description": "Vota con tokens ERC20/ERC721 (NFT) o agrega tus propios tokens y vota sin coste de gas con ellos.",

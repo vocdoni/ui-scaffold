@@ -28,7 +28,7 @@ const ProcessHeader = () => {
     <Box mb={4}>
       <Flex direction={{ base: 'column', lg2: 'row' }} mb={7} gap={10}>
         <Box flexGrow={0} flexShrink={0} flexBasis={{ base: '100%', md: '60%', lg: '65%', lg2: '70%', xl2: '75%' }}>
-          <ElectionTitle fontSize='40px' textAlign='left' mb={5} />
+          <ElectionTitle fontSize={{ base: '32px', md: '40px' }} textAlign='left' my={5} />
           <Flex
             gap={4}
             flexDirection={{ base: 'column', xl: 'row' }}
@@ -59,16 +59,19 @@ const ProcessHeader = () => {
               </Text>
             )}
             <ReadMoreMarkdownWrapper from='rgba(250, 250, 250, 0)' to='rgba(250, 250, 250, 1)'>
-              <ElectionDescription mb={0} fontSize='lg' lineHeight={2} color='process.description' />
+              <ElectionDescription mb={0} fontSize='lg' lineHeight={1.5} color='process.description' />
             </ReadMoreMarkdownWrapper>
             <ReadMoreMarkdownButton colorScheme='primary' alignSelf='center' />
           </Flex>
         </Box>
 
         <Flex
-          flexDirection='column'
+          position='relative'
+          flexDirection={{ base: 'row', lg2: 'column' }}
           alignItems='start'
-          gap={4}
+          flexWrap='wrap'
+          justifyContent='start'
+          gap={{ base: 4, sm: 6, md: 8, lg: 4 }}
           flexGrow={1}
           fontSize='sm'
           opacity={0.85}
@@ -76,7 +79,7 @@ const ProcessHeader = () => {
             opacity: 1,
           }}
         >
-          <Box flexDir='row' display='flex' justifyContent='space-between' w='full'>
+          <Box flexDir='row' display='flex' justifyContent='space-between' w={{ lg2: 'full' }}>
             {election?.status !== ElectionStatus.CANCELED ? (
               <ProcessDate />
             ) : (
@@ -84,7 +87,9 @@ const ProcessHeader = () => {
                 {t('process.status.canceled')}
               </Text>
             )}
-            <ActionsMenu />
+            <Box position='absolute' right={0} top={0}>
+              <ActionsMenu />
+            </Box>
           </Box>
           {election?.electionType.anonymous && (
             <Box>
@@ -104,7 +109,7 @@ const ProcessHeader = () => {
           )}
 
           {showOrgInformation && (
-            <Box width='100%'>
+            <Box w={{ lg2: 'full' }}>
               <Text fontWeight='bold' mb={1}>
                 {t('process.created_by')}
               </Text>

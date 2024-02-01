@@ -2755,10 +2755,10 @@
     "@types/babel__core" "^7.20.4"
     react-refresh "^0.14.0"
 
-"@vocdoni/chakra-components@^0.7.5":
-  version "0.7.9"
-  resolved "https://registry.yarnpkg.com/@vocdoni/chakra-components/-/chakra-components-0.7.9.tgz#4a3084c74971994afafb369a96ce29defe7f14d8"
-  integrity sha512-AUz4ouiBfwIveiVjvktl4ug7mejF11NtJer2O0NeJngdxfzpwiamoBraUE9A/Z8R/mj4wbYC3EcYxVAea8d/9A==
+"@vocdoni/chakra-components@^0.7.12":
+  version "0.7.12"
+  resolved "https://registry.yarnpkg.com/@vocdoni/chakra-components/-/chakra-components-0.7.12.tgz#54e2ea9cdf84422413addd1aa74dd52380f10331"
+  integrity sha512-1ykd6obP9ewcL/uDUA3D7PQWKGK1YFHhf+j67ykB4/9L6ZauzwzSL5pdnFx7Ba4exvPX593ysU6gLZsY9Qp2fQ==
   dependencies:
     "@vocdoni/react-providers" "~0.3.2"
 
@@ -2780,10 +2780,10 @@
   resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.3.6.tgz#7f89f4e96cbac1c9f8e27d5a39d0945269c7591b"
   integrity sha512-MxcaF0n8gvkHV5b/756vazB+4Hvy5t47fFyYM+TTbEteuTvZ5MuPHv9hgjmi6suWVPr1U/nF89Ehkl42vE5XZw==
 
-"@vocdoni/sdk@0.7.2", "@vocdoni/sdk@^0.7.2":
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/@vocdoni/sdk/-/sdk-0.7.2.tgz#3f6c04756aa22b6dfbd29097c3ce681cca8d1c5d"
-  integrity sha512-esPvJ7OrMz5XlAKBYpEjgAapZHfhmgqlw2hiNubXb/uXoP1kFmKy6JxSm8NplnGLQOTFjdmSOhRnpy3CUfEYQA==
+"@vocdoni/sdk@^0.7.3":
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/@vocdoni/sdk/-/sdk-0.7.3.tgz#d43ed2fa32c7a2dee8d4b56199d49bd5474f6044"
+  integrity sha512-PQy63OU+hh1qhydPEkC5+9fmn46WyH9eQtgOUGysWWt6hsHW3bBqLBuhml/ZBkakFDYyECGJeFApWg7n69muPA==
   dependencies:
     "@ethersproject/abstract-signer" "^5.7.0"
     "@ethersproject/address" "^5.7.0"

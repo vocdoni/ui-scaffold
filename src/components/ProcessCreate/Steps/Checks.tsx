@@ -1,5 +1,6 @@
 import { ArrowForwardIcon } from '@chakra-ui/icons'
-import { Box, Button, Flex, Heading, Spinner, Text } from '@chakra-ui/react'
+import { Box, Flex, Heading, Spinner, Text } from '@chakra-ui/react'
+import { Button } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'

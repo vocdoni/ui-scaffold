@@ -49,7 +49,7 @@ export const colors = {
 
   bg: colorsBase.gray.bg,
 
-  error: 'red.500',
+  error: colorsBase.red,
 
   checkbox: colorsBase.primary.main,
 
@@ -79,8 +79,8 @@ export const colors = {
 
   process: {
     aside: {
-      bg: colorsBase.primary.main,
-      color: colorsBase.white.pure,
+      bg: colorsBase.white.pure,
+      color: colorsBase.primary.main,
       vote_btn_color: colorsBase.black,
       vote_btn_bg: colorsBase.white.pure,
       aside_footer_mbl_border: colorsBase.white.dark,

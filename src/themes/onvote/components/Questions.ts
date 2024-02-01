@@ -10,7 +10,7 @@ const baseStyle = definePartsStyle({
     py: 7,
     my: '10px',
     color: 'process.questions.alert.color',
-    bgColor: 'process.questions.alert.color',
+    bgColor: 'process.questions.alert.bg',
     display: 'grid',
     columnGap: 4,
     justifyContent: 'center',
@@ -79,7 +79,6 @@ const baseStyle = definePartsStyle({
     width: { base: 'full', xl: '80%' },
     m: 0,
     mx: 'auto',
-    p: 4,
 
     '& > div': {
       display: 'flex',
@@ -105,18 +104,46 @@ const baseStyle = definePartsStyle({
     mb: 5,
   },
 
-  radioGroup: {
-    p: 1,
-  },
   stack: {
-    p: 1,
-
     '& label': {
       overflow: 'hidden',
       display: 'flex',
       alignItems: 'center',
       gap: 2,
+      w: { lg2: '99%' },
 
+      '& span:nth-of-type(1)': {
+        display: { base: 'none', md: 'block' },
+        width: '30px',
+        height: '30px',
+        borderRadius: 'none',
+        ml: '5px',
+
+        '&[data-checked=""]': {
+          '&:before': {
+            display: 'none',
+            bgColor: 'transparent',
+          },
+
+          border: 'none',
+          background: 'process.questions.question_selected.bg',
+          borderColor: 'process.questions.question_selected.bg',
+          bgSize: '20px',
+          bgRepeat: 'no-repeat',
+          bgPosition: 'center',
+          bgImage: checkIcon,
+
+          _hover: {
+            border: 'none',
+            background: 'process.questions.question_selected.bg',
+            borderColor: 'process.questions.question_selected.bg',
+            bgSize: '20px',
+            bgRepeat: 'no-repeat',
+            bgPosition: 'center',
+            bgImage: checkIcon,
+          },
+        },
+      },
       '& span:nth-of-type(2)': {
         p: 4,
         m: 0,
@@ -133,40 +160,7 @@ const baseStyle = definePartsStyle({
   },
 
   radio: {
-    width: '30px',
-    height: '30px',
-    background: 'transparent',
-    ml: '10px',
-
-    '&[data-checked=""]': {
-      '&:before': {
-        display: 'none',
-        bgColor: 'transparent',
-      },
-
-      border: 'none',
-      background: 'process.questions.question_selected.bg',
-      borderColor: 'process.questions.question_selected.bg',
-      bgSize: '20px',
-      bgRepeat: 'no-repeat',
-      bgPosition: 'center',
-      bgImage: checkIcon,
-
-      _hover: {
-        border: 'none',
-        background: 'process.questions.question_selected.bg',
-        borderColor: 'process.questions.question_selected.bg',
-        bgSize: '20px',
-        bgRepeat: 'no-repeat',
-        bgPosition: 'center',
-        bgImage: checkIcon,
-      },
-    },
-
-    '&[data-disabled=""]': {
-      bgColor: 'white !important',
-      border: 'none !important',
-    },
+    borderRadius: 'full !important',
   },
   error: {
     display: 'flex',
