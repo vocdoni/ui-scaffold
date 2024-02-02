@@ -65,6 +65,7 @@
   border-radius: 10px;
   padding: 8px;
   vertical-align: middle;
+  appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   width: 70px;
