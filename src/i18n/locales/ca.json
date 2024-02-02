@@ -499,6 +499,10 @@
     "start": "Inicia/Continua"
   },
   "process_create": {
+    "anonymous": {
+      "legal_disclaimer": "Aquest sistema de votació utilitza el poder de votació basat en tokens (públic a la cadena de blocs). Com heu seleccionat l'opció de 'Votació anònima', els pesos s'agruparan en saldos similars i s'arrodoniran cap avall. Això sacrifica una mica de precisió, però preserva la identitat anònima desvinculant els saldos de les carteres.",
+      "legal_note": "Avís legal: "
+    },
     "census": {
       "total_tokens_one": "1 token",
       "total_tokens_many": "",
@@ -510,7 +514,10 @@
       "sign_tx": "Signar transacció"
     },
     "creation_steps_description": "Necessites signar les transaccions per crear el procés de votació a la cadena de blocs de Vocdoni. No tanquis aquesta finestra.",
-    "creation_steps_title": "Progrés"
+    "creation_steps_title": "Progrés",
+    "preview": {
+      "accuracy": "Precisió dels Saldos de Cens Anònims: "
+    }
   },
   "roadmap": {
     "census_description": "Crear un cens descentralitzat fora de la cadena i compatible amb zk a partir d'una instantània de blocs d'Ethereum, amb verificació a la cadena.",
