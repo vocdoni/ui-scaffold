@@ -64,8 +64,8 @@ standards, using the `/` root path (i.e. `import logo from '/assets/logo.svg'` w
 To create a new theme, just copy the `default` theme and start customizing it:
 
 ~~~bash
+cp -frv public/default public/my-theme
 cp -frv src/themes/default src/themes/my-theme
-cp -frv src/public/default src/public/my-theme
 THEME=my-theme yarn start
 ~~~
 
