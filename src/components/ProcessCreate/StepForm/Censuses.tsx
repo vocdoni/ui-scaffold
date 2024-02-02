@@ -47,10 +47,25 @@ const Csp = lazy(() => {
   return import('./CensusCsp').then((module) => ({ default: module.StepFormCensusCsp }))
 })
 
-export const CspCensusGithub = () => (
-  <SuspenseLoader>{import.meta.env.features._census.csp_github && <Csp provider='github' />}</SuspenseLoader>
-)
+export const CspCensusGithub = () => {
+  if (import.meta.env.features._census.csp_github) {
+    return (
+      <SuspenseLoader>
+        <Csp provider='github' />
+      </SuspenseLoader>
+    )
+  }
 
-export const CspCensusGoogle = () => (
-  <SuspenseLoader>{import.meta.env.features._census.csp_google && <Csp provider='google' />}</SuspenseLoader>
-)
+  return <></>
+}
+
+export const CspCensusGoogle = () => {
+  if (import.meta.env.features._census.csp_google) {
+    return (
+      <SuspenseLoader>
+        <Csp provider='google' />
+      </SuspenseLoader>
+    )
+  }
+  return <></>
+}
