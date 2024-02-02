@@ -492,7 +492,7 @@
   },
   "process_create": {
     "anonymous": {
-      "legal_disclaimer": "If voters use token voting power (public onchain), to enhance anonymity, weights are grouped into similar balances, rounded down. This sacrifices some accuracy but preserves identity by unlinking balances from wallets.",
+      "legal_disclaimer": "This voting system utilizes token-based voting power (public on-chain). As you selected the 'Anonymous voting' option, weights will be grouped into similar balances and rounded down. This sacrifices some accuracy but preserves anonymous identity by unlinking balances from wallets.",
       "legal_note": "Disclaimer: "
     },
     "census": {

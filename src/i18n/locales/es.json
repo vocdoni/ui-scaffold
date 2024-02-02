@@ -500,7 +500,7 @@
   },
   "process_create": {
     "anonymous": {
-      "legal_disclaimer": "Si los votantes utilizan el poder de votación del token (público en la cadena de bloques), para mejorar el anonimato, los pesos se agrupan en saldos similares, redondeados hacia abajo. Esto sacrifica cierta precisión pero preserva la identidad al desvincular los saldos de las carteras.",
+      "legal_disclaimer": "Este sistema de votación utiliza el poder de votación basado en tokens (público en la cadena de bloques). Al seleccionar la opción de 'Votación anónima', los pesos se agruparán en saldos similares y se redondearán hacia abajo. Esto sacrifica cierta precisión, pero preserva la identidad anónima al desvincular los saldos de las carteras.",
       "legal_note": "Aviso legal: "
     },
     "census": {

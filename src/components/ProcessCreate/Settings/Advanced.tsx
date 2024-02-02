@@ -7,9 +7,7 @@ import { HiKey } from 'react-icons/hi2'
 
 const SettingsAdvanced = () => {
   const { t } = useTranslation()
-  const { register, watch } = useFormContext()
-
-  const anonymous = watch('electionType.anonymous')
+  const { register } = useFormContext()
 
   const features =
     import.meta.env.features.vote.anonymous ||
@@ -31,14 +29,6 @@ const SettingsAdvanced = () => {
               <Text>{t('form.process_create.behavior.anonymous.title')}</Text>
             </Box>
             <Text>{t('form.process_create.behavior.anonymous.description')}</Text>
-            {anonymous && (
-              <Box>
-                <Text as='span' fontWeight='bold'>
-                  {t('process_create.anonymous.legal_note')}
-                </Text>
-                <Text as='span'>{t('process_create.anonymous.legal_disclaimer')}</Text>
-              </Box>
-            )}
           </Checkbox>
         )}
         {import.meta.env.features.vote.secret && (

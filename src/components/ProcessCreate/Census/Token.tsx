@@ -370,6 +370,11 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
     getValues,
     formState: { errors },
   } = useFormContext()
+  const {
+    form: {
+      electionType: { anonymous },
+    },
+  } = useProcessCreationSteps()
 
   const [sliderValue, setSliderValue] = useState<number>(getValues('maxCensusSize'))
   const [showTooltip, setShowTooltip] = useState<boolean>(false)
@@ -439,6 +444,16 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
           }}
         />
       </Text>
+      {anonymous && (
+        <Alert status='info'>
+          <Text>
+            <Text as='span' fontWeight='bold'>
+              {t('process_create.anonymous.legal_note')}
+            </Text>
+            <Text as='span'>{t('process_create.anonymous.legal_disclaimer')}</Text>
+          </Text>
+        </Alert>
+      )}
     </>
   )
 }
