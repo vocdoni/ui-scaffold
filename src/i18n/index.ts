@@ -1,24 +1,37 @@
 import { format, formatDistance, Locale } from 'date-fns'
 import i18next from 'i18next'
+import BrowserLanguageDetector from 'i18next-browser-languagedetector'
 import { initReactI18next } from 'react-i18next'
 import { dateLocales, translations } from './locales'
-import BrowserLanguageDetector from 'i18next-browser-languagedetector'
 
+// initialize i18next
 const i18n = i18next.createInstance()
-
 i18n
   .use(BrowserLanguageDetector)
   .use(initReactI18next)
-  .init({
-    fallbackLng: import.meta.env.features.languages[0],
-    debug: import.meta.env.NODE_ENV === 'development',
-    defaultNS: 'translation',
-    interpolation: {
-      escapeValue: false,
+  .init(
+    {
+      fallbackLng: import.meta.env.features.languages[0],
+      debug: import.meta.env.NODE_ENV === 'development',
+      defaultNS: 'translation',
+      interpolation: {
+        escapeValue: false,
+      },
+      returnEmptyString: false,
     },
-    returnEmptyString: false,
-  })
+    (err, t) => {
+      if (err) {
+        console.error('i18next init error:', err)
+        return
+      }
+      // ensure that the current language is the resolved one
+      if (i18n.resolvedLanguage !== i18n.language) {
+        i18n.changeLanguage(i18n.resolvedLanguage)
+      }
+    }
+  )
 
+// load translations
 for (const lang of import.meta.env.features.languages) {
   if (typeof translations[lang] !== 'undefined') {
     i18n.addResourceBundle(lang, 'translation', translations[lang])
