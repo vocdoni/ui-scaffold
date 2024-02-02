@@ -88,7 +88,6 @@ export const theme = extendTheme(vtheme, {
           md: '80px',
         },
       },
-     
     },
   },
   breakpoints,
