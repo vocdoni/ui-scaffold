@@ -1,15 +1,18 @@
 import { ColorMode, extendTheme } from '@chakra-ui/react'
 import { darkTheme, lightTheme } from '@rainbow-me/rainbowkit'
 import { theme as vtheme } from '@vocdoni/chakra-components'
+import { shared } from '../shared'
 import { breakpoints } from './breakpoints'
 import { colors, colorsBase } from './colors'
 import { components } from './components'
 import { fontSizes } from './font'
 import { sizes } from './space'
+import SConfirmModal from '/assets/spreadsheet-confirm-modal.jpg'
 
 export const theme = extendTheme(vtheme, {
   styles: {
     global: {
+      ...shared,
       ':root': {
         '--box-shadow-btn': '0px 0px 5px -3px gray',
         '--box-shadow-banner': '7px 6px 6px -3px rgba(0,0,0,0.37)',
@@ -18,7 +21,7 @@ export const theme = extendTheme(vtheme, {
         '--vcd-gradient-primary': 'linear-gradient(to right, #24656e, #2c545a)',
       },
       '.creating-process-img': {
-        bgImage: '/assets/spreadsheet-confirm-modal.jpg',
+        bgImage: SConfirmModal,
       },
       '.creating-process-check': {
         color: 'primary.main',
@@ -42,13 +45,13 @@ export const theme = extendTheme(vtheme, {
         width: 'full',
         m: '0 auto',
         maxW: 'site-width',
-
         px: {
           base: '10px',
           sm: '20px',
           md: '80px',
         },
       },
+
       '.voting-type': {
         justifyContent: 'space-around',
         flexWrap: 'wrap',
