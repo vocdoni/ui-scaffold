@@ -61,13 +61,6 @@
   text-decoration: underline line-through;
 }
 
-/* .editor-text-code {
-  background-color: rgb(240, 242, 245);
-  padding: 1px 0.25rem;
-  font-family: Menlo, Consolas, Monaco, monospace;
-  font-size: 94%;
-} */
-
 .editor-link {
   color: rgb(33, 111, 219);
   text-decoration: none;
@@ -291,7 +284,6 @@ i.chevron-down {
   display: inline-block;
   height: 8px;
   width: 8px;
-  background-image: url(/assets/editor/chevron-down.svg);
 }
 
 #block-controls button:hover {
@@ -405,7 +397,6 @@ i.chevron-down {
 }
 
 .link-editor div.link-edit {
-  background-image: url(/assets/editor/pencil-fill.svg);
   background-size: 16px;
   background-position: center;
   background-repeat: no-repeat;
@@ -465,91 +456,6 @@ i.chevron-down {
   margin-left: 5px;
 }
 
-i.undo {
-  background-image: url(/assets/editor/arrow-counterclockwise.svg);
-}
-
-i.redo {
-  background-image: url(/assets/editor/arrow-clockwise.svg);
-}
-
-.icon.paragraph {
-  background-image: url(/assets/editor/text-paragraph.svg);
-}
-
-.icon.large-heading,
-.icon.h1 {
-  background-image: url(/assets/editor/type-h1.svg);
-}
-
-.icon.small-heading,
-.icon.h2 {
-  background-image: url(/assets/editor/type-h2.svg);
-}
-
-.icon.small-heading,
-.icon.h3 {
-  background-image: url(/assets/editor/type-h3.svg);
-}
-
-.icon.bullet-list,
-.icon.ul {
-  background-image: url(/assets/editor/list-ul.svg);
-}
-
-.icon.numbered-list,
-.icon.ol {
-  background-image: url(/assets/editor/list-ol.svg);
-}
-
-.icon.quote {
-  background-image: url(/assets/editor/chat-square-quote.svg);
-}
-
-.icon.code {
-  background-image: url(/assets/editor/code.svg);
-}
-
-i.bold {
-  background-image: url(/assets/editor/type-bold.svg);
-}
-
-i.italic {
-  background-image: url(/assets/editor/type-italic.svg);
-}
-
-i.underline {
-  background-image: url(/assets/editor/type-underline.svg);
-}
-
-i.strikethrough {
-  background-image: url(/assets/editor/type-strikethrough.svg);
-}
-
-i.code {
-  background-image: url(/assets/editor/code.svg);
-}
-
-i.link {
-  background-image: url(/assets/editor/link.svg);
-}
-
-i.left-align {
-  background-image: url(/assets/editor/text-left.svg);
-}
-
-i.center-align {
-  background-image: url(/assets/editor/text-center.svg);
-}
-
-i.right-align {
-  background-image: url(/assets/editor/text-right.svg);
-}
-
-i.justify-align {
-  background-image: url(/assets/editor/justify.svg);
-}
-
 .link-editor .button.active,
 .toolbar .button.active {
   background-color: rgb(223, 232, 250);
@@ -592,7 +498,6 @@ i.justify-align {
 }
 
 .link-editor div.link-edit {
-  background-image: url(/assets/editor/pencil-fill.svg);
   background-size: 16px;
   background-position: center;
   background-repeat: no-repeat;
@@ -606,7 +511,6 @@ i.justify-align {
 }
 
 .link-editor div.link-trash {
-  background-image: url(/assets/editor/trash.svg);
   background-size: 16px;
   background-position: center;
   background-repeat: no-repeat;
@@ -620,7 +524,6 @@ i.justify-align {
 }
 
 .link-editor div.link-cancel {
-  background-image: url(/assets/editor/close.svg);
   background-size: 16px;
   background-position: center;
   background-repeat: no-repeat;
@@ -635,7 +538,6 @@ i.justify-align {
 }
 
 .link-editor div.link-confirm {
-  background-image: url(/assets/editor/success-alt.svg);
   background-size: 16px;
   background-position: center;
   background-repeat: no-repeat;
