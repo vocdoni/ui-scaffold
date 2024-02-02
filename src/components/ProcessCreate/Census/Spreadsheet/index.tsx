@@ -108,7 +108,6 @@ export const CensusCsvManager = () => {
           </UnorderedList>
           <FormControl
             bgColor='process_create.bg'
-            p={3}
             borderRadius='md'
             sx={{
               '& > label': {
@@ -144,6 +143,8 @@ export const CensusCsvManager = () => {
                   onBlur={onBlur}
                   ref={ref}
                   isChecked={value}
+                  w='full'
+                  p={3}
                 >
                   <Flex alignItems='center' gap={1}>
                     <Icon as={BiCheckDouble} />
