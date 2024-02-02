@@ -17,7 +17,6 @@ import { HeadingNode, QuoteNode } from '@lexical/rich-text'
 import { TableCellNode, TableNode, TableRowNode } from '@lexical/table'
 import { useState } from 'react'
 import { AutoLinkPlugin } from './plugins/AutoLinkPlugin'
-import CodeHighlightPlugin from './plugins/CodeHighlightPlugin'
 import FloatingLinkEditorPlugin from './plugins/FloatingLinkEditorPlugin'
 import FloatingTextFormatToolbarPlugin from './plugins/FloatingTextFormatToolbarPlugin'
 import ListMaxIndentLevelPlugin from './plugins/ListMaxIndentLevelPlugin'
@@ -90,7 +89,6 @@ const Editor = (props: EditorProps) => {
             placeholder={<Placeholder placeholder={props.placeholder} />}
           />
           <HistoryPlugin />
-          <CodeHighlightPlugin />
           <LexicalClickableLinkPlugin />
           <ListPlugin />
           <LinkPlugin />

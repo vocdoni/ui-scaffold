@@ -310,34 +310,6 @@ i.chevron-down {
   margin: 2px;
 }
 
-#block-controls span.block-type.paragraph {
-  background-image: url(/assets/editor/text-paragraph.svg);
-}
-
-#block-controls span.block-type.h1 {
-  background-image: url(/assets/editor/type-h1.svg);
-}
-
-#block-controls span.block-type.h2 {
-  background-image: url(/assets/editor/type-h2.svg);
-}
-
-#block-controls span.block-type.quote {
-  background-image: url(/assets/editor/chat-square-quote.svg);
-}
-
-#block-controls span.block-type.ul {
-  background-image: url(/assets/editor/list-ul.svg);
-}
-
-#block-controls span.block-type.ol {
-  background-image: url(/assets/editor/list-ol.svg);
-}
-
-#block-controls span.block-type.code {
-  background-image: url(/assets/editor/code.svg);
-}
-
 .dropdown {
   z-index: 5;
   display: block;
