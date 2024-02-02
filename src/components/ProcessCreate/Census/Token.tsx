@@ -28,6 +28,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { customStylesSelect, customStylesTokensSelect } from '~theme/tokenSelectStyles'
+import { useProcessCreationSteps } from '../Steps/use-steps'
 import selectComponents, { CryptoAvatar } from './select-components'
 
 export interface FilterOptionOption<Option> {
@@ -43,6 +44,7 @@ type GrupedTokenTypes = {
 export const CensusTokens = () => {
   const { t } = useTranslation()
   const { env } = useClient()
+  const { form } = useProcessCreationSteps()
   const [error, setError] = useState<string | undefined>()
   const [loading, setLoading] = useState<boolean>(false)
   const [loadingTk, setLoadingTk] = useState<boolean>(false)
@@ -150,6 +152,7 @@ export const CensusTokens = () => {
         setChains(chs)
 
         const tks = await client.getSupportedTokens()
+
         const tags = [
           ...new Set(
             tks
@@ -202,9 +205,14 @@ export const CensusTokens = () => {
       if (!ct?.ID) return
       setLoadingTk(true)
       setError(undefined)
-      try {
-        const { size, timeToCreateCensus } = await client.getStrategyEstimation(ct.defaultStrategy)
 
+      try {
+        const { size, timeToCreateCensus, accuracy } = await client.getStrategyEstimation(
+          ct.defaultStrategy,
+          form.electionType.anonymous
+        )
+
+        setValue('accuracy', accuracy)
         setValue('strategySize', size)
         setValue('timeToCreateCensus', timeToCreateCensus)
       } catch (err) {
@@ -362,6 +370,11 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
     getValues,
     formState: { errors },
   } = useFormContext()
+  const {
+    form: {
+      electionType: { anonymous },
+    },
+  } = useProcessCreationSteps()
 
   const [sliderValue, setSliderValue] = useState<number>(getValues('maxCensusSize'))
   const [showTooltip, setShowTooltip] = useState<boolean>(false)
@@ -431,6 +444,16 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
           }}
         />
       </Text>
+      {anonymous && (
+        <Alert status='info'>
+          <Text>
+            <Text as='span' fontWeight='bold'>
+              {t('process_create.anonymous.legal_note')}
+            </Text>
+            <Text as='span'>{t('process_create.anonymous.legal_disclaimer')}</Text>
+          </Text>
+        </Alert>
+      )}
     </>
   )
 }
