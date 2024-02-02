@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import UserCard from './UserCard'
 import { useTranslation } from 'react-i18next'
 
-const GithubUserSearch = ({ ...props }) => {
+export const GithubUserSearch = ({ ...props }) => {
   const toast = useToast()
   const { t } = useTranslation()
   const { initialUsers } = props
@@ -78,7 +78,7 @@ const GithubUserSearch = ({ ...props }) => {
 
   return (
     <>
-      <Text fontWeight='bold' mb={3} color='process_create.census.title'>
+      <Text mb={3} className='brand-theme' textTransform='uppercase' color='process_create.census.title'>
         {t('census.github_address_title')}
       </Text>
 
@@ -116,5 +116,3 @@ const GithubUserSearch = ({ ...props }) => {
     </>
   )
 }
-
-export default GithubUserSearch

@@ -3,8 +3,8 @@ import { useEffect } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useProcessCreationSteps } from '../Steps/use-steps'
-import GithubUserSearch from '../Census/Csp/GithubUserSearch'
-import GoogleUsers from '../Census/Csp/GoogleUsers'
+import { GithubUserSearch } from '../Census/Csp/GithubUserSearch'
+import { GoogleUsers } from '../Census/Csp/GoogleUsers'
 
 export interface CensusCspValues {
   userList: { login: string }[]
