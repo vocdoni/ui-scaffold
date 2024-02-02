@@ -500,7 +500,7 @@
   },
   "process_create": {
     "anonymous": {
-      "legal_disclaimer": "Aquest sistema de votació utilitza el poder de votació basat en tokens (públic a la cadena de blocs). Com heu seleccionat l'opció de 'Votació anònima', els pesos es gruparan en saldos similars i es redoniran cap avall. Això sacrifica una mica de precisió, però preserva la identitat anònima desvinculant els saldos de les carteres.",
+      "legal_disclaimer": "Aquest sistema de votació utilitza el poder de votació basat en tokens (públic a la cadena de blocs). Com heu seleccionat l'opció de 'Votació anònima', els pesos s'agruparan en saldos similars i s'arrodoniran cap avall. Això sacrifica una mica de precisió, però preserva la identitat anònima desvinculant els saldos de les carteres.",
       "legal_note": "Avís legal: "
     },
     "census": {
