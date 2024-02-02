@@ -29,26 +29,16 @@ export const theme = extendTheme(vtheme, {
         heading: '"Archivo", sans-serif',
         body: '"Archivo", sans-serif',
       },
-      '.padding-x': {
-        paddingX: {
-          base: '10px',
-          sm: '20px',
-          md: '60px',
-        },
+      '.brand-theme': {
+        fontFamily: 'pixeloidsans, monospace',
       },
-      '.voting-type': {
-        justifyContent: 'space-around',
-        flexWrap: 'wrap',
-        alignItems: { base: 'center', md2: 'stretch' },
-        gap: { base: 10, md2: 5 },
-        maxW: { md: '990px' },
-        mx: 'auto',
-        fontSize: 'sm',
-        pb: { base: 24, lg: 64 },
-        px: {
-          base: '40px',
-          md: '80px',
-        },
+      '.creating-process-img': {
+        bgImage: '/assets/onvote-modal-submitting.png',
+      },
+      '.creating-process-check': {
+        w: 6,
+        h: 6,
+        bgColor: 'primary.main',
       },
       '.md-sizes': {
         'h2[level="1"]': {
@@ -69,21 +59,36 @@ export const theme = extendTheme(vtheme, {
         textTransform: 'uppercase',
         color: colors.process_create.title,
       },
-      '.brand-theme': {
-        fontFamily: 'pixeloidsans, monospace',
-      },
       '.process-create-section': {
         border: '1px solid',
         borderColor: 'process_create.section_border',
       },
-      '.creating-process-img': {
-        bgImage: '/assets/onvote-modal-submitting.png',
+      '.site-wrapper': {
+        width: 'full',
+        m: '0 auto',
+        maxW: 'site-width',
+
+        px: {
+          base: '10px',
+          sm: '20px',
+          md: '80px',
+        },
       },
-      '.creating-process-check': {
-        w: 6,
-        h: 6,
-        bgColor: 'primary.main',
+      '.voting-type': {
+        justifyContent: 'space-around',
+        flexWrap: 'wrap',
+        alignItems: { base: 'center', md2: 'stretch' },
+        gap: { base: 10, md2: 5 },
+        maxW: { md: '990px' },
+        mx: 'auto',
+        fontSize: 'sm',
+        pb: { base: 24, lg: 64 },
+        px: {
+          base: '40px',
+          md: '80px',
+        },
       },
+     
     },
   },
   breakpoints,

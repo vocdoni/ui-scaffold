@@ -88,7 +88,7 @@ const OrganizationView = () => {
   }, [page, error, finished, organization?.address])
 
   return (
-    <Box className='padding-x' mb={44} mx='auto'>
+    <Box className='site-wrapper' mb={44} mx='auto'>
       <Header />
 
       <Text as='h2' fontSize='xl' fontWeight='bold' mb={4} textAlign={{ base: 'center', md2: 'start' }}>

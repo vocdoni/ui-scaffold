@@ -17,6 +17,25 @@ export const theme = extendTheme(vtheme, {
         '--box-shadow-darker': '0px 2px 4px #808080b5',
         '--vcd-gradient-primary': 'linear-gradient(to right, #24656e, #2c545a)',
       },
+
+      '.creating-process-img': {
+        bgImage: '/assets/spreadsheet-confirm-modal.jpg',
+      },
+      '.creating-process-check': {
+        color: 'primary.main',
+
+        '& svg': {
+          w: 6,
+          h: 6,
+        },
+      },
+      link: {
+        color: 'link.primary',
+        textDecoration: 'underline',
+        _hover: {
+          textDecoration: 'none',
+        },
+      },
       '.md-sizes': {
         'h2[level="1"]': {
           fontSize: '24px',
@@ -31,8 +50,15 @@ export const theme = extendTheme(vtheme, {
           fontSize: '16px',
         },
       },
-      '.padding-x': {
-        paddingX: {
+      '.process-create-title': {
+        fontWeight: 'bold',
+      },
+      '.site-wrapper': {
+        width: 'full',
+        m: '0 auto',
+        maxW: 'site-width',
+
+        px: {
           base: '10px',
           sm: '20px',
           md: '80px',
@@ -46,31 +72,6 @@ export const theme = extendTheme(vtheme, {
         mb: 32,
         maxW: '1250px',
         mx: 'auto',
-      },
-      link: {
-        color: 'link.primary',
-        textDecoration: 'underline',
-        _hover: {
-          textDecoration: 'none',
-        },
-      },
-      '.process-create-title': {
-        fontWeight: 'bold',
-      },
-      '.site-wrapper': {
-        width: 'full',
-        m: '0 auto',
-      },
-      '.creating-process-img': {
-        bgImage: '/assets/spreadsheet-confirm-modal.jpg',
-      },
-      '.creating-process-check': {
-        color: 'primary.main',
-
-        '& svg': {
-          w: 6,
-          h: 6,
-        },
       },
     },
   },

@@ -5,7 +5,7 @@ import Footer from '~theme/components/Footer'
 
 const Layout = () => {
   return (
-    <Flex position='relative' flexDirection='column' minH='100vh' maxW='site-width' mx='auto' bgColor='bg'>
+    <Flex position='relative' flexDirection='column' minH='100vh' mx='auto' bgColor='bg'>
       <HStack as='header' position='sticky' top={0} w='full' backdropFilter='blur(40px)' zIndex={20}>
         <Navbar />
       </HStack>
@@ -32,7 +32,7 @@ const Layout = () => {
           textTransform='uppercase'
           fontFamily='pixeloidsans'
           fontSize='16px'
-          display={{ base: 'none', sm: 'block' }}
+          display={{ base: 'none', md: 'block' }}
         >
           World wide voting
         </Text>

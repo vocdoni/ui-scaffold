@@ -52,7 +52,7 @@ export const ProcessView = () => {
 
   return (
     <Box>
-      <Box className='padding-x' mb={44}>
+      <Box className='site-wrapper' mb={44}>
         <Header />
         <Flex direction={{ base: 'column', lg2: 'row' }} alignItems='start' gap={{ lg2: 10 }}>
           <Tabs
