@@ -50,7 +50,7 @@
     },
     "results": {
       "date_format": "PPpp",
-      "secret_until_the_end": "SThe results will be made public when the process finishes on {{ endDate }}.",
+      "secret_until_the_end": "The results will be made public when the process finishes on {{ endDate }}.",
       "title": "Results for \"{{ title }}\"",
       "votes": "Votes: {{ votes }} ({{ percent }})"
     },
