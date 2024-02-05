@@ -67,7 +67,7 @@ const ProcessHeader = () => {
             </Flex>
           </Flex>
           <Flex flexDirection='column'>
-            {!election?.description.default.length && (
+            {!election?.description?.default.length && (
               <Text textAlign='center' mt={5} color='process.no_description'>
                 {t('process.no_description')}
               </Text>
