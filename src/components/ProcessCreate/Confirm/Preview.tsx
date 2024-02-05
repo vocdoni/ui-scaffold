@@ -67,7 +67,13 @@ const Preview = () => {
               {t('form.process_create.confirm.description_election')}
             </Text>
 
-            <Box flexBasis={{ base: '100%', md: '65%' }} flexShrink={0} flexGrow={0} textAlign='start'>
+            <Box
+              className='md-sizes'
+              flexBasis={{ base: '100%', md: '65%' }}
+              flexShrink={0}
+              flexGrow={0}
+              textAlign='start'
+            >
               <ElectionDescription />
             </Box>
           </Flex>

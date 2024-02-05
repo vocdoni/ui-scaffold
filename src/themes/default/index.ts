@@ -37,6 +37,9 @@ export const theme = extendTheme(vtheme, {
         },
       },
       '.md-sizes': {
+        '& :first-of-type': {
+          mt: 0,
+        },
         'h2[level="1"]': {
           fontSize: '24px',
         },
