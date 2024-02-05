@@ -3,15 +3,30 @@ import { useEffect, useState } from 'react'
 import UserCard from './UserCard'
 import { useTranslation } from 'react-i18next'
 
+type GithubObject = {
+  login: string
+  id: number
+}
+
+const isGithubObject = (obj: any): obj is GithubObject => {
+  return typeof obj.login === 'string' && typeof obj.id === 'number'
+}
+
 export const GithubUserSearch = ({ ...props }) => {
   const toast = useToast()
   const { t } = useTranslation()
-  const { initialUsers } = props
+
+  let iUsers = props.initialUsers || []
+  for (let obj of iUsers) {
+    if (!isGithubObject(obj)) {
+      iUsers = []
+    }
+  }
 
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [searchTimeout, setSearchTimeout] = useState<any>(null)
   const [userList, setUserList] = useState<any[]>([])
-  const [clickedUsers, setClickedUsers] = useState<any[]>(initialUsers || [])
+  const [clickedUsers, setClickedUsers] = useState<any[]>(iUsers || [])
 
   useEffect(() => {
     if (searchTimeout) {

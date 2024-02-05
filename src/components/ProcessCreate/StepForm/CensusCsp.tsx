@@ -55,7 +55,13 @@ export const StepFormCensusCsp = ({ provider }: { provider: 'github' | 'google' 
               />
             )}
 
-            {provider === 'google' && <GoogleUsers onUpdateSelection={updatedUserSelection} initialUsers={userList} />}
+            {provider === 'google' && (
+              <GoogleUsers
+                formField={'aDiffUserList'}
+                onUpdateSelection={updatedUserSelection}
+                initialUsers={userList}
+              />
+            )}
 
             {methods.formState.errors.userList && (
               <Text color='red' textAlign='center' mt={2}>

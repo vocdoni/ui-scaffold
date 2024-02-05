@@ -26,6 +26,7 @@ export type AddressManagerProps = {
   initialUsers: any[]
   onUpdateSelection?: (users: any) => any
   type: 'email' | 'web3'
+  formField?: string
 }
 
 type TypeConfig = {
@@ -68,16 +69,18 @@ export const AddressManager = (props: AddressManagerProps) => {
     md: null,
   })
 
+  const formField = props.formField || 'addresses'
+
   const { fields, remove } = useFieldArray({
-    name: 'addresses',
+    name: formField,
   })
 
-  const addresses = watch('addresses')
+  const addresses = watch(formField)
   const newAddress = watch('newAddress')
 
   useEffect(() => {
     if (!initialized && addresses?.length === 0) {
-      setValue('addresses', [...props.initialUsers])
+      setValue(formField, [...props.initialUsers])
       setInitialized(true)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -103,7 +106,7 @@ export const AddressManager = (props: AddressManagerProps) => {
 
     if (!errors.newAddress) {
       const naddresses = [...addresses, { address: newAddress }]
-      setValue('addresses', naddresses)
+      setValue(formField, naddresses)
       resetField('newAddress')
 
       if (typeof props.onUpdateSelection === 'function') {
@@ -126,7 +129,7 @@ export const AddressManager = (props: AddressManagerProps) => {
           addresses.push({ address })
         }
       })
-      setValue('addresses', addresses)
+      setValue(formField, addresses)
     } catch (e) {
       setFileErr(errorToString(e))
       console.error('could not load file:', e)
