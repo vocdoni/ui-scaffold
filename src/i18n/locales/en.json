@@ -50,7 +50,7 @@
     },
     "results": {
       "date_format": "PPpp",
-      "secret_until_the_end": "Secret until the end. The results will be available when the process ends on {{ endDate }}",
+      "secret_until_the_end": "The results will be made public when the process finishes on {{ endDate }}.",
       "title": "Results for \"{{ title }}\"",
       "votes": "Votes: {{ votes }} ({{ percent }})"
     },
@@ -61,7 +61,7 @@
       "anon_sik_label": "Define a password for your vote",
       "close": "Close",
       "logout": "Logout",
-      "modal_title": "You must identify first"
+      "modal_title": "Authentication"
     },
     "statuses": {
       "canceled": "Canceled",
@@ -423,7 +423,7 @@
       "not_owner": "This organization has no voting processes yet",
       "title": "Create your first voting process"
     },
-    "name_long": "<strong>{{ name }}</strong> ({{ address }})",
+    "name_long": "<strong>{{ name }}</strong>",
     "title": {
       "edit": "Edit organization",
       "read_more": "Expand title"
@@ -468,7 +468,7 @@
     },
     "state": "STATE",
     "status": {
-      "active": "Active",
+      "active": "Voting in progress",
       "canceled": "Process canceled",
       "ended": "Ended",
       "paused": "Process paused",

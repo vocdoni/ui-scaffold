@@ -25,14 +25,15 @@ const ProcessAside = () => {
   const census: CensusMeta = dotobject(election?.meta || {}, 'census')
 
   const renderVoteMenu =
-    (isAbleToVote || voted || (hasOverwriteEnabled(election) && isInCensus && voted)) &&
-    election?.status !== ElectionStatus.UPCOMING
+    (voted !== null && voted.length > 0) ||
+    (voting && election?.electionType.anonymous) ||
+    (hasOverwriteEnabled(election) && isInCensus && votesLeft > 0 && voted)
 
   return (
     <>
       <Card variant='aside'>
         <Flex alignItems='center' gap={5} flexWrap='wrap' justifyContent='center'>
-          <Text textAlign='center' fontSize='xl3' textTransform='uppercase'>
+          <Text textAlign='center' fontSize='xl' textTransform='uppercase'>
             {election?.electionType.anonymous && voting
               ? t('aside.submitting')
               : getStatusText(t, election?.status).toUpperCase()}
@@ -52,8 +53,8 @@ const ProcessAside = () => {
                 <Trans
                   i18nKey='aside.votes'
                   components={{
-                    span: <Text as='span' fontWeight='bold' fontSize='xl6' textAlign='center' lineHeight={1} />,
-                    text: <Text fontSize='xl2' textAlign='center' lineHeight={1.3} />,
+                    span: <Text as='span' fontWeight='bold' fontSize='xl3' textAlign='center' lineHeight={1} />,
+                    text: <Text fontSize='xl' textAlign='center' lineHeight={1.3} />,
                   }}
                   count={election?.voteCount}
                 />

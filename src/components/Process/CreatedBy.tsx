@@ -1,6 +1,7 @@
-import { Avatar, Flex, FlexProps, Text, TextProps } from '@chakra-ui/react'
+import { CopyIcon } from '@chakra-ui/icons'
+import { Avatar, Flex, FlexProps, IconButton, Text, TextProps, useClipboard, useToast } from '@chakra-ui/react'
 import { enforceHexPrefix, useOrganization } from '@vocdoni/react-providers'
-import { Trans } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { addressTextOverflow } from '~constants'
 
 export const CreatedBy = (props: FlexProps) => {
@@ -15,6 +16,7 @@ export const CreatedBy = (props: FlexProps) => {
         name={organization?.account.name.default}
       />
       <LongOrganizationName />
+      <CopyAddressBtn />
     </Flex>
   )
 }
@@ -34,15 +36,31 @@ export const LongOrganizationName = (props: TextProps) => {
 
   return (
     <Text {...props}>
-      <Trans
-        i18nKey='organization.name_long'
-        values={{ name, address }}
-        components={{
-          strong: <strong />,
-        }}
-      >
-        <strong>{name}</strong> ({address})
-      </Trans>
+      <strong>{name}</strong>
     </Text>
+  )
+}
+
+const CopyAddressBtn = () => {
+  const { organization } = useOrganization()
+  const { onCopy } = useClipboard(organization?.address as string)
+
+  const toast = useToast()
+  const { t } = useTranslation()
+  if (!organization) return null
+
+  return (
+    <IconButton
+      variant='transparent'
+      icon={<CopyIcon />}
+      aria-label='copy address'
+      onClick={() => {
+        toast({
+          title: t('copy.copied_title'),
+          duration: 3000,
+        })
+        onCopy()
+      }}
+    />
   )
 }
