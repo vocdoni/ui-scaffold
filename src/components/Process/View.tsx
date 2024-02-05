@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Button,
   Flex,
@@ -22,7 +23,7 @@ import {
   useDisclosure,
   useMultiStyleConfig,
 } from '@chakra-ui/react'
-import { ElectionQuestions, ElectionResults, environment, useConfirm } from '@vocdoni/chakra-components'
+import { ElectionQuestions, environment, useConfirm } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
 import { ElectionResultsTypeNames, ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
@@ -87,7 +88,10 @@ export const ProcessView = () => {
                 </Box>
               </TabPanel>
               <TabPanel mb={20}>
-                <ElectionResults />
+                <Alert status='info'>
+                  La votació ha finalitzat. Els resultats es faran públics un breu, un cop siguin validats i anunciats
+                  pels responsables de l'Ajuntament de Berga.
+                </Alert>
               </TabPanel>
             </TabPanels>
           </Tabs>
