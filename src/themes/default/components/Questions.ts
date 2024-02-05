@@ -82,12 +82,10 @@ const baseStyle = definePartsStyle({
   },
 
   title: {
-    px: 1,
     display: 'block',
     textAlign: 'start',
     fontSize: 'xl2',
     lineHeight: 1.3,
-    mb: 5,
     color: 'process.questions.title',
   },
 

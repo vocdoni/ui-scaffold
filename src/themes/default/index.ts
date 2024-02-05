@@ -20,6 +20,7 @@ export const theme = extendTheme(vtheme, {
         '--box-shadow-darker': '0px 2px 4px #808080b5',
         '--vcd-gradient-primary': 'linear-gradient(to right, #24656e, #2c545a)',
       },
+
       '.creating-process-img': {
         bgImage: SConfirmModal,
       },
@@ -36,6 +37,23 @@ export const theme = extendTheme(vtheme, {
         textDecoration: 'underline',
         _hover: {
           textDecoration: 'none',
+        },
+      },
+      '.md-sizes': {
+        '& :first-of-type': {
+          mt: 0,
+        },
+        'h2[level="1"]': {
+          fontSize: '24px',
+        },
+        'h2[level="2"]': {
+          fontSize: '20px',
+        },
+        'h3[level="3"]': {
+          fontSize: '18px',
+        },
+        p: {
+          fontSize: '16px',
         },
       },
       '.process-create-title': {

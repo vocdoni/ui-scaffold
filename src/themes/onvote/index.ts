@@ -31,6 +31,9 @@ export const theme = extendTheme(vtheme, {
         heading: '"Archivo", sans-serif',
         body: '"Archivo", sans-serif',
       },
+      '.brand-theme': {
+        fontFamily: 'pixeloidsans, monospace',
+      },
       '.creating-process-img': {
         bgImage: '/assets/onvote-modal-submitting.png',
       },
@@ -39,13 +42,24 @@ export const theme = extendTheme(vtheme, {
         h: 6,
         bgColor: 'primary.main',
       },
+      '.md-sizes': {
+        'h2[level="1"]': {
+          fontSize: '24px',
+        },
+        'h2[level="2"]': {
+          fontSize: '20px',
+        },
+        'h3[level="3"]': {
+          fontSize: '18px',
+        },
+        p: {
+          fontSize: '16px',
+        },
+      },
       '.process-create-title': {
         fontFamily: 'pixeloidsans, monospace',
         textTransform: 'uppercase',
         color: colors.process_create.title,
-      },
-      '.brand-theme': {
-        fontFamily: 'pixeloidsans, monospace',
       },
       '.process-create-section': {
         border: '1px solid',
