@@ -551,5 +551,14 @@
   "use_read_more": {
     "read_less": "Llegeix menys",
     "read_more": "Llegeix més"
+  },
+  "welcome": {
+    "description": "Per començar, has de registrar el teu compte i el teu SIK (clau d'identitat segura) firmant dues transaccions (és segur i gratuït).",
+    "intro": "Amb aquesta dApp pots crear votacions anònimes, segures i verificables.",
+    "title": "Benvingut a {{ sitename }}",
+    "step": {
+      "register": "Registrar compte",
+      "sik": "Crear SIK"
+    }
   }
 }

@@ -551,5 +551,14 @@
   "use_read_more": {
     "read_less": "Leer menos",
     "read_more": "Leer más"
+  },
+  "welcome": {
+    "description": "Para empezar, debes registrar tu cuenta y tu SIK (clave de identidad segura) firmando dos transacciones (es seguro y gratuito).",
+    "intro": "Con esta dApp puedes crear votaciones anónimas, seguras y verificables.",
+    "title": "Bienvenido a {{ sitename }}",
+    "step": {
+      "register": "Registrar cuenta",
+      "sik": "Crear SIK"
+    }
   }
 }
