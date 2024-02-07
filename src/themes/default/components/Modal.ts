@@ -1,5 +1,5 @@
 import { modalAnatomy as parts } from '@chakra-ui/anatomy'
-import { createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/styled-system'
+import { createMultiStyleConfigHelpers } from '@chakra-ui/styled-system'
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(parts.keys)
 

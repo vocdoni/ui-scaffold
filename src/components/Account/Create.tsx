@@ -7,16 +7,31 @@ import {
   FormErrorMessage,
   FormLabel,
   Input,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  Spinner,
+  Stack,
   Text,
   Textarea,
+  useDisclosure,
 } from '@chakra-ui/react'
+import { Button } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
 import { Account } from '@vocdoni/sdk'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import { useAccount } from 'wagmi'
 import { useFaucet } from '~components/Faucet/use-faucet'
+import { ucfirst } from '~constants/strings'
+import { Check, Close } from '~theme/icons'
 import { useAccountHealthTools } from './use-account-health-tools'
+import hello from '/shared/hello.jpeg'
 
 interface FormFields {
   name: string
@@ -136,5 +151,98 @@ export const AccountCreate = () => {
         </Alert>
       )}
     </Flex>
+  )
+}
+
+export const BasicAccountCreation = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isConnected, address } = useAccount()
+  const {
+    client,
+    account,
+    createAccount,
+    loaded: { account: loaded },
+    errors: { create: error },
+    connected,
+  } = useClient()
+  const { exists } = useAccountHealthTools()
+  const { t } = useTranslation()
+  const [creating, setCreating] = useState<boolean>(false)
+
+  // site name, to be used in translations
+  let sitename = 'Vocdoni'
+  if (import.meta.env.theme !== 'default') {
+    sitename = ucfirst(import.meta.env.theme)
+  }
+
+  // create account logic (used both in effect and retry button)
+  const create = useCallback(async () => {
+    if (creating) return
+
+    setCreating(true)
+    await createAccount()
+    setCreating(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [creating, client.wallet, isConnected, exists, account])
+
+  // open modal and init create for the first time
+  useEffect(() => {
+    if (!isConnected || (isConnected && exists) || !client.wallet || creating || !loaded) return
+    ;(async () => {
+      onOpen()
+      create()
+    })()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isConnected, exists, account, client.wallet, loaded])
+
+  return (
+    <>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>{t('welcome.title', { sitename })}</ModalHeader>
+          {!!error && <ModalCloseButton />}
+          <ModalBody>
+            <Box
+              className='welcome-modal'
+              bgImage={hello}
+              bgRepeat='no-repeat'
+              bgPosition='top center'
+              bgSize='100%'
+              mb={5}
+              borderRadius='10px'
+              boxShadow='3px 3px 20px lightgray'
+              height='150px'
+            />
+            <Stack gap={4}>
+              <Text>{t('welcome.intro', { sitename })}</Text>
+              <Text>{t('welcome.description', { sitename })}</Text>
+              <Stack mt={4}>
+                <Flex flexDir='row'>
+                  {creating ? <Spinner mt={1} mr={1} width={4} height={4} /> : error ? <Close /> : <Check />}
+                  {t('welcome.step.register')}
+                </Flex>
+                <Flex flexDir='row'>
+                  {creating ? <Spinner mt={1} mr={1} width={4} height={4} /> : error ? <Close /> : <Check />}
+                  {t('welcome.step.sik')}
+                </Flex>
+              </Stack>
+            </Stack>
+            {error && <Text color='error'>{error}</Text>}
+          </ModalBody>
+
+          {error && (
+            <ModalFooter>
+              <Button variant='ghost' onClick={onClose}>
+                Close
+              </Button>
+              <Button mr={3} variant='primary' onClick={create} isLoading={creating}>
+                Retry
+              </Button>
+            </ModalFooter>
+          )}
+        </ModalContent>
+      </Modal>
+    </>
   )
 }
