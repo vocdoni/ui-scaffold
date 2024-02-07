@@ -110,6 +110,7 @@
     "success_faucetPackage_title": "El Faucet Package se obtuvo con éxito",
     "success_title": "Los tokens han sido reclamados correctamente"
   },
+  "close": "Cerrar",
   "copy": {
     "address": "Copiar dirección",
     "copied_title": "¡Copiado!"
@@ -430,7 +431,6 @@
       "not_owner": "Esta organización aún no tiene votaciones.",
       "title": "Crea tu primer proceso de votación"
     },
-    "name_long": "<strong>{{ name }}</strong>",
     "title": {
       "edit": "Editar organización",
       "read_more": "Expandir título"
@@ -519,6 +519,7 @@
       "accuracy": "Precisión de los Saldos de Censo Anónimo: "
     }
   },
+  "retry": "Reintentar",
   "roadmap": {
     "census_description": "Crear un censo descentralizado fuera de la cadena y compatible con zk a partir de una instantánea de bloques de Ethereum, con verificación en cadena.",
     "census_title": "zkCensus:",
@@ -555,10 +556,10 @@
   "welcome": {
     "description": "Para empezar, debes registrar tu cuenta y tu SIK (clave de identidad segura) firmando dos transacciones (es seguro y gratuito).",
     "intro": "Con esta dApp puedes crear votaciones anónimas, seguras y verificables.",
-    "title": "Bienvenido a {{ sitename }}",
     "step": {
       "register": "Registrar cuenta",
       "sik": "Crear SIK"
-    }
+    },
+    "title": "Bienvenido a {{ sitename }}"
   }
 }

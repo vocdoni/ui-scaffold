@@ -110,6 +110,7 @@
     "success_faucetPackage_title": "El Faucet Package s'ha obtingut correctament",
     "success_title": "Els tokens s'han reclamat amb èxit"
   },
+  "close": "Tanca",
   "copy": {
     "address": "Copia l'adreça",
     "copied_title": "Copiat!"
@@ -430,7 +431,6 @@
       "not_owner": "Aquesta organització encara no té votacions.",
       "title": "Crea la teva primera elecció"
     },
-    "name_long": "<strong>{{ name }}</strong>",
     "title": {
       "edit": "Editar organització",
       "read_more": "Expandir títol"
@@ -519,6 +519,7 @@
       "accuracy": "Precisió dels Saldos de Cens Anònims: "
     }
   },
+  "retry": "Reintenta",
   "roadmap": {
     "census_description": "Crear un cens descentralitzat fora de la cadena i compatible amb zk a partir d'una instantània de blocs d'Ethereum, amb verificació a la cadena.",
     "census_title": "zkCensus:",
@@ -555,10 +556,10 @@
   "welcome": {
     "description": "Per començar, has de registrar el teu compte i el teu SIK (clau d'identitat segura) firmant dues transaccions (és segur i gratuït).",
     "intro": "Amb aquesta dApp pots crear votacions anònimes, segures i verificables.",
-    "title": "Benvingut a {{ sitename }}",
     "step": {
       "register": "Registrar compte",
       "sik": "Crear SIK"
-    }
+    },
+    "title": "Benvingut a {{ sitename }}"
   }
 }
