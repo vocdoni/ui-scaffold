@@ -542,5 +542,14 @@
   "use_read_more": {
     "read_less": "Read less",
     "read_more": "Read more"
+  },
+  "welcome": {
+    "description": "But first, you need to register your account and your SIK (Secret Identity Key) by signing 2 transactions (it's secure and free).",
+    "intro": "With this dApp you can create anonymous, private secure votings.",
+    "title": "Welcome to {{ sitename }}",
+    "step": {
+      "register": "Register account",
+      "sik": "Create SIK"
+    }
   }
 }
