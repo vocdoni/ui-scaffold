@@ -6,6 +6,7 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
+  Icon,
   Input,
   Modal,
   ModalBody,
@@ -156,14 +157,13 @@ export const AccountCreate = () => {
 
 export const BasicAccountCreation = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const { isConnected, address } = useAccount()
+  const { isConnected } = useAccount()
   const {
     client,
     account,
     createAccount,
-    loaded: { account: loaded },
+    loaded: { fetch: loaded },
     errors: { create: error },
-    connected,
   } = useClient()
   const { exists } = useAccountHealthTools()
   const { t } = useTranslation()
@@ -195,14 +195,20 @@ export const BasicAccountCreation = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isConnected, exists, account, client.wallet, loaded])
 
+  // close modal after successfully creating account
+  useEffect(() => {
+    if (!isConnected || !exists || !isOpen || !account) return
+    onClose()
+  }, [isConnected, exists, account, isOpen, onClose])
+
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} closeOnEsc={!!error} closeOnOverlayClick={!!error}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>{t('welcome.title', { sitename })}</ModalHeader>
           {!!error && <ModalCloseButton />}
-          <ModalBody>
+          <ModalBody color='modal_description'>
             <Box
               className='welcome-modal'
               bgImage={hello}
@@ -219,25 +225,25 @@ export const BasicAccountCreation = () => {
               <Text>{t('welcome.description', { sitename })}</Text>
               <Stack mt={4}>
                 <Flex flexDir='row'>
-                  {creating ? <Spinner mt={1} mr={1} width={4} height={4} /> : error ? <Close /> : <Check />}
+                  <StateIcon creating={creating} error={error} />
                   {t('welcome.step.register')}
                 </Flex>
                 <Flex flexDir='row'>
-                  {creating ? <Spinner mt={1} mr={1} width={4} height={4} /> : error ? <Close /> : <Check />}
+                  <StateIcon creating={creating} error={error} />
                   {t('welcome.step.sik')}
                 </Flex>
               </Stack>
+              {error && <Text color='error'>{error}</Text>}
             </Stack>
-            {error && <Text color='error'>{error}</Text>}
           </ModalBody>
 
           {error && (
             <ModalFooter>
               <Button variant='ghost' onClick={onClose}>
-                Close
+                {t('close')}
               </Button>
               <Button mr={3} variant='primary' onClick={create} isLoading={creating}>
-                Retry
+                {t('retry')}
               </Button>
             </ModalFooter>
           )}
@@ -245,4 +251,23 @@ export const BasicAccountCreation = () => {
       </Modal>
     </>
   )
+}
+
+const StateIcon = ({ creating, error }: { creating: boolean; error: string | null }) => {
+  const style = {
+    alignSelf: 'center',
+    mr: 1,
+    width: 4,
+    height: 4,
+  }
+
+  if (creating) {
+    return <Spinner {...style} />
+  }
+
+  if (error) {
+    return <Icon as={Close} {...style} />
+  }
+
+  return <Icon as={Check} {...style} />
 }

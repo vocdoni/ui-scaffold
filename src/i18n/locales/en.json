@@ -108,6 +108,7 @@
     "success_faucetPackage_title": "Faucet Package was successfully obtained",
     "success_title": "Tokens were successfully claimed"
   },
+  "close": "Close",
   "copy": {
     "address": "Copy address",
     "copied_title": "Copied!"
@@ -423,7 +424,6 @@
       "not_owner": "This organization has no voting processes yet",
       "title": "Create your first voting process"
     },
-    "name_long": "<strong>{{ name }}</strong>",
     "title": {
       "edit": "Edit organization",
       "read_more": "Expand title"
@@ -510,6 +510,7 @@
       "accuracy": "Anonymous Census Balance Accuracy: "
     }
   },
+  "retry": "Retry",
   "roadmap": {
     "census_description": "Create a trust-less off-chain zk-friendly census from an Ethereum block snapshot, with on-chain verification.",
     "census_title": "zkCensus:",
@@ -546,10 +547,10 @@
   "welcome": {
     "description": "But first, you need to register your account and your SIK (Secret Identity Key) by signing 2 transactions (it's secure and free).",
     "intro": "With this dApp you can create anonymous, private secure votings.",
-    "title": "Welcome to {{ sitename }}",
     "step": {
       "register": "Register account",
       "sik": "Create SIK"
-    }
+    },
+    "title": "Welcome to {{ sitename }}"
   }
 }
