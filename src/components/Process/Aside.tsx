@@ -14,7 +14,6 @@ const ProcessAside = () => {
   const {
     election,
     connected,
-    isAbleToVote,
     isInCensus,
     voted,
     votesLeft,
@@ -25,7 +24,7 @@ const ProcessAside = () => {
   const census: CensusMeta = dotobject(election?.meta || {}, 'census')
 
   const renderVoteMenu =
-    (voted !== null && voted.length > 0) ||
+    voted ||
     (voting && election?.electionType.anonymous) ||
     (hasOverwriteEnabled(election) && isInCensus && votesLeft > 0 && voted)
 
@@ -148,7 +147,7 @@ export const VoteButton = ({ setQuestionsTab }: { setQuestionsTab: () => void })
 
   if (
     election?.status === ElectionStatus.CANCELED ||
-    !!voted ||
+    !isAbleToVote ||
     (isConnected && !isInCensus && !['spreadsheet', 'csp'].includes(census?.type))
   )
     return null
