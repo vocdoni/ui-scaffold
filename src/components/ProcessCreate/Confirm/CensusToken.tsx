@@ -1,12 +1,13 @@
-import { Flex, Text } from '@chakra-ui/react'
+import { Flex, Text, Tooltip } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
+import { AiTwotoneQuestionCircle } from 'react-icons/ai'
 import { TokenPreview } from '../Census/Token'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 
 const PreviewCensusToken = () => {
   const { t } = useTranslation()
   const {
-    form: { maxCensusSize, censusToken, chain, strategySize },
+    form: { maxCensusSize, censusToken, chain, strategySize, accuracy, electionType },
   } = useProcessCreationSteps()
 
   const size = maxCensusSize || 0
@@ -26,6 +27,19 @@ const PreviewCensusToken = () => {
           })}
         </Text>
       </Flex>
+      {electionType.anonymous && (
+        <Text display='flex' alignItems='center' flexWrap='wrap' gap={1}>
+          <Text as='span' fontWeight='bold'>
+            {t('process_create.preview.accuracy')}
+          </Text>
+          {accuracy.toFixed()}%
+          <Tooltip label={t('process_create.anonymous.legal_note') + t('process_create.anonymous.legal_disclaimer')}>
+            <Text as='span' mb='4px'>
+              <AiTwotoneQuestionCircle />
+            </Text>
+          </Tooltip>
+        </Text>
+      )}
     </>
   )
 }

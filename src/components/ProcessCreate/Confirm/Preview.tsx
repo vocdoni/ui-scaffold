@@ -1,7 +1,6 @@
-import { Box, ChakraProvider, extendTheme, Flex, Icon, Link, Text, Tooltip } from '@chakra-ui/react'
+import { Box, ChakraProvider, extendTheme, Flex, Icon, Link, Text } from '@chakra-ui/react'
 import { ElectionDescription, ElectionQuestions, ElectionTitle } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
-import { AiTwotoneQuestionCircle } from 'react-icons/ai'
 import { IoMdCheckmark, IoMdClose, IoMdCreate } from 'react-icons/io'
 import { IoCheckmarkSharp } from 'react-icons/io5'
 import { confirmTheme } from '~theme/components/Confirm'
@@ -21,7 +20,6 @@ const Preview = () => {
     questions,
     startDate: begin,
     endDate: end,
-    accuracy,
   } = form
 
   const features =
@@ -141,21 +139,6 @@ const Preview = () => {
         </Text>
         <Box w={{ md: '65%' }}>
           <Census />
-          {form.electionType.anonymous && (
-            <Text display='flex' alignItems='center' flexWrap='wrap' gap={1}>
-              <Text as='span' fontWeight='bold'>
-                {t('process_create.preview.accuracy')}
-              </Text>
-              {accuracy.toFixed()}%
-              <Tooltip
-                label={t('process_create.anonymous.legal_note') + t('process_create.anonymous.legal_disclaimer')}
-              >
-                <Text as='span' mb='4px'>
-                  <AiTwotoneQuestionCircle />
-                </Text>
-              </Tooltip>
-            </Text>
-          )}
         </Box>
 
         <Link position='absolute' top={0} right={0} onClick={() => setActiveStep(3)}>
