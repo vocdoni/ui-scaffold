@@ -61,7 +61,7 @@ const Support = () => {
             </Text>
           </Button>
         </Flex>
-        <Flex gap='20px' justifyContent='center'>
+        <Flex gap='20px' flexDirection={{ base: 'column', md2: 'row' }} justifyContent='center'>
           <Flex justifyContent='center' alignItems='center' gap='2'>
             <FaRegCheckCircle color='#175CFF' />
             <Text as='span' color='white'>
