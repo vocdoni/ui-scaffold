@@ -26,6 +26,9 @@ declare module '~theme/Fonts' {
   export default import('react').FC
 }
 
+declare module '~theme/components/Navbar' {
+  export default import('react').FC
+}
 declare module '~theme/components/Footer' {
   export default import('react').FC
 }

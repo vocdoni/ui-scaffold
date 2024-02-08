@@ -355,6 +355,13 @@
     "info": "<text>If you need more, contact to <mailto>info@onvote.app</mailto></text>",
     "title": "Get VOC Tokens"
   },
+  "home": {
+    "create_process": {
+      "btn": "Create Process Now",
+      "subtitle": "Reduce the complexity, cost & time of letting your community vote & decide",
+      "title": "Secure, Fast & User-Friendly Voting Solution"
+    }
+  },
   "home_features": {
     "anonymous_description": "Unlock true democracy with zkSNARKs! Participants can cast their votes with complete anonymity, ensuring every voice is heard without compromise.",
     "anonymous_title": "Anonymous",
