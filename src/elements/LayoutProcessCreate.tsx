@@ -17,7 +17,7 @@ const LayoutProcessCreate = () => {
           justifyContent='space-between'
           alignItems='center'
           w='full'
-          p={{ base: '12px 40px', md: '24px 80px' }}
+          p={{ base: '12px 10px', sm: '12px 20px', md: '24px 40px' }}
         >
           <Logo />
 
@@ -50,7 +50,7 @@ const LayoutProcessCreate = () => {
           textTransform='uppercase'
           fontFamily='pixeloidsans'
           fontSize='16px'
-          display={{ base: 'none', sm: 'block' }}
+          display={{ base: 'none', md: 'block' }}
         >
           World wide voting
         </Text>

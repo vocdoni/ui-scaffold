@@ -49,7 +49,11 @@ export const colors = {
 
   bg: colorsBase.gray.bg,
 
-  error: 'red.500',
+  editor: {
+    character_limit: colorsBase.gray.light,
+  },
+
+  error: colorsBase.red,
 
   checkbox: colorsBase.primary.main,
 
@@ -79,8 +83,8 @@ export const colors = {
 
   process: {
     aside: {
-      bg: colorsBase.primary.main,
-      color: colorsBase.white.pure,
+      bg: colorsBase.white.pure,
+      color: colorsBase.primary.main,
       vote_btn_color: colorsBase.black,
       vote_btn_bg: colorsBase.white.pure,
       aside_footer_mbl_border: colorsBase.white.dark,
@@ -141,8 +145,8 @@ export const colors = {
 
   process_create: {
     alert_info: {
-      bg: colorsBase.primary.light,
-      color: colorsBase.primary.dark,
+      bg: colorsBase.primary.light2,
+      color: colorsBase.primary.dark2,
     },
     advanced_checkbox_bg: colorsBase.white.pure,
     advanced_checkbox_border: colorsBase.primary.gray_light,

@@ -6,16 +6,33 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
+  Icon,
   Input,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  Spinner,
+  Stack,
   Text,
   Textarea,
+  useDisclosure,
 } from '@chakra-ui/react'
+import { Button } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
 import { Account } from '@vocdoni/sdk'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import { useAccount } from 'wagmi'
 import { useFaucet } from '~components/Faucet/use-faucet'
+import { ucfirst } from '~constants/strings'
+import { Check, Close } from '~theme/icons'
+import { useAccountHealthTools } from './use-account-health-tools'
+import hello from '/shared/hello.jpeg'
 
 interface FormFields {
   name: string
@@ -35,12 +52,15 @@ export const AccountCreate = () => {
   })
   const {
     createAccount,
+    updateAccount,
     errors: { account: error },
   } = useClient()
   const { t } = useTranslation()
   const [sent, setSent] = useState<boolean>(false)
   const { getAuthTypes } = useFaucet()
   const [faucetAmount, setFaucetAmount] = useState<number>(0)
+  // we want to know if account exists, not the organization (slight difference)
+  const { exists } = useAccountHealthTools()
 
   const required = {
     value: true,
@@ -61,10 +81,18 @@ export const AccountCreate = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const onSubmit = async (values: FormFields) =>
-    createAccount({
-      account: new Account(values),
-    })?.finally(() => setSent(true))
+  const onSubmit = async (values: FormFields) => {
+    let call = () =>
+      createAccount({
+        account: new Account(values),
+      })
+
+    if (exists) {
+      call = () => updateAccount(new Account(values))
+    }
+
+    return call()?.finally(() => setSent(true))
+  }
 
   return (
     <Flex
@@ -125,4 +153,121 @@ export const AccountCreate = () => {
       )}
     </Flex>
   )
+}
+
+export const BasicAccountCreation = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isConnected } = useAccount()
+  const {
+    client,
+    account,
+    createAccount,
+    loaded: { fetch: loaded },
+    errors: { create: error },
+  } = useClient()
+  const { exists } = useAccountHealthTools()
+  const { t } = useTranslation()
+  const [creating, setCreating] = useState<boolean>(false)
+
+  // site name, to be used in translations
+  let sitename = 'Vocdoni'
+  if (import.meta.env.theme !== 'default') {
+    sitename = ucfirst(import.meta.env.theme)
+  }
+
+  // create account logic (used both in effect and retry button)
+  const create = useCallback(async () => {
+    if (creating) return
+
+    setCreating(true)
+    await createAccount()
+    setCreating(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [creating, client.wallet, isConnected, exists, account])
+
+  // open modal and init create for the first time
+  useEffect(() => {
+    if (!isConnected || (isConnected && exists) || !client.wallet || creating || !loaded) return
+    ;(async () => {
+      onOpen()
+      create()
+    })()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isConnected, exists, account, client.wallet, loaded])
+
+  // close modal after successfully creating account
+  useEffect(() => {
+    if (!isConnected || !exists || !isOpen || !account) return
+    onClose()
+  }, [isConnected, exists, account, isOpen, onClose])
+
+  return (
+    <>
+      <Modal isOpen={isOpen} onClose={onClose} closeOnEsc={!!error} closeOnOverlayClick={!!error}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>{t('welcome.title', { sitename })}</ModalHeader>
+          {!!error && <ModalCloseButton />}
+          <ModalBody color='modal_description'>
+            <Box
+              className='welcome-modal'
+              bgImage={hello}
+              bgRepeat='no-repeat'
+              bgPosition='top center'
+              bgSize='100%'
+              mb={5}
+              borderRadius='10px'
+              boxShadow='3px 3px 20px lightgray'
+              height='150px'
+            />
+            <Stack gap={4}>
+              <Text>{t('welcome.intro', { sitename })}</Text>
+              <Text>{t('welcome.description', { sitename })}</Text>
+              <Stack mt={4}>
+                <Flex flexDir='row'>
+                  <StateIcon creating={creating} error={error} />
+                  {t('welcome.step.register')}
+                </Flex>
+                <Flex flexDir='row'>
+                  <StateIcon creating={creating} error={error} />
+                  {t('welcome.step.sik')}
+                </Flex>
+              </Stack>
+              {error && <Text color='error'>{error}</Text>}
+            </Stack>
+          </ModalBody>
+
+          {error && (
+            <ModalFooter>
+              <Button variant='ghost' onClick={onClose}>
+                {t('close')}
+              </Button>
+              <Button mr={3} variant='primary' onClick={create} isLoading={creating}>
+                {t('retry')}
+              </Button>
+            </ModalFooter>
+          )}
+        </ModalContent>
+      </Modal>
+    </>
+  )
+}
+
+const StateIcon = ({ creating, error }: { creating: boolean; error: string | null }) => {
+  const style = {
+    alignSelf: 'center',
+    mr: 1,
+    width: 4,
+    height: 4,
+  }
+
+  if (creating) {
+    return <Spinner {...style} />
+  }
+
+  if (error) {
+    return <Icon as={Close} {...style} />
+  }
+
+  return <Icon as={Check} {...style} />
 }

@@ -2,7 +2,6 @@ import { InfoOutlineIcon } from '@chakra-ui/icons'
 import {
   AspectRatio,
   Box,
-  Button,
   Flex,
   FormControl,
   FormErrorMessage,
@@ -20,6 +19,7 @@ import {
   Text,
   Textarea,
 } from '@chakra-ui/react'
+import { Button } from '@vocdoni/chakra-components'
 import { errorToString, useClient, useOrganization } from '@vocdoni/react-providers'
 import { Account } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
@@ -106,7 +106,6 @@ const EditProfile = ({ callback }: { callback?: any }) => {
             <Box
               as='form'
               onSubmit={(e) => {
-                console.log('asas')
                 e.stopPropagation()
                 e.preventDefault()
                 handleSubmit(onSubmit)(e)

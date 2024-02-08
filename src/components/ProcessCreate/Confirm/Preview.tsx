@@ -67,7 +67,13 @@ const Preview = () => {
               {t('form.process_create.confirm.description_election')}
             </Text>
 
-            <Box flexBasis={{ base: '100%', md: '65%' }} flexShrink={0} flexGrow={0} textAlign='start'>
+            <Box
+              className='md-sizes'
+              flexBasis={{ base: '100%', md: '65%' }}
+              flexShrink={0}
+              flexGrow={0}
+              textAlign='start'
+            >
               <ElectionDescription />
             </Box>
           </Flex>
@@ -95,7 +101,7 @@ const Preview = () => {
               {import.meta.env.features.vote.overwrite && (
                 <Flex gap={2} alignItems='center'>
                   <Icon as={maxVoteOverwrites ? IoCheckmarkSharp : IoMdClose} boxSize={5} />
-                  <Text>{t('form.process_create.confirm.vote_overwritte')}</Text>
+                  <Text>{t('form.process_create.confirm.vote_overwrite')}</Text>
                 </Flex>
               )}
               {import.meta.env.features.vote.secret && (
@@ -140,6 +146,7 @@ const Preview = () => {
         <Box w={{ md: '65%' }}>
           <Census />
         </Box>
+
         <Link position='absolute' top={0} right={0} onClick={() => setActiveStep(3)}>
           <Icon
             as={IoMdCreate}

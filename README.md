@@ -60,16 +60,20 @@ if you need to add new exports to the theme, you'll need to add them to the `src
 - Assets are loaded from `src/public`, but also depending on the theme. Loading assets in the app is done as per vite
 standards, using the `/` root path (i.e. `import logo from '/assets/logo.svg'` would load the `logo.svg` file from the
 `src/public/default` directory, if no theme is specified).
+- There's a shared assets folder in `public/shared` that's accessible via `/shared`. Related styles may be found in
+`src/themes/shared.ts` (and they must be spread-imported in the theme's `index.ts` file).
 
 To create a new theme, just copy the `default` theme and start customizing it:
 
 ~~~bash
+cp -frv public/default public/my-theme
 cp -frv src/themes/default src/themes/my-theme
-cp -frv src/public/default src/public/my-theme
 THEME=my-theme yarn start
 ~~~
 
-Most themes logic is handled via the vite themes plugin (located in `vite/themes.ts`), except for the index.html
+You can use any non existing name for your theme (so no `default` nor `shared`).
+
+Most themes logic is handled via the vite themes plugin (located in `vite/themes.ts`), except for the `index.html`
 template files, which are handled in `vite.config.ts` using an external plugin.
 
 ### Features

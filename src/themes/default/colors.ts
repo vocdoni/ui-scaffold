@@ -40,7 +40,15 @@ export const colors = {
     600: colorsBase.black,
     700: colorsBase.black,
   },
+
   checkbox: colorsBase.primary.main,
+
+  editor: {
+    character_limit: colorsBase.gray.light,
+  },
+
+  error: colorsBase.red,
+
   link: {
     primary: colorsBase.primary.main,
     contrast: colorsBase.white.pure,

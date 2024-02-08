@@ -20,6 +20,7 @@ export const translations = (t: TFunction<string, string>) => ({
   },
   // questions and vote button
   vote: {
+    abstain: t('cc.vote.abstain').toString(),
     button_update: t('cc.vote.button_update').toString(),
     button: t('cc.vote.button').toString(),
     confirm: t('cc.vote.confirm').toString(),
@@ -60,6 +61,7 @@ export const translations = (t: TFunction<string, string>) => ({
     process_unknown: t('cc.statuses.process_unknown').toString(),
   },
   validation: {
+    choices_count: t('cc.validation.choices_count').toString(),
     required: t('cc.validation.required').toString(),
     min_length: t('cc.validation.min_length').toString(),
   },

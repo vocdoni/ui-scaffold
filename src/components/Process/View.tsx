@@ -24,7 +24,7 @@ import {
 } from '@chakra-ui/react'
 import { ElectionQuestions, ElectionResults, environment, useConfirm } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
-import { ElectionStatus, IQuestion } from '@vocdoni/sdk'
+import { ElectionResultsTypeNames, ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { useEffect, useState } from 'react'
 import { FieldValues } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
@@ -52,13 +52,7 @@ export const ProcessView = () => {
 
   return (
     <Box>
-      <Box
-        mb={44}
-        px={{
-          base: '40px',
-          md: '80px',
-        }}
-      >
+      <Box className='site-wrapper' mb={44}>
         <Header />
         <Flex direction={{ base: 'column', lg2: 'row' }} alignItems='start' gap={{ lg2: 10 }}>
           <Tabs
@@ -77,9 +71,11 @@ export const ProcessView = () => {
             </TabList>
             <TabPanels>
               <TabPanel>
-                <ElectionQuestions
-                  confirmContents={(questions, answers) => <ConfirmVoteModal questions={questions} answers={answers} />}
-                />
+                <Box className='md-sizes'>
+                  <ElectionQuestions
+                    confirmContents={(election, answers) => <ConfirmVoteModal election={election} answers={answers} />}
+                  />
+                </Box>
                 <Box position='sticky' bottom={0} left={0} pb={1} pt={1} display={{ base: 'none', lg2: 'block' }}>
                   <VoteButton setQuestionsTab={setQuestionsTab} />
                 </Box>
@@ -99,7 +95,7 @@ export const ProcessView = () => {
             position={{ lg2: 'sticky' }}
             top={20}
             mt={10}
-            maxW={{ md: '265px', lg2: '290px' }}
+            maxW={{ lg2: '290px' }}
             mb={10}
           >
             <ProcessAside />
@@ -229,7 +225,7 @@ const SuccessVoteModal = () => {
   )
 }
 
-const ConfirmVoteModal = ({ questions, answers }: { questions: IQuestion[]; answers: FieldValues }) => {
+const ConfirmVoteModal = ({ election, answers }: { election: PublishedElection; answers: FieldValues }) => {
   const { t } = useTranslation()
   const styles = useMultiStyleConfig('ConfirmModal')
   const { cancel, proceed } = useConfirm()
@@ -249,7 +245,7 @@ const ConfirmVoteModal = ({ questions, answers }: { questions: IQuestion[]; answ
           px={2}
           borderRadius='lg2'
         >
-          {questions.map((q, i) => (
+          {election.questions.map((q, i) => (
             <Box key={i}>
               <Box py={2}>
                 <Text display='flex' flexDirection='column' gap={1} mb={1}>
@@ -264,20 +260,39 @@ const ConfirmVoteModal = ({ questions, answers }: { questions: IQuestion[]; answ
                     }}
                   />
                 </Text>
-                <Text display='flex' flexDirection='column' gap={1}>
-                  <Trans
-                    i18nKey='process.spreadsheet.confirm.option'
-                    components={{
-                      span: <Text as='span' fontWeight='bold' whiteSpace='nowrap' />,
-                    }}
-                    values={{
-                      answer: q.choices[Number(answers[i])].title.default,
-                      number: i + 1,
-                    }}
-                  />
-                </Text>
+                {election.resultsType.name === ElectionResultsTypeNames.SINGLE_CHOICE_MULTIQUESTION ? (
+                  <Text display='flex' flexDirection='column' gap={1}>
+                    <Trans
+                      i18nKey='process.spreadsheet.confirm.option'
+                      components={{
+                        span: <Text as='span' fontWeight='bold' whiteSpace='nowrap' />,
+                      }}
+                      values={{
+                        answer: q.choices[Number(answers[i])].title.default,
+                        number: i + 1,
+                      }}
+                    />
+                  </Text>
+                ) : (
+                  <Text display='flex' flexDirection='column' gap={1}>
+                    <Trans
+                      i18nKey='process.spreadsheet.confirm.options'
+                      components={{
+                        span: <Text as='span' fontWeight='bold' whiteSpace='nowrap' />,
+                      }}
+                      values={{
+                        answers: answers[0]
+                          .map((a: string) =>
+                            q.choices[Number(a)] ? q.choices[Number(a)].title.default : t('cc.vote.abstain')
+                          )
+                          .map((a: string) => `- ${a}`)
+                          .join('<br />'),
+                      }}
+                    />
+                  </Text>
+                )}
               </Box>
-              {i + 1 !== questions.length && <Box h='1px' bgColor='lightgray' />}
+              {i + 1 !== election.questions.length && <Box h='1px' bgColor='lightgray' />}
             </Box>
           ))}
         </Flex>

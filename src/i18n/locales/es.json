@@ -8,19 +8,21 @@
     "overwrite_votes_left_other": "Puedes corregir tu voto {{ count }} veces.",
     "submitting": "",
     "verify_vote_on_explorer": "Verifica el voto en el explorador",
-    "votes_one": "<span>1</span> <text>voto</text>",
-    "votes_many": "<span>{{ count }}</span> <text>votos</text>",
-    "votes_other": "<span>{{ count }}</span> <text>votos</text>",
+    "votes_one": "<span>1</span> <text>votante</text>",
+    "votes_many": "<span>{{ count }}</span> <text>votantes</text>",
+    "votes_other": "<span>{{ count }}</span> <text>votantes</text>",
     "voting_anonymous_advice": ""
   },
   "banner": {
     "start_now": "¡Crea una votación ahora!",
     "subtitle": "Usa direcciones de cartera, vota con un token ERC20 o con NFTs!",
-    "title": "Votaciones para DAOs y comunidades Web3"
+    "subtitle1": "Aumenta la participación electoral un 30%",
+    "title": "Voto digital seguro, verificable y flexible"
   },
   "banner_voting_types": {
     "anonymous_description": "La identidad de los votantes permanece completamente confidencial, gracias a la tecnología zk-SNARKS.",
     "anonymous_title": "100% Anónimo",
+    "bottom_text": "La privacidad debería ser normal",
     "flexible_description": "Personaliza tu proceso de votación y censo para satisfacer los requisitos únicos de tu comunidad.",
     "flexible_title": "Votación Flexible",
     "token_description": "Vota con tokens ERC20/ERC721 (NFT) o agrega tus propios tokens y vota sin coste de gas con ellos.",
@@ -50,7 +52,7 @@
     },
     "results": {
       "date_format": "d 'de' MMMM 'de' y 'a' 'las' H:mm",
-      "secret_until_the_end": "Secreto hasta el final. Los resultados estarán disponibles cuando el proceso termine el {{ endDate }}",
+      "secret_until_the_end": "Los resultados se harán públicos cuando el proceso finalice el {{ endDate }}.",
       "title": "Resultados para \"{{ title }}\"",
       "votes": "Votos: {{ votes }} ({{ percent }})"
     },
@@ -61,7 +63,7 @@
       "anon_sik_label": "Define una contraseña para tu voto",
       "close": "Cerrar",
       "logout": "Cerrar la sesión",
-      "modal_title": "Debes identificarte primero"
+      "modal_title": "Autenticación"
     },
     "statuses": {
       "canceled": "Cancelada",
@@ -74,10 +76,12 @@
       "upcoming": "Próxima"
     },
     "validation": {
+      "choices_count": "",
       "min_length": "Este campo debe tener al menos {{ min }} caracteres",
       "required": "Este campo es obligatorio"
     },
     "vote": {
+      "abstain": "",
       "button": "Votar",
       "button_update": "Reenviar voto",
       "confirm": "Confirma tus selecciones:",
@@ -90,13 +94,13 @@
     "chain_required": "Necesitas seleccionar una red",
     "description": "Selecciona cómo los votantes se autenticarán e identificarán.",
     "request_custom_token": "Solicitar Tokens Personalizados",
+    "social_address_title": "Usuarios de Github",
     "spreadsheet_title": "Datos personalizados",
     "title": "Censo",
     "token_description": "Seleccioneu la xarxa i el token per crear un cens on els titulars del token votaran amb el seu poder de vot.",
     "token_required": "Necesitas seleccionar un token",
     "token_title": "Censo basado en tokens",
-    "wallet_address_title": "Direcciones de billetera",
-    "social_address_title": "Usuarios de Github"
+    "wallet_address_title": "Direcciones de billetera"
   },
   "claim": {
     "error_title": "Error",
@@ -106,6 +110,7 @@
     "success_faucetPackage_title": "El Faucet Package se obtuvo con éxito",
     "success_title": "Los tokens han sido reclamados correctamente"
   },
+  "close": "Cerrar",
   "copy": {
     "address": "Copiar dirección",
     "copied_title": "¡Copiado!"
@@ -121,6 +126,12 @@
     "result": "<span>Después de crear la votación:</span><span2>{{ remainTokens }} tokens</span2>",
     "subtitle": "Tu proceso de votación",
     "total": "<span>Total:</span> <span>{{ cost }} tokens</span>"
+  },
+  "csp_census": {
+    "github": {
+      "error_fetching_users": "",
+      "selected_users": "Usuarios seleccionados:"
+    }
   },
   "error": {
     "go_back": "Volver atrás",
@@ -191,6 +202,7 @@
       "avatar_error": "URL no válida",
       "field_is_required": "Este campo es obligatorio",
       "min_address": "Por favor, proporciona al menos una dirección",
+      "min_users_address": "",
       "recipient_address_invalid": "La dirección especificada no parece válida"
     },
     "process_create": {
@@ -232,15 +244,15 @@
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} votantes elegibles)",
         "network": "Red",
         "network_placeholder": "Selecciona una red",
+        "social_description": "Cree un censo de votantes elegibles que proporcione una lista de usuarios de Github.",
+        "social_title": "Censo de Github",
         "spreadsheet_description": "Datos personalizados, como nombres de usuario y contraseñas, o información personal de los votantes, pueden utilizarse para la autenticación mediante un formulario.",
         "spreadsheet_title": "Datos personalizados",
         "token_base_description": "Utiliza un token (basado en EVM) para permitir a los usuarios votar en función de la cantidad que poseen.",
         "token_base_title": "Basado en tokens",
         "tokens_placeholder": "Busca o pega la dirección del token",
         "wallet_address_description": "Identifica a tus votantes por sus direcciones de monedero digital.",
-        "wallet_address_title": "Direcciones de monedero",
-        "social_title": "Censo de Github",
-        "social_description": "Cree un censo de votantes elegibles que proporcione una lista de usuarios de Github."
+        "wallet_address_title": "Direcciones de monedero"
       },
       "confirm": {
         "anonymous": "Anónimo",
@@ -419,7 +431,6 @@
       "not_owner": "Esta organización aún no tiene votaciones.",
       "title": "Crea tu primer proceso de votación"
     },
-    "name_long": "<strong>{{ name }}</strong> ({{ address }})",
     "title": {
       "edit": "Editar organización",
       "read_more": "Expandir título"
@@ -428,10 +439,10 @@
   "process": {
     "census": "Censo",
     "census_strategies": {
+      "csp": "CSP",
       "spreadsheet": "CSV",
       "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
-      "web3": "Direcciones web3",
-      "csp": "CSP"
+      "web3": "Direcciones web3"
     },
     "created_by": "Creado por",
     "date": {
@@ -459,12 +470,13 @@
       "confirm": {
         "description": "Antes de emitir tu voto, revisa que todo esté correcto.",
         "option": "<strong>Opción {{ number }}:</strong> {{ answer }}",
+        "options": "<strong>Selección:</strong> {{ answers }}",
         "question": "<strong>Pregunta {{ number }}:</strong> {{ answer }}"
       }
     },
     "state": "ESTADO",
     "status": {
-      "active": "Activo",
+      "active": "Votación en curso",
       "canceled": "Proceso cancelado",
       "ended": "Finalizado",
       "paused": "Proceso pausado",
@@ -487,7 +499,12 @@
     "start": "Iniciar/Reanudar"
   },
   "process_create": {
+    "anonymous": {
+      "legal_disclaimer": "Este sistema de votación utiliza el poder de votación basado en tokens (público en la cadena de bloques). Al seleccionar la opción de 'Votación anónima', los pesos se agruparán en saldos similares y se redondearán hacia abajo. Esto sacrifica cierta precisión, pero preserva la identidad anónima al desvincular los saldos de las carteras.",
+      "legal_note": "Aviso legal: "
+    },
     "census": {
+      "mandatory_max_census_size": "Debe haber al menos un votante",
       "total_tokens_one": "1 token",
       "total_tokens_many": "",
       "total_tokens_other": "{{ count }} tokens"
@@ -498,8 +515,12 @@
       "sign_tx": "Firmar transacción"
     },
     "creation_steps_description": "Necesitas firmar las transacciones para crear el proceso de votación en la cadena de bloques de Vocdoni. No cierres esta ventana.",
-    "creation_steps_title": "Progreso"
+    "creation_steps_title": "Progreso",
+    "preview": {
+      "accuracy": "Precisión de los Saldos de Censo Anónimo: "
+    }
   },
+  "retry": "Reintentar",
   "roadmap": {
     "census_description": "Crear un censo descentralizado fuera de la cadena y compatible con zk a partir de una instantánea de bloques de Ethereum, con verificación en cadena.",
     "census_title": "zkCensus:",
@@ -533,9 +554,13 @@
     "read_less": "Leer menos",
     "read_more": "Leer más"
   },
-  "csp_census": {
-    "github": {
-      "selected_users": "Usuarios seleccionados:"
-    }
+  "welcome": {
+    "description": "Para empezar, debes registrar tu cuenta y tu SIK (clave de identidad segura) firmando dos transacciones (es seguro y gratuito).",
+    "intro": "Con esta dApp puedes crear votaciones anónimas, seguras y verificables.",
+    "step": {
+      "register": "Registrar cuenta",
+      "sik": "Crear SIK"
+    },
+    "title": "Bienvenido a {{ sitename }}"
   }
 }

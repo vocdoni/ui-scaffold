@@ -7,15 +7,15 @@
     "overwrite_votes_left_other": "You can correct your vote up to {{ count }} times.",
     "submitting": "Submitting",
     "verify_vote_on_explorer": "Verify your vote on the explorer",
-    "votes_one": "<span>1</span> <text>vote</text>",
-    "votes_other": "<span>{{ count }}</span> <text>votes</text>",
+    "votes_one": "<span>1</span> <text>voter</text>",
+    "votes_other": "<span>{{ count }}</span> <text>voters</text>",
     "voting_anonymous_advice": "Please wait while the anonymous magic 🪄 happens.\nThis can take up to several minutes; don't close the window."
   },
   "banner": {
     "start_now": "Create a vote now!",
     "subtitle": "Save time, money and effort with our easy-to-use & customizable app.",
     "subtitle1": "Boost election participation up by 30%.",
-    "title": "Secure, verificable and transparent online voting"
+    "title": "Secure, verifiable and flexible digital voting"
   },
   "banner_voting_types": {
     "anonymous_description": "Say goodbye to the high expenses of traditional voting methods. Vocdoni App brings you a more affordable way to conduct elections, cutting down on logistical and administrative costs while maintaining the highest standards of quality and security.",
@@ -50,7 +50,7 @@
     },
     "results": {
       "date_format": "PPpp",
-      "secret_until_the_end": "Secret until the end. The results will be available when the process ends on {{ endDate }}",
+      "secret_until_the_end": "The results will be made public when the process finishes on {{ endDate }}.",
       "title": "Results for \"{{ title }}\"",
       "votes": "Votes: {{ votes }} ({{ percent }})"
     },
@@ -61,7 +61,7 @@
       "anon_sik_label": "Define a password for your vote",
       "close": "Close",
       "logout": "Logout",
-      "modal_title": "You must identify first"
+      "modal_title": "Authentication"
     },
     "statuses": {
       "canceled": "Canceled",
@@ -74,10 +74,12 @@
       "upcoming": "Upcoming"
     },
     "validation": {
+      "choices_count": "You must select {{ count }} choices",
       "min_length": "This field must be at least {{ min }} characters long",
       "required": "This field is required"
     },
     "vote": {
+      "abstain": "Abstain",
       "button": "Vote",
       "button_update": "Re-submit vote",
       "confirm": "Please confirm your choices:",
@@ -90,13 +92,13 @@
     "chain_required": "You need to select a network",
     "description": "Choose how to authenticate and verify voters.",
     "request_custom_token": "'Request Custom Tokens'",
+    "social_address_title": "Github users",
     "spreadsheet_title": "Custom data",
     "title": "Census",
     "token_description": "Configure the census by choosing a token from any available network. You can request a token here.",
     "token_required": "You need to select a token",
     "token_title": "Token based census",
-    "wallet_address_title": "Wallet addresses",
-    "social_address_title": "Github users"
+    "wallet_address_title": "Wallet addresses"
   },
   "claim": {
     "error_title": "Error",
@@ -106,6 +108,7 @@
     "success_faucetPackage_title": "Faucet Package was successfully obtained",
     "success_title": "Tokens were successfully claimed"
   },
+  "close": "Close",
   "copy": {
     "address": "Copy address",
     "copied_title": "Copied!"
@@ -120,6 +123,12 @@
     "result": "<span>Remaining:</span><span2>{{ remainTokens }} tokens</span2>",
     "subtitle": "Your voting process",
     "total": "<span>Cost of the vote:</span> <span>{{ cost }} tokens</span>"
+  },
+  "csp_census": {
+    "github": {
+      "error_fetching_users": "",
+      "selected_users": "Selected users:"
+    }
   },
   "error": {
     "go_back": "Go back",
@@ -190,6 +199,7 @@
       "avatar_error": "URL not valid",
       "field_is_required": "This field is required",
       "min_address": "Please, provide at least one address",
+      "min_users_address": "",
       "recipient_address_invalid": "Specified address does not seem to be valid"
     },
     "process_create": {
@@ -231,21 +241,20 @@
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} eligible voters)",
         "network": "Network",
         "network_placeholder": "Select a network",
+        "social_description": "Create a census of eligible voters providing a list of Github users.",
+        "social_title": "Github Census",
         "spreadsheet_description": "Utilize information such as usernames, passwords, or voter personal details for authentication through a form.",
         "spreadsheet_title": "Custom data",
         "token_base_description": "Use ERC20, NFTs and POAPs from different EVM networks to create a census of eligible holders.",
         "token_base_title": "Token based",
         "tokens_placeholder": "Search or paste token address",
         "wallet_address_description": "Create a census of eligible voters providing a list of wallet addresses.",
-        "wallet_address_title": "Wallet addresses",
-        "social_title": "Github Census",
-        "social_description": "Create a census of eligible voters providing a list of Github users."
+        "wallet_address_title": "Wallet addresses"
       },
       "confirm": {
         "anonymous": "Anonymous voting active",
         "census": "Census",
         "census_preview_is_shortened": "(preview list is limited to {{ limit }} results)",
-        "census_total_people": "{{ count }} people will be elegible for voting in this election",
         "census_total_people_one": "A single person will be elegible for voting in this process",
         "census_total_people_other": "{{ count }} people will be elegible for voting in this process",
         "configuration": "Configuration",
@@ -402,8 +411,6 @@
     "create_organization_btn": "Create Organization",
     "description1": "Set up your <span>organization for free</span> and start creating voting processes to engage with your community.",
     "description2": "You will have the chance to claim tokens later from the faucet to create proposals and engage with your community.",
-    "footer": "<span>Vocdoni</span> is a secure, privacy-friendly & open-source public voting protocol.",
-    "inexpensive": "Inexpensive",
     "name": "Organization name",
     "title": "Create your organization"
   },
@@ -417,7 +424,6 @@
       "not_owner": "This organization has no voting processes yet",
       "title": "Create your first voting process"
     },
-    "name_long": "<strong>{{ name }}</strong> ({{ address }})",
     "title": {
       "edit": "Edit organization",
       "read_more": "Expand title"
@@ -426,10 +432,10 @@
   "process": {
     "census": "Census",
     "census_strategies": {
+      "csp": "CSP",
       "spreadsheet": "CSV/Spreadsheet",
       "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
-      "web3": "Web3 addresses",
-      "csp": "CSP"
+      "web3": "Web3 addresses"
     },
     "created_by": "Created by",
     "date": {
@@ -456,12 +462,13 @@
       "confirm": {
         "description": "Before casting your vote review that everything is correct.",
         "option": "<strong>Option {{ number }}:</strong> {{ answer }}",
+        "options": "<strong>Choices:</strong> {{ answers }}",
         "question": "<strong>Question {{ number }}:</strong> {{ answer }}"
       }
     },
     "state": "STATE",
     "status": {
-      "active": "Active",
+      "active": "Voting in progress",
       "canceled": "Process canceled",
       "ended": "Ended",
       "paused": "Process paused",
@@ -484,7 +491,12 @@
     "start": "Start/Resume"
   },
   "process_create": {
+    "anonymous": {
+      "legal_disclaimer": "This voting system utilizes token-based voting power (public on-chain). As you selected the 'Anonymous voting' option, weights will be grouped into similar balances and rounded down. This sacrifices some accuracy but preserves anonymous identity by unlinking balances from wallets.",
+      "legal_note": "Disclaimer: "
+    },
     "census": {
+      "mandatory_max_census_size": "At least one voter needs to be selected",
       "total_tokens_one": "1 token",
       "total_tokens_other": "{{ count }} tokens"
     },
@@ -494,8 +506,12 @@
       "sign_tx": "Sign transaction"
     },
     "creation_steps_description": "Sign transaction to create the voting process. Generating the census can take a few minutes, please don't close this window.",
-    "creation_steps_title": "Progress"
+    "creation_steps_title": "Progress",
+    "preview": {
+      "accuracy": "Anonymous Census Balance Accuracy: "
+    }
   },
+  "retry": "Retry",
   "roadmap": {
     "census_description": "Create a trust-less off-chain zk-friendly census from an Ethereum block snapshot, with on-chain verification.",
     "census_title": "zkCensus:",
@@ -529,9 +545,13 @@
     "read_less": "Read less",
     "read_more": "Read more"
   },
-  "csp_census": {
-    "github": {
-      "selected_users": "Selected users:"
-    }
+  "welcome": {
+    "description": "But first, you need to register your account and your SIK (Secret Identity Key) by signing 2 transactions (it's secure and free).",
+    "intro": "With this dApp you can create anonymous, private secure votings.",
+    "step": {
+      "register": "Register account",
+      "sik": "Create SIK"
+    },
+    "title": "Welcome to {{ sitename }}"
   }
 }

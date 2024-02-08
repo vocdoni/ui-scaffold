@@ -1,7 +1,6 @@
 import { ArrowBackIcon } from '@chakra-ui/icons'
 import {
   Box,
-  Button,
   Checkbox,
   Flex,
   FormControl,
@@ -17,6 +16,7 @@ import {
   useDisclosure,
   useToast,
 } from '@chakra-ui/react'
+import { Button } from '@vocdoni/chakra-components'
 import { ElectionProvider, errorToString, useClient } from '@vocdoni/react-providers'
 import {
   CspCensus,

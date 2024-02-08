@@ -1,9 +1,13 @@
-import { Img } from '@chakra-ui/react'
+import { Img, ImgProps } from '@chakra-ui/react'
+import check from '/assets/check-icon.svg'
+import close from '/assets/close-icon.svg'
+import goback from '/assets/goback-icon.svg'
+import logo from '/assets/onvote-icon.svg'
 
-export const Close = () => <Img src='/assets/close-icon.svg' alt='close' />
+export const Close = (props: ImgProps) => <Img src={close} alt='close' {...props} />
 
-export const Check = () => <Img src='/assets/check-icon.svg' alt='check' />
+export const Check = (props: ImgProps) => <Img src={check} alt='check' {...props} />
 
-export const Logo = () => <Img src='/assets/onvote-icon.svg' alt='onvote logo' maxWidth={12} />
+export const Logo = (props: ImgProps) => <Img src={logo} alt='onvote logo' maxWidth={12} {...props} />
 
-export const GoBack = () => <Img src='/assets/goback-icon.svg' alt='go back' />
+export const GoBack = (props: ImgProps) => <Img src={goback} alt='go back' {...props} />

@@ -1,6 +1,6 @@
 import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
 import { questionsAnatomy } from '@vocdoni/chakra-components'
-import { Check } from '../icons'
+import checkIcon from '/assets/check-icon.png'
 
 const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpers(questionsAnatomy)
 
@@ -73,7 +73,6 @@ const baseStyle = definePartsStyle({
     width: { base: 'full', xl: '80%' },
     m: 0,
     mx: 'auto',
-    p: 4,
 
     '& > div': {
       display: 'flex',
@@ -83,12 +82,10 @@ const baseStyle = definePartsStyle({
   },
 
   title: {
-    px: 1,
     display: 'block',
     textAlign: 'start',
     fontSize: 'xl2',
     lineHeight: 1.3,
-    mb: 5,
     color: 'process.questions.title',
   },
 
@@ -100,19 +97,53 @@ const baseStyle = definePartsStyle({
     mb: 5,
   },
 
-  radioGroup: {
-    p: 1,
-  },
   stack: {
-    p: 1,
-
     '& label': {
       borderRadius: 'lg',
       overflow: 'hidden',
       display: 'flex',
       alignItems: 'center',
       gap: 2,
+      w: { lg2: '99%' },
 
+      '& span:nth-of-type(1)': {
+        display: { base: 'none', md: 'block' },
+        width: '30px',
+        height: '30px',
+        background: 'transparent',
+        ml: '5px',
+        borderRadius: 'none',
+
+        '&[data-checked=""]': {
+          '&:before': {
+            display: 'none',
+            bgColor: 'transparent',
+          },
+
+          border: 'none',
+          background: 'process.questions.question_selected.bg',
+          borderColor: 'process.questions.question_selected.bg',
+          bgSize: '15px',
+          bgRepeat: 'no-repeat',
+          bgPosition: 'center',
+          bgImage: checkIcon,
+
+          _hover: {
+            border: 'none',
+            background: 'process.questions.question_selected.bg',
+            borderColor: 'process.questions.question_selected.bg',
+            bgSize: '15px',
+            bgRepeat: 'no-repeat',
+            bgPosition: 'center',
+            bgImage: checkIcon,
+          },
+        },
+
+        '&[data-disabled=""]': {
+          bgColor: 'white !important',
+          border: 'none !important',
+        },
+      },
       '& span:nth-of-type(2)': {
         p: 2,
         m: 0,
@@ -130,30 +161,9 @@ const baseStyle = definePartsStyle({
   },
 
   radio: {
-    width: '30px',
-    height: '30px',
-    background: 'transparent',
-    ml: '10px',
-    '&[data-checked=""]': {
-      '&:before': {
-        display: 'none',
-        bgColor: 'transparent',
-      },
-
-      background: 'process.questions.question_selected.bg',
-      borderColor: 'process.questions.question_selected.bg',
-
-      _hover: {
-        background: 'process.questions.question_selected.bg',
-        borderColor: 'process.questions.question_selected.bg',
-      },
-    },
-
-    '&[data-disabled=""]': {
-      bgColor: 'white !important',
-      border: 'none !important',
-    },
+    borderRadius: 'full !important',
   },
+
   error: {
     display: 'flex',
     justifyContent: 'center',

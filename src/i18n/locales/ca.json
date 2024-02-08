@@ -8,19 +8,21 @@
     "overwrite_votes_left_other": "Pots corregir el teu vot {{ count }} vegades.",
     "submitting": "",
     "verify_vote_on_explorer": "Verifica el vot a l'explorador",
-    "votes_one": "<span>1</span> <text>vot</text>",
-    "votes_many": "",
-    "votes_other": "<span>{{ count }}</span> <text>vots</text>",
+    "votes_one": "<span>1</span> <text>votant</text>",
+    "votes_many": "<span>{{ count }}</span> <text>votants</text>",
+    "votes_other": "<span>{{ count }}</span> <text>votants</text>",
     "voting_anonymous_advice": ""
   },
   "banner": {
     "start_now": "Crea una votació!",
     "subtitle": "Utilitza adreces web3, vota amb un token ERC20 o amb NFTs!",
-    "title": "Votacions per DAOs i comunitats Web3"
+    "subtitle1": "Augmenta la participació electoral un 30%",
+    "title": "Vot digital segur, verificable i flexible"
   },
   "banner_voting_types": {
     "anonymous_description": "La identitat dels votants serà completament confidencial, gràcies a la tecnologia zk-SNARKS.",
     "anonymous_title": "100% Anònim",
+    "bottom_text": "La privacitat hauria de ser normal",
     "flexible_description": "Personalitza el teu procés de votació i la llista de participants per adaptar-los als requisits únics de la teva comunitat.",
     "flexible_title": "Votació Flexible",
     "token_description": "Vota amb tokens ERC20/ERC721 (NFT) o afegeix els teus propis tokens i vota sense pagar.",
@@ -50,7 +52,7 @@
     },
     "results": {
       "date_format": "PPpp",
-      "secret_until_the_end": "Secret fins el final. Els resultats seran accessibles quan el procés finalitzi el {{ endDate }}",
+      "secret_until_the_end": "Els resultats es faran públics quan el procés finalitzi el {{ endDate }}",
       "title": "Resultats per a \"{{ title }}\"",
       "votes": "Vots: {{ votes }} ({{ percent }})"
     },
@@ -61,7 +63,7 @@
       "anon_sik_label": "Defineix una contrasenya per al teu vot",
       "close": "Tanca",
       "logout": "Tanca la sessió",
-      "modal_title": "T'has d'identificar primer"
+      "modal_title": "Autenticació"
     },
     "statuses": {
       "canceled": "Cancel·lada",
@@ -74,10 +76,12 @@
       "upcoming": "Propera"
     },
     "validation": {
+      "choices_count": "Has de seleccionar {{ count }} opcions",
       "min_length": "Aquest camp ha de tenir com a mínim {{ min }} caràcters",
       "required": "Aquest camp és obligatori"
     },
     "vote": {
+      "abstain": "Abstenció",
       "button": "Vota",
       "button_update": "Torna a enviar el vot",
       "confirm": "Confirma les teves seleccions:",
@@ -90,13 +94,13 @@
     "chain_required": "Necessites seleccionar una xarxa",
     "description": "Selecciona com s'autenticaran i identificaran els votants.",
     "request_custom_token": "Sol·licitar Tokens Personalitzats",
+    "social_address_title": "Usuaris de Github",
     "spreadsheet_title": "Dades personalitzades",
     "title": "Trieu el cens",
     "token_description": "Selecciona la red y el token para crear un censo donde los titulares de token votarán con su poder de voto.",
     "token_required": "Necessites seleccionar un token",
     "token_title": "Cens basat en tokens",
-    "wallet_address_title": "Adreces de cartera",
-    "social_address_title": "Usuaris de Github"
+    "wallet_address_title": "Adreces de cartera"
   },
   "claim": {
     "error_title": "Error",
@@ -106,6 +110,7 @@
     "success_faucetPackage_title": "El Faucet Package s'ha obtingut correctament",
     "success_title": "Els tokens s'han reclamat amb èxit"
   },
+  "close": "Tanca",
   "copy": {
     "address": "Copia l'adreça",
     "copied_title": "Copiat!"
@@ -121,6 +126,12 @@
     "result": "<span>Després de crear la votació:</span><span2>{{ remainTokens }} tokens</span2>",
     "subtitle": "El teu procés de votació",
     "total": "<span>Total:</span> <span>{{ cost }} tokens</span>"
+  },
+  "csp_census": {
+    "github": {
+      "error_fetching_users": "",
+      "selected_users": "Usuaris seleccionats:"
+    }
   },
   "error": {
     "go_back": "Torna enrere",
@@ -191,6 +202,7 @@
       "avatar_error": "URL no vàlida",
       "field_is_required": "Aquest camp és obligatori",
       "min_address": "Si us plau, proporciona com a mínim una adreça",
+      "min_users_address": "",
       "recipient_address_invalid": "L'adreça especificada no sembla vàlida"
     },
     "process_create": {
@@ -232,15 +244,15 @@
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} votants elegibles)",
         "network": "Xarxa",
         "network_placeholder": "Selecciona una xarxa",
+        "social_description": "Creeu un cens d'electors elegibles proporcionant una llista d'usuaris de Github.",
+        "social_title": "Cens de Github",
         "spreadsheet_description": "Dades personalitzades, com ara noms d'usuari i contrasenyes, o informació personal dels votants, es poden utilitzar per a l'autenticació amb un formulari.",
         "spreadsheet_title": "Dades personalitzades",
         "token_base_description": "Utilitza un token (basat en EVM) per permetre als usuaris votar en funció de la quantitat de tokens que posseeixin.",
         "token_base_title": "Basat en token",
         "tokens_placeholder": "Cerca o enganxa la direcció del token",
         "wallet_address_description": "Identifica els teus votants per les seves adreces de cartera.",
-        "wallet_address_title": "Adreces de cartera",
-        "social_title": "Cens de Github",
-        "social_description": "Creeu un cens d'electors elegibles proporcionant una llista d'usuaris de Github."
+        "wallet_address_title": "Adreces de cartera"
       },
       "confirm": {
         "anonymous": "Anònim",
@@ -419,7 +431,6 @@
       "not_owner": "Aquesta organització encara no té votacions.",
       "title": "Crea la teva primera elecció"
     },
-    "name_long": "<strong>{{ name }}</strong> ({{ address }})",
     "title": {
       "edit": "Editar organització",
       "read_more": "Expandir títol"
@@ -428,10 +439,10 @@
   "process": {
     "census": "Cens",
     "census_strategies": {
+      "csp": "CSP",
       "spreadsheet": "CSV",
       "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
-      "web3": "Adreces Web3",
-      "csp": "CSP"
+      "web3": "Adreces Web3"
     },
     "created_by": "Creat per",
     "date": {
@@ -459,12 +470,13 @@
       "confirm": {
         "description": "Abans de votar, reviseu que tot sigui correcte.",
         "option": "<strong>Opció {{ number }}:</strong> {{ answer }}",
+        "options": "<strong>Selecció:</strong> {{ answers }}",
         "question": "<strong>Pregunta {{ number }}:</strong> {{ answer }}"
       }
     },
     "state": "ESTAT",
     "status": {
-      "active": "Actiu",
+      "active": "Votació en curs",
       "canceled": "Procés cancel·lat",
       "ended": "Finalitzat",
       "paused": "Procés en pausa",
@@ -487,7 +499,12 @@
     "start": "Inicia/Continua"
   },
   "process_create": {
+    "anonymous": {
+      "legal_disclaimer": "Aquest sistema de votació utilitza el poder de votació basat en tokens (públic a la cadena de blocs). Com heu seleccionat l'opció de 'Votació anònima', els pesos s'agruparan en saldos similars i s'arrodoniran cap avall. Això sacrifica una mica de precisió, però preserva la identitat anònima desvinculant els saldos de les carteres.",
+      "legal_note": "Avís legal: "
+    },
     "census": {
+      "mandatory_max_census_size": "Ha d'haver-hi un votant com a mínim",
       "total_tokens_one": "1 token",
       "total_tokens_many": "",
       "total_tokens_other": "{{ count }} tokens"
@@ -498,8 +515,12 @@
       "sign_tx": "Signar transacció"
     },
     "creation_steps_description": "Necessites signar les transaccions per crear el procés de votació a la cadena de blocs de Vocdoni. No tanquis aquesta finestra.",
-    "creation_steps_title": "Progrés"
+    "creation_steps_title": "Progrés",
+    "preview": {
+      "accuracy": "Precisió dels Saldos de Cens Anònims: "
+    }
   },
+  "retry": "Reintenta",
   "roadmap": {
     "census_description": "Crear un cens descentralitzat fora de la cadena i compatible amb zk a partir d'una instantània de blocs d'Ethereum, amb verificació a la cadena.",
     "census_title": "zkCensus:",
@@ -533,9 +554,13 @@
     "read_less": "Llegeix menys",
     "read_more": "Llegeix més"
   },
-  "csp_census": {
-    "github": {
-      "selected_users": "Usuaris seleccionats:"
-    }
+  "welcome": {
+    "description": "Per començar, has de registrar el teu compte i el teu SIK (clau d'identitat segura) firmant dues transaccions (és segur i gratuït).",
+    "intro": "Amb aquesta dApp pots crear votacions anònimes, segures i verificables.",
+    "step": {
+      "register": "Registrar compte",
+      "sik": "Crear SIK"
+    },
+    "title": "Benvingut a {{ sitename }}"
   }
 }
