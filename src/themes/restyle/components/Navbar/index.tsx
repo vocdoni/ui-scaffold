@@ -5,13 +5,14 @@ import { useClient } from '@vocdoni/react-providers'
 import { ensure0x } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import { MdHowToVote } from 'react-icons/md'
-import { Link as ReactRouterLink } from 'react-router-dom'
+import { Link as ReactRouterLink, useLocation } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 import Logo from '~components/Layout/Logo'
 import { LanguagesMenu } from './LanguagesList'
 import MenuDropdown from './Menu'
 
 const Navbar = () => {
+  const location = useLocation()
   const { isConnected } = useAccount()
   const { t } = useTranslation()
   const { account } = useClient()
@@ -28,17 +29,19 @@ const Navbar = () => {
       py={{ base: '12px', md: '24px' }}
     >
       <Logo />
-      <List display={{ base: 'none', lg: 'flex' }} gap={5} color='gray' fontSize='15px' lineHeight='26px'>
-        <ListItem>
-          <Link href='#benefits'>Benefits</Link>
-        </ListItem>
-        <ListItem>
-          <Link href='#features'>Features</Link>
-        </ListItem>
-        <ListItem>
-          <Link href='#usecases'>Use Cases</Link>
-        </ListItem>
-      </List>
+      {location.pathname === '/' && (
+        <List display={{ base: 'none', lg: 'flex' }} gap={5} color='gray' fontSize='15px' lineHeight='26px'>
+          <ListItem>
+            <Link href='#benefits'>Benefits</Link>
+          </ListItem>
+          <ListItem>
+            <Link href='#features'>Features</Link>
+          </ListItem>
+          <ListItem>
+            <Link href='#usecases'>Use Cases</Link>
+          </ListItem>
+        </List>
+      )}
       <List display='flex' alignItems='center' gap={4}>
         {isConnected && (
           <ListItem>
