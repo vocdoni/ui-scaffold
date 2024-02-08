@@ -28,7 +28,7 @@ const Navbar = () => {
       py={{ base: '12px', md: '24px' }}
     >
       <Logo />
-      <List display='flex' gap={5} color='gray' fontSize='15px' lineHeight='26px'>
+      <List display={{ base: 'none', lg: 'flex' }} gap={5} color='gray' fontSize='15px' lineHeight='26px'>
         <ListItem>
           <Link href='#benefits'>Benefits</Link>
         </ListItem>
