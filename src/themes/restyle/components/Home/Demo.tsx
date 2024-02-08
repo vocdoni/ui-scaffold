@@ -34,7 +34,7 @@ const Demo = () => {
             </Text>
           </Box>
           <Flex flex='1 1 50%' justifyContent={{ base: 'center', lg: 'end' }} alignItems='center'>
-            <Button w={{ base: 'full', sm: 'fit-content' }}> {t('home.demo.btn')}View All Demos</Button>
+            <Button w={{ base: 'full', sm: 'fit-content' }}> {t('home.demo.btn')}</Button>
           </Flex>
         </Flex>
         <Flex gap='20px' flexDirection={{ base: 'column', sm: 'row' }} mb='60px'>
@@ -220,7 +220,6 @@ const Demo = () => {
         </Box>
         <Box mb='40px'>
           <Text fontWeight='bold' fontSize='20px' mb='20px' textAlign='center'>
-            By census type
             {t('home.demo.census_type.title')}
           </Text>
           <Grid
@@ -236,7 +235,6 @@ const Demo = () => {
                   <FaGoogle size={30} color='#575757' />
                 </Flex>
                 <Text fontSize='14px' fontWeight='bold' textAlign='center'>
-                  E-Mail (GMail)
                   {t('home.demo.census_type.card_1')}
                 </Text>
               </Box>
@@ -247,7 +245,6 @@ const Demo = () => {
                   <FaSlack size={30} color='#575757' />
                 </Flex>
                 <Text fontSize='14px' fontWeight='bold' textAlign='center'>
-                  Ranked Voting
                   {t('home.demo.census_type.card_2')}
                 </Text>
               </Box>
@@ -258,7 +255,6 @@ const Demo = () => {
                   <MdAutoGraph size={30} color='#575757' />
                 </Flex>
                 <Text fontSize='14px' fontWeight='bold' textAlign='center'>
-                  Open Census
                   {t('home.demo.census_type.card_3')}
                 </Text>
               </Box>
