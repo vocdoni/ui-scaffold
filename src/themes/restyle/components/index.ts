@@ -16,6 +16,7 @@ import { SpreadsheetAccess } from './SpreadSheet'
 import { Stepper } from './Stepper'
 import { Tabs } from './Tabs'
 import { Textarea } from './Textarea'
+import {Radio} from'./Radio'
 
 export {
   Alert,
@@ -32,6 +33,7 @@ export {
   Link,
   Modal,
   QuestionsConfirmation,
+  Radio,
   SpreadsheetAccess,
   Stepper,
   Tabs,
@@ -52,6 +54,7 @@ export const components = {
   Modal,
   ElectionQuestions,
   QuestionsConfirmation,
+  Radio,
   ElectionResults,
   SpreadsheetAccess,
   Stepper,
