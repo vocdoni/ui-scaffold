@@ -1,5 +1,5 @@
-import { Box, Button, Flex, Image, Input, Text } from '@chakra-ui/react'
-import { useTranslation } from 'react-i18next'
+import { Box, Button, Flex, Image, Input, Link, Text } from '@chakra-ui/react'
+import { Trans, useTranslation } from 'react-i18next'
 import { FaDiscord, FaGithub, FaStar } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
 import vcdLogo from '/assets/logo-classic.svg'
@@ -18,14 +18,14 @@ const Footer = () => {
         <Box flex='1 1 33%'>
           <Image src={vcdLogo} w='125px' mb='24px' />
           <Text fontSize='16px' lineHeight='28px' mb='24px' color='gray'>
-            Our latest news, articles, and resources, we will sent to your inbox weekly
+            {t('footer.newsletter')}
           </Text>
           <Flex alignItems='center' gap='10px' mb='24px'>
             <Input placeholder='Enter your email' h='48px' />
-            <Button>Subscribe</Button>
+            <Button>{t('footer.newsletter_btn')}</Button>
           </Flex>
           <Text fontWeight='bold' color='#575757' fontSize='17px' lineHeight='20px' mb='5px'>
-            10/10 Overall rating
+            {t('footer.overall')}
           </Text>
           <Flex gap={1}>
             <FaStar color='#FFB116' /> <FaStar color='#FFB116' /> <FaStar color='#FFB116' /> <FaStar color='#FFB116' />{' '}
@@ -63,48 +63,48 @@ const Footer = () => {
           </Box>
           <Box>
             <Text fontWeight='bold' fontSize='18px' lineHeight='21px' mb='36px'>
-              Pages
+              {t('footer.pages')}
             </Text>
             <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
-              Pricing
+              {t('footer.pricing')}
             </Text>
             <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
-              Blog
+              {t('footer.blog')}
             </Text>
             <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
-              Blog Details
+              {t('footer.blog_details')}
             </Text>
             <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
-              Contact
+              {t('footer.contact')}
             </Text>
             <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
-              Career Single
+              {t('footer.career_single')}
             </Text>
             <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
-              Services Single
+              {t('footer.service_single')}
             </Text>
           </Box>
           <Box>
             <Text fontWeight='bold' fontSize='18px' lineHeight='21px' mb='36px'>
-              Template
+              {t('footer.template')}
             </Text>
             <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
-              Contact
+              {t('footer.contact')}
             </Text>
             <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
-              Support
+              {t('footer.support')}
             </Text>
             <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
-              Suport Single
+              {t('footer.support_single')}
             </Text>
             <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
-              Request for Demo
+              {t('footer.request_for_demo')}
             </Text>
             <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
-              Cooming Soon
+              {t('footer.coming_soon')}
             </Text>
             <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
-              Career Single
+              {t('footer.career_single')}
             </Text>
           </Box>
         </Flex>
@@ -119,7 +119,13 @@ const Footer = () => {
         borderTop='1px solid rgb(229, 229, 229)'
       >
         <Text as='span' color='gray' textAlign='center'>
-          © 2022 Quiety Rights Reserved. Designed By ThemeTags
+          <Trans
+            i18nKey='footer.terms_and_privacy'
+            components={{
+              link1: <Link href='https://aragon.org/terms-and-conditions' target='_blank' />,
+              link2: <Link href='https://aragon.org/privacy-policy' target='_blank' />,
+            }}
+          />
         </Text>
         <Flex gap='10px'>
           <Flex

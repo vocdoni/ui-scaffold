@@ -29,7 +29,7 @@ const Support = () => {
           display={{ base: 'none', lg: 'block' }}
         />
         <Text fontSize='20px' lineHeight='24px' mb='6px' color='#FFB116' textAlign='center' fontWeight='bold'>
-          Let's Try! Get Free Support
+          {t('home.support.header')}
         </Text>
         <Text
           fontSize='40px'
@@ -41,10 +41,10 @@ const Support = () => {
           maxW='550px'
           mx='auto'
         >
-          Start giving voice to your comunity
+          {t('home.support.title')}
         </Text>
         <Text fontSize='16px' lineHeight='28px' mb='50px' color='white' textAlign='center'>
-          We can help you to create your dream website for better business revenue
+          {t('home.support.subtitle')}
         </Text>
         <Flex
           flexDirection={{ base: 'column', lg: 'row' }}
@@ -53,11 +53,11 @@ const Support = () => {
           gap='10px'
           mb='40px'
         >
-          <Button>Contact with us</Button>
+          <Button> {t('home.support.btn_contact')}</Button>
           <Button variant='transparent' color='white'>
             <FaRegPlayCircle size={35} />
             <Text as='span' ml='10px'>
-              Watch Demo
+              {t('home.support.btn_watch')}
             </Text>
           </Button>
         </Flex>
@@ -65,19 +65,19 @@ const Support = () => {
           <Flex justifyContent='center' alignItems='center' gap='2'>
             <FaRegCheckCircle color='#175CFF' />
             <Text as='span' color='white'>
-              Free call with our experts
+              {t('home.support.helper_1')}
             </Text>
           </Flex>
           <Flex justifyContent='center' alignItems='center' gap='2'>
             <FaRegCheckCircle color='#175CFF' />
             <Text as='span' color='white'>
-              Reduce costs & working hours
+              {t('home.support.helper_2')}
             </Text>
           </Flex>
           <Flex justifyContent='center' alignItems='center' gap='2'>
             <FaRegCheckCircle color='#175CFF' />
             <Text as='span' color='white'>
-              Competitive costs
+              {t('home.support.helper_3')}
             </Text>
           </Flex>
         </Flex>

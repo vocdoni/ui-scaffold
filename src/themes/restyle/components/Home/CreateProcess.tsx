@@ -1,9 +1,11 @@
 import { Box, Button, Flex, Image, Text } from '@chakra-ui/react'
-import { t } from 'i18next'
+import { useTranslation } from 'react-i18next'
 import { FaRegCheckCircle } from 'react-icons/fa'
 import devices from '/assets/devices.jpg'
 
 const CreateProcess = () => {
+  const { t } = useTranslation()
+
   return (
     <Flex
       as='section'
@@ -21,16 +23,13 @@ const CreateProcess = () => {
           textAlign={{ base: 'center', lg: 'start' }}
         >
           {t('home.create_process.title')}
-          {/* Secure, Fast & User-Friendly Voting Solution */}
         </Text>
         <Text fontSize='20px' lineHeight='35px' color='gray' mb='30px' textAlign={{ base: 'center', lg: 'start' }}>
           {t('home.create_process.subtitle')}
-          {/* Reduce the complexity, cost & time of letting your community vote & decide */}
         </Text>
         <Box maxW={{ lg: '90%' }}>
           <Button mb='20px' w={{ base: 'full', sm: 'fit-content', lg: 'full' }} mx={{ base: 'auto', lg: 'start' }}>
             {t('home.create_process.btn')}
-            {/* Create Process Now */}
           </Button>
           <Flex
             justifyContent='center'
@@ -40,11 +39,11 @@ const CreateProcess = () => {
           >
             <Text display='flex' alignItems='center' gap={1}>
               <FaRegCheckCircle color='#175CFF' />
-              Free up to 1K voters
+              {t('home.create_process.helper_1')}
             </Text>
             <Text display='flex' alignItems='center' gap={1}>
               <FaRegCheckCircle color='#175CFF' />
-              No credit card required
+              {t('home.create_process.helper_2')}
             </Text>
           </Flex>
         </Box>

@@ -13,74 +13,69 @@ const Faqs = () => {
         textAlign='center'
         mb='10px'
       >
-        Frequently Ask Question
+        {t('home.faqs.title')}
       </Text>
       <Text textAlign='center' mb='60px' color='gray'>
-        What are you looking for and find the solution on our FAQ page
+        {t('home.faqs.subtitle')}
       </Text>
       <Flex flexDirection={{ base: 'column', md2: 'row' }} gap={{ base: '40px', md2: '60px' }}>
         <Box flex='1 1 50%'>
           <Box borderBottom='1px solid rgb(229, 229, 229)' mb='40px'>
             <Text fontWeight='bold' mb='18px' lineHeight='30px'>
-              Which domain should I purchase?
+              {t('home.faqs.faq_1.title')}
             </Text>
             <Text fontSize='15px' lineHeight='32px' mb='17px'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+              {t('home.faqs.faq_1.description')}
             </Text>
           </Box>
           <Box borderBottom='1px solid rgb(229, 229, 229)' mb='40px'>
             <Text fontWeight='bold' mb='18px' lineHeight='30px'>
-              Which domain should I purchase?
+              {t('home.faqs.faq_2.title')}
             </Text>
             <Text fontSize='15px' lineHeight='32px' mb='17px'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-              ea commodo consequat.
+              {t('home.faqs.faq_2.description')}
             </Text>
           </Box>
           <Box borderBottom={{ base: '1px solid rgb(229, 229, 229)', md2: 'none' }}>
             <Text fontWeight='bold' mb='18px' lineHeight='30px'>
-              Which domain should I purchase?
+              {t('home.faqs.faq_3.title')}
             </Text>
             <Text fontSize='15px' lineHeight='32px' mb='17px'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+              {t('home.faqs.faq_3.description')}
             </Text>
           </Box>
         </Box>
         <Box flex='1 1 50%'>
           <Box borderBottom='1px solid rgb(229, 229, 229)' mb='40px'>
             <Text fontWeight='bold' mb='18px' lineHeight='30px'>
-              Which domain should I purchase?
+              {t('home.faqs.faq_4.title')}
             </Text>
             <Text fontSize='15px' lineHeight='32px' mb='17px'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
+              {t('home.faqs.faq_4.description')}
             </Text>
           </Box>
           <Box borderBottom='1px solid rgb(229, 229, 229)' mb='40px'>
             <Text fontWeight='bold' mb='18px' lineHeight='30px'>
-              Which domain should I purchase?
+              {t('home.faqs.faq_5.title')}
             </Text>
             <Text fontSize='15px' lineHeight='32px' mb='17px'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+              {t('home.faqs.faq_5.description')}
             </Text>
           </Box>
           <Box borderBottom='1px solid rgb(229, 229, 229)' mb='40px'>
             <Text fontWeight='bold' mb='18px' lineHeight='30px'>
-              Which domain should I purchase?
+              {t('home.faqs.faq_6.title')}
             </Text>
             <Text fontSize='15px' lineHeight='32px' mb='17px'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
+              {t('home.faqs.faq_6.description')}
             </Text>
           </Box>
           <Box>
             <Text fontWeight='bold' mb='18px' lineHeight='30px'>
-              Which domain should I purchase?
+              {t('home.faqs.faq_7.title')}
             </Text>
             <Text fontSize='15px' lineHeight='32px' mb='17px'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
+              {t('home.faqs.faq_7.description')}
             </Text>
           </Box>
         </Box>

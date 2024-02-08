@@ -1,4 +1,5 @@
 import { Box, Flex, Image, Text } from '@chakra-ui/react'
+import { useTranslation } from 'react-i18next'
 import { FaFingerprint } from 'react-icons/fa'
 import { FaCircleCheck } from 'react-icons/fa6'
 import { IoSettingsSharp } from 'react-icons/io5'
@@ -6,6 +7,7 @@ import { MdDesignServices } from 'react-icons/md'
 import solutions from '/assets/solutions.png'
 
 const Solutions = () => {
+  const { t } = useTranslation()
   return (
     <Flex
       as='section'
@@ -18,16 +20,16 @@ const Solutions = () => {
         <Flex flexDirection='column' gap='24px'>
           <Box mb='40px'>
             <Text color='#175CFF' fontWeight='bold' fontSize='20px' lineHeight='24px' mb='6px'>
-              Embrace Change with Vocdoni
+              {t('home.solutions.header')}
             </Text>
             <Text fontWeight='bold' fontSize='40px' lineHeight='48px' mb='10px'>
-              Our solution fits your needs
+              {t('home.solutions.title')}
             </Text>
             <Text color='gray' fontSize='16px' lineHeight='28px'>
-              Quickly incubate functional channels with multidisciplinary architectures.
+              {t('home.solutions.subtitle_1')}
             </Text>
             <Text color='gray' fontSize='16px' lineHeight='28px'>
-              Authoritatively fabricat formulate exceptional innovation.
+              {t('home.solutions.subtitle_2')}
             </Text>
           </Box>
           <Flex gap='24px'>
@@ -36,11 +38,9 @@ const Solutions = () => {
             </Flex>
             <Box>
               <Text fontWeight='bold' mb='6px' fontSize='20px' lineHeight='24px'>
-                Customize with your branding
+                {t('home.solutions.card_1.title')}
               </Text>
-              <Text color='gray'>
-                Progressivly foster enterprise-wide systems whereas equity invested web-readiness harness installed.
-              </Text>
+              <Text color='gray'>{t('home.solutions.card_1.description')}</Text>
             </Box>
           </Flex>
           <Flex gap='24px'>
@@ -49,12 +49,9 @@ const Solutions = () => {
             </Flex>
             <Box>
               <Text fontWeight='bold' mb='6px' fontSize='20px' lineHeight='24px'>
-                Multiple authentification methods
+                {t('home.solutions.card_2.title')}
               </Text>
-              <Text color='gray'>
-                We support custom data, integration with CRMs, SMS auth, Social Auth, Wallet auth and Sybil-resistant
-                solutions.
-              </Text>
+              <Text color='gray'>{t('home.solutions.card_2.description')}</Text>
             </Box>
           </Flex>
           <Flex gap='24px'>
@@ -63,12 +60,9 @@ const Solutions = () => {
             </Flex>
             <Box>
               <Text fontWeight='bold' mb='6px' fontSize='20px' lineHeight='24px'>
-                Secure, Private & Auditable
+                {t('home.solutions.card_3.title')}
               </Text>
-              <Text color='gray'>
-                GDPR compilant, because your data matters. Each vote is blockchain transaction, offering unparalleled
-                transparency and verifiability to every stakeholder.
-              </Text>
+              <Text color='gray'>{t('home.solutions.card_3.description')}</Text>
             </Box>
           </Flex>
         </Flex>
@@ -103,7 +97,7 @@ const Solutions = () => {
             <Box minW='25px'>
               <FaCircleCheck color='#175CFF' size={25} />
             </Box>
-            <Text as='span'>Organizations</Text>
+            <Text as='span'> {t('home.solutions.img_card_1')}</Text>
           </Flex>
           <Flex
             alignItems='center'
@@ -118,7 +112,7 @@ const Solutions = () => {
               <FaCircleCheck color='#175CFF' size={25} />
             </Box>
 
-            <Text as='span'>Communities</Text>
+            <Text as='span'> {t('home.solutions.img_card_2')}</Text>
           </Flex>
           <Flex
             alignItems={{ base: 'start', sm: 'center' }}
@@ -133,7 +127,7 @@ const Solutions = () => {
               <FaCircleCheck color='#175CFF' size={25} />
             </Box>
             <Text as='span' whiteSpace={{ sm: 'nowrap' }}>
-              Goverments and public institutions
+              {t('home.solutions.img_card_3')}
             </Text>
           </Flex>
         </Flex>

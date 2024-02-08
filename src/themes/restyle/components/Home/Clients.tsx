@@ -1,4 +1,5 @@
 import { Flex, Grid, Image, Text } from '@chakra-ui/react'
+import { useTranslation } from 'react-i18next'
 import barca from '/assets/barca.png'
 import bellpuig from '/assets/bellpuig.svg.png'
 import berga from '/assets/berga.svg.png'
@@ -7,10 +8,12 @@ import decidim from '/assets/decidim.png'
 import omnium from '/assets/omnium.png'
 import pirates from '/assets/pirates.svg'
 const Clients = () => {
+  const { t } = useTranslation()
+
   return (
     <>
       <Text color='gray' textAlign='center' mb='24px' fontWeight='bold' fontSize='24px'>
-        Clients
+        {t('home.clients_title')}
       </Text>
       <Grid
         as='section'

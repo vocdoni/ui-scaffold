@@ -1,9 +1,12 @@
 import { Box, Button, Flex, Image, Text } from '@chakra-ui/react'
+import { useTranslation } from 'react-i18next'
 import { FaFingerprint } from 'react-icons/fa'
 import { MdDesignServices } from 'react-icons/md'
 import advFeature from '/assets/vocdoni.jpeg'
 
 const Features = () => {
+  const { t } = useTranslation()
+
   return (
     <Flex
       as='section'
@@ -46,10 +49,10 @@ const Features = () => {
         >
           <Box>
             <Text color='#175CFF' fontWeight='bold' fontSize='20px' lineHeight='24px' mb='6px'>
-              Advanced Features
+              {t('home.features.header')}
             </Text>
             <Text fontWeight='bold' fontSize='40px' lineHeight='48px' mb='10px'>
-              Contact us and we can work together
+              {t('home.features.title')}
             </Text>
           </Box>
           <Flex gap='24px'>
@@ -58,11 +61,9 @@ const Features = () => {
             </Flex>
             <Box>
               <Text fontWeight='bold' mb='6px' fontSize='20px' lineHeight='24px'>
-                We offer custom solutions
+                {t('home.features.card_1.title')}
               </Text>
-              <Text color='gray'>
-                Progressivly foster enterprise-wide systems whereas equity invested web-readiness harness installed.
-              </Text>
+              <Text color='gray'>{t('home.features.card_1.description')}</Text>
             </Box>
           </Flex>
           <Flex gap='24px'>
@@ -71,15 +72,13 @@ const Features = () => {
             </Flex>
             <Box>
               <Text fontWeight='bold' mb='6px' fontSize='20px' lineHeight='24px'>
-                Our experts accompany you throughout the entire process
+                {t('home.features.card_2.title')}
               </Text>
-              <Text color='gray'>
-                Dramatically administrate progressive metrics without error-free globally simplify standarized.
-              </Text>
+              <Text color='gray'>{t('home.features.card_2.description')}</Text>
             </Box>
           </Flex>
           <Button bgColor='#0B163F' w={{ base: 'full', sm: 'fit-content', lg: 'full' }} mx='auto'>
-            Contact us
+            {t('home.features.btn')}
           </Button>
         </Flex>
       </Flex>

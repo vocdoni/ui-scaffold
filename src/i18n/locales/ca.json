@@ -165,6 +165,9 @@
   "footer": {
     "about": "Sobre nosaltres",
     "blog": "Blog",
+    "blog_details": "",
+    "career_single": "",
+    "coming_soon": "",
     "company": "Empresa",
     "contact": "Contacte",
     "developer_portal": "Portal de desenvolupadors",
@@ -172,8 +175,18 @@
     "discord": "Discord",
     "follow_us": "Segueix-nos",
     "homepage": "Inici",
+    "newsletter": "",
+    "newsletter_btn": "",
+    "overall": "",
+    "pages": "",
+    "pricing": "",
     "repos": "Codi Obert",
+    "request_for_demo": "",
     "resources": "Recursos",
+    "service_single": "",
+    "support": "",
+    "support_single": "",
+    "template": "",
     "terms_and_privacy": "<link1>Termes d'ús</link1> i <link2>Política de privacitat</link2>",
     "text": "<p1>El futur</p1><p2>de la votació en Web3 comença aquí</p2>",
     "tutorials": "Tutorials",
@@ -363,10 +376,177 @@
     "title": "Obtenir VOC Tokens"
   },
   "home": {
+    "benefits": {
+      "card_1": {
+        "description": "",
+        "title": ""
+      },
+      "card_2": {
+        "description": "",
+        "title": ""
+      },
+      "card_3": {
+        "description": "",
+        "title": ""
+      },
+      "card_4": {
+        "description": "",
+        "title": ""
+      },
+      "card_5": {
+        "description": "",
+        "title": ""
+      },
+      "card_6": {
+        "description": "",
+        "title": ""
+      },
+      "subtitle_1": "",
+      "subtitle_2": "",
+      "title": "Benefits"
+    },
+    "clients_title": "Clients",
     "create_process": {
       "btn": "Create Process Now",
+      "helper_1": "",
+      "helper_2": "",
       "subtitle": "Reduce the complexity, cost & time of letting your community vote & decide",
       "title": "Secure, Fast & User-Friendly Voting Solution"
+    },
+    "demo": {
+      "btn": "",
+      "census_type": {
+        "card_1": "",
+        "card_2": "",
+        "card_3": "",
+        "radio": "",
+        "title": ""
+      },
+      "description": "",
+      "header": "",
+      "title": "",
+      "use_cases": {
+        "card_1": "",
+        "card_2": "",
+        "card_3": "",
+        "card_4": "",
+        "card_5": "",
+        "card_6": "",
+        "radio": "",
+        "title": ""
+      },
+      "voting_type": {
+        "card_1": "",
+        "card_2": "",
+        "card_3": "",
+        "card_4": "",
+        "card_5": "",
+        "card_6": "",
+        "radio": "",
+        "title": ""
+      }
+    },
+    "faqs": {
+      "faq_1": {
+        "description": "",
+        "title": ""
+      },
+      "faq_2": {
+        "description": "",
+        "title": ""
+      },
+      "faq_3": {
+        "description": "",
+        "title": ""
+      },
+      "faq_4": {
+        "description": "",
+        "title": ""
+      },
+      "faq_5": {
+        "description": "",
+        "title": ""
+      },
+      "faq_6": {
+        "description": "",
+        "title": ""
+      },
+      "faq_7": {
+        "description": "",
+        "title": ""
+      },
+      "subtitle": "",
+      "title": ""
+    },
+    "features": {
+      "btn": "",
+      "card_1": {
+        "description": "",
+        "title": ""
+      },
+      "card_2": {
+        "description": "",
+        "title": ""
+      },
+      "header": "",
+      "title": ""
+    },
+    "process": {
+      "description_1": "",
+      "description_2": "",
+      "header": "",
+      "step_1": {
+        "description": "",
+        "header": "",
+        "title": ""
+      },
+      "step_2": {
+        "description": "",
+        "header": "",
+        "title": ""
+      },
+      "step_3": {
+        "description": "",
+        "header": "",
+        "title": ""
+      },
+      "step_4": {
+        "description": "",
+        "header": "",
+        "title": ""
+      },
+      "title": ""
+    },
+    "solutions": {
+      "card_1": {
+        "description": "",
+        "title": ""
+      },
+      "card_2": {
+        "description": "",
+        "title": ""
+      },
+      "card_3": {
+        "description": "",
+        "title": ""
+      },
+      "header": "",
+      "img_card_1": "",
+      "img_card_2": "",
+      "img_card_3": "",
+      "subtitle_1": "",
+      "subtitle_2": "",
+      "title": ""
+    },
+    "support": {
+      "btn_contact": "",
+      "btn_watch": "",
+      "header": "",
+      "helper_1": "",
+      "helper_2": "",
+      "helper_3": "",
+      "subtitle": "",
+      "title": ""
     }
   },
   "home_features": {

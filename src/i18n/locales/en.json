@@ -162,6 +162,9 @@
   "footer": {
     "about": "About",
     "blog": "Blog",
+    "blog_details": "Blog Details",
+    "career_single": "Career Single",
+    "coming_soon": "Cooming Soon",
     "company": "Company",
     "contact": "Contact",
     "developer_portal": "Developers Portal",
@@ -169,8 +172,18 @@
     "discord": "Discord",
     "follow_us": "Follow us",
     "homepage": "Home",
+    "newsletter": "Our latest news, articles, and resources, we will sent to your inbox weekly",
+    "newsletter_btn": "Subscribe",
+    "overall": "10/10 Overall rating",
+    "pages": "Pages",
+    "pricing": "Pricing",
     "repos": "Open-source Code",
+    "request_for_demo": "Request for Demo",
     "resources": "Resources",
+    "service_single": "Services Single",
+    "support": "Support",
+    "support_single": "Support Single",
+    "template": "Template",
     "terms_and_privacy": "<link1>Terms of use</link1> & <link2>Privacy Policy</link2>",
     "text": "<p1>The future</p1><p2>of Web3 voting starts here</p2>",
     "tutorials": "Tutorials",
@@ -356,10 +369,177 @@
     "title": "Get VOC Tokens"
   },
   "home": {
+    "benefits": {
+      "card_1": {
+        "description": "",
+        "title": ""
+      },
+      "card_2": {
+        "description": "Rapidously embrace distinctive best practice B2B syndicate backend internal or whereas process improvments.",
+        "title": "Reduce time & effort"
+      },
+      "card_3": {
+        "description": "Distinctive best practice after B2B syndicate internal or whereas bleeding-edge process improvments.",
+        "title": "+30% Turnout"
+      },
+      "card_4": {
+        "description": "Vote from anywhere, on any device. It's that simple.",
+        "title": "Effortless Participation"
+      },
+      "card_5": {
+        "description": "Advanced cryptography keeps your vote safe and anonymous.",
+        "title": "Unmatched Security"
+      },
+      "card_6": {
+        "description": "Distinctive best practives after B2B syndicate internal or whereas bleeding-edge process improvments.",
+        "title": "Auditable & Open-source"
+      },
+      "subtitle_1": "Progressivly deploy market positioning catalysts for change and technically sound.",
+      "subtitle_2": "Authoritatively with backward-compatible e-service",
+      "title": "Benefits"
+    },
+    "clients_title": "Clients",
     "create_process": {
       "btn": "Create Process Now",
+      "helper_1": " Free up to 1K voters",
+      "helper_2": "No credit card required",
       "subtitle": "Reduce the complexity, cost & time of letting your community vote & decide",
       "title": "Secure, Fast & User-Friendly Voting Solution"
+    },
+    "demo": {
+      "btn": "",
+      "census_type": {
+        "card_1": "",
+        "card_2": "",
+        "card_3": "",
+        "radio": "Census / Authentication",
+        "title": ""
+      },
+      "description": "Dynamicly puruse convergence rather than 24/7 process improvments develop end-to-end customer service action items.",
+      "header": "Demo",
+      "title": "Test our solution in 3 easy clicks",
+      "use_cases": {
+        "card_1": "AGMs",
+        "card_2": "Elections",
+        "card_3": "Participation participatory",
+        "card_4": "Online Voting",
+        "card_5": "Software Integration",
+        "card_6": "Gathered Online Survey",
+        "radio": "Use Cases",
+        "title": "By Use Case"
+      },
+      "voting_type": {
+        "card_1": "Single Choice",
+        "card_2": "Multiple Choices",
+        "card_3": "Approval Voting",
+        "card_4": "Budget Voting",
+        "card_5": "Ranked Voting",
+        "card_6": "Weighted Voting",
+        "radio": "Voting Type",
+        "title": "By Voting Type"
+      }
+    },
+    "faqs": {
+      "faq_1": {
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+        "title": "Which domain should I purchase?"
+      },
+      "faq_2": {
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "title": "Which domain should I purchase?"
+      },
+      "faq_3": {
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+        "title": "Which domain should I purchase?"
+      },
+      "faq_4": {
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+        "title": "Which domain should I purchase?"
+      },
+      "faq_5": {
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "title": "Which domain should I purchase?"
+      },
+      "faq_6": {
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+        "title": "Which domain should I purchase?"
+      },
+      "faq_7": {
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+        "title": "Which domain should I purchase?"
+      },
+      "subtitle": "What are you looking for and find the solution on our FAQ page",
+      "title": "Frequently Ask Question"
+    },
+    "features": {
+      "btn": "Contact us",
+      "card_1": {
+        "description": "Progressivly foster enterprise-wide systems whereas equity invested web-readiness harness installed.",
+        "title": "We offer custom solutions"
+      },
+      "card_2": {
+        "description": "Dramatically administrate progressive metrics without error-free globally simplify standarized.",
+        "title": "Our experts accompany you throughout the entire process"
+      },
+      "header": "Advanced Features",
+      "title": "Contact us and we can work together"
+    },
+    "process": {
+      "description_1": "Enthusiastically engage cross-media leadership skills for alternative experiences.",
+      "description_2": "Proactively drive vertical systems than intuitive architectures.",
+      "header": "Process",
+      "step_1": {
+        "description": "Progressivly foster enterprise-wide systems whereas equity invested web-readiness harness installed base bandwidth.",
+        "header": "Step 1",
+        "title": "Start your own process or contact us"
+      },
+      "step_2": {
+        "description": "Dramatically administrate progressive metrics without error-free globally simplify standarized alignments plagiarize distributed.",
+        "header": "Step 2",
+        "title": "Configure and Publish your voting process"
+      },
+      "step_3": {
+        "description": "Interactivly whiteboard transparent testing procedures before bricks-and-clicks initiatives adminsitarte competencies.",
+        "header": "Step 3",
+        "title": "Voters authenticate & vote"
+      },
+      "step_4": {
+        "description": "Dramatically plagirarize distributed progressive metrics without error-free globally simplify standardized alignments.",
+        "header": "Step 4",
+        "title": "Get the results - As easy as that"
+      },
+      "title": "A simple 4 steps process"
+    },
+    "solutions": {
+      "card_1": {
+        "description": "Progressivly foster enterprise-wide systems whereas equity invested web-readiness harness installed.",
+        "title": "Customize with your branding"
+      },
+      "card_2": {
+        "description": " We support custom data, integration with CRMs, SMS auth, Social Auth, Wallet auth and Sybil-resistant solutions.",
+        "title": "Multiple authentification methods"
+      },
+      "card_3": {
+        "description": "GDPR compilant, because your data matters. Each vote is blockchain transaction, offering unparalleled transparency and verifiability to every stakeholder.",
+        "title": "Secure, Private & Auditable"
+      },
+      "header": "Embrace Change with Vocdoni",
+      "img_card_1": "Organizations",
+      "img_card_2": "Communities",
+      "img_card_3": "Goverments and public institutions",
+      "subtitle_1": "Quickly incubate functional channels with multidisciplinary architectures.",
+      "subtitle_2": "Authoritatively fabricat formulate exceptional innovation.",
+      "title": "Our solution fits your needs"
+    },
+    "support": {
+      "btn_contact": "Contact with us",
+      "btn_watch": "Watch Demo",
+      "header": "Let's Try! Get Free Support",
+      "helper_1": "Free call with our experts",
+      "helper_2": "Reduce costs & working hours",
+      "helper_3": "Competitive costs",
+      "subtitle": "We can help you to create your dream website for better business revenue",
+      "title": "Start giving voice to your comunity"
     }
   },
   "home_features": {
