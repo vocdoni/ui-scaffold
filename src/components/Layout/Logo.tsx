@@ -1,11 +1,14 @@
 import { Flex } from '@chakra-ui/react'
 import { NavLink } from 'react-router-dom'
-import { Logo as LogoImage } from '~theme/icons'
+import { Logo as LogoImage, LogoMbl } from '~theme/icons'
 
-const Logo = ({ logo: Logo, ...props }: { logo?: any }) => (
+const Logo = ({ ...props }) => (
   <NavLink to='/'>
-    <Flex alignItems='center' gap={2}>
+    <Flex alignItems='center' gap={2} display={{ base: 'none', lg: 'flex' }}>
       <LogoImage />
+    </Flex>
+    <Flex alignItems='center' gap={2} display={{ base: 'flex', lg: 'none' }}>
+      <LogoMbl />
     </Flex>
   </NavLink>
 )

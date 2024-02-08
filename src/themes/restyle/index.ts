@@ -44,7 +44,8 @@ export const theme = extendTheme(vtheme, {
         maxW: 'site-width',
 
         px: {
-          base: '30px',
+          base: '15px',
+          sm: '30px',
           lg: '37px',
           xl3: 0,
         },

@@ -12,8 +12,8 @@ const primary = defineStyle((props) => {
   const { colorScheme } = props
 
   return {
-    py: '24px',
-    px: '28px',
+    py: { base: '18px', md: '24px' },
+    px: { base: '21px', md: '28px' },
     borderRadius: 'md',
     display: 'flex',
     justifyContent: 'center',
@@ -41,8 +41,8 @@ const secondary = defineStyle((props) => {
   const { colorScheme } = props
 
   return {
-    py: '24px',
-    px: '28px',
+    py: { base: '18px', md: '24px' },
+    px: { base: '21px', md: '28px' },
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

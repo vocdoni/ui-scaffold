@@ -9,4 +9,6 @@ export const Check = AiFillCheckCircle
 
 export const Logo = () => <Img src='/assets/logo-classic.svg' alt='vocdoni icon' maxWidth={150} />
 
+export const LogoMbl = () => <Img src='/assets/vocdoni_icon.png' alt='vocdoni icon' maxWidth={10} />
+
 export const GoBack = () => <Icon as={FaRegArrowAltCircleLeft} mt='1.5px' boxSize={5} />
