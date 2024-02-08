@@ -15,6 +15,7 @@ const Features = () => {
       py={{ base: '60px', lg: 0 }}
       bgColor={{ base: '#eff1f2', lg: 'white' }}
       gap={{ base: '40px', lg: '60px' }}
+      scrollMarginTop='100px'
     >
       <Flex
         justifyContent={{ base: 'center', lg: 'end' }}
