@@ -504,6 +504,7 @@
       "legal_note": "Avís legal: "
     },
     "census": {
+      "mandatory_max_census_size": "Ha d'haver-hi un votant com a mínim",
       "total_tokens_one": "1 token",
       "total_tokens_many": "",
       "total_tokens_other": "{{ count }} tokens"

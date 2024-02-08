@@ -369,6 +369,7 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
     setValue,
     getValues,
     formState: { errors },
+    register,
   } = useFormContext()
   const {
     form: {
@@ -379,6 +380,10 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
   const [sliderValue, setSliderValue] = useState<number>(getValues('maxCensusSize'))
   const [showTooltip, setShowTooltip] = useState<boolean>(false)
   const { t } = useTranslation()
+  const field = register('maxCensusSize', {
+    validate: (value) => value > 0 || t('process_create.census.mandatory_max_census_size'),
+    required: t('process_create.census.mandatory_max_census_size'),
+  })
 
   useEffect(() => {
     if (sliderValue !== undefined) return
@@ -399,6 +404,8 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
           defaultValue={sliderValue}
           min={0}
           max={strategySize}
+          ref={field.ref}
+          onBlur={field.onBlur}
           onChange={(v) => {
             setSliderValue(v)
             setValue('maxCensusSize', v)
