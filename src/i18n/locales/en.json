@@ -496,6 +496,7 @@
       "legal_note": "Disclaimer: "
     },
     "census": {
+      "mandatory_max_census_size": "At least one voter needs to be selected",
       "total_tokens_one": "1 token",
       "total_tokens_other": "{{ count }} tokens"
     },
