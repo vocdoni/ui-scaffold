@@ -51,7 +51,7 @@ const Demo = () => {
             <Box minW='25px'>
               <FaCircleCheck color='#175CFF' size={25} />
             </Box>
-            <Text as='span'>{t('home.demo.use_cases.radio')}</Text>
+            <Text as='span'>{t('home.demo.demo.radio')}</Text>
           </Flex>
           <Flex
             flex='1 1 30%'
