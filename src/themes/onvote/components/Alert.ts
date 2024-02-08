@@ -7,7 +7,6 @@ const baseStyle = definePartsStyle((props) => {
   const { status } = props
 
   const commonStyles = {
-    borderRadius: 'xl',
     border: '1px solid',
     w: 'fit-content',
     mx: 'auto',
