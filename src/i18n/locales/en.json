@@ -587,6 +587,9 @@
     "organization": "Edit Organization",
     "privacy": "Privacy",
     "terms": "Terms",
+    "vocdoni": {
+      "login": "Open App"
+    },
     "wallet": "Wallet"
   },
   "meta": {

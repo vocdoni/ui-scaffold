@@ -19,7 +19,7 @@ const Demo = () => {
   const { t } = useTranslation()
 
   return (
-    <Box as='section' bgColor='#EFF1F2'>
+    <Box as='section' id='usecases' bgColor='#EFF1F2'>
       <Box className='site-wrapper' py={{ base: '60px', lg: '120px' }}>
         <Flex flexDirection={{ base: 'column', lg: 'row' }} mb='40px' gap={{ base: '40px', lg: 0 }}>
           <Box flex='1 1 50%'>

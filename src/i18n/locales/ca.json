@@ -594,6 +594,9 @@
     "organization": "Edita Organització",
     "privacy": "Privadesa",
     "terms": "Termes",
+    "vocdoni": {
+      "login": ""
+    },
     "wallet": "Cartera"
   },
   "meta": {

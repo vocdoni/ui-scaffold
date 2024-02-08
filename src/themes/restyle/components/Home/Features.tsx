@@ -10,6 +10,7 @@ const Features = () => {
   return (
     <Flex
       as='section'
+      id='features'
       flexDirection={{ base: 'column', lg: 'row' }}
       py={{ base: '60px', lg: 0 }}
       bgColor={{ base: '#eff1f2', lg: 'white' }}

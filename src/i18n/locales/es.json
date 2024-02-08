@@ -594,6 +594,9 @@
     "organization": "Editar Organización",
     "privacy": "Privacidad",
     "terms": "Términos",
+    "vocdoni": {
+      "login": ""
+    },
     "wallet": "Billetera"
   },
   "meta": {

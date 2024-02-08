@@ -1,5 +1,5 @@
 import { AddIcon, ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
-import { Avatar, Box, Button, Flex, Icon, List, ListItem, Menu, MenuButton, Text } from '@chakra-ui/react'
+import { Avatar, Box, Button, Flex, Icon, Link, List, ListItem, Menu, MenuButton, Text } from '@chakra-ui/react'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { useClient } from '@vocdoni/react-providers'
 import { ensure0x } from '@vocdoni/sdk'
@@ -19,6 +19,7 @@ const Navbar = () => {
 
   return (
     <Flex
+      as='nav'
       className='site-wrapper'
       justifyContent='space-between'
       alignItems='center'
@@ -27,8 +28,18 @@ const Navbar = () => {
       py={{ base: '12px', md: '24px' }}
     >
       <Logo />
-
-      <List as='nav' display='flex' alignItems='center' gap={4}>
+      <List display='flex' gap={5} color='gray' fontSize='15px' lineHeight='26px'>
+        <ListItem>
+          <Link href='#benefits'>Benefits</Link>
+        </ListItem>
+        <ListItem>
+          <Link href='#features'>Features</Link>
+        </ListItem>
+        <ListItem>
+          <Link href='#usecases'>Use Cases</Link>
+        </ListItem>
+      </List>
+      <List display='flex' alignItems='center' gap={4}>
         {isConnected && (
           <ListItem>
             <Button as={ReactRouterLink} to='/processes/create'>
@@ -64,7 +75,7 @@ const Navbar = () => {
                   if (openConnectModal) openConnectModal()
                 }}
               >
-                {t('menu.login').toString()}
+                {t('menu.vocdoni.login').toString()}
               </Button>
             </ListItem>
             <ListItem>
