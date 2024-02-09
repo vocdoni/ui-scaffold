@@ -1,21 +1,24 @@
 import { useTranslation } from 'react-i18next'
-import { BiCoinStack, BiFile, BiGroup, BiWallet } from 'react-icons/bi'
-import { CspCensus, SpreadsheetCensus, TokenCensus, Web3Census } from '../StepForm/Censuses'
+import { BiCoinStack, BiFile, BiLogoGithub, BiLogoGoogle, BiWallet } from 'react-icons/bi'
+import { CspCensusGithub, CspCensusGoogle, SpreadsheetCensus, TokenCensus, Web3Census } from '../StepForm/Censuses'
 
 export const CensusTypeSpreadsheet = 'spreadsheet'
 export const CensusTypeToken = 'token'
 export const CensusTypeWeb3 = 'web3'
-export const CensusTypeCsp = 'csp'
+export const CensusTypeCspGithub = 'csp_github'
+export const CensusTypeCspGoogle = 'csp_google'
 export type CensusType =
   | typeof CensusTypeWeb3
   | typeof CensusTypeSpreadsheet
   | typeof CensusTypeToken
-  | typeof CensusTypeCsp
+  | typeof CensusTypeCspGithub
+  | typeof CensusTypeCspGoogle
 export const CensusTypes = [
   CensusTypeSpreadsheet as CensusType,
   CensusTypeToken as CensusType,
   CensusTypeWeb3 as CensusType,
-  CensusTypeCsp as CensusType,
+  CensusTypeCspGithub as CensusType,
+  CensusTypeCspGoogle as CensusType,
 ]
 
 export const useCensusTypes = () => {
@@ -43,11 +46,17 @@ export const useCensusTypes = () => {
         icon: BiWallet,
         component: Web3Census,
       },
-      [CensusTypeCsp]: {
-        title: t('form.process_create.census.social_title'),
-        description: t('form.process_create.census.social_description'),
-        icon: BiGroup,
-        component: CspCensus,
+      [CensusTypeCspGithub]: {
+        title: t('form.process_create.census.csp.github_title'),
+        description: t('form.process_create.census.csp.github_description'),
+        icon: BiLogoGithub,
+        component: CspCensusGithub,
+      },
+      [CensusTypeCspGoogle]: {
+        title: t('form.process_create.census.csp.google_title'),
+        description: t('form.process_create.census.csp.google_description'),
+        icon: BiLogoGoogle,
+        component: CspCensusGoogle,
       },
     },
   }

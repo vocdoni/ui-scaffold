@@ -44,15 +44,28 @@ export const TokenCensus = () => (
 )
 
 const Csp = lazy(() => {
-  if (import.meta.env.features._census.csp) {
-    return import('./CensusCsp').then((module) => ({ default: module.StepFormCensusCsp }))
-  }
-
-  return Promise.resolve({ default: () => <></> })
+  return import('./CensusCsp').then((module) => ({ default: module.StepFormCensusCsp }))
 })
 
-export const CspCensus = () => (
-  <SuspenseLoader>
-    <Csp />
-  </SuspenseLoader>
-)
+export const CspCensusGithub = () => {
+  if (import.meta.env.features._census.csp_github) {
+    return (
+      <SuspenseLoader>
+        <Csp provider='github' />
+      </SuspenseLoader>
+    )
+  }
+
+  return <></>
+}
+
+export const CspCensusGoogle = () => {
+  if (import.meta.env.features._census.csp_google) {
+    return (
+      <SuspenseLoader>
+        <Csp provider='google' />
+      </SuspenseLoader>
+    )
+  }
+  return <></>
+}

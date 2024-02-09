@@ -1,17 +1,32 @@
-import { Flex, FormLabel, Input, List, ListItem, useToast } from '@chakra-ui/react'
+import { Flex, FormLabel, Input, List, ListItem, useToast, Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import UserCard from './UserCard'
 import { useTranslation } from 'react-i18next'
 
-const GithubUserSearch = ({ ...props }) => {
+type GithubObject = {
+  login: string
+  id: number
+}
+
+const isGithubObject = (obj: any): obj is GithubObject => {
+  return typeof obj.login === 'string' && typeof obj.id === 'number'
+}
+
+export const GithubUserSearch = ({ ...props }) => {
   const toast = useToast()
   const { t } = useTranslation()
-  const { initialUsers } = props
+
+  let iUsers = props.initialUsers || []
+  for (let obj of iUsers) {
+    if (!isGithubObject(obj)) {
+      iUsers = []
+    }
+  }
 
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [searchTimeout, setSearchTimeout] = useState<any>(null)
   const [userList, setUserList] = useState<any[]>([])
-  const [clickedUsers, setClickedUsers] = useState<any[]>(initialUsers || [])
+  const [clickedUsers, setClickedUsers] = useState<any[]>(iUsers || [])
 
   useEffect(() => {
     if (searchTimeout) {
@@ -78,6 +93,10 @@ const GithubUserSearch = ({ ...props }) => {
 
   return (
     <>
+      <Text mb={3} className='brand-theme' textTransform='uppercase' color='process_create.census.title'>
+        {t('census.github_address_title')}
+      </Text>
+
       <Input type='text' placeholder='Search...' onChange={(e) => handleInputChange(e.target.value)} />
 
       {userList && userList.length > 0 && (
@@ -112,5 +131,3 @@ const GithubUserSearch = ({ ...props }) => {
     </>
   )
 }
-
-export default GithubUserSearch

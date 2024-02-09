@@ -76,7 +76,6 @@ export const Confirm = () => {
     handleSubmit,
     register,
   } = methods
-
   const onSubmit = async () => {
     onOpen()
     setSending(true)
@@ -141,20 +140,30 @@ export const Confirm = () => {
     }
   }
 
-  const createElectionInCsp = async (
-    electionId: string,
-    users: { login: string }[]
-  ): Promise<IElectionWithTokenResponse> => {
+  const createElectionInCsp = async (electionId: string, users: any[]): Promise<IElectionWithTokenResponse> => {
     if (!vocdoniAdminClient) throw new Error('Vocdoni Admin Client not initialized')
+
+    let service: string = ''
+    let fieldName: string = ''
+    switch (form.censusType) {
+      case 'csp_github':
+        service = 'github'
+        fieldName = 'login'
+        break
+      case 'csp_google':
+        service = 'google'
+        fieldName = 'address'
+        break
+    }
 
     const cspElection: IElection = {
       electionId: electionId,
       handlers: [
         {
           handler: 'oauth',
-          service: 'github',
+          service,
           mode: 'usernames',
-          data: users.map((user) => user.login),
+          data: users.map((user) => user[fieldName]),
         },
       ],
     }
@@ -368,7 +377,8 @@ const getCensus = async (env: EnvOptions, form: StepsFormValues, salt: string) =
       census.add(addresses)
 
       return census
-    case 'csp':
+    case 'csp_github':
+    case 'csp_google':
       return new CspCensus(import.meta.env.CSP_PUBKEY as string, import.meta.env.CSP_URL as string)
     default:
       throw new Error(`census type ${form.censusType} is not allowed`)
@@ -386,6 +396,16 @@ const electionFromForm = (form: StepsFormValues) => {
   // max census size is calculated by the SDK when creating a process, but we need it to
   // calculate the cost preview... so here we set it for all cases anyway
   const maxCensusSize = form.maxCensusSize ?? form.spreadsheet?.data.length ?? form.addresses.length
+  let censusType: string = form.censusType as string
+  let extraMeta = {}
+  if (form.censusType === 'csp_github' || form.censusType === 'csp_google') {
+    censusType = 'csp'
+    extraMeta = {
+      csp: {
+        service: form.censusType.split('_')[1],
+      },
+    }
+  }
   return {
     ...form,
     maxCensusSize,
@@ -404,13 +424,14 @@ const electionFromForm = (form: StepsFormValues) => {
     startDate: form.electionType.autoStart ? undefined : new Date(form.startDate).getTime(),
     endDate: new Date(form.endDate).getTime(),
     voteType: { maxVoteOverwrites: Number(form.maxVoteOverwrites) },
-    temporarySecretIdentity: form.censusType === 'spreadsheet' && form.electionType.anonymous,
+    temporarySecretIdentity: censusType === 'spreadsheet' && form.electionType.anonymous,
     meta: {
       generated: 'ui-scaffold',
       census: {
-        type: form.censusType,
+        type: censusType,
         fields: form.spreadsheet?.header ?? undefined,
       } as CensusMeta,
+      ...extraMeta,
     },
   }
 }

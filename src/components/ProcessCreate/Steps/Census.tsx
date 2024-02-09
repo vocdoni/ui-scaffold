@@ -41,17 +41,19 @@ export const Census = () => {
           isLazy
         >
           <TabList gap={2} flexWrap={'wrap'} justifyContent={'left'}>
-            {defined.map((ct: CensusType, index: number) => (
-              <Tab key={index}>
-                <Check />
+            {defined.map((ct: CensusType, index: number) => {
+              return (
+                <Tab key={index}>
+                  <Check />
 
-                <Box>
-                  <Icon as={details[ct].icon} />
-                  <Text>{details[ct].title}</Text>
-                </Box>
-                <Text>{details[ct].description}</Text>
-              </Tab>
-            ))}
+                  <Box>
+                    <Icon as={details[ct].icon} />
+                    <Text>{details[ct].title}</Text>
+                  </Box>
+                  <Text>{details[ct].description}</Text>
+                </Tab>
+              )
+            })}
           </TabList>
 
           <TabPanels className={censusType ? 'c' : ''} bgColor='process_create.section'>

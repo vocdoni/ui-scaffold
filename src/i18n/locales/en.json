@@ -91,8 +91,9 @@
   "census": {
     "chain_required": "You need to select a network",
     "description": "Choose how to authenticate and verify voters.",
+    "github_address_title": "Github Users",
+    "google_address_title": "Google Addresses",
     "request_custom_token": "'Request Custom Tokens'",
-    "social_address_title": "Github users",
     "spreadsheet_title": "Custom data",
     "title": "Census",
     "token_description": "Configure the census by choosing a token from any available network. You can request a token here.",
@@ -197,6 +198,7 @@
       "address_already_in_use": "Address already in use",
       "address_pattern": "Only hex addresses are allowed (e.g 0x031101A...)",
       "avatar_error": "URL not valid",
+      "email_address_pattern": "Only email addresses are allowed (e.g john@appleseed.com)",
       "field_is_required": "This field is required",
       "min_address": "Please, provide at least one address",
       "min_users_address": "",
@@ -233,6 +235,12 @@
       "census": {
         "add_button": "Add",
         "add_new_address": "add a new address",
+        "csp": {
+          "github_description": "Github users can authenticate with their Github account to participate in the voting process.",
+          "github_title": "Github Census",
+          "google_description": "Google users can authenticate with their Google account to participate in the voting process.",
+          "google_title": "Google Census"
+        },
         "delete_web3_address": "Delete address index {{ index }}",
         "holders": "{{ holders }} holders",
         "max_census_resum": "You have a pool of {{ uniTokenHolders }} {{ symbol }} potential voters. To reduce the cost of the voting process, you can opt to limit the total number of participants in the voting process. This will not affect specific voters; it will simply reduce the number of holders who can cast their votes.",
@@ -241,8 +249,6 @@
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} eligible voters)",
         "network": "Network",
         "network_placeholder": "Select a network",
-        "social_description": "Create a census of eligible voters providing a list of Github users.",
-        "social_title": "Github Census",
         "spreadsheet_description": "Utilize information such as usernames, passwords, or voter personal details for authentication through a form.",
         "spreadsheet_title": "Custom data",
         "token_base_description": "Use ERC20, NFTs and POAPs from different EVM networks to create a census of eligible holders.",
@@ -255,6 +261,10 @@
         "anonymous": "Anonymous voting active",
         "census": "Census",
         "census_preview_is_shortened": "(preview list is limited to {{ limit }} results)",
+        "census_preview_list": {
+          "github_address": "Github accounts",
+          "google_address": "Google Addresses"
+        },
         "census_total_people_one": "A single person will be elegible for voting in this process",
         "census_total_people_other": "{{ count }} people will be elegible for voting in this process",
         "configuration": "Configuration",
