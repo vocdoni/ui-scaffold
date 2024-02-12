@@ -1,4 +1,4 @@
-import { Box, Flex, Grid, Image, Text } from '@chakra-ui/react'
+import { Card, CardBody, CardHeader, Grid, Image, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import barca from '/assets/barca.png'
 import bellpuig from '/assets/bellpuig.svg.png'
@@ -25,176 +25,62 @@ const Clients = () => {
         mb={{ base: '60px', lg: '100px' }}
         gridTemplateColumns='repeat(4, 1fr)'
       >
-        <Flex
-          flexDirection='column'
-          justifyContent='start'
-          alignItems='center'
-          _hover={{
-            lg: {
-              '& img': {
-                filter: 'none',
-              },
-              '& span': {
-                display: 'block',
-              },
-            },
-          }}
-        >
-          <Image src={berga} w={{ base: '17.4px', lg: '26px' }} mb='10px' filter='grayscale(100%)' />
-          <Box display={{ base: 'none', lg: 'block' }} h='35px'>
-            <Text as='span' display='none' textAlign='center' fontSize='12px' fontWeight='bold' color='#666'>
-              Ajuntament Berga
-            </Text>
-          </Box>
-        </Flex>
-        <Flex
-          flexDirection='column'
-          justifyContent='start'
-          alignItems='center'
-          _hover={{
-            lg: {
-              '& img': {
-                filter: 'none',
-              },
-              '& span': {
-                display: 'block',
-              },
-            },
-          }}
-        >
-          <Image src={bellpuig} w={{ base: '24px', lg: '36px' }} mb='10px' filter='grayscale(100%)' />
-          <Box display={{ base: 'none', lg: 'block' }} h='35px'>
-            <Text as='span' display='none' textAlign='center' fontSize='12px' fontWeight='bold' color='#666'>
-              Ajuntament Bellpuig
-            </Text>
-          </Box>
-        </Flex>
-        <Flex
-          flexDirection='column'
-          justifyContent='start'
-          alignItems='center'
-          _hover={{
-            lg: {
-              '& img': {
-                filter: 'none',
-              },
-              '& span': {
-                display: 'block',
-              },
-            },
-          }}
-        >
-          <Image src={decidim} w={{ base: '30px', lg: '45px' }} mb='10px' filter='grayscale(100%)' />
-          <Box display={{ base: 'none', lg: 'block' }} h='35px'>
-            <Text as='span' display='none' textAlign='center' fontSize='12px' fontWeight='bold' color='#666'>
-              Decidim
-            </Text>
-          </Box>
-        </Flex>
-
-        <Flex
-          flexDirection='column'
-          justifyContent='start'
-          alignItems='center'
-          _hover={{
-            lg: {
-              '& img': {
-                filter: 'none',
-              },
-              '& span': {
-                display: 'block',
-              },
-            },
-          }}
-        >
-          <Image src={barca} w={{ base: '30px', lg: '45px' }} mb='10px' filter='grayscale(100%)' />
-          <Box display={{ base: 'none', lg: 'block' }} h='35px'>
-            <Text as='span' display='none' textAlign='center' fontSize='12px' fontWeight='bold' color='#666'>
-              Futbol Club Barcelona
-            </Text>
-          </Box>
-        </Flex>
-        <Flex
-          flexDirection='column'
-          justifyContent='start'
-          alignItems='center'
-          _hover={{
-            lg: {
-              '& img': {
-                filter: 'none',
-              },
-              '& span': {
-                display: 'block',
-              },
-            },
-          }}
-        >
-          <Image src={omnium} w={{ base: '30px', lg: '45px' }} mb='10px' filter='grayscale(100%)' />
-          <Box display={{ base: 'none', lg: 'block' }} h='35px'>
-            <Text as='span' display='none' textAlign='center' fontSize='12px' fontWeight='bold' color='#666'>
-              Omnium Cultural
-            </Text>
-          </Box>
-        </Flex>
-        <Flex
-          flexDirection='column'
-          justifyContent='start'
-          alignItems='center'
-          _hover={{
-            lg: {
-              '& img': {
-                filter: 'none',
-              },
-              '& span': {
-                display: 'block',
-              },
-            },
-          }}
-        >
-          <Image
-            src={pirates}
-            w={{ base: '72px', lg: '108px' }}
-            filter='grayscale(100%)'
-            _hover={{
-              lg: {
-                '& img': {
-                  filter: 'none',
-                },
-                '& span': {
-                  display: 'block',
-                },
-              },
-            }}
-            mb='10px'
-          />
-          <Box display={{ base: 'none', lg: 'block' }} h='35px' justifyContent='center' alignItems='center'>
-            <Text as='span' display='none' textAlign='center' fontSize='12px' fontWeight='bold' color='#666'>
-              Partit Pirata
-            </Text>
-          </Box>
-        </Flex>
-        <Flex
-          flexDirection='column'
-          justifyContent='start'
-          alignItems='center'
-          _hover={{
-            lg: {
-              '& img': {
-                filter: 'none',
-              },
-              '& span': {
-                display: 'block',
-              },
-            },
-          }}
-        >
-          <Image src={bisbal} w={{ base: '22px', lg: '33px' }} mb='10px' filter='grayscale(100%)' />
-          <Box display={{ base: 'none', lg: 'block' }} h='35px' justifyContent='center' alignItems='center'>
-            <Text as='span' display='none' textAlign='center' fontSize='12px' fontWeight='bold' color='#666'>
-              Ajuntament de la Bisbal
-            </Text>
-          </Box>
-        </Flex>
+        <Card variant='client'>
+          <CardHeader>
+            <Image src={berga} w={{ base: '17.4px', lg: '26px' }} />
+          </CardHeader>
+          <CardBody>
+            <Text as='span'>Ajuntament Berga</Text>
+          </CardBody>
+        </Card>
+        <Card variant='client'>
+          <CardHeader>
+            <Image src={bellpuig} w={{ base: '24px', lg: '36px' }} />
+          </CardHeader>
+          <CardBody>
+            <Text as='span'>Ajuntament Bellpuig</Text>
+          </CardBody>
+        </Card>
+        <Card variant='client'>
+          <CardHeader>
+            <Image src={decidim} w={{ base: '30px', lg: '45px' }} />
+          </CardHeader>
+          <CardBody>
+            <Text as='span'>Decidim</Text>
+          </CardBody>
+        </Card>
+        <Card variant='client'>
+          <CardHeader>
+            <Image src={barca} w={{ base: '30px', lg: '45px' }} />
+          </CardHeader>
+          <CardBody>
+            <Text as='span'>Futbol Club Barcelona</Text>
+          </CardBody>
+        </Card>
+        <Card variant='client'>
+          <CardHeader>
+            <Image src={omnium} w={{ base: '30px', lg: '45px' }} />
+          </CardHeader>
+          <CardBody>
+            <Text as='span'>Omnium Cultural</Text>
+          </CardBody>
+        </Card>
+        <Card variant='client'>
+          <CardHeader>
+            <Image src={pirates} w={{ base: '72px', lg: '108px' }} />
+          </CardHeader>
+          <CardBody>
+            <Text as='span'>Partit Pirata</Text>
+          </CardBody>
+        </Card>
+        <Card variant='client'>
+          <CardHeader>
+            <Image src={bisbal} w={{ base: '22px', lg: '33px' }} />
+          </CardHeader>
+          <CardBody>
+            <Text as='span'>Ajuntament de la Bisbal</Text>
+          </CardBody>
+        </Card>
       </Grid>
     </>
   )

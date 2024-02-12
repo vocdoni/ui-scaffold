@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Grid, Radio, RadioGroup, Text } from '@chakra-ui/react'
+import { Box, Button, Card, CardBody, Flex, Grid, Radio, RadioGroup, Text } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { BsFillCheckCircleFill } from 'react-icons/bs'
@@ -75,75 +75,42 @@ const Demo = () => {
               }}
               gap='20px'
             >
-              <Flex justifyContent='center' alignItems='center'>
-                <Box w='full' maxW='400px' bgColor='white' p='15px 20px' borderRadius='lg'>
-                  <Box h='145px' bgImage={agm} bgSize='cover' bgPosition='center' mb='15px' borderRadius='lg' />
-                  <Text fontSize='14px' fontWeight='bold' textAlign='center'>
-                    {t('home.demo.use_cases.card_1')}
-                  </Text>
-                </Box>
-              </Flex>
-              <Flex justifyContent='center' alignItems='center'>
-                <Box w='full' maxW='400px' bgColor='white' p='15px 20px' borderRadius='lg'>
-                  <Box h='145px' bgImage={elections} bgSize='cover' bgPosition='center' mb='15px' borderRadius='lg' />
-                  <Text fontSize='14px' fontWeight='bold' textAlign='center'>
-                    {t('home.demo.use_cases.card_2')}
-                  </Text>
-                </Box>
-              </Flex>
-              <Flex justifyContent='center' alignItems='center'>
-                <Box w='full' maxW='400px' bgColor='white' p='15px 20px' borderRadius='lg'>
-                  <Box
-                    h='145px'
-                    bgImage={participatory}
-                    bgSize='cover'
-                    bgPosition='center'
-                    mb='15px'
-                    borderRadius='lg'
-                  />
-                  <Text fontSize='14px' fontWeight='bold' textAlign='center'>
-                    {t('home.demo.use_cases.card_3')}
-                  </Text>
-                </Box>
-              </Flex>
-              <Flex justifyContent='center' alignItems='center'>
-                <Box w='full' maxW='400px' bgColor='white' p='15px 20px' borderRadius='lg'>
-                  <Box
-                    h='145px'
-                    bgImage={onlineVoting}
-                    bgSize='cover'
-                    bgPosition='center'
-                    mb='15px'
-                    borderRadius='lg'
-                  />
-                  <Text fontSize='14px' fontWeight='bold' textAlign='center'>
-                    {t('home.demo.use_cases.card_4')}
-                  </Text>
-                </Box>
-              </Flex>
-              <Flex justifyContent='center' alignItems='center'>
-                <Box w='full' maxW='400px' bgColor='white' p='15px 20px' borderRadius='lg'>
-                  <Box h='145px' bgImage={softInt} bgSize='cover' bgPosition='center' mb='15px' borderRadius='lg' />
-                  <Text fontSize='14px' fontWeight='bold' textAlign='center'>
-                    {t('home.demo.use_cases.card_5')}
-                  </Text>
-                </Box>
-              </Flex>
-              <Flex justifyContent='center' alignItems='center'>
-                <Box w='full' maxW='400px' bgColor='white' p='15px 20px' borderRadius='lg'>
-                  <Box
-                    h='145px'
-                    bgImage={onlineSurvey}
-                    bgSize='cover'
-                    bgPosition='center'
-                    mb='15px'
-                    borderRadius='lg'
-                  />
-                  <Text fontSize='14px' fontWeight='bold' textAlign='center'>
-                    {t('home.demo.use_cases.card_6')}
-                  </Text>
-                </Box>
-              </Flex>
+              <Card variant='demo-use-cases'>
+                <CardBody>
+                  <Box bgImage={agm} h='145px' />
+                  <Text> {t('home.demo.use_cases.card_1')}</Text>
+                </CardBody>
+              </Card>
+              <Card variant='demo-use-cases'>
+                <CardBody>
+                  <Box bgImage={elections} h='145px' />
+                  <Text>{t('home.demo.use_cases.card_2')}</Text>
+                </CardBody>
+              </Card>
+              <Card variant='demo-use-cases'>
+                <CardBody>
+                  <Box bgImage={participatory} h='145px' />
+                  <Text>{t('home.demo.use_cases.card_3')}</Text>
+                </CardBody>
+              </Card>
+              <Card variant='demo-use-cases'>
+                <CardBody>
+                  <Box bgImage={onlineVoting} h='145px' />
+                  <Text>{t('home.demo.use_cases.card_4')}</Text>
+                </CardBody>
+              </Card>
+              <Card variant='demo-use-cases'>
+                <CardBody>
+                  <Box bgImage={softInt} h='145px' />
+                  <Text>{t('home.demo.use_cases.card_5')}</Text>
+                </CardBody>
+              </Card>
+              <Card variant='demo-use-cases'>
+                <CardBody>
+                  <Box bgImage={onlineSurvey} h='145px' />
+                  <Text>{t('home.demo.use_cases.card_6')}</Text>
+                </CardBody>
+              </Card>
             </Grid>
           </Box>
         )}
@@ -160,66 +127,54 @@ const Demo = () => {
               }}
               gap='20px'
             >
-              <Flex justifyContent='center' alignItems='center'>
-                <Box w='full' maxW='400px' bgColor='white' p='15px 20px' borderRadius='lg'>
-                  <Flex h='110px' justifyContent='center' alignItems='center' mb='15px'>
-                    <GiChoice size={75} color='#575757' />
-                  </Flex>
-                  <Text fontSize='14px' fontWeight='bold' textAlign='center'>
-                    {t('home.demo.voting_type.card_1')}
-                  </Text>
-                </Box>
-              </Flex>
-              <Flex justifyContent='center' alignItems='center'>
-                <Box w='full' maxW='400px' bgColor='white' p='15px 20px' borderRadius='lg'>
-                  <Flex h='110px' justifyContent='center' alignItems='center' mb='15px'>
-                    <MdOutlineLibraryAddCheck size={75} color='#575757' />
-                  </Flex>
-                  <Text fontSize='14px' fontWeight='bold' textAlign='center'>
-                    {t('home.demo.voting_type.card_2')}
-                  </Text>
-                </Box>
-              </Flex>
-              <Flex justifyContent='center' alignItems='center'>
-                <Box w='full' maxW='400px' bgColor='white' p='15px 20px' borderRadius='lg'>
-                  <Flex h='110px' justifyContent='center' alignItems='center' mb='15px'>
-                    <HiCheckBadge size={75} color='#575757' />
-                  </Flex>
-                  <Text fontSize='14px' fontWeight='bold' textAlign='center'>
-                    {t('home.demo.voting_type.card_3')}
-                  </Text>
-                </Box>
-              </Flex>
-              <Flex justifyContent='center' alignItems='center'>
-                <Box w='full' maxW='400px' bgColor='white' p='15px 20px' borderRadius='lg'>
-                  <Flex h='110px' justifyContent='center' alignItems='center' mb='15px'>
-                    <GoNumber size={75} color='#575757' />
-                  </Flex>
-                  <Text fontSize='14px' fontWeight='bold' textAlign='center'>
-                    {t('home.demo.voting_type.card_4')}
-                  </Text>
-                </Box>
-              </Flex>
-              <Flex justifyContent='center' alignItems='center'>
-                <Box w='full' maxW='400px' bgColor='white' p='15px 20px' borderRadius='lg'>
-                  <Flex h='110px' justifyContent='center' alignItems='center' mb='15px'>
-                    <ImListNumbered size={75} color='#575757' />
-                  </Flex>
-                  <Text fontSize='14px' fontWeight='bold' textAlign='center'>
-                    {t('home.demo.voting_type.card_5')}
-                  </Text>
-                </Box>
-              </Flex>
-              <Flex justifyContent='center' alignItems='center'>
-                <Box w='full' maxW='400px' bgColor='white' p='15px 20px' borderRadius='lg'>
-                  <Flex h='110px' justifyContent='center' alignItems='center' mb='15px'>
-                    <VscListFilter size={75} color='#575757' />
-                  </Flex>
-                  <Text fontSize='14px' fontWeight='bold' textAlign='center'>
-                    {t('home.demo.voting_type.card_6')}
-                  </Text>
-                </Box>
-              </Flex>
+              <Card variant='demo-use-cases'>
+                <CardBody>
+                  <Box h='110px'>
+                    <GiChoice />
+                  </Box>
+                  <Text>{t('home.demo.voting_type.card_1')}</Text>
+                </CardBody>
+              </Card>
+              <Card variant='demo-use-cases'>
+                <CardBody>
+                  <Box h='110px'>
+                    <MdOutlineLibraryAddCheck />
+                  </Box>
+                  <Text>{t('home.demo.voting_type.card_2')}</Text>
+                </CardBody>
+              </Card>
+              <Card variant='demo-use-cases'>
+                <CardBody>
+                  <Box h='110px'>
+                    <HiCheckBadge />
+                  </Box>
+                  <Text>{t('home.demo.voting_type.card_3')}</Text>
+                </CardBody>
+              </Card>
+              <Card variant='demo-use-cases'>
+                <CardBody>
+                  <Box h='110px'>
+                    <GoNumber />
+                  </Box>
+                  <Text>{t('home.demo.voting_type.card_4')}</Text>
+                </CardBody>
+              </Card>
+              <Card variant='demo-use-cases'>
+                <CardBody>
+                  <Box h='110px'>
+                    <ImListNumbered />
+                  </Box>
+                  <Text>{t('home.demo.voting_type.card_5')}</Text>
+                </CardBody>
+              </Card>
+              <Card variant='demo-use-cases'>
+                <CardBody>
+                  <Box h='110px'>
+                    <VscListFilter />
+                  </Box>
+                  <Text>{t('home.demo.voting_type.card_6')}</Text>
+                </CardBody>
+              </Card>
             </Grid>
           </Box>
         )}
@@ -236,36 +191,30 @@ const Demo = () => {
               }}
               gap='20px'
             >
-              <Flex justifyContent='center' alignItems='center'>
-                <Box w='full' maxW='400px' bgColor='white' p='15px 20px' borderRadius='lg'>
-                  <Flex h='40px' justifyContent='center' alignItems='center' mb='15px'>
-                    <FaGoogle size={30} color='#575757' />
-                  </Flex>
-                  <Text fontSize='14px' fontWeight='bold' textAlign='center'>
-                    {t('home.demo.census_type.card_1')}
-                  </Text>
-                </Box>
-              </Flex>
-              <Flex justifyContent='center' alignItems='center'>
-                <Box w='full' maxW='400px' bgColor='white' p='15px 20px' borderRadius='lg'>
-                  <Flex h='40px' justifyContent='center' alignItems='center' mb='15px'>
-                    <FaSlack size={30} color='#575757' />
-                  </Flex>
-                  <Text fontSize='14px' fontWeight='bold' textAlign='center'>
-                    {t('home.demo.census_type.card_2')}
-                  </Text>
-                </Box>
-              </Flex>
-              <Flex justifyContent='center' alignItems='center'>
-                <Box w='full' maxW='400px' bgColor='white' p='15px 20px' borderRadius='lg'>
-                  <Flex h='40px' justifyContent='center' alignItems='center' mb='15px'>
-                    <MdAutoGraph size={30} color='#575757' />
-                  </Flex>
-                  <Text fontSize='14px' fontWeight='bold' textAlign='center'>
-                    {t('home.demo.census_type.card_3')}
-                  </Text>
-                </Box>
-              </Flex>
+              <Card variant='demo-use-cases'>
+                <CardBody>
+                  <Box h='110px'>
+                    <FaGoogle />
+                  </Box>
+                  <Text>{t('home.demo.census_type.card_1')}</Text>
+                </CardBody>
+              </Card>
+              <Card variant='demo-use-cases'>
+                <CardBody>
+                  <Box h='110px'>
+                    <FaSlack />
+                  </Box>
+                  <Text>{t('home.demo.voting_type.card_6')}</Text>
+                </CardBody>
+              </Card>
+              <Card variant='demo-use-cases'>
+                <CardBody>
+                  <Box h='110px'>
+                    <MdAutoGraph />
+                  </Box>
+                  <Text>{t('home.demo.census_type.card_3')}</Text>
+                </CardBody>
+              </Card>
             </Grid>
           </Box>
         )}

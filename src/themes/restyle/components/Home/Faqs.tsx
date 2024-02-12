@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from '@chakra-ui/react'
+import { Box, Card, CardBody, CardHeader, Flex, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 
 const Faqs = () => {
@@ -20,64 +20,64 @@ const Faqs = () => {
       </Text>
       <Flex flexDirection={{ base: 'column', md2: 'row' }} gap={{ base: '40px', md2: '60px' }}>
         <Box flex='1 1 50%'>
-          <Box borderBottom='1px solid rgb(229, 229, 229)' mb='40px'>
-            <Text fontWeight='bold' mb='18px' lineHeight='30px'>
-              {t('home.faqs.faq_1.title')}
-            </Text>
-            <Text fontSize='15px' lineHeight='32px' mb='17px'>
-              {t('home.faqs.faq_1.description')}
-            </Text>
-          </Box>
-          <Box borderBottom='1px solid rgb(229, 229, 229)' mb='40px'>
-            <Text fontWeight='bold' mb='18px' lineHeight='30px'>
-              {t('home.faqs.faq_2.title')}
-            </Text>
-            <Text fontSize='15px' lineHeight='32px' mb='17px'>
-              {t('home.faqs.faq_2.description')}
-            </Text>
-          </Box>
-          <Box borderBottom={{ base: '1px solid rgb(229, 229, 229)', md2: 'none' }}>
-            <Text fontWeight='bold' mb='18px' lineHeight='30px'>
-              {t('home.faqs.faq_3.title')}
-            </Text>
-            <Text fontSize='15px' lineHeight='32px' mb='17px'>
-              {t('home.faqs.faq_3.description')}
-            </Text>
-          </Box>
+          <Card variant='faqs' mb='40px'>
+            <CardHeader>
+              <Text>{t('home.faqs.faq_1.title')}</Text>
+            </CardHeader>
+            <CardBody>
+              <Text>{t('home.faqs.faq_1.description')}</Text>
+            </CardBody>
+          </Card>
+          <Card variant='faqs' mb='40px'>
+            <CardHeader>
+              <Text>{t('home.faqs.faq_2.title')}</Text>
+            </CardHeader>
+            <CardBody>
+              <Text>{t('home.faqs.faq_2.description')}</Text>
+            </CardBody>
+          </Card>
+          <Card variant='faqs' mb='40px'>
+            <CardHeader>
+              <Text>{t('home.faqs.faq_3.title')}</Text>
+            </CardHeader>
+            <CardBody>
+              <Text>{t('home.faqs.faq_3.description')}</Text>
+            </CardBody>
+          </Card>
         </Box>
         <Box flex='1 1 50%'>
-          <Box borderBottom='1px solid rgb(229, 229, 229)' mb='40px'>
-            <Text fontWeight='bold' mb='18px' lineHeight='30px'>
-              {t('home.faqs.faq_4.title')}
-            </Text>
-            <Text fontSize='15px' lineHeight='32px' mb='17px'>
-              {t('home.faqs.faq_4.description')}
-            </Text>
-          </Box>
-          <Box borderBottom='1px solid rgb(229, 229, 229)' mb='40px'>
-            <Text fontWeight='bold' mb='18px' lineHeight='30px'>
-              {t('home.faqs.faq_5.title')}
-            </Text>
-            <Text fontSize='15px' lineHeight='32px' mb='17px'>
-              {t('home.faqs.faq_5.description')}
-            </Text>
-          </Box>
-          <Box borderBottom='1px solid rgb(229, 229, 229)' mb='40px'>
-            <Text fontWeight='bold' mb='18px' lineHeight='30px'>
-              {t('home.faqs.faq_6.title')}
-            </Text>
-            <Text fontSize='15px' lineHeight='32px' mb='17px'>
-              {t('home.faqs.faq_6.description')}
-            </Text>
-          </Box>
-          <Box>
-            <Text fontWeight='bold' mb='18px' lineHeight='30px'>
-              {t('home.faqs.faq_7.title')}
-            </Text>
-            <Text fontSize='15px' lineHeight='32px' mb='17px'>
-              {t('home.faqs.faq_7.description')}
-            </Text>
-          </Box>
+          <Card variant='faqs' mb='40px'>
+            <CardHeader>
+              <Text>{t('home.faqs.faq_4.title')}</Text>
+            </CardHeader>
+            <CardBody>
+              <Text>{t('home.faqs.faq_4.description')}</Text>
+            </CardBody>
+          </Card>
+          <Card variant='faqs' mb='40px'>
+            <CardHeader>
+              <Text>{t('home.faqs.faq_5.title')}</Text>
+            </CardHeader>
+            <CardBody>
+              <Text>{t('home.faqs.faq_5.description')}</Text>
+            </CardBody>
+          </Card>
+          <Card variant='faqs' mb='40px'>
+            <CardHeader>
+              <Text>{t('home.faqs.faq_6.title')}</Text>
+            </CardHeader>
+            <CardBody>
+              <Text>{t('home.faqs.faq_6.description')}</Text>
+            </CardBody>
+          </Card>
+          <Card variant='faqs' mb='40px'>
+            <CardHeader>
+              <Text>{t('home.faqs.faq_7.title')}</Text>
+            </CardHeader>
+            <CardBody>
+              <Text>{t('home.faqs.faq_7.description')}</Text>
+            </CardBody>
+          </Card>
         </Box>
       </Flex>
     </Box>

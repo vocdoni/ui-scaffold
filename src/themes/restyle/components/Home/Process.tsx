@@ -1,4 +1,4 @@
-import { Box, Flex, Image, Text } from '@chakra-ui/react'
+import { Box, Card, CardBody, Flex, Image, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { MdDesignServices } from 'react-icons/md'
 import process from '/assets/vocdoni_usage.jpg'
@@ -25,98 +25,54 @@ const Process = () => {
           <Image src={process} borderRadius='lg' w='535px' />
         </Flex>
         <Flex flex='1 1' flexBasis={{ lg: '50%' }} flexDirection='column' justifyContent='space-between' gap='40px'>
-          <Flex gap='24px'>
-            <Flex
-              justifyContent='center'
-              alignItems='center'
-              borderRadius='lg'
-              minW='45px'
-              h='45px'
-              border='1px solid gray'
-            >
-              <MdDesignServices size={25} color='gray' />
-            </Flex>
-            <Box>
-              <Text fontSize='17px' lineHeight='20.4px' color='#175CFF' fontWeight='bold' mb='6px'>
-                {t('home.process.step_1.header')}
-              </Text>
-              <Text fontSize='20px' lineHeight='24px' fontWeight='bold' mb='8px'>
-                {t('home.process.step_1.title')}
-              </Text>
-              <Text color='gray' fontSize='16px' lineHeight='28px'>
-                {t('home.process.step_1.description')}
-              </Text>
-            </Box>
-          </Flex>
-          <Flex gap='24px'>
-            <Flex
-              justifyContent='center'
-              alignItems='center'
-              borderRadius='lg'
-              minW='45px'
-              h='45px'
-              border='1px solid gray'
-            >
-              <MdDesignServices size={25} color='gray' />
-            </Flex>
-            <Box>
-              <Text fontSize='17px' lineHeight='20.4px' color='#175CFF' fontWeight='bold' mb='6px'>
-                {t('home.process.step_2.header')}
-              </Text>
-              <Text fontSize='20px' lineHeight='24px' fontWeight='bold' mb='8px'>
-                {t('home.process.step_2.title')}
-              </Text>
-              <Text color='gray' fontSize='16px' lineHeight='28px'>
-                {t('home.process.step_2.description')}
-              </Text>
-            </Box>
-          </Flex>
-          <Flex gap='24px'>
-            <Flex
-              justifyContent='center'
-              alignItems='center'
-              borderRadius='lg'
-              minW='45px'
-              h='45px'
-              border='1px solid gray'
-            >
-              <MdDesignServices size={25} color='gray' />
-            </Flex>
-            <Box>
-              <Text fontSize='17px' lineHeight='20.4px' color='#175CFF' fontWeight='bold' mb='6px'>
-                {t('home.process.step_3.header')}
-              </Text>
-              <Text fontSize='20px' lineHeight='24px' fontWeight='bold' mb='8px'>
-                {t('home.process.step_3.title')}
-              </Text>
-              <Text color='gray' fontSize='16px' lineHeight='28px'>
-                {t('home.process.step_3.description')}
-              </Text>
-            </Box>
-          </Flex>
-          <Flex gap='24px'>
-            <Flex
-              justifyContent='center'
-              alignItems='center'
-              borderRadius='lg'
-              minW='45px'
-              h='45px'
-              border='1px solid gray'
-            >
-              <MdDesignServices size={25} color='gray' />
-            </Flex>
-            <Box>
-              <Text fontSize='17px' lineHeight='20.4px' color='#175CFF' fontWeight='bold' mb='6px'>
-                {t('home.process.step_4.header')}
-              </Text>
-              <Text fontSize='20px' lineHeight='24px' fontWeight='bold' mb='8px'>
-                {t('home.process.step_4.title')}
-              </Text>
-              <Text color='gray' fontSize='16px' lineHeight='28px'>
-                {t('home.process.step_4.description')}
-              </Text>
-            </Box>
-          </Flex>
+          <Card variant='step'>
+            <CardBody>
+              <Box>
+                <MdDesignServices />
+              </Box>
+              <Box>
+                <Text>{t('home.process.step_1.header')}</Text>
+                <Text>{t('home.process.step_1.title')}</Text>
+                <Text>{t('home.process.step_1.description')}</Text>
+              </Box>
+            </CardBody>
+          </Card>
+          <Card variant='step'>
+            <CardBody>
+              <Box>
+                <MdDesignServices />
+              </Box>
+              <Box>
+                <Text>{t('home.process.step_2.header')}</Text>
+                <Text>{t('home.process.step_2.title')}</Text>
+                <Text>{t('home.process.step_2.description')}</Text>
+              </Box>
+            </CardBody>
+          </Card>
+          <Card variant='step'>
+            <CardBody>
+              <Box>
+                <MdDesignServices />
+              </Box>
+              <Box>
+                <Text>{t('home.process.step_3.header')}</Text>
+                <Text>{t('home.process.step_3.title')}</Text>
+                <Text>{t('home.process.step_3.description')}</Text>
+              </Box>
+            </CardBody>
+          </Card>
+          <Card variant='step'>
+            <CardBody>
+              <Box>
+                <MdDesignServices />
+              </Box>
+              <Box>
+                <Text>{t('home.process.step_4.header')}</Text>
+                <Text>{t('home.process.step_4.title')}</Text>
+                <Text>{t('home.process.step_4.description')}</Text>
+              </Box>
+            </CardBody>
+          </Card>
         </Flex>
       </Flex>
     </Box>

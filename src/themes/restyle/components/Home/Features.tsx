@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Image, Text } from '@chakra-ui/react'
+import { Box, Button, Card, CardBody, Flex, Image, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { FaFingerprint } from 'react-icons/fa'
 import { MdDesignServices } from 'react-icons/md'
@@ -57,28 +57,29 @@ const Features = () => {
               {t('home.features.title')}
             </Text>
           </Box>
-          <Flex gap='24px'>
-            <Flex justifyContent='center' alignItems='center' bgColor='#175CFF' borderRadius='lg' minW='45px' h='45px'>
-              <MdDesignServices size={25} color='white' />
-            </Flex>
-            <Box>
-              <Text fontWeight='bold' mb='6px' fontSize='20px' lineHeight='24px'>
-                {t('home.features.card_1.title')}
-              </Text>
-              <Text color='gray'>{t('home.features.card_1.description')}</Text>
-            </Box>
-          </Flex>
-          <Flex gap='24px'>
-            <Flex justifyContent='center' alignItems='center' bgColor='#F25767' borderRadius='lg' minW='45px' h='45px'>
-              <FaFingerprint size={25} color='white' />
-            </Flex>
-            <Box>
-              <Text fontWeight='bold' mb='6px' fontSize='20px' lineHeight='24px'>
-                {t('home.features.card_2.title')}
-              </Text>
-              <Text color='gray'>{t('home.features.card_2.description')}</Text>
-            </Box>
-          </Flex>
+          <Card variant='icon-card'>
+            <CardBody>
+              <Box bgColor='#175CFF'>
+                <MdDesignServices />
+              </Box>
+              <Box>
+                <Text>{t('home.features.card_1.title')}</Text>
+                <Text>{t('home.features.card_1.description')}</Text>
+              </Box>
+            </CardBody>
+          </Card>
+          <Card variant='icon-card'>
+            <CardBody>
+              <Box bgColor='#F25767'>
+                <FaFingerprint />
+              </Box>
+              <Box>
+                <Text> {t('home.features.card_2.title')}</Text>
+                <Text>{t('home.features.card_2.description')}</Text>
+              </Box>
+            </CardBody>
+          </Card>
+
           <Button bgColor='#0B163F' w={{ base: 'full', sm: 'fit-content', lg: 'full' }} mx='auto'>
             {t('home.features.btn')}
           </Button>

@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Image, Input, Link, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Icon, Image, Input, Link, Text } from '@chakra-ui/react'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaDiscord, FaGithub, FaStar } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
@@ -38,75 +38,75 @@ const Footer = () => {
           justifyContent={{ sm2: 'space-between', lg: 'space-around' }}
           gap={{ base: '30px', sm2: 0 }}
         >
-          <Box>
-            <Text fontWeight='bold' fontSize='18px' lineHeight='21px' mb='36px'>
+          <Flex flexDirection='column' gap='10px'>
+            <Link fontWeight='bold' fontSize='18px' lineHeight='21px' mb='36px'>
               Primary Pages
-            </Text>
-            <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
+            </Link>
+            <Link fontSize='15px' lineHeight='26px' color='gray'>
               Home
-            </Text>
-            <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
+            </Link>
+            <Link fontSize='15px' lineHeight='26px' color='gray'>
               About Us
-            </Text>
-            <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
+            </Link>
+            <Link fontSize='15px' lineHeight='26px' color='gray'>
               Services
-            </Text>
-            <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
+            </Link>
+            <Link fontSize='15px' lineHeight='26px' color='gray'>
               Career
-            </Text>
-            <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
+            </Link>
+            <Link fontSize='15px' lineHeight='26px' color='gray'>
               Integrations
-            </Text>
-            <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
+            </Link>
+            <Link fontSize='15px' lineHeight='26px' color='gray'>
               Integrations Single
-            </Text>
-          </Box>
-          <Box>
-            <Text fontWeight='bold' fontSize='18px' lineHeight='21px' mb='36px'>
+            </Link>
+          </Flex>
+          <Flex flexDirection='column' gap='10px'>
+            <Link fontWeight='bold' fontSize='18px' lineHeight='21px' mb='36px'>
               {t('footer.pages')}
-            </Text>
-            <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
+            </Link>
+            <Link fontSize='15px' lineHeight='26px' color='gray'>
               {t('footer.pricing')}
-            </Text>
-            <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
+            </Link>
+            <Link fontSize='15px' lineHeight='26px' color='gray'>
               {t('footer.blog')}
-            </Text>
-            <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
+            </Link>
+            <Link fontSize='15px' lineHeight='26px' color='gray'>
               {t('footer.blog_details')}
-            </Text>
-            <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
+            </Link>
+            <Link fontSize='15px' lineHeight='26px' color='gray'>
               {t('footer.contact')}
-            </Text>
-            <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
+            </Link>
+            <Link fontSize='15px' lineHeight='26px' color='gray'>
               {t('footer.career_single')}
-            </Text>
-            <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
+            </Link>
+            <Link fontSize='15px' lineHeight='26px' color='gray'>
               {t('footer.service_single')}
-            </Text>
-          </Box>
-          <Box>
-            <Text fontWeight='bold' fontSize='18px' lineHeight='21px' mb='36px'>
+            </Link>
+          </Flex>
+          <Flex flexDirection='column' gap='10px'>
+            <Link fontWeight='bold' fontSize='18px' lineHeight='21px' mb='36px'>
               {t('footer.template')}
-            </Text>
-            <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
+            </Link>
+            <Link fontSize='15px' lineHeight='26px' color='gray'>
               {t('footer.contact')}
-            </Text>
-            <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
+            </Link>
+            <Link fontSize='15px' lineHeight='26px' color='gray'>
               {t('footer.support')}
-            </Text>
-            <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
+            </Link>
+            <Link fontSize='15px' lineHeight='26px' color='gray'>
               {t('footer.support_single')}
-            </Text>
-            <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
+            </Link>
+            <Link fontSize='15px' lineHeight='26px' color='gray'>
               {t('footer.request_for_demo')}
-            </Text>
-            <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
+            </Link>
+            <Link fontSize='15px' lineHeight='26px' color='gray'>
               {t('footer.coming_soon')}
-            </Text>
-            <Text my='10px' fontSize='15px' lineHeight='26px' color='gray'>
+            </Link>
+            <Link fontSize='15px' lineHeight='26px' color='gray'>
               {t('footer.career_single')}
-            </Text>
-          </Box>
+            </Link>
+          </Flex>
         </Flex>
       </Flex>
       <Flex
@@ -128,7 +128,10 @@ const Footer = () => {
           />
         </Text>
         <Flex gap='10px'>
-          <Flex
+          <Link
+            href='https://twitter.com/vocdoni'
+            target='_blank'
+            display='flex'
             justifyContent='center'
             alignItems='center'
             borderRadius='sm'
@@ -136,10 +139,13 @@ const Footer = () => {
             h='30px'
             border='1px solid gray'
           >
-            <FaXTwitter size={15} color='gray' />
-          </Flex>
+            <Icon aria-label={t('link.twitter').toString()} as={FaXTwitter} w={4} h={4} cursor='pointer' color='gray' />
+          </Link>
 
-          <Flex
+          <Link
+            href='https://chat.vocdoni.io/'
+            target='_blank'
+            display='flex'
             justifyContent='center'
             alignItems='center'
             borderRadius='sm'
@@ -147,9 +153,13 @@ const Footer = () => {
             h='30px'
             border='1px solid gray'
           >
-            <FaDiscord size={15} color='gray' />
-          </Flex>
-          <Flex
+            <Icon aria-label={t('link.discord').toString()} as={FaDiscord} w={4} h={4} cursor='pointer' color='gray' />
+          </Link>
+
+          <Link
+            href='https://github.com/vocdoni'
+            target='_blank'
+            display='flex'
             justifyContent='center'
             alignItems='center'
             borderRadius='sm'
@@ -157,8 +167,8 @@ const Footer = () => {
             h='30px'
             border='1px solid gray'
           >
-            <FaGithub size={15} color='gray' />
-          </Flex>
+            <Icon aria-label={t('link.github').toString()} as={FaGithub} w={4} h={4} cursor='pointer' color='gray' />
+          </Link>
         </Flex>
       </Flex>
     </>

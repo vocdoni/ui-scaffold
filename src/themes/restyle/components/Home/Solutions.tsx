@@ -1,4 +1,4 @@
-import { Box, Flex, Image, Text } from '@chakra-ui/react'
+import { Box, Card, CardBody, Flex, Image, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { FaFingerprint } from 'react-icons/fa'
 import { FaCircleCheck } from 'react-icons/fa6'
@@ -32,39 +32,39 @@ const Solutions = () => {
               {t('home.solutions.subtitle_2')}
             </Text>
           </Box>
-          <Flex gap='24px'>
-            <Flex justifyContent='center' alignItems='center' bgColor='#175CFF' borderRadius='lg' minW='45px' h='45px'>
-              <MdDesignServices size={25} color='white' />
-            </Flex>
-            <Box>
-              <Text fontWeight='bold' mb='6px' fontSize='20px' lineHeight='24px'>
-                {t('home.solutions.card_1.title')}
-              </Text>
-              <Text color='gray'>{t('home.solutions.card_1.description')}</Text>
-            </Box>
-          </Flex>
-          <Flex gap='24px'>
-            <Flex justifyContent='center' alignItems='center' bgColor='#F25767' borderRadius='lg' minW='45px' h='45px'>
-              <FaFingerprint size={25} color='white' />
-            </Flex>
-            <Box>
-              <Text fontWeight='bold' mb='6px' fontSize='20px' lineHeight='24px'>
-                {t('home.solutions.card_2.title')}
-              </Text>
-              <Text color='gray'>{t('home.solutions.card_2.description')}</Text>
-            </Box>
-          </Flex>
-          <Flex gap='24px'>
-            <Flex justifyContent='center' alignItems='center' bgColor='#0B163F' borderRadius='lg' minW='45px' h='45px'>
-              <IoSettingsSharp size={25} color='white' />
-            </Flex>
-            <Box>
-              <Text fontWeight='bold' mb='6px' fontSize='20px' lineHeight='24px'>
-                {t('home.solutions.card_3.title')}
-              </Text>
-              <Text color='gray'>{t('home.solutions.card_3.description')}</Text>
-            </Box>
-          </Flex>
+          <Card variant='icon-card'>
+            <CardBody>
+              <Box bgColor='#175CFF'>
+                <MdDesignServices />
+              </Box>
+              <Box>
+                <Text>{t('home.solutions.card_1.title')}</Text>
+                <Text>{t('home.solutions.card_1.description')}</Text>
+              </Box>
+            </CardBody>
+          </Card>
+          <Card variant='icon-card'>
+            <CardBody>
+              <Box bgColor='#F25767'>
+                <FaFingerprint />
+              </Box>
+              <Box>
+                <Text>{t('home.solutions.card_2.title')}</Text>
+                <Text>{t('home.solutions.card_2.description')}</Text>
+              </Box>
+            </CardBody>
+          </Card>
+          <Card variant='icon-card'>
+            <CardBody>
+              <Box bgColor='#0B163F'>
+                <IoSettingsSharp />
+              </Box>
+              <Box>
+                <Text>{t('home.solutions.card_3.title')}</Text>
+                <Text>{t('home.solutions.card_3.description')}</Text>
+              </Box>
+            </CardBody>
+          </Card>
         </Flex>
       </Flex>
       <Box flex='1 1 50%' position='relative'>
