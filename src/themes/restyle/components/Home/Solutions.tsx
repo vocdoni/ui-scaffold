@@ -13,7 +13,7 @@ const Solutions = () => {
       as='section'
       className='site-wrapper'
       flexDirection={{ base: 'column', lg: 'row' }}
-      py={{ base: '60px', lg: '120px' }}
+      py={{ base: '60px', lg: '100px' }}
       gap={{ base: '40px', lg: '60px' }}
     >
       <Flex flex='1 1 50%' justifyContent='center' alignItems='center'>
@@ -69,7 +69,7 @@ const Solutions = () => {
       </Flex>
       <Box flex='1 1 50%' position='relative'>
         <Box maxW={{ base: '250px', lg: '115%', xl: '100%' }} mx='auto' borderRadius='xl' overflow='hidden'>
-          <Image src={solutions} />
+          <Image src={solutions} mx={{ lg: 'auto' }} />
         </Box>
         <Flex
           flexDirection='column'

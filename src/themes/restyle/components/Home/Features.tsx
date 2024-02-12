@@ -40,7 +40,7 @@ const Features = () => {
         justifyContent={{ base: 'center', lg: 'start' }}
         display={{ lg: 'flex' }}
         alignItems='center'
-        py={{ lg: '60px', xl: '120px' }}
+        py={{ base: '60px', lg: '100px' }}
       >
         <Flex
           flexDirection='column'

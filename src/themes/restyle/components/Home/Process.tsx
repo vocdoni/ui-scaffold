@@ -7,7 +7,7 @@ const Process = () => {
   const { t } = useTranslation()
 
   return (
-    <Box as='section' className='site-wrapper' py={{ base: '60px', lg: '120px' }}>
+    <Box as='section' className='site-wrapper' py={{ base: '60px', lg: '100px' }}>
       <Text color='#175CFF' fontWeight='bold' mb='6px' textAlign='center' fontSize='20px' lineHeight='24px'>
         {t('home.process.header')}
       </Text>

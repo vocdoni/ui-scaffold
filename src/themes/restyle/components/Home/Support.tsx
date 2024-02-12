@@ -7,7 +7,7 @@ const Support = () => {
 
   return (
     <Box bgColor='#000111'>
-      <Box className='site-wrapper' py={{ base: '60px', xl: '120px' }} position='relative' overflow='hidden'>
+      <Box className='site-wrapper' py={{ base: '60px', lg: '100px' }} position='relative' overflow='hidden'>
         <Box
           w='356px'
           h='356px'

@@ -23,7 +23,7 @@ const Demo = () => {
 
   return (
     <Box as='section' id='usecases' bgColor='#EFF1F2'>
-      <Box className='site-wrapper' py={{ base: '60px', lg: '120px' }}>
+      <Box className='site-wrapper' py={{ base: '60px', lg: '100px' }}>
         <Flex flexDirection={{ base: 'column', lg: 'row' }} mb='40px' gap={{ base: '40px', lg: 0 }}>
           <Box flex='1 1 50%'>
             <Text color='#175CFF' fontWeight='bold' mb='6px' fontSize='20px' lineHeight='24px'>
@@ -71,6 +71,7 @@ const Demo = () => {
               templateColumns={{
                 base: 'repeat(auto-fill, minmax(200px, 1fr))',
                 sm: 'repeat(auto-fill, minmax(300px, 1fr))',
+                xl: 'repeat(auto-fill, minmax(350px, 1fr))',
               }}
               gap='20px'
             >
@@ -154,7 +155,8 @@ const Demo = () => {
             <Grid
               templateColumns={{
                 base: 'repeat(auto-fill, minmax(200px, 1fr))',
-                sm: 'repeat(auto-fill, minmax(300px, 1fr))',
+                sm: 'repeat(auto-fill, minmax(400px, 1fr))',
+                xl: 'repeat(auto-fill, minmax(350px, 1fr))',
               }}
               gap='20px'
             >
@@ -229,7 +231,8 @@ const Demo = () => {
             <Grid
               templateColumns={{
                 base: 'repeat(auto-fill, minmax(200px, 1fr))',
-                sm: 'repeat(auto-fill, minmax(300px, 1fr))',
+                sm: 'repeat(auto-fill, minmax(400px, 1fr))',
+                xl: 'repeat(auto-fill, minmax(350px, 1fr))',
               }}
               gap='20px'
             >

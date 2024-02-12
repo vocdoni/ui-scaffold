@@ -11,7 +11,7 @@ const CreateProcess = () => {
       as='section'
       className='site-wrapper'
       flexDirection={{ base: 'column', lg: 'row' }}
-      py={{ base: '60px', lg: '120px' }}
+      py={{ base: '60px', lg: '100px' }}
       gap={{ base: '40px', lg: '60px' }}
     >
       <Box flex='1 1 40%'>
