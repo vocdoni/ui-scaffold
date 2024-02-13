@@ -1,7 +1,7 @@
 import { Box, Button, Flex, Image, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { FaRegCheckCircle } from 'react-icons/fa'
-import devices from '/assets/devices.jpg'
+import devices from '/assets/devices.png'
 
 const CreateProcess = () => {
   const { t } = useTranslation()

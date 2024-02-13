@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import { FaRegCheckCircle, FaRegPlayCircle } from 'react-icons/fa'
+import { FaRegCheckCircle, FaPhoneVolume } from 'react-icons/fa'
 
 const Support = () => {
   const { t } = useTranslation()
@@ -55,7 +55,7 @@ const Support = () => {
         >
           <Button> {t('home.support.btn_contact')}</Button>
           <Button variant='transparent' color='white'>
-            <FaRegPlayCircle size={35} />
+            <FaPhoneVolume size={30} />
             <Text as='span' ml='10px'>
               {t('home.support.btn_watch')}
             </Text>

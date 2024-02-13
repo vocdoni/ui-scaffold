@@ -1,7 +1,6 @@
 import { Box, Flex, Image, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import { FaFingerprint } from 'react-icons/fa'
-import { FaCircleCheck } from 'react-icons/fa6'
+import { FaCircleCheck, FaArrowsToCircle } from 'react-icons/fa6'
 import { IoSettingsSharp } from 'react-icons/io5'
 import { MdDesignServices } from 'react-icons/md'
 import solutions from '/assets/solutions.png'
@@ -28,9 +27,6 @@ const Solutions = () => {
             <Text color='gray' fontSize='16px' lineHeight='28px'>
               {t('home.solutions.subtitle_1')}
             </Text>
-            <Text color='gray' fontSize='16px' lineHeight='28px'>
-              {t('home.solutions.subtitle_2')}
-            </Text>
           </Box>
           <Flex gap='24px'>
             <Flex justifyContent='center' alignItems='center' bgColor='#175CFF' borderRadius='lg' minW='45px' h='45px'>
@@ -45,7 +41,7 @@ const Solutions = () => {
           </Flex>
           <Flex gap='24px'>
             <Flex justifyContent='center' alignItems='center' bgColor='#F25767' borderRadius='lg' minW='45px' h='45px'>
-              <FaFingerprint size={25} color='white' />
+              <FaArrowsToCircle size={25} color='white' />
             </Flex>
             <Box>
               <Text fontWeight='bold' mb='6px' fontSize='20px' lineHeight='24px'>
