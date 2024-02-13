@@ -75,37 +75,37 @@ const Demo = () => {
               }}
               gap='20px'
             >
-              <Card variant='demo-use-cases'>
+              <Card as='a' href='' variant='demo'>
                 <CardBody>
                   <Box bgImage={agm} h='145px' />
                   <Text> {t('home.demo.use_cases.card_1')}</Text>
                 </CardBody>
               </Card>
-              <Card variant='demo-use-cases'>
+              <Card as='a' href='' variant='demo'>
                 <CardBody>
                   <Box bgImage={elections} h='145px' />
                   <Text>{t('home.demo.use_cases.card_2')}</Text>
                 </CardBody>
               </Card>
-              <Card variant='demo-use-cases'>
+              <Card as='a' href='' variant='demo'>
                 <CardBody>
                   <Box bgImage={participatory} h='145px' />
                   <Text>{t('home.demo.use_cases.card_3')}</Text>
                 </CardBody>
               </Card>
-              <Card variant='demo-use-cases'>
+              <Card as='a' href='' variant='demo'>
                 <CardBody>
                   <Box bgImage={onlineVoting} h='145px' />
                   <Text>{t('home.demo.use_cases.card_4')}</Text>
                 </CardBody>
               </Card>
-              <Card variant='demo-use-cases'>
+              <Card as='a' href='' variant='demo'>
                 <CardBody>
                   <Box bgImage={softInt} h='145px' />
                   <Text>{t('home.demo.use_cases.card_5')}</Text>
                 </CardBody>
               </Card>
-              <Card variant='demo-use-cases'>
+              <Card as='a' href='' variant='demo'>
                 <CardBody>
                   <Box bgImage={onlineSurvey} h='145px' />
                   <Text>{t('home.demo.use_cases.card_6')}</Text>
@@ -127,7 +127,7 @@ const Demo = () => {
               }}
               gap='20px'
             >
-              <Card variant='demo-use-cases'>
+              <Card as='a' href='' variant='demo'>
                 <CardBody>
                   <Box h='110px'>
                     <GiChoice />
@@ -135,7 +135,7 @@ const Demo = () => {
                   <Text>{t('home.demo.voting_type.card_1')}</Text>
                 </CardBody>
               </Card>
-              <Card variant='demo-use-cases'>
+              <Card as='a' href='' variant='demo'>
                 <CardBody>
                   <Box h='110px'>
                     <MdOutlineLibraryAddCheck />
@@ -143,7 +143,7 @@ const Demo = () => {
                   <Text>{t('home.demo.voting_type.card_2')}</Text>
                 </CardBody>
               </Card>
-              <Card variant='demo-use-cases'>
+              <Card as='a' href='' variant='demo'>
                 <CardBody>
                   <Box h='110px'>
                     <HiCheckBadge />
@@ -151,7 +151,7 @@ const Demo = () => {
                   <Text>{t('home.demo.voting_type.card_3')}</Text>
                 </CardBody>
               </Card>
-              <Card variant='demo-use-cases'>
+              <Card as='a' href='' variant='demo'>
                 <CardBody>
                   <Box h='110px'>
                     <GoNumber />
@@ -159,7 +159,7 @@ const Demo = () => {
                   <Text>{t('home.demo.voting_type.card_4')}</Text>
                 </CardBody>
               </Card>
-              <Card variant='demo-use-cases'>
+              <Card as='a' href='' variant='demo'>
                 <CardBody>
                   <Box h='110px'>
                     <ImListNumbered />
@@ -167,7 +167,7 @@ const Demo = () => {
                   <Text>{t('home.demo.voting_type.card_5')}</Text>
                 </CardBody>
               </Card>
-              <Card variant='demo-use-cases'>
+              <Card as='a' href='' variant='demo'>
                 <CardBody>
                   <Box h='110px'>
                     <VscListFilter />
@@ -191,7 +191,7 @@ const Demo = () => {
               }}
               gap='20px'
             >
-              <Card variant='demo-use-cases'>
+              <Card as='a' href='' variant='demo'>
                 <CardBody>
                   <Box h='110px'>
                     <FaGoogle />
@@ -199,7 +199,7 @@ const Demo = () => {
                   <Text>{t('home.demo.census_type.card_1')}</Text>
                 </CardBody>
               </Card>
-              <Card variant='demo-use-cases'>
+              <Card as='a' href='' variant='demo'>
                 <CardBody>
                   <Box h='110px'>
                     <FaSlack />
@@ -207,7 +207,7 @@ const Demo = () => {
                   <Text>{t('home.demo.voting_type.card_6')}</Text>
                 </CardBody>
               </Card>
-              <Card variant='demo-use-cases'>
+              <Card as='a' href='' variant='demo'>
                 <CardBody>
                   <Box h='110px'>
                     <MdAutoGraph />

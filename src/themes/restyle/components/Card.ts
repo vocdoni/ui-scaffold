@@ -317,7 +317,7 @@ const step = definePartsStyle({
     },
   },
 })
-const demoUseCases = definePartsStyle({
+const demo = definePartsStyle({
   body: {
     w: 'full',
     maxW: '400px',
@@ -411,7 +411,7 @@ const variantsCards = {
   benefits,
   client,
   detailed,
-  'demo-use-cases': demoUseCases,
+  demo: demo,
   faqs,
   'icon-card': iconCard,
   'no-elections': noElections,
