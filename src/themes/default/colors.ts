@@ -142,6 +142,8 @@ export const colors = {
       color: colorsBase.blue.dark,
     },
     advanced_checkbox_bg: colorsBase.white.pure,
+    pro_bg: colorsBase.primary.main,
+    pro_color: colorsBase.white.pure,
     bg: colorsBase.white.dark2,
     wallet_addresses_border: colorsBase.gray.main,
     calendar_start_date_selected: colorsBase.blue.main,

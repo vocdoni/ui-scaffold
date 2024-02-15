@@ -7,9 +7,12 @@ const features = () => {
       anonymous: true,
       overwrite: true,
       secret: true,
+      customization: true,
     },
     login: ['web3', 'web2'],
     census: ['spreadsheet', 'token', 'web3', 'csp'],
+    unimplemented_census: ['phone', 'email', 'crm', 'database', 'digital_certificate', 'others'],
+    voting: ['single', 'multi', 'approval', 'participatory', 'borda'],
     languages: ['ca', 'en', 'es'],
   }
   const features = merge.withOptions({ mergeArrays: false }, defaults, JSON.parse(process.env.FEATURES || '{}'))

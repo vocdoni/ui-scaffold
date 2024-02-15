@@ -13,15 +13,33 @@ interface ImportMeta {
         anonymous: boolean
         overwrite: boolean
         secret: boolean
+        customization: boolean
       }
       login: string[]
       census: string[]
+      voting: string[]
+      unimplemented_census: string[]
       languages: string[]
       _census: {
         spreadsheet: boolean
         token: boolean
         web3: boolean
         csp: boolean
+      }
+      _unimplemented_census: {
+        phone: boolean
+        email: boolean
+        crm: boolean
+        database: boolean
+        digital_certificate: boolean
+        others: boolean
+      }
+      _voting: {
+        single: boolean
+        multi: boolean
+        approval: boolean
+        participatory: boolean
+        borda: boolean
       }
     }
     theme: string
