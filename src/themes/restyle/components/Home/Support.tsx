@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import { FaRegCheckCircle, FaPhoneVolume } from 'react-icons/fa'
+import { FaPhoneVolume, FaRegCheckCircle } from 'react-icons/fa'
 
 const Support = () => {
   const { t } = useTranslation()
@@ -53,7 +53,10 @@ const Support = () => {
           gap='10px'
           mb='40px'
         >
-          <Button bgColor='#fff' color='#2c545a'> {t('home.support.btn_contact')}</Button>
+          <Button bgColor='#fff' color='#2c545a'>
+            {' '}
+            {t('home.support.btn_contact')}
+          </Button>
           <Button variant='transparent' color='white'>
             <FaPhoneVolume size={30} />
             <Text as='span' ml='10px'>

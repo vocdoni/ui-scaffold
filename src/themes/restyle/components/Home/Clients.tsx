@@ -4,12 +4,12 @@ import barca from '/assets/barca.png'
 import bellpuig from '/assets/bellpuig.svg.png'
 import berga from '/assets/berga.svg.png'
 import bisbal from '/assets/bisbal.svg'
+import bloock from '/assets/bloock.png'
+import coec from '/assets/coec.png'
 import decidim from '/assets/decidim.jpg'
+import erc from '/assets/erc.svg'
 import omnium from '/assets/omnium.png'
 import pirates from '/assets/pirates.svg'
-import erc from '/assets/erc.svg'
-import coec from '/assets/coec.png'
-import bloock from '/assets/bloock.png'
 
 const Clients = () => {
   const { t } = useTranslation()
@@ -62,7 +62,7 @@ const Clients = () => {
         </Card>
         <Card variant='client'>
           <CardHeader>
-            <Image src={coec} w={{ base: '30px', lg: '58px' }} mt="3" />
+            <Image src={coec} w={{ base: '30px', lg: '58px' }} mt='3' />
           </CardHeader>
           <CardBody>
             <Text as='span'>COEC</Text>
@@ -70,7 +70,7 @@ const Clients = () => {
         </Card>
         <Card variant='client'>
           <CardHeader>
-            <Image src={erc} w={{ base: '30px', lg: '48px' }} mt="1" />
+            <Image src={erc} w={{ base: '30px', lg: '48px' }} mt='1' />
           </CardHeader>
           <CardBody>
             <Text as='span'>Esquerra Republicana</Text>
@@ -102,7 +102,7 @@ const Clients = () => {
         </Card>
         <Card variant='client'>
           <CardHeader>
-            <Image src={bloock} w={{ base: '44px', lg: '58px' }} mt="3" />
+            <Image src={bloock} w={{ base: '44px', lg: '58px' }} mt='3' />
           </CardHeader>
           <CardBody>
             <Text as='span'>Bloock</Text>

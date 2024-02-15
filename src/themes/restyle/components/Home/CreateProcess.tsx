@@ -28,7 +28,12 @@ const CreateProcess = () => {
           {t('home.create_process.subtitle')}
         </Text>
         <Box maxW={{ lg: '90%' }}>
-          <Button bgColor='#24656e' mb='20px' w={{ base: 'full', sm: 'fit-content', lg: 'full' }} mx={{ base: 'auto', lg: 'start' }}>
+          <Button
+            bgColor='#24656e'
+            mb='20px'
+            w={{ base: 'full', sm: 'fit-content', lg: 'full' }}
+            mx={{ base: 'auto', lg: 'start' }}
+          >
             {t('home.create_process.btn')}
           </Button>
           <Flex
@@ -37,11 +42,11 @@ const CreateProcess = () => {
             flexDirection={{ base: 'column', sm: 'row', lg: 'column' }}
             gap={{ sm: 5, lg: 0 }}
           >
-            <Text display='flex' alignItems='center' gap={1} ml="3">
+            <Text display='flex' alignItems='center' gap={1} ml='3'>
               <FaRegCheckCircle color='#2c545a' />
               {t('home.create_process.helper_1')}
             </Text>
-            <Text display='flex' alignItems='center' gap={1} ml="3" mt="1">
+            <Text display='flex' alignItems='center' gap={1} ml='3' mt='1'>
               <FaRegCheckCircle color='#2c545a' />
               {t('home.create_process.helper_2')}
             </Text>

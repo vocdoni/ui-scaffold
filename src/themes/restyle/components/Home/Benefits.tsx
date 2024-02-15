@@ -16,7 +16,13 @@ const Benefits = () => {
         >
           {t('home.benefits.title')}
         </Text>
-        <Text color='gray' mb='60px' maxW={{ base: '100%', sm: '70%', sm2: '60%', lg: '840px' }} mx="auto" textAlign="justify">
+        <Text
+          color='gray'
+          mb='60px'
+          maxW={{ base: '100%', sm: '70%', sm2: '60%', lg: '840px' }}
+          mx='auto'
+          textAlign='justify'
+        >
           {t('home.benefits.subtitle_1')}
         </Text>
         <Flex flexWrap='wrap' justifyContent='center' maxW='1100px' mx='auto' gap={5}>

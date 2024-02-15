@@ -1,6 +1,11 @@
 import { Box, Card, CardBody, Flex, Image, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import { PiNumberSquareOneFill, PiNumberSquareTwoFill, PiNumberSquareThreeFill, PiNumberSquareFourFill } from 'react-icons/pi'
+import {
+  PiNumberSquareFourFill,
+  PiNumberSquareOneFill,
+  PiNumberSquareThreeFill,
+  PiNumberSquareTwoFill,
+} from 'react-icons/pi'
 import process from '/assets/vocdoni_usage.jpg'
 
 const Process = () => {
@@ -28,7 +33,7 @@ const Process = () => {
           <Card variant='step'>
             <CardBody>
               <Box bgColor='#175b64'>
-                <PiNumberSquareOneFill color="#fff" />
+                <PiNumberSquareOneFill color='#fff' />
               </Box>
               <Box>
                 <Text>{t('home.process.step_1.title')}</Text>
@@ -39,7 +44,7 @@ const Process = () => {
           <Card variant='step'>
             <CardBody>
               <Box bgColor='#175b64'>
-                <PiNumberSquareTwoFill color="#fff" />
+                <PiNumberSquareTwoFill color='#fff' />
               </Box>
               <Box>
                 <Text>{t('home.process.step_2.title')}</Text>
@@ -50,7 +55,7 @@ const Process = () => {
           <Card variant='step'>
             <CardBody>
               <Box bgColor='#175b64'>
-                <PiNumberSquareThreeFill color="#fff" />
+                <PiNumberSquareThreeFill color='#fff' />
               </Box>
               <Box>
                 <Text>{t('home.process.step_3.title')}</Text>
@@ -61,7 +66,7 @@ const Process = () => {
           <Card variant='step'>
             <CardBody>
               <Box bgColor='#175b64'>
-                <PiNumberSquareFourFill color="#fff" />
+                <PiNumberSquareFourFill color='#fff' />
               </Box>
               <Box>
                 <Text>{t('home.process.step_4.title')}</Text>

@@ -37,7 +37,10 @@ const Demo = () => {
             </Text>
           </Box>
           <Flex flex='1 1 50%' justifyContent={{ base: 'center', lg: 'end' }} alignItems='center'>
-            <Button bgColor='#24656e' w={{ base: 'full', sm: 'fit-content' }}> {t('home.demo.btn')}</Button>
+            <Button bgColor='#24656e' w={{ base: 'full', sm: 'fit-content' }}>
+              {' '}
+              {t('home.demo.btn')}
+            </Button>
           </Flex>
         </Flex>
         <RadioGroup onChange={setValue} value={value}>
