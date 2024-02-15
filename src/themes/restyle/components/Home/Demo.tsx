@@ -26,7 +26,7 @@ const Demo = () => {
       <Box className='site-wrapper' py={{ base: '60px', lg: '100px' }}>
         <Flex flexDirection={{ base: 'column', lg: 'row' }} mb='40px' gap={{ base: '40px', lg: 0 }}>
           <Box flex='1 1 50%'>
-            <Text color='#175CFF' fontWeight='bold' mb='6px' fontSize='20px' lineHeight='24px'>
+            <Text color='#175b64' fontWeight='bold' mb='6px' fontSize='20px' lineHeight='24px'>
               {t('home.demo.header')}
             </Text>
             <Text fontWeight='bold' fontSize='40px' lineHeight='48px' mb='10px'>
@@ -37,7 +37,10 @@ const Demo = () => {
             </Text>
           </Box>
           <Flex flex='1 1 50%' justifyContent={{ base: 'center', lg: 'end' }} alignItems='center'>
-            <Button w={{ base: 'full', sm: 'fit-content' }}> {t('home.demo.btn')}</Button>
+            <Button bgColor='#24656e' w={{ base: 'full', sm: 'fit-content' }}>
+              {' '}
+              {t('home.demo.btn')}
+            </Button>
           </Flex>
         </Flex>
         <RadioGroup onChange={setValue} value={value}>

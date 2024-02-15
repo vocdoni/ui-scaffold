@@ -1,7 +1,6 @@
 import { Box, Card, CardBody, Flex, Image, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import { FaFingerprint } from 'react-icons/fa'
-import { FaCircleCheck } from 'react-icons/fa6'
+import { FaCircleCheck, FaArrowsToCircle } from 'react-icons/fa6'
 import { IoSettingsSharp } from 'react-icons/io5'
 import { MdDesignServices } from 'react-icons/md'
 import solutions from '/assets/solutions.png'
@@ -19,7 +18,7 @@ const Solutions = () => {
       <Flex flex='1 1 50%' justifyContent='center' alignItems='center'>
         <Flex flexDirection='column' gap='24px'>
           <Box mb='40px'>
-            <Text color='#175CFF' fontWeight='bold' fontSize='20px' lineHeight='24px' mb='6px'>
+            <Text color='#175b64' fontWeight='bold' fontSize='20px' lineHeight='24px' mb='6px'>
               {t('home.solutions.header')}
             </Text>
             <Text fontWeight='bold' fontSize='40px' lineHeight='48px' mb='10px'>
@@ -28,13 +27,10 @@ const Solutions = () => {
             <Text color='gray' fontSize='16px' lineHeight='28px'>
               {t('home.solutions.subtitle_1')}
             </Text>
-            <Text color='gray' fontSize='16px' lineHeight='28px'>
-              {t('home.solutions.subtitle_2')}
-            </Text>
           </Box>
           <Card variant='icon-card'>
             <CardBody>
-              <Box bgColor='#175CFF'>
+              <Box bgColor='#175b64'>
                 <MdDesignServices />
               </Box>
               <Box>
@@ -45,8 +41,8 @@ const Solutions = () => {
           </Card>
           <Card variant='icon-card'>
             <CardBody>
-              <Box bgColor='#F25767'>
-                <FaFingerprint />
+              <Box bgColor='#175b64'>
+                <FaArrowsToCircle />
               </Box>
               <Box>
                 <Text>{t('home.solutions.card_2.title')}</Text>
@@ -56,7 +52,7 @@ const Solutions = () => {
           </Card>
           <Card variant='icon-card'>
             <CardBody>
-              <Box bgColor='#0B163F'>
+              <Box bgColor='#175b64'>
                 <IoSettingsSharp />
               </Box>
               <Box>
@@ -95,7 +91,7 @@ const Solutions = () => {
             fontWeight='bold'
           >
             <Box minW='25px'>
-              <FaCircleCheck color='#175CFF' size={25} />
+              <FaCircleCheck color='#000' size={22} />
             </Box>
             <Text as='span'> {t('home.solutions.img_card_1')}</Text>
           </Flex>
@@ -109,7 +105,7 @@ const Solutions = () => {
             fontWeight='bold'
           >
             <Box minW='25px'>
-              <FaCircleCheck color='#175CFF' size={25} />
+              <FaCircleCheck color='#000' size={22} />
             </Box>
 
             <Text as='span'> {t('home.solutions.img_card_2')}</Text>
@@ -124,7 +120,7 @@ const Solutions = () => {
             fontWeight='bold'
           >
             <Box minW='25px'>
-              <FaCircleCheck color='#175CFF' size={25} />
+              <FaCircleCheck color='#000' size={22} />
             </Box>
             <Text as='span' whiteSpace={{ sm: 'nowrap' }}>
               {t('home.solutions.img_card_3')}

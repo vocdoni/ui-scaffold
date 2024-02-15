@@ -18,19 +18,8 @@ const Footer = () => {
         <Box flex='1 1 33%'>
           <Image src={vcdLogo} w='125px' mb='24px' />
           <Text fontSize='16px' lineHeight='28px' mb='24px' color='gray'>
-            {t('footer.newsletter')}
+            {t('footer.footer_subtitle')}
           </Text>
-          <Flex alignItems='center' gap='10px' mb='24px'>
-            <Input placeholder='Enter your email' h='48px' />
-            <Button>{t('footer.newsletter_btn')}</Button>
-          </Flex>
-          <Text fontWeight='bold' color='#575757' fontSize='17px' lineHeight='20px' mb='5px'>
-            {t('footer.overall')}
-          </Text>
-          <Flex gap={1}>
-            <FaStar color='#FFB116' /> <FaStar color='#FFB116' /> <FaStar color='#FFB116' /> <FaStar color='#FFB116' />{' '}
-            <FaStar color='#FFB116' />
-          </Flex>
         </Box>
         <Flex
           flex='1 1 67%'
@@ -39,72 +28,69 @@ const Footer = () => {
           gap={{ base: '30px', sm2: 0 }}
         >
           <Flex flexDirection='column' gap='10px'>
-            <Link fontWeight='bold' fontSize='18px' lineHeight='21px' mb='36px'>
-              Primary Pages
+            <Link fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px'>
+              {t('footer.company')}
             </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray'>
-              Home
+            <Link fontSize='15px' lineHeight='26px' color='gray' href='https://www.vocdoni.io'>
+              Vocdoni
             </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray'>
+            <Link fontSize='15px' lineHeight='26px' color='gray' href='https://www.vocdoni.io/about'>
               About Us
             </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray'>
-              Services
+            <Link fontSize='15px' lineHeight='26px' color='gray' href='https://www.vocdoni.io/contact'>
+              Contact
             </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray'>
-              Career
+            <Link fontSize='15px' lineHeight='26px' color='gray' href='https://www.vocdoni.io/api'>
+              SDK
             </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray'>
-              Integrations
+            <Link fontSize='15px' lineHeight='26px' color='gray' href='https://developer.vocdoni.io'>
+              Developer Portal
             </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray'>
-              Integrations Single
-            </Link>
-          </Flex>
-          <Flex flexDirection='column' gap='10px'>
-            <Link fontWeight='bold' fontSize='18px' lineHeight='21px' mb='36px'>
-              {t('footer.pages')}
-            </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray'>
-              {t('footer.pricing')}
-            </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray'>
-              {t('footer.blog')}
-            </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray'>
-              {t('footer.blog_details')}
-            </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray'>
-              {t('footer.contact')}
-            </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray'>
-              {t('footer.career_single')}
-            </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray'>
-              {t('footer.service_single')}
+            <Link fontSize='15px' lineHeight='26px' color='gray' href='https://blog.vocdoni.io'>
+              Blog
             </Link>
           </Flex>
           <Flex flexDirection='column' gap='10px'>
-            <Link fontWeight='bold' fontSize='18px' lineHeight='21px' mb='36px'>
-              {t('footer.template')}
+            <Link fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px'>
+              {t('footer.uses_cases')}
             </Link>
             <Link fontSize='15px' lineHeight='26px' color='gray'>
-              {t('footer.contact')}
+              {t('footer.uses_cases1')}
             </Link>
             <Link fontSize='15px' lineHeight='26px' color='gray'>
-              {t('footer.support')}
+              {t('footer.uses_cases2')}
             </Link>
             <Link fontSize='15px' lineHeight='26px' color='gray'>
-              {t('footer.support_single')}
+              {t('footer.uses_cases3')}
             </Link>
             <Link fontSize='15px' lineHeight='26px' color='gray'>
-              {t('footer.request_for_demo')}
+              {t('footer.uses_cases4')}
             </Link>
             <Link fontSize='15px' lineHeight='26px' color='gray'>
-              {t('footer.coming_soon')}
+              {t('footer.uses_cases5')}
+            </Link>
+          </Flex>
+          <Flex flexDirection='column' gap='10px'>
+            <Link fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px'>
+              {t('footer.demo')}
             </Link>
             <Link fontSize='15px' lineHeight='26px' color='gray'>
-              {t('footer.career_single')}
+              {t('footer.demo1')}
+            </Link>
+            <Link fontSize='15px' lineHeight='26px' color='gray'>
+              {t('footer.demo2')}
+            </Link>
+            <Link fontSize='15px' lineHeight='26px' color='gray'>
+              {t('footer.demo3')}
+            </Link>
+            <Link fontSize='15px' lineHeight='26px' color='gray'>
+              {t('footer.demo4')}
+            </Link>
+            <Link fontSize='15px' lineHeight='26px' color='gray'>
+              {t('footer.demo5')}
+            </Link>
+            <Link fontSize='15px' lineHeight='26px' color='gray'>
+              {t('footer.demo6')}
             </Link>
           </Flex>
         </Flex>

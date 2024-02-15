@@ -225,8 +225,8 @@ const benefits = definePartsStyle({
   header: {
     p: '30px',
     pb: '20px',
-    fontSize: { base: '34.5px', sm: '38px' },
-    lineHeight: { base: '42px', sm: '47px' },
+    fontSize: { base: '28.5px', sm: '28px' },
+    lineHeight: { base: '38px', sm: '37px' },
     fontWeight: 'bold',
     textAlign: 'center',
   },
@@ -299,7 +299,7 @@ const step = definePartsStyle({
       'p:first-of-type': {
         fontSize: '17px',
         lineHeight: '20.4px',
-        color: '#175CFF',
+        color: '#175b64',
         fontWeight: 'bold',
         mb: '6px',
       },

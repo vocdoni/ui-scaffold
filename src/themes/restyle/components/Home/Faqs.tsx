@@ -44,6 +44,14 @@ const Faqs = () => {
               <Text>{t('home.faqs.faq_3.description')}</Text>
             </CardBody>
           </Card>
+          <Card variant='faqs' mb='40px'>
+            <CardHeader>
+              <Text>{t('home.faqs.faq_8.title')}</Text>
+            </CardHeader>
+            <CardBody>
+              <Text>{t('home.faqs.faq_8.description')}</Text>
+            </CardBody>
+          </Card>
         </Box>
         <Box flex='1 1 50%'>
           <Card variant='faqs' mb='40px'>

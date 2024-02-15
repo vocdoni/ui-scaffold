@@ -6,4 +6,6 @@ export const Check = () => <Img src='/assets/check-icon.svg' alt='check' />
 
 export const Logo = () => <Img src='/assets/onvote-icon.svg' alt='onvote logo' maxWidth={12} />
 
+export const LogoMbl = () => <Img src='/assets/vocdoni_icon.png' alt='vocdoni icon' maxWidth={10} />
+
 export const GoBack = () => <Img src='/assets/goback-icon.svg' alt='go back' />

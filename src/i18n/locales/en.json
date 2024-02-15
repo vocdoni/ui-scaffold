@@ -162,28 +162,28 @@
   "footer": {
     "about": "About",
     "blog": "Blog",
-    "blog_details": "Blog Details",
-    "career_single": "Career Single",
-    "coming_soon": "Cooming Soon",
     "company": "Company",
-    "contact": "Contact",
     "developer_portal": "Developers Portal",
     "developers": "Developers",
     "discord": "Discord",
     "follow_us": "Follow us",
     "homepage": "Home",
-    "newsletter": "Our latest news, articles, and resources, we will sent to your inbox weekly",
-    "newsletter_btn": "Subscribe",
-    "overall": "10/10 Overall rating",
-    "pages": "Pages",
-    "pricing": "Pricing",
+    "footer_subtitle": "The Global Voting Protocol",
+    "uses_cases": "Use Cases",
+    "uses_cases1": "AGMs",
+    "uses_cases2": "Elections",
+    "uses_cases3": "Participatory Budgeting",
+    "uses_cases4": "Online Voting",
+    "uses_cases5": "Gathered Online Survey",
     "repos": "Open-source Code",
-    "request_for_demo": "Request for Demo",
     "resources": "Resources",
-    "service_single": "Services Single",
-    "support": "Support",
-    "support_single": "Support Single",
-    "template": "Template",
+    "demo": "Voting Types",
+    "demo1": "Single Choice",
+    "demo2": "Multiple Choice",
+    "demo3": "Approval Voting",
+    "demo4": "Ranked Voting",
+    "demo5": "Participatory Budgeting",
+    "demo6": "Weighted Voting",
     "terms_and_privacy": "<link1>Terms of use</link1> & <link2>Privacy Policy</link2>",
     "text": "<p1>The future</p1><p2>of Web3 voting starts here</p2>",
     "tutorials": "Tutorials",
@@ -371,40 +371,39 @@
   "home": {
     "benefits": {
       "card_1": {
-        "description": "Our solution is 10x cheaper than other solutions, allowing us to offer the best price in the market and let everyone vote, enhancing democracy.",
+        "description": "Our solution is 10x cheaper, making voting accessible to all and enhancing democracy.",
         "title": "10x Cheaper"
       },
       "card_2": {
-        "description": "Rapidously embrace distinctive best practice B2B syndicate backend internal or whereas process improvments.",
-        "title": "Reduce time & effort"
+        "description": "Save time and effort with Vocdoni's streamlined processes and reduced operational costs.",
+        "title": "Cost Savings"
       },
       "card_3": {
-        "description": "Distinctive best practice after B2B syndicate internal or whereas bleeding-edge process improvments.",
-        "title": "+30% Turnout"
+        "description": "Increase engagement and involvement with a user-friendly platform accessible to all, regardless of technical proficiency.",
+        "title": "Enhanced Participation"
       },
       "card_4": {
         "description": "Vote from anywhere, on any device. It's that simple.",
         "title": "Effortless Participation"
       },
       "card_5": {
-        "description": "Advanced cryptography keeps your vote safe and anonymous.",
+        "description": "Rest assured with advanced cryptographic methods ensuring the utmost security, maintaining voter anonymity and vote integrity.",
         "title": "Unmatched Security"
       },
       "card_6": {
-        "description": "Distinctive best practives after B2B syndicate internal or whereas bleeding-edge process improvments.",
+        "description": "Foster trust and transparency with blockchain-powered transparency, offering stakeholders unparalleled visibility into the voting process.",
         "title": "Auditable & Open-source"
       },
-      "subtitle_1": "Progressivly deploy market positioning catalysts for change and technically sound.",
-      "subtitle_2": "Authoritatively with backward-compatible e-service",
+      "subtitle_1": "Clients who choose Vocdoni unlock a world of benefits tailored to meet their unique voting needs. With our cutting-edge technology, organizations, communities, and governments experience a seamless transition to digital democracy. Here's how Vocdoni adds value:",
       "title": "Benefits"
     },
-    "clients_title": "Clients",
+    "clients_title": "Trusted by over +100 organizations",
     "create_process": {
-      "btn": "Create Process Now",
-      "helper_1": " Free up to 1K voters",
-      "helper_2": "No credit card required",
-      "subtitle": "Reduce the complexity, cost & time of letting your community vote & decide",
-      "title": "Secure, Fast & User-Friendly Voting Solution"
+      "btn": "Try it for free",
+      "helper_1": "Production ready, responsive voting processes",
+      "helper_2": "Free up to 100 voters",
+      "subtitle": "Participation made easy. Vocdoni APP delivers an affordable, easy-to-use, and GDPR-compliant voting experience that anyone can use from anywhere with their PC, laptop, tablet and mobile.",
+      "title": "Secure, Fast, and Verifiable Voting Solution"
     },
     "demo": {
       "btn": "View All Demos",
@@ -415,13 +414,13 @@
         "radio": "Census / Authentication",
         "title": "By Census Type"
       },
-      "description": "Dynamicly puruse convergence rather than 24/7 process improvments develop end-to-end customer service action items.",
+      "description": "Discover the power of Vocdoni through interactive demos, where you can explore different voting scenarios and firsthand experience the seamless transition to digital democracy. Find your desired voting type, test it, and vote with ease.",
       "header": "Demo",
-      "title": "Test our solution in 3 easy clicks",
+      "title": "Test our solution",
       "use_cases": {
         "card_1": "AGMs",
         "card_2": "Elections",
-        "card_3": "Participation participatory",
+        "card_3": "Participatory Budgeting",
         "card_4": "Online Voting",
         "card_5": "Software Integration",
         "card_6": "Gathered Online Survey",
@@ -441,104 +440,107 @@
     },
     "faqs": {
       "faq_1": {
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
-        "title": "Which domain should I purchase?"
+        "description": "Vocdoni stands out for its seamless user experience, advanced security features, and unparalleled transparency. Our platform utilizes cutting-edge technology such as zero-knowledge proofs and blockchain to ensure secure and anonymous voting while providing a transparent and verifiable process.",
+        "title": "What makes Vocdoni different from other voting platforms?"
       },
       "faq_2": {
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        "title": "Which domain should I purchase?"
+        "description": "Yes, Vocdoni strictly adheres to GDPR guidelines, ensuring that user data is handled with the utmost care and confidentiality. Our platform prioritizes data privacy and security at every stage of the voting process.",
+        "title": "Is Vocdoni compliant with data privacy regulations?"
       },
       "faq_3": {
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
-        "title": "Which domain should I purchase?"
+        "description": "Absolutely! Vocdoni offers customization options to align with your organization's branding, ensuring a seamless integration with your existing systems and maintaining a consistent brand experience for voters. Contact us to know more!",
+        "title": "Can Vocdoni be customized to fit our organization's branding?"
       },
       "faq_4": {
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
-        "title": "Which domain should I purchase?"
+        "description": "We offer the `Vocdoni SDK` & `Vocdoni UI Components`, designed for an easy integration with your software or platform. We created them to facilitate the developers work and being able to start seeing results from the day one. Our team of experts will guide you through the integration process to ensure a smooth transition and minimal disruption to your operations.",
+        "title": "How easy is it to integrate Vocdoni with our existing systems?"
       },
       "faq_5": {
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "title": "Which domain should I purchase?"
+        "description": "Vocdoni offers comprehensive support to assist you at every step of your voting journey. From initial setup and customization to ongoing maintenance and troubleshooting, our dedicated support team is here to help you maximize the value of our platform.",
+        "title": "What type of support does Vocdoni provide?"
       },
       "faq_6": {
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
-        "title": "Which domain should I purchase?"
+        "description": "Yes, Vocdoni is equipped to handle elections of any size, from small community votes to large-scale public elections. Our scalable infrastructure ensures reliable performance even during peak voting periods, allowing you to engage voters effectively and efficiently.",
+        "title": "Can Vocdoni handle large-scale elections?"
       },
       "faq_7": {
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
-        "title": "Which domain should I purchase?"
+        "description": "Security is our top priority at Vocdoni. Our platform utilizes advanced cryptographic techniques and blockchain technology to ensure the highest level of security, maintaining vote integrity and protecting voter anonymity. With Vocdoni, you can trust that your voting process is secure and tamper-proof.",
+        "title": "How secure is the Vocdoni platform?"
       },
-      "subtitle": "What are you looking for and find the solution on our FAQ page",
-      "title": "Frequently Ask Question"
+      "faq_8": {
+        "description": "Vocdoni employs advanced cryptographic techniques and blockchain technology to ensure the security and integrity of the voting process. Each vote is recorded as a tamper-proof blockchain transaction, providing transparency and verifiability to all stakeholders. Additionally, Vocdoni's rigorous security measures safeguard against tampering or manipulation, ensuring that every vote is accurately recorded and counted.",
+        "title": "How does Vocdoni ensure the integrity of the voting process?"
+      },
+      "subtitle": "Below you'll find answers to the questions we get asked, gaining clarity and confidence about your digital voting experience.",
+      "title": "Frequently Ask Questions"
     },
     "features": {
       "btn": "Contact us",
       "card_1": {
-        "description": "Progressivly foster enterprise-wide systems whereas equity invested web-readiness harness installed.",
-        "title": "We offer custom solutions"
+        "description": "Explain us your needs and we will craft a personalized solution for your challenges.",
+        "title": "Tailored solutions for your unique needs"
       },
       "card_2": {
-        "description": "Dramatically administrate progressive metrics without error-free globally simplify standarized.",
-        "title": "Our experts accompany you throughout the entire process"
+        "description": "Vocdoni offers both self-sevice and custom, key in hand solutions tailored for you, .",
+        "title": "We will be with you every step of the way"
       },
-      "header": "Advanced Features",
-      "title": "Contact us and we can work together"
+      "header": "Contact Us",
+      "title": "Let's collaborate to find the perfect solution for you"
     },
     "process": {
-      "description_1": "Enthusiastically engage cross-media leadership skills for alternative experiences.",
-      "description_2": "Proactively drive vertical systems than intuitive architectures.",
+      "description_1": "Vocdoni APP allows you to create your needed voting process in 4 easy steps.",
+      "description_2": "We allow you to configure with one click either if you want anonymous voting, secret results until the end, the voting type, upload the census and much more.",
       "header": "Process",
       "step_1": {
-        "description": "Progressivly foster enterprise-wide systems whereas equity invested web-readiness harness installed base bandwidth.",
+        "description": "Gain total control with our platform's self-service option, offering unmatched flexibility. Need customization or guidance? We've got you covered!",
         "header": "Step 1",
-        "title": "Start your own process or contact us"
+        "title": "Start your own voting process"
       },
       "step_2": {
-        "description": "Dramatically administrate progressive metrics without error-free globally simplify standarized alignments plagiarize distributed.",
+        "description": "You will be guided through the creation process to select your voting type, configure the information, select the needed options & register the participants (census).",
         "header": "Step 2",
-        "title": "Configure and Publish your voting process"
+        "title": "Configure & Publish"
       },
       "step_3": {
-        "description": "Interactivly whiteboard transparent testing procedures before bricks-and-clicks initiatives adminsitarte competencies.",
+        "description": "Voters authenticate and submit their votes seamlessly through our user-friendly flow, designed for universal accessibility across all devices.",
         "header": "Step 3",
-        "title": "Voters authenticate & vote"
+        "title": "Voting Period"
       },
       "step_4": {
-        "description": "Dramatically plagirarize distributed progressive metrics without error-free globally simplify standardized alignments.",
+        "description": "As easy as that. Once finished, the results will be automatically computed, published and available to anyone.",
         "header": "Step 4",
-        "title": "Get the results - As easy as that"
+        "title": "Get the results"
       },
       "title": "A simple 4 steps process"
     },
     "solutions": {
       "card_1": {
-        "description": "Progressivly foster enterprise-wide systems whereas equity invested web-readiness harness installed.",
-        "title": "Customize with your branding"
+        "description": "Streamline decision-making with secure, transparent voting. Engage members effectively, save on administrative costs, and foster a culture of participation and transparency.",
+        "title": "For Organizations"
       },
       "card_2": {
-        "description": " We support custom data, integration with CRMs, SMS auth, Social Auth, Wallet auth and Sybil-resistant solutions.",
-        "title": "Multiple authentification methods"
+        "description": " Enhance community involvement with an easy-to-use platform that encourages participation and gives every member a voice.",
+        "title": "For Communities"
       },
       "card_3": {
-        "description": "GDPR compilant, because your data matters. Each vote is blockchain transaction, offering unparalleled transparency and verifiability to every stakeholder.",
-        "title": "Secure, Private & Auditable"
+        "description": "Increase voter turnout, reduce electoral costs, and enhance citizen trust with a verifiable, secure voting process.",
+        "title": "For Governments and Public Institutions"
       },
       "header": "Embrace Change with Vocdoni",
       "img_card_1": "Organizations",
       "img_card_2": "Communities",
-      "img_card_3": "Goverments and public institutions",
-      "subtitle_1": "Quickly incubate functional channels with multidisciplinary architectures.",
-      "subtitle_2": "Authoritatively fabricat formulate exceptional innovation.",
+      "img_card_3": "Goverments and Public Institutions",
+      "subtitle_1": "We offered solutions to wide range of uses-cases, demostrating Vocdoni App versatility.",
       "title": "Our solution fits your needs"
     },
     "support": {
       "btn_contact": "Contact with us",
-      "btn_watch": "Watch Demo",
+      "btn_watch": "Schedule a call",
       "header": "Let's Try! Get Free Support",
       "helper_1": "Free call with our experts",
       "helper_2": "Reduce costs & working hours",
       "helper_3": "Competitive costs",
-      "subtitle": "We can help you to create your dream website for better business revenue",
+      "subtitle": "We can help you to create your perfect voting experience",
       "title": "Start giving voice to your comunity"
     }
   },

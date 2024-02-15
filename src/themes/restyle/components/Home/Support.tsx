@@ -1,18 +1,18 @@
 import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import { FaRegCheckCircle, FaRegPlayCircle } from 'react-icons/fa'
+import { FaPhoneVolume, FaRegCheckCircle } from 'react-icons/fa'
 
 const Support = () => {
   const { t } = useTranslation()
 
   return (
-    <Box bgColor='#000111'>
+    <Box bgColor='#175b64'>
       <Box className='site-wrapper' py={{ base: '60px', lg: '100px' }} position='relative' overflow='hidden'>
         <Box
           w='356px'
           h='356px'
           borderRadius='full'
-          bgColor='#FFB116'
+          bgColor='#50848b'
           position='absolute'
           right='25px'
           top='-250px'
@@ -22,7 +22,7 @@ const Support = () => {
           w='300px'
           h='300px'
           borderRadius='full'
-          bgColor='#071C4D'
+          bgColor='#e9f0f1'
           position='absolute'
           left='20px'
           bottom='-250px'
@@ -53,9 +53,12 @@ const Support = () => {
           gap='10px'
           mb='40px'
         >
-          <Button> {t('home.support.btn_contact')}</Button>
+          <Button bgColor='#fff' color='#2c545a'>
+            {' '}
+            {t('home.support.btn_contact')}
+          </Button>
           <Button variant='transparent' color='white'>
-            <FaRegPlayCircle size={35} />
+            <FaPhoneVolume size={30} />
             <Text as='span' ml='10px'>
               {t('home.support.btn_watch')}
             </Text>
@@ -63,19 +66,19 @@ const Support = () => {
         </Flex>
         <Flex gap='20px' flexDirection={{ base: 'column', md2: 'row' }} justifyContent='center'>
           <Flex justifyContent='center' alignItems='center' gap='2'>
-            <FaRegCheckCircle color='#175CFF' />
+            <FaRegCheckCircle color='#d3e0e2' />
             <Text as='span' color='white'>
               {t('home.support.helper_1')}
             </Text>
           </Flex>
           <Flex justifyContent='center' alignItems='center' gap='2'>
-            <FaRegCheckCircle color='#175CFF' />
+            <FaRegCheckCircle color='#d3e0e2' />
             <Text as='span' color='white'>
               {t('home.support.helper_2')}
             </Text>
           </Flex>
           <Flex justifyContent='center' alignItems='center' gap='2'>
-            <FaRegCheckCircle color='#175CFF' />
+            <FaRegCheckCircle color='#d3e0e2' />
             <Text as='span' color='white'>
               {t('home.support.helper_3')}
             </Text>

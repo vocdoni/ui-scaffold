@@ -20,7 +20,7 @@ const Features = () => {
       <Flex
         justifyContent={{ base: 'center', lg: 'end' }}
         flex='1 1 50%'
-        bgColor={{ lg: '#0B163F' }}
+        bgColor={{ lg: '#175b64' }}
         position='relative'
       >
         <Box bgColor='white' position='absolute' h='100%' w='100px' />
@@ -50,7 +50,7 @@ const Features = () => {
           pr={{ lg: '37px', xl3: 0 }}
         >
           <Box>
-            <Text color='#175CFF' fontWeight='bold' fontSize='20px' lineHeight='24px' mb='6px'>
+            <Text color='#175b64' fontWeight='bold' fontSize='20px' lineHeight='24px' mb='6px'>
               {t('home.features.header')}
             </Text>
             <Text fontWeight='bold' fontSize='40px' lineHeight='48px' mb='10px'>
@@ -59,7 +59,7 @@ const Features = () => {
           </Box>
           <Card variant='icon-card'>
             <CardBody>
-              <Box bgColor='#175CFF'>
+              <Box bgColor='#175b64'>
                 <MdDesignServices />
               </Box>
               <Box>
@@ -70,7 +70,7 @@ const Features = () => {
           </Card>
           <Card variant='icon-card'>
             <CardBody>
-              <Box bgColor='#F25767'>
+              <Box bgColor='#175b64'>
                 <FaFingerprint />
               </Box>
               <Box>
@@ -80,7 +80,7 @@ const Features = () => {
             </CardBody>
           </Card>
 
-          <Button bgColor='#0B163F' w={{ base: 'full', sm: 'fit-content', lg: 'full' }} mx='auto'>
+          <Button bgColor='#24656e' w={{ base: 'full', sm: 'fit-content', lg: 'full' }} mx='auto'>
             {t('home.features.btn')}
           </Button>
         </Flex>

@@ -1,6 +1,11 @@
 import { Box, Card, CardBody, Flex, Image, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import { MdDesignServices } from 'react-icons/md'
+import {
+  PiNumberSquareFourFill,
+  PiNumberSquareOneFill,
+  PiNumberSquareThreeFill,
+  PiNumberSquareTwoFill,
+} from 'react-icons/pi'
 import process from '/assets/vocdoni_usage.jpg'
 
 const Process = () => {
@@ -8,7 +13,7 @@ const Process = () => {
 
   return (
     <Box as='section' className='site-wrapper' py={{ base: '60px', lg: '100px' }}>
-      <Text color='#175CFF' fontWeight='bold' mb='6px' textAlign='center' fontSize='20px' lineHeight='24px'>
+      <Text color='#2c545a' fontWeight='bold' mb='6px' textAlign='center' fontSize='20px' lineHeight='24px'>
         {t('home.process.header')}
       </Text>
       <Text fontWeight='bold' fontSize='40px' lineHeight='48px' mb='10px' textAlign='center'>
@@ -27,11 +32,10 @@ const Process = () => {
         <Flex flex='1 1' flexBasis={{ lg: '50%' }} flexDirection='column' justifyContent='space-between' gap='40px'>
           <Card variant='step'>
             <CardBody>
-              <Box>
-                <MdDesignServices />
+              <Box bgColor='#175b64'>
+                <PiNumberSquareOneFill color='#fff' />
               </Box>
               <Box>
-                <Text>{t('home.process.step_1.header')}</Text>
                 <Text>{t('home.process.step_1.title')}</Text>
                 <Text>{t('home.process.step_1.description')}</Text>
               </Box>
@@ -39,11 +43,10 @@ const Process = () => {
           </Card>
           <Card variant='step'>
             <CardBody>
-              <Box>
-                <MdDesignServices />
+              <Box bgColor='#175b64'>
+                <PiNumberSquareTwoFill color='#fff' />
               </Box>
               <Box>
-                <Text>{t('home.process.step_2.header')}</Text>
                 <Text>{t('home.process.step_2.title')}</Text>
                 <Text>{t('home.process.step_2.description')}</Text>
               </Box>
@@ -51,11 +54,10 @@ const Process = () => {
           </Card>
           <Card variant='step'>
             <CardBody>
-              <Box>
-                <MdDesignServices />
+              <Box bgColor='#175b64'>
+                <PiNumberSquareThreeFill color='#fff' />
               </Box>
               <Box>
-                <Text>{t('home.process.step_3.header')}</Text>
                 <Text>{t('home.process.step_3.title')}</Text>
                 <Text>{t('home.process.step_3.description')}</Text>
               </Box>
@@ -63,11 +65,10 @@ const Process = () => {
           </Card>
           <Card variant='step'>
             <CardBody>
-              <Box>
-                <MdDesignServices />
+              <Box bgColor='#175b64'>
+                <PiNumberSquareFourFill color='#fff' />
               </Box>
               <Box>
-                <Text>{t('home.process.step_4.header')}</Text>
                 <Text>{t('home.process.step_4.title')}</Text>
                 <Text>{t('home.process.step_4.description')}</Text>
               </Box>
