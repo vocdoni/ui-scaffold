@@ -1,7 +1,7 @@
 import { Box, Button, Flex, Image, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { FaRegCheckCircle } from 'react-icons/fa'
-import devices from '/assets/devices.png'
+import devices from '/assets/devices_vocdoni.png'
 
 const CreateProcess = () => {
   const { t } = useTranslation()
@@ -11,7 +11,7 @@ const CreateProcess = () => {
       as='section'
       className='site-wrapper'
       flexDirection={{ base: 'column', lg: 'row' }}
-      py={{ base: '60px', lg: '120px' }}
+      py={{ base: '60px', lg: '100px' }}
       gap={{ base: '40px', lg: '60px' }}
     >
       <Box flex='1 1 40%'>
@@ -28,7 +28,7 @@ const CreateProcess = () => {
           {t('home.create_process.subtitle')}
         </Text>
         <Box maxW={{ lg: '90%' }}>
-          <Button mb='20px' w={{ base: 'full', sm: 'fit-content', lg: 'full' }} mx={{ base: 'auto', lg: 'start' }}>
+          <Button bgColor='#24656e' mb='20px' w={{ base: 'full', sm: 'fit-content', lg: 'full' }} mx={{ base: 'auto', lg: 'start' }}>
             {t('home.create_process.btn')}
           </Button>
           <Flex
@@ -37,12 +37,12 @@ const CreateProcess = () => {
             flexDirection={{ base: 'column', sm: 'row', lg: 'column' }}
             gap={{ sm: 5, lg: 0 }}
           >
-            <Text display='flex' alignItems='center' gap={1}>
-              <FaRegCheckCircle color='#175CFF' />
+            <Text display='flex' alignItems='center' gap={1} ml="3">
+              <FaRegCheckCircle color='#2c545a' />
               {t('home.create_process.helper_1')}
             </Text>
-            <Text display='flex' alignItems='center' gap={1}>
-              <FaRegCheckCircle color='#175CFF' />
+            <Text display='flex' alignItems='center' gap={1} ml="3" mt="1">
+              <FaRegCheckCircle color='#2c545a' />
               {t('home.create_process.helper_2')}
             </Text>
           </Flex>

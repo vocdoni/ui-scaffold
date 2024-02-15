@@ -1,4 +1,4 @@
-import { Box, Flex, Image, Text } from '@chakra-ui/react'
+import { Box, Card, CardBody, Flex, Image, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { FaCircleCheck, FaArrowsToCircle } from 'react-icons/fa6'
 import { IoSettingsSharp } from 'react-icons/io5'
@@ -12,13 +12,13 @@ const Solutions = () => {
       as='section'
       className='site-wrapper'
       flexDirection={{ base: 'column', lg: 'row' }}
-      py={{ base: '60px', lg: '120px' }}
+      py={{ base: '60px', lg: '100px' }}
       gap={{ base: '40px', lg: '60px' }}
     >
       <Flex flex='1 1 50%' justifyContent='center' alignItems='center'>
         <Flex flexDirection='column' gap='24px'>
           <Box mb='40px'>
-            <Text color='#175CFF' fontWeight='bold' fontSize='20px' lineHeight='24px' mb='6px'>
+            <Text color='#175b64' fontWeight='bold' fontSize='20px' lineHeight='24px' mb='6px'>
               {t('home.solutions.header')}
             </Text>
             <Text fontWeight='bold' fontSize='40px' lineHeight='48px' mb='10px'>
@@ -28,44 +28,44 @@ const Solutions = () => {
               {t('home.solutions.subtitle_1')}
             </Text>
           </Box>
-          <Flex gap='24px'>
-            <Flex justifyContent='center' alignItems='center' bgColor='#175CFF' borderRadius='lg' minW='45px' h='45px'>
-              <MdDesignServices size={25} color='white' />
-            </Flex>
-            <Box>
-              <Text fontWeight='bold' mb='6px' fontSize='20px' lineHeight='24px'>
-                {t('home.solutions.card_1.title')}
-              </Text>
-              <Text color='gray'>{t('home.solutions.card_1.description')}</Text>
-            </Box>
-          </Flex>
-          <Flex gap='24px'>
-            <Flex justifyContent='center' alignItems='center' bgColor='#F25767' borderRadius='lg' minW='45px' h='45px'>
-              <FaArrowsToCircle size={25} color='white' />
-            </Flex>
-            <Box>
-              <Text fontWeight='bold' mb='6px' fontSize='20px' lineHeight='24px'>
-                {t('home.solutions.card_2.title')}
-              </Text>
-              <Text color='gray'>{t('home.solutions.card_2.description')}</Text>
-            </Box>
-          </Flex>
-          <Flex gap='24px'>
-            <Flex justifyContent='center' alignItems='center' bgColor='#0B163F' borderRadius='lg' minW='45px' h='45px'>
-              <IoSettingsSharp size={25} color='white' />
-            </Flex>
-            <Box>
-              <Text fontWeight='bold' mb='6px' fontSize='20px' lineHeight='24px'>
-                {t('home.solutions.card_3.title')}
-              </Text>
-              <Text color='gray'>{t('home.solutions.card_3.description')}</Text>
-            </Box>
-          </Flex>
+          <Card variant='icon-card'>
+            <CardBody>
+              <Box bgColor='#175b64'>
+                <MdDesignServices />
+              </Box>
+              <Box>
+                <Text>{t('home.solutions.card_1.title')}</Text>
+                <Text>{t('home.solutions.card_1.description')}</Text>
+              </Box>
+            </CardBody>
+          </Card>
+          <Card variant='icon-card'>
+            <CardBody>
+              <Box bgColor='#175b64'>
+                <FaArrowsToCircle />
+              </Box>
+              <Box>
+                <Text>{t('home.solutions.card_2.title')}</Text>
+                <Text>{t('home.solutions.card_2.description')}</Text>
+              </Box>
+            </CardBody>
+          </Card>
+          <Card variant='icon-card'>
+            <CardBody>
+              <Box bgColor='#175b64'>
+                <IoSettingsSharp />
+              </Box>
+              <Box>
+                <Text>{t('home.solutions.card_3.title')}</Text>
+                <Text>{t('home.solutions.card_3.description')}</Text>
+              </Box>
+            </CardBody>
+          </Card>
         </Flex>
       </Flex>
       <Box flex='1 1 50%' position='relative'>
         <Box maxW={{ base: '250px', lg: '115%', xl: '100%' }} mx='auto' borderRadius='xl' overflow='hidden'>
-          <Image src={solutions} />
+          <Image src={solutions} mx={{ lg: 'auto' }} />
         </Box>
         <Flex
           flexDirection='column'
@@ -91,7 +91,7 @@ const Solutions = () => {
             fontWeight='bold'
           >
             <Box minW='25px'>
-              <FaCircleCheck color='#175CFF' size={25} />
+              <FaCircleCheck color='#000' size={22} />
             </Box>
             <Text as='span'> {t('home.solutions.img_card_1')}</Text>
           </Flex>
@@ -105,7 +105,7 @@ const Solutions = () => {
             fontWeight='bold'
           >
             <Box minW='25px'>
-              <FaCircleCheck color='#175CFF' size={25} />
+              <FaCircleCheck color='#000' size={22} />
             </Box>
 
             <Text as='span'> {t('home.solutions.img_card_2')}</Text>
@@ -120,7 +120,7 @@ const Solutions = () => {
             fontWeight='bold'
           >
             <Box minW='25px'>
-              <FaCircleCheck color='#175CFF' size={25} />
+              <FaCircleCheck color='#000' size={22} />
             </Box>
             <Text as='span' whiteSpace={{ sm: 'nowrap' }}>
               {t('home.solutions.img_card_3')}

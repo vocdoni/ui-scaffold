@@ -162,28 +162,28 @@
   "footer": {
     "about": "About",
     "blog": "Blog",
-    "blog_details": "Blog Details",
-    "career_single": "Career Single",
-    "coming_soon": "Cooming Soon",
     "company": "Company",
-    "contact": "Contact",
     "developer_portal": "Developers Portal",
     "developers": "Developers",
     "discord": "Discord",
     "follow_us": "Follow us",
     "homepage": "Home",
-    "newsletter": "Our latest news, articles, and resources, we will sent to your inbox weekly",
-    "newsletter_btn": "Subscribe",
-    "overall": "10/10 Overall rating",
-    "pages": "Pages",
-    "pricing": "Pricing",
+    "footer_subtitle": "The Global Voting Protocol",
+    "uses_cases": "Use Cases",
+    "uses_cases1": "AGMs",
+    "uses_cases2": "Elections",
+    "uses_cases3": "Participatory Budgeting",
+    "uses_cases4": "Online Voting",
+    "uses_cases5": "Gathered Online Survey",
     "repos": "Open-source Code",
-    "request_for_demo": "Request for Demo",
     "resources": "Resources",
-    "service_single": "Services Single",
-    "support": "Support",
-    "support_single": "Support Single",
-    "template": "Template",
+    "demo": "Voting Types",
+    "demo1": "Single Choice",
+    "demo2": "Multiple Choice",
+    "demo3": "Approval Voting",
+    "demo4": "Ranked Voting",
+    "demo5": "Participatory Budgeting",
+    "demo6": "Weighted Voting",
     "terms_and_privacy": "<link1>Terms of use</link1> & <link2>Privacy Policy</link2>",
     "text": "<p1>The future</p1><p2>of Web3 voting starts here</p2>",
     "tutorials": "Tutorials",
@@ -394,17 +394,16 @@
         "description": "Foster trust and transparency with blockchain-powered transparency, offering stakeholders unparalleled visibility into the voting process.",
         "title": "Auditable & Open-source"
       },
-      "subtitle_1": "Clients who choose Vocdoni unlock a world of benefits tailored to meet their unique voting needs. With our cutting-edge technology, organizations, communities, and governments experience a seamless transition to digital democracy.",
-      "subtitle_2": "Here's how Vocdoni adds value:",
+      "subtitle_1": "Clients who choose Vocdoni unlock a world of benefits tailored to meet their unique voting needs. With our cutting-edge technology, organizations, communities, and governments experience a seamless transition to digital democracy. Here's how Vocdoni adds value:",
       "title": "Benefits"
     },
-    "clients_title": "Trust in Vocdoni",
+    "clients_title": "Trusted by over +100 organizations",
     "create_process": {
-      "btn": "Try it now for free!",
-      "helper_1": " Free up to 1K voters",
-      "helper_2": "No credit card required",
-      "subtitle": "Unlocking the full potential of digital democracy, Vocdoni delivers an affordable, secure, and GDPR-compliant voting experience that’s verifiable and effortless to use – a leap towards sustainable governance for all.",
-      "title": "Secure, Cheap & User-Friendly Voting Solution"
+      "btn": "Try it for free",
+      "helper_1": "Production ready, responsive voting processes",
+      "helper_2": "Free up to 100 voters",
+      "subtitle": "Participation made easy. Vocdoni APP delivers an affordable, easy-to-use, and GDPR-compliant voting experience that anyone can use from anywhere with their PC, laptop, tablet and mobile.",
+      "title": "Secure, Fast, and Verifiable Voting Solution"
     },
     "demo": {
       "btn": "View All Demos",
@@ -453,7 +452,7 @@
         "title": "Can Vocdoni be customized to fit our organization's branding?"
       },
       "faq_4": {
-        "description": "We offer the `Vocdoni SDK` & `Vocdoni UI Components`, designed for easy integration with your software or platform, offering various identification systems, CRMs, and authentication methods. Our team of experts will guide you through the integration process to ensure a smooth transition and minimal disruption to your operations.",
+        "description": "We offer the `Vocdoni SDK` & `Vocdoni UI Components`, designed for an easy integration with your software or platform. We created them to facilitate the developers work and being able to start seeing results from the day one. Our team of experts will guide you through the integration process to ensure a smooth transition and minimal disruption to your operations.",
         "title": "How easy is it to integrate Vocdoni with our existing systems?"
       },
       "faq_5": {
@@ -467,6 +466,10 @@
       "faq_7": {
         "description": "Security is our top priority at Vocdoni. Our platform utilizes advanced cryptographic techniques and blockchain technology to ensure the highest level of security, maintaining vote integrity and protecting voter anonymity. With Vocdoni, you can trust that your voting process is secure and tamper-proof.",
         "title": "How secure is the Vocdoni platform?"
+      },
+      "faq_8": {
+        "description": "Vocdoni employs advanced cryptographic techniques and blockchain technology to ensure the security and integrity of the voting process. Each vote is recorded as a tamper-proof blockchain transaction, providing transparency and verifiability to all stakeholders. Additionally, Vocdoni's rigorous security measures safeguard against tampering or manipulation, ensuring that every vote is accurately recorded and counted.",
+        "title": "How does Vocdoni ensure the integrity of the voting process?"
       },
       "subtitle": "Below you'll find answers to the questions we get asked, gaining clarity and confidence about your digital voting experience.",
       "title": "Frequently Ask Questions"
@@ -485,28 +488,28 @@
       "title": "Let's collaborate to find the perfect solution for you"
     },
     "process": {
-      "description_1": "Enthusiastically engage cross-media leadership skills for alternative experiences.",
-      "description_2": "Proactively drive vertical systems than intuitive architectures.",
+      "description_1": "Vocdoni APP allows you to create your needed voting process in 4 easy steps.",
+      "description_2": "We allow you to configure with one click either if you want anonymous voting, secret results until the end, the voting type, upload the census and much more.",
       "header": "Process",
       "step_1": {
-        "description": "Progressivly foster enterprise-wide systems whereas equity invested web-readiness harness installed base bandwidth.",
+        "description": "Gain total control with our platform's self-service option, offering unmatched flexibility. Need customization or guidance? We've got you covered!",
         "header": "Step 1",
-        "title": "Start your own process or contact us"
+        "title": "Start your own voting process"
       },
       "step_2": {
-        "description": "Dramatically administrate progressive metrics without error-free globally simplify standarized alignments plagiarize distributed.",
+        "description": "You will be guided through the creation process to select your voting type, configure the information, select the needed options & register the participants (census).",
         "header": "Step 2",
-        "title": "Configure and Publish your voting process"
+        "title": "Configure & Publish"
       },
       "step_3": {
-        "description": "Interactivly whiteboard transparent testing procedures before bricks-and-clicks initiatives adminsitarte competencies.",
+        "description": "Voters authenticate and submit their votes seamlessly through our user-friendly flow, designed for universal accessibility across all devices.",
         "header": "Step 3",
-        "title": "Voters authenticate & vote"
+        "title": "Voting Period"
       },
       "step_4": {
-        "description": "Dramatically plagirarize distributed progressive metrics without error-free globally simplify standardized alignments.",
+        "description": "As easy as that. Once finished, the results will be automatically computed, published and available to anyone.",
         "header": "Step 4",
-        "title": "Get the results - As easy as that"
+        "title": "Get the results"
       },
       "title": "A simple 4 steps process"
     },

@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Image, Text } from '@chakra-ui/react'
+import { Box, Button, Card, CardBody, Flex, Image, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { FaFingerprint } from 'react-icons/fa'
 import { MdDesignServices } from 'react-icons/md'
@@ -20,7 +20,7 @@ const Features = () => {
       <Flex
         justifyContent={{ base: 'center', lg: 'end' }}
         flex='1 1 50%'
-        bgColor={{ lg: '#0B163F' }}
+        bgColor={{ lg: '#175b64' }}
         position='relative'
       >
         <Box bgColor='white' position='absolute' h='100%' w='100px' />
@@ -40,7 +40,7 @@ const Features = () => {
         justifyContent={{ base: 'center', lg: 'start' }}
         display={{ lg: 'flex' }}
         alignItems='center'
-        py={{ lg: '60px', xl: '120px' }}
+        py={{ base: '60px', lg: '100px' }}
       >
         <Flex
           flexDirection='column'
@@ -50,36 +50,37 @@ const Features = () => {
           pr={{ lg: '37px', xl3: 0 }}
         >
           <Box>
-            <Text color='#175CFF' fontWeight='bold' fontSize='20px' lineHeight='24px' mb='6px'>
+            <Text color='#175b64' fontWeight='bold' fontSize='20px' lineHeight='24px' mb='6px'>
               {t('home.features.header')}
             </Text>
             <Text fontWeight='bold' fontSize='40px' lineHeight='48px' mb='10px'>
               {t('home.features.title')}
             </Text>
           </Box>
-          <Flex gap='24px'>
-            <Flex justifyContent='center' alignItems='center' bgColor='#175CFF' borderRadius='lg' minW='45px' h='45px'>
-              <MdDesignServices size={25} color='white' />
-            </Flex>
-            <Box>
-              <Text fontWeight='bold' mb='6px' fontSize='20px' lineHeight='24px'>
-                {t('home.features.card_1.title')}
-              </Text>
-              <Text color='gray'>{t('home.features.card_1.description')}</Text>
-            </Box>
-          </Flex>
-          <Flex gap='24px'>
-            <Flex justifyContent='center' alignItems='center' bgColor='#F25767' borderRadius='lg' minW='45px' h='45px'>
-              <FaFingerprint size={25} color='white' />
-            </Flex>
-            <Box>
-              <Text fontWeight='bold' mb='6px' fontSize='20px' lineHeight='24px'>
-                {t('home.features.card_2.title')}
-              </Text>
-              <Text color='gray'>{t('home.features.card_2.description')}</Text>
-            </Box>
-          </Flex>
-          <Button bgColor='#0B163F' w={{ base: 'full', sm: 'fit-content', lg: 'full' }} mx='auto'>
+          <Card variant='icon-card'>
+            <CardBody>
+              <Box bgColor='#175b64'>
+                <MdDesignServices />
+              </Box>
+              <Box>
+                <Text>{t('home.features.card_1.title')}</Text>
+                <Text>{t('home.features.card_1.description')}</Text>
+              </Box>
+            </CardBody>
+          </Card>
+          <Card variant='icon-card'>
+            <CardBody>
+              <Box bgColor='#175b64'>
+                <FaFingerprint />
+              </Box>
+              <Box>
+                <Text> {t('home.features.card_2.title')}</Text>
+                <Text>{t('home.features.card_2.description')}</Text>
+              </Box>
+            </CardBody>
+          </Card>
+
+          <Button bgColor='#24656e' w={{ base: 'full', sm: 'fit-content', lg: 'full' }} mx='auto'>
             {t('home.features.btn')}
           </Button>
         </Flex>

@@ -6,7 +6,7 @@ const Benefits = () => {
 
   return (
     <Box as='section' id='benefits' bgColor='#eff1f2'>
-      <Box className='site-wrapper' py={{ base: '60px', lg: '120px' }}>
+      <Box className='site-wrapper' py={{ base: '60px', lg: '100px' }}>
         <Text
           fontSize={{ base: '25px', lg: '30px', xl: '40px' }}
           lineHeight={{ base: '30px', lg: '36px', xl: '48px' }}
@@ -16,11 +16,8 @@ const Benefits = () => {
         >
           {t('home.benefits.title')}
         </Text>
-        <Text textAlign='center' color='gray'>
+        <Text textAlign='center' color='gray' mb='60px' maxW={{ base: '100%', sm: '70%', sm2: '60%', lg: '840px' }} mx="auto" textAlign="justify">
           {t('home.benefits.subtitle_1')}
-        </Text>
-        <Text textAlign='center' mb='60px' color='gray'>
-          {t('home.benefits.subtitle_2')}
         </Text>
         <Flex flexWrap='wrap' justifyContent='center' maxW='1100px' mx='auto' gap={5}>
           <Card variant='benefits' bgColor='black' color='white'>
