@@ -15,11 +15,12 @@ import {
   ModalOverlay,
   Text,
 } from '@chakra-ui/react'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { AiFillGooglePlusCircle } from 'react-icons/ai'
 import { FaRegCalendarAlt } from 'react-icons/fa'
+import emailjs from '@emailjs/browser'
 
 const ModalPro = ({ isOpen, onClose, reason }: { isOpen: boolean; onClose: () => void; reason: string }) => {
   const { t } = useTranslation()
@@ -46,9 +47,27 @@ const ModalPro = ({ isOpen, onClose, reason }: { isOpen: boolean; onClose: () =>
     setValue('reason', reason)
   }, [reason])
 
-  const onSubmit = (form: { name: string; email: string; reason: string }) => {
-    console.log(form)
-  }
+  const form = useRef();
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      //TODO change to real settings
+      .sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form.current, {
+        publicKey: 'YOUR_PUBLIC_KEY',
+      })
+      .then(
+        () => {
+          console.log('SUCCESS!');
+          //TODO close form or show "success" or similar
+        },
+        (error) => {
+          console.log('FAILED...', error.text);
+          //TODO show error
+        },
+      );
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -75,13 +94,16 @@ const ModalPro = ({ isOpen, onClose, reason }: { isOpen: boolean; onClose: () =>
               justifyContent='space-between'
               gap={10}
               pr={{ lg: 5 }}
-              onSubmit={handleSubmit(onSubmit)}
+              ref={form}
+              onSubmit={sendEmail}
             >
               <Text color='gray' mb={0}>
                 {t('process_create.modal_pro.form_description')}
               </Text>
               <Flex flexDirection='column' gap={3}>
                 <FormControl isInvalid={!!errors.name}>
+                  <Input type='hidden' name="reason" value={reason} />
+                  <Input type='hidden' name="product" value={window.location.href} />
                   <FormLabel>{t('process_create.modal_pro.form_name_label')}</FormLabel>
                   <Input
                     {...register('name', { required })}
