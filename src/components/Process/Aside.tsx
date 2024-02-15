@@ -1,4 +1,4 @@
-import { Box, Button, Card, Flex, Link, Spinner, Text } from '@chakra-ui/react'
+import { Box, Button, Card, Flex, Link, Text } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { VoteButton as CVoteButton, environment, SpreadsheetAccess } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
@@ -141,13 +141,12 @@ const ProcessAside = () => {
 export const VoteButton = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
   const { t } = useTranslation()
 
-  const { election, connected, isAbleToVote, isInCensus, voted } = useElection()
+  const { election, connected, isAbleToVote, isInCensus } = useElection()
   const census: CensusMeta = dotobject(election?.meta || {}, 'census')
   const { isConnected } = useAccount()
 
   if (
     election?.status === ElectionStatus.CANCELED ||
-    !isAbleToVote ||
     (isConnected && !isInCensus && !['spreadsheet', 'csp'].includes(census?.type))
   )
     return null
@@ -194,15 +193,7 @@ export const VoteButton = ({ setQuestionsTab }: { setQuestionsTab: () => void })
         </ConnectButton.Custom>
       )}
       {census?.type === 'spreadsheet' && !connected && <SpreadsheetAccess />}
-      {isAbleToVote ? (
-        <CVoteButton w='full' fontSize='lg' onClick={setQuestionsTab} />
-      ) : (
-        connected && (
-          <Flex justifyContent='center' alignItems='center' height='40px' borderRadius='30px' bgColor='white' w='full'>
-            <Spinner color='primary.700' />
-          </Flex>
-        )
-      )}
+      {isAbleToVote && <CVoteButton w='full' fontSize='lg' onClick={setQuestionsTab} />}
     </Flex>
   )
 }
