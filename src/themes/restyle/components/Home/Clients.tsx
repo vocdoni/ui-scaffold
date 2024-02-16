@@ -100,7 +100,6 @@ const Clients = () => {
             <Text as='span'>Decidim</Text>
           </CardBody>
         </Card>
-
         <Card variant='client'>
           <CardHeader>
             <Image src={bloock} h={{ base: '35px', lg: '15px' }} />

@@ -13,7 +13,7 @@ const Process = () => {
 
   return (
     <Box as='section' className='site-wrapper' py={{ base: '60px', lg: '100px' }}>
-      <Text color='#2c545a' fontWeight='bold' mb='6px' textAlign='center' fontSize='20px' lineHeight='24px'>
+      <Text color='home.section.title' fontWeight='bold' mb='6px' textAlign='center' fontSize='20px' lineHeight='24px'>
         {t('home.process.header')}
       </Text>
       <Text fontWeight='bold' fontSize='40px' lineHeight='48px' mb='10px' textAlign='center'>
@@ -33,7 +33,7 @@ const Process = () => {
           <Card variant='step'>
             <CardBody>
               <Box>
-                <PiNumberSquareOneFill color='#fff' />
+                <PiNumberSquareOneFill />
               </Box>
               <Box>
                 <Text>{t('home.process.step_1.title')}</Text>
@@ -44,7 +44,7 @@ const Process = () => {
           <Card variant='step'>
             <CardBody>
               <Box>
-                <PiNumberSquareTwoFill color='#fff' />
+                <PiNumberSquareTwoFill />
               </Box>
               <Box>
                 <Text>{t('home.process.step_2.title')}</Text>
@@ -55,7 +55,7 @@ const Process = () => {
           <Card variant='step'>
             <CardBody>
               <Box>
-                <PiNumberSquareThreeFill color='#fff' />
+                <PiNumberSquareThreeFill />
               </Box>
               <Box>
                 <Text>{t('home.process.step_3.title')}</Text>

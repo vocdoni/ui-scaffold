@@ -1,6 +1,6 @@
-import { Box, Button, Flex, Icon, Image, Input, Link, Text } from '@chakra-ui/react'
+import { Box, Flex, Icon, Image, Link, Text } from '@chakra-ui/react'
 import { Trans, useTranslation } from 'react-i18next'
-import { FaDiscord, FaGithub, FaStar } from 'react-icons/fa'
+import { FaDiscord, FaGithub } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
 import vcdLogo from '/assets/logo-classic.svg'
 
@@ -28,70 +28,48 @@ const Footer = () => {
           gap={{ base: '30px', sm2: 0 }}
         >
           <Flex flexDirection='column' gap='10px'>
-            <Link fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px'>
+            <Text fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px'>
               {t('footer.company')}
-            </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray' href='https://www.vocdoni.io'>
+            </Text>
+            <Link variant='footer' href='https://www.vocdoni.io'>
               Vocdoni
             </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray' href='https://www.vocdoni.io/about'>
+            <Link variant='footer' href='https://www.vocdoni.io/about'>
               About Us
             </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray' href='https://www.vocdoni.io/contact'>
+            <Link variant='footer' href='https://www.vocdoni.io/contact'>
               Contact
             </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray' href='https://www.vocdoni.io/api'>
+            <Link variant='footer' href='https://www.vocdoni.io/api'>
               SDK
             </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray' href='https://developer.vocdoni.io'>
+            <Link variant='footer' href='https://developer.vocdoni.io'>
               Developer Portal
             </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray' href='https://blog.vocdoni.io'>
+            <Link variant='footer' href='https://blog.vocdoni.io'>
               Blog
             </Link>
           </Flex>
           <Flex flexDirection='column' gap='10px'>
-            <Link fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px'>
+            <Text fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px'>
               {t('footer.uses_cases')}
-            </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray'>
-              {t('footer.uses_cases1')}
-            </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray'>
-              {t('footer.uses_cases2')}
-            </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray'>
-              {t('footer.uses_cases3')}
-            </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray'>
-              {t('footer.uses_cases4')}
-            </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray'>
-              {t('footer.uses_cases5')}
-            </Link>
+            </Text>
+            <Link variant='footer'>{t('footer.uses_cases1')}</Link>
+            <Link variant='footer'>{t('footer.uses_cases2')}</Link>
+            <Link variant='footer'>{t('footer.uses_cases3')}</Link>
+            <Link variant='footer'>{t('footer.uses_cases4')}</Link>
+            <Link variant='footer'>{t('footer.uses_cases5')}</Link>
           </Flex>
           <Flex flexDirection='column' gap='10px'>
-            <Link fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px'>
+            <Text fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px'>
               {t('footer.demo')}
-            </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray'>
-              {t('footer.demo1')}
-            </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray'>
-              {t('footer.demo2')}
-            </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray'>
-              {t('footer.demo3')}
-            </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray'>
-              {t('footer.demo4')}
-            </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray'>
-              {t('footer.demo5')}
-            </Link>
-            <Link fontSize='15px' lineHeight='26px' color='gray'>
-              {t('footer.demo6')}
-            </Link>
+            </Text>
+            <Link variant='footer'>{t('footer.demo1')}</Link>
+            <Link variant='footer'>{t('footer.demo2')}</Link>
+            <Link variant='footer'>{t('footer.demo3')}</Link>
+            <Link variant='footer'>{t('footer.demo4')}</Link>
+            <Link variant='footer'>{t('footer.demo5')}</Link>
+            <Link variant='footer'>{t('footer.demo6')}</Link>
           </Flex>
         </Flex>
       </Flex>

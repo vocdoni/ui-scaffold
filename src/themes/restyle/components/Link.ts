@@ -9,6 +9,12 @@ const primary = defineStyle({
   color: 'link.primary',
 })
 
+const footer = defineStyle({
+  fontSize: '15px',
+  lineHeight: '26px',
+  color: 'footer_link',
+})
+
 export const Link = defineStyleConfig({
-  variants: { contrast, primary },
+  variants: { contrast, footer, primary },
 })

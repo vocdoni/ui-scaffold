@@ -28,12 +28,7 @@ const CreateProcess = () => {
           {t('home.create_process.subtitle')}
         </Text>
         <Box maxW={{ lg: '90%' }}>
-          <Button
-            bgColor='#24656e'
-            mb='20px'
-            w={{ base: 'full', sm: 'fit-content', lg: 'full' }}
-            mx={{ base: 'auto', lg: 'start' }}
-          >
+          <Button mb='20px' w={{ base: 'full', sm: 'fit-content', lg: 'full' }} mx={{ base: 'auto', lg: 'start' }}>
             {t('home.create_process.btn')}
           </Button>
           <Flex
@@ -43,18 +38,18 @@ const CreateProcess = () => {
             gap={{ sm: 5, lg: 0 }}
           >
             <Text display='flex' alignItems='center' gap={1} ml='3'>
-              <FaRegCheckCircle color='#2c545a' />
+              <FaRegCheckCircle />
               {t('home.create_process.helper_1')}
             </Text>
             <Text display='flex' alignItems='center' gap={1} ml='3' mt='1'>
-              <FaRegCheckCircle color='#2c545a' />
+              <FaRegCheckCircle />
               {t('home.create_process.helper_2')}
             </Text>
           </Flex>
         </Box>
       </Box>
       <Box flex='1 1 60%' display={{ lg: 'flex' }} justifyContent='center' alignItems='center'>
-        <Image src={devices} w={{ base: '535px', lg: '100%' }} mx='auto' bgColor='white' />
+        <Image src={devices} w={{ base: '535px', lg: '100%' }} mx='auto' />
       </Box>
     </Flex>
   )

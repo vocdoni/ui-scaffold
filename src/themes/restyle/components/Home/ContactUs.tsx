@@ -13,7 +13,7 @@ const ContactUs = () => {
       id='contactus'
       flexDirection={{ base: 'column', lg: 'row' }}
       py={{ base: '60px', lg: 0 }}
-      bgColor={{ base: '#eff1f2', lg: 'white' }}
+      bgColor={{ base: 'home.section.bg', lg: 'transparent' }}
       gap={{ base: '40px', lg: '60px' }}
       scrollMarginTop='100px'
     >
@@ -80,7 +80,7 @@ const ContactUs = () => {
             </CardBody>
           </Card>
 
-          <Button bgColor='#24656e' w={{ base: 'full', sm: 'fit-content', lg: 'full' }} mx='auto'>
+          <Button w={{ base: 'full', sm: 'fit-content', lg: 'full' }} mx='auto'>
             {t('home.contactus.btn')}
           </Button>
         </Flex>

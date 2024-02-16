@@ -39,7 +39,6 @@ const MenuDropdown = () => {
     <MenuList
       py={4}
       px={6}
-      // minW={{ base: '100%', sm: 'min-content' }}
       boxShadow={{ base: '0px 10px 12px -7px gray', sm: '0px 0px 10px -3px gray' }}
       border='none'
       _hover={{

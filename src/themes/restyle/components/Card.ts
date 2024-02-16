@@ -292,12 +292,12 @@ const step = definePartsStyle({
       minW: '45px',
       h: '45px',
       border: '1px solid gray',
-      bgColor: 'home.icon_bg',
+      bgColor: 'home.step.icon_bg',
 
       svg: {
         width: '25px',
         height: '25px',
-        color: 'gray',
+        color: 'home.step.icon',
       },
     },
 
@@ -305,7 +305,7 @@ const step = definePartsStyle({
       'p:first-of-type': {
         fontSize: '17px',
         lineHeight: '20.4px',
-        color: '#175b64',
+        color: 'home.step.title',
         fontWeight: 'bold',
         mb: '6px',
       },
@@ -349,7 +349,7 @@ const demo = definePartsStyle({
       svg: {
         width: '75px',
         height: '75px',
-        color: '#575757',
+        color: 'home.demo.icon',
       },
     },
     '& p': {

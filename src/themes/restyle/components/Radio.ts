@@ -43,7 +43,7 @@ const demo = definePartsStyle({
         border: 'none',
         '& svg': {
           display: 'block',
-          color: 'home.demo_checkbox',
+          color: 'home.demo.radio',
           size: 25,
         },
       },

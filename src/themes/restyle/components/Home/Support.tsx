@@ -6,7 +6,7 @@ const Support = () => {
   const { t } = useTranslation()
 
   return (
-    <Box bgColor='#175b64'>
+    <Box bgColor='home.support.bg'>
       <Box className='site-wrapper' py={{ base: '60px', lg: '100px' }} position='relative' overflow='hidden'>
         <Box
           w='356px'
@@ -28,7 +28,14 @@ const Support = () => {
           bottom='-250px'
           display={{ base: 'none', lg: 'block' }}
         />
-        <Text fontSize='20px' lineHeight='24px' mb='6px' color='#FFB116' textAlign='center' fontWeight='bold'>
+        <Text
+          fontSize='20px'
+          lineHeight='24px'
+          mb='6px'
+          color='home.support.title'
+          textAlign='center'
+          fontWeight='bold'
+        >
           {t('home.support.header')}
         </Text>
         <Text

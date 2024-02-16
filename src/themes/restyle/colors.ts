@@ -13,9 +13,12 @@ export const colorsBase = {
     dark: '#606f88',
   },
   primary: {
+    gray_ligth: '#eff1f2',
+    gray: '#575757',
     main: '#24656e',
     dark: '#175b64',
     dark2: '#2c545a',
+    yellow: '#FFB116',
   },
   red: '#E53E3E',
   white: {
@@ -44,6 +47,7 @@ export const colors = {
   checkbox: colorsBase.primary.main,
 
   error: colorsBase.red,
+  footer_link: colorsBase.primary.gray,
   home: {
     benefits: {
       dark_bg: colorsBase.primary.main,
@@ -51,8 +55,24 @@ export const colors = {
       light_bg: colorsBase.white.pure,
       light_color: colorsBase.primary.main,
     },
-    demo_checkbox: colorsBase.primary.main,
+    demo: {
+      icon: colorsBase.primary.gray,
+      radio: colorsBase.primary.main,
+    },
     icon_bg: colorsBase.primary.main,
+    section: {
+      bg: colorsBase.primary.gray_ligth,
+      title: colorsBase.primary.main,
+    },
+    support: {
+      bg: colorsBase.primary.main,
+      title: colorsBase.primary.yellow,
+    },
+    step: {
+      icon: colorsBase.white.pure,
+      icon_bg: colorsBase.primary.main,
+      title: colorsBase.primary.main,
+    },
   },
   link: {
     primary: colorsBase.primary.main,

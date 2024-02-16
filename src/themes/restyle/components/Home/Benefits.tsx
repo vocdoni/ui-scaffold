@@ -5,7 +5,7 @@ const Benefits = () => {
   const { t } = useTranslation()
 
   return (
-    <Box as='section' id='benefits' bgColor='#eff1f2'>
+    <Box as='section' id='benefits' bgColor='home.section.bg'>
       <Box className='site-wrapper' py={{ base: '60px', lg: '100px' }}>
         <Text
           fontSize={{ base: '25px', lg: '30px', xl: '40px' }}

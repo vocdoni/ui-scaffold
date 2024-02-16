@@ -18,7 +18,7 @@ const Solutions = () => {
       <Flex flex='1 1 50%' justifyContent='center' alignItems='center'>
         <Flex flexDirection='column' gap='24px'>
           <Box mb='40px'>
-            <Text color='#175b64' fontWeight='bold' fontSize='20px' lineHeight='24px' mb='6px'>
+            <Text color='home.section.title' fontWeight='bold' fontSize='20px' lineHeight='24px' mb='6px'>
               {t('home.solutions.header')}
             </Text>
             <Text fontWeight='bold' fontSize='40px' lineHeight='48px' mb='10px'>
