@@ -34,15 +34,23 @@ const demo = definePartsStyle({
       },
     },
 
+    '& > span': {
+      whiteSpace: 'nowrap',
+    },
+
     _checked: {
       '& > div:first-of-type': {
         border: 'none',
         '& svg': {
           display: 'block',
-          color: '#175CFF',
+          color: 'home.demo_checkbox',
           size: 25,
         },
       },
+    },
+
+    _hover: {
+      boxShadow: 'var(--box-shadow-darker)',
     },
   },
 })

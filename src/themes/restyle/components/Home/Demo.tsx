@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardBody, Flex, Grid, Radio, RadioGroup, Text } from '@chakra-ui/react'
+import { Box, Button, Card, CardBody, Flex, Grid, Radio, RadioGroup, Text, VStack } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { BsFillCheckCircleFill } from 'react-icons/bs'
@@ -44,7 +44,7 @@ const Demo = () => {
           </Flex>
         </Flex>
         <RadioGroup onChange={setValue} value={value}>
-          <Flex gap='20px' flexDirection={{ base: 'column', sm: 'row' }} mb='60px'>
+          <Flex gap='20px' mb='60px' flexWrap='wrap'>
             <Radio variant='demo' value='1' flex='1 1 30%'>
               <Box>
                 <BsFillCheckCircleFill size={25} />
@@ -72,48 +72,59 @@ const Demo = () => {
             </Text>
             <Grid
               templateColumns={{
-                base: 'repeat(auto-fill, minmax(200px, 1fr))',
+                base: 'repeat(auto-fill, minmax(250px, 1fr))',
                 sm: 'repeat(auto-fill, minmax(300px, 1fr))',
-                xl: 'repeat(auto-fill, minmax(350px, 1fr))',
               }}
               gap='20px'
             >
-              <Card as='a' href='' variant='demo'>
-                <CardBody>
-                  <Box bgImage={agm} h='145px' />
-                  <Text> {t('home.demo.use_cases.card_1')}</Text>
-                </CardBody>
-              </Card>
-              <Card as='a' href='' variant='demo'>
-                <CardBody>
-                  <Box bgImage={elections} h='145px' />
-                  <Text>{t('home.demo.use_cases.card_2')}</Text>
-                </CardBody>
-              </Card>
-              <Card as='a' href='' variant='demo'>
-                <CardBody>
-                  <Box bgImage={participatory} h='145px' />
-                  <Text>{t('home.demo.use_cases.card_3')}</Text>
-                </CardBody>
-              </Card>
-              <Card as='a' href='' variant='demo'>
-                <CardBody>
-                  <Box bgImage={onlineVoting} h='145px' />
-                  <Text>{t('home.demo.use_cases.card_4')}</Text>
-                </CardBody>
-              </Card>
-              <Card as='a' href='' variant='demo'>
-                <CardBody>
-                  <Box bgImage={softInt} h='145px' />
-                  <Text>{t('home.demo.use_cases.card_5')}</Text>
-                </CardBody>
-              </Card>
-              <Card as='a' href='' variant='demo'>
-                <CardBody>
-                  <Box bgImage={onlineSurvey} h='145px' />
-                  <Text>{t('home.demo.use_cases.card_6')}</Text>
-                </CardBody>
-              </Card>
+              <VStack>
+                <Card as='a' href='' variant='demo'>
+                  <CardBody>
+                    <Box bgImage={agm} h='145px' />
+                    <Text> {t('home.demo.use_cases.card_1')}</Text>
+                  </CardBody>
+                </Card>
+              </VStack>
+              <VStack>
+                <Card as='a' href='' variant='demo'>
+                  <CardBody>
+                    <Box bgImage={elections} h='145px' />
+                    <Text>{t('home.demo.use_cases.card_2')}</Text>
+                  </CardBody>
+                </Card>
+              </VStack>
+              <VStack>
+                <Card as='a' href='' variant='demo'>
+                  <CardBody>
+                    <Box bgImage={participatory} h='145px' />
+                    <Text>{t('home.demo.use_cases.card_3')}</Text>
+                  </CardBody>
+                </Card>
+              </VStack>
+              <VStack>
+                <Card as='a' href='' variant='demo'>
+                  <CardBody>
+                    <Box bgImage={onlineVoting} h='145px' />
+                    <Text>{t('home.demo.use_cases.card_4')}</Text>
+                  </CardBody>
+                </Card>
+              </VStack>
+              <VStack>
+                <Card as='a' href='' variant='demo'>
+                  <CardBody>
+                    <Box bgImage={softInt} h='145px' />
+                    <Text>{t('home.demo.use_cases.card_5')}</Text>
+                  </CardBody>
+                </Card>
+              </VStack>
+              <VStack>
+                <Card as='a' href='' variant='demo'>
+                  <CardBody>
+                    <Box bgImage={onlineSurvey} h='145px' />
+                    <Text>{t('home.demo.use_cases.card_6')}</Text>
+                  </CardBody>
+                </Card>
+              </VStack>
             </Grid>
           </Box>
         )}
@@ -124,60 +135,71 @@ const Demo = () => {
             </Text>
             <Grid
               templateColumns={{
-                base: 'repeat(auto-fill, minmax(200px, 1fr))',
-                sm: 'repeat(auto-fill, minmax(400px, 1fr))',
-                xl: 'repeat(auto-fill, minmax(350px, 1fr))',
+                base: 'repeat(auto-fill, minmax(250px, 1fr))',
+                sm: 'repeat(auto-fill, minmax(300px, 1fr))',
               }}
               gap='20px'
             >
-              <Card as='a' href='' variant='demo'>
-                <CardBody>
-                  <Box h='110px'>
-                    <GiChoice />
-                  </Box>
-                  <Text>{t('home.demo.voting_type.card_1')}</Text>
-                </CardBody>
-              </Card>
-              <Card as='a' href='' variant='demo'>
-                <CardBody>
-                  <Box h='110px'>
-                    <MdOutlineLibraryAddCheck />
-                  </Box>
-                  <Text>{t('home.demo.voting_type.card_2')}</Text>
-                </CardBody>
-              </Card>
-              <Card as='a' href='' variant='demo'>
-                <CardBody>
-                  <Box h='110px'>
-                    <HiCheckBadge />
-                  </Box>
-                  <Text>{t('home.demo.voting_type.card_3')}</Text>
-                </CardBody>
-              </Card>
-              <Card as='a' href='' variant='demo'>
-                <CardBody>
-                  <Box h='110px'>
-                    <GoNumber />
-                  </Box>
-                  <Text>{t('home.demo.voting_type.card_4')}</Text>
-                </CardBody>
-              </Card>
-              <Card as='a' href='' variant='demo'>
-                <CardBody>
-                  <Box h='110px'>
-                    <ImListNumbered />
-                  </Box>
-                  <Text>{t('home.demo.voting_type.card_5')}</Text>
-                </CardBody>
-              </Card>
-              <Card as='a' href='' variant='demo'>
-                <CardBody>
-                  <Box h='110px'>
-                    <VscListFilter />
-                  </Box>
-                  <Text>{t('home.demo.voting_type.card_6')}</Text>
-                </CardBody>
-              </Card>
+              <VStack>
+                <Card as='a' href='' variant='demo'>
+                  <CardBody>
+                    <Box h='110px'>
+                      <GiChoice />
+                    </Box>
+                    <Text>{t('home.demo.voting_type.card_1')}</Text>
+                  </CardBody>
+                </Card>
+              </VStack>
+              <VStack>
+                <Card as='a' href='' variant='demo'>
+                  <CardBody>
+                    <Box h='110px'>
+                      <MdOutlineLibraryAddCheck />
+                    </Box>
+                    <Text>{t('home.demo.voting_type.card_2')}</Text>
+                  </CardBody>
+                </Card>
+              </VStack>
+              <VStack>
+                <Card as='a' href='' variant='demo'>
+                  <CardBody>
+                    <Box h='110px'>
+                      <HiCheckBadge />
+                    </Box>
+                    <Text>{t('home.demo.voting_type.card_3')}</Text>
+                  </CardBody>
+                </Card>
+              </VStack>
+              <VStack>
+                <Card as='a' href='' variant='demo'>
+                  <CardBody>
+                    <Box h='110px'>
+                      <GoNumber />
+                    </Box>
+                    <Text>{t('home.demo.voting_type.card_4')}</Text>
+                  </CardBody>
+                </Card>
+              </VStack>
+              <VStack>
+                <Card as='a' href='' variant='demo'>
+                  <CardBody>
+                    <Box h='110px'>
+                      <ImListNumbered />
+                    </Box>
+                    <Text>{t('home.demo.voting_type.card_5')}</Text>
+                  </CardBody>
+                </Card>
+              </VStack>
+              <VStack>
+                <Card as='a' href='' variant='demo'>
+                  <CardBody>
+                    <Box h='110px'>
+                      <VscListFilter />
+                    </Box>
+                    <Text>{t('home.demo.voting_type.card_6')}</Text>
+                  </CardBody>
+                </Card>
+              </VStack>
             </Grid>
           </Box>
         )}
@@ -188,36 +210,41 @@ const Demo = () => {
             </Text>
             <Grid
               templateColumns={{
-                base: 'repeat(auto-fill, minmax(200px, 1fr))',
-                sm: 'repeat(auto-fill, minmax(400px, 1fr))',
-                xl: 'repeat(auto-fill, minmax(350px, 1fr))',
+                base: 'repeat(auto-fill, minmax(250px, 1fr))',
+                sm: 'repeat(auto-fill, minmax(300px, 1fr))',
               }}
               gap='20px'
             >
-              <Card as='a' href='' variant='demo'>
-                <CardBody>
-                  <Box h='110px'>
-                    <FaGoogle />
-                  </Box>
-                  <Text>{t('home.demo.census_type.card_1')}</Text>
-                </CardBody>
-              </Card>
-              <Card as='a' href='' variant='demo'>
-                <CardBody>
-                  <Box h='110px'>
-                    <FaSlack />
-                  </Box>
-                  <Text>{t('home.demo.voting_type.card_6')}</Text>
-                </CardBody>
-              </Card>
-              <Card as='a' href='' variant='demo'>
-                <CardBody>
-                  <Box h='110px'>
-                    <MdAutoGraph />
-                  </Box>
-                  <Text>{t('home.demo.census_type.card_3')}</Text>
-                </CardBody>
-              </Card>
+              <VStack>
+                <Card as='a' href='' variant='demo'>
+                  <CardBody>
+                    <Box h='110px'>
+                      <FaGoogle />
+                    </Box>
+                    <Text>{t('home.demo.census_type.card_1')}</Text>
+                  </CardBody>
+                </Card>
+              </VStack>
+              <VStack>
+                <Card as='a' href='' variant='demo'>
+                  <CardBody>
+                    <Box h='110px'>
+                      <FaSlack />
+                    </Box>
+                    <Text>{t('home.demo.voting_type.card_6')}</Text>
+                  </CardBody>
+                </Card>
+              </VStack>
+              <VStack>
+                <Card as='a' href='' variant='demo'>
+                  <CardBody>
+                    <Box h='110px'>
+                      <MdAutoGraph />
+                    </Box>
+                    <Text>{t('home.demo.census_type.card_3')}</Text>
+                  </CardBody>
+                </Card>
+              </VStack>
             </Grid>
           </Box>
         )}

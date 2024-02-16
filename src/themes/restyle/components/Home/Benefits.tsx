@@ -26,35 +26,51 @@ const Benefits = () => {
           {t('home.benefits.subtitle_1')}
         </Text>
         <Flex flexWrap='wrap' justifyContent='center' maxW='1100px' mx='auto' gap={5}>
-          <Card variant='benefits' bgColor='black' color='white'>
+          <Card variant='benefits' bgColor='home.benefits.dark_bg' color='home.benefits.dark_color'>
             <CardHeader>{t('home.benefits.card_1.title')}</CardHeader>
             <CardBody>{t('home.benefits.card_1.description')}</CardBody>
           </Card>
-          <Card variant='benefits'>
+          <Card variant='benefits' bgColor='home.benefits.light_bg' color='home.benefits.light_color'>
             <CardHeader>{t('home.benefits.card_2.title')}</CardHeader>
             <CardBody>{t('home.benefits.card_2.description')}</CardBody>
           </Card>
           <Card
             variant='benefits'
-            bgColor={{ base: 'black', benefits1: 'white', benefits2: 'black' }}
-            color={{ base: 'white', benefits1: 'black', benefits2: 'white' }}
+            bgColor={{
+              base: 'home.benefits.dark_bg',
+              benefits1: 'home.benefits.light_bg',
+              benefits2: 'home.benefits.dark_bg',
+            }}
+            color={{
+              base: 'home.benefits.dark_color',
+              benefits1: 'home.benefits.light_color',
+              benefits2: 'home.benefits.dark_color',
+            }}
           >
             <CardHeader>{t('home.benefits.card_3.title')}</CardHeader>
             <CardBody>{t('home.benefits.card_3.description')}</CardBody>
           </Card>
           <Card
             variant='benefits'
-            bgColor={{ base: 'white', benefits1: 'black', benefits2: 'white' }}
-            color={{ base: 'black', benefits1: 'white', benefits2: 'black' }}
+            bgColor={{
+              base: 'home.benefits.light_bg',
+              benefits1: 'home.benefits.dark_bg',
+              benefits2: 'home.benefits.light_bg',
+            }}
+            color={{
+              base: 'home.benefits.lighy_color',
+              benefits1: 'home.benefits.dark_color',
+              benefits2: 'home.benefits.light_color',
+            }}
           >
             <CardHeader>{t('home.benefits.card_4.title')}</CardHeader>
             <CardBody>{t('home.benefits.card_4.description')}</CardBody>
           </Card>
-          <Card variant='benefits' bgColor='black' color='white'>
+          <Card variant='benefits' bgColor='home.benefits.dark_bg' color='home.benefits.dark_color'>
             <CardHeader>{t('home.benefits.card_5.title')}</CardHeader>
             <CardBody>{t('home.benefits.card_5.description')}</CardBody>
           </Card>
-          <Card variant='benefits'>
+          <Card variant='benefits' bgColor='home.benefits.light_bg' color='home.benefits.light_color'>
             <CardHeader>{t('home.benefits.card_6.title')}</CardHeader>
             <CardBody>{t('home.benefits.card_6.description')}</CardBody>
           </Card>

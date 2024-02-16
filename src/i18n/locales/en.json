@@ -163,20 +163,7 @@
     "about": "About",
     "blog": "Blog",
     "company": "Company",
-    "developer_portal": "Developers Portal",
-    "developers": "Developers",
-    "discord": "Discord",
-    "follow_us": "Follow us",
-    "homepage": "Home",
-    "footer_subtitle": "The Global Voting Protocol",
-    "uses_cases": "Use Cases",
-    "uses_cases1": "AGMs",
-    "uses_cases2": "Elections",
-    "uses_cases3": "Participatory Budgeting",
-    "uses_cases4": "Online Voting",
-    "uses_cases5": "Gathered Online Survey",
-    "repos": "Open-source Code",
-    "resources": "Resources",
+    "contact": "",
     "demo": "Voting Types",
     "demo1": "Single Choice",
     "demo2": "Multiple Choice",
@@ -184,9 +171,23 @@
     "demo4": "Ranked Voting",
     "demo5": "Participatory Budgeting",
     "demo6": "Weighted Voting",
+    "developer_portal": "Developers Portal",
+    "developers": "Developers",
+    "discord": "Discord",
+    "follow_us": "Follow us",
+    "footer_subtitle": "The Global Voting Protocol",
+    "homepage": "Home",
+    "repos": "Open-source Code",
+    "resources": "Resources",
     "terms_and_privacy": "<link1>Terms of use</link1> & <link2>Privacy Policy</link2>",
     "text": "<p1>The future</p1><p2>of Web3 voting starts here</p2>",
     "tutorials": "Tutorials",
+    "uses_cases": "Use Cases",
+    "uses_cases1": "AGMs",
+    "uses_cases2": "Elections",
+    "uses_cases3": "Participatory Budgeting",
+    "uses_cases4": "Online Voting",
+    "uses_cases5": "Gathered Online Survey",
     "vocdoni_api": "Vocdoni API",
     "vocdoni_app": "Vocdoni APP"
   },
@@ -398,6 +399,19 @@
       "title": "Benefits"
     },
     "clients_title": "Trusted by over +100 organizations",
+    "contactus": {
+      "btn": "Contact us",
+      "card_1": {
+        "description": "Explain us your needs and we will craft a personalized solution for your challenges.",
+        "title": "Tailored solutions for your unique needs"
+      },
+      "card_2": {
+        "description": "Vocdoni offers both self-sevice and custom, key in hand solutions tailored for you, .",
+        "title": "We will be with you every step of the way"
+      },
+      "header": "Contact Us",
+      "title": "Let's collaborate to find the perfect solution for you"
+    },
     "create_process": {
       "btn": "Try it for free",
       "helper_1": "Production ready, responsive voting processes",
@@ -409,7 +423,6 @@
       "btn": "View All Demos",
       "census_type": {
         "card_1": "E-Mail (GMail)",
-        "card_2": "Ranked Voting",
         "card_3": "Open Census",
         "radio": "Census / Authentication",
         "title": "By Census Type"
@@ -474,41 +487,24 @@
       "subtitle": "Below you'll find answers to the questions we get asked, gaining clarity and confidence about your digital voting experience.",
       "title": "Frequently Ask Questions"
     },
-    "features": {
-      "btn": "Contact us",
-      "card_1": {
-        "description": "Explain us your needs and we will craft a personalized solution for your challenges.",
-        "title": "Tailored solutions for your unique needs"
-      },
-      "card_2": {
-        "description": "Vocdoni offers both self-sevice and custom, key in hand solutions tailored for you, .",
-        "title": "We will be with you every step of the way"
-      },
-      "header": "Contact Us",
-      "title": "Let's collaborate to find the perfect solution for you"
-    },
     "process": {
       "description_1": "Vocdoni APP allows you to create your needed voting process in 4 easy steps.",
       "description_2": "We allow you to configure with one click either if you want anonymous voting, secret results until the end, the voting type, upload the census and much more.",
       "header": "Process",
       "step_1": {
         "description": "Gain total control with our platform's self-service option, offering unmatched flexibility. Need customization or guidance? We've got you covered!",
-        "header": "Step 1",
         "title": "Start your own voting process"
       },
       "step_2": {
         "description": "You will be guided through the creation process to select your voting type, configure the information, select the needed options & register the participants (census).",
-        "header": "Step 2",
         "title": "Configure & Publish"
       },
       "step_3": {
         "description": "Voters authenticate and submit their votes seamlessly through our user-friendly flow, designed for universal accessibility across all devices.",
-        "header": "Step 3",
         "title": "Voting Period"
       },
       "step_4": {
         "description": "As easy as that. Once finished, the results will be automatically computed, published and available to anyone.",
-        "header": "Step 4",
         "title": "Get the results"
       },
       "title": "A simple 4 steps process"

@@ -32,7 +32,7 @@ const Process = () => {
         <Flex flex='1 1' flexBasis={{ lg: '50%' }} flexDirection='column' justifyContent='space-between' gap='40px'>
           <Card variant='step'>
             <CardBody>
-              <Box bgColor='#175b64'>
+              <Box>
                 <PiNumberSquareOneFill color='#fff' />
               </Box>
               <Box>
@@ -43,7 +43,7 @@ const Process = () => {
           </Card>
           <Card variant='step'>
             <CardBody>
-              <Box bgColor='#175b64'>
+              <Box>
                 <PiNumberSquareTwoFill color='#fff' />
               </Box>
               <Box>
@@ -54,7 +54,7 @@ const Process = () => {
           </Card>
           <Card variant='step'>
             <CardBody>
-              <Box bgColor='#175b64'>
+              <Box>
                 <PiNumberSquareThreeFill color='#fff' />
               </Box>
               <Box>
@@ -65,7 +65,7 @@ const Process = () => {
           </Card>
           <Card variant='step'>
             <CardBody>
-              <Box bgColor='#175b64'>
+              <Box>
                 <PiNumberSquareFourFill color='#fff' />
               </Box>
               <Box>

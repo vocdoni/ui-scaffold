@@ -44,7 +44,7 @@ const Faqs = () => {
               <Text>{t('home.faqs.faq_3.description')}</Text>
             </CardBody>
           </Card>
-          <Card variant='faqs' mb='40px'>
+          <Card variant='faqs' mb='40px' borderBottom={{ base: '1px solid rgb(229, 229, 229)', xl: 'none' }}>
             <CardHeader>
               <Text>{t('home.faqs.faq_8.title')}</Text>
             </CardHeader>
@@ -78,7 +78,7 @@ const Faqs = () => {
               <Text>{t('home.faqs.faq_6.description')}</Text>
             </CardBody>
           </Card>
-          <Card variant='faqs' mb='40px'>
+          <Card variant='faqs' mb='40px' borderBottom='none'>
             <CardHeader>
               <Text>{t('home.faqs.faq_7.title')}</Text>
             </CardHeader>

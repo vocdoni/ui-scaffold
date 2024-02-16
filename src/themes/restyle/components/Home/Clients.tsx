@@ -30,7 +30,7 @@ const Clients = () => {
       >
         <Card variant='client'>
           <CardHeader>
-            <Image src={barca} w={{ base: '30px', lg: '45px' }} />
+            <Image src={barca} h={{ base: '35px', lg: '40px' }} />
           </CardHeader>
           <CardBody>
             <Text as='span'>F.C. Barcelona</Text>
@@ -38,15 +38,7 @@ const Clients = () => {
         </Card>
         <Card variant='client'>
           <CardHeader>
-            <Image src={berga} w={{ base: '17.4px', lg: '26px' }} />
-          </CardHeader>
-          <CardBody>
-            <Text as='span'>Ajuntament Berga</Text>
-          </CardBody>
-        </Card>
-        <Card variant='client'>
-          <CardHeader>
-            <Image src={omnium} w={{ base: '30px', lg: '48px' }} />
+            <Image src={omnium} h={{ base: '35px', lg: '50px' }} />
           </CardHeader>
           <CardBody>
             <Text as='span'>Omnium Cultural</Text>
@@ -54,47 +46,15 @@ const Clients = () => {
         </Card>
         <Card variant='client'>
           <CardHeader>
-            <Image src={decidim} w={{ base: '30px', lg: '45px' }} />
+            <Image src={berga} h={{ base: '35px', lg: '45px' }} />
           </CardHeader>
           <CardBody>
-            <Text as='span'>Decidim</Text>
+            <Text as='span'>Ajuntament Berga</Text>
           </CardBody>
         </Card>
         <Card variant='client'>
           <CardHeader>
-            <Image src={coec} w={{ base: '30px', lg: '58px' }} mt='3' />
-          </CardHeader>
-          <CardBody>
-            <Text as='span'>COEC</Text>
-          </CardBody>
-        </Card>
-        <Card variant='client'>
-          <CardHeader>
-            <Image src={erc} w={{ base: '30px', lg: '48px' }} mt='1' />
-          </CardHeader>
-          <CardBody>
-            <Text as='span'>Esquerra Republicana</Text>
-          </CardBody>
-        </Card>
-        <Card variant='client'>
-          <CardHeader>
-            <Image src={bellpuig} w={{ base: '24px', lg: '36px' }} />
-          </CardHeader>
-          <CardBody>
-            <Text as='span'>Ajuntament Bellpuig</Text>
-          </CardBody>
-        </Card>
-        <Card variant='client'>
-          <CardHeader>
-            <Image src={pirates} w={{ base: '72px', lg: '108px' }} />
-          </CardHeader>
-          <CardBody>
-            <Text as='span'>Partit Pirata</Text>
-          </CardBody>
-        </Card>
-        <Card variant='client'>
-          <CardHeader>
-            <Image src={bisbal} w={{ base: '22px', lg: '33px' }} />
+            <Image src={bisbal} h={{ base: '35px', lg: '35px' }} />
           </CardHeader>
           <CardBody>
             <Text as='span'>Ajuntament la Bisbal</Text>
@@ -102,7 +62,48 @@ const Clients = () => {
         </Card>
         <Card variant='client'>
           <CardHeader>
-            <Image src={bloock} w={{ base: '44px', lg: '58px' }} mt='3' />
+            <Image src={coec} h={{ base: '35px', lg: '22px' }} />
+          </CardHeader>
+          <CardBody>
+            <Text as='span'>COEC</Text>
+          </CardBody>
+        </Card>
+        <Card variant='client'>
+          <CardHeader>
+            <Image src={erc} h={{ base: '35px', lg: '25px' }} />
+          </CardHeader>
+          <CardBody>
+            <Text as='span'>Esquerra Republicana</Text>
+          </CardBody>
+        </Card>
+        <Card variant='client'>
+          <CardHeader>
+            <Image src={bellpuig} h={{ base: '35px', lg: '35px' }} />
+          </CardHeader>
+          <CardBody>
+            <Text as='span'>Ajuntament Bellpuig</Text>
+          </CardBody>
+        </Card>
+        <Card variant='client'>
+          <CardHeader>
+            <Image src={pirates} h={{ base: '35px', lg: '35px' }} />
+          </CardHeader>
+          <CardBody>
+            <Text as='span'>Partit Pirata</Text>
+          </CardBody>
+        </Card>
+        <Card variant='client'>
+          <CardHeader>
+            <Image src={decidim} h={{ base: '35px', lg: '40px' }} />
+          </CardHeader>
+          <CardBody>
+            <Text as='span'>Decidim</Text>
+          </CardBody>
+        </Card>
+
+        <Card variant='client'>
+          <CardHeader>
+            <Image src={bloock} h={{ base: '35px', lg: '15px' }} />
           </CardHeader>
           <CardBody>
             <Text as='span'>Bloock</Text>

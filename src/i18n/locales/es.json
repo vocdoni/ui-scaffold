@@ -166,30 +166,32 @@
     "about": "Acerca de",
     "blog": "Blog",
     "blog_details": "",
-    "career_single": "",
-    "coming_soon": "",
     "company": "Empresa",
     "contact": "Contacto",
+    "demo": "",
+    "demo1": "",
+    "demo2": "",
+    "demo3": "",
+    "demo4": "",
+    "demo5": "",
+    "demo6": "",
     "developer_portal": "Portal para desarrolladores",
     "developers": "Desarrolladores",
     "discord": "Discord",
     "follow_us": "Síguenos",
+    "footer_subtitle": "",
     "homepage": "Inicio",
-    "newsletter": "",
-    "newsletter_btn": "",
-    "overall": "",
-    "pages": "",
-    "pricing": "",
     "repos": "Código abierto",
-    "request_for_demo": "",
     "resources": "Recursos",
-    "service_single": "",
-    "support": "",
-    "support_single": "",
-    "template": "",
     "terms_and_privacy": "<link1>Términos de uso</link1> y <link2>Política de privacidad</link2>",
     "text": "<p1>El futuro</p1><p2>de la votación en Web3 comienza aquí</p2>",
     "tutorials": "Tutoriales",
+    "uses_cases": "",
+    "uses_cases1": "",
+    "uses_cases2": "",
+    "uses_cases3": "",
+    "uses_cases4": "",
+    "uses_cases5": "",
     "vocdoni_api": "API de Vocdoni",
     "vocdoni_app": "APP de Vocdoni"
   },
@@ -402,10 +404,22 @@
         "title": ""
       },
       "subtitle_1": "",
-      "subtitle_2": "",
       "title": "Benefits"
     },
     "clients_title": "Clients",
+    "contactus": {
+      "btn": "",
+      "card_1": {
+        "description": "",
+        "title": ""
+      },
+      "card_2": {
+        "description": "",
+        "title": ""
+      },
+      "header": "",
+      "title": ""
+    },
     "create_process": {
       "btn": "Create Process Now",
       "helper_1": "",
@@ -417,7 +431,6 @@
       "btn": "",
       "census_type": {
         "card_1": "",
-        "card_2": "",
         "card_3": "",
         "radio": "",
         "title": ""
@@ -475,20 +488,11 @@
         "description": "",
         "title": ""
       },
+      "faq_8": {
+        "description": "",
+        "title": ""
+      },
       "subtitle": "",
-      "title": ""
-    },
-    "features": {
-      "btn": "",
-      "card_1": {
-        "description": "",
-        "title": ""
-      },
-      "card_2": {
-        "description": "",
-        "title": ""
-      },
-      "header": "",
       "title": ""
     },
     "process": {
@@ -497,22 +501,18 @@
       "header": "",
       "step_1": {
         "description": "",
-        "header": "",
         "title": ""
       },
       "step_2": {
         "description": "",
-        "header": "",
         "title": ""
       },
       "step_3": {
         "description": "",
-        "header": "",
         "title": ""
       },
       "step_4": {
         "description": "",
-        "header": "",
         "title": ""
       },
       "title": ""
@@ -535,7 +535,6 @@
       "img_card_2": "",
       "img_card_3": "",
       "subtitle_1": "",
-      "subtitle_2": "",
       "title": ""
     },
     "support": {

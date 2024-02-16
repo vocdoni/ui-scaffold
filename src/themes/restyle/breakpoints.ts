@@ -10,6 +10,6 @@ export const breakpoints = {
   xl2: '84em',
   xl3: '95em',
   xl5: '115em',
-  benefits1: '726px',
-  benefits2: '1096px',
+  benefits1: '780px',
+  benefits2: '1164px',
 }

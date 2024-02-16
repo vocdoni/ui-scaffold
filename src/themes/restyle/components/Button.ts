@@ -100,6 +100,7 @@ const transparent = defineStyle((props) => {
 
     _hover: {
       bgColor: 'transparent',
+      outline: '1px solid',
 
       _disabled: {
         bgColor: 'transparent',

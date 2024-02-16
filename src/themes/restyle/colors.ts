@@ -13,9 +13,9 @@ export const colorsBase = {
     dark: '#606f88',
   },
   primary: {
-    main: '#0d6efd',
-    dark: '#0044e3',
-    dark2: '#0044e3',
+    main: '#24656e',
+    dark: '#175b64',
+    dark2: '#2c545a',
   },
   red: '#E53E3E',
   white: {
@@ -44,7 +44,16 @@ export const colors = {
   checkbox: colorsBase.primary.main,
 
   error: colorsBase.red,
-
+  home: {
+    benefits: {
+      dark_bg: colorsBase.primary.main,
+      dark_color: colorsBase.white.pure,
+      light_bg: colorsBase.white.pure,
+      light_color: colorsBase.primary.main,
+    },
+    demo_checkbox: colorsBase.primary.main,
+    icon_bg: colorsBase.primary.main,
+  },
   link: {
     primary: colorsBase.primary.main,
     contrast: colorsBase.white.pure,

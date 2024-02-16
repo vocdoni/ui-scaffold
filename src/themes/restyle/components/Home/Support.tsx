@@ -53,10 +53,7 @@ const Support = () => {
           gap='10px'
           mb='40px'
         >
-          <Button bgColor='#fff' color='#2c545a'>
-            {' '}
-            {t('home.support.btn_contact')}
-          </Button>
+          <Button variant='secondary'>{t('home.support.btn_contact')}</Button>
           <Button variant='transparent' color='white'>
             <FaPhoneVolume size={30} />
             <Text as='span' ml='10px'>

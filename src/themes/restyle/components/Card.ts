@@ -221,6 +221,7 @@ const benefits = definePartsStyle({
   container: {
     w: '350px',
     borderRadius: 'xl',
+    boxShadow: 'var(--box-shadow-darker)',
   },
   header: {
     p: '30px',
@@ -238,6 +239,9 @@ const benefits = definePartsStyle({
 })
 
 const iconCard = definePartsStyle({
+  container: {
+    bgColor: 'transparent',
+  },
   body: {
     p: 0,
     display: 'flex',
@@ -250,6 +254,7 @@ const iconCard = definePartsStyle({
       borderRadius: 'lg',
       minW: '45px',
       h: '45px',
+      bgColor: 'home.icon_bg',
 
       svg: {
         width: '25px',
@@ -287,6 +292,7 @@ const step = definePartsStyle({
       minW: '45px',
       h: '45px',
       border: '1px solid gray',
+      bgColor: 'home.icon_bg',
 
       svg: {
         width: '25px',
@@ -318,9 +324,15 @@ const step = definePartsStyle({
   },
 })
 const demo = definePartsStyle({
-  body: {
+  container: {
     w: 'full',
     maxW: '400px',
+
+    _hover: {
+      boxShadow: 'var(--box-shadow-darker)',
+    },
+  },
+  body: {
     bgColor: 'white',
     p: '15px 20px',
     borderRadius: 'lg',
@@ -330,7 +342,7 @@ const demo = definePartsStyle({
       justifyContent: 'center',
       alignItems: 'center',
       bgSize: 'cover',
-      bgPosition: 'center',
+      bgPosition: 'start',
       mb: '15px',
       borderRadius: 'lg',
 
@@ -387,15 +399,17 @@ const client = definePartsStyle({
   },
   header: {
     p: 0,
-    mb: '10px',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'start',
+    alignItems: 'center',
     filter: 'grayscale(100%)',
+    h: { base: '35px', lg: '45px' },
   },
   body: {
     p: 0,
-    minH: '35px',
+    fontSize: '10px',
+    minH: '40px',
+
     span: {
       display: 'none',
       textAlign: 'center',
@@ -411,7 +425,7 @@ const variantsCards = {
   benefits,
   client,
   detailed,
-  demo: demo,
+  demo,
   faqs,
   'icon-card': iconCard,
   'no-elections': noElections,

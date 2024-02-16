@@ -39,7 +39,7 @@ const MenuDropdown = () => {
     <MenuList
       py={4}
       px={6}
-      minW={{ base: '100vw', sm: 'min-content' }}
+      // minW={{ base: '100%', sm: 'min-content' }}
       boxShadow={{ base: '0px 10px 12px -7px gray', sm: '0px 0px 10px -3px gray' }}
       border='none'
       _hover={{
@@ -78,7 +78,7 @@ const MenuDropdown = () => {
               <HStack justifyContent='center' bgColor='primary.main' width={8} height={8} borderRadius='50%'>
                 <FaWallet size={18} color='white' />
               </HStack>
-              {addressTextOverflow((account?.address as string) || '', 10)}
+              {addressTextOverflow((account?.address as string) || '', 6)}
               <IconButton
                 variant='icon'
                 size='xs'

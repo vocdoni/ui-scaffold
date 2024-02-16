@@ -1,6 +1,6 @@
 import { Box, Card, CardBody, Flex, Image, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import { FaCircleCheck, FaArrowsToCircle } from 'react-icons/fa6'
+import { FaArrowsToCircle, FaCircleCheck } from 'react-icons/fa6'
 import { IoSettingsSharp } from 'react-icons/io5'
 import { MdDesignServices } from 'react-icons/md'
 import solutions from '/assets/solutions.png'
@@ -30,7 +30,7 @@ const Solutions = () => {
           </Box>
           <Card variant='icon-card'>
             <CardBody>
-              <Box bgColor='#175b64'>
+              <Box>
                 <MdDesignServices />
               </Box>
               <Box>
@@ -41,7 +41,7 @@ const Solutions = () => {
           </Card>
           <Card variant='icon-card'>
             <CardBody>
-              <Box bgColor='#175b64'>
+              <Box>
                 <FaArrowsToCircle />
               </Box>
               <Box>
@@ -52,7 +52,7 @@ const Solutions = () => {
           </Card>
           <Card variant='icon-card'>
             <CardBody>
-              <Box bgColor='#175b64'>
+              <Box>
                 <IoSettingsSharp />
               </Box>
               <Box>

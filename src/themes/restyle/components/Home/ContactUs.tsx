@@ -4,13 +4,13 @@ import { FaFingerprint } from 'react-icons/fa'
 import { MdDesignServices } from 'react-icons/md'
 import advFeature from '/assets/vocdoni.jpeg'
 
-const Features = () => {
+const ContactUs = () => {
   const { t } = useTranslation()
 
   return (
     <Flex
       as='section'
-      id='features'
+      id='contactus'
       flexDirection={{ base: 'column', lg: 'row' }}
       py={{ base: '60px', lg: 0 }}
       bgColor={{ base: '#eff1f2', lg: 'white' }}
@@ -51,37 +51,37 @@ const Features = () => {
         >
           <Box>
             <Text color='#175b64' fontWeight='bold' fontSize='20px' lineHeight='24px' mb='6px'>
-              {t('home.features.header')}
+              {t('home.contactus.header')}
             </Text>
             <Text fontWeight='bold' fontSize='40px' lineHeight='48px' mb='10px'>
-              {t('home.features.title')}
+              {t('home.contactus.title')}
             </Text>
           </Box>
           <Card variant='icon-card'>
             <CardBody>
-              <Box bgColor='#175b64'>
+              <Box>
                 <MdDesignServices />
               </Box>
               <Box>
-                <Text>{t('home.features.card_1.title')}</Text>
-                <Text>{t('home.features.card_1.description')}</Text>
+                <Text>{t('home.contactus.card_1.title')}</Text>
+                <Text>{t('home.contactus.card_1.description')}</Text>
               </Box>
             </CardBody>
           </Card>
           <Card variant='icon-card'>
             <CardBody>
-              <Box bgColor='#175b64'>
+              <Box>
                 <FaFingerprint />
               </Box>
               <Box>
-                <Text> {t('home.features.card_2.title')}</Text>
-                <Text>{t('home.features.card_2.description')}</Text>
+                <Text> {t('home.contactus.card_2.title')}</Text>
+                <Text>{t('home.contactus.card_2.description')}</Text>
               </Box>
             </CardBody>
           </Card>
 
           <Button bgColor='#24656e' w={{ base: 'full', sm: 'fit-content', lg: 'full' }} mx='auto'>
-            {t('home.features.btn')}
+            {t('home.contactus.btn')}
           </Button>
         </Flex>
       </Flex>
@@ -89,4 +89,4 @@ const Features = () => {
   )
 }
 
-export default Features
+export default ContactUs

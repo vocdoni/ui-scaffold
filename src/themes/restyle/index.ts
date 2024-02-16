@@ -14,7 +14,7 @@ export const theme = extendTheme(vtheme, {
         '--box-shadow-btn': '0px 0px 5px -3px gray',
         '--box-shadow-banner': '7px 6px 6px -3px rgba(0,0,0,0.37)',
         '--box-shadow': '0px 2px 4px lightgray',
-        '--box-shadow-darker': '0px 2px 4px #808080b5',
+        '--box-shadow-darker': 'rgba(0, 0, 0, 0.25) 0px 5px 15px',
         '--vcd-gradient-primary': 'linear-gradient(to right, #24656e, #2c545a)',
       },
       '.creating-process-img': {
