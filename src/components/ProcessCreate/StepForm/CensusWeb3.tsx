@@ -7,6 +7,7 @@ import { useProcessCreationSteps } from '../Steps/use-steps'
 
 export interface CensusWeb3Values {
   addresses: Web3Address[]
+  weightedVote: boolean
 }
 
 export interface Web3Address {
@@ -21,6 +22,7 @@ export const StepFormCensusWeb3 = () => {
     defaultValues: {
       addresses: form.addresses,
       newAddress: '',
+      weightedVote: form.weightedVote,
     },
   })
   const addresses = methods.watch('addresses')
@@ -38,6 +40,7 @@ export const StepFormCensusWeb3 = () => {
         message: t('form.error.min_address'),
       })
     } else {
+      setForm({ ...form, ...data })
       next()
     }
   }
