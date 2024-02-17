@@ -52,7 +52,7 @@
     },
     "results": {
       "date_format": "d 'de' MMMM 'de' y 'a' 'las' H:mm",
-      "secret_until_the_end": "Secreto hasta el final. Los resultados estarán disponibles cuando el proceso termine el {{ endDate }}",
+      "secret_until_the_end": "Los resultados se harán públicos cuando el proceso finalice el {{ endDate }}.",
       "title": "Resultados para \"{{ title }}\"",
       "votes": "Votos: {{ votes }} ({{ percent }})"
     },
@@ -63,7 +63,7 @@
       "anon_sik_label": "Define una contraseña para tu voto",
       "close": "Cerrar",
       "logout": "Cerrar la sesión",
-      "modal_title": "Debes identificarte primero"
+      "modal_title": "Autenticación"
     },
     "statuses": {
       "canceled": "Cancelada",
@@ -110,6 +110,7 @@
     "success_faucetPackage_title": "El Faucet Package se obtuvo con éxito",
     "success_title": "Los tokens han sido reclamados correctamente"
   },
+  "close": "Cerrar",
   "copy": {
     "address": "Copiar dirección",
     "copied_title": "¡Copiado!"
@@ -430,7 +431,6 @@
       "not_owner": "Esta organización aún no tiene votaciones.",
       "title": "Crea tu primer proceso de votación"
     },
-    "name_long": "<strong>{{ name }}</strong> ({{ address }})",
     "title": {
       "edit": "Editar organización",
       "read_more": "Expandir título"
@@ -476,7 +476,7 @@
     },
     "state": "ESTADO",
     "status": {
-      "active": "Activo",
+      "active": "Votación en curso",
       "canceled": "Proceso cancelado",
       "ended": "Finalizado",
       "paused": "Proceso pausado",
@@ -499,7 +499,12 @@
     "start": "Iniciar/Reanudar"
   },
   "process_create": {
+    "anonymous": {
+      "legal_disclaimer": "Este sistema de votación utiliza el poder de votación basado en tokens (público en la cadena de bloques). Al seleccionar la opción de 'Votación anónima', los pesos se agruparán en saldos similares y se redondearán hacia abajo. Esto sacrifica cierta precisión, pero preserva la identidad anónima al desvincular los saldos de las carteras.",
+      "legal_note": "Aviso legal: "
+    },
     "census": {
+      "mandatory_max_census_size": "Debe haber al menos un votante",
       "total_tokens_one": "1 token",
       "total_tokens_many": "",
       "total_tokens_other": "{{ count }} tokens"
@@ -510,8 +515,12 @@
       "sign_tx": "Firmar transacción"
     },
     "creation_steps_description": "Necesitas firmar las transacciones para crear el proceso de votación en la cadena de bloques de Vocdoni. No cierres esta ventana.",
-    "creation_steps_title": "Progreso"
+    "creation_steps_title": "Progreso",
+    "preview": {
+      "accuracy": "Precisión de los Saldos de Censo Anónimo: "
+    }
   },
+  "retry": "Reintentar",
   "roadmap": {
     "census_description": "Crear un censo descentralizado fuera de la cadena y compatible con zk a partir de una instantánea de bloques de Ethereum, con verificación en cadena.",
     "census_title": "zkCensus:",
@@ -544,5 +553,14 @@
   "use_read_more": {
     "read_less": "Leer menos",
     "read_more": "Leer más"
+  },
+  "welcome": {
+    "description": "Para empezar, debes registrar tu cuenta y tu SIK (clave de identidad segura) firmando dos transacciones (es seguro y gratuito).",
+    "intro": "Con esta dApp puedes crear votaciones anónimas, seguras y verificables.",
+    "step": {
+      "register": "Registrar cuenta",
+      "sik": "Crear SIK"
+    },
+    "title": "Bienvenido a {{ sitename }}"
   }
 }

@@ -49,6 +49,10 @@ export const colors = {
 
   bg: colorsBase.gray.bg,
 
+  editor: {
+    character_limit: colorsBase.gray.light,
+  },
+
   error: colorsBase.red,
 
   checkbox: colorsBase.primary.main,
@@ -141,8 +145,8 @@ export const colors = {
 
   process_create: {
     alert_info: {
-      bg: colorsBase.primary.light,
-      color: colorsBase.primary.dark,
+      bg: colorsBase.primary.light2,
+      color: colorsBase.primary.dark2,
     },
     advanced_checkbox_bg: colorsBase.white.pure,
     advanced_checkbox_border: colorsBase.primary.gray_light,

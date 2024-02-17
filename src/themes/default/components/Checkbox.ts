@@ -37,7 +37,8 @@ const radiobox = definePartsStyle({
   label: defineStyle({
     fontSize: 'sm',
     alignSelf: 'start',
-    '& div': {
+
+    '& div:first-of-type': {
       display: 'flex',
       alignItems: 'center',
       gap: 2,

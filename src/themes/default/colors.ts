@@ -43,6 +43,10 @@ export const colors = {
 
   checkbox: colorsBase.primary.main,
 
+  editor: {
+    character_limit: colorsBase.gray.light,
+  },
+
   error: colorsBase.red,
 
   link: {

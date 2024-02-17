@@ -3,7 +3,7 @@ import { AiFillCheckCircle } from 'react-icons/ai'
 import { FaRegArrowAltCircleLeft } from 'react-icons/fa'
 import { IoCloseOutline } from 'react-icons/io5'
 
-export const Close = () => <Icon as={IoCloseOutline} mt='1.5px' boxSize={5} />
+export const Close = IoCloseOutline
 
 export const Check = AiFillCheckCircle
 
