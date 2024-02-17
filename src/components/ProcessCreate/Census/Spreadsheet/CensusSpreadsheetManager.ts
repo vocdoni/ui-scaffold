@@ -70,7 +70,7 @@ export class CensusSpreadsheetManager extends SpreadsheetManager {
   }
 
   public get weights(): string[] {
-    return this.filedata.map((row) => row[WeightColPosition - 1])
+    return this.weighted ? this.filedata.map((row) => row[WeightColPosition - 1]) : this.filedata.map(() => '1')
   }
 
   public generateWallets(salt: string): Promise<{ address: string; weight: number | undefined }[]> {
