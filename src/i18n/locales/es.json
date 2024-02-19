@@ -238,7 +238,7 @@
         "add_new_address": "Añade una nueva dirección",
         "delete_web3_address": "Eliminar direccion con índice {{ index }}",
         "holders": "{{ holders }} titulares",
-        "max_census_resum": "Con esta configuración, {{ uniTokenHolders }} poseedores de tokens {{ symbol }} podrán votar, representando un {{ percent }}% del total de la participación máxima.",
+        "max_census_resum": "Tienes un grupo de {{ uniTokenHolders }} posibles votantes de {{ symbol }}. Para reducir el costo del proceso de votación, puedes optar por limitar el número total de participantes en el proceso de votación. Esto no afectará a votantes específicos ni reducirá el censo; simplemente reducirá el número máximo de votos que se pueden emitir.",
         "max_census_slider_arialabel": "Selector deslizante de participación máxima esperada",
         "max_census_slider_label": "Participación máxima esperada:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} votantes elegibles)",
