@@ -96,14 +96,12 @@ const ModalPro = ({ isOpen, onClose, reason }: { isOpen: boolean; onClose: () =>
               pr={{ lg: 5 }}
               onSubmit={handleSubmit(sendEmail)}
             >
-              <Text color='gray' mb={0}>
+              <Text color='process_create.modal_pro.description' mb={0} fontSize='sm'>
                 {t('process_create.modal_pro.form_description')}
               </Text>
               <Flex flexDirection='column' gap={3}>
                 <FormControl isInvalid={!!errors.name}>
-                  <Input type='hidden' name='reason' value={reason} />
-                  <Input type='hidden' name='product' value={window.location.href} />
-                  <FormLabel>{t('process_create.modal_pro.form_name_label')}</FormLabel>
+                  <FormLabel fontSize='xs'>{t('process_create.modal_pro.form_name_label')}</FormLabel>
                   <Input
                     {...register('name', { required })}
                     placeholder={t('process_create.modal_pro.form_name_placeholder')}
@@ -111,7 +109,7 @@ const ModalPro = ({ isOpen, onClose, reason }: { isOpen: boolean; onClose: () =>
                   {!!errors.name && <FormErrorMessage>{errors.name?.message?.toString()}</FormErrorMessage>}
                 </FormControl>
                 <FormControl isInvalid={!!errors.email}>
-                  <FormLabel>{t('process_create.modal_pro.form_email_label')}</FormLabel>
+                  <FormLabel fontSize='xs'>{t('process_create.modal_pro.form_email_label')}</FormLabel>
                   <Input
                     {...register('email', { required })}
                     type='email'
@@ -128,17 +126,19 @@ const ModalPro = ({ isOpen, onClose, reason }: { isOpen: boolean; onClose: () =>
                 )}
                 {error && (
                   <Text my={3} color='error'>
-                    {t('process_create.modal_pro.error')}Error - Sending email
+                    {t('process_create.modal_pro.error')}
                   </Text>
                 )}
-                <Button type='submit' form='modal-pro' w='full'>
+                <Button type='submit' form='modal-pro' w='full' fontSize='14px'>
                   {t('process_create.modal_pro.form_btn')}
                 </Button>
               </Box>
             </Flex>
-            <Box w={{ lg: '1px' }} h={{ base: '1px', lg: 'auto' }} bgColor='gray'></Box>
+            <Box w={{ lg: '1px' }} h={{ base: '1px', lg: 'auto' }} bgColor='process_create.modal_pro.border'></Box>
             <Flex flex='1 1 50%' flexDirection='column' justifyContent='space-between' gap={10} pl={{ lg: 5 }}>
-              <Text color='gray'>{t('process_create.modal_pro.scheudle_description')}</Text>
+              <Text color='process_create.modal_pro.description' fontSize='sm'>
+                {t('process_create.modal_pro.scheudle_description')}
+              </Text>
               <Flex justifyContent='center' mb='10px'>
                 <Box position='relative' width='100px'>
                   <FaRegCalendarAlt size={100} />
@@ -152,6 +152,7 @@ const ModalPro = ({ isOpen, onClose, reason }: { isOpen: boolean; onClose: () =>
                 href='https://calendar.google.com/calendar/appointments/schedules/AcZssZ29VUbJIqlHtdY32eVUd2OhbjfQLoiHhTAk34Ct6PianaFnwediCb6K021zcX5RaKDdd76eZS-O?gv=true'
                 target='_blank'
                 leftIcon={<CalendarIcon />}
+                fontSize='14px'
               >
                 {t('process_create.modal_pro.scheudle_btn')}
               </Button>

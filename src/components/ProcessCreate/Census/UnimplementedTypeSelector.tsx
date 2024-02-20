@@ -1,5 +1,10 @@
 import { useTranslation } from 'react-i18next'
 import { BiPhone } from 'react-icons/bi'
+import { CgMoreO } from 'react-icons/cg'
+import { GoDatabase } from 'react-icons/go'
+import { LuCircleDotDashed } from 'react-icons/lu'
+import { MdOutlineEmail } from 'react-icons/md'
+import { PiCertificate } from 'react-icons/pi'
 
 export const CensusTypePhone = 'phone'
 export const CensusTypeEmail = 'email'
@@ -39,27 +44,27 @@ export const useUnimplementedCensusTypes = () => {
       [CensusTypeEmail]: {
         title: t('process_create.census.email_title'),
         description: t('process_create.census.email_description'),
-        icon: BiPhone,
+        icon: MdOutlineEmail,
       },
       [CensusTypeCrm]: {
         title: t('process_create.census.crm_title'),
         description: t('process_create.census.crm_description'),
-        icon: BiPhone,
+        icon: LuCircleDotDashed,
       },
       [CensusTypeDatabase]: {
         title: t('process_create.census.database_title'),
         description: t('process_create.census.database_description'),
-        icon: BiPhone,
+        icon: GoDatabase,
       },
       [CensusTypeDigitalCerificate]: {
         title: t('process_create.census.digital_certificate_title'),
         description: t('process_create.census.digital_certificate_description'),
-        icon: BiPhone,
+        icon: PiCertificate,
       },
       [CensusTypeOthers]: {
         title: t('process_create.census.others_title'),
         description: t('process_create.census.others_description'),
-        icon: BiPhone,
+        icon: CgMoreO,
       },
     },
   }

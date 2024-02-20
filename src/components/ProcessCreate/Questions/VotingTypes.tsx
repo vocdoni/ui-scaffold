@@ -1,7 +1,11 @@
 import { Box, Checkbox, Flex, Icon, Text, useDisclosure } from '@chakra-ui/react'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { BiCheckDouble } from 'react-icons/bi'
+import { GiChoice } from 'react-icons/gi'
+import { GoNumber } from 'react-icons/go'
+import { HiCheckBadge } from 'react-icons/hi2'
+import { ImListNumbered } from 'react-icons/im'
+import { MdOutlineLibraryAddCheck } from 'react-icons/md'
 import ModalPro from '../ModalPro'
 
 const VotingTypes = () => {
@@ -21,7 +25,7 @@ const VotingTypes = () => {
         <Flex flexWrap='wrap' gap={5}>
           <Checkbox variant='radiobox' flex='0 0 30%' isChecked={true}>
             <Box>
-              <Icon as={BiCheckDouble} />
+              <Icon as={GiChoice} />
               <Box>
                 <Trans
                   i18nKey='process_create.question.single_choice.title'
@@ -35,7 +39,7 @@ const VotingTypes = () => {
           </Checkbox>
           <Checkbox variant='radiobox' flex='0 0 30%'>
             <Box>
-              <Icon as={BiCheckDouble} />
+              <Icon as={MdOutlineLibraryAddCheck} />
               <Box>
                 <Trans
                   i18nKey='process_create.question.multi_choice.title'
@@ -56,7 +60,7 @@ const VotingTypes = () => {
           </Checkbox>
           <Checkbox variant='radiobox' flex='0 0 30%'>
             <Box>
-              <Icon as={BiCheckDouble} />
+              <Icon as={HiCheckBadge} />
               <Text>{t('process_create.question.approval_voting.title')}</Text>
             </Box>
             <Text as='span'>Pro</Text>
@@ -70,7 +74,7 @@ const VotingTypes = () => {
           </Checkbox>
           <Checkbox variant='radiobox' flex='0 0 30%'>
             <Box>
-              <Icon as={BiCheckDouble} />
+              <Icon as={GoNumber} />
               <Text>{t('process_create.question.participation_budgeting.title')}</Text>
             </Box>
             <Text as='span'>Pro</Text>
@@ -84,7 +88,7 @@ const VotingTypes = () => {
           </Checkbox>
           <Checkbox variant='radiobox' flex='0 0 30%'>
             <Box>
-              <Icon as={BiCheckDouble} />
+              <Icon as={ImListNumbered} />
               <Box>
                 <Trans
                   i18nKey='process_create.question.borda_count.title'

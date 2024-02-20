@@ -157,6 +157,10 @@ export const colors = {
     },
     description: colorsBase.gray.dark,
     description_logo: colorsBase.blue.main,
+    modal_pro: {
+      description: colorsBase.gray.dark,
+      border: colorsBase.gray.light,
+    },
     preview_option_question_before: colorsBase.black,
     preview_negative_balance: colorsBase.red,
     section: colorsBase.white.pure,

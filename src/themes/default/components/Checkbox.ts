@@ -56,7 +56,7 @@ const radiobox = definePartsStyle({
       color: 'process_create.description',
     },
 
-    //For the pro plan, it allows opening the modal
+    //pro plan, it allows opening the modal
     '& > span': {
       bgColor: 'process_create.pro_bg',
       borderRadius: '10px',
@@ -65,8 +65,8 @@ const radiobox = definePartsStyle({
       right: '3px',
       px: 2,
       color: 'process_create.pro_color',
-      pt: '2px',
-      fontSize: '10px',
+      fontSize: '12px',
+      lineHeight: '24px',
     },
     '& div:nth-of-type(2)': {
       position: 'absolute',
