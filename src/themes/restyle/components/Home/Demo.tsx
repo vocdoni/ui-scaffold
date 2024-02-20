@@ -71,6 +71,7 @@ const Demo = () => {
               templateColumns={{
                 base: 'repeat(auto-fill, minmax(250px, 1fr))',
                 sm: 'repeat(auto-fill, minmax(300px, 1fr))',
+                lg: 'repeat(auto-fill, minmax(400px, 1fr))',
               }}
               gap='20px'
             >
@@ -134,6 +135,7 @@ const Demo = () => {
               templateColumns={{
                 base: 'repeat(auto-fill, minmax(250px, 1fr))',
                 sm: 'repeat(auto-fill, minmax(300px, 1fr))',
+                lg: 'repeat(auto-fill, minmax(400px, 1fr))',
               }}
               gap='20px'
             >
@@ -209,6 +211,7 @@ const Demo = () => {
               templateColumns={{
                 base: 'repeat(auto-fill, minmax(250px, 1fr))',
                 sm: 'repeat(auto-fill, minmax(300px, 1fr))',
+                lg: 'repeat(auto-fill, minmax(400px, 1fr))',
               }}
               gap='20px'
             >
