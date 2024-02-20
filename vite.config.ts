@@ -11,7 +11,7 @@ const viteconfig = ({ mode }) => {
   // load env variables from .env files
   process.env = { ...process.env, ...loadEnv(mode, process.cwd(), '') }
 
-  let vocdoniEnvironment = process.env.VOCDONI_ENVIRONMENT
+  let vocdoniEnvironment = process.env.VOCDONI_EºNVIRONMENT
   if (!vocdoniEnvironment) {
     vocdoniEnvironment = 'stg'
   }
@@ -32,6 +32,9 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.CUSTOM_FAUCET_URL': JSON.stringify(process.env.CUSTOM_FAUCET_URL),
       'import.meta.env.CSP_PUBKEY': JSON.stringify(process.env.CSP_PUBKEY),
       'import.meta.env.CSP_URL': JSON.stringify(process.env.CSP_URL),
+      'import.meta.env.EMAILJS_SERVICE_ID': JSON.stringify(process.env.EMAILJS_SERVICE_ID),
+      'import.meta.env.EMAILJS_TEMPLATE_ID': JSON.stringify(process.env.EMAILJS_TEMPLATE_ID),
+      'import.meta.env.EMAILJS_PUBLIC_ID': JSON.stringify(process.env.EMAILJS_PUBLIC_ID),
     },
     plugins: [
       tsconfigPaths(),

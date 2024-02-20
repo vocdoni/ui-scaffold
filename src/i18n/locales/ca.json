@@ -534,6 +534,7 @@
     "creation_steps_title": "Progrés",
     "modal_pro": {
       "description": "<p>L'opció seleccionada no està disponible en el pla d'autoatenció (gratuït). Per poder utilitzar-la, has de comprar el <bold>pla de projecte personalitzat</bold></p>",
+      "error": "Error en l'enviament del correu electrònic, intenta-ho més tard o contacta'ns a <email>info@vocdoni.org</email>",
       "form_btn": "ENVIAR",
       "form_description": "Pots deixar-nos les teves dades de contacte i ens posarem en contacte amb tu per parlar de les teves necessitats",
       "form_email_label": "Correu electrònic:",
@@ -542,6 +543,7 @@
       "form_name_placeholder": "El teu nom",
       "scheudle_btn": "RESERVAR ARA",
       "scheudle_description": " O pots reservar directament una trucada ràpida (15 minuts) amb els nostres experts per ajudar-te a crear el teu projecte de votació desitjat",
+      "success": "Correu electrònic enviat correctament",
       "title": "Contacta'ns"
     },
     "preview": {

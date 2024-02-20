@@ -12,6 +12,7 @@ export const colorsBase = {
     main: '#CBD5E0',
     dark: '#606f88',
   },
+  green: '#48BB78',
   primary: {
     main: '#24656e',
     dark: '#175b64',
@@ -48,6 +49,7 @@ export const colors = {
   },
 
   error: colorsBase.red,
+  success: colorsBase.green,
 
   link: {
     primary: colorsBase.primary.main,

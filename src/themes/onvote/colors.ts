@@ -8,6 +8,7 @@ export const colorsBase = {
     main: '#CBD5E0',
     dark: '#606f88',
   },
+  green: '#48BB78',
   primary: {
     gray_light: '#b8bdc7',
     gray: '#656E81',
@@ -54,6 +55,7 @@ export const colors = {
   },
 
   error: colorsBase.red,
+  success: colorsBase.green,
 
   checkbox: colorsBase.primary.main,
 

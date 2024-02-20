@@ -15,16 +15,17 @@ import {
   ModalOverlay,
   Text,
 } from '@chakra-ui/react'
-import { useEffect, useRef } from 'react'
+import emailjs from '@emailjs/browser'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { AiFillGooglePlusCircle } from 'react-icons/ai'
 import { FaRegCalendarAlt } from 'react-icons/fa'
-import emailjs from '@emailjs/browser'
 
 const ModalPro = ({ isOpen, onClose, reason }: { isOpen: boolean; onClose: () => void; reason: string }) => {
   const { t } = useTranslation()
-  console.log(reason)
+  const [success, setSuccess] = useState(false)
+  const [error, setError] = useState(false)
   const {
     register,
     handleSubmit,
@@ -47,26 +48,26 @@ const ModalPro = ({ isOpen, onClose, reason }: { isOpen: boolean; onClose: () =>
     setValue('reason', reason)
   }, [reason])
 
-  const form = useRef();
-  const sendEmail = (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    setSuccess(false)
+    setError(false)
+  }, [])
 
+  const sendEmail = (form: any) => {
     emailjs
-      //TODO change to real settings
-      .sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form.current, {
+
+      .sendForm(import.meta.env.EMAILJS_SERVICE_ID, 'YOUR_TEMPLATE_ID', form, {
         publicKey: 'YOUR_PUBLIC_KEY',
       })
       .then(
         () => {
-          console.log('SUCCESS!');
-          //TODO close form or show "success" or similar
+          setSuccess(true)
         },
-        (error) => {
-          console.log('FAILED...', error.text);
-          //TODO show error
-        },
-      );
-  };
+        (error: any) => {
+          setError(true)
+        }
+      )
+  }
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -92,18 +93,16 @@ const ModalPro = ({ isOpen, onClose, reason }: { isOpen: boolean; onClose: () =>
               flex='1 1 50%'
               flexDirection='column'
               justifyContent='space-between'
-              gap={10}
               pr={{ lg: 5 }}
-              ref={form}
-              onSubmit={sendEmail}
+              onSubmit={handleSubmit(sendEmail)}
             >
               <Text color='gray' mb={0}>
                 {t('process_create.modal_pro.form_description')}
               </Text>
               <Flex flexDirection='column' gap={3}>
                 <FormControl isInvalid={!!errors.name}>
-                  <Input type='hidden' name="reason" value={reason} />
-                  <Input type='hidden' name="product" value={window.location.href} />
+                  <Input type='hidden' name='reason' value={reason} />
+                  <Input type='hidden' name='product' value={window.location.href} />
                   <FormLabel>{t('process_create.modal_pro.form_name_label')}</FormLabel>
                   <Input
                     {...register('name', { required })}
@@ -121,9 +120,21 @@ const ModalPro = ({ isOpen, onClose, reason }: { isOpen: boolean; onClose: () =>
                   {!!errors.email && <FormErrorMessage>{errors.email?.message?.toString()}</FormErrorMessage>}
                 </FormControl>
               </Flex>
-              <Button type='submit' form='modal-pro'>
-                {t('process_create.modal_pro.form_btn')}
-              </Button>
+              <Box>
+                {success && (
+                  <Text my={3} color='success'>
+                    {t('process_create.modal_pro.success')}
+                  </Text>
+                )}
+                {error && (
+                  <Text my={3} color='error'>
+                    {t('process_create.modal_pro.error')}Error - Sending email
+                  </Text>
+                )}
+                <Button type='submit' form='modal-pro' w='full'>
+                  {t('process_create.modal_pro.form_btn')}
+                </Button>
+              </Box>
             </Flex>
             <Box w={{ lg: '1px' }} h={{ base: '1px', lg: 'auto' }} bgColor='gray'></Box>
             <Flex flex='1 1 50%' flexDirection='column' justifyContent='space-between' gap={10} pl={{ lg: 5 }}>

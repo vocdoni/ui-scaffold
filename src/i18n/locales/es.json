@@ -534,6 +534,7 @@
     "creation_steps_title": "Progreso",
     "modal_pro": {
       "description": "<p>La opción seleccionada no está disponible en el plan de autoatención (gratuito). Para poder utilizarla, necesitas comprar el <bold>plan de proyecto personalizado</bold></p>",
+      "error": "Error sending email, try it later or contact us at <email>info@vocdoni.org</email>",
       "form_btn": "ENVIAR",
       "form_description": "Puedes proporcionarnos tu información de contacto y nosotros te contactaremos para hablar sobre tus necesidades",
       "form_email_label": "Correo electrónico:",
@@ -542,6 +543,7 @@
       "form_name_placeholder": "Tu nombre",
       "scheudle_btn": "RESERVAR AHORA",
       "scheudle_description": " O puedes reservar directamente una llamada rápida (15 minutos) con nuestros expertos para ayudarte a crear tu proyecto de votación deseado",
+      "success": "Correo enviado correctamente",
       "title": "Contáctanos"
     },
     "preview": {
