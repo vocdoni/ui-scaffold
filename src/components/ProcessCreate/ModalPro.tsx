@@ -56,8 +56,8 @@ const ModalPro = ({ isOpen, onClose, reason }: { isOpen: boolean; onClose: () =>
   const sendEmail = (form: any) => {
     emailjs
 
-      .sendForm(import.meta.env.EMAILJS_SERVICE_ID, 'YOUR_TEMPLATE_ID', form, {
-        publicKey: 'YOUR_PUBLIC_KEY',
+      .sendForm(import.meta.env.EMAILJS_SERVICE_ID, import.meta.env.EMAILJS_TEMPLATE_ID, form, {
+        publicKey: import.meta.env.EMAILJS_PUBLIC_ID,
       })
       .then(
         () => {
