@@ -31,7 +31,7 @@ const ProcessHeader = () => {
   const strategy = useStrategy()
 
   const showOrgInformation = !loaded || (loaded && organization?.account?.name)
-  console.log(election)
+
   return (
     <Box mb={4}>
       {showOrgInformation && (
@@ -41,7 +41,7 @@ const ProcessHeader = () => {
         </Button>
       )}
       {election?.header && (
-        <Box w='100%' mx='auto' maxH='300px' my='30px' border='1px solid red' overflow='hidden'>
+        <Box w='100%' mx='auto' maxH='300px' my='30px' overflow='hidden'>
           <Image src={election?.header} w='100%' h='auto' objectFit='cover' />
         </Box>
       )}

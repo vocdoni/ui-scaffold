@@ -129,7 +129,7 @@ export const ProcessView = () => {
             gap={0}
             mx={{ base: 'auto', lg2: 0 }}
             position={{ lg2: 'sticky' }}
-            top='550px'
+            top={'220px'}
             mt={10}
             maxW={{ lg2: '290px' }}
             mb={10}
