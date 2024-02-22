@@ -22,6 +22,8 @@ const Preview = () => {
     endDate: end,
   } = form
 
+  console.log(description)
+
   const features =
     import.meta.env.features.vote.anonymous ||
     import.meta.env.features.vote.overwrite ||
