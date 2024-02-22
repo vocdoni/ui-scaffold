@@ -1,4 +1,4 @@
-import { Box, Checkbox, Flex, Icon, Text, useDisclosure } from '@chakra-ui/react'
+import { Box, Checkbox, Grid, Icon, Text, useDisclosure } from '@chakra-ui/react'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { GiChoice } from 'react-icons/gi'
@@ -22,8 +22,17 @@ const VotingTypes = () => {
         <Text fontSize='sm' color='process_create.description' mb={5}>
           {t('process_create.question.voting_type.description')}
         </Text>
-        <Flex flexWrap='wrap' gap={5}>
-          <Checkbox variant='radiobox' flex='0 0 30%' isChecked={true}>
+
+        <Grid
+          gridTemplateColumns={{
+            base: 'repeat(1, 1fr)',
+            sm: 'repeat(2, 1fr)',
+            md: 'repeat(3, 1fr)',
+            xl: 'repeat(5, 1fr)',
+          }}
+          gap={5}
+        >
+          <Checkbox variant='radiobox' isChecked={true}>
             <Box>
               <Icon as={GiChoice} />
               <Box>
@@ -37,7 +46,7 @@ const VotingTypes = () => {
             </Box>
             <Text>{t('process_create.question.single_choice.description')}</Text>
           </Checkbox>
-          <Checkbox variant='radiobox' flex='0 0 30%'>
+          <Checkbox variant='radiobox'>
             <Box>
               <Icon as={MdOutlineLibraryAddCheck} />
               <Box>
@@ -58,7 +67,7 @@ const VotingTypes = () => {
               }}
             />
           </Checkbox>
-          <Checkbox variant='radiobox' flex='0 0 30%'>
+          <Checkbox variant='radiobox'>
             <Box>
               <Icon as={HiCheckBadge} />
               <Text>{t('process_create.question.approval_voting.title')}</Text>
@@ -72,7 +81,7 @@ const VotingTypes = () => {
               }}
             />
           </Checkbox>
-          <Checkbox variant='radiobox' flex='0 0 30%'>
+          <Checkbox variant='radiobox'>
             <Box>
               <Icon as={GoNumber} />
               <Text>{t('process_create.question.participation_budgeting.title')}</Text>
@@ -86,7 +95,7 @@ const VotingTypes = () => {
               }}
             />
           </Checkbox>
-          <Checkbox variant='radiobox' flex='0 0 30%'>
+          <Checkbox variant='radiobox'>
             <Box>
               <Icon as={ImListNumbered} />
               <Box>
@@ -107,7 +116,7 @@ const VotingTypes = () => {
               }}
             />
           </Checkbox>
-        </Flex>
+        </Grid>
       </Box>
     </>
   )

@@ -4,12 +4,20 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
 
 const card = definePartsStyle({
   tablist: {
-    display: 'flex',
-    justifyContent: 'flex-start',
-    flexWrap: { base: 'unset', md: 'wrap' },
-    flexDirection: { base: 'column', md: 'row' },
-    mb: 10,
-    gap: { base: 5 },
+    // display: 'flex',
+    // justifyContent: 'flex-start',
+    // flexWrap: { base: 'unset', md: 'wrap' },
+    // flexDirection: { base: 'column', md: 'row' },
+    // mb: 10,
+    // gap: { base: 5 },
+    display: 'grid',
+    gridTemplateColumns: {
+      base: 'repeat(1, 1fr)',
+      sm: 'repeat(2, 1fr)',
+      md: 'repeat(3, 1fr)',
+      xl: 'repeat(5, 1fr)',
+    },
+    gap: 5,
   },
   tab: {
     position: 'relative',
@@ -50,6 +58,7 @@ const card = definePartsStyle({
       alignItems: 'center',
       w: 'full',
       gap: 3,
+      mt: 2,
 
       '& p': {
         fontWeight: 'bold',

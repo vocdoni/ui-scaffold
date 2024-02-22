@@ -1,4 +1,4 @@
-import { Box, Checkbox, Flex, Icon, Text, useDisclosure } from '@chakra-ui/react'
+import { Box, Checkbox, Grid, Icon, Text, useDisclosure } from '@chakra-ui/react'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { BiCheckDouble } from 'react-icons/bi'
@@ -10,6 +10,8 @@ const SettingsAdvanced = () => {
   const { t } = useTranslation()
   const { register } = useFormContext()
   const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const numberOfFeatures = Object.values(import.meta.env.features.vote).filter((value) => value === true).length
 
   const features =
     import.meta.env.features.vote.anonymous ||
@@ -26,9 +28,17 @@ const SettingsAdvanced = () => {
         <Box mb={4}>
           <Text className='process-create-title'>{t('form.process_create.behavior.title')}</Text>
         </Box>
-        <Flex gap={5} flexDirection={{ base: 'column', md: 'row' }} justifyContent='space-between' flexWrap='wrap'>
+
+        <Grid
+          gridTemplateColumns={{
+            base: 'repeat(1, 1fr)',
+            sm: 'repeat(2, 1fr)',
+            xl: `repeat(${numberOfFeatures}, 1fr)`,
+          }}
+          gap={5}
+        >
           {import.meta.env.features.vote.anonymous && (
-            <Checkbox {...register('electionType.anonymous')} variant='radiobox' flex='0 0 30%'>
+            <Checkbox {...register('electionType.anonymous')} variant='radiobox'>
               <Box>
                 <Icon as={FaUserSecret} />
                 <Text>{t('form.process_create.behavior.anonymous.title')}</Text>
@@ -37,7 +47,7 @@ const SettingsAdvanced = () => {
             </Checkbox>
           )}
           {import.meta.env.features.vote.secret && (
-            <Checkbox {...register('electionType.secretUntilTheEnd')} variant='radiobox' flex='0 0 30%'>
+            <Checkbox {...register('electionType.secretUntilTheEnd')} variant='radiobox'>
               <Box>
                 <Icon as={HiKey} />
                 <Text>{t('form.process_create.behavior.secret.title')}</Text>
@@ -46,7 +56,7 @@ const SettingsAdvanced = () => {
             </Checkbox>
           )}
           {import.meta.env.features.vote.overwrite && (
-            <Checkbox {...register('maxVoteOverwrites')} variant='radiobox' flex='0 0 30%'>
+            <Checkbox {...register('maxVoteOverwrites')} variant='radiobox'>
               <Box>
                 <Icon as={BiCheckDouble} />
                 <Text>{t('form.process_create.behavior.overwrite.title')}</Text>
@@ -55,7 +65,7 @@ const SettingsAdvanced = () => {
             </Checkbox>
           )}
           {import.meta.env.features.vote.customization && (
-            <Checkbox variant='radiobox' flex='0 0 30%'>
+            <Checkbox variant='radiobox'>
               <Box>
                 <Icon as={BiCheckDouble} />
                 <Text>{t('form.process_create.behavior.customization.title')}</Text>
@@ -65,7 +75,7 @@ const SettingsAdvanced = () => {
               <Box onClick={onOpen} />
             </Checkbox>
           )}
-        </Flex>
+        </Grid>
       </Box>
     </>
   )
