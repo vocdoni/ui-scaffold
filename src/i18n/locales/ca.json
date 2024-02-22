@@ -453,7 +453,7 @@
       "starts": "Comença el procés"
     },
     "is_anonymous": {
-      "description": "Identitat 100% anonimitzada",
+      "description": "Votació anònima",
       "title": "Anònim"
     },
     "is_invalid": "Aquest procés té dades no vàlides i per tant no pot carregar-se",
