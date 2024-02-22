@@ -1,5 +1,5 @@
 import { WarningIcon } from '@chakra-ui/icons'
-import { Box, Button, Flex, Icon, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Icon, Image, Text } from '@chakra-ui/react'
 import {
   ElectionDescription,
   ElectionSchedule,
@@ -31,7 +31,7 @@ const ProcessHeader = () => {
   const strategy = useStrategy()
 
   const showOrgInformation = !loaded || (loaded && organization?.account?.name)
-
+  console.log(election)
   return (
     <Box mb={4}>
       {showOrgInformation && (
@@ -39,6 +39,11 @@ const ProcessHeader = () => {
           <GoBack />
           <OrganizationName as='span' />
         </Button>
+      )}
+      {election?.header && (
+        <Box w='100%' mx='auto' maxH='300px' my='30px' border='1px solid red' overflow='hidden'>
+          <Image src={election?.header} w='100%' h='auto' objectFit='cover' />
+        </Box>
       )}
       <Flex direction={{ base: 'column', lg2: 'row' }} mb={7} gap={10}>
         <Box flexGrow={0} flexShrink={0} flexBasis={{ base: '100%', md: '60%', lg: '65%', lg2: '70%', xl2: '75%' }}>
