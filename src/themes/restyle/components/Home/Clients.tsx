@@ -25,7 +25,7 @@ const Clients = () => {
         maxW={{ base: '100%', sm: '70%', sm2: '60%', lg: '640px' }}
         flexDirection={{ base: 'column', sm: 'row' }}
         justifyContent='center'
-        mb={{ base: '60px', lg: '100px' }}
+        mb={{ base: '30px' }}
         gridTemplateColumns='repeat(5, 1fr)'
       >
         <Card variant='client'>
