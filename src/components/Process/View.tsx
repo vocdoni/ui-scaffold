@@ -81,7 +81,7 @@ export const ProcessView = () => {
             maxW={{ base: videoTop ? '250px' : '800px', lg: videoTop ? '400px' : '800px' }}
             ml={videoTop ? 'auto' : 'none'}
             position='sticky'
-            top={0}
+            top={{ base: 0, lg2: 20 }}
             zIndex={100}
           >
             <AspectRatio ref={videoRef} ratio={16 / 9}>
@@ -90,7 +90,7 @@ export const ProcessView = () => {
           </Box>
         )}
 
-        <Flex direction={{ base: 'column', lg2: 'row' }} alignItems='start' gap={{ lg2: 10 }}>
+        <Flex direction={{ base: 'column', lg2: 'row' }} alignItems='start' gap={{ lg2: 10 }} mt={20}>
           <Tabs
             order={{ base: 2, lg2: 1 }}
             variant='process'
@@ -129,7 +129,7 @@ export const ProcessView = () => {
             gap={0}
             mx={{ base: 'auto', lg2: 0 }}
             position={{ lg2: 'sticky' }}
-            top={'220px'}
+            top={'300px'}
             mt={10}
             maxW={{ lg2: '290px' }}
             mb={10}

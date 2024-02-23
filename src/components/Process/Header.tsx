@@ -33,7 +33,7 @@ const ProcessHeader = () => {
   const showOrgInformation = !loaded || (loaded && organization?.account?.name)
 
   return (
-    <Box mb={4}>
+    <Box mb={10}>
       {showOrgInformation && (
         <Button as={Link} to={`/organization/0x${election?.organizationId}`} variant='go-back' mt={5}>
           <GoBack />
