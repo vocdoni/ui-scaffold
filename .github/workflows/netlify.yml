@@ -25,7 +25,7 @@ jobs:
         run: yarn build
         env:
           VOCDONI_ENVIRONMENT: dev
-          FEATURES: ${{ secrets.FEATURES }}
+          FEATURES: '{"languages":["ca"]}'
           CUSTOM_ORGANIZATION_DOMAINS: ${{ secrets.CUSTOM_ORGANIZATION_DOMAINS }}
           CSP_URL: ${{ secrets.CSP_URL }}}
           CSP_PUBKEY: ${{ secrets.CSP_PUBKEY }}
