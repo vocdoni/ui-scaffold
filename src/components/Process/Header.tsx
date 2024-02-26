@@ -34,7 +34,7 @@ const ProcessHeader = () => {
 
   return (
     <Box mb={10}>
-      {showOrgInformation && (
+      {showOrgInformation && import.meta.env.theme !== 'pxll' && (
         <Button as={Link} to={`/organization/0x${election?.organizationId}`} variant='go-back' mt={5}>
           <GoBack />
           <OrganizationName as='span' />
@@ -129,7 +129,7 @@ const ProcessHeader = () => {
             </Box>
           )}
 
-          {showOrgInformation && (
+          {showOrgInformation && import.meta.env.theme !== 'pxll' && (
             <Box w={{ lg2: 'full' }}>
               <Text fontWeight='bold' mb={1}>
                 {t('process.created_by')}
