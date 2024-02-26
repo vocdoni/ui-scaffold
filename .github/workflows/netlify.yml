@@ -35,7 +35,7 @@ jobs:
         with:
           publish-dir: './dist'
           # keep as a non existant branch, because we don't want to publish this
-          production-branch: master
+          production-branch: develop
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: 'Vocdoni DEV Deploy from GitHub Actions'
           enable-pull-request-comment: true
@@ -104,7 +104,7 @@ jobs:
       - name: Lint
         run: yarn lint
 
-      - name: Build vocdoni app stg
+      - name: Build onvote stg
         run: yarn build
         env:
           VOCDONI_ENVIRONMENT: stg
