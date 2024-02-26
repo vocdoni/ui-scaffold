@@ -43,7 +43,7 @@ jobs:
           overwrites-pull-request-comment: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_SITE_ID: 5bddb63a-3f70-4de9-9fa8-89afc6f813a8
         timeout-minutes: 1
 
   build-stg-vocdoni:
@@ -84,7 +84,7 @@ jobs:
           overwrites-pull-request-comment: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_SITE_ID: 5f9bd529-1b25-49af-acde-818bbd33109b
         timeout-minutes: 1
 
   build-stg-onvote:
@@ -126,5 +126,5 @@ jobs:
           overwrites-pull-request-comment: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_SITE_ID: ed17f013-4901-4158-bad6-51c836f77b77
         timeout-minutes: 1
