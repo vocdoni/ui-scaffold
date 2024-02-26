@@ -13,7 +13,7 @@ const Benefits = () => {
           </svg>
         </div>
       </div>
-      <Box as='section' id='benefits' bgColor='#175b64'>
+      <Box as='section' id='benefits' bgColor='#175b64' mt={{ base: '-1px' }}>
         <Box className='site-wrapper' pb={{ base: '60px', lg: '100px' }} pt={{ base:'60px'}}>
           <Text
             fontSize={{ base: '25px', lg: '30px', xl: '40px' }}

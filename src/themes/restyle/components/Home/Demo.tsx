@@ -33,7 +33,7 @@ const Demo = () => {
       <Box as='section' id='usecases' bgColor='home.section.bg'>
         <Box className='site-wrapper' py={{ base: '60px', lg: '100px' }}>
           <Flex flexDirection={{ base: 'column', lg: 'row' }} mb='40px' gap={{ base: '40px', lg: 0 }}>
-            <Box flex='1 1 50%'>
+            <Box flex='1 1 75%'>
               <Text color='home.section.title' fontWeight='bold' mb='6px' fontSize='20px' lineHeight='24px'>
                 {t('home.demo.header')}
               </Text>
@@ -44,7 +44,7 @@ const Demo = () => {
                 {t('home.demo.description')}
               </Text>
             </Box>
-            <Flex flex='1 1 50%' justifyContent={{ base: 'center', lg: 'end' }} alignItems='center'>
+            <Flex flex='1 1 25%' justifyContent={{ base: 'center', lg: 'end' }} alignItems='center'>
               <Button w={{ base: 'full', sm: 'fit-content' }}>{t('home.demo.btn')}</Button>
             </Flex>
           </Flex>
