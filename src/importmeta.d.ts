@@ -22,6 +22,7 @@ interface ImportMeta {
         token: boolean
         web3: boolean
         csp: boolean
+        gitcoin: boolean
       }
     }
     theme: string
