@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { BiCoinStack, BiFile, BiGroup, BiWallet } from 'react-icons/bi'
-import { CspCensus, SpreadsheetCensus, TokenCensus, Web3Census } from '../StepForm/Censuses'
+import {CspCensus, GitcoinCensus, SpreadsheetCensus, TokenCensus, Web3Census} from '../StepForm/Censuses'
 
 export const CensusTypeSpreadsheet = 'spreadsheet'
 export const CensusTypeToken = 'token'
@@ -56,7 +56,7 @@ export const useCensusTypes = () => {
         title: t('form.process_create.census.gitcoin_title'),
         description: t('form.process_create.census.gitcoin_description'),
         icon: BiWallet,
-        component: Web3Census,
+        component: GitcoinCensus,
       },
     },
   }

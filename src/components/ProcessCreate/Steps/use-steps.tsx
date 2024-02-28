@@ -9,6 +9,7 @@ import { Census, CensusValues } from './Census'
 import { Checks } from './Checks'
 import { Confirm } from './Confirm'
 import { CensusCspValues } from '../StepForm/CensusCsp'
+import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
 
 export interface StepsFormValues
   extends InfoValues,
@@ -17,6 +18,7 @@ export interface StepsFormValues
     CensusWeb3Values,
     CensusTokenValues,
     CensusCspValues,
+    CensusGitcoinValues,
     CensusSpreadsheetValues {}
 
 export interface StepsState {
@@ -50,11 +52,11 @@ export const useProcessCreationSteps = () => {
 export const useStepContents = () => {
   const { t } = useTranslation()
   const steps = [
-    { title: t('form.process_create.steps.checks'), Contents: Checks },
-    { title: t('form.process_create.steps.info'), Contents: Info, first: true },
-    { title: t('form.process_create.steps.questions'), Contents: Questions },
-    { title: t('form.process_create.steps.census'), Contents: Census },
-    { title: t('form.process_create.steps.confirm'), Contents: Confirm },
+    // { title: t('form.process_create.steps.checks'), Contents: Checks },
+    // { title: t('form.process_create.steps.info'), Contents: Info },
+    // { title: t('form.process_create.steps.questions'), Contents: Questions },
+    { title: t('form.process_create.steps.census'), Contents: Census, first: true },
+    // { title: t('form.process_create.steps.confirm'), Contents: Confirm },
   ]
 
   return steps
