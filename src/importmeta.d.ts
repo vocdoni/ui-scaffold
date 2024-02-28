@@ -20,7 +20,6 @@ interface ImportMeta {
       }
       login: string[]
       census: string[]
-      voting: string[]
       unimplemented_census: string[]
       languages: string[]
       _census: {
@@ -37,7 +36,7 @@ interface ImportMeta {
         digital_certificate: boolean
         others: boolean
       }
-      _voting: {
+      voting_type: {
         single: boolean
         multi: boolean
         approval: boolean

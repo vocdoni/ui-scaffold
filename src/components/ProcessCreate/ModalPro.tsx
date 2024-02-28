@@ -99,7 +99,7 @@ const ModalPro = ({ isOpen, onClose, reason }: { isOpen: boolean; onClose: () =>
               <Text color='process_create.modal_pro.description' mb={0} fontSize='sm'>
                 {t('process_create.modal_pro.form_description')}
               </Text>
-              <Flex flexDirection='column' gap={3}>
+              <Flex flexDirection='column' gap={3} mb={5}>
                 <FormControl isInvalid={!!errors.name}>
                   <FormLabel fontSize='xs'>{t('process_create.modal_pro.form_name_label')}</FormLabel>
                   <Input

@@ -11,7 +11,7 @@ const viteconfig = ({ mode }) => {
   // load env variables from .env files
   process.env = { ...process.env, ...loadEnv(mode, process.cwd(), '') }
 
-  let vocdoniEnvironment = process.env.VOCDONI_EºNVIRONMENT
+  let vocdoniEnvironment = process.env.VOCDONI_ENVIRONMENT
   if (!vocdoniEnvironment) {
     vocdoniEnvironment = 'stg'
   }

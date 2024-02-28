@@ -32,90 +32,100 @@ const VotingTypes = () => {
           }}
           gap={5}
         >
-          <Checkbox variant='radiobox' isChecked={true}>
-            <Box>
-              <Icon as={GiChoice} />
+          {import.meta.env.features.voting_type.single && (
+            <Checkbox variant='radiobox' isChecked={true}>
               <Box>
-                <Trans
-                  i18nKey='process_create.question.single_choice.title'
-                  components={{
-                    p: <Text />,
-                  }}
-                />
+                <Icon as={GiChoice} />
+                <Box>
+                  <Trans
+                    i18nKey='process_create.question.single_choice.title'
+                    components={{
+                      p: <Text />,
+                    }}
+                  />
+                </Box>
               </Box>
-            </Box>
-            <Text>{t('process_create.question.single_choice.description')}</Text>
-          </Checkbox>
-          <Checkbox variant='radiobox'>
-            <Box>
-              <Icon as={MdOutlineLibraryAddCheck} />
+              <Text>{t('process_create.question.single_choice.description')}</Text>
+            </Checkbox>
+          )}
+          {import.meta.env.features.voting_type.multi && (
+            <Checkbox variant='radiobox'>
               <Box>
-                <Trans
-                  i18nKey='process_create.question.multi_choice.title'
-                  components={{
-                    p: <Text />,
-                  }}
-                />
+                <Icon as={MdOutlineLibraryAddCheck} />
+                <Box>
+                  <Trans
+                    i18nKey='process_create.question.multi_choice.title'
+                    components={{
+                      p: <Text />,
+                    }}
+                  />
+                </Box>
               </Box>
-            </Box>
-            <Text as='span'>Pro</Text>
-            <Text>{t('process_create.question.multi_choice.description')}</Text>
-            <Box
-              onClick={() => {
-                setReason('multiple choice')
-                onOpen()
-              }}
-            />
-          </Checkbox>
-          <Checkbox variant='radiobox'>
-            <Box>
-              <Icon as={HiCheckBadge} />
-              <Text>{t('process_create.question.approval_voting.title')}</Text>
-            </Box>
-            <Text as='span'>Pro</Text>
-            <Text>{t('process_create.question.approval_voting.description')}</Text>
-            <Box
-              onClick={() => {
-                setReason('approval voting')
-                onOpen()
-              }}
-            />
-          </Checkbox>
-          <Checkbox variant='radiobox'>
-            <Box>
-              <Icon as={GoNumber} />
-              <Text>{t('process_create.question.participation_budgeting.title')}</Text>
-            </Box>
-            <Text as='span'>Pro</Text>
-            <Text>{t('process_create.question.participation_budgeting.description')}</Text>
-            <Box
-              onClick={() => {
-                setReason('participatory budgeting')
-                onOpen()
-              }}
-            />
-          </Checkbox>
-          <Checkbox variant='radiobox'>
-            <Box>
-              <Icon as={ImListNumbered} />
+              <Text as='span'>Pro</Text>
+              <Text>{t('process_create.question.multi_choice.description')}</Text>
+              <Box
+                onClick={() => {
+                  setReason('multiple choice')
+                  onOpen()
+                }}
+              />
+            </Checkbox>
+          )}
+          {import.meta.env.features.voting_type.approval && (
+            <Checkbox variant='radiobox'>
               <Box>
-                <Trans
-                  i18nKey='process_create.question.borda_count.title'
-                  components={{
-                    p: <Text />,
-                  }}
-                />
+                <Icon as={HiCheckBadge} />
+                <Text>{t('process_create.question.approval_voting.title')}</Text>
               </Box>
-            </Box>
-            <Text as='span'>Pro</Text>
-            <Text>{t('process_create.question.borda_count.description')}</Text>
-            <Box
-              onClick={() => {
-                setReason('borda count')
-                onOpen()
-              }}
-            />
-          </Checkbox>
+              <Text as='span'>Pro</Text>
+              <Text>{t('process_create.question.approval_voting.description')}</Text>
+              <Box
+                onClick={() => {
+                  setReason('approval voting')
+                  onOpen()
+                }}
+              />
+            </Checkbox>
+          )}
+          {import.meta.env.features.voting_type.participatory && (
+            <Checkbox variant='radiobox'>
+              <Box>
+                <Icon as={GoNumber} />
+                <Text>{t('process_create.question.participation_budgeting.title')}</Text>
+              </Box>
+              <Text as='span'>Pro</Text>
+              <Text>{t('process_create.question.participation_budgeting.description')}</Text>
+              <Box
+                onClick={() => {
+                  setReason('participatory budgeting')
+                  onOpen()
+                }}
+              />
+            </Checkbox>
+          )}
+          {import.meta.env.features.voting_type.borda && (
+            <Checkbox variant='radiobox'>
+              <Box>
+                <Icon as={ImListNumbered} />
+                <Box>
+                  <Trans
+                    i18nKey='process_create.question.borda_count.title'
+                    components={{
+                      p: <Text />,
+                    }}
+                  />
+                </Box>
+              </Box>
+              <Text as='span'>Pro</Text>
+              <Text>{t('process_create.question.borda_count.description')}</Text>
+              <Box
+                onClick={() => {
+                  setReason('borda count')
+                  onOpen()
+                }}
+              />
+            </Checkbox>
+          )}
         </Grid>
       </Box>
     </>
