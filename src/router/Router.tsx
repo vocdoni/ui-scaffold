@@ -15,6 +15,8 @@ const NotFound = lazy(() => import('../elements/NotFound'))
 const Organization = lazy(() => import('../elements/Organization'))
 const Process = lazy(() => import('../elements/Process'))
 const Faucet = lazy(() => import('../elements/Faucet'))
+const Terms = lazy(() => import('../components/TermsAndPrivacity/Terms'))
+const Privacy = lazy(() => import('../components/TermsAndPrivacity/Privacy'))
 
 export const RoutesProvider = () => {
   const { client } = useClient()
@@ -82,6 +84,22 @@ export const RoutesProvider = () => {
               }
             />
           )}
+          <Route
+            path='/terms'
+            element={
+              <SuspenseLoader>
+                <Terms />
+              </SuspenseLoader>
+            }
+          />
+          <Route
+            path='/privacy'
+            element={
+              <SuspenseLoader>
+                <Privacy />
+              </SuspenseLoader>
+            }
+          />
           <Route
             path='*'
             element={
