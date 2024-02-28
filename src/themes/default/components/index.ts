@@ -16,9 +16,11 @@ import { SpreadsheetAccess } from './SpreadSheet'
 import { Stepper } from './Stepper'
 import { Tabs } from './Tabs'
 import { Textarea } from './Textarea'
+import { Avatar } from './Avatar'
 
 export {
   Alert,
+  Avatar,
   Badge,
   Button,
   Card,
@@ -41,6 +43,7 @@ export {
 export const components = {
   ElectionActions,
   Alert,
+  Avatar,
   Badge,
   Button,
   Card,

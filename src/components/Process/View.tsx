@@ -41,9 +41,9 @@ export const ProcessView = () => {
   const { election } = useElection()
   const videoRef = useRef<HTMLDivElement>(null)
   const [videoTop, setVideoTop] = useState(false)
-
+  const questionsRef = useRef<any>()
   const [tabIndex, setTabIndex] = useState(0)
-
+  const [rerender, setRerender] = useState(false)
   const handleTabsChange = (index: number) => {
     setTabIndex(index)
   }
@@ -71,6 +71,8 @@ export const ProcessView = () => {
   useEffect(() => {
     if (election?.status === ElectionStatus.RESULTS) setTabIndex(1)
   }, [election])
+
+  console.log(questionsRef?.current?.children[0].children[0])
 
   return (
     <Box>
@@ -107,12 +109,20 @@ export const ProcessView = () => {
             </TabList>
             <TabPanels>
               <TabPanel>
-                <Box className='md-sizes'>
+                <Box ref={questionsRef} className='md-sizes' mb='100px' pt='50px'>
                   <ElectionQuestions
                     confirmContents={(election, answers) => <ConfirmVoteModal election={election} answers={answers} />}
                   />
                 </Box>
-                <Box position='sticky' bottom={0} left={0} pb={1} pt={1} display={{ base: 'none', lg2: 'block' }}>
+                <Box
+                  position='sticky'
+                  bottom={0}
+                  left={0}
+                  pb={1}
+                  pt={1}
+                  display={{ base: 'none', lg2: 'block' }}
+                  onClick={() => setRerender(!rerender)}
+                >
                   <VoteButton setQuestionsTab={setQuestionsTab} />
                 </Box>
               </TabPanel>

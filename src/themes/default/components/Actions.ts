@@ -1,14 +1,16 @@
 import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
-import { questionsAnatomy } from '@vocdoni/chakra-components'
+import { actionsAnatomy } from '@vocdoni/chakra-components'
 
-const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpers(questionsAnatomy)
+const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpers(actionsAnatomy)
 
 const baseStyle = definePartsStyle({
   group: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+    // display: 'flex',
+    // flexDirection: 'column',
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // bgColor: 'red !important',
+    border: '1px solid red !important',
   },
 
   buttons: {
@@ -22,7 +24,7 @@ const baseStyle = definePartsStyle({
   },
 
   icons: {
-    color: 'black !important',
+    color: 'red !important',
   },
 })
 

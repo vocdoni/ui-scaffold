@@ -9,12 +9,7 @@ export const CreatedBy = (props: FlexProps) => {
 
   return (
     <Flex gap={2} alignItems='center' {...props}>
-      <Avatar
-        alignSelf='start'
-        size='sm'
-        src={organization?.account.avatar}
-        name={organization?.account.name.default}
-      />
+      <Avatar size='sm' src={organization?.account.avatar} name={organization?.account.name.default} />
       <LongOrganizationName />
       <CopyAddressBtn />
     </Flex>
@@ -52,7 +47,7 @@ const CopyAddressBtn = () => {
   return (
     <IconButton
       variant='transparent'
-      icon={<CopyIcon />}
+      icon={<CopyIcon boxSize={3} />}
       aria-label='copy address'
       onClick={() => {
         toast({
