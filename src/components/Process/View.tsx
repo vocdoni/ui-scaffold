@@ -43,6 +43,7 @@ export const ProcessView = () => {
   const [videoTop, setVideoTop] = useState(false)
 
   const [tabIndex, setTabIndex] = useState(0)
+  const [rerender, setRerender] = useState(false)
 
   const handleTabsChange = (index: number) => {
     setTabIndex(index)
@@ -76,6 +77,7 @@ export const ProcessView = () => {
     <Box>
       <Box className='site-wrapper' mb={44}>
         <Header />
+
         {election?.streamUri && (
           <Box
             maxW={{ base: videoTop ? '250px' : '800px', lg: videoTop ? '400px' : '800px' }}
@@ -107,12 +109,20 @@ export const ProcessView = () => {
             </TabList>
             <TabPanels>
               <TabPanel>
-                <Box className='md-sizes'>
+                <Box className='md-sizes' mb='100px' pt='50px'>
                   <ElectionQuestions
                     confirmContents={(election, answers) => <ConfirmVoteModal election={election} answers={answers} />}
                   />
                 </Box>
-                <Box position='sticky' bottom={0} left={0} pb={1} pt={1} display={{ base: 'none', lg2: 'block' }}>
+                <Box
+                  position='sticky'
+                  bottom={0}
+                  left={0}
+                  pb={1}
+                  pt={1}
+                  display={{ base: 'none', lg2: 'block' }}
+                  onClick={() => setRerender(!rerender)}
+                >
                   <VoteButton setQuestionsTab={setQuestionsTab} />
                 </Box>
               </TabPanel>
