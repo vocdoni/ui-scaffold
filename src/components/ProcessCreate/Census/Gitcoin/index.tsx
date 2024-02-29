@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { errorToString, useClient } from '@vocdoni/react-providers'
 import { EnvOptions, TokenSummary, VocdoniCensus3Client } from '@vocdoni/sdk'
 import { GitcoinForm } from '~components/ProcessCreate/Census/Gitcoin/GitcoinForm'
+import Wrapper from '~components/ProcessCreate/Steps/Wrapper'
 
 export const GitcoinStrategyBuilder = () => {
   const { t } = useTranslation()
@@ -34,7 +35,7 @@ export const GitcoinStrategyBuilder = () => {
       setError(undefined)
       try {
         const tks = await client.getSupportedTokens()
-        const gitcoinTokens = tks.filter((tk) => tk.type === 'gitcoinpassport')
+        const gitcoinTokens = tks.filter((tk) => tk.type === 'gitcoinpassport' && tk.externalID)
         setGitcoinTokens(gitcoinTokens)
       } catch (err) {
         setError(errorToString(err))
@@ -44,7 +45,7 @@ export const GitcoinStrategyBuilder = () => {
   }, [client])
 
   return (
-    <Stack w='full' direction='column' gap={3} alignItems='center'>
+    <Wrapper>
       {loading ? <Spinner mt={10} /> : !error && <GitcoinForm gitcoinTokens={gitcoinTokens} />}
       {error && (
         <Alert status='error'>
@@ -52,6 +53,6 @@ export const GitcoinStrategyBuilder = () => {
           {error}
         </Alert>
       )}
-    </Stack>
+    </Wrapper>
   )
 }

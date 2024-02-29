@@ -5,11 +5,14 @@ import {
   NumberInput,
   NumberInputField,
   NumberInputStepper,
+  Flex,
 } from '@chakra-ui/react'
 import { Controller, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { TokenSummary } from '@vocdoni/sdk'
 import { FC } from 'react'
+import { StampCard } from '~components/ProcessCreate/Census/Gitcoin/StampCard'
+import { HiKey } from 'react-icons/hi2'
 
 interface IGitcoinFormProps {
   gitcoinTokens: TokenSummary[]
@@ -44,6 +47,12 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
           </NumberInput>
         )}
       ></Controller>
+      <FormLabel fontWeight='bold'>{t('form.process_create.census.gitcoin_stamps')}</FormLabel>
+      <Flex gap={5} flexDirection={{ base: 'column', md: 'row' }} justifyContent='space-between'>
+        {gitcoinTokens.map((token) => (
+          <StampCard key={token.ID} name={token.name} icon={HiKey} />
+        ))}
+      </Flex>
     </>
   )
 }
