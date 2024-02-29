@@ -6,18 +6,17 @@ import { EnvOptions, TokenSummary, VocdoniCensus3Client } from '@vocdoni/sdk'
 import { GitcoinForm } from '~components/ProcessCreate/Census/Gitcoin/GitcoinForm'
 import Wrapper from '~components/ProcessCreate/Steps/Wrapper'
 
+export type GitcoinStampToken = Omit<TokenSummary, 'externalID'> & {
+  externalID: string // For stamp tokens externalID is not nullable
+}
+
 export const GitcoinStrategyBuilder = () => {
   const { t } = useTranslation()
   const { env } = useClient()
 
   const [error, setError] = useState<string | undefined>()
   const [loading, setLoading] = useState<boolean>(false)
-  const [gitcoinTokens, setGitcoinTokens] = useState<TokenSummary[]>([])
-
-  const required = {
-    value: true,
-    message: t('form.error.field_is_required'),
-  }
+  const [gitcoinTokens, setGitcoinTokens] = useState<GitcoinStampToken[]>([])
 
   const client = useMemo(
     () =>
@@ -36,7 +35,7 @@ export const GitcoinStrategyBuilder = () => {
       try {
         const tks = await client.getSupportedTokens()
         const gitcoinTokens = tks.filter((tk) => tk.type === 'gitcoinpassport' && tk.externalID)
-        setGitcoinTokens(gitcoinTokens)
+        setGitcoinTokens(gitcoinTokens as GitcoinStampToken[])
       } catch (err) {
         setError(errorToString(err))
       }
