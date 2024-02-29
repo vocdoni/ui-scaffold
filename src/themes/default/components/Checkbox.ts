@@ -22,6 +22,7 @@ const radiobox = definePartsStyle({
     boxShadow: 'var(--box-shadow)',
     bgColor: 'process_create.advanced_checkbox_bg',
     borderRadius: 'md',
+    maxW: { xl: '400px' },
 
     _hover: {
       boxShadow: 'var(--box-shadow-darker)',

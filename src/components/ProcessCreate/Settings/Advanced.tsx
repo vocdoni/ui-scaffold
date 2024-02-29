@@ -33,7 +33,7 @@ const SettingsAdvanced = () => {
           gridTemplateColumns={{
             base: 'repeat(1, 1fr)',
             sm: 'repeat(2, 1fr)',
-            xl: `repeat(${numberOfFeatures}, 1fr)`,
+            xl: 'repeat(auto-fill, minmax(250px, 1fr))',
           }}
           gap={5}
         >

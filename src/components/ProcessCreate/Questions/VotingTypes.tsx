@@ -1,12 +1,9 @@
 import { Box, Checkbox, Grid, Icon, Text, useDisclosure } from '@chakra-ui/react'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { GiChoice } from 'react-icons/gi'
-import { GoNumber } from 'react-icons/go'
-import { HiCheckBadge } from 'react-icons/hi2'
-import { ImListNumbered } from 'react-icons/im'
-import { MdOutlineLibraryAddCheck } from 'react-icons/md'
 import ModalPro from '../ModalPro'
+import { UnimplementedVotingType, useUnimplementedVotingType } from './useUnimplementedVotingType'
+import { useVotingType, VotingType } from './useVotingType'
 
 const VotingTypes = () => {
   const { t } = useTranslation()
@@ -14,6 +11,10 @@ const VotingTypes = () => {
 
   const [reason, setReason] = useState('')
 
+  const { defined, details } = useVotingType()
+  const { defined: unDefined, details: undDetails } = useUnimplementedVotingType()
+
+  console.log(reason)
   return (
     <>
       <ModalPro isOpen={isOpen} onClose={onClose} reason={reason} />
@@ -32,84 +33,30 @@ const VotingTypes = () => {
           }}
           gap={5}
         >
-          {import.meta.env.features.voting_type.single && (
-            <Checkbox variant='radiobox' isChecked={true}>
+          {defined.map((ct: VotingType, index: number) => (
+            <Checkbox key={index} variant='radiobox' isChecked={true}>
               <Box>
-                <Icon as={GiChoice} />
+                <Icon as={details[ct].icon} />
                 <Box>
                   <Trans
-                    i18nKey='process_create.question.single_choice.title'
+                    i18nKey={details[ct].title}
                     components={{
                       p: <Text />,
                     }}
                   />
                 </Box>
               </Box>
-              <Text>{t('process_create.question.single_choice.description')}</Text>
+              <Text>{details[ct].description}</Text>
             </Checkbox>
-          )}
-          {import.meta.env.features.voting_type.multi && (
-            <Checkbox variant='radiobox'>
+          ))}
+
+          {unDefined.map((ct: UnimplementedVotingType, index: number) => (
+            <Checkbox key={index} variant='radiobox' isChecked={true}>
               <Box>
-                <Icon as={MdOutlineLibraryAddCheck} />
+                <Icon as={undDetails[ct].icon} />
                 <Box>
                   <Trans
-                    i18nKey='process_create.question.multi_choice.title'
-                    components={{
-                      p: <Text />,
-                    }}
-                  />
-                </Box>
-              </Box>
-              <Text as='span'>Pro</Text>
-              <Text>{t('process_create.question.multi_choice.description')}</Text>
-              <Box
-                onClick={() => {
-                  setReason('multiple choice')
-                  onOpen()
-                }}
-              />
-            </Checkbox>
-          )}
-          {import.meta.env.features.voting_type.approval && (
-            <Checkbox variant='radiobox'>
-              <Box>
-                <Icon as={HiCheckBadge} />
-                <Text>{t('process_create.question.approval_voting.title')}</Text>
-              </Box>
-              <Text as='span'>Pro</Text>
-              <Text>{t('process_create.question.approval_voting.description')}</Text>
-              <Box
-                onClick={() => {
-                  setReason('approval voting')
-                  onOpen()
-                }}
-              />
-            </Checkbox>
-          )}
-          {import.meta.env.features.voting_type.participatory && (
-            <Checkbox variant='radiobox'>
-              <Box>
-                <Icon as={GoNumber} />
-                <Text>{t('process_create.question.participation_budgeting.title')}</Text>
-              </Box>
-              <Text as='span'>Pro</Text>
-              <Text>{t('process_create.question.participation_budgeting.description')}</Text>
-              <Box
-                onClick={() => {
-                  setReason('participatory budgeting')
-                  onOpen()
-                }}
-              />
-            </Checkbox>
-          )}
-          {import.meta.env.features.voting_type.borda && (
-            <Checkbox variant='radiobox'>
-              <Box>
-                <Icon as={ImListNumbered} />
-                <Box>
-                  <Trans
-                    i18nKey='process_create.question.borda_count.title'
+                    i18nKey={undDetails[ct].title}
                     components={{
                       p: <Text />,
                     }}
@@ -117,15 +64,15 @@ const VotingTypes = () => {
                 </Box>
               </Box>
               <Text as='span'>Pro</Text>
-              <Text>{t('process_create.question.borda_count.description')}</Text>
+              <Text>{undDetails[ct].description}</Text>
               <Box
                 onClick={() => {
-                  setReason('borda count')
+                  setReason(undDetails[ct].title)
                   onOpen()
                 }}
               />
             </Checkbox>
-          )}
+          ))}
         </Grid>
       </Box>
     </>

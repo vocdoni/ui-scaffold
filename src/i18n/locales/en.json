@@ -543,7 +543,7 @@
     "question": {
       "approval_voting": {
         "description": "Voters can vote for as many candidates as they approve of, and the candidate with the most votes win.",
-        "title": "Approval Voting"
+        "title": "<p>Approval Voting</p>"
       },
       "borda_count": {
         "description": "Voters rank candidates, and points are assigned base on their rank. The candidate with the most points wins.",
@@ -555,7 +555,7 @@
       },
       "participation_budgeting": {
         "description": " Voters can distribute a predefined number among all options/projects (representing the total available budget) as they wish.",
-        "title": "Participatory Budgeting"
+        "title": "<p>Participatory Budgeting</p>"
       },
       "single_choice": {
         "description": "Voters choose one option/candidate, and the option/candidate with the most votes wins.",
@@ -563,7 +563,7 @@
       },
       "voting_type": {
         "description": "Select the voting type for this election. If you don't find what you need can contact us.",
-        "title": "Voting Types"
+        "title": "<p>Voting Types</p>"
       }
     }
   },

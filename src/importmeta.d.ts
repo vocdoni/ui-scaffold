@@ -21,27 +21,14 @@ interface ImportMeta {
       login: string[]
       census: string[]
       unimplemented_census: string[]
+      voting_type: string[]
+      unimplemented_voting_type: string[]
       languages: string[]
       _census: {
         spreadsheet: boolean
         token: boolean
         web3: boolean
         csp: boolean
-      }
-      _unimplemented_census: {
-        phone: boolean
-        email: boolean
-        crm: boolean
-        database: boolean
-        digital_certificate: boolean
-        others: boolean
-      }
-      voting_type: {
-        single: boolean
-        multi: boolean
-        approval: boolean
-        participatory: boolean
-        borda: boolean
       }
     }
     theme: string
