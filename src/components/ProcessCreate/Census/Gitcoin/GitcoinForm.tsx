@@ -6,6 +6,9 @@ import {
   NumberInputField,
   NumberInputStepper,
   Flex,
+  Switch,
+  Box,
+  Text,
 } from '@chakra-ui/react'
 import { Controller, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -51,6 +54,15 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
         {gitcoinTokens.map((token) => (
           <StampCard key={token.ID} name={token.name} stampId={token.externalID} />
         ))}
+      </Flex>
+      <Flex gap={5} flexDirection={{ base: 'column', md: 'row' }} justifyContent='flex-start' alignItems={'center'}>
+        <Switch size='lg' />
+        <Box>
+          <FormLabel fontWeight='bold'>{t('form.process_create.census.gitcoin_strategy_title')}</FormLabel>
+          <Text fontSize='sm' color='process_create.description'>
+            {t('form.process_create.census.gitcoin_strategy_description')}
+          </Text>
+        </Box>
       </Flex>
     </>
   )
