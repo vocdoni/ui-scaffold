@@ -8,7 +8,7 @@ const Benefits = () => {
     <>
       <div class="hhs-wave-con">
         <div class="hhs-wave-module">
-          <svg id="opt_1" data-name="opt 1" xmlns="http://www.w3.org/2000/svg" height="128" viewBox="0 0 1366 128" preserveAspectRatio="none" style={{ fill: "green", width: "100%" }}>
+          <svg id="opt_1" data-name="opt 1" xmlns="http://www.w3.org/2000/svg" height="64" viewBox="0 0 1366 128" preserveAspectRatio="none" style={{ fill: "green", width: "100%" }}>
             <g id="Wave-1"><path id="Rectangle" class="cls-1" d="M0,0C623,0,667,151.4614,1366,121.6993V128H0Z" style={{ fill: '#175b64' }}></path></g>
           </svg>
         </div>
@@ -88,7 +88,7 @@ const Benefits = () => {
       </Box>
       <div class="hhs-wave-con">
         <div class="hhs-wave-module">
-          <svg id="opt_1" data-name="opt 1" xmlns="http://www.w3.org/2000/svg" height="128" viewBox="0 0 1366 128" preserveAspectRatio="none" width="" style={{ fill: "green", width: "100%", transform: 'scale(-1, -1)' }}>
+          <svg id="opt_1" data-name="opt 1" xmlns="http://www.w3.org/2000/svg" height="64" viewBox="0 0 1366 128" preserveAspectRatio="none" width="" style={{ fill: "green", width: "100%", transform: 'scale(-1, -1)', marginTop: '-1px' }}>
             <g id="Wave-1"><path id="Rectangle" class="cls-1" d="M0,0C623,0,667,151.4614,1366,121.6993V128H0Z" style={{ fill: '#175b64'}}></path></g>
             </svg>
         </div>
