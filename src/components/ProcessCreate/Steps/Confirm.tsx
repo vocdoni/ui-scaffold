@@ -101,7 +101,7 @@ export const Confirm = () => {
           case ElectionCreationSteps.CENSUS_CREATED:
           case ElectionCreationSteps.SIGN_TX:
           case ElectionCreationSteps.DONE:
-            setStep(step.key)
+            setStep(step.key as Steps)
             if (step.key === ElectionCreationSteps.DONE) {
               if (pid !== step.electionId) {
                 pid = step.electionId

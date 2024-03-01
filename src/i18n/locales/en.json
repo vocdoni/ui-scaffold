@@ -50,7 +50,7 @@
     },
     "results": {
       "date_format": "PPpp",
-      "secret_until_the_end": "Secret until the end. The results will be available when the process ends on {{ endDate }}",
+      "secret_until_the_end": "The results will be made public when the process finishes on {{ endDate }}.",
       "title": "Results for \"{{ title }}\"",
       "votes": "Votes: {{ votes }} ({{ percent }})"
     },
@@ -61,7 +61,7 @@
       "anon_sik_label": "Define a password for your vote",
       "close": "Close",
       "logout": "Logout",
-      "modal_title": "You must identify first"
+      "modal_title": "Authentication"
     },
     "statuses": {
       "canceled": "Canceled",
@@ -108,6 +108,7 @@
     "success_faucetPackage_title": "Faucet Package was successfully obtained",
     "success_title": "Tokens were successfully claimed"
   },
+  "close": "Close",
   "copy": {
     "address": "Copy address",
     "copied_title": "Copied!"
@@ -248,7 +249,7 @@
         "add_new_address": "add a new address",
         "delete_web3_address": "Delete address index {{ index }}",
         "holders": "{{ holders }} holders",
-        "max_census_resum": "You have a pool of {{ uniTokenHolders }} {{ symbol }} potential voters. To reduce the cost of the voting process, you can opt to limit the total number of participants in the voting process. This will not affect specific voters; it will simply reduce the number of holders who can cast their votes.",
+        "max_census_resum": "You have a pool of {{ uniTokenHolders }} {{ symbol }} potential voters. To reduce the cost of the voting process, you can opt to limit the total number of participants in the voting process. This will not affect specific voters nor will reduce the census; it will simply reduce the maximum number of votes that can be cast.",
         "max_census_slider_arialabel": "Maximum participation expected slider selector",
         "max_census_slider_label": "Maximum participation expected:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} eligible voters)",
@@ -611,7 +612,6 @@
       "not_owner": "This organization has no voting processes yet",
       "title": "Create your first voting process"
     },
-    "name_long": "<strong>{{ name }}</strong> ({{ address }})",
     "title": {
       "edit": "Edit organization",
       "read_more": "Expand title"
@@ -656,7 +656,7 @@
     },
     "state": "STATE",
     "status": {
-      "active": "Active",
+      "active": "Voting in progress",
       "canceled": "Process canceled",
       "ended": "Ended",
       "paused": "Process paused",
@@ -679,7 +679,12 @@
     "start": "Start/Resume"
   },
   "process_create": {
+    "anonymous": {
+      "legal_disclaimer": "This voting system utilizes token-based voting power (public on-chain). As you selected the 'Anonymous voting' option, weights will be grouped into similar balances and rounded down. This sacrifices some accuracy but preserves anonymous identity by unlinking balances from wallets.",
+      "legal_note": "Disclaimer: "
+    },
     "census": {
+      "mandatory_max_census_size": "At least one voter needs to be selected",
       "total_tokens_one": "1 token",
       "total_tokens_other": "{{ count }} tokens"
     },
@@ -689,8 +694,12 @@
       "sign_tx": "Sign transaction"
     },
     "creation_steps_description": "Sign transaction to create the voting process. Generating the census can take a few minutes, please don't close this window.",
-    "creation_steps_title": "Progress"
+    "creation_steps_title": "Progress",
+    "preview": {
+      "accuracy": "Anonymous Census Balance Accuracy: "
+    }
   },
+  "retry": "Retry",
   "roadmap": {
     "census_description": "Create a trust-less off-chain zk-friendly census from an Ethereum block snapshot, with on-chain verification.",
     "census_title": "zkCensus:",
@@ -723,5 +732,14 @@
   "use_read_more": {
     "read_less": "Read less",
     "read_more": "Read more"
+  },
+  "welcome": {
+    "description": "But first, you need to register your account and your SIK (Secret Identity Key) by signing 2 transactions (it's secure and free).",
+    "intro": "With this dApp you can create anonymous, private secure votings.",
+    "step": {
+      "register": "Register account",
+      "sik": "Create SIK"
+    },
+    "title": "Welcome to {{ sitename }}"
   }
 }

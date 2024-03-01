@@ -1,11 +1,13 @@
 import { InfoOutlineIcon } from '@chakra-ui/icons'
-import { Box, FormControl, FormErrorMessage, FormHelperText, FormLabel, Input, Text, Textarea } from '@chakra-ui/react'
+import { Box, FormControl, FormErrorMessage, FormHelperText, FormLabel, Input, Text } from '@chakra-ui/react'
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import Editor from '~components/Editor/Editor'
 import { fieldMapErrorMessage, isInvalidFieldMap } from '~constants'
 
 const CreateProcessMeta = () => {
   const {
+    setValue,
     register,
     formState: { errors },
     watch,
@@ -18,10 +20,10 @@ const CreateProcessMeta = () => {
   }
 
   const title = watch('title')
-  const description = watch('description')
 
   const maxLengthTitle = 500
   const maxLengthDescription = 10000
+
   return (
     <>
       <Box>
@@ -53,27 +55,13 @@ const CreateProcessMeta = () => {
             )}
             <FormErrorMessage>{fieldMapErrorMessage(errors, `title`)}</FormErrorMessage>
           </FormControl>
+          <FormLabel>{t('form.process_create.meta.description_label')}</FormLabel>
 
-          <FormControl variant='process-create-label' isInvalid={isInvalidFieldMap(errors, `description`)}>
-            <FormLabel>{t('form.process_create.meta.description_label')}</FormLabel>
-            <Textarea
-              {...register('description')}
-              maxLength={maxLengthDescription}
-              placeholder={t('form.process_create.meta.description_placeholder').toString()}
-            />
-            {description && description.length > (maxLengthDescription * 70) / 100 && (
-              <FormHelperText>
-                <InfoOutlineIcon />
-                <Text>
-                  {title.length !== maxLengthTitle ? (
-                    <Trans i18nKey='meta.length' values={{ maxLength: maxLengthTitle, length: title.length }} />
-                  ) : (
-                    <Trans i18nKey='meta.maxLength' />
-                  )}
-                </Text>
-              </FormHelperText>
-            )}
-          </FormControl>
+          <Editor
+            onChange={(text: string) => setValue('description', text)}
+            placeholder={t('form.process_create.meta.description_placeholder').toString()}
+            maxLength={maxLengthDescription}
+          />
         </Box>
       </Box>
     </>

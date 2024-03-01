@@ -52,7 +52,7 @@
     },
     "results": {
       "date_format": "PPpp",
-      "secret_until_the_end": "Secret fins al final. Els resultats seran accessibles quan el procés finalitzi el {{ endDate }}",
+      "secret_until_the_end": "Els resultats es faran públics quan el procés finalitzi el {{ endDate }}",
       "title": "Resultats per a \"{{ title }}\"",
       "votes": "Vots: {{ votes }} ({{ percent }})"
     },
@@ -63,7 +63,7 @@
       "anon_sik_label": "Defineix una contrasenya per al teu vot",
       "close": "Tanca",
       "logout": "Tanca la sessió",
-      "modal_title": "T'has d'identificar primer"
+      "modal_title": "Autenticació"
     },
     "statuses": {
       "canceled": "Cancel·lada",
@@ -110,6 +110,7 @@
     "success_faucetPackage_title": "El Faucet Package s'ha obtingut correctament",
     "success_title": "Els tokens s'han reclamat amb èxit"
   },
+  "close": "Tanca",
   "copy": {
     "address": "Copia l'adreça",
     "copied_title": "Copiat!"
@@ -252,7 +253,7 @@
         "add_new_address": "Afageix una nova adreça",
         "delete_web3_address": "Eliminar adreça amb index {{ index }}",
         "holders": "{{ holders }} titulars",
-        "max_census_resum": "Amb aquesta configuració, {{ uniTokenHolders }} titulars de tokens {{ symbol }} podran votar, representant un {{ percent }}% del total del torn de votació màxim.",
+        "max_census_resum": "Tens un grup de {{ uniTokenHolders }} possibles votants de {{ symbol }}. Per reduir el cost del procés de votació, pots optar per limitar el nombre total de participants en el procés de votació. Això no afectarà a votants específics ni reduirà el cens; simplement reduirà el nombre màxim de vots que es poden emetre.",
         "max_census_slider_arialabel": "Selector de participació màxima esperada",
         "max_census_slider_label": "Participació màxima esperada:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} votants elegibles)",
@@ -619,7 +620,6 @@
       "not_owner": "Aquesta organització encara no té votacions.",
       "title": "Crea la teva primera elecció"
     },
-    "name_long": "<strong>{{ name }}</strong> ({{ address }})",
     "title": {
       "edit": "Editar organització",
       "read_more": "Expandir títol"
@@ -642,7 +642,7 @@
       "starts": "Comença el procés"
     },
     "is_anonymous": {
-      "description": "Identitat 100% anonimitzada",
+      "description": "Votació anònima",
       "title": "Anònim"
     },
     "is_invalid": "Aquest procés té dades no vàlides i per tant no pot carregar-se",
@@ -665,7 +665,7 @@
     },
     "state": "ESTAT",
     "status": {
-      "active": "Actiu",
+      "active": "Votació en curs",
       "canceled": "Procés cancel·lat",
       "ended": "Finalitzat",
       "paused": "Procés en pausa",
@@ -688,7 +688,12 @@
     "start": "Inicia/Continua"
   },
   "process_create": {
+    "anonymous": {
+      "legal_disclaimer": "Aquest sistema de votació utilitza el poder de votació basat en tokens (públic a la cadena de blocs). Com heu seleccionat l'opció de 'Votació anònima', els pesos s'agruparan en saldos similars i s'arrodoniran cap avall. Això sacrifica una mica de precisió, però preserva la identitat anònima desvinculant els saldos de les carteres.",
+      "legal_note": "Avís legal: "
+    },
     "census": {
+      "mandatory_max_census_size": "Ha d'haver-hi un votant com a mínim",
       "total_tokens_one": "1 token",
       "total_tokens_many": "",
       "total_tokens_other": "{{ count }} tokens"
@@ -699,8 +704,12 @@
       "sign_tx": "Signar transacció"
     },
     "creation_steps_description": "Necessites signar les transaccions per crear el procés de votació a la cadena de blocs de Vocdoni. No tanquis aquesta finestra.",
-    "creation_steps_title": "Progrés"
+    "creation_steps_title": "Progrés",
+    "preview": {
+      "accuracy": "Precisió dels Saldos de Cens Anònims: "
+    }
   },
+  "retry": "Reintenta",
   "roadmap": {
     "census_description": "Crear un cens descentralitzat fora de la cadena i compatible amb zk a partir d'una instantània de blocs d'Ethereum, amb verificació a la cadena.",
     "census_title": "zkCensus:",
@@ -733,5 +742,14 @@
   "use_read_more": {
     "read_less": "Llegeix menys",
     "read_more": "Llegeix més"
+  },
+  "welcome": {
+    "description": "Per començar, has de registrar el teu compte i el teu SIK (clau d'identitat segura) firmant dues transaccions (és segur i gratuït).",
+    "intro": "Amb aquesta dApp pots crear votacions anònimes, segures i verificables.",
+    "step": {
+      "register": "Registrar compte",
+      "sik": "Crear SIK"
+    },
+    "title": "Benvingut a {{ sitename }}"
   }
 }

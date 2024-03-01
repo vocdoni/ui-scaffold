@@ -1,4 +1,4 @@
-import { Box, Button, Card, Flex, Link, Spinner, Text } from '@chakra-ui/react'
+import { Box, Button, Card, Flex, Link, Text } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { VoteButton as CVoteButton, environment, SpreadsheetAccess } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
@@ -14,7 +14,6 @@ const ProcessAside = () => {
   const {
     election,
     connected,
-    isAbleToVote,
     isInCensus,
     voted,
     votesLeft,
@@ -25,14 +24,15 @@ const ProcessAside = () => {
   const census: CensusMeta = dotobject(election?.meta || {}, 'census')
 
   const renderVoteMenu =
-    (isAbleToVote || voted || (hasOverwriteEnabled(election) && isInCensus && voted)) &&
-    election?.status !== ElectionStatus.UPCOMING
+    voted ||
+    (voting && election?.electionType.anonymous) ||
+    (hasOverwriteEnabled(election) && isInCensus && votesLeft > 0 && voted)
 
   return (
     <>
       <Card variant='aside'>
         <Flex alignItems='center' gap={5} flexWrap='wrap' justifyContent='center'>
-          <Text textAlign='center' fontSize='xl3' textTransform='uppercase'>
+          <Text textAlign='center' fontSize='xl' textTransform='uppercase'>
             {election?.electionType.anonymous && voting
               ? t('aside.submitting')
               : getStatusText(t, election?.status).toUpperCase()}
@@ -52,8 +52,8 @@ const ProcessAside = () => {
                 <Trans
                   i18nKey='aside.votes'
                   components={{
-                    span: <Text as='span' fontWeight='bold' fontSize='xl6' textAlign='center' lineHeight={1} />,
-                    text: <Text fontSize='xl2' textAlign='center' lineHeight={1.3} />,
+                    span: <Text as='span' fontWeight='bold' fontSize='xl3' textAlign='center' lineHeight={1} />,
+                    text: <Text fontSize='xl' textAlign='center' lineHeight={1.3} />,
                   }}
                   count={election?.voteCount}
                 />
@@ -141,13 +141,12 @@ const ProcessAside = () => {
 export const VoteButton = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
   const { t } = useTranslation()
 
-  const { election, connected, isAbleToVote, isInCensus, voted } = useElection()
+  const { election, connected, isAbleToVote, isInCensus } = useElection()
   const census: CensusMeta = dotobject(election?.meta || {}, 'census')
   const { isConnected } = useAccount()
 
   if (
     election?.status === ElectionStatus.CANCELED ||
-    !!voted ||
     (isConnected && !isInCensus && !['spreadsheet', 'csp'].includes(census?.type))
   )
     return null
@@ -194,15 +193,7 @@ export const VoteButton = ({ setQuestionsTab }: { setQuestionsTab: () => void })
         </ConnectButton.Custom>
       )}
       {census?.type === 'spreadsheet' && !connected && <SpreadsheetAccess />}
-      {isAbleToVote ? (
-        <CVoteButton w='full' fontSize='lg' onClick={setQuestionsTab} />
-      ) : (
-        connected && (
-          <Flex justifyContent='center' alignItems='center' height='40px' borderRadius='30px' bgColor='white' w='full'>
-            <Spinner color='primary.700' />
-          </Flex>
-        )
-      )}
+      {isAbleToVote && <CVoteButton w='full' fontSize='lg' onClick={setQuestionsTab} />}
     </Flex>
   )
 }

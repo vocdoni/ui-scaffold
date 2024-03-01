@@ -12,6 +12,10 @@ const themes = () => {
         find: /^~theme\/(.*)/,
         replacement: `/src/themes/${theme}/$1`,
       },
+      {
+        find: /^\/shared\/(.*)/,
+        replacement: `/public/shared/$1`,
+      },
     ],
   }
 
