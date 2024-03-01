@@ -563,7 +563,7 @@
       },
       "voting_type": {
         "description": "Select the voting type for this election. If you don't find what you need can contact us.",
-        "title": "<p>Voting Types</p>"
+        "title": "Voting Types"
       }
     }
   },
