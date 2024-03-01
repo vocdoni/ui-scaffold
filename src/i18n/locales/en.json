@@ -488,6 +488,47 @@
       "subtitle": "Below you'll find answers to the questions we get asked, gaining clarity and confidence about your digital voting experience.",
       "title": "Frequently Ask Questions"
     },
+    "features": {
+      "card_1": {
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "title": "Lorem Ipsum"
+      },
+      "card_2": {
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "title": "Lorem Ipsum"
+      },
+      "card_3": {
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "title": "Lorem Ipsum"
+      },
+      "card_4": {
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "title": "Lorem Ipsum"
+      },
+      "card_5": {
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "title": "Lorem Ipsum"
+      },
+      "card_6": {
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "title": "Lorem Ipsum"
+      },
+      "card_7": {
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "title": "Lorem Ipsum"
+      },
+      "card_8": {
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "title": "Lorem Ipsum"
+      },
+      "card_9": {
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "title": "Lorem Ipsum"
+      },
+      "header": "",
+      "subtitle_1": "",
+      "title": ""
+    },
     "process": {
       "description_1": "Vocdoni APP allows you to create your needed voting process in 4 easy steps.",
       "description_2": "We allow you to configure with one click either if you want anonymous voting, secret results until the end, the voting type, upload the census and much more.",
