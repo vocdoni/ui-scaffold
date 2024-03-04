@@ -68,10 +68,11 @@ jobs:
         run: yarn build
         env:
           VOCDONI_ENVIRONMENT: stg
-          FEATURES: ${{ secrets.FEATURES }}
           CUSTOM_ORGANIZATION_DOMAINS: ${{ secrets.CUSTOM_ORGANIZATION_DOMAINS }}
           CSP_URL: ${{ secrets.CSP_URL }}}
           CSP_PUBKEY: ${{ secrets.CSP_PUBKEY }}
+          FEATURES: '{"languages":["ca"]}'
+          THEME: pxll
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2.0
