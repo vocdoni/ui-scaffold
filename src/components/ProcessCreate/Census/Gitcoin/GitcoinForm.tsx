@@ -9,6 +9,7 @@ import {
   Switch,
   Box,
   Text,
+  Grid,
 } from '@chakra-ui/react'
 import { Controller, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -50,11 +51,15 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
         )}
       ></Controller>
       <FormLabel fontWeight='bold'>{t('form.process_create.census.gitcoin_stamps')}</FormLabel>
-      <Flex gap={5} flexDirection={{ base: 'column', md: 'row' }} justifyContent='space-between'>
+      <Grid
+        gap={5}
+        templateColumns={{ sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)' }}
+        justifyContent='space-between'
+      >
         {gitcoinTokens.map((token, i) => (
           <StampCard key={i} name={token.name} stampId={token.externalID} />
         ))}
-      </Flex>
+      </Grid>
       <Flex gap={5} flexDirection={{ base: 'column', md: 'row' }} justifyContent='flex-start' alignItems={'center'}>
         <Switch size='lg' />
         <Box>
