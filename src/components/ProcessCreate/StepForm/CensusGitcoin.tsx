@@ -4,9 +4,11 @@ import { useTranslation } from 'react-i18next'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 import { CensusTokenValues } from '~components/ProcessCreate/StepForm/CensusToken'
 import { GitcoinStrategyBuilder } from '../Census/Gitcoin'
+import { StampId } from '~components/ProcessCreate/Census/Gitcoin/StampIcon'
 
 export type CensusGitcoinValues = {
   passportScore: number
+  stamps: Record<StampId, boolean>
 } & Omit<CensusTokenValues, 'strategySize' | 'accuracy'>
 
 export const StepFormCensusGitcoin = () => {
@@ -18,6 +20,7 @@ export const StepFormCensusGitcoin = () => {
       maxCensusSize: form.maxCensusSize,
       chain: form.chain,
       passportScore: form.passportScore,
+      stamps: form.stamps,
     },
   })
 

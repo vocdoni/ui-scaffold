@@ -1,5 +1,6 @@
-import { Box, Checkbox, Icon, Text } from '@chakra-ui/react'
+import { Box, Checkbox, Text } from '@chakra-ui/react'
 import { StampIcon, StampId } from '~components/ProcessCreate/Census/Gitcoin/StampIcon'
+import { Controller } from 'react-hook-form'
 
 interface IStampCardProps {
   name: string
@@ -8,11 +9,17 @@ interface IStampCardProps {
 
 export const StampCard: React.FC<IStampCardProps> = ({ name, stampId }) => {
   return (
-    <Checkbox flex='0 0 30%' variant='radiobox'>
-      <Box>
-        <StampIcon stampId={stampId} />
-        <Text>{name}</Text>
-      </Box>
-    </Checkbox>
+    <Controller
+      name={`stamps.${stampId}`}
+      defaultValue={false}
+      render={({ field }) => (
+        <Checkbox {...field} flex='0 0 30%' variant='radiobox'>
+          <Box>
+            <StampIcon stampId={stampId} />
+            <Text>{name}</Text>
+          </Box>
+        </Checkbox>
+      )}
+    />
   )
 }
