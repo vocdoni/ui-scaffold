@@ -5,7 +5,7 @@ const Faqs = () => {
   const { t } = useTranslation()
 
   return (
-    <Box className='site-wrapper' py={{ base: '60px', lg: '100px' }}>
+    <Box id='faqs' className='site-wrapper' py={{ base: '60px', lg: '100px' }}>
       <Text
         fontSize={{ base: '25px', lg: '30px', xl: '40px' }}
         lineHeight={{ base: '30px', lg: '36px', xl: '48px' }}

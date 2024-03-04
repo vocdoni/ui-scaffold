@@ -32,7 +32,7 @@ const Navbar = () => {
       {location.pathname === '/' && (
         <List
           display={{ base: 'none', lg: 'flex' }}
-          gap={5}
+          gap={55}
           color='#0b163f'
           fontWeight='600'
           fontSize='15px'
@@ -45,7 +45,10 @@ const Navbar = () => {
             <Link href='#features'>Features</Link>
           </ListItem>
           <ListItem>
-            <Link href='#usecases'>Use Cases</Link>
+            <Link href='#faqs'>FAQ</Link>
+          </ListItem>
+          <ListItem>
+            <Link href='#contactus'>Contact Us</Link>
           </ListItem>
         </List>
       )}

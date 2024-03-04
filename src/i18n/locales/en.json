@@ -490,44 +490,44 @@
     },
     "features": {
       "card_1": {
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "title": "Lorem Ipsum"
+        "description": "From simple yes/no referendums to complex ranked-choice elections, Vocdoni supports a wide range of voting types to suit any decision-making process.",
+        "title": "Versatile Voting types"
       },
       "card_2": {
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "title": "Lorem Ipsum"
+        "description": "Customize every aspect of your voting process, from branding and themes to ballot designs, ensuring a seamless integration with your organization's identity.",
+        "title": "Customization Capabilities"
       },
       "card_3": {
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "title": "Lorem Ipsum"
+        "description": "With intuitive interfaces and guided onboarding processes, Vocdoni ensures that organizers and voters alike can easily navigate the platform from day one.",
+        "title": "User-Friendly Onboarding"
       },
       "card_4": {
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "title": "Lorem Ipsum"
+        "description": "Utilizing robust authentication methods such as two-factor authentication, Vocdoni safeguards against unauthorized access and ensures the integrity of each vote.",
+        "title": "Secure Authentication"
       },
       "card_5": {
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "title": "Lorem Ipsum"
+        "description": "Create custom voter lists (custom census, oAuth, CRMs...), allowing for targeted outreach and tailored voting experiences for different segments of your audience.",
+        "title": "Custom Censuses"
       },
       "card_6": {
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "title": "Lorem Ipsum"
+        "description": "Customize your voting processes with specific start and end dates, auto-start, secret results until the end, real-time updates, anonymous voting, weighted voting, and ballot customization.",
+        "title": "Flexible Voting options"
       },
       "card_7": {
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "title": "Lorem Ipsum"
+        "description": "Reach a diverse audience with multi-language support, allowing participants to engage in their preferred language for inclusive and accessible voting experiences.",
+        "title": "Multi-language Support"
       },
       "card_8": {
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "title": "Lorem Ipsum"
+        "description": "Monitor voting progress and results in real-time, with instant updates and notifications keeping organizers and participants informed throughout the voting process.",
+        "title": "Real-time Updates"
       },
       "card_9": {
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "title": "Lorem Ipsum"
+        "description": "Enable voters to cast their ballots through various channels, including web browsers, mobiles, tablets, etc., ensuring accessibility and convenience for all participants.",
+        "title": "Multi-device Support"
       },
-      "header": "",
-      "subtitle_1": "",
-      "title": ""
+      "header": "Empowering Solutions",
+      "subtitle_1": "Unlock the potential of Vocdoni's feature-rich platform, delivering exceptional value to organizers and voters alike. Seamlessly customize your voting processes, ensure secure and transparent elections, and empower participants with intuitive and accessible options. With Vocdoni APP, experience the power of enhanced engagement, efficiency, and trust in every voting experience.",
+      "title": "Features"
     },
     "process": {
       "description_1": "Vocdoni APP allows you to create your needed voting process in 4 easy steps.",

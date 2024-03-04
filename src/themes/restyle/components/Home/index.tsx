@@ -18,7 +18,6 @@ const Home = () => (
     <Solutions />
     <ContactUs />
     <Process />
-    <Demo />
     <Faqs />
     <Support />
   </>

@@ -9,6 +9,7 @@ const Solutions = () => {
   const { t } = useTranslation()
   return (
     <Flex
+      id='solutions'
       as='section'
       className='site-wrapper'
       flexDirection={{ base: 'column', lg: 'row' }}

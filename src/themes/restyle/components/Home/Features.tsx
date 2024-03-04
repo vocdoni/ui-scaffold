@@ -1,12 +1,12 @@
 import { Box, Card, CardBody, Flex, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import { FaFingerprint } from 'react-icons/fa'
+import { FaVoteYea, FaPalette, FaUsers, FaUserLock, FaTasks, FaNewspaper, FaLanguage, FaBullseye, FaCubes } from 'react-icons/fa'
 
 const Features = () => {
   const { t } = useTranslation()
 
   return (
-    <Box className='site-wrapper' py={{ base: '60px', lg: '100px' }}>
+    <Box id='features' className='site-wrapper' py={{ base: '60px', lg: '100px' }}>
       <Box mb='40px'>
         <Text color='home.section.title' fontWeight='bold' fontSize='20px' lineHeight='24px' mb='6px'>
           {t('home.features.header')}
@@ -24,11 +24,11 @@ const Features = () => {
         gap={{ base: '24px', xl: '48px' }}
         justifyContent='space-between'
       >
-        <Flex flexDirection='column' gap='24px' flex='1 1 30%'>
+        <Flex flexDirection='column' gap='36px' flex='1 1 30%'>
           <Card variant='icon-card'>
             <CardBody>
               <Box>
-                <FaFingerprint />
+                <FaVoteYea />
               </Box>
               <Box>
                 <Text display='inline' mr={2}>
@@ -41,7 +41,7 @@ const Features = () => {
           <Card variant='icon-card'>
             <CardBody>
               <Box>
-                <FaFingerprint />
+                <FaPalette />
               </Box>
               <Box>
                 <Text display='inline' mr={2}>
@@ -54,7 +54,7 @@ const Features = () => {
           <Card variant='icon-card'>
             <CardBody>
               <Box>
-                <FaFingerprint />
+                <FaUsers />
               </Box>
               <Box>
                 <Text display='inline' mr={2}>
@@ -65,11 +65,11 @@ const Features = () => {
             </CardBody>
           </Card>
         </Flex>
-        <Flex flexDirection='column' gap='24px' flex='1 1 30%'>
+        <Flex flexDirection='column' gap='36px' flex='1 1 30%'>
           <Card variant='icon-card'>
             <CardBody>
               <Box>
-                <FaFingerprint />
+                <FaUserLock />
               </Box>
               <Box>
                 <Text display='inline' mr={2}>
@@ -82,7 +82,7 @@ const Features = () => {
           <Card variant='icon-card'>
             <CardBody>
               <Box>
-                <FaFingerprint />
+                <FaTasks />
               </Box>
               <Box>
                 <Text display='inline' mr={2}>
@@ -95,7 +95,7 @@ const Features = () => {
           <Card variant='icon-card'>
             <CardBody>
               <Box>
-                <FaFingerprint />
+                <FaNewspaper />
               </Box>
               <Box>
                 <Text display='inline' mr={2}>
@@ -106,11 +106,11 @@ const Features = () => {
             </CardBody>
           </Card>
         </Flex>
-        <Flex flexDirection='column' gap='24px' flex='1 1 30%'>
+        <Flex flexDirection='column' gap='36px' flex='1 1 30%'>
           <Card variant='icon-card'>
             <CardBody>
               <Box>
-                <FaFingerprint />
+                <FaLanguage />
               </Box>
               <Box>
                 <Text display='inline' mr={2}>
@@ -123,7 +123,7 @@ const Features = () => {
           <Card variant='icon-card'>
             <CardBody>
               <Box>
-                <FaFingerprint />
+                <FaBullseye />
               </Box>
               <Box>
                 <Text display='inline' mr={2}>
@@ -136,7 +136,7 @@ const Features = () => {
           <Card variant='icon-card'>
             <CardBody>
               <Box>
-                <FaFingerprint />
+                <FaCubes />
               </Box>
               <Box>
                 <Text display='inline' mr={2}>
