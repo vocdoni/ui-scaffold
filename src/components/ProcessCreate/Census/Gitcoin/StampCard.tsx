@@ -1,9 +1,9 @@
 import { Box, Checkbox, Icon, Text } from '@chakra-ui/react'
-import { StampIcon } from '~components/ProcessCreate/Census/Gitcoin/StampIcon'
+import { StampIcon, StampId } from '~components/ProcessCreate/Census/Gitcoin/StampIcon'
 
 interface IStampCardProps {
   name: string
-  stampId: string
+  stampId: StampId
 }
 
 export const StampCard: React.FC<IStampCardProps> = ({ name, stampId }) => {

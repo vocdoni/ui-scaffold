@@ -51,8 +51,8 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
       ></Controller>
       <FormLabel fontWeight='bold'>{t('form.process_create.census.gitcoin_stamps')}</FormLabel>
       <Flex gap={5} flexDirection={{ base: 'column', md: 'row' }} justifyContent='space-between'>
-        {gitcoinTokens.map((token) => (
-          <StampCard key={token.ID} name={token.name} stampId={token.externalID} />
+        {gitcoinTokens.map((token, i) => (
+          <StampCard key={i} name={token.name} stampId={token.externalID} />
         ))}
       </Flex>
       <Flex gap={5} flexDirection={{ base: 'column', md: 'row' }} justifyContent='flex-start' alignItems={'center'}>
