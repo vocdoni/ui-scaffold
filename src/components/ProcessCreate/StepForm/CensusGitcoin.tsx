@@ -5,10 +5,12 @@ import { useProcessCreationSteps } from '../Steps/use-steps'
 import { CensusTokenValues } from '~components/ProcessCreate/StepForm/CensusToken'
 import { GitcoinStrategyBuilder } from '../Census/Gitcoin'
 import { StampId } from '~components/ProcessCreate/Census/Gitcoin/StampIcon'
+import { StampsUnionTypes } from '~components/ProcessCreate/Census/Gitcoin/StampsUnionType'
 
 export type CensusGitcoinValues = {
   passportScore: number
   stamps: Record<StampId, boolean>
+  stampsUnionType: StampsUnionTypes
 } & Omit<CensusTokenValues, 'strategySize' | 'accuracy'>
 
 export const StepFormCensusGitcoin = () => {
@@ -21,6 +23,7 @@ export const StepFormCensusGitcoin = () => {
       chain: form.chain,
       passportScore: form.passportScore,
       stamps: form.stamps,
+      stampsUnionType: form.stampsUnionType,
     },
   })
 

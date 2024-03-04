@@ -5,10 +5,6 @@ import {
   NumberInput,
   NumberInputField,
   NumberInputStepper,
-  Flex,
-  Switch,
-  Box,
-  Text,
   Grid,
 } from '@chakra-ui/react'
 import { Controller, useFormContext } from 'react-hook-form'
@@ -16,6 +12,7 @@ import { useTranslation } from 'react-i18next'
 import { FC } from 'react'
 import { StampCard } from '~components/ProcessCreate/Census/Gitcoin/StampCard'
 import { GitcoinStampToken } from '~components/ProcessCreate/Census/Gitcoin/index'
+import { StampsUnionType } from '~components/ProcessCreate/Census/Gitcoin/StampsUnionType'
 
 interface IGitcoinFormProps {
   gitcoinTokens: GitcoinStampToken[]
@@ -40,8 +37,17 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
         rules={{
           required,
         }}
-        render={({ field: { ref, ...restField } }) => (
-          <NumberInput defaultValue={50} min={1} max={100} maxW={40} {...restField}>
+        render={({ field: { ref, onChange, ...restField } }) => (
+          <NumberInput
+            defaultValue={50}
+            min={1}
+            max={100}
+            maxW={40}
+            {...restField}
+            onChange={(e) => {
+              onChange(Number(e))
+            }}
+          >
             <NumberInputField />
             <NumberInputStepper>
               <NumberIncrementStepper />
@@ -60,15 +66,7 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
           <StampCard key={i} name={token.name} stampId={token.externalID} />
         ))}
       </Grid>
-      <Flex gap={5} flexDirection={{ base: 'column', md: 'row' }} justifyContent='flex-start' alignItems={'center'}>
-        <Switch size='lg' />
-        <Box>
-          <FormLabel fontWeight='bold'>{t('form.process_create.census.gitcoin_strategy_title')}</FormLabel>
-          <Text fontSize='sm' color='process_create.description'>
-            {t('form.process_create.census.gitcoin_strategy_description')}
-          </Text>
-        </Box>
-      </Flex>
+      <StampsUnionType />
     </>
   )
 }
