@@ -55,7 +55,6 @@ const ModalPro = ({ isOpen, onClose, reason }: { isOpen: boolean; onClose: () =>
 
   const sendEmail = (form: any) => {
     emailjs
-
       .sendForm(import.meta.env.EMAILJS_SERVICE_ID, import.meta.env.EMAILJS_TEMPLATE_ID, form, {
         publicKey: import.meta.env.EMAILJS_PUBLIC_ID,
       })
@@ -94,7 +93,10 @@ const ModalPro = ({ isOpen, onClose, reason }: { isOpen: boolean; onClose: () =>
               flexDirection='column'
               justifyContent='space-between'
               pr={{ lg: 5 }}
-              onSubmit={handleSubmit(sendEmail)}
+              onSubmit={(e) => {
+                e.stopPropagation()
+                handleSubmit(sendEmail)(e)
+              }}
             >
               <Text color='process_create.modal_pro.description' mb={0} fontSize='sm'>
                 {t('process_create.modal_pro.form_description')}
