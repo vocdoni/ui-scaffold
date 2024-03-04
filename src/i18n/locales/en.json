@@ -553,6 +553,10 @@
         "description": "Voters choose a pre-defined number of options, and the option with more voters win.",
         "title": "<p>Plurality Voting</p><p>(Multiple Choice)</p>"
       },
+      "others": {
+        "description": "Select other voting types (multiple-cjoice, approval voting, participatory budgeting, ranked choice...)",
+        "title": "Others"
+      },
       "participation_budgeting": {
         "description": " Voters can distribute a predefined number among all options/projects (representing the total available budget) as they wish.",
         "title": "<p>Participatory Budgeting</p>"

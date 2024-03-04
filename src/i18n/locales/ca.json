@@ -562,6 +562,10 @@
         "description": "Els votants trien un nombre predeterminat d'opcions, i l'opció amb més votants guanya.",
         "title": "<p>Votació Plurinominal</p><p>(Elecció Múltiple)</p>"
       },
+      "others": {
+        "description": "",
+        "title": ""
+      },
       "participation_budgeting": {
         "description": "Els votants poden distribuir un nombre predeterminat entre totes les opcions/projectes (que representen el pressupost total disponible) com desitgin.",
         "title": "Pressupost Participatiu"

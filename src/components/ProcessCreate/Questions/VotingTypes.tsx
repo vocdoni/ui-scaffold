@@ -1,6 +1,7 @@
 import { Box, Checkbox, Grid, Icon, Text, useDisclosure } from '@chakra-ui/react'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { CgMoreO } from 'react-icons/cg'
 import ModalPro from '../ModalPro'
 import { UnimplementedVotingType, useUnimplementedVotingType } from './useUnimplementedVotingType'
 import { useVotingType, VotingType } from './useVotingType'
@@ -14,7 +15,8 @@ const VotingTypes = () => {
   const { defined, details } = useVotingType()
   const { defined: unDefined, details: undDetails } = useUnimplementedVotingType()
 
-  console.log(reason)
+  const [showProCards, setShowProCards] = useState(false)
+
   return (
     <>
       <ModalPro isOpen={isOpen} onClose={onClose} reason={reason} />
@@ -29,7 +31,6 @@ const VotingTypes = () => {
             base: 'repeat(1, 1fr)',
             sm: 'repeat(2, 1fr)',
             md: 'repeat(3, 1fr)',
-            xl3: 'repeat(5, 1fr)',
           }}
           gap={5}
         >
@@ -49,30 +50,51 @@ const VotingTypes = () => {
               <Text>{details[ct].description}</Text>
             </Checkbox>
           ))}
-
-          {unDefined.map((ct: UnimplementedVotingType, index: number) => (
-            <Checkbox key={index} variant='radiobox' isChecked={true}>
+          <Checkbox
+            variant='radiobox'
+            transform={showProCards ? 'scale(0.92)' : ''}
+            sx={{
+              '& span:first-of-type': {
+                display: 'none',
+              },
+            }}
+          >
+            <Box>
+              <Icon as={CgMoreO} />
               <Box>
-                <Icon as={undDetails[ct].icon} />
-                <Box>
-                  <Trans
-                    i18nKey={undDetails[ct].title}
-                    components={{
-                      p: <Text />,
+                <Trans i18nKey={t('process_create.question.others.title')} />
+              </Box>
+            </Box>
+            <Text>{t('process_create.question.others.description')}</Text>
+            <Box onClick={() => setShowProCards((prev) => !prev)} />
+          </Checkbox>
+          {showProCards && (
+            <>
+              {unDefined.map((ct: UnimplementedVotingType, index: number) => (
+                <Checkbox key={index} variant='radiobox' isChecked={true}>
+                  <Box>
+                    <Icon as={undDetails[ct].icon} />
+                    <Box>
+                      <Trans
+                        i18nKey={undDetails[ct].title}
+                        components={{
+                          p: <Text />,
+                        }}
+                      />
+                    </Box>
+                  </Box>
+                  <Text as='span'>Pro</Text>
+                  <Text>{undDetails[ct].description}</Text>
+                  <Box
+                    onClick={() => {
+                      setReason(undDetails[ct].title)
+                      onOpen()
                     }}
                   />
-                </Box>
-              </Box>
-              <Text as='span'>Pro</Text>
-              <Text>{undDetails[ct].description}</Text>
-              <Box
-                onClick={() => {
-                  setReason(undDetails[ct].title)
-                  onOpen()
-                }}
-              />
-            </Checkbox>
-          ))}
+                </Checkbox>
+              ))}
+            </>
+          )}
         </Grid>
       </Box>
     </>

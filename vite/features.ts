@@ -11,7 +11,7 @@ const features = () => {
     },
     login: ['web3', 'web2'],
     census: ['spreadsheet', 'token', 'web3', 'csp'],
-    unimplemented_census: ['phone', 'email', 'crm', 'database', 'digital_certificate', 'others'],
+    unimplemented_census: ['phone', 'email', 'crm', 'database', 'digital_certificate'],
     voting_type: ['single'],
     unimplemented_voting_type: ['multi', 'approval', 'participatory', 'borda'],
     languages: ['ca', 'en', 'es'],

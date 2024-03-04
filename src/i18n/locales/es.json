@@ -562,6 +562,10 @@
         "description": "Los votantes eligen un número predefinido de opciones, y la opción con más votantes gana.",
         "title": "<p>Votación Plurinominal</p><p>(Elección Múltiple)</p>"
       },
+      "others": {
+        "description": "",
+        "title": ""
+      },
       "participation_budgeting": {
         "description": "Los votantes pueden distribuir un número predefinido entre todas las opciones/proyectos (que representan el presupuesto total disponible) como deseen.",
         "title": "Presupuesto Participativo"

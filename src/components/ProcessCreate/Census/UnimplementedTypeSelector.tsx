@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next'
 import { BiPhone } from 'react-icons/bi'
-import { CgMoreO } from 'react-icons/cg'
 import { GoDatabase } from 'react-icons/go'
 import { LuCircleDotDashed } from 'react-icons/lu'
 import { MdOutlineEmail } from 'react-icons/md'
@@ -19,7 +18,6 @@ export type UnimplementedCensusType =
   | typeof CensusTypeCrm
   | typeof CensusTypeDatabase
   | typeof CensusTypeDigitalCerificate
-  | typeof CensusTypeOthers
 
 export const UnimplementedCensusTypes = [
   CensusTypePhone as UnimplementedCensusType,
@@ -27,7 +25,6 @@ export const UnimplementedCensusTypes = [
   CensusTypeCrm as UnimplementedCensusType,
   CensusTypeDatabase as UnimplementedCensusType,
   CensusTypeDigitalCerificate as UnimplementedCensusType,
-  CensusTypeOthers as UnimplementedCensusType,
 ]
 
 export const useUnimplementedCensusTypes = () => {
@@ -60,11 +57,6 @@ export const useUnimplementedCensusTypes = () => {
         title: t('process_create.census.digital_certificate_title'),
         description: t('process_create.census.digital_certificate_description'),
         icon: PiCertificate,
-      },
-      [CensusTypeOthers]: {
-        title: t('process_create.census.others_title'),
-        description: t('process_create.census.others_description'),
-        icon: CgMoreO,
       },
     },
   }
