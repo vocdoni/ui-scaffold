@@ -4,7 +4,11 @@ import { Link as ReactRouterLink } from 'react-router-dom'
 const PxLL = () => {
   return (
     <Flex flexDirection='column' gap={10} maxW='900px' mx='auto' p={5} minH='100vh'>
-      <Image src="https://cdn.discordapp.com/attachments/1077657962404925583/1210156328253661217/votacions_cap.jpg?ex=65e988e8&is=65d713e8&hm=e4d3249fc3c2cdc01431a1910830d1b2c2c73bb946c1031facfd0e97b8897561&" alt='Assemblea General de socis' mx='auto' />
+      <Image
+        src='https://cdn.discordapp.com/attachments/1077657962404925583/1210156328253661217/votacions_cap.jpg?ex=65e988e8&is=65d713e8&hm=e4d3249fc3c2cdc01431a1910830d1b2c2c73bb946c1031facfd0e97b8897561&'
+        alt='Assemblea General de socis'
+        mx='auto'
+      />
       <Box>
         <Text as='h1' fontWeight='bold' fontSize='36px' textAlign='center'>
           Assemblea General Ordinària
@@ -15,7 +19,9 @@ const PxLL = () => {
       </Box>
       <Text>
         <Text as='h3' fontWeight='bold'>
-          Ordre del dia de l’Assemblea General Ordinària<br /><br />
+          Ordre del dia de l’Assemblea General Ordinària
+          <br />
+          <br />
         </Text>
         <Text>
           <ul style={{ marginLeft: '30px' }}>
@@ -33,23 +39,35 @@ const PxLL = () => {
       </Text>
       <Text>
         <Text as='h3' fontWeight='bold'>
-          Extra<br /><br />
+          Extra
+          <br />
+          <br />
         </Text>
         <Text style={{ marginLeft: '30px' }}>
-          - Enllaç a documentació externa: <a href='https://www.plataforma-llengua.cat/ago-2024-documentacio/' target='_blank'>Documentació</a>
-          <br />
-          - Enllaç a plataforma de precs i preguntes: <a href='www.plataforma-llengua.cat/ago-2024-precs-i-preguntes' target='_blank'>Precs i Preguntes</a>
+          - Enllaç a documentació externa:{' '}
+          <a href='https://www.plataforma-llengua.cat/ago-2024-documentacio/' target='_blank'>
+            Documentació
+          </a>
+          <br />- Enllaç a plataforma de precs i preguntes:{' '}
+          <a href='www.plataforma-llengua.cat/ago-2024-precs-i-preguntes' target='_blank'>
+            Precs i Preguntes
+          </a>
         </Text>
       </Text>
       <Box style={{ margin: '0px auto' }}>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/ydYDqZQpim8?si=uW5Rm_QpzMjklFee" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe
+          width='560'
+          height='315'
+          src='https://www.youtube.com/embed/ydYDqZQpim8?si=uW5Rm_QpzMjklFee'
+          title='YouTube video player'
+        ></iframe>
       </Box>
       <Box>
         <Text alignSelf='start' mb={10} as='h3' fontWeight='bold'>
-          <br />Votacions:
+          <br />
+          Votacions:
         </Text>
         <Flex gap={5} flexDirection={{ base: 'column' }}>
-
           <Link
             as={ReactRouterLink}
             flexGrow={1}
@@ -130,7 +148,9 @@ const PxLL = () => {
             target='_blank'
           >
             <Box>
-              <Text fontSize='18px'>Pregunta 3: Aprovació, si escau, del Reglament de l'Assemblea General Ordinària 2024.</Text>
+              <Text fontSize='18px'>
+                Pregunta 3: Aprovació, si escau, del Reglament de l'Assemblea General Ordinària 2024.
+              </Text>
             </Box>
           </Link>
 
@@ -270,10 +290,11 @@ const PxLL = () => {
             target='_blank'
           >
             <Box>
-              <Text fontSize='18px'>Pregunta 8: Ratificació de les incorporacions per substitució a l'Executiva 2024-2026.</Text>
+              <Text fontSize='18px'>
+                Pregunta 8: Ratificació de les incorporacions per substitució a l'Executiva 2024-2026.
+              </Text>
             </Box>
           </Link>
-
 
           <Link
             as={ReactRouterLink}
@@ -306,7 +327,9 @@ const PxLL = () => {
         </Flex>
       </Box>
       <Text style={{ marginBottom: '150px' }}>
-        Per poder accedir a la votació, heu de pulsar sobre "Identificar-se", us demanarem el vostre número de DNI (Document Nacional d'Identitat). Posteriorment, podreu seleccionar les vostres opcions i enviar el vot de forma segura.
+        Per poder accedir a la votació, heu de pulsar sobre "Identificar-se", us demanarem el vostre número de DNI
+        (Document Nacional d'Identitat). Posteriorment, podreu seleccionar les vostres opcions i enviar el vot de forma
+        segura.
       </Text>
     </Flex>
   )
