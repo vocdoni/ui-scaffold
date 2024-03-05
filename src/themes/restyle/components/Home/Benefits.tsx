@@ -6,22 +6,37 @@ const Benefits = () => {
 
   return (
     <>
-      <div class="hhs-wave-con">
-        <div class="hhs-wave-module">
-          <svg id="opt_1" data-name="opt 1" xmlns="http://www.w3.org/2000/svg" height="64" viewBox="0 0 1366 128" preserveAspectRatio="none" style={{ fill: "green", width: "100%" }}>
-            <g id="Wave-1"><path id="Rectangle" class="cls-1" d="M0,0C623,0,667,151.4614,1366,121.6993V128H0Z" style={{ fill: '#175b64' }}></path></g>
+      <div class='hhs-wave-con'>
+        <div class='hhs-wave-module'>
+          <svg
+            id='opt_1'
+            data-name='opt 1'
+            xmlns='http://www.w3.org/2000/svg'
+            height='64'
+            viewBox='0 0 1366 128'
+            preserveAspectRatio='none'
+            style={{ fill: 'green', width: '100%' }}
+          >
+            <g id='Wave-1'>
+              <path
+                id='Rectangle'
+                class='cls-1'
+                d='M0,0C623,0,667,151.4614,1366,121.6993V128H0Z'
+                style={{ fill: '#175b64' }}
+              ></path>
+            </g>
           </svg>
         </div>
       </div>
       <Box as='section' id='benefits' bgColor='#175b64' mt={{ base: '-1px' }}>
-        <Box className='site-wrapper' pb={{ base: '60px', lg: '100px' }} pt={{ base:'60px'}}>
+        <Box className='site-wrapper' pb={{ base: '60px', lg: '100px' }} pt={{ base: '60px' }}>
           <Text
             fontSize={{ base: '25px', lg: '30px', xl: '40px' }}
             lineHeight={{ base: '30px', lg: '36px', xl: '48px' }}
             fontWeight='bold'
             textAlign='center'
             mb='10px'
-            color="white"
+            color='white'
           >
             {t('home.benefits.title')}
           </Text>
@@ -86,11 +101,27 @@ const Benefits = () => {
           </Flex>
         </Box>
       </Box>
-      <div class="hhs-wave-con">
-        <div class="hhs-wave-module">
-          <svg id="opt_1" data-name="opt 1" xmlns="http://www.w3.org/2000/svg" height="64" viewBox="0 0 1366 128" preserveAspectRatio="none" width="" style={{ fill: "green", width: "100%", transform: 'scale(-1, -1)', marginTop: '-1px' }}>
-            <g id="Wave-1"><path id="Rectangle" class="cls-1" d="M0,0C623,0,667,151.4614,1366,121.6993V128H0Z" style={{ fill: '#175b64'}}></path></g>
-            </svg>
+      <div class='hhs-wave-con'>
+        <div class='hhs-wave-module'>
+          <svg
+            id='opt_1'
+            data-name='opt 1'
+            xmlns='http://www.w3.org/2000/svg'
+            height='64'
+            viewBox='0 0 1366 128'
+            preserveAspectRatio='none'
+            width=''
+            style={{ fill: 'green', width: '100%', transform: 'scale(-1, -1)', marginTop: '-1px' }}
+          >
+            <g id='Wave-1'>
+              <path
+                id='Rectangle'
+                class='cls-1'
+                d='M0,0C623,0,667,151.4614,1366,121.6993V128H0Z'
+                style={{ fill: '#175b64' }}
+              ></path>
+            </g>
+          </svg>
         </div>
       </div>
     </>

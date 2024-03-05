@@ -1,6 +1,16 @@
 import { Box, Card, CardBody, Flex, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import { FaVoteYea, FaPalette, FaUsers, FaUserLock, FaTasks, FaNewspaper, FaLanguage, FaBullseye, FaCubes } from 'react-icons/fa'
+import {
+  FaVoteYea,
+  FaPalette,
+  FaUsers,
+  FaUserLock,
+  FaTasks,
+  FaNewspaper,
+  FaLanguage,
+  FaBullseye,
+  FaCubes,
+} from 'react-icons/fa'
 
 const Features = () => {
   const { t } = useTranslation()
