@@ -21,7 +21,14 @@ const Navbar = () => {
   const { exists } = useOrganizationHealthTools()
 
   return (
-    <Flex className='site-wrapper' justifyContent='space-between' w='full' mx='auto' py={{ base: '12px', md: '24px' }}>
+    <Flex
+      className='site-wrapper'
+      justifyContent='space-between'
+      w='full'
+      mx='auto'
+      py={{ base: '12px', md: '24px' }}
+      style={{ display: 'none' }}
+    >
       <Logo />
       <BasicAccountCreation />
 

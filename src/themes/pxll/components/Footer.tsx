@@ -119,7 +119,7 @@ const Footer = () => {
         gap={4}
       >
         <Code bg='bg_main' textAlign='center'>
-          Copyright 2024 Vocdoni, Inc. All rights reserved
+          Copyrights 2024 Vocdoni, Inc. All rights reserved
         </Code>
         <Code bg='bg_main' textAlign='center'>
           <Trans
