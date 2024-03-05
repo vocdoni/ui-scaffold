@@ -63,7 +63,7 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
         justifyContent='space-between'
       >
         {gitcoinTokens.map((token, i) => (
-          <StampCard key={i} name={token.name} stampId={token.externalID} />
+          <StampCard key={i} name={token.name} token={token} />
         ))}
       </Grid>
       <StampsUnionType />
