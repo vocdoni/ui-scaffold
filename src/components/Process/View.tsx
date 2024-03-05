@@ -76,6 +76,7 @@ export const ProcessView = () => {
     <Box>
       <Box className='site-wrapper' mb={44}>
         <Header />
+
         {election?.streamUri && (
           <Box
             maxW={{ base: videoTop ? '250px' : '800px', lg: videoTop ? '400px' : '800px' }}
@@ -107,7 +108,7 @@ export const ProcessView = () => {
             </TabList>
             <TabPanels>
               <TabPanel>
-                <Box className='md-sizes'>
+                <Box className='md-sizes' mb='100px' pt='50px'>
                   <ElectionQuestions
                     confirmContents={(election, answers) => <ConfirmVoteModal election={election} answers={answers} />}
                   />

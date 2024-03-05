@@ -79,8 +79,6 @@ const Navbar = () => {
                         src={account?.account.avatar}
                         name={account?.account.name.default || account?.address}
                         size='xs'
-                        bg='primary.main'
-                        color='white'
                       />
                       {isOpen ? (
                         <ChevronUpIcon boxSize={8} color='navbar_chevron' />
