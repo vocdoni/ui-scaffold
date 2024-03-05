@@ -45,12 +45,20 @@ const PxLL = () => {
         </Text>
         <Text style={{ marginLeft: '30px' }}>
           - Enllaç a documentació externa:{' '}
-          <a href='https://www.plataforma-llengua.cat/ago-2024-documentacio/' target='_blank'>
-            Documentació
+          <a
+            href='https://www.plataforma-llengua.cat/ago-2024-documentacio/'
+            target='_blank'
+            style={{ textDecoration: 'underline', color: 'rgb(254, 202, 3)' }}
+          >
+            Documentació 🔗
           </a>
           <br />- Enllaç a plataforma de precs i preguntes:{' '}
-          <a href='www.plataforma-llengua.cat/ago-2024-precs-i-preguntes' target='_blank'>
-            Precs i Preguntes
+          <a
+            href='www.plataforma-llengua.cat/ago-2024-precs-i-preguntes'
+            target='_blank'
+            style={{ textDecoration: 'underline', color: 'rgb(254, 202, 3)' }}
+          >
+            Precs i Preguntes 🔗
           </a>
         </Text>
       </Text>
