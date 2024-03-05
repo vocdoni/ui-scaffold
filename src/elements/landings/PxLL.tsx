@@ -25,15 +25,35 @@ const PxLL = () => {
         </Text>
         <Text>
           <ul style={{ marginLeft: '30px' }}>
-            <li>Pregunta 1: Aprovació, si escau, de l'acta de l'anterior assemblea.</li>
-            <li>Pregunta 2: Aprovació, si escau, del Reglament electoral.</li>
-            <li>Pregunta 3: Aprovació, si escau, del Reglament de l'Assemblea General Ordinària 2024.</li>
-            <li>Pregunta 4: Aprovació, si escau, del projecte d'activitats 2023.</li>
-            <li>Pregunta 5: Aprovació, si escau, de l'estat de comptes 2023.</li>
-            <li>Pregunta 6: Aprovació, si escau, del Pla d'activitats 2024.</li>
-            <li>Pregunta Pregunta 7: Aprovació, si escau, del Pressupost de l'entitat 2024.</li>
-            <li>Pregunta 8: Ratificació de les incorporacions per substitució a l'Executiva 2024-2026.</li>
-            <li>Pregunta 9: Elecció de nous membres de l'Executiva 2024-2028.</li>
+            <li>
+              <i>Pregunta 1</i>: Aprovació, si escau, de l'acta de l'<strong>anterior assemblea</strong>.
+            </li>
+            <li>
+              <i>Pregunta 2</i>: Aprovació, si escau, del <strong>Reglament electoral</strong>.
+            </li>
+            <li>
+              <i>Pregunta 3</i>: Aprovació, si escau, del{' '}
+              <strong>Reglament de l'Assemblea General Ordinària 2024</strong>.
+            </li>
+            <li>
+              <i>Pregunta 4</i>: Aprovació, si escau, del <strong>projecte d'activitats 2023</strong>.
+            </li>
+            <li>
+              <i>Pregunta 5</i>: Aprovació, si escau, de l'<strong>estat de comptes 2023</strong>.
+            </li>
+            <li>
+              <i>Pregunta 6</i>: Aprovació, si escau, del <strong>Pla d'activitats 2024</strong>.
+            </li>
+            <li>
+              <i>Pregunta 7</i>: Aprovació, si escau, del <strong>Pressupost de l'entitat 2024</strong>.
+            </li>
+            <li>
+              <i>Pregunta 8</i>: Ratificació de les incorporacions per{' '}
+              <strong>substitució a l'Executiva 2024-2026</strong>.
+            </li>
+            <li>
+              <i>Pregunta 9</i>: Elecció de nous membres de l'<strong>Executiva 2024-2028</strong>.
+            </li>
           </ul>
         </Text>
       </Text>
