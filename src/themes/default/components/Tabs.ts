@@ -4,14 +4,13 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
 
 const card = definePartsStyle({
   tablist: {
-    display: 'grid',
-    gridTemplateColumns: {
-      base: 'repeat(1, 1fr)',
-      sm: 'repeat(2, 1fr)',
-      md: 'repeat(3, 1fr)',
-      xl: 'repeat(4, 1fr)',
+    display: 'flex',
+    flexDirection: 'column',
+    '& > div': {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+      gap: 5,
     },
-    gap: 5,
   },
   tab: {
     position: 'relative',
@@ -23,11 +22,11 @@ const card = definePartsStyle({
     flex: { md: '0 0 30%' },
     p: 4,
     px: 6,
-    bgColor: 'white',
     boxShadow: 'var(--box-shadow)',
+    bgColor: 'process_create.advanced_checkbox_bg',
     borderBottom: 'none',
     color: 'process_create.description',
-    borderRadius: 0,
+    borderRadius: 'md',
 
     '& > p:nth-of-type(1)': {
       color: 'process_create.description',
@@ -53,6 +52,8 @@ const card = definePartsStyle({
       w: 'full',
       gap: 3,
       mt: 2,
+      fontSize: 'sm',
+      color: 'black',
 
       '& p': {
         fontWeight: 'bold',
@@ -85,12 +86,13 @@ const card = definePartsStyle({
       '& > svg': {
         display: 'block',
       },
-      '& > div > p': {
-        color: 'process_create.tabs_selected_color',
-      },
+
       '& > div:nth-of-type(2)': {
         display: 'none',
       },
+    },
+    _hover: {
+      boxShadow: 'var(--box-shadow-darker)',
     },
   },
 })

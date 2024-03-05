@@ -29,7 +29,7 @@ export const Census = () => {
   return (
     <Wrapper>
       <ModalPro isOpen={isOpen} onClose={onClose} reason={reason} />
-      <Flex flexDirection='column' gap={10}>
+      <Flex flexDirection='column' gap={5}>
         <Box>
           <Text className='process-create-title'>{t('census.title')}</Text>
           <Text fontSize='sm' color='process_create.description'>
@@ -54,54 +54,62 @@ export const Census = () => {
           isLazy
         >
           <TabList mb={10}>
-            {defined.map((ct: CensusType, index: number) => (
-              <Tab key={index}>
-                <Check />
+            <Box>
+              {defined.map((ct: CensusType, index: number) => (
+                <Tab key={index}>
+                  <Check />
 
+                  <Box>
+                    <Icon as={details[ct].icon} />
+                    <Text>{details[ct].title}</Text>
+                  </Box>
+                  <Text>{details[ct].description}</Text>
+                  <Box />
+                </Tab>
+              ))}
+              <Tab
+                transform={showProCards ? 'scale(0.92)' : ''}
+                sx={{
+                  '& > div:nth-of-type(2)': {
+                    display: 'none',
+                  },
+                }}
+              >
                 <Box>
-                  <Icon as={details[ct].icon} />
-                  <Text>{details[ct].title}</Text>
+                  <Icon as={CgMoreO} />
+                  <Text>{t('process_create.census.others_title')}</Text>
                 </Box>
-                <Text>{details[ct].description}</Text>
-                <Box />
-              </Tab>
-            ))}
-            <Tab
-              transform={showProCards ? 'scale(0.92)' : ''}
-              sx={{
-                '& > div:nth-of-type(2)': {
-                  display: 'none',
-                },
-              }}
-            >
-              <Box>
-                <Icon as={CgMoreO} />
-                <Text>{t('process_create.census.others_title')}</Text>
-              </Box>
-              <Text>{t('process_create.census.others_description')}</Text>
+                <Text>{t('process_create.census.others_description')}</Text>
 
-              <Box />
-              <Box
-                onClick={() => setShowProCards((prev) => !prev)}
-                position='absolute'
-                w='100%'
-                h='100%'
-                left={0}
-                top={0}
-              />
-            </Tab>
+                <Box />
+                <Box
+                  onClick={() => setShowProCards((prev) => !prev)}
+                  position='absolute'
+                  w='100%'
+                  h='100%'
+                  left={0}
+                  top={0}
+                />
+              </Tab>
+            </Box>
+
             {showProCards && (
               <>
-                {definedUnim.map((ct: UnimplementedCensusType, index: number) => (
-                  <Tab key={index} onClick={onOpen}>
-                    <Box>
-                      <Icon as={detailsUnim[ct].icon} />
-                      <Text>{detailsUnim[ct].title}</Text>
-                    </Box>
-                    <Text as='span'>Pro</Text>
-                    <Text>{detailsUnim[ct].description}</Text>
-                  </Tab>
-                ))}
+                <Text className='process-create-title' mt={5} mb={3}>
+                  {t('census.pro')}
+                </Text>
+                <Box>
+                  {definedUnim.map((ct: UnimplementedCensusType, index: number) => (
+                    <Tab key={index} onClick={onOpen}>
+                      <Box>
+                        <Icon as={detailsUnim[ct].icon} />
+                        <Text>{detailsUnim[ct].title}</Text>
+                      </Box>
+                      <Text as='span'>Pro</Text>
+                      <Text>{detailsUnim[ct].description}</Text>
+                    </Tab>
+                  ))}
+                </Box>
               </>
             )}
           </TabList>

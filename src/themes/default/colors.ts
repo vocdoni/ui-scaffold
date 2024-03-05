@@ -179,6 +179,5 @@ export const colors = {
       bg: colorsBase.primary.main,
       color_active: colorsBase.white.pure,
     },
-    tabs_selected_color: colorsBase.primary.main,
   },
 }

@@ -93,6 +93,7 @@
   "census": {
     "chain_required": "Necessites seleccionar una xarxa",
     "description": "Selecciona com s'autenticaran i identificaran els votants.",
+    "pro": "",
     "request_custom_token": "Sol·licitar Tokens Personalitzats",
     "social_address_title": "Usuaris de Github",
     "spreadsheet_title": "Dades personalitzades",
@@ -576,6 +577,8 @@
       },
       "voting_type": {
         "description": "Selecciona el tipus de votació per a aquesta elecció. Si no trobes el que necessites, pots contactar-nos.",
+        "pro": "",
+        "pro_census": "",
         "title": "Tipus de Votació"
       }
     }

@@ -29,14 +29,7 @@ const SettingsAdvanced = () => {
           <Text className='process-create-title'>{t('form.process_create.behavior.title')}</Text>
         </Box>
 
-        <Grid
-          gridTemplateColumns={{
-            base: 'repeat(1, 1fr)',
-            sm: 'repeat(2, 1fr)',
-            xl: 'repeat(auto-fill, minmax(250px, 1fr))',
-          }}
-          gap={5}
-        >
+        <Grid gridTemplateColumns='repeat(auto-fill, minmax(250px, 1fr))' gap={5}>
           {import.meta.env.features.vote.anonymous && (
             <Checkbox {...register('electionType.anonymous')} variant='radiobox'>
               <Box>

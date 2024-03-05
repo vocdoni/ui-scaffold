@@ -26,14 +26,7 @@ const VotingTypes = () => {
           {t('process_create.question.voting_type.description')}
         </Text>
 
-        <Grid
-          gridTemplateColumns={{
-            base: 'repeat(1, 1fr)',
-            sm: 'repeat(2, 1fr)',
-            md: 'repeat(3, 1fr)',
-          }}
-          gap={5}
-        >
+        <Grid gridTemplateColumns='repeat(auto-fill, minmax(250px, 1fr))' gap={5}>
           {defined.map((ct: VotingType, index: number) => (
             <Checkbox key={index} variant='radiobox' isChecked={true}>
               <Box>
@@ -68,8 +61,13 @@ const VotingTypes = () => {
             <Text>{t('process_create.question.others.description')}</Text>
             <Box onClick={() => setShowProCards((prev) => !prev)} />
           </Checkbox>
-          {showProCards && (
-            <>
+        </Grid>
+        {showProCards && (
+          <>
+            <Text className='process-create-title' mt={5} mb={3}>
+              {t('process_create.question.voting_type.pro')}
+            </Text>
+            <Grid gridTemplateColumns='repeat(auto-fill, minmax(250px, 1fr))' gap={5}>
               {unDefined.map((ct: UnimplementedVotingType, index: number) => (
                 <Checkbox key={index} variant='radiobox' isChecked={true}>
                   <Box>
@@ -93,9 +91,9 @@ const VotingTypes = () => {
                   />
                 </Checkbox>
               ))}
-            </>
-          )}
-        </Grid>
+            </Grid>
+          </>
+        )}
       </Box>
     </>
   )

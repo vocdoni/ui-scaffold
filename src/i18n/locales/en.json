@@ -91,6 +91,7 @@
   "census": {
     "chain_required": "You need to select a network",
     "description": "Choose how to authenticate and verify voters.",
+    "pro": "Pro Census",
     "request_custom_token": "'Request Custom Tokens'",
     "social_address_title": "Github users",
     "spreadsheet_title": "Custom data",
@@ -567,6 +568,7 @@
       },
       "voting_type": {
         "description": "Select the voting type for this election. If you don't find what you need can contact us.",
+        "pro": "Pro Voting Type",
         "title": "Voting Types"
       }
     }

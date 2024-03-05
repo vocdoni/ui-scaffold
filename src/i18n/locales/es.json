@@ -93,6 +93,7 @@
   "census": {
     "chain_required": "Necesitas seleccionar una red",
     "description": "Selecciona cómo los votantes se autenticarán e identificarán.",
+    "pro": "",
     "request_custom_token": "Solicitar Tokens Personalizados",
     "social_address_title": "Usuarios de Github",
     "spreadsheet_title": "Datos personalizados",
@@ -576,6 +577,8 @@
       },
       "voting_type": {
         "description": "Selecciona el tipo de votación para esta elección. Si no encuentras lo que necesitas, puedes contactarnos.",
+        "pro": "",
+        "pro_census": "",
         "title": "Tipos de Votación"
       }
     }
