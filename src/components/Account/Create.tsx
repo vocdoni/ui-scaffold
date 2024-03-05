@@ -23,7 +23,7 @@ import {
 } from '@chakra-ui/react'
 import { Button } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
-import { Account } from '@vocdoni/sdk'
+import { Account, FaucetAPI } from '@vocdoni/sdk'
 import { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
@@ -168,22 +168,34 @@ export const BasicAccountCreation = () => {
   const { exists } = useAccountHealthTools()
   const { t } = useTranslation()
   const [creating, setCreating] = useState<boolean>(false)
-
+  const [faucetPackage, setFaucetPackage] = useState<string>('')
   // site name, to be used in translations
   let sitename = 'Vocdoni'
   if (import.meta.env.theme !== 'default') {
     sitename = ucfirst(import.meta.env.theme)
   }
 
+  const checkFaucetPackage = useCallback(async () => {
+    if (!client.wallet) return ''
+    if (faucetPackage) return faucetPackage
+    const address = await client.wallet.getAddress()
+    const fPackage = await FaucetAPI.collect(client.faucetService.url, address)
+    setFaucetPackage(fPackage.faucetPackage)
+    return fPackage.faucetPackage
+  }, [creating, client.wallet, isConnected, exists, account, faucetPackage])
+
   // create account logic (used both in effect and retry button)
   const create = useCallback(async () => {
     if (creating) return
 
     setCreating(true)
-    await createAccount()
+    const fPackage = await checkFaucetPackage()
+
+    if (fPackage) await createAccount({ faucetPackage: fPackage })
+    else await createAccount()
     setCreating(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [creating, client.wallet, isConnected, exists, account])
+  }, [creating, client.wallet, isConnected, exists, account, faucetPackage])
 
   // open modal and init create for the first time
   useEffect(() => {
