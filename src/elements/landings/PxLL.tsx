@@ -3,17 +3,17 @@ import { Link as ReactRouterLink } from 'react-router-dom'
 
 const PxLL = () => {
   return (
-    <Flex flexDirection='column' gap={10} maxW='900px' mx='auto' p={5} minH='100vh'>
+    <Flex flexDirection='column' gap={10} maxW='900px' mx='auto' p={5} minH='100vh' style={{ marginTop: '0px' }}>
       <Image
         src='https://cdn.discordapp.com/attachments/1077657962404925583/1210156328253661217/votacions_cap.jpg?ex=65e988e8&is=65d713e8&hm=e4d3249fc3c2cdc01431a1910830d1b2c2c73bb946c1031facfd0e97b8897561&'
         alt='Assemblea General de socis'
         mx='auto'
       />
       <Box>
-        <Text as='h1' fontWeight='bold' fontSize='36px' textAlign='center'>
+        <Text as='h1' fontWeight='bold' fontSize='32px' textAlign='center' style={{ marginTop: '-15px' }}>
           Assemblea General Ordinària
         </Text>
-        <Text as='h2' fontSize='16px' textAlign='center'>
+        <Text as='h2' fontSize='14px' textAlign='center'>
           Plataforma per la Llengua <i>(16/03/2024)</i>
         </Text>
       </Box>
