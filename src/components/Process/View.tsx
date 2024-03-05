@@ -43,7 +43,6 @@ export const ProcessView = () => {
   const [videoTop, setVideoTop] = useState(false)
 
   const [tabIndex, setTabIndex] = useState(0)
-  const [rerender, setRerender] = useState(false)
 
   const handleTabsChange = (index: number) => {
     setTabIndex(index)
@@ -114,15 +113,7 @@ export const ProcessView = () => {
                     confirmContents={(election, answers) => <ConfirmVoteModal election={election} answers={answers} />}
                   />
                 </Box>
-                <Box
-                  position='sticky'
-                  bottom={0}
-                  left={0}
-                  pb={1}
-                  pt={1}
-                  display={{ base: 'none', lg2: 'block' }}
-                  onClick={() => setRerender(!rerender)}
-                >
+                <Box position='sticky' bottom={0} left={0} pb={1} pt={1} display={{ base: 'none', lg2: 'block' }}>
                   <VoteButton setQuestionsTab={setQuestionsTab} />
                 </Box>
               </TabPanel>
