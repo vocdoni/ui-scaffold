@@ -6,8 +6,8 @@ const Benefits = () => {
 
   return (
     <>
-      <div class='hhs-wave-con'>
-        <div class='hhs-wave-module'>
+      <div className='hhs-wave-con'>
+        <div className='hhs-wave-module'>
           <svg
             id='opt_1'
             data-name='opt 1'
@@ -20,7 +20,7 @@ const Benefits = () => {
             <g id='Wave-1'>
               <path
                 id='Rectangle'
-                class='cls-1'
+                className='cls-1'
                 d='M0,0C623,0,667,151.4614,1366,121.6993V128H0Z'
                 style={{ fill: '#175b64' }}
               ></path>
@@ -101,8 +101,8 @@ const Benefits = () => {
           </Flex>
         </Box>
       </Box>
-      <div class='hhs-wave-con'>
-        <div class='hhs-wave-module'>
+      <div className='hhs-wave-con'>
+        <div className='hhs-wave-module'>
           <svg
             id='opt_1'
             data-name='opt 1'
@@ -116,7 +116,7 @@ const Benefits = () => {
             <g id='Wave-1'>
               <path
                 id='Rectangle'
-                class='cls-1'
+                className='cls-1'
                 d='M0,0C623,0,667,151.4614,1366,121.6993V128H0Z'
                 style={{ fill: '#175b64' }}
               ></path>
