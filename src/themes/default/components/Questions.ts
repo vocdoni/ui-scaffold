@@ -105,13 +105,17 @@ const baseStyle = definePartsStyle({
       alignItems: 'center',
       gap: 2,
       w: { lg2: '99%' },
+      _hover: {
+        bgColor: '#eee',
+      },
 
       '& span:nth-of-type(1)': {
         display: { base: 'none', md: 'block' },
+        position: 'absolute',
         width: '30px',
         height: '30px',
         background: 'transparent',
-        ml: '5px',
+        ml: '10px',
         borderRadius: 'none',
 
         '&[data-checked=""]': {
@@ -120,9 +124,9 @@ const baseStyle = definePartsStyle({
             bgColor: 'transparent',
           },
 
-          border: 'none',
           background: 'process.questions.question_selected.bg',
-          borderColor: 'process.questions.question_selected.bg',
+          borderColor: 'white',
+          borderWidth: '1px',
           bgSize: '15px',
           bgRepeat: 'no-repeat',
           bgPosition: 'center',
@@ -146,6 +150,7 @@ const baseStyle = definePartsStyle({
       },
       '& span:nth-of-type(2)': {
         p: 2,
+        pl: { md: 12 },
         m: 0,
         border: '1px solid lightgray',
         w: '100%',

@@ -138,7 +138,7 @@ const ProcessAside = () => {
   )
 }
 
-export const VoteButton = ({ setQuestionsTab }: { setQuestionsTab: () => void }) => {
+export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () => void }) => {
   const { t } = useTranslation()
 
   const { election, connected, isAbleToVote, isInCensus } = useElection()
@@ -159,6 +159,7 @@ export const VoteButton = ({ setQuestionsTab }: { setQuestionsTab: () => void })
       color='process.aside.color'
       py={3}
       px={{ base: 3, lg2: 0 }}
+      {...props}
     >
       {census?.type !== 'spreadsheet' && !connected && (
         <ConnectButton.Custom>
@@ -193,7 +194,17 @@ export const VoteButton = ({ setQuestionsTab }: { setQuestionsTab: () => void })
         </ConnectButton.Custom>
       )}
       {census?.type === 'spreadsheet' && !connected && <SpreadsheetAccess />}
-      {isAbleToVote && <CVoteButton w='full' fontSize='lg' onClick={setQuestionsTab} />}
+      {isAbleToVote && (
+        <CVoteButton
+          w='60%'
+          fontSize='lg'
+          height='50px'
+          onClick={setQuestionsTab}
+          _disabled={{
+            opacity: '0.8',
+          }}
+        />
+      )}
     </Flex>
   )
 }
