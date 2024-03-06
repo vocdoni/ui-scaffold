@@ -10,7 +10,7 @@ interface IStampCardProps {
 }
 
 export const StampCard: React.FC<IStampCardProps> = ({ name, token }) => {
-  const stampId = token.externalID
+  const stampId = token.symbol
   const { control, setValue } = useFormContext<CensusGitcoinValues>()
 
   const switchOnChange = (value: boolean) => {
@@ -31,7 +31,7 @@ export const StampCard: React.FC<IStampCardProps> = ({ name, token }) => {
             onChange={(e) => switchOnChange(e.target.checked as boolean)}
           >
             <Box>
-              <StampIcon stampId={stampId} />
+              <StampIcon stampId={token.externalID} />
               <Text>{name}</Text>
             </Box>
           </Checkbox>
