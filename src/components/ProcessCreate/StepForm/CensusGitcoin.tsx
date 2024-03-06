@@ -12,7 +12,7 @@ export type CensusGitcoinValues = {
   passportScore: number
   stamps: FormGitcoinStamps
   stampsUnionType: StampsUnionTypes
-} & Omit<CensusTokenValues, 'strategySize' | 'accuracy'>
+} & Omit<CensusTokenValues, 'accuracy'>
 
 export const StepFormCensusGitcoin = () => {
   const { t } = useTranslation()
@@ -21,6 +21,7 @@ export const StepFormCensusGitcoin = () => {
     defaultValues: {
       censusToken: form.censusToken,
       maxCensusSize: form.maxCensusSize,
+      strategySize: form.strategySize,
       chain: form.chain,
       passportScore: form.passportScore,
       stamps: form.stamps,
