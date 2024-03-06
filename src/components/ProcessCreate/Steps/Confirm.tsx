@@ -19,6 +19,7 @@ import {
 import { Button } from '@vocdoni/chakra-components'
 import { ElectionProvider, errorToString, useClient } from '@vocdoni/react-providers'
 import {
+  CensusType,
   CspCensus,
   Election,
   ElectionCreationSteps,
@@ -29,6 +30,7 @@ import {
   IPublishedElectionParameters,
   IQuestion,
   PlainCensus,
+  PublishedCensus,
   PublishedElection,
   StrategyToken,
   UnpublishedElection,
@@ -41,7 +43,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { IElection, IElectionWithTokenResponse } from 'vocdoni-admin-sdk'
 import { useCspAdmin } from '../Census/Csp/use-csp'
-import { CensusType } from '../Census/TypeSelector'
 import Preview from '../Confirm/Preview'
 import { CostPreview } from '../CostPreview'
 import { CreationProgress, Steps } from '../CreationProgress'
@@ -348,8 +349,15 @@ const getCensus = async (env: EnvOptions, form: StepsFormValues, salt: string) =
       c3client.queueWait.attempts = Math.min(Math.max(Math.ceil(attempts), 20), 100)
 
       if (form.censusType === 'gitcoin') {
-        const strategyID = await gitcoinStrategyId(form, c3client)
-        return c3client.createCensus(strategyID, form.electionType.anonymous)
+        const strategyID = await getGitcoinStrategyId(form, c3client)
+        const census = await c3client.createCensus(strategyID, form.electionType.anonymous)
+        return new PublishedCensus(
+          census.merkleRoot,
+          census.uri,
+          census.anonymous ? CensusType.ANONYMOUS : CensusType.WEIGHTED,
+          census.size,
+          BigInt(census.weight)
+        )
       }
 
       return c3client.createTokenCensus(
@@ -445,7 +453,7 @@ const buildPredicate = (symbols: string[], operator: StampsUnionTypes, index: nu
  * @param form
  * @param c3client
  */
-const gitcoinStrategyId = async (form: CensusGitcoinValues, c3client: VocdoniCensus3Client) => {
+const getGitcoinStrategyId = async (form: CensusGitcoinValues, c3client: VocdoniCensus3Client) => {
   let strategyTokens: Record<string, StrategyToken> = {}
   let predicate = ''
   if (Object.keys(form.stamps).length > 0) {
