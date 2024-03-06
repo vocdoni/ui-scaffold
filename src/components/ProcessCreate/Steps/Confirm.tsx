@@ -482,7 +482,7 @@ const getGitcoinStrategyId = async (form: CensusGitcoinValues, c3client: Vocdoni
     minBalance: form.passportScore.toString(),
   }
   predicate = `${scoreToken.symbol} ${predicate}`
-  return await c3client.createStrategy('gitcoin_onvote_' + Date.now(), predicate, form.stamps)
+  return await c3client.createStrategy('gitcoin_onvote_' + Date.now(), predicate, strategyTokens)
 }
 
 export type CensusMeta = {
