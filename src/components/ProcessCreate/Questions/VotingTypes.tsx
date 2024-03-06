@@ -43,24 +43,26 @@ const VotingTypes = () => {
               <Text>{details[ct].description}</Text>
             </Checkbox>
           ))}
-          <Checkbox
-            variant='radiobox'
-            transform={showProCards ? 'scale(0.92)' : ''}
-            sx={{
-              '& span:first-of-type': {
-                display: 'none',
-              },
-            }}
-          >
-            <Box>
-              <Icon as={CgMoreO} />
+          {!!unDefined.length && (
+            <Checkbox
+              variant='radiobox'
+              transform={showProCards ? 'scale(0.92)' : ''}
+              sx={{
+                '& span:first-of-type': {
+                  display: 'none',
+                },
+              }}
+            >
               <Box>
-                <Trans i18nKey={t('process_create.question.others.title')} />
+                <Icon as={CgMoreO} />
+                <Box>
+                  <Trans i18nKey={t('process_create.question.others.title')} />
+                </Box>
               </Box>
-            </Box>
-            <Text>{t('process_create.question.others.description')}</Text>
-            <Box onClick={() => setShowProCards((prev) => !prev)} />
-          </Checkbox>
+              <Text>{t('process_create.question.others.description')}</Text>
+              <Box onClick={() => setShowProCards((prev) => !prev)} />
+            </Checkbox>
+          )}
         </Grid>
         {showProCards && (
           <>

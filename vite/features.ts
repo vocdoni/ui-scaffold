@@ -11,12 +11,22 @@ const features = () => {
     },
     login: ['web3', 'web2'],
     census: ['spreadsheet', 'token', 'web3', 'csp'],
-    unimplemented_census: ['phone', 'email', 'crm', 'database', 'digital_certificate'],
+    unimplemented_census: [],
     voting_type: ['single'],
-    unimplemented_voting_type: ['multi', 'approval', 'participatory', 'borda'],
+    unimplemented_voting_type: [],
     languages: ['ca', 'en', 'es'],
   }
+
   const features = merge.withOptions({ mergeArrays: false }, defaults, JSON.parse(process.env.FEATURES || '{}'))
+  const unimplemented_census = ['phone', 'email', 'crm', 'database', 'digital_certificate']
+  const unimplemented_voting_type = ['multi', 'approval', 'participatory', 'borda']
+
+  features.unimplemented_census.forEach((el) => {
+    if (!unimplemented_census.includes(el)) throw new Error('Unimplemented census ' + el + ' does not exist')
+  })
+  features.unimplemented_voting_type.forEach((el) => {
+    if (!unimplemented_voting_type.includes(el)) throw new Error('Unimplemented voting type ' + el + ' does not exist')
+  })
   // Ensure at least one item is loaded in each feature array
   if (!features.login.length) {
     features.login = ['web3']

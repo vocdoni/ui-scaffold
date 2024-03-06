@@ -67,30 +67,32 @@ export const Census = () => {
                   <Box />
                 </Tab>
               ))}
-              <Tab
-                transform={showProCards ? 'scale(0.92)' : ''}
-                sx={{
-                  '& > div:nth-of-type(2)': {
-                    display: 'none',
-                  },
-                }}
-              >
-                <Box>
-                  <Icon as={CgMoreO} />
-                  <Text>{t('process_create.census.others_title')}</Text>
-                </Box>
-                <Text>{t('process_create.census.others_description')}</Text>
+              {!!definedUnim.length && (
+                <Tab
+                  transform={showProCards ? 'scale(0.92)' : ''}
+                  sx={{
+                    '& > div:nth-of-type(2)': {
+                      display: 'none',
+                    },
+                  }}
+                >
+                  <Box>
+                    <Icon as={CgMoreO} />
+                    <Text>{t('process_create.census.others_title')}</Text>
+                  </Box>
+                  <Text>{t('process_create.census.others_description')}</Text>
 
-                <Box />
-                <Box
-                  onClick={() => setShowProCards((prev) => !prev)}
-                  position='absolute'
-                  w='100%'
-                  h='100%'
-                  left={0}
-                  top={0}
-                />
-              </Tab>
+                  <Box />
+                  <Box
+                    onClick={() => setShowProCards((prev) => !prev)}
+                    position='absolute'
+                    w='100%'
+                    h='100%'
+                    left={0}
+                    top={0}
+                  />
+                </Tab>
+              )}
             </Box>
 
             {showProCards && (
