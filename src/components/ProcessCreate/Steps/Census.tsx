@@ -56,7 +56,7 @@ export const Census = () => {
           <TabList mb={10}>
             <Box>
               {defined.map((ct: CensusType, index: number) => (
-                <Tab key={index}>
+                <Tab key={index} onClick={() => setShowProCards(false)}>
                   <Check />
 
                   <Box>
@@ -100,7 +100,14 @@ export const Census = () => {
                 </Text>
                 <Box>
                   {definedUnim.map((ct: UnimplementedCensusType, index: number) => (
-                    <Tab key={index} onClick={onOpen}>
+                    <Tab
+                      key={index}
+                      onClick={(e) => {
+                        e.preventDefault()
+                        e.stopPropagation()
+                        onOpen()
+                      }}
+                    >
                       <Box>
                         <Icon as={detailsUnim[ct].icon} />
                         <Text>{detailsUnim[ct].title}</Text>
