@@ -31,7 +31,7 @@ export const StepFormCensusGitcoin = () => {
   const onSubmit: SubmitHandler<CensusGitcoinValues> = (data) => {
     console.log('data', data)
     setForm({ ...form, ...data })
-    // next()
+    next()
   }
   return (
     <Box px={7} py={4}>
