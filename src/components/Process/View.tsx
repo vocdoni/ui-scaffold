@@ -1,4 +1,5 @@
 import {
+  AspectRatio,
   Box,
   Button,
   Flex,
@@ -25,10 +26,11 @@ import {
 import { ElectionQuestions, ElectionResults, environment, useConfirm } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
 import { ElectionResultsTypeNames, ElectionStatus, PublishedElection } from '@vocdoni/sdk'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { FieldValues } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaFacebook, FaReddit, FaTelegram, FaTwitter } from 'react-icons/fa'
+import ReactPlayer from 'react-player'
 import ProcessAside, { VoteButton } from './Aside'
 import Header from './Header'
 import confirmImg from '/assets/spreadsheet-confirm-modal.jpg'
@@ -37,6 +39,8 @@ import successImg from '/assets/spreadsheet-success-modal.jpg'
 export const ProcessView = () => {
   const { t } = useTranslation()
   const { election } = useElection()
+  const videoRef = useRef<HTMLDivElement>(null)
+  const [videoTop, setVideoTop] = useState(false)
 
   const [tabIndex, setTabIndex] = useState(0)
 
@@ -47,6 +51,24 @@ export const ProcessView = () => {
   const setQuestionsTab = () => setTabIndex(0)
 
   useEffect(() => {
+    const handleScroll = () => {
+      if (!videoRef.current) return
+
+      const rect = videoRef.current.getBoundingClientRect()
+      if (rect.top <= 84) {
+        setVideoTop(true)
+      } else {
+        setVideoTop(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  useEffect(() => {
     if (election?.status === ElectionStatus.RESULTS) setTabIndex(1)
   }, [election])
 
@@ -54,7 +76,22 @@ export const ProcessView = () => {
     <Box>
       <Box className='site-wrapper' mb={44}>
         <Header />
-        <Flex direction={{ base: 'column', lg2: 'row' }} alignItems='start' gap={{ lg2: 10 }}>
+
+        {election?.streamUri && (
+          <Box
+            maxW={{ base: videoTop ? '250px' : '800px', lg: videoTop ? '400px' : '800px' }}
+            ml={videoTop ? 'auto' : 'none'}
+            position='sticky'
+            top={{ base: 0, lg2: 20 }}
+            zIndex={100}
+          >
+            <AspectRatio ref={videoRef} ratio={16 / 9}>
+              <ReactPlayer url={election?.streamUri} width='100%' height='100%' playing controls />
+            </AspectRatio>
+          </Box>
+        )}
+
+        <Flex direction={{ base: 'column', lg2: 'row' }} alignItems='start' gap={{ lg2: 10 }} mt={20}>
           <Tabs
             order={{ base: 2, lg2: 1 }}
             variant='process'
@@ -71,7 +108,7 @@ export const ProcessView = () => {
             </TabList>
             <TabPanels>
               <TabPanel>
-                <Box className='md-sizes'>
+                <Box className='md-sizes' mb='100px' pt='50px'>
                   <ElectionQuestions
                     confirmContents={(election, answers) => <ConfirmVoteModal election={election} answers={answers} />}
                   />
@@ -93,7 +130,7 @@ export const ProcessView = () => {
             gap={0}
             mx={{ base: 'auto', lg2: 0 }}
             position={{ lg2: 'sticky' }}
-            top={20}
+            top={'300px'}
             mt={10}
             maxW={{ lg2: '290px' }}
             mb={10}

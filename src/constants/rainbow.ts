@@ -1,7 +1,7 @@
 import { connectorsForWallets, Wallet, WalletList } from '@rainbow-me/rainbowkit'
 import '@rainbow-me/rainbowkit/styles.css'
 import { coinbaseWallet, metaMaskWallet, rainbowWallet, walletConnectWallet } from '@rainbow-me/rainbowkit/wallets'
-import { oAuthWallet } from '@vocdoni/rainbowkit-wallets'
+import { oAuthWallet, privateKeyWallet } from '@vocdoni/rainbowkit-wallets'
 import { configureChains, createConfig } from 'wagmi'
 import {
   arbitrum,
@@ -63,6 +63,7 @@ const featuredConnectors = () => {
       rainbowWallet({ projectId, chains }),
       coinbaseWallet({ chains, appName }),
       walletConnectWallet({ chains, projectId }),
+      privateKeyWallet({ chains }),
     ],
   }
 
@@ -99,6 +100,7 @@ const featuredConnectors = () => {
           oAuthServiceProvider: 'facebook',
         },
       }),
+      privateKeyWallet({ chains }),
     ],
   }
 

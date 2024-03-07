@@ -235,7 +235,7 @@
         "add_new_address": "add a new address",
         "delete_web3_address": "Delete address index {{ index }}",
         "holders": "{{ holders }} holders",
-        "max_census_resum": "You have a pool of {{ uniTokenHolders }} {{ symbol }} potential voters. To reduce the cost of the voting process, you can opt to limit the total number of participants in the voting process. This will not affect specific voters; it will simply reduce the number of holders who can cast their votes.",
+        "max_census_resum": "You have a pool of {{ uniTokenHolders }} {{ symbol }} potential voters. To reduce the cost of the voting process, you can opt to limit the total number of participants in the voting process. This will not affect specific voters nor will reduce the census; it will simply reduce the maximum number of votes that can be cast.",
         "max_census_slider_arialabel": "Maximum participation expected slider selector",
         "max_census_slider_label": "Maximum participation expected:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} eligible voters)",
@@ -546,8 +546,8 @@
     "read_more": "Read more"
   },
   "welcome": {
-    "description": "But first, you need to register your account and your SIK (Secret Identity Key) by signing 2 transactions (it's secure and free).",
-    "intro": "With this dApp you can create anonymous, private secure votings.",
+    "description": "To access all its features, including anonymous voting, you must create an account on the Vocdoni Protocol and register your Secret Identity Key (SIK) by signing two transactions. It's secure and free.",
+    "intro": "This is your first time using {{ sitename }}.",
     "step": {
       "register": "Register account",
       "sik": "Create SIK"

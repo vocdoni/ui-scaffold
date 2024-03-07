@@ -1,4 +1,3 @@
-import { ElectionActions } from './Actions'
 import { Alert } from './Alert'
 import { Badge } from './Badge'
 import { Button } from './Button'
@@ -16,15 +15,16 @@ import { SpreadsheetAccess } from './SpreadSheet'
 import { Stepper } from './Stepper'
 import { Tabs } from './Tabs'
 import { Textarea } from './Textarea'
+import { Avatar } from './Avatar'
 
 export {
   Alert,
+  Avatar,
   Badge,
   Button,
   Card,
   Checkbox,
   ConfirmModal,
-  ElectionActions,
   ElectionQuestions,
   ElectionResults,
   Form,
@@ -39,8 +39,8 @@ export {
 }
 
 export const components = {
-  ElectionActions,
   Alert,
+  Avatar,
   Badge,
   Button,
   Card,
