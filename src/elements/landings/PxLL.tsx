@@ -25,6 +25,18 @@ const PxLL = () => {
     }
   }, [])
 
+  const processes = [
+    '/processes/4ae20a8eb4ca63ca71be6765bc582f254eb1c49cf9739bbf798e020400000001', //1
+    '/processes/4ae20a8eb4ca63ca71be6765bc582f254eb1c49cf9739bbf798e020400000001', //2
+    '/processes/4ae20a8eb4ca63ca71be6765bc582f254eb1c49cf9739bbf798e020400000001', //3
+    '/processes/4ae20a8eb4ca63ca71be6765bc582f254eb1c49cf9739bbf798e020400000001', //4
+    '/processes/4ae20a8eb4ca63ca71be6765bc582f254eb1c49cf9739bbf798e020400000001', //5
+    '/processes/4ae20a8eb4ca63ca71be6765bc582f254eb1c49cf9739bbf798e020400000001', //6
+    '/processes/4ae20a8eb4ca63ca71be6765bc582f254eb1c49cf9739bbf798e020400000001', //7
+    '/processes/4ae20a8eb4ca63ca71be6765bc582f254eb1c49cf9739bbf798e020400000001', //8
+    '/processes/4ae20a8eb4ca63ca71be6765bc582f254eb1c49cf9739bbf798e020400000001', //9
+  ]
+
   return (
     <Flex flexDirection='column' gap={10} maxW='1200px' mx='auto' p={5} minH='100vh' style={{ marginTop: '0px' }}>
       <Flex flexDirection='column' gap={10} maxW='850px' mx='auto' p={5} style={{ marginTop: '0px' }}>
@@ -38,7 +50,7 @@ const PxLL = () => {
             Assemblea General Ordinària
           </Text>
           <Text as='h2' fontSize='14px' textAlign='center'>
-            Plataforma per la Llengua <i>(16/03/2024)</i>
+            Associació Plataforma per la Llengua - Col·lectiu l’Esbarzer <i>(16/03/2024)</i>
           </Text>
         </Box>
       </Flex>
@@ -50,7 +62,7 @@ const PxLL = () => {
               <br />
               <br />
             </Text>
-            <Text>
+            <Text fontSize='18px'>
               <ul style={{ marginLeft: '15px' }}>
                 <li>
                   <i>1</i>: Aprovació, si escau, de l'acta de l'anterior assemblea.
@@ -78,11 +90,18 @@ const PxLL = () => {
                 </li>
                 <li>
                   <i>9</i>: Elecció de nous membres de l'Executiva 2024-2028.
+                  <br />
+                  <span style={{ marginLeft: '30px' }}>- Presentació de candidatures</span>
+                  <br />
+                  <span style={{ marginLeft: '30px' }}>- Votacions</span>
+                </li>
+                <li>
+                  <i>10</i>: Torn obert de preguntes.
                 </li>
               </ul>
             </Text>
           </Text>
-          <Text>
+          <Text fontSize='18px'>
             <Text style={{ marginTop: '30px' }}>
               - Enllaç a documentació externa:{' '}
               <a
@@ -94,7 +113,7 @@ const PxLL = () => {
               </a>
               <br />- Enllaç a plataforma de precs i preguntes:{' '}
               <a
-                href='www.plataforma-llengua.cat/ago-2024-precs-i-preguntes'
+                href='https://www.plataforma-llengua.cat/ago-2024-precs-i-preguntes/'
                 target='_blank'
                 style={{ textDecoration: 'underline', color: '#e40800' }}
               >
@@ -109,10 +128,11 @@ const PxLL = () => {
           position='sticky'
           top={{ base: 0, lg2: 20 }}
           zIndex={100}
+          style={{ display: 'none' }}
         >
           <AspectRatio ref={videoRef} ratio={16 / 9}>
             <ReactPlayer
-              url='https://www.youtube.com/embed/ydYDqZQpim8?si=uW5Rm_QpzMjklFee'
+              url='https://www.youtube.com/embed/cvkb7dPr5Uk?si=AUhsbtslqc7bfk2W'
               width='100%'
               height='100%'
               playing
@@ -120,11 +140,11 @@ const PxLL = () => {
             />
           </AspectRatio>
         </Box>
-        <Box style={{ margin: '40px auto', display: 'none' }}>
+        <Box style={{ margin: '40px auto' }}>
           <iframe
             width='560'
             height='315'
-            src='https://www.youtube.com/embed/ydYDqZQpim8?si=uW5Rm_QpzMjklFee'
+            src='https://www.youtube.com/embed/cvkb7dPr5Uk?si=AUhsbtslqc7bfk2W'
             title='YouTube video player'
           ></iframe>
         </Box>
@@ -155,7 +175,7 @@ const PxLL = () => {
             _active={{
               transform: 'scale(0.9)',
             }}
-            to='https://65e5b71855889b0b69cec810--vocdoni-app-stg.netlify.app/processes/4ae20a8eb4ca63ca71be6765bc582f254eb1c49cf9739bbf798e020400000001'
+            to={processes[0]}
             target='_blank'
           >
             <Box>
@@ -183,7 +203,7 @@ const PxLL = () => {
             _active={{
               transform: 'scale(0.9)',
             }}
-            to='https://65e5b71855889b0b69cec810--vocdoni-app-stg.netlify.app/processes/0x4ae20a8eb4ca802371242855fb0f936714040c24d7dd6f0c9233020400000001'
+            to={processes[1]}
             target='_blank'
           >
             <Box>
@@ -211,7 +231,7 @@ const PxLL = () => {
             _active={{
               transform: 'scale(0.9)',
             }}
-            to='https://65e5b71855889b0b69cec810--vocdoni-app-stg.netlify.app/processes/0x4ae20a8eb4ca802371242855fb0f936714040c24d7dd6f0c9233020400000000'
+            to={processes[2]}
             target='_blank'
           >
             <Box>
@@ -239,7 +259,7 @@ const PxLL = () => {
             _active={{
               transform: 'scale(0.9)',
             }}
-            to='https://65e5b71855889b0b69cec810--vocdoni-app-stg.netlify.app/processes/0x4ae20a8eb4ca56b4f11f211c1681b5a7d4b692e4cf8917473f2b020400000001'
+            to={processes[3]}
             target='_blank'
           >
             <Box>
@@ -267,7 +287,7 @@ const PxLL = () => {
             _active={{
               transform: 'scale(0.9)',
             }}
-            to='https://65e5b71855889b0b69cec810--vocdoni-app-stg.netlify.app/processes/0x4ae20a8eb4ca56b4f11f211c1681b5a7d4b692e4cf8917473f2b020400000000'
+            to={processes[4]}
             target='_blank'
           >
             <Box>
@@ -295,7 +315,7 @@ const PxLL = () => {
             _active={{
               transform: 'scale(0.9)',
             }}
-            to='https://65e5b71855889b0b69cec810--vocdoni-app-stg.netlify.app/processes/0x4ae20a8eb4caf3acd866acef2f606cacc7070903bbcc36b841bc020400000001'
+            to={processes[5]}
             target='_blank'
           >
             <Box>
@@ -323,7 +343,7 @@ const PxLL = () => {
             _active={{
               transform: 'scale(0.9)',
             }}
-            to='https://65e5b71855889b0b69cec810--vocdoni-app-stg.netlify.app/processes/0x4ae20a8eb4caf3acd866acef2f606cacc7070903bbcc36b841bc020400000000'
+            to={processes[6]}
             target='_blank'
           >
             <Box>
@@ -351,7 +371,7 @@ const PxLL = () => {
             _active={{
               transform: 'scale(0.9)',
             }}
-            to='https://65e5b71855889b0b69cec810--vocdoni-app-stg.netlify.app/processes/0x4ae20a8eb4cad3b60bc14cefdb184e8a7a05c537429c486fd629020400000001'
+            to={processes[7]}
             target='_blank'
           >
             <Box>
@@ -380,7 +400,7 @@ const PxLL = () => {
             _active={{
               transform: 'scale(0.9)',
             }}
-            to='https://65e5b71855889b0b69cec810--vocdoni-app-stg.netlify.app/processes/0x4ae20a8eb4cad3b60bc14cefdb184e8a7a05c537429c486fd629020400000000'
+            to={processes[8]}
             target='_blank'
           >
             <Box>
