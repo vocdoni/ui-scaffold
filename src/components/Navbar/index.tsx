@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next'
 import { MdHowToVote } from 'react-icons/md'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
-import { BasicAccountCreation } from '~components/Account/Create'
 import { useOrganizationHealthTools } from '~components/Account/use-account-health-tools'
 import Logo from '~components/Layout/Logo'
 import { LanguagesMenu } from './LanguagesList'
@@ -23,7 +22,6 @@ const Navbar = () => {
   return (
     <Flex className='site-wrapper' justifyContent='space-between' w='full' mx='auto' py={{ base: '12px', md: '24px' }}>
       <Logo />
-      <BasicAccountCreation />
 
       <List as='nav' display='flex' alignItems='center' gap={4}>
         {isConnected && (
@@ -79,8 +77,6 @@ const Navbar = () => {
                         src={account?.account.avatar}
                         name={account?.account.name.default || account?.address}
                         size='xs'
-                        bg='primary.main'
-                        color='white'
                       />
                       {isOpen ? (
                         <ChevronUpIcon boxSize={8} color='navbar_chevron' />
