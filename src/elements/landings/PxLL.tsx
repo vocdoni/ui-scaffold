@@ -350,10 +350,16 @@ const PxLL = () => {
         </Flex>
       </Box>
       <Text style={{ marginBottom: '50px' }}>
-        Per poder accedir a la votació, heu de pulsar sobre “Identificar-se”. Us demanarem el vostre DNI/NIE i el codi de pas que heu rebut per correu electrònic. Posteriorment, podreu emetre el vostre vot de forma segura.
+        Per poder accedir a la votació, heu de pulsar sobre “Identificar-se”. Us demanarem el vostre DNI/NIE i el codi
+        de pas que heu rebut per correu electrònic. Posteriorment, podreu emetre el vostre vot de forma segura.
       </Text>
       <Text style={{ marginBottom: '150px' }}>
-        <i><strong>En cas de dubte / dificultats tècniques ens pots contactar al telèfon <u>933 211 803</u> o al correu <u>socis@plataforma-llengua.cat</u></strong></i>
+        <i>
+          <strong>
+            En cas de dubte / dificultats tècniques ens pots contactar al telèfon <u>933 211 803</u> o al correu{' '}
+            <u>socis@plataforma-llengua.cat</u>
+          </strong>
+        </i>
       </Text>
     </Flex>
   )
