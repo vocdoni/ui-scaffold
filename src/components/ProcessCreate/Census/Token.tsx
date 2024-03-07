@@ -400,7 +400,9 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
   return (
     <>
       <FormControl isInvalid={!!errors.maxCensusSize} mb={3}>
-        <FormLabel mb={3}>{t('form.process_create.census.max_census_slider_label')}</FormLabel>
+        <FormLabel fontWeight='bold' mb={3}>
+          {t('form.process_create.census.max_census_slider_label')}
+        </FormLabel>
         <Slider
           aria-label={t('form.process_create.census.max_census_slider_arialabel')}
           defaultValue={sliderValue}

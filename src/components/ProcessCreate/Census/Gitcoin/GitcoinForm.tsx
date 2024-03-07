@@ -5,7 +5,12 @@ import {
   NumberInput,
   NumberInputField,
   NumberInputStepper,
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
   Grid,
+  Flex,
 } from '@chakra-ui/react'
 import { Controller, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -34,7 +39,6 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
 
   return (
     <>
-      <MaxCensusSizeSelector token={ct} strategySize={strategySize} />
       <FormLabel fontWeight='bold'>{t('form.process_create.census.gitcoin_passport_score')}</FormLabel>
       <Controller
         name={'passportScore'}
@@ -43,23 +47,39 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
         rules={{
           required,
         }}
-        render={({ field: { ref, onChange, ...restField } }) => (
-          <NumberInput
-            defaultValue={50}
-            min={1}
-            max={100}
-            maxW={40}
-            {...restField}
-            onChange={(e) => {
-              onChange(Number(e))
-            }}
-          >
-            <NumberInputField />
-            <NumberInputStepper>
-              <NumberIncrementStepper />
-              <NumberDecrementStepper />
-            </NumberInputStepper>
-          </NumberInput>
+        render={({ field: { ref, onChange, value, ...restField } }) => (
+          <Flex>
+            <NumberInput
+              defaultValue={50}
+              min={1}
+              max={100}
+              maxW={40}
+              value={value}
+              {...restField}
+              onChange={(e) => {
+                onChange(Number(e))
+              }}
+            >
+              <NumberInputField />
+              <NumberInputStepper>
+                <NumberIncrementStepper />
+                <NumberDecrementStepper />
+              </NumberInputStepper>
+            </NumberInput>
+            <Slider
+              flex='1'
+              focusThumbOnChange={false}
+              value={value}
+              onChange={(e) => {
+                onChange(Number(e))
+              }}
+            >
+              <SliderTrack>
+                <SliderFilledTrack />
+              </SliderTrack>
+              <SliderThumb fontSize='sm' boxSize='32px' children={value} />
+            </Slider>
+          </Flex>
         )}
       ></Controller>
       <FormLabel fontWeight='bold'>{t('form.process_create.census.gitcoin_stamps')}</FormLabel>
@@ -73,6 +93,7 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
         ))}
       </Grid>
       <StampsUnionType />
+      <MaxCensusSizeSelector token={ct} strategySize={strategySize} />
     </>
   )
 }
