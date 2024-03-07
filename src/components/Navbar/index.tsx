@@ -22,28 +22,18 @@ const Navbar = () => {
 
   return (
     <Flex
-      className='site-wrapper'
+      className=''
       justifyContent='space-between'
       w='full'
       mx='auto'
-      py={{ base: '12px', md: '24px' }}
-      style={{ display: 'none' }}
+      py={{ base: '5px' }}
+      px={{ base: '30px' }}
+      mb='-70px'
     >
       <Logo />
       <BasicAccountCreation />
 
       <List as='nav' display='flex' alignItems='center' gap={4}>
-        {isConnected && (
-          <ListItem>
-            <Button as={ReactRouterLink} to='/processes/create'>
-              <AddIcon boxSize={{ base: 4, sm2: 3 }} />
-              <Text as='span' display={{ base: 'none', sm2: 'inline-block' }}>
-                {t('menu.new_process')}
-              </Text>
-            </Button>
-          </ListItem>
-        )}
-
         {exists && (
           <ListItem>
             <Button
@@ -67,7 +57,7 @@ const Navbar = () => {
                   if (openConnectModal) openConnectModal()
                 }}
               >
-                {t('menu.login').toString()}
+                Admin
               </Button>
             </ListItem>
             <ListItem>
