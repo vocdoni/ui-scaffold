@@ -52,6 +52,12 @@ const ActionsMenuList = (props: MenuListProps) => {
           justifyContent='start'
           isLoading={loading.continue}
           variant=''
+          sx={{
+            '& span': {
+              display: 'flex',
+              alignItems: 'center',
+            },
+          }}
         >
           {t('process_actions.start')}
         </MenuItem>
@@ -64,6 +70,12 @@ const ActionsMenuList = (props: MenuListProps) => {
           justifyContent='start'
           isLoading={loading.pause}
           variant=''
+          sx={{
+            '& span': {
+              display: 'flex',
+              alignItems: 'center',
+            },
+          }}
         >
           {t('process_actions.pause')}
         </MenuItem>
@@ -76,6 +88,12 @@ const ActionsMenuList = (props: MenuListProps) => {
         isLoading={loading.end}
         variant='solid'
         colorScheme='gray'
+        sx={{
+          '& span': {
+            display: 'flex',
+            alignItems: 'center',
+          },
+        }}
       >
         {t('process_actions.end')}
       </MenuItem>
@@ -88,6 +106,12 @@ const ActionsMenuList = (props: MenuListProps) => {
         isLoading={loading.cancel}
         variant='solid'
         colorScheme='gray'
+        sx={{
+          '& span': {
+            display: 'flex',
+            alignItems: 'center',
+          },
+        }}
       >
         {t('process_actions.cancel')}
       </MenuItem>
