@@ -546,8 +546,8 @@
     "read_more": "Read more"
   },
   "welcome": {
-    "description": "But first, you need to register your account and your SIK (Secret Identity Key) by signing 2 transactions (it's secure and free).",
-    "intro": "With this dApp you can create anonymous, private secure votings.",
+    "description": "To access all its features, including anonymous voting, you must create an account on the Vocdoni Protocol and register your Secret Identity Key (SIK) by signing two transactions. It's secure and free.",
+    "intro": "This is your first time using {{ sitename }}.",
     "step": {
       "register": "Register account",
       "sik": "Create SIK"
