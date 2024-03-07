@@ -41,7 +41,7 @@ const ProcessHeader = () => {
         </Button>
       )}
       {election?.header && (
-        <Box w='100%' mx='auto' maxH='300px' my='30px' overflow='hidden'>
+        <Box w='60%' mx='auto' maxH='300px' my='30px' overflow='hidden'>
           <Image src={election?.header} w='100%' h='auto' objectFit='cover' />
         </Box>
       )}
