@@ -1,7 +1,30 @@
-import { Box, Flex, Image, Link, Text } from '@chakra-ui/react'
+import { Box, Flex, Image, Link, Text, AspectRatio } from '@chakra-ui/react'
 import { Link as ReactRouterLink } from 'react-router-dom'
+import ReactPlayer from 'react-player'
+import { useEffect, useRef, useState } from 'react'
 
 const PxLL = () => {
+  const videoRef = useRef<HTMLDivElement>(null)
+  const [videoTop, setVideoTop] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!videoRef.current) return
+
+      const rect = videoRef.current.getBoundingClientRect()
+      if (rect.top <= 84) {
+        setVideoTop(true)
+      } else {
+        setVideoTop(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
   return (
     <Flex flexDirection='column' gap={10} maxW='1200px' mx='auto' p={5} minH='100vh' style={{ marginTop: '0px' }}>
       <Flex flexDirection='column' gap={10} maxW='850px' mx='auto' p={5} style={{ marginTop: '0px' }}>
@@ -80,7 +103,24 @@ const PxLL = () => {
             </Text>
           </Text>
         </Box>
-        <Box style={{ margin: '40px auto' }}>
+        <Box
+          maxW={{ base: videoTop ? '250px' : '800px', lg: videoTop ? '400px' : '0px' }}
+          ml={videoTop ? 'auto' : 'none'}
+          position='sticky'
+          top={{ base: 0, lg2: 20 }}
+          zIndex={100}
+        >
+          <AspectRatio ref={videoRef} ratio={16 / 9}>
+            <ReactPlayer
+              url='https://www.youtube.com/embed/ydYDqZQpim8?si=uW5Rm_QpzMjklFee'
+              width='100%'
+              height='100%'
+              playing
+              controls
+            />
+          </AspectRatio>
+        </Box>
+        <Box style={{ margin: '40px auto', display: 'none' }}>
           <iframe
             width='560'
             height='315'
