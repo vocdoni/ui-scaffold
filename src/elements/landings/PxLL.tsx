@@ -1,8 +1,56 @@
-import { Box, Flex, Image, Link, Text, AspectRatio } from '@chakra-ui/react'
-import { Link as ReactRouterLink } from 'react-router-dom'
-import ReactPlayer from 'react-player'
+import { AspectRatio, Box, Flex, Image, Link, Text } from '@chakra-ui/react'
 import { useEffect, useRef, useState } from 'react'
+import ReactPlayer from 'react-player'
+import { Link as ReactRouterLink } from 'react-router-dom'
 import header from '/assets/votacions_cap.jpg'
+
+const processes = [
+  {
+    //1
+    title: "Aprovació, si escau, de l'acta de l'anterior assemblea.",
+    pid: '1db268a2d13863ca71be6765bc582f254eb1c49cf9739bbf798e020c0000000c',
+  },
+  {
+    //2
+    title: 'Aprovació, si escau, del Reglament electoral.',
+    pid: '1db268a2d13863ca71be6765bc582f254eb1c49cf9739bbf798e020c0000000d',
+  },
+  {
+    //3
+    title: "Aprovació, si escau, del Reglament de l'Assemblea General Ordinària 2024.",
+    pid: '1db268a2d13863ca71be6765bc582f254eb1c49cf9739bbf798e020c0000000e',
+  },
+  {
+    //4
+    title: "Aprovació, si escau, del projecte d'activitats 2023.",
+    pid: '1db268a2d13863ca71be6765bc582f254eb1c49cf9739bbf798e020c0000000f',
+  },
+  {
+    //5
+    title: "Aprovació, si escau, de l'estat de comptes 2023.",
+    pid: '1db268a2d13863ca71be6765bc582f254eb1c49cf9739bbf798e020c00000010',
+  },
+  {
+    //6
+    title: "Aprovació, si escau, del Pla d'activitats 2024.",
+    pid: '1db268a2d13863ca71be6765bc582f254eb1c49cf9739bbf798e020c00000011',
+  },
+  {
+    //7
+    title: "Aprovació, si escau, del Pressupost de l'entitat 2024.",
+    pid: '1db268a2d13863ca71be6765bc582f254eb1c49cf9739bbf798e020c00000012',
+  },
+  {
+    //8
+    title: "Ratificació de les incorporacions per substitució a l'Executiva 2024-2026.",
+    pid: '1db268a2d13863ca71be6765bc582f254eb1c49cf9739bbf798e020c00000013',
+  },
+  {
+    //9
+    title: "Elecció de nous membres de l'Executiva 2024-2028.",
+    pid: '1db268a2d13863ca71be6765bc582f254eb1c49cf9739bbf798e020c00000014',
+  },
+]
 
 const PxLL = () => {
   const videoRef = useRef<HTMLDivElement>(null)
@@ -25,18 +73,6 @@ const PxLL = () => {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
-
-  const processes = [
-    '/processes/1db268a2d13863ca71be6765bc582f254eb1c49cf9739bbf798e020c0000000c', //1
-    '/processes/1db268a2d13863ca71be6765bc582f254eb1c49cf9739bbf798e020c0000000d', //2
-    '/processes/1db268a2d13863ca71be6765bc582f254eb1c49cf9739bbf798e020c0000000e', //3
-    '/processes/1db268a2d13863ca71be6765bc582f254eb1c49cf9739bbf798e020c0000000f', //4
-    '/processes/1db268a2d13863ca71be6765bc582f254eb1c49cf9739bbf798e020c00000010', //5
-    '/processes/1db268a2d13863ca71be6765bc582f254eb1c49cf9739bbf798e020c00000011', //6
-    '/processes/1db268a2d13863ca71be6765bc582f254eb1c49cf9739bbf798e020c00000012', //7
-    '/processes/1db268a2d13863ca71be6765bc582f254eb1c49cf9739bbf798e020c00000013', //8
-    '/processes/1db268a2d13863ca71be6765bc582f254eb1c49cf9739bbf798e020c00000014', //9
-  ]
 
   return (
     <Flex flexDirection='column' gap={10} maxW='1200px' mx='auto' p={5} minH='100vh' style={{ marginTop: '0px' }}>
@@ -61,37 +97,11 @@ const PxLL = () => {
             </Text>
             <Text fontSize='18px'>
               <ul style={{ marginLeft: '15px' }}>
-                <li>
-                  <i>1</i>: Aprovació, si escau, de l'acta de l'anterior assemblea.
-                </li>
-                <li>
-                  <i>2</i>: Aprovació, si escau, del Reglament electoral.
-                </li>
-                <li>
-                  <i>3</i>: Aprovació, si escau, del Reglament de l'Assemblea General Ordinària 2024.
-                </li>
-                <li>
-                  <i>4</i>: Aprovació, si escau, del projecte d'activitats 2023.
-                </li>
-                <li>
-                  <i>5</i>: Aprovació, si escau, de l'estat de comptes 2023.
-                </li>
-                <li>
-                  <i>6</i>: Aprovació, si escau, del Pla d'activitats 2024.
-                </li>
-                <li>
-                  <i>7</i>: Aprovació, si escau, del Pressupost de l'entitat 2024.
-                </li>
-                <li>
-                  <i>8</i>: Ratificació de les incorporacions per substitució a l'Executiva 2024-2026.
-                </li>
-                <li>
-                  <i>9</i>: Elecció de nous membres de l'Executiva 2024-2028.
-                  <br />
-                  <span style={{ marginLeft: '30px' }}>- Presentació de candidatures</span>
-                  <br />
-                  <span style={{ marginLeft: '30px' }}>- Votacions</span>
-                </li>
+                {processes.map((process, index) => (
+                  <li>
+                    <i>{index + 1}</i>: {process.title}
+                  </li>
+                ))}
                 <li>
                   <i>10</i>: Torn obert de preguntes.
                 </li>
@@ -152,258 +162,37 @@ const PxLL = () => {
           Votacions:
         </Text>
         <Flex gap={5} flexDirection={{ base: 'column' }}>
-          <Link
-            as={ReactRouterLink}
-            flexGrow={1}
-            display='flex'
-            justifyContent='center'
-            alignItems='center'
-            flexWrap='wrap'
-            h={{ base: '100px' }}
-            borderRadius='md'
-            color='black'
-            textDecoration='none'
-            textAlign='center'
-            fontWeight='bold'
-            boxShadow='0px 0px 10px 2px lightgray'
-            _hover={{
-              bgColor: 'lightgray',
-            }}
-            _active={{
-              transform: 'scale(0.9)',
-            }}
-            to={processes[0]}
-            target='_blank'
-          >
-            <Box>
-              <Text fontSize='18px'>1: Aprovació, si escau, de l'acta de l'anterior assemblea.</Text>
-            </Box>
-          </Link>
-
-          <Link
-            as={ReactRouterLink}
-            flexGrow={1}
-            display='flex'
-            justifyContent='center'
-            alignItems='center'
-            flexWrap='wrap'
-            h={{ base: '100px' }}
-            borderRadius='md'
-            color='black'
-            textDecoration='none'
-            textAlign='center'
-            fontWeight='bold'
-            boxShadow='0px 0px 10px 2px lightgray'
-            _hover={{
-              bgColor: 'lightgray',
-            }}
-            _active={{
-              transform: 'scale(0.9)',
-            }}
-            to={processes[1]}
-            target='_blank'
-          >
-            <Box>
-              <Text fontSize='18px'>2: Aprovació, si escau, del Reglament electoral.</Text>
-            </Box>
-          </Link>
-
-          <Link
-            as={ReactRouterLink}
-            flexGrow={1}
-            display='flex'
-            justifyContent='center'
-            alignItems='center'
-            flexWrap='wrap'
-            h={{ base: '100px' }}
-            borderRadius='md'
-            color='black'
-            textDecoration='none'
-            textAlign='center'
-            fontWeight='bold'
-            boxShadow='0px 0px 10px 2px lightgray'
-            _hover={{
-              bgColor: 'lightgray',
-            }}
-            _active={{
-              transform: 'scale(0.9)',
-            }}
-            to={processes[2]}
-            target='_blank'
-          >
-            <Box>
-              <Text fontSize='18px'>3: Aprovació, si escau, del Reglament de l'Assemblea General Ordinària 2024.</Text>
-            </Box>
-          </Link>
-
-          <Link
-            as={ReactRouterLink}
-            flexGrow={1}
-            display='flex'
-            justifyContent='center'
-            alignItems='center'
-            flexWrap='wrap'
-            h={{ base: '100px' }}
-            borderRadius='md'
-            color='black'
-            textDecoration='none'
-            textAlign='center'
-            fontWeight='bold'
-            boxShadow='0px 0px 10px 2px lightgray'
-            _hover={{
-              bgColor: 'lightgray',
-            }}
-            _active={{
-              transform: 'scale(0.9)',
-            }}
-            to={processes[3]}
-            target='_blank'
-          >
-            <Box>
-              <Text fontSize='18px'>4: Aprovació, si escau, del projecte d'activitats 2023.</Text>
-            </Box>
-          </Link>
-
-          <Link
-            as={ReactRouterLink}
-            flexGrow={1}
-            display='flex'
-            justifyContent='center'
-            alignItems='center'
-            flexWrap='wrap'
-            h={{ base: '100px' }}
-            borderRadius='md'
-            color='black'
-            textDecoration='none'
-            textAlign='center'
-            fontWeight='bold'
-            boxShadow='0px 0px 10px 2px lightgray'
-            _hover={{
-              bgColor: 'lightgray',
-            }}
-            _active={{
-              transform: 'scale(0.9)',
-            }}
-            to={processes[4]}
-            target='_blank'
-          >
-            <Box>
-              <Text fontSize='18px'>5: Aprovació, si escau, de l'estat de comptes 2023.</Text>
-            </Box>
-          </Link>
-
-          <Link
-            as={ReactRouterLink}
-            flexGrow={1}
-            display='flex'
-            justifyContent='center'
-            alignItems='center'
-            flexWrap='wrap'
-            h={{ base: '100px' }}
-            borderRadius='md'
-            color='black'
-            textDecoration='none'
-            textAlign='center'
-            fontWeight='bold'
-            boxShadow='0px 0px 10px 2px lightgray'
-            _hover={{
-              bgColor: 'lightgray',
-            }}
-            _active={{
-              transform: 'scale(0.9)',
-            }}
-            to={processes[5]}
-            target='_blank'
-          >
-            <Box>
-              <Text fontSize='18px'>6: Aprovació, si escau, del Pla d'activitats 2024.</Text>
-            </Box>
-          </Link>
-
-          <Link
-            as={ReactRouterLink}
-            flexGrow={1}
-            display='flex'
-            justifyContent='center'
-            alignItems='center'
-            flexWrap='wrap'
-            h={{ base: '100px' }}
-            borderRadius='md'
-            color='black'
-            textDecoration='none'
-            textAlign='center'
-            fontWeight='bold'
-            boxShadow='0px 0px 10px 2px lightgray'
-            _hover={{
-              bgColor: 'lightgray',
-            }}
-            _active={{
-              transform: 'scale(0.9)',
-            }}
-            to={processes[6]}
-            target='_blank'
-          >
-            <Box>
-              <Text fontSize='18px'>7: Aprovació, si escau, del Pressupost de l'entitat 2024.</Text>
-            </Box>
-          </Link>
-
-          <Link
-            as={ReactRouterLink}
-            flexGrow={1}
-            display='flex'
-            justifyContent='center'
-            alignItems='center'
-            flexWrap='wrap'
-            h={{ base: '100px' }}
-            borderRadius='md'
-            color='black'
-            textDecoration='none'
-            textAlign='center'
-            fontWeight='bold'
-            boxShadow='0px 0px 10px 2px lightgray'
-            _hover={{
-              bgColor: 'lightgray',
-            }}
-            _active={{
-              transform: 'scale(0.9)',
-            }}
-            to={processes[7]}
-            target='_blank'
-          >
-            <Box>
-              <Text fontSize='18px'>8: Ratificació de les incorporacions per substitució a l'Executiva 2024-2026.</Text>
-            </Box>
-          </Link>
-
-          <Link
-            as={ReactRouterLink}
-            flexGrow={1}
-            display='flex'
-            justifyContent='center'
-            alignItems='center'
-            flexWrap='wrap'
-            h={{ base: '100px' }}
-            borderRadius='md'
-            color='black'
-            textDecoration='none'
-            textAlign='center'
-            fontWeight='bold'
-            boxShadow='0px 0px 10px 2px lightgray'
-            mb={{ md: 50 }}
-            _hover={{
-              bgColor: 'lightgray',
-            }}
-            _active={{
-              transform: 'scale(0.9)',
-            }}
-            to={processes[8]}
-            target='_blank'
-          >
-            <Box>
-              <Text fontSize='18px'>9: Elecció de nous membres de l'Executiva 2024-2028.</Text>
-            </Box>
-          </Link>
+          {processes.map((process, index) => (
+            <Link
+              as={ReactRouterLink}
+              flexGrow={1}
+              display='flex'
+              justifyContent='center'
+              alignItems='center'
+              flexWrap='wrap'
+              h={{ base: '100px' }}
+              borderRadius='md'
+              color='black'
+              textDecoration='none'
+              textAlign='center'
+              fontWeight='bold'
+              boxShadow='0px 0px 10px 2px lightgray'
+              _hover={{
+                bgColor: 'lightgray',
+              }}
+              _active={{
+                transform: 'scale(0.9)',
+              }}
+              to={`/processes/${process.pid}`}
+              isExternal
+            >
+              <Box>
+                <Text fontSize='18px'>
+                  {index + 1}: {process.title}
+                </Text>
+              </Box>
+            </Link>
+          ))}
         </Flex>
       </Box>
       <Text style={{ marginBottom: '50px' }}>
