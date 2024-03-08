@@ -23,6 +23,7 @@ import {
   zora,
 } from 'wagmi/chains'
 import { publicProvider } from 'wagmi/providers/public'
+import i18n from '~i18n'
 
 export const { chains, publicClient } = configureChains(
   [
@@ -63,7 +64,6 @@ const featuredConnectors = () => {
       rainbowWallet({ projectId, chains }),
       coinbaseWallet({ chains, appName }),
       walletConnectWallet({ chains, projectId }),
-      privateKeyWallet({ chains }),
     ],
   }
 
@@ -100,11 +100,21 @@ const featuredConnectors = () => {
           oAuthServiceProvider: 'facebook',
         },
       }),
-      privateKeyWallet({ chains }),
     ],
   }
 
-  const connectors: { [key: string]: WalletGroup } = { web2, web3 }
+  const recovery: WalletGroup = {
+    groupName: i18n.t('rainbow.group.recovery'),
+    wallets: [
+      privateKeyWallet({
+        name: i18n.t('rainbow.recovery'),
+        iconUrl: 'https://www.svgrepo.com/show/525392/key-minimalistic-square-3.svg',
+        chains,
+      }),
+    ],
+  }
+
+  const connectors: { [key: string]: WalletGroup } = { web2, web3, recovery }
   const wallets: WalletList = []
   for (const connector of import.meta.env.features.login) {
     wallets.push(connectors[connector])
