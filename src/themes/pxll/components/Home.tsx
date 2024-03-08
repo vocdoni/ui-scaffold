@@ -134,6 +134,11 @@ const PxLL = () => {
                     <i>{index + 1}</i>: {process.title}
                   </li>
                 ))}
+                <div>
+                  <i> - Presentació de candidatures.</i>
+                  <br />
+                  <i> - Votacions.</i>
+                </div>
                 <li>
                   <i>10</i>: Torn obert de preguntes.
                 </li>
@@ -161,25 +166,29 @@ const PxLL = () => {
             </Text>
           </Text>
         </Box>
-        <Box ref={videoRef} />
-        <Box
-          ml={videoTop ? 'auto' : 'none'}
-          position={{ lg: videoTop ? 'fixed' : 'initial' }}
-          top={20}
-          right={10}
-          zIndex={100}
-          w={{ base: '100%', lg: '400px' }}
-        >
-          <AspectRatio ratio={16 / 9}>
-            <ReactPlayer
-              url='https://www.youtube.com/embed/cvkb7dPr5Uk?si=AUhsbtslqc7bfk2W'
-              width='100%'
-              height='100%'
-              playing
-              controls
-            />
-          </AspectRatio>
-        </Box>
+        {canViewProcesses && (
+          <Box>
+            <Box ref={videoRef} />
+            <Box
+              ml={videoTop ? 'auto' : 'none'}
+              position={{ lg: videoTop ? 'fixed' : 'initial' }}
+              top={20}
+              right={10}
+              zIndex={100}
+              w={{ base: '100%', lg: '400px' }}
+            >
+              <AspectRatio ratio={16 / 9}>
+                <ReactPlayer
+                  url='https://www.youtube.com/embed/cvkb7dPr5Uk?si=AUhsbtslqc7bfk2W'
+                  width='100%'
+                  height='100%'
+                  playing
+                  controls
+                />
+              </AspectRatio>
+            </Box>
+          </Box>
+        )}
       </Flex>
       {election && !isAdmin && <SpreadsheetAccess setConnected={setConnected} connected={connected} />}
       {canViewProcesses && (
@@ -225,8 +234,9 @@ const PxLL = () => {
         </Box>
       )}
       <Text style={{ marginBottom: '50px' }}>
-        Per poder accedir a la votació, heu de pulsar sobre “Identificar-se”. Us demanarem el vostre DNI/NIE i el codi
-        de pas que heu rebut per correu electrònic. Posteriorment, podreu emetre el vostre vot de forma segura.
+        Per poder accedir a la votació i veure el vídeo en temps real, heu de pulsar sobre “Identificar-se”. Us
+        demanarem el vostre DNI/NIE i el codi de pas que heu rebut per correu electrònic. Posteriorment, podreu emetre
+        el vostre vot de forma segura.
       </Text>
       <Text style={{ marginBottom: '150px' }}>
         <i>
