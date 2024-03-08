@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next'
 import { MdHowToVote } from 'react-icons/md'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
-import { BasicAccountCreation } from '~components/Account/Create'
 import { useOrganizationHealthTools } from '~components/Account/use-account-health-tools'
 import Logo from '~components/Layout/Logo'
 import { LanguagesMenu } from './LanguagesList'
@@ -31,7 +30,6 @@ const Navbar = () => {
       mb='-70px'
     >
       <Logo />
-      <BasicAccountCreation />
 
       <List as='nav' display='flex' alignItems='center' gap={4}>
         {exists && (
