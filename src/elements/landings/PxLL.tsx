@@ -61,7 +61,7 @@ const PxLL = () => {
       if (!videoRef.current) return
 
       const rect = videoRef.current.getBoundingClientRect()
-      if (rect.top <= 350) {
+      if (rect.top <= 10) {
         setVideoTop(true)
       } else {
         setVideoTop(false)
@@ -75,7 +75,17 @@ const PxLL = () => {
   }, [])
 
   return (
-    <Flex flexDirection='column' gap={10} maxW='1200px' mx='auto' p={5} minH='100vh' style={{ marginTop: '0px' }}>
+    <Flex
+      position='sticky'
+      top={0}
+      flexDirection='column'
+      gap={10}
+      maxW='1200px'
+      mx='auto'
+      p={5}
+      minH='100vh'
+      style={{ marginTop: '0px' }}
+    >
       <Flex flexDirection='column' gap={10} maxW='850px' mx='auto' p={5} style={{ marginTop: '0px' }}>
         <Image src={header} alt='Assemblea General de socis' mx='auto' />
         <Box>
@@ -129,15 +139,16 @@ const PxLL = () => {
             </Text>
           </Text>
         </Box>
+        <Box ref={videoRef} />
         <Box
-          maxW={{ base: videoTop ? '250px' : '800px', lg: videoTop ? '400px' : '0px' }}
           ml={videoTop ? 'auto' : 'none'}
-          position='sticky'
-          top={{ base: 0, lg2: 20 }}
+          position={{ lg: videoTop ? 'fixed' : 'initial' }}
+          top={20}
+          right={10}
           zIndex={100}
-          style={{ display: 'none' }}
+          w={{ base: '100%', lg: '400px' }}
         >
-          <AspectRatio ref={videoRef} ratio={16 / 9}>
+          <AspectRatio ratio={16 / 9}>
             <ReactPlayer
               url='https://www.youtube.com/embed/cvkb7dPr5Uk?si=AUhsbtslqc7bfk2W'
               width='100%'
@@ -146,14 +157,6 @@ const PxLL = () => {
               controls
             />
           </AspectRatio>
-        </Box>
-        <Box style={{ margin: '40px auto' }}>
-          <iframe
-            width='560'
-            height='315'
-            src='https://www.youtube.com/embed/cvkb7dPr5Uk?si=AUhsbtslqc7bfk2W'
-            title='YouTube video player'
-          ></iframe>
         </Box>
       </Flex>
       <Box>
