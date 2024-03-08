@@ -520,6 +520,12 @@
       "accuracy": "Precisión de los Saldos de Censo Anónimo: "
     }
   },
+  "rainbow": {
+    "group": {
+      "recovery": "Recuperación"
+    },
+    "recovery": "Recuperar cuenta"
+  },
   "retry": "Reintentar",
   "roadmap": {
     "census_description": "Crear un censo descentralizado fuera de la cadena y compatible con zk a partir de una instantánea de bloques de Ethereum, con verificación en cadena.",
