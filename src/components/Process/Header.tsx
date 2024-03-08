@@ -16,6 +16,7 @@ import { GoBack } from '~theme/icons'
 import { ActionsMenu } from './ActionsMenu'
 import { CreatedBy } from './CreatedBy'
 import { ProcessDate } from './Date'
+import header from '/assets/votacions_cap.jpg'
 
 const ProcessHeader = () => {
   const { t } = useTranslation()
@@ -40,11 +41,9 @@ const ProcessHeader = () => {
           <OrganizationName as='span' />
         </Button>
       )}
-      {election?.header && (
-        <Box w='60%' mx='auto' maxH='300px' my='30px' overflow='hidden'>
-          <Image src={election?.header} w='100%' h='auto' objectFit='cover' />
-        </Box>
-      )}
+      <Box w='55%' mx='auto' maxH='200px' my='10px' overflow='hidden' mb='30px'>
+        <Image src={header} w='100%' h='auto' objectFit='cover' />
+      </Box>
       <Flex direction={{ base: 'column', lg2: 'row' }} mb={7} gap={10}>
         <Box flexGrow={0} flexShrink={0} flexBasis={{ base: '100%', md: '60%', lg: '65%', lg2: '70%', xl2: '75%' }}>
           <ElectionTitle fontSize={{ base: '32px', md: '34px' }} textAlign='left' my={5} />

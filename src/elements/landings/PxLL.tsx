@@ -2,6 +2,7 @@ import { Box, Flex, Image, Link, Text, AspectRatio } from '@chakra-ui/react'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import ReactPlayer from 'react-player'
 import { useEffect, useRef, useState } from 'react'
+import header from '/assets/votacions_cap.jpg'
 
 const PxLL = () => {
   const videoRef = useRef<HTMLDivElement>(null)
@@ -40,11 +41,7 @@ const PxLL = () => {
   return (
     <Flex flexDirection='column' gap={10} maxW='1200px' mx='auto' p={5} minH='100vh' style={{ marginTop: '0px' }}>
       <Flex flexDirection='column' gap={10} maxW='850px' mx='auto' p={5} style={{ marginTop: '0px' }}>
-        <Image
-          src='https://cdn.discordapp.com/attachments/1077657962404925583/1210156328253661217/votacions_cap.jpg?ex=65e988e8&is=65d713e8&hm=e4d3249fc3c2cdc01431a1910830d1b2c2c73bb946c1031facfd0e97b8897561&'
-          alt='Assemblea General de socis'
-          mx='auto'
-        />
+        <Image src={header} alt='Assemblea General de socis' mx='auto' />
         <Box>
           <Text as='h1' fontWeight='bold' fontSize='32px' textAlign='center' style={{ marginTop: '-15px' }}>
             Assemblea General Ordinària
