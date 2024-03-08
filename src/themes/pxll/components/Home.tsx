@@ -1,5 +1,5 @@
 import { AspectRatio, Box, Flex, Image, Link, Spinner, Text } from '@chakra-ui/react'
-import { ElectionProvider, useElection } from '@vocdoni/react-providers'
+import { ElectionProvider, useClient, useElection } from '@vocdoni/react-providers'
 import { useEffect, useRef, useState } from 'react'
 import ReactPlayer from 'react-player'
 import { Link as ReactRouterLink } from 'react-router-dom'
@@ -69,6 +69,7 @@ const PxLL = () => {
   const [videoTop, setVideoTop] = useState<boolean>(false)
   const [connected, setConnected] = useState<boolean>(false)
   const { loading, loaded, election, errors } = useElection()
+  const { account, connected: aconnected } = useClient()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -91,6 +92,9 @@ const PxLL = () => {
   if (loading && !loaded) {
     return <Spinner />
   }
+
+  const isAdmin = aconnected && account?.address === election?.organizationId
+  const canViewProcesses = connected || isAdmin
 
   return (
     <Flex
@@ -177,8 +181,8 @@ const PxLL = () => {
           </AspectRatio>
         </Box>
       </Flex>
-      {election && <SpreadsheetAccess setConnected={setConnected} connected={connected} />}
-      {connected && (
+      {election && !isAdmin && <SpreadsheetAccess setConnected={setConnected} connected={connected} />}
+      {canViewProcesses && (
         <Box>
           <Text alignSelf='start' mb={10} as='h3' fontWeight='bold'>
             <br />
