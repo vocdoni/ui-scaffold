@@ -36,6 +36,7 @@ export interface FilterOptionOption<Option> {
   readonly value: string
   readonly data: Option
 }
+
 type GrupedTokenTypes = {
   label: string
   options: TokenSummary[] | { name: string; synced: boolean; type: string }[]
@@ -136,6 +137,7 @@ export const CensusTokens = () => {
           maticmum: 4,
         }
         const filteredTag = 'aragon'
+        const filteredType = 'gitcoinpassport'
 
         const defaultOrder: number = 10000
 
@@ -151,12 +153,12 @@ export const CensusTokens = () => {
         })
         setChains(chs)
 
-        const tks = await client.getSupportedTokens()
+        const tks = (await client.getSupportedTokens()).filter((tk) => tk.type !== filteredType)
 
         const tags = [
           ...new Set(
             tks
-              .filter((tk) => tk.tags.length > 0)
+              .filter((tk) => tk.tags.length > 0 && tk.type !== filteredType)
               .map((tk) => tk.tags)
               .flat()
           ),
@@ -398,7 +400,9 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
   return (
     <>
       <FormControl isInvalid={!!errors.maxCensusSize} mb={3}>
-        <FormLabel mb={3}>{t('form.process_create.census.max_census_slider_label')}</FormLabel>
+        <FormLabel fontWeight='bold' mb={3}>
+          {t('form.process_create.census.max_census_slider_label')}
+        </FormLabel>
         <Slider
           aria-label={t('form.process_create.census.max_census_slider_arialabel')}
           defaultValue={sliderValue}
