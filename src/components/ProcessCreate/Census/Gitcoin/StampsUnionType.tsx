@@ -32,7 +32,9 @@ export const StampsUnionType = () => {
             <Box>
               <FormLabel fontWeight='bold'>{field.value}</FormLabel>
               <Text fontSize='sm' color='process_create.description'>
-                {t('form.process_create.census.gitcoin_strategy_description')}
+                {t('form.process_create.census.gitcoin_strategy_description_OR')}
+                <br />
+                {t('form.process_create.census.gitcoin_strategy_description_AND')}
               </Text>
             </Box>
           </Flex>
