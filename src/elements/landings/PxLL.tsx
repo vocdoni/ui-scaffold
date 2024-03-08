@@ -1,7 +1,9 @@
-import { AspectRatio, Box, Flex, Image, Link, Text } from '@chakra-ui/react'
+import { AspectRatio, Box, Flex, Image, Link, Spinner, Text } from '@chakra-ui/react'
+import { ElectionProvider, useElection } from '@vocdoni/react-providers'
 import { useEffect, useRef, useState } from 'react'
 import ReactPlayer from 'react-player'
 import { Link as ReactRouterLink } from 'react-router-dom'
+import { SpreadsheetAccess } from '~components/Process/SpreadsheetAccess'
 import header from '/assets/votacions_cap.jpg'
 
 const processes = [
@@ -52,9 +54,21 @@ const processes = [
   },
 ]
 
+const PlataformaWrapper = () => {
+  const [logged, setLogged] = useState<boolean>(false)
+
+  return (
+    <ElectionProvider id={processes[0].pid}>
+      <PxLL />
+    </ElectionProvider>
+  )
+}
+
 const PxLL = () => {
   const videoRef = useRef<HTMLDivElement>(null)
-  const [videoTop, setVideoTop] = useState(false)
+  const [videoTop, setVideoTop] = useState<boolean>(false)
+  const [connected, setConnected] = useState<boolean>(false)
+  const { loading, loaded, election, errors } = useElection()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -73,6 +87,10 @@ const PxLL = () => {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
+
+  if (loading && !loaded) {
+    return <Spinner />
+  }
 
   return (
     <Flex
@@ -108,7 +126,7 @@ const PxLL = () => {
             <Text fontSize='18px'>
               <ul style={{ marginLeft: '15px' }}>
                 {processes.map((process, index) => (
-                  <li>
+                  <li key={index}>
                     <i>{index + 1}</i>: {process.title}
                   </li>
                 ))}
@@ -159,45 +177,49 @@ const PxLL = () => {
           </AspectRatio>
         </Box>
       </Flex>
-      <Box>
-        <Text alignSelf='start' mb={10} as='h3' fontWeight='bold'>
-          <br />
-          Votacions:
-        </Text>
-        <Flex gap={5} flexDirection={{ base: 'column' }}>
-          {processes.map((process, index) => (
-            <Link
-              as={ReactRouterLink}
-              flexGrow={1}
-              display='flex'
-              justifyContent='center'
-              alignItems='center'
-              flexWrap='wrap'
-              h={{ base: '100px' }}
-              borderRadius='md'
-              color='black'
-              textDecoration='none'
-              textAlign='center'
-              fontWeight='bold'
-              boxShadow='0px 0px 10px 2px lightgray'
-              _hover={{
-                bgColor: 'lightgray',
-              }}
-              _active={{
-                transform: 'scale(0.9)',
-              }}
-              to={`/processes/${process.pid}`}
-              isExternal
-            >
-              <Box>
-                <Text fontSize='18px'>
-                  {index + 1}: {process.title}
-                </Text>
-              </Box>
-            </Link>
-          ))}
-        </Flex>
-      </Box>
+      {election && <SpreadsheetAccess setConnected={setConnected} connected={connected} />}
+      {connected && (
+        <Box>
+          <Text alignSelf='start' mb={10} as='h3' fontWeight='bold'>
+            <br />
+            Votacions:
+          </Text>
+          <Flex gap={5} flexDirection={{ base: 'column' }}>
+            {processes.map((process, index) => (
+              <Link
+                key={index}
+                as={ReactRouterLink}
+                flexGrow={1}
+                display='flex'
+                justifyContent='center'
+                alignItems='center'
+                flexWrap='wrap'
+                h={{ base: '100px' }}
+                borderRadius='md'
+                color='black'
+                textDecoration='none'
+                textAlign='center'
+                fontWeight='bold'
+                boxShadow='0px 0px 10px 2px lightgray'
+                _hover={{
+                  bgColor: 'lightgray',
+                }}
+                _active={{
+                  transform: 'scale(0.9)',
+                }}
+                to={`/processes/${process.pid}/${window.location.hash}`}
+                isExternal
+              >
+                <Box>
+                  <Text fontSize='18px'>
+                    {index + 1}: {process.title}
+                  </Text>
+                </Box>
+              </Link>
+            ))}
+          </Flex>
+        </Box>
+      )}
       <Text style={{ marginBottom: '50px' }}>
         Per poder accedir a la votació, heu de pulsar sobre “Identificar-se”. Us demanarem el vostre DNI/NIE i el codi
         de pas que heu rebut per correu electrònic. Posteriorment, podreu emetre el vostre vot de forma segura.
@@ -214,4 +236,4 @@ const PxLL = () => {
   )
 }
 
-export default PxLL
+export default PlataformaWrapper
