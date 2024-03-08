@@ -520,6 +520,12 @@
       "accuracy": "Precisió dels Saldos de Cens Anònims: "
     }
   },
+  "rainbow": {
+    "group": {
+      "recovery": "Recuperació"
+    },
+    "recovery": "Recuperar compte"
+  },
   "retry": "Reintenta",
   "roadmap": {
     "census_description": "Crear un cens descentralitzat fora de la cadena i compatible amb zk a partir d'una instantània de blocs d'Ethereum, amb verificació a la cadena.",
