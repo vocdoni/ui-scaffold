@@ -119,7 +119,13 @@ const PxLL = () => {
           </Text>
         </Box>
       </Flex>
-      <Flex flexDirection={{ base: 'column', lg: 'row' }} gap={10} maxW='1200px' mx='auto' style={{ marginTop: '-20px' }}>
+      <Flex
+        flexDirection={{ base: 'column', lg: 'row' }}
+        gap={10}
+        maxW='1200px'
+        mx='auto'
+        style={{ marginTop: '-20px' }}
+      >
         <Box>
           <Text>
             <Text as='h3' fontWeight='bold'>
