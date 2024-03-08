@@ -20,23 +20,33 @@ export const StampsUnionType = () => {
       defaultValue={'OR'}
       render={({ field }) => {
         const isChecked = field.value === 'AND'
+        let description = t('form.process_create.census.gitcoin_strategy_description_OR')
+        if (isChecked) {
+          description = t('form.process_create.census.gitcoin_strategy_description_AND')
+        }
         return (
-          <Flex gap={5} flexDirection={{ base: 'column', md: 'row' }} justifyContent='flex-start' alignItems={'center'}>
-            <Switch
-              {...field}
-              size={'lg'}
-              id='stampsUnionType'
-              isChecked={isChecked}
-              onChange={(e) => switchOnChange(e.target.value)}
-            />
-            <Box>
-              <FormLabel fontWeight='bold'>{field.value}</FormLabel>
-              <Text fontSize='sm' color='process_create.description'>
-                {t('form.process_create.census.gitcoin_strategy_description_OR')}
-                <br />
-                {t('form.process_create.census.gitcoin_strategy_description_AND')}
-              </Text>
-            </Box>
+          <Flex
+            gap={5}
+            flexDirection={{ base: 'column', md: 'row' }}
+            justifyContent={{ base: 'start', md: 'space-between' }}
+            alignItems={{ base: 'start', md: 'center' }}
+            maxW={600}
+          >
+            <Flex flexDirection={'row'} gap={4} alignItems={'center'}>
+              <Switch
+                {...field}
+                size={'lg'}
+                id='stampsUnionType'
+                isChecked={isChecked}
+                onChange={(e) => switchOnChange(e.target.value)}
+              />
+              <FormLabel minWidth='40px' fontWeight='bold'>
+                {field.value}
+              </FormLabel>
+            </Flex>
+            <Text fontSize='sm' color='process_create.description' flex={1} textAlign={'left'}>
+              {description}
+            </Text>
           </Flex>
         )
       }}

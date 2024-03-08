@@ -84,12 +84,14 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
           </>
         )}
       ></Controller>
-      <StampsUnionType />
       <>
-        <FormLabel fontWeight='bold'>{t('form.process_create.census.gitcoin_stamps')}</FormLabel>
+        <Flex justifyContent={'space-between'} gap={5} flexDirection={{ base: 'column', md: 'row' }}>
+          <FormLabel fontWeight='bold'>{t('form.process_create.census.gitcoin_stamps')}</FormLabel>
+          <StampsUnionType />
+        </Flex>
         <Grid
           gap={5}
-          templateColumns={{ sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)' }}
+          templateColumns={{ sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(5, 1fr)' }}
           justifyContent='space-between'
         >
           {gitcoinTokens.map((token, i) => (
