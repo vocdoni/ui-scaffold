@@ -2,7 +2,7 @@ import { Box, Code, Flex, Icon, Img, Link, List, ListItem, Text } from '@chakra-
 import { HR } from '@vocdoni/chakra-components'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa'
-import logo from '/assets/pxll.png'
+import logo from '/assets/vocdoni_logo.svg'
 
 const Footer = () => {
   const { t } = useTranslation()

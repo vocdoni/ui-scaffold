@@ -106,7 +106,7 @@ const PxLL = () => {
       mx='auto'
       p={5}
       minH='100vh'
-      style={{ marginTop: '0px' }}
+      style={{ marginTop: '-30px' }}
     >
       <Flex flexDirection='column' gap={10} maxW='850px' mx='auto' p={5} style={{ marginTop: '0px' }}>
         <Image src={header} alt='Assemblea General de socis' mx='auto' />
@@ -119,7 +119,7 @@ const PxLL = () => {
           </Text>
         </Box>
       </Flex>
-      <Flex flexDirection={{ base: 'column', lg: 'row' }} gap={10} maxW='1200px' mx='auto' style={{ marginTop: '0px' }}>
+      <Flex flexDirection={{ base: 'column', lg: 'row' }} gap={10} maxW='1200px' mx='auto' style={{ marginTop: '-20px' }}>
         <Box>
           <Text>
             <Text as='h3' fontWeight='bold'>
