@@ -17,7 +17,7 @@ import idena from '/shared/gitcoin/idena.svg?react'
 import lens from '/shared/gitcoin/lens.svg?react'
 import linkedin from '/shared/gitcoin/linkedin.svg?react'
 import nft from '/shared/gitcoin/nft.svg?react'
-import passport from '/shared/gitcoin/passport.svg?react'
+//import passport from '/shared/gitcoin/passport.svg?react'
 import phi from '/shared/gitcoin/phi.svg?react'
 import poh from '/shared/gitcoin/poh.svg?react'
 import snapshot from '/shared/gitcoin/snapshot.svg?react'
@@ -28,7 +28,7 @@ import zksync from '/shared/gitcoin/zksync.svg?react'
 /**
  * StampId is a unique identifier for a stamp, uses the externalId from the token
  * Extracted using:
- * curl https://census3-dev.vocdoni.net/api/tokens\?pageSize\=-1 -s  | jq '.tokens | .[] | .externalID'
+ * curl https://census3-dev.vocdoni.net/api/tokens?pageSize=-1 -s  | jq '.tokens | .[] | .externalID'
  */
 export type StampId =
   | 'BrightID'

@@ -38,62 +38,66 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
   const strategySize: number = watch('strategySize')
 
   return (
-    <>
-      <FormLabel fontWeight='bold'>{t('form.process_create.census.gitcoin_passport_score')}</FormLabel>
+    <Flex gap={8} direction={'column'}>
       <Controller
         name={'passportScore'}
         control={control}
-        defaultValue={50}
+        defaultValue={10}
         rules={{
           required,
         }}
         render={({ field: { ref, onChange, value, ...restField } }) => (
-          <Flex>
-            <NumberInput
-              defaultValue={50}
-              min={1}
-              max={100}
-              maxW={40}
-              value={value}
-              {...restField}
-              onChange={(e) => {
-                onChange(Number(e))
-              }}
-            >
-              <NumberInputField />
-              <NumberInputStepper>
-                <NumberIncrementStepper />
-                <NumberDecrementStepper />
-              </NumberInputStepper>
-            </NumberInput>
-            <Slider
-              flex='1'
-              focusThumbOnChange={false}
-              value={value}
-              onChange={(e) => {
-                onChange(Number(e))
-              }}
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb fontSize='sm' boxSize='32px' children={value} />
-            </Slider>
-          </Flex>
+          <>
+            <FormLabel fontWeight='bold'>{t('form.process_create.census.gitcoin_passport_score')}</FormLabel>
+            <Flex gap={8}>
+              <NumberInput
+                defaultValue={10}
+                min={1}
+                max={100}
+                maxW={40}
+                value={value}
+                {...restField}
+                onChange={(e) => {
+                  onChange(Number(e))
+                }}
+              >
+                <NumberInputField />
+                <NumberInputStepper>
+                  <NumberIncrementStepper />
+                  <NumberDecrementStepper />
+                </NumberInputStepper>
+              </NumberInput>
+              <Slider
+                flex='1'
+                focusThumbOnChange={false}
+                value={value}
+                onChange={(e) => {
+                  onChange(Number(e))
+                }}
+              >
+                <SliderTrack>
+                  <SliderFilledTrack />
+                </SliderTrack>
+                <SliderThumb fontSize='sm' boxSize='32px' children={value} />
+              </Slider>
+            </Flex>
+          </>
         )}
       ></Controller>
-      <FormLabel fontWeight='bold'>{t('form.process_create.census.gitcoin_stamps')}</FormLabel>
-      <Grid
-        gap={5}
-        templateColumns={{ sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)' }}
-        justifyContent='space-between'
-      >
-        {gitcoinTokens.map((token, i) => (
-          <StampCard key={i} name={token.name} token={token} />
-        ))}
-      </Grid>
       <StampsUnionType />
+      <>
+        <FormLabel fontWeight='bold'>{t('form.process_create.census.gitcoin_stamps')}</FormLabel>
+        <Grid
+          gap={5}
+          templateColumns={{ sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)' }}
+          justifyContent='space-between'
+        >
+          {gitcoinTokens.map((token, i) => (
+            <StampCard key={i} name={token.name} token={token} />
+          ))}
+        </Grid>
+      </>
       <MaxCensusSizeSelector token={ct} strategySize={strategySize} />
-    </>
+    </Flex>
   )
 }
