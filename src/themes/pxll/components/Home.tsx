@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import ReactPlayer from 'react-player'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { SpreadsheetAccess } from '~components/Process/SpreadsheetAccess'
-import header from '/assets/votacions_cap.jpg'
+import header from '/shared/votacions_cap.jpg'
 
 const processes = [
   {

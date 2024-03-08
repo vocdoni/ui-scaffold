@@ -16,7 +16,7 @@ import { GoBack } from '~theme/icons'
 import { ActionsMenu } from './ActionsMenu'
 import { CreatedBy } from './CreatedBy'
 import { ProcessDate } from './Date'
-import header from '/assets/votacions_cap.jpg'
+import header from '/shared/votacions_cap.jpg'
 
 const ProcessHeader = () => {
   const { t } = useTranslation()
