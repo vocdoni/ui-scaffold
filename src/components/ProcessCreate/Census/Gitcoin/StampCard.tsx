@@ -11,6 +11,7 @@ interface IStampCardProps {
 
 export const StampCard: React.FC<IStampCardProps> = ({ name, token }) => {
   const stampId = token.symbol
+  const stampTitle = name.replace('Gitcoin Passport Score', '')
   const { control, setValue } = useFormContext<CensusGitcoinValues>()
 
   const switchOnChange = (value: boolean) => {
@@ -32,7 +33,7 @@ export const StampCard: React.FC<IStampCardProps> = ({ name, token }) => {
           >
             <Box>
               <StampIcon stampId={token.externalID} />
-              <Text>{name}</Text>
+              <Text>{stampTitle}</Text>
             </Box>
           </Checkbox>
         )
