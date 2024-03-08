@@ -511,6 +511,12 @@
       "accuracy": "Anonymous Census Balance Accuracy: "
     }
   },
+  "rainbow": {
+    "group": {
+      "recovery": "Recovery"
+    },
+    "recovery": "Account recovery"
+  },
   "retry": "Retry",
   "roadmap": {
     "census_description": "Create a trust-less off-chain zk-friendly census from an Ethereum block snapshot, with on-chain verification.",
