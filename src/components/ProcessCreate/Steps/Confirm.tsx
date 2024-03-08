@@ -19,7 +19,7 @@ import {
 import { Button } from '@vocdoni/chakra-components'
 import { ElectionProvider, errorToString, useClient } from '@vocdoni/react-providers'
 import {
-  CensusType,
+  CensusType as VocdoniCensusType,
   CspCensus,
   Election,
   ElectionCreationSteps,
@@ -52,6 +52,7 @@ import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 import Wrapper from './Wrapper'
 import { StampsUnionTypes } from '~components/ProcessCreate/Census/Gitcoin/StampsUnionType'
 import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
+import { CensusType } from '~components/ProcessCreate/Census/TypeSelector'
 
 export const Confirm = () => {
   const { env, client, account, fetchAccount } = useClient()
@@ -354,7 +355,7 @@ const getCensus = async (env: EnvOptions, form: StepsFormValues, salt: string) =
         return new PublishedCensus(
           census.merkleRoot,
           census.uri,
-          census.anonymous ? CensusType.ANONYMOUS : CensusType.WEIGHTED,
+          census.anonymous ? VocdoniCensusType.ANONYMOUS : VocdoniCensusType.WEIGHTED,
           census.size,
           BigInt(census.weight)
         )
