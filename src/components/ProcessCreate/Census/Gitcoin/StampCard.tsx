@@ -1,17 +1,15 @@
-import { Box, Checkbox, Text } from '@chakra-ui/react'
+import { Box, Checkbox, Text, Card, CardHeader } from '@chakra-ui/react'
 import { StampIcon, StampId } from '~components/ProcessCreate/Census/Gitcoin/StampIcon'
 import { Controller, useFormContext } from 'react-hook-form'
 import { GitcoinStampToken } from '~components/ProcessCreate/Census/Gitcoin/index'
 import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
 
 interface IStampCardProps {
-  name: string
   token: GitcoinStampToken
 }
 
-export const StampCard: React.FC<IStampCardProps> = ({ name, token }) => {
+export const StampCard: React.FC<IStampCardProps> = ({ token }) => {
   const stampId = token.symbol
-  const stampTitle = name.replace('Gitcoin Passport Score', '')
   const { control, setValue } = useFormContext<CensusGitcoinValues>()
 
   const switchOnChange = (value: boolean) => {
@@ -26,18 +24,50 @@ export const StampCard: React.FC<IStampCardProps> = ({ name, token }) => {
       render={({ field }) => {
         return (
           <Checkbox
-            isChecked={field.value.isChecked}
             flex='0 0 30%'
             variant='radiobox'
             onChange={(e) => switchOnChange(e.target.checked as boolean)}
+            isChecked={field.value.isChecked}
           >
             <Box>
-              <StampIcon stampId={token.externalID} />
-              <Text>{stampTitle}</Text>
+              <StampInnerBox name={token.name} tokenId={token.externalID} />
             </Box>
           </Checkbox>
         )
       }}
     />
+  )
+}
+
+type StampInnerBoxProps = { name: string; tokenId: StampId }
+
+const StampInnerBox: React.FC<StampInnerBoxProps> = ({ name, tokenId }) => {
+  const stampTitle = name.replace('Gitcoin Passport Score', '')
+  return (
+    <>
+      <StampIcon stampId={tokenId} />
+      <Text>{stampTitle}</Text>
+    </>
+  )
+}
+
+export const StampPreviewCard: React.FC<StampInnerBoxProps> = (props) => {
+  return (
+    // <Card borderRadius={0} w='full' my={5} boxShadow='var(--box-shadow)'>
+    <Card
+      borderRadius={0}
+      display={'flex'}
+      flexDirection={'row'}
+      w='full'
+      p={4}
+      boxShadow='var(--box-shadow)'
+      fontWeight={'bold'}
+      fontSize={'sm'}
+      alignSelf={'start'}
+      alignItems={'start'}
+      minW={'min-content'}
+    >
+      <StampInnerBox {...props} />
+    </Card>
   )
 }
