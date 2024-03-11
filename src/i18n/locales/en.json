@@ -31,6 +31,7 @@
       "cancel": "Cancel the process immediately, not allowing new votes and not counting any results (caution: it cannot be reverted)",
       "cancel_description": "Canceling \"{{ election.title.default }}\"...\nAttention: this action is irreversible and will cancel all the previous votes on it",
       "continue": "Resume the process immediately, in case it has been paused",
+      "continue_description": "Resuming \"{{ election.title.default }}\" voting process...",
       "end": "End the process immediately, preventing new votes to be submitted, and shows the voting results (caution: it cannot be reverted)",
       "end_description": "Ending \"{{ election.title.default }}\" voting process...\nAttention: this action is irreversible and voters will no longer be able to vote.",
       "error_title": "There was some error while executing the transaction",

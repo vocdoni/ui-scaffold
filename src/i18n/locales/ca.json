@@ -31,8 +31,9 @@
   "cc": {
     "actions": {
       "cancel": "Cancel·la immediatament el procés de votació, sense permetre nous vots i sense comptabilitzar resultats (precaució: no es pot desfer)",
-      "cancel_description": "cancel·lant el procés de votació \"{{ election.title.default }}\"...\nAtenció: aquesta acció no es pot desfer i cancel·larà els vots que s'hagin emès.",
+      "cancel_description": "Cancel·lant el procés de votació \"{{ election.title.default }}\"...\nAtenció: aquesta acció no es pot desfer i cancel·larà els vots que s'hagin emès.",
       "continue": "Continua el procés immediatament, si s'ha pausat",
+      "continue_description": "Reobrint el procés \"{{ election.title.default }}\"",
       "end": "Finalitza immediatament el procés, impedint que es presentin nous vots, i mostra els resultats de votació (precaució: no es pot desfer)",
       "end_description": "Finalitzant el procés de votació \"{{ election.title.default }}\"...\nAtenció: aquesta acció no es pot desfer i els votants no podran emetre nous vots.",
       "error_title": "S'ha produït algun error en executar la transacció",
