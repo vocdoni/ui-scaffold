@@ -44,7 +44,8 @@ export const GitcoinStrategyBuilder = () => {
           // Store gitcoin passport score on other place
           if (tk.type === 'gitcoinpassport' && !tk.externalID) {
             ct = tk
-            setValue('censusToken', tk)
+            setValue('gitcoinGPSToken', tk)
+            setValue('chain', tk.chainID)
             return false
           }
           return tk.type === 'gitcoinpassport' && tk.externalID
@@ -62,7 +63,8 @@ export const GitcoinStrategyBuilder = () => {
         setValue('timeToCreateCensus', timeToCreateCensus)
       } catch (err) {
         setError(errorToString(err))
-        setValue('censusToken', undefined)
+        setValue('gitcoinGPSToken', undefined)
+        setValue('chain', undefined)
         setValue('strategySize', undefined)
       }
       setLoading(false)

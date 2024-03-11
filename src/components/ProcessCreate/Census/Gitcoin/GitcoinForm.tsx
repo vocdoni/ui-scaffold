@@ -34,7 +34,7 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
     message: t('form.error.field_is_required'),
   }
 
-  const ct: Census3Token = watch('censusToken')
+  const ct: Census3Token = watch('gitcoinGPSToken')
   const strategySize: number = watch('strategySize')
 
   return (
