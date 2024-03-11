@@ -204,7 +204,7 @@ const SuccessVoteModal = () => {
               p: <Text mb={2} />,
             }}
           />
-          <UnorderedList listStyleType='none' display='flex' justifyContent='center' gap={6} mt={6} mb={2} ml={0}>
+          <UnorderedList listStyleType='none' display='none' justifyContent='center' gap={6} mt={6} mb={2} ml={0}>
             <ListItem>
               <Link
                 href={twitter}
