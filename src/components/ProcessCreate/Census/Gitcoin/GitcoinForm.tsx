@@ -11,6 +11,8 @@ import {
   SliderThumb,
   Grid,
   Flex,
+  Checkbox,
+  Text,
 } from '@chakra-ui/react'
 import { Controller, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -39,6 +41,23 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
 
   return (
     <Flex gap={8} direction={'column'}>
+      <Controller
+        name={'gpsWeighted'}
+        control={control}
+        defaultValue={true}
+        render={({ field: { value, onChange } }) => (
+          <Flex alignItems='center' gap={2} flexDirection={{ base: 'column', md: 'row' }}>
+            <Checkbox isChecked={value} onChange={(e) => onChange(e.target.checked as boolean)}>
+              <Text fontWeight='bold' fontSize='16px' lineHeight='20px'>
+                {t('form.process_create.census.weighted_voting_title')}
+              </Text>
+            </Checkbox>
+            <Text fontSize='16px' lineHeight='20px'>
+              {t('form.process_create.census.weighted_voting_description')}
+            </Text>
+          </Flex>
+        )}
+      ></Controller>
       <Controller
         name={'passportScore'}
         control={control}
