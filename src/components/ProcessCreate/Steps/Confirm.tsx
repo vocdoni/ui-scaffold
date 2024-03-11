@@ -476,7 +476,7 @@ const getGitcoinStrategyId = async (form: CensusGitcoinValues, c3client: Vocdoni
     }
   }
 
-  const scoreToken = form.censusToken
+  const scoreToken = form.gitcoinGPSToken
   strategyTokens[scoreToken.symbol] = {
     ID: scoreToken.ID,
     chainID: scoreToken.chainID,
