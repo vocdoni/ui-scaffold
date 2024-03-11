@@ -471,7 +471,7 @@ const getGitcoinStrategyId = async (form: CensusGitcoinValues, c3client: Vocdoni
     const gpsPredicate = form.gpsWeighted ? 'AND:mul' : 'AND'
     const stampKeys = Object.keys(strategyTokens)
     if (stampKeys.length === 1) {
-      predicate = `${gpsPredicate} ${stampKeys[0]}`
+      predicate = `${gpsPredicate} (${stampKeys[0]} OR ${stampKeys[0]})`
     } else if (stampKeys.length) {
       predicate = `${gpsPredicate} (${
         buildPredicate(stampKeys, form.stampsUnionType) + ')'.repeat(stampKeys.length - 1)
