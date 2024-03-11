@@ -14,6 +14,7 @@ export type CensusGitcoinValues = {
   passportScore: number
   stamps: FormGitcoinStamps
   stampsUnionType: StampsUnionTypes
+  gpsWeighted: boolean
 } & Omit<CensusTokenValues, 'accuracy' | 'censusToken'>
 
 export const StepFormCensusGitcoin = () => {
@@ -28,6 +29,7 @@ export const StepFormCensusGitcoin = () => {
       passportScore: form.passportScore,
       stamps: form.stamps,
       stampsUnionType: form.stampsUnionType,
+      gpsWeighted: form.gpsWeighted,
     },
   })
 
