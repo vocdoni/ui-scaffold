@@ -111,7 +111,7 @@ const PxLL = () => {
             Assemblea General Ordinària
           </Text>
           <Text as='h2' fontSize='14px' textAlign='center'>
-            Associació Plataforma per la Llengua - Col·lectiu l’Esbarzer <i>(16/03/2024)</i>
+            Associació Plataforma per la Llengua - Col·lectiu l'Esbarzer <i>(16/03/2024)</i>
           </Text>
         </Box>
       </Flex>
@@ -125,7 +125,7 @@ const PxLL = () => {
         <Box>
           <Text>
             <Text as='h3' fontWeight='bold'>
-              Ordre del dia de l’Assemblea General Ordinària
+              Ordre del dia de l'Assemblea General Ordinària
               <br />
               <br />
             </Text>
@@ -137,7 +137,7 @@ const PxLL = () => {
                   </li>
                 ))}
                 <div>
-                  <i> - Presentació de candidatures.</i>
+                  <i> - Presentació de candidatura.</i>
                   <br />
                   <i> - Votacions.</i>
                 </div>
@@ -236,14 +236,14 @@ const PxLL = () => {
         </Box>
       )}
       <Text style={{ marginBottom: '50px' }}>
-        Per poder accedir a la votació i veure el vídeo en temps real, heu de pulsar sobre “Identificar-se”. Us
+        Per poder accedir a la votació i veure el vídeo en temps real, heu de prémer sobre “Identificar-se”. Us
         demanarem el vostre DNI/NIE i el codi de pas que heu rebut per correu electrònic. Posteriorment, podreu emetre
         el vostre vot de forma segura.
       </Text>
       <Text style={{ marginBottom: '150px' }}>
         <i>
           <strong>
-            En cas de dubte / dificultats tècniques ens pots contactar al telèfon <u>933 211 803</u> o al correu{' '}
+            En cas de dubte o dificultats tècniques ens pots contactar al telèfon <u>933 211 803</u> o al correu{' '}
             <u>socis@plataforma-llengua.cat</u>
           </strong>
         </i>
