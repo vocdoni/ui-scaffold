@@ -28,5 +28,6 @@ interface ImportMeta {
     theme: string
     CSP_URL: string
     CSP_PUBKEY: string
+    MAX_CENSUS_LIMIT: number
   }
 }

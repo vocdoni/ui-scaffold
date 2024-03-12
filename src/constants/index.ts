@@ -14,6 +14,9 @@ export const ExplorerBaseURL = explorer
 export const VocdoniEnvironment = evocdoni
 export const CensusPreviewRowsLimit = 10
 
+const maxCensusLimit = import.meta.env.MAX_CENSUS_LIMIT
+export const MaxCensusLimit = maxCensusLimit
+
 /**
  * Given an object of react-hook-form errors, determines if the specified mapped field is invalid (returns an error)
  *
