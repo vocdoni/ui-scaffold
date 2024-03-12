@@ -2,6 +2,7 @@ import {
   Alert,
   AlertIcon,
   Badge,
+  Button,
   Card,
   CardHeader,
   Flex,
@@ -20,6 +21,8 @@ import {
   Stack,
   Text,
   Tooltip,
+  Wrap,
+  WrapItem,
 } from '@chakra-ui/react'
 import { errorToString, useClient } from '@vocdoni/react-providers'
 import { Census3Token, EnvOptions, ICensus3SupportedChain, TokenSummary, VocdoniCensus3Client } from '@vocdoni/sdk'
@@ -367,6 +370,8 @@ export const CensusTokens = () => {
   )
 }
 
+const SliderButtonsValues = [0.01, 0.05, 0.1, 0.25, 0.5, 0.75, 1]
+
 export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3Token; strategySize: number }) => {
   const {
     setValue,
@@ -408,6 +413,7 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
         </FormLabel>
         <Slider
           aria-label={t('form.process_create.census.max_census_slider_arialabel')}
+          value={sliderValue}
           defaultValue={sliderValue}
           min={0}
           max={maxStrategySize}
@@ -447,6 +453,21 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
           </Tooltip>
         </Slider>
         <FormErrorMessage>{errors.maxCensusSize && errors.maxCensusSize.message?.toString()}</FormErrorMessage>
+        <Wrap spacing={4} mt={10} justify='center' w={'100%'}>
+          {SliderButtonsValues.map((v) => (
+            <WrapItem key={v}>
+              <Button
+                onClick={() => {
+                  const val = Math.round(maxStrategySize * v)
+                  setSliderValue(val)
+                  setValue('maxCensusSize', val)
+                }}
+              >
+                {v * 100}%
+              </Button>
+            </WrapItem>
+          ))}
+        </Wrap>
       </FormControl>
       <Text>
         <Trans
