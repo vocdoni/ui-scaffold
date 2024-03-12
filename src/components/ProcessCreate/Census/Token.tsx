@@ -370,7 +370,8 @@ export const CensusTokens = () => {
   )
 }
 
-const SliderButtonsValues = [0.01, 0.05, 0.1, 0.25, 0.5, 0.75, 1]
+const SliderButtonsValuesDesktop = [0.01, 0.05, 0.1, 0.25, 0.5, 0.75, 1]
+const SliderButtonsValues = [0.05, 0.1, 0.25, 0.5, 0.75, 1]
 
 export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3Token; strategySize: number }) => {
   const {
@@ -462,6 +463,9 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
                   setSliderValue(val)
                   setValue('maxCensusSize', val)
                 }}
+                fontSize='sm'
+                variant={'secondary'}
+                height={'var(--chakra-sizes-8)'}
               >
                 {v * 100}%
               </Button>
