@@ -91,8 +91,8 @@
   "census": {
     "chain_required": "You need to select a network",
     "description": "Choose how to authenticate and verify voters.",
-    "gitcoin_title": "Gitcoin Passport",
     "gitcoin_description": "With this census only voters with a Gitcoin Passport will be able to vote, providing a sybyl-attack resistance method. You can define the general score (GPS) and different stamps that the voter must have.",
+    "gitcoin_title": "Gitcoin Passport",
     "request_custom_token": "'Request Custom Tokens'",
     "social_address_title": "Github users",
     "spreadsheet_title": "Custom data",
