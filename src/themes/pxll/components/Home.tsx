@@ -54,21 +54,17 @@ const processes = [
   },
 ]
 
-const PlataformaWrapper = () => {
-  const [logged, setLogged] = useState<boolean>(false)
-
-  return (
-    <ElectionProvider id={processes[0].pid}>
-      <PxLL />
-    </ElectionProvider>
-  )
-}
+const PlataformaWrapper = () => (
+  <ElectionProvider id={processes[0].pid}>
+    <PxLL />
+  </ElectionProvider>
+)
 
 const PxLL = () => {
   const videoRef = useRef<HTMLDivElement>(null)
   const [videoTop, setVideoTop] = useState<boolean>(false)
   const [connected, setConnected] = useState<boolean>(false)
-  const { loading, loaded, election, errors } = useElection()
+  const { loading, loaded, election } = useElection()
   const { account, connected: aconnected } = useClient()
 
   useEffect(() => {
@@ -227,7 +223,7 @@ const PxLL = () => {
                   transform: 'scale(0.9)',
                 }}
                 to={`/processes/${process.pid}/${window.location.hash}`}
-                isExternal
+                isExternal={!isAdmin}
               >
                 <Box>
                   <Text fontSize='18px'>
