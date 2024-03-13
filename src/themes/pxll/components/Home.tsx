@@ -1,4 +1,4 @@
-import { AspectRatio, Box, Flex, Image, Link, Spinner, Text } from '@chakra-ui/react'
+import { AspectRatio, Box, Flex, Image, Link, ListItem, OrderedList, Spinner, Text } from '@chakra-ui/react'
 import { ElectionProvider, useClient, useElection } from '@vocdoni/react-providers'
 import { useEffect, useRef, useState } from 'react'
 import ReactPlayer from 'react-player'
@@ -130,21 +130,17 @@ const PxLL = () => {
               <br />
             </Text>
             <Text fontSize='18px'>
-              <ul style={{ marginLeft: '15px' }}>
+              <OrderedList ml='15px'>
                 {processes.map((process, index) => (
-                  <li key={index}>
-                    <i>{index + 1}</i>: {process.title}
-                  </li>
+                  <ListItem key={index}>{process.title}</ListItem>
                 ))}
                 <div>
                   <i> - Presentació de candidatura.</i>
                   <br />
                   <i> - Votacions.</i>
                 </div>
-                <li>
-                  <i>10</i>: Torn obert de preguntes.
-                </li>
-              </ul>
+                <ListItem>Torn obert de preguntes.</ListItem>
+              </OrderedList>
             </Text>
           </Text>
           <Text fontSize='18px'>
