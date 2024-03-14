@@ -22,9 +22,9 @@ const viteconfig = ({ mode }) => {
 
   const commit = execSync('git rev-parse --short HEAD').toString()
 
-  let maxCensusLimit = Number(process.env.MAX_CENSUS_LIMIT)
-  if (!maxCensusLimit) {
-    maxCensusLimit = 5000
+  let defaultCensusSize = Number(process.env.DEFAULT_CENSUS_SIZE)
+  if (!defaultCensusSize) {
+    defaultCensusSize = 5000
   }
 
   return defineConfig({
@@ -38,7 +38,7 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.CUSTOM_FAUCET_URL': JSON.stringify(process.env.CUSTOM_FAUCET_URL),
       'import.meta.env.CSP_PUBKEY': JSON.stringify(process.env.CSP_PUBKEY),
       'import.meta.env.CSP_URL': JSON.stringify(process.env.CSP_URL),
-      'import.meta.env.MAX_CENSUS_LIMIT': JSON.stringify(maxCensusLimit),
+      'import.meta.env.DEFAULT_CENSUS_SIZE': JSON.stringify(defaultCensusSize),
     },
     plugins: [
       tsconfigPaths(),

@@ -33,7 +33,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { customStylesSelect, customStylesTokensSelect } from '~theme/tokenSelectStyles'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 import selectComponents, { CryptoAvatar } from './select-components'
-import { MaxCensusLimit } from '~constants'
+import { DefaultCensusSize } from '~constants'
 
 export interface FilterOptionOption<Option> {
   readonly label: string
@@ -394,7 +394,7 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
     required: t('process_create.census.mandatory_max_census_size'),
   })
 
-  const maxStrategySize = strategySize < MaxCensusLimit ? strategySize : MaxCensusLimit
+  const maxStrategySize = strategySize < DefaultCensusSize ? strategySize : DefaultCensusSize
 
   useEffect(() => {
     if (sliderValue !== undefined) return
