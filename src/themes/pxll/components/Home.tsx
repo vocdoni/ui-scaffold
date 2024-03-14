@@ -10,47 +10,47 @@ const processes = [
   {
     //1
     title: "Aprovació, si escau, de l'acta de l'anterior assemblea.",
-    pid: '4ae20a8eb4ca63ca71be6765bc582f254eb1c49cf9739bbf798e020c0000000c',
+    pid: '6b342d99f21863ca71be6765bc582f254eb1c49cf9739bbf798e020c00000000',
   },
   {
     //2
     title: 'Aprovació, si escau, del Reglament electoral.',
-    pid: '4ae20a8eb4ca63ca71be6765bc582f254eb1c49cf9739bbf798e020c0000000d',
+    pid: '6b342d99f21863ca71be6765bc582f254eb1c49cf9739bbf798e020c00000001',
   },
   {
     //3
     title: "Aprovació, si escau, del Reglament de l'Assemblea General Ordinària 2024.",
-    pid: '4ae20a8eb4ca63ca71be6765bc582f254eb1c49cf9739bbf798e020c0000000e',
+    pid: '6b342d99f21863ca71be6765bc582f254eb1c49cf9739bbf798e020c00000002',
   },
   {
     //4
     title: "Aprovació, si escau, del projecte d'activitats 2023.",
-    pid: '4ae20a8eb4ca63ca71be6765bc582f254eb1c49cf9739bbf798e020c0000000f',
+    pid: '6b342d99f21863ca71be6765bc582f254eb1c49cf9739bbf798e020c00000003',
   },
   {
     //5
     title: "Aprovació, si escau, de l'estat de comptes 2023.",
-    pid: '4ae20a8eb4ca63ca71be6765bc582f254eb1c49cf9739bbf798e020c00000010',
+    pid: '6b342d99f21863ca71be6765bc582f254eb1c49cf9739bbf798e020c00000004',
   },
   {
     //6
     title: "Aprovació, si escau, del Pla d'activitats 2024.",
-    pid: '4ae20a8eb4ca63ca71be6765bc582f254eb1c49cf9739bbf798e020c00000011  ',
+    pid: '6b342d99f21863ca71be6765bc582f254eb1c49cf9739bbf798e020c00000005',
   },
   {
     //7
     title: "Aprovació, si escau, del Pressupost de l'entitat 2024.",
-    pid: '4ae20a8eb4ca63ca71be6765bc582f254eb1c49cf9739bbf798e020c00000012',
+    pid: '6b342d99f21863ca71be6765bc582f254eb1c49cf9739bbf798e020c00000006',
   },
   {
     //8
     title: "Ratificació de les incorporacions per substitució a l'Executiva 2024-2026.",
-    pid: '4ae20a8eb4ca63ca71be6765bc582f254eb1c49cf9739bbf798e020c00000013',
+    pid: '6b342d99f21863ca71be6765bc582f254eb1c49cf9739bbf798e020c00000007',
   },
   {
     //9
     title: "Elecció de nous membres de l'Executiva 2024-2028.",
-    pid: '4ae20a8eb4ca63ca71be6765bc582f254eb1c49cf9739bbf798e020c00000014',
+    pid: '6b342d99f21863ca71be6765bc582f254eb1c49cf9739bbf798e020c00000008',
   },
 ]
 
