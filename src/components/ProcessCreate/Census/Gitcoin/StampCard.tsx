@@ -1,5 +1,5 @@
 import { Box, Checkbox, Text, Card, CardHeader } from '@chakra-ui/react'
-import { StampIcon, StampId } from '~components/ProcessCreate/Census/Gitcoin/StampIcon'
+import { StampIcon } from '~components/ProcessCreate/Census/Gitcoin/StampIcon'
 import { Controller, useFormContext } from 'react-hook-form'
 import { GitcoinStampToken } from '~components/ProcessCreate/Census/Gitcoin/index'
 import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
@@ -30,7 +30,7 @@ export const StampCard: React.FC<IStampCardProps> = ({ token }) => {
             isChecked={field.value.isChecked}
           >
             <Box>
-              <StampInnerBox name={token.name} tokenId={token.externalID} />
+              <StampInnerBox name={token.name} iconURI={token.iconURI} />
             </Box>
           </Checkbox>
         )
@@ -39,13 +39,13 @@ export const StampCard: React.FC<IStampCardProps> = ({ token }) => {
   )
 }
 
-type StampInnerBoxProps = { name: string; tokenId: StampId }
+type StampInnerBoxProps = { name: string; iconURI: string | undefined }
 
-const StampInnerBox: React.FC<StampInnerBoxProps> = ({ name, tokenId }) => {
+const StampInnerBox: React.FC<StampInnerBoxProps> = ({ name, iconURI }) => {
   const stampTitle = name.replace('Gitcoin Passport Score', '')
   return (
     <>
-      <StampIcon stampId={tokenId} />
+      <StampIcon iconURI={iconURI} alt={stampTitle} />
       <Text>{stampTitle}</Text>
     </>
   )
@@ -53,7 +53,6 @@ const StampInnerBox: React.FC<StampInnerBoxProps> = ({ name, tokenId }) => {
 
 export const StampPreviewCard: React.FC<StampInnerBoxProps> = (props) => {
   return (
-    // <Card borderRadius={0} w='full' my={5} boxShadow='var(--box-shadow)'>
     <Card
       borderRadius={0}
       display={'flex'}
