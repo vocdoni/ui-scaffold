@@ -4,12 +4,11 @@ import { errorToString, useClient } from '@vocdoni/react-providers'
 import { EnvOptions, TokenSummary, VocdoniCensus3Client } from '@vocdoni/sdk'
 import { GitcoinForm } from '~components/ProcessCreate/Census/Gitcoin/GitcoinForm'
 import Wrapper from '~components/ProcessCreate/Steps/Wrapper'
-import { StampId } from '~components/ProcessCreate/Census/Gitcoin/StampIcon'
 import { useFormContext } from 'react-hook-form'
 import { useProcessCreationSteps } from '~components/ProcessCreate/Steps/use-steps'
 
 export type GitcoinStampToken = Omit<TokenSummary, 'externalID'> & {
-  externalID: StampId // For stamp tokens externalID is not nullable
+  externalID: string // For stamp tokens externalID is not nullable
 }
 
 export const GitcoinStrategyBuilder = () => {

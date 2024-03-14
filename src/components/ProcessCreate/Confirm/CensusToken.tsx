@@ -87,7 +87,7 @@ const GitcoinStampsPreview = () => {
         mb={4}
       >
         {Object.values(selectedStamps).map((token, i) => (
-          <StampPreviewCard name={token.name} tokenId={token.externalID} />
+          <StampPreviewCard name={token.name} iconURI={token.iconURI} />
         ))}
       </Grid>
     </>
