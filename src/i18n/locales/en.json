@@ -91,6 +91,8 @@
   "census": {
     "chain_required": "You need to select a network",
     "description": "Choose how to authenticate and verify voters.",
+    "gitcoin_description": "With this census only voters with a Gitcoin Passport will be able to vote, providing a sybyl-attack resistance method. You can define the general score (GPS) and different stamps that the voter must have.",
+    "gitcoin_title": "Gitcoin Passport",
     "request_custom_token": "'Request Custom Tokens'",
     "social_address_title": "Github users",
     "spreadsheet_title": "Custom data",
@@ -248,6 +250,12 @@
         "add_button": "Add",
         "add_new_address": "add a new address",
         "delete_web3_address": "Delete address index {{ index }}",
+        "gitcoin_description": "Create a census of eligible voters providing a list",
+        "gitcoin_passport_score": "Gitcoin Passport Score",
+        "gitcoin_stamps": "Stamps",
+        "gitcoin_strategy_description_AND": "To vote, users must own all selected stamps and have an equal or higher Gitcoin Passport Score.",
+        "gitcoin_strategy_description_OR": "To vote, users must own at least one stamp and have an equal or higher Gitcoin Passport Score",
+        "gitcoin_title": "Gitcoin Passport",
         "holders": "{{ holders }} holders",
         "max_census_resum": "You have a pool of {{ uniTokenHolders }} {{ symbol }} potential voters. To reduce the cost of the voting process, you can opt to limit the total number of participants in the voting process. This will not affect specific voters nor will reduce the census; it will simply reduce the maximum number of votes that can be cast.",
         "max_census_slider_arialabel": "Maximum participation expected slider selector",
@@ -263,7 +271,9 @@
         "token_base_title": "Token based",
         "tokens_placeholder": "Search or paste token address",
         "wallet_address_description": "Create a census of eligible voters providing a list of wallet addresses.",
-        "wallet_address_title": "Wallet addresses"
+        "wallet_address_title": "Wallet addresses",
+        "weighted_voting_description": "When activated, your voting power aligns with your GPS score. If deactivated, each user's vote carries equal weight, set at 1 point.",
+        "weighted_voting_title": "GPS-Based Voting Weight"
       },
       "confirm": {
         "anonymous": "Anonymous voting active",
@@ -740,6 +750,12 @@
       "accuracy": "Anonymous Census Balance Accuracy: "
     }
   },
+  "rainbow": {
+    "group": {
+      "recovery": "Recovery"
+    },
+    "recovery": "Account recovery"
+  },
   "retry": "Retry",
   "roadmap": {
     "census_description": "Create a trust-less off-chain zk-friendly census from an Ethereum block snapshot, with on-chain verification.",
@@ -775,8 +791,8 @@
     "read_more": "Read more"
   },
   "welcome": {
-    "description": "But first, you need to register your account and your SIK (Secret Identity Key) by signing 2 transactions (it's secure and free).",
-    "intro": "With this dApp you can create anonymous, private secure votings.",
+    "description": "To access all its features, including anonymous voting, you must create an account on the Vocdoni Protocol and register your Secret Identity Key (SIK) by signing two transactions. It's secure and free.",
+    "intro": "This is your first time using {{ sitename }}.",
     "step": {
       "register": "Register account",
       "sik": "Create SIK"

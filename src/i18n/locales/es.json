@@ -93,6 +93,8 @@
   "census": {
     "chain_required": "Necesitas seleccionar una red",
     "description": "Selecciona cómo los votantes se autenticarán e identificarán.",
+    "gitcoin_description": "Con este censo, solo los votantes con Gitcoin Passport podrán votar, proporcionando un método de resistencia contra sybil-attack. Puedes definir la puntuación general (GPS) y diferentes stamps que el votante debe tener.",
+    "gitcoin_title": "Gitcoin Passport",
     "request_custom_token": "Solicitar Tokens Personalizados",
     "social_address_title": "Usuarios de Github",
     "spreadsheet_title": "Datos personalizados",
@@ -252,6 +254,12 @@
         "add_button": "Añadir",
         "add_new_address": "Añade una nueva dirección",
         "delete_web3_address": "Eliminar direccion con índice {{ index }}",
+        "gitcoin_description": "Crear un censo de votantes elegibles proporcionando una lista",
+        "gitcoin_passport_score": "Puntuación de Gitcoin Pasaport",
+        "gitcoin_stamps": "Stamps",
+        "gitcoin_strategy_description_AND": "Para votar, los usuarios deben poseer todos los stamps seleccionados y tener una puntuación del Gitcoin Passport  igual o superior.",
+        "gitcoin_strategy_description_OR": "Para votar, los usuarios deben poseer al menos un stamp y tener una puntuación del Gitcoin Passport igual o superior.",
+        "gitcoin_title": "Gitcoin Passport",
         "holders": "{{ holders }} titulares",
         "max_census_resum": "Tienes un grupo de {{ uniTokenHolders }} posibles votantes de {{ symbol }}. Para reducir el costo del proceso de votación, puedes optar por limitar el número total de participantes en el proceso de votación. Esto no afectará a votantes específicos ni reducirá el censo; simplemente reducirá el número máximo de votos que se pueden emitir.",
         "max_census_slider_arialabel": "Selector deslizante de participación máxima esperada",
@@ -267,7 +275,9 @@
         "token_base_title": "Basado en tokens",
         "tokens_placeholder": "Busca o pega la dirección del token",
         "wallet_address_description": "Identifica a tus votantes por sus direcciones de monedero digital.",
-        "wallet_address_title": "Direcciones de monedero"
+        "wallet_address_title": "Direcciones de monedero",
+        "weighted_voting_description": "Cuando se activa, tu poder de voto se alinea con tu puntuación GPS. Si se desactiva, el voto de cada usuario tiene el mismo peso, establecido en 1 punto.",
+        "weighted_voting_title": "Peso del Voto Basado en GPS"
       },
       "confirm": {
         "anonymous": "Anónimo",
@@ -749,6 +759,12 @@
     "preview": {
       "accuracy": "Precisión de los Saldos de Censo Anónimo: "
     }
+  },
+  "rainbow": {
+    "group": {
+      "recovery": "Recuperación"
+    },
+    "recovery": "Recuperar cuenta"
   },
   "retry": "Reintentar",
   "roadmap": {

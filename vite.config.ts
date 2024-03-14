@@ -5,6 +5,7 @@ import { createHtmlPlugin } from 'vite-plugin-html'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import features from './vite/features'
 import themes from './vite/themes'
+import svgr from 'vite-plugin-svgr'
 
 // https://vitejs.dev/config/
 const viteconfig = ({ mode }) => {
@@ -38,6 +39,7 @@ const viteconfig = ({ mode }) => {
       themes(),
       features(),
       react(),
+      svgr(),
       createHtmlPlugin({
         template: `public/${process.env.THEME || 'default'}/index.html`,
         minify: {

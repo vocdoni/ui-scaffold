@@ -9,6 +9,7 @@ import { Census, CensusValues } from './Census'
 import { Checks } from './Checks'
 import { Confirm } from './Confirm'
 import { CensusCspValues } from '../StepForm/CensusCsp'
+import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
 
 export interface StepsFormValues
   extends InfoValues,
@@ -17,6 +18,7 @@ export interface StepsFormValues
     CensusWeb3Values,
     CensusTokenValues,
     CensusCspValues,
+    CensusGitcoinValues,
     CensusSpreadsheetValues {}
 
 export interface StepsState {
