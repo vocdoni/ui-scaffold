@@ -1,7 +1,7 @@
 import { CodeHighlightNode, CodeNode } from '@lexical/code'
 import { AutoLinkNode, LinkNode } from '@lexical/link'
 import { ListItemNode, ListNode } from '@lexical/list'
-import { TRANSFORMERS } from '@lexical/markdown'
+import { $convertFromMarkdownString, TRANSFORMERS } from '@lexical/markdown'
 import { OverflowNode } from '@lexical/overflow'
 import { CharacterLimitPlugin } from '@lexical/react/LexicalCharacterLimitPlugin'
 import LexicalClickableLinkPlugin from '@lexical/react/LexicalClickableLinkPlugin'
@@ -27,7 +27,6 @@ import ToolbarPlugin from './plugins/ToolbarPlugin'
 import exampleTheme from './theme'
 
 import './styles.css'
-import DefaultMarkdownValue from '~components/Editor/plugins/DefaultMarkdownValue'
 
 function Placeholder(props: any) {
   return <div className='editor-placeholder'>{props.placeholder}</div>
@@ -46,6 +45,7 @@ const Editor = (props: EditorProps) => {
   const [floatingAnchorElem, setFloatingAnchorElem] = useState<HTMLDivElement | null>(null)
 
   const settings = {
+    editorState: () => $convertFromMarkdownString(props.defaultValue ?? '', TRANSFORMERS),
     namespace: '',
     // The editor theme
     theme: exampleTheme,
@@ -95,7 +95,6 @@ const Editor = (props: EditorProps) => {
           <ListPlugin />
           <LinkPlugin />
           <OnChangeMarkdown onChange={props.onChange} transformers={TRANSFORMERS} />
-          <DefaultMarkdownValue mdString={props.defaultValue} />
           <ReadOnlyPlugin isDisabled={props.isDisabled} />
           <AutoLinkPlugin />
           {props.maxLength && props.maxLength > 0 && (
