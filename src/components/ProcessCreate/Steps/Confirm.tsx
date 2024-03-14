@@ -343,7 +343,11 @@ const getCensus = async (env: EnvOptions, form: StepsFormValues, salt: string) =
       })
 
       const retryTime = 5000
+      let attempts = form.timeToCreateCensus / retryTime
+
       c3client.queueWait.retryTime = retryTime
+      // clamp attempts between 20 and 100
+      c3client.queueWait.attempts = Math.min(Math.max(Math.ceil(attempts), 20), 100)
 
       if (form.censusType === 'gitcoin') {
         // Calculate the strategy id
@@ -351,7 +355,7 @@ const getCensus = async (env: EnvOptions, form: StepsFormValues, salt: string) =
 
         // Once strategy is created, we got the stimation again to update the awaiting time
         const { timeToCreateCensus } = await c3client.getStrategyEstimation(strategyID, form.electionType.anonymous)
-        const attempts = timeToCreateCensus / retryTime
+        attempts = timeToCreateCensus / retryTime
         c3client.queueWait.attempts = Math.min(Math.max(Math.ceil(attempts), 20), 100)
 
         // Create the census
@@ -364,10 +368,6 @@ const getCensus = async (env: EnvOptions, form: StepsFormValues, salt: string) =
           BigInt(census.weight)
         )
       }
-
-      const attempts = form.timeToCreateCensus / retryTime
-      // clamp attempts between 20 and 100
-      c3client.queueWait.attempts = Math.min(Math.max(Math.ceil(attempts), 20), 100)
 
       return c3client.createTokenCensus(
         form.censusToken.ID,
