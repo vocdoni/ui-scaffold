@@ -27,6 +27,7 @@ import ToolbarPlugin from './plugins/ToolbarPlugin'
 import exampleTheme from './theme'
 
 import './styles.css'
+import DefaultMarkdownValue from '~components/Editor/plugins/DefaultMarkdownValue'
 
 function Placeholder(props: any) {
   return <div className='editor-placeholder'>{props.placeholder}</div>
@@ -37,6 +38,7 @@ type EditorProps = {
   maxLength?: number
   onChange: (value: string) => void
   placeholder?: string
+  defaultValue?: string
 }
 
 const Editor = (props: EditorProps) => {
@@ -93,6 +95,7 @@ const Editor = (props: EditorProps) => {
           <ListPlugin />
           <LinkPlugin />
           <OnChangeMarkdown onChange={props.onChange} transformers={TRANSFORMERS} />
+          <DefaultMarkdownValue mdString={props.defaultValue} />
           <ReadOnlyPlugin isDisabled={props.isDisabled} />
           <AutoLinkPlugin />
           {props.maxLength && props.maxLength > 0 && (
