@@ -370,7 +370,6 @@ export const CensusTokens = () => {
   )
 }
 
-const SliderButtonsValuesDesktop = [0.01, 0.05, 0.1, 0.25, 0.5, 0.75, 1]
 const SliderButtonsValues = [0.05, 0.1, 0.25, 0.5, 0.75, 1]
 
 export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3Token; strategySize: number }) => {
@@ -386,7 +385,9 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
     },
   } = useProcessCreationSteps()
 
-  const [sliderValue, setSliderValue] = useState<number>(getValues('maxCensusSize'))
+  const formMaxCensusSize = getValues('maxCensusSize')
+
+  const [sliderValue, setSliderValue] = useState<number>(formMaxCensusSize)
   const [showTooltip, setShowTooltip] = useState<boolean>(false)
   const { t } = useTranslation()
   const field = register('maxCensusSize', {
@@ -394,17 +395,16 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
     required: t('process_create.census.mandatory_max_census_size'),
   })
 
-  const maxStrategySize = strategySize < DefaultCensusSize ? strategySize : DefaultCensusSize
-
   useEffect(() => {
     if (sliderValue !== undefined) return
-    setValue('maxCensusSize', maxStrategySize)
-    setSliderValue(maxStrategySize as number)
+    const initialValue = strategySize < DefaultCensusSize ? strategySize : DefaultCensusSize
+    setValue('maxCensusSize', initialValue)
+    setSliderValue(initialValue as number)
   }, [])
 
   if (sliderValue === undefined || !token || !strategySize) return null
 
-  const percent = Math.round((sliderValue / maxStrategySize) * 100)
+  const percent = Math.round((sliderValue / strategySize) * 100)
 
   return (
     <>
@@ -417,7 +417,7 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
           value={sliderValue}
           defaultValue={sliderValue}
           min={0}
-          max={maxStrategySize}
+          max={strategySize}
           ref={field.ref}
           onBlur={field.onBlur}
           onChange={(v) => {
@@ -427,13 +427,13 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
           onMouseEnter={() => setShowTooltip(true)}
           onMouseLeave={() => setShowTooltip(false)}
         >
-          <SliderMark value={maxStrategySize * 0.25} mt='1' ml='-2.5' fontSize='sm'>
+          <SliderMark value={strategySize * 0.25} mt='1' ml='-2.5' fontSize='sm'>
             25%
           </SliderMark>
-          <SliderMark value={maxStrategySize * 0.5} mt='1' ml='-2.5' fontSize='sm'>
+          <SliderMark value={strategySize * 0.5} mt='1' ml='-2.5' fontSize='sm'>
             50%
           </SliderMark>
-          <SliderMark value={maxStrategySize * 0.75} mt='1' ml='-2.5' fontSize='sm'>
+          <SliderMark value={strategySize * 0.75} mt='1' ml='-2.5' fontSize='sm'>
             75%
           </SliderMark>
           <SliderTrack>
@@ -459,7 +459,7 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
             <WrapItem key={v}>
               <Button
                 onClick={() => {
-                  const val = Math.round(maxStrategySize * v)
+                  const val = Math.round(strategySize * v)
                   setSliderValue(val)
                   setValue('maxCensusSize', val)
                 }}
