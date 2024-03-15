@@ -99,13 +99,7 @@ const ProcessAside = () => {
               </Text>
             )}
             {voted !== null && voted.length > 0 && (
-              <Link
-                as={ReactRouterLink}
-                to={environment.verifyVote(env, voted)}
-                target='_blank'
-                whiteSpace='nowrap'
-                variant='contrast'
-              >
+              <Link as={ReactRouterLink} to={environment.verifyVote(env, voted)} target='_blank' whiteSpace='nowrap'>
                 {t('aside.verify_vote_on_explorer')}
               </Link>
             )}
