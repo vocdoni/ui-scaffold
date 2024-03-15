@@ -370,7 +370,7 @@ export const CensusTokens = () => {
   )
 }
 
-const SliderButtonsValues = [0.05, 0.1, 0.25, 0.5, 0.75, 1]
+const SliderButtonsValues = [0.01, 0.02, 0.05, 0.1, 0.25, 0.5, 0.75, 1]
 
 export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3Token; strategySize: number }) => {
   const {
