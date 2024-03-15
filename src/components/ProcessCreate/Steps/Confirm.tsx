@@ -454,7 +454,7 @@ const buildPredicate = (symbols: string[], operator: StampsUnionTypes, index: nu
     return symbols[index] + ` ${operator} ` + symbols[index + 1]
   }
   // Recursive case: build the string with nesting
-  return symbols[index] + ` ${operator} (` + buildPredicate(symbols, operator, index + 1) + ')'
+  return symbols[index] + ` ${operator} (` + buildPredicate(symbols, operator, index + 1)
 }
 
 /**
