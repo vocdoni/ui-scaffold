@@ -177,7 +177,7 @@ const PxLL = () => {
             >
               <AspectRatio ratio={16 / 9}>
                 <ReactPlayer
-                  url='https://www.youtube.com/embed/cvkb7dPr5Uk?si=AUhsbtslqc7bfk2W'
+                  url='https://www.youtube.com/embed/xd_H4RCSLxc?si=M5o46L4ctS3yCR8g'
                   width='100%'
                   height='100%'
                   playing
