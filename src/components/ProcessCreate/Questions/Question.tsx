@@ -28,6 +28,8 @@ const Question = ({ index, remove }: Props) => {
     name: `questions.${index}.options`,
   })
 
+  const description = watch(`questions.${index}.description`)
+
   return (
     <Box className='process-create-section' bgColor='process_create.section' p={6} position='relative'>
       <IconButton
@@ -60,6 +62,7 @@ const Question = ({ index, remove }: Props) => {
       <Editor
         onChange={(text: string) => setValue(`questions.${index}.description`, text)}
         placeholder={t('form.process_create.question.description_placeholder').toString()}
+        defaultValue={description}
       />
 
       <Options fields={fields} removeOption={removeOption} appendOption={appendOption} index={index} />
