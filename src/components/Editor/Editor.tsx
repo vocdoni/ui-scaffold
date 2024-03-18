@@ -1,7 +1,7 @@
 import { CodeHighlightNode, CodeNode } from '@lexical/code'
 import { AutoLinkNode, LinkNode } from '@lexical/link'
 import { ListItemNode, ListNode } from '@lexical/list'
-import { TRANSFORMERS } from '@lexical/markdown'
+import { $convertFromMarkdownString, TRANSFORMERS } from '@lexical/markdown'
 import { OverflowNode } from '@lexical/overflow'
 import { CharacterLimitPlugin } from '@lexical/react/LexicalCharacterLimitPlugin'
 import LexicalClickableLinkPlugin from '@lexical/react/LexicalClickableLinkPlugin'
@@ -37,6 +37,7 @@ type EditorProps = {
   maxLength?: number
   onChange: (value: string) => void
   placeholder?: string
+  defaultValue?: string
 }
 
 const Editor = (props: EditorProps) => {
@@ -44,6 +45,7 @@ const Editor = (props: EditorProps) => {
   const [floatingAnchorElem, setFloatingAnchorElem] = useState<HTMLDivElement | null>(null)
 
   const settings = {
+    editorState: () => $convertFromMarkdownString(props.defaultValue ?? '', TRANSFORMERS),
     namespace: '',
     // The editor theme
     theme: exampleTheme,
