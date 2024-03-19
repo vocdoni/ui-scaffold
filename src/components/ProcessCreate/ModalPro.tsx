@@ -151,7 +151,7 @@ const ModalPro = ({ isOpen, onClose, reason }: { isOpen: boolean; onClose: () =>
               </Flex>
               <Button
                 as='a'
-                href='https://calendar.google.com/calendar/appointments/schedules/AcZssZ29VUbJIqlHtdY32eVUd2OhbjfQLoiHhTAk34Ct6PianaFnwediCb6K021zcX5RaKDdd76eZS-O?gv=true'
+                href='https://calendly.com/vocdoni-app/30min'
                 target='_blank'
                 leftIcon={<CalendarIcon />}
                 fontSize='14px'
