@@ -550,6 +550,37 @@
     },
     "preview": {
       "accuracy": "Anonymous Census Balance Accuracy: "
+    },
+    "question": {
+      "approval_voting": {
+        "description": "Voters can vote for as many candidates as they approve of, and the candidate with the most votes win.",
+        "title": "<p>Approval Voting</p>"
+      },
+      "borda_count": {
+        "description": "Voters rank candidates, and points are assigned base on their rank. The candidate with the most points wins.",
+        "title": "<p>Ranked Choice</p><p>(Borda Count)</p>"
+      },
+      "multi_choice": {
+        "description": "Voters choose a pre-defined number of options, and the option with more voters win.",
+        "title": "<p>Multiple Choice</p><p>(Plurality Voting)</p>"
+      },
+      "others": {
+        "description": "Select other voting types (multiple-cjoice, approval voting, participatory budgeting, ranked choice...)",
+        "title": "Others"
+      },
+      "participation_budgeting": {
+        "description": " Voters can distribute a predefined number among all options/projects (representing the total available budget) as they wish.",
+        "title": "<p>Participatory Budgeting</p>"
+      },
+      "single_choice": {
+        "description": "Voters choose one option/candidate, and the option/candidate with the most votes wins.",
+        "title": "<p>Single Choice</p><p>(Plurality Voting)</p>"
+      },
+      "voting_type": {
+        "description": "Select the voting type for this election. If you don't find what you need can contact us.",
+        "pro": "Pro Voting Type",
+        "title": "Voting Types"
+      }
     }
   },
   "rainbow": {

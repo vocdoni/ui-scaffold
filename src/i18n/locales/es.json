@@ -559,6 +559,38 @@
     },
     "preview": {
       "accuracy": "Precisión de los Saldos de Censo Anónimo: "
+    },
+    "question": {
+      "approval_voting": {
+        "description": "Los votantes pueden votar por tantos candidatos como aprueben, y el candidato con más votos gana.",
+        "title": "Votación por Aprobación"
+      },
+      "borda_count": {
+        "description": "Los votantes clasifican a los candidatos, y se asignan puntos en función de su clasificación. El candidato con más puntos gana.",
+        "title": "<p>Elección por Rango</p><p>(Cuenta Borda)</p>"
+      },
+      "multi_choice": {
+        "description": "Los votantes eligen un número predefinido de opciones, y la opción con más votantes gana.",
+        "title": "<p>Votación Plurinominal</p><p>(Elección Múltiple)</p>"
+      },
+      "others": {
+        "description": "",
+        "title": ""
+      },
+      "participation_budgeting": {
+        "description": "Los votantes pueden distribuir un número predefinido entre todas las opciones/proyectos (que representan el presupuesto total disponible) como deseen.",
+        "title": "Presupuesto Participativo"
+      },
+      "single_choice": {
+        "description": "Los votantes eligen una opción/candidato, y la opción/candidato con más votos gana.",
+        "title": "<p>Votación Plurinominal</p><p>(Elección Individual)</p>"
+      },
+      "voting_type": {
+        "description": "Selecciona el tipo de votación para esta elección. Si no encuentras lo que necesitas, puedes contactarnos.",
+        "pro": "",
+        "pro_census": "",
+        "title": "Tipos de Votación"
+      }
     }
   },
   "rainbow": {

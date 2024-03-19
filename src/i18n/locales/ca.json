@@ -559,6 +559,38 @@
     },
     "preview": {
       "accuracy": "Precisió dels Saldos de Cens Anònims: "
+    },
+    "question": {
+      "approval_voting": {
+        "description": "Els votants poden votar per tants candidats com aprovin, i el candidat amb més vots guanya.",
+        "title": "Votació per Aprovació"
+      },
+      "borda_count": {
+        "description": "Els votants classifiquen els candidats, i es assignen punts en funció de la seva classificació. El candidat amb més punts guanya.",
+        "title": "<p>Elecció per Rang</p><p>(Comptatge Borda)</p>"
+      },
+      "multi_choice": {
+        "description": "Els votants trien un nombre predeterminat d'opcions, i l'opció amb més votants guanya.",
+        "title": "<p>Votació Plurinominal</p><p>(Elecció Múltiple)</p>"
+      },
+      "others": {
+        "description": "",
+        "title": ""
+      },
+      "participation_budgeting": {
+        "description": "Els votants poden distribuir un nombre predeterminat entre totes les opcions/projectes (que representen el pressupost total disponible) com desitgin.",
+        "title": "Pressupost Participatiu"
+      },
+      "single_choice": {
+        "description": "Els votants trien una opció/candidat, i l'opció/candidat amb més vots guanya.",
+        "title": "<p>Votació Plurinominal</p><p>(Elecció Individual)</p>"
+      },
+      "voting_type": {
+        "description": "Selecciona el tipus de votació per a aquesta elecció. Si no trobes el que necessites, pots contactar-nos.",
+        "pro": "",
+        "pro_census": "",
+        "title": "Tipus de Votació"
+      }
     }
   },
   "rainbow": {
