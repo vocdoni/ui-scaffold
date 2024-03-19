@@ -552,7 +552,7 @@
       },
       "multi_choice": {
         "description": "Voters choose a pre-defined number of options, and the option with more voters win.",
-        "title": "<p>Plurality Voting</p><p>(Multiple Choice)</p>"
+        "title": "<p>Multiple Choice</p><p>(Plurality Voting)</p>"
       },
       "others": {
         "description": "Select other voting types (multiple-cjoice, approval voting, participatory budgeting, ranked choice...)",
@@ -564,7 +564,7 @@
       },
       "single_choice": {
         "description": "Voters choose one option/candidate, and the option/candidate with the most votes wins.",
-        "title": "<p>Plurality Voting</p><p>(Single Choice)</p>"
+        "title": "<p>Single Choice</p><p>(Plurality Voting)</p>"
       },
       "voting_type": {
         "description": "Select the voting type for this election. If you don't find what you need can contact us.",
