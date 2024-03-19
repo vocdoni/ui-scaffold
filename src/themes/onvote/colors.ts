@@ -172,6 +172,8 @@ export const colors = {
     },
     preview_option_question_before: colorsBase.black,
     preview_negative_balance: colorsBase.red,
+    pro_bg: colorsBase.primary.main,
+    pro_color: colorsBase.white.pure,
     section: colorsBase.white.pure,
     section_border: colorsBase.primary.gray_light,
     spreadsheet: {
