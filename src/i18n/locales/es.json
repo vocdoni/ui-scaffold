@@ -93,6 +93,8 @@
   "census": {
     "chain_required": "Necesitas seleccionar una red",
     "description": "Selecciona cómo los votantes se autenticarán e identificarán.",
+    "gitcoin_description": "Con este censo, solo los votantes con Gitcoin Passport podrán votar, proporcionando un método de resistencia contra sybil-attack. Puedes definir la puntuación general (GPS) y diferentes stamps que el votante debe tener.",
+    "gitcoin_title": "Gitcoin Passport",
     "pro": "",
     "request_custom_token": "Solicitar Tokens Personalizados",
     "social_address_title": "Usuarios de Github",
@@ -242,8 +244,14 @@
         "add_button": "Añadir",
         "add_new_address": "Añade una nueva dirección",
         "delete_web3_address": "Eliminar direccion con índice {{ index }}",
+        "gitcoin_description": "Crear un censo de votantes elegibles proporcionando una lista",
+        "gitcoin_passport_score": "Puntuación de Gitcoin Pasaport",
+        "gitcoin_stamps": "Stamps",
+        "gitcoin_strategy_description_AND": "Para votar, los usuarios deben poseer todos los stamps seleccionados y tener una puntuación del Gitcoin Passport  igual o superior.",
+        "gitcoin_strategy_description_OR": "Para votar, los usuarios deben poseer al menos un stamp y tener una puntuación del Gitcoin Passport igual o superior.",
+        "gitcoin_title": "Gitcoin Passport",
         "holders": "{{ holders }} titulares",
-        "max_census_resum": "Con esta configuración, {{ uniTokenHolders }} poseedores de tokens {{ symbol }} podrán votar, representando un {{ percent }}% del total de la participación máxima.",
+        "max_census_resum": "Tienes un grupo de {{ uniTokenHolders }} posibles votantes de {{ symbol }}. Para reducir el costo del proceso de votación, puedes optar por limitar el número total de participantes en el proceso de votación. Esto no afectará a votantes específicos ni reducirá el censo; simplemente reducirá el número máximo de votos que se pueden emitir.",
         "max_census_slider_arialabel": "Selector deslizante de participación máxima esperada",
         "max_census_slider_label": "Participación máxima esperada:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} votantes elegibles)",
@@ -257,7 +265,9 @@
         "token_base_title": "Basado en tokens",
         "tokens_placeholder": "Busca o pega la dirección del token",
         "wallet_address_description": "Identifica a tus votantes por sus direcciones de monedero digital.",
-        "wallet_address_title": "Direcciones de monedero"
+        "wallet_address_title": "Direcciones de monedero",
+        "weighted_voting_description": "Cuando se activa, tu poder de voto se alinea con tu puntuación GPS. Si se desactiva, el voto de cada usuario tiene el mismo peso, establecido en 1 punto.",
+        "weighted_voting_title": "Peso del Voto Basado en GPS"
       },
       "confirm": {
         "anonymous": "Anónimo",
@@ -549,39 +559,13 @@
     },
     "preview": {
       "accuracy": "Precisión de los Saldos de Censo Anónimo: "
-    },
-    "question": {
-      "approval_voting": {
-        "description": "Los votantes pueden votar por tantos candidatos como aprueben, y el candidato con más votos gana.",
-        "title": "Votación por Aprobación"
-      },
-      "borda_count": {
-        "description": "Los votantes clasifican a los candidatos, y se asignan puntos en función de su clasificación. El candidato con más puntos gana.",
-        "title": "<p>Cuenta Borda</p><p>(Elección por Rango)</p>"
-      },
-      "multi_choice": {
-        "description": "Los votantes eligen un número predefinido de opciones, y la opción con más votantes gana.",
-        "title": "<p>Votación Plurinominal</p><p>(Elección Múltiple)</p>"
-      },
-      "others": {
-        "description": "",
-        "title": ""
-      },
-      "participation_budgeting": {
-        "description": "Los votantes pueden distribuir un número predefinido entre todas las opciones/proyectos (que representan el presupuesto total disponible) como deseen.",
-        "title": "Presupuesto Participativo"
-      },
-      "single_choice": {
-        "description": "Los votantes eligen una opción/candidato, y la opción/candidato con más votos gana.",
-        "title": "<p>Votación Plurinominal</p><p>(Elección Individual)</p>"
-      },
-      "voting_type": {
-        "description": "Selecciona el tipo de votación para esta elección. Si no encuentras lo que necesitas, puedes contactarnos.",
-        "pro": "",
-        "pro_census": "",
-        "title": "Tipos de Votación"
-      }
     }
+  },
+  "rainbow": {
+    "group": {
+      "recovery": "Recuperación"
+    },
+    "recovery": "Recuperar cuenta"
   },
   "retry": "Reintentar",
   "roadmap": {

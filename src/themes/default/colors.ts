@@ -35,6 +35,10 @@ export const colors = {
     700: colorsBase.primary.dark2,
   },
 
+  avatar: {
+    bg: colorsBase.primary.main,
+    color: colorsBase.white.pure,
+  },
   black: {
     50: colorsBase.white.pure,
     500: colorsBase.black,

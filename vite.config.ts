@@ -5,6 +5,7 @@ import { createHtmlPlugin } from 'vite-plugin-html'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import features from './vite/features'
 import themes from './vite/themes'
+import svgr from 'vite-plugin-svgr'
 
 // https://vitejs.dev/config/
 const viteconfig = ({ mode }) => {
@@ -21,6 +22,11 @@ const viteconfig = ({ mode }) => {
 
   const commit = execSync('git rev-parse --short HEAD').toString()
 
+  let defaultCensusSize = Number(process.env.DEFAULT_CENSUS_SIZE)
+  if (!defaultCensusSize) {
+    defaultCensusSize = 5000
+  }
+
   return defineConfig({
     base,
     build: {
@@ -32,6 +38,7 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.CUSTOM_FAUCET_URL': JSON.stringify(process.env.CUSTOM_FAUCET_URL),
       'import.meta.env.CSP_PUBKEY': JSON.stringify(process.env.CSP_PUBKEY),
       'import.meta.env.CSP_URL': JSON.stringify(process.env.CSP_URL),
+      'import.meta.env.DEFAULT_CENSUS_SIZE': JSON.stringify(defaultCensusSize),
       'import.meta.env.EMAILJS_SERVICE_ID': JSON.stringify(process.env.EMAILJS_SERVICE_ID),
       'import.meta.env.EMAILJS_TEMPLATE_ID': JSON.stringify(process.env.EMAILJS_TEMPLATE_ID),
       'import.meta.env.EMAILJS_PUBLIC_ID': JSON.stringify(process.env.EMAILJS_PUBLIC_ID),
@@ -41,6 +48,7 @@ const viteconfig = ({ mode }) => {
       themes(),
       features(),
       react(),
+      svgr(),
       createHtmlPlugin({
         template: `public/${process.env.THEME || 'default'}/index.html`,
         minify: {

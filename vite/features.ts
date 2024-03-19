@@ -10,7 +10,7 @@ const features = () => {
       customization: true,
     },
     login: ['web3', 'web2'],
-    census: ['spreadsheet', 'token', 'web3', 'csp'],
+    census: ['spreadsheet', 'token', 'web3', 'csp', 'gitcoin'],
     unimplemented_census: [],
     voting_type: ['single'],
     unimplemented_voting_type: [],
@@ -37,6 +37,13 @@ const features = () => {
   if (!features.languages.length) {
     features.languages = ['en']
   }
+  // verify login options are valid
+  const validLogins = ['web2', 'web3', 'recovery']
+  features.login.forEach((login) => {
+    if (!validLogins.includes(login)) {
+      throw new Error(`Invalid login option: ${login}`)
+    }
+  })
   // We need pure booleans in order to ensure rollup tree-shakes non enabled features.
   // Using functions like `.includes()` would prevent such tree-shaking, resulting in a bigger bundle.
   features._census = {
@@ -44,6 +51,7 @@ const features = () => {
     token: false,
     web3: false,
     csp: false,
+    gitcoin: false,
   }
   for (const census of features.census) {
     features._census[census] = true

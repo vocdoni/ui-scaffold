@@ -93,6 +93,8 @@
   "census": {
     "chain_required": "Necessites seleccionar una xarxa",
     "description": "Selecciona com s'autenticaran i identificaran els votants.",
+    "gitcoin_description": "Amb aquest cens, només els votants amb Gitcoin Passport podran votar, proporcionant un mètode de resistència contra atacs sybil. Pots definir la puntuació general (GPS) i diferents stamps que el votant ha de tenir.",
+    "gitcoin_title": "Gitcoin Passport",
     "pro": "",
     "request_custom_token": "Sol·licitar Tokens Personalitzats",
     "social_address_title": "Usuaris de Github",
@@ -242,8 +244,14 @@
         "add_button": "Afegir",
         "add_new_address": "Afageix una nova adreça",
         "delete_web3_address": "Eliminar adreça amb index {{ index }}",
+        "gitcoin_description": "Crear un cens de votants elegibles proporcionant una llista",
+        "gitcoin_passport_score": "Puntuació del Gitcoin Passport",
+        "gitcoin_stamps": "Stamps",
+        "gitcoin_strategy_description_AND": "Per votar, els usuaris han de posseir tots els stamps seleccionats i tenir una Puntuació del Gitcoin Passport igual o superior.",
+        "gitcoin_strategy_description_OR": "Per votar, els usuaris han de posseir almenys un stamp i tenir una Puntuació del Gitcoin Passport igual o superior.",
+        "gitcoin_title": "Gitcoin Passport",
         "holders": "{{ holders }} titulars",
-        "max_census_resum": "Amb aquesta configuració, {{ uniTokenHolders }} titulars de tokens {{ symbol }} podran votar, representant un {{ percent }}% del total del torn de votació màxim.",
+        "max_census_resum": "Tens un grup de {{ uniTokenHolders }} possibles votants de {{ symbol }}. Per reduir el cost del procés de votació, pots optar per limitar el nombre total de participants en el procés de votació. Això no afectarà a votants específics ni reduirà el cens; simplement reduirà el nombre màxim de vots que es poden emetre.",
         "max_census_slider_arialabel": "Selector de participació màxima esperada",
         "max_census_slider_label": "Participació màxima esperada:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} votants elegibles)",
@@ -257,7 +265,9 @@
         "token_base_title": "Basat en token",
         "tokens_placeholder": "Cerca o enganxa la direcció del token",
         "wallet_address_description": "Identifica els teus votants per les seves adreces de cartera.",
-        "wallet_address_title": "Adreces de cartera"
+        "wallet_address_title": "Adreces de cartera",
+        "weighted_voting_description": "Quan s'activa, el teu poder de vot s'alinea amb la teva puntuació GPS. Si es desactiva, el vot de cada usuari té el mateix pes, establert en 1 punt.",
+        "weighted_voting_title": "Pes del Vot Basat en GPS"
       },
       "confirm": {
         "anonymous": "Anònim",
@@ -458,7 +468,7 @@
       "starts": "Comença el procés"
     },
     "is_anonymous": {
-      "description": "Identitat 100% anonimitzada",
+      "description": "Votació anònima",
       "title": "Anònim"
     },
     "is_invalid": "Aquest procés té dades no vàlides i per tant no pot carregar-se",
@@ -549,39 +559,13 @@
     },
     "preview": {
       "accuracy": "Precisió dels Saldos de Cens Anònims: "
-    },
-    "question": {
-      "approval_voting": {
-        "description": "Els votants poden votar per tants candidats com aprovin, i el candidat amb més vots guanya.",
-        "title": "Votació per Aprovació"
-      },
-      "borda_count": {
-        "description": "Els votants classifiquen els candidats, i es assignen punts en funció de la seva classificació. El candidat amb més punts guanya.",
-        "title": "<p>Comptatge Borda</p><p>(Elecció per Rang)</p>"
-      },
-      "multi_choice": {
-        "description": "Els votants trien un nombre predeterminat d'opcions, i l'opció amb més votants guanya.",
-        "title": "<p>Votació Plurinominal</p><p>(Elecció Múltiple)</p>"
-      },
-      "others": {
-        "description": "",
-        "title": ""
-      },
-      "participation_budgeting": {
-        "description": "Els votants poden distribuir un nombre predeterminat entre totes les opcions/projectes (que representen el pressupost total disponible) com desitgin.",
-        "title": "Pressupost Participatiu"
-      },
-      "single_choice": {
-        "description": "Els votants trien una opció/candidat, i l'opció/candidat amb més vots guanya.",
-        "title": "<p>Votació Plurinominal</p><p>(Elecció Individual)</p>"
-      },
-      "voting_type": {
-        "description": "Selecciona el tipus de votació per a aquesta elecció. Si no trobes el que necessites, pots contactar-nos.",
-        "pro": "",
-        "pro_census": "",
-        "title": "Tipus de Votació"
-      }
     }
+  },
+  "rainbow": {
+    "group": {
+      "recovery": "Recuperació"
+    },
+    "recovery": "Recuperar compte"
   },
   "retry": "Reintenta",
   "roadmap": {

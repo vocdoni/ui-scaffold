@@ -2,9 +2,11 @@ import { DeleteIcon } from '@chakra-ui/icons'
 import {
   Box,
   Button,
+  Checkbox,
   Flex,
   FormControl,
   FormErrorMessage,
+  FormLabel,
   Icon,
   IconButton,
   Input,
@@ -12,10 +14,11 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react'
 import { enforceHexPrefix, errorToString, useClient } from '@vocdoni/react-providers'
-import { useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { useFieldArray, useFormContext } from 'react-hook-form'
+import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import { BiCheckDouble } from 'react-icons/bi'
 import { RiFileExcel2Line } from 'react-icons/ri'
 import { addressTextOverflow, fieldMapErrorMessage, isInvalidFieldMap } from '~constants'
 import { Web3CensusSpreadsheetManager } from './Spreadsheet/Web3CensusSpreadsheetManager'
@@ -33,6 +36,7 @@ export const CensusWeb3Addresses = () => {
     trigger,
     resetField,
     setError,
+    control,
   } = useFormContext()
 
   const { fields, remove } = useFieldArray({
@@ -41,6 +45,7 @@ export const CensusWeb3Addresses = () => {
 
   const addresses = watch('addresses')
   const newAddress = watch('newAddress')
+  const weighted: boolean = watch('weightedVote')
 
   const [initialized, setInitialized] = useState(!!addresses.length)
 
@@ -88,13 +93,16 @@ export const CensusWeb3Addresses = () => {
     try {
       setFileErr(null)
       // weighted set to false for now, since there's no weight management here yet
-      const spreadsheet = new Web3CensusSpreadsheetManager(file, false)
+      const spreadsheet = new Web3CensusSpreadsheetManager(file, weighted)
       await spreadsheet.read()
       const plain = addresses.map(({ address }: { address: string }) => address.toLowerCase())
-      spreadsheet.data.forEach((row) => {
+      spreadsheet.data.forEach((row, k) => {
         const [address] = row
         if (!plain.includes(address.toLowerCase())) {
-          addresses.push({ address })
+          addresses.push({
+            address: spreadsheet.data[k][0],
+            weight: spreadsheet.weights[k],
+          })
         }
       })
       setValue('addresses', addresses)
@@ -138,6 +146,52 @@ export const CensusWeb3Addresses = () => {
               {t('form.process_create.census.add_button')}
             </Button>
           </FormControl>
+          <FormControl
+            bgColor='process_create.bg'
+            borderRadius='md'
+            mb={4}
+            sx={{
+              '& > label': {
+                position: 'relative',
+
+                '& span:first-of-type': {
+                  position: 'absolute',
+                  top: 1,
+                  right: 1,
+                },
+
+                '& > input:checked + span': {
+                  bgColor: 'process_create.census.weighted_vote_checked',
+                },
+              },
+            }}
+          >
+            <Controller
+              control={control}
+              name='weightedVote'
+              defaultValue={weighted}
+              render={({ field: { onChange, onBlur, value, ref } }) => (
+                <Checkbox
+                  onChange={(event: ChangeEvent<HTMLInputElement>) => setValue('weightedVote', event.target.checked)}
+                  onBlur={onBlur}
+                  ref={ref}
+                  isChecked={value}
+                  w='full'
+                  p={3}
+                >
+                  <Flex alignItems='center' gap={1}>
+                    <Icon as={BiCheckDouble} />
+                    <Text fontWeight='bold' mb={1}>
+                      <Trans i18nKey='form.process_create.weighted'>Weighted vote</Trans>
+                    </Text>
+                  </Flex>
+                  <Text color='process_create.description' fontSize='sm'>
+                    {t('form.process_create.spreadsheet.requirements.list_three')}
+                  </Text>
+                </Checkbox>
+              )}
+            />
+          </FormControl>
           <Flex
             flexDirection='column'
             height={100}
@@ -160,6 +214,22 @@ export const CensusWeb3Addresses = () => {
               >
                 <Text fontWeight='bold'>{index + 1}</Text>
                 <Text>{addressTextOverflow((address as any).address, value)}</Text>
+                {weighted && (
+                  <FormControl display='flex' alignItems='center'>
+                    <Input
+                      {...register(`addresses.${index}.weight` as const)}
+                      type='number'
+                      min={0}
+                      defaultValue={1}
+                      size='sm'
+                      w={20}
+                      ml={3}
+                    />
+                    <FormLabel fontSize='xs' m={0} ml={3} right={0}>
+                      (Weight)
+                    </FormLabel>
+                  </FormControl>
+                )}
 
                 <IconButton
                   size='xs'
@@ -189,7 +259,6 @@ export const CensusWeb3Addresses = () => {
             />
           </Flex>
         </Box>
-
         <FormControl isInvalid={!!fileErr} flex='1 1 50%'>
           <Flex
             flexDirection='column'
