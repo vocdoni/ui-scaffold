@@ -19,7 +19,7 @@ const Home = () => {
       >
         <Box pt={{ lg: '120px' }} px='40px'>
           <Banner />
-          <VotingTypesBanner />
+          <VotingTypesBanner app={'Onvote'} />
         </Box>
       </Box>
       <Box>

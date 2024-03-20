@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { BsArrowUpRight, BsStars } from 'react-icons/bs'
 import { TbDiscountCheckFilled } from 'react-icons/tb'
 
-const VotingTypesBanner = () => {
+const VotingTypesBanner = ({ app = 'Vocdoni App' }: { app?: string }) => {
   const { t } = useTranslation()
   return (
     <Flex className='voting-type' maxW={'1250px'}>
@@ -13,7 +13,7 @@ const VotingTypesBanner = () => {
           <Text>{t('banner_voting_types.anonymous_title')}</Text>
         </CardBody>
         <CardFooter>
-          <Text>{t('banner_voting_types.anonymous_description')}</Text>
+          <Text>{t('banner_voting_types.anonymous_description', { app })}</Text>
         </CardFooter>
       </Card>
       <Card variant='types-voting'>
@@ -22,7 +22,7 @@ const VotingTypesBanner = () => {
           <Text>{t('banner_voting_types.token_title')}</Text>
         </CardBody>
         <CardFooter>
-          <Text> {t('banner_voting_types.token_description')}</Text>
+          <Text> {t('banner_voting_types.token_description', { app })}</Text>
         </CardFooter>
       </Card>
       <Card variant='types-voting'>
@@ -31,7 +31,7 @@ const VotingTypesBanner = () => {
           <Text>{t('banner_voting_types.flexible_title')}</Text>
         </CardBody>
         <CardFooter>
-          <Text>{t('banner_voting_types.flexible_description')}</Text>
+          <Text>{t('banner_voting_types.flexible_description', { app })}</Text>
         </CardFooter>
       </Card>
     </Flex>
