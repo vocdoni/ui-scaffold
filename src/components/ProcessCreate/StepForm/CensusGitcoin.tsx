@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 import { CensusTokenValues } from '~components/ProcessCreate/StepForm/CensusToken'
 import { GitcoinStampToken, GitcoinStrategyBuilder } from '../Census/Gitcoin'
-import { StampsUnionTypes } from '~components/ProcessCreate/Census/Gitcoin/StampsUnionType'
+import { Census3Predicates } from '~components/ProcessCreate/Census/Gitcoin/StampsUnionType'
 import { Census3Token } from '@vocdoni/sdk'
 
 type FormGitcoinStamps = Record<string, GitcoinStampToken & { isChecked: boolean }>
@@ -13,7 +13,7 @@ export type CensusGitcoinValues = {
   gitcoinGPSToken: Census3Token
   passportScore: number
   stamps: FormGitcoinStamps
-  stampsUnionType: StampsUnionTypes
+  stampsUnionType: Census3Predicates
   gpsWeighted: boolean
 } & Omit<CensusTokenValues, 'accuracy' | 'censusToken'>
 

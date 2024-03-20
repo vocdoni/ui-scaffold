@@ -3,7 +3,7 @@ import { Box, Flex, FormLabel, Switch, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
 
-export type StampsUnionTypes = 'AND' | 'OR'
+export type Census3Predicates = 'AND' | 'OR'
 
 export const StampsUnionType = () => {
   const { control, setValue } = useFormContext<CensusGitcoinValues>()

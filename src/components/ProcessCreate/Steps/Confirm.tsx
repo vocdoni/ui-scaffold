@@ -50,7 +50,7 @@ import { Web3Address } from '../StepForm/CensusWeb3'
 import { Option } from '../StepForm/Questions'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 import Wrapper from './Wrapper'
-import { StampsUnionTypes } from '~components/ProcessCreate/Census/Gitcoin/StampsUnionType'
+import { Census3Predicates } from '~components/ProcessCreate/Census/Gitcoin/StampsUnionType'
 import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
 import { CensusType } from '~components/ProcessCreate/Census/TypeSelector'
 
@@ -448,7 +448,7 @@ const electionFromForm = (form: StepsFormValues) => {
  * @param operator The operator to add, AND or OR for example
  * @param index actual iteration index.
  */
-const buildPredicate = (symbols: string[], operator: StampsUnionTypes, index: number = 0): string => {
+const buildPredicate = (symbols: string[], operator: Census3Predicates, index: number = 0): string => {
   // Base case: when we reach the lasts key
   if (index === symbols.length - 2) {
     return symbols[index] + ` ${operator} ` + symbols[index + 1]
