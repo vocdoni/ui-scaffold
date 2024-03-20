@@ -3,13 +3,13 @@ import { useTranslation } from 'react-i18next'
 import { CensusSpreadsheetValues } from '../StepForm/CensusSpreadsheet'
 import { CensusTokenValues } from '../StepForm/CensusToken'
 import { CensusWeb3Values } from '../StepForm/CensusWeb3'
-import { Info, InfoValues } from '../StepForm/Info'
-import { Questions, QuestionsValues } from '../StepForm/Questions'
+import { InfoValues } from '../StepForm/Info'
+import { QuestionsValues } from '../StepForm/Questions'
 import { Census, CensusValues } from './Census'
-import { Checks } from './Checks'
 import { Confirm } from './Confirm'
 import { CensusCspValues } from '../StepForm/CensusCsp'
 import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
+import { CensusMultichainValues } from '~components/ProcessCreate/StepForm/CensusMultichain'
 
 export interface StepsFormValues
   extends InfoValues,
@@ -19,6 +19,7 @@ export interface StepsFormValues
     CensusTokenValues,
     CensusCspValues,
     CensusGitcoinValues,
+    CensusMultichainValues,
     CensusSpreadsheetValues {}
 
 export interface StepsState {
