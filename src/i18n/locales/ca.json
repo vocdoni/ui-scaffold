@@ -538,31 +538,6 @@
     "recovery": "Recuperar compte"
   },
   "retry": "Reintenta",
-  "roadmap": {
-    "census_description": "Crear un cens descentralitzat fora de la cadena i compatible amb zk a partir d'una instantània de blocs d'Ethereum, amb verificació a la cadena.",
-    "census_title": "zkCensus:",
-    "chainlink_description": "Habilitar l'execució automàtica amb suport optimista.",
-    "chainlink_title": "Integració de Chainlink:",
-    "complex_startegies_description": "Integrar qualsevol token de qualsevol cadena de blocs utilitzant una combinació de lògica i operacions algebraiques, directament. Per exemple,",
-    "complex_startegies_title": "Estratègies complexes:",
-    "execution_description": "Enviar la prova final a la cadena per a una execució vinculant.",
-    "execution_title": "Execució:",
-    "milestone1": "Fita 1: Governança flexible sense gasos",
-    "milestone2": "Fita 2: zkRollup per a votacions vinculants segures i anònimes",
-    "private_description": "Mostrar el contingut de la proposta de votació només als membres de la comunitat.",
-    "private_title": "Metadades de votació privada:",
-    "registry_description": "Un registre global a la cadena per a identitats zk (coneixement zero).",
-    "registry_title": "zkRegistry:",
-    "rollup_description": "Consolidar tots els vots en una única prova zk segura mitjançant la tecnologia de zkRollup personalitzada.",
-    "rollup_title": "zkRollup:",
-    "social_census_desciption": "Millora el teu cens amb identitats socials de plataformes com ara Github o Twitter. Inclou mecanismes de resistència a Sybil com Holonym o Proof-of-Humanity.",
-    "social_census_title": "Cens social:",
-    "title": "<p1>Pla d'acció 2024</p1> <p2>Què ve després?</p2>",
-    "versatil_description": "Ja sigui votació simple, escalonada o quadràtica, Onvote admet diversos mètodes de votació per adaptar-se a les diverses necessitats de la comunitat.",
-    "versatil_title": "Mètodes de votació versàtils:",
-    "voting_description": "Facilitar la votació anònima, fora de la cadena (sense gasos) per a qualsevol votant eligible mitjançant la xarxa p2p de Vocdoni.",
-    "voting_title": "zkVoting:"
-  },
   "share": {
     "copy": "Copia",
     "election_share_btn_text": "Comparteix",
@@ -587,5 +562,25 @@
       "sik": "Crear SIK"
     },
     "title": "Benvingut a {{ sitename }}"
+  },
+  "web3cards": {
+    "onvote": {
+      "description": "Sistema Web3 de votació <b>segur</b>, <b>sense taxes</b> i <b>transparent</b>. Permet crear <b>cens de tokens, cens multichain, votació anònima</b> i cens sybil-resistant amb un tipus de votació flexible.",
+      "title": "Onvote"
+    },
+    "farcaster": {
+      "description": "Amb \"Farcaster.vote\" permetem una manera simple i social de votar. Els teus membres només han de votar a través de Farcaster en 2 simples clics.",
+      "title": "Farcaster"
+    },
+    "plugins": {
+      "description": "Hem implementat una solució de votació sense taxes personalitzada per a la DAO d'Aragon, i podem fer el mateix per a tu!<br/>Comença amb votació anònima sense taxes!",
+      "title": "DAO Plugins"
+    },
+    "others": {
+      "description": "Hem construït un conjunt de votacions que permet una integració fàcil amb la nostra Blockchain dedicada a votacions a través del nostre SDK &amp; Components UI.<br />Comença a integrar-ho ara!",
+      "title": "Altres"
+    },
+    "contact": "Contacta'ns",
+    "try": "Prova-ho ara"
   }
 }

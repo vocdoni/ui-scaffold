@@ -529,31 +529,6 @@
     "recovery": "Account recovery"
   },
   "retry": "Retry",
-  "roadmap": {
-    "census_description": "Create a trust-less off-chain zk-friendly census from an Ethereum block snapshot, with on-chain verification.",
-    "census_title": "zkCensus:",
-    "chainlink_description": "Enable automatic execution with optimistic support.",
-    "chainlink_title": "Chainlink Integration:",
-    "complex_startegies_description": "Integrate any token from any blockchain using a blend of logic and algebraic operations, out of the box. I.e.",
-    "complex_startegies_title": "Complex Strategies:",
-    "execution_description": "Submit the final proof on-chain for binding execution.",
-    "execution_title": "Execution:",
-    "milestone1": "Milestone 1: Flexible Gasless Governance",
-    "milestone2": "Milestone 2: Anonymous voting with binding execution",
-    "private_description": "Only display voting proposal content to your community members.",
-    "private_title": "Private Election Metadata:",
-    "registry_description": "A global on-chain registry for zk (zero-knowledge) identities.",
-    "registry_title": "zkRegistry:",
-    "rollup_description": "Consolidate all votes into a single, secure zkProof using custom zkRollup technology",
-    "rollup_title": "zkRollup:",
-    "social_census_desciption": "Enhance your census with social identities from platforms like Github or Twitter. Include Sybil resistance mechanisms such as Holonym or Proof-of-Humanity.",
-    "social_census_title": "Social Census:",
-    "title": "<p1>Roadmap 2024</p1> <p2>What's next?</p2>",
-    "versatil_description": "Whether it’s simple, ranged, or quadratic voting, Onvote supports multiple voting methods to adapt to diverse community needs.",
-    "versatil_title": "Versatile Voting Methods:",
-    "voting_description": "Facilitate anonymous, off-chain (gasless) voting for any eligible voter using the Vocdoni p2p network.",
-    "voting_title": "zkVoting:"
-  },
   "share": {
     "copy": "Copy",
     "election_share_btn_text": "Share",
@@ -581,7 +556,7 @@
   },
   "web3cards": {
     "onvote": {
-      "description": "<b>Secure</b>, <b>gasless</b> and <b>transparent</b> Web3 voting. Allows to create <b>token census, multichain census, anonymous</b> voting, sybil-resistant census with a flexible voting type.",
+      "description": "<b>Secure</b>, <b>gasless</b> and <b>transparent</b> Web3 voting. Allows to create <b>token census, multichain census, anonymous voting</b>, sybil-resistant census with a flexible voting type.",
       "title": "Onvote"
     },
     "farcaster": {
