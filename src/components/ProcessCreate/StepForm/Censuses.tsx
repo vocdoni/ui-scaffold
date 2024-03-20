@@ -70,3 +70,17 @@ export const GitcoinCensus = () => (
     <Gitcoin />
   </SuspenseLoader>
 )
+
+const Multichain = lazy(() => {
+  if (import.meta.env.features._census.multichain) {
+    return import('./CensusMultichain').then((module) => ({ default: module.StepFormCensusMultichain }))
+  }
+
+  return Promise.resolve({ default: () => <></> })
+})
+
+export const MultichainCensus = () => (
+  <SuspenseLoader>
+    <Multichain />
+  </SuspenseLoader>
+)

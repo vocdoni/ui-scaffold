@@ -23,6 +23,7 @@ interface ImportMeta {
         web3: boolean
         csp: boolean
         gitcoin: boolean
+        multichain: boolean
       }
     }
     theme: string
