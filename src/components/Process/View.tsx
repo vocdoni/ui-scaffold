@@ -79,9 +79,9 @@ export const ProcessView = () => {
 
         {election?.streamUri && (
           <Box
-            maxW={{ base: videoTop ? '250px' : '800px', lg: videoTop ? '400px' : '800px' }}
+            maxW={{ base: '800px', lg: videoTop ? '400px' : '800px' }}
             ml={videoTop ? 'auto' : 'none'}
-            position='sticky'
+            position={{ base: 'unset', lg: 'sticky' }}
             top={{ base: 0, lg2: 20 }}
             zIndex={100}
           >
