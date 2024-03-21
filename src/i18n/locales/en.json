@@ -511,19 +511,19 @@
       "legal_note": "Disclaimer: "
     },
     "census": {
-      "crm_description": "If you already have your own CRM, we can integrate it to let your community vote with the same credentials.",
+      "crm_description": "If you already have your own CRM, we can integrate it so your community can vote using the same credentials.",
       "crm_title": "CRM Integration",
-      "database_description": "Integrate the voting directly with the users in your database. An smooth way to vote for your community.",
-      "database_title": "Database",
-      "digital_certificate_description": "We support diferent digital certificates, to get the maximum security and identity validation.",
-      "digital_certificate_title": "Digital Certificate",
-      "email_description": "Voters will validate their email by authenticating in their Google Mail account (OAuth).",
-      "email_title": "By Email",
+      "database_description": "Integrate voting directly with the users in your database. A seamless way for your community to vote.",
+      "database_title": "Database Integration",
+      "digital_certificate_description": "We support different types of digital certificates to ensure maximum security and identity validation.",
+      "digital_certificate_title": "Digital Certificates",
+      "email_description": "Voters will validate their email by authenticating through their Google Mail account (OAuth).",
+      "email_title": "Via Email",
       "mandatory_max_census_size": "At least one voter needs to be selected",
-      "others_description": "Do you need a specific solution? We can help with a custom integration that fits your needs.",
+      "others_description": "Do you need a specific solution? We can help with a custom integration tailored to your needs.",
       "others_title": "Others",
-      "phone_description": "Voters will have to validate their mobile phone, by entring their number and entering the verification code that they will recive.",
-      "phone_title": "By Phone Number",
+      "phone_description": "Voters will need to validate their mobile phone by entering their number and the verification code they receive.",
+      "phone_title": "Via Phone Number",
       "total_tokens_one": "1 token",
       "total_tokens_other": "{{ count }} tokens"
     },
@@ -535,16 +535,16 @@
     "creation_steps_description": "Sign transaction to create the voting process. Generating the census can take a few minutes, please don't close this window.",
     "creation_steps_title": "Progress",
     "modal_pro": {
-      "description": "<p>The selected option is not available in the self-service (free) plan. To be able to use it, you need topurchase the <bold>custom project plan</bold></p>",
+      "description": "<p>Option not available in the free plan. To use it, you need to purchase the <bold>custom project plan.</bold></p>",
       "error": "Error sending email, try it later or contact us at <email>info@vocdoni.org</email>",
       "form_btn": "SEND",
-      "form_description": "You can give us your contact information and we will contact you to talk about your needs",
+      "form_description": "You can give us your contact information and we will contact you to talk about your needs.",
       "form_email_label": "Email:",
       "form_email_placeholder": "Your email",
       "form_name_label": "Name:",
       "form_name_placeholder": "Your name",
       "scheudle_btn": "BOOK NOW",
-      "scheudle_description": " Or you can directly schedule one quick call (15min) with our experts to help you create your desired voting project",
+      "scheudle_description": "Or you can directly schedule one quick call (30') with our experts to help you create your desired voting project.",
       "success": "Email sent successfully",
       "title": "Contact Us"
     },
@@ -553,28 +553,28 @@
     },
     "question": {
       "approval_voting": {
-        "description": "Voters can vote for as many candidates as they approve of, and the candidate with the most votes win.",
-        "title": "<p>Approval Voting</p>"
+        "description": "Voters can vote for as many options as they approve of. The option with the most votes win.",
+        "title": "Approval Voting"
       },
       "borda_count": {
-        "description": "Voters rank candidates, and points are assigned base on their rank. The candidate with the most points wins.",
-        "title": "<p>Ranked Choice</p><p>(Borda Count)</p>"
+        "description": "Voters rank the options, and points are assigned base on their rank. The option with the most points wins.",
+        "title": "Ranked Choice"
       },
       "multi_choice": {
-        "description": "Voters choose a pre-defined number of options, and the option with more voters win.",
-        "title": "<p>Multiple Choice</p><p>(Plurality Voting)</p>"
+        "description": "Voters choose a pre-defined number of options. The option with more voters win.",
+        "title": "Multiple Choice"
       },
       "others": {
-        "description": "Select other voting types (multiple-cjoice, approval voting, participatory budgeting, ranked choice...)",
+        "description": "Select other voting types (multiple-choice, approval voting, participatory budgeting, ranked choice...)",
         "title": "Others"
       },
       "participation_budgeting": {
-        "description": " Voters can distribute a predefined number among all options/projects (representing the total available budget) as they wish.",
-        "title": "<p>Participatory Budgeting</p>"
+        "description": "Voters can distribute a predefined number among all options/projects (representing the total available budget) as they wish.",
+        "title": "Participatory Budgeting"
       },
       "single_choice": {
-        "description": "Voters choose one option/candidate, and the option/candidate with the most votes wins.",
-        "title": "<p>Single Choice</p><p>(Plurality Voting)</p>"
+        "description": "Voters choose one option. The option with the most votes wins.",
+        "title": "Single Choice"
       },
       "voting_type": {
         "description": "Select the voting type for this election. If you don't find what you need can contact us.",
