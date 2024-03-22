@@ -258,6 +258,7 @@
         "tokens_placeholder": "Search or paste token address",
         "wallet_address_description": "Create a census of eligible voters providing a list of wallet addresses.",
         "wallet_address_title": "Wallet addresses",
+        "weight": "(Weight)",
         "weighted_voting_description": "When activated, your voting power aligns with your GPS score. If deactivated, each user's vote carries equal weight, set at 1 point.",
         "weighted_voting_title": "GPS-Based Voting Weight"
       },
