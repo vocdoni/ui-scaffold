@@ -126,6 +126,7 @@ export const CensusWeb3Addresses = () => {
             display='flex'
             justifyContent='center'
             gap={2}
+            flexDirection={{ base: 'column', lg: 'row' }}
           >
             <Box mb={3} w='100%'>
               <Input
@@ -178,7 +179,7 @@ export const CensusWeb3Addresses = () => {
             {fields.map((address, index) => (
               <Flex
                 key={address.id}
-                justifyContent='start'
+                justifyContent='space-between'
                 alignItems='center'
                 gap={2}
                 mx='auto'
@@ -186,37 +187,41 @@ export const CensusWeb3Addresses = () => {
                 borderColor='process_create.wallet_addresses_border'
                 w='full'
                 p={5}
+                flexDirection={{ base: 'column', lg: 'row' }}
               >
-                <Text fontWeight='bold'>{index + 1}</Text>
-                <Text>{addressTextOverflow((address as any).address, value)}</Text>
-                {weighted && (
-                  <FormControl display='flex' alignItems='center'>
-                    <Input
-                      {...register(`addresses.${index}.weight` as const)}
-                      type='number'
-                      min={0}
-                      defaultValue={1}
-                      size='sm'
-                      w={20}
-                      ml={3}
-                    />
-                    <FormLabel fontSize='xs' m={0} ml={3} right={0}>
-                      (Weight)
-                    </FormLabel>
-                  </FormControl>
-                )}
-
-                <IconButton
-                  size='xs'
-                  variant='icon'
-                  type='button'
-                  icon={<DeleteIcon />}
-                  aria-label={t('form.process_create.census.delete_web3_address', {
-                    values: { index: index },
-                  })}
-                  onClick={() => remove(index)}
-                  ml='auto'
-                />
+                <Flex direction={'row'} gap={2} justifyContent='start' alignItems='center'>
+                  <Text fontWeight='bold'>{index + 1}</Text>
+                  <Text>{addressTextOverflow((address as any).address, value)}</Text>
+                </Flex>
+                <Flex direction={'row'} gap={2} justifyContent='start' alignItems='center'>
+                  {weighted && (
+                    <FormControl display='flex' alignItems='center'>
+                      <Input
+                        {...register(`addresses.${index}.weight` as const)}
+                        type='number'
+                        min={0}
+                        defaultValue={1}
+                        size='sm'
+                        w={20}
+                        ml={3}
+                      />
+                      <FormLabel fontSize='xs' m={0} ml={3} right={0}>
+                        (Weight)
+                      </FormLabel>
+                    </FormControl>
+                  )}
+                  <IconButton
+                    size='xs'
+                    variant='icon'
+                    type='button'
+                    icon={<DeleteIcon />}
+                    aria-label={t('form.process_create.census.delete_web3_address', {
+                      values: { index: index },
+                    })}
+                    onClick={() => remove(index)}
+                    ml='auto'
+                  />
+                </Flex>
               </Flex>
             ))}
           </Flex>
