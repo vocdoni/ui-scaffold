@@ -261,7 +261,7 @@
         "tokens_placeholder": "Cerca o enganxa la direcció del token",
         "wallet_address_description": "Identifica els teus votants per les seves adreces de cartera.",
         "wallet_address_title": "Adreces de cartera",
-        "weight": "(Weight)",
+        "weight": "(Pes)",
         "weighted_voting_description": "Quan s'activa, el teu poder de vot s'alinea amb la teva puntuació GPS. Si es desactiva, el vot de cada usuari té el mateix pes, establert en 1 punt.",
         "weighted_voting_title": "Pes del Vot Basat en GPS"
       },
