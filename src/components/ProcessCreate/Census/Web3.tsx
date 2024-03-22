@@ -206,7 +206,7 @@ export const CensusWeb3Addresses = () => {
                         ml={3}
                       />
                       <FormLabel fontSize='xs' m={0} ml={3} right={0}>
-                        (Weight)
+                        {t('form.process_create.census.weight')}
                       </FormLabel>
                     </FormControl>
                   )}
