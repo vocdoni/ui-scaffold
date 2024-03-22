@@ -5,6 +5,7 @@ import onvote from '/assets/governance-onvote.png'
 import farcaster from '/assets/governance-farcaster.png'
 import daoplugins from '/assets/governance-daoplugins.png'
 import others from '/assets/governance-others.png'
+import { Link as ReactRouterLink } from 'react-router-dom'
 
 interface IGovernanceCardProps {
   buttonText: string
@@ -79,7 +80,7 @@ const Governance = () => {
               </Text>
             </CardBody>
             <CardFooter>
-              <Button variant={'try-it-now'} bgColor={card.buttonColor}>
+              <Button as={ReactRouterLink} variant={'try-it-now'} bgColor={card.buttonColor} to={card.buttonLink}>
                 {t(card.buttonText)}
               </Button>
             </CardFooter>
