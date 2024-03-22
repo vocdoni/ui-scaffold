@@ -544,7 +544,7 @@ export const TokenPreview = ({
             display='flex'
             alignItems='center'
           >
-            <CryptoAvatar name={token.name} icon={token.iconURI} id={token.ID} size='md' />
+            <CryptoAvatar name={token.name} icon={token.iconURI} id={token.ID} chainId={token.chainID} size='md' />
           </GridItem>
           <GridItem
             gridColumnStart={{ base: 2, xl: minCardSize800px ? 3 : 2 }}
