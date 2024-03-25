@@ -17,7 +17,7 @@ const Features = () => {
 
   return (
     <Box id='features' className='site-wrapper' py={{ base: '60px', lg: '100px' }}>
-      <Box mb='40px'>
+      <Box mb='80px'>
         <Text color='home.section.title' fontWeight='bold' fontSize='20px' lineHeight='24px' mb='6px'>
           {t('home.features.header')}
         </Text>

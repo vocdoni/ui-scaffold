@@ -506,7 +506,7 @@
     "features": {
       "card_1": {
         "title": "Diversidad de votaciones",
-        "description": "Desde simples referéndums y votaciones de opción única hasta elecciones de preferencia múltiple o ponderadas, Vocdoni soporta diversos tipos de votación."
+        "description": "Desde votaciones de opción única hasta elecciones de preferencia múltiple o ponderadas, Vocdoni soporta diversos tipos de votación."
       },
       "card_2": {
         "title": "Personalización completa",
@@ -522,7 +522,7 @@
       },
       "card_5": {
         "title": "Censos a medida",
-        "description": "Crea listas de votantes personalizadas para dirigirte específicamente a tu audiencia."
+        "description": "Crea listas de votantes personalizadas para dirigirte específicamente a tu audiencia. Puedes usar datos personalizados (ej: usuario y password), correos, certificados digitales, CRMs y más."
       },
       "card_6": {
         "title": "Flexibilidad en la votación",
@@ -530,7 +530,7 @@
       },
       "card_7": {
         "title": "Soporte multilenguaje",
-        "description": "Alcanza a una audiencia global con opciones de idioma que hacen la votación accesible para todos."
+        "description": "Alcanza a una audiencia global con opciones de idioma, cada votante puede elegir su idioma preferido."
       },
       "card_8": {
         "title": "Resultados instantáneos",
@@ -538,7 +538,7 @@
       },
       "card_9": {
         "title": "Accesibilidad multiplataforma",
-        "description": "Permite votar desde cualquier dispositivo, ofreciendo comodidad y accesibilidad total."
+        "description": "Permite votar desde cualquier dispositivo, ofreciendo comodidad y accesibilidad total. Sin desplazamientos, ahorra tiempo y dinero a tus votantes."
       },
       "header": "Características destacadas",
       "subtitle_1": "Descubre el potencial de Vocdoni con herramientas que ofrecen valor excepcional a organizadores y votantes. Personaliza tus votaciones, asegura procesos transparentes y empodera a los participantes con opciones intuitivas y accesibles.",
