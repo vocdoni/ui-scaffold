@@ -2,9 +2,16 @@ import { Box, Button, Flex, Image, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { FaRegCheckCircle } from 'react-icons/fa'
 import devices from '/assets/devices_vocdoni.png'
+import { Link as ReactRouterLink } from 'react-router-dom'
+import { useClient } from '@vocdoni/react-providers'
+import { useAccount } from 'wagmi'
+import { useConnectModal } from '@rainbow-me/rainbowkit'
 
 const CreateProcess = () => {
   const { t } = useTranslation()
+  const { isConnected } = useAccount()
+  const { account } = useClient()
+  const { openConnectModal } = useConnectModal()
 
   return (
     <Flex
@@ -28,9 +35,31 @@ const CreateProcess = () => {
           {t('home.create_process.subtitle')}
         </Text>
         <Box maxW={{ lg: '90%' }}>
-          <Button mb='20px' w={{ base: 'full', sm: 'fit-content', lg: 'full' }} mx={{ base: 'auto', lg: 'start' }}>
-            {t('home.create_process.btn')}
-          </Button>
+          {isConnected && (
+            <Button
+              mb='20px'
+              w={{ base: 'full', sm: 'fit-content', lg: 'full' }}
+              mx={{ base: 'auto', lg: 'start' }}
+              as={ReactRouterLink}
+              to='/processes/create'
+            >
+              {t('home.create_process.btn')}
+            </Button>
+          )}
+
+          {!isConnected && (
+            <Button
+              mb='20px'
+              w={{ base: 'full', sm: 'fit-content', lg: 'full' }}
+              mx={{ base: 'auto', lg: 'start' }}
+              onClick={() => {
+                if (openConnectModal) openConnectModal()
+              }}
+            >
+              {t('home.create_process.btn')}
+            </Button>
+          )}
+
           <Flex
             justifyContent='center'
             alignItems={{ base: 'center', lg: 'start' }}

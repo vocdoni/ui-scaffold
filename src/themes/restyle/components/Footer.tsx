@@ -27,30 +27,30 @@ const Footer = () => {
           justifyContent={{ sm2: 'space-between', lg: 'space-around' }}
           gap={{ base: '30px', sm2: 0 }}
         >
-          <Flex flexDirection='column' gap='10px'>
-            <Text fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px'>
+          <Flex flexDirection='row' gap='90px'>
+            <Text fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px' display='none'>
               {t('footer.company')}
             </Text>
-            <Link variant='footer' href='https://www.vocdoni.io'>
+            <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io' target='_blank'>
               Vocdoni
             </Link>
-            <Link variant='footer' href='https://www.vocdoni.io/about'>
+            <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io/about' target='_blank'>
               About Us
             </Link>
-            <Link variant='footer' href='https://www.vocdoni.io/contact'>
+            <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io/contact' target='_blank'>
               Contact
             </Link>
-            <Link variant='footer' href='https://www.vocdoni.io/api'>
+            <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io/api' target='_blank'>
               SDK
             </Link>
-            <Link variant='footer' href='https://developer.vocdoni.io'>
+            <Link fontWeight='bold' variant='footer' href='https://developer.vocdoni.io' target='_blank'>
               Developer Portal
             </Link>
-            <Link variant='footer' href='https://blog.vocdoni.io'>
+            <Link fontWeight='bold' variant='footer' href='https://blog.vocdoni.io' target='_blank'>
               Blog
             </Link>
           </Flex>
-          <Flex flexDirection='column' gap='10px'>
+          <Flex flexDirection='column' gap='10px' display='none'>
             <Text fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px'>
               {t('footer.uses_cases')}
             </Text>
@@ -60,7 +60,7 @@ const Footer = () => {
             <Link variant='footer'>{t('footer.uses_cases4')}</Link>
             <Link variant='footer'>{t('footer.uses_cases5')}</Link>
           </Flex>
-          <Flex flexDirection='column' gap='10px'>
+          <Flex flexDirection='column' gap='10px' display='none'>
             <Text fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px'>
               {t('footer.demo')}
             </Text>

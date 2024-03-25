@@ -1,6 +1,7 @@
 import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { FaPhoneVolume, FaRegCheckCircle } from 'react-icons/fa'
+import { Link as ReactRouterLink } from 'react-router-dom'
 
 const Support = () => {
   const { t } = useTranslation()
@@ -60,8 +61,25 @@ const Support = () => {
           gap='10px'
           mb='40px'
         >
-          <Button variant='secondary'>{t('home.support.btn_contact')}</Button>
-          <Button variant='transparent' color='white'>
+          <Button
+            variant='secondary'
+            as={ReactRouterLink}
+            to='mailto:info@vocdoni.org'
+            aria-label={t('home.support.btn_contact')}
+            title={t('home.support.btn_contact')}
+            target='_blank'
+          >
+            {t('home.support.btn_contact')}
+          </Button>
+          <Button
+            variant='transparent'
+            color='white'
+            as={ReactRouterLink}
+            to='https://calendly.com/vocdoni-app/30min'
+            aria-label={t('home.support.btn_watch')}
+            title={t('home.support.btn_watch')}
+            target='_blank'
+          >
             <FaPhoneVolume size={30} />
             <Text as='span' ml='10px'>
               {t('home.support.btn_watch')}

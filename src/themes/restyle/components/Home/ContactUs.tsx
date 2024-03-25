@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { FaFingerprint } from 'react-icons/fa'
 import { MdDesignServices } from 'react-icons/md'
 import advFeature from '/assets/vocdoni.jpeg'
+import { Link as ReactRouterLink } from 'react-router-dom'
 
 const ContactUs = () => {
   const { t } = useTranslation()
@@ -80,7 +81,15 @@ const ContactUs = () => {
             </CardBody>
           </Card>
 
-          <Button w={{ base: 'full', sm: 'fit-content', lg: 'full' }} mx='auto'>
+          <Button
+            w={{ base: 'full', sm: 'fit-content', lg: 'full' }}
+            mx='auto'
+            as={ReactRouterLink}
+            to='mailto:info@vocdoni.org'
+            aria-label={t('home.contactus.btn')}
+            title={t('home.contactus.btn')}
+            target='_blank'
+          >
             {t('home.contactus.btn')}
           </Button>
         </Flex>
