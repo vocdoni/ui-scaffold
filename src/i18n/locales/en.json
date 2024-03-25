@@ -493,6 +493,10 @@
       "text": "<p>We've securely processed and stored your vote on our Blockchain. Click <verify>here</verify> to verify your vote.</p>",
       "title": "Vote submitted!"
     },
+    "total_census_size_one": "",
+    "total_census_size_other": "{{count}} allowed voters of {{max}} total in census",
+    "total_census_size_tooltip_one": "",
+    "total_census_size_tooltip_other": "The maximum number of voters allowed is limited to {{count}} from a census of {{max}} ({{percent}}% of the total). Only the first {{count}} voters can vote.",
     "voters": "Voters"
   },
   "process_actions": {
