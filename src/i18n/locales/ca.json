@@ -451,6 +451,7 @@
     "census": "Cens",
     "census_strategies": {
       "csp": "CSP",
+      "gitcoin": "Gitcoin",
       "spreadsheet": "CSV",
       "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
       "web3": "Adreces Web3"
