@@ -41,7 +41,7 @@ const CreateProcess = () => {
               <FaRegCheckCircle />
               {t('home.create_process.helper_1')}
             </Text>
-            <Text display='flex' alignItems='center' gap={1} ml='3' mt='1'>
+            <Text display='none' alignItems='center' gap={1} ml='3' mt='1'>
               <FaRegCheckCircle />
               {t('home.create_process.helper_2')}
             </Text>

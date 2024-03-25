@@ -128,7 +128,7 @@
   },
   "csp_census": {
     "github": {
-      "error_fetching_users": "",
+      "error_fetching_users": "Error fetching users",
       "selected_users": "Selected users:"
     }
   },
@@ -166,7 +166,7 @@
     "about": "About",
     "blog": "Blog",
     "company": "Company",
-    "contact": "",
+    "contact": "Contact",
     "demo": "Voting Types",
     "demo1": "Single Choice",
     "demo2": "Multiple Choice",
@@ -190,7 +190,7 @@
     "uses_cases2": "Elections",
     "uses_cases3": "Participatory Budgeting",
     "uses_cases4": "Online Voting",
-    "uses_cases5": "Gathered Online Survey",
+    "uses_cases5": "Gated Online Survey",
     "vocdoni_api": "Vocdoni API",
     "vocdoni_app": "Vocdoni APP"
   },
@@ -215,7 +215,7 @@
       "avatar_error": "URL not valid",
       "field_is_required": "This field is required",
       "min_address": "Please, provide at least one address",
-      "min_users_address": "",
+      "min_users_address": "Please, provide at least one address",
       "recipient_address_invalid": "Specified address does not seem to be valid"
     },
     "process_create": {
@@ -391,7 +391,7 @@
         "title": "Cost Savings"
       },
       "card_3": {
-        "description": "Increase engagement and involvement with a user-friendly platform accessible to all, regardless of technical proficiency.",
+        "description": "Increase engagement and participation with a user-friendly platform accessible to all, regardless of technical proficiency.",
         "title": "Enhanced Participation"
       },
       "card_4": {
@@ -447,7 +447,7 @@
         "card_3": "Participatory Budgeting",
         "card_4": "Online Voting",
         "card_5": "Software Integration",
-        "card_6": "Gathered Online Survey",
+        "card_6": "Gated Online Survey",
         "radio": "Use Cases",
         "title": "By Use Case"
       },
@@ -577,8 +577,8 @@
       "header": "Embrace Change with Vocdoni",
       "img_card_1": "Organizations",
       "img_card_2": "Communities",
-      "img_card_3": "Goverments and Public Institutions",
-      "subtitle_1": "We offered solutions to wide range of uses-cases, demostrating Vocdoni App versatility.",
+      "img_card_3": "Governments and Public Institutions",
+      "subtitle_1": "We offered solutions to wide range of uses-cases, demonstrating Vocdoni App versatility.",
       "title": "Our solution fits your needs"
     },
     "support": {
@@ -589,7 +589,7 @@
       "helper_2": "Reduce costs & working hours",
       "helper_3": "Competitive costs",
       "subtitle": "We can help you to create your perfect voting experience",
-      "title": "Start giving voice to your comunity"
+      "title": "Start giving voice to your community"
     }
   },
   "home_features": {
