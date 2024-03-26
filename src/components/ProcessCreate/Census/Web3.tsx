@@ -119,13 +119,14 @@ export const CensusWeb3Addresses = () => {
 
   return (
     <>
-      <Flex flexDirection={{ base: 'column', xl: 'row' }} gap={5} alignItems='center'>
+      <Flex flexDirection={{ base: 'column', xl: 'row' }} gap={5} alignItems={{ base: 'center', lg: 'start' }}>
         <Box flex='1 1 50%' w='100%'>
           <FormControl
             isInvalid={isInvalidFieldMap(errors, 'newAddress')}
             display='flex'
             justifyContent='center'
             gap={2}
+            flexDirection={{ base: 'column', lg: 'row' }}
           >
             <Box mb={3} w='100%'>
               <Input
@@ -139,10 +140,11 @@ export const CensusWeb3Addresses = () => {
                   }
                 }}
                 aria-label={t('form.process_create.census.add_new_address')}
+                placeholder={'0x000...000'}
               />
               <FormErrorMessage>{fieldMapErrorMessage(errors, 'newAddress')}</FormErrorMessage>
             </Box>
-            <Button type='button' variant='secondary' ml='none' onClick={handleAddAddress}>
+            <Button type='button' variant='primary' ml='none' onClick={handleAddAddress}>
               {t('form.process_create.census.add_button')}
             </Button>
           </FormControl>
@@ -165,33 +167,7 @@ export const CensusWeb3Addresses = () => {
                 },
               },
             }}
-          >
-            <Controller
-              control={control}
-              name='weightedVote'
-              defaultValue={weighted}
-              render={({ field: { onChange, onBlur, value, ref } }) => (
-                <Checkbox
-                  onChange={(event: ChangeEvent<HTMLInputElement>) => setValue('weightedVote', event.target.checked)}
-                  onBlur={onBlur}
-                  ref={ref}
-                  isChecked={value}
-                  w='full'
-                  p={3}
-                >
-                  <Flex alignItems='center' gap={1}>
-                    <Icon as={BiCheckDouble} />
-                    <Text fontWeight='bold' mb={1}>
-                      <Trans i18nKey='form.process_create.weighted'>Weighted vote</Trans>
-                    </Text>
-                  </Flex>
-                  <Text color='process_create.description' fontSize='sm'>
-                    {t('form.process_create.spreadsheet.requirements.list_three')}
-                  </Text>
-                </Checkbox>
-              )}
-            />
-          </FormControl>
+          ></FormControl>
           <Flex
             flexDirection='column'
             height={100}
@@ -203,7 +179,7 @@ export const CensusWeb3Addresses = () => {
             {fields.map((address, index) => (
               <Flex
                 key={address.id}
-                justifyContent='start'
+                justifyContent='space-between'
                 alignItems='center'
                 gap={2}
                 mx='auto'
@@ -211,37 +187,41 @@ export const CensusWeb3Addresses = () => {
                 borderColor='process_create.wallet_addresses_border'
                 w='full'
                 p={5}
+                flexDirection={{ base: 'column', lg: 'row' }}
               >
-                <Text fontWeight='bold'>{index + 1}</Text>
-                <Text>{addressTextOverflow((address as any).address, value)}</Text>
-                {weighted && (
-                  <FormControl display='flex' alignItems='center'>
-                    <Input
-                      {...register(`addresses.${index}.weight` as const)}
-                      type='number'
-                      min={0}
-                      defaultValue={1}
-                      size='sm'
-                      w={20}
-                      ml={3}
-                    />
-                    <FormLabel fontSize='xs' m={0} ml={3} right={0}>
-                      (Weight)
-                    </FormLabel>
-                  </FormControl>
-                )}
-
-                <IconButton
-                  size='xs'
-                  variant='icon'
-                  type='button'
-                  icon={<DeleteIcon />}
-                  aria-label={t('form.process_create.census.delete_web3_address', {
-                    values: { index: index },
-                  })}
-                  onClick={() => remove(index)}
-                  ml='auto'
-                />
+                <Flex direction={'row'} gap={2} justifyContent='start' alignItems='center'>
+                  <Text fontWeight='bold'>{index + 1}</Text>
+                  <Text>{addressTextOverflow((address as any).address, value)}</Text>
+                </Flex>
+                <Flex direction={'row'} gap={2} justifyContent='start' alignItems='center'>
+                  {weighted && (
+                    <FormControl display='flex' alignItems='center'>
+                      <Input
+                        {...register(`addresses.${index}.weight` as const)}
+                        type='number'
+                        min={0}
+                        defaultValue={1}
+                        size='sm'
+                        w={20}
+                        ml={3}
+                      />
+                      <FormLabel fontSize='xs' m={0} ml={3} right={0}>
+                        {t('form.process_create.census.weight')}
+                      </FormLabel>
+                    </FormControl>
+                  )}
+                  <IconButton
+                    size='xs'
+                    variant='icon'
+                    type='button'
+                    icon={<DeleteIcon />}
+                    aria-label={t('form.process_create.census.delete_web3_address', {
+                      values: { index: index },
+                    })}
+                    onClick={() => remove(index)}
+                    ml='auto'
+                  />
+                </Flex>
               </Flex>
             ))}
           </Flex>
@@ -259,40 +239,76 @@ export const CensusWeb3Addresses = () => {
             />
           </Flex>
         </Box>
-        <FormControl isInvalid={!!fileErr} flex='1 1 50%'>
-          <Flex
-            flexDirection='column'
-            justifyContent='center'
-            alignItems='center'
-            gap={5}
-            p={10}
-            border='1px dotted'
-            borderColor='process_create.census.drag_and_drop_border'
-            bgColor='process_create.bg'
-            mt={6}
-            cursor='pointer'
-            {...getRootProps()}
-          >
-            <input {...getInputProps()} />
-            <Icon as={RiFileExcel2Line} boxSize={20} color='process_create.spreadsheet.file' />
-            <Box>
-              {isDragActive ? (
-                <Text textAlign='center' color='process_create.description'>
-                  {t('uploader.drop_here')}
+        <Flex
+          h={'full'}
+          flex='1 1 50%'
+          direction={'column'}
+          w={'full'}
+          gap={{ base: 3, lg: 8 }}
+          alignItems={{ base: 'center', lg: 'end' }}
+        >
+          <Controller
+            control={control}
+            name='weightedVote'
+            defaultValue={weighted}
+            render={({ field: { onChange, onBlur, value, ref } }) => (
+              <Checkbox
+                onChange={(event: ChangeEvent<HTMLInputElement>) => setValue('weightedVote', event.target.checked)}
+                onBlur={onBlur}
+                ref={ref}
+                isChecked={value}
+                w='full'
+                p={3}
+                maxW={100}
+                variant={'radiobox'}
+              >
+                <Flex alignItems='center' gap={1}>
+                  <Icon as={BiCheckDouble} />
+                  <Text fontWeight='bold' mb={1}>
+                    <Trans i18nKey='form.process_create.weighted'>Weighted vote</Trans>
+                  </Text>
+                </Flex>
+                <Text color='process_create.description' fontSize='sm'>
+                  {t('form.process_create.spreadsheet.requirements.list_three')}
                 </Text>
-              ) : (
-                <Trans
-                  i18nKey='uploader.click_or_drag_and_drop'
-                  components={{
-                    p1: <Text textAlign='center' color='process_create.description' />,
-                    p2: <Text textAlign='center' fontSize='sm' color='process_create.description' />,
-                  }}
-                />
-              )}
-            </Box>
-          </Flex>
-          <FormErrorMessage>{fileErr}</FormErrorMessage>
-        </FormControl>
+              </Checkbox>
+            )}
+          />
+          <FormControl isInvalid={!!fileErr} flex='1 1 50%'>
+            <Flex
+              flexDirection='column'
+              justifyContent='center'
+              alignItems='center'
+              gap={5}
+              p={10}
+              border='1px dotted'
+              borderColor='process_create.census.drag_and_drop_border'
+              bgColor='process_create.bg'
+              mt={6}
+              cursor='pointer'
+              {...getRootProps()}
+            >
+              <input {...getInputProps()} />
+              <Icon as={RiFileExcel2Line} boxSize={20} color='process_create.spreadsheet.file' />
+              <Box>
+                {isDragActive ? (
+                  <Text textAlign='center' color='process_create.description'>
+                    {t('uploader.drop_here')}
+                  </Text>
+                ) : (
+                  <Trans
+                    i18nKey='uploader.click_or_drag_and_drop'
+                    components={{
+                      p1: <Text textAlign='center' color='process_create.description' />,
+                      p2: <Text textAlign='center' fontSize='sm' color='process_create.description' />,
+                    }}
+                  />
+                )}
+              </Box>
+            </Flex>
+            <FormErrorMessage>{fileErr}</FormErrorMessage>
+          </FormControl>
+        </Flex>
       </Flex>
     </>
   )

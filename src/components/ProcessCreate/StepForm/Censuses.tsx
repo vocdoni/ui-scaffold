@@ -56,3 +56,17 @@ export const CspCensus = () => (
     <Csp />
   </SuspenseLoader>
 )
+
+const Gitcoin = lazy(() => {
+  if (import.meta.env.features._census.gitcoin) {
+    return import('./CensusGitcoin').then((module) => ({ default: module.StepFormCensusGitcoin }))
+  }
+
+  return Promise.resolve({ default: () => <></> })
+})
+
+export const GitcoinCensus = () => (
+  <SuspenseLoader>
+    <Gitcoin />
+  </SuspenseLoader>
+)

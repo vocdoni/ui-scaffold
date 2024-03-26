@@ -38,7 +38,7 @@ export const LongOrganizationName = (props: TextProps) => {
 
 const CopyAddressBtn = () => {
   const { organization } = useOrganization()
-  const { onCopy } = useClipboard(organization?.address as string)
+  const { onCopy } = useClipboard(enforceHexPrefix(organization?.address))
 
   const toast = useToast()
   const { t } = useTranslation()

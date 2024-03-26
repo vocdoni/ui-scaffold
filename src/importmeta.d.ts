@@ -22,10 +22,12 @@ interface ImportMeta {
         token: boolean
         web3: boolean
         csp: boolean
+        gitcoin: boolean
       }
     }
     theme: string
     CSP_URL: string
     CSP_PUBKEY: string
+    DEFAULT_CENSUS_SIZE: number
   }
 }

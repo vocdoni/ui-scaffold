@@ -14,6 +14,9 @@ export const ExplorerBaseURL = explorer
 export const VocdoniEnvironment = evocdoni
 export const CensusPreviewRowsLimit = 10
 
+const defaultCensusSize = import.meta.env.DEFAULT_CENSUS_SIZE
+export const DefaultCensusSize = defaultCensusSize
+
 /**
  * Given an object of react-hook-form errors, determines if the specified mapped field is invalid (returns an error)
  *

@@ -13,15 +13,17 @@ import { FaEthereum } from 'react-icons/fa'
 import { FaPeopleGroup } from 'react-icons/fa6'
 import ethIcon from '/assets/eth.jpg'
 import polygonIcon from '/assets/polygon-matic.jpg'
+import { useEffect, useState } from 'react'
+import { getNetwork } from '@ethersproject/providers'
 
 const SingleValueToken = (props: SingleValueProps<any, false, GroupBase<any>>) => {
   const {
-    data: { name, iconURI, ID },
+    data: { name, iconURI, ID, chainID },
     children,
   } = props
   return (
     <chakraComponents.SingleValue {...props}>
-      <CryptoAvatar name={name} icon={iconURI} id={ID} />
+      <CryptoAvatar name={name} icon={iconURI} id={ID} chainId={chainID} />
       {children}
     </chakraComponents.SingleValue>
   )
@@ -52,9 +54,8 @@ const GroupHeadingToken = (props: GroupHeadingProps<any, false, GroupBase<any>>)
 const OptionToken = (props: OptionProps<any, false, GroupBase<any>>) => {
   const {
     children,
-    data: { type: groupType, name, iconURI, ID },
+    data: { type: groupType, name, iconURI, ID, chainID },
   } = props
-
   if (groupType === 'request') {
     return (
       <chakraComponents.Option {...props}>
@@ -72,7 +73,7 @@ const OptionToken = (props: OptionProps<any, false, GroupBase<any>>) => {
     return (
       <chakraComponents.Option {...props}>
         <Flex alignItems='center' gap={2}>
-          <CryptoAvatar name={name} icon={iconURI} id={ID} />
+          <CryptoAvatar name={name} icon={iconURI} id={ID} chainId={chainID} />
 
           <Text>{children}</Text>
         </Flex>
@@ -152,19 +153,34 @@ export const CryptoAvatar = ({
   name,
   icon,
   id,
+  chainId,
   size,
 }: {
   name?: string
   icon?: string
   id?: string
+  chainId?: number
   size?: string
-}) => (
-  <Avatar
-    size={size || 'xs'}
-    name={name}
-    src={
-      icon || `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${id}/logo.png`
-    }
-    mr={2}
-  />
-)
+}) => {
+  const [netName, setNetName] = useState('ethereum')
+
+  useEffect(() => {
+    ;(async () => {
+      if (!chainId || chainId === 1) return
+      const network = await getNetwork(chainId)
+      setNetName(network.name)
+    })()
+  }, [chainId])
+
+  return (
+    <Avatar
+      size={size || 'xs'}
+      name={name}
+      src={
+        icon ||
+        `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/${netName}/assets/${id}/logo.png`
+      }
+      mr={2}
+    />
+  )
+}
