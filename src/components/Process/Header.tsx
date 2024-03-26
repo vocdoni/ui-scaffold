@@ -16,6 +16,7 @@ import { GoBack } from '~theme/icons'
 import { ActionsMenu } from './ActionsMenu'
 import { CreatedBy } from './CreatedBy'
 import { ProcessDate } from './Date'
+import { ShareModalButton } from '~components/Share'
 
 const ProcessHeader = () => {
   const { t } = useTranslation()
@@ -69,6 +70,7 @@ const ProcessHeader = () => {
                 {t('process.schedule')}
               </Text>
               <ElectionSchedule textAlign='left' color='process.info_title' />
+              <ShareModalButton />
             </Flex>
           </Flex>
           <Flex flexDirection='column'>
