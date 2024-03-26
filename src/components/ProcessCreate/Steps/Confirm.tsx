@@ -347,7 +347,7 @@ const getCensus = async (env: EnvOptions, form: StepsFormValues, salt: string) =
 
       c3client.queueWait.retryTime = retryTime
       // clamp attempts between 20 and 100
-      c3client.queueWait.attempts = Math.min(Math.max(Math.ceil(attempts), 20), 100)
+      c3client.queueWait.attempts = 100
 
       if (form.censusType === 'gitcoin') {
         // Calculate the strategy id
@@ -356,7 +356,7 @@ const getCensus = async (env: EnvOptions, form: StepsFormValues, salt: string) =
         // Once strategy is created, we got the stimation again to update the awaiting time
         const { timeToCreateCensus } = await c3client.getStrategyEstimation(strategyID, form.electionType.anonymous)
         attempts = timeToCreateCensus / retryTime
-        c3client.queueWait.attempts = Math.min(Math.max(Math.ceil(attempts), 20), 100)
+        c3client.queueWait.attempts = 100
 
         // Create the census
         const census = await c3client.createCensus(strategyID, form.electionType.anonymous)
@@ -497,7 +497,7 @@ const getGitcoinStrategyId = async (form: CensusGitcoinValues, c3client: Vocdoni
     if (form.gpsWeighted) {
       predicate = `${scoreToken.symbol}`
     } else {
-      predicate = `${scoreToken.symbol} OR ${scoreToken.symbol}`
+      predicate = `${scoreToken.symbol} AND ${scoreToken.symbol}`
     }
   } else {
     predicate = `${scoreToken.symbol} ${predicate}`
