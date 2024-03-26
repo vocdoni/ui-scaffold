@@ -20,6 +20,7 @@ const CreateProcessMeta = () => {
   }
 
   const title = watch('title')
+  const description = watch('description')
 
   const maxLengthTitle = 500
   const maxLengthDescription = 10000
@@ -61,6 +62,7 @@ const CreateProcessMeta = () => {
             onChange={(text: string) => setValue('description', text)}
             placeholder={t('form.process_create.meta.description_placeholder').toString()}
             maxLength={maxLengthDescription}
+            defaultValue={description}
           />
         </Box>
       </Box>

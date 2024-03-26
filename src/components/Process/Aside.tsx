@@ -99,13 +99,7 @@ const ProcessAside = () => {
               </Text>
             )}
             {voted !== null && voted.length > 0 && (
-              <Link
-                as={ReactRouterLink}
-                to={environment.verifyVote(env, voted)}
-                target='_blank'
-                whiteSpace='nowrap'
-                variant='contrast'
-              >
+              <Link as={ReactRouterLink} to={environment.verifyVote(env, voted)} target='_blank' whiteSpace='nowrap'>
                 {t('aside.verify_vote_on_explorer')}
               </Link>
             )}
@@ -200,8 +194,10 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
           fontSize='lg'
           height='50px'
           onClick={setQuestionsTab}
-          _disabled={{
-            opacity: '0.8',
+          sx={{
+            '&::disabled': {
+              opacity: '0.8',
+            },
           }}
         />
       )}

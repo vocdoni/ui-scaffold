@@ -2,6 +2,7 @@ import {
   Alert,
   AlertIcon,
   Badge,
+  Button,
   Card,
   CardHeader,
   Flex,
@@ -20,6 +21,8 @@ import {
   Stack,
   Text,
   Tooltip,
+  Wrap,
+  WrapItem,
 } from '@chakra-ui/react'
 import { errorToString, useClient } from '@vocdoni/react-providers'
 import { Census3Token, EnvOptions, ICensus3SupportedChain, TokenSummary, VocdoniCensus3Client } from '@vocdoni/sdk'
@@ -30,6 +33,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { customStylesSelect, customStylesTokensSelect } from '~theme/tokenSelectStyles'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 import selectComponents, { CryptoAvatar } from './select-components'
+import { DefaultCensusSize } from '~constants'
 
 export interface FilterOptionOption<Option> {
   readonly label: string
@@ -366,7 +370,9 @@ export const CensusTokens = () => {
   )
 }
 
-export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3Token; strategySize?: number }) => {
+const SliderButtonsValues = [0.01, 0.02, 0.05, 0.1, 0.25, 0.5, 0.75, 1]
+
+export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3Token; strategySize: number }) => {
   const {
     setValue,
     getValues,
@@ -379,7 +385,9 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
     },
   } = useProcessCreationSteps()
 
-  const [sliderValue, setSliderValue] = useState<number>(getValues('maxCensusSize'))
+  const formMaxCensusSize = getValues('maxCensusSize')
+
+  const [sliderValue, setSliderValue] = useState<number>(formMaxCensusSize)
   const [showTooltip, setShowTooltip] = useState<boolean>(false)
   const { t } = useTranslation()
   const field = register('maxCensusSize', {
@@ -389,8 +397,9 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
 
   useEffect(() => {
     if (sliderValue !== undefined) return
-    setValue('maxCensusSize', strategySize)
-    setSliderValue(strategySize as number)
+    const initialValue = strategySize < DefaultCensusSize ? strategySize : DefaultCensusSize
+    setValue('maxCensusSize', initialValue)
+    setSliderValue(initialValue as number)
   }, [])
 
   if (sliderValue === undefined || !token || !strategySize) return null
@@ -405,6 +414,7 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
         </FormLabel>
         <Slider
           aria-label={t('form.process_create.census.max_census_slider_arialabel')}
+          value={sliderValue}
           defaultValue={sliderValue}
           min={0}
           max={strategySize}
@@ -444,6 +454,24 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
           </Tooltip>
         </Slider>
         <FormErrorMessage>{errors.maxCensusSize && errors.maxCensusSize.message?.toString()}</FormErrorMessage>
+        <Wrap spacing={4} mt={10} justify='center' w={'100%'}>
+          {SliderButtonsValues.map((v) => (
+            <WrapItem key={v}>
+              <Button
+                onClick={() => {
+                  const val = Math.round(strategySize * v)
+                  setSliderValue(val)
+                  setValue('maxCensusSize', val)
+                }}
+                fontSize='sm'
+                variant={'secondary'}
+                height={'var(--chakra-sizes-8)'}
+              >
+                {v * 100}%
+              </Button>
+            </WrapItem>
+          ))}
+        </Wrap>
       </FormControl>
       <Text>
         <Trans

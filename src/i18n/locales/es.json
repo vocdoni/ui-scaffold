@@ -274,6 +274,7 @@
         "tokens_placeholder": "Busca o pega la dirección del token",
         "wallet_address_description": "Identifica a tus votantes por sus direcciones de monedero digital.",
         "wallet_address_title": "Direcciones de monedero",
+        "weight": "(Peso)",
         "weighted_voting_description": "Cuando se activa, tu poder de voto se alinea con tu puntuación GPS. Si se desactiva, el voto de cada usuario tiene el mismo peso, establecido en 1 punto.",
         "weighted_voting_title": "Peso del Voto Basado en GPS"
       },
