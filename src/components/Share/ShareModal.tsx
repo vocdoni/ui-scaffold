@@ -18,7 +18,14 @@ import {
   useToast,
 } from '@chakra-ui/react'
 import { LuShare } from 'react-icons/lu'
-import { FacebookShare, RedditShare, TelegramShare, TwitterShare } from '~components/Share/index'
+import {
+  FacebookShare,
+  MailShare,
+  RedditShare,
+  TelegramShare,
+  TwitterShare,
+  WhatsappShare,
+} from '~components/Share/index'
 
 const ShareModalButton = ({ caption = '' }: { caption?: string }) => {
   const { t } = useTranslation()
@@ -28,6 +35,7 @@ const ShareModalButton = ({ caption = '' }: { caption?: string }) => {
 
   const toast = useToast()
   const { onCopy } = useClipboard(rawUrl as string)
+  const iconWidth = 9
 
   return (
     <>
@@ -41,9 +49,9 @@ const ShareModalButton = ({ caption = '' }: { caption?: string }) => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>{t('share.modal.title')}</ModalHeader>
+          <ModalHeader>{t('share.modal_title')}</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>
+          <ModalBody mt={8}>
             <Flex
               flexDirection={'row'}
               alignItems={{ base: 'start', xl: 'center' }}
@@ -51,15 +59,17 @@ const ShareModalButton = ({ caption = '' }: { caption?: string }) => {
               gap={3}
               justifyContent={'space-between'}
             >
-              <TwitterShare variant={'icon'} url={url} caption={caption} />
-              <FacebookShare variant={'icon'} url={url} caption={caption} />
-              <TelegramShare variant={'icon'} url={url} caption={caption} />
-              <RedditShare variant={'icon'} url={url} caption={caption} />
+              <TwitterShare h={iconWidth} w={iconWidth} variant={'icon'} url={url} caption={caption} />
+              <FacebookShare h={iconWidth} w={iconWidth} variant={'icon'} url={url} caption={caption} />
+              <TelegramShare h={iconWidth} w={iconWidth} variant={'icon'} url={url} caption={caption} />
+              <RedditShare h={iconWidth} w={iconWidth} variant={'icon'} url={url} caption={caption} />
+              <MailShare h={iconWidth} w={iconWidth} variant={'icon'} url={url} caption={caption} />
+              <WhatsappShare h={iconWidth} w={iconWidth} variant={'icon'} url={url} caption={caption} />
             </Flex>
           </ModalBody>
           <ModalFooter mt={8}>
             <InputGroup size='md'>
-              <Input placeholder={rawUrl} pr='4.5rem' />
+              <Input placeholder={rawUrl} pr='4.5rem' isTruncated />
               <InputRightElement width='4.5rem'>
                 <Button
                   borderRadius={'unset'}

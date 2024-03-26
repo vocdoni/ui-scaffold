@@ -70,7 +70,7 @@ const ProcessHeader = () => {
                 {t('process.schedule')}
               </Text>
               <ElectionSchedule textAlign='left' color='process.info_title' />
-              <ShareModalButton />
+              <ShareModalButton caption={t('share.election_share_text')} />
             </Flex>
           </Flex>
           <Flex flexDirection='column'>
