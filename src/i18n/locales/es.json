@@ -32,6 +32,7 @@
       "cancel": "Cancelar el proceso inmediatamente, sin permitir nuevos votos y sin contar ningún resultado (precaución: no puede revertirse)",
       "cancel_description": "Cancelando el proceso de votación \"{{ election.title.default }}\"...\nAtención: esta acción no se puede revertir y cancelará los votos que haya recibido.",
       "continue": "Reanudar el proceso inmediatamente, en caso de que se haya pausado",
+      "continue_description": "Reanudando el proceso de votación \"{{ election.title.default }}\"",
       "end": "Finalizar el proceso inmediatamente, impidiendo que se presenten nuevos votos, y muestra los resultados de la votación (precaución: no puede revertirse)",
       "end_description": "Finalizando el proceso de votación \"{{ election.title.default }}\"...\nAtención: esta acción no se puede revertir y los votantes no podrán emitir más votos.",
       "error_title": "Hubo algún error al ejecutar la transacción",
