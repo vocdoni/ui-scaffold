@@ -1,15 +1,22 @@
-import { Flex, FormLabel, Grid, Switch, Text, Tooltip } from '@chakra-ui/react'
+import { Flex, FormLabel, Grid, Text, Tooltip } from '@chakra-ui/react'
+import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { AiTwotoneQuestionCircle } from 'react-icons/ai'
-import { TokenPreview } from '../Census/Token'
-import { useProcessCreationSteps } from '../Steps/use-steps'
 import { StampPreviewCard } from '~components/ProcessCreate/Census/Gitcoin/StampCard'
+import { MaxCensusSizeSelector, TokenPreview } from '../Census/Token'
+import { useProcessCreationSteps } from '../Steps/use-steps'
 
 const PreviewCensusToken = () => {
   const { t } = useTranslation()
   const {
-    form: { gitcoinGPSToken, censusType, maxCensusSize, censusToken, chain, strategySize, accuracy, electionType },
+    form: { gitcoinGPSToken, censusType, censusToken, chain, strategySize, accuracy, electionType },
   } = useProcessCreationSteps()
+
+  const { watch } = useFormContext()
+
+  const maxCensusSize = watch('maxCensusSize')
+
+  console.log('asas', maxCensusSize)
 
   const size = maxCensusSize || 0
   const max = strategySize || 0
@@ -35,6 +42,7 @@ const PreviewCensusToken = () => {
             voters: Math.round(size),
           })}
         </Text>
+        <MaxCensusSizeSelector token={censusToken} strategySize={strategySize} />
       </Flex>
       {electionType.anonymous && (
         <Text display='flex' alignItems='center' flexWrap='wrap' gap={1}>

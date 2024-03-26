@@ -19,7 +19,6 @@ import {
 import { Button } from '@vocdoni/chakra-components'
 import { ElectionProvider, errorToString, useClient } from '@vocdoni/react-providers'
 import {
-  CensusType as VocdoniCensusType,
   CspCensus,
   Election,
   ElectionCreationSteps,
@@ -35,6 +34,7 @@ import {
   StrategyToken,
   UnpublishedElection,
   VocdoniCensus3Client,
+  CensusType as VocdoniCensusType,
   WeightedCensus,
 } from '@vocdoni/sdk'
 import { useEffect, useMemo, useState } from 'react'
@@ -42,6 +42,9 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { IElection, IElectionWithTokenResponse } from 'vocdoni-admin-sdk'
+import { StampsUnionTypes } from '~components/ProcessCreate/Census/Gitcoin/StampsUnionType'
+import { CensusType } from '~components/ProcessCreate/Census/TypeSelector'
+import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
 import { useCspAdmin } from '../Census/Csp/use-csp'
 import Preview from '../Confirm/Preview'
 import { CostPreview } from '../CostPreview'
@@ -50,13 +53,10 @@ import { Web3Address } from '../StepForm/CensusWeb3'
 import { Option } from '../StepForm/Questions'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 import Wrapper from './Wrapper'
-import { StampsUnionTypes } from '~components/ProcessCreate/Census/Gitcoin/StampsUnionType'
-import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
-import { CensusType } from '~components/ProcessCreate/Census/TypeSelector'
 
 export const Confirm = () => {
   const { env, client, account, fetchAccount } = useClient()
-  const { form, prev } = useProcessCreationSteps()
+  const { form, prev, setForm } = useProcessCreationSteps()
   const navigate = useNavigate()
   const { t } = useTranslation()
   const toast = useToast()
@@ -71,10 +71,18 @@ export const Confirm = () => {
 
   const methods = useForm({
     defaultValues: {
+      maxCensusSize: form.maxCensusSize,
       infoValid: false,
       termsAndConditions: false,
     },
   })
+  console.log('FORM', form)
+  const max = methods.watch('maxCensusSize')
+  console.log('max', max)
+
+  useEffect(() => {
+    setForm({ ...form, maxCensusSize: max })
+  }, [max])
 
   const {
     formState: { errors },
@@ -208,12 +216,12 @@ export const Confirm = () => {
           {t('form.process_create.confirm.description')}
         </Text>
         <ElectionProvider election={published}>
-          <Flex flexDirection={{ base: 'column', xl2: 'row' }} gap={5}>
-            <Preview />
-            <Box flex={{ xl2: '0 0 25%' }}>
-              <CostPreview unpublished={unpublished} disable={setDisabled} />
+          <FormProvider {...methods}>
+            <Flex flexDirection={{ base: 'column', xl2: 'row' }} gap={5}>
+              <Preview />
+              <Box flex={{ xl2: '0 0 25%' }}>
+                <CostPreview unpublished={unpublished} disable={setDisabled} />
 
-              <FormProvider {...methods}>
                 <Box>
                   <Text className='brand-theme' fontWeight='bold' textTransform='uppercase' px={2} mb={2}>
                     {t('form.process_create.confirm.confirmation')}
@@ -285,9 +293,9 @@ export const Confirm = () => {
                     </FormControl>
                   </Flex>
                 </Box>
-              </FormProvider>
-            </Box>
-          </Flex>
+              </Box>
+            </Flex>
+          </FormProvider>
         </ElectionProvider>
       </Box>
       <Flex justifyContent='space-between' alignItems='end' mt='auto'>

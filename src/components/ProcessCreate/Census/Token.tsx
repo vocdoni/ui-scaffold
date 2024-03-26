@@ -30,10 +30,10 @@ import { ChakraStylesConfig, GroupBase, Select, SelectComponentsConfig, SelectIn
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import { DefaultCensusSize } from '~constants'
 import { customStylesSelect, customStylesTokensSelect } from '~theme/tokenSelectStyles'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 import selectComponents, { CryptoAvatar } from './select-components'
-import { DefaultCensusSize } from '~constants'
 
 export interface FilterOptionOption<Option> {
   readonly label: string
@@ -221,6 +221,9 @@ export const CensusTokens = () => {
         setValue('accuracy', accuracy)
         setValue('strategySize', size)
         setValue('timeToCreateCensus', timeToCreateCensus)
+        const initialValue = size < DefaultCensusSize ? size : DefaultCensusSize
+        console.log('INITIAL VALUE', initialValue)
+        setValue('maxCensusSize', initialValue)
       } catch (err) {
         setError(errorToString(err))
         setValue('strategySize', undefined)
@@ -356,7 +359,7 @@ export const CensusTokens = () => {
         !error && (
           <>
             <TokenPreview token={ct} chainName={ch?.name} strategySize={strategySize} />
-            <MaxCensusSizeSelector token={ct} strategySize={strategySize} />
+            {/* <MaxCensusSizeSelector token={ct} strategySize={strategySize} /> */}
           </>
         )
       )}
@@ -386,6 +389,7 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
   } = useProcessCreationSteps()
 
   const formMaxCensusSize = getValues('maxCensusSize')
+  console.log('formMaxCensusSize', formMaxCensusSize)
 
   const [sliderValue, setSliderValue] = useState<number>(formMaxCensusSize)
   const [showTooltip, setShowTooltip] = useState<boolean>(false)
@@ -396,10 +400,10 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
   })
 
   useEffect(() => {
-    if (sliderValue !== undefined) return
-    const initialValue = strategySize < DefaultCensusSize ? strategySize : DefaultCensusSize
-    setValue('maxCensusSize', initialValue)
-    setSliderValue(initialValue as number)
+    // if (sliderValue !== undefined) return
+    // const initialValue = strategySize < DefaultCensusSize ? strategySize : DefaultCensusSize
+    // setValue('maxCensusSize', initialValue)
+    setSliderValue(formMaxCensusSize)
   }, [])
 
   if (sliderValue === undefined || !token || !strategySize) return null
@@ -409,9 +413,9 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
   return (
     <>
       <FormControl isInvalid={!!errors.maxCensusSize} mb={3}>
-        <FormLabel fontWeight='bold' mb={3}>
+        {/* <FormLabel fontWeight='bold' mb={3}>
           {t('form.process_create.census.max_census_slider_label')}
-        </FormLabel>
+        </FormLabel> */}
         <Slider
           aria-label={t('form.process_create.census.max_census_slider_arialabel')}
           value={sliderValue}

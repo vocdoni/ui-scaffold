@@ -43,11 +43,12 @@ export const CostPreview = ({
   const { form } = useProcessCreationSteps()
   const { loading, handleSignIn } = useClaim()
   const {
+    maxCensusSize,
     startDate,
     endDate,
     electionType: { anonymous, autoStart },
   } = form
-
+  console.log('MAX CENSUS SIZE!!', maxCensusSize)
   // election estimate cost
   useEffect(() => {
     if (typeof cost !== 'undefined' || typeof unpublished === 'undefined') return
@@ -63,7 +64,7 @@ export const CostPreview = ({
         // this way the user can still create the election even tho the cost could not be estimated
         setCost(NaN)
       })
-  }, [client, cost, unpublished])
+  }, [client, cost, unpublished, maxCensusSize])
 
   // disable button if cost is higher than account balance
   useEffect(() => {
