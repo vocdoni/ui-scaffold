@@ -25,7 +25,6 @@ const PreviewCensusToken = () => {
     token = gitcoinGPSToken
     chainName = 'Gitcoin'
   }
-
   return (
     <>
       <TokenPreview token={token} chainName={chainName} strategySize={strategySize} />
@@ -40,7 +39,7 @@ const PreviewCensusToken = () => {
             voters: Math.round(size),
           })}
         </Text>
-        <MaxCensusSizeSelector token={censusToken} strategySize={strategySize} />
+        <MaxCensusSizeSelector token={censusToken || gitcoinGPSToken} strategySize={strategySize} />
       </Flex>
       {electionType.anonymous && (
         <Text display='flex' alignItems='center' flexWrap='wrap' gap={1}>
@@ -62,7 +61,7 @@ const PreviewCensusToken = () => {
 const GitcoinStampsPreview = () => {
   const { t } = useTranslation()
   const {
-    form: { stamps, stampsUnionType },
+    form: { stamps, stampsUnionType, censusToken, strategySize },
   } = useProcessCreationSteps()
 
   const selectedStamps = Object.values(stamps).filter((stamp) => stamp.isChecked)
@@ -85,6 +84,7 @@ const GitcoinStampsPreview = () => {
           {description}
         </Text>
       </Flex>
+
       <Grid
         gap={5}
         templateColumns={{ sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(3, 1fr)' }}
@@ -96,6 +96,7 @@ const GitcoinStampsPreview = () => {
           <StampPreviewCard name={token.name} iconURI={token.iconURI} />
         ))}
       </Grid>
+      <MaxCensusSizeSelector token={censusToken} strategySize={strategySize} />
     </>
   )
 }

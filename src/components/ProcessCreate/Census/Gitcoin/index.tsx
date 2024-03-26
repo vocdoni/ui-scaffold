@@ -1,11 +1,12 @@
-import { Alert, AlertIcon, Spinner, Stack } from '@chakra-ui/react'
-import { useEffect, useMemo, useState } from 'react'
+import { Alert, AlertIcon, Spinner } from '@chakra-ui/react'
 import { errorToString, useClient } from '@vocdoni/react-providers'
 import { EnvOptions, TokenSummary, VocdoniCensus3Client } from '@vocdoni/sdk'
-import { GitcoinForm } from '~components/ProcessCreate/Census/Gitcoin/GitcoinForm'
-import Wrapper from '~components/ProcessCreate/Steps/Wrapper'
+import { useEffect, useMemo, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
+import { GitcoinForm } from '~components/ProcessCreate/Census/Gitcoin/GitcoinForm'
 import { useProcessCreationSteps } from '~components/ProcessCreate/Steps/use-steps'
+import Wrapper from '~components/ProcessCreate/Steps/Wrapper'
+import { DefaultCensusSize } from '~constants'
 
 export type GitcoinStampToken = Omit<TokenSummary, 'externalID'> & {
   externalID: string // For stamp tokens externalID is not nullable
@@ -60,6 +61,8 @@ export const GitcoinStrategyBuilder = () => {
         setValue('accuracy', accuracy)
         setValue('strategySize', size)
         setValue('timeToCreateCensus', timeToCreateCensus)
+        const initialValue = size < DefaultCensusSize ? size : DefaultCensusSize
+        setValue('maxCensusSize', initialValue)
       } catch (err) {
         setError(errorToString(err))
         setValue('gitcoinGPSToken', undefined)

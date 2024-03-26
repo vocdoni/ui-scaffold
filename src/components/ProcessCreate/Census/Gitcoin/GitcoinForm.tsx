@@ -1,27 +1,25 @@
 import {
+  Checkbox,
+  Flex,
   FormLabel,
+  Grid,
   NumberDecrementStepper,
   NumberIncrementStepper,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
   Slider,
-  SliderTrack,
   SliderFilledTrack,
   SliderThumb,
-  Grid,
-  Flex,
-  Checkbox,
+  SliderTrack,
   Text,
 } from '@chakra-ui/react'
+import { FC } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { FC } from 'react'
-import { StampCard } from '~components/ProcessCreate/Census/Gitcoin/StampCard'
 import { GitcoinStampToken } from '~components/ProcessCreate/Census/Gitcoin/index'
+import { StampCard } from '~components/ProcessCreate/Census/Gitcoin/StampCard'
 import { StampsUnionType } from '~components/ProcessCreate/Census/Gitcoin/StampsUnionType'
-import { MaxCensusSizeSelector } from '~components/ProcessCreate/Census/Token'
-import { Census3Token } from '@vocdoni/sdk'
 
 interface IGitcoinFormProps {
   gitcoinTokens: GitcoinStampToken[]
@@ -35,9 +33,6 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
     value: true,
     message: t('form.error.field_is_required'),
   }
-
-  const ct: Census3Token = watch('gitcoinGPSToken')
-  const strategySize: number = watch('strategySize')
 
   return (
     <Flex gap={8} direction={'column'}>
@@ -118,7 +113,6 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
           ))}
         </Grid>
       </>
-      <MaxCensusSizeSelector token={ct} strategySize={strategySize} />
     </Flex>
   )
 }
