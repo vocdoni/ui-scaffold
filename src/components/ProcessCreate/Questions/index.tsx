@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { FieldError, FieldErrors, useFieldArray, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import Question from './Question'
+import VotingTypes from './VotingTypes'
 
 interface CustomFieldError extends FieldError {
   index: number
@@ -11,6 +12,7 @@ interface CustomFieldError extends FieldError {
 
 const CreateProcessQuestions = () => {
   const { t } = useTranslation()
+
   const {
     watch,
     formState: { errors },
@@ -55,6 +57,7 @@ const CreateProcessQuestions = () => {
 
   return (
     <Flex flexDirection='column' gap={5}>
+      <VotingTypes />
       <Box>
         <Text className='process-create-title'>{t('form.process_create.question.title')}</Text>
         <Text fontSize='sm' color='process_create.description'>

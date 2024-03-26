@@ -5,11 +5,12 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
 const card = definePartsStyle({
   tablist: {
     display: 'flex',
-    justifyContent: 'flex-start',
-    flexWrap: { base: 'unset', md: 'wrap' },
-    flexDirection: { base: 'column', md: 'row' },
-    mb: 10,
-    gap: { base: 5 },
+    flexDirection: 'column',
+    '& > div': {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+      gap: 5,
+    },
   },
   tab: {
     position: 'relative',
@@ -21,11 +22,11 @@ const card = definePartsStyle({
     flex: { md: '0 0 30%' },
     p: 4,
     px: 6,
-    bgColor: 'white',
     boxShadow: 'var(--box-shadow)',
+    bgColor: 'process_create.advanced_checkbox_bg',
     borderBottom: 'none',
     color: 'process_create.description',
-    borderRadius: 0,
+    borderRadius: 'md',
 
     '& > p:nth-of-type(1)': {
       color: 'process_create.description',
@@ -33,16 +34,41 @@ const card = definePartsStyle({
       fontSize: 'xs',
     },
 
-    '& > div': {
+    '& > span': {
+      bgColor: 'process_create.pro_bg',
+      borderRadius: '10px',
+      position: 'absolute',
+      top: '3px',
+      right: '3px',
+      px: 4,
+      color: 'process_create.pro_color',
+      pt: '2px',
+      fontSize: '12px',
+    },
+
+    '& > div:nth-of-type(1)': {
       display: 'flex',
       alignItems: 'center',
       w: 'full',
       gap: 3,
+      mt: 2,
+      fontSize: 'sm',
+      color: 'black',
 
       '& p': {
         fontWeight: 'bold',
         textAlign: 'start',
       },
+    },
+
+    '& > div:nth-of-type(2)': {
+      position: 'absolute',
+      top: 2.5,
+      right: 2.5,
+      w: 4,
+      h: 4,
+      borderRadius: 'full',
+      border: '1px solid lightgray',
     },
 
     '& > svg': {
@@ -60,9 +86,13 @@ const card = definePartsStyle({
       '& > svg': {
         display: 'block',
       },
-      '& > div > p': {
-        color: 'process_create.tabs_selected_color',
+
+      '& > div:nth-of-type(2)': {
+        display: 'none',
       },
+    },
+    _hover: {
+      boxShadow: 'var(--box-shadow-darker)',
     },
   },
 })

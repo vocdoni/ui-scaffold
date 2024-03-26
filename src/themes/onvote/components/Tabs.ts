@@ -6,10 +6,12 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
 const card = definePartsStyle({
   tablist: {
     display: 'flex',
-    justifyContent: 'space-around',
-    flexDirection: { base: 'column', md: 'row' },
-    mb: 10,
-    gap: { base: 5, xl: 0 },
+    flexDirection: 'column',
+    '& > div': {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+      gap: 5,
+    },
   },
   tab: {
     position: 'relative',
