@@ -48,10 +48,9 @@ export const CostPreview = ({
     endDate,
     electionType: { anonymous, autoStart },
   } = form
-  console.log('MAX CENSUS SIZE!!', maxCensusSize)
   // election estimate cost
   useEffect(() => {
-    if (typeof cost !== 'undefined' || typeof unpublished === 'undefined') return
+    if (typeof unpublished === 'undefined') return
 
     client
       .estimateElectionCost(unpublished)

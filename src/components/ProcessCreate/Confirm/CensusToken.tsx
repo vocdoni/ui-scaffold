@@ -16,8 +16,6 @@ const PreviewCensusToken = () => {
 
   const maxCensusSize = watch('maxCensusSize')
 
-  console.log('asas', maxCensusSize)
-
   const size = maxCensusSize || 0
   const max = strategySize || 0
 

@@ -222,7 +222,6 @@ export const CensusTokens = () => {
         setValue('strategySize', size)
         setValue('timeToCreateCensus', timeToCreateCensus)
         const initialValue = size < DefaultCensusSize ? size : DefaultCensusSize
-        console.log('INITIAL VALUE', initialValue)
         setValue('maxCensusSize', initialValue)
       } catch (err) {
         setError(errorToString(err))
@@ -389,7 +388,6 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
   } = useProcessCreationSteps()
 
   const formMaxCensusSize = getValues('maxCensusSize')
-  console.log('formMaxCensusSize', formMaxCensusSize)
 
   const [sliderValue, setSliderValue] = useState<number>(formMaxCensusSize)
   const [showTooltip, setShowTooltip] = useState<boolean>(false)
@@ -420,7 +418,7 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
           aria-label={t('form.process_create.census.max_census_slider_arialabel')}
           value={sliderValue}
           defaultValue={sliderValue}
-          min={0}
+          min={1}
           max={strategySize}
           ref={field.ref}
           onBlur={field.onBlur}

@@ -76,9 +76,7 @@ export const Confirm = () => {
       termsAndConditions: false,
     },
   })
-  console.log('FORM', form)
   const max = methods.watch('maxCensusSize')
-  console.log('max', max)
 
   useEffect(() => {
     setForm({ ...form, maxCensusSize: max })
@@ -187,7 +185,6 @@ export const Confirm = () => {
 
   // fetches census for unpublished elections
   useEffect(() => {
-    if (typeof unpublished !== 'undefined') return
     ;(async () => {
       setUnpublished(
         Election.from({
@@ -197,7 +194,7 @@ export const Confirm = () => {
         } as IElectionParameters)
       )
     })()
-  }, [account, corelection, env, form, unpublished])
+  }, [form.maxCensusSize])
 
   // preview (fake) mapping
   const published = PublishedElection.build({
