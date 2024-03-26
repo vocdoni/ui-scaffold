@@ -4,14 +4,13 @@
     "is_not_in_census": "No estàs en el cens",
     "not_connected": "No estàs connectat",
     "overwrite_votes_left_one": "Pots corregir el teu vot una vegada.",
-    "overwrite_votes_left_many": "",
     "overwrite_votes_left_other": "Pots corregir el teu vot {{ count }} vegades.",
-    "submitting": "",
+    "submitting": "Enviant",
     "verify_vote_on_explorer": "Verifica el vot a l'explorador",
     "votes_one": "<span>1</span> <text>votant</text>",
     "votes_many": "<span>{{ count }}</span> <text>votants</text>",
     "votes_other": "<span>{{ count }}</span> <text>votants</text>",
-    "voting_anonymous_advice": ""
+    "voting_anonymous_advice": "Si us plau, espera mentre la màgia té lloc.Això pot trigar uns minuts; no tanquis la finestra."
   },
   "banner": {
     "start_now": "Crea una votació!",
@@ -371,7 +370,6 @@
       "success_title": "Procés de votació creat amb èxit",
       "web3": {
         "census_members_one": "<span>1 membre</span> <text>al cens</text>",
-        "census_members_many": "",
         "census_members_other": "<span>{{ count }} membres</span> <text>al cens</text>",
         "your_wallet_is_added": "La teva adreça de cartera s'ha afegit automàticament al cens. La pots eliminar si ho desitges."
       },
