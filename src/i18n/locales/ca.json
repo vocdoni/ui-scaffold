@@ -501,6 +501,8 @@
       "text": "<p>El teu vot ha estat emès i emmagatzemat de forma segura a la cadena de blocs de Vocdoni. Pots comprovar-ho <verify>aquí</verify>.</p><p>La democràcia és important, la pots compartir amb la teva comunitat i amics:</p>",
       "title": "Vot emès correctament!"
     },
+    "total_census_size_other": "{{count}} electors permesos de {{max}} totals en el cens",
+    "total_census_size_tooltip_other": "El nombre màxim d'electors permesos està limitat a {{count}} d'un cens de {{max}} ({{percent}}% del total). Només els primers {{count}} electors poden votar.",
     "voters": "Votants"
   },
   "process_actions": {
