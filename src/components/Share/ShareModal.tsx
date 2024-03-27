@@ -68,24 +68,34 @@ const ShareModalButton = ({ caption = '' }: { caption?: string }) => {
             </Flex>
           </ModalBody>
           <ModalFooter mt={8}>
-            <InputGroup size='md'>
-              <Input placeholder={rawUrl} pr='4.5rem' isTruncated />
-              <InputRightElement width='4.5rem'>
-                <Button
-                  borderRadius={'unset'}
-                  variant={'primary'}
-                  onClick={() => {
-                    toast({
-                      title: t('copy.copied_title'),
-                      duration: 3000,
-                    })
-                    onCopy()
+            <Flex direction={'column'} gap={4} w={'full'}>
+              <InputGroup size='md'>
+                <Input
+                  placeholder={rawUrl}
+                  disabled
+                  isTruncated
+                  sx={{
+                    '::placeholder': {
+                      // Set the font size of the placeholder
+                      fontSize: 'sm', // You can use Chakra's size tokens (sm, md, lg, etc.)
+                    },
                   }}
-                >
-                  {t('share.copy')}
-                </Button>
-              </InputRightElement>
-            </InputGroup>
+                />
+              </InputGroup>
+              <Button
+                borderRadius={'unset'}
+                variant={'primary'}
+                onClick={() => {
+                  toast({
+                    title: t('copy.copied_title'),
+                    duration: 3000,
+                  })
+                  onCopy()
+                }}
+              >
+                {t('share.copy')}
+              </Button>
+            </Flex>
           </ModalFooter>
         </ModalContent>
       </Modal>

@@ -23,7 +23,7 @@ const ShareButton = ({ shareUrl, network = 'default', variant, icon, w = 6, h = 
     <Link
       href={shareUrl}
       target='_blank'
-      title={t('process.share_title', { network: { network } })}
+      title={t('process.share_title', { network: network })}
       rel='noopener noreferrer'
       variant={variant}
     >
