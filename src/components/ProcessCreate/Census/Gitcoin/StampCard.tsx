@@ -46,7 +46,7 @@ const StampInnerBox: React.FC<StampInnerBoxProps> = ({ name, iconURI }) => {
   return (
     <>
       <StampIcon iconURI={iconURI} alt={stampTitle} />
-      <Text>{stampTitle}</Text>
+      <Text wordBreak='break-all'>{stampTitle}</Text>
     </>
   )
 }
