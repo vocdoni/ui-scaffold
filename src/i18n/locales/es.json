@@ -565,6 +565,7 @@
   },
   "share": {
     "copy": "Copiar",
+    "election_share_btn_text": "Comparte",
     "election_share_text": "¡Mira esta elección!",
     "icon_title": "compartir enlace",
     "mail_subject": "Plataforma de votación",

@@ -2,10 +2,9 @@ import { useTranslation } from 'react-i18next'
 import {
   Button,
   Flex,
-  IconButton,
+  Icon,
   Input,
   InputGroup,
-  InputRightElement,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -13,6 +12,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Text,
   useClipboard,
   useDisclosure,
   useToast,
@@ -27,7 +27,7 @@ import {
   WhatsappShare,
 } from '~components/Share/index'
 
-const ShareModalButton = ({ caption = '' }: { caption?: string }) => {
+const ShareModalButton = ({ caption = '', text }: { caption?: string; text?: string }) => {
   const { t } = useTranslation()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const rawUrl = document.location.href.split('#')[0] // Remove the PK after the hash
@@ -39,13 +39,14 @@ const ShareModalButton = ({ caption = '' }: { caption?: string }) => {
 
   return (
     <>
-      <IconButton
-        variant={'icon'}
-        icon={<LuShare />}
-        title={t('share.icon_title')}
-        aria-label={t('share.icon_title')}
-        onClick={onOpen}
-      />
+      <Button onClick={onOpen} variant={'icon'}>
+        <Icon as={LuShare} title={t('share.icon_title')} aria-label={t('share.icon_title')} />
+        {text && (
+          <Text pl={2} as='span'>
+            {text}
+          </Text>
+        )}
+      </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>

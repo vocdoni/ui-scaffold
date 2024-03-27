@@ -49,29 +49,28 @@ const ProcessHeader = () => {
       <Flex direction={{ base: 'column', lg2: 'row' }} mb={7} gap={10}>
         <Box flexGrow={0} flexShrink={0} flexBasis={{ base: '100%', md: '60%', lg: '65%', lg2: '70%', xl2: '75%' }}>
           <ElectionTitle fontSize={{ base: '32px', md: '34px' }} textAlign='left' my={5} />
-          <Flex
-            gap={4}
-            flexDirection={{ base: 'column', xl: 'row' }}
-            alignItems={{ base: 'start', xl: 'center' }}
-            mb={4}
-          >
-            <Flex gap={3} alignItems='center'>
-              <Text as='span' color='process.label' fontSize='sm'>
-                {t('process.state')}
-              </Text>
-              <ElectionStatusBadge />
+          <Flex flexDirection={{ base: 'column', xl: 'row' }} mb={4} justifyContent='space-between'>
+            <Flex gap={4} flexDirection={{ base: 'column', xl: 'row' }} alignItems={{ base: 'start', xl: 'center' }}>
+              <Flex gap={3} alignItems='center'>
+                <Text as='span' color='process.label' fontSize='sm'>
+                  {t('process.state')}
+                </Text>
+                <ElectionStatusBadge />
+              </Flex>
+              <Flex
+                flexDirection={{ base: 'column', xl: 'row' }}
+                alignItems={{ base: 'start', xl: 'center' }}
+                gap={{ xl: 3 }}
+              >
+                <Text as='span' color='process.label' fontSize='sm'>
+                  {t('process.schedule')}
+                </Text>
+                <ElectionSchedule textAlign='left' color='process.info_title' />
+              </Flex>
             </Flex>
-            <Flex
-              flexDirection={{ base: 'column', xl: 'row' }}
-              alignItems={{ base: 'start', xl: 'center' }}
-              gap={{ xl: 3 }}
-            >
-              <Text as='span' color='process.label' fontSize='sm'>
-                {t('process.schedule')}
-              </Text>
-              <ElectionSchedule textAlign='left' color='process.info_title' />
-              <ShareModalButton caption={t('share.election_share_text')} />
-            </Flex>
+            <Box>
+              <ShareModalButton caption={t('share.election_share_text')} text={t('share.election_share_btn_text')} />
+            </Box>
           </Flex>
           <Flex flexDirection='column'>
             {!election?.description?.default.length && (
