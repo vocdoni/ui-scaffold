@@ -8,7 +8,7 @@ import {
   OrganizationName,
 } from '@vocdoni/chakra-components'
 import { useClient, useElection, useOrganization } from '@vocdoni/react-providers'
-import { ElectionStatus } from '@vocdoni/sdk'
+import { ElectionStatus, Strategy } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
@@ -123,10 +123,13 @@ const ProcessHeader = () => {
             <Text>{t('process.people_in_census', { count: election?.maxCensusSize })}</Text>
           </Box>
           {election?.meta?.census && (
-            <Box>
-              <Text fontWeight='bold'>{t('process.strategy')}</Text>
-              <Text>{strategy}</Text>
-            </Box>
+            <>
+              <Box>
+                <Text fontWeight='bold'>{t('process.strategy')}</Text>
+                <Text>{strategy}</Text>
+              </Box>
+              {strategy === 'Gitcoin' && <GitcoinStrategyInfo strategy={mock} />}
+            </>
           )}
 
           {showOrgInformation && (
@@ -173,6 +176,81 @@ const ProcessHeader = () => {
         </Flex>
       </Flex>
     </Box>
+  )
+}
+
+// todo(kon): disable mock
+const mock: Strategy = {
+  ID: 135,
+  alias: 'gitcoin_onvote_1711473280378',
+  predicate: 'GPS AND (GPS:BrightID OR (GPS:Discord OR GPS:Ens)))',
+  uri: 'ipfs://bafybeig76tzjrgjo4vh3vmgmyv5f2kebff5rmnr52tax2c5todawgzdkg4',
+  tokens: {
+    GPS: {
+      ID: '0x000000000000000000000000000000000000006C',
+      chainID: 1,
+      minBalance: '20',
+      chainAddress: 'eth:0x000000000000000000000000000000000000006C',
+    },
+    'GPS:BrightID': {
+      ID: '0x000000000000000000000000000000000000006C',
+      chainID: 1,
+      minBalance: '1',
+      chainAddress: 'eth:0x000000000000000000000000000000000000006C',
+      externalID: 'BrightID',
+    },
+    'GPS:Discord': {
+      ID: '0x000000000000000000000000000000000000006C',
+      chainID: 1,
+      minBalance: '1',
+      chainAddress: 'eth:0x000000000000000000000000000000000000006C',
+      externalID: 'Discord',
+    },
+    'GPS:Ens': {
+      ID: '0x000000000000000000000000000000000000006C',
+      chainID: 1,
+      minBalance: '1',
+      chainAddress: 'eth:0x000000000000000000000000000000000000006C',
+      externalID: 'Ens',
+    },
+  },
+}
+
+const GitcoinStrategyInfo = ({ strategy }: { strategy: Strategy }) => {
+  const { t } = useTranslation()
+
+  const score = strategy.tokens['GPS'].minBalance
+  const firstParenthesesMatch = strategy.predicate.match(/\(([^)]+)\)/)
+  let unionTypeString: string | null = null
+  if (firstParenthesesMatch) {
+    const unionType = firstParenthesesMatch[1].split(' ')[1] // split by space and get the second element which should be the union type
+    if (unionType === 'AND') {
+      unionTypeString = t('process.gitcoin.all_of_them')
+    } else if (unionType === 'OR') {
+      unionTypeString = t('process.gitcoin.one_of_them')
+    }
+  }
+
+  return (
+    <>
+      <Box>
+        <Text fontWeight='bold'>{t('process.strategy')}</Text>
+        <Text>{t('process.gitcoin.gps_score', { score: score })}</Text>
+      </Box>
+      {unionTypeString && (
+        <Box>
+          <Flex direction={{ base: 'column', lg: 'row' }} gap={{ base: 0, lg: 1 }}>
+            <Text fontWeight='bold'>{t('process.gitcoin.needed_stamps')}</Text>
+            <Text>{unionTypeString}</Text>
+          </Flex>
+          <Text>
+            {Object.values(strategy.tokens).map((token) => {
+              return token.externalID ? ` ${token.externalID} ` : null // todo(kon): implement icons
+            })}
+          </Text>
+        </Box>
+      )}
+    </>
   )
 }
 
