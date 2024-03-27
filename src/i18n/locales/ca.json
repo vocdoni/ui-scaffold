@@ -4,6 +4,7 @@
     "is_not_in_census": "No estàs en el cens",
     "not_connected": "No estàs connectat",
     "overwrite_votes_left_one": "Pots corregir el teu vot una vegada.",
+    "overwrite_votes_left_many": "",
     "overwrite_votes_left_other": "Pots corregir el teu vot {{ count }} vegades.",
     "submitting": "Enviant",
     "verify_vote_on_explorer": "Verifica el vot a l'explorador",
@@ -121,6 +122,7 @@
     "balance": "<span>Disposes de:</span><span2> {{ balance }} tokens</span2>",
     "button": "Obtenir més Tokens",
     "census_total_one": "<span>Votants:</span><span>{{ count }} votant</span>",
+    "census_total_many": "",
     "census_total_other": "<span>Votants:</span><span>{{ count }} votants</span>",
     "duration": "<span>Durada:</span> <span>{{ date, duration }}</span>",
     "not_enough_tokens": "No tens prou tokens per crear aquest procés.",
@@ -359,6 +361,7 @@
         }
       },
       "spreadsheet_total_rows_one": "El cens té un sol registre",
+      "spreadsheet_total_rows_many": "",
       "spreadsheet_total_rows_other": "El cens té {{ count }} registres",
       "steps": {
         "census": "Cens",
@@ -371,6 +374,7 @@
       "success_title": "Procés de votació creat amb èxit",
       "web3": {
         "census_members_one": "<span>1 membre</span> <text>al cens</text>",
+        "census_members_many": "",
         "census_members_other": "<span>{{ count }} membres</span> <text>al cens</text>",
         "your_wallet_is_added": "La teva adreça de cartera s'ha afegit automàticament al cens. La pots eliminar si ho desitges."
       },
@@ -505,40 +509,40 @@
     },
     "features": {
       "card_1": {
-        "title": "Tipus de votació versàtils",
-        "description": "Des de referèndums simples de sí/no fins a eleccions complexes de preferència classificada, Vocdoni admet una àmplia gamma de tipus de votació per adaptar-se a qualsevol procés de presa de decisions."
+        "description": "Des de referèndums simples de sí/no fins a eleccions complexes de preferència classificada, Vocdoni admet una àmplia gamma de tipus de votació per adaptar-se a qualsevol procés de presa de decisions.",
+        "title": "Tipus de votació versàtils"
       },
       "card_2": {
-        "title": "Capacitats de personalització",
-        "description": "Personalitzeu cada aspecte del vostre procés de votació, des de la marca i els temes fins als dissenys de paperetes, assegurant una integració perfecta amb la identitat de la vostra organització."
+        "description": "Personalitzeu cada aspecte del vostre procés de votació, des de la marca i els temes fins als dissenys de paperetes, assegurant una integració perfecta amb la identitat de la vostra organització.",
+        "title": "Capacitats de personalització"
       },
       "card_3": {
-        "title": "Onboarding Amigable amb l'usuari",
-        "description": "Utilitzant interfícies intuitives i processos d'introducció guiats, Vocdoni garanteix que els organitzadors i els votants puguin navegar fàcilment per la plataforma des del primer dia."
+        "description": "Utilitzant interfícies intuitives i processos d'introducció guiats, Vocdoni garanteix que els organitzadors i els votants puguin navegar fàcilment per la plataforma des del primer dia.",
+        "title": "Onboarding Amigable amb l'usuari"
       },
       "card_4": {
-        "title": "Autenticació segura",
-        "description": "Utilitzant mètodes d'autenticació robustos com ara l'autenticació de dos factors, Vocdoni protegeix contra l'accés no autoritzat i garanteix la integritat de cada vot."
+        "description": "Utilitzant mètodes d'autenticació robustos com ara l'autenticació de dos factors, Vocdoni protegeix contra l'accés no autoritzat i garanteix la integritat de cada vot.",
+        "title": "Autenticació segura"
       },
       "card_5": {
-        "title": "Censos personalitzats",
-        "description": "Creeu llistes de votants personalitzades (censos personalitzats, oAuth, CRM...), permetent una difusió dirigida i experiències de votació adaptades per a diferents segments de la vostra audiència."
+        "description": "Creeu llistes de votants personalitzades (censos personalitzats, oAuth, CRM...), permetent una difusió dirigida i experiències de votació adaptades per a diferents segments de la vostra audiència.",
+        "title": "Censos personalitzats"
       },
       "card_6": {
-        "title": "Opcions de votació flexibles",
-        "description": "Personalitzeu els vostres processos de votació amb dates d'inici i finalització específiques, inici automàtic, resultats secrets fins al final, actualitzacions en temps real, votació anònima, votació ponderada i personalització de paperetes."
+        "description": "Personalitzeu els vostres processos de votació amb dates d'inici i finalització específiques, inici automàtic, resultats secrets fins al final, actualitzacions en temps real, votació anònima, votació ponderada i personalització de paperetes.",
+        "title": "Opcions de votació flexibles"
       },
       "card_7": {
-        "title": "Suport multilingüe",
-        "description": "Arribeu a una audiència diversa amb suport multilingüe, permetent que els participants es relacionin en el seu idioma preferit per a experiències de votació inclusives i accessibles."
+        "description": "Arribeu a una audiència diversa amb suport multilingüe, permetent que els participants es relacionin en el seu idioma preferit per a experiències de votació inclusives i accessibles.",
+        "title": "Suport multilingüe"
       },
       "card_8": {
-        "title": "Actualitzacions en temps real",
-        "description": "Superviseu el progrés i els resultats de la votació en temps real, amb actualitzacions instantànies i notificacions que mantinguin informats els organitzadors i els participants durant tot el procés de votació."
+        "description": "Superviseu el progrés i els resultats de la votació en temps real, amb actualitzacions instantànies i notificacions que mantinguin informats els organitzadors i els participants durant tot el procés de votació.",
+        "title": "Actualitzacions en temps real"
       },
       "card_9": {
-        "title": "Suport multiplataforma",
-        "description": "Permeteu als votants emetre els seus vots a través de diversos canals, inclosos navegadors web, mòbils, tauletes, etc., garantint l'accessibilitat i la comoditat per a tots els participants."
+        "description": "Permeteu als votants emetre els seus vots a través de diversos canals, inclosos navegadors web, mòbils, tauletes, etc., garantint l'accessibilitat i la comoditat per a tots els participants.",
+        "title": "Suport multiplataforma"
       },
       "header": "Solucions capacitant",
       "subtitle_1": "Desbloquegeu el potencial de la plataforma rica en funcionalitats de Vocdoni, que ofereix un valor excepcional tant per als organitzadors com per als votants. Personalitzeu de manera transparent els vostres processos de votació, assegureu eleccions segures i transparents i doneu poder als participants amb opcions intuïtives i accessibles. Amb l'APP de Vocdoni, experimenteu el poder de l'engagement millorat, l'eficiència i la confiança en cada experiència de votació.",
@@ -549,35 +553,35 @@
       "description_2": "Us permetem configurar amb un sol clic si voleu votació anònima, resultats secrets fins al final, el tipus de votació, carregar el cens i molt més.",
       "header": "Procés",
       "step_1": {
-        "title": "Inicieu el vostre propi procés de votació",
-        "description": "Obtingueu un control total amb l'opció d'autoservei de la nostra plataforma, que ofereix una flexibilitat sense igual. Necessiteu personalització o orientació? Us tenim cobert!"
+        "description": "Obtingueu un control total amb l'opció d'autoservei de la nostra plataforma, que ofereix una flexibilitat sense igual. Necessiteu personalització o orientació? Us tenim cobert!",
+        "title": "Inicieu el vostre propi procés de votació"
       },
       "step_2": {
-        "title": "Configureu i publiqueu",
-        "description": "Us guiaran en el procés de creació per seleccionar el tipus de votació, configurar la informació, seleccionar les opcions necessàries i registrar els participants (cens)."
+        "description": "Us guiaran en el procés de creació per seleccionar el tipus de votació, configurar la informació, seleccionar les opcions necessàries i registrar els participants (cens).",
+        "title": "Configureu i publiqueu"
       },
       "step_3": {
-        "title": "Període de votació",
-        "description": "Els votants s'autentiquen i envien els seus vots de manera fluida a través del nostre flux d'usuari amigable, dissenyat per a l'accessibilitat universal en tots els dispositius."
+        "description": "Els votants s'autentiquen i envien els seus vots de manera fluida a través del nostre flux d'usuari amigable, dissenyat per a l'accessibilitat universal en tots els dispositius.",
+        "title": "Període de votació"
       },
       "step_4": {
-        "title": "Obtén els resultats",
-        "description": "Tan fàcil com això. Un cop acabat, els resultats es calcularan, publicaran i estaran disponibles per a qualsevol de manera automàtica."
+        "description": "Tan fàcil com això. Un cop acabat, els resultats es calcularan, publicaran i estaran disponibles per a qualsevol de manera automàtica.",
+        "title": "Obtén els resultats"
       },
       "title": "Un senzill procés de 4 passos"
     },
     "solutions": {
       "card_1": {
-        "title": "Per a Organitzacions",
-        "description": "Optimitzeu la presa de decisions amb una votació segura i transparent. Involucreu els membres de manera efectiva, estalvieu en costos administratius i fomenta una cultura de participació i transparència."
+        "description": "Optimitzeu la presa de decisions amb una votació segura i transparent. Involucreu els membres de manera efectiva, estalvieu en costos administratius i fomenta una cultura de participació i transparència.",
+        "title": "Per a Organitzacions"
       },
       "card_2": {
-        "title": "Per a Comunitats",
-        "description": "Millora la implicació de la comunitat amb una plataforma fàcil d'utilitzar que fomenta la participació i dóna veu a cada membre."
+        "description": "Millora la implicació de la comunitat amb una plataforma fàcil d'utilitzar que fomenta la participació i dóna veu a cada membre.",
+        "title": "Per a Comunitats"
       },
       "card_3": {
-        "title": "Per a Govern i Institucions Públiques",
-        "description": "Augmenta la participació electoral, redueix els costos electorals i millora la confiança ciutadana amb un procés de votació verificable i segur."
+        "description": "Augmenta la participació electoral, redueix els costos electorals i millora la confiança ciutadana amb un procés de votació verificable i segur.",
+        "title": "Per a Govern i Institucions Públiques"
       },
       "header": "Abraça el canvi amb Vocdoni",
       "img_card_1": "Organitzacions",
@@ -696,6 +700,7 @@
     "is_invalid": "Aquest procés té dades no vàlides i per tant no pot carregar-se",
     "no_description": "No hi ha cap descripció proporcionada",
     "people_in_census_one": "Un votant",
+    "people_in_census_many": "",
     "people_in_census_other": "{{ count }} votants",
     "questions": "Preguntes",
     "results": "Resultats",
@@ -742,6 +747,7 @@
     "census": {
       "mandatory_max_census_size": "Ha d'haver-hi un votant com a mínim",
       "total_tokens_one": "1 token",
+      "total_tokens_many": "",
       "total_tokens_other": "{{ count }} tokens"
     },
     "creation_steps": {

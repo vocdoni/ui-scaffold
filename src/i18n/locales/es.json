@@ -4,6 +4,7 @@
     "is_not_in_census": "No estás en el censo",
     "not_connected": "No estás conectado",
     "overwrite_votes_left_one": "Puedes corregir tu voto una vez.",
+    "overwrite_votes_left_many": "",
     "overwrite_votes_left_other": "Puedes corregir tu voto {{ count }} veces.",
     "submitting": "Enviando",
     "verify_vote_on_explorer": "Verifica el voto en el explorador",
@@ -121,6 +122,7 @@
     "balance": "<span>Dispones de:</span><span2> {{ balance }} tokens</span2>",
     "button": "Obtener más Tokens",
     "census_total_one": "<span>Votantes:</span><span>{{ count }} votante</span>",
+    "census_total_many": "",
     "census_total_other": "<span>Votantes:</span><span>{{ count }} votantes</span>",
     "duration": "<span>Duración:</span> <span>{{ date, duration }}</span>",
     "not_enough_tokens": "No tienes suficientes tokens para crear este proceso.",
@@ -359,6 +361,7 @@
         }
       },
       "spreadsheet_total_rows_one": "El censo tiene un solo registro",
+      "spreadsheet_total_rows_many": "",
       "spreadsheet_total_rows_other": "El censo tiene {{ count }} registros",
       "steps": {
         "census": "Censo",
@@ -371,6 +374,7 @@
       "success_title": "Proceso de votación creado con éxito",
       "web3": {
         "census_members_one": "<span>1 miembro</span> <text> en el censo</text>",
+        "census_members_many": "",
         "census_members_other": "<span>{{ count }} miembros</span> <text> en el censo</text>",
         "your_wallet_is_added": "Tu dirección de billetera se ha añadido automáticamente al censo. Puedes eliminarla si lo deseas."
       },
@@ -505,40 +509,40 @@
     },
     "features": {
       "card_1": {
-        "title": "Diversidad de votaciones",
-        "description": "Desde votaciones de opción única hasta elecciones de preferencia múltiple o ponderadas, Vocdoni soporta diversos tipos de votación."
+        "description": "Desde votaciones de opción única hasta elecciones de preferencia múltiple o ponderadas, Vocdoni soporta diversos tipos de votación.",
+        "title": "Diversidad de votaciones"
       },
       "card_2": {
-        "title": "Personalización completa",
-        "description": "Ajusta cada detalle de tu votación para que se alinee perfectamente con la identidad de tu organización."
+        "description": "Ajusta cada detalle de tu votación para que se alinee perfectamente con la identidad de tu organización.",
+        "title": "Personalización completa"
       },
       "card_3": {
-        "title": "Registro fácil para usuarios",
-        "description": "Con interfaces intuitivas y guías paso a paso, aseguramos una navegación sencilla desde el inicio."
+        "description": "Con interfaces intuitivas y guías paso a paso, aseguramos una navegación sencilla desde el inicio.",
+        "title": "Registro fácil para usuarios"
       },
       "card_4": {
-        "title": "Autenticación robusta",
-        "description": "Aseguramos la integridad del voto con autenticación de dos factores y otras medidas de seguridad."
+        "description": "Aseguramos la integridad del voto con autenticación de dos factores y otras medidas de seguridad.",
+        "title": "Autenticación robusta"
       },
       "card_5": {
-        "title": "Censos a medida",
-        "description": "Crea listas de votantes personalizadas para dirigirte específicamente a tu audiencia. Puedes usar datos personalizados (ej: usuario y password), correos, certificados digitales, CRMs y más."
+        "description": "Crea listas de votantes personalizadas para dirigirte específicamente a tu audiencia. Puedes usar datos personalizados (ej: usuario y password), correos, certificados digitales, CRMs y más.",
+        "title": "Censos a medida"
       },
       "card_6": {
-        "title": "Flexibilidad en la votación",
-        "description": "Configura tu votación con opciones como votación secreta, resultados en tiempo real y personalización de boletas."
+        "description": "Configura tu votación con opciones como votación secreta, resultados en tiempo real y personalización de boletas.",
+        "title": "Flexibilidad en la votación"
       },
       "card_7": {
-        "title": "Soporte multilenguaje",
-        "description": "Alcanza a una audiencia global con opciones de idioma, cada votante puede elegir su idioma preferido."
+        "description": "Alcanza a una audiencia global con opciones de idioma, cada votante puede elegir su idioma preferido.",
+        "title": "Soporte multilenguaje"
       },
       "card_8": {
-        "title": "Resultados instantáneos",
-        "description": "Monitorea los resultados de las votaciones en tiempo real, con actualizaciones y notificaciones instantáneas."
+        "description": "Monitorea los resultados de las votaciones en tiempo real, con actualizaciones y notificaciones instantáneas.",
+        "title": "Resultados instantáneos"
       },
       "card_9": {
-        "title": "Accesibilidad multiplataforma",
-        "description": "Permite votar desde cualquier dispositivo, ofreciendo comodidad y accesibilidad total. Sin desplazamientos, ahorra tiempo y dinero a tus votantes."
+        "description": "Permite votar desde cualquier dispositivo, ofreciendo comodidad y accesibilidad total. Sin desplazamientos, ahorra tiempo y dinero a tus votantes.",
+        "title": "Accesibilidad multiplataforma"
       },
       "header": "Características destacadas",
       "subtitle_1": "Descubre el potencial de Vocdoni con herramientas que ofrecen valor excepcional a organizadores y votantes. Personaliza tus votaciones, asegura procesos transparentes y empodera a los participantes con opciones intuitivas y accesibles.",
@@ -549,35 +553,35 @@
       "description_2": "Configura votaciones anónimas, resultados secretos, tipos de votación y más, todo con un clic.",
       "header": "Proceso",
       "step_1": {
-        "title": "Inicia tu votación",
-        "description": "Control total con nuestra plataforma de autoservicio. ¿Necesitas personalización o asistencia? Estamos aquí para ayudarte."
+        "description": "Control total con nuestra plataforma de autoservicio. ¿Necesitas personalización o asistencia? Estamos aquí para ayudarte.",
+        "title": "Inicia tu votación"
       },
       "step_2": {
-        "title": "Configura y publica",
-        "description": "Te guiamos en la selección del tipo de votación, configuración de detalles y registro de participantes."
+        "description": "Te guiamos en la selección del tipo de votación, configuración de detalles y registro de participantes.",
+        "title": "Configura y publica"
       },
       "step_3": {
-        "title": "Vota",
-        "description": "Los votantes participan fácilmente a través de nuestra interfaz amigable, accesible desde cualquier dispositivo."
+        "description": "Los votantes participan fácilmente a través de nuestra interfaz amigable, accesible desde cualquier dispositivo.",
+        "title": "Vota"
       },
       "step_4": {
-        "title": "Resultados inmediatos",
-        "description": "Al finalizar, los resultados se calculan y publican automáticamente, disponibles para todos."
+        "description": "Al finalizar, los resultados se calculan y publican automáticamente, disponibles para todos.",
+        "title": "Resultados inmediatos"
       },
       "title": "Proceso simple de 4 pasos"
     },
     "solutions": {
       "card_1": {
-        "title": "Para Organizaciones",
-        "description": "Optimiza la toma de decisiones con votaciones seguras y transparentes. Engancha a los miembros eficazmente y promueve una cultura de participación."
+        "description": "Optimiza la toma de decisiones con votaciones seguras y transparentes. Engancha a los miembros eficazmente y promueve una cultura de participación.",
+        "title": "Para Organizaciones"
       },
       "card_2": {
-        "title": "Para Comunidades",
-        "description": "Mejora el compromiso comunitario con una plataforma fácil de usar que fomenta la participación activa de todos los miembros."
+        "description": "Mejora el compromiso comunitario con una plataforma fácil de usar que fomenta la participación activa de todos los miembros.",
+        "title": "Para Comunidades"
       },
       "card_3": {
-        "title": "Para Gobiernos e Instituciones Públicas",
-        "description": "Incrementa la participación electoral, reduce costos y mejora la confianza ciudadana con un proceso de votación seguro y verificable."
+        "description": "Incrementa la participación electoral, reduce costos y mejora la confianza ciudadana con un proceso de votación seguro y verificable.",
+        "title": "Para Gobiernos e Instituciones Públicas"
       },
       "header": "Soluciones adaptativas",
       "img_card_1": "Organizaciones",
@@ -696,6 +700,7 @@
     "is_invalid": "Este proceso tiene datos no válidos y no se puede cargar",
     "no_description": "No hay ninguna descripción proporcionada",
     "people_in_census_one": "Un votante",
+    "people_in_census_many": "",
     "people_in_census_other": "{{ count }} votantes",
     "questions": "Preguntas",
     "results": "Resultados",
@@ -742,6 +747,7 @@
     "census": {
       "mandatory_max_census_size": "Debe haber al menos un votante",
       "total_tokens_one": "1 token",
+      "total_tokens_many": "",
       "total_tokens_other": "{{ count }} tokens"
     },
     "creation_steps": {
