@@ -395,12 +395,6 @@ const closeForm = defineStyle({
 
 const goBack = defineStyle({
   p: 0,
-
-  '& img': {
-    w: 1.5,
-    mr: 1,
-    mb: '1px',
-  },
   '& span': {
     color: 'organization.go_back_btn',
     overflow: 'hidden',
@@ -408,6 +402,17 @@ const goBack = defineStyle({
     isTruncated: true,
     maxW: '200px',
   },
+})
+
+const tryItNow = defineStyle({
+  background: 'web3_cta.onvote',
+  color: 'white',
+  px: 8,
+  height: 9,
+  fontWeight: 'normal',
+  borderRadius: 'var(--chakra-radii-md)',
+  fontSize: { base: '13px' },
+  boxShadow: 'rgba(0, 0, 0, 0.1) 0px 0px 10px',
 })
 
 export const Button = defineStyleConfig({
@@ -423,6 +428,7 @@ export const Button = defineStyleConfig({
     process,
     secondary,
     transparent,
+    'try-it-now': tryItNow,
   },
   defaultProps: {
     colorScheme: 'primary',
