@@ -79,7 +79,14 @@ export const Confirm = () => {
   const max = methods.watch('maxCensusSize')
 
   useEffect(() => {
-    setForm({ ...form, maxCensusSize: max })
+    const timeout = setTimeout(() => {
+      setForm({ ...form, maxCensusSize: max, isCalculating: false })
+    }, 3000)
+
+    return () => {
+      clearTimeout(timeout)
+      setForm({ ...form, isCalculating: true })
+    }
   }, [max])
 
   const {
@@ -303,7 +310,7 @@ export const Confirm = () => {
         <Button
           type='submit'
           form='process-create-form'
-          isDisabled={disabled}
+          isDisabled={disabled || form.isCalculating}
           isLoading={sending}
           px={{ base: 12, xl2: 28 }}
           variant='primary'

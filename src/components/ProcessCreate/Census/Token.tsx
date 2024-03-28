@@ -413,73 +413,78 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
   return (
     <>
       <FormControl isInvalid={!!errors.maxCensusSize} mb={3}>
-        <NumberInput
-          my={5}
-          min={1}
-          max={strategySize}
-          value={sliderValue}
-          defaultValue={sliderValue}
-          onChange={(v) => {
-            setSliderValue(Number(v))
-            setValue('maxCensusSize', Number(v))
-          }}
-        >
-          <NumberInputField />
-          <NumberInputStepper>
-            <NumberIncrementStepper />
-            <NumberDecrementStepper />
-          </NumberInputStepper>
-        </NumberInput>
-
-        <Slider
-          aria-label={t('form.process_create.census.max_census_slider_arialabel')}
-          value={sliderValue}
-          defaultValue={sliderValue}
-          min={1}
-          max={strategySize}
-          ref={field.ref}
-          onBlur={field.onBlur}
-          onChange={(v) => {
-            setSliderValue(v)
-            setValue('maxCensusSize', v)
-          }}
-          onMouseEnter={() => setShowTooltip(true)}
-          onMouseLeave={() => setShowTooltip(false)}
-        >
-          <SliderMark value={strategySize * 0.25} mt='1' ml='-2.5' fontSize='sm'>
-            25%
-          </SliderMark>
-          <SliderMark value={strategySize * 0.5} mt='1' ml='-2.5' fontSize='sm'>
-            50%
-          </SliderMark>
-          <SliderMark value={strategySize * 0.75} mt='1' ml='-2.5' fontSize='sm'>
-            75%
-          </SliderMark>
-          <SliderTrack>
-            <SliderFilledTrack bg='primary.600' />
-          </SliderTrack>
-
-          <Tooltip
-            hasArrow
-            bg='primary.600'
-            color='white'
-            placement='top'
-            isOpen={showTooltip}
-            label={t('form.process_create.census.max_census_slider_tooltip', {
-              percent,
-              voters: Math.round(sliderValue),
-            })}
+        <Flex gap={5} flexDirection={{ base: 'column', xl: 'row' }}>
+          <NumberInput
+            my={3}
+            min={1}
+            max={strategySize}
+            value={sliderValue}
+            defaultValue={sliderValue}
+            onChange={(v) => {
+              setSliderValue(Number(v))
+              setValue('maxCensusSize', Number(v))
+            }}
           >
-            <SliderThumb />
-          </Tooltip>
-        </Slider>
+            <NumberInputField />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
+
+          <Slider
+            aria-label={t('form.process_create.census.max_census_slider_arialabel')}
+            value={sliderValue}
+            defaultValue={sliderValue}
+            min={1}
+            max={strategySize}
+            ref={field.ref}
+            onBlur={field.onBlur}
+            onChange={(v) => {
+              setSliderValue(v)
+              setValue('maxCensusSize', v)
+            }}
+            onMouseEnter={() => setShowTooltip(true)}
+            onMouseLeave={() => setShowTooltip(false)}
+          >
+            <SliderMark value={strategySize * 0.25} mt='1' ml='-2.5' fontSize='sm'>
+              25%
+            </SliderMark>
+            <SliderMark value={strategySize * 0.5} mt='1' ml='-2.5' fontSize='sm'>
+              50%
+            </SliderMark>
+            <SliderMark value={strategySize * 0.75} mt='1' ml='-2.5' fontSize='sm'>
+              75%
+            </SliderMark>
+            <SliderTrack>
+              <SliderFilledTrack bg='primary.600' />
+            </SliderTrack>
+
+            <Tooltip
+              hasArrow
+              bg='primary.600'
+              color='white'
+              placement='top'
+              isOpen={showTooltip}
+              label={t('form.process_create.census.max_census_slider_tooltip', {
+                percent,
+                voters: Math.round(sliderValue),
+              })}
+            >
+              <SliderThumb />
+            </Tooltip>
+          </Slider>
+        </Flex>
         <FormErrorMessage>{errors.maxCensusSize && errors.maxCensusSize.message?.toString()}</FormErrorMessage>
-        <Wrap spacing={2} mt={10} mb={5} justify='center' w={'100%'}>
+        <Wrap spacing={2} mt={3} mb={5} justify='center' w={'100%'}>
           {SliderButtonsValues.map((v) => (
             <WrapItem key={v}>
               <Button
                 onClick={() => {
-                  const val = Math.round(strategySize * v)
+                  let val = Math.round(strategySize * v)
+                  if (val === 0) {
+                    val = 1
+                  }
                   setSliderValue(val)
                   setValue('maxCensusSize', val)
                 }}

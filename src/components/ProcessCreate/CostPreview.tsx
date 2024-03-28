@@ -43,6 +43,7 @@ export const CostPreview = ({
   const { form } = useProcessCreationSteps()
   const { loading, handleSignIn } = useClaim()
   const {
+    isCalculating,
     maxCensusSize,
     startDate,
     endDate,
@@ -80,12 +81,13 @@ export const CostPreview = ({
       </Text>
       <Text fontSize='sm'>{t('form.process_create.confirm.cost_description')}</Text>
       <Flex flexDirection='column' gap={4} p={{ base: 3, xl: 6 }} bgColor='process_create.section' borderRadius='md'>
-        {typeof cost === 'undefined' && (
-          <Flex justifyContent='center'>
-            <Spinner textAlign='center' />
-          </Flex>
-        )}
-        {typeof cost !== 'undefined' && (
+        {typeof cost === 'undefined' ||
+          (isCalculating && (
+            <Flex justifyContent='center'>
+              <Spinner textAlign='center' />
+            </Flex>
+          ))}
+        {typeof cost !== 'undefined' && !isCalculating && (
           <>
             <Box fontSize='sm'>
               <Text mb={3}>{t('cost_preview.subtitle')}</Text>
