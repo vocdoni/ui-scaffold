@@ -1,9 +1,9 @@
 import { Box } from '@chakra-ui/react'
 import Banner from '~components/Home/BannerOnVote'
 import Features from '~components/Home/Features'
-import Roadmap from '~components/Home/Roadmap'
 import VotingTypesBanner from '~components/Home/Voting'
 import homeBg from '/assets/home-bg.png'
+import Governance from '~components/Home/Governance'
 
 const Home = () => {
   return (
@@ -19,12 +19,12 @@ const Home = () => {
       >
         <Box pt={{ lg: '120px' }} px='40px'>
           <Banner />
-          <VotingTypesBanner />
+          <VotingTypesBanner app={'Onvote'} />
         </Box>
       </Box>
       <Box>
-        <Roadmap />
         <Features />
+        <Governance />
       </Box>
     </>
   )

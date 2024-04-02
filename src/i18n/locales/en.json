@@ -18,12 +18,12 @@
     "title": "Secure, verifiable and flexible digital voting"
   },
   "banner_voting_types": {
-    "anonymous_description": "Say goodbye to the high expenses of traditional voting methods. Vocdoni App brings you a more affordable way to conduct elections, cutting down on logistical and administrative costs while maintaining the highest standards of quality and security.",
+    "anonymous_description": "Say goodbye to the high expenses of traditional voting methods. {{app}} brings you a more affordable way to conduct elections, cutting down on logistical and administrative costs while maintaining the highest standards of quality and security.",
     "anonymous_title": "Cost-Effective Voting Solutions",
     "bottom_text": "Privacy should be normal",
-    "flexible_description": "Engagement is key in democratic processes, and our platform is designed to maximize it. With its user-friendly interface and accessibility, Vocdoni App encourages higher participation rates, ensuring a more representative and inclusive voting experience.",
+    "flexible_description": "Engagement is key in democratic processes, and our platform is designed to maximize it. With its user-friendly interface and accessibility, {{app}} encourages higher participation rates, ensuring a more representative and inclusive voting experience.",
     "flexible_title": "Boosted Participation Rates",
-    "token_description": "At the heart of Vocdoni App is our commitment to security. Leveraging cutting-edge cryptographic methods, we ensure that every vote cast is not only secure but fully verifiable. This transparency builds unparalleled trust among participants, crucial for the legitimacy of any election.",
+    "token_description": "At the heart of {{app}} is our commitment to security. Leveraging cutting-edge cryptographic methods, we ensure that every vote cast is not only secure but fully verifiable. This transparency builds unparalleled trust among participants, crucial for the legitimacy of any election.",
     "token_title": "Enhanced Security and Trust"
   },
   "cc": {
@@ -532,31 +532,6 @@
     "recovery": "Account recovery"
   },
   "retry": "Retry",
-  "roadmap": {
-    "census_description": "Create a trust-less off-chain zk-friendly census from an Ethereum block snapshot, with on-chain verification.",
-    "census_title": "zkCensus:",
-    "chainlink_description": "Enable automatic execution with optimistic support.",
-    "chainlink_title": "Chainlink Integration:",
-    "complex_startegies_description": "Integrate any token from any blockchain using a blend of logic and algebraic operations, out of the box. I.e.",
-    "complex_startegies_title": "Complex Strategies:",
-    "execution_description": "Submit the final proof on-chain for binding execution.",
-    "execution_title": "Execution:",
-    "milestone1": "Milestone 1: Flexible Gasless Governance",
-    "milestone2": "Milestone 2: Anonymous voting with binding execution",
-    "private_description": "Only display voting proposal content to your community members.",
-    "private_title": "Private Election Metadata:",
-    "registry_description": "A global on-chain registry for zk (zero-knowledge) identities.",
-    "registry_title": "zkRegistry:",
-    "rollup_description": "Consolidate all votes into a single, secure zkProof using custom zkRollup technology",
-    "rollup_title": "zkRollup:",
-    "social_census_desciption": "Enhance your census with social identities from platforms like Github or Twitter. Include Sybil resistance mechanisms such as Holonym or Proof-of-Humanity.",
-    "social_census_title": "Social Census:",
-    "title": "<p1>Roadmap 2024</p1> <p2>What's next?</p2>",
-    "versatil_description": "Whether it’s simple, ranged, or quadratic voting, Onvote supports multiple voting methods to adapt to diverse community needs.",
-    "versatil_title": "Versatile Voting Methods:",
-    "voting_description": "Facilitate anonymous, off-chain (gasless) voting for any eligible voter using the Vocdoni p2p network.",
-    "voting_title": "zkVoting:"
-  },
   "share": {
     "copy": "Copy",
     "election_share_btn_text": "Share",
@@ -572,6 +547,29 @@
   "use_read_more": {
     "read_less": "Read less",
     "read_more": "Read more"
+  },
+  "web3cards": {
+    "farcaster": {
+      "btn": "Go to Farcaster.vote",
+      "description": "With <b>\"Farcaster.vote\"</b> we allow a simple and social way to vote. Your members only have to vote trough Farcaster in 2 simple clicks. Try creating your farcaster vote frame.",
+      "title": "Farcaster"
+    },
+    "onvote": {
+      "btn": "Create",
+      "description": "<b>Secure</b>, <b>gasless</b> and <b>transparent</b> Web3 voting. Allows to create <b>token census, multichain census, anonymous voting</b>, sybil-resistant census with a flexible voting type.",
+      "title": "Onvote"
+    },
+    "others": {
+      "btn": "Contact Us",
+      "description": "We've build a voting suite allowing an easy integration with our dedicated voting Blockchain via our SDK & UI-Components.<br/><br />Start integrating with us now!",
+      "title": "Others"
+    },
+    "plugins": {
+      "btn": "Try Aragon App",
+      "description": "We implemented a custom <b>DAO gasless voting solution</b> for Aragon DAO, and we can do the same for you!<br/><br/>Check gasless DAO voting!",
+      "title": "DAO Plugins"
+    },
+    "title": "Our Web3 governance solutions"
   },
   "welcome": {
     "description": "To access all its features, including anonymous voting, you must create an account on the Vocdoni Protocol and register your Secret Identity Key (SIK) by signing two transactions. It's secure and free.",
