@@ -12,6 +12,7 @@ export const colorsBase = {
     main: '#CBD5E0',
     dark: '#606f88',
   },
+  green: '#48BB78',
   primary: {
     main: '#24656e',
     dark: '#175b64',
@@ -81,6 +82,7 @@ export const colors = {
       title: colorsBase.primary.main,
     },
   },
+  success: colorsBase.green,
 
   link: {
     primary: colorsBase.primary.main,
@@ -175,6 +177,8 @@ export const colors = {
       color: colorsBase.blue.dark,
     },
     advanced_checkbox_bg: colorsBase.white.pure,
+    pro_bg: colorsBase.primary.main,
+    pro_color: colorsBase.white.pure,
     bg: colorsBase.white.dark2,
     wallet_addresses_border: colorsBase.gray.main,
     calendar_start_date_selected: colorsBase.blue.main,
@@ -186,6 +190,10 @@ export const colors = {
     },
     description: colorsBase.gray.dark,
     description_logo: colorsBase.blue.main,
+    modal_pro: {
+      description: colorsBase.gray.dark,
+      border: colorsBase.gray.light,
+    },
     preview_option_question_before: colorsBase.black,
     preview_negative_balance: colorsBase.red,
     section: colorsBase.white.pure,
@@ -204,6 +212,5 @@ export const colors = {
       bg: colorsBase.primary.main,
       color_active: colorsBase.white.pure,
     },
-    tabs_selected_color: colorsBase.primary.main,
   },
 }

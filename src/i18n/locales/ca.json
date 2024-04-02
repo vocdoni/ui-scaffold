@@ -96,6 +96,7 @@
     "description": "Selecciona com s'autenticaran i identificaran els votants.",
     "gitcoin_description": "Amb aquest cens, només els votants amb Gitcoin Passport podran votar, proporcionant un mètode de resistència contra atacs sybil. Pots definir la puntuació general (GPS) i diferents stamps que el votant ha de tenir.",
     "gitcoin_title": "Gitcoin Passport",
+    "pro": "",
     "request_custom_token": "Sol·licitar Tokens Personalitzats",
     "social_address_title": "Usuaris de Github",
     "spreadsheet_title": "Dades personalitzades",
@@ -227,6 +228,10 @@
         "anonymous": {
           "description": "La identitat dels votants serà completament anonimitzada, incloent per a l'organitzador. Cada votant haurà d'establir una contrasenya per garantir la confidencialitat de la seva identitat.",
           "title": "Anònim"
+        },
+        "customization": {
+          "description": "Selecciona el teu tema desitjat, colors, textos i afegeix la teva marca a la pàgina de votació. També hi ha opcions més complexes disponibles.",
+          "title": "Personalització"
         },
         "overwrite": {
           "description": "Si està marcat, els votants tindran l'opció de corregir el seu vot un cop.",
@@ -748,7 +753,19 @@
       "legal_note": "Avís legal: "
     },
     "census": {
-      "mandatory_max_census_size": "Ha d'haver-hi un votant com a mínim",
+      "crm_description": "Si ja tens el teu propi CRM, el podem integrar per permetre que la teva comunitat voti amb les mateixes credencials.",
+      "crm_title": "Integració CRM",
+      "database_description": "Integra la votació directament amb els usuaris a la teva base de dades. Una manera senzilla de votar per a la teva comunitat.",
+      "database_title": "Base de Dades",
+      "digital_certificate_description": "Donem suport a diferents certificats digitals, per obtenir la màxima seguretat i validació d'identitat.",
+      "digital_certificate_title": "Certificat Digital",
+      "email_description": "Els votants validaran el seu correu electrònic autenticant-se en el seu compte de Google Mail (OAuth).",
+      "email_title": "Per Correu Electrònic",
+      "mandatory_max_census_size": "Com a mínim un votant ha de ser seleccionat",
+      "others_description": "Necessites una solució específica? Podem ajudar amb una integració personalitzada que s'adapti a les teves necessitats.",
+      "others_title": "Altres",
+      "phone_description": "Els votants hauran de validar el seu telèfon mòbil, introduint el seu número i el codi de verificació que rebran.",
+      "phone_title": "Per Número de Telèfon",
       "total_tokens_one": "1 token",
       "total_tokens_many": "",
       "total_tokens_other": "{{ count }} tokens"
@@ -760,8 +777,54 @@
     },
     "creation_steps_description": "Necessites signar les transaccions per crear el procés de votació a la cadena de blocs de Vocdoni. No tanquis aquesta finestra.",
     "creation_steps_title": "Progrés",
+    "modal_pro": {
+      "description": "<p>L'opció seleccionada no està disponible en el pla d'autoatenció (gratuït). Per poder utilitzar-la, has de comprar el <bold>pla de projecte personalitzat</bold></p>",
+      "error": "Error en l'enviament del correu electrònic, intenta-ho més tard o contacta'ns a <email>info@vocdoni.org</email>",
+      "form_btn": "ENVIAR",
+      "form_description": "Pots deixar-nos les teves dades de contacte i ens posarem en contacte amb tu per parlar de les teves necessitats",
+      "form_email_label": "Correu electrònic:",
+      "form_email_placeholder": "El teu correu electrònic",
+      "form_name_label": "Nom:",
+      "form_name_placeholder": "El teu nom",
+      "scheudle_btn": "RESERVAR ARA",
+      "scheudle_description": " O pots reservar directament una trucada ràpida (15 minuts) amb els nostres experts per ajudar-te a crear el teu projecte de votació desitjat",
+      "success": "Correu electrònic enviat correctament",
+      "title": "Contacta'ns"
+    },
     "preview": {
       "accuracy": "Precisió dels Saldos de Cens Anònims: "
+    },
+    "question": {
+      "approval_voting": {
+        "description": "Els votants poden votar per tants candidats com aprovin, i el candidat amb més vots guanya.",
+        "title": "Votació per Aprovació"
+      },
+      "borda_count": {
+        "description": "Els votants classifiquen els candidats, i es assignen punts en funció de la seva classificació. El candidat amb més punts guanya.",
+        "title": "<p>Elecció per Rang</p><p>(Comptatge Borda)</p>"
+      },
+      "multi_choice": {
+        "description": "Els votants trien un nombre predeterminat d'opcions, i l'opció amb més votants guanya.",
+        "title": "<p>Votació Plurinominal</p><p>(Elecció Múltiple)</p>"
+      },
+      "others": {
+        "description": "",
+        "title": ""
+      },
+      "participation_budgeting": {
+        "description": "Els votants poden distribuir un nombre predeterminat entre totes les opcions/projectes (que representen el pressupost total disponible) com desitgin.",
+        "title": "Pressupost Participatiu"
+      },
+      "single_choice": {
+        "description": "Els votants trien una opció/candidat, i l'opció/candidat amb més vots guanya.",
+        "title": "<p>Votació Plurinominal</p><p>(Elecció Individual)</p>"
+      },
+      "voting_type": {
+        "description": "Selecciona el tipus de votació per a aquesta elecció. Si no trobes el que necessites, pots contactar-nos.",
+        "pro": "",
+        "pro_census": "",
+        "title": "Tipus de Votació"
+      }
     }
   },
   "rainbow": {
