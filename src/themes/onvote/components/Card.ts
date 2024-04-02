@@ -237,20 +237,13 @@ const imageCard = definePartsStyle({
   container: {
     ...cardCommonStyles.container,
     w: '300px',
-    height: 100,
+    height: '480px',
     display: 'flex',
     flexDirection: 'column',
     position: 'relative',
     justify: 'center',
     alignItems: 'center',
-
-    boxShadow: 'var(--box-shadow)',
-    transition: 'box-shadow .2s',
-
-    _hover: {
-      boxShadow: 'var(--box-shadow-darker)',
-      transition: 'box-shadow .2s  ',
-    },
+    bgColor: 'transparent',
   },
 
   header: {
@@ -298,18 +291,22 @@ const imageCard = definePartsStyle({
       fontWeight: 'bold',
       fontSize: { base: '18px' },
       mt: 4,
-      mb: 2,
+      mb: 6,
       textAlign: { base: 'start' },
+      fontFamily: 'pixeloidsans, monospace',
     },
 
     '& p:nth-of-type(2)': {
-      fontSize: { base: '13px' },
+      fontSize: { base: '16px' },
     },
   },
 
   footer: {
     ...cardCommonStyles.footer,
     pb: 3,
+    '& a': {
+      fontWeight: '600',
+    },
   },
 })
 
