@@ -541,31 +541,6 @@
     "recovery": "Recuperar cuenta"
   },
   "retry": "Reintentar",
-  "roadmap": {
-    "census_description": "Crear un censo descentralizado fuera de la cadena y compatible con zk a partir de una instantánea de bloques de Ethereum, con verificación en cadena.",
-    "census_title": "zkCensus:",
-    "chainlink_description": "Habilitar la ejecución automática con soporte optimista.",
-    "chainlink_title": "Integración de Chainlink:",
-    "complex_startegies_description": "Integrar cualquier token de cualquier cadena de bloques utilizando una combinación de lógica y operaciones algebraicas, directamente. Por ejemplo,",
-    "complex_startegies_title": "Estrategias complejas:",
-    "execution_description": "Enviar la prueba final a la cadena para una ejecución vinculante.",
-    "execution_title": "Ejecución:",
-    "milestone1": "Hitos 1: Gobernanza flexible sin gas",
-    "milestone2": "Hitos 2: zkRollup para votaciones vinculantes seguras y anónimas",
-    "private_description": "Mostrar el contenido de la propuesta de votación solo a los miembros de la comunidad.",
-    "private_title": "Metadatos de elección privada:",
-    "registry_description": "Un registro global en cadena para identidades zk (conocimiento cero).",
-    "registry_title": "zkRegistry:",
-    "rollup_description": "Consolidar todos los votos en una única prueba zk segura mediante la tecnología de zkRollup personalizada.",
-    "rollup_title": "zkRollup:",
-    "social_census_desciption": "Mejora tu censo con identidades sociales de plataformas como Github o Twitter. Incluye mecanismos de resistencia a Sybil como Holonym o Proof-of-Humanity.",
-    "social_census_title": "Censo social:",
-    "title": "<p1>Hoja de ruta 2024</p1> <p2>¿Qué viene después?</p2>",
-    "versatil_description": "Ya sea votación simple, escalonada o cuadrática, Onvote admite múltiples métodos de votación para adaptarse a las diversas necesidades de la comunidad.",
-    "versatil_title": "Métodos de votación versátiles:",
-    "voting_description": "Facilitar la votación anónima, fuera de la cadena (sin gas) para cualquier votante elegible utilizando la red p2p de Vocdoni.",
-    "voting_title": "zkVoting:"
-  },
   "share": {
     "copy": "Copiar",
     "election_share_btn_text": "Comparte",
@@ -581,6 +556,29 @@
   "use_read_more": {
     "read_less": "Leer menos",
     "read_more": "Leer más"
+  },
+  "web3cards": {
+    "farcaster": {
+      "btn": "Ir a Farcaster.vote",
+      "description": "Con <b>\"Farcaster.vote\"</b> ofrecemos una manera simple y social de votar. Tus miembros solo tienen que votar a través de Farcaster en 2 simples clics. Prueba creando una votación con Farcaster frame",
+      "title": "Farcaster"
+    },
+    "onvote": {
+      "btn": "Crear",
+      "description": "Sistema Web3 de votación <b>segura</b>, <b>sin tasas</b> y <b>transparente</b>. Permite crear <b>censo de tokens, censo multichain, votación anónima</b> y censo sybil-resistant con un tipo de votación flexible.",
+      "title": "Onvote"
+    },
+    "others": {
+      "btn": "Contáctanos",
+      "description": "Hemos construido un conjunto de votaciones que permite una integración fácil con nuestra Blockchain dedicada a votaciones a través de nuestro SDK &; Componentes UI.<br/><br/>¡Empieza a integrarlo ahora!",
+      "title": "Otros"
+    },
+    "plugins": {
+      "btn": "Prueba la Aragon App",
+      "description": "Hemos implementado una <b>solución de votación sin tasas personalizada para la DAO</b> de Aragon, ¡y podemos hacer lo mismo por ti!<br/><br/>Empieza con votación sin tasas!",
+      "title": "Complementos DAO"
+    },
+    "title": "Nuestras soluciones de gobernanza Web3"
   },
   "welcome": {
     "description": "Para empezar, debes registrar tu cuenta y tu SIK (clave de identidad segura) firmando dos transacciones (es seguro y gratuito).",
