@@ -24,48 +24,44 @@ const Governance = () => {
   const { isConnected } = useAccount()
   const { openConnectModal } = useConnectModal()
 
-  const cards: IGovernanceCardProps[] = useMemo(
-    () => [
-      {
-        buttonText: !isConnected ? t('menu.login') : t('web3cards.onvote.btn'),
-        buttonColor: 'web3_cta.onvote',
-        buttonAction: !isConnected
-          ? () => {
-              if (openConnectModal) openConnectModal()
-            }
-          : 'processes/create',
-        title: t('web3cards.onvote.title'),
-        description: t('web3cards.onvote.description'),
-        image: onvote,
-      },
-      {
-        buttonText: t('web3cards.farcaster.btn'),
-        buttonColor: 'web3_cta.farcaster',
-        buttonAction: 'https://farcaster.vote',
-        title: t('web3cards.farcaster.title'),
-        description: t('web3cards.farcaster.description'),
-        image: farcaster,
-      },
-      {
-        buttonText: t('web3cards.plugins.btn'),
-        buttonColor: 'web3_cta.plugins',
-        buttonAction: 'https://app.aragon.org',
-        title: t('web3cards.plugins.title'),
-        description: t('web3cards.plugins.description'),
-        image: daoplugins,
-      },
-      {
-        buttonText: t('web3cards.others.btn'),
-        buttonColor: 'web3_cta.others',
-        buttonAction: 'mailto:info@vocdoni.org',
-        title: t('web3cards.others.title'),
-        description: t('web3cards.others.description'),
-        image: others,
-      },
-    ],
-    [t, isConnected, openConnectModal]
-  )
-
+  const cards: IGovernanceCardProps[] = [
+    {
+      buttonText: !isConnected ? t('menu.login') : t('web3cards.onvote.btn'),
+      buttonColor: 'web3_cta.onvote',
+      buttonAction: !isConnected
+        ? () => {
+            if (openConnectModal) openConnectModal()
+          }
+        : 'processes/create',
+      title: t('web3cards.onvote.title'),
+      description: t('web3cards.onvote.description'),
+      image: onvote,
+    },
+    {
+      buttonText: t('web3cards.farcaster.btn'),
+      buttonColor: 'web3_cta.farcaster',
+      buttonAction: 'https://farcaster.vote',
+      title: t('web3cards.farcaster.title'),
+      description: t('web3cards.farcaster.description'),
+      image: farcaster,
+    },
+    {
+      buttonText: t('web3cards.plugins.btn'),
+      buttonColor: 'web3_cta.plugins',
+      buttonAction: 'https://app.aragon.org',
+      title: t('web3cards.plugins.title'),
+      description: t('web3cards.plugins.description'),
+      image: daoplugins,
+    },
+    {
+      buttonText: t('web3cards.others.btn'),
+      buttonColor: 'web3_cta.others',
+      buttonAction: 'mailto:info@vocdoni.org',
+      title: t('web3cards.others.title'),
+      description: t('web3cards.others.description'),
+      image: others,
+    },
+  ]
   return (
     <>
       <Text
