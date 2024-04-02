@@ -545,6 +545,28 @@
     "read_less": "Read less",
     "read_more": "Read more"
   },
+  "web3cards": {
+    "farcaster": {
+      "btn": "Go to Farcaster.vote",
+      "description": "With \"Farcaster.vote\" we allow a simple and social way to vote. Your members only have to vote trough Farcaster in 2 simple clicks.",
+      "title": "Farcaster"
+    },
+    "onvote": {
+      "btn": "Login",
+      "description": "<b>Secure</b>, <b>gasless</b> and <b>transparent</b> Web3 voting. Allows to create <b>token census, multichain census, anonymous voting</b>, sybil-resistant census with a flexible voting type.",
+      "title": "Onvote"
+    },
+    "others": {
+      "btn": "Contact Us",
+      "description": "We've build a voting suite allowing an easy integration with our dedicated voting Blockchain via our SDK &amp; UI-Components.<br />Start integrating with us now!",
+      "title": "Others"
+    },
+    "plugins": {
+      "btn": "Try Aragon App",
+      "description": "We implemented a custom DAO gasless voting solution for Aragon DAO, and we can do the same for you!<br/>Start with anonymous gasless vote!",
+      "title": "DAO Plugins"
+    }
+  },
   "welcome": {
     "description": "To access all its features, including anonymous voting, you must create an account on the Vocdoni Protocol and register your Secret Identity Key (SIK) by signing two transactions. It's secure and free.",
     "intro": "This is your first time using {{ sitename }}.",
@@ -553,25 +575,5 @@
       "sik": "Create SIK"
     },
     "title": "Welcome to {{ sitename }}"
-  },
-  "web3cards": {
-    "onvote": {
-      "description": "<b>Secure</b>, <b>gasless</b> and <b>transparent</b> Web3 voting. Allows to create <b>token census, multichain census, anonymous voting</b>, sybil-resistant census with a flexible voting type.",
-      "title": "Onvote"
-    },
-    "farcaster": {
-      "description": "With \"Farcaster.vote\" we allow a simple and social way to vote. Your members only have to vote trough Farcaster in 2 simple clicks.",
-      "title": "Farcaster"
-    },
-    "plugins": {
-      "description": "We implemented a custom DAO gasless voting solution for Aragon DAO, and we can do the same for you!<br/>Start with anonymous gasless vote!",
-      "title": "DAO Plugins"
-    },
-    "others": {
-      "description": "We've build a voting suite allowing an easy integration with our dedicated voting Blockchain via our SDK &amp; UI-Components.<br />Start integrating with us now!",
-      "title": "Others"
-    },
-    "contact": "Contact Us",
-    "try": "Try it now"
   }
 }

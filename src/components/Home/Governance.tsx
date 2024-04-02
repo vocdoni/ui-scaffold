@@ -6,6 +6,7 @@ import farcaster from '/assets/governance-farcaster.png'
 import daoplugins from '/assets/governance-daoplugins.png'
 import others from '/assets/governance-others.png'
 import { Link as ReactRouterLink } from 'react-router-dom'
+import { TFunction } from 'i18next'
 
 interface IGovernanceCardProps {
   buttonText: string
@@ -16,46 +17,46 @@ interface IGovernanceCardProps {
   image: string
 }
 
-const governanceCards = (): IGovernanceCardProps[] => {
-  return [
-    {
-      buttonText: 'web3cards.try',
-      buttonColor: 'web3_cta.onvote',
-      buttonLink: 'processes/create',
-      title: 'web3cards.onvote.title',
-      description: 'web3cards.onvote.description',
-      image: onvote,
-    },
-    {
-      buttonText: 'web3cards.try',
-      buttonColor: 'web3_cta.farcaster',
-      buttonLink: 'https://farcaster.vote',
-      title: 'web3cards.farcaster.title',
-      description: 'web3cards.farcaster.description',
-      image: farcaster,
-    },
-    {
-      buttonText: 'web3cards.try',
-      buttonColor: 'web3_cta.plugins',
-      buttonLink: 'https://app.aragon.org',
-      title: 'web3cards.plugins.title',
-      description: 'web3cards.plugins.description',
-      image: daoplugins,
-    },
-    {
-      buttonText: 'web3cards.contact',
-      buttonColor: 'web3_cta.others',
-      buttonLink: 'mailto:info@vocdoni.org',
-      title: 'web3cards.others.title',
-      description: 'web3cards.others.description',
-      image: others,
-    },
-  ]
-}
-
 const Governance = () => {
   const { t } = useTranslation()
-  const cards = useMemo(governanceCards, [])
+
+  const cards: IGovernanceCardProps[] = useMemo(
+    () => [
+      {
+        buttonText: t('web3cards.onvote.btn'),
+        buttonColor: 'web3_cta.onvote',
+        buttonLink: 'processes/create',
+        title: t('web3cards.onvote.title'),
+        description: t('web3cards.onvote.description'),
+        image: onvote,
+      },
+      {
+        buttonText: t('web3cards.farcaster.btn'),
+        buttonColor: 'web3_cta.farcaster',
+        buttonLink: 'https://farcaster.vote',
+        title: t('web3cards.farcaster.title'),
+        description: t('web3cards.farcaster.description'),
+        image: farcaster,
+      },
+      {
+        buttonText: t('web3cards.plugins.btn'),
+        buttonColor: 'web3_cta.plugins',
+        buttonLink: 'https://app.aragon.org',
+        title: t('web3cards.plugins.title'),
+        description: t('web3cards.plugins.description'),
+        image: daoplugins,
+      },
+      {
+        buttonText: t('web3cards.others.btn'),
+        buttonColor: 'web3_cta.others',
+        buttonLink: 'mailto:info@vocdoni.org',
+        title: t('web3cards.others.title'),
+        description: t('web3cards.others.description'),
+        image: others,
+      },
+    ],
+    [t]
+  )
 
   return (
     <Flex className='voting-type' maxW={'100%'} gap={8} justifyContent={'center'}>
@@ -68,10 +69,10 @@ const Governance = () => {
               </Box>
             </CardHeader>
             <CardBody>
-              <Text>{t(card.title)}</Text>
+              <Text>{card.title}</Text>
               <Text>
                 <Trans
-                  i18nKey={t(card.description)}
+                  i18nKey={card.description}
                   components={{
                     b: <strong />,
                     br: <br />,
@@ -81,7 +82,7 @@ const Governance = () => {
             </CardBody>
             <CardFooter>
               <Button as={ReactRouterLink} variant={'try-it-now'} bgColor={card.buttonColor} to={card.buttonLink}>
-                {t(card.buttonText)}
+                {card.buttonText}
               </Button>
             </CardFooter>
           </Card>

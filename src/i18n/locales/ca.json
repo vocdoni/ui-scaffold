@@ -554,6 +554,28 @@
     "read_less": "Llegeix menys",
     "read_more": "Llegeix més"
   },
+  "web3cards": {
+    "farcaster": {
+      "btn": "Ves a Farcaster.vote",
+      "description": "Amb \"Farcaster.vote\" permetem una manera simple i social de votar. Els teus membres només han de votar a través de Farcaster en 2 simples clics.",
+      "title": "Farcaster"
+    },
+    "onvote": {
+      "btn": "Login",
+      "description": "Sistema Web3 de votació <b>segur</b>, <b>sense taxes</b> i <b>transparent</b>. Permet crear <b>cens de tokens, cens multichain, votació anònima</b> i cens sybil-resistant amb un tipus de votació flexible.",
+      "title": "Onvote"
+    },
+    "others": {
+      "btn": "Contacta'ns",
+      "description": "Hem construït un conjunt de votacions que permet una integració fàcil amb la nostra Blockchain dedicada a votacions a través del nostre SDK &amp; Components UI.<br />Comença a integrar-ho ara!",
+      "title": "Altres"
+    },
+    "plugins": {
+      "btn": "Prova la Aragon App",
+      "description": "Hem implementat una solució de votació sense taxes personalitzada per a la DAO d'Aragon, i podem fer el mateix per a tu!<br/>Comença amb votació anònima sense taxes!",
+      "title": "DAO Plugins"
+    }
+  },
   "welcome": {
     "description": "Per començar, has de registrar el teu compte i el teu SIK (clau d'identitat segura) firmant dues transaccions (és segur i gratuït).",
     "intro": "Amb aquesta dApp pots crear votacions anònimes, segures i verificables.",
@@ -562,25 +584,5 @@
       "sik": "Crear SIK"
     },
     "title": "Benvingut a {{ sitename }}"
-  },
-  "web3cards": {
-    "onvote": {
-      "description": "Sistema Web3 de votació <b>segur</b>, <b>sense taxes</b> i <b>transparent</b>. Permet crear <b>cens de tokens, cens multichain, votació anònima</b> i cens sybil-resistant amb un tipus de votació flexible.",
-      "title": "Onvote"
-    },
-    "farcaster": {
-      "description": "Amb \"Farcaster.vote\" permetem una manera simple i social de votar. Els teus membres només han de votar a través de Farcaster en 2 simples clics.",
-      "title": "Farcaster"
-    },
-    "plugins": {
-      "description": "Hem implementat una solució de votació sense taxes personalitzada per a la DAO d'Aragon, i podem fer el mateix per a tu!<br/>Comença amb votació anònima sense taxes!",
-      "title": "DAO Plugins"
-    },
-    "others": {
-      "description": "Hem construït un conjunt de votacions que permet una integració fàcil amb la nostra Blockchain dedicada a votacions a través del nostre SDK &amp; Components UI.<br />Comença a integrar-ho ara!",
-      "title": "Altres"
-    },
-    "contact": "Contacta'ns",
-    "try": "Prova-ho ara"
   }
 }
