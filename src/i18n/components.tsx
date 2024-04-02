@@ -4,7 +4,7 @@ export const translations = (t: TFunction<string, string>) => ({
   actions: {
     cancel_description: t('cc.actions.cancel_description').toString(),
     cancel: t('cc.actions.cancel').toString(),
-    continue_description: t('cc.actions.cancel_description').toString(),
+    continue_description: t('cc.actions.continue_description').toString(),
     continue: t('cc.actions.continue').toString(),
     end_description: t('cc.actions.end_description').toString(),
     end: t('cc.actions.end').toString(),

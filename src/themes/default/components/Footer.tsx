@@ -1,127 +1,88 @@
-import { Box, Code, Flex, Icon, Img, Link, List, ListItem, Text } from '@chakra-ui/react'
-import { HR } from '@vocdoni/chakra-components'
+import { Box, Flex, Icon, Image, Link, Text } from '@chakra-ui/react'
 import { Trans, useTranslation } from 'react-i18next'
-import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa'
-import logo from '/assets/vocdoni_logo.svg'
+import { FaDiscord, FaGithub } from 'react-icons/fa'
+import { FaXTwitter } from 'react-icons/fa6'
+import vcdLogo from '/assets/logo-classic.svg'
 
 const Footer = () => {
   const { t } = useTranslation()
 
   return (
-    <Box className='site-wrapper' py={{ base: '12px', md: '24px' }}>
-      <Flex flexWrap='wrap' justifyContent={{ base: 'space-around', lg: 'space-between' }} gap={{ base: 8, sm: 5 }}>
-        <Flex order={{ base: 1, lg: 0 }} flexDirection='column' alignItems={{ base: 'center', lg: 'start' }} gap={2}>
-          <Img src={logo} maxW={36} alt='vocdoni icon' />
-        </Flex>
-        <Box
-          flexGrow={0}
-          flexShrink={0}
-          flexBasis={{ base: '100%', md: '45%', lg: 'min-content' }}
-          whiteSpace='nowrap'
-          textAlign={{ base: 'center', lg: 'start' }}
-        >
-          <Text fontWeight='bold'>{t('footer.company').toUpperCase()}</Text>
-          <List>
-            <ListItem>
-              <Link href='https://vocdoni.io' target='_blank'>
-                {' '}
-                {t('footer.homepage')}
-              </Link>
-            </ListItem>
-
-            <ListItem>
-              <Link href='https://vocdoni.io/about' target='_blank'>
-                {' '}
-                {t('footer.about')}
-              </Link>
-            </ListItem>
-
-            <ListItem>
-              <Link href='https://blog.aragon.org/vocdoni/' target='_blank'>
-                {t('footer.blog')}
-              </Link>
-            </ListItem>
-          </List>
-        </Box>
-        <Box
-          flexGrow={0}
-          flexShrink={0}
-          flexBasis={{ base: '100%', md: '45%', lg: 'min-content' }}
-          whiteSpace='nowrap'
-          textAlign={{ base: 'center', lg: 'start' }}
-        >
-          <Text fontWeight='bold'>{t('footer.developers').toUpperCase()}</Text>
-          <List>
-            <ListItem>
-              <Link href='https://developer.vocdoni.io/' target='_blank'>
-                {t('footer.developer_portal')}
-              </Link>
-            </ListItem>
-            <ListItem>
-              <Link href='https://vocdoni.io/api' target='_blank'>
-                {t('footer.vocdoni_api')}
-              </Link>
-            </ListItem>
-
-            <ListItem>
-              <Link href='https://vocdoni.app/' target='_blank'>
-                {t('footer.vocdoni_app')}
-              </Link>
-            </ListItem>
-          </List>
-        </Box>
-        <Box
-          flexGrow={0}
-          flexShrink={0}
-          flexBasis={{ base: '100%', md: '45%', lg: 'min-content' }}
-          whiteSpace='nowrap'
-          textAlign={{ base: 'center', lg: 'start' }}
-        >
-          <Text fontWeight='bold'>{t('footer.resources').toUpperCase()}</Text>
-          <List>
-            <ListItem>
-              <Link href='https://developer.vocdoni.io/get-started/intro' target='_blank'>
-                {t('footer.tutorials')}
-              </Link>
-            </ListItem>
-            <ListItem>
-              <Link href='https://github.com/vocdoni' target='_blank'>
-                {t('footer.repos')}
-              </Link>
-            </ListItem>
-            <ListItem>
-              <Link href='https://chat.vocdoni.io/' target='_blank'>
-                {t('footer.discord')}
-              </Link>
-            </ListItem>
-          </List>
-        </Box>
-        <Box
-          flexGrow={0}
-          flexShrink={0}
-          flexBasis={{ base: '100%', md: '45%', lg: 'min-content' }}
-          whiteSpace='nowrap'
-          textAlign={{ base: 'center', lg: 'start' }}
-        >
-          <Text fontWeight='bold'>{t('footer.contact').toUpperCase()}</Text>
-          <List>
-            <ListItem>
-              <Link href='mailto:info@vocdoni.com'>info@vocdoni.io</Link>
-            </ListItem>
-          </List>
-        </Box>
-      </Flex>
-      <HR bgColor='black' />
+    <>
       <Flex
+        className='site-wrapper'
+        py={{ base: '60px', md: '120px' }}
         flexDirection={{ base: 'column', lg: 'row' }}
-        justifyContent={{ base: 'center', lg: 'space-between' }}
-        alignItems={{ base: 'center', lg: 'start' }}
-        gap={4}
+        gap={{ base: '60px', lg: 0 }}
       >
-        <Code bg='bg_main' textAlign='center'>
-          Copyrights 2023 Vocdoni, Inc. All rights reserved
-        </Code>
-        <Code bg='bg_main' textAlign='center'>
+        <Box flex='1 1 33%'>
+          <Image src={vcdLogo} w='125px' mb='24px' />
+          <Text fontSize='16px' lineHeight='28px' mb='24px' color='gray'>
+            {t('footer.footer_subtitle')}
+          </Text>
+        </Box>
+        <Flex
+          flex='1 1 67%'
+          flexDirection={{ base: 'column', sm2: 'row' }}
+          justifyContent={{ sm2: 'space-between', lg: 'space-around' }}
+          gap={{ base: '30px', sm2: 0 }}
+        >
+          <Flex flexDirection='row' gap='90px'>
+            <Text fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px' display='none'>
+              {t('footer.company')}
+            </Text>
+            <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io' target='_blank'>
+              Vocdoni
+            </Link>
+            <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io/about' target='_blank'>
+              About Us
+            </Link>
+            <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io/contact' target='_blank'>
+              Contact
+            </Link>
+            <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io/api' target='_blank'>
+              SDK
+            </Link>
+            <Link fontWeight='bold' variant='footer' href='https://developer.vocdoni.io' target='_blank'>
+              Developer Portal
+            </Link>
+            <Link fontWeight='bold' variant='footer' href='https://blog.vocdoni.io' target='_blank'>
+              Blog
+            </Link>
+          </Flex>
+          <Flex flexDirection='column' gap='10px' display='none'>
+            <Text fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px'>
+              {t('footer.uses_cases')}
+            </Text>
+            <Link variant='footer'>{t('footer.uses_cases1')}</Link>
+            <Link variant='footer'>{t('footer.uses_cases2')}</Link>
+            <Link variant='footer'>{t('footer.uses_cases3')}</Link>
+            <Link variant='footer'>{t('footer.uses_cases4')}</Link>
+            <Link variant='footer'>{t('footer.uses_cases5')}</Link>
+          </Flex>
+          <Flex flexDirection='column' gap='10px' display='none'>
+            <Text fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px'>
+              {t('footer.demo')}
+            </Text>
+            <Link variant='footer'>{t('footer.demo1')}</Link>
+            <Link variant='footer'>{t('footer.demo2')}</Link>
+            <Link variant='footer'>{t('footer.demo3')}</Link>
+            <Link variant='footer'>{t('footer.demo4')}</Link>
+            <Link variant='footer'>{t('footer.demo5')}</Link>
+            <Link variant='footer'>{t('footer.demo6')}</Link>
+          </Flex>
+        </Flex>
+      </Flex>
+      <Flex
+        className='site-wrapper'
+        flexDirection={{ base: 'column', md: 'row' }}
+        gap={{ base: '20px', md: '10px' }}
+        justifyContent='space-between'
+        alignItems='center'
+        py='24px'
+        borderTop='1px solid rgb(229, 229, 229)'
+      >
+        <Text as='span' color='gray' textAlign='center'>
           <Trans
             i18nKey='footer.terms_and_privacy'
             components={{
@@ -129,23 +90,52 @@ const Footer = () => {
               link2: <Link href='https://aragon.org/privacy-policy' target='_blank' />,
             }}
           />
-        </Code>
-
-        <Flex justifyContent='center' alignItems='center' gap={6} mb={4}>
-          <Link href='https://twitter.com/vocdoni' target='_blank'>
-            <Icon aria-label={t('link.twitter').toString()} as={FaTwitter} w={6} h={6} cursor='pointer' />
+        </Text>
+        <Flex gap='10px'>
+          <Link
+            href='https://twitter.com/vocdoni'
+            target='_blank'
+            display='flex'
+            justifyContent='center'
+            alignItems='center'
+            borderRadius='sm'
+            minW='30px'
+            h='30px'
+            border='1px solid gray'
+          >
+            <Icon aria-label={t('link.twitter').toString()} as={FaXTwitter} w={4} h={4} cursor='pointer' color='gray' />
           </Link>
 
-          <Link href='https://chat.vocdoni.io/' target='_blank'>
-            <Icon aria-label={t('link.discord').toString()} as={FaDiscord} w={6} h={6} cursor='pointer' />
+          <Link
+            href='https://chat.vocdoni.io/'
+            target='_blank'
+            display='flex'
+            justifyContent='center'
+            alignItems='center'
+            borderRadius='sm'
+            minW='30px'
+            h='30px'
+            border='1px solid gray'
+          >
+            <Icon aria-label={t('link.discord').toString()} as={FaDiscord} w={4} h={4} cursor='pointer' color='gray' />
           </Link>
 
-          <Link href='https://github.com/vocdoni' target='_blank'>
-            <Icon aria-label={t('link.github').toString()} as={FaGithub} w={6} h={6} cursor='pointer' />
+          <Link
+            href='https://github.com/vocdoni'
+            target='_blank'
+            display='flex'
+            justifyContent='center'
+            alignItems='center'
+            borderRadius='sm'
+            minW='30px'
+            h='30px'
+            border='1px solid gray'
+          >
+            <Icon aria-label={t('link.github').toString()} as={FaGithub} w={4} h={4} cursor='pointer' color='gray' />
           </Link>
         </Flex>
       </Flex>
-    </Box>
+    </>
   )
 }
 

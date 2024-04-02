@@ -25,6 +25,13 @@ export const colorsBase = {
     dark: '#fafafa',
     dark2: 'rgb(245, 247, 250)',
   },
+
+  cta: {
+    black: '#000000',
+    purple: 'rgb(127, 86, 214)',
+    blue: 'rgb(0, 0, 255)',
+    gray: 'rgb(194, 194, 194)',
+  },
 }
 
 export const colors = {
@@ -196,4 +203,10 @@ export const colors = {
     title: colorsBase.primary.main,
   },
   results_progressbar_bg: colorsBase.white.pure,
+  web3_cta: {
+    onvote: colorsBase.cta.black,
+    farcaster: colorsBase.cta.purple,
+    plugins: colorsBase.cta.blue,
+    others: colorsBase.cta.gray,
+  },
 }

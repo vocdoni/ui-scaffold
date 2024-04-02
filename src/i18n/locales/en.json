@@ -9,7 +9,7 @@
     "verify_vote_on_explorer": "Verify your vote on the explorer",
     "votes_one": "<span>1</span> <text>voter</text>",
     "votes_other": "<span>{{ count }}</span> <text>voters</text>",
-    "voting_anonymous_advice": "Please wait while the anonymous magic 🪄 happens.\nThis can take up to several minutes; don't close the window."
+    "voting_anonymous_advice": "Please wait while the anonymous magic happens.\nThis can take up to several minutes; don't close the window."
   },
   "banner": {
     "start_now": "Create a vote now!",
@@ -18,12 +18,12 @@
     "title": "Secure, verifiable and flexible digital voting"
   },
   "banner_voting_types": {
-    "anonymous_description": "Say goodbye to the high expenses of traditional voting methods. Vocdoni App brings you a more affordable way to conduct elections, cutting down on logistical and administrative costs while maintaining the highest standards of quality and security.",
+    "anonymous_description": "Say goodbye to the high expenses of traditional voting methods. {{app}} brings you a more affordable way to conduct elections, cutting down on logistical and administrative costs while maintaining the highest standards of quality and security.",
     "anonymous_title": "Cost-Effective Voting Solutions",
     "bottom_text": "Privacy should be normal",
-    "flexible_description": "Engagement is key in democratic processes, and our platform is designed to maximize it. With its user-friendly interface and accessibility, Vocdoni App encourages higher participation rates, ensuring a more representative and inclusive voting experience.",
+    "flexible_description": "Engagement is key in democratic processes, and our platform is designed to maximize it. With its user-friendly interface and accessibility, {{app}} encourages higher participation rates, ensuring a more representative and inclusive voting experience.",
     "flexible_title": "Boosted Participation Rates",
-    "token_description": "At the heart of Vocdoni App is our commitment to security. Leveraging cutting-edge cryptographic methods, we ensure that every vote cast is not only secure but fully verifiable. This transparency builds unparalleled trust among participants, crucial for the legitimacy of any election.",
+    "token_description": "At the heart of {{app}} is our commitment to security. Leveraging cutting-edge cryptographic methods, we ensure that every vote cast is not only secure but fully verifiable. This transparency builds unparalleled trust among participants, crucial for the legitimacy of any election.",
     "token_title": "Enhanced Security and Trust"
   },
   "cc": {
@@ -31,6 +31,7 @@
       "cancel": "Cancel the process immediately, not allowing new votes and not counting any results (caution: it cannot be reverted)",
       "cancel_description": "Canceling \"{{ election.title.default }}\"...\nAttention: this action is irreversible and will cancel all the previous votes on it",
       "continue": "Resume the process immediately, in case it has been paused",
+      "continue_description": "Resuming \"{{ election.title.default }}\" voting process...",
       "end": "End the process immediately, preventing new votes to be submitted, and shows the voting results (caution: it cannot be reverted)",
       "end_description": "Ending \"{{ election.title.default }}\" voting process...\nAttention: this action is irreversible and voters will no longer be able to vote.",
       "error_title": "There was some error while executing the transaction",
@@ -129,7 +130,7 @@
   },
   "csp_census": {
     "github": {
-      "error_fetching_users": "",
+      "error_fetching_users": "Error fetching users",
       "selected_users": "Selected users:"
     }
   },
@@ -168,16 +169,30 @@
     "blog": "Blog",
     "company": "Company",
     "contact": "Contact",
+    "demo": "Voting Types",
+    "demo1": "Single Choice",
+    "demo2": "Multiple Choice",
+    "demo3": "Approval Voting",
+    "demo4": "Ranked Voting",
+    "demo5": "Participatory Budgeting",
+    "demo6": "Weighted Voting",
     "developer_portal": "Developers Portal",
     "developers": "Developers",
     "discord": "Discord",
     "follow_us": "Follow us",
+    "footer_subtitle": "The Global Voting Protocol",
     "homepage": "Home",
     "repos": "Open-source Code",
     "resources": "Resources",
     "terms_and_privacy": "<link1>Terms of use</link1> & <link2>Privacy Policy</link2>",
     "text": "<p1>The future</p1><p2>of Web3 voting starts here</p2>",
     "tutorials": "Tutorials",
+    "uses_cases": "Use Cases",
+    "uses_cases1": "AGMs",
+    "uses_cases2": "Elections",
+    "uses_cases3": "Participatory Budgeting",
+    "uses_cases4": "Online Voting",
+    "uses_cases5": "Gated Online Survey",
     "vocdoni_api": "Vocdoni API",
     "vocdoni_app": "Vocdoni APP"
   },
@@ -202,7 +217,7 @@
       "avatar_error": "URL not valid",
       "field_is_required": "This field is required",
       "min_address": "Please, provide at least one address",
-      "min_users_address": "",
+      "min_users_address": "Please, provide at least one address",
       "recipient_address_invalid": "Specified address does not seem to be valid"
     },
     "process_create": {
@@ -263,6 +278,7 @@
         "tokens_placeholder": "Search or paste token address",
         "wallet_address_description": "Create a census of eligible voters providing a list of wallet addresses.",
         "wallet_address_title": "Wallet addresses",
+        "weight": "(Weight)",
         "weighted_voting_description": "When activated, your voting power aligns with your GPS score. If deactivated, each user's vote carries equal weight, set at 1 point.",
         "weighted_voting_title": "GPS-Based Voting Weight"
       },
@@ -371,6 +387,218 @@
     "info": "<text>If you need more, contact to <mailto>info@onvote.app</mailto></text>",
     "title": "Get VOC Tokens"
   },
+  "home": {
+    "benefits": {
+      "card_1": {
+        "description": "Our solution is 10x cheaper, making voting accessible to all and enhancing democracy.",
+        "title": "10x Cheaper"
+      },
+      "card_2": {
+        "description": "Save time and effort with Vocdoni's streamlined processes and reduced operational costs.",
+        "title": "Cost Savings"
+      },
+      "card_3": {
+        "description": "Increase engagement and participation with a user-friendly platform accessible to all, regardless of technical proficiency.",
+        "title": "Enhanced Participation"
+      },
+      "card_4": {
+        "description": "Vote from anywhere, on any device. It's that simple.",
+        "title": "Effortless Participation"
+      },
+      "card_5": {
+        "description": "Rest assured with advanced cryptographic methods ensuring the utmost security, maintaining voter anonymity and vote integrity.",
+        "title": "Unmatched Security"
+      },
+      "card_6": {
+        "description": "Foster trust and transparency with blockchain-powered transparency, offering stakeholders unparalleled visibility into the voting process.",
+        "title": "Auditable & Open-source"
+      },
+      "subtitle_1": "Clients who choose Vocdoni unlock a world of benefits tailored to meet their unique voting needs. With our cutting-edge technology, organizations, communities, and governments experience a seamless transition to digital democracy. Here's how Vocdoni adds value:",
+      "title": "Benefits"
+    },
+    "clients_title": "Trusted by over +100 organizations",
+    "contactus": {
+      "btn": "Contact us",
+      "card_1": {
+        "description": "Explain us your needs and we will craft a personalized solution for your challenges.",
+        "title": "Tailored solutions for your unique needs"
+      },
+      "card_2": {
+        "description": "Vocdoni offers both self-sevice and custom, key in hand solutions tailored for you, .",
+        "title": "We will be with you every step of the way"
+      },
+      "header": "Contact Us",
+      "title": "Let's collaborate to find the perfect solution for you"
+    },
+    "create_process": {
+      "btn": "Try it for free",
+      "helper_1": "Production ready, responsive voting processes",
+      "helper_2": "Free up to 100 voters",
+      "subtitle": "Participation made easy. Vocdoni APP delivers an affordable, easy-to-use, and GDPR-compliant voting experience that anyone can use from anywhere with their PC, laptop, tablet and mobile.",
+      "title": "Secure, Fast, and Verifiable Voting Solution"
+    },
+    "demo": {
+      "btn": "View All Demos",
+      "census_type": {
+        "card_1": "E-Mail (GMail)",
+        "card_3": "Open Census",
+        "radio": "Census / Authentication",
+        "title": "By Census Type"
+      },
+      "description": "Discover the power of Vocdoni through interactive demos, where you can explore different voting scenarios and firsthand experience the seamless transition to digital democracy. Find your desired voting type, test it, and vote with ease.",
+      "header": "Demo",
+      "title": "Test our solution",
+      "use_cases": {
+        "card_1": "AGMs",
+        "card_2": "Elections",
+        "card_3": "Participatory Budgeting",
+        "card_4": "Online Voting",
+        "card_5": "Software Integration",
+        "card_6": "Gated Online Survey",
+        "radio": "Use Cases",
+        "title": "By Use Case"
+      },
+      "voting_type": {
+        "card_1": "Single Choice",
+        "card_2": "Multiple Choices",
+        "card_3": "Approval Voting",
+        "card_4": "Budget Voting",
+        "card_5": "Ranked Voting",
+        "card_6": "Weighted Voting",
+        "radio": "Voting Type",
+        "title": "By Voting Type"
+      }
+    },
+    "faqs": {
+      "faq_1": {
+        "description": "Vocdoni stands out for its seamless user experience, advanced security features, and unparalleled transparency. Our platform utilizes cutting-edge technology such as zero-knowledge proofs and blockchain to ensure secure and anonymous voting while providing a transparent and verifiable process.",
+        "title": "What makes Vocdoni different from other voting platforms?"
+      },
+      "faq_2": {
+        "description": "Yes, Vocdoni strictly adheres to GDPR guidelines, ensuring that user data is handled with the utmost care and confidentiality. Our platform prioritizes data privacy and security at every stage of the voting process.",
+        "title": "Is Vocdoni compliant with data privacy regulations?"
+      },
+      "faq_3": {
+        "description": "Absolutely! Vocdoni offers customization options to align with your organization's branding, ensuring a seamless integration with your existing systems and maintaining a consistent brand experience for voters. Contact us to know more!",
+        "title": "Can Vocdoni be customized to fit our organization's branding?"
+      },
+      "faq_4": {
+        "description": "We offer the `Vocdoni SDK` & `Vocdoni UI Components`, designed for an easy integration with your software or platform. We created them to facilitate the developers work and being able to start seeing results from the day one. Our team of experts will guide you through the integration process to ensure a smooth transition and minimal disruption to your operations.",
+        "title": "How easy is it to integrate Vocdoni with our existing systems?"
+      },
+      "faq_5": {
+        "description": "Vocdoni offers comprehensive support to assist you at every step of your voting journey. From initial setup and customization to ongoing maintenance and troubleshooting, our dedicated support team is here to help you maximize the value of our platform.",
+        "title": "What type of support does Vocdoni provide?"
+      },
+      "faq_6": {
+        "description": "Yes, Vocdoni is equipped to handle elections of any size, from small community votes to large-scale public elections. Our scalable infrastructure ensures reliable performance even during peak voting periods, allowing you to engage voters effectively and efficiently.",
+        "title": "Can Vocdoni handle large-scale elections?"
+      },
+      "faq_7": {
+        "description": "Security is our top priority at Vocdoni. Our platform utilizes advanced cryptographic techniques and blockchain technology to ensure the highest level of security, maintaining vote integrity and protecting voter anonymity. With Vocdoni, you can trust that your voting process is secure and tamper-proof.",
+        "title": "How secure is the Vocdoni platform?"
+      },
+      "faq_8": {
+        "description": "Vocdoni employs advanced cryptographic techniques and blockchain technology to ensure the security and integrity of the voting process. Each vote is recorded as a tamper-proof blockchain transaction, providing transparency and verifiability to all stakeholders. Additionally, Vocdoni's rigorous security measures safeguard against tampering or manipulation, ensuring that every vote is accurately recorded and counted.",
+        "title": "How does Vocdoni ensure the integrity of the voting process?"
+      },
+      "subtitle": "Below you'll find answers to the questions we get asked, gaining clarity and confidence about your digital voting experience.",
+      "title": "Frequently Ask Questions"
+    },
+    "features": {
+      "card_1": {
+        "description": "From simple yes/no referendums to complex ranked-choice elections, Vocdoni supports a wide range of voting types to suit any decision-making process.",
+        "title": "Versatile Voting types"
+      },
+      "card_2": {
+        "description": "Customize every aspect of your voting process, from branding and themes to ballot designs, ensuring a seamless integration with your organization's identity.",
+        "title": "Customization Capabilities"
+      },
+      "card_3": {
+        "description": "With intuitive interfaces and guided onboarding processes, Vocdoni ensures that organizers and voters alike can easily navigate the platform from day one.",
+        "title": "User-Friendly Onboarding"
+      },
+      "card_4": {
+        "description": "Utilizing robust authentication methods such as two-factor authentication, Vocdoni safeguards against unauthorized access and ensures the integrity of each vote.",
+        "title": "Secure Authentication"
+      },
+      "card_5": {
+        "description": "Create custom voter lists (custom census, oAuth, CRMs...), allowing for targeted outreach and tailored voting experiences for different segments of your audience.",
+        "title": "Custom Censuses"
+      },
+      "card_6": {
+        "description": "Customize your voting processes with specific start and end dates, auto-start, secret results until the end, real-time updates, anonymous voting, weighted voting, and ballot customization.",
+        "title": "Flexible Voting options"
+      },
+      "card_7": {
+        "description": "Reach a diverse audience with multi-language support, allowing participants to engage in their preferred language for inclusive and accessible voting experiences.",
+        "title": "Multi-language Support"
+      },
+      "card_8": {
+        "description": "Monitor voting progress and results in real-time, with instant updates and notifications keeping organizers and participants informed throughout the voting process.",
+        "title": "Real-time Updates"
+      },
+      "card_9": {
+        "description": "Enable voters to cast their ballots through various channels, including web browsers, mobiles, tablets, etc., ensuring accessibility and convenience for all participants.",
+        "title": "Multi-device Support"
+      },
+      "header": "Empowering Solutions",
+      "subtitle_1": "Unlock the potential of Vocdoni's feature-rich platform, delivering exceptional value to organizers and voters alike. Seamlessly customize your voting processes, ensure secure and transparent elections, and empower participants with intuitive and accessible options. With Vocdoni APP, experience the power of enhanced engagement, efficiency, and trust in every voting experience.",
+      "title": "Features"
+    },
+    "process": {
+      "description_1": "Vocdoni APP allows you to create your needed voting process in 4 easy steps.",
+      "description_2": "We allow you to configure with one click either if you want anonymous voting, secret results until the end, the voting type, upload the census and much more.",
+      "header": "Process",
+      "step_1": {
+        "description": "Gain total control with our platform's self-service option, offering unmatched flexibility. Need customization or guidance? We've got you covered!",
+        "title": "Start your own voting process"
+      },
+      "step_2": {
+        "description": "You will be guided through the creation process to select your voting type, configure the information, select the needed options & register the participants (census).",
+        "title": "Configure & Publish"
+      },
+      "step_3": {
+        "description": "Voters authenticate and submit their votes seamlessly through our user-friendly flow, designed for universal accessibility across all devices.",
+        "title": "Voting Period"
+      },
+      "step_4": {
+        "description": "As easy as that. Once finished, the results will be automatically computed, published and available to anyone.",
+        "title": "Get the results"
+      },
+      "title": "A simple 4 steps process"
+    },
+    "solutions": {
+      "card_1": {
+        "description": "Streamline decision-making with secure, transparent voting. Engage members effectively, save on administrative costs, and foster a culture of participation and transparency.",
+        "title": "For Organizations"
+      },
+      "card_2": {
+        "description": " Enhance community involvement with an easy-to-use platform that encourages participation and gives every member a voice.",
+        "title": "For Communities"
+      },
+      "card_3": {
+        "description": "Increase voter turnout, reduce electoral costs, and enhance citizen trust with a verifiable, secure voting process.",
+        "title": "For Governments and Public Institutions"
+      },
+      "header": "Embrace Change with Vocdoni",
+      "img_card_1": "Organizations",
+      "img_card_2": "Communities",
+      "img_card_3": "Governments and Public Institutions",
+      "subtitle_1": "We offered solutions to wide range of uses-cases, demonstrating Vocdoni App versatility.",
+      "title": "Our solution fits your needs"
+    },
+    "support": {
+      "btn_contact": "Contact with us",
+      "btn_watch": "Schedule a call",
+      "header": "Let's Try! Get Free Support",
+      "helper_1": "Free call with our experts",
+      "helper_2": "Reduce costs & working hours",
+      "helper_3": "Competitive costs",
+      "subtitle": "We can help you to create your perfect voting experience",
+      "title": "Start giving voice to your community"
+    }
+  },
   "home_features": {
     "anonymous_description": "Unlock true democracy with zkSNARKs! Participants can cast their votes with complete anonymity, ensuring every voice is heard without compromise.",
     "anonymous_title": "Anonymous",
@@ -416,6 +644,9 @@
     "organization": "Edit Organization",
     "privacy": "Privacy",
     "terms": "Terms",
+    "vocdoni": {
+      "login": "Open App"
+    },
     "wallet": "Wallet"
   },
   "meta": {
@@ -448,6 +679,7 @@
     "census": "Census",
     "census_strategies": {
       "csp": "CSP",
+      "gitcoin": "Gitcoin",
       "spreadsheet": "CSV/Spreadsheet",
       "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
       "web3": "Web3 addresses"
@@ -497,6 +729,8 @@
       "text": "<p>We've securely processed and stored your vote on our Blockchain. Click <verify>here</verify> to verify your vote.</p>",
       "title": "Vote submitted!"
     },
+    "total_census_size": "{{maxCensusSize}} allowed voters of {{censusSize}} total in census",
+    "total_census_size_tooltip": "The maximum number of voters allowed is limited to {{maxCensusSize}} from a census of {{censusSize}} ({{percent}}% of the total). Only the first {{maxCensusSize}} voters can vote.",
     "voters": "Voters"
   },
   "process_actions": {
@@ -590,30 +824,13 @@
     "recovery": "Account recovery"
   },
   "retry": "Retry",
-  "roadmap": {
-    "census_description": "Create a trust-less off-chain zk-friendly census from an Ethereum block snapshot, with on-chain verification.",
-    "census_title": "zkCensus:",
-    "chainlink_description": "Enable automatic execution with optimistic support.",
-    "chainlink_title": "Chainlink Integration:",
-    "complex_startegies_description": "Integrate any token from any blockchain using a blend of logic and algebraic operations, out of the box. I.e.",
-    "complex_startegies_title": "Complex Strategies:",
-    "execution_description": "Submit the final proof on-chain for binding execution.",
-    "execution_title": "Execution:",
-    "milestone1": "Milestone 1: Flexible Gasless Governance",
-    "milestone2": "Milestone 2: Anonymous voting with binding execution",
-    "private_description": "Only display voting proposal content to your community members.",
-    "private_title": "Private Election Metadata:",
-    "registry_description": "A global on-chain registry for zk (zero-knowledge) identities.",
-    "registry_title": "zkRegistry:",
-    "rollup_description": "Consolidate all votes into a single, secure zkProof using custom zkRollup technology",
-    "rollup_title": "zkRollup:",
-    "social_census_desciption": "Enhance your census with social identities from platforms like Github or Twitter. Include Sybil resistance mechanisms such as Holonym or Proof-of-Humanity.",
-    "social_census_title": "Social Census:",
-    "title": "<p1>Roadmap 2024</p1> <p2>What's next?</p2>",
-    "versatil_description": "Whether it’s simple, ranged, or quadratic voting, Onvote supports multiple voting methods to adapt to diverse community needs.",
-    "versatil_title": "Versatile Voting Methods:",
-    "voting_description": "Facilitate anonymous, off-chain (gasless) voting for any eligible voter using the Vocdoni p2p network.",
-    "voting_title": "zkVoting:"
+  "share": {
+    "copy": "Copy",
+    "election_share_btn_text": "Share",
+    "election_share_text": "Look at this election!",
+    "icon_title": "share link",
+    "mail_subject": "Voting platform",
+    "modal_title": "Share with friends"
   },
   "uploader": {
     "click_or_drag_and_drop": "<p1>Upload or drag and drop the voter list here</p1><p2>(Allowed formats: CSV, XLSX, and ODS)</p2>",
@@ -622,6 +839,29 @@
   "use_read_more": {
     "read_less": "Read less",
     "read_more": "Read more"
+  },
+  "web3cards": {
+    "farcaster": {
+      "btn": "Go to Farcaster.vote",
+      "description": "With <b>\"Farcaster.vote\"</b> we allow a simple and social way to vote. Your members only have to vote trough Farcaster in 2 simple clicks. Try creating your farcaster vote frame.",
+      "title": "Farcaster"
+    },
+    "onvote": {
+      "btn": "Create",
+      "description": "<b>Secure</b>, <b>gasless</b> and <b>transparent</b> Web3 voting. Allows to create <b>token census, multichain census, anonymous voting</b>, sybil-resistant census with a flexible voting type.",
+      "title": "Onvote"
+    },
+    "others": {
+      "btn": "Contact Us",
+      "description": "We've build a voting suite allowing an easy integration with our dedicated voting Blockchain via our SDK & UI-Components.<br/><br />Start integrating with us now!",
+      "title": "Others"
+    },
+    "plugins": {
+      "btn": "Try Aragon App",
+      "description": "We implemented a custom <b>DAO gasless voting solution</b> for Aragon DAO, and we can do the same for you!<br/><br/>Check gasless DAO voting!",
+      "title": "DAO Plugins"
+    },
+    "title": "Our Web3 governance solutions"
   },
   "welcome": {
     "description": "To access all its features, including anonymous voting, you must create an account on the Vocdoni Protocol and register your Secret Identity Key (SIK) by signing two transactions. It's secure and free.",

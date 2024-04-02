@@ -493,7 +493,15 @@ const getGitcoinStrategyId = async (form: CensusGitcoinValues, c3client: Vocdoni
     chainID: scoreToken.chainID,
     minBalance: form.passportScore.toString(),
   }
-  predicate = `${scoreToken.symbol} ${predicate}`
+  if (predicate.length == 0) {
+    if (form.gpsWeighted) {
+      predicate = `${scoreToken.symbol}`
+    } else {
+      predicate = `${scoreToken.symbol} OR ${scoreToken.symbol}`
+    }
+  } else {
+    predicate = `${scoreToken.symbol} ${predicate}`
+  }
   return await c3client.createStrategy('gitcoin_onvote_' + Date.now(), predicate, strategyTokens)
 }
 
