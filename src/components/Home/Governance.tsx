@@ -63,7 +63,7 @@ const Governance = () => {
         image: others,
       },
     ],
-    [t]
+    [t, isConnected, openConnectModal]
   )
 
   return (
