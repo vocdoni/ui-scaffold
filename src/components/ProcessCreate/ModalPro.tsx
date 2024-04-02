@@ -44,6 +44,9 @@ const ModalPro = ({ isOpen, onClose, reason }: { isOpen: boolean; onClose: () =>
     message: t('form.error.field_is_required'),
   }
 
+  const emailjsEnabled =
+    import.meta.env.EMAILJS_PUBLIC_ID && import.meta.env.EMAILJS_PUBLIC_ID && import.meta.env.EMAILJS_TEMPLATE_ID
+
   useEffect(() => {
     setValue('reason', reason)
   }, [reason])
@@ -86,7 +89,7 @@ const ModalPro = ({ isOpen, onClose, reason }: { isOpen: boolean; onClose: () =>
           </Box>
 
           <Flex flexDirection={{ base: 'column', lg: 'row' }} gap={{ base: 10, lg: 0 }}>
-            {import.meta.env.EMAILJS_PUBLIC_ID && (
+            {emailjsEnabled && (
               <>
                 <Flex
                   as='form'
