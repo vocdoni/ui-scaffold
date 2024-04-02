@@ -149,8 +149,8 @@ const ProcessHeader = () => {
                 color='white'
                 placement='top'
                 label={t('process.total_census_size_tooltip', {
-                  max: censusInfo?.size,
-                  count: election?.maxCensusSize,
+                  censusSize: censusInfo?.size,
+                  maxCensusSize: election?.maxCensusSize,
                   percent:
                     censusInfo?.size && election?.maxCensusSize
                       ? Math.round((election?.maxCensusSize / censusInfo?.size) * 100)
@@ -159,8 +159,8 @@ const ProcessHeader = () => {
               >
                 <Text>
                   {t('process.total_census_size', {
-                    max: censusInfo?.size,
-                    count: election?.maxCensusSize,
+                    censusSize: censusInfo?.size,
+                    maxCensusSize: election?.maxCensusSize,
                   })}
                 </Text>
               </Tooltip>
