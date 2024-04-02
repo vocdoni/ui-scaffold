@@ -23,6 +23,7 @@ export const colorsBase = {
     dark: '#fafafa',
     dark2: 'rgb(245, 247, 250)',
   },
+  yellow: '#FFB116',
 }
 
 export const colors = {
@@ -52,6 +53,34 @@ export const colors = {
   },
 
   error: colorsBase.red,
+  footer_link: colorsBase.gray.dark,
+
+  home: {
+    benefits: {
+      dark_bg: colorsBase.primary.main,
+      dark_color: colorsBase.white.pure,
+      light_bg: colorsBase.white.pure,
+      light_color: colorsBase.primary.main,
+    },
+    demo: {
+      icon: colorsBase.gray.dark,
+      radio: colorsBase.primary.main,
+    },
+    icon_bg: colorsBase.primary.main,
+    section: {
+      bg: colorsBase.gray.light,
+      title: colorsBase.primary.main,
+    },
+    support: {
+      bg: colorsBase.primary.main,
+      title: colorsBase.yellow,
+    },
+    step: {
+      icon: colorsBase.white.pure,
+      icon_bg: colorsBase.primary.main,
+      title: colorsBase.primary.main,
+    },
+  },
 
   link: {
     primary: colorsBase.primary.main,
