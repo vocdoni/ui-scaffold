@@ -96,6 +96,7 @@
     "description": "Selecciona cómo los votantes se autenticarán e identificarán.",
     "gitcoin_description": "Con este censo, solo los votantes con Gitcoin Passport podrán votar, proporcionando un método de resistencia contra sybil-attack. Puedes definir la puntuación general (GPS) y diferentes stamps que el votante debe tener.",
     "gitcoin_title": "Gitcoin Passport",
+    "pro": "",
     "request_custom_token": "Solicitar Tokens Personalizados",
     "social_address_title": "Usuarios de Github",
     "spreadsheet_title": "Datos personalizados",
@@ -227,6 +228,10 @@
         "anonymous": {
           "description": "La identidad de los votantes será completamente anonimizada, incluyendo para el organizador. Cada votante deberá establecer una contraseña para garantizar la confidencialidad de su identidad.",
           "title": "Anónimo"
+        },
+        "customization": {
+          "description": "Selecciona tu tema deseado, colores, textos y añade tu marca en la página de votación. También hay opciones más complejas disponibles.",
+          "title": "Personalización"
         },
         "overwrite": {
           "description": "Si se selecciona, los votantes tendrán la opción de corregir su voto una vez.",
@@ -748,7 +753,19 @@
       "legal_note": "Aviso legal: "
     },
     "census": {
-      "mandatory_max_census_size": "Debe haber al menos un votante",
+      "crm_description": "Si ya tienes tu propio CRM, podemos integrarlo para permitir que tu comunidad vote con las mismas credenciales.",
+      "crm_title": "Integración CRM",
+      "database_description": "Integra la votación directamente con los usuarios en tu base de datos. Una manera sencilla de votar para tu comunidad.",
+      "database_title": "Base de Datos",
+      "digital_certificate_description": "Apoyamos diferentes certificados digitales, para obtener la máxima seguridad y validación de identidad.",
+      "digital_certificate_title": "Certificado Digital",
+      "email_description": "Los votantes validarán su correo electrónico autenticándose en su cuenta de Google Mail (OAuth).",
+      "email_title": "Por Correo Electrónico",
+      "mandatory_max_census_size": "Al menos un votante debe ser seleccionado",
+      "others_description": "¿Necesitas una solución específica? Podemos ayudarte con una integración personalizada que se adapte a tus necesidades.",
+      "others_title": "Otros",
+      "phone_description": "Los votantes tendrán que validar su teléfono móvil, ingresando su número y el código de verificación que recibirán.",
+      "phone_title": "Por Número de Teléfono",
       "total_tokens_one": "1 token",
       "total_tokens_many": "",
       "total_tokens_other": "{{ count }} tokens"
@@ -760,8 +777,54 @@
     },
     "creation_steps_description": "Necesitas firmar las transacciones para crear el proceso de votación en la cadena de bloques de Vocdoni. No cierres esta ventana.",
     "creation_steps_title": "Progreso",
+    "modal_pro": {
+      "description": "<p>La opción seleccionada no está disponible en el plan de autoatención (gratuito). Para poder utilizarla, necesitas comprar el <bold>plan de proyecto personalizado</bold></p>",
+      "error": "Error sending email, try it later or contact us at <email>info@vocdoni.org</email>",
+      "form_btn": "ENVIAR",
+      "form_description": "Puedes proporcionarnos tu información de contacto y nosotros te contactaremos para hablar sobre tus necesidades",
+      "form_email_label": "Correo electrónico:",
+      "form_email_placeholder": "Tu correo electrónico",
+      "form_name_label": "Nombre:",
+      "form_name_placeholder": "Tu nombre",
+      "scheudle_btn": "RESERVAR AHORA",
+      "scheudle_description": " O puedes reservar directamente una llamada rápida (15 minutos) con nuestros expertos para ayudarte a crear tu proyecto de votación deseado",
+      "success": "Correo enviado correctamente",
+      "title": "Contáctanos"
+    },
     "preview": {
       "accuracy": "Precisión de los Saldos de Censo Anónimo: "
+    },
+    "question": {
+      "approval_voting": {
+        "description": "Los votantes pueden votar por tantos candidatos como aprueben, y el candidato con más votos gana.",
+        "title": "Votación por Aprobación"
+      },
+      "borda_count": {
+        "description": "Los votantes clasifican a los candidatos, y se asignan puntos en función de su clasificación. El candidato con más puntos gana.",
+        "title": "<p>Elección por Rango</p><p>(Cuenta Borda)</p>"
+      },
+      "multi_choice": {
+        "description": "Los votantes eligen un número predefinido de opciones, y la opción con más votantes gana.",
+        "title": "<p>Votación Plurinominal</p><p>(Elección Múltiple)</p>"
+      },
+      "others": {
+        "description": "",
+        "title": ""
+      },
+      "participation_budgeting": {
+        "description": "Los votantes pueden distribuir un número predefinido entre todas las opciones/proyectos (que representan el presupuesto total disponible) como deseen.",
+        "title": "Presupuesto Participativo"
+      },
+      "single_choice": {
+        "description": "Los votantes eligen una opción/candidato, y la opción/candidato con más votos gana.",
+        "title": "<p>Votación Plurinominal</p><p>(Elección Individual)</p>"
+      },
+      "voting_type": {
+        "description": "Selecciona el tipo de votación para esta elección. Si no encuentras lo que necesitas, puedes contactarnos.",
+        "pro": "",
+        "pro_census": "",
+        "title": "Tipos de Votación"
+      }
     }
   },
   "rainbow": {

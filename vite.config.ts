@@ -39,6 +39,9 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.CSP_PUBKEY': JSON.stringify(process.env.CSP_PUBKEY),
       'import.meta.env.CSP_URL': JSON.stringify(process.env.CSP_URL),
       'import.meta.env.DEFAULT_CENSUS_SIZE': JSON.stringify(defaultCensusSize),
+      'import.meta.env.EMAILJS_SERVICE_ID': JSON.stringify(process.env.EMAILJS_SERVICE_ID),
+      'import.meta.env.EMAILJS_TEMPLATE_ID': JSON.stringify(process.env.EMAILJS_TEMPLATE_ID),
+      'import.meta.env.EMAILJS_PUBLIC_ID': JSON.stringify(process.env.EMAILJS_PUBLIC_ID),
     },
     plugins: [
       tsconfigPaths(),
