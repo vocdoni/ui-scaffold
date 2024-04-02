@@ -19,7 +19,6 @@ import {
 import { Button } from '@vocdoni/chakra-components'
 import { ElectionProvider, errorToString, useClient } from '@vocdoni/react-providers'
 import {
-  CensusType as VocdoniCensusType,
   CspCensus,
   Election,
   ElectionCreationSteps,
@@ -35,6 +34,7 @@ import {
   StrategyToken,
   UnpublishedElection,
   VocdoniCensus3Client,
+  CensusType as VocdoniCensusType,
   WeightedCensus,
 } from '@vocdoni/sdk'
 import { useEffect, useMemo, useState } from 'react'
@@ -42,6 +42,9 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { IElection, IElectionWithTokenResponse } from 'vocdoni-admin-sdk'
+import { StampsUnionTypes } from '~components/ProcessCreate/Census/Gitcoin/StampsUnionType'
+import { CensusType } from '~components/ProcessCreate/Census/TypeSelector'
+import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
 import { useCspAdmin } from '../Census/Csp/use-csp'
 import Preview from '../Confirm/Preview'
 import { CostPreview } from '../CostPreview'
@@ -50,9 +53,6 @@ import { Web3Address } from '../StepForm/CensusWeb3'
 import { Option } from '../StepForm/Questions'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 import Wrapper from './Wrapper'
-import { StampsUnionTypes } from '~components/ProcessCreate/Census/Gitcoin/StampsUnionType'
-import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
-import { CensusType } from '~components/ProcessCreate/Census/TypeSelector'
 
 export const Confirm = () => {
   const { env, client, account, fetchAccount } = useClient()
@@ -343,11 +343,9 @@ const getCensus = async (env: EnvOptions, form: StepsFormValues, salt: string) =
       })
 
       const retryTime = 5000
-      let attempts = form.timeToCreateCensus / retryTime
-
       c3client.queueWait.retryTime = retryTime
       // clamp attempts between 20 and 100
-      c3client.queueWait.attempts = Math.min(Math.max(Math.ceil(attempts), 20), 100)
+      c3client.queueWait.attempts = 100
 
       if (form.censusType === 'gitcoin') {
         // Calculate the strategy id
@@ -355,8 +353,7 @@ const getCensus = async (env: EnvOptions, form: StepsFormValues, salt: string) =
 
         // Once strategy is created, we got the stimation again to update the awaiting time
         const { timeToCreateCensus } = await c3client.getStrategyEstimation(strategyID, form.electionType.anonymous)
-        attempts = timeToCreateCensus / retryTime
-        c3client.queueWait.attempts = Math.min(Math.max(Math.ceil(attempts), 20), 100)
+        c3client.queueWait.attempts = 100
 
         // Create the census
         const census = await c3client.createCensus(strategyID, form.electionType.anonymous)
@@ -497,7 +494,7 @@ const getGitcoinStrategyId = async (form: CensusGitcoinValues, c3client: Vocdoni
     if (form.gpsWeighted) {
       predicate = `${scoreToken.symbol}`
     } else {
-      predicate = `${scoreToken.symbol} OR ${scoreToken.symbol}`
+      predicate = `${scoreToken.symbol} AND ${scoreToken.symbol}`
     }
   } else {
     predicate = `${scoreToken.symbol} ${predicate}`
