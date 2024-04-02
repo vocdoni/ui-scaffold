@@ -35,11 +35,17 @@ const ProcessHeader = () => {
   )
   const strategy = useStrategy()
 
+  // Get the census info to show the total size if the maxCensusSize is less than the total size
   useEffect(() => {
     ;(async () => {
-      if (!election?.census?.censusId || !client) return
-      const censusInfo: CensusInfo = await client.fetchCensusInfo(election.census.censusId)
-      setCensusInfo(censusInfo)
+      try {
+        if (!election?.census?.censusId || !client) return
+        const censusInfo: CensusInfo = await client.fetchCensusInfo(election.census.censusId)
+        setCensusInfo(censusInfo)
+      } catch (e) {
+        // If the census info is not available, just ignore it
+        setCensusInfo(undefined)
+      }
     })()
   }, [election, client])
 
