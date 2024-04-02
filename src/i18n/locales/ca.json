@@ -563,6 +563,14 @@
     "voting_description": "Facilitar la votació anònima, fora de la cadena (sense gasos) per a qualsevol votant eligible mitjançant la xarxa p2p de Vocdoni.",
     "voting_title": "zkVoting:"
   },
+  "share": {
+    "copy": "Copia",
+    "election_share_btn_text": "Comparteix",
+    "election_share_text": "Mira aquesta elecció!",
+    "icon_title": "compartir enllaç",
+    "mail_subject": "Plataforma de votació",
+    "modal_title": "Comparteix amb amics"
+  },
   "uploader": {
     "click_or_drag_and_drop": "<p1>Puja o arrossega i deixa anar aquí la llista de votants</p1><p2>(Formats permesos: CSV, XLSX i ODS)</p2>",
     "drop_here": "Deixa anar aquí"

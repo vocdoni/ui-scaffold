@@ -563,6 +563,14 @@
     "voting_description": "Facilitar la votación anónima, fuera de la cadena (sin gas) para cualquier votante elegible utilizando la red p2p de Vocdoni.",
     "voting_title": "zkVoting:"
   },
+  "share": {
+    "copy": "Copiar",
+    "election_share_btn_text": "Comparte",
+    "election_share_text": "¡Mira esta elección!",
+    "icon_title": "compartir enlace",
+    "mail_subject": "Plataforma de votación",
+    "modal_title": "Compartir con amigos"
+  },
   "uploader": {
     "click_or_drag_and_drop": "<p1>Sube o arrastra y suelta aqui la lista de votantes</p1><p2>(Formap permitidos: CSV, XLSX y ODS)</p2>",
     "drop_here": "Suelta aqui"
