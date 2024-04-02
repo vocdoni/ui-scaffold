@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   Flex,
-  Icon,
   Link,
   ListItem,
   Modal,
@@ -29,12 +28,12 @@ import { ElectionResultsTypeNames, ElectionStatus, PublishedElection } from '@vo
 import { useEffect, useRef, useState } from 'react'
 import { FieldValues } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { FaFacebook, FaReddit, FaTelegram, FaTwitter } from 'react-icons/fa'
 import ReactPlayer from 'react-player'
 import ProcessAside, { VoteButton } from './Aside'
 import Header from './Header'
 import confirmImg from '/assets/spreadsheet-confirm-modal.jpg'
 import successImg from '/assets/spreadsheet-success-modal.jpg'
+import { FacebookShare, RedditShare, TelegramShare, TwitterShare } from '~components/Share'
 
 export const ProcessView = () => {
   const { t } = useTranslation()
@@ -180,12 +179,6 @@ const SuccessVoteModal = () => {
   const verify = environment.verifyVote(env, voted)
   const url = encodeURIComponent(document.location.href)
   const caption = t('process.share_caption', { title: election?.title.default })
-  const linked = encodeURIComponent(`${caption} — ${document.location.href}`)
-
-  const twitter = `https://twitter.com/intent/tweet?text=${linked}`
-  const facebook = `https://www.facebook.com/sharer/sharer.php?u=${url}`
-  const telegram = `https://t.me/share/url?url=${url}&text=${caption}`
-  const reddit = `https://reddit.com/submit?url=${url}&title=${caption}`
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -206,48 +199,16 @@ const SuccessVoteModal = () => {
           />
           <UnorderedList listStyleType='none' display='flex' justifyContent='center' gap={6} mt={6} mb={2} ml={0}>
             <ListItem>
-              <Link
-                href={twitter}
-                target='_blank'
-                title={t('process.share_title', { network: 'twitter' })}
-                rel='noopener noreferrer'
-                variant='button-ghost'
-              >
-                <Icon as={FaTwitter} w={6} h={6} cursor='pointer' />
-              </Link>
+              <TwitterShare url={url} caption={caption} />
             </ListItem>
             <ListItem>
-              <Link
-                href={facebook}
-                target='_blank'
-                title={t('process.share_title', { network: 'facebook' })}
-                rel='noopener noreferrer'
-                variant='button-ghost'
-              >
-                <Icon as={FaFacebook} w={6} h={6} cursor='pointer' />
-              </Link>
+              <FacebookShare url={url} caption={caption} />
             </ListItem>
             <ListItem>
-              <Link
-                href={telegram}
-                target='_blank'
-                title={t('process.share_title', { network: 'telegram' })}
-                rel='noopener noreferrer'
-                variant='button-ghost'
-              >
-                <Icon as={FaTelegram} w={6} h={6} cursor='pointer' />
-              </Link>
+              <TelegramShare url={url} caption={caption} />
             </ListItem>
             <ListItem>
-              <Link
-                href={reddit}
-                target='_blank'
-                title={t('process.share_title', { network: 'reddit' })}
-                rel='noopener noreferrer'
-                variant='button-ghost'
-              >
-                <Icon as={FaReddit} w={6} h={6} cursor='pointer' />
-              </Link>
+              <RedditShare url={url} caption={caption} />
             </ListItem>
           </UnorderedList>
         </ModalBody>

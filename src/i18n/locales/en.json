@@ -554,6 +554,14 @@
     "voting_description": "Facilitate anonymous, off-chain (gasless) voting for any eligible voter using the Vocdoni p2p network.",
     "voting_title": "zkVoting:"
   },
+  "share": {
+    "copy": "Copy",
+    "election_share_btn_text": "Share",
+    "election_share_text": "Look at this election!",
+    "icon_title": "share link",
+    "mail_subject": "Voting platform",
+    "modal_title": "Share with friends"
+  },
   "uploader": {
     "click_or_drag_and_drop": "<p1>Upload or drag and drop the voter list here</p1><p2>(Allowed formats: CSV, XLSX, and ODS)</p2>",
     "drop_here": "Drop here"
