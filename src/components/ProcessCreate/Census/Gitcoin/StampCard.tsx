@@ -58,7 +58,7 @@ export const StampPreviewCard: React.FC<StampInnerBoxProps> = (props) => {
       display={'flex'}
       flexDirection={'row'}
       w='full'
-      p={4}
+      p={{ base: 2, lg: 4 }}
       boxShadow='var(--box-shadow)'
       fontWeight={'bold'}
       fontSize={'sm'}
