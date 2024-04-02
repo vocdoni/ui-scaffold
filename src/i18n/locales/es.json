@@ -557,7 +557,7 @@
   "web3cards": {
     "farcaster": {
       "btn": "Ir a Farcaster.vote",
-      "description": "Con \"Farcaster.vote\" ofrecemos una manera simple y social de votar. Tus miembros solo tienen que votar a través de Farcaster en 2 simples clics.",
+      "description": "Con <b>\"Farcaster.vote\"</b> ofrecemos una manera simple y social de votar. Tus miembros solo tienen que votar a través de Farcaster en 2 simples clics. Prueba creando una votación con Farcaster frame",
       "title": "Farcaster"
     },
     "onvote": {
@@ -567,12 +567,12 @@
     },
     "others": {
       "btn": "Contáctanos",
-      "description": "Hemos construido un conjunto de votaciones que permite una integración fácil con nuestra Blockchain dedicada a votaciones a través de nuestro SDK &amp; Componentes UI.<br />¡Empieza a integrarlo ahora!",
+      "description": "Hemos construido un conjunto de votaciones que permite una integración fácil con nuestra Blockchain dedicada a votaciones a través de nuestro SDK &; Componentes UI.<br/><br/>¡Empieza a integrarlo ahora!",
       "title": "Otros"
     },
     "plugins": {
       "btn": "Prueba la Aragon App",
-      "description": "Hemos implementado una solución de votación sin tasas personalizada para la DAO de Aragón, ¡y podemos hacer lo mismo por ti!<br/>Empieza con votación anónima sin tasas!",
+      "description": "Hemos implementado una <b>solución de votación sin tasas personalizada para la DAO</b> de Aragon, ¡y podemos hacer lo mismo por ti!<br/><br/>Empieza con votación sin tasas!",
       "title": "Complementos DAO"
     }
   },

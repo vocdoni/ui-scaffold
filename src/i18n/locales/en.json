@@ -548,7 +548,7 @@
   "web3cards": {
     "farcaster": {
       "btn": "Go to Farcaster.vote",
-      "description": "With \"Farcaster.vote\" we allow a simple and social way to vote. Your members only have to vote trough Farcaster in 2 simple clicks.",
+      "description": "With <b>\"Farcaster.vote\"</b> we allow a simple and social way to vote. Your members only have to vote trough Farcaster in 2 simple clicks. Try creating your farcaster vote frame.",
       "title": "Farcaster"
     },
     "onvote": {
@@ -558,12 +558,12 @@
     },
     "others": {
       "btn": "Contact Us",
-      "description": "We've build a voting suite allowing an easy integration with our dedicated voting Blockchain via our SDK &amp; UI-Components.<br />Start integrating with us now!",
+      "description": "We've build a voting suite allowing an easy integration with our dedicated voting Blockchain via our SDK & UI-Components.<br/><br />Start integrating with us now!",
       "title": "Others"
     },
     "plugins": {
       "btn": "Try Aragon App",
-      "description": "We implemented a custom DAO gasless voting solution for Aragon DAO, and we can do the same for you!<br/>Start with anonymous gasless vote!",
+      "description": "We implemented a custom <b>DAO gasless voting solution</b> for Aragon DAO, and we can do the same for you!<br/><br/>Check gasless DAO voting!",
       "title": "DAO Plugins"
     }
   },
