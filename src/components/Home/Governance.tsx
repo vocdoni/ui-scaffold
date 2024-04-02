@@ -59,36 +59,49 @@ const Governance = () => {
   )
 
   return (
-    <Flex className='voting-type' maxW={'100%'} gap={8} justifyContent={'center'}>
-      {cards.map((card, i) => {
-        return (
-          <Card key={i} variant='image-card'>
-            <CardHeader>
-              <Box>
-                <Img src={card.image} position='absolute' />
-              </Box>
-            </CardHeader>
-            <CardBody>
-              <Text>{card.title}</Text>
-              <Text>
-                <Trans
-                  i18nKey={card.description}
-                  components={{
-                    b: <strong />,
-                    br: <br />,
-                  }}
-                />
-              </Text>
-            </CardBody>
-            <CardFooter>
-              <Button as={ReactRouterLink} variant={'try-it-now'} bgColor={card.buttonColor} to={card.buttonLink}>
-                {card.buttonText}
-              </Button>
-            </CardFooter>
-          </Card>
-        )
-      })}
-    </Flex>
+    <>
+      <Text
+        as='h1'
+        fontSize={{ base: '25px', lg: '35px' }}
+        textAlign='center'
+        lineHeight='44px'
+        fontFamily='pixeloidsans'
+        fontWeight={'bold'}
+        mb={14}
+      >
+        {t('web3cards.title')}
+      </Text>
+      <Flex className='voting-type' maxW={'100%'} gap={8} justifyContent={'center'}>
+        {cards.map((card, i) => {
+          return (
+            <Card key={i} variant='image-card'>
+              <CardHeader>
+                <Box>
+                  <Img src={card.image} position='absolute' />
+                </Box>
+              </CardHeader>
+              <CardBody>
+                <Text>{card.title}</Text>
+                <Text>
+                  <Trans
+                    i18nKey={card.description}
+                    components={{
+                      b: <strong />,
+                      br: <br />,
+                    }}
+                  />
+                </Text>
+              </CardBody>
+              <CardFooter>
+                <Button as={ReactRouterLink} variant={'try-it-now'} bgColor={card.buttonColor} to={card.buttonLink}>
+                  {card.buttonText}
+                </Button>
+              </CardFooter>
+            </Card>
+          )
+        })}
+      </Flex>
+    </>
   )
 }
 

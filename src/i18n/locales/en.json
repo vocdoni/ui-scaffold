@@ -565,7 +565,8 @@
       "btn": "Try Aragon App",
       "description": "We implemented a custom <b>DAO gasless voting solution</b> for Aragon DAO, and we can do the same for you!<br/><br/>Check gasless DAO voting!",
       "title": "DAO Plugins"
-    }
+    },
+    "title": "Our Web3 governance solutions"
   },
   "welcome": {
     "description": "To access all its features, including anonymous voting, you must create an account on the Vocdoni Protocol and register your Secret Identity Key (SIK) by signing two transactions. It's secure and free.",

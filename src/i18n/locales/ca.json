@@ -574,7 +574,8 @@
       "btn": "Prova la Aragon App",
       "description": "Hem implementat una <b>solució de votació sense taxes personalitzada per a la DAO</b> d'Aragon, i podem fer el mateix per a tu!<br/><br/>Comença amb votació sense taxes!",
       "title": "DAO Plugins"
-    }
+    },
+    "title": "Les nostres solucions de governança Web3"
   },
   "welcome": {
     "description": "Per començar, has de registrar el teu compte i el teu SIK (clau d'identitat segura) firmant dues transaccions (és segur i gratuït).",

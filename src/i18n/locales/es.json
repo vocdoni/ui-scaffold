@@ -574,7 +574,8 @@
       "btn": "Prueba la Aragon App",
       "description": "Hemos implementado una <b>solución de votación sin tasas personalizada para la DAO</b> de Aragon, ¡y podemos hacer lo mismo por ti!<br/><br/>Empieza con votación sin tasas!",
       "title": "Complementos DAO"
-    }
+    },
+    "title": "Nuestras soluciones de gobernanza Web3"
   },
   "welcome": {
     "description": "Para empezar, debes registrar tu cuenta y tu SIK (clave de identidad segura) firmando dos transacciones (es seguro y gratuito).",
