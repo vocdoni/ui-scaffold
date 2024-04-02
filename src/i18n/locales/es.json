@@ -561,7 +561,7 @@
       "title": "Farcaster"
     },
     "onvote": {
-      "btn": "Login",
+      "btn": "Crear",
       "description": "Sistema Web3 de votación <b>segura</b>, <b>sin tasas</b> y <b>transparente</b>. Permite crear <b>censo de tokens, censo multichain, votación anónima</b> y censo sybil-resistant con un tipo de votación flexible.",
       "title": "Onvote"
     },

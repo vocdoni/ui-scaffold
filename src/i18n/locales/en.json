@@ -552,7 +552,7 @@
       "title": "Farcaster"
     },
     "onvote": {
-      "btn": "Login",
+      "btn": "Create",
       "description": "<b>Secure</b>, <b>gasless</b> and <b>transparent</b> Web3 voting. Allows to create <b>token census, multichain census, anonymous voting</b>, sybil-resistant census with a flexible voting type.",
       "title": "Onvote"
     },

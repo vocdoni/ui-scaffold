@@ -7,11 +7,13 @@ import daoplugins from '/assets/governance-daoplugins.png'
 import others from '/assets/governance-others.png'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { TFunction } from 'i18next'
+import { useAccount } from 'wagmi'
+import { useConnectModal } from '@rainbow-me/rainbowkit'
 
 interface IGovernanceCardProps {
   buttonText: string
   buttonColor: string
-  buttonLink: string
+  buttonAction: string | (() => void)
   title: string
   description: string
   image: string
@@ -19,13 +21,19 @@ interface IGovernanceCardProps {
 
 const Governance = () => {
   const { t } = useTranslation()
+  const { isConnected } = useAccount()
+  const { openConnectModal } = useConnectModal()
 
   const cards: IGovernanceCardProps[] = useMemo(
     () => [
       {
-        buttonText: t('web3cards.onvote.btn'),
+        buttonText: !isConnected ? t('menu.login') : t('web3cards.onvote.btn'),
         buttonColor: 'web3_cta.onvote',
-        buttonLink: 'processes/create',
+        buttonAction: !isConnected
+          ? () => {
+              if (openConnectModal) openConnectModal()
+            }
+          : 'processes/create',
         title: t('web3cards.onvote.title'),
         description: t('web3cards.onvote.description'),
         image: onvote,
@@ -33,7 +41,7 @@ const Governance = () => {
       {
         buttonText: t('web3cards.farcaster.btn'),
         buttonColor: 'web3_cta.farcaster',
-        buttonLink: 'https://farcaster.vote',
+        buttonAction: 'https://farcaster.vote',
         title: t('web3cards.farcaster.title'),
         description: t('web3cards.farcaster.description'),
         image: farcaster,
@@ -41,7 +49,7 @@ const Governance = () => {
       {
         buttonText: t('web3cards.plugins.btn'),
         buttonColor: 'web3_cta.plugins',
-        buttonLink: 'https://app.aragon.org',
+        buttonAction: 'https://app.aragon.org',
         title: t('web3cards.plugins.title'),
         description: t('web3cards.plugins.description'),
         image: daoplugins,
@@ -49,7 +57,7 @@ const Governance = () => {
       {
         buttonText: t('web3cards.others.btn'),
         buttonColor: 'web3_cta.others',
-        buttonLink: 'mailto:info@vocdoni.org',
+        buttonAction: 'mailto:info@vocdoni.org',
         title: t('web3cards.others.title'),
         description: t('web3cards.others.description'),
         image: others,
@@ -93,9 +101,15 @@ const Governance = () => {
                 </Text>
               </CardBody>
               <CardFooter>
-                <Button as={ReactRouterLink} variant={'try-it-now'} bgColor={card.buttonColor} to={card.buttonLink}>
-                  {card.buttonText}
-                </Button>
+                {typeof card.buttonAction === 'string' ? (
+                  <Button as={ReactRouterLink} variant={'try-it-now'} bgColor={card.buttonColor} to={card.buttonAction}>
+                    {card.buttonText}
+                  </Button>
+                ) : (
+                  <Button variant={'try-it-now'} bgColor={card.buttonColor} onClick={card.buttonAction}>
+                    {card.buttonText}
+                  </Button>
+                )}
               </CardFooter>
             </Card>
           )
