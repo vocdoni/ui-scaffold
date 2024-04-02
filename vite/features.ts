@@ -7,7 +7,7 @@ const features = () => {
       anonymous: true,
       overwrite: true,
       secret: true,
-      customization: true,
+      customization: false,
     },
     login: ['web3', 'web2'],
     census: ['spreadsheet', 'token', 'web3', 'csp', 'gitcoin'],
