@@ -44,7 +44,8 @@ const ProcessHeader = () => {
   }, [election, client])
 
   const showOrgInformation = !loaded || (loaded && organization?.account?.name)
-  const showTotalCensusSize = censusInfo?.size !== election?.maxCensusSize
+  const showTotalCensusSize = censusInfo?.size && election?.maxCensusSize && election.maxCensusSize < censusInfo.size
+
   return (
     <Box mb={10}>
       {showOrgInformation && (
