@@ -501,6 +501,8 @@
       "text": "<p>Tu voto ha sido emitido y almacenado de forma segura en la cadena de bloques de Vocdoni. Puedes comprobarlo <verify>aquí</verify>.</p><p>La democracia es importante, puedes compartirla con tu comunidad y amigos:</p>",
       "title": "Voto emitido correctamente!"
     },
+    "total_census_size": "{{maxCensusSize}} votantes permitidos de {{censusSize}} totales en el censo",
+    "total_census_size_tooltip": "El número máximo de votantes permitidos está limitado a {{maxCensusSize}} de un censo de {{censusSize}} ({{percent}}% del total). Solo los primeros {{maxCensusSize}} votantes pueden votar.",
     "voters": "Votantes"
   },
   "process_actions": {
