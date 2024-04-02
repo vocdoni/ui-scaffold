@@ -86,57 +86,62 @@ const ModalPro = ({ isOpen, onClose, reason }: { isOpen: boolean; onClose: () =>
           </Box>
 
           <Flex flexDirection={{ base: 'column', lg: 'row' }} gap={{ base: 10, lg: 0 }}>
-            <Flex
-              as='form'
-              id='modal-pro'
-              flex='1 1 50%'
-              flexDirection='column'
-              justifyContent='space-between'
-              pr={{ lg: 5 }}
-              onSubmit={(e) => {
-                e.stopPropagation()
-                handleSubmit(sendEmail)(e)
-              }}
-            >
-              <Text color='process_create.modal_pro.description' mb={0} fontSize='sm'>
-                {t('process_create.modal_pro.form_description')}
-              </Text>
-              <Flex flexDirection='column' gap={3} mb={5}>
-                <FormControl isInvalid={!!errors.name}>
-                  <FormLabel fontSize='xs'>{t('process_create.modal_pro.form_name_label')}</FormLabel>
-                  <Input
-                    {...register('name', { required })}
-                    placeholder={t('process_create.modal_pro.form_name_placeholder')}
-                  />
-                  {!!errors.name && <FormErrorMessage>{errors.name?.message?.toString()}</FormErrorMessage>}
-                </FormControl>
-                <FormControl isInvalid={!!errors.email}>
-                  <FormLabel fontSize='xs'>{t('process_create.modal_pro.form_email_label')}</FormLabel>
-                  <Input
-                    {...register('email', { required })}
-                    type='email'
-                    placeholder={t('process_create.modal_pro.form_email_placeholder')}
-                  />
-                  {!!errors.email && <FormErrorMessage>{errors.email?.message?.toString()}</FormErrorMessage>}
-                </FormControl>
-              </Flex>
-              <Box>
-                {success && (
-                  <Text my={3} color='success'>
-                    {t('process_create.modal_pro.success')}
+            {import.meta.env.EMAILJS_PUBLIC_ID && (
+              <>
+                <Flex
+                  as='form'
+                  id='modal-pro'
+                  flex='1 1 50%'
+                  flexDirection='column'
+                  justifyContent='space-between'
+                  pr={{ lg: 5 }}
+                  onSubmit={(e) => {
+                    e.stopPropagation()
+                    handleSubmit(sendEmail)(e)
+                  }}
+                >
+                  <Text color='process_create.modal_pro.description' mb={0} fontSize='sm'>
+                    {t('process_create.modal_pro.form_description')}
                   </Text>
-                )}
-                {error && (
-                  <Text my={3} color='error'>
-                    {t('process_create.modal_pro.error')}
-                  </Text>
-                )}
-                <Button type='submit' form='modal-pro' w='full' fontSize='14px'>
-                  {t('process_create.modal_pro.form_btn')}
-                </Button>
-              </Box>
-            </Flex>
-            <Box w={{ lg: '1px' }} h={{ base: '1px', lg: 'auto' }} bgColor='process_create.modal_pro.border'></Box>
+                  <Flex flexDirection='column' gap={3} mb={5}>
+                    <FormControl isInvalid={!!errors.name}>
+                      <FormLabel fontSize='xs'>{t('process_create.modal_pro.form_name_label')}</FormLabel>
+                      <Input
+                        {...register('name', { required })}
+                        placeholder={t('process_create.modal_pro.form_name_placeholder')}
+                      />
+                      {!!errors.name && <FormErrorMessage>{errors.name?.message?.toString()}</FormErrorMessage>}
+                    </FormControl>
+                    <FormControl isInvalid={!!errors.email}>
+                      <FormLabel fontSize='xs'>{t('process_create.modal_pro.form_email_label')}</FormLabel>
+                      <Input
+                        {...register('email', { required })}
+                        type='email'
+                        placeholder={t('process_create.modal_pro.form_email_placeholder')}
+                      />
+                      {!!errors.email && <FormErrorMessage>{errors.email?.message?.toString()}</FormErrorMessage>}
+                    </FormControl>
+                  </Flex>
+                  <Box>
+                    {success && (
+                      <Text my={3} color='success'>
+                        {t('process_create.modal_pro.success')}
+                      </Text>
+                    )}
+                    {error && (
+                      <Text my={3} color='error'>
+                        {t('process_create.modal_pro.error')}
+                      </Text>
+                    )}
+                    <Button type='submit' form='modal-pro' w='full' fontSize='14px'>
+                      {t('process_create.modal_pro.form_btn')}
+                    </Button>
+                  </Box>
+                </Flex>
+                <Box w={{ lg: '1px' }} h={{ base: '1px', lg: 'auto' }} bgColor='process_create.modal_pro.border'></Box>
+              </>
+            )}
+
             <Flex flex='1 1 50%' flexDirection='column' justifyContent='space-between' gap={10} pl={{ lg: 5 }}>
               <Text color='process_create.modal_pro.description' fontSize='sm'>
                 {t('process_create.modal_pro.scheudle_description')}
