@@ -1,5 +1,5 @@
-import { WarningIcon } from '@chakra-ui/icons'
-import { Box, Button, Flex, Icon, Image, Text } from '@chakra-ui/react'
+import { InfoIcon, WarningIcon } from '@chakra-ui/icons'
+import { Box, Button, Flex, Icon, Image, SliderThumb, Text, Tooltip } from '@chakra-ui/react'
 import {
   ElectionDescription,
   ElectionSchedule,
@@ -8,7 +8,7 @@ import {
   OrganizationName,
 } from '@vocdoni/chakra-components'
 import { useClient, useElection, useOrganization } from '@vocdoni/react-providers'
-import { ElectionStatus } from '@vocdoni/sdk'
+import { CensusType, ElectionStatus } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
@@ -17,12 +17,16 @@ import { ActionsMenu } from './ActionsMenu'
 import { CreatedBy } from './CreatedBy'
 import { ProcessDate } from './Date'
 import { ShareModalButton } from '~components/Share'
+import { useEffect, useState } from 'react'
+
+type CensusInfo = { size: number; weight: bigint; type: CensusType }
 
 const ProcessHeader = () => {
   const { t } = useTranslation()
   const { election } = useElection()
   const { organization, loaded } = useOrganization()
-  const { account } = useClient()
+  const { account, client } = useClient()
+  const [censusInfo, setCensusInfo] = useState<CensusInfo>()
   const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(
     'rgba(242, 242, 242, 0)',
     'rgba(242, 242, 242, 1)',
@@ -31,7 +35,22 @@ const ProcessHeader = () => {
   )
   const strategy = useStrategy()
 
+  // Get the census info to show the total size if the maxCensusSize is less than the total size
+  useEffect(() => {
+    ;(async () => {
+      try {
+        if (!election?.census?.censusId || !client) return
+        const censusInfo: CensusInfo = await client.fetchCensusInfo(election.census.censusId)
+        setCensusInfo(censusInfo)
+      } catch (e) {
+        // If the census info is not available, just ignore it
+        setCensusInfo(undefined)
+      }
+    })()
+  }, [election, client])
+
   const showOrgInformation = !loaded || (loaded && organization?.account?.name)
+  const showTotalCensusSize = censusInfo?.size && election?.maxCensusSize && election.maxCensusSize < censusInfo.size
 
   return (
     <Box mb={10}>
@@ -119,9 +138,35 @@ const ProcessHeader = () => {
               <Text>{t('process.is_anonymous.description')}</Text>
             </Box>
           )}
-          <Box>
-            <Text fontWeight='bold'>{t('process.census')}</Text>
-            <Text>{t('process.people_in_census', { count: election?.maxCensusSize })}</Text>
+          <Box cursor='help'>
+            <Text fontWeight='bold'>
+              {t('process.census')} {showTotalCensusSize && <InfoIcon color='process_create.alert_info.color' ml={1} />}
+            </Text>
+            {showTotalCensusSize ? (
+              <Tooltip
+                hasArrow
+                bg='primary.600'
+                color='white'
+                placement='top'
+                label={t('process.total_census_size_tooltip', {
+                  censusSize: censusInfo?.size,
+                  maxCensusSize: election?.maxCensusSize,
+                  percent:
+                    censusInfo?.size && election?.maxCensusSize
+                      ? Math.round((election?.maxCensusSize / censusInfo?.size) * 100)
+                      : 0,
+                })}
+              >
+                <Text>
+                  {t('process.total_census_size', {
+                    censusSize: censusInfo?.size,
+                    maxCensusSize: election?.maxCensusSize,
+                  })}
+                </Text>
+              </Tooltip>
+            ) : (
+              <Text>{t('process.people_in_census', { count: election?.maxCensusSize })}</Text>
+            )}
           </Box>
           {election?.meta?.census && (
             <Box>
@@ -129,7 +174,6 @@ const ProcessHeader = () => {
               <Text>{strategy}</Text>
             </Box>
           )}
-
           {showOrgInformation && (
             <Box w={{ lg2: 'full' }}>
               <Text fontWeight='bold' mb={1}>
