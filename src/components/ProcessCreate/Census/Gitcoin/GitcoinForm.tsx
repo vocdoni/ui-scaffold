@@ -44,7 +44,6 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
       <Controller
         name={'gpsWeighted'}
         control={control}
-        defaultValue={true}
         render={({ field: { value, onChange } }) => (
           <Flex alignItems='center' gap={2} flexDirection={{ base: 'column', md: 'row' }}>
             <Checkbox isChecked={value} onChange={(e) => onChange(e.target.checked as boolean)}>

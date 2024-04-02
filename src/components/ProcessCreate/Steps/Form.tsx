@@ -24,6 +24,7 @@ export const StepsForm = ({ steps, children, activeStep, next, prev, setActiveSt
     weightedVote: false,
     questions: [{ options: [{}, {}] }],
     addresses: [],
+    gpsWeighted: false,
   })
 
   // reinitialize form if we have a draft and `state` is set in the URL
