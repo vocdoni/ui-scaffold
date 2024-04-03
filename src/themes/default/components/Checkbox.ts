@@ -33,22 +33,47 @@ const radiobox = definePartsStyle({
     top: 1,
     rounded: 'full',
     ml: 'auto',
+
+    _checked: {
+      border: 'none',
+    },
   }),
   label: defineStyle({
     fontSize: 'sm',
     alignSelf: 'start',
 
-    '& div:first-of-type': {
+    '& > div:first-of-type': {
       display: 'flex',
       alignItems: 'center',
       gap: 2,
       fontWeight: 'bold',
       mb: 2,
+      maxW: '80%',
     },
 
     '& > p': {
       fontSize: '12px',
       color: 'process_create.description',
+    },
+
+    //pro plan, it allows opening the modal
+    '& > span': {
+      bgColor: 'process_create.pro_bg',
+      borderRadius: '10px',
+      position: 'absolute',
+      top: '3px',
+      right: '3px',
+      px: 2,
+      color: 'process_create.pro_color',
+      fontSize: '12px',
+      lineHeight: '24px',
+    },
+    '& div:nth-of-type(2)': {
+      position: 'absolute',
+      h: '100%',
+      w: '100%',
+      top: 0,
+      left: 0,
     },
   }),
 })

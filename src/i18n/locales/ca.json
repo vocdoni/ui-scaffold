@@ -6,12 +6,12 @@
     "overwrite_votes_left_one": "Pots corregir el teu vot una vegada.",
     "overwrite_votes_left_many": "",
     "overwrite_votes_left_other": "Pots corregir el teu vot {{ count }} vegades.",
-    "submitting": "",
+    "submitting": "Enviant",
     "verify_vote_on_explorer": "Verifica el vot a l'explorador",
     "votes_one": "<span>1</span> <text>votant</text>",
     "votes_many": "<span>{{ count }}</span> <text>votants</text>",
     "votes_other": "<span>{{ count }}</span> <text>votants</text>",
-    "voting_anonymous_advice": ""
+    "voting_anonymous_advice": "Si us plau, espera mentre la màgia té lloc.Això pot trigar uns minuts; no tanquis la finestra."
   },
   "banner": {
     "start_now": "Crea una votació!",
@@ -32,7 +32,8 @@
     "actions": {
       "cancel": "Cancel·la immediatament el procés de votació, sense permetre nous vots i sense comptabilitzar resultats (precaució: no es pot desfer)",
       "cancel_description": "cancel·lant el procés de votació \"{{ election.title.default }}\"...\nAtenció: aquesta acció no es pot desfer i cancel·larà els vots que s'hagin emès.",
-      "continue": "Continua el procés immediatament, si s'ha pausat",
+      "continue": "Reobre el procés immediatament, si s'ha pausat",
+      "continue_description": "Reobrint el procés de votació \"{{ election.title.default }}\"",
       "end": "Finalitza immediatament el procés, impedint que es presentin nous vots, i mostra els resultats de votació (precaució: no es pot desfer)",
       "end_description": "Finalitzant el procés de votació \"{{ election.title.default }}\"...\nAtenció: aquesta acció no es pot desfer i els votants no podran emetre nous vots.",
       "error_title": "S'ha produït algun error en executar la transacció",
@@ -93,6 +94,9 @@
   "census": {
     "chain_required": "Necessites seleccionar una xarxa",
     "description": "Selecciona com s'autenticaran i identificaran els votants.",
+    "gitcoin_description": "Amb aquest cens, només els votants amb Gitcoin Passport podran votar, proporcionant un mètode de resistència contra atacs sybil. Pots definir la puntuació general (GPS) i diferents stamps que el votant ha de tenir.",
+    "gitcoin_title": "Gitcoin Passport",
+    "pro": "",
     "request_custom_token": "Sol·licitar Tokens Personalitzats",
     "social_address_title": "Usuaris de Github",
     "spreadsheet_title": "Dades personalitzades",
@@ -129,7 +133,7 @@
   },
   "csp_census": {
     "github": {
-      "error_fetching_users": "",
+      "error_fetching_users": "S'ha produït un error en recuperar els usuaris",
       "selected_users": "Usuaris seleccionats:"
     }
   },
@@ -146,15 +150,15 @@
   "faucet": {
     "advanced_settings": "Avançat...",
     "connect": "Si us plau, connecteu la vostra cartera",
-    "copy_package": "",
-    "copy_package_done": "",
+    "copy_package": "Copiar Paquet de Faucet",
+    "copy_package_done": "Copiat!",
     "description": "Per desenvolupar amb Vocdoni, necessites tokens per a certes accions (crear una elecció, canviar l'estat d'una elecció, etc.). El nombre de diferents factors com la mida del cens, la durada de l'elecció, els paràmetres de l'elecció, etc.",
     "general_information": {
       "description": "Quan sol·licites tokens de desenvolupament, rebràs {{ amount }} tokens. Pots reclamar des del faucet una vegada cada {{ waitHours }} hores.",
       "description2": "Si necessites més tokens per desenvolupar sobre la plataforma de Vocdoni, pots posar-te en contacte amb nosaltres a tokens (at) vocdoni.io",
       "title": "Informació General"
     },
-    "package_success": "",
+    "package_success": "Felicitats! Aquí tens el teu Paquet de Faucet:",
     "recipient_address": "Introduïu l'adreça del destinatari on voleu rebre els tokens.",
     "request_description": "Per aconseguir més tokens de Vocdoni, has d'iniciar la sessió amb un compte de xarxes socials (per evitar-ne l'abús). Només demanem accés de lectura.",
     "request_tokens": {
@@ -168,16 +172,30 @@
     "blog": "Blog",
     "company": "Empresa",
     "contact": "Contacte",
+    "demo": "Tipus de Votació",
+    "demo1": "Elecció Simple",
+    "demo2": "Elecció Múltiple",
+    "demo3": "Votació per Aprovació",
+    "demo4": "Votació per Classificació",
+    "demo5": "Pressupostos Participatius",
+    "demo6": "Votació Ponderada",
     "developer_portal": "Portal de desenvolupadors",
     "developers": "Desenvolupadors",
     "discord": "Discord",
     "follow_us": "Segueix-nos",
+    "footer_subtitle": "El Protocol de Votació Global",
     "homepage": "Inici",
     "repos": "Codi Obert",
     "resources": "Recursos",
     "terms_and_privacy": "<link1>Termes d'ús</link1> i <link2>Política de privacitat</link2>",
     "text": "<p1>El futur</p1><p2>de la votació en Web3 comença aquí</p2>",
     "tutorials": "Tutorials",
+    "uses_cases": "Casos d'Ús",
+    "uses_cases1": "Assemblees Generals d'Accionistes (AGMs)",
+    "uses_cases2": "Eleccions",
+    "uses_cases3": "Pressupostos Participatius",
+    "uses_cases4": "Votació Digital",
+    "uses_cases5": "Enquesta Digital Tancada",
     "vocdoni_api": "API de Vocdoni",
     "vocdoni_app": "APP de Vocdoni"
   },
@@ -202,7 +220,7 @@
       "avatar_error": "URL no vàlida",
       "field_is_required": "Aquest camp és obligatori",
       "min_address": "Si us plau, proporciona com a mínim una adreça",
-      "min_users_address": "",
+      "min_users_address": "Si us plau, proporciona com a mínim una adreça",
       "recipient_address_invalid": "L'adreça especificada no sembla vàlida"
     },
     "process_create": {
@@ -210,6 +228,10 @@
         "anonymous": {
           "description": "La identitat dels votants serà completament anonimitzada, incloent per a l'organitzador. Cada votant haurà d'establir una contrasenya per garantir la confidencialitat de la seva identitat.",
           "title": "Anònim"
+        },
+        "customization": {
+          "description": "Selecciona el teu tema desitjat, colors, textos i afegeix la teva marca a la pàgina de votació. També hi ha opcions més complexes disponibles.",
+          "title": "Personalització"
         },
         "overwrite": {
           "description": "Si està marcat, els votants tindran l'opció de corregir el seu vot un cop.",
@@ -237,6 +259,12 @@
         "add_button": "Afegir",
         "add_new_address": "Afageix una nova adreça",
         "delete_web3_address": "Eliminar adreça amb index {{ index }}",
+        "gitcoin_description": "Crear un cens de votants elegibles proporcionant una llista",
+        "gitcoin_passport_score": "Puntuació del Gitcoin Passport",
+        "gitcoin_stamps": "Stamps",
+        "gitcoin_strategy_description_AND": "Per votar, els usuaris han de posseir tots els stamps seleccionats i tenir una Puntuació del Gitcoin Passport igual o superior.",
+        "gitcoin_strategy_description_OR": "Per votar, els usuaris han de posseir almenys un stamp i tenir una Puntuació del Gitcoin Passport igual o superior.",
+        "gitcoin_title": "Gitcoin Passport",
         "holders": "{{ holders }} titulars",
         "max_census_resum": "Tens un grup de {{ uniTokenHolders }} possibles votants de {{ symbol }}. Per reduir el cost del procés de votació, pots optar per limitar el nombre total de participants en el procés de votació. Això no afectarà a votants específics ni reduirà el cens; simplement reduirà el nombre màxim de vots que es poden emetre.",
         "max_census_slider_arialabel": "Selector de participació màxima esperada",
@@ -252,7 +280,10 @@
         "token_base_title": "Basat en token",
         "tokens_placeholder": "Cerca o enganxa la direcció del token",
         "wallet_address_description": "Identifica els teus votants per les seves adreces de cartera.",
-        "wallet_address_title": "Adreces de cartera"
+        "wallet_address_title": "Adreces de cartera",
+        "weight": "(Pes)",
+        "weighted_voting_description": "Quan s'activa, el teu poder de vot s'alinea amb la teva puntuació GPS. Si es desactiva, el vot de cada usuari té el mateix pes, establert en 1 punt.",
+        "weighted_voting_title": "Pes del Vot Basat en GPS"
       },
       "confirm": {
         "anonymous": "Anònim",
@@ -334,9 +365,9 @@
           "weight": "Pes"
         }
       },
-      "spreadsheet_total_rows_one": "El cens només conté un votant",
+      "spreadsheet_total_rows_one": "El cens té un sol registre",
       "spreadsheet_total_rows_many": "",
-      "spreadsheet_total_rows_other": "Grandària del cens: {{count}} votants",
+      "spreadsheet_total_rows_other": "El cens té {{ count }} registres",
       "steps": {
         "census": "Cens",
         "checks": "Organització",
@@ -362,6 +393,218 @@
     "description": "<text>Per afegir més tokens, heu d'<strong>iniciar sessió</strong> amb un compte social (per evitar l'ús indegut del faucet).</text><text><strong>Només sol·licitem accés de lectura.</strong></text>",
     "info": "<text>Si en necessiteu més, poseu-vos en contacte amb <mailto>info@onvote.app</mailto></text>",
     "title": "Obtenir VOC Tokens"
+  },
+  "home": {
+    "benefits": {
+      "card_1": {
+        "description": "La nostra solució és fins a 10 vegades més econòmica, fent que la votació sigui asequible per a tothom i millorant la democràcia.",
+        "title": "10 vegades més econòmic"
+      },
+      "card_2": {
+        "description": "Estalvieu temps i esforç amb els processos optimitzats de Vocdoni, disfrutant de menors costos operatius.",
+        "title": "Estalvis de costos"
+      },
+      "card_3": {
+        "description": "Augmenta la participació i la implicació amb una plataforma fàcil d'usar accessible per a tothom, independentment de la competència tècnica.",
+        "title": "Participació incrementada"
+      },
+      "card_4": {
+        "description": "Vota des de qualsevol lloc, des de qualsevol dispositiu. Tan simple com això.",
+        "title": "Participació sense esforç"
+      },
+      "card_5": {
+        "description": "Tingues la tranquil·litat de saber que els teus vots estan protegits gràcies als nostres avançats mètodes criptogràfics, els quals garanteixen la màxima seguretat, preservant l'anonimat del votant i la integritat de cada vot.",
+        "title": "Seguretat incomparable"
+      },
+      "card_6": {
+        "description": "Fomenta la confiança i la transparència mitjançant la tecnologia blockchain, oferint a les parts interessades una visibilitat sense precedents en el procés de votació.",
+        "title": "Auditable i de codi obert"
+      },
+      "subtitle_1": "Quan tries Vocdoni, obtens beneficis dissenyats especialment per a les teves necessitats de votació. La nostra tecnologia avançada facilita la transició cap a la democràcia digital per a organitzacions, comunitats i governs. Aquí et mostrem com Vocdoni afegeix valor:",
+      "title": "Beneficis"
+    },
+    "clients_title": "Més de 100 organitzacions confien en nosaltres",
+    "contactus": {
+      "btn": "Contacta'ns",
+      "card_1": {
+        "description": "Explica'ns les teves necessitats i elaborarem una solució personalitzada per als teus desafiaments.",
+        "title": "Solucions a mida per a les teves necessitats úniques"
+      },
+      "card_2": {
+        "description": "Vocdoni ofereix solucions tant d'autoservei com personalitzades, claus en mà, adaptades per a tu.",
+        "title": "Estarem amb tu en tot moment"
+      },
+      "header": "Contacta'ns",
+      "title": "Col·laborem per trobar la solució perfecta per a tu"
+    },
+    "create_process": {
+      "btn": "Prova-ho gratis",
+      "helper_1": "Processos de votació preparats per a producció i responsius",
+      "helper_2": "Gratuït fins a 100 votants",
+      "subtitle": "La participació fàcil. Vocdoni APP ofereix una experiència de votació assequible, fàcil d'usar i complint amb el GDPR que qualsevol pot utilitzar des de qualsevol lloc amb el seu PC, portàtil, tauleta i mòbil.",
+      "title": "Solució de votació segura, ràpida i verificable"
+    },
+    "demo": {
+      "btn": "Veure Totes les Demostracions",
+      "census_type": {
+        "card_1": "Correu electrònic (GMail)",
+        "card_3": "Cens Obert",
+        "radio": "Cens / Autenticació",
+        "title": "Per Tipus de Cens"
+      },
+      "description": "Descobreix el poder de Vocdoni a través de demos interactives, on pots explorar diferents escenaris de votació i experimentar de primera mà la transició perfecta a la democràcia digital. Troba el tipus de votació que desitges, prova-ho i vota amb facilitat.",
+      "header": "Demostració",
+      "title": "Prova la nostra solució",
+      "use_cases": {
+        "card_1": "AGMs",
+        "card_2": "Eleccions",
+        "card_3": "Pressupostos Participatius",
+        "card_4": "Votació en línia",
+        "card_5": "Integració de programari",
+        "card_6": "Enquesta en línia recopilada",
+        "radio": "Per Cas d'Ús",
+        "title": "Per Cas d'Ús"
+      },
+      "voting_type": {
+        "card_1": "Elecció Simple",
+        "card_2": "Elecció Múltiple",
+        "card_3": "Vot d'Aprovació",
+        "card_4": "Vot de Pressupost",
+        "card_5": "Votació Classificada",
+        "card_6": "Votació Ponderada",
+        "radio": "Per Tipus de Votació",
+        "title": "Per Tipus de Votació"
+      }
+    },
+    "faqs": {
+      "faq_1": {
+        "description": "Vocdoni es destaca per la seva experiència d'usuari fluida, característiques de seguretat avançades i transparència sense precedents. La nostra plataforma utilitza tecnologia de tall com ara proves de coneixement zero i blockchain per garantir una votació segura i anònima alhora que proporciona un procés transparent i verificable.",
+        "title": "Què fa que Vocdoni sigui diferent d'altres plataformes de votació?"
+      },
+      "faq_2": {
+        "description": "Sí, Vocdoni segueix estrictament les directrius del GDPR, garantint que les dades de l'usuari es tractin amb el màxim respecte i confidencialitat. La nostra plataforma prioritza la privacitat i la seguretat de les dades en cada etapa del procés de votació.",
+        "title": "Vocdoni compleix amb els reglaments de privacitat de dades?"
+      },
+      "faq_3": {
+        "description": "Absolutament! Vocdoni ofereix opcions de personalització per alinear-se amb la marca de la vostra organització, assegurant una integració perfecta amb els vostres sistemes existents i mantenint una experiència de marca consistent per als votants. Poseu-vos en contacte amb nosaltres per saber-ne més!",
+        "title": "Es pot personalitzar Vocdoni per ajustar-se a la marca de la nostra organització?"
+      },
+      "faq_4": {
+        "description": "Oferim el `Vocdoni SDK` i els `Components d'interfície d'usuari de Vocdoni`, dissenyats per a una integració fàcil amb el vostre programari o plataforma. Els hem creat per facilitar la feina dels desenvolupadors i poder començar a veure resultats des del primer dia. El nostre equip d'experts us guiarà en el procés d'integració per garantir una transició suau i minimitzar les interrupcions a les vostres operacions.",
+        "title": "Quan fàcil és integrar Vocdoni amb els nostres sistemes existents?"
+      },
+      "faq_5": {
+        "description": "Vocdoni ofereix un suport complet per ajudar-vos en cada pas del vostre viatge de votació. Des de la configuració inicial i la personalització fins al manteniment continu i la resolució de problemes, el nostre equip de suport dedicat està aquí per ajudar-vos a maximitzar el valor de la nostra plataforma.",
+        "title": "Quin tipus de suport ofereix Vocdoni?"
+      },
+      "faq_6": {
+        "description": "Sí, Vocdoni està preparat per gestionar eleccions de qualsevol magnitud, des de petites votacions comunitàries fins a eleccions públiques a gran escala. La nostra infraestructura escalable garanteix un rendiment fiable fins i tot durant els períodes de votació més alts, permetent-vos involucrar els votants de manera eficaç i eficient.",
+        "title": "Pot Vocdoni gestionar eleccions a gran escala?"
+      },
+      "faq_7": {
+        "description": "La seguretat és la nostra prioritat a Vocdoni. La nostra plataforma utilitza tècniques criptogràfiques avançades i tecnologia blockchain per garantir el màxim nivell de seguretat, mantenint la integritat del vot i protegint l'anonimat del votant. Amb Vocdoni, podeu confiar que el vostre procés de votació és segur i a prova de manipulacions.",
+        "title": "Quan segur és la plataforma de Vocdoni?"
+      },
+      "faq_8": {
+        "description": "Vocdoni utilitza tècniques criptogràfiques avançades i tecnologia blockchain per garantir la seguretat i la integritat del procés de votació. Cada vot es registra com una transacció de blockchain a prova de manipulacions, proporcionant transparència i verificabilitat a totes les parts interessades. A més, les mesures de seguretat rigoroses de Vocdoni protegeixen contra la manipulació o la manipulació, assegurant que cada vot es compti amb precisió.",
+        "title": "Com garanteix Vocdoni la integritat del procés de votació?"
+      },
+      "subtitle": "A continuació, trobareu respostes a les preguntes que ens solen fer, guanyant claredat i confiança sobre la vostra experiència de votació digital.",
+      "title": "Preguntes Freqüents"
+    },
+    "features": {
+      "card_1": {
+        "description": "Des de referèndums simples de sí/no fins a eleccions complexes de preferència classificada, Vocdoni admet una àmplia gamma de tipus de votació per adaptar-se a qualsevol procés de presa de decisions.",
+        "title": "Tipus de votació versàtils"
+      },
+      "card_2": {
+        "description": "Personalitzeu cada aspecte del vostre procés de votació, des de la marca i els temes fins als dissenys de paperetes, assegurant una integració perfecta amb la identitat de la vostra organització.",
+        "title": "Capacitats de personalització"
+      },
+      "card_3": {
+        "description": "Utilitzant interfícies intuitives i processos d'introducció guiats, Vocdoni garanteix que els organitzadors i els votants puguin navegar fàcilment per la plataforma des del primer dia.",
+        "title": "Onboarding Amigable amb l'usuari"
+      },
+      "card_4": {
+        "description": "Utilitzant mètodes d'autenticació robustos com ara l'autenticació de dos factors, Vocdoni protegeix contra l'accés no autoritzat i garanteix la integritat de cada vot.",
+        "title": "Autenticació segura"
+      },
+      "card_5": {
+        "description": "Creeu llistes de votants personalitzades (censos personalitzats, oAuth, CRM...), permetent una difusió dirigida i experiències de votació adaptades per a diferents segments de la vostra audiència.",
+        "title": "Censos personalitzats"
+      },
+      "card_6": {
+        "description": "Personalitzeu els vostres processos de votació amb dates d'inici i finalització específiques, inici automàtic, resultats secrets fins al final, actualitzacions en temps real, votació anònima, votació ponderada i personalització de paperetes.",
+        "title": "Opcions de votació flexibles"
+      },
+      "card_7": {
+        "description": "Arribeu a una audiència diversa amb suport multilingüe, permetent que els participants es relacionin en el seu idioma preferit per a experiències de votació inclusives i accessibles.",
+        "title": "Suport multilingüe"
+      },
+      "card_8": {
+        "description": "Superviseu el progrés i els resultats de la votació en temps real, amb actualitzacions instantànies i notificacions que mantinguin informats els organitzadors i els participants durant tot el procés de votació.",
+        "title": "Actualitzacions en temps real"
+      },
+      "card_9": {
+        "description": "Permeteu als votants emetre els seus vots a través de diversos canals, inclosos navegadors web, mòbils, tauletes, etc., garantint l'accessibilitat i la comoditat per a tots els participants.",
+        "title": "Suport multiplataforma"
+      },
+      "header": "Solucions capacitant",
+      "subtitle_1": "Desbloquegeu el potencial de la plataforma rica en funcionalitats de Vocdoni, que ofereix un valor excepcional tant per als organitzadors com per als votants. Personalitzeu de manera transparent els vostres processos de votació, assegureu eleccions segures i transparents i doneu poder als participants amb opcions intuïtives i accessibles. Amb l'APP de Vocdoni, experimenteu el poder de l'engagement millorat, l'eficiència i la confiança en cada experiència de votació.",
+      "title": "Característiques"
+    },
+    "process": {
+      "description_1": "L'APP de Vocdoni us permet crear el procés de votació que necessiteu en 4 senzills passos.",
+      "description_2": "Us permetem configurar amb un sol clic si voleu votació anònima, resultats secrets fins al final, el tipus de votació, carregar el cens i molt més.",
+      "header": "Procés",
+      "step_1": {
+        "description": "Obtingueu un control total amb l'opció d'autoservei de la nostra plataforma, que ofereix una flexibilitat sense igual. Necessiteu personalització o orientació? Us tenim cobert!",
+        "title": "Inicieu el vostre propi procés de votació"
+      },
+      "step_2": {
+        "description": "Us guiaran en el procés de creació per seleccionar el tipus de votació, configurar la informació, seleccionar les opcions necessàries i registrar els participants (cens).",
+        "title": "Configureu i publiqueu"
+      },
+      "step_3": {
+        "description": "Els votants s'autentiquen i envien els seus vots de manera fluida a través del nostre flux d'usuari amigable, dissenyat per a l'accessibilitat universal en tots els dispositius.",
+        "title": "Període de votació"
+      },
+      "step_4": {
+        "description": "Tan fàcil com això. Un cop acabat, els resultats es calcularan, publicaran i estaran disponibles per a qualsevol de manera automàtica.",
+        "title": "Obtén els resultats"
+      },
+      "title": "Un senzill procés de 4 passos"
+    },
+    "solutions": {
+      "card_1": {
+        "description": "Optimitzeu la presa de decisions amb una votació segura i transparent. Involucreu els membres de manera efectiva, estalvieu en costos administratius i fomenta una cultura de participació i transparència.",
+        "title": "Per a Organitzacions"
+      },
+      "card_2": {
+        "description": "Millora la implicació de la comunitat amb una plataforma fàcil d'utilitzar que fomenta la participació i dóna veu a cada membre.",
+        "title": "Per a Comunitats"
+      },
+      "card_3": {
+        "description": "Augmenta la participació electoral, redueix els costos electorals i millora la confiança ciutadana amb un procés de votació verificable i segur.",
+        "title": "Per a Govern i Institucions Públiques"
+      },
+      "header": "Abraça el canvi amb Vocdoni",
+      "img_card_1": "Organitzacions",
+      "img_card_2": "Comunitats",
+      "img_card_3": "Govern i Institucions Públiques",
+      "subtitle_1": "Oferim solucions per a una àmplia gamma de casos d'ús, demostrant la versatilitat de l'aplicació Vocdoni.",
+      "title": "La nostra solució s'adapta a les vostres necessitats"
+    },
+    "support": {
+      "btn_contact": "Contacta amb nosaltres",
+      "btn_watch": "Programa una trucada",
+      "header": "Proveu-ho! Obtingueu suport gratuït",
+      "helper_1": "Trucada gratuïta amb els nostres experts",
+      "helper_2": "Redueix els costos i les hores de treball",
+      "helper_3": "Costos competitives",
+      "subtitle": "Podem ajudar-vos a crear la vostra experiència de votació perfecta",
+      "title": "Comenceu a donar veu a la vostra comunitat"
+    }
   },
   "home_features": {
     "anonymous_description": "Desbloqueja la veritable democràcia amb zkSNARKs! Els participants poden emetre els seus vots amb total anonimat, assegurant que cada veu sigui escoltada sense compromisos.",
@@ -400,7 +643,7 @@
     "documentation": "Documentació",
     "get_more": "Obtenir-ne més",
     "languages": "Idiomes",
-    "languages_list": "",
+    "languages_list": "Mostrar idiomes disponibles",
     "login": "Iniciar sessió",
     "logout": "Tancar sessió",
     "my_org": "La Meva Org",
@@ -408,6 +651,9 @@
     "organization": "Edita Organització",
     "privacy": "Privadesa",
     "terms": "Termes",
+    "vocdoni": {
+      "login": "Login"
+    },
     "wallet": "Cartera"
   },
   "meta": {
@@ -440,6 +686,7 @@
     "census": "Cens",
     "census_strategies": {
       "csp": "CSP",
+      "gitcoin": "Gitcoin",
       "spreadsheet": "CSV",
       "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
       "web3": "Adreces Web3"
@@ -480,7 +727,7 @@
       "canceled": "Procés cancel·lat",
       "ended": "Finalitzat",
       "paused": "Procés en pausa",
-      "paused_description": "",
+      "paused_description": "No és possible votar ara mateix.",
       "unknown": "Desconegut",
       "upcoming": "Previst"
     },
@@ -490,6 +737,8 @@
       "text": "<p>El teu vot ha estat emès i emmagatzemat de forma segura a la cadena de blocs de Vocdoni. Pots comprovar-ho <verify>aquí</verify>.</p><p>La democràcia és important, la pots compartir amb la teva comunitat i amics:</p>",
       "title": "Vot emès correctament!"
     },
+    "total_census_size": "{{maxCensusSize}} electors permesos de {{censusSize}} totals en el cens",
+    "total_census_size_tooltip": "El nombre màxim d'electors permesos està limitat a {{maxCensusSize}} d'un cens de {{censusSize}} ({{percent}}% del total). Només els primers {{maxCensusSize}} electors poden votar.",
     "voters": "Votants"
   },
   "process_actions": {
@@ -504,7 +753,19 @@
       "legal_note": "Avís legal: "
     },
     "census": {
-      "mandatory_max_census_size": "Ha d'haver-hi un votant com a mínim",
+      "crm_description": "Si ja tens el teu propi CRM, el podem integrar per permetre que la teva comunitat voti amb les mateixes credencials.",
+      "crm_title": "Integració CRM",
+      "database_description": "Integra la votació directament amb els usuaris a la teva base de dades. Una manera senzilla de votar per a la teva comunitat.",
+      "database_title": "Base de Dades",
+      "digital_certificate_description": "Donem suport a diferents certificats digitals, per obtenir la màxima seguretat i validació d'identitat.",
+      "digital_certificate_title": "Certificat Digital",
+      "email_description": "Els votants validaran el seu correu electrònic autenticant-se en el seu compte de Google Mail (OAuth).",
+      "email_title": "Per Correu Electrònic",
+      "mandatory_max_census_size": "Com a mínim un votant ha de ser seleccionat",
+      "others_description": "Necessites una solució específica? Podem ajudar amb una integració personalitzada que s'adapti a les teves necessitats.",
+      "others_title": "Altres",
+      "phone_description": "Els votants hauran de validar el seu telèfon mòbil, introduint el seu número i el codi de verificació que rebran.",
+      "phone_title": "Per Número de Telèfon",
       "total_tokens_one": "1 token",
       "total_tokens_many": "",
       "total_tokens_other": "{{ count }} tokens"
@@ -516,8 +777,54 @@
     },
     "creation_steps_description": "Necessites signar les transaccions per crear el procés de votació a la cadena de blocs de Vocdoni. No tanquis aquesta finestra.",
     "creation_steps_title": "Progrés",
+    "modal_pro": {
+      "description": "<p>L'opció seleccionada no està disponible en el pla d'autoatenció (gratuït). Per poder utilitzar-la, has de comprar el <bold>pla de projecte personalitzat</bold></p>",
+      "error": "Error en l'enviament del correu electrònic, intenta-ho més tard o contacta'ns a <email>info@vocdoni.org</email>",
+      "form_btn": "ENVIAR",
+      "form_description": "Pots deixar-nos les teves dades de contacte i ens posarem en contacte amb tu per parlar de les teves necessitats",
+      "form_email_label": "Correu electrònic:",
+      "form_email_placeholder": "El teu correu electrònic",
+      "form_name_label": "Nom:",
+      "form_name_placeholder": "El teu nom",
+      "scheudle_btn": "RESERVAR ARA",
+      "scheudle_description": " O pots reservar directament una trucada ràpida (15 minuts) amb els nostres experts per ajudar-te a crear el teu projecte de votació desitjat",
+      "success": "Correu electrònic enviat correctament",
+      "title": "Contacta'ns"
+    },
     "preview": {
       "accuracy": "Precisió dels Saldos de Cens Anònims: "
+    },
+    "question": {
+      "approval_voting": {
+        "description": "Els votants poden votar per tants candidats com aprovin, i el candidat amb més vots guanya.",
+        "title": "Votació per Aprovació"
+      },
+      "borda_count": {
+        "description": "Els votants classifiquen els candidats, i es assignen punts en funció de la seva classificació. El candidat amb més punts guanya.",
+        "title": "<p>Elecció per Rang</p><p>(Comptatge Borda)</p>"
+      },
+      "multi_choice": {
+        "description": "Els votants trien un nombre predeterminat d'opcions, i l'opció amb més votants guanya.",
+        "title": "<p>Votació Plurinominal</p><p>(Elecció Múltiple)</p>"
+      },
+      "others": {
+        "description": "",
+        "title": ""
+      },
+      "participation_budgeting": {
+        "description": "Els votants poden distribuir un nombre predeterminat entre totes les opcions/projectes (que representen el pressupost total disponible) com desitgin.",
+        "title": "Pressupost Participatiu"
+      },
+      "single_choice": {
+        "description": "Els votants trien una opció/candidat, i l'opció/candidat amb més vots guanya.",
+        "title": "<p>Votació Plurinominal</p><p>(Elecció Individual)</p>"
+      },
+      "voting_type": {
+        "description": "Selecciona el tipus de votació per a aquesta elecció. Si no trobes el que necessites, pots contactar-nos.",
+        "pro": "",
+        "pro_census": "",
+        "title": "Tipus de Votació"
+      }
     }
   },
   "rainbow": {
@@ -527,30 +834,13 @@
     "recovery": "Recuperar compte"
   },
   "retry": "Reintenta",
-  "roadmap": {
-    "census_description": "Crear un cens descentralitzat fora de la cadena i compatible amb zk a partir d'una instantània de blocs d'Ethereum, amb verificació a la cadena.",
-    "census_title": "zkCensus:",
-    "chainlink_description": "Habilitar l'execució automàtica amb suport optimista.",
-    "chainlink_title": "Integració de Chainlink:",
-    "complex_startegies_description": "Integrar qualsevol token de qualsevol cadena de blocs utilitzant una combinació de lògica i operacions algebraiques, directament. Per exemple,",
-    "complex_startegies_title": "Estratègies complexes:",
-    "execution_description": "Enviar la prova final a la cadena per a una execució vinculant.",
-    "execution_title": "Execució:",
-    "milestone1": "Fita 1: Governança flexible sense gasos",
-    "milestone2": "Fita 2: zkRollup per a votacions vinculants segures i anònimes",
-    "private_description": "Mostrar el contingut de la proposta de votació només als membres de la comunitat.",
-    "private_title": "Metadades de votació privada:",
-    "registry_description": "Un registre global a la cadena per a identitats zk (coneixement zero).",
-    "registry_title": "zkRegistry:",
-    "rollup_description": "Consolidar tots els vots en una única prova zk segura mitjançant la tecnologia de zkRollup personalitzada.",
-    "rollup_title": "zkRollup:",
-    "social_census_desciption": "Millora el teu cens amb identitats socials de plataformes com ara Github o Twitter. Inclou mecanismes de resistència a Sybil com Holonym o Proof-of-Humanity.",
-    "social_census_title": "Cens social:",
-    "title": "<p1>Pla d'acció 2024</p1> <p2>Què ve després?</p2>",
-    "versatil_description": "Ja sigui votació simple, escalonada o quadràtica, Onvote admet diversos mètodes de votació per adaptar-se a les diverses necessitats de la comunitat.",
-    "versatil_title": "Mètodes de votació versàtils:",
-    "voting_description": "Facilitar la votació anònima, fora de la cadena (sense gasos) per a qualsevol votant eligible mitjançant la xarxa p2p de Vocdoni.",
-    "voting_title": "zkVoting:"
+  "share": {
+    "copy": "Copia",
+    "election_share_btn_text": "Comparteix",
+    "election_share_text": "Mira aquesta elecció!",
+    "icon_title": "compartir enllaç",
+    "mail_subject": "Plataforma de votació",
+    "modal_title": "Comparteix amb amics"
   },
   "uploader": {
     "click_or_drag_and_drop": "<p1>Puja o arrossega i deixa anar aquí la llista de votants</p1><p2>(Formats permesos: CSV, XLSX i ODS)</p2>",
@@ -559,6 +849,29 @@
   "use_read_more": {
     "read_less": "Llegeix menys",
     "read_more": "Llegeix més"
+  },
+  "web3cards": {
+    "farcaster": {
+      "btn": "Ves a Farcaster.vote",
+      "description": "Amb <b>\"Farcaster.vote\"</b> permetem una manera simple i social de votar. Els teus membres només han de votar a través de Farcaster en 2 simples clics. Prova a crear una votació amb Farcaster frame",
+      "title": "Farcaster"
+    },
+    "onvote": {
+      "btn": "Crear",
+      "description": "Sistema Web3 de votació <b>segur</b>, <b>sense taxes</b> i <b>transparent</b>. Permet crear <b>cens de tokens, cens multichain, votació anònima</b> i cens sybil-resistant amb un tipus de votació flexible.",
+      "title": "Onvote"
+    },
+    "others": {
+      "btn": "Contacta'ns",
+      "description": "Hem construït un conjunt de votacions que permet una integració fàcil amb la nostra Blockchain dedicada a votacions a través del nostre SDK &; Components UI.<br/><br/>Comença a integrar-ho ara!",
+      "title": "Altres"
+    },
+    "plugins": {
+      "btn": "Prova la Aragon App",
+      "description": "Hem implementat una <b>solució de votació sense taxes personalitzada per a la DAO</b> d'Aragon, i podem fer el mateix per a tu!<br/><br/>Comença amb votació sense taxes!",
+      "title": "DAO Plugins"
+    },
+    "title": "Les nostres solucions de governança Web3"
   },
   "welcome": {
     "description": "Per començar, has de registrar el teu compte i el teu SIK (clau d'identitat segura) firmant dues transaccions (és segur i gratuït).",

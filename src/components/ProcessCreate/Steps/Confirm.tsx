@@ -29,9 +29,12 @@ import {
   IPublishedElectionParameters,
   IQuestion,
   PlainCensus,
+  PublishedCensus,
   PublishedElection,
+  StrategyToken,
   UnpublishedElection,
   VocdoniCensus3Client,
+  CensusType as VocdoniCensusType,
   WeightedCensus,
 } from '@vocdoni/sdk'
 import { useEffect, useMemo, useState } from 'react'
@@ -39,8 +42,10 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { IElection, IElectionWithTokenResponse } from 'vocdoni-admin-sdk'
+import { StampsUnionTypes } from '~components/ProcessCreate/Census/Gitcoin/StampsUnionType'
+import { CensusType } from '~components/ProcessCreate/Census/TypeSelector'
+import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
 import { useCspAdmin } from '../Census/Csp/use-csp'
-import { CensusType } from '../Census/TypeSelector'
 import Preview from '../Confirm/Preview'
 import { CostPreview } from '../CostPreview'
 import { CreationProgress, Steps } from '../CreationProgress'
@@ -331,17 +336,35 @@ const getCensus = async (env: EnvOptions, form: StepsFormValues, salt: string) =
   }
 
   switch (form.censusType) {
+    case 'gitcoin':
     case 'token':
       const c3client = new VocdoniCensus3Client({
         env,
       })
 
       const retryTime = 5000
-      const attempts = form.timeToCreateCensus / retryTime
-
       c3client.queueWait.retryTime = retryTime
       // clamp attempts between 20 and 100
-      c3client.queueWait.attempts = Math.min(Math.max(Math.ceil(attempts), 20), 100)
+      c3client.queueWait.attempts = 100
+
+      if (form.censusType === 'gitcoin') {
+        // Calculate the strategy id
+        const strategyID = await getGitcoinStrategyId(form, c3client)
+
+        // Once strategy is created, we got the stimation again to update the awaiting time
+        const { timeToCreateCensus } = await c3client.getStrategyEstimation(strategyID, form.electionType.anonymous)
+        c3client.queueWait.attempts = 100
+
+        // Create the census
+        const census = await c3client.createCensus(strategyID, form.electionType.anonymous)
+        return new PublishedCensus(
+          census.merkleRoot,
+          census.uri,
+          census.anonymous ? VocdoniCensusType.ANONYMOUS : VocdoniCensusType.WEIGHTED,
+          census.size,
+          BigInt(census.weight)
+        )
+      }
 
       return c3client.createTokenCensus(
         form.censusToken.ID,
@@ -413,6 +436,70 @@ const electionFromForm = (form: StepsFormValues) => {
       } as CensusMeta,
     },
   }
+}
+
+/**
+ * For a list of stamp keys, create a predicate like key1 AND (key2 AND (key3 AND key4))
+ *
+ * @param symbols list of token symbols
+ * @param operator The operator to add, AND or OR for example
+ * @param index actual iteration index.
+ */
+const buildPredicate = (symbols: string[], operator: StampsUnionTypes, index: number = 0): string => {
+  // Base case: when we reach the lasts key
+  if (index === symbols.length - 2) {
+    return symbols[index] + ` ${operator} ` + symbols[index + 1]
+  }
+  // Recursive case: build the string with nesting
+  return symbols[index] + ` ${operator} (` + buildPredicate(symbols, operator, index + 1) + ')'
+}
+
+/**
+ * Get strategy id for gitcoin census type.
+ * @param form
+ * @param c3client
+ */
+const getGitcoinStrategyId = async (form: CensusGitcoinValues, c3client: VocdoniCensus3Client) => {
+  let strategyTokens: Record<string, StrategyToken> = {}
+  let predicate = ''
+  if (Object.keys(form.stamps).length > 0) {
+    Object.entries(form.stamps).forEach(([key, token]) => {
+      if (!token.isChecked) return
+      const newToken: StrategyToken = {
+        ID: token.ID,
+        chainID: token.chainID,
+        externalID: token.externalID,
+      }
+      strategyTokens[key] = newToken
+    })
+
+    const gpsPredicate = form.gpsWeighted ? 'AND:mul' : 'AND'
+    const stampKeys = Object.keys(strategyTokens)
+    if (stampKeys.length === 1) {
+      predicate = `${gpsPredicate} (${stampKeys[0]} OR ${stampKeys[0]})`
+    } else if (stampKeys.length) {
+      predicate = `${gpsPredicate} (${
+        buildPredicate(stampKeys, form.stampsUnionType) + ')'.repeat(stampKeys.length - 1)
+      }` // Add closing parentheses at the end
+    }
+  }
+
+  const scoreToken = form.gitcoinGPSToken
+  strategyTokens[scoreToken.symbol] = {
+    ID: scoreToken.ID,
+    chainID: scoreToken.chainID,
+    minBalance: form.passportScore.toString(),
+  }
+  if (predicate.length == 0) {
+    if (form.gpsWeighted) {
+      predicate = `${scoreToken.symbol}`
+    } else {
+      predicate = `${scoreToken.symbol} AND ${scoreToken.symbol}`
+    }
+  } else {
+    predicate = `${scoreToken.symbol} ${predicate}`
+  }
+  return await c3client.createStrategy('gitcoin_onvote_' + Date.now(), predicate, strategyTokens)
 }
 
 export type CensusMeta = {

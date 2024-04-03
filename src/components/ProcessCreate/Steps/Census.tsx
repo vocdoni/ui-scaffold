@@ -1,11 +1,14 @@
-import { Box, Flex, Icon, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
+import { Box, Flex, Icon, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useDisclosure } from '@chakra-ui/react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { CgMoreO } from 'react-icons/cg'
 import { Check } from '~theme/icons'
 import { CensusType, useCensusTypes } from '../Census/TypeSelector'
+import { UnimplementedCensusType, useUnimplementedCensusTypes } from '../Census/UnimplementedTypeSelector'
+import ModalPro from '../ModalPro'
 import { StepsNavigation } from './Navigation'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 import Wrapper from './Wrapper'
-// import checkIcon from '/assets/check-icon.svg'
 
 export interface CensusValues {
   censusType: CensusType | null
@@ -13,13 +16,20 @@ export interface CensusValues {
 
 export const Census = () => {
   const { t } = useTranslation()
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
   const { form, setForm } = useProcessCreationSteps()
   const { defined, details } = useCensusTypes()
+  const { defined: definedUnim, details: detailsUnim } = useUnimplementedCensusTypes()
   const { censusType } = form
+
+  const [reason, setReason] = useState('')
+  const [showProCards, setShowProCards] = useState(false)
 
   return (
     <Wrapper>
-      <Flex flexDirection='column' gap={10}>
+      <ModalPro isOpen={isOpen} onClose={onClose} reason={reason} />
+      <Flex flexDirection='column' gap={5}>
         <Box>
           <Text className='process-create-title'>{t('census.title')}</Text>
           <Text fontSize='sm' color='process_create.description'>
@@ -35,23 +45,82 @@ export const Census = () => {
             if (defined[index] !== 'token' && 'maxCensusSize' in nform) {
               delete nform?.maxCensusSize
             }
+
+            if (definedUnim[index - defined.length]) setReason(detailsUnim[definedUnim[index - defined.length]].title)
+
             setForm(nform)
           }}
           variant='card'
           isLazy
         >
-          <TabList gap={2} flexWrap={'wrap'} justifyContent={'left'}>
-            {defined.map((ct: CensusType, index: number) => (
-              <Tab key={index}>
-                <Check />
+          <TabList mb={10}>
+            <Box>
+              {defined.map((ct: CensusType, index: number) => (
+                <Tab key={index} onClick={() => setShowProCards(false)}>
+                  <Check />
 
+                  <Box>
+                    <Icon as={details[ct].icon} />
+                    <Text>{details[ct].title}</Text>
+                  </Box>
+                  <Text>{details[ct].description}</Text>
+                  <Box />
+                </Tab>
+              ))}
+              {!!definedUnim.length && (
+                <Tab
+                  transform={showProCards ? 'scale(0.92)' : ''}
+                  sx={{
+                    '& > div:nth-of-type(2)': {
+                      display: 'none',
+                    },
+                  }}
+                >
+                  <Box>
+                    <Icon as={CgMoreO} />
+                    <Text>{t('process_create.census.others_title')}</Text>
+                  </Box>
+                  <Text>{t('process_create.census.others_description')}</Text>
+
+                  <Box />
+                  <Box
+                    onClick={() => setShowProCards((prev) => !prev)}
+                    position='absolute'
+                    w='100%'
+                    h='100%'
+                    left={0}
+                    top={0}
+                  />
+                </Tab>
+              )}
+            </Box>
+
+            {showProCards && (
+              <>
+                <Text className='process-create-title' mt={5} mb={3}>
+                  {t('census.pro')}
+                </Text>
                 <Box>
-                  <Icon as={details[ct].icon} />
-                  <Text>{details[ct].title}</Text>
+                  {definedUnim.map((ct: UnimplementedCensusType, index: number) => (
+                    <Tab
+                      key={index}
+                      onClick={(e) => {
+                        e.preventDefault()
+                        e.stopPropagation()
+                        onOpen()
+                      }}
+                    >
+                      <Box>
+                        <Icon as={detailsUnim[ct].icon} />
+                        <Text>{detailsUnim[ct].title}</Text>
+                      </Box>
+                      <Text as='span'>Pro</Text>
+                      <Text>{detailsUnim[ct].description}</Text>
+                    </Tab>
+                  ))}
                 </Box>
-                <Text>{details[ct].description}</Text>
-              </Tab>
-            ))}
+              </>
+            )}
           </TabList>
 
           <TabPanels className={censusType ? 'c' : ''} bgColor='process_create.section'>
