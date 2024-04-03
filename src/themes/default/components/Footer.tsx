@@ -12,7 +12,8 @@ const Footer = () => {
       <Flex
         className='site-wrapper'
         py={{ base: '60px', md: '120px' }}
-        flexDirection={{ base: 'column', lg: 'row' }}
+        flexDirection={{ base: 'column', xl: 'row' }}
+        alignItems='start'
         gap={{ base: '60px', lg: 0 }}
       >
         <Box flex='1 1 33%'>
@@ -26,15 +27,23 @@ const Footer = () => {
           flexDirection={{ base: 'column', sm2: 'row' }}
           justifyContent={{ sm2: 'space-between', lg: 'space-around' }}
           gap={{ base: '30px', sm2: 0 }}
+          mt={1}
+          ml={{ xl: 10 }}
         >
-          <Flex flexDirection='row' gap='90px'>
+          <Flex flexDirection={{ base: 'column', xl: 'row' }} gap={{ base: '40px', xl: '90px' }}>
             <Text fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px' display='none'>
               {t('footer.company')}
             </Text>
             <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io' target='_blank'>
               Vocdoni
             </Link>
-            <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io/about' target='_blank'>
+            <Link
+              fontWeight='bold'
+              variant='footer'
+              href='https://www.vocdoni.io/about'
+              whiteSpace='nowrap'
+              target='_blank'
+            >
               About Us
             </Link>
             <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io/contact' target='_blank'>
@@ -43,7 +52,13 @@ const Footer = () => {
             <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io/api' target='_blank'>
               SDK
             </Link>
-            <Link fontWeight='bold' variant='footer' href='https://developer.vocdoni.io' target='_blank'>
+            <Link
+              fontWeight='bold'
+              variant='footer'
+              href='https://developer.vocdoni.io'
+              whiteSpace='nowrap'
+              target='_blank'
+            >
               Developer Portal
             </Link>
             <Link fontWeight='bold' variant='footer' href='https://blog.vocdoni.io' target='_blank'>
