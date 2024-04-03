@@ -45,7 +45,7 @@ const ModalPro = ({ isOpen, onClose, reason }: { isOpen: boolean; onClose: () =>
   }
 
   const emailjsEnabled =
-    import.meta.env.EMAILJS_PUBLIC_ID && import.meta.env.EMAILJS_PUBLIC_ID && import.meta.env.EMAILJS_TEMPLATE_ID
+    import.meta.env.EMAILJS_PUBLIC_ID && import.meta.env.EMAILJS_SERVICE_ID && import.meta.env.EMAILJS_TEMPLATE_ID
 
   useEffect(() => {
     setValue('reason', reason)
