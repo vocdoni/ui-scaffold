@@ -29,19 +29,23 @@ import { useEffect, useRef, useState } from 'react'
 import { FieldValues } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import ReactPlayer from 'react-player'
+import { useAccount } from 'wagmi'
+import { FacebookShare, RedditShare, TelegramShare, TwitterShare } from '~components/Share'
 import ProcessAside, { VoteButton } from './Aside'
 import Header from './Header'
 import confirmImg from '/assets/spreadsheet-confirm-modal.jpg'
 import successImg from '/assets/spreadsheet-success-modal.jpg'
-import { FacebookShare, RedditShare, TelegramShare, TwitterShare } from '~components/Share'
 
 export const ProcessView = () => {
   const { t } = useTranslation()
   const { election } = useElection()
   const videoRef = useRef<HTMLDivElement>(null)
   const [videoTop, setVideoTop] = useState(false)
-
+  const electionRef = useRef<HTMLDivElement>(null)
+  const { isConnected } = useAccount()
   const [tabIndex, setTabIndex] = useState(0)
+  const [err, setErr] = useState(0)
+  const [rerenderQs, setRerenderQs] = useState(false)
 
   const handleTabsChange = (index: number) => {
     setTabIndex(index)
@@ -70,6 +74,39 @@ export const ProcessView = () => {
   useEffect(() => {
     if (election?.status === ElectionStatus.RESULTS) setTabIndex(1)
   }, [election])
+
+  useEffect(() => {
+    if (!err) return
+
+    if (err === 1) return setErr((prev) => prev + 1)
+
+    const htmlCollection = electionRef?.current?.children[0].children[0].children
+
+    if (htmlCollection) {
+      const array = Array.from(htmlCollection)
+
+      const elementsWithInvalidData = array.filter((el: any) => {
+        const dataInvalid =
+          el.children[0]?.children[1]?.children[1]?.children[0]?.children[0]?.getAttribute('data-invalid')
+        return dataInvalid === ''
+      })
+
+      if (elementsWithInvalidData.length) {
+        const firstElementWithInvalidData = elementsWithInvalidData[0].children[0].children[1]
+          .children[0] as HTMLElement
+        firstElementWithInvalidData.setAttribute('tabIndex', '0')
+        firstElementWithInvalidData.focus()
+      }
+    }
+  }, [err])
+
+  useEffect(() => {
+    setRerenderQs(false)
+  }, [isConnected])
+
+  useEffect(() => {
+    setRerenderQs(true)
+  }, [rerenderQs])
 
   return (
     <Box>
@@ -107,10 +144,17 @@ export const ProcessView = () => {
             </TabList>
             <TabPanels>
               <TabPanel>
-                <Box className='md-sizes' mb='100px' pt='50px'>
-                  <ElectionQuestions
-                    confirmContents={(election, answers) => <ConfirmVoteModal election={election} answers={answers} />}
-                  />
+                <Box ref={electionRef} className='md-sizes' mb='100px' pt='50px'>
+                  {rerenderQs && (
+                    <ElectionQuestions
+                      onInvalid={(...args) => {
+                        setErr((prev) => prev + 1)
+                      }}
+                      confirmContents={(election, answers) => (
+                        <ConfirmVoteModal election={election} answers={answers} />
+                      )}
+                    />
+                  )}
                 </Box>
                 <Box position='sticky' bottom={0} left={0} pb={1} pt={1} display={{ base: 'none', lg2: 'block' }}>
                   <VoteButton setQuestionsTab={setQuestionsTab} />
