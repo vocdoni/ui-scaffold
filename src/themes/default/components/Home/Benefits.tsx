@@ -82,7 +82,7 @@ const Benefits = () => {
                 benefits2: 'home.benefits.light_bg',
               }}
               color={{
-                base: 'home.benefits.lighy_color',
+                base: 'home.benefits.light_color',
                 benefits1: 'home.benefits.dark_color',
                 benefits2: 'home.benefits.light_color',
               }}
