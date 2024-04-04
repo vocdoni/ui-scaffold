@@ -12,6 +12,11 @@ import {
   Grid,
   GridItem,
   Heading,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
   Slider,
   SliderFilledTrack,
   SliderMark,
@@ -30,10 +35,10 @@ import { ChakraStylesConfig, GroupBase, Select, SelectComponentsConfig, SelectIn
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import { DefaultCensusSize } from '~constants'
 import { customStylesSelect, customStylesTokensSelect } from '~theme/tokenSelectStyles'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 import selectComponents, { CryptoAvatar } from './select-components'
-import { DefaultCensusSize } from '~constants'
 
 export interface FilterOptionOption<Option> {
   readonly label: string
@@ -221,6 +226,8 @@ export const CensusTokens = () => {
         setValue('accuracy', accuracy)
         setValue('strategySize', size)
         setValue('timeToCreateCensus', timeToCreateCensus)
+        const initialValue = size < DefaultCensusSize ? size : DefaultCensusSize
+        setValue('maxCensusSize', initialValue)
       } catch (err) {
         setError(errorToString(err))
         setValue('strategySize', undefined)
@@ -356,7 +363,7 @@ export const CensusTokens = () => {
         !error && (
           <>
             <TokenPreview token={ct} chainName={ch?.name} strategySize={strategySize} />
-            <MaxCensusSizeSelector token={ct} strategySize={strategySize} />
+            {/* <MaxCensusSizeSelector token={ct} strategySize={strategySize} /> */}
           </>
         )
       )}
@@ -396,10 +403,7 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
   })
 
   useEffect(() => {
-    if (sliderValue !== undefined) return
-    const initialValue = strategySize < DefaultCensusSize ? strategySize : DefaultCensusSize
-    setValue('maxCensusSize', initialValue)
-    setSliderValue(initialValue as number)
+    setSliderValue(formMaxCensusSize)
   }, [])
 
   if (sliderValue === undefined || !token || !strategySize) return null
@@ -409,61 +413,82 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
   return (
     <>
       <FormControl isInvalid={!!errors.maxCensusSize} mb={3}>
-        <FormLabel fontWeight='bold' mb={3}>
-          {t('form.process_create.census.max_census_slider_label')}
-        </FormLabel>
-        <Slider
-          aria-label={t('form.process_create.census.max_census_slider_arialabel')}
-          value={sliderValue}
-          defaultValue={sliderValue}
-          min={0}
-          max={strategySize}
-          ref={field.ref}
-          onBlur={field.onBlur}
-          onChange={(v) => {
-            setSliderValue(v)
-            setValue('maxCensusSize', v)
-          }}
-          onMouseEnter={() => setShowTooltip(true)}
-          onMouseLeave={() => setShowTooltip(false)}
-        >
-          <SliderMark value={strategySize * 0.25} mt='1' ml='-2.5' fontSize='sm'>
-            25%
-          </SliderMark>
-          <SliderMark value={strategySize * 0.5} mt='1' ml='-2.5' fontSize='sm'>
-            50%
-          </SliderMark>
-          <SliderMark value={strategySize * 0.75} mt='1' ml='-2.5' fontSize='sm'>
-            75%
-          </SliderMark>
-          <SliderTrack>
-            <SliderFilledTrack bg='primary.600' />
-          </SliderTrack>
-          <Tooltip
-            hasArrow
-            bg='primary.600'
-            color='white'
-            placement='top'
-            isOpen={showTooltip}
-            label={t('form.process_create.census.max_census_slider_tooltip', {
-              percent,
-              voters: Math.round(sliderValue),
-            })}
+        <Flex gap={5} flexDirection={{ base: 'column', xl: 'row' }}>
+          <NumberInput
+            my={3}
+            min={1}
+            max={strategySize}
+            value={sliderValue}
+            defaultValue={sliderValue}
+            onChange={(v) => {
+              setSliderValue(Number(v))
+              setValue('maxCensusSize', Number(v))
+            }}
           >
-            <SliderThumb />
-          </Tooltip>
-        </Slider>
+            <NumberInputField />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
+
+          <Slider
+            aria-label={t('form.process_create.census.max_census_slider_arialabel')}
+            value={sliderValue}
+            defaultValue={sliderValue}
+            min={1}
+            max={strategySize}
+            ref={field.ref}
+            onBlur={field.onBlur}
+            onChange={(v) => {
+              setSliderValue(v)
+              setValue('maxCensusSize', v)
+            }}
+            onMouseEnter={() => setShowTooltip(true)}
+            onMouseLeave={() => setShowTooltip(false)}
+          >
+            <SliderMark value={strategySize * 0.25} mt='1' ml='-2.5' fontSize='sm'>
+              25%
+            </SliderMark>
+            <SliderMark value={strategySize * 0.5} mt='1' ml='-2.5' fontSize='sm'>
+              50%
+            </SliderMark>
+            <SliderMark value={strategySize * 0.75} mt='1' ml='-2.5' fontSize='sm'>
+              75%
+            </SliderMark>
+            <SliderTrack>
+              <SliderFilledTrack bg='primary.600' />
+            </SliderTrack>
+
+            <Tooltip
+              hasArrow
+              bg='primary.600'
+              color='white'
+              placement='top'
+              isOpen={showTooltip}
+              label={t('form.process_create.census.max_census_slider_tooltip', {
+                percent,
+                voters: Math.round(sliderValue),
+              })}
+            >
+              <SliderThumb />
+            </Tooltip>
+          </Slider>
+        </Flex>
         <FormErrorMessage>{errors.maxCensusSize && errors.maxCensusSize.message?.toString()}</FormErrorMessage>
-        <Wrap spacing={4} mt={10} justify='center' w={'100%'}>
+        <Wrap spacing={2} mt={3} mb={5} justify='center' w={'100%'}>
           {SliderButtonsValues.map((v) => (
             <WrapItem key={v}>
               <Button
                 onClick={() => {
-                  const val = Math.round(strategySize * v)
+                  let val = Math.round(strategySize * v)
+                  if (val === 0) {
+                    val = 1
+                  }
                   setSliderValue(val)
                   setValue('maxCensusSize', val)
                 }}
-                fontSize='sm'
+                fontSize='xs'
                 variant={'secondary'}
                 height={'var(--chakra-sizes-8)'}
               >

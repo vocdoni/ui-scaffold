@@ -1,15 +1,20 @@
-import { Flex, FormLabel, Grid, Switch, Text, Tooltip } from '@chakra-ui/react'
+import { Flex, FormLabel, Grid, Text, Tooltip } from '@chakra-ui/react'
+import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { AiTwotoneQuestionCircle } from 'react-icons/ai'
-import { TokenPreview } from '../Census/Token'
-import { useProcessCreationSteps } from '../Steps/use-steps'
 import { StampPreviewCard } from '~components/ProcessCreate/Census/Gitcoin/StampCard'
+import { MaxCensusSizeSelector, TokenPreview } from '../Census/Token'
+import { useProcessCreationSteps } from '../Steps/use-steps'
 
 const PreviewCensusToken = () => {
   const { t } = useTranslation()
   const {
-    form: { gitcoinGPSToken, censusType, maxCensusSize, censusToken, chain, strategySize, accuracy, electionType },
+    form: { gitcoinGPSToken, censusType, censusToken, chain, strategySize, accuracy, electionType },
   } = useProcessCreationSteps()
+
+  const { watch } = useFormContext()
+
+  const maxCensusSize = watch('maxCensusSize')
 
   const size = maxCensusSize || 0
   const max = strategySize || 0
@@ -20,7 +25,6 @@ const PreviewCensusToken = () => {
     token = gitcoinGPSToken
     chainName = 'Gitcoin'
   }
-
   return (
     <>
       <TokenPreview token={token} chainName={chainName} strategySize={strategySize} />
@@ -35,6 +39,7 @@ const PreviewCensusToken = () => {
             voters: Math.round(size),
           })}
         </Text>
+        <MaxCensusSizeSelector token={censusToken || gitcoinGPSToken} strategySize={strategySize} />
       </Flex>
       {electionType.anonymous && (
         <Text display='flex' alignItems='center' flexWrap='wrap' gap={1}>
@@ -56,7 +61,7 @@ const PreviewCensusToken = () => {
 const GitcoinStampsPreview = () => {
   const { t } = useTranslation()
   const {
-    form: { stamps, stampsUnionType },
+    form: { stamps, stampsUnionType, censusToken, strategySize },
   } = useProcessCreationSteps()
 
   const selectedStamps = Object.values(stamps).filter((stamp) => stamp.isChecked)
@@ -79,6 +84,7 @@ const GitcoinStampsPreview = () => {
           {description}
         </Text>
       </Flex>
+
       <Grid
         gap={5}
         templateColumns={{ sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(3, 1fr)' }}
@@ -90,6 +96,7 @@ const GitcoinStampsPreview = () => {
           <StampPreviewCard name={token.name} iconURI={token.iconURI} />
         ))}
       </Grid>
+      <MaxCensusSizeSelector token={censusToken} strategySize={strategySize} />
     </>
   )
 }
