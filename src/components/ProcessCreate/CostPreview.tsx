@@ -20,7 +20,7 @@ import {
 import { Button } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
 import { UnpublishedElection } from '@vocdoni/sdk'
-import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa'
 import { TbDatabaseExclamation } from 'react-icons/tb'
@@ -43,27 +43,46 @@ export const CostPreview = ({
   const { form } = useProcessCreationSteps()
   const { loading, handleSignIn } = useClaim()
   const {
+    isCalculating,
+    maxCensusSize,
     startDate,
     endDate,
     electionType: { anonymous, autoStart },
   } = form
+  const timeout = useRef<number>()
 
   // election estimate cost
   useEffect(() => {
-    if (typeof cost !== 'undefined' || typeof unpublished === 'undefined') return
+    if (typeof unpublished === 'undefined') return
 
-    client
-      .estimateElectionCost(unpublished)
-      .then((cost) => {
-        setCost(cost)
-      })
-      .catch((e) => {
-        console.error('could not estimate election cost:', e)
-        // set as NaN to ensure the "create" button is enabled (because it checks for a number)
-        // this way the user can still create the election even tho the cost could not be estimated
-        setCost(NaN)
-      })
-  }, [client, cost, unpublished])
+    if (timeout.current) {
+      window.clearTimeout(timeout.current)
+    }
+
+    // force disable when should calculate
+    disable(true)
+
+    timeout.current = window.setTimeout(() => {
+      client
+        .calculateElectionCost(unpublished)
+        .then((cost) => {
+          setCost(cost)
+          disable(cost > account!.balance)
+        })
+        .catch((e) => {
+          console.error('could not estimate election cost:', e)
+          // set as NaN to ensure the "create" button is enabled (because it checks for a number)
+          // this way the user can still create the election even tho the cost could not be estimated
+          setCost(NaN)
+        })
+    }, 500)
+
+    return () => {
+      if (timeout.current) {
+        window.clearTimeout(timeout.current)
+      }
+    }
+  }, [client, cost, unpublished, maxCensusSize])
 
   // disable button if cost is higher than account balance
   useEffect(() => {
@@ -80,12 +99,13 @@ export const CostPreview = ({
       </Text>
       <Text fontSize='sm'>{t('form.process_create.confirm.cost_description')}</Text>
       <Flex flexDirection='column' gap={4} p={{ base: 3, xl: 6 }} bgColor='process_create.section' borderRadius='md'>
-        {typeof cost === 'undefined' && (
-          <Flex justifyContent='center'>
-            <Spinner textAlign='center' />
-          </Flex>
-        )}
-        {typeof cost !== 'undefined' && (
+        {typeof cost === 'undefined' ||
+          (isCalculating && (
+            <Flex justifyContent='center'>
+              <Spinner textAlign='center' />
+            </Flex>
+          ))}
+        {typeof cost !== 'undefined' && !isCalculating && (
           <>
             <Box fontSize='sm'>
               <Text mb={3}>{t('cost_preview.subtitle')}</Text>

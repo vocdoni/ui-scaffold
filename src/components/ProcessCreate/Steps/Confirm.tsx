@@ -56,7 +56,7 @@ import Wrapper from './Wrapper'
 
 export const Confirm = () => {
   const { env, client, account, fetchAccount } = useClient()
-  const { form, prev } = useProcessCreationSteps()
+  const { form, prev, setForm } = useProcessCreationSteps()
   const navigate = useNavigate()
   const { t } = useTranslation()
   const toast = useToast()
@@ -71,10 +71,12 @@ export const Confirm = () => {
 
   const methods = useForm({
     defaultValues: {
+      maxCensusSize: form.maxCensusSize,
       infoValid: false,
       termsAndConditions: false,
     },
   })
+  const max = methods.watch('maxCensusSize')
 
   const {
     formState: { errors },
@@ -170,6 +172,11 @@ export const Confirm = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const corelection = useMemo(() => electionFromForm(form), [account?.address, form])
 
+  // update maxCensusSize in state form when the Confirm form value changes
+  useEffect(() => {
+    setForm({ ...form, maxCensusSize: max })
+  }, [max])
+
   // redirects to the created process
   useEffect(() => {
     if (!created || localStorage.getItem('form-draft')) return
@@ -179,7 +186,6 @@ export const Confirm = () => {
 
   // fetches census for unpublished elections
   useEffect(() => {
-    if (typeof unpublished !== 'undefined') return
     ;(async () => {
       setUnpublished(
         Election.from({
@@ -189,7 +195,7 @@ export const Confirm = () => {
         } as IElectionParameters)
       )
     })()
-  }, [account, corelection, env, form, unpublished])
+  }, [form.maxCensusSize])
 
   // preview (fake) mapping
   const published = PublishedElection.build({
@@ -208,12 +214,12 @@ export const Confirm = () => {
           {t('form.process_create.confirm.description')}
         </Text>
         <ElectionProvider election={published}>
-          <Flex flexDirection={{ base: 'column', xl2: 'row' }} gap={5}>
-            <Preview />
-            <Box flex={{ xl2: '0 0 25%' }}>
-              <CostPreview unpublished={unpublished} disable={setDisabled} />
+          <FormProvider {...methods}>
+            <Flex flexDirection={{ base: 'column', xl2: 'row' }} gap={5}>
+              <Preview />
+              <Box flex={{ xl2: '0 0 25%' }}>
+                <CostPreview unpublished={unpublished} disable={setDisabled} />
 
-              <FormProvider {...methods}>
                 <Box>
                   <Text className='brand-theme' fontWeight='bold' textTransform='uppercase' px={2} mb={2}>
                     {t('form.process_create.confirm.confirmation')}
@@ -285,9 +291,9 @@ export const Confirm = () => {
                     </FormControl>
                   </Flex>
                 </Box>
-              </FormProvider>
-            </Box>
-          </Flex>
+              </Box>
+            </Flex>
+          </FormProvider>
         </ElectionProvider>
       </Box>
       <Flex justifyContent='space-between' alignItems='end' mt='auto'>
