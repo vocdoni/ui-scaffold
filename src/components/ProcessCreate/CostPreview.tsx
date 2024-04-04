@@ -20,7 +20,7 @@ import {
 import { Button } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
 import { UnpublishedElection } from '@vocdoni/sdk'
-import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa'
 import { TbDatabaseExclamation } from 'react-icons/tb'
@@ -49,21 +49,39 @@ export const CostPreview = ({
     endDate,
     electionType: { anonymous, autoStart },
   } = form
+  const timeout = useRef<number>()
+
   // election estimate cost
   useEffect(() => {
     if (typeof unpublished === 'undefined') return
 
-    client
-      .estimateElectionCost(unpublished)
-      .then((cost) => {
-        setCost(cost)
-      })
-      .catch((e) => {
-        console.error('could not estimate election cost:', e)
-        // set as NaN to ensure the "create" button is enabled (because it checks for a number)
-        // this way the user can still create the election even tho the cost could not be estimated
-        setCost(NaN)
-      })
+    if (timeout.current) {
+      window.clearTimeout(timeout.current)
+    }
+
+    // force disable when should calculate
+    disable(true)
+
+    timeout.current = window.setTimeout(() => {
+      client
+        .calculateElectionCost(unpublished)
+        .then((cost) => {
+          setCost(cost)
+          disable(cost > account!.balance)
+        })
+        .catch((e) => {
+          console.error('could not estimate election cost:', e)
+          // set as NaN to ensure the "create" button is enabled (because it checks for a number)
+          // this way the user can still create the election even tho the cost could not be estimated
+          setCost(NaN)
+        })
+    }, 500)
+
+    return () => {
+      if (timeout.current) {
+        window.clearTimeout(timeout.current)
+      }
+    }
   }, [client, cost, unpublished, maxCensusSize])
 
   // disable button if cost is higher than account balance

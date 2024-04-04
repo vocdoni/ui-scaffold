@@ -78,17 +78,6 @@ export const Confirm = () => {
   })
   const max = methods.watch('maxCensusSize')
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setForm({ ...form, maxCensusSize: max, isCalculating: false })
-    }, 3000)
-
-    return () => {
-      clearTimeout(timeout)
-      setForm({ ...form, isCalculating: true })
-    }
-  }, [max])
-
   const {
     formState: { errors },
     handleSubmit,
@@ -182,6 +171,11 @@ export const Confirm = () => {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const corelection = useMemo(() => electionFromForm(form), [account?.address, form])
+
+  // update maxCensusSize in state form when the Confirm form value changes
+  useEffect(() => {
+    setForm({ ...form, maxCensusSize: max })
+  }, [max])
 
   // redirects to the created process
   useEffect(() => {
@@ -310,7 +304,7 @@ export const Confirm = () => {
         <Button
           type='submit'
           form='process-create-form'
-          isDisabled={disabled || form.isCalculating}
+          isDisabled={disabled}
           isLoading={sending}
           px={{ base: 12, xl2: 28 }}
           variant='primary'
