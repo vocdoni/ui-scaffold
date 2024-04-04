@@ -1,5 +1,5 @@
 import { InfoIcon, WarningIcon } from '@chakra-ui/icons'
-import { Box, Button, Flex, Icon, Image, SliderThumb, Text, Tooltip } from '@chakra-ui/react'
+import { Box, Button, Flex, Icon, Image, Text, Tooltip } from '@chakra-ui/react'
 import {
   ElectionDescription,
   ElectionSchedule,
@@ -8,7 +8,7 @@ import {
   OrganizationName,
 } from '@vocdoni/chakra-components'
 import { useClient, useElection, useOrganization } from '@vocdoni/react-providers'
-import { CensusType, ElectionStatus, Strategy } from '@vocdoni/sdk'
+import { Census3StrategyToken, CensusType, ElectionStatus, Strategy } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
@@ -18,6 +18,7 @@ import { CreatedBy } from './CreatedBy'
 import { ProcessDate } from './Date'
 import { ShareModalButton } from '~components/Share'
 import { useEffect, useState } from 'react'
+import { StampIcon } from '~components/ProcessCreate/Census/Gitcoin/StampIcon'
 
 type CensusInfo = { size: number; weight: bigint; type: CensusType }
 
@@ -182,7 +183,7 @@ const ProcessHeader = () => {
                 <Text fontWeight='bold'>{t('process.strategy')}</Text>
                 <Text>{strategy}</Text>
               </Box>
-              {strategy === 'Gitcoin' && <GitcoinStrategyInfo strategy={mock} />}
+              {strategy === 'Gitcoin' && <GitcoinStrategyInfo />}
             </>
           )}
           {showOrgInformation && (
@@ -232,45 +233,15 @@ const ProcessHeader = () => {
   )
 }
 
-// todo(kon): disable mock
-const mock: Strategy = {
-  ID: 135,
-  alias: 'gitcoin_onvote_1711473280378',
-  predicate: 'GPS AND (GPS:BrightID OR (GPS:Discord OR GPS:Ens)))',
-  uri: 'ipfs://bafybeig76tzjrgjo4vh3vmgmyv5f2kebff5rmnr52tax2c5todawgzdkg4',
-  tokens: {
-    GPS: {
-      ID: '0x000000000000000000000000000000000000006C',
-      chainID: 1,
-      minBalance: '20',
-      chainAddress: 'eth:0x000000000000000000000000000000000000006C',
-    },
-    'GPS:BrightID': {
-      ID: '0x000000000000000000000000000000000000006C',
-      chainID: 1,
-      minBalance: '1',
-      chainAddress: 'eth:0x000000000000000000000000000000000000006C',
-      externalID: 'BrightID',
-    },
-    'GPS:Discord': {
-      ID: '0x000000000000000000000000000000000000006C',
-      chainID: 1,
-      minBalance: '1',
-      chainAddress: 'eth:0x000000000000000000000000000000000000006C',
-      externalID: 'Discord',
-    },
-    'GPS:Ens': {
-      ID: '0x000000000000000000000000000000000000006C',
-      chainID: 1,
-      minBalance: '1',
-      chainAddress: 'eth:0x000000000000000000000000000000000000006C',
-      externalID: 'Ens',
-    },
-  },
-}
+// todo(kon): disable this cast when ready on the sdk
+type Census3StrategyTokenIcon = Census3StrategyToken & { iconURI: string }
 
-const GitcoinStrategyInfo = ({ strategy }: { strategy: Strategy }) => {
+const GitcoinStrategyInfo = () => {
   const { t } = useTranslation()
+  const { election } = useElection()
+
+  if (!election || (election && !election?.meta?.strategy)) return ''
+  const strategy: Strategy = election.get('strategy')
 
   const score = strategy.tokens['GPS'].minBalance
   const firstParenthesesMatch = strategy.predicate.match(/\(([^)]+)\)/)
@@ -283,6 +254,7 @@ const GitcoinStrategyInfo = ({ strategy }: { strategy: Strategy }) => {
       unionTypeString = t('process.gitcoin.one_of_them')
     }
   }
+  const tokens = Object.entries(strategy.tokens).filter(([key, token]) => key !== 'GPS')
 
   return (
     <>
@@ -291,17 +263,21 @@ const GitcoinStrategyInfo = ({ strategy }: { strategy: Strategy }) => {
         <Text>{t('process.gitcoin.gps_score', { score: score })}</Text>
       </Box>
       {unionTypeString && (
-        <Box>
+        <Flex direction={'column'} gap={2}>
           <Flex direction={{ base: 'column', lg: 'row' }} gap={{ base: 0, lg: 1 }}>
             <Text fontWeight='bold'>{t('process.gitcoin.needed_stamps')}</Text>
             <Text>{unionTypeString}</Text>
           </Flex>
-          <Text>
-            {Object.values(strategy.tokens).map((token) => {
-              return token.externalID ? ` ${token.externalID} ` : null // todo(kon): implement icons
+          <Flex direction={'row'} gap={1} flexWrap={'wrap'}>
+            {Object.values(tokens).map(([, token], n) => {
+              return (
+                <Tooltip key={n} label={token.externalID} placement='auto-start'>
+                  <StampIcon size={6} iconURI={(token as Census3StrategyTokenIcon).iconURI} alt={token.externalID} />
+                </Tooltip>
+              )
             })}
-          </Text>
-        </Box>
+          </Flex>
+        </Flex>
       )}
     </>
   )
