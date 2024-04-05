@@ -48,7 +48,7 @@ const ActionsMenuList = (props: MenuListProps) => {
         <ActionContinue
           as={MenuItem}
           aria-label={t('process_actions.start')}
-          icon={!loading.continue && <ActionIcon icon={RiPlayCircleLine} />}
+          icon={loading.continue ? undefined : <ActionIcon icon={RiPlayCircleLine} />}
           justifyContent='start'
           variant=''
           sx={{
@@ -65,7 +65,7 @@ const ActionsMenuList = (props: MenuListProps) => {
         <ActionPause
           as={MenuItem}
           aria-label={t('process_actions.start')}
-          icon={!loading.pause && <ActionIcon icon={RiPauseCircleLine} />}
+          icon={loading.pause ? undefined : <ActionIcon icon={RiPauseCircleLine} />}
           justifyContent='start'
           variant=''
           sx={{
@@ -81,7 +81,7 @@ const ActionsMenuList = (props: MenuListProps) => {
       <ActionEnd
         as={MenuItem}
         aria-label={t('process_actions.start')}
-        icon={!loading.end && <ActionIcon icon={RiStopCircleLine} />}
+        icon={loading.end ? undefined : <ActionIcon icon={RiStopCircleLine} />}
         justifyContent='start'
         variant=''
         sx={{
@@ -97,7 +97,7 @@ const ActionsMenuList = (props: MenuListProps) => {
       <ActionCancel
         as={MenuItem}
         aria-label={t('process_actions.start')}
-        icon={!loading.cancel && <ActionIcon icon={RiCloseCircleLine} />}
+        icon={loading.cancel ? undefined : <ActionIcon icon={RiCloseCircleLine} />}
         justifyContent='start'
         variant=''
         sx={{
