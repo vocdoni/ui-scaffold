@@ -71,6 +71,7 @@ export const ProcessView = () => {
     }
   }, [])
 
+  // If the election is finished show the results tab
   useEffect(() => {
     if (election?.status === ElectionStatus.RESULTS) {
       setTabIndex(1)
