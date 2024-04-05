@@ -9,14 +9,7 @@ import {
   MenuList,
   MenuListProps,
 } from '@chakra-ui/react'
-import {
-  ActionContinue,
-  ActionPause,
-  ActionEnd,
-  ActionCancel,
-  ActionsProvider,
-  Button,
-} from '@vocdoni/chakra-components'
+import { ActionCancel, ActionContinue, ActionEnd, ActionPause, ActionsProvider } from '@vocdoni/chakra-components'
 import { useActions, useClient, useElection } from '@vocdoni/react-providers'
 import { ElectionStatus } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
@@ -55,7 +48,7 @@ const ActionsMenuList = (props: MenuListProps) => {
         <ActionContinue
           as={MenuItem}
           aria-label={t('process_actions.start')}
-          icon={loading.continue ? undefined : <ActionIcon icon={RiPlayCircleLine} />}
+          icon={!loading.continue && <ActionIcon icon={RiPlayCircleLine} />}
           justifyContent='start'
           variant=''
           sx={{
@@ -72,7 +65,7 @@ const ActionsMenuList = (props: MenuListProps) => {
         <ActionPause
           as={MenuItem}
           aria-label={t('process_actions.start')}
-          icon={loading.pause ? undefined : <ActionIcon icon={RiPauseCircleLine} />}
+          icon={!loading.pause && <ActionIcon icon={RiPauseCircleLine} />}
           justifyContent='start'
           variant=''
           sx={{
@@ -88,7 +81,7 @@ const ActionsMenuList = (props: MenuListProps) => {
       <ActionEnd
         as={MenuItem}
         aria-label={t('process_actions.start')}
-        icon={loading.end ? undefined : <ActionIcon icon={RiStopCircleLine} />}
+        icon={!loading.end && <ActionIcon icon={RiStopCircleLine} />}
         justifyContent='start'
         variant=''
         sx={{
@@ -104,7 +97,7 @@ const ActionsMenuList = (props: MenuListProps) => {
       <ActionCancel
         as={MenuItem}
         aria-label={t('process_actions.start')}
-        icon={loading.cancel ? undefined : <ActionIcon icon={RiCloseCircleLine} />}
+        icon={!loading.cancel && <ActionIcon icon={RiCloseCircleLine} />}
         justifyContent='start'
         variant=''
         sx={{
