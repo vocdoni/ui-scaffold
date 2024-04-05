@@ -8,17 +8,17 @@ import {
   OrganizationName,
 } from '@vocdoni/chakra-components'
 import { useClient, useElection, useOrganization } from '@vocdoni/react-providers'
-import { Census3StrategyToken, CensusType, ElectionStatus, Strategy } from '@vocdoni/sdk'
+import { CensusType, ElectionStatus, Strategy } from '@vocdoni/sdk'
+import { ReactNode, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
+import { StampIcon } from '~components/ProcessCreate/Census/Gitcoin/StampIcon'
+import { ShareModalButton } from '~components/Share'
 import { GoBack } from '~theme/icons'
 import { ActionsMenu } from './ActionsMenu'
 import { CreatedBy } from './CreatedBy'
 import { ProcessDate } from './Date'
-import { ShareModalButton } from '~components/Share'
-import { useEffect, useState } from 'react'
-import { StampIcon } from '~components/ProcessCreate/Census/Gitcoin/StampIcon'
 
 type CensusInfo = { size: number; weight: bigint; type: CensusType }
 
@@ -183,7 +183,6 @@ const ProcessHeader = () => {
                 <Text fontWeight='bold'>{t('process.strategy')}</Text>
                 <Text>{strategy}</Text>
               </Box>
-              {strategy === 'Gitcoin' && <GitcoinStrategyInfo />}
             </>
           )}
           {showOrgInformation && (
@@ -233,21 +232,19 @@ const ProcessHeader = () => {
   )
 }
 
-// todo(kon): disable this cast when ready on the sdk
-type Census3StrategyTokenIcon = Census3StrategyToken & { iconURI: string }
-
 const GitcoinStrategyInfo = () => {
   const { t } = useTranslation()
   const { election } = useElection()
 
-  if (!election || (election && !election?.meta?.strategy)) return ''
+  if (!election || (election && !election?.meta?.strategy)) return
   const strategy: Strategy = election.get('strategy')
 
   const score = strategy.tokens['GPS'].minBalance
   const firstParenthesesMatch = strategy.predicate.match(/\(([^)]+)\)/)
   let unionTypeString: string | null = null
   if (firstParenthesesMatch) {
-    const unionType = firstParenthesesMatch[1].split(' ')[1] // split by space and get the second element which should be the union type
+    // split by space and get the second element which should be the union type
+    const [, unionType] = firstParenthesesMatch[1].split(' ')
     if (unionType === 'AND') {
       unionTypeString = t('process.gitcoin.all_of_them')
     } else if (unionType === 'OR') {
@@ -258,12 +255,9 @@ const GitcoinStrategyInfo = () => {
 
   return (
     <>
-      <Box>
-        <Text fontWeight='bold'>{t('process.strategy')}</Text>
-        <Text>{t('process.gitcoin.gps_score', { score: score })}</Text>
-      </Box>
+      <Text>{t('process.gitcoin.gps_score', { score: score })}</Text>
       {unionTypeString && (
-        <Flex direction={'column'} gap={2}>
+        <Flex direction={'column'} gap={2} mt={4}>
           <Flex direction={{ base: 'column', lg: 'row' }} gap={{ base: 0, lg: 1 }}>
             <Text fontWeight='bold'>{t('process.gitcoin.needed_stamps')}</Text>
             <Text>{unionTypeString}</Text>
@@ -271,13 +265,7 @@ const GitcoinStrategyInfo = () => {
           <Flex direction={'row'} gap={1} flexWrap={'wrap'}>
             {Object.values(tokens).map(([, token], n) => {
               return (
-                <StampIcon
-                  key={n}
-                  size={6}
-                  iconURI={(token as Census3StrategyTokenIcon).iconURI}
-                  alt={token.externalID}
-                  tooltip={token.externalID}
-                />
+                <StampIcon key={n} size={6} iconURI={token.iconURI} alt={token.externalID} tooltip={token.externalID} />
               )
             })}
           </Flex>
@@ -290,12 +278,12 @@ const GitcoinStrategyInfo = () => {
 const useStrategy = () => {
   const { t } = useTranslation()
   const { election } = useElection()
-  const strategies: { [key: string]: string } = {
+  const strategies: { [key: string]: ReactNode } = {
     spreadsheet: t('process.census_strategies.spreadsheet'),
     token: t('process.census_strategies.token', { token: election?.meta?.token }),
     web3: t('process.census_strategies.web3'),
     csp: t('process.census_strategies.csp'),
-    gitcoin: t('process.census_strategies.gitcoin'),
+    gitcoin: <GitcoinStrategyInfo />,
   }
 
   if (!election || (election && !election?.meta?.census)) return ''
