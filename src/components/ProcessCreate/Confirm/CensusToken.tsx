@@ -3,7 +3,8 @@ import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { AiTwotoneQuestionCircle } from 'react-icons/ai'
 import { StampPreviewCard } from '~components/ProcessCreate/Census/Gitcoin/StampCard'
-import { MaxCensusSizeSelector, TokenPreview } from '../Census/Token'
+import { MaxCensusSizeSelector } from '../Census/MaxCensusSizeSelector'
+import { TokenPreview } from '../Census/Token'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 
 const PreviewCensusToken = () => {
@@ -93,7 +94,7 @@ const GitcoinStampsPreview = () => {
         mb={4}
       >
         {Object.values(selectedStamps).map((token, i) => (
-          <StampPreviewCard name={token.name} iconURI={token.iconURI} />
+          <StampPreviewCard key={i} name={token.name} iconURI={token.iconURI} />
         ))}
       </Grid>
       <MaxCensusSizeSelector token={censusToken} strategySize={strategySize} />
