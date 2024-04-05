@@ -699,6 +699,12 @@
       "relative_inline": "{{ status }} {{ date, relative(past: fa %time; future: en %time) }}",
       "starts": "Comença el procés"
     },
+    "gitcoin": {
+      "all_of_them": "(Tots ells)",
+      "gps_score": "Gitcoin Passport Score: Puntuació mínima {{score}}",
+      "needed_stamps": "Stamps necessaris",
+      "one_of_them": "(Almenys un d'ells)"
+    },
     "is_anonymous": {
       "description": "Votació anònima",
       "title": "Anònim"
