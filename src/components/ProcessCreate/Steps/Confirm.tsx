@@ -357,21 +357,9 @@ const getCensus = async (env: EnvOptions, form: StepsFormValues, salt: string) =
         // Calculate the strategy id
         const strategyID = await getGitcoinStrategyId(form, c3client)
 
-        // Once strategy is created, we got the stimation again to update the awaiting time
-        const { timeToCreateCensus } = await c3client.getStrategyEstimation(strategyID, form.electionType.anonymous)
-        c3client.queueWait.attempts = 100
-
         // Create the census
-        const census = await c3client.createCensus(strategyID, form.electionType.anonymous)
-        return new PublishedCensus(
-          census.merkleRoot,
-          census.uri,
-          census.anonymous ? VocdoniCensusType.ANONYMOUS : VocdoniCensusType.WEIGHTED,
-          census.size,
-          BigInt(census.weight)
-        )
+        return c3client.createStrategyCensus(strategyID, form.electionType.anonymous)
       }
-
       return c3client.createTokenCensus(
         form.censusToken.ID,
         form.censusToken.chainID,
