@@ -692,6 +692,12 @@
       "relative_inline": "{{ status }} {{ date, relative(past: %time ago; future: in %time) }}",
       "starts": "Starts"
     },
+    "gitcoin": {
+      "all_of_them": "(All of them)",
+      "gps_score": "Gitcoin Passport Score: Min. score {{score}}",
+      "needed_stamps": "Needed Stamps",
+      "one_of_them": "(At least one of them)"
+    },
     "is_anonymous": {
       "description": "Anonymous voting",
       "title": "Privacy"
