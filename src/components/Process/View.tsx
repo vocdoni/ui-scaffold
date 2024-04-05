@@ -44,8 +44,8 @@ export const ProcessView = () => {
   const electionRef = useRef<HTMLDivElement>(null)
   const { isConnected } = useAccount()
   const [tabIndex, setTabIndex] = useState(0)
-  const [err, setErr] = useState(0)
-  const [rerenderQs, setRerenderQs] = useState(false)
+  const [errPos, setErrPos] = useState(0)
+  const [rerender, setRerender] = useState(false)
 
   const handleTabsChange = (index: number) => {
     setTabIndex(index)
@@ -72,41 +72,50 @@ export const ProcessView = () => {
   }, [])
 
   useEffect(() => {
-    if (election?.status === ElectionStatus.RESULTS) setTabIndex(1)
+    if (election?.status === ElectionStatus.RESULTS) {
+      setTabIndex(1)
+    }
   }, [election])
 
   useEffect(() => {
-    if (!err) return
+    if (!errPos) return
 
-    if (err === 1) return setErr((prev) => prev + 1)
+    if (errPos === 1) return setErrPos((prev) => prev + 1)
 
-    const htmlCollection = electionRef?.current?.children[0].children[0].children
+    try {
+      const htmlCollection = electionRef?.current?.getElementsByTagName('form')[0].children
 
-    if (htmlCollection) {
-      const array = Array.from(htmlCollection)
+      if (htmlCollection) {
+        const array = Array.from(htmlCollection)
 
-      const elementsWithInvalidData = array.filter((el: any) => {
-        const dataInvalid =
-          el.children[0]?.children[1]?.children[1]?.children[0]?.children[0]?.getAttribute('data-invalid')
-        return dataInvalid === ''
-      })
+        const elementsWithInvalidData = array.filter((el: Element) => {
+          const dataInvalid = el.getElementsByTagName('label')[1].getAttribute('data-invalid')
+          return dataInvalid === ''
+        })
 
-      if (elementsWithInvalidData.length) {
-        const firstElementWithInvalidData = elementsWithInvalidData[0].children[0].children[1]
-          .children[0] as HTMLElement
-        firstElementWithInvalidData.setAttribute('tabIndex', '0')
-        firstElementWithInvalidData.focus()
+        if (elementsWithInvalidData.length) {
+          const firstElementWithInvalidData = elementsWithInvalidData[0].getElementsByTagName(
+            'div'
+          )[0] as HTMLDivElement
+
+          // We need to set tabIndex to 0 to be able to focus the element
+          firstElementWithInvalidData.setAttribute('tabIndex', '0')
+          firstElementWithInvalidData.focus()
+        }
       }
+    } catch (err) {
+      console.log('Could not find node to traverse to', err)
     }
-  }, [err])
+  }, [errPos])
 
+  // We need to rerender the component every time users log in and log out in order to clean the errors
   useEffect(() => {
-    setRerenderQs(false)
+    setRerender(true)
   }, [isConnected])
 
   useEffect(() => {
-    setRerenderQs(true)
-  }, [rerenderQs])
+    setRerender(true)
+  }, [rerender])
 
   return (
     <Box>
@@ -145,10 +154,10 @@ export const ProcessView = () => {
             <TabPanels>
               <TabPanel>
                 <Box ref={electionRef} className='md-sizes' mb='100px' pt='50px'>
-                  {rerenderQs && (
+                  {rerender && (
                     <ElectionQuestions
                       onInvalid={(...args) => {
-                        setErr((prev) => prev + 1)
+                        setErrPos((prev) => prev + 1)
                       }}
                       confirmContents={(election, answers) => (
                         <ConfirmVoteModal election={election} answers={answers} />
