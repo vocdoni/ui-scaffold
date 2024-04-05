@@ -44,7 +44,7 @@ export const ProcessView = () => {
   const electionRef = useRef<HTMLDivElement>(null)
   const { isConnected } = useAccount()
   const [tabIndex, setTabIndex] = useState(0)
-  const [errPos, setErrPos] = useState(0)
+  const [errorPosition, setErrorPosition] = useState(0)
   const [rerender, setRerender] = useState(false)
 
   const handleTabsChange = (index: number) => {
@@ -77,10 +77,11 @@ export const ProcessView = () => {
     }
   }, [election])
 
+  // We search for all the questions, filter out those that have errors, add the tabIndex 0 attribute to the first one so we can focus on it, and then adjust the error position accordingly
   useEffect(() => {
-    if (!errPos) return
+    if (!errorPosition) return
 
-    if (errPos === 1) return setErrPos((prev) => prev + 1)
+    if (errorPosition === 1) return setErrorPosition((prev) => prev + 1)
 
     try {
       const htmlCollection = electionRef?.current?.getElementsByTagName('form')[0].children
@@ -106,11 +107,11 @@ export const ProcessView = () => {
     } catch (err) {
       console.log('Could not find node to traverse to', err)
     }
-  }, [errPos])
+  }, [errorPosition])
 
-  // We need to rerender the component every time users log in and log out in order to clean the errors
+  // We need the following two useEffects to rerender the component every time users log in and log out, in order to clean the errors
   useEffect(() => {
-    setRerender(true)
+    setRerender(false)
   }, [isConnected])
 
   useEffect(() => {
@@ -157,7 +158,7 @@ export const ProcessView = () => {
                   {rerender && (
                     <ElectionQuestions
                       onInvalid={(...args) => {
-                        setErrPos((prev) => prev + 1)
+                        setErrorPosition((prev) => prev + 1)
                       }}
                       confirmContents={(election, answers) => (
                         <ConfirmVoteModal election={election} answers={answers} />
