@@ -271,9 +271,13 @@ const GitcoinStrategyInfo = () => {
           <Flex direction={'row'} gap={1} flexWrap={'wrap'}>
             {Object.values(tokens).map(([, token], n) => {
               return (
-                <Tooltip key={n} label={token.externalID} placement='auto-start'>
-                  <StampIcon size={6} iconURI={(token as Census3StrategyTokenIcon).iconURI} alt={token.externalID} />
-                </Tooltip>
+                <StampIcon
+                  key={n}
+                  size={6}
+                  iconURI={(token as Census3StrategyTokenIcon).iconURI}
+                  alt={token.externalID}
+                  tooltip={token.externalID}
+                />
               )
             })}
           </Flex>
