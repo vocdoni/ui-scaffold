@@ -29,7 +29,6 @@ import { useEffect, useRef, useState } from 'react'
 import { FieldValues } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import ReactPlayer from 'react-player'
-import { useAccount } from 'wagmi'
 import { FacebookShare, RedditShare, TelegramShare, TwitterShare } from '~components/Share'
 import ProcessAside, { VoteButton } from './Aside'
 import Header from './Header'
@@ -42,10 +41,8 @@ export const ProcessView = () => {
   const videoRef = useRef<HTMLDivElement>(null)
   const [videoTop, setVideoTop] = useState(false)
   const electionRef = useRef<HTMLDivElement>(null)
-  const { isConnected } = useAccount()
   const [tabIndex, setTabIndex] = useState(0)
-  const [errorPosition, setErrorPosition] = useState(0)
-  const [rerender, setRerender] = useState(false)
+  const [formErrors, setFormErrors] = useState<any>(null)
 
   const handleTabsChange = (index: number) => {
     setTabIndex(index)
@@ -78,46 +75,32 @@ export const ProcessView = () => {
     }
   }, [election])
 
-  // We search for all the questions, filter out those that have errors, add the tabIndex 0 attribute to the first one so we can focus on it, and then adjust the error position accordingly
+  // Move the focus of the screen to the first unanswered question
   useEffect(() => {
-    if (!errorPosition) return
+    if (!formErrors) return
 
-    if (errorPosition === 1) return setErrorPosition((prev) => prev + 1)
+    // We gather all the inputs
+    const inputs = electionRef?.current?.getElementsByTagName('input')
 
-    try {
-      const htmlCollection = electionRef?.current?.getElementsByTagName('form')[0].children
+    if (inputs) {
+      const inputsArray = Array.from(inputs)
 
-      if (htmlCollection) {
-        const array = Array.from(htmlCollection)
+      // The formErrors object has keys that represent the error names, so we filter the inputsArray with the names of the inputs
+      const inputsError = inputsArray.filter((el) => el.name === Object.keys(formErrors)[0])
 
-        const elementsWithInvalidData = array.filter((el: Element) => {
-          const dataInvalid = el.getElementsByTagName('label')[1].getAttribute('data-invalid')
-          return dataInvalid === ''
-        })
+      // We get the last input which is the closest to the error message
+      const lastInputError = inputsError[inputsError.length - 1]
 
-        if (elementsWithInvalidData.length) {
-          const firstElementWithInvalidData = elementsWithInvalidData[0].getElementsByTagName(
-            'div'
-          )[0] as HTMLDivElement
+      // Once we have the first input, we calculate the new position
+      const newPosition = window.scrollY + lastInputError.getBoundingClientRect().top - 200
 
-          // We need to set tabIndex to 0 to be able to focus the element
-          firstElementWithInvalidData.setAttribute('tabIndex', '0')
-          firstElementWithInvalidData.focus()
-        }
-      }
-    } catch (err) {
-      console.log('Could not find node to traverse to', err)
+      // We move the focus to the corresponding height
+      window.scrollTo({
+        top: newPosition,
+        behavior: 'smooth',
+      })
     }
-  }, [errorPosition])
-
-  // We need the following two useEffects to rerender the component every time users log in and log out, in order to clean the errors
-  useEffect(() => {
-    setRerender(false)
-  }, [isConnected])
-
-  useEffect(() => {
-    setRerender(true)
-  }, [rerender])
+  }, [formErrors])
 
   return (
     <Box>
@@ -156,16 +139,12 @@ export const ProcessView = () => {
             <TabPanels>
               <TabPanel>
                 <Box ref={electionRef} className='md-sizes' mb='100px' pt='50px'>
-                  {rerender && (
-                    <ElectionQuestions
-                      onInvalid={(...args) => {
-                        setErrorPosition((prev) => prev + 1)
-                      }}
-                      confirmContents={(election, answers) => (
-                        <ConfirmVoteModal election={election} answers={answers} />
-                      )}
-                    />
-                  )}
+                  <ElectionQuestions
+                    onInvalid={(args) => {
+                      setFormErrors(args)
+                    }}
+                    confirmContents={(election, answers) => <ConfirmVoteModal election={election} answers={answers} />}
+                  />
                 </Box>
                 <Box position='sticky' bottom={0} left={0} pb={1} pt={1} display={{ base: 'none', lg2: 'block' }}>
                   <VoteButton setQuestionsTab={setQuestionsTab} />
