@@ -29,19 +29,20 @@ import { useEffect, useRef, useState } from 'react'
 import { FieldValues } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import ReactPlayer from 'react-player'
+import { FacebookShare, RedditShare, TelegramShare, TwitterShare } from '~components/Share'
 import ProcessAside, { VoteButton } from './Aside'
 import Header from './Header'
 import confirmImg from '/assets/spreadsheet-confirm-modal.jpg'
 import successImg from '/assets/spreadsheet-success-modal.jpg'
-import { FacebookShare, RedditShare, TelegramShare, TwitterShare } from '~components/Share'
 
 export const ProcessView = () => {
   const { t } = useTranslation()
   const { election } = useElection()
   const videoRef = useRef<HTMLDivElement>(null)
   const [videoTop, setVideoTop] = useState(false)
-
+  const electionRef = useRef<HTMLDivElement>(null)
   const [tabIndex, setTabIndex] = useState(0)
+  const [formErrors, setFormErrors] = useState<any>(null)
 
   const handleTabsChange = (index: number) => {
     setTabIndex(index)
@@ -67,9 +68,39 @@ export const ProcessView = () => {
     }
   }, [])
 
+  // If the election is finished show the results tab
   useEffect(() => {
-    if (election?.status === ElectionStatus.RESULTS) setTabIndex(1)
+    if (election?.status === ElectionStatus.RESULTS) {
+      setTabIndex(1)
+    }
   }, [election])
+
+  // Move the focus of the screen to the first unanswered question
+  useEffect(() => {
+    if (!formErrors) return
+
+    // We gather all the inputs
+    const inputs = electionRef?.current?.getElementsByTagName('input')
+
+    if (inputs) {
+      const inputsArray = Array.from(inputs)
+
+      // The formErrors object has keys that represent the error names, so we filter the inputsArray with the names of the inputs
+      const inputsError = inputsArray.filter((el) => el.name === Object.keys(formErrors)[0])
+
+      // We get the last input which is the closest to the error message
+      const lastInputError = inputsError[inputsError.length - 1]
+
+      // Once we have the first input, we calculate the new position
+      const newPosition = window.scrollY + lastInputError.getBoundingClientRect().top - 200
+
+      // We move the focus to the corresponding height
+      window.scrollTo({
+        top: newPosition,
+        behavior: 'smooth',
+      })
+    }
+  }, [formErrors])
 
   return (
     <Box>
@@ -107,8 +138,11 @@ export const ProcessView = () => {
             </TabList>
             <TabPanels>
               <TabPanel>
-                <Box className='md-sizes' mb='100px' pt='50px'>
+                <Box ref={electionRef} className='md-sizes' mb='100px' pt='50px'>
                   <ElectionQuestions
+                    onInvalid={(args) => {
+                      setFormErrors(args)
+                    }}
                     confirmContents={(election, answers) => <ConfirmVoteModal election={election} answers={answers} />}
                   />
                 </Box>
