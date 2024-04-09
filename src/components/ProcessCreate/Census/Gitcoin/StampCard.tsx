@@ -1,7 +1,7 @@
-import { Box, Checkbox, Text, Card, CardHeader } from '@chakra-ui/react'
-import { StampIcon } from '~components/ProcessCreate/Census/Gitcoin/StampIcon'
+import { Box, Card, Checkbox, Text } from '@chakra-ui/react'
 import { Controller, useFormContext } from 'react-hook-form'
 import { GitcoinStampToken } from '~components/ProcessCreate/Census/Gitcoin/index'
+import { StampIcon } from '~components/ProcessCreate/Census/Gitcoin/StampIcon'
 import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
 
 interface IStampCardProps {
@@ -28,6 +28,19 @@ export const StampCard: React.FC<IStampCardProps> = ({ token }) => {
             variant='radiobox'
             onChange={(e) => switchOnChange(e.target.checked as boolean)}
             isChecked={field.value.isChecked}
+            sx={{
+              '& div:first-of-type': {
+                mb: 0,
+                fontWeight: 'normal',
+              },
+
+              '& > span:first-of-type': {
+                display: 'none',
+                _checked: {
+                  display: 'block',
+                },
+              },
+            }}
           >
             <Box>
               <StampInnerBox name={token.name} iconURI={token.iconURI} />
@@ -46,7 +59,7 @@ const StampInnerBox: React.FC<StampInnerBoxProps> = ({ name, iconURI }) => {
   return (
     <>
       <StampIcon iconURI={iconURI} alt={stampTitle} />
-      <Text wordBreak='break-all'>{stampTitle}</Text>
+      <Text wordBreak='normal'>{stampTitle}</Text>
     </>
   )
 }

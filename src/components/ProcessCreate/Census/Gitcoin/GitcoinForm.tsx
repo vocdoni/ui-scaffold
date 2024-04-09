@@ -1,4 +1,5 @@
 import {
+  Box,
   Checkbox,
   Flex,
   FormLabel,
@@ -35,23 +36,7 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
   }
 
   return (
-    <Flex gap={8} direction={'column'}>
-      <Controller
-        name={'gpsWeighted'}
-        control={control}
-        render={({ field: { value, onChange } }) => (
-          <Flex alignItems='center' gap={2} flexDirection={{ base: 'column', md: 'row' }}>
-            <Checkbox isChecked={value} onChange={(e) => onChange(e.target.checked as boolean)}>
-              <Text fontWeight='bold' fontSize='16px' lineHeight='20px'>
-                {t('form.process_create.census.weighted_voting_title')}
-              </Text>
-            </Checkbox>
-            <Text fontSize='16px' lineHeight='20px'>
-              {t('form.process_create.census.weighted_voting_description')}
-            </Text>
-          </Flex>
-        )}
-      ></Controller>
+    <Flex gap={6} direction={'column'}>
       <Controller
         name={'passportScore'}
         control={control}
@@ -60,8 +45,10 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
           required,
         }}
         render={({ field: { ref, onChange, value, ...restField } }) => (
-          <>
-            <FormLabel fontWeight='bold'>{t('form.process_create.census.gitcoin_passport_score')}</FormLabel>
+          <Box>
+            <FormLabel mb={4} fontWeight='bold'>
+              {t('form.process_create.census.gitcoin_passport_score')}
+            </FormLabel>
             <Flex gap={8}>
               <NumberInput
                 defaultValue={10}
@@ -94,7 +81,23 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
                 <SliderThumb fontSize='sm' boxSize='32px' children={value} />
               </Slider>
             </Flex>
-          </>
+          </Box>
+        )}
+      ></Controller>
+      <Controller
+        name={'gpsWeighted'}
+        control={control}
+        render={({ field: { value, onChange } }) => (
+          <Flex alignItems='center' gap={2} flexDirection={{ base: 'column', md: 'row' }} mb={8}>
+            <Checkbox isChecked={value} onChange={(e) => onChange(e.target.checked as boolean)}>
+              <Text fontWeight='bold' fontSize='16px' lineHeight='20px' whiteSpace='nowrap' mr={4}>
+                {t('form.process_create.census.weighted_voting_title')}
+              </Text>
+            </Checkbox>
+            <Text fontSize='13.5px' lineHeight='20px'>
+              {t('form.process_create.census.weighted_voting_description')}
+            </Text>
+          </Flex>
         )}
       ></Controller>
       <>

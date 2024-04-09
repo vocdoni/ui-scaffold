@@ -1,5 +1,5 @@
+import { Flex, FormLabel, Switch, Text } from '@chakra-ui/react'
 import { Controller, useFormContext } from 'react-hook-form'
-import { Box, Flex, FormLabel, Switch, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
 
@@ -40,7 +40,7 @@ export const StampsUnionType = () => {
                 isChecked={isChecked}
                 onChange={(e) => switchOnChange(e.target.value)}
               />
-              <FormLabel minWidth='40px' fontWeight='bold'>
+              <FormLabel minWidth='40px' fontWeight='bold' m={0}>
                 {field.value}
               </FormLabel>
             </Flex>
