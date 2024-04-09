@@ -46,7 +46,7 @@ export const ProcessView = () => {
   const [formErrors, setFormErrors] = useState<any>(null)
   const { isConnected } = useAccount()
   const [rerender, setRerender] = useState(true)
-  console.log(rerender)
+
   const handleTabsChange = (index: number) => {
     setTabIndex(index)
   }
