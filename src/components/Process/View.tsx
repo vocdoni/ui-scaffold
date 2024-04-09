@@ -29,6 +29,7 @@ import { useEffect, useRef, useState } from 'react'
 import { FieldValues } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import ReactPlayer from 'react-player'
+import { useAccount } from 'wagmi'
 import { FacebookShare, RedditShare, TelegramShare, TwitterShare } from '~components/Share'
 import ProcessAside, { VoteButton } from './Aside'
 import Header from './Header'
@@ -43,7 +44,9 @@ export const ProcessView = () => {
   const electionRef = useRef<HTMLDivElement>(null)
   const [tabIndex, setTabIndex] = useState(0)
   const [formErrors, setFormErrors] = useState<any>(null)
-
+  const { isConnected } = useAccount()
+  const [rerender, setRerender] = useState(true)
+  console.log(rerender)
   const handleTabsChange = (index: number) => {
     setTabIndex(index)
   }
@@ -102,6 +105,40 @@ export const ProcessView = () => {
     }
   }, [formErrors])
 
+  // When we are not disconnected, we remove 'data-checked' from all labels and spans
+  useEffect(() => {
+    if (!isConnected) {
+      const labels = electionRef?.current?.getElementsByTagName('label')
+
+      if (labels) {
+        if (!isConnected) {
+          const arrayLabels = Array.from(labels)
+          arrayLabels.forEach((el: Element) => {
+            el.removeAttribute('data-checked')
+
+            const spans = el.getElementsByTagName('span')
+
+            if (spans) {
+              const spansArray = Array.from(spans)
+              spansArray.forEach((el: Element) => {
+                el.removeAttribute('data-checked')
+              })
+            }
+          })
+        }
+      }
+    }
+  }, [isConnected])
+
+  // Two useEffects to force rendering when connecting and disconnecting to apply styles without 'data-checked'
+  useEffect(() => {
+    setRerender(false)
+  }, [isConnected])
+
+  useEffect(() => {
+    setRerender(true)
+  }, [rerender])
+
   return (
     <Box>
       <Box className='site-wrapper' mb={44}>
@@ -139,12 +176,16 @@ export const ProcessView = () => {
             <TabPanels>
               <TabPanel>
                 <Box ref={electionRef} className='md-sizes' mb='100px' pt='50px'>
-                  <ElectionQuestions
-                    onInvalid={(args) => {
-                      setFormErrors(args)
-                    }}
-                    confirmContents={(election, answers) => <ConfirmVoteModal election={election} answers={answers} />}
-                  />
+                  {rerender && (
+                    <ElectionQuestions
+                      onInvalid={(args) => {
+                        setFormErrors(args)
+                      }}
+                      confirmContents={(election, answers) => (
+                        <ConfirmVoteModal election={election} answers={answers} />
+                      )}
+                    />
+                  )}
                 </Box>
                 <Box position='sticky' bottom={0} left={0} pb={1} pt={1} display={{ base: 'none', lg2: 'block' }}>
                   <VoteButton setQuestionsTab={setQuestionsTab} />
