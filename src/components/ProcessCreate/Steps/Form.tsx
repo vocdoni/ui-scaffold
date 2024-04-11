@@ -6,7 +6,9 @@ import { CensusSpreadsheetManager } from '../Census/Spreadsheet/CensusSpreadshee
 import { StepContents } from './Contents'
 import { StepsContext, StepsContextState, StepsFormValues } from './use-steps'
 
-export type StepsFormProps = PropsWithChildren<Omit<StepsContextState, 'form' | 'setForm'>>
+export type StepsFormProps = PropsWithChildren<
+  Omit<StepsContextState, 'form' | 'setForm' | 'isLoadingPreview' | 'setIsLoadingPreview'>
+>
 
 export const StepsForm = ({ steps, children, activeStep, next, prev, setActiveStep }: StepsFormProps) => {
   const [form, setForm] = useState<RecursivePartial<StepsFormValues>>({
