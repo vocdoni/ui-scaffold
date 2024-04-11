@@ -44,7 +44,7 @@ export const StampsUnionType = () => {
                 {field.value}
               </FormLabel>
             </Flex>
-            <Text fontSize='sm' color='process_create.description' flex={1} textAlign={'left'}>
+            <Text fontSize='xs' color='process_create.description' flex={1} textAlign={'left'}>
               {description}
             </Text>
           </Flex>
