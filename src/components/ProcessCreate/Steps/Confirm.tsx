@@ -75,6 +75,9 @@ export const Confirm = () => {
   const methods = useForm({
     defaultValues: {
       maxCensusSize: form.maxCensusSize,
+      accuracy: form.accuracy,
+      strategySize: form.strategySize,
+      timeToCreateCensus: form.timeToCreateCensus,
       infoValid: false,
       termsAndConditions: false,
     },
@@ -85,6 +88,7 @@ export const Confirm = () => {
     formState: { errors },
     handleSubmit,
     register,
+    setValue,
   } = methods
 
   const onSubmit = async () => {
@@ -214,7 +218,13 @@ export const Confirm = () => {
           form.electionType.anonymous
         )
         const initialValue = size < DefaultCensusSize ? size : DefaultCensusSize
+        // Update this values on the state form because they are not gonna change
         setForm({ ...form, accuracy, strategySize: size, timeToCreateCensus, maxCensusSize: initialValue })
+        // And update the values for this view
+        setValue('accuracy', accuracy)
+        setValue('strategySize', size)
+        setValue('timeToCreateCensus', timeToCreateCensus)
+        setValue('maxCensusSize', initialValue)
         setGtcEstimationLoading(false)
       } catch (err) {
         setError(errorToString(err))

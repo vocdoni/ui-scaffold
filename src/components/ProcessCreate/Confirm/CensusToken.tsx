@@ -10,15 +10,18 @@ import { useProcessCreationSteps } from '../Steps/use-steps'
 const PreviewCensusToken = () => {
   const { t } = useTranslation()
   const {
-    form: { gitcoinGPSToken, censusType, censusToken, chain, strategySize, accuracy, electionType },
+    form: { gitcoinGPSToken, censusType, censusToken, chain, electionType },
   } = useProcessCreationSteps()
 
   const { watch } = useFormContext()
 
   const maxCensusSize = watch('maxCensusSize')
+  const strategySize = watch('strategySize')
+  const accuracy = watch('accuracy')
 
   const size = maxCensusSize || 0
   const max = strategySize || 0
+  const acc = accuracy || 0
 
   let token = censusToken
   let chainName = chain.name
@@ -47,7 +50,7 @@ const PreviewCensusToken = () => {
           <Text as='span' fontWeight='bold'>
             {t('process_create.preview.accuracy')}
           </Text>
-          {accuracy.toFixed()}%
+          {acc.toFixed()}%
           <Tooltip label={t('process_create.anonymous.legal_note') + t('process_create.anonymous.legal_disclaimer')}>
             <Text as='span' mb='4px'>
               <AiTwotoneQuestionCircle />

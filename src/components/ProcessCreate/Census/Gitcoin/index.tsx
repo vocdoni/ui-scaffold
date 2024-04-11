@@ -37,6 +37,12 @@ export const GitcoinStrategyBuilder = () => {
       setLoading(true)
       setError(undefined)
       try {
+        // Reset the values to prevent previous values when user go back from the confirm screen
+        setValue('maxCensusSize', undefined)
+        setValue('strategySize', undefined)
+        setValue('accuracy', undefined)
+        setValue('timeToCreateCensus', undefined)
+
         // Get Gitcoin tokens
         const tks = await client.getSupportedTokens()
         let ct: TokenSummary | undefined
@@ -54,20 +60,10 @@ export const GitcoinStrategyBuilder = () => {
 
         // Get gitcoin passport token info
         if (!ct) throw new Error('Error finding gitcoin passport token')
-        const { size, timeToCreateCensus, accuracy } = await client.getStrategyEstimation(
-          ct.defaultStrategy,
-          form.electionType.anonymous
-        )
-        setValue('accuracy', accuracy)
-        setValue('strategySize', size)
-        setValue('timeToCreateCensus', timeToCreateCensus)
-        const initialValue = size < DefaultCensusSize ? size : DefaultCensusSize
-        setValue('maxCensusSize', initialValue)
       } catch (err) {
         setError(errorToString(err))
         setValue('gitcoinGPSToken', undefined)
         setValue('chain', undefined)
-        setValue('strategySize', undefined)
       }
       setLoading(false)
     })()
