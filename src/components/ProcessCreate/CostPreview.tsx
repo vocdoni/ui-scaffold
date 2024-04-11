@@ -40,10 +40,9 @@ export const CostPreview = ({
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { account, client } = useClient()
   const [cost, setCost] = useState<number | undefined>()
-  const { form } = useProcessCreationSteps()
+  const { form, isLoadingPreview } = useProcessCreationSteps()
   const { loading, handleSignIn } = useClaim()
   const {
-    isCalculating,
     maxCensusSize,
     startDate,
     endDate,
@@ -92,6 +91,8 @@ export const CostPreview = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cost, account?.balance])
 
+  const isLoading = isLoadingPreview || !cost
+
   return (
     <Flex flexDirection='column' gap={2} mb={5}>
       <Text className='brand-theme' fontWeight='bold' textTransform='uppercase'>
@@ -99,13 +100,12 @@ export const CostPreview = ({
       </Text>
       <Text fontSize='sm'>{t('form.process_create.confirm.cost_description')}</Text>
       <Flex flexDirection='column' gap={4} p={{ base: 3, xl: 6 }} bgColor='process_create.section' borderRadius='md'>
-        {typeof cost === 'undefined' ||
-          (isCalculating && (
-            <Flex justifyContent='center'>
-              <Spinner textAlign='center' />
-            </Flex>
-          ))}
-        {typeof cost !== 'undefined' && !isCalculating && (
+        {isLoading && (
+          <Flex justifyContent='center'>
+            <Spinner textAlign='center' />
+          </Flex>
+        )}
+        {cost && (
           <>
             <Box fontSize='sm'>
               <Text mb={3}>{t('cost_preview.subtitle')}</Text>

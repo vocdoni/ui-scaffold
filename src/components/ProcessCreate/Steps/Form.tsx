@@ -27,6 +27,8 @@ export const StepsForm = ({ steps, children, activeStep, next, prev, setActiveSt
     gpsWeighted: false,
   })
 
+  const [isLoadingPreview, setIsLoadingPreview] = useState(false)
+
   // reinitialize form if we have a draft and `state` is set in the URL
   useEffect(() => {
     const url = new URL(window.location.href)
@@ -63,6 +65,8 @@ export const StepsForm = ({ steps, children, activeStep, next, prev, setActiveSt
     setForm: setFormInStateAndLocalstorage,
     steps,
     setActiveStep,
+    isLoadingPreview,
+    setIsLoadingPreview,
   }
 
   return (

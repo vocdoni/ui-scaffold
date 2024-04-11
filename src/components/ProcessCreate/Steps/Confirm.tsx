@@ -29,17 +29,15 @@ import {
   IPublishedElectionParameters,
   IQuestion,
   PlainCensus,
-  PublishedCensus,
   PublishedElection,
   StrategyToken,
   UnpublishedElection,
   VocdoniCensus3Client,
-  CensusType as VocdoniCensusType,
   WeightedCensus,
   Census3CreateStrategyToken,
 } from '@vocdoni/sdk'
 import { useEffect, useMemo, useState } from 'react'
-import { FormProvider, useForm, useFormContext } from 'react-hook-form'
+import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { IElection, IElectionWithTokenResponse } from 'vocdoni-admin-sdk'
@@ -58,14 +56,13 @@ import { DefaultCensusSize } from '~constants'
 
 export const Confirm = () => {
   const { env, client, account, fetchAccount, census3: c3client } = useClient()
-  const { form, prev, setForm } = useProcessCreationSteps()
+  const { form, prev, setForm, setIsLoadingPreview, isLoadingPreview } = useProcessCreationSteps()
   const navigate = useNavigate()
   const { t } = useTranslation()
   const toast = useToast()
   const [error, setError] = useState<string | null>(null)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [sending, setSending] = useState<boolean>(false)
-  const [gtcEstimationLoading, setGtcEstimationLoading] = useState<boolean>(false)
   const [created, setCreated] = useState<string | null>(null)
   const [step, setStep] = useState<Steps>()
   const [disabled, setDisabled] = useState<boolean>(false)
@@ -194,7 +191,7 @@ export const Confirm = () => {
   // fetches census for unpublished elections
   useEffect(() => {
     ;(async () => {
-      if (!form.maxCensusSize || gtcEstimationLoading) return
+      if (!form.maxCensusSize || isLoadingPreview) return
       setUnpublished(
         Election.from({
           ...corelection,
@@ -203,13 +200,13 @@ export const Confirm = () => {
         } as IElectionParameters)
       )
     })()
-  }, [gtcEstimationLoading, form.maxCensusSize])
+  }, [isLoadingPreview, form.maxCensusSize])
 
   // Recalculate the strategy estimation for gitcoin passport
   useEffect(() => {
     ;(async () => {
       if (form.censusType !== 'gitcoin' || !c3client) return
-      setGtcEstimationLoading(true)
+      setIsLoadingPreview(true)
       try {
         const { predicate, tokens } = await getStrategyArgs(form)
         const { size, timeToCreateCensus, accuracy } = await c3client.getPredicateEstimation(
@@ -225,10 +222,10 @@ export const Confirm = () => {
         setValue('strategySize', size)
         setValue('timeToCreateCensus', timeToCreateCensus)
         setValue('maxCensusSize', initialValue)
-        setGtcEstimationLoading(false)
+        setIsLoadingPreview(false)
       } catch (err) {
         setError(errorToString(err))
-        setGtcEstimationLoading(false)
+        setIsLoadingPreview(false)
       }
     })()
   }, [c3client])
@@ -252,7 +249,7 @@ export const Confirm = () => {
         <ElectionProvider election={published}>
           <FormProvider {...methods}>
             <Flex flexDirection={{ base: 'column', xl2: 'row' }} gap={5}>
-              <Preview censusLoading={gtcEstimationLoading} />
+              <Preview />
               <Box flex={{ xl2: '0 0 25%' }}>
                 <CostPreview unpublished={unpublished} disable={setDisabled} />
 
