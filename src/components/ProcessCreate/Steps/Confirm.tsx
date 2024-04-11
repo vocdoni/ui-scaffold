@@ -65,6 +65,7 @@ export const Confirm = () => {
   const [error, setError] = useState<string | null>(null)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [sending, setSending] = useState<boolean>(false)
+  const [gtcEstimationLoading, setGtcEstimationLoading] = useState<boolean>(false)
   const [created, setCreated] = useState<string | null>(null)
   const [step, setStep] = useState<Steps>()
   const [disabled, setDisabled] = useState<boolean>(false)
@@ -189,6 +190,7 @@ export const Confirm = () => {
   // fetches census for unpublished elections
   useEffect(() => {
     ;(async () => {
+      if (!form.maxCensusSize || gtcEstimationLoading) return
       setUnpublished(
         Election.from({
           ...corelection,
@@ -197,12 +199,13 @@ export const Confirm = () => {
         } as IElectionParameters)
       )
     })()
-  }, [form.maxCensusSize])
+  }, [gtcEstimationLoading, form.maxCensusSize])
 
   // Recalculate the strategy estimation for gitcoin passport
   useEffect(() => {
     ;(async () => {
       if (form.censusType !== 'gitcoin' || !c3client) return
+      setGtcEstimationLoading(true)
       try {
         const { predicate, tokens } = await getStrategyArgs(form)
         const { size, timeToCreateCensus, accuracy } = await c3client.getPredicateEstimation(
@@ -212,8 +215,10 @@ export const Confirm = () => {
         )
         const initialValue = size < DefaultCensusSize ? size : DefaultCensusSize
         setForm({ ...form, accuracy, strategySize: size, timeToCreateCensus, maxCensusSize: initialValue })
+        setGtcEstimationLoading(false)
       } catch (err) {
         setError(errorToString(err))
+        setGtcEstimationLoading(false)
       }
     })()
   }, [c3client])
@@ -237,7 +242,7 @@ export const Confirm = () => {
         <ElectionProvider election={published}>
           <FormProvider {...methods}>
             <Flex flexDirection={{ base: 'column', xl2: 'row' }} gap={5}>
-              <Preview />
+              <Preview censusLoading={gtcEstimationLoading} />
               <Box flex={{ xl2: '0 0 25%' }}>
                 <CostPreview unpublished={unpublished} disable={setDisabled} />
 
