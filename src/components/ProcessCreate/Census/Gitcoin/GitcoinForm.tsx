@@ -90,7 +90,12 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
         name={'gpsWeighted'}
         control={control}
         render={({ field: { value, onChange } }) => (
-          <Flex alignItems='center' gap={2} flexDirection={{ base: 'column', md: 'row' }} mb={8}>
+          <Flex
+            alignItems={{ base: 'start', md: 'center' }}
+            gap={2}
+            flexDirection={{ base: 'column', md: 'row' }}
+            mb={8}
+          >
             <Checkbox isChecked={value} onChange={(e) => onChange(e.target.checked as boolean)}>
               <Text fontWeight='bold' fontSize='16px' lineHeight='20px' whiteSpace='nowrap' mr={4}>
                 {t('form.process_create.census.weighted_voting_title')}
@@ -109,7 +114,7 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
         </Flex>
         <Grid
           gap={5}
-          templateColumns={{ sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(5, 1fr)' }}
+          templateColumns={{ sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', xl: 'repeat(5, 1fr)' }}
           justifyContent='space-between'
         >
           {gitcoinTokens.map((token, i) => (
