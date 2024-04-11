@@ -68,6 +68,8 @@ export const colors = {
 
   footer_icon: colorsBase.white.pure,
 
+  gitcoin_card_checked: colorsBase.primary.main,
+
   link: {
     contrast: colorsBase.white.pure,
     primary: colorsBase.primary.main,

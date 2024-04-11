@@ -56,6 +56,8 @@ export const colors = {
   error: colorsBase.red,
   footer_link: colorsBase.gray.dark,
 
+  gitcoin_card_checked: colorsBase.primary.main,
+
   home: {
     benefits: {
       dark_bg: colorsBase.primary.main,

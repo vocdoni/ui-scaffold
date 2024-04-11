@@ -29,6 +29,12 @@ export const StampCard: React.FC<IStampCardProps> = ({ token }) => {
             onChange={(e) => switchOnChange(e.target.checked as boolean)}
             isChecked={field.value.isChecked}
             sx={{
+              '&': {
+                _checked: {
+                  border: '3px solid',
+                  borderColor: 'gitcoin_card_checked',
+                },
+              },
               '& div:first-of-type': {
                 mb: 0,
                 fontWeight: 'normal',
