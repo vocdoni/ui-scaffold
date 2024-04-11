@@ -3116,7 +3116,7 @@
 
 "@vocdoni/sdk@https://github.com/vocdoni/vocdoni-sdk.git#main":
   version "0.7.5"
-  resolved "https://github.com/vocdoni/vocdoni-sdk.git#118f64f127cff559e85b253583541ecfc7651d7c"
+  resolved "https://github.com/vocdoni/vocdoni-sdk.git#0a4f670b831cf2206a765d963e647c1b42a70f55"
   dependencies:
     "@ethersproject/abstract-signer" "^5.7.0"
     "@ethersproject/address" "^5.7.0"
