@@ -31,7 +31,7 @@ export const StampCard: React.FC<IStampCardProps> = ({ token }) => {
             sx={{
               '&': {
                 _checked: {
-                  border: '3px solid',
+                  outline: '3px solid',
                   borderColor: 'gitcoin_card_checked',
                 },
               },
