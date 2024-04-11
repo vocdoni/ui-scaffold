@@ -40,7 +40,7 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
       <Controller
         name={'passportScore'}
         control={control}
-        defaultValue={10}
+        defaultValue={15}
         rules={{
           required,
         }}
