@@ -51,7 +51,7 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
             </FormLabel>
             <Flex gap={8}>
               <NumberInput
-                defaultValue={10}
+                defaultValue={15}
                 min={1}
                 max={100}
                 maxW={40}
