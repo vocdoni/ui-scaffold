@@ -207,6 +207,7 @@ export const Confirm = () => {
     ;(async () => {
       if (form.censusType !== 'gitcoin' || !c3client) return
       setIsLoadingPreview(true)
+      c3client.queueWait.attempts = 100
       try {
         const { predicate, tokens } = await getStrategyArgs(form)
         const { size, timeToCreateCensus, accuracy } = await c3client.getPredicateEstimation(
@@ -381,8 +382,7 @@ const getCensus = async (env: EnvOptions, form: StepsFormValues, salt: string) =
         env,
       })
 
-      const retryTime = 5000
-      c3client.queueWait.retryTime = retryTime
+      c3client.queueWait.retryTime = 5000
       // clamp attempts between 20 and 100
       c3client.queueWait.attempts = 100
 
