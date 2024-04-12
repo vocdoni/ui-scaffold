@@ -29,12 +29,10 @@ import {
   IPublishedElectionParameters,
   IQuestion,
   PlainCensus,
-  PublishedCensus,
   PublishedElection,
   StrategyToken,
   UnpublishedElection,
   VocdoniCensus3Client,
-  CensusType as VocdoniCensusType,
   WeightedCensus,
 } from '@vocdoni/sdk'
 import { useEffect, useMemo, useState } from 'react'
@@ -424,6 +422,7 @@ const electionFromForm = (form: StepsFormValues) => {
     temporarySecretIdentity: form.censusType === 'spreadsheet' && form.electionType.anonymous,
     meta: {
       generated: 'ui-scaffold',
+      app: import.meta.env.theme === 'default' ? 'vocdoni' : import.meta.env.theme,
       census: {
         type: form.censusType,
         fields: form.spreadsheet?.header ?? undefined,
