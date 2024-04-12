@@ -1,21 +1,23 @@
-import { ElectionActions } from './Actions'
-import { Alert } from './Alert'
-import { Badge } from './Badge'
-import { Button } from './Button'
-import { Card } from './Card'
-import { Checkbox } from './Checkbox'
-import { ConfirmModal } from './ConfirmModal'
-import { Form } from './Form'
-import { Input } from './Input'
-import { Link } from './Link'
-import { Modal } from './Modal'
-import { ElectionQuestions } from './Questions'
-import { QuestionsConfirmation } from './QuestionsConfirmation'
-import { ElectionResults } from './Results'
-import { SpreadsheetAccess } from './SpreadSheet'
-import { Stepper } from './Stepper'
-import { Tabs } from './Tabs'
-import { Textarea } from './Textarea'
+import {ElectionActions} from './Actions'
+import {Alert} from './Alert'
+import {Badge} from './Badge'
+import {Button} from './Button'
+import {Card} from './Card'
+import {Checkbox} from './Checkbox'
+import {ConfirmModal} from './ConfirmModal'
+import {Form} from './Form'
+import {Input} from './Input'
+import {Link} from './Link'
+import {Modal} from './Modal'
+import {ElectionQuestions} from './Questions'
+import {QuestionsConfirmation} from './QuestionsConfirmation'
+import {QuestionsTip} from './QuestionsTip'
+import {QuestionsTypeBadge} from './QuestionsTypeBadge'
+import {ElectionResults} from './Results'
+import {SpreadsheetAccess} from './SpreadSheet'
+import {Stepper} from './Stepper'
+import {Tabs} from './Tabs'
+import {Textarea} from './Textarea'
 
 export {
   Alert,
@@ -32,6 +34,8 @@ export {
   Link,
   Modal,
   QuestionsConfirmation,
+  QuestionsTypeBadge,
+  QuestionsTip,
   SpreadsheetAccess,
   Stepper,
   Tabs,
@@ -52,6 +56,8 @@ export const components = {
   Modal,
   ElectionQuestions,
   QuestionsConfirmation,
+  QuestionsTip,
+  QuestionsTypeBadge,
   ElectionResults,
   SpreadsheetAccess,
   Stepper,
