@@ -20,7 +20,14 @@ const Navbar = () => {
   const { exists } = useOrganizationHealthTools()
 
   return (
-    <Flex className='site-wrapper' justifyContent='space-between' w='full' mx='auto' py={{ base: '12px', md: '24px' }}>
+    <Flex
+      className='site-wrapper'
+      justifyContent='space-between'
+      alignItems='center'
+      w='full'
+      mx='auto'
+      py={{ base: '12px', md: '24px' }}
+    >
       <Logo />
 
       <List as='nav' display='flex' alignItems='center' gap={4}>
@@ -57,6 +64,8 @@ const Navbar = () => {
                 onClick={() => {
                   if (openConnectModal) openConnectModal()
                 }}
+                width='175px'
+                height='50px'
               >
                 {t('menu.login').toString()}
               </Button>
