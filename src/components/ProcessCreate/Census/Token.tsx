@@ -414,7 +414,7 @@ export const TokenPreview = ({
           >
             <CryptoAvatar
               name={token.name}
-              icon={passportScore ? gitcoinPassportImg : token.iconURI}
+              icon={token && token.type === 'gitcoinpassport' ? gitcoinPassportImg : token.iconURI}
               id={token.ID}
               chainId={token.chainID}
               size='md'
@@ -474,7 +474,7 @@ export const TokenPreview = ({
             justifyContent='center'
           >
             <Heading size='sm' mb={1}>
-              {token.name} {passportScore && `: ${passportScore}`}
+              {token.name} {token && token.type === 'gitcoinpassport' && `: ${passportScore}`}
             </Heading>
 
             <Text>({token.symbol})</Text>
