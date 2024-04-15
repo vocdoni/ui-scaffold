@@ -266,7 +266,7 @@
         "gitcoin_strategy_description_OR": "Los votantes deben ser propietarios de al menos un sello y tener un GPS igual o superior.",
         "gitcoin_title": "Gitcoin Passport",
         "holders": "{{ holders }} titulares",
-        "max_census_resum": "Tienes un grupo de {{ uniTokenHolders }} posibles votantes de {{ symbol }}. Para reducir el costo del proceso de votación, puedes optar por limitar el número total de participantes en el proceso de votación. Esto no afectará a votantes específicos ni reducirá el censo; simplemente reducirá el número máximo de votos que se pueden emitir.",
+        "max_census_resum": "Tienes un grupo de {{ uniTokenHolders }} posibles votantes de {{ symbol }}. Para reducir el costo del proceso de votación, puedes optar por limitar el número total de participantes en el proceso de votación (ahora mismo {{ titulares }}, {{ porcentaje }}% del total de votantes potenciales). Esto no afectará a votantes específicos ni reducirá el censo; simplemente reducirá el número máximo de votos que se pueden emitir.",
         "max_census_slider_arialabel": "Selector deslizante de participación máxima esperada",
         "max_census_slider_label": "Participación máxima esperada:",
         "max_census_slider_tooltip": "{{ percent }}% ({{ voters }} votantes elegibles)",

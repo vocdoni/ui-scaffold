@@ -10,7 +10,7 @@ import { useProcessCreationSteps } from '../Steps/use-steps'
 const PreviewCensusToken = () => {
   const { t } = useTranslation()
   const {
-    form: { gitcoinGPSToken, censusType, censusToken, chain, electionType },
+    form: { gitcoinGPSToken, censusType, censusToken, chain, electionType, passportScore },
   } = useProcessCreationSteps()
 
   const { watch } = useFormContext()
@@ -31,7 +31,7 @@ const PreviewCensusToken = () => {
   }
   return (
     <>
-      <TokenPreview token={token} chainName={chainName} strategySize={strategySize} />
+      <TokenPreview token={token} chainName={chainName} strategySize={strategySize} passportScore={passportScore} />
       {censusType === 'gitcoin' && <GitcoinStampsPreview />}
       <Flex flexWrap='wrap' mt={2}>
         <Text mr={1} fontWeight='bold'>
@@ -84,6 +84,7 @@ const GitcoinStampsPreview = () => {
       <Flex alignItems={'start'} justifyContent={'start'} gap={3} flexDirection={{ base: 'column', md: 'row' }}>
         <FormLabel fontWeight='bold'>{t('form.process_create.census.gitcoin_stamps')}</FormLabel>
         <FormLabel fontWeight='bold'>{stampsUnionType}</FormLabel>
+
         <Text fontSize='sm' color='process_create.description' flex={1} textAlign={'left'}>
           {description}
         </Text>

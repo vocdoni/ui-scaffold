@@ -168,7 +168,8 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
                     i18nKey={'form.process_create.census.max_census_resum'}
                     values={{
                       symbol: token.symbol,
-                      uniTokenHolders: value,
+                      uniTokenHolders: strategySize,
+                      holders: delayedInputNumber,
                       percent,
                     }}
                   />

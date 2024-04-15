@@ -366,10 +366,12 @@ export const TokenPreview = ({
   token,
   chainName,
   strategySize,
+  passportScore,
 }: {
   token?: Census3Token
   chainName?: string
   strategySize?: number
+  passportScore?: number
 }) => {
   const cardRef = useRef<HTMLDivElement>(null)
   const [minCardSize800px, setMinCardSize800px] = useState(false)
@@ -465,8 +467,9 @@ export const TokenPreview = ({
             justifyContent='center'
           >
             <Heading size='sm' mb={1}>
-              {token.name}
+              {token.name}: {passportScore}
             </Heading>
+
             <Text>({token.symbol})</Text>
           </GridItem>
         </Grid>
