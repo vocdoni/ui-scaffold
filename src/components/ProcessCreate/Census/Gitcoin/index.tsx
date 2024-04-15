@@ -1,4 +1,4 @@
-import { Alert, AlertIcon, Spinner } from '@chakra-ui/react'
+import { Alert, AlertIcon, Flex, Spinner } from '@chakra-ui/react'
 import { errorToString, useClient } from '@vocdoni/react-providers'
 import { EnvOptions, TokenSummary, VocdoniCensus3Client } from '@vocdoni/sdk'
 import { useEffect, useMemo, useState } from 'react'
@@ -75,7 +75,13 @@ export const GitcoinStrategyBuilder = () => {
 
   return (
     <Wrapper>
-      {loading ? <Spinner mt={10} /> : !error && <GitcoinForm gitcoinTokens={gitcoinTokens} />}
+      {loading ? (
+        <Flex justifyContent='center'>
+          <Spinner mt={10} />
+        </Flex>
+      ) : (
+        !error && <GitcoinForm gitcoinTokens={gitcoinTokens} />
+      )}
       {error && (
         <Alert status='error'>
           <AlertIcon />
