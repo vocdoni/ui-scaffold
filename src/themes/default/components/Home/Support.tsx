@@ -68,6 +68,7 @@ const Support = () => {
             aria-label={t('home.support.btn_contact')}
             title={t('home.support.btn_contact')}
             target='_blank'
+            width='200px'
           >
             {t('home.support.btn_contact')}
           </Button>
