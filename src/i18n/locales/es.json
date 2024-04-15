@@ -397,12 +397,12 @@
   "home": {
     "benefits": {
       "card_1": {
-        "description": "Nuestra solución reduce costos hasta en un 90%, haciendo la votación asequible para todos y mejorando la democracia.",
+        "description": "Nuestra solución es 10 veces más barata, mejorando la democracia al hacer que la votación sea accesible para todos.",
         "title": "90% más económico"
       },
       "card_2": {
         "description": "Ahorra tiempo y esfuerzo con nuestros procesos optimizados, disfrutando de menores costos operativos.",
-        "title": "Ahorro de costos"
+        "title": "Costos Reducidos"
       },
       "card_3": {
         "description": "Incrementa la participación con una plataforma fácil de usar, accesible para todos.",
@@ -413,25 +413,25 @@
         "title": "Votación sin complicaciones"
       },
       "card_5": {
-        "description": "Tus votos están seguros con nuestros métodos criptográficos avanzados, garantizando la máxima seguridad y la integridad de cada voto.",
+        "description": "Ten la seguridad de que los métodos criptográficos avanzados garantizan la máxima seguridad mientras se mantiene el anonimato del votante y la integridad del voto.",
         "title": "Seguridad sin igual"
       },
       "card_6": {
-        "description": "Promueve la confianza y la transparencia con tecnología blockchain, ofreciendo una visibilidad completa del proceso de votación.",
+        "description": "Promover la confianza y la transparencia impulsada por la tecnología blockchain, ofreciendo a los interesados una visibilidad sin igual en la integridad de los procesos de votación.",
         "title": "Transparente y verificable"
       },
       "subtitle_1": "Con Vocdoni, obtienes beneficios diseñados para tus necesidades de votación. Nuestra tecnología facilita la transición hacia la democracia digital para organizaciones, comunidades y gobiernos. Descubre cómo Vocdoni agrega valor:",
-      "title": "Beneficios"
+      "title": "Ventajas"
     },
     "clients_title": "Más de 100 organizaciones confían en nosotros",
     "contactus": {
       "btn": "Contáctanos",
       "card_1": {
-        "description": "Cuéntanos tus necesidades y crearemos una solución personalizada para tus desafíos.",
+        "description": "Explica tus necesidades y crearemos una solución personalizada para tus desafíos.",
         "title": "Soluciones personalizadas para tus necesidades"
       },
       "card_2": {
-        "description": "Ofrecemos soluciones de autoservicio y personalizadas, adaptadas para ti.",
+        "description": "Vocdoni ofrece tanto soluciones de autoservicio como soluciones personalizadas llave en mano adaptadas a tus necesidades.",
         "title": "Te acompañamos en cada paso"
       },
       "header": "Contáctanos",
@@ -441,7 +441,7 @@
       "btn": "Prueba gratis",
       "helper_1": "Procesos de votación listos para usar y responsivos",
       "helper_2": "Gratis hasta 100 votantes",
-      "subtitle": "Participación fácil. Vocdoni ofrece una experiencia de votación accesible, fácil de usar y conforme al GDPR, disponible desde cualquier lugar con PC, laptop, tablet y móvil.",
+      "subtitle": "Participación fácil. La aplicación Vocdoni ofrece una experiencia de votación asequible, fácil de usar y compatible con el GDPR que cualquier persona puede utilizar desde cualquier lugar con su PC, portátil, tableta o teléfono.",
       "title": "Votación segura, rápida y verificable"
     },
     "demo": {
@@ -478,7 +478,7 @@
     },
     "faqs": {
       "faq_1": {
-        "description": "Vocdoni se distingue por su experiencia de usuario intuitiva, seguridad avanzada y transparencia total. Usamos tecnología Blockchain para asegurar votaciones seguras y anónimas.",
+        "description": "Vocdoni se destaca por su experiencia de usuario fluida, características de seguridad avanzadas y transparencia incomparable. Nuestra plataforma utiliza tecnología de vanguardia como pruebas de conocimiento cero y una cadena de bloques personalizada para garantizar una votación segura y anónima, al tiempo que proporciona un proceso de votación transparente y verificable.",
         "title": "¿Qué hace único a Vocdoni?"
       },
       "faq_2": {
@@ -490,7 +490,7 @@
         "title": "¿Se puede personalizar Vocdoni?"
       },
       "faq_4": {
-        "description": "Con nuestro SDK y componentes UI, la integración es sencilla. Nuestro equipo de expertos te guiará para asegurar una transición fluida.",
+        "description": "Ofrecemos las bibliotecas Vocdoni SDK y Vocdoni UI Components, diseñadas para una integración fácil con tu software o plataforma. Las creamos para priorizar la facilidad de uso en nombre de los desarrolladores y permitir resultados desde el primer día. Nuestro equipo de expertos te guiará a través del proceso de integración para garantizar una transición fluida y una interrupción mínima en tus operaciones.",
         "title": "¿Es fácil integrar Vocdoni?"
       },
       "faq_5": {
@@ -506,10 +506,10 @@
         "title": "¿Qué tan seguro es Vocdoni?"
       },
       "faq_8": {
-        "description": "Aseguramos la integridad del voto con tecnología blockchain, ofreciendo un proceso transparente y a prueba de manipulaciones.",
-        "title": "¿Cómo asegura Vocdoni la integridad del voto?"
+        "description": "Vocdoni garantiza la integridad de cada proceso de votación al registrar cada voto como una transacción de cadena de bloques a prueba de manipulaciones, proporcionando transparencia y verificabilidad a todos los interesados. Las rigurosas medidas de seguridad de Vocdoni protegen contra manipulaciones y fraudes, asegurando que cada voto se registre y cuente con precisión.",
+        "title": "¿Cómo asegura Vocdoni la integridad de los procesos de votación?"
       },
-      "subtitle": "Aquí encontrarás respuestas a preguntas frecuentes, para que tengas claridad y confianza en tu experiencia de votación digital.",
+      "subtitle": "A continuación encontrarás respuestas a las preguntas más frecuentes de nuestros usuarios. Proporciona claridad y confianza a tu experiencia de votación digital.",
       "title": "Preguntas Frecuentes"
     },
     "features": {
@@ -518,11 +518,11 @@
         "title": "Diversidad de votaciones"
       },
       "card_2": {
-        "description": "Ajusta cada detalle de tu votación para que se alinee perfectamente con la identidad de tu organización.",
+        "description": "Personaliza cada aspecto de tu proceso de votación, desde el branding y los temas hasta el diseño de las papeletas, asegurando una integración perfecta con la identidad de tu organización.",
         "title": "Personalización completa"
       },
       "card_3": {
-        "description": "Con interfaces intuitivas y guías paso a paso, aseguramos una navegación sencilla desde el inicio.",
+        "description": "Con interfaces intuitivas y un proceso de incorporación guiado, Vocdoni garantiza que tanto los organizadores como los votantes puedan navegar fácilmente por la plataforma desde el primer día.",
         "title": "Registro fácil para usuarios"
       },
       "card_4": {
@@ -530,15 +530,15 @@
         "title": "Autenticación robusta"
       },
       "card_5": {
-        "description": "Crea listas de votantes personalizadas para dirigirte específicamente a tu audiencia. Puedes usar datos personalizados (ej: usuario y password), correos, certificados digitales, CRMs y más.",
+        "description": "Crea listas de votantes personalizadas (censos personalizados, OAuth, CRMs, etc.), lo que permite un alcance dirigido y experiencias de votación adaptadas a diferentes segmentos de tu audiencia.",
         "title": "Censos a medida"
       },
       "card_6": {
-        "description": "Configura tu votación con opciones como votación secreta, resultados en tiempo real y personalización de boletas.",
+        "description": "Personaliza tus procesos de votación habilitando opciones como fechas de inicio y fin, elecciones automáticas, resultados actualizados continuamente, votación anónima, votación ponderada y personalización de las papeletas.",
         "title": "Flexibilidad en la votación"
       },
       "card_7": {
-        "description": "Alcanza a una audiencia global con opciones de idioma, cada votante puede elegir su idioma preferido.",
+        "description": "Arriba a una audiència diversa amb suport multilingüe, permetent als participants seleccionar el seu idioma preferit per a experiències de votació inclusives i accessibles.",
         "title": "Soporte multilenguaje"
       },
       "card_8": {
@@ -546,23 +546,23 @@
         "title": "Resultados instantáneos"
       },
       "card_9": {
-        "description": "Permite votar desde cualquier dispositivo, ofreciendo comodidad y accesibilidad total. Sin desplazamientos, ahorra tiempo y dinero a tus votantes.",
+        "description": "Permite a los votantes emitir sus votos a través de varios canales, incluidos navegadores web, teléfonos, tabletas, etc., asegurando accesibilidad y conveniencia para todos los participantes.",
         "title": "Accesibilidad multiplataforma"
       },
       "header": "Características destacadas",
-      "subtitle_1": "Descubre el potencial de Vocdoni con herramientas que ofrecen valor excepcional a organizadores y votantes. Personaliza tus votaciones, asegura procesos transparentes y empodera a los participantes con opciones intuitivas y accesibles.",
+      "subtitle_1": "Desbloquea el potencial de la plataforma rica en funciones de Vocdoni, ofreciendo un valor excepcional tanto para organizadores como para votantes por igual. Personaliza tus procesos de votación de manera fluida, asegura elecciones seguras y transparentes, y capacita a los participantes con opciones intuitivas y accesibles. Con la aplicación Vocdoni, experimenta el poder de un compromiso mejorado, eficiencia y confianza en cada experiencia de votación.",
       "title": "Funcionalidades"
     },
     "process": {
-      "description_1": "Crea tu proceso de votación en 4 pasos sencillos con la APP de Vocdoni.",
-      "description_2": "Configura votaciones anónimas, resultados secretos, tipos de votación y más, todo con un clic.",
+      "description_1": "La aplicación Vocdoni te permite crear un proceso de votación en 4 sencillos pasos.",
+      "description_2": "Con un clic, puedes configurar si deseas votación anónima o resultados de elección en vivo, elegir entre varios tipos de elecciones, cargar tu censo de votantes y mucho más.",
       "header": "Proceso",
       "step_1": {
         "description": "Control total con nuestra plataforma de autoservicio. ¿Necesitas personalización o asistencia? Estamos aquí para ayudarte.",
         "title": "Inicia tu votación"
       },
       "step_2": {
-        "description": "Te guiamos en la selección del tipo de votación, configuración de detalles y registro de participantes.",
+        "description": "Se te guiará durante el proceso de creación para seleccionar tu tipo de elección, introducir las preguntas y opciones, seleccionar opciones de configuración y registrar votantes.",
         "title": "Configura y publica"
       },
       "step_3": {
@@ -570,7 +570,7 @@
         "title": "Vota"
       },
       "step_4": {
-        "description": "Al finalizar, los resultados se calculan y publican automáticamente, disponibles para todos.",
+        "description": "Tan fácil como eso. Una vez terminado, los resultados se calcularán automáticamente, se publicarán y estarán disponibles para cualquiera.",
         "title": "Resultados inmediatos"
       },
       "title": "Proceso simple de 4 pasos"
@@ -585,24 +585,24 @@
         "title": "Para Comunidades"
       },
       "card_3": {
-        "description": "Incrementa la participación electoral, reduce costos y mejora la confianza ciudadana con un proceso de votación seguro y verificable.",
+        "description": "Aumenta la participación de los votantes, reduce los costos electorales y mejora la confianza ciudadana con procesos de votación seguros y verificables.",
         "title": "Para Gobiernos e Instituciones Públicas"
       },
       "header": "Soluciones adaptativas",
       "img_card_1": "Organizaciones",
       "img_card_2": "Comunidades",
       "img_card_3": "Gobierno e Instituciones Públicas",
-      "subtitle_1": "Brindamos soluciones para una amplia gama de necesidades, demostrando la versatilidad y adaptabilidad de Vocdoni.",
+      "subtitle_1": "Ofrecemos soluciones para una amplia variedad de casos de uso, demostrando la versatilidad de la aplicación Vocdoni.",
       "title": "Soluciones personalizadas"
     },
     "support": {
       "btn_contact": "Contáctanos",
       "btn_watch": "Agenda una llamada",
-      "header": "¡Pruébalo! Soporte gratuito",
-      "helper_1": "Consulta gratuita con nuestros expertos",
+      "header": "¡Vamos a intentarlo! Obtén soporte gratuito.",
+      "helper_1": "Soporte de expertos gratuito por teléfono",
       "helper_2": "Reduce costos y tiempo de trabajo",
       "helper_3": "Precios competitivos",
-      "subtitle": "Te ayudamos a crear tu experiencia de votación ideal",
+      "subtitle": "Podemos ayudarte a crear la experiencia de votación perfecta",
       "title": "Empieza a dar voz a tu comunidad"
     }
   },
