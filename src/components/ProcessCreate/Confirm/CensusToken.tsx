@@ -33,7 +33,7 @@ const PreviewCensusToken = () => {
     <>
       <TokenPreview token={token} chainName={chainName} strategySize={strategySize} passportScore={passportScore} />
       {censusType === 'gitcoin' && <GitcoinStampsPreview />}
-      <Flex flexWrap='wrap' mt={2}>
+      <Flex flexWrap='wrap' mt={2} mt='45px'>
         <Text mr={1} fontWeight='bold'>
           {t('form.process_create.census.max_census_slider_label')}
         </Text>

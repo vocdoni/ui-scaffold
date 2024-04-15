@@ -65,7 +65,7 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
 
   return (
     <>
-      <FormControl isInvalid={!!errors.maxCensusSize} mb={3}>
+      <FormControl isInvalid={!!errors.maxCensusSize} mb={3} my='20px'>
         <Controller
           name={'maxCensusSize'}
           control={control}
@@ -156,6 +156,7 @@ export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3
                         }}
                         fontSize='xs'
                         variant={'secondary'}
+                        p={3}
                         height={'var(--chakra-sizes-8)'}
                       >
                         {v * 100}%
