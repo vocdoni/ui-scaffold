@@ -42,6 +42,10 @@ export const StampCard: React.FC<IStampCardProps> = ({ token }) => {
 
               '& > span:first-of-type': {
                 display: 'none',
+
+                '& > div': {
+                  mb: 0,
+                },
                 _checked: {
                   display: 'block',
                 },

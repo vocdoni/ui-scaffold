@@ -50,7 +50,6 @@ const radiobox = definePartsStyle({
       alignItems: 'center',
       gap: 2,
       fontWeight: 'bold',
-      mb: 2,
 
       '& p': {
         fontFamily: 'pixeloidsans',
