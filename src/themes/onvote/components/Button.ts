@@ -494,11 +494,26 @@ const tryItNow = defineStyle({
   boxShadow: 'rgba(0, 0, 0, 0.1) 0px 0px 10px',
 })
 
+const buy = defineStyle((props) => {
+  return {
+    border: '1px solid white',
+    borderRadius: 'xl',
+    px: 8,
+    bgColor: 'transparent',
+    gap: 2,
+    _hover: {
+      bgColor: 'white',
+      color: '#4569D6',
+      borderColor: '#4569D6',
+    },
+  }
+})
 export const Button = defineStyleConfig({
   baseStyle,
   variants: {
     solid,
     'address-dropdown': addressDropdown,
+    buy,
     'close-form': closeForm,
     ghost,
     outline,
