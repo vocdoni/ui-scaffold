@@ -498,7 +498,6 @@ const dashboard = defineStyle((props) => {
   return {
     py: 6,
     mb: 2,
-
     _hover: {
       bgColor: `${colorScheme}.300`,
       color: 'white',
@@ -519,11 +518,27 @@ const dashboard = defineStyle((props) => {
     },
   }
 })
+
+const buy = defineStyle((props) => {
+  return {
+    border: '1px solid white',
+    borderRadius: 'xl',
+    px: 8,
+    bgColor: 'transparent',
+    gap: 2,
+    _hover: {
+      bgColor: 'white',
+      color: '#4569D6',
+      borderColor: '#4569D6',
+    },
+  }
+})
 export const Button = defineStyleConfig({
   baseStyle,
   variants: {
     solid,
     'address-dropdown': addressDropdown,
+    buy,
     'close-form': closeForm,
     dashboard,
     ghost,

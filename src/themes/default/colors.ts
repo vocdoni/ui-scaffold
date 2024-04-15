@@ -52,6 +52,18 @@ export const colors = {
 
   dashboard_card_text: colorsBase.gray.dark,
 
+  black: {
+    50: colorsBase.white.pure,
+    500: colorsBase.black,
+    600: colorsBase.black,
+    700: colorsBase.black,
+  },
+  calculator: {
+    border: colorsBase.black,
+    left_side: colorsBase.white.pure,
+    right_side: colorsBase.primary,
+    right_side_color: colorsBase.white.pure,
+  },
   editor: {
     character_limit: colorsBase.gray.light,
   },
