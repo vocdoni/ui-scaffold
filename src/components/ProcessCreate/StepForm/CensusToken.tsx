@@ -12,7 +12,6 @@ export interface CensusTokenValues {
   timeToCreateCensus: number
   strategySize: number
   accuracy: number
-  isCalculating: boolean
 }
 
 export const StepFormCensusToken = () => {
@@ -25,7 +24,6 @@ export const StepFormCensusToken = () => {
       chain: form.chain,
       strategySize: form.strategySize,
       accuracy: form.accuracy,
-      isCalculating: false,
     },
   })
 

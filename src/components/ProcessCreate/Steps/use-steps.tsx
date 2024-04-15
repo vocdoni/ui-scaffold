@@ -34,6 +34,8 @@ export interface StepsContextState {
   setForm: (vals: StepsFormValues) => void
   steps: StepsState[]
   setActiveStep: Dispatch<SetStateAction<number>>
+  isLoadingPreview: boolean
+  setIsLoadingPreview: (isLoading: boolean) => void
 }
 
 export const StepsContext = createContext<StepsContextState | undefined>(undefined)
