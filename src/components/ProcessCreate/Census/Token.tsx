@@ -25,6 +25,7 @@ import { DefaultCensusSize } from '~constants'
 import { customStylesSelect, customStylesTokensSelect } from '~theme/tokenSelectStyles'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 import selectComponents, { CryptoAvatar } from './select-components'
+import gitcoinPassportImg from '/assets/gitcoin-passport.png'
 
 export interface FilterOptionOption<Option> {
   readonly label: string
@@ -411,7 +412,13 @@ export const TokenPreview = ({
             display='flex'
             alignItems='center'
           >
-            <CryptoAvatar name={token.name} icon={token.iconURI} id={token.ID} chainId={token.chainID} size='md' />
+            <CryptoAvatar
+              name={token.name}
+              icon={passportScore ? gitcoinPassportImg : token.iconURI}
+              id={token.ID}
+              chainId={token.chainID}
+              size='md'
+            />
           </GridItem>
           <GridItem
             gridColumnStart={{ base: 2, xl: minCardSize800px ? 3 : 2 }}
@@ -467,7 +474,7 @@ export const TokenPreview = ({
             justifyContent='center'
           >
             <Heading size='sm' mb={1}>
-              {token.name}: {passportScore}
+              {token.name} {passportScore && `: ${passportScore}`}
             </Heading>
 
             <Text>({token.symbol})</Text>
