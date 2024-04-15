@@ -57,8 +57,8 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
                 maxW={40}
                 value={value}
                 {...restField}
-                onChange={(e) => {
-                  onChange(Number(e))
+                onChange={(_, num) => {
+                  onChange(num)
                 }}
               >
                 <NumberInputField />
