@@ -28,6 +28,7 @@ import { HandleSignInFunction, useClaim } from '~components/Faucet/Claim'
 import { useFaucet } from '~components/Faucet/use-faucet'
 import { useProcessCreationSteps } from './Steps/use-steps'
 import imageModal from '/assets/get-tokens.jpg'
+import { is } from 'date-fns/locale'
 
 export const CostPreview = ({
   unpublished,
@@ -40,6 +41,7 @@ export const CostPreview = ({
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { account, client } = useClient()
   const [cost, setCost] = useState<number | undefined>()
+  const [isLoadingCost, setIsLoadingCost] = useState(false)
   const { form, isLoadingPreview } = useProcessCreationSteps()
   const { loading, handleSignIn } = useClaim()
   const {
@@ -53,6 +55,7 @@ export const CostPreview = ({
   // election estimate cost
   useEffect(() => {
     if (typeof unpublished === 'undefined') return
+    setIsLoadingCost(true)
 
     if (timeout.current) {
       window.clearTimeout(timeout.current)
@@ -74,6 +77,9 @@ export const CostPreview = ({
           // this way the user can still create the election even tho the cost could not be estimated
           setCost(NaN)
         })
+        .finally(() => {
+          setIsLoadingCost(false)
+        })
     }, 500)
 
     return () => {
@@ -81,7 +87,7 @@ export const CostPreview = ({
         window.clearTimeout(timeout.current)
       }
     }
-  }, [client, cost, unpublished, maxCensusSize])
+  }, [client, unpublished, maxCensusSize])
 
   // disable button if cost is higher than account balance
   useEffect(() => {
@@ -91,7 +97,7 @@ export const CostPreview = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cost, account?.balance])
 
-  const isLoading = isLoadingPreview || !cost
+  const isLoading = isLoadingPreview || !cost || isLoadingCost
 
   return (
     <Flex flexDirection='column' gap={2} mb={5}>
@@ -99,11 +105,29 @@ export const CostPreview = ({
         {t('form.process_create.confirm.cost_title')}
       </Text>
       <Text fontSize='sm'>{t('form.process_create.confirm.cost_description')}</Text>
-      <Flex flexDirection='column' gap={4} p={{ base: 3, xl: 6 }} bgColor='process_create.section' borderRadius='md'>
+      <Flex
+        flexDirection='column'
+        gap={4}
+        p={{ base: 3, xl: 6 }}
+        bgColor='process_create.section'
+        borderRadius='md'
+        position='relative'
+      >
         {isLoading && (
-          <Flex justifyContent='center'>
+          <Box
+            position='absolute'
+            top='0'
+            left='0'
+            right='0'
+            bottom='0'
+            display='flex'
+            justifyContent='center'
+            alignItems='center'
+            backgroundColor='rgba(255, 255, 255, 0.8)'
+            zIndex='overlay'
+          >
             <Spinner textAlign='center' />
-          </Flex>
+          </Box>
         )}
         {cost && (
           <>
