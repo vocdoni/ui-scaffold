@@ -120,6 +120,7 @@ export const colors = {
       color: colorsBase.white.pure,
       hover: colorsBase.primary.dark,
     },
+    gitcoin_card_checked: colorsBase.primary.main,
     info_title: colorsBase.primary.main,
     description: colorsBase.gray.dark,
     identify_btn: {

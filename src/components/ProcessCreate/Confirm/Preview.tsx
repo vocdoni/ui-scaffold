@@ -1,4 +1,4 @@
-import { Box, ChakraProvider, extendTheme, Flex, Icon, Link, Text } from '@chakra-ui/react'
+import { Box, ChakraProvider, extendTheme, Flex, Icon, Link, Spinner, Text } from '@chakra-ui/react'
 import { ElectionDescription, ElectionQuestions, ElectionTitle } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import { IoMdCheckmark, IoMdClose, IoMdCreate } from 'react-icons/io'
@@ -9,7 +9,7 @@ import Census from './Census'
 
 const Preview = () => {
   const { t } = useTranslation()
-  const { form, setActiveStep } = useProcessCreationSteps()
+  const { form, setActiveStep, isLoadingPreview } = useProcessCreationSteps()
 
   const datef = t('form.process_create.calendar.date_format')
 
@@ -143,9 +143,7 @@ const Preview = () => {
         <Text flexBasis={{ md: '30%' }} flexShrink={0} flexGrow={0} fontWeight='bold'>
           {t('form.process_create.confirm.census')}
         </Text>
-        <Box w={{ md: '65%' }}>
-          <Census />
-        </Box>
+        <Box w={{ md: '65%' }}>{isLoadingPreview ? <Spinner mt={10} /> : <Census />}</Box>
 
         <Link position='absolute' top={0} right={0} onClick={() => setActiveStep(3)}>
           <Icon

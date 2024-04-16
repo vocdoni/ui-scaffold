@@ -10,15 +10,18 @@ import { useProcessCreationSteps } from '../Steps/use-steps'
 const PreviewCensusToken = () => {
   const { t } = useTranslation()
   const {
-    form: { gitcoinGPSToken, censusType, censusToken, chain, strategySize, accuracy, electionType },
+    form: { gitcoinGPSToken, censusType, censusToken, chain, electionType, passportScore },
   } = useProcessCreationSteps()
 
   const { watch } = useFormContext()
 
   const maxCensusSize = watch('maxCensusSize')
+  const strategySize = watch('strategySize')
+  const accuracy = watch('accuracy')
 
   const size = maxCensusSize || 0
   const max = strategySize || 0
+  const acc = accuracy || 0
 
   let token = censusToken
   let chainName = chain.name
@@ -28,9 +31,9 @@ const PreviewCensusToken = () => {
   }
   return (
     <>
-      <TokenPreview token={token} chainName={chainName} strategySize={strategySize} />
+      <TokenPreview token={token} chainName={chainName} strategySize={strategySize} passportScore={passportScore} />
       {censusType === 'gitcoin' && <GitcoinStampsPreview />}
-      <Flex flexWrap='wrap' mt={2}>
+      <Flex flexWrap='wrap' mt='45px'>
         <Text mr={1} fontWeight='bold'>
           {t('form.process_create.census.max_census_slider_label')}
         </Text>
@@ -47,7 +50,7 @@ const PreviewCensusToken = () => {
           <Text as='span' fontWeight='bold'>
             {t('process_create.preview.accuracy')}
           </Text>
-          {accuracy.toFixed()}%
+          {acc.toFixed()}%
           <Tooltip label={t('process_create.anonymous.legal_note') + t('process_create.anonymous.legal_disclaimer')}>
             <Text as='span' mb='4px'>
               <AiTwotoneQuestionCircle />
@@ -81,6 +84,7 @@ const GitcoinStampsPreview = () => {
       <Flex alignItems={'start'} justifyContent={'start'} gap={3} flexDirection={{ base: 'column', md: 'row' }}>
         <FormLabel fontWeight='bold'>{t('form.process_create.census.gitcoin_stamps')}</FormLabel>
         <FormLabel fontWeight='bold'>{stampsUnionType}</FormLabel>
+
         <Text fontSize='sm' color='process_create.description' flex={1} textAlign={'left'}>
           {description}
         </Text>
