@@ -524,7 +524,7 @@ const buy = defineStyle((props) => {
     border: '1px solid white',
     borderRadius: 'xl',
     px: 8,
-    bgColor: 'transparent',
+    bgColor: '#4569D6',
     gap: 2,
     _hover: {
       bgColor: 'white',

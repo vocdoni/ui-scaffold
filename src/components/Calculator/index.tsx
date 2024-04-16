@@ -43,16 +43,23 @@ const Calculator = () => {
       className='calculator'
       width={'80%'}
       mx='auto'
-      flexDirection={{ base: 'column', lg: 'row' }}
+      flexDirection={{ base: 'column', xl2: 'row' }}
       overflow='hidden'
     >
       <FormProvider {...methods}>
-        <Flex as='form' flex='1 1 50%' flexDirection='column' px={14} py={5} bgColor='calculator.left_side'>
+        <Flex
+          as='form'
+          flex='0 0 50%'
+          flexDirection='column'
+          px={{ base: 5, lg: 14 }}
+          py={5}
+          bgColor='calculator.left_side'
+        >
           <LeftSideCalculator />
         </Flex>
       </FormProvider>
 
-      <Flex flexDirection='column' flex='1 1 50%' bgColor='calculator.right_side' color='calculator.right_side_color'>
+      <Flex flex='0 0 50%' flexDirection='column' bgColor='calculator.right_side' color='calculator.right_side_color'>
         <RightSideCalculator />
       </Flex>
     </Flex>
@@ -82,10 +89,11 @@ const LeftSideCalculator = () => {
           }}
           render={({ field: { ref, onChange, value, ...restField } }) => (
             <FormControl
-              variant='process-create-label'
               display='flex'
               alignItems='center'
               justifyContent='space-between'
+              flexDirection={{ base: 'column', sm2: 'row' }}
+              gap={2}
             >
               <FormLabel m={0} whiteSpace='nowrap'>
                 Census Size (voters)
@@ -94,7 +102,7 @@ const LeftSideCalculator = () => {
                 <NumberInput
                   defaultValue={1}
                   min={1}
-                  max={100}
+                  max={100000000}
                   maxW={40}
                   value={value}
                   {...restField}
@@ -121,10 +129,11 @@ const LeftSideCalculator = () => {
           }}
           render={({ field: { ref, onChange, value, ...restField } }) => (
             <FormControl
-              variant='process-create-label'
               display='flex'
               alignItems='center'
               justifyContent='space-between'
+              flexDirection={{ base: 'column', sm2: 'row' }}
+              gap={2}
             >
               <FormLabel m={0} whiteSpace='nowrap'>
                 Duration (days)
@@ -133,7 +142,7 @@ const LeftSideCalculator = () => {
                 <NumberInput
                   defaultValue={1}
                   min={1}
-                  max={100}
+                  max={1800}
                   maxW={40}
                   value={value}
                   {...restField}
@@ -160,10 +169,11 @@ const LeftSideCalculator = () => {
           }}
           render={({ field: { ref, onChange, value, ...restField } }) => (
             <FormControl
-              variant='process-create-label'
               display='flex'
               alignItems='center'
               justifyContent='space-between'
+              flexDirection={{ base: 'column', sm2: 'row' }}
+              gap={2}
               mb={8}
             >
               <FormLabel m={0} whiteSpace='nowrap'>
@@ -173,7 +183,7 @@ const LeftSideCalculator = () => {
                 <NumberInput
                   defaultValue={1}
                   min={1}
-                  max={100}
+                  max={1000}
                   maxW={40}
                   value={value}
                   {...restField}
@@ -191,7 +201,7 @@ const LeftSideCalculator = () => {
             </FormControl>
           )}
         />
-        <Flex justifyContent='center' gap={44}>
+        <Flex justifyContent='center' flexDirection={{ base: 'column', sm: 'row' }} gap={{ sm: 10, md: 44 }}>
           <Controller
             name={'anonymous'}
             control={control}
@@ -249,7 +259,7 @@ const LeftSideCalculator = () => {
 const RightSideCalculator = () => {
   return (
     <Tabs flexGrow={1} variant='soft-rounded' colorScheme='whiteAlpha' display='flex' flexDirection='column'>
-      <TabList justifyContent='center' gap={5} py={5}>
+      <TabList justifyContent='center' alignItems='center' flexWrap='wrap' gap={5} py={5}>
         <Tab display='flex' alignItems='center' gap={1} border='1px solid white' color='white' py={1}>
           <PiNumberSquareOneLight />
           One-time
@@ -265,7 +275,7 @@ const RightSideCalculator = () => {
       </TabList>
       <TabPanels flexGrow={1} display='flex' flexDirection='column'>
         <TabPanel flexGrow={1} display='flex' flexDirection='column'>
-          <Box px={14}>
+          <Box px={{ base: 5, lg: 14 }}>
             <Flex justifyContent='space-between' mb={3}>
               <Text>Voting process cost:</Text>
               <Text fontWeight='bold'>70 tokens</Text>
@@ -283,12 +293,19 @@ const RightSideCalculator = () => {
             </Flex>
           </Box>
           <Box mt='auto'>
-            <Flex justifyContent='center' gap={5} mt={8} mb={5}>
-              <Button variant='buy'>
+            <Flex
+              justifyContent='center'
+              flexDirection={{ base: 'column', sm2: 'row' }}
+              alignItems='center'
+              gap={5}
+              mt={8}
+              mb={5}
+            >
+              <Button variant='secondary'>
                 <FaCcStripe />
                 Buy with Card
               </Button>
-              <Button variant='buy'>
+              <Button variant='secondary'>
                 <FaEthereum />
                 Buy with Crypto
               </Button>
@@ -299,7 +316,7 @@ const RightSideCalculator = () => {
           </Box>
         </TabPanel>
 
-        <TabPanel flexGrow={1} display='flex' flexDirection='column' px={14}>
+        <TabPanel flexGrow={1} display='flex' flexDirection='column' px={{ base: 5, lg: 14 }}>
           <Flex mb={3}>
             <Text flex='1 1 33%' textAlign='start'>
               PACKAGE
@@ -314,7 +331,7 @@ const RightSideCalculator = () => {
           <RadioGroup>
             <Stack>
               <Flex gap={2}>
-                <Radio value='1' colorScheme='primary'></Radio>
+                <Radio value='1' colorScheme='secondary'></Radio>
                 <Flex grow={1}>
                   <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='start'>
                     1K Tokens
@@ -329,7 +346,7 @@ const RightSideCalculator = () => {
               </Flex>
 
               <Flex gap={2}>
-                <Radio value='2' colorScheme='primary'></Radio>
+                <Radio value='2' colorScheme='secondary'></Radio>
                 <Flex grow={1}>
                   <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='start'>
                     15K Tokens
@@ -343,7 +360,7 @@ const RightSideCalculator = () => {
                 </Flex>
               </Flex>
               <Flex gap={2}>
-                <Radio value='3' colorScheme='primary'></Radio>
+                <Radio value='3' colorScheme='secondary'></Radio>
                 <Flex grow={1}>
                   <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='start'>
                     10K Tokens
@@ -357,7 +374,7 @@ const RightSideCalculator = () => {
                 </Flex>
               </Flex>
               <Flex gap={2}>
-                <Radio value='4' colorScheme='primary'></Radio>
+                <Radio value='4' colorScheme='secondary'></Radio>
                 <Flex grow={1}>
                   <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='start'>
                     50K Tokens
@@ -371,7 +388,7 @@ const RightSideCalculator = () => {
                 </Flex>
               </Flex>
               <Flex gap={2}>
-                <Radio value='5' colorScheme='primary'></Radio>
+                <Radio value='5' colorScheme='secondary'></Radio>
                 <Flex grow={1}>
                   <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='start'>
                     +100K Tokens
@@ -387,12 +404,19 @@ const RightSideCalculator = () => {
             </Stack>
           </RadioGroup>
           <Box mt='auto'>
-            <Flex justifyContent='center' gap={5} mt={8} mb={5}>
-              <Button variant='buy'>
+            <Flex
+              flexDirection={{ base: 'column', sm2: 'row' }}
+              alignItems='center'
+              justifyContent='center'
+              gap={5}
+              mt={8}
+              mb={5}
+            >
+              <Button variant='secondary'>
                 <FaCcStripe />
                 Buy with Card
               </Button>
-              <Button variant='buy'>
+              <Button variant='secondary'>
                 <FaEthereum />
                 Buy with Crypto
               </Button>
@@ -404,7 +428,7 @@ const RightSideCalculator = () => {
         </TabPanel>
 
         <TabPanel flexGrow={1} display='flex' flexDirection='column'>
-          <Flex grow={1} flexDirection='column' justifyContent='space-between' gap={3} px={14}>
+          <Flex grow={1} flexDirection='column' justifyContent='space-between' gap={3} px={{ base: 5, lg: 14 }}>
             <Text>Do you need a recurring amount of tokens or do you plan to create multiple elections?</Text>
             <Text>Do you need secure digital voting for your software?</Text>
             <Text>We offer atractive integrations and services agreement options for this kind of needs</Text>
