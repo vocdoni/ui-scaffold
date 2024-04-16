@@ -21,17 +21,19 @@ const CreateProcess = () => {
       py={{ base: '60px', lg: '100px' }}
       gap={{ base: '40px', lg: '60px' }}
     >
-      <Box flex='1 1 40%'>
+      <Box flex='1 1 50%'>
         <Text
-          fontSize={{ base: '30px', sm: '33px', sm2: '36px', md: '39px', md2: '42px', lg2: '48px' }}
-          lineHeight={{ base: '36px', sm: '39.5px', sm2: '43px', md: '47px', md2: '50px', lg2: '58px' }}
-          fontWeight='800'
+          fontSize={{ base: '30px', sm: '33px', sm2: '36px', md: '39px', md2: '42px', lg2: '64px' }}
+          lineHeight={{ base: '36px', sm: '39.5px', sm2: '43px', md: '47px', md2: '50px', lg2: '78px' }}
+          fontWeight='600'
+          fontFamily='basier'
           mb='10px'
+          mt='80px'
           textAlign={{ base: 'center', lg: 'start' }}
         >
           {t('home.create_process.title')}
         </Text>
-        <Text fontSize='20px' lineHeight='35px' color='gray' mb='30px' textAlign={{ base: 'center', lg: 'start' }}>
+        <Text fontSize='24px' lineHeight='35px' fontFamily='basier' color='gray' mt='52px' mb='52px' textAlign={{ base: 'center', lg: 'start' }}>
           {t('home.create_process.subtitle')}
         </Text>
         <Box maxW={{ lg: '90%' }}>
@@ -52,6 +54,9 @@ const CreateProcess = () => {
               mb='20px'
               w={{ base: 'full', sm: 'fit-content', lg: 'full' }}
               mx={{ base: 'auto', lg: 'start' }}
+              height='62px'
+              fontSize='20px'
+              textDecoration='underline'
               onClick={() => {
                 if (openConnectModal) openConnectModal()
               }}
@@ -77,7 +82,7 @@ const CreateProcess = () => {
           </Flex>
         </Box>
       </Box>
-      <Box flex='1 1 60%' display={{ lg: 'flex' }} justifyContent='center' alignItems='center'>
+      <Box flex='1 1 50%' display={{ lg: 'flex' }} justifyContent='center' alignItems='center'>
         <Image src={devices} w={{ base: '535px', lg: '100%' }} mx='auto' />
       </Box>
     </Flex>

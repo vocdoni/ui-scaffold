@@ -19,54 +19,57 @@ const Solutions = () => {
       <Flex flex='1 1 50%' justifyContent='center' alignItems='center'>
         <Flex flexDirection='column' gap='24px'>
           <Box mb='40px'>
-            <Text color='home.section.title' fontWeight='bold' fontSize='20px' lineHeight='24px' mb='6px'>
-              {t('home.solutions.header')}
-            </Text>
-            <Text fontWeight='bold' fontSize='40px' lineHeight='48px' mb='10px'>
+            <Text fontSize='60px' lineHeight='68px' mb='10px' fontFamily='basier'>
               {t('home.solutions.title')}
             </Text>
-            <Text color='gray' fontSize='16px' lineHeight='28px'>
+            <Text color='black' fontSize='20px' lineHeight='28px' opacity='0.75'>
               {t('home.solutions.subtitle_1')}
             </Text>
           </Box>
-          <Card variant='icon-card'>
+          <Card variant='icon-card' mb='50px' ml='16px' mt='50px'>
             <CardBody>
-              <Box>
-                <MdDesignServices />
+              <Box style={{ backgroundColor: 'transparent'  }}>
+                <div class="css-0" style={{ backgroundColor: 'transparent', width: '120px', height: '120px', minWidth: '120px' }}>
+                  <img loading="lazy" alt="" class="api-services__icon" w="120px;" src="https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b771a2aa4f48_large-organizations-api-icon.svg" />
+                </div>
               </Box>
-              <Box>
-                <Text>{t('home.solutions.card_1.title')}</Text>
-                <Text>{t('home.solutions.card_1.description')}</Text>
+              <Box ml='30px'>
+                <Text fontSize='25px' lineHeight='53px' fontFamily='basier'>{t('home.solutions.card_1.title')}</Text>
+                <Text fontSize='20px'>{t('home.solutions.card_1.description')}</Text>
+              </Box>
+            </CardBody>
+          </Card>
+          <Card variant='icon-card' mb='50px'>
+            <CardBody>
+              <Box style={{ backgroundColor: 'transparent'  }}>
+                <div class="css-0" style={{ backgroundColor: 'transparent', width: '120px', height: '120px', minWidth: '120px' }}>
+                  <img loading="lazy" alt="" class="api-services__icon" w="120px;" src="https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b73337aa4f63_services-suppliers-icon.svg" />
+                </div>
+              </Box>
+              <Box ml='20px'>
+                <Text fontSize='25px' lineHeight='53px' fontFamily='basier'>{t('home.solutions.card_2.title')}</Text>
+                <Text fontSize='20px'>{t('home.solutions.card_2.description')}</Text>
               </Box>
             </CardBody>
           </Card>
           <Card variant='icon-card'>
             <CardBody>
-              <Box>
-                <FaArrowsToCircle />
+              <Box style={{ backgroundColor: 'transparent'  }}>
+                <div class="css-0" style={{ backgroundColor: 'transparent', width: '120px', height: '120px', minWidth: '120px' }}>
+                  <img loading="lazy" alt="" class="api-services__icon" w="120px;" src="https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b79b4caa4f51_gov-institutions-api-icon.svg" />
+                </div>
               </Box>
-              <Box>
-                <Text>{t('home.solutions.card_2.title')}</Text>
-                <Text>{t('home.solutions.card_2.description')}</Text>
-              </Box>
-            </CardBody>
-          </Card>
-          <Card variant='icon-card'>
-            <CardBody>
-              <Box>
-                <IoSettingsSharp />
-              </Box>
-              <Box>
-                <Text>{t('home.solutions.card_3.title')}</Text>
-                <Text>{t('home.solutions.card_3.description')}</Text>
+              <Box ml='10px'>
+                <Text fontSize='25px' lineHeight='53px' fontFamily='basier'>{t('home.solutions.card_3.title')}</Text>
+                <Text fontSize='20px'>{t('home.solutions.card_3.description')}</Text>
               </Box>
             </CardBody>
           </Card>
         </Flex>
       </Flex>
-      <Box flex='1 1 50%' position='relative'>
+      <Box flex='1 1 35%' position='relative'>
         <Box maxW={{ base: '250px', lg: '115%', xl: '100%' }} mx='auto' borderRadius='xl' overflow='hidden'>
-          <Image src={solutions} mx={{ lg: 'auto' }} />
+          <Image src={solutions} mx={{ lg: 'auto' }} opacity='0.6' />
         </Box>
         <Flex
           flexDirection='column'

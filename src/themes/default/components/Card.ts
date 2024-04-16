@@ -222,6 +222,18 @@ const benefits = definePartsStyle({
     w: '350px',
     borderRadius: 'xl',
     boxShadow: 'var(--box-shadow-darker)',
+    backdropFilter: 'blur(16px)',
+    borderBottomWidth: '0',
+    borderBottomColor: 'rgba(255, 255, 255, .15)',
+    borderLeftWidth: '0',
+    borderLeftColor: 'rgba(255, 255, 255, .15)',
+    borderRightWidth: '1px',
+    borderRightColor: 'rgba(255, 255, 255, .2)',
+    borderRadius: '8px',
+    flexDirection: 'column',
+    display: 'flex',
+    overflow: 'visible',
+    boxShadow: 'inset 0 -1px 0 1px rgba(255, 255, 255, .2), 0 8px 22px rgba(0, 0, 0, .12)',
   },
   header: {
     p: '30px',
@@ -229,12 +241,13 @@ const benefits = definePartsStyle({
     fontSize: { base: '28.5px', sm: '28px' },
     lineHeight: { base: '38px', sm: '37px' },
     fontWeight: 'bold',
-    textAlign: 'center',
+    textAlign: 'left',
+    fontFamily: 'basier'
   },
   body: {
     p: '30px',
     pt: 0,
-    textAlign: 'center',
+    textAlign: 'left',
   },
 })
 
@@ -283,6 +296,7 @@ const step = definePartsStyle({
     p: 0,
     display: 'flex',
     gap: '24px',
+    backgroundColor: 'transparent',
 
     'div:first-of-type': {
       display: 'flex',
@@ -385,6 +399,7 @@ const faqs = definePartsStyle({
 const client = definePartsStyle({
   container: {
     border: 'none',
+    backgroundColor: 'none',
 
     _hover: {
       lg: {
@@ -416,6 +431,7 @@ const client = definePartsStyle({
       fontSize: '12px',
       fontWeight: 'bold',
       color: '#666',
+      marginTop: '22px'
     },
   },
 })

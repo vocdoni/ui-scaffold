@@ -7,13 +7,18 @@ const Support = () => {
   const { t } = useTranslation()
 
   return (
-    <Box bgColor='home.support.bg'>
+    <Box style={{
+      background: 'url("https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b75c38aa4f55_Net.svg")',
+      backgroundColor: '#24656e',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'right'
+    }}>
       <Box className='site-wrapper' py={{ base: '60px', lg: '100px' }} position='relative' overflow='hidden'>
         <Box
           w='356px'
           h='356px'
           borderRadius='full'
-          bgColor='#50848b'
+          bgColor='#50848bcf'
           position='absolute'
           right='25px'
           top='-250px'
@@ -40,18 +45,18 @@ const Support = () => {
           {t('home.support.header')}
         </Text>
         <Text
-          fontSize='40px'
-          lineHeight='48px'
+          fontSize='60px'
+          lineHeight='68px'
           mb='10px'
           color='white'
           textAlign='center'
-          fontWeight='bold'
+          fontFamily='basier'
           maxW='550px'
           mx='auto'
         >
           {t('home.support.title')}
         </Text>
-        <Text fontSize='16px' lineHeight='28px' mb='50px' color='white' textAlign='center'>
+        <Text fontSize='22px' lineHeight='28px' mb='50px' color='white' textAlign='center' fontFamily='basier' fontWeight='100'>
           {t('home.support.subtitle')}
         </Text>
         <Flex
@@ -68,6 +73,8 @@ const Support = () => {
             aria-label={t('home.support.btn_contact')}
             title={t('home.support.btn_contact')}
             target='_blank'
+            minW='280px'
+            height='60px'
           >
             {t('home.support.btn_contact')}
           </Button>
@@ -79,6 +86,7 @@ const Support = () => {
             aria-label={t('home.support.btn_watch')}
             title={t('home.support.btn_watch')}
             target='_blank'
+            minW='280px'
           >
             <FaPhoneVolume size={30} />
             <Text as='span' ml='10px'>

@@ -12,36 +12,31 @@ const Process = () => {
   const { t } = useTranslation()
 
   return (
-    <Box as='section' className='site-wrapper' py={{ base: '60px', lg: '100px' }}>
-      <Text color='home.section.title' fontWeight='bold' mb='6px' textAlign='center' fontSize='20px' lineHeight='24px'>
-        {t('home.process.header')}
-      </Text>
-      <Text fontWeight='bold' fontSize='40px' lineHeight='48px' mb='10px' textAlign='center'>
+    <Box as='section' className='site-wrapper' py={{ base: '60px', lg: '100px' }} mb='120px'>
+      <Text  fontSize='60px' lineHeight='98px' mb='10px' textAlign='center' fontFamily='basier'>
         {t('home.process.title')}
       </Text>
-      <Text fontSize='16px' lineHeight='28px' color='gray' textAlign='center'>
+      <Text fontSize='20px' lineHeight='28px' color='black' textAlign='left' opacity='0.75' maxW='840px' margin='0px auto' fontFamily='basier'>
         {t('home.process.description_1')}
-      </Text>
-      <Text fontSize='16px' lineHeight='28px' color='gray' mb='60px' textAlign='center'>
         {t('home.process.description_2')}
       </Text>
-      <Flex flexDirection={{ base: 'column', lg: 'row' }} gap={{ base: '40px', lg: '60px' }}>
+      <Flex flexDirection={{ base: 'column', lg: 'row' }} gap={{ base: '40px', lg: '60px' }} mt='70px'>
         <Flex flex='1 1 50%' justifyContent={{ base: 'center', lg: 'end' }} alignItems='center'>
-          <Image src={process} borderRadius='lg' w='535px' />
+          <Image src={process} borderRadius='lg' w='535px' mt='-20px' />
         </Flex>
         <Flex flex='1 1' flexBasis={{ lg: '50%' }} flexDirection='column' justifyContent='space-between' gap='40px'>
-          <Card variant='step'>
+          <Card variant='step' backgroundColor='transparent'>
             <CardBody>
               <Box>
                 <PiNumberSquareOneFill />
               </Box>
               <Box>
                 <Text>{t('home.process.step_1.title')}</Text>
-                <Text fontWeight='normal'>{t('home.process.step_1.description')}</Text>
+                <Text fontWeight='200'>{t('home.process.step_1.description')}</Text>
               </Box>
             </CardBody>
           </Card>
-          <Card variant='step'>
+          <Card variant='step' backgroundColor='transparent'>
             <CardBody>
               <Box>
                 <PiNumberSquareTwoFill />
@@ -52,7 +47,7 @@ const Process = () => {
               </Box>
             </CardBody>
           </Card>
-          <Card variant='step'>
+          <Card variant='step' backgroundColor='transparent'>
             <CardBody>
               <Box>
                 <PiNumberSquareThreeFill />
@@ -63,7 +58,7 @@ const Process = () => {
               </Box>
             </CardBody>
           </Card>
-          <Card variant='step'>
+          <Card variant='step' backgroundColor='transparent'>
             <CardBody>
               <Box>
                 <PiNumberSquareFourFill color='#fff' />

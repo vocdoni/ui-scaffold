@@ -399,7 +399,7 @@
       },
       "card_3": {
         "description": "Increase engagement and participation with a user-friendly platform accessible to all, regardless of technical proficiency.",
-        "title": "Enhanced Participation"
+        "title": "More Participation"
       },
       "card_4": {
         "description": "Vote from anywhere, on any device. It's that simple.",
@@ -407,13 +407,13 @@
       },
       "card_5": {
         "description": "Rest assured with advanced cryptographic methods ensuring the utmost security, maintaining voter anonymity and vote integrity.",
-        "title": "Unmatched Security"
+        "title": "Blockchain Based Security"
       },
       "card_6": {
         "description": "Foster trust and transparency with blockchain-powered transparency, offering stakeholders unparalleled visibility into the voting process.",
         "title": "Auditable & Open-source"
       },
-      "subtitle_1": "Clients who choose Vocdoni unlock a world of benefits tailored to meet their unique voting needs. With our cutting-edge technology, organizations, communities, and governments experience a seamless transition to digital democracy. Here's how Vocdoni adds value:",
+      "subtitle_1": "Vocdoni empowers clients with tailored voting solutions, leveraging cutting-edge blockchain technology. Experience a seamless transition to digital democracy with benefits designed to meet diverse voting needs. Here's how we add value:",
       "title": "Benefits"
     },
     "clients_title": "Trusted by over +100 organizations",
@@ -421,21 +421,21 @@
       "btn": "Contact us",
       "card_1": {
         "description": "Explain us your needs and we will craft a personalized solution for your challenges.",
-        "title": "Tailored solutions for your unique needs"
+        "title": "Tailored solutions"
       },
       "card_2": {
         "description": "Vocdoni offers both self-sevice and custom, key in hand solutions tailored for you, .",
-        "title": "We will be with you every step of the way"
+        "title": "We're with you all the way."
       },
       "header": "Contact Us",
-      "title": "Let's collaborate to find the perfect solution for you"
+      "title": "Let’s work together to find the best solution"
     },
     "create_process": {
       "btn": "Try it for free",
       "helper_1": "Production ready, responsive voting processes",
       "helper_2": "Free up to 100 voters",
-      "subtitle": "Participation made easy. Vocdoni APP delivers an affordable, easy-to-use, and GDPR-compliant voting experience that anyone can use from anywhere with their PC, laptop, tablet and mobile.",
-      "title": "Secure, Fast, and Verifiable Voting Solution"
+      "subtitle": "Vocdoni APP delivers an affordable, easy-to-use, and GDPR-compliant voting experience that anyone can use from anywhere with their PC, laptop, tablet and mobile. Powered by our own Blockchain®.",
+      "title": "Secure, Cost-Effective and Verifiable Voting Solution"
     },
     "demo": {
       "btn": "View All Demos",
@@ -543,7 +543,7 @@
         "title": "Multi-device Support"
       },
       "header": "Empowering Solutions",
-      "subtitle_1": "Unlock the potential of Vocdoni's feature-rich platform, delivering exceptional value to organizers and voters alike. Seamlessly customize your voting processes, ensure secure and transparent elections, and empower participants with intuitive and accessible options. With Vocdoni APP, experience the power of enhanced engagement, efficiency, and trust in every voting experience.",
+      "subtitle_1": "Vocdoni's feature-rich platform enables seamless customization of voting processes, ensuring secure & transparent elections while empowering voters with intuitive options. Enhance engagement, efficiency, and trust in every voting endeavor.",
       "title": "Features"
     },
     "process": {
@@ -571,15 +571,15 @@
     "solutions": {
       "card_1": {
         "description": "Streamline decision-making with secure, transparent voting. Engage members effectively, save on administrative costs, and foster a culture of participation and transparency.",
-        "title": "For Organizations"
+        "title": "Organizations"
       },
       "card_2": {
         "description": " Enhance community involvement with an easy-to-use platform that encourages participation and gives every member a voice.",
-        "title": "For Communities"
+        "title": "Communities"
       },
       "card_3": {
         "description": "Increase voter turnout, reduce electoral costs, and enhance citizen trust with a verifiable, secure voting process.",
-        "title": "For Governments and Public Institutions"
+        "title": "Governments and Public Institutions"
       },
       "header": "Embrace Change with Vocdoni",
       "img_card_1": "Organizations",
