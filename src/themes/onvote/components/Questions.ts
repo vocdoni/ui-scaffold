@@ -101,7 +101,7 @@ const baseStyle = definePartsStyle({
     color: 'process.questions.description',
     textAlign: 'start',
     fontSize: 'xl',
-    mb: 5,
+    mb: '50px',
   },
 
   stack: {
