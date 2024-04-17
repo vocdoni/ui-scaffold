@@ -814,8 +814,8 @@
         "title": "<p>Votació Plurinominal</p><p>(Elecció Múltiple)</p>"
       },
       "others": {
-        "description": "",
-        "title": ""
+        "description": "Seleccioneu altres tipus de votació (de múltiples opcions, de votació d'aprovació, pressupost participatiu, elecció classificada...)",
+        "title": "Altres"
       },
       "participation_budgeting": {
         "description": "Els votants poden distribuir un nombre predeterminat entre totes les opcions/projectes (que representen el pressupost total disponible) com desitgin.",
