@@ -42,6 +42,10 @@ export const StampCard: React.FC<IStampCardProps> = ({ token }) => {
 
               '& > span:first-of-type': {
                 display: 'none',
+
+                '& > div': {
+                  mb: 0,
+                },
                 _checked: {
                   display: 'block',
                 },
@@ -65,7 +69,9 @@ const StampInnerBox: React.FC<StampInnerBoxProps> = ({ name, iconURI }) => {
   return (
     <>
       <StampIcon iconURI={iconURI} alt={stampTitle} />
-      <Text wordBreak='normal'>{stampTitle}</Text>
+      <Text wordBreak='normal' ml={2}>
+        {stampTitle}
+      </Text>
     </>
   )
 }

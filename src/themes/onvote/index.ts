@@ -43,17 +43,35 @@ export const theme = extendTheme(vtheme, {
         bgColor: 'primary.main',
       },
       '.md-sizes': {
+        '& :first-of-type': {
+          mt: 0,
+        },
         'h2[level="1"]': {
-          fontSize: '24px',
+          fontSize: '26px',
         },
         'h2[level="2"]': {
-          fontSize: '20px',
+          fontSize: '23px',
         },
         'h3[level="3"]': {
-          fontSize: '18px',
+          fontSize: '20px',
         },
         p: {
-          fontSize: '16px',
+          fontSize: '18px',
+        },
+        li: {
+          fontSize: '18px',
+        },
+        'li:last-of-type': {
+          mb: '20px',
+        },
+        ul: {
+          fontSize: '18px',
+        },
+        ol: {
+          fontSize: '18px',
+        },
+        a: {
+          fontSize: '18px',
         },
       },
       '.process-create-title': {
