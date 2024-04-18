@@ -1,15 +1,15 @@
 import { Box, Card, CardBody, Flex, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import {
-  FaVoteYea,
-  FaPalette,
-  FaUsers,
-  FaUserLock,
-  FaTasks,
-  FaNewspaper,
-  FaLanguage,
   FaBullseye,
   FaCubes,
+  FaLanguage,
+  FaNewspaper,
+  FaPalette,
+  FaTasks,
+  FaUserLock,
+  FaUsers,
+  FaVoteYea,
 } from 'react-icons/fa'
 
 const Features = () => {
@@ -28,7 +28,7 @@ const Features = () => {
 
       <Flex
         flexDirection={{ base: 'column', lg: 'row' }}
-        gap={{ base: '24px', xl: '48px' }}
+        gap={{ base: '24px', xl: '148px' }}
         justifyContent='space-between'
         maxW={{ base: '100%', sm: '70%', sm2: '80%' }}
         margin='0px auto'

@@ -43,7 +43,7 @@ const Process = () => {
               </Box>
               <Box>
                 <Text>{t('home.process.step_2.title')}</Text>
-                <Text fontWeight='normal'>{t('home.process.step_2.description')}</Text>
+                <Text textAlign='justify'>{t('home.process.step_2.description')}</Text>
               </Box>
             </CardBody>
           </Card>
@@ -54,7 +54,7 @@ const Process = () => {
               </Box>
               <Box>
                 <Text>{t('home.process.step_3.title')}</Text>
-                <Text fontWeight='normal'>{t('home.process.step_3.description')}</Text>
+                <Text textAlign='justify'>{t('home.process.step_3.description')}</Text>
               </Box>
             </CardBody>
           </Card>
@@ -65,7 +65,7 @@ const Process = () => {
               </Box>
               <Box>
                 <Text>{t('home.process.step_4.title')}</Text>
-                <Text fontWeight='normal'>{t('home.process.step_4.description')}</Text>
+                <Text textAlign='justify'>{t('home.process.step_4.description')}</Text>
               </Box>
             </CardBody>
           </Card>

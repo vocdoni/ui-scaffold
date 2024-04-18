@@ -326,7 +326,6 @@ const step = definePartsStyle({
       'p:nth-of-type(2)': {
         fontSize: '20px',
         lineHeight: '24px',
-        fontWeight: 'bold',
         mb: '8px',
       },
       'p:last-of-type': {
