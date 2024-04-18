@@ -11,8 +11,19 @@ import Support from './Support'
 
 const Home = () => (
   <>
-    <div style={{  }}>
-      <img src="https://images.unsplash.com/photo-1708405824418-8cac836b6ee8?q=80&amp;w=2574&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" style={{ position: 'absolute', opacity: 0.4, zIndex: -1, transform: 'scale(-1,1)', height: '650vh', width: '100%', marginTop: '-1500px' }} />
+    <div style={{}}>
+      <img
+        src='https://images.unsplash.com/photo-1708405824418-8cac836b6ee8?q=80&amp;w=2574&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+        style={{
+          position: 'absolute',
+          opacity: 0.4,
+          zIndex: -1,
+          transform: 'scale(-1,1)',
+          height: '650vh',
+          width: '100%',
+          marginTop: '-1500px',
+        }}
+      />
       <CreateProcess />
       <Clients />
       <Benefits />

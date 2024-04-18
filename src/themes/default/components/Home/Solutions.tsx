@@ -28,39 +28,72 @@ const Solutions = () => {
           </Box>
           <Card variant='icon-card' mb='50px' ml='16px' mt='50px'>
             <CardBody>
-              <Box style={{ backgroundColor: 'transparent'  }}>
-                <div class="css-0" style={{ backgroundColor: 'transparent', width: '120px', height: '120px', minWidth: '120px' }}>
-                  <img loading="lazy" alt="" class="api-services__icon" w="120px;" src="https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b771a2aa4f48_large-organizations-api-icon.svg" />
+              <Box style={{ backgroundColor: 'transparent' }}>
+                <div
+                  class='css-0'
+                  style={{ backgroundColor: 'transparent', width: '120px', height: '120px', minWidth: '120px' }}
+                >
+                  <img
+                    loading='lazy'
+                    alt=''
+                    class='api-services__icon'
+                    w='120px;'
+                    src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b771a2aa4f48_large-organizations-api-icon.svg'
+                  />
                 </div>
               </Box>
               <Box ml='30px'>
-                <Text fontSize='25px' lineHeight='53px' fontFamily='basier'>{t('home.solutions.card_1.title')}</Text>
+                <Text fontSize='25px' lineHeight='53px' fontFamily='basier'>
+                  {t('home.solutions.card_1.title')}
+                </Text>
                 <Text fontSize='20px'>{t('home.solutions.card_1.description')}</Text>
               </Box>
             </CardBody>
           </Card>
           <Card variant='icon-card' mb='50px'>
             <CardBody>
-              <Box style={{ backgroundColor: 'transparent'  }}>
-                <div class="css-0" style={{ backgroundColor: 'transparent', width: '120px', height: '120px', minWidth: '120px' }}>
-                  <img loading="lazy" alt="" class="api-services__icon" w="120px;" src="https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b73337aa4f63_services-suppliers-icon.svg" />
+              <Box style={{ backgroundColor: 'transparent' }}>
+                <div
+                  class='css-0'
+                  style={{ backgroundColor: 'transparent', width: '120px', height: '120px', minWidth: '120px' }}
+                >
+                  <img
+                    loading='lazy'
+                    alt=''
+                    class='api-services__icon'
+                    w='120px;'
+                    src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b73337aa4f63_services-suppliers-icon.svg'
+                  />
                 </div>
               </Box>
               <Box ml='20px'>
-                <Text fontSize='25px' lineHeight='53px' fontFamily='basier'>{t('home.solutions.card_2.title')}</Text>
+                <Text fontSize='25px' lineHeight='53px' fontFamily='basier'>
+                  {t('home.solutions.card_2.title')}
+                </Text>
                 <Text fontSize='20px'>{t('home.solutions.card_2.description')}</Text>
               </Box>
             </CardBody>
           </Card>
           <Card variant='icon-card'>
             <CardBody>
-              <Box style={{ backgroundColor: 'transparent'  }}>
-                <div class="css-0" style={{ backgroundColor: 'transparent', width: '120px', height: '120px', minWidth: '120px' }}>
-                  <img loading="lazy" alt="" class="api-services__icon" w="120px;" src="https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b79b4caa4f51_gov-institutions-api-icon.svg" />
+              <Box style={{ backgroundColor: 'transparent' }}>
+                <div
+                  class='css-0'
+                  style={{ backgroundColor: 'transparent', width: '120px', height: '120px', minWidth: '120px' }}
+                >
+                  <img
+                    loading='lazy'
+                    alt=''
+                    class='api-services__icon'
+                    w='120px;'
+                    src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b79b4caa4f51_gov-institutions-api-icon.svg'
+                  />
                 </div>
               </Box>
               <Box ml='10px'>
-                <Text fontSize='25px' lineHeight='53px' fontFamily='basier'>{t('home.solutions.card_3.title')}</Text>
+                <Text fontSize='25px' lineHeight='53px' fontFamily='basier'>
+                  {t('home.solutions.card_3.title')}
+                </Text>
                 <Text fontSize='20px'>{t('home.solutions.card_3.description')}</Text>
               </Box>
             </CardBody>

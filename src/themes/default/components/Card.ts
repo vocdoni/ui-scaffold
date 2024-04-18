@@ -220,8 +220,6 @@ const aside = definePartsStyle({
 const benefits = definePartsStyle({
   container: {
     w: '350px',
-    borderRadius: 'xl',
-    boxShadow: 'var(--box-shadow-darker)',
     backdropFilter: 'blur(16px)',
     borderBottomWidth: '0',
     borderBottomColor: 'rgba(255, 255, 255, .15)',
@@ -242,7 +240,7 @@ const benefits = definePartsStyle({
     lineHeight: { base: '38px', sm: '37px' },
     fontWeight: 'bold',
     textAlign: 'left',
-    fontFamily: 'basier'
+    fontFamily: 'basier',
   },
   body: {
     p: '30px',
@@ -430,7 +428,7 @@ const client = definePartsStyle({
       fontSize: '12px',
       fontWeight: 'bold',
       color: '#666',
-      marginTop: '22px'
+      marginTop: '22px',
     },
   },
 })

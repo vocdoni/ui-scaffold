@@ -33,7 +33,15 @@ const CreateProcess = () => {
         >
           {t('home.create_process.title')}
         </Text>
-        <Text fontSize='24px' lineHeight='35px' fontFamily='basier' color='gray' mt='52px' mb='52px' textAlign={{ base: 'center', lg: 'start' }}>
+        <Text
+          fontSize='24px'
+          lineHeight='35px'
+          fontFamily='basier'
+          color='gray'
+          mt='52px'
+          mb='52px'
+          textAlign={{ base: 'center', lg: 'start' }}
+        >
           {t('home.create_process.subtitle')}
         </Text>
         <Box maxW={{ lg: '90%' }}>

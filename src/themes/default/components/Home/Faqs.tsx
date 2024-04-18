@@ -5,8 +5,21 @@ const Faqs = () => {
   const { t } = useTranslation()
 
   return (
-    <Box id='faqs' className='site-wrapper-full' py={{ base: '60px', lg: '100px' }} backgroundColor='white' mt='60px' mb='60px'>
-      <img src="https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b72f92aa4f58_diagonal-violet-to-pink.svg" loading="lazy" alt="" class="section-home-protocol__diagonal" style={{ position: 'absolute', left: '-40px', marginTop: '-75px' }} />
+    <Box
+      id='faqs'
+      className='site-wrapper-full'
+      py={{ base: '60px', lg: '100px' }}
+      backgroundColor='white'
+      mt='60px'
+      mb='60px'
+    >
+      <img
+        src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b72f92aa4f58_diagonal-violet-to-pink.svg'
+        loading='lazy'
+        alt=''
+        class='section-home-protocol__diagonal'
+        style={{ position: 'absolute', left: '-40px', marginTop: '-75px' }}
+      />
       <Box className='site-wrapper'>
         <Text
           fontSize={{ base: '25px', lg: '30px', xl: '60px' }}
@@ -18,7 +31,16 @@ const Faqs = () => {
         >
           {t('home.faqs.title')}
         </Text>
-        <Text textAlign='left' color='black' fontSize='20px' lineHeight='28px' opacity='0.75' fontFamily='basier' maxW='840px' margin='0px auto 80px'>
+        <Text
+          textAlign='left'
+          color='black'
+          fontSize='20px'
+          lineHeight='28px'
+          opacity='0.75'
+          fontFamily='basier'
+          maxW='840px'
+          margin='0px auto 80px'
+        >
           {t('home.faqs.subtitle')}
         </Text>
         <Flex flexDirection={{ base: 'column', md2: 'row' }} gap={{ base: '40px', md2: '60px' }}>
@@ -28,7 +50,9 @@ const Faqs = () => {
                 <Text>{t('home.faqs.faq_1.title')}</Text>
               </CardHeader>
               <CardBody>
-                <Text fontSize='18px' opacity='0.75'>{t('home.faqs.faq_1.description')}</Text>
+                <Text fontSize='18px' opacity='0.75'>
+                  {t('home.faqs.faq_1.description')}
+                </Text>
               </CardBody>
             </Card>
             <Card variant='faqs' mb='40px' backgroundColor='transparent' fontSize='22px'>
@@ -36,7 +60,9 @@ const Faqs = () => {
                 <Text>{t('home.faqs.faq_2.title')}</Text>
               </CardHeader>
               <CardBody>
-                <Text fontSize='18px' opacity='0.75'>{t('home.faqs.faq_2.description')}</Text>
+                <Text fontSize='18px' opacity='0.75'>
+                  {t('home.faqs.faq_2.description')}
+                </Text>
               </CardBody>
             </Card>
             <Card variant='faqs' mb='40px' backgroundColor='transparent' fontSize='22px'>
@@ -44,15 +70,25 @@ const Faqs = () => {
                 <Text>{t('home.faqs.faq_3.title')}</Text>
               </CardHeader>
               <CardBody>
-                <Text fontSize='18px' opacity='0.75'>{t('home.faqs.faq_3.description')}</Text>
+                <Text fontSize='18px' opacity='0.75'>
+                  {t('home.faqs.faq_3.description')}
+                </Text>
               </CardBody>
             </Card>
-            <Card variant='faqs' mb='40px' borderBottom={{ base: '1px solid rgb(229, 229, 229)', xl: 'none' }} backgroundColor='transparent' fontSize='22px'>
+            <Card
+              variant='faqs'
+              mb='40px'
+              borderBottom={{ base: '1px solid rgb(229, 229, 229)', xl: 'none' }}
+              backgroundColor='transparent'
+              fontSize='22px'
+            >
               <CardHeader>
                 <Text>{t('home.faqs.faq_8.title')}</Text>
               </CardHeader>
               <CardBody>
-                <Text fontSize='18px' opacity='0.75'>{t('home.faqs.faq_8.description')}</Text>
+                <Text fontSize='18px' opacity='0.75'>
+                  {t('home.faqs.faq_8.description')}
+                </Text>
               </CardBody>
             </Card>
           </Box>
@@ -62,7 +98,9 @@ const Faqs = () => {
                 <Text>{t('home.faqs.faq_4.title')}</Text>
               </CardHeader>
               <CardBody>
-                <Text fontSize='18px' opacity='0.75'>{t('home.faqs.faq_4.description')}</Text>
+                <Text fontSize='18px' opacity='0.75'>
+                  {t('home.faqs.faq_4.description')}
+                </Text>
               </CardBody>
             </Card>
             <Card variant='faqs' mb='40px' backgroundColor='transparent' fontSize='22px'>
@@ -70,7 +108,9 @@ const Faqs = () => {
                 <Text>{t('home.faqs.faq_5.title')}</Text>
               </CardHeader>
               <CardBody>
-                <Text fontSize='18px' opacity='0.75'>{t('home.faqs.faq_5.description')}</Text>
+                <Text fontSize='18px' opacity='0.75'>
+                  {t('home.faqs.faq_5.description')}
+                </Text>
               </CardBody>
             </Card>
             <Card variant='faqs' mb='40px' backgroundColor='transparent' fontSize='22px'>
@@ -78,7 +118,9 @@ const Faqs = () => {
                 <Text>{t('home.faqs.faq_6.title')}</Text>
               </CardHeader>
               <CardBody>
-                <Text fontSize='18px' opacity='0.75'>{t('home.faqs.faq_6.description')}</Text>
+                <Text fontSize='18px' opacity='0.75'>
+                  {t('home.faqs.faq_6.description')}
+                </Text>
               </CardBody>
             </Card>
             <Card variant='faqs' mb='40px' borderBottom='none' backgroundColor='transparent' fontSize='22px'>
@@ -86,7 +128,9 @@ const Faqs = () => {
                 <Text>{t('home.faqs.faq_7.title')}</Text>
               </CardHeader>
               <CardBody>
-                <Text fontSize='18px' opacity='0.75'>{t('home.faqs.faq_7.description')}</Text>
+                <Text fontSize='18px' opacity='0.75'>
+                  {t('home.faqs.faq_7.description')}
+                </Text>
               </CardBody>
             </Card>
           </Box>

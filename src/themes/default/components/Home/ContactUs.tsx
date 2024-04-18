@@ -18,11 +18,7 @@ const ContactUs = () => {
       gap={{ base: '40px', lg: '60px' }}
       scrollMarginTop='100px'
     >
-      <Flex
-        justifyContent={{ base: 'center' }}
-        flex='1 1 50%'
-        position='relative'
-      >
+      <Flex justifyContent={{ base: 'center' }} flex='1 1 50%' position='relative'>
         <Box maxW={{ base: 'full', lg: '660px' }} px={{ base: '30px', lg: 0 }} pl={{ lg: '37px', xl3: 0 }}>
           <Image
             src={advFeature}
@@ -94,9 +90,25 @@ const ContactUs = () => {
         </Flex>
       </Flex>
 
-      <div class="vector-wrapper origins" style={{ width: '500px', position: 'relative', float: 'right', marginLeft: '-500px', top: '10px' }}>
-        <img src="https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6436edfde50ddf8203cfef89_Vector-builders1.png" loading="lazy" sizes="100vw" srcset="https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6436edfde50ddf8203cfef89_Vector-builders1-p-500.png 500w, https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6436edfde50ddf8203cfef89_Vector-builders1.png 528w" alt="" class="origin-vector-1" />
-        <img src="https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6436edf13d923ae2692920a9_Vector-builders2.png" loading="lazy" alt="" class="origin-vector-2" style={{ position: 'relative', marginTop: '-300px' }} />
+      <div
+        class='vector-wrapper origins'
+        style={{ width: '500px', position: 'relative', float: 'right', marginLeft: '-500px', top: '10px' }}
+      >
+        <img
+          src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6436edfde50ddf8203cfef89_Vector-builders1.png'
+          loading='lazy'
+          sizes='100vw'
+          srcset='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6436edfde50ddf8203cfef89_Vector-builders1-p-500.png 500w, https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6436edfde50ddf8203cfef89_Vector-builders1.png 528w'
+          alt=''
+          class='origin-vector-1'
+        />
+        <img
+          src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6436edf13d923ae2692920a9_Vector-builders2.png'
+          loading='lazy'
+          alt=''
+          class='origin-vector-2'
+          style={{ position: 'relative', marginTop: '-300px' }}
+        />
       </div>
     </Flex>
   )

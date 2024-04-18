@@ -7,12 +7,15 @@ const Support = () => {
   const { t } = useTranslation()
 
   return (
-    <Box style={{
-      background: 'url("https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b75c38aa4f55_Net.svg")',
-      backgroundColor: '#24656e',
-      backgroundRepeat: 'no-repeat',
-      backgroundPosition: 'right'
-    }}>
+    <Box
+      style={{
+        background:
+          'url("https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b75c38aa4f55_Net.svg")',
+        backgroundColor: '#24656e',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'right',
+      }}
+    >
       <Box className='site-wrapper' py={{ base: '60px', lg: '100px' }} position='relative' overflow='hidden'>
         <Box
           w='356px'
@@ -56,7 +59,15 @@ const Support = () => {
         >
           {t('home.support.title')}
         </Text>
-        <Text fontSize='22px' lineHeight='28px' mb='50px' color='white' textAlign='center' fontFamily='basier' fontWeight='100'>
+        <Text
+          fontSize='22px'
+          lineHeight='28px'
+          mb='50px'
+          color='white'
+          textAlign='center'
+          fontFamily='basier'
+          fontWeight='100'
+        >
           {t('home.support.subtitle')}
         </Text>
         <Flex

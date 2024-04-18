@@ -21,7 +21,15 @@ const Features = () => {
         <Text fontSize='60px' lineHeight='100px' mb='10px' textAlign='center' fontFamily='basier'>
           {t('home.features.title')}
         </Text>
-        <Text color='black' fontSize='20px' lineHeight='28px' fontFamily='basier' opacity='0.75' maxW='840px' margin='0px auto'>
+        <Text
+          color='black'
+          fontSize='20px'
+          lineHeight='28px'
+          fontFamily='basier'
+          opacity='0.75'
+          maxW='840px'
+          margin='0px auto'
+        >
           {t('home.features.subtitle_1')}
         </Text>
       </Box>

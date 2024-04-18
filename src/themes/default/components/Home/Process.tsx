@@ -13,10 +13,19 @@ const Process = () => {
 
   return (
     <Box as='section' className='site-wrapper' py={{ base: '60px', lg: '100px' }} mb='120px'>
-      <Text  fontSize='60px' lineHeight='98px' mb='10px' textAlign='center' fontFamily='basier'>
+      <Text fontSize='60px' lineHeight='98px' mb='10px' textAlign='center' fontFamily='basier'>
         {t('home.process.title')}
       </Text>
-      <Text fontSize='20px' lineHeight='28px' color='black' textAlign='left' opacity='0.75' maxW='840px' margin='0px auto' fontFamily='basier'>
+      <Text
+        fontSize='20px'
+        lineHeight='28px'
+        color='black'
+        textAlign='left'
+        opacity='0.75'
+        maxW='840px'
+        margin='0px auto'
+        fontFamily='basier'
+      >
         {t('home.process.description_1')}
         {t('home.process.description_2')}
       </Text>
