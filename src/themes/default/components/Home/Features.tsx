@@ -41,8 +41,13 @@ const Features = () => {
         maxW={{ base: '100%', sm: '70%', sm2: '85%' }}
         margin='0px auto'
       >
-        <Flex flexDirection='column' gap={{ base: '65px', lg: '115px' }} flex='1 1 30%' mb={{ base: '65px', sm: '30px' }}>
-          <Card variant='icon-card' minH={{ base:'0px', lg:'250px' }}>
+        <Flex
+          flexDirection='column'
+          gap={{ base: '65px', lg: '115px' }}
+          flex='1 1 30%'
+          mb={{ base: '65px', sm: '30px' }}
+        >
+          <Card variant='icon-card' minH={{ base: '0px', lg: '250px' }}>
             <CardBody>
               <Box minW='56px' h='56px' maxW='56px'>
                 <FaVoteYea minW='56px' h='56px' />
@@ -51,11 +56,13 @@ const Features = () => {
                 <Text mr={2} fontSize='26px' fontFamily='basier' fontWeight='600' lineHeight='52'>
                   {t('home.features.card_1.title')}
                 </Text>
-                <Text fontSize='22px' mt='15px' color='#000000a1 !important'>{t('home.features.card_1.description')}</Text>
+                <Text fontSize='22px' mt='15px' color='#000000a1 !important'>
+                  {t('home.features.card_1.description')}
+                </Text>
               </Box>
             </CardBody>
           </Card>
-          <Card variant='icon-card' minH={{ base:'0px', lg:'250px' }}>
+          <Card variant='icon-card' minH={{ base: '0px', lg: '250px' }}>
             <CardBody>
               <Box minW='56px' h='56px'>
                 <FaPalette />
@@ -64,11 +71,13 @@ const Features = () => {
                 <Text mr={2} fontSize='26px' fontFamily='basier' fontWeight='600' lineHeight='52'>
                   {t('home.features.card_2.title')}
                 </Text>
-                <Text fontSize='22px' mt='15px' color='#000000a1 !important'>{t('home.features.card_2.description')}</Text>
+                <Text fontSize='22px' mt='15px' color='#000000a1 !important'>
+                  {t('home.features.card_2.description')}
+                </Text>
               </Box>
             </CardBody>
           </Card>
-          <Card variant='icon-card' minH={{ base:'0px', lg:'250px' }}>
+          <Card variant='icon-card' minH={{ base: '0px', lg: '250px' }}>
             <CardBody>
               <Box minW='56px' h='56px'>
                 <FaUsers />
@@ -77,13 +86,20 @@ const Features = () => {
                 <Text mr={2} fontSize='26px' fontFamily='basier' fontWeight='600' lineHeight='52'>
                   {t('home.features.card_3.title')}
                 </Text>
-                <Text fontSize='22px' mt='15px' color='#000000a1 !important'>{t('home.features.card_3.description')}</Text>
+                <Text fontSize='22px' mt='15px' color='#000000a1 !important'>
+                  {t('home.features.card_3.description')}
+                </Text>
               </Box>
             </CardBody>
           </Card>
         </Flex>
-        <Flex flexDirection='column' gap={{ base: '65px', lg: '115px' }} flex='1 1 30%' mb={{ base: '65px', sm: '30px' }}>
-          <Card variant='icon-card' minH={{ base:'0px', lg:'250px' }}>
+        <Flex
+          flexDirection='column'
+          gap={{ base: '65px', lg: '115px' }}
+          flex='1 1 30%'
+          mb={{ base: '65px', sm: '30px' }}
+        >
+          <Card variant='icon-card' minH={{ base: '0px', lg: '250px' }}>
             <CardBody>
               <Box minW='56px' h='56px'>
                 <FaUserLock />
@@ -92,11 +108,13 @@ const Features = () => {
                 <Text mr={2} fontSize='26px' fontFamily='basier' fontWeight='600' lineHeight='52'>
                   {t('home.features.card_4.title')}
                 </Text>
-                <Text fontSize='22px' mt='15px' color='#000000a1 !important'>{t('home.features.card_4.description')}</Text>
+                <Text fontSize='22px' mt='15px' color='#000000a1 !important'>
+                  {t('home.features.card_4.description')}
+                </Text>
               </Box>
             </CardBody>
           </Card>
-          <Card variant='icon-card' minH={{ base:'0px', lg:'250px' }}>
+          <Card variant='icon-card' minH={{ base: '0px', lg: '250px' }}>
             <CardBody>
               <Box minW='56px' h='56px'>
                 <FaTasks />
@@ -105,11 +123,13 @@ const Features = () => {
                 <Text mr={2} fontSize='26px' fontFamily='basier' fontWeight='600' lineHeight='52'>
                   {t('home.features.card_5.title')}
                 </Text>
-                <Text fontSize='22px' mt='15px' color='#000000a1 !important'>{t('home.features.card_5.description')}</Text>
+                <Text fontSize='22px' mt='15px' color='#000000a1 !important'>
+                  {t('home.features.card_5.description')}
+                </Text>
               </Box>
             </CardBody>
           </Card>
-          <Card variant='icon-card' minH={{ base:'0px', lg:'250px' }}>
+          <Card variant='icon-card' minH={{ base: '0px', lg: '250px' }}>
             <CardBody>
               <Box minW='56px' h='56px'>
                 <FaNewspaper />
@@ -118,13 +138,20 @@ const Features = () => {
                 <Text mr={2} fontSize='26px' fontFamily='basier' fontWeight='600' lineHeight='52'>
                   {t('home.features.card_6.title')}
                 </Text>
-                <Text fontSize='22px' mt='15px' color='#000000a1 !important'>{t('home.features.card_6.description')}</Text>
+                <Text fontSize='22px' mt='15px' color='#000000a1 !important'>
+                  {t('home.features.card_6.description')}
+                </Text>
               </Box>
             </CardBody>
           </Card>
         </Flex>
-        <Flex flexDirection='column' gap={{ base: '65px', lg: '115px' }} flex='1 1 30%' mb={{ base: '65px', sm: '30px' }}>
-          <Card variant='icon-card' minH={{ base:'0px', lg:'250px' }}>
+        <Flex
+          flexDirection='column'
+          gap={{ base: '65px', lg: '115px' }}
+          flex='1 1 30%'
+          mb={{ base: '65px', sm: '30px' }}
+        >
+          <Card variant='icon-card' minH={{ base: '0px', lg: '250px' }}>
             <CardBody>
               <Box minW='56px' h='56px'>
                 <FaLanguage />
@@ -133,11 +160,13 @@ const Features = () => {
                 <Text mr={2} fontSize='26px' fontFamily='basier' fontWeight='600' lineHeight='52'>
                   {t('home.features.card_7.title')}
                 </Text>
-                <Text fontSize='22px' mt='15px' color='#000000a1 !important'>{t('home.features.card_7.description')}</Text>
+                <Text fontSize='22px' mt='15px' color='#000000a1 !important'>
+                  {t('home.features.card_7.description')}
+                </Text>
               </Box>
             </CardBody>
           </Card>
-          <Card variant='icon-card' minH={{ base:'0px', lg:'250px' }}>
+          <Card variant='icon-card' minH={{ base: '0px', lg: '250px' }}>
             <CardBody>
               <Box minW='56px' h='56px'>
                 <FaBullseye />
@@ -146,11 +175,13 @@ const Features = () => {
                 <Text mr={2} fontSize='26px' fontFamily='basier' fontWeight='600' lineHeight='52'>
                   {t('home.features.card_8.title')}
                 </Text>
-                <Text fontSize='22px' mt='15px' color='#000000a1 !important'>{t('home.features.card_8.description')}</Text>
+                <Text fontSize='22px' mt='15px' color='#000000a1 !important'>
+                  {t('home.features.card_8.description')}
+                </Text>
               </Box>
             </CardBody>
           </Card>
-          <Card variant='icon-card' minH={{ base:'0px', lg:'250px' }}>
+          <Card variant='icon-card' minH={{ base: '0px', lg: '250px' }}>
             <CardBody>
               <Box minW='56px' h='56px'>
                 <FaCubes />
@@ -159,7 +190,9 @@ const Features = () => {
                 <Text mr={2} fontSize='26px' fontFamily='basier' fontWeight='600' lineHeight='52'>
                   {t('home.features.card_9.title')}
                 </Text>
-                <Text fontSize='22px' mt='15px' color='#000000a1 !important'>{t('home.features.card_9.description')}</Text>
+                <Text fontSize='22px' mt='15px' color='#000000a1 !important'>
+                  {t('home.features.card_9.description')}
+                </Text>
               </Box>
             </CardBody>
           </Card>
