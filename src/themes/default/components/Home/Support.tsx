@@ -86,6 +86,7 @@ const Support = () => {
             target='_blank'
             minW='280px'
             height='60px'
+            mb='30px'
           >
             {t('home.support.btn_contact')}
           </Button>
@@ -98,6 +99,7 @@ const Support = () => {
             title={t('home.support.btn_watch')}
             target='_blank'
             minW='280px'
+            mb='30px'
           >
             <FaPhoneVolume size={30} />
             <Text as='span' ml='10px'>

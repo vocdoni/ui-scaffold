@@ -27,6 +27,7 @@ const ContactUs = () => {
             transform={{ lg: 'translateY(-50%)' }}
             borderRadius='lg'
             ml={{ base: '0px', lg: '50px' }}
+            maxW='550px'
           />
         </Box>
       </Flex>
@@ -93,6 +94,7 @@ const ContactUs = () => {
       <div
         class='vector-wrapper origins'
         style={{ width: '500px', position: 'relative', float: 'right', marginLeft: '-500px', top: '10px' }}
+        display={{ sm: 'none', lg: 'block' }}
       >
         <img
           src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6436edfde50ddf8203cfef89_Vector-builders1.png'

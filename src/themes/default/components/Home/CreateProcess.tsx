@@ -18,13 +18,13 @@ const CreateProcess = () => {
       as='section'
       className='site-wrapper'
       flexDirection={{ base: 'column', lg: 'row' }}
-      py={{ base: '60px', lg: '100px' }}
+      py={{ base: '0px', sm:'15px', md: '30px', md2:'30px', lg: '30px' }}
       gap={{ base: '40px', lg: '60px' }}
     >
       <Box flex='1 1 50%'>
         <Text
-          fontSize={{ base: '30px', sm: '33px', sm2: '36px', md: '39px', md2: '42px', lg2: '64px' }}
-          lineHeight={{ base: '36px', sm: '39.5px', sm2: '43px', md: '47px', md2: '50px', lg2: '78px' }}
+          fontSize={{ base: '30px', sm: '42px', sm2: '48px', md: '52px', md2: '56px', lg2: '64px' }}
+          lineHeight={{ base: '36px', sm: '48px', sm2: '54px', md: '58px', md2: '64px', lg2: '78px' }}
           fontWeight='600'
           fontFamily='basier'
           mb='10px'
@@ -52,6 +52,7 @@ const CreateProcess = () => {
               mx={{ base: 'auto', lg: 'start' }}
               as={ReactRouterLink}
               to='/processes/create'
+              minW='300px'
             >
               {t('home.create_process.btn')}
             </Button>
@@ -65,6 +66,7 @@ const CreateProcess = () => {
               height='62px'
               fontSize='20px'
               textDecoration='underline'
+              minW='300px'
               onClick={() => {
                 if (openConnectModal) openConnectModal()
               }}

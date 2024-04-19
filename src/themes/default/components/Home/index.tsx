@@ -19,7 +19,7 @@ const Home = () => (
           opacity: 0.4,
           zIndex: -1,
           transform: 'scale(-1,1)',
-          height: '650vh',
+          minHeight: '750vh',
           width: '100%',
           marginTop: '-1500px',
         }}

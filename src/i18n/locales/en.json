@@ -182,7 +182,7 @@
     "follow_us": "Follow us",
     "footer_subtitle": "The Global Voting Protocol",
     "homepage": "Home",
-    "repos": "Open-source Code",
+    "repos": "Open-Source Code",
     "resources": "Resources",
     "terms_and_privacy": "<link1>Terms of use</link1> & <link2>Privacy Policy</link2>",
     "text": "<p1>The future</p1><p2>of Web3 voting starts here</p2>",
@@ -411,7 +411,7 @@
       },
       "card_6": {
         "description": "Foster trust and transparency powered by blockchain technology, offering stakeholders unparalleled visibility into the integrity of voting processes.",
-        "title": "Auditable & Open-source"
+        "title": "Auditable & Open-Source"
       },
       "subtitle_1": "Clients who choose Vocdoni unlock a world of benefits tailored to meet their unique voting needs. With our cutting-edge technology, organizations, communities, and governments experience a seamless transition to digital democracy. Here's how Vocdoni adds value:",
       "title": "Advantages"
@@ -432,7 +432,7 @@
     },
     "create_process": {
       "btn": "Try it for free",
-      "helper_1": "Production ready, responsive voting processes",
+      "helper_1": "Voting processes ready in just 10 minutes for your voters, seamlessly compatible with mobile devices.",
       "helper_2": "Free up to 100 voters",
       "subtitle": "Vocdoni APP delivers an affordable, easy-to-use, and GDPR-compliant voting experience that anyone can use from anywhere with their PC, laptop, tablet and mobile. Powered by our own Blockchain®.",
       "title": "Secure, Cost-Effective and Verifiable Voting Solution"
@@ -507,7 +507,7 @@
     },
     "features": {
       "card_1": {
-        "description": "From simple yes/no referendums to complex ranked-choice elections, Vocdoni supports a wide range of voting types to suit any decision-making process.",
+        "description": "From `yes/no` to more complex voting types like multi-choice, approval or ranked elections, we support a wide range of elections to suit any decision-making process.",
         "title": "Versatile Voting types"
       },
       "card_2": {
@@ -527,8 +527,8 @@
         "title": "Custom Censuses"
       },
       "card_6": {
-        "description": "Customize your voting processes by enabling options such as start and end dates, auto-start elections, continuously updated results, anonymous voting, weighted voting, and ballot customization.",
-        "title": "Flexible Voting options"
+        "description": "Using our specialized decentralized blockchain for voting safeguards voter anonymity and privacy, ensuring a process free from censorship and interference.",
+        "title": "Decentralized Voting Protocol"
       },
       "card_7": {
         "description": "Reach a diverse audience with multi-language support, allowing participants to select their preferred language for inclusive and accessible voting experiences.",

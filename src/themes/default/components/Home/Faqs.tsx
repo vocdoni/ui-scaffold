@@ -11,7 +11,6 @@ const Faqs = () => {
       py={{ base: '60px', lg: '100px' }}
       backgroundColor='white'
       mt='60px'
-      mb='60px'
     >
       <img
         src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b72f92aa4f58_diagonal-violet-to-pink.svg'
@@ -50,7 +49,7 @@ const Faqs = () => {
                 <Text>{t('home.faqs.faq_1.title')}</Text>
               </CardHeader>
               <CardBody>
-                <Text fontSize='18px' opacity='0.75'>
+                <Text fontSize='19px !important' opacity='0.75'>
                   {t('home.faqs.faq_1.description')}
                 </Text>
               </CardBody>
@@ -60,7 +59,7 @@ const Faqs = () => {
                 <Text>{t('home.faqs.faq_2.title')}</Text>
               </CardHeader>
               <CardBody>
-                <Text fontSize='18px' opacity='0.75'>
+                <Text fontSize='19px !important' opacity='0.75'>
                   {t('home.faqs.faq_2.description')}
                 </Text>
               </CardBody>
@@ -70,7 +69,7 @@ const Faqs = () => {
                 <Text>{t('home.faqs.faq_3.title')}</Text>
               </CardHeader>
               <CardBody>
-                <Text fontSize='18px' opacity='0.75'>
+                <Text fontSize='19px !important' opacity='0.75'>
                   {t('home.faqs.faq_3.description')}
                 </Text>
               </CardBody>
@@ -86,7 +85,7 @@ const Faqs = () => {
                 <Text>{t('home.faqs.faq_8.title')}</Text>
               </CardHeader>
               <CardBody>
-                <Text fontSize='18px' opacity='0.75'>
+                <Text fontSize='19px !important' opacity='0.75'>
                   {t('home.faqs.faq_8.description')}
                 </Text>
               </CardBody>
@@ -98,7 +97,7 @@ const Faqs = () => {
                 <Text>{t('home.faqs.faq_4.title')}</Text>
               </CardHeader>
               <CardBody>
-                <Text fontSize='18px' opacity='0.75'>
+                <Text fontSize='19px !important' opacity='0.75'>
                   {t('home.faqs.faq_4.description')}
                 </Text>
               </CardBody>
@@ -108,7 +107,7 @@ const Faqs = () => {
                 <Text>{t('home.faqs.faq_5.title')}</Text>
               </CardHeader>
               <CardBody>
-                <Text fontSize='18px' opacity='0.75'>
+                <Text fontSize='19px !important' opacity='0.75'>
                   {t('home.faqs.faq_5.description')}
                 </Text>
               </CardBody>
@@ -118,7 +117,7 @@ const Faqs = () => {
                 <Text>{t('home.faqs.faq_6.title')}</Text>
               </CardHeader>
               <CardBody>
-                <Text fontSize='18px' opacity='0.75'>
+                <Text fontSize='19px !important' opacity='0.75'>
                   {t('home.faqs.faq_6.description')}
                 </Text>
               </CardBody>
@@ -128,7 +127,7 @@ const Faqs = () => {
                 <Text>{t('home.faqs.faq_7.title')}</Text>
               </CardHeader>
               <CardBody>
-                <Text fontSize='18px' opacity='0.75'>
+                <Text fontSize='19px !important' opacity='0.75'>
                   {t('home.faqs.faq_7.description')}
                 </Text>
               </CardBody>

@@ -101,7 +101,7 @@ const Solutions = () => {
         </Flex>
       </Flex>
       <Box flex='1 1 35%' position='relative'>
-        <Box maxW={{ base: '250px', lg: '115%', xl: '100%' }} mx='auto' borderRadius='xl' overflow='hidden'>
+        <Box maxW={{ base: '450px', lg: '115%', xl: '100%' }} mx='auto' borderRadius='xl' overflow='hidden'>
           <Image src={solutions} mx={{ lg: 'auto' }} opacity='0.6' />
         </Box>
         <Flex

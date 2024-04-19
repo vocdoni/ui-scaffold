@@ -402,7 +402,7 @@
       },
       "card_2": {
         "description": "Estalvieu temps i esforç amb els processos optimitzats de Vocdoni, disfrutant de menors costos operatius.",
-        "title": "Costos Reduïts"
+        "title": "Redueix Costs"
       },
       "card_3": {
         "description": "Augmenta la participació i la implicació amb una plataforma fàcil d'usar accessible per a tothom, independentment de la competència tècnica.",
@@ -410,11 +410,11 @@
       },
       "card_4": {
         "description": "Vota des de qualsevol lloc, des de qualsevol dispositiu. Tan simple com això.",
-        "title": "Participació sense esforç"
+        "title": "Votació sense esforç"
       },
       "card_5": {
         "description": "Tingues la seguretat que els mètodes criptogràfics avançats garanteixen la màxima seguretat mentre es manté l'anonimat del votant i la integritat del vot.",
-        "title": "Seguretat incomparable"
+        "title": "Seguretat basada en Blockchain"
       },
       "card_6": {
         "description": "Fomentar la confiança i la transparència impulsades per la tecnologia blockchain, oferint als stakeholders una visibilitat sense igual en la integritat dels processos de votació.",
@@ -435,13 +435,13 @@
         "title": "Estarem amb tu en tot moment"
       },
       "header": "Contacta'ns",
-      "title": "Col·laborem per trobar la solució perfecta per a tu"
+      "title": "Col·laborem per crear la votació perfecte"
     },
     "create_process": {
       "btn": "Prova-ho gratis",
-      "helper_1": "Processos de votació preparats per a producció i responsius",
+      "helper_1": "Processos de votació preparats en 10 min. per als teus votants i compatibles amb dispositius mòbils",
       "helper_2": "Gratuït fins a 100 votants",
-      "subtitle": "La participació fàcil. L'aplicació Vocdoni ofereix una experiència de votació assequible, fàcil d'utilitzar i compatible amb el GDPR que qualsevol persona pot utilitzar des de qualsevol lloc amb el seu PC, portàtil, tauleta o telèfon.",
+      "subtitle": "L'aplicació de Vocdoni ofereix una experiència de votació assequible, fàcil d'utilitzar i compatible amb les lleis de GDPR, que qualsevol persona pot utilitzar des del seu PC, portàtil, tauleta o telèfon. Impulsat per la nostra pròpia Blockchain®.",
       "title": "Votació segura, ràpida i verificable"
     },
     "demo": {
@@ -515,15 +515,15 @@
     "features": {
       "card_1": {
         "description": "Des de referèndums simples de sí/no fins a eleccions complexes de preferència classificada, Vocdoni admet una àmplia gamma de tipus de votació per adaptar-se a qualsevol procés de presa de decisions.",
-        "title": "Tipus de votació versàtils"
+        "title": "Votació flexible"
       },
       "card_2": {
         "description": "Personalitza cada aspecte del teu procés de votació, des del branding i els temes fins al disseny de les paperetes, assegurant una integració perfecta amb la identitat de la teva organització.",
-        "title": "Capacitats de personalització"
+        "title": "Personalització completa"
       },
       "card_3": {
         "description": "Amb interfícies intuïtives i un procés d'integració guiat, Vocdoni assegura que tant els organitzadors com els votants puguin navegar fàcilment per la plataforma des del primer dia.",
-        "title": "Onboarding Amigable amb l'usuari"
+        "title": "Fàcil pels usuaris"
       },
       "card_4": {
         "description": "Utilitzant mètodes d'autenticació robustos com ara l'autenticació de dos factors, Vocdoni protegeix contra l'accés no autoritzat i garanteix la integritat de cada vot.",
@@ -534,8 +534,8 @@
         "title": "Censos personalitzats"
       },
       "card_6": {
-        "description": "Personalitza els teus processos de votació habilitant opcions com dates d'inici i final, eleccions automàtiques, resultats actualitzats continuament, votació anònima, votació ponderada i personalització de les paperetes.",
-        "title": "Opcions de votació flexibles"
+        "description": "Utilitzant la nostra blockchain descentralitzada especialitzada per a votacions, es garanteix l'anonimat i la privadesa del votant, assegurant un procés lliure de censura i interferències.",
+        "title": "Protocol Votació Descentralitzat"
       },
       "card_7": {
         "description": "Atrau una audiència diversa amb suport multilingüe, permetent als participants seleccionar el seu idioma preferit per a experiències de votació inclusives i accessibles.",
@@ -554,7 +554,7 @@
       "title": "Característiques"
     },
     "process": {
-      "description_1": "L'aplicació Vocdoni et permet crear un procés de votació en 4 senzills passos.",
+      "description_1": "L'aplicació Vocdoni et permet crear un procés de votació en 4 senzills passos. ",
       "description_2": "Amb un clic, pots configurar si vols votació anònima o resultats d'elecció en directe, triar entre diversos tipus d'eleccions, carregar el teu cens de votants i molt més.",
       "header": "Procés",
       "step_1": {
@@ -578,20 +578,20 @@
     "solutions": {
       "card_1": {
         "description": "Optimitzeu la presa de decisions amb una votació segura i transparent. Involucreu els membres de manera efectiva, estalvieu en costos administratius i fomenta una cultura de participació i transparència.",
-        "title": "Per a Organitzacions"
+        "title": "Organitzacions"
       },
       "card_2": {
         "description": "Millora la implicació de la comunitat amb una plataforma fàcil d'utilitzar que fomenta la participació i dóna veu a cada membre.",
-        "title": "Per a Comunitats"
+        "title": "Comunitats"
       },
       "card_3": {
         "description": "Augmenta la participació dels votants, redueix els costos electorals i millora la confiança ciutadana amb processos de votació segurs i verificables.",
-        "title": "Per a Govern i Institucions Públiques"
+        "title": "Governs i Institucions Públiques"
       },
       "header": "Abraça el canvi amb Vocdoni",
       "img_card_1": "Organitzacions",
       "img_card_2": "Comunitats",
-      "img_card_3": "Govern i Institucions Públiques",
+      "img_card_3": "Governs i Institucions Públiques",
       "subtitle_1": "Oferim solucions per a una àmplia gamma de casos d'ús, demostrant la versatilitat de l'aplicació Vocdoni.",
       "title": "La nostra solució s'adapta a les vostres necessitats"
     },
@@ -601,9 +601,9 @@
       "header": "Proveu-ho! Obtingueu suport gratuït",
       "helper_1": "Suport d'experts gratuït per trucada",
       "helper_2": "Redueix els costos i les hores de treball",
-      "helper_3": "Costos competitives",
+      "helper_3": "Costs competitiu",
       "subtitle": "Podem ajudar-te a crear l'experiència de votació perfecta.",
-      "title": "Comenceu a donar veu a la vostra comunitat"
+      "title": "Dona veu a la teva comunitat"
     }
   },
   "home_features": {
