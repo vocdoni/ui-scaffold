@@ -67,7 +67,7 @@ const ProcessHeader = () => {
         </Box>
       )}
       <Flex direction={{ base: 'column', lg2: 'row' }} mb={7} gap={10}>
-        <Box flexGrow={0} flexShrink={0} flexBasis={{ base: '100%', md: '60%', lg: '65%', lg2: '70%', xl2: '75%' }}>
+        <Box flex={{ lg2: '1 1 80%' }}>
           <ElectionTitle fontSize={{ base: '32px', md: '34px' }} textAlign='left' my={5} />
           <Flex flexDirection={{ base: 'column', xl: 'row' }} mb={4} justifyContent='space-between'>
             <Flex gap={4} flexDirection={{ base: 'column', xl: 'row' }} alignItems={{ base: 'start', xl: 'center' }}>
@@ -116,13 +116,13 @@ const ProcessHeader = () => {
         </Box>
 
         <Flex
+          flex={{ lg2: '1 1 20%' }}
           position='relative'
           flexDirection={{ base: 'row', lg2: 'column' }}
           alignItems='start'
           flexWrap='wrap'
           justifyContent='start'
           gap={{ base: 4, sm: 6, md: 8, lg: 4 }}
-          flexGrow={1}
           fontSize='sm'
           opacity={0.85}
           _hover={{
