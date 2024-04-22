@@ -73,6 +73,9 @@ export const theme = extendTheme(vtheme, {
         a: {
           fontSize: '18px',
         },
+        pre: {
+          'white-space': 'pre-wrap',
+        },
       },
       '.process-create-title': {
         fontFamily: 'pixeloidsans, monospace',
