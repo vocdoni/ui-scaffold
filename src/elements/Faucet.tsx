@@ -44,7 +44,7 @@ const Faucet = () => {
         <Grid templateColumns={'repeat(1, 1fr)'} gap={2}>
           <GridItem display='flex' justifyContent='center' alignItems='center'>
             <Box width={'80%'}>
-              <Heading as={'h1'} className='brand-theme' size={'xl'} textTransform='uppercase'>
+              <Heading as={'h2'} className='brand-theme' size={'xl'} textTransform='uppercase'>
                 {t('faucet.title')}
               </Heading>
               <Text variant='p' mt={10} mb={10}>

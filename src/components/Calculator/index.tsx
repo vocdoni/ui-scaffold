@@ -5,6 +5,8 @@ import {
   Flex,
   FormControl,
   FormLabel,
+  Heading,
+  Link,
   NumberDecrementStepper,
   NumberIncrementStepper,
   NumberInput,
@@ -20,14 +22,20 @@ import {
   Tabs,
   Text,
 } from '@chakra-ui/react'
+import { useClient } from '@vocdoni/react-providers'
+import { Election, PlainCensus } from '@vocdoni/sdk'
+import { useState } from 'react'
 import { Controller, FormProvider, useForm, useFormContext } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { AiOutlinePercentage } from 'react-icons/ai'
 import { FaCcStripe, FaEthereum } from 'react-icons/fa'
 import { MdOutlineLoop } from 'react-icons/md'
 import { PiNumberSquareOneLight } from 'react-icons/pi'
 
 const Calculator = () => {
+  const { t } = useTranslation()
+  const { client } = useClient()
+  const [priceTokens, setPriceTokens] = useState(0)
   const methods = useForm({
     defaultValues: {
       censusSize: 100,
@@ -35,34 +43,70 @@ const Calculator = () => {
       numberElections: 1,
       anonymous: false,
       encrypted: false,
+      voteOverwrite: false,
     },
   })
 
-  return (
-    <Flex
-      className='calculator'
-      width={'80%'}
-      mx='auto'
-      flexDirection={{ base: 'column', xl2: 'row' }}
-      overflow='hidden'
-    >
-      <FormProvider {...methods}>
-        <Flex
-          as='form'
-          flex='0 0 50%'
-          flexDirection='column'
-          px={{ base: 5, lg: 14 }}
-          py={5}
-          bgColor='calculator.left_side'
-        >
-          <LeftSideCalculator />
-        </Flex>
-      </FormProvider>
+  const onSubmit = async (form: any) => {
+    const startDate = new Date()
 
-      <Flex flex='0 0 50%' flexDirection='column' bgColor='calculator.right_side' color='calculator.right_side_color'>
-        <RightSideCalculator />
+    const endDate = new Date(startDate.getTime() + form.duration * 24 * 60 * 60 * 1000)
+
+    const census = new PlainCensus()
+
+    const election = Election.from({
+      title: 'Election title',
+      description: 'Election description',
+      startDate,
+      endDate,
+      census,
+      electionType: {
+        anonymous: form.anonymous,
+        secretUntilTheEnd: true,
+      },
+      voteType: {
+        maxVoteOverwrites: 0,
+      },
+      maxCensusSize: form.censusSize,
+    })
+
+    const price = await client.calculateElectionCost(election)
+
+    setPriceTokens(price * form.numberElections)
+  }
+  return (
+    <Box width={'80%'} mx='auto' mb={20}>
+      <Heading as={'h2'} mb={10} className='brand-theme' size={'xl'} textTransform='uppercase'>
+        {t('calculator.title')}
+      </Heading>
+
+      <Trans
+        i18nKey='calculator.description'
+        components={{
+          p: <Text mb={10} />,
+        }}
+      />
+
+      <Flex className='calculator' flexDirection={{ base: 'column', xl2: 'row' }} overflow='hidden'>
+        <FormProvider {...methods}>
+          <Flex
+            as='form'
+            flex='0 0 50%'
+            flexDirection='column'
+            px={{ base: 5, lg: 14 }}
+            py={5}
+            bgColor='calculator.left_side'
+            onSubmit={methods.handleSubmit(onSubmit)}
+          >
+            <LeftSideCalculator />
+          </Flex>
+        </FormProvider>
+
+        <Flex flex='0 0 50%' flexDirection='column' bgColor='calculator.right_side' color='calculator.right_side_color'>
+          <RightSideCalculator priceTokens={priceTokens} />
+        </Flex>
       </Flex>
-    </Flex>
+    </Box>
   )
 }
 const LeftSideCalculator = () => {
@@ -77,7 +121,7 @@ const LeftSideCalculator = () => {
   return (
     <>
       <Text className='process-create-title' textTransform='uppercase' textAlign='center' mb={5}>
-        Estimate your election cost
+        {t('calculator.estimate_election_cost')}
       </Text>
       <Flex flexGrow={1} mb={5} flexDirection='column' justifyContent='space-between' gap={3}>
         <Controller
@@ -96,7 +140,7 @@ const LeftSideCalculator = () => {
               gap={2}
             >
               <FormLabel m={0} whiteSpace='nowrap'>
-                Census Size (voters)
+                {t('calculator.census_size')}
               </FormLabel>
               <Flex gap={8}>
                 <NumberInput
@@ -136,7 +180,7 @@ const LeftSideCalculator = () => {
               gap={2}
             >
               <FormLabel m={0} whiteSpace='nowrap'>
-                Duration (days)
+                {t('calculator.duration')}
               </FormLabel>
               <Flex gap={8}>
                 <NumberInput
@@ -177,7 +221,7 @@ const LeftSideCalculator = () => {
               mb={8}
             >
               <FormLabel m={0} whiteSpace='nowrap'>
-                Nº of elections
+                {t('calculator.num_elections')}
               </FormLabel>
               <Flex gap={8}>
                 <NumberInput
@@ -201,7 +245,7 @@ const LeftSideCalculator = () => {
             </FormControl>
           )}
         />
-        <Flex justifyContent='center' flexDirection={{ base: 'column', sm: 'row' }} gap={{ sm: 10, md: 44 }}>
+        <Flex justifyContent='space-between' flexDirection={{ base: 'column', sm: 'row' }}>
           <Controller
             name={'anonymous'}
             control={control}
@@ -220,7 +264,7 @@ const LeftSideCalculator = () => {
                   whiteSpace='nowrap'
                   m={0}
                 >
-                  Anonymous
+                  {t('calculator.anonymous')}
                 </FormLabel>
               </Flex>
             )}
@@ -243,7 +287,30 @@ const LeftSideCalculator = () => {
                   whiteSpace='nowrap'
                   m={0}
                 >
-                  Encrypted
+                  {t('calculator.encrypted')}
+                </FormLabel>
+              </Flex>
+            )}
+          />
+          <Controller
+            name={'voteOverwrite'}
+            control={control}
+            render={({ field: { value, onChange } }) => (
+              <Flex alignItems='center' gap={2} flexDirection={{ base: 'column', md: 'row' }} mb={8}>
+                <Checkbox
+                  isChecked={value}
+                  id='voteOverwrite'
+                  onChange={(e) => onChange(e.target.checked as boolean)}
+                ></Checkbox>
+                <FormLabel
+                  variant='process-create-label'
+                  htmlFor='voteOverwrite'
+                  fontSize='16px'
+                  lineHeight='20px'
+                  whiteSpace='nowrap'
+                  m={0}
+                >
+                  {t('calculator.vote_overwrite')}
                 </FormLabel>
               </Flex>
             )}
@@ -251,45 +318,60 @@ const LeftSideCalculator = () => {
         </Flex>
       </Flex>
       <Flex mt='auto' justifyContent='center'>
-        <Button>Calculate cost</Button>
+        <Button type='submit'> {t('calculator.calculate_cost')}</Button>
       </Flex>
     </>
   )
 }
-const RightSideCalculator = () => {
+const RightSideCalculator = ({ priceTokens }: { priceTokens: number }) => {
+  const { t } = useTranslation()
+
+  const pricePerToken = 0.15
+  const totalPrice = pricePerToken * priceTokens
+
+  const packages = {
+    '1k': 149,
+    '5k': 697,
+    '10k': 1275,
+    '50k': 5925,
+    '100k': 10500,
+  }
+
+  const [radio, setRadio] = useState(0)
+
   return (
     <Tabs flexGrow={1} variant='soft-rounded' colorScheme='whiteAlpha' display='flex' flexDirection='column'>
       <TabList justifyContent='center' alignItems='center' flexWrap='wrap' gap={5} py={5}>
         <Tab display='flex' alignItems='center' gap={1} border='1px solid white' color='white' py={1}>
           <PiNumberSquareOneLight />
-          One-time
+          {t('calculator.one_time')}
         </Tab>
         <Tab display='flex' alignItems='center' gap={1} border='1px solid white' color='white' py={1}>
           <AiOutlinePercentage />
-          Packages
+          {t('calculator.packages')}
         </Tab>
         <Tab display='flex' alignItems='center' gap={1} border='1px solid white' color='white' py={1}>
           <MdOutlineLoop />
-          Recurring
+          {t('calculator.recurring')}
         </Tab>
       </TabList>
       <TabPanels flexGrow={1} display='flex' flexDirection='column'>
         <TabPanel flexGrow={1} display='flex' flexDirection='column'>
           <Box px={{ base: 5, lg: 14 }}>
             <Flex justifyContent='space-between' mb={3}>
-              <Text>Voting process cost:</Text>
-              <Text fontWeight='bold'>70 tokens</Text>
+              <Text>{t('calculator.voting_process_cost')}</Text>
+              <Text fontWeight='bold'>{priceTokens} tokens</Text>
             </Flex>
             <Flex justifyContent='space-between' mb={8}>
-              <Text>Price per Token:</Text>
+              <Text>{t('calculator.price_per_token')}</Text>
               <Text fontWeight='bold'>0.15 €</Text>
             </Flex>
             <Flex justifyContent='space-between'>
               <Flex flexDirection='column'>
-                <Text>Total Cost:</Text>
-                <Text>(without VAT)</Text>
+                <Text>{t('calculator.total_cost')}</Text>
+                <Text>{t('calculator.vat')}</Text>
               </Flex>
-              <Text fontWeight='bold'>10.5 €</Text>
+              <Text fontWeight='bold'>{totalPrice.toFixed(2)} €</Text>
             </Flex>
           </Box>
           <Box mt='auto'>
@@ -301,38 +383,51 @@ const RightSideCalculator = () => {
               mt={8}
               mb={5}
             >
-              <Button variant='secondary'>
+              <Button variant='secondary' isDisabled={!totalPrice}>
                 <FaCcStripe />
-                Buy with Card
+                {t('calculator.buy_with_card')}
               </Button>
-              <Button variant='secondary'>
+              <Button variant='secondary' isDisabled={!totalPrice}>
                 <FaEthereum />
-                Buy with Crypto
+                {t('calculator.buy_with_crypto')}
               </Button>
             </Flex>
             <Text fontSize='14px' textAlign='center'>
-              If you have any question, check our FAQ or contact our support team
+              <Trans
+                i18nKey='calculator.contact'
+                components={{
+                  link: <Link />,
+                }}
+              />
             </Text>
           </Box>
         </TabPanel>
 
         <TabPanel flexGrow={1} display='flex' flexDirection='column' px={{ base: 5, lg: 14 }}>
           <Flex mb={3}>
-            <Text flex='1 1 33%' textAlign='start'>
-              PACKAGE
+            <Text flex='1 1 33%' textAlign='start' textTransform='uppercase'>
+              {t('calculator.package')}
             </Text>
-            <Text flex='1 1 30%' textAlign='center'>
-              DISCOUNT
+            <Text flex='1 1 30%' textAlign='center' textTransform='uppercase'>
+              {t('calculator.discount')}
             </Text>
-            <Text flex='1 1 30%' textAlign='end'>
-              TOTAL
+            <Text flex='1 1 30%' textAlign='end' textTransform='uppercase'>
+              {t('calculator.total')}
             </Text>
           </Flex>
-          <RadioGroup>
+          <RadioGroup
+            onChange={(e) => {
+              if (e === '1') setRadio(packages['1k'])
+              if (e === '2') setRadio(packages['5k'])
+              if (e === '3') setRadio(packages['10k'])
+              if (e === '4') setRadio(packages['50k'])
+              if (e === '5') setRadio(packages['100k'])
+            }}
+          >
             <Stack>
               <Flex gap={2}>
-                <Radio value='1' colorScheme='secondary'></Radio>
-                <Flex grow={1}>
+                <Radio value='1' id='1' colorScheme='secondary'></Radio>
+                <Flex as='label' grow={1} htmlFor='1' fontWeight={radio === packages['1k'] ? 'bold' : 'normal'}>
                   <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='start'>
                     1K Tokens
                   </Text>
@@ -346,8 +441,8 @@ const RightSideCalculator = () => {
               </Flex>
 
               <Flex gap={2}>
-                <Radio value='2' colorScheme='secondary'></Radio>
-                <Flex grow={1}>
+                <Radio value='2' id='2' colorScheme='secondary'></Radio>
+                <Flex as='label' grow={1} htmlFor='2' fontWeight={radio === packages['5k'] ? 'bold' : 'normal'}>
                   <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='start'>
                     15K Tokens
                   </Text>
@@ -360,8 +455,8 @@ const RightSideCalculator = () => {
                 </Flex>
               </Flex>
               <Flex gap={2}>
-                <Radio value='3' colorScheme='secondary'></Radio>
-                <Flex grow={1}>
+                <Radio value='3' id='3' colorScheme='secondary'></Radio>
+                <Flex as='label' grow={1} htmlFor='3' fontWeight={radio === packages['10k'] ? 'bold' : 'normal'}>
                   <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='start'>
                     10K Tokens
                   </Text>
@@ -374,8 +469,8 @@ const RightSideCalculator = () => {
                 </Flex>
               </Flex>
               <Flex gap={2}>
-                <Radio value='4' colorScheme='secondary'></Radio>
-                <Flex grow={1}>
+                <Radio value='4' id='4' colorScheme='secondary'></Radio>
+                <Flex as='label' grow={1} htmlFor='4' fontWeight={radio === packages['50k'] ? 'bold' : 'normal'}>
                   <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='start'>
                     50K Tokens
                   </Text>
@@ -388,8 +483,8 @@ const RightSideCalculator = () => {
                 </Flex>
               </Flex>
               <Flex gap={2}>
-                <Radio value='5' colorScheme='secondary'></Radio>
-                <Flex grow={1}>
+                <Radio value='5' id='5' colorScheme='secondary'></Radio>
+                <Flex as='label' grow={1} htmlFor='5' fontWeight={radio === packages['100k'] ? 'bold' : 'normal'}>
                   <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='start'>
                     +100K Tokens
                   </Text>
@@ -412,37 +507,48 @@ const RightSideCalculator = () => {
               mt={8}
               mb={5}
             >
-              <Button variant='secondary'>
+              <Button variant='secondary' isDisabled={!radio}>
                 <FaCcStripe />
-                Buy with Card
+                {t('calculator.buy_with_card')}
               </Button>
-              <Button variant='secondary'>
+              <Button variant='secondary' isDisabled={!radio}>
                 <FaEthereum />
-                Buy with Crypto
+                {t('calculator.buy_with_crypto')}
               </Button>
             </Flex>
             <Text fontSize='14px' textAlign='center'>
-              Do you need more tokens than the listed? Contact our support team
+              <Trans
+                i18nKey='calculator.more_tokens'
+                components={{
+                  link: <Link />,
+                }}
+              />
             </Text>
           </Box>
         </TabPanel>
 
         <TabPanel flexGrow={1} display='flex' flexDirection='column'>
           <Flex grow={1} flexDirection='column' justifyContent='space-between' gap={3} px={{ base: 5, lg: 14 }}>
-            <Text>Do you need a recurring amount of tokens or do you plan to create multiple elections?</Text>
-            <Text>Do you need secure digital voting for your software?</Text>
-            <Text>We offer atractive integrations and services agreement options for this kind of needs</Text>
-            <Text>
-              Don't hesitate and contact us and our expert team will assist you and tailor a specific plan for you!
-            </Text>
+            <Trans
+              i18nKey='calculator.recurring_description'
+              components={{
+                p: <Text />,
+              }}
+            />
           </Flex>
 
           <Box mt='auto'>
             <Flex justifyContent='center' mt={8} mb={5}>
               <Button variant='secondary'>Contact Us</Button>
             </Flex>
+
             <Text fontSize='14px' textAlign='center'>
-              If you have any question, check our FAQ or contact our support team
+              <Trans
+                i18nKey='calculator.contact'
+                components={{
+                  link: <Link />,
+                }}
+              />
             </Text>
           </Box>
         </TabPanel>

@@ -28,6 +28,33 @@
     "token_description": "Vota amb tokens ERC20/ERC721 (NFT) o afegeix els teus propis tokens i vota sense pagar.",
     "token_title": "Votació amb Tokens"
   },
+  "calculator": {
+    "anonymous": "Anònim",
+    "buy_with_card": "Compra amb targeta",
+    "buy_with_crypto": "Compra amb criptomoneda",
+    "calculate_cost": "Calcular cost",
+    "census_size": "Mida del cens (votants)",
+    "contact": "Si tens alguna pregunta, consulta les nostres Preguntes Freqüents o <link>posa't en contacte</link> amb el nostre equip de suport",
+    "description": "<p>Vocdoni utilitza la seva pròpia Blockchain de votació pública (Vochain) per garantir la màxima seguretat, verificabilitat de punta a punta (E2E) i resistència a la censura en el procés de votació. Per utilitzar aquesta infraestructura, els usuaris han de gastar tokens (representació creditícia de l'ús de la Vochain) per crear l'elecció necessària. Diversos paràmetres com la mida del cens i la durada determinen el cost final de la votació.</p><p>Aquí podeu simular el cost del vostre procés de votació, comprar tokens o reclamar una quantitat de prova mitjançant autenticació social.</p>",
+    "discount": "Descompte",
+    "duration": "Durada (dies)",
+    "encrypted": "Encriptat",
+    "estimate_election_cost": "Estima el cost de la teva elecció",
+    "more_tokens": "Necessites més tokens dels indicats? <link>Contacta</link> amb el nostre equip de suport",
+    "num_elections": "Núm. d'eleccions",
+    "one_time": "Una sola vegada",
+    "package": "Paquet",
+    "packages": "Paquets",
+    "price_per_token": "Preu per token:",
+    "recurring": "Recurrent",
+    "recurring_description": "<p>Necessites una quantitat recurrent de tokens o tens la intenció de crear múltiples eleccions?<p/><p>Necessites votació digital segura pel teu software?</p><p>Oferim integracions atractives i opcions de serveis per a aquest tipus de necessitats</p><p>No dubtis i posa't en contacte amb nosaltres; el nostre equip d'experts t'ajudarà i t'elaborarà un pla específic per a tu!</p>",
+    "title": "Com funciona Vocdoni?",
+    "total": "Total",
+    "total_cost": "Cost total:",
+    "vat": "(sense IVA)",
+    "vote_overwrite": "Correcció de vot",
+    "voting_process_cost": "Cost del procés de votació:"
+  },
   "cc": {
     "actions": {
       "cancel": "Cancel·la immediatament el procés de votació, sense permetre nous vots i sense comptabilitzar resultats (precaució: no es pot desfer)",

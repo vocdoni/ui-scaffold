@@ -25,6 +25,33 @@
     "token_description": "At the heart of {{app}} is our commitment to security. Leveraging cutting-edge cryptographic methods, we ensure that every vote cast is not only secure but fully verifiable. This transparency builds unparalleled trust among participants, crucial for the legitimacy of any election.",
     "token_title": "Enhanced Security and Trust"
   },
+  "calculator": {
+    "anonymous": "Anonymous",
+    "buy_with_card": "Buy with Card",
+    "buy_with_crypto": "Buy with Crypto",
+    "calculate_cost": "Calculate cost",
+    "census_size": "Census Size (voters)",
+    "contact": "If you have any question, check our FAQ or <link>contact</link> our support team",
+    "description": "<p>Vocdoni uses its own public voting Blockchain (Vochain) to ensure maximum segurity E2E verificability and censorship-resistance voting process. To use this infrastructure, users needs to expend tokens (credit representation of the usage of teh Vochain) to create the neede election. Different parameters like census-size and duration determnine the final voting cost.</p><p>Here you can simulate te cost of your voting process, purchase tokens or claim a test amount via social authentification.</p>",
+    "discount": "Discount",
+    "duration": "Duration (days)",
+    "encrypted": "Encrypted",
+    "estimate_election_cost": "Estimate your election cost",
+    "more_tokens": "Do you need more tokens than the listed? <link>Contact</link> our support team",
+    "num_elections": "Nº of elections",
+    "one_time": "One-time",
+    "package": "Package",
+    "packages": "Packages",
+    "price_per_token": "Price per Token:",
+    "recurring": "Recurring",
+    "recurring_description": "<p>Do you need a recurring amount of tokens or do you plan to create multiple elections?</p><p>Do you need secure digital voting for your software?</p><p>We offer atractive integrations and services agreement options for this kind of needs</p><p>Don't hesitate and contact us and our expert team will assist you and tailor a specific plan for you!</p>",
+    "title": "How Vocdoni works?",
+    "total": "Total",
+    "total_cost": "Total Cost:",
+    "vat": "(without VAT)",
+    "vote_overwrite": "Vote overwrite",
+    "voting_process_cost": "Voting process cost:"
+  },
   "cc": {
     "actions": {
       "cancel": "Cancel the process immediately, not allowing new votes and not counting any results (caution: it cannot be reverted)",
