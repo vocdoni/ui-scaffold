@@ -87,6 +87,7 @@ const baseStyle = definePartsStyle({
     fontSize: 'xl2',
     lineHeight: 1.3,
     color: 'process.questions.title',
+    mb: 5,
   },
 
   description: {
@@ -94,7 +95,7 @@ const baseStyle = definePartsStyle({
     color: 'process.questions.description',
     textAlign: 'start',
     fontSize: 'xl',
-    mb: 5,
+    mb: '50px',
   },
 
   stack: {

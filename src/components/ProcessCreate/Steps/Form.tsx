@@ -6,7 +6,9 @@ import { CensusSpreadsheetManager } from '../Census/Spreadsheet/CensusSpreadshee
 import { StepContents } from './Contents'
 import { StepsContext, StepsContextState, StepsFormValues } from './use-steps'
 
-export type StepsFormProps = PropsWithChildren<Omit<StepsContextState, 'form' | 'setForm'>>
+export type StepsFormProps = PropsWithChildren<
+  Omit<StepsContextState, 'form' | 'setForm' | 'isLoadingPreview' | 'setIsLoadingPreview'>
+>
 
 export const StepsForm = ({ steps, children, activeStep, next, prev, setActiveStep }: StepsFormProps) => {
   const [form, setForm] = useState<RecursivePartial<StepsFormValues>>({
@@ -24,7 +26,10 @@ export const StepsForm = ({ steps, children, activeStep, next, prev, setActiveSt
     weightedVote: false,
     questions: [{ options: [{}, {}] }],
     addresses: [],
+    gpsWeighted: false,
   })
+
+  const [isLoadingPreview, setIsLoadingPreview] = useState(false)
 
   // reinitialize form if we have a draft and `state` is set in the URL
   useEffect(() => {
@@ -62,6 +67,8 @@ export const StepsForm = ({ steps, children, activeStep, next, prev, setActiveSt
     setForm: setFormInStateAndLocalstorage,
     steps,
     setActiveStep,
+    isLoadingPreview,
+    setIsLoadingPreview,
   }
 
   return (

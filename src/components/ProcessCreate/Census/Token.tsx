@@ -11,15 +11,9 @@ import {
   Grid,
   GridItem,
   Heading,
-  Slider,
-  SliderFilledTrack,
-  SliderMark,
-  SliderThumb,
-  SliderTrack,
   Spinner,
   Stack,
   Text,
-  Tooltip,
 } from '@chakra-ui/react'
 import { errorToString, useClient } from '@vocdoni/react-providers'
 import { Census3Token, EnvOptions, ICensus3SupportedChain, TokenSummary, VocdoniCensus3Client } from '@vocdoni/sdk'
@@ -27,15 +21,18 @@ import { ChakraStylesConfig, GroupBase, Select, SelectComponentsConfig, SelectIn
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import { DefaultCensusSize } from '~constants'
 import { customStylesSelect, customStylesTokensSelect } from '~theme/tokenSelectStyles'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 import selectComponents, { CryptoAvatar } from './select-components'
+import gitcoinPassportImg from '/assets/gitcoin-passport.png'
 
 export interface FilterOptionOption<Option> {
   readonly label: string
   readonly value: string
   readonly data: Option
 }
+
 type GrupedTokenTypes = {
   label: string
   options: TokenSummary[] | { name: string; synced: boolean; type: string }[]
@@ -136,6 +133,7 @@ export const CensusTokens = () => {
           maticmum: 4,
         }
         const filteredTag = 'aragon'
+        const filteredType = 'gitcoinpassport'
 
         const defaultOrder: number = 10000
 
@@ -151,12 +149,12 @@ export const CensusTokens = () => {
         })
         setChains(chs)
 
-        const tks = await client.getSupportedTokens()
+        const tks = (await client.getSupportedTokens()).filter((tk) => tk.type !== filteredType)
 
         const tags = [
           ...new Set(
             tks
-              .filter((tk) => tk.tags.length > 0)
+              .filter((tk) => tk.tags.length > 0 && tk.type !== filteredType)
               .map((tk) => tk.tags)
               .flat()
           ),
@@ -215,6 +213,8 @@ export const CensusTokens = () => {
         setValue('accuracy', accuracy)
         setValue('strategySize', size)
         setValue('timeToCreateCensus', timeToCreateCensus)
+        const initialValue = size < DefaultCensusSize ? size : DefaultCensusSize
+        setValue('maxCensusSize', initialValue)
       } catch (err) {
         setError(errorToString(err))
         setValue('strategySize', undefined)
@@ -350,7 +350,6 @@ export const CensusTokens = () => {
         !error && (
           <>
             <TokenPreview token={ct} chainName={ch?.name} strategySize={strategySize} />
-            <MaxCensusSizeSelector token={ct} strategySize={strategySize} />
           </>
         )
       )}
@@ -364,115 +363,16 @@ export const CensusTokens = () => {
   )
 }
 
-export const MaxCensusSizeSelector = ({ token, strategySize }: { token?: Census3Token; strategySize?: number }) => {
-  const {
-    setValue,
-    getValues,
-    formState: { errors },
-    register,
-  } = useFormContext()
-  const {
-    form: {
-      electionType: { anonymous },
-    },
-  } = useProcessCreationSteps()
-
-  const [sliderValue, setSliderValue] = useState<number>(getValues('maxCensusSize'))
-  const [showTooltip, setShowTooltip] = useState<boolean>(false)
-  const { t } = useTranslation()
-  const field = register('maxCensusSize', {
-    validate: (value) => value > 0 || t('process_create.census.mandatory_max_census_size'),
-    required: t('process_create.census.mandatory_max_census_size'),
-  })
-
-  useEffect(() => {
-    if (sliderValue !== undefined) return
-    setValue('maxCensusSize', strategySize)
-    setSliderValue(strategySize as number)
-  }, [])
-
-  if (sliderValue === undefined || !token || !strategySize) return null
-
-  const percent = Math.round((sliderValue / strategySize) * 100)
-
-  return (
-    <>
-      <FormControl isInvalid={!!errors.maxCensusSize} mb={3}>
-        <FormLabel mb={3}>{t('form.process_create.census.max_census_slider_label')}</FormLabel>
-        <Slider
-          aria-label={t('form.process_create.census.max_census_slider_arialabel')}
-          defaultValue={sliderValue}
-          min={0}
-          max={strategySize}
-          ref={field.ref}
-          onBlur={field.onBlur}
-          onChange={(v) => {
-            setSliderValue(v)
-            setValue('maxCensusSize', v)
-          }}
-          onMouseEnter={() => setShowTooltip(true)}
-          onMouseLeave={() => setShowTooltip(false)}
-        >
-          <SliderMark value={strategySize * 0.25} mt='1' ml='-2.5' fontSize='sm'>
-            25%
-          </SliderMark>
-          <SliderMark value={strategySize * 0.5} mt='1' ml='-2.5' fontSize='sm'>
-            50%
-          </SliderMark>
-          <SliderMark value={strategySize * 0.75} mt='1' ml='-2.5' fontSize='sm'>
-            75%
-          </SliderMark>
-          <SliderTrack>
-            <SliderFilledTrack bg='primary.600' />
-          </SliderTrack>
-          <Tooltip
-            hasArrow
-            bg='primary.600'
-            color='white'
-            placement='top'
-            isOpen={showTooltip}
-            label={t('form.process_create.census.max_census_slider_tooltip', {
-              percent,
-              voters: Math.round(sliderValue),
-            })}
-          >
-            <SliderThumb />
-          </Tooltip>
-        </Slider>
-        <FormErrorMessage>{errors.maxCensusSize && errors.maxCensusSize.message?.toString()}</FormErrorMessage>
-      </FormControl>
-      <Text>
-        <Trans
-          i18nKey={'form.process_create.census.max_census_resum'}
-          values={{
-            symbol: token.symbol,
-            uniTokenHolders: sliderValue,
-            percent,
-          }}
-        />
-      </Text>
-      {anonymous && (
-        <Alert status='info'>
-          <Text>
-            <Text as='span' fontWeight='bold'>
-              {t('process_create.anonymous.legal_note')}
-            </Text>
-            <Text as='span'>{t('process_create.anonymous.legal_disclaimer')}</Text>
-          </Text>
-        </Alert>
-      )}
-    </>
-  )
-}
-
 export const TokenPreview = ({
   token,
   chainName,
   strategySize,
+  passportScore,
 }: {
   token?: Census3Token
   chainName?: string
   strategySize?: number
+  passportScore?: number
 }) => {
   const cardRef = useRef<HTMLDivElement>(null)
   const [minCardSize800px, setMinCardSize800px] = useState(false)
@@ -512,7 +412,13 @@ export const TokenPreview = ({
             display='flex'
             alignItems='center'
           >
-            <CryptoAvatar name={token.name} icon={token.iconURI} id={token.ID} size='md' />
+            <CryptoAvatar
+              name={token.name}
+              icon={token && token.type === 'gitcoinpassport' ? gitcoinPassportImg : token.iconURI}
+              id={token.ID}
+              chainId={token.chainID}
+              size='md'
+            />
           </GridItem>
           <GridItem
             gridColumnStart={{ base: 2, xl: minCardSize800px ? 3 : 2 }}
@@ -568,8 +474,9 @@ export const TokenPreview = ({
             justifyContent='center'
           >
             <Heading size='sm' mb={1}>
-              {token.name}
+              {token.name} {token && token.type === 'gitcoinpassport' && `: ${passportScore}`}
             </Heading>
+
             <Text>({token.symbol})</Text>
           </GridItem>
         </Grid>

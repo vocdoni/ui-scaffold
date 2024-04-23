@@ -213,6 +213,7 @@ const typesVoting = definePartsStyle({
     lineHeight: '24px',
   },
 })
+
 const aside = definePartsStyle({
   container: {
     direction: 'column',
@@ -232,10 +233,88 @@ const aside = definePartsStyle({
   },
 })
 
+const imageCard = definePartsStyle({
+  container: {
+    ...cardCommonStyles.container,
+    w: '300px',
+    height: '480px',
+    display: 'flex',
+    flexDirection: 'column',
+    position: 'relative',
+    justify: 'center',
+    alignItems: 'center',
+    bgColor: 'transparent',
+  },
+
+  header: {
+    ...cardCommonStyles.header,
+    height: 40,
+    width: 60,
+    minH: 40,
+    mt: 7,
+    overflow: 'hidden',
+    position: 'relative',
+    display: 'flex',
+    justify: 'center',
+    alignItems: 'center',
+
+    '& > div': {
+      height: 40,
+      width: 60,
+      overflow: 'hidden',
+      position: 'relative',
+      display: 'flex',
+      justify: 'center',
+      alignItems: 'center',
+      w: '100%',
+      h: '100%',
+      boxShadow: 'rgba(0, 0, 0, 0.08) 0px 0px 0px',
+      borderRadius: 'var(--chakra-radii-md)',
+    },
+
+    '& img': {
+      width: '100%',
+      minH: '100%',
+    },
+  },
+
+  body: {
+    ...cardCommonStyles.header,
+
+    width: 60,
+    display: 'flex',
+    justify: 'center',
+    alignItems: 'start',
+    flexDirection: 'column',
+
+    '& > p:first-of-type': {
+      fontWeight: 'bold',
+      fontSize: { base: '18px' },
+      mt: 4,
+      mb: 6,
+      textAlign: { base: 'start' },
+      fontFamily: 'pixeloidsans, monospace',
+    },
+
+    '& p:nth-of-type(2)': {
+      fontSize: { base: '16px' },
+    },
+  },
+
+  footer: {
+    ...cardCommonStyles.footer,
+    pb: 3,
+    '& a': {
+      fontWeight: '600',
+    },
+  },
+})
+
 const variantsCards = {
   aside,
   detailed,
   'no-elections': noElections,
   'types-voting': typesVoting,
+  'image-card': imageCard,
 }
 export const Card = defineMultiStyleConfig({ variants: variantsCards })
