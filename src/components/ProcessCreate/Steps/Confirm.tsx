@@ -191,7 +191,7 @@ export const Confirm = () => {
   // fetches census for unpublished elections
   useEffect(() => {
     ;(async () => {
-      if (!form.maxCensusSize || isLoadingPreview) return
+      if (form.censusType === 'gitcoin' && (!form.maxCensusSize || isLoadingPreview)) return
       setUnpublished(
         Election.from({
           ...corelection,
