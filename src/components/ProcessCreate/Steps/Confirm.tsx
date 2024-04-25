@@ -35,6 +35,7 @@ import {
   VocdoniCensus3Client,
   WeightedCensus,
   Census3CreateStrategyToken,
+  QueueSteps,
 } from '@vocdoni/sdk'
 import { useEffect, useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
@@ -210,19 +211,34 @@ export const Confirm = () => {
       c3client.queueWait.attempts = 100
       try {
         const { predicate, tokens } = await getStrategyArgs(form)
-        const { size, timeToCreateCensus, accuracy } = await c3client.getPredicateEstimation(
-          predicate,
-          tokens,
-          form.electionType.anonymous
-        )
-        const initialValue = size < DefaultCensusSize ? size : DefaultCensusSize
-        // Update this values on the state form because they are not gonna change
-        setForm({ ...form, accuracy, strategySize: size, timeToCreateCensus, maxCensusSize: initialValue })
-        // And update the values for this view
-        setValue('accuracy', accuracy)
-        setValue('strategySize', size)
-        setValue('timeToCreateCensus', timeToCreateCensus)
-        setValue('maxCensusSize', initialValue)
+        for await (const res of c3client.getPredicateEstimation(predicate, tokens, form.electionType.anonymous)) {
+          switch (res.key) {
+            case QueueSteps.CREATING_QUEUE:
+              break
+            case QueueSteps.WAITING_QUEUE:
+              const { queueId, progress } = res
+              console.log('queueId progress', queueId, progress)
+              break
+            case QueueSteps.FINISHED:
+              const {
+                estimation: { size, timeToCreateCensus, accuracy },
+              } = res
+
+              console.log('Estimation', size, timeToCreateCensus, accuracy)
+
+              const initialValue = size < DefaultCensusSize ? size : DefaultCensusSize
+              // Update this values on the state form because they are not gonna change
+              setForm({ ...form, accuracy, strategySize: size, timeToCreateCensus, maxCensusSize: initialValue })
+              // And update the values for this view
+              setValue('accuracy', accuracy)
+              setValue('strategySize', size)
+              setValue('timeToCreateCensus', timeToCreateCensus)
+              setValue('maxCensusSize', initialValue)
+
+              break
+          }
+        }
+
         setIsLoadingPreview(false)
       } catch (err) {
         setError(errorToString(err))
