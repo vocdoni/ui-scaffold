@@ -12,7 +12,7 @@ const Process = () => {
   const { t } = useTranslation()
 
   return (
-    <Box as='section' className='site-wrapper' py={{ base: '60px', lg: '100px' }} mb='120px'>
+    <Box as='section' className='site-wrapper' py={{ base: '60px', lg: '100px' }} mb={{ base: '60px', xl: '120px' }}>
       <Text fontSize='60px' lineHeight='98px' mb='10px' textAlign='center' fontFamily='basier'>
         {t('home.process.title')}
       </Text>
@@ -34,18 +34,18 @@ const Process = () => {
           <Image src={process} borderRadius='lg' w='535px' mt='-20px' />
         </Flex>
         <Flex flex='1 1' flexBasis={{ lg: '50%' }} flexDirection='column' justifyContent='space-between' gap='40px'>
-          <Card variant='step' backgroundColor='transparent'>
+          <Card variant='step'>
             <CardBody>
               <Box>
                 <PiNumberSquareOneFill />
               </Box>
               <Box>
                 <Text>{t('home.process.step_1.title')}</Text>
-                <Text fontWeight='200'>{t('home.process.step_1.description')}</Text>
+                <Text textAlign='justify'>{t('home.process.step_1.description')}</Text>
               </Box>
             </CardBody>
           </Card>
-          <Card variant='step' backgroundColor='transparent'>
+          <Card variant='step'>
             <CardBody>
               <Box>
                 <PiNumberSquareTwoFill />
@@ -56,7 +56,7 @@ const Process = () => {
               </Box>
             </CardBody>
           </Card>
-          <Card variant='step' backgroundColor='transparent'>
+          <Card variant='step'>
             <CardBody>
               <Box>
                 <PiNumberSquareThreeFill />
@@ -67,7 +67,7 @@ const Process = () => {
               </Box>
             </CardBody>
           </Card>
-          <Card variant='step' backgroundColor='transparent'>
+          <Card variant='step'>
             <CardBody>
               <Box>
                 <PiNumberSquareFourFill color='#fff' />

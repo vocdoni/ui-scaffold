@@ -1,16 +1,14 @@
 import { Box, Button, Flex, Image, Text } from '@chakra-ui/react'
+import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { useTranslation } from 'react-i18next'
 import { FaRegCheckCircle } from 'react-icons/fa'
-import devices from '/assets/devices_vocdoni.png'
 import { Link as ReactRouterLink } from 'react-router-dom'
-import { useClient } from '@vocdoni/react-providers'
 import { useAccount } from 'wagmi'
-import { useConnectModal } from '@rainbow-me/rainbowkit'
+import devices from '/assets/devices_vocdoni.png'
 
 const CreateProcess = () => {
   const { t } = useTranslation()
   const { isConnected } = useAccount()
-  const { account } = useClient()
   const { openConnectModal } = useConnectModal()
 
   return (

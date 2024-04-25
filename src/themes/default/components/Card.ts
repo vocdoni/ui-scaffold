@@ -276,6 +276,41 @@ const iconCard = definePartsStyle({
 
     'div:last-of-type': {
       'p:first-of-type': {
+        fontWeight: '600',
+        mb: '6px',
+        fontSize: '26px',
+        lineHeight: '32px',
+        mr: 2,
+      },
+
+      'p:last-of-type': {
+        fontSize: '22px',
+        mt: '15px',
+        color: '#000000a1 !important',
+      },
+    },
+  },
+})
+
+const imageCard = definePartsStyle({
+  container: {
+    bgColor: 'transparent',
+  },
+  body: {
+    p: 0,
+    display: 'flex',
+    gap: '24px',
+    alignItems: 'center',
+
+    'div:first-of-type': {
+      backgroundColor: 'transparent',
+      w: '120px',
+      h: '120px',
+      minW: '120px',
+    },
+
+    'div:last-of-type': {
+      'p:first-of-type': {
         fontWeight: 'bold',
         mb: '6px',
         fontSize: '20px',
@@ -283,18 +318,20 @@ const iconCard = definePartsStyle({
       },
 
       'p:last-of-type': {
-        color: 'gray',
+        color: '#000000a1 !important',
       },
     },
   },
 })
 
 const step = definePartsStyle({
+  container: {
+    backgroundColor: 'transparent',
+  },
   body: {
     p: 0,
     display: 'flex',
     gap: '24px',
-    backgroundColor: 'transparent',
 
     'div:first-of-type': {
       display: 'flex',
@@ -322,14 +359,10 @@ const step = definePartsStyle({
         mb: '6px',
       },
       'p:nth-of-type(2)': {
-        fontSize: '20px',
-        lineHeight: '24px',
-        mb: '8px',
-      },
-      'p:last-of-type': {
-        color: 'gray',
         fontSize: '16px',
         lineHeight: '28px',
+        mb: '8px',
+        color: '#000000a1 !important',
       },
     },
   },
@@ -374,6 +407,8 @@ const faqs = definePartsStyle({
   container: {
     borderRadius: 'none',
     borderBottom: '1px solid rgb(229, 229, 229)',
+    backgroundColor: 'transparent',
+    fontSize: '22px',
   },
   header: {
     p: 0,
@@ -385,7 +420,7 @@ const faqs = definePartsStyle({
   },
   body: {
     p: 0,
-    mb: '17px',
+    mb: '19px',
 
     '& p': {
       fontSize: '15px',
@@ -440,6 +475,7 @@ const variantsCards = {
   demo,
   faqs,
   'icon-card': iconCard,
+  'image-card': imageCard,
   'no-elections': noElections,
   step,
   'types-voting': typesVoting,
