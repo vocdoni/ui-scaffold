@@ -1,6 +1,6 @@
-import { Box, Text } from '@chakra-ui/react'
+import { Box, Link, Text } from '@chakra-ui/react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 import { CensusTokenValues } from '~components/ProcessCreate/StepForm/CensusToken'
 import { GitcoinStampToken, GitcoinStrategyBuilder } from '../Census/Gitcoin'
@@ -43,7 +43,18 @@ export const StepFormCensusGitcoin = () => {
         {t('census.gitcoin_title')}
       </Text>
       <Text fontSize='sm' color='process_create.description' mb={5}>
-        {t('census.gitcoin_description')}
+        {t('census.gitcoin_description')} <br />
+        <Trans
+          i18nKey='census.gitcoin_read_more'
+          components={{
+            link: (
+              <Link
+                href={'https://docs.passport.gitcoin.co/building-with-passport/major-concepts/scoring-thresholds'}
+                target='_blank'
+              />
+            ),
+          }}
+        />
       </Text>
       <FormProvider {...methods}>
         <Box as='form' id='process-create-form' onSubmit={methods.handleSubmit(onSubmit)}>

@@ -11,7 +11,7 @@
     "votes_one": "<span>1</span> <text>votante</text>",
     "votes_many": "<span>{{ count }}</span> <text>votantes</text>",
     "votes_other": "<span>{{ count }}</span> <text>votantes</text>",
-    "voting_anonymous_advice": "Por favor, espera mientras sucede la magia.\nEsto puede tardar varios minutos; no cierres la ventana."
+    "voting_anonymous_advice": "Por favor, espera mientras sucede la magia \uD83E\uDE84.\nEsto puede tardar varios minutos; no cierres la ventana."
   },
   "banner": {
     "start_now": "¡Crea una votación ahora!",
@@ -22,7 +22,6 @@
   "banner_voting_types": {
     "anonymous_description": "La identidad de los votantes permanece completamente confidencial, gracias a la tecnología zk-SNARKS.",
     "anonymous_title": "100% Anónimo",
-    "bottom_text": "La privacidad debería ser normal",
     "flexible_description": "Personaliza tu proceso de votación y censo para satisfacer los requisitos únicos de tu comunidad.",
     "flexible_title": "Votación Flexible",
     "token_description": "Vota con tokens ERC20/ERC721 (NFT) o agrega tus propios tokens y vota sin coste de gas con ellos.",
@@ -95,13 +94,14 @@
     "chain_required": "Necesitas seleccionar una red",
     "description": "Selecciona cómo los votantes se autenticarán e identificarán.",
     "gitcoin_description": "Con este censo, solo los votantes con Gitcoin Passport podrán votar, proporcionando un método de resistencia contra sybil-attack. Puedes definir la puntuación general (GPS) y diferentes stamps que el votante debe tener.",
+    "gitcoin_read_more": "",
     "gitcoin_title": "Gitcoin Passport",
     "pro": "",
     "request_custom_token": "Solicitar Tokens Personalizados",
     "social_address_title": "Usuarios de Github",
     "spreadsheet_title": "Datos personalizados",
     "title": "Censo",
-    "token_description": "Seleccioneu la xarxa i el token per crear un cens on els titulars del token votaran amb el seu poder de vot.",
+    "token_description": "Selecciona la red y el token para crear un censo donde los titulares de token votarán con su poder de voto. Puedes solicitar un token <link1>aquí</link1>.",
     "token_required": "Necesitas seleccionar un token",
     "token_title": "Censo basado en tokens",
     "wallet_address_title": "Direcciones de billetera"
@@ -168,10 +168,7 @@
     "tokens_you_own": "Tienes {{ balance }} tokens."
   },
   "footer": {
-    "about": "Acerca de",
-    "blog": "Blog",
     "company": "Empresa",
-    "contact": "Contacto",
     "demo": "Tipos de Votación",
     "demo1": "Elección Simple",
     "demo2": "Elección Múltiple",
@@ -179,25 +176,16 @@
     "demo4": "Votación por Clasificación",
     "demo5": "Presupuestos Participativos",
     "demo6": "Votación Ponderada",
-    "developer_portal": "Portal para desarrolladores",
-    "developers": "Desarrolladores",
-    "discord": "Discord",
     "follow_us": "Síguenos",
     "footer_subtitle": "El Protocolo de Votación Global",
-    "homepage": "Inicio",
-    "repos": "Código abierto",
-    "resources": "Recursos",
     "terms_and_privacy": "<link1>Términos de uso</link1> y <link2>Política de privacidad</link2>",
     "text": "<p1>El futuro</p1><p2>de la votación en Web3 comienza aquí</p2>",
-    "tutorials": "Tutoriales",
     "uses_cases": "Casos de Uso",
     "uses_cases1": "Asambleas Generales de Accionistas (AGMs)",
     "uses_cases2": "Elecciones",
     "uses_cases3": "Presupuestos Participativos",
     "uses_cases4": "Votación Digital",
-    "uses_cases5": "Encuesta Digital Cerrada",
-    "vocdoni_api": "API de Vocdoni",
-    "vocdoni_app": "APP de Vocdoni"
+    "uses_cases5": "Encuesta Digital Cerrada"
   },
   "form": {
     "account_create": {
@@ -260,6 +248,7 @@
         "add_new_address": "Añade una nueva dirección",
         "delete_web3_address": "Eliminar direccion con índice {{ index }}",
         "gitcoin_description": "Construye un censo resistente a Sybil (resistente a la falsificación de identidad) con Gitcoin Passport y sus sellos de verificación para una seguridad mejorada",
+        "gitcoin_read_more": "Lee más sobre Scorer & Thresholds de Gitcoin <link>aquí</link>",
         "gitcoin_passport_score": "Puntuación de Gitcoin Pasaport",
         "gitcoin_stamps": "Stamps",
         "gitcoin_strategy_description_AND": "Los usuarios votantes deben ser propietarios de todos los sellos seleccionados y tener un GPS igual o superior.",
@@ -651,9 +640,6 @@
     "organization": "Editar Organización",
     "privacy": "Privacidad",
     "terms": "Términos",
-    "vocdoni": {
-      "login": "Login"
-    },
     "wallet": "Billetera"
   },
   "meta": {
@@ -686,7 +672,6 @@
     "census": "Censo",
     "census_strategies": {
       "csp": "CSP",
-      "gitcoin": "Gitcoin",
       "spreadsheet": "CSV",
       "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
       "web3": "Direcciones web3"

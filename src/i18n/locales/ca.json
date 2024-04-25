@@ -11,7 +11,7 @@
     "votes_one": "<span>1</span> <text>votant</text>",
     "votes_many": "<span>{{ count }}</span> <text>votants</text>",
     "votes_other": "<span>{{ count }}</span> <text>votants</text>",
-    "voting_anonymous_advice": "Si us plau, espera mentre la màgia té lloc.Això pot trigar uns minuts; no tanquis la finestra."
+    "voting_anonymous_advice": "Si us plau, espera mentre la màgia té lloc \uD83E\uDE84.\nAixò pot trigar uns minuts; no tanquis la finestra."
   },
   "banner": {
     "start_now": "Crea una votació!",
@@ -22,7 +22,6 @@
   "banner_voting_types": {
     "anonymous_description": "La identitat dels votants serà completament confidencial, gràcies a la tecnologia zk-SNARKS.",
     "anonymous_title": "100% Anònim",
-    "bottom_text": "La privacitat hauria de ser normal",
     "flexible_description": "Personalitza el teu procés de votació i la llista de participants per adaptar-los als requisits únics de la teva comunitat.",
     "flexible_title": "Votació Flexible",
     "token_description": "Vota amb tokens ERC20/ERC721 (NFT) o afegeix els teus propis tokens i vota sense pagar.",
@@ -95,13 +94,14 @@
     "chain_required": "Necessites seleccionar una xarxa",
     "description": "Selecciona com s'autenticaran i identificaran els votants.",
     "gitcoin_description": "Amb aquest cens, només els votants amb Gitcoin Passport podran votar, proporcionant un mètode de resistència contra atacs sybil. Pots definir la puntuació general (GPS) i diferents stamps que el votant ha de tenir.",
+    "gitcoin_read_more": "",
     "gitcoin_title": "Gitcoin Passport",
     "pro": "",
     "request_custom_token": "Sol·licitar Tokens Personalitzats",
     "social_address_title": "Usuaris de Github",
     "spreadsheet_title": "Dades personalitzades",
     "title": "Trieu el cens",
-    "token_description": "Selecciona la red y el token para crear un censo donde los titulares de token votarán con su poder de voto.",
+    "token_description": "Seleccioneu la xarxa i el token per crear un cens on els titulars del token votaran amb el seu poder de vot. Pots sol·licitar un token <link1>aquí</link1>.",
     "token_required": "Necessites seleccionar un token",
     "token_title": "Cens basat en tokens",
     "wallet_address_title": "Adreces de cartera"
@@ -168,10 +168,7 @@
     "tokens_you_own": "Tens {{ balance }} tokens."
   },
   "footer": {
-    "about": "Sobre nosaltres",
-    "blog": "Blog",
     "company": "Empresa",
-    "contact": "Contacte",
     "demo": "Tipus de Votació",
     "demo1": "Elecció Simple",
     "demo2": "Elecció Múltiple",
@@ -179,25 +176,16 @@
     "demo4": "Votació per Classificació",
     "demo5": "Pressupostos Participatius",
     "demo6": "Votació Ponderada",
-    "developer_portal": "Portal de desenvolupadors",
-    "developers": "Desenvolupadors",
-    "discord": "Discord",
     "follow_us": "Segueix-nos",
     "footer_subtitle": "El Protocol de Votació Global",
-    "homepage": "Inici",
-    "repos": "Codi Obert",
-    "resources": "Recursos",
     "terms_and_privacy": "<link1>Termes d'ús</link1> i <link2>Política de privacitat</link2>",
     "text": "<p1>El futur</p1><p2>de la votació en Web3 comença aquí</p2>",
-    "tutorials": "Tutorials",
     "uses_cases": "Casos d'Ús",
     "uses_cases1": "Assemblees Generals d'Accionistes (AGMs)",
     "uses_cases2": "Eleccions",
     "uses_cases3": "Pressupostos Participatius",
     "uses_cases4": "Votació Digital",
-    "uses_cases5": "Enquesta Digital Tancada",
-    "vocdoni_api": "API de Vocdoni",
-    "vocdoni_app": "APP de Vocdoni"
+    "uses_cases5": "Enquesta Digital Tancada"
   },
   "form": {
     "account_create": {
@@ -260,6 +248,7 @@
         "add_new_address": "Afageix una nova adreça",
         "delete_web3_address": "Eliminar adreça amb index {{ index }}",
         "gitcoin_description": "Construeix un cens resistents a Sybil (resistent a la falsificació d'identitat) amb Gitcoin Passport i els seus segells de verificació per a una seguretat reforçada",
+        "gitcoin_read_more": "Llegeix més sobre Scorer & Thresholds de Gitcoin <link>aquí</link>",
         "gitcoin_passport_score": "Puntuació del Gitcoin Passport",
         "gitcoin_stamps": "Stamps",
         "gitcoin_strategy_description_AND": "Els usuaris votants han de ser propietaris de tots els segells seleccionats i tenir un GPS igual o superior.",
@@ -651,9 +640,6 @@
     "organization": "Edita Organització",
     "privacy": "Privadesa",
     "terms": "Termes",
-    "vocdoni": {
-      "login": "Login"
-    },
     "wallet": "Cartera"
   },
   "meta": {
@@ -686,7 +672,6 @@
     "census": "Cens",
     "census_strategies": {
       "csp": "CSP",
-      "gitcoin": "Gitcoin",
       "spreadsheet": "CSV",
       "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
       "web3": "Adreces Web3"
