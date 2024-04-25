@@ -3,8 +3,8 @@
 </p>
 
 <p align="center" width="100%">
-    <a href="https://github.com/vocdoni/REPO_NAME/commits/main/"><img src="https://img.shields.io/github/commit-activity/m/vocdoni/REPO_NAME" /></a>
-    <a href="https://github.com/vocdoni/REPO_NAME/issues"><img src="https://img.shields.io/github/issues/vocdoni/REPO_NAME" /></a>
+    <a href="https://github.com/vocdoni/ui-scaffold/commits/main/"><img src="https://img.shields.io/github/commit-activity/m/vocdoni/ui-scaffold" /></a>
+    <a href="https://github.com/vocdoni/ui-scaffold/issues"><img src="https://img.shields.io/github/issues/vocdoni/ui-scaffold" /></a>
     <a href="https://discord.gg/xFTh8Np2ga"><img src="https://img.shields.io/badge/discord-join%20chat-blue.svg" /></a>
     <a href="https://twitter.com/vocdoni"><img src="https://img.shields.io/twitter/follow/vocdoni.svg?style=social&label=Follow" /></a>
 </p>
