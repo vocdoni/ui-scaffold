@@ -784,7 +784,7 @@
     "creation_steps_description": "Necesitas firmar las transacciones para crear el proceso de votación en la cadena de bloques de Vocdoni. No cierres esta ventana.",
     "creation_steps_title": "Progreso",
     "modal_pro": {
-      "description": "<p>La opción seleccionada no está disponible en el plan de autoatención (gratuito). Para poder utilizarla, necesitas comprar el <bold>plan de proyecto personalizado</bold></p>",
+      "description": "<p><bold>{{reason}}</bold> es una característica Premium</p>",
       "error": "Error sending email, try it later or contact us at <email>info@vocdoni.org</email>",
       "form_btn": "ENVIAR",
       "form_description": "Puedes proporcionarnos tu información de contacto y nosotros te contactaremos para hablar sobre tus necesidades",
@@ -793,7 +793,7 @@
       "form_name_label": "Nombre:",
       "form_name_placeholder": "Tu nombre",
       "scheudle_btn": "RESERVAR AHORA",
-      "scheudle_description": " O puedes reservar directamente una llamada rápida (15 minutos) con nuestros expertos para ayudarte a crear tu proyecto de votación deseado",
+      "scheudle_description": "Programa una llamada de 30 minutos con nuestro equipo para discutir tu proyecto de votación. Te guiaremos a través del proceso y adaptaremos soluciones para satisfacer tus necesidades específicas.",
       "success": "Correo enviado correctamente",
       "title": "Contáctanos"
     },

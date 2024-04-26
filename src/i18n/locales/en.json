@@ -775,7 +775,7 @@
     "creation_steps_description": "Sign transaction to create the voting process. Generating the census can take a few minutes, please don't close this window.",
     "creation_steps_title": "Progress",
     "modal_pro": {
-      "description": "<p>Option not available in the free plan. To use it, you need to purchase the <bold>custom project plan.</bold></p>",
+      "description": "<p><bold>{{reason}}</bold> is a Premium feature</p>",
       "error": "Error sending email, try it later or contact us at <email>info@vocdoni.org</email>",
       "form_btn": "SEND",
       "form_description": "You can give us your contact information and we will contact you to talk about your needs.",
@@ -784,7 +784,7 @@
       "form_name_label": "Name:",
       "form_name_placeholder": "Your name",
       "scheudle_btn": "BOOK NOW",
-      "scheudle_description": "Or you can directly schedule one quick call (30') with our experts to help you create your desired voting project.",
+      "scheudle_description": "Schedule a 30-minute call with our team to discuss your voting project. We'll guide you through the process and tailor solutions to meet your specific needs.",
       "success": "Email sent successfully",
       "title": "Contact Us"
     },
