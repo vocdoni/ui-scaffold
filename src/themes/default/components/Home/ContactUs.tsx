@@ -27,6 +27,7 @@ const ContactUs = () => {
             borderRadius='xl'
             ml={{ base: '0px', xl: '50px' }}
             maxW={{ base: '350px', xl: '550px' }}
+            mx='auto'
           />
         </Box>
       </Flex>
@@ -53,6 +54,7 @@ const ContactUs = () => {
               fontWeight='bold'
               mb='10px'
               fontFamily='basier'
+              textAlign={{ base: 'center', xl: 'left' }}
             >
               {t('home.contactus.title')}
             </Text>

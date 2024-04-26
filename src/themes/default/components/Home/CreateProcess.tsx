@@ -21,8 +21,8 @@ const CreateProcess = () => {
     >
       <Box flex='1 1 50%'>
         <Text
-          fontSize={{ base: '30px', sm: '42px', sm2: '48px', md: '52px', md2: '56px', lg2: '64px' }}
-          lineHeight={{ base: '36px', sm: '48px', sm2: '54px', md: '58px', md2: '64px', lg2: '78px' }}
+          fontSize={{ base: '48px', md: '52px', md2: '56px', lg2: '64px' }}
+          lineHeight={{ base: '54px', md: '58px', md2: '64px', lg2: '78px' }}
           fontWeight='600'
           fontFamily='basier'
           mb='10px'

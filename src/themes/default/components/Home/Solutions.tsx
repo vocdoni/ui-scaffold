@@ -21,17 +21,18 @@ const Solutions = () => {
               fontSize={{ base: '40px', xl: '60px' }}
               lineHeight={{ base: '36px', xl: '78px' }}
               fontWeight='bold'
-              mb='10px'
+              mb='25px'
               fontFamily='basier'
+              textAlign={{ base: 'center', xl: 'left' }}
             >
               {t('home.solutions.title')}
             </Text>
             <Text
               maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}
+              textAlign={{ base: 'center', xl: 'left' }}
               mx='auto'
               fontFamily='basier'
               fontSize='20px'
-              mt='25px'
               opacity='0.75'
             >
               {t('home.solutions.subtitle_1')}

@@ -44,7 +44,7 @@ const Benefits = () => {
               lineHeight={{ base: '36px', xl: '78px' }}
               fontWeight='bold'
               textAlign='center'
-              mb='10px'
+              mb='25px'
               fontFamily='basier'
             >
               {t('home.benefits.title')}
@@ -53,10 +53,9 @@ const Benefits = () => {
               mb='60px'
               maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}
               mx='auto'
-              textAlign='left'
+              textAlign={{ base: 'center', lg: 'left' }}
               fontFamily='basier'
               fontSize='20px'
-              mt='25px'
               opacity='0.75'
             >
               {t('home.benefits.subtitle_1')}

@@ -23,7 +23,7 @@ const Features = () => {
           lineHeight={{ base: '36px', xl: '78px' }}
           fontWeight='bold'
           textAlign='center'
-          mb='10px'
+          mb='25px'
           fontFamily='basier'
         >
           {t('home.features.title')}
@@ -32,10 +32,9 @@ const Features = () => {
           mb='60px'
           maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}
           mx='auto'
-          textAlign='left'
+          textAlign={{ base: 'center', lg: 'left' }}
           fontFamily='basier'
           fontSize='20px'
-          mt='25px'
           opacity='0.75'
           margin='0px auto'
         >
@@ -43,7 +42,7 @@ const Features = () => {
         </Text>
       </Box>
 
-      <Flex maxW={{ base: '100%', sm: '70%', sm2: '85%' }} margin='0px auto' flexWrap='wrap' gap={5}>
+      <Flex maxW={{ base: '100%', sm: '70%', sm2: '85%' }} margin='0px auto' flexWrap='wrap' gap={10}>
         <Card variant='icon-card' flex={{ base: '1 0 100%', lg: '1 1 30%' }} mb='60px'>
           <CardBody>
             <Box>
