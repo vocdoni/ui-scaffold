@@ -45,7 +45,6 @@ const Benefits = () => {
               fontWeight='bold'
               textAlign='center'
               mb='10px'
-              color='black'
               fontFamily='basier'
             >
               {t('home.benefits.title')}

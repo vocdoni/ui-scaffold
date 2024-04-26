@@ -13,18 +13,28 @@ const Process = () => {
 
   return (
     <Box as='section' className='site-wrapper' py={{ base: '60px', lg: '100px' }} mb={{ base: '60px', xl: '120px' }}>
-      <Text fontSize='60px' lineHeight='98px' mb='10px' textAlign='center' fontFamily='basier'>
+      <Text
+        fontSize={{ base: '25px', lg: '30px', xl: '60px' }}
+        lineHeight={{ base: '30px', lg: '36px', xl: '78px' }}
+        fontWeight='bold'
+        mb='10px'
+        fontFamily='basier'
+        textAlign='center'
+      >
         {t('home.process.title')}
       </Text>
       <Text
+        mb='60px'
+        maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}
+        mx='auto'
+        textAlign='left'
+        fontFamily='basier'
         fontSize='20px'
+        mt='25px'
+        opacity='0.75'
         lineHeight='28px'
         color='black'
-        textAlign='left'
-        opacity='0.75'
-        maxW='840px'
         margin='0px auto'
-        fontFamily='basier'
       >
         {t('home.process.description_1')}
         {t('home.process.description_2')}

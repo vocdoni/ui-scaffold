@@ -17,10 +17,24 @@ const Solutions = () => {
       <Flex flex='1 1 50%' justifyContent='center' alignItems='center'>
         <Flex flexDirection='column' gap='24px'>
           <Box mb='40px'>
-            <Text fontSize='60px' lineHeight='68px' mb='10px' fontFamily='basier'>
+            <Text
+              fontSize={{ base: '25px', lg: '30px', xl: '60px' }}
+              lineHeight={{ base: '30px', lg: '36px', xl: '78px' }}
+              fontWeight='bold'
+              mb='10px'
+              fontFamily='basier'
+            >
               {t('home.solutions.title')}
             </Text>
-            <Text color='black' fontSize='20px' lineHeight='28px' opacity='0.75'>
+            <Text
+              mb='60px'
+              maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}
+              mx='auto'
+              fontFamily='basier'
+              fontSize='20px'
+              mt='25px'
+              opacity='0.75'
+            >
               {t('home.solutions.subtitle_1')}
             </Text>
           </Box>
@@ -30,10 +44,8 @@ const Solutions = () => {
                 <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b771a2aa4f48_large-organizations-api-icon.svg' />
               </Box>
               <Box ml='30px'>
-                <Text fontSize='25px' lineHeight='53px' fontFamily='basier'>
-                  {t('home.solutions.card_1.title')}
-                </Text>
-                <Text fontSize='20px'>{t('home.solutions.card_1.description')}</Text>
+                <Text>{t('home.solutions.card_1.title')}</Text>
+                <Text>{t('home.solutions.card_1.description')}</Text>
               </Box>
             </CardBody>
           </Card>
@@ -43,10 +55,8 @@ const Solutions = () => {
                 <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b73337aa4f63_services-suppliers-icon.svg' />
               </Box>
               <Box ml='20px'>
-                <Text fontSize='25px' lineHeight='53px' fontFamily='basier'>
-                  {t('home.solutions.card_2.title')}
-                </Text>
-                <Text fontSize='20px'>{t('home.solutions.card_2.description')}</Text>
+                <Text>{t('home.solutions.card_2.title')}</Text>
+                <Text>{t('home.solutions.card_2.description')}</Text>
               </Box>
             </CardBody>
           </Card>
@@ -56,10 +66,8 @@ const Solutions = () => {
                 <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b79b4caa4f51_gov-institutions-api-icon.svg' />
               </Box>
               <Box ml='10px'>
-                <Text fontSize='25px' lineHeight='53px' fontFamily='basier'>
-                  {t('home.solutions.card_3.title')}
-                </Text>
-                <Text fontSize='20px'>{t('home.solutions.card_3.description')}</Text>
+                <Text>{t('home.solutions.card_3.title')}</Text>
+                <Text>{t('home.solutions.card_3.description')}</Text>
               </Box>
             </CardBody>
           </Card>

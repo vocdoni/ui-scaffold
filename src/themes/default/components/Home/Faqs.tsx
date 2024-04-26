@@ -17,7 +17,7 @@ const Faqs = () => {
       <Box className='site-wrapper' position='relative' zIndex={10}>
         <Text
           fontSize={{ base: '25px', lg: '30px', xl: '60px' }}
-          lineHeight={{ base: '30px', lg: '36px', xl: '98px' }}
+          lineHeight={{ base: '30px', lg: '36px', xl: '78px' }}
           fontWeight='bold'
           textAlign='center'
           mb='10px'
@@ -26,13 +26,16 @@ const Faqs = () => {
           {t('home.faqs.title')}
         </Text>
         <Text
+          mb='60px'
+          maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}
+          mx='auto'
           textAlign='left'
-          color='black'
-          fontSize='20px'
-          lineHeight='28px'
-          opacity='0.75'
           fontFamily='basier'
-          maxW='840px'
+          fontSize='20px'
+          mt='25px'
+          opacity='0.75'
+          color='black'
+          lineHeight='28px'
           margin='0px auto 80px'
         >
           {t('home.faqs.subtitle')}

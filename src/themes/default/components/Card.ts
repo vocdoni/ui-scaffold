@@ -277,7 +277,7 @@ const iconCard = definePartsStyle({
     'div:last-of-type': {
       'p:first-of-type': {
         fontWeight: '600',
-        mb: '6px',
+        mb: '15px',
         fontSize: '26px',
         lineHeight: '32px',
         mr: 2,
@@ -285,7 +285,6 @@ const iconCard = definePartsStyle({
 
       'p:last-of-type': {
         fontSize: '22px',
-        mt: '15px',
         color: '#000000a1 !important',
       },
     },
@@ -311,13 +310,14 @@ const imageCard = definePartsStyle({
 
     'div:last-of-type': {
       'p:first-of-type': {
-        fontWeight: 'bold',
-        mb: '6px',
-        fontSize: '20px',
-        lineHeight: '24px',
+        fontWeight: '600',
+        mb: '15px',
+        fontSize: '26px',
+        lineHeight: '32px',
       },
 
       'p:last-of-type': {
+        fontSize: '22px',
         color: '#000000a1 !important',
       },
     },
@@ -352,16 +352,13 @@ const step = definePartsStyle({
 
     'div:last-of-type': {
       'p:first-of-type': {
-        fontSize: '17px',
-        lineHeight: '20.4px',
-        color: 'home.step.title',
+        fontSize: '26px',
+        lineHeight: '32px',
         fontWeight: 'bold',
-        mb: '6px',
+        mb: '15px',
       },
       'p:nth-of-type(2)': {
-        fontSize: '16px',
-        lineHeight: '28px',
-        mb: '8px',
+        fontSize: '22px',
         color: '#000000a1 !important',
       },
     },

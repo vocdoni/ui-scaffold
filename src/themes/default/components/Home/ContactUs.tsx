@@ -47,7 +47,13 @@ const ContactUs = () => {
           pr={{ xl: '37px', xl3: 0 }}
         >
           <Box>
-            <Text fontSize='60' lineHeight='68px' mb='10px' fontFamily='basier'>
+            <Text
+              fontSize={{ base: '25px', lg: '30px', xl: '60px' }}
+              lineHeight={{ base: '30px', lg: '36px', xl: '78px' }}
+              fontWeight='bold'
+              mb='10px'
+              fontFamily='basier'
+            >
               {t('home.contactus.title')}
             </Text>
           </Box>
@@ -56,7 +62,7 @@ const ContactUs = () => {
               <Box>
                 <MdDesignServices />
               </Box>
-              <Box fontSize='22px'>
+              <Box>
                 <Text>{t('home.contactus.card_1.title')}</Text>
                 <Text>{t('home.contactus.card_1.description')}</Text>
               </Box>
@@ -67,7 +73,7 @@ const ContactUs = () => {
               <Box>
                 <FaFingerprint />
               </Box>
-              <Box fontSize='22px'>
+              <Box>
                 <Text> {t('home.contactus.card_2.title')}</Text>
                 <Text>{t('home.contactus.card_2.description')}</Text>
               </Box>
