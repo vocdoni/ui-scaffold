@@ -17,7 +17,7 @@ const Process = () => {
         fontSize={{ base: '40px', xl: '60px' }}
         lineHeight={{ base: '36px', xl: '78px' }}
         fontWeight='bold'
-        mb='10px'
+        mb='25px'
         fontFamily='basier'
         textAlign='center'
       >
@@ -27,10 +27,9 @@ const Process = () => {
         mb='60px'
         maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}
         mx='auto'
-        textAlign='left'
+        textAlign={{ base: 'center', lg: 'left' }}
         fontFamily='basier'
         fontSize='20px'
-        mt='25px'
         opacity='0.75'
         lineHeight='28px'
         color='black'
