@@ -192,9 +192,9 @@ files. The best way to work with translations is:
 
 Three branches are linked to deploys:
 
-- `develop`, deployed to [app-dev.vocdoni.io], and linked to api-dev.
-- `stage`, deployed to [app-stg.vocdoni.io], and linked to api-stg.
-- `main`, deployed to [app.vocdoni.io], and linked to LTS api (formerly prod).
+- `develop`, deployed to [app-dev.vocdoni.io] and [dev.onvote.app], and linked to api-dev.
+- `stage`, deployed to [app-stg.vocdoni.io] and [stg.onvote.app], and linked to api-stg.
+- `main`, deployed to [app.vocdoni.io] and [onvote.app], and linked to LTS api (formerly prod).
 
 Also, all pushes to develop are deployed twice to netlify (one for api-dev,
 [the other for api-stg][netlify]). You can easily access these deploys on each
@@ -250,6 +250,9 @@ This repository is licensed under the [GNU Affero General Public License v3.0.](
 [app-dev.vocdoni.io]: https://app-dev.vocdoni.io
 [app-stg.vocdoni.io]: https://app-stg.vocdoni.io
 [app.vocdoni.io]: https://app.vocdoni.io
+[dev.onvote.app]: https://dev.onvote.app
+[stg.onvote.app]: https://stg.onvote.app
+[onvote.app]: https://onvote.app
 [netlify]: https://vocdoni-ui-scaffold-develop.netlify.app/
 
 [vocdoni logo]: https://docs.vocdoni.io/Logotype.svg
