@@ -8,7 +8,7 @@ const baseStyle = definePartsStyle({
   alert: {
     px: { base: 3, sm: 5 },
     py: 7,
-    my: '10px',
+    mb: '30px',
     borderRadius: '8px',
     color: 'process.questions.alert.color',
     bgColor: 'process.questions.alert.bg',
