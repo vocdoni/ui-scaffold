@@ -784,7 +784,7 @@
     "creation_steps_description": "Necessites signar les transaccions per crear el procés de votació a la cadena de blocs de Vocdoni. No tanquis aquesta finestra.",
     "creation_steps_title": "Progrés",
     "modal_pro": {
-      "description": "<p>L'opció seleccionada no està disponible en el pla d'autoatenció (gratuït). Per poder utilitzar-la, has de comprar el <bold>pla de projecte personalitzat</bold></p>",
+      "description": "<p><bold>{{reason}}</bold> és una funcionalitat Premium</p>",
       "error": "Error en l'enviament del correu electrònic, intenta-ho més tard o contacta'ns a <email>info@vocdoni.org</email>",
       "form_btn": "ENVIAR",
       "form_description": "Pots deixar-nos les teves dades de contacte i ens posarem en contacte amb tu per parlar de les teves necessitats",
@@ -793,7 +793,7 @@
       "form_name_label": "Nom:",
       "form_name_placeholder": "El teu nom",
       "scheudle_btn": "RESERVAR ARA",
-      "scheudle_description": " O pots reservar directament una trucada ràpida (15 minuts) amb els nostres experts per ajudar-te a crear el teu projecte de votació desitjat",
+      "scheudle_description": "Programa una trucada de 30 minuts amb el nostre equip per discutir el teu projecte de votació. Et guiarem a través del procés i adaptarem les solucions per satisfer les teves necessitats específiques.",
       "success": "Correu electrònic enviat correctament",
       "title": "Contacta'ns"
     },

@@ -1,6 +1,6 @@
 import { tabsAnatomy } from '@chakra-ui/anatomy'
 import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
-import checkIcon from '/assets/check-icon.svg'
+
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(tabsAnatomy.keys)
 
 const card = definePartsStyle({
@@ -29,17 +29,30 @@ const card = definePartsStyle({
     color: 'process_create.description',
     borderRadius: 0,
 
-    '& > p:nth-of-type(1)': {
+    '& #description': {
       color: 'process_create.description',
       textAlign: 'start',
       fontSize: 'xs',
     },
 
-    '& > div': {
+    '& #pro-badge': {
+      bgColor: 'process_create.pro_bg',
+      borderRadius: '10px',
+      position: 'absolute',
+      top: '3px',
+      right: '3px',
+      px: 4,
+      color: 'process_create.pro_color',
+      pt: '2px',
+      fontSize: '12px',
+    },
+
+    '& #title': {
       display: 'flex',
       alignItems: 'center',
       w: 'full',
       gap: 3,
+      fontSize: 'sm',
 
       '& p': {
         fontWeight: 'bold',
@@ -47,6 +60,10 @@ const card = definePartsStyle({
         fontFamily: 'pixeloidsans',
         textTransform: 'uppercase',
       },
+    },
+
+    '& #empty-check': {
+      display: 'none',
     },
 
     '& > img': {
