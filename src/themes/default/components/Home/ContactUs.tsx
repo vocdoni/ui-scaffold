@@ -48,8 +48,8 @@ const ContactUs = () => {
         >
           <Box>
             <Text
-              fontSize={{ base: '25px', lg: '30px', xl: '60px' }}
-              lineHeight={{ base: '30px', lg: '36px', xl: '78px' }}
+              fontSize={{ base: '40px', xl: '60px' }}
+              lineHeight={{ base: '36px', xl: '78px' }}
               fontWeight='bold'
               mb='10px'
               fontFamily='basier'

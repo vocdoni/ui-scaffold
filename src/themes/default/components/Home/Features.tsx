@@ -19,8 +19,8 @@ const Features = () => {
     <Box id='features' className='site-wrapper' py={{ base: '60px', lg: '100px' }}>
       <Box mb='80px' margin='-20px auto 125px' maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}>
         <Text
-          fontSize={{ base: '25px', lg: '30px', xl: '60px' }}
-          lineHeight={{ base: '30px', lg: '36px', xl: '78px' }}
+          fontSize={{ base: '40px', xl: '60px' }}
+          lineHeight={{ base: '36px', xl: '78px' }}
           fontWeight='bold'
           textAlign='center'
           mb='10px'

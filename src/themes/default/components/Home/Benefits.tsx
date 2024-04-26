@@ -40,8 +40,8 @@ const Benefits = () => {
         <Box as='section' id='benefits' mt={{ base: '50px' }}>
           <Box className='site-wrapper' pb={{ base: '60px', lg: '100px' }} pt={{ base: '60px' }}>
             <Text
-              fontSize={{ base: '25px', lg: '30px', xl: '60px' }}
-              lineHeight={{ base: '30px', lg: '36px', xl: '78px' }}
+              fontSize={{ base: '40px', xl: '60px' }}
+              lineHeight={{ base: '36px', xl: '78px' }}
               fontWeight='bold'
               textAlign='center'
               mb='10px'
