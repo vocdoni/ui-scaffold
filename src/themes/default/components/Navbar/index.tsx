@@ -26,8 +26,9 @@ const Navbar = () => {
       mx='auto'
       py={{ base: '12px', md: '24px' }}
       position='relative'
-      overflow='hidden'
+      overflow='hidden' // Para evitar que el desenfoque se extienda fuera de la barra de navegación
     >
+      {/* Fondo con desenfoque */}
       <Box
         position='absolute'
         top={0}

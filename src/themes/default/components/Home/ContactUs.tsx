@@ -26,7 +26,7 @@ const ContactUs = () => {
             transform={{ xl: 'translateY(-50%)' }}
             borderRadius='xl'
             ml={{ base: '0px', xl: '50px' }}
-            maxW={{ base: '100%', xl: '550px' }}
+            maxW={{ base: '350px', xl: '550px' }}
           />
         </Box>
       </Flex>
@@ -86,6 +86,7 @@ const ContactUs = () => {
             textDecoration='underline'
             fontSize='20px'
             mt='30px'
+            px='130px'
           >
             {t('home.contactus.btn')}
           </Button>

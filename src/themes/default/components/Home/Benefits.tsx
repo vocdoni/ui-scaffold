@@ -7,7 +7,7 @@ const Benefits = () => {
   return (
     <>
       <Box position='relative'>
-        <Box position='absolute' opacity='0.5' top='350px' width='150px'>
+        <Box position='absolute' display={{ base: 'none', xl: 'block' }} opacity='0.5' width='150px' top='350px'>
           <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6436e8ff4a93d8291f122d65_Vector4.png' />
           <Image
             src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6436e915e43ce706c7d17313_Vector5.png'
@@ -18,7 +18,15 @@ const Benefits = () => {
             right='9%'
           />
         </Box>
-        <Box position='absolute' opacity='0.5' transform='scale(-1, -1)' width='150px' bottom='200px' right={0}>
+        <Box
+          position='absolute'
+          display={{ base: 'none', xl: 'block' }}
+          opacity='0.5'
+          transform='scale(-1, -1)'
+          width='135px'
+          bottom='120px'
+          right='15px'
+        >
           <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6436e8ff4a93d8291f122d65_Vector4.png' />
           <Image
             src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6436e915e43ce706c7d17313_Vector5.png'

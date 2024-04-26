@@ -31,7 +31,7 @@ const Process = () => {
       </Text>
       <Flex flexDirection={{ base: 'column', lg: 'row' }} gap={{ base: '40px', lg: '60px' }} mt='70px'>
         <Flex flex='1 1 50%' justifyContent={{ base: 'center', lg: 'end' }} alignItems='center'>
-          <Image src={process} borderRadius='lg' w='535px' mt='-20px' />
+          <Image src={process} borderRadius='lg' maxW={{ base: '350px', xl: '550px' }} mt='-20px' />
         </Flex>
         <Flex flex='1 1' flexBasis={{ lg: '50%' }} flexDirection='column' justifyContent='space-between' gap='40px'>
           <Card variant='step'>

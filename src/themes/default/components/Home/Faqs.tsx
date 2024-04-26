@@ -37,7 +37,7 @@ const Faqs = () => {
         >
           {t('home.faqs.subtitle')}
         </Text>
-        <Flex flexWrap='wrap' gap={5}>
+        <Flex flexWrap='wrap' gap={10}>
           <Card variant='faqs' flex={{ base: '1 1 100%', xl: '1 1 45%' }} mb='30px'>
             <CardHeader>
               <Text>{t('home.faqs.faq_1.title')}</Text>
