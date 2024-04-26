@@ -27,7 +27,6 @@ const Solutions = () => {
               {t('home.solutions.title')}
             </Text>
             <Text
-              mb='60px'
               maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}
               mx='auto'
               fontFamily='basier'
@@ -81,8 +80,8 @@ const Solutions = () => {
           flexDirection='column'
           gap={3}
           position='absolute'
-          bottom={{ base: 10, xl2: '100px' }}
-          ml='50%'
+          bottom={{ base: 10, xl2: '330px' }}
+          ml={{ base: '50%', xl2: '60%' }}
           transform={{
             base: 'translateX(-60%)',
             xl: 'translateX(-80%)',
