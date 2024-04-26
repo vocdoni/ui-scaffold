@@ -20,15 +20,7 @@ const Navbar = () => {
   const { exists } = useOrganizationHealthTools()
 
   return (
-    <Flex
-      className='site-wrapper'
-      w='full'
-      mx='auto'
-      py={{ base: '12px', md: '24px' }}
-      position='relative'
-      overflow='hidden' // Para evitar que el desenfoque se extienda fuera de la barra de navegación
-    >
-      {/* Fondo con desenfoque */}
+    <Flex className='site-wrapper' w='full' mx='auto' py={{ base: '12px', md: '24px' }} position='relative'>
       <Box
         position='absolute'
         top={0}
