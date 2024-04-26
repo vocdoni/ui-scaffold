@@ -53,7 +53,7 @@ const Benefits = () => {
               mb='60px'
               maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}
               mx='auto'
-              textAlign={{ base: 'center', lg: 'left' }}
+              textAlign='center'
               fontFamily='basier'
               fontSize='20px'
               opacity='0.75'
