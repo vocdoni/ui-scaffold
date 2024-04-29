@@ -705,6 +705,9 @@
     "share_title": "Comparteix a {{ network }}",
     "spreadsheet": {
       "confirm": {
+        "abstain_count_one": "",
+        "abstain_count_many": "",
+        "abstain_count_other": "",
         "description": "Abans de votar, reviseu que tot sigui correcte.",
         "option": "<strong>Opció {{ number }}:</strong> {{ answer }}",
         "options": "<strong>Selecció:</strong> {{ answers }}",
