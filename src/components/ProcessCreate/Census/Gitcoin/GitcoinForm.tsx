@@ -43,7 +43,7 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
         }}
         render={({ field: { ref, onChange, value, ...restField } }) => (
           <Box>
-            <Flex gap={8} alignItems='center'>
+            <Flex gap={8}>
               <Box>
                 <FormLabel mb={4} fontWeight='bold' whiteSpace='nowrap'>
                   {t('form.process_create.census.gitcoin_passport_score')}
@@ -67,18 +67,15 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
                 </NumberInput>
               </Box>
 
-              <Flex justifyContent='center' alignItems='center' flexDirection='column' w='full' fontWeight='bold'>
-                <Text className='brand-theme' ml='-50px' color='process_create.gitcoin_sybil'>
-                  {t('gitcoin.sybil')}
-                </Text>
-                <Flex flexDirection='row'>
-                  <Button onClick={() => onChange(20)} variant='transparent'>
+              <Flex justifyContent='end' alignItems='start' flexDirection='column' w='full' fontWeight='bold' gap={6}>
+                <Flex flexDirection='row' gap={3} mb={2}>
+                  <Button onClick={() => onChange(20)} px={2} h='25px'>
                     {t('gitcoin.effective')}
                   </Button>
-                  <Button onClick={() => onChange(25)} variant='transparent'>
+                  <Button onClick={() => onChange(25)} px={2} h='25px'>
                     {t('gitcoin.more_effective')}
                   </Button>
-                  <Button onClick={() => onChange(30)} variant='transparent'>
+                  <Button onClick={() => onChange(30)} px={2} h='25px'>
                     {t('gitcoin.most_effective')}
                   </Button>
                 </Flex>

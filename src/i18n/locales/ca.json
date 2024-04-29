@@ -384,8 +384,7 @@
   "gitcoin": {
     "effective": "20: Efectiu",
     "more_effective": "25: Més efectiu",
-    "most_effective": "30: Molt efectiu",
-    "sybil": "Nivells de Resistència Sybil"
+    "most_effective": "30: Molt efectiu"
   },
   "home": {
     "benefits": {
