@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Checkbox,
   Flex,
   FormLabel,
@@ -9,10 +10,6 @@ import {
   NumberInput,
   NumberInputField,
   NumberInputStepper,
-  Slider,
-  SliderFilledTrack,
-  SliderThumb,
-  SliderTrack,
   Text,
 } from '@chakra-ui/react'
 import { FC } from 'react'
@@ -46,40 +43,46 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
         }}
         render={({ field: { ref, onChange, value, ...restField } }) => (
           <Box>
-            <FormLabel mb={4} fontWeight='bold'>
-              {t('form.process_create.census.gitcoin_passport_score')}
-            </FormLabel>
-            <Flex gap={8}>
-              <NumberInput
-                defaultValue={15}
-                min={1}
-                max={100}
-                maxW={40}
-                value={value}
-                {...restField}
-                onChange={(_, num) => {
-                  onChange(num)
-                }}
-              >
-                <NumberInputField />
-                <NumberInputStepper>
-                  <NumberIncrementStepper />
-                  <NumberDecrementStepper />
-                </NumberInputStepper>
-              </NumberInput>
-              <Slider
-                flex='1'
-                focusThumbOnChange={false}
-                value={value}
-                onChange={(e) => {
-                  onChange(Number(e))
-                }}
-              >
-                <SliderTrack>
-                  <SliderFilledTrack />
-                </SliderTrack>
-                <SliderThumb fontSize='sm' boxSize='32px' children={value} />
-              </Slider>
+            <Flex gap={8} alignItems='center'>
+              <Box>
+                <FormLabel mb={4} fontWeight='bold' whiteSpace='nowrap'>
+                  {t('form.process_create.census.gitcoin_passport_score')}
+                </FormLabel>
+                <NumberInput
+                  defaultValue={15}
+                  min={1}
+                  max={100}
+                  maxW={40}
+                  value={value}
+                  {...restField}
+                  onChange={(_, num) => {
+                    onChange(num)
+                  }}
+                >
+                  <NumberInputField />
+                  <NumberInputStepper>
+                    <NumberIncrementStepper />
+                    <NumberDecrementStepper />
+                  </NumberInputStepper>
+                </NumberInput>
+              </Box>
+
+              <Flex justifyContent='center' alignItems='center' flexDirection='column' w='full' fontWeight='bold'>
+                <Text className='brand-theme' ml='-50px' color='process_create.gitcoin_sybil'>
+                  {t('gitcoin.sybil')}
+                </Text>
+                <Flex flexDirection='row'>
+                  <Button onClick={() => onChange(20)} variant='transparent'>
+                    {t('gitcoin.effective')}
+                  </Button>
+                  <Button onClick={() => onChange(25)} variant='transparent'>
+                    {t('gitcoin.more_effective')}
+                  </Button>
+                  <Button onClick={() => onChange(30)} variant='transparent'>
+                    {t('gitcoin.most_effective')}
+                  </Button>
+                </Flex>
+              </Flex>
             </Flex>
           </Box>
         )}

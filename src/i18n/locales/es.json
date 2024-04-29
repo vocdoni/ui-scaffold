@@ -22,7 +22,6 @@
   "banner_voting_types": {
     "anonymous_description": "La identidad de los votantes permanece completamente confidencial, gracias a la tecnología zk-SNARKS.",
     "anonymous_title": "100% Anónimo",
-    "bottom_text": "La privacidad debería ser normal",
     "flexible_description": "Personaliza tu proceso de votación y censo para satisfacer los requisitos únicos de tu comunidad.",
     "flexible_title": "Votación Flexible",
     "token_description": "Vota con tokens ERC20/ERC721 (NFT) o agrega tus propios tokens y vota sin coste de gas con ellos.",
@@ -168,10 +167,7 @@
     "tokens_you_own": "Tienes {{ balance }} tokens."
   },
   "footer": {
-    "about": "Acerca de",
-    "blog": "Blog",
     "company": "Empresa",
-    "contact": "Contacto",
     "demo": "Tipos de Votación",
     "demo1": "Elección Simple",
     "demo2": "Elección Múltiple",
@@ -179,25 +175,16 @@
     "demo4": "Votación por Clasificación",
     "demo5": "Presupuestos Participativos",
     "demo6": "Votación Ponderada",
-    "developer_portal": "Portal para desarrolladores",
-    "developers": "Desarrolladores",
-    "discord": "Discord",
     "follow_us": "Síguenos",
     "footer_subtitle": "El Protocolo de Votación Global",
-    "homepage": "Inicio",
-    "repos": "Código abierto",
-    "resources": "Recursos",
     "terms_and_privacy": "<link1>Términos de uso</link1> y <link2>Política de privacidad</link2>",
     "text": "<p1>El futuro</p1><p2>de la votación en Web3 comienza aquí</p2>",
-    "tutorials": "Tutoriales",
     "uses_cases": "Casos de Uso",
     "uses_cases1": "Asambleas Generales de Accionistas (AGMs)",
     "uses_cases2": "Elecciones",
     "uses_cases3": "Presupuestos Participativos",
     "uses_cases4": "Votación Digital",
-    "uses_cases5": "Encuesta Digital Cerrada",
-    "vocdoni_api": "API de Vocdoni",
-    "vocdoni_app": "APP de Vocdoni"
+    "uses_cases5": "Encuesta Digital Cerrada"
   },
   "form": {
     "account_create": {
@@ -393,6 +380,12 @@
     "description": "<text>Para agregar más tokens, debe <strong>iniciar sesión</strong> con una cuenta social (para prevenir el mal uso del grifo).</text><text><strong>Solo solicitamos acceso de lectura.</strong></text>",
     "info": "<text>Si necesita más, contacte a <mailto>info@onvote.app</mailto></text>",
     "title": "Obtener VOC Tokens"
+  },
+  "gitcoin": {
+    "effective": "20: Efectivo",
+    "more_effective": "25: Más efectivo",
+    "most_effective": "30: Muy efectivo",
+    "sybil": "Niveles de Resistencia Sybil"
   },
   "home": {
     "benefits": {
@@ -651,9 +644,6 @@
     "organization": "Editar Organización",
     "privacy": "Privacidad",
     "terms": "Términos",
-    "vocdoni": {
-      "login": "Login"
-    },
     "wallet": "Billetera"
   },
   "meta": {
@@ -686,7 +676,6 @@
     "census": "Censo",
     "census_strategies": {
       "csp": "CSP",
-      "gitcoin": "Gitcoin",
       "spreadsheet": "CSV",
       "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
       "web3": "Direcciones web3"

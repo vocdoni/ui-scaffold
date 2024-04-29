@@ -20,7 +20,6 @@
   "banner_voting_types": {
     "anonymous_description": "Say goodbye to the high expenses of traditional voting methods. {{app}} brings you a more affordable way to conduct elections, cutting down on logistical and administrative costs while maintaining the highest standards of quality and security.",
     "anonymous_title": "Cost-Effective Voting Solutions",
-    "bottom_text": "Privacy should be normal",
     "flexible_description": "Engagement is key in democratic processes, and our platform is designed to maximize it. With its user-friendly interface and accessibility, {{app}} encourages higher participation rates, ensuring a more representative and inclusive voting experience.",
     "flexible_title": "Boosted Participation Rates",
     "token_description": "At the heart of {{app}} is our commitment to security. Leveraging cutting-edge cryptographic methods, we ensure that every vote cast is not only secure but fully verifiable. This transparency builds unparalleled trust among participants, crucial for the legitimacy of any election.",
@@ -165,10 +164,7 @@
     "tokens_you_own": "You own {{ balance }} tokens."
   },
   "footer": {
-    "about": "About",
-    "blog": "Blog",
     "company": "Company",
-    "contact": "Contact",
     "demo": "Voting Types",
     "demo1": "Single Choice",
     "demo2": "Multiple Choice",
@@ -176,25 +172,16 @@
     "demo4": "Ranked Voting",
     "demo5": "Participatory Budgeting",
     "demo6": "Weighted Voting",
-    "developer_portal": "Developers Portal",
-    "developers": "Developers",
-    "discord": "Discord",
     "follow_us": "Follow us",
     "footer_subtitle": "The Global Voting Protocol",
-    "homepage": "Home",
-    "repos": "Open-source Code",
-    "resources": "Resources",
     "terms_and_privacy": "<link1>Terms of use</link1> & <link2>Privacy Policy</link2>",
     "text": "<p1>The future</p1><p2>of Web3 voting starts here</p2>",
-    "tutorials": "Tutorials",
     "uses_cases": "Use Cases",
     "uses_cases1": "AGMs",
     "uses_cases2": "Elections",
     "uses_cases3": "Participatory Budgeting",
     "uses_cases4": "Online Voting",
-    "uses_cases5": "Gated Online Survey",
-    "vocdoni_api": "Vocdoni API",
-    "vocdoni_app": "Vocdoni APP"
+    "uses_cases5": "Gated Online Survey"
   },
   "form": {
     "account_create": {
@@ -386,6 +373,12 @@
     "description": "<text>To add more tokens you must <strong>sign in</strong> with a social account (to prevent missuse of the faucet).</text><text><strong>We only request read access.</strong></text>",
     "info": "<text>If you need more, contact to <mailto>info@onvote.app</mailto></text>",
     "title": "Get VOC Tokens"
+  },
+  "gitcoin": {
+    "effective": "20: Effective",
+    "more_effective": "25: More Effective",
+    "most_effective": "30: Most Effective",
+    "sybil": "Sybil Resistance Levels"
   },
   "home": {
     "benefits": {
@@ -644,9 +637,6 @@
     "organization": "Edit Organization",
     "privacy": "Privacy",
     "terms": "Terms",
-    "vocdoni": {
-      "login": "Open App"
-    },
     "wallet": "Wallet"
   },
   "meta": {
@@ -679,7 +669,6 @@
     "census": "Census",
     "census_strategies": {
       "csp": "CSP",
-      "gitcoin": "Gitcoin",
       "spreadsheet": "CSV/Spreadsheet",
       "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
       "web3": "Web3 addresses"
