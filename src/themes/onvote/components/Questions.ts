@@ -1,5 +1,5 @@
-import {createMultiStyleConfigHelpers} from '@chakra-ui/react'
-import {questionsAnatomy} from '@vocdoni/chakra-components'
+import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
+import { questionsAnatomy } from '@vocdoni/chakra-components'
 import checkIcon from '/assets/check-icon.svg'
 
 const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpers(questionsAnatomy)
@@ -172,22 +172,6 @@ const baseStyle = definePartsStyle({
       justifyItems: 'center',
       alignItems: 'center',
     },
-  },
-
-  abstainBadge: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: 'primary.main',
-    bgColor: 'gray.100',
-    borderRadius: 'full',
-    px: '4',
-    py: '1',
-    border: '2px solid',
-    borderColor: 'primary.main',
-    width: '2em',
-    height: '2em',
-    minW: 'max-content'
   },
 
   error: {
