@@ -94,14 +94,14 @@
     "chain_required": "Necesitas seleccionar una red",
     "description": "Selecciona cómo los votantes se autenticarán e identificarán.",
     "gitcoin_description": "Con este censo, solo los votantes con Gitcoin Passport podrán votar, proporcionando un método de resistencia contra sybil-attack. Puedes definir la puntuación general (GPS) y diferentes stamps que el votante debe tener.",
-    "gitcoin_read_more": "",
+    "gitcoin_read_more": "<a>Lee más sobre Scorer & Thresholds de Gitcoin</a>",
     "gitcoin_title": "Gitcoin Passport",
     "pro": "",
     "request_custom_token": "Solicitar Tokens Personalizados",
     "social_address_title": "Usuarios de Github",
     "spreadsheet_title": "Datos personalizados",
     "title": "Censo",
-    "token_description": "Selecciona la red y el token para crear un censo donde los titulares de token votarán con su poder de voto. Puedes solicitar un token <link1>aquí</link1>.",
+    "token_description": "Selecciona la red y el token para crear un censo donde los titulares de token votarán con su poder de voto. Puedes <link1>solicitar un token</link1> si lo necesitas.",
     "token_required": "Necesitas seleccionar un token",
     "token_title": "Censo basado en tokens",
     "wallet_address_title": "Direcciones de billetera"
@@ -248,7 +248,6 @@
         "add_new_address": "Añade una nueva dirección",
         "delete_web3_address": "Eliminar direccion con índice {{ index }}",
         "gitcoin_description": "Construye un censo resistente a Sybil (resistente a la falsificación de identidad) con Gitcoin Passport y sus sellos de verificación para una seguridad mejorada",
-        "gitcoin_read_more": "Lee más sobre Scorer & Thresholds de Gitcoin <a>aquí</a>",
         "gitcoin_passport_score": "Puntuación de Gitcoin Pasaport",
         "gitcoin_stamps": "Stamps",
         "gitcoin_strategy_description_AND": "Los usuarios votantes deben ser propietarios de todos los sellos seleccionados y tener un GPS igual o superior.",
@@ -725,7 +724,7 @@
     "strategy": "Estrategia",
     "success_modal": {
       "btn": "Finalizar",
-      "text": "<p>Tu voto ha sido emitido y almacenado de forma segura en la cadena de bloques de Vocdoni. Puedes comprobarlo <verify>aquí</verify>.</p><p>La democracia es importante, puedes compartirla con tu comunidad y amigos:</p>",
+      "text": "<p>Tu voto ha sido emitido y almacenado de forma segura en la cadena de bloques de Vocdoni. <verify>Puedes comprobarlo aquí</verify>.</p><p>La democracia es importante, puedes compartirla con tu comunidad y amigos:</p>",
       "title": "Voto emitido correctamente!"
     },
     "total_census_size": "{{maxCensusSize}} votantes permitidos de {{censusSize}} totales en el censo",
