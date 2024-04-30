@@ -9,7 +9,7 @@
     "verify_vote_on_explorer": "Verify your vote on the explorer",
     "votes_one": "<span>1</span> <text>voter</text>",
     "votes_other": "<span>{{ count }}</span> <text>voters</text>",
-    "voting_anonymous_advice": "Please wait while the anonymous magic happens \uD83E\uDE84.\nThis can take up to several minutes; don't close the window."
+    "voting_anonymous_advice": "Please wait while the anonymous magic happens 🪄.\nThis can take up to several minutes; don't close the window."
   },
   "banner": {
     "start_now": "Create a vote now!",
