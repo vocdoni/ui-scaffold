@@ -138,7 +138,7 @@ export const ProcessView = () => {
             </TabList>
             <TabPanels>
               <TabPanel>
-                <Box ref={electionRef} className='md-sizes' mb='100px' pt='50px'>
+                <Box ref={electionRef} className='md-sizes' mb='100px' pt='25px'>
                   <ElectionQuestions
                     onInvalid={(args) => {
                       setFormErrors(args)
