@@ -248,7 +248,7 @@
         "add_new_address": "Afageix una nova adreça",
         "delete_web3_address": "Eliminar adreça amb index {{ index }}",
         "gitcoin_description": "Construeix un cens resistents a Sybil (resistent a la falsificació d'identitat) amb Gitcoin Passport i els seus segells de verificació per a una seguretat reforçada",
-        "gitcoin_read_more": "Llegeix més sobre Scorer & Thresholds de Gitcoin <link>aquí</link>",
+        "gitcoin_read_more": "Llegeix més sobre Scorer & Thresholds de Gitcoin <a>aquí</a>",
         "gitcoin_passport_score": "Puntuació del Gitcoin Passport",
         "gitcoin_stamps": "Stamps",
         "gitcoin_strategy_description_AND": "Els usuaris votants han de ser propietaris de tots els segells seleccionats i tenir un GPS igual o superior.",

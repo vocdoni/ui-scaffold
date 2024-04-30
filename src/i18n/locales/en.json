@@ -92,7 +92,7 @@
     "chain_required": "You need to select a network",
     "description": "Choose how to authenticate and verify voters.",
     "gitcoin_description": "With this census only voters with a Gitcoin Passport will be able to vote, providing a sybil-attack resistance method. You can define the general score (GPS) and different stamps that the voter must have.",
-    "gitcoin_read_more": "Read more about Gitcoin's Scorer & Thresholds <link>here</link>",
+    "gitcoin_read_more": "Read more about Gitcoin's Scorer & Thresholds <a>here</a>",
     "gitcoin_title": "Gitcoin Passport",
     "pro": "Pro Census",
     "request_custom_token": "'Request Custom Tokens'",

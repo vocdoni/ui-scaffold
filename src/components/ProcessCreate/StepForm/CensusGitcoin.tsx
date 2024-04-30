@@ -47,10 +47,15 @@ export const StepFormCensusGitcoin = () => {
         <Trans
           i18nKey='census.gitcoin_read_more'
           components={{
-            link: (
+            a: (
               <Link
                 href={'https://docs.passport.gitcoin.co/building-with-passport/major-concepts/scoring-thresholds'}
                 target='_blank'
+                variant='primary'
+                textDecoration='underline'
+                _hover={{
+                  textDecoration: 'none',
+                }}
               />
             ),
           }}
