@@ -3,13 +3,13 @@
     "has_already_voted": "Your vote is properly cast",
     "is_not_in_census": "You are not in the census",
     "not_connected": "You are not connected",
-    "overwrite_votes_left_one": "You can correct your vote only once.",
+    "overwrite_votes_left_one": "You can correct your vote once.",
     "overwrite_votes_left_other": "You can correct your vote up to {{ count }} times.",
     "submitting": "Submitting",
     "verify_vote_on_explorer": "Verify your vote on the explorer",
     "votes_one": "<span>1</span> <text>voter</text>",
     "votes_other": "<span>{{ count }}</span> <text>voters</text>",
-    "voting_anonymous_advice": "Please wait while the anonymous magic happens.\nThis can take up to several minutes; don't close the window."
+    "voting_anonymous_advice": "Please wait while the anonymous magic happens 🪄.\nThis can take up to several minutes; don't close the window."
   },
   "banner": {
     "start_now": "Create a vote now!",
@@ -20,7 +20,6 @@
   "banner_voting_types": {
     "anonymous_description": "Say goodbye to the high expenses of traditional voting methods. {{app}} brings you a more affordable way to conduct elections, cutting down on logistical and administrative costs while maintaining the highest standards of quality and security.",
     "anonymous_title": "Cost-Effective Voting Solutions",
-    "bottom_text": "Privacy should be normal",
     "flexible_description": "Engagement is key in democratic processes, and our platform is designed to maximize it. With its user-friendly interface and accessibility, {{app}} encourages higher participation rates, ensuring a more representative and inclusive voting experience.",
     "flexible_title": "Boosted Participation Rates",
     "token_description": "At the heart of {{app}} is our commitment to security. Leveraging cutting-edge cryptographic methods, we ensure that every vote cast is not only secure but fully verifiable. This transparency builds unparalleled trust among participants, crucial for the legitimacy of any election.",
@@ -92,14 +91,15 @@
   "census": {
     "chain_required": "You need to select a network",
     "description": "Choose how to authenticate and verify voters.",
-    "gitcoin_description": "With this census only voters with a Gitcoin Passport will be able to vote, providing a sybyl-attack resistance method. You can define the general score (GPS) and different stamps that the voter must have.",
+    "gitcoin_description": "With this census only voters with a Gitcoin Passport will be able to vote, providing a sybil-attack resistance method. You can define the general score (GPS) and different stamps that the voter must have.",
+    "gitcoin_read_more": "Read more about Gitcoin's Scorer & Thresholds <a>here</a>",
     "gitcoin_title": "Gitcoin Passport",
     "pro": "Pro Census",
     "request_custom_token": "'Request Custom Tokens'",
     "social_address_title": "Github users",
     "spreadsheet_title": "Custom data",
     "title": "Census",
-    "token_description": "Configure the census by choosing a token from any available network. You can request a token here.",
+    "token_description": "Configure the census by choosing a token from any available network. You can request a token <link1>here</link1>.",
     "token_required": "You need to select a token",
     "token_title": "Token based census",
     "wallet_address_title": "Wallet addresses"
@@ -165,10 +165,7 @@
     "tokens_you_own": "You own {{ balance }} tokens."
   },
   "footer": {
-    "about": "About",
-    "blog": "Blog",
     "company": "Company",
-    "contact": "Contact",
     "demo": "Voting Types",
     "demo1": "Single Choice",
     "demo2": "Multiple Choice",
@@ -176,25 +173,16 @@
     "demo4": "Ranked Voting",
     "demo5": "Participatory Budgeting",
     "demo6": "Weighted Voting",
-    "developer_portal": "Developers Portal",
-    "developers": "Developers",
-    "discord": "Discord",
     "follow_us": "Follow us",
     "footer_subtitle": "The Global Voting Protocol",
-    "homepage": "Home",
-    "repos": "Open-source Code",
-    "resources": "Resources",
     "terms_and_privacy": "<link1>Terms of use</link1> & <link2>Privacy Policy</link2>",
     "text": "<p1>The future</p1><p2>of Web3 voting starts here</p2>",
-    "tutorials": "Tutorials",
     "uses_cases": "Use Cases",
     "uses_cases1": "AGMs",
     "uses_cases2": "Elections",
     "uses_cases3": "Participatory Budgeting",
     "uses_cases4": "Online Voting",
-    "uses_cases5": "Gated Online Survey",
-    "vocdoni_api": "Vocdoni API",
-    "vocdoni_app": "Vocdoni APP"
+    "uses_cases5": "Gated Online Survey"
   },
   "form": {
     "account_create": {
@@ -644,9 +632,6 @@
     "organization": "Edit Organization",
     "privacy": "Privacy",
     "terms": "Terms",
-    "vocdoni": {
-      "login": "Open App"
-    },
     "wallet": "Wallet"
   },
   "meta": {
@@ -679,7 +664,6 @@
     "census": "Census",
     "census_strategies": {
       "csp": "CSP",
-      "gitcoin": "Gitcoin",
       "spreadsheet": "CSV/Spreadsheet",
       "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
       "web3": "Web3 addresses"
