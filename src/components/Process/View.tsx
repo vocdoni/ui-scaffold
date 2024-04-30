@@ -317,10 +317,13 @@ const ConfirmVoteModal = ({ election, answers }: { election: PublishedElection; 
                         span: <Text as='span' fontWeight='bold' whiteSpace='nowrap' />,
                       }}
                       values={{
-                        answers: answers[0]
-                          .map((a: string) => q.choices[Number(a)].title.default)
-                          .map((a: string) => `- ${a}`)
-                          .join('<br />'),
+                        answers:
+                          answers[0].length === 0
+                            ? t('process.spreadsheet.confirm.blank_vote')
+                            : answers[0]
+                                .map((a: string) => q.choices[Number(a)].title.default)
+                                .map((a: string) => `- ${a}`)
+                                .join('<br />'),
                       }}
                     />
                   </Text>

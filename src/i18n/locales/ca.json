@@ -708,6 +708,7 @@
         "abstain_count_one": "",
         "abstain_count_many": "",
         "abstain_count_other": "",
+        "blank_vote": "",
         "description": "Abans de votar, reviseu que tot sigui correcte.",
         "option": "<strong>Opció {{ number }}:</strong> {{ answer }}",
         "options": "<strong>Selecció:</strong> {{ answers }}",

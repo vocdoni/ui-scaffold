@@ -699,6 +699,7 @@
       "confirm": {
         "abstain_count_one": "Attention! You are abstaining for one option",
         "abstain_count_other": "Attention! You are abstaining for {{ count }} options",
+        "blank_vote": "No choices selected, sending blank vote",
         "description": "Before casting your vote review that everything is correct.",
         "option": "<strong>Option {{ number }}:</strong> {{ answer }}",
         "options": "<strong>Choices:</strong> {{ answers }}",
