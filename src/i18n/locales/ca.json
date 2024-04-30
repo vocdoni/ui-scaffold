@@ -94,14 +94,14 @@
     "chain_required": "Necessites seleccionar una xarxa",
     "description": "Selecciona com s'autenticaran i identificaran els votants.",
     "gitcoin_description": "Amb aquest cens, només els votants amb Gitcoin Passport podran votar, proporcionant un mètode de resistència contra atacs sybil. Pots definir la puntuació general (GPS) i diferents stamps que el votant ha de tenir.",
-    "gitcoin_read_more": "",
+    "gitcoin_read_more": "<a>Llegeix més sobre Scorer & Thresholds de Gitcoin</a>",
     "gitcoin_title": "Gitcoin Passport",
     "pro": "",
     "request_custom_token": "Sol·licitar Tokens Personalitzats",
     "social_address_title": "Usuaris de Github",
     "spreadsheet_title": "Dades personalitzades",
     "title": "Trieu el cens",
-    "token_description": "Seleccioneu la xarxa i el token per crear un cens on els titulars del token votaran amb el seu poder de vot. Pots sol·licitar un token <link1>aquí</link1>.",
+    "token_description": "Seleccioneu la xarxa i el token per crear un cens on els titulars del token votaran amb el seu poder de vot. Pots <link1>sol·licitar un token</link1> si ho necessites.",
     "token_required": "Necessites seleccionar un token",
     "token_title": "Cens basat en tokens",
     "wallet_address_title": "Adreces de cartera"
@@ -248,7 +248,6 @@
         "add_new_address": "Afageix una nova adreça",
         "delete_web3_address": "Eliminar adreça amb index {{ index }}",
         "gitcoin_description": "Construeix un cens resistents a Sybil (resistent a la falsificació d'identitat) amb Gitcoin Passport i els seus segells de verificació per a una seguretat reforçada",
-        "gitcoin_read_more": "Llegeix més sobre Scorer & Thresholds de Gitcoin <a>aquí</a>",
         "gitcoin_passport_score": "Puntuació del Gitcoin Passport",
         "gitcoin_stamps": "Stamps",
         "gitcoin_strategy_description_AND": "Els usuaris votants han de ser propietaris de tots els segells seleccionats i tenir un GPS igual o superior.",
@@ -725,7 +724,7 @@
     "strategy": "Estratègia",
     "success_modal": {
       "btn": "Finalitzar",
-      "text": "<p>El teu vot ha estat emès i emmagatzemat de forma segura a la cadena de blocs de Vocdoni. Pots comprovar-ho <verify>aquí</verify>.</p><p>La democràcia és important, la pots compartir amb la teva comunitat i amics:</p>",
+      "text": "<p>El teu vot ha estat emès i emmagatzemat de forma segura a la cadena de blocs de Vocdoni. <verify>Pots comprovar-ho aquí</verify>.</p><p>La democràcia és important, la pots compartir amb la teva comunitat i amics:</p>",
       "title": "Vot emès correctament!"
     },
     "total_census_size": "{{maxCensusSize}} electors permesos de {{censusSize}} totals en el cens",

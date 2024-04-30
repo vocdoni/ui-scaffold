@@ -92,14 +92,14 @@
     "chain_required": "You need to select a network",
     "description": "Choose how to authenticate and verify voters.",
     "gitcoin_description": "With this census only voters with a Gitcoin Passport will be able to vote, providing a sybil-attack resistance method. You can define the general score (GPS) and different stamps that the voter must have.",
-    "gitcoin_read_more": "Read more about Gitcoin's Scorer & Thresholds <a>here</a>",
+    "gitcoin_read_more": "<a>Read more about Gitcoin's Scorer & Thresholds</a>",
     "gitcoin_title": "Gitcoin Passport",
     "pro": "Pro Census",
     "request_custom_token": "'Request Custom Tokens'",
     "social_address_title": "Github users",
     "spreadsheet_title": "Custom data",
     "title": "Census",
-    "token_description": "Configure the census by choosing a token from any available network. You can request a token <link1>here</link1>.",
+    "token_description": "Configure the census by choosing a token from any available network. You can <link1>request a token</link1> if you need so.",
     "token_required": "You need to select a token",
     "token_title": "Token based census",
     "wallet_address_title": "Wallet addresses"
@@ -716,7 +716,7 @@
     "strategy": "Census strategy",
     "success_modal": {
       "btn": "Close",
-      "text": "<p>We've securely processed and stored your vote on our Blockchain. Click <verify>here</verify> to verify your vote.</p>",
+      "text": "<p>We've securely processed and stored your vote on our Blockchain. <verify>Verify your vote</verify>.</p>",
       "title": "Vote submitted!"
     },
     "total_census_size": "{{maxCensusSize}} allowed voters of {{censusSize}} total in census",
