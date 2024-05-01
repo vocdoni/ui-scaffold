@@ -140,6 +140,12 @@
       "selected_users": "Usuarios seleccionados:"
     }
   },
+  "demo": {
+    "desc_body": "",
+    "desc_footer": "",
+    "desc_title": "",
+    "select_an_option": ""
+  },
   "error": {
     "go_back": "Volver atrás",
     "invalid_cell_data": "Algunas filas no contienen direcciones correctas: {{rows, list}}",

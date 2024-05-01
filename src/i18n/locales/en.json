@@ -136,6 +136,12 @@
       "selected_users": "Selected users:"
     }
   },
+  "demo": {
+    "desc_body": "",
+    "desc_footer": "",
+    "desc_title": "",
+    "select_an_option": ""
+  },
   "error": {
     "go_back": "Go back",
     "invalid_cell_data": "Some rows do not contain correct addresses: {{rows,list(style:short)}}",

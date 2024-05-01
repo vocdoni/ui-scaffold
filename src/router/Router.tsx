@@ -22,6 +22,8 @@ const OrganizationEdit = lazy(() => import('~elements/Organization/Edit'))
 const OrganizationDashboardLayout = lazy(() => import('~components/Organization/Dashboard/Layout'))
 const OrganizationDashboard = lazy(() => import('~components/Organization/Dashboard'))
 const ProcessCreateSteps = lazy(() => import('~components/ProcessCreate/Steps'))
+// Demo
+const Demo = lazy(() => import('../elements/landings/Demo'))
 
 export const RoutesProvider = () => {
   const { client } = useClient()
@@ -43,7 +45,7 @@ export const RoutesProvider = () => {
       path: 'processes/:id',
       element: (
         <SuspenseLoader>
-          <Process />
+          <Demo />
         </SuspenseLoader>
       ),
       loader: async ({ params }: { params: Params<string> }) => client.fetchElection(params.id),
