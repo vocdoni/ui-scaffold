@@ -47,7 +47,10 @@ export const colors = {
     700: colorsBase.black,
   },
 
-  checkbox: colorsBase.primary.main,
+  checkbox: {
+    selected: colorsBase.primary.main,
+    selected_text: colorsBase.white.pure,
+  },
 
   editor: {
     character_limit: colorsBase.gray.light,

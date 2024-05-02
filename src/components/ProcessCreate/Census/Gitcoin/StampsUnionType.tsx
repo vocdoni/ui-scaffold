@@ -22,8 +22,8 @@ const UnionTypeRadioCard = (props: UseRadioProps & PropsWithChildren) => {
         borderRadius='md'
         boxShadow='md'
         _checked={{
-          bg: 'primary.main',
-          color: 'primary.50',
+          bg: 'checkbox.selected',
+          color: 'checkbox.selected_text',
           borderColor: 'primary.dark2',
         }}
         _focus={{
