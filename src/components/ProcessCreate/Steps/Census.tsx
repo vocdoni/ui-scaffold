@@ -87,8 +87,6 @@ export const Census = () => {
               delete nform?.maxCensusSize
             }
 
-            if (definedUnim[index - defined.length]) setReason(detailsUnim[definedUnim[index - defined.length]].title)
-
             setForm(nform)
           }}
           variant='card'
@@ -129,6 +127,7 @@ export const Census = () => {
                       onClick={(e) => {
                         e.preventDefault()
                         e.stopPropagation()
+                        setReason(detailsUnim[ct].title)
                         onOpen()
                       }}
                       icon={detailsUnim[ct].icon}
@@ -136,21 +135,6 @@ export const Census = () => {
                       description={detailsUnim[ct].description}
                       pro
                     />
-                    // <Tab
-                    //   key={index}
-                    //   onClick={(e) => {
-                    //     e.preventDefault()
-                    //     e.stopPropagation()
-                    //     onOpen()
-                    //   }}
-                    // >
-                    //   <Box>
-                    //     <Icon as={detailsUnim[ct].icon} />
-                    //     <Text>{detailsUnim[ct].title}</Text>
-                    //   </Box>
-                    //   <Text>{detailsUnim[ct].description}</Text>
-                    //   <Text id={'pro-badge'}>Pro</Text>
-                    // </Tab>
                   ))}
                 </Box>
               </>
