@@ -22,6 +22,7 @@ import {
   useDisclosure,
   useMultiStyleConfig,
 } from '@chakra-ui/react'
+import { WarningIcon } from '@chakra-ui/icons'
 import { ElectionQuestions, ElectionResults, environment, useConfirm } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
 import { ElectionResultsTypeNames, ElectionStatus, PublishedElection } from '@vocdoni/sdk'
@@ -262,6 +263,9 @@ const ConfirmVoteModal = ({ election, answers }: { election: PublishedElection; 
   const styles = useMultiStyleConfig('ConfirmModal')
   const { cancel, proceed } = useConfirm()
 
+  const canAbstain =
+    election.resultsType.name === ElectionResultsTypeNames.MULTIPLE_CHOICE && election.resultsType.properties.canAbstain
+
   return (
     <>
       <ModalHeader>
@@ -313,12 +317,13 @@ const ConfirmVoteModal = ({ election, answers }: { election: PublishedElection; 
                         span: <Text as='span' fontWeight='bold' whiteSpace='nowrap' />,
                       }}
                       values={{
-                        answers: answers[0]
-                          .map((a: string) =>
-                            q.choices[Number(a)] ? q.choices[Number(a)].title.default : t('cc.vote.abstain')
-                          )
-                          .map((a: string) => `- ${a}`)
-                          .join('<br />'),
+                        answers:
+                          answers[0].length === 0
+                            ? t('process.spreadsheet.confirm.blank_vote')
+                            : answers[0]
+                                .map((a: string) => q.choices[Number(a)].title.default)
+                                .map((a: string) => `- ${a}`)
+                                .join('<br />'),
                       }}
                     />
                   </Text>
@@ -328,6 +333,16 @@ const ConfirmVoteModal = ({ election, answers }: { election: PublishedElection; 
             </Box>
           ))}
         </Flex>
+        {canAbstain && answers[0].length < election.voteType.maxCount! && (
+          <Flex direction={'row'} py={2} gap={2} alignItems={'center'} color={'primary.main'}>
+            <WarningIcon />
+            <Text display='flex' flexDirection='column' gap={1}>
+              {t('process.spreadsheet.confirm.abstain_count', {
+                count: election.voteType.maxCount! - answers[0].length,
+              })}
+            </Text>
+          </Flex>
+        )}
       </ModalBody>
       <ModalFooter sx={styles.footer}>
         <Button onClick={cancel!} variant='ghost' sx={styles.cancel}>
