@@ -64,7 +64,10 @@ export const colors = {
   error: colorsBase.red,
   success: colorsBase.green,
 
-  checkbox: colorsBase.primary.main,
+  checkbox: {
+    selected: colorsBase.primary.main,
+    selected_text: colorsBase.white.pure,
+  },
 
   footer_icon: colorsBase.white.pure,
 
