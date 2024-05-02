@@ -61,7 +61,7 @@ const Features = () => {
               <Text fontSize={{ base: '22px', lg: '32px' }} fontWeight='bold' textTransform='uppercase' mb='10px'>
                 {t('home_features.anonymous_title')}
               </Text>
-              <Text fontSize='18px' color='#595959'>
+              <Text fontSize='18px' color='#595959' mt='15px'>
                 {t('home_features.anonymous_description')}
               </Text>
             </Box>
@@ -72,7 +72,7 @@ const Features = () => {
               <Text fontSize={{ base: '22px', lg: '32px' }} fontWeight='bold' textTransform='uppercase' mb='10px'>
                 {t('home_features.census_startegy_title')}
               </Text>
-              <Text fontSize='18px' color='#595959'>
+              <Text fontSize='18px' color='#595959' mt='15px'>
                 {t('home_features.census_startegy_description')}
               </Text>
             </Box>
@@ -83,7 +83,7 @@ const Features = () => {
               <Text fontSize={{ base: '22px', lg: '32px' }} fontWeight='bold' textTransform='uppercase' mb='10px'>
                 {t('home_features.open_source_title')}
               </Text>
-              <Text fontSize='18px' color='#595959'>
+              <Text fontSize='18px' color='#595959' mt='15px'>
                 {t('home_features.open_source_description')}
               </Text>
             </Box>
@@ -94,7 +94,7 @@ const Features = () => {
               <Text fontSize={{ base: '22px', lg: '32px' }} fontWeight='bold' textTransform='uppercase' mb='10px'>
                 {t('home_features.gas_less_title')}
               </Text>
-              <Text fontSize='18px' color='#595959'>
+              <Text fontSize='18px' color='#595959' mt='15px'>
                 {t('home_features.gas_less_description')}
               </Text>
             </Box>
@@ -105,7 +105,7 @@ const Features = () => {
               <Text fontSize={{ base: '22px', lg: '32px' }} fontWeight='bold' textTransform='uppercase' mb='10px'>
                 {t('home_features.descentralized_title')}
               </Text>
-              <Text fontSize='18px' color='#595959'>
+              <Text fontSize='18px' color='#595959' mt='15px'>
                 {t('home_features.descentralized_description')}
               </Text>
             </Box>
@@ -116,7 +116,7 @@ const Features = () => {
               <Text fontSize={{ base: '22px', lg: '32px' }} fontWeight='bold' textTransform='uppercase' mb='10px'>
                 {t('home_features.multichain_title')}
               </Text>
-              <Text fontSize='18px' color='#595959'>
+              <Text fontSize='18px' color='#595959' mt='15px'>
                 {t('home_features.multichain_description')}
               </Text>
             </Box>
@@ -127,7 +127,7 @@ const Features = () => {
               <Text fontSize={{ base: '22px', lg: '32px' }} fontWeight='bold' textTransform='uppercase' mb='10px'>
                 {t('home_features.flexible_title')}
               </Text>
-              <Text fontSize='18px' color='#595959'>
+              <Text fontSize='18px' color='#595959' mt='15px'>
                 {t('home_features.flexible_description')}
               </Text>
             </Box>

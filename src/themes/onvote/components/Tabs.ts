@@ -69,7 +69,7 @@ const card = definePartsStyle({
     '& > img': {
       w: 5,
       h: 5,
-      bgColor: 'checkbox',
+      bgColor: 'checkbox.selected',
       p: 1,
       position: 'absolute',
       top: 2,
