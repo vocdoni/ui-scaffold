@@ -6,7 +6,6 @@ import { useFormContext } from 'react-hook-form'
 import { GitcoinForm } from '~components/ProcessCreate/Census/Gitcoin/GitcoinForm'
 import { useProcessCreationSteps } from '~components/ProcessCreate/Steps/use-steps'
 import Wrapper from '~components/ProcessCreate/Steps/Wrapper'
-import { DefaultCensusSize } from '~constants'
 
 export type GitcoinStampToken = Omit<TokenSummary, 'externalID'> & {
   externalID: string // For stamp tokens externalID is not nullable
