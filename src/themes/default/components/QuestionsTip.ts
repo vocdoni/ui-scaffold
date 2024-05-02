@@ -1,5 +1,5 @@
-import {createMultiStyleConfigHelpers} from '@chakra-ui/react'
-import {questionTipAnatomy} from "@vocdoni/chakra-components";
+import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
+import { questionTipAnatomy } from '@vocdoni/chakra-components'
 
 const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpers(questionTipAnatomy)
 
@@ -15,7 +15,7 @@ const baseStyle = definePartsStyle({
   text: {
     color: 'primary.main',
     opacity: '0.7',
-  }
+  },
 })
 
 export const QuestionsTip = defineMultiStyleConfig({
