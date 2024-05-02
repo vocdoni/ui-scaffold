@@ -58,10 +58,10 @@ export const StampsUnionType = () => {
 
   return (
     <Flex
-      gap={5}
-      flexDirection={{ base: 'column', md: 'row' }}
+      gap={2}
+      flexDirection={'column'}
       justifyContent={{ base: 'start', md: 'space-between' }}
-      alignItems={{ base: 'start', md: 'center' }}
+      alignItems={{ base: 'start', md: 'end' }}
       maxW={600}
     >
       <HStack>
