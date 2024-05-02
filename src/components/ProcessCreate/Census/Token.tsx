@@ -315,6 +315,7 @@ export const CensusTokens = () => {
             placeholder={t('form.process_create.census.tokens_placeholder')}
             aria-label={t('form.process_create.census.tokens_placeholder')}
             defaultValue={ct}
+            value={ct} // By setting the value will prevent to show request tokens as selected value
             name={ctoken.name}
             onBlur={ctoken.onBlur}
             formatGroupLabel={formatGroupLabel}

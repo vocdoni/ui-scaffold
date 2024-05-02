@@ -11,6 +11,8 @@ import { Link } from './Link'
 import { Modal } from './Modal'
 import { ElectionQuestions } from './Questions'
 import { QuestionsConfirmation } from './QuestionsConfirmation'
+import { QuestionsTip } from './QuestionsTip'
+import { QuestionsTypeBadge } from './QuestionsTypeBadge'
 import { ElectionResults } from './Results'
 import { SpreadsheetAccess } from './SpreadSheet'
 import { Stepper } from './Stepper'
@@ -32,6 +34,8 @@ export {
   Link,
   Modal,
   QuestionsConfirmation,
+  QuestionsTip,
+  QuestionsTypeBadge,
   SpreadsheetAccess,
   Stepper,
   Tabs,
@@ -52,6 +56,8 @@ export const components = {
   Modal,
   ElectionQuestions,
   QuestionsConfirmation,
+  QuestionsTip,
+  QuestionsTypeBadge,
   ElectionResults,
   SpreadsheetAccess,
   Stepper,

@@ -12,22 +12,35 @@ const Process = () => {
   const { t } = useTranslation()
 
   return (
-    <Box as='section' className='site-wrapper' py={{ base: '60px', lg: '100px' }}>
-      <Text color='home.section.title' fontWeight='bold' mb='6px' textAlign='center' fontSize='20px' lineHeight='24px'>
-        {t('home.process.header')}
-      </Text>
-      <Text fontWeight='bold' fontSize='40px' lineHeight='48px' mb='10px' textAlign='center'>
+    <Box as='section' className='site-wrapper' py={{ base: '60px', lg: '100px' }} mb={{ base: '60px', xl: '120px' }}>
+      <Text
+        fontSize={{ base: '40px', xl: '60px' }}
+        lineHeight={{ base: '36px', xl: '78px' }}
+        fontWeight='bold'
+        mb='25px'
+        fontFamily='basier'
+        textAlign='center'
+      >
         {t('home.process.title')}
       </Text>
-      <Text fontSize='16px' lineHeight='28px' color='gray' textAlign='center'>
+      <Text
+        mb='60px'
+        maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}
+        mx='auto'
+        textAlign='center'
+        fontFamily='basier'
+        fontSize='20px'
+        opacity='0.75'
+        lineHeight='28px'
+        color='black'
+        margin='0px auto'
+      >
         {t('home.process.description_1')}
-      </Text>
-      <Text fontSize='16px' lineHeight='28px' color='gray' mb='60px' textAlign='center'>
         {t('home.process.description_2')}
       </Text>
-      <Flex flexDirection={{ base: 'column', lg: 'row' }} gap={{ base: '40px', lg: '60px' }}>
+      <Flex flexDirection={{ base: 'column', lg: 'row' }} gap={{ base: '40px', lg: '60px' }} mt='70px'>
         <Flex flex='1 1 50%' justifyContent={{ base: 'center', lg: 'end' }} alignItems='center'>
-          <Image src={process} borderRadius='lg' w='535px' />
+          <Image src={process} borderRadius='lg' maxW={{ base: '350px', xl: '550px' }} mt='-20px' />
         </Flex>
         <Flex flex='1 1' flexBasis={{ lg: '50%' }} flexDirection='column' justifyContent='space-between' gap='40px'>
           <Card variant='step'>

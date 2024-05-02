@@ -1,16 +1,14 @@
 import { Box, Button, Flex, Image, Text } from '@chakra-ui/react'
+import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { useTranslation } from 'react-i18next'
 import { FaRegCheckCircle } from 'react-icons/fa'
-import devices from '/assets/devices_vocdoni.png'
 import { Link as ReactRouterLink } from 'react-router-dom'
-import { useClient } from '@vocdoni/react-providers'
 import { useAccount } from 'wagmi'
-import { useConnectModal } from '@rainbow-me/rainbowkit'
+import devices from '/assets/devices_vocdoni.png'
 
 const CreateProcess = () => {
   const { t } = useTranslation()
   const { isConnected } = useAccount()
-  const { account } = useClient()
   const { openConnectModal } = useConnectModal()
 
   return (
@@ -18,20 +16,30 @@ const CreateProcess = () => {
       as='section'
       className='site-wrapper'
       flexDirection={{ base: 'column', lg: 'row' }}
-      py={{ base: '60px', lg: '100px' }}
+      py={{ base: '0px', sm: '15px', md: '30px', md2: '30px', lg: '30px' }}
       gap={{ base: '40px', lg: '60px' }}
     >
-      <Box flex='1 1 40%'>
+      <Box flex='1 1 50%'>
         <Text
-          fontSize={{ base: '30px', sm: '33px', sm2: '36px', md: '39px', md2: '42px', lg2: '48px' }}
-          lineHeight={{ base: '36px', sm: '39.5px', sm2: '43px', md: '47px', md2: '50px', lg2: '58px' }}
-          fontWeight='800'
+          fontSize={{ base: '48px', md: '52px', md2: '56px', lg2: '64px' }}
+          lineHeight={{ base: '54px', md: '58px', md2: '64px', lg2: '78px' }}
+          fontWeight='600'
+          fontFamily='basier'
           mb='10px'
+          mt='80px'
           textAlign={{ base: 'center', lg: 'start' }}
         >
           {t('home.create_process.title')}
         </Text>
-        <Text fontSize='20px' lineHeight='35px' color='gray' mb='30px' textAlign={{ base: 'center', lg: 'start' }}>
+        <Text
+          fontSize='24px'
+          lineHeight='35px'
+          fontFamily='basier'
+          color='gray'
+          mt='52px'
+          mb='52px'
+          textAlign={{ base: 'center', lg: 'start' }}
+        >
           {t('home.create_process.subtitle')}
         </Text>
         <Box maxW={{ lg: '90%' }}>
@@ -42,6 +50,7 @@ const CreateProcess = () => {
               mx={{ base: 'auto', lg: 'start' }}
               as={ReactRouterLink}
               to='/processes/create'
+              minW='300px'
             >
               {t('home.create_process.btn')}
             </Button>
@@ -52,6 +61,9 @@ const CreateProcess = () => {
               mb='20px'
               w={{ base: 'full', sm: 'fit-content', lg: 'full' }}
               mx={{ base: 'auto', lg: 'start' }}
+              height='62px'
+              fontSize='20px'
+              minW='300px'
               onClick={() => {
                 if (openConnectModal) openConnectModal()
               }}
@@ -77,7 +89,7 @@ const CreateProcess = () => {
           </Flex>
         </Box>
       </Box>
-      <Box flex='1 1 60%' display={{ lg: 'flex' }} justifyContent='center' alignItems='center'>
+      <Box flex='1 1 50%' display={{ lg: 'flex' }} justifyContent='center' alignItems='center'>
         <Image src={devices} w={{ base: '535px', lg: '100%' }} mx='auto' />
       </Box>
     </Flex>

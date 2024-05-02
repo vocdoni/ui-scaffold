@@ -220,8 +220,18 @@ const aside = definePartsStyle({
 const benefits = definePartsStyle({
   container: {
     w: '350px',
-    borderRadius: 'xl',
-    boxShadow: 'var(--box-shadow-darker)',
+    backdropFilter: 'blur(16px)',
+    borderBottomWidth: '0',
+    borderBottomColor: 'rgba(255, 255, 255, .15)',
+    borderLeftWidth: '0',
+    borderLeftColor: 'rgba(255, 255, 255, .15)',
+    borderRightWidth: '1px',
+    borderRightColor: 'rgba(255, 255, 255, .2)',
+    borderRadius: '8px',
+    flexDirection: 'column',
+    display: 'flex',
+    overflow: 'hidden',
+    boxShadow: 'inset 0 -1px 0 1px rgba(255, 255, 255, .2), 0 8px 22px rgba(0, 0, 0, .12)',
   },
   header: {
     p: '30px',
@@ -229,12 +239,13 @@ const benefits = definePartsStyle({
     fontSize: { base: '28.5px', sm: '28px' },
     lineHeight: { base: '38px', sm: '37px' },
     fontWeight: 'bold',
-    textAlign: 'center',
+    textAlign: 'left',
+    fontFamily: 'basier',
   },
   body: {
     p: '30px',
     pt: 0,
-    textAlign: 'center',
+    textAlign: 'left',
   },
 })
 
@@ -265,20 +276,58 @@ const iconCard = definePartsStyle({
 
     'div:last-of-type': {
       'p:first-of-type': {
-        fontWeight: 'bold',
-        mb: '6px',
-        fontSize: '20px',
-        lineHeight: '24px',
+        fontWeight: '600',
+        mb: '15px',
+        fontSize: '26px',
+        lineHeight: '32px',
+        mr: 2,
       },
 
       'p:last-of-type': {
-        color: 'gray',
+        fontSize: '22px',
+        color: '#000000a1 !important',
+      },
+    },
+  },
+})
+
+const imageCard = definePartsStyle({
+  container: {
+    bgColor: 'transparent',
+  },
+  body: {
+    p: 0,
+    display: 'flex',
+    gap: '24px',
+    alignItems: 'center',
+
+    'div:first-of-type': {
+      backgroundColor: 'transparent',
+      w: '120px',
+      h: '120px',
+      minW: '120px',
+    },
+
+    'div:last-of-type': {
+      'p:first-of-type': {
+        fontWeight: '600',
+        mb: '15px',
+        fontSize: '26px',
+        lineHeight: '32px',
+      },
+
+      'p:last-of-type': {
+        fontSize: '22px',
+        color: '#000000a1 !important',
       },
     },
   },
 })
 
 const step = definePartsStyle({
+  container: {
+    backgroundColor: 'transparent',
+  },
   body: {
     p: 0,
     display: 'flex',
@@ -303,21 +352,14 @@ const step = definePartsStyle({
 
     'div:last-of-type': {
       'p:first-of-type': {
-        fontSize: '17px',
-        lineHeight: '20.4px',
-        color: 'home.step.title',
+        fontSize: '26px',
+        lineHeight: '32px',
         fontWeight: 'bold',
-        mb: '6px',
+        mb: '15px',
       },
       'p:nth-of-type(2)': {
-        fontSize: '20px',
-        lineHeight: '24px',
-        mb: '8px',
-      },
-      'p:last-of-type': {
-        color: 'gray',
-        fontSize: '16px',
-        lineHeight: '28px',
+        fontSize: '22px',
+        color: '#000000a1 !important',
       },
     },
   },
@@ -362,6 +404,8 @@ const faqs = definePartsStyle({
   container: {
     borderRadius: 'none',
     borderBottom: '1px solid rgb(229, 229, 229)',
+    backgroundColor: 'transparent',
+    fontSize: '22px',
   },
   header: {
     p: 0,
@@ -373,7 +417,7 @@ const faqs = definePartsStyle({
   },
   body: {
     p: 0,
-    mb: '17px',
+    mb: '19px',
 
     '& p': {
       fontSize: '15px',
@@ -384,6 +428,7 @@ const faqs = definePartsStyle({
 const client = definePartsStyle({
   container: {
     border: 'none',
+    backgroundColor: 'none',
 
     _hover: {
       lg: {
@@ -415,6 +460,7 @@ const client = definePartsStyle({
       fontSize: '12px',
       fontWeight: 'bold',
       color: '#666',
+      marginTop: '22px',
     },
   },
 })
@@ -426,6 +472,7 @@ const variantsCards = {
   demo,
   faqs,
   'icon-card': iconCard,
+  'image-card': imageCard,
   'no-elections': noElections,
   step,
   'types-voting': typesVoting,

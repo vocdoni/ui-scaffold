@@ -88,6 +88,15 @@ export const theme = extendTheme(vtheme, {
         },
       },
 
+      '.site-wrapper-full': {
+        width: 'full',
+        px: {
+          base: '10px',
+          sm: '20px',
+          md: '80px',
+        },
+      },
+
       '.voting-type': {
         justifyContent: 'space-around',
         flexWrap: 'wrap',
