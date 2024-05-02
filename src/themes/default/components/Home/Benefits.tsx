@@ -1,4 +1,4 @@
-import { Box, Card, CardBody, CardHeader, Flex, Text } from '@chakra-ui/react'
+import { Box, Card, CardBody, CardHeader, Flex, Image, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 
 const Benefits = () => {
@@ -6,124 +6,125 @@ const Benefits = () => {
 
   return (
     <>
-      <div className='hhs-wave-con'>
-        <div className='hhs-wave-module'>
-          <svg
-            id='opt_1'
-            data-name='opt 1'
-            xmlns='http://www.w3.org/2000/svg'
-            height='64'
-            viewBox='0 0 1366 128'
-            preserveAspectRatio='none'
-            style={{ fill: 'green', width: '100%' }}
-          >
-            <g id='Wave-1'>
-              <path
-                id='Rectangle'
-                className='cls-1'
-                d='M0,0C623,0,667,151.4614,1366,121.6993V128H0Z'
-                style={{ fill: '#175b64' }}
-              ></path>
-            </g>
-          </svg>
-        </div>
-      </div>
-      <Box as='section' id='benefits' bgColor='#175b64' mt={{ base: '-1px' }}>
-        <Box className='site-wrapper' pb={{ base: '60px', lg: '100px' }} pt={{ base: '60px' }}>
-          <Text
-            fontSize={{ base: '25px', lg: '30px', xl: '40px' }}
-            lineHeight={{ base: '30px', lg: '36px', xl: '48px' }}
-            fontWeight='bold'
-            textAlign='center'
-            mb='10px'
-            color='white'
-          >
-            {t('home.benefits.title')}
-          </Text>
-          <Text
-            color='white'
-            mb='60px'
-            maxW={{ base: '100%', sm: '70%', sm2: '60%', lg: '840px' }}
-            mx='auto'
-            textAlign='justify'
-          >
-            {t('home.benefits.subtitle_1')}
-          </Text>
-          <Flex flexWrap='wrap' justifyContent='center' maxW='1100px' mx='auto' gap={5}>
-            <Card variant='benefits' bgColor='home.benefits.dark_bg' color='home.benefits.dark_color'>
-              <CardHeader>{t('home.benefits.card_1.title')}</CardHeader>
-              <CardBody>{t('home.benefits.card_1.description')}</CardBody>
-            </Card>
-            <Card variant='benefits' bgColor='home.benefits.light_bg' color='home.benefits.light_color'>
-              <CardHeader>{t('home.benefits.card_2.title')}</CardHeader>
-              <CardBody>{t('home.benefits.card_2.description')}</CardBody>
-            </Card>
-            <Card
-              variant='benefits'
-              bgColor={{
-                base: 'home.benefits.dark_bg',
-                benefits1: 'home.benefits.light_bg',
-                benefits2: 'home.benefits.dark_bg',
-              }}
-              color={{
-                base: 'home.benefits.dark_color',
-                benefits1: 'home.benefits.light_color',
-                benefits2: 'home.benefits.dark_color',
-              }}
+      <Box position='relative'>
+        <Box position='absolute' display={{ base: 'none', xl: 'block' }} opacity='0.5' width='150px' top='350px'>
+          <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6436e8ff4a93d8291f122d65_Vector4.png' />
+          <Image
+            src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6436e915e43ce706c7d17313_Vector5.png'
+            position='absolute'
+            top='2%'
+            bottom='0%'
+            left='auto'
+            right='9%'
+          />
+        </Box>
+        <Box
+          position='absolute'
+          display={{ base: 'none', xl: 'block' }}
+          opacity='0.5'
+          transform='scale(-1, -1)'
+          width='135px'
+          bottom='120px'
+          right='15px'
+        >
+          <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6436e8ff4a93d8291f122d65_Vector4.png' />
+          <Image
+            src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6436e915e43ce706c7d17313_Vector5.png'
+            position='absolute'
+            top='2%'
+            bottom='0%'
+            left='auto'
+            right='9%'
+          />
+        </Box>
+        <Box as='section' id='benefits' mt={{ base: '50px' }}>
+          <Box className='site-wrapper' pb={{ base: '60px', lg: '100px' }} pt={{ base: '60px' }}>
+            <Text
+              fontSize={{ base: '40px', xl: '60px' }}
+              lineHeight={{ base: '36px', xl: '78px' }}
+              fontWeight='bold'
+              textAlign='center'
+              mb='25px'
+              fontFamily='basier'
             >
-              <CardHeader>{t('home.benefits.card_3.title')}</CardHeader>
-              <CardBody>{t('home.benefits.card_3.description')}</CardBody>
-            </Card>
-            <Card
-              variant='benefits'
-              bgColor={{
-                base: 'home.benefits.light_bg',
-                benefits1: 'home.benefits.dark_bg',
-                benefits2: 'home.benefits.light_bg',
-              }}
-              color={{
-                base: 'home.benefits.light_color',
-                benefits1: 'home.benefits.dark_color',
-                benefits2: 'home.benefits.light_color',
-              }}
+              {t('home.benefits.title')}
+            </Text>
+            <Text
+              mb='60px'
+              maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}
+              mx='auto'
+              textAlign='center'
+              fontFamily='basier'
+              fontSize='20px'
+              opacity='0.75'
             >
-              <CardHeader>{t('home.benefits.card_4.title')}</CardHeader>
-              <CardBody>{t('home.benefits.card_4.description')}</CardBody>
-            </Card>
-            <Card variant='benefits' bgColor='home.benefits.dark_bg' color='home.benefits.dark_color'>
-              <CardHeader>{t('home.benefits.card_5.title')}</CardHeader>
-              <CardBody>{t('home.benefits.card_5.description')}</CardBody>
-            </Card>
-            <Card variant='benefits' bgColor='home.benefits.light_bg' color='home.benefits.light_color'>
-              <CardHeader>{t('home.benefits.card_6.title')}</CardHeader>
-              <CardBody>{t('home.benefits.card_6.description')}</CardBody>
-            </Card>
-          </Flex>
+              {t('home.benefits.subtitle_1')}
+            </Text>
+
+            <Flex flexWrap='wrap' justifyContent='center' maxW='1240px' mx='auto' gap={10}>
+              <Card variant='benefits' bgColor='home.benefits.dark_bg' color='home.benefits.dark_color'>
+                <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29a3e8913631fd48de5_card-feature-img-control.png' />
+                <CardHeader>{t('home.benefits.card_1.title')}</CardHeader>
+                <CardBody>{t('home.benefits.card_1.description')}</CardBody>
+              </Card>
+
+              <Card variant='benefits' bgColor='home.benefits.light_bg' color='black'>
+                <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29a7812b3fd5db1d246_card-feature-img-agile.png' />
+                <CardHeader>{t('home.benefits.card_2.title')}</CardHeader>
+                <CardBody>{t('home.benefits.card_2.description')}</CardBody>
+              </Card>
+
+              <Card
+                variant='benefits'
+                bgColor={{
+                  base: 'home.benefits.dark_bg',
+                  benefits1: 'home.benefits.light_bg',
+                  benefits2: 'home.benefits.dark_bg',
+                }}
+                color={{
+                  base: 'home.benefits.dark_color',
+                  benefits1: '#000',
+                  benefits2: 'home.benefits.dark_color',
+                }}
+              >
+                <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29ae37bf52a3ec72b34_card-feature-img-privacy.png' />
+                <CardHeader>{t('home.benefits.card_3.title')}</CardHeader>
+                <CardBody>{t('home.benefits.card_3.description')}</CardBody>
+              </Card>
+
+              <Card
+                variant='benefits'
+                bgColor={{
+                  base: 'home.benefits.light_bg',
+                  benefits1: 'home.benefits.dark_bg',
+                  benefits2: 'home.benefits.light_bg',
+                }}
+                color={{
+                  base: 'black',
+                  benefits1: 'home.benefits.dark_color',
+                  benefits2: 'black',
+                }}
+              >
+                <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29a2fc101547d4ca362_card-feature-img-anonymous.png' />
+                <CardHeader>{t('home.benefits.card_4.title')}</CardHeader>
+                <CardBody>{t('home.benefits.card_4.description')}</CardBody>
+              </Card>
+
+              <Card variant='benefits' bgColor='home.benefits.dark_bg' color='home.benefits.dark_color'>
+                <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29a2c93ed6cd6d1faf0_card-feature-img-guarantee.png' />
+                <CardHeader>{t('home.benefits.card_5.title')}</CardHeader>
+                <CardBody>{t('home.benefits.card_5.description')}</CardBody>
+              </Card>
+
+              <Card variant='benefits' bgColor='white' color='black'>
+                <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29ad60f67fa065d02bd_card-feature-img-accesible.png' />
+                <CardHeader>{t('home.benefits.card_6.title')}</CardHeader>
+                <CardBody>{t('home.benefits.card_6.description')}</CardBody>
+              </Card>
+            </Flex>
+          </Box>
         </Box>
       </Box>
-      <div className='hhs-wave-con'>
-        <div className='hhs-wave-module'>
-          <svg
-            id='opt_1'
-            data-name='opt 1'
-            xmlns='http://www.w3.org/2000/svg'
-            height='64'
-            viewBox='0 0 1366 128'
-            preserveAspectRatio='none'
-            width=''
-            style={{ fill: 'green', width: '100%', transform: 'scale(-1, -1)', marginTop: '-1px' }}
-          >
-            <g id='Wave-1'>
-              <path
-                id='Rectangle'
-                className='cls-1'
-                d='M0,0C623,0,667,151.4614,1366,121.6993V128H0Z'
-                style={{ fill: '#175b64' }}
-              ></path>
-            </g>
-          </svg>
-        </div>
-      </div>
     </>
   )
 }
