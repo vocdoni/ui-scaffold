@@ -82,7 +82,7 @@ const ModalPro = ({ isOpen, onClose, reason }: { isOpen: boolean; onClose: () =>
           <Box mb={6}>
             <Trans
               i18nKey='process_create.modal_pro.description'
-              values={{ reason }}
+              values={{ reason: reason.toUpperCase() }}
               components={{
                 p: <Text />,
                 bold: <Text as='span' fontWeight='bold' />,
