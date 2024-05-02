@@ -291,6 +291,9 @@ const addressDropdown = defineStyle({
 const transparent = defineStyle((props) => {
   return {
     bgColor: 'transparent',
+    fontFamily: 'pixeloidsans, monospace',
+    color: 'button_transparent_color',
+    fontWeight: 'normal',
 
     _hover: {
       bgColor: 'transparent',
