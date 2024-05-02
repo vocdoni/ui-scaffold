@@ -27,6 +27,8 @@ export const StepsForm = ({ steps, children, activeStep, next, prev, setActiveSt
     questions: [{ options: [{}, {}] }],
     addresses: [],
     gpsWeighted: false,
+    passportScore: 20,
+    stampsUnionType: 'OR',
   })
 
   const [isLoadingPreview, setIsLoadingPreview] = useState(false)

@@ -9,9 +9,50 @@ import ModalPro from '../ModalPro'
 import { StepsNavigation } from './Navigation'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 import Wrapper from './Wrapper'
+import { TabProps } from '@chakra-ui/tabs/dist/tab'
 
 export interface CensusValues {
   censusType: CensusType | null
+}
+
+interface ITabsCardSkeletonProps {
+  onClick: ((e: any) => void) | undefined
+  icon: any
+  title: string
+  description: string
+  check?: boolean
+  pro?: boolean
+}
+
+const TabCardSkeleton = ({
+  onClick,
+  icon,
+  title,
+  description,
+  check = false,
+  pro = false,
+  ...props
+}: ITabsCardSkeletonProps & TabProps) => {
+  return (
+    <Tab onClick={onClick} {...props}>
+      {check && (
+        <>
+          <Check />
+          <Box id={'empty-check'} />
+        </>
+      )}
+      {pro && (
+        <Box>
+          <Box id={'pro-badge'}>Pro</Box>
+        </Box>
+      )}
+      <Box id={'title'}>
+        <Icon as={icon} />
+        <Text>{title}</Text>
+      </Box>
+      <Text id={'description'}>{description}</Text>
+    </Tab>
+  )
 }
 
 export const Census = () => {
@@ -46,8 +87,6 @@ export const Census = () => {
               delete nform?.maxCensusSize
             }
 
-            if (definedUnim[index - defined.length]) setReason(detailsUnim[definedUnim[index - defined.length]].title)
-
             setForm(nform)
           }}
           variant='card'
@@ -56,42 +95,23 @@ export const Census = () => {
           <TabList mb={10}>
             <Box>
               {defined.map((ct: CensusType, index: number) => (
-                <Tab key={index} onClick={() => setShowProCards(false)}>
-                  <Check />
-
-                  <Box>
-                    <Icon as={details[ct].icon} />
-                    <Text>{details[ct].title}</Text>
-                  </Box>
-                  <Text>{details[ct].description}</Text>
-                  <Box />
-                </Tab>
+                <TabCardSkeleton
+                  key={index}
+                  onClick={() => setShowProCards(false)}
+                  icon={details[ct].icon}
+                  title={details[ct].title}
+                  description={details[ct].description}
+                  check
+                />
               ))}
               {!!definedUnim.length && (
-                <Tab
+                <TabCardSkeleton
+                  onClick={() => setShowProCards((prev) => !prev)}
+                  icon={CgMoreO}
+                  title={t('process_create.census.others_title')}
+                  description={t('process_create.census.others_description')}
                   transform={showProCards ? 'scale(0.92)' : ''}
-                  sx={{
-                    '& > div:nth-of-type(2)': {
-                      display: 'none',
-                    },
-                  }}
-                >
-                  <Box>
-                    <Icon as={CgMoreO} />
-                    <Text>{t('process_create.census.others_title')}</Text>
-                  </Box>
-                  <Text>{t('process_create.census.others_description')}</Text>
-
-                  <Box />
-                  <Box
-                    onClick={() => setShowProCards((prev) => !prev)}
-                    position='absolute'
-                    w='100%'
-                    h='100%'
-                    left={0}
-                    top={0}
-                  />
-                </Tab>
+                />
               )}
             </Box>
 
@@ -102,21 +122,19 @@ export const Census = () => {
                 </Text>
                 <Box>
                   {definedUnim.map((ct: UnimplementedCensusType, index: number) => (
-                    <Tab
+                    <TabCardSkeleton
                       key={index}
                       onClick={(e) => {
                         e.preventDefault()
                         e.stopPropagation()
+                        setReason(detailsUnim[ct].title)
                         onOpen()
                       }}
-                    >
-                      <Box>
-                        <Icon as={detailsUnim[ct].icon} />
-                        <Text>{detailsUnim[ct].title}</Text>
-                      </Box>
-                      <Text as='span'>Pro</Text>
-                      <Text>{detailsUnim[ct].description}</Text>
-                    </Tab>
+                      icon={detailsUnim[ct].icon}
+                      title={detailsUnim[ct].title}
+                      description={detailsUnim[ct].description}
+                      pro
+                    />
                   ))}
                 </Box>
               </>

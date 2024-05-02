@@ -3,13 +3,15 @@
     "has_already_voted": "Your vote is properly cast",
     "is_not_in_census": "You are not in the census",
     "not_connected": "You are not connected",
-    "overwrite_votes_left_one": "You can correct your vote only once.",
+    "overwrite_votes_left_one": "You can correct your vote once.",
     "overwrite_votes_left_other": "You can correct your vote up to {{ count }} times.",
     "submitting": "Submitting",
     "verify_vote_on_explorer": "Verify your vote on the explorer",
     "votes_one": "<span>1</span> <text>voter</text>",
     "votes_other": "<span>{{ count }}</span> <text>voters</text>",
-    "voting_anonymous_advice": "Please wait while the anonymous magic happens.\nThis can take up to several minutes; don't close the window."
+    "voting_anonymous_advice": "Please wait while the anonymous magic happens 🪄.\nThis can take up to several minutes; don't close the window.",
+    "votes_weight_one": "<span>1</span> <text>vote</text>",
+    "votes_weight_other": "<span>{{ count }}</span> <text>votes</text>"
   },
   "banner": {
     "start_now": "Create a vote now!",
@@ -20,7 +22,6 @@
   "banner_voting_types": {
     "anonymous_description": "Say goodbye to the high expenses of traditional voting methods. {{app}} brings you a more affordable way to conduct elections, cutting down on logistical and administrative costs while maintaining the highest standards of quality and security.",
     "anonymous_title": "Cost-Effective Voting Solutions",
-    "bottom_text": "Privacy should be normal",
     "flexible_description": "Engagement is key in democratic processes, and our platform is designed to maximize it. With its user-friendly interface and accessibility, {{app}} encourages higher participation rates, ensuring a more representative and inclusive voting experience.",
     "flexible_title": "Boosted Participation Rates",
     "token_description": "At the heart of {{app}} is our commitment to security. Leveraging cutting-edge cryptographic methods, we ensure that every vote cast is not only secure but fully verifiable. This transparency builds unparalleled trust among participants, crucial for the legitimacy of any election.",
@@ -92,14 +93,15 @@
   "census": {
     "chain_required": "You need to select a network",
     "description": "Choose how to authenticate and verify voters.",
-    "gitcoin_description": "With this census only voters with a Gitcoin Passport will be able to vote, providing a sybyl-attack resistance method. You can define the general score (GPS) and different stamps that the voter must have.",
+    "gitcoin_description": "With this census only voters with a Gitcoin Passport will be able to vote, providing a sybil-attack resistance method. You can define the general score (GPS) and different stamps that the voter must have.",
+    "gitcoin_read_more": "<a>Read more about Gitcoin's Scorer & Thresholds</a>",
     "gitcoin_title": "Gitcoin Passport",
     "pro": "Pro Census",
     "request_custom_token": "'Request Custom Tokens'",
     "social_address_title": "Github users",
     "spreadsheet_title": "Custom data",
     "title": "Census",
-    "token_description": "Configure the census by choosing a token from any available network. You can request a token here.",
+    "token_description": "Configure the census by choosing a token from any available network. You can <link1>request a token</link1> if you need so.",
     "token_required": "You need to select a token",
     "token_title": "Token based census",
     "wallet_address_title": "Wallet addresses"
@@ -165,10 +167,7 @@
     "tokens_you_own": "You own {{ balance }} tokens."
   },
   "footer": {
-    "about": "About",
-    "blog": "Blog",
     "company": "Company",
-    "contact": "Contact",
     "demo": "Voting Types",
     "demo1": "Single Choice",
     "demo2": "Multiple Choice",
@@ -176,25 +175,19 @@
     "demo4": "Ranked Voting",
     "demo5": "Participatory Budgeting",
     "demo6": "Weighted Voting",
-    "developer_portal": "Developers Portal",
-    "developers": "Developers",
-    "discord": "Discord",
     "follow_us": "Follow us",
     "footer_subtitle": "The Global Voting Protocol",
     "homepage": "Home",
-    "repos": "Open-source Code",
+    "repos": "Open-Source Code",
     "resources": "Resources",
     "terms_and_privacy": "<link1>Terms of use</link1> & <link2>Privacy Policy</link2>",
     "text": "<p1>The future</p1><p2>of Web3 voting starts here</p2>",
-    "tutorials": "Tutorials",
     "uses_cases": "Use Cases",
     "uses_cases1": "AGMs",
     "uses_cases2": "Elections",
     "uses_cases3": "Participatory Budgeting",
     "uses_cases4": "Online Voting",
-    "uses_cases5": "Gated Online Survey",
-    "vocdoni_api": "Vocdoni API",
-    "vocdoni_app": "Vocdoni APP"
+    "uses_cases5": "Gated Online Survey"
   },
   "form": {
     "account_create": {
@@ -387,6 +380,11 @@
     "info": "<text>If you need more, contact to <mailto>info@onvote.app</mailto></text>",
     "title": "Get VOC Tokens"
   },
+  "gitcoin": {
+    "effective": "20: Effective",
+    "more_effective": "25: More Effective",
+    "most_effective": "30: Most Effective"
+  },
   "home": {
     "benefits": {
       "card_1": {
@@ -399,19 +397,19 @@
       },
       "card_3": {
         "description": "Increase engagement and participation with a user-friendly platform accessible to all, regardless of technical proficiency.",
-        "title": "Enhanced Participation"
+        "title": "More Participation"
       },
       "card_4": {
         "description": "Vote from anywhere, on any device. It's that simple.",
         "title": "Effortless Participation"
       },
       "card_5": {
-        "description": "Rest assured, advanced cryptographic methods ensure the utmost security while maintaining voter anonymity and vote integrity.",
-        "title": "Unmatched Security"
+        "description": "Rest assured with advanced cryptographic methods ensuring the utmost security, maintaining voter anonymity and vote integrity.",
+        "title": "Blockchain Based Security"
       },
       "card_6": {
         "description": "Foster trust and transparency powered by blockchain technology, offering stakeholders unparalleled visibility into the integrity of voting processes.",
-        "title": "Auditable & Open-source"
+        "title": "Auditable & Open-Source"
       },
       "subtitle_1": "Clients who choose Vocdoni unlock a world of benefits tailored to meet their unique voting needs. With our cutting-edge technology, organizations, communities, and governments experience a seamless transition to digital democracy. Here's how Vocdoni adds value:",
       "title": "Advantages"
@@ -421,21 +419,21 @@
       "btn": "Contact us",
       "card_1": {
         "description": "Explain us your needs and we will craft a personalized solution for your challenges.",
-        "title": "Tailored solutions for your unique needs"
+        "title": "Tailored solutions"
       },
       "card_2": {
         "description": "Vocdoni offers both self-service and custom, key-in-hand solutions tailored to your needs.",
         "title": "We will be with you every step of the way"
       },
       "header": "Contact Us",
-      "title": "Let's collaborate to find the perfect solution for you"
+      "title": "Let’s work together to find the best solution"
     },
     "create_process": {
       "btn": "Try it for free",
-      "helper_1": "Production ready, responsive voting processes",
+      "helper_1": "Voting processes ready in just 10 minutes for your voters, seamlessly compatible with mobile devices.",
       "helper_2": "Free up to 100 voters",
-      "subtitle": "Participation made easy. The Vocdoni APP delivers an affordable, easy-to-use, and GDPR-compliant voting experience that anyone can use from anywhere with their PC, laptop, tablet, or phone.",
-      "title": "Secure, Fast, and Verifiable Voting"
+      "subtitle": "Vocdoni APP delivers an affordable, easy-to-use, and GDPR-compliant voting experience that anyone can use from anywhere with their PC, laptop, tablet and mobile. Powered by our own Blockchain®.",
+      "title": "Secure, Cost-Effective and Verifiable Voting Solution"
     },
     "demo": {
       "btn": "View All Demos",
@@ -507,7 +505,7 @@
     },
     "features": {
       "card_1": {
-        "description": "From simple yes/no referendums to complex ranked-choice elections, Vocdoni supports a wide range of voting types to suit any decision-making process.",
+        "description": "From `yes/no` to more complex voting types like multi-choice, approval or ranked elections, we support a wide range of elections to suit any decision-making process.",
         "title": "Versatile Voting types"
       },
       "card_2": {
@@ -527,8 +525,8 @@
         "title": "Custom Censuses"
       },
       "card_6": {
-        "description": "Customize your voting processes by enabling options such as start and end dates, auto-start elections, continuously updated results, anonymous voting, weighted voting, and ballot customization.",
-        "title": "Flexible Voting options"
+        "description": "Using our specialized decentralized blockchain for voting safeguards voter anonymity and privacy, ensuring a process free from censorship and interference.",
+        "title": "Decentralized Voting Protocol"
       },
       "card_7": {
         "description": "Reach a diverse audience with multi-language support, allowing participants to select their preferred language for inclusive and accessible voting experiences.",
@@ -543,7 +541,7 @@
         "title": "Multi-device Support"
       },
       "header": "Empowering Solutions",
-      "subtitle_1": "Unlock the potential of Vocdoni's feature-rich platform, delivering exceptional value to organizers and voters alike. Seamlessly customize your voting processes, ensure secure and transparent elections, and empower participants with intuitive and accessible options. With the Vocdoni APP, experience the power of enhanced engagement, efficiency, and trust in every voting experience.",
+      "subtitle_1": "Vocdoni's feature-rich platform enables seamless customization of voting processes, ensuring secure & transparent elections while empowering voters with intuitive options. Enhance engagement, efficiency, and trust in every voting endeavor.",
       "title": "Features"
     },
     "process": {
@@ -571,15 +569,15 @@
     "solutions": {
       "card_1": {
         "description": "Streamline decision-making with secure, transparent voting. Engage members effectively, save on administrative costs, and foster a culture of participation and transparency.",
-        "title": "For Organizations"
+        "title": "Organizations"
       },
       "card_2": {
         "description": " Enhance community involvement with an easy-to-use platform that encourages participation and gives every member a voice.",
-        "title": "For Communities"
+        "title": "Communities"
       },
       "card_3": {
-        "description": "Increase voter turnout, reduce electoral costs, and enhance citizen trust with secure, verifiable voting processes",
-        "title": "For Governments and Public Institutions"
+        "description": "Increase voter turnout, reduce electoral costs, and enhance citizen trust with a verifiable, secure voting process.",
+        "title": "Governments and Public Institutions"
       },
       "header": "Embrace Change with Vocdoni",
       "img_card_1": "Organizations",
@@ -644,9 +642,6 @@
     "organization": "Edit Organization",
     "privacy": "Privacy",
     "terms": "Terms",
-    "vocdoni": {
-      "login": "Open App"
-    },
     "wallet": "Wallet"
   },
   "meta": {
@@ -679,7 +674,6 @@
     "census": "Census",
     "census_strategies": {
       "csp": "CSP",
-      "gitcoin": "Gitcoin",
       "spreadsheet": "CSV/Spreadsheet",
       "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
       "web3": "Web3 addresses"
@@ -713,6 +707,9 @@
     "share_title": "Share on {{ network }}",
     "spreadsheet": {
       "confirm": {
+        "abstain_count_one": "Attention! You are abstaining for one option",
+        "abstain_count_other": "Attention! You are abstaining for {{ count }} options",
+        "blank_vote": "No choices selected, sending blank vote",
         "description": "Before casting your vote review that everything is correct.",
         "option": "<strong>Option {{ number }}:</strong> {{ answer }}",
         "options": "<strong>Choices:</strong> {{ answers }}",
@@ -732,7 +729,7 @@
     "strategy": "Census strategy",
     "success_modal": {
       "btn": "Close",
-      "text": "<p>We've securely processed and stored your vote on our Blockchain. Click <verify>here</verify> to verify your vote.</p>",
+      "text": "<p>We've securely processed and stored your vote on our Blockchain. <verify>Verify your vote</verify>.</p>",
       "title": "Vote submitted!"
     },
     "total_census_size": "{{maxCensusSize}} allowed voters of {{censusSize}} total in census",
@@ -775,7 +772,7 @@
     "creation_steps_description": "Sign transaction to create the voting process. Generating the census can take a few minutes, please don't close this window.",
     "creation_steps_title": "Progress",
     "modal_pro": {
-      "description": "<p>Option not available in the free plan. To use it, you need to purchase the <bold>custom project plan.</bold></p>",
+      "description": "<p><bold>{{ reason, ucfirst }}</bold> is a Premium feature</p>",
       "error": "Error sending email, try it later or contact us at <email>info@vocdoni.org</email>",
       "form_btn": "SEND",
       "form_description": "You can give us your contact information and we will contact you to talk about your needs.",
@@ -784,7 +781,7 @@
       "form_name_label": "Name:",
       "form_name_placeholder": "Your name",
       "scheudle_btn": "BOOK NOW",
-      "scheudle_description": "Or you can directly schedule one quick call (30') with our experts to help you create your desired voting project.",
+      "scheudle_description": "Schedule a 30-minute call with our team to discuss your voting project. We'll guide you through the process and tailor solutions to meet your specific needs.",
       "success": "Email sent successfully",
       "title": "Contact Us"
     },
