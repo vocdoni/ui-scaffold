@@ -385,6 +385,11 @@
     "info": "<text>Si necesita más, contacte a <mailto>info@onvote.app</mailto></text>",
     "title": "Obtener VOC Tokens"
   },
+  "gitcoin": {
+    "effective": "20: Efectivo",
+    "more_effective": "25: Más efectivo",
+    "most_effective": "30: Muy efectivo"
+  },
   "home": {
     "benefits": {
       "card_1": {

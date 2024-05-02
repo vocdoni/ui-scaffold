@@ -39,6 +39,7 @@ export const colors = {
     bg: colorsBase.primary.gray,
     color: colorsBase.primary.gray_light,
   },
+  button_transparent_color: colorsBase.primary.main,
 
   primary: {
     main: colorsBase.primary.main,
@@ -167,6 +168,7 @@ export const colors = {
     close_btn: colorsBase.primary.main,
     confirm_total_cost: colorsBase.primary.main,
     creation_process_steps_loading: colorsBase.primary.gray,
+    gitcoin_sybil: colorsBase.primary.main,
     wallet_addresses_border: colorsBase.gray.main,
     calendar_start_date_selected: colorsBase.primary.main,
     census: {
