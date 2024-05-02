@@ -170,6 +170,17 @@ const baseStyle = definePartsStyle({
     borderRadius: 'full !important',
   },
 
+  checkbox: {
+    // Checkbox label style
+    '& span:nth-of-type(2)': {
+      display: 'flex',
+      flexDir: 'row',
+      justifyContent: 'space-between',
+      justifyItems: 'center',
+      alignItems: 'center',
+    },
+  },
+
   error: {
     display: 'flex',
     justifyContent: 'center',
