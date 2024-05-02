@@ -759,7 +759,7 @@
     "creation_steps_description": "Sign transaction to create the voting process. Generating the census can take a few minutes, please don't close this window.",
     "creation_steps_title": "Progress",
     "modal_pro": {
-      "description": "<p><bold>{{reason}}</bold> is a Premium feature</p>",
+      "description": "<p><bold>{{ reason, ucfirst }}</bold> is a Premium feature</p>",
       "error": "Error sending email, try it later or contact us at <email>info@vocdoni.org</email>",
       "form_btn": "SEND",
       "form_description": "You can give us your contact information and we will contact you to talk about your needs.",
