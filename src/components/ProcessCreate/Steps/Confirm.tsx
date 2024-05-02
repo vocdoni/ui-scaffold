@@ -19,6 +19,7 @@ import {
 import { Button } from '@vocdoni/chakra-components'
 import { ElectionProvider, errorToString, useClient } from '@vocdoni/react-providers'
 import {
+  Census3CreateStrategyToken,
   CspCensus,
   Election,
   ElectionCreationSteps,
@@ -34,7 +35,6 @@ import {
   UnpublishedElection,
   VocdoniCensus3Client,
   WeightedCensus,
-  Census3CreateStrategyToken,
 } from '@vocdoni/sdk'
 import { useEffect, useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
@@ -44,6 +44,7 @@ import { IElection, IElectionWithTokenResponse } from 'vocdoni-admin-sdk'
 import { StampsUnionTypes } from '~components/ProcessCreate/Census/Gitcoin/StampsUnionType'
 import { CensusType } from '~components/ProcessCreate/Census/TypeSelector'
 import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
+import { DefaultCensusSize } from '~constants'
 import { useCspAdmin } from '../Census/Csp/use-csp'
 import Preview from '../Confirm/Preview'
 import { CostPreview } from '../CostPreview'
@@ -52,7 +53,6 @@ import { Web3Address } from '../StepForm/CensusWeb3'
 import { Option } from '../StepForm/Questions'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 import Wrapper from './Wrapper'
-import { DefaultCensusSize } from '~constants'
 
 export const Confirm = () => {
   const { env, client, account, fetchAccount, census3: c3client } = useClient()
@@ -225,6 +225,7 @@ export const Confirm = () => {
         setValue('maxCensusSize', initialValue)
         setIsLoadingPreview(false)
       } catch (err) {
+        console.error('could not get strategy estimation:', err)
         setError(errorToString(err))
         setIsLoadingPreview(false)
       }
