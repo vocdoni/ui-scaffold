@@ -40,7 +40,6 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
       <Controller
         name={'passportScore'}
         control={control}
-        defaultValue={15}
         rules={{
           required,
         }}
@@ -51,7 +50,6 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
             </FormLabel>
             <Flex gap={8}>
               <NumberInput
-                defaultValue={15}
                 min={1}
                 max={100}
                 maxW={40}
@@ -71,6 +69,8 @@ export const GitcoinForm: FC<IGitcoinFormProps> = ({ gitcoinTokens }) => {
                 flex='1'
                 focusThumbOnChange={false}
                 value={value}
+                min={1}
+                max={100}
                 onChange={(e) => {
                   onChange(Number(e))
                 }}

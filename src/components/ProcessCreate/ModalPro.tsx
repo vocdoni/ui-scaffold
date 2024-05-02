@@ -26,6 +26,7 @@ const ModalPro = ({ isOpen, onClose, reason }: { isOpen: boolean; onClose: () =>
   const { t } = useTranslation()
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState(false)
+
   const {
     register,
     handleSubmit,
@@ -81,6 +82,7 @@ const ModalPro = ({ isOpen, onClose, reason }: { isOpen: boolean; onClose: () =>
           <Box mb={6}>
             <Trans
               i18nKey='process_create.modal_pro.description'
+              values={{ reason }}
               components={{
                 p: <Text />,
                 bold: <Text as='span' fontWeight='bold' />,

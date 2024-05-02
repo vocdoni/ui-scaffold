@@ -11,6 +11,9 @@
     "votes_one": "<span>1</span> <text>votante</text>",
     "votes_many": "<span>{{ count }}</span> <text>votantes</text>",
     "votes_other": "<span>{{ count }}</span> <text>votantes</text>",
+    "voting_anonymous_advice": "Por favor, espera mientras sucede la magia 🪄.\nEsto puede tardar varios minutos; no cierres la ventana.",
+    "votes_weight_one": "<span>1</span> <text>voto</text>",
+    "votes_weight_other": "<span>{{ count }}</span> <text>votos</text>",
     "voting_anonymous_advice": "Por favor, espera mientras sucede la magia.\nEsto puede tardar varios minutos; no cierres la ventana."
   },
   "banner": {
@@ -22,7 +25,6 @@
   "banner_voting_types": {
     "anonymous_description": "La identidad de los votantes permanece completamente confidencial, gracias a la tecnología zk-SNARKS.",
     "anonymous_title": "100% Anónimo",
-    "bottom_text": "La privacidad debería ser normal",
     "flexible_description": "Personaliza tu proceso de votación y censo para satisfacer los requisitos únicos de tu comunidad.",
     "flexible_title": "Votación Flexible",
     "token_description": "Vota con tokens ERC20/ERC721 (NFT) o agrega tus propios tokens y vota sin coste de gas con ellos.",
@@ -95,13 +97,14 @@
     "chain_required": "Necesitas seleccionar una red",
     "description": "Selecciona cómo los votantes se autenticarán e identificarán.",
     "gitcoin_description": "Con este censo, solo los votantes con Gitcoin Passport podrán votar, proporcionando un método de resistencia contra sybil-attack. Puedes definir la puntuación general (GPS) y diferentes stamps que el votante debe tener.",
+    "gitcoin_read_more": "<a>Lee más sobre Scorer & Thresholds de Gitcoin</a>",
     "gitcoin_title": "Gitcoin Passport",
     "pro": "",
     "request_custom_token": "Solicitar Tokens Personalizados",
     "social_address_title": "Usuarios de Github",
     "spreadsheet_title": "Datos personalizados",
     "title": "Censo",
-    "token_description": "Seleccioneu la xarxa i el token per crear un cens on els titulars del token votaran amb el seu poder de vot.",
+    "token_description": "Selecciona la red y el token para crear un censo donde los titulares de token votarán con su poder de voto. Puedes <link1>solicitar un token</link1> si lo necesitas.",
     "token_required": "Necesitas seleccionar un token",
     "token_title": "Censo basado en tokens",
     "wallet_address_title": "Direcciones de billetera"
@@ -168,10 +171,7 @@
     "tokens_you_own": "Tienes {{ balance }} tokens."
   },
   "footer": {
-    "about": "Acerca de",
-    "blog": "Blog",
     "company": "Empresa",
-    "contact": "Contacto",
     "demo": "Tipos de Votación",
     "demo1": "Elección Simple",
     "demo2": "Elección Múltiple",
@@ -179,25 +179,16 @@
     "demo4": "Votación por Clasificación",
     "demo5": "Presupuestos Participativos",
     "demo6": "Votación Ponderada",
-    "developer_portal": "Portal para desarrolladores",
-    "developers": "Desarrolladores",
-    "discord": "Discord",
     "follow_us": "Síguenos",
     "footer_subtitle": "El Protocolo de Votación Global",
-    "homepage": "Inicio",
-    "repos": "Código abierto",
-    "resources": "Recursos",
     "terms_and_privacy": "<link1>Términos de uso</link1> y <link2>Política de privacidad</link2>",
     "text": "<p1>El futuro</p1><p2>de la votación en Web3 comienza aquí</p2>",
-    "tutorials": "Tutoriales",
     "uses_cases": "Casos de Uso",
     "uses_cases1": "Asambleas Generales de Accionistas (AGMs)",
     "uses_cases2": "Elecciones",
     "uses_cases3": "Presupuestos Participativos",
     "uses_cases4": "Votación Digital",
-    "uses_cases5": "Encuesta Digital Cerrada",
-    "vocdoni_api": "API de Vocdoni",
-    "vocdoni_app": "APP de Vocdoni"
+    "uses_cases5": "Encuesta Digital Cerrada"
   },
   "form": {
     "account_create": {
@@ -651,9 +642,6 @@
     "organization": "Editar Organización",
     "privacy": "Privacidad",
     "terms": "Términos",
-    "vocdoni": {
-      "login": "Login"
-    },
     "wallet": "Billetera"
   },
   "meta": {
@@ -686,7 +674,6 @@
     "census": "Censo",
     "census_strategies": {
       "csp": "CSP",
-      "gitcoin": "Gitcoin",
       "spreadsheet": "CSV",
       "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
       "web3": "Direcciones web3"
@@ -721,6 +708,10 @@
     "share_title": "Compartir en {{ network }}",
     "spreadsheet": {
       "confirm": {
+        "abstain_count_one": "",
+        "abstain_count_many": "",
+        "abstain_count_other": "",
+        "blank_vote": "",
         "description": "Antes de emitir tu voto, revisa que todo esté correcto.",
         "option": "<strong>Opción {{ number }}:</strong> {{ answer }}",
         "options": "<strong>Selección:</strong> {{ answers }}",
@@ -740,7 +731,7 @@
     "strategy": "Estrategia",
     "success_modal": {
       "btn": "Finalizar",
-      "text": "<p>Tu voto ha sido emitido y almacenado de forma segura en la cadena de bloques de Vocdoni. Puedes comprobarlo <verify>aquí</verify>.</p><p>La democracia es importante, puedes compartirla con tu comunidad y amigos:</p>",
+      "text": "<p>Tu voto ha sido emitido y almacenado de forma segura en la cadena de bloques de Vocdoni. <verify>Puedes comprobarlo aquí</verify>.</p><p>La democracia es importante, puedes compartirla con tu comunidad y amigos:</p>",
       "title": "Voto emitido correctamente!"
     },
     "total_census_size": "{{maxCensusSize}} votantes permitidos de {{censusSize}} totales en el censo",
@@ -784,7 +775,7 @@
     "creation_steps_description": "Necesitas firmar las transacciones para crear el proceso de votación en la cadena de bloques de Vocdoni. No cierres esta ventana.",
     "creation_steps_title": "Progreso",
     "modal_pro": {
-      "description": "<p>La opción seleccionada no está disponible en el plan de autoatención (gratuito). Para poder utilizarla, necesitas comprar el <bold>plan de proyecto personalizado</bold></p>",
+      "description": "<p><bold>{{reason}}</bold> es una característica Premium</p>",
       "error": "Error sending email, try it later or contact us at <email>info@vocdoni.org</email>",
       "form_btn": "ENVIAR",
       "form_description": "Puedes proporcionarnos tu información de contacto y nosotros te contactaremos para hablar sobre tus necesidades",
@@ -793,7 +784,7 @@
       "form_name_label": "Nombre:",
       "form_name_placeholder": "Tu nombre",
       "scheudle_btn": "RESERVAR AHORA",
-      "scheudle_description": " O puedes reservar directamente una llamada rápida (15 minutos) con nuestros expertos para ayudarte a crear tu proyecto de votación deseado",
+      "scheudle_description": "Programa una llamada de 30 minutos con nuestro equipo para discutir tu proyecto de votación. Te guiaremos a través del proceso y adaptaremos soluciones para satisfacer tus necesidades específicas.",
       "success": "Correo enviado correctamente",
       "title": "Contáctanos"
     },
@@ -814,8 +805,8 @@
         "title": "<p>Votación Plurinominal</p><p>(Elección Múltiple)</p>"
       },
       "others": {
-        "description": "",
-        "title": ""
+        "description": "Seleccione otros tipos de votación (opciones múltiples, votación de aprobación, presupuestos participativos, elección clasificada...)",
+        "title": "Otros"
       },
       "participation_budgeting": {
         "description": "Los votantes pueden distribuir un número predefinido entre todas las opciones/proyectos (que representan el presupuesto total disponible) como deseen.",

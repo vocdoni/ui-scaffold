@@ -11,6 +11,9 @@
     "votes_one": "<span>1</span> <text>votant</text>",
     "votes_many": "<span>{{ count }}</span> <text>votants</text>",
     "votes_other": "<span>{{ count }}</span> <text>votants</text>",
+    "voting_anonymous_advice": "Si us plau, espera mentre la màgia té lloc 🪄.\nAixò pot trigar uns minuts; no tanquis la finestra.",
+    "votes_weight_one": "<span>1</span> <text>vot</text>",
+    "votes_weight_other": "<span>{{ count }}</span> <text>vots</text>",
     "voting_anonymous_advice": "Si us plau, espera mentre la màgia té lloc.Això pot trigar uns minuts; no tanquis la finestra."
   },
   "banner": {
@@ -22,7 +25,6 @@
   "banner_voting_types": {
     "anonymous_description": "La identitat dels votants serà completament confidencial, gràcies a la tecnologia zk-SNARKS.",
     "anonymous_title": "100% Anònim",
-    "bottom_text": "La privacitat hauria de ser normal",
     "flexible_description": "Personalitza el teu procés de votació i la llista de participants per adaptar-los als requisits únics de la teva comunitat.",
     "flexible_title": "Votació Flexible",
     "token_description": "Vota amb tokens ERC20/ERC721 (NFT) o afegeix els teus propis tokens i vota sense pagar.",
@@ -95,13 +97,14 @@
     "chain_required": "Necessites seleccionar una xarxa",
     "description": "Selecciona com s'autenticaran i identificaran els votants.",
     "gitcoin_description": "Amb aquest cens, només els votants amb Gitcoin Passport podran votar, proporcionant un mètode de resistència contra atacs sybil. Pots definir la puntuació general (GPS) i diferents stamps que el votant ha de tenir.",
+    "gitcoin_read_more": "<a>Llegeix més sobre Scorer & Thresholds de Gitcoin</a>",
     "gitcoin_title": "Gitcoin Passport",
     "pro": "",
     "request_custom_token": "Sol·licitar Tokens Personalitzats",
     "social_address_title": "Usuaris de Github",
     "spreadsheet_title": "Dades personalitzades",
     "title": "Trieu el cens",
-    "token_description": "Selecciona la red y el token para crear un censo donde los titulares de token votarán con su poder de voto.",
+    "token_description": "Seleccioneu la xarxa i el token per crear un cens on els titulars del token votaran amb el seu poder de vot. Pots <link1>sol·licitar un token</link1> si ho necessites.",
     "token_required": "Necessites seleccionar un token",
     "token_title": "Cens basat en tokens",
     "wallet_address_title": "Adreces de cartera"
@@ -168,10 +171,7 @@
     "tokens_you_own": "Tens {{ balance }} tokens."
   },
   "footer": {
-    "about": "Sobre nosaltres",
-    "blog": "Blog",
     "company": "Empresa",
-    "contact": "Contacte",
     "demo": "Tipus de Votació",
     "demo1": "Elecció Simple",
     "demo2": "Elecció Múltiple",
@@ -179,25 +179,16 @@
     "demo4": "Votació per Classificació",
     "demo5": "Pressupostos Participatius",
     "demo6": "Votació Ponderada",
-    "developer_portal": "Portal de desenvolupadors",
-    "developers": "Desenvolupadors",
-    "discord": "Discord",
     "follow_us": "Segueix-nos",
     "footer_subtitle": "El Protocol de Votació Global",
-    "homepage": "Inici",
-    "repos": "Codi Obert",
-    "resources": "Recursos",
     "terms_and_privacy": "<link1>Termes d'ús</link1> i <link2>Política de privacitat</link2>",
     "text": "<p1>El futur</p1><p2>de la votació en Web3 comença aquí</p2>",
-    "tutorials": "Tutorials",
     "uses_cases": "Casos d'Ús",
     "uses_cases1": "Assemblees Generals d'Accionistes (AGMs)",
     "uses_cases2": "Eleccions",
     "uses_cases3": "Pressupostos Participatius",
     "uses_cases4": "Votació Digital",
-    "uses_cases5": "Enquesta Digital Tancada",
-    "vocdoni_api": "API de Vocdoni",
-    "vocdoni_app": "APP de Vocdoni"
+    "uses_cases5": "Enquesta Digital Tancada"
   },
   "form": {
     "account_create": {
@@ -651,9 +642,6 @@
     "organization": "Edita Organització",
     "privacy": "Privadesa",
     "terms": "Termes",
-    "vocdoni": {
-      "login": "Login"
-    },
     "wallet": "Cartera"
   },
   "meta": {
@@ -686,7 +674,6 @@
     "census": "Cens",
     "census_strategies": {
       "csp": "CSP",
-      "gitcoin": "Gitcoin",
       "spreadsheet": "CSV",
       "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
       "web3": "Adreces Web3"
@@ -721,6 +708,10 @@
     "share_title": "Comparteix a {{ network }}",
     "spreadsheet": {
       "confirm": {
+        "abstain_count_one": "",
+        "abstain_count_many": "",
+        "abstain_count_other": "",
+        "blank_vote": "",
         "description": "Abans de votar, reviseu que tot sigui correcte.",
         "option": "<strong>Opció {{ number }}:</strong> {{ answer }}",
         "options": "<strong>Selecció:</strong> {{ answers }}",
@@ -740,7 +731,7 @@
     "strategy": "Estratègia",
     "success_modal": {
       "btn": "Finalitzar",
-      "text": "<p>El teu vot ha estat emès i emmagatzemat de forma segura a la cadena de blocs de Vocdoni. Pots comprovar-ho <verify>aquí</verify>.</p><p>La democràcia és important, la pots compartir amb la teva comunitat i amics:</p>",
+      "text": "<p>El teu vot ha estat emès i emmagatzemat de forma segura a la cadena de blocs de Vocdoni. <verify>Pots comprovar-ho aquí</verify>.</p><p>La democràcia és important, la pots compartir amb la teva comunitat i amics:</p>",
       "title": "Vot emès correctament!"
     },
     "total_census_size": "{{maxCensusSize}} electors permesos de {{censusSize}} totals en el cens",
@@ -784,7 +775,7 @@
     "creation_steps_description": "Necessites signar les transaccions per crear el procés de votació a la cadena de blocs de Vocdoni. No tanquis aquesta finestra.",
     "creation_steps_title": "Progrés",
     "modal_pro": {
-      "description": "<p>L'opció seleccionada no està disponible en el pla d'autoatenció (gratuït). Per poder utilitzar-la, has de comprar el <bold>pla de projecte personalitzat</bold></p>",
+      "description": "<p><bold>{{reason}}</bold> és una funcionalitat Premium</p>",
       "error": "Error en l'enviament del correu electrònic, intenta-ho més tard o contacta'ns a <email>info@vocdoni.org</email>",
       "form_btn": "ENVIAR",
       "form_description": "Pots deixar-nos les teves dades de contacte i ens posarem en contacte amb tu per parlar de les teves necessitats",
@@ -793,7 +784,7 @@
       "form_name_label": "Nom:",
       "form_name_placeholder": "El teu nom",
       "scheudle_btn": "RESERVAR ARA",
-      "scheudle_description": " O pots reservar directament una trucada ràpida (15 minuts) amb els nostres experts per ajudar-te a crear el teu projecte de votació desitjat",
+      "scheudle_description": "Programa una trucada de 30 minuts amb el nostre equip per discutir el teu projecte de votació. Et guiarem a través del procés i adaptarem les solucions per satisfer les teves necessitats específiques.",
       "success": "Correu electrònic enviat correctament",
       "title": "Contacta'ns"
     },
@@ -814,8 +805,8 @@
         "title": "<p>Votació Plurinominal</p><p>(Elecció Múltiple)</p>"
       },
       "others": {
-        "description": "",
-        "title": ""
+        "description": "Seleccioneu altres tipus de votació (de múltiples opcions, de votació d'aprovació, pressupost participatiu, elecció classificada...)",
+        "title": "Altres"
       },
       "participation_budgeting": {
         "description": "Els votants poden distribuir un nombre predeterminat entre totes les opcions/projectes (que representen el pressupost total disponible) com desitgin.",
