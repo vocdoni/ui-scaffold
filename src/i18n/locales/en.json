@@ -11,8 +11,7 @@
     "votes_other": "<span>{{ count }}</span> <text>voters</text>",
     "voting_anonymous_advice": "Please wait while the anonymous magic happens 🪄.\nThis can take up to several minutes; don't close the window.",
     "votes_weight_one": "<span>1</span> <text>vote</text>",
-    "votes_weight_other": "<span>{{ count }}</span> <text>votes</text>",
-    "voting_anonymous_advice": "Please wait while the anonymous magic happens.\nThis can take up to several minutes; don't close the window."
+    "votes_weight_other": "<span>{{ count }}</span> <text>votes</text>"
   },
   "banner": {
     "start_now": "Create a vote now!",
