@@ -91,7 +91,6 @@ const ContactUs = () => {
             title={t('home.contactus.btn')}
             target='_blank'
             height='52px'
-            textDecoration='underline'
             fontSize='20px'
             mt='30px'
             px='130px'

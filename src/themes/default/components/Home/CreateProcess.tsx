@@ -63,7 +63,6 @@ const CreateProcess = () => {
               mx={{ base: 'auto', lg: 'start' }}
               height='62px'
               fontSize='20px'
-              textDecoration='underline'
               minW='300px'
               onClick={() => {
                 if (openConnectModal) openConnectModal()
