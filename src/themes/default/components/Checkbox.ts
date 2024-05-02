@@ -8,7 +8,7 @@ const baseStyle = definePartsStyle({
     borderRadius: 'full',
 
     '&[data-checked=""]': {
-      background: 'checkbox',
+      background: 'checkbox.selected',
     },
   },
 })

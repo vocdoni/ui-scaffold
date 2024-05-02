@@ -8,7 +8,7 @@ const baseStyle = definePartsStyle({
     borderRadius: 0,
 
     '&[data-checked=""]': {
-      background: 'checkbox',
+      background: 'checkbox.selected',
       bgImage: checkIcon,
       bgSize: '10px',
       bgRepeat: 'no-repeat',

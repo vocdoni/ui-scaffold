@@ -75,7 +75,7 @@ const card = definePartsStyle({
     '& > svg': {
       w: 5,
       h: 5,
-      color: 'checkbox',
+      color: 'checkbox.selected',
       position: 'absolute',
       top: 2,
       right: 2,
