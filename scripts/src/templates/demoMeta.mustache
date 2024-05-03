@@ -1,0 +1,17 @@
+interface IDemoData {
+orgName: string
+mainTitle: string
+date: string
+elections: string[]
+}
+
+export const DemoData: IDemoData = {
+orgName: "{{ orgName }}",
+mainTitle: "{{ mainTitle }}",
+date: "{{ date }}",
+elections: [
+{{#elections}}
+  "{{.}}",
+{{/elections}}
+],
+}

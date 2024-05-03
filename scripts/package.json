@@ -1,0 +1,22 @@
+{
+  "name": "vocdoni-scaffold-demo",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "lint:fix": "prettier --write src"
+  },
+  "dependencies": {
+    "@types/mustache": "^4.2.5",
+    "@vocdoni/sdk": "^0.8.0",
+    "chalk": "4.1.2",
+    "dotenv": "^16.3.1",
+    "ethers": "^5.7.2",
+    "mustache": "^4.2.0",
+    "prettier": "^3.2.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.1/xlsx-0.20.1.tgz"
+  }
+}
