@@ -2,7 +2,6 @@ import { MultiChoiceElection, OffchainCensus } from '@vocdoni/sdk'
 
 import 'dotenv/config'
 import { DemoInterface } from './demoMeta'
-import { ELECTION_META } from './utils/constants'
 
 export const getMultichoiceElection = (census: OffchainCensus) => {
   const endDate = new Date(DemoInterface.endDate)
@@ -27,7 +26,19 @@ export const getMultichoiceElection = (census: OffchainCensus) => {
 
     ## Welcome
     Initial description`,
-    meta: ELECTION_META,
+    meta: {
+      generated: 'script',
+      census: {
+        type: 'spreadsheet',
+        fields: ['DNI', 'Data de Naixement'], //TODO: get from spreadsheet
+        specs: {
+          'Data de Naixement': {
+            value: '^[0-9]{2}/[0-9]{2}/[0-9]{4}$',
+            message: "Ha d'estar en format dd/mm/aaaa",
+          },
+        },
+      },
+    },
   })
 
   election.addQuestion('Projectes', 'Selecciona dos projectes (també et pots abstenir-te en una o dues opcions).', [

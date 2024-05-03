@@ -1,7 +1,6 @@
 import { ApprovalElection, OffchainCensus } from '@vocdoni/sdk'
 
 import { DemoInterface } from './demoMeta'
-import { ELECTION_META } from './utils/constants'
 
 export const getApprovalElection = (census: OffchainCensus) => {
   const endDate = new Date(DemoInterface.endDate)
@@ -22,7 +21,19 @@ export const getApprovalElection = (census: OffchainCensus) => {
       ## Welcome
       Initial description
       `,
-    meta: ELECTION_META,
+    meta: {
+      generated: 'script',
+      census: {
+        type: 'spreadsheet',
+        fields: ['DNI', 'Data de Naixement'], //TODO: get from spreadsheet
+        specs: {
+          'Data de Naixement': {
+            value: '^[0-9]{2}/[0-9]{2}/[0-9]{4}$',
+            message: "Ha d'estar en format dd/mm/aaaa",
+          },
+        },
+      },
+    },
   })
 
   election.addQuestion('Projectes', 'Sel·lecciona les teves opcions preferides', [
