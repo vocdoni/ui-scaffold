@@ -6,7 +6,7 @@ import mustache from 'mustache'
 export const DemoInterface = {
   logo: 'demo.png',
   orgName: 'Test Organization',
-  date: '2024-06-20 00:00:00',
+  date: '2024-05-03 11:30:00',
   endDate: '2024-06-20 00:00:00',
   mainTitle: 'General elections',
 }
