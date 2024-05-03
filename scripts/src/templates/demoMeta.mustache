@@ -2,7 +2,7 @@ interface IDemoData {
 orgName: string
 mainTitle: string
 date: string
-endate: string
+endDate: string
 elections: string[]
 }
 
@@ -10,7 +10,7 @@ export const DemoData: IDemoData = {
 orgName: "{{ orgName }}",
 mainTitle: "{{ mainTitle }}",
 date: "{{ date }}",
-endate: "{{ endate }}",
+endDate: "{{ endDate }}",
 elections: [
 {{#elections}}
   "{{.}}",
