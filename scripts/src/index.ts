@@ -3,30 +3,32 @@ import { createDemoMeta } from './demoMeta'
 import 'dotenv/config'
 import { getApprovalElection } from './approval'
 import { getVocdoniClient } from './utils/utils'
-import { createElection } from './utils/election'
+import { createElection, CreateElectionFunctionType } from './utils/election'
 import { getMultichoiceElection } from './multichoice'
 import { getSinglechoiceElection } from './singlechoice'
+import { getMultiQuestion } from './multiQuestion'
+
+// This are the functions that create the elections we want to use
+const createElectionFunctions: CreateElectionFunctionType[] = [
+  getSinglechoiceElection,
+  getMultiQuestion,
+  getApprovalElection,
+  getMultichoiceElection,
+]
 
 async function main() {
   if (!process.env.PRIV_KEY) throw new Error('Missing PRIV_KEY env variable')
   const vocdoniClient = await getVocdoniClient(process.env.PRIV_KEY)
   const elections: string[] = []
 
-  console.log(chalk.green('Creating single choice election...'))
-  const singleChoiceElection = await createElection(vocdoniClient, getSinglechoiceElection)
-  elections.push(singleChoiceElection.id)
-  console.log(chalk.green('✅ Created  single choice election'))
+  for (const createElectionFunction of createElectionFunctions) {
+    console.log(chalk.green(`Creating election ${createElectionFunction.name}...`))
+    const election = await createElection(vocdoniClient, createElectionFunction)
+    elections.push(election.id)
+    console.log(chalk.green('✅ Created election'))
+  }
 
-  console.log(chalk.green('Creating approval election...'))
-  const approvalElection = await createElection(vocdoniClient, getApprovalElection)
-  elections.push(approvalElection.id)
-  console.log(chalk.green('✅ Created approval election'))
-
-  console.log(chalk.green('Creating approval election...'))
-  const multichoiceElection = await createElection(vocdoniClient, getMultichoiceElection)
-  elections.push(multichoiceElection.id)
-  console.log(chalk.green('✅ Created approval election'))
-
+  // Create the data file to be used in the demo landing
   console.log(chalk.green('Adding new metadata to scaffold...'))
   createDemoMeta(elections)
   console.log(chalk.green('✅ Metadata added'))

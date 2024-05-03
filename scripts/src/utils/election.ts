@@ -21,9 +21,11 @@ export const publishElection = async (election: UnpublishedElection, client: Voc
     })
 }
 
+export type CreateElectionFunctionType = (census: OffchainCensus) => UnpublishedElection
+
 export async function createElection(
   vocdoniClient: VocdoniSDKClient,
-  createElectionFunction: (census: OffchainCensus) => UnpublishedElection
+  createElectionFunction: CreateElectionFunctionType
 ) {
   const { census, spreadsheet } = await getCsvCensus(vocdoniClient, path.join(__dirname, '../census.csv'))
 
