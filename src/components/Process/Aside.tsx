@@ -52,7 +52,7 @@ const ProcessAside = () => {
   return (
     <>
       <Card variant='aside'>
-        <Flex alignItems='center' gap={5} flexWrap='wrap' justifyContent='center'>
+        <Flex alignItems='center' flexDirection={'column'} gap={5} flexWrap='wrap' justifyContent='center'>
           <Text textAlign='center' fontSize='xl' textTransform='uppercase'>
             {election?.electionType.anonymous && voting
               ? t('aside.submitting')
