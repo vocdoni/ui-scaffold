@@ -3,7 +3,7 @@ import { copyFile } from './utils/utils'
 import fs from 'fs'
 import mustache from 'mustache'
 
-const DemoInterface = {
+export const DemoInterface = {
   logo: 'demo.png',
   orgName: 'Test Organization',
   date: '2024-06-20 00:00:00',
@@ -11,14 +11,7 @@ const DemoInterface = {
   mainTitle: 'General elections',
 }
 
-export const createDemoMeta = () => {
-  const elections = [
-    '0x88ef4916f98bd8fcfaa76192aa69cceddaec554b1d82b0166dc9020000000002',
-    '0x88ef4916f98bd8fcfaa76192aa69cceddaec554b1d82b0166dc9020000000001',
-    '0x88ef4916f98bd8fcfaa76192aa69cceddaec554b1d82b0166dc9020000000002',
-    '0x88ef4916f98bd8fcfaa76192aa69cceddaec554b1d82b0166dc9020000000001',
-  ]
-
+export const createDemoMeta = (elections: string[]) => {
   // copy DemoInterface.logo to LOGO_DEST folder
   copyFile(DemoInterface.logo, LOGO_DEST)
   // Load moustache template
