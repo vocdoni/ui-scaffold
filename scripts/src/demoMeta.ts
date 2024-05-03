@@ -7,6 +7,7 @@ const DemoInterface = {
   logo: 'demo.png',
   orgName: 'Test Organization',
   date: '2024-06-20 00:00:00',
+  endDate: '2024-06-20 00:00:00',
   mainTitle: 'General elections',
 }
 
