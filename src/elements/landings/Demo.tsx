@@ -10,6 +10,8 @@ import { ElectionProvider, useElection } from '@vocdoni/react-providers'
 const Demo = () => {
   const { t } = useTranslation()
 
+  const startDate = new Date(DemoData.date)
+
   return (
     <Flex flexDirection='column' gap={10} maxW='900px' mx='auto' p={5} minH='100vh'>
       <Image src={demoImg} width='300px' alt='ajuntament berga escut' mx='auto' />
@@ -31,7 +33,11 @@ const Demo = () => {
             components={{
               br: <br />,
             }}
-            values={{ orgName: DemoData.orgName, date: DemoData.date }}
+            values={{
+              orgName: DemoData.orgName,
+              date: startDate.toLocaleDateString(),
+              time: startDate.toLocaleTimeString(),
+            }}
           />
         </Text>
       </Text>
@@ -42,7 +48,6 @@ const Demo = () => {
             components={{
               strong: <strong />,
             }}
-            values={{ orgName: DemoData.orgName, date: DemoData.date }}
           />
         </Text>
         <Grid templateColumns='repeat(auto-fill, minmax(350px, 1fr))' columnGap={{ base: 3, lg: 4 }} rowGap={12}>

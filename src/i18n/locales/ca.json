@@ -141,7 +141,7 @@
     }
   },
   "demo": {
-    "desc_body": "Us convoquem a l'Assamblea General de {{ orgName }}, que tindrà lloc el {{ date }}. <br/>Es fonamental que tots els membres de la nostra organització participin en aquesta important votació per garantir una representació equitativa de totes les opinions i prespectives dins de la nostra comunitat.",
+    "desc_body": "Us convoquem a l'Assamblea General de {{ orgName }}, que tindrà lloc el {{ date }} a les {{ time }}. <br/>Es fonamental que tots els membres de la nostra organització participin en aquesta important votació per garantir una representació equitativa de totes les opinions i prespectives dins de la nostra comunitat.",
     "desc_footer": "Per poder accedir a la votació, us demanarem el vostre número de DNI (Document Nacional d'Identitat) i data de\n        naixement. Posteriorment, podreu seleccionar les vostres opcions i enviar el vot de forma segura.",
     "desc_title": "Eleccions participatives",
     "select_an_option": "<strong>Seleccioneu</strong> una opció depenent de la teva edat"
