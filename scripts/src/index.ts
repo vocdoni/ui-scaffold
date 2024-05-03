@@ -5,11 +5,17 @@ import { getApprovalElection } from './approval'
 import { getVocdoniClient } from './utils/utils'
 import { createElection } from './utils/election'
 import { getMultichoiceElection } from './multichoice'
+import { getSinglechoiceElection } from './singlechoice'
 
 async function main() {
   if (!process.env.PRIV_KEY) throw new Error('Missing PRIV_KEY env variable')
   const vocdoniClient = await getVocdoniClient(process.env.PRIV_KEY)
   const elections: string[] = []
+
+  console.log(chalk.green('Creating single choice election...'))
+  const singleChoiceElection = await createElection(vocdoniClient, getSinglechoiceElection)
+  elections.push(singleChoiceElection.id)
+  console.log(chalk.green('✅ Created  single choice election'))
 
   console.log(chalk.green('Creating approval election...'))
   const approvalElection = await createElection(vocdoniClient, getApprovalElection)

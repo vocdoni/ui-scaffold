@@ -17,7 +17,6 @@ export const publishElection = async (election: UnpublishedElection, client: Voc
       console.log(chalk.green('Election created!'), chalk.blue(electionId))
     })
     .then(() => {
-      console.log(chalk.green('Election ready!'))
       return client.fetchElection()
     })
 }

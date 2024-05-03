@@ -1,18 +1,12 @@
-import { ApprovalElection, MultiChoiceElection, OffchainCensus } from '@vocdoni/sdk'
-import chalk from 'chalk'
-import * as path from 'path'
-import { getCsvCensus } from './utils/census'
-import { publishElection } from './utils/election'
-import { getVocdoniClient } from './utils/utils'
+import { MultiChoiceElection, OffchainCensus } from '@vocdoni/sdk'
 
 import 'dotenv/config'
 import { DemoInterface } from './demoMeta'
+import { ELECTION_META } from './utils/constants'
 
 export const getMultichoiceElection = (census: OffchainCensus) => {
   const endDate = new Date(DemoInterface.endDate)
   const startDate = new Date(DemoInterface.date)
-  console.log('end date:', endDate.toLocaleString())
-  console.log('start date:', startDate.toLocaleString())
 
   const election = MultiChoiceElection.from({
     startDate,
@@ -33,19 +27,7 @@ export const getMultichoiceElection = (census: OffchainCensus) => {
 
     ## Welcome
     Initial description`,
-    meta: {
-      generated: 'script',
-      census: {
-        type: 'spreadsheet',
-        fields: ['DNI', 'Data de Naixement'], //TODO: get from spreadsheet
-        specs: {
-          'Data de Naixement': {
-            value: '^[0-9]{2}/[0-9]{2}/[0-9]{4}$',
-            message: "Ha d'estar en format dd/mm/aaaa",
-          },
-        },
-      },
-    },
+    meta: ELECTION_META,
   })
 
   election.addQuestion('Projectes', 'Selecciona dos projectes (també et pots abstenir-te en una o dues opcions).', [
