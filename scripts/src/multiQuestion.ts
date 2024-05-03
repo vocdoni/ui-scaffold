@@ -1,23 +1,24 @@
 import { Election, OffchainCensus } from '@vocdoni/sdk'
 import { DemoInterface } from './demoMeta'
 
-export const getSinglechoiceElection = (census: OffchainCensus) => {
+export const getMultiQuestion = (census: OffchainCensus) => {
   const endDate = new Date(DemoInterface.endDate)
   const startDate = new Date(DemoInterface.date)
 
+  //Procés "Adults" -> 1 procés amb 2 questions single choice
   const election = Election.from({
     startDate,
     endDate,
     census,
     voteType: {
-      uniqueChoices: true,
+      uniqueChoices: false,
     },
     title: {
-      default: 'Single choice',
+      default: 'Multiple question',
     },
     description: `
-    # Single choice
-    Single choice project
+    # Multiple question
+    Multiple question project
 
     ## Welcome
     Initial description`,
@@ -35,7 +36,23 @@ export const getSinglechoiceElection = (census: OffchainCensus) => {
       },
     },
   })
-  election.addQuestion("Aprovació, si escau, del Reglament de l'Assemblea General Ordinària 2024.", '', [
+
+  election.addQuestion('Inversió', 'Approve budget', [
+    {
+      title: 'A favor',
+      value: 0,
+    },
+    {
+      title: 'En contra',
+      value: 1,
+    },
+    {
+      title: 'En blanc',
+      value: 2,
+    },
+  ])
+
+  election.addQuestion('Approve the new candidature?', 'Approve the candidature of the candidate', [
     {
       title: 'A favor',
       value: 0,
