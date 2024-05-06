@@ -65,7 +65,17 @@ const baseStyle = definePartsStyle({
     '& > form': {
       display: 'flex',
       flexDirection: 'column',
-      gap: 10,
+      gap: 24,
+
+      '& > div > div:first-of-type': {
+        mb: 5,
+      },
+
+      '& > div:not(:first-of-type)': {
+        '& > div:first-of-type': {
+          display: 'none',
+        },
+      },
     },
   },
 
