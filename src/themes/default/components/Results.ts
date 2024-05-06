@@ -5,48 +5,48 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 
 const baseStyle = definePartsStyle({
   question: {
-    p: 4,
-    width: { base: 'full', xl: '80%' },
-    m: 0,
-    mx: 'auto',
-
+    '&': {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'end',
+      mt: '20px',
+    },
     '& > div:nth-of-type(1)': {
       '& > p': {
-        fontSize: 'xl2',
-        mb: 5,
-        lineHeight: 1.3,
-        textAlign: 'start',
+        display: 'none',
       },
+    },
+    '& > div:nth-of-type(2)': {
+      boxShadow: '1px 1px 5px 5px gray',
+      bgColor: 'white',
+      p: 5,
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '0.5rem',
     },
     '& > div:nth-of-type(2) > div': {
       display: 'flex',
-      flexDirection: { base: 'column', md: 'row' },
-      alignItems: { base: 'center', md: 'start' },
-      gap: 3,
-      mb: 5,
+      flexWrap: 'wrap',
 
       '& p:nth-of-type(1)': {
-        maxW: '100%',
-        flexBasis: '33%',
-        flexGrow: 1,
-        color: 'process.results.description',
+        width: { base: '70%', lg2: '120px' },
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
       },
       '& p:nth-of-type(2)': {
-        mx: 4,
+        ml: 'auto',
       },
       '& div': {
         w: 'full',
-        flexBasis: '33%',
-        flexGrow: 0,
-        flexShrink: 0,
-        h: 6,
+        h: 4,
         borderRadius: 'md',
         bgColor: 'results.progressbar_bg',
         overflow: 'hidden',
         position: 'relative',
 
         '& div': {
-          h: 6,
+          h: 4,
           background: {
             base: `linear-gradient(to right, #2DD1BD 0%, #179B87 50%, #006350 100%) left/var(--p,100%) fixed;`,
             md: `linear-gradient(to right, #2DD1BD 65%, #179B87 79.5%, #006350 94%) left/var(--p,100%) fixed;`,
@@ -83,7 +83,8 @@ const baseStyle = definePartsStyle({
   wrapper: {
     display: 'flex',
     flexDirection: 'column',
-    gap: 10,
+    gap: '73px',
+    mt: '20px',
   },
 })
 

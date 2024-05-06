@@ -208,7 +208,7 @@ export const colors = {
     tabs_selected_color: colorsBase.primary.main,
     title: colorsBase.primary.main,
   },
-  results_progressbar_bg: colorsBase.white.pure,
+  results: { progressbar_bg: colorsBase.gray.light },
   web3_cta: {
     onvote: colorsBase.cta.black,
     farcaster: colorsBase.cta.purple,

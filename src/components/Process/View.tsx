@@ -1,3 +1,4 @@
+import { WarningIcon } from '@chakra-ui/icons'
 import {
   AspectRatio,
   Box,
@@ -12,26 +13,20 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
   Text,
   UnorderedList,
   useDisclosure,
   useMultiStyleConfig,
 } from '@chakra-ui/react'
-import { WarningIcon } from '@chakra-ui/icons'
 import { ElectionQuestions, ElectionResults, environment, useConfirm } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
-import { ElectionResultsTypeNames, ElectionStatus, PublishedElection } from '@vocdoni/sdk'
+import { ElectionResultsTypeNames, PublishedElection } from '@vocdoni/sdk'
 import { useEffect, useRef, useState } from 'react'
 import { FieldValues } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import ReactPlayer from 'react-player'
 import { FacebookShare, RedditShare, TelegramShare, TwitterShare } from '~components/Share'
-import ProcessAside, { VoteButton } from './Aside'
+import { VoteButton } from './Aside'
 import Header from './Header'
 import confirmImg from '/assets/spreadsheet-confirm-modal.jpg'
 import successImg from '/assets/spreadsheet-success-modal.jpg'
@@ -42,14 +37,9 @@ export const ProcessView = () => {
   const videoRef = useRef<HTMLDivElement>(null)
   const [videoTop, setVideoTop] = useState(false)
   const electionRef = useRef<HTMLDivElement>(null)
-  const [tabIndex, setTabIndex] = useState(0)
   const [formErrors, setFormErrors] = useState<any>(null)
-
-  const handleTabsChange = (index: number) => {
-    setTabIndex(index)
-  }
-
-  const setQuestionsTab = () => setTabIndex(0)
+  const resultsRef = useRef<HTMLDivElement>(null)
+  const [showResults, setShowResults] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,13 +58,6 @@ export const ProcessView = () => {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
-
-  // If the election is finished show the results tab
-  useEffect(() => {
-    if (election?.status === ElectionStatus.RESULTS) {
-      setTabIndex(1)
-    }
-  }, [election])
 
   // Move the focus of the screen to the first unanswered question
   useEffect(() => {
@@ -103,9 +86,40 @@ export const ProcessView = () => {
     }
   }, [formErrors])
 
+  useEffect(() => {
+    if (!electionRef.current || !resultsRef.current) return
+
+    const results = resultsRef.current?.children[0].children
+    const resultsArray = Array.from(results) as HTMLElement[]
+
+    if (!resultsArray.length) return
+
+    const questions = electionRef.current.children[0].children[0].children
+    const questionsArray = Array.from(questions) as HTMLDivElement[]
+
+    questionsArray.forEach((el, i) => {
+      const height = el.getBoundingClientRect().height + 4 + 'px'
+      resultsArray[i].style.height = height
+    })
+
+    const questionsOptions = electionRef.current.querySelectorAll('.chakra-radio-group')
+    const questionsOptionsArray = Array.from(questionsOptions) as HTMLElement[]
+
+    questionsOptionsArray.forEach((el, i) => {
+      const questionOptionsArray = Array.from(el.children[0].children) as HTMLElement[]
+
+      questionOptionsArray.forEach((el, idx) => {
+        const height = el.getBoundingClientRect().height + 'px'
+        if (resultsArray[i]?.children[1]?.children[idx]) {
+          ;(resultsArray[i].children[1].children[idx] as HTMLElement).style.height = height
+        }
+      })
+    })
+  }, [])
+
   return (
     <Box>
-      <Box className='site-wrapper' mb={44}>
+      <Box className='site-wrapper'>
         <Header />
 
         {election?.streamUri && (
@@ -121,69 +135,45 @@ export const ProcessView = () => {
             </AspectRatio>
           </Box>
         )}
-
-        <Flex direction={{ base: 'column', lg2: 'row' }} alignItems='start' gap={{ lg2: 10 }} mt={20}>
-          <Tabs
-            order={{ base: 2, lg2: 1 }}
-            variant='process'
-            index={tabIndex}
-            onChange={handleTabsChange}
-            flexGrow={0}
-            flexShrink={0}
-            flexBasis={{ base: '100%', md: '60%', lg: '65%', lg2: '70%', xl2: '75%' }}
-            w='full'
-          >
-            <TabList>
-              <Tab>{t('process.questions')}</Tab>
-              {election?.status !== ElectionStatus.CANCELED && <Tab>{t('process.results')}</Tab>}
-            </TabList>
-            <TabPanels>
-              <TabPanel>
-                <Box ref={electionRef} className='md-sizes' mb='100px' pt='25px'>
-                  <ElectionQuestions
-                    onInvalid={(args) => {
-                      setFormErrors(args)
-                    }}
-                    confirmContents={(election, answers) => <ConfirmVoteModal election={election} answers={answers} />}
-                  />
-                </Box>
-                <Box position='sticky' bottom={0} left={0} pb={1} pt={1} display={{ base: 'none', lg2: 'block' }}>
-                  <VoteButton setQuestionsTab={setQuestionsTab} />
-                </Box>
-              </TabPanel>
-              <TabPanel mb={20}>
-                <ElectionResults />
-              </TabPanel>
-            </TabPanels>
-          </Tabs>
-          <Flex
+        <Flex display={{ base: 'flex', lg2: 'none' }} justifyContent='end'>
+          <Button variant='transparent' onClick={() => setShowResults(!showResults)}>
+            {showResults ? 'Hide results' : 'Show results'}
+          </Button>
+        </Flex>
+        <Text textAlign='center' fontSize='30px' color='process.questions.title'>
+          Questions
+        </Text>
+        <Flex gap={10} position='relative' justifyContent='end'>
+          <Box
+            ref={electionRef}
             flexGrow={1}
-            flexDirection='column'
-            alignItems={{ base: 'center', lg2: 'start' }}
-            order={{ base: 1, lg2: 2 }}
-            gap={0}
-            mx={{ base: 'auto', lg2: 0 }}
-            position={{ lg2: 'sticky' }}
-            top={'300px'}
-            mt={10}
-            maxW={{ lg2: '290px' }}
-            mb={10}
+            flexShrink={1}
+            className='md-sizes'
+            mb='100px'
+            pt='25px'
+            onClick={() => setShowResults(false)}
           >
-            <ProcessAside />
-          </Flex>
+            <ElectionQuestions
+              onInvalid={(args) => {
+                setFormErrors(args)
+              }}
+              confirmContents={(election, answers) => <ConfirmVoteModal election={election} answers={answers} />}
+            />
+          </Box>
+          <Box
+            ref={resultsRef}
+            minW={{ base: 'full', lg2: '300px' }}
+            width={{ base: 'full', lg2: '300px' }}
+            display={{ base: `${showResults ? 'block' : 'none'}`, lg2: 'block' }}
+            position={{ base: 'absolute', lg2: 'relative' }}
+          >
+            <ElectionResults />
+          </Box>
         </Flex>
       </Box>
-      <Box
-        position='sticky'
-        bottom={0}
-        left={0}
-        bgColor='process.aside.aside_footer_mbl_border'
-        pt={1}
-        display={{ base: 'block', lg2: 'none' }}
-      >
-        <VoteButton setQuestionsTab={setQuestionsTab} />
+      <Box position='sticky' bottom={0} left={0} pt={7} bgColor='white'>
+        <VoteButton />
       </Box>
-
       <SuccessVoteModal />
     </Box>
   )

@@ -1,6 +1,6 @@
 import { Box, Button, Card, Flex, Link, Text } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { environment, SpreadsheetAccess, VoteButton as CVoteButton, VoteWeight } from '@vocdoni/chakra-components'
+import { VoteButton as CVoteButton, environment, SpreadsheetAccess, VoteWeight } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
 import { dotobject, ElectionStatus, formatUnits, PublishedElection } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
@@ -181,7 +181,7 @@ const ProcessAside = () => {
   )
 }
 
-export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () => void }) => {
+export const VoteButton = ({ ...props }) => {
   const { t } = useTranslation()
 
   const { election, connected, isAbleToVote, isInCensus } = useElection()
@@ -203,8 +203,6 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
       alignItems='center'
       background='transparent'
       color='process.aside.color'
-      py={3}
-      px={{ base: 3, lg2: 0 }}
       {...props}
     >
       {census?.type !== 'spreadsheet' && !connected && (
@@ -243,10 +241,9 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
       {isAbleToVote && (
         <>
           <CVoteButton
-            w='60%'
+            w='90%'
             fontSize='lg'
             height='50px'
-            onClick={setQuestionsTab}
             mb={4}
             sx={{
               '&::disabled': {

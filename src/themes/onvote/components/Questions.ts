@@ -70,15 +70,23 @@ const baseStyle = definePartsStyle({
     '& > form': {
       display: 'flex',
       flexDirection: 'column',
-      gap: 10,
+      gap: 24,
       minH: '300px',
+
+      '& > div > div:first-of-type': {
+        mb: 10,
+      },
+      '& > div:not(:first-of-type)': {
+        '& > div:first-of-type': {
+          display: 'none',
+        },
+      },
     },
   },
 
   question: {
-    width: { base: 'full', xl: '80%' },
     m: 0,
-    mx: 'auto',
+    w: 'full',
 
     '& > div': {
       display: 'flex',
