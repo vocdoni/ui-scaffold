@@ -75,6 +75,10 @@ const baseStyle = definePartsStyle({
 
       '& > div > div:first-of-type': {
         mb: 5,
+
+        '& > div ': {
+          py: 0,
+        },
       },
 
       '& > div:not(:first-of-type)': {
