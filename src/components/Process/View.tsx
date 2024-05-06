@@ -135,6 +135,9 @@ export const ProcessView = () => {
             </AspectRatio>
           </Box>
         )}
+        <Text textAlign='center' fontSize='30px' color='process.questions.title'>
+          Questions
+        </Text>
         <Flex display={{ base: 'flex', lg2: 'none' }} justifyContent='end'>
           <Button variant='transparent' onClick={() => setShowResults(!showResults)}>
             {showResults ? 'Hide results' : 'Show results'}
