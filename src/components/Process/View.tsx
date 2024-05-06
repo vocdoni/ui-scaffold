@@ -140,9 +140,7 @@ export const ProcessView = () => {
             {showResults ? 'Hide results' : 'Show results'}
           </Button>
         </Flex>
-        <Text textAlign='center' fontSize='30px' color='process.questions.title'>
-          Questions
-        </Text>
+
         <Flex gap={10} position='relative' justifyContent='end'>
           <Box
             ref={electionRef}
