@@ -14,12 +14,6 @@ export const ProcessDate = () => {
 
   if (election.status === ElectionStatus.CANCELED) return null
 
-  console.log(election.startDate)
-  // return (
-  //   <Box>
-  //     <Text>From: {election.startDate}</Text>
-  //   </Box>
-  // )
   return (
     <Flex
       title={t('process.date.relative', {

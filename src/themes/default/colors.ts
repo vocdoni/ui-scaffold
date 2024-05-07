@@ -171,7 +171,7 @@ export const colors = {
       border_bottom_list: colorsBase.gray.main,
     },
     vote_button: {
-      bg_div: colorsBase.white.pure,
+      bg_div: colorsBase.gray.light3,
       mobile_bg: colorsBase.white.pure,
       mobile_color: colorsBase.black,
       desktop_bg: colorsBase.primary.main,
