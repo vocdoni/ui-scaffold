@@ -165,7 +165,7 @@ const baseStyle = definePartsStyle({
       '& span:nth-of-type(2)': {
         p: 2,
         pl: { md: 12 },
-        py: 3,
+        py: 4,
         m: 0,
         w: '100%',
         borderRadius: 'lg',
