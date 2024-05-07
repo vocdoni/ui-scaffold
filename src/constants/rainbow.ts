@@ -1,7 +1,7 @@
 import { connectorsForWallets, Wallet, WalletList } from '@rainbow-me/rainbowkit'
 import '@rainbow-me/rainbowkit/styles.css'
 import { coinbaseWallet, metaMaskWallet, rainbowWallet, walletConnectWallet } from '@rainbow-me/rainbowkit/wallets'
-import { oAuthWallet } from '@vocdoni/rainbowkit-wallets'
+import { oAuthWallet, privateKeyWallet } from '@vocdoni/rainbowkit-wallets'
 import { configureChains, createConfig } from 'wagmi'
 import {
   arbitrum,
@@ -23,6 +23,7 @@ import {
   zora,
 } from 'wagmi/chains'
 import { publicProvider } from 'wagmi/providers/public'
+import i18n from '~i18n'
 
 export const { chains, publicClient } = configureChains(
   [
@@ -102,7 +103,18 @@ const featuredConnectors = () => {
     ],
   }
 
-  const connectors: { [key: string]: WalletGroup } = { web2, web3 }
+  const recovery: WalletGroup = {
+    groupName: i18n.t('rainbow.group.recovery'),
+    wallets: [
+      privateKeyWallet({
+        name: i18n.t('rainbow.recovery'),
+        iconUrl: 'https://www.svgrepo.com/show/525392/key-minimalistic-square-3.svg',
+        chains,
+      }),
+    ],
+  }
+
+  const connectors: { [key: string]: WalletGroup } = { web2, web3, recovery }
   const wallets: WalletList = []
   for (const connector of import.meta.env.features.login) {
     wallets.push(connectors[connector])

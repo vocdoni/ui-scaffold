@@ -1,15 +1,17 @@
 import { tabsAnatomy } from '@chakra-ui/anatomy'
 import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
-import checkIcon from '/assets/check-icon.svg'
+
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(tabsAnatomy.keys)
 
 const card = definePartsStyle({
   tablist: {
     display: 'flex',
-    justifyContent: 'space-around',
-    flexDirection: { base: 'column', md: 'row' },
-    mb: 10,
-    gap: { base: 5, xl: 0 },
+    flexDirection: 'column',
+    '& > div': {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+      gap: 5,
+    },
   },
   tab: {
     position: 'relative',
@@ -27,17 +29,30 @@ const card = definePartsStyle({
     color: 'process_create.description',
     borderRadius: 0,
 
-    '& > p:nth-of-type(1)': {
+    '& #description': {
       color: 'process_create.description',
       textAlign: 'start',
       fontSize: 'xs',
     },
 
-    '& > div': {
+    '& #pro-badge': {
+      bgColor: 'process_create.pro_bg',
+      borderRadius: '10px',
+      position: 'absolute',
+      top: '3px',
+      right: '3px',
+      px: 4,
+      color: 'process_create.pro_color',
+      pt: '2px',
+      fontSize: '12px',
+    },
+
+    '& #title': {
       display: 'flex',
       alignItems: 'center',
       w: 'full',
       gap: 3,
+      fontSize: 'sm',
 
       '& p': {
         fontWeight: 'bold',
@@ -47,10 +62,14 @@ const card = definePartsStyle({
       },
     },
 
+    '& #empty-check': {
+      display: 'none',
+    },
+
     '& > img': {
       w: 5,
       h: 5,
-      bgColor: 'checkbox',
+      bgColor: 'checkbox.selected',
       p: 1,
       position: 'absolute',
       top: 2,

@@ -1,5 +1,5 @@
-import { ElectionActions } from './Actions'
 import { Alert } from './Alert'
+import { Avatar } from './Avatar'
 import { Badge } from './Badge'
 import { Button } from './Button'
 import { Card } from './Card'
@@ -11,6 +11,9 @@ import { Link } from './Link'
 import { Modal } from './Modal'
 import { ElectionQuestions } from './Questions'
 import { QuestionsConfirmation } from './QuestionsConfirmation'
+import { QuestionsTip } from './QuestionsTip'
+import { QuestionsTypeBadge } from './QuestionsTypeBadge'
+import { Radio } from './Radio'
 import { ElectionResults } from './Results'
 import { SpreadsheetAccess } from './SpreadSheet'
 import { Stepper } from './Stepper'
@@ -26,7 +29,6 @@ export {
   Card,
   Checkbox,
   ConfirmModal,
-  ElectionActions,
   ElectionQuestions,
   ElectionResults,
   Form,
@@ -34,6 +36,9 @@ export {
   Link,
   Modal,
   QuestionsConfirmation,
+  QuestionsTip,
+  QuestionsTypeBadge,
+  Radio,
   SpreadsheetAccess,
   Stepper,
   Tabs,
@@ -41,7 +46,6 @@ export {
 }
 
 export const components = {
-  ElectionActions,
   Alert,
   Avatar,
   Badge,
@@ -55,6 +59,9 @@ export const components = {
   Modal,
   ElectionQuestions,
   QuestionsConfirmation,
+  QuestionsTip,
+  QuestionsTypeBadge,
+  Radio,
   ElectionResults,
   SpreadsheetAccess,
   Stepper,

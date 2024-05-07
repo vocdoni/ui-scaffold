@@ -8,6 +8,7 @@ export const colorsBase = {
     main: '#CBD5E0',
     dark: '#606f88',
   },
+  green: '#48BB78',
   primary: {
     gray_light: '#b8bdc7',
     gray: '#656E81',
@@ -24,6 +25,13 @@ export const colorsBase = {
     dark: '#fafafa',
     dark2: 'rgb(245, 247, 250)',
   },
+
+  cta: {
+    black: '#000000',
+    purple: 'rgb(127, 86, 214)',
+    blue: 'rgb(0, 0, 255)',
+    gray: 'rgb(194, 194, 194)',
+  },
 }
 
 export const colors = {
@@ -31,6 +39,7 @@ export const colors = {
     bg: colorsBase.primary.gray,
     color: colorsBase.primary.gray_light,
   },
+  button_transparent_color: colorsBase.primary.main,
 
   primary: {
     main: colorsBase.primary.main,
@@ -54,8 +63,12 @@ export const colors = {
   },
 
   error: colorsBase.red,
+  success: colorsBase.green,
 
-  checkbox: colorsBase.primary.main,
+  checkbox: {
+    selected: colorsBase.primary.main,
+    selected_text: colorsBase.white.pure,
+  },
 
   footer_icon: colorsBase.white.pure,
 
@@ -98,6 +111,7 @@ export const colors = {
       color: colorsBase.white.pure,
       hover: colorsBase.primary.dark,
     },
+    gitcoin_card_checked: colorsBase.primary.main,
     info_title: colorsBase.primary.main,
     description: colorsBase.gray.dark,
     identify_btn: {
@@ -154,6 +168,7 @@ export const colors = {
     close_btn: colorsBase.primary.main,
     confirm_total_cost: colorsBase.primary.main,
     creation_process_steps_loading: colorsBase.primary.gray,
+    gitcoin_sybil: colorsBase.primary.main,
     wallet_addresses_border: colorsBase.gray.main,
     calendar_start_date_selected: colorsBase.primary.main,
     census: {
@@ -164,8 +179,14 @@ export const colors = {
     },
     description: colorsBase.gray.dark,
     description_logo: colorsBase.primary.main,
+    modal_pro: {
+      description: colorsBase.gray.dark,
+      border: colorsBase.primary.gray_light,
+    },
     preview_option_question_before: colorsBase.black,
     preview_negative_balance: colorsBase.red,
+    pro_bg: colorsBase.primary.main,
+    pro_color: colorsBase.white.pure,
     section: colorsBase.white.pure,
     section_border: colorsBase.primary.gray_light,
     spreadsheet: {
@@ -188,4 +209,10 @@ export const colors = {
     title: colorsBase.primary.main,
   },
   results_progressbar_bg: colorsBase.white.pure,
+  web3_cta: {
+    onvote: colorsBase.cta.black,
+    farcaster: colorsBase.cta.purple,
+    plugins: colorsBase.cta.blue,
+    others: colorsBase.cta.gray,
+  },
 }

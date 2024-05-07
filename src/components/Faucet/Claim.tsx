@@ -110,18 +110,18 @@ export const Claim = (props: ClaimProps) => {
             }}
             values={{ balance: account?.balance }}
           />
-          <Flex direction='row' gap='2'>
-            <Button type='submit' variant='primary' w='full' isLoading={loading} onClick={() => auth('github')}>
+          <Flex direction='row' justifyContent='center' gap='2' flexWrap='wrap'>
+            <Button type='submit' variant='primary' isLoading={loading} onClick={() => auth('github')}>
               <Icon mr={2} as={FaGithub} />
               {t('login.github')}
             </Button>
 
-            <Button type='submit' w='full' isLoading={loading} colorScheme='facebook' onClick={() => auth('facebook')}>
+            <Button type='submit' isLoading={loading} colorScheme='facebook' onClick={() => auth('facebook')}>
               <Icon mr={2} as={FaFacebook} />
               {t('login.facebook')}
             </Button>
 
-            <Button type='submit' w='full' isLoading={loading} colorScheme='red' onClick={() => auth('google')}>
+            <Button type='submit' isLoading={loading} colorScheme='red' onClick={() => auth('google')}>
               <Icon mr={2} as={FaGoogle} />
               {t('login.google')}
             </Button>

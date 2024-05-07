@@ -12,6 +12,7 @@ export const colorsBase = {
     main: '#CBD5E0',
     dark: '#606f88',
   },
+  green: '#48BB78',
   primary: {
     main: '#24656e',
     dark: '#175b64',
@@ -23,6 +24,7 @@ export const colorsBase = {
     dark: '#fafafa',
     dark2: 'rgb(245, 247, 250)',
   },
+  yellow: '#FFB116',
 }
 
 export const colors = {
@@ -45,13 +47,45 @@ export const colors = {
     700: colorsBase.black,
   },
 
-  checkbox: colorsBase.primary.main,
+  checkbox: {
+    selected: colorsBase.primary.main,
+    selected_text: colorsBase.white.pure,
+  },
 
   editor: {
     character_limit: colorsBase.gray.light,
   },
 
   error: colorsBase.red,
+  footer_link: colorsBase.gray.dark,
+
+  home: {
+    benefits: {
+      dark_bg: colorsBase.primary.main,
+      dark_color: colorsBase.white.pure,
+      light_bg: colorsBase.white.pure,
+      light_color: colorsBase.primary.main,
+    },
+    demo: {
+      icon: colorsBase.gray.dark,
+      radio: colorsBase.primary.main,
+    },
+    icon_bg: colorsBase.primary.main,
+    section: {
+      bg: colorsBase.gray.light,
+      title: colorsBase.primary.main,
+    },
+    support: {
+      bg: colorsBase.primary.main,
+      title: colorsBase.yellow,
+    },
+    step: {
+      icon: colorsBase.white.pure,
+      icon_bg: colorsBase.primary.main,
+      title: colorsBase.primary.main,
+    },
+  },
+  success: colorsBase.green,
 
   link: {
     primary: colorsBase.primary.main,
@@ -89,6 +123,7 @@ export const colors = {
       color: colorsBase.white.pure,
       hover: colorsBase.primary.dark,
     },
+    gitcoin_card_checked: colorsBase.primary.main,
     info_title: colorsBase.primary.main,
     description: colorsBase.gray.dark,
     identify_btn: {
@@ -146,6 +181,8 @@ export const colors = {
       color: colorsBase.blue.dark,
     },
     advanced_checkbox_bg: colorsBase.white.pure,
+    pro_bg: colorsBase.primary.main,
+    pro_color: colorsBase.white.pure,
     bg: colorsBase.white.dark2,
     wallet_addresses_border: colorsBase.gray.main,
     calendar_start_date_selected: colorsBase.blue.main,
@@ -157,6 +194,10 @@ export const colors = {
     },
     description: colorsBase.gray.dark,
     description_logo: colorsBase.blue.main,
+    modal_pro: {
+      description: colorsBase.gray.dark,
+      border: colorsBase.gray.light,
+    },
     preview_option_question_before: colorsBase.black,
     preview_negative_balance: colorsBase.red,
     section: colorsBase.white.pure,
@@ -175,6 +216,5 @@ export const colors = {
       bg: colorsBase.primary.main,
       color_active: colorsBase.white.pure,
     },
-    tabs_selected_color: colorsBase.primary.main,
   },
 }

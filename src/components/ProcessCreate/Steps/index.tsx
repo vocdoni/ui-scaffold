@@ -31,13 +31,14 @@ const Steps = () => {
         <Stepper
           index={activeStep}
           orientation={useBreakpointValue({ base: 'horizontal', lg: 'vertical' })}
-          my={{ lg: 10 }}
+          my={{ base: 5, lg: 10 }}
           mb={{ base: 5 }}
           h={{ lg: 124 }}
           mx='auto'
           ml={{ lg: 2.5 }}
           gap={{ base: 3, sm: 5 }}
           justifyContent='center'
+          w={{ base: 'full', md: '80%', lg: 'auto' }}
         >
           {steps.map((step, index) => (
             <Step key={index}>
@@ -50,7 +51,7 @@ const Steps = () => {
                 <StepIndicator>
                   <StepStatus complete={<StepIcon />} incomplete={<StepNumber />} active={<StepNumber />} />
                 </StepIndicator>
-                <Text as='span' fontSize='xs' mt={{ lg: 2 }} color='#555'>
+                <Text as='span' fontSize='xs' mt={{ lg: 2 }} color='#555' display={{ base: 'none', sm: 'block' }}>
                   {step.title}
                 </Text>
               </Flex>

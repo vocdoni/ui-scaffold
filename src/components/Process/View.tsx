@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   Flex,
-  Icon,
   Link,
   ListItem,
   Modal,
@@ -23,14 +22,15 @@ import {
   useDisclosure,
   useMultiStyleConfig,
 } from '@chakra-ui/react'
+import { WarningIcon } from '@chakra-ui/icons'
 import { ElectionQuestions, ElectionResults, environment, useConfirm } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
 import { ElectionResultsTypeNames, ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { useEffect, useRef, useState } from 'react'
 import { FieldValues } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { FaFacebook, FaReddit, FaTelegram, FaTwitter } from 'react-icons/fa'
 import ReactPlayer from 'react-player'
+import { FacebookShare, RedditShare, TelegramShare, TwitterShare } from '~components/Share'
 import ProcessAside, { VoteButton } from './Aside'
 import Header from './Header'
 import confirmImg from '/assets/spreadsheet-confirm-modal.jpg'
@@ -41,9 +41,9 @@ export const ProcessView = () => {
   const { election } = useElection()
   const videoRef = useRef<HTMLDivElement>(null)
   const [videoTop, setVideoTop] = useState(false)
-  const questionsRef = useRef<any>()
+  const electionRef = useRef<HTMLDivElement>(null)
   const [tabIndex, setTabIndex] = useState(0)
-  const [rerender, setRerender] = useState(false)
+  const [formErrors, setFormErrors] = useState<any>(null)
   const handleTabsChange = (index: number) => {
     setTabIndex(index)
   }
@@ -68,21 +68,50 @@ export const ProcessView = () => {
     }
   }, [])
 
+  // If the election is finished show the results tab
   useEffect(() => {
-    if (election?.status === ElectionStatus.RESULTS) setTabIndex(1)
+    if (election?.status === ElectionStatus.RESULTS) {
+      setTabIndex(1)
+    }
   }, [election])
 
-  console.log(questionsRef?.current?.children[0].children[0])
+  // Move the focus of the screen to the first unanswered question
+  useEffect(() => {
+    if (!formErrors) return
+
+    // We gather all the inputs
+    const inputs = electionRef?.current?.getElementsByTagName('input')
+
+    if (inputs) {
+      const inputsArray = Array.from(inputs)
+
+      // The formErrors object has keys that represent the error names, so we filter the inputsArray with the names of the inputs
+      const inputsError = inputsArray.filter((el) => el.name === Object.keys(formErrors)[0])
+
+      // We get the last input which is the closest to the error message
+      const lastInputError = inputsError[inputsError.length - 1]
+
+      // Once we have the first input, we calculate the new position
+      const newPosition = window.scrollY + lastInputError.getBoundingClientRect().top - 200
+
+      // We move the focus to the corresponding height
+      window.scrollTo({
+        top: newPosition,
+        behavior: 'smooth',
+      })
+    }
+  }, [formErrors])
 
   return (
     <Box>
       <Box className='site-wrapper' mb={44}>
         <Header />
+
         {election?.streamUri && (
           <Box
-            maxW={{ base: videoTop ? '250px' : '800px', lg: videoTop ? '400px' : '800px' }}
+            maxW={{ base: '800px', lg: videoTop ? '400px' : '800px' }}
             ml={videoTop ? 'auto' : 'none'}
-            position='sticky'
+            position={{ base: 'unset', lg: 'sticky' }}
             top={{ base: 0, lg2: 20 }}
             zIndex={100}
           >
@@ -109,8 +138,11 @@ export const ProcessView = () => {
             </TabList>
             <TabPanels>
               <TabPanel>
-                <Box ref={questionsRef} className='md-sizes' mb='100px' pt='50px'>
+                <Box ref={electionRef} className='md-sizes' mb='100px' pt='25px'>
                   <ElectionQuestions
+                    onInvalid={(args) => {
+                      setFormErrors(args)
+                    }}
                     confirmContents={(election, answers) => <ConfirmVoteModal election={election} answers={answers} />}
                   />
                 </Box>
@@ -189,12 +221,6 @@ const SuccessVoteModal = () => {
   const verify = environment.verifyVote(env, voted)
   const url = encodeURIComponent(document.location.href)
   const caption = t('process.share_caption', { title: election?.title.default })
-  const linked = encodeURIComponent(`${caption} — ${document.location.href}`)
-
-  const twitter = `https://twitter.com/intent/tweet?text=${linked}`
-  const facebook = `https://www.facebook.com/sharer/sharer.php?u=${url}`
-  const telegram = `https://t.me/share/url?url=${url}&text=${caption}`
-  const reddit = `https://reddit.com/submit?url=${url}&title=${caption}`
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -215,48 +241,16 @@ const SuccessVoteModal = () => {
           />
           <UnorderedList listStyleType='none' display='flex' justifyContent='center' gap={6} mt={6} mb={2} ml={0}>
             <ListItem>
-              <Link
-                href={twitter}
-                target='_blank'
-                title={t('process.share_title', { network: 'twitter' })}
-                rel='noopener noreferrer'
-                variant='button-ghost'
-              >
-                <Icon as={FaTwitter} w={6} h={6} cursor='pointer' />
-              </Link>
+              <TwitterShare url={url} caption={caption} />
             </ListItem>
             <ListItem>
-              <Link
-                href={facebook}
-                target='_blank'
-                title={t('process.share_title', { network: 'facebook' })}
-                rel='noopener noreferrer'
-                variant='button-ghost'
-              >
-                <Icon as={FaFacebook} w={6} h={6} cursor='pointer' />
-              </Link>
+              <FacebookShare url={url} caption={caption} />
             </ListItem>
             <ListItem>
-              <Link
-                href={telegram}
-                target='_blank'
-                title={t('process.share_title', { network: 'telegram' })}
-                rel='noopener noreferrer'
-                variant='button-ghost'
-              >
-                <Icon as={FaTelegram} w={6} h={6} cursor='pointer' />
-              </Link>
+              <TelegramShare url={url} caption={caption} />
             </ListItem>
             <ListItem>
-              <Link
-                href={reddit}
-                target='_blank'
-                title={t('process.share_title', { network: 'reddit' })}
-                rel='noopener noreferrer'
-                variant='button-ghost'
-              >
-                <Icon as={FaReddit} w={6} h={6} cursor='pointer' />
-              </Link>
+              <RedditShare url={url} caption={caption} />
             </ListItem>
           </UnorderedList>
         </ModalBody>
@@ -275,6 +269,9 @@ const ConfirmVoteModal = ({ election, answers }: { election: PublishedElection; 
   const { t } = useTranslation()
   const styles = useMultiStyleConfig('ConfirmModal')
   const { cancel, proceed } = useConfirm()
+
+  const canAbstain =
+    election.resultsType.name === ElectionResultsTypeNames.MULTIPLE_CHOICE && election.resultsType.properties.canAbstain
 
   return (
     <>
@@ -327,12 +324,13 @@ const ConfirmVoteModal = ({ election, answers }: { election: PublishedElection; 
                         span: <Text as='span' fontWeight='bold' whiteSpace='nowrap' />,
                       }}
                       values={{
-                        answers: answers[0]
-                          .map((a: string) =>
-                            q.choices[Number(a)] ? q.choices[Number(a)].title.default : t('cc.vote.abstain')
-                          )
-                          .map((a: string) => `- ${a}`)
-                          .join('<br />'),
+                        answers:
+                          answers[0].length === 0
+                            ? t('process.spreadsheet.confirm.blank_vote')
+                            : answers[0]
+                                .map((a: string) => q.choices[Number(a)].title.default)
+                                .map((a: string) => `- ${a}`)
+                                .join('<br />'),
                       }}
                     />
                   </Text>
@@ -342,6 +340,16 @@ const ConfirmVoteModal = ({ election, answers }: { election: PublishedElection; 
             </Box>
           ))}
         </Flex>
+        {canAbstain && answers[0].length < election.voteType.maxCount! && (
+          <Flex direction={'row'} py={2} gap={2} alignItems={'center'} color={'primary.main'}>
+            <WarningIcon />
+            <Text display='flex' flexDirection='column' gap={1}>
+              {t('process.spreadsheet.confirm.abstain_count', {
+                count: election.voteType.maxCount! - answers[0].length,
+              })}
+            </Text>
+          </Flex>
+        )}
       </ModalBody>
       <ModalFooter sx={styles.footer}>
         <Button onClick={cancel!} variant='ghost' sx={styles.cancel}>

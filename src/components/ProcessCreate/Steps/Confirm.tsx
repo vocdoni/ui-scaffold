@@ -19,6 +19,7 @@ import {
 import { Button } from '@vocdoni/chakra-components'
 import { ElectionProvider, errorToString, useClient } from '@vocdoni/react-providers'
 import {
+  Census3CreateStrategyToken,
   CspCensus,
   Election,
   ElectionCreationSteps,
@@ -30,6 +31,7 @@ import {
   IQuestion,
   PlainCensus,
   PublishedElection,
+  StrategyToken,
   UnpublishedElection,
   VocdoniCensus3Client,
   WeightedCensus,
@@ -39,8 +41,11 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { IElection, IElectionWithTokenResponse } from 'vocdoni-admin-sdk'
+import { StampsUnionTypes } from '~components/ProcessCreate/Census/Gitcoin/StampsUnionType'
+import { CensusType } from '~components/ProcessCreate/Census/TypeSelector'
+import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
+import { DefaultCensusSize } from '~constants'
 import { useCspAdmin } from '../Census/Csp/use-csp'
-import { CensusType } from '../Census/TypeSelector'
 import Preview from '../Confirm/Preview'
 import { CostPreview } from '../CostPreview'
 import { CreationProgress, Steps } from '../CreationProgress'
@@ -50,8 +55,8 @@ import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 import Wrapper from './Wrapper'
 
 export const Confirm = () => {
-  const { env, client, account, fetchAccount } = useClient()
-  const { form, prev } = useProcessCreationSteps()
+  const { env, client, account, fetchAccount, census3: c3client } = useClient()
+  const { form, prev, setForm, setIsLoadingPreview, isLoadingPreview } = useProcessCreationSteps()
   const navigate = useNavigate()
   const { t } = useTranslation()
   const toast = useToast()
@@ -66,15 +71,21 @@ export const Confirm = () => {
 
   const methods = useForm({
     defaultValues: {
+      maxCensusSize: form.maxCensusSize,
+      accuracy: form.accuracy,
+      strategySize: form.strategySize,
+      timeToCreateCensus: form.timeToCreateCensus,
       infoValid: false,
       termsAndConditions: false,
     },
   })
+  const max = methods.watch('maxCensusSize')
 
   const {
     formState: { errors },
     handleSubmit,
     register,
+    setValue,
   } = methods
 
   const onSubmit = async () => {
@@ -165,6 +176,11 @@ export const Confirm = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const corelection = useMemo(() => electionFromForm(form), [account?.address, form])
 
+  // update maxCensusSize in state form when the Confirm form value changes
+  useEffect(() => {
+    setForm({ ...form, maxCensusSize: max })
+  }, [max])
+
   // redirects to the created process
   useEffect(() => {
     if (!created || localStorage.getItem('form-draft')) return
@@ -174,8 +190,8 @@ export const Confirm = () => {
 
   // fetches census for unpublished elections
   useEffect(() => {
-    if (typeof unpublished !== 'undefined') return
     ;(async () => {
+      if (form.censusType === 'gitcoin' && (!form.maxCensusSize || isLoadingPreview)) return
       setUnpublished(
         Election.from({
           ...corelection,
@@ -184,7 +200,37 @@ export const Confirm = () => {
         } as IElectionParameters)
       )
     })()
-  }, [account, corelection, env, form, unpublished])
+  }, [isLoadingPreview, form.maxCensusSize])
+
+  // Recalculate the strategy estimation for gitcoin passport
+  useEffect(() => {
+    ;(async () => {
+      if (form.censusType !== 'gitcoin' || !c3client) return
+      setIsLoadingPreview(true)
+      c3client.queueWait.attempts = 100
+      try {
+        const { predicate, tokens } = await getStrategyArgs(form)
+        const { size, timeToCreateCensus, accuracy } = await c3client.getPredicateEstimation(
+          predicate,
+          tokens,
+          form.electionType.anonymous
+        )
+        const initialValue = size < DefaultCensusSize ? size : DefaultCensusSize
+        // Update this values on the state form because they are not gonna change
+        setForm({ ...form, accuracy, strategySize: size, timeToCreateCensus, maxCensusSize: initialValue })
+        // And update the values for this view
+        setValue('accuracy', accuracy)
+        setValue('strategySize', size)
+        setValue('timeToCreateCensus', timeToCreateCensus)
+        setValue('maxCensusSize', initialValue)
+        setIsLoadingPreview(false)
+      } catch (err) {
+        console.error('could not get strategy estimation:', err)
+        setError(errorToString(err))
+        setIsLoadingPreview(false)
+      }
+    })()
+  }, [c3client])
 
   // preview (fake) mapping
   const published = PublishedElection.build({
@@ -203,12 +249,12 @@ export const Confirm = () => {
           {t('form.process_create.confirm.description')}
         </Text>
         <ElectionProvider election={published}>
-          <Flex flexDirection={{ base: 'column', xl2: 'row' }} gap={5}>
-            <Preview />
-            <Box flex={{ xl2: '0 0 25%' }}>
-              <CostPreview unpublished={unpublished} disable={setDisabled} />
+          <FormProvider {...methods}>
+            <Flex flexDirection={{ base: 'column', xl2: 'row' }} gap={5}>
+              <Preview />
+              <Box flex={{ xl2: '0 0 25%' }}>
+                <CostPreview unpublished={unpublished} disable={setDisabled} />
 
-              <FormProvider {...methods}>
                 <Box>
                   <Text className='brand-theme' fontWeight='bold' textTransform='uppercase' px={2} mb={2}>
                     {t('form.process_create.confirm.confirmation')}
@@ -280,9 +326,9 @@ export const Confirm = () => {
                     </FormControl>
                   </Flex>
                 </Box>
-              </FormProvider>
-            </Box>
-          </Flex>
+              </Box>
+            </Flex>
+          </FormProvider>
         </ElectionProvider>
       </Box>
       <Flex justifyContent='space-between' alignItems='end' mt='auto'>
@@ -331,18 +377,24 @@ const getCensus = async (env: EnvOptions, form: StepsFormValues, salt: string) =
   }
 
   switch (form.censusType) {
+    case 'gitcoin':
     case 'token':
       const c3client = new VocdoniCensus3Client({
         env,
       })
 
-      const retryTime = 5000
-      const attempts = form.timeToCreateCensus / retryTime
-
-      c3client.queueWait.retryTime = retryTime
+      c3client.queueWait.retryTime = 5000
       // clamp attempts between 20 and 100
-      c3client.queueWait.attempts = Math.min(Math.max(Math.ceil(attempts), 20), 100)
+      c3client.queueWait.attempts = 100
 
+      if (form.censusType === 'gitcoin') {
+        // Create strategyId
+        const { predicate, tokens } = await getStrategyArgs(form)
+        const strategyID = await c3client.createStrategy('gitcoin_onvote_' + Date.now(), predicate, tokens)
+
+        // Create the census
+        return c3client.createStrategyCensus(strategyID, form.electionType.anonymous)
+      }
       return c3client.createTokenCensus(
         form.censusToken.ID,
         form.censusToken.chainID,
@@ -407,12 +459,85 @@ const electionFromForm = (form: StepsFormValues) => {
     temporarySecretIdentity: form.censusType === 'spreadsheet' && form.electionType.anonymous,
     meta: {
       generated: 'ui-scaffold',
+      app: import.meta.env.theme === 'default' ? 'vocdoni' : import.meta.env.theme,
       census: {
         type: form.censusType,
         fields: form.spreadsheet?.header ?? undefined,
       } as CensusMeta,
     },
   }
+}
+
+/**
+ * For a list of stamp keys, create a predicate like key1 AND (key2 AND (key3 AND key4))
+ *
+ * @param symbols list of token symbols
+ * @param operator The operator to add, AND or OR for example
+ * @param index actual iteration index.
+ */
+const buildPredicate = (symbols: string[], operator: StampsUnionTypes, index: number = 0): string => {
+  // Base case: when we reach the lasts key
+  if (index === symbols.length - 2) {
+    return symbols[index] + ` ${operator} ` + symbols[index + 1]
+  }
+  // Recursive case: build the string with nesting
+  return symbols[index] + ` ${operator} (` + buildPredicate(symbols, operator, index + 1) + ')'
+}
+
+type StrategyArgs = {
+  predicate: string
+  tokens: { [p: string]: Census3CreateStrategyToken }
+}
+
+/**
+ * Calculate strategy arguments to use it ot call estimation or create strategy.
+ * Adapted for gitcoin flow only.
+ * @param form
+ * @param c3client
+ * @constructor
+ */
+const getStrategyArgs = (form: CensusGitcoinValues): StrategyArgs => {
+  let strategyTokens: Record<string, StrategyToken> = {}
+  let predicate = ''
+
+  if (Object.keys(form.stamps).length > 0) {
+    Object.entries(form.stamps).forEach(([key, token]) => {
+      if (!token.isChecked) return
+      const newToken: StrategyToken = {
+        ID: token.ID,
+        chainID: token.chainID,
+        externalID: token.externalID,
+      }
+      strategyTokens[key] = newToken
+    })
+
+    const gpsPredicate = form.gpsWeighted ? 'AND:mul' : 'AND'
+    const stampKeys = Object.keys(strategyTokens)
+    if (stampKeys.length === 1) {
+      predicate = `${gpsPredicate} (${stampKeys[0]} OR ${stampKeys[0]})`
+    } else if (stampKeys.length) {
+      predicate = `${gpsPredicate} (${
+        buildPredicate(stampKeys, form.stampsUnionType) + ')'.repeat(stampKeys.length - 1)
+      }` // Add closing parentheses at the end
+    }
+  }
+
+  const scoreToken = form.gitcoinGPSToken
+  strategyTokens[scoreToken.symbol] = {
+    ID: scoreToken.ID,
+    chainID: scoreToken.chainID,
+    minBalance: form.passportScore.toString(),
+  }
+  if (predicate.length == 0) {
+    if (form.gpsWeighted) {
+      predicate = `${scoreToken.symbol}`
+    } else {
+      predicate = `${scoreToken.symbol} AND ${scoreToken.symbol}`
+    }
+  } else {
+    predicate = `${scoreToken.symbol} ${predicate}`
+  }
+  return { predicate, tokens: strategyTokens }
 }
 
 export type CensusMeta = {

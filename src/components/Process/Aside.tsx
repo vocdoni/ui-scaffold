@@ -1,13 +1,16 @@
 import { Box, Button, Card, Flex, Link, Text } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { VoteButton as CVoteButton, environment, SpreadsheetAccess } from '@vocdoni/chakra-components'
+import { environment, SpreadsheetAccess, VoteButton as CVoteButton, VoteWeight } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
-import { dotobject, ElectionStatus, PublishedElection } from '@vocdoni/sdk'
+import { dotobject, ElectionStatus, formatUnits, PublishedElection } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 import { CensusMeta } from '~components/ProcessCreate/Steps/Confirm'
+
+const results = (result: number, decimals?: number) =>
+  decimals ? parseInt(formatUnits(BigInt(result), decimals), 10) : result
 
 const ProcessAside = () => {
   const { t } = useTranslation()
@@ -28,6 +31,25 @@ const ProcessAside = () => {
     (voting && election?.electionType.anonymous) ||
     (hasOverwriteEnabled(election) && isInCensus && votesLeft > 0 && voted)
 
+  const showVoters =
+    election?.status !== ElectionStatus.CANCELED &&
+    election?.status !== ElectionStatus.UPCOMING &&
+    !(election?.electionType.anonymous && voting)
+  const showVotes = !election?.electionType.secretUntilTheEnd || election.status === ElectionStatus.RESULTS
+
+  let totalWeight = 0
+  if (election && showVotes) {
+    const decimals = (election.meta as any)?.token?.decimals || 0
+    const totalsAbstain = election?.questions.map((q) => ('numAbstains' in q ? Number(q.numAbstains) : 0))
+
+    totalWeight = election?.questions
+      .map((el, idx) => el.choices.reduce((acc, curr) => acc + Number(curr.results), totalsAbstain[idx]))
+      .map((votes: number) => results(votes, decimals))
+      .reduce((acc, curr) => acc + curr, 0)
+  }
+
+  const votersCount = election?.voteCount
+
   return (
     <>
       <Card variant='aside'>
@@ -38,27 +60,54 @@ const ProcessAside = () => {
               : getStatusText(t, election?.status).toUpperCase()}
           </Text>
 
-          {election?.status !== ElectionStatus.CANCELED &&
-            election?.status !== ElectionStatus.UPCOMING &&
-            !(election?.electionType.anonymous && voting) && (
-              <Box
-                className='brand-theme'
-                display='flex'
-                flexDirection='row'
-                justifyContent='center'
-                alignItems='center'
-                gap={2}
-              >
+          {showVoters && !showVotes && (
+            <Box
+              className='brand-theme'
+              display='flex'
+              flexDirection='row'
+              justifyContent='center'
+              alignItems='center'
+              gap={2}
+            >
+              <Trans
+                i18nKey='aside.votes'
+                components={{
+                  span: <Text as='span' fontWeight='bold' fontSize='xl3' textAlign='center' lineHeight={1} />,
+                  text: <Text fontSize='xl' textAlign='center' lineHeight={1.3} />,
+                }}
+                count={votersCount}
+              />
+            </Box>
+          )}
+
+          {showVotes && (
+            <Flex className='brand-theme' direction='column' justifyContent='center' alignItems='center' gap={2}>
+              <Flex direction={'row'} justifyContent='center' alignItems='center' gap={2}>
                 <Trans
-                  i18nKey='aside.votes'
+                  i18nKey='aside.votes_weight'
                   components={{
                     span: <Text as='span' fontWeight='bold' fontSize='xl3' textAlign='center' lineHeight={1} />,
                     text: <Text fontSize='xl' textAlign='center' lineHeight={1.3} />,
                   }}
-                  count={election?.voteCount}
+                  count={totalWeight}
                 />
-              </Box>
-            )}
+              </Flex>
+              {showVoters && votersCount !== totalWeight && (
+                <Flex direction={'row'} justifyContent='center' alignItems='center'>
+                  {'('}
+                  <Trans
+                    i18nKey='aside.votes'
+                    components={{
+                      span: <Text as='span' fontWeight='bold' fontSize='md' textAlign='center' lineHeight={1} mr={2} />,
+                      text: <Text fontSize='md' textAlign='center' lineHeight={1.3} />,
+                    }}
+                    count={election?.voteCount}
+                  />
+                  {')'}
+                </Flex>
+              )}
+            </Flex>
+          )}
         </Flex>
 
         {census?.type !== 'spreadsheet' &&
@@ -99,13 +148,7 @@ const ProcessAside = () => {
               </Text>
             )}
             {voted !== null && voted.length > 0 && (
-              <Link
-                as={ReactRouterLink}
-                to={environment.verifyVote(env, voted)}
-                target='_blank'
-                whiteSpace='nowrap'
-                variant='contrast'
-              >
+              <Link as={ReactRouterLink} to={environment.verifyVote(env, voted)} target='_blank' whiteSpace='nowrap'>
                 {t('aside.verify_vote_on_explorer')}
               </Link>
             )}
@@ -151,8 +194,11 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
   )
     return null
 
+  const isWeighted = election?.census.weight !== election?.census.size
+
   return (
     <Flex
+      direction={'column'}
       justifyContent='center'
       alignItems='center'
       background='transparent'
@@ -195,15 +241,21 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
       )}
       {census?.type === 'spreadsheet' && !connected && <SpreadsheetAccess />}
       {isAbleToVote && (
-        <CVoteButton
-          w='60%'
-          fontSize='lg'
-          height='50px'
-          onClick={setQuestionsTab}
-          _disabled={{
-            opacity: '0.8',
-          }}
-        />
+        <>
+          <CVoteButton
+            w='60%'
+            fontSize='lg'
+            height='50px'
+            onClick={setQuestionsTab}
+            mb={4}
+            sx={{
+              '&::disabled': {
+                opacity: '0.8',
+              },
+            }}
+          />
+          {isWeighted && <VoteWeight />}
+        </>
       )}
     </Flex>
   )

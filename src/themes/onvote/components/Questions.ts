@@ -8,7 +8,7 @@ const baseStyle = definePartsStyle({
   alert: {
     px: { base: 3, sm: 5 },
     py: 7,
-    my: '10px',
+    mb: '30px',
     color: 'process.questions.alert.color',
     bgColor: 'process.questions.alert.bg',
     display: 'grid',
@@ -101,7 +101,7 @@ const baseStyle = definePartsStyle({
     color: 'process.questions.description',
     textAlign: 'start',
     fontSize: 'xl',
-    mb: 5,
+    mb: '50px',
   },
 
   stack: {
@@ -162,6 +162,18 @@ const baseStyle = definePartsStyle({
   radio: {
     borderRadius: 'full !important',
   },
+
+  checkbox: {
+    // Checkbox label style
+    '& span:nth-of-type(2)': {
+      display: 'flex',
+      flexDir: 'row',
+      justifyContent: 'space-between',
+      justifyItems: 'center',
+      alignItems: 'center',
+    },
+  },
+
   error: {
     display: 'flex',
     justifyContent: 'center',

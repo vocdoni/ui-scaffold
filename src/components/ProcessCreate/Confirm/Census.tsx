@@ -9,7 +9,7 @@ const Census = () => {
     form: { censusType },
   } = useProcessCreationSteps()
 
-  if (censusType === 'token') return <PreviewCensusToken />
+  if (censusType === 'token' || censusType === 'gitcoin') return <PreviewCensusToken />
   if (censusType === 'spreadsheet') return <PreviewCensusSpreadsheet />
   if (censusType === 'csp') return <PreviewCensusCsp />
 

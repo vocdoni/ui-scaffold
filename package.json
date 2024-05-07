@@ -6,6 +6,7 @@
     "@chakra-ui/anatomy": "^2.1.2",
     "@chakra-ui/icons": "^2.0.19",
     "@chakra-ui/react": "^2.7.1",
+    "@emailjs/browser": "^4.1.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@ethersproject/abstract-signer": "^5.7.0",
@@ -21,9 +22,9 @@
     "@lexical/selection": "^0.13.1",
     "@lexical/utils": "^0.13.1",
     "@rainbow-me/rainbowkit": "^1.1.3",
-    "@vocdoni/chakra-components": "^0.7.12",
+    "@vocdoni/chakra-components": "^0.8.0",
     "@vocdoni/rainbowkit-wallets": "^0.2.2",
-    "@vocdoni/sdk": "^0.7.3",
+    "@vocdoni/sdk": "https://github.com/vocdoni/vocdoni-sdk.git#main",
     "chakra-react-select": "^4.6.0",
     "date-fns": "^2.30.0",
     "framer-motion": "^10.12.18",
@@ -93,10 +94,12 @@
     "typescript": "^5.0.2",
     "vite": "^4.4.4",
     "vite-plugin-html": "^3.2.0",
+    "vite-plugin-svgr": "^4.2.0",
     "vite-tsconfig-paths": "^4.2.1"
   },
   "packageManager": "yarn@1.22.19",
   "resolutions": {
-    "i18next": "^23.2.11"
+    "i18next": "^23.2.11",
+    "@vocdoni/sdk": "https://github.com/vocdoni/vocdoni-sdk.git#main"
   }
 }
