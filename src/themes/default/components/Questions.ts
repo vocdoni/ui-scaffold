@@ -131,6 +131,8 @@ const baseStyle = definePartsStyle({
         background: 'transparent',
         ml: '10px',
         borderRadius: 'none',
+        border: '1px solid',
+        borderColor: 'lightgray',
 
         '&[data-checked=""]': {
           '&:before': {
@@ -158,8 +160,8 @@ const baseStyle = definePartsStyle({
         },
 
         '&[data-disabled=""]': {
-          bgColor: 'white !important',
-          border: 'none !important',
+          // bgColor: 'white !important',
+          // border: 'none !important',
         },
       },
       '& span:nth-of-type(2)': {

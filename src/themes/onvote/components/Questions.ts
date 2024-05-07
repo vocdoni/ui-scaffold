@@ -129,6 +129,8 @@ const baseStyle = definePartsStyle({
         height: '30px',
         borderRadius: 'none',
         ml: '5px',
+        border: '1px solid',
+        borderColor: 'lightgray',
 
         '&[data-checked=""]': {
           '&:before': {
