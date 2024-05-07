@@ -72,13 +72,13 @@ const baseStyle = definePartsStyle({
       flexDirection: 'column',
       gap: 24,
       minH: '300px',
-
       '& > div > div:first-of-type': {
-        mb: 10,
-      },
-      '& > div:not(:first-of-type)': {
         '& > div:first-of-type': {
-          display: 'none',
+          mb: 5,
+          padding: '2px 12px',
+          fontSize: '11px',
+          lineHeight: '20px',
+          border: '1px solid #ccc',
         },
       },
     },
@@ -86,7 +86,8 @@ const baseStyle = definePartsStyle({
 
   question: {
     m: 0,
-    w: 'full',
+    w: { base: 'full', lg2: '90%' },
+    mx: 'auto',
 
     '& > div': {
       display: 'flex',
@@ -121,6 +122,7 @@ const baseStyle = definePartsStyle({
       w: { lg2: '99%' },
 
       '& span:nth-of-type(1)': {
+        bgColor: 'process.label',
         display: { base: 'none', md: 'block' },
         width: '30px',
         height: '30px',
@@ -153,6 +155,7 @@ const baseStyle = definePartsStyle({
         },
       },
       '& span:nth-of-type(2)': {
+        bgColor: 'process.label',
         p: 4,
         m: 0,
         border: '1px solid lightgray',

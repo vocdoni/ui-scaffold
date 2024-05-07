@@ -7,6 +7,7 @@ export const colorsBase = {
   },
   gradient: 'var(--vcd-gradient-primary)',
   gray: {
+    light3: '#f5f5f5',
     light2: '#EDF2F7',
     light: '#E2E8F0',
     main: '#CBD5E0',
@@ -46,6 +47,8 @@ export const colors = {
     600: colorsBase.black,
     700: colorsBase.black,
   },
+
+  bg_process: colorsBase.gray.light3,
 
   checkbox: {
     selected: colorsBase.primary.main,
@@ -132,7 +135,7 @@ export const colors = {
       bg_hover: colorsBase.primary.dark,
       color: colorsBase.white.pure,
     },
-    label: colorsBase.gray.dark,
+    label: colorsBase.white.pure,
     paused: colorsBase.primary.main,
     questions: {
       alert: {
@@ -150,8 +153,8 @@ export const colors = {
     },
     no_description: colorsBase.gray.dark,
     results: {
-      alert_bg: colorsBase.primary.main,
-      alert_color: colorsBase.white.pure,
+      alert_color: colorsBase.primary.main,
+      alert_bg: colorsBase.white.pure,
       bg: colorsBase.gray.light2,
       description: colorsBase.gray.dark,
       progressbar_bg: colorsBase.gray.light,
@@ -168,6 +171,7 @@ export const colors = {
       border_bottom_list: colorsBase.gray.main,
     },
     vote_button: {
+      bg_div: colorsBase.white.pure,
       mobile_bg: colorsBase.white.pure,
       mobile_color: colorsBase.black,
       desktop_bg: colorsBase.primary.main,

@@ -26,8 +26,8 @@ import { FieldValues } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import ReactPlayer from 'react-player'
 import { FacebookShare, RedditShare, TelegramShare, TwitterShare } from '~components/Share'
-import { VoteButton } from './Aside'
 import Header from './Header'
+import VoteButton from './VoteBtn'
 import confirmImg from '/assets/spreadsheet-confirm-modal.jpg'
 import successImg from '/assets/spreadsheet-success-modal.jpg'
 
@@ -118,8 +118,8 @@ export const ProcessView = () => {
   }, [])
 
   return (
-    <Box>
-      <Box className='site-wrapper'>
+    <Box bgColor='bg_process' outline='100px solid' outlineColor='bg_process'>
+      <Box className='site-wrapper' overflow='hidden'>
         <Header />
 
         {election?.streamUri && (
@@ -135,16 +135,13 @@ export const ProcessView = () => {
             </AspectRatio>
           </Box>
         )}
-        <Text textAlign='center' fontSize='30px' color='process.questions.title'>
-          Questions
-        </Text>
         <Flex display={{ base: 'flex', lg2: 'none' }} justifyContent='end'>
           <Button variant='transparent' onClick={() => setShowResults(!showResults)}>
             {showResults ? 'Hide results' : 'Show results'}
           </Button>
         </Flex>
 
-        <Flex gap={10} position='relative' justifyContent='end'>
+        <Flex gap={20} position='relative' justifyContent='end' zIndex={10}>
           <Box
             ref={electionRef}
             flexGrow={1}
@@ -153,6 +150,7 @@ export const ProcessView = () => {
             mb='100px'
             pt='25px'
             onClick={() => setShowResults(false)}
+            position='relative'
           >
             <ElectionQuestions
               onInvalid={(args) => {
@@ -160,6 +158,9 @@ export const ProcessView = () => {
               }}
               confirmContents={(election, answers) => <ConfirmVoteModal election={election} answers={answers} />}
             />
+            <Box position='sticky' bottom={0} left={0} zIndex={100}>
+              <VoteButton />
+            </Box>
           </Box>
           <Box
             ref={resultsRef}
@@ -173,9 +174,7 @@ export const ProcessView = () => {
           </Box>
         </Flex>
       </Box>
-      <Box position='sticky' bottom={0} left={0} pt={7} bgColor='white'>
-        <VoteButton />
-      </Box>
+
       <SuccessVoteModal />
     </Box>
   )

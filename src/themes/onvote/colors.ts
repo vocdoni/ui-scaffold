@@ -57,6 +57,7 @@ export const colors = {
   },
 
   bg: colorsBase.gray.bg,
+  bg_process: colorsBase.gray.bg,
 
   editor: {
     character_limit: colorsBase.gray.light,
@@ -120,6 +121,7 @@ export const colors = {
       bg_hover: colorsBase.primary.dark,
       color: colorsBase.white.pure,
     },
+    label: colorsBase.white.pure,
     paused: colorsBase.primary.main,
     questions: {
       border: colorsBase.primary.gray_light,
@@ -137,12 +139,15 @@ export const colors = {
       title: colorsBase.primary.main,
     },
     results: {
-      alert_bg: colorsBase.primary.light,
-      alert_color: colorsBase.white.pure,
+      alert_color: colorsBase.primary.light,
+      alert_bg: colorsBase.white.pure,
       bg: colorsBase.gray.light2,
       description: colorsBase.gray.dark,
       progressbar_bg: colorsBase.gray.light,
       title: colorsBase.primary.main,
+    },
+    vote_button: {
+      bg_div: colorsBase.gray.bg,
     },
     spreadsheet: {
       disconnect_bg: 'transparent',

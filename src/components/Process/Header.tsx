@@ -1,21 +1,12 @@
 import { InfoIcon, WarningIcon } from '@chakra-ui/icons'
-import { Box, Button, Flex, Icon, Image, Text, Tooltip } from '@chakra-ui/react'
-import {
-  ElectionDescription,
-  ElectionSchedule,
-  ElectionStatusBadge,
-  ElectionTitle,
-  OrganizationName,
-} from '@vocdoni/chakra-components'
+import { Box, Flex, Icon, Image, Text, Tooltip } from '@chakra-ui/react'
+import { ElectionDescription, ElectionSchedule, ElectionStatusBadge, ElectionTitle } from '@vocdoni/chakra-components'
 import { useClient, useElection, useOrganization } from '@vocdoni/react-providers'
 import { CensusType, ElectionStatus, Strategy } from '@vocdoni/sdk'
 import { ReactNode, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
 import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
 import { StampIcon } from '~components/ProcessCreate/Census/Gitcoin/StampIcon'
-import { ShareModalButton } from '~components/Share'
-import { GoBack } from '~theme/icons'
 import { ActionsMenu } from './ActionsMenu'
 import { CreatedBy } from './CreatedBy'
 import { ProcessDate } from './Date'
@@ -54,19 +45,13 @@ const ProcessHeader = () => {
   const showTotalCensusSize = censusInfo?.size && election?.maxCensusSize && election.maxCensusSize < censusInfo.size
 
   return (
-    <Box mb={10}>
-      {showOrgInformation && (
-        <Button as={Link} to={`/organization/0x${election?.organizationId}`} variant='go-back' mt={5}>
-          <GoBack />
-          <OrganizationName as='span' />
-        </Button>
-      )}
+    <Box mb={10} mt={5}>
       {election?.header && (
         <Box w='100%' mx='auto' maxH='300px' my='30px' overflow='hidden'>
           <Image src={election?.header} w='100%' h='auto' objectFit='cover' />
         </Box>
       )}
-      <Flex direction={{ base: 'column', lg2: 'row' }} alignItems='start' mb={7} gap={10}>
+      <Flex direction={{ base: 'column', lg2: 'row' }} alignItems='start' mb={7} gap={20}>
         <Box flexGrow={1} flexShrink={1}>
           <ElectionTitle fontSize={{ base: '32px', md: '34px' }} textAlign='left' my={5} />
 
@@ -86,8 +71,9 @@ const ProcessHeader = () => {
         </Box>
 
         <Flex
-          boxShadow='1px 1px 5px 5px gray'
+          boxShadow='var(--box-shadow-process)'
           p={5}
+          mt={5}
           width={{ lg2: '300px' }}
           minW={{ lg2: '300px' }}
           position='relative'
@@ -102,12 +88,12 @@ const ProcessHeader = () => {
             opacity: 1,
           }}
         >
-          <Flex justifyContent='space-between' w='full' pr={10} gap={2}>
-            <ElectionStatusBadge w='150px' justifyContent='center' />
-            <ShareModalButton caption={t('share.election_share_text')} text={t('share.election_share_btn_text')} />
-          </Flex>
-          <ElectionSchedule textAlign='left' color='process.info_title' />
-          <Box flexDir='row' display='flex' justifyContent='space-between' w={{ lg2: 'full' }}>
+          <Box position='absolute' right={0} top={0}>
+            <ActionsMenu />
+          </Box>
+          <ElectionStatusBadge w='92%' py={3} textTransform='uppercase' justifyContent='center' />
+
+          <Box>
             {election?.status !== ElectionStatus.CANCELED ? (
               <ProcessDate />
             ) : (
@@ -115,9 +101,7 @@ const ProcessHeader = () => {
                 {t('process.status.canceled')}
               </Text>
             )}
-            <Box position='absolute' right={0} top={0}>
-              <ActionsMenu />
-            </Box>
+            <ElectionSchedule textAlign='left' color='black' fontStyle='normal' fontWeight='normal' fontSize='sm' />
           </Box>
           {election?.electionType.anonymous && (
             <Box>

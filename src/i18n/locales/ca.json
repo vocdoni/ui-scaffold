@@ -1,21 +1,4 @@
 {
-  "aside": {
-    "has_already_voted": "El teu vot s'ha registrat correctament",
-    "is_not_in_census": "No estàs en el cens",
-    "not_connected": "No estàs connectat",
-    "overwrite_votes_left_one": "Pots corregir el teu vot una vegada.",
-    "overwrite_votes_left_many": "",
-    "overwrite_votes_left_other": "Pots corregir el teu vot {{ count }} vegades.",
-    "submitting": "Enviant",
-    "verify_vote_on_explorer": "Verifica el vot a l'explorador",
-    "votes_one": "<span>1</span> <text>votant</text>",
-    "votes_many": "<span>{{ count }}</span> <text>votants</text>",
-    "votes_other": "<span>{{ count }}</span> <text>votants</text>",
-    "voting_anonymous_advice": "Si us plau, espera mentre la màgia té lloc 🪄.\nAixò pot trigar uns minuts; no tanquis la finestra.",
-    "votes_weight_one": "<span>1</span> <text>vot</text>",
-    "votes_weight_other": "<span>{{ count }}</span> <text>vots</text>",
-    "voting_anonymous_advice": "Si us plau, espera mentre la màgia té lloc.Això pot trigar uns minuts; no tanquis la finestra."
-  },
   "banner": {
     "start_now": "Crea una votació!",
     "subtitle": "Utilitza adreces web3, vota amb un token ERC20 o amb NFTs!",
@@ -430,7 +413,6 @@
         "description": "Vocdoni ofereix tant solucions d'autoatenció com solucions personalitzades clau en mà adaptades a les teves necessitats.",
         "title": "Estarem amb tu en tot moment"
       },
-      "header": "Contacta'ns",
       "title": "Col·laborem per crear la votació perfecte"
     },
     "create_process": {
@@ -545,14 +527,12 @@
         "description": "Permet als votants emetre els seus vots a través de diversos canals, incloent navegadors web, telèfons, tauletes, etc., assegurant accessibilitat i comoditat per a tots els participants.",
         "title": "Suport multiplataforma"
       },
-      "header": "Solucions capacitant",
       "subtitle_1": "Desbloqueja el potencial de la plataforma plena de funcionalitats de Vocdoni, oferint un valor excepcional tant per als organitzadors com per als votants. Personalitza els teus processos de votació de manera fluida, assegura eleccions segures i transparents, i capacita els participants amb opcions intuïtives i accessibles. Amb l'aplicació Vocdoni, experimenta el poder d'un compromís millorat, eficiència i confiança en cada experiència de votació.",
       "title": "Característiques"
     },
     "process": {
       "description_1": "L'aplicació Vocdoni et permet crear un procés de votació en 4 senzills passos. ",
       "description_2": "Amb un clic, pots configurar si vols votació anònima o resultats d'elecció en directe, triar entre diversos tipus d'eleccions, carregar el teu cens de votants i molt més.",
-      "header": "Procés",
       "step_1": {
         "description": "Obtingueu un control total amb l'opció d'autoservei de la nostra plataforma, que ofereix una flexibilitat sense igual. Necessiteu personalització o orientació? Us tenim cobert!",
         "title": "Inicieu el vostre propi procés de votació"
@@ -584,7 +564,6 @@
         "description": "Augmenta la participació dels votants, redueix els costos electorals i millora la confiança ciutadana amb processos de votació segurs i verificables.",
         "title": "Governs i Institucions Públiques"
       },
-      "header": "Abraça el canvi amb Vocdoni",
       "img_card_1": "Organitzacions",
       "img_card_2": "Comunitats",
       "img_card_3": "Governs i Institucions Públiques",
@@ -631,6 +610,7 @@
     "google": "Inicia sessió amb Google"
   },
   "menu": {
+    "admin": "Admin",
     "burger_aria_label": "menú d'usuari",
     "connect": "Connectar",
     "copy_aria_label": "copiar adreça",
@@ -706,9 +686,6 @@
     "people_in_census_one": "Un votant",
     "people_in_census_many": "",
     "people_in_census_other": "{{ count }} votants",
-    "questions": "Preguntes",
-    "results": "Resultats",
-    "schedule": "HORARI",
     "share_caption": "Acabo d'emetre el meu vot a {{ title }}!!",
     "share_title": "Comparteix a {{ network }}",
     "spreadsheet": {
@@ -723,15 +700,10 @@
         "question": "<strong>Pregunta {{ number }}:</strong> {{ answer }}"
       }
     },
-    "state": "ESTAT",
     "status": {
-      "active": "Votació en curs",
       "canceled": "Procés cancel·lat",
-      "ended": "Finalitzat",
       "paused": "Procés en pausa",
-      "paused_description": "No és possible votar ara mateix.",
-      "unknown": "Desconegut",
-      "upcoming": "Previst"
+      "paused_description": "No és possible votar ara mateix."
     },
     "strategy": "Estratègia",
     "success_modal": {
@@ -838,8 +810,6 @@
   "retry": "Reintenta",
   "share": {
     "copy": "Copia",
-    "election_share_btn_text": "Comparteix",
-    "election_share_text": "Mira aquesta elecció!",
     "icon_title": "compartir enllaç",
     "mail_subject": "Plataforma de votació",
     "modal_title": "Comparteix amb amics"

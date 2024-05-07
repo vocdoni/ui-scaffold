@@ -3,9 +3,10 @@ import { Avatar, Box, Button, Flex, Icon, List, ListItem, Menu, MenuButton, Text
 import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { useClient } from '@vocdoni/react-providers'
 import { ensure0x } from '@vocdoni/sdk'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { MdHowToVote } from 'react-icons/md'
-import { Link as ReactRouterLink } from 'react-router-dom'
+import { Link as ReactRouterLink, useLocation } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 import { useOrganizationHealthTools } from '~components/Account/use-account-health-tools'
 import Logo from '~components/Layout/Logo'
@@ -18,6 +19,13 @@ const Navbar = () => {
   const { account } = useClient()
   const { openConnectModal } = useConnectModal()
   const { exists } = useOrganizationHealthTools()
+  const location = useLocation()
+  const [isProcess, setIsProcess] = useState(false)
+
+  useEffect(() => {
+    if (location.pathname.includes('process')) setIsProcess(true)
+    else setIsProcess(false)
+  }, [location.pathname])
 
   return (
     <Flex className='site-wrapper' w='full' mx='auto' py={{ base: '12px', md: '24px' }} position='relative'>
@@ -73,8 +81,9 @@ const Navbar = () => {
                   }}
                   width='175px'
                   height='50px'
+                  variant={isProcess ? 'admin' : 'primary'}
                 >
-                  {t('menu.login').toString()}
+                  {isProcess ? t('menu.admin').toString() : t('menu.login').toString()}
                 </Button>
               </ListItem>
               <ListItem>

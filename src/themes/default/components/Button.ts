@@ -159,12 +159,26 @@ const goBack = defineStyle({
   },
 })
 
+const admin = defineStyle((props) => {
+  return {
+    borderRadius: 'full',
+    bgColor: 'white',
+    color: 'black',
+    boxShadow: '2px 5px 10px 5px lightgray',
+
+    _hover: {
+      boxShadow: '2px 5px 10px 7px lightgray',
+    },
+  }
+})
+
 export const Button = defineStyleConfig({
   defaultProps: {
     colorScheme: 'primary',
     variant: 'primary',
   },
   variants: {
+    admin,
     'address-dropdown': addressDropdown,
     'close-form': closeForm,
     dropdown,

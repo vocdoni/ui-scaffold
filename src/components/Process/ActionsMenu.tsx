@@ -26,7 +26,7 @@ export const ActionsMenu = (props: MenuListProps) => {
   if ([ElectionStatus.CANCELED, ElectionStatus.ENDED, ElectionStatus.RESULTS].includes(election.status)) return null
 
   return (
-    <Menu closeOnSelect={false}>
+    <Menu closeOnSelect={false} placement='left'>
       <MenuButton as={IconButton} aria-label='Actions' icon={<FaCog />} variant='ghost' />
       <ActionsProvider>
         <ActionsMenuList {...props} />

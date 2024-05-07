@@ -1,18 +1,4 @@
 {
-  "aside": {
-    "has_already_voted": "Your vote is properly cast",
-    "is_not_in_census": "You are not in the census",
-    "not_connected": "You are not connected",
-    "overwrite_votes_left_one": "You can correct your vote once.",
-    "overwrite_votes_left_other": "You can correct your vote up to {{ count }} times.",
-    "submitting": "Submitting",
-    "verify_vote_on_explorer": "Verify your vote on the explorer",
-    "votes_one": "<span>1</span> <text>voter</text>",
-    "votes_other": "<span>{{ count }}</span> <text>voters</text>",
-    "voting_anonymous_advice": "Please wait while the anonymous magic happens 🪄.\nThis can take up to several minutes; don't close the window.",
-    "votes_weight_one": "<span>1</span> <text>vote</text>",
-    "votes_weight_other": "<span>{{ count }}</span> <text>votes</text>"
-  },
   "banner": {
     "start_now": "Create a vote now!",
     "subtitle": "Save time, money and effort with our easy-to-use & customizable app.",
@@ -177,9 +163,6 @@
     "demo6": "Weighted Voting",
     "follow_us": "Follow us",
     "footer_subtitle": "The Global Voting Protocol",
-    "homepage": "Home",
-    "repos": "Open-Source Code",
-    "resources": "Resources",
     "terms_and_privacy": "<link1>Terms of use</link1> & <link2>Privacy Policy</link2>",
     "text": "<p1>The future</p1><p2>of Web3 voting starts here</p2>",
     "uses_cases": "Use Cases",
@@ -425,7 +408,6 @@
         "description": "Vocdoni offers both self-service and custom, key-in-hand solutions tailored to your needs.",
         "title": "We will be with you every step of the way"
       },
-      "header": "Contact Us",
       "title": "Let’s work together to find the best solution"
     },
     "create_process": {
@@ -540,14 +522,12 @@
         "description": "Enable voters to cast their ballots through various channels, including web browsers, phones, tablets, etc., ensuring accessibility and convenience for all participants.",
         "title": "Multi-device Support"
       },
-      "header": "Empowering Solutions",
       "subtitle_1": "Vocdoni's feature-rich platform enables seamless customization of voting processes, ensuring secure & transparent elections while empowering voters with intuitive options. Enhance engagement, efficiency, and trust in every voting endeavor.",
       "title": "Features"
     },
     "process": {
       "description_1": "Vocdoni APP allows you to create a voting process in 4 easy steps.",
       "description_2": "We allow you to configure with one click either if you want anonymous voting, secret results until the end, the voting type, upload the census and much more.",
-      "header": "Process",
       "step_1": {
         "description": "Gain total control with our platform's self-service option, offering unmatched flexibility. Need customization or guidance? We've got you covered!",
         "title": "Start your own voting process"
@@ -579,7 +559,6 @@
         "description": "Increase voter turnout, reduce electoral costs, and enhance citizen trust with a verifiable, secure voting process.",
         "title": "Governments and Public Institutions"
       },
-      "header": "Embrace Change with Vocdoni",
       "img_card_1": "Organizations",
       "img_card_2": "Communities",
       "img_card_3": "Governments and Public Institutions",
@@ -626,6 +605,7 @@
     "google": "Sign in with Google"
   },
   "menu": {
+    "admin": "Admin",
     "burger_aria_label": "user menu",
     "connect": "Connect",
     "copy_aria_label": "copy address",
@@ -700,9 +680,6 @@
     "no_description": "No description provided",
     "people_in_census_one": "One voter",
     "people_in_census_other": "{{ count }} voters",
-    "questions": "Questions",
-    "results": "Results",
-    "schedule": "SCHEDULE",
     "share_caption": "I've just cast my vote in {{ title }}!!",
     "share_title": "Share on {{ network }}",
     "spreadsheet": {
@@ -716,15 +693,10 @@
         "question": "<strong>Question {{ number }}:</strong> {{ answer }}"
       }
     },
-    "state": "STATE",
     "status": {
-      "active": "Voting in progress",
       "canceled": "Process canceled",
-      "ended": "Ended",
       "paused": "Process paused",
-      "paused_description": "Voting is not possible right now",
-      "unknown": "Unknown",
-      "upcoming": "Upcoming"
+      "paused_description": "Voting is not possible right now"
     },
     "strategy": "Census strategy",
     "success_modal": {
@@ -829,8 +801,6 @@
   "retry": "Retry",
   "share": {
     "copy": "Copy",
-    "election_share_btn_text": "Share",
-    "election_share_text": "Look at this election!",
     "icon_title": "share link",
     "mail_subject": "Voting platform",
     "modal_title": "Share with friends"

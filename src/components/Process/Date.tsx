@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/react'
+import { Flex, Text } from '@chakra-ui/react'
 import { useElection } from '@vocdoni/react-providers'
 import { ElectionStatus } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
@@ -14,18 +14,26 @@ export const ProcessDate = () => {
 
   if (election.status === ElectionStatus.CANCELED) return null
 
+  console.log(election.startDate)
+  // return (
+  //   <Box>
+  //     <Text>From: {election.startDate}</Text>
+  //   </Box>
+  // )
   return (
-    <Box
+    <Flex
       title={t('process.date.relative', {
         date: election.startDate > new Date() ? election.startDate : election.endDate,
       })}
       cursor='help'
+      gap={1}
+      fontWeight='bold'
     >
-      <Text fontWeight='bold'>{statusText}</Text>
+      <Text>{statusText}</Text>
       <Text>
         {t('process.date.relative', { date: election.startDate > new Date() ? election.startDate : election.endDate })}
       </Text>
-    </Box>
+    </Flex>
   )
 }
 

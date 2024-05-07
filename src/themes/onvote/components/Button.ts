@@ -418,9 +418,25 @@ const tryItNow = defineStyle({
   boxShadow: 'rgba(0, 0, 0, 0.1) 0px 0px 10px',
 })
 
+const admin = defineStyle((props) => {
+  return {
+    borderRadius: 'full',
+    bgColor: 'white',
+    color: 'black',
+    boxShadow: '2px 5px 10px 5px lightgray',
+    width: '175px',
+    height: '50px',
+
+    _hover: {
+      boxShadow: '2px 5px 10px 7px lightgray',
+    },
+  }
+})
+
 export const Button = defineStyleConfig({
   baseStyle,
   variants: {
+    admin,
     'address-dropdown': addressDropdown,
     'close-form': closeForm,
     dropdown,

@@ -12,12 +12,15 @@ const baseStyle = definePartsStyle({
       mt: '20px',
     },
     '& > div:nth-of-type(1)': {
+      display: 'none',
       '& > p': {
-        display: 'none',
+        '&:before': {
+          content: '"Hello"',
+        },
       },
     },
     '& > div:nth-of-type(2)': {
-      boxShadow: '1px 1px 5px 5px gray',
+      boxShadow: 'var(--box-shadow-process)',
       bgColor: 'white',
       p: 5,
       display: 'flex',
@@ -62,12 +65,12 @@ const baseStyle = definePartsStyle({
   },
 
   secret: {
-    px: 8,
-    py: 8,
-    my: 4,
+    px: 5,
+    py: 5,
+    my: '75px',
     color: 'process.results.alert_color',
     bgColor: 'process.results.alert_bg',
-    borderRadius: 'lg',
+    boxShadow: 'var(--box-shadow-process)',
     whiteSpace: 'wrap',
   },
 

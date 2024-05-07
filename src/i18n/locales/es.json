@@ -1,21 +1,4 @@
 {
-  "aside": {
-    "has_already_voted": "Tu voto ha sido registrado correctamente",
-    "is_not_in_census": "No estás en el censo",
-    "not_connected": "No estás conectado",
-    "overwrite_votes_left_one": "Puedes corregir tu voto una vez.",
-    "overwrite_votes_left_many": "",
-    "overwrite_votes_left_other": "Puedes corregir tu voto {{ count }} veces.",
-    "submitting": "Enviando",
-    "verify_vote_on_explorer": "Verifica el voto en el explorador",
-    "votes_one": "<span>1</span> <text>votante</text>",
-    "votes_many": "<span>{{ count }}</span> <text>votantes</text>",
-    "votes_other": "<span>{{ count }}</span> <text>votantes</text>",
-    "voting_anonymous_advice": "Por favor, espera mientras sucede la magia 🪄.\nEsto puede tardar varios minutos; no cierres la ventana.",
-    "votes_weight_one": "<span>1</span> <text>voto</text>",
-    "votes_weight_other": "<span>{{ count }}</span> <text>votos</text>",
-    "voting_anonymous_advice": "Por favor, espera mientras sucede la magia.\nEsto puede tardar varios minutos; no cierres la ventana."
-  },
   "banner": {
     "start_now": "¡Crea una votación ahora!",
     "subtitle": "Usa direcciones de cartera, vota con un token ERC20 o con NFTs!",
@@ -430,7 +413,6 @@
         "description": "Vocdoni ofrece tanto soluciones de autoservicio como soluciones personalizadas llave-en-mano adaptadas a tus necesidades.",
         "title": "Te acompañamos en cada paso"
       },
-      "header": "Contáctanos",
       "title": "Trabajemos juntos para encontrar tu votación ideal"
     },
     "create_process": {
@@ -545,14 +527,12 @@
         "description": "Permite a los votantes emitir sus votos directamente desde su navegador web, teléfono o tableta, asegurando la accesibilidad y conveniencia para todos los participantes.",
         "title": "Accesibilidad multiplataforma"
       },
-      "header": "Características destacadas",
       "subtitle_1": "Desbloquea el potencial de Vocdoni: personaliza tus votaciones, asegura elecciones seguras y transparentes, y empodera a los participantes con opciones intuitivas. Experimenta un compromiso mejorado, eficiencia y confianza en cada votación con nuestra aplicación.",
       "title": "Funcionalidades"
     },
     "process": {
       "description_1": "La aplicación Vocdoni te permite crear un proceso de votación en 4 sencillos pasos.",
       "description_2": "Con un clic, puedes configurar si deseas votación anónima o resultados de elección en vivo, elegir entre varios tipos de elecciones, cargar tu censo de votantes y mucho más.",
-      "header": "Proceso",
       "step_1": {
         "description": "Control total con nuestra plataforma de autoservicio. ¿Necesitas personalización o asistencia? Estamos aquí para ayudarte.",
         "title": "Inicia tu votación"
@@ -584,7 +564,6 @@
         "description": "Aumenta la participación de los votantes, reduce los costes electorales y mejora la confianza ciudadana con procesos de votación seguros y verificables.",
         "title": "Gobiernos e Instituciones Públicas"
       },
-      "header": "Soluciones adaptativas",
       "img_card_1": "Organizaciones",
       "img_card_2": "Comunidades",
       "img_card_3": "Gobierno e Instituciones Públicas",
@@ -631,6 +610,7 @@
     "google": "Iniciar sesión con Google"
   },
   "menu": {
+    "admin": "Admin",
     "burger_aria_label": "menú de usuario",
     "connect": "Conectar",
     "copy_aria_label": "copiar dirección",
@@ -706,9 +686,6 @@
     "people_in_census_one": "Un votante",
     "people_in_census_many": "",
     "people_in_census_other": "{{ count }} votantes",
-    "questions": "Preguntas",
-    "results": "Resultados",
-    "schedule": "HORARIO",
     "share_caption": "Acabo de emitir mi voto para {{ title }}!!",
     "share_title": "Compartir en {{ network }}",
     "spreadsheet": {
@@ -723,15 +700,10 @@
         "question": "<strong>Pregunta {{ number }}:</strong> {{ answer }}"
       }
     },
-    "state": "ESTADO",
     "status": {
-      "active": "Votación en curso",
       "canceled": "Proceso cancelado",
-      "ended": "Finalizado",
       "paused": "Proceso pausado",
-      "paused_description": "No es posible votar en este momento.",
-      "unknown": "Desconocido",
-      "upcoming": "Próximo"
+      "paused_description": "No es posible votar en este momento."
     },
     "strategy": "Estrategia",
     "success_modal": {
@@ -838,8 +810,6 @@
   "retry": "Reintentar",
   "share": {
     "copy": "Copiar",
-    "election_share_btn_text": "Comparte",
-    "election_share_text": "¡Mira esta elección!",
     "icon_title": "compartir enlace",
     "mail_subject": "Plataforma de votación",
     "modal_title": "Compartir con amigos"

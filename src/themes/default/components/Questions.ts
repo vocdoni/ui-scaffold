@@ -68,11 +68,12 @@ const baseStyle = definePartsStyle({
       gap: 24,
 
       '& > div > div:first-of-type': {
-        mb: 10,
-      },
-      '& > div:not(:first-of-type)': {
         '& > div:first-of-type': {
-          display: 'none',
+          mb: 5,
+          padding: '2px 12px',
+          fontSize: '11px',
+          lineHeight: '20px',
+          border: '1px solid #ccc',
         },
       },
     },
@@ -80,7 +81,8 @@ const baseStyle = definePartsStyle({
 
   question: {
     m: 0,
-    w: 'full',
+    w: { base: 'full', lg2: '90%' },
+    mx: 'auto',
 
     '& > div': {
       display: 'flex',
@@ -108,6 +110,7 @@ const baseStyle = definePartsStyle({
 
   stack: {
     '& label': {
+      bgColor: 'process.label',
       borderRadius: 'lg',
       overflow: 'hidden',
       display: 'flex',
