@@ -5,10 +5,12 @@ import { useClient, useElection, useOrganization } from '@vocdoni/react-provider
 import { CensusType, ElectionStatus, Strategy } from '@vocdoni/sdk'
 import { ReactNode, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useAccount } from 'wagmi'
 import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
 import { StampIcon } from '~components/ProcessCreate/Census/Gitcoin/StampIcon'
 import { ActionsMenu } from './ActionsMenu'
 import { CreatedBy } from './CreatedBy'
+
 import { ProcessDate } from './Date'
 
 type CensusInfo = { size: number; weight: bigint; type: CensusType }
@@ -18,6 +20,8 @@ const ProcessHeader = () => {
   const { election } = useElection()
   const { organization, loaded } = useOrganization()
   const { account, client } = useClient()
+  const { isConnected } = useAccount()
+
   const [censusInfo, setCensusInfo] = useState<CensusInfo>()
   const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(
     'rgba(242, 242, 242, 0)',
@@ -91,7 +95,12 @@ const ProcessHeader = () => {
           <Box position='absolute' right={0} top={0}>
             <ActionsMenu />
           </Box>
-          <ElectionStatusBadge w='92%' py={3} textTransform='uppercase' justifyContent='center' />
+          <ElectionStatusBadge
+            w={isConnected ? '92%' : '100%'}
+            py={3}
+            textTransform='uppercase'
+            justifyContent='center'
+          />
 
           <Box>
             {election?.status !== ElectionStatus.CANCELED ? (
