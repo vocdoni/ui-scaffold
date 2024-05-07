@@ -125,7 +125,7 @@ export const ProcessView = () => {
         display={{ base: 'none', xl: 'block' }}
         opacity='0.3'
         width='385px'
-        top='250px'
+        top='350px'
         right='0px'
       >
         <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6436e8ff4a93d8291f122d65_Vector4.png' />
