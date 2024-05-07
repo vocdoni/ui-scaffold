@@ -7,8 +7,10 @@ const baseStyle = definePartsStyle({
   button: {
     w: '100%',
     borderRadius: 30,
-    fontSize: { base: 'lg', xl: 'md' },
+    fontSize: 'lg',
     bgColor: 'process.aside.vote_btn_bg',
+    minH: '50px',
+    mb: 4,
 
     _hover: {
       bgColor: 'process.aside.vote_btn_bg',

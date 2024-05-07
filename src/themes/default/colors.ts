@@ -60,6 +60,10 @@ export const colors = {
   },
 
   error: colorsBase.red,
+  footer: {
+    process: colorsBase.gray.light3,
+    default: colorsBase.white.pure,
+  },
   footer_link: colorsBase.gray.dark,
 
   home: {

@@ -81,7 +81,7 @@ const baseStyle = definePartsStyle({
 
   question: {
     m: 0,
-    w: { base: 'full', lg2: '90%' },
+    w: { base: 'full', lg2: '80%' },
     mx: 'auto',
 
     '& > div': {
@@ -116,6 +116,7 @@ const baseStyle = definePartsStyle({
       display: 'flex',
       alignItems: 'center',
       gap: 2,
+
       w: { lg2: '99%' },
       _hover: {
         bgColor: '#eee',
@@ -163,8 +164,8 @@ const baseStyle = definePartsStyle({
       '& span:nth-of-type(2)': {
         p: 2,
         pl: { md: 12 },
+        py: 3,
         m: 0,
-        border: '1px solid lightgray',
         w: '100%',
         borderRadius: 'lg',
       },

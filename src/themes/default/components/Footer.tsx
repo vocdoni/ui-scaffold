@@ -1,14 +1,22 @@
 import { Box, Flex, Icon, Image, Link, Text } from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaDiscord, FaGithub } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
+import { useLocation } from 'react-router-dom'
 import vcdLogo from '/assets/logo-classic.svg'
 
 const Footer = () => {
   const { t } = useTranslation()
+  const location = useLocation()
+  const [isProcess, setIsProcess] = useState(false)
 
+  useEffect(() => {
+    if (location.pathname.includes('process')) setIsProcess(true)
+    else setIsProcess(false)
+  }, [location.pathname])
   return (
-    <>
+    <Box bgColor={isProcess ? 'footer.process' : 'footer.default'}>
       <Flex
         className='site-wrapper'
         py={{ base: '60px', md: '120px' }}
@@ -150,7 +158,7 @@ const Footer = () => {
           </Link>
         </Flex>
       </Flex>
-    </>
+    </Box>
   )
 }
 

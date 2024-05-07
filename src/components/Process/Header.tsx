@@ -100,6 +100,9 @@ const ProcessHeader = () => {
             py={3}
             textTransform='uppercase'
             justifyContent='center'
+            fontWeight='bold'
+            mt={2}
+            boxShadow='0px 5px 5px 1px lightgray'
           />
 
           <Box>

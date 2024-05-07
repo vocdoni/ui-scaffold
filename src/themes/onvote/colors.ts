@@ -65,7 +65,10 @@ export const colors = {
 
   error: colorsBase.red,
   success: colorsBase.green,
-
+  footer: {
+    process: 'transparent',
+    default: 'transparent',
+  },
   checkbox: {
     selected: colorsBase.primary.main,
     selected_text: colorsBase.white.pure,

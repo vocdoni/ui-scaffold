@@ -53,7 +53,7 @@ const VoteButton = ({ ...props }) => {
                 {(() => {
                   if (!connected) {
                     return (
-                      <Button onClick={openConnectModal} w='full'>
+                      <Button onClick={openConnectModal} w='full' minH='50px' mb={4} fontSize='lg'>
                         {t('menu.connect').toString()}
                       </Button>
                     )

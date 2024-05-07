@@ -4,6 +4,7 @@ import {
   Box,
   Button,
   Flex,
+  Image,
   Link,
   ListItem,
   Modal,
@@ -119,6 +120,24 @@ export const ProcessView = () => {
 
   return (
     <Box bgColor='bg_process' outline='100px solid' outlineColor='bg_process'>
+      <Box
+        position='absolute'
+        display={{ base: 'none', xl: 'block' }}
+        opacity='0.3'
+        width='385px'
+        top='250px'
+        right='0px'
+      >
+        <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6436e8ff4a93d8291f122d65_Vector4.png' />
+        <Image
+          src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6436e915e43ce706c7d17313_Vector5.png'
+          position='absolute'
+          top='2%'
+          bottom='0%'
+          left='auto'
+          right='9%'
+        />
+      </Box>
       <Box className='site-wrapper' overflow='hidden'>
         <Header />
 

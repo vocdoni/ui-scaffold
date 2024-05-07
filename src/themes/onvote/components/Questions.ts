@@ -86,7 +86,7 @@ const baseStyle = definePartsStyle({
 
   question: {
     m: 0,
-    w: { base: 'full', lg2: '90%' },
+    w: { base: 'full', lg2: '80%' },
     mx: 'auto',
 
     '& > div': {
@@ -157,8 +157,8 @@ const baseStyle = definePartsStyle({
       '& span:nth-of-type(2)': {
         bgColor: 'process.label',
         p: 4,
+        py: 3,
         m: 0,
-        border: '1px solid lightgray',
         w: '100%',
       },
 
