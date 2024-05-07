@@ -167,6 +167,7 @@ export const ProcessView = () => {
             width={{ base: 'full', lg2: '300px' }}
             display={{ base: `${showResults ? 'block' : 'none'}`, lg2: 'block' }}
             position={{ base: 'absolute', lg2: 'relative' }}
+            onClick={() => setShowResults(false)}
           >
             <ElectionResults />
           </Box>
