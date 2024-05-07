@@ -5,7 +5,7 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 
 const baseStyle = definePartsStyle({
   question: {
-    opacity: '0.6',
+    opacity: '0.8',
     '&': {
       display: 'flex',
       flexDirection: 'column',
@@ -22,8 +22,9 @@ const baseStyle = definePartsStyle({
     },
     '& > div:nth-of-type(2)': {
       boxShadow: 'var(--box-shadow-process)',
+      borderRadius: 'lg',
       bgColor: 'white',
-      p: 5,
+      p: 8,
       display: 'flex',
       flexDirection: 'column',
       gap: '0.5rem',
@@ -71,6 +72,7 @@ const baseStyle = definePartsStyle({
     my: '75px',
     color: 'process.results.alert_color',
     bgColor: 'process.results.alert_bg',
+    borderRadius: 'lg',
     boxShadow: 'var(--box-shadow-process)',
     whiteSpace: 'wrap',
   },

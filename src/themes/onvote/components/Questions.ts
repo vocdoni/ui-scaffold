@@ -17,7 +17,7 @@ const baseStyle = definePartsStyle({
     alignItems: 'center',
     gridTemplateColumns: 'auto 1fr',
     gridTemplateRows: 'auto auto auto',
-    boxShadow: 'var(--box-shadow-darker)',
+    boxShadow: 'var(--box-shadow-process)',
     border: 'none',
     borderRadius: 0,
     maxW: '900px',

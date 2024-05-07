@@ -76,8 +76,9 @@ const ProcessHeader = () => {
 
         <Flex
           boxShadow='var(--box-shadow-process)'
-          p={5}
+          p={8}
           mt={5}
+          borderRadius='lg'
           width={{ lg2: '300px' }}
           minW={{ lg2: '300px' }}
           position='relative'
@@ -87,7 +88,8 @@ const ProcessHeader = () => {
           justifyContent='start'
           gap={{ base: 4, sm: 6, md: 8, lg: 4 }}
           fontSize='sm'
-          opacity={0.85}
+          opacity={0.8}
+          bgColor='#ffffff75'
           _hover={{
             opacity: 1,
           }}
@@ -103,6 +105,7 @@ const ProcessHeader = () => {
             fontWeight='bold'
             mt={2}
             boxShadow='0px 5px 5px 1px lightgray'
+            mb={4}
           />
 
           <Box>
