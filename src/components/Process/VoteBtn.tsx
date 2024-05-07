@@ -53,7 +53,14 @@ const VoteButton = ({ ...props }) => {
                 {(() => {
                   if (!connected) {
                     return (
-                      <Button onClick={openConnectModal} w='full' minH='50px' mb={4} fontSize='lg'>
+                      <Button
+                        onClick={openConnectModal}
+                        w='full'
+                        minH='50px'
+                        mb={4}
+                        fontSize='lg'
+                        boxShadow='var(--box-shadow-process)'
+                      >
                         {t('menu.connect').toString()}
                       </Button>
                     )
@@ -70,8 +77,9 @@ const VoteButton = ({ ...props }) => {
           <CVoteButton
             w='100%'
             fontSize='lg'
-            height='50px'
+            minH='50px'
             mb={4}
+            boxShadow='var(--box-shadow-process)'
             sx={{
               '&::disabled': {
                 opacity: '0.8',

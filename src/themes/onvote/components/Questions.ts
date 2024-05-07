@@ -115,6 +115,7 @@ const baseStyle = definePartsStyle({
 
   stack: {
     '& label': {
+      boxShadow: 'var(--box-shadow-process-questions)',
       overflow: 'hidden',
       display: 'flex',
       alignItems: 'center',

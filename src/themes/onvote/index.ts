@@ -21,7 +21,7 @@ export const theme = extendTheme(vtheme, {
         '--box-shadow': '0px 2px 4px lightgray',
         '--box-shadow-darker': '0px 2px 4px #808080b5',
         '--box-shadow-question': '0px 2px 4px 0px #0000001A',
-        '--box-shadow-process': '1px 1px 10px 3px lightgray',
+        '--box-shadow-process': '0px 10px 15px -3px rgba(0, 0, 0, 0.15)',
         '--vcd-gradient-primary': 'linear-gradient(to right, #24656e, #2c545a)',
       },
       body: {

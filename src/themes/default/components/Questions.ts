@@ -110,6 +110,7 @@ const baseStyle = definePartsStyle({
 
   stack: {
     '& label': {
+      boxShadow: 'var(--box-shadow-process-questions)',
       bgColor: 'process.label',
       borderRadius: 'lg',
       overflow: 'hidden',

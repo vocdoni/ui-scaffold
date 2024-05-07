@@ -11,6 +11,7 @@ const baseStyle = definePartsStyle({
     bgColor: 'process.aside.vote_btn_bg',
     minH: '50px',
     mb: 4,
+    boxShadow:'var(--box-shadow-process)',
 
     _hover: {
       bgColor: 'process.aside.vote_btn_bg',

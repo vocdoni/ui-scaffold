@@ -6,6 +6,10 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 const baseStyle = definePartsStyle({
   button: {
     w: '100%',
+    boxShadow: 'var(--box-shadow-process)',
+    fontSize: 'lg',
+    minH: '50px',
+    mb: 4,
   },
   disconnect: {
     w: 'min-content',
