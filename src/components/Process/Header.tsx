@@ -66,7 +66,7 @@ const ProcessHeader = () => {
           <Image src={election?.header} w='100%' h='auto' objectFit='cover' />
         </Box>
       )}
-      <Flex direction={{ base: 'column', lg2: 'row' }} mb={7} gap={10}>
+      <Flex direction={{ base: 'column', lg2: 'row' }} alignItems='start' mb={7} gap={10}>
         <Box flexGrow={1} flexShrink={1}>
           <ElectionTitle fontSize={{ base: '32px', md: '34px' }} textAlign='left' my={5} />
 
