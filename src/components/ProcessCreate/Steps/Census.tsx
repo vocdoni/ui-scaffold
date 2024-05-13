@@ -1,15 +1,16 @@
 import { Box, Flex, Icon, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useDisclosure } from '@chakra-ui/react'
+import { TabProps } from '@chakra-ui/tabs/dist/tab'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { CgMoreO } from 'react-icons/cg'
+import { CensusType } from '~components/Process/Census/CensusType'
 import { Check } from '~theme/icons'
-import { CensusType, useCensusTypes } from '../Census/TypeSelector'
+import { useCensusTypes } from '../Census/TypeSelector'
 import { UnimplementedCensusType, useUnimplementedCensusTypes } from '../Census/UnimplementedTypeSelector'
 import ModalPro from '../ModalPro'
 import { StepsNavigation } from './Navigation'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 import Wrapper from './Wrapper'
-import { TabProps } from '@chakra-ui/tabs/dist/tab'
 
 export interface CensusValues {
   censusType: CensusType | null
