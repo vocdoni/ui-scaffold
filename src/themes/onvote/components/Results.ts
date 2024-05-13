@@ -10,7 +10,6 @@ const baseStyle = definePartsStyle({
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'end',
-      mt: '20px',
     },
     '& > div:nth-of-type(1)': {
       '& > p': {
@@ -20,7 +19,7 @@ const baseStyle = definePartsStyle({
     '& > div:nth-of-type(2)': {
       boxShadow: 'var(--box-shadow-process)',
       bgColor: 'white',
-      p: 8,
+      px: 8,
       display: 'flex',
       flexDirection: 'column',
       gap: '0.5rem',
@@ -29,7 +28,7 @@ const baseStyle = definePartsStyle({
       display: 'flex',
       flexWrap: 'wrap',
       '& p:nth-of-type(1)': {
-        width: { base: '70%', lg2: '120px' },
+        width: { base: '50%', lg2: '100px' },
         whiteSpace: 'nowrap',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
@@ -84,7 +83,6 @@ const baseStyle = definePartsStyle({
     display: 'flex',
     flexDirection: 'column',
     gap: '73px',
-    mt: '20px',
   },
 })
 

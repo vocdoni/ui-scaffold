@@ -20,6 +20,7 @@ const baseStyle = definePartsStyle({
     gridTemplateRows: 'auto auto',
     boxShadow: 'var(--box-shadow-process)',
     border: 'none',
+    // display: 'none',
 
     '& span': {
       color: 'process.results.alert_color',

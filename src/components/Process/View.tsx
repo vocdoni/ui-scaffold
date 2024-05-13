@@ -87,25 +87,44 @@ export const ProcessView = () => {
     }
   }, [formErrors])
 
+  // To set up dependencies in useEffect to allow recalculating distances when fetching calls of Questions modify the container size
+  const electionContainerHeight = electionRef.current?.getBoundingClientRect().height
+
   useEffect(() => {
     if (!electionRef.current || !resultsRef.current) return
 
+    // Get and convert results to an array
     const results = resultsRef.current?.children[0].children
     const resultsArray = Array.from(results) as HTMLElement[]
 
     if (!resultsArray.length) return
 
-    const questions = electionRef.current.children[0].children[0].children
+    // Get and convert questions into an array. Check if there is a 'vote overwritte' alert to get the corresponding parent.
+    const questions =
+      electionRef.current.children[0].children[0].children[0].tagName === 'SPAN'
+        ? electionRef.current.children[0].children[1].children
+        : electionRef.current.children[0].children[0].children
     const questionsArray = Array.from(questions) as HTMLDivElement[]
 
-    questionsArray.forEach((el, i) => {
-      const height = el.getBoundingClientRect().height + 4 + 'px'
-      resultsArray[i].style.height = height
+    // get the questions container
+    const container = questions[0].parentNode?.parentNode?.parentNode as HTMLElement
+
+    if (!container) return
+
+    // Calculate the difference in distance to the top of the page from the container to the first question
+    const relativeHeight = questions[0].getBoundingClientRect().top - container.getBoundingClientRect().top
+
+    // Give each answer container the same height as its corresponding question; add the relativeHeight to the first question
+    questionsArray.forEach((el, idx) => {
+      const height = el.getBoundingClientRect().height + (idx === 0 ? relativeHeight : 0) + 'px'
+      resultsArray[idx].style.height = height
     })
 
+    // Get and convert results to an array
     const questionsOptions = electionRef.current.querySelectorAll('.chakra-radio-group')
     const questionsOptionsArray = Array.from(questionsOptions) as HTMLElement[]
 
+    // Give each option container of each question the same size as its corresponding option in the relevant question
     questionsOptionsArray.forEach((el, i) => {
       const questionOptionsArray = Array.from(el.children[0].children) as HTMLElement[]
 
@@ -116,7 +135,7 @@ export const ProcessView = () => {
         }
       })
     })
-  }, [])
+  }, [electionContainerHeight])
 
   return (
     <Box bgColor='bg_process' outline='100px solid' outlineColor='bg_process'>
