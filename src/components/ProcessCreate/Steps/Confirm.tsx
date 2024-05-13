@@ -41,8 +41,8 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { IElection, IElectionWithTokenResponse } from 'vocdoni-admin-sdk'
+import { CensusMeta } from '~components/Process/Census/CensusType'
 import { StampsUnionTypes } from '~components/ProcessCreate/Census/Gitcoin/StampsUnionType'
-import { CensusType } from '~components/ProcessCreate/Census/TypeSelector'
 import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
 import { DefaultCensusSize } from '~constants'
 import { useCspAdmin } from '../Census/Csp/use-csp'
@@ -538,9 +538,4 @@ const getStrategyArgs = (form: CensusGitcoinValues): StrategyArgs => {
     predicate = `${scoreToken.symbol} ${predicate}`
   }
   return { predicate, tokens: strategyTokens }
-}
-
-export type CensusMeta = {
-  type: CensusType
-  fields: string[]
 }

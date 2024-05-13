@@ -1,8 +1,8 @@
 import { Box, Card, Checkbox, Text } from '@chakra-ui/react'
 import { Controller, useFormContext } from 'react-hook-form'
-import { GitcoinStampToken } from '~components/ProcessCreate/Census/Gitcoin/index'
-import { StampIcon } from '~components/ProcessCreate/Census/Gitcoin/StampIcon'
+import { StampIcon } from '~components/Process/Census/StampIcon'
 import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
+import { GitcoinStampToken } from '.'
 
 interface IStampCardProps {
   token: GitcoinStampToken
