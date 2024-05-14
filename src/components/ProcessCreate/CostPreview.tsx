@@ -30,19 +30,12 @@ import { useProcessCreationSteps } from './Steps/use-steps'
 import imageModal from '/assets/get-tokens.jpg'
 import { is } from 'date-fns/locale'
 
-export const CostPreview = ({
-  unpublished,
-  disable,
-}: {
-  unpublished: UnpublishedElection | undefined
-  disable: Dispatch<SetStateAction<boolean>>
-}) => {
+export const CostPreview = ({ unpublished }: { unpublished: UnpublishedElection | undefined }) => {
   const { t } = useTranslation()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { account, client } = useClient()
   const [cost, setCost] = useState<number | undefined>()
-  const [isLoadingCost, setIsLoadingCost] = useState(false)
-  const { form, isLoadingPreview } = useProcessCreationSteps()
+  const { form, isLoadingPreview, isLoadingCost, setIsLoadingCost, setNotEnoughBalance } = useProcessCreationSteps()
   const { loading, handleSignIn } = useClaim()
   const {
     maxCensusSize,
@@ -61,15 +54,11 @@ export const CostPreview = ({
       window.clearTimeout(timeout.current)
     }
 
-    // force disable when should calculate
-    disable(true)
-
     timeout.current = window.setTimeout(() => {
       client
         .calculateElectionCost(unpublished)
         .then((cost) => {
           setCost(cost)
-          disable(cost > account!.balance)
         })
         .catch((e) => {
           console.error('could not estimate election cost:', e)
@@ -93,7 +82,7 @@ export const CostPreview = ({
   useEffect(() => {
     if (typeof cost === 'undefined' || !account?.balance) return
 
-    disable(cost > account!.balance)
+    setNotEnoughBalance(cost > account!.balance)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cost, account?.balance])
 
