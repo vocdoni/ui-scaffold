@@ -208,7 +208,7 @@ export const BasicAccountCreation = () => {
         <ModalContent>
           <ModalHeader>{t('welcome.title', { sitename })}</ModalHeader>
           {!!error && <ModalCloseButton />}
-          <ModalBody color='modal_description'>
+          <ModalBody>
             <Box
               className='welcome-modal'
               bgImage={hello}

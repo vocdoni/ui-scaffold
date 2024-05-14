@@ -36,6 +36,7 @@ const baseStyle = definePartsStyle({
   body: {
     padding: 0,
     mt: 5,
+    color: 'modal_description',
   },
   footer: {
     justifyContent: 'center',
