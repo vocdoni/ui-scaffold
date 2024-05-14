@@ -38,7 +38,7 @@ const ProcessAside = () => {
   const showVotes = !election?.electionType.secretUntilTheEnd || election.status === ElectionStatus.RESULTS
 
   let votes = 0
-  if (election && showVotes) {
+  if (election && showVotes && election?.questions.length) {
     const decimals = (election.meta as any)?.token?.decimals || 0
     // It just has to check the first question to get the total of votes.
     const question = election?.questions[0]
