@@ -20,7 +20,6 @@ const baseStyle = definePartsStyle({
     gridTemplateRows: 'auto auto',
     boxShadow: 'var(--box-shadow-process)',
     border: 'none',
-    // display: 'none',
 
     '& span': {
       color: 'process.results.alert_color',
@@ -66,7 +65,23 @@ const baseStyle = definePartsStyle({
       display: 'flex',
       flexDirection: 'column',
       gap: 24,
+      counterReset: 'indice',
 
+      '& > div': {
+        position: 'relative',
+        counterIncrement: 'indice',
+
+        '&::before': {
+          content: `counter(indice)`,
+          position: 'absolute',
+          top: '39px',
+          left: 2,
+          fontSize: '30px',
+          fontWeight: 'extrabold',
+          color: 'lightgray',
+          opacity: 0.5,
+        },
+      },
       '& > div > div:first-of-type': {
         '& > div:first-of-type': {
           mb: 5,
@@ -75,6 +90,9 @@ const baseStyle = definePartsStyle({
           lineHeight: '20px',
           border: '1px solid #ccc',
         },
+      },
+      '& > div > div:nth-of-type(2) > div:first-of-type': {
+        pl: 10,
       },
     },
   },

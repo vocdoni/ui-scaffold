@@ -42,7 +42,7 @@
       "title": "Resultados para \"{{ title }}\"",
       "votes": "Votos: {{ votes }} ({{ percent }})"
     },
-    "schedule": "Votación desde el {{ begin }} hasta {{ end }}",
+    "schedule": "Desde el {{ begin }} hasta {{ end }}",
     "spreadsheet": {
       "access_button": "Identificarse",
       "anon_sik_helper": "Esto garantiza que la votación sea anónima",

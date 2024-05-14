@@ -72,6 +72,23 @@ const baseStyle = definePartsStyle({
       flexDirection: 'column',
       gap: 24,
       minH: '300px',
+      counterReset: 'indice',
+
+      '& > div': {
+        position: 'relative',
+        counterIncrement: 'indice',
+
+        '&::before': {
+          content: `counter(indice)`,
+          position: 'absolute',
+          top: '39px',
+          left: 2,
+          fontSize: '30px',
+          fontWeight: 'extrabold',
+          color: 'black',
+          opacity: 0.1,
+        },
+      },
       '& > div > div:first-of-type': {
         '& > div:first-of-type': {
           mb: 5,
@@ -80,6 +97,9 @@ const baseStyle = definePartsStyle({
           lineHeight: '20px',
           border: '1px solid #ccc',
         },
+      },
+      '& > div > div:nth-of-type(2) > div:first-of-type': {
+        pl: 10,
       },
     },
   },

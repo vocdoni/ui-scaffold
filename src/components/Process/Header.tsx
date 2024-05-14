@@ -119,12 +119,12 @@ const ProcessHeader = () => {
             <ElectionSchedule textAlign='left' color='black' fontStyle='normal' fontWeight='normal' fontSize='sm' />
           </Box>
           {election?.electionType.anonymous && (
-            <Box>
+            <Flex gap={2}>
               <Text fontWeight='bold'>{t('process.is_anonymous.title')}</Text>
               <Text>{t('process.is_anonymous.description')}</Text>
-            </Box>
+            </Flex>
           )}
-          <Box cursor='help'>
+          <Flex cursor='help' gap={2}>
             <Text fontWeight='bold'>
               {t('process.census')} {showTotalCensusSize && <InfoIcon color='process_create.alert_info.color' ml={1} />}
             </Text>
@@ -153,22 +153,24 @@ const ProcessHeader = () => {
             ) : (
               <Text>{t('process.people_in_census', { count: election?.maxCensusSize })}</Text>
             )}
-          </Box>
+          </Flex>
           {election?.meta?.census && (
-            <>
-              <Box>
-                <Text fontWeight='bold'>{t('process.strategy')}</Text>
-                <Text>{strategy}</Text>
-              </Box>
-            </>
+            <Flex gap={2}>
+              <Text fontWeight='bold'>{t('process.strategy')}</Text>
+              <Text>{strategy}</Text>
+            </Flex>
           )}
           {showOrgInformation && (
-            <Box w={{ lg2: 'full' }}>
-              <Text fontWeight='bold' mb={1}>
+            <Flex w={{ lg2: 'full' }} alignItems='center' gap={2}>
+              <Text fontWeight='bold' whiteSpace='nowrap'>
                 {t('process.created_by')}
               </Text>
               <CreatedBy
                 sx={{
+                  '& span': {
+                    maxW: '25px',
+                    maxH: '25px',
+                  },
                   '& p': {
                     minW: 0,
                     display: 'flex',
@@ -184,7 +186,7 @@ const ProcessHeader = () => {
                   },
                 }}
               />
-            </Box>
+            </Flex>
           )}
           {election?.status === ElectionStatus.PAUSED && election?.organizationId !== account?.address && (
             <Flex

@@ -34,7 +34,7 @@ import successImg from '/assets/spreadsheet-success-modal.jpg'
 
 export const ProcessView = () => {
   const { t } = useTranslation()
-  const { election } = useElection()
+  const { election, isAbleToVote, voted } = useElection()
   const videoRef = useRef<HTMLDivElement>(null)
   const [videoTop, setVideoTop] = useState(false)
   const electionRef = useRef<HTMLDivElement>(null)
@@ -97,13 +97,43 @@ export const ProcessView = () => {
     const results = resultsRef.current?.children[0].children
     const resultsArray = Array.from(results) as HTMLElement[]
 
+    if (voted && !isAbleToVote) {
+      electionRef.current.style.margin = '0px'
+      resultsArray.forEach((el) => {
+        ;(el.children[0] as HTMLElement).style.display = 'block'
+        ;(el.children[1] as HTMLElement).style.borderTopRightRadius = '0'
+        ;(el.children[1] as HTMLElement).style.borderTopLeftRadius = '0'
+        ;(el.children[1] as HTMLElement).style.gap = '30px'
+
+        const options = el.children[1].children
+        const optionsArray = Array.from(options) as HTMLElement[]
+
+        optionsArray.forEach((el) => {
+          if (screen.width >= 1220) {
+            el.style.flexWrap = 'nowrap'
+            ;(el.children[0] as HTMLElement).style.whiteSpace = 'wrap'
+            ;(el.children[0] as HTMLElement).style.width = '40%'
+            ;(el.children[1] as HTMLElement).style.width = '20%'
+            ;(el.children[1] as HTMLElement).style.display = 'flex'
+            ;(el.children[1] as HTMLElement).style.display = 'flex'
+            ;(el.children[1] as HTMLElement).style.justifyContent = 'center'
+            ;(el.children[1] as HTMLElement).style.alignItems = 'center'
+            ;(el.children[2] as HTMLElement).style.width = '40%'
+            ;(el.children[2] as HTMLElement).style.marginTop = 'auto'
+            ;(el.children[2] as HTMLElement).style.marginBottom = 'auto'
+          }
+        })
+      })
+    }
+    if (!isAbleToVote) return
+
     if (!resultsArray.length) return
 
     // Get and convert questions into an array. Check if there is a 'vote overwritte' alert to get the corresponding parent.
-    const questions =
-      electionRef.current.children[0].children[0].children[0].tagName === 'SPAN'
-        ? electionRef.current.children[0].children[1].children
-        : electionRef.current.children[0].children[0].children
+    const questions = voted
+      ? electionRef.current.children[0].children[1].children
+      : electionRef.current.children[0].children[0].children
+
     const questionsArray = Array.from(questions) as HTMLDivElement[]
 
     // get the questions container
@@ -114,9 +144,9 @@ export const ProcessView = () => {
     // Calculate the difference in distance to the top of the page from the container to the first question
     const relativeHeight = questions[0].getBoundingClientRect().top - container.getBoundingClientRect().top
 
-    // Give each answer container the same height as its corresponding question; add the relativeHeight to the first question
+    // Give each answer container the same height as its corresponding question; add the relativeHeight + padding to the first question
     questionsArray.forEach((el, idx) => {
-      const height = el.getBoundingClientRect().height + (idx === 0 ? relativeHeight : 0) + 'px'
+      const height = el.getBoundingClientRect().height + (idx === 0 ? relativeHeight + 32 : 0) + 'px'
       resultsArray[idx].style.height = height
     })
 
@@ -173,13 +203,21 @@ export const ProcessView = () => {
             </AspectRatio>
           </Box>
         )}
-        <Flex display={{ base: 'flex', lg2: 'none' }} justifyContent='end'>
-          <Button variant='transparent' onClick={() => setShowResults(!showResults)}>
-            {showResults ? 'Hide results' : 'Show results'}
-          </Button>
-        </Flex>
+        {isAbleToVote && (
+          <Flex display={{ base: 'flex', lg2: 'none' }} justifyContent='end'>
+            <Button variant='transparent' onClick={() => setShowResults(!showResults)}>
+              {showResults ? 'Hide results' : 'Show results'}
+            </Button>
+          </Flex>
+        )}
 
-        <Flex gap={20} position='relative' justifyContent='end' zIndex={10}>
+        <Flex
+          gap={isAbleToVote ? 20 : 0}
+          flexDirection={isAbleToVote ? 'row' : 'column'}
+          position='relative'
+          justifyContent='end'
+          zIndex={10}
+        >
           <Box
             ref={electionRef}
             flexGrow={1}
@@ -202,10 +240,10 @@ export const ProcessView = () => {
           </Box>
           <Box
             ref={resultsRef}
-            minW={{ base: 'full', lg2: '300px' }}
-            width={{ base: 'full', lg2: '300px' }}
-            display={{ base: `${showResults ? 'block' : 'none'}`, lg2: 'block' }}
-            position={{ base: 'absolute', lg2: 'relative' }}
+            minW={{ base: 'full', lg2: isAbleToVote ? '300px' : 'full' }}
+            width={{ base: 'full', lg2: isAbleToVote ? '300px' : 'full' }}
+            display={{ base: `${showResults || !isAbleToVote ? 'block' : 'none'}`, lg2: 'block' }}
+            position={{ base: `${isAbleToVote ? 'absolute' : 'relative'}`, lg2: 'relative' }}
             onClick={() => setShowResults(false)}
           >
             <ElectionResults />

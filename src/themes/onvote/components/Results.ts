@@ -19,7 +19,7 @@ const baseStyle = definePartsStyle({
     '& > div:nth-of-type(2)': {
       boxShadow: 'var(--box-shadow-process)',
       bgColor: 'white',
-      px: 8,
+      p: 8,
       display: 'flex',
       flexDirection: 'column',
       gap: '0.5rem',
@@ -39,18 +39,12 @@ const baseStyle = definePartsStyle({
       '& div': {
         w: 'full',
         h: 4,
-        bgColor: 'results.progressbar_bg',
         overflow: 'hidden',
         position: 'relative',
 
         '& div': {
           h: 4,
-          background: {
-            base: `linear-gradient(to right, #d9e5ff 30%, #0053FF 80%, #0053FF 100%) left/var(--p,100%) fixed;`,
-            md: `linear-gradient(to right, #d9e5ff 65%, #0053FF 85%, #0053FF 94%) left/var(--p,100%) fixed;`,
-            lg2: `linear-gradient(to right, #d9e5ff 45%, #0053FF 60%, #0053FF 94%) left/var(--p,100%) fixed;`,
-            xl: `linear-gradient(to right, #d9e5ff 50%, #0053FF 60%, #0053FF 66%) left/var(--p,100%) fixed;`,
-          },
+          backgroundColor: 'process.bar',
         },
       },
 

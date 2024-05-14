@@ -106,6 +106,7 @@ export const colors = {
       vote_btn_bg: colorsBase.white.pure,
       aside_footer_mbl_border: colorsBase.white.dark,
     },
+    bar: colorsBase.primary.main,
     canceled: colorsBase.primary.main,
     date: colorsBase.black,
     created_by: colorsBase.primary.main,

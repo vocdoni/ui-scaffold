@@ -6,6 +6,7 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 const baseStyle = definePartsStyle({
   question: {
     opacity: '0.8',
+
     '&': {
       display: 'flex',
       flexDirection: 'column',
@@ -13,17 +14,18 @@ const baseStyle = definePartsStyle({
     },
     '& > div:nth-of-type(1)': {
       display: 'none',
-      '& > p': {
-        '&:before': {
-          content: '"Hello"',
-        },
-      },
+      p: 8,
+      pt: 12,
+      pb: 0,
+      boxShadow: 'var(--box-shadow-process)',
+      borderTopRadius: 'lg',
+      bgColor: 'white',
     },
     '& > div:nth-of-type(2)': {
       boxShadow: 'var(--box-shadow-process)',
       borderRadius: 'lg',
       bgColor: 'white',
-      px: 8,
+      p: 8,
       display: 'flex',
       flexDirection: 'column',
       gap: '0.5rem',
@@ -34,7 +36,7 @@ const baseStyle = definePartsStyle({
       gap: 2,
 
       '& p:nth-of-type(1)': {
-        flexGrow: 1,
+        width: 'calc(100% - 170px)',
         whiteSpace: 'nowrap',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
@@ -46,17 +48,12 @@ const baseStyle = definePartsStyle({
         w: 'full',
         h: 4,
         borderRadius: 'md',
-        bgColor: 'results.progressbar_bg',
         overflow: 'hidden',
         position: 'relative',
 
         '& div': {
           h: 4,
-          background: {
-            base: `linear-gradient(to right, #2DD1BD 0%, #179B87 50%, #006350 100%) left/var(--p,100%) fixed;`,
-            md: `linear-gradient(to right, #2DD1BD 65%, #179B87 79.5%, #006350 94%) left/var(--p,100%) fixed;`,
-            xl: `linear-gradient(to right, #2DD1BD 46%, #179B87 56%, #006350 66%) left/var(--p,100%) fixed;`,
-          },
+          backgroundColor: 'process.bar',
         },
       },
 

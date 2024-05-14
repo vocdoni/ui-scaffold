@@ -42,7 +42,7 @@
       "title": "Resultats per a \"{{ title }}\"",
       "votes": "Vots: {{ votes }} ({{ percent }})"
     },
-    "schedule": "Votació del {{ begin }} al {{ end }}",
+    "schedule": "Del {{ begin }} al {{ end }}",
     "spreadsheet": {
       "access_button": "Identifica't",
       "anon_sik_helper": "Això garanteix que el teu vot sigui anònim",

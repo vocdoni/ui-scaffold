@@ -123,6 +123,7 @@ export const colors = {
       aside_footer_mbl_border: colorsBase.white.dark,
       verify_link: colorsBase.white.pure,
     },
+    bar: colorsBase.primary.main,
     canceled: colorsBase.primary.main,
     confirm_vote: {
       active: colorsBase.primary.dark2,
