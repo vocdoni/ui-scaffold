@@ -8,9 +8,10 @@ const baseStyle = definePartsStyle({
   overlay: {
     bgColor: 'rgba(0 ,0 ,0, 0.8)',
   },
-
   dialog: {
-    p: 10,
+    pt: 4,
+    pb: 10,
+    px: 10,
     w: '420px',
     borderRadius: 0,
     clipPath:
@@ -50,6 +51,7 @@ const baseStyle = definePartsStyle({
     bgRepeat: 'no-repeat',
     bgPosition: 'center',
     borderRadius: 0,
+    mt: 2,
 
     '& svg': {
       display: 'none',

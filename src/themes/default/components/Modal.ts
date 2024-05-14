@@ -7,8 +7,13 @@ const baseStyle = definePartsStyle({
   overlay: {
     bgColor: 'rgba(0 ,0 ,0, 0.8)',
   },
+  closeButton: {
+    mt: 2,
+  },
   dialog: {
-    p: { base: 10, lg: 14 },
+    pt: 5,
+    pb: { base: 10, lg: 14 },
+    px: { base: 10, lg: 14 },
   },
   header: {
     padding: 0,
