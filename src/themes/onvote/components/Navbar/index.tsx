@@ -2,7 +2,6 @@ import { AddIcon, ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 import { Avatar, Box, Button, Flex, Icon, List, ListItem, Menu, MenuButton, Text } from '@chakra-ui/react'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { useClient } from '@vocdoni/react-providers'
-import { ensure0x } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import { MdHowToVote } from 'react-icons/md'
 import { Link as ReactRouterLink } from 'react-router-dom'
@@ -35,7 +34,7 @@ const Navbar = () => {
 
         {account && account?.account?.name?.default.length > 0 && (
           <ListItem>
-            <Button as={ReactRouterLink} to={`/organization/${ensure0x(account?.address)}`} variant='secondary'>
+            <Button as={ReactRouterLink} to={`/organization/${account.address}`} variant='secondary'>
               <Icon as={MdHowToVote} boxSize={{ base: 4, sm2: 3 }} />
               <Text as='span' display={{ base: 'none', sm2: 'inline-block' }}>
                 {t('menu.my_org')}

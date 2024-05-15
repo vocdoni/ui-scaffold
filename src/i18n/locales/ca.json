@@ -11,9 +11,10 @@
     "votes_one": "<span>1</span> <text>votant</text>",
     "votes_many": "<span>{{ count }}</span> <text>votants</text>",
     "votes_other": "<span>{{ count }}</span> <text>votants</text>",
-    "voting_anonymous_advice": "Si us plau, espera mentre la màgia té lloc 🪄.\nAixò pot trigar uns minuts; no tanquis la finestra.",
     "votes_weight_one": "<span>1</span> <text>vot</text>",
-    "votes_weight_other": "<span>{{ count }}</span> <text>vots</text>"
+    "votes_weight_many": "",
+    "votes_weight_other": "<span>{{ count }}</span> <text>vots</text>",
+    "voting_anonymous_advice": "Si us plau, espera mentre la màgia té lloc 🪄.\nAixò pot trigar uns minuts; no tanquis la finestra."
   },
   "banner": {
     "start_now": "Crea una votació!",
@@ -429,7 +430,6 @@
         "description": "Vocdoni ofereix tant solucions d'autoatenció com solucions personalitzades clau en mà adaptades a les teves necessitats.",
         "title": "Estarem amb tu en tot moment"
       },
-      "header": "Contacta'ns",
       "title": "Col·laborem per crear la votació perfecte"
     },
     "create_process": {
@@ -544,14 +544,12 @@
         "description": "Permet als votants emetre els seus vots a través de diversos canals, incloent navegadors web, telèfons, tauletes, etc., assegurant accessibilitat i comoditat per a tots els participants.",
         "title": "Suport multiplataforma"
       },
-      "header": "Solucions capacitant",
       "subtitle_1": "Desbloqueja el potencial de la plataforma plena de funcionalitats de Vocdoni, oferint un valor excepcional tant per als organitzadors com per als votants. Personalitza els teus processos de votació de manera fluida, assegura eleccions segures i transparents, i capacita els participants amb opcions intuïtives i accessibles. Amb l'aplicació Vocdoni, experimenta el poder d'un compromís millorat, eficiència i confiança en cada experiència de votació.",
       "title": "Característiques"
     },
     "process": {
       "description_1": "L'aplicació Vocdoni et permet crear un procés de votació en 4 senzills passos. ",
       "description_2": "Amb un clic, pots configurar si vols votació anònima o resultats d'elecció en directe, triar entre diversos tipus d'eleccions, carregar el teu cens de votants i molt més.",
-      "header": "Procés",
       "step_1": {
         "description": "Obtingueu un control total amb l'opció d'autoservei de la nostra plataforma, que ofereix una flexibilitat sense igual. Necessiteu personalització o orientació? Us tenim cobert!",
         "title": "Inicieu el vostre propi procés de votació"
@@ -583,7 +581,6 @@
         "description": "Augmenta la participació dels votants, redueix els costos electorals i millora la confiança ciutadana amb processos de votació segurs i verificables.",
         "title": "Governs i Institucions Públiques"
       },
-      "header": "Abraça el canvi amb Vocdoni",
       "img_card_1": "Organitzacions",
       "img_card_2": "Comunitats",
       "img_card_3": "Governs i Institucions Públiques",
@@ -668,6 +665,11 @@
       "description": "Com a organitzador, tens la capacitat de crear processos de votació personalitzats per a la teva comunitat. Aquests procediments de votació ofereixen una àmplia gamma de flexibilitat, incloent opcions com un cens on els votants han d'autenticar-se utilitzant dades personalitzades (com ara nom d'usuari, contrasenya i data de naixement), un sistema basat en tokens que permet la participació de tots els titulars de tokens o una llista blanca que utilitza adreces de cartera per a l'eligibilitat.",
       "not_owner": "Aquesta organització encara no té votacions.",
       "title": "Crea la teva primera elecció"
+    },
+    "menu": {
+      "dashboard": "Dashboard",
+      "edit_my_organization": "La meva entitat",
+      "votings": "Votacions"
     },
     "title": {
       "edit": "Editar organització",

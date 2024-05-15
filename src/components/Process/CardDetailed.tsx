@@ -43,7 +43,7 @@ const ProcessDetailedCreationDate = () => {
   const { election } = useElection()
   const { format } = useDateFns()
 
-  if (!election?.creationTime) return null
+  if (election instanceof InvalidElection || !election?.creationTime) return null
 
   return <Text>{format(new Date(election.creationTime), 'PPP')}</Text>
 }

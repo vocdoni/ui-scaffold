@@ -1,26 +1,32 @@
 import { useDisclosure } from '@chakra-ui/react'
 import { OrganizationProvider, useClient } from '@vocdoni/react-providers'
-import { createContext, useContext } from 'react'
-import EditProfile from '~components/Account/EditProfile'
+import { createContext, useContext, useState } from 'react'
+import EditProfileModal from '~components/Account/EditProfile'
 
-type OrganizationModalState = Pick<ReturnType<typeof useDisclosure>, 'isOpen' | 'onOpen' | 'onClose'>
+type OrganizationModalState = Pick<ReturnType<typeof useDisclosure>, 'isOpen' | 'onOpen' | 'onClose'> & {
+  loading: boolean
+  setLoading: (loading: boolean) => void
+}
 
 const OrganizationModalContext = createContext<OrganizationModalState | undefined>(undefined)
 
 export const OrganizationModalProvider = ({ children }: { children: React.ReactNode | React.ReactNode[] }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const { account, fetchAccount } = useClient()
+  const [loading, setLoading] = useState<boolean>(false)
+  const { account } = useClient()
 
   const modalValues = {
     isOpen,
     onOpen,
     onClose,
+    loading,
+    setLoading,
   }
 
   return (
     <OrganizationProvider organization={account}>
       <OrganizationModalContext.Provider value={modalValues}>
-        <EditProfile callback={fetchAccount} />
+        <EditProfileModal />
         {children}
       </OrganizationModalContext.Provider>
     </OrganizationProvider>
