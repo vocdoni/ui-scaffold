@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { GoNumber } from 'react-icons/go'
 import { ImListNumbered } from 'react-icons/im'
 import { MdOutlineLibraryAddCheck } from 'react-icons/md'
+import { GenericFeatureObject } from '~components/ProcessCreate/Steps/TabsPage'
 
 export const UnimplementedVotingTypeMulti = 'multi'
 export const UnimplementedVotingTypeParticipatory = 'participatory'
@@ -19,7 +20,7 @@ export const UnimplementedVotingType = [
   UnimplementedVotingTypeBorda as UnimplementedVotingType,
 ]
 
-export const useUnimplementedVotingType = () => {
+export const useUnimplementedVotingType = (): GenericFeatureObject<UnimplementedVotingType> => {
   const { t } = useTranslation()
   return {
     list: UnimplementedVotingType,

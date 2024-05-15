@@ -10,7 +10,7 @@ interface CustomFieldError extends FieldError {
   index: number
 }
 
-const CreateProcessQuestions = () => {
+const SingleChoice = () => {
   const { t } = useTranslation()
 
   const {
@@ -25,14 +25,6 @@ const CreateProcessQuestions = () => {
   const [tabIndex, setTabIndex] = useState(0)
 
   const questions = watch('questions')
-
-  const getQuestionErrorIndex = (index: number): number | null => {
-    const questionErrors = errors.questions as FieldErrors<CustomFieldError>[] | undefined
-    if (questionErrors && questionErrors[index]) {
-      return index
-    }
-    return null
-  }
 
   useEffect(() => {
     if (questions.length === 0) {
@@ -57,7 +49,6 @@ const CreateProcessQuestions = () => {
 
   return (
     <Flex flexDirection='column' gap={5}>
-      <VotingTypes />
       <Box>
         <Text className='process-create-title'>{t('form.process_create.question.title')}</Text>
         <Text fontSize='sm' color='process_create.description'>
@@ -89,4 +80,4 @@ const CreateProcessQuestions = () => {
   )
 }
 
-export default CreateProcessQuestions
+export default SingleChoice
