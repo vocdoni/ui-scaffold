@@ -21,7 +21,6 @@ const ProcessHeader = () => {
   const { organization, loaded } = useOrganization()
   const { account, client } = useClient()
   const { isConnected } = useAccount()
-
   const [censusInfo, setCensusInfo] = useState<CensusInfo>()
   const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(
     'rgba(242, 242, 242, 0)',
@@ -79,12 +78,12 @@ const ProcessHeader = () => {
           p={8}
           mt={5}
           borderRadius='lg'
-          width={{ lg2: '300px' }}
+          width={{ base: '600px', lg2: '300px' }}
           minW={{ lg2: '300px' }}
+          mx='auto'
           position='relative'
-          flexDirection={{ base: 'row', lg2: 'column' }}
+          flexDirection='column'
           alignItems='start'
-          flexWrap='wrap'
           justifyContent='start'
           gap={{ base: 4, sm: 6, md: 8, lg: 4 }}
           fontSize='sm'
@@ -119,12 +118,12 @@ const ProcessHeader = () => {
             <ElectionSchedule textAlign='left' color='black' fontStyle='normal' fontWeight='normal' fontSize='sm' />
           </Box>
           {election?.electionType.anonymous && (
-            <Flex gap={2}>
+            <Flex alignItems={{ base: 'start', lg2: 'center' }} flexWrap='wrap' gap={2}>
               <Text fontWeight='bold'>{t('process.is_anonymous.title')}</Text>
               <Text>{t('process.is_anonymous.description')}</Text>
             </Flex>
           )}
-          <Flex cursor='help' gap={2}>
+          <Flex cursor='help' alignItems={{ base: 'start', lg2: 'center' }} flexWrap='wrap' gap={2}>
             <Text fontWeight='bold'>
               {t('process.census')} {showTotalCensusSize && <InfoIcon color='process_create.alert_info.color' ml={1} />}
             </Text>
@@ -155,13 +154,15 @@ const ProcessHeader = () => {
             )}
           </Flex>
           {election?.meta?.census && (
-            <Flex gap={2}>
-              <Text fontWeight='bold'>{t('process.strategy')}</Text>
+            <Flex alignItems={{ base: 'start', lg2: 'center' }} flexWrap='wrap' gap={2}>
+              <Text fontWeight='bold' whiteSpace='nowrap'>
+                {t('process.strategy')}
+              </Text>
               <Text>{strategy}</Text>
             </Flex>
           )}
           {showOrgInformation && (
-            <Flex w={{ lg2: 'full' }} alignItems='center' gap={2}>
+            <Flex w={{ lg2: 'full' }} alignItems='center' flexWrap='wrap' gap={2}>
               <Text fontWeight='bold' whiteSpace='nowrap'>
                 {t('process.created_by')}
               </Text>
@@ -192,7 +193,7 @@ const ProcessHeader = () => {
             <Flex
               color='process.paused'
               gap={2}
-              alignItems='center'
+              alignItems={{ base: 'start', lg2: 'center' }}
               border='1px solid'
               borderColor='process.paused'
               borderRadius='lg'
