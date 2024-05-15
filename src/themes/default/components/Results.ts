@@ -5,8 +5,6 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 
 const baseStyle = definePartsStyle({
   question: {
-    opacity: '0.8',
-
     '&': {
       display: 'flex',
       flexDirection: 'column',
