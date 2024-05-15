@@ -45,12 +45,14 @@ export const ProcessView = () => {
   const [showResults, setShowResults] = useState(false)
   const [infoLoaded, setInfoLoaded] = useState(false)
 
+  // Check if render results full screen
   const showResultsFullScreen =
     infoLoaded &&
     ((isConnected && !!voted && votesLeft === 0) ||
       election?.status === ElectionStatus.RESULTS ||
       election?.status === ElectionStatus.ENDED)
 
+  // Wait until isAbleToVote is not null
   useEffect(() => {
     if (isAbleToVote === false || isAbleToVote === true) {
       setInfoLoaded(true)
