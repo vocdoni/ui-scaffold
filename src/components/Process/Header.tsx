@@ -8,7 +8,7 @@ import {
   OrganizationName,
 } from '@vocdoni/chakra-components'
 import { useClient, useElection, useOrganization } from '@vocdoni/react-providers'
-import { CensusType, ElectionStatus, Strategy } from '@vocdoni/sdk'
+import { CensusType, ElectionStatus, InvalidElection, PublishedElection, Strategy } from '@vocdoni/sdk'
 import { ReactNode, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
@@ -40,7 +40,7 @@ const ProcessHeader = () => {
   useEffect(() => {
     ;(async () => {
       try {
-        if (!election?.census?.censusId || !client) return
+        if (!client || !(election instanceof PublishedElection) || !election?.census?.censusId) return
         const censusInfo: CensusInfo = await client.fetchCensusInfo(election.census.censusId)
         setCensusInfo(censusInfo)
       } catch (e) {
@@ -49,6 +49,8 @@ const ProcessHeader = () => {
       }
     })()
   }, [election, client])
+
+  if (!(election instanceof PublishedElection)) return null
 
   const showOrgInformation = !loaded || (loaded && organization?.account?.name)
   const showTotalCensusSize = censusInfo?.size && election?.maxCensusSize && election.maxCensusSize < censusInfo.size
@@ -236,9 +238,11 @@ const GitcoinStrategyInfo = () => {
   const { t } = useTranslation()
   const { election } = useElection()
 
-  if (!election || (election && !election?.meta?.strategy)) return
-  const strategy: Strategy = election.get('strategy')
+  if (!election || !(election instanceof PublishedElection) || !election?.meta?.strategy) {
+    return null
+  }
 
+  const strategy: Strategy = election.get('strategy')
   const score = strategy.tokens['GPS'].minBalance
   const firstParenthesesMatch = strategy.predicate.match(/\(([^)]+)\)/)
   let unionTypeString: string | null = null
@@ -278,6 +282,9 @@ const GitcoinStrategyInfo = () => {
 const useStrategy = () => {
   const { t } = useTranslation()
   const { election } = useElection()
+
+  if (!election || election instanceof InvalidElection || !election?.meta?.census) return ''
+
   const strategies: { [key: string]: ReactNode } = {
     spreadsheet: t('process.census_strategies.spreadsheet'),
     token: t('process.census_strategies.token', { token: election?.meta?.token }),
@@ -285,8 +292,6 @@ const useStrategy = () => {
     csp: t('process.census_strategies.csp'),
     gitcoin: <GitcoinStrategyInfo />,
   }
-
-  if (!election || (election && !election?.meta?.census)) return ''
 
   const type = election.get('census.type')
 

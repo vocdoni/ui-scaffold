@@ -9,9 +9,9 @@
     "verify_vote_on_explorer": "Verify your vote on the explorer",
     "votes_one": "<span>1</span> <text>voter</text>",
     "votes_other": "<span>{{ count }}</span> <text>voters</text>",
-    "voting_anonymous_advice": "Please wait while the anonymous magic happens 🪄.\nThis can take up to several minutes; don't close the window.",
     "votes_weight_one": "<span>1</span> <text>vote</text>",
-    "votes_weight_other": "<span>{{ count }}</span> <text>votes</text>"
+    "votes_weight_other": "<span>{{ count }}</span> <text>votes</text>",
+    "voting_anonymous_advice": "Please wait while the anonymous magic happens 🪄.\nThis can take up to several minutes; don't close the window."
   },
   "banner": {
     "start_now": "Create a vote now!",
@@ -177,9 +177,6 @@
     "demo6": "Weighted Voting",
     "follow_us": "Follow us",
     "footer_subtitle": "The Global Voting Protocol",
-    "homepage": "Home",
-    "repos": "Open-Source Code",
-    "resources": "Resources",
     "terms_and_privacy": "<link1>Terms of use</link1> & <link2>Privacy Policy</link2>",
     "text": "<p1>The future</p1><p2>of Web3 voting starts here</p2>",
     "uses_cases": "Use Cases",
@@ -425,7 +422,6 @@
         "description": "Vocdoni offers both self-service and custom, key-in-hand solutions tailored to your needs.",
         "title": "We will be with you every step of the way"
       },
-      "header": "Contact Us",
       "title": "Let’s work together to find the best solution"
     },
     "create_process": {
@@ -540,14 +536,12 @@
         "description": "Enable voters to cast their ballots through various channels, including web browsers, phones, tablets, etc., ensuring accessibility and convenience for all participants.",
         "title": "Multi-device Support"
       },
-      "header": "Empowering Solutions",
       "subtitle_1": "Vocdoni's feature-rich platform enables seamless customization of voting processes, ensuring secure & transparent elections while empowering voters with intuitive options. Enhance engagement, efficiency, and trust in every voting endeavor.",
       "title": "Features"
     },
     "process": {
       "description_1": "Vocdoni APP allows you to create a voting process in 4 easy steps.",
       "description_2": "We allow you to configure with one click either if you want anonymous voting, secret results until the end, the voting type, upload the census and much more.",
-      "header": "Process",
       "step_1": {
         "description": "Gain total control with our platform's self-service option, offering unmatched flexibility. Need customization or guidance? We've got you covered!",
         "title": "Start your own voting process"
@@ -579,7 +573,6 @@
         "description": "Increase voter turnout, reduce electoral costs, and enhance citizen trust with a verifiable, secure voting process.",
         "title": "Governments and Public Institutions"
       },
-      "header": "Embrace Change with Vocdoni",
       "img_card_1": "Organizations",
       "img_card_2": "Communities",
       "img_card_3": "Governments and Public Institutions",
@@ -664,6 +657,11 @@
       "description": "As an organizer, you have the capability to design tailored voting processes for your community. These procedures provide extensive flexibility, allowing options such as a census where voters authenticate using custom data (such as username, password, and birthday), a token-based system enabling all tokenholders to participate, or a whitelist that uses wallet addresses for eligibility.",
       "not_owner": "This organization has no voting processes yet",
       "title": "Create your first voting process"
+    },
+    "menu": {
+      "dashboard": "Dashboard",
+      "edit_my_organization": "My entity",
+      "votings": "Votings"
     },
     "title": {
       "edit": "Edit organization",

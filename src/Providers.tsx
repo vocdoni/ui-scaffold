@@ -1,9 +1,10 @@
 import { ColorModeScript } from '@chakra-ui/react'
 import { Signer } from '@ethersproject/abstract-signer'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ClientProvider } from '@vocdoni/chakra-components'
 import { EnvOptions } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
-import { WagmiConfig, useAccount, useWalletClient } from 'wagmi'
+import { useAccount, useWalletClient, WagmiConfig } from 'wagmi'
 import { OrganizationModalProvider } from '~components/Organization/OrganizationModalProvider'
 import { walletClientToSigner } from '~constants/wagmi-adapters'
 import { VocdoniEnvironment } from './constants'
@@ -13,11 +14,15 @@ import { datesLocale } from './i18n/locales'
 import { RoutesProvider } from './router/Router'
 import { RainbowKitTheme, Theme } from './Theme'
 
+const queryClient = new QueryClient()
+
 export const Providers = () => {
   return (
     <Theme>
       <WagmiConfig config={wagmiConfig}>
-        <AppProviders />
+        <QueryClientProvider client={queryClient}>
+          <AppProviders />
+        </QueryClientProvider>
       </WagmiConfig>
     </Theme>
   )

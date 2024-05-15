@@ -1,5 +1,5 @@
 import { AspectRatio, Box, Flex, IconButton } from '@chakra-ui/react'
-import { OrganizationAvatar as Avatar, OrganizationDescription, OrganizationName } from '@vocdoni/chakra-components'
+import { OrganizationImage as Avatar, OrganizationDescription, OrganizationName } from '@vocdoni/chakra-components'
 import { useClient, useOrganization } from '@vocdoni/react-providers'
 import { areEqualHexStrings } from '@vocdoni/sdk'
 import { useEffect, useRef, useState } from 'react'

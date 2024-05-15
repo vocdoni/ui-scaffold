@@ -1,3 +1,4 @@
+import { WarningIcon } from '@chakra-ui/icons'
 import {
   AspectRatio,
   Box,
@@ -22,7 +23,6 @@ import {
   useDisclosure,
   useMultiStyleConfig,
 } from '@chakra-ui/react'
-import { WarningIcon } from '@chakra-ui/icons'
 import { ElectionQuestions, ElectionResults, environment, useConfirm } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
 import { ElectionResultsTypeNames, ElectionStatus, PublishedElection } from '@vocdoni/sdk'
@@ -71,7 +71,7 @@ export const ProcessView = () => {
 
   // If the election is finished show the results tab
   useEffect(() => {
-    if (election?.status === ElectionStatus.RESULTS) {
+    if (election instanceof PublishedElection && election?.status === ElectionStatus.RESULTS) {
       setTabIndex(1)
     }
   }, [election])
@@ -108,7 +108,7 @@ export const ProcessView = () => {
       <Box className='site-wrapper' mb={44}>
         <Header />
 
-        {election?.streamUri && (
+        {election instanceof PublishedElection && election?.streamUri && (
           <Box
             maxW={{ base: '800px', lg: videoTop ? '400px' : '800px' }}
             ml={videoTop ? 'auto' : 'none'}
@@ -135,7 +135,9 @@ export const ProcessView = () => {
           >
             <TabList>
               <Tab>{t('process.questions')}</Tab>
-              {election?.status !== ElectionStatus.CANCELED && <Tab>{t('process.results')}</Tab>}
+              {election instanceof PublishedElection && election?.status !== ElectionStatus.CANCELED && (
+                <Tab>{t('process.results')}</Tab>
+              )}
             </TabList>
             <TabPanels>
               <TabPanel>
@@ -209,7 +211,7 @@ const SuccessVoteModal = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [votesLeft, vLeft])
 
-  if (!election || !voted) return null
+  if (!election || !voted || !(election instanceof PublishedElection)) return null
 
   const verify = environment.verifyVote(env, voted)
   const url = encodeURIComponent(document.location.href)
