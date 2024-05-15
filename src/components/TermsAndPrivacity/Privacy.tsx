@@ -2,7 +2,20 @@ import { Box, Flex, Heading, Link, List, ListItem, Text } from '@chakra-ui/react
 
 const Privacy = () => {
   return (
-    <Flex flexDirection='column' gap={5} className='site-wrapper' mb={44} mt={6} mx='auto'>
+    <Flex
+      flexDirection='column'
+      gap={5}
+      width='full'
+      mx='auto'
+      maxW='1100px'
+      px={{
+        base: '10px',
+        sm: '20px',
+        md: '80px',
+      }}
+      mb={44}
+      mt={6}
+    >
       <Box mb={5}>
         <Heading as='h1' size='xl' mb={3}>
           Privacy Policy
