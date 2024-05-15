@@ -37,7 +37,7 @@ export const TabsPage = <Implemented extends string, UnImplemented extends strin
 }: ITabsPageProps<Implemented, UnImplemented>) => {
   const { t } = useTranslation()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  // const { form, setForm } = useProcessCreationSteps()
+
   const { defined, details } = definedList
   const { defined: definedUnim, details: detailsUnim } = unimplementedList
 

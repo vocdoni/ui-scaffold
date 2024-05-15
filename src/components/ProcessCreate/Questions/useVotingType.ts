@@ -7,6 +7,8 @@ import ApprovalVoting from '~components/ProcessCreate/Questions/ApprovalVoting'
 export const VotingTypeSingle = 'single'
 export const UnimplementedVotingTypeApproval = 'approval'
 
+export const MultiQuestionTypes = [VotingTypeSingle]
+
 export type VotingType = typeof VotingTypeSingle | typeof UnimplementedVotingTypeApproval
 
 export const VotingTypes = [VotingTypeSingle as VotingType, UnimplementedVotingTypeApproval as VotingType]
