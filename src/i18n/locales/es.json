@@ -11,9 +11,10 @@
     "votes_one": "<span>1</span> <text>votante</text>",
     "votes_many": "<span>{{ count }}</span> <text>votantes</text>",
     "votes_other": "<span>{{ count }}</span> <text>votantes</text>",
-    "voting_anonymous_advice": "Por favor, espera mientras sucede la magia 🪄.\nEsto puede tardar varios minutos; no cierres la ventana.",
     "votes_weight_one": "<span>1</span> <text>voto</text>",
-    "votes_weight_other": "<span>{{ count }}</span> <text>votos</text>"
+    "votes_weight_many": "",
+    "votes_weight_other": "<span>{{ count }}</span> <text>votos</text>",
+    "voting_anonymous_advice": "Por favor, espera mientras sucede la magia 🪄.\nEsto puede tardar varios minutos; no cierres la ventana."
   },
   "banner": {
     "start_now": "¡Crea una votación ahora!",
@@ -429,7 +430,6 @@
         "description": "Vocdoni ofrece tanto soluciones de autoservicio como soluciones personalizadas llave-en-mano adaptadas a tus necesidades.",
         "title": "Te acompañamos en cada paso"
       },
-      "header": "Contáctanos",
       "title": "Trabajemos juntos para encontrar tu votación ideal"
     },
     "create_process": {
@@ -544,14 +544,12 @@
         "description": "Permite a los votantes emitir sus votos directamente desde su navegador web, teléfono o tableta, asegurando la accesibilidad y conveniencia para todos los participantes.",
         "title": "Accesibilidad multiplataforma"
       },
-      "header": "Características destacadas",
       "subtitle_1": "Desbloquea el potencial de Vocdoni: personaliza tus votaciones, asegura elecciones seguras y transparentes, y empodera a los participantes con opciones intuitivas. Experimenta un compromiso mejorado, eficiencia y confianza en cada votación con nuestra aplicación.",
       "title": "Funcionalidades"
     },
     "process": {
       "description_1": "La aplicación Vocdoni te permite crear un proceso de votación en 4 sencillos pasos.",
       "description_2": "Con un clic, puedes configurar si deseas votación anónima o resultados de elección en vivo, elegir entre varios tipos de elecciones, cargar tu censo de votantes y mucho más.",
-      "header": "Proceso",
       "step_1": {
         "description": "Control total con nuestra plataforma de autoservicio. ¿Necesitas personalización o asistencia? Estamos aquí para ayudarte.",
         "title": "Inicia tu votación"
@@ -583,7 +581,6 @@
         "description": "Aumenta la participación de los votantes, reduce los costes electorales y mejora la confianza ciudadana con procesos de votación seguros y verificables.",
         "title": "Gobiernos e Instituciones Públicas"
       },
-      "header": "Soluciones adaptativas",
       "img_card_1": "Organizaciones",
       "img_card_2": "Comunidades",
       "img_card_3": "Gobierno e Instituciones Públicas",
@@ -668,6 +665,11 @@
       "description": "Al comenzar haciendo tu primera votación, puedes elegir entre diferentes tipos de autenticación para tu voto.",
       "not_owner": "Esta organización aún no tiene votaciones.",
       "title": "Crea tu primer proceso de votación"
+    },
+    "menu": {
+      "dashboard": "Dashboard",
+      "edit_my_organization": "Mi entidad",
+      "votings": "Votaciones"
     },
     "title": {
       "edit": "Editar organización",

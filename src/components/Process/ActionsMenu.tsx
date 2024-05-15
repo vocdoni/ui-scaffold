@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react'
 import { ActionCancel, ActionContinue, ActionEnd, ActionPause, ActionsProvider } from '@vocdoni/chakra-components'
 import { useActions, useClient, useElection } from '@vocdoni/react-providers'
-import { ElectionStatus } from '@vocdoni/sdk'
+import { ElectionStatus, InvalidElection } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import { FaCog } from 'react-icons/fa'
 import { RiCloseCircleLine, RiPauseCircleLine, RiPlayCircleLine, RiStopCircleLine } from 'react-icons/ri'
@@ -20,10 +20,15 @@ export const ActionsMenu = (props: MenuListProps) => {
   const { account } = useClient()
   const { election } = useElection()
 
-  if (!election || (election && election?.organizationId !== account?.address)) return null
-
-  // canceled and ended elections cannot be acted upon
-  if ([ElectionStatus.CANCELED, ElectionStatus.ENDED, ElectionStatus.RESULTS].includes(election.status)) return null
+  if (
+    !election ||
+    election instanceof InvalidElection ||
+    election?.organizationId !== account?.address ||
+    // canceled and ended elections cannot be acted upon
+    [ElectionStatus.CANCELED, ElectionStatus.ENDED, ElectionStatus.RESULTS].includes(election.status)
+  ) {
+    return null
+  }
 
   return (
     <Menu closeOnSelect={false}>
@@ -40,7 +45,7 @@ const ActionsMenuList = (props: MenuListProps) => {
   const { election } = useElection()
   const { loading } = useActions()
 
-  if (!election) return null
+  if (!election || election instanceof InvalidElection) return null
 
   return (
     <MenuList p={0}>
