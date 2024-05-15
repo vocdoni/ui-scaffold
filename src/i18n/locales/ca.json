@@ -13,8 +13,7 @@
     "votes_other": "<span>{{ count }}</span> <text>votants</text>",
     "voting_anonymous_advice": "Si us plau, espera mentre la màgia té lloc 🪄.\nAixò pot trigar uns minuts; no tanquis la finestra.",
     "votes_weight_one": "<span>1</span> <text>vot</text>",
-    "votes_weight_other": "<span>{{ count }}</span> <text>vots</text>",
-    "voting_anonymous_advice": "Si us plau, espera mentre la màgia té lloc.Això pot trigar uns minuts; no tanquis la finestra."
+    "votes_weight_other": "<span>{{ count }}</span> <text>vots</text>"
   },
   "banner": {
     "start_now": "Crea una votació!",
