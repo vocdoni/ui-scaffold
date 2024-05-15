@@ -1,7 +1,7 @@
 name: Build and Deploy to Netlify
 on:
   push:
-    branches: [develop]
+    branches: [ develop ]
   pull_request:
 jobs:
   build-dev-vocdoni:
@@ -37,7 +37,7 @@ jobs:
             {
               "vote":{"customization":true},
               "unimplemented_census":["phone","email","crm","database","digital_certificate"],
-              "unimplemented_voting_type":["multi","approval","participatory","borda"],
+              "unimplemented_voting_type":["multi","participatory","borda"],
               "login":["web2","web3", "recovery"],
               "census":["spreadsheet", "csp"],
               "languages":["ca", "es", "en"]
@@ -95,7 +95,7 @@ jobs:
             {
               "vote":{"customization":true},
               "unimplemented_census":["phone","email","crm","database","digital_certificate"],
-              "unimplemented_voting_type":["multi","approval","participatory","borda"],
+              "unimplemented_voting_type":["multi","participatory","borda"],
               "login":["web2","web3", "recovery"],
               "census":["spreadsheet", "csp"],
               "languages":["ca", "es", "en"]
@@ -153,7 +153,7 @@ jobs:
               "vote":{"customization":true},
               "census":["token","web3","gitcoin","spreadsheet"],
               "unimplemented_census":["phone","email","crm","database","digital_certificate"],
-              "unimplemented_voting_type":["multi","approval","participatory","borda"],
+              "unimplemented_voting_type":["multi","participatory","borda"],
               "login":["web3","web2","recovery"],
               "languages":["en"]
             }
