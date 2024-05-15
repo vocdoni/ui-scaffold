@@ -21,11 +21,12 @@ import {
 } from '@chakra-ui/react'
 import { ElectionQuestions, ElectionResults, environment, useConfirm } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
-import { ElectionResultsTypeNames, PublishedElection } from '@vocdoni/sdk'
+import { ElectionResultsTypeNames, ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { useEffect, useRef, useState } from 'react'
 import { FieldValues } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import ReactPlayer from 'react-player'
+import { useAccount } from 'wagmi'
 import { FacebookShare, RedditShare, TelegramShare, TwitterShare } from '~components/Share'
 import Header from './Header'
 import VoteButton from './VoteBtn'
@@ -34,13 +35,27 @@ import successImg from '/assets/spreadsheet-success-modal.jpg'
 
 export const ProcessView = () => {
   const { t } = useTranslation()
-  const { election, isAbleToVote, voted } = useElection()
+  const { isConnected } = useAccount()
+  const { election, isAbleToVote, voted, votesLeft } = useElection()
   const videoRef = useRef<HTMLDivElement>(null)
   const [videoTop, setVideoTop] = useState(false)
   const electionRef = useRef<HTMLDivElement>(null)
   const [formErrors, setFormErrors] = useState<any>(null)
   const resultsRef = useRef<HTMLDivElement>(null)
   const [showResults, setShowResults] = useState(false)
+  const [infoLoaded, setInfoLoaded] = useState(false)
+
+  const showResultsFullScreen =
+    infoLoaded &&
+    ((isConnected && !!voted && votesLeft === 0) ||
+      election?.status === ElectionStatus.RESULTS ||
+      election?.status === ElectionStatus.ENDED)
+
+  useEffect(() => {
+    if (isAbleToVote === false || isAbleToVote === true) {
+      setInfoLoaded(true)
+    }
+  }, [isAbleToVote])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -97,24 +112,33 @@ export const ProcessView = () => {
     const results = resultsRef.current?.children[0].children
     const resultsArray = Array.from(results) as HTMLElement[]
 
-    if (voted && !isAbleToVote) {
-      electionRef.current.style.margin = '0px'
+    if (!resultsArray.length) return
+
+    if (showResultsFullScreen) {
+      electionRef.current.style.marginBottom = '0px'
+      electionRef.current.style.padding = '0px'
+      ;(resultsRef.current.children[0] as HTMLElement).style.gap = '0px'
+
+      if (voted && (election?.status === ElectionStatus.RESULTS || election?.status === ElectionStatus.ENDED)) {
+        ;(electionRef.current.children[0].children[1] as HTMLElement).style.display = 'none'
+      } else {
+        ;(electionRef.current.children[0].children[0] as HTMLElement).style.display = 'none'
+      }
       resultsArray.forEach((el) => {
         ;(el.children[0] as HTMLElement).style.display = 'block'
         ;(el.children[1] as HTMLElement).style.borderTopRightRadius = '0'
         ;(el.children[1] as HTMLElement).style.borderTopLeftRadius = '0'
         ;(el.children[1] as HTMLElement).style.gap = '30px'
-
         const options = el.children[1].children
         const optionsArray = Array.from(options) as HTMLElement[]
-
         optionsArray.forEach((el) => {
           if (screen.width >= 1220) {
             el.style.flexWrap = 'nowrap'
+            ;(el.children[0] as HTMLElement).style.display = 'flex'
+            ;(el.children[0] as HTMLElement).style.alignItems = 'center'
             ;(el.children[0] as HTMLElement).style.whiteSpace = 'wrap'
             ;(el.children[0] as HTMLElement).style.width = '40%'
             ;(el.children[1] as HTMLElement).style.width = '20%'
-            ;(el.children[1] as HTMLElement).style.display = 'flex'
             ;(el.children[1] as HTMLElement).style.display = 'flex'
             ;(el.children[1] as HTMLElement).style.justifyContent = 'center'
             ;(el.children[1] as HTMLElement).style.alignItems = 'center'
@@ -124,10 +148,45 @@ export const ProcessView = () => {
           }
         })
       })
-    }
-    if (!isAbleToVote) return
+    } else {
+      electionRef.current.style.marginBottom = '100px'
+      electionRef.current.style.paddingTop = '25px'
+      ;(resultsRef.current.children[0] as HTMLElement).style.gap = '95px'
+      resultsArray.forEach((el) => {
+        ;(el.children[0] as HTMLElement).style.display = 'none'
+        ;(el.children[1] as HTMLElement).style.borderTopRightRadius = '8px'
+        ;(el.children[1] as HTMLElement).style.borderTopLeftRadius = '8px'
+        ;(el.children[1] as HTMLElement).style.gap = '0.5rem'
+        const options = el.children[1].children
+        const optionsArray = Array.from(options) as HTMLElement[]
+        optionsArray.forEach((el) => {
+          if (screen.width >= 1220) {
+            el.style.flexWrap = 'wrap'
+            el.style.height = 'content'
+            ;(el.children[0] as HTMLElement).style.whiteSpace = 'nowrap'
+            ;(el.children[0] as HTMLElement).style.width = 'calc(100% - 170px)'
+            ;(el.children[1] as HTMLElement).style.width = '150px'
+            ;(el.children[1] as HTMLElement).style.textAlign = 'end'
+            ;(el.children[1] as HTMLElement).style.display = 'block'
+            ;(el.children[1] as HTMLElement).style.justifyContent = 'normal'
+            ;(el.children[1] as HTMLElement).style.alignItems = 'normal'
+            ;(el.children[2] as HTMLElement).style.width = '100%'
+            ;(el.children[2] as HTMLElement).style.marginTop = '0px'
+            ;(el.children[2] as HTMLElement).style.marginBottom = '0px'
+          }
+        })
+      })
 
-    if (!resultsArray.length) return
+      resultsArray.forEach((el) => {
+        const options = el.children[1].children
+        const optionsArray = Array.from(options) as HTMLElement[]
+
+        optionsArray.forEach((el) => {
+          el.style.height = 'auto'
+        })
+      })
+    }
+    if (showResultsFullScreen) return
 
     // Get and convert questions into an array. Check if there is a 'vote overwritte' alert to get the corresponding parent.
     const questions = voted
@@ -135,6 +194,8 @@ export const ProcessView = () => {
       : electionRef.current.children[0].children[0].children
 
     const questionsArray = Array.from(questions) as HTMLDivElement[]
+
+    if (!questions[0]) return
 
     // get the questions container
     const container = questions[0].parentNode?.parentNode?.parentNode as HTMLElement
@@ -165,7 +226,7 @@ export const ProcessView = () => {
         }
       })
     })
-  }, [electionContainerHeight])
+  }, [electionContainerHeight, showResultsFullScreen, isConnected])
 
   return (
     <Box bgColor='bg_process' outline='100px solid' outlineColor='bg_process'>
@@ -212,8 +273,8 @@ export const ProcessView = () => {
         )}
 
         <Flex
-          gap={isAbleToVote ? 20 : 0}
-          flexDirection={isAbleToVote ? 'row' : 'column'}
+          gap={showResultsFullScreen ? 0 : 20}
+          flexDirection={showResultsFullScreen ? 'column' : 'row'}
           position='relative'
           justifyContent='end'
           zIndex={10}
@@ -227,6 +288,7 @@ export const ProcessView = () => {
             pt='25px'
             onClick={() => setShowResults(false)}
             position='relative'
+            maxW={{ base: 'full', lg2: 'calc(100% - 380px)' }}
           >
             <ElectionQuestions
               onInvalid={(args) => {
@@ -234,16 +296,18 @@ export const ProcessView = () => {
               }}
               confirmContents={(election, answers) => <ConfirmVoteModal election={election} answers={answers} />}
             />
-            <Box position='sticky' bottom={0} left={0} zIndex={100}>
-              <VoteButton />
-            </Box>
+            {election?.status !== ElectionStatus.RESULTS && (
+              <Box position='sticky' bottom={0} left={0} zIndex={100}>
+                <VoteButton />
+              </Box>
+            )}
           </Box>
           <Box
             ref={resultsRef}
-            minW={{ base: 'full', lg2: isAbleToVote ? '300px' : 'full' }}
-            width={{ base: 'full', lg2: isAbleToVote ? '300px' : 'full' }}
+            minW={{ base: 'full', lg2: showResultsFullScreen ? 'calc(100% - 380px)' : '300px' }}
+            width={{ base: 'full', lg2: showResultsFullScreen ? 'calc(100% - 380px)' : '300px' }}
             display={{ base: `${showResults || !isAbleToVote ? 'block' : 'none'}`, lg2: 'block' }}
-            position={{ base: `${isAbleToVote ? 'absolute' : 'relative'}`, lg2: 'relative' }}
+            position={{ base: `${showResultsFullScreen ? 'relative' : 'absolute'}`, lg2: 'relative' }}
             onClick={() => setShowResults(false)}
           >
             <ElectionResults />

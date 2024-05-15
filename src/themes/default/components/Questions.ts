@@ -6,7 +6,7 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 
 const baseStyle = definePartsStyle({
   alert: {
-    px: { base: 3, sm: 5 },
+    // px: { base: 3, sm: 5 },
     py: 7,
     mb: '30px',
     borderRadius: 'lg',
