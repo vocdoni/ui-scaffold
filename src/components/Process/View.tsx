@@ -114,17 +114,21 @@ export const ProcessView = () => {
 
     if (!resultsArray.length) return
 
+    // Check if its we have to show results in full screen
     if (showResultsFullScreen) {
       electionRef.current.style.marginBottom = '0px'
       electionRef.current.style.padding = '0px'
       ;(resultsRef.current.children[0] as HTMLElement).style.gap = '0px'
 
+      // If the election state is results or ended dont show the questions
       if (voted && (election?.status === ElectionStatus.RESULTS || election?.status === ElectionStatus.ENDED)) {
         ;(electionRef.current.children[0].children[1] as HTMLElement).style.display = 'none'
       } else {
         ;(electionRef.current.children[0].children[0] as HTMLElement).style.display = 'none'
       }
+
       resultsArray.forEach((el) => {
+        // Apply results styles container
         ;(el.children[0] as HTMLElement).style.display = 'block'
         ;(el.children[1] as HTMLElement).style.borderTopRightRadius = '0'
         ;(el.children[1] as HTMLElement).style.borderTopLeftRadius = '0'
@@ -133,6 +137,7 @@ export const ProcessView = () => {
         const optionsArray = Array.from(options) as HTMLElement[]
         optionsArray.forEach((el) => {
           if (screen.width >= 1220) {
+            // Apply results styles in desktop
             el.style.flexWrap = 'nowrap'
             ;(el.children[0] as HTMLElement).style.display = 'flex'
             ;(el.children[0] as HTMLElement).style.alignItems = 'center'
@@ -149,6 +154,7 @@ export const ProcessView = () => {
         })
       })
     } else {
+      // Reset default styles
       electionRef.current.style.marginBottom = '100px'
       electionRef.current.style.paddingTop = '25px'
       ;(resultsRef.current.children[0] as HTMLElement).style.gap = '95px'
