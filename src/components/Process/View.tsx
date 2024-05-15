@@ -120,12 +120,17 @@ export const ProcessView = () => {
     if (showResultsFullScreen) {
       electionRef.current.style.marginBottom = '0px'
       electionRef.current.style.padding = '0px'
-      ;(resultsRef.current.children[0] as HTMLElement).style.gap = '0px'
+      console.log(resultsRef.current.children[0])
+      ;(resultsRef.current.children[0] as HTMLElement).style.gap = '30px'
 
-      // If the election state is results or ended dont show the questions
-      if (voted && (election?.status === ElectionStatus.RESULTS || election?.status === ElectionStatus.ENDED)) {
+      //If the election state is results or ended dont show the questions
+      if (
+        electionRef.current.children[0].children.length === 2 &&
+        (election?.status === ElectionStatus.RESULTS || election?.status === ElectionStatus.ENDED)
+      ) {
+        ;(electionRef.current.children[0].children[0] as HTMLElement).style.display = 'block'
         ;(electionRef.current.children[0].children[1] as HTMLElement).style.display = 'none'
-      } else {
+      } else if (election?.status === ElectionStatus.RESULTS || election?.status === ElectionStatus.ENDED) {
         ;(electionRef.current.children[0].children[0] as HTMLElement).style.display = 'none'
       }
 
@@ -185,7 +190,9 @@ export const ProcessView = () => {
         })
       })
 
-      resultsArray.forEach((el) => {
+      resultsArray.forEach((el, idx) => {
+        el.style.height = 'auto'
+        if (idx === resultsArray.length - 1) el.style.marginBottom = '100px'
         const options = el.children[1].children
         const optionsArray = Array.from(options) as HTMLElement[]
 
