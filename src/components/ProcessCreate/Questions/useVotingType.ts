@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { GiChoice } from 'react-icons/gi'
 import { GenericFeatureObject } from '~components/ProcessCreate/Steps/TabsPage'
 import SingleChoice from '~components/ProcessCreate/Questions/SingleChoice'
+import ApprovalVoting from '~components/ProcessCreate/Questions/ApprovalVoting'
 
 export const VotingTypeSingle = 'single'
 export const UnimplementedVotingTypeApproval = 'approval'
@@ -26,7 +27,7 @@ export const useVotingType = (): GenericFeatureObject<VotingType> => {
         title: t('process_create.question.approval_voting.title'),
         description: t('process_create.question.approval_voting.description'),
         icon: GiChoice,
-        component: SingleChoice,
+        component: ApprovalVoting,
       },
     },
   }

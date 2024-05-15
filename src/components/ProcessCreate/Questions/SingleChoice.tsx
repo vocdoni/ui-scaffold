@@ -1,82 +1,14 @@
-import { AddIcon } from '@chakra-ui/icons'
-import { Box, Button, Flex, Text } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
-import { FieldError, FieldErrors, useFieldArray, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import Question from './Question'
-import VotingTypes from './VotingTypes'
-
-interface CustomFieldError extends FieldError {
-  index: number
-}
+import QuestionPage from './Question'
 
 const SingleChoice = () => {
   const { t } = useTranslation()
-
-  const {
-    watch,
-    formState: { errors },
-  } = useFormContext()
-
-  const { fields, append, remove } = useFieldArray({
-    name: 'questions',
-  })
-
-  const [tabIndex, setTabIndex] = useState(0)
-
-  const questions = watch('questions')
-
-  useEffect(() => {
-    if (questions.length === 0) {
-      append({
-        title: '',
-        description: '',
-        options: [{ option: '' }, { option: '' }],
-      })
-    }
-
-    if (tabIndex === questions.length && tabIndex !== 0) setTabIndex(questions.length - 1)
-  }, [questions, append, tabIndex])
-
-  useEffect(() => {
-    const questionErrors = errors.questions as FieldErrors<CustomFieldError>[] | undefined
-
-    if (!questionErrors) return
-
-    const firstError = questionErrors.findIndex((curr) => typeof curr !== 'undefined')
-    setTabIndex(firstError)
-  }, [errors.questions])
-
   return (
-    <Flex flexDirection='column' gap={5}>
-      <Box>
-        <Text className='process-create-title'>{t('form.process_create.question.title')}</Text>
-        <Text fontSize='sm' color='process_create.description'>
-          {t('form.process_create.question.description')}
-        </Text>
-      </Box>
-      {fields.map((_, index) => (
-        <Question key={index} index={index} remove={remove} />
-      ))}
-
-      <Button
-        type='button'
-        rightIcon={<AddIcon boxSize={3} />}
-        aria-label={t('form.process_create.question.add_question')}
-        onClick={() => {
-          append({
-            title: '',
-            description: '',
-            options: [{ option: '' }, { option: '' }],
-          })
-          setTabIndex(questions.length)
-        }}
-        alignSelf='center'
-        variant='secondary'
-      >
-        {t('form.process_create.question.add_question')}
-      </Button>
-    </Flex>
+    <QuestionPage
+      title={t('form.process_create.question.title')}
+      description={t('form.process_create.question.description')}
+      isMultiQuestion
+    />
   )
 }
 

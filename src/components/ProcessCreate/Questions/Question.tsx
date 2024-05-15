@@ -1,10 +1,13 @@
 import { DeleteIcon } from '@chakra-ui/icons'
-import { Box, FormControl, FormErrorMessage, IconButton, Input, Text } from '@chakra-ui/react'
-import { useFieldArray, useFormContext } from 'react-hook-form'
+import { Box, Flex, FormControl, FormErrorMessage, IconButton, Input, Text } from '@chakra-ui/react'
+import { FieldError, FieldErrors, useFieldArray, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import Editor from '~components/Editor/Editor'
 import { fieldMapErrorMessage, isInvalidFieldMap } from '~constants'
 import Options from './Options'
+import { useEffect, useState } from 'react'
+import { AddIcon } from '@chakra-ui/icons'
+import { Button } from '@chakra-ui/react'
 
 interface Props {
   index: number
@@ -74,4 +77,86 @@ const Question = ({ index, remove }: Props) => {
   )
 }
 
-export default Question
+interface CustomFieldError extends FieldError {
+  index: number
+}
+
+interface IQuestionPageProps {
+  title: string
+  description: string
+  isMultiQuestion?: boolean
+}
+
+const QuestionPage = ({ title, description, isMultiQuestion = false }: IQuestionPageProps) => {
+  const { t } = useTranslation()
+
+  const {
+    watch,
+    formState: { errors },
+  } = useFormContext()
+
+  const { fields, append, remove } = useFieldArray({
+    name: 'questions',
+  })
+
+  const [tabIndex, setTabIndex] = useState(0)
+
+  const questions = watch('questions')
+
+  useEffect(() => {
+    if (questions.length === 0) {
+      append({
+        title: '',
+        description: '',
+        options: [{ option: '' }, { option: '' }],
+      })
+    }
+
+    if (tabIndex === questions.length && tabIndex !== 0) setTabIndex(questions.length - 1)
+  }, [questions, append, tabIndex])
+
+  useEffect(() => {
+    const questionErrors = errors.questions as FieldErrors<CustomFieldError>[] | undefined
+
+    if (!questionErrors) return
+
+    const firstError = questionErrors.findIndex((curr) => typeof curr !== 'undefined')
+    setTabIndex(firstError)
+  }, [errors.questions])
+
+  return (
+    <Flex flexDirection='column' gap={5}>
+      <Box>
+        <Text className='process-create-title'>{title}</Text>
+        <Text fontSize='sm' color='process_create.description'>
+          {description}
+        </Text>
+      </Box>
+      {fields.map((_, index) => (
+        <Question key={index} index={index} remove={remove} />
+      ))}
+
+      {isMultiQuestion && (
+        <Button
+          type='button'
+          rightIcon={<AddIcon boxSize={3} />}
+          aria-label={t('form.process_create.question.add_question')}
+          onClick={() => {
+            append({
+              title: '',
+              description: '',
+              options: [{ option: '' }, { option: '' }],
+            })
+            setTabIndex(questions.length)
+          }}
+          alignSelf='center'
+          variant='secondary'
+        >
+          {t('form.process_create.question.add_question')}
+        </Button>
+      )}
+    </Flex>
+  )
+}
+
+export default QuestionPage
