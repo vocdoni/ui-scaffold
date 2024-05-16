@@ -1,6 +1,5 @@
 import { WarningIcon } from '@chakra-ui/icons'
 import {
-  AspectRatio,
   Box,
   Button,
   Flex,
@@ -25,7 +24,6 @@ import { ElectionResultsTypeNames, ElectionStatus, PublishedElection } from '@vo
 import { useEffect, useRef, useState } from 'react'
 import { FieldValues } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import ReactPlayer from 'react-player'
 import { useAccount } from 'wagmi'
 import { FacebookShare, RedditShare, TelegramShare, TwitterShare } from '~components/Share'
 import Header from './Header'
@@ -36,8 +34,6 @@ import successImg from '/assets/spreadsheet-success-modal.jpg'
 export const ProcessView = () => {
   const { isConnected } = useAccount()
   const { election, isAbleToVote, voted, votesLeft, isInCensus } = useElection()
-  const videoRef = useRef<HTMLDivElement>(null)
-  const [videoTop, setVideoTop] = useState(false)
   const electionRef = useRef<HTMLDivElement>(null)
   const [formErrors, setFormErrors] = useState<any>(null)
   const resultsRef = useRef<HTMLDivElement>(null)
@@ -48,24 +44,6 @@ export const ProcessView = () => {
     (votesLeft === 0 && isInCensus) ||
     election?.status === ElectionStatus.RESULTS ||
     election?.status === ElectionStatus.ENDED
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!videoRef.current) return
-
-      const rect = videoRef.current.getBoundingClientRect()
-      if (rect.top <= 84) {
-        setVideoTop(true)
-      } else {
-        setVideoTop(false)
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
 
   // Move the focus of the screen to the first unanswered question
   useEffect(() => {
@@ -111,7 +89,6 @@ export const ProcessView = () => {
       // Apply results full screen styles
       electionRef.current.style.marginBottom = '0px'
       electionRef.current.style.padding = '0px'
-      console.log(resultsRef.current.children[0])
       ;(resultsRef.current.children[0] as HTMLElement).style.gap = '30px'
 
       //If the election state is results or ended dont show the questions
@@ -255,19 +232,6 @@ export const ProcessView = () => {
       <Box className='site-wrapper' overflow='hidden'>
         <Header />
 
-        {election?.streamUri && (
-          <Box
-            maxW={{ base: '800px', lg: videoTop ? '400px' : '800px' }}
-            ml={videoTop ? 'auto' : 'none'}
-            position={{ base: 'unset', lg: 'sticky' }}
-            top={{ base: 0, lg2: 20 }}
-            zIndex={100}
-          >
-            <AspectRatio ref={videoRef} ratio={16 / 9}>
-              <ReactPlayer url={election?.streamUri} width='100%' height='100%' playing controls />
-            </AspectRatio>
-          </Box>
-        )}
         {isAbleToVote && (
           <Flex display={{ base: 'flex', lg2: 'none' }} justifyContent='end'>
             <Button variant='transparent' onClick={() => setShowResults(!showResults)}>

@@ -1,9 +1,9 @@
 import { InfoIcon, WarningIcon } from '@chakra-ui/icons'
-import { Box, Flex, Icon, Image, Text, Tooltip } from '@chakra-ui/react'
+import { AspectRatio, Box, Flex, Icon, Image, Text, Tooltip } from '@chakra-ui/react'
 import { ElectionDescription, ElectionSchedule, ElectionStatusBadge, ElectionTitle } from '@vocdoni/chakra-components'
 import { useClient, useElection, useOrganization } from '@vocdoni/react-providers'
 import { CensusType, ElectionStatus, Strategy } from '@vocdoni/sdk'
-import { ReactNode, useEffect, useState } from 'react'
+import { ReactNode, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useAccount } from 'wagmi'
 import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
@@ -11,6 +11,7 @@ import { StampIcon } from '~components/ProcessCreate/Census/Gitcoin/StampIcon'
 import { ActionsMenu } from './ActionsMenu'
 import { CreatedBy } from './CreatedBy'
 
+import ReactPlayer from 'react-player'
 import { ProcessDate } from './Date'
 
 type CensusInfo = { size: number; weight: bigint; type: CensusType }
@@ -22,6 +23,18 @@ const ProcessHeader = () => {
   const { account, client } = useClient()
   const { isConnected } = useAccount()
   const [censusInfo, setCensusInfo] = useState<CensusInfo>()
+  const [videoTop, setVideoTop] = useState(false)
+  const videoRef = useRef<HTMLDivElement>(null)
+
+  const videoRight =
+    window.innerWidth <= 480
+      ? '10px'
+      : window.innerWidth <= 768
+      ? '20px'
+      : window.innerWidth <= 1920
+      ? '80px'
+      : (window.innerWidth - 1920 + 80) / 2 + +'px'
+
   const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(
     'rgba(242, 242, 242, 0)',
     'rgba(242, 242, 242, 1)',
@@ -29,6 +42,24 @@ const ProcessHeader = () => {
     20
   )
   const strategy = useStrategy()
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!videoRef.current) return
+
+      const rect = videoRef.current.getBoundingClientRect()
+      if (rect.top <= 300) {
+        setVideoTop(true)
+      } else {
+        setVideoTop(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   // Get the census info to show the total size if the maxCensusSize is less than the total size
   useEffect(() => {
@@ -55,7 +86,7 @@ const ProcessHeader = () => {
         </Box>
       )}
       <Flex direction={{ base: 'column', lg2: 'row' }} alignItems='start' mb={7} gap={20}>
-        <Box flexGrow={1} flexShrink={1}>
+        <Box flexGrow={1} flexShrink={1} width='100%'>
           <ElectionTitle fontSize={{ base: '32px', md: '34px' }} textAlign='left' my={5} />
 
           <Flex flexDirection='column'>
@@ -71,6 +102,24 @@ const ProcessHeader = () => {
             </Box>
             <ReadMoreMarkdownButton colorScheme='primary' alignSelf='center' />
           </Flex>
+          {election?.streamUri && (
+            <>
+              <Box ref={videoRef} />
+              <Box
+                position={videoTop ? 'fixed' : 'relative'}
+                top={0}
+                right={videoTop ? videoRight : ''}
+                mt={videoTop ? 24 : 0}
+                maxW={{ base: '100%', lg2: videoTop ? '400px' : '800px' }}
+                width={{ base: videoTop ? '400px' : '100%', lg2: videoTop ? '400px' : '100%' }}
+                zIndex={100}
+              >
+                <AspectRatio ratio={16 / 9}>
+                  <ReactPlayer url={election?.streamUri} width='100%' height='100%' playing controls />
+                </AspectRatio>
+              </Box>
+            </>
+          )}
         </Box>
 
         <Flex
