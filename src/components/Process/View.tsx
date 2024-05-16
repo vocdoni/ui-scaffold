@@ -108,6 +108,7 @@ export const ProcessView = () => {
 
     // Check if its we have to show results in full screen
     if (showResultsFullScreen) {
+      // Apply results full screen styles
       electionRef.current.style.marginBottom = '0px'
       electionRef.current.style.padding = '0px'
       console.log(resultsRef.current.children[0])
@@ -150,8 +151,46 @@ export const ProcessView = () => {
           }
         })
       })
+      // Get and convert questions into an array. Check if there is a 'vote overwritte' alert to get the corresponding parent.
+      const questions = voted
+        ? electionRef.current.children[0].children[1].children
+        : electionRef.current.children[0].children[0].children
+
+      const questionsArray = Array.from(questions) as HTMLDivElement[]
+
+      if (!questions[0]) return
+
+      // get the questions container
+      const container = questions[0].parentNode?.parentNode?.parentNode as HTMLElement
+
+      if (!container) return
+
+      // Calculate the difference in distance to the top of the page from the container to the first question
+      const relativeHeight = questions[0].getBoundingClientRect().top - container.getBoundingClientRect().top
+
+      // Give each answer container the same height as its corresponding question; add the relativeHeight + padding to the first question
+      questionsArray.forEach((el, idx) => {
+        const height = el.getBoundingClientRect().height + (idx === 0 ? relativeHeight + 32 : 0) + 'px'
+        resultsArray[idx].style.height = height
+      })
+
+      // Get and convert results to an array
+      const questionsOptions = electionRef.current.querySelectorAll('.chakra-radio-group')
+      const questionsOptionsArray = Array.from(questionsOptions) as HTMLElement[]
+
+      // Give each option container of each question the same size as its corresponding option in the relevant question
+      questionsOptionsArray.forEach((el, i) => {
+        const questionOptionsArray = Array.from(el.children[0].children) as HTMLElement[]
+
+        questionOptionsArray.forEach((el, idx) => {
+          const height = el.getBoundingClientRect().height + 'px'
+          if (resultsArray[i]?.children[1]?.children[idx]) {
+            ;(resultsArray[i].children[1].children[idx] as HTMLElement).style.height = height
+          }
+        })
+      })
     } else {
-      // Reset default styles
+      // Apply results side styles
       electionRef.current.style.marginBottom = '100px'
       electionRef.current.style.paddingTop = '25px'
       ;(resultsRef.current.children[0] as HTMLElement).style.gap = '95px'
@@ -191,46 +230,6 @@ export const ProcessView = () => {
         })
       })
     }
-    if (showResultsFullScreen) return
-
-    // Get and convert questions into an array. Check if there is a 'vote overwritte' alert to get the corresponding parent.
-    const questions = voted
-      ? electionRef.current.children[0].children[1].children
-      : electionRef.current.children[0].children[0].children
-
-    const questionsArray = Array.from(questions) as HTMLDivElement[]
-
-    if (!questions[0]) return
-
-    // get the questions container
-    const container = questions[0].parentNode?.parentNode?.parentNode as HTMLElement
-
-    if (!container) return
-
-    // Calculate the difference in distance to the top of the page from the container to the first question
-    const relativeHeight = questions[0].getBoundingClientRect().top - container.getBoundingClientRect().top
-
-    // Give each answer container the same height as its corresponding question; add the relativeHeight + padding to the first question
-    questionsArray.forEach((el, idx) => {
-      const height = el.getBoundingClientRect().height + (idx === 0 ? relativeHeight + 32 : 0) + 'px'
-      resultsArray[idx].style.height = height
-    })
-
-    // Get and convert results to an array
-    const questionsOptions = electionRef.current.querySelectorAll('.chakra-radio-group')
-    const questionsOptionsArray = Array.from(questionsOptions) as HTMLElement[]
-
-    // Give each option container of each question the same size as its corresponding option in the relevant question
-    questionsOptionsArray.forEach((el, i) => {
-      const questionOptionsArray = Array.from(el.children[0].children) as HTMLElement[]
-
-      questionOptionsArray.forEach((el, idx) => {
-        const height = el.getBoundingClientRect().height + 'px'
-        if (resultsArray[i]?.children[1]?.children[idx]) {
-          ;(resultsArray[i].children[1].children[idx] as HTMLElement).style.height = height
-        }
-      })
-    })
   }, [isAbleToVote, electionContainerHeight, showResultsFullScreen, isConnected])
 
   return (
