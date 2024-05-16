@@ -33,6 +33,7 @@ const Navbar = () => {
         zIndex={-1}
         filter='blur(20px)'
         opacity={0.7}
+        backgroundSize='100%'
       ></Box>
 
       <Flex justifyContent='space-between' alignItems='center' zIndex={1} w='100%'>
