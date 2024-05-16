@@ -26,7 +26,6 @@ import { useEffect, useRef, useState } from 'react'
 import { FieldValues } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import ReactPlayer from 'react-player'
-import { useAccount } from 'wagmi'
 import { FacebookShare, RedditShare, TelegramShare, TwitterShare } from '~components/Share'
 import Header from './Header'
 import VoteButton from './VoteBtn'
@@ -34,30 +33,19 @@ import confirmImg from '/assets/spreadsheet-confirm-modal.jpg'
 import successImg from '/assets/spreadsheet-success-modal.jpg'
 
 export const ProcessView = () => {
-  const { t } = useTranslation()
-  const { isConnected } = useAccount()
-  const { election, isAbleToVote, voted, votesLeft } = useElection()
+  const { election, isAbleToVote, voted, votesLeft, isInCensus } = useElection()
   const videoRef = useRef<HTMLDivElement>(null)
   const [videoTop, setVideoTop] = useState(false)
   const electionRef = useRef<HTMLDivElement>(null)
   const [formErrors, setFormErrors] = useState<any>(null)
   const resultsRef = useRef<HTMLDivElement>(null)
   const [showResults, setShowResults] = useState(false)
-  const [infoLoaded, setInfoLoaded] = useState(false)
 
   // Check if render results full screen
   const showResultsFullScreen =
-    infoLoaded &&
-    ((isConnected && !!voted && votesLeft === 0) ||
-      election?.status === ElectionStatus.RESULTS ||
-      election?.status === ElectionStatus.ENDED)
-
-  // Wait until isAbleToVote is not null
-  useEffect(() => {
-    if (isAbleToVote === false || isAbleToVote === true) {
-      setInfoLoaded(true)
-    }
-  }, [isAbleToVote])
+    (votesLeft === 0 && isInCensus) ||
+    election?.status === ElectionStatus.RESULTS ||
+    election?.status === ElectionStatus.ENDED
 
   useEffect(() => {
     const handleScroll = () => {
@@ -107,8 +95,103 @@ export const ProcessView = () => {
   // To set up dependencies in useEffect to allow recalculating distances when fetching calls of Questions modify the container size
   const electionContainerHeight = electionRef.current?.getBoundingClientRect().height
 
+  // useEffect(() => {
+  //   if (isAbleToVote === null || !electionRef.current || !resultsRef.current) return
+
+  //   const results = resultsRef.current?.children[0].children
+  //   const resultsArray = Array.from(results) as HTMLElement[]
+
+  //   if (!resultsArray.length) return
+
+  //   if (showResultsFullScreen) {
+  //     electionRef.current.style.marginBottom = '0px'
+  //     electionRef.current.style.padding = '0px'
+  //     console.log(resultsRef.current.children[0])
+  //     ;(resultsRef.current.children[0] as HTMLElement).style.gap = '30px'
+
+  //     //If the election state is results or ended dont show the questions
+  //     if (
+  //       electionRef.current.children[0].children.length === 2 &&
+  //       (election?.status === ElectionStatus.RESULTS || election?.status === ElectionStatus.ENDED)
+  //     ) {
+  //       ;(electionRef.current.children[0].children[0] as HTMLElement).style.display = 'block'
+  //       ;(electionRef.current.children[0].children[1] as HTMLElement).style.display = 'none'
+  //     } else if (election?.status === ElectionStatus.RESULTS || election?.status === ElectionStatus.ENDED) {
+  //       ;(electionRef.current.children[0].children[0] as HTMLElement).style.display = 'none'
+  //     }
+
+  //     resultsArray.forEach((el) => {
+  //       // Apply results styles container
+  //       ;(el.children[0] as HTMLElement).style.display = 'block'
+  //       ;(el.children[1] as HTMLElement).style.borderTopRightRadius = '0'
+  //       ;(el.children[1] as HTMLElement).style.borderTopLeftRadius = '0'
+  //       ;(el.children[1] as HTMLElement).style.gap = '30px'
+  //       const options = el.children[1].children
+  //       const optionsArray = Array.from(options) as HTMLElement[]
+  //       optionsArray.forEach((el) => {
+  //         if (screen.width >= 1220) {
+  //           // Apply results styles in desktop
+  //           el.style.flexWrap = 'nowrap'
+  //           ;(el.children[0] as HTMLElement).style.display = 'flex'
+  //           ;(el.children[0] as HTMLElement).style.alignItems = 'center'
+  //           ;(el.children[0] as HTMLElement).style.whiteSpace = 'wrap'
+  //           ;(el.children[0] as HTMLElement).style.width = '40%'
+  //           ;(el.children[1] as HTMLElement).style.width = '20%'
+  //           ;(el.children[1] as HTMLElement).style.display = 'flex'
+  //           ;(el.children[1] as HTMLElement).style.justifyContent = 'center'
+  //           ;(el.children[1] as HTMLElement).style.alignItems = 'center'
+  //           ;(el.children[2] as HTMLElement).style.width = '40%'
+  //           ;(el.children[2] as HTMLElement).style.marginTop = 'auto'
+  //           ;(el.children[2] as HTMLElement).style.marginBottom = 'auto'
+  //         }
+  //       })
+  //     })
+  //   } else {
+  //     console.log('2')
+  //     // Reset default styles
+  //     electionRef.current.style.marginBottom = '100px'
+  //     electionRef.current.style.paddingTop = '25px'
+  //     ;(resultsRef.current.children[0] as HTMLElement).style.gap = '95px'
+  //     resultsArray.forEach((el) => {
+  //       ;(el.children[0] as HTMLElement).style.display = 'none'
+  //       ;(el.children[1] as HTMLElement).style.borderTopRightRadius = '8px'
+  //       ;(el.children[1] as HTMLElement).style.borderTopLeftRadius = '8px'
+  //       ;(el.children[1] as HTMLElement).style.gap = '0.5rem'
+  //       const options = el.children[1].children
+  //       const optionsArray = Array.from(options) as HTMLElement[]
+  //       optionsArray.forEach((el) => {
+  //         if (screen.width >= 1220) {
+  //           el.style.flexWrap = 'wrap'
+  //           el.style.height = 'content'
+  //           ;(el.children[0] as HTMLElement).style.whiteSpace = 'nowrap'
+  //           ;(el.children[0] as HTMLElement).style.width = 'calc(100% - 170px)'
+  //           ;(el.children[1] as HTMLElement).style.width = '150px'
+  //           ;(el.children[1] as HTMLElement).style.textAlign = 'end'
+  //           ;(el.children[1] as HTMLElement).style.display = 'block'
+  //           ;(el.children[1] as HTMLElement).style.justifyContent = 'normal'
+  //           ;(el.children[1] as HTMLElement).style.alignItems = 'normal'
+  //           ;(el.children[2] as HTMLElement).style.width = '100%'
+  //           ;(el.children[2] as HTMLElement).style.marginTop = '0px'
+  //           ;(el.children[2] as HTMLElement).style.marginBottom = '0px'
+  //         }
+  //       })
+  //     })
+
+  //     resultsArray.forEach((el, idx) => {
+  //       el.style.height = 'auto'
+  //       if (idx === resultsArray.length - 1) el.style.marginBottom = '100px'
+  //       const options = el.children[1].children
+  //       const optionsArray = Array.from(options) as HTMLElement[]
+
+  //       optionsArray.forEach((el) => {
+  //         el.style.height = 'auto'
+  //       })
+  //     })
+  //   }
+  // }, [isAbleToVote, electionContainerHeight, showResultsFullScreen])
+
   useEffect(() => {
-    if (!electionRef.current || !resultsRef.current) return
+    if (isAbleToVote === null || !electionRef.current || !resultsRef.current) return
 
     // Get and convert results to an array
     const results = resultsRef.current?.children[0].children
@@ -241,7 +324,7 @@ export const ProcessView = () => {
         }
       })
     })
-  }, [electionContainerHeight, showResultsFullScreen, isConnected])
+  }, [isAbleToVote, electionContainerHeight, showResultsFullScreen])
 
   return (
     <Box bgColor='bg_process' outline='100px solid' outlineColor='bg_process'>
@@ -323,7 +406,7 @@ export const ProcessView = () => {
             width={{ base: 'full', lg2: showResultsFullScreen ? 'calc(100% - 380px)' : '300px' }}
             display={{ base: `${showResults || !isAbleToVote ? 'block' : 'none'}`, lg2: 'block' }}
             position={{ base: `${showResultsFullScreen ? 'relative' : 'absolute'}`, lg2: 'relative' }}
-            onClick={() => setShowResults(false)}
+            onClick={() => setShowResults(showResultsFullScreen)}
           >
             <ElectionResults />
           </Box>
