@@ -37,15 +37,14 @@ const ProcessAside = () => {
     !(election?.electionType.anonymous && voting)
   const showVotes = !election?.electionType.secretUntilTheEnd || election.status === ElectionStatus.RESULTS
 
-  let totalWeight = 0
-  if (election && showVotes) {
+  let votes = 0
+  if (election && showVotes && election?.questions.length) {
     const decimals = (election.meta as any)?.token?.decimals || 0
-    const totalsAbstain = election?.questions.map((q) => ('numAbstains' in q ? Number(q.numAbstains) : 0))
-
-    totalWeight = election?.questions
-      .map((el, idx) => el.choices.reduce((acc, curr) => acc + Number(curr.results), totalsAbstain[idx]))
-      .map((votes: number) => results(votes, decimals))
-      .reduce((acc, curr) => acc + curr, 0)
+    // It just has to check the first question to get the total of votes.
+    const question = election?.questions[0]
+    const totalsAbstain = 'numAbstains' in question ? Number(question.numAbstains) : 0
+    votes = question.choices.reduce((acc, curr) => acc + Number(curr.results), totalsAbstain)
+    votes = results(votes, decimals)
   }
 
   const votersCount = election?.voteCount
@@ -53,7 +52,7 @@ const ProcessAside = () => {
   return (
     <>
       <Card variant='aside'>
-        <Flex alignItems='center' gap={5} flexWrap='wrap' justifyContent='center'>
+        <Flex alignItems='center' flexDirection={'column'} gap={5} flexWrap='wrap' justifyContent='center'>
           <Text textAlign='center' fontSize='xl' textTransform='uppercase'>
             {election?.electionType.anonymous && voting
               ? t('aside.submitting')
@@ -89,10 +88,10 @@ const ProcessAside = () => {
                     span: <Text as='span' fontWeight='bold' fontSize='xl3' textAlign='center' lineHeight={1} />,
                     text: <Text fontSize='xl' textAlign='center' lineHeight={1.3} />,
                   }}
-                  count={totalWeight}
+                  count={votes}
                 />
               </Flex>
-              {showVoters && votersCount !== totalWeight && (
+              {showVoters && votersCount !== votes && (
                 <Flex direction={'row'} justifyContent='center' alignItems='center'>
                   {'('}
                   <Trans

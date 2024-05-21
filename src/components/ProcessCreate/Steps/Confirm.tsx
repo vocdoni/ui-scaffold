@@ -56,7 +56,8 @@ import Wrapper from './Wrapper'
 
 export const Confirm = () => {
   const { env, client, account, fetchAccount, census3: c3client } = useClient()
-  const { form, prev, setForm, setIsLoadingPreview, isLoadingPreview } = useProcessCreationSteps()
+  const { form, prev, setForm, setIsLoadingPreview, isLoadingPreview, isLoadingCost, notEnoughBalance } =
+    useProcessCreationSteps()
   const navigate = useNavigate()
   const { t } = useTranslation()
   const toast = useToast()
@@ -65,7 +66,6 @@ export const Confirm = () => {
   const [sending, setSending] = useState<boolean>(false)
   const [created, setCreated] = useState<string | null>(null)
   const [step, setStep] = useState<Steps>()
-  const [disabled, setDisabled] = useState<boolean>(false)
   const [unpublished, setUnpublished] = useState<UnpublishedElection | undefined>()
   const { vocdoniAdminClient } = useCspAdmin()
 
@@ -241,6 +241,8 @@ export const Confirm = () => {
     startDate: form.electionType.autoStart ? new Date().getTime() : new Date(form.startDate).getTime(),
   } as unknown as IPublishedElectionParameters)
 
+  const disabled = isLoadingPreview || isLoadingCost || notEnoughBalance
+
   return (
     <Wrapper>
       <Box>
@@ -253,7 +255,7 @@ export const Confirm = () => {
             <Flex flexDirection={{ base: 'column', xl2: 'row' }} gap={5}>
               <Preview />
               <Box flex={{ xl2: '0 0 25%' }}>
-                <CostPreview unpublished={unpublished} disable={setDisabled} />
+                <CostPreview unpublished={unpublished} />
 
                 <Box>
                   <Text className='brand-theme' fontWeight='bold' textTransform='uppercase' px={2} mb={2}>
