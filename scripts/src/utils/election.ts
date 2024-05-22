@@ -1,14 +1,11 @@
-import { ElectionStatus, OffchainCensus, UnpublishedElection, VocdoniSDKClient } from '@vocdoni/sdk'
+import { Census, UnpublishedElection, VocdoniSDKClient } from '@vocdoni/sdk'
 import chalk from 'chalk'
-import { getCsvCensus } from './census'
-import path from 'path'
+import { getCensus, SupportedCensusType } from './census'
 
 export const publishElection = async (election: UnpublishedElection, client: VocdoniSDKClient) => {
   console.log(chalk.yellow('Creating a new voting process!'))
 
   if (!client) throw new Error('Missing client')
-
-  let electionIdentifier: string
 
   return await client
     .createElection(election)
@@ -21,17 +18,46 @@ export const publishElection = async (election: UnpublishedElection, client: Voc
     })
 }
 
-export type CreateElectionFunctionType = (census: OffchainCensus) => UnpublishedElection
+export type CreateElectionFunctionType = (census: Census, meta?: any) => UnpublishedElection
 
 export async function createElection(
   vocdoniClient: VocdoniSDKClient,
-  createElectionFunction: CreateElectionFunctionType
+  createElectionFunction: CreateElectionFunctionType,
+  censusType: SupportedCensusType
 ) {
-  const { census, spreadsheet } = await getCsvCensus(vocdoniClient, path.join(__dirname, '../census.csv'))
+  let census: Census = await getCensus(censusType, vocdoniClient)
+  let meta = getMetaElectionMetadata(censusType)
 
   console.log('Creating election...')
-  const election = createElectionFunction(census)
+
+  const election = createElectionFunction(census, meta)
+
+  if (censusType === 'csp') {
+    election.maxCensusSize = 4
+  }
 
   console.log('Publishing election...')
   return await publishElection(election, vocdoniClient)
+}
+
+export const getMetaElectionMetadata = (censusType: SupportedCensusType) => {
+  const meta: any = {
+    generated: 'script',
+    census: {
+      type: censusType,
+    },
+  }
+  if (censusType === 'spreadsheet') {
+    meta.census = {
+      ...meta.census,
+      fields: ['DNI', 'Data de Naixement'], //TODO: get from spreadsheet
+      specs: {
+        'Data de Naixement': {
+          value: '^[0-9]{2}/[0-9]{2}/[0-9]{4}$',
+          message: "Ha d'estar en format dd/mm/aaaa",
+        },
+      },
+    }
+  }
+  return meta
 }

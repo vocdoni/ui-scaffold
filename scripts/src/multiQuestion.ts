@@ -1,7 +1,8 @@
-import { Election, OffchainCensus } from '@vocdoni/sdk'
+import { Census, Election } from '@vocdoni/sdk'
 import { DemoInterface } from './demoMeta'
+import { CreateElectionFunctionType } from './utils/election'
 
-export const getMultiQuestion = (census: OffchainCensus) => {
+export const getMultiQuestion: CreateElectionFunctionType = (census: Census, meta) => {
   const endDate = new Date(DemoInterface.endDate)
   const startDate = new Date(DemoInterface.date)
 
@@ -22,19 +23,7 @@ export const getMultiQuestion = (census: OffchainCensus) => {
 
     ## Welcome
     Initial description`,
-    meta: {
-      generated: 'script',
-      census: {
-        type: 'spreadsheet',
-        fields: ['DNI', 'Data de Naixement'], //TODO: get from spreadsheet
-        specs: {
-          'Data de Naixement': {
-            value: '^[0-9]{2}/[0-9]{2}/[0-9]{4}$',
-            message: "Ha d'estar en format dd/mm/aaaa",
-          },
-        },
-      },
-    },
+    meta,
   })
 
   election.addQuestion('Inversió', 'Approve budget', [

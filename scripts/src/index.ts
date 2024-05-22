@@ -7,14 +7,18 @@ import { createElection, CreateElectionFunctionType } from './utils/election'
 import { getMultichoiceElection } from './multichoice'
 import { getSinglechoiceElection } from './singlechoice'
 import { getMultiQuestion } from './multiQuestion'
+import { SupportedCensusType } from './utils/census'
 
-// This are the functions that create the elections we want to use
+// These are the functions that create the elections we want to use
 const createElectionFunctions: CreateElectionFunctionType[] = [
   getSinglechoiceElection,
   getMultiQuestion,
   getApprovalElection,
   getMultichoiceElection,
 ]
+
+// Census type that te elections will have
+const censusType: SupportedCensusType = 'csp'
 
 async function main() {
   if (!process.env.PRIV_KEY) throw new Error('Missing PRIV_KEY env variable')
@@ -23,7 +27,7 @@ async function main() {
 
   for (const createElectionFunction of createElectionFunctions) {
     console.log(chalk.green(`Creating election ${createElectionFunction.name}...`))
-    const election = await createElection(vocdoniClient, createElectionFunction)
+    const election = await createElection(vocdoniClient, createElectionFunction, censusType)
     elections.push(election.id)
     console.log(chalk.green('✅ Created election'))
   }
