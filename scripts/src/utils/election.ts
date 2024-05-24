@@ -3,8 +3,6 @@ import chalk from 'chalk'
 import { getCensus, SupportedCensusType } from './census'
 
 export const publishElection = async (election: UnpublishedElection, client: VocdoniSDKClient) => {
-  console.log(chalk.yellow('Creating a new voting process!'))
-
   if (!client) throw new Error('Missing client')
 
   return await client
@@ -28,15 +26,13 @@ export async function createElection(
   let census: Census = await getCensus(censusType, vocdoniClient)
   let meta = getMetaElectionMetadata(censusType)
 
-  console.log('Creating election...')
+  console.log(chalk.yellow('Creating a new voting process!'))
 
   const election = createElectionFunction(census, meta)
 
   if (censusType === 'csp') {
     election.maxCensusSize = 4
   }
-
-  console.log('Publishing election...')
   return await publishElection(election, vocdoniClient)
 }
 
