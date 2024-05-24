@@ -12,13 +12,13 @@ import { SupportedCensusType } from './utils/census'
 // These are the functions that create the elections we want to use
 const createElectionFunctions: CreateElectionFunctionType[] = [
   getSinglechoiceElection,
-  // getMultiQuestion,
-  // getApprovalElection,
-  // getMultichoiceElection,
+  getMultiQuestion,
+  getApprovalElection,
+  getMultichoiceElection,
 ]
 
 // Census type that te elections will have
-const censusType: SupportedCensusType = 'csp'
+const censusType: SupportedCensusType = (process.env.CENSUS_TYPE as SupportedCensusType) || 'spreadsheet'
 
 async function main() {
   let privKey = process.env.PRIV_KEY
@@ -29,7 +29,7 @@ async function main() {
     console.log(chalk.green(`Private key set, using existing organization...`))
     vocdoniClient = await getVocdoniClient(privKey)
   }
-
+  console.log(chalk.blue(`Census type: ${censusType}`))
   const elections: string[] = []
 
   for (const createElectionFunction of createElectionFunctions) {
