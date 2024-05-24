@@ -1,12 +1,12 @@
 import chalk from 'chalk'
-import { createDemoMeta } from './demoMeta'
+import { createDemoMeta } from './getDemoMeta'
 import 'dotenv/config'
-import { getApprovalElection } from './approval'
+import { getApprovalElection } from './getApproval'
 import { getVocdoniClient } from './utils/utils'
 import { createElection, CreateElectionFunctionType } from './utils/election'
-import { getMultichoiceElection } from './multichoice'
-import { getSinglechoiceElection } from './singlechoice'
-import { getMultiQuestion } from './multiQuestion'
+import { getMultichoiceElection } from './getMultichoice'
+import { getSinglechoiceElection } from './getSinglechoice'
+import { getMultiQuestion } from './getMultiQuestion'
 import { SupportedCensusType } from './utils/census'
 
 // These are the functions that create the elections we want to use

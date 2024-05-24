@@ -1,5 +1,5 @@
 import { Census, Election } from '@vocdoni/sdk'
-import { DemoInterface } from './demoMeta'
+import { DemoInterface } from './getDemoMeta'
 import { CreateElectionFunctionType } from './utils/election'
 
 export const getSinglechoiceElection: CreateElectionFunctionType = (census: Census, meta) => {

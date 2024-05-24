@@ -1,6 +1,6 @@
 import { ApprovalElection, Census } from '@vocdoni/sdk'
 
-import { DemoInterface } from './demoMeta'
+import { DemoInterface } from './getDemoMeta'
 import { CreateElectionFunctionType } from './utils/election'
 
 export const getApprovalElection: CreateElectionFunctionType = (census: Census, meta) => {

@@ -1,7 +1,7 @@
 import { MultiChoiceElection, Census } from '@vocdoni/sdk'
 
 import 'dotenv/config'
-import { DemoInterface } from './demoMeta'
+import { DemoInterface } from './getDemoMeta'
 import { CreateElectionFunctionType } from './utils/election'
 
 export const getMultichoiceElection: CreateElectionFunctionType = (census: Census, meta) => {
