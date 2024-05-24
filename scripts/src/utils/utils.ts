@@ -1,8 +1,25 @@
 import fs from 'fs'
 import path from 'path'
 import chalk from 'chalk'
-import { EnvOptions, VocdoniSDKClient } from '@vocdoni/sdk'
+import { Account, EnvOptions, VocdoniSDKClient } from '@vocdoni/sdk'
 import { Wallet, ethers } from 'ethers'
+import { AccountInfo, DemoMeta } from '../getDemoMeta'
+
+export const createAccount = async () => {
+  console.log(chalk.green(`Creating organization ${DemoMeta.orgName}...`))
+  const wallet = Wallet.createRandom()
+  const privKey = wallet.privateKey
+  console.log(
+    chalk.blue(`Wallet address: ${wallet.address}\nWallet private/public keys: ${privKey} / ${wallet.publicKey}`)
+  )
+  const vocdoniClient = await getVocdoniClient(privKey)
+  await vocdoniClient.createAccount({
+    account: AccountInfo,
+  })
+  console.log(chalk.green(`✅ Org created`))
+
+  return vocdoniClient
+}
 
 export const getVocdoniClient = async (privKey: string) => {
   const wallet: Wallet = new ethers.Wallet(privKey)

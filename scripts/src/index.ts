@@ -1,8 +1,8 @@
 import chalk from 'chalk'
-import { createDemoMeta } from './getDemoMeta'
+import { createDemoMeta, DemoMeta } from './getDemoMeta'
 import 'dotenv/config'
 import { getApprovalElection } from './getApproval'
-import { getVocdoniClient } from './utils/utils'
+import { createAccount, getVocdoniClient } from './utils/utils'
 import { createElection, CreateElectionFunctionType } from './utils/election'
 import { getMultichoiceElection } from './getMultichoice'
 import { getSinglechoiceElection } from './getSinglechoice'
@@ -12,17 +12,24 @@ import { SupportedCensusType } from './utils/census'
 // These are the functions that create the elections we want to use
 const createElectionFunctions: CreateElectionFunctionType[] = [
   getSinglechoiceElection,
-  getMultiQuestion,
-  getApprovalElection,
-  getMultichoiceElection,
+  // getMultiQuestion,
+  // getApprovalElection,
+  // getMultichoiceElection,
 ]
 
 // Census type that te elections will have
 const censusType: SupportedCensusType = 'csp'
 
 async function main() {
-  if (!process.env.PRIV_KEY) throw new Error('Missing PRIV_KEY env variable')
-  const vocdoniClient = await getVocdoniClient(process.env.PRIV_KEY)
+  let privKey = process.env.PRIV_KEY
+  let vocdoniClient
+  if (!privKey) {
+    vocdoniClient = await createAccount()
+  } else {
+    console.log(chalk.green(`Private key set, using existing organization...`))
+    vocdoniClient = await getVocdoniClient(privKey)
+  }
+
   const elections: string[] = []
 
   for (const createElectionFunction of createElectionFunctions) {

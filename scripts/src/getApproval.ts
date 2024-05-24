@@ -1,11 +1,11 @@
 import { ApprovalElection, Census } from '@vocdoni/sdk'
 
-import { DemoInterface } from './getDemoMeta'
+import { DemoMeta } from './getDemoMeta'
 import { CreateElectionFunctionType } from './utils/election'
 
 export const getApprovalElection: CreateElectionFunctionType = (census: Census, meta) => {
-  const endDate = new Date(DemoInterface.endDate)
-  const startDate = new Date(DemoInterface.date)
+  const endDate = new Date(DemoMeta.endDate)
+  const startDate = new Date(DemoMeta.date)
 
   const election = ApprovalElection.from({
     title: 'Approval election',
