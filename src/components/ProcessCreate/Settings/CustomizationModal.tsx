@@ -28,6 +28,7 @@ import { Button } from '@vocdoni/chakra-components'
 import { CiSaveDown2 } from 'react-icons/ci'
 import { useEffect } from 'react'
 import { AspectRatioProps } from '@chakra-ui/layout/dist/aspect-ratio'
+import ReactPlayer from 'react-player'
 
 export type CustomizationValues = {
   isCustomizationSet: boolean
@@ -74,10 +75,13 @@ const CustomizationModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () 
             <ModalBody>
               {t('process_create.customization.description')}
               <RowLayout label={t('process_create.customization.logo_label')}>
-                <ImageSelector name={'logo'} />
+                <MediaSelector name={'logo'} />
               </RowLayout>
               <RowLayout label={t('process_create.customization.header_label')}>
-                <ImageSelector name={'header'} ratio={4 / 1} w={{ base: 100, md: 100 }} maxW={'100%'} />
+                <MediaSelector name={'header'} ratio={4 / 1} w={{ base: 100, md: 100 }} maxW={'100%'} />
+              </RowLayout>
+              <RowLayout label={t('process_create.customization.stream_label')}>
+                <MediaSelector name={'streamUri'} isVideo={true} w={{ base: 80, md: 100 }} ratio={16 / 9} />
               </RowLayout>
             </ModalBody>
             <ModalFooter>
@@ -95,13 +99,14 @@ const CustomizationModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () 
 // todo(kon): replace the EditProfile avatar preview component with this one
 const REGEX_IMG = /^(https?:\/\/|ipfs:\/\/)/i
 
-type ImageUploaderProps = {
+type MediaSelectorProps = {
   name: string
   helper?: string
+  isVideo?: boolean
 } & AspectRatioProps
 
-const ImageSelector = ({ name, helper, ...aspectRatioProps }: ImageUploaderProps) => {
-  const correctImageFormat = (val: string) => REGEX_IMG.test(val)
+const MediaSelector = ({ name, helper, isVideo = false, ...aspectRatioProps }: MediaSelectorProps) => {
+  const correctUriFormat = (val: string) => REGEX_IMG.test(val)
   const { t } = useTranslation()
 
   const {
@@ -112,11 +117,11 @@ const ImageSelector = ({ name, helper, ...aspectRatioProps }: ImageUploaderProps
     setValue,
   } = useFormContext()
 
-  const image = watch(name)
+  const uri = watch(name)
 
   return (
     <Flex alignItems='center' gap={5}>
-      {correctImageFormat(image) && (
+      {correctUriFormat(uri) && (
         <Box position='relative' outline='none' border='none' maxW={'100%'}>
           <AspectRatio
             flexShrink={0}
@@ -126,7 +131,11 @@ const ImageSelector = ({ name, helper, ...aspectRatioProps }: ImageUploaderProps
             overflow='hidden'
             {...aspectRatioProps}
           >
-            <Image src={image} fallbackSrc={fallback} />
+            {isVideo ? (
+              <ReactPlayer url={uri} width='100%' height='100%' controls />
+            ) : (
+              <Image src={uri} fallbackSrc={fallback} />
+            )}
           </AspectRatio>
           <IconButton
             aria-label={t('form.account_create.delete_image')}
@@ -144,13 +153,13 @@ const ImageSelector = ({ name, helper, ...aspectRatioProps }: ImageUploaderProps
           />
         </Box>
       )}
-      {!correctImageFormat(image) && (
+      {!correctUriFormat(uri) && (
         <FormControl isInvalid={!!errors['name']}>
           <Input
             type='text'
             {...register(name, {
               validate: (val: string) => {
-                if (val && !correctImageFormat(val)) {
+                if (val && !correctUriFormat(val)) {
                   return t('form.error.avatar_error')
                 }
               },
