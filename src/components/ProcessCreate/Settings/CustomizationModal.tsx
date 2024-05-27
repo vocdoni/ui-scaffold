@@ -27,6 +27,7 @@ import fallback from '/assets/default-avatar.png'
 import { Button } from '@vocdoni/chakra-components'
 import { CiSaveDown2 } from 'react-icons/ci'
 import { useEffect } from 'react'
+import { AspectRatioProps } from '@chakra-ui/layout/dist/aspect-ratio'
 
 export type CustomizationValues = {
   isCustomizationSet: boolean
@@ -75,6 +76,9 @@ const CustomizationModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () 
               <RowLayout label={t('process_create.customization.logo_label')}>
                 <ImageSelector name={'logo'} />
               </RowLayout>
+              <RowLayout label={t('process_create.customization.header_label')}>
+                <ImageSelector name={'header'} ratio={4 / 1} w={{ base: 100, md: 100 }} maxW={'100%'} />
+              </RowLayout>
             </ModalBody>
             <ModalFooter>
               <Button type='submit' leftIcon={<CiSaveDown2 />}>
@@ -88,15 +92,15 @@ const CustomizationModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () 
   )
 }
 
-// todo(kon): replace this component with the EditProfile one
+// todo(kon): replace the EditProfile avatar preview component with this one
 const REGEX_IMG = /^(https?:\/\/|ipfs:\/\/)/i
 
-interface ImageUploaderProps {
+type ImageUploaderProps = {
   name: string
   helper?: string
-}
+} & AspectRatioProps
 
-const ImageSelector = ({ name, helper }: ImageUploaderProps) => {
+const ImageSelector = ({ name, helper, ...aspectRatioProps }: ImageUploaderProps) => {
   const correctImageFormat = (val: string) => REGEX_IMG.test(val)
   const { t } = useTranslation()
 
@@ -112,11 +116,18 @@ const ImageSelector = ({ name, helper }: ImageUploaderProps) => {
 
   return (
     <Flex alignItems='center' gap={5}>
-      <Box position='relative' outline='none' border='none'>
-        <AspectRatio flexShrink={0} w={{ base: 20, md: 40 }} ratio={1.25 / 1} borderRadius={0} overflow='hidden'>
-          <Image src={image} fallbackSrc={fallback} />
-        </AspectRatio>
-        {correctImageFormat(image) && (
+      {correctImageFormat(image) && (
+        <Box position='relative' outline='none' border='none' maxW={'100%'}>
+          <AspectRatio
+            flexShrink={0}
+            w={{ base: 20, md: 40 }}
+            ratio={1.25 / 1}
+            borderRadius={0}
+            overflow='hidden'
+            {...aspectRatioProps}
+          >
+            <Image src={image} fallbackSrc={fallback} />
+          </AspectRatio>
           <IconButton
             aria-label={t('form.account_create.delete_image')}
             icon={<BiTrash />}
@@ -131,31 +142,33 @@ const ImageSelector = ({ name, helper }: ImageUploaderProps) => {
             size='xs'
             fontSize='md'
           />
-        )}
-      </Box>
-      <FormControl isInvalid={!!errors['name']}>
-        <Input
-          type='text'
-          {...register(name, {
-            validate: (val: string) => {
-              if (val && !correctImageFormat(val)) {
-                return t('form.error.avatar_error')
-              }
-            },
-          })}
-          mb={1}
-          placeholder={t('form.edit_profile.avatar_placeholder').toString()}
-        />
+        </Box>
+      )}
+      {!correctImageFormat(image) && (
+        <FormControl isInvalid={!!errors['name']}>
+          <Input
+            type='text'
+            {...register(name, {
+              validate: (val: string) => {
+                if (val && !correctImageFormat(val)) {
+                  return t('form.error.avatar_error')
+                }
+              },
+            })}
+            mb={1}
+            placeholder={t('form.edit_profile.avatar_placeholder').toString()}
+          />
 
-        {!!errors['name'] ? (
-          <FormErrorMessage>{errors['name']?.message?.toString()}</FormErrorMessage>
-        ) : !!helper ? (
-          <FormHelperText>
-            <InfoOutlineIcon />
-            <Text>{helper}</Text>
-          </FormHelperText>
-        ) : null}
-      </FormControl>
+          {!!errors['name'] ? (
+            <FormErrorMessage>{errors['name']?.message?.toString()}</FormErrorMessage>
+          ) : !!helper ? (
+            <FormHelperText>
+              <InfoOutlineIcon />
+              <Text>{helper}</Text>
+            </FormHelperText>
+          ) : null}
+        </FormControl>
+      )}
     </Flex>
   )
 }
