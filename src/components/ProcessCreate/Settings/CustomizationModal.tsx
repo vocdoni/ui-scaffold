@@ -74,13 +74,22 @@ const CustomizationModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () 
           <Box as='form' id='process-create-form' onSubmit={methods.handleSubmit(onSubmit)}>
             <ModalBody>
               {t('process_create.customization.description')}
-              <RowLayout label={t('process_create.customization.logo_label')}>
+              <RowLayout
+                label={t('process_create.customization.logo_label')}
+                helper={t('process_create.customization.logo_helper')}
+              >
                 <MediaSelector name={'logo'} />
               </RowLayout>
-              <RowLayout label={t('process_create.customization.header_label')}>
+              <RowLayout
+                label={t('process_create.customization.header_label')}
+                helper={t('process_create.customization.header_helper')}
+              >
                 <MediaSelector name={'header'} ratio={4 / 1} w={{ base: 100, md: 100 }} maxW={'100%'} />
               </RowLayout>
-              <RowLayout label={t('process_create.customization.stream_label')}>
+              <RowLayout
+                label={t('process_create.customization.stream_label')}
+                helper={t('process_create.customization.stream_helper')}
+              >
                 <MediaSelector name={'streamUri'} isVideo={true} w={{ base: 80, md: 100 }} ratio={16 / 9} />
               </RowLayout>
             </ModalBody>
@@ -182,11 +191,24 @@ const MediaSelector = ({ name, helper, isVideo = false, ...aspectRatioProps }: M
   )
 }
 
-const RowLayout = ({ label, children, error }: { label: string; children: React.ReactNode; error?: string }) => {
+const RowLayout = ({
+  label,
+  children,
+  helper,
+  error,
+}: {
+  label: string
+  children: React.ReactNode
+  helper: string
+  error?: string
+}) => {
   return (
     <>
       <FormLabel>{label}</FormLabel>
-      {children}
+      <Flex direction={'column'}>
+        {children}
+        <Text>{helper}</Text>
+      </Flex>
       <FormErrorMessage>{error}</FormErrorMessage>
     </>
   )
