@@ -786,6 +786,22 @@
     },
     "creation_steps_description": "Necesitas firmar las transacciones para crear el proceso de votación en la cadena de bloques de Vocdoni. No cierres esta ventana.",
     "creation_steps_title": "Progreso",
+    "customization": {
+      "color_helper": "",
+      "color_label": "",
+      "description": "",
+      "header_helper": "",
+      "header_label": "",
+      "header_placeholder": "",
+      "logo_helper": "",
+      "logo_label": "",
+      "logo_placeholder": "",
+      "stream_helper": "",
+      "stream_label": "",
+      "stream_placeholder": "",
+      "submit": "",
+      "title": ""
+    },
     "modal_pro": {
       "description": "<p><bold>{{ reason, ucfirst }}</bold> es una característica Premium</p>",
       "error": "Error sending email, try it later or contact us at <email>info@vocdoni.org</email>",

@@ -6,6 +6,8 @@ import {
   FormErrorMessage,
   FormHelperText,
   FormLabel,
+  Grid,
+  GridItem,
   IconButton,
   Image,
   Input,
@@ -75,32 +77,47 @@ const CustomizationModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () 
           <Box as='form' id='process-create-form' onSubmit={methods.handleSubmit(onSubmit)}>
             <ModalBody>
               {t('process_create.customization.description')}
-              <RowLayout
-                label={t('process_create.customization.logo_label')}
-                helper={t('process_create.customization.logo_helper')}
-              >
-                <MediaSelector name={'logo'} />
-              </RowLayout>
-              <RowLayout
-                label={t('process_create.customization.color_label')}
-                helper={t('process_create.customization.color_helper')}
-              >
-                <ColorPicker />
-              </RowLayout>
-              <RowLayout
-                label={t('process_create.customization.header_label')}
-                helper={t('process_create.customization.header_helper')}
-              >
-                <MediaSelector name={'header'} ratio={4 / 1} w={{ base: 100, md: 100 }} maxW={'100%'} />
-              </RowLayout>
-              <RowLayout
-                label={t('process_create.customization.stream_label')}
-                helper={t('process_create.customization.stream_helper')}
-              >
-                <MediaSelector name={'streamUri'} isVideo={true} w={{ base: 80, md: 100 }} ratio={16 / 9} />
-              </RowLayout>
+              <Flex pt={4} direction={'column'} gap={6}>
+                <RowLayout
+                  label={t('process_create.customization.logo_label')}
+                  helper={t('process_create.customization.logo_helper')}
+                >
+                  <MediaSelector name={'logo'} placeholder={t('process_create.customization.logo_placeholder')} />
+                </RowLayout>
+                <RowLayout
+                  label={t('process_create.customization.color_label')}
+                  helper={t('process_create.customization.color_helper')}
+                >
+                  <ColorPicker />
+                </RowLayout>
+                <RowLayout
+                  label={t('process_create.customization.header_label')}
+                  helper={t('process_create.customization.header_helper')}
+                >
+                  <MediaSelector
+                    name={'header'}
+                    placeholder={t('process_create.customization.header_placeholder')}
+                    ratio={4 / 1}
+                    w={{ base: 100, md: 100 }}
+                    maxW={'100%'}
+                  />
+                </RowLayout>
+                <RowLayout
+                  label={t('process_create.customization.stream_label')}
+                  helper={t('process_create.customization.stream_helper')}
+                >
+                  <MediaSelector
+                    name={'streamUri'}
+                    placeholder={t('process_create.customization.stream_placeholder')}
+                    isVideo={true}
+                    w={{ base: 80, md: 100 }}
+                    ratio={16 / 9}
+                  />
+                </RowLayout>
+              </Flex>
             </ModalBody>
             <ModalFooter>
+              <Button variant='ghost'>{t('process_create.customization.preview')}</Button>
               <Button type='submit' leftIcon={<CiSaveDown2 />}>
                 {t('process_create.customization.submit')}
               </Button>
@@ -119,11 +136,13 @@ type MediaSelectorProps = {
   name: string
   helper?: string
   isVideo?: boolean
+  placeholder?: string
 } & AspectRatioProps
 
-const MediaSelector = ({ name, helper, isVideo = false, ...aspectRatioProps }: MediaSelectorProps) => {
+const MediaSelector = ({ name, helper, isVideo = false, placeholder, ...aspectRatioProps }: MediaSelectorProps) => {
   const correctUriFormat = (val: string) => REGEX_IMG.test(val)
   const { t } = useTranslation()
+  const _placeholder = placeholder ?? t('form.edit_profile.avatar_placeholder')
 
   const {
     register,
@@ -181,7 +200,7 @@ const MediaSelector = ({ name, helper, isVideo = false, ...aspectRatioProps }: M
               },
             })}
             mb={1}
-            placeholder={t('form.edit_profile.avatar_placeholder').toString()}
+            placeholder={_placeholder}
           />
 
           {!!errors['name'] ? (
@@ -253,14 +272,18 @@ const RowLayout = ({
   error?: string
 }) => {
   return (
-    <>
-      <FormLabel>{label}</FormLabel>
-      <Flex direction={'column'}>
-        {children}
-        <Text>{helper}</Text>
-      </Flex>
-      <FormErrorMessage>{error}</FormErrorMessage>
-    </>
+    <Grid templateColumns={{ base: 'repeat(1, 1fr)', xl: 'repeat(6, 1fr)' }}>
+      <GridItem colSpan={1}>
+        <FormLabel fontWeight='bold'>{label}</FormLabel>
+      </GridItem>
+      <GridItem colSpan={5}>
+        <Flex direction={'column'} gap={1}>
+          {children}
+          <Text>{helper}</Text>
+        </Flex>
+        <FormErrorMessage>{error}</FormErrorMessage>
+      </GridItem>
+    </Grid>
   )
 }
 

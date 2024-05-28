@@ -775,6 +775,23 @@
     },
     "creation_steps_description": "Sign transaction to create the voting process. Generating the census can take a few minutes, please don't close this window.",
     "creation_steps_title": "Progress",
+    "customization": {
+      "color_helper": "Choose a color scheme that complements your brand or event",
+      "color_label": "Color",
+      "description": "You can personalize your voting page to reflect your unique brand and style. Fill the info below (all are optional) to tailor your voting experience",
+      "header_helper": "Upload your header (JPG/PNG file, 1200x200px) that will be displayed as a banner in the top part of the voting page",
+      "header_label": "Header",
+      "header_placeholder": "URL to your header",
+      "logo_helper": "Upload your logo (JPG/PNG file, 200x200px) to add a personal touch to your voting page. Your logo will be prominently displayed at the top of the page",
+      "logo_label": "Logo",
+      "logo_placeholder": "URL to your logo",
+      "preview": "Preview",
+      "stream_helper": "If you're hosting a live event or streaming content, enter the URL here. THis will provide participants with easy access to your stream directly from the voting page. Accepted: Youtube, Faceboock, Twitch, SoundCloud, Streamable, Vimeo, Wistia, Mixcloud, DailyMotion and Kaltura",
+      "stream_label": "Streaming",
+      "stream_placeholder": "URL to your streaming",
+      "submit": "Save",
+      "title": "Personalize Your Voting Page"
+    },
     "modal_pro": {
       "description": "<p><bold>{{ reason, ucfirst }}</bold> is a Premium feature</p>",
       "error": "Error sending email, try it later or contact us at <email>info@vocdoni.org</email>",
