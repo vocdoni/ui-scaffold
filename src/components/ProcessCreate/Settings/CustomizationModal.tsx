@@ -26,9 +26,10 @@ import { InfoOutlineIcon } from '@chakra-ui/icons'
 import fallback from '/assets/default-avatar.png'
 import { Button } from '@vocdoni/chakra-components'
 import { CiSaveDown2 } from 'react-icons/ci'
-import { useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { AspectRatioProps } from '@chakra-ui/layout/dist/aspect-ratio'
 import ReactPlayer from 'react-player'
+import { SketchPicker, ColorResult } from 'react-color'
 
 export type CustomizationValues = {
   isCustomizationSet: boolean
@@ -79,6 +80,12 @@ const CustomizationModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () 
                 helper={t('process_create.customization.logo_helper')}
               >
                 <MediaSelector name={'logo'} />
+              </RowLayout>
+              <RowLayout
+                label={t('process_create.customization.color_label')}
+                helper={t('process_create.customization.color_helper')}
+              >
+                <ColorPicker />
               </RowLayout>
               <RowLayout
                 label={t('process_create.customization.header_label')}
@@ -188,6 +195,49 @@ const MediaSelector = ({ name, helper, isVideo = false, ...aspectRatioProps }: M
         </FormControl>
       )}
     </Flex>
+  )
+}
+
+const ColorPicker = () => {
+  const { watch, setValue } = useFormContext<CustomizationValues>()
+  const color = watch('color')
+  const setColor = useCallback((color: string) => {
+    setValue('color', color)
+  }, [])
+  const [displayColorPicker, setDisplayColorPicker] = useState(false)
+
+  const handleClick = () => {
+    setDisplayColorPicker(!displayColorPicker)
+  }
+
+  const handleClose = () => {
+    setDisplayColorPicker(false)
+  }
+
+  const handleChange = (color: ColorResult) => {
+    setColor(color.hex)
+  }
+
+  return (
+    <Box>
+      <Flex
+        p='5px'
+        bg='white'
+        borderRadius='md'
+        boxShadow='0 0 0 1px rgba(0,0,0,.1)'
+        display='inline-block'
+        cursor='pointer'
+        onClick={handleClick}
+      >
+        <Box width='36px' height='14px' borderRadius='md' bg={color} />
+      </Flex>
+      {displayColorPicker && (
+        <Box position='absolute' zIndex='2'>
+          <Box position='fixed' top='0' right='0' bottom='0' left='0' onClick={handleClose} />
+          <SketchPicker color={color} onChange={handleChange} />
+        </Box>
+      )}
+    </Box>
   )
 }
 
