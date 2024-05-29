@@ -7,6 +7,7 @@ import Layout from '~elements/Layout'
 import LayoutProcessCreate from '~elements/LayoutProcessCreate'
 import OrganizationProtectedRoute from './OrganizationProtectedRoute'
 import { SuspenseLoader } from './SuspenseLoader'
+import {ProcessPreview} from "~elements/Process";
 
 // Lazy loading helps splitting the final code, which helps downloading the app (theoretically)
 const ProtectedRoutes = lazy(() => import('./ProtectedRoutes'))
@@ -148,12 +149,17 @@ export const RoutesProvider = () => {
                 </SuspenseLoader>
               ),
             },
+            {
+              path: 'processes/preview',
+              element: (
+                <ProcessPreview />
+              ),
+            },
           ],
         },
       ],
     },
   ]
-
   const router = createBrowserRouter(routes)
 
   return <RouterProvider router={router} />

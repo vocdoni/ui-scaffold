@@ -6,12 +6,16 @@ import { FaUserSecret } from 'react-icons/fa'
 import { HiKey } from 'react-icons/hi2'
 import CustomizationModal from '~components/ProcessCreate/Settings/CustomizationModal'
 import { useProcessCreationSteps } from '~components/ProcessCreate/Steps/use-steps'
+import { InfoValues } from '~components/ProcessCreate/StepForm/Info'
 
 const SettingsAdvanced = () => {
   const { form } = useProcessCreationSteps()
   const { t } = useTranslation()
-  const { register } = useFormContext()
+  const { register, watch } = useFormContext()
   const { isOpen, onOpen, onClose } = useDisclosure()
+
+  // Pass election info to customization modal for the preview
+  const electionInfo = watch() as InfoValues
 
   const features =
     import.meta.env.features.vote.anonymous ||
@@ -23,7 +27,7 @@ const SettingsAdvanced = () => {
 
   return (
     <>
-      <CustomizationModal isOpen={isOpen} onClose={onClose} />
+      <CustomizationModal isOpen={isOpen} onClose={onClose} electionInfo={electionInfo} />
       <Box>
         <Box mb={4}>
           <Text className='process-create-title'>{t('form.process_create.behavior.title')}</Text>

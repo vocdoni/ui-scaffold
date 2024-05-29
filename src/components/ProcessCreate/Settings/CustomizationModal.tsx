@@ -28,10 +28,12 @@ import { InfoOutlineIcon } from '@chakra-ui/icons'
 import fallback from '/assets/default-avatar.png'
 import { Button } from '@vocdoni/chakra-components'
 import { CiSaveDown2 } from 'react-icons/ci'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { AspectRatioProps } from '@chakra-ui/layout/dist/aspect-ratio'
 import ReactPlayer from 'react-player'
 import { SketchPicker, ColorResult } from 'react-color'
+import { useClient } from '@vocdoni/react-providers'
+import { InfoValues } from '~components/ProcessCreate/StepForm/Info'
 
 export type CustomizationValues = {
   isCustomizationSet: boolean
@@ -42,12 +44,26 @@ export type CustomizationValues = {
   subdomain: string
 }
 
-const CustomizationModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+const CustomizationModal = ({
+  isOpen,
+  onClose,
+  electionInfo,
+}: {
+  isOpen: boolean
+  onClose: () => void
+  electionInfo: InfoValues
+}) => {
   const { t } = useTranslation()
   const { form, setForm } = useProcessCreationSteps()
   const methods = useForm<CustomizationValues>({
     defaultValues: form,
   })
+
+  const { account } = useClient()
+
+  const formData = methods.watch()
+
+  const previewWindowRef = useRef<Window | null>(null)
 
   const onSubmit: SubmitHandler<CustomizationValues> = (data) => {
     // Check if form is dirty to mark the customization as set up
@@ -59,6 +75,39 @@ const CustomizationModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () 
     onClose()
   }
 
+  // const handlePreviewChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData({
+  //     ...formData,
+  //     [name]: value,
+  //   });
+  //
+  //   // Send the updated form data to the preview window
+  //   if (previewWindowRef.current) {
+  //     previewWindowRef.current.postMessage({ formData: { ...formData, [name]: value } }, '*');
+  //   }
+  // };
+
+  const openPreview = () => {
+    previewWindowRef.current = window.open('preview', '_blank')
+
+    // Send the initial form data to the preview window
+    previewWindowRef.current!.onload = () => {
+      previewWindowRef.current!.postMessage(
+        {
+          previewData: {
+            formData: {
+              ...formData,
+              ...electionInfo,
+            },
+            account,
+          },
+        },
+        '*'
+      )
+    }
+  }
+
   // Use previously saved form values.
   // Used to do not store unwanted changes if the modal was closed without submitting.
   useEffect(() => {
@@ -66,6 +115,15 @@ const CustomizationModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () 
       methods.reset(form)
     }
   }, [isOpen, form, methods])
+
+  // Clean up the preview window reference when the component unmounts
+  useEffect(() => {
+    return () => {
+      if (previewWindowRef.current) {
+        previewWindowRef.current.close()
+      }
+    }
+  }, [])
 
   return (
     <FormProvider {...methods}>
@@ -117,7 +175,9 @@ const CustomizationModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () 
               </Flex>
             </ModalBody>
             <ModalFooter>
-              <Button variant='ghost'>{t('process_create.customization.preview')}</Button>
+              <Button onClick={openPreview} variant='ghost'>
+                {t('process_create.customization.preview')}
+              </Button>
               <Button type='submit' leftIcon={<CiSaveDown2 />}>
                 {t('process_create.customization.submit')}
               </Button>
