@@ -22,7 +22,7 @@ import {
 } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { useProcessCreationSteps } from '~components/ProcessCreate/Steps/use-steps'
-import { FormProvider, SubmitHandler, useForm, useFormContext, UseFormRegister } from 'react-hook-form'
+import { FormProvider, SubmitHandler, useForm, useFormContext } from 'react-hook-form'
 import { BiTrash } from 'react-icons/bi'
 import { InfoOutlineIcon } from '@chakra-ui/icons'
 import fallback from '/assets/default-avatar.png'
@@ -75,19 +75,6 @@ const CustomizationModal = ({
     onClose()
   }
 
-  // const handlePreviewChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFormData({
-  //     ...formData,
-  //     [name]: value,
-  //   });
-  //
-  //   // Send the updated form data to the preview window
-  //   if (previewWindowRef.current) {
-  //     previewWindowRef.current.postMessage({ formData: { ...formData, [name]: value } }, '*');
-  //   }
-  // };
-
   const openPreview = () => {
     previewWindowRef.current = window.open('preview', '_blank')
 
@@ -107,6 +94,24 @@ const CustomizationModal = ({
       )
     }
   }
+
+  // Handle form changes and update the preview
+  useEffect(() => {
+    if (previewWindowRef.current) {
+      previewWindowRef.current!.postMessage(
+        {
+          previewData: {
+            formData: {
+              ...formData,
+              ...electionInfo,
+            },
+            account,
+          },
+        },
+        '*'
+      )
+    }
+  }, [formData, previewWindowRef])
 
   // Use previously saved form values.
   // Used to do not store unwanted changes if the modal was closed without submitting.

@@ -38,15 +38,17 @@ export const ProcessPreview = () => {
   const [organization, setOrganization] = useState<AccountData | null>(null)
 
   useEffect(() => {
-    // Ignore event implicit any type value
-    // @ts-ignore
-    const handleMessage = (event) => {
+    const handleMessage = async (event: MessageEvent) => {
       if (event.data.previewData) {
+        setElection(null)
+        // Used to unmount de provider in order to update the election properly on a live preview
+        await new Promise((resolve) => setTimeout(resolve, 1000))
+
         const organization = event.data.previewData.account as AccountData
         setOrganization(organization)
+
         const formData = event.data.previewData.formData as StepsFormValues
         const date = new Date()
-        console.log('formData', formData)
         const election = new PublishedElection({
           id: 'dummy',
           census: new PlainCensus(),
@@ -106,9 +108,14 @@ export const ProcessPreview = () => {
 
   if (!election || !organization) return <Loading />
 
+  // Used to unmount de provider in order to update the election properly on a live preview
+  return <PreviewProviders election={election} organization={organization} />
+}
+
+const PreviewProviders = ({ election, organization }: { election: PublishedElection; organization: AccountData }) => {
   return (
     <OrganizationProvider organization={organization}>
-      <ElectionProvider election={election} ConnectButton={ConnectButton} fetchCensus={false} autoUpdate={false}>
+      <ElectionProvider election={election} ConnectButton={ConnectButton}>
         <ProcessView />
       </ElectionProvider>
     </OrganizationProvider>
