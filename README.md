@@ -1,5 +1,9 @@
 <p align="center" width="100%">
-    <img src="https://developer.vocdoni.io/img/vocdoni_logotype_full_white.svg" />
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://developer.vocdoni.io/img/vocdoni_logotype_full_blank.svg" />
+      <source media="(prefers-color-scheme: light)" srcset="https://developer.vocdoni.io/img/vocdoni_logotype_full_white.svg" />
+      <img alt="Star History Chart" src="https://developer.vocdoni.io/img/vocdoni_logotype_full_white.svg" />
+  </picture>
 </p>
 
 <p align="center" width="100%">
