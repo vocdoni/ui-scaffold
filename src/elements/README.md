@@ -1,5 +1,4 @@
-What are elements?
-==================
+# What are elements?
 
 Elements are components used by react-router, meaning they have specific
 dependencies and can only be executed as react-router route elements.
