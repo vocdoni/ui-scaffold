@@ -112,7 +112,10 @@ const Calculator = () => {
 const LeftSideCalculator = () => {
   const { t } = useTranslation()
 
-  const { control } = useFormContext()
+  const { control, watch, register } = useFormContext()
+  const anonymous = watch('anonymous', false)
+  const encrypted = watch('encrypted', false)
+  const voteOverwrite = watch('voteOverwrite', false)
 
   const required = {
     value: true,
@@ -246,75 +249,45 @@ const LeftSideCalculator = () => {
           )}
         />
         <Flex justifyContent='space-between' flexDirection={{ base: 'column', sm: 'row' }}>
-          <Controller
-            name={'anonymous'}
-            control={control}
-            render={({ field: { value, onChange } }) => (
-              <Flex alignItems='center' gap={2} flexDirection={{ base: 'column', md: 'row' }} mb={8}>
-                <Checkbox
-                  isChecked={value}
-                  id='anonymous'
-                  onChange={(e) => onChange(e.target.checked as boolean)}
-                ></Checkbox>
-                <FormLabel
-                  variant='process-create-label'
-                  htmlFor='anonymous'
-                  fontSize='16px'
-                  lineHeight='20px'
-                  whiteSpace='nowrap'
-                  m={0}
-                >
-                  {t('calculator.anonymous')}
-                </FormLabel>
-              </Flex>
-            )}
-          />
-          <Controller
-            name={'encrypted'}
-            control={control}
-            render={({ field: { value, onChange } }) => (
-              <Flex alignItems='center' gap={2} flexDirection={{ base: 'column', md: 'row' }} mb={8}>
-                <Checkbox
-                  isChecked={value}
-                  id='encrypted'
-                  onChange={(e) => onChange(e.target.checked as boolean)}
-                ></Checkbox>
-                <FormLabel
-                  variant='process-create-label'
-                  htmlFor='encrypted'
-                  fontSize='16px'
-                  lineHeight='20px'
-                  whiteSpace='nowrap'
-                  m={0}
-                >
-                  {t('calculator.encrypted')}
-                </FormLabel>
-              </Flex>
-            )}
-          />
-          <Controller
-            name={'voteOverwrite'}
-            control={control}
-            render={({ field: { value, onChange } }) => (
-              <Flex alignItems='center' gap={2} flexDirection={{ base: 'column', md: 'row' }} mb={8}>
-                <Checkbox
-                  isChecked={value}
-                  id='voteOverwrite'
-                  onChange={(e) => onChange(e.target.checked as boolean)}
-                ></Checkbox>
-                <FormLabel
-                  variant='process-create-label'
-                  htmlFor='voteOverwrite'
-                  fontSize='16px'
-                  lineHeight='20px'
-                  whiteSpace='nowrap'
-                  m={0}
-                >
-                  {t('calculator.vote_overwrite')}
-                </FormLabel>
-              </Flex>
-            )}
-          />
+          <Flex alignItems='center' gap={2} flexDirection={{ base: 'column', md: 'row' }} mb={8}>
+            <Checkbox {...register('anonymous')} isChecked={anonymous} id='anonymous'></Checkbox>
+            <FormLabel
+              variant='process-create-label'
+              htmlFor='anonymous'
+              fontSize='16px'
+              lineHeight='20px'
+              whiteSpace='nowrap'
+              m={0}
+            >
+              {t('calculator.anonymous')}
+            </FormLabel>
+          </Flex>
+          <Flex alignItems='center' gap={2} flexDirection={{ base: 'column', md: 'row' }} mb={8}>
+            <Checkbox {...register('encrypted')} isChecked={encrypted} id='encrypted'></Checkbox>
+            <FormLabel
+              variant='process-create-label'
+              htmlFor='encrypted'
+              fontSize='16px'
+              lineHeight='20px'
+              whiteSpace='nowrap'
+              m={0}
+            >
+              {t('calculator.encrypted')}
+            </FormLabel>
+          </Flex>
+          <Flex alignItems='center' gap={2} flexDirection={{ base: 'column', md: 'row' }} mb={8}>
+            <Checkbox {...register('voteOverwrite')} isChecked={voteOverwrite} id='voteOverwrite'></Checkbox>
+            <FormLabel
+              variant='process-create-label'
+              htmlFor='voteOverwrite'
+              fontSize='16px'
+              lineHeight='20px'
+              whiteSpace='nowrap'
+              m={0}
+            >
+              {t('calculator.vote_overwrite')}
+            </FormLabel>
+          </Flex>
         </Flex>
       </Flex>
       <Flex mt='auto' justifyContent='center'>
