@@ -160,7 +160,9 @@ const noElections = definePartsStyle({
           fontWeight: 'bold',
           fontSize: 'md',
         },
-
+        '& > p:nth-of-type(2)': {
+          color: 'organization.election_list_empty_bg',
+        },
         '& > p': {
           textAlign: { base: 'center', lg: 'start' },
           fontSize: 'sm',
@@ -285,7 +287,7 @@ const iconCard = definePartsStyle({
 
       'p:last-of-type': {
         fontSize: '22px',
-        color: '#000000a1 !important',
+        color: 'home.description !important',
       },
     },
   },
@@ -318,7 +320,7 @@ const imageCard = definePartsStyle({
 
       'p:last-of-type': {
         fontSize: '22px',
-        color: '#000000a1 !important',
+        color: 'home.description !important',
       },
     },
   },
@@ -359,7 +361,7 @@ const step = definePartsStyle({
       },
       'p:nth-of-type(2)': {
         fontSize: '22px',
-        color: '#000000a1 !important',
+        color: 'home.description !important',
       },
     },
   },
@@ -459,7 +461,7 @@ const client = definePartsStyle({
       textAlign: 'center',
       fontSize: '12px',
       fontWeight: 'bold',
-      color: '#666',
+      color: 'home.description',
       marginTop: '22px',
     },
   },

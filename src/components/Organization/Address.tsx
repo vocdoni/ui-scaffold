@@ -26,7 +26,6 @@ const AddressBtn = ({ ...props }) => {
         <MenuItem
           as={Button}
           variant=''
-          // colorScheme='gray'
           leftIcon={<CopyIcon />}
           onClick={() => {
             toast({
@@ -47,7 +46,6 @@ const AddressBtn = ({ ...props }) => {
         <MenuItem
           as={Button}
           variant=''
-          // colorScheme='gray'
           leftIcon={<ExternalLinkIcon />}
           onClick={() => window.open(`${ExplorerBaseURL}/organizations/show/#/${address}`, '_blank')}
           display='flex'

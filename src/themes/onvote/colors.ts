@@ -7,6 +7,7 @@ export const colorsBase = {
     light: '#E2E8F0',
     main: '#CBD5E0',
     dark: '#606f88',
+    dark2: '#595959',
   },
   green: '#48BB78',
   primary: {
@@ -43,17 +44,17 @@ export const colors = {
 
   primary: {
     main: colorsBase.primary.main,
-    50: colorsBase.white.pure,
-    500: colorsBase.primary.light2,
-    600: colorsBase.primary.main,
-    700: colorsBase.primary.dark2,
-  },
-
-  black: {
-    50: colorsBase.white.pure,
-    500: colorsBase.black,
-    600: colorsBase.black,
-    700: colorsBase.black,
+    50: '#e3f2ff',
+    100: '#c6e4ff',
+    200: '#a9d6ff',
+    300: '#8cc7ff',
+    400: '#6fb9ff',
+    500: colorsBase.primary.main,
+    600: '#004ae6',
+    700: '#003ecc',
+    800: '#0033b3',
+    900: '#002999',
+    950: '#00154d',
   },
 
   bg: colorsBase.gray.bg,
@@ -71,13 +72,11 @@ export const colors = {
   },
 
   footer_icon: colorsBase.white.pure,
-
+  home_description: colorsBase.gray.dark2,
   link: {
     contrast: colorsBase.white.pure,
     primary: colorsBase.primary.main,
   },
-
-  main_bg: colorsBase.white.dark,
 
   modal_description: colorsBase.gray.dark,
 
@@ -85,13 +84,11 @@ export const colors = {
 
   organization: {
     card: {
-      description: colorsBase.gray.dark,
       footer_bg: colorsBase.primary.light2,
       footer_color: colorsBase.primary.main,
     },
-    election_list_empty_bg: colorsBase.gray.light2,
+    election_list_empty_bg: colorsBase.gray.dark2,
     go_back_btn: colorsBase.primary.main,
-    header_bg: colorsBase.white.pure,
   },
 
   process: {
@@ -114,12 +111,6 @@ export const colors = {
     gitcoin_card_checked: colorsBase.primary.main,
     info_title: colorsBase.primary.main,
     description: colorsBase.gray.dark,
-    identify_btn: {
-      bg: colorsBase.primary.main,
-      bg_active: colorsBase.primary.dark2,
-      bg_hover: colorsBase.primary.dark,
-      color: colorsBase.white.pure,
-    },
     paused: colorsBase.primary.main,
     questions: {
       border: colorsBase.primary.gray_light,
@@ -133,6 +124,7 @@ export const colors = {
         bg: colorsBase.primary.main,
         color: colorsBase.white.pure,
       },
+      hover: colorsBase.gray.light2,
       description: colorsBase.gray.dark,
       title: colorsBase.primary.main,
     },
@@ -201,6 +193,7 @@ export const colors = {
       total_rows_text: colorsBase.primary.main,
     },
     stepper: {
+      color: colorsBase.gray.dark,
       bg: colorsBase.primary.main,
       color_active: colorsBase.primary.main,
     },
@@ -208,6 +201,7 @@ export const colors = {
     tabs_selected_color: colorsBase.primary.main,
     title: colorsBase.primary.main,
   },
+  read_more: colorsBase.primary.main,
   results_progressbar_bg: colorsBase.white.pure,
   web3_cta: {
     onvote: colorsBase.cta.black,

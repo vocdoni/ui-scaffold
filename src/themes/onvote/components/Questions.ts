@@ -112,6 +112,12 @@ const baseStyle = definePartsStyle({
       gap: 2,
       w: { lg2: '99%' },
 
+      _hover: {
+        '& span:nth-of-type(2)': {
+          bgColor: 'process.questions.hover',
+        },
+      },
+
       '& span:nth-of-type(1)': {
         display: { base: 'none', md: 'block' },
         width: '30px',

@@ -120,7 +120,7 @@ const OrganizationView = () => {
                     <Text>{t('organization.elections_list_empty.title')}</Text>
                     <Text>{t('organization.elections_list_empty.description')}</Text>
 
-                    <Button as={ReactRouterLink} to='/processes/create' variant='primary' colorScheme='primary'>
+                    <Button as={ReactRouterLink} to='/processes/create'>
                       {t('menu.create')}
                     </Button>
                   </>

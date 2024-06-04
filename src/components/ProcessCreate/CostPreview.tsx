@@ -20,7 +20,7 @@ import {
 import { Button } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
 import { UnpublishedElection } from '@vocdoni/sdk'
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa'
 import { TbDatabaseExclamation } from 'react-icons/tb'
@@ -28,7 +28,6 @@ import { HandleSignInFunction, useClaim } from '~components/Faucet/Claim'
 import { useFaucet } from '~components/Faucet/use-faucet'
 import { useProcessCreationSteps } from './Steps/use-steps'
 import imageModal from '/assets/get-tokens.jpg'
-import { is } from 'date-fns/locale'
 
 export const CostPreview = ({ unpublished }: { unpublished: UnpublishedElection | undefined }) => {
   const { t } = useTranslation()
@@ -340,7 +339,7 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
             i18nKey='get_voc_tokens.info'
             components={{
               text: <Text fontSize='sm' textAlign='center' />,
-              mailto: <Link href='mailto:info@onvote.app' fontWeight='bold' variant='primary' />,
+              mailto: <Link href='mailto:info@onvote.app' fontWeight='bold' />,
             }}
           />
         </ModalFooter>

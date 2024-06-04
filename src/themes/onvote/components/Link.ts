@@ -7,19 +7,16 @@ const baseStyle = defineStyle({
     textDecoration: 'none',
   },
 })
-const primary = defineStyle({
-  color: 'link.primary',
-})
 
 const contrast = defineStyle((props) => {
   return {
     color: 'link.contrast',
   }
 })
+
 export const Link = defineStyleConfig({
   baseStyle,
   variants: {
     contrast,
-    primary,
   },
 })
