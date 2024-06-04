@@ -1,11 +1,11 @@
 import { Box, Link, Text } from '@chakra-ui/react'
+import { Census3Token } from '@vocdoni/sdk'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { useProcessCreationSteps } from '../Steps/use-steps'
+import { StampsUnionTypes } from '~components/ProcessCreate/Census/Gitcoin/StampsUnionType'
 import { CensusTokenValues } from '~components/ProcessCreate/StepForm/CensusToken'
 import { GitcoinStampToken, GitcoinStrategyBuilder } from '../Census/Gitcoin'
-import { StampsUnionTypes } from '~components/ProcessCreate/Census/Gitcoin/StampsUnionType'
-import { Census3Token } from '@vocdoni/sdk'
+import { useProcessCreationSteps } from '../Steps/use-steps'
 
 type FormGitcoinStamps = Record<string, GitcoinStampToken & { isChecked: boolean }>
 
@@ -51,7 +51,6 @@ export const StepFormCensusGitcoin = () => {
               <Link
                 href={'https://docs.passport.gitcoin.co/building-with-passport/major-concepts/scoring-thresholds'}
                 target='_blank'
-                variant='primary'
                 textDecoration='underline'
                 _hover={{
                   textDecoration: 'none',

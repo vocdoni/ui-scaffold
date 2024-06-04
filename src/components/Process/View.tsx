@@ -251,9 +251,7 @@ const SuccessVoteModal = () => {
         </ModalBody>
 
         <ModalFooter mt={4}>
-          <Button onClick={onClose} variant='primary'>
-            {t('process.success_modal.btn')}
-          </Button>
+          <Button onClick={onClose}>{t('process.success_modal.btn')}</Button>
         </ModalFooter>
       </ModalContent>
     </Modal>

@@ -166,15 +166,14 @@ const noElections = definePartsStyle({
       '& > p:nth-of-type(2)': {
         textAlign: { base: 'center', lg2: 'start' },
         fontSize: '18px',
-        lineHeight: '19.5px',
-        color: '#595959',
+        color: 'organization.election_list_empty_bg',
         mb: '24px',
       },
       '& > p:nth-of-type(3)': {
         textAlign: { base: 'center', lg2: 'start' },
         fontSize: '18px',
         lineHeight: '19.5px',
-        color: '#595959',
+        color: 'organization.no_elections',
         mb: '40px',
       },
     },

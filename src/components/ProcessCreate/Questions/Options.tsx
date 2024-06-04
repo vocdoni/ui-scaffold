@@ -44,7 +44,7 @@ const Options = ({ fields, removeOption, appendOption, index }: Props) => {
             </Box>
             {fields.length > 2 && (
               <IconButton
-                variant='icon'
+                variant='transparent'
                 size='xs'
                 type='button'
                 icon={<DeleteIcon />}
