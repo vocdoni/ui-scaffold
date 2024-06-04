@@ -1,15 +1,13 @@
 import { Box } from '@chakra-ui/react'
-
-import Benefits from '~components/Home/Benefits'
-import Clients from '~components/Home/Clients'
-import ContactUs from '~components/Home/ContactUs'
-import CreateProcess from '~components/Home/CreateProcess'
-import Faqs from '~components/Home/Faqs'
-import Process from '~components/Home/Process'
-import Solutions from '~components/Home/Solutions'
-import Support from '~components/Home/Support'
-
-import Features from '~components/Home/Features'
+import Benefits from './Benefits'
+import Clients from './Clients'
+import ContactUs from './ContactUs'
+import CreateProcess from './CreateProcess'
+import Faqs from './Faqs'
+import Features from './Features'
+import Process from './Process'
+import Solutions from './Solutions'
+import Support from './Support'
 import bg from '/assets/bg-home.png'
 
 const Home = () => (
