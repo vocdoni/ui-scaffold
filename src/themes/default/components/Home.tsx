@@ -8,8 +8,8 @@ import Faqs from '~components/Home/Faqs'
 import Process from '~components/Home/Process'
 import Solutions from '~components/Home/Solutions'
 import Support from '~components/Home/Support'
-import Features from './Features'
 
+import Features from '~components/Home/Features'
 import bg from '/assets/bg-home.png'
 
 const Home = () => (
