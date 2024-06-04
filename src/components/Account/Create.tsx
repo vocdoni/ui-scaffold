@@ -211,7 +211,7 @@ export const BasicAccountCreation = () => {
               <Button variant='ghost' onClick={onClose}>
                 {t('close')}
               </Button>
-              <Button mr={3} variant='primary' onClick={create} isLoading={creating}>
+              <Button mr={3} onClick={create} isLoading={creating}>
                 {t('retry')}
               </Button>
             </ModalFooter>

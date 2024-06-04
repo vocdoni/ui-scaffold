@@ -33,7 +33,7 @@ const Question = ({ index, remove }: Props) => {
   return (
     <Box className='process-create-section' bgColor='process_create.section' p={6} position='relative'>
       <IconButton
-        variant='icon'
+        variant='transparent'
         position='absolute'
         right={2}
         top={2}

@@ -35,7 +35,7 @@ const Features = () => {
           textAlign='center'
           fontFamily='basier'
           fontSize='20px'
-          opacity='0.75'
+          color='home.description'
           margin='0px auto'
         >
           {t('home.features.subtitle_1')}

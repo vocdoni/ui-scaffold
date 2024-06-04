@@ -62,7 +62,7 @@ const NeedsAccount = () => {
           </Box>
         </Box>
         <Flex justifyContent='end' mt='auto'>
-          <Button isLoading={loading} type='submit' form='process-create-form' variant='primary' px={12}>
+          <Button isLoading={loading} type='submit' form='process-create-form' px={12}>
             {t('new_organization.create_organization_btn')}
             <ArrowForwardIcon />
           </Button>

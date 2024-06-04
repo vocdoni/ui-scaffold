@@ -102,7 +102,7 @@ export const EditProfile = () => {
         handleSubmit(onSubmit)(e)
       }}
     >
-      <Flex direction='column' gap={6}>
+      <Flex direction='column' gap={6} my={8}>
         <Flex alignItems='center' gap={5}>
           <Box position='relative' outline='none' border='none'>
             <AspectRatio flexShrink={0} w={{ base: 20, md: 40 }} ratio={1.25 / 1} borderRadius={0} overflow='hidden'>
@@ -175,7 +175,7 @@ export const EditProfile = () => {
         </FormControl>
 
         {error && (
-          <Text color='red.500' textAlign='center'>
+          <Text color='error' textAlign='center'>
             {error}
           </Text>
         )}
