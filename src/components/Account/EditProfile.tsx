@@ -173,6 +173,16 @@ export const EditProfile = () => {
             <Text> {t('form.account_create.description_helper')}</Text>
           </FormHelperText>
         </FormControl>
+        <FormControl>
+          <Textarea
+            {...register('description')}
+            placeholder={t('form.account_create.description_placeholder').toString()}
+          />
+          <FormHelperText>
+            <InfoOutlineIcon />
+            <Text> {t('form.account_create.description_helper')}</Text>
+          </FormHelperText>
+        </FormControl>
 
         {error && (
           <Text color='error' textAlign='center'>

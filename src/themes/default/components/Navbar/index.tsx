@@ -10,6 +10,7 @@ import { useOrganizationHealthTools } from '~components/Account/use-account-heal
 import Logo from '~components/Layout/Logo'
 import { LanguagesMenu } from './LanguagesList'
 import MenuDropdown from './Menu'
+import bg from '/assets/bg-home.png'
 
 const Navbar = () => {
   const { isConnected } = useAccount()
@@ -26,11 +27,12 @@ const Navbar = () => {
         left={0}
         right={0}
         bottom={0}
-        bgImage='url(https://cdn.discordapp.com/attachments/1077657962404925583/1232347225472897096/image.png?ex=662b1a8a&is=6629c90a&hm=1ecf6bf6ee44c37267943092f897e102c2d1e684723c0c4f3775c550939556d2&)'
+        bgImage={bg}
         bgSize='cover'
         zIndex={-1}
         filter='blur(20px)'
         opacity={0.7}
+        backgroundSize='100%'
       ></Box>
 
       <Flex justifyContent='space-between' alignItems='center' zIndex={1} w='100%'>
