@@ -90,9 +90,8 @@ const OrganizationHeader = () => {
               {isTruncated && (
                 <IconButton
                   icon={readMore ? <FaEye /> : <FaEyeSlash />}
-                  variant='ghost'
+                  variant='transparent'
                   alignSelf='start'
-                  color='primary.600'
                   title={t('organization.title.read_more')}
                   aria-label={t('organization.title.read_more')}
                   onClick={handleReadMore}
@@ -102,8 +101,7 @@ const OrganizationHeader = () => {
                 <IconButton
                   icon={<IoMdCreate />}
                   alignSelf='start'
-                  variant='ghost'
-                  color='primary.600'
+                  variant='transparent'
                   title={t('organization.title.edit')}
                   aria-label={t('organization.title.edit')}
                   onClick={onOpen}

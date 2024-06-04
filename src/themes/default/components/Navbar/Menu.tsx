@@ -108,13 +108,7 @@ const MenuDropdown = () => {
                 <Balance p={0} bg='white' fontWeight='bold' />
               </Flex>
               {import.meta.env.features.faucet && (
-                <Button
-                  as={ReactRouterLink}
-                  to='/faucet'
-                  aria-label={t('menu.get_more')}
-                  title={t('menu.get_more')}
-                  variant='primary'
-                >
+                <Button as={ReactRouterLink} to='/faucet' aria-label={t('menu.get_more')} title={t('menu.get_more')}>
                   <Icon as={HiShoppingCart} />
                   {t('menu.get_more')}
                 </Button>

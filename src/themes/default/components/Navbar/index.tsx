@@ -82,7 +82,13 @@ const Navbar = () => {
               <Menu>
                 {({ isOpen }) => (
                   <>
-                    <MenuButton as={Button} variant='dropdown' aria-label={t('menu.languages_list')} p={2}>
+                    <MenuButton
+                      as={Button}
+                      variant='secondary'
+                      boxShadow='var(--box-shadow-btn)'
+                      aria-label={t('menu.languages_list')}
+                      p={2}
+                    >
                       <Box as='span' display='flex' alignItems='center'>
                         <Avatar
                           src={account?.account.avatar}

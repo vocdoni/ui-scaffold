@@ -1,63 +1,41 @@
-import { Box, Button, Flex, Img, Text } from '@chakra-ui/react'
+import { Button, Flex, Image, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
-import bannerLogo from '/assets/banner.png'
+import onvoteIcon from '/assets/onvote-icon2-black.svg'
 
 const Banner = () => {
   const { t } = useTranslation()
   const { isConnected } = useAccount()
 
   return (
-    <Flex
-      flexDirection={{ base: 'column' }}
-      justifyContent='space-between'
-      alignItems='center'
-      maxW='1250px'
-      mx='auto'
-      mb={50}
-      pt={20}
-    >
-      <Img src={bannerLogo} alt='' width={{ base: '100%', md: '80%', lg: '60%' }} order={0} mb={10} />
+    <Flex flexDirection='column' justifyContent='center' alignItems='center'>
+      <Flex justifyContent={{ base: 'center', md: 'start' }}>
+        <Image src={onvoteIcon} w='408px' mb={4} />
+      </Flex>
+      <Text
+        as='h1'
+        fontSize={{ base: '25px', lg: '35px' }}
+        textAlign='center'
+        lineHeight='44px'
+        fontFamily='pixeloidsans'
+        textTransform='uppercase'
+        mb={!isConnected ? '130px' : '36px'}
+      >
+        {t('banner.title')}
+      </Text>
 
-      <Box pb={10} px={{ base: '32px', xl: 0 }}>
-        <Text
-          as='h1'
-          fontSize={{ base: 'xl5' }}
-          fontWeight='extrabold'
-          textAlign={{ base: 'center', lg: 'start' }}
-          pb={{ base: 3, lg: 1 }}
-          lineHeight={{ base: 1.3, lg: 1.4 }}
-          fontFamily='"Archivo", sans-serif'
+      {isConnected && (
+        <Button
+          as={ReactRouterLink}
+          to='/processes/create'
+          aria-label={t('menu.new_process')}
+          title={t('menu.new_process')}
+          mb='130px'
         >
-          {t('banner.title')}
-        </Text>
-        <Text
-          as='h2'
-          fontSize={{ base: 'xl2' }}
-          fontFamily='"Archivo", sans-serif'
-          textAlign={{ base: 'center', lg: 'start' }}
-          marginBottom={{ base: 10, lg: 4 }}
-        >
-          {t('banner.subtitle')}
-          <br />
-          {t('banner.subtitle1')}
-        </Text>
-        {isConnected && (
-          <Flex gap={5} justifyContent={{ base: 'center', lg: 'start' }} alignItems='center'>
-            <Button
-              as={ReactRouterLink}
-              to='/processes/create'
-              aria-label={t('menu.new_process')}
-              title={t('menu.new_process')}
-            >
-              <Text as='span' display='inline-block'>
-                {t('banner.start_now')}
-              </Text>
-            </Button>
-          </Flex>
-        )}
-      </Box>
+          {t('banner.start_now')}
+        </Button>
+      )}
     </Flex>
   )
 }

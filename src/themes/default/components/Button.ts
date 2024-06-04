@@ -1,84 +1,54 @@
 import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
 
-const process = defineStyle({
-  w: 'full',
-  color: { base: 'process.vote_button.mobile_color', md: 'process.vote_button.desktop_color' },
+const baseStyles = {
   borderRadius: 'full',
-  fontSize: { base: 'sm', xl2: 'md' },
-  bgColor: { base: 'process.vote_button.mobile_bg', md: 'process.vote_button.desktop_bg' },
-})
-
-const primary = defineStyle((props) => {
-  const { colorScheme } = props
-
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  gap: 2,
+}
+const solid = defineStyle((props) => {
   return {
-    borderRadius: 'full',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 2,
-    bgColor: colorScheme !== 'gray' ? `${colorScheme}.500` : `${colorScheme}.100`,
-
-    color: colorScheme !== 'gray' ? 'white' : 'black',
-
-    _hover: {
-      bgColor: colorScheme !== 'gray' ? `${colorScheme}.600` : `${colorScheme}.200`,
-
-      _disabled: {
-        bgColor: colorScheme !== 'gray' ? `${colorScheme}.600` : `${colorScheme}.200`,
-      },
-    },
-
-    _active: {
-      bgColor: colorScheme !== 'gray' ? `${colorScheme}.700` : `${colorScheme}.300`,
-    },
+    ...baseStyles,
   }
 })
-
 const secondary = defineStyle((props) => {
   const { colorScheme } = props
 
   return {
-    borderRadius: 'full',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 2,
+    ...baseStyles,
     bgColor: 'gray.100',
-    color: colorScheme !== 'gray' ? `${colorScheme}.500` : `${colorScheme}.300`,
+    color: `${colorScheme}.500`,
 
     _hover: {
       bgColor: 'gray.200',
-      color: colorScheme !== 'gray' ? `${colorScheme}.600` : `${colorScheme}.300`,
+      color: `${colorScheme}.600`,
 
       _disabled: {
-        bgColor: 'gray.200',
-        color: colorScheme !== 'gray' ? `${colorScheme}.600` : `${colorScheme}.300`,
+        bgColor: 'gray.100',
+        color: `${colorScheme}.600`,
       },
     },
 
     _active: {
       bgColor: 'gray.300',
-      color: colorScheme !== 'gray' ? `${colorScheme}.700` : `${colorScheme}.300`,
+      color: `${colorScheme}.700`,
     },
   }
 })
-const dropdown = defineStyle({
-  borderRadius: 'full',
-  bgColor: 'transparent',
-  boxShadow: 'var(--box-shadow-btn)',
-
-  _hover: {
-    bgColor: 'gray.100',
-  },
-
-  _active: {
-    bgColor: 'gray.200',
-    boxShadow: 'none',
-  },
+const outline = defineStyle((props) => {
+  return {
+    ...baseStyles,
+  }
+})
+const ghost = defineStyle((props) => {
+  return {
+    ...baseStyles,
+  }
 })
 const addressDropdown = defineStyle((props) => {
   return {
+    ...baseStyles,
     minW: 40,
     bgColor: 'gray.100',
 
@@ -92,11 +62,15 @@ const addressDropdown = defineStyle((props) => {
   }
 })
 const transparent = defineStyle((props) => {
+  const { colorScheme } = props
+
   return {
     bgColor: 'transparent',
+    color: `${colorScheme}.500`,
 
     _hover: {
       bgColor: 'transparent',
+      color: `${colorScheme}.600`,
 
       _disabled: {
         bgColor: 'transparent',
@@ -104,37 +78,14 @@ const transparent = defineStyle((props) => {
     },
     _active: {
       bgColor: 'transparent',
+      color: `${colorScheme}.700`,
     },
-
-    _disabled: {},
   }
 })
-
-const icon = defineStyle((props) => {
-  const { colorScheme } = props
-
-  return {
-    color: `${colorScheme}.600`,
-    bgColor: 'transparent',
-
-    _hover: {
-      bgColor: `${colorScheme}.500`,
-      color: 'white',
-    },
-    _active: {
-      bgColor: `${colorScheme}.700`,
-      color: 'white',
-    },
-
-    _disabled: {},
-  }
-})
-
 const closeForm = defineStyle({
   bgColor: 'white',
   fontWeight: 'normal',
 })
-
 const goBack = defineStyle({
   bgColor: 'gray.100',
 
@@ -147,31 +98,29 @@ const goBack = defineStyle({
   },
 
   '& svg': {
-    mr: 1,
+    m: 0,
     w: 3.5,
   },
   '& span': {
-    color: 'organization.go_back_btn',
     overflow: 'hidden',
     fontSize: 'sm',
     isTruncated: true,
     maxW: { base: '100px', md: '200px' },
+    ml: 1,
   },
 })
 
 export const Button = defineStyleConfig({
   defaultProps: {
     colorScheme: 'primary',
-    variant: 'primary',
   },
   variants: {
     'address-dropdown': addressDropdown,
     'close-form': closeForm,
-    dropdown,
+    outline,
+    ghost,
+    solid,
     'go-back': goBack,
-    icon,
-    process,
-    primary,
     secondary,
     transparent,
   },

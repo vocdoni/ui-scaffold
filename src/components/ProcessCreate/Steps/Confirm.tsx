@@ -344,7 +344,6 @@ export const Confirm = () => {
           isDisabled={disabled}
           isLoading={sending}
           px={{ base: 12, xl2: 28 }}
-          variant='primary'
         >
           {t('form.process_create.confirm.create_button')}
         </Button>

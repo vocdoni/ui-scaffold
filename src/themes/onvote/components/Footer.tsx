@@ -43,7 +43,6 @@ const Footer = () => {
           </Box>
           {!isConnected && (
             <Button
-              variant='primary'
               onClick={() => {
                 if (openConnectModal) openConnectModal()
               }}

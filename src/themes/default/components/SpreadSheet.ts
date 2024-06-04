@@ -41,16 +41,6 @@ const baseStyle = definePartsStyle({
   submit: {
     width: '60%',
     mx: 'auto',
-    bgColor: 'process.identify_btn.bg',
-    color: 'process.identify_btn.color',
-    borderRadius: '30px',
-
-    _hover: {
-      bgColor: 'process.identify_btn.bg_hover',
-    },
-    _active: {
-      bgColor: 'process.identify_btn.bg_active',
-    },
   },
 })
 
