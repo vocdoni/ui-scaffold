@@ -119,14 +119,14 @@ export const rainbowStyles = (colormode: ColorMode) => {
   if (colormode === 'light') {
     return lightTheme({
       accentColor: colorsBase.white.pure,
-      accentColorForeground: colorsBase.primary.main,
+      accentColorForeground: colorsBase.primary,
       borderRadius: 'medium',
     })
   }
 
   return darkTheme({
     accentColor: colorsBase.white.pure,
-    accentColorForeground: colorsBase.primary.main,
+    accentColorForeground: colorsBase.primary,
     borderRadius: 'medium',
   })
 }
