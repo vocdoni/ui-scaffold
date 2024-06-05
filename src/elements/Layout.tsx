@@ -1,7 +1,7 @@
 import { Box, Flex, HStack, Text } from '@chakra-ui/react'
 import { Outlet } from 'react-router-dom'
+import Navbar from '~components/Navbar'
 import Footer from '~theme/components/Footer'
-import Navbar from '~theme/components/Navbar'
 
 const Layout = () => {
   return (
