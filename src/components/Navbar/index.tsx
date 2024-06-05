@@ -8,9 +8,9 @@ import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 import { useOrganizationHealthTools } from '~components/Account/use-account-health-tools'
 import Logo from '~components/Layout/Logo'
+import { NavBg } from '~theme/bg'
 import { LanguagesMenu } from './LanguagesList'
 import MenuDropdown from './Menu'
-import bg from '/assets/bg-home.png'
 
 const Navbar = () => {
   const { isConnected } = useAccount()
@@ -21,19 +21,7 @@ const Navbar = () => {
 
   return (
     <Flex className='site-wrapper' w='full' mx='auto' py={{ base: '12px', md: '24px' }} position='relative'>
-      <Box
-        position='absolute'
-        top={0}
-        left={0}
-        right={0}
-        bottom={0}
-        bgImage={bg}
-        bgSize='cover'
-        zIndex={-1}
-        filter='blur(20px)'
-        opacity={0.7}
-        backgroundSize='100%'
-      ></Box>
+      <NavBg />
 
       <Flex justifyContent='space-between' alignItems='center' zIndex={1} w='100%'>
         <Logo />
