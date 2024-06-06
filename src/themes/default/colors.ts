@@ -85,6 +85,9 @@ export const colors = {
     },
     trusted_title: colorsBase.gray.dark,
   },
+  dashboard: {
+    org_name: colorsBase.primary,
+  },
   success: colorsBase.green,
 
   link: {

@@ -1,6 +1,8 @@
-import { Alert, AlertDescription, Progress, Text, VStack } from '@chakra-ui/react'
+import { Alert, AlertDescription, Progress, VStack } from '@chakra-ui/react'
 import { ElectionProvider } from '@vocdoni/react-providers'
 import { ArchivedElection, InvalidElection, PublishedElection } from '@vocdoni/sdk'
+import { useTranslation } from 'react-i18next'
+import NoElections from '../NoElections'
 import ProcessCard from './ProcessCard'
 
 type Election = PublishedElection | ArchivedElection | InvalidElection
@@ -13,6 +15,8 @@ type ProcessesListProps = {
 }
 
 const ProcessesList = ({ loading, processes, error, limit }: ProcessesListProps) => {
+  const { t } = useTranslation()
+
   return (
     <VStack w='full'>
       {loading && <Progress isIndeterminate w='full' colorScheme='primary' size='xs' />}
@@ -31,7 +35,7 @@ const ProcessesList = ({ loading, processes, error, limit }: ProcessesListProps)
               </ElectionProvider>
             )
           )}
-        {!loading && (!processes || !processes.length) && <Text>No elections yet</Text>}
+        {!loading && (!processes || !processes.length) && <NoElections />}
       </VStack>
     </VStack>
   )

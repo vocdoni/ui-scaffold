@@ -105,7 +105,7 @@ export const EditProfile = () => {
       <Flex direction='column' gap={6} my={8}>
         <Flex alignItems='center' gap={5}>
           <Box position='relative' outline='none' border='none'>
-            <AspectRatio flexShrink={0} w={{ base: 20, md: 40 }} ratio={1.25 / 1} borderRadius={0} overflow='hidden'>
+            <AspectRatio flexShrink={0} w={{ base: 20, md: 40 }} ratio={1.25 / 1} borderRadius='lg' overflow='hidden'>
               <Image src={avatar} fallbackSrc={fallback} />
             </AspectRatio>
             {correctAvatarFormat(avatar) && (
@@ -181,7 +181,7 @@ export const EditProfile = () => {
         )}
       </Flex>
       <Box display='flex' flexDirection='column' gap={5} w='full' alignItems='center'>
-        <Button type='submit' isLoading={loading}>
+        <Button type='submit' isLoading={loading} borderRadius='lg'>
           {t('form.edit_profile.btn')}
         </Button>
         <Text textAlign='center' maxW='70%'>

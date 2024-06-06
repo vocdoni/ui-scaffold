@@ -1,5 +1,6 @@
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
 import {
+  AspectRatio,
   Box,
   Drawer,
   DrawerBody,
@@ -8,12 +9,14 @@ import {
   DrawerOverlay,
   Flex,
   IconButton,
+  Image,
   useDisclosure,
 } from '@chakra-ui/react'
 import { OrganizationAvatar, OrganizationName } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
 import { Outlet } from 'react-router-dom'
 import OrganizationDashboardMenu from './Menu'
+import fallback from '/assets/default-avatar.png'
 
 export type OrganizationDashboardLayoutProps = {
   id?: string
@@ -24,30 +27,44 @@ const OrganizationDashboardLayout: React.FC = ({ id }: OrganizationDashboardLayo
   const { account } = useClient()
 
   return (
-    <Flex direction={['column', 'column', 'row']} minH='100vh' bg='process_create.bg' py={6}>
+    <Flex
+      className='site-wrapper'
+      direction={['column', 'column', 'column', 'row']}
+      minH='100vh'
+      bg='process_create.bg'
+      py={6}
+    >
       {account && (
         <>
           <Box
-            w={['100%', '100%', '250px']}
+            w={['100%', '100%', '100%', '250px']}
             p={4}
-            mx={4}
             bg='white'
             borderRadius='lg'
-            display={['none', 'none', 'block']}
+            display={['none', 'none', 'none', 'block']}
           >
-            <Flex direction='row' gap={3} alignItems='center' mb={4}>
-              <OrganizationAvatar />
-              <OrganizationName size='sm' fontWeight={600} m={0} />
+            <Flex direction='row' gap={3} alignItems='center' mb='43px'>
+              {account?.account.avatar ? (
+                <OrganizationAvatar />
+              ) : (
+                <AspectRatio w='55px' minW='55px' ratio={1 / 1} borderRadius='lg' overflow='hidden'>
+                  <Image src={fallback} />
+                </AspectRatio>
+              )}
+              <OrganizationName fontSize='xl' fontWeight={600} m={0} color='dashboard.org_name' />
             </Flex>
             <OrganizationDashboardMenu />
           </Box>
-          <IconButton
-            icon={<HamburgerIcon />}
-            aria-label='Open Menu'
-            display={['block', 'block', 'none']}
-            onClick={onOpen}
-            m={4}
-          />
+          <Box w='auto'>
+            <IconButton
+              icon={<HamburgerIcon />}
+              aria-label='Open Menu'
+              display={['flex', 'flex', 'flex', 'none']}
+              onClick={onOpen}
+              mb={4}
+              maxW='10px'
+            />
+          </Box>
 
           <Drawer placement='left' onClose={onClose} isOpen={isOpen}>
             <DrawerOverlay>
@@ -56,9 +73,15 @@ const OrganizationDashboardLayout: React.FC = ({ id }: OrganizationDashboardLayo
                   <Flex justify='space-between' align='center'>
                     <Flex direction='row' gap={3} alignItems='center'>
                       <OrganizationAvatar />
-                      <OrganizationName />
+                      <OrganizationName fontSize='md' fontWeight={600} m={0} color='dashboard.org_name' />
                     </Flex>
-                    <IconButton icon={<CloseIcon />} aria-label='Close Menu' onClick={onClose} />
+                    <IconButton
+                      icon={<CloseIcon />}
+                      aria-label='Close Menu'
+                      onClick={onClose}
+                      alignSelf='start'
+                      size='xs'
+                    />
                   </Flex>
                 </DrawerHeader>
                 <DrawerBody>
@@ -70,7 +93,7 @@ const OrganizationDashboardLayout: React.FC = ({ id }: OrganizationDashboardLayo
         </>
       )}
 
-      <Box flex={1} px={4} gap={6} display='flex' flexDir='column'>
+      <Box flex={1} pl={['0px', '0px', '0px', 4]} gap={6} display='flex' flexDir='column'>
         <Outlet />
       </Box>
     </Flex>
