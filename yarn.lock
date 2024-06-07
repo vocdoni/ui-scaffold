@@ -2639,6 +2639,18 @@
     "@stablelib/random" "^1.0.2"
     "@stablelib/wipe" "^1.0.1"
 
+"@stripe/react-stripe-js@^2.7.0":
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/@stripe/react-stripe-js/-/react-stripe-js-2.7.1.tgz#2be66166318fcb898c67a19e5b342364a2714d57"
+  integrity sha512-/i13alp27HaSBbMM6kW0jhy8KqdtOL1T/EcRjFjfhvt+CBtMEg8TD7y28W3oZG0+OBDdCyGGnXgNgrKPYQH40g==
+  dependencies:
+    prop-types "^15.7.2"
+
+"@stripe/stripe-js@^3.3.0":
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/@stripe/stripe-js/-/stripe-js-3.4.1.tgz#065ed8450992e9e80f2b4ffac9f1f97a56291451"
+  integrity sha512-6vFTA7+MzoQyhZDn/D3wWZrUE8M8OSUFJE2Y3O1okfBWr4eCLvMeSoZuYN2xb1KJ3J0bBw96YfKxY75M/H0JZw==
+
 "@svgr/babel-plugin-add-jsx-attribute@8.0.0":
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/@svgr/babel-plugin-add-jsx-attribute/-/babel-plugin-add-jsx-attribute-8.0.0.tgz#4001f5d5dd87fa13303e36ee106e3ff3a7eb8b22"

@@ -7,6 +7,8 @@ import Layout from '~elements/Layout'
 import LayoutProcessCreate from '~elements/LayoutProcessCreate'
 import OrganizationProtectedRoute from './OrganizationProtectedRoute'
 import { SuspenseLoader } from './SuspenseLoader'
+import { CheckoutReturn } from '~components/Faucet/Stripe'
+import { Checkout } from '~elements/Stripe'
 
 // Lazy loading helps splitting the final code, which helps downloading the app (theoretically)
 const ProtectedRoutes = lazy(() => import('./ProtectedRoutes'))
@@ -58,6 +60,25 @@ export const RoutesProvider = () => {
       ),
       loader: async ({ params }: { params: Params<string> }) => client.fetchAccountInfo(params.address),
       errorElement: <Error />,
+    },
+    {
+      path: 'stripe',
+      element: (
+        <SuspenseLoader>
+          <OrganizationProtectedRoute />
+        </SuspenseLoader>
+      ),
+      children: [
+        {
+          path: 'checkout/:amount?',
+          element: <Checkout />,
+        },
+        {
+          path: 'return/:sessionId',
+          element: <CheckoutReturn />,
+          errorElement: <Error />,
+        },
+      ],
     },
     {
       path: '*',
