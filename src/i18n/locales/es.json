@@ -18,8 +18,6 @@
   },
   "banner": {
     "start_now": "¡Crea una votación ahora!",
-    "subtitle": "Usa direcciones de cartera, vota con un token ERC20 o con NFTs!",
-    "subtitle1": "Aumenta la participación electoral un 30%",
     "title": "Voto digital seguro, verificable y flexible"
   },
   "banner_voting_types": {
@@ -138,6 +136,14 @@
     "github": {
       "error_fetching_users": "Error al recuperar usuarios",
       "selected_users": "Usuarios seleccionados:"
+    }
+  },
+  "dashboard": {
+    "card": {
+      "finish": "Termina",
+      "finished": "Terminado",
+      "started": "Empezado",
+      "starts": "Empieza"
     }
   },
   "error": {
@@ -649,6 +655,7 @@
     "length": "{{ length }} / {{ maxLength }} caracteres.",
     "maxLength": "Longitud máxima alcanzada"
   },
+  "My entity": "My entity",
   "new_organization": {
     "create_organization_btn": "Crear Organización",
     "description1": "Antes de comenzar a crear su proceso de votación, <span>debe crear una organización</span>, es gratuito. Con una organización, podrá crear una amplia gama de elecciones y dar voz a los miembros de su comunidad.",
@@ -666,15 +673,23 @@
       "not_owner": "Esta organización aún no tiene votaciones.",
       "title": "Crea tu primer proceso de votación"
     },
+    "latest_votings": "Últimas votaciones",
     "menu": {
       "dashboard": "Dashboard",
       "edit_my_organization": "Mi entidad",
       "votings": "Votaciones"
     },
+    "overview": "Visión general",
+    "required_signin": "Primero debes iniciar sesión",
     "title": {
       "edit": "Editar organización",
       "read_more": "Expandir título"
-    }
+    },
+    "voting_processes_one": "{{votes}} proceso de votación",
+    "voting_processes_many": "{{votes}} procesos de votación",
+    "voting_processes_other": "{{votes}} procesos de votación",
+    "votings": "Votaciones",
+    "votings_overview": "Visión general de les votaciones"
   },
   "process": {
     "census": "Censo",

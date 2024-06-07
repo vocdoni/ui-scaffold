@@ -59,6 +59,8 @@ export const colors = {
 
   bg: colorsBase.gray.bg,
 
+  dashboard_card_text: colorsBase.gray.dark,
+
   editor: {
     character_limit: colorsBase.gray.light,
   },

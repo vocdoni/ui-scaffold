@@ -1,4 +1,3 @@
-import { Box } from '@chakra-ui/react'
 import { Button } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
 import { AccountCreate } from '~components/Account/Create'
@@ -12,11 +11,9 @@ const CreateOrganization = () => {
   return (
     <ContentsBox>
       <AccountCreate />
-      <Box>
-        <Button form='process-create-form' type='submit' isLoading={create}>
-          Create org
-        </Button>
-      </Box>
+      <Button form='process-create-form' type='submit' isLoading={create} mx='auto'>
+        Create org
+      </Button>
     </ContentsBox>
   )
 }

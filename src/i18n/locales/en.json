@@ -15,8 +15,6 @@
   },
   "banner": {
     "start_now": "Create a vote now!",
-    "subtitle": "Save time, money and effort with our easy-to-use & customizable app.",
-    "subtitle1": "Boost election participation up by 30%.",
     "title": "Secure, verifiable and flexible digital voting"
   },
   "banner_voting_types": {
@@ -134,6 +132,14 @@
     "github": {
       "error_fetching_users": "Error fetching users",
       "selected_users": "Selected users:"
+    }
+  },
+  "dashboard": {
+    "card": {
+      "finish": "Finish",
+      "finished": "Finished",
+      "started": "Started",
+      "starts": "Starts"
     }
   },
   "error": {
@@ -641,6 +647,7 @@
     "length": "{{ length }} / {{ maxLength }} chars.",
     "maxLength": "Max. length reached"
   },
+  "My entity": "My entity",
   "new_organization": {
     "create_organization_btn": "Create Organization",
     "description1": "Set up your <span>organization for free</span> and start creating voting processes to engage with your community.",
@@ -658,15 +665,22 @@
       "not_owner": "This organization has no voting processes yet",
       "title": "Create your first voting process"
     },
+    "latest_votings": "Latest votings",
     "menu": {
       "dashboard": "Dashboard",
       "edit_my_organization": "My entity",
       "votings": "Votings"
     },
+    "overview": "Overview",
+    "required_signin": "You must sign in first",
     "title": {
       "edit": "Edit organization",
       "read_more": "Expand title"
-    }
+    },
+    "voting_processes_one": "{{votes}} voting process",
+    "voting_processes_other": "{{votes}} voting processes",
+    "votings": "Votings",
+    "votings_overview": "Votings overview"
   },
   "process": {
     "census": "Census",

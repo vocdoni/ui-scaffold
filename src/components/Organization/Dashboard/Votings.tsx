@@ -48,7 +48,7 @@ export const VotingsHeader = () => {
         </Heading>
         <Text>
           {t('organization.voting_processes', {
-            votes: organization.electionIndex,
+            count: organization.electionIndex,
             defaultValue: '{{votes}} voting processes',
           })}
         </Text>

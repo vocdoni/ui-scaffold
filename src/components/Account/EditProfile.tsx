@@ -181,7 +181,7 @@ export const EditProfile = () => {
         )}
       </Flex>
       <Box display='flex' flexDirection='column' gap={5} w='full' alignItems='center'>
-        <Button type='submit' isLoading={loading} borderRadius='lg'>
+        <Button type='submit' isLoading={loading} px={10} py={4}>
           {t('form.edit_profile.btn')}
         </Button>
         <Text textAlign='center' maxW='70%'>

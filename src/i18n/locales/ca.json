@@ -18,8 +18,6 @@
   },
   "banner": {
     "start_now": "Crea una votació!",
-    "subtitle": "Utilitza adreces web3, vota amb un token ERC20 o amb NFTs!",
-    "subtitle1": "Augmenta la participació electoral un 30%",
     "title": "Vot digital segur, verificable i flexible"
   },
   "banner_voting_types": {
@@ -138,6 +136,14 @@
     "github": {
       "error_fetching_users": "S'ha produït un error en recuperar els usuaris",
       "selected_users": "Usuaris seleccionats:"
+    }
+  },
+  "dashboard": {
+    "card": {
+      "finish": "Acaba",
+      "finished": "Acabat",
+      "started": "Començat",
+      "starts": "Comença"
     }
   },
   "error": {
@@ -649,6 +655,7 @@
     "length": "{{ length }} / {{ maxLength }} caràcters.",
     "maxLength": "Longitud màxima assolida"
   },
+  "My entity": "My entity",
   "new_organization": {
     "create_organization_btn": "Crear Organització",
     "description1": "Abans de començar a crear el vostre procés de votació, <span>heu de crear una organització</span>, és gratuït. Amb una organització, podreu crear una àmplia gamma d'eleccions i donar veu als membres de la vostra comunitat.",
@@ -666,15 +673,23 @@
       "not_owner": "Aquesta organització encara no té votacions.",
       "title": "Crea la teva primera elecció"
     },
+    "latest_votings": "Últimes votacions",
     "menu": {
       "dashboard": "Dashboard",
       "edit_my_organization": "La meva entitat",
       "votings": "Votacions"
     },
+    "overview": "Visió general",
+    "required_signin": "Primer has d'iniciar sessió",
     "title": {
       "edit": "Editar organització",
       "read_more": "Expandir títol"
-    }
+    },
+    "voting_processes_one": "{{votes}} procés de votació",
+    "voting_processes_many": "{{votes}} processos de votació",
+    "voting_processes_other": "{{votes}} processos de votació",
+    "votings": "Votacions",
+    "votings_overview": "Visió general de les votacions"
   },
   "process": {
     "census": "Cens",

@@ -111,6 +111,9 @@ export const theme = extendTheme(vtheme, {
           md: '80px',
         },
       },
+      '.dashborad_align_card_text': {
+        mt: '3.5px',
+      },
     },
   },
   breakpoints,
