@@ -1,4 +1,4 @@
-import { Box, HStack, Link, Text } from '@chakra-ui/react'
+import { Flex, HStack, Link, Text } from '@chakra-ui/react'
 import { ElectionStatusBadge, ElectionTitle } from '@vocdoni/chakra-components'
 import { useElection } from '@vocdoni/react-providers'
 import { ensure0x } from '@vocdoni/sdk'
@@ -18,10 +18,14 @@ const ProcessCard = () => {
   return (
     <Link as={RouterLink} to={`/processes/${ensure0x(election.id)}`} w='full' textDecoration='none'>
       <ContentsBox w='full'>
-        <Box mb={3}>
-          <ElectionStatusBadge />
-        </Box>
-        <ElectionTitle fontSize='lg' textAlign='left' fontWeight='extrabold' />
+        <Flex
+          flexDirection={{ base: 'column', lg: 'row' }}
+          alignItems={{ base: 'start', lg: 'center' }}
+          justifyContent='space-between'
+        >
+          <ElectionStatusBadge mb={{ base: 3, lg: 0 }} order={{ lg: '2' }} />
+          <ElectionTitle fontSize='lg' textAlign='left' fontWeight='extrabold' order={{ lg: '1' }} />
+        </Flex>
         <HStack mb={3}>
           <MdHowToVote />
           <Text fontWeight='600' fontSize='sm' color='dashboard_card_text' className='dashborad_align_card_text'>
