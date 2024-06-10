@@ -204,8 +204,7 @@
       "avatar_helper": "Image/logo of your organization",
       "avatar_placeholder": "Image URL",
       "btn": "Save",
-      "footer": "Modifying your organization will prompt a signature request, incurring a cost of 1 token",
-      "title": "Edit Organization"
+      "footer": "Modifying your organization will prompt a signature request, incurring a cost of 1 token"
     },
     "error": {
       "address_already_in_use": "Address already in use",
@@ -674,7 +673,6 @@
     "overview": "Overview",
     "required_signin": "You must sign in first",
     "title": {
-      "edit": "Edit organization",
       "read_more": "Expand title"
     },
     "voting_processes_one": "{{ count }} voting process",

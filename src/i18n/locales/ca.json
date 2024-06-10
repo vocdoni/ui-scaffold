@@ -208,8 +208,7 @@
       "avatar_helper": "Imatge/logotip de la teva organització",
       "avatar_placeholder": "URL de la imatge",
       "btn": "Desar",
-      "footer": "Modificar la teva organització generarà una sol·licitud de signatura, amb un cost de 1 token",
-      "title": "Editar Orgnaització"
+      "footer": "Modificar la teva organització generarà una sol·licitud de signatura, amb un cost de 1 token"
     },
     "error": {
       "address_already_in_use": "Aquesta adreça ja és al cens",
@@ -682,7 +681,6 @@
     "overview": "Visió general",
     "required_signin": "Primer has d'iniciar sessió",
     "title": {
-      "edit": "Editar organització",
       "read_more": "Expandir títol"
     },
     "voting_processes_one": "{{ count }} procés de votació",

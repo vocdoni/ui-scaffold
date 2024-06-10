@@ -126,7 +126,6 @@ const detailed = definePartsStyle({
 
 const noElections = definePartsStyle({
   container: {
-    boxShadow: 'var(--box-shadow)',
     borderRadius: 'none',
     maxW: '1440px',
     mx: 'auto',

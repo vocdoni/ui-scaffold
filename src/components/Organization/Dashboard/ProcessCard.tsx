@@ -2,7 +2,9 @@ import { Box, HStack, Link, Text } from '@chakra-ui/react'
 import { ElectionStatusBadge, ElectionTitle } from '@vocdoni/chakra-components'
 import { useElection } from '@vocdoni/react-providers'
 import { ensure0x } from '@vocdoni/sdk'
-import { Trans } from 'react-i18next'
+import { format } from 'date-fns'
+import { ca, enUS, es } from 'date-fns/locale'
+import { Trans, useTranslation } from 'react-i18next'
 import { IoIosArrowRoundForward, IoIosCalendar } from 'react-icons/io'
 import { MdHowToVote } from 'react-icons/md'
 import { Link as RouterLink } from 'react-router-dom'
@@ -64,29 +66,22 @@ const ProcessCard = () => {
     </Link>
   )
 }
+const locales = {
+  en: enUS,
+  es: es,
+  ca: ca,
+}
 
 const formatDate = (date: Date) => {
-  const options: Intl.DateTimeFormatOptions = {
-    month: 'short',
-    day: '2-digit',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false,
-  }
-  const localeDateString = date.toLocaleString('en-US', options)
+  const { i18n } = useTranslation()
 
-  const [monthDay, year, time] = localeDateString.split(', ')
+  const locale = locales[i18n.language as keyof typeof locales] || enUS
+
+  const formattedDate = format(date, 'MMM dd, yyyy, HH:mm', { locale })
+
+  const [monthDay, year, time] = formattedDate.split(', ')
   const [month, day] = monthDay.split(' ')
 
   return `${month} ${day} - ${year} (${time})`
 }
-
-const calculateDaysUntil = (startDate: Date) => {
-  const now = new Date()
-  const timeDiff = startDate.getTime() - now.getTime()
-  const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24))
-  return daysDiff
-}
-
 export default ProcessCard

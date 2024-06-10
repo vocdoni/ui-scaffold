@@ -123,7 +123,6 @@ const detailed = definePartsStyle({
 const noElections = definePartsStyle({
   container: {
     p: 5,
-    boxShadow: 'var(--box-shadow)',
     borderRadius: 'lg',
     minW: 'full',
     minH: 52,
@@ -158,14 +157,13 @@ const noElections = definePartsStyle({
 
         '& > p:first-of-type': {
           fontWeight: 'bold',
-          fontSize: 'md',
+          fontSize: 'xl',
         },
         '& > p:nth-of-type(2)': {
           color: 'organization.election_list_empty_bg',
         },
         '& > p': {
           textAlign: { base: 'center', lg: 'start' },
-          fontSize: 'sm',
         },
       },
     },

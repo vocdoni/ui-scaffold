@@ -1,11 +1,12 @@
-import { Box, Heading, Text, VStack } from '@chakra-ui/react'
+import { Flex, Heading, Text } from '@chakra-ui/react'
 import { useOrganization } from '@vocdoni/react-providers'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useLatestElections } from '~src/queries/account'
 import { ContentsBox } from './Box'
 import ProcessesList from './ProcessesList'
 
 const OrganizationDashboard = () => {
+  const { t } = useTranslation()
   const { data: elections, error, isLoading } = useLatestElections()
   const { organization } = useOrganization()
 
@@ -14,21 +15,19 @@ const OrganizationDashboard = () => {
   return (
     <>
       <ContentsBox>
-        <VStack alignItems='start'>
+        <Flex
+          flexDirection={{ base: 'column', xl2: 'row' }}
+          justifyContent='space-between'
+          alignItems={{ base: 'start', xl2: 'center' }}
+          gap={2}
+        >
           <Heading>
             <Trans i18nKey='organization.overview'>Overview</Trans>
           </Heading>
-          <Text>
-            <Trans i18nKey='organization.voting_processes' count={organization.electionIndex} />
-          </Text>
-        </VStack>
+          <Text>{t('organization.voting_processes', { count: organization.electionIndex })}</Text>
+        </Flex>
       </ContentsBox>
-      <Box>
-        <Heading size='md' mb={4}>
-          <Trans i18nKey='organization.latest_votings'>Latest votings</Trans>
-        </Heading>
-        <ProcessesList processes={elections} error={error} loading={isLoading} limit={3} />
-      </Box>
+      <ProcessesList processes={elections} error={error} loading={isLoading} limit={3} />
     </>
   )
 }

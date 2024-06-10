@@ -208,8 +208,7 @@
       "avatar_helper": "Imagen/logotipo de tu organización",
       "avatar_placeholder": "URL de la imagen",
       "btn": "Guardar",
-      "footer": "Editar tu organización generará una solicitud de firma, con un coste de 1 token",
-      "title": "Editar Organización"
+      "footer": "Editar tu organización generará una solicitud de firma, con un coste de 1 token"
     },
     "error": {
       "address_already_in_use": "Esta dirección ya está en el censo",
@@ -668,7 +667,7 @@
     "elections": "Elecciones",
     "elections_list_empty": {
       "alt": "Imagen que ilustra que la organización está vacía",
-      "description": "Al comenzar haciendo tu primera votación, puedes elegir entre diferentes tipos de autenticación para tu voto.",
+      "description": "Como organizador, tienes la capacidad de crear procesos de votación personalizados para tu comunidad. Estos procedimientos de votación ofrecen una amplia gama de flexibilidad, incluyendo opciones como un censo donde los votantes deben autenticarse utilizando datos personalizados (como nombre de usuario, contraseña y fecha de nacimiento), un sistema basado en tokens que permite la participación de todos los titulares de tokens o una lista blanca que utiliza direcciones de cartera para la elegibilidad.",
       "not_owner": "Esta organización aún no tiene votaciones.",
       "title": "Crea tu primer proceso de votación"
     },
@@ -682,7 +681,6 @@
     "overview": "Visión general",
     "required_signin": "Primero debes iniciar sesión",
     "title": {
-      "edit": "Editar organización",
       "read_more": "Expandir título"
     },
     "voting_processes_one": "{{ count }} proceso de votación",

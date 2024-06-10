@@ -1,4 +1,4 @@
-import { Heading, Text, VStack } from '@chakra-ui/react'
+import { Flex, Heading, Text } from '@chakra-ui/react'
 import { useOrganization } from '@vocdoni/react-providers'
 import { Trans, useTranslation } from 'react-i18next'
 import { ContentsBox } from '~components/Organization/Dashboard/Box'
@@ -19,18 +19,13 @@ const Votings = ({ page }: VotingsProps) => {
   if (!organization) return null
 
   return (
-    <VStack alignItems='start' gap={6} w='full'>
-      <Heading fontSize='xl' fontWeight={600}>
-        <Trans i18nKey='organization.votings'>Votings</Trans>
-      </Heading>
-      <RoutedPaginationProvider
-        totalPages={Math.ceil(organization?.electionIndex / 10)}
-        path='/organization/votings/:page?/:status?'
-      >
-        <ProcessesList processes={elections} error={error} loading={isLoading} />
-        <RoutedPagination />
-      </RoutedPaginationProvider>
-    </VStack>
+    <RoutedPaginationProvider
+      totalPages={Math.ceil(organization?.electionIndex / 10)}
+      path='/organization/votings/:page?/:status?'
+    >
+      <ProcessesList processes={elections} error={error} loading={isLoading} />
+      <RoutedPagination />
+    </RoutedPaginationProvider>
   )
 }
 
@@ -42,14 +37,17 @@ export const VotingsHeader = () => {
 
   return (
     <ContentsBox w='full'>
-      <VStack alignItems='start'>
+      <Flex
+        flexDirection={{ base: 'column', xl2: 'row' }}
+        justifyContent='space-between'
+        alignItems={{ base: 'start', xl2: 'center' }}
+        gap={2}
+      >
         <Heading>
           <Trans i18nKey='organization.votings_overview'>Votings overview</Trans>
         </Heading>
-        <Text>
-          <Trans i18nKey='organization.voting_processes' count={organization.electionIndex} />
-        </Text>
-      </VStack>
+        <Text>{t('organization.voting_processes', { count: organization.electionIndex })}</Text>
+      </Flex>
     </ContentsBox>
   )
 }
