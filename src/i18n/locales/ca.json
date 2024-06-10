@@ -655,7 +655,6 @@
     "length": "{{ length }} / {{ maxLength }} caràcters.",
     "maxLength": "Longitud màxima assolida"
   },
-  "My entity": "My entity",
   "new_organization": {
     "create_organization_btn": "Crear Organització",
     "description1": "Abans de començar a crear el vostre procés de votació, <span>heu de crear una organització</span>, és gratuït. Amb una organització, podreu crear una àmplia gamma d'eleccions i donar veu als membres de la vostra comunitat.",
@@ -679,15 +678,16 @@
       "edit_my_organization": "La meva entitat",
       "votings": "Votacions"
     },
+    "my_entity": "La meva entitat",
     "overview": "Visió general",
     "required_signin": "Primer has d'iniciar sessió",
     "title": {
       "edit": "Editar organització",
       "read_more": "Expandir títol"
     },
-    "voting_processes_one": "{{votes}} procés de votació",
-    "voting_processes_many": "{{votes}} processos de votació",
-    "voting_processes_other": "{{votes}} processos de votació",
+    "voting_processes_one": "{{ count }} procés de votació",
+    "voting_processes_many": "{{ count }} processos de votació",
+    "voting_processes_other": "{{ count }} processos de votació",
     "votings": "Votacions",
     "votings_overview": "Visió general de les votacions"
   },

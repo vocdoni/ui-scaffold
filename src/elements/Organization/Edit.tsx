@@ -11,7 +11,7 @@ const OrganizationEdit = () => {
     <>
       <ContentsBox>
         <Heading>
-          <Trans>My entity</Trans>
+          <Trans i18nKey='organization.my_entity'>My entity</Trans>
         </Heading>
       </ContentsBox>
       <ContentsBox>

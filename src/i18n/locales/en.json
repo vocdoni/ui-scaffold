@@ -647,7 +647,6 @@
     "length": "{{ length }} / {{ maxLength }} chars.",
     "maxLength": "Max. length reached"
   },
-  "My entity": "My entity",
   "new_organization": {
     "create_organization_btn": "Create Organization",
     "description1": "Set up your <span>organization for free</span> and start creating voting processes to engage with your community.",
@@ -671,14 +670,15 @@
       "edit_my_organization": "My entity",
       "votings": "Votings"
     },
+    "my_entity": "My entity",
     "overview": "Overview",
     "required_signin": "You must sign in first",
     "title": {
       "edit": "Edit organization",
       "read_more": "Expand title"
     },
-    "voting_processes_one": "{{votes}} voting process",
-    "voting_processes_other": "{{votes}} voting processes",
+    "voting_processes_one": "{{ count }} voting process",
+    "voting_processes_other": "{{ count }} voting processes",
     "votings": "Votings",
     "votings_overview": "Votings overview"
   },

@@ -47,10 +47,7 @@ export const VotingsHeader = () => {
           <Trans i18nKey='organization.votings_overview'>Votings overview</Trans>
         </Heading>
         <Text>
-          {t('organization.voting_processes', {
-            count: organization.electionIndex,
-            defaultValue: '{{votes}} voting processes',
-          })}
+          <Trans i18nKey='organization.voting_processes' count={organization.electionIndex} />
         </Text>
       </VStack>
     </ContentsBox>

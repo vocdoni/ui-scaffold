@@ -655,7 +655,6 @@
     "length": "{{ length }} / {{ maxLength }} caracteres.",
     "maxLength": "Longitud máxima alcanzada"
   },
-  "My entity": "My entity",
   "new_organization": {
     "create_organization_btn": "Crear Organización",
     "description1": "Antes de comenzar a crear su proceso de votación, <span>debe crear una organización</span>, es gratuito. Con una organización, podrá crear una amplia gama de elecciones y dar voz a los miembros de su comunidad.",
@@ -679,15 +678,16 @@
       "edit_my_organization": "Mi entidad",
       "votings": "Votaciones"
     },
+    "my_entity": "Mi entidad",
     "overview": "Visión general",
     "required_signin": "Primero debes iniciar sesión",
     "title": {
       "edit": "Editar organización",
       "read_more": "Expandir título"
     },
-    "voting_processes_one": "{{votes}} proceso de votación",
-    "voting_processes_many": "{{votes}} procesos de votación",
-    "voting_processes_other": "{{votes}} procesos de votación",
+    "voting_processes_one": "{{ count }} proceso de votación",
+    "voting_processes_many": "{{ count }} procesos de votación",
+    "voting_processes_other": "{{ count }} procesos de votación",
     "votings": "Votaciones",
     "votings_overview": "Visión general de les votaciones"
   },
