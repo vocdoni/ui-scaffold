@@ -6,7 +6,7 @@ const SignInScreen = () => {
   const { openConnectModal } = useConnectModal()
 
   return (
-    <VStack spacing={4}>
+    <VStack spacing={4} mt={'10vh'}>
       <Text>
         <Trans i18nKey='organization.required_signin'>You must sign in first</Trans>
       </Text>

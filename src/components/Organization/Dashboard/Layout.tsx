@@ -47,7 +47,7 @@ const OrganizationDashboardLayout: React.FC = ({ id }: OrganizationDashboardLayo
                       <Image src={fallback} />
                     </AspectRatio>
                   )}
-                  <OrganizationName fontSize='xl' fontWeight={600} m={0} color='dashboard.org_name' />
+                  <OrganizationName fontSize='md' fontWeight={600} m={0} color='dashboard.org_name' />
                 </Flex>
                 <OrganizationDashboardMenu />
               </Box>

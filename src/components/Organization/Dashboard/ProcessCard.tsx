@@ -23,8 +23,8 @@ const ProcessCard = () => {
           alignItems={{ base: 'start', lg: 'center' }}
           justifyContent='space-between'
         >
-          <ElectionStatusBadge mb={{ base: 3, lg: 0 }} order={{ lg: '2' }} />
-          <ElectionTitle fontSize='lg' textAlign='left' fontWeight='extrabold' order={{ lg: '1' }} />
+          <ElectionStatusBadge fontSize='md' mb={{ base: 3, lg: 0 }} order={{ lg: '2' }} />
+          <ElectionTitle fontSize='md' textAlign='left' fontWeight='extrabold' order={{ lg: '1' }} />
         </Flex>
         <HStack mb={3}>
           <MdHowToVote />
