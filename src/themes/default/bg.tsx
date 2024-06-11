@@ -1,7 +1,8 @@
 import { Box } from '@chakra-ui/react'
+import { ReactNode } from 'react'
 import navbg from '/assets/bg-home.png'
 
-export const NavBg = ({ ...props }) => (
+export const NavBg = ({ children }: { children: ReactNode }) => (
   <>
     <Box
       position='absolute'
@@ -16,6 +17,6 @@ export const NavBg = ({ ...props }) => (
       opacity={0.7}
       backgroundSize='100%'
     />
-    {props.children}
+    {children}
   </>
 )
