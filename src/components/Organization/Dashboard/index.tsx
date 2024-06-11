@@ -21,7 +21,7 @@ const OrganizationDashboard = () => {
           alignItems={{ base: 'start', xl2: 'center' }}
           gap={2}
         >
-          <Heading fontSize='xx-large'>
+          <Heading fontSize='heading-sm'>
             <Trans i18nKey='organization.overview'>Overview</Trans>
           </Heading>
           <Text>{t('organization.voting_processes', { count: organization.electionIndex })}</Text>

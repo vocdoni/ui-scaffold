@@ -43,10 +43,10 @@ export const VotingsHeader = () => {
         alignItems={{ base: 'start', xl2: 'center' }}
         gap={2}
       >
-        <Heading fontSize='xx-large'>
+        <Heading fontSize='heading-sm'>
           <Trans i18nKey='organization.votings_overview'>Votings overview</Trans>
         </Heading>
-        <Text fontSize='md'>{t('organization.voting_processes', { count: organization.electionIndex })}</Text>
+        <Text>{t('organization.voting_processes', { count: organization.electionIndex })}</Text>
       </Flex>
     </ContentsBox>
   )

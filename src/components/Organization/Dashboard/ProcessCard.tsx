@@ -23,12 +23,12 @@ const ProcessCard = () => {
           alignItems={{ base: 'start', lg: 'center' }}
           justifyContent='space-between'
         >
-          <ElectionStatusBadge fontSize='md' mb={{ base: 3, lg: 0 }} order={{ lg: '2' }} />
-          <ElectionTitle fontSize='md' textAlign='left' fontWeight='extrabold' order={{ lg: '1' }} />
+          <ElectionStatusBadge fontSize='text-sm' mb={{ base: 3, lg: 0 }} order={{ lg: '2' }} />
+          <ElectionTitle fontSize='text' textAlign='left' fontWeight='extrabold' order={{ lg: '1' }} />
         </Flex>
         <HStack mb={3}>
           <MdHowToVote />
-          <Text fontWeight='600' fontSize='sm' color='dashboard_card_text' className='dashborad_align_card_text'>
+          <Text fontWeight='600' fontSize='text-sm' color='dashboard_card_text' className='dashborad_align_card_text'>
             {(election as any).voteCount} ({((election as any).voteCount / (election as any).census.size) * 100}%) votes
             submited
           </Text>
@@ -36,7 +36,7 @@ const ProcessCard = () => {
         <HStack>
           <IoIosCalendar />
           <HStack>
-            <Text fontWeight='600' fontSize='sm' className='dashborad_align_card_text'>
+            <Text fontWeight='600' fontSize='text-sm' className='dashborad_align_card_text'>
               <Text as='span' color='gray'>
                 {(election as any).startDate.getTime() < new Date().getTime() ? (
                   <Trans i18nKey='dashboard.card.started'>Started</Trans>
@@ -51,7 +51,7 @@ const ProcessCard = () => {
             </Text>
 
             <IoIosArrowRoundForward />
-            <Text fontWeight='600' fontSize='sm' className='dashborad_align_card_text'>
+            <Text fontWeight='600' fontSize='text-sm' className='dashborad_align_card_text'>
               <Text as='span' color='gray'>
                 {(election as any).endDate.getTime() < new Date().getTime() ? (
                   <Trans i18nKey='dashboard.card.finished'>Finished</Trans>

@@ -27,7 +27,7 @@ const EditHeader = () => {
         alignItems={{ base: 'start', xl2: 'center' }}
         gap={2}
       >
-        <Heading>
+        <Heading fontSize='heading-sm'>
           <Trans i18nKey='organization.my_entity'>My entity</Trans>
         </Heading>
         <Button as={ReactRouterLink} to={`/organization/${address}`} variant='transparent' ml='auto'>

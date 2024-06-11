@@ -494,33 +494,6 @@ const tryItNow = defineStyle({
   boxShadow: 'rgba(0, 0, 0, 0.1) 0px 0px 10px',
 })
 
-const dashboard = defineStyle((props) => {
-  const { colorScheme } = props
-  return {
-    ...onVoteCommonStyles,
-    py: 6,
-
-    _hover: {
-      bgColor: `${colorScheme}.300`,
-      color: 'white',
-
-      _disabled: {
-        color: 'gray.800',
-      },
-    },
-
-    _active: {
-      bgColor: `${colorScheme}.500`,
-      color: 'white',
-
-      _disabled: {
-        bgColor: `${colorScheme}.500`,
-        color: 'white',
-      },
-    },
-  }
-})
-
 export const Button = defineStyleConfig({
   baseStyle,
   variants: {
@@ -533,7 +506,6 @@ export const Button = defineStyleConfig({
     secondary,
     transparent,
     'try-it-now': tryItNow,
-    dashboard,
   },
   defaultProps: {
     colorScheme: 'primary',
