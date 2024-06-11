@@ -134,9 +134,9 @@ export const ProcessView = () => {
             w='full'
           >
             <TabList>
-              <Tab>{t('process.questions')}</Tab>
+              <Tab fontSize='text'>{t('process.questions')}</Tab>
               {election instanceof PublishedElection && election?.status !== ElectionStatus.CANCELED && (
-                <Tab>{t('process.results')}</Tab>
+                <Tab fontSize='text'>{t('process.results')}</Tab>
               )}
             </TabList>
             <TabPanels>

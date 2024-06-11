@@ -91,7 +91,7 @@ const OrganizationView = () => {
     <Box className='site-wrapper' mb={44} mx='auto'>
       <Header />
 
-      <Text as='h2' fontSize='xl' fontWeight='bold' mb={4} textAlign={{ base: 'center', md2: 'start' }}>
+      <Text as='h2' fontSize='heading-sm' fontWeight='bold' mb={4} textAlign={{ base: 'center', md2: 'start' }}>
         {t('organization.elections')}
       </Text>
 
