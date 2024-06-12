@@ -7,7 +7,11 @@ import { useDocumentTitle } from '~src/use-document-title'
 
 const ProcessView = () => {
   const { election } = useElection()
-  useDocumentTitle(election?.title.default)
+  let title = ''
+  if (election instanceof PublishedElection) {
+    title = election?.title.default
+  }
+  useDocumentTitle(title)
   return <ProcessViewComponent />
 }
 
