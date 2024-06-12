@@ -5,7 +5,11 @@ export function useDocumentTitle(title?: string) {
 
   useEffect(() => {
     if (title) {
-      document.title = title
+      let prepend = 'Vocdoni'
+      if (import.meta.env.theme === 'onvote') {
+        prepend = 'OnVote'
+      }
+      document.title = `${prepend} - ${title}`
     } else {
       document.title = defaultTitleRef.current
     }
