@@ -110,7 +110,7 @@ export const Confirm = () => {
             if (step.key === ElectionCreationSteps.DONE) {
               const pid = step.electionId
               if (census instanceof CspCensus) {
-                const createdCspElection: IElectionWithTokenResponse = await createElectionInCsp(pid, form.userList)
+                await createElectionInCsp(pid, form.userList)
               }
 
               setCreated(pid)
