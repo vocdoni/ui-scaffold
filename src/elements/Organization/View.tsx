@@ -1,7 +1,15 @@
-import { OrganizationProvider } from '@vocdoni/react-providers'
+import { OrganizationProvider, useElection, useOrganization } from '@vocdoni/react-providers'
 import { AccountData } from '@vocdoni/sdk'
 import { useLoaderData } from 'react-router-dom'
-import OrganizationView from '~components/Organization/View'
+import OrganizationViewComponent from '~components/Organization/View'
+import { useDocumentTitle } from '~src/use-document-title'
+
+const OrganizationView = () => {
+  const { organization } = useOrganization()
+  const orgTitle = organization?.account.name.default ?? organization?.address
+  useDocumentTitle(orgTitle)
+  return <OrganizationViewComponent />
+}
 
 const Organization = () => {
   const organization = useLoaderData() as AccountData
