@@ -2,13 +2,13 @@ import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { ElectionProvider, OrganizationProvider, useElection } from '@vocdoni/react-providers'
 import { PublishedElection } from '@vocdoni/sdk'
 import { useLoaderData } from 'react-router-dom'
-import { ProcessView } from '~components/Process/View'
+import { ProcessView as ProcessViewComponent } from '~components/Process/View'
 import { useDocumentTitle } from '~src/use-document-title'
 
-const SetProcess = () => {
+const ProcessView = () => {
   const { election } = useElection()
   useDocumentTitle(election?.title.default)
-  return <ProcessView />
+  return <ProcessViewComponent />
 }
 
 const Process = () => {
@@ -17,7 +17,7 @@ const Process = () => {
   return (
     <OrganizationProvider id={election.organizationId}>
       <ElectionProvider election={election} ConnectButton={ConnectButton} fetchCensus autoUpdate>
-        <SetProcess />
+        <ProcessView />
       </ElectionProvider>
     </OrganizationProvider>
   )
