@@ -15,8 +15,6 @@
   },
   "banner": {
     "start_now": "Create a vote now!",
-    "subtitle": "Save time, money and effort with our easy-to-use & customizable app.",
-    "subtitle1": "Boost election participation up by 30%.",
     "title": "Secure, verifiable and flexible digital voting"
   },
   "banner_voting_types": {
@@ -658,15 +656,22 @@
       "not_owner": "This organization has no voting processes yet",
       "title": "Create your first voting process"
     },
+    "latest_votings": "Latest votings",
     "menu": {
       "dashboard": "Dashboard",
       "edit_my_organization": "My entity",
       "votings": "Votings"
     },
+    "overview": "Overview",
+    "required_signin": "You must sign in first",
     "title": {
       "edit": "Edit organization",
       "read_more": "Expand title"
-    }
+    },
+    "view_public_profile": "View public profile",
+    "voting_processes": "{{votes}} voting processes",
+    "votings": "Votings",
+    "votings_overview": "Votings overview"
   },
   "process": {
     "census": "Census",
@@ -732,7 +737,8 @@
     },
     "total_census_size": "{{maxCensusSize}} allowed voters of {{censusSize}} total in census",
     "total_census_size_tooltip": "The maximum number of voters allowed is limited to {{maxCensusSize}} from a census of {{censusSize}} ({{percent}}% of the total). Only the first {{maxCensusSize}} voters can vote.",
-    "voters": "Voters"
+    "voters": "Voters",
+    "voting": "We are processing your vote. This process will take a few seconds. Please do not close or refresh this page."
   },
   "process_actions": {
     "cancel": "Cancel process",

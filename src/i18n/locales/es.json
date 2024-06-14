@@ -18,8 +18,6 @@
   },
   "banner": {
     "start_now": "¡Crea una votación ahora!",
-    "subtitle": "Usa direcciones de cartera, vota con un token ERC20 o con NFTs!",
-    "subtitle1": "Aumenta la participación electoral un 30%",
     "title": "Voto digital seguro, verificable y flexible"
   },
   "banner_voting_types": {
@@ -666,15 +664,22 @@
       "not_owner": "Esta organización aún no tiene votaciones.",
       "title": "Crea tu primer proceso de votación"
     },
+    "latest_votings": "Latest votings",
     "menu": {
       "dashboard": "Dashboard",
       "edit_my_organization": "Mi entidad",
       "votings": "Votaciones"
     },
+    "overview": "Overview",
+    "required_signin": "You must sign in first",
     "title": {
       "edit": "Editar organización",
       "read_more": "Expandir título"
-    }
+    },
+    "view_public_profile": "View public profile",
+    "voting_processes": "{{votes}} voting processes",
+    "votings": "Votings",
+    "votings_overview": "Votings overview"
   },
   "process": {
     "census": "Censo",
@@ -742,7 +747,8 @@
     },
     "total_census_size": "{{maxCensusSize}} votantes permitidos de {{censusSize}} totales en el censo",
     "total_census_size_tooltip": "El número máximo de votantes permitidos está limitado a {{maxCensusSize}} de un censo de {{censusSize}} ({{percent}}% del total). Solo los primeros {{maxCensusSize}} votantes pueden votar.",
-    "voters": "Votantes"
+    "voters": "Votantes",
+    "voting": "Estamos procesando tu voto. Este proceso tardará unos segundos. Por favor, no cierres ni actualices esta página."
   },
   "process_actions": {
     "cancel": "Cancelar proceso",
