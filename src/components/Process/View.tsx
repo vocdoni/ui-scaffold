@@ -13,6 +13,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Spinner,
   Tab,
   TabList,
   TabPanel,
@@ -22,6 +23,7 @@ import {
   UnorderedList,
   useDisclosure,
   useMultiStyleConfig,
+  VStack,
 } from '@chakra-ui/react'
 import { ElectionQuestions, ElectionResults, environment, useConfirm } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
@@ -185,7 +187,7 @@ export const ProcessView = () => {
       >
         <VoteButton setQuestionsTab={setQuestionsTab} />
       </Box>
-
+      <VotingVoteModal />
       <SuccessVoteModal />
     </Box>
   )
@@ -353,5 +355,26 @@ const ConfirmVoteModal = ({ election, answers }: { election: PublishedElection; 
         </Button>
       </ModalFooter>
     </>
+  )
+}
+
+const VotingVoteModal = () => {
+  const { t } = useTranslation()
+  const {
+    loading: { voting },
+  } = useElection()
+
+  return (
+    <Modal isOpen={voting} onClose={() => {}}>
+      <ModalOverlay />
+      <ModalContent>
+        <VStack>
+          <Spinner color='process.spinner' mb={5} w={10} h={10} />
+        </VStack>
+        <ModalBody>
+          <Text textAlign='center'>{t('process.voting')}</Text>
+        </ModalBody>
+      </ModalContent>
+    </Modal>
   )
 }
