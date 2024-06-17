@@ -656,6 +656,7 @@
   "open_in_explorer": "Open in explorer",
   "organization": {
     "avatar_alt": "Avatar image of {{ name }} organization",
+    "date_format": "MMMM d - yyyy (H:mm)",
     "elections": "Votings",
     "elections_list_empty": {
       "alt": "Image illustrating that the organization is empty",
@@ -663,7 +664,6 @@
       "not_owner": "This organization has no voting processes yet",
       "title": "Create your first voting process"
     },
-    "latest_votings": "Latest votings",
     "menu": {
       "dashboard": "Dashboard",
       "edit_my_organization": "My entity",
@@ -677,7 +677,6 @@
     },
     "voting_processes_one": "{{ count }} voting process",
     "voting_processes_other": "{{ count }} voting processes",
-    "votings": "Votings",
     "votings_overview": "Votings overview"
   },
   "process": {

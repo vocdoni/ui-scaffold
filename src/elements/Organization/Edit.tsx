@@ -1,4 +1,4 @@
-import { Button, Flex, Heading } from '@chakra-ui/react'
+import { Flex, Heading, Link } from '@chakra-ui/react'
 import { Trans } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
@@ -30,9 +30,9 @@ const EditHeader = () => {
         <Heading fontSize='heading-sm'>
           <Trans i18nKey='organization.my_entity'>My entity</Trans>
         </Heading>
-        <Button as={ReactRouterLink} to={`/organization/${address}`} variant='transparent' ml='auto'>
+        <Link as={ReactRouterLink} to={`/organization/${address}`} variant='no-underline' ml='auto'>
           View public profile
-        </Button>
+        </Link>
       </Flex>
     </ContentsBox>
   )

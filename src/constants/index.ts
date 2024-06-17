@@ -2,6 +2,7 @@ import { dotobject } from '@vocdoni/sdk'
 import { FieldErrors, FieldValues, useFormContext } from 'react-hook-form'
 
 export const FormatDate = 'dd/MM/yyyy'
+export const FormatDateLong = 'MMMM d - yyyy H:mm'
 
 const evocdoni = import.meta.env.VOCDONI_ENVIRONMENT
 

@@ -664,6 +664,7 @@
   "open_in_explorer": "Obre a l'explorador",
   "organization": {
     "avatar_alt": "Imatge d'avatar de l'organització {{ name }}",
+    "date_format": "MMMM d - yyyy (H:mm)",
     "elections": "Votacions",
     "elections_list_empty": {
       "alt": "Imatge il·lustrant que l'organització és buida",
@@ -671,7 +672,6 @@
       "not_owner": "Aquesta organització encara no té votacions.",
       "title": "Crea la teva primera elecció"
     },
-    "latest_votings": "Últimes votacions",
     "menu": {
       "dashboard": "Dashboard",
       "edit_my_organization": "La meva entitat",
@@ -686,7 +686,6 @@
     "voting_processes_one": "{{ count }} procés de votació",
     "voting_processes_many": "{{ count }} processos de votació",
     "voting_processes_other": "{{ count }} processos de votació",
-    "votings": "Votacions",
     "votings_overview": "Visió general de les votacions"
   },
   "process": {
