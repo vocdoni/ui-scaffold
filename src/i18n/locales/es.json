@@ -321,6 +321,8 @@
       "question": {
         "add_new_option": "Añadir opción",
         "add_question": "Añadir pregunta",
+        "approval_description": "Con la votación de aprobación, solo se puede agregar una pregunta con múltiples opciones. La opción con más votos ganará.",
+        "approval_title": "Agregar una pregunta",
         "delete_option": "Eliminar opcion número {{ option }} de la pregunta {{ question }}",
         "description": "Agrega las preguntas junto con las opciones que tus votantes deberán elegir. Tienes la flexibilidad de agregar varias preguntas, cada una con un número personalizado de opciones seleccionables.",
         "description_placeholder": "Escribe aquí una descripción de la pregunta",
