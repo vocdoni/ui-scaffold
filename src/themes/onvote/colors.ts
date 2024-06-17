@@ -138,6 +138,7 @@ export const colors = {
       progressbar_bg: colorsBase.gray.light,
       title: colorsBase.primary.main,
     },
+    spinner: colorsBase.primary.main,
     spreadsheet: {
       disconnect_bg: 'transparent',
       disconnect_color_desktop: colorsBase.gray.dark,

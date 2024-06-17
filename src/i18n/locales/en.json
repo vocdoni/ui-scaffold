@@ -664,6 +664,7 @@
       "not_owner": "This organization has no voting processes yet",
       "title": "Create your first voting process"
     },
+    "latest_votings": "Latest votings",
     "menu": {
       "dashboard": "Dashboard",
       "edit_my_organization": "My entity",
@@ -743,7 +744,8 @@
     },
     "total_census_size": "{{maxCensusSize}} allowed voters of {{censusSize}} total in census",
     "total_census_size_tooltip": "The maximum number of voters allowed is limited to {{maxCensusSize}} from a census of {{censusSize}} ({{percent}}% of the total). Only the first {{maxCensusSize}} voters can vote.",
-    "voters": "Voters"
+    "voters": "Voters",
+    "voting": "We are processing your vote. This process will take a few seconds. Please do not close or refresh this page."
   },
   "process_actions": {
     "cancel": "Cancel process",

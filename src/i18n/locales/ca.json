@@ -672,6 +672,7 @@
       "not_owner": "Aquesta organització encara no té votacions.",
       "title": "Crea la teva primera elecció"
     },
+    "latest_votings": "Latest votings",
     "menu": {
       "dashboard": "Dashboard",
       "edit_my_organization": "La meva entitat",
@@ -754,7 +755,8 @@
     },
     "total_census_size": "{{maxCensusSize}} electors permesos de {{censusSize}} totals en el cens",
     "total_census_size_tooltip": "El nombre màxim d'electors permesos està limitat a {{maxCensusSize}} d'un cens de {{censusSize}} ({{percent}}% del total). Només els primers {{maxCensusSize}} electors poden votar.",
-    "voters": "Votants"
+    "voters": "Votants",
+    "voting": "Estem processant el teu vot. Aquest procés trigarà uns segons. Si us plau, no tanquis ni actualitzis aquesta pàgina."
   },
   "process_actions": {
     "cancel": "Cancel·la",

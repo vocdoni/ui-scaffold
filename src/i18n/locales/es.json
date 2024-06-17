@@ -672,6 +672,7 @@
       "not_owner": "Esta organización aún no tiene votaciones.",
       "title": "Crea tu primer proceso de votación"
     },
+    "latest_votings": "Latest votings",
     "menu": {
       "dashboard": "Dashboard",
       "edit_my_organization": "Mi entidad",
@@ -754,7 +755,8 @@
     },
     "total_census_size": "{{maxCensusSize}} votantes permitidos de {{censusSize}} totales en el censo",
     "total_census_size_tooltip": "El número máximo de votantes permitidos está limitado a {{maxCensusSize}} de un censo de {{censusSize}} ({{percent}}% del total). Solo los primeros {{maxCensusSize}} votantes pueden votar.",
-    "voters": "Votantes"
+    "voters": "Votantes",
+    "voting": "Estamos procesando tu voto. Este proceso tardará unos segundos. Por favor, no cierres ni actualices esta página."
   },
   "process_actions": {
     "cancel": "Cancelar proceso",
