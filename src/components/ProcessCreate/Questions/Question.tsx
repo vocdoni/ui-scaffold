@@ -103,6 +103,7 @@ const QuestionPage = ({ title, description, isMultiQuestion = false }: IQuestion
 
   const questions = watch('questions')
 
+  // If all questions deleted add a new empty question to the form
   useEffect(() => {
     if (questions.length === 0) {
       append({
@@ -115,6 +116,7 @@ const QuestionPage = ({ title, description, isMultiQuestion = false }: IQuestion
     if (tabIndex === questions.length && tabIndex !== 0) setTabIndex(questions.length - 1)
   }, [questions, append, tabIndex])
 
+  // Set the tab index to the first question that has an error
   useEffect(() => {
     const questionErrors = errors.questions as FieldErrors<CustomFieldError>[] | undefined
 
