@@ -28,8 +28,8 @@ const OrganizationDashboardLayout: React.FC = ({ id }: OrganizationDashboardLayo
 
   return (
     <OrganizationProvider organization={account}>
-      <Box bg='process_create.bg'>
-        <Flex className='site-wrapper' direction={['column', 'column', 'column', 'row']} minH='50vh' py={6}>
+      <Flex flexDirection='column' bg='process_create.bg' flexGrow={1}>
+        <Flex className='site-wrapper' direction={['column', 'column', 'column', 'row']} flexGrow={1} py={6}>
           {account && (
             <>
               <Box
@@ -93,7 +93,7 @@ const OrganizationDashboardLayout: React.FC = ({ id }: OrganizationDashboardLayo
             <Outlet />
           </Box>
         </Flex>
-      </Box>
+      </Flex>
     </OrganizationProvider>
   )
 }

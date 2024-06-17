@@ -11,7 +11,7 @@ const NoElections = () => {
   const { organization } = useOrganization()
 
   return (
-    <Card variant='no-elections'>
+    <Card variant='no-elections' minH='100%'>
       <CardBody>
         <Box>
           <Img src={empty} alt={t('organization.elections_list_empty.alt')} />

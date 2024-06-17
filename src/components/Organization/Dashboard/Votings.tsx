@@ -24,7 +24,7 @@ const Votings = ({ page }: VotingsProps) => {
       path='/organization/votings/:page?/:status?'
     >
       <ProcessesList processes={elections} error={error} loading={isLoading} />
-      <RoutedPagination />
+      {!!elections?.length && <RoutedPagination />}
     </RoutedPaginationProvider>
   )
 }

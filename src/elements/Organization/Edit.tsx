@@ -9,7 +9,7 @@ const OrganizationEdit = () => {
   return (
     <>
       <EditHeader />
-      <ContentsBox>
+      <ContentsBox flexGrow={1}>
         <EditProfile />
       </ContentsBox>
     </>
