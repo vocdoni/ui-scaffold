@@ -11,10 +11,10 @@ const Footer = () => {
     <>
       <Flex
         className='site-wrapper'
-        pt='100px'
+        pt={{ base: '50px', xl: '100px' }}
         flexDirection={{ base: 'column', xl: 'row' }}
         alignItems='start'
-        gap={{ base: '60px', lg: 0 }}
+        mb={{ base: '50px', xl: 0 }}
       >
         <Box flex='1 1 33%'>
           <Image src={vcdLogo} w='125px' mb='12px' />
