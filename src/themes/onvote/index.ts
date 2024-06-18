@@ -77,6 +77,14 @@ export const theme = extendTheme(vtheme, {
           'white-space': 'pre-wrap',
         },
       },
+      '.md-sizes-card': {
+        '& :first-of-type': {
+          mt: 0,
+        },
+        pre: {
+          'white-space': 'pre-wrap',
+        },
+      },
       '.process-create-title': {
         fontFamily: 'pixeloidsans, monospace',
         textTransform: 'uppercase',
