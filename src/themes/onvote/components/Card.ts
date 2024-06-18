@@ -55,19 +55,25 @@ const detailed = definePartsStyle({
 
       '& > p:first-of-type': {
         textAlign: 'start',
-        fontSize: 'xl2',
         noOfLines: 2,
         overflow: 'hidden',
         display: '-webkit-box',
         WebkitBoxOrient: 'vertical',
         WebkitLineClamp: 'var(--chakra-line-clamp)',
         mb: 3,
+        fontSize: 'heading-sm',
       },
 
       '& > div:first-of-type': {
         display: 'flex',
+        alignItems: 'center',
         gap: 2,
         mb: 3,
+        fontSize: 'text-sm',
+
+        '& span': {
+          fontSize: 'text-sm',
+        },
       },
 
       '& > div:nth-of-type(2)': {
@@ -86,6 +92,7 @@ const detailed = definePartsStyle({
       display: 'flex',
       justifyContent: 'space-between',
       w: 'full',
+      fontSize: 'text-sm',
 
       '& > div': {
         display: 'flex',
