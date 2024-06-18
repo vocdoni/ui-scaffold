@@ -13,7 +13,7 @@ const Support = () => {
       backgroundRepeat='no-repeat'
       backgroundPosition='right'
     >
-      <Box className='site-wrapper' py={{ base: '60px', lg: '100px' }} position='relative' overflow='hidden'>
+      <Box className='site-wrapper' py={{ base: '60px', lg: '200px' }} position='relative' overflow='hidden'>
         <Box
           w='356px'
           h='356px'
