@@ -29,7 +29,13 @@ const OrganizationDashboardLayout: React.FC = ({ id }: OrganizationDashboardLayo
   return (
     <OrganizationProvider organization={account}>
       <Flex flexDirection='column' bg='process_create.bg' flexGrow={1}>
-        <Flex className='site-wrapper' direction={['column', 'column', 'column', 'row']} flexGrow={1} py={6}>
+        <Flex
+          className='site-wrapper'
+          direction={['column', 'column', 'column', 'row']}
+          flexGrow={1}
+          py={6}
+          minH='70vh'
+        >
           {account && (
             <>
               <Box
