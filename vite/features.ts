@@ -3,6 +3,7 @@ import merge from 'ts-deepmerge'
 const features = () => {
   const defaults = {
     faucet: true,
+    calculator: true,
     vote: {
       anonymous: true,
       overwrite: true,
