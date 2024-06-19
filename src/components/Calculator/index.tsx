@@ -6,7 +6,7 @@ import {
   FormControl,
   FormLabel,
   Heading,
-  Link,
+  Link as ChakraLink,
   NumberDecrementStepper,
   NumberIncrementStepper,
   NumberInput,
@@ -31,6 +31,7 @@ import { AiOutlinePercentage } from 'react-icons/ai'
 import { FaCcStripe, FaEthereum } from 'react-icons/fa'
 import { MdOutlineLoop } from 'react-icons/md'
 import { PiNumberSquareOneLight } from 'react-icons/pi'
+import { generatePath, Link } from 'react-router-dom'
 
 const Calculator = () => {
   const { t } = useTranslation()
@@ -302,6 +303,7 @@ const RightSideCalculator = ({ priceTokens }: { priceTokens: number }) => {
   const pricePerToken = 0.15
   const totalPrice = pricePerToken * priceTokens
   const stripeEnabled = import.meta.env.STRIPE_PUBLIC_KEY.length > 0
+  const stripeAmount = priceTokens < 100 ? '100' : priceTokens.toString()
   if (!stripeEnabled) console.warn('Stripe is not enabled')
 
   const packages = {
@@ -358,7 +360,12 @@ const RightSideCalculator = ({ priceTokens }: { priceTokens: number }) => {
               mt={8}
               mb={5}
             >
-              <Button variant='secondary' isDisabled={!totalPrice || !import.meta.env.STRIPE_PUBLIC_KEY.length}>
+              <Button
+                variant='secondary'
+                as={Link}
+                to={generatePath('/stripe/checkout/:amount', { amount: stripeAmount })}
+                isDisabled={!totalPrice || !import.meta.env.STRIPE_PUBLIC_KEY.length}
+              >
                 <FaCcStripe />
                 {t('calculator.buy_with_card')}
               </Button>
@@ -371,7 +378,7 @@ const RightSideCalculator = ({ priceTokens }: { priceTokens: number }) => {
               <Trans
                 i18nKey='calculator.contact'
                 components={{
-                  link: <Link />,
+                  link: <ChakraLink />,
                 }}
               />
             </Text>
@@ -495,7 +502,7 @@ const RightSideCalculator = ({ priceTokens }: { priceTokens: number }) => {
               <Trans
                 i18nKey='calculator.more_tokens'
                 components={{
-                  link: <Link />,
+                  link: <ChakraLink />,
                 }}
               />
             </Text>
@@ -521,7 +528,7 @@ const RightSideCalculator = ({ priceTokens }: { priceTokens: number }) => {
               <Trans
                 i18nKey='calculator.contact'
                 components={{
-                  link: <Link />,
+                  link: <ChakraLink />,
                 }}
               />
             </Text>
