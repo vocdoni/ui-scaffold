@@ -301,6 +301,8 @@ const RightSideCalculator = ({ priceTokens }: { priceTokens: number }) => {
 
   const pricePerToken = 0.15
   const totalPrice = pricePerToken * priceTokens
+  const stripeEnabled = import.meta.env.STRIPE_PUBLIC_KEY.length > 0
+  if (!stripeEnabled) console.warn('Stripe is not enabled')
 
   const packages = {
     '1k': 149,
@@ -356,7 +358,7 @@ const RightSideCalculator = ({ priceTokens }: { priceTokens: number }) => {
               mt={8}
               mb={5}
             >
-              <Button variant='secondary' isDisabled={!totalPrice}>
+              <Button variant='secondary' isDisabled={!totalPrice || !import.meta.env.STRIPE_PUBLIC_KEY.length}>
                 <FaCcStripe />
                 {t('calculator.buy_with_card')}
               </Button>

@@ -12,6 +12,7 @@ interface ImportMeta {
     EMAILJS_PUBLIC_ID: string
     features: {
       faucet: boolean
+      calculator: boolean
       vote: {
         anonymous: boolean
         overwrite: boolean
