@@ -9,6 +9,7 @@ import OrganizationProtectedRoute from './OrganizationProtectedRoute'
 import { SuspenseLoader } from './SuspenseLoader'
 import { CheckoutReturn } from '~components/Faucet/Stripe'
 import { Checkout } from '~elements/Stripe'
+import Calculator from '~components/Calculator'
 
 // Lazy loading helps splitting the final code, which helps downloading the app (theoretically)
 const ProtectedRoutes = lazy(() => import('./ProtectedRoutes'))
@@ -140,6 +141,18 @@ export const RoutesProvider = () => {
       element: (
         <SuspenseLoader>
           <Faucet />
+        </SuspenseLoader>
+      ),
+    })
+  }
+
+  // Add calculator if feature is enabled
+  if (import.meta.env.features.calculator) {
+    mainLayoutRoutes.push({
+      path: 'calculator',
+      element: (
+        <SuspenseLoader>
+          <Calculator />
         </SuspenseLoader>
       ),
     })

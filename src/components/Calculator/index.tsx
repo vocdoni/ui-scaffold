@@ -76,38 +76,56 @@ const Calculator = () => {
     setPriceTokens(price * form.numberElections)
   }
   return (
-    <Box width={'80%'} mx='auto' mb={20}>
-      <Heading as={'h2'} mb={10} className='brand-theme' size={'xl'} textTransform='uppercase'>
-        {t('calculator.title')}
-      </Heading>
-
-      <Trans
-        i18nKey='calculator.description'
-        components={{
-          p: <Text mb={10} />,
+    <>
+      <Flex
+        direction='column'
+        gap={4}
+        mt={10}
+        mb={44}
+        px={{
+          base: 10,
+          sm: 14,
         }}
-      />
+      >
+        <Box width={'80%'} mx='auto' mb={20}>
+          <Heading as={'h2'} mb={10} className='brand-theme' size={'xl'} textTransform='uppercase'>
+            {t('calculator.title')}
+          </Heading>
 
-      <Flex className='calculator' flexDirection={{ base: 'column', xl2: 'row' }} overflow='hidden'>
-        <FormProvider {...methods}>
-          <Flex
-            as='form'
-            flex='0 0 50%'
-            flexDirection='column'
-            px={{ base: 5, lg: 14 }}
-            py={5}
-            bgColor='calculator.left_side'
-            onSubmit={methods.handleSubmit(onSubmit)}
-          >
-            <LeftSideCalculator />
+          <Trans
+            i18nKey='calculator.description'
+            components={{
+              p: <Text mb={10} />,
+            }}
+          />
+
+          <Flex className='calculator' flexDirection={{ base: 'column', xl2: 'row' }} overflow='hidden'>
+            <FormProvider {...methods}>
+              <Flex
+                as='form'
+                flex='0 0 50%'
+                flexDirection='column'
+                px={{ base: 5, lg: 14 }}
+                py={5}
+                bgColor='calculator.left_side'
+                onSubmit={methods.handleSubmit(onSubmit)}
+              >
+                <LeftSideCalculator />
+              </Flex>
+            </FormProvider>
+
+            <Flex
+              flex='0 0 50%'
+              flexDirection='column'
+              bgColor='calculator.right_side'
+              color='calculator.right_side_color'
+            >
+              <RightSideCalculator priceTokens={priceTokens} />
+            </Flex>
           </Flex>
-        </FormProvider>
-
-        <Flex flex='0 0 50%' flexDirection='column' bgColor='calculator.right_side' color='calculator.right_side_color'>
-          <RightSideCalculator priceTokens={priceTokens} />
-        </Flex>
+        </Box>
       </Flex>
-    </Box>
+    </>
   )
 }
 const LeftSideCalculator = () => {

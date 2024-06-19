@@ -36,7 +36,6 @@ const Faucet = () => {
           sm: 14,
         }}
       >
-        {import.meta.env.features.calculator && <Calculator />}
         {import.meta.env.features.faucet && <FaucetView amount={faucetAmount} waitHours={waitHours} />}
       </Flex>
     </>
