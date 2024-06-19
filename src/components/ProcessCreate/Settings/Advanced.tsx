@@ -4,14 +4,18 @@ import { useTranslation } from 'react-i18next'
 import { BiCheckDouble } from 'react-icons/bi'
 import { FaUserSecret } from 'react-icons/fa'
 import { HiKey } from 'react-icons/hi2'
-import ModalPro from '../ModalPro'
+import CustomizationModal from '~components/ProcessCreate/Settings/CustomizationModal'
+import { useProcessCreationSteps } from '~components/ProcessCreate/Steps/use-steps'
+import { InfoValues } from '~components/ProcessCreate/StepForm/Info'
 
 const SettingsAdvanced = () => {
+  const { form } = useProcessCreationSteps()
   const { t } = useTranslation()
-  const { register } = useFormContext()
+  const { register, watch } = useFormContext()
   const { isOpen, onOpen, onClose } = useDisclosure()
 
-  const numberOfFeatures = Object.values(import.meta.env.features.vote).filter((value) => value === true).length
+  // Pass election info to customization modal for the preview
+  const electionInfo = watch() as InfoValues
 
   const features =
     import.meta.env.features.vote.anonymous ||
@@ -23,7 +27,7 @@ const SettingsAdvanced = () => {
 
   return (
     <>
-      <ModalPro isOpen={isOpen} onClose={onClose} reason='customization' />
+      <CustomizationModal isOpen={isOpen} onClose={onClose} electionInfo={electionInfo} />
       <Box>
         <Box mb={4}>
           <Text className='process-create-title'>{t('form.process_create.behavior.title')}</Text>
@@ -58,12 +62,11 @@ const SettingsAdvanced = () => {
             </Checkbox>
           )}
           {import.meta.env.features.vote.customization && (
-            <Checkbox variant='radiobox'>
+            <Checkbox variant='radiobox' isChecked={form.isCustomizationSet} onChange={() => {}}>
               <Box>
                 <Icon as={BiCheckDouble} />
                 <Text>{t('form.process_create.behavior.customization.title')}</Text>
               </Box>
-              <Text as='span'>Pro</Text>
               <Text>{t('form.process_create.behavior.customization.description')}</Text>
               <Box onClick={onOpen} />
             </Checkbox>

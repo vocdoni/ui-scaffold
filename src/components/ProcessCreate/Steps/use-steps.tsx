@@ -10,9 +10,11 @@ import { Checks } from './Checks'
 import { Confirm } from './Confirm'
 import { CensusCspValues } from '../StepForm/CensusCsp'
 import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
+import { CustomizationValues } from '~components/ProcessCreate/Settings/CustomizationModal'
 
 export interface StepsFormValues
   extends InfoValues,
+    CustomizationValues,
     QuestionsValues,
     CensusValues,
     CensusWeb3Values,

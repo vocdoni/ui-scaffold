@@ -786,6 +786,22 @@
     },
     "creation_steps_description": "Necessites signar les transaccions per crear el procés de votació a la cadena de blocs de Vocdoni. No tanquis aquesta finestra.",
     "creation_steps_title": "Progrés",
+    "customization": {
+      "color_helper": "",
+      "color_label": "",
+      "description": "",
+      "header_helper": "",
+      "header_label": "",
+      "header_placeholder": "",
+      "logo_helper": "",
+      "logo_label": "",
+      "logo_placeholder": "",
+      "stream_helper": "",
+      "stream_label": "",
+      "stream_placeholder": "",
+      "submit": "",
+      "title": ""
+    },
     "modal_pro": {
       "description": "<p><bold>{{ reason, ucfirst}}</bold> és una funcionalitat Premium</p>",
       "error": "Error en l'enviament del correu electrònic, intenta-ho més tard o contacta'ns a <email>info@vocdoni.org</email>",

@@ -39,6 +39,7 @@ export const StepsForm = ({ steps, children, activeStep, next, prev, setActiveSt
     gpsWeighted: false,
     passportScore: 20,
     stampsUnionType: 'OR',
+    isCustomizationSet: false,
   })
 
   const [isLoadingPreview, setIsLoadingPreview] = useState(false)
