@@ -27,8 +27,6 @@ const viteconfig = ({ mode }) => {
     defaultCensusSize = 5000
   }
 
-  let stripePublicKey = process.env.STRIPE_PUBLIC_KEY || ''
-
   return defineConfig({
     base,
     build: {
@@ -44,7 +42,7 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.EMAILJS_SERVICE_ID': JSON.stringify(process.env.EMAILJS_SERVICE_ID),
       'import.meta.env.EMAILJS_TEMPLATE_ID': JSON.stringify(process.env.EMAILJS_TEMPLATE_ID),
       'import.meta.env.EMAILJS_PUBLIC_ID': JSON.stringify(process.env.EMAILJS_PUBLIC_ID),
-      'import.meta.env.STRIPE_PUBLIC_KEY': JSON.stringify(stripePublicKey),
+      'import.meta.env.STRIPE_PUBLIC_KEY': JSON.stringify(process.env.STRIPE_PUBLIC_KEY || ''),
     },
     plugins: [
       tsconfigPaths(),
