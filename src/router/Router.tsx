@@ -33,7 +33,7 @@ export const RoutesProvider = () => {
   const mainLayoutRoutes: RouteObject[] = [
     {
       index: true,
-      element: <SuspenseLoader>{domains[window.location.hostname] ? <OrganizationView /> : <Home />}</SuspenseLoader>,
+      element: <SuspenseLoader>{domains[window.location.hostname] ? <OrganizationView /> : <Demo />}</SuspenseLoader>,
       loader: async () => {
         if (domains[window.location.hostname]) {
           return client.fetchAccountInfo(domains[window.location.hostname])
@@ -45,7 +45,7 @@ export const RoutesProvider = () => {
       path: 'processes/:id',
       element: (
         <SuspenseLoader>
-          <Demo />
+          <Process />
         </SuspenseLoader>
       ),
       loader: async ({ params }: { params: Params<string> }) => client.fetchElection(params.id),
