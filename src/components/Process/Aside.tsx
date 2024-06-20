@@ -1,13 +1,22 @@
 import { Box, Button, Card, Flex, Link, Text } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { VoteButton as CVoteButton, environment, SpreadsheetAccess, VoteWeight } from '@vocdoni/chakra-components'
+import { environment, SpreadsheetAccess, VoteButton as CVoteButton, VoteWeight } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
-import { dotobject, ElectionStatus, formatUnits, InvalidElection, PublishedElection } from '@vocdoni/sdk'
+import {
+  dotobject,
+  ElectionStatus,
+  formatUnits,
+  InvalidElection,
+  PublishedElection,
+  VocdoniSDKClient,
+} from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 import { CensusMeta } from './Census/CensusType'
+import { useCallback, useState } from 'react'
+import { Wallet } from '@ethersproject/wallet'
 
 const results = (result: number, decimals?: number) =>
   decimals ? parseInt(formatUnits(BigInt(result), decimals), 10) : result
@@ -200,6 +209,8 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
 
   const isWeighted = election?.census.weight !== election?.census.size
 
+  const isBlindCsp = census?.type === 'csp' && election?.meta.csp?.service === 'vocdoni-blind-csp'
+
   return (
     <Flex
       direction={'column'}
@@ -211,7 +222,8 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
       px={{ base: 3, lg2: 0 }}
       {...props}
     >
-      {census?.type !== 'spreadsheet' && !connected && (
+      {isBlindCsp && !connected && <BlindCSPConnect />}
+      {census?.type !== 'spreadsheet' && !isBlindCsp && !connected && (
         <ConnectButton.Custom>
           {({ account, chain, openConnectModal, authenticationStatus, mounted }) => {
             const ready = mounted && authenticationStatus !== 'loading'
@@ -262,6 +274,38 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
         </>
       )}
     </Flex>
+  )
+}
+
+const BlindCSPConnect = () => {
+  const [isLoading, setIsLoading] = useState(false)
+  const { env } = useClient()
+  const { election, setClient, connected, client: cl } = useElection()
+  const connect = useCallback(() => {
+    setIsLoading(true)
+    try {
+      setClient(
+        new VocdoniSDKClient({
+          env,
+          wallet: Wallet.createRandom(),
+          electionId: election?.id,
+        })
+      )
+    } catch (e) {
+      console.warn('Error trying to login with private key ', e)
+      // this should not be required... if it fails, the client should already be the one set
+      setClient(cl)
+    } finally {
+      setIsLoading(false)
+    }
+  }, [env, election?.id])
+
+  return (
+    !cl.wallet && (
+      <Button w={'full'} onClick={connect} isLoading={isLoading}>
+        <Trans i18nKey={'blindcsp.connect'}>Demo connect</Trans>
+      </Button>
+    )
   )
 }
 
