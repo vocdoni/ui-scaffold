@@ -18,11 +18,7 @@ import { Outlet } from 'react-router-dom'
 import OrganizationDashboardMenu from './Menu'
 import fallback from '/assets/default-avatar.png'
 
-export type OrganizationDashboardLayoutProps = {
-  id?: string
-}
-
-const OrganizationDashboardLayout: React.FC = ({ id }: OrganizationDashboardLayoutProps) => {
+const OrganizationDashboardLayout: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { account } = useClient()
 

@@ -37,7 +37,7 @@ const Navbar = () => {
               </ListItem>
             )}
 
-            {exists && (
+            {isConnected && (
               <ListItem>
                 <Button as={ReactRouterLink} to={`/organization`} variant='secondary'>
                   <Icon as={MdHowToVote} boxSize={{ base: 4, sm2: 3 }} />
