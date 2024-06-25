@@ -34,7 +34,7 @@ const OrganizationDashboardLayout: React.FC = ({ id }: OrganizationDashboardLayo
           direction={['column', 'column', 'column', 'row']}
           flexGrow={1}
           py={6}
-          minH='70vh'
+          minH='80vh'
         >
           {account && (
             <>
