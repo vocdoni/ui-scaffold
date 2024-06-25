@@ -1,11 +1,8 @@
 import { useEffect, useRef } from 'react'
+import { AppTitle } from '~constants'
 
 export function useDocumentTitle(title?: string) {
-  const defaultTitleRef = useRef(
-    import.meta.env.theme === 'onvote'
-      ? 'ONVOTE - Anonymous Gasless and Modular voting for Web3'
-      : 'Vocdoni - The voice of digital voting'
-  )
+  const defaultTitleRef = useRef(AppTitle)
 
   useEffect(() => {
     if (title) {
