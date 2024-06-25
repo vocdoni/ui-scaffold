@@ -1,6 +1,5 @@
 import { Flex } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
-import Calculator from '~components/Calculator'
 import { FaucetView } from '~components/Faucet/FaucetView'
 import { useFaucet } from '~components/Faucet/use-faucet'
 
@@ -26,16 +25,7 @@ const Faucet = () => {
 
   return (
     <>
-      <Flex
-        direction='column'
-        gap={4}
-        mt={10}
-        mb={44}
-        px={{
-          base: 10,
-          sm: 14,
-        }}
-      >
+      <Flex direction='column' gap={4} mt={10} mb={44} className='site-wrapper'>
         {import.meta.env.features.faucet && <FaucetView amount={faucetAmount} waitHours={waitHours} />}
       </Flex>
     </>

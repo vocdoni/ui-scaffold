@@ -1,12 +1,19 @@
 import {
   Box,
   Button,
+  Link as ChakraLink,
   Checkbox,
   Flex,
   FormControl,
   FormLabel,
   Heading,
-  Link as ChakraLink,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   NumberDecrementStepper,
   NumberIncrementStepper,
   NumberInput,
@@ -21,6 +28,7 @@ import {
   TabPanels,
   Tabs,
   Text,
+  useDisclosure,
 } from '@chakra-ui/react'
 import { useClient } from '@vocdoni/react-providers'
 import { Election, PlainCensus } from '@vocdoni/sdk'
@@ -36,6 +44,7 @@ import { generatePath, Link } from 'react-router-dom'
 const Calculator = () => {
   const { t } = useTranslation()
   const { client } = useClient()
+
   const [priceTokens, setPriceTokens] = useState(0)
   const methods = useForm({
     defaultValues: {
@@ -77,17 +86,8 @@ const Calculator = () => {
   }
   return (
     <>
-      <Flex
-        direction='column'
-        gap={4}
-        mt={10}
-        mb={44}
-        px={{
-          base: 10,
-          sm: 14,
-        }}
-      >
-        <Box width={'80%'} mx='auto' mb={20}>
+      <Flex direction='column' gap={4} className='site-wrapper'>
+        <Box mx='auto' mb={20}>
           <Heading as={'h2'} mb={10} className='brand-theme' size={'xl'} textTransform='uppercase'>
             {t('calculator.title')}
           </Heading>
@@ -99,7 +99,7 @@ const Calculator = () => {
             }}
           />
 
-          <Flex className='calculator' flexDirection={{ base: 'column', xl2: 'row' }} overflow='hidden'>
+          <Flex className='calculator' flexDirection={{ base: 'column', xl: 'row' }} overflow='hidden'>
             <FormProvider {...methods}>
               <Flex
                 as='form'
@@ -109,6 +109,7 @@ const Calculator = () => {
                 py={5}
                 bgColor='calculator.left_side'
                 onSubmit={methods.handleSubmit(onSubmit)}
+                mx='auto'
               >
                 <LeftSideCalculator />
               </Flex>
@@ -120,7 +121,9 @@ const Calculator = () => {
               bgColor='calculator.right_side'
               color='calculator.right_side_color'
             >
-              <RightSideCalculator priceTokens={priceTokens} />
+              <Flex flexDirection='column' maxW='700px' mx={{ base: 'auto', xl: '0' }}>
+                <RightSideCalculator priceTokens={priceTokens} />
+              </Flex>
             </Flex>
           </Flex>
         </Box>
@@ -336,7 +339,7 @@ const RightSideCalculator = ({ priceTokens }: { priceTokens: number }) => {
 
   return (
     <Tabs flexGrow={1} variant='soft-rounded' colorScheme='whiteAlpha' display='flex' flexDirection='column'>
-      <TabList justifyContent='center' alignItems='center' flexWrap='wrap' gap={5} py={5}>
+      <TabList justifyContent='center' alignItems='center' flexWrap='wrap' gap={5} py={5} px={2}>
         <Tab display='flex' alignItems='center' gap={1} border='1px solid white' color='white' py={1}>
           <PiNumberSquareOneLight />
           {t('calculator.one_time')}
@@ -370,28 +373,8 @@ const RightSideCalculator = ({ priceTokens }: { priceTokens: number }) => {
             </Flex>
           </Box>
           <Box mt='auto'>
-            <Flex
-              justifyContent='center'
-              flexDirection={{ base: 'column', sm2: 'row' }}
-              alignItems='center'
-              gap={5}
-              mt={8}
-              mb={5}
-            >
-              <Button
-                variant='secondary'
-                as={Link}
-                to={generatePath('/stripe/checkout/:amount', { amount: stripeAmount })}
-                isDisabled={!totalPrice || !import.meta.env.STRIPE_PUBLIC_KEY.length}
-              >
-                <FaCcStripe />
-                {t('calculator.buy_with_card')}
-              </Button>
-              <Button variant='secondary' isDisabled={!totalPrice}>
-                <FaEthereum />
-                {t('calculator.buy_with_crypto')}
-              </Button>
-            </Flex>
+            <BuyBtns priceTokens={priceTokens} stripeAmount={stripeAmount} totalPrice={totalPrice} />
+
             <Text fontSize='14px' textAlign='center'>
               <Trans
                 i18nKey='calculator.contact'
@@ -403,8 +386,8 @@ const RightSideCalculator = ({ priceTokens }: { priceTokens: number }) => {
           </Box>
         </TabPanel>
 
-        <TabPanel flexGrow={1} display='flex' flexDirection='column' px={{ base: 5, lg: 14 }}>
-          <Flex mb={3}>
+        <TabPanel flexGrow={1} display='flex' flexDirection='column'>
+          <Flex mb={3} px={{ base: 5, lg: 14 }}>
             <Text flex='1 1 33%' textAlign='start' textTransform='uppercase'>
               {t('calculator.package')}
             </Text>
@@ -423,6 +406,7 @@ const RightSideCalculator = ({ priceTokens }: { priceTokens: number }) => {
               if (e === '4') setRadio(packages['50k'])
               if (e === '5') setRadio(packages['100k'])
             }}
+            px={{ base: 5, lg: 14 }}
           >
             <Stack>
               <Flex gap={2}>
@@ -499,23 +483,7 @@ const RightSideCalculator = ({ priceTokens }: { priceTokens: number }) => {
             </Stack>
           </RadioGroup>
           <Box mt='auto'>
-            <Flex
-              flexDirection={{ base: 'column', sm2: 'row' }}
-              alignItems='center'
-              justifyContent='center'
-              gap={5}
-              mt={8}
-              mb={5}
-            >
-              <Button variant='secondary' isDisabled={!radio}>
-                <FaCcStripe />
-                {t('calculator.buy_with_card')}
-              </Button>
-              <Button variant='secondary' isDisabled={!radio}>
-                <FaEthereum />
-                {t('calculator.buy_with_crypto')}
-              </Button>
-            </Flex>
+            <BuyBtns priceTokens={priceTokens} stripeAmount={stripeAmount} totalPrice={totalPrice} />
             <Text fontSize='14px' textAlign='center'>
               <Trans
                 i18nKey='calculator.more_tokens'
@@ -532,7 +500,7 @@ const RightSideCalculator = ({ priceTokens }: { priceTokens: number }) => {
             <Trans
               i18nKey='calculator.recurring_description'
               components={{
-                p: <Text />,
+                p: <Text mb={2} />,
               }}
             />
           </Flex>
@@ -554,6 +522,99 @@ const RightSideCalculator = ({ priceTokens }: { priceTokens: number }) => {
         </TabPanel>
       </TabPanels>
     </Tabs>
+  )
+}
+
+const EnoughTokensModal = ({
+  isOpen,
+  onClose,
+  totalPrice,
+  stripeAmount,
+}: {
+  isOpen: boolean
+  onClose: () => void
+  totalPrice: number
+  stripeAmount: string
+}) => {
+  const { t } = useTranslation()
+
+  return (
+    <Modal isOpen={isOpen} onClose={onClose}>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>Enough Tokens</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+          <Text textAlign='center'>You have enough tokens for the election.</Text>
+          <Text textAlign='center'>Do you still want to buy anyway?</Text>
+        </ModalBody>
+
+        <ModalFooter>
+          <Button
+            as={Link}
+            to={generatePath('/stripe/checkout/:amount', { amount: stripeAmount })}
+            isDisabled={!totalPrice || !import.meta.env.STRIPE_PUBLIC_KEY.length}
+          >
+            <FaCcStripe />
+            {t('calculator.buy_with_card')}
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+  )
+}
+
+const BuyBtns = ({
+  priceTokens,
+  totalPrice,
+  stripeAmount,
+}: {
+  priceTokens: number
+  totalPrice: number
+  stripeAmount: string
+}) => {
+  const { t } = useTranslation()
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { account } = useClient()
+
+  return (
+    <>
+      <Flex
+        flexDirection={{ base: 'column', sm2: 'row' }}
+        alignItems='center'
+        justifyContent='center'
+        gap={5}
+        mt={8}
+        mb={5}
+      >
+        <Flex flexDirection='column' alignItems='center' justifyContent='center' gap={1}>
+          <Button
+            variant='secondary'
+            onClick={() => {
+              if (account && account?.balance < priceTokens) {
+                onOpen()
+              }
+            }}
+            as={Link}
+            to={generatePath('/stripe/checkout/:amount', { amount: stripeAmount })}
+            isDisabled={!totalPrice || !import.meta.env.STRIPE_PUBLIC_KEY.length}
+            target='_blank'
+          >
+            <FaCcStripe />
+            {t('calculator.buy_with_card')}
+          </Button>
+          <Text as='span'>Min. 100 tokens</Text>
+        </Flex>
+        <Flex flexDirection='column' alignItems='center' justifyContent='center' gap={1}>
+          <Button variant='secondary' isDisabled={true}>
+            <FaEthereum />
+            {t('calculator.buy_with_crypto')}
+          </Button>
+          <Text as='span'>Coming soon</Text>
+        </Flex>
+      </Flex>
+      <EnoughTokensModal isOpen={isOpen} onClose={onClose} totalPrice={totalPrice} stripeAmount={stripeAmount} />
+    </>
   )
 }
 

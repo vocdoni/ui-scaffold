@@ -1,4 +1,4 @@
-import { Box, Card, CardBody, Flex, Grid, GridItem, Heading, Text } from '@chakra-ui/react'
+import { Box, Card, CardBody, Grid, GridItem, Heading, Text } from '@chakra-ui/react'
 import { useClient } from '@vocdoni/react-providers'
 import { Trans, useTranslation } from 'react-i18next'
 import { Claim } from '~components/Faucet/Claim'
@@ -16,7 +16,7 @@ export const FaucetView = ({ amount, waitHours }: FaucetViewProps) => {
     <>
       <Grid templateColumns={'repeat(1, 1fr)'} gap={2}>
         <GridItem display='flex' justifyContent='center' alignItems='center'>
-          <Box width={'80%'}>
+          <Box>
             <Heading as={'h2'} className='brand-theme' size={'xl'} textTransform='uppercase'>
               {t('faucet.title')}
             </Heading>
@@ -26,7 +26,7 @@ export const FaucetView = ({ amount, waitHours }: FaucetViewProps) => {
           </Box>
         </GridItem>
         <GridItem display='flex' justifyContent='center' alignItems='center'>
-          <Card width={'80%'}>
+          <Card minWidth={'100%'}>
             <CardBody display='flex' flexDir='column' gap={3}>
               <Heading as={'h2'} className='brand-theme' size={'sm'} textTransform='uppercase'>
                 {t('faucet.request_tokens.title')}
@@ -43,7 +43,7 @@ export const FaucetView = ({ amount, waitHours }: FaucetViewProps) => {
           </Card>
         </GridItem>
         <GridItem display='flex' justifyContent='center' alignItems='center' mt={10}>
-          <Card width={'80%'}>
+          <Card minWidth={'100%'}>
             <CardBody display='flex' flexDir='column' gap={3}>
               <Heading as={'h2'} className='brand-theme' size={'sm'} textTransform='uppercase'>
                 {t('faucet.general_information.title')}
