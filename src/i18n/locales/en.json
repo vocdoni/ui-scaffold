@@ -134,6 +134,14 @@
       "selected_users": "Selected users:"
     }
   },
+  "dashboard": {
+    "card": {
+      "finish": "Finish",
+      "finished": "Finished",
+      "started": "Started",
+      "starts": "Starts"
+    }
+  },
   "error": {
     "go_back": "Go back",
     "invalid_cell_data": "Some rows do not contain correct addresses: {{rows,list(style:short)}}",
@@ -196,8 +204,7 @@
       "avatar_helper": "Image/logo of your organization",
       "avatar_placeholder": "Image URL",
       "btn": "Save",
-      "footer": "Modifying your organization will prompt a signature request, incurring a cost of 1 token",
-      "title": "Edit Organization"
+      "footer": "Modifying your organization will prompt a signature request, incurring a cost of 1 token"
     },
     "error": {
       "address_already_in_use": "Address already in use",
@@ -649,6 +656,8 @@
   "open_in_explorer": "Open in explorer",
   "organization": {
     "avatar_alt": "Avatar image of {{ name }} organization",
+    "create_org": "Create Organization",
+    "date_format": "MMMM d - yyyy (H:mm)",
     "elections": "Votings",
     "elections_list_empty": {
       "alt": "Image illustrating that the organization is empty",
@@ -656,21 +665,19 @@
       "not_owner": "This organization has no voting processes yet",
       "title": "Create your first voting process"
     },
-    "latest_votings": "Latest votings",
     "menu": {
       "dashboard": "Dashboard",
       "edit_my_organization": "My entity",
       "votings": "Votings"
     },
+    "my_entity": "My entity",
     "overview": "Overview",
     "required_signin": "You must sign in first",
     "title": {
-      "edit": "Edit organization",
       "read_more": "Expand title"
     },
-    "view_public_profile": "View public profile",
-    "voting_processes": "{{votes}} voting processes",
-    "votings": "Votings",
+    "voting_processes_one": "{{ count }} voting process",
+    "voting_processes_other": "{{ count }} voting processes",
     "votings_overview": "Votings overview"
   },
   "process": {

@@ -138,6 +138,14 @@
       "selected_users": "Usuarios seleccionados:"
     }
   },
+  "dashboard": {
+    "card": {
+      "finish": "Termina",
+      "finished": "Terminado",
+      "started": "Empezado",
+      "starts": "Empieza"
+    }
+  },
   "error": {
     "go_back": "Volver atrás",
     "invalid_cell_data": "Algunas filas no contienen direcciones correctas: {{rows, list}}",
@@ -200,8 +208,7 @@
       "avatar_helper": "Imagen/logotipo de tu organización",
       "avatar_placeholder": "URL de la imagen",
       "btn": "Guardar",
-      "footer": "Editar tu organización generará una solicitud de firma, con un coste de 1 token",
-      "title": "Editar Organización"
+      "footer": "Editar tu organización generará una solicitud de firma, con un coste de 1 token"
     },
     "error": {
       "address_already_in_use": "Esta dirección ya está en el censo",
@@ -657,29 +664,30 @@
   "open_in_explorer": "Abrir en explorador",
   "organization": {
     "avatar_alt": "Imagen de avatar de la organización {{ name }}",
+    "create_org": "Crear Organización",
+    "date_format": "MMMM d - yyyy (H:mm)",
     "elections": "Elecciones",
     "elections_list_empty": {
       "alt": "Imagen que ilustra que la organización está vacía",
-      "description": "Al comenzar haciendo tu primera votación, puedes elegir entre diferentes tipos de autenticación para tu voto.",
+      "description": "Como organizador, tienes la capacidad de crear procesos de votación personalizados para tu comunidad. Estos procedimientos de votación ofrecen una amplia gama de flexibilidad, incluyendo opciones como un censo donde los votantes deben autenticarse utilizando datos personalizados (como nombre de usuario, contraseña y fecha de nacimiento), un sistema basado en tokens que permite la participación de todos los titulares de tokens o una lista blanca que utiliza direcciones de cartera para la elegibilidad.",
       "not_owner": "Esta organización aún no tiene votaciones.",
       "title": "Crea tu primer proceso de votación"
     },
-    "latest_votings": "Latest votings",
     "menu": {
       "dashboard": "Dashboard",
       "edit_my_organization": "Mi entidad",
       "votings": "Votaciones"
     },
-    "overview": "Overview",
-    "required_signin": "You must sign in first",
+    "my_entity": "Mi entidad",
+    "overview": "Visión general",
+    "required_signin": "Primero debes iniciar sesión",
     "title": {
-      "edit": "Editar organización",
       "read_more": "Expandir título"
     },
-    "view_public_profile": "View public profile",
-    "voting_processes": "{{votes}} voting processes",
-    "votings": "Votings",
-    "votings_overview": "Votings overview"
+    "voting_processes_one": "{{ count }} proceso de votación",
+    "voting_processes_many": "",
+    "voting_processes_other": "{{ count }} procesos de votación",
+    "votings_overview": "Visión general de les votaciones"
   },
   "process": {
     "census": "Censo",
