@@ -39,7 +39,7 @@ import { AiOutlinePercentage } from 'react-icons/ai'
 import { FaCcStripe, FaEthereum } from 'react-icons/fa'
 import { MdOutlineLoop } from 'react-icons/md'
 import { PiNumberSquareOneLight } from 'react-icons/pi'
-import { generatePath, Link } from 'react-router-dom'
+import { generatePath, Link, useNavigate } from 'react-router-dom'
 
 const Calculator = () => {
   const { t } = useTranslation()
@@ -574,6 +574,7 @@ const BuyBtns = ({
   stripeAmount: string
 }) => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { account } = useClient()
 
@@ -593,12 +594,13 @@ const BuyBtns = ({
             onClick={() => {
               if (account && account?.balance < priceTokens) {
                 onOpen()
+              } else {
+                navigate(generatePath('/stripe/checkout/:amount', { amount: stripeAmount }))
               }
             }}
             as={Link}
             to={generatePath('/stripe/checkout/:amount', { amount: stripeAmount })}
-            isDisabled={!totalPrice || !import.meta.env.STRIPE_PUBLIC_KEY.length}
-            target='_blank'
+            isDisabled={!totalPrice}
           >
             <FaCcStripe />
             {t('calculator.buy_with_card')}
