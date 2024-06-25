@@ -10,6 +10,7 @@ if (['stg', 'dev'].includes(evocdoni)) {
   explorer = `https://${evocdoni}.explorer.vote`
 }
 
+export const AppTitle = import.meta.env.title
 export const ExplorerBaseURL = explorer
 export const VocdoniEnvironment = evocdoni
 export const CensusPreviewRowsLimit = 10

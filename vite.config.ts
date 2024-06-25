@@ -2,10 +2,10 @@ import react from '@vitejs/plugin-react'
 import { execSync } from 'node:child_process'
 import { defineConfig, loadEnv } from 'vite'
 import { createHtmlPlugin } from 'vite-plugin-html'
+import svgr from 'vite-plugin-svgr'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import features from './vite/features'
 import themes from './vite/themes'
-import svgr from 'vite-plugin-svgr'
 
 // https://vitejs.dev/config/
 const viteconfig = ({ mode }) => {
@@ -27,6 +27,11 @@ const viteconfig = ({ mode }) => {
     defaultCensusSize = 5000
   }
 
+  const title =
+    process.env.APP_TITLE || process.env.THEME === 'onvote'
+      ? 'ONVOTE - Anonymous Gasless and Modular voting for Web3'
+      : 'Vocdoni - The voice of digital voting'
+
   return defineConfig({
     base,
     build: {
@@ -42,6 +47,7 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.EMAILJS_SERVICE_ID': JSON.stringify(process.env.EMAILJS_SERVICE_ID),
       'import.meta.env.EMAILJS_TEMPLATE_ID': JSON.stringify(process.env.EMAILJS_TEMPLATE_ID),
       'import.meta.env.EMAILJS_PUBLIC_ID': JSON.stringify(process.env.EMAILJS_PUBLIC_ID),
+      'import.meta.env.title': JSON.stringify(title),
     },
     plugins: [
       tsconfigPaths(),
@@ -58,6 +64,7 @@ const viteconfig = ({ mode }) => {
         inject: {
           data: {
             commit: commit.trim(),
+            title,
           },
         },
       }),
