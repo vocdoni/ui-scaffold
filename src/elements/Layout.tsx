@@ -9,9 +9,9 @@ const Layout = () => {
       <HStack as='header' position='sticky' top={0} w='full' backdropFilter='blur(40px)' zIndex={30}>
         <Navbar />
       </HStack>
-      <Box as='main' flexGrow={1}>
+      <Flex flexDirection='column' as='main' flexGrow={1}>
         <Outlet />
-      </Box>
+      </Flex>
       <Box as='footer' mt='auto'>
         <Footer />
       </Box>

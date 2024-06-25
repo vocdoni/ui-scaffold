@@ -21,7 +21,6 @@ import { HiShoppingCart } from 'react-icons/hi'
 import { MdOutlineLogout } from 'react-icons/md'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useDisconnect } from 'wagmi'
-import { useOrganizationModal } from '~components/Organization/OrganizationModalProvider'
 import { addressTextOverflow } from '~constants'
 import { LanguagesList } from './LanguagesList'
 
@@ -32,8 +31,6 @@ const MenuDropdown = () => {
   const { onCopy } = useClipboard(account?.address as string)
 
   const [isOpenMenuLanguages, setIsOpenMenuLanguages] = useState(false)
-
-  const { onOpen } = useOrganizationModal()
 
   return (
     <MenuList
@@ -115,7 +112,10 @@ const MenuDropdown = () => {
               )}
             </Flex>
           </MenuItem>
-          <MenuItem onClick={onOpen}>{t('menu.organization')}</MenuItem>
+
+          <MenuItem as={ReactRouterLink} to='organization/edit'>
+            {t('menu.organization')}
+          </MenuItem>
         </>
       )}
 

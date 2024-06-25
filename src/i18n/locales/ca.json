@@ -138,6 +138,14 @@
       "selected_users": "Usuaris seleccionats:"
     }
   },
+  "dashboard": {
+    "card": {
+      "finish": "Acaba",
+      "finished": "Acabat",
+      "started": "Començat",
+      "starts": "Comença"
+    }
+  },
   "error": {
     "go_back": "Torna enrere",
     "invalid_cell_data": "Algunes fileres no contenen adreces correctes: {{rows, list}}",
@@ -200,8 +208,7 @@
       "avatar_helper": "Imatge/logotip de la teva organització",
       "avatar_placeholder": "URL de la imatge",
       "btn": "Desar",
-      "footer": "Modificar la teva organització generarà una sol·licitud de signatura, amb un cost de 1 token",
-      "title": "Editar Orgnaització"
+      "footer": "Modificar la teva organització generarà una sol·licitud de signatura, amb un cost de 1 token"
     },
     "error": {
       "address_already_in_use": "Aquesta adreça ja és al cens",
@@ -657,6 +664,8 @@
   "open_in_explorer": "Obre a l'explorador",
   "organization": {
     "avatar_alt": "Imatge d'avatar de l'organització {{ name }}",
+    "create_org": "Crear Organitzaciò",
+    "date_format": "MMMM d - yyyy (H:mm)",
     "elections": "Votacions",
     "elections_list_empty": {
       "alt": "Imatge il·lustrant que l'organització és buida",
@@ -664,22 +673,21 @@
       "not_owner": "Aquesta organització encara no té votacions.",
       "title": "Crea la teva primera elecció"
     },
-    "latest_votings": "Latest votings",
     "menu": {
       "dashboard": "Dashboard",
       "edit_my_organization": "La meva entitat",
       "votings": "Votacions"
     },
-    "overview": "Overview",
-    "required_signin": "You must sign in first",
+    "my_entity": "La meva entitat",
+    "overview": "Visió general",
+    "required_signin": "Primer has d'iniciar sessió",
     "title": {
-      "edit": "Editar organització",
       "read_more": "Expandir títol"
     },
-    "view_public_profile": "View public profile",
-    "voting_processes": "{{votes}} voting processes",
-    "votings": "Votings",
-    "votings_overview": "Votings overview"
+    "voting_processes_one": "{{ count }} procés de votació",
+    "voting_processes_many": "",
+    "voting_processes_other": "{{ count }} processos de votació",
+    "votings_overview": "Visió general de les votacions"
   },
   "process": {
     "census": "Cens",

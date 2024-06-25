@@ -110,6 +110,32 @@ const goBack = defineStyle({
   },
 })
 
+const dashboard = defineStyle((props) => {
+  const { colorScheme } = props
+  return {
+    borderRadius: 'lg',
+    py: 6,
+
+    _hover: {
+      bgColor: `${colorScheme}.300`,
+      color: 'white',
+
+      _disabled: {
+        color: 'gray.800',
+      },
+    },
+
+    _active: {
+      bgColor: `${colorScheme}.500`,
+      color: 'white',
+
+      _disabled: {
+        bgColor: `${colorScheme}.500`,
+        color: 'white',
+      },
+    },
+  }
+})
 export const Button = defineStyleConfig({
   defaultProps: {
     colorScheme: 'primary',
@@ -117,6 +143,7 @@ export const Button = defineStyleConfig({
   variants: {
     'address-dropdown': addressDropdown,
     'close-form': closeForm,
+    dashboard,
     outline,
     ghost,
     solid,

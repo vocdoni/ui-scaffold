@@ -1,20 +1,16 @@
 import { AspectRatio, Box, Flex, IconButton } from '@chakra-ui/react'
 import { OrganizationImage as Avatar, OrganizationDescription, OrganizationName } from '@vocdoni/chakra-components'
 import { useClient, useOrganization } from '@vocdoni/react-providers'
-import { areEqualHexStrings } from '@vocdoni/sdk'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
-import { IoMdCreate } from 'react-icons/io'
 import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
 import AddressBtn from './Address'
-import { useOrganizationModal } from './OrganizationModalProvider'
 import fallback from '/assets/default-avatar.png'
 
 const OrganizationHeader = () => {
   const { t } = useTranslation()
   const { organization } = useOrganization()
-  const { onOpen } = useOrganizationModal()
   const { account } = useClient()
 
   const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(
@@ -95,16 +91,6 @@ const OrganizationHeader = () => {
                   title={t('organization.title.read_more')}
                   aria-label={t('organization.title.read_more')}
                   onClick={handleReadMore}
-                />
-              )}
-              {areEqualHexStrings(account?.address, organization?.address) && (
-                <IconButton
-                  icon={<IoMdCreate />}
-                  alignSelf='start'
-                  variant='transparent'
-                  title={t('organization.title.edit')}
-                  aria-label={t('organization.title.edit')}
-                  onClick={onOpen}
                 />
               )}
             </Box>
