@@ -322,6 +322,8 @@
       "question": {
         "add_new_option": "Add option",
         "add_question": "Add question",
+        "approval_description": "With approval voting only one question with multiple choices can be added. The choice with most votes will win.",
+        "approval_title": "Add a question",
         "delete_option": "Delete option number {{ option }} in question {{ question }}",
         "description": "Enter each question along with the possible choices for your voters. Remember, you're free to include numerous questions, each with distinct options.",
         "description_placeholder": "Write here a description of the question (optional)",

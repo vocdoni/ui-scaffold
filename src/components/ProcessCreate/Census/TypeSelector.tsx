@@ -10,8 +10,9 @@ import {
   CensusTypeWeb3,
 } from '~components/Process/Census/CensusType'
 import { CspCensus, GitcoinCensus, SpreadsheetCensus, TokenCensus, Web3Census } from '../StepForm/Censuses'
+import { GenericFeatureObject } from '~components/ProcessCreate/Steps/TabsPage'
 
-export const useCensusTypes = () => {
+export const useCensusTypes = (): GenericFeatureObject<CensusType> => {
   const { t } = useTranslation()
 
   return {
