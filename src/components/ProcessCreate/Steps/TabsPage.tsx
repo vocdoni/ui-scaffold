@@ -1,7 +1,7 @@
 import { TabProps } from '@chakra-ui/tabs/dist/tab'
 import { Box, Flex, Icon, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useDisclosure } from '@chakra-ui/react'
 import { Check } from '~theme/icons'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useState } from 'react'
 import ModalPro from '~components/ProcessCreate/ModalPro'
 import { CgMoreO } from 'react-icons/cg'
@@ -153,7 +153,15 @@ const TabCardSkeleton = ({
       )}
       <Box id={'title'}>
         <Icon as={icon} />
-        <Text>{title}</Text>
+        <Text>
+          <Trans
+            components={{
+              p: <Text />,
+            }}
+          >
+            {title}
+          </Trans>
+        </Text>
       </Box>
       <Text id={'description'}>{description}</Text>
     </Tab>
