@@ -328,6 +328,8 @@
       "question": {
         "add_new_option": "Afegeix opció",
         "add_question": "Afegeix pregunta",
+        "approval_description": "Amb la votació d'aprovació, només es pot afegir una pregunta amb múltiples opcions. L'opció amb més vots guanyarà.",
+        "approval_title": "Afegir una pregunta",
         "delete_option": "Eliminar opció número {{ option }} de la pregunta {{ question }}",
         "description": "Afegeix les preguntes juntament amb les opcions que els teus votants hauran de triar. Tens la flexibilitat d'afegir diverses preguntes, cadascuna amb un nombre personalitzat d'opcions seleccionables.",
         "description_placeholder": "Escriu aquí una descripció de la pregunta (opcional)",

@@ -32,6 +32,7 @@ export const StepsForm = ({ steps, children, activeStep, next, prev, setActiveSt
     resultsType: {
       name: ElectionResultsTypeNames.SINGLE_CHOICE_MULTIQUESTION,
     },
+    questionType: 'single',
     maxVoteOverwrites: 0,
     weightedVote: false,
     questions: [{ options: [{}, {}] }],

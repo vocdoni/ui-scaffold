@@ -19,6 +19,7 @@ import {
 import { Button } from '@vocdoni/chakra-components'
 import { ElectionProvider, errorToString, useClient } from '@vocdoni/react-providers'
 import {
+  ApprovalElection,
   Census3CreateStrategyToken,
   CspCensus,
   Election,
@@ -99,7 +100,16 @@ export const Confirm = () => {
         ...electionFromForm(form),
         census,
       }
-      const election = Election.from(params)
+
+      let election: UnpublishedElection
+      switch (form.questionType) {
+        case 'approval':
+          election = ApprovalElection.from(params)
+          break
+        case 'single':
+        default:
+          election = Election.from(params)
+      }
 
       for await (const step of client.createElectionSteps(election)) {
         switch (step.key) {
