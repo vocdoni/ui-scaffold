@@ -100,6 +100,11 @@ export const colors = {
     },
     election_list_empty_bg: colorsBase.gray.dark2,
     go_back_btn: colorsBase.primary.main,
+    tabs: {
+      color: colorsBase.primary.main,
+      color_active: colorsBase.white.pure,
+      bg_active: colorsBase.primary.main,
+    },
   },
 
   process: {

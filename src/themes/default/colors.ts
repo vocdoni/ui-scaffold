@@ -122,6 +122,11 @@ export const colors = {
       footer_bg: colorsBase.gray.light2,
     },
     election_list_empty_bg: colorsBase.gray.dark,
+    tabs: {
+      color: colorsBase.primary,
+      color_active: colorsBase.white.pure,
+      bg_active: colorsBase.primary,
+    },
   },
 
   process: {
