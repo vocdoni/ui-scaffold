@@ -1,12 +1,12 @@
 import {
   Box,
   Button,
-  Link as ChakraLink,
   Checkbox,
   Flex,
   FormControl,
   FormLabel,
   Heading,
+  Link,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -30,6 +30,7 @@ import {
   Text,
   useDisclosure,
 } from '@chakra-ui/react'
+import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { useClient } from '@vocdoni/react-providers'
 import { Election, PlainCensus } from '@vocdoni/sdk'
 import { useState } from 'react'
@@ -39,13 +40,16 @@ import { AiOutlinePercentage } from 'react-icons/ai'
 import { FaCcStripe, FaEthereum } from 'react-icons/fa'
 import { MdOutlineLoop } from 'react-icons/md'
 import { PiNumberSquareOneLight } from 'react-icons/pi'
-import { generatePath, Link, useNavigate } from 'react-router-dom'
+import { generatePath, Link as ReactRouterLink, useNavigate } from 'react-router-dom'
+import { useAccount } from 'wagmi'
 
 const Calculator = () => {
   const { t } = useTranslation()
   const { client } = useClient()
 
+  const [tabIndex, setTabIndex] = useState(0)
   const [priceTokens, setPriceTokens] = useState(0)
+
   const methods = useForm({
     defaultValues: {
       censusSize: 100,
@@ -83,6 +87,7 @@ const Calculator = () => {
     const price = await client.calculateElectionCost(election)
 
     setPriceTokens(price * form.numberElections)
+    setTabIndex(0)
   }
   return (
     <>
@@ -98,34 +103,57 @@ const Calculator = () => {
               p: <Text mb={10} />,
             }}
           />
-
-          <Flex className='calculator' flexDirection={{ base: 'column', xl: 'row' }} overflow='hidden'>
-            <FormProvider {...methods}>
-              <Flex
-                as='form'
-                flex='0 0 50%'
-                flexDirection='column'
-                px={{ base: 5, lg: 14 }}
-                py={5}
-                bgColor='calculator.left_side'
-                onSubmit={methods.handleSubmit(onSubmit)}
-                mx='auto'
-              >
-                <LeftSideCalculator />
-              </Flex>
-            </FormProvider>
+          <Tabs variant='calculator' onChange={(index) => setTabIndex(index)} index={tabIndex}>
+            <TabList>
+              <Tab>
+                <PiNumberSquareOneLight />
+                {t('calculator.one_time')}
+              </Tab>
+              <Tab>
+                <AiOutlinePercentage />
+                {t('calculator.packages')}
+              </Tab>
+              <Tab>
+                <MdOutlineLoop />
+                {t('calculator.recurring')}
+              </Tab>
+            </TabList>
 
             <Flex
-              flex='0 0 50%'
-              flexDirection='column'
-              bgColor='calculator.right_side'
-              color='calculator.right_side_color'
+              className='calculator'
+              flexDirection={{ base: 'column', xl: 'row' }}
+              overflow='hidden'
+              maxW={{ base: '600px', xl: 'none' }}
+              mx='auto'
+              mb='100px'
             >
-              <Flex flexDirection='column' maxW='700px' mx={{ base: 'auto', xl: '0' }}>
-                <RightSideCalculator priceTokens={priceTokens} />
+              <FormProvider {...methods}>
+                <Flex
+                  as='form'
+                  onSubmit={methods.handleSubmit(onSubmit)}
+                  flexGrow={1}
+                  flexShrink={0}
+                  flexBasis={{ base: '100%', xl: '50%' }}
+                  flexDirection='column'
+                  px={{ base: 5, lg: 14 }}
+                  py='16px'
+                  bgColor='calculator.left_side'
+                >
+                  <LeftSideCalculator />
+                </Flex>
+              </FormProvider>
+              <Flex
+                flexDirection='column'
+                flexGrow={1}
+                flexShrink={0}
+                flexBasis={{ base: '100%', xl: '50%' }}
+                bgColor='calculator.right_side'
+                color='calculator.right_side_color'
+              >
+                <RightSideCalculator priceTokens={priceTokens} tabIndex={tabIndex} />
               </Flex>
             </Flex>
-          </Flex>
+          </Tabs>
         </Box>
       </Flex>
     </>
@@ -318,7 +346,7 @@ const LeftSideCalculator = () => {
     </>
   )
 }
-const RightSideCalculator = ({ priceTokens }: { priceTokens: number }) => {
+const RightSideCalculator = ({ priceTokens, tabIndex }: { priceTokens: number; tabIndex: number }) => {
   const { t } = useTranslation()
 
   const pricePerToken = 0.15
@@ -338,190 +366,177 @@ const RightSideCalculator = ({ priceTokens }: { priceTokens: number }) => {
   const [radio, setRadio] = useState(0)
 
   return (
-    <Tabs flexGrow={1} variant='soft-rounded' colorScheme='whiteAlpha' display='flex' flexDirection='column'>
-      <TabList justifyContent='center' alignItems='center' flexWrap='wrap' gap={5} py={5} px={2}>
-        <Tab display='flex' alignItems='center' gap={1} border='1px solid white' color='white' py={1}>
-          <PiNumberSquareOneLight />
-          {t('calculator.one_time')}
-        </Tab>
-        <Tab display='flex' alignItems='center' gap={1} border='1px solid white' color='white' py={1}>
-          <AiOutlinePercentage />
-          {t('calculator.packages')}
-        </Tab>
-        <Tab display='flex' alignItems='center' gap={1} border='1px solid white' color='white' py={1}>
-          <MdOutlineLoop />
-          {t('calculator.recurring')}
-        </Tab>
-      </TabList>
-      <TabPanels flexGrow={1} display='flex' flexDirection='column'>
-        <TabPanel flexGrow={1} display='flex' flexDirection='column'>
-          <Box px={{ base: 5, lg: 14 }}>
-            <Flex justifyContent='space-between' mb={3}>
-              <Text>{t('calculator.voting_process_cost')}</Text>
-              <Text fontWeight='bold'>{priceTokens} tokens</Text>
-            </Flex>
-            <Flex justifyContent='space-between' mb={8}>
-              <Text>{t('calculator.price_per_token')}</Text>
-              <Text fontWeight='bold'>0.15 €</Text>
-            </Flex>
-            <Flex justifyContent='space-between'>
-              <Flex flexDirection='column'>
-                <Text>{t('calculator.total_cost')}</Text>
-                <Text>{t('calculator.vat')}</Text>
-              </Flex>
-              <Text fontWeight='bold'>{totalPrice.toFixed(2)} €</Text>
-            </Flex>
-          </Box>
-          <Box mt='auto'>
-            <BuyBtns priceTokens={priceTokens} stripeAmount={stripeAmount} totalPrice={totalPrice} />
-
-            <Text fontSize='14px' textAlign='center'>
-              <Trans
-                i18nKey='calculator.contact'
-                components={{
-                  link: <ChakraLink />,
-                }}
-              />
-            </Text>
-          </Box>
-        </TabPanel>
-
-        <TabPanel flexGrow={1} display='flex' flexDirection='column'>
-          <Flex mb={3} px={{ base: 5, lg: 14 }}>
-            <Text flex='1 1 33%' textAlign='start' textTransform='uppercase'>
-              {t('calculator.package')}
-            </Text>
-            <Text flex='1 1 30%' textAlign='center' textTransform='uppercase'>
-              {t('calculator.discount')}
-            </Text>
-            <Text flex='1 1 30%' textAlign='end' textTransform='uppercase'>
-              {t('calculator.total')}
-            </Text>
+    <TabPanels flexGrow={1} display='flex' flexDirection='column' pt={10}>
+      <TabPanel flexGrow={1} display='flex' flexDirection='column'>
+        <Box px={{ base: 5, lg: 14 }}>
+          <Flex justifyContent='space-between' mb={3}>
+            <Text>{t('calculator.voting_process_cost')}</Text>
+            <Text fontWeight='bold'>{priceTokens} tokens</Text>
           </Flex>
-          <RadioGroup
-            onChange={(e) => {
-              if (e === '1') setRadio(packages['1k'])
-              if (e === '2') setRadio(packages['5k'])
-              if (e === '3') setRadio(packages['10k'])
-              if (e === '4') setRadio(packages['50k'])
-              if (e === '5') setRadio(packages['100k'])
-            }}
-            px={{ base: 5, lg: 14 }}
-          >
-            <Stack>
-              <Flex gap={2}>
-                <Radio value='1' id='1' colorScheme='secondary'></Radio>
-                <Flex as='label' grow={1} htmlFor='1' fontWeight={radio === packages['1k'] ? 'bold' : 'normal'}>
-                  <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='start'>
-                    1K Tokens
-                  </Text>
-                  <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='center'>
-                    1%
-                  </Text>
-                  <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='end'>
-                    149 €
-                  </Text>
-                </Flex>
-              </Flex>
+          <Flex justifyContent='space-between' mb={8}>
+            <Text>{t('calculator.price_per_token')}</Text>
+            <Text fontWeight='bold'>0.15 €</Text>
+          </Flex>
+          <Flex justifyContent='space-between'>
+            <Flex flexDirection='column'>
+              <Text>{t('calculator.total_cost')}</Text>
+              <Text>{t('calculator.vat')}</Text>
+            </Flex>
+            <Text fontWeight='bold'>{totalPrice.toFixed(2)} €</Text>
+          </Flex>
+        </Box>
+        <Box mt='auto'>
+          <BuyBtns
+            priceTokens={priceTokens}
+            stripeAmount={stripeAmount}
+            totalPrice={totalPrice}
+            oneTimeTab={tabIndex === 0}
+          />
 
-              <Flex gap={2}>
-                <Radio value='2' id='2' colorScheme='secondary'></Radio>
-                <Flex as='label' grow={1} htmlFor='2' fontWeight={radio === packages['5k'] ? 'bold' : 'normal'}>
-                  <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='start'>
-                    15K Tokens
-                  </Text>
-                  <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='center'>
-                    7%
-                  </Text>
-                  <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='end'>
-                    697 €
-                  </Text>
-                </Flex>
-              </Flex>
-              <Flex gap={2}>
-                <Radio value='3' id='3' colorScheme='secondary'></Radio>
-                <Flex as='label' grow={1} htmlFor='3' fontWeight={radio === packages['10k'] ? 'bold' : 'normal'}>
-                  <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='start'>
-                    10K Tokens
-                  </Text>
-                  <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='center'>
-                    15%
-                  </Text>
-                  <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='end'>
-                    1275 €
-                  </Text>
-                </Flex>
-              </Flex>
-              <Flex gap={2}>
-                <Radio value='4' id='4' colorScheme='secondary'></Radio>
-                <Flex as='label' grow={1} htmlFor='4' fontWeight={radio === packages['50k'] ? 'bold' : 'normal'}>
-                  <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='start'>
-                    50K Tokens
-                  </Text>
-                  <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='center'>
-                    21%
-                  </Text>
-                  <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='end'>
-                    5925 €
-                  </Text>
-                </Flex>
-              </Flex>
-              <Flex gap={2}>
-                <Radio value='5' id='5' colorScheme='secondary'></Radio>
-                <Flex as='label' grow={1} htmlFor='5' fontWeight={radio === packages['100k'] ? 'bold' : 'normal'}>
-                  <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='start'>
-                    +100K Tokens
-                  </Text>
-                  <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='center'>
-                    30%
-                  </Text>
-                  <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='end'>
-                    10500 €
-                  </Text>
-                </Flex>
-              </Flex>
-            </Stack>
-          </RadioGroup>
-          <Box mt='auto'>
-            <BuyBtns priceTokens={priceTokens} stripeAmount={stripeAmount} totalPrice={totalPrice} />
-            <Text fontSize='14px' textAlign='center'>
-              <Trans
-                i18nKey='calculator.more_tokens'
-                components={{
-                  link: <ChakraLink />,
-                }}
-              />
-            </Text>
-          </Box>
-        </TabPanel>
-
-        <TabPanel flexGrow={1} display='flex' flexDirection='column'>
-          <Flex grow={1} flexDirection='column' justifyContent='space-between' gap={3} px={{ base: 5, lg: 14 }}>
+          <Text fontSize='14px' textAlign='center'>
             <Trans
-              i18nKey='calculator.recurring_description'
+              i18nKey='calculator.contact'
               components={{
-                p: <Text mb={2} />,
+                customLink: (
+                  <Link as={ReactRouterLink} to='https://www.vocdoni.io/contact' target='_blank' color='white' />
+                ),
+                faqsLink: <Link as={ReactRouterLink} to='/#faqs' color='white' />,
               }}
             />
-          </Flex>
+          </Text>
+        </Box>
+      </TabPanel>
 
-          <Box mt='auto'>
-            <Flex justifyContent='center' mt={8} mb={5}>
-              <Button variant='secondary'>Contact Us</Button>
+      <TabPanel flexGrow={1} display='flex' flexDirection='column'>
+        <Flex mb={3} px={{ base: 5, lg: 14 }}>
+          <Text flex='1 1 33%' textAlign='start' textTransform='uppercase'>
+            {t('calculator.package')}
+          </Text>
+          <Text flex='1 1 30%' textAlign='center' textTransform='uppercase'>
+            {t('calculator.discount')}
+          </Text>
+          <Text flex='1 1 30%' textAlign='end' textTransform='uppercase'>
+            {t('calculator.total')}
+          </Text>
+        </Flex>
+        <RadioGroup
+          onChange={(e) => {
+            if (e === '1') setRadio(packages['1k'])
+            if (e === '2') setRadio(packages['5k'])
+            if (e === '3') setRadio(packages['10k'])
+            if (e === '4') setRadio(packages['50k'])
+            if (e === '5') setRadio(packages['100k'])
+          }}
+          px={{ base: 5, lg: 14 }}
+        >
+          <Stack>
+            <Flex gap={2}>
+              <Radio value='1' id='1' colorScheme='secondary'></Radio>
+              <Flex as='label' grow={1} htmlFor='1' fontWeight={radio === packages['1k'] ? 'bold' : 'normal'}>
+                <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='start'>
+                  1K Tokens
+                </Text>
+                <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='center'>
+                  1%
+                </Text>
+                <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='end'>
+                  149 €
+                </Text>
+              </Flex>
             </Flex>
 
-            <Text fontSize='14px' textAlign='center'>
-              <Trans
-                i18nKey='calculator.contact'
-                components={{
-                  link: <ChakraLink />,
-                }}
-              />
-            </Text>
-          </Box>
-        </TabPanel>
-      </TabPanels>
-    </Tabs>
+            <Flex gap={2}>
+              <Radio value='2' id='2' colorScheme='secondary'></Radio>
+              <Flex as='label' grow={1} htmlFor='2' fontWeight={radio === packages['5k'] ? 'bold' : 'normal'}>
+                <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='start'>
+                  15K Tokens
+                </Text>
+                <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='center'>
+                  7%
+                </Text>
+                <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='end'>
+                  697 €
+                </Text>
+              </Flex>
+            </Flex>
+            <Flex gap={2}>
+              <Radio value='3' id='3' colorScheme='secondary'></Radio>
+              <Flex as='label' grow={1} htmlFor='3' fontWeight={radio === packages['10k'] ? 'bold' : 'normal'}>
+                <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='start'>
+                  10K Tokens
+                </Text>
+                <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='center'>
+                  15%
+                </Text>
+                <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='end'>
+                  1275 €
+                </Text>
+              </Flex>
+            </Flex>
+            <Flex gap={2}>
+              <Radio value='4' id='4' colorScheme='secondary'></Radio>
+              <Flex as='label' grow={1} htmlFor='4' fontWeight={radio === packages['50k'] ? 'bold' : 'normal'}>
+                <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='start'>
+                  50K Tokens
+                </Text>
+                <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='center'>
+                  21%
+                </Text>
+                <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='end'>
+                  5925 €
+                </Text>
+              </Flex>
+            </Flex>
+            <Flex gap={2}>
+              <Radio value='5' id='5' colorScheme='secondary'></Radio>
+              <Flex as='label' grow={1} htmlFor='5' fontWeight={radio === packages['100k'] ? 'bold' : 'normal'}>
+                <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='start'>
+                  +100K Tokens
+                </Text>
+                <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='center'>
+                  30%
+                </Text>
+                <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='end'>
+                  10500 €
+                </Text>
+              </Flex>
+            </Flex>
+          </Stack>
+        </RadioGroup>
+        <Box mt='auto'>
+          <BuyBtns
+            priceTokens={priceTokens}
+            stripeAmount={stripeAmount}
+            totalPrice={totalPrice}
+            isPackage={radio}
+            oneTimeTab={tabIndex === 0}
+          />
+          <Text fontSize='14px' textAlign='center'>
+            <Trans
+              i18nKey='calculator.more_tokens'
+              components={{
+                customLink: <Link as={ReactRouterLink} color='white' />,
+              }}
+            />
+          </Text>
+        </Box>
+      </TabPanel>
+
+      <TabPanel flexGrow={1} display='flex' flexDirection='column'>
+        <Flex grow={1} flexDirection='column' justifyContent='space-between' gap={3} px={{ base: 5, lg: 14 }}>
+          <Trans
+            i18nKey='calculator.recurring_description'
+            components={{
+              p: <Text mb={2} />,
+            }}
+          />
+        </Flex>
+
+        <Flex mt='20px' justifyContent='center'>
+          <Button variant='secondary'>{t('calculator.contact_us')}</Button>
+        </Flex>
+      </TabPanel>
+    </TabPanels>
   )
 }
 
@@ -542,16 +557,21 @@ const EnoughTokensModal = ({
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Enough Tokens</ModalHeader>
+        <ModalHeader>Tokens</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <Text textAlign='center'>You have enough tokens for the election.</Text>
-          <Text textAlign='center'>Do you still want to buy anyway?</Text>
+          <Trans />
+          <Trans
+            i18nKey='calculator.modal_description'
+            components={{
+              p: <Text textAlign='center' />,
+            }}
+          />
         </ModalBody>
 
         <ModalFooter>
           <Button
-            as={Link}
+            as={ReactRouterLink}
             to={generatePath('/stripe/checkout/:amount', { amount: stripeAmount })}
             isDisabled={!totalPrice || !import.meta.env.STRIPE_PUBLIC_KEY.length}
           >
@@ -568,51 +588,63 @@ const BuyBtns = ({
   priceTokens,
   totalPrice,
   stripeAmount,
+  oneTimeTab,
+  isPackage,
 }: {
   priceTokens: number
   totalPrice: number
   stripeAmount: string
+  oneTimeTab?: boolean
+  isPackage?: number
 }) => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { account } = useClient()
+  const { isConnected } = useAccount()
+  const { openConnectModal } = useConnectModal()
 
   return (
     <>
-      <Flex
-        flexDirection={{ base: 'column', sm2: 'row' }}
-        alignItems='center'
-        justifyContent='center'
-        gap={5}
-        mt={8}
-        mb={5}
-      >
+      <Flex alignItems={{ base: 'center', sm2: 'start' }} justifyContent='center' flexWrap='wrap' gap={5} mt={8} mb={5}>
         <Flex flexDirection='column' alignItems='center' justifyContent='center' gap={1}>
           <Button
             variant='secondary'
             onClick={() => {
-              if (account && account?.balance < priceTokens) {
+              if (!isConnected && openConnectModal) {
+                openConnectModal()
+              } else if (oneTimeTab && account && account?.balance >= priceTokens) {
                 onOpen()
               } else {
                 navigate(generatePath('/stripe/checkout/:amount', { amount: stripeAmount }))
               }
             }}
-            as={Link}
-            to={generatePath('/stripe/checkout/:amount', { amount: stripeAmount })}
-            isDisabled={!totalPrice}
+            as={ReactRouterLink}
+            isDisabled={
+              !import.meta.env.STRIPE_PUBLIC_KEY.length
+                ? oneTimeTab
+                  ? !totalPrice || priceTokens < 100
+                  : !isPackage
+                : false
+            }
           >
             <FaCcStripe />
             {t('calculator.buy_with_card')}
           </Button>
-          <Text as='span'>Min. 100 tokens</Text>
+          {!!(oneTimeTab && !!totalPrice && priceTokens < 100) && (
+            <Text as='span' fontSize='sm'>
+              Min. 100 tokens
+            </Text>
+          )}
         </Flex>
         <Flex flexDirection='column' alignItems='center' justifyContent='center' gap={1}>
           <Button variant='secondary' isDisabled={true}>
             <FaEthereum />
             {t('calculator.buy_with_crypto')}
           </Button>
-          <Text as='span'>Coming soon</Text>
+          <Text as='span' fontSize='sm'>
+            {t('calculator.coming_soon')}
+          </Text>
         </Flex>
       </Flex>
       <EnoughTokensModal isOpen={isOpen} onClose={onClose} totalPrice={totalPrice} stripeAmount={stripeAmount} />
