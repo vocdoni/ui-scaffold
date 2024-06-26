@@ -8,7 +8,6 @@ import vcdLogo from '/assets/logo-classic.svg'
 const Footer = () => {
   const { t } = useTranslation()
   const location = useLocation()
-  console.log(location)
 
   return (
     <>
