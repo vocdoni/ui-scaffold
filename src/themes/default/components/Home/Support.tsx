@@ -12,6 +12,7 @@ const Support = () => {
       backgroundColor='home.support.bg'
       backgroundRepeat='no-repeat'
       backgroundPosition='right'
+      mb='100px'
     >
       <Box className='site-wrapper' py={{ base: '60px', lg: '200px' }} position='relative' overflow='hidden'>
         <Box
