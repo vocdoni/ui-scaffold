@@ -12,14 +12,14 @@ const features = () => {
     login: ['web3', 'web2'],
     census: ['spreadsheet', 'token', 'web3', 'csp', 'gitcoin'],
     unimplemented_census: [],
-    voting_type: ['single'],
+    voting_type: ['single', 'approval'],
     unimplemented_voting_type: [],
     languages: ['ca', 'en', 'es'],
   }
 
   const features = merge.withOptions({ mergeArrays: false }, defaults, JSON.parse(process.env.FEATURES || '{}'))
   const unimplemented_census = ['phone', 'email', 'crm', 'database', 'digital_certificate']
-  const unimplemented_voting_type = ['multi', 'approval', 'participatory', 'borda']
+  const unimplemented_voting_type = ['multi', 'participatory', 'borda']
 
   features.unimplemented_census.forEach((el) => {
     if (!unimplemented_census.includes(el)) throw new Error(`Unimplemented census ${el} does not exist`)

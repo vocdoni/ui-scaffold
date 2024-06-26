@@ -53,7 +53,7 @@ const detailed = definePartsStyle({
       flexDirection: 'column',
       '& > p:first-of-type': {
         textAlign: 'start',
-        fontSize: 'xl2',
+        fontSize: 'heading-sm',
         noOfLines: 2,
         overflow: 'hidden',
         display: '-webkit-box',
@@ -64,19 +64,26 @@ const detailed = definePartsStyle({
 
       '& > div:first-of-type': {
         display: 'flex',
+        alignItems: 'center',
         gap: 2,
         mb: 3,
+        fontSize: 'text-sm',
+
+        '& span': {
+          fontSize: 'text-sm',
+        },
       },
 
       '& > div:nth-of-type(2)': {
         flexGrow: 1,
+        fontSize: 'text',
       },
     },
   },
   footer: {
     ...cardCommonStyles.footer,
     mt: 'auto',
-    fontSize: 'sm',
+    fontSize: 'text-sm',
 
     '& > div:first-of-type': {
       display: 'flex',
@@ -123,7 +130,6 @@ const detailed = definePartsStyle({
 const noElections = definePartsStyle({
   container: {
     p: 5,
-    boxShadow: 'var(--box-shadow)',
     borderRadius: 'lg',
     minW: 'full',
     minH: 52,
@@ -158,14 +164,13 @@ const noElections = definePartsStyle({
 
         '& > p:first-of-type': {
           fontWeight: 'bold',
-          fontSize: 'md',
+          fontSize: 'xl',
         },
         '& > p:nth-of-type(2)': {
           color: 'organization.election_list_empty_bg',
         },
         '& > p': {
           textAlign: { base: 'center', lg: 'start' },
-          fontSize: 'sm',
         },
       },
     },
@@ -217,6 +222,7 @@ const aside = definePartsStyle({
     background: 'process.aside.bg',
     boxShadow: 'var(--box-shadow-banner)',
     borderRadius: 'lg',
+    fontSize: 'text',
   },
 })
 const benefits = definePartsStyle({

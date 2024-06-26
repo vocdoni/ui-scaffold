@@ -55,19 +55,25 @@ const detailed = definePartsStyle({
 
       '& > p:first-of-type': {
         textAlign: 'start',
-        fontSize: 'xl2',
         noOfLines: 2,
         overflow: 'hidden',
         display: '-webkit-box',
         WebkitBoxOrient: 'vertical',
         WebkitLineClamp: 'var(--chakra-line-clamp)',
         mb: 3,
+        fontSize: 'heading-sm',
       },
 
       '& > div:first-of-type': {
         display: 'flex',
+        alignItems: 'center',
         gap: 2,
         mb: 3,
+        fontSize: 'text-sm',
+
+        '& span': {
+          fontSize: 'text-sm',
+        },
       },
 
       '& > div:nth-of-type(2)': {
@@ -86,6 +92,7 @@ const detailed = definePartsStyle({
       display: 'flex',
       justifyContent: 'space-between',
       w: 'full',
+      fontSize: 'text-sm',
 
       '& > div': {
         display: 'flex',
@@ -126,7 +133,6 @@ const detailed = definePartsStyle({
 
 const noElections = definePartsStyle({
   container: {
-    boxShadow: 'var(--box-shadow)',
     borderRadius: 'none',
     maxW: '1440px',
     mx: 'auto',
@@ -143,7 +149,7 @@ const noElections = definePartsStyle({
 
       '&:first-of-type': {
         '& img': {
-          maxW: { base: '40%', lg2: '100%' },
+          maxW: { base: '40%', lg2: '400px' },
           mx: 'auto',
         },
       },
@@ -157,7 +163,7 @@ const noElections = definePartsStyle({
 
       '& > p:first-of-type': {
         fontWeight: 'bold',
-        fontSize: { base: '30px', lg: '40px' },
+        fontSize: { base: '20px', lg: '30px' },
         lineHeight: { base: '32px', lg: '42.5px' },
         mb: '24px',
         textAlign: { base: 'center', lg2: 'start' },

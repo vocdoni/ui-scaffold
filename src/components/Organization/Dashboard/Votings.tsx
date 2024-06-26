@@ -1,8 +1,6 @@
-import { Button, Heading, HStack, Text, VStack } from '@chakra-ui/react'
+import { Flex, Heading, Text } from '@chakra-ui/react'
 import { useOrganization } from '@vocdoni/react-providers'
 import { Trans, useTranslation } from 'react-i18next'
-import { BiPlus } from 'react-icons/bi'
-import { Link } from 'react-router-dom'
 import { ContentsBox } from '~components/Organization/Dashboard/Box'
 import { RoutedPagination } from '~components/Pagination/Pagination'
 import { RoutedPaginationProvider } from '~components/Pagination/PaginationProvider'
@@ -21,18 +19,13 @@ const Votings = ({ page }: VotingsProps) => {
   if (!organization) return null
 
   return (
-    <VStack alignItems='start' gap={6} w='full'>
-      <Heading fontSize='xl' fontWeight={600}>
-        <Trans i18nKey='organization.votings'>Votings</Trans>
-      </Heading>
-      <RoutedPaginationProvider
-        totalPages={Math.ceil(organization?.electionIndex / 10)}
-        path='/organization/votings/:page?/:status?'
-      >
-        <ProcessesList processes={elections} error={error} loading={isLoading} />
-        <RoutedPagination />
-      </RoutedPaginationProvider>
-    </VStack>
+    <RoutedPaginationProvider
+      totalPages={Math.ceil(organization?.electionIndex / 10)}
+      path='/organization/votings/:page?/:status?'
+    >
+      <ProcessesList processes={elections} error={error} loading={isLoading} />
+      {!!elections?.length && <RoutedPagination />}
+    </RoutedPaginationProvider>
   )
 }
 
@@ -44,22 +37,17 @@ export const VotingsHeader = () => {
 
   return (
     <ContentsBox w='full'>
-      <HStack w='full'>
-        <VStack alignItems='start'>
-          <Heading>
-            <Trans i18nKey='organization.votings_overview'>Votings overview</Trans>
-          </Heading>
-          <Text>
-            {t('organization.voting_processes', {
-              votes: organization.electionIndex,
-              defaultValue: '{{votes}} voting processes',
-            })}
-          </Text>
-        </VStack>
-        <Button ml='auto' as={Link} to='/processes/create' leftIcon={<BiPlus />} gap={0}>
-          <Trans i18nKey='menu.new_process'>New vote</Trans>
-        </Button>
-      </HStack>
+      <Flex
+        flexDirection={{ base: 'column', xl2: 'row' }}
+        justifyContent='space-between'
+        alignItems={{ base: 'start', xl2: 'center' }}
+        gap={2}
+      >
+        <Heading fontSize='heading-sm'>
+          <Trans i18nKey='organization.votings_overview'>Votings overview</Trans>
+        </Heading>
+        <Text>{t('organization.voting_processes', { count: organization.electionIndex })}</Text>
+      </Flex>
     </ContentsBox>
   )
 }

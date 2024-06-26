@@ -35,7 +35,7 @@ const Footer = () => {
         >
           <Flex
             flexDirection={{ base: 'column', xl: 'row' }}
-            justifyContent={{ sm2: 'space-between', lg: 'space-between' }}
+            justifyContent='space-between'
             gap={{ base: '40px', xl: '90px' }}
             w='full'
           >

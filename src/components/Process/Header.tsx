@@ -70,17 +70,17 @@ const ProcessHeader = () => {
       )}
       <Flex direction={{ base: 'column', lg2: 'row' }} mb={7} gap={10}>
         <Box flex={{ lg2: '1 1 80%' }}>
-          <ElectionTitle fontSize={{ base: '32px', md: '34px' }} textAlign='left' my={5} />
+          <ElectionTitle fontSize='heading' textAlign='left' my={5} />
           <Flex flexDirection={{ base: 'column', xl: 'row' }} mb={4} justifyContent='space-between'>
             <Flex gap={4} flexDirection={{ base: 'column', xl: 'row' }} alignItems={{ base: 'start', xl: 'center' }}>
               <Flex gap={3} justifyContent={'space-between'} w={{ base: '100%', xl: 'fit-content' }}>
                 <Flex gap={3} alignItems='center'>
-                  <Text as='span' color='process.label' fontSize='sm'>
+                  <Text as='span' color='process.label' fontSize='text-sm'>
                     {t('process.state')}
                   </Text>
-                  <ElectionStatusBadge />
+                  <ElectionStatusBadge fontSize='text-sm' />
                 </Flex>
-                <Box display={{ base: 'flex', xl: 'none' }}>
+                <Box display={{ base: 'flex', xl: 'none' }} fontSize='text-sm'>
                   <ShareModalButton
                     caption={t('share.election_share_text')}
                     text={t('share.election_share_btn_text')}
@@ -92,10 +92,10 @@ const ProcessHeader = () => {
                 alignItems={{ base: 'start', xl: 'center' }}
                 gap={{ xl: 3 }}
               >
-                <Text as='span' color='process.label' fontSize='sm'>
+                <Text as='span' color='process.label' fontSize='text-sm'>
                   {t('process.schedule')}
                 </Text>
-                <ElectionSchedule textAlign='left' color='process.info_title' />
+                <ElectionSchedule textAlign='left' color='process.info_title' fontSize='text-sm' />
               </Flex>
             </Flex>
             <Box display={{ base: 'none', xl: 'flex' }}>
@@ -113,7 +113,7 @@ const ProcessHeader = () => {
                 <ElectionDescription mb={0} fontSize='lg' lineHeight={1.5} color='process.description' />
               </ReadMoreMarkdownWrapper>
             </Box>
-            <ReadMoreMarkdownButton colorScheme='primary' alignSelf='center' />
+            <ReadMoreMarkdownButton colorScheme='primary' alignSelf='center' fontSize='text' />
           </Flex>
         </Box>
 
@@ -125,11 +125,11 @@ const ProcessHeader = () => {
           flexWrap='wrap'
           justifyContent='start'
           gap={{ base: 4, sm: 6, md: 8, lg: 4 }}
-          fontSize='sm'
           opacity={0.85}
           _hover={{
             opacity: 1,
           }}
+          fontSize='text-sm'
         >
           <Box flexDir='row' display='flex' justifyContent='space-between' w={{ lg2: 'full' }}>
             {election?.status !== ElectionStatus.CANCELED ? (
