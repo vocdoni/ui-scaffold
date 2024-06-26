@@ -1,5 +1,5 @@
 import { Box, Flex, HStack, Text } from '@chakra-ui/react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, ScrollRestoration } from 'react-router-dom'
 import Navbar from '~components/Navbar'
 import Footer from '~theme/components/Footer'
 
@@ -9,6 +9,7 @@ const Layout = () => {
       <HStack as='header' position='sticky' top={0} w='full' backdropFilter='blur(40px)' zIndex={30}>
         <Navbar />
       </HStack>
+      <ScrollRestoration />
       <Flex flexDirection='column' as='main' flexGrow={1}>
         <Outlet />
       </Flex>
