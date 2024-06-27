@@ -54,13 +54,8 @@ const OrganizationDashboardLayout: React.FC = () => {
                     fontWeight={600}
                     m={0}
                     color='dashboard.org_name'
-                    sx={{
-                      display: '-webkit-box',
-                      WebkitLineClamp: 2,
-                      WebkitBoxOrient: 'vertical',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                    }}
+                    isTruncated
+                    title={account?.account.name.default}
                   />
                 </Flex>
                 <OrganizationDashboardMenu />
