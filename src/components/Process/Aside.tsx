@@ -6,7 +6,7 @@ import { dotobject, ElectionStatus, formatUnits, InvalidElection, PublishedElect
 import { TFunction } from 'i18next'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
-import { useAccount } from 'wagmi'
+import { useAccount, useDisconnect } from 'wagmi'
 import { CensusMeta } from './Census/CensusType'
 
 const results = (result: number, decimals?: number) =>
@@ -14,6 +14,7 @@ const results = (result: number, decimals?: number) =>
 
 const ProcessAside = () => {
   const { t } = useTranslation()
+  const { disconnect } = useDisconnect()
   const {
     election,
     connected,
@@ -23,7 +24,7 @@ const ProcessAside = () => {
     loading: { voting },
   } = useElection()
   const { isConnected } = useAccount()
-  const { env } = useClient()
+  const { env, clear } = useClient()
 
   if (election instanceof InvalidElection) return null
 
@@ -157,7 +158,7 @@ const ProcessAside = () => {
           </Flex>
         )}
       </Card>
-      {connected && (
+      {(connected || isConnected) && (
         <Box
           alignSelf='center'
           sx={{
@@ -177,6 +178,19 @@ const ProcessAside = () => {
           mb={{ base: 10, md: 0 }}
         >
           <SpreadsheetAccess />
+          {isConnected && (
+            <Button
+              variant='text'
+              textDecor='underline'
+              _hover={{ textDecor: 'none' }}
+              onClick={() => {
+                disconnect()
+                clear()
+              }}
+            >
+              {t('cc.spreadsheet.logout')}
+            </Button>
+          )}
         </Box>
       )}
     </>
