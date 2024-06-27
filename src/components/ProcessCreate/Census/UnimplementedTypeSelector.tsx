@@ -4,6 +4,7 @@ import { GoDatabase } from 'react-icons/go'
 import { LuCircleDotDashed } from 'react-icons/lu'
 import { MdOutlineEmail } from 'react-icons/md'
 import { PiCertificate } from 'react-icons/pi'
+import { GenericFeatureObject } from '~components/ProcessCreate/Steps/TabsPage'
 
 export const CensusTypePhone = 'phone'
 export const CensusTypeEmail = 'email'
@@ -27,7 +28,7 @@ export const UnimplementedCensusTypes = [
   CensusTypeDigitalCerificate as UnimplementedCensusType,
 ]
 
-export const useUnimplementedCensusTypes = () => {
+export const useUnimplementedCensusTypes = (): GenericFeatureObject<UnimplementedCensusType> => {
   const { t } = useTranslation()
   return {
     list: UnimplementedCensusTypes,

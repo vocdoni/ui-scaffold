@@ -5,7 +5,6 @@ import { ClientProvider } from '@vocdoni/chakra-components'
 import { EnvOptions } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import { useAccount, useWalletClient, WagmiConfig } from 'wagmi'
-import { OrganizationModalProvider } from '~components/Organization/OrganizationModalProvider'
 import { walletClientToSigner } from '~constants/wagmi-adapters'
 import { VocdoniEnvironment } from './constants'
 import { chains, wagmiConfig } from './constants/rainbow'
@@ -47,10 +46,8 @@ export const AppProviders = () => {
         datesLocale={datesLocale(i18n.language)}
         options={{ faucet_url: import.meta.env.CUSTOM_FAUCET_URL }}
       >
-        <OrganizationModalProvider>
-          <ColorModeScript />
-          <RoutesProvider />
-        </OrganizationModalProvider>
+        <ColorModeScript />
+        <RoutesProvider />
       </ClientProvider>
     </RainbowKitTheme>
   )

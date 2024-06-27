@@ -13,7 +13,16 @@ const contrast = defineStyle((props) => {
   }
 })
 
+const noUnderline = defineStyle((props) => {
+  return {
+    textDecoration: 'none',
+  }
+})
+
 export const Link = defineStyleConfig({
   baseStyle,
-  variants: { contrast },
+  variants: {
+    contrast,
+    'no-underline': noUnderline,
+  },
 })

@@ -1,37 +1,33 @@
-import { Box, Button, Flex, Heading } from '@chakra-ui/react'
-import { useClient } from '@vocdoni/react-providers'
-import { Trans } from 'react-i18next'
-import { BiPlus } from 'react-icons/bi'
-import { Link } from 'react-router-dom'
+import { Flex, Heading, Text } from '@chakra-ui/react'
+import { useOrganization } from '@vocdoni/react-providers'
+import { Trans, useTranslation } from 'react-i18next'
 import { useLatestElections } from '~src/queries/account'
 import { ContentsBox } from './Box'
 import ProcessesList from './ProcessesList'
 
 const OrganizationDashboard = () => {
-  const { account } = useClient()
+  const { t } = useTranslation()
   const { data: elections, error, isLoading } = useLatestElections()
+  const { organization } = useOrganization()
+
+  if (!organization) return null
 
   return (
     <>
       <ContentsBox>
-        <Flex wrap='wrap'>
-          <Heading size='lg'>
+        <Flex
+          flexDirection={{ base: 'column', xl2: 'row' }}
+          justifyContent='space-between'
+          alignItems={{ base: 'start', xl2: 'center' }}
+          gap={2}
+        >
+          <Heading fontSize='heading-sm'>
             <Trans i18nKey='organization.overview'>Overview</Trans>
           </Heading>
-          <Button ml='auto' variant='ghost' colorScheme='teal' as={Link} to={`/organization/${account?.address}`}>
-            <Trans i18nKey='organization.view_public_profile'>View public profile</Trans>
-          </Button>
-          <Button ml={4} as={Link} to='/processes/create' leftIcon={<BiPlus />} gap={0}>
-            <Trans i18nKey='menu.new_process'>New vote</Trans>
-          </Button>
+          <Text>{t('organization.voting_processes', { count: organization.electionIndex })}</Text>
         </Flex>
       </ContentsBox>
-      <Box>
-        <Heading size='md' mb={4}>
-          <Trans i18nKey='organization.latest_votings'>Latest votings</Trans>
-        </Heading>
-        <ProcessesList processes={elections} error={error} loading={isLoading} limit={3} />
-      </Box>
+      <ProcessesList processes={elections} error={error} loading={isLoading} limit={3} />
     </>
   )
 }

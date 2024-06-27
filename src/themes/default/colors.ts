@@ -61,6 +61,8 @@ export const colors = {
     right_side: colorsBase.primary,
     right_side_color: colorsBase.white.pure,
   },
+  dashboard_card_text: colorsBase.gray.dark,
+
   editor: {
     character_limit: colorsBase.gray.light,
   },
@@ -95,6 +97,9 @@ export const colors = {
       title: colorsBase.primary,
     },
     trusted_title: colorsBase.gray.dark,
+  },
+  dashboard: {
+    org_name: colorsBase.primary,
   },
   success: colorsBase.green,
 

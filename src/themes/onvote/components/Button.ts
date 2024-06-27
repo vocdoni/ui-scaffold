@@ -493,7 +493,32 @@ const tryItNow = defineStyle({
   fontSize: { base: '13px' },
   boxShadow: 'rgba(0, 0, 0, 0.1) 0px 0px 10px',
 })
+const dashboard = defineStyle((props) => {
+  const { colorScheme } = props
+  return {
+    py: 6,
+    mb: 2,
 
+    _hover: {
+      bgColor: `${colorScheme}.300`,
+      color: 'white',
+
+      _disabled: {
+        color: 'gray.800',
+      },
+    },
+
+    _active: {
+      bgColor: `${colorScheme}.500`,
+      color: 'white',
+
+      _disabled: {
+        bgColor: `${colorScheme}.500`,
+        color: 'white',
+      },
+    },
+  }
+})
 const buy = defineStyle((props) => {
   return {
     border: '1px solid white',
@@ -515,6 +540,7 @@ export const Button = defineStyleConfig({
     'address-dropdown': addressDropdown,
     buy,
     'close-form': closeForm,
+    dashboard,
     ghost,
     outline,
     'go-back': goBack,

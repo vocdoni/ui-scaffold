@@ -133,7 +133,6 @@ const detailed = definePartsStyle({
 
 const noElections = definePartsStyle({
   container: {
-    boxShadow: 'var(--box-shadow)',
     borderRadius: 'none',
     maxW: '1440px',
     mx: 'auto',
@@ -150,7 +149,7 @@ const noElections = definePartsStyle({
 
       '&:first-of-type': {
         '& img': {
-          maxW: { base: '40%', lg2: '100%' },
+          maxW: { base: '40%', lg2: '400px' },
           mx: 'auto',
         },
       },
@@ -164,7 +163,7 @@ const noElections = definePartsStyle({
 
       '& > p:first-of-type': {
         fontWeight: 'bold',
-        fontSize: { base: '30px', lg: '40px' },
+        fontSize: { base: '20px', lg: '30px' },
         lineHeight: { base: '32px', lg: '42.5px' },
         mb: '24px',
         textAlign: { base: 'center', lg2: 'start' },

@@ -9,22 +9,16 @@ import {
   IconButton,
   Image,
   Input,
-  Modal,
-  ModalCloseButton,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
   Text,
   Textarea,
 } from '@chakra-ui/react'
 import { Button } from '@vocdoni/chakra-components'
 import { errorToString, useClient, useOrganization } from '@vocdoni/react-providers'
 import { Account } from '@vocdoni/sdk'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { BiTrash } from 'react-icons/bi'
-import { useOrganizationModal } from '~components/Organization/OrganizationModalProvider'
 import fallback from '/assets/default-avatar.png'
 
 interface EditFormFields {
@@ -39,10 +33,8 @@ export const EditProfile = () => {
   const { account, fetchAccount } = useClient()
   const { update } = useOrganization()
   const { t } = useTranslation()
-
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-
-  const { isOpen, onClose, loading, setLoading } = useOrganizationModal()
 
   const required = {
     value: true,
@@ -55,7 +47,6 @@ export const EditProfile = () => {
     register,
     handleSubmit,
     formState: { errors },
-    clearErrors,
   } = useForm({
     defaultValues: {
       name: account?.account.name.default || '',
@@ -63,17 +54,6 @@ export const EditProfile = () => {
       avatar: account?.account.avatar || '',
     },
   })
-
-  useEffect(() => {
-    if (isOpen) {
-      setValue('name', account?.account.name.default || '')
-      setValue('description', account?.account.description.default || '')
-      setValue('avatar', account?.account.avatar || '')
-      clearErrors()
-      setError(null)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen])
 
   const avatar = watch('avatar')
 
@@ -85,7 +65,6 @@ export const EditProfile = () => {
     try {
       await update(new Account({ ...account?.account, ...values }))
       fetchAccount()
-      onClose()
     } catch (err: any) {
       setError(errorToString(err))
     } finally {
@@ -96,7 +75,7 @@ export const EditProfile = () => {
   return (
     <Box
       as='form'
-      onSubmit={(e) => {
+      onSubmit={(e: any) => {
         e.stopPropagation()
         e.preventDefault()
         handleSubmit(onSubmit)(e)
@@ -105,7 +84,7 @@ export const EditProfile = () => {
       <Flex direction='column' gap={6} my={8}>
         <Flex alignItems='center' gap={5}>
           <Box position='relative' outline='none' border='none'>
-            <AspectRatio flexShrink={0} w={{ base: 20, md: 40 }} ratio={1.25 / 1} borderRadius={0} overflow='hidden'>
+            <AspectRatio flexShrink={0} w={{ base: 20, md: 40 }} ratio={1.25 / 1} borderRadius='lg' overflow='hidden'>
               <Image src={avatar} fallbackSrc={fallback} />
             </AspectRatio>
             {correctAvatarFormat(avatar) && (
@@ -181,7 +160,7 @@ export const EditProfile = () => {
         )}
       </Flex>
       <Box display='flex' flexDirection='column' gap={5} w='full' alignItems='center'>
-        <Button type='submit' isLoading={loading}>
+        <Button type='submit' isLoading={loading} px={10} py={4}>
           {t('form.edit_profile.btn')}
         </Button>
         <Text textAlign='center' maxW='70%'>
@@ -191,24 +170,3 @@ export const EditProfile = () => {
     </Box>
   )
 }
-
-const EditProfileModal = () => {
-  const { t } = useTranslation()
-
-  const { isOpen, onClose, loading } = useOrganizationModal()
-
-  return (
-    <>
-      <Modal isOpen={isOpen} onClose={() => !loading && onClose()}>
-        <ModalOverlay />
-        <ModalContent minW={{ md: '600px' }}>
-          <ModalHeader>{t('form.edit_profile.title')}</ModalHeader>
-          <ModalCloseButton />
-          <EditProfile />
-        </ModalContent>
-      </Modal>
-    </>
-  )
-}
-
-export default EditProfileModal

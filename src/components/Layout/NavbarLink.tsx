@@ -14,16 +14,7 @@ const NavbarLink = ({ name, to, icon }: NavbarLink) => {
   const isActive = to === location.pathname
 
   return (
-    <Button
-      as={Link}
-      to={to}
-      isActive={isActive}
-      justifyContent='start'
-      variant='ghost'
-      colorScheme='teal'
-      w='full'
-      leftIcon={icon}
-    >
+    <Button as={Link} to={to} isActive={isActive} justifyContent='start' variant='dashboard' w='full' leftIcon={icon}>
       {name}
     </Button>
   )

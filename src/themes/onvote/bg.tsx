@@ -1,1 +1,1 @@
-export const NavBg = () => <></>
+export const NavBg = ({ children }: any) => <>{children}</>

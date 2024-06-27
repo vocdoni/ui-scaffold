@@ -25,7 +25,7 @@ declare module '~theme/icons' {
 }
 
 declare module '~theme/bg' {
-  export const NavBg: import('react').FC
+  export const NavBg: import('react').FC<{ children: import('react').ReactNode }>
 }
 
 declare module '~theme/Fonts' {

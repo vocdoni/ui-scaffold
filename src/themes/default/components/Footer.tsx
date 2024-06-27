@@ -2,23 +2,26 @@ import { Box, Flex, Icon, Image, Link, Text } from '@chakra-ui/react'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaDiscord, FaGithub } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
+import { useLocation } from 'react-router-dom'
 import vcdLogo from '/assets/logo-classic.svg'
 
 const Footer = () => {
   const { t } = useTranslation()
+  const location = useLocation()
 
   return (
     <>
       <Flex
         className='site-wrapper'
-        pt={{ base: '50px', xl: '100px' }}
+        pt='24px'
         flexDirection={{ base: 'column', xl: 'row' }}
         alignItems='start'
-        mb={{ base: '50px', xl: 0 }}
+        pb={{ base: '50px', xl: '24px' }}
+        bgColor={`${location.pathname === '/organization' ? 'process_create.bg' : 'white'}`}
       >
         <Box flex='1 1 33%'>
           <Image src={vcdLogo} w='125px' mb='12px' />
-          <Text fontSize='16px' lineHeight='28px' mb='30px' color='gray'>
+          <Text fontSize='16px' lineHeight='28px' color='gray'>
             {t('footer.footer_subtitle')}
           </Text>
         </Box>
@@ -32,7 +35,7 @@ const Footer = () => {
         >
           <Flex
             flexDirection={{ base: 'column', xl: 'row' }}
-            justifyContent={{ sm2: 'space-between', lg: 'space-between' }}
+            justifyContent='space-between'
             gap={{ base: '40px', xl: '90px' }}
             w='full'
           >
@@ -99,8 +102,9 @@ const Footer = () => {
         gap={{ base: '20px', md: '10px' }}
         justifyContent='space-between'
         alignItems='center'
-        py='24px'
+        py='12px'
         borderTop='1px solid rgb(229, 229, 229)'
+        bgColor={`${location.pathname === '/organization' ? 'process_create.bg' : 'white'}`}
       >
         <Text as='span' color='gray' textAlign='center'>
           <Trans

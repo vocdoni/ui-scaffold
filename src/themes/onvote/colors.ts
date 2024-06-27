@@ -64,6 +64,8 @@ export const colors = {
     right_side: colorsBase.primary.main,
     right_side_color: colorsBase.white.pure,
   },
+  dashboard_card_text: colorsBase.gray.dark,
+
   editor: {
     character_limit: colorsBase.gray.light,
   },
