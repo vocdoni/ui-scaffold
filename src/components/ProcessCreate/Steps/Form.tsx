@@ -20,7 +20,7 @@ export type StepsFormProps = PropsWithChildren<
   >
 >
 
-export const StepsForm = ({ steps, children, activeStep, next, prev, setActiveStep }: StepsFormProps) => {
+export const StepsForm = ({ steps, activeStep, next, prev, setActiveStep }: StepsFormProps) => {
   const [form, setForm] = useState<RecursivePartial<StepsFormValues>>({
     electionType: {
       autoStart: true,

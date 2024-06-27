@@ -177,8 +177,8 @@ const ProcessAside = () => {
           }}
           mb={{ base: 10, md: 0 }}
         >
-          <SpreadsheetAccess />
-          {isConnected && (
+          {connected && <SpreadsheetAccess />}
+          {isConnected && election?.get('census.type') !== 'spreadsheet' && (
             <Button
               variant='text'
               textDecor='underline'
