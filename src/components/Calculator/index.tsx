@@ -515,7 +515,7 @@ const RightSideCalculator = ({ priceTokens, tabIndex }: { priceTokens: number; t
             <Trans
               i18nKey='calculator.more_tokens'
               components={{
-                customLink: <Link as={ReactRouterLink} color='white' />,
+                customLink: <Link as={ReactRouterLink} to='https://www.vocdoni.io/contact' color='white' />,
               }}
             />
           </Text>
@@ -533,7 +533,9 @@ const RightSideCalculator = ({ priceTokens, tabIndex }: { priceTokens: number; t
         </Flex>
 
         <Flex mt='20px' justifyContent='center'>
-          <Button variant='secondary'>{t('calculator.contact_us')}</Button>
+          <Button as={ReactRouterLink} to='https://www.vocdoni.io/contact' target='_blank' variant='secondary'>
+            {t('calculator.contact_us')}
+          </Button>
         </Flex>
       </TabPanel>
     </TabPanels>
