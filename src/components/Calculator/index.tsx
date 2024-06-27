@@ -508,7 +508,7 @@ const RightSideCalculator = ({ priceTokens, tabIndex }: { priceTokens: number; t
             priceTokens={priceTokens}
             stripeAmount={stripeAmount}
             totalPrice={totalPrice}
-            isPackage={radio}
+            packageSelected={radio}
             oneTimeTab={tabIndex === 0}
           />
           <Text fontSize='14px' textAlign='center'>
@@ -589,13 +589,13 @@ const BuyBtns = ({
   totalPrice,
   stripeAmount,
   oneTimeTab,
-  isPackage,
+  packageSelected,
 }: {
   priceTokens: number
   totalPrice: number
   stripeAmount: string
   oneTimeTab?: boolean
-  isPackage?: number
+  packageSelected?: number
 }) => {
   const { t } = useTranslation()
   const navigate = useNavigate()
@@ -603,6 +603,10 @@ const BuyBtns = ({
   const { account } = useClient()
   const { isConnected } = useAccount()
   const { openConnectModal } = useConnectModal()
+
+  const oneTimeDisabled =
+    !import.meta.env.STRIPE_PUBLIC_KEY.length || !oneTimeTab || !(!!totalPrice && priceTokens > 100)
+  const packageDisabled = !import.meta.env.STRIPE_PUBLIC_KEY.length || !packageSelected
 
   return (
     <>
@@ -620,13 +624,7 @@ const BuyBtns = ({
               }
             }}
             as={ReactRouterLink}
-            isDisabled={
-              !import.meta.env.STRIPE_PUBLIC_KEY.length
-                ? oneTimeTab
-                  ? !totalPrice || priceTokens < 100
-                  : !isPackage
-                : false
-            }
+            isDisabled={oneTimeDisabled && packageDisabled}
           >
             <FaCcStripe />
             {t('calculator.buy_with_card')}
