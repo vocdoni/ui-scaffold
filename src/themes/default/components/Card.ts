@@ -223,6 +223,10 @@ const aside = definePartsStyle({
     boxShadow: 'var(--box-shadow-banner)',
     borderRadius: 'lg',
     fontSize: 'text',
+
+    '& a': {
+      color: 'process.aside.color',
+    },
   },
 })
 const benefits = definePartsStyle({
