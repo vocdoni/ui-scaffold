@@ -236,6 +236,9 @@ const aside = definePartsStyle({
     clipPath:
       'polygon(0% 15px, 15px 15px, 15px 0%, calc(100% - 15px) 0%, calc(100% - 15px) 15px, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 15px calc(100% - 15px), 0% calc(100% - 15px))',
   },
+  '& a': {
+    color: 'process.aside.color',
+  },
 })
 
 const imageCard = definePartsStyle({
