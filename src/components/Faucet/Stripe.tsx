@@ -73,13 +73,12 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
       }
       return null
     }
-    getStatus()
-      .then((data) => {
-        setStatus(data.status)
-        setCustomerEmail(data.customer_email)
-        setFaucetPackage(data.faucet_package)
-        setRecipient(data.recipient)
-      })
+    getStatus().then((data) => {
+      setStatus(data.status)
+      setCustomerEmail(data.customer_email)
+      setFaucetPackage(data.faucet_package)
+      setRecipient(data.recipient)
+    })
   }, [sessionId])
 
   // claim the tokens if the package is not consumed
