@@ -7,8 +7,7 @@ import Layout from '~elements/Layout'
 import LayoutProcessCreate from '~elements/LayoutProcessCreate'
 import OrganizationProtectedRoute from './OrganizationProtectedRoute'
 import { SuspenseLoader } from './SuspenseLoader'
-import { CheckoutReturn } from '~components/Faucet/Stripe'
-import { Checkout } from '~elements/Stripe'
+import { StripeCheckout, StripeReturn } from '~elements/Stripe'
 import Calculator from '~components/Calculator'
 
 // Lazy loading helps splitting the final code, which helps downloading the app (theoretically)
@@ -91,11 +90,11 @@ export const RoutesProvider = () => {
       children: [
         {
           path: 'checkout/:amount?',
-          element: <Checkout />,
+          element: <StripeCheckout />,
         },
         {
           path: 'return/:sessionId',
-          element: <CheckoutReturn />,
+          element: <StripeReturn />,
           errorElement: <Error />,
         },
       ],

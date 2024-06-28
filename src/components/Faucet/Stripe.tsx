@@ -6,7 +6,7 @@ import { useClient, errorToString } from '@vocdoni/react-providers'
 import { useAccount } from 'wagmi'
 import { useParams } from 'react-router-dom'
 import { t } from 'i18next'
-import { useToast } from '@chakra-ui/react'
+import { Spinner, useToast } from '@chakra-ui/react'
 
 const STRIPE_PUBLIC_KEY = import.meta.env.STRIPE_PUBLIC_KEY
 const stripePromise = loadStripe(STRIPE_PUBLIC_KEY)
@@ -47,8 +47,11 @@ export const CheckoutForm = ({ amount }: CheckoutFormProps) => {
   )
 }
 
-export const CheckoutReturn = () => {
-  const { sessionId } = useParams()
+type CheckoutReturnProps = {
+  sessionId: string
+}
+
+export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
   const { client, loaded: accountLoaded, account, fetchAccount } = useClient()
   const toast = useToast()
   const [status, setStatus] = useState(null)
@@ -57,27 +60,40 @@ export const CheckoutReturn = () => {
   const [recipient, setRecipient] = useState('')
   const [packageConsumed, setPackageConsumed] = useState(false)
 
+  // fetch the session status
   useEffect(() => {
-    fetch(`${client.faucetService.url}/sessionStatus/${sessionId}`)
-      .then((res) => res.json())
+    async function getStatus() {
+      const res = await fetch(`${client.faucetService.url}/sessionStatus/${sessionId}`)
+      const data = await res.json()
+      if (data.faucet_package !== null) {
+        return data
+      }
+      if (faucetPackage == null) {
+        return await getStatus()
+      }
+      return null
+    }
+    getStatus()
       .then((data) => {
         setStatus(data.status)
         setCustomerEmail(data.customer_email)
         setFaucetPackage(data.faucet_package)
         setRecipient(data.recipient)
       })
-  }, [])
+  }, [sessionId])
 
+  // claim the tokens if the package is not consumed
   useEffect(() => {
     if (
-      !!faucetPackage &&
-      !!recipient &&
-      accountLoaded &&
-      !packageConsumed &&
-      `0x${account?.address}` === recipient.toLowerCase()
+      !faucetPackage ||
+      !recipient ||
+      !accountLoaded ||
+      packageConsumed ||
+      `0x${account?.address}` !== recipient.toLowerCase()
     ) {
-      claimTokens()
+      return
     }
+    claimTokens()
   }, [faucetPackage, recipient, accountLoaded])
 
   const claimTokens = async () => {
@@ -122,7 +138,20 @@ export const CheckoutReturn = () => {
     return <Navigate to='/checkout' />
   }
 
-  if (status === 'complete') {
+  if (status === 'complete' && packageConsumed == false && faucetPackage == null) {
+    return (
+      <div>
+        <section id='success'>
+          <p>
+            <Spinner />
+            {t('claim.success_title')}
+          </p>
+        </section>
+      </div>
+    )
+  }
+
+  if (status === 'complete' && packageConsumed == true) {
     return (
       <div>
         <section id='success'>
