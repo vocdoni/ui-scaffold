@@ -2,12 +2,10 @@ import { Box, Flex, Icon, Image, Link, Text } from '@chakra-ui/react'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaDiscord, FaGithub } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
-import { useLocation } from 'react-router-dom'
 import vcdLogo from '/assets/logo-classic.svg'
 
 const Footer = () => {
   const { t } = useTranslation()
-  const location = useLocation()
 
   return (
     <>
@@ -17,7 +15,6 @@ const Footer = () => {
         flexDirection={{ base: 'column', xl: 'row' }}
         alignItems='start'
         pb={{ base: '50px', xl: '24px' }}
-        bgColor={`${location.pathname === '/organization' ? 'process_create.bg' : 'white'}`}
       >
         <Box flex='1 1 33%'>
           <Image src={vcdLogo} w='125px' mb='12px' />
