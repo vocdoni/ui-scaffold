@@ -3141,9 +3141,9 @@
     crypto-js "^4.2.0"
 
 "@vocdoni/react-providers@~0.4.4":
-  version "0.4.6"
-  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.4.6.tgz#3916b0d6ac25aebb02cfc8119569a4d5b6a9cc84"
-  integrity sha512-Etju568TrX21fXMjBf9TlEQFEK9ms7PH+KD8nDIz6QkXaHNzoGEd8hmrAEwMTNzp8YO1OaWpUpM+PAh+RfBvFg==
+  version "0.4.7"
+  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.4.7.tgz#f4ebfc2d237cf864d3c050d186fe919761a23d5f"
+  integrity sha512-jTbfyM6KGmhjXMlUQzz+sn2m1cNZJdpADvPA456BA5YPb6CfeLgLzlnxeeeTAVPEnVMuovIQmejuMxvVEfLe4g==
 
 "@vocdoni/sdk@https://github.com/vocdoni/vocdoni-sdk.git#main":
   version "0.8.1"
