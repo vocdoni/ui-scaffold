@@ -49,7 +49,14 @@ const OrganizationDashboardLayout: React.FC = () => {
                       <Image src={fallback} />
                     </AspectRatio>
                   )}
-                  <OrganizationName fontSize='text' fontWeight={600} m={0} color='dashboard.org_name' />
+                  <OrganizationName
+                    fontSize='text'
+                    fontWeight={600}
+                    m={0}
+                    color='dashboard.org_name'
+                    isTruncated
+                    title={account?.account.name.default}
+                  />
                 </Flex>
                 <OrganizationDashboardMenu />
               </Box>
@@ -69,9 +76,15 @@ const OrganizationDashboardLayout: React.FC = () => {
                   <DrawerContent>
                     <DrawerHeader borderBottomWidth='1px'>
                       <Flex justify='space-between' align='center'>
-                        <Flex direction='row' gap={3} alignItems='center'>
+                        <Flex direction='row' gap={3} alignItems='center' minW={0} pr={5}>
                           <OrganizationAvatar />
-                          <OrganizationName fontSize='md' fontWeight={600} m={0} color='dashboard.org_name' />
+                          <OrganizationName
+                            fontSize='md'
+                            fontWeight={600}
+                            m={0}
+                            color='dashboard.org_name'
+                            isTruncated
+                          />
                         </Flex>
                         <IconButton
                           icon={<CloseIcon />}
