@@ -58,6 +58,10 @@ export const colors = {
 
   error: colorsBase.red,
 
+  footer: {
+    white: colorsBase.white.pure,
+    gray: colorsBase.white.dark2,
+  },
   home: {
     benefits: {
       dark_bg: colorsBase.primary,
