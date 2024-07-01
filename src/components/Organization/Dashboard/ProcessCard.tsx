@@ -10,7 +10,7 @@ import { ContentsBox } from '~components/Organization/Dashboard/Box'
 import { useDateFns } from '~i18n/use-date-fns'
 
 const ProcessCard = () => {
-  const { election } = useElection()
+  const { election, participation } = useElection()
   const { format } = useDateFns()
   const { t } = useTranslation()
 
@@ -30,7 +30,7 @@ const ProcessCard = () => {
         <HStack mb={3}>
           <MdHowToVote />
           <Text fontWeight='600' fontSize='text-sm' color='dashboard_card_text' className='dashborad_align_card_text'>
-            {election.voteCount} ({(election.voteCount / Number(election.census.size)) * 100}%) votes submited
+            {election.voteCount} ({participation}%) votes submited
           </Text>
         </HStack>
         <HStack>
