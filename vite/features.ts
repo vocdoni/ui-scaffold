@@ -44,6 +44,7 @@ type Defaults = Omit<Features, '_census'>
 const features = () => {
   const defaults: Defaults = {
     faucet: true,
+    calculator: true,
     vote: {
       anonymous: true,
       overwrite: true,

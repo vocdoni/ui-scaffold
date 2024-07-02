@@ -122,9 +122,50 @@ const process = definePartsStyle({
     borderColor: 'process.tabs.border_bottom_list',
   },
 })
+const calculator = definePartsStyle({
+  root: {},
+  tabpanel: {
+    px: { base: 0, sm: 4 },
+  },
+  tab: {
+    position: 'relative',
+    whiteSpace: 'nowrap',
+    color: 'organization.tabs.color',
+    fontWeight: 'normal',
+    borderTopRadius: 'md',
+    fontSize: 'lg',
+    border: '1px solid',
+    borderRadius: '0',
+    gap: 1,
+    paddingY: 1,
 
+    _hover: {
+      bgColor: 'process.tabs.hover',
+    },
+    _active: {
+      color: 'organization.tabs.color_active',
+      bgColor: 'organization.tabs.bg_active',
+    },
+    _selected: {
+      color: 'organization.tabs.color_active',
+      bgColor: 'organization.tabs.bg_active',
+    },
+  },
+  tablist: {
+    flexWrap: 'wrap',
+    gap: 5,
+    py: 5,
+    px: 2,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderBottom: '1px solid',
+    borderColor: 'process.tabs.border_bottom_list',
+  },
+})
 const variants = {
   card,
+  calculator,
   process,
 }
 

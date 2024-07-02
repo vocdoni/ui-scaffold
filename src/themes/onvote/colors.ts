@@ -58,7 +58,12 @@ export const colors = {
   },
 
   bg: colorsBase.gray.bg,
-
+  calculator: {
+    border: colorsBase.primary.main,
+    left_side: colorsBase.white.pure,
+    right_side: colorsBase.primary.main,
+    right_side_color: colorsBase.white.pure,
+  },
   dashboard_card_text: colorsBase.gray.dark,
 
   editor: {
@@ -91,6 +96,11 @@ export const colors = {
     },
     election_list_empty_bg: colorsBase.gray.dark2,
     go_back_btn: colorsBase.primary.main,
+    tabs: {
+      color: colorsBase.primary.main,
+      color_active: colorsBase.white.pure,
+      bg_active: colorsBase.primary.main,
+    },
   },
 
   process: {
