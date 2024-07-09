@@ -729,10 +729,9 @@
     "share_title": "Comparteix a {{ network }}",
     "spreadsheet": {
       "confirm": {
-        "abstain_count_one": "",
-        "abstain_count_many": "",
-        "abstain_count_other": "",
-        "blank_vote": "",
+        "abstain_count_one": "Atenció! T'estàs abstenint d'una opció",
+        "abstain_count_other": "Atenció! T'estàs abstenint de {{ count }} opcions",
+        "blank_vote": "No s'han seleccionat opcions, enviant vot en blanc",
         "description": "Abans de votar, reviseu que tot sigui correcte.",
         "option": "<strong>Opció {{ number }}:</strong> {{ answer }}",
         "options": "<strong>Selecció:</strong> {{ answers }}",
