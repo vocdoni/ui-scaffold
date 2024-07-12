@@ -4,7 +4,6 @@ import { EmbeddedCheckoutProvider, EmbeddedCheckout } from '@stripe/react-stripe
 import { Navigate } from 'react-router-dom'
 import { useClient, errorToString } from '@vocdoni/react-providers'
 import { useAccount } from 'wagmi'
-import { useParams } from 'react-router-dom'
 import { t } from 'i18next'
 import { Spinner, useToast } from '@chakra-ui/react'
 
@@ -13,22 +12,27 @@ const stripePromise = loadStripe(STRIPE_PUBLIC_KEY)
 
 type CheckoutFormProps = {
   amount?: string
+  returnURL?: string
 }
 
-export const CheckoutForm = ({ amount }: CheckoutFormProps) => {
+export const CheckoutForm = ({ amount, returnURL }: CheckoutFormProps) => {
   const { address } = useAccount()
   const { client } = useClient()
+  const origin = window.location.origin
 
-  const domain = new URL(window.location.href).hostname
   const fetchClientSecret = useCallback(async () => {
     if (address) {
-      let uri = `${client.faucetService.url}/createCheckoutSession/${domain}/${address}`
+      let uri = `${client.faucetService.url}/createCheckoutSession/${address}`
       if (amount && !isNaN(parseInt(amount))) {
         uri = `${uri}/${amount}`
       }
       // Create a Checkout Session
       return await fetch(uri, {
         method: 'POST',
+        body: JSON.stringify({
+          returnURL: returnURL || `${origin}/stripe/return`,
+          referral: origin,
+        }),
       })
         .then((res) => res.json())
         .then((data) => data.clientSecret)
