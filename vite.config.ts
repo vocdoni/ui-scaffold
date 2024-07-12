@@ -49,7 +49,10 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.EMAILJS_TEMPLATE_ID': JSON.stringify(process.env.EMAILJS_TEMPLATE_ID),
       'import.meta.env.EMAILJS_PUBLIC_ID': JSON.stringify(process.env.EMAILJS_PUBLIC_ID),
       'import.meta.env.title': JSON.stringify(title),
-      'import.meta.env.STRIPE_PUBLIC_KEY': JSON.stringify(stripePublicKey),
+      'import.meta.env.STRIPE_PUBLIC_KEY': JSON.stringify(
+        process.env.STRIPE_PUBLIC_KEY ||
+          'pk_test_51P6vaOI1T5UnHYElxQ2aqpc7DZET6spnYww8ItU7rOv94OTHlGzvh4fK3Z5HVTGT2KmGLnDCcUnvBUjODYiL61W600XBPAnoZZ'
+      ),
     },
     plugins: [
       tsconfigPaths(),
