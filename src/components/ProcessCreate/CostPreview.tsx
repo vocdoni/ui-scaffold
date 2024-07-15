@@ -20,7 +20,7 @@ import {
 import { Button } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
 import { UnpublishedElection } from '@vocdoni/sdk'
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa'
 import { TbDatabaseExclamation } from 'react-icons/tb'
@@ -28,21 +28,13 @@ import { HandleSignInFunction, useClaim } from '~components/Faucet/Claim'
 import { useFaucet } from '~components/Faucet/use-faucet'
 import { useProcessCreationSteps } from './Steps/use-steps'
 import imageModal from '/assets/get-tokens.jpg'
-import { is } from 'date-fns/locale'
 
-export const CostPreview = ({
-  unpublished,
-  disable,
-}: {
-  unpublished: UnpublishedElection | undefined
-  disable: Dispatch<SetStateAction<boolean>>
-}) => {
+export const CostPreview = ({ unpublished }: { unpublished: UnpublishedElection | undefined }) => {
   const { t } = useTranslation()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { account, client } = useClient()
   const [cost, setCost] = useState<number | undefined>()
-  const [isLoadingCost, setIsLoadingCost] = useState(false)
-  const { form, isLoadingPreview } = useProcessCreationSteps()
+  const { form, isLoadingPreview, isLoadingCost, setIsLoadingCost, setNotEnoughBalance } = useProcessCreationSteps()
   const { loading, handleSignIn } = useClaim()
   const {
     maxCensusSize,
@@ -61,15 +53,11 @@ export const CostPreview = ({
       window.clearTimeout(timeout.current)
     }
 
-    // force disable when should calculate
-    disable(true)
-
     timeout.current = window.setTimeout(() => {
       client
         .calculateElectionCost(unpublished)
         .then((cost) => {
           setCost(cost)
-          disable(cost > account!.balance)
         })
         .catch((e) => {
           console.error('could not estimate election cost:', e)
@@ -93,7 +81,7 @@ export const CostPreview = ({
   useEffect(() => {
     if (typeof cost === 'undefined' || !account?.balance) return
 
-    disable(cost > account!.balance)
+    setNotEnoughBalance(cost > account!.balance)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cost, account?.balance])
 
@@ -351,7 +339,7 @@ const GetVocTokens = ({ loading, handleSignIn }: { loading: boolean; handleSignI
             i18nKey='get_voc_tokens.info'
             components={{
               text: <Text fontSize='sm' textAlign='center' />,
-              mailto: <Link href='mailto:info@onvote.app' fontWeight='bold' variant='primary' />,
+              mailto: <Link href='mailto:info@onvote.app' fontWeight='bold' />,
             }}
           />
         </ModalFooter>

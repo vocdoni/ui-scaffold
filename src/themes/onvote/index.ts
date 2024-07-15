@@ -77,6 +77,14 @@ export const theme = extendTheme(vtheme, {
           'white-space': 'pre-wrap',
         },
       },
+      '.md-sizes-card': {
+        '& :first-of-type': {
+          mt: 0,
+        },
+        pre: {
+          'white-space': 'pre-wrap',
+        },
+      },
       '.process-create-title': {
         fontFamily: 'pixeloidsans, monospace',
         textTransform: 'uppercase',
@@ -110,6 +118,9 @@ export const theme = extendTheme(vtheme, {
           base: '40px',
           md: '80px',
         },
+      },
+      '.dashborad_align_card_text': {
+        mt: '3.5px',
       },
     },
   },

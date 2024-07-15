@@ -11,26 +11,31 @@ const Footer = () => {
     <>
       <Flex
         className='site-wrapper'
-        py={{ base: '60px', md: '120px' }}
+        pt='24px'
         flexDirection={{ base: 'column', xl: 'row' }}
         alignItems='start'
-        gap={{ base: '60px', lg: 0 }}
+        pb={{ base: '50px', xl: '24px' }}
       >
         <Box flex='1 1 33%'>
-          <Image src={vcdLogo} w='125px' mb='24px' />
-          <Text fontSize='16px' lineHeight='28px' mb='24px' color='gray'>
+          <Image src={vcdLogo} w='125px' mb='12px' />
+          <Text fontSize='16px' lineHeight='28px' color='gray'>
             {t('footer.footer_subtitle')}
           </Text>
         </Box>
         <Flex
           flex='1 1 67%'
           flexDirection={{ base: 'column', sm2: 'row' }}
-          justifyContent={{ sm2: 'space-between', lg: 'space-around' }}
+          justifyContent={{ sm2: 'space-between', lg: 'space-between' }}
           gap={{ base: '30px', sm2: 0 }}
           mt={1}
           ml={{ xl: 10 }}
         >
-          <Flex flexDirection={{ base: 'column', xl: 'row' }} gap={{ base: '40px', xl: '90px' }}>
+          <Flex
+            flexDirection={{ base: 'column', xl: 'row' }}
+            justifyContent='space-between'
+            gap={{ base: '40px', xl: '90px' }}
+            w='full'
+          >
             <Text fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px' display='none'>
               {t('footer.company')}
             </Text>
@@ -94,15 +99,16 @@ const Footer = () => {
         gap={{ base: '20px', md: '10px' }}
         justifyContent='space-between'
         alignItems='center'
-        py='24px'
+        py='12px'
         borderTop='1px solid rgb(229, 229, 229)'
+        bgColor={`${location.pathname === '/organization' ? 'process_create.bg' : 'white'}`}
       >
         <Text as='span' color='gray' textAlign='center'>
           <Trans
             i18nKey='footer.terms_and_privacy'
             components={{
-              link1: <Link href='https://aragon.org/terms-and-conditions' target='_blank' />,
-              link2: <Link href='https://aragon.org/privacy-policy' target='_blank' />,
+              link1: <Link href='https://aragon.org/terms-and-conditions' target='_blank' color='gray' />,
+              link2: <Link href='https://aragon.org/privacy-policy' target='_blank' color='gray' />,
             }}
           />
         </Text>

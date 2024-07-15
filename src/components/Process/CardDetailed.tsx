@@ -16,7 +16,7 @@ interface Props {
 const ProcessCardDetailed = ({ election }: Props) => {
   return (
     <ElectionProvider election={election}>
-      <Card variant='detailed'>
+      <Card variant='detailed' className='md-sizes-card'>
         <CardBody>
           <Link to={`/processes/${enforceHexPrefix(election.id)}`}>
             <ProcessDetailedCardTitle />
@@ -43,7 +43,7 @@ const ProcessDetailedCreationDate = () => {
   const { election } = useElection()
   const { format } = useDateFns()
 
-  if (!election?.creationTime) return null
+  if (election instanceof InvalidElection || !election?.creationTime) return null
 
   return <Text>{format(new Date(election.creationTime), 'PPP')}</Text>
 }
@@ -54,7 +54,7 @@ const ProcessDetailedCardTitle = () => {
 
   if (election instanceof InvalidElection) {
     return (
-      <Text fontStyle='italic' color='primary.main'>
+      <Text fontStyle='italic' color='error'>
         {t('process.is_invalid')}
       </Text>
     )

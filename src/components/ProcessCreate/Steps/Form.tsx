@@ -7,10 +7,20 @@ import { StepContents } from './Contents'
 import { StepsContext, StepsContextState, StepsFormValues } from './use-steps'
 
 export type StepsFormProps = PropsWithChildren<
-  Omit<StepsContextState, 'form' | 'setForm' | 'isLoadingPreview' | 'setIsLoadingPreview'>
+  Omit<
+    StepsContextState,
+    | 'form'
+    | 'setForm'
+    | 'isLoadingPreview'
+    | 'setIsLoadingPreview'
+    | 'isLoadingCost'
+    | 'setIsLoadingCost'
+    | 'notEnoughBalance'
+    | 'setNotEnoughBalance'
+  >
 >
 
-export const StepsForm = ({ steps, children, activeStep, next, prev, setActiveStep }: StepsFormProps) => {
+export const StepsForm = ({ steps, activeStep, next, prev, setActiveStep }: StepsFormProps) => {
   const [form, setForm] = useState<RecursivePartial<StepsFormValues>>({
     electionType: {
       autoStart: true,
@@ -22,6 +32,7 @@ export const StepsForm = ({ steps, children, activeStep, next, prev, setActiveSt
     resultsType: {
       name: ElectionResultsTypeNames.SINGLE_CHOICE_MULTIQUESTION,
     },
+    questionType: 'single',
     maxVoteOverwrites: 0,
     weightedVote: false,
     questions: [{ options: [{}, {}] }],
@@ -32,6 +43,8 @@ export const StepsForm = ({ steps, children, activeStep, next, prev, setActiveSt
   })
 
   const [isLoadingPreview, setIsLoadingPreview] = useState(false)
+  const [isLoadingCost, setIsLoadingCost] = useState(false)
+  const [notEnoughBalance, setNotEnoughBalance] = useState(false)
 
   // reinitialize form if we have a draft and `state` is set in the URL
   useEffect(() => {
@@ -71,6 +84,10 @@ export const StepsForm = ({ steps, children, activeStep, next, prev, setActiveSt
     setActiveStep,
     isLoadingPreview,
     setIsLoadingPreview,
+    isLoadingCost,
+    setIsLoadingCost,
+    notEnoughBalance,
+    setNotEnoughBalance,
   }
 
   return (

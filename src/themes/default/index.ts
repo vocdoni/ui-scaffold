@@ -74,6 +74,14 @@ export const theme = extendTheme(vtheme, {
           'white-space': 'pre-wrap',
         },
       },
+      '.md-sizes-card': {
+        '& :first-of-type': {
+          mt: 0,
+        },
+        pre: {
+          'white-space': 'pre-wrap',
+        },
+      },
       '.process-create-title': {
         fontWeight: 'bold',
       },
@@ -119,14 +127,14 @@ export const rainbowStyles = (colormode: ColorMode) => {
   if (colormode === 'light') {
     return lightTheme({
       accentColor: colorsBase.white.pure,
-      accentColorForeground: colorsBase.primary.main,
+      accentColorForeground: colorsBase.primary,
       borderRadius: 'medium',
     })
   }
 
   return darkTheme({
     accentColor: colorsBase.white.pure,
-    accentColorForeground: colorsBase.primary.main,
+    accentColorForeground: colorsBase.primary,
     borderRadius: 'medium',
   })
 }

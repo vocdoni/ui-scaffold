@@ -1,26 +1,11 @@
-import {
-  Alert,
-  AlertDescription,
-  AlertIcon,
-  Box,
-  Button,
-  Card,
-  CardBody,
-  Flex,
-  Grid,
-  GridItem,
-  Img,
-  Spinner,
-  Text,
-} from '@chakra-ui/react'
+import { Alert, AlertDescription, AlertIcon, Box, Flex, Grid, GridItem, Spinner, Text } from '@chakra-ui/react'
 import { useClient, useOrganization } from '@vocdoni/react-providers'
 import { ArchivedElection, areEqualHexStrings, InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link as ReactRouterLink } from 'react-router-dom'
 import ProcessCardDetailed from '../Process/CardDetailed'
 import Header from './Header'
-import empty from '/assets/empty-list-org.png'
+import NoElections from './NoElections'
 
 const OrganizationView = () => {
   const { t } = useTranslation()
@@ -91,7 +76,7 @@ const OrganizationView = () => {
     <Box className='site-wrapper' mb={44} mx='auto'>
       <Header />
 
-      <Text as='h2' fontSize='xl' fontWeight='bold' mb={4} textAlign={{ base: 'center', md2: 'start' }}>
+      <Text as='h2' fontSize='heading-sm' fontWeight='bold' mb={4} textAlign={{ base: 'center', md2: 'start' }}>
         {t('organization.elections')}
       </Text>
 
@@ -108,29 +93,7 @@ const OrganizationView = () => {
       <Flex justifyContent='center' my={4}>
         {loading && <Spinner />}
 
-        {loaded && !electionsList.length && (
-          <Card variant='no-elections'>
-            <CardBody>
-              <Box>
-                <Img src={empty} alt={t('organization.elections_list_empty.alt')} />
-              </Box>
-              <Box>
-                {areEqualHexStrings(account?.address, organization?.address) ? (
-                  <>
-                    <Text>{t('organization.elections_list_empty.title')}</Text>
-                    <Text>{t('organization.elections_list_empty.description')}</Text>
-
-                    <Button as={ReactRouterLink} to='/processes/create' variant='primary' colorScheme='primary'>
-                      {t('menu.create')}
-                    </Button>
-                  </>
-                ) : (
-                  <Text textAlign='center'>{t('organization.elections_list_empty.not_owner')}</Text>
-                )}
-              </Box>
-            </CardBody>
-          </Card>
-        )}
+        {loaded && !electionsList.length && <NoElections />}
       </Flex>
       {error && (
         <Alert status='error'>
