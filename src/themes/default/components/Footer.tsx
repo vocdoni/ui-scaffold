@@ -107,8 +107,8 @@ const Footer = () => {
           <Trans
             i18nKey='footer.terms_and_privacy'
             components={{
-              link1: <Link href='https://aragon.org/terms-and-conditions' target='_blank' color='gray' />,
-              link2: <Link href='https://aragon.org/privacy-policy' target='_blank' color='gray' />,
+              link1: <Link href='/terms' color='gray' />,
+              link2: <Link href='/privacy' color='gray' />,
             }}
           />
         </Text>
