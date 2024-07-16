@@ -73,7 +73,10 @@ export const colors = {
     selected_text: colorsBase.white.pure,
   },
 
-  footer_icon: colorsBase.white.pure,
+  footer: {
+    icon: colorsBase.white.pure,
+    terms_and_privacy: colorsBase.white.pure,
+  },
   home_description: colorsBase.gray.dark2,
   link: {
     contrast: colorsBase.white.pure,
