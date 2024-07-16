@@ -2,6 +2,7 @@ import { Box, Flex, Icon, Image, Link, Text } from '@chakra-ui/react'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaDiscord, FaGithub } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
+import { Link as ReactRouterLink } from 'react-router-dom'
 import vcdLogo from '/assets/logo-classic.svg'
 
 const Footer = () => {
@@ -107,8 +108,8 @@ const Footer = () => {
           <Trans
             i18nKey='footer.terms_and_privacy'
             components={{
-              link1: <Link href='https://aragon.org/terms-and-conditions' target='_blank' color='gray' />,
-              link2: <Link href='https://aragon.org/privacy-policy' target='_blank' color='gray' />,
+              link1: <ReactRouterLink to='/terms' color='gray' />,
+              link2: <ReactRouterLink to='/privacy' color='gray' />,
             }}
           />
         </Text>

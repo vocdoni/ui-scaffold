@@ -18,10 +18,13 @@ const OrganizationView = lazy(() => import('~elements/Organization/View'))
 const Process = lazy(() => import('~elements/Process'))
 const OrganizationVotings = lazy(() => import('~elements/Organization/Votings'))
 const OrganizationEdit = lazy(() => import('~elements/Organization/Edit'))
+
 // others
 const OrganizationDashboardLayout = lazy(() => import('~components/Organization/Dashboard/Layout'))
 const OrganizationDashboard = lazy(() => import('~components/Organization/Dashboard'))
 const ProcessCreateSteps = lazy(() => import('~components/ProcessCreate/Steps'))
+const Terms = lazy(() => import('~components/TermsAndPrivacy/Terms'))
+const Privacy = lazy(() => import('~components/TermsAndPrivacy/Privacy'))
 
 export const RoutesProvider = () => {
   const { client } = useClient()
@@ -58,6 +61,22 @@ export const RoutesProvider = () => {
       ),
       loader: async ({ params }: { params: Params<string> }) => client.fetchAccountInfo(params.address),
       errorElement: <Error />,
+    },
+    {
+      path: 'terms',
+      element: (
+        <SuspenseLoader>
+          <Terms />
+        </SuspenseLoader>
+      ),
+    },
+    {
+      path: 'privacy',
+      element: (
+        <SuspenseLoader>
+          <Privacy />
+        </SuspenseLoader>
+      ),
     },
     {
       path: '*',

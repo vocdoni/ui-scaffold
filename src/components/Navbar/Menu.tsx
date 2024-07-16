@@ -158,16 +158,10 @@ const MenuDropdown = () => {
         <Icon as={MdOutlineLogout} mr={1} />
         {t('menu.logout')}
       </MenuItem>
-      <MenuItem
-        fontSize='xs'
-        color='blackAlpha.700'
-        as={Link}
-        href='https://aragon.org/terms-and-conditions'
-        target='_blank'
-      >
+      <MenuItem fontSize='xs' color='blackAlpha.700' as={ReactRouterLink} to='/terms'>
         {t('menu.terms')}
       </MenuItem>
-      <MenuItem fontSize='xs' color='blackAlpha.700' as={Link} href='https://aragon.org/privacy-policy' target='_blank'>
+      <MenuItem fontSize='xs' color='blackAlpha.700' as={ReactRouterLink} to='/privacy'>
         {t('menu.privacy')}
       </MenuItem>
     </MenuList>
