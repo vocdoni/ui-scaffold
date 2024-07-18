@@ -92,7 +92,6 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
 
     return () => {
       abortController.abort()
-      console.log('clean up')
     }
   }, [])
 
