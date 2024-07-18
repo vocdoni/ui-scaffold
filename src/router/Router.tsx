@@ -100,25 +100,6 @@ export const RoutesProvider = () => {
       ],
     },
     {
-      path: 'stripe',
-      element: (
-        <SuspenseLoader>
-          <OrganizationProtectedRoute />
-        </SuspenseLoader>
-      ),
-      children: [
-        {
-          path: 'checkout/:amount?',
-          element: <StripeCheckout />,
-        },
-        {
-          path: 'return/:sessionId',
-          element: <StripeReturn />,
-          errorElement: <Error />,
-        },
-      ],
-    },
-    {
       path: '*',
       element: (
         <SuspenseLoader>
