@@ -1,4 +1,5 @@
 {
+  "{title}": "{title}",
   "aside": {
     "has_already_voted": "El teu vot s'ha registrat correctament",
     "is_not_in_census": "No estàs en el cens",
@@ -147,6 +148,8 @@
     "error_title": "Error",
     "loading_description": "Si us plau, espera mentre els tokens s'estan reclamant",
     "loading_title": "Reclamant",
+    "purchase_success": "<title>Apreciem la seva compra!</title><text>Un correu de confirmació serà enviat a {{ customerEmail }}.</text> <text>Si tens alguna pregunta, envia un correu a <customLink>orders@vocdoni.org</customLink></text>",
+    "signature_aborted": "Firma avortada",
     "success_description": "Èxit",
     "success_faucetPackage_title": "El Faucet Package s'ha obtingut correctament",
     "success_title": "Els tokens s'han reclamat amb èxit"

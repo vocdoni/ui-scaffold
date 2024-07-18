@@ -4,6 +4,7 @@ import { CheckoutForm, CheckoutReturn } from '~components/Faucet/Stripe'
 
 export const StripeCheckout = () => {
   const { amount }: { amount?: string } = useParams()
+
   return (
     <Box>
       <CheckoutForm amount={amount} />

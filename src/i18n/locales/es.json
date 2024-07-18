@@ -1,4 +1,5 @@
 {
+  "{title}": "{title}",
   "aside": {
     "has_already_voted": "Tu voto ha sido registrado correctamente",
     "is_not_in_census": "No estás en el censo",
@@ -147,6 +148,8 @@
     "error_title": "Error",
     "loading_description": "Por favor espera mientras se reclaman los tokens",
     "loading_title": "Reclamando",
+    "purchase_success": "<title>¡Apreciamos tu negocio!</title><text>Un correo de confirmación será enviado a {{ customerEmail }}.</text> <text> Si tienes alguna pregunta, por favor envía un correo a <customLink>orders@vocdoni.org</customLink></text>",
+    "signature_aborted": "Firma abortada",
     "success_description": "Éxito",
     "success_faucetPackage_title": "El Faucet Package se obtuvo con éxito",
     "success_title": "Los tokens han sido reclamados correctamente"

@@ -1,11 +1,11 @@
-import { useCallback, useState, useEffect } from 'react'
+import { Box, Link, Spinner, Text, useToast } from '@chakra-ui/react'
+import { EmbeddedCheckout, EmbeddedCheckoutProvider } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
-import { EmbeddedCheckoutProvider, EmbeddedCheckout } from '@stripe/react-stripe-js'
-import { Navigate } from 'react-router-dom'
-import { useClient, errorToString } from '@vocdoni/react-providers'
+import { errorToString, useClient } from '@vocdoni/react-providers'
+import { useCallback, useEffect, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import { Navigate, useNavigate } from 'react-router-dom'
 import { useAccount } from 'wagmi'
-import { t } from 'i18next'
-import { Spinner, useToast } from '@chakra-ui/react'
 
 const STRIPE_PUBLIC_KEY = import.meta.env.STRIPE_PUBLIC_KEY
 const stripePromise = loadStripe(STRIPE_PUBLIC_KEY)
@@ -56,6 +56,8 @@ type CheckoutReturnProps = {
 }
 
 export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
+  const navigate = useNavigate()
+  const { t } = useTranslation()
   const { client, loaded: accountLoaded, account, fetchAccount } = useClient()
   const toast = useToast()
   const [status, setStatus] = useState(null)
@@ -63,16 +65,20 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
   const [faucetPackage, setFaucetPackage] = useState('')
   const [recipient, setRecipient] = useState('')
   const [packageConsumed, setPackageConsumed] = useState(false)
+  const [abortedSignature, setAbortedSignature] = useState(false)
 
   // fetch the session status
   useEffect(() => {
-    async function getStatus() {
-      const res = await fetch(`${client.faucetService.url}/sessionStatus/${sessionId}`)
+    const abortController = new AbortController()
+    const signal = abortController.signal
+    const getStatus = async () => {
+      const res = await fetch(`${client.faucetService.url}/sessionStatus/${sessionId}`, { signal })
       const data = await res.json()
+
       if (data.faucet_package !== null) {
         return data
       }
-      if (faucetPackage == null) {
+      if (!faucetPackage) {
         return await getStatus()
       }
       return null
@@ -83,7 +89,12 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
       setFaucetPackage(data.faucet_package)
       setRecipient(data.recipient)
     })
-  }, [sessionId])
+
+    return () => {
+      abortController.abort()
+      console.log('clean up')
+    }
+  }, [])
 
   // claim the tokens if the package is not consumed
   useEffect(() => {
@@ -134,36 +145,49 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
         duration: 6000,
         isClosable: true,
       })
+      navigate('/calculator')
     }
   }
+
+  useEffect(() => {
+    if (!abortedSignature) return
+
+    const navigateTimeout = setTimeout(() => {
+      navigate('/calculator')
+    }, 5000)
+
+    return () => {
+      clearTimeout(navigateTimeout)
+    }
+  }, [abortedSignature])
 
   if (status === 'open') {
     return <Navigate to='/checkout' />
   }
 
-  if (status === 'complete' && packageConsumed == false && faucetPackage == null) {
+  if (!packageConsumed || !faucetPackage) {
     return (
-      <div>
-        <section id='success'>
-          <p>
-            <Spinner />
-            {t('claim.success_title')}
-          </p>
-        </section>
-      </div>
+      <Box as='section' id='success' className='site-wrapper' mt={10} textAlign='center'>
+        <Spinner color='spinner' />
+      </Box>
     )
   }
 
   if (status === 'complete' && packageConsumed == true) {
     return (
-      <div>
-        <section id='success'>
-          <p>
-            We appreciate your business! A confirmation email will be sent to {customerEmail}. If you have any
-            questions, please email <a href='mailto:orders@vocdoni.org'>orders@vocdoni.org</a>.
-          </p>
-        </section>
-      </div>
+      <Box as='section' id='success' className='site-wrapper' mt={10} textAlign='center'>
+        <Trans
+          i18nKey='claim.purchase_success'
+          components={{
+            customLink: <Link href='mailto:orders@vocdoni.org' />,
+            title: <Text fontSize='xl' mb={5}></Text>,
+            text: <Text mb={5}></Text>,
+          }}
+          values={{
+            customerEmail: customerEmail,
+          }}
+        />
+      </Box>
     )
   }
 

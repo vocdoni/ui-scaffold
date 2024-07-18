@@ -5,10 +5,9 @@ import { createBrowserRouter, Params, RouteObject, RouterProvider } from 'react-
 import Error from '~elements/Error'
 import Layout from '~elements/Layout'
 import LayoutProcessCreate from '~elements/LayoutProcessCreate'
+import { StripeCheckout, StripeReturn } from '~elements/Stripe'
 import OrganizationProtectedRoute from './OrganizationProtectedRoute'
 import { SuspenseLoader } from './SuspenseLoader'
-import { StripeCheckout, StripeReturn } from '~elements/Stripe'
-import Calculator from '~components/Calculator'
 
 // Lazy loading helps splitting the final code, which helps downloading the app (theoretically)
 const ProtectedRoutes = lazy(() => import('./ProtectedRoutes'))
@@ -27,6 +26,7 @@ const OrganizationDashboard = lazy(() => import('~components/Organization/Dashbo
 const ProcessCreateSteps = lazy(() => import('~components/ProcessCreate/Steps'))
 const Terms = lazy(() => import('~components/TermsAndPrivacy/Terms'))
 const Privacy = lazy(() => import('~components/TermsAndPrivacy/Privacy'))
+const Calculator = lazy(() => import('~components/Calculator'))
 
 export const RoutesProvider = () => {
   const { client } = useClient()
@@ -79,6 +79,25 @@ export const RoutesProvider = () => {
           <Privacy />
         </SuspenseLoader>
       ),
+    },
+    {
+      path: 'stripe',
+      element: (
+        <SuspenseLoader>
+          <OrganizationProtectedRoute />
+        </SuspenseLoader>
+      ),
+      children: [
+        {
+          path: 'checkout/:amount?',
+          element: <StripeCheckout />,
+        },
+        {
+          path: 'return/:sessionId',
+          element: <StripeReturn />,
+          errorElement: <Error />,
+        },
+      ],
     },
     {
       path: 'stripe',

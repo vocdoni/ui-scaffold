@@ -1,4 +1,5 @@
 {
+  "{title}": "{title}",
   "aside": {
     "has_already_voted": "Your vote is properly cast",
     "is_not_in_census": "You are not in the census",
@@ -144,6 +145,8 @@
     "error_title": "Error",
     "loading_description": "Please wait while tokens are being claimed",
     "loading_title": "Claiming",
+    "purchase_success": "<title>We appreciate your business!</title><text>A confirmation email will be sent to {{ customerEmail }}.</text> <text> If you have any questions, please email <customLink>orders@vocdoni.org</customLink></text>",
+    "signature_aborted": "Signature aborted",
     "success_description": "Success",
     "success_faucetPackage_title": "Faucet Package was successfully obtained",
     "success_title": "Tokens were successfully claimed"
