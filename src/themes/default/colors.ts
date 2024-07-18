@@ -11,100 +11,105 @@ export const colorsBase = {
     light: '#E2E8F0',
     main: '#CBD5E0',
     dark: '#606f88',
+    dark2: '#000000a1',
   },
   green: '#48BB78',
-  primary: {
-    main: '#24656e',
-    dark: '#175b64',
-    dark2: '#2c545a',
-  },
+  primary: '#24656e',
   red: '#E53E3E',
   white: {
     pure: '#ffffff',
     dark: '#fafafa',
-    dark2: 'rgb(245, 247, 250)',
+    dark2: '#F5F7FA',
   },
   yellow: '#FFB116',
 }
 
 export const colors = {
   primary: {
-    main: colorsBase.primary.main,
-    50: colorsBase.white.pure,
-    500: colorsBase.primary.main,
-    600: colorsBase.primary.dark,
-    700: colorsBase.primary.dark2,
+    main: colorsBase.primary,
+    50: '#e6f2f3',
+    100: '#c1e0e3',
+    200: '#9bcdd3',
+    300: '#75b8c1',
+    400: '#4ea3af',
+    500: colorsBase.primary,
+    600: '#205c63',
+    700: '#1b5257',
+    800: '#17484c',
+    900: '#123d40',
+    950: '#0a2223',
   },
 
   avatar: {
-    bg: colorsBase.primary.main,
+    bg: colorsBase.primary,
     color: colorsBase.white.pure,
-  },
-  black: {
-    50: colorsBase.white.pure,
-    500: colorsBase.black,
-    600: colorsBase.black,
-    700: colorsBase.black,
   },
 
   checkbox: {
-    selected: colorsBase.primary.main,
+    selected: colorsBase.primary,
     selected_text: colorsBase.white.pure,
   },
+
+  dashboard_card_text: colorsBase.gray.dark,
 
   editor: {
     character_limit: colorsBase.gray.light,
   },
 
   error: colorsBase.red,
-  footer_link: colorsBase.gray.dark,
 
+  footer: {
+    white: colorsBase.white.pure,
+    gray: colorsBase.white.dark2,
+  },
   home: {
     benefits: {
-      dark_bg: colorsBase.primary.main,
-      dark_color: colorsBase.white.pure,
+      dark_bg: colorsBase.primary,
+      dark_bg_color: colorsBase.white.pure,
       light_bg: colorsBase.white.pure,
-      light_color: colorsBase.primary.main,
+      light_bg_color: colorsBase.black,
     },
     demo: {
       icon: colorsBase.gray.dark,
-      radio: colorsBase.primary.main,
+      radio: colorsBase.primary,
     },
-    icon_bg: colorsBase.primary.main,
+    description: colorsBase.gray.dark2,
+    icon_bg: colorsBase.primary,
     section: {
       bg: colorsBase.gray.light,
-      title: colorsBase.primary.main,
+      title: colorsBase.primary,
     },
     support: {
-      bg: colorsBase.primary.main,
+      bg: colorsBase.primary,
       title: colorsBase.yellow,
+      helper: colorsBase.white.pure,
     },
     step: {
       icon: colorsBase.white.pure,
-      icon_bg: colorsBase.primary.main,
-      title: colorsBase.primary.main,
+      icon_bg: colorsBase.primary,
+      title: colorsBase.primary,
     },
+    trusted_title: colorsBase.gray.dark,
+  },
+  dashboard: {
+    org_name: colorsBase.primary,
   },
   success: colorsBase.green,
 
   link: {
-    primary: colorsBase.primary.main,
+    primary: colorsBase.primary,
     contrast: colorsBase.white.pure,
   },
 
-  main_bg: colorsBase.white.dark,
-
   modal_description: colorsBase.gray.dark,
 
-  navbar_chevron: colorsBase.primary.main,
+  navbar_chevron: colorsBase.primary,
 
   organization: {
     card: {
-      description: colorsBase.gray.dark,
       footer_bg: colorsBase.gray.light2,
     },
-    election_list_empty_bg: colorsBase.gray.light2,
-    header_bg: colorsBase.white.pure,
+    election_list_empty_bg: colorsBase.gray.dark,
   },
 
   process: {
@@ -112,51 +117,46 @@ export const colors = {
       bg: colorsBase.gradient,
       color: colorsBase.white.pure,
       vote_btn_color: colorsBase.black,
-      vote_btn_bg: colorsBase.primary.main,
+      vote_btn_bg: colorsBase.primary,
       aside_footer_mbl_border: colorsBase.white.dark,
       verify_link: colorsBase.white.pure,
     },
-    canceled: colorsBase.primary.main,
+    canceled: colorsBase.primary,
     confirm_vote: {
-      active: colorsBase.primary.dark2,
-      bg: colorsBase.primary.main,
+      bg: colorsBase.primary,
       color: colorsBase.white.pure,
-      hover: colorsBase.primary.dark,
     },
-    gitcoin_card_checked: colorsBase.primary.main,
-    info_title: colorsBase.primary.main,
+    gitcoin_card_checked: colorsBase.primary,
+    info_title: colorsBase.primary,
     description: colorsBase.gray.dark,
-    identify_btn: {
-      bg: colorsBase.primary.main,
-      bg_active: colorsBase.primary.dark2,
-      bg_hover: colorsBase.primary.dark,
-      color: colorsBase.white.pure,
-    },
+
     label: colorsBase.gray.dark,
-    paused: colorsBase.primary.main,
+    paused: colorsBase.primary,
     questions: {
       alert: {
-        bg: colorsBase.primary.main,
+        bg: colorsBase.primary,
         color: colorsBase.white.pure,
         link_color: colorsBase.black,
         link_bg: colorsBase.white.pure,
       },
       question_selected: {
-        bg: colorsBase.primary.main,
+        bg: colorsBase.primary,
         color: colorsBase.white.pure,
       },
+      hover: colorsBase.gray.light2,
       description: colorsBase.gray.dark,
-      title: colorsBase.primary.main,
+      title: colorsBase.primary,
     },
     no_description: colorsBase.gray.dark,
     results: {
-      alert_bg: colorsBase.primary.main,
+      alert_bg: colorsBase.primary,
       alert_color: colorsBase.white.pure,
       bg: colorsBase.gray.light2,
       description: colorsBase.gray.dark,
       progressbar_bg: colorsBase.gray.light,
-      title: colorsBase.primary.main,
+      title: colorsBase.primary,
     },
+    spinner: colorsBase.primary,
     spreadsheet: {
       disconnect_bg: 'transparent',
       disconnect_color_desktop: colorsBase.gray.dark,
@@ -170,7 +170,7 @@ export const colors = {
     vote_button: {
       mobile_bg: colorsBase.white.pure,
       mobile_color: colorsBase.black,
-      desktop_bg: colorsBase.primary.main,
+      desktop_bg: colorsBase.primary,
       desktop_color: colorsBase.white.pure,
     },
   },
@@ -181,16 +181,16 @@ export const colors = {
       color: colorsBase.blue.dark,
     },
     advanced_checkbox_bg: colorsBase.white.pure,
-    pro_bg: colorsBase.primary.main,
+    pro_bg: colorsBase.primary,
     pro_color: colorsBase.white.pure,
     bg: colorsBase.white.dark2,
     wallet_addresses_border: colorsBase.gray.main,
     calendar_start_date_selected: colorsBase.blue.main,
     census: {
       drag_and_drop_border: colorsBase.gray.main,
-      title: colorsBase.primary.main,
-      weighted_vote_checked: colorsBase.primary.main,
-      web3_owner_label: colorsBase.primary.main,
+      title: colorsBase.primary,
+      weighted_vote_checked: colorsBase.primary,
+      web3_owner_label: colorsBase.primary,
     },
     description: colorsBase.gray.dark,
     description_logo: colorsBase.blue.main,
@@ -203,18 +203,20 @@ export const colors = {
     section: colorsBase.white.pure,
     spreadsheet: {
       badge: {
-        bg: colorsBase.primary.main,
+        bg: colorsBase.primary,
         text: colorsBase.white.pure,
       },
-      file: colorsBase.primary.main,
+      file: colorsBase.primary,
       preview_bg: colorsBase.white.pure,
       preview_bg_interior: colorsBase.gray.light2,
-      requirements_text: colorsBase.primary.main,
-      total_rows_text: colorsBase.primary.main,
+      requirements_text: colorsBase.primary,
+      total_rows_text: colorsBase.primary,
     },
     stepper: {
-      bg: colorsBase.primary.main,
+      color: colorsBase.gray.dark,
+      bg: colorsBase.primary,
       color_active: colorsBase.white.pure,
     },
   },
+  read_more: colorsBase.primary,
 }

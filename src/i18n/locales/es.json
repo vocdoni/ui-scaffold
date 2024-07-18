@@ -11,15 +11,13 @@
     "votes_one": "<span>1</span> <text>votante</text>",
     "votes_many": "<span>{{ count }}</span> <text>votantes</text>",
     "votes_other": "<span>{{ count }}</span> <text>votantes</text>",
-    "voting_anonymous_advice": "Por favor, espera mientras sucede la magia 🪄.\nEsto puede tardar varios minutos; no cierres la ventana.",
     "votes_weight_one": "<span>1</span> <text>voto</text>",
+    "votes_weight_many": "",
     "votes_weight_other": "<span>{{ count }}</span> <text>votos</text>",
-    "voting_anonymous_advice": "Por favor, espera mientras sucede la magia.\nEsto puede tardar varios minutos; no cierres la ventana."
+    "voting_anonymous_advice": "Por favor, espera mientras sucede la magia 🪄.\nEsto puede tardar varios minutos; no cierres la ventana."
   },
   "banner": {
     "start_now": "¡Crea una votación ahora!",
-    "subtitle": "Usa direcciones de cartera, vota con un token ERC20 o con NFTs!",
-    "subtitle1": "Aumenta la participación electoral un 30%",
     "title": "Voto digital seguro, verificable y flexible"
   },
   "banner_voting_types": {
@@ -140,6 +138,14 @@
       "selected_users": "Usuarios seleccionados:"
     }
   },
+  "dashboard": {
+    "card": {
+      "finish": "Termina",
+      "finished": "Terminado",
+      "started": "Empezado",
+      "starts": "Empieza"
+    }
+  },
   "error": {
     "go_back": "Volver atrás",
     "invalid_cell_data": "Algunas filas no contienen direcciones correctas: {{rows, list}}",
@@ -202,8 +208,7 @@
       "avatar_helper": "Imagen/logotipo de tu organización",
       "avatar_placeholder": "URL de la imagen",
       "btn": "Guardar",
-      "footer": "Editar tu organización generará una solicitud de firma, con un coste de 1 token",
-      "title": "Editar Organización"
+      "footer": "Editar tu organización generará una solicitud de firma, con un coste de 1 token"
     },
     "error": {
       "address_already_in_use": "Esta dirección ya está en el censo",
@@ -323,6 +328,8 @@
       "question": {
         "add_new_option": "Añadir opción",
         "add_question": "Añadir pregunta",
+        "approval_description": "Con la votación de aprobación, solo se puede agregar una pregunta con múltiples opciones. La opción con más votos ganará.",
+        "approval_title": "Agregar una pregunta",
         "delete_option": "Eliminar opcion número {{ option }} de la pregunta {{ question }}",
         "description": "Agrega las preguntas junto con las opciones que tus votantes deberán elegir. Tienes la flexibilidad de agregar varias preguntas, cada una con un número personalizado de opciones seleccionables.",
         "description_placeholder": "Escribe aquí una descripción de la pregunta",
@@ -430,7 +437,6 @@
         "description": "Vocdoni ofrece tanto soluciones de autoservicio como soluciones personalizadas llave-en-mano adaptadas a tus necesidades.",
         "title": "Te acompañamos en cada paso"
       },
-      "header": "Contáctanos",
       "title": "Trabajemos juntos para encontrar tu votación ideal"
     },
     "create_process": {
@@ -545,14 +551,12 @@
         "description": "Permite a los votantes emitir sus votos directamente desde su navegador web, teléfono o tableta, asegurando la accesibilidad y conveniencia para todos los participantes.",
         "title": "Accesibilidad multiplataforma"
       },
-      "header": "Características destacadas",
       "subtitle_1": "Desbloquea el potencial de Vocdoni: personaliza tus votaciones, asegura elecciones seguras y transparentes, y empodera a los participantes con opciones intuitivas. Experimenta un compromiso mejorado, eficiencia y confianza en cada votación con nuestra aplicación.",
       "title": "Funcionalidades"
     },
     "process": {
       "description_1": "La aplicación Vocdoni te permite crear un proceso de votación en 4 sencillos pasos.",
       "description_2": "Con un clic, puedes configurar si deseas votación anónima o resultados de elección en vivo, elegir entre varios tipos de elecciones, cargar tu censo de votantes y mucho más.",
-      "header": "Proceso",
       "step_1": {
         "description": "Control total con nuestra plataforma de autoservicio. ¿Necesitas personalización o asistencia? Estamos aquí para ayudarte.",
         "title": "Inicia tu votación"
@@ -584,7 +588,6 @@
         "description": "Aumenta la participación de los votantes, reduce los costes electorales y mejora la confianza ciudadana con procesos de votación seguros y verificables.",
         "title": "Gobiernos e Instituciones Públicas"
       },
-      "header": "Soluciones adaptativas",
       "img_card_1": "Organizaciones",
       "img_card_2": "Comunidades",
       "img_card_3": "Gobierno e Instituciones Públicas",
@@ -663,17 +666,30 @@
   "open_in_explorer": "Abrir en explorador",
   "organization": {
     "avatar_alt": "Imagen de avatar de la organización {{ name }}",
+    "create_org": "Crear Organización",
+    "date_format": "MMMM d - yyyy (H:mm)",
     "elections": "Elecciones",
     "elections_list_empty": {
       "alt": "Imagen que ilustra que la organización está vacía",
-      "description": "Al comenzar haciendo tu primera votación, puedes elegir entre diferentes tipos de autenticación para tu voto.",
+      "description": "Como organizador, tienes la capacidad de crear procesos de votación personalizados para tu comunidad. Estos procedimientos de votación ofrecen una amplia gama de flexibilidad, incluyendo opciones como un censo donde los votantes deben autenticarse utilizando datos personalizados (como nombre de usuario, contraseña y fecha de nacimiento), un sistema basado en tokens que permite la participación de todos los titulares de tokens o una lista blanca que utiliza direcciones de cartera para la elegibilidad.",
       "not_owner": "Esta organización aún no tiene votaciones.",
       "title": "Crea tu primer proceso de votación"
     },
+    "menu": {
+      "dashboard": "Dashboard",
+      "edit_my_organization": "Mi entidad",
+      "votings": "Votaciones"
+    },
+    "my_entity": "Mi entidad",
+    "overview": "Visión general",
+    "required_signin": "Primero debes iniciar sesión",
     "title": {
-      "edit": "Editar organización",
       "read_more": "Expandir título"
-    }
+    },
+    "voting_processes_one": "{{ count }} proceso de votación",
+    "voting_processes_many": "",
+    "voting_processes_other": "{{ count }} procesos de votación",
+    "votings_overview": "Visión general de les votaciones"
   },
   "process": {
     "census": "Censo",
@@ -713,10 +729,9 @@
     "share_title": "Compartir en {{ network }}",
     "spreadsheet": {
       "confirm": {
-        "abstain_count_one": "",
-        "abstain_count_many": "",
-        "abstain_count_other": "",
-        "blank_vote": "",
+        "abstain_count_one": "¡Atención! Te estás absteniendo de una opción",
+        "abstain_count_other": "¡Atención! Te estás absteniendo de {{ count }} opciones",
+        "blank_vote": "No se han seleccionado opciones, enviando voto en blanco",
         "description": "Antes de emitir tu voto, revisa que todo esté correcto.",
         "option": "<strong>Opción {{ number }}:</strong> {{ answer }}",
         "options": "<strong>Selección:</strong> {{ answers }}",
@@ -741,7 +756,8 @@
     },
     "total_census_size": "{{maxCensusSize}} votantes permitidos de {{censusSize}} totales en el censo",
     "total_census_size_tooltip": "El número máximo de votantes permitidos está limitado a {{maxCensusSize}} de un censo de {{censusSize}} ({{percent}}% del total). Solo los primeros {{maxCensusSize}} votantes pueden votar.",
-    "voters": "Votantes"
+    "voters": "Votantes",
+    "voting": "Estamos procesando tu voto. Este proceso tardará unos segundos. Por favor, no cierres ni actualices esta página."
   },
   "process_actions": {
     "cancel": "Cancelar proceso",

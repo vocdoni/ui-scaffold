@@ -33,7 +33,7 @@ const Solutions = () => {
               mx='auto'
               fontFamily='basier'
               fontSize='20px'
-              opacity='0.75'
+              color='home.description'
             >
               {t('home.solutions.subtitle_1')}
             </Text>
@@ -100,7 +100,7 @@ const Solutions = () => {
             fontWeight='bold'
           >
             <Box minW='25px'>
-              <FaCircleCheck color='#000' size={22} />
+              <FaCircleCheck size={22} />
             </Box>
             <Text as='span'> {t('home.solutions.img_card_1')}</Text>
           </Flex>
@@ -114,7 +114,7 @@ const Solutions = () => {
             fontWeight='bold'
           >
             <Box minW='25px'>
-              <FaCircleCheck color='#000' size={22} />
+              <FaCircleCheck size={22} />
             </Box>
 
             <Text as='span'> {t('home.solutions.img_card_2')}</Text>
@@ -129,7 +129,7 @@ const Solutions = () => {
             fontWeight='bold'
           >
             <Box minW='25px'>
-              <FaCircleCheck color='#000' size={22} />
+              <FaCircleCheck size={22} />
             </Box>
             <Text as='span' whiteSpace={{ sm: 'nowrap' }}>
               {t('home.solutions.img_card_3')}

@@ -4,8 +4,8 @@ import { Button } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { AccountCreate } from '~components/Account/Create'
 import { useOrganizationHealthTools } from '~components/Account/use-account-health-tools'
+import AccountCreate from './AccountCreate'
 import { useProcessCreationSteps } from './use-steps'
 import Wrapper from './Wrapper'
 
@@ -62,7 +62,7 @@ const NeedsAccount = () => {
           </Box>
         </Box>
         <Flex justifyContent='end' mt='auto'>
-          <Button isLoading={loading} type='submit' form='process-create-form' variant='primary' px={12}>
+          <Button isLoading={loading} type='submit' form='process-create-form' px={12}>
             {t('new_organization.create_organization_btn')}
             <ArrowForwardIcon />
           </Button>

@@ -1,18 +1,21 @@
 import { Box, Flex, HStack, Text } from '@chakra-ui/react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, ScrollRestoration, useLocation } from 'react-router-dom'
+import Navbar from '~components/Navbar'
 import Footer from '~theme/components/Footer'
-import Navbar from '~theme/components/Navbar'
 
 const Layout = () => {
+  const location = useLocation()
+
   return (
     <Flex position='relative' flexDirection='column' minH='100vh' mx='auto' bgColor='bg'>
       <HStack as='header' position='sticky' top={0} w='full' backdropFilter='blur(40px)' zIndex={30}>
         <Navbar />
       </HStack>
-      <Box as='main' flexGrow={1}>
+      <ScrollRestoration />
+      <Flex flexDirection='column' as='main' flexGrow={1}>
         <Outlet />
-      </Box>
-      <Box as='footer' mt='auto'>
+      </Flex>
+      <Box as='footer' mt='auto' bgColor={`${location.pathname === '/organization' ? 'footer.gray' : 'footer.white'}`}>
         <Footer />
       </Box>
       {import.meta.env.theme === 'onvote' && (

@@ -2727,6 +2727,11 @@
   resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-4.36.1.tgz#79f8c1a539d47c83104210be2388813a7af2e524"
   integrity sha512-DJSilV5+ytBP1FbFcEJovv4rnnm/CokuVvrBEtW/Va9DvuJ3HksbXUJEpI0aV1KtuL4ZoO9AVE6PyNLzF7tLeA==
 
+"@tanstack/query-core@5.36.1":
+  version "5.36.1"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.36.1.tgz#ae46f935c4752812a56c6815305061a3da82e7b8"
+  integrity sha512-BteWYEPUcucEu3NBcDAgKuI4U25R9aPrHSP6YSf2NvaD2pSlIQTdqOfLRsxH9WdRYg7k0Uom35Uacb6nvbIMJg==
+
 "@tanstack/query-persist-client-core@4.36.1":
   version "4.36.1"
   resolved "https://registry.yarnpkg.com/@tanstack/query-persist-client-core/-/query-persist-client-core-4.36.1.tgz#4d7284994bdc2a15fe6cbe7161be21e03033fe12"
@@ -2755,6 +2760,13 @@
   dependencies:
     "@tanstack/query-core" "4.36.1"
     use-sync-external-store "^1.2.0"
+
+"@tanstack/react-query@^5.37.1":
+  version "5.37.1"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.37.1.tgz#82d79cdf54923b1f0638c080e8f0439a6a8a2ddc"
+  integrity sha512-EhtBNA8GL3XFeSx6VYUjXQ96n44xe3JGKZCzBINrCYlxbZP6UwBafv7ti4eSRWc2Fy+fybQre0w17gR6lMzULA==
+  dependencies:
+    "@tanstack/query-core" "5.36.1"
 
 "@testing-library/dom@^9.0.0":
   version "9.3.4"
@@ -3107,11 +3119,11 @@
     react-refresh "^0.14.0"
 
 "@vocdoni/chakra-components@^0.8.0":
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/@vocdoni/chakra-components/-/chakra-components-0.8.0.tgz#bb20ce94cc4c8bd6d86372ee612243fe7b5f3067"
-  integrity sha512-gHX0M90W8YE/ivdlDW2eyPu2mv/iftqkYrPxlx0tn2x31CiXQsaMo79p93bQU4hv+ztTRHqML9iKq4udkVW5Bw==
+  version "0.8.7"
+  resolved "https://registry.yarnpkg.com/@vocdoni/chakra-components/-/chakra-components-0.8.7.tgz#b3b6655eab8d3d888b03bc1ea0de811d843320d2"
+  integrity sha512-BPbzkWSb5QKAejqvevMrpkiVkEw3GYz312oeso1kPdk+7idEvcKIvkdihbqCTD4iHSaixI1MoQ8945MLrmCkvA==
   dependencies:
-    "@vocdoni/react-providers" "~0.4.0"
+    "@vocdoni/react-providers" "~0.4.4"
 
 "@vocdoni/proto@1.15.5":
   version "1.15.5"
@@ -3128,10 +3140,10 @@
   dependencies:
     crypto-js "^4.2.0"
 
-"@vocdoni/react-providers@~0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.4.0.tgz#550898447c93b429639a1cf1918dec9f0d90eba6"
-  integrity sha512-XqCm7i6tGWzpJq2P4hRqETlxISQXDKArFqCh1Vb/edM+YkHU/HGJQF3rNjhmWf1lI1fbrZ7D2F7ad3M0ojwxgg==
+"@vocdoni/react-providers@~0.4.4":
+  version "0.4.7"
+  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.4.7.tgz#f4ebfc2d237cf864d3c050d186fe919761a23d5f"
+  integrity sha512-jTbfyM6KGmhjXMlUQzz+sn2m1cNZJdpADvPA456BA5YPb6CfeLgLzlnxeeeTAVPEnVMuovIQmejuMxvVEfLe4g==
 
 "@vocdoni/sdk@https://github.com/vocdoni/vocdoni-sdk.git#main":
   version "0.8.1"

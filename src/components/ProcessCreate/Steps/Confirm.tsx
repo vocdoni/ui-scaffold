@@ -19,6 +19,7 @@ import {
 import { Button } from '@vocdoni/chakra-components'
 import { ElectionProvider, errorToString, useClient } from '@vocdoni/react-providers'
 import {
+  ApprovalElection,
   Census3CreateStrategyToken,
   CspCensus,
   Election,
@@ -99,12 +100,15 @@ export const Confirm = () => {
         ...electionFromForm(form),
         census,
       }
-      const election = Election.from(params)
 
-      let pid: string = ''
-      if (census instanceof CspCensus) {
-        pid = await client.electionService.nextElectionId(account!.address, election)
-        const createdCspElection: IElectionWithTokenResponse = await createElectionInCsp(pid, form.userList)
+      let election: UnpublishedElection
+      switch (form.questionType) {
+        case 'approval':
+          election = ApprovalElection.from(params)
+          break
+        case 'single':
+        default:
+          election = Election.from(params)
       }
 
       for await (const step of client.createElectionSteps(election)) {
@@ -114,11 +118,9 @@ export const Confirm = () => {
           case ElectionCreationSteps.DONE:
             setStep(step.key as Steps)
             if (step.key === ElectionCreationSteps.DONE) {
-              if (pid !== step.electionId) {
-                pid = step.electionId
-                if (census instanceof CspCensus) {
-                  const createdCspElection: IElectionWithTokenResponse = await createElectionInCsp(pid, form.userList)
-                }
+              const pid = step.electionId
+              if (census instanceof CspCensus) {
+                await createElectionInCsp(pid, form.userList)
               }
 
               setCreated(pid)
@@ -344,7 +346,6 @@ export const Confirm = () => {
           isDisabled={disabled}
           isLoading={sending}
           px={{ base: 12, xl2: 28 }}
-          variant='primary'
         >
           {t('form.process_create.confirm.create_button')}
         </Button>

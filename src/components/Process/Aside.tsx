@@ -2,11 +2,11 @@ import { Box, Button, Card, Flex, Link, Text } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { VoteButton as CVoteButton, environment, SpreadsheetAccess, VoteWeight } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
-import { dotobject, ElectionStatus, formatUnits, PublishedElection } from '@vocdoni/sdk'
+import { dotobject, ElectionStatus, formatUnits, InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
-import { useAccount } from 'wagmi'
+import { useAccount, useDisconnect } from 'wagmi'
 import { CensusMeta } from './Census/CensusType'
 
 const results = (result: number, decimals?: number) =>
@@ -14,6 +14,7 @@ const results = (result: number, decimals?: number) =>
 
 const ProcessAside = () => {
   const { t } = useTranslation()
+  const { disconnect } = useDisconnect()
   const {
     election,
     connected,
@@ -23,7 +24,10 @@ const ProcessAside = () => {
     loading: { voting },
   } = useElection()
   const { isConnected } = useAccount()
-  const { env } = useClient()
+  const { env, clear } = useClient()
+
+  if (election instanceof InvalidElection) return null
+
   const census: CensusMeta = dotobject(election?.meta || {}, 'census')
 
   const renderVoteMenu =
@@ -35,7 +39,7 @@ const ProcessAside = () => {
     election?.status !== ElectionStatus.CANCELED &&
     election?.status !== ElectionStatus.UPCOMING &&
     !(election?.electionType.anonymous && voting)
-  const showVotes = !election?.electionType.secretUntilTheEnd || election.status === ElectionStatus.RESULTS
+  const showVotes = !election?.electionType.secretUntilTheEnd && election?.status !== ElectionStatus.UPCOMING
 
   let votes = 0
   if (election && showVotes && election?.questions.length) {
@@ -154,7 +158,7 @@ const ProcessAside = () => {
           </Flex>
         )}
       </Card>
-      {connected && (
+      {(connected || isConnected) && (
         <Box
           alignSelf='center'
           sx={{
@@ -173,7 +177,20 @@ const ProcessAside = () => {
           }}
           mb={{ base: 10, md: 0 }}
         >
-          <SpreadsheetAccess />
+          {connected && <SpreadsheetAccess />}
+          {isConnected && election?.get('census.type') !== 'spreadsheet' && (
+            <Button
+              variant='text'
+              textDecor='underline'
+              _hover={{ textDecor: 'none' }}
+              onClick={() => {
+                disconnect()
+                clear()
+              }}
+            >
+              {t('cc.spreadsheet.logout')}
+            </Button>
+          )}
         </Box>
       )}
     </>
@@ -184,14 +201,16 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
   const { t } = useTranslation()
 
   const { election, connected, isAbleToVote, isInCensus } = useElection()
-  const census: CensusMeta = dotobject(election?.meta || {}, 'census')
   const { isConnected } = useAccount()
 
-  if (
-    election?.status === ElectionStatus.CANCELED ||
-    (isConnected && !isInCensus && !['spreadsheet', 'csp'].includes(census?.type))
-  )
+  if (election instanceof InvalidElection || election?.status === ElectionStatus.CANCELED) {
     return null
+  }
+
+  const census: CensusMeta = dotobject(election?.meta || {}, 'census')
+  if (isConnected && !isInCensus && !['spreadsheet', 'csp'].includes(census?.type)) {
+    return null
+  }
 
   const isWeighted = election?.census.weight !== election?.census.size
 
