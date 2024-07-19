@@ -1,4 +1,4 @@
-import { Box, Link, Spinner, Text, useToast } from '@chakra-ui/react'
+import { Box, Button, Flex, Link, Spinner, Text, useToast } from '@chakra-ui/react'
 import { EmbeddedCheckout, EmbeddedCheckoutProvider } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 import { errorToString, useClient } from '@vocdoni/react-providers'
@@ -13,6 +13,13 @@ const stripePromise = loadStripe(STRIPE_PUBLIC_KEY)
 type CheckoutFormProps = {
   amount?: string
   returnURL?: string
+}
+
+type StatusData = {
+  status: string | null
+  customer_email: string | null
+  faucet_package: string | undefined
+  recipient: string | null
 }
 
 export const CheckoutForm = ({ amount, returnURL }: CheckoutFormProps) => {
@@ -60,18 +67,21 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
   const { t } = useTranslation()
   const { client, loaded: accountLoaded, account, fetchAccount } = useClient()
   const toast = useToast()
-  const [status, setStatus] = useState(null)
-  const [customerEmail, setCustomerEmail] = useState('')
-  const [faucetPackage, setFaucetPackage] = useState('')
-  const [recipient, setRecipient] = useState('')
+  const [status, setStatus] = useState<string | null>(null)
+  const [customerEmail, setCustomerEmail] = useState<string | null>('')
+  const [faucetPackage, setFaucetPackage] = useState<string | undefined>('')
+  const [recipient, setRecipient] = useState<string | null>('')
   const [packageConsumed, setPackageConsumed] = useState(false)
   const [abortedSignature, setAbortedSignature] = useState(false)
+  const [aborted, setAborted] = useState(false)
+
+  console.log('CheckoutReturn')
 
   // fetch the session status
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
-    const getStatus = async () => {
+    const getStatus = async (): Promise<StatusData | null> => {
       const res = await fetch(`${client.faucetService.url}/sessionStatus/${sessionId}`, { signal })
       const data = await res.json()
 
@@ -84,6 +94,7 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
       return null
     }
     getStatus().then((data) => {
+      if (!data) return
       setStatus(data.status)
       setCustomerEmail(data.customer_email)
       setFaucetPackage(data.faucet_package)
@@ -144,7 +155,7 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
         duration: 6000,
         isClosable: true,
       })
-      navigate('/calculator')
+      setAborted(true)
     }
   }
 
@@ -162,6 +173,18 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
 
   if (status === 'open') {
     return <Navigate to='/checkout' />
+  }
+
+  if (aborted) {
+    return (
+      <Box as='section' id='success' className='site-wrapper' mt={10} textAlign='center'>
+        <Text>Has abortat l'operaciò</Text>
+        <Flex justifyContent='center' gap={5} mt={10}>
+          <Button>Resignar</Button>
+          <Button>Refund</Button>
+        </Flex>
+      </Box>
+    )
   }
 
   if (!packageConsumed || !faucetPackage) {
