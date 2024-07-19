@@ -33,7 +33,7 @@ import {
 import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { useClient } from '@vocdoni/react-providers'
 import { Election, PlainCensus } from '@vocdoni/sdk'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Controller, FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { AiOutlinePercentage } from 'react-icons/ai'
@@ -605,6 +605,13 @@ const BuyBtns = ({
   const { account } = useClient()
   const { isConnected } = useAccount()
   const { openConnectModal } = useConnectModal()
+  const [hasConnected, setHasConnected] = useState(false)
+
+  useEffect(() => {
+    if (hasConnected && isConnected) {
+      onOpen()
+    }
+  }, [isConnected, hasConnected])
 
   const oneTimeDisabled =
     !import.meta.env.STRIPE_PUBLIC_KEY.length || !oneTimeTab || !(!!totalPrice && priceTokens > 100)
@@ -619,6 +626,7 @@ const BuyBtns = ({
             onClick={() => {
               if (!isConnected && openConnectModal) {
                 openConnectModal()
+                setHasConnected(true)
               } else if (oneTimeTab && account && account?.balance >= priceTokens) {
                 onOpen()
               } else {
