@@ -4,7 +4,7 @@ import { loadStripe } from '@stripe/stripe-js'
 import { errorToString, useClient } from '@vocdoni/react-providers'
 import { useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 
 const STRIPE_PUBLIC_KEY = import.meta.env.STRIPE_PUBLIC_KEY
@@ -20,6 +20,7 @@ type StatusData = {
   customer_email: string | null
   faucet_package: string | undefined
   recipient: string | null
+  quantity: number | null
 }
 
 export const CheckoutForm = ({ amount, returnURL }: CheckoutFormProps) => {
@@ -63,7 +64,6 @@ type CheckoutReturnProps = {
 }
 
 export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
-  const navigate = useNavigate()
   const { t } = useTranslation()
   const { client, loaded: accountLoaded, account, fetchAccount } = useClient()
   const toast = useToast()
