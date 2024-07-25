@@ -203,12 +203,14 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
     return (
       <Box as='section' id='success' className='site-wrapper' textAlign='center' mt={10}>
         <Spinner color='spinner' mb={5} />
-        <Box>
+        <Box w='fit-content' mx='auto'>
           <Trans
             i18nKey='claim.loading_description'
             components={{
+              h3: <Text as='h3' fontSize='md' fontWeight='bold' />,
               p: <Text mb={5} />,
               strong: <Text fontWeight='bold' />,
+              line: <Box h='1px' backgroundColor='black' my={10} />,
             }}
           />
         </Box>
