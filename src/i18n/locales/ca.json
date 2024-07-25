@@ -57,7 +57,13 @@
       "title": "Resultats per a \"{{ title }}\"",
       "votes": "Vots: {{ votes }} ({{ percent }})"
     },
-    "schedule": "Votació del {{ begin }} al {{ end }}",
+    "schedule": {
+      "created": "Creat fa {{ distance }}",
+      "ended": "Finalitzat fa {{ distance }}",
+      "from_begin_to_end": "Votació del {{ begin }} al {{ end }}",
+      "paused_end": "Finalitza en {{ distance }}",
+      "paused_start": "Comença en {{ distance }}"
+    },
     "spreadsheet": {
       "access_button": "Identifica't",
       "anon_sik_helper": "Això garanteix que el teu vot sigui anònim",
@@ -730,6 +736,7 @@
     "spreadsheet": {
       "confirm": {
         "abstain_count_one": "Atenció! T'estàs abstenint d'una opció",
+        "abstain_count_many": "",
         "abstain_count_other": "Atenció! T'estàs abstenint de {{ count }} opcions",
         "blank_vote": "No s'han seleccionat opcions, enviant vot en blanc",
         "description": "Abans de votar, reviseu que tot sigui correcte.",
@@ -825,10 +832,6 @@
         "description": "Els votants trien un nombre predeterminat d'opcions, i l'opció amb més votants guanya.",
         "title": "<p>Votació Plurinominal</p><p>(Elecció Múltiple)</p>"
       },
-      "others": {
-        "description": "Seleccioneu altres tipus de votació (de múltiples opcions, de votació d'aprovació, pressupost participatiu, elecció classificada...)",
-        "title": "Altres"
-      },
       "participation_budgeting": {
         "description": "Els votants poden distribuir un nombre predeterminat entre totes les opcions/projectes (que representen el pressupost total disponible) com desitgin.",
         "title": "Pressupost Participatiu"
@@ -839,11 +842,10 @@
       },
       "voting_type": {
         "description": "Selecciona el tipus de votació per a aquesta elecció. Si no trobes el que necessites, pots contactar-nos.",
-        "pro": "",
-        "pro_census": "",
         "title": "Tipus de Votació"
       }
-    }
+    },
+    "tabcard_title": "{title}"
   },
   "rainbow": {
     "group": {
