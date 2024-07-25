@@ -103,8 +103,6 @@ const features = () => {
     features._census[census] = true
   }
 
-  console.log('features:', features)
-
   return {
     name: 'feature-flags',
     config() {

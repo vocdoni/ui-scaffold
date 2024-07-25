@@ -13,8 +13,6 @@ const OrganizationProtectedRoute = () => {
   } = useClient()
   const { exists } = useAccountHealthTools()
 
-  console.log('protected', 'fetch', fetch, 'fetchLoaded', fetchLoaded)
-
   if (!connected) {
     return <SignInScreen />
   }

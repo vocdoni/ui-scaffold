@@ -40,7 +40,11 @@
     "duration": "Duration (days)",
     "encrypted": "Encrypted",
     "estimate_election_cost": "Estimate your election cost",
-    "modal_description": "<p>You have enough tokens for the election.</p><p>Do you still want to buy anyway?</p>",
+    "modal": {
+      "enough_tokens": "<p>You have enough tokens for the election.</p><p>Do you still want to buy anyway?</p>",
+      "minimum_tokens_purchase": "<p>The minimum purchase of tokens is {{ minimumTokens }} at €{{ pricePerToken }} per token, totaling €{{ totalPrice }}.</p><p>Do you want to proceed with the purchase?</p>",
+      "minimum_tokens_purchase_and_enough_tokens": "<p>You have enough tokens for the election and the minimum purchase of tokens is {{ minimumTokens }} at €{{ pricePerToken }} per token, totaling €{{ totalPrice }}.</p><p>Do you want to proceed with the purchase?</p>"
+    },
     "more_tokens": "Do you need more tokens than the listed? <customLink>Contact</customLink> our support team",
     "num_elections": "Nº of elections",
     "one_time": "One-time",
@@ -142,14 +146,18 @@
     "wallet_address_title": "Wallet addresses"
   },
   "claim": {
-    "error_title": "Error",
-    "loading_description": "Please wait while tokens are being claimed",
-    "loading_title": "Claiming",
-    "purchase_success": "<title>We appreciate your business!</title><text>A confirmation email will be sent to {{ customerEmail }}.</text> <text> If you have any questions, please email <customLink>orders@vocdoni.org</customLink></text>",
-    "signature_aborted": "Signature aborted",
-    "success_description": "Success",
+    "loading_description": "<strong>Wallet Authentication (Metamask, Rainbow, Coinbase):</strong><p>To receive your tokens, please sign the request when prompted.</p><strong>Important:</strong><p>If you leave this page without signing, you will not receive your paid tokens.</p><strong>Social Account Authentication (Google, Github, Facebook):</strong><p>Please wait while we process your request.</p>",
+    "purchase_success": "<title>We appreciate your business!</title><p>If you have any questions, please email <customLink>orders@vocdoni.org</customLink></p>",
+    "signature_aborted": "<p>You aborted the action.</p><strong>Important:</strong><p>If you leave this page without signing, you will not receive your paid tokens.</p>",
+    "signature_aborted_sign": "Sign",
     "success_faucetPackage_title": "Faucet Package was successfully obtained",
-    "success_title": "Tokens were successfully claimed"
+    "toast": {
+      "error_title": "Error",
+      "loading_description": "Please wait while tokens are being claimed",
+      "loading_title": "Claiming",
+      "success_description": "Success",
+      "success_title": "Tokens were successfully claimed"
+    }
   },
   "close": "Close",
   "copy": {

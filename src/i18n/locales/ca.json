@@ -43,7 +43,11 @@
     "duration": "Durada (dies)",
     "encrypted": "Encriptat",
     "estimate_election_cost": "Estima el cost de la teva elecció",
-    "modal_description": "<p>Tens prou tokens per a l'elecció.</p><p>Encara vols comprar igualment?</p>",
+    "modal": {
+      "enough_tokens": "<p>Tens prou tokens per a l'elecció.</p><p>Encara vols comprar igualment?</p>",
+      "minimum_tokens_purchase": "<p>La compra mínima de tokens és de {{ minimumTokens }} a {{ pricePerToken }}€ per token, sumant un total de {{ totalPrice }}€.</p><p>Vol seguir amb la compra?</p>",
+      "minimum_tokens_purchase_and_enough_tokens": "<p>Tens prou tokens per a l'elecció i la compra mínima de tokens és de {{ minimumTokens }} a {{ pricePerToken }}€ per token, sumant un total de {{ totalPrice }}€.</p><p>Vol seguir amb la compra?</p>"
+    },
     "more_tokens": "Necessites més tokens dels indicats? <customLink>Contacta</customLink> amb el nostre equip de suport",
     "num_elections": "Núm. d'eleccions",
     "one_time": "Una sola vegada",
@@ -145,14 +149,18 @@
     "wallet_address_title": "Adreces de cartera"
   },
   "claim": {
-    "error_title": "Error",
-    "loading_description": "Si us plau, espera mentre els tokens s'estan reclamant",
-    "loading_title": "Reclamant",
-    "purchase_success": "<title>Apreciem la seva compra!</title><text>Un correu de confirmació serà enviat a {{ customerEmail }}.</text> <text>Si tens alguna pregunta, envia un correu a <customLink>orders@vocdoni.org</customLink></text>",
-    "signature_aborted": "Firma avortada",
-    "success_description": "Èxit",
+    "loading_description": "<box><strong>Autenticació de cartera (Metamask, Rainbow, Coinbase):</strong><p>Per rebre els teus tokens, si us plau, signa la sol·licitud quan se't demani.</p><strong>Important:</strong><p>Si surts d'aquesta pàgina sense signar, no rebràs els tokens que has pagat.</p></box><strong>Autenticació de compte social (Google, Github, Facebook):</strong><p>Si us plau, espera mentre processem la teva sol·licitud.</p>",
+    "purchase_success": "<title>Apreciem la seva compra!</title><p>Si tens alguna pregunta, envia un correu a <customLink>orders@vocdoni.org</customLink></p>",
+    "signature_aborted": "<p>Has cancel·lat l'acció.</p><strong>Important:</strong><p>Si surts d'aquesta pàgina sense signar, no rebràs els tokens que has pagat.</p>",
+    "signature_aborted_sign": "Signar",
     "success_faucetPackage_title": "El Faucet Package s'ha obtingut correctament",
-    "success_title": "Els tokens s'han reclamat amb èxit"
+    "toast": {
+      "error_title": "Error",
+      "loading_description": "Si us plau, espera mentre els tokens s'estan reclamant",
+      "loading_title": "Reclamant",
+      "success_description": "Èxit",
+      "success_title": "Els tokens s'han reclamat amb èxit"
+    }
   },
   "close": "Tanca",
   "copy": {

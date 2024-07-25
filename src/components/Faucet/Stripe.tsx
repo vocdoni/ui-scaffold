@@ -51,11 +51,11 @@ export const CheckoutForm = ({ amount, returnURL }: CheckoutFormProps) => {
   const options = { fetchClientSecret, clientSecret: '' }
 
   return (
-    <div id='checkout'>
+    <Box id='checkout' mt={10} mb={24}>
       <EmbeddedCheckoutProvider stripe={stripePromise} options={options}>
         <EmbeddedCheckout />
       </EmbeddedCheckoutProvider>
-    </div>
+    </Box>
   )
 }
 
@@ -74,8 +74,6 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
   const [packageConsumed, setPackageConsumed] = useState(false)
   const [abortedSignature, setAbortedSignature] = useState(false)
   const [aborted, setAborted] = useState(false)
-
-  console.log('CheckoutReturn')
 
   // fetch the session status
   useEffect(() => {
@@ -121,35 +119,42 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
   }, [faucetPackage, recipient, accountLoaded])
 
   const claimTokens = async () => {
-    const tloading = toast({
-      title: t('claim.loading_title'),
-      description: t('claim.loading_description'),
-      status: 'loading',
-      duration: null,
-    })
+    toast.closeAll()
 
     try {
+      setAborted(false)
       // get the faucet receipt
       let successMsgTitle = t('claim.success_faucetPackage_title')
+
+      toast({
+        title: t('claim.toast.loading_title'),
+        description: t('claim.toast.loading_description'),
+        status: 'loading',
+        duration: null,
+      })
       // claim the tokens with the SDK
       await client.collectFaucetTokens(faucetPackage)
+
+      toast.closeAll()
+
       setPackageConsumed(true)
       // and update stored balance
       await fetchAccount()
-      successMsgTitle = t('claim.success_title')
 
-      toast.close(tloading)
+      successMsgTitle = t('claim.toast.success_title')
+
+      toast.closeAll()
       toast({
         title: successMsgTitle,
-        description: t('claim.success_description'),
+        description: t('claim.toast.success_description'),
         status: 'success',
         duration: 3000,
       })
     } catch (error) {
-      toast.close(tloading)
+      toast.closeAll()
       console.error('could not claim faucet package:', error)
       toast({
-        title: t('claim.error_title'),
+        title: t('claim.toast.error_title'),
         description: errorToString(error),
         status: 'error',
         duration: 6000,
@@ -178,10 +183,17 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
   if (aborted) {
     return (
       <Box as='section' id='success' className='site-wrapper' mt={10} textAlign='center'>
-        <Text>Has abortat l'operaciò</Text>
+        <Text>
+          <Trans
+            i18nKey='claim.signature_aborted'
+            components={{
+              p: <Text mb={5} />,
+              strong: <Text fontWeight='bold' />,
+            }}
+          />
+        </Text>
         <Flex justifyContent='center' gap={5} mt={10}>
-          <Button>Resignar</Button>
-          <Button>Refund</Button>
+          <Button onClick={async () => claimTokens()}>{t('claim.signature_aborted_sign')}</Button>
         </Flex>
       </Box>
     )
@@ -189,8 +201,17 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
 
   if (!packageConsumed || !faucetPackage) {
     return (
-      <Box as='section' id='success' className='site-wrapper' mt={10} textAlign='center'>
-        <Spinner color='spinner' />
+      <Box as='section' id='success' className='site-wrapper' textAlign='center' mt={10}>
+        <Spinner color='spinner' mb={5} />
+        <Box>
+          <Trans
+            i18nKey='claim.loading_description'
+            components={{
+              p: <Text mb={5} />,
+              strong: <Text fontWeight='bold' />,
+            }}
+          />
+        </Box>
       </Box>
     )
   }
@@ -203,7 +224,7 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
           components={{
             customLink: <Link href='mailto:orders@vocdoni.org' />,
             title: <Text fontSize='xl' mb={5}></Text>,
-            text: <Text mb={5}></Text>,
+            p: <Text mb={5}></Text>,
           }}
           values={{
             customerEmail: customerEmail,

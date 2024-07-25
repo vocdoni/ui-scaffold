@@ -43,7 +43,11 @@
     "duration": "Duración (días)",
     "encrypted": "Encriptado",
     "estimate_election_cost": "Estima el coste de tu elección",
-    "modal_description": "<p>Tienes suficientes tokens para la elección.</p><p>¿Aun así quieres comprar?</p>",
+    "modal": {
+      "enough_tokens": "<p>Tienes suficientes tokens para la elección.</p><p>¿Aun así quieres comprar?</p>",
+      "minimum_tokens_purchase": "<p>La compra mínima de tokens es de {{ minimumTokens }} a {{ pricePerToken }}€ por token, sumando un total de {{ totalPrice }}€.</p><p>¿Quiere seguir con la compra?</p>",
+      "minimum_tokens_purchase_and_enough_tokens": "<p>Tienes suficientes tokens para la elección y la compra mínima de tokens es de {{ minimumTokens }} a {{ pricePerToken }}€ por token, sumando un total de {{ totalPrice }}€.</p><p>¿Quiere seguir con la compra?</p>"
+    },
     "more_tokens": "¿Necesitas más tokens de los indicados? <customLink>Contacta</customLink> con nuestro equipo de soporte",
     "num_elections": "Núm. de elecciones",
     "one_time": "Una sola vez",
@@ -145,14 +149,18 @@
     "wallet_address_title": "Direcciones de billetera"
   },
   "claim": {
-    "error_title": "Error",
-    "loading_description": "Por favor espera mientras se reclaman los tokens",
-    "loading_title": "Reclamando",
-    "purchase_success": "<title>¡Apreciamos tu negocio!</title><text>Un correo de confirmación será enviado a {{ customerEmail }}.</text> <text> Si tienes alguna pregunta, por favor envía un correo a <customLink>orders@vocdoni.org</customLink></text>",
-    "signature_aborted": "Firma abortada",
-    "success_description": "Éxito",
+    "loading_description": "<box><strong>Autenticación de cartera (Metamask, Rainbow, Coinbase):</strong><p>Para recibir tus tokens, por favor firma la solicitud cuando se te pida.</p><strong>Importante:</strong><p>Si sales de esta página sin firmar, no recibirás los tokens que has pagado.</p></box><strong>Autenticación de cuenta social (Google, Github, Facebook):</strong><p>Por favor, espera mientras procesamos tu solicitud.</p>",
+    "purchase_success": "<title>¡Apreciamos su compra!</title><p>Si tienes alguna pregunta, por favor envía un correo a <customLink>orders@vocdoni.org</customLink></p>",
+    "signature_aborted": "<p>Has abortado la acción.</p>strong>Importante:</strong><p>Si sales de esta página sin firmar, no recibirás los tokens que has pagado.</p>",
+    "signature_aborted_sign": "Firmar",
     "success_faucetPackage_title": "El Faucet Package se obtuvo con éxito",
-    "success_title": "Los tokens han sido reclamados correctamente"
+    "toast": {
+      "error_title": "Error",
+      "loading_description": "Por favor espera mientras se reclaman los tokens",
+      "loading_title": "Reclamando",
+      "success_description": "Éxito",
+      "success_title": "Los tokens han sido reclamados correctamente"
+    }
   },
   "close": "Cerrar",
   "copy": {
