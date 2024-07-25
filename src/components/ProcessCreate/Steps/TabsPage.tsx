@@ -1,12 +1,12 @@
-import { TabProps } from '@chakra-ui/tabs/dist/tab'
 import { Box, Flex, Icon, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useDisclosure } from '@chakra-ui/react'
-import { Check } from '~theme/icons'
-import { Trans, useTranslation } from 'react-i18next'
+import { TabProps } from '@chakra-ui/tabs/dist/tab'
 import { useState } from 'react'
-import ModalPro from '~components/ProcessCreate/ModalPro'
+import { Trans, useTranslation } from 'react-i18next'
 import { CgMoreO } from 'react-icons/cg'
+import ModalPro from '~components/ProcessCreate/ModalPro'
 import { StepsNavigation } from '~components/ProcessCreate/Steps/Navigation'
 import Wrapper from '~components/ProcessCreate/Steps/Wrapper'
+import { Check } from '~theme/icons'
 
 /**
  * These components implement the skeleton for tabs pages like questions or census types.
@@ -155,6 +155,7 @@ const TabCardSkeleton = ({
         <Icon as={icon} />
         <Text>
           <Trans
+            i18nKey='process_create.tabcard_title'
             components={{
               p: <Text />,
             }}

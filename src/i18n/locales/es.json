@@ -57,7 +57,13 @@
       "title": "Resultados para \"{{ title }}\"",
       "votes": "Votos: {{ votes }} ({{ percent }})"
     },
-    "schedule": "Votación desde el {{ begin }} hasta {{ end }}",
+    "schedule": {
+      "created": "Creado hace {{ distance }}",
+      "ended": "Finalizado hace {{ distance }}",
+      "from_begin_to_end": "Votación del {{ begin }} al {{ end }}",
+      "paused_end": "Finaliza en {{ distance }}",
+      "paused_start": "Comienza en {{ distance }}"
+    },
     "spreadsheet": {
       "access_button": "Identificarse",
       "anon_sik_helper": "Esto garantiza que la votación sea anónima",
@@ -730,6 +736,7 @@
     "spreadsheet": {
       "confirm": {
         "abstain_count_one": "¡Atención! Te estás absteniendo de una opción",
+        "abstain_count_many": "",
         "abstain_count_other": "¡Atención! Te estás absteniendo de {{ count }} opciones",
         "blank_vote": "No se han seleccionado opciones, enviando voto en blanco",
         "description": "Antes de emitir tu voto, revisa que todo esté correcto.",
@@ -825,10 +832,6 @@
         "description": "Los votantes eligen un número predefinido de opciones, y la opción con más votantes gana.",
         "title": "<p>Votación Plurinominal</p><p>(Elección Múltiple)</p>"
       },
-      "others": {
-        "description": "Seleccione otros tipos de votación (opciones múltiples, votación de aprobación, presupuestos participativos, elección clasificada...)",
-        "title": "Otros"
-      },
       "participation_budgeting": {
         "description": "Los votantes pueden distribuir un número predefinido entre todas las opciones/proyectos (que representan el presupuesto total disponible) como deseen.",
         "title": "Presupuesto Participativo"
@@ -839,11 +842,10 @@
       },
       "voting_type": {
         "description": "Selecciona el tipo de votación para esta elección. Si no encuentras lo que necesitas, puedes contactarnos.",
-        "pro": "",
-        "pro_census": "",
         "title": "Tipos de Votación"
       }
-    }
+    },
+    "tabcard_title": "{title}"
   },
   "rainbow": {
     "group": {
