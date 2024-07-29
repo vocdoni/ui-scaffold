@@ -30,9 +30,8 @@ const Process = () => {
         textAlign='center'
         fontFamily='basier'
         fontSize='20px'
-        opacity='0.75'
+        color='home.description'
         lineHeight='28px'
-        color='black'
         margin='0px auto'
       >
         {t('home.process.description_1')}

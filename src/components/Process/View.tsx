@@ -1,3 +1,4 @@
+import { WarningIcon } from '@chakra-ui/icons'
 import {
   AspectRatio,
   Box,
@@ -12,6 +13,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Spinner,
   Tab,
   TabList,
   TabPanel,
@@ -21,8 +23,8 @@ import {
   UnorderedList,
   useDisclosure,
   useMultiStyleConfig,
+  VStack,
 } from '@chakra-ui/react'
-import { WarningIcon } from '@chakra-ui/icons'
 import { ElectionQuestions, ElectionResults, environment, useConfirm } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
 import { ElectionResultsTypeNames, ElectionStatus, PublishedElection } from '@vocdoni/sdk'
@@ -71,7 +73,7 @@ export const ProcessView = () => {
 
   // If the election is finished show the results tab
   useEffect(() => {
-    if (election?.status === ElectionStatus.RESULTS) {
+    if (election instanceof PublishedElection && election?.status === ElectionStatus.RESULTS) {
       setTabIndex(1)
     }
   }, [election])
@@ -108,7 +110,7 @@ export const ProcessView = () => {
       <Box className='site-wrapper' mb={44}>
         <Header />
 
-        {election?.streamUri && (
+        {election instanceof PublishedElection && election?.streamUri && (
           <Box
             maxW={{ base: '800px', lg: videoTop ? '400px' : '800px' }}
             ml={videoTop ? 'auto' : 'none'}
@@ -134,8 +136,10 @@ export const ProcessView = () => {
             w='full'
           >
             <TabList>
-              <Tab>{t('process.questions')}</Tab>
-              {election?.status !== ElectionStatus.CANCELED && <Tab>{t('process.results')}</Tab>}
+              <Tab fontSize='text'>{t('process.questions')}</Tab>
+              {election instanceof PublishedElection && election?.status !== ElectionStatus.CANCELED && (
+                <Tab fontSize='text'>{t('process.results')}</Tab>
+              )}
             </TabList>
             <TabPanels>
               <TabPanel>
@@ -183,7 +187,7 @@ export const ProcessView = () => {
       >
         <VoteButton setQuestionsTab={setQuestionsTab} />
       </Box>
-
+      <VotingVoteModal />
       <SuccessVoteModal />
     </Box>
   )
@@ -209,7 +213,7 @@ const SuccessVoteModal = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [votesLeft, vLeft])
 
-  if (!election || !voted) return null
+  if (!election || !voted || !(election instanceof PublishedElection)) return null
 
   const verify = environment.verifyVote(env, voted)
   const url = encodeURIComponent(document.location.href)
@@ -249,9 +253,7 @@ const SuccessVoteModal = () => {
         </ModalBody>
 
         <ModalFooter mt={4}>
-          <Button onClick={onClose} variant='primary'>
-            {t('process.success_modal.btn')}
-          </Button>
+          <Button onClick={onClose}>{t('process.success_modal.btn')}</Button>
         </ModalFooter>
       </ModalContent>
     </Modal>
@@ -353,5 +355,26 @@ const ConfirmVoteModal = ({ election, answers }: { election: PublishedElection; 
         </Button>
       </ModalFooter>
     </>
+  )
+}
+
+const VotingVoteModal = () => {
+  const { t } = useTranslation()
+  const {
+    loading: { voting },
+  } = useElection()
+
+  return (
+    <Modal isOpen={voting} onClose={() => {}}>
+      <ModalOverlay />
+      <ModalContent p='30px !important'>
+        <ModalBody>
+          <VStack>
+            <Spinner color='process.spinner' mb={5} w={10} h={10} />
+          </VStack>
+          <Text textAlign='center'>{t('process.voting')}</Text>
+        </ModalBody>
+      </ModalContent>
+    </Modal>
   )
 }

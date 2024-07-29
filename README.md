@@ -1,5 +1,9 @@
 <p align="center" width="100%">
-    <img src="https://developer.vocdoni.io/img/vocdoni_logotype_full_white.svg" />
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://developer.vocdoni.io/img/vocdoni_logotype_full_blank.svg" />
+      <source media="(prefers-color-scheme: light)" srcset="https://developer.vocdoni.io/img/vocdoni_logotype_full_white.svg" />
+      <img alt="Star History Chart" src="https://developer.vocdoni.io/img/vocdoni_logotype_full_white.svg" />
+  </picture>
 </p>
 
 <p align="center" width="100%">
@@ -41,8 +45,8 @@
 
 # ui-scaffold
 
-Vocdoni's UI Scaffold is a React application that uses the [Vocdoni SDK](https://developer.vocdoni.io/sdk) and [UI Components library](https://developer.vocdoni.io/ui-components) to provide a user interface for the Vocdoni voting protocol. 
-It is built with [Vite](https://vitejs.dev/guide/) and is deployed at https://app.vocdoni.io/. 
+Vocdoni's UI Scaffold is a React application that uses the [Vocdoni SDK](https://developer.vocdoni.io/sdk) and [UI Components library](https://developer.vocdoni.io/ui-components) to provide a user interface for the Vocdoni voting protocol.
+It is built with [Vite](https://vitejs.dev/guide/) and is deployed at https://app.vocdoni.io/.
 
 ### Table of Contents
 - [Getting Started](#getting-started)
@@ -196,9 +200,9 @@ Three branches are linked to deploys:
 - `stage`, deployed to [app-stg.vocdoni.io] and [stg.onvote.app], and linked to api-stg.
 - `main`, deployed to [app.vocdoni.io] and [onvote.app], and linked to LTS api (formerly prod).
 
-Also, all pushes to develop are deployed twice to netlify (one for api-dev,
-[the other for api-stg][netlify]). You can easily access these deploys on each
-commit to develop, or directly in pull requests.
+Also, all pushes to develop are deployed three times to netlify (one for [vocdoni app dev][netlify dev],
+[another for stage][netlify stg] and also one for [onvote stg][netlify onvote stg]). You can easily access these deploys
+on each commit to develop, or directly in pull requests.
 
 The common flow to follow when deploying to `main` is passing through all the
 other stages:
@@ -216,9 +220,9 @@ such case, a hotfix should be created from the desired branch to be updated:
 
 The site is deployed at https://app.vocdoni.io/ and https://onvote.app/. Check out the difference between the themes.
 
-## Contributing 
+## Contributing
 
-While we welcome contributions from the community, we do not track all of our issues on Github and we may not have the resources to onboard developers and review complex pull requests. That being said, there are multiple ways you can get involved with the project. 
+While we welcome contributions from the community, we do not track all of our issues on Github and we may not have the resources to onboard developers and review complex pull requests. That being said, there are multiple ways you can get involved with the project.
 
 Please review our [development guidelines](https://developer.vocdoni.io/development-guidelines).
 
@@ -253,7 +257,9 @@ This repository is licensed under the [GNU Affero General Public License v3.0.](
 [dev.onvote.app]: https://dev.onvote.app
 [stg.onvote.app]: https://stg.onvote.app
 [onvote.app]: https://onvote.app
-[netlify]: https://vocdoni-ui-scaffold-develop.netlify.app/
+[netlify dev]: https://vocdoni-app-dev.netlify.app/
+[netlify stg]: https://vocdoni-app-stg.netlify.app/
+[netlify onvote stg]: https://onvote-stg.netlify.app/
 
 [vocdoni logo]: https://docs.vocdoni.io/Logotype.svg
 [commit activity badge]: https://img.shields.io/github/commit-activity/m/vocdoni/ui-scaffold

@@ -111,7 +111,7 @@ export const Claim = (props: ClaimProps) => {
             values={{ balance: account?.balance }}
           />
           <Flex direction='row' justifyContent='center' gap='2' flexWrap='wrap'>
-            <Button type='submit' variant='primary' isLoading={loading} onClick={() => auth('github')}>
+            <Button type='submit' isLoading={loading} onClick={() => auth('github')}>
               <Icon mr={2} as={FaGithub} />
               {t('login.github')}
             </Button>

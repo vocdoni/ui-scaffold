@@ -40,7 +40,7 @@ const Preview = () => {
           <Text className='brand-theme' textTransform='uppercase'>
             {t('form.process_create.confirm.election_info')}
           </Text>
-          <Link variant='primary' ml='auto' onClick={() => setActiveStep(1)}>
+          <Link ml='auto' onClick={() => setActiveStep(1)}>
             <Icon
               as={IoMdCreate}
               title={t('form.process_create.confirm.edit')}

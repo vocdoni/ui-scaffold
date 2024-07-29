@@ -40,7 +40,15 @@ export const translations = (t: TFunction<string, string>) => ({
     title: t('cc.results.title').toString(),
     votes: t('cc.results.votes').toString(),
   },
-  schedule: t('cc.schedule').toString(),
+  schedule: {
+    from_begin_to_end: t('cc.schedule.from_begin_to_end', {
+      defaultValue: 'Voting from {{ begin }} to {{ end }}',
+    }).toString(),
+    ended: t('cc.schedule.ended', { defaultValue: 'Ended {{ distance }}' }).toString(),
+    paused_start: t('cc.schedule.paused_start', { defaultValue: '(Paused) Starts {{ distance }}' }).toString(),
+    paused_end: t('cc.schedule.paused_end', { defaultValue: '(Paused) Ends {{ distance }}' }).toString(),
+    created: t('cc.schedule.created', { defaultValue: 'Created {{ distance }}' }).toString(),
+  },
   spreadsheet: {
     access_button: t('cc.spreadsheet.access_button').toString(),
     anon_sik_label: t('cc.spreadsheet.anon_sik_label').toString(),

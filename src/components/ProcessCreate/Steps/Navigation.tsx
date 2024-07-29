@@ -17,7 +17,7 @@ export const StepsNavigation = () => {
             <Text as='span'>{t('form.process_create.previous_step')}</Text>
           </Button>
         )}
-        <Button w='200px' type='submit' ml='auto' form='process-create-form' variant='primary'>
+        <Button w='200px' type='submit' ml='auto' form='process-create-form'>
           <Text as='span'> {t('form.process_create.next_step')}</Text>
           <ArrowForwardIcon />
         </Button>

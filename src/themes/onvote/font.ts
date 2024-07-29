@@ -16,4 +16,8 @@ export const fontSizes = {
   xl10: '8rem',
   xl11: '10rem',
   xl12: '12rem',
+  heading: '32px',
+  'heading-sm': '24px',
+  text: '16px',
+  'text-sm': '12px',
 }

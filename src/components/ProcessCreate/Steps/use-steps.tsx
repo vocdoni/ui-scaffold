@@ -36,6 +36,10 @@ export interface StepsContextState {
   setActiveStep: Dispatch<SetStateAction<number>>
   isLoadingPreview: boolean
   setIsLoadingPreview: (isLoading: boolean) => void
+  isLoadingCost: boolean
+  setIsLoadingCost: (isLoading: boolean) => void
+  notEnoughBalance: boolean
+  setNotEnoughBalance: (notEnoughBalance: boolean) => void
 }
 
 export const StepsContext = createContext<StepsContextState | undefined>(undefined)

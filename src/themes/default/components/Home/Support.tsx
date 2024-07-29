@@ -9,11 +9,12 @@ const Support = () => {
   return (
     <Box
       backgroundImage='url("https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b75c38aa4f55_Net.svg")'
-      backgroundColor='#24656e'
+      backgroundColor='home.support.bg'
       backgroundRepeat='no-repeat'
       backgroundPosition='right'
+      mb='100px'
     >
-      <Box className='site-wrapper' py={{ base: '60px', lg: '100px' }} position='relative' overflow='hidden'>
+      <Box className='site-wrapper' py={{ base: '60px', lg: '200px' }} position='relative' overflow='hidden'>
         <Box
           w='356px'
           h='356px'
@@ -105,23 +106,17 @@ const Support = () => {
           </Button>
         </Flex>
         <Flex gap='20px' flexDirection={{ base: 'column', md2: 'row' }} justifyContent='center'>
-          <Flex justifyContent='center' alignItems='center' gap='2'>
-            <FaRegCheckCircle color='#d3e0e2' />
-            <Text as='span' color='white'>
-              {t('home.support.helper_1')}
-            </Text>
+          <Flex justifyContent='center' alignItems='center' gap='2' color='home.support.helper' opacity='.8'>
+            <FaRegCheckCircle />
+            <Text as='span'>{t('home.support.helper_1')}</Text>
           </Flex>
-          <Flex justifyContent='center' alignItems='center' gap='2'>
-            <FaRegCheckCircle color='#d3e0e2' />
-            <Text as='span' color='white'>
-              {t('home.support.helper_2')}
-            </Text>
+          <Flex justifyContent='center' alignItems='center' gap='2' color='home.support.helper' opacity='.8'>
+            <FaRegCheckCircle />
+            <Text as='span'>{t('home.support.helper_2')}</Text>
           </Flex>
-          <Flex justifyContent='center' alignItems='center' gap='2'>
-            <FaRegCheckCircle color='#d3e0e2' />
-            <Text as='span' color='white'>
-              {t('home.support.helper_3')}
-            </Text>
+          <Flex justifyContent='center' alignItems='center' gap='2' color='home.support.helper' opacity='.8'>
+            <FaRegCheckCircle />
+            <Text as='span'>{t('home.support.helper_3')}</Text>
           </Flex>
         </Flex>
       </Box>

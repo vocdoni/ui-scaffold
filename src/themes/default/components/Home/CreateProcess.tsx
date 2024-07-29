@@ -35,7 +35,7 @@ const CreateProcess = () => {
           fontSize='24px'
           lineHeight='35px'
           fontFamily='basier'
-          color='gray'
+          color='home.description'
           mt='52px'
           mb='52px'
           textAlign={{ base: 'center', lg: 'start' }}

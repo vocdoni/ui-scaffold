@@ -27,7 +27,6 @@ const Banner = () => {
 
       {isConnected && (
         <Button
-          variant='primary'
           as={ReactRouterLink}
           to='/processes/create'
           aria-label={t('menu.new_process')}

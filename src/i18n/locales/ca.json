@@ -11,15 +11,13 @@
     "votes_one": "<span>1</span> <text>votant</text>",
     "votes_many": "<span>{{ count }}</span> <text>votants</text>",
     "votes_other": "<span>{{ count }}</span> <text>votants</text>",
-    "voting_anonymous_advice": "Si us plau, espera mentre la màgia té lloc 🪄.\nAixò pot trigar uns minuts; no tanquis la finestra.",
     "votes_weight_one": "<span>1</span> <text>vot</text>",
+    "votes_weight_many": "",
     "votes_weight_other": "<span>{{ count }}</span> <text>vots</text>",
-    "voting_anonymous_advice": "Si us plau, espera mentre la màgia té lloc.Això pot trigar uns minuts; no tanquis la finestra."
+    "voting_anonymous_advice": "Si us plau, espera mentre la màgia té lloc 🪄.\nAixò pot trigar uns minuts; no tanquis la finestra."
   },
   "banner": {
     "start_now": "Crea una votació!",
-    "subtitle": "Utilitza adreces web3, vota amb un token ERC20 o amb NFTs!",
-    "subtitle1": "Augmenta la participació electoral un 30%",
     "title": "Vot digital segur, verificable i flexible"
   },
   "banner_voting_types": {
@@ -59,7 +57,13 @@
       "title": "Resultats per a \"{{ title }}\"",
       "votes": "Vots: {{ votes }} ({{ percent }})"
     },
-    "schedule": "Votació del {{ begin }} al {{ end }}",
+    "schedule": {
+      "created": "Creat fa {{ distance }}",
+      "ended": "Finalitzat fa {{ distance }}",
+      "from_begin_to_end": "Votació del {{ begin }} al {{ end }}",
+      "paused_end": "Finalitza en {{ distance }}",
+      "paused_start": "Comença en {{ distance }}"
+    },
     "spreadsheet": {
       "access_button": "Identifica't",
       "anon_sik_helper": "Això garanteix que el teu vot sigui anònim",
@@ -140,6 +144,14 @@
       "selected_users": "Usuaris seleccionats:"
     }
   },
+  "dashboard": {
+    "card": {
+      "finish": "Acaba",
+      "finished": "Acabat",
+      "started": "Començat",
+      "starts": "Comença"
+    }
+  },
   "error": {
     "go_back": "Torna enrere",
     "invalid_cell_data": "Algunes fileres no contenen adreces correctes: {{rows, list}}",
@@ -202,8 +214,7 @@
       "avatar_helper": "Imatge/logotip de la teva organització",
       "avatar_placeholder": "URL de la imatge",
       "btn": "Desar",
-      "footer": "Modificar la teva organització generarà una sol·licitud de signatura, amb un cost de 1 token",
-      "title": "Editar Orgnaització"
+      "footer": "Modificar la teva organització generarà una sol·licitud de signatura, amb un cost de 1 token"
     },
     "error": {
       "address_already_in_use": "Aquesta adreça ja és al cens",
@@ -323,6 +334,8 @@
       "question": {
         "add_new_option": "Afegeix opció",
         "add_question": "Afegeix pregunta",
+        "approval_description": "Amb la votació d'aprovació, només es pot afegir una pregunta amb múltiples opcions. L'opció amb més vots guanyarà.",
+        "approval_title": "Afegir una pregunta",
         "delete_option": "Eliminar opció número {{ option }} de la pregunta {{ question }}",
         "description": "Afegeix les preguntes juntament amb les opcions que els teus votants hauran de triar. Tens la flexibilitat d'afegir diverses preguntes, cadascuna amb un nombre personalitzat d'opcions seleccionables.",
         "description_placeholder": "Escriu aquí una descripció de la pregunta (opcional)",
@@ -430,7 +443,6 @@
         "description": "Vocdoni ofereix tant solucions d'autoatenció com solucions personalitzades clau en mà adaptades a les teves necessitats.",
         "title": "Estarem amb tu en tot moment"
       },
-      "header": "Contacta'ns",
       "title": "Col·laborem per crear la votació perfecte"
     },
     "create_process": {
@@ -545,14 +557,12 @@
         "description": "Permet als votants emetre els seus vots a través de diversos canals, incloent navegadors web, telèfons, tauletes, etc., assegurant accessibilitat i comoditat per a tots els participants.",
         "title": "Suport multiplataforma"
       },
-      "header": "Solucions capacitant",
       "subtitle_1": "Desbloqueja el potencial de la plataforma plena de funcionalitats de Vocdoni, oferint un valor excepcional tant per als organitzadors com per als votants. Personalitza els teus processos de votació de manera fluida, assegura eleccions segures i transparents, i capacita els participants amb opcions intuïtives i accessibles. Amb l'aplicació Vocdoni, experimenta el poder d'un compromís millorat, eficiència i confiança en cada experiència de votació.",
       "title": "Característiques"
     },
     "process": {
       "description_1": "L'aplicació Vocdoni et permet crear un procés de votació en 4 senzills passos. ",
       "description_2": "Amb un clic, pots configurar si vols votació anònima o resultats d'elecció en directe, triar entre diversos tipus d'eleccions, carregar el teu cens de votants i molt més.",
-      "header": "Procés",
       "step_1": {
         "description": "Obtingueu un control total amb l'opció d'autoservei de la nostra plataforma, que ofereix una flexibilitat sense igual. Necessiteu personalització o orientació? Us tenim cobert!",
         "title": "Inicieu el vostre propi procés de votació"
@@ -584,7 +594,6 @@
         "description": "Augmenta la participació dels votants, redueix els costos electorals i millora la confiança ciutadana amb processos de votació segurs i verificables.",
         "title": "Governs i Institucions Públiques"
       },
-      "header": "Abraça el canvi amb Vocdoni",
       "img_card_1": "Organitzacions",
       "img_card_2": "Comunitats",
       "img_card_3": "Governs i Institucions Públiques",
@@ -663,6 +672,8 @@
   "open_in_explorer": "Obre a l'explorador",
   "organization": {
     "avatar_alt": "Imatge d'avatar de l'organització {{ name }}",
+    "create_org": "Crear Organitzaciò",
+    "date_format": "MMMM d - yyyy (H:mm)",
     "elections": "Votacions",
     "elections_list_empty": {
       "alt": "Imatge il·lustrant que l'organització és buida",
@@ -670,10 +681,21 @@
       "not_owner": "Aquesta organització encara no té votacions.",
       "title": "Crea la teva primera elecció"
     },
+    "menu": {
+      "dashboard": "Dashboard",
+      "edit_my_organization": "La meva entitat",
+      "votings": "Votacions"
+    },
+    "my_entity": "La meva entitat",
+    "overview": "Visió general",
+    "required_signin": "Primer has d'iniciar sessió",
     "title": {
-      "edit": "Editar organització",
       "read_more": "Expandir títol"
-    }
+    },
+    "voting_processes_one": "{{ count }} procés de votació",
+    "voting_processes_many": "",
+    "voting_processes_other": "{{ count }} processos de votació",
+    "votings_overview": "Visió general de les votacions"
   },
   "process": {
     "census": "Cens",
@@ -713,10 +735,10 @@
     "share_title": "Comparteix a {{ network }}",
     "spreadsheet": {
       "confirm": {
-        "abstain_count_one": "",
+        "abstain_count_one": "Atenció! T'estàs abstenint d'una opció",
         "abstain_count_many": "",
-        "abstain_count_other": "",
-        "blank_vote": "",
+        "abstain_count_other": "Atenció! T'estàs abstenint de {{ count }} opcions",
+        "blank_vote": "No s'han seleccionat opcions, enviant vot en blanc",
         "description": "Abans de votar, reviseu que tot sigui correcte.",
         "option": "<strong>Opció {{ number }}:</strong> {{ answer }}",
         "options": "<strong>Selecció:</strong> {{ answers }}",
@@ -741,7 +763,8 @@
     },
     "total_census_size": "{{maxCensusSize}} electors permesos de {{censusSize}} totals en el cens",
     "total_census_size_tooltip": "El nombre màxim d'electors permesos està limitat a {{maxCensusSize}} d'un cens de {{censusSize}} ({{percent}}% del total). Només els primers {{maxCensusSize}} electors poden votar.",
-    "voters": "Votants"
+    "voters": "Votants",
+    "voting": "Estem processant el teu vot. Aquest procés trigarà uns segons. Si us plau, no tanquis ni actualitzis aquesta pàgina."
   },
   "process_actions": {
     "cancel": "Cancel·la",
@@ -809,10 +832,6 @@
         "description": "Els votants trien un nombre predeterminat d'opcions, i l'opció amb més votants guanya.",
         "title": "<p>Votació Plurinominal</p><p>(Elecció Múltiple)</p>"
       },
-      "others": {
-        "description": "Seleccioneu altres tipus de votació (de múltiples opcions, de votació d'aprovació, pressupost participatiu, elecció classificada...)",
-        "title": "Altres"
-      },
       "participation_budgeting": {
         "description": "Els votants poden distribuir un nombre predeterminat entre totes les opcions/projectes (que representen el pressupost total disponible) com desitgin.",
         "title": "Pressupost Participatiu"
@@ -823,11 +842,10 @@
       },
       "voting_type": {
         "description": "Selecciona el tipus de votació per a aquesta elecció. Si no trobes el que necessites, pots contactar-nos.",
-        "pro": "",
-        "pro_census": "",
         "title": "Tipus de Votació"
       }
-    }
+    },
+    "tabcard_title": "{title}"
   },
   "rainbow": {
     "group": {

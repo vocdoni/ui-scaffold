@@ -54,7 +54,7 @@ export const useReadMoreMarkdown = (
   )
   const ReadMoreMarkdownButton = ({ ...props }: any) =>
     isTruncated ? (
-      <Button onClick={handleReadMore} variant='' color='primary.600' {...props}>
+      <Button onClick={handleReadMore} variant='' color='read_more' {...props}>
         {readMore ? t('use_read_more.read_more') : t('use_read_more.read_less')}
       </Button>
     ) : null

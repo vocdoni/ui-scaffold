@@ -3,6 +3,7 @@ import {
   AlertIcon,
   Box,
   Flex,
+  FlexProps,
   FormControl,
   FormErrorMessage,
   FormLabel,
@@ -26,9 +27,8 @@ import { useClient } from '@vocdoni/react-providers'
 import { Account } from '@vocdoni/sdk'
 import { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { useAccount } from 'wagmi'
-import { useFaucet } from '~components/Faucet/use-faucet'
 import { ucfirst } from '~constants/strings'
 import { Check, Close } from '~theme/icons'
 import { useAccountHealthTools } from './use-account-health-tools'
@@ -39,7 +39,7 @@ interface FormFields {
   description: string
 }
 
-export const AccountCreate = () => {
+export const AccountCreate = ({ children, ...props }: FlexProps) => {
   const {
     register,
     handleSubmit,
@@ -57,8 +57,6 @@ export const AccountCreate = () => {
   } = useClient()
   const { t } = useTranslation()
   const [sent, setSent] = useState<boolean>(false)
-  const { getAuthTypes } = useFaucet()
-  const [faucetAmount, setFaucetAmount] = useState<number>(0)
   // we want to know if account exists, not the organization (slight difference)
   const { exists } = useAccountHealthTools()
 
@@ -66,20 +64,6 @@ export const AccountCreate = () => {
     value: true,
     message: t('form.error.field_is_required'),
   }
-
-  useEffect(() => {
-    ;(async () => {
-      try {
-        const atypes = await getAuthTypes()
-        if (atypes.auth.oauth) {
-          setFaucetAmount(atypes.auth.oauth)
-        }
-      } catch (e) {
-        setFaucetAmount(NaN)
-      }
-    })()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   const onSubmit = async (values: FormFields) => {
     let call = () =>
@@ -100,30 +84,15 @@ export const AccountCreate = () => {
       id='process-create-form'
       direction='column'
       gap={6}
+      {...props}
       onSubmit={(e) => {
         e.stopPropagation()
         e.preventDefault()
         handleSubmit(onSubmit)(e)
       }}
     >
-      <Text>
-        <Trans
-          i18nKey='new_organization.description1'
-          components={{
-            span: <Text as='span' fontWeight='bold' />,
-          }}
-        />
-      </Text>
-      <Text>
-        <Trans
-          i18nKey='new_organization.description2'
-          components={{
-            span: <Text as='span' fontWeight='bold' />,
-          }}
-          values={{ faucetAmount }}
-        />
-      </Text>
-      <Box px={{ base: 5, md: 10 }} pt={5} pb={10}>
+      {children}
+      <Box px={{ base: 5, md: 10 }} pb={10}>
         <FormControl isInvalid={!!errors.name} mb={5}>
           <FormLabel className='brand-theme' fontWeight='bold' textTransform='uppercase'>
             {t('new_organization.name')}
@@ -208,7 +177,7 @@ export const BasicAccountCreation = () => {
         <ModalContent>
           <ModalHeader>{t('welcome.title', { sitename })}</ModalHeader>
           {!!error && <ModalCloseButton />}
-          <ModalBody color='modal_description'>
+          <ModalBody>
             <Box
               className='welcome-modal'
               bgImage={hello}
@@ -242,7 +211,7 @@ export const BasicAccountCreation = () => {
               <Button variant='ghost' onClick={onClose}>
                 {t('close')}
               </Button>
-              <Button mr={3} variant='primary' onClick={create} isLoading={creating}>
+              <Button mr={3} onClick={create} isLoading={creating}>
                 {t('retry')}
               </Button>
             </ModalFooter>

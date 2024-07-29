@@ -2,6 +2,7 @@ import { dotobject } from '@vocdoni/sdk'
 import { FieldErrors, FieldValues, useFormContext } from 'react-hook-form'
 
 export const FormatDate = 'dd/MM/yyyy'
+export const FormatDateLong = 'MMMM d - yyyy H:mm'
 
 const evocdoni = import.meta.env.VOCDONI_ENVIRONMENT
 
@@ -10,6 +11,7 @@ if (['stg', 'dev'].includes(evocdoni)) {
   explorer = `https://${evocdoni}.explorer.vote`
 }
 
+export const AppTitle = import.meta.env.title
 export const ExplorerBaseURL = explorer
 export const VocdoniEnvironment = evocdoni
 export const CensusPreviewRowsLimit = 10

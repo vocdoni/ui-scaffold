@@ -1,6 +1,6 @@
 import { Box, Text } from '@chakra-ui/react'
 import { useElection } from '@vocdoni/react-providers'
-import { ElectionStatus } from '@vocdoni/sdk'
+import { ElectionStatus, InvalidElection } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
 import { useTranslation } from 'react-i18next'
 
@@ -8,7 +8,7 @@ export const ProcessDate = () => {
   const { election } = useElection()
   const { t } = useTranslation()
 
-  if (!election?.startDate) return null
+  if (election instanceof InvalidElection || !election?.startDate) return null
 
   const statusText = getStatusText(t, election.status)
 
@@ -33,7 +33,7 @@ export const ProcessDateInline = () => {
   const { election } = useElection()
   const { t } = useTranslation()
 
-  if (!election?.startDate) return null
+  if (election instanceof InvalidElection || !election?.startDate) return null
 
   const status = getStatusText(t, election.status)
 

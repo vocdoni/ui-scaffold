@@ -8,7 +8,7 @@ import {
   OrganizationName,
 } from '@vocdoni/chakra-components'
 import { useClient, useElection, useOrganization } from '@vocdoni/react-providers'
-import { CensusType, ElectionStatus, Strategy } from '@vocdoni/sdk'
+import { CensusType, ElectionStatus, InvalidElection, PublishedElection, Strategy } from '@vocdoni/sdk'
 import { ReactNode, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
@@ -40,7 +40,7 @@ const ProcessHeader = () => {
   useEffect(() => {
     ;(async () => {
       try {
-        if (!election?.census?.censusId || !client) return
+        if (!client || !(election instanceof PublishedElection) || !election?.census?.censusId) return
         const censusInfo: CensusInfo = await client.fetchCensusInfo(election.census.censusId)
         setCensusInfo(censusInfo)
       } catch (e) {
@@ -49,6 +49,8 @@ const ProcessHeader = () => {
       }
     })()
   }, [election, client])
+
+  if (!(election instanceof PublishedElection)) return null
 
   const showOrgInformation = !loaded || (loaded && organization?.account?.name)
   const showTotalCensusSize = censusInfo?.size && election?.maxCensusSize && election.maxCensusSize < censusInfo.size
@@ -68,17 +70,17 @@ const ProcessHeader = () => {
       )}
       <Flex direction={{ base: 'column', lg2: 'row' }} mb={7} gap={10}>
         <Box flex={{ lg2: '1 1 80%' }}>
-          <ElectionTitle fontSize={{ base: '32px', md: '34px' }} textAlign='left' my={5} />
+          <ElectionTitle fontSize='heading' textAlign='left' my={5} />
           <Flex flexDirection={{ base: 'column', xl: 'row' }} mb={4} justifyContent='space-between'>
             <Flex gap={4} flexDirection={{ base: 'column', xl: 'row' }} alignItems={{ base: 'start', xl: 'center' }}>
               <Flex gap={3} justifyContent={'space-between'} w={{ base: '100%', xl: 'fit-content' }}>
                 <Flex gap={3} alignItems='center'>
-                  <Text as='span' color='process.label' fontSize='sm'>
+                  <Text as='span' color='process.label' fontSize='text-sm'>
                     {t('process.state')}
                   </Text>
-                  <ElectionStatusBadge />
+                  <ElectionStatusBadge fontSize='text-sm' />
                 </Flex>
-                <Box display={{ base: 'flex', xl: 'none' }}>
+                <Box display={{ base: 'flex', xl: 'none' }} fontSize='text-sm'>
                   <ShareModalButton
                     caption={t('share.election_share_text')}
                     text={t('share.election_share_btn_text')}
@@ -90,10 +92,10 @@ const ProcessHeader = () => {
                 alignItems={{ base: 'start', xl: 'center' }}
                 gap={{ xl: 3 }}
               >
-                <Text as='span' color='process.label' fontSize='sm'>
+                <Text as='span' color='process.label' fontSize='text-sm'>
                   {t('process.schedule')}
                 </Text>
-                <ElectionSchedule textAlign='left' color='process.info_title' />
+                <ElectionSchedule textAlign='left' color='process.info_title' fontSize='text-sm' />
               </Flex>
             </Flex>
             <Box display={{ base: 'none', xl: 'flex' }}>
@@ -111,7 +113,7 @@ const ProcessHeader = () => {
                 <ElectionDescription mb={0} fontSize='lg' lineHeight={1.5} color='process.description' />
               </ReadMoreMarkdownWrapper>
             </Box>
-            <ReadMoreMarkdownButton colorScheme='primary' alignSelf='center' />
+            <ReadMoreMarkdownButton colorScheme='primary' alignSelf='center' fontSize='text' />
           </Flex>
         </Box>
 
@@ -123,11 +125,11 @@ const ProcessHeader = () => {
           flexWrap='wrap'
           justifyContent='start'
           gap={{ base: 4, sm: 6, md: 8, lg: 4 }}
-          fontSize='sm'
           opacity={0.85}
           _hover={{
             opacity: 1,
           }}
+          fontSize='text-sm'
         >
           <Box flexDir='row' display='flex' justifyContent='space-between' w={{ lg2: 'full' }}>
             {election?.status !== ElectionStatus.CANCELED ? (
@@ -137,9 +139,7 @@ const ProcessHeader = () => {
                 {t('process.status.canceled')}
               </Text>
             )}
-            <Box position='absolute' right={0} top={0}>
-              <ActionsMenu />
-            </Box>
+            <ActionsMenu />
           </Box>
           {election?.electionType.anonymous && (
             <Box>
@@ -236,9 +236,11 @@ const GitcoinStrategyInfo = () => {
   const { t } = useTranslation()
   const { election } = useElection()
 
-  if (!election || (election && !election?.meta?.strategy)) return
-  const strategy: Strategy = election.get('strategy')
+  if (!election || !(election instanceof PublishedElection) || !election?.meta?.strategy) {
+    return null
+  }
 
+  const strategy: Strategy = election.get('strategy')
   const score = strategy.tokens['GPS'].minBalance
   const firstParenthesesMatch = strategy.predicate.match(/\(([^)]+)\)/)
   let unionTypeString: string | null = null
@@ -278,6 +280,9 @@ const GitcoinStrategyInfo = () => {
 const useStrategy = () => {
   const { t } = useTranslation()
   const { election } = useElection()
+
+  if (!election || election instanceof InvalidElection || !election?.meta?.census) return ''
+
   const strategies: { [key: string]: ReactNode } = {
     spreadsheet: t('process.census_strategies.spreadsheet'),
     token: t('process.census_strategies.token', { token: election?.meta?.token }),
@@ -285,8 +290,6 @@ const useStrategy = () => {
     csp: t('process.census_strategies.csp'),
     gitcoin: <GitcoinStrategyInfo />,
   }
-
-  if (!election || (election && !election?.meta?.census)) return ''
 
   const type = election.get('census.type')
 

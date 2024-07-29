@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import { Outlet, Link as ReactRouterLink, useNavigate } from 'react-router-dom'
+import { Outlet, Link as ReactRouterLink, ScrollRestoration, useNavigate } from 'react-router-dom'
 import Logo from '~components/Layout/Logo'
 import { Close } from '~theme/icons'
 
@@ -10,6 +10,7 @@ const LayoutProcessCreate = () => {
 
   return (
     <Box bgColor='process_create.bg'>
+      <ScrollRestoration />
       <Box maxW='site-width' mx='auto'>
         <Flex direction='column' minH='100vh'>
           <Flex

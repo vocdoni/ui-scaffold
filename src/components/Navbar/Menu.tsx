@@ -21,7 +21,6 @@ import { HiShoppingCart } from 'react-icons/hi'
 import { MdOutlineLogout } from 'react-icons/md'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useDisconnect } from 'wagmi'
-import { useOrganizationModal } from '~components/Organization/OrganizationModalProvider'
 import { addressTextOverflow } from '~constants'
 import { LanguagesList } from './LanguagesList'
 
@@ -32,8 +31,6 @@ const MenuDropdown = () => {
   const { onCopy } = useClipboard(account?.address as string)
 
   const [isOpenMenuLanguages, setIsOpenMenuLanguages] = useState(false)
-
-  const { onOpen } = useOrganizationModal()
 
   return (
     <MenuList
@@ -108,20 +105,17 @@ const MenuDropdown = () => {
                 <Balance p={0} bg='white' fontWeight='bold' />
               </Flex>
               {import.meta.env.features.faucet && (
-                <Button
-                  as={ReactRouterLink}
-                  to='/faucet'
-                  aria-label={t('menu.get_more')}
-                  title={t('menu.get_more')}
-                  variant='primary'
-                >
+                <Button as={ReactRouterLink} to='/faucet' aria-label={t('menu.get_more')} title={t('menu.get_more')}>
                   <Icon as={HiShoppingCart} />
                   {t('menu.get_more')}
                 </Button>
               )}
             </Flex>
           </MenuItem>
-          <MenuItem onClick={onOpen}>{t('menu.organization')}</MenuItem>
+
+          <MenuItem as={ReactRouterLink} to='organization/edit'>
+            {t('menu.organization')}
+          </MenuItem>
         </>
       )}
 
@@ -164,16 +158,10 @@ const MenuDropdown = () => {
         <Icon as={MdOutlineLogout} mr={1} />
         {t('menu.logout')}
       </MenuItem>
-      <MenuItem
-        fontSize='xs'
-        color='blackAlpha.700'
-        as={Link}
-        href='https://aragon.org/terms-and-conditions'
-        target='_blank'
-      >
+      <MenuItem fontSize='xs' color='blackAlpha.700' as={ReactRouterLink} to='/terms'>
         {t('menu.terms')}
       </MenuItem>
-      <MenuItem fontSize='xs' color='blackAlpha.700' as={Link} href='https://aragon.org/privacy-policy' target='_blank'>
+      <MenuItem fontSize='xs' color='blackAlpha.700' as={ReactRouterLink} to='/privacy'>
         {t('menu.privacy')}
       </MenuItem>
     </MenuList>

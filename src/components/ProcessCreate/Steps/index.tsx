@@ -51,7 +51,13 @@ const Steps = () => {
                 <StepIndicator>
                   <StepStatus complete={<StepIcon />} incomplete={<StepNumber />} active={<StepNumber />} />
                 </StepIndicator>
-                <Text as='span' fontSize='xs' mt={{ lg: 2 }} color='#555' display={{ base: 'none', sm: 'block' }}>
+                <Text
+                  as='span'
+                  fontSize='xs'
+                  mt={{ lg: 2 }}
+                  color='process_create.stepper.color'
+                  display={{ base: 'none', sm: 'block' }}
+                >
                   {step.title}
                 </Text>
               </Flex>

@@ -1,7 +1,48 @@
 import merge from 'ts-deepmerge'
+import ValidLanguages from '../src/i18n/languages.mjs'
+
+// Define constants for valid values
+const ValidLogins = ['web2', 'web3', 'recovery'] as const
+const ValidCensus = ['spreadsheet', 'token', 'web3', 'csp', 'gitcoin'] as const
+const UnimplementedCensuses = ['phone', 'email', 'crm', 'database', 'digital_certificate'] as const
+const ValidVotingTypes = ['single', 'approval'] as const
+const UnimplementedVotingTypes = ['multi', 'participatory', 'borda'] as const
+
+// Convert constant arrays to union types
+type Login = (typeof ValidLogins)[number]
+type Census = (typeof ValidCensus)[number]
+type UnimplementedCensus = (typeof UnimplementedCensuses)[number]
+type VotingType = (typeof ValidVotingTypes)[number]
+type UnimplementedVotingType = (typeof UnimplementedVotingTypes)[number]
+type Language = (typeof ValidLanguages)[number]
+
+type Features = {
+  faucet: boolean
+  vote: {
+    anonymous: boolean
+    overwrite: boolean
+    secret: boolean
+    customization: boolean
+  }
+  login: Login[]
+  census: Census[]
+  unimplemented_census: UnimplementedCensus[]
+  voting_type: VotingType[]
+  unimplemented_voting_type: UnimplementedVotingType[]
+  languages: Language[]
+  _census: {
+    spreadsheet: boolean
+    token: boolean
+    web3: boolean
+    csp: boolean
+    gitcoin: boolean
+  }
+}
+
+type Defaults = Omit<Features, '_census'>
 
 const features = () => {
-  const defaults = {
+  const defaults: Defaults = {
     faucet: true,
     vote: {
       anonymous: true,
@@ -12,21 +53,24 @@ const features = () => {
     login: ['web3', 'web2'],
     census: ['spreadsheet', 'token', 'web3', 'csp', 'gitcoin'],
     unimplemented_census: [],
-    voting_type: ['single'],
+    voting_type: ['single', 'approval'],
     unimplemented_voting_type: [],
-    languages: ['ca', 'en', 'es'],
+    languages: ValidLanguages,
   }
 
-  const features = merge.withOptions({ mergeArrays: false }, defaults, JSON.parse(process.env.FEATURES || '{}'))
-  const unimplemented_census = ['phone', 'email', 'crm', 'database', 'digital_certificate']
-  const unimplemented_voting_type = ['multi', 'approval', 'participatory', 'borda']
+  const features = merge.withOptions(
+    { mergeArrays: false },
+    defaults,
+    JSON.parse(process.env.FEATURES || '{}')
+  ) as unknown as Features
 
   features.unimplemented_census.forEach((el) => {
-    if (!unimplemented_census.includes(el)) throw new Error(`Unimplemented census ${el} does not exist`)
+    if (!UnimplementedCensuses.includes(el)) throw new Error(`Unimplemented census ${el} does not exist`)
   })
   features.unimplemented_voting_type.forEach((el) => {
-    if (!unimplemented_voting_type.includes(el)) throw new Error(`Unimplemented voting type ${el} does not exist`)
+    if (!UnimplementedVotingTypes.includes(el)) throw new Error(`Unimplemented voting type ${el} does not exist`)
   })
+
   // Ensure at least one item is loaded in each feature array
   if (!features.login.length) {
     features.login = ['web3']
@@ -37,14 +81,15 @@ const features = () => {
   if (!features.languages.length) {
     features.languages = ['en']
   }
-  // verify login options are valid
-  const validLogins = ['web2', 'web3', 'recovery']
+
+  // Verify login options are valid
   features.login.forEach((login) => {
-    if (!validLogins.includes(login)) {
+    if (!ValidLogins.includes(login)) {
       throw new Error(`Invalid login option: ${login}`)
     }
   })
-  // We need pure booleans in order to ensure rollup tree-shakes non enabled features.
+
+  // We need pure booleans in order to ensure rollup tree-shakes non-enabled features.
   // Using functions like `.includes()` would prevent such tree-shaking, resulting in a bigger bundle.
   features._census = {
     spreadsheet: false,
