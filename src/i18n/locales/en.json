@@ -54,7 +54,13 @@
       "title": "Results for \"{{ title }}\"",
       "votes": "Votes: {{ votes }} ({{ percent }})"
     },
-    "schedule": "Voting from {{ begin }} to {{ end }}",
+    "schedule": {
+      "created": "Created {{ distance }}",
+      "ended": "Ended {{ distance }}",
+      "from_begin_to_end": "Voting from {{ begin }} to {{ end }}",
+      "paused_end": "(Paused) Ends {{ distance }}",
+      "paused_start": "(Paused) Starts {{ distance }}"
+    },
     "spreadsheet": {
       "access_button": "Identify",
       "anon_sik_helper": "This ensures the vote to be anonymous",
@@ -814,10 +820,6 @@
         "description": "Voters choose a pre-defined number of options. The option with more voters win.",
         "title": "Multiple Choice"
       },
-      "others": {
-        "description": "Select other voting types (multiple-choice, approval voting, participatory budgeting, ranked choice...)",
-        "title": "Others"
-      },
       "participation_budgeting": {
         "description": "Voters can distribute a predefined number among all options/projects (representing the total available budget) as they wish.",
         "title": "Participatory Budgeting"
@@ -828,10 +830,10 @@
       },
       "voting_type": {
         "description": "Select the voting type for this election. If you don't find what you need can contact us.",
-        "pro": "Pro Voting Type",
         "title": "Voting Types"
       }
-    }
+    },
+    "tabcard_title": "{title}"
   },
   "rainbow": {
     "group": {
