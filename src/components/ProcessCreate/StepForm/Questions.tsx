@@ -1,10 +1,10 @@
-import { FormProvider, SubmitHandler, useFieldArray, useForm, useFormContext } from 'react-hook-form'
-import { StepsFormValues, useProcessCreationSteps } from '../Steps/use-steps'
-import { MultiQuestionTypes, useVotingType, VotingType } from '~components/ProcessCreate/Questions/useVotingType'
-import { useUnimplementedVotingType } from '~components/ProcessCreate/Questions/useUnimplementedVotingType'
-import { useTranslation } from 'react-i18next'
-import { TabsPage } from '~components/ProcessCreate/Steps/TabsPage'
 import { Box } from '@chakra-ui/react'
+import { FormProvider, SubmitHandler, useFieldArray, useForm, useFormContext } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
+import { useUnimplementedVotingType } from '~components/ProcessCreate/Questions/useUnimplementedVotingType'
+import { MultiQuestionTypes, useVotingType, VotingType } from '~components/ProcessCreate/Questions/useVotingType'
+import { TabsPage } from '~components/ProcessCreate/Steps/TabsPage'
+import { StepsFormValues, useProcessCreationSteps } from '../Steps/use-steps'
 
 export interface Option {
   option: string
