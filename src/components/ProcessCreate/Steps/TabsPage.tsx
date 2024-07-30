@@ -1,11 +1,12 @@
 import { Box, Flex, Icon, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useDisclosure } from '@chakra-ui/react'
 import { TabProps } from '@chakra-ui/tabs/dist/tab'
 import { useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { CgMoreO } from 'react-icons/cg'
 import ModalPro from '~components/ProcessCreate/ModalPro'
 import { StepsNavigation } from '~components/ProcessCreate/Steps/Navigation'
 import Wrapper from '~components/ProcessCreate/Steps/Wrapper'
+import { convertParagraphs } from '~constants/components'
 import { Check } from '~theme/icons'
 
 /**
@@ -137,34 +138,23 @@ const TabCardSkeleton = ({
   check = false,
   pro = false,
   ...props
-}: ITabsCardSkeletonProps & TabProps) => {
-  return (
-    <Tab onClick={onClick} {...props}>
-      {check && (
-        <>
-          <Check />
-          <Box id={'empty-check'} />
-        </>
-      )}
-      {pro && (
-        <Box>
-          <Box id={'pro-badge'}>Pro</Box>
-        </Box>
-      )}
-      <Box id={'title'}>
-        <Icon as={icon} />
-        <Text>
-          <Trans
-            i18nKey='process_create.tabcard_title'
-            components={{
-              p: <Text />,
-            }}
-          >
-            {title}
-          </Trans>
-        </Text>
+}: ITabsCardSkeletonProps & TabProps) => (
+  <Tab onClick={onClick} {...props}>
+    {check && (
+      <>
+        <Check />
+        <Box id={'empty-check'} />
+      </>
+    )}
+    {pro && (
+      <Box>
+        <Box id={'pro-badge'}>Pro</Box>
       </Box>
-      <Text id={'description'}>{description}</Text>
-    </Tab>
-  )
-}
+    )}
+    <Box id={'title'}>
+      <Icon as={icon} />
+      <Text>{convertParagraphs(title)}</Text>
+    </Box>
+    <Text id={'description'}>{description}</Text>
+  </Tab>
+)
