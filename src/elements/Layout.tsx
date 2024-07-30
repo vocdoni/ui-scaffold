@@ -15,7 +15,11 @@ const Layout = () => {
       <Flex flexDirection='column' as='main' flexGrow={1}>
         <Outlet />
       </Flex>
-      <Box as='footer' mt='auto' bgColor={`${location.pathname === '/organization' ? 'footer.gray' : 'footer.white'}`}>
+      <Box
+        as='footer'
+        mt='auto'
+        bgColor={`${location.pathname.startsWith('/organization') ? 'footer.gray' : 'footer.white'}`}
+      >
         <Footer />
       </Box>
       {import.meta.env.theme === 'onvote' && (
