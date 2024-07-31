@@ -8,14 +8,9 @@ import SignInScreen from './SignInScreen'
 const OrganizationProtectedRoute = () => {
   const {
     connected,
-    loading: { fetch },
     loaded: { fetch: fetchLoaded },
   } = useClient()
   const { exists } = useAccountHealthTools()
-
-  if (!connected) {
-    return <SignInScreen />
-  }
 
   if (!fetchLoaded) {
     return (
@@ -23,6 +18,10 @@ const OrganizationProtectedRoute = () => {
         <Spinner />
       </Flex>
     )
+  }
+
+  if (!connected) {
+    return <SignInScreen />
   }
 
   if (!exists) {
