@@ -77,10 +77,9 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
 
   // fetch the session status
   useEffect(() => {
-    const abortController = new AbortController()
-    const signal = abortController.signal
+    if (!accountLoaded.account) return
     const getStatus = async (): Promise<StatusData | null> => {
-      const res = await fetch(`${client.faucetService.url}/sessionStatus/${sessionId}`, { signal })
+      const res = await fetch(`${client.faucetService.url}/sessionStatus/${sessionId}`)
       const data = await res.json()
 
       if (data.faucet_package !== null) {
@@ -98,11 +97,7 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
       setFaucetPackage(data.faucet_package)
       setRecipient(data.recipient)
     })
-
-    return () => {
-      abortController.abort()
-    }
-  }, [])
+  }, [accountLoaded.account])
 
   // claim the tokens if the package is not consumed
   useEffect(() => {
@@ -224,7 +219,7 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
         <Trans
           i18nKey='claim.purchase_success'
           components={{
-            customLink: <Link href='mailto:orders@vocdoni.org' />,
+            mailto: <Link href='mailto:orders@vocdoni.org' />,
             title: <Text fontSize='xl' mb={5}></Text>,
             p: <Text mb={5}></Text>,
           }}
