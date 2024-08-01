@@ -31,7 +31,7 @@ export const CheckoutForm = ({ amount, returnURL }: CheckoutFormProps) => {
   const fetchClientSecret = useCallback(async () => {
     if (address) {
       let uri = `${client.faucetService.url}/createCheckoutSession/${address}`
-      if (amount && !isNaN(parseInt(amount))) {
+      if (amount && !isNaN(parseInt(amount, 10))) {
         uri = `${uri}/${amount}`
       }
       // Create a Checkout Session

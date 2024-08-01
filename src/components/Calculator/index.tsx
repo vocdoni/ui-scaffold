@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Card,
   Checkbox,
   Flex,
   FormControl,
@@ -42,9 +43,7 @@ import { MdOutlineLoop } from 'react-icons/md'
 import { PiNumberSquareOneLight } from 'react-icons/pi'
 import { generatePath, Link as ReactRouterLink, useNavigate } from 'react-router-dom'
 import { useAccount } from 'wagmi'
-
-const TOKEN_PRICE = 0.15
-const MINIMUM_PURCHASE_TOKENS = 100
+import { MinPurchaseTokens, StripeEnabled, TokenPrice } from '~constants'
 
 const Calculator = () => {
   const { t } = useTranslation()
@@ -81,17 +80,10 @@ const Calculator = () => {
               </Tab>
             </TabList>
 
-            <Flex
-              className='calculator'
-              flexDirection={{ base: 'column', xl: 'row' }}
-              overflow='hidden'
-              maxW={{ base: '600px', xl: 'none' }}
-              mx='auto'
-              mb='100px'
-            >
+            <Card variant='calculator'>
               <LeftSideCalculator setTabIndex={setTabIndex} setTotalTokens={setTotalTokens} />
               <RightSideCalculator totalTokens={totalTokens} setTotalTokens={setTotalTokens} />
-            </Flex>
+            </Card>
           </Tabs>
         </Box>
       </Flex>
@@ -352,7 +344,7 @@ const RightSideCalculator = ({
 }) => {
   const { t } = useTranslation()
 
-  const totalPrice = TOKEN_PRICE * totalTokens
+  const totalPrice = TokenPrice * totalTokens
 
   return (
     <Flex
@@ -539,16 +531,16 @@ const TokensModal = ({
         <ModalHeader>Tokens</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          {totalTokens < MINIMUM_PURCHASE_TOKENS && account && account?.balance >= totalTokens ? (
+          {totalTokens < MinPurchaseTokens && account && account?.balance >= totalTokens ? (
             <Trans
               i18nKey='calculator.modal.minimum_tokens_purchase_and_enough_tokens'
               components={{
                 p: <Text textAlign='center' />,
               }}
               values={{
-                pricePerToken: TOKEN_PRICE.toString(),
-                minimumTokens: MINIMUM_PURCHASE_TOKENS.toString(),
-                totalPrice: (TOKEN_PRICE * MINIMUM_PURCHASE_TOKENS).toString(),
+                pricePerToken: TokenPrice.toString(),
+                minimumTokens: MinPurchaseTokens.toString(),
+                totalPrice: (TokenPrice * MinPurchaseTokens).toString(),
               }}
             />
           ) : account && account?.balance >= totalTokens ? (
@@ -558,16 +550,16 @@ const TokensModal = ({
                 p: <Text textAlign='center' />,
               }}
             />
-          ) : totalTokens < MINIMUM_PURCHASE_TOKENS ? (
+          ) : totalTokens < MinPurchaseTokens ? (
             <Trans
               i18nKey='calculator.modal.minimum_tokens_purchase'
               components={{
                 p: <Text textAlign='center' />,
               }}
               values={{
-                pricePerToken: TOKEN_PRICE.toString(),
-                minimumTokens: MINIMUM_PURCHASE_TOKENS.toString(),
-                totalPrice: (TOKEN_PRICE * MINIMUM_PURCHASE_TOKENS).toString(),
+                pricePerToken: TokenPrice.toString(),
+                minimumTokens: MinPurchaseTokens.toString(),
+                totalPrice: (TokenPrice * MinPurchaseTokens).toString(),
               }}
             />
           ) : null}
@@ -599,9 +591,7 @@ const BuyBtns = ({ totalTokens }: { totalTokens: number }) => {
   const { openConnectModal } = useConnectModal()
   const [hasConnected, setHasConnected] = useState(false)
 
-  const stripeEnabled = import.meta.env.STRIPE_PUBLIC_KEY.length > 0
-
-  if (!stripeEnabled) console.warn('Stripe is not enabled')
+  if (!StripeEnabled) console.warn('Stripe is not enabled')
 
   useEffect(() => {
     if (hasConnected && isConnected) {
@@ -626,10 +616,7 @@ const BuyBtns = ({ totalTokens }: { totalTokens: number }) => {
               } else {
                 navigate(
                   generatePath('/stripe/checkout/:amount', {
-                    amount:
-                      totalTokens < MINIMUM_PURCHASE_TOKENS
-                        ? MINIMUM_PURCHASE_TOKENS.toString()
-                        : totalTokens.toString(),
+                    amount: totalTokens < MinPurchaseTokens ? MinPurchaseTokens.toString() : totalTokens.toString(),
                   })
                 )
               }

@@ -318,8 +318,23 @@ const imageCard = definePartsStyle({
   },
 })
 
+const calculator = definePartsStyle({
+  container: {
+    ...cardCommonStyles.container,
+
+    border: '1px solid',
+    borderColor: 'calculator.border',
+    flexDirection: { base: 'column', xl: 'row' },
+    overflow: 'hidden',
+    maxW: { base: '600px', xl: 'none' },
+    mx: 'auto',
+    mb: '100px',
+  },
+})
+
 const variantsCards = {
   aside,
+  calculator,
   detailed,
   'no-elections': noElections,
   'types-voting': typesVoting,

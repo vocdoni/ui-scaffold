@@ -34,10 +34,6 @@ export const theme = extendTheme(vtheme, {
       '.brand-theme': {
         fontFamily: 'pixeloidsans, monospace',
       },
-      '.calculator': {
-        border: '1px solid',
-        borderColor: 'calculator.border',
-      },
       '.creating-process-img': {
         bgImage: '/assets/onvote-modal-submitting.png',
       },
