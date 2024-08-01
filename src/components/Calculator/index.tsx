@@ -411,17 +411,7 @@ const RightSideCalculator = ({
               {t('calculator.total')}
             </Text>
           </Flex>
-          <RadioGroup
-            value={String(totalTokens)}
-            onChange={(e) => {
-              if (e === '1000') setTotalTokens(1000)
-              else if (e === '15000') setTotalTokens(15000)
-              else if (e === '30000') setTotalTokens(30000)
-              else if (e === '50000') setTotalTokens(50000)
-              else if (e === '100000') setTotalTokens(100000)
-            }}
-            px={{ base: 5, lg: 14 }}
-          >
+          <RadioGroup value={String(totalTokens)} onChange={(e) => setTotalTokens(Number(e))} px={{ base: 5, lg: 14 }}>
             <Stack>
               <Flex gap={2}>
                 <Radio value='1000' id='1' colorScheme='secondary'></Radio>
