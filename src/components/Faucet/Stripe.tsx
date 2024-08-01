@@ -74,29 +74,24 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
   const [packageConsumed, setPackageConsumed] = useState(false)
   const [abortedSignature, setAbortedSignature] = useState(false)
   const [aborted, setAborted] = useState(false)
+  const [error, setError] = useState(false)
 
   // fetch the session status
   useEffect(() => {
     if (!accountLoaded.account) return
-    const getStatus = async (): Promise<StatusData | null> => {
+    ;(async () => {
       const res = await fetch(`${client.faucetService.url}/sessionStatus/${sessionId}`)
       const data = await res.json()
 
       if (data.faucet_package !== null) {
-        return data
+        setStatus(data.status)
+        setCustomerEmail(data.customer_email)
+        setFaucetPackage(data.faucet_package)
+        setRecipient(data.recipient)
+        return null
       }
-      if (!faucetPackage) {
-        return await getStatus()
-      }
-      return null
-    }
-    getStatus().then((data) => {
-      if (!data) return
-      setStatus(data.status)
-      setCustomerEmail(data.customer_email)
-      setFaucetPackage(data.faucet_package)
-      setRecipient(data.recipient)
-    })
+      setError(true)
+    })()
   }, [accountLoaded.account])
 
   // claim the tokens if the package is not consumed
@@ -194,7 +189,7 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
     )
   }
 
-  if (!packageConsumed || !faucetPackage) {
+  if (!packageConsumed && !faucetPackage) {
     return (
       <Box as='section' id='success' className='site-wrapper' textAlign='center' mt={10}>
         <Spinner color='spinner' mb={5} />
@@ -213,7 +208,7 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
     )
   }
 
-  if (status === 'complete' && packageConsumed == true) {
+  if (packageConsumed) {
     return (
       <Box as='section' id='success' className='site-wrapper' mt={10} textAlign='center'>
         <Trans

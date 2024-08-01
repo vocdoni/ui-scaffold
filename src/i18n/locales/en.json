@@ -147,7 +147,7 @@
   },
   "claim": {
     "loading_description": "<h3>Wallet Authentication (Metamask, Rainbow, Coinbase):</h3><p>To receive your tokens, please sign the request when prompted.</p><strong>Important:</strong><p>If you leave this page without signing, you will not receive your paid tokens.</p><line/><h3>Social Account Authentication (Google, Github, Facebook):</h3><p>Please wait while we process your request.</p>",
-    "purchase_success": "<title>We appreciate your business!</title><p>If you have any questions, please email <customLink>orders@vocdoni.org</customLink></p>",
+    "purchase_success": "<title>We appreciate your business!</title><p>If you have any questions, please email <mailto>orders@vocdoni.org</mailto></p>",
     "signature_aborted": "<p>You aborted the action.</p><strong>Important:</strong><p>If you leave this page without signing, you will not receive your paid tokens.</p>",
     "signature_aborted_sign": "Sign",
     "success_faucetPackage_title": "Faucet Package was successfully obtained",
