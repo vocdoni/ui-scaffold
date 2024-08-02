@@ -228,8 +228,8 @@ export const useClaim = () => {
     setPendingClaim(false)
     setLoading(true)
     const tloading = toast({
-      title: t('claim.loading_title'),
-      description: t('claim.loading_description'),
+      title: t('claim.toast.loading_title'),
+      description: t('claim.toast.loading_description'),
       status: 'loading',
       duration: null,
     })
@@ -250,7 +250,7 @@ export const useClaim = () => {
 
         // and update stored balance
         await fetchAccount()
-        successMsgTitle = t('claim.success_title')
+        successMsgTitle = t('claim.toast.success_title')
       } else {
         setFaucetPackage(faucetPackage)
       }
@@ -258,7 +258,7 @@ export const useClaim = () => {
       toast.close(tloading)
       toast({
         title: successMsgTitle,
-        description: t('claim.success_description'),
+        description: t('claim.toast.success_description'),
         status: 'success',
         duration: 6000,
       })
@@ -266,7 +266,7 @@ export const useClaim = () => {
       toast.close(tloading)
       console.error('could not claim faucet package:', error)
       toast({
-        title: t('claim.error_title'),
+        title: t('claim.toast.error_title'),
         description: errorToString(error),
         status: 'error',
         duration: 6000,

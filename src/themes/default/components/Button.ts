@@ -109,6 +109,20 @@ const goBack = defineStyle({
     ml: 1,
   },
 })
+const buy = defineStyle((props) => {
+  return {
+    border: '1px solid white',
+    borderRadius: 'xl',
+    px: 8,
+    bgColor: '#4569D6',
+    gap: 2,
+    _hover: {
+      bgColor: 'white',
+      color: '#4569D6',
+      borderColor: '#4569D6',
+    },
+  }
+})
 
 const dashboard = defineStyle((props) => {
   const { colorScheme } = props
@@ -142,6 +156,7 @@ export const Button = defineStyleConfig({
   },
   variants: {
     'address-dropdown': addressDropdown,
+    buy,
     'close-form': closeForm,
     dashboard,
     outline,
