@@ -15,6 +15,7 @@ import bg from '/assets/bg-home.png'
 const Home = () => {
   const { hash } = useLocation()
 
+  //  handle smooth scrolling to a specific element on the page whenever the hash value changes
   useEffect(() => {
     if (hash) {
       setTimeout(() => {

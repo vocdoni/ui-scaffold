@@ -102,6 +102,7 @@ const features = () => {
   for (const census of features.census) {
     features._census[census] = true
   }
+  console.info('features:', features)
 
   return {
     name: 'feature-flags',

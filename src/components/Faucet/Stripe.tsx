@@ -2,6 +2,7 @@ import { Box, Button, Flex, Link, Spinner, Text, useToast } from '@chakra-ui/rea
 import { EmbeddedCheckout, EmbeddedCheckoutProvider } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 import { errorToString, useClient } from '@vocdoni/react-providers'
+import { ensure0x } from '@vocdoni/sdk'
 import { useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Navigate } from 'react-router-dom'
@@ -72,7 +73,6 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
   const [faucetPackage, setFaucetPackage] = useState<string | undefined>('')
   const [recipient, setRecipient] = useState<string | null>('')
   const [packageConsumed, setPackageConsumed] = useState(false)
-  const [abortedSignature, setAbortedSignature] = useState(false)
   const [aborted, setAborted] = useState(false)
   const [error, setError] = useState(false)
 
@@ -101,7 +101,8 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
       !recipient ||
       !accountLoaded ||
       packageConsumed ||
-      `0x${account?.address}` !== recipient.toLowerCase()
+      !account?.address ||
+      ensure0x(account.address) !== recipient.toLowerCase()
     ) {
       return
     }
@@ -153,18 +154,6 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
       setAborted(true)
     }
   }
-
-  useEffect(() => {
-    if (!abortedSignature) return
-
-    const navigateTimeout = setTimeout(() => {
-      navigate('/calculator')
-    }, 5000)
-
-    return () => {
-      clearTimeout(navigateTimeout)
-    }
-  }, [abortedSignature])
 
   if (status === 'open') {
     return <Navigate to='/checkout' />
