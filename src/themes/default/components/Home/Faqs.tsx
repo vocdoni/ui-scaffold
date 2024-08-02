@@ -5,7 +5,13 @@ const Faqs = () => {
   const { t } = useTranslation()
 
   return (
-    <Box position='relative' className='site-wrapper-full' py={{ base: '60px', lg: '100px' }} backgroundColor='white'>
+    <Box
+      id='faqs'
+      position='relative'
+      className='site-wrapper-full'
+      py={{ base: '60px', lg: '100px' }}
+      backgroundColor='white'
+    >
       <Image
         src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b72f92aa4f58_diagonal-violet-to-pink.svg'
         position='absolute'

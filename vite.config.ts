@@ -16,6 +16,14 @@ const viteconfig = ({ mode }) => {
   if (!vocdoniEnvironment) {
     vocdoniEnvironment = 'stg'
   }
+  let stripePublickKey = process.env.STRIPE_PUBLIC_KEY
+  if (!stripePublickKey) {
+    if (vocdoniEnvironment === 'dev') {
+      stripePublickKey = 'pk_live_51P6vaOI1T5UnHYEl3Z2aqpc7DZET6spnYww8ItU7rOv94OTHlGzvh4fK3Z5HVTGT2KmGLnDCcUnvBUjODYiL61W600XBPAnoZZ'
+    } else if (vocdoniEnvironment === 'stg') {
+      stripePublickKey = 'pk_test_51PNuOtDW6VLep8WG8WFS7KZocugbzYbkuNn94WAxuGZUa1maPK7kv5BnEPN3x5bXLaCYhHRkBmmGJVVvcDkbbnbS00V4LExTPD'
+    }
+  }
 
   const outDir = process.env.BUILD_PATH
   const base = process.env.BASE_URL || '/'
@@ -31,6 +39,7 @@ const viteconfig = ({ mode }) => {
     process.env.APP_TITLE || process.env.THEME === 'onvote'
       ? 'ONVOTE - Anonymous Gasless and Modular voting for Web3'
       : 'Vocdoni - The voice of digital voting'
+  let stripePublicKey = process.env.STRIPE_PUBLIC_KEY || ''
 
   return defineConfig({
     base,
@@ -48,6 +57,7 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.EMAILJS_TEMPLATE_ID': JSON.stringify(process.env.EMAILJS_TEMPLATE_ID),
       'import.meta.env.EMAILJS_PUBLIC_ID': JSON.stringify(process.env.EMAILJS_PUBLIC_ID),
       'import.meta.env.title': JSON.stringify(title),
+      'import.meta.env.STRIPE_PUBLIC_KEY': JSON.stringify(stripePublickKey),
     },
     plugins: [
       tsconfigPaths(),
