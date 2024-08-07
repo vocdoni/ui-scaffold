@@ -39,7 +39,6 @@ const viteconfig = ({ mode }) => {
     process.env.APP_TITLE || process.env.THEME === 'onvote'
       ? 'ONVOTE - Anonymous Gasless and Modular voting for Web3'
       : 'Vocdoni - The voice of digital voting'
-  let stripePublicKey = process.env.STRIPE_PUBLIC_KEY || ''
 
   return defineConfig({
     base,
