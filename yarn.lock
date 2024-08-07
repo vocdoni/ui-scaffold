@@ -3180,10 +3180,10 @@
   dependencies:
     "@vocdoni/react-providers" "~0.4.4"
 
-"@vocdoni/proto@1.15.8":
-  version "1.15.8"
-  resolved "https://registry.yarnpkg.com/@vocdoni/proto/-/proto-1.15.8.tgz#a613b014810b36dd757e25453fd31470e3779736"
-  integrity sha512-SQxE0+tKaGiAxty6RvRMFrKArKGKsOw4S/Ph6NODJDhXn2tlbwkVK8hm9/3fRU528I2psABLT4lwe7skETcrNw==
+"@vocdoni/proto@1.15.9":
+  version "1.15.9"
+  resolved "https://registry.yarnpkg.com/@vocdoni/proto/-/proto-1.15.9.tgz#567c08f343d42cc2390c963bf62b41bd845d9a73"
+  integrity sha512-ud0UrkJJwMmJ5+7wCgaiV2x9UhLLDg52dpBG5dYaf4ZB4dTeXDipgANjl/AFFJWcfJGlEQkAVc92gEJKwd3JGA==
   dependencies:
     long "^5.2.1"
     protobufjs "^7.1.2"
@@ -3202,7 +3202,7 @@
 
 "@vocdoni/sdk@vocdoni/vocdoni-sdk#f/rebundling":
   version "0.8.4-beta.0"
-  resolved "https://codeload.github.com/vocdoni/vocdoni-sdk/tar.gz/d4c8f10d03bc1d98c56125449e7cbcf919a59e2a"
+  resolved "https://codeload.github.com/vocdoni/vocdoni-sdk/tar.gz/66ff43c0d9dbedf08ff0ca4d16dbf6e6b4920b33"
   dependencies:
     "@ethersproject/abstract-signer" "^5.7.0"
     "@ethersproject/address" "^5.7.0"
@@ -3215,7 +3215,7 @@
     "@ethersproject/units" "^5.7.0"
     "@ethersproject/wallet" "^5.7.0"
     "@size-limit/file" "^8.2.4"
-    "@vocdoni/proto" "1.15.8"
+    "@vocdoni/proto" "1.15.9"
     axios "0.28.1"
     blake2b "^2.1.4"
     blindsecp256k1 "^0.0.9"
