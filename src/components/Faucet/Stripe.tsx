@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Link, Spinner, Text, useToast } from '@chakra-ui/react'
 import { EmbeddedCheckout, EmbeddedCheckoutProvider } from '@stripe/react-stripe-js'
-import { loadStripe } from '@stripe/stripe-js'
+import { loadStripe } from '@stripe/stripe-js/pure'
 import { errorToString, useClient } from '@vocdoni/react-providers'
 import { ensure0x } from '@vocdoni/sdk'
 import { useCallback, useEffect, useState } from 'react'
@@ -9,7 +9,6 @@ import { Navigate } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 
 const STRIPE_PUBLIC_KEY = import.meta.env.STRIPE_PUBLIC_KEY
-const stripePromise = loadStripe(STRIPE_PUBLIC_KEY)
 
 type CheckoutFormProps = {
   amount?: string
@@ -28,6 +27,7 @@ export const CheckoutForm = ({ amount, returnURL }: CheckoutFormProps) => {
   const { address } = useAccount()
   const { client } = useClient()
   const origin = window.location.origin
+  const stripePromise = loadStripe(STRIPE_PUBLIC_KEY)
 
   const fetchClientSecret = useCallback(async () => {
     if (address) {
