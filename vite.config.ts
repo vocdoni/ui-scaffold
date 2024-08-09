@@ -16,12 +16,14 @@ const viteconfig = ({ mode }) => {
   if (!vocdoniEnvironment) {
     vocdoniEnvironment = 'stg'
   }
-  let stripePublickKey = process.env.STRIPE_PUBLIC_KEY
-  if (!stripePublickKey) {
-    if (vocdoniEnvironment === 'dev') {
-      stripePublickKey = 'pk_live_51P6vaOI1T5UnHYEl3Z2aqpc7DZET6spnYww8ItU7rOv94OTHlGzvh4fK3Z5HVTGT2KmGLnDCcUnvBUjODYiL61W600XBPAnoZZ'
-    } else if (vocdoniEnvironment === 'stg') {
-      stripePublickKey = 'pk_test_51PNuOtDW6VLep8WG8WFS7KZocugbzYbkuNn94WAxuGZUa1maPK7kv5BnEPN3x5bXLaCYhHRkBmmGJVVvcDkbbnbS00V4LExTPD'
+  let stripePublicKey = process.env.STRIPE_PUBLIC_KEY
+  if (!stripePublicKey || stripePublicKey.length == 0) {
+    if (vocdoniEnvironment == 'dev') {
+      stripePublicKey =
+        'pk_test_51P6vaOI1T5UnHYElxQ2aqpc7DZET6spnYww8ItU7rOv94OTHlGzvh4fK3Z5HVTGT2KmGLnDCcUnvBUjODYiL61W600XBPAnoZZ'
+    } else if (vocdoniEnvironment == 'stg') {
+      stripePublicKey =
+        'pk_test_51PNuOtDW6VLep8WG8WFS7KZocugbzYbkuNn94WAxuGZUa1maPK7kv5BnEPN3x5bXLaCYhHRkBmmGJVVvcDkbbnbS00V4LExTPD'
     }
   }
 
@@ -56,7 +58,7 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.EMAILJS_TEMPLATE_ID': JSON.stringify(process.env.EMAILJS_TEMPLATE_ID),
       'import.meta.env.EMAILJS_PUBLIC_ID': JSON.stringify(process.env.EMAILJS_PUBLIC_ID),
       'import.meta.env.title': JSON.stringify(title),
-      'import.meta.env.STRIPE_PUBLIC_KEY': JSON.stringify(stripePublickKey),
+      'import.meta.env.STRIPE_PUBLIC_KEY': JSON.stringify(stripePublicKey),
     },
     plugins: [
       tsconfigPaths(),

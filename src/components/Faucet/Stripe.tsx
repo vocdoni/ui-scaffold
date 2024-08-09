@@ -1,5 +1,6 @@
 import { Box, Button, Flex, Icon, Link, Spinner, Text, useToast } from '@chakra-ui/react'
 import { EmbeddedCheckout, EmbeddedCheckoutProvider } from '@stripe/react-stripe-js'
+import { Stripe } from '@stripe/stripe-js'
 import { loadStripe } from '@stripe/stripe-js/pure'
 import { errorToString, useClient } from '@vocdoni/react-providers'
 import { ensure0x } from '@vocdoni/sdk'
@@ -10,6 +11,8 @@ import { Navigate, Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 
 const STRIPE_PUBLIC_KEY = import.meta.env.STRIPE_PUBLIC_KEY
+console.log(STRIPE_PUBLIC_KEY)
+// const stripePromise = loadStripe(STRIPE_PUBLIC_KEY)
 
 type CheckoutFormProps = {
   amount?: string
@@ -28,7 +31,24 @@ export const CheckoutForm = ({ amount, returnURL }: CheckoutFormProps) => {
   const { address } = useAccount()
   const { client } = useClient()
   const origin = window.location.origin
-  const stripePromise = loadStripe(STRIPE_PUBLIC_KEY)
+  const [stripePromise, _] = useState<Promise<Stripe | null>>(loadStripe(STRIPE_PUBLIC_KEY))
+  // let stripePublicKey = ''
+  // console.log(env)
+  // if (env === 'stg') {
+  //   stripePublicKey =
+  //     'pk_test_51PNuOtDW6VLep8WG8WFS7KZocugbzYbkuNn94WAxuGZUa1maPK7kv5BnEPN3x5bXLaCYhHRkBmmGJVVvcDkbbnbS00V4LExTPD'
+  // } else if (env === 'dev') {
+  //   stripePublicKey =
+  //     'pk_live_51P6vaOI1T5UnHYEl3Z2aqpc7DZET6spnYww8ItU7rOv94OTHlGzvh4fK3Z5HVTGT2KmGLnDCcUnvBUjODYiL61W600XBPAnoZZ'
+  // }
+  // console.log(stripePublicKey)
+  // const stripePromise = loadStripe(STRIPE_PUBLIC_KEY)
+  // const [stripePromise, setStripePromise] = useState<Stripe | null>(null)
+
+  // useEffect(() => {
+  //   console.log(STRIPE_PUBLIC_KEY)
+  //   loadStripe(STRIPE_PUBLIC_KEY).then((stripe) => setStripePromise(stripe))
+  // }, [])
 
   const fetchClientSecret = useCallback(async () => {
     if (address) {
