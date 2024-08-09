@@ -13,7 +13,7 @@ const OrganizationProtectedRoute = () => {
   } = useClient()
   const { exists } = useAccountHealthTools()
 
-  if (!fetchLoaded && fetchLoading ) {
+  if (!fetchLoaded && fetchLoading) {
     return (
       <Flex mt={10} justifyContent='center'>
         <Spinner />
