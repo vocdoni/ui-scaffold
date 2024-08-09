@@ -9,10 +9,11 @@ const OrganizationProtectedRoute = () => {
   const {
     connected,
     loaded: { fetch: fetchLoaded },
+    loading: { fetch: fetchLoading },
   } = useClient()
   const { exists } = useAccountHealthTools()
 
-  if (!fetchLoaded) {
+  if (!fetchLoaded && fetchLoading) {
     return (
       <Flex mt={10} justifyContent='center'>
         <Spinner />

@@ -149,7 +149,7 @@
     "wallet_address_title": "Direcciones de billetera"
   },
   "claim": {
-    "loading_description": "<box><strong>Autenticación de cartera (Metamask, Rainbow, Coinbase):</strong><p>Para recibir tus tokens, por favor firma la solicitud cuando se te pida.</p><strong>Importante:</strong><p>Si sales de esta página sin firmar, no recibirás los tokens que has pagado.</p></box><strong>Autenticación de cuenta social (Google, Github, Facebook):</strong><p>Por favor, espera mientras procesamos tu solicitud.</p>",
+    "loading_description": "<h3>Autenticación de cartera (Metamask, Rainbow, Coinbase):</h3><p>Para recibir tus tokens, por favor firma la solicitud cuando se te pida.</p><strong>Importante:</strong><p>Si sales de esta página sin firmar, no recibirás los tokens que has pagado.</p><strong>Autenticación de cuenta social (Google, Github, Facebook):</strong><p>Por favor, espera mientras procesamos tu solicitud.</p>",
     "purchase_success": "<title>¡Apreciamos su compra!</title><p>Si tienes alguna pregunta, por favor envía un correo a <mailto>orders@vocdoni.org</mailto></p>",
     "signature_aborted": "<p>Has abortado la acción.</p>strong>Importante:</strong><p>Si sales de esta página sin firmar, no recibirás los tokens que has pagado.</p>",
     "signature_aborted_sign": "Firmar",

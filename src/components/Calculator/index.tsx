@@ -611,9 +611,9 @@ const BuyBtns = ({ totalTokens }: { totalTokens: number }) => {
               if (!isConnected && openConnectModal) {
                 openConnectModal()
                 setHasConnected(true)
-              } else if ((account && account?.balance >= totalTokens) || totalTokens < 100) {
+              } else if (!isBuyBtnDisabled && account && account?.balance >= totalTokens && totalTokens < 100) {
                 onOpen()
-              } else {
+              } else if (!isBuyBtnDisabled) {
                 navigate(
                   generatePath('/stripe/checkout/:amount', {
                     amount: totalTokens < MinPurchaseTokens ? MinPurchaseTokens.toString() : totalTokens.toString(),
@@ -627,7 +627,7 @@ const BuyBtns = ({ totalTokens }: { totalTokens: number }) => {
             <FaCcStripe />
             {t('calculator.buy_with_card')}
           </Button>
-          {!!totalTokens && (
+          {totalTokens < 100 && (
             <Text as='span' fontSize='sm'>
               Min. 100 tokens
             </Text>
