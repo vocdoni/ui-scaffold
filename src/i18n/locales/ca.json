@@ -149,7 +149,7 @@
     "wallet_address_title": "Adreces de cartera"
   },
   "claim": {
-    "loading_description": "<box><strong>Autenticació de cartera (Metamask, Rainbow, Coinbase):</strong><p>Per rebre els teus tokens, si us plau, signa la sol·licitud quan se't demani.</p><strong>Important:</strong><p>Si surts d'aquesta pàgina sense signar, no rebràs els tokens que has pagat.</p></box><strong>Autenticació de compte social (Google, Github, Facebook):</strong><p>Si us plau, espera mentre processem la teva sol·licitud.</p>",
+    "loading_description": "<h3>Autenticació de cartera (Metamask, Rainbow, Coinbase):</h3><p>Per rebre els teus tokens, si us plau, signa la sol·licitud quan se't demani.</p><strong>Important:</strong><p>Si surts d'aquesta pàgina sense signar, no rebràs els tokens que has pagat.</p><strong>Autenticació de compte social (Google, Github, Facebook):</strong><p>Si us plau, espera mentre processem la teva sol·licitud.</p>",
     "purchase_success": "<title>Apreciem la seva compra!</title><p>Si tens alguna pregunta, envia un correu a <mailto>orders@vocdoni.org</mailto></p>",
     "signature_aborted": "<p>Has cancel·lat l'acció.</p><strong>Important:</strong><p>Si surts d'aquesta pàgina sense signar, no rebràs els tokens que has pagat.</p>",
     "signature_aborted_sign": "Signar",

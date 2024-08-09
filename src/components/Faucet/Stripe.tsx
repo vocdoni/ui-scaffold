@@ -1,15 +1,16 @@
-import { Box, Button, Flex, Link, Spinner, Text, useToast } from '@chakra-ui/react'
+import { Box, Button, Flex, Icon, Link, Spinner, Text, useToast } from '@chakra-ui/react'
 import { EmbeddedCheckout, EmbeddedCheckoutProvider } from '@stripe/react-stripe-js'
-import { loadStripe } from '@stripe/stripe-js'
+import { Stripe } from '@stripe/stripe-js'
+import { loadStripe } from '@stripe/stripe-js/pure'
 import { errorToString, useClient } from '@vocdoni/react-providers'
 import { ensure0x } from '@vocdoni/sdk'
 import { useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { Navigate } from 'react-router-dom'
+import { MdHowToVote } from 'react-icons/md'
+import { Navigate, Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 
 const STRIPE_PUBLIC_KEY = import.meta.env.STRIPE_PUBLIC_KEY
-const stripePromise = loadStripe(STRIPE_PUBLIC_KEY)
 
 type CheckoutFormProps = {
   amount?: string
@@ -28,6 +29,7 @@ export const CheckoutForm = ({ amount, returnURL }: CheckoutFormProps) => {
   const { address } = useAccount()
   const { client } = useClient()
   const origin = window.location.origin
+  const [stripePromise, _] = useState<Promise<Stripe | null>>(loadStripe(STRIPE_PUBLIC_KEY))
 
   const fetchClientSecret = useCallback(async () => {
     if (address) {
@@ -211,6 +213,13 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
             customerEmail: customerEmail,
           }}
         />
+
+        <Button as={ReactRouterLink} to={`/organization`} width='min-content' mx='auto'>
+          <Icon as={MdHowToVote} boxSize={{ base: 4, sm2: 3 }} />
+          <Text as='span' display={{ base: 'none', sm2: 'inline-block' }}>
+            {t('menu.my_org')}
+          </Text>
+        </Button>
       </Box>
     )
   }
