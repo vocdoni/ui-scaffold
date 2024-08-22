@@ -667,7 +667,7 @@
   "organization": {
     "avatar_alt": "Imagen de avatar de la organización {{ name }}",
     "create_org": "Crear Organización",
-    "date_format": "MMMM d - yyyy (H:mm)",
+    "date_format": "d MMM y",
     "elections": "Elecciones",
     "elections_list_empty": {
       "alt": "Imagen que ilustra que la organización está vacía",

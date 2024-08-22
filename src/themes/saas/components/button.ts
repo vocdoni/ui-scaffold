@@ -109,7 +109,8 @@ export const Button = defineStyleConfig({
       },
 
       _active: {
-        color: mode('black', 'white')(props),
+        color: mode('brand.500', 'brand.500')(props),
+        fontWeight: mode('bold', 'bold')(props),
         '& span:first-of-type': {
           color: mode('brand.500', 'brand.500')(props),
         },

@@ -21,8 +21,8 @@ const OrganizationVotings = lazy(() => import('~elements/OrganizationSaas/Voting
 const OrganizationEdit = lazy(() => import('~elements/OrganizationSaas/Edit'))
 
 // others
-const OrganizationDashboardLayout = lazy(() => import('~components/OrganizationSaas/Dashboard/Layout'))
-const OrganizationDashboard = lazy(() => import('~components/OrganizationSaas/Dashboard'))
+const OrganizationDashboardLayout = lazy(() => import('~components/OrganizationSass/Dashboard/Layout'))
+const OrganizationDashboard = lazy(() => import('~components/OrganizationSass/Dashboard'))
 const ProcessCreateSteps = lazy(() => import('~components/ProcessCreate/Steps'))
 const Terms = lazy(() => import('~components/TermsAndPrivacy/Terms'))
 const Privacy = lazy(() => import('~components/TermsAndPrivacy/Privacy'))
@@ -182,18 +182,10 @@ export const RoutesProvider = () => {
           ),
           children: [
             {
-              path: '',
-              element: (
-                <SuspenseLoader>
-                  <OrganizationDashboard />
-                </SuspenseLoader>
-              ),
-            },
-            {
               path: 'votings/:page?/:status?',
               element: (
                 <SuspenseLoader>
-                  <OrganizationVotings />
+                  <OrganizationDashboard />
                 </SuspenseLoader>
               ),
             },

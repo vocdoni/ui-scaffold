@@ -1,6 +1,6 @@
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 import { Box, Button, Icon, Select, Text } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FaPhoneAlt } from 'react-icons/fa'
 import { FaHouse } from 'react-icons/fa6'
 import { GiHamburgerMenu } from 'react-icons/gi'
@@ -15,6 +15,12 @@ const OrganizationDashboardMenu = () => {
 
   const [subMenu, setSubMenu] = useState('')
 
+  useEffect(() => {
+    if (subMenu === '') {
+      setSubMenu('all')
+    }
+  }, [subMenu])
+
   return (
     <Box>
       <Text color={textColorSecondary} mb='10px'>
@@ -27,7 +33,7 @@ const OrganizationDashboardMenu = () => {
       </Select>
       <Button
         as={Link}
-        to={'/organization'}
+        to='/organization'
         isActive={location.pathname === '/organization'}
         justifyContent='start'
         variant='dashboard'

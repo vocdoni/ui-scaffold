@@ -9,13 +9,14 @@ import {
   DrawerHeader,
   DrawerOverlay,
   Flex,
+  Heading,
   IconButton,
   useDisclosure,
   VStack,
 } from '@chakra-ui/react'
 import { OrganizationAvatar, OrganizationName } from '@vocdoni/chakra-components'
 import { OrganizationProvider, useClient } from '@vocdoni/react-providers'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import { HSeparator } from '~components/Auth/SignIn'
 import DarkModeToggle from '~src/themes/saas/components/DarkMode'
 import Wrapper from '~src/themes/saas/components/wrapper'
@@ -28,10 +29,21 @@ const OrganizationDashboardLayout: React.FC = () => {
   const { bgSecondary, textColorBrand, bg, textColorSecondary } = useDarkMode()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { account } = useClient()
+  const location = useLocation()
+
+  const getTitle = () => {
+    if (location.pathname.includes('/votings')) {
+      return (
+        <Heading mr='auto' fontSize='2xl'>
+          Votings Processes List
+        </Heading>
+      )
+    }
+  }
 
   return (
     <OrganizationProvider organization={account}>
-      <Wrapper>
+      <Wrapper gap='10px'>
         <Flex
           position='sticky'
           zIndex={10}
@@ -45,10 +57,12 @@ const OrganizationDashboardLayout: React.FC = () => {
           pt='6vh'
           pb='4vh'
           top='0'
+          pl='15px'
         >
+          {getTitle()}
           <Settings />
           <IconButton
-            display={{ base: 'flex', md: 'none' }}
+            display={{ base: 'flex', lg: 'none' }}
             icon={<HamburgerIcon />}
             aria-label='Open Menu'
             onClick={onOpen}
@@ -58,22 +72,22 @@ const OrganizationDashboardLayout: React.FC = () => {
             bgColor={textColorBrand}
             fontSize='18px'
           />
-          <Box display={{ base: 'none', md: 'block' }}>
+          <Box display={{ base: 'none', lg: 'block' }}>
             <DarkModeToggle />
           </Box>
         </Flex>
 
-        <Flex direction={['column', 'column', 'column', 'row']} flexGrow={1}>
+        <Flex direction={{ base: 'column', lg: 'row' }} flexGrow={1}>
           {account && (
             <>
               <Flex
-                w={['100%', '100%', '100%', '285px']}
+                w={{ base: '100%', md: '285px' }}
                 flexDirection='column'
                 justifyContent='space-between'
                 p='15px'
                 bg={bgSecondary}
                 borderRadius='lg'
-                display={['none', 'none', 'none', 'flex']}
+                display={{ base: 'none', lg: 'flex' }}
                 position='fixed'
                 minH='96vh'
                 maxH='96vh'
@@ -161,8 +175,9 @@ const OrganizationDashboardLayout: React.FC = () => {
             display='flex'
             flexDir='column'
             maxW={{ lg: 'calc(100% - 285px)' }}
+            w='full'
             ml='auto'
-            pt='20px'
+            pt='30px'
           >
             <Outlet />
           </Box>

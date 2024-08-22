@@ -667,7 +667,7 @@
   "organization": {
     "avatar_alt": "Imatge d'avatar de l'organització {{ name }}",
     "create_org": "Crear Organitzaciò",
-    "date_format": "MMMM d - yyyy (H:mm)",
+    "date_format": "d MMM y",
     "elections": "Votacions",
     "elections_list_empty": {
       "alt": "Imatge il·lustrant que l'organització és buida",
