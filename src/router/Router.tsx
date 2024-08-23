@@ -15,14 +15,17 @@ const ProtectedRoutes = lazy(() => import('./ProtectedRoutes'))
 const Faucet = lazy(() => import('~elements/Faucet'))
 const Home = lazy(() => import('~theme/components/Home'))
 const NotFound = lazy(() => import('~elements/NotFound'))
-const OrganizationView = lazy(() => import('~elements/OrganizationSaas/View'))
+const OrganizationView = lazy(() => import('~elements/Organization/View'))
 const Process = lazy(() => import('~elements/Process'))
-const OrganizationVotings = lazy(() => import('~elements/OrganizationSaas/Votings'))
-const OrganizationEdit = lazy(() => import('~elements/OrganizationSaas/Edit'))
+const OrganizationVotings = lazy(() => import('~elements/Organization/Votings'))
+const OrganizationVotingsSaas = lazy(() => import('~elements/OrganizationSaas/Votings'))
+const OrganizationEdit = lazy(() => import('~elements/Organization/Edit'))
 
 // others
-const OrganizationDashboardLayout = lazy(() => import('~components/OrganizationSass/Dashboard/Layout'))
-const OrganizationDashboard = lazy(() => import('~components/OrganizationSass/Dashboard'))
+const OrganizationDashboardLayout = lazy(() => import('~components/Organization/Dashboard/Layout'))
+const OrganizationDashboardLayoutSaas = lazy(() => import('~components/OrganizationSaas/Dashboard/Layout'))
+const OrganizationDashboard = lazy(() => import('~components/Organization/Dashboard'))
+const OrganizationDashboardSaas = lazy(() => import('~components/OrganizationSaas/Dashboard'))
 const ProcessCreateSteps = lazy(() => import('~components/ProcessCreate/Steps'))
 const Terms = lazy(() => import('~components/TermsAndPrivacy/Terms'))
 const Privacy = lazy(() => import('~components/TermsAndPrivacy/Privacy'))
@@ -34,6 +37,7 @@ export const RoutesProvider = () => {
   const { client } = useClient()
 
   const domains = import.meta.env.CUSTOM_ORGANIZATION_DOMAINS
+  const isSaas = true
 
   const mainLayoutRoutes: RouteObject[] = [
     {
@@ -82,7 +86,6 @@ export const RoutesProvider = () => {
         </SuspenseLoader>
       ),
     },
-
     {
       path: '*',
       element: (
@@ -105,7 +108,7 @@ export const RoutesProvider = () => {
     })
   }
 
-  const routes = [
+  const routes: RouteObject[] = [
     {
       path: '/',
       element: <Layout />,
@@ -133,40 +136,83 @@ export const RoutesProvider = () => {
         },
       ],
     },
-    {
-      element: <LayoutAuth />,
-      children: [
-        {
-          children: [
-            {
-              path: 'auth/signin',
-              element: (
-                <SuspenseLoader>
-                  <SignIn />
-                </SuspenseLoader>
-              ),
-            },
-            {
-              path: 'auth/signup',
-              element: (
-                <SuspenseLoader>
-                  <SignUp />
-                </SuspenseLoader>
-              ),
-            },
-            {
-              path: 'auth/forgot-password',
-              element: (
-                <SuspenseLoader>
-                  <ForgotPassword />
-                </SuspenseLoader>
-              ),
-            },
-          ],
-        },
-      ],
-    },
-    {
+  ]
+
+  if (isSaas) {
+    routes.push(
+      {
+        element: <LayoutAuth />,
+        children: [
+          {
+            children: [
+              {
+                path: 'auth/signin',
+                element: (
+                  <SuspenseLoader>
+                    <SignIn />
+                  </SuspenseLoader>
+                ),
+              },
+              {
+                path: 'auth/signup',
+                element: (
+                  <SuspenseLoader>
+                    <SignUp />
+                  </SuspenseLoader>
+                ),
+              },
+              {
+                path: 'auth/forgot-password',
+                element: (
+                  <SuspenseLoader>
+                    <ForgotPassword />
+                  </SuspenseLoader>
+                ),
+              },
+            ],
+          },
+        ],
+      },
+      {
+        path: '/organization',
+        element: (
+          <SuspenseLoader>
+            <OrganizationDashboardLayoutSaas />
+          </SuspenseLoader>
+        ),
+        children: [
+          {
+            element: (
+              <SuspenseLoader>
+                <OrganizationProtectedRoute />
+              </SuspenseLoader>
+            ),
+            children: [
+              {
+                path: '',
+                element: (
+                  <SuspenseLoader>
+                    <OrganizationDashboardSaas />
+                  </SuspenseLoader>
+                ),
+              },
+              {
+                path: 'votings/:page?/:status?',
+                element: (
+                  <SuspenseLoader>
+                    <OrganizationVotingsSaas />
+                  </SuspenseLoader>
+                ),
+              },
+            ],
+          },
+        ],
+      }
+    )
+  }
+
+  if (!isSaas) {
+    mainLayoutRoutes.push({
       path: '/organization',
       element: (
         <SuspenseLoader>
@@ -182,10 +228,18 @@ export const RoutesProvider = () => {
           ),
           children: [
             {
-              path: 'votings/:page?/:status?',
+              path: '',
               element: (
                 <SuspenseLoader>
                   <OrganizationDashboard />
+                </SuspenseLoader>
+              ),
+            },
+            {
+              path: 'votings/:page?/:status?',
+              element: (
+                <SuspenseLoader>
+                  <OrganizationVotings />
                 </SuspenseLoader>
               ),
             },
@@ -200,8 +254,8 @@ export const RoutesProvider = () => {
           ],
         },
       ],
-    },
-  ]
+    })
+  }
 
   const router = createBrowserRouter(routes)
 
