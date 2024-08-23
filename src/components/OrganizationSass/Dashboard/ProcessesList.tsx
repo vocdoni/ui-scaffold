@@ -39,7 +39,7 @@ const ProcessesList = ({ loading, processes, error, limit }: ProcessesListProps)
         <Text flex='1 0 150px'>TYPE</Text>
         <Text flex='1 0 100px'>STATUS</Text>
         <Text flex='1 0 100px'>VOTERS</Text>
-        <Box flex='1 0 20px' pr='50px'></Box>
+        <Box flex='1 0 20px'></Box>
       </Flex>
       <HSeparator />
       <VStack w='full'>
