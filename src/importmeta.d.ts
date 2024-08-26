@@ -12,6 +12,7 @@ interface ImportMeta {
     EMAILJS_PUBLIC_ID: string
     features: {
       faucet: boolean
+      calculator: boolean
       vote: {
         anonymous: boolean
         overwrite: boolean
@@ -37,5 +38,6 @@ interface ImportMeta {
     CSP_URL: string
     CSP_PUBKEY: string
     DEFAULT_CENSUS_SIZE: number
+    STRIPE_PUBLIC_KEY: string
   }
 }

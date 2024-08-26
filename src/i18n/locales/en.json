@@ -1,4 +1,5 @@
 {
+  "{title}": "{title}",
   "aside": {
     "has_already_voted": "Your vote is properly cast",
     "is_not_in_census": "You are not in the census",
@@ -24,6 +25,40 @@
     "flexible_title": "Boosted Participation Rates",
     "token_description": "At the heart of {{app}} is our commitment to security. Leveraging cutting-edge cryptographic methods, we ensure that every vote cast is not only secure but fully verifiable. This transparency builds unparalleled trust among participants, crucial for the legitimacy of any election.",
     "token_title": "Enhanced Security and Trust"
+  },
+  "calculator": {
+    "anonymous": "Anonymous",
+    "buy_with_card": "Buy with Card",
+    "buy_with_crypto": "Buy with Crypto",
+    "calculate_cost": "Calculate cost",
+    "census_size": "Census Size (voters)",
+    "coming_soon": "Coming soon",
+    "contact": "If you have any question, check our <faqsLink>FAQ</faqsLink> or <customLink>contact</customLink> our support team",
+    "contact_us": "Contact Us",
+    "description": "<p>Vocdoni uses its own public voting blockchain (Vochain) to ensure maximum security, end-to-end verifiability, and a censorship-resistant voting process. To use this infrastructure, users need to expend tokens (a credit representation of the usage of the Vochain) to create the necessary election. Various parameters, such as census size and duration, determine the final voting cost.</p><p>Here you can simulate the cost of your voting process and purchase the needed tokens.</p>",
+    "discount": "Discount",
+    "duration": "Duration (days)",
+    "encrypted": "Encrypted",
+    "estimate_election_cost": "Estimate your election cost",
+    "modal": {
+      "enough_tokens": "<p>You have enough tokens for the election.</p><p>Do you still want to buy anyway?</p>",
+      "minimum_tokens_purchase": "<p>The minimum purchase of tokens is {{ minimumTokens }} at €{{ pricePerToken }} per token, totaling €{{ totalPrice }}.</p><p>Do you want to proceed with the purchase?</p>",
+      "minimum_tokens_purchase_and_enough_tokens": "<p>You have enough tokens for the election and the minimum purchase of tokens is {{ minimumTokens }} at €{{ pricePerToken }} per token, totaling €{{ totalPrice }}.</p><p>Do you want to proceed with the purchase?</p>"
+    },
+    "more_tokens": "Do you need more tokens than the listed? <customLink>Contact</customLink> our support team",
+    "num_elections": "Nº of elections",
+    "one_time": "One-time",
+    "package": "Package",
+    "packages": "Packages",
+    "price_per_token": "Price per Token:",
+    "recurring": "Recurring",
+    "recurring_description": "<p>Do you need a recurring amount of tokens or do you plan to create multiple elections?</p><p>Do you need secure digital voting for your software?</p><p>We offer atractive integrations and services agreement options for this kind of needs.</p><p>Don't hesitate and contact us and our expert team will assist you and tailor a specific plan for you!</p>",
+    "title": "How Vocdoni works?",
+    "total": "Total",
+    "total_cost": "Total Cost:",
+    "vat": "(without VAT)",
+    "vote_overwrite": "Vote overwrite",
+    "voting_process_cost": "Voting process cost:"
   },
   "cc": {
     "actions": {
@@ -111,12 +146,18 @@
     "wallet_address_title": "Wallet addresses"
   },
   "claim": {
-    "error_title": "Error",
-    "loading_description": "Please wait while tokens are being claimed",
-    "loading_title": "Claiming",
-    "success_description": "Success",
+    "loading_description": "<h3>Wallet Authentication (Metamask, Rainbow, Coinbase):</h3><p>To receive your tokens, please sign the request when prompted.</p><strong>Important:</strong><p>If you leave this page without signing, you will not receive your paid tokens.</p><line/><h3>Social Account Authentication (Google, Github, Facebook):</h3><p>Please wait while we process your request.</p>",
+    "purchase_success": "<title>We appreciate your business!</title><p>If you have any questions, please email <mailto>orders@vocdoni.org</mailto></p>",
+    "signature_aborted": "<p>You aborted the action.</p><strong>Important:</strong><p>If you leave this page without signing, you will not receive your paid tokens.</p>",
+    "signature_aborted_sign": "Sign",
     "success_faucetPackage_title": "Faucet Package was successfully obtained",
-    "success_title": "Tokens were successfully claimed"
+    "toast": {
+      "error_title": "Error",
+      "loading_description": "Please wait while tokens are being claimed",
+      "loading_title": "Claiming",
+      "success_description": "Success",
+      "success_title": "Tokens were successfully claimed"
+    }
   },
   "close": "Close",
   "copy": {

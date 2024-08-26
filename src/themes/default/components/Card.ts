@@ -476,9 +476,25 @@ const client = definePartsStyle({
     },
   },
 })
+const calculator = definePartsStyle({
+  container: {
+    ...cardCommonStyles.container,
+
+    borderRadius: 'lg',
+    border: '1px solid',
+    borderColor: 'calculator.border',
+    flexDirection: { base: 'column', xl: 'row' },
+    overflow: 'hidden',
+    maxW: { base: '600px', xl: 'none' },
+    mx: 'auto',
+    mb: '100px',
+  },
+})
+
 const variantsCards = {
   aside,
   benefits,
+  calculator,
   client,
   detailed,
   demo,
