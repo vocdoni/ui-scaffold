@@ -40,15 +40,11 @@ export const theme = extendTheme(vtheme, {
     Link,
   },
   colors,
-  // badgeStyles, // badge styles
-  // buttonStyles, // button styles
-  // linkStyles, // link styles
-  progressStyles, // progress styles
-  sliderStyles, // slider styles
-  // inputStyles, // input styles
-  textareaStyles, // textarea styles
-  switchStyles, // switch styles
-  CardComponent, // card component
+  progressStyles,
+  sliderStyles,
+  textareaStyles,
+  switchStyles,
+  CardComponent,
 })
 
 export const rainbowStyles = (colormode: ColorMode) => {

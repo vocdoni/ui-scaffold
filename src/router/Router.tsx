@@ -26,6 +26,7 @@ const OrganizationDashboardLayout = lazy(() => import('~components/Organization/
 const OrganizationDashboardLayoutSaas = lazy(() => import('~components/OrganizationSaas/Dashboard/Layout'))
 const OrganizationDashboard = lazy(() => import('~components/Organization/Dashboard'))
 const OrganizationDashboardSaas = lazy(() => import('~components/OrganizationSaas/Dashboard'))
+const OrganizationTeamSaas = lazy(() => import('~components/OrganizationSaas/Dashboard/Team'))
 const ProcessCreateSteps = lazy(() => import('~components/ProcessCreate/Steps'))
 const Terms = lazy(() => import('~components/TermsAndPrivacy/Terms'))
 const Privacy = lazy(() => import('~components/TermsAndPrivacy/Privacy'))
@@ -201,6 +202,14 @@ export const RoutesProvider = () => {
                 element: (
                   <SuspenseLoader>
                     <OrganizationVotingsSaas />
+                  </SuspenseLoader>
+                ),
+              },
+              {
+                path: 'team',
+                element: (
+                  <SuspenseLoader>
+                    <OrganizationTeamSaas />
                   </SuspenseLoader>
                 ),
               },

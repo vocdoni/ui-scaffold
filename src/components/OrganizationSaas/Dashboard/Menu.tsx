@@ -91,7 +91,14 @@ const OrganizationDashboardMenu = () => {
           <Button justifyContent='start' variant='dashboard' w='full'>
             Organization
           </Button>
-          <Button justifyContent='start' variant='dashboard' w='full'>
+          <Button
+            as={Link}
+            to={'/organization/team'}
+            isActive={location.pathname.includes('/organizaton/team')}
+            justifyContent='start'
+            variant='dashboard'
+            w='full'
+          >
             Team
           </Button>
           <Button justifyContent='start' variant='dashboard' w='full'>
