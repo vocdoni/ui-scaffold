@@ -1,6 +1,7 @@
 import { Button, ButtonGroup } from '@chakra-ui/react'
 import { ReactElement, useMemo } from 'react'
 import { generatePath, Link as RouterLink, useParams } from 'react-router-dom'
+import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import { usePagination, useRoutedPagination } from './PaginationProvider'
 
 export const Pagination = () => {
@@ -19,12 +20,17 @@ export const Pagination = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, totalPages])
 
-  return <ButtonGroup isAttached>{pages.map((page) => page)}</ButtonGroup>
+  return (
+    <ButtonGroup isAttached bgColor='orange'>
+      {pages.map((page) => page)}
+    </ButtonGroup>
+  )
 }
 
 export const RoutedPagination = () => {
   const { path, totalPages } = useRoutedPagination()
   const { page }: { page?: number } = useParams()
+  const { bgSecondary, textColor } = useDarkMode()
 
   const p = Number(page) || 0
 
@@ -32,7 +38,7 @@ export const RoutedPagination = () => {
     const pages: ReactElement[] = []
     for (let i = 0; i < totalPages; i++) {
       pages.push(
-        <Button as={RouterLink} key={i} to={generatePath(path, { page: i })} isActive={p === i}>
+        <Button as={RouterLink} key={i} to={generatePath(path, { page: i })} isActive={p === i} color={textColor}>
           {i + 1}
         </Button>
       )
@@ -41,5 +47,9 @@ export const RoutedPagination = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [p, totalPages])
 
-  return <ButtonGroup isAttached>{pages.map((page) => page)}</ButtonGroup>
+  return (
+    <ButtonGroup isAttached bgColor={bgSecondary} width='min-content' borderRadius='lg'>
+      {pages.map((page) => page)}
+    </ButtonGroup>
+  )
 }

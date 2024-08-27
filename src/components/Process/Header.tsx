@@ -277,7 +277,7 @@ const GitcoinStrategyInfo = () => {
   )
 }
 
-const useStrategy = () => {
+export const useStrategy = () => {
   const { t } = useTranslation()
   const { election } = useElection()
 
