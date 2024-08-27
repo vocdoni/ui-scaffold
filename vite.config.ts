@@ -38,9 +38,10 @@ const viteconfig = ({ mode }) => {
   }
 
   const title =
-    process.env.APP_TITLE || process.env.THEME === 'onvote'
+    process.env.APP_TITLE ||
+    (process.env.THEME === 'onvote'
       ? 'ONVOTE - Anonymous Gasless and Modular voting for Web3'
-      : 'Vocdoni - The voice of digital voting'
+      : 'Vocdoni - The voice of digital voting')
 
   return defineConfig({
     base,
@@ -58,7 +59,7 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.EMAILJS_TEMPLATE_ID': JSON.stringify(process.env.EMAILJS_TEMPLATE_ID),
       'import.meta.env.EMAILJS_PUBLIC_ID': JSON.stringify(process.env.EMAILJS_PUBLIC_ID),
       'import.meta.env.title': JSON.stringify(title),
-      'import.meta.env.STRIPE_PUBLIC_KEY': JSON.stringify(stripePublicKey),
+      'import.meta.env.STRIPE_PUBLIC_KEY': JSON.stringify(process.env.STRIPE_PUBLIC_KEY),
     },
     plugins: [
       tsconfigPaths(),
