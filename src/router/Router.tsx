@@ -4,6 +4,7 @@ import { createBrowserRouter, Params, RouteObject, RouterProvider } from 'react-
 // These aren't lazy loaded since they are main layouts and related components
 import Error from '~elements/Error'
 import Layout from '~elements/Layout'
+import LayoutAuth from '~elements/LayoutAuth'
 import LayoutProcessCreate from '~elements/LayoutProcessCreate'
 import OrganizationProtectedRoute from './OrganizationProtectedRoute'
 import { SuspenseLoader } from './SuspenseLoader'
@@ -17,19 +18,27 @@ const NotFound = lazy(() => import('~elements/NotFound'))
 const OrganizationView = lazy(() => import('~elements/Organization/View'))
 const Process = lazy(() => import('~elements/Process'))
 const OrganizationVotings = lazy(() => import('~elements/Organization/Votings'))
+const OrganizationVotingsSaas = lazy(() => import('~elements/OrganizationSaas/Votings'))
 const OrganizationEdit = lazy(() => import('~elements/Organization/Edit'))
 
 // others
 const OrganizationDashboardLayout = lazy(() => import('~components/Organization/Dashboard/Layout'))
+const OrganizationDashboardLayoutSaas = lazy(() => import('~components/OrganizationSaas/Dashboard/Layout'))
 const OrganizationDashboard = lazy(() => import('~components/Organization/Dashboard'))
+const OrganizationDashboardSaas = lazy(() => import('~components/OrganizationSaas/Dashboard'))
+const OrganizationTeamSaas = lazy(() => import('~components/OrganizationSaas/Dashboard/Team'))
 const ProcessCreateSteps = lazy(() => import('~components/ProcessCreate/Steps'))
 const Terms = lazy(() => import('~components/TermsAndPrivacy/Terms'))
 const Privacy = lazy(() => import('~components/TermsAndPrivacy/Privacy'))
+const SignIn = lazy(() => import('~components/Auth/SignIn'))
+const SignUp = lazy(() => import('~components/Auth/SignUp'))
+const ForgotPassword = lazy(() => import('~components/Auth/ForgotPassword'))
 
 export const RoutesProvider = () => {
   const { client } = useClient()
 
   const domains = import.meta.env.CUSTOM_ORGANIZATION_DOMAINS
+  const isSaas = true
 
   const mainLayoutRoutes: RouteObject[] = [
     {
@@ -86,7 +95,133 @@ export const RoutesProvider = () => {
         </SuspenseLoader>
       ),
     },
+  ]
+
+  // Add faucet if feature is enabled
+  if (import.meta.env.features.faucet) {
+    mainLayoutRoutes.push({
+      path: 'faucet',
+      element: (
+        <SuspenseLoader>
+          <Faucet />
+        </SuspenseLoader>
+      ),
+    })
+  }
+
+  const routes: RouteObject[] = [
     {
+      path: '/',
+      element: <Layout />,
+      children: mainLayoutRoutes,
+    },
+    {
+      element: <LayoutProcessCreate />,
+      children: [
+        {
+          element: (
+            <SuspenseLoader>
+              <ProtectedRoutes />
+            </SuspenseLoader>
+          ),
+          children: [
+            {
+              path: 'processes/create',
+              element: (
+                <SuspenseLoader>
+                  <ProcessCreateSteps />
+                </SuspenseLoader>
+              ),
+            },
+          ],
+        },
+      ],
+    },
+  ]
+
+  if (isSaas) {
+    routes.push(
+      {
+        element: <LayoutAuth />,
+        children: [
+          {
+            children: [
+              {
+                path: 'auth/signin',
+                element: (
+                  <SuspenseLoader>
+                    <SignIn />
+                  </SuspenseLoader>
+                ),
+              },
+              {
+                path: 'auth/signup',
+                element: (
+                  <SuspenseLoader>
+                    <SignUp />
+                  </SuspenseLoader>
+                ),
+              },
+              {
+                path: 'auth/forgot-password',
+                element: (
+                  <SuspenseLoader>
+                    <ForgotPassword />
+                  </SuspenseLoader>
+                ),
+              },
+            ],
+          },
+        ],
+      },
+      {
+        path: '/organization',
+        element: (
+          <SuspenseLoader>
+            <OrganizationDashboardLayoutSaas />
+          </SuspenseLoader>
+        ),
+        children: [
+          {
+            element: (
+              <SuspenseLoader>
+                <OrganizationProtectedRoute />
+              </SuspenseLoader>
+            ),
+            children: [
+              {
+                path: '',
+                element: (
+                  <SuspenseLoader>
+                    <OrganizationDashboardSaas />
+                  </SuspenseLoader>
+                ),
+              },
+              {
+                path: 'votings/:page?/:status?',
+                element: (
+                  <SuspenseLoader>
+                    <OrganizationVotingsSaas />
+                  </SuspenseLoader>
+                ),
+              },
+              {
+                path: 'team',
+                element: (
+                  <SuspenseLoader>
+                    <OrganizationTeamSaas />
+                  </SuspenseLoader>
+                ),
+              },
+            ],
+          },
+        ],
+      }
+    )
+  }
+
+  if (!isSaas) {
+    mainLayoutRoutes.push({
       path: '/organization',
       element: (
         <SuspenseLoader>
@@ -128,50 +263,8 @@ export const RoutesProvider = () => {
           ],
         },
       ],
-    },
-  ]
-
-  // Add faucet if feature is enabled
-  if (import.meta.env.features.faucet) {
-    mainLayoutRoutes.push({
-      path: 'faucet',
-      element: (
-        <SuspenseLoader>
-          <Faucet />
-        </SuspenseLoader>
-      ),
     })
   }
-
-  const routes = [
-    {
-      path: '/',
-      element: <Layout />,
-      children: mainLayoutRoutes,
-    },
-    {
-      element: <LayoutProcessCreate />,
-      children: [
-        {
-          element: (
-            <SuspenseLoader>
-              <ProtectedRoutes />
-            </SuspenseLoader>
-          ),
-          children: [
-            {
-              path: 'processes/create',
-              element: (
-                <SuspenseLoader>
-                  <ProcessCreateSteps />
-                </SuspenseLoader>
-              ),
-            },
-          ],
-        },
-      ],
-    },
-  ]
 
   const router = createBrowserRouter(routes)
 

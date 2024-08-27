@@ -7,7 +7,7 @@ export const Close = IoCloseOutline
 
 export const Check = AiFillCheckCircle
 
-export const Logo = () => <Img src='/assets/vocdoni_icon.png' alt='vocdoni icon' maxWidth={10} />
+export const Logo = () => <Img src='/assets/logo_vocdoni.png' alt='vocdoni icon' maxWidth='150px' />
 
 export const LogoMbl = () => <Img src='/assets/vocdoni_icon.png' alt='vocdoni icon' maxWidth={10} />
 
