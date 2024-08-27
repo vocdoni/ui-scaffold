@@ -1,6 +1,6 @@
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 import { Box, Button, Icon, Select, Text } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { FaPhoneAlt } from 'react-icons/fa'
 import { FaHouse } from 'react-icons/fa6'
 import { GiHamburgerMenu } from 'react-icons/gi'
@@ -13,13 +13,8 @@ const OrganizationDashboardMenu = () => {
   const location = useLocation()
   const { textColorSecondary } = useDarkMode()
 
-  const [subMenu, setSubMenu] = useState('')
-
-  useEffect(() => {
-    if (subMenu === '') {
-      setSubMenu('all')
-    }
-  }, [subMenu])
+  const [menuVotings, setMenuVotings] = useState(false)
+  const [menuSettings, setMenuSettings] = useState(false)
 
   return (
     <Box>
@@ -43,153 +38,74 @@ const OrganizationDashboardMenu = () => {
         Dashboard
       </Button>
       <Button
-        as={Link}
-        to='/organization/votings'
-        isActive={location.pathname === '/organization/votings'}
+        onClick={() => setMenuVotings((prev) => !prev)}
         justifyContent='start'
         variant='dashboard'
         w='full'
         leftIcon={<Icon as={HiSquares2X2} />}
-        rightIcon={
-          location.pathname === '/organization/votings' ? <ChevronUpIcon mt='5px' /> : <ChevronDownIcon mt='5px' />
-        }
+        rightIcon={menuVotings ? <ChevronUpIcon mt='5px' /> : <ChevronDownIcon mt='5px' />}
       >
         Voting Processes
       </Button>
-      {location.pathname === '/organization/votings' && (
+      {menuVotings && (
         <Box pl='25px'>
           <Button
-            onClick={() => setSubMenu('all')}
-            isActive={subMenu === 'all'}
+            as={Link}
+            to={'/organization/votings'}
+            isActive={location.pathname.includes('/organization/votings')}
             justifyContent='start'
             variant='dashboard'
             w='full'
           >
             All
           </Button>
-          <Button
-            onClick={() => setSubMenu('active')}
-            isActive={subMenu === 'active'}
-            justifyContent='start'
-            variant='dashboard'
-            w='full'
-          >
+          <Button justifyContent='start' variant='dashboard' w='full'>
             Active
           </Button>
-          <Button
-            onClick={() => setSubMenu('finished')}
-            isActive={subMenu === 'finished'}
-            justifyContent='start'
-            variant='dashboard'
-            w='full'
-          >
+          <Button justifyContent='start' variant='dashboard' w='full'>
             Finished
           </Button>
-          <Button
-            onClick={() => setSubMenu('draft')}
-            isActive={subMenu === 'draft'}
-            justifyContent='start'
-            variant='dashboard'
-            w='full'
-          >
+          <Button justifyContent='start' variant='dashboard' w='full'>
             Draft
           </Button>
         </Box>
       )}
-      <Button
-        as={Link}
-        to={'/census'}
-        isActive={location.pathname === '/census'}
-        justifyContent='start'
-        variant='dashboard'
-        w='full'
-        leftIcon={<Icon as={GiHamburgerMenu} />}
-      >
+      <Button as={Link} justifyContent='start' variant='dashboard' w='full' leftIcon={<Icon as={GiHamburgerMenu} />}>
         Census
       </Button>
-      <Button
-        as={Link}
-        to={'/usermanagment'}
-        isActive={location.pathname === '/usermanagment'}
-        justifyContent='start'
-        variant='dashboard'
-        w='full'
-        leftIcon={<Icon as={HiMiniPencil} />}
-      >
+      <Button as={Link} justifyContent='start' variant='dashboard' w='full' leftIcon={<Icon as={HiMiniPencil} />}>
         User Managment
       </Button>
       <Button
-        as={Link}
-        to='/organization/edit'
-        isActive={location.pathname === '/organization/edit'}
+        onClick={() => setMenuSettings((prev) => !prev)}
         justifyContent='start'
         variant='dashboard'
         w='full'
         leftIcon={<Icon as={IoIosSettings} />}
-        rightIcon={
-          location.pathname === '/organization/edit' ? <ChevronUpIcon mt='5px' /> : <ChevronDownIcon mt='5px' />
-        }
+        rightIcon={menuSettings ? <ChevronUpIcon mt='5px' /> : <ChevronDownIcon mt='5px' />}
       >
         Settings
       </Button>
-      {location.pathname === '/organization/edit' && (
+      {menuSettings && (
         <Box pl='25px'>
-          <Button
-            onClick={() => setSubMenu('organization')}
-            isActive={subMenu === 'organization'}
-            justifyContent='start'
-            variant='dashboard'
-            w='full'
-          >
+          <Button justifyContent='start' variant='dashboard' w='full'>
             Organization
           </Button>
-          <Button
-            onClick={() => setSubMenu('team')}
-            isActive={subMenu === 'team'}
-            justifyContent='start'
-            variant='dashboard'
-            w='full'
-          >
+          <Button justifyContent='start' variant='dashboard' w='full'>
             Team
           </Button>
-          <Button
-            onClick={() => setSubMenu('billing')}
-            isActive={subMenu === 'billing'}
-            justifyContent='start'
-            variant='dashboard'
-            w='full'
-          >
+          <Button justifyContent='start' variant='dashboard' w='full'>
             Billing
           </Button>
-          <Button
-            onClick={() => setSubMenu('subscription')}
-            isActive={subMenu === 'subscription'}
-            justifyContent='start'
-            variant='dashboard'
-            w='full'
-          >
+          <Button justifyContent='start' variant='dashboard' w='full'>
             Subscription
           </Button>
-          <Button
-            onClick={() => setSubMenu('profile')}
-            isActive={subMenu === 'profile'}
-            justifyContent='start'
-            variant='dashboard'
-            w='full'
-          >
+          <Button justifyContent='start' variant='dashboard' w='full'>
             Profile
           </Button>
         </Box>
       )}
-      <Button
-        as={Link}
-        to={'/help'}
-        isActive={location.pathname === '/help'}
-        justifyContent='start'
-        variant='dashboard'
-        w='full'
-        leftIcon={<Icon as={FaPhoneAlt} />}
-      >
+      <Button as={Link} justifyContent='start' variant='dashboard' w='full' leftIcon={<Icon as={FaPhoneAlt} />}>
         Help and Support
       </Button>
     </Box>
