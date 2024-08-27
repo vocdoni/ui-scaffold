@@ -48,6 +48,7 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.EMAILJS_TEMPLATE_ID': JSON.stringify(process.env.EMAILJS_TEMPLATE_ID),
       'import.meta.env.EMAILJS_PUBLIC_ID': JSON.stringify(process.env.EMAILJS_PUBLIC_ID),
       'import.meta.env.title': JSON.stringify(title),
+      'import.meta.env.SAAS_URL': JSON.stringify(process.env.SAAS_URL),
     },
     plugins: [
       tsconfigPaths(),
