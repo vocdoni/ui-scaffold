@@ -706,7 +706,7 @@
   "organization": {
     "avatar_alt": "Avatar image of {{ name }} organization",
     "create_org": "Create Organization",
-    "date_format": "MMMM d - yyyy (H:mm)",
+    "date_format": "d MMM y",
     "elections": "Votings",
     "elections_list_empty": {
       "alt": "Image illustrating that the organization is empty",
