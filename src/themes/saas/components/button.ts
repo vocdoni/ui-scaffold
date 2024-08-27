@@ -7,6 +7,7 @@ export const Button = defineStyleConfig({
     boxShadow: '45px 76px 113px 7px rgba(112, 144, 176, 0.08)',
     transition: '.25s all ease',
     boxSizing: 'border-box',
+    minW: 0,
     _focus: {
       boxShadow: 'none',
     },
@@ -19,6 +20,7 @@ export const Button = defineStyleConfig({
       borderRadius: '16px',
     }),
     brand: (props: any) => ({
+      borderRadius: 'lg',
       bg: mode('brand.500', 'brand.400')(props),
       color: 'white',
       _focus: {
@@ -124,5 +126,6 @@ export const Button = defineStyleConfig({
   },
   defaultProps: {
     colorScheme: 'primary',
+    variant: 'brand',
   },
 })

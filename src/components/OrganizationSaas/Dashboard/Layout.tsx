@@ -38,6 +38,12 @@ const OrganizationDashboardLayout: React.FC = () => {
           Votings Processes List
         </Heading>
       )
+    } else if (location.pathname.includes('/team')) {
+      return (
+        <Heading mr='auto' fontSize='2xl'>
+          Team
+        </Heading>
+      )
     }
   }
 
@@ -126,7 +132,12 @@ const OrganizationDashboardLayout: React.FC = () => {
                     New Voting Process
                   </Button>
                   <VStack>
-                    <Button color={textColorSecondary} textDecoration='underline' _hover={{ textDecoration: 'none' }}>
+                    <Button
+                      variant='outline'
+                      color={textColorSecondary}
+                      textDecoration='underline'
+                      _hover={{ textDecoration: 'none' }}
+                    >
                       Logout
                     </Button>
                   </VStack>
