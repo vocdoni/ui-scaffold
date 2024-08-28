@@ -1,7 +1,9 @@
 name: Build and Deploy to Netlify
 on:
   push:
-    branches: [ develop ]
+    branches:
+    - develop
+    - d/**
   pull_request:
 jobs:
   build-dev-vocdoni:
@@ -46,6 +48,8 @@ jobs:
           CSP_URL: ${{ secrets.CSP_URL }}}
           CSP_PUBKEY: ${{ secrets.CSP_PUBKEY }}
           STRIPE_PUBLIC_KEY: pk_test_51P6vaOI1T5UnHYElxQ2aqpc7DZET6spnYww8ItU7rOv94OTHlGzvh4fK3Z5HVTGT2KmGLnDCcUnvBUjODYiL61W600XBPAnoZZ
+          THEME: saas
+          SAAS_URL: https://saas-dev.vocdoni.app/
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2.0
@@ -105,6 +109,8 @@ jobs:
           CSP_URL: ${{ secrets.CSP_URL }}}
           CSP_PUBKEY: ${{ secrets.CSP_PUBKEY }}
           STRIPE_PUBLIC_KEY: pk_test_51PNuOtDW6VLep8WG8WFS7KZocugbzYbkuNn94WAxuGZUa1maPK7kv5BnEPN3x5bXLaCYhHRkBmmGJVVvcDkbbnbS00V4LExTPD
+          THEME: saas
+          SAAS_URL: https://saas-dev.vocdoni.app/
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2.0
@@ -119,63 +125,4 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: 5f9bd529-1b25-49af-acde-818bbd33109b
-        timeout-minutes: 1
-
-  build-stg-onvote:
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20.x
-
-      - name: Cache Node.js modules
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Install
-        run: yarn
-
-      - name: Lint
-        run: yarn lint
-
-      - name: Build onvote stg
-        run: yarn build
-        env:
-          VOCDONI_ENVIRONMENT: stg
-          FEATURES: >-
-            {
-              "vote":{"customization":true},
-              "census":["token","web3","gitcoin","spreadsheet"],
-              "unimplemented_census":["phone","email","crm","database","digital_certificate"],
-              "unimplemented_voting_type":["multi","participatory","borda"],
-              "login":["web3","web2","recovery"],
-              "languages":["en"]
-            }
-          CUSTOM_ORGANIZATION_DOMAINS: ${{ secrets.CUSTOM_ORGANIZATION_DOMAINS }}
-          CSP_URL: ${{ secrets.CSP_URL }}}
-          CSP_PUBKEY: ${{ secrets.CSP_PUBKEY }}
-          THEME: onvote
-          STRIPE_PUBLIC_KEY: pk_test_51PNuOtDW6VLep8WG8WFS7KZocugbzYbkuNn94WAxuGZUa1maPK7kv5BnEPN3x5bXLaCYhHRkBmmGJVVvcDkbbnbS00V4LExTPD
-
-      - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v2.0
-        with:
-          publish-dir: './dist'
-          production-branch: develop
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: 'Vocdoni STG Deploy from GitHub Actions'
-          enable-pull-request-comment: true
-          enable-commit-comment: true
-          overwrites-pull-request-comment: true
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ed17f013-4901-4158-bad6-51c836f77b77
         timeout-minutes: 1
