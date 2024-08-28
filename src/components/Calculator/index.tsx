@@ -599,7 +599,7 @@ const BuyBtns = ({ totalTokens }: { totalTokens: number }) => {
     }
   }, [isConnected, hasConnected])
 
-  const isBuyBtnDisabled = !totalTokens
+  const isBuyBtnDisabled = !StripeEnabled || !totalTokens
 
   return (
     <>
