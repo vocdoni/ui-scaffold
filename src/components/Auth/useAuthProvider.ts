@@ -17,7 +17,9 @@ export interface IRegisterParameters {
   password: string
 }
 
-function api<T>(path: string, params?: unknown, method: 'GET' | 'POST' = 'GET'): Promise<T> {
+type MethodTypes = 'GET' | 'POST' | 'PUT' | 'DELETE'
+
+const api = <T>(path: string, params?: unknown, method: MethodTypes = 'GET'): Promise<T> => {
   return fetch(`${import.meta.env.SAAS_URL}${path}`, {
     method,
     headers: {

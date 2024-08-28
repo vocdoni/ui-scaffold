@@ -17,8 +17,8 @@ import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import { HSeparator } from './SignIn'
 import PasswordInput from '~components/Auth/PasswordInput'
 import { useForm } from 'react-hook-form'
-import { useAuth } from '~src/queries/useAuth'
-import { IRegisterParameters } from '~src/queries/useAuthProvider'
+import { useAuth } from '~components/Auth/useAuth'
+import { IRegisterParameters } from '~components/Auth/useAuthProvider'
 
 type FormData = {
   terms: boolean
