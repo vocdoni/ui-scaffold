@@ -1,17 +1,4 @@
-import {
-  Box,
-  Button,
-  Checkbox,
-  Flex,
-  FormControl,
-  FormLabel,
-  Heading,
-  Icon,
-  Input,
-  InputGroup,
-  InputRightElement,
-  Text,
-} from '@chakra-ui/react'
+import { Box, Button, Checkbox, Flex, FormControl, FormLabel, Heading, Icon, Input, Text } from '@chakra-ui/react'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
@@ -141,11 +128,6 @@ const SignIn = () => {
 export const HSeparator = (props: { variant?: string; [x: string]: any }) => {
   const { variant, ...rest } = props
   return <Flex h='1px' w='100%' bg='rgba(135, 140, 189, 0.3)' {...rest} />
-}
-
-export const VSeparator = (props: { variant?: string; [x: string]: any }) => {
-  const { variant, ...rest } = props
-  return <Flex w='1px' bg='rgba(135, 140, 189, 0.3)' {...rest} />
 }
 
 export default SignIn
