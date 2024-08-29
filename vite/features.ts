@@ -44,6 +44,7 @@ type Defaults = Omit<Features, '_census'>
 const features = () => {
   const defaults: Defaults = {
     faucet: true,
+    calculator: true,
     vote: {
       anonymous: true,
       overwrite: true,
@@ -101,8 +102,7 @@ const features = () => {
   for (const census of features.census) {
     features._census[census] = true
   }
-
-  console.log('features:', features)
+  console.info('features:', features)
 
   return {
     name: 'feature-flags',

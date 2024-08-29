@@ -102,7 +102,7 @@ const Footer = () => {
         alignItems='center'
         py='12px'
         borderTop='1px solid rgb(229, 229, 229)'
-        bgColor={`${location.pathname === '/organization' ? 'process_create.bg' : 'white'}`}
+        bgColor={`${location.pathname.startsWith('/organization') ? 'footer.gray' : 'footer.white'}`}
       >
         <Text as='span' color='gray' textAlign='center'>
           <Trans

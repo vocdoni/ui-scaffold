@@ -6,6 +6,7 @@ import Error from '~elements/Error'
 import Layout from '~elements/Layout'
 import LayoutAuth from '~elements/LayoutAuth'
 import LayoutProcessCreate from '~elements/LayoutProcessCreate'
+import { StripeCheckout, StripeReturn } from '~elements/Stripe'
 import OrganizationProtectedRoute from './OrganizationProtectedRoute'
 import { SuspenseLoader } from './SuspenseLoader'
 
@@ -33,6 +34,7 @@ const Privacy = lazy(() => import('~components/TermsAndPrivacy/Privacy'))
 const SignIn = lazy(() => import('~components/Auth/SignIn'))
 const SignUp = lazy(() => import('~components/Auth/SignUp'))
 const ForgotPassword = lazy(() => import('~components/Auth/ForgotPassword'))
+const Calculator = lazy(() => import('~components/Calculator'))
 
 export const RoutesProvider = () => {
   const { client } = useClient()
@@ -88,6 +90,25 @@ export const RoutesProvider = () => {
       ),
     },
     {
+      path: 'stripe',
+      element: (
+        <SuspenseLoader>
+          <OrganizationProtectedRoute />
+        </SuspenseLoader>
+      ),
+      children: [
+        {
+          path: 'checkout/:amount?',
+          element: <StripeCheckout />,
+        },
+        {
+          path: 'return/:sessionId',
+          element: <StripeReturn />,
+          errorElement: <Error />,
+        },
+      ],
+    },
+    {
       path: '*',
       element: (
         <SuspenseLoader>
@@ -104,6 +125,18 @@ export const RoutesProvider = () => {
       element: (
         <SuspenseLoader>
           <Faucet />
+        </SuspenseLoader>
+      ),
+    })
+  }
+
+  // Add calculator if feature is enabled
+  if (import.meta.env.features.calculator) {
+    mainLayoutRoutes.push({
+      path: 'calculator',
+      element: (
+        <SuspenseLoader>
+          <Calculator />
         </SuspenseLoader>
       ),
     })
