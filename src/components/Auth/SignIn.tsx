@@ -15,7 +15,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
 import { FcGoogle } from 'react-icons/fc'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import PasswordInput from '~components/Auth/PasswordInput'
 import { useAuth } from '~components/Auth/useAuth'
 import { ILoginParameters } from '~components/Auth/useAuthProvider'
@@ -27,6 +27,7 @@ type FormData = {
 
 const SignIn = () => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const { textColor, textColorSecondary, textColorBrand, googleBg, googleHover, googleActive } = useDarkMode()
   const {
     register,
@@ -34,11 +35,11 @@ const SignIn = () => {
     formState: { errors },
   } = useForm<FormData>()
   const {
-    login: { mutate: login, isError, error, isPending },
+    login: { mutateAsync: login, isError, error, isPending },
   } = useAuth()
 
-  const onSubmit = (data: FormData) => {
-    login(data)
+  const onSubmit = async (data: FormData) => {
+    await login(data).then(() => navigate('/organization'))
   }
 
   return (

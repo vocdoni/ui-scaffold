@@ -12,7 +12,7 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { FcGoogle } from 'react-icons/fc'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import { HSeparator } from './SignIn'
 import PasswordInput from '~components/Auth/PasswordInput'
@@ -26,10 +26,11 @@ type FormData = {
 } & IRegisterParameters
 
 const SignUp = () => {
+  const navigate = useNavigate()
   const { t } = useTranslation()
   const { textColor, textColorSecondary, textColorBrand, googleBg, googleHover, googleActive } = useDarkMode()
   const {
-    register: { mutate: signup, isError, error, isPending },
+    register: { mutateAsync: signup, isError, error, isPending },
   } = useAuth()
 
   const {
@@ -38,8 +39,8 @@ const SignUp = () => {
     formState: { errors },
   } = useForm<FormData>()
 
-  const onSubmit = (data: FormData) => {
-    signup(data)
+  const onSubmit = async (data: FormData) => {
+    await signup(data).then(() => navigate('/organization'))
   }
 
   return (
