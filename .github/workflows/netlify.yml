@@ -45,6 +45,7 @@ jobs:
           CUSTOM_ORGANIZATION_DOMAINS: ${{ secrets.CUSTOM_ORGANIZATION_DOMAINS }}
           CSP_URL: ${{ secrets.CSP_URL }}}
           CSP_PUBKEY: ${{ secrets.CSP_PUBKEY }}
+          STRIPE_PUBLIC_KEY: pk_test_51P6vaOI1T5UnHYElxQ2aqpc7DZET6spnYww8ItU7rOv94OTHlGzvh4fK3Z5HVTGT2KmGLnDCcUnvBUjODYiL61W600XBPAnoZZ
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2.0
@@ -103,6 +104,7 @@ jobs:
           CUSTOM_ORGANIZATION_DOMAINS: ${{ secrets.CUSTOM_ORGANIZATION_DOMAINS }}
           CSP_URL: ${{ secrets.CSP_URL }}}
           CSP_PUBKEY: ${{ secrets.CSP_PUBKEY }}
+          STRIPE_PUBLIC_KEY: pk_test_51PNuOtDW6VLep8WG8WFS7KZocugbzYbkuNn94WAxuGZUa1maPK7kv5BnEPN3x5bXLaCYhHRkBmmGJVVvcDkbbnbS00V4LExTPD
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2.0
@@ -161,6 +163,7 @@ jobs:
           CSP_URL: ${{ secrets.CSP_URL }}}
           CSP_PUBKEY: ${{ secrets.CSP_PUBKEY }}
           THEME: onvote
+          STRIPE_PUBLIC_KEY: pk_test_51PNuOtDW6VLep8WG8WFS7KZocugbzYbkuNn94WAxuGZUa1maPK7kv5BnEPN3x5bXLaCYhHRkBmmGJVVvcDkbbnbS00V4LExTPD
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2.0

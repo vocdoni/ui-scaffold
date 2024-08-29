@@ -571,7 +571,7 @@ const TokensModal = ({
             to={generatePath('/stripe/checkout/:amount', {
               amount: totalTokens < 100 ? '100' : totalTokens.toString(),
             })}
-            isDisabled={!totalTokens || !import.meta.env.STRIPE_PUBLIC_KEY.length}
+            isDisabled={!totalTokens || !StripeEnabled}
           >
             <FaCcStripe />
             {t('calculator.buy_with_card')}
@@ -599,7 +599,7 @@ const BuyBtns = ({ totalTokens }: { totalTokens: number }) => {
     }
   }, [isConnected, hasConnected])
 
-  const isBuyBtnDisabled = !import.meta.env.STRIPE_PUBLIC_KEY.length || !totalTokens
+  const isBuyBtnDisabled = !StripeEnabled || !totalTokens
 
   return (
     <>
