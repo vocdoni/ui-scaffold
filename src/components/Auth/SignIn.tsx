@@ -1,10 +1,23 @@
-import { Box, Button, Checkbox, Flex, FormControl, FormLabel, Heading, Icon, Input, Text } from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  Checkbox,
+  Flex,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Heading,
+  Icon,
+  Input,
+  Text,
+} from '@chakra-ui/react'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
 import { FcGoogle } from 'react-icons/fc'
 import { NavLink } from 'react-router-dom'
 import PasswordInput from '~components/Auth/PasswordInput'
+import { useAuth } from '~components/Auth/useAuth'
 import { ILoginParameters } from '~components/Auth/useAuthProvider'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 
@@ -20,9 +33,12 @@ const SignIn = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>()
+  const {
+    login: { mutate: login, isError, error, isPending },
+  } = useAuth()
 
   const onSubmit = (data: FormData) => {
-    console.log('Data', data)
+    login(data)
   }
 
   return (
@@ -110,7 +126,6 @@ const SignIn = () => {
           {t('signin')}
         </Button>
       </form>
-
       <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%' mt='0px'>
         <Text color={textColorSecondary} fontWeight='400' fontSize='14px'>
           {t('not_registred_yet')}
@@ -121,6 +136,11 @@ const SignIn = () => {
           </NavLink>
         </Text>
       </Flex>
+      <Box pt={2}>
+        <FormControl isInvalid={isError}>
+          {isError && <FormErrorMessage>{error?.message || 'Error al realizar la operación'}</FormErrorMessage>}
+        </FormControl>
+      </Box>
     </Flex>
   )
 }

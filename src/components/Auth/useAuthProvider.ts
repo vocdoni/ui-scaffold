@@ -1,7 +1,7 @@
+import { useMutation, UseMutationOptions } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { RemoteSigner } from '@vocdoni/sdk'
 import { useCallback, useMemo, useState } from 'react'
-import { UseMutationOptions, useMutation } from '@tanstack/react-query'
 
 type LoginResponse = { token: string; expirity: string }
 
@@ -39,35 +39,16 @@ const api = <T>(path: string, params?: unknown, method: MethodTypes = 'GET'): Pr
     })
 }
 
-const register = async (params: IRegisterParameters): Promise<LoginResponse> => {
-  return api<LoginResponse>('/users', params, 'POST')
-}
-
-const login = async ({ email, password }: ILoginParameters): Promise<LoginResponse> => {
-  // todo(kon): define if login using the SDK or not
-  const signer = new RemoteSigner({
-    url: import.meta.env.SAAS_URL,
-    credentials: {
-      email,
-      password,
-    },
-  })
-  return {
-    token: await signer.login(),
-    expirity: 'todo',
-  }
-}
-
 const useLogin = (options: Omit<UseMutationOptions<LoginResponse, Error, ILoginParameters>, 'mutationFn'>) => {
   return useMutation<LoginResponse, Error, ILoginParameters>({
-    mutationFn: (creds: ILoginParameters) => login({ ...creds }),
+    mutationFn: (params: ILoginParameters) => api<LoginResponse>('/auth', params, 'POST'),
     ...options,
   })
 }
 
 const useRegister = (options: Omit<UseMutationOptions<LoginResponse, Error, IRegisterParameters>, 'mutationFn'>) => {
   return useMutation<LoginResponse, Error, IRegisterParameters>({
-    mutationFn: (params: IRegisterParameters) => register(params),
+    mutationFn: (params: IRegisterParameters) => api<LoginResponse>('/users', params, 'POST'),
     ...options,
   })
 }

@@ -193,7 +193,7 @@ const SignUp = () => {
       </Flex>
       <Box pt={2}>
         <FormControl isInvalid={isError}>
-          {isError && <FormErrorMessage>{error?.message}</FormErrorMessage>}
+          {isError && <FormErrorMessage>{error?.message || 'Error al realizar la operación'}</FormErrorMessage>}
         </FormControl>
       </Box>
     </Flex>
