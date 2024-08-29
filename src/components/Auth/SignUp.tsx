@@ -19,12 +19,13 @@ import PasswordInput from '~components/Auth/PasswordInput'
 import { useForm } from 'react-hook-form'
 import { useAuth } from '~components/Auth/useAuth'
 import { IRegisterParameters } from '~components/Auth/useAuthProvider'
+import {useTranslation} from 'react-i18next'
 
 type FormData = {
   terms: boolean
 } & IRegisterParameters
 
-function SignUp() {
+const SignUp = () => {
   const { t } = useTranslation()
   const { textColor, textColorSecondary, textColorBrand, googleBg, googleHover, googleActive } = useDarkMode()
   const {

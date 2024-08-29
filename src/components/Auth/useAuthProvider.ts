@@ -5,7 +5,7 @@ import { UseMutationOptions, useMutation } from '@tanstack/react-query'
 
 type LoginResponse = { token: string; expirity: string }
 
-interface ILoginParameters {
+export interface ILoginParameters {
   email: string
   password: string
 }
