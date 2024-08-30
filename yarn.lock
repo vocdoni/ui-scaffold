@@ -3200,9 +3200,41 @@
   resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.4.7.tgz#f4ebfc2d237cf864d3c050d186fe919761a23d5f"
   integrity sha512-jTbfyM6KGmhjXMlUQzz+sn2m1cNZJdpADvPA456BA5YPb6CfeLgLzlnxeeeTAVPEnVMuovIQmejuMxvVEfLe4g==
 
-"@vocdoni/sdk@vocdoni/vocdoni-sdk#f/rebundling":
-  version "0.8.4-beta.0"
-  resolved "https://codeload.github.com/vocdoni/vocdoni-sdk/tar.gz/66ff43c0d9dbedf08ff0ca4d16dbf6e6b4920b33"
+"@vocdoni/sdk@https://github.com/vocdoni/vocdoni-sdk.git#main":
+  version "0.8.3"
+  resolved "https://github.com/vocdoni/vocdoni-sdk.git#a1008eb75630d8a388c94a640b4bf2f0ab34c7b5"
+  dependencies:
+    "@ethersproject/abstract-signer" "^5.7.0"
+    "@ethersproject/address" "^5.7.0"
+    "@ethersproject/bignumber" "^5.7.0"
+    "@ethersproject/bytes" "^5.7.0"
+    "@ethersproject/keccak256" "^5.7.0"
+    "@ethersproject/providers" "^5.7.1"
+    "@ethersproject/signing-key" "^5.7.0"
+    "@ethersproject/strings" "^5.7.0"
+    "@ethersproject/units" "^5.7.0"
+    "@ethersproject/wallet" "^5.7.0"
+    "@size-limit/file" "^8.2.4"
+    "@vocdoni/proto" "1.15.9"
+    axios "0.28.1"
+    blake2b "^2.1.4"
+    blindsecp256k1 "^0.0.9"
+    buffer "^6.0.3"
+    circomlibjs vocdoni/circomlibjs#f/browser
+    iso-language-codes "^1.1.0"
+    js-sha256 "^0.10.1"
+    readable-stream "^4.4.2"
+    snarkjs vocdoni/snarkjs#f/browser
+    tiny-invariant "^1.3.1"
+    tweetnacl "^1.0.3"
+    wasmbuilder "^0.0.16"
+    wasmcurves "0.2.1"
+    web-worker "^1.2.0"
+    yup "^0.32.11"
+
+"@vocdoni/sdk@vocdoni/vocdoni-sdk#main":
+  version "0.8.3"
+  resolved "https://codeload.github.com/vocdoni/vocdoni-sdk/tar.gz/a1008eb75630d8a388c94a640b4bf2f0ab34c7b5"
   dependencies:
     "@ethersproject/abstract-signer" "^5.7.0"
     "@ethersproject/address" "^5.7.0"
@@ -8502,16 +8534,8 @@ strict-uri-encode@^2.0.0:
   resolved "https://registry.yarnpkg.com/strict-uri-encode/-/strict-uri-encode-2.0.0.tgz#b9c7330c7042862f6b142dc274bbcc5866ce3546"
   integrity sha512-QwiXZgpRcKkhTj2Scnn++4PKtWsH0kpzZ62L2R6c/LUVYv7hVnZqcg2+sMuT6R7Jusu1vviK/MFsu6kNJfWlEQ==
 
-"string-width-cjs@npm:string-width@^4.2.0":
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
-  integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
-  dependencies:
-    emoji-regex "^8.0.0"
-    is-fullwidth-code-point "^3.0.0"
-    strip-ansi "^6.0.1"
-
-string-width@^4.1.0, string-width@^4.2.0:
+"string-width-cjs@npm:string-width@^4.2.0", string-width@^4.1.0, string-width@^4.2.0:
+  name string-width-cjs
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -8543,14 +8567,8 @@ string_decoder@~1.1.1:
   dependencies:
     safe-buffer "~5.1.0"
 
-"strip-ansi-cjs@npm:strip-ansi@^6.0.1":
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
-  integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
-  dependencies:
-    ansi-regex "^5.0.1"
-
-strip-ansi@^6.0.0, strip-ansi@^6.0.1:
+"strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@^6.0.0, strip-ansi@^6.0.1:
+  name strip-ansi-cjs
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
