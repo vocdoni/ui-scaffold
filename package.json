@@ -103,6 +103,6 @@
   "packageManager": "yarn@1.22.19",
   "resolutions": {
     "i18next": "^23.2.11",
-    "@vocdoni/sdk": "vocdoni/vocdoni-sdk#main"
+    "@vocdoni/sdk": "https://github.com/vocdoni/vocdoni-sdk.git#main"
   }
 }
