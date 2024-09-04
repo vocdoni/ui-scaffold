@@ -30,10 +30,10 @@ function SignIn() {
     <Flex direction='column'>
       <Box me='auto'>
         <Heading color={textColor} fontSize='36px' mb='10px'>
-          {t('auth.signin_title')}
+          {t('signin_title')}
         </Heading>
         <Text mb='36px' ms='4px' color={textColorSecondary} fontWeight='400' fontSize='md'>
-          {t('auth.signin_subtitle')}
+          {t('signin_subtitle')}
         </Text>
       </Box>
       <Button
@@ -46,18 +46,18 @@ function SignIn() {
         _focus={googleActive}
       >
         <Icon as={FcGoogle} w='20px' h='20px' me='10px' />
-        {t('auth.signin_google')}
+        {t('signin_google')}
       </Button>
       <Flex align='center' mb='25px'>
         <HSeparator />
         <Text color='gray.400' mx='14px'>
-          {t('auth.or')}
+          {t('or')}
         </Text>
         <HSeparator />
       </Flex>
       <FormControl>
         <FormLabel display='flex' ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
-          {t('auth.email')}
+          {t('email')}
           <Text color={textColorBrand}>*</Text>
         </FormLabel>
         <Input
@@ -72,7 +72,7 @@ function SignIn() {
           size='lg'
         />
         <FormLabel ms='4px' fontSize='sm' fontWeight='500' color={textColor} display='flex'>
-          {t('auth.password')}
+          {t('password')}
           <Text color={textColorBrand}>*</Text>
         </FormLabel>
         <InputGroup size='md'>
@@ -98,25 +98,25 @@ function SignIn() {
           <FormControl display='flex' alignItems='center'>
             <Checkbox id='remember-login' colorScheme='brandScheme' me='10px' />
             <FormLabel htmlFor='remember-login' mb='0' fontWeight='normal' color={textColor} fontSize='sm'>
-              {t('auth.keep_me_logged')}
+              {t('keep_me_logged')}
             </FormLabel>
           </FormControl>
           <NavLink to='/auth/forgot-password'>
             <Text color={textColorBrand} fontSize='sm' w='124px' fontWeight='500'>
-              {t('auth.forgot_password')}
+              {t('forgot_password')}
             </Text>
           </NavLink>
         </Flex>
         <Button fontSize='sm' variant='brand' fontWeight='500' w='100%' h='50' mb='24px'>
-          {t('auth.signin')}
+          {t('signin')}
         </Button>
       </FormControl>
       <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%' mt='0px'>
         <Text color={textColorSecondary} fontWeight='400' fontSize='14px'>
-          {t('auth.not_registred_yet')}
+          {t('not_registred_yet')}
           <NavLink to='/auth/signup'>
             <Text color={textColorBrand} as='span' ms='5px' fontWeight='500'>
-              {t('auth.create_account')}
+              {t('create_account')}
             </Text>
           </NavLink>
         </Text>

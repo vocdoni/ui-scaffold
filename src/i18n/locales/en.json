@@ -1,4 +1,5 @@
 {
+  "already_member": "Already a member?",
   "aside": {
     "has_already_voted": "Your vote is properly cast",
     "is_not_in_census": "You are not in the census",
@@ -14,34 +15,10 @@
     "voting_anonymous_advice": "Please wait while the anonymous magic happens 🪄.\nThis can take up to several minutes; don't close the window."
   },
   "auth": {
-    "already_member": "Already a member?",
-    "back": "Back",
-    "blog": "Blog",
-    "create_account": "Create an Account",
-    "email": "Email",
-    "forgot_password": "Forgot password?",
-    "forgot_password_reset_link": "Email password reset link",
-    "forgot_password_title": "No problem. Just let us know your email address and we'll email you a password reset link that will allow you to choose a new one.",
-    "keep_me_logged": "Keep me logged in",
-    "not_registred_yet": "Not registered yet?",
-    "or": "or",
-    "password": "Password",
-    "rights": "© 2024 Vocdoni Association. All Rights Reserved.",
-    "signin": "Sign In",
-    "signin_google": "Sign in with Google",
-    "signin_subtitle": "Enter your email and password to sign in!",
-    "signin_title": "Sign In",
-    "signup_agree_terms": "By creating an account means you agree to the Terms and Conditions, and our Privacy Policy",
-    "signup_create_account": "Create my account",
-    "signup_first_name": "First Name",
-    "signup_last_name": "Last Name",
-    "signup_subtitle": "Enter your email and password to sign up!",
-    "signup_title": "Sign Up",
     "subtitle": "Cut cost, Save Time: Secure, Private, and GDPR Compliant Voting",
-    "support": "Support",
-    "terms_of_use": "Terms of Use",
     "title": "The global voting platform"
   },
+  "back": "Back",
   "banner": {
     "start_now": "Create a vote now!",
     "title": "Secure, verifiable and flexible digital voting"
@@ -54,6 +31,7 @@
     "token_description": "At the heart of {{app}} is our commitment to security. Leveraging cutting-edge cryptographic methods, we ensure that every vote cast is not only secure but fully verifiable. This transparency builds unparalleled trust among participants, crucial for the legitimacy of any election.",
     "token_title": "Enhanced Security and Trust"
   },
+  "blog": "Blog",
   "calculator": {
     "anonymous": "Anonymous",
     "buy_with_card": "Buy with Card",
@@ -203,6 +181,7 @@
     "subtitle": "Your voting process",
     "total": "<span>Cost of the vote:</span> <span>{{ cost }} tokens</span>"
   },
+  "create_account": "Create an Account",
   "csp_census": {
     "github": {
       "error_fetching_users": "Error fetching users",
@@ -217,6 +196,7 @@
       "starts": "Starts"
     }
   },
+  "email": "Email",
   "error": {
     "go_back": "Go back",
     "invalid_cell_data": "Some rows do not contain correct addresses: {{rows,list(style:short)}}",
@@ -267,6 +247,9 @@
     "uses_cases4": "Online Voting",
     "uses_cases5": "Gated Online Survey"
   },
+  "forgot_password": "Forgot password?",
+  "forgot_password_reset_link": "Email password reset link",
+  "forgot_password_title": "No problem. Just let us know your email address and we'll email you a password reset link that will allow you to choose a new one.",
   "form": {
     "account_create": {
       "delete_image": "Delete image",
@@ -689,6 +672,7 @@
     "open_source_title": "Opensource",
     "title": "<p1>are you</p1><p2>Ready for a new Era of Web3 governance?</p2>"
   },
+  "keep_me_logged": "Keep me logged in",
   "link": {
     "discord": "Link to Vocdoni's discord",
     "github": "Link to Vocdoni's github",
@@ -730,7 +714,9 @@
     "name": "Organization name",
     "title": "Create your organization"
   },
+  "not_registred_yet": "Not registered yet?",
   "open_in_explorer": "Open in explorer",
+  "or": "or",
   "organization": {
     "avatar_alt": "Avatar image of {{ name }} organization",
     "create_org": "Create Organization",
@@ -777,6 +763,7 @@
       "new_voting": ""
     }
   },
+  "password": "Password",
   "process": {
     "census": "Census",
     "census_strategies": {
@@ -930,6 +917,7 @@
     "recovery": "Account recovery"
   },
   "retry": "Retry",
+  "rights": "© 2024 Vocdoni Association. All Rights Reserved.",
   "share": {
     "copy": "Copy",
     "election_share_btn_text": "Share",
@@ -938,6 +926,18 @@
     "mail_subject": "Voting platform",
     "modal_title": "Share with friends"
   },
+  "signin": "Sign In",
+  "signin_google": "Sign in with Google",
+  "signin_subtitle": "Enter your email and password to sign in!",
+  "signin_title": "Sign In",
+  "signup_agree_terms": "By creating an account means you agree to the Terms and Conditions, and our Privacy Policy",
+  "signup_create_account": "Create my account",
+  "signup_first_name": "First Name",
+  "signup_last_name": "Last Name",
+  "signup_subtitle": "Enter your email and password to sign up!",
+  "signup_title": "Sign Up",
+  "support": "Support",
+  "terms_of_use": "Terms of Use",
   "uploader": {
     "click_or_drag_and_drop": "<p1>Upload or drag and drop the voter list here</p1><p2>(Allowed formats: CSV, XLSX, and ODS)</p2>",
     "drop_here": "Drop here"

@@ -24,7 +24,7 @@ const LayoutAuth = () => {
             <Flex align='center' ps={{ base: '25px', lg: '0px' }} pt={{ lg: '0px', xl: '0px' }} w='fit-content'>
               <Icon as={FaChevronLeft} me='12px' h='13px' w='8px' color='secondaryGray.600' />
               <Text ms='0px' fontSize='sm' color='secondaryGray.600'>
-                {t('auth.back')}
+                {t('back')}
               </Text>
             </Flex>
           </NavLink>
@@ -35,7 +35,7 @@ const LayoutAuth = () => {
           </Box>
         </Flex>
         <Text minW='100%' maxW={{ base: '90%', md: '420px' }} mt='auto' py='20px' textAlign='center'>
-          {t('auth.rights')}
+          {t('rights')}
         </Text>
       </Flex>
       <Box
@@ -71,17 +71,17 @@ const LayoutAuth = () => {
             <List display='flex' gap='20px'>
               <ListItem>
                 <Link fontWeight='500' href='mailto:hello@simmmple.com'>
-                  {t('auth.support')}
+                  {t('support')}
                 </Link>
               </ListItem>
               <ListItem>
                 <Link fontWeight='500' href='https://simmmple.com/terms-of-service'>
-                  {t('auth.terms_of_use')}
+                  {t('terms_of_use')}
                 </Link>
               </ListItem>
               <ListItem>
                 <Link fontWeight='500' href='https://www.blog.simmmple.com/'>
-                  {t('auth.blog')}
+                  {t('blog')}
                 </Link>
               </ListItem>
             </List>

@@ -31,10 +31,10 @@ function SignUp() {
     <Flex direction='column'>
       <Box me='auto'>
         <Heading color={textColor} fontSize='36px' mb='10px'>
-          {t('auth.signup_title')}
+          {t('signup_title')}
         </Heading>
         <Text mb='36px' ms='4px' color={textColorSecondary} fontWeight='400' fontSize='md'>
-          {t('auth.signup_subtitle')}
+          {t('signup_subtitle')}
         </Text>
       </Box>
       <Button
@@ -48,12 +48,12 @@ function SignUp() {
       >
         <Icon as={FcGoogle} w='20px' h='20px' me='10px' />
 
-        {t('auth.signin_google')}
+        {t('signin_google')}
       </Button>
       <Flex align='center' mb='25px'>
         <HSeparator />
         <Text color='gray.400' mx='14px'>
-          {t('auth.or')}
+          {t('or')}
         </Text>
         <HSeparator />
       </Flex>
@@ -61,7 +61,7 @@ function SignUp() {
         <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ md: '15px' }}>
           <Box flexGrow={1}>
             <FormLabel display='flex' ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
-              {t('auth.signup_first_name')}First Name<Text color={textColorBrand}>*</Text>
+              {t('signup_first_name')}First Name<Text color={textColorBrand}>*</Text>
             </FormLabel>
             <Input
               isRequired={true}
@@ -77,7 +77,7 @@ function SignUp() {
           </Box>
           <Box flexGrow={1}>
             <FormLabel display='flex' ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
-              {t('auth.signup_last_name')}
+              {t('signup_last_name')}
               <Text color={textColorBrand}>*</Text>
             </FormLabel>
             <Input
@@ -94,7 +94,7 @@ function SignUp() {
           </Box>
         </Flex>
         <FormLabel display='flex' ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
-          {t('auth.email')}
+          {t('email')}
           <Text color={textColorBrand}>*</Text>
         </FormLabel>
         <Input
@@ -109,7 +109,7 @@ function SignUp() {
           size='lg'
         />
         <FormLabel ms='4px' fontSize='sm' fontWeight='500' color={textColor} display='flex'>
-          {t('auth.password')}
+          {t('password')}
           <Text color={textColorBrand}>*</Text>
         </FormLabel>
         <InputGroup size='md'>
@@ -134,19 +134,19 @@ function SignUp() {
         <FormControl display='flex' alignItems='start' mb='24px'>
           <Checkbox id='remember-login' colorScheme='brandScheme' me='10px' mt='4px' />
           <FormLabel htmlFor='remember-login' mb='0' fontWeight='normal' color={textColor} fontSize='sm'>
-            {t('auth.signup_agree_terms')}
+            {t('signup_agree_terms')}
           </FormLabel>
         </FormControl>
         <Button fontSize='sm' variant='brand' fontWeight='500' w='100%' h='50' mb='24px'>
-          {t('auth.signup_create_account')}
+          {t('signup_create_account')}
         </Button>
       </FormControl>
       <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%' mt='0px'>
         <Text color={textColorSecondary} fontWeight='400' fontSize='14px'>
-          {t('auth.already_member')}
+          {t('already_member')}
           <NavLink to='/auth/signin'>
             <Text color={textColorBrand} as='span' ms='5px' fontWeight='500'>
-              {t('auth.signin')}
+              {t('signin')}
             </Text>
           </NavLink>
         </Text>

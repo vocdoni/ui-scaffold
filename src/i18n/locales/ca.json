@@ -1,4 +1,5 @@
 {
+  "already_member": "Ja ets membre?",
   "aside": {
     "has_already_voted": "El teu vot s'ha registrat correctament",
     "is_not_in_census": "No estàs en el cens",
@@ -17,34 +18,10 @@
     "voting_anonymous_advice": "Si us plau, espera mentre la màgia té lloc 🪄.\nAixò pot trigar uns minuts; no tanquis la finestra."
   },
   "auth": {
-    "already_member": "Ja ets membre?",
-    "back": "Enrere",
-    "blog": "Blog",
-    "create_account": "Crea un compte",
-    "email": "Correu electrònic",
-    "forgot_password": "Has oblidat la contrasenya?",
-    "forgot_password_reset_link": "Envia l'enllaç per restablir la contrasenya",
-    "forgot_password_title": "Cap problema. Només has de dir-nos la teva adreça de correu electrònic i t'enviarem un enllaç per restablir la contrasenya que et permetrà triar-ne una de nova.",
-    "keep_me_logged": "Mantén-me connectat",
-    "not_registred_yet": "Encara no estàs registrat?",
-    "or": "o",
-    "password": "Contrasenya",
-    "rights": "© 2024 Associació Vocdoni. Tots els drets reservats.",
-    "signin": "Inicia sessió",
-    "signin_google": "Inicia sessió amb Google",
-    "signin_subtitle": "Introdueix el teu correu electrònic i contrasenya per iniciar sessió!",
-    "signin_title": "Inicia sessió",
-    "signup_agree_terms": "Crear un compte implica que acceptes els Termes i Condicions i la nostra Política de Privacitat",
-    "signup_create_account": "Crea el meu compte",
-    "signup_first_name": "Nom",
-    "signup_last_name": "Cognom",
-    "signup_subtitle": "Introdueix el teu correu electrònic i contrasenya per registrar-te!",
-    "signup_title": "Registra't",
     "subtitle": "Redueix costos, estalvia temps: Votació segura, privada i complint amb el RGPD",
-    "support": "Suport",
-    "terms_of_use": "Condicions d'ús",
     "title": "La plataforma global de votació"
   },
+  "back": "Enrere",
   "banner": {
     "start_now": "Crea una votació!",
     "title": "Vot digital segur, verificable i flexible"
@@ -57,6 +34,7 @@
     "token_description": "Vota amb tokens ERC20/ERC721 (NFT) o afegeix els teus propis tokens i vota sense pagar.",
     "token_title": "Votació amb Tokens"
   },
+  "blog": "Blog",
   "calculator": {
     "anonymous": "Anònim",
     "buy_with_card": "Compra amb targeta",
@@ -207,6 +185,7 @@
     "subtitle": "El teu procés de votació",
     "total": "<span>Total:</span> <span>{{ cost }} tokens</span>"
   },
+  "create_account": "Crea un compte",
   "csp_census": {
     "github": {
       "error_fetching_users": "S'ha produït un error en recuperar els usuaris",
@@ -221,6 +200,7 @@
       "starts": "Comença"
     }
   },
+  "email": "Correu electrònic",
   "error": {
     "go_back": "Torna enrere",
     "invalid_cell_data": "Algunes fileres no contenen adreces correctes: {{rows, list}}",
@@ -271,6 +251,9 @@
     "uses_cases4": "Votació Digital",
     "uses_cases5": "Enquesta Digital Tancada"
   },
+  "forgot_password": "Has oblidat la contrasenya?",
+  "forgot_password_reset_link": "Envia l'enllaç per restablir la contrasenya",
+  "forgot_password_title": "Cap problema. Només has de dir-nos la teva adreça de correu electrònic i t'enviarem un enllaç per restablir la contrasenya que et permetrà triar-ne una de nova.",
   "form": {
     "account_create": {
       "delete_image": "Eliminar imatge",
@@ -697,6 +680,7 @@
     "open_source_title": "Codi obert",
     "title": "<p1>Esteu</p1><p2>preparats per a una nova era en la governança Web3?</p2>"
   },
+  "keep_me_logged": "Mantén-me connectat",
   "link": {
     "discord": "Enllaç al Discord de Vocdoni",
     "github": "Enllaç al Github de Vocdoni",
@@ -738,7 +722,9 @@
     "name": "Nom de l'organització",
     "title": "Nova Organització"
   },
+  "not_registred_yet": "Encara no estàs registrat?",
   "open_in_explorer": "Obre a l'explorador",
+  "or": "o",
   "organization": {
     "avatar_alt": "Imatge d'avatar de l'organització {{ name }}",
     "create_org": "Crear Organitzaciò",
@@ -786,6 +772,7 @@
       "new_voting": ""
     }
   },
+  "password": "Contrasenya",
   "process": {
     "census": "Cens",
     "census_strategies": {
@@ -942,6 +929,7 @@
     "recovery": "Recuperar compte"
   },
   "retry": "Reintenta",
+  "rights": "© 2024 Associació Vocdoni. Tots els drets reservats.",
   "share": {
     "copy": "Copia",
     "election_share_btn_text": "Comparteix",
@@ -950,6 +938,18 @@
     "mail_subject": "Plataforma de votació",
     "modal_title": "Comparteix amb amics"
   },
+  "signin": "Inicia sessió",
+  "signin_google": "Inicia sessió amb Google",
+  "signin_subtitle": "Introdueix el teu correu electrònic i contrasenya per iniciar sessió!",
+  "signin_title": "Inicia sessió",
+  "signup_agree_terms": "Crear un compte implica que acceptes els Termes i Condicions i la nostra Política de Privacitat",
+  "signup_create_account": "Crea el meu compte",
+  "signup_first_name": "Nom",
+  "signup_last_name": "Cognom",
+  "signup_subtitle": "Introdueix el teu correu electrònic i contrasenya per registrar-te!",
+  "signup_title": "Registra't",
+  "support": "Suport",
+  "terms_of_use": "Condicions d'ús",
   "uploader": {
     "click_or_drag_and_drop": "<p1>Puja o arrossega i deixa anar aquí la llista de votants</p1><p2>(Formats permesos: CSV, XLSX i ODS)</p2>",
     "drop_here": "Deixa anar aquí"
