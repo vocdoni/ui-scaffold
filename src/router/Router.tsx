@@ -36,7 +36,6 @@ const SignUp = lazy(() => import('~components/Auth/SignUp'))
 const ForgotPassword = lazy(() => import('~components/Auth/ForgotPassword'))
 const Calculator = lazy(() => import('~components/Calculator'))
 
-
 export const RoutesProvider = () => {
   const { client } = useClient()
 
