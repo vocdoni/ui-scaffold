@@ -123,6 +123,16 @@ export const Button = defineStyleConfig({
         },
       },
     }),
+    'pricing-card': (props: any) => ({
+      display: 'flex',
+      fontWeight: '500',
+      borderRadius: '50px',
+      color: 'white',
+      minW: '100%',
+      width: '100%',
+      bgColor: '#546E39',
+      h: '30px',
+    }),
   },
   defaultProps: {
     colorScheme: 'primary',

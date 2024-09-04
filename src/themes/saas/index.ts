@@ -7,16 +7,19 @@ import { Badge } from './components/badge'
 import { Button } from './components/button'
 import { Input } from './components/input'
 import { Link } from './components/link'
+import { Modal } from './components/modal'
+import { Card } from './components/card'
 import { progressStyles } from './components/progress'
 import { sliderStyles } from './components/slider'
 import { switchStyles } from './components/switch'
 import { textareaStyles } from './components/textarea'
 import { breakpoints } from './foundations/breakpoints'
-import { globalStyles, colors } from './styles'
+import { colors } from './colors'
+import { mode } from '@chakra-ui/theme-tools'
 
 export const theme = extendTheme(vtheme, {
   styles: {
-    global: {
+    global: (props: any) => ({
       ...shared,
       '.site-wrapper': {
         width: 'full',
@@ -29,15 +32,22 @@ export const theme = extendTheme(vtheme, {
           md: '80px',
         },
       },
-    },
+      body: {
+        bg: mode('secondaryGray.300', 'navy.900')(props),
+      },
+      input: {
+        color: 'gray.700',
+      },
+    }),
   },
-  breakpoints, // Breakpoints
-  globalStyles,
+  breakpoints,
   components: {
     Badge,
     Button,
+    Card,
     Input,
     Link,
+    Modal,
   },
   colors,
   progressStyles,

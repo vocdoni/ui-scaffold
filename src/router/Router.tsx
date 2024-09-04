@@ -8,6 +8,7 @@ import LayoutAuth from '~elements/LayoutAuth'
 import LayoutProcessCreate from '~elements/LayoutProcessCreate'
 import { StripeCheckout, StripeReturn } from '~elements/Stripe'
 import OrganizationProtectedRoute from './OrganizationProtectedRoute'
+import SaasOrganizationProtectedRoute from './SaasOrganizationProtectedRoutes'
 import { SuspenseLoader } from './SuspenseLoader'
 
 // Lazy loading helps splitting the final code, which helps downloading the app (theoretically)
@@ -211,14 +212,14 @@ export const RoutesProvider = () => {
         path: '/organization',
         element: (
           <SuspenseLoader>
-            <OrganizationDashboardLayoutSaas />
+            <SaasOrganizationProtectedRoute />
           </SuspenseLoader>
         ),
         children: [
           {
             element: (
               <SuspenseLoader>
-                <OrganizationProtectedRoute />
+                <OrganizationDashboardLayoutSaas />
               </SuspenseLoader>
             ),
             children: [
@@ -258,14 +259,14 @@ export const RoutesProvider = () => {
       path: '/organization',
       element: (
         <SuspenseLoader>
-          <OrganizationDashboardLayout />
+          <OrganizationProtectedRoute />
         </SuspenseLoader>
       ),
       children: [
         {
           element: (
             <SuspenseLoader>
-              <OrganizationProtectedRoute />
+              <OrganizationDashboardLayout />
             </SuspenseLoader>
           ),
           children: [

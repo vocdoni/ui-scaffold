@@ -1,5 +1,5 @@
 import { Box, Flex } from '@chakra-ui/react'
-import useDarkMode from '../../hooks/useDarkMode'
+import useDarkMode from '../../../hooks/useDarkMode'
 
 const Wrapper = ({ ...props }) => {
   const { bg } = useDarkMode()

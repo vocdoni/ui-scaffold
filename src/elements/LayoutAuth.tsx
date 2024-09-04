@@ -1,7 +1,7 @@
 import { Box, Flex, Icon, Link, List, ListItem, Text } from '@chakra-ui/react'
 import { FaChevronLeft } from 'react-icons/fa'
 import { NavLink, Outlet } from 'react-router-dom'
-import DarkModeToggle from '~src/themes/saas/components/DarkMode'
+import DarkModeToggle from '~src/themes/saas/components/Saas/DarkMode'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 
 const LayoutAuth = () => {
