@@ -1,4 +1,6 @@
 {
+  "active": "Actiu",
+  "all": "Tots",
   "already_member": "Ja ets membre?",
   "aside": {
     "has_already_voted": "El teu vot s'ha registrat correctament",
@@ -34,6 +36,7 @@
     "token_description": "Vota amb tokens ERC20/ERC721 (NFT) o afegeix els teus propis tokens i vota sense pagar.",
     "token_title": "Votació amb Tokens"
   },
+  "billing": "Facturació",
   "blog": "Blog",
   "calculator": {
     "anonymous": "Anònim",
@@ -200,6 +203,8 @@
       "starts": "Comença"
     }
   },
+  "draft": "Esborrany",
+  "edit_my_organization": "La meva entitat",
   "email": "Correu electrònic",
   "error": {
     "go_back": "Torna enrere",
@@ -231,6 +236,7 @@
     "title": "Faucet de Tokens Vocdoni",
     "tokens_you_own": "Tens {{ balance }} tokens."
   },
+  "finished": "Finalitzat",
   "footer": {
     "company": "Empresa",
     "demo": "Tipus de Votació",
@@ -455,6 +461,7 @@
     "more_effective": "25: Més efectiu",
     "most_effective": "30: Molt efectiu"
   },
+  "help_and_support": "Ajuda i suport",
   "home": {
     "benefits": {
       "card_1": {
@@ -722,12 +729,15 @@
     "name": "Nom de l'organització",
     "title": "Nova Organització"
   },
+  "new_voting": "Nova votació",
   "not_registred_yet": "Encara no estàs registrat?",
   "open_in_explorer": "Obre a l'explorador",
   "or": "o",
   "organization": {
     "avatar_alt": "Imatge d'avatar de l'organització {{ name }}",
+    "census": "Cens",
     "create_org": "Crear Organitzaciò",
+    "dashboard": "Dashboard",
     "date_format": "d MMM y",
     "elections": "Votacions",
     "elections_list_empty": {
@@ -736,26 +746,8 @@
       "not_owner": "Aquesta organització encara no té votacions.",
       "title": "Crea la teva primera elecció"
     },
-    "menu": {
-      "active": "Actiu",
-      "all": "Tots",
-      "billing": "Facturació",
-      "census": "Cens",
-      "dashboard": "Dashboard",
-      "draft": "Esborrany",
-      "edit_my_organization": "La meva entitat",
-      "finished": "Finalitzat",
-      "help_and_support": "Ajuda i suport",
-      "organization": "Organització",
-      "profile": "Perfil",
-      "settings": "Configuració",
-      "subscription": "Subscripció",
-      "team": "Equip",
-      "user_managment": "Gestió d'usuaris",
-      "voting_processes": "Processos de votació",
-      "votings": "Votacions"
-    },
     "my_entity": "La meva entitat",
+    "organization": "Organització",
     "overview": "Visió general",
     "required_signin": "Primer has d'iniciar sessió",
     "title": {
@@ -766,11 +758,6 @@
     "voting_processes_other": "{{ count }} processos de votació",
     "votings_list": "Llista de processos de votació",
     "votings_overview": "Visió general de les votacions"
-  },
-  "otganization": {
-    "name": {
-      "new_voting": ""
-    }
   },
   "password": "Contrasenya",
   "process": {
@@ -922,6 +909,7 @@
       }
     }
   },
+  "profile": "Perfil",
   "rainbow": {
     "group": {
       "recovery": "Recuperació"
@@ -930,6 +918,7 @@
   },
   "retry": "Reintenta",
   "rights": "© 2024 Associació Vocdoni. Tots els drets reservats.",
+  "settings": "Configuració",
   "share": {
     "copy": "Copia",
     "election_share_btn_text": "Comparteix",
@@ -948,7 +937,9 @@
   "signup_last_name": "Cognom",
   "signup_subtitle": "Introdueix el teu correu electrònic i contrasenya per registrar-te!",
   "signup_title": "Registra't",
+  "subscription": "Subscripció",
   "support": "Suport",
+  "team": "Equip",
   "terms_of_use": "Condicions d'ús",
   "uploader": {
     "click_or_drag_and_drop": "<p1>Puja o arrossega i deixa anar aquí la llista de votants</p1><p2>(Formats permesos: CSV, XLSX i ODS)</p2>",
@@ -958,6 +949,9 @@
     "read_less": "Llegeix menys",
     "read_more": "Llegeix més"
   },
+  "user_managment": "Gestió d'usuaris",
+  "voting_processes": "Processos de votació",
+  "votings": "Votacions",
   "web3cards": {
     "farcaster": {
       "btn": "Ves a Farcaster.vote",

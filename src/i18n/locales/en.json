@@ -1,4 +1,6 @@
 {
+  "active": "Active",
+  "all": "All",
   "already_member": "Already a member?",
   "aside": {
     "has_already_voted": "Your vote is properly cast",
@@ -31,6 +33,7 @@
     "token_description": "At the heart of {{app}} is our commitment to security. Leveraging cutting-edge cryptographic methods, we ensure that every vote cast is not only secure but fully verifiable. This transparency builds unparalleled trust among participants, crucial for the legitimacy of any election.",
     "token_title": "Enhanced Security and Trust"
   },
+  "billing": "Billing",
   "blog": "Blog",
   "calculator": {
     "anonymous": "Anonymous",
@@ -196,6 +199,8 @@
       "starts": "Starts"
     }
   },
+  "draft": "Draft",
+  "edit_my_organization": "My entity",
   "email": "Email",
   "error": {
     "go_back": "Go back",
@@ -227,6 +232,7 @@
     "title": "Vocdoni Tokens Faucet",
     "tokens_you_own": "You own {{ balance }} tokens."
   },
+  "finished": "Finished",
   "footer": {
     "company": "Company",
     "demo": "Voting Types",
@@ -447,6 +453,7 @@
     "more_effective": "25: More Effective",
     "most_effective": "30: Most Effective"
   },
+  "help_and_support": "Help and Support",
   "home": {
     "benefits": {
       "card_1": {
@@ -714,12 +721,15 @@
     "name": "Organization name",
     "title": "Create your organization"
   },
+  "new_voting": "New Voting",
   "not_registred_yet": "Not registered yet?",
   "open_in_explorer": "Open in explorer",
   "or": "or",
   "organization": {
     "avatar_alt": "Avatar image of {{ name }} organization",
+    "census": "Census",
     "create_org": "Create Organization",
+    "dashboard": "Dashboard",
     "date_format": "d MMM y",
     "elections": "Votings",
     "elections_list_empty": {
@@ -728,26 +738,8 @@
       "not_owner": "This organization has no voting processes yet",
       "title": "Create your first voting process"
     },
-    "menu": {
-      "active": "Active",
-      "all": "All",
-      "billing": "Billing",
-      "census": "Census",
-      "dashboard": "Dashboard",
-      "draft": "Draft",
-      "edit_my_organization": "My entity",
-      "finished": "Finished",
-      "help_and_support": "Help and Support",
-      "organization": "Organization",
-      "profile": "Profile",
-      "settings": "Settings",
-      "subscription": "Subscription",
-      "team": "Team",
-      "user_managment": "User Managment",
-      "voting_processes": "Voting Processes",
-      "votings": "Votings"
-    },
     "my_entity": "My entity",
+    "organization": "Organization",
     "overview": "Overview",
     "required_signin": "You must sign in first",
     "title": {
@@ -757,11 +749,6 @@
     "voting_processes_other": "{{ count }} voting processes",
     "votings_list": "Votings Processes List",
     "votings_overview": "Votings overview"
-  },
-  "otganization": {
-    "name": {
-      "new_voting": ""
-    }
   },
   "password": "Password",
   "process": {
@@ -910,6 +897,7 @@
       }
     }
   },
+  "profile": "Profile",
   "rainbow": {
     "group": {
       "recovery": "Recovery"
@@ -918,6 +906,7 @@
   },
   "retry": "Retry",
   "rights": "© 2024 Vocdoni Association. All Rights Reserved.",
+  "settings": "Settings",
   "share": {
     "copy": "Copy",
     "election_share_btn_text": "Share",
@@ -936,7 +925,9 @@
   "signup_last_name": "Last Name",
   "signup_subtitle": "Enter your email and password to sign up!",
   "signup_title": "Sign Up",
+  "subscription": "Subscription",
   "support": "Support",
+  "team": "Team",
   "terms_of_use": "Terms of Use",
   "uploader": {
     "click_or_drag_and_drop": "<p1>Upload or drag and drop the voter list here</p1><p2>(Allowed formats: CSV, XLSX, and ODS)</p2>",
@@ -946,6 +937,9 @@
     "read_less": "Read less",
     "read_more": "Read more"
   },
+  "user_managment": "User Managment",
+  "voting_processes": "Voting Processes",
+  "votings": "Votings",
   "web3cards": {
     "farcaster": {
       "btn": "Go to Farcaster.vote",

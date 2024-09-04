@@ -40,7 +40,7 @@ const OrganizationDashboardMenu = () => {
         w='full'
         leftIcon={<Icon as={FaHouse} />}
       >
-        {t('organization.menu.dashboard')}
+        {t('organization.dashboard')}
       </Button>
       <Button
         onClick={() => setMenuVotings((prev) => !prev)}
@@ -50,7 +50,7 @@ const OrganizationDashboardMenu = () => {
         leftIcon={<Icon as={HiSquares2X2} />}
         rightIcon={menuVotings ? <ChevronUpIcon mt='5px' /> : <ChevronDownIcon mt='5px' />}
       >
-        {t('organization.menu.voting_processes')}
+        {t('voting_processes')}
       </Button>
       {menuVotings && (
         <Box pl='25px'>
@@ -62,24 +62,24 @@ const OrganizationDashboardMenu = () => {
             variant='dashboard'
             w='full'
           >
-            {t('organization.menu.all')}
+            {t('all')}
           </Button>
           <Button justifyContent='start' variant='dashboard' w='full'>
-            {t('organization.menu.active')}
+            {t('active')}
           </Button>
           <Button justifyContent='start' variant='dashboard' w='full'>
-            {t('organization.menu.finished')}
+            {t('finished')}
           </Button>
           <Button justifyContent='start' variant='dashboard' w='full'>
-            {t('organization.menu.draft')}
+            {t('draft')}
           </Button>
         </Box>
       )}
       <Button as={Link} justifyContent='start' variant='dashboard' w='full' leftIcon={<Icon as={GiHamburgerMenu} />}>
-        {t('organization.menu.census')}
+        {t('organization.census')}
       </Button>
       <Button as={Link} justifyContent='start' variant='dashboard' w='full' leftIcon={<Icon as={HiMiniPencil} />}>
-        {t('organization.menu.user_managment')}
+        {t('user_managment')}
       </Button>
       <Button
         onClick={() => setMenuSettings((prev) => !prev)}
@@ -89,12 +89,12 @@ const OrganizationDashboardMenu = () => {
         leftIcon={<Icon as={IoIosSettings} />}
         rightIcon={menuSettings ? <ChevronUpIcon mt='5px' /> : <ChevronDownIcon mt='5px' />}
       >
-        {t('organization.menu.settings')}
+        {t('settings')}
       </Button>
       {menuSettings && (
         <Box pl='25px'>
           <Button justifyContent='start' variant='dashboard' w='full'>
-            {t('organization.menu.organization')}
+            {t('organization.organization')}
           </Button>
           <Button
             as={Link}
@@ -104,21 +104,21 @@ const OrganizationDashboardMenu = () => {
             variant='dashboard'
             w='full'
           >
-            {t('organization.menu.team')}
+            {t('team')}
           </Button>
           <Button justifyContent='start' variant='dashboard' w='full'>
-            {t('organization.menu.billing')}
+            {t('billing')}
           </Button>
           <Button justifyContent='start' variant='dashboard' w='full'>
-            {t('organization.menu.subscription')}
+            {t('subscription')}
           </Button>
           <Button justifyContent='start' variant='dashboard' w='full'>
-            {t('organization.menu.profile')}
+            {t('profile')}
           </Button>
         </Box>
       )}
       <Button as={Link} justifyContent='start' variant='dashboard' w='full' leftIcon={<Icon as={FaPhoneAlt} />}>
-        {t('organization.menu.help_and_support')}
+        {t('help_and_support')}
       </Button>
     </Box>
   )

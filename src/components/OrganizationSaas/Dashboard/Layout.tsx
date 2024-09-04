@@ -125,7 +125,7 @@ const OrganizationDashboardLayout: React.FC = () => {
                     >
                       <AddIcon boxSize={3} color='white' />
                     </Flex>
-                    {t('otganization.name.new_voting')}
+                    {t('new_voting')}
                   </Button>
                   <VStack>
                     <Button color={textColorSecondary} textDecoration='underline' _hover={{ textDecoration: 'none' }}>

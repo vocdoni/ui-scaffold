@@ -1,4 +1,6 @@
 {
+  "active": "Activo",
+  "all": "Todos",
   "already_member": "¿Ya eres miembro?",
   "aside": {
     "has_already_voted": "Tu voto ha sido registrado correctamente",
@@ -34,6 +36,7 @@
     "token_description": "Vota con tokens ERC20/ERC721 (NFT) o agrega tus propios tokens y vota sin coste de gas con ellos.",
     "token_title": "Votación con Tokens"
   },
+  "billing": "Facturación",
   "blog": "Blog",
   "calculator": {
     "anonymous": "Anónimo",
@@ -200,6 +203,8 @@
       "starts": "Empieza"
     }
   },
+  "draft": "Borrador",
+  "edit_my_organization": "Mi entidad",
   "email": "Correo electrónico",
   "error": {
     "go_back": "Volver atrás",
@@ -231,6 +236,7 @@
     "title": "Faucet de Tokens Vocdoni",
     "tokens_you_own": "Tienes {{ balance }} tokens."
   },
+  "finished": "Finalizado",
   "footer": {
     "company": "Empresa",
     "demo": "Tipos de Votación",
@@ -455,6 +461,7 @@
     "more_effective": "25: Más efectivo",
     "most_effective": "30: Muy efectivo"
   },
+  "help_and_support": "Ayuda y soporte",
   "home": {
     "benefits": {
       "card_1": {
@@ -722,12 +729,15 @@
     "name": "Nombre de la organización",
     "title": "Nueva Organización"
   },
+  "new_voting": "Nueva votación",
   "not_registred_yet": "¿Aún no estás registrado?",
   "open_in_explorer": "Abrir en explorador",
   "or": "o",
   "organization": {
     "avatar_alt": "Imagen de avatar de la organización {{ name }}",
+    "census": "Censo",
     "create_org": "Crear Organización",
+    "dashboard": "Dashboard",
     "date_format": "d MMM y",
     "elections": "Elecciones",
     "elections_list_empty": {
@@ -736,26 +746,8 @@
       "not_owner": "Esta organización aún no tiene votaciones.",
       "title": "Crea tu primer proceso de votación"
     },
-    "menu": {
-      "active": "Activo",
-      "all": "Todos",
-      "billing": "Facturación",
-      "census": "Censo",
-      "dashboard": "Dashboard",
-      "draft": "Borrador",
-      "edit_my_organization": "Mi entidad",
-      "finished": "Finalizado",
-      "help_and_support": "Ayuda y soporte",
-      "organization": "Organización",
-      "profile": "Perfil",
-      "settings": "Configuración",
-      "subscription": "Suscripción",
-      "team": "Equipo",
-      "user_managment": "Gestión de usuarios",
-      "voting_processes": "Procesos de votación",
-      "votings": "Votaciones"
-    },
     "my_entity": "Mi entidad",
+    "organization": "Organización",
     "overview": "Visión general",
     "required_signin": "Primero debes iniciar sesión",
     "title": {
@@ -766,11 +758,6 @@
     "voting_processes_other": "{{ count }} procesos de votación",
     "votings_list": "Lista de procesos de votación",
     "votings_overview": "Visión general de les votaciones"
-  },
-  "otganization": {
-    "name": {
-      "new_voting": ""
-    }
   },
   "password": "Contraseña",
   "process": {
@@ -922,6 +909,7 @@
       }
     }
   },
+  "profile": "Perfil",
   "rainbow": {
     "group": {
       "recovery": "Recuperación"
@@ -930,6 +918,7 @@
   },
   "retry": "Reintentar",
   "rights": "© 2024 Asociación Vocdoni. Todos los derechos reservados.",
+  "settings": "Configuración",
   "share": {
     "copy": "Copiar",
     "election_share_btn_text": "Comparte",
@@ -948,7 +937,9 @@
   "signup_last_name": "Apellido",
   "signup_subtitle": "¡Introduce tu correo electrónico y contraseña para registrarte!",
   "signup_title": "Regístrate",
+  "subscription": "Suscripción",
   "support": "Soporte",
+  "team": "Equipo",
   "terms_of_use": "Condiciones de uso",
   "uploader": {
     "click_or_drag_and_drop": "<p1>Sube o arrastra y suelta aqui la lista de votantes</p1><p2>(Formap permitidos: CSV, XLSX y ODS)</p2>",
@@ -958,6 +949,9 @@
     "read_less": "Leer menos",
     "read_more": "Leer más"
   },
+  "user_managment": "Gestión de usuarios",
+  "voting_processes": "Procesos de votación",
+  "votings": "Votaciones",
   "web3cards": {
     "farcaster": {
       "btn": "Ir a Farcaster.vote",
