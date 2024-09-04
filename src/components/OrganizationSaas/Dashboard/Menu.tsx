@@ -1,6 +1,8 @@
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 import { Box, Button, Icon, Select, Text } from '@chakra-ui/react'
+import { useOrganization } from '@vocdoni/react-providers'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { FaPhoneAlt } from 'react-icons/fa'
 import { FaHouse } from 'react-icons/fa6'
 import { GiHamburgerMenu } from 'react-icons/gi'
@@ -10,8 +12,11 @@ import { Link, useLocation } from 'react-router-dom'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 
 const OrganizationDashboardMenu = () => {
+  const { t } = useTranslation()
   const location = useLocation()
+  const { organization } = useOrganization()
   const { textColorSecondary } = useDarkMode()
+  console.log(organization?.account.name)
 
   const [menuVotings, setMenuVotings] = useState(false)
   const [menuSettings, setMenuSettings] = useState(false)
@@ -19,7 +24,7 @@ const OrganizationDashboardMenu = () => {
   return (
     <Box>
       <Text color={textColorSecondary} mb='10px'>
-        Organization
+        {organization?.account.name.default}
       </Text>
       <Select placeholder='Select option' borderRadius='full' mb='20px'>
         <option value='option1'>Option 1</option>
@@ -35,7 +40,7 @@ const OrganizationDashboardMenu = () => {
         w='full'
         leftIcon={<Icon as={FaHouse} />}
       >
-        Dashboard
+        {t('org_saas.dashboard')}
       </Button>
       <Button
         onClick={() => setMenuVotings((prev) => !prev)}
@@ -45,7 +50,7 @@ const OrganizationDashboardMenu = () => {
         leftIcon={<Icon as={HiSquares2X2} />}
         rightIcon={menuVotings ? <ChevronUpIcon mt='5px' /> : <ChevronDownIcon mt='5px' />}
       >
-        Voting Processes
+        {t('org_saas.voting_processes')}
       </Button>
       {menuVotings && (
         <Box pl='25px'>
@@ -57,24 +62,24 @@ const OrganizationDashboardMenu = () => {
             variant='dashboard'
             w='full'
           >
-            All
+            {t('org_saas.all')}
           </Button>
           <Button justifyContent='start' variant='dashboard' w='full'>
-            Active
+            {t('org_saas.active')}
           </Button>
           <Button justifyContent='start' variant='dashboard' w='full'>
-            Finished
+            {t('org_saas.finished')}
           </Button>
           <Button justifyContent='start' variant='dashboard' w='full'>
-            Draft
+            {t('org_saas.draft')}
           </Button>
         </Box>
       )}
       <Button as={Link} justifyContent='start' variant='dashboard' w='full' leftIcon={<Icon as={GiHamburgerMenu} />}>
-        Census
+        {t('org_saas.census')}
       </Button>
       <Button as={Link} justifyContent='start' variant='dashboard' w='full' leftIcon={<Icon as={HiMiniPencil} />}>
-        User Managment
+        {t('org_saas.user_managment')}
       </Button>
       <Button
         onClick={() => setMenuSettings((prev) => !prev)}
@@ -84,12 +89,12 @@ const OrganizationDashboardMenu = () => {
         leftIcon={<Icon as={IoIosSettings} />}
         rightIcon={menuSettings ? <ChevronUpIcon mt='5px' /> : <ChevronDownIcon mt='5px' />}
       >
-        Settings
+        {t('org_saas.settings')}
       </Button>
       {menuSettings && (
         <Box pl='25px'>
           <Button justifyContent='start' variant='dashboard' w='full'>
-            Organization
+            {t('org_saas.organization')}
           </Button>
           <Button
             as={Link}
@@ -99,21 +104,21 @@ const OrganizationDashboardMenu = () => {
             variant='dashboard'
             w='full'
           >
-            Team
+            {t('org_saas.team')}
           </Button>
           <Button justifyContent='start' variant='dashboard' w='full'>
-            Billing
+            {t('org_saas.billing')}
           </Button>
           <Button justifyContent='start' variant='dashboard' w='full'>
-            Subscription
+            {t('org_saas.subscription')}
           </Button>
           <Button justifyContent='start' variant='dashboard' w='full'>
-            Profile
+            {t('org_saas.profile')}
           </Button>
         </Box>
       )}
       <Button as={Link} justifyContent='start' variant='dashboard' w='full' leftIcon={<Icon as={FaPhoneAlt} />}>
-        Help and Support
+        {t('org_saas.help_and_support')}
       </Button>
     </Box>
   )

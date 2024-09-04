@@ -16,6 +16,7 @@ import {
 } from '@chakra-ui/react'
 import { OrganizationAvatar, OrganizationName } from '@vocdoni/chakra-components'
 import { OrganizationProvider, useClient } from '@vocdoni/react-providers'
+import { useTranslation } from 'react-i18next'
 import { Outlet, useLocation } from 'react-router-dom'
 import { HSeparator } from '~components/Auth/SignIn'
 import DarkModeToggle from '~src/themes/saas/components/DarkMode'
@@ -26,6 +27,7 @@ import OrganizationDashboardMenu from './Menu'
 import Settings from './Settings'
 
 const OrganizationDashboardLayout: React.FC = () => {
+  const { t } = useTranslation()
   const { bgSecondary, textColorBrand, bg, textColorSecondary } = useDarkMode()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { account } = useClient()
@@ -35,7 +37,7 @@ const OrganizationDashboardLayout: React.FC = () => {
     if (location.pathname.includes('/votings')) {
       return (
         <Heading mr='auto' fontSize='2xl'>
-          Votings Processes List
+          {t('org_saas.votings_list')}
         </Heading>
       )
     }
@@ -123,11 +125,11 @@ const OrganizationDashboardLayout: React.FC = () => {
                     >
                       <AddIcon boxSize={3} color='white' />
                     </Flex>
-                    New Voting Process
+                    {t('org_saas.new_voting')}
                   </Button>
                   <VStack>
                     <Button color={textColorSecondary} textDecoration='underline' _hover={{ textDecoration: 'none' }}>
-                      Logout
+                      {t('org_saas.logout')}
                     </Button>
                   </VStack>
                 </Box>

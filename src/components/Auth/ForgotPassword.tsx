@@ -1,8 +1,10 @@
 import { Box, Button, Flex, FormControl, FormLabel, Heading, Input, Text } from '@chakra-ui/react'
+import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 
 function ForgotPassword() {
+  const { t } = useTranslation()
   const { textColor, textColorSecondary, textColorBrand } = useDarkMode()
 
   return (
@@ -10,16 +12,17 @@ function ForgotPassword() {
       <Box me='auto'>
         <Heading color={textColor} fontSize='36px' mb='10px'>
           Forgot your password?
+          {t('auth.forgot_password_title')}
         </Heading>
         <Text mb='36px' ms='4px' color={textColorSecondary} fontWeight='400' fontSize='md'>
-          No problem. Just let us know your email address and we'll email you a password reset link that will allow you
-          to choose a new one.
+          {t('auth.forgot_password_title')}
         </Text>
       </Box>
 
       <FormControl>
         <FormLabel display='flex' ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
-          Email<Text color={textColorBrand}>*</Text>
+          {t('auth.email')}
+          <Text color={textColorBrand}>*</Text>
         </FormLabel>
         <Input
           isRequired={true}
@@ -34,15 +37,15 @@ function ForgotPassword() {
         />
 
         <Button fontSize='sm' variant='brand' fontWeight='500' w='100%' h='50' mb='24px'>
-          Email password reset link
+          {t('auth.forgot_password_reset_link')}
         </Button>
       </FormControl>
       <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%' mt='0px'>
         <Text color={textColorSecondary} fontWeight='400' fontSize='14px'>
-          Already a member?
+          {t('auth.already_member')}
           <NavLink to='/auth/signin'>
             <Text color={textColorBrand} as='span' ms='5px' fontWeight='500'>
-              Sign in
+              {t('auth.signin')}
             </Text>
           </NavLink>
         </Text>

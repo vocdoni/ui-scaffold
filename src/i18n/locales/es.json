@@ -1,5 +1,4 @@
 {
-  "{title}": "{title}",
   "aside": {
     "has_already_voted": "Tu voto ha sido registrado correctamente",
     "is_not_in_census": "No estás en el censo",
@@ -16,6 +15,35 @@
     "votes_weight_many": "",
     "votes_weight_other": "<span>{{ count }}</span> <text>votos</text>",
     "voting_anonymous_advice": "Por favor, espera mientras sucede la magia 🪄.\nEsto puede tardar varios minutos; no cierres la ventana."
+  },
+  "auth": {
+    "already_member": "¿Ya eres miembro?",
+    "back": "Atrás",
+    "blog": "Blog",
+    "create_account": "Crear una cuenta",
+    "email": "Correo electrónico",
+    "forgot_password": "¿Olvidaste tu contraseña?",
+    "forgot_password_reset_link": "Enviar enlace para restablecer la contraseña",
+    "forgot_password_title": "No hay problema. Solo dinos tu dirección de correo electrónico y te enviaremos un enlace para restablecer la contraseña que te permitirá elegir una nueva.",
+    "keep_me_logged": "Mantenerme conectado",
+    "not_registred_yet": "¿Aún no estás registrado?",
+    "or": "o",
+    "password": "Contraseña",
+    "rights": "© 2024 Asociación Vocdoni. Todos los derechos reservados.",
+    "signin": "Iniciar sesión",
+    "signin_google": "Iniciar sesión con Google",
+    "signin_subtitle": "¡Introduce tu correo electrónico y contraseña para iniciar sesión!",
+    "signin_title": "Iniciar sesión",
+    "signup_agree_terms": "Crear una cuenta implica que aceptas los Términos y Condiciones y nuestra Política de Privacidad",
+    "signup_create_account": "Crear mi cuenta",
+    "signup_first_name": "Nombre",
+    "signup_last_name": "Apellido",
+    "signup_subtitle": "¡Introduce tu correo electrónico y contraseña para registrarte!",
+    "signup_title": "Regístrate",
+    "subtitle": "Reduce costos, ahorra tiempo: Votación segura, privada y conforme al RGPD",
+    "support": "Soporte",
+    "terms_of_use": "Condiciones de uso",
+    "title": "La plataforma global de votación"
   },
   "banner": {
     "start_now": "¡Crea una votación ahora!",
@@ -711,6 +739,26 @@
     "title": "Nueva Organización"
   },
   "open_in_explorer": "Abrir en explorador",
+  "org_saas": {
+    "active": "Activo",
+    "all": "Todos",
+    "billing": "Facturación",
+    "census": "Censo",
+    "dashboard": "Panel de control",
+    "draft": "Borrador",
+    "finished": "Finalizado",
+    "help_and_support": "Ayuda y soporte",
+    "logout": "Cerrar sesión",
+    "new_voting": "Nuevo proceso de votación",
+    "organization": "Organización",
+    "profile": "Perfil",
+    "settings": "Configuración",
+    "subscription": "Suscripción",
+    "team": "Equipo",
+    "user_managment": "Gestión de usuarios",
+    "voting_processes": "Procesos de votación",
+    "votings_list": "Lista de procesos de votación"
+  },
   "organization": {
     "avatar_alt": "Imagen de avatar de la organización {{ name }}",
     "create_org": "Crear Organización",
@@ -885,8 +933,7 @@
         "description": "Selecciona el tipo de votación para esta elección. Si no encuentras lo que necesitas, puedes contactarnos.",
         "title": "Tipos de Votación"
       }
-    },
-    "tabcard_title": "{title}"
+    }
   },
   "rainbow": {
     "group": {
