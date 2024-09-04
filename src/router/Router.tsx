@@ -8,7 +8,6 @@ import LayoutAuth from '~elements/LayoutAuth'
 import LayoutProcessCreate from '~elements/LayoutProcessCreate'
 import { StripeCheckout, StripeReturn } from '~elements/Stripe'
 import OrganizationProtectedRoute from './OrganizationProtectedRoute'
-import SaasOrganizationProtectedRoute from './SaasOrganizationProtectedRoutes'
 import { SuspenseLoader } from './SuspenseLoader'
 
 // Lazy loading helps splitting the final code, which helps downloading the app (theoretically)
@@ -37,11 +36,12 @@ const SignUp = lazy(() => import('~components/Auth/SignUp'))
 const ForgotPassword = lazy(() => import('~components/Auth/ForgotPassword'))
 const Calculator = lazy(() => import('~components/Calculator'))
 
+
 export const RoutesProvider = () => {
   const { client } = useClient()
 
   const domains = import.meta.env.CUSTOM_ORGANIZATION_DOMAINS
-  const isSaas = true
+  const isSaas = !!import.meta.env.SAAS_URL
 
   const mainLayoutRoutes: RouteObject[] = [
     {
@@ -131,18 +131,6 @@ export const RoutesProvider = () => {
     })
   }
 
-  // Add calculator if feature is enabled
-  if (import.meta.env.features.calculator) {
-    mainLayoutRoutes.push({
-      path: 'calculator',
-      element: (
-        <SuspenseLoader>
-          <Calculator />
-        </SuspenseLoader>
-      ),
-    })
-  }
-
   const routes: RouteObject[] = [
     {
       path: '/',
@@ -212,14 +200,14 @@ export const RoutesProvider = () => {
         path: '/organization',
         element: (
           <SuspenseLoader>
-            <SaasOrganizationProtectedRoute />
+            <OrganizationDashboardLayoutSaas />
           </SuspenseLoader>
         ),
         children: [
           {
             element: (
               <SuspenseLoader>
-                <OrganizationDashboardLayoutSaas />
+                <OrganizationProtectedRoute />
               </SuspenseLoader>
             ),
             children: [
@@ -259,14 +247,14 @@ export const RoutesProvider = () => {
       path: '/organization',
       element: (
         <SuspenseLoader>
-          <OrganizationProtectedRoute />
+          <OrganizationDashboardLayout />
         </SuspenseLoader>
       ),
       children: [
         {
           element: (
             <SuspenseLoader>
-              <OrganizationDashboardLayout />
+              <OrganizationProtectedRoute />
             </SuspenseLoader>
           ),
           children: [
@@ -297,6 +285,18 @@ export const RoutesProvider = () => {
           ],
         },
       ],
+    })
+  }
+
+  // Add calculator if feature is enabled
+  if (import.meta.env.features.calculator) {
+    mainLayoutRoutes.push({
+      path: 'calculator',
+      element: (
+        <SuspenseLoader>
+          <Calculator />
+        </SuspenseLoader>
+      ),
     })
   }
 
