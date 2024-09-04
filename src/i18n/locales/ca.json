@@ -259,6 +259,7 @@
   },
   "forgot_password": "Has oblidat la contrasenya?",
   "forgot_password_reset_link": "Envia l'enllaç per restablir la contrasenya",
+  "forgot_password_subtitle": "No hi ha cap problema. Només cal que ens facilitis la teva adreça de correu electrònic i t'enviarem un enllaç per restablir la contrasenya, amb el qual podràs escollir-ne una de nova.",
   "forgot_password_title": "Cap problema. Només has de dir-nos la teva adreça de correu electrònic i t'enviarem un enllaç per restablir la contrasenya que et permetrà triar-ne una de nova.",
   "form": {
     "account_create": {

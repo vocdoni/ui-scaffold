@@ -11,11 +11,10 @@ function ForgotPassword() {
     <Flex direction='column'>
       <Box me='auto'>
         <Heading color={textColor} fontSize='36px' mb='10px'>
-          Forgot your password?
           {t('forgot_password_title')}
         </Heading>
         <Text mb='36px' ms='4px' color={textColorSecondary} fontWeight='400' fontSize='md'>
-          {t('forgot_password_title')}
+          {t('forgot_password_subtitle')}
         </Text>
       </Box>
 
