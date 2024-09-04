@@ -1,10 +1,12 @@
 import { Box, Flex, Icon, Link, List, ListItem, Text } from '@chakra-ui/react'
+import { useTranslation } from 'react-i18next'
 import { FaChevronLeft } from 'react-icons/fa'
 import { NavLink, Outlet } from 'react-router-dom'
 import DarkModeToggle from '~src/themes/saas/components/DarkMode'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 
 const LayoutAuth = () => {
+  const { t } = useTranslation()
   const { bg } = useDarkMode()
 
   return (
@@ -22,7 +24,7 @@ const LayoutAuth = () => {
             <Flex align='center' ps={{ base: '25px', lg: '0px' }} pt={{ lg: '0px', xl: '0px' }} w='fit-content'>
               <Icon as={FaChevronLeft} me='12px' h='13px' w='8px' color='secondaryGray.600' />
               <Text ms='0px' fontSize='sm' color='secondaryGray.600'>
-                Back
+                {t('back')}
               </Text>
             </Flex>
           </NavLink>
@@ -33,7 +35,7 @@ const LayoutAuth = () => {
           </Box>
         </Flex>
         <Text minW='100%' maxW={{ base: '90%', md: '420px' }} mt='auto' py='20px' textAlign='center'>
-          © 2024 Vocdoni Association. All Rights Reserved.
+          {t('rights')}
         </Text>
       </Flex>
       <Box
@@ -57,10 +59,10 @@ const LayoutAuth = () => {
           <Flex flexGrow={1} alignItems='end' justifyContent='center'>
             <Box mb='100px'>
               <Text fontSize='50px' color='white'>
-                The global voting platform
+                {t('auth.title')}
               </Text>
               <Text fontSize='19px' color='white'>
-                Cut cost, Save Time: Secure, Private, and GDPR Compliant Voting
+                {t('auth.subtitle')}
               </Text>
             </Box>
           </Flex>
@@ -69,17 +71,17 @@ const LayoutAuth = () => {
             <List display='flex' gap='20px'>
               <ListItem>
                 <Link fontWeight='500' href='mailto:hello@simmmple.com'>
-                  Support
+                  {t('support')}
                 </Link>
               </ListItem>
               <ListItem>
                 <Link fontWeight='500' href='https://simmmple.com/terms-of-service'>
-                  Terms of Use
+                  {t('terms_of_use')}
                 </Link>
               </ListItem>
               <ListItem>
                 <Link fontWeight='500' href='https://www.blog.simmmple.com/'>
-                  Blog
+                  {t('blog')}
                 </Link>
               </ListItem>
             </List>

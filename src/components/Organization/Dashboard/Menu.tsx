@@ -8,17 +8,17 @@ const OrganizationDashboardMenu = () => {
   // links definition must be inside the component in order for i18n to properly work
   const links: NavbarLink[] = [
     {
-      name: <Trans i18nKey='organization.menu.dashboard'>Dashboard</Trans>,
+      name: <Trans i18nKey='organization.dashboard'>Dashboard</Trans>,
       to: '/organization',
       icon: <Icon as={PiGauge} />,
     },
     {
-      name: <Trans i18nKey='organization.menu.votings'>Votings</Trans>,
+      name: <Trans i18nKey='votings'>Votings</Trans>,
       to: '/organization/votings',
       icon: <Icon as={HiOutlineClipboard} />,
     },
     {
-      name: <Trans i18nKey='organization.menu.edit_my_organization'>My entity</Trans>,
+      name: <Trans i18nKey='edit_my_organization'>My entity</Trans>,
       to: '/organization/edit',
       icon: <Icon as={PiUserFocus} />,
     },
