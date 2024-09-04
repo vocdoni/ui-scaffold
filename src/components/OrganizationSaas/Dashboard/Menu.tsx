@@ -1,5 +1,6 @@
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 import { Box, Button, Icon, Select, Text } from '@chakra-ui/react'
+import { OrganizationName } from '@vocdoni/chakra-components'
 import { useOrganization } from '@vocdoni/react-providers'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -14,17 +15,14 @@ import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 const OrganizationDashboardMenu = () => {
   const { t } = useTranslation()
   const location = useLocation()
-  const { organization } = useOrganization()
   const { textColorSecondary } = useDarkMode()
-  console.log(organization?.account.name)
-
   const [menuVotings, setMenuVotings] = useState(false)
   const [menuSettings, setMenuSettings] = useState(false)
 
   return (
     <Box>
       <Text color={textColorSecondary} mb='10px'>
-        {organization?.account.name.default}
+        <OrganizationName/>
       </Text>
       <Select placeholder='Select option' borderRadius='full' mb='20px'>
         <option value='option1'>Option 1</option>

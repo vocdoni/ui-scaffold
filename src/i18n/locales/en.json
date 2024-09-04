@@ -256,7 +256,7 @@
   "forgot_password": "Forgot password?",
   "forgot_password_reset_link": "Email password reset link",
   "forgot_password_subtitle": "No problem. Just let us know your email address and we'll email you a password reset link that will allow you to choose a new one.",
-  "forgot_password_title": "No problem. Just let us know your email address and we'll email you a password reset link that will allow you to choose a new one.",
+  "forgot_password_title": "Forgot your password?",
   "form": {
     "account_create": {
       "delete_image": "Delete image",

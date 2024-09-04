@@ -260,7 +260,7 @@
   "forgot_password": "¿Olvidaste tu contraseña?",
   "forgot_password_reset_link": "Enviar enlace para restablecer la contraseña",
   "forgot_password_subtitle": "No hay problema. Solo tienes que darnos tu dirección de correo electrónico y te enviaremos un enlace para restablecer la contraseña, con el cual podrás elegir una nueva.",
-  "forgot_password_title": "No hay problema. Solo dinos tu dirección de correo electrónico y te enviaremos un enlace para restablecer la contraseña que te permitirá elegir una nueva.",
+  "forgot_password_title": "¿Has olvidado tu contraseña?",
   "form": {
     "account_create": {
       "delete_image": "Eliminar imagen",
