@@ -739,26 +739,6 @@
     "title": "Nueva Organización"
   },
   "open_in_explorer": "Abrir en explorador",
-  "org_saas": {
-    "active": "Activo",
-    "all": "Todos",
-    "billing": "Facturación",
-    "census": "Censo",
-    "dashboard": "Panel de control",
-    "draft": "Borrador",
-    "finished": "Finalizado",
-    "help_and_support": "Ayuda y soporte",
-    "logout": "Cerrar sesión",
-    "new_voting": "Nuevo proceso de votación",
-    "organization": "Organización",
-    "profile": "Perfil",
-    "settings": "Configuración",
-    "subscription": "Suscripción",
-    "team": "Equipo",
-    "user_managment": "Gestión de usuarios",
-    "voting_processes": "Procesos de votación",
-    "votings_list": "Lista de procesos de votación"
-  },
   "organization": {
     "avatar_alt": "Imagen de avatar de la organización {{ name }}",
     "create_org": "Crear Organización",
@@ -771,8 +751,22 @@
       "title": "Crea tu primer proceso de votación"
     },
     "menu": {
+      "active": "Activo",
+      "all": "Todos",
+      "billing": "Facturación",
+      "census": "Censo",
       "dashboard": "Dashboard",
+      "draft": "Borrador",
       "edit_my_organization": "Mi entidad",
+      "finished": "Finalizado",
+      "help_and_support": "Ayuda y soporte",
+      "organization": "Organización",
+      "profile": "Perfil",
+      "settings": "Configuración",
+      "subscription": "Suscripción",
+      "team": "Equipo",
+      "user_managment": "Gestión de usuarios",
+      "voting_processes": "Procesos de votación",
       "votings": "Votaciones"
     },
     "my_entity": "Mi entidad",
@@ -784,7 +778,13 @@
     "voting_processes_one": "{{ count }} proceso de votación",
     "voting_processes_many": "",
     "voting_processes_other": "{{ count }} procesos de votación",
+    "votings_list": "Lista de procesos de votación",
     "votings_overview": "Visión general de les votaciones"
+  },
+  "otganization": {
+    "name": {
+      "new_voting": ""
+    }
   },
   "process": {
     "census": "Censo",

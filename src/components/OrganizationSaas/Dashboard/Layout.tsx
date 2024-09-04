@@ -37,7 +37,7 @@ const OrganizationDashboardLayout: React.FC = () => {
     if (location.pathname.includes('/votings')) {
       return (
         <Heading mr='auto' fontSize='2xl'>
-          {t('org_saas.votings_list')}
+          {t('organization.votings_list')}
         </Heading>
       )
     }
@@ -125,11 +125,11 @@ const OrganizationDashboardLayout: React.FC = () => {
                     >
                       <AddIcon boxSize={3} color='white' />
                     </Flex>
-                    {t('org_saas.new_voting')}
+                    {t('otganization.name.new_voting')}
                   </Button>
                   <VStack>
                     <Button color={textColorSecondary} textDecoration='underline' _hover={{ textDecoration: 'none' }}>
-                      {t('org_saas.logout')}
+                      {t('menu.logout')}
                     </Button>
                   </VStack>
                 </Box>

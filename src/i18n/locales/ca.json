@@ -739,26 +739,6 @@
     "title": "Nova Organització"
   },
   "open_in_explorer": "Obre a l'explorador",
-  "org_saas": {
-    "active": "Actiu",
-    "all": "Tots",
-    "billing": "Facturació",
-    "census": "Cens",
-    "dashboard": "Panell de control",
-    "draft": "Esborrany",
-    "finished": "Finalitzat",
-    "help_and_support": "Ajuda i suport",
-    "logout": "Tancar sessió",
-    "new_voting": "Nou procés de votació",
-    "organization": "Organització",
-    "profile": "Perfil",
-    "settings": "Configuració",
-    "subscription": "Subscripció",
-    "team": "Equip",
-    "user_managment": "Gestió d'usuaris",
-    "voting_processes": "Processos de votació",
-    "votings_list": "Llista de processos de votació"
-  },
   "organization": {
     "avatar_alt": "Imatge d'avatar de l'organització {{ name }}",
     "create_org": "Crear Organitzaciò",
@@ -771,8 +751,22 @@
       "title": "Crea la teva primera elecció"
     },
     "menu": {
+      "active": "Actiu",
+      "all": "Tots",
+      "billing": "Facturació",
+      "census": "Cens",
       "dashboard": "Dashboard",
+      "draft": "Esborrany",
       "edit_my_organization": "La meva entitat",
+      "finished": "Finalitzat",
+      "help_and_support": "Ajuda i suport",
+      "organization": "Organització",
+      "profile": "Perfil",
+      "settings": "Configuració",
+      "subscription": "Subscripció",
+      "team": "Equip",
+      "user_managment": "Gestió d'usuaris",
+      "voting_processes": "Processos de votació",
       "votings": "Votacions"
     },
     "my_entity": "La meva entitat",
@@ -784,7 +778,13 @@
     "voting_processes_one": "{{ count }} procés de votació",
     "voting_processes_many": "",
     "voting_processes_other": "{{ count }} processos de votació",
+    "votings_list": "Llista de processos de votació",
     "votings_overview": "Visió general de les votacions"
+  },
+  "otganization": {
+    "name": {
+      "new_voting": ""
+    }
   },
   "process": {
     "census": "Cens",

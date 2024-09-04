@@ -731,26 +731,6 @@
     "title": "Create your organization"
   },
   "open_in_explorer": "Open in explorer",
-  "org_saas": {
-    "active": "Active",
-    "all": "All",
-    "billing": "Billing",
-    "census": "Census",
-    "dashboard": "Dashboard",
-    "draft": "Draft",
-    "finished": "Finished",
-    "help_and_support": "Help and Support",
-    "logout": "Logout",
-    "new_voting": "New Voting Process",
-    "organization": "Organization",
-    "profile": "Profile",
-    "settings": "Settings",
-    "subscription": "Subscription",
-    "team": "Team",
-    "user_managment": "User Managment",
-    "voting_processes": "Voting Processes",
-    "votings_list": "Votings Processes List"
-  },
   "organization": {
     "avatar_alt": "Avatar image of {{ name }} organization",
     "create_org": "Create Organization",
@@ -763,8 +743,22 @@
       "title": "Create your first voting process"
     },
     "menu": {
+      "active": "Active",
+      "all": "All",
+      "billing": "Billing",
+      "census": "Census",
       "dashboard": "Dashboard",
+      "draft": "Draft",
       "edit_my_organization": "My entity",
+      "finished": "Finished",
+      "help_and_support": "Help and Support",
+      "organization": "Organization",
+      "profile": "Profile",
+      "settings": "Settings",
+      "subscription": "Subscription",
+      "team": "Team",
+      "user_managment": "User Managment",
+      "voting_processes": "Voting Processes",
       "votings": "Votings"
     },
     "my_entity": "My entity",
@@ -775,7 +769,13 @@
     },
     "voting_processes_one": "{{ count }} voting process",
     "voting_processes_other": "{{ count }} voting processes",
+    "votings_list": "Votings Processes List",
     "votings_overview": "Votings overview"
+  },
+  "otganization": {
+    "name": {
+      "new_voting": ""
+    }
   },
   "process": {
     "census": "Census",
