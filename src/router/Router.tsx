@@ -40,8 +40,7 @@ export const RoutesProvider = () => {
   const { client } = useClient()
 
   const domains = import.meta.env.CUSTOM_ORGANIZATION_DOMAINS
-  // const isSaas = !!import.meta.env.SAAS_URL
-  const isSaas = true
+  const isSaas = !!import.meta.env.SAAS_URL
 
   const mainLayoutRoutes: RouteObject[] = [
     {
