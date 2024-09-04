@@ -1,7 +1,7 @@
 import { Box, Button, Flex, Grid, Heading, Image, Link, List, ListItem, Text, UnorderedList } from '@chakra-ui/react'
 import { Trans } from 'react-i18next'
 import { AccountCreate } from '~src/themes/saas/components/Account/Create'
-import DarkModeToggle from '~src/themes/saas/components/Saas/DarkMode'
+import DarkModeToggle from '~src/themes/saas/components/DarkMode'
 import barca from '/assets/barca.png'
 import bellpuig from '/assets/bellpuig.svg.png'
 import berga from '/assets/berga.svg.png'
