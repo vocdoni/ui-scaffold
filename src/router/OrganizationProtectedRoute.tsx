@@ -3,6 +3,7 @@ import { useClient } from '@vocdoni/react-providers'
 import { Outlet } from 'react-router-dom'
 import { useAccountHealthTools } from '~components/Account/use-account-health-tools'
 import CreateOrganization from '~components/Organization/Dashboard/Create'
+import CreateOrganizationSaas from '~components/OrganizationSaas/Dashboard/Create'
 import SignInScreen from './SignInScreen'
 
 const OrganizationProtectedRoute = () => {
@@ -26,6 +27,7 @@ const OrganizationProtectedRoute = () => {
   }
 
   if (!exists) {
+    if (!!import.meta.env.SAAS_URL) return <CreateOrganizationSaas />
     return <CreateOrganization />
   }
 

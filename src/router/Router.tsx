@@ -8,7 +8,6 @@ import LayoutAuth from '~elements/LayoutAuth'
 import LayoutProcessCreate from '~elements/LayoutProcessCreate'
 import { StripeCheckout, StripeReturn } from '~elements/Stripe'
 import OrganizationProtectedRoute from './OrganizationProtectedRoute'
-import OrganizationProtectedRouteSaas from './SaasOrganizationProtectedRoutes'
 
 import { SuspenseLoader } from './SuspenseLoader'
 
@@ -170,7 +169,7 @@ export const RoutesProvider = () => {
           {
             children: [
               {
-                path: 'auth/signin',
+                path: 'signin',
                 element: (
                   <SuspenseLoader>
                     <SignIn />
@@ -178,7 +177,7 @@ export const RoutesProvider = () => {
                 ),
               },
               {
-                path: 'auth/signup',
+                path: 'signup',
                 element: (
                   <SuspenseLoader>
                     <SignUp />
@@ -186,7 +185,7 @@ export const RoutesProvider = () => {
                 ),
               },
               {
-                path: 'auth/forgot-password',
+                path: 'forgot-password',
                 element: (
                   <SuspenseLoader>
                     <ForgotPassword />
@@ -201,7 +200,7 @@ export const RoutesProvider = () => {
         path: '/organization',
         element: (
           <SuspenseLoader>
-            <OrganizationProtectedRouteSaas />
+            <OrganizationProtectedRoute />
           </SuspenseLoader>
         ),
         children: [

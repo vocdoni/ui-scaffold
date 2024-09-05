@@ -2,6 +2,7 @@ import { Box, Button, Flex, Grid, Heading, Image, Link, List, ListItem, Text, Un
 import { Trans } from 'react-i18next'
 import { AccountCreate } from '~src/themes/saas/components/Account/Create'
 import DarkModeToggle from '~src/themes/saas/components/DarkMode'
+import Wrapper from '~src/themes/saas/components/wrapper'
 import barca from '/assets/barca.png'
 import bellpuig from '/assets/bellpuig.svg.png'
 import berga from '/assets/berga.svg.png'
@@ -14,7 +15,7 @@ import omnium from '/assets/omnium.png'
 import ticanoia from '/assets/ticanoia.png'
 
 const CreateOrganization = () => (
-  <>
+  <Wrapper flexDirection={{ base: 'column', lg: 'row' }} px='0'>
     <Box
       flex='1 1 50%'
       py={{
@@ -143,7 +144,7 @@ const CreateOrganization = () => (
         </Flex>
       </Box>
     </Box>
-  </>
+  </Wrapper>
 )
 
 export default CreateOrganization
