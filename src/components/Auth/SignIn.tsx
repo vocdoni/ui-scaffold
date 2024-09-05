@@ -10,13 +10,10 @@ import {
   Input,
   InputGroup,
   InputRightElement,
-  Link,
-  List,
-  ListItem,
   Text,
-  useColorModeValue,
 } from '@chakra-ui/react'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { FcGoogle } from 'react-icons/fc'
 import { MdOutlineRemoveRedEye } from 'react-icons/md'
 import { RiEyeCloseLine } from 'react-icons/ri'
@@ -24,6 +21,7 @@ import { NavLink } from 'react-router-dom'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 
 function SignIn() {
+  const { t } = useTranslation()
   const { textColor, textColorSecondary, textColorBrand, googleBg, googleHover, googleActive } = useDarkMode()
 
   const [show, setShow] = React.useState(false)
@@ -32,10 +30,10 @@ function SignIn() {
     <Flex direction='column'>
       <Box me='auto'>
         <Heading color={textColor} fontSize='36px' mb='10px'>
-          Sign In
+          {t('signin_title')}
         </Heading>
         <Text mb='36px' ms='4px' color={textColorSecondary} fontWeight='400' fontSize='md'>
-          Enter your email and password to sign in!
+          {t('signin_subtitle')}
         </Text>
       </Box>
       <Button
@@ -48,18 +46,19 @@ function SignIn() {
         _focus={googleActive}
       >
         <Icon as={FcGoogle} w='20px' h='20px' me='10px' />
-        Sign in with Google
+        {t('signin_google')}
       </Button>
       <Flex align='center' mb='25px'>
         <HSeparator />
         <Text color='gray.400' mx='14px'>
-          or
+          {t('or')}
         </Text>
         <HSeparator />
       </Flex>
       <FormControl>
         <FormLabel display='flex' ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
-          Email<Text color={textColorBrand}>*</Text>
+          {t('email')}
+          <Text color={textColorBrand}>*</Text>
         </FormLabel>
         <Input
           isRequired={true}
@@ -73,7 +72,8 @@ function SignIn() {
           size='lg'
         />
         <FormLabel ms='4px' fontSize='sm' fontWeight='500' color={textColor} display='flex'>
-          Password<Text color={textColorBrand}>*</Text>
+          {t('password')}
+          <Text color={textColorBrand}>*</Text>
         </FormLabel>
         <InputGroup size='md'>
           <Input
@@ -98,64 +98,29 @@ function SignIn() {
           <FormControl display='flex' alignItems='center'>
             <Checkbox id='remember-login' colorScheme='brandScheme' me='10px' />
             <FormLabel htmlFor='remember-login' mb='0' fontWeight='normal' color={textColor} fontSize='sm'>
-              Keep me logged in
+              {t('keep_me_logged')}
             </FormLabel>
           </FormControl>
           <NavLink to='/auth/forgot-password'>
             <Text color={textColorBrand} fontSize='sm' w='124px' fontWeight='500'>
-              Forgot password?
+              {t('forgot_password')}
             </Text>
           </NavLink>
         </Flex>
         <Button fontSize='sm' variant='brand' fontWeight='500' w='100%' h='50' mb='24px'>
-          Sign In
+          {t('signin')}
         </Button>
       </FormControl>
       <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%' mt='0px'>
         <Text color={textColorSecondary} fontWeight='400' fontSize='14px'>
-          Not registered yet?
+          {t('not_registred_yet')}
           <NavLink to='/auth/signup'>
             <Text color={textColorBrand} as='span' ms='5px' fontWeight='500'>
-              Create an Account
+              {t('create_account')}
             </Text>
           </NavLink>
         </Text>
       </Flex>
-    </Flex>
-  )
-}
-
-export const Footer = () => {
-  let textColor = useColorModeValue('black', 'white')
-  return (
-    <Flex zIndex='3' flexDirection='column' alignItems='center' justifyContent='center' color={textColor} pb={5}>
-      <List display='flex'>
-        <ListItem
-          me={{
-            base: '20px',
-            md: '44px',
-          }}
-        >
-          <Link fontWeight='500' color={textColor} href='mailto:hello@simmmple.com'>
-            Support
-          </Link>
-        </ListItem>
-        <ListItem
-          me={{
-            base: '20px',
-            md: '44px',
-          }}
-        >
-          <Link fontWeight='500' color={textColor} href='https://simmmple.com/terms-of-service'>
-            Terms of Use
-          </Link>
-        </ListItem>
-        <ListItem>
-          <Link fontWeight='500' color={textColor} href='https://www.blog.simmmple.com/'>
-            Blog
-          </Link>
-        </ListItem>
-      </List>
     </Flex>
   )
 }

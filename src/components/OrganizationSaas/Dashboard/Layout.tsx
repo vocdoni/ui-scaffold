@@ -25,7 +25,7 @@ import {
 } from '@chakra-ui/react'
 import { OrganizationAvatar, OrganizationName } from '@vocdoni/chakra-components'
 import { OrganizationProvider, useClient } from '@vocdoni/react-providers'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { Outlet, useLocation } from 'react-router-dom'
 import { HSeparator } from '~components/Auth/SignIn'
 import DarkModeToggle from '~src/themes/saas/components/DarkMode'
@@ -37,7 +37,8 @@ import OrganizationDashboardMenu from './Menu'
 import Settings from './Settings'
 
 const OrganizationDashboardLayout: React.FC = () => {
-  const { bgSecondary, textColorBrand, bg, textColorSecondary, textColor } = useDarkMode()
+  const { t } = useTranslation()
+  const { bgSecondary, textColorBrand, bg, textColorSecondary } = useDarkMode()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { isOpen: isOpenModal, onOpen: onOpenModal, onClose: onCloseModal } = useDisclosure()
   const { account } = useClient()
@@ -47,7 +48,7 @@ const OrganizationDashboardLayout: React.FC = () => {
     if (location.pathname.includes('/votings')) {
       return (
         <Heading mr='auto' fontSize='2xl'>
-          Votings Processes List
+          {t('organization.votings_list')}
         </Heading>
       )
     } else if (location.pathname.includes('/team')) {
@@ -141,7 +142,7 @@ const OrganizationDashboardLayout: React.FC = () => {
                     >
                       <AddIcon boxSize={3} color='white' />
                     </Flex>
-                    New Voting Process
+                    {t('new_voting')}
                   </Button>
                   <VStack>
                     <Button
@@ -150,7 +151,7 @@ const OrganizationDashboardLayout: React.FC = () => {
                       textDecoration='underline'
                       _hover={{ textDecoration: 'none' }}
                     >
-                      Logout
+                      {t('menu.logout')}
                     </Button>
                   </VStack>
                 </Box>

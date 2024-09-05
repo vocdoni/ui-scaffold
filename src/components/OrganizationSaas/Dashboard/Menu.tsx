@@ -1,6 +1,8 @@
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 import { Box, Button, Icon, Select, Text } from '@chakra-ui/react'
+import { OrganizationName } from '@vocdoni/chakra-components'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { FaPhoneAlt } from 'react-icons/fa'
 import { FaHouse } from 'react-icons/fa6'
 import { GiHamburgerMenu } from 'react-icons/gi'
@@ -10,16 +12,16 @@ import { Link, useLocation } from 'react-router-dom'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 
 const OrganizationDashboardMenu = () => {
+  const { t } = useTranslation()
   const location = useLocation()
   const { textColorSecondary } = useDarkMode()
-
   const [menuVotings, setMenuVotings] = useState(false)
   const [menuSettings, setMenuSettings] = useState(false)
 
   return (
     <Box>
       <Text color={textColorSecondary} mb='10px'>
-        Organization
+        <OrganizationName />
       </Text>
       <Select placeholder='Select option' borderRadius='full' mb='20px'>
         <option value='option1'>Option 1</option>
@@ -35,7 +37,7 @@ const OrganizationDashboardMenu = () => {
         w='full'
         leftIcon={<Icon as={FaHouse} />}
       >
-        Dashboard
+        {t('organization.dashboard')}
       </Button>
       <Button
         onClick={() => setMenuVotings((prev) => !prev)}
@@ -46,7 +48,7 @@ const OrganizationDashboardMenu = () => {
         leftIcon={<Icon as={HiSquares2X2} />}
         rightIcon={menuVotings ? <ChevronUpIcon mt='5px' /> : <ChevronDownIcon mt='5px' />}
       >
-        Voting Processes
+        {t('voting_processes')}
       </Button>
       {menuVotings && (
         <Box pl='25px'>
@@ -58,24 +60,24 @@ const OrganizationDashboardMenu = () => {
             variant='dashboard'
             w='full'
           >
-            All
+            {t('all')}
           </Button>
           <Button justifyContent='start' variant='dashboard' w='full'>
-            Active
+            {t('active')}
           </Button>
           <Button justifyContent='start' variant='dashboard' w='full'>
-            Finished
+            {t('finished')}
           </Button>
           <Button justifyContent='start' variant='dashboard' w='full'>
-            Draft
+            {t('draft')}
           </Button>
         </Box>
       )}
       <Button as={Link} justifyContent='start' variant='dashboard' w='full' leftIcon={<Icon as={GiHamburgerMenu} />}>
-        Census
+        {t('organization.census')}
       </Button>
       <Button as={Link} justifyContent='start' variant='dashboard' w='full' leftIcon={<Icon as={HiMiniPencil} />}>
-        User Managment
+        {t('user_managment')}
       </Button>
       <Button
         onClick={() => setMenuSettings((prev) => !prev)}
@@ -86,12 +88,12 @@ const OrganizationDashboardMenu = () => {
         leftIcon={<Icon as={IoIosSettings} />}
         rightIcon={menuSettings ? <ChevronUpIcon mt='5px' /> : <ChevronDownIcon mt='5px' />}
       >
-        Settings
+        {t('settings')}
       </Button>
       {menuSettings && (
         <Box pl='25px'>
           <Button justifyContent='start' variant='dashboard' w='full'>
-            Organization
+            {t('organization.organization')}
           </Button>
           <Button
             as={Link}
@@ -101,21 +103,21 @@ const OrganizationDashboardMenu = () => {
             variant='dashboard'
             w='full'
           >
-            Team
+            {t('team')}
           </Button>
           <Button justifyContent='start' variant='dashboard' w='full'>
-            Billing
+            {t('billing')}
           </Button>
           <Button justifyContent='start' variant='dashboard' w='full'>
-            Subscription
+            {t('subscription')}
           </Button>
           <Button justifyContent='start' variant='dashboard' w='full'>
-            Profile
+            {t('profile')}
           </Button>
         </Box>
       )}
       <Button as={Link} justifyContent='start' variant='dashboard' w='full' leftIcon={<Icon as={FaPhoneAlt} />}>
-        Help and Support
+        {t('help_and_support')}
       </Button>
     </Box>
   )
