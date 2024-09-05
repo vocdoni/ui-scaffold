@@ -1,5 +1,5 @@
+import { ExternalProvider, Web3Provider } from '@ethersproject/providers'
 import { getWalletClient, type WalletClient } from '@wagmi/core'
-import { Web3Provider } from '@ethersproject/providers'
 
 export function walletClientToSigner(walletClient: WalletClient) {
   const { account, chain, transport } = walletClient
@@ -8,7 +8,7 @@ export function walletClientToSigner(walletClient: WalletClient) {
     name: chain.name,
     ensAddress: chain.contracts?.ensRegistry?.address,
   }
-  const provider = new Web3Provider(transport, network)
+  const provider = new Web3Provider(transport as ExternalProvider, network)
   const signer = provider.getSigner(account.address)
   return signer
 }

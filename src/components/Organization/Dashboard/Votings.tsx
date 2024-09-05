@@ -14,7 +14,11 @@ type VotingsProps = {
 
 const Votings = ({ page }: VotingsProps) => {
   const { organization } = useOrganization()
-  const { data: elections, error, isLoading } = usePaginatedElections(page)
+  const {
+    data: { elections },
+    error,
+    isLoading,
+  } = usePaginatedElections(page)
 
   if (!organization) return null
 

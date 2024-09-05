@@ -1,13 +1,11 @@
-import { DeleteIcon } from '@chakra-ui/icons'
-import { Box, Flex, FormControl, FormErrorMessage, IconButton, Input, Text } from '@chakra-ui/react'
-import { FieldError, FieldErrors, useFieldArray, useFormContext } from 'react-hook-form'
+import { AddIcon, DeleteIcon } from '@chakra-ui/icons'
+import { Box, Button, Flex, FormControl, FormErrorMessage, IconButton, Input, Text } from '@chakra-ui/react'
+import { useEffect } from 'react'
+import { FieldError, useFieldArray, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import Editor from '~components/Editor/Editor'
 import { fieldMapErrorMessage, isInvalidFieldMap } from '~constants'
 import Options from './Options'
-import { useEffect, useState } from 'react'
-import { AddIcon } from '@chakra-ui/icons'
-import { Button } from '@chakra-ui/react'
 
 interface Props {
   index: number
@@ -99,8 +97,6 @@ const QuestionPage = ({ title, description, isMultiQuestion = false }: IQuestion
     name: 'questions',
   })
 
-  const [tabIndex, setTabIndex] = useState(0)
-
   const questions = watch('questions')
 
   // If all questions deleted add a new empty question to the form
@@ -112,19 +108,7 @@ const QuestionPage = ({ title, description, isMultiQuestion = false }: IQuestion
         options: [{ option: '' }, { option: '' }],
       })
     }
-
-    if (tabIndex === questions.length && tabIndex !== 0) setTabIndex(questions.length - 1)
-  }, [questions, append, tabIndex])
-
-  // Set the tab index to the first question that has an error
-  useEffect(() => {
-    const questionErrors = errors.questions as FieldErrors<CustomFieldError>[] | undefined
-
-    if (!questionErrors) return
-
-    const firstError = questionErrors.findIndex((curr) => typeof curr !== 'undefined')
-    setTabIndex(firstError)
-  }, [errors.questions])
+  }, [questions, append])
 
   return (
     <Flex flexDirection='column' gap={5}>
@@ -149,7 +133,6 @@ const QuestionPage = ({ title, description, isMultiQuestion = false }: IQuestion
               description: '',
               options: [{ option: '' }, { option: '' }],
             })
-            setTabIndex(questions.length)
           }}
           alignSelf='center'
           variant='secondary'
