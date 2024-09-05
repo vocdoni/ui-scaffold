@@ -3173,12 +3173,12 @@
     "@types/babel__core" "^7.20.5"
     react-refresh "^0.14.0"
 
-"@vocdoni/chakra-components@^0.8.0":
-  version "0.8.7"
-  resolved "https://registry.yarnpkg.com/@vocdoni/chakra-components/-/chakra-components-0.8.7.tgz#b3b6655eab8d3d888b03bc1ea0de811d843320d2"
-  integrity sha512-BPbzkWSb5QKAejqvevMrpkiVkEw3GYz312oeso1kPdk+7idEvcKIvkdihbqCTD4iHSaixI1MoQ8945MLrmCkvA==
+"@vocdoni/chakra-components@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@vocdoni/chakra-components/-/chakra-components-0.9.0.tgz#b604dd153d731a389060b9c4d2253aad656a6bc2"
+  integrity sha512-e3+TAYPVWtaY4T9BdK+pGUtsb+SRXriM1cZujdDSmDu7pR797g6EmisvoHc/nhTBeuE3JNOKBCem0oVmulHgLA==
   dependencies:
-    "@vocdoni/react-providers" "~0.4.4"
+    "@vocdoni/react-providers" "~0.5.0"
 
 "@vocdoni/proto@1.15.9":
   version "1.15.9"
@@ -3195,14 +3195,15 @@
   dependencies:
     crypto-js "^4.2.0"
 
-"@vocdoni/react-providers@~0.4.4":
-  version "0.4.7"
-  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.4.7.tgz#f4ebfc2d237cf864d3c050d186fe919761a23d5f"
-  integrity sha512-jTbfyM6KGmhjXMlUQzz+sn2m1cNZJdpADvPA456BA5YPb6CfeLgLzlnxeeeTAVPEnVMuovIQmejuMxvVEfLe4g==
+"@vocdoni/react-providers@~0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.5.0.tgz#454cfc699f5397367ce2f7e53788f2cca11ae756"
+  integrity sha512-WFwHkMJEB4V9UvShIY9EzbbQTXPt8+CSqs994jvV/AL7fp9St/MWRBcSTzUVar/bBzewvTY/CVt1OMQ82bi3tQ==
 
-"@vocdoni/sdk@https://github.com/vocdoni/vocdoni-sdk.git#main":
-  version "0.8.3"
-  resolved "https://github.com/vocdoni/vocdoni-sdk.git#a1008eb75630d8a388c94a640b4bf2f0ab34c7b5"
+"@vocdoni/sdk@~0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@vocdoni/sdk/-/sdk-0.9.0.tgz#80c56054d5b775451f16aabdbdfbfb743c4089b7"
+  integrity sha512-KTddq6hEh5rfZKN2kVcz6f9a69TMtxR2aciYdXqoBiH6Rc/I031AEIRfymn8+D3oEuFolNTNCEn5QTZoXehjaw==
   dependencies:
     "@ethersproject/abstract-signer" "^5.7.0"
     "@ethersproject/address" "^5.7.0"

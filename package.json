@@ -25,9 +25,9 @@
     "@stripe/react-stripe-js": "^2.7.0",
     "@stripe/stripe-js": "^3.3.0",
     "@tanstack/react-query": "^5.37.1",
-    "@vocdoni/chakra-components": "^0.8.0",
+    "@vocdoni/chakra-components": "^0.9.0",
     "@vocdoni/rainbowkit-wallets": "^0.2.2",
-    "@vocdoni/sdk": "https://github.com/vocdoni/vocdoni-sdk.git#main",
+    "@vocdoni/sdk": "~0.9.0",
     "chakra-react-select": "^4.6.0",
     "date-fns": "^2.30.0",
     "framer-motion": "^10.12.18",
@@ -103,6 +103,6 @@
   "packageManager": "yarn@1.22.19",
   "resolutions": {
     "i18next": "^23.2.11",
-    "@vocdoni/sdk": "https://github.com/vocdoni/vocdoni-sdk.git#main"
+    "@vocdoni/sdk": "~0.9.0"
   }
 }
