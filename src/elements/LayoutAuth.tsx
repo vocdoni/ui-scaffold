@@ -44,6 +44,7 @@ const LayoutAuth = () => {
         flex='0 0 50%'
         background='linear-gradient(to bottom, #B5F492, #338B93)'
         borderBottomLeftRadius={{ lg: '120px', xl: '200px' }}
+        className='brand-gradient'
       >
         <DarkModeToggle position='absolute' ml='auto' top='10px' right='10px' />
         <Flex

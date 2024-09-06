@@ -17,6 +17,14 @@ import { breakpoints } from './foundations/breakpoints'
 import { colors } from './colors'
 
 export const theme = extendTheme(vtheme, {
+  styles: {
+    global: {
+      ...shared,
+      '.brand-gradient': {
+        bgGradient: 'linear-gradient(to bottom, #B5F492, #338B93)',
+      },
+    },
+  },
   breakpoints,
   components: {
     Badge,

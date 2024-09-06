@@ -36,7 +36,6 @@ const CreateOrganization = () => (
       display='flex'
       flexDirection='column'
       flex='1 1 50%'
-      bgColor='#75AD94'
       py={{
         base: '20px',
         sm: '40px',
@@ -47,6 +46,7 @@ const CreateOrganization = () => (
       }}
       color='white'
       borderLeftRadius='xl'
+      className='brand-gradient'
     >
       <DarkModeToggle position='absolute' ml='auto' top='10px' right='10px' />
       <Box display='flex' flexDirection='column' maxW='600px' mx='auto' flexGrow={1}>
