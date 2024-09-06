@@ -1,3 +1,4 @@
+import { Flex } from '@chakra-ui/react'
 import { useOrganization } from '@vocdoni/react-providers'
 import { useParams } from 'react-router-dom'
 import ProcessesList from '~components/OrganizationSaas/Dashboard/ProcessesList'
@@ -18,8 +19,12 @@ const OrganizationVotings = () => {
         totalPages={Math.ceil(organization?.electionIndex / 10)}
         path='/organization/votings/:page?/:status?'
       >
-        <ProcessesList processes={elections} error={error} loading={isLoading} />
-        {!!elections?.length && <RoutedPagination />}
+        <Flex flexDirection='column' flexGrow={1} gap='20px'>
+          <ProcessesList processes={elections} error={error} loading={isLoading} />
+          <Flex justifyContent='end' mt='auto'>
+            {!!elections?.length && <RoutedPagination />}
+          </Flex>
+        </Flex>
       </RoutedPaginationProvider>
     </>
   )

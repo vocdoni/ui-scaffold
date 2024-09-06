@@ -15,31 +15,8 @@ import { switchStyles } from './components/switch'
 import { textareaStyles } from './components/textarea'
 import { breakpoints } from './foundations/breakpoints'
 import { colors } from './colors'
-import { mode } from '@chakra-ui/theme-tools'
 
 export const theme = extendTheme(vtheme, {
-  styles: {
-    global: (props: any) => ({
-      ...shared,
-      '.site-wrapper': {
-        width: 'full',
-        m: '0 auto',
-        maxW: '1920px',
-
-        px: {
-          base: '10px',
-          sm: '20px',
-          md: '80px',
-        },
-      },
-      body: {
-        bg: mode('secondaryGray.300', 'navy.900')(props),
-      },
-      input: {
-        color: 'gray.700',
-      },
-    }),
-  },
   breakpoints,
   components: {
     Badge,

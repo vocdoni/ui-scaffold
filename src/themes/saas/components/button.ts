@@ -21,16 +21,16 @@ export const Button = defineStyleConfig({
     }),
     brand: (props: any) => ({
       borderRadius: 'lg',
-      bg: mode('brand.500', 'brand.400')(props),
+      bg: mode('brand.500', 'brand.500')(props),
       color: 'white',
       _focus: {
-        bg: mode('brand.500', 'brand.400')(props),
+        bg: mode('brand.500', 'brand.500')(props),
       },
       _active: {
-        bg: mode('brand.800', 'brand.600')(props),
+        bg: mode('brand.700', 'brand.700')(props),
       },
       _hover: {
-        bg: mode('brand.700', 'brand.600')(props),
+        bg: mode('brand.600', 'brand.600')(props),
       },
     }),
     darkBrand: (props: any) => ({
@@ -111,15 +111,15 @@ export const Button = defineStyleConfig({
       },
 
       _active: {
-        color: mode('brand.500', 'brand.500')(props),
+        color: mode('black', 'brand.400')(props),
         fontWeight: mode('bold', 'bold')(props),
         '& span:first-of-type': {
-          color: mode('brand.500', 'brand.500')(props),
+          color: mode('brand.400', 'brand.400')(props),
         },
       },
       _hover: {
         '& span:first-of-type': {
-          color: mode('brand.400', 'brand.400')(props),
+          color: mode('brand.300', 'brand.300')(props),
         },
       },
     }),

@@ -48,7 +48,17 @@ export const RoutedPagination = () => {
   }, [p, totalPages])
 
   return (
-    <ButtonGroup isAttached bgColor={bgSecondary} width='min-content' borderRadius='lg'>
+    <ButtonGroup
+      isAttached
+      color='white'
+      width='min-content'
+      borderRadius='lg'
+      sx={{
+        '& > a': {
+          color: 'white',
+        },
+      }}
+    >
       {pages.map((page) => page)}
     </ButtonGroup>
   )

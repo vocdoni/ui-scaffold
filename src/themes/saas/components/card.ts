@@ -14,7 +14,7 @@ export const Card = defineMultiStyleConfig({
       },
       header: {
         pb: 0,
-        minH: '110px',
+        minH: '112px',
         '& > p:first-of-type': {
           pt: '5px',
           color: 'black',

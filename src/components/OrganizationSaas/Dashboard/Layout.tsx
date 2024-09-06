@@ -36,9 +36,56 @@ import { Logo } from '~theme/icons'
 import OrganizationDashboardMenu from './Menu'
 import Settings from './Settings'
 
+const Cards = [
+  {
+    popular: false,
+    title: 'Essential',
+    subtitle: 'Small or medium-sized orgs or community groups with basic voting needs.',
+    price: '99',
+    features: [
+      'Core voting features',
+      'Up to 3 Admins and 1 org',
+      '5 yearly voting processes',
+      'Basic reporting and analytics',
+      'Ticket support',
+      'GDPR compliance',
+    ],
+  },
+  {
+    popular: true,
+    title: 'Premium',
+    subtitle: 'Larger amount thay require more advanced features.',
+    price: '389',
+    features: [
+      'All essential plan features',
+      'Up to 5 Admins',
+      '10 yearly voting processes',
+      'Custom subdomain & branding',
+      'Advanced reporting & analytics',
+      'Ticket and chat support',
+      'GDPR compliance',
+    ],
+  },
+  {
+    popular: false,
+    title: 'Custom Plan',
+    subtitle: 'Large organizations enterprises, and institutions requiring extensive customization and support.',
+    price: '999',
+    features: [
+      'All faetures & voting types',
+      'Unlimited Admins & suborgs',
+      'Unlimited yearly votingprocesses',
+      'White-label solution',
+      'Advances securtity features',
+      'Dedicated account manager',
+      'Full technical support (ticket, chat, email)',
+    ],
+  },
+]
+
 const OrganizationDashboardLayout: React.FC = () => {
   const { t } = useTranslation()
-  const { bgSecondary, textColorBrand, bg, textColorSecondary } = useDarkMode()
+  const { textColor, bgSecondary, textColorBrand, bg, textColorSecondary } = useDarkMode()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { isOpen: isOpenModal, onOpen: onOpenModal, onClose: onCloseModal } = useDisclosure()
   const { account } = useClient()
@@ -122,22 +169,25 @@ const OrganizationDashboardLayout: React.FC = () => {
 
                 <Box mt='auto'>
                   <Button
-                    variant=''
+                    position='relative'
                     display='flex'
-                    justifyContent='start'
+                    justifyContent='center'
                     gap='10px'
                     borderRadius='full'
                     boxShadow='2px 2px 8px 0px gray'
                     w='full'
                     my='20px'
+                    bgColor={bg}
+                    color={textColor}
                   >
                     <Flex
+                      position='absolute'
+                      left='20px'
                       justifyContent='center'
                       alignItems='center'
                       bgColor='brand.500'
-                      px={2}
-                      py={2}
-                      mr={2}
+                      px={1}
+                      py={1}
                       borderRadius='full'
                     >
                       <AddIcon boxSize={3} color='white' />
@@ -147,6 +197,7 @@ const OrganizationDashboardLayout: React.FC = () => {
                   <VStack>
                     <Button
                       variant='outline'
+                      border='none'
                       color={textColorSecondary}
                       textDecoration='underline'
                       _hover={{ textDecoration: 'none' }}
@@ -202,6 +253,7 @@ const OrganizationDashboardLayout: React.FC = () => {
             w='full'
             ml='auto'
             pt='30px'
+            mb='2vh'
           >
             <Outlet />
           </Box>
@@ -211,53 +263,6 @@ const OrganizationDashboardLayout: React.FC = () => {
     </OrganizationProvider>
   )
 }
-
-const Cards = [
-  {
-    popular: false,
-    title: 'Essential',
-    subtitle: 'Small or medium-sized orgs or community groups with basic voting needs.',
-    price: '99',
-    features: [
-      'Core voting features',
-      'Up to 3 Admins and 1 org',
-      '5 yearly voting processes',
-      'Basic reporting and analytics',
-      'Ticket support',
-      'GDPR compliance',
-    ],
-  },
-  {
-    popular: true,
-    title: 'Premium',
-    subtitle: 'Larger amount thay require more advanced features.',
-    price: '389',
-    features: [
-      'All essential plan features',
-      'Up to 5 Admins',
-      '10 yearly voting processes',
-      'Custom subdomain & branding',
-      'Advanced reporting & analytics',
-      'Ticket and chat support',
-      'GDPR compliance',
-    ],
-  },
-  {
-    popular: false,
-    title: 'Custom Plan',
-    subtitle: 'Large organizations enterprises, and institutions requiring extensive customization and support.',
-    price: '999',
-    features: [
-      'All faetures & voting types',
-      'Unlimited Admins & suborgs',
-      'Unlimited yearly votingprocesses',
-      'White-label solution',
-      'Advances securtity features',
-      'Dedicated account manager',
-      'Full technical support (ticket, chat, email)',
-    ],
-  },
-]
 
 const PricingModal = ({ isOpenModal, onCloseModal }: { isOpenModal: boolean; onCloseModal: () => void }) => (
   <Modal isOpen={isOpenModal} onClose={onCloseModal} variant='dashboard-plans'>

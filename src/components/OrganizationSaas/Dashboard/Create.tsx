@@ -71,14 +71,13 @@ const CreateOrganization = () => (
           </Button>
         </Flex>
 
-        <Flex flexGrow={1} flexDirection='column' alignItems='center' justifyContent='space-between' py='24px'>
+        <Flex flexGrow={1} flexDirection='column' alignItems='start' justifyContent='space-between' py='24px'>
           <Box>
-            <Text textAlign='center' mb='12px'>
+            <Text textAlign='start' mb='12px'>
               Trust on us
             </Text>
             <Grid
               as='section'
-              className='site-wrapper'
               maxW='fit-content'
               flexDirection={{ base: 'column', sm: 'row' }}
               justifyContent='center'
@@ -88,20 +87,38 @@ const CreateOrganization = () => (
               borderRadius='xl'
               filter='grayscale(100%)'
               py='10px'
-              px='20px'
+              pr='30px'
             >
-              <Flex>
-                <Image src={barca} h={'50px'} />
+              <Flex alignItems='center' ml='30px'>
+                <Image src={barca} h={'55px'} />
               </Flex>
-              <Image src={omnium} h={'50px'} />
-              <Image src={berga} h={'50px'} />
-              <Image src={bisbal} h={'50px'} />
-              <Image src={coec} h={'50px'} />
-              <Image src={erc} h={'30px'} />
-              <Image src={bellpuig} h={'50px'} />
-              <Image src={ticanoia} h={'30px'} />
-              <Image src={decidim} h={'50px'} />
-              <Image src={bloock} h={'50px'} />
+              <Flex alignItems='center' justifyContent='center'>
+                <Image src={omnium} h={'60px'} />
+              </Flex>
+              <Flex alignItems='center' justifyContent='center'>
+                <Image src={berga} h={'50px'} />
+              </Flex>
+              <Flex alignItems='center' justifyContent='center'>
+                <Image src={bisbal} h={'45px'} />
+              </Flex>
+              <Flex alignItems='center'>
+                <Image src={coec} h={'40px'} />
+              </Flex>
+              <Flex alignItems='center' ml='30px'>
+                <Image src={erc} h={'35px'} />
+              </Flex>
+              <Flex alignItems='center' pl='10px' justifyContent='center'>
+                <Image src={bellpuig} h={'50px'} />
+              </Flex>
+              <Flex alignItems='center' justifyContent='center'>
+                <Image src={ticanoia} h={'30px'} />
+              </Flex>
+              <Flex alignItems='center' justifyContent='center'>
+                <Image src={decidim} h={'40px'} />
+              </Flex>
+              <Flex alignItems='center'>
+                <Image src={bloock} h={'30px'} />
+              </Flex>
             </Grid>
           </Box>
           <Box mb='100px'>

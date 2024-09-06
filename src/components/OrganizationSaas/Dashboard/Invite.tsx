@@ -152,9 +152,6 @@ const OptionForm = ({ option, setOption }: { option: string; setOption: Dispatch
               </Text>
             </Box>
             <Flex justifyContent='center' alignItems='center' gap='10px'>
-              <Text whiteSpace='nowrap'>
-                <Trans>Can edit</Trans>
-              </Text>
               <Radio isChecked={option === 'team member'} />
             </Flex>
           </Flex>
@@ -180,9 +177,6 @@ const OptionForm = ({ option, setOption }: { option: string; setOption: Dispatch
               </Text>
             </Box>
             <Flex justifyContent='center' alignItems='center' gap='10px'>
-              <Text whiteSpace='nowrap'>
-                <Trans>View only</Trans>
-              </Text>
               <Radio isChecked={option === 'guest'} />
             </Flex>
           </Flex>

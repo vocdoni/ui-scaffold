@@ -1,5 +1,6 @@
 import { Box, Button, Card, CardBody, CardFooter, CardHeader, Text, UnorderedList } from '@chakra-ui/react'
 import { Trans } from 'react-i18next'
+import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 
 const PricingCard = ({
   title,
@@ -15,56 +16,60 @@ const PricingCard = ({
   width?: string
   popular?: boolean
   features: string[]
-}) => (
-  <Card variant='pricing-card' width={width}>
-    <CardHeader>
-      <Text>
-        <Trans>{title}</Trans>
-      </Text>
-      <Text>
-        <Trans>{subtitle}</Trans>
-      </Text>
-    </CardHeader>
-    <CardBody>
-      <Button variant='pricing-card'>
-        <Trans>Subscribe</Trans>
-      </Button>
-      <Text>
-        <Trans>From ${price}/year</Trans>
-      </Text>
-      <Box>
-        <UnorderedList>
-          {features.map((feature, idx) => (
-            <li key={idx}>{feature}</li>
-          ))}
-        </UnorderedList>
-      </Box>
-    </CardBody>
-    <CardFooter>
-      <Button variant=''>
-        <Trans>View all futures</Trans>
-      </Button>
-    </CardFooter>
-    {popular && (
-      <Box
-        bgColor='#D2CBB9'
-        w='min-content'
-        whiteSpace='nowrap'
-        mx='auto'
-        py={1}
-        px={3}
-        borderRadius='full'
-        position='absolute'
-        mt='-15px'
-        ml='50%'
-        transform='translateX(-50%)'
-        color='black'
-        fontSize='sm'
-      >
-        <Trans>Most popular plan</Trans>
-      </Box>
-    )}
-  </Card>
-)
+}) => {
+  const { textColorBrand } = useDarkMode()
+
+  return (
+    <Card variant='pricing-card' width={width}>
+      <CardHeader>
+        <Text>
+          <Trans>{title}</Trans>
+        </Text>
+        <Text>
+          <Trans>{subtitle}</Trans>
+        </Text>
+      </CardHeader>
+      <CardBody>
+        <Button variant='pricing-card'>
+          <Trans>Subscribe</Trans>
+        </Button>
+        <Text color='black'>
+          <Trans>From ${price}/year</Trans>
+        </Text>
+        <Box color='black'>
+          <UnorderedList>
+            {features.map((feature, idx) => (
+              <li key={idx}>{feature}</li>
+            ))}
+          </UnorderedList>
+        </Box>
+      </CardBody>
+      <CardFooter>
+        <Button variant='outline' border='none' color={textColorBrand} _hover={{ textDecoration: 'underline' }}>
+          <Trans>View all futures</Trans>
+        </Button>
+      </CardFooter>
+      {popular && (
+        <Box
+          bgColor='#D2CBB9'
+          w='min-content'
+          whiteSpace='nowrap'
+          mx='auto'
+          py={1}
+          px={3}
+          borderRadius='full'
+          position='absolute'
+          mt='-15px'
+          ml='50%'
+          transform='translateX(-50%)'
+          color='black'
+          fontSize='sm'
+        >
+          <Trans>Most popular plan</Trans>
+        </Box>
+      )}
+    </Card>
+  )
+}
 
 export default PricingCard

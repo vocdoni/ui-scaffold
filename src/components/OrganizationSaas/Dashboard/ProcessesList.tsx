@@ -22,7 +22,6 @@ const ProcessesList = ({ loading, processes, error, limit }: ProcessesListProps)
       w='full'
       overflowX='scroll'
       bg={bgSecondary}
-      mb='2vh'
       borderRadius='lg'
       py={{ base: '10px', lg: '20px' }}
       px={{ base: '20px', lg: '40px' }}

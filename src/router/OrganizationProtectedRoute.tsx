@@ -25,7 +25,7 @@ const OrganizationProtectedRoute = () => {
   if (!connected) {
     return <SignInScreen />
   }
-
+  return <CreateOrganizationSaas />
   if (!exists) {
     if (!!import.meta.env.SAAS_URL) return <CreateOrganizationSaas />
     return <CreateOrganization />
