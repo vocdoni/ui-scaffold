@@ -6,10 +6,14 @@ const { defineMultiStyleConfig } = createMultiStyleConfigHelpers(checkboxAnatomy
 export const Checkbox = defineMultiStyleConfig({
   baseStyle: {
     control: {
-      border: 'brand.500',
       _checked: {
         borderColor: 'brand.500',
         bgColor: 'brand.500',
+
+        _hover: {
+          borderColor: 'brand.500',
+          bgColor: 'brand.500',
+        },
       },
       _focus: {
         boxShadow: 'none',

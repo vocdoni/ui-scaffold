@@ -1,28 +1,30 @@
-import { Box, Button, Checkbox, Flex, FormControl, FormLabel, Heading, Text } from '@chakra-ui/react'
+import { Box, Button, Checkbox, Flex, FormControl, FormErrorMessage, FormLabel, Heading, Text } from '@chakra-ui/react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { useAuth } from '~components/Auth/useAuth'
+import { ILoginParameters } from '~components/Auth/useAuthProvider'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import Email from './Email'
 import GoogleAuth from './GoogleAuth'
 import Password from './Password'
 
-function SignIn() {
+type FormData = {
+  keepLogedIn: boolean
+} & ILoginParameters
+
+const SignIn = () => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const { textColor, textColorSecondary, textColorBrand, googleBg, googleHover, googleActive } = useDarkMode()
+  const methods = useForm<FormData>()
+  const { register, handleSubmit } = methods
+  const {
+    login: { mutateAsync: login, isError, error, isPending },
+  } = useAuth()
 
-  const methods = useForm({
-    defaultValues: {
-      email: '',
-      password: '',
-      remember: false,
-    },
-  })
-
-  const { handleSubmit, register } = methods
-
-  const onSubmit = () => {
-    console.log('send')
+  const onSubmit = async (data: FormData) => {
+    await login(data).then(() => navigate('/organization'))
   }
 
   return (
@@ -49,7 +51,7 @@ function SignIn() {
           <Password />
           <Flex justifyContent='space-between' align='center' mb='24px'>
             <FormControl display='flex' alignItems='center'>
-              <Checkbox {...register('remember')} id='remember-login' colorScheme='brandScheme' me='10px' />
+              <Checkbox {...register('keepLogedIn')} id='remember-login' colorScheme='brandScheme' me='10px' />
               <FormLabel htmlFor='remember-login' mb='0' fontWeight='normal' color={textColor} fontSize='sm'>
                 {t('keep_me_logged')}
               </FormLabel>
@@ -76,6 +78,11 @@ function SignIn() {
           </NavLink>
         </Text>
       </Flex>
+      <Box pt={2}>
+        <FormControl isInvalid={isError}>
+          {isError && <FormErrorMessage>{error?.message || 'Error al realizar la operación'}</FormErrorMessage>}
+        </FormControl>
+      </Box>
     </Flex>
   )
 }
@@ -83,11 +90,6 @@ function SignIn() {
 export const HSeparator = (props: { variant?: string; [x: string]: any }) => {
   const { variant, ...rest } = props
   return <Flex h='1px' w='100%' bg='rgba(135, 140, 189, 0.3)' {...rest} />
-}
-
-export const VSeparator = (props: { variant?: string; [x: string]: any }) => {
-  const { variant, ...rest } = props
-  return <Flex w='1px' bg='rgba(135, 140, 189, 0.3)' {...rest} />
 }
 
 export default SignIn
