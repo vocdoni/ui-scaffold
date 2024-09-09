@@ -7,14 +7,8 @@ import ProcessesList from './ProcessesList'
 
 const OrganizationDashboard = () => {
   const { t } = useTranslation()
-  const {
-    data: { elections },
-    error,
-    isLoading,
-  } = useLatestElections()
+  const { data: elections, error, isLoading } = useLatestElections()
   const { organization } = useOrganization()
-
-  if (!organization) return null
 
   return (
     <>
