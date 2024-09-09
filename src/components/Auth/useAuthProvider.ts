@@ -41,7 +41,7 @@ const api = <T>(path: string, params?: unknown, method: MethodTypes = 'GET'): Pr
 
 const useLogin = (options: Omit<UseMutationOptions<LoginResponse, Error, ILoginParameters>, 'mutationFn'>) => {
   return useMutation<LoginResponse, Error, ILoginParameters>({
-    mutationFn: (params: ILoginParameters) => api<LoginResponse>('/auth/login', params, 'POST'),
+    mutationFn: (params: ILoginParameters) => api<LoginResponse>('auth/login', params, 'POST'),
     ...options,
   })
 }
