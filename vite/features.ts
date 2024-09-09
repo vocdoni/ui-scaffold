@@ -24,6 +24,7 @@ type Features = {
     secret: boolean
     customization: boolean
   }
+  calculator: boolean
   login: Login[]
   census: Census[]
   unimplemented_census: UnimplementedCensus[]
@@ -53,9 +54,9 @@ const features = () => {
     },
     login: ['web3', 'web2'],
     census: ['spreadsheet', 'token', 'web3', 'csp', 'gitcoin'],
-    unimplemented_census: [],
+    unimplemented_census: ['phone', 'email', 'crm', 'database', 'digital_certificate'],
     voting_type: ['single', 'approval'],
-    unimplemented_voting_type: [],
+    unimplemented_voting_type: ['multi', 'participatory', 'borda'],
     languages: ValidLanguages,
   }
 

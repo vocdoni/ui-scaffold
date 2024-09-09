@@ -16,11 +16,6 @@
     "votes_weight_other": "<span>{{ count }}</span> <text>votes</text>",
     "voting_anonymous_advice": "Please wait while the anonymous magic happens 🪄.\nThis can take up to several minutes; don't close the window."
   },
-  "auth": {
-    "subtitle": "Cut costs, Save Time: Secure, Private, and GDPR Compliant Voting",
-    "title": "The global voting platform"
-  },
-  "back": "Back",
   "banner": {
     "start_now": "Create a vote now!",
     "title": "Secure, verifiable and flexible digital voting"
@@ -916,20 +911,6 @@
     "mail_subject": "Voting platform",
     "modal_title": "Share with friends"
   },
-  "signin": "Sign In",
-  "signin_google": "Sign in with Google",
-  "signin_subtitle": "Enter your email and password to sign in!",
-  "signin_title": "Sign In",
-  "signup_agree_terms": "<termsLink>By creating an account means you agree to the Terms and Conditions</termsLink> and <privacyLink>our Privacy Policy</privacyLink>",
-  "signup_create_account": "Create my account",
-  "signup_first_name": "First Name",
-  "signup_last_name": "Last Name",
-  "signup_subtitle": "Enter your email and password to sign up!",
-  "signup_title": "Sign Up",
-  "subscription": "Subscription",
-  "support": "Support",
-  "team": "Team",
-  "terms_of_use": "Terms of Use",
   "uploader": {
     "click_or_drag_and_drop": "<p1>Upload or drag and drop the voter list here</p1><p2>(Allowed formats: CSV, XLSX, and ODS)</p2>",
     "drop_here": "Drop here"

@@ -928,20 +928,6 @@
     "mail_subject": "Plataforma de votación",
     "modal_title": "Compartir con amigos"
   },
-  "signin": "Iniciar sesión",
-  "signin_google": "Iniciar sesión con Google",
-  "signin_subtitle": "¡Introduce tu correo electrónico y contraseña para iniciar sesión!",
-  "signin_title": "Iniciar sesión",
-  "signup_agree_terms": "<termsLink>Crear una cuenta implica que aceptas los Términos y Condiciones</termsLink> y <privacyLink>nuestra Política de Privacidad</privacyLink>",
-  "signup_create_account": "Crear mi cuenta",
-  "signup_first_name": "Nombre",
-  "signup_last_name": "Apellido",
-  "signup_subtitle": "¡Introduce tu correo electrónico y contraseña para registrarte!",
-  "signup_title": "Regístrate",
-  "subscription": "Suscripción",
-  "support": "Soporte",
-  "team": "Equipo",
-  "terms_of_use": "Condiciones de uso",
   "uploader": {
     "click_or_drag_and_drop": "<p1>Sube o arrastra y suelta aqui la lista de votantes</p1><p2>(Formap permitidos: CSV, XLSX y ODS)</p2>",
     "drop_here": "Suelta aqui"

@@ -212,7 +212,7 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
     return null
   }
 
-  const isWeighted = election?.census.weight !== election?.census.size
+  const isWeighted = Number(election?.census.weight) !== election?.census.size
 
   return (
     <Flex
