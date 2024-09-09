@@ -48,7 +48,7 @@ const useLogin = (options: Omit<UseMutationOptions<LoginResponse, Error, ILoginP
 
 const useRegister = (options: Omit<UseMutationOptions<LoginResponse, Error, IRegisterParameters>, 'mutationFn'>) => {
   return useMutation<LoginResponse, Error, IRegisterParameters>({
-    mutationFn: (params: IRegisterParameters) => api<LoginResponse>('/users', params, 'POST'),
+    mutationFn: (params: IRegisterParameters) => api<LoginResponse>('users', params, 'POST'),
     ...options,
   })
 }
