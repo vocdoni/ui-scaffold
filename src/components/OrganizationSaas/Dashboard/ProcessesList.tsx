@@ -1,12 +1,12 @@
 import { Alert, AlertDescription, Box, Flex, Progress, Text, VStack } from '@chakra-ui/react'
 import { ElectionProvider } from '@vocdoni/react-providers'
-import { ArchivedElection, InvalidElection, PublishedElection } from '@vocdoni/sdk'
+import { InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { HSeparator } from '~components/Auth/SignIn'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import NoElections from '../NoElections'
 import ProcessCard from './ProcessCard'
 
-type Election = PublishedElection | ArchivedElection | InvalidElection
+type Election = PublishedElection | InvalidElection
 
 type ProcessesListProps = {
   error: Error | null
