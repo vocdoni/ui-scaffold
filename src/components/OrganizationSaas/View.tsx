@@ -1,6 +1,6 @@
 import { Alert, AlertDescription, AlertIcon, Box, Flex, Grid, GridItem, Spinner, Text } from '@chakra-ui/react'
 import { useClient, useOrganization } from '@vocdoni/react-providers'
-import { ArchivedElection, areEqualHexStrings, InvalidElection, PublishedElection } from '@vocdoni/sdk'
+import { areEqualHexStrings, InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import ProcessCardDetailed from '../Process/CardDetailed'
@@ -12,7 +12,7 @@ const OrganizationView = () => {
   const { client, account } = useClient()
   const { organization, fetch } = useOrganization()
 
-  const [electionsList, setElectionsList] = useState<(PublishedElection | InvalidElection | ArchivedElection)[]>([])
+  const [electionsList, setElectionsList] = useState<(PublishedElection | InvalidElection)[]>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [loaded, setLoaded] = useState<boolean>(false)
   const [error, setError] = useState<string>()
@@ -49,15 +49,16 @@ const OrganizationView = () => {
     setLoading(true)
 
     client
-      .fetchElections(organization.address, page)
+      .fetchElections({ organizationId: organization.address, page })
       .then((res) => {
-        if (!res || (res && !res.length)) {
+        const elections = res.elections
+        if (!res || (res && !elections.length)) {
           setFinished(true)
         }
 
         setElectionsList((prev: (PublishedElection | InvalidElection)[]) => {
-          if (prev) return [...prev, ...res]
-          return res
+          if (prev) return [...prev, ...elections]
+          return elections
         })
       })
       .catch((err) => {
