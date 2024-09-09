@@ -95,7 +95,8 @@ const SignIn = () => {
         <FormControl isInvalid={!!errors.password}>
           <FormLabel ms='4px' fontSize='sm' fontWeight='500' color={textColor} display='flex'>
             {t('password')}
-            <Text color={textColorBrand}>*</Text>          </FormLabel>
+            <Text color={textColorBrand}>*</Text>
+          </FormLabel>
           <PasswordInput
             input={{
               isRequired: true,

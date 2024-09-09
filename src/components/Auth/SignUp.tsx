@@ -19,7 +19,7 @@ import PasswordInput from '~components/Auth/PasswordInput'
 import { useForm } from 'react-hook-form'
 import { useAuth } from '~components/Auth/useAuth'
 import { IRegisterParameters } from '~components/Auth/useAuthProvider'
-import {useTranslation} from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
 type FormData = {
   terms: boolean
@@ -119,7 +119,8 @@ const SignUp = () => {
         <FormControl isInvalid={!!errors.email} mb='4'>
           <FormLabel display='flex' ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
             {t('email')}
-            <Text color={textColorBrand}>*</Text>          </FormLabel>
+            <Text color={textColorBrand}>*</Text>
+          </FormLabel>
           <Input
             isRequired={true}
             variant='auth'
@@ -136,7 +137,8 @@ const SignUp = () => {
         <FormControl isInvalid={!!errors.password} mb='4'>
           <FormLabel ms='4px' fontSize='sm' fontWeight='500' color={textColor} display='flex'>
             {t('password')}
-            <Text color={textColorBrand}>*</Text>          </FormLabel>
+            <Text color={textColorBrand}>*</Text>
+          </FormLabel>
           <PasswordInput
             input={{
               isRequired: true,
