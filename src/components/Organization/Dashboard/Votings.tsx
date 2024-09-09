@@ -20,11 +20,12 @@ const Votings = () => {
 
 const VotingsList = () => {
   const { page } = useRoutedPagination()
-  const {
-    data: { elections, pagination },
-    error,
-    isLoading,
-  } = usePaginatedElections(page)
+  const { data, error, isLoading } = usePaginatedElections(page ?? 0)
+
+  if (!data) return null
+
+  const { elections, pagination } = data
+
   return (
     <>
       <ProcessesList processes={elections} error={error} loading={isLoading} />
