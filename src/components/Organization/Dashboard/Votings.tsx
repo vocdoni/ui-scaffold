@@ -1,35 +1,35 @@
 import { Flex, Heading, Text } from '@chakra-ui/react'
-import { useOrganization } from '@vocdoni/react-providers'
+import { RoutedPagination } from '@vocdoni/chakra-components'
+import { useOrganization, RoutedPaginationProvider, useRoutedPagination } from '@vocdoni/react-providers'
 import { Trans, useTranslation } from 'react-i18next'
 import { ContentsBox } from '~components/Organization/Dashboard/Box'
-import { RoutedPagination } from '~components/Pagination/Pagination'
-import { RoutedPaginationProvider } from '~components/Pagination/PaginationProvider'
 import { usePaginatedElections } from '~src/queries/account'
 import ProcessesList from './ProcessesList'
 
-type VotingsProps = {
-  page: number
-  status?: string
-}
-
-const Votings = ({ page }: VotingsProps) => {
+const Votings = () => {
   const { organization } = useOrganization()
-  const {
-    data: { elections },
-    error,
-    isLoading,
-  } = usePaginatedElections(page)
 
   if (!organization) return null
 
   return (
-    <RoutedPaginationProvider
-      totalPages={Math.ceil(organization?.electionIndex / 10)}
-      path='/organization/votings/:page?/:status?'
-    >
-      <ProcessesList processes={elections} error={error} loading={isLoading} />
-      {!!elections?.length && <RoutedPagination />}
+    <RoutedPaginationProvider path='/organization/votings/:page?/:status?'>
+      <VotingsList />
     </RoutedPaginationProvider>
+  )
+}
+
+const VotingsList = () => {
+  const { page } = useRoutedPagination()
+  const {
+    data: { elections, pagination },
+    error,
+    isLoading,
+  } = usePaginatedElections(page)
+  return (
+    <>
+      <ProcessesList processes={elections} error={error} loading={isLoading} />
+      {!!elections?.length && <RoutedPagination pagination={pagination} />}
+    </>
   )
 }
 
