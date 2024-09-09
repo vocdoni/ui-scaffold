@@ -9,10 +9,8 @@ import { Input } from './components/input'
 import { Link } from './components/link'
 import { Modal } from './components/modal'
 import { Card } from './components/card'
-import { progressStyles } from './components/progress'
-import { sliderStyles } from './components/slider'
-import { switchStyles } from './components/switch'
-import { textareaStyles } from './components/textarea'
+import { Checkbox } from './components/checkbox'
+import { Textarea } from './components/textarea'
 import { breakpoints } from './foundations/breakpoints'
 import { colors } from './colors'
 
@@ -30,15 +28,13 @@ export const theme = extendTheme(vtheme, {
     Badge,
     Button,
     Card,
+    Checkbox,
     Input,
     Link,
     Modal,
+    Textarea,
   },
   colors,
-  progressStyles,
-  sliderStyles,
-  textareaStyles,
-  switchStyles,
   CardComponent,
 })
 

@@ -17,7 +17,7 @@
     "voting_anonymous_advice": "Please wait while the anonymous magic happens 🪄.\nThis can take up to several minutes; don't close the window."
   },
   "auth": {
-    "subtitle": "Cut cost, Save Time: Secure, Private, and GDPR Compliant Voting",
+    "subtitle": "Cut costs, Save Time: Secure, Private, and GDPR Compliant Voting",
     "title": "The global voting platform"
   },
   "back": "Back",
@@ -920,7 +920,7 @@
   "signin_google": "Sign in with Google",
   "signin_subtitle": "Enter your email and password to sign in!",
   "signin_title": "Sign In",
-  "signup_agree_terms": "By creating an account means you agree to the Terms and Conditions, and our Privacy Policy",
+  "signup_agree_terms": "<termsLink>By creating an account means you agree to the Terms and Conditions</termsLink> and <privacyLink>our Privacy Policy</privacyLink>",
   "signup_create_account": "Create my account",
   "signup_first_name": "First Name",
   "signup_last_name": "Last Name",

@@ -932,7 +932,7 @@
   "signin_google": "Inicia sessió amb Google",
   "signin_subtitle": "Introdueix el teu correu electrònic i contrasenya per iniciar sessió!",
   "signin_title": "Inicia sessió",
-  "signup_agree_terms": "Crear un compte implica que acceptes els Termes i Condicions i la nostra Política de Privacitat",
+  "signup_agree_terms": "<termsLink>Crear un compte implica que acceptes els Termes i Condicions</termsLink> i <privacyLink>la nostra Política de Privacitat</privacyLink>",
   "signup_create_account": "Crea el meu compte",
   "signup_first_name": "Nom",
   "signup_last_name": "Cognom",

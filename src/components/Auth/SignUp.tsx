@@ -4,28 +4,49 @@ import {
   Checkbox,
   Flex,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Heading,
-  Icon,
   Input,
-  InputGroup,
-  InputRightElement,
+  Link,
   Text,
 } from '@chakra-ui/react'
-import React from 'react'
-import { useTranslation } from 'react-i18next'
-import { FcGoogle } from 'react-icons/fc'
-import { MdOutlineRemoveRedEye } from 'react-icons/md'
-import { RiEyeCloseLine } from 'react-icons/ri'
-import { NavLink } from 'react-router-dom'
+import { FormProvider, useForm } from 'react-hook-form'
+import { Trans, useTranslation } from 'react-i18next'
+import { NavLink, Link as ReactRouterLink } from 'react-router-dom'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
+import Email from './Email'
+import GoogleAuth from './GoogleAuth'
+import Password from './Password'
 import { HSeparator } from './SignIn'
 
 function SignUp() {
   const { t } = useTranslation()
-  const { textColor, textColorSecondary, textColorBrand, googleBg, googleHover, googleActive } = useDarkMode()
-  const [show, setShow] = React.useState(false)
-  const handleClick = () => setShow(!show)
+  const { textColor, textColorSecondary, textColorBrand } = useDarkMode()
+
+  const methods = useForm({
+    defaultValues: {
+      first_name: '',
+      last_name: '',
+      email: '',
+      password: '',
+      terms: false,
+    },
+  })
+
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = methods
+
+  const onSubmit = () => {
+    console.log('send')
+  }
+  const required = {
+    value: true,
+    message: t('form.error.field_is_required'),
+  }
 
   return (
     <Flex direction='column'>
@@ -37,114 +58,87 @@ function SignUp() {
           {t('signup_subtitle')}
         </Text>
       </Box>
-      <Button
-        fontSize='sm'
-        bg={googleBg}
-        color={textColor}
-        fontWeight='500'
-        _hover={googleHover}
-        _active={googleActive}
-        _focus={googleActive}
-      >
-        <Icon as={FcGoogle} w='20px' h='20px' me='10px' />
-
-        {t('signin_google')}
-      </Button>
-      <Flex align='center' mb='25px'>
+      <GoogleAuth />
+      <Flex align='center' my='24px'>
         <HSeparator />
         <Text color='gray.400' mx='14px'>
           {t('or')}
         </Text>
         <HSeparator />
       </Flex>
-      <FormControl>
-        <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ md: '15px' }}>
-          <Box flexGrow={1}>
-            <FormLabel display='flex' ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
-              {t('signup_first_name')}First Name<Text color={textColorBrand}>*</Text>
-            </FormLabel>
-            <Input
-              isRequired={true}
-              variant='auth'
-              fontSize='sm'
-              ms={{ base: '0px', md: '0px' }}
-              type='email'
-              placeholder='First Name'
-              mb='24px'
-              fontWeight='500'
-              size='lg'
-            />
-          </Box>
-          <Box flexGrow={1}>
-            <FormLabel display='flex' ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
-              {t('signup_last_name')}
-              <Text color={textColorBrand}>*</Text>
-            </FormLabel>
-            <Input
-              isRequired={true}
-              variant='auth'
-              fontSize='sm'
-              ms={{ base: '0px', md: '0px' }}
-              type='email'
-              placeholder='Last Name'
-              mb='24px'
-              fontWeight='500'
-              size='lg'
-            />
-          </Box>
-        </Flex>
-        <FormLabel display='flex' ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
-          {t('email')}
-          <Text color={textColorBrand}>*</Text>
-        </FormLabel>
-        <Input
-          isRequired={true}
-          variant='auth'
-          fontSize='sm'
-          ms={{ base: '0px', md: '0px' }}
-          type='email'
-          placeholder='mail@simmmple.com'
-          mb='24px'
-          fontWeight='500'
-          size='lg'
-        />
-        <FormLabel ms='4px' fontSize='sm' fontWeight='500' color={textColor} display='flex'>
-          {t('password')}
-          <Text color={textColorBrand}>*</Text>
-        </FormLabel>
-        <InputGroup size='md'>
-          <Input
-            isRequired={true}
-            fontSize='sm'
-            placeholder='Min. 8 characters'
-            mb='24px'
-            size='lg'
-            type={show ? 'text' : 'password'}
-            variant='auth'
-          />
-          <InputRightElement display='flex' alignItems='center' mt='4px'>
-            <Icon
-              color={textColorSecondary}
-              _hover={{ cursor: 'pointer' }}
-              as={show ? RiEyeCloseLine : MdOutlineRemoveRedEye}
-              onClick={handleClick}
-            />
-          </InputRightElement>
-        </InputGroup>
-        <FormControl display='flex' alignItems='start' mb='24px'>
-          <Checkbox id='remember-login' colorScheme='brandScheme' me='10px' mt='4px' />
-          <FormLabel htmlFor='remember-login' mb='0' fontWeight='normal' color={textColor} fontSize='sm'>
-            {t('signup_agree_terms')}
-          </FormLabel>
-        </FormControl>
-        <Button fontSize='sm' variant='brand' fontWeight='500' w='100%' h='50' mb='24px'>
-          {t('signup_create_account')}
-        </Button>
-      </FormControl>
+      <FormProvider {...methods}>
+        <Box as='form' onSubmit={handleSubmit(onSubmit)}>
+          <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ md: '15px' }}>
+            <FormControl isInvalid={!!errors.first_name} flexGrow={1} mb='24px'>
+              <FormLabel display='flex' ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
+                {t('signup_first_name')}
+                <Text color={textColorBrand}>*</Text>
+              </FormLabel>
+              <Input
+                {...register('first_name', { required })}
+                variant='auth'
+                fontSize='sm'
+                ms={{ base: '0px', md: '0px' }}
+                type='email'
+                placeholder='First Name'
+                fontWeight='500'
+                size='lg'
+              />
+              <FormErrorMessage>{errors.first_name?.message?.toString()}</FormErrorMessage>
+            </FormControl>
+            <FormControl isInvalid={!!errors.last_name} flexGrow={1} mb='24px'>
+              <FormLabel display='flex' ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
+                {t('signup_last_name')}
+                <Text color={textColorBrand}>*</Text>
+              </FormLabel>
+              <Input
+                {...register('last_name', { required })}
+                variant='auth'
+                fontSize='sm'
+                ms={{ base: '0px', md: '0px' }}
+                type='email'
+                placeholder='Last Name'
+                fontWeight='500'
+                size='lg'
+              />
+              <FormErrorMessage>{errors.last_name?.message?.toString()}</FormErrorMessage>
+            </FormControl>
+          </Flex>
+
+          <Email />
+          <Password />
+
+          <FormControl isInvalid={!!errors.terms} mb='24px'>
+            <Flex alignItems='start'>
+              <Checkbox
+                {...register('terms', { required })}
+                id='remember-login'
+                colorScheme='brandScheme'
+                me='10px'
+                mt='4px'
+              />
+              <FormLabel htmlFor='remember-login' mb='0' fontWeight='normal' color={textColor} fontSize='sm'>
+                <Trans
+                  i18nKey='signup_agree_terms'
+                  components={{
+                    termsLink: <Link as={ReactRouterLink} to='/terms' />,
+                    privacyLink: <Link as={ReactRouterLink} to='/privacy' />,
+                  }}
+                />
+              </FormLabel>
+            </Flex>
+            <FormErrorMessage>{errors.terms?.message?.toString()}</FormErrorMessage>
+          </FormControl>
+          <Button type='submit' fontSize='sm' variant='brand' fontWeight='500' w='100%' h='50' mb='24px'>
+            {t('signup_create_account')}
+          </Button>
+        </Box>
+      </FormProvider>
+
       <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%' mt='0px'>
         <Text color={textColorSecondary} fontWeight='400' fontSize='14px'>
           {t('already_member')}
-          <NavLink to='/auth/signin'>
+          <NavLink to='/signin'>
             <Text color={textColorBrand} as='span' ms='5px' fontWeight='500'>
               {t('signin')}
             </Text>

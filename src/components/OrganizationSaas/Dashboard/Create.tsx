@@ -15,7 +15,7 @@ import omnium from '/assets/omnium.png'
 import ticanoia from '/assets/ticanoia.png'
 
 const CreateOrganization = () => (
-  <Wrapper flexDirection={{ base: 'column', lg: 'row' }} px='0'>
+  <Wrapper flexDirection={{ base: 'column', lg: 'row' }} px='0' position='relative'>
     <Box
       flex='1 1 50%'
       py={{
@@ -32,7 +32,7 @@ const CreateOrganization = () => (
       </Box>
     </Box>
     <Box
-      position='relative'
+      position={{ lg: 'relative' }}
       display='flex'
       flexDirection='column'
       flex='1 1 50%'
@@ -45,8 +45,8 @@ const CreateOrganization = () => (
         sm: '20px',
       }}
       color='white'
-      borderLeftRadius='xl'
       className='brand-gradient'
+      borderBottomLeftRadius={{ lg: '120px', xl: '200px' }}
     >
       <DarkModeToggle position='absolute' ml='auto' top='10px' right='10px' />
       <Box display='flex' flexDirection='column' maxW='600px' mx='auto' flexGrow={1}>
@@ -83,11 +83,11 @@ const CreateOrganization = () => (
               justifyContent='center'
               gridTemplateColumns='repeat(5, 1fr)'
               gridRowGap='50px'
-              bgColor='white'
               borderRadius='xl'
               filter='grayscale(100%)'
               py='10px'
               pr='30px'
+              mb={{ base: '50px', lg: 0 }}
             >
               <Flex alignItems='center' ml='30px'>
                 <Image src={barca} h={'55px'} />
@@ -121,14 +121,14 @@ const CreateOrganization = () => (
               </Flex>
             </Grid>
           </Box>
-          <Box mb='100px'>
-            <Text fontSize='50px' color='white'>
+          <Flex flexDirection='column' alignItems={{ base: 'center', lg: 'start' }} mb='100px' w='full'>
+            <Text fontSize={{ base: '28px', md: '48px', lg: '32px', xl: '48px' }} color='white'>
               The global voting platform
             </Text>
-            <Text fontSize='19px' color='white'>
+            <Text fontSize='19px' color='white' textAlign={{ base: 'center', lg: 'start' }}>
               Cut cost, Save Time: Secure, Private, and GDPR Compliant Voting
             </Text>
-          </Box>
+          </Flex>
         </Flex>
         <Flex mt='auto' zIndex='3' flexDirection='column' alignItems='center' justifyContent='center'>
           <List display='flex'>

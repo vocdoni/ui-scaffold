@@ -932,7 +932,7 @@
   "signin_google": "Iniciar sesión con Google",
   "signin_subtitle": "¡Introduce tu correo electrónico y contraseña para iniciar sesión!",
   "signin_title": "Iniciar sesión",
-  "signup_agree_terms": "Crear una cuenta implica que aceptas los Términos y Condiciones y nuestra Política de Privacidad",
+  "signup_agree_terms": "<termsLink>Crear una cuenta implica que aceptas los Términos y Condiciones</termsLink> y <privacyLink>nuestra Política de Privacidad</privacyLink>",
   "signup_create_account": "Crear mi cuenta",
   "signup_first_name": "Nombre",
   "signup_last_name": "Apellido",

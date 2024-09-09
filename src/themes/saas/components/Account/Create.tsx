@@ -11,6 +11,7 @@ import {
   Heading,
   Icon,
   Input,
+  Link,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -31,6 +32,7 @@ import { Account } from '@vocdoni/sdk'
 import { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 import { useAccountHealthTools } from '~components/Account/use-account-health-tools'
 import { ucfirst } from '~constants/strings'
@@ -58,6 +60,8 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
       membership_size: 0,
       type: '',
       country: '',
+      communications: false,
+      terms: false,
     },
   })
   const {
@@ -111,7 +115,7 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
         <Trans>Public Organization Information</Trans>
       </Text>
       <Box px={{ base: 5, md: 10 }}>
-        <FormControl isInvalid={!!errors.name}>
+        <FormControl isInvalid={!!errors.name} mb='24px'>
           <FormLabel display='flex' ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
             {t('new_organization.name')}
             <Text color={textColorBrand}>*</Text>
@@ -121,7 +125,6 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
             {...register('name', { required })}
             placeholder={t('form.account_create.title_placeholder').toString()}
             variant='auth'
-            mb='24px'
             size='lg'
           />
           {!!errors.name && <FormErrorMessage>{errors.name?.message?.toString()}</FormErrorMessage>}
@@ -141,13 +144,19 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
           {!!errors.website && <FormErrorMessage>{errors.website?.message?.toString()}</FormErrorMessage>}
         </FormControl>
         <FormControl mb='32px'>
-          <FormLabel ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='24px'>
+          <FormLabel ms='4px' fontSize='sm' fontWeight='500' color={textColor}>
             <Trans>Description</Trans>
           </FormLabel>
           <Textarea
             {...register('description')}
             placeholder={t('form.account_create.description_placeholder').toString()}
-            borderRadius='xl'
+            _focus={{
+              boxShadow: 'none',
+
+              _hover: {
+                boxShadow: 'none',
+              },
+            }}
           />
         </FormControl>
       </Box>
@@ -155,10 +164,10 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
         <Trans>Private Organization Details</Trans>
       </Text>
       <Text color={textColorSecondary} mb='24px' fontSize='sm'>
-        <Trans>Help us tailor your experience with information about your org. we won't share this info</Trans>
+        <Trans>Help us tailor your experience with information about your org. We won't share this info</Trans>
       </Text>
       <Box px={{ base: 5, md: 10 }}>
-        <FormControl isInvalid={!!errors.name}>
+        <FormControl isInvalid={!!errors.membership_size} mb='24px'>
           <FormLabel display='flex' ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
             <Trans>Membership size</Trans>
           </FormLabel>
@@ -166,61 +175,65 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
             {...register('membership_size', { required })}
             fontSize='sm'
             ms={{ base: '0px', md: '0px' }}
-            mb='24px'
             fontWeight='500'
             size='lg'
             borderRadius='xl'
           ></Select>
-          {!!errors.membership_size && (
-            <FormErrorMessage>{errors.membership_size?.message?.toString()}</FormErrorMessage>
-          )}
+          <FormErrorMessage>{errors.membership_size?.message?.toString()}</FormErrorMessage>
         </FormControl>
-        <FormControl isInvalid={!!errors.name}>
+        <FormControl isInvalid={!!errors.type} mb='24px'>
           <FormLabel ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
             <Trans>Type / Sector</Trans>
           </FormLabel>
 
           <Select
-            {...register('type')}
+            {...register('type', { required })}
             fontSize='sm'
             ms={{ base: '0px', md: '0px' }}
-            mb='24px'
             fontWeight='500'
             size='lg'
             borderRadius='xl'
           ></Select>
-          {!!errors.type && <FormErrorMessage>{errors.type?.message?.toString()}</FormErrorMessage>}
+          <FormErrorMessage>{errors.type?.message?.toString()}</FormErrorMessage>
         </FormControl>
-        <FormControl isInvalid={!!errors.name} mb='32px'>
+        <FormControl isInvalid={!!errors.country} mb='32px'>
           <FormLabel ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
             <Trans>Country</Trans>
           </FormLabel>
 
           <Select
-            {...register('country')}
+            {...register('country', { required })}
             fontSize='sm'
             ms={{ base: '0px', md: '0px' }}
-            mb='24px'
             fontWeight='500'
             size='lg'
             borderRadius='xl'
           >
             {' '}
           </Select>
-          {!!errors.country && <FormErrorMessage>{errors.country?.message?.toString()}</FormErrorMessage>}
+          <FormErrorMessage>{errors.country?.message?.toString()}</FormErrorMessage>
         </FormControl>
       </Box>
-      <FormControl display='flex' alignItems='start' mb='32px'>
-        <Checkbox id='recive-communication' colorScheme='brandScheme' me='10px' mt='4px' />
-        <FormLabel htmlFor='recive-communication' mb='0' fontWeight='normal' color={textColor} fontSize='sm'>
-          I want to recive communications and be contacted to tailor my governance experience.
+      <FormControl display='flex' alignItems='start' mb='12px'>
+        <Checkbox {...register('communications')} colorScheme='brandScheme' me='10px' mt='4px' />
+        <FormLabel mb='0' fontWeight='normal' color={textColor} fontSize='sm'>
+          I want to receive communications and be contacted to tailor my governance experience.
         </FormLabel>
       </FormControl>
-      <FormControl display='flex' alignItems='start' mb='32px'>
-        <Checkbox id='accept' colorScheme='brandScheme' me='10px' mt='4px' />
-        <FormLabel htmlFor='accept' mb='0' fontWeight='normal' color={textColor} fontSize='sm'>
-          I accept the Privacy Policy and Terms of Use.
-        </FormLabel>
+      <FormControl isInvalid={!!errors.terms} mb='32px'>
+        <Flex alignItems='start'>
+          <Checkbox {...register('terms', { required })} colorScheme='brandScheme' me='10px' mt='4px' />
+          <FormLabel mb='0' fontWeight='normal' color={textColor} fontSize='sm'>
+            <Trans
+              i18nKey='signup_agree_terms'
+              components={{
+                termsLink: <Link as={ReactRouterLink} to='/terms' />,
+                privacyLink: <Link as={ReactRouterLink} to='/privacy' />,
+              }}
+            />
+          </FormLabel>
+        </Flex>
+        <FormErrorMessage>{errors.terms?.message?.toString()}</FormErrorMessage>
       </FormControl>
       <Button form='process-create-form' type='submit' isLoading={create} mx='auto' mb='32px' w='80%'>
         {t('organization.create_org')}
