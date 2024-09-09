@@ -29,10 +29,6 @@ export const Providers = () => {
   )
 }
 
-const SaasProviders = ({ children }: PropsWithChildren) => {
-  return <AuthProvider>{children}</AuthProvider>
-}
-
 export const AppProviders = () => {
   const { data } = useWalletClient()
   const { address } = useAccount()
@@ -52,10 +48,10 @@ export const AppProviders = () => {
         datesLocale={datesLocale(i18n.language)}
         options={{ faucet_url: import.meta.env.CUSTOM_FAUCET_URL }}
       >
-        <SaasProviders>
+        <AuthProvider>
           <ColorModeScript />
           <RoutesProvider />
-        </SaasProviders>
+        </AuthProvider>
       </ClientProvider>
     </RainbowKitTheme>
   )
