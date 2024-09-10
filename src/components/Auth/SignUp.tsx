@@ -83,7 +83,7 @@ const SignUp = () => {
                 variant='auth'
                 fontSize='sm'
                 ms={{ base: '0px', md: '0px' }}
-                type='email'
+                type='text'
                 placeholder='First Name'
                 fontWeight='500'
                 size='lg'
@@ -100,7 +100,7 @@ const SignUp = () => {
                 variant='auth'
                 fontSize='sm'
                 ms={{ base: '0px', md: '0px' }}
-                type='email'
+                type='text'
                 placeholder='Last Name'
                 fontWeight='500'
                 size='lg'

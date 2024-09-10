@@ -27,7 +27,6 @@ import { OrganizationAvatar, OrganizationName } from '@vocdoni/chakra-components
 import { OrganizationProvider, useClient } from '@vocdoni/react-providers'
 import { Trans, useTranslation } from 'react-i18next'
 import { Outlet, useLocation } from 'react-router-dom'
-import { useDisconnect } from 'wagmi'
 import { HSeparator } from '~components/Auth/SignIn'
 import DarkModeToggle from '~src/themes/saas/components/DarkMode'
 import PricingCard from '~src/themes/saas/components/Saas/PricingCard'
@@ -89,9 +88,8 @@ const OrganizationDashboardLayout: React.FC = () => {
   const { textColor, bgSecondary, textColorBrand, bg, textColorSecondary } = useDarkMode()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { isOpen: isOpenModal, onOpen: onOpenModal, onClose: onCloseModal } = useDisclosure()
-  const { account, clear } = useClient()
+  const { account } = useClient()
   const location = useLocation()
-  const { disconnect } = useDisconnect()
 
   const getTitle = () => {
     if (location.pathname.includes('/votings')) {
@@ -203,10 +201,6 @@ const OrganizationDashboardLayout: React.FC = () => {
                       color={textColorSecondary}
                       textDecoration='underline'
                       _hover={{ textDecoration: 'none' }}
-                      onClick={() => {
-                        disconnect()
-                        clear()
-                      }}
                     >
                       {t('menu.logout')}
                     </Button>
