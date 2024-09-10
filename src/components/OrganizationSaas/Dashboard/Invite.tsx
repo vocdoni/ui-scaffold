@@ -25,7 +25,7 @@ const Invite = ({ setInviteView }: { setInviteView: Dispatch<SetStateAction<bool
     <Box maxW='600px' mx='auto'>
       <Flex justifyContent='space-between'>
         <Heading fontSize='2xl' mb='10px'>
-          <Trans>Invite people to your workspace</Trans>
+          <Trans i18nKey='invite.title'>Invite people to your workspace</Trans>
         </Heading>
         <Button
           variant='outline'
@@ -42,7 +42,7 @@ const Invite = ({ setInviteView }: { setInviteView: Dispatch<SetStateAction<bool
         </Button>
       </Flex>
       <Text color={textColorSecondary}>
-        <Trans>Work together on projects</Trans>
+        <Trans i18nKey='invite.subtitle'>Work together on projects</Trans>
       </Text>
       <HSeparator my='24px' />
       <FormProvider {...methods}>
@@ -51,7 +51,7 @@ const Invite = ({ setInviteView }: { setInviteView: Dispatch<SetStateAction<bool
           <OptionForm />
           <Flex justifyContent='center'>
             <Button mx='auto' type='submit'>
-              <Trans>Submit</Trans>
+              <Trans i18nKey='submit'>Submit</Trans>
             </Button>
           </Flex>
         </Box>
@@ -66,8 +66,8 @@ const OptionForm = () => {
 
   return (
     <FormControl>
-      <FormLabel>
-        <Trans>Select an option</Trans>
+      <FormLabel fontSize='sm'>
+        <Trans i18nKey='invite.select_option'>Select an option</Trans>
       </FormLabel>
       <Controller
         name='option'
@@ -87,10 +87,10 @@ const OptionForm = () => {
               >
                 <Box>
                   <Text>
-                    <Trans>Admin</Trans>
+                    <Trans i18nKey='invite.admin'>Admin</Trans>
                   </Text>
                   <Text color={textColorSecondary}>
-                    <Trans>
+                    <Trans i18nKey='invite.admin_description'>
                       Can view, comment, or also create and edit all workspace projects and folders. Typically used for
                       employees.
                     </Trans>
@@ -113,10 +113,10 @@ const OptionForm = () => {
               >
                 <Box>
                   <Text>
-                    <Trans>Guest</Trans>
+                    <Trans i18nKey='invite.guest'>Guest</Trans>
                   </Text>
                   <Text color={textColorSecondary}>
-                    <Trans>
+                    <Trans i18nKey='invite.guest_description'>
                       Can only access projects that you specify choose. Tipically use for clients and stackholders.
                     </Trans>
                   </Text>

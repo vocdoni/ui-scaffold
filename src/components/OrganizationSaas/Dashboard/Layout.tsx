@@ -279,7 +279,7 @@ const PricingModal = ({ isOpenModal, onCloseModal }: { isOpenModal: boolean; onC
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>
-          <Trans>You need to upgrade to use this feature</Trans>
+          <Trans i18nKey='pricing_modal.title'>You need to upgrade to use this feature</Trans>
         </ModalHeader>
         <ModalCloseButton fontSize='lg' />
         <ModalBody>
@@ -291,25 +291,25 @@ const PricingModal = ({ isOpenModal, onCloseModal }: { isOpenModal: boolean; onC
         <ModalFooter>
           <Box>
             <Text>
-              <Trans>If you need more voters, you can select it here:</Trans>
+              <Trans i18nKey='pricing_modal.more_voters'>If you need more voters, you can select it here:</Trans>
             </Text>
             <Select>
               <option>1-500 members</option>
             </Select>
           </Box>
           <Text>
-            <Trans>
-              Currently tou are subscribed to the 'Your plan' subscription. If you upgrade, we will only charge the
+            <Trans i18nKey='pricing_modal.your_plan'>
+              Currently you are subscribed to the 'Your plan' subscription. If you upgrade, we will only charge the
               yearly difference. In the next billing period, starting on 'dd/mm/yy' you will pay for the new select
               plan.
             </Trans>
           </Text>
           <Box>
             <Text>
-              <Trans>Need some help?</Trans>
+              <Trans i18nKey='pricing_modal.help'>Need some help?</Trans>
             </Text>
             <Button as={ReactRouterLink} colorScheme='white'>
-              <Trans>Contact us</Trans>
+              <Trans i18nKey='contact_us'>Contact us</Trans>
             </Button>
           </Box>
         </ModalFooter>

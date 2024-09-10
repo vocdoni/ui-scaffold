@@ -51,7 +51,7 @@ const CreateOrganization = () => (
       <DarkModeToggle position='absolute' ml='auto' top='10px' right='10px' />
       <Box display='flex' flexDirection='column' maxW='600px' mx='auto' flexGrow={1}>
         <Heading textAlign='center' mb='48px'>
-          <Trans>Try Vocdoni for free for 7 days</Trans>
+          <Trans i18nKey='create_org.header'>Try Vocdoni for free for 7 days</Trans>
         </Heading>
         <Box width='fit-content' mx='auto' mb='48px' fontWeight='500'>
           <UnorderedList>
@@ -63,18 +63,18 @@ const CreateOrganization = () => (
           </UnorderedList>
         </Box>
         <Text textAlign='center' color='red.700' fontWeight='500' mb='48px'>
-          No credit card, no automatic renewal.
+          <Trans i18nKey='create_org.credit_card'>No credit card, no automatic renewal.</Trans>
         </Text>
         <Flex>
           <Button form='process-create-form' type='submit' mx='auto' mb='32px' w='50%'>
-            <Trans>View Pricing</Trans>
+            <Trans i18nKey='view_pricing'>View Pricing</Trans>
           </Button>
         </Flex>
 
         <Flex flexGrow={1} flexDirection='column' alignItems='start' justifyContent='space-between' py='24px'>
           <Box>
             <Text textAlign='start' mb='12px'>
-              Trust on us
+              <Trans i18nKey='trust_on_us'>Trust on us</Trans>
             </Text>
             <Grid
               as='section'
@@ -123,10 +123,11 @@ const CreateOrganization = () => (
           </Box>
           <Flex flexDirection='column' alignItems={{ base: 'center', lg: 'start' }} mb='100px' w='full'>
             <Text fontSize={{ base: '28px', md: '48px', lg: '32px', xl: '48px' }} color='white'>
-              The global voting platform
+              <Trans i18nKey='create_org.title'>The global voting platform</Trans>
             </Text>
             <Text fontSize='19px' color='white' textAlign={{ base: 'center', lg: 'start' }}>
-              Cut cost, Save Time: Secure, Private, and GDPR Compliant Voting
+              <Trans i18nKey='create_org.subtitle'>Cut cost, Save Time: Secure, Private, and GDPR Compliant</Trans>
+              Voting
             </Text>
           </Flex>
         </Flex>
@@ -139,7 +140,7 @@ const CreateOrganization = () => (
               }}
             >
               <Link fontWeight='500' href='mailto:info@vocdoni.org'>
-                Support
+                <Trans i18nKey='support'>Support</Trans>
               </Link>
             </ListItem>
             <ListItem
@@ -149,12 +150,12 @@ const CreateOrganization = () => (
               }}
             >
               <Link fontWeight='500' href='/terms'>
-                Terms of Use
+                <Trans i18nKey='terms_of_use'>Terms of Use</Trans>
               </Link>
             </ListItem>
             <ListItem>
-              <Link fontWeight='500' href='https://blog.vocdoni.io/'>
-                Blog
+              <Link fontWeight='500' href='https://blog.vocdoni.io/' isExternal>
+                <Trans i18nKey='blog'>Blog</Trans>
               </Link>
             </ListItem>
           </List>

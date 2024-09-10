@@ -22,19 +22,15 @@ const PricingCard = ({
   return (
     <Card variant='pricing-card' width={width}>
       <CardHeader>
-        <Text>
-          <Trans>{title}</Trans>
-        </Text>
-        <Text>
-          <Trans>{subtitle}</Trans>
-        </Text>
+        <Text>{title}</Text>
+        <Text>{subtitle}</Text>
       </CardHeader>
       <CardBody>
         <Button variant='pricing-card'>
-          <Trans>Subscribe</Trans>
+          <Trans i18nKey='subscribe'>Subscribe</Trans>
         </Button>
         <Text color='black'>
-          <Trans>From ${price}/year</Trans>
+          <Trans i18nKey='pricing_card.from'>From ${price}/year</Trans>
         </Text>
         <Box color='black'>
           <UnorderedList>
@@ -46,7 +42,7 @@ const PricingCard = ({
       </CardBody>
       <CardFooter>
         <Button variant='outline' border='none' color={textColorBrand} _hover={{ textDecoration: 'underline' }}>
-          <Trans>View all futures</Trans>
+          <Trans i18nKey='pricing_card.view_features'>View all features</Trans>
         </Button>
       </CardFooter>
       {popular && (
@@ -65,7 +61,7 @@ const PricingCard = ({
           color='black'
           fontSize='sm'
         >
-          <Trans>Most popular plan</Trans>
+          <Trans i18nKey='pricing_card.most_popular_plan'>Most popular plan</Trans>
         </Box>
       )}
     </Card>

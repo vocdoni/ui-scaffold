@@ -108,11 +108,11 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
       {children}
       <Box me='auto'>
         <Heading color={textColor} fontSize='36px' mb='24px'>
-          <Trans>Create Your Organization</Trans>
+          <Trans i18nKey='create_org.title'>Create Your Organization</Trans>
         </Heading>
       </Box>
       <Text color={textColor} fontWeight='bold' mb='24px'>
-        <Trans>Public Organization Information</Trans>
+        <Trans i18nKey='create_org.public_info'>Public Organization Information</Trans>
       </Text>
       <Box px={{ base: 5, md: 10 }}>
         <FormControl isInvalid={!!errors.name} mb='24px'>
@@ -131,7 +131,7 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
         </FormControl>
         <FormControl isInvalid={!!errors.name}>
           <FormLabel ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
-            <Trans>Website</Trans>
+            <Trans i18nKey='website'>Website</Trans>
           </FormLabel>
           <Input
             type='text'
@@ -145,7 +145,7 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
         </FormControl>
         <FormControl mb='32px'>
           <FormLabel ms='4px' fontSize='sm' fontWeight='500' color={textColor}>
-            <Trans>Description</Trans>
+            <Trans i18nKey='description'>Description</Trans>
           </FormLabel>
           <Textarea
             {...register('description')}
@@ -161,15 +161,17 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
         </FormControl>
       </Box>
       <Text color={textColor} fontWeight='bold' mb='0px'>
-        <Trans>Private Organization Details</Trans>
+        <Trans i18nKey='create_org.private_org'>Private Organization Details</Trans>
       </Text>
       <Text color={textColorSecondary} mb='24px' fontSize='sm'>
-        <Trans>Help us tailor your experience with information about your org. We won't share this info</Trans>
+        <Trans i18nKey='create_org.private_org_description'>
+          Help us tailor your experience with information about your org. We won't share this info
+        </Trans>
       </Text>
       <Box px={{ base: 5, md: 10 }}>
         <FormControl isInvalid={!!errors.membership_size} mb='24px'>
           <FormLabel display='flex' ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
-            <Trans>Membership size</Trans>
+            <Trans i18nKey='create_org.membership_size'>Membership size</Trans>
           </FormLabel>
           <Select
             {...register('membership_size', { required })}
@@ -183,7 +185,7 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
         </FormControl>
         <FormControl isInvalid={!!errors.type} mb='24px'>
           <FormLabel ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
-            <Trans>Type / Sector</Trans>
+            <Trans i18nKey='create_org.type_sector'>Type / Sector</Trans>
           </FormLabel>
 
           <Select
@@ -198,7 +200,7 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
         </FormControl>
         <FormControl isInvalid={!!errors.country} mb='32px'>
           <FormLabel ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
-            <Trans>Country</Trans>
+            <Trans i18nKey='country'>Country</Trans>
           </FormLabel>
 
           <Select
@@ -217,7 +219,9 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
       <FormControl display='flex' alignItems='start' mb='12px'>
         <Checkbox {...register('communications')} colorScheme='brandScheme' me='10px' mt='4px' />
         <FormLabel mb='0' fontWeight='normal' color={textColor} fontSize='sm'>
-          I want to receive communications and be contacted to tailor my governance experience.
+          <Trans i18nKey='create_org.communication'>
+            I want to receive communications and be contacted to tailor my governance experience.
+          </Trans>
         </FormLabel>
       </FormControl>
       <FormControl isInvalid={!!errors.terms} mb='32px'>
@@ -239,7 +243,10 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
         {t('organization.create_org')}
       </Button>
       <Text color={textColorSecondary} fontSize='sm'>
-        If your organization already have a profile, ask the admin to invite you to your organization.
+        <Trans i18nKey='create_org.already_profile'>
+          {' '}
+          If your organization already have a profile, ask the admin to invite you to your organization.
+        </Trans>
       </Text>
 
       {sent && error && (
