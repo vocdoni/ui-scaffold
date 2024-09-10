@@ -26,7 +26,7 @@ import {
 import { OrganizationAvatar, OrganizationName } from '@vocdoni/chakra-components'
 import { OrganizationProvider, useClient } from '@vocdoni/react-providers'
 import { Trans, useTranslation } from 'react-i18next'
-import { Outlet, useLocation } from 'react-router-dom'
+import { Outlet, Link as ReactRouterLink, useLocation } from 'react-router-dom'
 import { HSeparator } from '~components/Auth/SignIn'
 import DarkModeToggle from '~src/themes/saas/components/DarkMode'
 import PricingCard from '~src/themes/saas/components/Saas/PricingCard'
@@ -36,52 +36,13 @@ import { Logo } from '~theme/icons'
 import OrganizationDashboardMenu from './Menu'
 import Settings from './Settings'
 
-const Cards = [
-  {
-    popular: false,
-    title: 'Essential',
-    subtitle: 'Small or medium-sized orgs or community groups with basic voting needs.',
-    price: '99',
-    features: [
-      'Core voting features',
-      'Up to 3 Admins and 1 org',
-      '5 yearly voting processes',
-      'Basic reporting and analytics',
-      'Ticket support',
-      'GDPR compliance',
-    ],
-  },
-  {
-    popular: true,
-    title: 'Premium',
-    subtitle: 'Larger amount thay require more advanced features.',
-    price: '389',
-    features: [
-      'All essential plan features',
-      'Up to 5 Admins',
-      '10 yearly voting processes',
-      'Custom subdomain & branding',
-      'Advanced reporting & analytics',
-      'Ticket and chat support',
-      'GDPR compliance',
-    ],
-  },
-  {
-    popular: false,
-    title: 'Custom Plan',
-    subtitle: 'Large organizations enterprises, and institutions requiring extensive customization and support.',
-    price: '999',
-    features: [
-      'All faetures & voting types',
-      'Unlimited Admins & suborgs',
-      'Unlimited yearly votingprocesses',
-      'White-label solution',
-      'Advances securtity features',
-      'Dedicated account manager',
-      'Full technical support (ticket, chat, email)',
-    ],
-  },
-]
+type CardProps = {
+  popular: boolean
+  title: string
+  subtitle: string
+  price: string
+  features: string[]
+}
 
 const OrganizationDashboardLayout: React.FC = () => {
   const { t } = useTranslation()
@@ -106,7 +67,6 @@ const OrganizationDashboardLayout: React.FC = () => {
       )
     }
   }
-
   return (
     <OrganizationProvider organization={account}>
       <Wrapper gap='10px'>
@@ -179,6 +139,9 @@ const OrganizationDashboardLayout: React.FC = () => {
                     my='20px'
                     bgColor={bg}
                     color={textColor}
+                    _hover={{
+                      bgColor: bg,
+                    }}
                   >
                     <Flex
                       position='absolute'
@@ -264,46 +227,95 @@ const OrganizationDashboardLayout: React.FC = () => {
   )
 }
 
-const PricingModal = ({ isOpenModal, onCloseModal }: { isOpenModal: boolean; onCloseModal: () => void }) => (
-  <Modal isOpen={isOpenModal} onClose={onCloseModal} variant='dashboard-plans'>
-    <ModalOverlay />
-    <ModalContent>
-      <ModalHeader>
-        <Trans>You need to upgrade to use this feature</Trans>
-      </ModalHeader>
-      <ModalCloseButton fontSize='lg' />
-      <ModalBody>
-        {Cards.map((card, idx) => (
-          <PricingCard key={idx} {...card} />
-        ))}
-      </ModalBody>
+const PricingModal = ({ isOpenModal, onCloseModal }: { isOpenModal: boolean; onCloseModal: () => void }) => {
+  const cards: CardProps[] = [
+    {
+      popular: false,
+      title: 'Essential',
+      subtitle: 'Small or medium-sized orgs or community groups with basic voting needs.',
+      price: '99',
+      features: [
+        'Core voting features',
+        'Up to 3 Admins and 1 org',
+        '5 yearly voting processes',
+        'Basic reporting and analytics',
+        'Ticket support',
+        'GDPR compliance',
+      ],
+    },
+    {
+      popular: true,
+      title: 'Premium',
+      subtitle: 'Larger amount thay require more advanced features.',
+      price: '389',
+      features: [
+        'All essential plan features',
+        'Up to 5 Admins',
+        '10 yearly voting processes',
+        'Custom subdomain & branding',
+        'Advanced reporting & analytics',
+        'Ticket and chat support',
+        'GDPR compliance',
+      ],
+    },
+    {
+      popular: false,
+      title: 'Custom Plan',
+      subtitle: 'Large organizations enterprises, and institutions requiring extensive customization and support.',
+      price: '999',
+      features: [
+        'All faetures & voting types',
+        'Unlimited Admins & suborgs',
+        'Unlimited yearly votingprocesses',
+        'White-label solution',
+        'Advances securtity features',
+        'Dedicated account manager',
+        'Full technical support (ticket, chat, email)',
+      ],
+    },
+  ]
+  return (
+    <Modal isOpen={isOpenModal} onClose={onCloseModal} variant='dashboard-plans'>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>
+          <Trans>You need to upgrade to use this feature</Trans>
+        </ModalHeader>
+        <ModalCloseButton fontSize='lg' />
+        <ModalBody>
+          {cards.map((card, idx) => (
+            <PricingCard key={idx} {...card} />
+          ))}
+        </ModalBody>
 
-      <ModalFooter>
-        <Box>
+        <ModalFooter>
+          <Box>
+            <Text>
+              <Trans>If you need more voters, you can select it here:</Trans>
+            </Text>
+            <Select>
+              <option>1-500 members</option>
+            </Select>
+          </Box>
           <Text>
-            <Trans>If you need more voters, you can select it here:</Trans>
+            <Trans>
+              Currently tou are subscribed to the 'Your plan' subscription. If you upgrade, we will only charge the
+              yearly difference. In the next billing period, starting on 'dd/mm/yy' you will pay for the new select
+              plan.
+            </Trans>
           </Text>
-          <Select>
-            <option>1-500 members</option>
-          </Select>
-        </Box>
-        <Text>
-          <Trans>
-            Currently tou are subscribed to the 'Your plan' subscription. If you upgrade, we will only charge the yearly
-            difference. In the next billing period, starting on 'dd/mm/yy' you will pay for the new select plan.
-          </Trans>
-        </Text>
-        <Box>
-          <Text>
-            <Trans>Need some help?</Trans>
-          </Text>
-          <Button colorScheme='white'>
-            <Trans>Contact us</Trans>
-          </Button>
-        </Box>
-      </ModalFooter>
-    </ModalContent>
-  </Modal>
-)
+          <Box>
+            <Text>
+              <Trans>Need some help?</Trans>
+            </Text>
+            <Button as={ReactRouterLink} colorScheme='white'>
+              <Trans>Contact us</Trans>
+            </Button>
+          </Box>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+  )
+}
 
 export default OrganizationDashboardLayout

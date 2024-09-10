@@ -55,11 +55,11 @@ const CreateOrganization = () => (
         </Heading>
         <Box width='fit-content' mx='auto' mb='48px' fontWeight='500'>
           <UnorderedList>
-            <li>Full access to basic features</li>
-            <li>Unlimited creation of voting processes</li>
-            <li>Multiple administrators</li>
-            <li>Up to 20 voters</li>
-            <li>Support during the trial period</li>
+            <ListItem>Full access to basic features</ListItem>
+            <ListItem>UnListItemmited creation of voting processes</ListItem>
+            <ListItem>Multiple administrators</ListItem>
+            <ListItem>Up to 20 voters</ListItem>
+            <ListItem>Support during the trial period</ListItem>
           </UnorderedList>
         </Box>
         <Text textAlign='center' color='red.700' fontWeight='500' mb='48px'>
@@ -138,7 +138,7 @@ const CreateOrganization = () => (
                 md: '44px',
               }}
             >
-              <Link fontWeight='500' href='mailto:hello@simmmple.com'>
+              <Link fontWeight='500' href='mailto:info@vocdoni.org'>
                 Support
               </Link>
             </ListItem>
@@ -148,12 +148,12 @@ const CreateOrganization = () => (
                 md: '44px',
               }}
             >
-              <Link fontWeight='500' href='https://simmmple.com/terms-of-service'>
+              <Link fontWeight='500' href='/terms'>
                 Terms of Use
               </Link>
             </ListItem>
             <ListItem>
-              <Link fontWeight='500' href='https://www.blog.simmmple.com/'>
+              <Link fontWeight='500' href='https://blog.vocdoni.io/'>
                 Blog
               </Link>
             </ListItem>

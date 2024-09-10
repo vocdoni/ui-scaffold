@@ -13,6 +13,7 @@ import { Checkbox } from './components/checkbox'
 import { Textarea } from './components/textarea'
 import { breakpoints } from './foundations/breakpoints'
 import { colors } from './colors'
+import { Pagination } from './components/pagination'
 
 export const theme = extendTheme(vtheme, {
   styles: {
@@ -32,6 +33,7 @@ export const theme = extendTheme(vtheme, {
     Input,
     Link,
     Modal,
+    Pagination,
     Textarea,
   },
   colors,
