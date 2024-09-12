@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 
 export interface SelectCustomProps {
-  options: { label: string; value: string }[] // Puedes cambiar el tipo según lo que necesites
+  options: { label: string; value: string }[]
   formValue: string
   label?: string
   placeholder?: string
@@ -44,6 +44,14 @@ const SelectCustom = ({
     setValue,
   } = useFormContext()
 
+  // Function to extract and format error messages
+  const getErrorMessage = (error: any): string => {
+    if (error && typeof error.message === 'string') {
+      return error.message
+    }
+    return 'An error occurred'
+  }
+
   return (
     <FormControl isInvalid={!!errors[formValue]}>
       <FormLabel htmlFor={formValue} fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
@@ -66,9 +74,7 @@ const SelectCustom = ({
           />
         )}
       />
-      <FormErrorMessage>
-        {errors[formValue]?.message && typeof errors[formValue]?.message === 'string' && errors[formValue]?.message}
-      </FormErrorMessage>
+      <FormErrorMessage>{getErrorMessage(errors[formValue])}</FormErrorMessage>
     </FormControl>
   )
 }

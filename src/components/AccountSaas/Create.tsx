@@ -35,11 +35,15 @@ import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 import { useAccountHealthTools } from '~components/Account/use-account-health-tools'
 
+import {
+  CountriesTypesSelector,
+  MembershipSizeTypesSelector,
+  OrganzationTypesSelector,
+} from '~components/Layout/SaasSelector'
 import { ucfirst } from '~constants/strings'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import { Check, Close } from '~theme/icons'
 import hello from '/shared/hello.jpeg'
-import { CountriesTypesSelector, MembershipSizeTypesSelector, OrganzationTypesSelector } from '~components/Layout/SaasSelector'
 
 interface FormFields {
   name: string
