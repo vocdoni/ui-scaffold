@@ -88,7 +88,7 @@ const LayoutAuth = () => {
                 </Link>
               </ListItem>
               <ListItem>
-                <Link fontWeight='500' href='https://blog.vocdoni.io/'>
+                <Link fontWeight='500' href='https://blog.vocdoni.io/' isExternal>
                   {t('blog')}
                 </Link>
               </ListItem>

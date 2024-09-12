@@ -210,9 +210,7 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
             fontWeight='500'
             size='lg'
             borderRadius='xl'
-          >
-            {' '}
-          </Select>
+          />
           <FormErrorMessage>{errors.country?.message?.toString()}</FormErrorMessage>
         </FormControl>
       </Box>
@@ -244,7 +242,6 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
       </Button>
       <Text color={textColorSecondary} fontSize='sm'>
         <Trans i18nKey='create_org.already_profile'>
-          {' '}
           If your organization already have a profile, ask the admin to invite you to your organization.
         </Trans>
       </Text>

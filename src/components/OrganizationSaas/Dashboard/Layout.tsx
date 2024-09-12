@@ -228,49 +228,60 @@ const OrganizationDashboardLayout: React.FC = () => {
 }
 
 const PricingModal = ({ isOpenModal, onCloseModal }: { isOpenModal: boolean; onCloseModal: () => void }) => {
+  const { t } = useTranslation()
+
   const cards: CardProps[] = [
     {
       popular: false,
-      title: 'Essential',
-      subtitle: 'Small or medium-sized orgs or community groups with basic voting needs.',
+      title: t('pricing_modal.essential_title', { defaultValue: 'Essential' }),
+      subtitle: t('pricing_modal.essential_subtitle', {
+        defaultValue: 'Small or medium-sized orgs or community groups with basic voting needs.',
+      }),
       price: '99',
       features: [
-        'Core voting features',
-        'Up to 3 Admins and 1 org',
-        '5 yearly voting processes',
-        'Basic reporting and analytics',
-        'Ticket support',
-        'GDPR compliance',
+        t('pricing_modal.essential_feat.core_voting', { defaultValue: 'Core voting features' }),
+        t('pricing_modal.essential_feat.up_to_admins', { defaultValue: 'Up to 3 Admins and 1 org' }),
+        t('pricing_modal.essential_feat.yearly_processes', { defaultValue: '5 yearly voting processes' }),
+        t('pricing_modal.essential_feat.report_analytitcs', { defaultValue: 'Basic reporting and analytics' }),
+        t('pricing_modal.essential_feat.ticket_support', { defaultValue: 'Ticket support' }),
+        t('pricing_modal.essential_feat.gpdr_compilance', { defaultValue: 'GDPR compliance' }),
       ],
     },
     {
       popular: true,
-      title: 'Premium',
-      subtitle: 'Larger amount thay require more advanced features.',
+      title: t('pricing_modal.premium_title', { defaultValue: 'Premium' }),
+      subtitle: t('pricing_modal.premium_subtitle', {
+        defaultValue: 'Larger amount that require more advanced features.',
+      }),
       price: '389',
       features: [
-        'All essential plan features',
-        'Up to 5 Admins',
-        '10 yearly voting processes',
-        'Custom subdomain & branding',
-        'Advanced reporting & analytics',
-        'Ticket and chat support',
-        'GDPR compliance',
+        t('pricing_modal.premium_feat.all_essential', { defaultValue: 'All essential plan features' }),
+        t('pricing_modal.premium_feat.up_to_admins', { defaultValue: 'Up to 5 Admins' }),
+        t('pricing_modal.premium_feat.yearly_processes', { defaultValue: '10 yearly voting processes' }),
+        t('pricing_modal.premium_feat.custom_subdomain', { defaultValue: 'Custom subdomain & branding' }),
+        t('pricing_modal.premium_feat.report_analytitcs', { defaultValue: 'Advanced reporting & analytics' }),
+        t('pricing_modal.premium_feat.ticket_support', { defaultValue: 'Ticket and chat support' }),
+        t('pricing_modal.premium_feat.gpdr_compilance', { defaultValue: 'GDPR compliance' }),
       ],
     },
     {
       popular: false,
-      title: 'Custom Plan',
-      subtitle: 'Large organizations enterprises, and institutions requiring extensive customization and support.',
+      title: t('pricing_modal.custom_title', { defaultValue: 'Custom Plan' }),
+      subtitle: t('pricing_modal.custom_subtitle', {
+        defaultValue:
+          'Large organizations enterprises, and institutions requiring extensive customization and support.',
+      }),
       price: '999',
       features: [
-        'All faetures & voting types',
-        'Unlimited Admins & suborgs',
-        'Unlimited yearly votingprocesses',
-        'White-label solution',
-        'Advances securtity features',
-        'Dedicated account manager',
-        'Full technical support (ticket, chat, email)',
+        t('pricing_modal.custom_feat.all_votings', { defaultValue: 'All faetures & voting types' }),
+        t('pricing_modal.custom_feat.unlimited_admins', { defaultValue: 'Unlimited Admins & suborgs' }),
+        t('pricing_modal.custom_feat.unlimited_processes', { defaultValue: 'Unlimited yearly voting processes' }),
+        t('pricing_modal.custom_feat.white_label_solution', { defaultValue: 'White-label solution' }),
+        t('pricing_modal.custom_feat.advanced_security', { defaultValue: 'Advanced security features' }),
+        t('pricing_modal.custom_feat.account_manager', { defaultValue: 'Dedicated account manager' }),
+        t('pricing_modal.custom_feat.full_tech_support', {
+          defaultValue: 'Full technical support (ticket, chat, email)',
+        }),
       ],
     },
   ]
