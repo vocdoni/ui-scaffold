@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Grid, Heading, Image, Link, List, ListItem, Text, UnorderedList } from '@chakra-ui/react'
 import { Trans } from 'react-i18next'
-import { AccountCreate } from '~src/themes/saas/components/Account/Create'
+import { AccountCreate } from '~components/AccountSaas/Create'
 import DarkModeToggle from '~src/themes/saas/components/DarkMode'
 import Wrapper from '~src/themes/saas/components/wrapper'
 import barca from '/assets/barca.png'
@@ -55,11 +55,21 @@ const CreateOrganization = () => (
         </Heading>
         <Box width='fit-content' mx='auto' mb='48px' fontWeight='500'>
           <UnorderedList>
-            <ListItem>Full access to basic features</ListItem>
-            <ListItem>UnListItemmited creation of voting processes</ListItem>
-            <ListItem>Multiple administrators</ListItem>
-            <ListItem>Up to 20 voters</ListItem>
-            <ListItem>Support during the trial period</ListItem>
+            <ListItem>
+              <Trans i18nKey={'create_org.full_access'}>Full access to basic features</Trans>
+            </ListItem>
+            <ListItem>
+              <Trans i18nKey={'create_org.unlimited_voting_processes'}>Unlimited creation of voting processes</Trans>
+            </ListItem>
+            <ListItem>
+              <Trans i18nKey={'create_org.multiple_administrators'}>Multiple administrators</Trans>
+            </ListItem>
+            <ListItem>
+              <Trans i18nKey={'create_org.up_to_20_voters'}>Up to 20 voters</Trans>
+            </ListItem>
+            <ListItem>
+              <Trans i18nKey={'create_org.support_during_trial_period'}>Support during the trial period</Trans>
+            </ListItem>
           </UnorderedList>
         </Box>
         <Text textAlign='center' color='red.700' fontWeight='500' mb='48px'>

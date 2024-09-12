@@ -37,7 +37,7 @@ import { useAccount } from 'wagmi'
 import { useAccountHealthTools } from '~components/Account/use-account-health-tools'
 import { ucfirst } from '~constants/strings'
 import { Check, Close } from '~theme/icons'
-import useDarkMode from '../../hooks/useDarkMode'
+import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import hello from '/shared/hello.jpeg'
 
 interface FormFields {
@@ -136,7 +136,7 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
           <Input
             type='text'
             {...register('website')}
-            placeholder={'www.asflafd.com'}
+            placeholder={'https://example.com'}
             variant='auth'
             mb='24px'
             size='lg'
