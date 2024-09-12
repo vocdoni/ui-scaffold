@@ -29,6 +29,7 @@ export const Input = defineMultiStyleConfig({
     auth: (props: any) => ({
       field: {
         fontWeight: '500',
+        py: '25px',
         color: mode('navy.700', 'white')(props),
         bg: mode('transparent', 'transparent')(props),
         border: '1px solid',

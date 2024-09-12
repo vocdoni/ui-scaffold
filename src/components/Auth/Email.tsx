@@ -22,16 +22,7 @@ const Email = ({ label }: { label?: string }) => {
         {label ? label : t('email')}
         <Text color={textColorBrand}>*</Text>
       </FormLabel>
-      <Input
-        variant='auth'
-        fontSize='sm'
-        ms={{ base: '0px', md: '0px' }}
-        type='email'
-        placeholder='your@email.com'
-        fontWeight='500'
-        size='lg'
-        {...register('email', { required })}
-      />
+      <Input type='email' placeholder='your@email.com' {...register('email', { required })} />
       <FormErrorMessage>{errors.email?.message?.toString()}</FormErrorMessage>
     </FormControl>
   )

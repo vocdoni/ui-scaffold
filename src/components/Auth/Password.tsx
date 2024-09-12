@@ -40,9 +40,7 @@ const Password = ({ required, messageError }: { required?: any; messageError?: s
       </FormLabel>
       <InputGroup size='md' mb='8px'>
         <Input
-          fontSize='sm'
           placeholder='Min. 8 characters'
-          size='lg'
           type={show ? 'text' : 'password'}
           variant='auth'
           {...register('password', validation)}
