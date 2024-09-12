@@ -8,6 +8,7 @@ import LayoutAuth from '~elements/LayoutAuth'
 import LayoutProcessCreate from '~elements/LayoutProcessCreate'
 import { StripeCheckout, StripeReturn } from '~elements/Stripe'
 import OrganizationProtectedRoute from './OrganizationProtectedRoute'
+
 import { SuspenseLoader } from './SuspenseLoader'
 
 // Lazy loading helps splitting the final code, which helps downloading the app (theoretically)
@@ -31,10 +32,10 @@ const OrganizationTeamSaas = lazy(() => import('~components/OrganizationSaas/Das
 const ProcessCreateSteps = lazy(() => import('~components/ProcessCreate/Steps'))
 const Terms = lazy(() => import('~components/TermsAndPrivacy/Terms'))
 const Privacy = lazy(() => import('~components/TermsAndPrivacy/Privacy'))
-const Calculator = lazy(() => import('~components/Calculator'))
 const SignIn = lazy(() => import('~components/Auth/SignIn'))
 const SignUp = lazy(() => import('~components/Auth/SignUp'))
 const ForgotPassword = lazy(() => import('~components/Auth/ForgotPassword'))
+const Calculator = lazy(() => import('~components/Calculator'))
 
 export const RoutesProvider = () => {
   const { client } = useClient()
@@ -168,7 +169,7 @@ export const RoutesProvider = () => {
           {
             children: [
               {
-                path: 'auth/signin',
+                path: 'signin',
                 element: (
                   <SuspenseLoader>
                     <SignIn />
@@ -176,7 +177,7 @@ export const RoutesProvider = () => {
                 ),
               },
               {
-                path: 'auth/signup',
+                path: 'signup',
                 element: (
                   <SuspenseLoader>
                     <SignUp />
@@ -184,7 +185,7 @@ export const RoutesProvider = () => {
                 ),
               },
               {
-                path: 'auth/forgot-password',
+                path: 'forgot-password',
                 element: (
                   <SuspenseLoader>
                     <ForgotPassword />
@@ -199,14 +200,14 @@ export const RoutesProvider = () => {
         path: '/organization',
         element: (
           <SuspenseLoader>
-            <OrganizationDashboardLayoutSaas />
+            <OrganizationProtectedRoute />
           </SuspenseLoader>
         ),
         children: [
           {
             element: (
               <SuspenseLoader>
-                <OrganizationProtectedRoute />
+                <OrganizationDashboardLayoutSaas />
               </SuspenseLoader>
             ),
             children: [

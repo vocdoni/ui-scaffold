@@ -7,7 +7,7 @@ import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 
 const LayoutAuth = () => {
   const { t } = useTranslation()
-  const { bg } = useDarkMode()
+  const { bg, textColorSecondary } = useDarkMode()
 
   return (
     <Flex bgColor={bg} minH='100vh' position='relative'>
@@ -34,7 +34,14 @@ const LayoutAuth = () => {
             <Outlet />
           </Box>
         </Flex>
-        <Text minW='100%' maxW={{ base: '90%', md: '420px' }} mt='auto' py='20px' textAlign='center'>
+        <Text
+          color={textColorSecondary}
+          minW='100%'
+          maxW={{ base: '90%', md: '420px' }}
+          mt='auto'
+          py='20px'
+          textAlign='center'
+        >
           {t('rights')}
         </Text>
       </Flex>
@@ -44,6 +51,7 @@ const LayoutAuth = () => {
         flex='0 0 50%'
         background='linear-gradient(to bottom, #B5F492, #338B93)'
         borderBottomLeftRadius={{ lg: '120px', xl: '200px' }}
+        className='brand-gradient'
       >
         <DarkModeToggle position='absolute' ml='auto' top='10px' right='10px' />
         <Flex
@@ -70,17 +78,17 @@ const LayoutAuth = () => {
           <Flex flexDirection='column' alignItems='center' justifyContent='center' color='white'>
             <List display='flex' gap='20px'>
               <ListItem>
-                <Link fontWeight='500' href='mailto:hello@simmmple.com'>
+                <Link fontWeight='500' href='mailto:info@vocdoni.org'>
                   {t('support')}
                 </Link>
               </ListItem>
               <ListItem>
-                <Link fontWeight='500' href='https://simmmple.com/terms-of-service'>
+                <Link fontWeight='500' href='/terms'>
                   {t('terms_of_use')}
                 </Link>
               </ListItem>
               <ListItem>
-                <Link fontWeight='500' href='https://www.blog.simmmple.com/'>
+                <Link fontWeight='500' href='https://blog.vocdoni.io/' isExternal>
                   {t('blog')}
                 </Link>
               </ListItem>

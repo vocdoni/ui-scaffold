@@ -41,6 +41,7 @@ const OrganizationDashboardMenu = () => {
       </Button>
       <Button
         onClick={() => setMenuVotings((prev) => !prev)}
+        isActive={location.pathname.includes('/organization/votings')}
         justifyContent='start'
         variant='dashboard'
         w='full'
@@ -80,6 +81,7 @@ const OrganizationDashboardMenu = () => {
       </Button>
       <Button
         onClick={() => setMenuSettings((prev) => !prev)}
+        isActive={location.pathname.includes('/organization/team')}
         justifyContent='start'
         variant='dashboard'
         w='full'
@@ -96,7 +98,7 @@ const OrganizationDashboardMenu = () => {
           <Button
             as={Link}
             to={'/organization/team'}
-            isActive={location.pathname.includes('/organizaton/team')}
+            isActive={location.pathname.includes('/organization/team')}
             justifyContent='start'
             variant='dashboard'
             w='full'

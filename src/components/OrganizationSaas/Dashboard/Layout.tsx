@@ -11,25 +11,44 @@ import {
   Flex,
   Heading,
   IconButton,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  Select,
+  Text,
   useDisclosure,
   VStack,
 } from '@chakra-ui/react'
 import { OrganizationAvatar, OrganizationName } from '@vocdoni/chakra-components'
 import { OrganizationProvider, useClient } from '@vocdoni/react-providers'
-import { useTranslation } from 'react-i18next'
-import { Outlet, useLocation } from 'react-router-dom'
+import { Trans, useTranslation } from 'react-i18next'
+import { Outlet, Link as ReactRouterLink, useLocation } from 'react-router-dom'
 import { HSeparator } from '~components/Auth/SignIn'
 import DarkModeToggle from '~src/themes/saas/components/DarkMode'
-import Wrapper from '~src/themes/saas/components/wrapper'
+import PricingCard from '~src/themes/saas/components/Saas/PricingCard'
+import Wrapper from '~src/themes/saas/components/Saas/Wapper'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import { Logo } from '~theme/icons'
 import OrganizationDashboardMenu from './Menu'
 import Settings from './Settings'
 
+type CardProps = {
+  popular: boolean
+  title: string
+  subtitle: string
+  price: string
+  features: string[]
+}
+
 const OrganizationDashboardLayout: React.FC = () => {
   const { t } = useTranslation()
-  const { bgSecondary, textColorBrand, bg, textColorSecondary } = useDarkMode()
+  const { textColor, bgSecondary, textColorBrand, bg, textColorSecondary } = useDarkMode()
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen: isOpenModal, onOpen: onOpenModal, onClose: onCloseModal } = useDisclosure()
   const { account } = useClient()
   const location = useLocation()
 
@@ -40,9 +59,14 @@ const OrganizationDashboardLayout: React.FC = () => {
           {t('organization.votings_list')}
         </Heading>
       )
+    } else if (location.pathname.includes('/team')) {
+      return (
+        <Heading mr='auto' fontSize='2xl'>
+          Team
+        </Heading>
+      )
     }
   }
-
   return (
     <OrganizationProvider organization={account}>
       <Wrapper gap='10px'>
@@ -105,22 +129,28 @@ const OrganizationDashboardLayout: React.FC = () => {
 
                 <Box mt='auto'>
                   <Button
-                    variant=''
+                    position='relative'
                     display='flex'
-                    justifyContent='start'
+                    justifyContent='center'
                     gap='10px'
                     borderRadius='full'
                     boxShadow='2px 2px 8px 0px gray'
                     w='full'
                     my='20px'
+                    bgColor={bg}
+                    color={textColor}
+                    _hover={{
+                      bgColor: bg,
+                    }}
                   >
                     <Flex
+                      position='absolute'
+                      left='20px'
                       justifyContent='center'
                       alignItems='center'
                       bgColor='brand.500'
-                      px={2}
-                      py={2}
-                      mr={2}
+                      px={1}
+                      py={1}
                       borderRadius='full'
                     >
                       <AddIcon boxSize={3} color='white' />
@@ -128,7 +158,13 @@ const OrganizationDashboardLayout: React.FC = () => {
                     {t('new_voting')}
                   </Button>
                   <VStack>
-                    <Button color={textColorSecondary} textDecoration='underline' _hover={{ textDecoration: 'none' }}>
+                    <Button
+                      variant='outline'
+                      border='none'
+                      color={textColorSecondary}
+                      textDecoration='underline'
+                      _hover={{ textDecoration: 'none' }}
+                    >
                       {t('menu.logout')}
                     </Button>
                   </VStack>
@@ -180,12 +216,116 @@ const OrganizationDashboardLayout: React.FC = () => {
             w='full'
             ml='auto'
             pt='30px'
+            mb='2vh'
           >
             <Outlet />
           </Box>
         </Flex>
       </Wrapper>
+      <PricingModal isOpenModal={isOpenModal} onCloseModal={onCloseModal} />
     </OrganizationProvider>
+  )
+}
+
+const PricingModal = ({ isOpenModal, onCloseModal }: { isOpenModal: boolean; onCloseModal: () => void }) => {
+  const { t } = useTranslation()
+
+  const cards: CardProps[] = [
+    {
+      popular: false,
+      title: t('pricing_modal.essential_title', { defaultValue: 'Essential' }),
+      subtitle: t('pricing_modal.essential_subtitle', {
+        defaultValue: 'Small or medium-sized orgs or community groups with basic voting needs.',
+      }),
+      price: '99',
+      features: [
+        t('pricing_modal.essential_feat.core_voting', { defaultValue: 'Core voting features' }),
+        t('pricing_modal.essential_feat.up_to_admins', { defaultValue: 'Up to 3 Admins and 1 org' }),
+        t('pricing_modal.essential_feat.yearly_processes', { defaultValue: '5 yearly voting processes' }),
+        t('pricing_modal.essential_feat.report_analytitcs', { defaultValue: 'Basic reporting and analytics' }),
+        t('pricing_modal.essential_feat.ticket_support', { defaultValue: 'Ticket support' }),
+        t('pricing_modal.essential_feat.gpdr_compilance', { defaultValue: 'GDPR compliance' }),
+      ],
+    },
+    {
+      popular: true,
+      title: t('pricing_modal.premium_title', { defaultValue: 'Premium' }),
+      subtitle: t('pricing_modal.premium_subtitle', {
+        defaultValue: 'Larger amount that require more advanced features.',
+      }),
+      price: '389',
+      features: [
+        t('pricing_modal.premium_feat.all_essential', { defaultValue: 'All essential plan features' }),
+        t('pricing_modal.premium_feat.up_to_admins', { defaultValue: 'Up to 5 Admins' }),
+        t('pricing_modal.premium_feat.yearly_processes', { defaultValue: '10 yearly voting processes' }),
+        t('pricing_modal.premium_feat.custom_subdomain', { defaultValue: 'Custom subdomain & branding' }),
+        t('pricing_modal.premium_feat.report_analytitcs', { defaultValue: 'Advanced reporting & analytics' }),
+        t('pricing_modal.premium_feat.ticket_support', { defaultValue: 'Ticket and chat support' }),
+        t('pricing_modal.premium_feat.gpdr_compilance', { defaultValue: 'GDPR compliance' }),
+      ],
+    },
+    {
+      popular: false,
+      title: t('pricing_modal.custom_title', { defaultValue: 'Custom Plan' }),
+      subtitle: t('pricing_modal.custom_subtitle', {
+        defaultValue:
+          'Large organizations enterprises, and institutions requiring extensive customization and support.',
+      }),
+      price: '999',
+      features: [
+        t('pricing_modal.custom_feat.all_votings', { defaultValue: 'All faetures & voting types' }),
+        t('pricing_modal.custom_feat.unlimited_admins', { defaultValue: 'Unlimited Admins & suborgs' }),
+        t('pricing_modal.custom_feat.unlimited_processes', { defaultValue: 'Unlimited yearly voting processes' }),
+        t('pricing_modal.custom_feat.white_label_solution', { defaultValue: 'White-label solution' }),
+        t('pricing_modal.custom_feat.advanced_security', { defaultValue: 'Advanced security features' }),
+        t('pricing_modal.custom_feat.account_manager', { defaultValue: 'Dedicated account manager' }),
+        t('pricing_modal.custom_feat.full_tech_support', {
+          defaultValue: 'Full technical support (ticket, chat, email)',
+        }),
+      ],
+    },
+  ]
+  return (
+    <Modal isOpen={isOpenModal} onClose={onCloseModal} variant='dashboard-plans'>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>
+          <Trans i18nKey='pricing_modal.title'>You need to upgrade to use this feature</Trans>
+        </ModalHeader>
+        <ModalCloseButton fontSize='lg' />
+        <ModalBody>
+          {cards.map((card, idx) => (
+            <PricingCard key={idx} {...card} />
+          ))}
+        </ModalBody>
+
+        <ModalFooter>
+          <Box>
+            <Text>
+              <Trans i18nKey='pricing_modal.more_voters'>If you need more voters, you can select it here:</Trans>
+            </Text>
+            <Select>
+              <option>1-500 members</option>
+            </Select>
+          </Box>
+          <Text>
+            <Trans i18nKey='pricing_modal.your_plan'>
+              Currently you are subscribed to the 'Your plan' subscription. If you upgrade, we will only charge the
+              yearly difference. In the next billing period, starting on 'dd/mm/yy' you will pay for the new select
+              plan.
+            </Trans>
+          </Text>
+          <Box>
+            <Text>
+              <Trans i18nKey='pricing_modal.help'>Need some help?</Trans>
+            </Text>
+            <Button as={ReactRouterLink} colorScheme='white'>
+              <Trans i18nKey='contact_us'>Contact us</Trans>
+            </Button>
+          </Box>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
   )
 }
 

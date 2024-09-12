@@ -1,25 +1,13 @@
-import {
-  Box,
-  Button,
-  Checkbox,
-  Flex,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Heading,
-  Icon,
-  Input,
-  Text,
-} from '@chakra-ui/react'
-import React from 'react'
+import { Box, Button, Checkbox, Flex, FormControl, FormErrorMessage, FormLabel, Heading, Text } from '@chakra-ui/react'
+import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { useForm } from 'react-hook-form'
-import { FcGoogle } from 'react-icons/fc'
 import { NavLink, useNavigate } from 'react-router-dom'
-import PasswordInput from '~components/Auth/PasswordInput'
 import { useAuth } from '~components/Auth/useAuth'
 import { ILoginParameters } from '~components/Auth/useAuthProvider'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
+import Email from './Email'
+import GoogleAuth from './GoogleAuth'
+import Password from './Password'
 
 type FormData = {
   keepLogedIn: boolean
@@ -29,11 +17,8 @@ const SignIn = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const { textColor, textColorSecondary, textColorBrand, googleBg, googleHover, googleActive } = useDarkMode()
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormData>()
+  const methods = useForm<FormData>()
+  const { register, handleSubmit } = methods
   const {
     login: { mutateAsync: login, isError, error, isPending },
   } = useAuth()
@@ -52,86 +37,41 @@ const SignIn = () => {
           {t('signin_subtitle')}
         </Text>
       </Box>
-      <Button
-        fontSize='sm'
-        bg={googleBg}
-        color={textColor}
-        fontWeight='500'
-        _hover={googleHover}
-        _active={googleActive}
-        _focus={googleActive}
-      >
-        <Icon as={FcGoogle} w='20px' h='20px' me='10px' />
-        {t('signin_google')}
-      </Button>
-      <Flex align='center' mb='25px'>
+      <GoogleAuth />
+      <Flex align='center' my='24px'>
         <HSeparator />
         <Text color='gray.400' mx='14px'>
           {t('or')}
         </Text>
         <HSeparator />
       </Flex>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <FormControl isInvalid={!!errors.email}>
-          <FormLabel display='flex' ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
-            {t('email')}
-            <Text color={textColorBrand}>*</Text>
-          </FormLabel>
-          <Input
-            isRequired={true}
-            variant='auth'
-            fontSize='sm'
-            ms={{ base: '0px', md: '0px' }}
-            type='email'
-            placeholder='mail@simmmple.com'
-            mb='24px'
-            fontWeight='500'
-            size='lg'
-            {...register('email', {
-              required: 'Email is required',
-            })}
-          />
-        </FormControl>
-        <FormControl isInvalid={!!errors.password}>
-          <FormLabel ms='4px' fontSize='sm' fontWeight='500' color={textColor} display='flex'>
-            {t('password')}
-            <Text color={textColorBrand}>*</Text>
-          </FormLabel>
-          <PasswordInput
-            input={{
-              isRequired: true,
-              fontSize: 'sm',
-              placeholder: 'Password',
-              mb: '24px',
-              size: 'lg',
-              variant: 'auth',
-              ...register('password', {
-                required: 'Password is required',
-              }),
-            }}
-          />
-        </FormControl>
-        <Flex justifyContent='space-between' align='center' mb='24px'>
-          <FormControl display='flex' alignItems='center'>
-            <Checkbox id='remember-login' colorScheme='brandScheme' me='10px' {...register('keepLogedIn')} />
-            <FormLabel htmlFor='remember-login' mb='0' fontWeight='normal' color={textColor} fontSize='sm'>
-              {t('keep_me_logged')}
-            </FormLabel>
-          </FormControl>
-          <NavLink to='/auth/forgot-password'>
-            <Text color={textColorBrand} fontSize='sm' w='124px' fontWeight='500'>
-              {t('forgot_password')}
-            </Text>
-          </NavLink>
-        </Flex>
-        <Button type='submit' fontSize='sm' variant='brand' fontWeight='500' w='100%' h='50' mb='24px'>
-          {t('signin')}
-        </Button>
-      </form>
+      <FormProvider {...methods}>
+        <Box as='form' onSubmit={handleSubmit(onSubmit)}>
+          <Email />
+          <Password />
+          <Flex justifyContent='space-between' align='center' mb='24px'>
+            <FormControl display='flex' alignItems='center'>
+              <Checkbox {...register('keepLogedIn')} id='remember-login' colorScheme='brandScheme' me='10px' />
+              <FormLabel htmlFor='remember-login' mb='0' fontWeight='normal' color={textColor} fontSize='sm'>
+                {t('keep_me_logged')}
+              </FormLabel>
+            </FormControl>
+            <NavLink to='/auth/forgot-password'>
+              <Text color={textColorBrand} fontSize='sm' w='124px' fontWeight='500'>
+                {t('forgot_password')}
+              </Text>
+            </NavLink>
+          </Flex>
+          <Button type='submit' fontSize='sm' variant='brand' fontWeight='500' w='100%' h='50' mb='24px'>
+            {t('signin')}
+          </Button>
+        </Box>
+      </FormProvider>
+
       <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%' mt='0px'>
-        <Text color={textColorSecondary} fontWeight='400' fontSize='14px'>
+        <Text fontWeight='400' fontSize='14px'>
           {t('not_registred_yet')}
-          <NavLink to='/auth/signup'>
+          <NavLink to='/signup'>
             <Text color={textColorBrand} as='span' ms='5px' fontWeight='500'>
               {t('create_account')}
             </Text>

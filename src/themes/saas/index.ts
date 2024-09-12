@@ -7,43 +7,36 @@ import { Badge } from './components/badge'
 import { Button } from './components/button'
 import { Input } from './components/input'
 import { Link } from './components/link'
-import { progressStyles } from './components/progress'
-import { sliderStyles } from './components/slider'
-import { switchStyles } from './components/switch'
-import { textareaStyles } from './components/textarea'
+import { Modal } from './components/modal'
+import { Card } from './components/card'
+import { Checkbox } from './components/checkbox'
+import { Textarea } from './components/textarea'
 import { breakpoints } from './foundations/breakpoints'
-import { globalStyles, colors } from './styles'
+import { colors } from './colors'
+import { Pagination } from './components/pagination'
 
 export const theme = extendTheme(vtheme, {
   styles: {
     global: {
       ...shared,
-      '.site-wrapper': {
-        width: 'full',
-        m: '0 auto',
-        maxW: '1920px',
-
-        px: {
-          base: '10px',
-          sm: '20px',
-          md: '80px',
-        },
+      '.brand-gradient': {
+        bgGradient: 'linear-gradient(to bottom, #B5F492, #338B93)',
       },
     },
   },
-  breakpoints, // Breakpoints
-  globalStyles,
+  breakpoints,
   components: {
     Badge,
     Button,
+    Card,
+    Checkbox,
     Input,
     Link,
+    Modal,
+    Pagination,
+    Textarea,
   },
   colors,
-  progressStyles,
-  sliderStyles,
-  textareaStyles,
-  switchStyles,
   CardComponent,
 })
 
