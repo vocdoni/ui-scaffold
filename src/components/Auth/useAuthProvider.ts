@@ -1,54 +1,33 @@
-import { useMutation, UseMutationOptions } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { RemoteSigner } from '@vocdoni/sdk'
 import { useCallback, useMemo, useState } from 'react'
+import { useMutation, UseMutationOptions } from '@tanstack/react-query'
+import { api, ApiEndpoints } from '~components/Auth/api'
 
-type LoginResponse = { token: string; expirity: string }
+export type LoginResponse = { token: string; expirity: string }
 
-export interface ILoginParameters {
+export interface ILoginParams {
   email: string
   password: string
 }
 
-export interface IRegisterParameters {
+interface IRegisterParams {
   firstName: string
   lastName: string
   email: string
   password: string
 }
 
-type MethodTypes = 'GET' | 'POST' | 'PUT' | 'DELETE'
-
-const api = <T>(path: string, params?: unknown, method: MethodTypes = 'GET'): Promise<T> => {
-  return fetch(`${import.meta.env.SAAS_URL}${path}`, {
-    method,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(params),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(response.statusText)
-      }
-      return response.json() as Promise<T>
-    })
-    .catch((error: Error) => {
-      // todo(kon): implement error handling
-      throw error
-    })
-}
-
-const useLogin = (options: Omit<UseMutationOptions<LoginResponse, Error, ILoginParameters>, 'mutationFn'>) => {
-  return useMutation<LoginResponse, Error, ILoginParameters>({
-    mutationFn: (params: ILoginParameters) => api<LoginResponse>('auth/login', params, 'POST'),
+export const useLogin = (options: Omit<UseMutationOptions<LoginResponse, Error, ILoginParams>, 'mutationFn'>) => {
+  return useMutation<LoginResponse, Error, ILoginParams>({
+    mutationFn: (params: ILoginParams) => api<LoginResponse>(ApiEndpoints.LOGIN, params, 'POST'),
     ...options,
   })
 }
 
-const useRegister = (options: Omit<UseMutationOptions<LoginResponse, Error, IRegisterParameters>, 'mutationFn'>) => {
-  return useMutation<LoginResponse, Error, IRegisterParameters>({
-    mutationFn: (params: IRegisterParameters) => api<LoginResponse>('users', params, 'POST'),
+export const useRegister = (options: Omit<UseMutationOptions<LoginResponse, Error, IRegisterParams>, 'mutationFn'>) => {
+  return useMutation<LoginResponse, Error, IRegisterParams>({
+    mutationFn: (params: IRegisterParams) => api<LoginResponse>(ApiEndpoints.REGISTER, params, 'POST'),
     ...options,
   })
 }

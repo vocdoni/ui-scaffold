@@ -3,7 +3,7 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
-import { ILoginParameters } from '~components/Auth/useAuthProvider'
+import { ILoginParams } from '~components/Auth/useAuthProvider'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import CustomCheckbox from '../Layout/CheckboxCustom'
 import InputCustom from '../Layout/InputCustom'
@@ -11,7 +11,7 @@ import GoogleAuth from './GoogleAuth'
 
 type FormData = {
   keepLogedIn: boolean
-} & ILoginParameters
+} & ILoginParams
 
 const SignIn = () => {
   const { t } = useTranslation()
