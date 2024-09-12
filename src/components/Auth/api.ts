@@ -22,13 +22,23 @@ export class ApiError extends Error {
   }
 }
 
-export const api = <T>(path: ApiEndpoints, params?: unknown, method: MethodTypes = 'GET'): Promise<T> => {
+export type ApiParams = {
+  body?: unknown
+  method?: MethodTypes
+  headers?: Headers
+}
+
+export const api = <T>(
+  path: ApiEndpoints,
+  { body, method = 'GET', headers = new Headers({}) }: ApiParams
+): Promise<T> => {
   return fetch(`${import.meta.env.SAAS_URL}${path}`, {
     method,
     headers: {
       'Content-Type': 'application/json',
+      ...headers,
     },
-    body: JSON.stringify(params),
+    body: JSON.stringify(body),
   })
     .then(async (response) => {
       if (!response.ok) {
