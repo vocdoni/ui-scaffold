@@ -1,21 +1,99 @@
+import { FormControl, FormErrorMessage, FormLabel } from '@chakra-ui/react'
+import { ChakraStylesConfig, GroupBase, Select } from 'chakra-react-select'
+import { Controller, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import SelectCustom, { SelectCustomProps } from '~components/OrganizationSaas/Dashboard/SelectCustom'
+import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
+
+export interface SelectCustomProps {
+  options: { label: string; value: string }[]
+  formValue: string
+  label?: string
+  placeholder?: string
+  required?: boolean
+}
+
+const customStyles: ChakraStylesConfig<any, false, GroupBase<any>> = {
+  control: (provided) => ({
+    ...provided,
+    borderColor: 'gray.200',
+    minH: '50px',
+    borderRadius: 'xl',
+    _hover: {
+      borderColor: 'gray.300',
+    },
+    _focus: {
+      borderColor: 'gray.300',
+      boxShadow: 'none',
+    },
+  }),
+}
+
+export const SelectCustom = ({
+  options,
+  formValue,
+  label,
+  placeholder = 'Choose an option',
+  required = false,
+}: SelectCustomProps) => {
+  const { t } = useTranslation()
+  const { textColor } = useDarkMode()
+
+  const {
+    control,
+    formState: { errors },
+    setValue,
+  } = useFormContext()
+
+  // Function to extract and format error messages
+  const getErrorMessage = (error: any): string => {
+    if (error && typeof error.message === 'string') {
+      return error.message
+    }
+    return 'An error occurred'
+  }
+
+  return (
+    <FormControl isInvalid={!!errors[formValue]}>
+      <FormLabel htmlFor={formValue} fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
+        {label}
+      </FormLabel>
+      <Controller
+        name={formValue}
+        control={control}
+        rules={{ required: required ? t('form.error.field_is_required') : false }}
+        render={({ field }) => (
+          <Select
+            {...field}
+            options={options}
+            placeholder={placeholder}
+            chakraStyles={customStyles}
+            isClearable
+            onChange={(selectedOption) => {
+              setValue(formValue, selectedOption)
+            }}
+          />
+        )}
+      />
+      <FormErrorMessage>{getErrorMessage(errors[formValue])}</FormErrorMessage>
+    </FormControl>
+  )
+}
 
 export const OrganzationTypesSelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) => {
   const { t } = useTranslation()
 
   const orgTypes = [
-    { label: t('org_type_selector.assembly'), value: 'assembly' },
-    { label: t('org_type_selector.association'), value: 'association' },
-    { label: t('org_type_selector.chamber'), value: 'chamber' },
-    { label: t('org_type_selector.church'), value: 'church' },
-    { label: t('org_type_selector.city'), value: 'city_municipality' },
-    { label: t('org_type_selector.company'), value: 'company' },
-    { label: t('org_type_selector.cooperative'), value: 'cooperative' },
-    { label: t('org_type_selector.party'), value: 'party' },
-    { label: t('org_type_selector.university'), value: 'university' },
-    { label: t('org_type_selector.union'), value: 'union' },
-    { label: t('org_type_selector.others'), value: 'others' },
+    { label: t('org_type_selector.assembly', { defaultValue: 'Assembly' }), value: 'assembly' },
+    { label: t('org_type_selector.association', { defaultValue: 'Association' }), value: 'association' },
+    { label: t('org_type_selector.chamber', { defaultValue: 'Chamber' }), value: 'chamber' },
+    { label: t('org_type_selector.church', { defaultValue: 'Church' }), value: 'church' },
+    { label: t('org_type_selector.city', { defaultValue: 'City/Municipality' }), value: 'city_municipality' },
+    { label: t('org_type_selector.company', { defaultValue: 'Company' }), value: 'company' },
+    { label: t('org_type_selector.cooperative', { defaultValue: 'Cooperative' }), value: 'cooperative' },
+    { label: t('org_type_selector.party', { defaultValue: 'Party' }), value: 'party' },
+    { label: t('org_type_selector.university', { defaultValue: 'University' }), value: 'university' },
+    { label: t('org_type_selector.union', { defaultValue: 'Union' }), value: 'union' },
+    { label: t('org_type_selector.others', { defaultValue: 'Others' }), value: 'others' },
   ]
 
   return (
@@ -31,27 +109,27 @@ export const CountriesTypesSelector = ({ ...props }: Omit<SelectCustomProps, 'op
   const { t } = useTranslation()
 
   const countries = [
-    { label: t('country_selector.australia'), value: 'AU' },
-    { label: t('country_selector.brazil'), value: 'BR' },
-    { label: t('country_selector.canada'), value: 'CA' },
-    { label: t('country_selector.china'), value: 'CN' },
-    { label: t('country_selector.france'), value: 'FR' },
-    { label: t('country_selector.germany'), value: 'DE' },
-    { label: t('country_selector.india'), value: 'IN' },
-    { label: t('country_selector.italy'), value: 'IT' },
-    { label: t('country_selector.japan'), value: 'JP' },
-    { label: t('country_selector.mexico'), value: 'MX' },
-    { label: t('country_selector.netherlands'), value: 'NL' },
-    { label: t('country_selector.new_zealand'), value: 'NZ' },
-    { label: t('country_selector.russia'), value: 'RU' },
-    { label: t('country_selector.south_africa'), value: 'ZA' },
-    { label: t('country_selector.south_korea'), value: 'KR' },
-    { label: t('country_selector.spain'), value: 'ES' },
-    { label: t('country_selector.sweden'), value: 'SE' },
-    { label: t('country_selector.switzerland'), value: 'CH' },
-    { label: t('country_selector.united_kingdom'), value: 'GB' },
-    { label: t('country_selector.united_states'), value: 'US' },
-    { label: t('country_selector.other'), value: 'OT' },
+    { label: t('country_selector.australia', { defaultValue: 'Australia' }), value: 'AU' },
+    { label: t('country_selector.brazil', { defaultValue: 'Brazil' }), value: 'BR' },
+    { label: t('country_selector.canada', { defaultValue: 'Canada' }), value: 'CA' },
+    { label: t('country_selector.china', { defaultValue: 'China' }), value: 'CN' },
+    { label: t('country_selector.france', { defaultValue: 'France' }), value: 'FR' },
+    { label: t('country_selector.germany', { defaultValue: 'Germany' }), value: 'DE' },
+    { label: t('country_selector.india', { defaultValue: 'India' }), value: 'IN' },
+    { label: t('country_selector.italy', { defaultValue: 'Italy' }), value: 'IT' },
+    { label: t('country_selector.japan', { defaultValue: 'Japan' }), value: 'JP' },
+    { label: t('country_selector.mexico', { defaultValue: 'Mexico' }), value: 'MX' },
+    { label: t('country_selector.netherlands', { defaultValue: 'Netherlands' }), value: 'NL' },
+    { label: t('country_selector.new_zealand', { defaultValue: 'New Zealand' }), value: 'NZ' },
+    { label: t('country_selector.russia', { defaultValue: 'Russia' }), value: 'RU' },
+    { label: t('country_selector.south_africa', { defaultValue: 'South Africa' }), value: 'ZA' },
+    { label: t('country_selector.south_korea', { defaultValue: 'South Korea' }), value: 'KR' },
+    { label: t('country_selector.spain', { defaultValue: 'Spain' }), value: 'ES' },
+    { label: t('country_selector.sweden', { defaultValue: 'Sweden' }), value: 'SE' },
+    { label: t('country_selector.switzerland', { defaultValue: 'Switzerland' }), value: 'CH' },
+    { label: t('country_selector.united_kingdom', { defaultValue: 'United Kingdom' }), value: 'GB' },
+    { label: t('country_selector.united_states', { defaultValue: 'United States' }), value: 'US' },
+    { label: t('country_selector.other', { defaultValue: 'Other' }), value: 'OT' },
   ]
   return (
     <SelectCustom
