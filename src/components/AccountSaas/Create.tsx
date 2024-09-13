@@ -116,7 +116,6 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
               type='text'
               {...register('name', { required })}
               placeholder={t('form.account_create.title_placeholder')}
-              variant='auth'
             />
             {!!errors.name && <FormErrorMessage>{errors.name?.message?.toString()}</FormErrorMessage>}
           </FormControl>
@@ -124,7 +123,7 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
             <FormLabel ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
               <Trans i18nKey='website'>Website</Trans>
             </FormLabel>
-            <Input type='text' {...register('website')} placeholder={'https://example.com'} variant='auth' />
+            <Input type='text' {...register('website')} placeholder={'https://example.com'} />
             {!!errors.website && <FormErrorMessage>{errors.website?.message?.toString()}</FormErrorMessage>}
           </FormControl>
           <FormControl mb='32px'>
@@ -134,13 +133,7 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
             <Textarea
               {...register('description')}
               placeholder={t('form.account_create.description_placeholder').toString()}
-              _focus={{
-                boxShadow: 'none',
-
-                _hover: {
-                  boxShadow: 'none',
-                },
-              }}
+              variant='ss'
             />
           </FormControl>
         </Box>
