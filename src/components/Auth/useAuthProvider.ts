@@ -42,13 +42,11 @@ export const useAuthProvider = () => {
   const [bearer, setBearer] = useState<string | null>(localStorage.getItem(LocalStorageKeys.AUTH_TOKEN))
   const login = useLogin({
     onSuccess: (data, variables) => {
-      console.log('logged in', data, variables)
       storeLogin(data)
     },
   })
   const register = useRegister({
     onSuccess: (data, variables) => {
-      console.log('registered', data, variables)
       storeLogin(data)
     },
   })
@@ -58,12 +56,11 @@ export const useAuthProvider = () => {
   const bearedFetch = useCallback(
     <T>(path: ApiEndpoints, { headers = new Headers({}), ...params }: ApiParams) => {
       if (!bearer) {
+        logout()
         throw new Error('No bearer token')
       }
       headers.append('Authorization', `Bearer ${bearer}`)
-      try {
-        return api<T>(path, { headers, ...params })
-      } catch (e) {
+      return api<T>(path, { headers, ...params }).catch((e) => {
         if (e instanceof UnauthorizedApiError) {
           return api<LoginResponse>(ApiEndpoints.REFRESH, { headers, method: 'POST' })
             .then((data) => {
@@ -77,7 +74,7 @@ export const useAuthProvider = () => {
             })
         }
         throw e
-      }
+      })
     },
     [bearer]
   )

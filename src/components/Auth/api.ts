@@ -39,12 +39,10 @@ export const api = <T>(
   path: ApiEndpoints,
   { body, method = 'GET', headers = new Headers({}) }: ApiParams
 ): Promise<T> => {
+  headers.append('Content-Type', 'application/json')
   return fetch(`${import.meta.env.SAAS_URL}${path}`, {
     method,
-    headers: {
-      'Content-Type': 'application/json',
-      ...headers,
-    },
+    headers,
     body: JSON.stringify(body),
   })
     .then(async (response) => {
