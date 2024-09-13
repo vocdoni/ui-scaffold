@@ -15,73 +15,84 @@ import {
   Textarea,
 } from '@chakra-ui/react'
 import { Button } from '@vocdoni/chakra-components'
-import { useClient } from '@vocdoni/react-providers'
-import { Account } from '@vocdoni/sdk'
-import { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { Link as ReactRouterLink } from 'react-router-dom'
-import { useAccountHealthTools } from '~components/Account/use-account-health-tools'
+import { Link as ReactRouterLink, useNavigate } from 'react-router-dom'
 
 import {
   CountriesTypesSelector,
   MembershipSizeTypesSelector,
   OrganzationTypesSelector,
+  SelectOptionType,
 } from '~components/Layout/SaasSelector'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
+import { useMutation, UseMutationOptions } from '@tanstack/react-query'
+import { ApiEndpoints } from '~components/Auth/api'
+import { useAuth } from '~components/Auth/useAuth'
 
-interface FormFields {
+interface OrgInterface {
   name: string
+  website: string
   description: string
+  size: string
+  type: string
+  country: string
+  timezone: string
+  language: string
+  logo: string
+  header: string
+  subdomain: string
+  color: string
 }
 
-export const AccountCreate = ({ children, ...props }: FlexProps) => {
-  const { textColor, textColorBrand, textColorSecondary } = useDarkMode()
+type CreateOrgParams = Partial<OrgInterface>
 
-  const methods = useForm({
-    defaultValues: {
-      name: '',
-      website: '',
-      description: '',
-      membership_size: 0,
-      type: '',
-      country: '',
-      communications: false,
-      terms: false,
-    },
+const useAccountCreate = (options?: Omit<UseMutationOptions<void, Error, CreateOrgParams>, 'mutationFn'>) => {
+  const { bearedFetch } = useAuth()
+  return useMutation<void, Error, CreateOrgParams>({
+    mutationFn: (params: CreateOrgParams) =>
+      bearedFetch<void>(ApiEndpoints.ACCOUNT_CREATE, { body: params, method: 'POST' }),
+    ...options,
   })
+}
+
+type FormData = {
+  terms: boolean
+  communications: boolean
+  sizeSelect: SelectOptionType
+  typeSelect: SelectOptionType
+  countrySelect: SelectOptionType
+} & Pick<OrgInterface, 'name' | 'website' | 'description'>
+
+export const AccountCreate = ({ children, ...props }: FlexProps) => {
+  const navigate = useNavigate()
+  const { textColor, textColorBrand, textColorSecondary } = useDarkMode()
+  const { mutateAsync, isError, error, isPending } = useAccountCreate()
+
+  const methods = useForm<FormData>()
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = methods
-  const {
-    createAccount,
-    updateAccount,
-    errors: { account: error },
-    loading: { create },
-  } = useClient()
+
   const { t } = useTranslation()
-  const [sent, setSent] = useState<boolean>(false)
-  // we want to know if account exists, not the organization (slight difference)
-  const { exists } = useAccountHealthTools()
 
   const required = {
     value: true,
     message: t('form.error.field_is_required'),
   }
 
-  const onSubmit = async (values: FormFields) => {
-    let call = () =>
-      createAccount({
-        account: new Account(values),
-      })
-
-    if (exists) {
-      call = () => updateAccount(new Account(values))
-    }
-
-    return call()?.finally(() => setSent(true))
+  const onSubmit = (values: FormData) => {
+    mutateAsync({
+      name: values.name,
+      website: values.website,
+      description: values.description,
+      size: values.sizeSelect?.value,
+      country: values.countrySelect?.value,
+      type: values.typeSelect?.value,
+    }).then(() => navigate('/organization'))
   }
 
   return (
@@ -141,20 +152,12 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
             Help us tailor your experience with information about your org. We won't share this info
           </Trans>
         </Text>
-        <Box px={{ base: 5, md: 10 }}>
-          <Box mb='32px'>
-            <MembershipSizeTypesSelector formValue='type' required={true} />
-          </Box>
-
-          <Box mb='32px'>
-            <OrganzationTypesSelector formValue='type' required={true} />
-          </Box>
-
-          <Box mb='32px'>
-            <CountriesTypesSelector formValue='type' required={true} />
-          </Box>
-        </Box>
-        <FormControl display='flex' alignItems='start' mb='12px'>
+        <Flex px={{ base: 5, md: 10 }} direction={'column'} gap={8}>
+          <MembershipSizeTypesSelector name={'sizeSelect'} />
+          <OrganzationTypesSelector name={'typeSelect'} />
+          <CountriesTypesSelector name={'countrySelect'} />
+        </Flex>
+        <FormControl display='flex' alignItems='start' my='12px'>
           <Checkbox {...register('communications')} colorScheme='brandScheme' me='10px' mt='4px' />
           <FormLabel mb='0' fontWeight='normal' color={textColor} fontSize='sm'>
             <Trans i18nKey='create_org.communication'>
@@ -177,21 +180,19 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
           </Flex>
           <FormErrorMessage>{errors.terms?.message}</FormErrorMessage>
         </FormControl>
-        <Button form='process-create-form' type='submit' isLoading={create} mx='auto' mb='32px' w='80%'>
+        <Button form='process-create-form' type='submit' isLoading={isPending} mx='auto' mb='32px' w='80%'>
           {t('organization.create_org')}
         </Button>
+        <Box pt={2}>
+          <FormControl isInvalid={isError}>
+            {isError && <FormErrorMessage>{error?.message || 'Error al realizar la operación'}</FormErrorMessage>}
+          </FormControl>
+        </Box>
         <Text color={textColorSecondary} fontSize='sm'>
           <Trans i18nKey='create_org.already_profile'>
             If your organization already have a profile, ask the admin to invite you to your organization.
           </Trans>
         </Text>
-
-        {sent && error && (
-          <Alert status='error'>
-            <AlertIcon />
-            {error}
-          </Alert>
-        )}
       </Flex>
     </FormProvider>
   )
