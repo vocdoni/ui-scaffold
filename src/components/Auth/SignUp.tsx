@@ -78,16 +78,7 @@ const SignUp = () => {
                 {t('signup_first_name')}
                 <Text color={textColorBrand}>*</Text>
               </FormLabel>
-              <Input
-                {...register('firstName', { required })}
-                variant='auth'
-                fontSize='sm'
-                ms={{ base: '0px', md: '0px' }}
-                type='text'
-                placeholder='First Name'
-                fontWeight='500'
-                size='lg'
-              />
+              <Input {...register('firstName', { required })} variant='auth' type='text' placeholder='First Name' />
               <FormErrorMessage>{errors.firstName?.message?.toString()}</FormErrorMessage>
             </FormControl>
             <FormControl isInvalid={!!errors.lastName} flexGrow={1} mb='24px'>
@@ -95,16 +86,7 @@ const SignUp = () => {
                 {t('signup_last_name')}
                 <Text color={textColorBrand}>*</Text>
               </FormLabel>
-              <Input
-                {...register('lastName', { required })}
-                variant='auth'
-                fontSize='sm'
-                ms={{ base: '0px', md: '0px' }}
-                type='text'
-                placeholder='Last Name'
-                fontWeight='500'
-                size='lg'
-              />
+              <Input {...register('lastName', { required })} variant='auth' type='text' placeholder='Last Name' />
               <FormErrorMessage>{errors.lastName?.message?.toString()}</FormErrorMessage>
             </FormControl>
           </Flex>

@@ -185,20 +185,46 @@
     "subtitle": "Your voting process",
     "total": "<span>Cost of the vote:</span> <span>{{ cost }} tokens</span>"
   },
-  "country": "Country",
+  "country_selector": {
+    "australia": "Australia",
+    "brazil": "Brazil",
+    "canada": "Canada",
+    "china": "China",
+    "france": "France",
+    "germany": "Germany",
+    "india": "India",
+    "italy": "Italy",
+    "japan": "Japan",
+    "mexico": "Mexico",
+    "netherlands": "Netherlands",
+    "new_zealand": "New Zealand",
+    "other": "Other",
+    "russia": "Russia",
+    "selector_label": "Country",
+    "south_africa": "South Africa",
+    "south_korea": "South Korea",
+    "spain": "Spain",
+    "sweden": "Sweden",
+    "switzerland": "Switzerland",
+    "united_kingdom": "United Kingdom",
+    "united_states": "United States"
+  },
   "create_account": "Create an Account",
   "create_org": {
     "already_profile": " If your organization already have a profile, ask the admin to invite you to your organization.",
     "communication": "I want to receive communications and be contacted to tailor my governance experience.",
     "credit_card": "No credit card, no automatic renewal.",
+    "full_access": "Full access to basic features",
     "header": "Try Vocdoni for free for 7 days",
-    "membership_size": "Membership size",
+    "multiple_administrators": "Multiple administrators",
     "private_org": "Private Organization Details",
     "private_org_description": "Help us tailor your experience with information about your org. We won't share this info",
     "public_info": "Public Organization Information",
     "subtitle": "Cut cost, Save Time: Secure, Private, and GDPR Compliant",
+    "support_during_trial_period": "Support during the trial period",
     "title": "Create Your Organization",
-    "type_sector": "Type / Sector"
+    "unlimited_voting_processes": "Unlimited creation of voting processes",
+    "up_to_20_voters": "Up to 20 voters"
   },
   "csp_census": {
     "github": {
@@ -218,6 +244,7 @@
   "draft": "Draft",
   "edit_my_organization": "My entity",
   "email": "Email",
+  "enter_email": "Enter email",
   "error": {
     "go_back": "Go back",
     "invalid_cell_data": "Some rows do not contain correct addresses: {{rows,list(style:short)}}",
@@ -717,6 +744,9 @@
     "github": "Sign in with Github",
     "google": "Sign in with Google"
   },
+  "membership_size": {
+    "selector_label": "Membership size"
+  },
   "menu": {
     "burger_aria_label": "user menu",
     "connect": "Connect",
@@ -751,6 +781,20 @@
   "not_registred_yet": "Not registered yet?",
   "open_in_explorer": "Open in explorer",
   "or": "or",
+  "org_type_selector": {
+    "assembly": "Assembly",
+    "association": "Association",
+    "chamber": "Chamber",
+    "church": "Church",
+    "city": "City/Municipality",
+    "company": "Company",
+    "cooperative": "Cooperative",
+    "others": "Others",
+    "party": "Party",
+    "selector_label": "Select Organization Type",
+    "union": "Union",
+    "university": "University"
+  },
   "organization": {
     "avatar_alt": "Avatar image of {{ name }} organization",
     "census": "Census",
@@ -783,8 +827,40 @@
     "view_features": "View all features"
   },
   "pricing_modal": {
+    "custom_feat": {
+      "account_manager": "Dedicated account manager",
+      "advanced_security": "Advanced security features",
+      "all_votings": "All faetures & voting types",
+      "full_tech_support": "Full technical support (ticket, chat, email)",
+      "unlimited_admins": "Unlimited Admins & suborgs",
+      "unlimited_processes": "Unlimited yearly voting processes",
+      "white_label_solution": "White-label solution"
+    },
+    "custom_subtitle": "Large organizations enterprises, and institutions requiring extensive customization and support.",
+    "custom_title": "Custom Plan",
+    "essential_feat": {
+      "core_voting": "Core voting features",
+      "gpdr_compilance": "GDPR compliance",
+      "report_analytitcs": "Basic reporting and analytics",
+      "ticket_support": "Ticket support",
+      "up_to_admins": "Up to 3 Admins and 1 org",
+      "yearly_processes": "5 yearly voting processes"
+    },
+    "essential_subtitle": "Small or medium-sized orgs or community groups with basic voting needs.",
+    "essential_title": "Essential",
     "help": "Need some help?",
     "more_voters": "If you need more voters, you can select it here:",
+    "premium_feat": {
+      "all_essential": "All essential plan features",
+      "custom_subdomain": "Custom subdomain & branding",
+      "gpdr_compilance": "GDPR compliance",
+      "report_analytitcs": "Advanced reporting & analytics",
+      "ticket_support": "Ticket and chat support",
+      "up_to_admins": "Up to 5 Admins",
+      "yearly_processes": "10 yearly voting processes"
+    },
+    "premium_subtitle": "Larger amount that require more advanced features.",
+    "premium_title": "Premium",
     "title": "You need to upgrade to use this feature",
     "your_plan": "Currently you are subscribed to the 'Your plan' subscription. If you upgrade, we will only charge the yearly difference. In the next billing period, starting on 'dd/mm/yy' you will pay for the new select plan."
   },
