@@ -83,8 +83,13 @@ export const useAuthProvider = () => {
   )
 
   const storeLogin = useCallback(({ token }: LoginResponse) => {
+    let saasUrl = import.meta.env.SAAS_URL
+    // Ensure saas url doesn't end with `/` because the inner paths of the SDK are absolute
+    if (saasUrl.endsWith('/')) {
+      saasUrl = saasUrl.slice(0, -1)
+    }
     const signer = new RemoteSigner({
-      url: import.meta.env.SAAS_URL,
+      url: saasUrl,
       token,
     })
     localStorage.setItem(LocalStorageKeys.AUTH_TOKEN, token)
