@@ -11,7 +11,7 @@ export interface ILoginParams {
   password: string
 }
 
-interface IRegisterParams {
+export interface IRegisterParams {
   firstName: string
   lastName: string
   email: string

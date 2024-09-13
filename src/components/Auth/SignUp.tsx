@@ -3,7 +3,7 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { NavLink, Link as ReactRouterLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
-import { IRegisterParameters } from '~components/Auth/useAuthProvider'
+import { IRegisterParams } from '~components/Auth/useAuthProvider'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import CustomCheckbox from '../Layout/CheckboxCustom'
 import InputCustom from '../Layout/InputCustom'
@@ -12,7 +12,7 @@ import { HSeparator } from './SignIn'
 
 type FormData = {
   terms: boolean
-} & IRegisterParameters
+} & IRegisterParams
 
 const SignUp = () => {
   const navigate = useNavigate()
