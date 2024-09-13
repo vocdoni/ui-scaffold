@@ -2,6 +2,7 @@ type MethodTypes = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
 export enum ApiEndpoints {
   LOGIN = 'auth/login',
+  REFRESH = 'auth/refresh',
   REGISTER = 'users',
   ACCOUNT_CREATE = 'organizations',
 }
@@ -19,6 +20,12 @@ export class ApiError extends Error {
     super(apiError?.error ? apiError.error : 'undefined api error')
     this.response = response
     this.apiError = apiError
+  }
+}
+
+export class UnauthorizedApiError extends ApiError {
+  constructor(apiError?: IApiError, response?: Response) {
+    super(apiError, response)
   }
 }
 
@@ -43,6 +50,9 @@ export const api = <T>(
     .then(async (response) => {
       if (!response.ok) {
         const error = (await response.json()) as IApiError
+        if (response.status === 401) {
+          throw new UnauthorizedApiError(error, response)
+        }
         throw new ApiError(error, response)
       }
       return (await response.json()) as T

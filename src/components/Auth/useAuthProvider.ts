@@ -2,7 +2,7 @@ import { useClient } from '@vocdoni/react-providers'
 import { RemoteSigner } from '@vocdoni/sdk'
 import { useCallback, useMemo, useState } from 'react'
 import { useMutation, UseMutationOptions } from '@tanstack/react-query'
-import { api, ApiEndpoints, ApiParams } from '~components/Auth/api'
+import { api, ApiEndpoints, ApiParams, UnauthorizedApiError } from '~components/Auth/api'
 
 export type LoginResponse = { token: string; expirity: string }
 
@@ -56,33 +56,31 @@ export const useAuthProvider = () => {
   const isAuthenticated = useMemo(() => !!bearer, [bearer])
 
   const bearedFetch = useCallback(
-    async (path: ApiEndpoints, { headers = new Headers({}), ...params }: ApiParams) => {
+    <T>(path: ApiEndpoints, { headers = new Headers({}), ...params }: ApiParams) => {
       if (!bearer) {
         throw new Error('No bearer token')
       }
       headers.append('Authorization', `Bearer ${bearer}`)
-      return api(path, { headers, ...params })
+      try {
+        return api<T>(path, { headers, ...params })
+      } catch (e) {
+        if (e instanceof UnauthorizedApiError) {
+          return api<LoginResponse>(ApiEndpoints.REFRESH, { headers, method: 'POST' })
+            .then((data) => {
+              storeLogin(data)
+              headers.set('Authorization', `Bearer ${data.token}`)
+              return api<T>(path, { headers, ...params })
+            })
+            .catch((e) => {
+              logout()
+              throw e
+            })
+        }
+        throw e
+      }
     },
     [bearer]
   )
-
-  // todo: implement this
-  // check if the token is still valid
-  // useEffect(() => {
-  //   if (!bearer) return
-  //
-  //   bearedFetch(`${appUrl}/auth/check`)
-  //     // Invalid token or expired, so logout
-  //     .then(async (response) => {
-  //       if (response.status !== 200) {
-  //         logout()
-  //       }
-  //     })
-  //     // network errors or other issues
-  //     .catch(() => {
-  //       logout()
-  //     })
-  // }, [])
 
   const storeLogin = useCallback(({ token }: LoginResponse) => {
     const signer = new RemoteSigner({
