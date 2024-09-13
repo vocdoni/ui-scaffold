@@ -109,7 +109,7 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
         <Box px={{ base: 5, md: 10 }}>
           <FormControl isInvalid={!!errors.name} mb='24px'>
             <FormLabel display='flex' ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
-              {t('new_organization.name', { defaultValue: 'Name' })}
+              {t('name', { defaultValue: 'Name' })}
               <Text color={textColorBrand}>*</Text>
             </FormLabel>
             <Input
