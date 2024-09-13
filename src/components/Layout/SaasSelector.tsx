@@ -1,17 +1,21 @@
 import { FormControl, FormErrorMessage, FormLabel } from '@chakra-ui/react'
-import { ChakraStylesConfig, GroupBase, Select } from 'chakra-react-select'
+import { ChakraStylesConfig, GroupBase, Select, Props as SelectProps } from 'chakra-react-select'
 import { Controller, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 
-export interface SelectCustomProps {
-  options: { label: string; value: string }[]
-  formValue: string
-  label?: string
-  placeholder?: string
-  required?: boolean
+export type SelectOptionType = {
+  label: string
+  value: string
 }
 
+export type SelectCustomProps = {
+  name: string
+  label?: string
+  required?: boolean
+} & SelectProps
+
+// todo: move this to theme
 const customStyles: ChakraStylesConfig<any, false, GroupBase<any>> = {
   control: (provided) => ({
     ...provided,
@@ -30,13 +34,7 @@ const customStyles: ChakraStylesConfig<any, false, GroupBase<any>> = {
   }),
 }
 
-export const SelectCustom = ({
-  options,
-  formValue,
-  label,
-  placeholder = 'Choose an option',
-  required = false,
-}: SelectCustomProps) => {
+export const SelectCustom = ({ name, label, placeholder, required = false, ...rest }: SelectCustomProps) => {
   const { t } = useTranslation()
   const { textColor } = useDarkMode()
 
@@ -55,28 +53,30 @@ export const SelectCustom = ({
   }
 
   return (
-    <FormControl isInvalid={!!errors[formValue]}>
-      <FormLabel htmlFor={formValue} fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
-        {label}
-      </FormLabel>
+    <FormControl isInvalid={!!errors[name]}>
+      {label && (
+        <FormLabel htmlFor={name} fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
+          {label}
+        </FormLabel>
+      )}
       <Controller
-        name={formValue}
+        name={name}
         control={control}
         rules={{ required: required ? t('form.error.field_is_required') : false }}
         render={({ field }) => (
           <Select
+            placeholder={t('form.choose_an_option', { defaultValue: 'Choose an option' })}
             {...field}
-            options={options}
-            placeholder={placeholder}
+            {...rest}
             chakraStyles={customStyles}
             isClearable
             onChange={(selectedOption) => {
-              setValue(formValue, selectedOption)
+              setValue(name, selectedOption)
             }}
           />
         )}
       />
-      <FormErrorMessage>{getErrorMessage(errors[formValue])}</FormErrorMessage>
+      <FormErrorMessage>{getErrorMessage(errors[name])}</FormErrorMessage>
     </FormControl>
   )
 }
@@ -84,7 +84,7 @@ export const SelectCustom = ({
 export const OrganzationTypesSelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) => {
   const { t } = useTranslation()
 
-  const orgTypes = [
+  const orgTypes: SelectOptionType[] = [
     { label: t('org_type_selector.assembly', { defaultValue: 'Assembly' }), value: 'assembly' },
     { label: t('org_type_selector.association', { defaultValue: 'Association' }), value: 'association' },
     { label: t('org_type_selector.chamber', { defaultValue: 'Chamber' }), value: 'chamber' },
@@ -110,7 +110,7 @@ export const OrganzationTypesSelector = ({ ...props }: Omit<SelectCustomProps, '
 export const CountriesTypesSelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) => {
   const { t } = useTranslation()
 
-  const countries = [
+  const countries: SelectOptionType[] = [
     { label: t('country_selector.australia', { defaultValue: 'Australia' }), value: 'AU' },
     { label: t('country_selector.brazil', { defaultValue: 'Brazil' }), value: 'BR' },
     { label: t('country_selector.canada', { defaultValue: 'Canada' }), value: 'CA' },
@@ -144,7 +144,7 @@ export const CountriesTypesSelector = ({ ...props }: Omit<SelectCustomProps, 'op
 
 export const MembershipSizeTypesSelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) => {
   const { t } = useTranslation()
-  const listSizes = [
+  const listSizes: SelectOptionType[] = [
     { label: '0-100', value: '0-100' },
     { label: '100-250', value: '100-250' },
     { label: '250-500', value: '250-500' },
