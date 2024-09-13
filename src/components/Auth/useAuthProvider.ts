@@ -79,7 +79,7 @@ export const useAuthProvider = () => {
     [bearer]
   )
 
-  const storeLogin = useCallback(({ token }: LoginResponse) => {
+  const updateSigner = useCallback((token: string) => {
     let saasUrl = import.meta.env.SAAS_URL
     // Ensure saas url doesn't end with `/` because the inner paths of the SDK are absolute
     if (saasUrl.endsWith('/')) {
@@ -89,9 +89,13 @@ export const useAuthProvider = () => {
       url: saasUrl,
       token,
     })
+    setSigner(signer)
+  }, [])
+
+  const storeLogin = useCallback(({ token }: LoginResponse) => {
     localStorage.setItem(LocalStorageKeys.AUTH_TOKEN, token)
     setBearer(token)
-    setSigner(signer)
+    updateSigner(token)
   }, [])
 
   const logout = useCallback(() => {
@@ -100,11 +104,19 @@ export const useAuthProvider = () => {
     clear()
   }, [])
 
+  /**
+   * Reinstantate Remotesigner to perform updates on the client
+   */
+  const refresh = useCallback(() => {
+    updateSigner(bearer)
+  }, [bearer])
+
   return {
     isAuthenticated,
     login,
     register,
     logout,
     bearedFetch,
+    refresh,
   }
 }

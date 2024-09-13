@@ -66,6 +66,7 @@ type FormData = {
 
 export const AccountCreate = ({ children, ...props }: FlexProps) => {
   const navigate = useNavigate()
+  const { refresh } = useAuth()
   const { textColor, textColorBrand, textColorSecondary } = useDarkMode()
   const { mutateAsync, isError, error, isPending } = useAccountCreate()
 
@@ -92,7 +93,7 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
       size: values.sizeSelect?.value,
       country: values.countrySelect?.value,
       type: values.typeSelect?.value,
-    }).then(() => navigate('/organization'))
+    }).then(() => refresh())
   }
 
   return (
