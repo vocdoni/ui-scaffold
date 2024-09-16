@@ -29,7 +29,13 @@ function ForgotPassword() {
 
       <FormProvider {...methods}>
         <Box as='form' onSubmit={methods.handleSubmit(onSubmit)}>
-          <InputCustom formValue='email' label={t('email')} placeholder='your@email.com' type='email' required />
+          <InputCustom
+            formValue='email'
+            label={t('email')}
+            placeholder={t('email_placeholder', { defaultValue: 'your@email.com' })}
+            type='email'
+            required
+          />
           <Button type='submit' fontSize='sm' variant='brand' fontWeight='500' w='100%' h='50' mb='24px'>
             {t('forgot_password_reset_link')}
           </Button>

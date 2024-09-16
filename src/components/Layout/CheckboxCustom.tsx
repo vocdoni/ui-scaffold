@@ -35,7 +35,7 @@ const CustomCheckbox = ({ formValue, label, required = false, colorScheme = 'bra
             <Text color={textColor} ml={1}>
               *
             </Text>
-          )}{' '}
+          )}
         </FormLabel>
       </Flex>
       <FormErrorMessage>{errorMessage}</FormErrorMessage>
