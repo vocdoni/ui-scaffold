@@ -3,6 +3,7 @@ import { ChakraStylesConfig, GroupBase, Select, Props as SelectProps } from 'cha
 import { Controller, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
+import { ControllerProps } from 'react-hook-form/dist/types'
 
 export type SelectOptionType = {
   label: string
@@ -13,6 +14,7 @@ export type SelectCustomProps = {
   name: string
   label?: string
   required?: boolean
+  controller?: Omit<ControllerProps, 'render' | 'name'>
 } & SelectProps
 
 // todo: move this to theme
@@ -34,7 +36,14 @@ const customStyles: ChakraStylesConfig<any, false, GroupBase<any>> = {
   }),
 }
 
-export const SelectCustom = ({ name, label, placeholder, required = false, ...rest }: SelectCustomProps) => {
+export const SelectCustom = ({
+  name,
+  label,
+  placeholder,
+  required = false,
+  controller,
+  ...rest
+}: SelectCustomProps) => {
   const { t } = useTranslation()
   const { textColor } = useDarkMode()
 
@@ -60,6 +69,7 @@ export const SelectCustom = ({ name, label, placeholder, required = false, ...re
         </FormLabel>
       )}
       <Controller
+        {...controller}
         name={name}
         control={control}
         rules={{ required: required ? t('form.error.field_is_required') : false }}
@@ -110,7 +120,10 @@ export const OrganzationTypesSelector = ({ ...props }: Omit<SelectCustomProps, '
 export const CountriesTypesSelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) => {
   const { t } = useTranslation()
 
+  const defaultVal = { label: t('country_selector.spain', { defaultValue: 'Spain' }), value: 'ES' }
+
   const countries: SelectOptionType[] = [
+    defaultVal,
     { label: t('country_selector.australia', { defaultValue: 'Australia' }), value: 'AU' },
     { label: t('country_selector.brazil', { defaultValue: 'Brazil' }), value: 'BR' },
     { label: t('country_selector.canada', { defaultValue: 'Canada' }), value: 'CA' },
@@ -126,7 +139,6 @@ export const CountriesTypesSelector = ({ ...props }: Omit<SelectCustomProps, 'op
     { label: t('country_selector.russia', { defaultValue: 'Russia' }), value: 'RU' },
     { label: t('country_selector.south_africa', { defaultValue: 'South Africa' }), value: 'ZA' },
     { label: t('country_selector.south_korea', { defaultValue: 'South Korea' }), value: 'KR' },
-    { label: t('country_selector.spain', { defaultValue: 'Spain' }), value: 'ES' },
     { label: t('country_selector.sweden', { defaultValue: 'Sweden' }), value: 'SE' },
     { label: t('country_selector.switzerland', { defaultValue: 'Switzerland' }), value: 'CH' },
     { label: t('country_selector.united_kingdom', { defaultValue: 'United Kingdom' }), value: 'GB' },
@@ -137,6 +149,8 @@ export const CountriesTypesSelector = ({ ...props }: Omit<SelectCustomProps, 'op
     <SelectCustom
       options={countries}
       label={t('country_selector.selector_label', { defaultValue: 'Country' })}
+      defaultValue={defaultVal}
+      controller={{ defaultValue: defaultVal }}
       {...props}
     />
   )
