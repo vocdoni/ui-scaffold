@@ -3,8 +3,8 @@ import { Dispatch, SetStateAction } from 'react'
 import { Controller, FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { IoCloseSharp } from 'react-icons/io5'
-import Email from '~components/Auth/Email'
 import { HSeparator } from '~components/Auth/SignIn'
+import InputCustom from '~components/Layout/InputCustom'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 
 const Invite = ({ setInviteView }: { setInviteView: Dispatch<SetStateAction<boolean>> }) => {
@@ -48,7 +48,13 @@ const Invite = ({ setInviteView }: { setInviteView: Dispatch<SetStateAction<bool
       <HSeparator my='24px' />
       <FormProvider {...methods}>
         <Box as='form' onSubmit={methods.handleSubmit(onSubmit)}>
-          <Email label={t('enter_email', { defaultValue: 'Enter email' })} />
+          <InputCustom
+            formValue='email'
+            label={t('email')}
+            placeholder={t('email_placeholder', { defaultValue: 'your@email.com' })}
+            type='email'
+            required
+          />
           <OptionForm />
           <Flex justifyContent='center'>
             <Button mx='auto' type='submit'>

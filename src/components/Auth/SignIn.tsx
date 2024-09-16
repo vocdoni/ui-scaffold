@@ -1,13 +1,13 @@
-import { Box, Button, Checkbox, Flex, FormControl, FormErrorMessage, FormLabel, Heading, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, FormControl, FormErrorMessage, Heading, Text } from '@chakra-ui/react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
 import { ILoginParameters } from '~components/Auth/useAuthProvider'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
-import Email from './Email'
+import CustomCheckbox from '../Layout/CheckboxCustom'
+import InputCustom from '../Layout/InputCustom'
 import GoogleAuth from './GoogleAuth'
-import Password from './Password'
 
 type FormData = {
   keepLogedIn: boolean
@@ -18,7 +18,7 @@ const SignIn = () => {
   const navigate = useNavigate()
   const { textColor, textColorSecondary, textColorBrand, googleBg, googleHover, googleActive } = useDarkMode()
   const methods = useForm<FormData>()
-  const { register, handleSubmit } = methods
+  const { handleSubmit } = methods
   const {
     login: { mutateAsync: login, isError, error, isPending },
   } = useAuth()
@@ -47,15 +47,23 @@ const SignIn = () => {
       </Flex>
       <FormProvider {...methods}>
         <Box as='form' onSubmit={handleSubmit(onSubmit)}>
-          <Email />
-          <Password />
-          <Flex justifyContent='space-between' align='center' mb='24px'>
-            <FormControl display='flex' alignItems='center'>
-              <Checkbox {...register('keepLogedIn')} id='remember-login' colorScheme='brandScheme' me='10px' />
-              <FormLabel htmlFor='remember-login' mb='0' fontWeight='normal' color={textColor} fontSize='sm'>
-                {t('keep_me_logged')}
-              </FormLabel>
-            </FormControl>
+          <InputCustom
+            formValue='email'
+            label={t('email')}
+            placeholder={t('email_placeholder', { defaultValue: 'your@email.com' })}
+            type='email'
+            required
+          />
+          <InputCustom
+            formValue='password'
+            label={t('password')}
+            placeholder={t('password_placeholder', { defaultValue: 'Enter your password' })}
+            type='password'
+            required
+          />
+          <Flex justifyContent='center' align='center' mb='24px'>
+            <CustomCheckbox formValue='keepLogedIn' label={t('keep_me_logged', { defaultValue: 'Kepp me logged' })} />
+
             <NavLink to='/auth/forgot-password'>
               <Text color={textColorBrand} fontSize='sm' w='124px' fontWeight='500'>
                 {t('forgot_password')}
