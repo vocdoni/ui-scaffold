@@ -42,7 +42,6 @@ const Password = ({ required, messageError }: { required?: any; messageError?: s
         <Input
           placeholder='Min. 8 characters'
           type={show ? 'text' : 'password'}
-          variant='auth'
           {...register('password', validation)}
         />
         <InputRightElement display='flex' alignItems='center' mt='4px'>

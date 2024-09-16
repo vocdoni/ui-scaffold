@@ -24,6 +24,8 @@ const customStyles: ChakraStylesConfig<any, false, GroupBase<any>> = {
     _focus: {
       borderColor: 'gray.300',
       boxShadow: 'none',
+      outline: '2px solid #3965FF',
+      outlineOffset: '0px',
     },
   }),
 }
