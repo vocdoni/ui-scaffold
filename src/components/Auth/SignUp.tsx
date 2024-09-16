@@ -83,7 +83,7 @@ const SignUp = () => {
                 type='text'
                 placeholder={t('first_name', { defaultValue: 'First Name' })}
               />
-              <FormErrorMessage>{errors.firstName?.message?.toString()}</FormErrorMessage>
+              <FormErrorMessage>{errors.firstName?.message}</FormErrorMessage>
             </FormControl>
             <FormControl isInvalid={!!errors.lastName} flexGrow={1} mb='24px'>
               <FormLabel display='flex' ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
@@ -95,7 +95,7 @@ const SignUp = () => {
                 type='text'
                 placeholder={t('last_name', { defaultValue: 'Last Name' })}
               />
-              <FormErrorMessage>{errors.lastName?.message?.toString()}</FormErrorMessage>
+              <FormErrorMessage>{errors.lastName?.message}</FormErrorMessage>
             </FormControl>
           </Flex>
 
@@ -121,7 +121,7 @@ const SignUp = () => {
                 />
               </FormLabel>
             </Flex>
-            <FormErrorMessage>{errors.terms?.message?.toString()}</FormErrorMessage>
+            <FormErrorMessage>{errors.terms?.message}</FormErrorMessage>
           </FormControl>
           <Button
             isLoading={isPending}

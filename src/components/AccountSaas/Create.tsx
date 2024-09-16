@@ -117,23 +117,20 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
               {...register('name', { required })}
               placeholder={t('form.account_create.title_placeholder')}
             />
-            {!!errors.name && <FormErrorMessage>{errors.name?.message?.toString()}</FormErrorMessage>}
+            {!!errors.name && <FormErrorMessage>{errors.name?.message}</FormErrorMessage>}
           </FormControl>
           <FormControl isInvalid={!!errors.name} mb='24px'>
             <FormLabel ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
               <Trans i18nKey='website'>Website</Trans>
             </FormLabel>
             <Input type='text' {...register('website')} placeholder={'https://example.com'} />
-            {!!errors.website && <FormErrorMessage>{errors.website?.message?.toString()}</FormErrorMessage>}
+            {!!errors.website && <FormErrorMessage>{errors.website?.message}</FormErrorMessage>}
           </FormControl>
           <FormControl mb='32px'>
             <FormLabel ms='4px' fontSize='sm' fontWeight='500' color={textColor}>
               <Trans i18nKey='description'>Description</Trans>
             </FormLabel>
-            <Textarea
-              {...register('description')}
-              placeholder={t('form.account_create.description_placeholder').toString()}
-            />
+            <Textarea {...register('description')} placeholder={t('form.account_create.description_placeholder')} />
           </FormControl>
         </Box>
         <Text color={textColor} fontWeight='bold' mb='0px'>
@@ -178,7 +175,7 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
               />
             </FormLabel>
           </Flex>
-          <FormErrorMessage>{errors.terms?.message?.toString()}</FormErrorMessage>
+          <FormErrorMessage>{errors.terms?.message}</FormErrorMessage>
         </FormControl>
         <Button form='process-create-form' type='submit' isLoading={create} mx='auto' mb='32px' w='80%'>
           {t('organization.create_org')}
