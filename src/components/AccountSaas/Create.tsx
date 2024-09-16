@@ -29,6 +29,8 @@ import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import { useMutation, UseMutationOptions } from '@tanstack/react-query'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
+import { useClient } from '@vocdoni/react-providers'
+import { useAccountCreate } from '~components/Account/useAccountCreate'
 
 interface OrgInterface {
   name: string
@@ -47,7 +49,7 @@ interface OrgInterface {
 
 type CreateOrgParams = Partial<OrgInterface>
 
-const useAccountCreate = (options?: Omit<UseMutationOptions<void, Error, CreateOrgParams>, 'mutationFn'>) => {
+const useSaasAccountCreate = (options?: Omit<UseMutationOptions<void, Error, CreateOrgParams>, 'mutationFn'>) => {
   const { bearedFetch } = useAuth()
   return useMutation<void, Error, CreateOrgParams>({
     mutationFn: (params: CreateOrgParams) =>
@@ -65,20 +67,38 @@ type FormData = {
 } & Pick<OrgInterface, 'name' | 'website' | 'description'>
 
 export const AccountCreate = ({ children, ...props }: FlexProps) => {
-  const navigate = useNavigate()
+  const { t } = useTranslation()
+
   const { refresh } = useAuth()
   const { textColor, textColorBrand, textColorSecondary } = useDarkMode()
-  const { mutateAsync, isError, error, isPending } = useAccountCreate()
 
   const methods = useForm<FormData>()
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = methods
 
-  const { t } = useTranslation()
+  const {
+    errors: { account: providerError },
+  } = useClient()
+
+  const {
+    mutateAsync: createAccount,
+    isPending: isPendingAccount,
+    isError: isAccountError,
+    error: accountError,
+  } = useAccountCreate()
+  const {
+    mutateAsync: createSaasAccount,
+    isError: isSaasError,
+    error: saasError,
+    isPending: isPendingSaasAccount,
+  } = useSaasAccountCreate()
+
+  const isPending = isPendingAccount || isPendingSaasAccount
+  const isError = isAccountError || isSaasError
+  const error = providerError || accountError || saasError
 
   const required = {
     value: true,
@@ -86,14 +106,17 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
   }
 
   const onSubmit = (values: FormData) => {
-    mutateAsync({
-      name: values.name,
-      website: values.website,
-      description: values.description,
-      size: values.sizeSelect?.value,
-      country: values.countrySelect?.value,
-      type: values.typeSelect?.value,
-    }).then(() => refresh())
+    console.log('Submit', values)
+    createAccount({ name: values.name, description: values.description }).then(() =>
+      createSaasAccount({
+        name: values.name,
+        website: values.website,
+        description: values.description,
+        size: values.sizeSelect?.value,
+        country: values.countrySelect?.value,
+        type: values.typeSelect?.value,
+      }).then(() => refresh())
+    )
   }
 
   return (
@@ -154,9 +177,9 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
           </Trans>
         </Text>
         <Flex px={{ base: 5, md: 10 }} direction={'column'} gap={8}>
-          <MembershipSizeTypesSelector name={'sizeSelect'} />
-          <OrganzationTypesSelector name={'typeSelect'} />
-          <CountriesTypesSelector name={'countrySelect'} />
+          <MembershipSizeTypesSelector name={'sizeSelect'} required />
+          <OrganzationTypesSelector name={'typeSelect'} required />
+          <CountriesTypesSelector name={'countrySelect'} required />
         </Flex>
         <FormControl display='flex' alignItems='start' my='12px'>
           <Checkbox {...register('communications')} colorScheme='brandScheme' me='10px' mt='4px' />
@@ -186,7 +209,11 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
         </Button>
         <Box pt={2}>
           <FormControl isInvalid={isError}>
-            {isError && <FormErrorMessage>{error?.message || 'Error al realizar la operación'}</FormErrorMessage>}
+            {isError && (
+              <FormErrorMessage>
+                {typeof error === 'string' ? error : error?.message || 'Error al realizar la operación'}
+              </FormErrorMessage>
+            )}
           </FormControl>
         </Box>
         <Text color={textColorSecondary} fontSize='sm'>
