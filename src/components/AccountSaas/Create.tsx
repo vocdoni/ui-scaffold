@@ -59,7 +59,6 @@ const useSaasAccountCreate = (options?: Omit<UseMutationOptions<void, Error, Cre
 }
 
 type FormData = {
-  terms: boolean
   communications: boolean
   sizeSelect: SelectOptionType
   typeSelect: SelectOptionType
@@ -187,21 +186,6 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
               I want to receive communications and be contacted to tailor my governance experience.
             </Trans>
           </FormLabel>
-        </FormControl>
-        <FormControl isInvalid={!!errors.terms} mb='32px'>
-          <Flex alignItems='start'>
-            <Checkbox {...register('terms', { required })} colorScheme='brandScheme' me='10px' mt='4px' />
-            <FormLabel mb='0' fontWeight='normal' color={textColor} fontSize='sm'>
-              <Trans
-                i18nKey='signup_agree_terms'
-                components={{
-                  termsLink: <Link as={ReactRouterLink} to='/terms' />,
-                  privacyLink: <Link as={ReactRouterLink} to='/privacy' />,
-                }}
-              />
-            </FormLabel>
-          </Flex>
-          <FormErrorMessage>{errors.terms?.message}</FormErrorMessage>
         </FormControl>
         <Button form='process-create-form' type='submit' isLoading={isPending} mx='auto' mb='32px' w='80%'>
           {t('organization.create_org')}
