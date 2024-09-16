@@ -63,7 +63,7 @@ const SignUp = () => {
           <InputCustom
             formValue='password'
             label={t('password')}
-            placeholder={t('password_signup_placeholder', { defaultValue: 'Min 8 characters' })}
+            placeholder={t('password_placeholder', { defaultValue: 'Min 8 characters' })}
             type='password'
             required
             validation={{
@@ -84,7 +84,6 @@ const SignUp = () => {
                   termsLink: <Link as={ReactRouterLink} to='/terms' />,
                   privacyLink: <Link as={ReactRouterLink} to='/privacy' />,
                 }}
-                defaultValue={'Terms and conditions'}
               />
             }
             required
