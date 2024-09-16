@@ -106,7 +106,6 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
   }
 
   const onSubmit = (values: FormData) => {
-    console.log('Submit', values)
     createAccount({ name: values.name, description: values.description }).then(() =>
       createSaasAccount({
         name: values.name,

@@ -2,14 +2,18 @@ import { Button, Flex, Text } from '@chakra-ui/react'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { Trans } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 const SignInScreen = () => {
   const { openConnectModal } = useConnectModal()
   const navigate = useNavigate()
 
-  if (!!import.meta.env.SAAS_URL) {
-    return navigate('/signin') // Redirect to the SAAS sign-in page
-  }
+  // Redirect to the SAAS sign-in page
+  useEffect(() => {
+    if (!!import.meta.env.SAAS_URL) {
+      navigate('/signin')
+    }
+  }, [navigate])
 
   return (
     <Flex gap={4} justifyContent='center' alignItems='center' flexDirection='column' h='100%'>
