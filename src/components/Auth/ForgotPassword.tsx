@@ -3,7 +3,7 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
-import Email from './Email'
+import InputCustom from './InputCustom'
 
 function ForgotPassword() {
   const { t } = useTranslation()
@@ -29,7 +29,7 @@ function ForgotPassword() {
 
       <FormProvider {...methods}>
         <Box as='form' onSubmit={methods.handleSubmit(onSubmit)}>
-          <Email />
+          <InputCustom formValue='email' label={t('email')} placeholder='your@email.com' type='email' required />
           <Button type='submit' fontSize='sm' variant='brand' fontWeight='500' w='100%' h='50' mb='24px'>
             {t('forgot_password_reset_link')}
           </Button>

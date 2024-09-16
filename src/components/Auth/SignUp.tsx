@@ -1,25 +1,13 @@
-import {
-  Box,
-  Button,
-  Checkbox,
-  Flex,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Heading,
-  Input,
-  Link,
-  Text,
-} from '@chakra-ui/react'
+import { Box, Button, Flex, FormControl, FormErrorMessage, Heading, Link, Text } from '@chakra-ui/react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { NavLink, Link as ReactRouterLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
 import { IRegisterParameters } from '~components/Auth/useAuthProvider'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
-import Email from './Email'
+import CustomCheckbox from './CheckboxCustom'
 import GoogleAuth from './GoogleAuth'
-import Password from './Password'
+import InputCustom from './InputCustom'
 import { HSeparator } from './SignIn'
 
 type FormData = {
@@ -35,22 +23,11 @@ const SignUp = () => {
   } = useAuth()
 
   const methods = useForm<FormData>()
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = methods
+  const { handleSubmit } = methods
 
   const onSubmit = async (data: FormData) => {
     await signup(data).then(() => navigate('/organization'))
   }
-
-  const required = {
-    value: true,
-    message: t('form.error.field_is_required'),
-  }
-
-  const passwordValidation = { required: true, minLength: 8 }
 
   return (
     <Flex direction='column'>
@@ -73,56 +50,46 @@ const SignUp = () => {
       <FormProvider {...methods}>
         <Box as='form' onSubmit={handleSubmit(onSubmit)}>
           <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ md: '15px' }}>
-            <FormControl isInvalid={!!errors.firstName} flexGrow={1} mb='24px'>
-              <FormLabel display='flex' ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
-                {t('signup_first_name')}
-                <Text color={textColorBrand}>*</Text>
-              </FormLabel>
-              <Input
-                {...register('firstName', { required })}
-                type='text'
-                placeholder={t('first_name', { defaultValue: 'First Name' })}
-              />
-              <FormErrorMessage>{errors.firstName?.message}</FormErrorMessage>
-            </FormControl>
-            <FormControl isInvalid={!!errors.lastName} flexGrow={1} mb='24px'>
-              <FormLabel display='flex' ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
-                {t('signup_last_name')}
-                <Text color={textColorBrand}>*</Text>
-              </FormLabel>
-              <Input
-                {...register('lastName', { required })}
-                type='text'
-                placeholder={t('last_name', { defaultValue: 'Last Name' })}
-              />
-              <FormErrorMessage>{errors.lastName?.message}</FormErrorMessage>
-            </FormControl>
+            <InputCustom formValue='firstName' label={t('signup_first_name')} placeholder={'John'} required />
+            <InputCustom formValue='lastName' label={t('signup_last_name')} placeholder={'Doe'} required />
           </Flex>
+          <InputCustom
+            formValue='email'
+            label={t('email')}
+            placeholder={t('email_placeholder', { defaultValue: 'your@email.com' })}
+            type='email'
+            required
+          />
+          <InputCustom
+            formValue='password'
+            label={t('password')}
+            placeholder={t('password_signup_placeholder', { defaultValue: 'Min 8 characters' })}
+            type='password'
+            required
+            validation={{
+              required: t('form.error.field_is_required'),
+              minLength: {
+                value: 8,
+                message: t('form.error.password_min_length'),
+              },
+            }}
+          />
 
-          <Email />
-          <Password required={passwordValidation} messageError='At least 8 characters' />
-
-          <FormControl isInvalid={!!errors.terms} mb='24px'>
-            <Flex alignItems='start'>
-              <Checkbox
-                {...register('terms', { required })}
-                id='remember-login'
-                colorScheme='brandScheme'
-                me='10px'
-                mt='4px'
+          <CustomCheckbox
+            formValue='terms'
+            label={
+              <Trans
+                i18nKey='signup_agree_terms'
+                components={{
+                  termsLink: <Link as={ReactRouterLink} to='/terms' />,
+                  privacyLink: <Link as={ReactRouterLink} to='/privacy' />,
+                }}
+                defaultValue={'Terms and conditions'}
               />
-              <FormLabel htmlFor='remember-login' mb='0' fontWeight='normal' color={textColor} fontSize='sm'>
-                <Trans
-                  i18nKey='signup_agree_terms'
-                  components={{
-                    termsLink: <Link as={ReactRouterLink} to='/terms' />,
-                    privacyLink: <Link as={ReactRouterLink} to='/privacy' />,
-                  }}
-                />
-              </FormLabel>
-            </Flex>
-            <FormErrorMessage>{errors.terms?.message}</FormErrorMessage>
-          </FormControl>
+            }
+            required
+          />
+
           <Button
             isLoading={isPending}
             type='submit'
