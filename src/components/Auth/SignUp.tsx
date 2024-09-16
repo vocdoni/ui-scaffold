@@ -86,7 +86,11 @@ const SignUp = () => {
                 {t('signup_last_name')}
                 <Text color={textColorBrand}>*</Text>
               </FormLabel>
-              <Input {...register('lastName', { required })} type='text' placeholder='Last Name' />
+              <Input
+                {...register('lastName', { required })}
+                type='text'
+                placeholder={t('last_name', { defaultValue: 'Last Name' })}
+              />
               <FormErrorMessage>{errors.lastName?.message?.toString()}</FormErrorMessage>
             </FormControl>
           </Flex>

@@ -133,7 +133,6 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
             <Textarea
               {...register('description')}
               placeholder={t('form.account_create.description_placeholder').toString()}
-              variant='ss'
             />
           </FormControl>
         </Box>
