@@ -33,13 +33,11 @@ import { ucfirst } from '~constants/strings'
 import { Check, Close } from '~theme/icons'
 import { useAccountHealthTools } from './use-account-health-tools'
 import hello from '/shared/hello.jpeg'
-
-interface FormFields {
-  name: string
-  description: string
-}
+import { CreateAccountParams, useAccountCreate } from '~components/Account/useAccountCreate'
 
 export const AccountCreate = ({ children, ...props }: FlexProps) => {
+  const { t } = useTranslation()
+
   const {
     register,
     handleSubmit,
@@ -50,32 +48,22 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
       description: '',
     },
   })
+
   const {
-    createAccount,
-    updateAccount,
     errors: { account: error },
   } = useClient()
-  const { t } = useTranslation()
+
+  const { mutateAsync } = useAccountCreate()
+
   const [sent, setSent] = useState<boolean>(false)
-  // we want to know if account exists, not the organization (slight difference)
-  const { exists } = useAccountHealthTools()
 
   const required = {
     value: true,
     message: t('form.error.field_is_required'),
   }
 
-  const onSubmit = async (values: FormFields) => {
-    let call = () =>
-      createAccount({
-        account: new Account(values),
-      })
-
-    if (exists) {
-      call = () => updateAccount(new Account(values))
-    }
-
-    return call()?.finally(() => setSent(true))
+  const onSubmit = async (values: CreateAccountParams) => {
+    return mutateAsync(values)?.finally(() => setSent(true))
   }
 
   return (
