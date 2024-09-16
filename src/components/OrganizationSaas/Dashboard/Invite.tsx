@@ -3,8 +3,8 @@ import { Dispatch, SetStateAction } from 'react'
 import { Controller, FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { IoCloseSharp } from 'react-icons/io5'
-import InputCustom from '~components/Auth/InputCustom'
 import { HSeparator } from '~components/Auth/SignIn'
+import InputCustom from '~components/Layout/InputCustom'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 
 const Invite = ({ setInviteView }: { setInviteView: Dispatch<SetStateAction<boolean>> }) => {

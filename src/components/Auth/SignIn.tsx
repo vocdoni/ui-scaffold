@@ -5,9 +5,9 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
 import { ILoginParameters } from '~components/Auth/useAuthProvider'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
-import CustomCheckbox from './CheckboxCustom'
+import CustomCheckbox from '../Layout/CheckboxCustom'
+import InputCustom from '../Layout/InputCustom'
 import GoogleAuth from './GoogleAuth'
-import InputCustom from './InputCustom'
 
 type FormData = {
   keepLogedIn: boolean

@@ -11,13 +11,7 @@ export interface CustomCheckboxProps {
   colorScheme?: string
 }
 
-const CustomCheckbox = ({
-  formValue,
-  label,
-  required = false,
-
-  colorScheme = 'brandScheme',
-}: CustomCheckboxProps) => {
+const CustomCheckbox = ({ formValue, label, required = false, colorScheme = 'brandScheme' }: CustomCheckboxProps) => {
   const { t } = useTranslation()
   const { textColor } = useDarkMode()
   const {
@@ -25,8 +19,10 @@ const CustomCheckbox = ({
     formState: { errors },
   } = useFormContext()
 
-  const validationRules = required ? { required: { value: true, message: t('form.error.field_is_required') } } : {}
-
+  let validationRules = {}
+  if (required) {
+    validationRules = { required: { value: true, message: t('form.error.field_is_required') } }
+  }
   const errorMessage = (errors[formValue]?.message as string) || ''
 
   return (

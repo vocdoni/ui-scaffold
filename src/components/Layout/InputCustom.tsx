@@ -14,6 +14,7 @@ import {
   Icon,
   Input,
   InputGroup,
+  InputProps,
   InputRightElement,
   Text,
 } from '@chakra-ui/react'
@@ -24,12 +25,9 @@ import { MdOutlineRemoveRedEye } from 'react-icons/md'
 import { RiEyeCloseLine } from 'react-icons/ri'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 
-export interface InputCustomProps {
+export interface InputCustomProps extends InputProps {
   formValue: string
   label: string
-  placeholder?: string
-  type?: string
-  required?: boolean
   validation?: any
   messageError?: string
 }
@@ -59,7 +57,11 @@ const InputCustom = ({
 
   const errorMessage = errors[formValue]?.message?.toString() || ''
 
-  const inputType = type === 'password' && !show ? 'password' : type === 'password' ? 'text' : type
+  let inputType = type
+
+  if (type === 'password' && show) {
+    inputType = 'text'
+  }
 
   return (
     <FormControl isInvalid={!!errors[formValue]} mb={6}>

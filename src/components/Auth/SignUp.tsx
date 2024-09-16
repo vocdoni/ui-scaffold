@@ -5,9 +5,9 @@ import { NavLink, Link as ReactRouterLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
 import { IRegisterParameters } from '~components/Auth/useAuthProvider'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
-import CustomCheckbox from './CheckboxCustom'
+import CustomCheckbox from '../Layout/CheckboxCustom'
+import InputCustom from '../Layout/InputCustom'
 import GoogleAuth from './GoogleAuth'
-import InputCustom from './InputCustom'
 import { HSeparator } from './SignIn'
 
 type FormData = {
@@ -70,7 +70,7 @@ const SignUp = () => {
               required: t('form.error.field_is_required'),
               minLength: {
                 value: 8,
-                message: t('form.error.password_min_length'),
+                message: t('form.error.password_min_length', { defaultValue: 'Min. 8 characters' }),
               },
             }}
           />
