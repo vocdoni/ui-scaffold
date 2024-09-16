@@ -1,6 +1,6 @@
 import { useClient } from '@vocdoni/react-providers'
 import { RemoteSigner } from '@vocdoni/sdk'
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useMutation, UseMutationOptions } from '@tanstack/react-query'
 import { api, ApiEndpoints, ApiParams, UnauthorizedApiError } from '~components/Auth/api'
 
@@ -38,7 +38,7 @@ enum LocalStorageKeys {
 }
 
 export const useAuthProvider = () => {
-  const { setSigner, clear } = useClient()
+  const { signer, setSigner, clear } = useClient()
   const [bearer, setBearer] = useState<string | null>(localStorage.getItem(LocalStorageKeys.AUTH_TOKEN))
   const login = useLogin({
     onSuccess: (data, variables) => {
@@ -110,6 +110,14 @@ export const useAuthProvider = () => {
   const refresh = useCallback(() => {
     updateSigner(bearer)
   }, [bearer])
+
+  // If no signer but berarer instantiate the signer
+  // For example when bearer is on local storage but no login was done to instantiate the signer
+  useEffect(() => {
+    if (bearer && !signer) {
+      updateSigner(bearer)
+    }
+  }, [bearer, signer])
 
   return {
     isAuthenticated,
