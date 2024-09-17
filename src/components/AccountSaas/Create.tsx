@@ -15,6 +15,7 @@ import {
   Textarea,
 } from '@chakra-ui/react'
 import { Button } from '@vocdoni/chakra-components'
+import { EnvOptions, RemoteSigner, VocdoniSDKClient } from '@vocdoni/sdk'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink, useNavigate } from 'react-router-dom'
@@ -97,7 +98,8 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
 
   const isPending = isPendingAccount || isPendingSaasAccount
   const isError = isAccountError || isSaasError
-  const error = providerError || accountError || saasError
+
+  const error = saasError || accountError || providerError
 
   const required = {
     value: true,
@@ -105,16 +107,18 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
   }
 
   const onSubmit = (values: FormData) => {
-    createAccount({ name: values.name, description: values.description }).then(() =>
-      createSaasAccount({
-        name: values.name,
-        website: values.website,
-        description: values.description,
-        size: values.sizeSelect?.value,
-        country: values.countrySelect?.value,
-        type: values.typeSelect?.value,
-      }).then(() => refresh())
-    )
+    // Create account on the saas to generate new priv keys
+    createSaasAccount({
+      name: values.name,
+      website: values.website,
+      description: values.description,
+      size: values.sizeSelect?.value,
+      country: values.countrySelect?.value,
+      type: values.typeSelect?.value,
+    })
+      .then(() => refresh()) // Get the address of newly created signer
+      .then(() => createAccount({ name: values.name, description: values.description })) // Create the new account on the vochain
+      .then(() => refresh()) // Update the signer to get new account info
   }
 
   return (
