@@ -53,7 +53,11 @@ export const api = <T>(
         }
         throw new ApiError(error, response)
       }
-      return (await response.json()) as T
+      const contentType = response.headers.get('content-type')
+      if (contentType && contentType.includes('application/json')) {
+        return (await response.json()) as T
+      }
+      return null // Return null if the content is not JSON
     })
     .catch((error: Error) => {
       throw error
