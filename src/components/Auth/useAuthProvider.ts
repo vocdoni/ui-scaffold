@@ -11,6 +11,12 @@ enum LocalStorageKeys {
 export const useAuthProvider = () => {
   const { signer, setSigner, clear } = useClient()
   const [bearer, setBearer] = useState<string | null>(localStorage.getItem(LocalStorageKeys.AUTH_TOKEN))
+
+  // Helper state to determine if the bearer key is loaded and the signer address is available
+  const [loaded, setLoaded] = useState<boolean>(false)
+  // Helper state to determine the signer have an address available
+  const [signerAddress, setSignerAddress] = useState<string>('')
+
   const login = useLogin({
     onSuccess: (data, variables) => {
       storeLogin(data)
@@ -51,7 +57,7 @@ export const useAuthProvider = () => {
     [bearer]
   )
 
-  const updateSigner = useCallback((token: string) => {
+  const updateSigner = useCallback(async (token: string) => {
     let saasUrl = import.meta.env.SAAS_URL
     // Ensure saas url doesn't end with `/` because the inner paths of the SDK are absolute
     if (saasUrl.endsWith('/')) {
@@ -61,6 +67,7 @@ export const useAuthProvider = () => {
       url: saasUrl,
       token,
     })
+    setSignerAddress(await signer.getAddress())
     setSigner(signer)
   }, [])
 
@@ -86,9 +93,12 @@ export const useAuthProvider = () => {
   // If no signer but berarer instantiate the signer
   // For example when bearer is on local storage but no login was done to instantiate the signer
   useEffect(() => {
-    if (bearer && !signer) {
-      updateSigner(bearer)
-    }
+    ;(async () => {
+      if (bearer && !signer) {
+        await updateSigner(bearer)
+      }
+      setLoaded(true)
+    })()
   }, [bearer, signer])
 
   return {
@@ -99,5 +109,7 @@ export const useAuthProvider = () => {
     logout,
     bearedFetch,
     refresh,
+    loaded,
+    signerAddress,
   }
 }
