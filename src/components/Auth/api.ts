@@ -3,6 +3,7 @@ type MethodTypes = 'GET' | 'POST' | 'PUT' | 'DELETE'
 export enum ApiEndpoints {
   LOGIN = 'auth/login',
   REFRESH = 'auth/refresh',
+  VERIFY = 'auth/verify',
   REGISTER = 'users',
   ACCOUNT_CREATE = 'organizations',
 }

@@ -2,7 +2,7 @@ import { useClient } from '@vocdoni/react-providers'
 import { RemoteSigner } from '@vocdoni/sdk'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { api, ApiEndpoints, ApiParams, UnauthorizedApiError } from '~components/Auth/api'
-import { LoginResponse, useLogin, useRegister } from '~components/Auth/authQueries'
+import { LoginResponse, useLogin, useRegister, useVerifyMail } from '~components/Auth/authQueries'
 
 enum LocalStorageKeys {
   AUTH_TOKEN = 'authToken',
@@ -17,6 +17,11 @@ export const useAuthProvider = () => {
     },
   })
   const register = useRegister({
+    onSuccess: (data, variables) => {
+      storeLogin(data)
+    },
+  })
+  const mailVerify = useVerifyMail({
     onSuccess: (data, variables) => {
       storeLogin(data)
     },
@@ -94,6 +99,7 @@ export const useAuthProvider = () => {
     isAuthenticated,
     login,
     register,
+    mailVerify,
     logout,
     bearedFetch,
     refresh,
