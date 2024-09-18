@@ -10,15 +10,12 @@ import {
   FormLabel,
   Heading,
   Input,
-  Link,
   Text,
   Textarea,
 } from '@chakra-ui/react'
 import { Button } from '@vocdoni/chakra-components'
-import { EnvOptions, RemoteSigner, VocdoniSDKClient } from '@vocdoni/sdk'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { Link as ReactRouterLink, useNavigate } from 'react-router-dom'
 
 import {
   CountriesTypesSelector,
