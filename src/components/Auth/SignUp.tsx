@@ -8,6 +8,7 @@ import CustomCheckbox from '../Layout/CheckboxCustom'
 import InputCustom from '../Layout/InputCustom'
 import GoogleAuth from './GoogleAuth'
 import { HSeparator } from './SignIn'
+import { useState } from 'react'
 import { IRegisterParams } from '~components/Auth/authQueries'
 
 type FormData = {
@@ -23,10 +24,18 @@ const SignUp = () => {
   } = useAuth()
 
   const methods = useForm<FormData>()
-  const { handleSubmit } = methods
+  const { handleSubmit, watch } = methods
+  const email = watch('email')
+
+  // State to show signup is successful
+  const [isSuccess, setIsSuccess] = useState(false)
 
   const onSubmit = async (data: FormData) => {
-    await signup(data).then(() => navigate('/organization'))
+    await signup(data).then(() => setIsSuccess(true))
+  }
+
+  if (isSuccess) {
+    return <AccountCreated email={email} />
   }
 
   return (
@@ -88,7 +97,6 @@ const SignUp = () => {
             }
             required
           />
-
           <Button
             isLoading={isPending}
             type='submit'
@@ -118,6 +126,41 @@ const SignUp = () => {
         <FormControl isInvalid={isError}>
           {isError && <FormErrorMessage>{error?.message || 'Error al realizar la operación'}</FormErrorMessage>}
         </FormControl>
+      </Box>
+    </Flex>
+  )
+}
+
+const AccountCreated = ({ email }: { email: string }) => {
+  const { textColor, textColorSecondary, textColorBrand, googleBg, googleHover, googleActive } = useDarkMode()
+  const { t } = useTranslation()
+  if (import.meta.env.NODE_ENV === 'dev') {
+  }
+
+  return (
+    <Flex direction='column'>
+      <Box me='auto'>
+        <Heading color={textColor} fontSize='36px' mb='10px'>
+          {t('signup.account_created_succesfully', { defaultValue: 'Account created successfully!' })}
+        </Heading>
+        <Text mb='36px' ms='4px' color={textColorSecondary} fontWeight='400' fontSize='md'>
+          {t('signup.verification_email_is_sent', {
+            defaultValue: 'A verification email has been sent to:',
+          })}
+        </Text>
+        <Text mb='36px' ms='4px' color={textColorSecondary} fontWeight='bold' fontSize='md'>
+          {email}
+        </Text>
+        <Text mb='36px' ms='4px' color={textColorSecondary} fontWeight='400' fontSize='md'>
+          {t('signup.follow_email_instructions', {
+            defaultValue: 'Follow the instructions there to activate your account.',
+          })}
+        </Text>
+        {import.meta.env.VOCDONI_ENVIRONMENT === 'dev' && (
+          <Button as={ReactRouterLink} to={`/account/verify?email=${email}&code=`}>
+            Mail verification for dev envs
+          </Button>
+        )}
       </Box>
     </Flex>
   )
