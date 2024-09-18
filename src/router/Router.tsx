@@ -7,9 +7,10 @@ import Layout from '~elements/Layout'
 import LayoutAuth from '~elements/LayoutAuth'
 import LayoutProcessCreate from '~elements/LayoutProcessCreate'
 import { StripeCheckout, StripeReturn } from '~elements/Stripe'
-import OrganizationProtectedRoute from './OrganizationProtectedRoute'
+import { default as ScaffoldOrganizationProtectedRoute } from './OrganizationProtectedRoute'
 
 import { SuspenseLoader } from './SuspenseLoader'
+import SaasOrganizationProtectedRoute from '~src/router/SaasOrganizationProtectedRoute'
 
 // Lazy loading helps splitting the final code, which helps downloading the app (theoretically)
 const ProtectedRoutes = lazy(() => import('./ProtectedRoutes'))
@@ -43,6 +44,8 @@ export const RoutesProvider = () => {
 
   const domains = import.meta.env.CUSTOM_ORGANIZATION_DOMAINS
   const isSaas = !!import.meta.env.SAAS_URL
+
+  const OrganizationProtectedRoute = isSaas ? SaasOrganizationProtectedRoute : ScaffoldOrganizationProtectedRoute
 
   const mainLayoutRoutes: RouteObject[] = [
     {
