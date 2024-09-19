@@ -11,7 +11,7 @@ export enum ApiEndpoints {
 
 interface IApiError {
   error: string
-  code: number
+  code?: number
 }
 
 export class ApiError extends Error {
@@ -54,22 +54,32 @@ export const api = <T>(
     body: JSON.stringify(body),
   })
     .then(async (response) => {
+      const responseText = await response.text()
+      // Parse error response
       if (!response.ok) {
-        const error = (await response.json()) as IApiError
+        let error: IApiError
+        try {
+          error = JSON.parse(responseText) as IApiError
+        } catch (e) {
+          // If parsing fails, use the raw text as the error message
+          const sanitized = responseText.replace('\n', '')
+          error = { error: sanitized.length ? sanitized : response.statusText }
+        }
         if (response.status === 401) {
-          // Check is response body contains user not verified message
+          // Handle unauthorized error
           if (error.error === 'user not authorized: user not verified') {
             throw new UnverifiedApiError(error, response)
           }
           throw new UnauthorizedApiError(error, response)
         }
+
         throw new ApiError(error, response)
       }
-      const contentType = response.headers.get('content-type')
-      if (contentType && contentType.includes('application/json')) {
-        return (await response.json()) as T
+      // check if type T is void or undefined, return void
+      if ((undefined as T) === undefined) {
+        return
       }
-      return null // Return null if the content is not JSON
+      return JSON.parse(responseText) as T
     })
     .catch((error: Error) => {
       throw error
