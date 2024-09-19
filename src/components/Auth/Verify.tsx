@@ -4,7 +4,8 @@ import { Link as ReactRouterLink, useNavigate, useSearchParams } from 'react-rou
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import { useAuth } from '~components/Auth/useAuth'
 import { Loading } from '~src/router/SuspenseLoader'
-import { useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import { useResendVerificationMail } from '~components/Auth/authQueries'
 
 const Verify = () => {
   const navigate = useNavigate()
@@ -69,6 +70,18 @@ const Verify = () => {
 export const VerifyAccountNeeded = ({ email }: { email: string }) => {
   const { textColor, textColorSecondary } = useDarkMode()
   const { t } = useTranslation()
+  const [emailSent, setEmailSent] = useState(false)
+  const { mutate, isError, error, isPending } = useResendVerificationMail({
+    onSuccess: () => {
+      setEmailSent(true)
+    },
+  })
+
+  const resendMail = useCallback(() => {
+    if (email && !emailSent) {
+      mutate({ email })
+    }
+  }, [emailSent, email])
 
   return (
     <Flex direction='column'>
@@ -90,9 +103,15 @@ export const VerifyAccountNeeded = ({ email }: { email: string }) => {
           })}
         </Text>
       </Box>
-      <Button>
+      <Button isLoading={isPending} onClick={resendMail}>
         <Trans i18nKey={'verify.resend_confirmation_mail'}>Resend Email</Trans>
       </Button>
+      <Box pt={2}>
+        {emailSent && <Trans i18nKey={'verify.email_sent'}>Email sent successfully</Trans>}
+        <FormControl isInvalid={isError}>
+          {isError && <FormErrorMessage>{error?.message || 'Error al realizar la operación'}</FormErrorMessage>}
+        </FormControl>
+      </Box>
       {import.meta.env.VOCDONI_ENVIRONMENT === 'dev' && (
         <Button mt={4} as={ReactRouterLink} to={`/account/verify?email=${email}&code=`}>
           Mail verification for dev envs

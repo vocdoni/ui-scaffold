@@ -5,6 +5,7 @@ export enum ApiEndpoints {
   REFRESH = 'auth/refresh',
   REGISTER = 'users',
   VERIFY = 'users/verify',
+  RESEND_VERIFICATION = 'users/verify/code',
   ACCOUNT_CREATE = 'organizations',
 }
 
