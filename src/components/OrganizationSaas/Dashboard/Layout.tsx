@@ -26,8 +26,9 @@ import {
 import { OrganizationAvatar, OrganizationName } from '@vocdoni/chakra-components'
 import { OrganizationProvider, useClient } from '@vocdoni/react-providers'
 import { Trans, useTranslation } from 'react-i18next'
-import { Outlet, Link as ReactRouterLink, useLocation } from 'react-router-dom'
+import { Outlet, Link as ReactRouterLink, useLocation, useNavigate } from 'react-router-dom'
 import { HSeparator } from '~components/Auth/SignIn'
+import { useAuth } from '~components/Auth/useAuth'
 import DarkModeToggle from '~src/themes/saas/components/DarkMode'
 import PricingCard from '~src/themes/saas/components/Saas/PricingCard'
 import Wrapper from '~src/themes/saas/components/Saas/Wapper'
@@ -46,6 +47,9 @@ type CardProps = {
 
 const OrganizationDashboardLayout: React.FC = () => {
   const { t } = useTranslation()
+  const { logout: authLogout } = useAuth()
+  const navigate = useNavigate()
+
   const { textColor, bgSecondary, textColorBrand, bg, textColorSecondary } = useDarkMode()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { isOpen: isOpenModal, onOpen: onOpenModal, onClose: onCloseModal } = useDisclosure()
@@ -67,6 +71,12 @@ const OrganizationDashboardLayout: React.FC = () => {
       )
     }
   }
+
+  const logout = () => {
+    authLogout()
+    navigate('/')
+  }
+
   return (
     <OrganizationProvider organization={account}>
       <Wrapper gap='10px'>
@@ -164,6 +174,7 @@ const OrganizationDashboardLayout: React.FC = () => {
                       color={textColorSecondary}
                       textDecoration='underline'
                       _hover={{ textDecoration: 'none' }}
+                      onClick={logout}
                     >
                       {t('menu.logout')}
                     </Button>

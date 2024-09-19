@@ -1,17 +1,23 @@
 import { FormControl, FormErrorMessage, FormLabel } from '@chakra-ui/react'
-import { ChakraStylesConfig, GroupBase, Select } from 'chakra-react-select'
+import { ChakraStylesConfig, GroupBase, Select, Props as SelectProps } from 'chakra-react-select'
 import { Controller, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
+import { ControllerProps } from 'react-hook-form/dist/types'
 
-export interface SelectCustomProps {
-  options: { label: string; value: string }[]
-  formValue: string
-  label?: string
-  placeholder?: string
-  required?: boolean
+export type SelectOptionType = {
+  label: string
+  value: string
 }
 
+export type SelectCustomProps = {
+  name: string
+  label?: string
+  required?: boolean
+  controller?: Omit<ControllerProps, 'render' | 'name'>
+} & SelectProps
+
+// todo: move this to theme
 const customStyles: ChakraStylesConfig<any, false, GroupBase<any>> = {
   control: (provided) => ({
     ...provided,
@@ -31,11 +37,12 @@ const customStyles: ChakraStylesConfig<any, false, GroupBase<any>> = {
 }
 
 export const SelectCustom = ({
-  options,
-  formValue,
+  name,
   label,
-  placeholder = 'Choose an option',
+  placeholder,
   required = false,
+  controller,
+  ...rest
 }: SelectCustomProps) => {
   const { t } = useTranslation()
   const { textColor } = useDarkMode()
@@ -55,28 +62,31 @@ export const SelectCustom = ({
   }
 
   return (
-    <FormControl isInvalid={!!errors[formValue]}>
-      <FormLabel htmlFor={formValue} fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
-        {label}
-      </FormLabel>
+    <FormControl isInvalid={!!errors[name]}>
+      {label && (
+        <FormLabel htmlFor={name} fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
+          {label}
+        </FormLabel>
+      )}
       <Controller
-        name={formValue}
+        {...controller}
+        name={name}
         control={control}
         rules={{ required: required ? t('form.error.field_is_required') : false }}
         render={({ field }) => (
           <Select
+            placeholder={t('form.choose_an_option', { defaultValue: 'Choose an option' })}
             {...field}
-            options={options}
-            placeholder={placeholder}
+            {...rest}
             chakraStyles={customStyles}
             isClearable
             onChange={(selectedOption) => {
-              setValue(formValue, selectedOption)
+              setValue(name, selectedOption)
             }}
           />
         )}
       />
-      <FormErrorMessage>{getErrorMessage(errors[formValue])}</FormErrorMessage>
+      <FormErrorMessage>{getErrorMessage(errors[name])}</FormErrorMessage>
     </FormControl>
   )
 }
@@ -84,7 +94,7 @@ export const SelectCustom = ({
 export const OrganzationTypesSelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) => {
   const { t } = useTranslation()
 
-  const orgTypes = [
+  const orgTypes: SelectOptionType[] = [
     { label: t('org_type_selector.assembly', { defaultValue: 'Assembly' }), value: 'assembly' },
     { label: t('org_type_selector.association', { defaultValue: 'Association' }), value: 'association' },
     { label: t('org_type_selector.chamber', { defaultValue: 'Chamber' }), value: 'chamber' },
@@ -110,7 +120,10 @@ export const OrganzationTypesSelector = ({ ...props }: Omit<SelectCustomProps, '
 export const CountriesTypesSelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) => {
   const { t } = useTranslation()
 
-  const countries = [
+  const defaultVal = { label: t('country_selector.spain', { defaultValue: 'Spain' }), value: 'ES' }
+
+  const countries: SelectOptionType[] = [
+    defaultVal,
     { label: t('country_selector.australia', { defaultValue: 'Australia' }), value: 'AU' },
     { label: t('country_selector.brazil', { defaultValue: 'Brazil' }), value: 'BR' },
     { label: t('country_selector.canada', { defaultValue: 'Canada' }), value: 'CA' },
@@ -126,7 +139,6 @@ export const CountriesTypesSelector = ({ ...props }: Omit<SelectCustomProps, 'op
     { label: t('country_selector.russia', { defaultValue: 'Russia' }), value: 'RU' },
     { label: t('country_selector.south_africa', { defaultValue: 'South Africa' }), value: 'ZA' },
     { label: t('country_selector.south_korea', { defaultValue: 'South Korea' }), value: 'KR' },
-    { label: t('country_selector.spain', { defaultValue: 'Spain' }), value: 'ES' },
     { label: t('country_selector.sweden', { defaultValue: 'Sweden' }), value: 'SE' },
     { label: t('country_selector.switzerland', { defaultValue: 'Switzerland' }), value: 'CH' },
     { label: t('country_selector.united_kingdom', { defaultValue: 'United Kingdom' }), value: 'GB' },
@@ -137,6 +149,8 @@ export const CountriesTypesSelector = ({ ...props }: Omit<SelectCustomProps, 'op
     <SelectCustom
       options={countries}
       label={t('country_selector.selector_label', { defaultValue: 'Country' })}
+      defaultValue={defaultVal}
+      controller={{ defaultValue: defaultVal }}
       {...props}
     />
   )
@@ -144,7 +158,7 @@ export const CountriesTypesSelector = ({ ...props }: Omit<SelectCustomProps, 'op
 
 export const MembershipSizeTypesSelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) => {
   const { t } = useTranslation()
-  const listSizes = [
+  const listSizes: SelectOptionType[] = [
     { label: '0-100', value: '0-100' },
     { label: '100-250', value: '100-250' },
     { label: '250-500', value: '250-500' },
