@@ -1,4 +1,4 @@
-import { useMutation, UseMutationOptions } from '@tanstack/react-query/build/modern/index'
+import { useMutation, UseMutationOptions } from '@tanstack/react-query'
 import { api, ApiEndpoints } from '~components/Auth/api'
 
 export type LoginResponse = { token: string; expirity: string }
