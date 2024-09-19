@@ -8,10 +8,13 @@ export interface CreateAccountParams {
   description: string
 }
 
-export const useAccountCreate = (
-  options?: Omit<UseMutationOptions<void, Error, CreateAccountParams>, 'mutationFn'>
-) => {
-  const { createAccount, updateAccount } = useClient()
+export const useAccountCreate = () => {
+  const {
+    createAccount,
+    updateAccount,
+    errors: { account: error },
+  } = useClient()
+
   // we want to know if account exists, not the organization (slight difference)
   const { exists } = useAccountHealthTools()
 
@@ -28,5 +31,5 @@ export const useAccountCreate = (
     return call()
   }
 
-  return useMutation({ mutationFn: create, ...options })
+  return { create, error }
 }

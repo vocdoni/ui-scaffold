@@ -29,6 +29,7 @@ import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import { useClient } from '@vocdoni/react-providers'
 import { useAccountCreate } from '~components/Account/useAccountCreate'
+import { useState } from 'react'
 
 interface OrgInterface {
   name: string
@@ -66,6 +67,7 @@ type FormData = {
 export const AccountCreate = ({ children, ...props }: FlexProps) => {
   const { t } = useTranslation()
 
+  const [isPending, setIsPending] = useState(false)
   const { refresh } = useAuth()
   const { textColor, textColorBrand, textColorSecondary } = useDarkMode()
 
@@ -76,27 +78,14 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
     formState: { errors },
   } = methods
 
-  const {
-    errors: { account: providerError },
-  } = useClient()
+  const { signer } = useClient()
 
-  const {
-    mutateAsync: createAccount,
-    isPending: isPendingAccount,
-    isError: isAccountError,
-    error: accountError,
-  } = useAccountCreate()
-  const {
-    mutateAsync: createSaasAccount,
-    isError: isSaasError,
-    error: saasError,
-    isPending: isPendingSaasAccount,
-  } = useSaasAccountCreate()
+  const { create: createAccount, error: accountError } = useAccountCreate()
+  const { mutateAsync: createSaasAccount, isError: isSaasError, error: saasError } = useSaasAccountCreate()
 
-  const isPending = isPendingAccount || isPendingSaasAccount
-  const isError = isAccountError || isSaasError
+  const isError = !!accountError || isSaasError
 
-  const error = saasError || accountError || providerError
+  const error = saasError || accountError
 
   const required = {
     value: true,
@@ -104,6 +93,7 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
   }
 
   const onSubmit = (values: FormData) => {
+    setIsPending(true)
     // Create account on the saas to generate new priv keys
     createSaasAccount({
       name: values.name,
@@ -113,9 +103,10 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
       country: values.countrySelect?.value,
       type: values.typeSelect?.value,
     })
-      .then(() => refresh()) // Get the address of newly created signer
+      .then(() => signer.getAddress()) // Get the address of newly created signer
       .then(() => createAccount({ name: values.name, description: values.description })) // Create the new account on the vochain
       .then(() => refresh()) // Update the signer to get new account info
+      .finally(() => setIsPending(false))
   }
 
   return (

@@ -48,11 +48,7 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
     },
   })
 
-  const {
-    errors: { account: error },
-  } = useClient()
-
-  const { mutateAsync } = useAccountCreate()
+  const { create, error } = useAccountCreate()
 
   const [sent, setSent] = useState<boolean>(false)
 
@@ -62,7 +58,7 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
   }
 
   const onSubmit = async (values: CreateAccountParams) => {
-    return mutateAsync(values)?.finally(() => setSent(true))
+    return create(values)?.finally(() => setSent(true))
   }
 
   return (
