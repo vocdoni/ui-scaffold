@@ -24,7 +24,6 @@ import {
 } from '@chakra-ui/react'
 import { Button } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
-import { Account } from '@vocdoni/sdk'
 import { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
