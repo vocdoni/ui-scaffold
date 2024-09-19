@@ -16,11 +16,7 @@ export const useAuthProvider = () => {
       storeLogin(data)
     },
   })
-  const register = useRegister({
-    onSuccess: (data, variables) => {
-      storeLogin(data)
-    },
-  })
+  const register = useRegister()
   const mailVerify = useVerifyMail({
     onSuccess: (data, variables) => {
       storeLogin(data)

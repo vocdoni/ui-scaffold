@@ -10,13 +10,13 @@ import GoogleAuth from './GoogleAuth'
 import { HSeparator } from './SignIn'
 import { useState } from 'react'
 import { IRegisterParams } from '~components/Auth/authQueries'
+import { VerifyAccountNeeded } from '~components/Auth/Verify'
 
 type FormData = {
   terms: boolean
 } & IRegisterParams
 
 const SignUp = () => {
-  const navigate = useNavigate()
   const { t } = useTranslation()
   const { textColor, textColorSecondary, textColorBrand, googleBg, googleHover, googleActive } = useDarkMode()
   const {
@@ -35,7 +35,7 @@ const SignUp = () => {
   }
 
   if (isSuccess) {
-    return <AccountCreated email={email} />
+    return <VerifyAccountNeeded email={email} />
   }
 
   return (
@@ -130,40 +130,4 @@ const SignUp = () => {
     </Flex>
   )
 }
-
-const AccountCreated = ({ email }: { email: string }) => {
-  const { textColor, textColorSecondary, textColorBrand, googleBg, googleHover, googleActive } = useDarkMode()
-  const { t } = useTranslation()
-  if (import.meta.env.NODE_ENV === 'dev') {
-  }
-
-  return (
-    <Flex direction='column'>
-      <Box me='auto'>
-        <Heading color={textColor} fontSize='36px' mb='10px'>
-          {t('signup.account_created_succesfully', { defaultValue: 'Account created successfully!' })}
-        </Heading>
-        <Text mb='36px' ms='4px' color={textColorSecondary} fontWeight='400' fontSize='md'>
-          {t('signup.verification_email_is_sent', {
-            defaultValue: 'A verification email has been sent to:',
-          })}
-        </Text>
-        <Text mb='36px' ms='4px' color={textColorSecondary} fontWeight='bold' fontSize='md'>
-          {email}
-        </Text>
-        <Text mb='36px' ms='4px' color={textColorSecondary} fontWeight='400' fontSize='md'>
-          {t('signup.follow_email_instructions', {
-            defaultValue: 'Follow the instructions there to activate your account.',
-          })}
-        </Text>
-        {import.meta.env.VOCDONI_ENVIRONMENT === 'dev' && (
-          <Button as={ReactRouterLink} to={`/account/verify?email=${email}&code=`}>
-            Mail verification for dev envs
-          </Button>
-        )}
-      </Box>
-    </Flex>
-  )
-}
-
 export default SignUp

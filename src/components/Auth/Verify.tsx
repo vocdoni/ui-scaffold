@@ -1,6 +1,6 @@
-import { Box, Flex, FormControl, FormErrorMessage, Heading, Text } from '@chakra-ui/react'
-import { useTranslation } from 'react-i18next'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { Box, Button, Flex, FormControl, FormErrorMessage, Heading, Text } from '@chakra-ui/react'
+import { useTranslation, Trans } from 'react-i18next'
+import { Link as ReactRouterLink, useNavigate, useSearchParams } from 'react-router-dom'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import { useAuth } from '~components/Auth/useAuth'
 import { Loading } from '~src/router/SuspenseLoader'
@@ -62,6 +62,42 @@ const Verify = () => {
           )}
         </FormControl>
       </Box>
+    </Flex>
+  )
+}
+
+export const VerifyAccountNeeded = ({ email }: { email: string }) => {
+  const { textColor, textColorSecondary } = useDarkMode()
+  const { t } = useTranslation()
+
+  return (
+    <Flex direction='column'>
+      <Box me='auto'>
+        <Heading color={textColor} fontSize='36px' mb='10px'>
+          {t('verify.account_created_succesfully', { defaultValue: 'Account created successfully!' })}
+        </Heading>
+        <Text mb='36px' ms='4px' color={textColorSecondary} fontWeight='400' fontSize='md'>
+          {t('verify.verification_email_is_sent', {
+            defaultValue: 'A verification email has been sent to:',
+          })}
+        </Text>
+        <Text mb='36px' ms='4px' color={textColorSecondary} fontWeight='bold' fontSize='md'>
+          {email}
+        </Text>
+        <Text mb='36px' ms='4px' color={textColorSecondary} fontWeight='400' fontSize='md'>
+          {t('verify.follow_email_instructions', {
+            defaultValue: 'Follow the instructions there to activate your account.',
+          })}
+        </Text>
+      </Box>
+      <Button>
+        <Trans i18nKey={'verify.resend_confirmation_mail'}>Resend Email</Trans>
+      </Button>
+      {import.meta.env.VOCDONI_ENVIRONMENT === 'dev' && (
+        <Button mt={4} as={ReactRouterLink} to={`/account/verify?email=${email}&code=`}>
+          Mail verification for dev envs
+        </Button>
+      )}
     </Flex>
   )
 }

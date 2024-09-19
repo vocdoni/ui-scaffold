@@ -3,8 +3,8 @@ type MethodTypes = 'GET' | 'POST' | 'PUT' | 'DELETE'
 export enum ApiEndpoints {
   LOGIN = 'auth/login',
   REFRESH = 'auth/refresh',
-  VERIFY = 'auth/verify',
   REGISTER = 'users',
+  VERIFY = 'users/verify',
   ACCOUNT_CREATE = 'organizations',
 }
 
@@ -30,6 +30,12 @@ export class UnauthorizedApiError extends ApiError {
   }
 }
 
+export class UnverifiedApiError extends ApiError {
+  constructor(apiError?: IApiError, response?: Response) {
+    super(apiError, response)
+  }
+}
+
 export type ApiParams = {
   body?: unknown
   method?: MethodTypes
@@ -50,6 +56,10 @@ export const api = <T>(
       if (!response.ok) {
         const error = (await response.json()) as IApiError
         if (response.status === 401) {
+          // Check is response body contains user not verified message
+          if (error.error === 'user not authorized: user not verified') {
+            throw new UnverifiedApiError(error, response)
+          }
           throw new UnauthorizedApiError(error, response)
         }
         throw new ApiError(error, response)

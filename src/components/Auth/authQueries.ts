@@ -20,14 +20,16 @@ export interface IVerifyParams {
   code: string
 }
 
-export const useLogin = (options: Omit<UseMutationOptions<LoginResponse, Error, ILoginParams>, 'mutationFn'>) => {
+export const useLogin = (options?: Omit<UseMutationOptions<LoginResponse, Error, ILoginParams>, 'mutationFn'>) => {
   return useMutation<LoginResponse, Error, ILoginParams>({
     mutationFn: (params: ILoginParams) => api<LoginResponse>(ApiEndpoints.LOGIN, { body: params, method: 'POST' }),
     ...options,
   })
 }
 
-export const useRegister = (options: Omit<UseMutationOptions<LoginResponse, Error, IRegisterParams>, 'mutationFn'>) => {
+export const useRegister = (
+  options?: Omit<UseMutationOptions<LoginResponse, Error, IRegisterParams>, 'mutationFn'>
+) => {
   return useMutation<LoginResponse, Error, IRegisterParams>({
     mutationFn: (params: IRegisterParams) =>
       api<LoginResponse>(ApiEndpoints.REGISTER, { body: params, method: 'POST' }),
@@ -35,7 +37,9 @@ export const useRegister = (options: Omit<UseMutationOptions<LoginResponse, Erro
   })
 }
 
-export const useVerifyMail = (options: Omit<UseMutationOptions<LoginResponse, Error, IVerifyParams>, 'mutationFn'>) => {
+export const useVerifyMail = (
+  options?: Omit<UseMutationOptions<LoginResponse, Error, IVerifyParams>, 'mutationFn'>
+) => {
   return useMutation<LoginResponse, Error, IVerifyParams>({
     mutationFn: (params: IVerifyParams) => api<LoginResponse>(ApiEndpoints.VERIFY, { body: params, method: 'POST' }),
     ...options,
