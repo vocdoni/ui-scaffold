@@ -75,11 +75,7 @@ export const api = <T>(
 
         throw new ApiError(error, response)
       }
-      // check if type T is void or undefined, return void
-      if ((undefined as T) === undefined) {
-        return
-      }
-      return JSON.parse(responseText) as T
+      return responseText ? (JSON.parse(responseText) as T) : undefined
     })
     .catch((error: Error) => {
       throw error
