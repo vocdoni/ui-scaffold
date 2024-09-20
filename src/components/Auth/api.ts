@@ -54,15 +54,14 @@ export const api = <T>(
     body: JSON.stringify(body),
   })
     .then(async (response) => {
-      const responseText = await response.text()
+      const sanitized = (await response.text()).replace('\n', '')
       // Parse error response
       if (!response.ok) {
         let error: IApiError
         try {
-          error = JSON.parse(responseText) as IApiError
+          error = JSON.parse(sanitized) as IApiError
         } catch (e) {
           // If parsing fails, use the raw text as the error message
-          const sanitized = responseText.replace('\n', '')
           error = { error: sanitized.length ? sanitized : response.statusText }
         }
         // Handle unauthorized error
@@ -75,7 +74,7 @@ export const api = <T>(
 
         throw new ApiError(error, response)
       }
-      return responseText ? (JSON.parse(responseText) as T) : undefined
+      return sanitized ? (JSON.parse(sanitized) as T) : undefined
     })
     .catch((error: Error) => {
       throw error
