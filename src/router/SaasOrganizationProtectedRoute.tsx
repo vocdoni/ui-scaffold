@@ -5,6 +5,7 @@ import { useAccountHealthTools } from '~components/Account/use-account-health-to
 import { useAuth } from '~components/Auth/useAuth'
 import CreateOrganizationSaas from '~components/OrganizationSaas/Dashboard/Create'
 import SignInScreen from './SignInScreen'
+import { Loading } from '~src/router/SuspenseLoader'
 
 const SaasOrganizationProtectedRoute = () => {
   const {
@@ -16,12 +17,7 @@ const SaasOrganizationProtectedRoute = () => {
   const { isAuthenticated, isAuthLoading, signerAddress } = useAuth()
 
   if ((!fetchLoaded && fetchLoading) || isAuthLoading) {
-    return (
-      <Flex mt={10} justifyContent='center'>
-        todo: use spinner loading page
-        <Spinner />
-      </Flex>
-    )
+    return <Loading />
   }
 
   if (!isAuthenticated) {
