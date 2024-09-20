@@ -8,6 +8,9 @@ import CustomCheckbox from '../Layout/CheckboxCustom'
 import InputCustom from '../Layout/InputCustom'
 import GoogleAuth from './GoogleAuth'
 import { ILoginParams } from '~components/Auth/authQueries'
+import { UnverifiedApiError } from '~components/Auth/api'
+import { useState } from 'react'
+import { VerifyAccountNeeded } from '~components/Auth/Verify'
 
 type FormData = {
   keepLogedIn: boolean
@@ -18,13 +21,28 @@ const SignIn = () => {
   const navigate = useNavigate()
   const { textColor, textColorSecondary, textColorBrand, googleBg, googleHover, googleActive } = useDarkMode()
   const methods = useForm<FormData>()
-  const { handleSubmit } = methods
+  const { handleSubmit, watch } = methods
+  const email = watch('email')
+
   const {
     login: { mutateAsync: login, isError, error, isPending },
   } = useAuth()
+  const [verifyNeeded, setVerifyNeeded] = useState(false)
 
   const onSubmit = async (data: FormData) => {
-    await login(data).then(() => navigate('/organization'))
+    await login(data)
+      .then(() => navigate('/organization'))
+      .catch((e) => {
+        if (e instanceof UnverifiedApiError) {
+          setVerifyNeeded(true)
+          return
+        }
+        throw e
+      })
+  }
+
+  if (verifyNeeded) {
+    return <VerifyAccountNeeded email={email} />
   }
 
   return (

@@ -8,14 +8,15 @@ import CustomCheckbox from '../Layout/CheckboxCustom'
 import InputCustom from '../Layout/InputCustom'
 import GoogleAuth from './GoogleAuth'
 import { HSeparator } from './SignIn'
+import { useState } from 'react'
 import { IRegisterParams } from '~components/Auth/authQueries'
+import { VerifyAccountNeeded } from '~components/Auth/Verify'
 
 type FormData = {
   terms: boolean
 } & IRegisterParams
 
 const SignUp = () => {
-  const navigate = useNavigate()
   const { t } = useTranslation()
   const { textColor, textColorSecondary, textColorBrand, googleBg, googleHover, googleActive } = useDarkMode()
   const {
@@ -23,10 +24,18 @@ const SignUp = () => {
   } = useAuth()
 
   const methods = useForm<FormData>()
-  const { handleSubmit } = methods
+  const { handleSubmit, watch } = methods
+  const email = watch('email')
+
+  // State to show signup is successful
+  const [isSuccess, setIsSuccess] = useState(false)
 
   const onSubmit = async (data: FormData) => {
-    await signup(data).then(() => navigate('/organization'))
+    await signup(data).then(() => setIsSuccess(true))
+  }
+
+  if (isSuccess) {
+    return <VerifyAccountNeeded email={email} />
   }
 
   return (
@@ -88,7 +97,6 @@ const SignUp = () => {
             }
             required
           />
-
           <Button
             isLoading={isPending}
             type='submit'
@@ -122,5 +130,4 @@ const SignUp = () => {
     </Flex>
   )
 }
-
 export default SignUp

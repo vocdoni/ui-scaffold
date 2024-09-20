@@ -34,6 +34,7 @@ const Terms = lazy(() => import('~components/TermsAndPrivacy/Terms'))
 const Privacy = lazy(() => import('~components/TermsAndPrivacy/Privacy'))
 const SignIn = lazy(() => import('~components/Auth/SignIn'))
 const SignUp = lazy(() => import('~components/Auth/SignUp'))
+const Verify = lazy(() => import('~components/Auth/Verify'))
 const ForgotPassword = lazy(() => import('~components/Auth/ForgotPassword'))
 const Calculator = lazy(() => import('~components/Calculator'))
 
@@ -185,10 +186,18 @@ export const RoutesProvider = () => {
                 ),
               },
               {
-                path: 'forgot-password',
+                path: 'account/recovery',
                 element: (
                   <SuspenseLoader>
                     <ForgotPassword />
+                  </SuspenseLoader>
+                ),
+              },
+              {
+                path: 'account/verify',
+                element: (
+                  <SuspenseLoader>
+                    <Verify />
                   </SuspenseLoader>
                 ),
               },
