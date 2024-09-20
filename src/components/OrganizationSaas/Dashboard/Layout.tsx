@@ -139,6 +139,8 @@ const OrganizationDashboardLayout: React.FC = () => {
 
                 <Box mt='auto'>
                   <Button
+                    as={ReactRouterLink}
+                    to='/processes/create'
                     position='relative'
                     display='flex'
                     justifyContent='center'
