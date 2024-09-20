@@ -3,21 +3,22 @@ import { useClient } from '@vocdoni/react-providers'
 import { Outlet } from 'react-router-dom'
 import { useAccountHealthTools } from '~components/Account/use-account-health-tools'
 import { useAuth } from '~components/Auth/useAuth'
-import CreateOrganization from '~components/Organization/Dashboard/Create'
 import CreateOrganizationSaas from '~components/OrganizationSaas/Dashboard/Create'
 import SignInScreen from './SignInScreen'
 
 const SaasOrganizationProtectedRoute = () => {
   const {
-    loaded: { fetch: fetchLoaded },
-    loading: { fetch: fetchLoading },
+    loaded: { account: fetchLoaded },
+    loading: { account: fetchLoading },
   } = useClient()
   const { exists } = useAccountHealthTools()
-  const { isAuthenticated, loaded, signerAddress } = useAuth()
 
-  if ((!fetchLoaded && fetchLoading) || !loaded) {
+  const { isAuthenticated, isAuthLoading, signerAddress } = useAuth()
+
+  if ((!fetchLoaded && fetchLoading) || isAuthLoading) {
     return (
       <Flex mt={10} justifyContent='center'>
+        todo: use spinner loading page
         <Spinner />
       </Flex>
     )

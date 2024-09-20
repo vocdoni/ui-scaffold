@@ -48,6 +48,15 @@ interface OrgInterface {
 
 type CreateOrgParams = Partial<OrgInterface>
 
+// This specific error message should be ignored and not displayed in the UI.
+// Context: After login, a RemoteSigner is created and passed to the SDK via the useClient hook.
+// Immediately following this, the provider attempts to fetch the signer's address. However,
+// at this point, the signer has not yet been associated with any organization.
+// As a result, the backend returns an error, which is stored in the provider's state.
+// We rely on this error message for handling because no error code is provided,
+// and the error is not thrown as an exception.
+const IgnoreAccountError = 'this user has not been assigned to any organization'
+
 const useSaasAccountCreate = (options?: Omit<UseMutationOptions<void, Error, CreateOrgParams>, 'mutationFn'>) => {
   const { bearedFetch } = useAuth()
   return useMutation<void, Error, CreateOrgParams>({
@@ -68,7 +77,6 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
   const { t } = useTranslation()
 
   const [isPending, setIsPending] = useState(false)
-  const { refresh } = useAuth()
   const { textColor, textColorBrand, textColorSecondary } = useDarkMode()
 
   const methods = useForm<FormData>()
@@ -105,7 +113,6 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
     })
       .then(() => signer.getAddress()) // Get the address of newly created signer
       .then(() => createAccount({ name: values.name, description: values.description })) // Create the new account on the vochain
-      .then(() => refresh()) // Update the signer to get new account info
       .finally(() => setIsPending(false))
   }
 
@@ -184,7 +191,7 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
         </Button>
         <Box pt={2}>
           <FormControl isInvalid={isError}>
-            {isError && (
+            {isError && error !== IgnoreAccountError && (
               <FormErrorMessage>
                 {typeof error === 'string' ? error : error?.message || 'Error al realizar la operación'}
               </FormErrorMessage>
