@@ -65,9 +65,9 @@ export const api = <T>(
           const sanitized = responseText.replace('\n', '')
           error = { error: sanitized.length ? sanitized : response.statusText }
         }
+        // Handle unauthorized error
         if (response.status === 401) {
-          // Handle unauthorized error
-          if (error.error === 'user not authorized: user not verified') {
+          if (error?.code === 40014) {
             throw new UnverifiedApiError(error, response)
           }
           throw new UnauthorizedApiError(error, response)
