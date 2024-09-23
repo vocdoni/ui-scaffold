@@ -1,4 +1,3 @@
-import { Flex, Spinner } from '@chakra-ui/react'
 import { useClient } from '@vocdoni/react-providers'
 import { Outlet } from 'react-router-dom'
 import { useAccountHealthTools } from '~components/Account/use-account-health-tools'
