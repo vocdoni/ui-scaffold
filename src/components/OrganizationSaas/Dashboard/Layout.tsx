@@ -36,6 +36,7 @@ import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import { Logo } from '~theme/icons'
 import OrganizationDashboardMenu from './Menu'
 import Settings from './Settings'
+import LogoutBtn from '~components/AccountSaas/LogoutBtn'
 
 type CardProps = {
   popular: boolean
@@ -47,8 +48,6 @@ type CardProps = {
 
 const OrganizationDashboardLayout: React.FC = () => {
   const { t } = useTranslation()
-  const { logout: authLogout } = useAuth()
-  const navigate = useNavigate()
 
   const { textColor, bgSecondary, textColorBrand, bg, textColorSecondary } = useDarkMode()
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -70,11 +69,6 @@ const OrganizationDashboardLayout: React.FC = () => {
         </Heading>
       )
     }
-  }
-
-  const logout = () => {
-    authLogout()
-    navigate('/')
   }
 
   return (
@@ -170,16 +164,7 @@ const OrganizationDashboardLayout: React.FC = () => {
                     {t('new_voting')}
                   </Button>
                   <VStack>
-                    <Button
-                      variant='outline'
-                      border='none'
-                      color={textColorSecondary}
-                      textDecoration='underline'
-                      _hover={{ textDecoration: 'none' }}
-                      onClick={logout}
-                    >
-                      {t('menu.logout')}
-                    </Button>
+                    <LogoutBtn />
                   </VStack>
                 </Box>
               </Flex>
