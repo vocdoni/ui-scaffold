@@ -1,15 +1,11 @@
 import {
-  Alert,
-  AlertIcon,
   Box,
-  Checkbox,
   Flex,
   FlexProps,
   FormControl,
   FormErrorMessage,
   FormLabel,
   Heading,
-  Input,
   Text,
   Textarea,
 } from '@chakra-ui/react'
@@ -17,6 +13,14 @@ import { Button } from '@vocdoni/chakra-components'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 
+import { useMutation, UseMutationOptions } from '@tanstack/react-query'
+import { useClient } from '@vocdoni/react-providers'
+import { useState } from 'react'
+import { useAccountCreate } from '~components/Account/useAccountCreate'
+import { ApiEndpoints } from '~components/Auth/api'
+import { useAuth } from '~components/Auth/useAuth'
+import CheckboxCustom from '~components/Layout/CheckboxCustom'
+import InputCustom from '~components/Layout/InputCustom'
 import {
   CountriesTypesSelector,
   MembershipSizeTypesSelector,
@@ -24,12 +28,6 @@ import {
   SelectOptionType,
 } from '~components/Layout/SaasSelector'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
-import { useMutation, UseMutationOptions } from '@tanstack/react-query'
-import { ApiEndpoints } from '~components/Auth/api'
-import { useAuth } from '~components/Auth/useAuth'
-import { useClient } from '@vocdoni/react-providers'
-import { useAccountCreate } from '~components/Account/useAccountCreate'
-import { useState } from 'react'
 
 interface OrgInterface {
   name: string
@@ -122,6 +120,7 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
         as='form'
         id='process-create-form'
         direction='column'
+        gap={6}
         maxW='90%'
         mx='auto'
         {...props}
@@ -133,62 +132,64 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
       >
         {children}
         <Box me='auto'>
-          <Heading color={textColor} fontSize='36px' mb='24px'>
+          <Heading color={textColor} fontSize='36px' mb={4}>
             <Trans i18nKey='create_org.title'>Create Your Organization</Trans>
           </Heading>
+          <Text color={textColor} fontWeight='bold'>
+            <Trans i18nKey='create_org.public_info'>Public Organization Information</Trans>
+          </Text>
         </Box>
-        <Text color={textColor} fontWeight='bold' mb='24px'>
-          <Trans i18nKey='create_org.public_info'>Public Organization Information</Trans>
-        </Text>
-        <Box px={{ base: 5, md: 10 }}>
-          <FormControl isInvalid={!!errors.name} mb='24px'>
-            <FormLabel display='flex' ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
-              {t('name', { defaultValue: 'Name' })}
-              <Text color={textColorBrand}>*</Text>
-            </FormLabel>
-            <Input
-              type='text'
-              {...register('name', { required })}
-              placeholder={t('form.account_create.title_placeholder')}
-            />
-            {!!errors.name && <FormErrorMessage>{errors.name?.message}</FormErrorMessage>}
-          </FormControl>
-          <FormControl isInvalid={!!errors.name} mb='24px'>
-            <FormLabel ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
-              <Trans i18nKey='website'>Website</Trans>
-            </FormLabel>
-            <Input type='text' {...register('website')} placeholder={'https://example.com'} />
-            {!!errors.website && <FormErrorMessage>{errors.website?.message}</FormErrorMessage>}
-          </FormControl>
-          <FormControl mb='32px'>
+
+        <Flex flexDirection='column' gap={6} px={{ base: 5, md: 10 }}>
+          <InputCustom
+            formValue='name'
+            label={t('name', { defaultValue: 'Name' })}
+            placeholder={t('form.account_create.title_placeholder', {
+              defaultValue: "Enter your organization's emial",
+            })}
+            type='text'
+            required
+          />
+          <InputCustom
+            formValue='website'
+            label={t('website', { defaultValue: 'Website' })}
+            placeholder={t('form.account_create.website_placeholder', {
+              defaultValue: 'https://example.com',
+            })}
+            type='text'
+            required
+          />
+
+          <FormControl>
             <FormLabel ms='4px' fontSize='sm' fontWeight='500' color={textColor}>
               <Trans i18nKey='description'>Description</Trans>
             </FormLabel>
             <Textarea {...register('description')} placeholder={t('form.account_create.description_placeholder')} />
           </FormControl>
+        </Flex>
+        <Box>
+          <Text color={textColor} fontWeight='bold' mb={4}>
+            <Trans i18nKey='create_org.private_org'>Private Organization Details</Trans>
+          </Text>
+          <Text color={textColorSecondary} fontSize='sm'>
+            <Trans i18nKey='create_org.private_org_description'>
+              Help us tailor your experience with information about your org. We won't share this info
+            </Trans>
+          </Text>
         </Box>
-        <Text color={textColor} fontWeight='bold' mb='0px'>
-          <Trans i18nKey='create_org.private_org'>Private Organization Details</Trans>
-        </Text>
-        <Text color={textColorSecondary} mb='24px' fontSize='sm'>
-          <Trans i18nKey='create_org.private_org_description'>
-            Help us tailor your experience with information about your org. We won't share this info
-          </Trans>
-        </Text>
-        <Flex px={{ base: 5, md: 10 }} direction={'column'} gap={8}>
+        <Flex px={{ base: 5, md: 10 }} direction={'column'} gap={6}>
           <MembershipSizeTypesSelector name={'sizeSelect'} required />
           <OrganzationTypesSelector name={'typeSelect'} required />
           <CountriesTypesSelector name={'countrySelect'} required />
         </Flex>
-        <FormControl display='flex' alignItems='start' my='12px'>
-          <Checkbox {...register('communications')} colorScheme='brandScheme' me='10px' mt='4px' />
-          <FormLabel mb='0' fontWeight='normal' color={textColor} fontSize='sm'>
-            <Trans i18nKey='create_org.communication'>
-              I want to receive communications and be contacted to tailor my governance experience.
-            </Trans>
-          </FormLabel>
-        </FormControl>
-        <Button form='process-create-form' type='submit' isLoading={isPending} mx='auto' mb='32px' w='80%'>
+
+        <CheckboxCustom
+          formValue='communications'
+          label={t('create_org.communication', {
+            defaultValue: '  I want to receive communications and be contacted to tailor my governance experience.',
+          })}
+        />
+        <Button form='process-create-form' type='submit' isLoading={isPending} mx='auto' mt={8} w='80%'>
           {t('organization.create_org')}
         </Button>
         <Box pt={2}>

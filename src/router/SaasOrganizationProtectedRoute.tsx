@@ -1,11 +1,10 @@
-import { Flex, Spinner } from '@chakra-ui/react'
 import { useClient } from '@vocdoni/react-providers'
 import { Outlet } from 'react-router-dom'
 import { useAccountHealthTools } from '~components/Account/use-account-health-tools'
 import { useAuth } from '~components/Auth/useAuth'
 import CreateOrganizationSaas from '~components/OrganizationSaas/Dashboard/Create'
-import SignInScreen from './SignInScreen'
 import { Loading } from '~src/router/SuspenseLoader'
+import SignInScreen from './SignInScreen'
 
 const SaasOrganizationProtectedRoute = () => {
   const {

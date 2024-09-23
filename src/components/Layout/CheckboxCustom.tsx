@@ -4,14 +4,14 @@ import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 
-export interface CustomCheckboxProps {
+export interface CheckboxCustomProps {
   formValue: string
   label: ReactNode
   required?: boolean
   colorScheme?: string
 }
 
-const CustomCheckbox = ({ formValue, label, required = false, colorScheme = 'brandScheme' }: CustomCheckboxProps) => {
+const CheckboxCustom = ({ formValue, label, required = false, colorScheme = 'brandScheme' }: CheckboxCustomProps) => {
   const { t } = useTranslation()
   const { textColor } = useDarkMode()
   const {
@@ -43,4 +43,4 @@ const CustomCheckbox = ({ formValue, label, required = false, colorScheme = 'bra
   )
 }
 
-export default CustomCheckbox
+export default CheckboxCustom

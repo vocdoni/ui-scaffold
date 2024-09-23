@@ -1,16 +1,16 @@
 import { Box, Button, Flex, FormControl, FormErrorMessage, Heading, Text } from '@chakra-ui/react'
+import { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { NavLink, useNavigate } from 'react-router-dom'
+import { UnverifiedApiError } from '~components/Auth/api'
+import { ILoginParams } from '~components/Auth/authQueries'
 import { useAuth } from '~components/Auth/useAuth'
+import { VerifyAccountNeeded } from '~components/Auth/Verify'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import CustomCheckbox from '../Layout/CheckboxCustom'
 import InputCustom from '../Layout/InputCustom'
 import GoogleAuth from './GoogleAuth'
-import { ILoginParams } from '~components/Auth/authQueries'
-import { UnverifiedApiError } from '~components/Auth/api'
-import { useState } from 'react'
-import { VerifyAccountNeeded } from '~components/Auth/Verify'
 
 type FormData = {
   keepLogedIn: boolean
@@ -80,7 +80,7 @@ const SignIn = () => {
             required
           />
           <Flex justifyContent='center' align='center'>
-            <CustomCheckbox formValue='keepLogedIn' label={t('keep_me_logged', { defaultValue: 'Kepp me logged' })} />
+            <CustomCheckbox formValue='keepLogedIn' label={t('keep_me_logged', { defaultValue: 'Keep me logged' })} />
 
             <NavLink to='/auth/forgot-password'>
               <Text color={textColorBrand} fontSize='sm' fontWeight='500' whiteSpace='nowrap'>
