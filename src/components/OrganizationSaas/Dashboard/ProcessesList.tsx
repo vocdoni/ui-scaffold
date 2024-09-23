@@ -1,6 +1,7 @@
 import { Alert, AlertDescription, Box, Flex, Progress, Text, VStack } from '@chakra-ui/react'
 import { ElectionProvider } from '@vocdoni/react-providers'
 import { InvalidElection, PublishedElection } from '@vocdoni/sdk'
+import { useTranslation } from 'react-i18next'
 import { HSeparator } from '~components/Auth/SignIn'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import NoElections from '../NoElections'
@@ -17,6 +18,8 @@ type ProcessesListProps = {
 
 const ProcessesList = ({ loading, processes, error, limit }: ProcessesListProps) => {
   const { textColorSecondary, bgSecondary } = useDarkMode()
+  const { t } = useTranslation()
+
   return (
     <VStack
       w='full'
@@ -33,20 +36,20 @@ const ProcessesList = ({ loading, processes, error, limit }: ProcessesListProps)
         </Alert>
       )}
       <Flex w='full' gap={5} fontSize='sm' color={textColorSecondary}>
-        <Text flexGrow={1} flexShrink={0} flexBasis={48}>
-          TITLE
+        <Text flexGrow={1} flexShrink={0} flexBasis={48} textTransform='uppercase'>
+          {t('process_list.title', { defaultValue: 'Title' })}
         </Text>
-        <Text flexGrow={1} flexShrink={0} flexBasis={60}>
-          START-END DATE
+        <Text flexGrow={1} flexShrink={0} flexBasis={60} textTransform='uppercase'>
+          {t('process_list.start_end_date', { defaultValue: 'Start-end date' })}
         </Text>
-        <Text flexGrow={1} flexShrink={0} flexBasis={36}>
-          TYPE
+        <Text flexGrow={1} flexShrink={0} flexBasis={36} textTransform='uppercase'>
+          {t('process_list.type', { defaultValue: 'Type' })}
         </Text>
-        <Text flexGrow={1} flexShrink={0} flexBasis={24}>
-          STATUS
+        <Text flexGrow={1} flexShrink={0} flexBasis={24} textTransform='uppercase'>
+          {t('process_list.status', { defaultValue: 'Status' })}
         </Text>
-        <Text flexGrow={1} flexShrink={0} flexBasis={24}>
-          VOTERS
+        <Text flexGrow={1} flexShrink={0} flexBasis={24} textTransform='uppercase'>
+          {t('process_list.voters', { defaultValue: 'Voters' })}
         </Text>
         <Box flexGrow={1} flexShrink={0} flexBasis={5}></Box>
       </Flex>

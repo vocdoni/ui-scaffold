@@ -1,16 +1,16 @@
 import { Box, Button, Flex, FormControl, FormErrorMessage, Heading, Link, Text } from '@chakra-ui/react'
+import { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { NavLink, Link as ReactRouterLink, useNavigate } from 'react-router-dom'
+import { NavLink, Link as ReactRouterLink } from 'react-router-dom'
+import { IRegisterParams } from '~components/Auth/authQueries'
 import { useAuth } from '~components/Auth/useAuth'
+import { VerifyAccountNeeded } from '~components/Auth/Verify'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import CustomCheckbox from '../Layout/CheckboxCustom'
 import InputCustom from '../Layout/InputCustom'
 import GoogleAuth from './GoogleAuth'
 import { HSeparator } from './SignIn'
-import { useState } from 'react'
-import { IRegisterParams } from '~components/Auth/authQueries'
-import { VerifyAccountNeeded } from '~components/Auth/Verify'
 
 type FormData = {
   terms: boolean
@@ -104,7 +104,7 @@ const SignUp = () => {
         </Flex>
       </FormProvider>
 
-      <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%' mt={0}>
+      <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%'>
         <Text color={textColorSecondary} fontWeight='400' fontSize='sm'>
           {t('already_member')}
           <NavLink to='/signin'>
