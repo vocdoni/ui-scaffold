@@ -17,12 +17,12 @@ const LayoutAuth = () => {
         justifyContent='center'
         alignItems='center'
       >
-        <Box maxW='980px' mx='auto'>
+        <Box maxW={980} mx='auto'>
           <Box position='absolute' top={5} left={2.5} minW={{ base: '90%', md: 96 }}>
             <NavLink to='/'>
               <Flex align='center' w='fit-content'>
-                <Icon as={FaChevronLeft} me={2} h={3} w={2} color='secondaryGray.600' />
-                <Text fontSize='sm' color='secondaryGray.600'>
+                <Icon as={FaChevronLeft} me={2} h={3} w={2} color={textColorSecondary} />
+                <Text fontSize='sm' color={textColorSecondary}>
                   {t('back')}
                 </Text>
               </Flex>

@@ -14,6 +14,7 @@ import { Textarea } from './components/textarea'
 import { breakpoints } from './foundations/breakpoints'
 import { colors } from './colors'
 import { Pagination } from './components/pagination'
+import { spacing } from './space'
 
 export const theme = extendTheme(vtheme, {
   styles: {
@@ -36,6 +37,7 @@ export const theme = extendTheme(vtheme, {
     Pagination,
     Textarea,
   },
+  spacing,
   colors,
   CardComponent,
 })
