@@ -7,7 +7,7 @@ const SignInScreen = () => {
   const { openConnectModal } = useConnectModal()
 
   if (import.meta.env.SAAS_URL) {
-    return <Navigate to='/signin' />
+    return <Navigate to='/account/signin' />
   }
 
   return (

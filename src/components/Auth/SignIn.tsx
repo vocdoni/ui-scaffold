@@ -97,7 +97,7 @@ const SignIn = () => {
       <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%' mt={0}>
         <Text fontWeight='400' fontSize='sm'>
           {t('not_registred_yet')}
-          <NavLink to='/signup'>
+          <NavLink to='/account/signup'>
             <Text color={textColorBrand} as='span' ms={1} fontWeight='500'>
               {t('create_account')}
             </Text>
