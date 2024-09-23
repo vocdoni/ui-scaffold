@@ -3,6 +3,7 @@ import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { Trans } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
+import { Loading } from '~src/router/SuspenseLoader'
 
 const SignInScreen = () => {
   const { openConnectModal } = useConnectModal()
@@ -10,10 +11,13 @@ const SignInScreen = () => {
 
   // Redirect to the SAAS sign-in page
   useEffect(() => {
-    if (!!import.meta.env.SAAS_URL) {
+    if (import.meta.env.SAAS_URL) {
       navigate('/signin')
     }
-  }, [navigate])
+  }, [])
+  if (import.meta.env.SAAS_URL) {
+    return <Loading />
+  }
 
   return (
     <Flex gap={4} justifyContent='center' alignItems='center' flexDirection='column' h='100%'>

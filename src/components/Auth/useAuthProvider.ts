@@ -1,16 +1,53 @@
 import { useClient } from '@vocdoni/react-providers'
-import { RemoteSigner } from '@vocdoni/sdk'
+import { NoOrganizationsError, RemoteSigner } from '@vocdoni/sdk'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { api, ApiEndpoints, ApiParams, UnauthorizedApiError } from '~components/Auth/api'
 import { LoginResponse, useLogin, useRegister, useVerifyMail } from '~components/Auth/authQueries'
+import { useMutation } from '@tanstack/react-query'
 
 enum LocalStorageKeys {
   AUTH_TOKEN = 'authToken',
 }
 
+/**
+ * Mutation to set the RemoteSigner and check its address
+ * This hook is used as state to determine if an address is associated to the Signer to redirect
+ * to create organization page if not.
+ */
+const useSigner = () => {
+  const { setSigner } = useClient()
+
+  const updateSigner = useCallback(async (token: string) => {
+    let saasUrl = import.meta.env.SAAS_URL
+    // Ensure saas url doesn't end with `/` because the inner paths of the SDK are absolute
+    if (saasUrl.endsWith('/')) {
+      saasUrl = saasUrl.slice(0, -1)
+    }
+    const signer = new RemoteSigner({
+      url: saasUrl,
+      token,
+    })
+    setSigner(signer)
+    // Once the signer is set, try to get the signer address
+    // This is an asynchronous call because the address are fetched from the server,
+    // and we don't know if we need to create an organization until we try to retrieve the address
+    try {
+      return await signer.getAddress()
+    } catch (e) {
+      // If is NoOrganizationsError ignore the error
+      if (!(e instanceof NoOrganizationsError)) {
+        throw e
+      }
+    }
+  }, [])
+
+  return useMutation<string, Error, string>({ mutationFn: updateSigner })
+}
+
 export const useAuthProvider = () => {
-  const { signer, setSigner, clear } = useClient()
+  const { signer: clientSigner, clear } = useClient()
   const [bearer, setBearer] = useState<string | null>(localStorage.getItem(LocalStorageKeys.AUTH_TOKEN))
+
   const login = useLogin({
     onSuccess: (data, variables) => {
       storeLogin(data)
@@ -22,8 +59,7 @@ export const useAuthProvider = () => {
       storeLogin(data)
     },
   })
-
-  const isAuthenticated = useMemo(() => !!bearer, [bearer])
+  const { mutate: updateSigner, isIdle: signerIdle, isPending: signerPending, data: signerAddress } = useSigner()
 
   const bearedFetch = useCallback(
     <T>(path: ApiEndpoints, { headers = new Headers({}), ...params }: ApiParams) => {
@@ -51,19 +87,6 @@ export const useAuthProvider = () => {
     [bearer]
   )
 
-  const updateSigner = useCallback((token: string) => {
-    let saasUrl = import.meta.env.SAAS_URL
-    // Ensure saas url doesn't end with `/` because the inner paths of the SDK are absolute
-    if (saasUrl.endsWith('/')) {
-      saasUrl = saasUrl.slice(0, -1)
-    }
-    const signer = new RemoteSigner({
-      url: saasUrl,
-      token,
-    })
-    setSigner(signer)
-  }, [])
-
   const storeLogin = useCallback(({ token }: LoginResponse) => {
     localStorage.setItem(LocalStorageKeys.AUTH_TOKEN, token)
     setBearer(token)
@@ -76,20 +99,19 @@ export const useAuthProvider = () => {
     clear()
   }, [])
 
-  /**
-   * Reinstantate Remotesigner to perform updates on the client
-   */
-  const refresh = useCallback(() => {
-    updateSigner(bearer)
-  }, [bearer])
-
   // If no signer but berarer instantiate the signer
   // For example when bearer is on local storage but no login was done to instantiate the signer
   useEffect(() => {
-    if (bearer && !signer) {
+    if (bearer && !clientSigner) {
       updateSigner(bearer)
     }
-  }, [bearer, signer])
+  }, [bearer, clientSigner])
+
+  const isAuthenticated = useMemo(() => !!bearer, [bearer])
+  const isAuthLoading = useMemo(
+    () => (isAuthenticated && signerIdle) || (isAuthenticated && !signerIdle && signerPending),
+    [isAuthenticated, signerIdle, signerPending]
+  )
 
   return {
     isAuthenticated,
@@ -98,6 +120,7 @@ export const useAuthProvider = () => {
     mailVerify,
     logout,
     bearedFetch,
-    refresh,
+    isAuthLoading,
+    signerAddress,
   }
 }
