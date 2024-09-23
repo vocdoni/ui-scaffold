@@ -82,7 +82,7 @@ const SignIn = () => {
           <Flex justifyContent='center' align='center'>
             <CustomCheckbox formValue='keepLogedIn' label={t('keep_me_logged', { defaultValue: 'Keep me logged' })} />
 
-            <NavLink to='/auth/forgot-password'>
+            <NavLink to='/account/recovery'>
               <Text color={textColorBrand} fontSize='sm' fontWeight='500' whiteSpace='nowrap'>
                 {t('forgot_password')}
               </Text>

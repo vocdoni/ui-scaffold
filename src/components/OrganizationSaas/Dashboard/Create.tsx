@@ -22,7 +22,6 @@ const CreateOrganization = () => {
         justifyContent='center'
         alignItems='center'
         pt={14}
-        pb={10}
       >
         <AccountCreate />
       </Flex>

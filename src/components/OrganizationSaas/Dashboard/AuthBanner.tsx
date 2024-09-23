@@ -17,7 +17,7 @@ const AuthBanner = ({ children, ...props }: AuthBannerProps) => {
       background='linear-gradient(to bottom, #B5F492, #338B93)'
       borderBottomLeftRadius={{ xl: '200px' }}
       pt={14}
-      pb={{ xl: 10 }}
+      pb={{ xl: 5 }}
     >
       <DarkModeToggle position='absolute' top={3.5} right={2.5} />
       <Flex
@@ -36,17 +36,17 @@ const AuthBanner = ({ children, ...props }: AuthBannerProps) => {
         <Flex mt='auto' flexDirection='column' alignItems='center' justifyContent='center' color='white'>
           <List display='flex' gap={5}>
             <ListItem>
-              <Link as={ReactRouterLink} fontWeight='500' href='mailto:info@vocdoni.org'>
+              <Link as={ReactRouterLink} fontWeight='500' to='mailto:info@vocdoni.org'>
                 {t('support', { defaultValue: 'Support' })}
               </Link>
             </ListItem>
             <ListItem>
-              <Link as={ReactRouterLink} fontWeight='500' href='/terms'>
+              <Link as={ReactRouterLink} fontWeight='500' to='/terms'>
                 {t('terms_of_use', { defaultValue: 'Terms of use' })}
               </Link>
             </ListItem>
             <ListItem>
-              <Link as={ReactRouterLink} fontWeight='500' href='https://blog.vocdoni.io/' isExternal>
+              <Link as={ReactRouterLink} fontWeight='500' to='https://blog.vocdoni.io/' isExternal>
                 {t('blog', { defaultValue: 'Blog' })}
               </Link>
             </ListItem>

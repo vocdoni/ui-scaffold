@@ -201,7 +201,7 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
             )}
           </FormControl>
         </Box>
-        <Text color={textColorSecondary} fontSize='sm'>
+        <Text color={textColorSecondary} fontSize='sm' textAlign='center' py={5} mt='auto'>
           <Trans i18nKey='create_org.already_profile'>
             If your organization already have a profile, ask the admin to invite you to your organization.
           </Trans>

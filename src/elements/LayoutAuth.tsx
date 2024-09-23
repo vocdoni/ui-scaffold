@@ -17,7 +17,7 @@ const LayoutAuth = () => {
         justifyContent='center'
         alignItems='center'
       >
-        <Box maxW={980} mx='auto'>
+        <Flex flexDirection='column' maxW={980} mx='auto' flexGrow={1}>
           <Box position='absolute' top={5} left={2.5} minW={{ base: '90%', md: 96 }}>
             <NavLink to='/'>
               <Flex align='center' w='fit-content'>
@@ -28,15 +28,7 @@ const LayoutAuth = () => {
               </Flex>
             </NavLink>
           </Box>
-          <Flex
-            pt={14}
-            pb={10}
-            minW='100%'
-            flexGrow={1}
-            flexDirection='column'
-            justifyContent='center'
-            alignItems='center'
-          >
+          <Flex pt={14} minW='100%' flexGrow={1} flexDirection='column' justifyContent='center' alignItems='center'>
             <Box maxW={{ base: '90%', md: 96 }} minW={{ base: '90%', md: 96 }}>
               <Outlet />
             </Box>
@@ -44,12 +36,12 @@ const LayoutAuth = () => {
           <Text display={{ base: 'none', xl: 'block' }} mt='auto' color={textColorSecondary} py={5} textAlign='center'>
             {t('rights', { defaultValue: '© 2024 Vocdoni Association. All Rights Reserved.' })}
           </Text>
-        </Box>
+        </Flex>
       </Flex>
       <AuthBanner>
         <Flex flexGrow={1} alignItems='end' justifyContent='center'>
           <Box mb={24}>
-            <Text fontSize='5xl' color='white' lineHeight={1} mb={5}>
+            <Text fontSize='5xl' color='white' lineHeight={1} mb={0}>
               {t('auth.title', { defaultValue: 'The global voting platform' })}
             </Text>
             <Text fontSize='lg' color='white'>
