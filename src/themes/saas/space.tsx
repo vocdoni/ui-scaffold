@@ -1,6 +1,4 @@
-import { extendTheme } from '@chakra-ui/react'
-
-const spacing = {
+export const spacing = {
   space: {
     px: '1px',
     0.5: '0.125rem',
@@ -60,9 +58,7 @@ const spacing = {
     92: '23rem',
     94: '23.5rem',
     96: '24rem',
-    980: '61.25rem', // 980px
-    1800: '112.5rem', // 1800px
+    980: '61.25rem',
+    1800: '112.5rem',
   },
 }
-
-const theme = extendTheme({ ...spacing })
