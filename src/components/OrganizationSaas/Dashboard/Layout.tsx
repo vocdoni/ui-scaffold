@@ -79,21 +79,21 @@ const OrganizationDashboardLayout: React.FC = () => {
 
   return (
     <OrganizationProvider organization={account}>
-      <Wrapper gap='10px'>
+      <Wrapper gap={2.5}>
         <Flex
           position='sticky'
           zIndex={10}
-          h='50px'
+          h={12}
           w={['100%', '100%', '100%', 'calc(100% - 285px)']}
           ml='auto'
           justifyContent='end'
           alignItems='center'
-          gap='10px'
+          gap={2.5}
           bgColor={bg}
           pt='6vh'
           pb='4vh'
-          top='0'
-          pl='15px'
+          top={0}
+          pl={3.5}
         >
           {getTitle()}
           <Settings />
@@ -102,11 +102,11 @@ const OrganizationDashboardLayout: React.FC = () => {
             icon={<HamburgerIcon />}
             aria-label='Open Menu'
             onClick={onOpen}
-            h='36px'
-            w='36px'
+            h={10}
+            w={10}
             borderRadius='full'
             bgColor={textColorBrand}
-            fontSize='18px'
+            fontSize='xl'
           />
           <Box display={{ base: 'none', lg: 'block' }}>
             <DarkModeToggle />
@@ -120,7 +120,7 @@ const OrganizationDashboardLayout: React.FC = () => {
                 w={{ base: '100%', md: '285px' }}
                 flexDirection='column'
                 justifyContent='space-between'
-                p='15px'
+                p={3.5}
                 bg={bgSecondary}
                 borderRadius='lg'
                 display={{ base: 'none', lg: 'flex' }}
@@ -142,11 +142,11 @@ const OrganizationDashboardLayout: React.FC = () => {
                     position='relative'
                     display='flex'
                     justifyContent='center'
-                    gap='10px'
+                    gap={2.5}
                     borderRadius='full'
                     boxShadow='2px 2px 8px 0px gray'
                     w='full'
-                    my='20px'
+                    my={5}
                     bgColor={bg}
                     color={textColor}
                     _hover={{
@@ -155,7 +155,7 @@ const OrganizationDashboardLayout: React.FC = () => {
                   >
                     <Flex
                       position='absolute'
-                      left='20px'
+                      left={5}
                       justifyContent='center'
                       alignItems='center'
                       bgColor='brand.500'
@@ -184,7 +184,7 @@ const OrganizationDashboardLayout: React.FC = () => {
               <Drawer placement='left' onClose={onClose} isOpen={isOpen}>
                 <DrawerOverlay>
                   <DrawerContent>
-                    <DrawerHeader borderBottomWidth='1px'>
+                    <DrawerHeader borderBottomWidth='px'>
                       <Flex justify='space-between' align='center'>
                         <Flex direction='row' gap={3} alignItems='center' minW={0} pr={5}>
                           <OrganizationAvatar />
@@ -219,14 +219,14 @@ const OrganizationDashboardLayout: React.FC = () => {
 
           <Box
             flex={1}
-            pl={['0px', '0px', '0px', 4]}
+            pl={[0, 0, 0, 4]}
             gap={6}
             display='flex'
             flexDir='column'
             maxW={{ lg: 'calc(100% - 285px)' }}
             w='full'
             ml='auto'
-            pt='30px'
+            pt={7}
             mb='2vh'
           >
             <Outlet />

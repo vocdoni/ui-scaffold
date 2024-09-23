@@ -20,10 +20,10 @@ const OrganizationDashboardMenu = () => {
 
   return (
     <Box>
-      <Text color={textColorSecondary} mb='10px'>
+      <Text color={textColorSecondary} mb={2.5}>
         <OrganizationName />
       </Text>
-      <Select placeholder='Select option' borderRadius='full' mb='20px'>
+      <Select placeholder='Select option' borderRadius='full' mb={5}>
         <option value='option1'>Option 1</option>
         <option value='option2'>Option 2</option>
         <option value='option3'>Option 3</option>
@@ -46,12 +46,12 @@ const OrganizationDashboardMenu = () => {
         variant='dashboard'
         w='full'
         leftIcon={<Icon as={HiSquares2X2} />}
-        rightIcon={menuVotings ? <ChevronUpIcon mt='5px' /> : <ChevronDownIcon mt='5px' />}
+        rightIcon={menuVotings ? <ChevronUpIcon mt={1} /> : <ChevronDownIcon mt={1} />}
       >
         {t('voting_processes')}
       </Button>
       {menuVotings && (
-        <Box pl='25px'>
+        <Box pl={6}>
           <Button
             as={Link}
             to={'/organization/votings'}
@@ -86,12 +86,12 @@ const OrganizationDashboardMenu = () => {
         variant='dashboard'
         w='full'
         leftIcon={<Icon as={IoIosSettings} />}
-        rightIcon={menuSettings ? <ChevronUpIcon mt='5px' /> : <ChevronDownIcon mt='5px' />}
+        rightIcon={menuSettings ? <ChevronUpIcon mt={1} /> : <ChevronDownIcon mt={1} />}
       >
         {t('settings')}
       </Button>
       {menuSettings && (
-        <Box pl='25px'>
+        <Box pl={6}>
           <Button justifyContent='start' variant='dashboard' w='full'>
             {t('organization.organization')}
           </Button>

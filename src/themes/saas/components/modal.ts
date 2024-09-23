@@ -19,22 +19,22 @@ export const Modal = defineMultiStyleConfig({
         borderRadius: 0,
         m: 0,
         px: {
-          base: '10px',
-          sm: '20px',
+          base: 2.5,
+          sm: 5,
         },
         minW: '100vw',
         minH: '100vh',
         bgColor: '#546E39',
       },
       header: {
-        pt: '50px',
+        pt: 12,
         textAlign: 'center',
         color: 'white',
         fontSize: '2xl',
       },
       body: {
         px: 0,
-        pt: '30px',
+        pt: 8,
         display: 'flex',
         justifyContent: { base: 'start', lg: 'center' },
         alignItems: 'start',
@@ -42,10 +42,10 @@ export const Modal = defineMultiStyleConfig({
         overflowX: 'auto',
       },
       footer: {
-        pt: '50px',
+        pt: 12,
         display: 'flex',
         flexDirection: 'column',
-        gap: '20px',
+        gap: 5,
         justifyContent: 'center',
         color: 'white',
 
@@ -54,7 +54,7 @@ export const Modal = defineMultiStyleConfig({
           flexDirection: { base: 'column', md: 'row' },
           justifyContent: 'center',
           alignItems: { base: 'start', md: 'center' },
-          gap: '10px',
+          gap: 2.5,
 
           '& p': {
             textAlign: 'center',
@@ -72,7 +72,7 @@ export const Modal = defineMultiStyleConfig({
         '& > div:nth-of-type(2)': {
           display: 'flex',
           alignItems: 'center',
-          gap: '10px',
+          gap: 2.5,
 
           '& > p': {
             whiteSpace: 'nowrap',
@@ -87,13 +87,13 @@ export const Modal = defineMultiStyleConfig({
         },
       },
       closeButton: {
-        top: { base: '10px', md: '52px' },
-        right: { base: '10px', md: '52px' },
+        top: { base: 2.5, md: 12 },
+        right: { base: 2.5, md: 12 },
         color: 'white',
 
         '& svg': {
-          width: { md: '25px' },
-          height: { md: '25px' },
+          width: { md: 6 },
+          height: { md: 6 },
         },
       },
     },

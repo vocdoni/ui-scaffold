@@ -8,7 +8,7 @@ const Settings = () => {
   const { account } = useClient()
 
   return (
-    <Flex justifyContent='center' alignItems='center' gap='5px'>
+    <Flex justifyContent='center' alignItems='center' gap={1.5}>
       <FaRegBell />
       <LuInfo />
       <RiSettings5Line />

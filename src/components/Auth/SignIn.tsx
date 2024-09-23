@@ -46,25 +46,25 @@ const SignIn = () => {
   }
 
   return (
-    <Flex direction='column'>
+    <Flex direction='column' gap={6}>
       <Box me='auto'>
-        <Heading color={textColor} fontSize='36px' mb='10px'>
+        <Heading color={textColor} fontSize='4xl' mb={2.5}>
           {t('signin_title')}
         </Heading>
-        <Text mb='36px' ms='4px' color={textColorSecondary} fontWeight='400' fontSize='md'>
+        <Text color={textColorSecondary} fontWeight='400' fontSize='md'>
           {t('signin_subtitle')}
         </Text>
       </Box>
       <GoogleAuth />
-      <Flex align='center' my='24px'>
+      <Flex align='center'>
         <HSeparator />
-        <Text color='gray.400' mx='14px'>
+        <Text color='gray.400' mx={3.5}>
           {t('or')}
         </Text>
         <HSeparator />
       </Flex>
       <FormProvider {...methods}>
-        <Box as='form' onSubmit={handleSubmit(onSubmit)}>
+        <Flex as='form' onSubmit={handleSubmit(onSubmit)} flexDirection='column' gap={6}>
           <InputCustom
             formValue='email'
             label={t('email')}
@@ -79,43 +79,45 @@ const SignIn = () => {
             type='password'
             required
           />
-          <Flex justifyContent='center' align='center' mb='24px'>
+          <Flex justifyContent='center' align='center'>
             <CustomCheckbox formValue='keepLogedIn' label={t('keep_me_logged', { defaultValue: 'Kepp me logged' })} />
 
             <NavLink to='/auth/forgot-password'>
-              <Text color={textColorBrand} fontSize='sm' w='124px' fontWeight='500'>
+              <Text color={textColorBrand} fontSize='sm' fontWeight='500' whiteSpace='nowrap'>
                 {t('forgot_password')}
               </Text>
             </NavLink>
           </Flex>
-          <Button type='submit' fontSize='sm' variant='brand' fontWeight='500' w='100%' h='50' mb='24px'>
+          <Button type='submit' fontSize='sm' variant='brand' fontWeight='500' w='100%' h={50}>
             {t('signin')}
           </Button>
-        </Box>
+        </Flex>
       </FormProvider>
 
-      <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%' mt='0px'>
-        <Text fontWeight='400' fontSize='14px'>
+      <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%' mt={0}>
+        <Text fontWeight='400' fontSize='sm'>
           {t('not_registred_yet')}
           <NavLink to='/signup'>
-            <Text color={textColorBrand} as='span' ms='5px' fontWeight='500'>
+            <Text color={textColorBrand} as='span' ms={1} fontWeight='500'>
               {t('create_account')}
             </Text>
           </NavLink>
         </Text>
       </Flex>
-      <Box pt={2}>
-        <FormControl isInvalid={isError}>
-          {isError && <FormErrorMessage>{error?.message || 'Error al realizar la operación'}</FormErrorMessage>}
-        </FormControl>
-      </Box>
+      {isError && (
+        <Box>
+          <FormControl isInvalid={isError}>
+            <FormErrorMessage>{error?.message || 'Error al realizar la operación'}</FormErrorMessage>
+          </FormControl>
+        </Box>
+      )}
     </Flex>
   )
 }
 
 export const HSeparator = (props: { variant?: string; [x: string]: any }) => {
   const { variant, ...rest } = props
-  return <Flex h='1px' w='100%' bg='rgba(135, 140, 189, 0.3)' {...rest} />
+  return <Flex h='px' w='100%' bg='rgba(135, 140, 189, 0.3)' {...rest} />
 }
 
 export default SignIn

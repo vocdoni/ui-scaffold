@@ -23,8 +23,8 @@ const ProcessesList = ({ loading, processes, error, limit }: ProcessesListProps)
       overflowX='scroll'
       bg={bgSecondary}
       borderRadius='lg'
-      py={{ base: '10px', lg: '20px' }}
-      px={{ base: '20px', lg: '40px' }}
+      py={{ base: 2.5, lg: 5 }}
+      px={{ base: 5, lg: 10 }}
     >
       {loading && <Progress isIndeterminate w='full' colorScheme='primary' size='xs' />}
       {error && (
@@ -32,13 +32,23 @@ const ProcessesList = ({ loading, processes, error, limit }: ProcessesListProps)
           <AlertDescription>{error.message.toString()}</AlertDescription>
         </Alert>
       )}
-      <Flex w='full' gap='20px' fontSize='sm' color={textColorSecondary}>
-        <Text flex='1 0 200px'>TITLE</Text>
-        <Text flex='1 0 250px'>START-END DATE</Text>
-        <Text flex='1 0 150px'>TYPE</Text>
-        <Text flex='1 0 100px'>STATUS</Text>
-        <Text flex='1 0 100px'>VOTERS</Text>
-        <Box flex='1 0 20px'></Box>
+      <Flex w='full' gap={5} fontSize='sm' color={textColorSecondary}>
+        <Text flexGrow={1} flexShrink={0} flexBasis={48}>
+          TITLE
+        </Text>
+        <Text flexGrow={1} flexShrink={0} flexBasis={60}>
+          START-END DATE
+        </Text>
+        <Text flexGrow={1} flexShrink={0} flexBasis={36}>
+          TYPE
+        </Text>
+        <Text flexGrow={1} flexShrink={0} flexBasis={24}>
+          STATUS
+        </Text>
+        <Text flexGrow={1} flexShrink={0} flexBasis={24}>
+          VOTERS
+        </Text>
+        <Box flexGrow={1} flexShrink={0} flexBasis={5}></Box>
       </Flex>
       <HSeparator />
       <VStack w='full'>

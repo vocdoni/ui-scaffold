@@ -115,6 +115,8 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
         as='form'
         id='process-create-form'
         direction='column'
+        maxW='90%'
+        mx='auto'
         {...props}
         onSubmit={(e) => {
           e.stopPropagation()

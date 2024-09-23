@@ -1,8 +1,7 @@
-import { Box, Button, Flex, Grid, Heading, Image, Link, List, ListItem, Text, UnorderedList } from '@chakra-ui/react'
+import { Box, Button, Flex, Grid, Heading, Image, ListItem, Text, UnorderedList } from '@chakra-ui/react'
 import { Trans } from 'react-i18next'
 import { AccountCreate } from '~components/AccountSaas/Create'
-import DarkModeToggle from '~src/themes/saas/components/DarkMode'
-import Wrapper from '~src/themes/saas/components/wrapper'
+import AuthBanner from './AuthBanner'
 import barca from '/assets/barca.png'
 import bellpuig from '/assets/bellpuig.svg.png'
 import berga from '/assets/berga.svg.png'
@@ -14,47 +13,25 @@ import erc from '/assets/erc.svg'
 import omnium from '/assets/omnium.png'
 import ticanoia from '/assets/ticanoia.png'
 
-const CreateOrganization = () => (
-  <Wrapper flexDirection={{ base: 'column', lg: 'row' }} px='0' position='relative'>
-    <Box
-      flex='1 1 50%'
-      py={{
-        base: '20px',
-        sm: '40px',
-      }}
-      px={{
-        base: '10px',
-        sm: '20px',
-      }}
-    >
-      <Box maxW='600px' mx='auto'>
+const CreateOrganization = () => {
+  return (
+    <Flex minH='100vh' flexDirection={{ base: 'column', xl: 'row' }}>
+      <Flex
+        flex={{ base: '1 1 100%', xl: '1 1 50%' }}
+        flexDirection='column'
+        justifyContent='center'
+        alignItems='center'
+        pt={14}
+        pb={10}
+      >
         <AccountCreate />
-      </Box>
-    </Box>
-    <Box
-      position={{ lg: 'relative' }}
-      display='flex'
-      flexDirection='column'
-      flex='1 1 50%'
-      py={{
-        base: '20px',
-        sm: '40px',
-      }}
-      px={{
-        base: '10px',
-        sm: '20px',
-      }}
-      color='white'
-      className='brand-gradient'
-      borderBottomLeftRadius={{ lg: '120px', xl: '200px' }}
-    >
-      <DarkModeToggle position='absolute' ml='auto' top='10px' right='10px' />
-      <Box display='flex' flexDirection='column' maxW='600px' mx='auto' flexGrow={1}>
-        <Heading textAlign='center' mb='48px'>
+      </Flex>
+      <AuthBanner>
+        <Heading textAlign='center' mb={12} color='white'>
           <Trans i18nKey='create_org.header'>Try Vocdoni for free for 7 days</Trans>
         </Heading>
-        <Box width='fit-content' mx='auto' mb='48px' fontWeight='500'>
-          <UnorderedList>
+        <Box width='fit-content' mx='auto' mb={12} fontWeight='500'>
+          <UnorderedList color='white' textAlign='start'>
             <ListItem>
               <Trans i18nKey={'create_org.full_access'}>Full access to basic features</Trans>
             </ListItem>
@@ -83,7 +60,7 @@ const CreateOrganization = () => (
 
         <Flex flexGrow={1} flexDirection='column' alignItems='start' justifyContent='space-between' py='24px'>
           <Box>
-            <Text textAlign='start' mb='12px'>
+            <Text textAlign='center' mb='12px' color='white'>
               <Trans i18nKey='trust_on_us'>Trust on us</Trans>
             </Text>
             <Grid
@@ -97,7 +74,7 @@ const CreateOrganization = () => (
               filter='grayscale(100%)'
               py='10px'
               pr='30px'
-              mb={{ base: '50px', lg: 0 }}
+              mb={{ base: '50px', xl: 0 }}
             >
               <Flex alignItems='center' ml='30px'>
                 <Image src={barca} h={'55px'} />
@@ -131,48 +108,19 @@ const CreateOrganization = () => (
               </Flex>
             </Grid>
           </Box>
-          <Flex flexDirection='column' alignItems={{ base: 'center', lg: 'start' }} mb='100px' w='full'>
-            <Text fontSize={{ base: '28px', md: '48px', lg: '32px', xl: '48px' }} color='white'>
+          <Flex flexDirection='column' alignItems='center' mb='100px' w='full'>
+            <Text fontSize='5xl' color='white'>
               <Trans i18nKey='create_org.title'>The global voting platform</Trans>
             </Text>
-            <Text fontSize='19px' color='white' textAlign={{ base: 'center', lg: 'start' }}>
+            <Text fontSize='lg' color='white' textAlign={{ base: 'center', xl: 'start' }}>
               <Trans i18nKey='create_org.subtitle'>Cut cost, Save Time: Secure, Private, and GDPR Compliant</Trans>
               Voting
             </Text>
           </Flex>
         </Flex>
-        <Flex mt='auto' zIndex='3' flexDirection='column' alignItems='center' justifyContent='center'>
-          <List display='flex'>
-            <ListItem
-              me={{
-                base: '20px',
-                md: '44px',
-              }}
-            >
-              <Link fontWeight='500' href='mailto:info@vocdoni.org'>
-                <Trans i18nKey='support'>Support</Trans>
-              </Link>
-            </ListItem>
-            <ListItem
-              me={{
-                base: '20px',
-                md: '44px',
-              }}
-            >
-              <Link fontWeight='500' href='/terms'>
-                <Trans i18nKey='terms_of_use'>Terms of Use</Trans>
-              </Link>
-            </ListItem>
-            <ListItem>
-              <Link fontWeight='500' href='https://blog.vocdoni.io/' isExternal>
-                <Trans i18nKey='blog'>Blog</Trans>
-              </Link>
-            </ListItem>
-          </List>
-        </Flex>
-      </Box>
-    </Box>
-  </Wrapper>
-)
+      </AuthBanner>
+    </Flex>
+  )
+}
 
 export default CreateOrganization
