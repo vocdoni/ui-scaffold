@@ -10,7 +10,7 @@ import { StripeCheckout, StripeReturn } from '~elements/Stripe'
 import { default as ScaffoldOrganizationProtectedRoute } from './OrganizationProtectedRoute'
 
 import { SuspenseLoader } from './SuspenseLoader'
-import SaasOrganizationProtectedRoute from '~src/router/SaasOrganizationProtectedRoute'
+import SaasOrganizationProtectedRoute from './SaasOrganizationProtectedRoute'
 
 // Lazy loading helps splitting the final code, which helps downloading the app (theoretically)
 const ProtectedRoutes = lazy(() => import('./ProtectedRoutes'))
