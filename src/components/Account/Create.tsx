@@ -28,11 +28,11 @@ import { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useAccount } from 'wagmi'
+import { CreateAccountParams, useAccountCreate } from '~components/Account/useAccountCreate'
 import { ucfirst } from '~constants/strings'
 import { Check, Close } from '~theme/icons'
 import { useAccountHealthTools } from './use-account-health-tools'
 import hello from '/shared/hello.jpeg'
-import { CreateAccountParams, useAccountCreate } from '~components/Account/useAccountCreate'
 
 export const AccountCreate = ({ children, ...props }: FlexProps) => {
   const { t } = useTranslation()
@@ -86,7 +86,9 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
             mb={1}
             placeholder={t('form.account_create.title_placeholder').toString()}
           />
-          {!!errors.name && <FormErrorMessage>{errors.name?.message?.toString()}</FormErrorMessage>}
+          {!!errors.name && (
+            <FormErrorMessage>{errors.name?.message || 'Error performing the operation'}</FormErrorMessage>
+          )}
         </FormControl>
 
         <FormControl mb={5}>

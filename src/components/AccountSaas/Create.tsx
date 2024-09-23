@@ -196,7 +196,7 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
           <FormControl isInvalid={isError}>
             {isError && error !== IgnoreAccountError && (
               <FormErrorMessage>
-                {typeof error === 'string' ? error : error?.message || 'Error al realizar la operación'}
+                {typeof error === 'string' ? error : error?.message || 'Error performing the operation'}
               </FormErrorMessage>
             )}
           </FormControl>

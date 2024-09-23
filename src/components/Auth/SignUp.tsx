@@ -117,7 +117,7 @@ const SignUp = () => {
       {isError && (
         <Box>
           <FormControl isInvalid={isError}>
-            <FormErrorMessage>{error?.message || 'Error al realizar la operación'}</FormErrorMessage>
+            <FormErrorMessage>{error?.message || 'Error performing the operation'}</FormErrorMessage>
           </FormControl>
         </Box>
       )}

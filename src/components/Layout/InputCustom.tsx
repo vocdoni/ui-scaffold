@@ -88,7 +88,7 @@ const InputCustom = ({
           </InputRightElement>
         )}
       </InputGroup>
-      <FormErrorMessage mt={2}>Hello{errorMessage}</FormErrorMessage>
+      <FormErrorMessage mt={2}>{errorMessage || 'Error performing the operation'}</FormErrorMessage>
     </FormControl>
   )
 }

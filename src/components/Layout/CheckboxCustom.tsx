@@ -38,7 +38,7 @@ const CheckboxCustom = ({ formValue, label, required = false, colorScheme = 'bra
           )}
         </FormLabel>
       </Flex>
-      <FormErrorMessage>{errorMessage}</FormErrorMessage>
+      <FormErrorMessage>{errorMessage || 'Error performing the operation'}</FormErrorMessage>
     </FormControl>
   )
 }

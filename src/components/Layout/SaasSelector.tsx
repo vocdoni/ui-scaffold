@@ -91,7 +91,7 @@ export const SelectCustom = ({
           />
         )}
       />
-      <FormErrorMessage mt={2}>{getErrorMessage(errors[name])}</FormErrorMessage>
+      <FormErrorMessage mt={2}>{getErrorMessage(errors[name]) || 'Error performing the operation'}</FormErrorMessage>
     </FormControl>
   )
 }
