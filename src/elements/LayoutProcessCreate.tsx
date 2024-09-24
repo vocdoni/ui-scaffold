@@ -4,10 +4,12 @@ import { Outlet, Link as ReactRouterLink, ScrollRestoration, useNavigate } from 
 import Logo from '~components/Layout/Logo'
 import { Close } from '~theme/icons'
 import SaasFooter from '~components/ProcessCreate/SaasFooter'
+import SaasSaveToDraft from '~components/ProcessCreate/SaasSaveToDraft'
 
 const LayoutProcessCreate = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const isSaas = import.meta.env.SAAS_URL
 
   return (
     <Box bgColor='process_create.bg'>
@@ -23,7 +25,7 @@ const LayoutProcessCreate = () => {
             p={{ base: '12px 10px', sm: '12px 20px', md: '24px 40px' }}
           >
             <Logo />
-
+            {isSaas && <SaasSaveToDraft />}
             <Button
               as={ReactRouterLink}
               variant='close-form'
@@ -37,7 +39,7 @@ const LayoutProcessCreate = () => {
           <Box as='main' w='full' px={{ base: '40px', md: '80px' }}>
             <Outlet />
           </Box>
-          {import.meta.env.SAAS_URL && <SaasFooter />}
+          {isSaas && <SaasFooter />}
         </Flex>
         {import.meta.env.theme === 'onvote' && (
           <Text
