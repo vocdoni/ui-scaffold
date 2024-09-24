@@ -1,16 +1,16 @@
 import { Box, Button, Flex, FormControl, FormErrorMessage, Heading, Link, Text } from '@chakra-ui/react'
+import { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { NavLink, Link as ReactRouterLink, useNavigate } from 'react-router-dom'
+import { NavLink, Link as ReactRouterLink } from 'react-router-dom'
+import { IRegisterParams } from '~components/Auth/authQueries'
 import { useAuth } from '~components/Auth/useAuth'
+import { VerifyAccountNeeded } from '~components/Auth/Verify'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import CustomCheckbox from '../Layout/CheckboxCustom'
 import InputCustom from '../Layout/InputCustom'
 import GoogleAuth from './GoogleAuth'
 import { HSeparator } from './SignIn'
-import { useState } from 'react'
-import { IRegisterParams } from '~components/Auth/authQueries'
-import { VerifyAccountNeeded } from '~components/Auth/Verify'
 
 type FormData = {
   terms: boolean
@@ -39,26 +39,26 @@ const SignUp = () => {
   }
 
   return (
-    <Flex direction='column'>
+    <Flex direction='column' gap={6}>
       <Box me='auto'>
-        <Heading color={textColor} fontSize='36px' mb='10px'>
+        <Heading color={textColor} fontSize='4xl' mb={2.5}>
           {t('signup_title')}
         </Heading>
-        <Text mb='36px' ms='4px' color={textColorSecondary} fontWeight='400' fontSize='md'>
+        <Text color={textColorSecondary} fontWeight='400' fontSize='md'>
           {t('signup_subtitle')}
         </Text>
       </Box>
       <GoogleAuth />
-      <Flex align='center' my='24px'>
+      <Flex align='center'>
         <HSeparator />
-        <Text color='gray.400' mx='14px'>
+        <Text color='gray.400' mx={3.5}>
           {t('or')}
         </Text>
         <HSeparator />
       </Flex>
       <FormProvider {...methods}>
-        <Box as='form' onSubmit={handleSubmit(onSubmit)}>
-          <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ md: '15px' }}>
+        <Flex as='form' onSubmit={handleSubmit(onSubmit)} flexDirection='column' gap={6}>
+          <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ md: 4 }}>
             <InputCustom formValue='firstName' label={t('signup_first_name')} placeholder={'John'} required />
             <InputCustom formValue='lastName' label={t('signup_last_name')} placeholder={'Doe'} required />
           </Flex>
@@ -97,36 +97,30 @@ const SignUp = () => {
             }
             required
           />
-          <Button
-            isLoading={isPending}
-            type='submit'
-            fontSize='sm'
-            variant='brand'
-            fontWeight='500'
-            w='100%'
-            h='50'
-            mb='24px'
-          >
+
+          <Button isLoading={isPending} type='submit' fontSize='sm' variant='brand' fontWeight='500' w='100%' h={50}>
             {t('signup_create_account')}
           </Button>
-        </Box>
+        </Flex>
       </FormProvider>
 
-      <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%' mt='0px'>
-        <Text color={textColorSecondary} fontWeight='400' fontSize='14px'>
+      <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%'>
+        <Text color={textColorSecondary} fontWeight='400' fontSize='sm'>
           {t('already_member')}
           <NavLink to='/signin'>
-            <Text color={textColorBrand} as='span' ms='5px' fontWeight='500'>
+            <Text color={textColorBrand} as='span' ms={1} fontWeight='500'>
               {t('signin')}
             </Text>
           </NavLink>
         </Text>
       </Flex>
-      <Box pt={2}>
-        <FormControl isInvalid={isError}>
-          {isError && <FormErrorMessage>{error?.message || 'Error al realizar la operación'}</FormErrorMessage>}
-        </FormControl>
-      </Box>
+      {isError && (
+        <Box>
+          <FormControl isInvalid={isError}>
+            <FormErrorMessage>{error?.message || 'Error performing the operation'}</FormErrorMessage>
+          </FormControl>
+        </Box>
+      )}
     </Flex>
   )
 }

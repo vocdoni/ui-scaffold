@@ -17,14 +17,25 @@ const ProcessCard = () => {
   if (!election || election instanceof InvalidElection) return null
 
   return (
-    <Box w='full' display='flex' gap='20px' textDecoration='none' py='10px' color={textColor}>
-      <ElectionTitle flex='1 0 200px' m={0} fontSize='md' textAlign='left' fontWeight='500' isTruncated />
-      <Box flex='1 0 250px' whiteSpace='nowrap' fontWeight='500'>
+    <Box w='full' display='flex' gap={5} textDecoration='none' py='10px' color={textColor}>
+      <ElectionTitle
+        flexGrow={1}
+        flexShrink={0}
+        flexBasis={48}
+        m={0}
+        fontSize='md'
+        textAlign='left'
+        fontWeight='500'
+        isTruncated
+      />
+      <Box flexGrow={1} flexShrink={0} flexBasis={60} whiteSpace='nowrap' fontWeight='500'>
         <Text as='span'>{format(election.startDate, t('organization.date_format'))}</Text> -{' '}
         <Text as='span'>{format(election.endDate, t('organization.date_format'))}</Text>
       </Box>
       <Box
-        flex='1 0 150px'
+        flexGrow={1}
+        flexShrink={0}
+        flexBasis={36}
         sx={{
           label: {
             fontWeight: 500,
@@ -33,17 +44,19 @@ const ProcessCard = () => {
       >
         <QuestionsTypeBadge />
       </Box>
-      <Flex flex='1 0 100px'>
+      <Flex flexGrow={1} flexShrink={0} flexBasis={24}>
         <ElectionStatusBadge />
       </Flex>
-      <Flex flex='1 0 100px' fontWeight='500'>
+      <Flex flexGrow={1} flexShrink={0} flexBasis={24} fontWeight='500'>
         {election.voteCount}/{election.census.size}
       </Flex>
       <Link
         as={RouterLink}
         to={`/processes/${ensure0x(election.id)}`}
         display='flex'
-        flex='1 0 20px'
+        flexGrow={1}
+        flexShrink={0}
+        flexBasis={5}
         justifyContent='center'
         alignItems='center'
       >

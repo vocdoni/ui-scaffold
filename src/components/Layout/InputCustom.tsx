@@ -64,7 +64,7 @@ const InputCustom = ({
   }
 
   return (
-    <FormControl isInvalid={!!errors[formValue]} mb={6}>
+    <FormControl isInvalid={!!errors[formValue]}>
       {label && (
         <FormLabel display='flex' ms={1} fontSize='sm' fontWeight='500' color={textColor} mb={2}>
           {label}
@@ -75,7 +75,7 @@ const InputCustom = ({
           )}
         </FormLabel>
       )}
-      <InputGroup size='md' mb={2}>
+      <InputGroup size='md'>
         <Input {...register(formValue, validationRules)} type={inputType} placeholder={placeholder} />
         {type === 'password' && (
           <InputRightElement display='flex' alignItems='center' minH='100%'>
@@ -88,7 +88,7 @@ const InputCustom = ({
           </InputRightElement>
         )}
       </InputGroup>
-      <FormErrorMessage>{errorMessage}</FormErrorMessage>
+      <FormErrorMessage mt={2}>{errorMessage || 'Error performing the operation'}</FormErrorMessage>
     </FormControl>
   )
 }

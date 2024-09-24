@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardBody, CardFooter, CardHeader, Text, UnorderedList } from '@chakra-ui/react'
+import { Box, Button, Card, CardBody, CardFooter, CardHeader, ListItem, Text, UnorderedList } from '@chakra-ui/react'
 import { Trans } from 'react-i18next'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 
@@ -35,7 +35,7 @@ const PricingCard = ({
         <Box color='black'>
           <UnorderedList>
             {features.map((feature, idx) => (
-              <li key={idx}>{feature}</li>
+              <ListItem key={idx}>{feature}</ListItem>
             ))}
           </UnorderedList>
         </Box>
@@ -55,7 +55,7 @@ const PricingCard = ({
           px={3}
           borderRadius='full'
           position='absolute'
-          mt='-15px'
+          mt={-4}
           ml='50%'
           transform='translateX(-50%)'
           color='black'

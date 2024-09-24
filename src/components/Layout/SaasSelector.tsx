@@ -1,9 +1,9 @@
-import { FormControl, FormErrorMessage, FormLabel } from '@chakra-ui/react'
+import { FormControl, FormErrorMessage, FormLabel, Text } from '@chakra-ui/react'
 import { ChakraStylesConfig, GroupBase, Select, Props as SelectProps } from 'chakra-react-select'
 import { Controller, useFormContext } from 'react-hook-form'
+import { ControllerProps } from 'react-hook-form/dist/types'
 import { useTranslation } from 'react-i18next'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
-import { ControllerProps } from 'react-hook-form/dist/types'
 
 export type SelectOptionType = {
   label: string
@@ -45,7 +45,7 @@ export const SelectCustom = ({
   ...rest
 }: SelectCustomProps) => {
   const { t } = useTranslation()
-  const { textColor } = useDarkMode()
+  const { textColor, textColorBrand } = useDarkMode()
 
   const {
     control,
@@ -64,8 +64,13 @@ export const SelectCustom = ({
   return (
     <FormControl isInvalid={!!errors[name]}>
       {label && (
-        <FormLabel htmlFor={name} fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
+        <FormLabel htmlFor={name} display='flex' ms={1} fontSize='sm' fontWeight='500' color={textColor} mb={2}>
           {label}
+          {required && (
+            <Text color={textColorBrand} ml={1}>
+              *
+            </Text>
+          )}
         </FormLabel>
       )}
       <Controller
@@ -86,7 +91,7 @@ export const SelectCustom = ({
           />
         )}
       />
-      <FormErrorMessage>{getErrorMessage(errors[name])}</FormErrorMessage>
+      <FormErrorMessage mt={2}>{getErrorMessage(errors[name]) || 'Error performing the operation'}</FormErrorMessage>
     </FormControl>
   )
 }

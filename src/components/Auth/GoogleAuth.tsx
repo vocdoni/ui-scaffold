@@ -18,7 +18,7 @@ const GoogleAuth = () => {
       _active={googleActive}
       _focus={googleActive}
     >
-      <Icon as={FcGoogle} w='20px' h='20px' me='10px' />
+      <Icon as={FcGoogle} w={5} h={5} me={2} />
 
       {t('signin_google')}
     </Button>

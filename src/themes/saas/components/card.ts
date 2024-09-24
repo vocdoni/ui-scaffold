@@ -9,18 +9,18 @@ export const Card = defineMultiStyleConfig({
       container: {
         position: 'relative',
         bgColor: 'white',
-        minW: { base: '80%', sm: '280px' },
-        w: { base: '80%', sm: '280px' },
+        minW: { base: '80%', sm: 72 },
+        w: { base: '80%', sm: 72 },
       },
       header: {
         pb: 0,
-        minH: '112px',
+        minH: 28,
         '& > p:first-of-type': {
-          pt: '5px',
+          pt: 1.5,
           color: 'black',
           textAlign: 'center',
           fontWeight: 'bold',
-          mb: '10px',
+          mb: 2.5,
           fontSize: 'lg',
         },
         '& > p:nth-of-type(2)': {
@@ -32,16 +32,16 @@ export const Card = defineMultiStyleConfig({
       },
       body: {
         '& > button': {
-          mb: '15px',
+          mb: 4,
         },
         '& > p:first-of-type': {
           fontWeight: 'extrabold',
           textAlign: 'center',
           fontSize: 'xl',
-          mb: '15px',
+          mb: 4,
         },
         '& > div:last-of-type': {
-          ml: '12px',
+          ml: 3,
           '& > ul': {
             maxW: 'fit-content',
             mx: 'auto',

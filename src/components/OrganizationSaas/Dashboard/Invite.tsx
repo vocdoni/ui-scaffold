@@ -23,31 +23,33 @@ const Invite = ({ setInviteView }: { setInviteView: Dispatch<SetStateAction<bool
   }
 
   return (
-    <Box maxW='600px' mx='auto'>
-      <Flex justifyContent='space-between'>
-        <Heading fontSize='2xl' mb='10px'>
-          <Trans i18nKey='invite.title'>Invite people to your workspace</Trans>
-        </Heading>
-        <Button
-          variant='outline'
-          borderColor='gray.300'
-          borderRadius='full'
-          minW='none'
-          minH='none'
-          h='0'
-          p={3}
-          px={1}
-          onClick={() => setInviteView(false)}
-        >
-          <IoCloseSharp />
-        </Button>
-      </Flex>
-      <Text color={textColorSecondary}>
-        <Trans i18nKey='invite.subtitle'>Work together on projects</Trans>
-      </Text>
-      <HSeparator my='24px' />
+    <Flex flexDirection='column' gap={6} maxW='600px' mx='auto'>
+      <Box>
+        <Flex justifyContent='space-between'>
+          <Heading fontSize='2xl' mb={2.5}>
+            <Trans i18nKey='invite.title'>Invite people to your workspace</Trans>
+          </Heading>
+          <Button
+            variant='outline'
+            borderColor='gray.300'
+            borderRadius='full'
+            minW='none'
+            minH='none'
+            h={0}
+            p={3}
+            px={1}
+            onClick={() => setInviteView(false)}
+          >
+            <IoCloseSharp />
+          </Button>
+        </Flex>
+        <Text color={textColorSecondary}>
+          <Trans i18nKey='invite.subtitle'>Work together on projects</Trans>
+        </Text>
+      </Box>
+      <HSeparator />
       <FormProvider {...methods}>
-        <Box as='form' onSubmit={methods.handleSubmit(onSubmit)}>
+        <Flex as='form' onSubmit={methods.handleSubmit(onSubmit)} flexDirection='column' gap={6}>
           <InputCustom
             formValue='email'
             label={t('email')}
@@ -61,9 +63,9 @@ const Invite = ({ setInviteView }: { setInviteView: Dispatch<SetStateAction<bool
               <Trans i18nKey='submit'>Submit</Trans>
             </Button>
           </Flex>
-        </Box>
+        </Flex>
       </FormProvider>
-    </Box>
+    </Flex>
   )
 }
 
@@ -86,8 +88,8 @@ const OptionForm = () => {
                 as='label'
                 border='1px solid'
                 borderColor='rgba(135, 140, 189, 0.3)'
-                gap='20px'
-                padding='25px'
+                gap={5}
+                padding={6}
                 borderTopRadius='xl'
                 cursor='pointer'
                 bg={field.value === 'admin' ? bgSecondary : 'transparent'}
@@ -103,7 +105,7 @@ const OptionForm = () => {
                     </Trans>
                   </Text>
                 </Box>
-                <Flex justifyContent='center' alignItems='center' gap='10px'>
+                <Flex justifyContent='center' alignItems='center' gap={2.5}>
                   <Radio value='admin' isChecked={field.value === 'admin'} />
                 </Flex>
               </Flex>
@@ -112,8 +114,8 @@ const OptionForm = () => {
                 as='label'
                 border='1px solid'
                 borderColor='rgba(135, 140, 189, 0.3)'
-                gap='20px'
-                padding='25px'
+                gap={5}
+                padding={6}
                 borderBottomRadius='xl'
                 cursor='pointer'
                 bg={field.value === 'guest' ? bgSecondary : 'transparent'}
@@ -128,7 +130,7 @@ const OptionForm = () => {
                     </Trans>
                   </Text>
                 </Box>
-                <Flex justifyContent='center' alignItems='center' gap='10px'>
+                <Flex justifyContent='center' alignItems='center' gap={2.5}>
                   <Radio value='guest' isChecked={field.value === 'guest'} />
                 </Flex>
               </Flex>
