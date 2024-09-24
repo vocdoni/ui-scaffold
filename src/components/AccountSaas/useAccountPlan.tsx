@@ -1,9 +1,12 @@
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
+import { VotingType } from '~components/ProcessCreate/Questions/useVotingType'
+import { UnimplementedVotingType } from '~components/ProcessCreate/Questions/useUnimplementedVotingType'
 
 type PlanType = 'free' | 'pro' | 'custom'
 
 type FeaturesKeys = 'personalization' | 'emailReminder' | 'smsNotification' | 'whiteLabel' | 'liveStreaming'
-type VotingTypesKeys = 'single' | 'multiple' | 'approval' | 'cumulative' | 'ranked' | 'weighted'
+export type SaasVotingTypesKeys = VotingType & UnimplementedVotingType
+
 type SaasOrganizationInfo = {
   memberships: number
   subOrgs: number
@@ -16,7 +19,7 @@ type AccountPlanTypeResponse = {
   plan: PlanType
   stripePlanId: string
   organization: SaasOrganizationInfo
-  votingTypes: Record<VotingTypesKeys, boolean>
+  votingTypes: Record<SaasVotingTypesKeys, boolean>
   features: Record<FeaturesKeys, boolean>
 }
 
