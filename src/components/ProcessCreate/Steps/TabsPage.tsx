@@ -13,13 +13,14 @@ import { Check } from '~theme/icons'
  * These components implement the skeleton for tabs pages like questions or census types.
  */
 
+export type GenericFeatureObjectProps = { icon: any; title: string; description: string; component?: () => JSX.Element }
+export type GenericFeatureObjectDetailsRecord<T extends string> = Record<T, GenericFeatureObjectProps>
 export type GenericFeatureObject<T extends string> = {
-  list: T[]
   defined: T[]
-  details: Record<T, { icon: any; title: string; description: string; component?: () => JSX.Element }>
+  details: GenericFeatureObjectDetailsRecord<T>
 }
 
-interface ITabsPageProps<Implemented extends string, UnImplemented extends string> {
+export interface ITabsPageProps<Implemented extends string, UnImplemented extends string> {
   onTabChange: (index: number) => void
   title: string
   description: string

@@ -23,7 +23,6 @@ export const UnimplementedVotingType = [
 export const useUnimplementedVotingType = (): GenericFeatureObject<UnimplementedVotingType> => {
   const { t } = useTranslation()
   return {
-    list: UnimplementedVotingType,
     defined: import.meta.env.features.unimplemented_voting_type as UnimplementedVotingType[],
     details: {
       [UnimplementedVotingTypeMulti]: {
