@@ -3167,7 +3167,7 @@
   resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.5.4.tgz#638edb351446789ceab99bd7828f02a345fb2569"
   integrity sha512-3m1b9KnM/2xeRmsBg9yR9wj5tOEEbMcU1lqzRvAU+HPeTsth5qU9g6P3XjuFTU00Z7jaGVdm4Xa/ltN/+HKNAg==
 
-"@vocdoni/sdk@~0.9.0", "@vocdoni/sdk@~0.9.1":
+"@vocdoni/sdk@~0.9.1":
   version "0.9.1"
   resolved "https://registry.yarnpkg.com/@vocdoni/sdk/-/sdk-0.9.1.tgz#084df69b456ba91557cdf088103bfd6739f4dd43"
   integrity sha512-Cs2wse//UHdwZ5NTuJf5XqTqUQSYocTDzH14EwwUQWC4geGNiJNl7FWda+bKzBYTGWgPnOlr/Ez6JEJokDKPgQ==
@@ -4176,7 +4176,7 @@ circom_runtime@0.1.25:
   dependencies:
     ffjavascript "0.3.0"
 
-"circomlibjs@github:vocdoni/circomlibjs#f/browser":
+circomlibjs@vocdoni/circomlibjs#f/browser:
   version "0.2.2"
   resolved "https://codeload.github.com/vocdoni/circomlibjs/tar.gz/bc351ea49a39e3a16421962f1e704f3742a343dd"
   dependencies:
@@ -8173,7 +8173,7 @@ snake-case@^3.0.4:
     dot-case "^3.0.4"
     tslib "^2.0.3"
 
-"snarkjs@github:vocdoni/snarkjs#f/browser":
+snarkjs@vocdoni/snarkjs#f/browser:
   version "0.7.0"
   resolved "https://codeload.github.com/vocdoni/snarkjs/tar.gz/5ba4333d0b6df8098219bca9b1f288a30d066d0e"
   dependencies:
@@ -8317,6 +8317,7 @@ strict-uri-encode@^2.0.0:
   integrity sha512-QwiXZgpRcKkhTj2Scnn++4PKtWsH0kpzZ62L2R6c/LUVYv7hVnZqcg2+sMuT6R7Jusu1vviK/MFsu6kNJfWlEQ==
 
 "string-width-cjs@npm:string-width@^4.2.0", string-width@^4.1.0, string-width@^4.2.0:
+  name string-width-cjs
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -8349,6 +8350,7 @@ string_decoder@~1.1.1:
     safe-buffer "~5.1.0"
 
 "strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@^6.0.0, strip-ansi@^6.0.1:
+  name strip-ansi-cjs
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
