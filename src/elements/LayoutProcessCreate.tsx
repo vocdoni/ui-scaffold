@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Outlet, Link as ReactRouterLink, ScrollRestoration, useNavigate } from 'react-router-dom'
 import Logo from '~components/Layout/Logo'
 import { Close } from '~theme/icons'
+import SaasFooter from '~components/ProcessCreate/SaasFooter'
 
 const LayoutProcessCreate = () => {
   const { t } = useTranslation()
@@ -36,6 +37,7 @@ const LayoutProcessCreate = () => {
           <Box as='main' w='full' px={{ base: '40px', md: '80px' }}>
             <Outlet />
           </Box>
+          {import.meta.env.SAAS_URL && <SaasFooter />}
         </Flex>
         {import.meta.env.theme === 'onvote' && (
           <Text
