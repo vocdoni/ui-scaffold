@@ -7,12 +7,15 @@ import { StepsNavigation } from '../Steps/Navigation'
 import Wrapper from '../Steps/Wrapper'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 
-export interface InfoValues {
+export type InfoValues = {
   title: string
   description: string
   // dates need to be string to properly reset the values to the inputs
   endDate: string
   startDate: string
+} & ConfigurationValues
+
+export interface ConfigurationValues {
   electionType: {
     autoStart: boolean
     interruptible: boolean

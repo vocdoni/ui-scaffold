@@ -4,7 +4,15 @@ import { UnimplementedVotingType } from '~components/ProcessCreate/Questions/use
 
 type PlanType = 'free' | 'pro' | 'custom'
 
-type FeaturesKeys = 'personalization' | 'emailReminder' | 'smsNotification' | 'whiteLabel' | 'liveStreaming'
+export type FeaturesKeys =
+  | 'anonymous'
+  | 'secretUntilTheEnd'
+  | 'overwrite'
+  | 'personalization'
+  | 'emailReminder'
+  | 'smsNotification'
+  | 'whiteLabel'
+  | 'liveStreaming'
 export type SaasVotingTypesKeys = VotingType & UnimplementedVotingType
 
 type SaasOrganizationInfo = {
@@ -47,6 +55,9 @@ const accountPlanMock: AccountPlanTypeResponse = {
     smsNotification: true, // SMS notifications allowed
     whiteLabel: true, // White-label voting page allowed
     liveStreaming: false, // Live results streaming not allowed
+    anonymous: true,
+    secretUntilTheEnd: true,
+    overwrite: true,
     // ... Other feature controls
   },
 }
