@@ -7,8 +7,8 @@ import { FeaturesKeys } from '~components/AccountSaas/useAccountPlan'
 import { ConfigurationValues } from '~components/ProcessCreate/StepForm/Info'
 import { SaasFeatures as SaasFeaturesComponent } from '~components/ProcessCreate/Settings/SaasFeatures'
 
-export type ExtraFeatures = Record<FeaturesKeys, boolean>
-interface FeaturesForm extends ExtraFeatures, ConfigurationValues {}
+export type SaasFeaturesValues = { saasFeatures: Record<FeaturesKeys, boolean> }
+interface FeaturesForm extends SaasFeaturesValues, ConfigurationValues {}
 
 export const SaasFeatures = () => {
   const { form, setForm, next } = useProcessCreationSteps()

@@ -69,7 +69,7 @@ export const SaasFeatures = () => {
       {Object.entries(data.features).map(([feature, inPlan], i) => {
         const card = translations[feature as FeaturesKeys]
         if (!card) return null
-        return <CheckBoxCard key={i} isPro={!inPlan} {...card} formKey={card.formKey ?? feature} />
+        return <CheckBoxCard key={i} isPro={!inPlan} {...card} formKey={card.formKey ?? `saasFeatures.${feature}`} />
       })}
     </Box>
   )

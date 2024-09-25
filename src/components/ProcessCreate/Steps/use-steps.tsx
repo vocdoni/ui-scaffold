@@ -10,7 +10,7 @@ import { Checks } from './Checks'
 import { Confirm } from './Confirm'
 import { CensusCspValues } from '../StepForm/CensusCsp'
 import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
-import { ExtraFeatures, SaasFeatures } from '~components/ProcessCreate/StepForm/SaasFeatures'
+import { SaasFeaturesValues, SaasFeatures } from '~components/ProcessCreate/StepForm/SaasFeatures'
 
 export interface StepsFormValues
   extends InfoValues,
@@ -21,7 +21,7 @@ export interface StepsFormValues
     CensusCspValues,
     CensusGitcoinValues,
     CensusSpreadsheetValues,
-    ExtraFeatures {}
+    SaasFeaturesValues {}
 
 export interface StepsState {
   title: string
