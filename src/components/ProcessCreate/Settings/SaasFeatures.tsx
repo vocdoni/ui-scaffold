@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { useFormContext } from 'react-hook-form'
 import { useMemo } from 'react'
 
-const useFeaturesTranslations = (): Record<FeaturesKeys, CheckBoxCardProps & { register?: string }> => {
+const useFeaturesTranslations = (): Record<FeaturesKeys, CheckBoxCardProps> => {
   const { t } = useTranslation()
   return useMemo(
     () => ({
@@ -15,13 +15,13 @@ const useFeaturesTranslations = (): Record<FeaturesKeys, CheckBoxCardProps & { r
         description: t('anonymous', { defaultValue: 'anonymous' }),
         title: t('anonymous', { defaultValue: 'anonymous' }),
         boxIcon: BiCheckDouble,
-        register: 'electionType.anonymous',
+        formKey: 'electionType.anonymous',
       },
       secretUntilTheEnd: {
         description: t('secretUntilTheEnd', { defaultValue: 'secretUntilTheEnd' }),
         title: t('secretUntilTheEnd', { defaultValue: 'secretUntilTheEnd' }),
         boxIcon: BiCheckDouble,
-        register: 'electionType.secretUntilTheEnd',
+        formKey: 'electionType.secretUntilTheEnd',
       },
       overwrite: {
         description: t('overwrite', { defaultValue: 'overwrite' }),
@@ -59,7 +59,6 @@ const useFeaturesTranslations = (): Record<FeaturesKeys, CheckBoxCardProps & { r
 }
 export const SaasFeatures = () => {
   const { data, isLoading } = useAccountPlan()
-  const { register } = useFormContext()
   const translations = useFeaturesTranslations()
 
   if (isLoading) return <Loading />
@@ -70,8 +69,7 @@ export const SaasFeatures = () => {
       {Object.entries(data.features).map(([feature, inPlan], i) => {
         const card = translations[feature as FeaturesKeys]
         if (!card) return null
-
-        return <CheckBoxCard key={i} isPro={!inPlan} {...card} {...register(card.register ?? feature)} />
+        return <CheckBoxCard key={i} isPro={!inPlan} {...card} formKey={card.formKey ?? feature} />
       })}
     </Box>
   )
@@ -82,11 +80,14 @@ interface CheckBoxCardProps {
   description: string
   boxIcon: IconType
   isPro?: boolean
+  formKey?: string
 }
 
-const CheckBoxCard = ({ title, description, boxIcon, isPro, ...rest }: CheckBoxCardProps & CheckboxProps) => {
+const CheckBoxCard = ({ title, description, boxIcon, isPro, formKey, ...rest }: CheckBoxCardProps & CheckboxProps) => {
+  const { register, watch } = useFormContext()
+
   return (
-    <Checkbox variant='radiobox' {...rest}>
+    <Checkbox variant='radiobox' {...register(formKey)} {...rest}>
       <Box>
         <Icon as={boxIcon} />
         <Text>{title}</Text>
