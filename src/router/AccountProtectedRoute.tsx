@@ -2,7 +2,7 @@ import { Navigate, Outlet } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
 import { Loading } from '~src/router/SuspenseLoader'
 
-const SaasAuthProtectedRoute = () => {
+const AccountProtectedRoute = () => {
   const { isAuthenticated, isAuthLoading } = useAuth()
 
   if (isAuthLoading) {
@@ -16,4 +16,4 @@ const SaasAuthProtectedRoute = () => {
   return <Outlet />
 }
 
-export default SaasAuthProtectedRoute
+export default AccountProtectedRoute

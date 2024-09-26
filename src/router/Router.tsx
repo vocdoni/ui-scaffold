@@ -14,7 +14,7 @@ const ScaffoldProtectedRoutes = lazy(() => import('./ProtectedRoutes'))
 const SaasProtectedRoutes = lazy(() => import('./SaasProtectedRoutes'))
 const ScaffoldOrganizationProtectedRoutes = lazy(() => import('./OrganizationProtectedRoute'))
 const SaasOrganizationProtectedRoutes = lazy(() => import('./SaasOrganizationProtectedRoute'))
-const SaasAuthProtectedRoute = lazy(() => import('./SaasAuthProtectedRoute'))
+const AccountProtectedRoute = lazy(() => import('./AccountProtectedRoute'))
 
 // elements
 const Faucet = lazy(() => import('~elements/Faucet'))
@@ -174,7 +174,7 @@ export const RoutesProvider = () => {
         path: 'account',
         element: (
           <SuspenseLoader>
-            <SaasAuthProtectedRoute />
+            <AccountProtectedRoute />
           </SuspenseLoader>
         ),
         children: [
