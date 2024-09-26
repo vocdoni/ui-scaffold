@@ -28,6 +28,7 @@ import {
   SelectOptionType,
 } from '~components/Layout/SaasSelector'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
+import LogoutBtn from '~components/AccountSaas/LogoutBtn'
 
 interface OrgInterface {
   name: string
@@ -206,6 +207,10 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
             If your organization already have a profile, ask the admin to invite you to your organization.
           </Trans>
         </Text>
+        <Text color={textColorSecondary} fontSize='sm'>
+          <Trans i18nKey='create_org.logout'>If you want to login from another account, please logout</Trans>
+        </Text>
+        <LogoutBtn />
       </Flex>
     </FormProvider>
   )

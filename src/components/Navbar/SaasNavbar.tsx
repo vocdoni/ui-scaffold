@@ -10,7 +10,7 @@ const SaasNavbar = () => {
   const { isAuthenticated } = useAuth()
 
   let buttonText = t('menu.login')
-  let to = 'signin'
+  let to = '/account/signin'
   if (isAuthenticated) {
     buttonText = t('menu.dashboard', { defaultValue: 'Dashboard' })
     to = 'organization'

@@ -44,7 +44,7 @@ function ForgotPassword() {
       <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%' mt={0}>
         <Text color={textColorSecondary} fontWeight='400' fontSize='sm'>
           {t('already_member')}
-          <NavLink to='/signin'>
+          <NavLink to='/account/signin'>
             <Text color={textColorBrand} as='span' ms={1} fontWeight='500'>
               {t('signin')}
             </Text>

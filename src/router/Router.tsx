@@ -14,6 +14,8 @@ const ScaffoldProtectedRoutes = lazy(() => import('./ProtectedRoutes'))
 const SaasProtectedRoutes = lazy(() => import('./SaasProtectedRoutes'))
 const ScaffoldOrganizationProtectedRoutes = lazy(() => import('./OrganizationProtectedRoute'))
 const SaasOrganizationProtectedRoutes = lazy(() => import('./SaasOrganizationProtectedRoute'))
+const AccountProtectedRoute = lazy(() => import('./AccountProtectedRoute'))
+
 // elements
 const Faucet = lazy(() => import('~elements/Faucet'))
 const Home = lazy(() => import('~theme/components/Home'))
@@ -169,41 +171,51 @@ export const RoutesProvider = () => {
   if (isSaas) {
     routes.push(
       {
-        element: <LayoutAuth />,
+        path: 'account',
+        element: (
+          <SuspenseLoader>
+            <AccountProtectedRoute />
+          </SuspenseLoader>
+        ),
         children: [
           {
+            element: <LayoutAuth />,
             children: [
               {
-                path: 'signin',
-                element: (
-                  <SuspenseLoader>
-                    <SignIn />
-                  </SuspenseLoader>
-                ),
-              },
-              {
-                path: 'signup',
-                element: (
-                  <SuspenseLoader>
-                    <SignUp />
-                  </SuspenseLoader>
-                ),
-              },
-              {
-                path: 'account/recovery',
-                element: (
-                  <SuspenseLoader>
-                    <ForgotPassword />
-                  </SuspenseLoader>
-                ),
-              },
-              {
-                path: 'account/verify',
-                element: (
-                  <SuspenseLoader>
-                    <Verify />
-                  </SuspenseLoader>
-                ),
+                children: [
+                  {
+                    path: 'signin',
+                    element: (
+                      <SuspenseLoader>
+                        <SignIn />
+                      </SuspenseLoader>
+                    ),
+                  },
+                  {
+                    path: 'signup',
+                    element: (
+                      <SuspenseLoader>
+                        <SignUp />
+                      </SuspenseLoader>
+                    ),
+                  },
+                  {
+                    path: 'recovery',
+                    element: (
+                      <SuspenseLoader>
+                        <ForgotPassword />
+                      </SuspenseLoader>
+                    ),
+                  },
+                  {
+                    path: 'verify',
+                    element: (
+                      <SuspenseLoader>
+                        <Verify />
+                      </SuspenseLoader>
+                    ),
+                  },
+                ],
               },
             ],
           },
