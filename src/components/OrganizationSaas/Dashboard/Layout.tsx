@@ -77,7 +77,7 @@ const OrganizationDashboardLayout: React.FC = () => {
           position='sticky'
           zIndex={10}
           h={12}
-          w={['100%', '100%', '100%', 'calc(100% - 285px)']}
+          w={{ base: '100%', xl: 'calc(100% - 285px)' }}
           ml='auto'
           justifyContent='end'
           alignItems='center'
@@ -91,7 +91,7 @@ const OrganizationDashboardLayout: React.FC = () => {
           {getTitle()}
           <Settings />
           <IconButton
-            display={{ base: 'flex', lg: 'none' }}
+            display={{ base: 'flex', xl: 'none' }}
             icon={<HamburgerIcon />}
             aria-label='Open Menu'
             onClick={onOpen}
@@ -101,22 +101,22 @@ const OrganizationDashboardLayout: React.FC = () => {
             bgColor={textColorBrand}
             fontSize='xl'
           />
-          <Box display={{ base: 'none', lg: 'block' }}>
+          <Box display={{ base: 'none', xl: 'block' }}>
             <DarkModeToggle />
           </Box>
         </Flex>
 
-        <Flex direction={{ base: 'column', lg: 'row' }} flexGrow={1}>
+        <Flex direction={{ base: 'column', xl: 'row' }} flexGrow={1} gap='300px'>
           {account && (
             <>
               <Flex
-                w={{ base: '100%', md: '285px' }}
+                w='285px'
                 flexDirection='column'
                 justifyContent='space-between'
                 p={3.5}
                 bg={bgSecondary}
-                borderRadius='lg'
-                display={{ base: 'none', lg: 'flex' }}
+                borderRadius='xl'
+                display={{ base: 'none', xl: 'flex' }}
                 position='fixed'
                 minH='96vh'
                 maxH='96vh'
@@ -204,18 +204,23 @@ const OrganizationDashboardLayout: React.FC = () => {
           )}
 
           <Box
-            flex={1}
-            pl={[0, 0, 0, 4]}
+            flexGrow={1}
             gap={6}
             display='flex'
             flexDir='column'
-            maxW={{ lg: 'calc(100% - 285px)' }}
+            maxW={{ xl: 'calc(100% - 305px)' }}
             w='full'
             ml='auto'
-            pt={7}
             mb='2vh'
+            pl={{ xl: 4 }}
+            maxH='calc(100vh - 2vh - 91px)'
+            overflowY='auto'
+            bgColor={bgSecondary}
+            borderRadius='xl'
           >
-            <Outlet />
+            <Box py={8} px={8}>
+              <Outlet />
+            </Box>
           </Box>
         </Flex>
       </Wrapper>

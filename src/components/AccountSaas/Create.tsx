@@ -169,7 +169,7 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
           </FormControl>
         </Flex>
         <Box>
-          <Text color={textColor} fontWeight='bold' mb={4}>
+          <Text color={textColor} fontWeight='bold' mb={2.5}>
             <Trans i18nKey='create_org.private_org'>Private Organization Details</Trans>
           </Text>
           <Text color={textColorSecondary} fontSize='sm'>
