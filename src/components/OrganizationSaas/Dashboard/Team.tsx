@@ -30,9 +30,11 @@ type UserInfo = {
 }
 
 type ITeamMembersResponse = {
-  info: UserInfo
-  role: string
-}[]
+  members: {
+    info: UserInfo
+    role: string
+  }[]
+}
 
 const useTeamMembers = ({
   options,
@@ -57,16 +59,18 @@ const TeamList = () => {
   if (isError) {
     return <ErrorComponent error={error} />
   }
-  if (!data) {
+  if (!data.members) {
     return null
   }
+
+  const members = data.members
 
   return (
     <Flex display={'column'}>
       <Text fontWeight={'bold'}>
         <Trans i18nKey={'team.team_members'}>Team members</Trans>
         <Badge ml='1' colorScheme='green'>
-          {data.length}
+          {members.length}
         </Badge>
       </Text>
       <TableContainer>
@@ -82,7 +86,7 @@ const TeamList = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {data.map((member, i) => {
+            {members.map((member, i) => {
               return (
                 <Tr key={i}>
                   <Td>
