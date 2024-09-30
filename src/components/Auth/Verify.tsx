@@ -1,4 +1,4 @@
-import { Box, Button, Flex, FormControl, FormErrorMessage, Heading, Text } from '@chakra-ui/react'
+import { Box, Button, Divider, Flex, FormControl, FormErrorMessage, Heading, Input, Text } from '@chakra-ui/react'
 import { useTranslation, Trans } from 'react-i18next'
 import { Link as ReactRouterLink, useNavigate, useSearchParams } from 'react-router-dom'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
@@ -76,6 +76,7 @@ export const VerifyAccountNeeded = ({ email }: { email: string }) => {
       setEmailSent(true)
     },
   })
+  const [code, setCode] = useState('')
 
   const resendMail = useCallback(() => {
     if (email && !emailSent) {
@@ -83,8 +84,12 @@ export const VerifyAccountNeeded = ({ email }: { email: string }) => {
     }
   }, [emailSent, email])
 
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCode(event.target.value)
+  }
+
   return (
-    <Flex direction='column'>
+    <Flex direction='column' gap={2}>
       <Box me='auto'>
         <Heading color={textColor} fontSize='36px' mb='10px'>
           {t('verify.account_created_succesfully', { defaultValue: 'Account created successfully!' })}
@@ -103,19 +108,26 @@ export const VerifyAccountNeeded = ({ email }: { email: string }) => {
           })}
         </Text>
       </Box>
+      <Input type={'text'} placeholder={'12345678'} value={code} onChange={handleInputChange} />
+      <Button isDisabled={!code || isPending} as={ReactRouterLink} to={`/account/verify?email=${email}&code=${code}`}>
+        <Trans i18nKey={'verify.verify_code'}>Verify</Trans>
+      </Button>
       <Button isLoading={isPending} onClick={resendMail}>
         <Trans i18nKey={'verify.resend_confirmation_mail'}>Resend Email</Trans>
       </Button>
-      <Box pt={2}>
+      <Box>
         {emailSent && <Trans i18nKey={'verify.email_sent'}>Email sent successfully</Trans>}
         <FormControl isInvalid={isError}>
           {isError && <FormErrorMessage>{error?.message || 'Error al realizar la operación'}</FormErrorMessage>}
         </FormControl>
       </Box>
       {import.meta.env.VOCDONI_ENVIRONMENT === 'dev' && (
-        <Button mt={4} as={ReactRouterLink} to={`/account/verify?email=${email}&code=`}>
-          Mail verification for dev envs
-        </Button>
+        <>
+          <Divider />
+          <Button mt={4} as={ReactRouterLink} to={`/account/verify?email=${email}&code=`}>
+            Mail verification for dev envs
+          </Button>
+        </>
       )}
     </Flex>
   )
