@@ -7,7 +7,7 @@ import { BiTrash } from 'react-icons/bi'
 import { BsFillTrashFill } from 'react-icons/bs'
 import { MdBrowserUpdated } from 'react-icons/md'
 import { OrgInterface } from '~components/AccountSaas/AccountTypes'
-import { PrivateOrgFormData, PrivateOrgForm, PublicOrgForm } from '~components/AccountSaas/Layout'
+import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from '~components/AccountSaas/Layout'
 import {
   CustomizationLanguageSelector,
   CustomizationTimeZoneSelector,
@@ -28,15 +28,34 @@ const EditProfile = () => {
   const methods = useForm<FormData>({
     defaultValues: {
       name: account?.account.name.default || '',
+      // website: account?.account. || '',
       description: account?.account.description.default || '',
+      // size: account?.account.name.default || '',
+      // type: account?.account.name.default || '',
+      // country: account?.account.name.default || '',
+      // timezone: account?.account.name.default || '',
+      // language: account?.account.name.default || '',
       logo: account?.account.avatar || '',
+      header: account?.account.header || '',
     },
   })
 
   const { handleSubmit } = methods
 
   const onSubmit: SubmitHandler<FormData> = async (values: FormData) => {
-    console.log('TODO')
+    const newInfo = {
+      name: values.name,
+      website: values.website,
+      description: values.description,
+      size: values.sizeSelect?.value,
+      type: values.typeSelect?.value,
+      country: values.countrySelect?.value,
+      timeZone: values.timeZoneSelect.value,
+      language: values.languageSelect.value,
+      logo: values.logo,
+      header: values.header,
+    }
+    console.log(values, newInfo)
   }
 
   return (
@@ -89,8 +108,8 @@ const EditProfile = () => {
 }
 
 export type CustomOrgFormData = {
-  timeZone: SelectOptionType
-  language: SelectOptionType
+  timeZoneSelect: SelectOptionType
+  languageSelect: SelectOptionType
 }
 
 const CustomizeOrgForm = () => {
@@ -114,8 +133,8 @@ const CustomizeOrgForm = () => {
         </Text>
       </Box>
       <Flex flexDirection='column' gap={6} px={{ base: 5, md: 10 }}>
-        <CustomizationTimeZoneSelector name={'timeZone'} required />
-        <CustomizationLanguageSelector name={'language'} required />
+        <CustomizationTimeZoneSelector name={'timeZoneSelect'} required />
+        <CustomizationLanguageSelector name={'languageSelect'} required />
         <FormControl>
           <FormLabel display='flex' ms={1} fontSize='sm' fontWeight='500' color={textColor} mb={2}>
             {t('logo', {
