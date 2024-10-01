@@ -76,7 +76,7 @@ const EditProfile = () => {
                 <MdBrowserUpdated />
               </Box>
               <Text as='span'>
-                {t('edit.udpate', {
+                {t('udpate', {
                   defaultValue: 'Update',
                 })}
               </Text>
@@ -105,10 +105,10 @@ const CustomizeOrgForm = () => {
     <>
       <Box>
         <Text color={textColor} fontWeight='bold'>
-          {t('edit.customization', { defaultValue: 'Customization' })}
+          {t('customization', { defaultValue: 'Customization' })}
         </Text>
         <Text color={textColorSecondary} fontSize='sm'>
-          {t('edit.customization.details', {
+          {t('edit_saas_profile.customization_details', {
             defaultValue: 'Define the params that will enhance the user experience and customize the voting page',
           })}
         </Text>
@@ -118,24 +118,24 @@ const CustomizeOrgForm = () => {
         <CustomizationLanguageSelector name={'language'} required />
         <FormControl>
           <FormLabel display='flex' ms={1} fontSize='sm' fontWeight='500' color={textColor} mb={2}>
-            {t('edit.logo', {
+            {t('logo', {
               defaultValue: 'Logo',
             })}
           </FormLabel>
           <Flex gap={2} alignItems='center'>
             <Input
-              placeholder={t('edit.upload_file', {
+              placeholder={t('edit_saas_profile.upload_file', {
                 defaultValue: 'Upload a file',
               })}
             />
             <Button bgColor='gray' minH={12} borderRadius='xl'>
-              {t('edit.update', { defaultValue: 'Upload' })}
+              {t('upload', { defaultValue: 'Upload' })}
             </Button>
           </Flex>
         </FormControl>
         <Box position='relative' outline='none' border='none'>
           <Text fontSize='sm' fontWeight='500' color={textColor} mb={2}>
-            {t('edit.image', { defaultValue: 'Header Image' })}
+            {t('edit_saas_profile.header_image', { defaultValue: 'Header Image' })}
           </Text>
           <Flex gap={2} flexDirection={{ base: 'column', md: 'row' }} alignItems='center'>
             <AspectRatio flexShrink={0} flexGrow={1} ratio={5 / 1} borderRadius='xl' overflow='hidden'>
@@ -154,7 +154,7 @@ const CustomizeOrgForm = () => {
               }}
             >
               <BsFillTrashFill />
-              <Text as='span'>{t('edit.remove', { defaultValue: 'Remove' })}</Text>
+              <Text as='span'>{t('remove', { defaultValue: 'Remove' })}</Text>
             </Button>
           </Flex>
           {correctAvatarFormat(avatar) && (
