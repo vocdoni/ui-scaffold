@@ -32,7 +32,7 @@ const OrganizationDashboardLayoutSaas = lazy(() => import('~components/Organizat
 const OrganizationDashboard = lazy(() => import('~components/Organization/Dashboard'))
 const OrganizationDashboardSaas = lazy(() => import('~components/OrganizationSaas/Dashboard'))
 const OrganizationTeamSaas = lazy(() => import('~components/OrganizationSaas/Dashboard/Team'))
-const OrganizationEditProfile = lazy(() => import('~components/OrganizationSaas/Dashboard/EditProfile'))
+const OrganizationEditProfile = lazy(() => import('~components/AccountSaas/EditProfile'))
 const ProcessCreateSteps = lazy(() => import('~components/ProcessCreate/Steps'))
 const Terms = lazy(() => import('~components/TermsAndPrivacy/Terms'))
 const Privacy = lazy(() => import('~components/TermsAndPrivacy/Privacy'))

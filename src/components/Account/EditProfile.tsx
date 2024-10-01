@@ -20,14 +20,13 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { BiTrash } from 'react-icons/bi'
 import fallback from '/assets/default-avatar.png'
+import { REGEX_AVATAR } from '~constants'
 
 interface EditFormFields {
   name: string
   description: string
   avatar: string
 }
-
-const REGEX_AVATAR = /^(https?:\/\/|ipfs:\/\/)/i
 
 export const EditProfile = () => {
   const { account, fetchAccount } = useClient()
