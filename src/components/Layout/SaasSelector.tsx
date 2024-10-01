@@ -4,6 +4,7 @@ import { Controller, useFormContext } from 'react-hook-form'
 import { ControllerProps } from 'react-hook-form/dist/types'
 import { useTranslation } from 'react-i18next'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
+import { LanguagesSlice } from '~i18n/languages.mjs'
 
 export type SelectOptionType = {
   label: string
@@ -220,11 +221,11 @@ export const CustomizationTimeZoneSelector = ({ ...props }: Omit<SelectCustomPro
 export const CustomizationLanguageSelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) => {
   const { t } = useTranslation()
 
-  const languages: SelectOptionType[] = [
-    { label: 'English', value: 'en' },
-    { label: 'Español (Spanish)', value: 'es' },
-    { label: 'Català (Catalan)', value: 'ca' },
-  ]
+  const languages: SelectOptionType[] = Object.entries(LanguagesSlice as { [key: string]: string }).map(
+    ([key, val]) => {
+      return { label: val, value: key }
+    }
+  )
 
   return (
     <SelectCustom
