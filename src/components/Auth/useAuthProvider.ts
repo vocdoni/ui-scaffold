@@ -62,7 +62,7 @@ export const useAuthProvider = () => {
   const { mutate: updateSigner, isIdle: signerIdle, isPending: signerPending, data: signerAddress } = useSigner()
 
   const bearedFetch = useCallback(
-    <T>(path: ApiEndpoints, { headers = new Headers({}), ...params }: ApiParams) => {
+    <T>(path: string, { headers = new Headers({}), ...params }: ApiParams = {}) => {
       if (!bearer) {
         logout()
         throw new Error('No bearer token')

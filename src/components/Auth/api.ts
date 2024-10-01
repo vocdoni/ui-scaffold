@@ -7,6 +7,7 @@ export enum ApiEndpoints {
   VERIFY = 'users/verify',
   RESEND_VERIFICATION = 'users/verify/code',
   ACCOUNT_CREATE = 'organizations',
+  TEAM_MEMBERS = 'organizations/{address}/members',
 }
 
 interface IApiError {
@@ -44,8 +45,8 @@ export type ApiParams = {
 }
 
 export const api = <T>(
-  path: ApiEndpoints,
-  { body, method = 'GET', headers = new Headers({}) }: ApiParams
+  path: string,
+  { body, method = 'GET', headers = new Headers({}) }: ApiParams = {}
 ): Promise<T> => {
   headers.append('Content-Type', 'application/json')
   return fetch(`${import.meta.env.SAAS_URL}${path}`, {
