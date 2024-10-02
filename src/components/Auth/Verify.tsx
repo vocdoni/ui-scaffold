@@ -1,5 +1,5 @@
 import { Box, Button, Divider, Flex, FormControl, FormErrorMessage, Heading, Input, Text } from '@chakra-ui/react'
-import { useTranslation, Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink, useNavigate, useSearchParams } from 'react-router-dom'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import { useAuth } from '~components/Auth/useAuth'
@@ -67,26 +67,64 @@ const Verify = () => {
   )
 }
 
-export const VerifyAccountNeeded = ({ email }: { email: string }) => {
-  const { textColor, textColorSecondary } = useDarkMode()
-  const { t } = useTranslation()
-  const [emailSent, setEmailSent] = useState(false)
-  const { mutate, isError, error, isPending } = useResendVerificationMail({
-    onSuccess: () => {
-      setEmailSent(true)
-    },
-  })
-  const [code, setCode] = useState('')
+interface IVerifyAccountProps {
+  email: string
+}
 
-  const resendMail = useCallback(() => {
-    if (email && !emailSent) {
-      mutate({ email })
-    }
-  }, [emailSent, email])
+const VerifyForm = ({ email }: IVerifyAccountProps) => {
+  const navigate = useNavigate()
+  const { t } = useTranslation()
+  const [code, setCode] = useState('')
+  const {
+    mailVerify: { mutateAsync: verifyAsync, isPending: isVerifyPending, isError: isVerifyError, error: verifyError },
+  } = useAuth()
+
+  const verify = useCallback(() => {
+    verifyAsync({ email, code }).then(() => navigate('/organization'))
+  }, [code, email])
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCode(event.target.value)
   }
+
+  return (
+    <>
+      <Input type={'text'} placeholder={'12345678'} value={code} onChange={handleInputChange} />
+      <Button isDisabled={!code} isLoading={isVerifyPending} onClick={verify}>
+        <Trans i18nKey={'verify.verify_code'}>Verify</Trans>
+      </Button>
+      <Box>
+        <FormControl isInvalid={isVerifyError}>
+          {isVerifyError && (
+            <FormErrorMessage>
+              {t('verify_mail.error_subtitle', {
+                defaultValue:
+                  'We found an error verifying your email, please check verification mail to ensure all data is correct',
+              })}
+            </FormErrorMessage>
+          )}
+        </FormControl>
+      </Box>
+    </>
+  )
+}
+
+export const VerifyAccountNeeded = ({ email }: IVerifyAccountProps) => {
+  const { textColor, textColorSecondary } = useDarkMode()
+  const { t } = useTranslation()
+  const {
+    mutate: resend,
+    isError: isResendError,
+    error: resendError,
+    isPending: isResendPending,
+    isSuccess: isResendSuccess,
+  } = useResendVerificationMail()
+
+  const resendMail = useCallback(() => {
+    if (email && !isResendSuccess) {
+      resend({ email })
+    }
+  }, [isResendSuccess, email])
 
   return (
     <Flex direction='column' gap={2}>
@@ -108,19 +146,20 @@ export const VerifyAccountNeeded = ({ email }: { email: string }) => {
           })}
         </Text>
       </Box>
-      <Input type={'text'} placeholder={'12345678'} value={code} onChange={handleInputChange} />
-      <Button isDisabled={!code || isPending} as={ReactRouterLink} to={`/account/verify?email=${email}&code=${code}`}>
-        <Trans i18nKey={'verify.verify_code'}>Verify</Trans>
-      </Button>
-      <Button isLoading={isPending} onClick={resendMail}>
+      <VerifyForm email={email} />
+
+      <Button isLoading={isResendPending} onClick={resendMail}>
         <Trans i18nKey={'verify.resend_confirmation_mail'}>Resend Email</Trans>
       </Button>
       <Box>
-        {emailSent && <Trans i18nKey={'verify.email_sent'}>Email sent successfully</Trans>}
-        <FormControl isInvalid={isError}>
-          {isError && <FormErrorMessage>{error?.message || 'Error al realizar la operación'}</FormErrorMessage>}
+        {isResendSuccess && <Trans i18nKey={'verify.email_sent'}>Email sent successfully</Trans>}
+        <FormControl isInvalid={isResendError}>
+          {isResendError && (
+            <FormErrorMessage>{resendError?.message || 'Error al realizar la operación'}</FormErrorMessage>
+          )}
         </FormControl>
       </Box>
+
       {import.meta.env.VOCDONI_ENVIRONMENT === 'dev' && (
         <>
           <Divider />
