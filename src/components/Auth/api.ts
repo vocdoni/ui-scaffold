@@ -7,6 +7,7 @@ export enum ApiEndpoints {
   VERIFY = 'users/verify',
   RESEND_VERIFICATION = 'users/verify/code',
   ACCOUNT_CREATE = 'organizations',
+  ORGANIZATION_INFO = 'organizations/{address}',
   TEAM_MEMBERS = 'organizations/{address}/members',
 }
 
