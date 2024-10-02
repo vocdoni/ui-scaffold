@@ -1,11 +1,12 @@
-import { Box, Button, Divider, Flex, FormControl, FormErrorMessage, Heading, Input, Text } from '@chakra-ui/react'
+import { Box, Button, Divider, Flex, FormControl, FormErrorMessage, Heading, Text } from '@chakra-ui/react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink, useNavigate, useSearchParams } from 'react-router-dom'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import { useAuth } from '~components/Auth/useAuth'
 import { Loading } from '~src/router/SuspenseLoader'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useResendVerificationMail } from '~components/Auth/authQueries'
+import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 
 const Verify = () => {
   const navigate = useNavigate()
@@ -112,19 +113,18 @@ const VerifyForm = ({ email }: IVerifyAccountProps) => {
 export const VerifyAccountNeeded = ({ email }: IVerifyAccountProps) => {
   const { textColor, textColorSecondary } = useDarkMode()
   const { t } = useTranslation()
-  const {
-    mutate: resend,
-    isError: isResendError,
-    error: resendError,
-    isPending: isResendPending,
-    isSuccess: isResendSuccess,
-  } = useResendVerificationMail()
+  const [emailSent, setEmailSent] = useState(false)
+  const { mutate, isError, error, isPending } = useResendVerificationMail({
+    onSuccess: () => {
+      setEmailSent(true)
+    },
+  })
 
   const resendMail = useCallback(() => {
-    if (email && !isResendSuccess) {
-      resend({ email })
+    if (email && !emailSent) {
+      mutate({ email })
     }
-  }, [isResendSuccess, email])
+  }, [emailSent, email])
 
   return (
     <Flex direction='column' gap={2}>
@@ -151,15 +151,12 @@ export const VerifyAccountNeeded = ({ email }: IVerifyAccountProps) => {
       <Button isLoading={isResendPending} onClick={resendMail}>
         <Trans i18nKey={'verify.resend_confirmation_mail'}>Resend Email</Trans>
       </Button>
-      <Box>
-        {isResendSuccess && <Trans i18nKey={'verify.email_sent'}>Email sent successfully</Trans>}
-        <FormControl isInvalid={isResendError}>
-          {isResendError && (
-            <FormErrorMessage>{resendError?.message || 'Error al realizar la operación'}</FormErrorMessage>
-          )}
+      <Box pt={2}>
+        {emailSent && <Trans i18nKey={'verify.email_sent'}>Email sent successfully</Trans>}
+        <FormControl isInvalid={isError}>
+          {isError && <FormErrorMessage>{error?.message || 'Error al realizar la operación'}</FormErrorMessage>}
         </FormControl>
       </Box>
-
       {import.meta.env.VOCDONI_ENVIRONMENT === 'dev' && (
         <>
           <Divider />
