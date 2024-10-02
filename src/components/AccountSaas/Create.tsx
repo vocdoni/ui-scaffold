@@ -29,7 +29,7 @@ const useSaasAccountCreate = (options?: Omit<UseMutationOptions<void, Error, Cre
   const { bearedFetch } = useAuth()
   return useMutation<void, Error, CreateOrgParams>({
     mutationFn: (params: CreateOrgParams) =>
-      bearedFetch<void>(ApiEndpoints.ACCOUNT_CREATE, { body: params, method: 'POST' }),
+      bearedFetch<void>(ApiEndpoints.ORGANIZATIONS, { body: params, method: 'POST' }),
     ...options,
   })
 }

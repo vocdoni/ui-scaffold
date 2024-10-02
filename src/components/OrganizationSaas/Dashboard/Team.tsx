@@ -42,7 +42,8 @@ const useTeamMembers = ({
   const { bearedFetch, signerAddress } = useAuth()
   return useQuery({
     queryKey: ['organizations', 'members', signerAddress],
-    queryFn: () => bearedFetch<ITeamMembersResponse>(ApiEndpoints.TEAM_MEMBERS.replace('{address}', signerAddress)),
+    queryFn: () =>
+      bearedFetch<ITeamMembersResponse>(ApiEndpoints.ORGANIZATION_MEMBERS.replace('{address}', signerAddress)),
     ...options,
   })
 }
