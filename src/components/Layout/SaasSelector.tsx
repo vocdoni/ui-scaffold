@@ -1,5 +1,5 @@
 import { FormControl, FormErrorMessage, FormLabel, Text } from '@chakra-ui/react'
-import { ChakraStylesConfig, GroupBase, Select, Props as SelectProps } from 'chakra-react-select'
+import { ChakraStylesConfig, GroupBase, Props as SelectProps, Select } from 'chakra-react-select'
 import { Controller, useFormContext } from 'react-hook-form'
 import { ControllerProps } from 'react-hook-form/dist/types'
 import { useTranslation } from 'react-i18next'
@@ -90,6 +90,15 @@ export const SelectCustom = ({
         render={({ field }) => (
           <Select
             placeholder={t('form.choose_an_option', { defaultValue: 'Choose an option' })}
+            getOptionLabel={(option: SelectOptionType) => {
+              // If no label is set for the current option, find the corresponding label in the options array
+              // This allows setting the value directly in form defaults without needing to know the label
+              if (!option?.label) {
+                const foundOption = (rest.options as SelectOptionType[]).find((opt) => opt?.value === option?.value)
+                return foundOption?.label || option.value
+              }
+              return option.label
+            }}
             {...field}
             {...rest}
             chakraStyles={customStyles}
@@ -170,7 +179,7 @@ export const CountriesTypesSelector = ({ ...props }: Omit<SelectCustomProps, 'op
   )
 }
 
-export const MembershipSizeTypesSelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) => {
+export const MembershipSizeTypesSelector = ({ defaultValue, ...props }: Omit<SelectCustomProps, 'options'>) => {
   const { t } = useTranslation()
   const listSizes: SelectOptionType[] = [
     { label: '0-100', value: '0-100' },
