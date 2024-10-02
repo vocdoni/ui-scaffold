@@ -1,20 +1,20 @@
-import { useQuery, UseQueryOptions } from '@tanstack/react-query'
+import { useMutation, UseMutationOptions, useQuery, UseQueryOptions } from '@tanstack/react-query'
 import { useAuth } from '~components/Auth/useAuth'
 import { ApiEndpoints } from '~components/Auth/api'
-import { OrgInterface } from '~components/AccountSaas/AccountTypes'
-import { UseMutationOptions } from '@tanstack/react-query/build/modern/index'
-import { IRegisterParams, LoginResponse } from '~components/Auth/authQueries'
+import { CreateOrgParams, OrgInterface } from '~components/AccountSaas/AccountTypes'
 
 export const useEditSaasOrganization = (
-  options?: Omit<UseMutationOptions<LoginResponse, Error, IRegisterParams>, 'mutationFn'>
+  options?: Omit<UseMutationOptions<void, Error, CreateOrgParams>, 'mutationFn'>
 ) => {
-  // todo(kon)
-  // const { bearedFetch, signerAddress } = useAuth()
-  // return useMutation<LoginResponse, Error, IRegisterParams>({
-  //   mutationFn: (params: IRegisterParams) =>
-  //     api<LoginResponse>(ApiEndpoints.REGISTER, { body: params, method: 'POST' }),
-  //   ...options,
-  // })
+  const { bearedFetch, signerAddress } = useAuth()
+  return useMutation<void, Error, CreateOrgParams>({
+    mutationFn: (params: CreateOrgParams) =>
+      bearedFetch<void>(ApiEndpoints.ORGANIZATION.replace('{address}', signerAddress), {
+        body: params,
+        method: 'PUT',
+      }),
+    ...options,
+  })
 }
 
 export const useSaasOrganization = ({
