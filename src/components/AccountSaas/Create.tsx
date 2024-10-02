@@ -8,13 +8,13 @@ import { useClient } from '@vocdoni/react-providers'
 import { useState } from 'react'
 import { useAccountCreate } from '~components/Account/useAccountCreate'
 import { CreateOrgParams, OrgInterface } from '~components/AccountSaas/AccountTypes'
-import { PrivateOrgFormData, PrivateOrgForm, PublicOrgForm } from '~components/AccountSaas/Layout'
+import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from '~components/AccountSaas/Layout'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import LogoutBtn from '~components/AccountSaas/LogoutBtn'
 
-type FormData = PrivateOrgFormData & Pick<OrgInterface, 'name' | 'website' | 'description'>
+type FormData = PrivateOrgFormData & Pick<OrgInterface, 'name' | 'website' | 'description' | 'communications'>
 
 // This specific error message should be ignored and not displayed in the UI.
 // Context: After login, a RemoteSigner is created and passed to the SDK via the useClient hook.
@@ -64,7 +64,12 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
       type: values.typeSelect?.value,
     })
       .then(() => signer.getAddress()) // Get the address of newly created signer
-      .then(() => createAccount({ name: values.name, description: values.description })) // Create the new account on the vochain
+      .then(() =>
+        createAccount({
+          name: values.name,
+          description: values.description,
+        })
+      ) // Create the new account on the vochain
       .finally(() => setIsPending(false))
   }
 
