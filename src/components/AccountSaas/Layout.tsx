@@ -41,7 +41,6 @@ export const PublicOrgForm = () => {
             defaultValue: 'https://example.com',
           })}
           type='text'
-          required
         />
 
         <FormControl>
