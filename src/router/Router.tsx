@@ -1,13 +1,13 @@
-import {useClient} from '@vocdoni/react-providers'
-import {lazy} from 'react'
-import {createBrowserRouter, Params, RouteObject, RouterProvider} from 'react-router-dom'
+import { useClient } from '@vocdoni/react-providers'
+import { lazy } from 'react'
+import { createBrowserRouter, Params, RouteObject, RouterProvider } from 'react-router-dom'
 // These aren't lazy loaded since they are main layouts and related components
 import Error from '~elements/Error'
 import Layout from '~elements/Layout'
 import LayoutAuth from '~elements/LayoutAuth'
 import LayoutProcessCreate from '~elements/LayoutProcessCreate'
-import {StripeCheckout, StripeReturn} from '~elements/Stripe'
-import {SuspenseLoader} from './SuspenseLoader'
+import { StripeCheckout, StripeReturn } from '~elements/Stripe'
+import { SuspenseLoader } from './SuspenseLoader'
 
 // Lazy loading helps splitting the final code, which helps downloading the app (theoretically)
 const ScaffoldProtectedRoutes = lazy(() => import('./ProtectedRoutes'))
