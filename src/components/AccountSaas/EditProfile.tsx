@@ -1,6 +1,5 @@
 import { AspectRatio, Box, Flex, FormControl, FormLabel, IconButton, Image, Input, Text } from '@chakra-ui/react'
 import { Button } from '@vocdoni/chakra-components'
-import { useClient } from '@vocdoni/react-providers'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { BiTrash } from 'react-icons/bi'
@@ -16,27 +15,40 @@ import {
 import { REGEX_AVATAR } from '~constants'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import fallback from '/assets/default-avatar.png'
+import { useSaasOrganization } from '~components/AccountSaas/queries'
 
 type FormData = CustomOrgFormData &
   PrivateOrgFormData &
-  Pick<OrgInterface, 'name' | 'website' | 'description' | 'logo' | 'header'>
+  Pick<OrgInterface, 'name' | 'website' | 'description' | 'logo' | 'header' | 'communications'>
 
 const EditProfile = () => {
-  const { account } = useClient()
+  const { data } = useSaasOrganization()
+
   const { t } = useTranslation()
 
   const methods = useForm<FormData>({
     defaultValues: {
-      name: account?.account.name.default || '',
-      // website: account?.account. || '',
-      description: account?.account.description.default || '',
-      // size: account?.account.name.default || '',
-      // type: account?.account.name.default || '',
-      // country: account?.account.name.default || '',
-      // timezone: account?.account.name.default || '',
-      // language: account?.account.name.default || '',
-      logo: account?.account.avatar || '',
-      header: account?.account.header || '',
+      name: data?.name || '',
+      website: data?.website || '',
+      description: data?.description || '',
+      sizeSelect: data?.size && {
+        value: data.size,
+      },
+      typeSelect: data?.type && {
+        value: data.type,
+      },
+      countrySelect: data?.country && {
+        value: data.country || '',
+      },
+      communications: data?.communications || false,
+      timeZoneSelect: data?.timezone && {
+        value: data.timezone,
+      },
+      languageSelect: data?.language && {
+        value: data.language,
+      },
+      logo: data?.logo || '',
+      header: data?.header || '',
     },
   })
 
