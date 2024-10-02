@@ -51,15 +51,13 @@ const useTeamMembers = ({
 const TeamList = () => {
   const { data, isLoading, isError, error } = useTeamMembers()
 
-  const members = data.members
-
   return (
-    <QueryDataLayout isEmpty={!data.members} isLoading={isLoading} isError={isError} error={error}>
+    <QueryDataLayout isEmpty={!data?.members} isLoading={isLoading} isError={isError} error={error}>
       <Flex display={'column'}>
         <Text fontWeight={'bold'}>
           <Trans i18nKey={'team.team_members'}>Team members</Trans>
           <Badge ml='1' colorScheme='green'>
-            {members.length}
+            {data?.members?.length}
           </Badge>
         </Text>
         <TableContainer>
@@ -75,7 +73,7 @@ const TeamList = () => {
               </Tr>
             </Thead>
             <Tbody>
-              {members.map((member, i) => {
+              {data?.members?.map((member, i) => {
                 return (
                   <Tr key={i}>
                     <Td>
