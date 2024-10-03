@@ -13,6 +13,9 @@ export interface InfoValues {
   // dates need to be string to properly reset the values to the inputs
   endDate: string
   startDate: string
+}
+
+export interface ConfigurationValues {
   electionType: {
     autoStart: boolean
     interruptible: boolean
@@ -26,13 +29,15 @@ export interface InfoValues {
   weightedVote: boolean
 }
 
+type FormValues = InfoValues & ConfigurationValues
+
 export const Info = () => {
   const { form, setForm, next } = useProcessCreationSteps()
-  const methods = useForm<InfoValues>({
+  const methods = useForm<FormValues>({
     defaultValues: form,
   })
 
-  const onSubmit: SubmitHandler<InfoValues> = (data) => {
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
     setForm({ ...form, ...data })
     next()
   }

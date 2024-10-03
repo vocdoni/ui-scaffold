@@ -7,6 +7,7 @@ import { Badge } from './components/badge'
 import { Button } from './components/button'
 import { Input } from './components/input'
 import { Link } from './components/link'
+import { Form } from './components/Form'
 import { Modal } from './components/modal'
 import { Card } from './components/card'
 import { Checkbox } from './components/checkbox'
@@ -15,6 +16,7 @@ import { breakpoints } from './foundations/breakpoints'
 import { colors } from './colors'
 import { Pagination } from './components/pagination'
 import { spacing } from './space'
+import { Tabs } from './components/Tabs'
 
 export const theme = extendTheme(vtheme, {
   styles: {
@@ -31,10 +33,12 @@ export const theme = extendTheme(vtheme, {
     Button,
     Card,
     Checkbox,
+    Form,
     Input,
     Link,
     Modal,
     Pagination,
+    Tabs,
     Textarea,
   },
   spacing,
