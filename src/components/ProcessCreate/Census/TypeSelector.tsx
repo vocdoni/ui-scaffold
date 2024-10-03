@@ -4,7 +4,6 @@ import {
   CensusType,
   CensusTypeCsp,
   CensusTypeGitcoin,
-  CensusTypes,
   CensusTypeSpreadsheet,
   CensusTypeToken,
   CensusTypeWeb3,

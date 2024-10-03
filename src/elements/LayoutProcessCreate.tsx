@@ -1,10 +1,9 @@
 import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import { Outlet, Link as ReactRouterLink, ScrollRestoration, useNavigate } from 'react-router-dom'
+import { Link as ReactRouterLink, Outlet, ScrollRestoration, useNavigate } from 'react-router-dom'
 import Logo from '~components/Layout/Logo'
 import { Close } from '~theme/icons'
 import SaasFooter from '~components/ProcessCreate/SaasFooter'
-import SaasSaveToDraft from '~components/ProcessCreate/SaasSaveToDraft'
 
 const LayoutProcessCreate = () => {
   const { t } = useTranslation()
@@ -25,7 +24,7 @@ const LayoutProcessCreate = () => {
             p={{ base: '12px 10px', sm: '12px 20px', md: '24px 40px' }}
           >
             <Logo />
-            {isSaas && <SaasSaveToDraft />}
+            {isSaas && <Button>Save draft</Button>}
             <Button
               as={ReactRouterLink}
               variant='close-form'
