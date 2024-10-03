@@ -3,6 +3,7 @@ import { useQuery, UseQueryOptions } from '@tanstack/react-query'
 import { OrganizationData } from '~components/AccountSaas/AccountTypes'
 import { useAuth } from '~components/Auth/useAuth'
 import { ApiEndpoints } from '~components/Auth/api'
+import { useCallback } from 'react'
 
 const useSaasOrganization = ({
   options,
@@ -22,10 +23,22 @@ const useSaasOrganization = ({
 export const useSaasAccountProvider = () => {
   const {
     account: accountSDK,
-    errors: { account: sdkAccountError },
-    loading: { account: sdkAccountLoading },
+    fetchAccount,
+    errors: { fetch: sdkAccountError },
+    loading: { fetch: sdkAccountLoading },
   } = useClient()
-  const { data: saasData, isLoading: isSaasLoading, isError: isSaasError, error: saasError } = useSaasOrganization()
+  const {
+    data: saasData,
+    refetch,
+    isLoading: isSaasLoading,
+    isError: isSaasError,
+    error: saasError,
+  } = useSaasOrganization()
+
+  const refetchAccount = useCallback(() => {
+    refetch()
+    fetchAccount()
+  }, [refetch, fetchAccount])
 
   const organization: OrganizationData = { ...accountSDK, ...saasData }
 
@@ -33,5 +46,5 @@ export const useSaasAccountProvider = () => {
   const isError = isSaasError || !!sdkAccountError
   const error = saasError || sdkAccountError
 
-  return { organization, isLoading, isError, error }
+  return { organization, refetchAccount, isLoading, isError, error }
 }
