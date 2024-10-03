@@ -1,10 +1,10 @@
-import { Box, Button, Divider, Flex, FormControl, FormErrorMessage, Heading, Text } from '@chakra-ui/react'
+import { Box, Button, Divider, Flex, FormControl, FormErrorMessage, Heading, Input, Text } from '@chakra-ui/react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink, useNavigate, useSearchParams } from 'react-router-dom'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import { useAuth } from '~components/Auth/useAuth'
 import { Loading } from '~src/router/SuspenseLoader'
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useResendVerificationMail } from '~components/Auth/authQueries'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 
@@ -94,18 +94,13 @@ const VerifyForm = ({ email }: IVerifyAccountProps) => {
       <Button isDisabled={!code} isLoading={isVerifyPending} onClick={verify}>
         <Trans i18nKey={'verify.verify_code'}>Verify</Trans>
       </Button>
-      <Box>
-        <FormControl isInvalid={isVerifyError}>
-          {isVerifyError && (
-            <FormErrorMessage>
-              {t('verify_mail.error_subtitle', {
-                defaultValue:
-                  'We found an error verifying your email, please check verification mail to ensure all data is correct',
-              })}
-            </FormErrorMessage>
-          )}
-        </FormControl>
-      </Box>
+      <FormSubmitMessage
+        isError={isVerifyError}
+        error={t('verify_mail.error_subtitle', {
+          defaultValue:
+            'We found an error verifying your email, please check verification mail to ensure all data is correct',
+        })}
+      />
     </>
   )
 }
@@ -113,18 +108,19 @@ const VerifyForm = ({ email }: IVerifyAccountProps) => {
 export const VerifyAccountNeeded = ({ email }: IVerifyAccountProps) => {
   const { textColor, textColorSecondary } = useDarkMode()
   const { t } = useTranslation()
-  const [emailSent, setEmailSent] = useState(false)
-  const { mutate, isError, error, isPending } = useResendVerificationMail({
-    onSuccess: () => {
-      setEmailSent(true)
-    },
-  })
+  const {
+    mutate: resend,
+    isError: isResendError,
+    error: resendError,
+    isPending: isResendPending,
+    isSuccess: isResendSuccess,
+  } = useResendVerificationMail()
 
   const resendMail = useCallback(() => {
-    if (email && !emailSent) {
-      mutate({ email })
+    if (email && !isResendSuccess) {
+      resend({ email })
     }
-  }, [emailSent, email])
+  }, [isResendSuccess, email])
 
   return (
     <Flex direction='column' gap={2}>
@@ -151,12 +147,15 @@ export const VerifyAccountNeeded = ({ email }: IVerifyAccountProps) => {
       <Button isLoading={isResendPending} onClick={resendMail}>
         <Trans i18nKey={'verify.resend_confirmation_mail'}>Resend Email</Trans>
       </Button>
-      <Box pt={2}>
-        {emailSent && <Trans i18nKey={'verify.email_sent'}>Email sent successfully</Trans>}
-        <FormControl isInvalid={isError}>
-          {isError && <FormErrorMessage>{error?.message || 'Error al realizar la operación'}</FormErrorMessage>}
-        </FormControl>
-      </Box>
+      <FormSubmitMessage
+        isSuccess={isResendSuccess}
+        success={t('verify.email_sent', {
+          defaultValue: 'Email sent successfully',
+        })}
+        isError={isResendError}
+        error={resendError}
+      />
+
       {import.meta.env.VOCDONI_ENVIRONMENT === 'dev' && (
         <>
           <Divider />
