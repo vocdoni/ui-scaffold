@@ -19,5 +19,6 @@ export type SaasOrganizationData = {
 export type OrganizationData = SaasOrganizationData & AccountData
 
 export type CreateOrgParams = Partial<
-  Pick<IAccount, 'name' | 'description' | 'logo'> & Omit<SaasOrganizationData, 'active' | 'address' | 'createdAt'>
+  Pick<IAccount, 'name' | 'description' | 'logo' | 'header'> &
+    Omit<SaasOrganizationData, 'active' | 'address' | 'createdAt'>
 >

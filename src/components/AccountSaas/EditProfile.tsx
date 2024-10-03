@@ -15,40 +15,55 @@ import {
 import { REGEX_AVATAR } from '~constants'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import fallback from '/assets/default-avatar.png'
-import { useEditSaasOrganization, useSaasOrganization } from '~components/AccountSaas/queries'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
+import { useMutation, UseMutationOptions } from '@tanstack/react-query'
+import { useAuth } from '~components/Auth/useAuth'
+import { ApiEndpoints } from '~components/Auth/api'
+import { useSaasAccount } from '~components/AccountSaas/useSaasAccount'
 
 type FormData = CustomOrgFormData & PrivateOrgFormData & CreateOrgParams
 
+const useEditSaasOrganization = (options?: Omit<UseMutationOptions<void, Error, CreateOrgParams>, 'mutationFn'>) => {
+  const { bearedFetch, signerAddress } = useAuth()
+  return useMutation<void, Error, CreateOrgParams>({
+    mutationFn: (params: CreateOrgParams) =>
+      bearedFetch<void>(ApiEndpoints.ORGANIZATION.replace('{address}', signerAddress), {
+        body: params,
+        method: 'PUT',
+      }),
+    ...options,
+  })
+}
+
 const EditProfile = () => {
   const { t } = useTranslation()
+  const { organization } = useSaasAccount()
 
-  const { data } = useSaasOrganization()
   const { mutate, isPending, isError, error, isSuccess } = useEditSaasOrganization()
 
   const methods = useForm<FormData>({
     defaultValues: {
-      name: data?.name || '',
-      website: data?.website || '',
-      description: data?.description || '',
-      sizeSelect: data?.size && {
-        value: data.size,
+      name: organization?.account.name.default || '',
+      website: organization?.website || '',
+      description: organization?.account.description.default || '',
+      sizeSelect: organization?.size && {
+        value: organization.size,
       },
-      typeSelect: data?.type && {
-        value: data.type,
+      typeSelect: organization?.type && {
+        value: organization.type,
       },
-      countrySelect: data?.country && {
-        value: data.country || '',
+      countrySelect: organization?.country && {
+        value: organization.country || '',
       },
-      communications: data?.communications || false,
-      timeZoneSelect: data?.timezone && {
-        value: data.timezone,
+      communications: organization?.communications || false,
+      timeZoneSelect: organization?.timezone && {
+        value: organization.timezone,
       },
-      languageSelect: data?.language && {
-        value: data.language,
+      languageSelect: organization?.language && {
+        value: organization.language,
       },
-      logo: data?.logo || '',
-      header: data?.header || '',
+      logo: organization?.account.avatar || '',
+      header: organization?.header || '',
     },
   })
 
@@ -68,7 +83,7 @@ const EditProfile = () => {
       header: values.header,
     }
     mutate({
-      ...data,
+      ...organization,
       ...newInfo,
     })
   }
