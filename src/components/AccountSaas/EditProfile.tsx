@@ -20,6 +20,8 @@ import { useMutation, UseMutationOptions } from '@tanstack/react-query'
 import { useAuth } from '~components/Auth/useAuth'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useSaasAccount } from '~components/AccountSaas/useSaasAccount'
+import { useClient } from '@vocdoni/react-providers'
+import { Account } from '@vocdoni/sdk'
 
 type FormData = CustomOrgFormData & PrivateOrgFormData & CreateOrgParams
 
@@ -37,9 +39,20 @@ const useEditSaasOrganization = (options?: Omit<UseMutationOptions<void, Error, 
 
 const EditProfile = () => {
   const { t } = useTranslation()
+  const {
+    updateAccount,
+    loading: { update: isUpdateLoading },
+    errors: { update: updateError },
+  } = useClient()
   const { organization } = useSaasAccount()
 
-  const { mutate, isPending, isError, error, isSuccess } = useEditSaasOrganization()
+  const {
+    mutateAsync,
+    isPending: isSaasPending,
+    isError: isSaasError,
+    error: saasError,
+    isSuccess,
+  } = useEditSaasOrganization()
 
   const methods = useForm<FormData>({
     defaultValues: {
@@ -71,22 +84,28 @@ const EditProfile = () => {
 
   const onSubmit: SubmitHandler<FormData> = async (values: FormData) => {
     const newInfo: CreateOrgParams = {
-      name: values.name,
       website: values.website,
-      description: values.description,
       size: values.sizeSelect?.value,
       type: values.typeSelect?.value,
       country: values.countrySelect?.value,
       timezone: values.timeZoneSelect.value,
       language: values.languageSelect.value,
-      logo: values.logo,
-      header: values.header,
     }
-    mutate({
+    mutateAsync({
       ...organization,
       ...newInfo,
+    }).then(() => {
+      const newAccount = new Account({ ...organization?.account, ...values })
+      // Check if account changed before trying to update
+      if (JSON.stringify(newAccount.generateMetadata()) !== JSON.stringify(organization?.account.generateMetadata())) {
+        updateAccount(newAccount)
+      }
     })
   }
+
+  const isPending = isUpdateLoading || isSaasPending
+  const isError = isSaasError || !!updateError
+  const error = saasError || updateError
 
   return (
     <FormProvider {...methods}>
