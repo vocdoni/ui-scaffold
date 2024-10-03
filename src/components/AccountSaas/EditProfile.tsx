@@ -140,6 +140,7 @@ const EditProfile = () => {
               })}
             </Button>
             <FormSubmitMessage
+              isLoading={isPending}
               isError={isError}
               error={error}
               isSuccess={isSuccess}
