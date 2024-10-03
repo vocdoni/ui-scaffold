@@ -21,6 +21,7 @@ export const CensusPreviewRowsLimit = 10
 
 const defaultCensusSize = import.meta.env.DEFAULT_CENSUS_SIZE
 export const DefaultCensusSize = defaultCensusSize
+export const REGEX_AVATAR = /^(https?:\/\/|ipfs:\/\/)/i
 
 /**
  * Given an object of react-hook-form errors, determines if the specified mapped field is invalid (returns an error)

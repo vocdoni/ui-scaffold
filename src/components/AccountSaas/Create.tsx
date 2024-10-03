@@ -1,14 +1,4 @@
-import {
-  Box,
-  Flex,
-  FlexProps,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Heading,
-  Text,
-  Textarea,
-} from '@chakra-ui/react'
+import { Box, Flex, FlexProps, FormControl, FormErrorMessage, Heading, Text } from '@chakra-ui/react'
 import { Button } from '@vocdoni/chakra-components'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
@@ -17,35 +7,14 @@ import { useMutation, UseMutationOptions } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { useState } from 'react'
 import { useAccountCreate } from '~components/Account/useAccountCreate'
+import { CreateOrgParams, OrgInterface } from '~components/AccountSaas/AccountTypes'
+import { PrivateOrgFormData, PrivateOrgForm, PublicOrgForm } from '~components/AccountSaas/Layout'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
-import CheckboxCustom from '~components/Layout/CheckboxCustom'
-import InputCustom from '~components/Layout/InputCustom'
-import {
-  CountriesTypesSelector,
-  MembershipSizeTypesSelector,
-  OrganzationTypesSelector,
-  SelectOptionType,
-} from '~components/Layout/SaasSelector'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import LogoutBtn from '~components/AccountSaas/LogoutBtn'
 
-interface OrgInterface {
-  name: string
-  website: string
-  description: string
-  size: string
-  type: string
-  country: string
-  timezone: string
-  language: string
-  logo: string
-  header: string
-  subdomain: string
-  color: string
-}
-
-type CreateOrgParams = Partial<OrgInterface>
+type FormData = PrivateOrgFormData & Pick<OrgInterface, 'name' | 'website' | 'description'>
 
 // This specific error message should be ignored and not displayed in the UI.
 // Context: After login, a RemoteSigner is created and passed to the SDK via the useClient hook.
@@ -65,25 +34,14 @@ const useSaasAccountCreate = (options?: Omit<UseMutationOptions<void, Error, Cre
   })
 }
 
-type FormData = {
-  communications: boolean
-  sizeSelect: SelectOptionType
-  typeSelect: SelectOptionType
-  countrySelect: SelectOptionType
-} & Pick<OrgInterface, 'name' | 'website' | 'description'>
-
 export const AccountCreate = ({ children, ...props }: FlexProps) => {
   const { t } = useTranslation()
 
   const [isPending, setIsPending] = useState(false)
-  const { textColor, textColorBrand, textColorSecondary } = useDarkMode()
+  const { textColor, textColorSecondary } = useDarkMode()
 
   const methods = useForm<FormData>()
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = methods
+  const { handleSubmit } = methods
 
   const { signer } = useClient()
 
@@ -93,11 +51,6 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
   const isError = !!accountError || isSaasError
 
   const error = saasError || accountError
-
-  const required = {
-    value: true,
-    message: t('form.error.field_is_required'),
-  }
 
   const onSubmit = (values: FormData) => {
     setIsPending(true)
@@ -136,60 +89,9 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
           <Heading color={textColor} fontSize='36px' mb={4}>
             <Trans i18nKey='create_org.title'>Create Your Organization</Trans>
           </Heading>
-          <Text color={textColor} fontWeight='bold'>
-            <Trans i18nKey='create_org.public_info'>Public Organization Information</Trans>
-          </Text>
         </Box>
-
-        <Flex flexDirection='column' gap={6} px={{ base: 5, md: 10 }}>
-          <InputCustom
-            formValue='name'
-            label={t('name', { defaultValue: 'Name' })}
-            placeholder={t('form.account_create.title_placeholder', {
-              defaultValue: "Enter your organization's emial",
-            })}
-            type='text'
-            required
-          />
-          <InputCustom
-            formValue='website'
-            label={t('website', { defaultValue: 'Website' })}
-            placeholder={t('form.account_create.website_placeholder', {
-              defaultValue: 'https://example.com',
-            })}
-            type='text'
-            required
-          />
-
-          <FormControl>
-            <FormLabel ms='4px' fontSize='sm' fontWeight='500' color={textColor}>
-              <Trans i18nKey='description'>Description</Trans>
-            </FormLabel>
-            <Textarea {...register('description')} placeholder={t('form.account_create.description_placeholder')} />
-          </FormControl>
-        </Flex>
-        <Box>
-          <Text color={textColor} fontWeight='bold' mb={4}>
-            <Trans i18nKey='create_org.private_org'>Private Organization Details</Trans>
-          </Text>
-          <Text color={textColorSecondary} fontSize='sm'>
-            <Trans i18nKey='create_org.private_org_description'>
-              Help us tailor your experience with information about your org. We won't share this info
-            </Trans>
-          </Text>
-        </Box>
-        <Flex px={{ base: 5, md: 10 }} direction={'column'} gap={6}>
-          <MembershipSizeTypesSelector name={'sizeSelect'} required />
-          <OrganzationTypesSelector name={'typeSelect'} required />
-          <CountriesTypesSelector name={'countrySelect'} required />
-        </Flex>
-
-        <CheckboxCustom
-          formValue='communications'
-          label={t('create_org.communication', {
-            defaultValue: '  I want to receive communications and be contacted to tailor my governance experience.',
-          })}
-        />
+        <PublicOrgForm />
+        <PrivateOrgForm />
         <Button form='process-create-form' type='submit' isLoading={isPending} mx='auto' mt={8} w='80%'>
           {t('organization.create_org')}
         </Button>

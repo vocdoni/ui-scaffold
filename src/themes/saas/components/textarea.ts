@@ -7,7 +7,7 @@ export const Textarea = defineStyleConfig({
     borderRadius: '16px',
     _placeholder: { color: 'secondaryGray.600' },
     _focus: {
-      outline: '2px solid #3965FF',
+      outline: '1px solid #3965FF',
       outlineOffset: '0px',
     },
   },
