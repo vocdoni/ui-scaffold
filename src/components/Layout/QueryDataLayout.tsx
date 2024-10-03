@@ -6,7 +6,7 @@ interface IUserQueryLayout {
   isLoading: boolean
   isEmpty?: boolean
   isError: boolean
-  error?: Error
+  error?: Error | string
 }
 
 const QueryDataLayout = ({ isLoading, isEmpty, isError, error, children }: IUserQueryLayout & PropsWithChildren) => {
