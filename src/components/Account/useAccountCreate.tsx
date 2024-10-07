@@ -1,5 +1,4 @@
 import { useClient } from '@vocdoni/react-providers'
-import { useMutation, UseMutationOptions, useQuery } from '@tanstack/react-query'
 import { Account } from '@vocdoni/sdk'
 import { useAccountHealthTools } from '~components/Account/use-account-health-tools'
 

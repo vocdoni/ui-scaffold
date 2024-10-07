@@ -1,12 +1,11 @@
 import { AspectRatio, Box, Flex, FormControl, FormLabel, IconButton, Image, Input, Text } from '@chakra-ui/react'
 import { Button } from '@vocdoni/chakra-components'
-import { useClient } from '@vocdoni/react-providers'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { BiTrash } from 'react-icons/bi'
 import { BsFillTrashFill } from 'react-icons/bs'
 import { MdBrowserUpdated } from 'react-icons/md'
-import { OrgInterface } from '~components/AccountSaas/AccountTypes'
+import { CreateOrgParams } from '~components/AccountSaas/AccountTypes'
 import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from '~components/AccountSaas/Layout'
 import {
   CustomizationLanguageSelector,
@@ -16,46 +15,62 @@ import {
 import { REGEX_AVATAR } from '~constants'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import fallback from '/assets/default-avatar.png'
+import { useEditSaasOrganization, useSaasOrganization } from '~components/AccountSaas/queries'
+import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 
-type FormData = CustomOrgFormData &
-  PrivateOrgFormData &
-  Pick<OrgInterface, 'name' | 'website' | 'description' | 'logo' | 'header'>
+type FormData = CustomOrgFormData & PrivateOrgFormData & CreateOrgParams
 
 const EditProfile = () => {
-  const { account } = useClient()
   const { t } = useTranslation()
+
+  const { data } = useSaasOrganization()
+  const { mutate, isPending, isError, error, isSuccess } = useEditSaasOrganization()
 
   const methods = useForm<FormData>({
     defaultValues: {
-      name: account?.account.name.default || '',
-      // website: account?.account. || '',
-      description: account?.account.description.default || '',
-      // size: account?.account.name.default || '',
-      // type: account?.account.name.default || '',
-      // country: account?.account.name.default || '',
-      // timezone: account?.account.name.default || '',
-      // language: account?.account.name.default || '',
-      logo: account?.account.avatar || '',
-      header: account?.account.header || '',
+      name: data?.name || '',
+      website: data?.website || '',
+      description: data?.description || '',
+      sizeSelect: data?.size && {
+        value: data.size,
+      },
+      typeSelect: data?.type && {
+        value: data.type,
+      },
+      countrySelect: data?.country && {
+        value: data.country || '',
+      },
+      communications: data?.communications || false,
+      timeZoneSelect: data?.timezone && {
+        value: data.timezone,
+      },
+      languageSelect: data?.language && {
+        value: data.language,
+      },
+      logo: data?.logo || '',
+      header: data?.header || '',
     },
   })
 
   const { handleSubmit } = methods
 
   const onSubmit: SubmitHandler<FormData> = async (values: FormData) => {
-    const newInfo = {
+    const newInfo: CreateOrgParams = {
       name: values.name,
       website: values.website,
       description: values.description,
       size: values.sizeSelect?.value,
       type: values.typeSelect?.value,
       country: values.countrySelect?.value,
-      timeZone: values.timeZoneSelect.value,
+      timezone: values.timeZoneSelect.value,
       language: values.languageSelect.value,
       logo: values.logo,
       header: values.header,
     }
-    console.log(values, newInfo)
+    mutate({
+      ...data,
+      ...newInfo,
+    })
   }
 
   return (
@@ -77,29 +92,25 @@ const EditProfile = () => {
           <PublicOrgForm />
           <PrivateOrgForm />
           <CustomizeOrgForm />
-          <Flex justifyContent='center'>
+          <Flex align='center' direction={'column'}>
             <Button
+              type={'submit'}
+              leftIcon={<MdBrowserUpdated />}
+              isLoading={isPending}
               aria-label=''
               w='full'
               maxW='400px'
-              sx={{
-                span: {
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  gap: 2,
-                },
-              }}
             >
-              <Box>
-                <MdBrowserUpdated />
-              </Box>
-              <Text as='span'>
-                {t('udpate', {
-                  defaultValue: 'Update',
-                })}
-              </Text>
+              {t('update', {
+                defaultValue: 'Update',
+              })}
             </Button>
+            <FormSubmitMessage
+              isError={isError}
+              error={error}
+              isSuccess={isSuccess}
+              success={t('edit_saas_profile.edited_successfully', { defaultValue: 'Updated successfully' })}
+            />
           </Flex>
         </Flex>
       </Box>
@@ -133,8 +144,8 @@ const CustomizeOrgForm = () => {
         </Text>
       </Box>
       <Flex flexDirection='column' gap={6} px={{ base: 5, md: 10 }}>
-        <CustomizationTimeZoneSelector name={'timeZoneSelect'} required />
-        <CustomizationLanguageSelector name={'languageSelect'} required />
+        <CustomizationTimeZoneSelector name={'timeZoneSelect'} />
+        <CustomizationLanguageSelector name={'languageSelect'} />
         <FormControl>
           <FormLabel display='flex' ms={1} fontSize='sm' fontWeight='500' color={textColor} mb={2}>
             {t('logo', {

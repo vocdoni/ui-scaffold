@@ -1,8 +1,8 @@
-import { Box, Button, Flex, FormControl, FormErrorMessage, Heading, Link, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Heading, Link, Text } from '@chakra-ui/react'
 import { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { NavLink, Link as ReactRouterLink } from 'react-router-dom'
+import { Link as ReactRouterLink, NavLink } from 'react-router-dom'
 import { IRegisterParams } from '~components/Auth/authQueries'
 import { useAuth } from '~components/Auth/useAuth'
 import { VerifyAccountNeeded } from '~components/Auth/Verify'
@@ -11,6 +11,7 @@ import CustomCheckbox from '../Layout/CheckboxCustom'
 import InputCustom from '../Layout/InputCustom'
 import GoogleAuth from './GoogleAuth'
 import { HSeparator } from './SignIn'
+import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 
 type FormData = {
   terms: boolean
@@ -114,13 +115,7 @@ const SignUp = () => {
           </NavLink>
         </Text>
       </Flex>
-      {isError && (
-        <Box>
-          <FormControl isInvalid={isError}>
-            <FormErrorMessage>{error?.message || 'Error performing the operation'}</FormErrorMessage>
-          </FormControl>
-        </Box>
-      )}
+      {isError && <FormSubmitMessage isError={isError} error={error} />}
     </Flex>
   )
 }

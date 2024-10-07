@@ -6,6 +6,7 @@ import { useAuth } from '~components/Auth/useAuth'
 import { Loading } from '~src/router/SuspenseLoader'
 import { useCallback, useEffect, useState } from 'react'
 import { useResendVerificationMail } from '~components/Auth/authQueries'
+import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 
 const Verify = () => {
   const navigate = useNavigate()
@@ -93,18 +94,13 @@ const VerifyForm = ({ email }: IVerifyAccountProps) => {
       <Button isDisabled={!code} isLoading={isVerifyPending} onClick={verify}>
         <Trans i18nKey={'verify.verify_code'}>Verify</Trans>
       </Button>
-      <Box>
-        <FormControl isInvalid={isVerifyError}>
-          {isVerifyError && (
-            <FormErrorMessage>
-              {t('verify_mail.error_subtitle', {
-                defaultValue:
-                  'We found an error verifying your email, please check verification mail to ensure all data is correct',
-              })}
-            </FormErrorMessage>
-          )}
-        </FormControl>
-      </Box>
+      <FormSubmitMessage
+        isError={isVerifyError}
+        error={t('verify_mail.error_subtitle', {
+          defaultValue:
+            'We found an error verifying your email, please check verification mail to ensure all data is correct',
+        })}
+      />
     </>
   )
 }
@@ -151,14 +147,14 @@ export const VerifyAccountNeeded = ({ email }: IVerifyAccountProps) => {
       <Button isLoading={isResendPending} onClick={resendMail}>
         <Trans i18nKey={'verify.resend_confirmation_mail'}>Resend Email</Trans>
       </Button>
-      <Box>
-        {isResendSuccess && <Trans i18nKey={'verify.email_sent'}>Email sent successfully</Trans>}
-        <FormControl isInvalid={isResendError}>
-          {isResendError && (
-            <FormErrorMessage>{resendError?.message || 'Error al realizar la operación'}</FormErrorMessage>
-          )}
-        </FormControl>
-      </Box>
+      <FormSubmitMessage
+        isSuccess={isResendSuccess}
+        success={t('verify.email_sent', {
+          defaultValue: 'Email sent successfully',
+        })}
+        isError={isResendError}
+        error={resendError}
+      />
 
       {import.meta.env.VOCDONI_ENVIRONMENT === 'dev' && (
         <>

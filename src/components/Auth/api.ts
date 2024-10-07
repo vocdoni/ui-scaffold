@@ -4,10 +4,11 @@ export enum ApiEndpoints {
   LOGIN = 'auth/login',
   REFRESH = 'auth/refresh',
   REGISTER = 'users',
+  ORGANIZATIONS = 'organizations',
+  ORGANIZATION = 'organizations/{address}',
+  ORGANIZATION_MEMBERS = 'organizations/{address}/members',
   VERIFY = 'users/verify',
-  RESEND_VERIFICATION = 'users/verify/code',
-  ACCOUNT_CREATE = 'organizations',
-  TEAM_MEMBERS = 'organizations/{address}/members',
+  VERIFY_RESEND = 'users/verify/code',
 }
 
 interface IApiError {

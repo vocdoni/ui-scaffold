@@ -1,4 +1,7 @@
 export interface OrgInterface {
+  active: boolean
+  address: string
+  createdAt: string
   name: string
   website: string
   description: string
@@ -11,6 +14,7 @@ export interface OrgInterface {
   header: string
   subdomain: string
   color: string
+  communications: boolean
 }
 
-export type CreateOrgParams = Partial<OrgInterface>
+export type CreateOrgParams = Partial<Omit<OrgInterface, 'active' | 'address' | 'createdAt'>>
