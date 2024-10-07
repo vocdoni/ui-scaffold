@@ -18,6 +18,8 @@ const radiobox = definePartsStyle({
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
     p: 4,
     boxShadow: 'var(--box-shadow)',
     bgColor: 'process_create.advanced_checkbox_bg',
@@ -33,6 +35,9 @@ const radiobox = definePartsStyle({
     top: 1,
     rounded: 'full',
     ml: 'auto',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
 
     _checked: {
       border: 'none',

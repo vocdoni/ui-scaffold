@@ -7,8 +7,11 @@ const Wrapper = ({ ...props }) => (
     pb={5}
     display='flex'
     justifyContent='start'
-    gap={5}
+    gap={6}
     fontFamily='"Archivo", sans-serif'
+    maxW={980}
+    mx='auto'
+    flexGrow={1}
     {...props}
   />
 )

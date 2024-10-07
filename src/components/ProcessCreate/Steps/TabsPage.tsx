@@ -53,14 +53,16 @@ export const TabsPage = <Implemented extends string, UnImplemented extends strin
       <ModalPro isOpen={isOpen} onClose={onClose} reason={reason} />
       <Flex flexDirection='column' gap={5}>
         <Box>
-          <Text className='process-create-title'>{title}</Text>
-          <Text fontSize='sm' color='process_create.description'>
+          <Text className='process-create-title' fontWeight='bold'>
+            {title}
+          </Text>
+          <Text fontSize='sm' color={import.meta.env.SAAS_URL ? 'text.secondary' : 'process_create.description'}>
             {description}
           </Text>
         </Box>
         <Tabs defaultIndex={defined.findIndex((val) => val === selected)} onChange={onTabChange} variant='card' isLazy>
           <TabList mb={10}>
-            <Box>
+            <>
               {defined.map((ct: Implemented, index: number) => (
                 <TabCardSkeleton
                   key={index}
@@ -77,33 +79,28 @@ export const TabsPage = <Implemented extends string, UnImplemented extends strin
                   icon={CgMoreO}
                   title={t('process_create.census.others_title')}
                   description={t('process_create.census.others_description')}
-                  transform={showProCards ? 'scale(0.92)' : ''}
+                  // transform={showProCards ? 'scale(0.92)' : ''}
                 />
               )}
-            </Box>
+            </>
 
             {showProCards && (
               <>
-                <Text className='process-create-title' mt={5} mb={3}>
-                  {t('census.pro')}
-                </Text>
-                <Box>
-                  {definedUnim.map((ct: UnImplemented, index: number) => (
-                    <TabCardSkeleton
-                      key={index}
-                      onClick={(e) => {
-                        e.preventDefault()
-                        e.stopPropagation()
-                        setReason(detailsUnim[ct].title)
-                        onOpen()
-                      }}
-                      icon={detailsUnim[ct].icon}
-                      title={detailsUnim[ct].title}
-                      description={detailsUnim[ct].description}
-                      pro
-                    />
-                  ))}
-                </Box>
+                {definedUnim.map((ct: UnImplemented, index: number) => (
+                  <TabCardSkeleton
+                    key={index}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      e.stopPropagation()
+                      setReason(detailsUnim[ct].title)
+                      onOpen()
+                    }}
+                    icon={detailsUnim[ct].icon}
+                    title={detailsUnim[ct].title}
+                    description={detailsUnim[ct].description}
+                    pro
+                  />
+                ))}
               </>
             )}
           </TabList>
@@ -140,7 +137,7 @@ const TabCardSkeleton = ({
   pro = false,
   ...props
 }: ITabsCardSkeletonProps & TabProps) => (
-  <Tab onClick={onClick} {...props}>
+  <Tab onClick={onClick} mb={5} {...props}>
     {check && (
       <>
         <Check />

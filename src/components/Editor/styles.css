@@ -1,5 +1,5 @@
 .editor-container {
-  border-radius: 5px;
+  border-radius: 16px;
   position: relative;
   line-height: 20px;
   font-weight: 400;
@@ -162,8 +162,8 @@ pre::-webkit-scrollbar-thumb {
   margin-bottom: 1px;
   background: #fff;
   padding: 4px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
   vertical-align: middle;
 }
 

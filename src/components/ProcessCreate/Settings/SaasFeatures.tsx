@@ -1,11 +1,11 @@
-import { Box, Checkbox, CheckboxProps, Icon, Text } from '@chakra-ui/react'
-import { BiCheckDouble } from 'react-icons/bi'
+import { Box, Checkbox, CheckboxProps, Flex, Icon, Text } from '@chakra-ui/react'
+import { useMemo } from 'react'
+import { useFormContext } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { IconType } from 'react-icons'
+import { BiCheckDouble } from 'react-icons/bi'
 import { FeaturesKeys, useAccountPlan } from '~components/AccountSaas/useAccountPlan'
 import { Loading } from '~src/router/SuspenseLoader'
-import { useTranslation } from 'react-i18next'
-import { useFormContext } from 'react-hook-form'
-import { useMemo } from 'react'
 
 const useFeaturesTranslations = (): Record<FeaturesKeys, CheckBoxCardProps> => {
   const { t } = useTranslation()
@@ -65,13 +65,13 @@ export const SaasFeatures = () => {
   if (!data) return null
 
   return (
-    <Box>
+    <Flex flexDirection='column' gap={6}>
       {Object.entries(data.features).map(([feature, inPlan], i) => {
         const card = translations[feature as FeaturesKeys]
         if (!card) return null
         return <CheckBoxCard key={i} isPro={!inPlan} {...card} formKey={card.formKey ?? `saasFeatures.${feature}`} />
       })}
-    </Box>
+    </Flex>
   )
 }
 
@@ -88,11 +88,12 @@ const CheckBoxCard = ({ title, description, boxIcon, isPro, formKey, ...rest }: 
 
   return (
     <Checkbox variant='radiobox' {...register(formKey)} {...rest}>
+      {isPro && <Text as='span'>Pro</Text>}
       <Box>
         <Icon as={boxIcon} />
         <Text>{title}</Text>
       </Box>
-      {isPro && <Text as='span'>Pro</Text>}
+
       <Text>{description}</Text>
     </Checkbox>
   )

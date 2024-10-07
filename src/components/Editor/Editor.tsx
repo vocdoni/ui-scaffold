@@ -26,6 +26,7 @@ import ReadOnlyPlugin from './plugins/ReadOnlyPlugin'
 import ToolbarPlugin from './plugins/ToolbarPlugin'
 import exampleTheme from './theme'
 
+import { Box } from '@chakra-ui/react'
 import './styles.css'
 
 function Placeholder(props: any) {
@@ -78,7 +79,7 @@ const Editor = (props: EditorProps) => {
 
   return (
     <LexicalComposer initialConfig={settings}>
-      <div className='editor-container'>
+      <Box className='editor-container'>
         <ToolbarPlugin setIsLinkEditMode={setIsLinkEditMode} />
         <div className='editor-inner'>
           <RichTextPlugin
@@ -116,7 +117,7 @@ const Editor = (props: EditorProps) => {
           <ListMaxIndentLevelPlugin maxDepth={3} />
           <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
         </div>
-      </div>
+      </Box>
     </LexicalComposer>
   )
 }

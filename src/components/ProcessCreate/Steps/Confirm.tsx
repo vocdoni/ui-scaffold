@@ -46,6 +46,7 @@ import { CensusMeta } from '~components/Process/Census/CensusType'
 import { StampsUnionTypes } from '~components/ProcessCreate/Census/Gitcoin/StampsUnionType'
 import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
 import { DefaultCensusSize } from '~constants'
+import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import { useCspAdmin } from '../Census/Csp/use-csp'
 import Preview from '../Confirm/Preview'
 import { CostPreview } from '../CostPreview'
@@ -56,6 +57,8 @@ import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 import Wrapper from './Wrapper'
 
 export const Confirm = () => {
+  const isSaas = import.meta.env.SAAS_URL
+  const { textColorSecondary, bgSecondary } = useDarkMode()
   const { env, client, account, fetchAccount, census3: c3client } = useClient()
   const { form, prev, setForm, setIsLoadingPreview, isLoadingPreview, isLoadingCost, notEnoughBalance } =
     useProcessCreationSteps()
@@ -248,15 +251,15 @@ export const Confirm = () => {
   return (
     <Wrapper>
       <Box>
-        <Text className='process-create-title'>{t('form.process_create.confirm.title')}</Text>
-        <Text mb={4} color='process_create.description'>
+        {!isSaas && <Text className='process-create-title'>{t('form.process_create.confirm.title')}</Text>}
+        <Text mb={4} color={textColorSecondary}>
           {t('form.process_create.confirm.description')}
         </Text>
         <ElectionProvider election={published}>
           <FormProvider {...methods}>
             <Flex flexDirection={{ base: 'column', xl2: 'row' }} gap={5}>
               <Preview />
-              <Box flex={{ xl2: '0 0 25%' }}>
+              <Box flex={{ xl2: '0 0 25%' }} bgColor={bgSecondary} p={6} borderRadius={isSaas ? 'xl' : 'md'}>
                 <CostPreview unpublished={unpublished} />
 
                 <Box>
@@ -335,34 +338,35 @@ export const Confirm = () => {
           </FormProvider>
         </ElectionProvider>
       </Box>
-      <Flex justifyContent='space-between' alignItems='end' mt='auto'>
-        <Button variant='secondary' onClick={prev} leftIcon={<ArrowBackIcon />}>
-          {t('form.process_create.previous_step')}
+      <Flex justifyContent='space-between' mt='auto' my={6}>
+        <Button colorScheme={isSaas && 'whiteAlpha'} variant={isSaas ? 'rounded' : 'secondary'} onClick={prev}>
+          <ArrowBackIcon />
+          <Text as='span'>{t('form.process_create.previous_step')}</Text>
         </Button>
 
         <Button
+          variant={isSaas ? 'rounded' : 'secondary'}
           type='submit'
           form='process-create-form'
           isDisabled={disabled}
           isLoading={sending}
-          px={{ base: 12, xl2: 28 }}
         >
           {t('form.process_create.confirm.create_button')}
         </Button>
-        <Modal isOpen={isOpen} onClose={onClose} closeOnEsc={!!error} closeOnOverlayClick={!!error} isCentered>
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>
-              <Text>{t('form.process_create.creating_process')}</Text>
-              <Box className='creating-process-img' />
-            </ModalHeader>
-            {error && <ModalCloseButton />}
-            <ModalBody>
-              <CreationProgress error={error} sending={sending} step={step} />
-            </ModalBody>
-          </ModalContent>
-        </Modal>
       </Flex>
+      <Modal isOpen={isOpen} onClose={onClose} closeOnEsc={!!error} closeOnOverlayClick={!!error} isCentered>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>
+            <Text>{t('form.process_create.creating_process')}</Text>
+            <Box className='creating-process-img' />
+          </ModalHeader>
+          {error && <ModalCloseButton />}
+          <ModalBody>
+            <CreationProgress error={error} sending={sending} step={step} />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </Wrapper>
   )
 }

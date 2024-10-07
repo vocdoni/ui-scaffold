@@ -27,13 +27,13 @@ const Steps = () => {
 
   return (
     <CspAdminProvider signer={signer}>
-      <Flex flexDirection={{ base: 'column', lg: 'row' }} gap={{ lg: 6 }}>
+      <Flex flexDirection={{ base: 'column', lg: 'row' }} gap={{ lg: 6 }} flexGrow={1}>
         <Stepper
           index={activeStep}
           orientation={useBreakpointValue({ base: 'horizontal', lg: 'vertical' })}
           my={{ base: 5, lg: 10 }}
           mb={{ base: 5 }}
-          h={{ lg: 124 }}
+          h={{ lg: '600px' }}
           mx='auto'
           ml={{ lg: 2.5 }}
           gap={{ base: 3, sm: 5 }}
@@ -51,13 +51,7 @@ const Steps = () => {
                 <StepIndicator>
                   <StepStatus complete={<StepIcon />} incomplete={<StepNumber />} active={<StepNumber />} />
                 </StepIndicator>
-                <Text
-                  as='span'
-                  fontSize='xs'
-                  mt={{ lg: 2 }}
-                  color='process_create.stepper.color'
-                  display={{ base: 'none', sm: 'block' }}
-                >
+                <Text as='span' fontSize='xs' mt={{ lg: 2 }} display={{ base: 'none', sm: 'block' }}>
                   {step.title}
                 </Text>
               </Flex>
@@ -68,7 +62,7 @@ const Steps = () => {
             </Step>
           ))}
         </Stepper>
-        <Box w='full'>
+        <Flex flexDirection='column' w='full'>
           <StepsForm
             steps={steps}
             activeStep={activeStep}
@@ -76,7 +70,7 @@ const Steps = () => {
             prev={() => setActiveStep(activeStep - 1)}
             setActiveStep={setActiveStep}
           />
-        </Box>
+        </Flex>
       </Flex>
     </CspAdminProvider>
   )

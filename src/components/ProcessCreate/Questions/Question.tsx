@@ -37,8 +37,7 @@ const Question = ({ index, remove }: Props) => {
         variant='transparent'
         position='absolute'
         right={2}
-        top={2}
-        size='xs'
+        top={8}
         type='button'
         icon={<DeleteIcon />}
         aria-label={t('form.process_create.question.question_delete', { values: { num: index } })}
@@ -68,7 +67,7 @@ const Question = ({ index, remove }: Props) => {
 
       <Options fields={fields} removeOption={removeOption} appendOption={appendOption} index={index} />
 
-      <Text position='absolute' fontSize='100px' bottom={0} right={5} color='rgb(245, 247, 250)'>
+      <Text position='absolute' fontSize='100px' bottom={0} right={5} color='text.brand'>
         {index + 1}
       </Text>
     </Box>
@@ -99,6 +98,8 @@ const QuestionPage = ({ title, description, isMultiQuestion = false }: IQuestion
 
   const questions = watch('questions')
 
+  const isSaas = import.meta.env.SAAS_URL
+
   // If all questions deleted add a new empty question to the form
   useEffect(() => {
     if (questions.length === 0) {
@@ -113,8 +114,10 @@ const QuestionPage = ({ title, description, isMultiQuestion = false }: IQuestion
   return (
     <Flex flexDirection='column' gap={5}>
       <Box>
-        <Text className='process-create-title'>{title}</Text>
-        <Text fontSize='sm' color='process_create.description'>
+        <Text className='process-create-title' fontWeight='bold'>
+          {title}
+        </Text>
+        <Text fontSize='sm' color={import.meta.env.SAAS_URL ? 'text.secondary' : 'process_create.description'}>
           {description}
         </Text>
       </Box>
@@ -135,7 +138,8 @@ const QuestionPage = ({ title, description, isMultiQuestion = false }: IQuestion
             })
           }}
           alignSelf='center'
-          variant='secondary'
+          variant={isSaas ? 'outline' : 'secondary'}
+          colorScheme={isSaas && 'whiteAlpha'}
         >
           {t('form.process_create.question.add_question')}
         </Button>

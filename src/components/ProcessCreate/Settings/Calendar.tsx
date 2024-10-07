@@ -1,10 +1,12 @@
 import { InfoIcon } from '@chakra-ui/icons'
 import {
   Box,
+  Card,
+  CardBody,
+  CardHeader,
   Flex,
   FormControl,
   FormErrorMessage,
-  FormLabel,
   Input,
   Radio,
   RadioGroup,
@@ -21,6 +23,7 @@ const DateFormatHtml = 'yyyy-MM-dd HH:mm'
 
 const Calendar = () => {
   const { t } = useTranslation()
+
   const {
     register,
     getValues,
@@ -29,7 +32,6 @@ const Calendar = () => {
     watch,
   } = useFormContext()
   const { format } = useDateFns()
-
   const required = {
     value: true,
     message: t('form.error.field_is_required'),
@@ -60,71 +62,34 @@ const Calendar = () => {
   const showPicker = (ref: MutableRefObject<HTMLInputElement | null | undefined>) => {
     if (ref.current && 'showPicker' in ref.current) ref.current.showPicker()
   }
-
   return (
-    <Box>
-      <Box mb={4}>
-        <Text className='process-create-title'>{t('form.process_create.calendar.title')}</Text>
-        <Text fontWeight='normal' fontSize='sm' color='process_create.description'>
-          {t('form.process_create.calendar.title_description')}
+    <Flex flexDirection='column' gap={6}>
+      <Box>
+        <Text fontSize='sm' fontWeight='bold'>
+          {t('calendar.title', { defaultValue: 'Calendar' })}
+        </Text>
+        <Text fontSize='sm' color={'text_secondary'}>
+          {t('calendar.subtitle', { defaultValue: 'Specify the active period for receiving votes' })}
         </Text>
       </Box>
-      <Flex
-        className='process-create-section'
-        bgColor='process_create.section'
-        flexDirection={{ base: 'column', xl2: 'row' }}
-        justifyContent='space-between'
-        gap={{ xl2: 20 }}
-        p={4}
-      >
-        <Box w='full'>
-          <FormControl variant='process-create-label'>
-            <FormLabel>{t('form.process_create.calendar.start_date')}</FormLabel>
-          </FormControl>
-          <Text fontSize='sm' mb={2} color='process_create.description'>
-            {t('form.process_create.calendar.start_date_description')}
+      <Flex flexDirection='column' pl={6}>
+        <Box>
+          <Text fontSize='sm' fontWeight='bold'>
+            {t('calendar.start_date', { defaultValue: 'Start date' })}
+          </Text>
+          <Text fontSize='sm' color={'text_secondary'} mb={2}>
+            {t('calendar.define_active_period', { defaultValue: 'Define the active period for receiving votes' })}
           </Text>
           <RadioGroup {...useBooleanRadioRegister('electionType.autoStart')} mb={6} w='full'>
-            <Stack
-              direction={{ base: 'column', md: 'row' }}
-              gap={5}
-              alignItems='start'
-              justifyContent='start'
-              maxW='min-content'
-              minW='full'
-            >
-              <FormControl
-                variant='process-create-radio'
-                flex='1 1 50%'
-                maxW={70}
-                p={0}
-                border='1px solid'
-                borderColor={autoStart ? 'process_create.calendar_start_date_selected' : 'lightgray'}
-                sx={{
-                  '& > label': {
-                    display: 'flex',
-                    p: 2,
-                  },
-                }}
-              >
+            <Stack direction={{ base: 'column', lg: 'row' }} gap={5} alignItems='start' justifyContent='start'>
+              <FormControl variant='calendar'>
                 <Radio value='1' w='full' onClick={() => clearErrors('startDate')}>
                   <Text fontSize='sm'>{t('form.process_create.calendar.now')}</Text>
                 </Radio>
               </FormControl>
 
-              <Box flex='1 1 50%' maxW={70}>
-                <FormControl
-                  variant='process-create-radio'
-                  border='1px solid'
-                  borderColor={!autoStart ? 'process_create.calendar_start_date_selected' : 'lightgray'}
-                  mb={2}
-                  sx={{
-                    '& > label': {
-                      display: 'flex',
-                      p: 2,
-                    },
-                  }}
-                >
+              <Box>
+                <FormControl variant='calendar' mb={3}>
                   <Radio value='0'>
                     <Text
                       fontSize='sm'
@@ -142,6 +107,7 @@ const Calendar = () => {
                 {!autoStart && (
                   <FormControl isInvalid={!!errors.startDate}>
                     <Input
+                      variant='calendar'
                       disabled={getValues().electionType.autoStart}
                       type='datetime-local'
                       {...startDate}
@@ -158,30 +124,37 @@ const Calendar = () => {
               </Box>
             </Stack>
           </RadioGroup>
-
-          <FormControl variant='process-create-label' isInvalid={!!errors.endDate} maxW={70}>
-            <FormLabel>{t('form.process_create.calendar.end_date')}</FormLabel>
-            <Text whiteSpace='nowrap' fontSize='sm' mb={2} color='process_create.description'>
-              {t('form.process_create.calendar.end_date_title_helper')}
-            </Text>
-            <Input
-              type='datetime-local'
-              {...endDate}
-              ref={(e) => {
-                endDate.ref(e)
-                endDateRef.current = e
-              }}
-              min={format(min, DateFormatHtml)}
-              onFocus={() => showPicker(endDateRef)}
-            />
-            <FormErrorMessage>{errors.endDate?.message?.toString()}</FormErrorMessage>
-          </FormControl>
         </Box>
 
-        {end && (
-          <Box position='relative' maxW={{ xl2: 76 }} border='1px solid lightgray' mt={{ base: 5, xl2: 0 }}>
-            <InfoIcon color='process_create.alert_info.color' position='absolute' top={4} left={4} />
-            <Text color='process_create.description' p={5} pt={{ base: 10, xl2: 10 }}>
+        <FormControl variant='process-create-label' isInvalid={!!errors.endDate}>
+          <Text fontSize='sm' fontWeight='bold'>
+            {t('calendar.end_date', { defaultValue: 'End date' })}
+          </Text>
+          <Text fontSize='sm' color={'text_secondary'} mb={2}>
+            {t('calendar.end_date_description', { defaultValue: 'Define the exact date and time of completion' })}
+          </Text>
+          <Input
+            variant='calendar'
+            type='datetime-local'
+            {...endDate}
+            ref={(e) => {
+              endDate.ref(e)
+              endDateRef.current = e
+            }}
+            min={format(min, DateFormatHtml)}
+            onFocus={() => showPicker(endDateRef)}
+          />
+          <FormErrorMessage>{errors.endDate?.message?.toString()}</FormErrorMessage>
+        </FormControl>
+      </Flex>
+
+      {end && (
+        <Card variant='calendar'>
+          <CardHeader>
+            <InfoIcon />
+          </CardHeader>
+          <CardBody>
+            <Text>
               {t('form.process_create.calendar.end_date_description', {
                 date: {
                   begin: begin && !autoStart ? new Date(begin) : new Date(),
@@ -190,10 +163,10 @@ const Calendar = () => {
                 format: datef,
               })}
             </Text>
-          </Box>
-        )}
-      </Flex>
-    </Box>
+          </CardBody>
+        </Card>
+      )}
+    </Flex>
   )
 }
 
