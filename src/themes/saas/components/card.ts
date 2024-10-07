@@ -1,10 +1,46 @@
 import { cardAnatomy } from '@chakra-ui/anatomy'
 import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
+import { mode } from '@chakra-ui/theme-tools'
 
 const { defineMultiStyleConfig } = createMultiStyleConfigHelpers(cardAnatomy.keys)
 
 export const Card = defineMultiStyleConfig({
   variants: {
+    calendar: {
+      container: {
+        border: '1px solid #4E525C',
+        flexDirection: 'row',
+        p: 5,
+        gap: 5,
+        bgColor: 'transparent',
+      },
+      header: {
+        p: 0,
+      },
+      body: { p: 0 },
+    },
+    'download-spreadsheet': (props) => ({
+      container: {
+        p: 6,
+        maxW: 64,
+        bgColor: mode('bg.secondary.light', 'bg.secondary.dark')(props),
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 6,
+        borderRadius: 'xl',
+        mx: 'auto',
+      },
+      body: {
+        p: 0,
+        flexGrow: 0,
+      },
+      footer: {
+        p: 0,
+      },
+    }),
+
     'pricing-card': {
       container: {
         position: 'relative',

@@ -1,6 +1,9 @@
 import {
   Box,
   Button,
+  Card,
+  CardBody,
+  CardFooter,
   Checkbox,
   Flex,
   FormControl,
@@ -24,6 +27,7 @@ import { CsvPreview } from './Preview'
 
 export const CensusCsvManager = () => {
   const { t } = useTranslation()
+  const isSaas = import.meta.env.SAAS_URL
   const {
     register,
     setValue,
@@ -94,7 +98,7 @@ export const CensusCsvManager = () => {
         justifyContent='center'
       >
         <Box flex='1 1 60%'>
-          <Flex alignItems='center' gap={1} mb={5} color='process_create.spreadsheet.requirements_text'>
+          <Flex alignItems='center' gap={1} mb={5} color='text.brand'>
             <Icon as={PiWarningCircleLight} />
             <Text>{t('form.process_create.spreadsheet.requirements.title')}</Text>
           </Flex>
@@ -106,25 +110,7 @@ export const CensusCsvManager = () => {
               <Text>{t('form.process_create.spreadsheet.requirements.list_two')}</Text>
             </ListItem>
           </UnorderedList>
-          <FormControl
-            bgColor='process_create.bg'
-            borderRadius='md'
-            sx={{
-              '& > label': {
-                position: 'relative',
-
-                '& span:first-of-type': {
-                  position: 'absolute',
-                  top: 1,
-                  right: 1,
-                },
-
-                '& > input:checked + span': {
-                  bgColor: 'process_create.census.weighted_vote_checked',
-                },
-              },
-            }}
-          >
+          <FormControl variant='custom_data_weighted_vote' fontWeight=''>
             <Controller
               control={control}
               name='weightedVote'
@@ -160,23 +146,22 @@ export const CensusCsvManager = () => {
             />
           </FormControl>
         </Box>
-        <Flex
-          flex='1 1 40%'
-          flexDirection='column'
-          justifyContent='center'
-          alignItems='center'
-          gap={3}
-          p={6}
-          borderRadius='lg'
-          mx='auto'
-        >
-          <Text textAlign='center'>{t('form.process_create.spreadsheet.download_template_description')}</Text>
-          <Link download={'census-template.csv'} href={template.url}>
-            <Button leftIcon={<BiDownload />} colorScheme='primary' variant='ghost' border='1px solid'>
-              {t('form.process_create.spreadsheet.download_template_btn')}
-            </Button>
-          </Link>
-        </Flex>
+        <Card variant='download-spreadsheet'>
+          <CardBody>
+            <Text textAlign='center'>{t('form.process_create.spreadsheet.download_template_description')}</Text>
+          </CardBody>
+          <CardFooter>
+            <Link download={'census-template.csv'} href={template.url}>
+              <Button
+                variant={isSaas ? 'outline' : 'secondary'}
+                colorScheme={isSaas && 'whiteAlpha'}
+                leftIcon={<BiDownload />}
+              >
+                {t('form.process_create.spreadsheet.download_template_btn')}
+              </Button>
+            </Link>
+          </CardFooter>
+        </Card>
       </Flex>
 
       <FormControl
@@ -194,7 +179,7 @@ export const CensusCsvManager = () => {
           border='1px dotted'
           borderColor='process_create.census.drag_and_drop_border'
           bgColor='process_create.bg'
-          borderRadius='lg'
+          borderRadius='xl'
           cursor='pointer'
         >
           <input {...getInputProps()} />

@@ -18,6 +18,20 @@ const cardCommonStyles = {
   },
 }
 
+const calendar = definePartsStyle({
+  ...cardCommonStyles,
+  container: {
+    border: '1px solid #4E525C',
+    flexDirection: 'row',
+    p: 5,
+    gap: 5,
+  },
+  header: {
+    p: 0,
+  },
+  body: { p: 0 },
+})
+
 const detailed = definePartsStyle({
   ...cardCommonStyles,
 
@@ -490,13 +504,36 @@ const calculator = definePartsStyle({
     mb: '100px',
   },
 })
+const downloadSpreadSheet = definePartsStyle({
+  container: {
+    p: 6,
+    maxW: 64,
+    bgColor: 'white',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 6,
+    borderRadius: 'xl',
+    mx: 'auto',
+  },
+  body: {
+    p: 0,
+    flexGrow: 0,
+  },
+  footer: {
+    p: 0,
+  },
+})
 
 const variantsCards = {
   aside,
   benefits,
   calculator,
+  calendar,
   client,
   detailed,
+  'download-spreadsheet': downloadSpreadSheet,
   demo,
   faqs,
   'icon-card': iconCard,

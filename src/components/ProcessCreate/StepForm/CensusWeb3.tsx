@@ -48,7 +48,7 @@ export const StepFormCensusWeb3 = () => {
   return (
     <>
       <Box px={7} py={4}>
-        <Text mb={8} className='brand-theme' textTransform='uppercase' color='process_create.census.title'>
+        <Text mb={8} className='brand-theme' textTransform='uppercase' color='text.brand'>
           {t('census.wallet_address_title')}
         </Text>
 

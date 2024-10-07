@@ -30,6 +30,7 @@ export interface InputCustomProps extends InputProps {
   label: string
   validation?: any
   messageError?: string
+  bold?: boolean
 }
 
 const InputCustom = ({
@@ -39,6 +40,7 @@ const InputCustom = ({
   type = 'text',
   required = false,
   validation = {},
+  bold = false,
 }: InputCustomProps) => {
   const { t } = useTranslation()
   const { textColor, textColorBrand, textColorSecondary } = useDarkMode()
@@ -66,7 +68,7 @@ const InputCustom = ({
   return (
     <FormControl isInvalid={!!errors[formValue]}>
       {label && (
-        <FormLabel display='flex' ms={1} fontSize='sm' fontWeight='500' color={textColor} mb={2}>
+        <FormLabel fontWeight={bold ? 'bold' : 'normal'}>
           {label}
           {required && (
             <Text color={textColorBrand} ml={1}>

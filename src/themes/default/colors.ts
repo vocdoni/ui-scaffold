@@ -236,4 +236,5 @@ export const colors = {
     },
   },
   read_more: colorsBase.primary,
+  text_brand: colorsBase.primary,
 }
