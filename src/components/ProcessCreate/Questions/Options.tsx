@@ -18,6 +18,8 @@ const Options = ({ fields, removeOption, appendOption, index }: Props) => {
     formState: { errors },
   } = useFormContext()
 
+  const isSaas = import.meta.env.SAAS_URL
+
   return (
     <Box>
       {fields.map((_, idx: number) => (
@@ -57,7 +59,12 @@ const Options = ({ fields, removeOption, appendOption, index }: Props) => {
           </Flex>
         </FormControl>
       ))}
-      <Button variant='secondary' ml={5} onClick={() => appendOption({ option: '' })} fontSize='sm'>
+      <Button
+        variant={isSaas ? 'outline' : 'secondary'}
+        ml={5}
+        onClick={() => appendOption({ option: '' })}
+        colorScheme={isSaas && 'whiteAlpha'}
+      >
         {t('form.process_create.question.add_new_option')}
       </Button>
     </Box>

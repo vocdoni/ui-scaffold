@@ -8,6 +8,9 @@ export const Modal = defineMultiStyleConfig({
     overlay: {
       bgColor: 'rgba(0 ,0 ,0, 0.8)',
     },
+    dialog: {
+      p: { base: 5, lg: 10 },
+    },
   },
   variants: {
     'dashboard-plans': {

@@ -7,6 +7,17 @@ export const colors = {
       dark: '#303B4D',
     },
   },
+  text: {
+    light: 'navy.700',
+    dark: 'white',
+    secondary: '#A0AEC0',
+    brand: '#546E39',
+  },
+  badge: {
+    pro_color: 'white',
+  },
+  customBlue: '#3965FF',
+  text_secondary: '#A0AEC0',
   brand: {
     50: '#e5ecd8',
     100: '#cbd9b2',
@@ -84,5 +95,16 @@ export const colors = {
   },
   gray: {
     100: '#FAFCFE',
+  },
+  whiteAlpha: {
+    50: 'rgba(255, 255, 255, 0.04)',
+    100: 'rgba(255, 255, 255, 0.06)',
+    200: 'rgba(255, 255, 255, 0.08)',
+    300: 'rgba(255, 255, 255, 0.16)',
+    400: '#FFFFFF',
+    500: 'rgba(255, 255, 255, 0.48)',
+    600: 'rgba(255, 255, 255, 0.64)',
+    700: 'rgba(255, 255, 255, 0.80)',
+    800: 'rgba(255, 255, 255, 0.92)',
   },
 }

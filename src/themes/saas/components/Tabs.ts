@@ -1,12 +1,16 @@
+import { mode } from '@chakra-ui/theme-tools'
 import { tabsAnatomy } from '@chakra-ui/anatomy'
 import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(tabsAnatomy.keys)
 
-const card = definePartsStyle({
+const card = definePartsStyle((props) => ({
   tablist: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+
     '& > div': {
       display: 'grid',
       gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
@@ -23,26 +27,27 @@ const card = definePartsStyle({
     flex: { md: '0 0 30%' },
     p: 4,
     px: 6,
-    boxShadow: 'var(--box-shadow)',
-    bgColor: 'process_create.advanced_checkbox_bg',
+    boxShadow: 'var(--box-shadow-darker)',
+    bgColor: mode('bg.secondary.light', 'bg.secondary.dark')(props),
     borderBottom: 'none',
-    color: 'process_create.description',
-    borderRadius: 'md',
+    color: mode('navy.700', 'white')(props),
+    borderRadius: 'xl',
+    w: 'full',
 
     '& > #description': {
-      color: 'process_create.description',
+      color: 'text.secondary',
       textAlign: 'start',
       fontSize: 'xs',
     },
 
     '& #pro-badge': {
-      bgColor: 'process_create.pro_bg',
+      bgColor: 'text.brand',
       borderRadius: '10px',
       position: 'absolute',
       top: '3px',
       right: '3px',
       px: 4,
-      color: 'process_create.pro_color',
+      color: 'badge.pro_color',
       pt: '2px',
       fontSize: '12px',
     },
@@ -53,7 +58,7 @@ const card = definePartsStyle({
       w: 'full',
       gap: 3,
       fontSize: 'sm',
-      color: 'black',
+      color: mode('text.light', 'text.dark')(props),
 
       '& p': {
         fontWeight: 'bold',
@@ -69,13 +74,14 @@ const card = definePartsStyle({
       w: 4,
       h: 4,
       borderRadius: 'full',
-      border: '1px solid lightgray',
+      border: `1px solid`,
+      borderColor: 'text.secondary',
     },
 
     '& > svg': {
       w: 5,
       h: 5,
-      color: 'checkbox.selected',
+      color: 'text.brand',
       position: 'absolute',
       top: 2,
       right: 2,
@@ -93,87 +99,13 @@ const card = definePartsStyle({
       },
     },
     _hover: {
-      boxShadow: 'var(--box-shadow-darker)',
+      boxShadow: 'var(--box-shadow)',
     },
   },
-})
-const process = definePartsStyle({
-  root: {},
-  tabpanel: {
-    px: { base: 0, sm: 4 },
-  },
-  tab: {
-    position: 'relative',
-    whiteSpace: 'nowrap',
-    color: 'process.tabs.color',
-    fontWeight: 'normal',
-    borderTopRadius: 'md',
-    fontSize: 'lg',
+}))
 
-    _hover: {
-      bgColor: 'process.tabs.hover',
-    },
-    _active: {
-      bgColor: 'process.tabs.active_bg',
-    },
-    _selected: {
-      fontWeight: 'bold',
-      borderBottom: '1px solid',
-    },
-  },
-  tablist: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderBottom: '1px solid',
-    borderColor: 'process.tabs.border_bottom_list',
-  },
-})
-const calculator = definePartsStyle({
-  root: {},
-  tabpanel: {
-    px: { base: 0, sm: 4 },
-  },
-  tab: {
-    position: 'relative',
-    whiteSpace: 'nowrap',
-    color: 'organization.tabs.color',
-    fontWeight: 'normal',
-    borderTopRadius: 'md',
-    fontSize: 'lg',
-    border: '1px solid',
-    borderRadius: 'full',
-    gap: 1,
-    paddingY: 1,
-
-    _hover: {
-      bgColor: 'process.tabs.hover',
-    },
-    _active: {
-      color: 'organization.tabs.color_active',
-      bgColor: 'organization.tabs.bg_active',
-    },
-    _selected: {
-      color: 'organization.tabs.color_active',
-      bgColor: 'organization.tabs.bg_active',
-    },
-  },
-  tablist: {
-    flexWrap: 'wrap',
-    gap: 5,
-    py: 5,
-    px: 2,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderBottom: '1px solid',
-    borderColor: 'process.tabs.border_bottom_list',
-  },
-})
 const variants = {
   card,
-  calculator,
-  process,
 }
 
 export const Tabs = defineMultiStyleConfig({ variants })

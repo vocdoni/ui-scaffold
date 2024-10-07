@@ -106,7 +106,7 @@ export const StepsForm = ({ steps, activeStep, next, prev, setActiveStep }: Step
 
   return (
     <StepsContext.Provider value={value}>
-      <Stepper index={activeStep} flex='1' minW={1}>
+      <Stepper index={activeStep} display='flex' flexDirection='column' flexGrow={1}>
         {steps.map((step, index) => {
           const { Contents } = step
           return (

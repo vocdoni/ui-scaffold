@@ -28,7 +28,7 @@ export const StepFormCensusSpreadsheet = () => {
   return (
     <>
       <Box px={7} py={4}>
-        <Text className='brand-theme' textTransform='uppercase' color='process_create.census.title' mb={5}>
+        <Text className='brand-theme' textTransform='uppercase' color={'text.brand'} mb={5}>
           {t('census.spreadsheet_title')}
         </Text>
         <FormProvider {...methods}>
