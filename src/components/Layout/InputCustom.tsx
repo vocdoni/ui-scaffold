@@ -77,7 +77,7 @@ const InputCustom = ({
           )}
         </FormLabel>
       )}
-      <InputGroup size='md'>
+      <InputGroup>
         <Input {...register(formValue, validationRules)} type={inputType} placeholder={placeholder} />
         {type === 'password' && (
           <InputRightElement display='flex' alignItems='center' minH='100%'>

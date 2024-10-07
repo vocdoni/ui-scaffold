@@ -1,5 +1,3 @@
-import { mode } from '@chakra-ui/theme-tools'
-
 export const colors = {
   bg: {
     light: '#F5F7FA',
@@ -18,8 +16,7 @@ export const colors = {
   badge: {
     pro_color: 'white',
   },
-  bg_process_create_mode: (props) => mode('red', '#1A202C')(props),
-  bg_secondary_color_mode: (props) => mode('red', 'blue')(props),
+  customBlue: '#3965FF',
   text_secondary: '#A0AEC0',
   brand: {
     50: '#e5ecd8',
