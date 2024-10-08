@@ -251,7 +251,7 @@ export const Confirm = () => {
   return (
     <Wrapper>
       <Box>
-        {!isSaas && <Text className='process-create-title'>{t('form.process_create.confirm.title')}</Text>}
+        {!isSaas && <Text fontWeight='bold'>{t('form.process_create.confirm.title')}</Text>}
         <Text mb={4} color={textColorSecondary}>
           {t('form.process_create.confirm.description')}
         </Text>
@@ -263,7 +263,7 @@ export const Confirm = () => {
                 <CostPreview unpublished={unpublished} />
 
                 <Box>
-                  <Text className='brand-theme' fontWeight='bold' textTransform='uppercase' px={2} mb={2}>
+                  <Text fontWeight='bold' textTransform='uppercase' px={2} mb={2}>
                     {t('form.process_create.confirm.confirmation')}
                   </Text>
                   <Flex

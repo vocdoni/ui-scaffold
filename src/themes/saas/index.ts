@@ -18,6 +18,7 @@ import { Pagination } from './components/pagination'
 import { spacing } from './space'
 import { Tabs } from './components/tabs'
 import { Stepper } from './components/stepper'
+import { Text } from './components/text'
 
 export const theme = extendTheme(vtheme, {
   styles: {
@@ -45,6 +46,7 @@ export const theme = extendTheme(vtheme, {
     Pagination,
     Stepper,
     Tabs,
+    Text,
     Textarea,
   },
   spacing,

@@ -31,17 +31,15 @@ const CreateProcessMeta = () => {
     <>
       <Flex flexDirection='column' gap={6}>
         {isSaas ? (
-          <Text textColor={textColorSecondary}>
+          <Text variant='process-create-subtitle'>
             {t('meta.helper', {
               defaultValue: 'Provide a clear title and description to help voters understand the vote',
             })}
           </Text>
         ) : (
           <Box>
-            <Text className='process-create-title'>{t('form.process_create.meta.title')}</Text>
-            <Text fontSize='sm' color='process_create.description'>
-              {t('form.process_create.meta.description')}
-            </Text>
+            <Text variant='process-create-title'>{t('form.process_create.meta.title')}</Text>
+            <Text variant='process-create-subtitle'>{t('form.process_create.meta.description')}</Text>
           </Box>
         )}
 
@@ -57,11 +55,10 @@ const CreateProcessMeta = () => {
               message: t('form.error.password_min_length', { defaultValue: 'Min. 8 characters' }),
             },
           }}
-          bold
           required
         />
         <Flex flexDirection='column'>
-          <Text fontWeight='bold' fontSize='sm' mb={2}>
+          <Text variant='process-create-title-sm' mb={2}>
             {t('form.process_create.meta.description_label')}
           </Text>
           <Editor

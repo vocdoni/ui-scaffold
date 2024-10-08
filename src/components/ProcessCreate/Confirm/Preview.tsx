@@ -41,7 +41,7 @@ const Preview = () => {
     >
       <Flex flexDirection='column' gap={6}>
         <Flex>
-          <Text className='brand-theme' textTransform='uppercase'>
+          <Text fontWeight='bold' textTransform='uppercase'>
             {t('form.process_create.confirm.election_info')}
           </Text>
           <Link ml='auto' onClick={() => setActiveStep(1)}>

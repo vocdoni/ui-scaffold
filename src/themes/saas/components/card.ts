@@ -35,6 +35,7 @@ export const Card = defineMultiStyleConfig({
       body: {
         p: 0,
         flexGrow: 0,
+        textAlign: 'center',
       },
       footer: {
         p: 0,

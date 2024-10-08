@@ -10,7 +10,6 @@ const card = definePartsStyle((props) => ({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-
     '& > div': {
       display: 'grid',
       gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
@@ -101,6 +100,9 @@ const card = definePartsStyle((props) => ({
     _hover: {
       boxShadow: 'var(--box-shadow)',
     },
+  },
+  tabpanel: {
+    p: 0,
   },
 }))
 

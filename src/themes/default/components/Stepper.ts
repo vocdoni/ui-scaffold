@@ -1,4 +1,9 @@
-const baseStyle = {
+import { stepperAnatomy } from '@chakra-ui/anatomy'
+import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
+
+const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(stepperAnatomy.keys)
+
+const baseStyle = definePartsStyle((props) => ({
   indicator: {
     '&[data-status=complete]': {
       background: 'process_create.stepper.bg',
@@ -10,16 +15,25 @@ const baseStyle = {
     },
   },
   separator: {
-    marginTop: 2,
+    display: { base: 'none', lg: 'inline-block' },
+    mt: { lg: 2 },
     '&[data-status=complete]': {
       background: 'process_create.stepper.bg',
     },
   },
-  title: {
-    mt: 1,
+  stepper: {
+    '&:first-of-type': {
+      h: { lg: '600px' },
+      my: { lg: 10 },
+    },
   },
-}
+  title: {
+    mt: 1.5,
+    fontSize: 'xs',
+    display: { base: 'none', lg: 'block' },
+  },
+}))
 
-export const Stepper = {
+export const Stepper = defineMultiStyleConfig({
   baseStyle,
-}
+})

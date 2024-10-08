@@ -29,20 +29,14 @@ export const Form: ComponentStyleConfig = {
 
         label: {
           m: 0,
-          fontSize: 'md',
-          color: mode('black', 'white')(props),
 
-          '& p': {
+          '& > span:nth-of-type(2)': {
             mt: 1,
+            color: mode('black', 'white')(props),
+            fontWeight: 'normal',
+            fontSize: 'sm',
           },
         },
-      },
-    }),
-    custom_data_weighted_vote: (props) => ({
-      container: {
-        fontWeight: 'light',
-        borderRadius: 'xl',
-        bgColor: mode('bg.secondary.light', 'bg.secondary.dark')(props),
       },
     }),
   },

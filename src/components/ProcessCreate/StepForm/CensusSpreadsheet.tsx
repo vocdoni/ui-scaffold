@@ -27,16 +27,12 @@ export const StepFormCensusSpreadsheet = () => {
 
   return (
     <>
-      <Box px={7} py={4}>
-        <Text className='brand-theme' textTransform='uppercase' color={'text.brand'} mb={5}>
-          {t('census.spreadsheet_title')}
-        </Text>
-        <FormProvider {...methods}>
-          <Box as='form' id='process-create-form' onSubmit={methods.handleSubmit(onSubmit)}>
-            <CensusCsvManager />
-          </Box>
-        </FormProvider>
-      </Box>
+      <Text variant='process-create-census-title'>{t('census.spreadsheet_title')}</Text>
+      <FormProvider {...methods}>
+        <Box as='form' id='process-create-form' onSubmit={methods.handleSubmit(onSubmit)}>
+          <CensusCsvManager />
+        </Box>
+      </FormProvider>
     </>
   )
 }

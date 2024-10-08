@@ -91,64 +91,63 @@ export const CensusCsvManager = () => {
   return (
     <>
       <Flex
-        gap={5}
+        gap={6}
         flexDirection={{ base: 'column', lg: 'row' }}
-        mb={5}
+        mb={6}
         alignItems={{ base: 'start', lg: 'stretch' }}
         justifyContent='center'
       >
-        <Box flex='1 1 60%'>
-          <Flex alignItems='center' gap={1} mb={5} color='text.brand'>
+        <Flex flexDirection='column' gap={6} flex='1 1 60%'>
+          <Flex alignItems='center' gap={1}>
             <Icon as={PiWarningCircleLight} />
-            <Text>{t('form.process_create.spreadsheet.requirements.title')}</Text>
+            <Text mt={0.5}>{t('form.process_create.spreadsheet.requirements.title')}</Text>
           </Flex>
-          <UnorderedList mb={4} fontSize='sm'>
+          <UnorderedList>
             <ListItem mb={2}>
-              <Text>{t('form.process_create.spreadsheet.requirements.list_one')}</Text>
+              <Text variant='process-create-subtitle-sm'>
+                {t('form.process_create.spreadsheet.requirements.list_one')}
+              </Text>
             </ListItem>
             <ListItem>
-              <Text>{t('form.process_create.spreadsheet.requirements.list_two')}</Text>
+              <Text variant='process-create-subtitle-sm'>
+                {t('form.process_create.spreadsheet.requirements.list_two')}
+              </Text>
             </ListItem>
           </UnorderedList>
-          <FormControl variant='custom_data_weighted_vote' fontWeight=''>
-            <Controller
-              control={control}
-              name='weightedVote'
-              defaultValue={weighted}
-              render={({ field: { onChange, onBlur, value, ref } }) => (
-                <Checkbox
-                  onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                    if (!manager) {
-                      return setValue('weightedVote', event.target.checked)
-                    }
-                    if (window.confirm(t('form.process_create.confirm_spreadsheet_removal'))) {
-                      setValue('spreadsheet', undefined)
-                      setValue('weightedVote', event.target.checked)
-                    }
-                  }}
-                  onBlur={onBlur}
-                  ref={ref}
-                  isChecked={value}
-                  w='full'
-                  p={3}
-                >
-                  <Flex alignItems='center' gap={1}>
-                    <Icon as={BiCheckDouble} />
-                    <Text fontWeight='bold' mb={1}>
-                      <Trans i18nKey='form.process_create.weighted'>Weighted vote</Trans>
-                    </Text>
-                  </Flex>
-                  <Text color='process_create.description' fontSize='sm'>
-                    {t('form.process_create.spreadsheet.requirements.list_three')}
+          <Controller
+            control={control}
+            name='weightedVote'
+            defaultValue={weighted}
+            render={({ field: { onChange, onBlur, value, ref } }) => (
+              <Checkbox
+                onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                  if (!manager) {
+                    return setValue('weightedVote', event.target.checked)
+                  }
+                  if (window.confirm(t('form.process_create.confirm_spreadsheet_removal'))) {
+                    setValue('spreadsheet', undefined)
+                    setValue('weightedVote', event.target.checked)
+                  }
+                }}
+                onBlur={onBlur}
+                ref={ref}
+                isChecked={value}
+                variant={'radiobox'}
+              >
+                <Flex>
+                  <Icon as={BiCheckDouble} />
+                  <Text>
+                    <Trans i18nKey='form.process_create.weighted'>Weighted vote</Trans>
                   </Text>
-                </Checkbox>
-              )}
-            />
-          </FormControl>
-        </Box>
+                </Flex>
+                <Text>{t('form.process_create.spreadsheet.requirements.list_three')}</Text>
+              </Checkbox>
+            )}
+          />
+        </Flex>
         <Card variant='download-spreadsheet'>
           <CardBody>
-            <Text textAlign='center'>{t('form.process_create.spreadsheet.download_template_description')}</Text>
+            <Text>{t('form.process_create.spreadsheet.download_template_description')}</Text>
           </CardBody>
           <CardFooter>
             <Link download={'census-template.csv'} href={template.url}>

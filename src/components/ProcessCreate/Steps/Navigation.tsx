@@ -11,7 +11,7 @@ export const StepsNavigation = () => {
 
   return (
     <Box mt='auto'>
-      <Flex justifyContent='space-between' my={6}>
+      <Flex justifyContent='space-between' mt={6}>
         {activeStep !== steps.findIndex((step) => step.first) && (
           <Button colorScheme={isSaas && 'whiteAlpha'} variant={isSaas ? 'rounded' : 'secondary'} onClick={prev}>
             <ArrowBackIcon />

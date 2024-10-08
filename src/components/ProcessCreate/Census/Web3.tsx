@@ -153,13 +153,7 @@ export const CensusWeb3Addresses = () => {
               />
               <FormErrorMessage>{fieldMapErrorMessage(errors, 'newAddress')}</FormErrorMessage>
             </Box>
-            <Button
-              variant='outline'
-              colorScheme={isSaas && 'whiteAlpha'}
-              type='button'
-              ml='none'
-              onClick={handleAddAddress}
-            >
+            <Button variant='outline' colorScheme={'whiteAlpha'} type='button' ml='none' onClick={handleAddAddress}>
               {t('form.process_create.census.add_button')}
             </Button>
           </FormControl>
@@ -168,9 +162,8 @@ export const CensusWeb3Addresses = () => {
             flexDirection='column'
             minH='220px'
             overflowY='scroll'
-            border='1px solid black'
             borderRadius={isSaas ? 'xl' : 'lg'}
-            bgColor={isSaas ? bgSecondary : 'white'}
+            bgColor={isSaas ? bgSecondary : 'gray.100'}
             my={6}
           >
             {fields.map((address, index) => (
@@ -224,15 +217,13 @@ export const CensusWeb3Addresses = () => {
               </Flex>
             ))}
           </Flex>
-          <Text color='process_create.description' fontSize='sm' mb={1}>
-            {t('form.process_create.web3.your_wallet_is_added')}
-          </Text>
+          <Text variant='process-create-subtitle-sm'>{t('form.process_create.web3.your_wallet_is_added')}</Text>
           <Flex gap={1} justifyContent='center'>
             <Trans
               i18nKey='form.process_create.web3.census_members'
               components={{
-                span: <Text as='span' fontWeight='bold' />,
-                text: <Text />,
+                span: <Text as='span' fontWeight='bold' variant='process-create-subtitle-sm' />,
+                text: <Text variant='process-create-subtitle-sm' />,
               }}
               count={fields.length}
             />
@@ -250,11 +241,10 @@ export const CensusWeb3Addresses = () => {
                 ref={ref}
                 isChecked={value}
                 variant={'radiobox'}
-                mx='auto'
               >
-                <Flex gap={1}>
+                <Flex>
                   <Icon as={BiCheckDouble} />
-                  <Text mb={1}>
+                  <Text>
                     <Trans i18nKey='form.process_create.weighted'>Weighted vote</Trans>
                   </Text>
                 </Flex>

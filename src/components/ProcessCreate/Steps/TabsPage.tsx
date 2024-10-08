@@ -53,12 +53,8 @@ export const TabsPage = <Implemented extends string, UnImplemented extends strin
       <ModalPro isOpen={isOpen} onClose={onClose} reason={reason} />
       <Flex flexDirection='column' gap={5}>
         <Box>
-          <Text className='process-create-title' fontWeight='bold'>
-            {title}
-          </Text>
-          <Text fontSize='sm' color={import.meta.env.SAAS_URL ? 'text.secondary' : 'process_create.description'}>
-            {description}
-          </Text>
+          <Text variant='process-create-title'>{title}</Text>
+          <Text variant='process-create-subtitle-sm'>{description}</Text>
         </Box>
         <Tabs defaultIndex={defined.findIndex((val) => val === selected)} onChange={onTabChange} variant='card' isLazy>
           <TabList mb={10}>
@@ -105,7 +101,7 @@ export const TabsPage = <Implemented extends string, UnImplemented extends strin
             )}
           </TabList>
 
-          <TabPanels className={selected ? 'c' : ''} bgColor='process_create.section'>
+          <TabPanels className={selected ? 'c' : ''}>
             {defined.map((ct: Implemented, index: number) => {
               if (details[ct].component) {
                 return details[ct].component && <TabPanel key={index}>{details[ct].component!()}</TabPanel>

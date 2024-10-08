@@ -22,8 +22,8 @@ const LayoutProcessCreate = () => {
             as='header'
             justifyContent='space-between'
             alignItems='center'
-            px={{ base: 2.5, sm: 5, md: 10 }}
-            py={{ base: 3, sm: 3, md: 6 }}
+            px={{ base: 2.5, sm: 5, lg: 10 }}
+            py={{ base: 3, sm: 3, lg: 6 }}
           >
             <Logo />
             <Flex gap={6}>
@@ -40,7 +40,16 @@ const LayoutProcessCreate = () => {
             </Flex>
           </Flex>
 
-          <Box as='main' w='full' px={{ base: 2.5, sm: 5, md: 10 }} flexGrow={1} display='flex' flexDirection='column'>
+          <Box
+            as='main'
+            w='full'
+            px={{ base: 2.5, sm: 5, md: 10 }}
+            mb={12}
+            mt={6}
+            flexGrow={1}
+            display='flex'
+            flexDirection='column'
+          >
             <Outlet />
           </Box>
 

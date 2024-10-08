@@ -32,7 +32,7 @@ const Question = ({ index, remove }: Props) => {
   const description = watch(`questions.${index}.description`)
 
   return (
-    <Box className='process-create-section' bgColor='process_create.section' p={6} position='relative'>
+    <Box p={6} position='relative'>
       <IconButton
         variant='transparent'
         position='absolute'
@@ -114,12 +114,8 @@ const QuestionPage = ({ title, description, isMultiQuestion = false }: IQuestion
   return (
     <Flex flexDirection='column' gap={5}>
       <Box>
-        <Text className='process-create-title' fontWeight='bold'>
-          {title}
-        </Text>
-        <Text fontSize='sm' color={import.meta.env.SAAS_URL ? 'text.secondary' : 'process_create.description'}>
-          {description}
-        </Text>
+        <Text variant='process-create-title'>{title}</Text>
+        <Text variant='process-create-subtitle-sm'>{description}</Text>
       </Box>
       {fields.map((_, index) => (
         <Question key={index} index={index} remove={remove} />

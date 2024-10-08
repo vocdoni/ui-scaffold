@@ -4,7 +4,6 @@ const Wrapper = ({ ...props }) => (
   <Flex
     flexDirection='column'
     w='full'
-    pb={5}
     display='flex'
     justifyContent='start'
     gap={6}

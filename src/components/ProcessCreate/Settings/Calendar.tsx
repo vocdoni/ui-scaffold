@@ -65,26 +65,22 @@ const Calendar = () => {
   return (
     <Flex flexDirection='column' gap={6}>
       <Box>
-        <Text fontSize='sm' fontWeight='bold'>
-          {t('calendar.title', { defaultValue: 'Calendar' })}
-        </Text>
-        <Text fontSize='sm' color={'text_secondary'}>
+        <Text variant='process-create-title-sm'>{t('calendar.title', { defaultValue: 'Calendar' })}</Text>
+        <Text variant='process-create-subtitle-sm'>
           {t('calendar.subtitle', { defaultValue: 'Specify the active period for receiving votes' })}
         </Text>
       </Box>
       <Flex flexDirection='column' pl={6}>
         <Box>
-          <Text fontSize='sm' fontWeight='bold'>
-            {t('calendar.start_date', { defaultValue: 'Start date' })}
-          </Text>
-          <Text fontSize='sm' color={'text_secondary'} mb={2}>
+          <Text variant='process-create-title-sm'>{t('calendar.start_date', { defaultValue: 'Start date' })}</Text>
+          <Text variant='process-create-subtitle-sm' mb={2}>
             {t('calendar.define_active_period', { defaultValue: 'Define the active period for receiving votes' })}
           </Text>
-          <RadioGroup {...useBooleanRadioRegister('electionType.autoStart')} mb={6} w='full'>
+          <RadioGroup {...useBooleanRadioRegister('electionType.autoStart')} mb={6}>
             <Stack direction={{ base: 'column', lg: 'row' }} gap={5} alignItems='start' justifyContent='start'>
               <FormControl variant='calendar'>
-                <Radio value='1' w='full' onClick={() => clearErrors('startDate')}>
-                  <Text fontSize='sm'>{t('form.process_create.calendar.now')}</Text>
+                <Radio value='1' onClick={() => clearErrors('startDate')}>
+                  <Text as='span'>{t('form.process_create.calendar.now')}</Text>
                 </Radio>
               </FormControl>
 
@@ -92,7 +88,7 @@ const Calendar = () => {
                 <FormControl variant='calendar' mb={3}>
                   <Radio value='0'>
                     <Text
-                      fontSize='sm'
+                      as='span'
                       onClick={() =>
                         // we need to use a timeout cos' triggering it immediately would not work, since this input is still disabled
                         setTimeout(() => {
@@ -126,11 +122,9 @@ const Calendar = () => {
           </RadioGroup>
         </Box>
 
-        <FormControl variant='process-create-label' isInvalid={!!errors.endDate}>
-          <Text fontSize='sm' fontWeight='bold'>
-            {t('calendar.end_date', { defaultValue: 'End date' })}
-          </Text>
-          <Text fontSize='sm' color={'text_secondary'} mb={2}>
+        <FormControl isInvalid={!!errors.endDate}>
+          <Text variant='process-create-title-sm'>{t('calendar.end_date', { defaultValue: 'End date' })}</Text>
+          <Text variant='process-create-subtitle-sm'>
             {t('calendar.end_date_description', { defaultValue: 'Define the exact date and time of completion' })}
           </Text>
           <Input

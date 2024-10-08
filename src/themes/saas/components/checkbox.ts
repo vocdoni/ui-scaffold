@@ -66,6 +66,7 @@ export const Checkbox = defineMultiStyleConfig({
 
         '& > p': {
           fontSize: 'sm',
+          textAlign: 'start',
         },
 
         //pro plan, it allows opening the modal

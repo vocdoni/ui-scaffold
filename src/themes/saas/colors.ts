@@ -16,7 +16,7 @@ export const colors = {
   badge: {
     pro_color: 'white',
   },
-  customBlue: '#3965FF',
+  custom_blue: '#3965FF',
   text_secondary: '#A0AEC0',
   brand: {
     50: '#e5ecd8',
