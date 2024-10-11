@@ -1,6 +1,4 @@
-import { mode } from '@chakra-ui/theme-tools'
 import type { ComponentStyleConfig } from '@chakra-ui/theme'
-import { extendTheme } from '@chakra-ui/react'
 
 export const Form: ComponentStyleConfig = {
   parts: ['container', 'label', 'helpText', 'errorText', 'requiredIndicator'],
@@ -12,7 +10,6 @@ export const Form: ComponentStyleConfig = {
         fontSize: 'sm',
         fontWeight: 'bold',
         mb: 2,
-        color: mode('gray.800', 'white')(props),
       },
     },
   }),
@@ -32,7 +29,7 @@ export const Form: ComponentStyleConfig = {
         label: {
           m: 0,
           fontSize: 'md',
-          color: mode('black', 'white')(props),
+          w: 'full',
 
           '& p': {
             mt: 1,
@@ -40,9 +37,5 @@ export const Form: ComponentStyleConfig = {
         },
       },
     }),
-    'custom-data-weighted-vote': {
-      bgColor: 'process_create.bg',
-      borderRadius: 'md',
-    },
   },
 }

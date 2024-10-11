@@ -13,6 +13,7 @@ export const Card = defineMultiStyleConfig({
         p: 5,
         gap: 5,
         bgColor: 'transparent',
+        borderRadius: 'xl',
       },
       header: {
         p: 0,
@@ -23,13 +24,12 @@ export const Card = defineMultiStyleConfig({
       container: {
         p: 6,
         maxW: 64,
-        bgColor: mode('bg.secondary.light', 'bg.secondary.dark')(props),
+        bgColor: 'transparent',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         gap: 6,
-        borderRadius: 'xl',
         mx: 'auto',
       },
       body: {

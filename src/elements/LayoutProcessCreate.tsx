@@ -16,10 +16,13 @@ const LayoutProcessCreate = () => {
   return (
     <Box bgColor={bg}>
       <ScrollRestoration />
-      <Box maxW={1800} mx='auto'>
+      <Box mx='auto'>
         <Flex direction='column' minH='100vh'>
           <Flex
             as='header'
+            maxW='2000px'
+            w='full'
+            mx='auto'
             justifyContent='space-between'
             alignItems='center'
             px={{ base: 2.5, sm: 5, lg: 10 }}
@@ -27,7 +30,11 @@ const LayoutProcessCreate = () => {
           >
             <Logo />
             <Flex gap={6}>
-              {isSaas && <Button>Save draft</Button>}
+              {isSaas && (
+                <Button variant='outline' colorScheme='whiteAlpha' borderRadius='xl'>
+                  Save draft
+                </Button>
+              )}
               <Button
                 as={ReactRouterLink}
                 onClick={(e) => (window.history.state.idx ? navigate(-1) : navigate('/'))}
@@ -42,7 +49,9 @@ const LayoutProcessCreate = () => {
 
           <Box
             as='main'
-            w='full'
+            maxW='1750px'
+            w='95%'
+            mx='auto'
             px={{ base: 2.5, sm: 5, md: 10 }}
             mb={12}
             mt={6}

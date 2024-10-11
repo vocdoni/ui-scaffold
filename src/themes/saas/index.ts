@@ -19,6 +19,7 @@ import { spacing } from './space'
 import { Tabs } from './components/tabs'
 import { Stepper } from './components/stepper'
 import { Text } from './components/text'
+import { Radio } from './components/radio'
 
 export const theme = extendTheme(vtheme, {
   styles: {
@@ -44,6 +45,7 @@ export const theme = extendTheme(vtheme, {
     Link,
     Modal,
     Pagination,
+    Radio,
     Stepper,
     Tabs,
     Text,

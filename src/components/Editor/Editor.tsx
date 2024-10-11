@@ -27,6 +27,7 @@ import ToolbarPlugin from './plugins/ToolbarPlugin'
 import exampleTheme from './theme'
 
 import { Box } from '@chakra-ui/react'
+import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import './styles.css'
 
 function Placeholder(props: any) {
@@ -44,6 +45,7 @@ type EditorProps = {
 const Editor = (props: EditorProps) => {
   const [isLinkEditMode, setIsLinkEditMode] = useState<boolean>(false)
   const [floatingAnchorElem, setFloatingAnchorElem] = useState<HTMLDivElement | null>(null)
+  const { bgSecondary } = useDarkMode()
 
   const settings = {
     editorState: () => $convertFromMarkdownString(props.defaultValue ?? '', TRANSFORMERS),
@@ -79,7 +81,7 @@ const Editor = (props: EditorProps) => {
 
   return (
     <LexicalComposer initialConfig={settings}>
-      <Box className='editor-container'>
+      <Box className='editor-container' bgColor={bgSecondary}>
         <ToolbarPlugin setIsLinkEditMode={setIsLinkEditMode} />
         <div className='editor-inner'>
           <RichTextPlugin

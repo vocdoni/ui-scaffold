@@ -4,32 +4,56 @@ import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(inputAnatomy.keys)
 
-const baseStyle = definePartsStyle((props) => ({
-  field: {
-    fontWeight: '500',
-    py: '25px',
-    color: mode('navy.700', 'white')(props),
-    'background-color': 'transparent',
-    borderRadius: 'xl',
-    fontSize: 'sm',
-    size: 'lg',
-    ms: { base: '0px', md: '0px' },
-    _placeholder: { color: 'secondaryGray.600', fontWeight: '400' },
-  },
-}))
-
 const variants = {
-  calendar: definePartsStyle((props) => ({
+  default: definePartsStyle((props) => ({
     field: {
       maxW: 60,
+      py: 6,
+      fontSize: 'sm',
+      borderRadius: 'xl',
+      minW: 'full',
+      'background-color': mode('input.bg.light', '#303B4D')(props),
+      border: mode('1px solid #E2E8F0', '0.1px solid white')(props),
+
+      _hover: {
+        outline: mode('1px solid #E2E8F0', '.1px solid white')(props),
+        outlineOffset: '0px',
+      },
+
+      _focus: {
+        outline: '2px solid #3965FF',
+        outlineOffset: '0px',
+        border: mode('1px solid transparent', '0.1px solid transparent')(props),
+      },
+    },
+  })),
+  calendar: definePartsStyle((props) => ({
+    field: {
+      maxW: 64,
+      minW: 64,
       p: 4,
       minH: '48px',
       borderRadius: 'xl',
+      'background-color': mode('input.bg.light', '#303B4D')(props),
+      border: mode('1px solid #E2E8F0', '0.1px solid white')(props),
+
+      _hover: {
+        outline: mode('1px solid #E2E8F0', '.1px solid white')(props),
+        outlineOffset: '0px',
+      },
+
+      _focus: {
+        outline: '2px solid #3965FF',
+        outlineOffset: '0px',
+        border: mode('1px solid transparent', '0.1px solid transparent')(props),
+      },
     },
   })),
 }
 
 export const Input = defineMultiStyleConfig({
-  baseStyle,
   variants,
+  defaultProps: {
+    variant: 'default',
+  },
 })

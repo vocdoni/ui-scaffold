@@ -1,8 +1,18 @@
 export const colors = {
+  badge: {
+    pro_color: 'white',
+  },
   bg: {
     light: '#F5F7FA',
     dark: '#1A202C',
     secondary: {
+      light: 'white',
+      dark: '#303B4D',
+    },
+  },
+  custom_blue: '#3965FF',
+  input: {
+    bg: {
       light: 'white',
       dark: '#303B4D',
     },
@@ -13,10 +23,7 @@ export const colors = {
     secondary: '#A0AEC0',
     brand: '#546E39',
   },
-  badge: {
-    pro_color: 'white',
-  },
-  custom_blue: '#3965FF',
+
   text_secondary: '#A0AEC0',
   brand: {
     50: '#e5ecd8',

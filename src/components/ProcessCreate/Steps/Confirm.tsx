@@ -350,6 +350,7 @@ export const Confirm = () => {
           form='process-create-form'
           isDisabled={disabled}
           isLoading={sending}
+          minW={{ lg: '250px' }}
         >
           {t('form.process_create.confirm.create_button')}
         </Button>

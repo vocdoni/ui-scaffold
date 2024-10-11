@@ -21,15 +21,21 @@ export const Form: ComponentStyleConfig = {
         display: 'flex',
         justifyContent: 'start',
         alignContent: 'center',
-        border: mode('1px solid #E2E8F0', '0.1px solid #3F444E')(props),
+        border: mode('1px solid #E2E8F0', '0.1px solid white')(props),
+        bgColor: mode('input.bg.light', 'input.bg.dark')(props),
         borderRadius: 'xl',
-        minW: 56,
-        maxW: 56,
+        minW: 64,
+        maxW: 64,
         p: 3,
+
+        _hover: {
+          outline: mode('1px solid #E2E8F0', '.1px solid white')(props),
+          outlineOffset: '0px',
+        },
 
         label: {
           m: 0,
-
+          w: 'full',
           '& > span:nth-of-type(2)': {
             mt: 1,
             color: mode('black', 'white')(props),

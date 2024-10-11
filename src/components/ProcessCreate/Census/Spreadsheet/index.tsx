@@ -21,6 +21,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { BiCheckDouble, BiDownload } from 'react-icons/bi'
 import { PiWarningCircleLight } from 'react-icons/pi'
 import { RiFileExcel2Line } from 'react-icons/ri'
+import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import { CensusSpreadsheetManager } from './CensusSpreadsheetManager'
 import { CsvGenerator } from './generator'
 import { CsvPreview } from './Preview'
@@ -28,6 +29,7 @@ import { CsvPreview } from './Preview'
 export const CensusCsvManager = () => {
   const { t } = useTranslation()
   const isSaas = import.meta.env.SAAS_URL
+  const { bgSecondary } = useDarkMode()
   const {
     register,
     setValue,
@@ -176,8 +178,8 @@ export const CensusCsvManager = () => {
           gap={5}
           p={10}
           border='1px dotted'
-          borderColor='process_create.census.drag_and_drop_border'
-          bgColor='process_create.bg'
+          borderColor={'process_create.census.drag_and_drop_border'}
+          bgColor={isSaas ? bgSecondary : 'process_create.bg'}
           borderRadius='xl'
           cursor='pointer'
         >

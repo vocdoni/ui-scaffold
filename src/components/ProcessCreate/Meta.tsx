@@ -8,12 +8,7 @@ import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 const CreateProcessMeta = () => {
   const { textColorSecondary } = useDarkMode()
   const isSaas = import.meta.env.SAAS_URL
-  const {
-    setValue,
-    register,
-    formState: { errors },
-    watch,
-  } = useFormContext()
+  const { setValue, watch } = useFormContext()
   const { t } = useTranslation()
 
   const required = {
@@ -21,7 +16,6 @@ const CreateProcessMeta = () => {
     message: t('form.error.field_is_required'),
   }
 
-  const title = watch('title')
   const description = watch('description')
 
   const maxLengthTitle = 500

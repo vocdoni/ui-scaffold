@@ -24,7 +24,7 @@ const baseStyle = definePartsStyle((props) => ({
   },
   stepper: {
     '&:first-of-type': {
-      h: { lg: 96 },
+      h: { lg: '600px' },
       my: { lg: 10 },
     },
   },
