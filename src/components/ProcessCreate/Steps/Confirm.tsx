@@ -259,7 +259,12 @@ export const Confirm = () => {
           <FormProvider {...methods}>
             <Flex flexDirection={{ base: 'column', xl2: 'row' }} gap={5}>
               <Preview />
-              <Box flex={{ xl2: '0 0 25%' }} bgColor={bgSecondary} p={6} borderRadius={isSaas ? 'xl' : 'md'}>
+              <Box
+                flex={{ xl2: '0 0 25%' }}
+                bgColor={bgSecondary}
+                p={isSaas ? 6 : 0}
+                borderRadius={isSaas ? 'xl' : 'md'}
+              >
                 <CostPreview unpublished={unpublished} />
 
                 <Box>
