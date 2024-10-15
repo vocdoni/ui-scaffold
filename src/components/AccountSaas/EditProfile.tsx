@@ -91,16 +91,13 @@ const EditProfile = () => {
       timezone: values.timeZoneSelect.value,
       language: values.languageSelect.value,
     }
-    mutateAsync({
-      ...organization,
-      ...newInfo,
-    }).then(() => {
-      const newAccount = new Account({ ...organization?.account, ...values })
-      // Check if account changed before trying to update
-      if (JSON.stringify(newAccount.generateMetadata()) !== JSON.stringify(organization?.account.generateMetadata())) {
-        updateAccount(newAccount)
-      }
-    })
+
+    await mutateAsync({ ...organization, ...newInfo })
+    const newAccount = new Account({ ...organization?.account, ...values })
+    // Check if account changed before trying to update
+    if (JSON.stringify(newAccount.generateMetadata()) !== JSON.stringify(organization?.account.generateMetadata())) {
+      updateAccount(newAccount)
+    }
   }
 
   const isPending = isUpdateLoading || isSaasPending
