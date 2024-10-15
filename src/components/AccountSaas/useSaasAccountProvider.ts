@@ -20,7 +20,7 @@ const useSaasOrganization = ({
   })
 }
 
-export const useSaasAccountProvider = () => {
+export const useSaasAccountProvider = (options?: Parameters<typeof useSaasOrganization>[0]) => {
   const {
     account: accountSDK,
     fetchAccount,
@@ -33,7 +33,7 @@ export const useSaasAccountProvider = () => {
     isLoading: isSaasLoading,
     isError: isSaasError,
     error: saasError,
-  } = useSaasOrganization()
+  } = useSaasOrganization(options)
 
   const refetchAccount = useCallback(() => {
     refetch()

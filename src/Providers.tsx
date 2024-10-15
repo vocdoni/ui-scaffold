@@ -32,7 +32,7 @@ export const Providers = () => {
 
 const SaasProviders = ({ children }: PropsWithChildren<{}>) => {
   if (!import.meta.env.SAAS_URL) {
-    return <>{children}</>
+    return children
   }
   return (
     <AuthProvider>
