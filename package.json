@@ -29,7 +29,7 @@
     "@vocdoni/rainbowkit-wallets": "^0.2.2",
     "@vocdoni/sdk": "~0.9.0",
     "chakra-react-select": "^4.6.0",
-    "date-fns": "^2.30.0",
+    "date-fns": "^4.1.0",
     "framer-motion": "^10.12.18",
     "i18next": "^23.2.11",
     "i18next-browser-languagedetector": "^7.2.0",
