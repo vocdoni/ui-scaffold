@@ -9,7 +9,13 @@ const Solutions = () => {
     <Flex
       id='solutions'
       as='section'
-      className='site-wrapper'
+      width='full'
+      m='0 auto'
+      px={{
+        base: '10px',
+        sm: '20px',
+        md: '80px',
+      }}
       flexDirection={{ base: 'column', xl: 'row' }}
       py={{ base: '60px', xl: '100px' }}
       gap={{ base: '40px', xl: '60px' }}
@@ -28,12 +34,12 @@ const Solutions = () => {
               {t('home.solutions.title')}
             </Text>
             <Text
+              variant='home-description-color'
               maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}
               textAlign={{ base: 'center', xl: 'left' }}
               mx='auto'
               fontFamily='basier'
               fontSize='20px'
-              color='home.description'
             >
               {t('home.solutions.subtitle_1')}
             </Text>

@@ -11,7 +11,14 @@ const Footer = () => {
   return (
     <>
       <Flex
-        className='site-wrapper'
+        width='full'
+        m='0 auto'
+        maxW='1920px'
+        px={{
+          base: '10px',
+          sm: '20px',
+          md: '80px',
+        }}
         pt='24px'
         flexDirection={{ base: 'column', xl: 'row' }}
         alignItems='start'
@@ -95,14 +102,20 @@ const Footer = () => {
         </Flex>
       </Flex>
       <Flex
-        className='site-wrapper'
+        width='full'
+        m='0 auto'
+        maxW='1920px'
+        px={{
+          base: '10px',
+          sm: '20px',
+          md: '80px',
+        }}
         flexDirection={{ base: 'column', md: 'row' }}
         gap={{ base: '20px', md: '10px' }}
         justifyContent='space-between'
         alignItems='center'
         py='12px'
         borderTop='1px solid rgb(229, 229, 229)'
-        bgColor={`${location.pathname === '/organization' ? 'process_create.bg' : 'white'}`}
       >
         <Text as='span' color='gray' textAlign='center'>
           <Trans

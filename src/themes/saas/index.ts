@@ -12,11 +12,12 @@ import { Modal } from './components/modal'
 import { Card } from './components/card'
 import { Checkbox } from './components/checkbox'
 import { Textarea } from './components/textarea'
-import { breakpoints } from './foundations/breakpoints'
 import { colors } from './colors'
 import { Pagination } from './components/pagination'
 import { spacing } from './space'
 import { Tabs } from './components/Tabs'
+import { Text } from './components/text'
+import { breakpoints } from './breakpoints'
 
 export const theme = extendTheme(vtheme, {
   styles: {
@@ -27,7 +28,6 @@ export const theme = extendTheme(vtheme, {
       },
     },
   },
-  breakpoints,
   components: {
     Badge,
     Button,
@@ -39,8 +39,10 @@ export const theme = extendTheme(vtheme, {
     Modal,
     Pagination,
     Tabs,
+    Text,
     Textarea,
   },
+  breakpoints,
   spacing,
   colors,
   CardComponent,
