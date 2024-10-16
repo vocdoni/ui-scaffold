@@ -80,9 +80,6 @@
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^5.1.1",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^14.0.0",
-    "@testing-library/user-event": "^14.4.3",
     "@types/jest": "^29.5.13",
     "@types/node": "^18.16.19",
     "@types/react": "^18.3.11",
