@@ -1,5 +1,4 @@
 {
-  "{title}": "{title}",
   "aside": {
     "has_already_voted": "Tu voto ha sido registrado correctamente",
     "is_not_in_census": "No estás en el censo",
@@ -885,8 +884,7 @@
         "description": "Selecciona el tipo de votación para esta elección. Si no encuentras lo que necesitas, puedes contactarnos.",
         "title": "Tipos de Votación"
       }
-    },
-    "tabcard_title": "{title}"
+    }
   },
   "rainbow": {
     "group": {
