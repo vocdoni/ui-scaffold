@@ -3490,10 +3490,10 @@
   resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.5.4.tgz#638edb351446789ceab99bd7828f02a345fb2569"
   integrity sha512-3m1b9KnM/2xeRmsBg9yR9wj5tOEEbMcU1lqzRvAU+HPeTsth5qU9g6P3XjuFTU00Z7jaGVdm4Xa/ltN/+HKNAg==
 
-"@vocdoni/sdk@~0.9.0":
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/@vocdoni/sdk/-/sdk-0.9.0.tgz#80c56054d5b775451f16aabdbdfbfb743c4089b7"
-  integrity sha512-KTddq6hEh5rfZKN2kVcz6f9a69TMtxR2aciYdXqoBiH6Rc/I031AEIRfymn8+D3oEuFolNTNCEn5QTZoXehjaw==
+"@vocdoni/sdk@~0.9.1":
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/@vocdoni/sdk/-/sdk-0.9.1.tgz#084df69b456ba91557cdf088103bfd6739f4dd43"
+  integrity sha512-Cs2wse//UHdwZ5NTuJf5XqTqUQSYocTDzH14EwwUQWC4geGNiJNl7FWda+bKzBYTGWgPnOlr/Ez6JEJokDKPgQ==
   dependencies:
     "@ethersproject/abstract-signer" "^5.7.0"
     "@ethersproject/address" "^5.7.0"
@@ -4546,7 +4546,7 @@ circom_runtime@0.1.25:
   dependencies:
     ffjavascript "0.3.0"
 
-circomlibjs@vocdoni/circomlibjs#f/browser:
+"circomlibjs@github:vocdoni/circomlibjs#f/browser":
   version "0.2.2"
   resolved "https://codeload.github.com/vocdoni/circomlibjs/tar.gz/bc351ea49a39e3a16421962f1e704f3742a343dd"
   dependencies:
@@ -8694,7 +8694,7 @@ snake-case@^3.0.4:
     dot-case "^3.0.4"
     tslib "^2.0.3"
 
-snarkjs@vocdoni/snarkjs#f/browser:
+"snarkjs@github:vocdoni/snarkjs#f/browser":
   version "0.7.0"
   resolved "https://codeload.github.com/vocdoni/snarkjs/tar.gz/5ba4333d0b6df8098219bca9b1f288a30d066d0e"
   dependencies:
