@@ -1,4 +1,4 @@
-import merge from 'ts-deepmerge'
+import { merge } from 'ts-deepmerge'
 import ValidLanguages from '../src/i18n/languages.mjs'
 
 // Define constants for valid values

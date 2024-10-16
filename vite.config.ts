@@ -16,16 +16,6 @@ const viteconfig = ({ mode }) => {
   if (!vocdoniEnvironment) {
     vocdoniEnvironment = 'stg'
   }
-  let stripePublicKey = process.env.STRIPE_PUBLIC_KEY
-  if (!stripePublicKey || stripePublicKey.length == 0) {
-    if (vocdoniEnvironment == 'dev') {
-      stripePublicKey =
-        'pk_test_51P6vaOI1T5UnHYElxQ2aqpc7DZET6spnYww8ItU7rOv94OTHlGzvh4fK3Z5HVTGT2KmGLnDCcUnvBUjODYiL61W600XBPAnoZZ'
-    } else if (vocdoniEnvironment == 'stg') {
-      stripePublicKey =
-        'pk_test_51PNuOtDW6VLep8WG8WFS7KZocugbzYbkuNn94WAxuGZUa1maPK7kv5BnEPN3x5bXLaCYhHRkBmmGJVVvcDkbbnbS00V4LExTPD'
-    }
-  }
 
   const outDir = process.env.BUILD_PATH
   const base = process.env.BASE_URL || '/'

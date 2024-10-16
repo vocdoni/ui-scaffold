@@ -1,5 +1,4 @@
 {
-  "{title}": "{title}",
   "aside": {
     "has_already_voted": "Your vote is properly cast",
     "is_not_in_census": "You are not in the census",
@@ -873,8 +872,7 @@
         "description": "Select the voting type for this election. If you don't find what you need can contact us.",
         "title": "Voting Types"
       }
-    },
-    "tabcard_title": "{title}"
+    }
   },
   "rainbow": {
     "group": {
