@@ -48,7 +48,7 @@
     "vocdoni-admin-sdk": "^0.0.2",
     "wagmi": "^1.4.5",
     "web-vitals": "^3.3.2",
-    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.0/xlsx-0.20.0.tgz"
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
   },
   "engines": {
     "npm": "please use yarn",
