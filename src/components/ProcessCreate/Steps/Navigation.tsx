@@ -7,24 +7,17 @@ export const StepsNavigation = () => {
   const { prev, activeStep } = useProcessCreationSteps()
   const { t } = useTranslation()
   const steps = useStepContents()
-  const isSaas = import.meta.env.SAAS_URL
 
   return (
     <Box mt='auto'>
       <Flex justifyContent='space-between' mt={6}>
         {activeStep !== steps.findIndex((step) => step.first) && (
-          <Button colorScheme={isSaas && 'whiteAlpha'} variant={isSaas ? 'rounded' : 'secondary'} onClick={prev}>
+          <Button colorScheme={'whiteAlpha'} variant={'rounded'} onClick={prev}>
             <ArrowBackIcon />
             <Text as='span'>{t('form.process_create.previous_step')}</Text>
           </Button>
         )}
-        <Button
-          type='submit'
-          variant={isSaas ? 'rounded' : 'secondary'}
-          ml='auto'
-          form='process-create-form'
-          width={{ lg: '250px' }}
-        >
+        <Button type='submit' variant={'rounded'} ml='auto' form='process-create-form' width={{ lg: '250px' }}>
           <Text as='span'>{t('form.process_create.next_step')}</Text>
           <ArrowForwardIcon />
         </Button>

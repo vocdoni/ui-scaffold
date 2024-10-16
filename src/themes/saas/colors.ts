@@ -1,30 +1,92 @@
-export const colors = {
-  badge: {
-    pro_color: 'white',
-  },
-  bg: {
-    light: '#F5F7FA',
+export const colorsBase = {
+  blue: {
+    normal: '#3965FF',
+    grayish: '#303B4D',
     dark: '#1A202C',
-    secondary: {
-      light: 'white',
-      dark: '#303B4D',
-    },
   },
-  custom_blue: '#3965FF',
-  input: {
-    bg: {
-      light: 'white',
-      dark: '#303B4D',
-    },
+  gray: {
+    light: '#E2E8F0',
+    dark: '#A0AEC0',
   },
-  text: {
-    light: 'navy.700',
-    dark: 'white',
-    secondary: '#A0AEC0',
-    brand: '#546E39',
+  primary: '#546E39',
+  white: {
+    pure: '#ffffff',
+    dark: '#F5F7FA',
+  },
+}
+
+export const colors = {
+  checkbox: {
+    bg: colorsBase.primary,
+    checked: {
+      border: colorsBase.primary,
+      bg: colorsBase.primary,
+    },
+    icon: colorsBase.white.pure,
+
+    variant: {
+      radiobox: {
+        bg: {
+          light: colorsBase.white.pure,
+          dark: colorsBase.blue.grayish,
+        },
+      },
+    },
   },
 
-  text_secondary: '#A0AEC0',
+  input: {
+    focus: colorsBase.blue,
+    light: {
+      bg: colorsBase.white.pure,
+      border: colorsBase.gray.light,
+      outline: colorsBase.gray.light,
+    },
+    dark: {
+      bg: colorsBase.blue.grayish,
+      border: colorsBase.white,
+      outline: colorsBase.white,
+    },
+  },
+
+  process_create: {
+    bg: {
+      light: colorsBase.white.dark,
+      dark: colorsBase.blue.dark,
+    },
+    bg_secondary: {
+      light: colorsBase.white.pure,
+      dark: colorsBase.blue.grayish,
+    },
+    stepper: {
+      color: colorsBase.primary,
+      bg: colorsBase.primary,
+    },
+
+    text_brand: colorsBase.primary,
+    text_secondary: colorsBase.gray.dark,
+    question_index: colorsBase.primary,
+  },
+
+  tab: {
+    variant: {
+      card: {
+        badge_bg: colorsBase.primary,
+        bg: {
+          light: colorsBase.white.pure,
+          dark: colorsBase.blue.grayish,
+        },
+        border: colorsBase.gray.dark,
+        description: colorsBase.gray.dark,
+        svg: colorsBase.primary,
+      },
+    },
+  },
+
+  radio: {
+    bg: colorsBase.primary,
+    border: colorsBase.primary,
+  },
+
   brand: {
     50: '#e5ecd8',
     100: '#cbd9b2',
@@ -102,16 +164,5 @@ export const colors = {
   },
   gray: {
     100: '#FAFCFE',
-  },
-  whiteAlpha: {
-    50: 'rgba(255, 255, 255, 0.04)',
-    100: 'rgba(255, 255, 255, 0.06)',
-    200: 'rgba(255, 255, 255, 0.08)',
-    300: 'rgba(255, 255, 255, 0.16)',
-    400: '#FFFFFF',
-    500: 'rgba(255, 255, 255, 0.48)',
-    600: 'rgba(255, 255, 255, 0.64)',
-    700: 'rgba(255, 255, 255, 0.80)',
-    800: 'rgba(255, 255, 255, 0.92)',
   },
 }

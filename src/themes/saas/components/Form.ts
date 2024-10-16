@@ -11,7 +11,6 @@ export const Form: ComponentStyleConfig = {
         fontSize: 'sm',
         fontWeight: 'bold',
         mb: 2,
-        color: mode('gray.800', 'white')(props),
       },
     },
   }),
@@ -21,15 +20,17 @@ export const Form: ComponentStyleConfig = {
         display: 'flex',
         justifyContent: 'start',
         alignContent: 'center',
-        border: mode('1px solid #E2E8F0', '0.1px solid white')(props),
-        bgColor: mode('input.bg.light', 'input.bg.dark')(props),
+        'background-color': mode('input.light.bg', '#303B4D')(props),
+        border: mode('1px solid', '0.1px solid')(props),
+        borderColor: mode('input.light.outline', 'input.dark.outline')(props),
         borderRadius: 'xl',
         minW: 64,
         maxW: 64,
         p: 3,
 
         _hover: {
-          outline: mode('1px solid #E2E8F0', '.1px solid white')(props),
+          outline: mode('1px solid', '.1px solid')(props),
+          outlineColor: mode('input.light.outline', 'input.dark.outline')(props),
           outlineOffset: '0px',
         },
 
@@ -38,7 +39,6 @@ export const Form: ComponentStyleConfig = {
           w: 'full',
           '& > span:nth-of-type(2)': {
             mt: 1,
-            color: mode('black', 'white')(props),
             fontWeight: 'normal',
             fontSize: 'sm',
           },

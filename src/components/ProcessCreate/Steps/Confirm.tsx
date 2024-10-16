@@ -1,6 +1,7 @@
 import { ArrowBackIcon } from '@chakra-ui/icons'
 import {
   Box,
+  Card,
   Checkbox,
   Flex,
   FormControl,
@@ -46,7 +47,6 @@ import { CensusMeta } from '~components/Process/Census/CensusType'
 import { StampsUnionTypes } from '~components/ProcessCreate/Census/Gitcoin/StampsUnionType'
 import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
 import { DefaultCensusSize } from '~constants'
-import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import { useCspAdmin } from '../Census/Csp/use-csp'
 import Preview from '../Confirm/Preview'
 import { CostPreview } from '../CostPreview'
@@ -57,8 +57,6 @@ import { StepsFormValues, useProcessCreationSteps } from './use-steps'
 import Wrapper from './Wrapper'
 
 export const Confirm = () => {
-  const isSaas = import.meta.env.SAAS_URL
-  const { textColorSecondary, bgSecondary } = useDarkMode()
   const { env, client, account, fetchAccount, census3: c3client } = useClient()
   const { form, prev, setForm, setIsLoadingPreview, isLoadingPreview, isLoadingCost, notEnoughBalance } =
     useProcessCreationSteps()
@@ -251,24 +249,19 @@ export const Confirm = () => {
   return (
     <Wrapper>
       <Box>
-        {!isSaas && <Text fontWeight='bold'>{t('form.process_create.confirm.title')}</Text>}
-        <Text mb={4} color={textColorSecondary}>
+        <Text variant='process-create-title'>{t('form.process_create.confirm.title')}</Text>
+        <Text variant='process-create-subtitle-sm' mb={6}>
           {t('form.process_create.confirm.description')}
         </Text>
         <ElectionProvider election={published}>
           <FormProvider {...methods}>
             <Flex flexDirection={{ base: 'column', xl2: 'row' }} gap={5}>
               <Preview />
-              <Box
-                flex={{ xl2: '0 0 25%' }}
-                bgColor={bgSecondary}
-                p={isSaas ? 6 : 0}
-                borderRadius={isSaas ? 'xl' : 'md'}
-              >
+              <Card variant='confirm'>
                 <CostPreview unpublished={unpublished} />
 
                 <Box>
-                  <Text fontWeight='bold' textTransform='uppercase' px={2} mb={2}>
+                  <Text variant='process-create-title' textTransform='uppercase'>
                     {t('form.process_create.confirm.confirmation')}
                   </Text>
                   <Flex
@@ -338,19 +331,19 @@ export const Confirm = () => {
                     </FormControl>
                   </Flex>
                 </Box>
-              </Box>
+              </Card>
             </Flex>
           </FormProvider>
         </ElectionProvider>
       </Box>
       <Flex justifyContent='space-between' mt='auto' my={6}>
-        <Button colorScheme={isSaas && 'whiteAlpha'} variant={isSaas ? 'rounded' : 'secondary'} onClick={prev}>
+        <Button colorScheme={'whiteAlpha'} variant={'rounded'} onClick={prev}>
           <ArrowBackIcon />
           <Text as='span'>{t('form.process_create.previous_step')}</Text>
         </Button>
 
         <Button
-          variant={isSaas ? 'rounded' : 'secondary'}
+          variant={'rounded'}
           type='submit'
           form='process-create-form'
           isDisabled={disabled}

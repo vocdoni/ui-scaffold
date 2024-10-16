@@ -64,6 +64,7 @@ export const colors = {
     right_side: colorsBase.primary,
     right_side_color: colorsBase.white.pure,
   },
+
   editor: {
     character_limit: colorsBase.gray.light,
   },

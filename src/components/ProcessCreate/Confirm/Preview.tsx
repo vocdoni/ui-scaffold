@@ -1,17 +1,14 @@
-import { Box, ChakraProvider, extendTheme, Flex, Icon, Link, Spinner, Text } from '@chakra-ui/react'
+import { Box, Card, ChakraProvider, extendTheme, Flex, Icon, Link, Spinner, Text } from '@chakra-ui/react'
 import { ElectionDescription, ElectionQuestions, ElectionTitle } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import { IoMdCheckmark, IoMdClose, IoMdCreate } from 'react-icons/io'
 import { IoCheckmarkSharp } from 'react-icons/io5'
-import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import { confirmTheme } from '~theme/components/Confirm'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 import Census from './Census'
 
 const Preview = () => {
-  const isSaas = import.meta.env.SAAS_URL
   const { t } = useTranslation()
-  const { bgSecondary } = useDarkMode()
   const { form, setActiveStep, isLoadingPreview } = useProcessCreationSteps()
 
   const datef = t('form.process_create.calendar.date_format')
@@ -31,14 +28,7 @@ const Preview = () => {
     import.meta.env.features.vote.secret
 
   return (
-    <Flex
-      className='process-create-section'
-      flexDirection='column'
-      gap={5}
-      p={{ base: 3, xl: 6 }}
-      bgColor={bgSecondary}
-      borderRadius={isSaas ? 'xl' : 'md'}
-    >
+    <Card variant='preview'>
       <Flex flexDirection='column' gap={6}>
         <Flex>
           <Text fontWeight='bold' textTransform='uppercase'>
@@ -157,7 +147,7 @@ const Preview = () => {
           />
         </Link>
       </Flex>
-    </Flex>
+    </Card>
   )
 }
 

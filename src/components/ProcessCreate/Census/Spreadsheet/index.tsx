@@ -21,15 +21,12 @@ import { Trans, useTranslation } from 'react-i18next'
 import { BiCheckDouble, BiDownload } from 'react-icons/bi'
 import { PiWarningCircleLight } from 'react-icons/pi'
 import { RiFileExcel2Line } from 'react-icons/ri'
-import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import { CensusSpreadsheetManager } from './CensusSpreadsheetManager'
 import { CsvGenerator } from './generator'
 import { CsvPreview } from './Preview'
 
 export const CensusCsvManager = () => {
   const { t } = useTranslation()
-  const isSaas = import.meta.env.SAAS_URL
-  const { bgSecondary } = useDarkMode()
   const {
     register,
     setValue,
@@ -153,11 +150,7 @@ export const CensusCsvManager = () => {
           </CardBody>
           <CardFooter>
             <Link download={'census-template.csv'} href={template.url}>
-              <Button
-                variant={isSaas ? 'outline' : 'secondary'}
-                colorScheme={isSaas && 'whiteAlpha'}
-                leftIcon={<BiDownload />}
-              >
+              <Button variant={'outline'} leftIcon={<BiDownload />}>
                 {t('form.process_create.spreadsheet.download_template_btn')}
               </Button>
             </Link>
@@ -171,18 +164,7 @@ export const CensusCsvManager = () => {
         isInvalid={!!errors?.spreadsheet}
         display={manager?.data.length ? 'none' : 'block'}
       >
-        <Flex
-          flexDirection='column'
-          justifyContent='center'
-          alignItems='center'
-          gap={5}
-          p={10}
-          border='1px dotted'
-          borderColor={'process_create.census.drag_and_drop_border'}
-          bgColor={isSaas ? bgSecondary : 'process_create.bg'}
-          borderRadius='xl'
-          cursor='pointer'
-        >
+        <Card variant='drag-and-drop'>
           <input {...getInputProps()} />
           <Icon as={RiFileExcel2Line} boxSize={20} color='process_create.spreadsheet.file' />
           <Box>
@@ -200,7 +182,7 @@ export const CensusCsvManager = () => {
               />
             )}
           </Box>
-        </Flex>
+        </Card>
         <FormErrorMessage display='flex' justifyContent='center'>
           {errors?.spreadsheet?.message?.toString()}
         </FormErrorMessage>

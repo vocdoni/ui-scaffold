@@ -92,5 +92,50 @@ export const Card = defineMultiStyleConfig({
         color: '#546E39',
       },
     },
+
+    'drag-and-drop': (props) => ({
+      container: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 5,
+        p: 10,
+        border: '1px dotted',
+        bgColor: mode('process_create.bg_secondary.light', 'process_create.bg_secondary.dark')(props),
+        borderRadius: 'xl',
+        cursor: 'pointer',
+      },
+    }),
+
+    'web3-addresses': (props) => ({
+      container: {
+        flexDirection: 'column',
+        minH: '220px',
+        overflowY: 'scroll',
+        borderRadius: 'xl',
+        my: 6,
+        bgColor: mode('process_create.bg_secondary.light', 'process_create.bg_secondary.dark')(props),
+      },
+    }),
+    preview: (props) => ({
+      container: {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 5,
+        p: { base: 3, xl: 6 },
+        bgColor: mode('process_create.bg_secondary.light', 'process_create.bg_secondary.dark')(props),
+        borderRadius: 'xl',
+      },
+    }),
+    confirm: (props) => ({
+      container: {
+        display: 'flex',
+        flex: { xl2: '0 0 25%' },
+        p: 6,
+        bgColor: mode('process_create.bg_secondary.light', 'process_create.bg_secondary.dark')(props),
+        borderRadius: 'xl',
+        minW: 76,
+      },
+    }),
   },
 })

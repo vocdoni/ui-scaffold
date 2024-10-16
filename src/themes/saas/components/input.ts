@@ -12,17 +12,20 @@ const variants = {
       fontSize: 'sm',
       borderRadius: 'xl',
       minW: 'full',
-      'background-color': mode('input.bg.light', '#303B4D')(props),
-      border: mode('1px solid #E2E8F0', '0.1px solid white')(props),
+      'background-color': mode('input.light.bg', '#303B4D')(props),
+      border: mode('1px solid', '0.1px solid')(props),
+      borderColor: mode('input.light.outline', 'input.dark.outline')(props),
 
       _hover: {
-        outline: mode('1px solid #E2E8F0', '.1px solid white')(props),
+        outline: mode('1px solid', '.1px solid')(props),
+        outlineColor: mode('input.light.outline', 'input.dark.outline')(props),
         outlineOffset: '0px',
       },
 
       _focus: {
-        outline: '2px solid #3965FF',
+        outline: '2px solid',
         outlineOffset: '0px',
+        outlineColor: '#3965FF',
         border: mode('1px solid transparent', '0.1px solid transparent')(props),
       },
     },
@@ -34,11 +37,13 @@ const variants = {
       p: 4,
       minH: '48px',
       borderRadius: 'xl',
-      'background-color': mode('input.bg.light', '#303B4D')(props),
-      border: mode('1px solid #E2E8F0', '0.1px solid white')(props),
+      'background-color': mode('input.light.bg', '#303B4D')(props),
+      border: mode('1px solid', '0.1px solid')(props),
+      borderColor: mode('input.light.outline', 'input.dark.outline')(props),
 
       _hover: {
-        outline: mode('1px solid #E2E8F0', '.1px solid white')(props),
+        outline: mode('1px solid', '.1px solid')(props),
+        outlineColor: mode('input.light.outline', 'input.dark.outline')(props),
         outlineOffset: '0px',
       },
 

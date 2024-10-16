@@ -1,11 +1,12 @@
 import { useColorModeValue } from '@chakra-ui/react'
+import { colorsBase } from '../colors'
 
 const useDarkMode = () => {
-  const bg = useColorModeValue('bg.light', 'bg.dark')
-  const bgSecondary = useColorModeValue('bg.secondary.light', 'bg.secondary.dark')
-  const textColor = useColorModeValue('text.light', 'text.dark')
+  const bg = useColorModeValue(colorsBase.white.dark, colorsBase.blue.dark)
+  const bgSecondary = useColorModeValue(colorsBase.white.pure, colorsBase.blue.grayish)
+  const textColor = useColorModeValue('black', 'white')
   const textColorSecondary = 'text.secondary'
-  const textColorBrand = 'text.brand'
+  const textColorBrand = colorsBase.primary
   const googleBg = useColorModeValue('gray.200', 'whiteAlpha.200')
   const googleHover = useColorModeValue({ bg: 'gray.300' }, { bg: 'whiteAlpha.300' })
   const googleActive = useColorModeValue({ bg: 'secondaryGray.300' }, { bg: 'whiteAlpha.200' })

@@ -8,8 +8,13 @@ export const Radio = defineMultiStyleConfig({
   baseStyle: definePartsStyle((props) => ({
     control: {
       _checked: {
-        bgColor: 'text.brand',
-        borderColor: 'text.brand',
+        bgColor: 'radio.bg',
+        borderColor: 'radio.color',
+
+        _hover: {
+          bgColor: 'radio.bg',
+          borderColor: 'radio.color',
+        },
       },
     },
   })),

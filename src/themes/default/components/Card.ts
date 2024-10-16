@@ -527,20 +527,69 @@ const downloadSpreadSheet = definePartsStyle({
   },
 })
 
+const dragAndDrop = definePartsStyle({
+  container: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 5,
+    p: 10,
+    border: '1px dotted',
+    bgColor: 'process_create.bg',
+    borderRadius: 'xl',
+    cursor: 'pointer',
+  },
+})
+
+const web3Addresses = definePartsStyle({
+  container: {
+    flexDirection: 'column',
+    minH: '220px',
+    overflowY: 'scroll',
+    borderRadius: 'md',
+    my: 6,
+    bgColor: 'process_create.bg',
+  },
+})
+
+const preview = definePartsStyle({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 5,
+    p: { base: 3, xl: 6 },
+    borderRadius: 'md',
+  },
+})
+
+const confirm = definePartsStyle({
+  container: {
+    display: 'flex',
+    flex: { xl2: '0 0 25%' },
+    p: 6,
+    borderRadius: 'md',
+    minW: 76,
+  },
+})
+
 const variantsCards = {
   aside,
   benefits,
   calculator,
   calendar,
   client,
+  confirm,
   detailed,
   'download-spreadsheet': downloadSpreadSheet,
+  'drag-and-drop': dragAndDrop,
   demo,
   faqs,
   'icon-card': iconCard,
   'image-card': imageCard,
   'no-elections': noElections,
+  preview,
   step,
   'types-voting': typesVoting,
+  'web3-addresses': web3Addresses,
 }
 export const Card = defineMultiStyleConfig({ variants: variantsCards })

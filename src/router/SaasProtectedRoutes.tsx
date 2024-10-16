@@ -3,7 +3,6 @@ import { useAuth } from '~components/Auth/useAuth'
 
 const ProtectedRoutes = () => {
   const { signerAddress } = useAuth()
-
   return <Outlet />
   return signerAddress ? <Outlet /> : <Navigate to='/' replace={true} />
 }

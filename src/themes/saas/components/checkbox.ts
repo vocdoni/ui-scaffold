@@ -10,15 +10,15 @@ export const Checkbox = defineMultiStyleConfig({
     control: {
       borderRadius: 'full',
       _checked: {
-        borderColor: 'brand.500',
-        bgColor: 'brand.500',
+        borderColor: 'checkbox.checked.border',
+        bgColor: 'checkbox.checked.bg',
       },
       _focus: {
         boxShadow: 'none',
       },
     },
     icon: {
-      color: 'white',
+      color: 'checkbox.icon',
     },
   },
   variants: {
@@ -31,7 +31,7 @@ export const Checkbox = defineMultiStyleConfig({
         alignItems: 'center',
         p: 4,
         boxShadow: 'var(--box-shadow)',
-        bgColor: mode('bg.secondary.light', 'bg.secondary.dark')(props),
+        bgColor: mode('checkbox.variant.radiobox.bg.light', 'checkbox.variant.radiobox.bg.dark')(props),
         borderRadius: 'xl',
 
         _hover: {
@@ -76,7 +76,7 @@ export const Checkbox = defineMultiStyleConfig({
           top: 1,
           right: 1,
           px: 2,
-          bgColor: 'text.brand',
+          bgColor: 'checkbox.bg',
           fontSize: 'sm',
           color: 'white',
         },

@@ -27,20 +27,20 @@ const card = definePartsStyle((props) => ({
     p: 4,
     px: 6,
     boxShadow: 'var(--box-shadow-darker)',
-    bgColor: mode('bg.secondary.light', 'bg.secondary.dark')(props),
+    bgColor: mode('tab.variant.card.bg.light', 'tab.variant.card.bg.dark')(props),
     borderBottom: 'none',
     color: mode('navy.700', 'white')(props),
     borderRadius: 'xl',
     w: 'full',
 
     '& > #description': {
-      color: 'text.secondary',
+      color: 'tab.variant.card.description',
       textAlign: 'start',
       fontSize: 'xs',
     },
 
     '& #pro-badge': {
-      bgColor: 'text.brand',
+      bgColor: 'tab.variant.card.badge_bg',
       borderRadius: '10px',
       position: 'absolute',
       top: '3px',
@@ -57,7 +57,6 @@ const card = definePartsStyle((props) => ({
       w: 'full',
       gap: 3,
       fontSize: 'sm',
-      color: mode('text.light', 'text.dark')(props),
 
       '& p': {
         fontWeight: 'bold',
@@ -74,13 +73,13 @@ const card = definePartsStyle((props) => ({
       h: 4,
       borderRadius: 'full',
       border: `1px solid`,
-      borderColor: 'text.secondary',
+      borderColor: 'tab.variant.card.border',
     },
 
     '& > svg': {
       w: 5,
       h: 5,
-      color: 'text.brand',
+      color: 'tab.variant.card.svg',
       position: 'absolute',
       top: 2,
       right: 2,

@@ -67,9 +67,7 @@ const Question = ({ index, remove }: Props) => {
 
       <Options fields={fields} removeOption={removeOption} appendOption={appendOption} index={index} />
 
-      <Text position='absolute' fontSize='100px' bottom={0} right={5} color='text.brand' opacity={0.2}>
-        {index + 1}
-      </Text>
+      <Text variant='question-index'>{index + 1}</Text>
     </Box>
   )
 }
@@ -98,8 +96,6 @@ const QuestionPage = ({ title, description, isMultiQuestion = false }: IQuestion
 
   const questions = watch('questions')
 
-  const isSaas = import.meta.env.SAAS_URL
-
   // If all questions deleted add a new empty question to the form
   useEffect(() => {
     if (questions.length === 0) {
@@ -112,35 +108,36 @@ const QuestionPage = ({ title, description, isMultiQuestion = false }: IQuestion
   }, [questions, append])
 
   return (
-    <Flex flexDirection='column' gap={5}>
+    <>
       <Box>
         <Text variant='process-create-title'>{title}</Text>
         <Text variant='process-create-subtitle-sm'>{description}</Text>
       </Box>
-      {fields.map((_, index) => (
-        <Question key={index} index={index} remove={remove} />
-      ))}
+      <Flex flexDirection='column' gap={6}>
+        {fields.map((_, index) => (
+          <Question key={index} index={index} remove={remove} />
+        ))}
 
-      {isMultiQuestion && (
-        <Button
-          type='button'
-          rightIcon={<AddIcon boxSize={3} />}
-          aria-label={t('form.process_create.question.add_question')}
-          onClick={() => {
-            append({
-              title: '',
-              description: '',
-              options: [{ option: '' }, { option: '' }],
-            })
-          }}
-          alignSelf='center'
-          variant={isSaas ? 'outline' : 'secondary'}
-          colorScheme={isSaas && 'whiteAlpha'}
-        >
-          {t('form.process_create.question.add_question')}
-        </Button>
-      )}
-    </Flex>
+        {isMultiQuestion && (
+          <Button
+            type='button'
+            rightIcon={<AddIcon boxSize={3} />}
+            aria-label={t('form.process_create.question.add_question')}
+            onClick={() => {
+              append({
+                title: '',
+                description: '',
+                options: [{ option: '' }, { option: '' }],
+              })
+            }}
+            alignSelf='center'
+            variant={'outline'}
+          >
+            {t('form.process_create.question.add_question')}
+          </Button>
+        )}
+      </Flex>
+    </>
   )
 }
 

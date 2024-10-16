@@ -6,7 +6,7 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
 const baseStyle = definePartsStyle({
   field: {
     borderRadius: 'md',
-
+    bgColor: 'white !important',
     _disabled: {
       backgroundColor: 'white',
       opacity: '0.8',

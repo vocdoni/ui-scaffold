@@ -2,11 +2,11 @@ import { DeleteIcon } from '@chakra-ui/icons'
 import {
   Box,
   Button,
+  Card,
   Checkbox,
   Flex,
   FormControl,
   FormErrorMessage,
-  FormLabel,
   Icon,
   IconButton,
   Input,
@@ -21,15 +21,12 @@ import { Trans, useTranslation } from 'react-i18next'
 import { BiCheckDouble } from 'react-icons/bi'
 import { RiFileExcel2Line } from 'react-icons/ri'
 import { addressTextOverflow, fieldMapErrorMessage, isInvalidFieldMap } from '~constants'
-import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import { Web3CensusSpreadsheetManager } from './Spreadsheet/Web3CensusSpreadsheetManager'
 
 export const CensusWeb3Addresses = () => {
   const { t } = useTranslation()
   const { account } = useClient()
-  const { bgSecondary } = useDarkMode()
   const [fileErr, setFileErr] = useState<string | null>(null)
-  const isSaas = import.meta.env.SAAS_URL
 
   const {
     register,
@@ -153,19 +150,12 @@ export const CensusWeb3Addresses = () => {
               />
               <FormErrorMessage>{fieldMapErrorMessage(errors, 'newAddress')}</FormErrorMessage>
             </Box>
-            <Button variant='outline' colorScheme={'whiteAlpha'} type='button' ml='none' onClick={handleAddAddress}>
+            <Button variant='outline' type='button' ml='none' onClick={handleAddAddress}>
               {t('form.process_create.census.add_button')}
             </Button>
           </FormControl>
 
-          <Flex
-            flexDirection='column'
-            minH='220px'
-            overflowY='scroll'
-            borderRadius={isSaas ? 'xl' : 'lg'}
-            bgColor={isSaas ? bgSecondary : 'gray.100'}
-            my={6}
-          >
+          <Card variant='web3-addresses'>
             {fields.map((address, index) => (
               <Flex
                 key={address.id}
@@ -197,10 +187,12 @@ export const CensusWeb3Addresses = () => {
                         maxH='2px'
                         p={3}
                       />
-                      <FormLabel fontSize='xs' m={0} ml={3} right={0} mb={0} pb={0}>
-                        {t('form.process_create.census.weight')}
-                      </FormLabel>
                     </FormControl>
+                  )}
+                  {weighted && (
+                    <Text fontWeight='bold' fontSize='xs' m='0 !important' ml={3} right={0} p={0}>
+                      {t('form.process_create.census.weight')}
+                    </Text>
                   )}
                   <IconButton
                     size='xs'
@@ -216,7 +208,7 @@ export const CensusWeb3Addresses = () => {
                 </Flex>
               </Flex>
             ))}
-          </Flex>
+          </Card>
           <Text variant='process-create-subtitle-sm'>{t('form.process_create.web3.your_wallet_is_added')}</Text>
           <Flex gap={1} justifyContent='center'>
             <Trans

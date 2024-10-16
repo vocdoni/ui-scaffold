@@ -11,7 +11,7 @@ const LayoutProcessCreate = () => {
   const { t } = useTranslation()
   const { bg } = useDarkMode()
   const navigate = useNavigate()
-  const isSaas = import.meta.env.SAAS_URL
+  const isSaas = import.meta.env.theme === 'saas'
 
   return (
     <Box bgColor={bg}>
@@ -31,7 +31,7 @@ const LayoutProcessCreate = () => {
             <Logo />
             <Flex gap={6}>
               {isSaas && (
-                <Button variant='outline' colorScheme='whiteAlpha' borderRadius='xl'>
+                <Button variant='outline' borderRadius='xl'>
                   Save draft
                 </Button>
               )}

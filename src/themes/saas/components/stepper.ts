@@ -7,11 +7,11 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
 const baseStyle = definePartsStyle((props) => ({
   indicator: {
     '&[data-status=complete]': {
-      background: 'text.brand',
+      background: 'process_create.stepper.bg',
     },
     '&[data-status=active]': {
-      borderColor: 'text.brand',
-      background: 'text.brand',
+      borderColor: 'process_create.stepper.color',
+      background: 'process_create.stepper.bg',
       color: 'white',
     },
   },
@@ -19,7 +19,7 @@ const baseStyle = definePartsStyle((props) => ({
     display: { base: 'none', lg: 'inline-block' },
     mt: { lg: 2 },
     '&[data-status=complete]': {
-      background: 'text.brand',
+      background: 'process_create.stepper.bg',
     },
   },
   stepper: {
