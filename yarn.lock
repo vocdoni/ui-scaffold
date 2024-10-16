@@ -9085,10 +9085,10 @@ tryer@^1.0.1:
   resolved "https://registry.yarnpkg.com/tryer/-/tryer-1.0.1.tgz#f2c85406800b9b0f74c9f7465b81eaad241252f8"
   integrity sha512-c3zayb8/kWWpycWYg87P71E1S1ZL6b6IJxfb5fvsUgsf0S2MVGaDhDXXjDMpdCpfWXqptc+4mXwmiy1ypXqRAA==
 
-ts-deepmerge@^6.2.0:
-  version "6.2.1"
-  resolved "https://registry.yarnpkg.com/ts-deepmerge/-/ts-deepmerge-6.2.1.tgz#4d564b44bc2a69e35a0b08bfa904ef176372e7dd"
-  integrity sha512-8CYSLazCyj0DJDpPIxOFzJG46r93uh6EynYjuey+bxcLltBeqZL7DMfaE5ZPzZNFlav7wx+2TDa/mBl8gkTYzw==
+ts-deepmerge@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/ts-deepmerge/-/ts-deepmerge-7.0.1.tgz#4b3dceb5a9b4308b7279d738c8d29834fbd5856b"
+  integrity sha512-JBFCmNenZdUCc+TRNCtXVM6N8y/nDQHAcpj5BlwXG/gnogjam1NunulB9ia68mnqYI446giMfpqeBFFkOleh+g==
 
 tsconfck@^3.0.3:
   version "3.1.4"
@@ -9129,10 +9129,15 @@ typedarray-to-buffer@3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typescript@^5.0.2, typescript@^5.0.4:
+typescript@^5.0.4:
   version "5.3.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.3.3.tgz#b3ce6ba258e72e6305ba66f5c9b452aaee3ffe37"
   integrity sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==
+
+typescript@^5.6.3:
+  version "5.6.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.6.3.tgz#5f3449e31c9d94febb17de03cc081dd56d81db5b"
+  integrity sha512-hjcS1mhfuyi4WW8IWtjP7brDrG2cuDZukyrYrSauoXGNgx0S7zceP07adYkJycEr56BOUTNPzbInooiN3fn1qw==
 
 ua-parser-js@^1.0.37:
   version "1.0.37"
