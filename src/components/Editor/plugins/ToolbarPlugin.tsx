@@ -430,8 +430,8 @@ export default function ToolbarPlugin({ setIsLinkEditMode }: { setIsLinkEditMode
         $isElementNode(matchingParent)
           ? matchingParent.getFormatType()
           : $isElementNode(node)
-          ? node.getFormatType()
-          : parent?.getFormatType() || 'left'
+            ? node.getFormatType()
+            : parent?.getFormatType() || 'left'
       )
     }
   }, [activeEditor])
