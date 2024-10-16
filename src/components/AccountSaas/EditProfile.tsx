@@ -15,40 +15,68 @@ import {
 import { REGEX_AVATAR } from '~constants'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import fallback from '/assets/default-avatar.png'
-import { useEditSaasOrganization, useSaasOrganization } from '~components/AccountSaas/queries'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
+import { useMutation, UseMutationOptions } from '@tanstack/react-query'
+import { useAuth } from '~components/Auth/useAuth'
+import { ApiEndpoints } from '~components/Auth/api'
+import { useSaasAccount } from '~components/AccountSaas/useSaasAccount'
+import { useClient } from '@vocdoni/react-providers'
+import { Account } from '@vocdoni/sdk'
 
 type FormData = CustomOrgFormData & PrivateOrgFormData & CreateOrgParams
 
+const useEditSaasOrganization = (options?: Omit<UseMutationOptions<void, Error, CreateOrgParams>, 'mutationFn'>) => {
+  const { bearedFetch, signerAddress } = useAuth()
+  return useMutation<void, Error, CreateOrgParams>({
+    mutationFn: (params: CreateOrgParams) =>
+      bearedFetch<void>(ApiEndpoints.ORGANIZATION.replace('{address}', signerAddress), {
+        body: params,
+        method: 'PUT',
+      }),
+    ...options,
+  })
+}
+
 const EditProfile = () => {
   const { t } = useTranslation()
+  const {
+    updateAccount,
+    loading: { update: isUpdateLoading },
+    errors: { update: updateError },
+  } = useClient()
+  const { organization } = useSaasAccount()
 
-  const { data } = useSaasOrganization()
-  const { mutate, isPending, isError, error, isSuccess } = useEditSaasOrganization()
+  const {
+    mutateAsync,
+    isPending: isSaasPending,
+    isError: isSaasError,
+    error: saasError,
+    isSuccess,
+  } = useEditSaasOrganization()
 
   const methods = useForm<FormData>({
     defaultValues: {
-      name: data?.name || '',
-      website: data?.website || '',
-      description: data?.description || '',
-      sizeSelect: data?.size && {
-        value: data.size,
+      name: organization?.account.name.default || '',
+      website: organization?.website || '',
+      description: organization?.account.description.default || '',
+      sizeSelect: organization?.size && {
+        value: organization.size,
       },
-      typeSelect: data?.type && {
-        value: data.type,
+      typeSelect: organization?.type && {
+        value: organization.type,
       },
-      countrySelect: data?.country && {
-        value: data.country || '',
+      countrySelect: organization?.country && {
+        value: organization.country || '',
       },
-      communications: data?.communications || false,
-      timeZoneSelect: data?.timezone && {
-        value: data.timezone,
+      communications: organization?.communications || false,
+      timeZoneSelect: organization?.timezone && {
+        value: organization.timezone,
       },
-      languageSelect: data?.language && {
-        value: data.language,
+      languageSelect: organization?.language && {
+        value: organization.language,
       },
-      logo: data?.logo || '',
-      header: data?.header || '',
+      logo: organization?.account.avatar || '',
+      header: organization?.header || '',
     },
   })
 
@@ -56,22 +84,25 @@ const EditProfile = () => {
 
   const onSubmit: SubmitHandler<FormData> = async (values: FormData) => {
     const newInfo: CreateOrgParams = {
-      name: values.name,
       website: values.website,
-      description: values.description,
       size: values.sizeSelect?.value,
       type: values.typeSelect?.value,
       country: values.countrySelect?.value,
       timezone: values.timeZoneSelect.value,
       language: values.languageSelect.value,
-      logo: values.logo,
-      header: values.header,
     }
-    mutate({
-      ...data,
-      ...newInfo,
-    })
+
+    await mutateAsync({ ...organization, ...newInfo })
+    const newAccount = new Account({ ...organization?.account, ...values })
+    // Check if account changed before trying to update
+    if (JSON.stringify(newAccount.generateMetadata()) !== JSON.stringify(organization?.account.generateMetadata())) {
+      updateAccount(newAccount)
+    }
   }
+
+  const isPending = isUpdateLoading || isSaasPending
+  const isError = isSaasError || !!updateError
+  const error = saasError || updateError
 
   return (
     <FormProvider {...methods}>
@@ -106,6 +137,7 @@ const EditProfile = () => {
               })}
             </Button>
             <FormSubmitMessage
+              isLoading={isPending}
               isError={isError}
               error={error}
               isSuccess={isSuccess}

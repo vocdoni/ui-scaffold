@@ -65,8 +65,8 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
       .then(() => signer.getAddress()) // Get the address of newly created signer
       .then(() =>
         createAccount({
-          name: values.name,
-          description: values.description,
+          name: typeof values.name === 'object' ? values.name.default : values.name,
+          description: typeof values.description === 'object' ? values.description.default : values.description,
         })
       ) // Create the new account on the vochain
       .finally(() => setIsPending(false))
