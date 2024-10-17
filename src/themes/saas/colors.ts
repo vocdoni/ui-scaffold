@@ -57,6 +57,11 @@ export const colors = {
       light: colorsBase.gray.dark,
       dark: colorsBase.white.pure,
     },
+    footer: {
+      icon: {
+        light: colorsBase.black,
+      },
+    },
   },
   checkbox: {
     bg: colorsBase.primary,
