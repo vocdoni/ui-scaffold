@@ -3,8 +3,8 @@ import { ChakraStylesConfig, GroupBase, Select, Props as SelectProps } from 'cha
 import { Controller, useFormContext } from 'react-hook-form'
 import { ControllerProps } from 'react-hook-form/dist/types'
 import { useTranslation } from 'react-i18next'
-import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import { LanguagesSlice } from '~i18n/languages.mjs'
+import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 
 export type SelectOptionType = {
   label: string
@@ -109,17 +109,8 @@ export const OrganzationTypesSelector = ({ ...props }: Omit<SelectCustomProps, '
   const { t } = useTranslation()
 
   const orgTypes: SelectOptionType[] = [
-    { label: t('org_type_selector.assembly', { defaultValue: 'Assembly' }), value: 'assembly' },
-    { label: t('org_type_selector.association', { defaultValue: 'Association' }), value: 'association' },
-    { label: t('org_type_selector.chamber', { defaultValue: 'Chamber' }), value: 'chamber' },
-    { label: t('org_type_selector.church', { defaultValue: 'Church' }), value: 'church' },
-    { label: t('org_type_selector.city', { defaultValue: 'City/Municipality' }), value: 'city_municipality' },
     { label: t('org_type_selector.company', { defaultValue: 'Company' }), value: 'company' },
-    { label: t('org_type_selector.cooperative', { defaultValue: 'Cooperative' }), value: 'cooperative' },
-    { label: t('org_type_selector.party', { defaultValue: 'Party' }), value: 'party' },
-    { label: t('org_type_selector.university', { defaultValue: 'University' }), value: 'university' },
-    { label: t('org_type_selector.union', { defaultValue: 'Union' }), value: 'union' },
-    { label: t('org_type_selector.others', { defaultValue: 'Others' }), value: 'others' },
+    { label: t('org_type_selector.community', { defaultValue: 'Community' }), value: 'community' },
   ]
 
   return (

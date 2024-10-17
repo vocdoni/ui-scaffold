@@ -90,8 +90,8 @@ const SignUp = () => {
               <Trans
                 i18nKey='signup_agree_terms'
                 components={{
-                  termsLink: <Link as={ReactRouterLink} to='/terms' />,
-                  privacyLink: <Link as={ReactRouterLink} to='/privacy' />,
+                  termsLink: <Link isExternal as={ReactRouterLink} to='/terms' />,
+                  privacyLink: <Link isExternal as={ReactRouterLink} to='/privacy' />,
                 }}
               />
             }
