@@ -49,7 +49,7 @@ jobs:
           CSP_PUBKEY: ${{ secrets.CSP_PUBKEY }}
           STRIPE_PUBLIC_KEY: pk_test_51P6vaOI1T5UnHYElxQ2aqpc7DZET6spnYww8ItU7rOv94OTHlGzvh4fK3Z5HVTGT2KmGLnDCcUnvBUjODYiL61W600XBPAnoZZ
           THEME: saas
-          SAAS_URL: https://saas-dev.vocdoni.app/
+          SAAS_URL: https://saas-api-dev.vocdoni.net/
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2.0
@@ -110,7 +110,7 @@ jobs:
           CSP_PUBKEY: ${{ secrets.CSP_PUBKEY }}
           STRIPE_PUBLIC_KEY: pk_test_51PNuOtDW6VLep8WG8WFS7KZocugbzYbkuNn94WAxuGZUa1maPK7kv5BnEPN3x5bXLaCYhHRkBmmGJVVvcDkbbnbS00V4LExTPD
           THEME: saas
-          SAAS_URL: https://saas-dev.vocdoni.app/
+          SAAS_URL: https://saas-api-dev.vocdoni.net/
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2.0
