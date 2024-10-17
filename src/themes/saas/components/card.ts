@@ -158,7 +158,7 @@ export const Card = defineMultiStyleConfig({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        filter: 'grayscale(100%)',
+        filter: mode('grayscale(100%)', 'grayscale(0%)')(props),
         h: { base: '35px', lg: '45px' },
       },
       body: {
@@ -382,6 +382,19 @@ export const Card = defineMultiStyleConfig({
         '& p': {
           color: mode('home.description.light !important', 'home.description.dark !important')(props),
         },
+      },
+    }),
+    solutions: (props) => ({
+      container: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 2,
+        borderRadius: 'md',
+        boxShadow: 'var(--box-shadow)',
+        p: 3,
+        bgColor: mode('home.solutions.light_bg', 'home.solutions.dark_bg')(props),
+        fontWeight: 'bold',
       },
     }),
   },

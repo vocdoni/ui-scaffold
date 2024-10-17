@@ -9,7 +9,7 @@ const Solutions = () => {
     <Flex
       id='solutions'
       as='section'
-      width='full'
+      maxW='1920px'
       m='0 auto'
       px={{
         base: '10px',
@@ -96,51 +96,20 @@ const Solutions = () => {
           }}
           w={{ base: '85%', sm: 'fit-content' }}
         >
-          <Flex
-            alignItems='center'
-            gap={2}
-            borderRadius='md'
-            boxShadow='rgba(12, 8, 0, 0.03) 0px 2px 4.8px -1px, rgba(12, 8, 0, 0.06) 0px 4.4px 12px -1px'
-            p={3}
-            bgColor='white'
-            fontWeight='bold'
-          >
-            <Box minW='25px'>
-              <FaCircleCheck size={22} />
-            </Box>
+          <Card variant='solutions'>
+            <FaCircleCheck size={22} />
             <Text as='span'> {t('home.solutions.img_card_1')}</Text>
-          </Flex>
-          <Flex
-            alignItems='center'
-            gap={2}
-            borderRadius='md'
-            boxShadow='rgba(12, 8, 0, 0.03) 0px 2px 4.8px -1px, rgba(12, 8, 0, 0.06) 0px 4.4px 12px -1px'
-            p={3}
-            bgColor='white'
-            fontWeight='bold'
-          >
-            <Box minW='25px'>
-              <FaCircleCheck size={22} />
-            </Box>
-
+          </Card>
+          <Card variant='solutions'>
+            <FaCircleCheck size={22} />
             <Text as='span'> {t('home.solutions.img_card_2')}</Text>
-          </Flex>
-          <Flex
-            alignItems={{ base: 'start', sm: 'center' }}
-            gap={2}
-            borderRadius='md'
-            boxShadow='rgba(12, 8, 0, 0.03) 0px 2px 4.8px -1px, rgba(12, 8, 0, 0.06) 0px 4.4px 12px -1px'
-            p={3}
-            bgColor='white'
-            fontWeight='bold'
-          >
-            <Box minW='25px'>
-              <FaCircleCheck size={22} />
-            </Box>
+          </Card>
+          <Card variant='solutions'>
+            <FaCircleCheck size={22} />
             <Text as='span' whiteSpace={{ sm: 'nowrap' }}>
               {t('home.solutions.img_card_3')}
             </Text>
-          </Flex>
+          </Card>
         </Flex>
       </Box>
     </Flex>

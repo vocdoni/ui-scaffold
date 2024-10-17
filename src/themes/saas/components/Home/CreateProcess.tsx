@@ -50,34 +50,18 @@ const CreateProcess = () => {
           {t('home.create_process.subtitle')}
         </Text>
         <Box maxW={{ lg: '90%' }}>
-          {isConnected && (
-            <Button
-              mb='20px'
-              w={{ base: 'full', sm: 'fit-content', lg: 'full' }}
-              mx={{ base: 'auto', lg: 'start' }}
-              as={ReactRouterLink}
-              to='/processes/create'
-              minW='300px'
-            >
-              {t('home.create_process.btn')}
-            </Button>
-          )}
-
-          {!isConnected && (
-            <Button
-              mb='20px'
-              w={{ base: 'full', sm: 'fit-content', lg: 'full' }}
-              mx={{ base: 'auto', lg: 'start' }}
-              height='62px'
-              fontSize='20px'
-              minW='300px'
-              onClick={() => {
-                if (openConnectModal) openConnectModal()
-              }}
-            >
-              {t('home.create_process.btn')}
-            </Button>
-          )}
+          <Button
+            as={ReactRouterLink}
+            to='/account/signin'
+            mb='20px'
+            w={{ base: 'full', sm: 'fit-content', lg: 'full' }}
+            mx={{ base: 'auto', lg: 'start' }}
+            height='62px'
+            fontSize='20px'
+            minW='300px'
+          >
+            {t('home.create_process.btn')}
+          </Button>
 
           <Flex
             justifyContent='center'

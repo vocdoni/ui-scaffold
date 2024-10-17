@@ -44,6 +44,10 @@ export const colors = {
       icon: colorsBase.white.pure,
       icon_bg: colorsBase.primary,
     },
+    solutions: {
+      light_bg: colorsBase.white.pure,
+      dark_bg: colorsBase.blue.grayish,
+    },
     support: {
       bg: colorsBase.primary,
       helper: colorsBase.white.pure,
