@@ -1,12 +1,12 @@
 import { Box, Button, Divider, Flex, FormControl, FormErrorMessage, Heading, Input, Text } from '@chakra-ui/react'
+import { useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink, useNavigate, useSearchParams } from 'react-router-dom'
-import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
-import { useAuth } from '~components/Auth/useAuth'
-import { Loading } from '~src/router/SuspenseLoader'
-import { useCallback, useEffect, useState } from 'react'
 import { useResendVerificationMail } from '~components/Auth/authQueries'
+import { useAuth } from '~components/Auth/useAuth'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
+import { Loading } from '~src/router/SuspenseLoader'
+import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 
 const Verify = () => {
   const navigate = useNavigate()
@@ -159,7 +159,7 @@ export const VerifyAccountNeeded = ({ email }: IVerifyAccountProps) => {
       {import.meta.env.VOCDONI_ENVIRONMENT === 'dev' && (
         <>
           <Divider />
-          <Button mt={4} as={ReactRouterLink} to={`/account/verify?email=${email}&code=`}>
+          <Button mt={4} as={ReactRouterLink} to={`/account/verify?email=${encodeURIComponent(email)}`}>
             Mail verification for dev envs
           </Button>
         </>
