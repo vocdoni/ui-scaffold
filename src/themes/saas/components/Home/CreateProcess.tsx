@@ -14,7 +14,14 @@ const CreateProcess = () => {
   return (
     <Flex
       as='section'
-      className='site-wrapper'
+      width='full'
+      m='0 auto'
+      maxW='1920px'
+      px={{
+        base: '10px',
+        sm: '20px',
+        md: '80px',
+      }}
       flexDirection={{ base: 'column', lg: 'row' }}
       py={{ base: '0px', sm: '15px', md: '30px', md2: '30px', lg: '30px' }}
       gap={{ base: '40px', lg: '60px' }}
@@ -32,10 +39,10 @@ const CreateProcess = () => {
           {t('home.create_process.title')}
         </Text>
         <Text
+          variant='home-description-color'
           fontSize='24px'
           lineHeight='35px'
           fontFamily='basier'
-          color='home.description'
           mt='52px'
           mb='52px'
           textAlign={{ base: 'center', lg: 'start' }}
@@ -43,34 +50,18 @@ const CreateProcess = () => {
           {t('home.create_process.subtitle')}
         </Text>
         <Box maxW={{ lg: '90%' }}>
-          {isConnected && (
-            <Button
-              mb='20px'
-              w={{ base: 'full', sm: 'fit-content', lg: 'full' }}
-              mx={{ base: 'auto', lg: 'start' }}
-              as={ReactRouterLink}
-              to='/processes/create'
-              minW='300px'
-            >
-              {t('home.create_process.btn')}
-            </Button>
-          )}
-
-          {!isConnected && (
-            <Button
-              mb='20px'
-              w={{ base: 'full', sm: 'fit-content', lg: 'full' }}
-              mx={{ base: 'auto', lg: 'start' }}
-              height='62px'
-              fontSize='20px'
-              minW='300px'
-              onClick={() => {
-                if (openConnectModal) openConnectModal()
-              }}
-            >
-              {t('home.create_process.btn')}
-            </Button>
-          )}
+          <Button
+            as={ReactRouterLink}
+            to='/account/signin'
+            mb='20px'
+            w={{ base: 'full', sm: 'fit-content', lg: 'full' }}
+            mx={{ base: 'auto', lg: 'start' }}
+            height='62px'
+            fontSize='20px'
+            minW='300px'
+          >
+            {t('home.create_process.btn')}
+          </Button>
 
           <Flex
             justifyContent='center'

@@ -1,141 +1,39 @@
 import { mode } from '@chakra-ui/theme-tools'
 import { defineStyleConfig } from '@chakra-ui/styled-system'
 
-export const Button = defineStyleConfig({
-  baseStyle: {
-    borderRadius: '16px',
-    boxShadow: '45px 76px 113px 7px rgba(112, 144, 176, 0.08)',
-    transition: '.25s all ease',
-    boxSizing: 'border-box',
-    minW: 0,
+const commonStyles = (props: any) => {
+  const { colorScheme } = props
+  return {
+    display: 'flex',
+    gap: 3,
+    bg: props.colorScheme === 'whiteAlpha' ? 'white' : `${colorScheme}.500`,
+    color: props.colorScheme === 'whiteAlpha' ? 'black' : 'white',
     _focus: {
-      boxShadow: 'none',
+      bg: `${colorScheme}.500`,
+    },
+    _hover: {
+      bg: `${colorScheme}.600`,
     },
     _active: {
-      boxShadow: 'none',
+      bg: `${colorScheme}.700`,
     },
-  },
+  }
+}
+
+export const Button = defineStyleConfig({
   variants: {
-    outline: () => ({
-      borderRadius: '16px',
-    }),
     brand: (props: any) => ({
-      borderRadius: 'lg',
-      bg: mode('brand.500', 'brand.500')(props),
-      color: 'white',
-      _focus: {
-        bg: mode('brand.500', 'brand.500')(props),
-      },
-      _active: {
-        bg: mode('brand.700', 'brand.700')(props),
-      },
-      _hover: {
-        bg: mode('brand.600', 'brand.600')(props),
-      },
+      ...commonStyles(props),
+      borderRadius: 'xl',
     }),
-    darkBrand: (props: any) => ({
-      bg: mode('brand.900', 'brand.400')(props),
-      color: 'white',
-      _focus: {
-        bg: mode('brand.900', 'brand.400')(props),
-      },
-      _active: {
-        bg: mode('brand.900', 'brand.400')(props),
-      },
-      _hover: {
-        bg: mode('brand.800', 'brand.400')(props),
-      },
-    }),
-    lightBrand: (props: any) => ({
-      bg: mode('#F2EFFF', 'whiteAlpha.100')(props),
-      color: mode('brand.500', 'white')(props),
-      _focus: {
-        bg: mode('#F2EFFF', 'whiteAlpha.100')(props),
-      },
-      _active: {
-        bg: mode('secondaryGray.300', 'whiteAlpha.100')(props),
-      },
-      _hover: {
-        bg: mode('secondaryGray.400', 'whiteAlpha.200')(props),
-      },
-    }),
-    light: (props: any) => ({
-      bg: mode('secondaryGray.300', 'whiteAlpha.100')(props),
-      color: mode('secondaryGray.900', 'white')(props),
-      _focus: {
-        bg: mode('secondaryGray.300', 'whiteAlpha.100')(props),
-      },
-      _active: {
-        bg: mode('secondaryGray.300', 'whiteAlpha.100')(props),
-      },
-      _hover: {
-        bg: mode('secondaryGray.400', 'whiteAlpha.200')(props),
-      },
-    }),
-    action: (props: any) => ({
-      fontWeight: '500',
-      borderRadius: '50px',
-      bg: mode('secondaryGray.300', 'brand.400')(props),
-      color: mode('brand.500', 'white')(props),
-      _focus: {
-        bg: mode('secondaryGray.300', 'brand.400')(props),
-      },
-      _active: { bg: mode('secondaryGray.300', 'brand.400')(props) },
-      _hover: {
-        bg: mode('secondaryGray.200', 'brand.400')(props),
-      },
-    }),
-    setup: (props: any) => ({
-      fontWeight: '500',
-      borderRadius: '50px',
-      bg: mode('transparent', 'brand.400')(props),
-      border: mode('1px solid', '0px solid')(props),
-      borderColor: mode('secondaryGray.400', 'transparent')(props),
-      color: mode('secondaryGray.900', 'white')(props),
-      _focus: {
-        bg: mode('transparent', 'brand.400')(props),
-      },
-      _active: { bg: mode('transparent', 'brand.400')(props) },
-      _hover: {
-        bg: mode('secondaryGray.100', 'brand.400')(props),
-      },
-    }),
-    dashboard: (props: any) => ({
-      display: 'flex',
-      fontWeight: '500',
-      borderRadius: '50px',
-      color: mode('gray.400', 'white')(props),
-
-      '& span:nth-of-type(2)': {
-        ml: 'auto',
-      },
-
-      _active: {
-        color: mode('black', 'brand.400')(props),
-        fontWeight: mode('bold', 'bold')(props),
-        '& span:first-of-type': {
-          color: mode('brand.400', 'brand.400')(props),
-        },
-      },
-      _hover: {
-        '& span:first-of-type': {
-          color: mode('brand.300', 'brand.300')(props),
-        },
-      },
-    }),
-    'pricing-card': (props: any) => ({
-      display: 'flex',
-      fontWeight: '500',
-      borderRadius: '50px',
-      color: 'white',
-      minW: '100%',
-      width: '100%',
-      bgColor: '#546E39',
-      h: '30px',
+    outline: (props: any) => ({ borderRadius: 'full', bgColor: 'white' }),
+    rounded: (props: any) => ({
+      ...commonStyles(props),
+      borderRadius: 'full',
     }),
   },
   defaultProps: {
-    colorScheme: 'primary',
+    colorScheme: 'brand',
     variant: 'brand',
   },
 })

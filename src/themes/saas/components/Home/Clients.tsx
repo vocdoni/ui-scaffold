@@ -16,12 +16,25 @@ const Clients = () => {
 
   return (
     <>
-      <Text color='home.description' textAlign='center' mb='52px' mt='100px' fontFamily='basier' fontSize='23px'>
+      <Text
+        variant='home-description-color'
+        textAlign='center'
+        mb='52px'
+        mt='100px'
+        fontFamily='basier'
+        fontSize='23px'
+      >
         {t('home.clients_title')}
       </Text>
       <Grid
         as='section'
-        className='site-wrapper'
+        width='full'
+        m='0 auto'
+        px={{
+          base: '10px',
+          sm: '20px',
+          md: '80px',
+        }}
         maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '900px' }}
         flexDirection={{ base: 'column', sm: 'row' }}
         justifyContent='center'

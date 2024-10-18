@@ -16,7 +16,18 @@ const Features = () => {
   const { t } = useTranslation()
 
   return (
-    <Box id='features' className='site-wrapper' py={{ base: '60px', lg: '100px' }}>
+    <Box
+      id='features'
+      width='full'
+      m='0 auto'
+      maxW='1920px'
+      px={{
+        base: '10px',
+        sm: '20px',
+        md: '80px',
+      }}
+      py={{ base: '60px', lg: '100px' }}
+    >
       <Box mb='80px' margin='-20px auto 125px' maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}>
         <Text
           fontSize={{ base: '40px', xl: '60px' }}
@@ -29,13 +40,13 @@ const Features = () => {
           {t('home.features.title')}
         </Text>
         <Text
+          variant='home-description-color'
           mb='60px'
           maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}
           mx='auto'
           textAlign='center'
           fontFamily='basier'
           fontSize='20px'
-          color='home.description'
           margin='0px auto'
         >
           {t('home.features.subtitle_1')}
