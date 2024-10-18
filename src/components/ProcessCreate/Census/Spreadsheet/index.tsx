@@ -113,36 +113,38 @@ export const CensusCsvManager = () => {
               </Text>
             </ListItem>
           </UnorderedList>
-          <Controller
-            control={control}
-            name='weightedVote'
-            defaultValue={weighted}
-            render={({ field: { onChange, onBlur, value, ref } }) => (
-              <Checkbox
-                onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                  if (!manager) {
-                    return setValue('weightedVote', event.target.checked)
-                  }
-                  if (window.confirm(t('form.process_create.confirm_spreadsheet_removal'))) {
-                    setValue('spreadsheet', undefined)
-                    setValue('weightedVote', event.target.checked)
-                  }
-                }}
-                onBlur={onBlur}
-                ref={ref}
-                isChecked={value}
-                variant={'radiobox'}
-              >
-                <Flex>
-                  <Icon as={BiCheckDouble} />
-                  <Text>
-                    <Trans i18nKey='form.process_create.weighted'>Weighted vote</Trans>
-                  </Text>
-                </Flex>
-                <Text>{t('form.process_create.spreadsheet.requirements.list_three')}</Text>
-              </Checkbox>
-            )}
-          />
+          <FormControl>
+            <Controller
+              control={control}
+              name='weightedVote'
+              defaultValue={weighted}
+              render={({ field: { onChange, onBlur, value, ref } }) => (
+                <Checkbox
+                  onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                    if (!manager) {
+                      return setValue('weightedVote', event.target.checked)
+                    }
+                    if (window.confirm(t('form.process_create.confirm_spreadsheet_removal'))) {
+                      setValue('spreadsheet', undefined)
+                      setValue('weightedVote', event.target.checked)
+                    }
+                  }}
+                  onBlur={onBlur}
+                  ref={ref}
+                  isChecked={value}
+                  variant={'radiobox'}
+                >
+                  <Flex>
+                    <Icon as={BiCheckDouble} />
+                    <Text>
+                      <Trans i18nKey='form.process_create.weighted'>Weighted vote</Trans>
+                    </Text>
+                  </Flex>
+                  <Text>{t('form.process_create.spreadsheet.requirements.list_three')}</Text>
+                </Checkbox>
+              )}
+            />
+          </FormControl>
         </Flex>
         <Card variant='download-spreadsheet'>
           <CardBody>

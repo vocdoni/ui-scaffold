@@ -4,7 +4,6 @@ import { mode } from '@chakra-ui/theme-tools'
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(checkboxAnatomy.keys)
 
-// Manteniendo la estructura original
 export const Checkbox = defineMultiStyleConfig({
   baseStyle: {
     control: {
