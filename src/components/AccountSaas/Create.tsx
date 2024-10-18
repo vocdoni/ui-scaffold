@@ -9,11 +9,11 @@ import { useState } from 'react'
 import { useAccountCreate } from '~components/Account/useAccountCreate'
 import { CreateOrgParams } from '~components/AccountSaas/AccountTypes'
 import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from '~components/AccountSaas/Layout'
+import LogoutBtn from '~components/AccountSaas/LogoutBtn'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
-import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
-import LogoutBtn from '~components/AccountSaas/LogoutBtn'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
+import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 
 type FormData = PrivateOrgFormData & CreateOrgParams
 
@@ -30,7 +30,7 @@ const useSaasAccountCreate = (options?: Omit<UseMutationOptions<void, Error, Cre
   const { bearedFetch } = useAuth()
   return useMutation<void, Error, CreateOrgParams>({
     mutationFn: (params: CreateOrgParams) =>
-      bearedFetch<void>(ApiEndpoints.ORGANIZATIONS, { body: params, method: 'POST' }),
+      bearedFetch<void>(ApiEndpoints.Organizations, { body: params, method: 'POST' }),
     ...options,
   })
 }

@@ -13,13 +13,13 @@ import {
   Thead,
   Tr,
 } from '@chakra-ui/react'
-import { useState } from 'react'
-import Invite from './Invite'
-import { useAuth } from '~components/Auth/useAuth'
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
-import { ApiEndpoints } from '~components/Auth/api'
+import { useState } from 'react'
 import { Trans } from 'react-i18next'
+import { ApiEndpoints } from '~components/Auth/api'
+import { useAuth } from '~components/Auth/useAuth'
 import QueryDataLayout from '~components/Layout/QueryDataLayout'
+import Invite from './Invite'
 
 type UserInfo = {
   email: string
@@ -43,7 +43,7 @@ const useTeamMembers = ({
   return useQuery({
     queryKey: ['organizations', 'members', signerAddress],
     queryFn: () =>
-      bearedFetch<ITeamMembersResponse>(ApiEndpoints.ORGANIZATION_MEMBERS.replace('{address}', signerAddress)),
+      bearedFetch<ITeamMembersResponse>(ApiEndpoints.OrganizationMembers.replace('{address}', signerAddress)),
     ...options,
   })
 }

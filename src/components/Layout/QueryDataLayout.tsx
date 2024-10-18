@@ -1,5 +1,5 @@
-import ErrorComponent from '~components/Layout/ErrorComponent'
 import { PropsWithChildren } from 'react'
+import ErrorComponent from '~components/Layout/ErrorComponent'
 import { Loading } from '~src/router/SuspenseLoader'
 
 interface IUserQueryLayout {
@@ -19,7 +19,7 @@ const QueryDataLayout = ({ isLoading, isEmpty, isError, error, children }: IUser
   if (isEmpty) {
     return null
   }
-  return <>{children}</>
+  return children
 }
 
 export default QueryDataLayout

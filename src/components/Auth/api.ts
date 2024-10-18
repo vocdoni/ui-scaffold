@@ -1,14 +1,14 @@
 type MethodTypes = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
 export enum ApiEndpoints {
-  LOGIN = 'auth/login',
-  REFRESH = 'auth/refresh',
-  REGISTER = 'users',
-  ORGANIZATIONS = 'organizations',
-  ORGANIZATION = 'organizations/{address}',
-  ORGANIZATION_MEMBERS = 'organizations/{address}/members',
-  VERIFY = 'users/verify',
-  VERIFY_RESEND = 'users/verify/code',
+  Login = 'auth/login',
+  Refresh = 'auth/refresh',
+  Register = 'users',
+  Organizations = 'organizations',
+  Organization = 'organizations/{address}',
+  OrganizationMembers = 'organizations/{address}/members',
+  Verify = 'users/verify',
+  VerifyResend = 'users/verify/code',
 }
 
 interface IApiError {

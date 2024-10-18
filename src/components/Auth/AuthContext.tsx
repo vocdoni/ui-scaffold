@@ -5,7 +5,7 @@ export const AuthContext = createContext<ReturnType<typeof useAuthProvider> | un
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   if (!import.meta.env.SAAS_URL) {
-    return <>{children}</>
+    return children
   }
   const auth = useAuthProvider()
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>

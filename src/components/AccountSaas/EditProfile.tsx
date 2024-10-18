@@ -1,5 +1,8 @@
 import { AspectRatio, Box, Flex, FormControl, FormLabel, IconButton, Image, Input, Text } from '@chakra-ui/react'
+import { useMutation, UseMutationOptions } from '@tanstack/react-query'
 import { Button } from '@vocdoni/chakra-components'
+import { useClient } from '@vocdoni/react-providers'
+import { Account } from '@vocdoni/sdk'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { BiTrash } from 'react-icons/bi'
@@ -7,6 +10,10 @@ import { BsFillTrashFill } from 'react-icons/bs'
 import { MdBrowserUpdated } from 'react-icons/md'
 import { CreateOrgParams } from '~components/AccountSaas/AccountTypes'
 import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from '~components/AccountSaas/Layout'
+import { useSaasAccount } from '~components/AccountSaas/useSaasAccount'
+import { ApiEndpoints } from '~components/Auth/api'
+import { useAuth } from '~components/Auth/useAuth'
+import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import {
   CustomizationLanguageSelector,
   CustomizationTimeZoneSelector,
@@ -15,13 +22,6 @@ import {
 import { REGEX_AVATAR } from '~constants'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import fallback from '/assets/default-avatar.png'
-import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
-import { useMutation, UseMutationOptions } from '@tanstack/react-query'
-import { useAuth } from '~components/Auth/useAuth'
-import { ApiEndpoints } from '~components/Auth/api'
-import { useSaasAccount } from '~components/AccountSaas/useSaasAccount'
-import { useClient } from '@vocdoni/react-providers'
-import { Account } from '@vocdoni/sdk'
 
 type FormData = CustomOrgFormData & PrivateOrgFormData & CreateOrgParams
 
@@ -29,7 +29,7 @@ const useEditSaasOrganization = (options?: Omit<UseMutationOptions<void, Error, 
   const { bearedFetch, signerAddress } = useAuth()
   return useMutation<void, Error, CreateOrgParams>({
     mutationFn: (params: CreateOrgParams) =>
-      bearedFetch<void>(ApiEndpoints.ORGANIZATION.replace('{address}', signerAddress), {
+      bearedFetch<void>(ApiEndpoints.Organization.replace('{address}', signerAddress), {
         body: params,
         method: 'PUT',
       }),

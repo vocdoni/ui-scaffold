@@ -26,7 +26,7 @@ export interface IResendVerificationParams {
 
 export const useLogin = (options?: Omit<UseMutationOptions<LoginResponse, Error, ILoginParams>, 'mutationFn'>) => {
   return useMutation<LoginResponse, Error, ILoginParams>({
-    mutationFn: (params: ILoginParams) => api<LoginResponse>(ApiEndpoints.LOGIN, { body: params, method: 'POST' }),
+    mutationFn: (params: ILoginParams) => api<LoginResponse>(ApiEndpoints.Login, { body: params, method: 'POST' }),
     ...options,
   })
 }
@@ -36,7 +36,7 @@ export const useRegister = (
 ) => {
   return useMutation<LoginResponse, Error, IRegisterParams>({
     mutationFn: (params: IRegisterParams) =>
-      api<LoginResponse>(ApiEndpoints.REGISTER, { body: params, method: 'POST' }),
+      api<LoginResponse>(ApiEndpoints.Register, { body: params, method: 'POST' }),
     ...options,
   })
 }
@@ -45,7 +45,7 @@ export const useVerifyMail = (
   options?: Omit<UseMutationOptions<LoginResponse, Error, IVerifyParams>, 'mutationFn'>
 ) => {
   return useMutation<LoginResponse, Error, IVerifyParams>({
-    mutationFn: (params: IVerifyParams) => api<LoginResponse>(ApiEndpoints.VERIFY, { body: params, method: 'POST' }),
+    mutationFn: (params: IVerifyParams) => api<LoginResponse>(ApiEndpoints.Verify, { body: params, method: 'POST' }),
     ...options,
   })
 }
@@ -55,7 +55,7 @@ export const useResendVerificationMail = (
 ) => {
   return useMutation<void, Error, IResendVerificationParams>({
     mutationFn: (params: IResendVerificationParams) =>
-      api<void>(ApiEndpoints.VERIFY_RESEND, { body: params, method: 'POST' }),
+      api<void>(ApiEndpoints.VerifyResend, { body: params, method: 'POST' }),
     ...options,
   })
 }

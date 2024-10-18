@@ -1,9 +1,9 @@
-import { useClient } from '@vocdoni/react-providers'
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
-import { OrganizationData } from '~components/AccountSaas/AccountTypes'
-import { useAuth } from '~components/Auth/useAuth'
-import { ApiEndpoints } from '~components/Auth/api'
+import { useClient } from '@vocdoni/react-providers'
 import { useCallback } from 'react'
+import { OrganizationData } from '~components/AccountSaas/AccountTypes'
+import { ApiEndpoints } from '~components/Auth/api'
+import { useAuth } from '~components/Auth/useAuth'
 
 const useSaasOrganization = ({
   options,
@@ -14,7 +14,7 @@ const useSaasOrganization = ({
 
   return useQuery({
     queryKey: ['organizations', 'info', signerAddress],
-    queryFn: () => bearedFetch<OrganizationData>(ApiEndpoints.ORGANIZATION.replace('{address}', signerAddress)),
+    queryFn: () => bearedFetch<OrganizationData>(ApiEndpoints.Organization.replace('{address}', signerAddress)),
     enabled: !!signerAddress,
     ...options,
   })
