@@ -27,6 +27,7 @@ import { OrganizationAvatar, OrganizationName } from '@vocdoni/chakra-components
 import { OrganizationProvider, useClient } from '@vocdoni/react-providers'
 import { Trans, useTranslation } from 'react-i18next'
 import { Outlet, Link as ReactRouterLink, useLocation } from 'react-router-dom'
+import LogoutBtn from '~components/AccountSaas/LogoutBtn'
 import { HSeparator } from '~components/Auth/SignIn'
 import DarkModeToggle from '~src/themes/saas/components/DarkMode'
 import PricingCard from '~src/themes/saas/components/Saas/PricingCard'
@@ -35,7 +36,6 @@ import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import { Logo } from '~theme/icons'
 import OrganizationDashboardMenu from './Menu'
 import Settings from './Settings'
-import LogoutBtn from '~components/AccountSaas/LogoutBtn'
 
 type CardProps = {
   popular: boolean
@@ -47,8 +47,7 @@ type CardProps = {
 
 const OrganizationDashboardLayout: React.FC = () => {
   const { t } = useTranslation()
-
-  const { textColor, bgSecondary, textColorBrand, bg, textColorSecondary } = useDarkMode()
+  const { textColor, bgSecondary, textColorBrand, bg } = useDarkMode()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { isOpen: isOpenModal, onOpen: onOpenModal, onClose: onCloseModal } = useDisclosure()
   const { account } = useClient()

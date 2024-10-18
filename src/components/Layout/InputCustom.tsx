@@ -66,7 +66,7 @@ const InputCustom = ({
   return (
     <FormControl isInvalid={!!errors[formValue]}>
       {label && (
-        <FormLabel display='flex' ms={1} fontSize='sm' fontWeight='500' color={textColor} mb={2}>
+        <FormLabel variant='process-create-title-sm'>
           {label}
           {required && (
             <Text color={textColorBrand} ml={1}>
@@ -75,7 +75,7 @@ const InputCustom = ({
           )}
         </FormLabel>
       )}
-      <InputGroup size='md'>
+      <InputGroup>
         <Input {...register(formValue, validationRules)} type={inputType} placeholder={placeholder} />
         {type === 'password' && (
           <InputRightElement display='flex' alignItems='center' minH='100%'>

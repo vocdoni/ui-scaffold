@@ -12,7 +12,7 @@ const Wrapper = ({ ...props }) => {
         flexDirection='column'
         width='full'
         m='0 auto'
-        maxW='1800px'
+        maxW={444}
         px={{
           base: '10px',
           sm: '20px',

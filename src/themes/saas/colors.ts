@@ -1,12 +1,92 @@
-export const colors = {
-  bg: {
-    light: '#F5F7FA',
+export const colorsBase = {
+  blue: {
+    normal: '#3965FF',
+    grayish: '#303B4D',
     dark: '#1A202C',
-    secondary: {
-      light: 'white',
-      dark: '#303B4D',
+  },
+  gray: {
+    light: '#E2E8F0',
+    dark: '#A0AEC0',
+  },
+  primary: '#546E39',
+  white: {
+    pure: '#ffffff',
+    dark: '#F5F7FA',
+  },
+}
+
+export const colors = {
+  checkbox: {
+    bg: colorsBase.primary,
+    checked: {
+      border: colorsBase.primary,
+      bg: colorsBase.primary,
+    },
+    icon: colorsBase.white.pure,
+
+    variant: {
+      radiobox: {
+        bg: {
+          light: colorsBase.white.pure,
+          dark: colorsBase.blue.grayish,
+        },
+      },
     },
   },
+
+  input: {
+    focus: colorsBase.blue,
+    light: {
+      bg: colorsBase.white.pure,
+      border: colorsBase.gray.light,
+      outline: colorsBase.gray.light,
+    },
+    dark: {
+      bg: colorsBase.blue.grayish,
+      border: colorsBase.white,
+      outline: colorsBase.white,
+    },
+  },
+
+  process_create: {
+    bg: {
+      light: colorsBase.white.dark,
+      dark: colorsBase.blue.dark,
+    },
+    bg_secondary: {
+      light: colorsBase.white.pure,
+      dark: colorsBase.blue.grayish,
+    },
+    stepper: {
+      color: colorsBase.primary,
+      bg: colorsBase.primary,
+    },
+
+    text_brand: colorsBase.primary,
+    text_secondary: colorsBase.gray.dark,
+    question_index: colorsBase.primary,
+  },
+
+  tab: {
+    variant: {
+      card: {
+        badge_bg: colorsBase.primary,
+        bg: {
+          light: colorsBase.white.pure,
+          dark: colorsBase.blue.grayish,
+        },
+        border: colorsBase.gray.dark,
+        description: colorsBase.gray.dark,
+        svg: colorsBase.primary,
+      },
+    },
+  },
+
+  radio: {
+    bg: colorsBase.primary,
+    border: colorsBase.primary,
+  },
+
   brand: {
     50: '#e5ecd8',
     100: '#cbd9b2',

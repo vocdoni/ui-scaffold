@@ -1,6 +1,7 @@
 import { ArrowBackIcon } from '@chakra-ui/icons'
 import {
   Box,
+  Card,
   Checkbox,
   Flex,
   FormControl,
@@ -248,19 +249,19 @@ export const Confirm = () => {
   return (
     <Wrapper>
       <Box>
-        <Text className='process-create-title'>{t('form.process_create.confirm.title')}</Text>
-        <Text mb={4} color='process_create.description'>
+        <Text variant='process-create-title'>{t('form.process_create.confirm.title')}</Text>
+        <Text variant='process-create-subtitle-sm' mb={6}>
           {t('form.process_create.confirm.description')}
         </Text>
         <ElectionProvider election={published}>
           <FormProvider {...methods}>
             <Flex flexDirection={{ base: 'column', xl2: 'row' }} gap={5}>
               <Preview />
-              <Box flex={{ xl2: '0 0 25%' }}>
+              <Card variant='confirm'>
                 <CostPreview unpublished={unpublished} />
 
                 <Box>
-                  <Text className='brand-theme' fontWeight='bold' textTransform='uppercase' px={2} mb={2}>
+                  <Text variant='process-create-title' textTransform='uppercase'>
                     {t('form.process_create.confirm.confirmation')}
                   </Text>
                   <Flex
@@ -330,39 +331,41 @@ export const Confirm = () => {
                     </FormControl>
                   </Flex>
                 </Box>
-              </Box>
+              </Card>
             </Flex>
           </FormProvider>
         </ElectionProvider>
       </Box>
-      <Flex justifyContent='space-between' alignItems='end' mt='auto'>
-        <Button variant='secondary' onClick={prev} leftIcon={<ArrowBackIcon />}>
-          {t('form.process_create.previous_step')}
+      <Flex justifyContent='space-between' mt='auto' my={6}>
+        <Button colorScheme={'whiteAlpha'} variant={'rounded'} onClick={prev}>
+          <ArrowBackIcon />
+          <Text as='span'>{t('form.process_create.previous_step')}</Text>
         </Button>
 
         <Button
+          variant={'rounded'}
           type='submit'
           form='process-create-form'
           isDisabled={disabled}
           isLoading={sending}
-          px={{ base: 12, xl2: 28 }}
+          minW={{ lg: '250px' }}
         >
           {t('form.process_create.confirm.create_button')}
         </Button>
-        <Modal isOpen={isOpen} onClose={onClose} closeOnEsc={!!error} closeOnOverlayClick={!!error} isCentered>
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>
-              <Text>{t('form.process_create.creating_process')}</Text>
-              <Box className='creating-process-img' />
-            </ModalHeader>
-            {error && <ModalCloseButton />}
-            <ModalBody>
-              <CreationProgress error={error} sending={sending} step={step} />
-            </ModalBody>
-          </ModalContent>
-        </Modal>
       </Flex>
+      <Modal isOpen={isOpen} onClose={onClose} closeOnEsc={!!error} closeOnOverlayClick={!!error} isCentered>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>
+            <Text>{t('form.process_create.creating_process')}</Text>
+            <Box className='creating-process-img' />
+          </ModalHeader>
+          {error && <ModalCloseButton />}
+          <ModalBody>
+            <CreationProgress error={error} sending={sending} step={step} />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </Wrapper>
   )
 }

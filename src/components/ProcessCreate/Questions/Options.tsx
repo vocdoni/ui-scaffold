@@ -57,7 +57,7 @@ const Options = ({ fields, removeOption, appendOption, index }: Props) => {
           </Flex>
         </FormControl>
       ))}
-      <Button variant='secondary' ml={5} onClick={() => appendOption({ option: '' })} fontSize='sm'>
+      <Button variant={'outline'} ml={5} onClick={() => appendOption({ option: '' })}>
         {t('form.process_create.question.add_new_option')}
       </Button>
     </Box>

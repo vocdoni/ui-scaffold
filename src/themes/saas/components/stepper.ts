@@ -1,3 +1,4 @@
+import { mode } from '@chakra-ui/theme-tools'
 import { stepperAnatomy } from '@chakra-ui/anatomy'
 import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
 
@@ -9,9 +10,9 @@ const baseStyle = definePartsStyle((props) => ({
       background: 'process_create.stepper.bg',
     },
     '&[data-status=active]': {
-      borderColor: 'process_create.stepper.bg',
+      borderColor: 'process_create.stepper.color',
       background: 'process_create.stepper.bg',
-      color: 'process_create.stepper.color_active',
+      color: 'white',
     },
   },
   separator: {

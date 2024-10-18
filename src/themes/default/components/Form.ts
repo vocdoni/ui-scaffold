@@ -1,38 +1,41 @@
-import { formAnatomy } from '@chakra-ui/anatomy'
-import { createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/react'
+import type { ComponentStyleConfig } from '@chakra-ui/theme'
 
-const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(formAnatomy.keys)
-
-const baseStyle = definePartsStyle({
-  helperText: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: 1,
-    fontSize: 'xs',
-
-    '& svg': {
-      color: 'process_create.description_logo',
-      boxSize: 3,
+export const Form: ComponentStyleConfig = {
+  parts: ['container', 'label', 'helpText', 'errorText', 'requiredIndicator'],
+  baseStyle: (props) => ({
+    container: {
+      label: {
+        display: 'flex',
+        ms: 1,
+        fontSize: 'sm',
+        fontWeight: 'bold',
+        mb: 2,
+      },
     },
+  }),
+  variants: {
+    calendar: (props) => ({
+      container: {
+        display: 'flex',
+        justifyContent: 'start',
+        alignContent: 'center',
+        border: '1px solid',
+        borderColor: '#CBD5E0',
+        borderRadius: 'md',
+        minW: 56,
+        maxW: 56,
+        p: 3,
+
+        label: {
+          m: 0,
+          fontSize: 'md',
+          w: 'full',
+
+          '& p': {
+            mt: 1,
+          },
+        },
+      },
+    }),
   },
-})
-
-const label = definePartsStyle({
-  container: defineStyle({
-    '& label': {
-      fontWeight: 'bold',
-      fontSize: 'sm',
-    },
-  }),
-})
-
-const labelRadio = definePartsStyle({
-  container: defineStyle({
-    borderRadius: 'md',
-  }),
-})
-
-export const Form = defineMultiStyleConfig({
-  baseStyle,
-  variants: { 'process-create-label': label, 'process-create-radio': labelRadio },
-})
+}

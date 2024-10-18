@@ -50,12 +50,11 @@ export const Info = () => {
           id='process-create-form'
           onSubmit={methods.handleSubmit(onSubmit)}
           flexDirection='column'
-          gap={5}
+          gap={8}
         >
           <CreateProcessMeta />
           <CreateProcessSettings />
         </Flex>
-
         <StepsNavigation />
       </Wrapper>
     </FormProvider>

@@ -1,11 +1,11 @@
-import { Box } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import { FormProvider, SubmitHandler, useFieldArray, useForm, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { useSaasVotingType } from '~components/ProcessCreate/Questions/useSaasVotingType'
 import { useUnimplementedVotingType } from '~components/ProcessCreate/Questions/useUnimplementedVotingType'
 import { MultiQuestionTypes, useVotingType, VotingType } from '~components/ProcessCreate/Questions/useVotingType'
 import { ITabsPageProps, TabsPage } from '~components/ProcessCreate/Steps/TabsPage'
 import { StepsFormValues, useProcessCreationSteps } from '../Steps/use-steps'
-import { useSaasVotingType } from '~components/ProcessCreate/Questions/useSaasVotingType'
 
 export interface Option {
   option: string
@@ -88,9 +88,15 @@ export const Questions = () => {
 
   return (
     <FormProvider {...methods}>
-      <Box as='form' id='process-create-form' onSubmit={methods.handleSubmit(onSubmit)}>
+      <Flex
+        as='form'
+        flexGrow={1}
+        flexDirection='column'
+        id='process-create-form'
+        onSubmit={methods.handleSubmit(onSubmit)}
+      >
         {import.meta.env.SAAS_URL ? <SaasQuestionsTabs /> : <VocdoniAppQuestionsTabs />}
-      </Box>
+      </Flex>
     </FormProvider>
   )
 }

@@ -2,25 +2,63 @@ import { mode } from '@chakra-ui/theme-tools'
 import { inputAnatomy } from '@chakra-ui/anatomy'
 import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
 
-const { defineMultiStyleConfig } = createMultiStyleConfigHelpers(inputAnatomy.keys)
+const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(inputAnatomy.keys)
 
-export const Input = defineMultiStyleConfig({
-  baseStyle: (props: any) => ({
+const variants = {
+  default: definePartsStyle((props) => ({
     field: {
-      fontWeight: '500',
-      py: '25px',
-      color: mode('navy.700', 'white')(props),
-      bg: mode('transparent', 'transparent')(props),
-      border: '1px solid',
-      borderColor: mode('secondaryGray.100', 'rgba(135, 140, 189, 0.3)')(props),
-      borderRadius: '16px',
+      maxW: 60,
+      py: 6,
       fontSize: 'sm',
-      size: 'lg',
-      ms: { base: '0px', md: '0px' },
-      _placeholder: { color: 'secondaryGray.600', fontWeight: '400' },
+      borderRadius: 'xl',
+      minW: 'full',
+      'background-color': mode('input.light.bg', '#303B4D')(props),
+      border: mode('1px solid', '0.1px solid')(props),
+      borderColor: mode('input.light.outline', 'input.dark.outline')(props),
+
       _hover: {
-        borderColor: mode('gray.300', 'whiteAlpha.400')(props),
+        outline: mode('1px solid', '.1px solid')(props),
+        outlineColor: mode('input.light.outline', 'input.dark.outline')(props),
+        outlineOffset: '0px',
+      },
+
+      _focus: {
+        outline: '2px solid',
+        outlineOffset: '0px',
+        outlineColor: '#3965FF',
+        border: mode('1px solid transparent', '0.1px solid transparent')(props),
       },
     },
-  }),
+  })),
+  calendar: definePartsStyle((props) => ({
+    field: {
+      maxW: 64,
+      minW: 64,
+      p: 4,
+      minH: '48px',
+      borderRadius: 'xl',
+      'background-color': mode('input.light.bg', '#303B4D')(props),
+      border: mode('1px solid', '0.1px solid')(props),
+      borderColor: mode('input.light.outline', 'input.dark.outline')(props),
+
+      _hover: {
+        outline: mode('1px solid', '.1px solid')(props),
+        outlineColor: mode('input.light.outline', 'input.dark.outline')(props),
+        outlineOffset: '0px',
+      },
+
+      _focus: {
+        outline: '2px solid #3965FF',
+        outlineOffset: '0px',
+        border: mode('1px solid transparent', '0.1px solid transparent')(props),
+      },
+    },
+  })),
+}
+
+export const Input = defineMultiStyleConfig({
+  variants,
+  defaultProps: {
+    variant: 'default',
+  },
 })

@@ -1,22 +1,23 @@
 import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
 
-const baseStyles = {
+const baseStyles = (props: any) => ({
   borderRadius: 'full',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   gap: 2,
-}
+})
+
 const solid = defineStyle((props) => {
   return {
-    ...baseStyles,
+    ...baseStyles(props),
   }
 })
 const secondary = defineStyle((props) => {
   const { colorScheme } = props
 
   return {
-    ...baseStyles,
+    ...baseStyles(props),
     bgColor: 'gray.100',
     color: `${colorScheme}.500`,
 
@@ -38,17 +39,17 @@ const secondary = defineStyle((props) => {
 })
 const outline = defineStyle((props) => {
   return {
-    ...baseStyles,
+    ...baseStyles(props),
   }
 })
 const ghost = defineStyle((props) => {
   return {
-    ...baseStyles,
+    ...baseStyles(props),
   }
 })
 const addressDropdown = defineStyle((props) => {
   return {
-    ...baseStyles,
+    ...baseStyles(props),
     minW: 40,
     bgColor: 'gray.100',
 
@@ -150,6 +151,31 @@ const dashboard = defineStyle((props) => {
     },
   }
 })
+
+const rounded = defineStyle((props) => {
+  const { colorScheme } = props
+
+  return {
+    ...baseStyles(props),
+    bgColor: 'gray.100',
+    color: props.colorScheme === 'whiteAlpha' ? 'black' : `${props.colorScheme}.500`,
+
+    _hover: {
+      bgColor: 'gray.200',
+      color: props.colorScheme === 'whiteAlpha' ? 'black' : `${props.colorScheme}.600`,
+
+      _disabled: {
+        bgColor: 'gray.100',
+        color: props.colorScheme === 'whiteAlpha' ? 'black' : `${props.colorScheme}.600`,
+      },
+    },
+
+    _active: {
+      bgColor: 'gray.300',
+      color: props.colorScheme === 'whiteAlpha' ? 'black' : `${props.colorScheme}.700`,
+    },
+  }
+})
 export const Button = defineStyleConfig({
   defaultProps: {
     colorScheme: 'primary',
@@ -163,6 +189,7 @@ export const Button = defineStyleConfig({
     ghost,
     solid,
     'go-back': goBack,
+    rounded,
     secondary,
     transparent,
   },

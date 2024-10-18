@@ -17,11 +17,18 @@ import { colors } from './colors'
 import { Pagination } from './components/pagination'
 import { spacing } from './space'
 import { Tabs } from './components/Tabs'
+import { Stepper } from './components/stepper'
+import { Text } from './components/text'
+import { Radio } from './components/radio'
 
 export const theme = extendTheme(vtheme, {
   styles: {
     global: {
       ...shared,
+      ':root': {
+        '--box-shadow': '0px 2px 4px lightgray',
+        '--box-shadow-darker': '0px 2px 4px #808080b5',
+      },
       '.brand-gradient': {
         bgGradient: 'linear-gradient(to bottom, #B5F492, #338B93)',
       },
@@ -38,7 +45,10 @@ export const theme = extendTheme(vtheme, {
     Link,
     Modal,
     Pagination,
+    Radio,
+    Stepper,
     Tabs,
+    Text,
     Textarea,
   },
   spacing,

@@ -161,7 +161,7 @@ const LeftSideCalculator = ({
         py='16px'
         bgColor='calculator.left_side'
       >
-        <Text className='process-create-title' textTransform='uppercase' textAlign='center' mb={5}>
+        <Text fontWeight='bold' textTransform='uppercase' textAlign='center' mb={5}>
           {t('calculator.estimate_election_cost')}
         </Text>
         <Flex flexGrow={1} mb={5} flexDirection='column' justifyContent='space-between' gap={3}>

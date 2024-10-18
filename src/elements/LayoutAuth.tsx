@@ -17,7 +17,7 @@ const LayoutAuth = () => {
         justifyContent='center'
         alignItems='center'
       >
-        <Flex flexDirection='column' maxW={980} mx='auto' flexGrow={1}>
+        <Flex flexDirection='column' maxW={245} mx='auto' flexGrow={1}>
           <Box position='absolute' top={5} left={2.5} minW={{ base: '90%', md: 96 }}>
             <NavLink to='/'>
               <Flex align='center' w='fit-content'>

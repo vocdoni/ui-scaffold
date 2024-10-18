@@ -1,8 +1,8 @@
 import { Box, Flex, HStack, Text } from '@chakra-ui/react'
 import { Outlet, ScrollRestoration, useLocation } from 'react-router-dom'
 import Navbar from '~components/Navbar'
-import Footer from '~theme/components/Footer'
 import SaasNavbar from '~components/Navbar/SaasNavbar'
+import Footer from '~theme/components/Footer'
 
 const Layout = () => {
   const location = useLocation()

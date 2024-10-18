@@ -1,4 +1,4 @@
-import { Box, ChakraProvider, extendTheme, Flex, Icon, Link, Spinner, Text } from '@chakra-ui/react'
+import { Box, Card, ChakraProvider, extendTheme, Flex, Icon, Link, Spinner, Text } from '@chakra-ui/react'
 import { ElectionDescription, ElectionQuestions, ElectionTitle } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import { IoMdCheckmark, IoMdClose, IoMdCreate } from 'react-icons/io'
@@ -28,16 +28,10 @@ const Preview = () => {
     import.meta.env.features.vote.secret
 
   return (
-    <Flex
-      className='process-create-section'
-      flexDirection='column'
-      gap={5}
-      p={{ base: 3, xl: 6 }}
-      bgColor='process_create.section'
-    >
+    <Card variant='preview'>
       <Flex flexDirection='column' gap={6}>
         <Flex>
-          <Text className='brand-theme' textTransform='uppercase'>
+          <Text fontWeight='bold' textTransform='uppercase'>
             {t('form.process_create.confirm.election_info')}
           </Text>
           <Link ml='auto' onClick={() => setActiveStep(1)}>
@@ -153,7 +147,7 @@ const Preview = () => {
           />
         </Link>
       </Flex>
-    </Flex>
+    </Card>
   )
 }
 

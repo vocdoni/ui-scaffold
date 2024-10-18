@@ -2,8 +2,8 @@ import { Box, Text } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { useProcessCreationSteps } from '../Steps/use-steps'
 import { CensusCspList } from '../Census/Csp'
+import { useProcessCreationSteps } from '../Steps/use-steps'
 
 export interface CensusCspValues {
   userList: { login: string }[]
@@ -39,23 +39,18 @@ export const StepFormCensusCsp = () => {
 
   return (
     <>
-      <Box px={7} py={4}>
-        <Text fontWeight='bold' mb={3} color='process_create.census.title'>
-          {t('census.social_address_title')}
-        </Text>
+      <Text variant='process-create-census-title'>{t('census.social_address_title')}</Text>
+      <FormProvider {...methods}>
+        <Box as='form' id='process-create-form' onSubmit={methods.handleSubmit(onSubmit)}>
+          <CensusCspList initialUsers={userList} />
 
-        <FormProvider {...methods}>
-          <Box as='form' id='process-create-form' onSubmit={methods.handleSubmit(onSubmit)}>
-            <CensusCspList initialUsers={userList} />
-
-            {methods.formState.errors.userList && (
-              <Text color='red' textAlign='center' mt={2}>
-                {methods.formState.errors.userList.message}
-              </Text>
-            )}
-          </Box>
-        </FormProvider>
-      </Box>
+          {methods.formState.errors.userList && (
+            <Text color='red' textAlign='center' mt={2}>
+              {methods.formState.errors.userList.message}
+            </Text>
+          )}
+        </Box>
+      </FormProvider>
     </>
   )
 }
