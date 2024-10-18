@@ -1,4 +1,4 @@
-import { Box, Flex, FlexProps, FormControl, FormErrorMessage, Heading, Text } from '@chakra-ui/react'
+import { Box, Flex, FlexProps, Heading, Text } from '@chakra-ui/react'
 import { Button } from '@vocdoni/chakra-components'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
@@ -7,14 +7,15 @@ import { useMutation, UseMutationOptions } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { useState } from 'react'
 import { useAccountCreate } from '~components/Account/useAccountCreate'
-import { CreateOrgParams, OrgInterface } from '~components/AccountSaas/AccountTypes'
-import { PrivateOrgFormData, PrivateOrgForm, PublicOrgForm } from '~components/AccountSaas/Layout'
+import { CreateOrgParams } from '~components/AccountSaas/AccountTypes'
+import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from '~components/AccountSaas/Layout'
+import LogoutBtn from '~components/AccountSaas/LogoutBtn'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
+import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
-import LogoutBtn from '~components/AccountSaas/LogoutBtn'
 
-type FormData = PrivateOrgFormData & Pick<OrgInterface, 'name' | 'website' | 'description'>
+type FormData = PrivateOrgFormData & CreateOrgParams
 
 // This specific error message should be ignored and not displayed in the UI.
 // Context: After login, a RemoteSigner is created and passed to the SDK via the useClient hook.
@@ -29,7 +30,7 @@ const useSaasAccountCreate = (options?: Omit<UseMutationOptions<void, Error, Cre
   const { bearedFetch } = useAuth()
   return useMutation<void, Error, CreateOrgParams>({
     mutationFn: (params: CreateOrgParams) =>
-      bearedFetch<void>(ApiEndpoints.ACCOUNT_CREATE, { body: params, method: 'POST' }),
+      bearedFetch<void>(ApiEndpoints.Organizations, { body: params, method: 'POST' }),
     ...options,
   })
 }
@@ -48,8 +49,6 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
   const { create: createAccount, error: accountError } = useAccountCreate()
   const { mutateAsync: createSaasAccount, isError: isSaasError, error: saasError } = useSaasAccountCreate()
 
-  const isError = !!accountError || isSaasError
-
   const error = saasError || accountError
 
   const onSubmit = (values: FormData) => {
@@ -64,9 +63,16 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
       type: values.typeSelect?.value,
     })
       .then(() => signer.getAddress()) // Get the address of newly created signer
-      .then(() => createAccount({ name: values.name, description: values.description })) // Create the new account on the vochain
+      .then(() =>
+        createAccount({
+          name: typeof values.name === 'object' ? values.name.default : values.name,
+          description: typeof values.description === 'object' ? values.description.default : values.description,
+        })
+      ) // Create the new account on the vochain
       .finally(() => setIsPending(false))
   }
+
+  const isError = (!!accountError || isSaasError) && error !== IgnoreAccountError
 
   return (
     <FormProvider {...methods}>
@@ -95,15 +101,7 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
         <Button form='process-create-form' type='submit' isLoading={isPending} mx='auto' mt={8} w='80%'>
           {t('organization.create_org')}
         </Button>
-        <Box pt={2}>
-          <FormControl isInvalid={isError}>
-            {isError && error !== IgnoreAccountError && (
-              <FormErrorMessage>
-                {typeof error === 'string' ? error : error?.message || 'Error performing the operation'}
-              </FormErrorMessage>
-            )}
-          </FormControl>
-        </Box>
+        <FormSubmitMessage isError={isError} error={error} />
         <Text color={textColorSecondary} fontSize='sm' textAlign='center' py={5} mt='auto'>
           <Trans i18nKey='create_org.already_profile'>
             If your organization already have a profile, ask the admin to invite you to your organization.

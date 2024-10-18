@@ -41,7 +41,6 @@ export const PublicOrgForm = () => {
             defaultValue: 'https://example.com',
           })}
           type='text'
-          required
         />
 
         <FormControl>
@@ -56,7 +55,6 @@ export const PublicOrgForm = () => {
 }
 
 export type PrivateOrgFormData = {
-  communications: boolean
   sizeSelect: SelectOptionType
   typeSelect: SelectOptionType
   countrySelect: SelectOptionType

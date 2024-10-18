@@ -1,9 +1,9 @@
+import { useMutation } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { NoOrganizationsError, RemoteSigner } from '@vocdoni/sdk'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { api, ApiEndpoints, ApiParams, UnauthorizedApiError } from '~components/Auth/api'
 import { LoginResponse, useLogin, useRegister, useVerifyMail } from '~components/Auth/authQueries'
-import { useMutation } from '@tanstack/react-query'
 
 enum LocalStorageKeys {
   AUTH_TOKEN = 'authToken',
@@ -70,7 +70,7 @@ export const useAuthProvider = () => {
       headers.append('Authorization', `Bearer ${bearer}`)
       return api<T>(path, { headers, ...params }).catch((e) => {
         if (e instanceof UnauthorizedApiError) {
-          return api<LoginResponse>(ApiEndpoints.REFRESH, { headers, method: 'POST' })
+          return api<LoginResponse>(ApiEndpoints.Refresh, { headers, method: 'POST' })
             .then((data) => {
               storeLogin(data)
               headers.set('Authorization', `Bearer ${data.token}`)

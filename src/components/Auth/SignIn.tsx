@@ -1,4 +1,4 @@
-import { Box, Button, Flex, FormControl, FormErrorMessage, Heading, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Heading, Text } from '@chakra-ui/react'
 import { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -11,6 +11,7 @@ import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import CustomCheckbox from '../Layout/CheckboxCustom'
 import InputCustom from '../Layout/InputCustom'
 import GoogleAuth from './GoogleAuth'
+import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 
 type FormData = {
   keepLogedIn: boolean
@@ -104,13 +105,7 @@ const SignIn = () => {
           </NavLink>
         </Text>
       </Flex>
-      {isError && (
-        <Box>
-          <FormControl isInvalid={isError}>
-            <FormErrorMessage>{error?.message || 'Error performing the operation'}</FormErrorMessage>
-          </FormControl>
-        </Box>
-      )}
+      <FormSubmitMessage isError={isError} error={error} />
     </Flex>
   )
 }
