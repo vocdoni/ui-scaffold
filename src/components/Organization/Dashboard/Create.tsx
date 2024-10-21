@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Grid, Heading, Image, ListItem, Text, UnorderedList } from '@chakra-ui/react'
 import { Trans } from 'react-i18next'
-import { AccountCreate } from '~components/AccountSaas/Create'
+import { AccountCreate } from '~components/Account/Create'
 import AuthBanner from './AuthBanner'
 import barca from '/assets/barca.png'
 import bellpuig from '/assets/bellpuig.svg.png'

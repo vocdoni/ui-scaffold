@@ -4,7 +4,7 @@ import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { IconType } from 'react-icons'
 import { BiCheckDouble } from 'react-icons/bi'
-import { FeaturesKeys, useAccountPlan } from '~components/AccountSaas/useAccountPlan'
+import { FeaturesKeys, useAccountPlan } from '~components/Account/useAccountPlan'
 
 const useFeaturesTranslations = (): Record<FeaturesKeys, CheckBoxCardProps> => {
   const { t } = useTranslation()

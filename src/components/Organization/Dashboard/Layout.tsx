@@ -27,7 +27,7 @@ import { OrganizationAvatar, OrganizationName } from '@vocdoni/chakra-components
 import { OrganizationProvider, useClient } from '@vocdoni/react-providers'
 import { Trans, useTranslation } from 'react-i18next'
 import { Outlet, Link as ReactRouterLink, useLocation } from 'react-router-dom'
-import LogoutBtn from '~components/AccountSaas/LogoutBtn'
+import LogoutBtn from '~components/Account/LogoutBtn'
 import { HSeparator } from '~components/Auth/SignIn'
 import DarkModeToggle from '~components/Layout/DarkMode'
 import useDarkMode from '~components/Layout/useDarkMode'

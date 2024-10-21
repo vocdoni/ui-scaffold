@@ -2,7 +2,7 @@ import { Box, Flex, Image, Link, Text } from '@chakra-ui/react'
 import { Button } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
-import { useAccountPlan } from '~components/AccountSaas/useAccountPlan'
+import { useAccountPlan } from '~components/Account/useAccountPlan'
 import useDarkMode from '~components/Layout/useDarkMode'
 import vcdLogo from '/assets/logo-classic.svg'
 

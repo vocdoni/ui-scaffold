@@ -1,7 +1,7 @@
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { useCallback } from 'react'
-import { OrganizationData } from '~components/AccountSaas/AccountTypes'
+import { OrganizationData } from '~components/Account/AccountTypes'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 
