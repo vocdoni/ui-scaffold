@@ -2,8 +2,7 @@ import { Flex } from '@chakra-ui/react'
 import { FormProvider, SubmitHandler, useFieldArray, useForm, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useSaasVotingType } from '~components/ProcessCreate/Questions/useSaasVotingType'
-import { useUnimplementedVotingType } from '~components/ProcessCreate/Questions/useUnimplementedVotingType'
-import { MultiQuestionTypes, useVotingType, VotingType } from '~components/ProcessCreate/Questions/useVotingType'
+import { MultiQuestionTypes, VotingType } from '~components/ProcessCreate/Questions/useVotingType'
 import { ITabsPageProps, TabsPage } from '~components/ProcessCreate/Steps/TabsPage'
 import { StepsFormValues, useProcessCreationSteps } from '../Steps/use-steps'
 
@@ -27,11 +26,6 @@ const SaasQuestionsTabs = () => {
   return <QuestionsTabs definedList={inPlan} unimplementedList={pro} />
 }
 
-const VocdoniAppQuestionsTabs = () => {
-  const definedVotingTypes = useVotingType()
-  const unDefinedVotingTypes = useUnimplementedVotingType()
-  return <QuestionsTabs definedList={definedVotingTypes} unimplementedList={unDefinedVotingTypes} />
-}
 const QuestionsTabs = <Implemented extends string, UnImplemented extends string>({
   definedList,
   unimplementedList,
@@ -95,7 +89,7 @@ export const Questions = () => {
         id='process-create-form'
         onSubmit={methods.handleSubmit(onSubmit)}
       >
-        {import.meta.env.SAAS_URL ? <SaasQuestionsTabs /> : <VocdoniAppQuestionsTabs />}
+        <SaasQuestionsTabs />
       </Flex>
     </FormProvider>
   )

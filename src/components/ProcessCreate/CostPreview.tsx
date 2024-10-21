@@ -221,16 +221,12 @@ export const CostPreview = ({ unpublished }: { unpublished: UnpublishedElection 
           <Text textAlign='center' mb={3}>
             {t('cost_preview.not_enough_tokens')}
           </Text>
-          {import.meta.env.features.faucet && (
-            <>
-              <Button leftIcon={<TbDatabaseExclamation />} maxW={64} onClick={onOpen}>
-                {t('cost_preview.button')}
-              </Button>
-              <Modal isOpen={isOpen} onClose={onClose}>
-                <GetVocTokens handleSignIn={handleSignIn} loading={loading} />
-              </Modal>
-            </>
-          )}
+          <Button leftIcon={<TbDatabaseExclamation />} maxW={64} onClick={onOpen}>
+            {t('cost_preview.button')}
+          </Button>
+          <Modal isOpen={isOpen} onClose={onClose}>
+            <GetVocTokens handleSignIn={handleSignIn} loading={loading} />
+          </Modal>
         </Flex>
       )}
     </Flex>

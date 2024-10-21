@@ -1,4 +1,4 @@
-import { connectorsForWallets, Wallet, WalletList } from '@rainbow-me/rainbowkit'
+import { connectorsForWallets, Wallet } from '@rainbow-me/rainbowkit'
 import '@rainbow-me/rainbowkit/styles.css'
 import { coinbaseWallet, metaMaskWallet, rainbowWallet, walletConnectWallet } from '@rainbow-me/rainbowkit/wallets'
 import { oAuthWallet, privateKeyWallet } from '@vocdoni/rainbowkit-wallets'
@@ -114,13 +114,7 @@ const featuredConnectors = () => {
     ],
   }
 
-  const connectors: { [key: string]: WalletGroup } = { web2, web3, recovery }
-  const wallets: WalletList = []
-  for (const connector of import.meta.env.features.login) {
-    wallets.push(connectors[connector])
-  }
-
-  return wallets
+  return [web2, web3, recovery]
 }
 
 const connectors = connectorsForWallets(featuredConnectors())

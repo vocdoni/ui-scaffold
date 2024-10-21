@@ -1,10 +1,10 @@
 import { FormControl, FormErrorMessage, FormLabel, Text } from '@chakra-ui/react'
-import { ChakraStylesConfig, GroupBase, Props as SelectProps, Select } from 'chakra-react-select'
+import { ChakraStylesConfig, GroupBase, Select, Props as SelectProps } from 'chakra-react-select'
 import { Controller, useFormContext } from 'react-hook-form'
 import { ControllerProps } from 'react-hook-form/dist/types'
 import { useTranslation } from 'react-i18next'
+import useDarkMode from '~components/Layout/useDarkMode'
 import { LanguagesSlice } from '~i18n/languages.mjs'
-import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 
 export type SelectOptionType = {
   label: string

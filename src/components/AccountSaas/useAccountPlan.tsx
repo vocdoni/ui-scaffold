@@ -1,6 +1,5 @@
-import { useQuery, UseQueryOptions } from '@tanstack/react-query'
-import { VotingType } from '~components/ProcessCreate/Questions/useVotingType'
 import { UnimplementedVotingType } from '~components/ProcessCreate/Questions/useUnimplementedVotingType'
+import { VotingType } from '~components/ProcessCreate/Questions/useVotingType'
 
 type PlanType = 'free' | 'pro' | 'custom'
 
@@ -62,13 +61,14 @@ const accountPlanMock: AccountPlanTypeResponse = {
   },
 }
 
-export const useAccountPlan = (options?: Omit<UseQueryOptions<AccountPlanTypeResponse>, 'queryKey' | 'queryFn'>) => {
-  return useQuery({
-    queryKey: ['account', 'plan'],
-    queryFn: async () => {
-      // Simulate an API call
-      return accountPlanMock
-    },
-    ...options,
-  })
-}
+export const useAccountPlan = () => ({
+  data: accountPlanMock,
+})
+// this was the cod before refactoring themes and features, but it was not working
+// useQuery({
+//   queryKey: ['account', 'plan'],
+//   queryFn: async () => {
+//     // Simulate an API call
+//     return accountPlanMock
+//   },
+// })

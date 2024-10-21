@@ -50,7 +50,7 @@ export const api = <T>(
   { body, method = 'GET', headers = new Headers({}) }: ApiParams = {}
 ): Promise<T> => {
   headers.append('Content-Type', 'application/json')
-  return fetch(`${import.meta.env.SAAS_URL}${path}`, {
+  return fetch(`${import.meta.env.SAAS_URL}/${path}`, {
     method,
     headers,
     body: JSON.stringify(body),

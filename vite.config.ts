@@ -4,8 +4,6 @@ import { defineConfig, loadEnv } from 'vite'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import svgr from 'vite-plugin-svgr'
 import tsconfigPaths from 'vite-tsconfig-paths'
-import features from './vite/features'
-import themes from './vite/themes'
 
 // https://vitejs.dev/config/
 const viteconfig = ({ mode }) => {
@@ -27,11 +25,12 @@ const viteconfig = ({ mode }) => {
     defaultCensusSize = 5000
   }
 
-  const title =
-    process.env.APP_TITLE ||
-    (process.env.THEME === 'onvote'
-      ? 'ONVOTE - Anonymous Gasless and Modular voting for Web3'
-      : 'Vocdoni - The voice of digital voting')
+  const title = process.env.APP_TITLE || 'Vocdoni - The voice of digital voting'
+
+  let saasUrl = process.env.SAAS_URL || 'https://saas-api-dev.vocdoni.net'
+  if (saasUrl.endsWith('/')) {
+    saasUrl = saasUrl.slice(0, -1)
+  }
 
   return defineConfig({
     base,
@@ -50,16 +49,14 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.EMAILJS_PUBLIC_ID': JSON.stringify(process.env.EMAILJS_PUBLIC_ID),
       'import.meta.env.title': JSON.stringify(title),
       'import.meta.env.STRIPE_PUBLIC_KEY': JSON.stringify(process.env.STRIPE_PUBLIC_KEY),
-      'import.meta.env.SAAS_URL': JSON.stringify(process.env.SAAS_URL),
+      'import.meta.env.SAAS_URL': JSON.stringify(saasUrl),
     },
     plugins: [
       tsconfigPaths(),
-      themes(),
-      features(),
       react(),
       svgr(),
       createHtmlPlugin({
-        template: `public/${process.env.THEME || 'default'}/index.html`,
+        template: `public/index.html`,
         minify: {
           removeComments: false,
           collapseWhitespace: true,
