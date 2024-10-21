@@ -1,7 +1,10 @@
 type DataType = string | number
 
 export class CsvGenerator {
-  constructor(private headers: string[], private data: DataType[][]) {}
+  constructor(
+    private headers: string[],
+    private data: DataType[][]
+  ) {}
 
   public get url(): string {
     let binaryData = 'data:application/csv,'

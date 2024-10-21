@@ -10,8 +10,6 @@ const OrganizationDashboard = () => {
   const { data: elections, error, isLoading } = useLatestElections()
   const { organization } = useOrganization()
 
-  if (!organization) return null
-
   return (
     <>
       <ContentsBox>

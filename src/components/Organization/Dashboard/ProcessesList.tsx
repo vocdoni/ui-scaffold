@@ -1,11 +1,11 @@
 import { Alert, AlertDescription, Progress, VStack } from '@chakra-ui/react'
 import { ElectionProvider } from '@vocdoni/react-providers'
-import { ArchivedElection, InvalidElection, PublishedElection } from '@vocdoni/sdk'
+import { InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import NoElections from '../NoElections'
 import ProcessCard from './ProcessCard'
 
-type Election = PublishedElection | ArchivedElection | InvalidElection
+type Election = PublishedElection | InvalidElection
 
 type ProcessesListProps = {
   error: Error | null

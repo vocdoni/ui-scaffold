@@ -1,5 +1,4 @@
 {
-  "{title}": "{title}",
   "aside": {
     "has_already_voted": "El teu vot s'ha registrat correctament",
     "is_not_in_census": "No estàs en el cens",
@@ -885,8 +884,7 @@
         "description": "Selecciona el tipus de votació per a aquesta elecció. Si no trobes el que necessites, pots contactar-nos.",
         "title": "Tipus de Votació"
       }
-    },
-    "tabcard_title": "{title}"
+    }
   },
   "rainbow": {
     "group": {
