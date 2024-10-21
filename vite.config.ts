@@ -32,6 +32,11 @@ const viteconfig = ({ mode }) => {
       ? 'ONVOTE - Anonymous Gasless and Modular voting for Web3'
       : 'Vocdoni - The voice of digital voting')
 
+  let saasUrl = process.env.SAAS_URL || 'https://saas-api-dev.vocdoni.net'
+  if (saasUrl.endsWith('/')) {
+    saasUrl = saasUrl.slice(0, -1)
+  }
+
   return defineConfig({
     base,
     build: {
@@ -49,7 +54,7 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.EMAILJS_PUBLIC_ID': JSON.stringify(process.env.EMAILJS_PUBLIC_ID),
       'import.meta.env.title': JSON.stringify(title),
       'import.meta.env.STRIPE_PUBLIC_KEY': JSON.stringify(process.env.STRIPE_PUBLIC_KEY),
-      'import.meta.env.SAAS_URL': JSON.stringify(process.env.SAAS_URL),
+      'import.meta.env.SAAS_URL': JSON.stringify(saasUrl),
     },
     plugins: [
       tsconfigPaths(),
