@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next'
 import { IconType } from 'react-icons'
 import { BiCheckDouble } from 'react-icons/bi'
 import { FeaturesKeys, useAccountPlan } from '~components/AccountSaas/useAccountPlan'
-import { Loading } from '~src/router/SuspenseLoader'
 
 const useFeaturesTranslations = (): Record<FeaturesKeys, CheckBoxCardProps> => {
   const { t } = useTranslation()
@@ -58,10 +57,9 @@ const useFeaturesTranslations = (): Record<FeaturesKeys, CheckBoxCardProps> => {
   )
 }
 export const SaasFeatures = () => {
-  const { data, isLoading } = useAccountPlan()
+  const { data } = useAccountPlan()
   const translations = useFeaturesTranslations()
 
-  if (isLoading) return <Loading />
   if (!data) return null
 
   return (
