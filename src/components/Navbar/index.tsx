@@ -2,8 +2,8 @@ import { Button, Flex, List, ListItem } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
+import DarkModeToggle from '~components/Layout/DarkMode'
 import Logo from '~components/Layout/Logo'
-import DarkModeToggle from '~src/themes/saas/components/DarkMode'
 import { LanguagesMenu } from './LanguagesList'
 
 const Navbar = () => {

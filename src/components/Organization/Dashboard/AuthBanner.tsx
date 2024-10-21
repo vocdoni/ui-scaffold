@@ -2,7 +2,7 @@ import { Box, ChakraProps, Flex, Link, List, ListItem, Text } from '@chakra-ui/r
 import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
-import DarkModeToggle from '~src/themes/saas/components/DarkMode'
+import DarkModeToggle from '~components/Layout/DarkMode'
 
 interface AuthBannerProps extends ChakraProps {
   children: ReactNode

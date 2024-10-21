@@ -2,10 +2,10 @@ import { CloseIcon } from '@chakra-ui/icons'
 import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { Outlet, Link as ReactRouterLink, ScrollRestoration, useNavigate } from 'react-router-dom'
+import DarkModeToggle from '~components/Layout/DarkMode'
 import Logo from '~components/Layout/Logo'
+import useDarkMode from '~components/Layout/useDarkMode'
 import SaasFooter from '~components/ProcessCreate/SaasFooter'
-import DarkModeToggle from '~src/themes/saas/components/DarkMode'
-import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 
 const LayoutProcessCreate = () => {
   const { t } = useTranslation()

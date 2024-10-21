@@ -1,5 +1,5 @@
 import { Box, BoxProps } from '@chakra-ui/react'
-import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
+import useDarkMode from '~components/Layout/useDarkMode'
 
 export const ContentsBox = (props: BoxProps) => {
   const { bgSecondary } = useDarkMode()

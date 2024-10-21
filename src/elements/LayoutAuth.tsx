@@ -2,8 +2,8 @@ import { Box, Flex, Icon, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { FaChevronLeft } from 'react-icons/fa'
 import { NavLink, Outlet } from 'react-router-dom'
+import useDarkMode from '~components/Layout/useDarkMode'
 import AuthBanner from '~components/Organization/Dashboard/AuthBanner'
-import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 
 const LayoutAuth = () => {
   const { t } = useTranslation()

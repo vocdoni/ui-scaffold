@@ -2,7 +2,7 @@ import { Box, Button, Flex, Heading, Text } from '@chakra-ui/react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
-import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
+import useDarkMode from '~components/Layout/useDarkMode'
 import InputCustom from '../Layout/InputCustom'
 
 function ForgotPassword() {

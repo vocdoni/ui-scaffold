@@ -1,8 +1,8 @@
 import { Button, ButtonProps } from '@chakra-ui/react'
-import { useAuth } from '~components/Auth/useAuth'
-import { useNavigate } from 'react-router-dom'
-import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '~components/Auth/useAuth'
+import useDarkMode from '~components/Layout/useDarkMode'
 
 const LogoutBtn = (props?: ButtonProps) => {
   const { t } = useTranslation()

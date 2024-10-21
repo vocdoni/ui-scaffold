@@ -9,7 +9,7 @@ import { GiHamburgerMenu } from 'react-icons/gi'
 import { HiMiniPencil, HiSquares2X2 } from 'react-icons/hi2'
 import { IoIosSettings } from 'react-icons/io'
 import { Link, useLocation } from 'react-router-dom'
-import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
+import useDarkMode from '~components/Layout/useDarkMode'
 
 const OrganizationDashboardMenu = () => {
   const { t } = useTranslation()

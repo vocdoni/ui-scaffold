@@ -16,7 +16,7 @@ const AccountProtectedRoute = lazy(() => import('./AccountProtectedRoute'))
 
 // elements
 const Faucet = lazy(() => import('~elements/Faucet'))
-const Home = lazy(() => import('~theme/components/Home'))
+const Home = lazy(() => import('~components/Home'))
 const NotFound = lazy(() => import('~elements/NotFound'))
 const Process = lazy(() => import('~elements/Process'))
 const OrganizationEditProfile = lazy(() => import('~elements/Organization/Edit'))

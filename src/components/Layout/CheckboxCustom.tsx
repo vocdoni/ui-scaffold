@@ -2,7 +2,7 @@ import { Box, Checkbox, Flex, FormControl, FormErrorMessage, FormLabel, Text } f
 import { ReactNode } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
+import useDarkMode from '~components/Layout/useDarkMode'
 
 export interface CheckboxCustomProps {
   formValue: string

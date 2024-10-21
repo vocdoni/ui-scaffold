@@ -4,7 +4,6 @@ import { defineConfig, loadEnv } from 'vite'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import svgr from 'vite-plugin-svgr'
 import tsconfigPaths from 'vite-tsconfig-paths'
-import themes from './vite/themes'
 
 // https://vitejs.dev/config/
 const viteconfig = ({ mode }) => {
@@ -26,11 +25,7 @@ const viteconfig = ({ mode }) => {
     defaultCensusSize = 5000
   }
 
-  const title =
-    process.env.APP_TITLE ||
-    (process.env.THEME === 'onvote'
-      ? 'ONVOTE - Anonymous Gasless and Modular voting for Web3'
-      : 'Vocdoni - The voice of digital voting')
+  const title = process.env.APP_TITLE || 'Vocdoni - The voice of digital voting'
 
   let saasUrl = process.env.SAAS_URL || 'https://saas-api-dev.vocdoni.net'
   if (saasUrl.endsWith('/')) {
@@ -58,11 +53,10 @@ const viteconfig = ({ mode }) => {
     },
     plugins: [
       tsconfigPaths(),
-      themes(),
       react(),
       svgr(),
       createHtmlPlugin({
-        template: `public/${process.env.THEME || 'default'}/index.html`,
+        template: `public/index.html`,
         minify: {
           removeComments: false,
           collapseWhitespace: true,

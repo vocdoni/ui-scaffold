@@ -3,7 +3,7 @@ import { ElectionProvider } from '@vocdoni/react-providers'
 import { InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import { HSeparator } from '~components/Auth/SignIn'
-import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
+import useDarkMode from '~components/Layout/useDarkMode'
 import NoElections from '../NoElections'
 import ProcessCard from './ProcessCard'
 

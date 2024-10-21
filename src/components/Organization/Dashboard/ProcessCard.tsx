@@ -5,8 +5,8 @@ import { ensure0x, InvalidElection } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import { FaEye } from 'react-icons/fa'
 import { Link as RouterLink } from 'react-router-dom'
+import useDarkMode from '~components/Layout/useDarkMode'
 import { useDateFns } from '~i18n/use-date-fns'
-import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 
 const ProcessCard = () => {
   const { election, participation } = useElection()

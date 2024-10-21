@@ -1,7 +1,7 @@
 import { Button, Icon } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { FcGoogle } from 'react-icons/fc'
-import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
+import useDarkMode from '~components/Layout/useDarkMode'
 
 const GoogleAuth = () => {
   const { t } = useTranslation()

@@ -78,41 +78,6 @@ VOCDONI_ENVIRONMENT=dev yarn start
 BUILD_PATH=build/dev BASE_URL=/ui-scaffold/dev VOCDONI_ENVIRONMENT=dev yarn build
 ```
 
-### Theming
-
-This app has a bundled theming system, allowing to customize the entire look and feel of the app.
-
-The theme is loaded from the `src/themes` folder, and can be changed using the `THEME` env var. Defaults to `default`:
-
-~~~bash
-THEME=onvote yarn start
-~~~
-
-Important things to know when using the theming system:
-
-- A special `~theme` import alias is available to import the current theme files from anywhere in the app. Note your IDE
-won't recommend this import, instead it will try to recommend importing from an existing theme. Ensure you import from
-`~theme`, otherwise won't properly switch between themes. Due to this, tsc will complain about any import from `~theme`,
-if you need to add new exports to the theme, you'll need to add them to the `src/themes/theme.d.ts` file.
-- Assets are loaded from `src/public`, but also depending on the theme. Loading assets in the app is done as per vite
-standards, using the `/` root path (i.e. `import logo from '/assets/logo.svg'` would load the `logo.svg` file from the
-`src/public/default` directory, if no theme is specified).
-- There's a shared assets folder in `public/shared` that's accessible via `/shared`. Related styles may be found in
-`src/themes/shared.ts` (and they must be spread-imported in the theme's `index.ts` file).
-
-To create a new theme, just copy the `default` theme and start customizing it:
-
-~~~bash
-cp -frv public/default public/my-theme
-cp -frv src/themes/default src/themes/my-theme
-THEME=my-theme yarn start
-~~~
-
-You can use any non existing name for your theme (so no `default` nor `shared`).
-
-Most themes logic is handled via the vite themes plugin (located in `vite/themes.ts`), except for the `index.html`
-template files, which are handled in `vite.config.ts` using an external plugin.
-
 ### Custom domain names
 
 The custom domain names environment variable allows to map custom domains to organization ids, so that the homepage
@@ -171,7 +136,7 @@ such case, a hotfix should be created from the desired branch to be updated:
 
 ## Preview
 
-The site is deployed at https://app.vocdoni.io/ and https://onvote.app/. Check out the difference between the themes.
+The site is deployed using legacy branch at https://app.vocdoni.io/ and https://onvote.app/.
 
 ## Contributing
 

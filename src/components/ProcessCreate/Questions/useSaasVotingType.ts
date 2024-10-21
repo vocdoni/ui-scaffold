@@ -1,9 +1,9 @@
-import { useTranslation } from 'react-i18next'
-import { GenericFeatureObject, GenericFeatureObjectProps } from '~components/ProcessCreate/Steps/TabsPage'
-import { SaasVotingTypesKeys, useAccountPlan } from '~components/AccountSaas/useAccountPlan'
-import { GiChoice } from 'react-icons/gi'
-import SingleChoice from '~components/ProcessCreate/Questions/SingleChoice'
 import { useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
+import { GiChoice } from 'react-icons/gi'
+import { SaasVotingTypesKeys, useAccountPlan } from '~components/AccountSaas/useAccountPlan'
+import SingleChoice from '~components/ProcessCreate/Questions/SingleChoice'
+import { GenericFeatureObject, GenericFeatureObjectProps } from '~components/ProcessCreate/Steps/TabsPage'
 
 const useVotingTypesTranslations = (): Record<SaasVotingTypesKeys, GenericFeatureObjectProps> => {
   const { t } = useTranslation()
@@ -57,7 +57,6 @@ export const useSaasVotingType = (): {
   const { data } = useAccountPlan()
   const translations = useVotingTypesTranslations()
 
-  if (!data) return null
   const inPlanDetails = {} as Record<Partial<SaasVotingTypesKeys>, GenericFeatureObjectProps>
   const proDetails = {} as Record<Partial<SaasVotingTypesKeys>, GenericFeatureObjectProps>
 

@@ -9,7 +9,7 @@ import {
   OrganzationTypesSelector,
   SelectOptionType,
 } from '~components/Layout/SaasSelector'
-import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
+import useDarkMode from '~components/Layout/useDarkMode'
 
 export const PublicOrgForm = () => {
   const { t } = useTranslation()

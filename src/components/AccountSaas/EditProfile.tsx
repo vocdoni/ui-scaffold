@@ -19,8 +19,8 @@ import {
   CustomizationTimeZoneSelector,
   SelectOptionType,
 } from '~components/Layout/SaasSelector'
+import useDarkMode from '~components/Layout/useDarkMode'
 import { REGEX_AVATAR } from '~constants'
-import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 import fallback from '/assets/default-avatar.png'
 
 type FormData = CustomOrgFormData & PrivateOrgFormData & CreateOrgParams
