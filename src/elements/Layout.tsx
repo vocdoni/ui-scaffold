@@ -1,8 +1,7 @@
 import { Box, Flex, HStack, Text } from '@chakra-ui/react'
 import { Outlet, ScrollRestoration, useLocation } from 'react-router-dom'
+import Footer from '~components/Layout/Footer'
 import Navbar from '~components/Navbar'
-import SaasNavbar from '~components/Navbar/SaasNavbar'
-import Footer from '~theme/components/Footer'
 
 const Layout = () => {
   const location = useLocation()
@@ -10,7 +9,7 @@ const Layout = () => {
   return (
     <Flex position='relative' flexDirection='column' minH='100vh' mx='auto' bgColor='bg'>
       <HStack as='header' position='sticky' top={0} w='full' backdropFilter='blur(40px)' zIndex={30}>
-        {import.meta.env.SAAS_URL ? <SaasNavbar /> : <Navbar />}
+        <Navbar />
       </HStack>
       <ScrollRestoration />
       <Flex flexDirection='column' as='main' flexGrow={1}>

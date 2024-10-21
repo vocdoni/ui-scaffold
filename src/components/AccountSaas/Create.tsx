@@ -13,7 +13,7 @@ import LogoutBtn from '~components/AccountSaas/LogoutBtn'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
-import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
+import useDarkMode from '~components/Layout/useDarkMode'
 
 type FormData = PrivateOrgFormData & CreateOrgParams
 

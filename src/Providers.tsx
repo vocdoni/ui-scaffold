@@ -6,15 +6,15 @@ import { EnvOptions } from '@vocdoni/sdk'
 import { PropsWithChildren } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useAccount, useWalletClient, WagmiConfig } from 'wagmi'
-import { walletClientToSigner } from '~constants/wagmi-adapters'
+import { SaasAccountProvider } from '~components/AccountSaas/SaasAccountContext'
 import { AuthProvider } from '~components/Auth/AuthContext'
+import { walletClientToSigner } from '~constants/wagmi-adapters'
 import { VocdoniEnvironment } from './constants'
 import { chains, wagmiConfig } from './constants/rainbow'
 import { translations } from './i18n/components'
 import { datesLocale } from './i18n/locales'
 import { RoutesProvider } from './router/Router'
 import { RainbowKitTheme, Theme } from './Theme'
-import { SaasAccountProvider } from '~components/AccountSaas/SaasAccountContext'
 
 const queryClient = new QueryClient()
 
@@ -30,16 +30,11 @@ export const Providers = () => {
   )
 }
 
-const SaasProviders = ({ children }: PropsWithChildren<{}>) => {
-  if (!import.meta.env.SAAS_URL) {
-    return children
-  }
-  return (
-    <AuthProvider>
-      <SaasAccountProvider>{children}</SaasAccountProvider>
-    </AuthProvider>
-  )
-}
+const SaasProviders = ({ children }: PropsWithChildren<{}>) => (
+  <AuthProvider>
+    <SaasAccountProvider>{children}</SaasAccountProvider>
+  </AuthProvider>
+)
 
 export const AppProviders = () => {
   const { data } = useWalletClient()

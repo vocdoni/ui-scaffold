@@ -5,8 +5,8 @@ import { Link as ReactRouterLink, useNavigate, useSearchParams } from 'react-rou
 import { useResendVerificationMail } from '~components/Auth/authQueries'
 import { useAuth } from '~components/Auth/useAuth'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
+import useDarkMode from '~components/Layout/useDarkMode'
 import { Loading } from '~src/router/SuspenseLoader'
-import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 
 const Verify = () => {
   const navigate = useNavigate()

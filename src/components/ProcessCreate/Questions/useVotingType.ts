@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { GiChoice } from 'react-icons/gi'
-import { GenericFeatureObject } from '~components/ProcessCreate/Steps/TabsPage'
-import SingleChoice from '~components/ProcessCreate/Questions/SingleChoice'
 import ApprovalVoting from '~components/ProcessCreate/Questions/ApprovalVoting'
+import SingleChoice from '~components/ProcessCreate/Questions/SingleChoice'
+import { GenericFeatureObject } from '~components/ProcessCreate/Steps/TabsPage'
 
 export const VotingTypeSingle = 'single'
 export const UnimplementedVotingTypeApproval = 'approval'
@@ -16,7 +16,7 @@ export const VotingTypes = [VotingTypeSingle as VotingType, UnimplementedVotingT
 export const useVotingType = (): GenericFeatureObject<VotingType> => {
   const { t } = useTranslation()
   return {
-    defined: import.meta.env.features.voting_type as VotingType[],
+    defined: VotingTypes,
     details: {
       [VotingTypeSingle]: {
         title: t('process_create.question.single_choice.title'),

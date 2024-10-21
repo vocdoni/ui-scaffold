@@ -104,17 +104,10 @@ const MenuDropdown = () => {
               <Flex>
                 <Balance p={0} bg='white' fontWeight='bold' />
               </Flex>
-              {import.meta.env.features.faucet && (
-                <Button
-                  as={ReactRouterLink}
-                  to='/calculator'
-                  aria-label={t('menu.get_more')}
-                  title={t('menu.get_more')}
-                >
-                  <Icon as={HiShoppingCart} />
-                  {t('menu.get_more')}
-                </Button>
-              )}
+              <Button as={ReactRouterLink} to='/calculator' aria-label={t('menu.get_more')} title={t('menu.get_more')}>
+                <Icon as={HiShoppingCart} />
+                {t('menu.get_more')}
+              </Button>
             </Flex>
           </MenuItem>
 
@@ -123,25 +116,20 @@ const MenuDropdown = () => {
           </MenuItem>
         </>
       )}
-
-      {import.meta.env.features.languages.length > 1 && (
-        <>
-          <MenuItem
-            closeOnSelect={false}
-            onClick={() => setIsOpenMenuLanguages((prev) => !prev)}
-            display='flex'
-            flexDirection='column'
-            px={0}
-            pb={0}
-          >
-            <Box as='span' px={3} display='flex' w='full' pb={2}>
-              <Text>{t('menu.languages')}</Text>
-              {isOpenMenuLanguages ? <ChevronUpIcon mt='5px' /> : <ChevronDownIcon mt='5px' />}
-            </Box>
-          </MenuItem>
-          {isOpenMenuLanguages && <LanguagesList closeOnSelect={false} />}
-        </>
-      )}
+      <MenuItem
+        closeOnSelect={false}
+        onClick={() => setIsOpenMenuLanguages((prev) => !prev)}
+        display='flex'
+        flexDirection='column'
+        px={0}
+        pb={0}
+      >
+        <Box as='span' px={3} display='flex' w='full' pb={2}>
+          <Text>{t('menu.languages')}</Text>
+          {isOpenMenuLanguages ? <ChevronUpIcon mt='5px' /> : <ChevronDownIcon mt='5px' />}
+        </Box>
+      </MenuItem>
+      {isOpenMenuLanguages && <LanguagesList closeOnSelect={false} />}
       <MenuItem
         as={Link}
         href='https://developer.vocdoni.io/'

@@ -25,7 +25,7 @@ export const StepsForm = ({ steps, activeStep, next, prev, setActiveStep }: Step
     electionType: {
       autoStart: true,
       interruptible: true,
-      secretUntilTheEnd: import.meta.env.features.vote.secret,
+      secretUntilTheEnd: true,
       anonymous: false,
     },
     // hardcoded while there's no support for creating other types
@@ -40,20 +40,16 @@ export const StepsForm = ({ steps, activeStep, next, prev, setActiveStep }: Step
     gpsWeighted: false,
     passportScore: 20,
     stampsUnionType: 'OR',
-    ...(import.meta.env.SAAS_URL
-      ? {
-          saasFeatures: {
-            anonymous: false,
-            secretUntilTheEnd: import.meta.env.features.vote.secret,
-            overwrite: false,
-            personalization: false,
-            emailReminder: false,
-            smsNotification: false,
-            whiteLabel: false,
-            liveStreaming: false,
-          },
-        }
-      : {}),
+    saasFeatures: {
+      anonymous: false,
+      secretUntilTheEnd: true,
+      overwrite: false,
+      personalization: false,
+      emailReminder: false,
+      smsNotification: false,
+      whiteLabel: false,
+      liveStreaming: false,
+    },
   })
 
   const [isLoadingPreview, setIsLoadingPreview] = useState(false)

@@ -31,7 +31,7 @@ export const UnimplementedCensusTypes = [
 export const useUnimplementedCensusTypes = (): GenericFeatureObject<UnimplementedCensusType> => {
   const { t } = useTranslation()
   return {
-    defined: import.meta.env.features.unimplemented_census as UnimplementedCensusType[],
+    defined: UnimplementedCensusTypes,
     details: {
       [CensusTypePhone]: {
         title: t('process_create.census.phone_title'),

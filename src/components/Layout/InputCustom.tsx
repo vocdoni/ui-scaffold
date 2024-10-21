@@ -23,7 +23,7 @@ import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { MdOutlineRemoveRedEye } from 'react-icons/md'
 import { RiEyeCloseLine } from 'react-icons/ri'
-import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
+import useDarkMode from '~components/Layout/useDarkMode'
 
 export interface InputCustomProps extends InputProps {
   formValue: string

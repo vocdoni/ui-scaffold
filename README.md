@@ -68,7 +68,6 @@ there, here's a list of variables you can use:
 - `BUILD_PATH` Specifies the destination of built files.
 - `CUSTOM_ORGANIZATION_DOMAINS` A JSON.stringified object of custom domains mapped to organization ids, to
   replace the homepage with their profile page.
-- `FEATURES` A JSON.stringified object of features to be enabled/disabled. See [features] for more details.
 
 You can also start the app by prefixing these vars instead of defining your
 custom `.env` file:
@@ -78,87 +77,6 @@ VOCDONI_ENVIRONMENT=dev yarn start
 # or an example using many of them...
 BUILD_PATH=build/dev BASE_URL=/ui-scaffold/dev VOCDONI_ENVIRONMENT=dev yarn build
 ```
-
-### Theming
-
-This app has a bundled theming system, allowing to customize the entire look and feel of the app.
-
-The theme is loaded from the `src/themes` folder, and can be changed using the `THEME` env var. Defaults to `default`:
-
-~~~bash
-THEME=onvote yarn start
-~~~
-
-Important things to know when using the theming system:
-
-- A special `~theme` import alias is available to import the current theme files from anywhere in the app. Note your IDE
-won't recommend this import, instead it will try to recommend importing from an existing theme. Ensure you import from
-`~theme`, otherwise won't properly switch between themes. Due to this, tsc will complain about any import from `~theme`,
-if you need to add new exports to the theme, you'll need to add them to the `src/themes/theme.d.ts` file.
-- Assets are loaded from `src/public`, but also depending on the theme. Loading assets in the app is done as per vite
-standards, using the `/` root path (i.e. `import logo from '/assets/logo.svg'` would load the `logo.svg` file from the
-`src/public/default` directory, if no theme is specified).
-- There's a shared assets folder in `public/shared` that's accessible via `/shared`. Related styles may be found in
-`src/themes/shared.ts` (and they must be spread-imported in the theme's `index.ts` file).
-
-To create a new theme, just copy the `default` theme and start customizing it:
-
-~~~bash
-cp -frv public/default public/my-theme
-cp -frv src/themes/default src/themes/my-theme
-THEME=my-theme yarn start
-~~~
-
-You can use any non existing name for your theme (so no `default` nor `shared`).
-
-Most themes logic is handled via the vite themes plugin (located in `vite/themes.ts`), except for the `index.html`
-template files, which are handled in `vite.config.ts` using an external plugin.
-
-### Features
-
-The following features can be enabled/disabled using the `FEATURES` environment var:
-
-~~~js
-const features = {
-  faucet: true,
-  vote: {
-    anonymous: true,
-    overwrite: true,
-    secret: true,
-  },
-  // order matters in array features
-  login: ['web3', 'web2'],
-  census: ['spreadsheet', 'token', 'address'],
-  // first is also considered as the default language
-  languages: ['en', 'es', 'ca'],
-}
-~~~
-
-All features come enabled by default, but you can overwrite any of them using the env var, i.e.:
-
-~~~bash
-FEATURES='{"vote":{"anonymous":false}}' yarn start
-~~~
-> Would disable anonymous process creation feature.
-
-The `login` field is an array so you can both enable/disable and sort the login methods:
-
-~~~bash
-FEATURES='{"login":["web2"]}' yarn start
-~~~
-
-The example above would just show web2 login methods.
-
-~~~bash
-FEATURES='{"login":["web2", "web3"]}' yarn start
-~~~
-
-Changing the order in the features array will effectively change the order in the UI.
-
-Note features are interpreted during build time, and the bundler will ensure to tree-shake any disabled features
-(meaning they won't be included in the final bundle).
-
-All features logic is handled via the vite features plugin (located in `vite/features.ts`).
 
 ### Custom domain names
 
@@ -218,7 +136,7 @@ such case, a hotfix should be created from the desired branch to be updated:
 
 ## Preview
 
-The site is deployed at https://app.vocdoni.io/ and https://onvote.app/. Check out the difference between the themes.
+The site is deployed using legacy branch at https://app.vocdoni.io/ and https://onvote.app/.
 
 ## Contributing
 
@@ -273,5 +191,4 @@ This repository is licensed under the [GNU Affero General Public License v3.0.](
 [github commits]: https://github.com/vocdoni/ui-scaffold/commits/main
 
 [SDK]: https://developer.vocdoni.io/sdk
-[features]: #features
 [related react packages]: https://github.com/vocdoni/ui-components#vocdonis-ui-components

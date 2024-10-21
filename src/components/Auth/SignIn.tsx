@@ -7,11 +7,11 @@ import { UnverifiedApiError } from '~components/Auth/api'
 import { ILoginParams } from '~components/Auth/authQueries'
 import { useAuth } from '~components/Auth/useAuth'
 import { VerifyAccountNeeded } from '~components/Auth/Verify'
-import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
+import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
+import useDarkMode from '~components/Layout/useDarkMode'
 import CustomCheckbox from '../Layout/CheckboxCustom'
 import InputCustom from '../Layout/InputCustom'
 import GoogleAuth from './GoogleAuth'
-import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 
 type FormData = {
   keepLogedIn: boolean
