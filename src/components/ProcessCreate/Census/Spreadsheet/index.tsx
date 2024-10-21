@@ -1,6 +1,9 @@
 import {
   Box,
   Button,
+  Card,
+  CardBody,
+  CardFooter,
   Checkbox,
   Flex,
   FormControl,
@@ -87,44 +90,30 @@ export const CensusCsvManager = () => {
   return (
     <>
       <Flex
-        gap={5}
+        gap={6}
         flexDirection={{ base: 'column', lg: 'row' }}
-        mb={5}
+        mb={6}
         alignItems={{ base: 'start', lg: 'stretch' }}
         justifyContent='center'
       >
-        <Box flex='1 1 60%'>
-          <Flex alignItems='center' gap={1} mb={5} color='process_create.spreadsheet.requirements_text'>
+        <Flex flexDirection='column' gap={6} flex='1 1 60%'>
+          <Flex alignItems='center' gap={1}>
             <Icon as={PiWarningCircleLight} />
-            <Text>{t('form.process_create.spreadsheet.requirements.title')}</Text>
+            <Text mt={0.5}>{t('form.process_create.spreadsheet.requirements.title')}</Text>
           </Flex>
-          <UnorderedList mb={4} fontSize='sm'>
+          <UnorderedList>
             <ListItem mb={2}>
-              <Text>{t('form.process_create.spreadsheet.requirements.list_one')}</Text>
+              <Text variant='process-create-subtitle-sm'>
+                {t('form.process_create.spreadsheet.requirements.list_one')}
+              </Text>
             </ListItem>
             <ListItem>
-              <Text>{t('form.process_create.spreadsheet.requirements.list_two')}</Text>
+              <Text variant='process-create-subtitle-sm'>
+                {t('form.process_create.spreadsheet.requirements.list_two')}
+              </Text>
             </ListItem>
           </UnorderedList>
-          <FormControl
-            bgColor='process_create.bg'
-            borderRadius='md'
-            sx={{
-              '& > label': {
-                position: 'relative',
-
-                '& span:first-of-type': {
-                  position: 'absolute',
-                  top: 1,
-                  right: 1,
-                },
-
-                '& > input:checked + span': {
-                  bgColor: 'process_create.census.weighted_vote_checked',
-                },
-              },
-            }}
-          >
+          <FormControl>
             <Controller
               control={control}
               name='weightedVote'
@@ -143,40 +132,32 @@ export const CensusCsvManager = () => {
                   onBlur={onBlur}
                   ref={ref}
                   isChecked={value}
-                  w='full'
-                  p={3}
+                  variant={'radiobox'}
                 >
-                  <Flex alignItems='center' gap={1}>
+                  <Flex>
                     <Icon as={BiCheckDouble} />
-                    <Text fontWeight='bold' mb={1}>
+                    <Text>
                       <Trans i18nKey='form.process_create.weighted'>Weighted vote</Trans>
                     </Text>
                   </Flex>
-                  <Text color='process_create.description' fontSize='sm'>
-                    {t('form.process_create.spreadsheet.requirements.list_three')}
-                  </Text>
+                  <Text>{t('form.process_create.spreadsheet.requirements.list_three')}</Text>
                 </Checkbox>
               )}
             />
           </FormControl>
-        </Box>
-        <Flex
-          flex='1 1 40%'
-          flexDirection='column'
-          justifyContent='center'
-          alignItems='center'
-          gap={3}
-          p={6}
-          borderRadius='lg'
-          mx='auto'
-        >
-          <Text textAlign='center'>{t('form.process_create.spreadsheet.download_template_description')}</Text>
-          <Link download={'census-template.csv'} href={template.url}>
-            <Button leftIcon={<BiDownload />} colorScheme='primary' variant='ghost' border='1px solid'>
-              {t('form.process_create.spreadsheet.download_template_btn')}
-            </Button>
-          </Link>
         </Flex>
+        <Card variant='download-spreadsheet'>
+          <CardBody>
+            <Text>{t('form.process_create.spreadsheet.download_template_description')}</Text>
+          </CardBody>
+          <CardFooter>
+            <Link download={'census-template.csv'} href={template.url}>
+              <Button variant={'outline'} leftIcon={<BiDownload />}>
+                {t('form.process_create.spreadsheet.download_template_btn')}
+              </Button>
+            </Link>
+          </CardFooter>
+        </Card>
       </Flex>
 
       <FormControl
@@ -185,18 +166,7 @@ export const CensusCsvManager = () => {
         isInvalid={!!errors?.spreadsheet}
         display={manager?.data.length ? 'none' : 'block'}
       >
-        <Flex
-          flexDirection='column'
-          justifyContent='center'
-          alignItems='center'
-          gap={5}
-          p={10}
-          border='1px dotted'
-          borderColor='process_create.census.drag_and_drop_border'
-          bgColor='process_create.bg'
-          borderRadius='lg'
-          cursor='pointer'
-        >
+        <Card variant='drag-and-drop'>
           <input {...getInputProps()} />
           <Icon as={RiFileExcel2Line} boxSize={20} color='process_create.spreadsheet.file' />
           <Box>
@@ -214,7 +184,7 @@ export const CensusCsvManager = () => {
               />
             )}
           </Box>
-        </Flex>
+        </Card>
         <FormErrorMessage display='flex' justifyContent='center'>
           {errors?.spreadsheet?.message?.toString()}
         </FormErrorMessage>

@@ -4,7 +4,7 @@ import Calendar from './Calendar'
 const CreateProcessSettings = () => (
   <>
     <Calendar />
-    <Advanced />
+    {!import.meta.env.SAAS_URL && <Advanced />}
   </>
 )
 

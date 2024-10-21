@@ -16,7 +16,6 @@ export const VotingTypes = [VotingTypeSingle as VotingType, UnimplementedVotingT
 export const useVotingType = (): GenericFeatureObject<VotingType> => {
   const { t } = useTranslation()
   return {
-    list: VotingTypes,
     defined: import.meta.env.features.voting_type as VotingType[],
     details: {
       [VotingTypeSingle]: {

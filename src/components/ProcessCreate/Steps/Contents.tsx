@@ -1,4 +1,4 @@
-import { Box, useStepContext } from '@chakra-ui/react'
+import { Flex, useStepContext } from '@chakra-ui/react'
 import { PropsWithChildren } from 'react'
 
 export type StepContentsProps = {}
@@ -11,8 +11,8 @@ export const StepContents = ({ children }: PropsWithChildren<StepContentsProps>)
   }
 
   return (
-    <Box flex='1' minW={1}>
+    <Flex flexGrow={1} flexDirection='column' minH='100%'>
       {children}
-    </Box>
+    </Flex>
   )
 }

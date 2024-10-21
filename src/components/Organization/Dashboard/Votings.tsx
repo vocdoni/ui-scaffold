@@ -1,6 +1,6 @@
 import { Flex, Heading, Text } from '@chakra-ui/react'
 import { RoutedPagination } from '@vocdoni/chakra-components'
-import { useOrganization, RoutedPaginationProvider, useRoutedPagination } from '@vocdoni/react-providers'
+import { RoutedPaginationProvider, useOrganization, useRoutedPagination } from '@vocdoni/react-providers'
 import { Trans, useTranslation } from 'react-i18next'
 import { ContentsBox } from '~components/Organization/Dashboard/Box'
 import { usePaginatedElections } from '~src/queries/account'

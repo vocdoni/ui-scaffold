@@ -1,9 +1,10 @@
-import { Box } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import { FormProvider, SubmitHandler, useFieldArray, useForm, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { useSaasVotingType } from '~components/ProcessCreate/Questions/useSaasVotingType'
 import { useUnimplementedVotingType } from '~components/ProcessCreate/Questions/useUnimplementedVotingType'
 import { MultiQuestionTypes, useVotingType, VotingType } from '~components/ProcessCreate/Questions/useVotingType'
-import { TabsPage } from '~components/ProcessCreate/Steps/TabsPage'
+import { ITabsPageProps, TabsPage } from '~components/ProcessCreate/Steps/TabsPage'
 import { StepsFormValues, useProcessCreationSteps } from '../Steps/use-steps'
 
 export interface Option {
@@ -21,12 +22,23 @@ export interface QuestionsValues {
   questionType: VotingType | null
 }
 
-const QuestionsTabs = () => {
+const SaasQuestionsTabs = () => {
+  const { pro, inPlan } = useSaasVotingType()
+  return <QuestionsTabs definedList={inPlan} unimplementedList={pro} />
+}
+
+const VocdoniAppQuestionsTabs = () => {
+  const definedVotingTypes = useVotingType()
+  const unDefinedVotingTypes = useUnimplementedVotingType()
+  return <QuestionsTabs definedList={definedVotingTypes} unimplementedList={unDefinedVotingTypes} />
+}
+const QuestionsTabs = <Implemented extends string, UnImplemented extends string>({
+  definedList,
+  unimplementedList,
+}: Pick<ITabsPageProps<Implemented, UnImplemented>, 'definedList' | 'unimplementedList'>) => {
   const { t } = useTranslation()
   const { form, setForm } = useProcessCreationSteps()
 
-  const definedVotingTypes = useVotingType()
-  const unDefinedVotingTypes = useUnimplementedVotingType()
   const { questionType } = form
 
   const { watch } = useFormContext()
@@ -39,17 +51,17 @@ const QuestionsTabs = () => {
 
   return (
     <TabsPage
-      definedList={definedVotingTypes}
-      unimplementedList={unDefinedVotingTypes}
+      definedList={definedList}
+      unimplementedList={unimplementedList}
       onTabChange={(index: number) => {
-        const newQuestionType = definedVotingTypes.defined[index]
+        const newQuestionType = definedList.defined[index]
         // If the question type not accepts multiquestion and there are multiple questions selcted store only the first
         if (newQuestionType && !MultiQuestionTypes.includes(newQuestionType) && questions.length > 1) {
           replace(questions[0])
         }
         const nform: StepsFormValues = {
           ...form,
-          questionType: newQuestionType,
+          questionType: newQuestionType as VotingType,
         }
         setForm(nform)
       }}
@@ -73,11 +85,18 @@ export const Questions = () => {
     setForm({ ...form, ...data })
     next()
   }
+
   return (
     <FormProvider {...methods}>
-      <Box as='form' id='process-create-form' onSubmit={methods.handleSubmit(onSubmit)}>
-        <QuestionsTabs />
-      </Box>
+      <Flex
+        as='form'
+        flexGrow={1}
+        flexDirection='column'
+        id='process-create-form'
+        onSubmit={methods.handleSubmit(onSubmit)}
+      >
+        {import.meta.env.SAAS_URL ? <SaasQuestionsTabs /> : <VocdoniAppQuestionsTabs />}
+      </Flex>
     </FormProvider>
   )
 }

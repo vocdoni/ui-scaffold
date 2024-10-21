@@ -13,13 +13,14 @@ import { Check } from '~theme/icons'
  * These components implement the skeleton for tabs pages like questions or census types.
  */
 
+export type GenericFeatureObjectProps = { icon: any; title: string; description: string; component?: () => JSX.Element }
+export type GenericFeatureObjectDetailsRecord<T extends string> = Record<T, GenericFeatureObjectProps>
 export type GenericFeatureObject<T extends string> = {
-  list: T[]
   defined: T[]
-  details: Record<T, { icon: any; title: string; description: string; component?: () => JSX.Element }>
+  details: GenericFeatureObjectDetailsRecord<T>
 }
 
-interface ITabsPageProps<Implemented extends string, UnImplemented extends string> {
+export interface ITabsPageProps<Implemented extends string, UnImplemented extends string> {
   onTabChange: (index: number) => void
   title: string
   description: string
@@ -52,14 +53,12 @@ export const TabsPage = <Implemented extends string, UnImplemented extends strin
       <ModalPro isOpen={isOpen} onClose={onClose} reason={reason} />
       <Flex flexDirection='column' gap={5}>
         <Box>
-          <Text className='process-create-title'>{title}</Text>
-          <Text fontSize='sm' color='process_create.description'>
-            {description}
-          </Text>
+          <Text variant='process-create-title'>{title}</Text>
+          <Text variant='process-create-subtitle-sm'>{description}</Text>
         </Box>
         <Tabs defaultIndex={defined.findIndex((val) => val === selected)} onChange={onTabChange} variant='card' isLazy>
           <TabList mb={10}>
-            <Box>
+            <>
               {defined.map((ct: Implemented, index: number) => (
                 <TabCardSkeleton
                   key={index}
@@ -76,38 +75,33 @@ export const TabsPage = <Implemented extends string, UnImplemented extends strin
                   icon={CgMoreO}
                   title={t('process_create.census.others_title')}
                   description={t('process_create.census.others_description')}
-                  transform={showProCards ? 'scale(0.92)' : ''}
+                  // transform={showProCards ? 'scale(0.92)' : ''}
                 />
               )}
-            </Box>
+            </>
 
             {showProCards && (
               <>
-                <Text className='process-create-title' mt={5} mb={3}>
-                  {t('census.pro')}
-                </Text>
-                <Box>
-                  {definedUnim.map((ct: UnImplemented, index: number) => (
-                    <TabCardSkeleton
-                      key={index}
-                      onClick={(e) => {
-                        e.preventDefault()
-                        e.stopPropagation()
-                        setReason(detailsUnim[ct].title)
-                        onOpen()
-                      }}
-                      icon={detailsUnim[ct].icon}
-                      title={detailsUnim[ct].title}
-                      description={detailsUnim[ct].description}
-                      pro
-                    />
-                  ))}
-                </Box>
+                {definedUnim.map((ct: UnImplemented, index: number) => (
+                  <TabCardSkeleton
+                    key={index}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      e.stopPropagation()
+                      setReason(detailsUnim[ct].title)
+                      onOpen()
+                    }}
+                    icon={detailsUnim[ct].icon}
+                    title={detailsUnim[ct].title}
+                    description={detailsUnim[ct].description}
+                    pro
+                  />
+                ))}
               </>
             )}
           </TabList>
 
-          <TabPanels className={selected ? 'c' : ''} bgColor='process_create.section'>
+          <TabPanels className={selected ? 'c' : ''}>
             {defined.map((ct: Implemented, index: number) => {
               if (details[ct].component) {
                 return details[ct].component && <TabPanel key={index}>{details[ct].component!()}</TabPanel>
@@ -139,7 +133,7 @@ const TabCardSkeleton = ({
   pro = false,
   ...props
 }: ITabsCardSkeletonProps & TabProps) => (
-  <Tab onClick={onClick} {...props}>
+  <Tab onClick={onClick} mb={5} {...props}>
     {check && (
       <>
         <Check />

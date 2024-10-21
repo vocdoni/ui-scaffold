@@ -2,11 +2,11 @@ import { DeleteIcon } from '@chakra-ui/icons'
 import {
   Box,
   Button,
+  Card,
   Checkbox,
   Flex,
   FormControl,
   FormErrorMessage,
-  FormLabel,
   Icon,
   IconButton,
   Input,
@@ -119,16 +119,22 @@ export const CensusWeb3Addresses = () => {
 
   return (
     <>
-      <Flex flexDirection={{ base: 'column', xl: 'row' }} gap={5} alignItems={{ base: 'center', lg: 'start' }}>
-        <Box flex='1 1 50%' w='100%'>
+      <Flex
+        flexDirection={{ base: 'column', xl: 'row' }}
+        gap={10}
+        textAlign='center'
+        alignItems={{ base: 'center', xl: 'start' }}
+      >
+        <Box flex={{ lg: '0 0 620px' }}>
           <FormControl
             isInvalid={isInvalidFieldMap(errors, 'newAddress')}
             display='flex'
             justifyContent='center'
+            alignItems='center'
             gap={2}
             flexDirection={{ base: 'column', lg: 'row' }}
           >
-            <Box mb={3} w='100%'>
+            <Box w='100%'>
               <Input
                 {...register('newAddress')}
                 onKeyDown={(e) => {
@@ -144,38 +150,12 @@ export const CensusWeb3Addresses = () => {
               />
               <FormErrorMessage>{fieldMapErrorMessage(errors, 'newAddress')}</FormErrorMessage>
             </Box>
-            <Button type='button' ml='none' onClick={handleAddAddress}>
+            <Button variant='outline' type='button' ml='none' onClick={handleAddAddress}>
               {t('form.process_create.census.add_button')}
             </Button>
           </FormControl>
-          <FormControl
-            bgColor='process_create.bg'
-            borderRadius='md'
-            mb={4}
-            sx={{
-              '& > label': {
-                position: 'relative',
 
-                '& span:first-of-type': {
-                  position: 'absolute',
-                  top: 1,
-                  right: 1,
-                },
-
-                '& > input:checked + span': {
-                  bgColor: 'process_create.census.weighted_vote_checked',
-                },
-              },
-            }}
-          ></FormControl>
-          <Flex
-            flexDirection='column'
-            height={100}
-            border='1px solid'
-            borderColor='process_create.wallet_addresses_border'
-            overflowY='scroll'
-            mb={1}
-          >
+          <Card variant='web3-addresses'>
             {fields.map((address, index) => (
               <Flex
                 key={address.id}
@@ -187,7 +167,7 @@ export const CensusWeb3Addresses = () => {
                 borderColor='process_create.wallet_addresses_border'
                 w='full'
                 p={5}
-                flexDirection={{ base: 'column', lg: 'row' }}
+                flexDirection={{ base: 'column', sm: 'row' }}
               >
                 <Flex direction={'row'} gap={2} justifyContent='start' alignItems='center'>
                   <Text fontWeight='bold'>{index + 1}</Text>
@@ -204,11 +184,15 @@ export const CensusWeb3Addresses = () => {
                         size='sm'
                         w={20}
                         ml={3}
+                        maxH='2px'
+                        p={3}
                       />
-                      <FormLabel fontSize='xs' m={0} ml={3} right={0}>
-                        {t('form.process_create.census.weight')}
-                      </FormLabel>
                     </FormControl>
+                  )}
+                  {weighted && (
+                    <Text fontWeight='bold' fontSize='xs' m='0 !important' ml={3} right={0} p={0}>
+                      {t('form.process_create.census.weight')}
+                    </Text>
                   )}
                   <IconButton
                     size='xs'
@@ -224,29 +208,20 @@ export const CensusWeb3Addresses = () => {
                 </Flex>
               </Flex>
             ))}
-          </Flex>
-          <Text color='process_create.description' fontSize='sm' mb={1}>
-            {t('form.process_create.web3.your_wallet_is_added')}
-          </Text>
-          <Flex gap={1}>
+          </Card>
+          <Text variant='process-create-subtitle-sm'>{t('form.process_create.web3.your_wallet_is_added')}</Text>
+          <Flex gap={1} justifyContent='center'>
             <Trans
               i18nKey='form.process_create.web3.census_members'
               components={{
-                span: <Text as='span' fontWeight='bold' />,
-                text: <Text />,
+                span: <Text as='span' fontWeight='bold' variant='process-create-subtitle-sm' />,
+                text: <Text variant='process-create-subtitle-sm' />,
               }}
               count={fields.length}
             />
           </Flex>
         </Box>
-        <Flex
-          h={'full'}
-          flex='1 1 50%'
-          direction={'column'}
-          w={'full'}
-          gap={{ base: 3, lg: 8 }}
-          alignItems={{ base: 'center', lg: 'end' }}
-        >
+        <Flex flexDirection='column' alignItems='start' gap={6}>
           <Controller
             control={control}
             name='weightedVote'
@@ -257,24 +232,19 @@ export const CensusWeb3Addresses = () => {
                 onBlur={onBlur}
                 ref={ref}
                 isChecked={value}
-                w='full'
-                p={3}
-                maxW={100}
                 variant={'radiobox'}
               >
-                <Flex alignItems='center' gap={1}>
+                <Flex>
                   <Icon as={BiCheckDouble} />
-                  <Text fontWeight='bold' mb={1}>
+                  <Text>
                     <Trans i18nKey='form.process_create.weighted'>Weighted vote</Trans>
                   </Text>
                 </Flex>
-                <Text color='process_create.description' fontSize='sm'>
-                  {t('form.process_create.spreadsheet.requirements.list_three')}
-                </Text>
+                <Text>{t('form.process_create.spreadsheet.requirements.list_three')}</Text>
               </Checkbox>
             )}
           />
-          <FormControl isInvalid={!!fileErr} flex='1 1 50%'>
+          <FormControl isInvalid={!!fileErr}>
             <Flex
               flexDirection='column'
               justifyContent='center'
@@ -284,7 +254,6 @@ export const CensusWeb3Addresses = () => {
               border='1px dotted'
               borderColor='process_create.census.drag_and_drop_border'
               bgColor='process_create.bg'
-              mt={6}
               cursor='pointer'
               {...getRootProps()}
             >

@@ -4,7 +4,6 @@ import {
   CensusType,
   CensusTypeCsp,
   CensusTypeGitcoin,
-  CensusTypes,
   CensusTypeSpreadsheet,
   CensusTypeToken,
   CensusTypeWeb3,
@@ -16,7 +15,6 @@ export const useCensusTypes = (): GenericFeatureObject<CensusType> => {
   const { t } = useTranslation()
 
   return {
-    list: CensusTypes,
     defined: import.meta.env.features.census as CensusType[],
     details: {
       [CensusTypeSpreadsheet]: {
