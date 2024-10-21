@@ -9,13 +9,9 @@ export const LanguagesList = ({ closeOnSelect }: { closeOnSelect: boolean }) => 
 
   const languages = LanguagesSlice as { [key: string]: string }
 
-  const isAnyLanguageSelected =
-    Object.keys(languages).some((l) => l === i18n.language) &&
-    import.meta.env.features.languages.includes(i18n.language)
-
   return (
     <>
-      {import.meta.env.features.languages.map((k: string) => (
+      {Object.keys(languages).map((k: string) => (
         <MenuItem
           key={k}
           onClick={() => {
@@ -25,11 +21,7 @@ export const LanguagesList = ({ closeOnSelect }: { closeOnSelect: boolean }) => 
           w='full'
           display='flex'
           justifyContent={closeOnSelect ? 'center' : 'start'}
-          fontWeight={
-            k === i18n.language || (k === import.meta.env.features.languages[0] && !isAnyLanguageSelected)
-              ? 'extrabold'
-              : ''
-          }
+          fontWeight={k === i18n.language ? 'extrabold' : ''}
           borderRadius='none'
         >
           {k.toUpperCase()}
@@ -41,8 +33,6 @@ export const LanguagesList = ({ closeOnSelect }: { closeOnSelect: boolean }) => 
 
 export const LanguagesMenu = () => {
   const { t } = useTranslation()
-
-  if (import.meta.env.features.languages.length <= 1) return null
 
   return (
     <Menu>

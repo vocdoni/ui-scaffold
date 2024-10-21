@@ -4,7 +4,6 @@ import { defineConfig, loadEnv } from 'vite'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import svgr from 'vite-plugin-svgr'
 import tsconfigPaths from 'vite-tsconfig-paths'
-import features from './vite/features'
 import themes from './vite/themes'
 
 // https://vitejs.dev/config/
@@ -55,7 +54,6 @@ const viteconfig = ({ mode }) => {
     plugins: [
       tsconfigPaths(),
       themes(),
-      features(),
       react(),
       svgr(),
       createHtmlPlugin({

@@ -68,7 +68,6 @@ there, here's a list of variables you can use:
 - `BUILD_PATH` Specifies the destination of built files.
 - `CUSTOM_ORGANIZATION_DOMAINS` A JSON.stringified object of custom domains mapped to organization ids, to
   replace the homepage with their profile page.
-- `FEATURES` A JSON.stringified object of features to be enabled/disabled. See [features] for more details.
 
 You can also start the app by prefixing these vars instead of defining your
 custom `.env` file:
@@ -113,52 +112,6 @@ You can use any non existing name for your theme (so no `default` nor `shared`).
 
 Most themes logic is handled via the vite themes plugin (located in `vite/themes.ts`), except for the `index.html`
 template files, which are handled in `vite.config.ts` using an external plugin.
-
-### Features
-
-The following features can be enabled/disabled using the `FEATURES` environment var:
-
-~~~js
-const features = {
-  faucet: true,
-  vote: {
-    anonymous: true,
-    overwrite: true,
-    secret: true,
-  },
-  // order matters in array features
-  login: ['web3', 'web2'],
-  census: ['spreadsheet', 'token', 'address'],
-  // first is also considered as the default language
-  languages: ['en', 'es', 'ca'],
-}
-~~~
-
-All features come enabled by default, but you can overwrite any of them using the env var, i.e.:
-
-~~~bash
-FEATURES='{"vote":{"anonymous":false}}' yarn start
-~~~
-> Would disable anonymous process creation feature.
-
-The `login` field is an array so you can both enable/disable and sort the login methods:
-
-~~~bash
-FEATURES='{"login":["web2"]}' yarn start
-~~~
-
-The example above would just show web2 login methods.
-
-~~~bash
-FEATURES='{"login":["web2", "web3"]}' yarn start
-~~~
-
-Changing the order in the features array will effectively change the order in the UI.
-
-Note features are interpreted during build time, and the bundler will ensure to tree-shake any disabled features
-(meaning they won't be included in the final bundle).
-
-All features logic is handled via the vite features plugin (located in `vite/features.ts`).
 
 ### Custom domain names
 
@@ -273,5 +226,4 @@ This repository is licensed under the [GNU Affero General Public License v3.0.](
 [github commits]: https://github.com/vocdoni/ui-scaffold/commits/main
 
 [SDK]: https://developer.vocdoni.io/sdk
-[features]: #features
 [related react packages]: https://github.com/vocdoni/ui-components#vocdonis-ui-components

@@ -26,7 +26,7 @@ const Faucet = () => {
   return (
     <>
       <Flex direction='column' gap={4} mt={10} mb={44} className='site-wrapper'>
-        {import.meta.env.features.faucet && <FaucetView amount={faucetAmount} waitHours={waitHours} />}
+        <FaucetView amount={faucetAmount} waitHours={waitHours} />
       </Flex>
     </>
   )

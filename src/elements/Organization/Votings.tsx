@@ -1,12 +1,5 @@
-import Votings, { VotingsHeader } from '~components/Organization/Dashboard/Votings'
+import Votings from '~components/Organization/Dashboard/Votings'
 
-const OrganizationVotings = () => {
-  return (
-    <>
-      <VotingsHeader />
-      <Votings />
-    </>
-  )
-}
+const OrganizationVotings = () => <Votings />
 
 export default OrganizationVotings
