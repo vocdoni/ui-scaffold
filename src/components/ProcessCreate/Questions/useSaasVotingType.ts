@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { GiChoice } from 'react-icons/gi'
-import { SaasVotingTypesKeys, useAccountPlan } from '~components/AccountSaas/useAccountPlan'
+import { SaasVotingTypesKeys, useAccountPlan } from '~components/Account/useAccountPlan'
 import SingleChoice from '~components/ProcessCreate/Questions/SingleChoice'
 import { GenericFeatureObject, GenericFeatureObjectProps } from '~components/ProcessCreate/Steps/TabsPage'
 

@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
-import { FeaturesKeys } from '~components/AccountSaas/useAccountPlan'
+import { FeaturesKeys } from '~components/Account/useAccountPlan'
 import { SaasFeatures as SaasFeaturesComponent } from '~components/ProcessCreate/Settings/SaasFeatures'
 import { ConfigurationValues } from '~components/ProcessCreate/StepForm/Info'
 import { StepsNavigation } from '~components/ProcessCreate/Steps/Navigation'
