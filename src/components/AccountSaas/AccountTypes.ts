@@ -1,16 +1,24 @@
-export interface OrgInterface {
-  name: string
+import { AccountData, IAccount } from '@vocdoni/sdk'
+
+export type SaasOrganizationData = {
+  active: boolean
+  address: string
+  createdAt: string
   website: string
-  description: string
   size: string
   type: string
   country: string
   timezone: string
   language: string
-  logo: string
   header: string
   subdomain: string
   color: string
+  communications: boolean
 }
 
-export type CreateOrgParams = Partial<OrgInterface>
+export type OrganizationData = SaasOrganizationData & AccountData
+
+export type CreateOrgParams = Partial<
+  Pick<IAccount, 'name' | 'description' | 'logo' | 'header'> &
+    Omit<SaasOrganizationData, 'active' | 'address' | 'createdAt'>
+>

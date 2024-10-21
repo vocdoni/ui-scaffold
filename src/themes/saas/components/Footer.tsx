@@ -1,4 +1,4 @@
-import { Box, Flex, Icon, Image, Link, Text } from '@chakra-ui/react'
+import { Box, Flex, Icon, Image, Link, Text, useColorModeValue } from '@chakra-ui/react'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaDiscord, FaGithub } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
@@ -7,19 +7,27 @@ import vcdLogo from '/assets/logo-classic.svg'
 
 const Footer = () => {
   const { t } = useTranslation()
+  const invert = useColorModeValue('invert(0%)', 'invert(100%)')
 
   return (
     <>
       <Flex
-        className='site-wrapper'
+        width='full'
+        m='0 auto'
+        maxW='1920px'
+        px={{
+          base: '10px',
+          sm: '20px',
+          md: '80px',
+        }}
         pt='24px'
         flexDirection={{ base: 'column', xl: 'row' }}
         alignItems='start'
         pb={{ base: '50px', xl: '24px' }}
       >
         <Box flex='1 1 33%'>
-          <Image src={vcdLogo} w='125px' mb='12px' />
-          <Text fontSize='16px' lineHeight='28px' color='gray'>
+          <Image src={vcdLogo} w='125px' mb='12px' filter={invert} />
+          <Text fontSize='16px' lineHeight='28px'>
             {t('footer.footer_subtitle')}
           </Text>
         </Box>
@@ -95,16 +103,22 @@ const Footer = () => {
         </Flex>
       </Flex>
       <Flex
-        className='site-wrapper'
+        width='full'
+        m='0 auto'
+        maxW='1920px'
+        px={{
+          base: '10px',
+          sm: '20px',
+          md: '80px',
+        }}
         flexDirection={{ base: 'column', md: 'row' }}
         gap={{ base: '20px', md: '10px' }}
         justifyContent='space-between'
         alignItems='center'
         py='12px'
         borderTop='1px solid rgb(229, 229, 229)'
-        bgColor={`${location.pathname === '/organization' ? 'process_create.bg' : 'white'}`}
       >
-        <Text as='span' color='gray' textAlign='center'>
+        <Text as='span' textAlign='center'>
           <Trans
             i18nKey='footer.terms_and_privacy'
             components={{
@@ -114,46 +128,16 @@ const Footer = () => {
           />
         </Text>
         <Flex gap='10px'>
-          <Link
-            href='https://twitter.com/vocdoni'
-            target='_blank'
-            display='flex'
-            justifyContent='center'
-            alignItems='center'
-            borderRadius='sm'
-            minW='30px'
-            h='30px'
-            border='1px solid gray'
-          >
-            <Icon aria-label={t('link.twitter').toString()} as={FaXTwitter} w={4} h={4} cursor='pointer' color='gray' />
+          <Link variant='icon' href='https://twitter.com/vocdoni' target='_blank'>
+            <Icon aria-label={t('link.twitter').toString()} as={FaXTwitter} />
           </Link>
 
-          <Link
-            href='https://chat.vocdoni.io/'
-            target='_blank'
-            display='flex'
-            justifyContent='center'
-            alignItems='center'
-            borderRadius='sm'
-            minW='30px'
-            h='30px'
-            border='1px solid gray'
-          >
-            <Icon aria-label={t('link.discord').toString()} as={FaDiscord} w={4} h={4} cursor='pointer' color='gray' />
+          <Link variant='icon' href='https://chat.vocdoni.io/' target='_blank'>
+            <Icon aria-label={t('link.discord').toString()} as={FaDiscord} />
           </Link>
 
-          <Link
-            href='https://github.com/vocdoni'
-            target='_blank'
-            display='flex'
-            justifyContent='center'
-            alignItems='center'
-            borderRadius='sm'
-            minW='30px'
-            h='30px'
-            border='1px solid gray'
-          >
-            <Icon aria-label={t('link.github').toString()} as={FaGithub} w={4} h={4} cursor='pointer' color='gray' />
+          <Link variant='icon' href='https://github.com/vocdoni' target='_blank'>
+            <Icon aria-label={t('link.github').toString()} as={FaGithub} />
           </Link>
         </Flex>
       </Flex>

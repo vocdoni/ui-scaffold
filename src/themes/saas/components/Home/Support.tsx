@@ -1,25 +1,38 @@
-import { Box, Button, Flex, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Text, useColorModeValue } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { FaPhoneVolume, FaRegCheckCircle } from 'react-icons/fa'
 import { Link as ReactRouterLink } from 'react-router-dom'
 
 const Support = () => {
   const { t } = useTranslation()
+  const bg = useColorModeValue('#546E39', 'rgba(84, 110, 57, 0.2)')
 
   return (
     <Box
       backgroundImage='url("https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b75c38aa4f55_Net.svg")'
-      backgroundColor='home.support.bg'
+      backgroundColor={bg}
       backgroundRepeat='no-repeat'
       backgroundPosition='right'
       mb='100px'
     >
-      <Box className='site-wrapper' py={{ base: '60px', lg: '200px' }} position='relative' overflow='hidden'>
+      <Box
+        width='full'
+        m='0 auto'
+        maxW='1920px'
+        px={{
+          base: '10px',
+          sm: '20px',
+          md: '80px',
+        }}
+        py={{ base: '60px', lg: '200px' }}
+        position='relative'
+        overflow='hidden'
+      >
         <Box
           w='356px'
           h='356px'
           borderRadius='full'
-          bgColor='#50848bcf'
+          bgColor='#738A57cf'
           position='absolute'
           right='25px'
           top='-250px'
@@ -29,7 +42,7 @@ const Support = () => {
           w='300px'
           h='300px'
           borderRadius='full'
-          bgColor='#e9f0f1'
+          bgColor='#D8E1D1cf'
           position='absolute'
           left='20px'
           bottom='-250px'
@@ -76,9 +89,9 @@ const Support = () => {
           mb='40px'
         >
           <Button
-            variant='secondary'
             as={ReactRouterLink}
             to='mailto:info@vocdoni.org'
+            variant='outline'
             aria-label={t('home.support.btn_contact')}
             title={t('home.support.btn_contact')}
             target='_blank'
@@ -89,8 +102,7 @@ const Support = () => {
             {t('home.support.btn_contact')}
           </Button>
           <Button
-            variant='transparent'
-            color='white'
+            variant='outline'
             as={ReactRouterLink}
             to='https://calendly.com/vocdoni-app/30min'
             aria-label={t('home.support.btn_watch')}
@@ -98,6 +110,7 @@ const Support = () => {
             target='_blank'
             minW='280px'
             mb='30px'
+            height='60px'
           >
             <FaPhoneVolume size={30} />
             <Text as='span' ml='10px'>

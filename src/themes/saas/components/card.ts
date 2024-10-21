@@ -137,5 +137,265 @@ export const Card = defineMultiStyleConfig({
         minW: 76,
       },
     }),
+    client: (props) => ({
+      container: {
+        border: 'none',
+        backgroundColor: 'none',
+
+        _hover: {
+          lg: {
+            '& div:first-of-type': {
+              filter: 'none',
+            },
+            '& span': {
+              display: 'block',
+            },
+          },
+        },
+      },
+      header: {
+        p: 0,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        filter: mode('grayscale(100%)', 'grayscale(0%)')(props),
+        h: { base: '35px', lg: '45px' },
+      },
+      body: {
+        p: 0,
+        fontSize: '10px',
+        minH: '40px',
+
+        span: {
+          display: 'none',
+          textAlign: 'center',
+          fontSize: '12px',
+          fontWeight: 'bold',
+          color: mode('home.description.light', 'home.description.dark')(props),
+          marginTop: '22px',
+        },
+      },
+    }),
+    benefits: (props) => ({
+      container: {
+        w: '350px',
+        backdropFilter: 'blur(16px)',
+        borderBottomWidth: '0',
+        borderBottomColor: 'rgba(255, 255, 255, .15)',
+        borderLeftWidth: '0',
+        borderLeftColor: 'rgba(255, 255, 255, .15)',
+        borderRightWidth: '1px',
+        borderRightColor: 'rgba(255, 255, 255, .2)',
+        borderRadius: '8px',
+        flexDirection: 'column',
+        display: 'flex',
+        overflow: 'hidden',
+        boxShadow: 'inset 0 -1px 0 1px rgba(255, 255, 255, .2), 0 8px 22px rgba(0, 0, 0, .12)',
+
+        '&:nth-of-type(1)': {
+          bgColor: 'home.benefits.bg.light.primary',
+          color: 'home.benefits.color.light.bg_primary',
+        },
+        '&:nth-of-type(2)': {
+          bgColor: mode('home.benefits.bg.light.white', 'home.benefits.bg.dark.dark')(props),
+          color: mode('home.benefits.color.light.bg_white', 'home.benefits.color.dark')(props),
+        },
+        '&:nth-of-type(3)': {
+          bgColor: {
+            base: 'home.benefits.bg.light.primary',
+            benefits1: mode('home.benefits.bg.light.white', 'home.benefits.bg.dark.dark')(props),
+            benefits2: 'home.benefits.bg.light.primary',
+          },
+          color: {
+            base: 'home.benefits.color.light.bg_primary',
+            benefits1: mode('home.benefits.color.light.bg_white', 'home.benefits.color.dark')(props),
+            benefits2: 'home.benefits.color.light.bg_primary',
+          },
+        },
+        '&:nth-of-type(4)': {
+          bgColor: {
+            base: mode('home.benefits.bg.light.white', 'home.benefits.bg.dark.dark')(props),
+            benefits1: 'home.benefits.bg.light.primary',
+            benefits2: mode('home.benefits.bg.light.white', 'home.benefits.bg.dark.dark')(props),
+          },
+          color: {
+            base: mode('home.benefits.color.light.bg_white', 'home.benefits.color.dark')(props),
+            benefits1: 'home.benefits.color.light.bg_primary',
+            benefits2: mode('home.benefits.color.light.bg_white', 'home.benefits.color.dark')(props),
+          },
+        },
+        '&:nth-of-type(5)': {
+          bgColor: 'home.benefits.bg.light.primary',
+          color: 'home.benefits.color.light.bg_primary',
+        },
+        '&:nth-of-type(6)': {
+          bgColor: mode('home.benefits.bg.light.white', 'home.benefits.bg.dark.dark')(props),
+          color: mode('home.benefits.color.light.bg_white', 'home.benefits.color.dark')(props),
+        },
+      },
+      header: {
+        p: '30px',
+        pb: '20px',
+        fontSize: { base: '28.5px', sm: '28px' },
+        lineHeight: { base: '38px', sm: '37px' },
+        fontWeight: 'bold',
+        textAlign: 'left',
+        fontFamily: 'basier',
+      },
+      body: {
+        p: '30px',
+        pt: 0,
+        textAlign: 'left',
+      },
+    }),
+    'icon-card': (props) => ({
+      container: {
+        bgColor: 'transparent',
+      },
+      body: {
+        p: 0,
+        display: 'flex',
+        gap: '24px',
+
+        'div:first-of-type': {
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderRadius: 'lg',
+          minW: '45px',
+          h: '45px',
+          bgColor: 'home.features_icon',
+
+          svg: {
+            width: '25px',
+            height: '25px',
+            color: 'white',
+          },
+        },
+
+        'div:last-of-type': {
+          'p:first-of-type': {
+            fontWeight: '600',
+            mb: '15px',
+            fontSize: '26px',
+            lineHeight: '32px',
+            mr: 2,
+          },
+
+          'p:last-of-type': {
+            fontSize: '22px',
+            color: mode('home.description.light !important', 'home.description.dark !important')(props),
+          },
+        },
+      },
+    }),
+    'image-card': (props) => ({
+      container: {
+        bgColor: 'transparent',
+      },
+      body: {
+        p: 0,
+        display: 'flex',
+        gap: '24px',
+        alignItems: 'center',
+
+        'div:first-of-type': {
+          backgroundColor: 'transparent',
+          w: '120px',
+          h: '120px',
+          minW: '120px',
+        },
+
+        'div:last-of-type': {
+          'p:first-of-type': {
+            fontWeight: '600',
+            mb: '15px',
+            fontSize: '26px',
+            lineHeight: '32px',
+          },
+
+          'p:last-of-type': {
+            fontSize: '22px',
+            color: mode('home.description.light !important', 'home.description.dark !important')(props),
+          },
+        },
+      },
+    }),
+    step: (props) => ({
+      container: {
+        backgroundColor: 'transparent',
+      },
+      body: {
+        p: 0,
+        display: 'flex',
+        gap: '24px',
+
+        'div:first-of-type': {
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderRadius: 'lg',
+          minW: '45px',
+          h: '45px',
+          border: '1px solid gray',
+          bgColor: 'home.step.icon_bg',
+
+          svg: {
+            width: '25px',
+            height: '25px',
+            color: 'home.step.icon',
+          },
+        },
+
+        'div:last-of-type': {
+          'p:first-of-type': {
+            fontSize: '26px',
+            lineHeight: '32px',
+            fontWeight: 'bold',
+            mb: '15px',
+          },
+          'p:nth-of-type(2)': {
+            fontSize: '22px',
+            color: mode('home.description.light !important', 'home.description.dark !important')(props),
+          },
+        },
+      },
+    }),
+    faqs: (props) => ({
+      container: {
+        borderRadius: 'none',
+        borderBottom: '1px solid rgb(229, 229, 229)',
+        backgroundColor: 'transparent',
+        fontSize: '22px',
+      },
+      header: {
+        p: 0,
+        '& p': {
+          fontWeight: 'bold',
+          mb: '18px',
+        },
+      },
+      body: {
+        p: 0,
+        mb: '19px',
+
+        '& p': {
+          color: mode('home.description.light !important', 'home.description.dark !important')(props),
+        },
+      },
+    }),
+    solutions: (props) => ({
+      container: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 2,
+        borderRadius: 'md',
+        boxShadow: 'var(--box-shadow)',
+        p: 3,
+        bgColor: mode('home.solutions.light_bg', 'home.solutions.dark_bg')(props),
+        fontWeight: 'bold',
+      },
+    }),
   },
 })

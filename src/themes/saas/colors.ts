@@ -1,4 +1,5 @@
 export const colorsBase = {
+  black: '#000000',
   blue: {
     normal: '#3965FF',
     grayish: '#303B4D',
@@ -6,16 +7,62 @@ export const colorsBase = {
   },
   gray: {
     light: '#E2E8F0',
-    dark: '#A0AEC0',
+    normal: '#A0AEC0',
+    dark: '#5A5B5B',
   },
   primary: '#546E39',
   white: {
     pure: '#ffffff',
     dark: '#F5F7FA',
   },
+  yellow: '#FFB116',
 }
 
 export const colors = {
+  home: {
+    benefits: {
+      bg: {
+        light: {
+          white: colorsBase.white.pure,
+          primary: colorsBase.primary,
+        },
+        dark: {
+          primary: colorsBase.primary,
+          dark: colorsBase.blue.grayish,
+        },
+      },
+      color: {
+        light: {
+          bg_white: colorsBase.black,
+          bg_primary: colorsBase.white.pure,
+        },
+        dark: colorsBase.white.pure,
+      },
+    },
+    features_icon: colorsBase.primary,
+    step: {
+      icon: colorsBase.white.pure,
+      icon_bg: colorsBase.primary,
+    },
+    solutions: {
+      light_bg: colorsBase.white.pure,
+      dark_bg: colorsBase.blue.grayish,
+    },
+    support: {
+      bg: colorsBase.primary,
+      helper: colorsBase.white.pure,
+      title: colorsBase.yellow,
+    },
+    description: {
+      light: colorsBase.gray.dark,
+      dark: colorsBase.white.pure,
+    },
+    footer: {
+      icon: {
+        light: colorsBase.black,
+      },
+    },
+  },
   checkbox: {
     bg: colorsBase.primary,
     checked: {
@@ -63,7 +110,7 @@ export const colors = {
     },
 
     text_brand: colorsBase.primary,
-    text_secondary: colorsBase.gray.dark,
+    text_secondary: colorsBase.gray.normal,
     question_index: colorsBase.primary,
   },
 

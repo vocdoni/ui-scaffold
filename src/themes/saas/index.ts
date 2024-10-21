@@ -12,13 +12,13 @@ import { Modal } from './components/modal'
 import { Card } from './components/card'
 import { Checkbox } from './components/checkbox'
 import { Textarea } from './components/textarea'
-import { breakpoints } from './foundations/breakpoints'
 import { colors } from './colors'
 import { Pagination } from './components/pagination'
 import { spacing } from './space'
 import { Tabs } from './components/Tabs'
-import { Stepper } from './components/stepper'
 import { Text } from './components/text'
+import { breakpoints } from './breakpoints'
+import { Stepper } from './components/stepper'
 import { Radio } from './components/radio'
 
 export const theme = extendTheme(vtheme, {
@@ -34,7 +34,6 @@ export const theme = extendTheme(vtheme, {
       },
     },
   },
-  breakpoints,
   components: {
     Badge,
     Button,
@@ -51,6 +50,7 @@ export const theme = extendTheme(vtheme, {
     Text,
     Textarea,
   },
+  breakpoints,
   spacing,
   colors,
   CardComponent,

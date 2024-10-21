@@ -10,6 +10,7 @@ const useDarkMode = () => {
   const googleBg = useColorModeValue('gray.200', 'whiteAlpha.200')
   const googleHover = useColorModeValue({ bg: 'gray.300' }, { bg: 'whiteAlpha.300' })
   const googleActive = useColorModeValue({ bg: 'secondaryGray.300' }, { bg: 'whiteAlpha.200' })
+  const homeTextSecondary = useColorModeValue(colorsBase.gray.dark, colorsBase.white.pure)
 
   return {
     bg,
@@ -20,6 +21,7 @@ const useDarkMode = () => {
     googleBg,
     googleHover,
     googleActive,
+    homeTextSecondary,
   }
 }
 

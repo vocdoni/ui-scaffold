@@ -12,7 +12,18 @@ const Process = () => {
   const { t } = useTranslation()
 
   return (
-    <Box as='section' className='site-wrapper' py={{ base: '60px', lg: '100px' }} mb={{ base: '60px', xl: '120px' }}>
+    <Box
+      as='section'
+      width='full'
+      m='0 auto'
+      px={{
+        base: '10px',
+        sm: '20px',
+        md: '80px',
+      }}
+      py={{ base: '60px', lg: '100px' }}
+      mb={{ base: '60px', xl: '120px' }}
+    >
       <Text
         fontSize={{ base: '40px', xl: '60px' }}
         lineHeight={{ base: '36px', xl: '78px' }}
@@ -24,13 +35,13 @@ const Process = () => {
         {t('home.process.title')}
       </Text>
       <Text
+        variant='home-description-color'
         mb='60px'
         maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}
         mx='auto'
         textAlign='center'
         fontFamily='basier'
         fontSize='20px'
-        color='home.description'
         lineHeight='28px'
         margin='0px auto'
       >

@@ -1,4 +1,9 @@
+import { mode } from '@chakra-ui/theme-tools'
+
 const variants = {
+  'home-description-color': (props) => ({
+    color: mode('home.description.light', 'home.description.dark')(props),
+  }),
   'process-create-title': (props) => ({
     fontWeight: 'bold',
   }),
