@@ -18,6 +18,20 @@ const cardCommonStyles = {
   },
 }
 
+const calendar = definePartsStyle({
+  ...cardCommonStyles,
+  container: {
+    border: '1px solid #4E525C',
+    flexDirection: 'row',
+    p: 5,
+    gap: 5,
+  },
+  header: {
+    p: 0,
+  },
+  body: { p: 0 },
+})
+
 const detailed = definePartsStyle({
   ...cardCommonStyles,
 
@@ -490,19 +504,92 @@ const calculator = definePartsStyle({
     mb: '100px',
   },
 })
+const downloadSpreadSheet = definePartsStyle({
+  container: {
+    p: 6,
+    maxW: 64,
+    bgColor: 'white',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 6,
+    borderRadius: 'xl',
+    mx: 'auto',
+  },
+  body: {
+    p: 0,
+    flexGrow: 0,
+    textAlign: 'center',
+  },
+  footer: {
+    p: 0,
+  },
+})
+
+const dragAndDrop = definePartsStyle({
+  container: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 5,
+    p: 10,
+    border: '1px dotted',
+    bgColor: 'process_create.bg',
+    borderRadius: 'xl',
+    cursor: 'pointer',
+  },
+})
+
+const web3Addresses = definePartsStyle({
+  container: {
+    flexDirection: 'column',
+    minH: '220px',
+    overflowY: 'scroll',
+    borderRadius: 'md',
+    my: 6,
+    bgColor: 'process_create.bg',
+  },
+})
+
+const preview = definePartsStyle({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 5,
+    p: { base: 3, xl: 6 },
+    borderRadius: 'md',
+  },
+})
+
+const confirm = definePartsStyle({
+  container: {
+    display: 'flex',
+    flex: { xl2: '0 0 25%' },
+    p: 6,
+    borderRadius: 'md',
+    minW: 76,
+  },
+})
 
 const variantsCards = {
   aside,
   benefits,
   calculator,
+  calendar,
   client,
+  confirm,
   detailed,
+  'download-spreadsheet': downloadSpreadSheet,
+  'drag-and-drop': dragAndDrop,
   demo,
   faqs,
   'icon-card': iconCard,
   'image-card': imageCard,
   'no-elections': noElections,
+  preview,
   step,
   'types-voting': typesVoting,
+  'web3-addresses': web3Addresses,
 }
 export const Card = defineMultiStyleConfig({ variants: variantsCards })

@@ -1,17 +1,14 @@
-import { InfoOutlineIcon } from '@chakra-ui/icons'
-import { Box, FormControl, FormErrorMessage, FormHelperText, FormLabel, Input, Text } from '@chakra-ui/react'
+import { Box, Flex, Text } from '@chakra-ui/react'
 import { useFormContext } from 'react-hook-form'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import Editor from '~components/Editor/Editor'
-import { fieldMapErrorMessage, isInvalidFieldMap } from '~constants'
+import InputCustom from '~components/Layout/InputCustom'
+import useDarkMode from '~src/themes/saas/hooks/useDarkMode'
 
 const CreateProcessMeta = () => {
-  const {
-    setValue,
-    register,
-    formState: { errors },
-    watch,
-  } = useFormContext()
+  const { textColorSecondary } = useDarkMode()
+  const isSaas = import.meta.env.SAAS_URL
+  const { setValue, watch } = useFormContext()
   const { t } = useTranslation()
 
   const required = {
@@ -19,7 +16,6 @@ const CreateProcessMeta = () => {
     message: t('form.error.field_is_required'),
   }
 
-  const title = watch('title')
   const description = watch('description')
 
   const maxLengthTitle = 500
@@ -27,45 +23,46 @@ const CreateProcessMeta = () => {
 
   return (
     <>
-      <Box>
-        <Box mb={4}>
-          <Text className='process-create-title'>{t('form.process_create.meta.title')}</Text>
-          <Text fontSize='sm' color='process_create.description'>
-            {t('form.process_create.meta.description')}
+      <Flex flexDirection='column' gap={6}>
+        {isSaas ? (
+          <Text variant='process-create-subtitle'>
+            {t('meta.helper', {
+              defaultValue: 'Provide a clear title and description to help voters understand the vote',
+            })}
           </Text>
-        </Box>
-        <Box className='process-create-section' bgColor='process_create.section' p={4}>
-          <FormControl variant='process-create-label' isInvalid={isInvalidFieldMap(errors, `title`)} mb={3}>
-            <FormLabel>{t('form.process_create.meta.title_label')}</FormLabel>
-            <Input
-              {...register('title', { required })}
-              maxLength={maxLengthTitle}
-              placeholder={t('form.process_create.meta.title_placeholder').toString()}
-            />
-            {title && title.length > (maxLengthTitle * 70) / 100 && (
-              <FormHelperText>
-                <InfoOutlineIcon />
-                <Text>
-                  {title.length !== maxLengthTitle ? (
-                    <Trans i18nKey='meta.length' values={{ maxLength: maxLengthTitle, length: title.length }} />
-                  ) : (
-                    <Trans i18nKey='meta.maxLength' />
-                  )}
-                </Text>
-              </FormHelperText>
-            )}
-            <FormErrorMessage>{fieldMapErrorMessage(errors, `title`)}</FormErrorMessage>
-          </FormControl>
-          <FormLabel>{t('form.process_create.meta.description_label')}</FormLabel>
+        ) : (
+          <Box>
+            <Text variant='process-create-title'>{t('form.process_create.meta.title')}</Text>
+            <Text variant='process-create-subtitle'>{t('form.process_create.meta.description')}</Text>
+          </Box>
+        )}
 
+        <InputCustom
+          formValue='title'
+          label={t('process_create.title', { defaultValue: 'Title' })}
+          placeholder={t('process_create.title_placeholder', { defaultValue: 'Title of the voting process' })}
+          type='text'
+          validation={{
+            required: t('form.error.field_is_required'),
+            maxLength: {
+              value: maxLengthTitle,
+              message: t('form.error.password_min_length', { defaultValue: 'Min. 8 characters' }),
+            },
+          }}
+          required
+        />
+        <Flex flexDirection='column'>
+          <Text variant='process-create-title-sm' mb={2}>
+            {t('form.process_create.meta.description_label')}
+          </Text>
           <Editor
             onChange={(text: string) => setValue('description', text)}
             placeholder={t('form.process_create.meta.description_placeholder').toString()}
             maxLength={maxLengthDescription}
             defaultValue={description}
           />
-        </Box>
-      </Box>
+        </Flex>
+      </Flex>
     </>
   )
 }

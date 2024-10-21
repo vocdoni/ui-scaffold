@@ -26,7 +26,7 @@ const SettingsAdvanced = () => {
       <ModalPro isOpen={isOpen} onClose={onClose} reason='customization' />
       <Box>
         <Box mb={4}>
-          <Text className='process-create-title'>{t('form.process_create.behavior.title')}</Text>
+          <Text fontWeight='bold'>{t('form.process_create.behavior.title')}</Text>
         </Box>
 
         <Grid gridTemplateColumns='repeat(auto-fit, minmax(250px, 1fr))' gap={5}>

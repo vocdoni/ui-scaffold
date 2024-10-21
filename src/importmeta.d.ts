@@ -39,5 +39,6 @@ interface ImportMeta {
     CSP_PUBKEY: string
     DEFAULT_CENSUS_SIZE: number
     STRIPE_PUBLIC_KEY: string
+    SAAS_URL: string
   }
 }

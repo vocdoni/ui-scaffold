@@ -32,11 +32,9 @@ export const StepFormCensusToken = () => {
     next()
   }
   return (
-    <Box px={7} py={4}>
-      <Text mb={3} className='brand-theme' textTransform='uppercase' color='process_create.census.title'>
-        {t('census.token_title')}
-      </Text>
-      <Text fontSize='sm' color='process_create.description' mb={5}>
+    <>
+      <Text variant='process-create-census-title'>{t('census.token_title')}</Text>
+      <Text variant='process-create-subtitle-sm' mb={6}>
         <Trans
           i18nKey='census.token_description'
           components={{
@@ -49,6 +47,6 @@ export const StepFormCensusToken = () => {
           <CensusTokens />
         </Box>
       </FormProvider>
-    </Box>
+    </>
   )
 }

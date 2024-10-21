@@ -10,15 +10,15 @@ export const StepsNavigation = () => {
 
   return (
     <Box mt='auto'>
-      <Flex justifyContent='space-between' mt={5}>
+      <Flex justifyContent='space-between' mt={6}>
         {activeStep !== steps.findIndex((step) => step.first) && (
-          <Button variant='secondary' w='200px' onClick={prev}>
+          <Button colorScheme={'whiteAlpha'} variant={'rounded'} onClick={prev}>
             <ArrowBackIcon />
             <Text as='span'>{t('form.process_create.previous_step')}</Text>
           </Button>
         )}
-        <Button w='200px' type='submit' ml='auto' form='process-create-form'>
-          <Text as='span'> {t('form.process_create.next_step')}</Text>
+        <Button type='submit' variant={'rounded'} ml='auto' form='process-create-form' width={{ lg: '250px' }}>
+          <Text as='span'>{t('form.process_create.next_step')}</Text>
           <ArrowForwardIcon />
         </Button>
       </Flex>

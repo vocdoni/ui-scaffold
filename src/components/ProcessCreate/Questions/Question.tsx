@@ -32,13 +32,12 @@ const Question = ({ index, remove }: Props) => {
   const description = watch(`questions.${index}.description`)
 
   return (
-    <Box className='process-create-section' bgColor='process_create.section' p={6} position='relative'>
+    <Box p={6} position='relative'>
       <IconButton
         variant='transparent'
         position='absolute'
         right={2}
-        top={2}
-        size='xs'
+        top={8}
         type='button'
         icon={<DeleteIcon />}
         aria-label={t('form.process_create.question.question_delete', { values: { num: index } })}
@@ -68,9 +67,7 @@ const Question = ({ index, remove }: Props) => {
 
       <Options fields={fields} removeOption={removeOption} appendOption={appendOption} index={index} />
 
-      <Text position='absolute' fontSize='100px' bottom={0} right={5} color='rgb(245, 247, 250)'>
-        {index + 1}
-      </Text>
+      <Text variant='question-index'>{index + 1}</Text>
     </Box>
   )
 }
@@ -111,36 +108,36 @@ const QuestionPage = ({ title, description, isMultiQuestion = false }: IQuestion
   }, [questions, append])
 
   return (
-    <Flex flexDirection='column' gap={5}>
+    <>
       <Box>
-        <Text className='process-create-title'>{title}</Text>
-        <Text fontSize='sm' color='process_create.description'>
-          {description}
-        </Text>
+        <Text variant='process-create-title'>{title}</Text>
+        <Text variant='process-create-subtitle-sm'>{description}</Text>
       </Box>
-      {fields.map((_, index) => (
-        <Question key={index} index={index} remove={remove} />
-      ))}
+      <Flex flexDirection='column' gap={6}>
+        {fields.map((_, index) => (
+          <Question key={index} index={index} remove={remove} />
+        ))}
 
-      {isMultiQuestion && (
-        <Button
-          type='button'
-          rightIcon={<AddIcon boxSize={3} />}
-          aria-label={t('form.process_create.question.add_question')}
-          onClick={() => {
-            append({
-              title: '',
-              description: '',
-              options: [{ option: '' }, { option: '' }],
-            })
-          }}
-          alignSelf='center'
-          variant='secondary'
-        >
-          {t('form.process_create.question.add_question')}
-        </Button>
-      )}
-    </Flex>
+        {isMultiQuestion && (
+          <Button
+            type='button'
+            rightIcon={<AddIcon boxSize={3} />}
+            aria-label={t('form.process_create.question.add_question')}
+            onClick={() => {
+              append({
+                title: '',
+                description: '',
+                options: [{ option: '' }, { option: '' }],
+              })
+            }}
+            alignSelf='center'
+            variant={'outline'}
+          >
+            {t('form.process_create.question.add_question')}
+          </Button>
+        )}
+      </Flex>
+    </>
   )
 }
 
