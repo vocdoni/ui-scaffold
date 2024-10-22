@@ -1,10 +1,10 @@
 import { useClient } from '@vocdoni/react-providers'
-import { Outlet } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 import { useAccountHealthTools } from '~components/Account/use-account-health-tools'
 import { useAuth } from '~components/Auth/useAuth'
 import CreateOrganizationSaas from '~components/Organization/Dashboard/Create'
 import { Loading } from '~src/router/SuspenseLoader'
-import SignInScreen from './SignInScreen'
+import { Routes } from './routes'
 
 const OrganizationProtectedRoute = () => {
   const {
@@ -12,7 +12,6 @@ const OrganizationProtectedRoute = () => {
     loading: { account: fetchLoading },
   } = useClient()
   const { exists } = useAccountHealthTools()
-
   const { isAuthenticated, isAuthLoading, signerAddress } = useAuth()
 
   if ((!fetchLoaded && fetchLoading) || isAuthLoading) {
@@ -20,7 +19,7 @@ const OrganizationProtectedRoute = () => {
   }
 
   if (!isAuthenticated) {
-    return <SignInScreen />
+    return <Navigate to={Routes.auth.signIn} />
   }
 
   if (!exists && !signerAddress) {

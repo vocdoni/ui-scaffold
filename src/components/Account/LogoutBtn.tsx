@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
 import useDarkMode from '~components/Layout/useDarkMode'
+import { Routes } from '~src/router/routes'
 
 const LogoutBtn = (props?: ButtonProps) => {
   const { t } = useTranslation()
@@ -11,8 +12,10 @@ const LogoutBtn = (props?: ButtonProps) => {
   const { textColorSecondary } = useDarkMode()
 
   const logout = () => {
-    authLogout()
-    navigate('/')
+    setTimeout(() => {
+      authLogout()
+    }, 100)
+    navigate(Routes.root)
   }
 
   return (

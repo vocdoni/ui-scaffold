@@ -8,6 +8,7 @@ import { useAuth } from '~components/Auth/useAuth'
 import { VerifyAccountNeeded } from '~components/Auth/Verify'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import { AuthOutletContextType } from '~elements/LayoutAuth'
+import { Routes } from '~src/router/routes'
 import CustomCheckbox from '../Layout/CheckboxCustom'
 import InputCustom from '../Layout/InputCustom'
 import GoogleAuth from './GoogleAuth'
@@ -89,8 +90,8 @@ const SignUp = () => {
               <Trans
                 i18nKey='signup_agree_terms'
                 components={{
-                  termsLink: <Link isExternal as={ReactRouterLink} to='/terms' />,
-                  privacyLink: <Link isExternal as={ReactRouterLink} to='/privacy' />,
+                  termsLink: <Link isExternal as={ReactRouterLink} to={Routes.terms} />,
+                  privacyLink: <Link isExternal as={ReactRouterLink} to={Routes.privacy} />,
                 }}
               />
             }
@@ -106,7 +107,7 @@ const SignUp = () => {
       <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%'>
         <Text color='account.description' fontWeight='400' fontSize='sm'>
           {t('already_member')}
-          <NavLink to='/account/signin'>
+          <NavLink to={Routes.auth.signIn}>
             <Text color={'account.link'} as='span' ms={1} fontWeight='500'>
               {t('signin')}
             </Text>

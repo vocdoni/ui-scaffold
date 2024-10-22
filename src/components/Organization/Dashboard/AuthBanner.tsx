@@ -3,6 +3,7 @@ import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import DarkModeToggle from '~components/Layout/DarkMode'
+import { Routes } from '~src/router/routes'
 
 interface AuthBannerProps extends ChakraProps {
   children: ReactNode
@@ -41,7 +42,7 @@ const AuthBanner = ({ children, ...props }: AuthBannerProps) => {
               </Link>
             </ListItem>
             <ListItem>
-              <Link as={ReactRouterLink} fontWeight='500' to='/terms'>
+              <Link as={ReactRouterLink} fontWeight='500' to={Routes.terms}>
                 {t('terms_of_use', { defaultValue: 'Terms of use' })}
               </Link>
             </ListItem>

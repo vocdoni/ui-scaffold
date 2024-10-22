@@ -9,6 +9,7 @@ import { useAuth } from '~components/Auth/useAuth'
 import { VerifyAccountNeeded } from '~components/Auth/Verify'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import { AuthOutletContextType } from '~elements/LayoutAuth'
+import { Routes } from '~src/router/routes'
 import CustomCheckbox from '../Layout/CheckboxCustom'
 import InputCustom from '../Layout/InputCustom'
 import GoogleAuth from './GoogleAuth'
@@ -37,7 +38,7 @@ const SignIn = () => {
 
   const onSubmit = async (data: FormData) => {
     await login(data)
-      .then(() => navigate('/organization'))
+      .then(() => navigate(Routes.dashboard.base))
       .catch((e) => {
         if (e instanceof UnverifiedApiError) {
           setVerifyNeeded(true)
@@ -80,7 +81,7 @@ const SignIn = () => {
           <Flex justifyContent='center' align='center'>
             <CustomCheckbox formValue='keepLogedIn' label={t('keep_me_logged', { defaultValue: 'Keep me logged' })} />
 
-            <NavLink to='/account/recovery'>
+            <NavLink to={Routes.auth.recovery}>
               <Text color={'account.link'} fontSize='sm' fontWeight='500' whiteSpace='nowrap'>
                 {t('forgot_password')}
               </Text>
@@ -95,7 +96,7 @@ const SignIn = () => {
       <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%' mt={0}>
         <Text fontWeight='400' fontSize='sm'>
           {t('not_registred_yet')}
-          <NavLink to='/account/signup'>
+          <NavLink to={Routes.auth.signUp}>
             <Text color={'account.link'} as='span' ms={1} fontWeight='500'>
               {t('create_account')}
             </Text>
