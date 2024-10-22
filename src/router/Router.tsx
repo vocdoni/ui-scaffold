@@ -2,6 +2,7 @@ import { useClient } from '@vocdoni/react-providers'
 import { lazy } from 'react'
 import { createBrowserRouter, Params, RouteObject, RouterProvider } from 'react-router-dom'
 // These aren't lazy loaded since they are main layouts and related components
+import OrganizationDashboardLayout from '~components/Organization/Dashboard/Layout'
 import Error from '~elements/Error'
 import Layout from '~elements/Layout'
 import LayoutAuth from '~elements/LayoutAuth'
@@ -10,11 +11,11 @@ import { StripeCheckout, StripeReturn } from '~elements/Stripe'
 import { SuspenseLoader } from './SuspenseLoader'
 
 // Lazy loading helps splitting the final code, which helps downloading the app (theoretically)
-const ProtectedRoutes = lazy(() => import('./SaasProtectedRoutes'))
-const OrganizationProtectedRoute = lazy(() => import('./SaasOrganizationProtectedRoute'))
+const ProtectedRoutes = lazy(() => import('./ProtectedRoutes'))
 const AccountProtectedRoute = lazy(() => import('./AccountProtectedRoute'))
+const OrganizationProtectedRoute = lazy(() => import('./OrganizationProtectedRoute'))
 
-// elements
+// elements / pages
 const Faucet = lazy(() => import('~elements/Faucet'))
 const Home = lazy(() => import('~components/Home'))
 const NotFound = lazy(() => import('~elements/NotFound'))
@@ -24,7 +25,6 @@ const OrganizationView = lazy(() => import('~elements/Organization/View'))
 const OrganizationVotings = lazy(() => import('~elements/Organization/Votings'))
 
 // others
-const OrganizationDashboardLayout = lazy(() => import('~components/Organization/Dashboard/Layout'))
 const OrganizationDashboard = lazy(() => import('~components/Organization/Dashboard'))
 const OrganizationTeam = lazy(() => import('~components/Organization/Dashboard/Team'))
 const ProcessCreateSteps = lazy(() => import('~components/ProcessCreate/Steps'))

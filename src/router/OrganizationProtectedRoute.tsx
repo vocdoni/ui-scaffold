@@ -6,7 +6,7 @@ import CreateOrganizationSaas from '~components/Organization/Dashboard/Create'
 import { Loading } from '~src/router/SuspenseLoader'
 import SignInScreen from './SignInScreen'
 
-const SaasOrganizationProtectedRoute = () => {
+const OrganizationProtectedRoute = () => {
   const {
     loaded: { account: fetchLoaded },
     loading: { account: fetchLoading },
@@ -30,4 +30,4 @@ const SaasOrganizationProtectedRoute = () => {
   return <Outlet />
 }
 
-export default SaasOrganizationProtectedRoute
+export default OrganizationProtectedRoute
