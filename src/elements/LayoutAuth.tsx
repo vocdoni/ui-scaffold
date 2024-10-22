@@ -1,13 +1,22 @@
-import { Box, Flex, Icon, Text } from '@chakra-ui/react'
+import { Box, Flex, Heading, Icon, Text } from '@chakra-ui/react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaChevronLeft } from 'react-icons/fa'
 import { NavLink, Outlet } from 'react-router-dom'
 import useDarkMode from '~components/Layout/useDarkMode'
 import AuthBanner from '~components/Organization/Dashboard/AuthBanner'
 
+export type AuthOutletContextType = {
+  setTitle: React.Dispatch<React.SetStateAction<string>>
+  setSubTitle: React.Dispatch<React.SetStateAction<string>>
+}
+
 const LayoutAuth = () => {
   const { t } = useTranslation()
   const { bg, textColorSecondary } = useDarkMode()
+
+  const [title, setTitle] = useState('')
+  const [subTitle, setSubTitle] = useState('')
 
   return (
     <Flex bgColor={bg} minH='100vh' flexDirection={{ base: 'column', xl: 'row' }}>
@@ -30,7 +39,17 @@ const LayoutAuth = () => {
           </Box>
           <Flex pt={14} minW='100%' flexGrow={1} flexDirection='column' justifyContent='center' alignItems='center'>
             <Box maxW={{ base: '90%', md: 96 }} minW={{ base: '90%', md: 96 }}>
-              <Outlet />
+              <Flex direction='column' gap={6}>
+                <Box me='auto'>
+                  <Heading fontSize='4xl' mb={2.5}>
+                    {title}
+                  </Heading>
+                  <Text color={'account.description'} fontWeight='400' fontSize='md'>
+                    {subTitle}
+                  </Text>
+                </Box>
+                <Outlet context={{ setTitle, setSubTitle } satisfies AuthOutletContextType} />
+              </Flex>
             </Box>
           </Flex>
           <Text display={{ base: 'none', xl: 'block' }} mt='auto' color={textColorSecondary} py={5} textAlign='center'>

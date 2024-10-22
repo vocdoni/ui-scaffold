@@ -1,32 +1,30 @@
-import { Box, Button, Flex, Heading, Text } from '@chakra-ui/react'
+import { Button, Flex, Text } from '@chakra-ui/react'
+import { useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { NavLink } from 'react-router-dom'
-import useDarkMode from '~components/Layout/useDarkMode'
+import { NavLink, useOutletContext } from 'react-router-dom'
+import { AuthOutletContextType } from '~elements/LayoutAuth'
 import InputCustom from '../Layout/InputCustom'
 
 function ForgotPassword() {
   const { t } = useTranslation()
-  const { textColor, textColorSecondary, textColorBrand } = useDarkMode()
+  const { setTitle, setSubTitle } = useOutletContext<AuthOutletContextType>()
+
   const methods = useForm({
     defaultValues: {
       email: '',
     },
   })
 
+  useEffect(() => {
+    setTitle(t('forgot_password_title'))
+    setSubTitle(t('forgot_password_subtitle'))
+  }, [])
+
   const onSubmit = () => {}
 
   return (
-    <Flex direction='column' gap={6}>
-      <Box me='auto'>
-        <Heading color={textColor} fontSize='4xl' mb={2.5}>
-          {t('forgot_password_title')}
-        </Heading>
-        <Text color={textColorSecondary} fontWeight='400' fontSize='md'>
-          {t('forgot_password_subtitle')}
-        </Text>
-      </Box>
-
+    <>
       <FormProvider {...methods}>
         <Flex as='form' onSubmit={methods.handleSubmit(onSubmit)} flexDirection='column' gap={6}>
           <InputCustom
@@ -42,16 +40,16 @@ function ForgotPassword() {
         </Flex>
       </FormProvider>
       <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%' mt={0}>
-        <Text color={textColorSecondary} fontWeight='400' fontSize='sm'>
+        <Text fontWeight='400' fontSize='sm'>
           {t('already_member')}
           <NavLink to='/account/signin'>
-            <Text color={textColorBrand} as='span' ms={1} fontWeight='500'>
+            <Text as='span' color={'account.link'} ms={1} fontWeight='500'>
               {t('signin')}
             </Text>
           </NavLink>
         </Text>
       </Flex>
-    </Flex>
+    </>
   )
 }
 
