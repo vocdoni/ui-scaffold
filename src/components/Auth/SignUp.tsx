@@ -1,13 +1,13 @@
-import { Box, Button, Flex, Heading, Link, Text } from '@chakra-ui/react'
-import { useState } from 'react'
+import { Button, Flex, Link, Text } from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { NavLink, Link as ReactRouterLink } from 'react-router-dom'
+import { NavLink, Link as ReactRouterLink, useOutletContext } from 'react-router-dom'
 import { IRegisterParams } from '~components/Auth/authQueries'
 import { useAuth } from '~components/Auth/useAuth'
 import { VerifyAccountNeeded } from '~components/Auth/Verify'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
-import useDarkMode from '~components/Layout/useDarkMode'
+import { OutletContextType } from '~elements/LayoutAuth'
 import CustomCheckbox from '../Layout/CheckboxCustom'
 import InputCustom from '../Layout/InputCustom'
 import GoogleAuth from './GoogleAuth'
@@ -19,7 +19,8 @@ type FormData = {
 
 const SignUp = () => {
   const { t } = useTranslation()
-  const { textColor, textColorSecondary, textColorBrand, googleBg, googleHover, googleActive } = useDarkMode()
+  const [setTitle, setSubTitle] = useOutletContext<OutletContextType>()
+
   const {
     register: { mutateAsync: signup, isError, error, isPending },
   } = useAuth()
@@ -31,6 +32,11 @@ const SignUp = () => {
   // State to show signup is successful
   const [isSuccess, setIsSuccess] = useState(false)
 
+  useEffect(() => {
+    setTitle(t('signup_title'))
+    setSubTitle(t('signup_subtitle'))
+  }, [])
+
   const onSubmit = async (data: FormData) => {
     await signup(data).then(() => setIsSuccess(true))
   }
@@ -40,15 +46,7 @@ const SignUp = () => {
   }
 
   return (
-    <Flex direction='column' gap={6}>
-      <Box me='auto'>
-        <Heading color={textColor} fontSize='4xl' mb={2.5}>
-          {t('signup_title')}
-        </Heading>
-        <Text color={textColorSecondary} fontWeight='400' fontSize='md'>
-          {t('signup_subtitle')}
-        </Text>
-      </Box>
+    <>
       <GoogleAuth />
       <Flex align='center'>
         <HSeparator />
@@ -106,17 +104,17 @@ const SignUp = () => {
       </FormProvider>
 
       <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%'>
-        <Text color={textColorSecondary} fontWeight='400' fontSize='sm'>
+        <Text color='account.description' fontWeight='400' fontSize='sm'>
           {t('already_member')}
           <NavLink to='/account/signin'>
-            <Text color={textColorBrand} as='span' ms={1} fontWeight='500'>
+            <Text color={'account.link'} as='span' ms={1} fontWeight='500'>
               {t('signin')}
             </Text>
           </NavLink>
         </Text>
       </Flex>
       {isError && <FormSubmitMessage isError={isError} error={error} />}
-    </Flex>
+    </>
   )
 }
 export default SignUp

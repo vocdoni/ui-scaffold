@@ -1,11 +1,12 @@
 import { Box, Button, Divider, Flex, FormControl, FormErrorMessage, Heading, Input, Text } from '@chakra-ui/react'
 import { useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { Link as ReactRouterLink, useNavigate, useSearchParams } from 'react-router-dom'
+import { Link as ReactRouterLink, useNavigate, useOutletContext, useSearchParams } from 'react-router-dom'
 import { useResendVerificationMail } from '~components/Auth/authQueries'
 import { useAuth } from '~components/Auth/useAuth'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import useDarkMode from '~components/Layout/useDarkMode'
+import { OutletContextType } from '~elements/LayoutAuth'
 import { Loading } from '~src/router/SuspenseLoader'
 
 const Verify = () => {
@@ -106,8 +107,8 @@ const VerifyForm = ({ email }: IVerifyAccountProps) => {
 }
 
 export const VerifyAccountNeeded = ({ email }: IVerifyAccountProps) => {
-  const { textColor, textColorSecondary } = useDarkMode()
   const { t } = useTranslation()
+  const [setTitle, setSubTitle] = useOutletContext<OutletContextType>()
   const {
     mutate: resend,
     isError: isResendError,
@@ -116,6 +117,15 @@ export const VerifyAccountNeeded = ({ email }: IVerifyAccountProps) => {
     isSuccess: isResendSuccess,
   } = useResendVerificationMail()
 
+  useEffect(() => {
+    setTitle(t('verify.account_created_succesfully', { defaultValue: 'Account created successfully!' }))
+    setSubTitle(
+      t('verify.verification_email_is_sent', {
+        defaultValue: 'A verification email has been sent to:',
+      })
+    )
+  }, [])
+
   const resendMail = useCallback(() => {
     if (email && !isResendSuccess) {
       resend({ email })
@@ -123,25 +133,17 @@ export const VerifyAccountNeeded = ({ email }: IVerifyAccountProps) => {
   }, [isResendSuccess, email])
 
   return (
-    <Flex direction='column' gap={2}>
-      <Box me='auto'>
-        <Heading color={textColor} fontSize='36px' mb='10px'>
-          {t('verify.account_created_succesfully', { defaultValue: 'Account created successfully!' })}
-        </Heading>
-        <Text mb='36px' ms='4px' color={textColorSecondary} fontWeight='400' fontSize='md'>
-          {t('verify.verification_email_is_sent', {
-            defaultValue: 'A verification email has been sent to:',
-          })}
-        </Text>
-        <Text mb='36px' ms='4px' color={textColorSecondary} fontWeight='bold' fontSize='md'>
+    <>
+      <Flex flexDirection='column' gap={6}>
+        <Text mb='36px' ms='4px' color={'account.description'} fontWeight='bold' fontSize='md'>
           {email}
         </Text>
-        <Text mb='36px' ms='4px' color={textColorSecondary} fontWeight='400' fontSize='md'>
+        <Text mb='36px' ms='4px' color={'account.description'} fontWeight='400' fontSize='md'>
           {t('verify.follow_email_instructions', {
             defaultValue: 'Follow the instructions there to activate your account.',
           })}
         </Text>
-      </Box>
+      </Flex>
       <VerifyForm email={email} />
 
       <Button isLoading={isResendPending} onClick={resendMail}>
@@ -164,7 +166,7 @@ export const VerifyAccountNeeded = ({ email }: IVerifyAccountProps) => {
           </Button>
         </>
       )}
-    </Flex>
+    </>
   )
 }
 
