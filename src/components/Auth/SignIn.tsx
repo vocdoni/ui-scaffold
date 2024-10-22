@@ -1,14 +1,14 @@
-import { Box, Button, Flex, Heading, Text } from '@chakra-ui/react'
-import { useState } from 'react'
+import { Button, Flex, Text } from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate, useOutletContext } from 'react-router-dom'
 import { UnverifiedApiError } from '~components/Auth/api'
 import { ILoginParams } from '~components/Auth/authQueries'
 import { useAuth } from '~components/Auth/useAuth'
 import { VerifyAccountNeeded } from '~components/Auth/Verify'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
-import useDarkMode from '~components/Layout/useDarkMode'
+import { AuthOutletContextType } from '~elements/LayoutAuth'
 import CustomCheckbox from '../Layout/CheckboxCustom'
 import InputCustom from '../Layout/InputCustom'
 import GoogleAuth from './GoogleAuth'
@@ -20,10 +20,15 @@ type FormData = {
 const SignIn = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const { textColor, textColorSecondary, textColorBrand, googleBg, googleHover, googleActive } = useDarkMode()
+  const { setTitle, setSubTitle } = useOutletContext<AuthOutletContextType>()
   const methods = useForm<FormData>()
   const { handleSubmit, watch } = methods
   const email = watch('email')
+
+  useEffect(() => {
+    setTitle(t('signin_title'))
+    setSubTitle(t('signin_subtitle'))
+  }, [])
 
   const {
     login: { mutateAsync: login, isError, error, isPending },
@@ -47,15 +52,7 @@ const SignIn = () => {
   }
 
   return (
-    <Flex direction='column' gap={6}>
-      <Box me='auto'>
-        <Heading color={textColor} fontSize='4xl' mb={2.5}>
-          {t('signin_title')}
-        </Heading>
-        <Text color={textColorSecondary} fontWeight='400' fontSize='md'>
-          {t('signin_subtitle')}
-        </Text>
-      </Box>
+    <>
       <GoogleAuth />
       <Flex align='center'>
         <HSeparator />
@@ -84,7 +81,7 @@ const SignIn = () => {
             <CustomCheckbox formValue='keepLogedIn' label={t('keep_me_logged', { defaultValue: 'Keep me logged' })} />
 
             <NavLink to='/account/recovery'>
-              <Text color={textColorBrand} fontSize='sm' fontWeight='500' whiteSpace='nowrap'>
+              <Text color={'account.link'} fontSize='sm' fontWeight='500' whiteSpace='nowrap'>
                 {t('forgot_password')}
               </Text>
             </NavLink>
@@ -99,14 +96,14 @@ const SignIn = () => {
         <Text fontWeight='400' fontSize='sm'>
           {t('not_registred_yet')}
           <NavLink to='/account/signup'>
-            <Text color={textColorBrand} as='span' ms={1} fontWeight='500'>
+            <Text color={'account.link'} as='span' ms={1} fontWeight='500'>
               {t('create_account')}
             </Text>
           </NavLink>
         </Text>
       </Flex>
       <FormSubmitMessage isError={isError} error={error} />
-    </Flex>
+    </>
   )
 }
 
