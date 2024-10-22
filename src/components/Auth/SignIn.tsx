@@ -20,7 +20,7 @@ type FormData = {
 const SignIn = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const {setTitle, setSubTitle} = useOutletContext<AuthOutletContextType>()
+  const { setTitle, setSubTitle } = useOutletContext<AuthOutletContextType>()
   const methods = useForm<FormData>()
   const { handleSubmit, watch } = methods
   const email = watch('email')

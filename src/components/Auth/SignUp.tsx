@@ -19,7 +19,7 @@ type FormData = {
 
 const SignUp = () => {
   const { t } = useTranslation()
-  const {setTitle, setSubTitle} = useOutletContext<AuthOutletContextType>()
+  const { setTitle, setSubTitle } = useOutletContext<AuthOutletContextType>()
 
   const {
     register: { mutateAsync: signup, isError, error, isPending },
