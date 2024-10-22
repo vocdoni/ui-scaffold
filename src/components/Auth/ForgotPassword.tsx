@@ -3,12 +3,12 @@ import { useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { NavLink, useOutletContext } from 'react-router-dom'
-import { OutletContextType } from '~elements/LayoutAuth'
+import { AuthOutletContextType } from '~elements/LayoutAuth'
 import InputCustom from '../Layout/InputCustom'
 
 function ForgotPassword() {
   const { t } = useTranslation()
-  const [setTitle, setSubTitle] = useOutletContext<OutletContextType>()
+  const { setTitle, setSubTitle } = useOutletContext<AuthOutletContextType>()
 
   const methods = useForm({
     defaultValues: {

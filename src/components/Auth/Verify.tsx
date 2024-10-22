@@ -6,7 +6,7 @@ import { useResendVerificationMail } from '~components/Auth/authQueries'
 import { useAuth } from '~components/Auth/useAuth'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import useDarkMode from '~components/Layout/useDarkMode'
-import { OutletContextType } from '~elements/LayoutAuth'
+import { AuthOutletContextType } from '~elements/LayoutAuth'
 import { Loading } from '~src/router/SuspenseLoader'
 
 const Verify = () => {
@@ -108,7 +108,7 @@ const VerifyForm = ({ email }: IVerifyAccountProps) => {
 
 export const VerifyAccountNeeded = ({ email }: IVerifyAccountProps) => {
   const { t } = useTranslation()
-  const [setTitle, setSubTitle] = useOutletContext<OutletContextType>()
+  const { setTitle, setSubTitle } = useOutletContext<AuthOutletContextType>()
   const {
     mutate: resend,
     isError: isResendError,

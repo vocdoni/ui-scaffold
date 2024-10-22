@@ -6,17 +6,17 @@ import { NavLink, Outlet } from 'react-router-dom'
 import useDarkMode from '~components/Layout/useDarkMode'
 import AuthBanner from '~components/Organization/Dashboard/AuthBanner'
 
-export type OutletContextType = [
-  React.Dispatch<React.SetStateAction<string>>,
-  React.Dispatch<React.SetStateAction<string>>,
-]
+export type AuthOutletContextType = {
+  setTitle: React.Dispatch<React.SetStateAction<string>>
+  setSubTitle: React.Dispatch<React.SetStateAction<string>>
+}
 
 const LayoutAuth = () => {
   const { t } = useTranslation()
   const { bg, textColorSecondary } = useDarkMode()
 
   const [title, setTitle] = useState('')
-  const [subTitle, setSubtitle] = useState('')
+  const [subTitle, setSubTitle] = useState('')
 
   return (
     <Flex bgColor={bg} minH='100vh' flexDirection={{ base: 'column', xl: 'row' }}>
@@ -48,7 +48,7 @@ const LayoutAuth = () => {
                     {subTitle}
                   </Text>
                 </Box>
-                <Outlet context={[setTitle, setSubtitle]} />
+                <Outlet context={{ setTitle, setSubTitle } satisfies AuthOutletContextType} />
               </Flex>
             </Box>
           </Flex>

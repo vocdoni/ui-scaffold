@@ -7,7 +7,7 @@ import { IRegisterParams } from '~components/Auth/authQueries'
 import { useAuth } from '~components/Auth/useAuth'
 import { VerifyAccountNeeded } from '~components/Auth/Verify'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
-import { OutletContextType } from '~elements/LayoutAuth'
+import { AuthOutletContextType } from '~elements/LayoutAuth'
 import CustomCheckbox from '../Layout/CheckboxCustom'
 import InputCustom from '../Layout/InputCustom'
 import GoogleAuth from './GoogleAuth'
@@ -19,7 +19,7 @@ type FormData = {
 
 const SignUp = () => {
   const { t } = useTranslation()
-  const [setTitle, setSubTitle] = useOutletContext<OutletContextType>()
+  const {setTitle, setSubTitle} = useOutletContext<AuthOutletContextType>()
 
   const {
     register: { mutateAsync: signup, isError, error, isPending },

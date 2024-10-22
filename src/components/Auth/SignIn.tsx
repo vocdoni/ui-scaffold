@@ -8,7 +8,7 @@ import { ILoginParams } from '~components/Auth/authQueries'
 import { useAuth } from '~components/Auth/useAuth'
 import { VerifyAccountNeeded } from '~components/Auth/Verify'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
-import { OutletContextType } from '~elements/LayoutAuth'
+import { AuthOutletContextType } from '~elements/LayoutAuth'
 import CustomCheckbox from '../Layout/CheckboxCustom'
 import InputCustom from '../Layout/InputCustom'
 import GoogleAuth from './GoogleAuth'
@@ -20,7 +20,7 @@ type FormData = {
 const SignIn = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const [setTitle, setSubTitle] = useOutletContext<OutletContextType>()
+  const {setTitle, setSubTitle} = useOutletContext<AuthOutletContextType>()
   const methods = useForm<FormData>()
   const { handleSubmit, watch } = methods
   const email = watch('email')
