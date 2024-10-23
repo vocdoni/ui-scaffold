@@ -1,5 +1,5 @@
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
-import { Box, Button, Icon, Select, Text } from '@chakra-ui/react'
+import { Box, Button, Icon, Select } from '@chakra-ui/react'
 import { OrganizationName } from '@vocdoni/chakra-components'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -21,9 +21,7 @@ const OrganizationDashboardMenu = () => {
 
   return (
     <Box>
-      <Text color={textColorSecondary} mb={2.5}>
-        <OrganizationName />
-      </Text>
+      <OrganizationName color={textColorSecondary} mb={2.5} />
       <Select placeholder='Select option' borderRadius='full' mb={5}>
         <option value='option1'>Option 1</option>
         <option value='option2'>Option 2</option>
