@@ -11,7 +11,7 @@ const Votings = () => {
   if (!organization) return null
 
   return (
-    <RoutedPaginationProvider path={Routes.dashboard.votings}>
+    <RoutedPaginationProvider path={Routes.dashboard.processes}>
       <VotingsList />
     </RoutedPaginationProvider>
   )

@@ -4,9 +4,10 @@ import { useElection } from '@vocdoni/react-providers'
 import { ensure0x, InvalidElection } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import { FaEye } from 'react-icons/fa'
-import { Link as RouterLink } from 'react-router-dom'
+import { generatePath, Link as RouterLink } from 'react-router-dom'
 import useDarkMode from '~components/Layout/useDarkMode'
 import { useDateFns } from '~i18n/use-date-fns'
+import { Routes } from '~src/router/routes'
 
 const ProcessCard = () => {
   const { election, participation } = useElection()
@@ -52,7 +53,7 @@ const ProcessCard = () => {
       </Flex>
       <Link
         as={RouterLink}
-        to={`/processes/${ensure0x(election.id)}`}
+        to={generatePath(Routes.dashboard.process, { id: ensure0x(election.id) })}
         display='flex'
         flexGrow={1}
         flexShrink={0}
