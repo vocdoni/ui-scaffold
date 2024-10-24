@@ -13,12 +13,38 @@ export const colorsBase = {
   primary: '#546E39',
   white: {
     pure: '#ffffff',
-    dark: '#F5F7FA',
+    dark: '#F5F5F7',
   },
   yellow: '#FFB116',
 }
 
 export const colors = {
+  contents: {
+    bg: {
+      light: colorsBase.white.pure,
+      dark: colorsBase.blue.grayish,
+    },
+    color: {
+      light: colorsBase.black,
+      dark: colorsBase.white.pure,
+    },
+  },
+  dashboard: {
+    bg: {
+      light: colorsBase.white.dark,
+      dark: colorsBase.blue.dark,
+    },
+    color: {
+      light: colorsBase.black,
+      dark: colorsBase.white.pure,
+    },
+    sidebar: {
+      bg: {
+        light: colorsBase.white.pure,
+        dark: colorsBase.blue.grayish,
+      },
+    },
+  },
   home: {
     benefits: {
       bg: {

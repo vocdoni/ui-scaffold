@@ -2,7 +2,7 @@ import { Button, ButtonProps, Flex, List, ListItem } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
-import DarkModeToggle from '~components/Layout/DarkMode'
+import { ColorModeSwitcher } from '~components/Layout/ColorModeSwitcher'
 import Logo from '~components/Layout/Logo'
 import { Routes } from '~src/router/routes'
 import { LanguagesMenu } from './LanguagesList'
@@ -32,7 +32,7 @@ const Navbar = () => (
           <LanguagesMenu />
         </ListItem>
         <ListItem>
-          <DarkModeToggle />
+          <ColorModeSwitcher />
         </ListItem>
       </List>
     </Flex>

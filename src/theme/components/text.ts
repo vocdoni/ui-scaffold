@@ -32,6 +32,11 @@ const variants = {
     color: 'process_create.question_index',
     opacity: 0.2,
   }),
+  'enumeration-title': {
+    color: 'gray.400',
+    fontSize: 'sm',
+    fontWeight: 600,
+  },
 }
 
 export const Text = {

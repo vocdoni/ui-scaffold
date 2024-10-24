@@ -105,8 +105,8 @@
       "created": "Creat fa {{ distance }}",
       "ended": "Finalitzat fa {{ distance }}",
       "from_begin_to_end": "Votació del {{ begin }} al {{ end }}",
-      "paused_end": "Finalitza en {{ distance }}",
-      "paused_start": "Comença en {{ distance }}"
+      "paused_end": "Finalitza {{ distance }}",
+      "paused_start": "Comença {{ distance }}"
     },
     "spreadsheet": {
       "access_button": "Identifica't",

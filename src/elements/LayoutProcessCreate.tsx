@@ -2,7 +2,7 @@ import { CloseIcon } from '@chakra-ui/icons'
 import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { Outlet, Link as ReactRouterLink, ScrollRestoration, useNavigate } from 'react-router-dom'
-import DarkModeToggle from '~components/Layout/DarkMode'
+import { ColorModeSwitcher } from '~components/Layout/ColorModeSwitcher'
 import Logo from '~components/Layout/Logo'
 import useDarkMode from '~components/Layout/useDarkMode'
 import SaasFooter from '~components/ProcessCreate/SaasFooter'
@@ -44,7 +44,7 @@ const LayoutProcessCreate = () => {
               >
                 {t('form.process_create.navbar.close_form_btn')}
               </Button>
-              {isSaas && <DarkModeToggle />}
+              {isSaas && <ColorModeSwitcher />}
             </Flex>
           </Flex>
 

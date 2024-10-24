@@ -2,7 +2,7 @@ import { Box, ChakraProps, Flex, Link, List, ListItem, Text } from '@chakra-ui/r
 import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
-import DarkModeToggle from '~components/Layout/DarkMode'
+import { ColorModeSwitcher } from '~components/Layout/ColorModeSwitcher'
 import { Routes } from '~src/router/routes'
 
 interface AuthBannerProps extends ChakraProps {
@@ -20,7 +20,7 @@ const AuthBanner = ({ children, ...props }: AuthBannerProps) => {
       pt={14}
       pb={{ xl: 5 }}
     >
-      <DarkModeToggle position='absolute' top={3.5} right={2.5} />
+      <ColorModeSwitcher position='absolute' top={3.5} right={2.5} />
       <Flex
         flexDirection='column'
         px={{

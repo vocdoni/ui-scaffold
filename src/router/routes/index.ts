@@ -10,9 +10,10 @@ export const Routes = {
   dashboard: {
     base: '/admin',
     organization: '/admin/organization',
+    process: '/admin/process/:id',
+    processes: '/admin/processes/:page?/:status?',
     profile: '/admin/organization/edit',
     team: '/admin/team',
-    votings: '/admin/votings/:page?/:status?',
   },
   faucet: '/faucet',
   organization: '/organization/:address',

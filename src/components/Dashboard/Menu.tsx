@@ -1,32 +1,33 @@
-import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
-import { Box, Button, Icon, Select } from '@chakra-ui/react'
-import { OrganizationName } from '@vocdoni/chakra-components'
+import { AddIcon } from '@chakra-ui/icons'
+import { Box, Button, Drawer, DrawerContent, DrawerOverlay } from '@chakra-ui/react'
 import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
+import { Link as ReactRouterLink } from 'react-router-dom'
+import LogoutBtn from '~components/Account/LogoutBtn'
+import { HSeparator } from '~components/Auth/SignIn'
+import { VocdoniLogo } from '~components/Layout/Logo'
+import { Routes } from '~src/router/routes'
+
+import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
+import { Icon } from '@chakra-ui/react'
+import { OrganizationName } from '@vocdoni/chakra-components'
 import { FaPhoneAlt } from 'react-icons/fa'
 import { FaHouse } from 'react-icons/fa6'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { HiMiniPencil, HiSquares2X2 } from 'react-icons/hi2'
 import { IoIosSettings } from 'react-icons/io'
 import { generatePath, Link, useLocation } from 'react-router-dom'
-import useDarkMode from '~components/Layout/useDarkMode'
-import { Routes } from '~src/router/routes'
+import { ColorModeSwitcher } from '~components/Layout/ColorModeSwitcher'
 
-const OrganizationDashboardMenu = () => {
+export const DashboardMenuOptions = () => {
   const { t } = useTranslation()
   const location = useLocation()
-  const { textColorSecondary } = useDarkMode()
   const [menuVotings, setMenuVotings] = useState(false)
   const [menuSettings, setMenuSettings] = useState(false)
 
   return (
     <Box>
-      <OrganizationName color={textColorSecondary} mb={2.5} />
-      <Select placeholder='Select option' borderRadius='full' mb={5}>
-        <option value='option1'>Option 1</option>
-        <option value='option2'>Option 2</option>
-        <option value='option3'>Option 3</option>
-      </Select>
+      <OrganizationName color='text.secondary' mb={2.5} />
       <Button
         as={Link}
         to={generatePath(Routes.dashboard.base)}
@@ -40,7 +41,7 @@ const OrganizationDashboardMenu = () => {
       </Button>
       <Button
         onClick={() => setMenuVotings((prev) => !prev)}
-        isActive={location.pathname.includes(generatePath(Routes.dashboard.votings))}
+        isActive={location.pathname.includes(generatePath(Routes.dashboard.processes))}
         justifyContent='start'
         variant='dashboard'
         w='full'
@@ -53,8 +54,8 @@ const OrganizationDashboardMenu = () => {
         <Box pl={6}>
           <Button
             as={Link}
-            to={generatePath(Routes.dashboard.votings)}
-            isActive={location.pathname.includes(generatePath(Routes.dashboard.votings))}
+            to={generatePath(Routes.dashboard.processes)}
+            isActive={location.pathname.includes(generatePath(Routes.dashboard.processes))}
             justifyContent='start'
             variant='dashboard'
             w='full'
@@ -129,4 +130,64 @@ const OrganizationDashboardMenu = () => {
   )
 }
 
-export default OrganizationDashboardMenu
+const DashboardMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => (
+  <>
+    {/* Sidebar for large screens */}
+    <Box
+      gridArea='sidebar'
+      p={4}
+      display={{ base: 'none', lg: 'flex' }}
+      flexDirection='column'
+      alignItems='center'
+      gap={4}
+      bg='dashboard.sidebar.bg.light'
+      _dark={{ bg: 'dashboard.sidebar.bg.dark' }}
+    >
+      <VocdoniLogo w='180px' />
+      <HSeparator />
+
+      <DashboardMenuOptions />
+
+      <Button
+        as={ReactRouterLink}
+        to={Routes.processes.create}
+        variant='box-shadow'
+        w='full'
+        my={5}
+        leftIcon={<AddIcon />}
+      >
+        <Trans i18nKey='new_voting'>New voting</Trans>
+      </Button>
+      <LogoutBtn />
+      <ColorModeSwitcher ml='auto' />
+    </Box>
+
+    {/* Sidebar as a drawer for small screens */}
+    <Drawer isOpen={isOpen} placement='left' onClose={onClose}>
+      <DrawerOverlay />
+      <DrawerContent bg='dashboard.sidebar.bg.light' _dark={{ bg: 'dashboard.sidebar.bg.dark' }}>
+        <Box p={4} display='flex' flexDirection='column' alignItems='center' gap={4}>
+          <VocdoniLogo w='180px' />
+          <HSeparator />
+
+          <DashboardMenuOptions />
+
+          <Button
+            as={ReactRouterLink}
+            to={Routes.processes.create}
+            variant='box-shadow'
+            w='full'
+            my={5}
+            leftIcon={<AddIcon />}
+          >
+            <Trans i18nKey='new_voting'>New voting</Trans>
+          </Button>
+          <LogoutBtn />
+          <ColorModeSwitcher ml='auto' />
+        </Box>
+      </DrawerContent>
+    </Drawer>
+  </>
+)
+
+export default DashboardMenu
