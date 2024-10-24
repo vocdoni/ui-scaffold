@@ -2,6 +2,7 @@ import { Flex } from '@chakra-ui/react'
 import { RoutedPagination } from '@vocdoni/chakra-components'
 import { RoutedPaginationProvider, useOrganization, useRoutedPagination } from '@vocdoni/react-providers'
 import { usePaginatedElections } from '~src/queries/account'
+import { Routes } from '~src/router/routes'
 import ProcessesList from './ProcessesList'
 
 const Votings = () => {
@@ -10,7 +11,7 @@ const Votings = () => {
   if (!organization) return null
 
   return (
-    <RoutedPaginationProvider path='/organization/votings/:page?/:status?'>
+    <RoutedPaginationProvider path={Routes.dashboard.votings}>
       <VotingsList />
     </RoutedPaginationProvider>
   )

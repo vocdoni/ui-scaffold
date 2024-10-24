@@ -32,10 +32,11 @@ import { HSeparator } from '~components/Auth/SignIn'
 import DarkModeToggle from '~components/Layout/DarkMode'
 import useDarkMode from '~components/Layout/useDarkMode'
 import Wrapper from '~components/Layout/Wrapper'
+import OrganizationDashboardMenu from '~components/Organization/Dashboard/Menu'
+import PricingCard from '~components/Organization/Dashboard/PricingCard'
+import Settings from '~components/Organization/Dashboard/Settings'
+import { Routes } from '~src/router/routes'
 import { Logo } from '~theme/icons'
-import OrganizationDashboardMenu from './Menu'
-import PricingCard from './PricingCard'
-import Settings from './Settings'
 
 type CardProps = {
   popular: boolean
@@ -45,7 +46,7 @@ type CardProps = {
   features: string[]
 }
 
-const OrganizationDashboardLayout: React.FC = () => {
+const LayoutDashboard: React.FC = () => {
   const { t } = useTranslation()
   const { textColor, bgSecondary, textColorBrand, bg } = useDarkMode()
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -132,7 +133,7 @@ const OrganizationDashboardLayout: React.FC = () => {
                 <Box mt='auto'>
                   <Button
                     as={ReactRouterLink}
-                    to='/processes/create'
+                    to={Routes.processes.create}
                     position='relative'
                     display='flex'
                     justifyContent='center'
@@ -330,4 +331,4 @@ const PricingModal = ({ isOpenModal, onCloseModal }: { isOpenModal: boolean; onC
   )
 }
 
-export default OrganizationDashboardLayout
+export default LayoutDashboard

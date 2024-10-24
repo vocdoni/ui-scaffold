@@ -6,6 +6,7 @@ import DarkModeToggle from '~components/Layout/DarkMode'
 import Logo from '~components/Layout/Logo'
 import useDarkMode from '~components/Layout/useDarkMode'
 import SaasFooter from '~components/ProcessCreate/SaasFooter'
+import { Routes } from '~src/router/routes'
 
 const LayoutProcessCreate = () => {
   const { t } = useTranslation()
@@ -37,7 +38,7 @@ const LayoutProcessCreate = () => {
               )}
               <Button
                 as={ReactRouterLink}
-                onClick={(e) => (window.history.state.idx ? navigate(-1) : navigate('/'))}
+                onClick={(e) => (window.history.state.idx ? navigate(-1) : navigate(Routes.root))}
                 colorScheme={isSaas && 'whiteAlpha'}
                 rightIcon={<CloseIcon boxSize={3} />}
               >

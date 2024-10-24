@@ -381,9 +381,7 @@ const RightSideCalculator = ({
               <Trans
                 i18nKey='calculator.contact'
                 components={{
-                  customLink: (
-                    <Link as={ReactRouterLink} to='https://www.vocdoni.io/contact' target='_blank' color='white' />
-                  ),
+                  customLink: <Link href='https://www.vocdoni.io/contact' isExternal color='white' />,
                   faqsLink: <Link as={ReactRouterLink} to='/#faqs' color='white' />,
                 }}
               />
@@ -484,7 +482,7 @@ const RightSideCalculator = ({
               <Trans
                 i18nKey='calculator.more_tokens'
                 components={{
-                  customLink: <Link as={ReactRouterLink} to='https://www.vocdoni.io/contact' color='white' />,
+                  customLink: <Link isExternal href='https://www.vocdoni.io/contact' color='white' />,
                 }}
               />
             </Text>
@@ -502,7 +500,7 @@ const RightSideCalculator = ({
           </Flex>
 
           <Flex mt='20px' justifyContent='center'>
-            <Button as={ReactRouterLink} to='https://www.vocdoni.io/contact' target='_blank' variant='secondary'>
+            <Button as={Link} isExternal href='https://www.vocdoni.io/contact' variant='secondary'>
               {t('calculator.contact_us')}
             </Button>
           </Flex>

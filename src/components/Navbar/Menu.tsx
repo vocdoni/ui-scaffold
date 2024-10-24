@@ -22,6 +22,7 @@ import { MdOutlineLogout } from 'react-icons/md'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useDisconnect } from 'wagmi'
 import { addressTextOverflow } from '~constants'
+import { Routes } from '~src/router/routes'
 import { LanguagesList } from './LanguagesList'
 
 const MenuDropdown = () => {
@@ -104,14 +105,19 @@ const MenuDropdown = () => {
               <Flex>
                 <Balance p={0} bg='white' fontWeight='bold' />
               </Flex>
-              <Button as={ReactRouterLink} to='/calculator' aria-label={t('menu.get_more')} title={t('menu.get_more')}>
+              <Button
+                as={ReactRouterLink}
+                to={Routes.calculator}
+                aria-label={t('menu.get_more')}
+                title={t('menu.get_more')}
+              >
                 <Icon as={HiShoppingCart} />
                 {t('menu.get_more')}
               </Button>
             </Flex>
           </MenuItem>
 
-          <MenuItem as={ReactRouterLink} to='organization/edit'>
+          <MenuItem as={ReactRouterLink} to={Routes.dashboard.profile}>
             {t('menu.organization')}
           </MenuItem>
         </>
@@ -151,10 +157,10 @@ const MenuDropdown = () => {
         <Icon as={MdOutlineLogout} mr={1} />
         {t('menu.logout')}
       </MenuItem>
-      <MenuItem fontSize='xs' color='blackAlpha.700' as={ReactRouterLink} to='/terms'>
+      <MenuItem fontSize='xs' color='blackAlpha.700' as={ReactRouterLink} to={Routes.terms}>
         {t('menu.terms')}
       </MenuItem>
-      <MenuItem fontSize='xs' color='blackAlpha.700' as={ReactRouterLink} to='/privacy'>
+      <MenuItem fontSize='xs' color='blackAlpha.700' as={ReactRouterLink} to={Routes.privacy}>
         {t('menu.privacy')}
       </MenuItem>
     </MenuList>

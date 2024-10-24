@@ -1,8 +1,9 @@
 import { Navigate, Outlet } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
 import { Loading } from '~src/router/SuspenseLoader'
+import { Routes } from './routes'
 
-const AccountProtectedRoute = () => {
+const NonLoggedRoute = () => {
   const { isAuthenticated, isAuthLoading } = useAuth()
 
   if (isAuthLoading) {
@@ -10,10 +11,10 @@ const AccountProtectedRoute = () => {
   }
 
   if (isAuthenticated) {
-    return <Navigate to='/organization' />
+    return <Navigate to={Routes.dashboard.base} />
   }
 
   return <Outlet />
 }
 
-export default AccountProtectedRoute
+export default NonLoggedRoute

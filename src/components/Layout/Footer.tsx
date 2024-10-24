@@ -3,6 +3,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { FaDiscord, FaGithub } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
 import { Link as ReactRouterLink } from 'react-router-dom'
+import { Routes } from '~src/router/routes'
 import vcdLogo from '/assets/logo-classic.svg'
 
 const Footer = () => {
@@ -122,8 +123,8 @@ const Footer = () => {
           <Trans
             i18nKey='footer.terms_and_privacy'
             components={{
-              link1: <ReactRouterLink to='/terms' color='gray' />,
-              link2: <ReactRouterLink to='/privacy' color='gray' />,
+              link1: <ReactRouterLink to={Routes.terms} color='gray' />,
+              link2: <ReactRouterLink to={Routes.privacy} color='gray' />,
             }}
           />
         </Text>

@@ -1,10 +1,10 @@
 import { Navigate, Outlet } from 'react-router-dom'
-import { useAccount } from 'wagmi'
+import { useAuth } from '~components/Auth/useAuth'
 
 const ProtectedRoutes = () => {
-  const { isConnected } = useAccount()
+  const { signerAddress } = useAuth()
 
-  return isConnected ? <Outlet /> : <Navigate to='/' replace={true} />
+  return signerAddress ? <Outlet /> : <Navigate to='/' replace={true} />
 }
 
 export default ProtectedRoutes
