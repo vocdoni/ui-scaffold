@@ -3,6 +3,7 @@ import { useClient, useOrganization } from '@vocdoni/react-providers'
 import { areEqualHexStrings } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
+import { Routes } from '~src/router/routes'
 import empty from '/assets/empty-list-org.png'
 
 const NoElections = () => {
@@ -22,7 +23,7 @@ const NoElections = () => {
               <Text>{t('organization.elections_list_empty.title')}</Text>
               <Text>{t('organization.elections_list_empty.description')}</Text>
 
-              <Button as={ReactRouterLink} to='/processes/create'>
+              <Button as={ReactRouterLink} to={Routes.processes.create}>
                 {t('menu.create')}
               </Button>
             </>

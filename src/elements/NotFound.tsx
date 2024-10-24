@@ -1,6 +1,7 @@
 import { Flex, Link, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+import { Routes } from '~src/router/routes'
 
 const NotFound = () => {
   const { t } = useTranslation()
@@ -39,7 +40,7 @@ const NotFound = () => {
       >
         {t('error.not_found')}
       </Text>
-      <Link onClick={() => (idx ? navigate(-1) : navigate('/'))}>
+      <Link onClick={() => (idx ? navigate(-1) : navigate(Routes.root))}>
         {idx ? t('error.go_back') : t('error.return_to_home')}
       </Link>
     </Flex>

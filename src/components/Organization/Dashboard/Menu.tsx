@@ -1,5 +1,5 @@
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
-import { Box, Button, Icon, Select, Text } from '@chakra-ui/react'
+import { Box, Button, Icon, Select } from '@chakra-ui/react'
 import { OrganizationName } from '@vocdoni/chakra-components'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -8,8 +8,9 @@ import { FaHouse } from 'react-icons/fa6'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { HiMiniPencil, HiSquares2X2 } from 'react-icons/hi2'
 import { IoIosSettings } from 'react-icons/io'
-import { Link, useLocation } from 'react-router-dom'
+import { generatePath, Link, useLocation } from 'react-router-dom'
 import useDarkMode from '~components/Layout/useDarkMode'
+import { Routes } from '~src/router/routes'
 
 const OrganizationDashboardMenu = () => {
   const { t } = useTranslation()
@@ -20,9 +21,7 @@ const OrganizationDashboardMenu = () => {
 
   return (
     <Box>
-      <Text color={textColorSecondary} mb={2.5}>
-        <OrganizationName />
-      </Text>
+      <OrganizationName color={textColorSecondary} mb={2.5} />
       <Select placeholder='Select option' borderRadius='full' mb={5}>
         <option value='option1'>Option 1</option>
         <option value='option2'>Option 2</option>
@@ -30,8 +29,8 @@ const OrganizationDashboardMenu = () => {
       </Select>
       <Button
         as={Link}
-        to='/organization'
-        isActive={location.pathname === '/organization'}
+        to={generatePath(Routes.dashboard.base)}
+        isActive={location.pathname === Routes.dashboard.base}
         justifyContent='start'
         variant='dashboard'
         w='full'
@@ -41,7 +40,7 @@ const OrganizationDashboardMenu = () => {
       </Button>
       <Button
         onClick={() => setMenuVotings((prev) => !prev)}
-        isActive={location.pathname.includes('/organization/votings')}
+        isActive={location.pathname.includes(generatePath(Routes.dashboard.votings))}
         justifyContent='start'
         variant='dashboard'
         w='full'
@@ -54,8 +53,8 @@ const OrganizationDashboardMenu = () => {
         <Box pl={6}>
           <Button
             as={Link}
-            to={'/organization/votings'}
-            isActive={location.pathname.includes('/organization/votings')}
+            to={generatePath(Routes.dashboard.votings)}
+            isActive={location.pathname.includes(generatePath(Routes.dashboard.votings))}
             justifyContent='start'
             variant='dashboard'
             w='full'
@@ -81,7 +80,7 @@ const OrganizationDashboardMenu = () => {
       </Button>
       <Button
         onClick={() => setMenuSettings((prev) => !prev)}
-        isActive={location.pathname.includes('/organization/team')}
+        isActive={location.pathname.includes(Routes.dashboard.team)}
         justifyContent='start'
         variant='dashboard'
         w='full'
@@ -97,8 +96,8 @@ const OrganizationDashboardMenu = () => {
           </Button>
           <Button
             as={Link}
-            to={'/organization/team'}
-            isActive={location.pathname.includes('/organization/team')}
+            to={Routes.dashboard.team}
+            isActive={location.pathname.includes(Routes.dashboard.team)}
             justifyContent='start'
             variant='dashboard'
             w='full'
@@ -113,8 +112,8 @@ const OrganizationDashboardMenu = () => {
           </Button>
           <Button
             as={Link}
-            to={'/organization/profile'}
-            isActive={location.pathname.includes('/organization/profile')}
+            to={Routes.dashboard.profile}
+            isActive={location.pathname.includes(Routes.dashboard.profile)}
             justifyContent='start'
             variant='dashboard'
             w='full'

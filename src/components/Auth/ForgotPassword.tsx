@@ -4,6 +4,7 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { NavLink, useOutletContext } from 'react-router-dom'
 import { AuthOutletContextType } from '~elements/LayoutAuth'
+import { Routes } from '~src/router/routes'
 import InputCustom from '../Layout/InputCustom'
 
 function ForgotPassword() {
@@ -42,7 +43,7 @@ function ForgotPassword() {
       <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%' mt={0}>
         <Text fontWeight='400' fontSize='sm'>
           {t('already_member')}
-          <NavLink to='/account/signin'>
+          <NavLink to={Routes.auth.signIn}>
             <Text as='span' color={'account.link'} ms={1} fontWeight='500'>
               {t('signin')}
             </Text>

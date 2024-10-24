@@ -7,6 +7,7 @@ import { useAuth } from '~components/Auth/useAuth'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import useDarkMode from '~components/Layout/useDarkMode'
 import { AuthOutletContextType } from '~elements/LayoutAuth'
+import { Routes } from '~src/router/routes'
 import { Loading } from '~src/router/SuspenseLoader'
 
 const Verify = () => {
@@ -25,7 +26,7 @@ const Verify = () => {
 
   // Trigger email verification on component load
   useEffect(() => {
-    mutateAsync({ email, code }).then(() => navigate('/organization'))
+    mutateAsync({ email, code }).then(() => navigate(Routes.dashboard.base))
   }, [])
 
   let title = t('verify_mail.verifying_title', { email: email, defaultValue: 'Verifying {{ email }}' })
@@ -82,7 +83,7 @@ const VerifyForm = ({ email }: IVerifyAccountProps) => {
   } = useAuth()
 
   const verify = useCallback(() => {
-    verifyAsync({ email, code }).then(() => navigate('/organization'))
+    verifyAsync({ email, code }).then(() => navigate(Routes.dashboard.base))
   }, [code, email])
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

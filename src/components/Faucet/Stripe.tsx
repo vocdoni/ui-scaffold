@@ -7,8 +7,9 @@ import { ensure0x } from '@vocdoni/sdk'
 import { useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { MdHowToVote } from 'react-icons/md'
-import { Navigate, Link as ReactRouterLink } from 'react-router-dom'
+import { generatePath, Navigate, Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
+import { Routes } from '~src/router/routes'
 
 const STRIPE_PUBLIC_KEY = import.meta.env.STRIPE_PUBLIC_KEY
 
@@ -158,7 +159,7 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
   }
 
   if (status === 'open') {
-    return <Navigate to='/checkout' />
+    return <Navigate to={generatePath(Routes.stripe.checkout)} />
   }
 
   if (aborted) {

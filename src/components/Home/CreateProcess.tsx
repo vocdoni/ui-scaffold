@@ -1,15 +1,12 @@
 import { Box, Button, Flex, Image, Text } from '@chakra-ui/react'
-import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { useTranslation } from 'react-i18next'
 import { FaRegCheckCircle } from 'react-icons/fa'
 import { Link as ReactRouterLink } from 'react-router-dom'
-import { useAccount } from 'wagmi'
+import { Routes } from '~src/router/routes'
 import devices from '/assets/devices_vocdoni.png'
 
 const CreateProcess = () => {
   const { t } = useTranslation()
-  const { isConnected } = useAccount()
-  const { openConnectModal } = useConnectModal()
 
   return (
     <Flex
@@ -52,7 +49,7 @@ const CreateProcess = () => {
         <Box maxW={{ lg: '90%' }}>
           <Button
             as={ReactRouterLink}
-            to='/account/signin'
+            to={Routes.auth.signIn}
             mb='20px'
             w={{ base: 'full', sm: 'fit-content', lg: 'full' }}
             mx={{ base: 'auto', lg: 'start' }}
