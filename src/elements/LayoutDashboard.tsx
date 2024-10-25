@@ -30,6 +30,7 @@ const LayoutDashboard: React.FC = () => {
         }}
         templateRows='auto 1fr'
         minH='100vh'
+        px={{ base: 2, md: 4, lg: 0 }}
         bg='dashboard.bg.light'
         _dark={{ bg: 'dashboard.bg.dark' }}
         gap={6}

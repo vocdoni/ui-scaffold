@@ -142,7 +142,7 @@ export const ProcessView = () => {
         display={{ base: 'flex', lg: 'flex' }}
         flexDirection={{ base: 'column', md: 'row', lg: 'column' }}
       >
-        <Stack flexDir={{ base: 'row', md: 'column' }}>
+        <Stack flexDir='column'>
           {/* Running label */}
           <ElectionStatusBadge variant='solid' />
 
