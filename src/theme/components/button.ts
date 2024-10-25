@@ -1,4 +1,4 @@
-import { defineStyleConfig } from '@chakra-ui/styled-system'
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
 
 const brandedStyles = (props: any) => {
   const { colorScheme } = props
@@ -37,6 +37,14 @@ export const Button = defineStyleConfig({
       },
       _active: {
         boxShadow: 'none',
+      },
+    }),
+    menu: defineStyle({
+      _active: {
+        color: 'brand.300',
+      },
+      _hover: {
+        textDecoration: 'underline',
       },
     }),
   },
