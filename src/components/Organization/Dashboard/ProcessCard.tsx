@@ -10,7 +10,7 @@ import { useDateFns } from '~i18n/use-date-fns'
 import { Routes } from '~src/router/routes'
 
 const ProcessCard = () => {
-  const { election, participation } = useElection()
+  const { election } = useElection()
   const { textColor } = useDarkMode()
   const { format } = useDateFns()
   const { t } = useTranslation()

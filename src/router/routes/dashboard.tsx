@@ -10,8 +10,8 @@ import OrganizationProtectedRoute from '../OrganizationProtectedRoute'
 import { SuspenseLoader } from '../SuspenseLoader'
 
 // elements/pages
-const OrganizationEditProfile = lazy(() => import('~elements/Organization/Edit'))
-const OrganizationVotings = lazy(() => import('~elements/Organization/Votings'))
+const OrganizationEdit = lazy(() => import('~elements/dashboard/organization/edit'))
+const DashboardProcesses = lazy(() => import('~elements/dashboard/processes'))
 const DashboardProcessView = lazy(() => import('~elements/dashboard/processes/view'))
 const OrganizationTeam = lazy(() => import('~elements/dashboard/team'))
 
@@ -48,7 +48,7 @@ const DashboardElements = (client: VocdoniSDKClient) => [
         path: Routes.dashboard.profile,
         element: (
           <SuspenseLoader>
-            <OrganizationEditProfile />
+            <OrganizationEdit />
           </SuspenseLoader>
         ),
       },
@@ -56,7 +56,7 @@ const DashboardElements = (client: VocdoniSDKClient) => [
         path: Routes.dashboard.processes,
         element: (
           <SuspenseLoader>
-            <OrganizationVotings />
+            <DashboardProcesses />
           </SuspenseLoader>
         ),
       },

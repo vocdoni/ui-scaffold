@@ -5,7 +5,7 @@ import { Routes } from '.'
 import { SuspenseLoader } from '../SuspenseLoader'
 
 const ProtectedRoutes = lazy(() => import('../ProtectedRoutes'))
-const ProcessCreateSteps = lazy(() => import('~components/ProcessCreate/Steps'))
+const ProcessCreate = lazy(() => import('~elements/dashboard/processes/create'))
 
 const ProcessCreateElements = [
   {
@@ -19,7 +19,7 @@ const ProcessCreateElements = [
         path: Routes.processes.create,
         element: (
           <SuspenseLoader>
-            <ProcessCreateSteps />
+            <ProcessCreate />
           </SuspenseLoader>
         ),
       },
