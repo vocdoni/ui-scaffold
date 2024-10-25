@@ -59,13 +59,7 @@ export const ProcessView = () => {
   }, [setTitle, setBack, t])
 
   return (
-    <Grid
-      templateColumns={{ base: '1fr', md: '1fr', lg: '1fr 350px' }}
-      position='relative'
-      gap={6}
-      height='full'
-      mr={6}
-    >
+    <Grid templateColumns={{ base: '1fr', md: '1fr', lg: '1fr 350px' }} position='relative' gap={6} height='full'>
       {/* Main content area */}
       <DashboardContents display='flex' flexDir='column' gap={6} order={{ base: 1, lg: 0 }}>
         {/* Title, schedule, and description */}
@@ -106,7 +100,7 @@ export const ProcessView = () => {
         <Heading variant='contents-subtitle'>
           <Trans i18nKey='voting_link'>Voting Link</Trans>
         </Heading>
-        <DashboardBox display='flex' gap={4} flexDirection={{ base: 'column', lg: 'row' }} alignItems='center'>
+        <DashboardBox display='flex' gap={4} flexDirection={{ base: 'column', xl: 'row' }} alignItems='center'>
           <Link href={votingLink} isExternal overflowWrap='anywhere' whiteSpace='normal' wordBreak='break-all' flex={1}>
             {votingLink}
           </Link>

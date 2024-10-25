@@ -67,7 +67,7 @@ const LayoutDashboard: React.FC = () => {
         <DashboardMenu isOpen={isOpen} onClose={onClose} />
 
         {/* Main Content */}
-        <Box gridArea='main'>
+        <Box gridArea='main' mr={{ base: 0, lg: 6 }}>
           <Outlet context={{ setTitle, setBack } satisfies DashboardLayoutContext} />
         </Box>
       </Grid>

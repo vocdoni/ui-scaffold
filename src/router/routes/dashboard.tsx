@@ -13,10 +13,10 @@ import { SuspenseLoader } from '../SuspenseLoader'
 const OrganizationEditProfile = lazy(() => import('~elements/Organization/Edit'))
 const OrganizationVotings = lazy(() => import('~elements/Organization/Votings'))
 const DashboardProcessView = lazy(() => import('~elements/dashboard/processes/view'))
+const OrganizationTeam = lazy(() => import('~elements/dashboard/team'))
 
 // others
 const OrganizationDashboard = lazy(() => import('~components/Organization/Dashboard'))
-const OrganizationTeam = lazy(() => import('~components/Organization/Dashboard/Team'))
 
 const DashboardElements = (client: VocdoniSDKClient) => [
   {
