@@ -29,17 +29,7 @@ const Invite = ({ setInviteView }: { setInviteView: Dispatch<SetStateAction<bool
           <Heading fontSize='2xl' mb={2.5}>
             <Trans i18nKey='invite.title'>Invite people to your workspace</Trans>
           </Heading>
-          <Button
-            variant='outline'
-            borderColor='gray.300'
-            borderRadius='full'
-            minW='none'
-            minH='none'
-            h={0}
-            p={3}
-            px={1}
-            onClick={() => setInviteView(false)}
-          >
+          <Button borderRadius='full' minW='none' minH='none' h={0} p={3} px={1} onClick={() => setInviteView(false)}>
             <IoCloseSharp />
           </Button>
         </Flex>

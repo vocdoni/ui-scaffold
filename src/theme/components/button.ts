@@ -1,7 +1,6 @@
-import { mode } from '@chakra-ui/theme-tools'
-import { defineStyleConfig } from '@chakra-ui/styled-system'
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
 
-const commonStyles = (props: any) => {
+const brandedStyles = (props: any) => {
   const { colorScheme } = props
   return {
     display: 'flex',
@@ -23,17 +22,30 @@ const commonStyles = (props: any) => {
 export const Button = defineStyleConfig({
   variants: {
     brand: (props: any) => ({
-      ...commonStyles(props),
+      ...brandedStyles(props),
       borderRadius: 'xl',
     }),
-    outline: (props: any) => ({ borderRadius: 'full', bgColor: 'white' }),
-    rounded: (props: any) => ({
-      ...commonStyles(props),
+    outline: () => ({ borderRadius: 'full', bgColor: 'white' }),
+    rounded: () => ({
       borderRadius: 'full',
     }),
-  },
-  defaultProps: {
-    colorScheme: 'brand',
-    variant: 'brand',
+    ['box-shadow']: () => ({
+      boxShadow: 'lg',
+      borderRadius: 'full',
+      _hover: {
+        boxShadow: 'md',
+      },
+      _active: {
+        boxShadow: 'none',
+      },
+    }),
+    menu: defineStyle({
+      _active: {
+        color: 'brand.300',
+      },
+      _hover: {
+        textDecoration: 'underline',
+      },
+    }),
   },
 })

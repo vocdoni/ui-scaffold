@@ -16,8 +16,8 @@ const OrganizationProtectedRoute = lazy(() => import('../OrganizationProtectedRo
 const Faucet = lazy(() => import('~elements/Faucet'))
 const Home = lazy(() => import('~components/Home'))
 const NotFound = lazy(() => import('~elements/NotFound'))
-const Process = lazy(() => import('~elements/Process'))
-const OrganizationView = lazy(() => import('~elements/Organization/View'))
+const Process = lazy(() => import('~elements/processes/view'))
+const OrganizationView = lazy(() => import('~elements/organization/view'))
 
 // others
 const Terms = lazy(() => import('~components/TermsAndPrivacy/Terms'))
