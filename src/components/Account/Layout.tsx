@@ -2,7 +2,7 @@ import { Box, Flex, FormControl, FormLabel, Text, Textarea } from '@chakra-ui/re
 import { useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import CheckboxCustom from '~components/Layout/CheckboxCustom'
-import InputCustom from '~components/Layout/InputCustom'
+import InputBasic from '~components/Layout/InputBasic'
 import {
   CountriesTypesSelector,
   MembershipSizeTypesSelector,
@@ -23,22 +23,20 @@ export const PublicOrgForm = () => {
       </Box>
 
       <Flex flexDirection='column' gap={6} px={{ base: 5, md: 10 }}>
-        <InputCustom
+        <InputBasic
           formValue='name'
           label={t('name', { defaultValue: 'Name' })}
           placeholder={t('form.account_create.title_placeholder', {
             defaultValue: "Enter your organization's email",
           })}
-          type='text'
           required
         />
-        <InputCustom
+        <InputBasic
           formValue='website'
           label={t('website', { defaultValue: 'Website' })}
           placeholder={t('form.account_create.website_placeholder', {
             defaultValue: 'https://example.com',
           })}
-          type='text'
         />
 
         <FormControl>
