@@ -10,7 +10,7 @@ import OrganizationProtectedRoute from '../OrganizationProtectedRoute'
 import { SuspenseLoader } from '../SuspenseLoader'
 
 // elements/pages
-const OrganizationEdit = lazy(() => import('~elements/dashboard/organization/edit'))
+const OrganizationEdit = lazy(() => import('~elements/dashboard/organization'))
 const DashboardProcesses = lazy(() => import('~elements/dashboard/processes'))
 const DashboardProcessView = lazy(() => import('~elements/dashboard/processes/view'))
 const OrganizationTeam = lazy(() => import('~elements/dashboard/team'))
