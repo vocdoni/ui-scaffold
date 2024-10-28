@@ -9,17 +9,15 @@ import {
   OrganzationTypesSelector,
   SelectOptionType,
 } from '~components/Layout/SaasSelector'
-import useDarkMode from '~components/Layout/useDarkMode'
 
 export const PublicOrgForm = () => {
   const { t } = useTranslation()
-  const { textColor } = useDarkMode()
   const { register } = useForm()
 
   return (
     <>
       <Box me='auto'>
-        <Text color={textColor} fontWeight='bold'>
+        <Text fontWeight='bold'>
           <Trans i18nKey='create_org.public_info'>Public Organization Information</Trans>
         </Text>
       </Box>
@@ -44,7 +42,7 @@ export const PublicOrgForm = () => {
         />
 
         <FormControl>
-          <FormLabel ms='4px' fontSize='sm' fontWeight='500' color={textColor}>
+          <FormLabel ms='4px' fontSize='sm' fontWeight='500'>
             <Trans i18nKey='description'>Description</Trans>
           </FormLabel>
           <Textarea {...register('description')} placeholder={t('form.account_create.description_placeholder')} />
@@ -62,15 +60,14 @@ export type PrivateOrgFormData = {
 
 export const PrivateOrgForm = () => {
   const { t } = useTranslation()
-  const { textColor, textColorSecondary } = useDarkMode()
 
   return (
     <>
       <Box>
-        <Text color={textColor} fontWeight='bold' mb={2.5}>
+        <Text fontWeight='bold' mb={2.5}>
           <Trans i18nKey='create_org.private_org'>Private Organization Details</Trans>
         </Text>
-        <Text color={textColorSecondary} fontSize='sm'>
+        <Text color={'org_text_secondary'} fontSize='sm'>
           <Trans i18nKey='create_org.private_org_description'>
             Help us tailor your experience with information about your org. We won't share this info
           </Trans>

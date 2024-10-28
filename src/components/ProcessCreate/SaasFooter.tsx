@@ -3,18 +3,16 @@ import { Button } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccountPlan } from '~components/Account/useAccountPlan'
-import useDarkMode from '~components/Layout/useDarkMode'
 import vcdLogo from '/assets/logo-classic.svg'
 
 const SaasFooter = () => {
   const { t } = useTranslation()
-  const { bgSecondary } = useDarkMode()
   const { data } = useAccountPlan()
   const isCustom = data?.plan === 'custom'
   const isFree = data?.plan === 'free'
 
   return (
-    <Box bgColor={bgSecondary}>
+    <Box bgColor={'process_create.bg_light'} _dark={{ bgColor: 'process_create.bg_dark' }}>
       <Flex
         as='footer'
         maxW='2000px'

@@ -1,5 +1,3 @@
-import { mode } from '@chakra-ui/theme-tools'
-
 import { defineStyleConfig } from '@chakra-ui/react'
 
 export const Badge = defineStyleConfig({
@@ -11,21 +9,34 @@ export const Badge = defineStyleConfig({
     paddingRight: '12px',
   },
   variants: {
-    outline: () => ({
+    outline: {
       borderRadius: '16px',
-    }),
-    brand: (props: any) => ({
-      bg: mode('brand.500', 'brand.400')(props),
+    },
+    brand: {
+      bg: 'brand.500',
       color: 'white',
+
       _focus: {
-        bg: mode('brand.500', 'brand.400')(props),
+        bg: 'brand.500',
       },
-      _active: {
-        bg: mode('brand.500', 'brand.400')(props),
-      },
+      _active: {},
       _hover: {
-        bg: mode('brand.600', 'brand.400')(props),
+        bg: 'brand.600',
       },
-    }),
+
+      _dark: {
+        bg: 'brand.400',
+
+        _hover: {
+          bg: 'brand.400',
+        },
+        _focus: {
+          bg: 'brand.400',
+        },
+        _active: {
+          bg: 'brand.400',
+        },
+      },
+    },
   },
 })

@@ -13,7 +13,6 @@ import { useAccountCreate } from '~components/Account/useAccountCreate'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
-import useDarkMode from '~components/Layout/useDarkMode'
 
 type FormData = PrivateOrgFormData & CreateOrgParams
 
@@ -39,7 +38,6 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
   const { t } = useTranslation()
 
   const [isPending, setIsPending] = useState(false)
-  const { textColor, textColorSecondary } = useDarkMode()
 
   const methods = useForm<FormData>()
   const { handleSubmit } = methods
@@ -92,7 +90,7 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
       >
         {children}
         <Box me='auto'>
-          <Heading color={textColor} fontSize='36px' mb={4}>
+          <Heading fontSize='36px' mb={4}>
             <Trans i18nKey='create_org.title'>Create Your Organization</Trans>
           </Heading>
         </Box>
@@ -102,12 +100,12 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
           {t('organization.create_org')}
         </Button>
         <FormSubmitMessage isError={isError} error={error} />
-        <Text color={textColorSecondary} fontSize='sm' textAlign='center' py={5} mt='auto'>
+        <Text color={'account_create_text_secondary'} fontSize='sm' textAlign='center' py={5} mt='auto'>
           <Trans i18nKey='create_org.already_profile'>
             If your organization already have a profile, ask the admin to invite you to your organization.
           </Trans>
         </Text>
-        <Text color={textColorSecondary} fontSize='sm'>
+        <Text color={'account_create_text_secondary'} fontSize='sm'>
           <Trans i18nKey='create_org.logout'>If you want to login from another account, please logout</Trans>
         </Text>
         <LogoutBtn />

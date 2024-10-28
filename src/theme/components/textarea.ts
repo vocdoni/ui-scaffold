@@ -1,16 +1,41 @@
-import { mode } from '@chakra-ui/theme-tools'
 import { defineStyleConfig } from '@chakra-ui/react'
 
 export const Textarea = defineStyleConfig({
-  baseStyle: (props) => ({
-    bg: 'transparent',
+  baseStyle: {
     border: '1px solid',
-    borderColor: mode('secondaryGray.100', 'whiteAlpha.300')(props),
-    borderRadius: '16px',
-    _placeholder: { color: mode('secondaryGray.600', 'whiteAlpha.700')(props) },
-    _focus: {
-      outline: mode('1px solid #3965FF', '1px solid #63B3ED')(props),
+    borderColor: 'input.border.light',
+    fontSize: '15px',
+
+    _hover: {
+      outline: '1px solid',
+      outlineColor: 'input.hover.light',
       outlineOffset: '0px',
     },
-  }),
+
+    _focus: {
+      outline: '2px solid',
+      outlineOffset: '0px',
+      outlineColor: 'red',
+      borderColor: 'transparent',
+    },
+
+    _placeholder: {
+      color: 'input.placeholder.dark',
+    },
+
+    _dark: {
+      border: '0.1px solid',
+      borderColor: 'input.border.dark',
+      fontSize: '15px',
+      _hover: {
+        outline: '.1px solid',
+        outlineColor: 'input.hover.dark',
+        outlineOffset: '0px',
+      },
+
+      _placeholder: {
+        color: 'input.placeholder.dark',
+      },
+    },
+  },
 })

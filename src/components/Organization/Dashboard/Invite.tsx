@@ -5,11 +5,9 @@ import { Trans, useTranslation } from 'react-i18next'
 import { IoCloseSharp } from 'react-icons/io5'
 import { HSeparator } from '~components/Auth/SignIn'
 import InputCustom from '~components/Layout/InputCustom'
-import useDarkMode from '~components/Layout/useDarkMode'
 
 const Invite = ({ setInviteView }: { setInviteView: Dispatch<SetStateAction<boolean>> }) => {
   const { t } = useTranslation()
-  const { textColorSecondary } = useDarkMode()
 
   const methods = useForm({
     defaultValues: {
@@ -33,7 +31,7 @@ const Invite = ({ setInviteView }: { setInviteView: Dispatch<SetStateAction<bool
             <IoCloseSharp />
           </Button>
         </Flex>
-        <Text color={textColorSecondary}>
+        <Text>
           <Trans i18nKey='invite.subtitle'>Work together on projects</Trans>
         </Text>
       </Box>
@@ -60,7 +58,6 @@ const Invite = ({ setInviteView }: { setInviteView: Dispatch<SetStateAction<bool
 }
 
 const OptionForm = () => {
-  const { bgSecondary, textColorSecondary } = useDarkMode()
   const { control } = useFormContext()
 
   return (
@@ -82,13 +79,16 @@ const OptionForm = () => {
                 padding={6}
                 borderTopRadius='xl'
                 cursor='pointer'
-                bg={field.value === 'admin' ? bgSecondary : 'transparent'}
+                bg={field.value === 'admin' ? 'dashboard.invite.bg_checked_light' : 'transparent'}
+                _dark={{
+                  bg: field.value === 'admin' ? 'dashboard.invite.bg_checked_dark' : 'transparent',
+                }}
               >
                 <Box>
                   <Text>
                     <Trans i18nKey='invite.admin'>Admin</Trans>
                   </Text>
-                  <Text color={textColorSecondary}>
+                  <Text fontWeight='normal'>
                     <Trans i18nKey='invite.admin_description'>
                       Can view, comment, or also create and edit all workspace projects and folders. Typically used for
                       employees.
@@ -108,13 +108,16 @@ const OptionForm = () => {
                 padding={6}
                 borderBottomRadius='xl'
                 cursor='pointer'
-                bg={field.value === 'guest' ? bgSecondary : 'transparent'}
+                bg={field.value === 'guest' ? 'dashboard.invite.bg_checked_light' : 'transparent'}
+                _dark={{
+                  bg: field.value === 'admin' ? 'dashboard.invite.bg_checked_dark' : 'transparent',
+                }}
               >
                 <Box>
                   <Text>
                     <Trans i18nKey='invite.guest'>Guest</Trans>
                   </Text>
-                  <Text color={textColorSecondary}>
+                  <Text fontWeight='normal'>
                     <Trans i18nKey='invite.guest_description'>
                       Can only access projects that you specify choose. Tipically use for clients and stackholders.
                     </Trans>

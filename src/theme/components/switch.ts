@@ -1,4 +1,3 @@
-import { mode } from '@chakra-ui/theme-tools'
 export const switchStyles = {
   components: {
     Switch: {
@@ -25,11 +24,15 @@ export const switchStyles = {
       },
 
       variants: {
-        main: (props: any) => ({
+        main: {
           track: {
-            bg: mode('gray.300', 'navy.700')(props),
+            bg: 'gray.300',
+
+            _dark: {
+              bg: 'navy.700',
+            },
           },
-        }),
+        },
       },
     },
   },

@@ -5,7 +5,6 @@ import { Link as ReactRouterLink, useNavigate, useOutletContext, useSearchParams
 import { useResendVerificationMail } from '~components/Auth/authQueries'
 import { useAuth } from '~components/Auth/useAuth'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
-import useDarkMode from '~components/Layout/useDarkMode'
 import { AuthOutletContextType } from '~elements/LayoutAuth'
 import { Routes } from '~src/router/routes'
 import { Loading } from '~src/router/SuspenseLoader'
@@ -14,7 +13,6 @@ const Verify = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
   const [searchParams] = useSearchParams()
-  const { textColor, textColorSecondary } = useDarkMode()
   const {
     mailVerify: { isIdle, isPending, isError: isMutationError, error, mutateAsync },
   } = useAuth()
@@ -45,10 +43,10 @@ const Verify = () => {
   return (
     <Flex direction='column'>
       <Box me='auto'>
-        <Heading color={textColor} fontSize='36px' mb='10px'>
+        <Heading fontSize='36px' mb='10px'>
           {title}
         </Heading>
-        <Text mb='36px' ms='4px' color={textColorSecondary} fontWeight='400' fontSize='md'>
+        <Text mb='36px' ms='4px' color={'verify_subtitle'} fontWeight='400' fontSize='md'>
           {subTitle}
         </Text>
       </Box>
