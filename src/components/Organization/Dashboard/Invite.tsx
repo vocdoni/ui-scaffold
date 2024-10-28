@@ -71,8 +71,7 @@ const Invite = ({ setInviteView }: { setInviteView: Dispatch<SetStateAction<bool
 
 const OptionForm = () => {
   const { control } = useFormContext()
-  const radioColor = useColorModeValue('dashboard.invite.radio.text_light', 'dashboard.invite.radio.text_dark')
-  const radioBgSelect = useColorModeValue('dashboard.invite.radio.bg_light', 'dashboard.invite.radio.bg_dark')
+  const radioBgSelect = useColorModeValue('dashboard.invite.bg_checked_light', 'dashboard.invite.bg_checked_dark')
 
   return (
     <FormControl>
@@ -99,7 +98,7 @@ const OptionForm = () => {
                   <Text>
                     <Trans i18nKey='invite.admin'>Admin</Trans>
                   </Text>
-                  <Text color={radioColor}>
+                  <Text fontWeight='normal'>
                     <Trans i18nKey='invite.admin_description'>
                       Can view, comment, or also create and edit all workspace projects and folders. Typically used for
                       employees.
@@ -125,7 +124,7 @@ const OptionForm = () => {
                   <Text>
                     <Trans i18nKey='invite.guest'>Guest</Trans>
                   </Text>
-                  <Text color={radioColor}>
+                  <Text fontWeight='normal'>
                     <Trans i18nKey='invite.guest_description'>
                       Can only access projects that you specify choose. Tipically use for clients and stackholders.
                     </Trans>

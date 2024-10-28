@@ -46,6 +46,10 @@ export const colors = {
       light: colorsBase.black,
       dark: colorsBase.white.pure,
     },
+    invite: {
+      bg_checked_light: colorsBase.white.pure,
+      bg_checked_dark: colorsBase.blue.dark,
+    },
     sidebar: {
       bg: {
         light: colorsBase.white.pure,
