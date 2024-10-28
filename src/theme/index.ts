@@ -4,11 +4,13 @@ import { theme as vtheme } from '@vocdoni/chakra-components'
 import { CardComponent } from './additions/card/card'
 import { breakpoints } from './breakpoints'
 import { colors } from './colors'
+import { Accordion } from './components/accordion'
 import { Badge } from './components/badge'
 import { Button } from './components/button'
 import { Card } from './components/card'
 import { Checkbox } from './components/checkbox'
 import { Form } from './components/Form'
+import { ElectionTitle, Heading } from './components/heading'
 import { Input } from './components/input'
 import { Link } from './components/link'
 import { Modal } from './components/modal'
@@ -35,11 +37,14 @@ export const theme = extendTheme(vtheme, {
     },
   },
   components: {
+    Accordion,
     Badge,
     Button,
     Card,
     Checkbox,
+    ElectionTitle,
     Form,
+    Heading,
     Input,
     Link,
     Modal,
