@@ -36,7 +36,7 @@ const useEditSaasOrganization = (options?: Omit<UseMutationOptions<void, Error, 
   })
 }
 
-const EditProfile = () => {
+const EditOrganization = () => {
   const { t } = useTranslation()
   const {
     updateAccount,
@@ -234,4 +234,4 @@ const CustomizeOrgForm = () => {
   )
 }
 
-export default EditProfile
+export default EditOrganization
