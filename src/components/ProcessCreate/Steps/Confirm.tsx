@@ -465,7 +465,7 @@ const electionFromForm = (form: StepsFormValues) => {
     temporarySecretIdentity: form.censusType === 'spreadsheet' && form.electionType.anonymous,
     meta: {
       generated: 'ui-scaffold',
-      app: import.meta.env.theme === 'default' ? 'vocdoni' : import.meta.env.theme,
+      app: 'vocdoni',
       census: {
         type: form.censusType,
         fields: form.spreadsheet?.header ?? undefined,

@@ -1,5 +1,5 @@
 import { CloseIcon } from '@chakra-ui/icons'
-import { Box, Button, Flex, Text } from '@chakra-ui/react'
+import { Box, Button, Flex } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { Outlet, Link as ReactRouterLink, ScrollRestoration, useNavigate } from 'react-router-dom'
 import { ColorModeSwitcher } from '~components/Layout/ColorModeSwitcher'
@@ -60,26 +60,6 @@ const LayoutProcessCreate = () => {
 
           <SaasFooter />
         </Flex>
-        {import.meta.env.theme === 'onvote' && (
-          <Text
-            top='calc(50vh - 90px)'
-            position='fixed'
-            sx={{
-              '&': {
-                writingMode: 'vertical-lr',
-                textOrientation: 'mixed',
-                transform: 'rotate(180deg)',
-              },
-            }}
-            color='black'
-            textTransform='uppercase'
-            fontFamily='pixeloidsans'
-            fontSize='16px'
-            display={{ base: 'none', md: 'block' }}
-          >
-            World wide voting
-          </Text>
-        )}
       </Box>
     </Box>
   )
