@@ -37,7 +37,7 @@ const PricingCard = ({
       </Box>
     </CardBody>
     <CardFooter>
-      <Button variant='outline' border='none' _hover={{ textDecoration: 'underline' }}>
+      <Button variant='outline'>
         <Trans i18nKey='pricing_card.view_features'>View all features</Trans>
       </Button>
     </CardFooter>
