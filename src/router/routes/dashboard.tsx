@@ -45,7 +45,7 @@ const DashboardElements = (client: VocdoniSDKClient) => [
         errorElement: <Error />,
       },
       {
-        path: Routes.dashboard.profile,
+        path: Routes.dashboard.organization,
         element: (
           <SuspenseLoader>
             <OrganizationEdit />

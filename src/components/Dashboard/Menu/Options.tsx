@@ -53,11 +53,11 @@ export const DashboardMenuOptions = () => {
       label: t('settings'),
       icon: IoIosSettings,
       children: [
-        { label: t('organization.organization'), route: '#organization' },
+        { label: t('organization.organization'), route: Routes.dashboard.organization },
         { label: t('team'), route: Routes.dashboard.team },
         { label: t('billing'), route: '#billing' },
         { label: t('subscription'), route: '#subscription' },
-        { label: t('profile'), route: Routes.dashboard.profile },
+        { label: t('profile'), route: '#profile' },
       ],
     },
     {
