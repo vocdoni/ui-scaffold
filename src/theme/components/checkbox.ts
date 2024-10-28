@@ -11,6 +11,11 @@ export const Checkbox = defineMultiStyleConfig({
       _checked: {
         borderColor: 'checkbox.checked.border',
         bgColor: 'checkbox.checked.bg',
+
+        _hover: {
+          borderColor: 'checkbox.checked.border',
+          bgColor: 'checkbox.checked.bg',
+        },
       },
       _focus: {
         boxShadow: 'none',

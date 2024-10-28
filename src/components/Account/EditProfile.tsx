@@ -19,7 +19,6 @@ import {
   CustomizationTimeZoneSelector,
   SelectOptionType,
 } from '~components/Layout/SaasSelector'
-import useDarkMode from '~components/Layout/useDarkMode'
 import { REGEX_AVATAR } from '~constants'
 import fallback from '/assets/default-avatar.png'
 
@@ -157,7 +156,6 @@ export type CustomOrgFormData = {
 
 const CustomizeOrgForm = () => {
   const { t } = useTranslation()
-  const { textColor, textColorSecondary } = useDarkMode()
   const { watch, setValue } = useForm<FormData>()
 
   const avatar = watch('logo')
@@ -166,10 +164,8 @@ const CustomizeOrgForm = () => {
   return (
     <>
       <Box>
-        <Text color={textColor} fontWeight='bold'>
-          {t('customization', { defaultValue: 'Customization' })}
-        </Text>
-        <Text color={textColorSecondary} fontSize='sm'>
+        <Text fontWeight='bold'>{t('customization', { defaultValue: 'Customization' })}</Text>
+        <Text color={'org_text_secondary'} fontSize='sm'>
           {t('edit_saas_profile.customization_details', {
             defaultValue: 'Define the params that will enhance the user experience and customize the voting page',
           })}
@@ -179,7 +175,7 @@ const CustomizeOrgForm = () => {
         <CustomizationTimeZoneSelector name={'timeZoneSelect'} />
         <CustomizationLanguageSelector name={'languageSelect'} />
         <FormControl>
-          <FormLabel display='flex' ms={1} fontSize='sm' fontWeight='500' color={textColor} mb={2}>
+          <FormLabel display='flex' ms={1} fontSize='sm' fontWeight='500' mb={2}>
             {t('logo', {
               defaultValue: 'Logo',
             })}
@@ -196,7 +192,7 @@ const CustomizeOrgForm = () => {
           </Flex>
         </FormControl>
         <Box position='relative' outline='none' border='none'>
-          <Text fontSize='sm' fontWeight='500' color={textColor} mb={2}>
+          <Text fontSize='sm' fontWeight='500' mb={2}>
             {t('edit_saas_profile.header_image', { defaultValue: 'Header Image' })}
           </Text>
           <Flex gap={2} flexDirection={{ base: 'column', md: 'row' }} alignItems='center'>

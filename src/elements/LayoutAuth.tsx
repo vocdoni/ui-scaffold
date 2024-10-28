@@ -1,9 +1,8 @@
-import { Box, Flex, Heading, Icon, Text } from '@chakra-ui/react'
+import { Box, Flex, Heading, Icon, Text, useColorModeValue } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaChevronLeft } from 'react-icons/fa'
 import { NavLink, Outlet } from 'react-router-dom'
-import useDarkMode from '~components/Layout/useDarkMode'
 import AuthBanner from '~components/Organization/Dashboard/AuthBanner'
 
 export type AuthOutletContextType = {
@@ -13,7 +12,7 @@ export type AuthOutletContextType = {
 
 const LayoutAuth = () => {
   const { t } = useTranslation()
-  const { bg, textColorSecondary } = useDarkMode()
+  const bg = useColorModeValue('bg.light', 'bg.dark')
 
   const [title, setTitle] = useState('')
   const [subTitle, setSubTitle] = useState('')
@@ -30,8 +29,8 @@ const LayoutAuth = () => {
           <Box position='absolute' top={5} left={2.5} minW={{ base: '90%', md: 96 }}>
             <NavLink to='/'>
               <Flex align='center' w='fit-content'>
-                <Icon as={FaChevronLeft} me={2} h={3} w={2} color={textColorSecondary} />
-                <Text fontSize='sm' color={textColorSecondary}>
+                <Icon as={FaChevronLeft} me={2} h={3} w={2} color={'auth.text_color_secondary'} />
+                <Text fontSize='sm' color={'auth.text_color_secondary'}>
                   {t('back', { defaultValue: 'Back' })}
                 </Text>
               </Flex>
@@ -52,7 +51,13 @@ const LayoutAuth = () => {
               </Flex>
             </Box>
           </Flex>
-          <Text display={{ base: 'none', xl: 'block' }} mt='auto' color={textColorSecondary} py={5} textAlign='center'>
+          <Text
+            display={{ base: 'none', xl: 'block' }}
+            mt='auto'
+            color={'auth.text_color_secondary'}
+            py={5}
+            textAlign='center'
+          >
             {t('rights', { defaultValue: '© 2024 Vocdoni Association. All Rights Reserved.' })}
           </Text>
         </Flex>

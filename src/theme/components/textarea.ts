@@ -3,14 +3,25 @@ import { defineStyleConfig } from '@chakra-ui/react'
 
 export const Textarea = defineStyleConfig({
   baseStyle: (props) => ({
-    bg: 'transparent',
-    border: '1px solid',
-    borderColor: mode('secondaryGray.100', 'whiteAlpha.300')(props),
-    borderRadius: '16px',
-    _placeholder: { color: mode('secondaryGray.600', 'whiteAlpha.700')(props) },
-    _focus: {
-      outline: mode('1px solid #3965FF', '1px solid #63B3ED')(props),
+    border: mode('1px solid', '0.1px solid')(props),
+    borderColor: mode('input.border.light', 'input.border.dark')(props),
+    fontSize: '15px',
+
+    _hover: {
+      outline: mode('1px solid', '.1px solid')(props),
+      outlineColor: mode('input.hover.light', 'red')(props),
       outlineOffset: '0px',
+    },
+
+    _focus: {
+      outline: '2px solid',
+      outlineOffset: '0px',
+      outlineColor: 'red',
+      borderColor: 'transparent',
+    },
+
+    _placeholder: {
+      color: mode('input.placeholder.light', 'input.placeholder.dark')(props),
     },
   }),
 })

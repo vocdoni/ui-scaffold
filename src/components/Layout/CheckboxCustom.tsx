@@ -2,7 +2,6 @@ import { Box, Checkbox, Flex, FormControl, FormErrorMessage, FormLabel, Text } f
 import { ReactNode } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import useDarkMode from '~components/Layout/useDarkMode'
 
 export interface CheckboxCustomProps {
   formValue: string
@@ -13,7 +12,6 @@ export interface CheckboxCustomProps {
 
 const CheckboxCustom = ({ formValue, label, required = false, colorScheme = 'brandScheme' }: CheckboxCustomProps) => {
   const { t } = useTranslation()
-  const { textColor } = useDarkMode()
   const {
     register,
     formState: { errors },
@@ -29,13 +27,9 @@ const CheckboxCustom = ({ formValue, label, required = false, colorScheme = 'bra
     <FormControl isInvalid={!!errors[formValue]}>
       <Flex alignItems='center'>
         <Checkbox {...register(formValue, validationRules)} colorScheme={colorScheme} me={2.5} />
-        <FormLabel display='flex' mb={0} fontWeight='normal' color={textColor} fontSize='sm'>
+        <FormLabel display='flex' mb={0} fontWeight='normal' fontSize='sm'>
           <Box>{label}</Box>
-          {required && (
-            <Text color={textColor} ml={1}>
-              *
-            </Text>
-          )}
+          {required && <Text ml={1}>*</Text>}
         </FormLabel>
       </Flex>
       <FormErrorMessage>{errorMessage || 'Error performing the operation'}</FormErrorMessage>

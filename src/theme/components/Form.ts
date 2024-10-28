@@ -20,9 +20,9 @@ export const Form: ComponentStyleConfig = {
         display: 'flex',
         justifyContent: 'start',
         alignContent: 'center',
-        'background-color': mode('input.light.bg', '#303B4D')(props),
+        backgroundColor: mode('process_create.calendar_bg.light', 'process_create.calendar_bg.dark')(props),
         border: mode('1px solid', '0.1px solid')(props),
-        borderColor: mode('input.light.outline', 'input.dark.outline')(props),
+        borderColor: mode('input.border.light', 'input.border.dark')(props),
         borderRadius: 'xl',
         minW: 64,
         maxW: 64,
@@ -30,7 +30,7 @@ export const Form: ComponentStyleConfig = {
 
         _hover: {
           outline: mode('1px solid', '.1px solid')(props),
-          outlineColor: mode('input.light.outline', 'input.dark.outline')(props),
+          outlineColor: mode('input.hover.light', 'input.hover.dark')(props),
           outlineOffset: '0px',
         },
 

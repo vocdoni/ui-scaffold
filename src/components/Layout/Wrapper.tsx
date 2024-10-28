@@ -1,8 +1,7 @@
-import { Box, Flex } from '@chakra-ui/react'
-import useDarkMode from '~components/Layout/useDarkMode'
+import { Box, Flex, useColorModeValue } from '@chakra-ui/react'
 
 const Wrapper = ({ ...props }) => {
-  const { bg } = useDarkMode()
+  const bg = useColorModeValue('wrapper.bg_light', 'wrapper.bg_dark')
 
   return (
     <Box bg={bg}>

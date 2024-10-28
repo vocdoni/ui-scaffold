@@ -25,7 +25,7 @@ export const Button = defineStyleConfig({
       ...brandedStyles(props),
       borderRadius: 'xl',
     }),
-    outline: () => ({ borderRadius: 'full', bgColor: 'white' }),
+    outline: () => ({ borderRadius: 'full' }),
     rounded: () => ({
       borderRadius: 'full',
     }),

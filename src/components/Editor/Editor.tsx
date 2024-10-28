@@ -44,7 +44,7 @@ type EditorProps = {
 const Editor = (props: EditorProps) => {
   const [isLinkEditMode, setIsLinkEditMode] = useState<boolean>(false)
   const [floatingAnchorElem, setFloatingAnchorElem] = useState<HTMLDivElement | null>(null)
-  const bg = useColorModeValue('#ffffff', '#303B4D')
+  const bg = useColorModeValue('text_area.bg_light', 'text_area.bg_dark')
 
   const settings = {
     editorState: () => $convertFromMarkdownString(props.defaultValue ?? '', TRANSFORMERS),
@@ -80,7 +80,7 @@ const Editor = (props: EditorProps) => {
 
   return (
     <LexicalComposer initialConfig={settings}>
-      <Box className='editor-container' bgColor={bg}>
+      <Box className='editor-container' bg={bg}>
         <ToolbarPlugin setIsLinkEditMode={setIsLinkEditMode} />
         <div className='editor-inner'>
           <RichTextPlugin

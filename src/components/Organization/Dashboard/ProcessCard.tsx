@@ -5,20 +5,18 @@ import { ensure0x, InvalidElection } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import { FaEye } from 'react-icons/fa'
 import { generatePath, Link as RouterLink } from 'react-router-dom'
-import useDarkMode from '~components/Layout/useDarkMode'
 import { useDateFns } from '~i18n/use-date-fns'
 import { Routes } from '~src/router/routes'
 
 const ProcessCard = () => {
   const { election } = useElection()
-  const { textColor } = useDarkMode()
   const { format } = useDateFns()
   const { t } = useTranslation()
 
   if (!election || election instanceof InvalidElection) return null
 
   return (
-    <Box w='full' display='flex' gap={5} textDecoration='none' py='10px' color={textColor}>
+    <Box w='full' display='flex' gap={5} textDecoration='none' py='10px'>
       <ElectionTitle
         flexGrow={1}
         flexShrink={0}

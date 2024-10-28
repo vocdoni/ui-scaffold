@@ -89,7 +89,10 @@ export const Card = defineMultiStyleConfig({
       footer: {
         display: 'flex',
         justifyContent: 'center',
-        color: '#546E39',
+
+        '& button': {
+          color: 'prcing_card_btn',
+        },
       },
     },
 
@@ -395,6 +398,11 @@ export const Card = defineMultiStyleConfig({
         p: 3,
         bgColor: mode('home.solutions.light_bg', 'home.solutions.dark_bg')(props),
         fontWeight: 'bold',
+      },
+    }),
+    'no-elections': (props) => ({
+      container: {
+        bgColor: mode('bg_secondary.light', 'bg_secondary.dark')(props),
       },
     }),
   },

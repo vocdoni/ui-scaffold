@@ -3,7 +3,6 @@ import { ChakraStylesConfig, GroupBase, Select, Props as SelectProps } from 'cha
 import { Controller, useFormContext } from 'react-hook-form'
 import { ControllerProps } from 'react-hook-form/dist/types'
 import { useTranslation } from 'react-i18next'
-import useDarkMode from '~components/Layout/useDarkMode'
 import { LanguagesSlice } from '~i18n/languages.mjs'
 
 export type SelectOptionType = {
@@ -54,7 +53,6 @@ export const SelectCustom = ({
   ...rest
 }: SelectCustomProps) => {
   const { t } = useTranslation()
-  const { textColor, textColorBrand } = useDarkMode()
 
   const {
     control,
@@ -73,13 +71,9 @@ export const SelectCustom = ({
   return (
     <FormControl isInvalid={!!errors[name]}>
       {label && (
-        <FormLabel htmlFor={name} display='flex' ms={1} fontSize='sm' fontWeight='500' color={textColor} mb={2}>
+        <FormLabel htmlFor={name} display='flex' ms={1} fontSize='sm' fontWeight='500' mb={2}>
           {label}
-          {required && (
-            <Text color={textColorBrand} ml={1}>
-              *
-            </Text>
-          )}
+          {required && <Text ml={1}>*</Text>}
         </FormLabel>
       )}
       <Controller

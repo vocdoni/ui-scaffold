@@ -1,17 +1,16 @@
 import { CloseIcon } from '@chakra-ui/icons'
-import { Box, Button, Flex } from '@chakra-ui/react'
+import { Box, Button, Flex, useColorModeValue } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { Outlet, Link as ReactRouterLink, ScrollRestoration, useNavigate } from 'react-router-dom'
 import { ColorModeSwitcher } from '~components/Layout/ColorModeSwitcher'
 import Logo from '~components/Layout/Logo'
-import useDarkMode from '~components/Layout/useDarkMode'
 import SaasFooter from '~components/ProcessCreate/SaasFooter'
 import { Routes } from '~src/router/routes'
 
 const LayoutProcessCreate = () => {
   const { t } = useTranslation()
-  const { bg } = useDarkMode()
   const navigate = useNavigate()
+  const bg = useColorModeValue('bg.light', 'bg.dark')
 
   return (
     <Box bgColor={bg}>
