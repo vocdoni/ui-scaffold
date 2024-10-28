@@ -61,7 +61,7 @@ const InputCustom = ({
   }
 
   return (
-    <FormControl isInvalid={!!errors[formValue]}>
+    <FormControl isInvalid={!!errors[formValue]} isRequired={required}>
       {label && <FormLabel variant='process-create-title-sm'>{label}</FormLabel>}
       <InputGroup>
         <Input {...register(formValue, validationRules)} type={inputType} placeholder={placeholder} />

@@ -24,7 +24,7 @@ const CheckboxCustom = ({ formValue, label, required = false, colorScheme = 'bra
   const errorMessage = (errors[formValue]?.message as string) || ''
 
   return (
-    <FormControl isInvalid={!!errors[formValue]}>
+    <FormControl isInvalid={!!errors[formValue]} isRequired={required}>
       <Flex alignItems='center'>
         <Checkbox {...register(formValue, validationRules)} colorScheme={colorScheme} me={2.5} />
         <FormLabel display='flex' mb={0} fontWeight='normal' fontSize='sm'>

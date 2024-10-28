@@ -1,4 +1,4 @@
-import { FormControl, FormErrorMessage, FormLabel, Text } from '@chakra-ui/react'
+import { FormControl, FormErrorMessage, FormLabel } from '@chakra-ui/react'
 import { ChakraStylesConfig, GroupBase, Select, Props as SelectProps } from 'chakra-react-select'
 import { Controller, useFormContext } from 'react-hook-form'
 import { ControllerProps } from 'react-hook-form/dist/types'
@@ -69,11 +69,10 @@ export const SelectCustom = ({
   }
 
   return (
-    <FormControl isInvalid={!!errors[name]}>
+    <FormControl isInvalid={!!errors[name]} isRequired={required}>
       {label && (
         <FormLabel htmlFor={name} display='flex' ms={1} fontSize='sm' fontWeight='500' mb={2}>
           {label}
-          {required && <Text ml={1}>*</Text>}
         </FormLabel>
       )}
       <Controller
