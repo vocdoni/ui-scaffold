@@ -4,17 +4,15 @@ import { useTranslation } from 'react-i18next'
 import { Outlet, Link as ReactRouterLink, ScrollRestoration, useNavigate } from 'react-router-dom'
 import { ColorModeSwitcher } from '~components/Layout/ColorModeSwitcher'
 import Logo from '~components/Layout/Logo'
-import useDarkMode from '~components/Layout/useDarkMode'
 import SaasFooter from '~components/ProcessCreate/SaasFooter'
 import { Routes } from '~src/router/routes'
 
 const LayoutProcessCreate = () => {
   const { t } = useTranslation()
-  const { bg } = useDarkMode()
   const navigate = useNavigate()
 
   return (
-    <Box bgColor={bg}>
+    <Box bgColor={'bg.light'} _dark={{ bgColor: 'bg.dark' }}>
       <ScrollRestoration />
       <Box mx='auto'>
         <Flex direction='column' minH='100vh'>

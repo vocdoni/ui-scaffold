@@ -1,37 +1,40 @@
-import { mode } from '@chakra-ui/theme-tools'
-
 const variants = {
-  'home-description-color': (props) => ({
-    color: mode('home.description.light', 'home.description.dark')(props),
-  }),
-  'process-create-title': (props) => ({
+  'home-description-color': {
+    color: 'home.description.light',
+
+    _dark: {
+      color: 'home.description.dark',
+    },
+  },
+  'process-create-title': {
     fontWeight: 'bold',
-  }),
-  'process-create-title-sm': (props) => ({
+  },
+  'process-create-title-sm': {
     fontWeight: 'bold',
     fontSize: 'sm',
-  }),
-  'process-create-subtitle': (props) => ({
+  },
+  'process-create-subtitle': {
     color: 'process_create.text_secondary',
-  }),
-  'process-create-subtitle-sm': (props) => ({
+  },
+  'process-create-subtitle-sm': {
     fontSize: 'sm',
     color: 'process_create.text_secondary',
-  }),
-  'process-create-census-title': (props) => ({
+  },
+  'process-create-census-title': {
     fontWeight: 'bold',
     textTransform: 'uppercase',
     color: 'process_create.text_brand',
     mb: 6,
-  }),
-  'question-index': (props) => ({
+  },
+  'question-index': {
     position: 'absolute',
     fontSize: '100px',
     bottom: 0,
     right: 5,
     color: 'process_create.question_index',
     opacity: 0.2,
-  }),
+  },
+
   'enumeration-title': {
     color: 'gray.400',
     fontSize: 'sm',

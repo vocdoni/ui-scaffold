@@ -1,16 +1,18 @@
-import { Box, Button, Flex, Text, useColorModeValue } from '@chakra-ui/react'
+import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { FaPhoneVolume, FaRegCheckCircle } from 'react-icons/fa'
 import { Link as ReactRouterLink } from 'react-router-dom'
 
 const Support = () => {
   const { t } = useTranslation()
-  const bg = useColorModeValue('#546E39', 'rgba(84, 110, 57, 0.2)')
 
   return (
     <Box
       backgroundImage='url("https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b75c38aa4f55_Net.svg")'
-      backgroundColor={bg}
+      backgroundColor={'home.support.bg.light'}
+      _dark={{
+        bgColor: 'home.support.bg.dark',
+      }}
       backgroundRepeat='no-repeat'
       backgroundPosition='right'
       mb='100px'

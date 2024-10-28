@@ -16,14 +16,12 @@ import {
   InputGroup,
   InputProps,
   InputRightElement,
-  Text,
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { MdOutlineRemoveRedEye } from 'react-icons/md'
 import { RiEyeCloseLine } from 'react-icons/ri'
-import useDarkMode from '~components/Layout/useDarkMode'
 
 export interface InputCustomProps extends InputProps {
   formValue: string
@@ -41,7 +39,6 @@ const InputCustom = ({
   validation = {},
 }: InputCustomProps) => {
   const { t } = useTranslation()
-  const { textColor, textColorBrand, textColorSecondary } = useDarkMode()
   const [show, setShow] = useState(false)
   const handleClick = () => setShow(!show)
 
@@ -64,23 +61,13 @@ const InputCustom = ({
   }
 
   return (
-    <FormControl isInvalid={!!errors[formValue]}>
-      {label && (
-        <FormLabel variant='process-create-title-sm'>
-          {label}
-          {required && (
-            <Text color={textColorBrand} ml={1}>
-              *
-            </Text>
-          )}
-        </FormLabel>
-      )}
+    <FormControl isInvalid={!!errors[formValue]} isRequired={required}>
+      {label && <FormLabel variant='process-create-title-sm'>{label}</FormLabel>}
       <InputGroup>
         <Input {...register(formValue, validationRules)} type={inputType} placeholder={placeholder} />
         {type === 'password' && (
           <InputRightElement display='flex' alignItems='center' minH='100%'>
             <Icon
-              color={textColorSecondary}
               _hover={{ cursor: 'pointer' }}
               as={show ? RiEyeCloseLine : MdOutlineRemoveRedEye}
               onClick={handleClick}

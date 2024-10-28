@@ -2,23 +2,32 @@ export const colorsBase = {
   black: '#000000',
   blue: {
     normal: '#3965FF',
-    grayish: '#303B4D',
+    grayish: '#2B2A33',
     dark: '#1A202C',
   },
   gray: {
     light: '#E2E8F0',
-    normal: '#A0AEC0',
-    dark: '#5A5B5B',
+    normal: '#718096',
   },
   primary: '#546E39',
+  primary_dark: 'rgba(84, 110, 57, 0.2)',
   white: {
     pure: '#ffffff',
     dark: '#F5F5F7',
+    alpha: 'whiteAlpha.300',
   },
   yellow: '#FFB116',
 }
 
 export const colors = {
+  account_create_text_secondary: colorsBase.gray.normal,
+  auth: {
+    textColorSecondary: colorsBase.gray.normal,
+  },
+  bg: {
+    light: colorsBase.white.dark,
+    dark: colorsBase.blue.dark,
+  },
   contents: {
     bg: {
       light: colorsBase.white.pure,
@@ -37,6 +46,10 @@ export const colors = {
     color: {
       light: colorsBase.black,
       dark: colorsBase.white.pure,
+    },
+    invite: {
+      bg_checked_light: colorsBase.white.pure,
+      bg_checked_dark: colorsBase.blue.dark,
     },
     sidebar: {
       bg: {
@@ -75,12 +88,15 @@ export const colors = {
       dark_bg: colorsBase.blue.grayish,
     },
     support: {
-      bg: colorsBase.primary,
+      bg: {
+        light: colorsBase.primary,
+        dark: colorsBase.primary_dark,
+      },
       helper: colorsBase.white.pure,
       title: colorsBase.yellow,
     },
     description: {
-      light: colorsBase.gray.dark,
+      light: colorsBase.gray.normal,
       dark: colorsBase.white.pure,
     },
     footer: {
@@ -107,34 +123,53 @@ export const colors = {
     },
   },
 
-  input: {
-    focus: colorsBase.blue,
-    light: {
-      bg: colorsBase.white.pure,
-      border: colorsBase.gray.light,
-      outline: colorsBase.gray.light,
-    },
-    dark: {
-      bg: colorsBase.blue.grayish,
-      border: colorsBase.white,
-      outline: colorsBase.white,
-    },
-  },
-
-  process_create: {
+  google: {
     bg: {
-      light: colorsBase.white.dark,
-      dark: colorsBase.blue.dark,
-    },
-    bg_secondary: {
-      light: colorsBase.white.pure,
+      light: colorsBase.gray.light,
       dark: colorsBase.blue.grayish,
     },
-    stepper: {
-      color: colorsBase.primary,
-      bg: colorsBase.primary,
+    hover: {
+      light: colorsBase.white.pure,
+      dark: colorsBase.white.alpha,
     },
-
+    active: {
+      light: colorsBase.gray.light,
+      dark: colorsBase.blue.grayish,
+    },
+  },
+  input: {
+    border: {
+      dark: colorsBase.white,
+      light: colorsBase.gray.light,
+    },
+    hover: {
+      dark: colorsBase.white,
+      light: colorsBase.gray.light,
+    },
+    outline: colorsBase.blue.normal,
+    placeholder: {
+      light: colorsBase.gray.normal,
+      dark: colorsBase.white.pure,
+    },
+  },
+  org_text_secondary: colorsBase.gray.normal,
+  process_create: {
+    bg: {
+      dark: colorsBase.blue.dark,
+      light: colorsBase.white.dark,
+    },
+    bg_secondary: {
+      dark: colorsBase.blue.grayish,
+      light: colorsBase.white.pure,
+    },
+    stepper: {
+      bg: colorsBase.primary,
+      color: colorsBase.primary,
+    },
+    calendar_bg: {
+      dark: colorsBase.blue.grayish,
+      light: colorsBase.white.pure,
+    },
     text_brand: colorsBase.primary,
     text_secondary: colorsBase.gray.normal,
     question_index: colorsBase.primary,
@@ -148,8 +183,8 @@ export const colors = {
           light: colorsBase.white.pure,
           dark: colorsBase.blue.grayish,
         },
-        border: colorsBase.gray.dark,
-        description: colorsBase.gray.dark,
+        border: colorsBase.gray.normal,
+        description: colorsBase.gray.normal,
         svg: colorsBase.primary,
       },
     },
@@ -158,6 +193,17 @@ export const colors = {
   radio: {
     bg: colorsBase.primary,
     border: colorsBase.primary,
+  },
+
+  text_area: {
+    bg_light: colorsBase.white.pure,
+    bg_dark: colorsBase.blue.grayish,
+  },
+  verify_subtitle: colorsBase.gray.light,
+
+  wrapper: {
+    bg_light: colorsBase.white.pure,
+    bg_dark: colorsBase.blue.grayish,
   },
 
   brand: {

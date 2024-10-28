@@ -1,4 +1,3 @@
-import { mode } from '@chakra-ui/theme-tools'
 export const progressStyles = {
   components: {
     Progress: {
@@ -21,7 +20,7 @@ export const progressStyles = {
       },
 
       variants: {
-        table: (props: any) => ({
+        table: {
           field: {
             bg: 'brand.500',
             borderRadius: '16px',
@@ -29,14 +28,18 @@ export const progressStyles = {
           },
           track: {
             borderRadius: '20px',
-            bg: mode('blue.50', 'whiteAlpha.50')(props),
+            bg: 'blue.50',
             h: '8px',
             w: '54px',
+
+            _dark: {
+              bg: 'whiteAlpha.50',
+            },
           },
           thumb: {
             w: '250px',
           },
-        }),
+        },
       },
     },
   },
