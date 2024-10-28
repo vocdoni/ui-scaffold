@@ -23,6 +23,10 @@ import { editor } from './editor'
 import { spacing } from './space'
 
 export const theme = extendTheme(vtheme, {
+  config: {
+    initialColorMode: 'system',
+    useSystemColorMode: true,
+  },
   styles: {
     global: {
       ...editor,
