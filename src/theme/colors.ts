@@ -14,7 +14,7 @@ export const colorsBase = {
   white: {
     pure: '#ffffff',
     dark: '#F5F5F7',
-    whiteAlpha: 'whiteAlpha.300',
+    alpha: 'whiteAlpha.300',
   },
   yellow: '#FFB116',
 }
@@ -130,7 +130,7 @@ export const colors = {
     },
     hover: {
       light: colorsBase.white.pure,
-      dark: colorsBase.white.whiteAlpha,
+      dark: colorsBase.white.alpha,
     },
     active: {
       light: colorsBase.gray.light,

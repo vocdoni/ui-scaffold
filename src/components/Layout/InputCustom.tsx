@@ -16,7 +16,6 @@ import {
   InputGroup,
   InputProps,
   InputRightElement,
-  Text,
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useFormContext } from 'react-hook-form'
@@ -63,12 +62,7 @@ const InputCustom = ({
 
   return (
     <FormControl isInvalid={!!errors[formValue]}>
-      {label && (
-        <FormLabel variant='process-create-title-sm'>
-          {label}
-          {required && <Text ml={1}>*</Text>}
-        </FormLabel>
-      )}
+      {label && <FormLabel variant='process-create-title-sm'>{label}</FormLabel>}
       <InputGroup>
         <Input {...register(formValue, validationRules)} type={inputType} placeholder={placeholder} />
         {type === 'password' && (

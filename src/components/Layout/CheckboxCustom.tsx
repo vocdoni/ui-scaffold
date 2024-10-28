@@ -1,4 +1,4 @@
-import { Box, Checkbox, Flex, FormControl, FormErrorMessage, FormLabel, Text } from '@chakra-ui/react'
+import { Box, Checkbox, Flex, FormControl, FormErrorMessage, FormLabel } from '@chakra-ui/react'
 import { ReactNode } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -29,7 +29,6 @@ const CheckboxCustom = ({ formValue, label, required = false, colorScheme = 'bra
         <Checkbox {...register(formValue, validationRules)} colorScheme={colorScheme} me={2.5} />
         <FormLabel display='flex' mb={0} fontWeight='normal' fontSize='sm'>
           <Box>{label}</Box>
-          {required && <Text ml={1}>*</Text>}
         </FormLabel>
       </Flex>
       <FormErrorMessage>{errorMessage || 'Error performing the operation'}</FormErrorMessage>
