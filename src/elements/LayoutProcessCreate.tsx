@@ -12,7 +12,6 @@ const LayoutProcessCreate = () => {
   const { t } = useTranslation()
   const { bg } = useDarkMode()
   const navigate = useNavigate()
-  const isSaas = import.meta.env.theme === 'saas'
 
   return (
     <Box bgColor={bg}>
@@ -31,20 +30,16 @@ const LayoutProcessCreate = () => {
           >
             <Logo />
             <Flex gap={6}>
-              {isSaas && (
-                <Button variant='outline' borderRadius='xl'>
-                  Save draft
-                </Button>
-              )}
+              <Button borderRadius='xl'>Save draft</Button>
+
               <Button
                 as={ReactRouterLink}
                 onClick={(e) => (window.history.state.idx ? navigate(-1) : navigate(Routes.root))}
-                colorScheme={isSaas && 'whiteAlpha'}
                 rightIcon={<CloseIcon boxSize={3} />}
               >
                 {t('form.process_create.navbar.close_form_btn')}
               </Button>
-              {isSaas && <ColorModeSwitcher />}
+              <ColorModeSwitcher />
             </Flex>
           </Flex>
 
@@ -63,7 +58,7 @@ const LayoutProcessCreate = () => {
             <Outlet />
           </Box>
 
-          {isSaas && <SaasFooter />}
+          <SaasFooter />
         </Flex>
         {import.meta.env.theme === 'onvote' && (
           <Text
