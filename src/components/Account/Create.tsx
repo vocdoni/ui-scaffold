@@ -28,8 +28,7 @@ const IgnoreAccountError = 'this user has not been assigned to any organization'
 const useSaasAccountCreate = (options?: Omit<UseMutationOptions<void, Error, CreateOrgParams>, 'mutationFn'>) => {
   const { bearedFetch } = useAuth()
   return useMutation<void, Error, CreateOrgParams>({
-    mutationFn: (params: CreateOrgParams) =>
-      bearedFetch<void>(ApiEndpoints.Organizations, { body: params, method: 'POST' }),
+    mutationFn: (params: CreateOrgParams) => bearedFetch(ApiEndpoints.Organizations, { body: params, method: 'POST' }),
     ...options,
   })
 }

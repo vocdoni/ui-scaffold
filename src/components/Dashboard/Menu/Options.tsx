@@ -57,7 +57,7 @@ export const DashboardMenuOptions = () => {
         { label: t('team'), route: Routes.dashboard.team },
         { label: t('billing'), route: '#billing' },
         { label: t('subscription'), route: '#subscription' },
-        { label: t('profile'), route: '#profile' },
+        { label: t('profile'), route: Routes.dashboard.profile },
       ],
     },
     {

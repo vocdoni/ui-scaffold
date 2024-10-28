@@ -3,6 +3,7 @@ import { VocdoniSDKClient } from '@vocdoni/sdk'
 import { lazy } from 'react'
 // These aren't lazy loaded since they are main layouts and related components
 import { Params } from 'react-router-dom'
+import { Profile } from '~elements/dashboard/profile'
 import Error from '~elements/Error'
 import LayoutDashboard from '~elements/LayoutDashboard'
 import { Routes } from '.'
@@ -49,6 +50,14 @@ const DashboardElements = (client: VocdoniSDKClient) => [
         element: (
           <SuspenseLoader>
             <OrganizationEdit />
+          </SuspenseLoader>
+        ),
+      },
+      {
+        path: Routes.dashboard.profile,
+        element: (
+          <SuspenseLoader>
+            <Profile />
           </SuspenseLoader>
         ),
       },

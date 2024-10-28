@@ -105,13 +105,13 @@ const EditOrganization = () => {
 
   return (
     <FormProvider {...methods}>
-      <Box height='100%' maxH='100%' overflowY='auto'>
+      <Box height='100%' overflowY='auto'>
         <Flex
           as='form'
           id='process-create-form'
           direction='column'
           gap={6}
-          maxW='600px'
+          maxW={InnerContentsMaxWidth}
           mx='auto'
           onSubmit={(e) => {
             e.stopPropagation()

@@ -12,7 +12,7 @@ export const Routes = {
     organization: '/admin/organization',
     process: '/admin/process/:id',
     processes: '/admin/processes/:page?/:status?',
-    profile: '/admin/organization/edit',
+    profile: '/admin/profile',
     team: '/admin/team',
   },
   faucet: '/faucet',
