@@ -1,5 +1,6 @@
 import EditProfile from '~components/Account/EditProfile'
 import { useSaasAccount } from '~components/Account/useSaasAccount'
+import { DashboardContents } from '~components/Layout/Dashboard'
 import QueryDataLayout from '~components/Layout/QueryDataLayout'
 
 const OrganizationEdit = () => {
@@ -7,7 +8,9 @@ const OrganizationEdit = () => {
 
   return (
     <QueryDataLayout isLoading={isLoading} isError={isError} error={error}>
-      <EditProfile />
+      <DashboardContents>
+        <EditProfile />
+      </DashboardContents>
     </QueryDataLayout>
   )
 }

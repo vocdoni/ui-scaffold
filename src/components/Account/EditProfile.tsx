@@ -13,7 +13,6 @@ import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from '~components/A
 import { useSaasAccount } from '~components/Account/useSaasAccount'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
-import { DashboardContents } from '~components/Layout/Dashboard'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import {
   CustomizationLanguageSelector,
@@ -106,50 +105,48 @@ const EditProfile = () => {
   const error = saasError || updateError
 
   return (
-    <DashboardContents>
-      <FormProvider {...methods}>
-        <Box height='100%' maxH='100%' overflowY='auto'>
-          <Flex
-            as='form'
-            id='process-create-form'
-            direction='column'
-            gap={6}
-            maxW='600px'
-            mx='auto'
-            onSubmit={(e) => {
-              e.stopPropagation()
-              e.preventDefault()
-              handleSubmit(onSubmit)(e)
-            }}
-          >
-            <PublicOrgForm />
-            <PrivateOrgForm />
-            <CustomizeOrgForm />
-            <Flex align='center' direction={'column'}>
-              <Button
-                type={'submit'}
-                leftIcon={<MdBrowserUpdated />}
-                isLoading={isPending}
-                aria-label=''
-                w='full'
-                maxW='400px'
-              >
-                {t('update', {
-                  defaultValue: 'Update',
-                })}
-              </Button>
-              <FormSubmitMessage
-                isLoading={isPending}
-                isError={isError}
-                error={error}
-                isSuccess={isSuccess}
-                success={t('edit_saas_profile.edited_successfully', { defaultValue: 'Updated successfully' })}
-              />
-            </Flex>
+    <FormProvider {...methods}>
+      <Box height='100%' maxH='100%' overflowY='auto'>
+        <Flex
+          as='form'
+          id='process-create-form'
+          direction='column'
+          gap={6}
+          maxW='600px'
+          mx='auto'
+          onSubmit={(e) => {
+            e.stopPropagation()
+            e.preventDefault()
+            handleSubmit(onSubmit)(e)
+          }}
+        >
+          <PublicOrgForm />
+          <PrivateOrgForm />
+          <CustomizeOrgForm />
+          <Flex align='center' direction={'column'}>
+            <Button
+              type={'submit'}
+              leftIcon={<MdBrowserUpdated />}
+              isLoading={isPending}
+              aria-label=''
+              w='full'
+              maxW='400px'
+            >
+              {t('update', {
+                defaultValue: 'Update',
+              })}
+            </Button>
+            <FormSubmitMessage
+              isLoading={isPending}
+              isError={isError}
+              error={error}
+              isSuccess={isSuccess}
+              success={t('edit_saas_profile.edited_successfully', { defaultValue: 'Updated successfully' })}
+            />
           </Flex>
-        </Box>
-      </FormProvider>
-    </DashboardContents>
+        </Flex>
+      </Box>
+    </FormProvider>
   )
 }
 
