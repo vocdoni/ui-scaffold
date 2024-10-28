@@ -1,16 +1,4 @@
-import {
-  Box,
-  Button,
-  Flex,
-  FormControl,
-  FormLabel,
-  Heading,
-  Radio,
-  RadioGroup,
-  Stack,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react'
+import { Box, Button, Flex, FormControl, FormLabel, Heading, Radio, RadioGroup, Stack, Text } from '@chakra-ui/react'
 import { Dispatch, SetStateAction } from 'react'
 import { Controller, FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
@@ -71,7 +59,6 @@ const Invite = ({ setInviteView }: { setInviteView: Dispatch<SetStateAction<bool
 
 const OptionForm = () => {
   const { control } = useFormContext()
-  const radioBgSelect = useColorModeValue('dashboard.invite.bg_checked_light', 'dashboard.invite.bg_checked_dark')
 
   return (
     <FormControl>
@@ -92,7 +79,10 @@ const OptionForm = () => {
                 padding={6}
                 borderTopRadius='xl'
                 cursor='pointer'
-                bg={field.value === 'admin' ? radioBgSelect : 'transparent'}
+                bg={field.value === 'admin' ? 'dashboard.invite.bg_checked_light' : 'transparent'}
+                _dark={{
+                  bg: field.value === 'admin' ? 'dashboard.invite.bg_checked_dark' : 'transparent',
+                }}
               >
                 <Box>
                   <Text>
@@ -118,7 +108,10 @@ const OptionForm = () => {
                 padding={6}
                 borderBottomRadius='xl'
                 cursor='pointer'
-                bg={field.value === 'guest' ? radioBgSelect : 'transparent'}
+                bg={field.value === 'guest' ? 'dashboard.invite.bg_checked_light' : 'transparent'}
+                _dark={{
+                  bg: field.value === 'admin' ? 'dashboard.invite.bg_checked_dark' : 'transparent',
+                }}
               >
                 <Box>
                   <Text>

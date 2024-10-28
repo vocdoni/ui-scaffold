@@ -1,6 +1,5 @@
 import { cardAnatomy } from '@chakra-ui/anatomy'
 import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
-import { mode } from '@chakra-ui/theme-tools'
 
 const { defineMultiStyleConfig } = createMultiStyleConfigHelpers(cardAnatomy.keys)
 
@@ -20,7 +19,7 @@ export const Card = defineMultiStyleConfig({
       },
       body: { p: 0 },
     },
-    'download-spreadsheet': (props) => ({
+    'download-spreadsheet': {
       container: {
         p: 6,
         maxW: 64,
@@ -40,7 +39,7 @@ export const Card = defineMultiStyleConfig({
       footer: {
         p: 0,
       },
-    }),
+    },
 
     'pricing-card': {
       container: {
@@ -96,7 +95,7 @@ export const Card = defineMultiStyleConfig({
       },
     },
 
-    'drag-and-drop': (props) => ({
+    'drag-and-drop': {
       container: {
         flexDirection: 'column',
         justifyContent: 'center',
@@ -104,43 +103,58 @@ export const Card = defineMultiStyleConfig({
         gap: 5,
         p: 10,
         border: '1px dotted',
-        bgColor: mode('process_create.bg_secondary.light', 'process_create.bg_secondary.dark')(props),
+        bgColor: 'process_create.bg_secondary.light',
         borderRadius: 'xl',
         cursor: 'pointer',
-      },
-    }),
 
-    'web3-addresses': (props) => ({
+        _dark: {
+          bgColor: 'process_create.bg_secondary.dark',
+        },
+      },
+    },
+
+    'web3-addresses': {
       container: {
         flexDirection: 'column',
         minH: '220px',
         overflowY: 'scroll',
         borderRadius: 'xl',
         my: 6,
-        bgColor: mode('process_create.bg_secondary.light', 'process_create.bg_secondary.dark')(props),
+        bgColor: 'process_create.bg_secondary.light',
+        _dark: {
+          bgColor: 'process_create.bg_secondary.dark',
+        },
       },
-    }),
-    preview: (props) => ({
+    },
+    preview: {
       container: {
         display: 'flex',
         flexDirection: 'column',
         gap: 5,
         p: { base: 3, xl: 6 },
-        bgColor: mode('process_create.bg_secondary.light', 'process_create.bg_secondary.dark')(props),
+        bgColor: 'process_create.bg_secondary.light',
         borderRadius: 'xl',
+
+        _dark: {
+          bgColor: 'process_create.bg_secondary.dark',
+        },
       },
-    }),
-    confirm: (props) => ({
+    },
+    confirm: {
       container: {
         display: 'flex',
         flex: { xl2: '0 0 25%' },
         p: 6,
-        bgColor: mode('process_create.bg_secondary.light', 'process_create.bg_secondary.dark')(props),
+        bgColor: 'process_create.bg_secondary.light',
         borderRadius: 'xl',
         minW: 76,
+
+        _dark: {
+          bgColor: 'process_create.bg_secondary.dark',
+        },
       },
-    }),
-    client: (props) => ({
+    },
+    client: {
       container: {
         border: 'none',
         backgroundColor: 'none',
@@ -161,8 +175,12 @@ export const Card = defineMultiStyleConfig({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        filter: mode('grayscale(100%)', 'grayscale(0%)')(props),
+        filter: 'grayscale(100%)',
         h: { base: '35px', lg: '45px' },
+
+        _dark: {
+          filter: 'grayscale(0%)',
+        },
       },
       body: {
         p: 0,
@@ -174,12 +192,15 @@ export const Card = defineMultiStyleConfig({
           textAlign: 'center',
           fontSize: '12px',
           fontWeight: 'bold',
-          color: mode('home.description.light', 'home.description.dark')(props),
+          color: 'home.description.light',
           marginTop: '22px',
+          _dark: {
+            color: 'home.description.dark',
+          },
         },
       },
-    }),
-    benefits: (props) => ({
+    },
+    benefits: {
       container: {
         w: '350px',
         backdropFilter: 'blur(16px)',
@@ -200,31 +221,61 @@ export const Card = defineMultiStyleConfig({
           color: 'home.benefits.color.light.bg_primary',
         },
         '&:nth-of-type(2)': {
-          bgColor: mode('home.benefits.bg.light.white', 'home.benefits.bg.dark.dark')(props),
-          color: mode('home.benefits.color.light.bg_white', 'home.benefits.color.dark')(props),
+          bgColor: 'home.benefits.bg.light.white',
+          color: 'home.benefits.color.light.bg_white',
+          _dark: {
+            bgColor: 'home.benefits.bg.dark.dark',
+            color: 'home.benefits.color.dark',
+          },
         },
         '&:nth-of-type(3)': {
           bgColor: {
             base: 'home.benefits.bg.light.primary',
-            benefits1: mode('home.benefits.bg.light.white', 'home.benefits.bg.dark.dark')(props),
+            benefits1: 'home.benefits.bg.light.white',
             benefits2: 'home.benefits.bg.light.primary',
           },
           color: {
             base: 'home.benefits.color.light.bg_primary',
-            benefits1: mode('home.benefits.color.light.bg_white', 'home.benefits.color.dark')(props),
+            benefits1: 'home.benefits.color.light.bg_white',
             benefits2: 'home.benefits.color.light.bg_primary',
+          },
+
+          _dark: {
+            bgColor: {
+              base: 'home.benefits.bg.light.primary',
+              benefits1: 'home.benefits.bg.dark.dark',
+              benefits2: 'home.benefits.bg.light.primary',
+            },
+            color: {
+              base: 'home.benefits.color.light.bg_primary',
+              benefits1: 'home.benefits.color.dark',
+              benefits2: 'home.benefits.color.light.bg_primary',
+            },
           },
         },
         '&:nth-of-type(4)': {
           bgColor: {
-            base: mode('home.benefits.bg.light.white', 'home.benefits.bg.dark.dark')(props),
+            base: 'home.benefits.bg.light.white',
             benefits1: 'home.benefits.bg.light.primary',
-            benefits2: mode('home.benefits.bg.light.white', 'home.benefits.bg.dark.dark')(props),
+            benefits2: 'home.benefits.bg.light.white',
           },
           color: {
-            base: mode('home.benefits.color.light.bg_white', 'home.benefits.color.dark')(props),
+            base: 'home.benefits.color.light.bg_white',
             benefits1: 'home.benefits.color.light.bg_primary',
-            benefits2: mode('home.benefits.color.light.bg_white', 'home.benefits.color.dark')(props),
+            benefits2: 'home.benefits.color.light.bg_white',
+          },
+
+          _dark: {
+            bgColor: {
+              base: 'home.benefits.bg.dark.dark',
+              benefits1: 'home.benefits.bg.light.primary',
+              benefits2: 'home.benefits.bg.dark.dark',
+            },
+            color: {
+              base: 'home.benefits.color.dark',
+              benefits1: 'home.benefits.color.light.bg_primary',
+              benefits2: 'home.benefits.color.dark',
+            },
           },
         },
         '&:nth-of-type(5)': {
@@ -232,8 +283,13 @@ export const Card = defineMultiStyleConfig({
           color: 'home.benefits.color.light.bg_primary',
         },
         '&:nth-of-type(6)': {
-          bgColor: mode('home.benefits.bg.light.white', 'home.benefits.bg.dark.dark')(props),
-          color: mode('home.benefits.color.light.bg_white', 'home.benefits.color.dark')(props),
+          bgColor: 'home.benefits.bg.light.white',
+          color: 'home.benefits.color.light.bg_white',
+
+          _dark: {
+            bgColor: 'home.benefits.bg.dark.dark',
+            color: 'home.benefits.color.dark',
+          },
         },
       },
       header: {
@@ -250,8 +306,8 @@ export const Card = defineMultiStyleConfig({
         pt: 0,
         textAlign: 'left',
       },
-    }),
-    'icon-card': (props) => ({
+    },
+    'icon-card': {
       container: {
         bgColor: 'transparent',
       },
@@ -287,12 +343,16 @@ export const Card = defineMultiStyleConfig({
 
           'p:last-of-type': {
             fontSize: '22px',
-            color: mode('home.description.light !important', 'home.description.dark !important')(props),
+            color: 'home.description.light !important',
+
+            _dark: {
+              color: 'home.description.dark !important',
+            },
           },
         },
       },
-    }),
-    'image-card': (props) => ({
+    },
+    'image-card': {
       container: {
         bgColor: 'transparent',
       },
@@ -319,12 +379,16 @@ export const Card = defineMultiStyleConfig({
 
           'p:last-of-type': {
             fontSize: '22px',
-            color: mode('home.description.light !important', 'home.description.dark !important')(props),
+            color: 'home.description.light !important',
+
+            _dark: {
+              color: 'home.description.dark !important',
+            },
           },
         },
       },
-    }),
-    step: (props) => ({
+    },
+    step: {
       container: {
         backgroundColor: 'transparent',
       },
@@ -359,12 +423,16 @@ export const Card = defineMultiStyleConfig({
           },
           'p:nth-of-type(2)': {
             fontSize: '22px',
-            color: mode('home.description.light !important', 'home.description.dark !important')(props),
+            color: 'home.description.light !important',
+
+            _dark: {
+              color: 'home.description.dark !important',
+            },
           },
         },
       },
-    }),
-    faqs: (props) => ({
+    },
+    faqs: {
       container: {
         borderRadius: 'none',
         borderBottom: '1px solid rgb(229, 229, 229)',
@@ -383,11 +451,15 @@ export const Card = defineMultiStyleConfig({
         mb: '19px',
 
         '& p': {
-          color: mode('home.description.light !important', 'home.description.dark !important')(props),
+          color: 'home.description.light !important',
+
+          _dark: {
+            color: 'home.description.dark !important',
+          },
         },
       },
-    }),
-    solutions: (props) => ({
+    },
+    solutions: {
       container: {
         display: 'flex',
         flexDirection: 'row',
@@ -396,14 +468,22 @@ export const Card = defineMultiStyleConfig({
         borderRadius: 'md',
         boxShadow: 'var(--box-shadow)',
         p: 3,
-        bgColor: mode('home.solutions.light_bg', 'home.solutions.dark_bg')(props),
+        bgColor: 'home.solutions.light_bg',
         fontWeight: 'bold',
+
+        _dark: {
+          bgColor: 'home.solutions.dark_bg',
+        },
       },
-    }),
-    'no-elections': (props) => ({
+    },
+    'no-elections': {
       container: {
-        bgColor: mode('bg_secondary.light', 'bg_secondary.dark')(props),
+        bgColor: 'bg_secondary.light',
+
+        _dark: {
+          bgColor: 'bg_secondary.dark',
+        },
       },
-    }),
+    },
   },
 })

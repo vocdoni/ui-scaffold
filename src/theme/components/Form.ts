@@ -1,9 +1,8 @@
-import { mode } from '@chakra-ui/theme-tools'
 import type { ComponentStyleConfig } from '@chakra-ui/theme'
 
 export const Form: ComponentStyleConfig = {
   parts: ['container', 'label', 'helpText', 'errorText', 'requiredIndicator'],
-  baseStyle: (props) => ({
+  baseStyle: {
     container: {
       label: {
         display: 'flex',
@@ -13,24 +12,24 @@ export const Form: ComponentStyleConfig = {
         mb: 2,
       },
     },
-  }),
+  },
   variants: {
-    calendar: (props) => ({
+    calendar: {
       container: {
         display: 'flex',
         justifyContent: 'start',
         alignContent: 'center',
-        backgroundColor: mode('process_create.calendar_bg.light', 'process_create.calendar_bg.dark')(props),
-        border: mode('1px solid', '0.1px solid')(props),
-        borderColor: mode('input.border.light', 'input.border.dark')(props),
+        backgroundColor: 'process_create.calendar_bg.light',
+        border: '1px solid',
+        borderColor: 'input.border.light',
         borderRadius: 'xl',
         minW: 64,
         maxW: 64,
         p: 3,
 
         _hover: {
-          outline: mode('1px solid', '.1px solid')(props),
-          outlineColor: mode('input.hover.light', 'input.hover.dark')(props),
+          outline: '1px solid',
+          outlineColor: 'input.hover.light',
           outlineOffset: '0px',
         },
 
@@ -43,7 +42,18 @@ export const Form: ComponentStyleConfig = {
             fontSize: 'sm',
           },
         },
+
+        _dark: {
+          backgroundColor: 'process_create.calendar_bg.dark',
+          border: '0.1px solid',
+          borderColor: 'input.border.dark',
+
+          _hover: {
+            outline: '.1px solid',
+            outlineColor: 'input.hover.dark',
+          },
+        },
       },
-    }),
+    },
   },
 }

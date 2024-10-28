@@ -1,10 +1,9 @@
-import { mode } from '@chakra-ui/theme-tools'
 import { tabsAnatomy } from '@chakra-ui/anatomy'
 import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(tabsAnatomy.keys)
 
-const card = definePartsStyle((props) => ({
+const card = definePartsStyle({
   tablist: {
     display: 'flex',
     flexDirection: 'row',
@@ -27,11 +26,17 @@ const card = definePartsStyle((props) => ({
     p: 4,
     px: 6,
     boxShadow: 'var(--box-shadow-darker)',
-    bgColor: mode('tab.variant.card.bg.light', 'tab.variant.card.bg.dark')(props),
+    bgColor: 'tab.variant.card.bg.light',
     borderBottom: 'none',
-    color: mode('navy.700', 'white')(props),
+    color: 'white',
     borderRadius: 'xl',
     w: 'full',
+
+    _dark: {
+      bgColor: 'tab.variant.card.bg.dark',
+
+      color: 'navy.700',
+    },
 
     '& > #description': {
       color: 'tab.variant.card.description',
@@ -103,7 +108,7 @@ const card = definePartsStyle((props) => ({
   tabpanel: {
     p: 0,
   },
-}))
+})
 
 const variants = {
   card,

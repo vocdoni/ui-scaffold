@@ -1,5 +1,5 @@
 import { CloseIcon } from '@chakra-ui/icons'
-import { Box, Button, Flex, useColorModeValue } from '@chakra-ui/react'
+import { Box, Button, Flex } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { Outlet, Link as ReactRouterLink, ScrollRestoration, useNavigate } from 'react-router-dom'
 import { ColorModeSwitcher } from '~components/Layout/ColorModeSwitcher'
@@ -10,10 +10,9 @@ import { Routes } from '~src/router/routes'
 const LayoutProcessCreate = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const bg = useColorModeValue('bg.light', 'bg.dark')
 
   return (
-    <Box bgColor={bg}>
+    <Box bgColor={'bg.light'} _dark={{ bgColor: 'bg.dark' }}>
       <ScrollRestoration />
       <Box mx='auto'>
         <Flex direction='column' minH='100vh'>

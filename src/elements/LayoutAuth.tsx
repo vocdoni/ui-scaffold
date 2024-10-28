@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Icon, Text, useColorModeValue } from '@chakra-ui/react'
+import { Box, Flex, Heading, Icon, Text } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaChevronLeft } from 'react-icons/fa'
@@ -12,13 +12,17 @@ export type AuthOutletContextType = {
 
 const LayoutAuth = () => {
   const { t } = useTranslation()
-  const bg = useColorModeValue('bg.light', 'bg.dark')
 
   const [title, setTitle] = useState('')
   const [subTitle, setSubTitle] = useState('')
 
   return (
-    <Flex bgColor={bg} minH='100vh' flexDirection={{ base: 'column', xl: 'row' }}>
+    <Flex
+      bgColor={'bg.light'}
+      _dark={{ bgColor: 'bg.dark' }}
+      minH='100vh'
+      flexDirection={{ base: 'column', xl: 'row' }}
+    >
       <Flex
         flex={{ base: '1 1 100%', xl: '1 1 50%' }}
         flexDirection='column'

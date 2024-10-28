@@ -1,6 +1,5 @@
 import { checkboxAnatomy } from '@chakra-ui/anatomy'
 import { createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/react'
-import { mode } from '@chakra-ui/theme-tools'
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(checkboxAnatomy.keys)
 
@@ -26,7 +25,7 @@ export const Checkbox = defineMultiStyleConfig({
     },
   },
   variants: {
-    radiobox: definePartsStyle((props) => ({
+    radiobox: definePartsStyle({
       container: defineStyle({
         position: 'relative',
         display: 'flex',
@@ -35,8 +34,12 @@ export const Checkbox = defineMultiStyleConfig({
         alignItems: 'center',
         p: 4,
         boxShadow: 'var(--box-shadow)',
-        bgColor: mode('checkbox.variant.radiobox.bg.light', 'checkbox.variant.radiobox.bg.dark')(props),
+        bgColor: 'checkbox.variant.radiobox.bg.light',
         borderRadius: 'xl',
+
+        _dark: {
+          bgColor: 'checkbox.variant.radiobox.bg.dark',
+        },
 
         _hover: {
           boxShadow: 'var(--box-shadow-darker)',
@@ -92,6 +95,6 @@ export const Checkbox = defineMultiStyleConfig({
           left: 0,
         },
       }),
-    })),
+    }),
   },
 })

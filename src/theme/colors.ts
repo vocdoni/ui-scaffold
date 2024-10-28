@@ -10,6 +10,7 @@ export const colorsBase = {
     normal: '#718096',
   },
   primary: '#546E39',
+  primary_dark: 'rgba(84, 110, 57, 0.2)',
   white: {
     pure: '#ffffff',
     dark: '#F5F5F7',
@@ -87,7 +88,10 @@ export const colors = {
       dark_bg: colorsBase.blue.grayish,
     },
     support: {
-      bg: colorsBase.primary,
+      bg: {
+        light: colorsBase.primary,
+        dark: colorsBase.primary_dark,
+      },
       helper: colorsBase.white.pure,
       title: colorsBase.yellow,
     },

@@ -1,22 +1,28 @@
-import { Button, Icon, useColorModeValue } from '@chakra-ui/react'
+import { Button, Icon } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { FcGoogle } from 'react-icons/fc'
 
 const GoogleAuth = () => {
   const { t } = useTranslation()
 
-  const googleBg = useColorModeValue('google.bg.light', 'google.bg.dark')
-  const googleHover = useColorModeValue({ bg: 'google.hover.light' }, { bg: 'google.hover.dark' })
-  const googleActive = useColorModeValue({ bg: 'google.active.light' }, { bg: 'google.active.dark' })
-
   return (
     <Button
       fontSize='sm'
-      bg={googleBg}
+      bg={'google.bg.light'}
       fontWeight='500'
-      _hover={googleHover}
-      _active={googleActive}
-      _focus={googleActive}
+      _hover={'google.hover.light'}
+      _active={'google.active.light'}
+      _focus={'google.active.light'}
+      _dark={{
+        bg: 'google.bg.dark',
+
+        _hover: {
+          bg: 'google.hover.dark',
+        },
+        _active: {
+          bg: 'google.hover.dark',
+        },
+      }}
     >
       <Icon as={FcGoogle} w={5} h={5} me={2} />
 
