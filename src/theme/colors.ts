@@ -229,6 +229,13 @@ export const colors = {
     bg_dark: colorsBase.blue.dark,
   },
 
+  read_more: {
+    from_light: 'red',
+    from_dark: 'red',
+    to_light: 'black',
+    to_dark: 'blue',
+  },
+
   tab: {
     variant: {
       card: {

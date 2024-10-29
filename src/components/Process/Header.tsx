@@ -22,12 +22,7 @@ const ProcessHeader = () => {
   const { organization, loaded } = useOrganization()
   const { account, client } = useClient()
   const [censusInfo, setCensusInfo] = useState<CensusInfo>()
-  const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(
-    'rgba(242, 242, 242, 0)',
-    'rgba(242, 242, 242, 1)',
-    600,
-    20
-  )
+  const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(600, 20)
   const strategy = useStrategy()
 
   // Get the census info to show the total size if the maxCensusSize is less than the total size
@@ -105,7 +100,12 @@ const ProcessHeader = () => {
               </Text>
             )}
             <Box className='md-sizes'>
-              <ReadMoreMarkdownWrapper from='rgba(250, 250, 250, 0)' to='rgba(250, 250, 250, 1)'>
+              <ReadMoreMarkdownWrapper
+                fromLight={'read_more.from_light'}
+                fromDark={'read_more.from_dark'}
+                toLight={'read_more.to_light'}
+                toDark={'read_more.to_dark'}
+              >
                 <ElectionDescription mb={0} fontSize='lg' lineHeight={1.5} color='process.description' />
               </ReadMoreMarkdownWrapper>
             </Box>

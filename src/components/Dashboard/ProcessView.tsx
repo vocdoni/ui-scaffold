@@ -47,7 +47,7 @@ import { Routes } from '~src/router/routes'
 export const ProcessView = () => {
   const { setTitle, setBack } = useOutletContext<DashboardLayoutContext>()
   const { id, election, participation, turnout } = useElection()
-  const { ReadMoreMarkdownWrapper } = useReadMoreMarkdown('rgba(242, 242, 242, 0)', 'rgba(242, 242, 242, 1)', 600, 20)
+  const { ReadMoreMarkdownWrapper } = useReadMoreMarkdown(600, 20)
 
   const votingLink = `${document.location.origin}${generatePath(Routes.processes.view, { id })}`
   const { hasCopied, onCopy } = useClipboard(votingLink)
@@ -66,7 +66,12 @@ export const ProcessView = () => {
         <ElectionSchedule showRemaining as={Tag} />
         <ElectionTitle variant='contents-title' />
         {election instanceof PublishedElection && election.description && (
-          <ReadMoreMarkdownWrapper from='rgba(250, 250, 250, 0)' to='rgba(250, 250, 250, 1)'>
+          <ReadMoreMarkdownWrapper
+            fromLight={'rgba(242, 242, 242, 0)'}
+            fromDark={'rgba(242, 242, 242, 0)'}
+            toLight={'rgba(242, 242, 242, 1)'}
+            toDark={'rgba(242, 242, 242, 1)'}
+          >
             <ElectionDescription mb={0} fontSize='lg' lineHeight={1.5} color='process.description' />
           </ReadMoreMarkdownWrapper>
         )}
