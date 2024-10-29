@@ -2,7 +2,7 @@ import { Flex, Text } from '@chakra-ui/react'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import Editor from '~components/Editor/Editor'
-import InputCustom from '~components/Layout/InputCustom'
+import InputBasic from '~components/Layout/InputBasic'
 
 const CreateProcessMeta = () => {
   const { setValue, watch } = useFormContext()
@@ -25,11 +25,10 @@ const CreateProcessMeta = () => {
           })}
         </Text>
 
-        <InputCustom
+        <InputBasic
           formValue='title'
           label={t('process_create.title', { defaultValue: 'Title' })}
           placeholder={t('process_create.title_placeholder', { defaultValue: 'Title of the voting process' })}
-          type='text'
           validation={{
             required,
             maxLength: {

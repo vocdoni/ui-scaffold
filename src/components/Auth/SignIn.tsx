@@ -8,10 +8,11 @@ import { ILoginParams } from '~components/Auth/authQueries'
 import { useAuth } from '~components/Auth/useAuth'
 import { VerifyAccountNeeded } from '~components/Auth/Verify'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
+import InputPassword from '~components/Layout/InputPassword'
 import { AuthOutletContextType } from '~elements/LayoutAuth'
 import { Routes } from '~src/router/routes'
 import CustomCheckbox from '../Layout/CheckboxCustom'
-import InputCustom from '../Layout/InputCustom'
+import InputBasic from '../Layout/InputBasic'
 import GoogleAuth from './GoogleAuth'
 
 type FormData = {
@@ -64,18 +65,17 @@ const SignIn = () => {
       </Flex>
       <FormProvider {...methods}>
         <Flex as='form' onSubmit={handleSubmit(onSubmit)} flexDirection='column' gap={6}>
-          <InputCustom
+          <InputBasic
             formValue='email'
             label={t('email')}
             placeholder={t('email_placeholder', { defaultValue: 'your@email.com' })}
             type='email'
             required
           />
-          <InputCustom
+          <InputPassword
             formValue='password'
             label={t('password')}
             placeholder={t('password_placeholder', { defaultValue: 'Enter your password' })}
-            type='password'
             required
           />
           <Flex justifyContent='center' align='center'>

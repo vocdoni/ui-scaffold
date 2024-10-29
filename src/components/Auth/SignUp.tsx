@@ -7,10 +7,11 @@ import { IRegisterParams } from '~components/Auth/authQueries'
 import { useAuth } from '~components/Auth/useAuth'
 import { VerifyAccountNeeded } from '~components/Auth/Verify'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
+import InputPassword from '~components/Layout/InputPassword'
 import { AuthOutletContextType } from '~elements/LayoutAuth'
 import { Routes } from '~src/router/routes'
 import CustomCheckbox from '../Layout/CheckboxCustom'
-import InputCustom from '../Layout/InputCustom'
+import { default as InputBasic } from '../Layout/InputBasic'
 import GoogleAuth from './GoogleAuth'
 import { HSeparator } from './SignIn'
 
@@ -59,17 +60,17 @@ const SignUp = () => {
       <FormProvider {...methods}>
         <Flex as='form' onSubmit={handleSubmit(onSubmit)} flexDirection='column' gap={6}>
           <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ md: 4 }}>
-            <InputCustom formValue='firstName' label={t('signup_first_name')} placeholder={'John'} required />
-            <InputCustom formValue='lastName' label={t('signup_last_name')} placeholder={'Doe'} required />
+            <InputBasic formValue='firstName' label={t('signup_first_name')} placeholder={'John'} required />
+            <InputBasic formValue='lastName' label={t('signup_last_name')} placeholder={'Doe'} required />
           </Flex>
-          <InputCustom
+          <InputBasic
             formValue='email'
             label={t('email')}
             placeholder={t('email_placeholder', { defaultValue: 'your@email.com' })}
             type='email'
             required
           />
-          <InputCustom
+          <InputPassword
             formValue='password'
             label={t('password')}
             placeholder={t('password_placeholder', { defaultValue: 'Min 8 characters' })}
