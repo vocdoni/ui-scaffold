@@ -2,7 +2,7 @@ import { useClient } from '@vocdoni/react-providers'
 import { Navigate, Outlet } from 'react-router-dom'
 import { useAccountHealthTools } from '~components/Account/use-account-health-tools'
 import { useAuth } from '~components/Auth/useAuth'
-import CreateOrganizationSaas from '~components/Organization/Dashboard/Create'
+import CreateOrganization from '~components/Organization/Dashboard/Create'
 import { Loading } from '~src/router/SuspenseLoader'
 import { Routes } from './routes'
 
@@ -23,7 +23,7 @@ const OrganizationProtectedRoute = () => {
   }
 
   if (!exists && !signerAddress) {
-    return <CreateOrganizationSaas />
+    return <CreateOrganization />
   }
 
   return <Outlet />

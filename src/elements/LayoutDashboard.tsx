@@ -4,6 +4,7 @@ import { OrganizationProvider, useClient } from '@vocdoni/react-providers'
 import { useState } from 'react'
 import { MdKeyboardArrowLeft } from 'react-icons/md'
 import { Outlet, Link as ReactRouterLink } from 'react-router-dom'
+import AccountMenu from '~components/Account/Menu'
 import DashboardMenu from '~components/Dashboard/Menu'
 
 export type DashboardLayoutContext = {
@@ -36,7 +37,7 @@ const LayoutDashboard: React.FC = () => {
         gap={6}
       >
         {/* Top Menu */}
-        <Box gridArea='header' pt={6} gap={3} display='flex'>
+        <Box gridArea='header' pt={6} gap={3} display='flex' mr={{ base: 0, lg: 6 }}>
           {back && (
             <IconButton
               as={ReactRouterLink}
@@ -54,6 +55,8 @@ const LayoutDashboard: React.FC = () => {
               {title}
             </Heading>
           )}
+          {/* User profile & menu */}
+          <AccountMenu ml='auto' />
           {/* Hamburger button to open sidebar on small screens */}
           <IconButton
             icon={<HamburgerIcon />}

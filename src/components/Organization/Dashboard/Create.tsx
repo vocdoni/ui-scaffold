@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Grid, Heading, Image, ListItem, Text, UnorderedList } from '@chakra-ui/react'
 import { Trans } from 'react-i18next'
-import { AccountCreate } from '~components/Account/Create'
+import { OrganizationCreate } from '../Create'
 import AuthBanner from './AuthBanner'
 import barca from '/assets/barca.png'
 import bellpuig from '/assets/bellpuig.svg.png'
@@ -23,7 +23,7 @@ const CreateOrganization = () => {
         alignItems='center'
         pt={14}
       >
-        <AccountCreate />
+        <OrganizationCreate />
       </Flex>
       <AuthBanner>
         <Heading textAlign='center' mb={12} color='white'>
