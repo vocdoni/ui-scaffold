@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { NavLink, useOutletContext } from 'react-router-dom'
 import { AuthOutletContextType } from '~elements/LayoutAuth'
 import { Routes } from '~src/router/routes'
-import InputCustom from '../Layout/InputCustom'
+import InputBasic from '../Layout/InputBasic'
 
 function ForgotPassword() {
   const { t } = useTranslation()
@@ -28,7 +28,7 @@ function ForgotPassword() {
     <>
       <FormProvider {...methods}>
         <Flex as='form' onSubmit={methods.handleSubmit(onSubmit)} flexDirection='column' gap={6}>
-          <InputCustom
+          <InputBasic
             formValue='email'
             label={t('email')}
             placeholder={t('email_placeholder', { defaultValue: 'your@email.com' })}
