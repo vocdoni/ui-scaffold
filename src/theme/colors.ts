@@ -179,11 +179,23 @@ export const colors = {
         light: colorsBase.white.pure,
         dark: colorsBase.blue.grayish,
       },
+      disabled: {
+        light: colorsBase.white.pure,
+        dark: colorsBase.blue.grayish,
+      },
       description: colorsBase.gray.normal,
       title: {
         ligth: colorsBase.primary,
         dark: colorsBase.white.pure,
       },
+    },
+    results: {
+      alert_bg: colorsBase.primary,
+      alert_color: colorsBase.white.pure,
+      bg: colorsBase.gray.light,
+      description: colorsBase.gray.normal,
+      progressbar_bg: colorsBase.gray.light,
+      title: colorsBase.primary,
     },
     tabs: {
       active_bg: colorsBase.gray.light,

@@ -151,8 +151,12 @@ const baseStyle = definePartsStyle({
         },
 
         '&[data-disabled=""]': {
-          bgColor: 'white !important',
-          border: 'none !important',
+          bgColor: 'process.questions.disabled.light',
+          border: 'none',
+
+          _dark: {
+            bgColor: 'process.questions.disabled.dark',
+          },
         },
       },
       '& span:nth-of-type(2)': {

@@ -22,6 +22,7 @@ import { Textarea } from './components/textarea'
 import { editor } from './editor'
 import { spacing } from './space'
 import { ElectionQuestions } from './components/Questions'
+import { ElectionResults } from './components/results'
 
 export const theme = extendTheme(vtheme, {
   config: {
@@ -48,6 +49,7 @@ export const theme = extendTheme(vtheme, {
     Checkbox,
     ElectionTitle,
     ElectionQuestions,
+    ElectionResults,
     Form,
     Heading,
     Input,
