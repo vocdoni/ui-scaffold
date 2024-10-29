@@ -7,12 +7,12 @@ import { useMutation, UseMutationOptions } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { useState } from 'react'
 import { CreateOrgParams } from '~components/Account/AccountTypes'
-import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from '~components/Account/Layout'
 import LogoutBtn from '~components/Account/LogoutBtn'
 import { useAccountCreate } from '~components/Account/useAccountCreate'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
+import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from './Form'
 
 type FormData = PrivateOrgFormData & CreateOrgParams
 
@@ -25,7 +25,7 @@ type FormData = PrivateOrgFormData & CreateOrgParams
 // and the error is not thrown as an exception.
 const IgnoreAccountError = 'this user has not been assigned to any organization'
 
-const useSaasAccountCreate = (options?: Omit<UseMutationOptions<void, Error, CreateOrgParams>, 'mutationFn'>) => {
+const useOrganizationCreate = (options?: Omit<UseMutationOptions<void, Error, CreateOrgParams>, 'mutationFn'>) => {
   const { bearedFetch } = useAuth()
   return useMutation<void, Error, CreateOrgParams>({
     mutationFn: (params: CreateOrgParams) => bearedFetch(ApiEndpoints.Organizations, { body: params, method: 'POST' }),
@@ -33,7 +33,7 @@ const useSaasAccountCreate = (options?: Omit<UseMutationOptions<void, Error, Cre
   })
 }
 
-export const AccountCreate = ({ children, ...props }: FlexProps) => {
+export const OrganizationCreate = ({ children, ...props }: FlexProps) => {
   const { t } = useTranslation()
 
   const [isPending, setIsPending] = useState(false)
@@ -44,7 +44,7 @@ export const AccountCreate = ({ children, ...props }: FlexProps) => {
   const { signer } = useClient()
 
   const { create: createAccount, error: accountError } = useAccountCreate()
-  const { mutateAsync: createSaasAccount, isError: isSaasError, error: saasError } = useSaasAccountCreate()
+  const { mutateAsync: createSaasAccount, isError: isSaasError, error: saasError } = useOrganizationCreate()
 
   const error = saasError || accountError
 

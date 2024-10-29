@@ -9,7 +9,6 @@ import { BiTrash } from 'react-icons/bi'
 import { BsFillTrashFill } from 'react-icons/bs'
 import { MdBrowserUpdated } from 'react-icons/md'
 import { CreateOrgParams } from '~components/Account/AccountTypes'
-import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from '~components/Account/Layout'
 import { useSaasAccount } from '~components/Account/useSaasAccount'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
@@ -19,12 +18,13 @@ import {
   CustomizationTimeZoneSelector,
   SelectOptionType,
 } from '~components/Layout/SaasSelector'
-import { REGEX_AVATAR } from '~constants'
+import { InnerContentsMaxWidth, REGEX_AVATAR } from '~constants'
+import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from './Form'
 import fallback from '/assets/default-avatar.png'
 
 type FormData = CustomOrgFormData & PrivateOrgFormData & CreateOrgParams
 
-const useEditSaasOrganization = (options?: Omit<UseMutationOptions<void, Error, CreateOrgParams>, 'mutationFn'>) => {
+const useOrganizationEdit = (options?: Omit<UseMutationOptions<void, Error, CreateOrgParams>, 'mutationFn'>) => {
   const { bearedFetch, signerAddress } = useAuth()
   return useMutation<void, Error, CreateOrgParams>({
     mutationFn: (params: CreateOrgParams) =>
@@ -51,7 +51,7 @@ const EditOrganization = () => {
     isError: isSaasError,
     error: saasError,
     isSuccess,
-  } = useEditSaasOrganization()
+  } = useOrganizationEdit()
 
   const methods = useForm<FormData>({
     defaultValues: {

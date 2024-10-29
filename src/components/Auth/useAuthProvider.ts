@@ -6,7 +6,7 @@ import { api, ApiEndpoints, ApiParams, UnauthorizedApiError } from '~components/
 import { LoginResponse, useLogin, useRegister, useVerifyMail } from '~components/Auth/authQueries'
 
 enum LocalStorageKeys {
-  AUTH_TOKEN = 'authToken',
+  Token = 'authToken',
 }
 
 /**
@@ -41,7 +41,7 @@ const useSigner = () => {
 
 export const useAuthProvider = () => {
   const { signer: clientSigner, clear } = useClient()
-  const [bearer, setBearer] = useState<string | null>(localStorage.getItem(LocalStorageKeys.AUTH_TOKEN))
+  const [bearer, setBearer] = useState<string | null>(localStorage.getItem(LocalStorageKeys.Token))
 
   const login = useLogin({
     onSuccess: (data, variables) => {
@@ -83,13 +83,13 @@ export const useAuthProvider = () => {
   )
 
   const storeLogin = useCallback(({ token }: LoginResponse) => {
-    localStorage.setItem(LocalStorageKeys.AUTH_TOKEN, token)
+    localStorage.setItem(LocalStorageKeys.Token, token)
     setBearer(token)
     updateSigner(token)
   }, [])
 
   const logout = useCallback(() => {
-    localStorage.removeItem(LocalStorageKeys.AUTH_TOKEN)
+    localStorage.removeItem(LocalStorageKeys.Token)
     setBearer(null)
     clear()
   }, [])
