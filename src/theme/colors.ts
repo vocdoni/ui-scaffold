@@ -5,6 +5,7 @@ export const colorsBase = {
     grayish: '#2B2A33',
     dark: '#1A202C',
   },
+  gradient: 'linear-gradient(to right, #546E39, #2E441A)',
   gray: {
     light: '#E2E8F0',
     normal: '#718096',
@@ -153,6 +154,43 @@ export const colors = {
     },
   },
   org_text_secondary: colorsBase.gray.normal,
+
+  process: {
+    aside: {
+      bg: colorsBase.gradient,
+      color: colorsBase.white.pure,
+      vote_btn_color: colorsBase.black,
+      vote_btn_bg: colorsBase.primary,
+      aside_footer_mbl_border: colorsBase.white.dark,
+      verify_link: colorsBase.white.pure,
+    },
+    questions: {
+      alert: {
+        bg: colorsBase.primary,
+        color: colorsBase.white.pure,
+        link_color: colorsBase.black,
+        link_bg: colorsBase.white.pure,
+      },
+      question_selected: {
+        bg: colorsBase.primary,
+        color: colorsBase.white.pure,
+      },
+      hover: {
+        light: colorsBase.white.pure,
+        dark: colorsBase.blue.grayish,
+      },
+      description: colorsBase.gray.normal,
+      title: {
+        ligth: colorsBase.primary,
+        dark: colorsBase.white.pure,
+      },
+    },
+    tabs: {
+      active_bg: colorsBase.gray.light,
+      hover_bg: colorsBase.gray.light,
+      border_bottom_list: colorsBase.gray.light,
+    },
+  },
   process_create: {
     bg: {
       dark: colorsBase.blue.dark,
@@ -173,6 +211,10 @@ export const colors = {
     text_brand: colorsBase.primary,
     text_secondary: colorsBase.gray.normal,
     question_index: colorsBase.primary,
+  },
+  process_view: {
+    bg_light: colorsBase.white.dark,
+    bg_dark: colorsBase.blue.dark,
   },
 
   tab: {

@@ -7,7 +7,16 @@ const Layout = () => {
   const location = useLocation()
 
   return (
-    <Flex position='relative' flexDirection='column' minH='100vh' mx='auto' bgColor='bg'>
+    <Flex
+      position='relative'
+      flexDirection='column'
+      minH='100vh'
+      mx='auto'
+      bgColor={'process_view.bg_light'}
+      _dark={{
+        bgColor: 'process_view.bg_dark',
+      }}
+    >
       <HStack as='header' position='sticky' top={0} w='full' backdropFilter='blur(40px)' zIndex={30}>
         <Navbar />
       </HStack>

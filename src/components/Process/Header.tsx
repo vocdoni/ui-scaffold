@@ -1,20 +1,14 @@
 import { InfoIcon, WarningIcon } from '@chakra-ui/icons'
-import { Box, Button, Flex, Icon, Image, Text, Tooltip } from '@chakra-ui/react'
-import {
-  ElectionDescription,
-  ElectionSchedule,
-  ElectionStatusBadge,
-  ElectionTitle,
-  OrganizationName,
-} from '@vocdoni/chakra-components'
+import { Box, Flex, Icon, IconButton, Image, Text, Tooltip } from '@chakra-ui/react'
+import { ElectionDescription, ElectionSchedule, ElectionStatusBadge, ElectionTitle } from '@vocdoni/chakra-components'
 import { useClient, useElection, useOrganization } from '@vocdoni/react-providers'
 import { CensusType, ElectionStatus, InvalidElection, PublishedElection, Strategy } from '@vocdoni/sdk'
 import { ReactNode, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { MdKeyboardArrowLeft } from 'react-icons/md'
+import { Link as ReactRouterLink } from 'react-router-dom'
 import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
 import { ShareModalButton } from '~components/Share'
-import { GoBack } from '~theme/icons'
 import { ActionsMenu } from './ActionsMenu'
 import { StampIcon } from './Census/StampIcon'
 import { CreatedBy } from './CreatedBy'
@@ -58,10 +52,12 @@ const ProcessHeader = () => {
   return (
     <Box mb={10}>
       {showOrgInformation && (
-        <Button as={Link} to={`/organization/0x${election?.organizationId}`} variant='go-back' mt={5}>
-          <GoBack />
-          <OrganizationName as='span' />
-        </Button>
+        <IconButton
+          as={ReactRouterLink}
+          to={`/organization/0x${election?.organizationId}`}
+          aria-label='Back'
+          icon={<MdKeyboardArrowLeft />}
+        />
       )}
       {election?.header && (
         <Box w='100%' mx='auto' maxH='300px' my='30px' overflow='hidden'>

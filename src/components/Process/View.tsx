@@ -106,8 +106,19 @@ export const ProcessView = () => {
   }, [formErrors])
 
   return (
-    <Box>
-      <Box className='site-wrapper' mb={44}>
+    <Box
+      position='relative'
+      width='full'
+      m='0 auto'
+      maxW='1920px'
+      px={{
+        base: '10px',
+        sm: '20px',
+        md: '80px',
+      }}
+      py={{ base: '0px', sm: '15px', md: '30px', md2: '30px', lg: '30px' }}
+    >
+      <Box>
         <Header />
 
         {election instanceof PublishedElection && election?.streamUri && (
@@ -143,7 +154,7 @@ export const ProcessView = () => {
             </TabList>
             <TabPanels>
               <TabPanel>
-                <Box ref={electionRef} className='md-sizes' mb='100px' pt='25px'>
+                <Box ref={electionRef} mb='100px' pt='25px'>
                   <ElectionQuestions
                     onInvalid={(args) => {
                       setFormErrors(args)

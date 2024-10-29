@@ -485,5 +485,27 @@ export const Card = defineMultiStyleConfig({
         },
       },
     },
+    aside: {
+      container: {
+        direction: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        px: { base: 6, lg2: 10 },
+        py: { base: 6, lg2: 10 },
+        w: 'full',
+        gap: 4,
+        mt: { md: 7 },
+        mb: { base: 7, md: 0 },
+        color: 'process.aside.color',
+        background: 'process.aside.bg',
+        boxShadow: 'var(--box-shadow-banner)',
+        borderRadius: 'lg',
+        fontSize: 'text',
+
+        '& a': {
+          color: 'process.aside.color',
+        },
+      },
+    },
   },
 })
