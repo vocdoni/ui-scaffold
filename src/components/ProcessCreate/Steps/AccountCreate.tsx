@@ -1,8 +1,8 @@
 import { Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
-import { AccountCreate as AccountCreationForm } from '~components/Account/Create'
 import { useFaucet } from '~components/Faucet/use-faucet'
+import { OrganizationCreate as AccountCreationForm } from '~components/Organization/Create'
 
 const AccountCreate = () => {
   const [faucetAmount, setFaucetAmount] = useState<number>(0)

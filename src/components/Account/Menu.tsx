@@ -5,7 +5,7 @@ import { useAuth } from '~components/Auth/useAuth'
 import { useProfile } from '~src/queries/account'
 import { Routes } from '~src/router/routes'
 
-const AccountMenu: React.FC = (props: BoxProps) => {
+const AccountMenu: React.FC<BoxProps> = (props) => {
   const { logout } = useAuth()
   const { data: profile, isLoading } = useProfile()
 
@@ -32,7 +32,6 @@ const AccountMenu: React.FC = (props: BoxProps) => {
           size='sm'
           variant='outline'
           aria-label='User menu'
-          {...props}
         />
         <MenuList>
           <MenuItem as={RouterLink} to={Routes.dashboard.profile}>
