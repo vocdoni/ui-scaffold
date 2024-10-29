@@ -31,7 +31,7 @@ export const AccountEdit = () => {
             <PasswordForm />
           </TabPanel>
           <TabPanel>
-            <Teams roles={profile.organizations} />
+            <Teams roles={profile?.organizations} />
           </TabPanel>
         </TabPanels>
       </Tabs>
