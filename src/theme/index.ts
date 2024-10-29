@@ -24,6 +24,10 @@ import { spacing } from './space'
 import { ElectionQuestions } from './components/Questions'
 
 export const theme = extendTheme(vtheme, {
+  config: {
+    initialColorMode: 'system',
+    useSystemColorMode: true,
+  },
   styles: {
     global: {
       ...editor,

@@ -4,7 +4,7 @@ import { Controller, FormProvider, useForm, useFormContext } from 'react-hook-fo
 import { Trans, useTranslation } from 'react-i18next'
 import { IoCloseSharp } from 'react-icons/io5'
 import { HSeparator } from '~components/Auth/SignIn'
-import InputCustom from '~components/Layout/InputCustom'
+import InputBasic from '~components/Layout/InputBasic'
 
 const Invite = ({ setInviteView }: { setInviteView: Dispatch<SetStateAction<boolean>> }) => {
   const { t } = useTranslation()
@@ -38,7 +38,7 @@ const Invite = ({ setInviteView }: { setInviteView: Dispatch<SetStateAction<bool
       <HSeparator />
       <FormProvider {...methods}>
         <Flex as='form' onSubmit={methods.handleSubmit(onSubmit)} flexDirection='column' gap={6}>
-          <InputCustom
+          <InputBasic
             formValue='email'
             label={t('email')}
             placeholder={t('email_placeholder', { defaultValue: 'your@email.com' })}

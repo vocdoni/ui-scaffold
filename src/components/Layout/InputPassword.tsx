@@ -1,4 +1,11 @@
-export interface InputCustomProps {
+import { FormControl, FormErrorMessage, FormLabel, Icon, Input, InputGroup, InputRightElement } from '@chakra-ui/react'
+import { useState } from 'react'
+import { useFormContext } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
+import { MdOutlineRemoveRedEye } from 'react-icons/md'
+import { RiEyeCloseLine } from 'react-icons/ri'
+
+export interface InputPasswordProps {
   formValue: string
   label: string
   placeholder?: string
@@ -7,37 +14,14 @@ export interface InputCustomProps {
   validation?: any
   messageError?: string
 }
-import {
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Icon,
-  Input,
-  InputGroup,
-  InputProps,
-  InputRightElement,
-} from '@chakra-ui/react'
-import { useState } from 'react'
-import { useFormContext } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
-import { MdOutlineRemoveRedEye } from 'react-icons/md'
-import { RiEyeCloseLine } from 'react-icons/ri'
-
-export interface InputCustomProps extends InputProps {
-  formValue: string
-  label: string
-  validation?: any
-  messageError?: string
-}
-
-const InputCustom = ({
+const InputPassword = ({
   formValue,
   label,
   placeholder,
-  type = 'text',
+  type = 'password',
   required = false,
   validation = {},
-}: InputCustomProps) => {
+}: InputPasswordProps) => {
   const { t } = useTranslation()
   const [show, setShow] = useState(false)
   const handleClick = () => setShow(!show)
@@ -65,19 +49,17 @@ const InputCustom = ({
       {label && <FormLabel variant='process-create-title-sm'>{label}</FormLabel>}
       <InputGroup>
         <Input {...register(formValue, validationRules)} type={inputType} placeholder={placeholder} />
-        {type === 'password' && (
-          <InputRightElement display='flex' alignItems='center' minH='100%'>
-            <Icon
-              _hover={{ cursor: 'pointer' }}
-              as={show ? RiEyeCloseLine : MdOutlineRemoveRedEye}
-              onClick={handleClick}
-            />
-          </InputRightElement>
-        )}
+        <InputRightElement display='flex' alignItems='center' minH='100%'>
+          <Icon
+            _hover={{ cursor: 'pointer' }}
+            as={show ? RiEyeCloseLine : MdOutlineRemoveRedEye}
+            onClick={handleClick}
+          />
+        </InputRightElement>
       </InputGroup>
       <FormErrorMessage mt={2}>{errorMessage || 'Error performing the operation'}</FormErrorMessage>
     </FormControl>
   )
 }
 
-export default InputCustom
+export default InputPassword
