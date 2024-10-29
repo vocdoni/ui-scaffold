@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react'
 import { RoutedPagination } from '@vocdoni/chakra-components'
 import { RoutedPaginationProvider, useOrganization, useRoutedPagination } from '@vocdoni/react-providers'
-import { usePaginatedElections } from '~src/queries/account'
+import { usePaginatedElections } from '~src/queries/organization'
 import { Routes } from '~src/router/routes'
 import ProcessesList from './ProcessesList'
 

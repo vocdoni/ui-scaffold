@@ -1,25 +1,22 @@
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useOutletContext } from 'react-router-dom'
+import { AccountEdit } from '~components/Account/Edit'
 import { DashboardContents } from '~components/Layout/Dashboard'
-import Votings from '~components/Organization/Dashboard/Votings'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 
-const OrganizationVotings = () => {
+export const Profile = () => {
   const { t } = useTranslation()
-  const { setBack, setTitle } = useOutletContext<DashboardLayoutContext>()
+  const { setTitle } = useOutletContext<DashboardLayoutContext>()
 
-  // Set page title
+  // Set layout variables
   useEffect(() => {
-    setTitle(t('organization.votings_list', { defaultValue: 'Voting processes list' }))
-    setBack(null)
-  }, [setTitle, setBack])
+    setTitle(t('profile'))
+  }, [setTitle])
 
   return (
     <DashboardContents>
-      <Votings />
+      <AccountEdit />
     </DashboardContents>
   )
 }
-
-export default OrganizationVotings

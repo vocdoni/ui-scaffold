@@ -2,6 +2,8 @@ type MethodTypes = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
 export enum ApiEndpoints {
   Login = 'auth/login',
+  Me = 'users/me',
+  Password = 'users/password',
   Refresh = 'auth/refresh',
   Register = 'users',
   Organizations = 'organizations',

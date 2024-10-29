@@ -9,7 +9,6 @@ import { BiTrash } from 'react-icons/bi'
 import { BsFillTrashFill } from 'react-icons/bs'
 import { MdBrowserUpdated } from 'react-icons/md'
 import { CreateOrgParams } from '~components/Account/AccountTypes'
-import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from '~components/Account/Layout'
 import { useSaasAccount } from '~components/Account/useSaasAccount'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
@@ -19,12 +18,13 @@ import {
   CustomizationTimeZoneSelector,
   SelectOptionType,
 } from '~components/Layout/SaasSelector'
-import { REGEX_AVATAR } from '~constants'
+import { InnerContentsMaxWidth, REGEX_AVATAR } from '~constants'
+import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from './Form'
 import fallback from '/assets/default-avatar.png'
 
 type FormData = CustomOrgFormData & PrivateOrgFormData & CreateOrgParams
 
-const useEditSaasOrganization = (options?: Omit<UseMutationOptions<void, Error, CreateOrgParams>, 'mutationFn'>) => {
+const useOrganizationEdit = (options?: Omit<UseMutationOptions<void, Error, CreateOrgParams>, 'mutationFn'>) => {
   const { bearedFetch, signerAddress } = useAuth()
   return useMutation<void, Error, CreateOrgParams>({
     mutationFn: (params: CreateOrgParams) =>
@@ -36,7 +36,7 @@ const useEditSaasOrganization = (options?: Omit<UseMutationOptions<void, Error, 
   })
 }
 
-const EditProfile = () => {
+const EditOrganization = () => {
   const { t } = useTranslation()
   const {
     updateAccount,
@@ -51,7 +51,7 @@ const EditProfile = () => {
     isError: isSaasError,
     error: saasError,
     isSuccess,
-  } = useEditSaasOrganization()
+  } = useOrganizationEdit()
 
   const methods = useForm<FormData>({
     defaultValues: {
@@ -105,13 +105,13 @@ const EditProfile = () => {
 
   return (
     <FormProvider {...methods}>
-      <Box height='100%' maxH='100%' overflowY='auto'>
+      <Box height='100%' overflowY='auto'>
         <Flex
           as='form'
           id='process-create-form'
           direction='column'
           gap={6}
-          maxW='600px'
+          maxW={InnerContentsMaxWidth}
           mx='auto'
           onSubmit={(e) => {
             e.stopPropagation()
@@ -234,4 +234,4 @@ const CustomizeOrgForm = () => {
   )
 }
 
-export default EditProfile
+export default EditOrganization
