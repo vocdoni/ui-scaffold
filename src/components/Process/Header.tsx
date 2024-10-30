@@ -2,13 +2,14 @@ import { InfoIcon, WarningIcon } from '@chakra-ui/icons'
 import { Box, Flex, Icon, IconButton, Image, Text, Tooltip } from '@chakra-ui/react'
 import { ElectionDescription, ElectionSchedule, ElectionStatusBadge, ElectionTitle } from '@vocdoni/chakra-components'
 import { useClient, useElection, useOrganization } from '@vocdoni/react-providers'
-import { CensusType, ElectionStatus, InvalidElection, PublishedElection, Strategy } from '@vocdoni/sdk'
+import { CensusType, ElectionStatus, ensure0x, InvalidElection, PublishedElection, Strategy } from '@vocdoni/sdk'
 import { ReactNode, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { MdKeyboardArrowLeft } from 'react-icons/md'
-import { Link as ReactRouterLink } from 'react-router-dom'
+import { generatePath, Link as ReactRouterLink } from 'react-router-dom'
 import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
 import { ShareModalButton } from '~components/Share'
+import { Routes } from '~src/router/routes'
 import { ActionsMenu } from './ActionsMenu'
 import { StampIcon } from './Census/StampIcon'
 import { CreatedBy } from './CreatedBy'
@@ -49,7 +50,7 @@ const ProcessHeader = () => {
       {showOrgInformation && (
         <IconButton
           as={ReactRouterLink}
-          to={`/organization/0x${election?.organizationId}`}
+          to={generatePath(Routes.organization, { address: ensure0x(election?.organizationId) })}
           aria-label='Back'
           icon={<MdKeyboardArrowLeft />}
         />

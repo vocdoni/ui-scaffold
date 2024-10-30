@@ -116,7 +116,7 @@ export const ProcessView = () => {
         sm: '20px',
         md: '80px',
       }}
-      py={{ base: '0px', sm: '15px', md: '30px', md2: '30px', lg: '30px' }}
+      py={{ base: '0px', sm: '15px', md: '30px' }}
     >
       <Box>
         <Header />
