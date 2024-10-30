@@ -113,6 +113,7 @@ const process = definePartsStyle({
   root: {},
   tabpanel: {
     px: { base: 0, sm: 4 },
+    mb: 0,
   },
   tab: {
     position: 'relative',

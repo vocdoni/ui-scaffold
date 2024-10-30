@@ -163,9 +163,11 @@ export const colors = {
       color: colorsBase.white.pure,
       vote_btn_color: colorsBase.black,
       vote_btn_bg: colorsBase.primary,
-      aside_footer_mbl_border: colorsBase.white.dark,
       verify_link: colorsBase.white.pure,
     },
+    canceled: colorsBase.primary,
+    info_title: colorsBase.primary,
+    label: colorsBase.gray.normal,
     questions: {
       alert: {
         bg: colorsBase.primary,
@@ -185,12 +187,12 @@ export const colors = {
         light: colorsBase.white.pure,
         dark: colorsBase.blue.grayish,
       },
-      description: colorsBase.gray.normal,
       title: {
         ligth: colorsBase.primary,
         dark: colorsBase.white.pure,
       },
     },
+    paused: colorsBase.primary,
     results: {
       alert_bg: colorsBase.primary,
       alert_color: colorsBase.white.pure,
@@ -205,6 +207,7 @@ export const colors = {
       border_bottom_list: colorsBase.gray.light,
     },
   },
+
   process_create: {
     bg: {
       dark: colorsBase.blue.dark,

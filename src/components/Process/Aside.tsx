@@ -152,30 +152,10 @@ const ProcessAside = () => {
         )}
       </Card>
       {(connected || isConnected) && (
-        <Box
-          alignSelf='center'
-          sx={{
-            '& button': {
-              color: 'process.spreadsheet.disconnect_color_desktop',
-              bgColor: 'transparent',
-              borderColor: 'transparent',
-
-              _before: {
-                bgColor: 'transparent',
-              },
-              _after: {
-                bgColor: 'transparent',
-              },
-            },
-          }}
-          mb={{ base: 10, md: 0 }}
-        >
+        <Box alignSelf='center' mb={{ base: 10, md: 0 }}>
           {connected && <SpreadsheetAccess />}
           {isConnected && election?.get('census.type') !== 'spreadsheet' && (
             <Button
-              variant='text'
-              textDecor='underline'
-              _hover={{ textDecor: 'none' }}
               onClick={() => {
                 disconnect()
                 clear()

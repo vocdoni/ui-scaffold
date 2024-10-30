@@ -46,7 +46,7 @@ const ProcessHeader = () => {
   const showTotalCensusSize = censusInfo?.size && election?.maxCensusSize && election.maxCensusSize < censusInfo.size
 
   return (
-    <Box mb={10}>
+    <Box>
       {showOrgInformation && (
         <IconButton
           as={ReactRouterLink}
@@ -60,34 +60,30 @@ const ProcessHeader = () => {
           <Image src={election?.header} w='100%' h='auto' objectFit='cover' />
         </Box>
       )}
-      <Flex direction={{ base: 'column', lg2: 'row' }} mb={7} gap={10}>
-        <Box flex={{ lg2: '1 1 80%' }}>
-          <ElectionTitle fontSize='heading' textAlign='left' my={5} />
+      <Flex direction={{ base: 'column', xl2: 'row' }} mb={7} gap={10}>
+        <Box flex={{ xl2: '1 1 80%' }}>
+          <ElectionTitle fontSize='4xl' textAlign='left' my={5} />
           <Flex flexDirection={{ base: 'column', xl: 'row' }} mb={4} justifyContent='space-between'>
-            <Flex gap={4} flexDirection={{ base: 'column', xl: 'row' }} alignItems={{ base: 'start', xl: 'center' }}>
+            <Flex gap={2} flexDirection={{ base: 'column', xl: 'row' }} alignItems={{ base: 'start', xl: 'center' }}>
               <Flex gap={3} justifyContent={'space-between'} w={{ base: '100%', xl: 'fit-content' }}>
-                <Flex gap={3} alignItems='center'>
-                  <Text as='span' color='process.label' fontSize='text-sm'>
+                <Flex gap={2} alignItems='center'>
+                  <Text as='span' color='process.label'>
                     {t('process.state')}
                   </Text>
-                  <ElectionStatusBadge fontSize='text-sm' />
+                  <ElectionStatusBadge />
                 </Flex>
-                <Box display={{ base: 'flex', xl: 'none' }} fontSize='text-sm'>
+                <Box display={{ base: 'flex', xl: 'none' }}>
                   <ShareModalButton
                     caption={t('share.election_share_text')}
                     text={t('share.election_share_btn_text')}
                   />
                 </Box>
               </Flex>
-              <Flex
-                flexDirection={{ base: 'column', xl: 'row' }}
-                alignItems={{ base: 'start', xl: 'center' }}
-                gap={{ xl: 3 }}
-              >
-                <Text as='span' color='process.label' fontSize='text-sm'>
+              <Flex flexDirection='row' alignItems='center' gap={1} flexWrap='wrap'>
+                <Text as='span' color='process.label'>
                   {t('process.schedule')}
                 </Text>
-                <ElectionSchedule textAlign='left' color='process.info_title' fontSize='text-sm' />
+                <ElectionSchedule textAlign='left' color='process.info_title' />
               </Flex>
             </Flex>
             <Box display={{ base: 'none', xl: 'flex' }}>
@@ -96,7 +92,7 @@ const ProcessHeader = () => {
           </Flex>
           <Flex flexDirection='column'>
             {!election?.description?.default.length && (
-              <Text textAlign='center' mt={5} color='process.no_description'>
+              <Text textAlign='center' mt={5} color='process.description'>
                 {t('process.no_description')}
               </Text>
             )}
@@ -105,25 +101,24 @@ const ProcessHeader = () => {
                 <ElectionDescription mb={0} fontSize='lg' lineHeight={1.5} color='process.description' />
               </ReadMoreMarkdownWrapper>
             </Box>
-            <ReadMoreMarkdownButton colorScheme='primary' alignSelf='center' fontSize='text' />
+            <ReadMoreMarkdownButton colorScheme='primary' alignSelf='center' />
           </Flex>
         </Box>
 
         <Flex
-          flex={{ lg2: '1 1 20%' }}
+          flex={{ xl2: '1 1 20%' }}
           position='relative'
-          flexDirection={{ base: 'row', lg2: 'column' }}
+          flexDirection={{ base: 'row', xl2: 'column' }}
           alignItems='start'
           flexWrap='wrap'
-          justifyContent='start'
-          gap={{ base: 4, sm: 6, md: 8, lg: 4 }}
+          justifyContent={{ base: 'center', xl2: 'start' }}
+          gap={{ base: 4, sm: 10, xl2: 4 }}
           opacity={0.85}
           _hover={{
             opacity: 1,
           }}
-          fontSize='text-sm'
         >
-          <Box flexDir='row' display='flex' justifyContent='space-between' w={{ lg2: 'full' }}>
+          <Box flexDir='row' display='flex' justifyContent='space-between' w={{ xl2: 'full' }}>
             {election?.status !== ElectionStatus.CANCELED ? (
               <ProcessDate />
             ) : (
@@ -141,7 +136,7 @@ const ProcessHeader = () => {
           )}
           <Box cursor='help'>
             <Text fontWeight='bold'>
-              {t('process.census')} {showTotalCensusSize && <InfoIcon color='process_create.alert_info.color' ml={1} />}
+              {t('process.census')} {showTotalCensusSize && <InfoIcon ml={1} />}
             </Text>
             {showTotalCensusSize ? (
               <Tooltip
@@ -178,7 +173,7 @@ const ProcessHeader = () => {
             </>
           )}
           {showOrgInformation && (
-            <Box w={{ lg2: 'full' }}>
+            <Box w={{ xl2: 'full' }}>
               <Text fontWeight='bold' mb={1}>
                 {t('process.created_by')}
               </Text>
@@ -192,10 +187,9 @@ const ProcessHeader = () => {
                     flexWrap: 'wrap',
                   },
                   '& p strong': {
-                    maxW: { base: '100%', md: '220px', md2: '250px' },
+                    maxW: { base: '100%', md: '220px', xl2: '120px' },
                     isTruncated: true,
                     mr: 1,
-                    color: 'process.created_by',
                   },
                 }}
               />
