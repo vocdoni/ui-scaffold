@@ -79,37 +79,3 @@ export const useReadMoreMarkdown = (containerMaxHeightPx: number, tantPerCentGra
     ReadMoreMarkdownButton,
   }
 }
-
-{
-  /* <Box
-{...props}
-ref={containerRef}
-position='relative'
-height={readMore ? `${containerMaxHeightPx}px` : 'auto'}
-overflow='hidden'
-_before={{
-  content: '""',
-  position: 'absolute',
-  height: isTruncated
-    ? `${(containerMaxHeightPx * (tantPerCentGradient ? tantPerCentGradient : containerMaxHeightPx)) / 100}px`
-    : '0',
-  width: '100%',
-  bottom: 0,
-  background: isTruncated && readMore ? `linear-gradient(to bottom, ${fromLight} 0%, ${toLight} 100%)` : '',
-}}
-_dark={{
-  _before: {
-    content: '""',
-    position: 'absolute',
-    height: isTruncated
-      ? `${(containerMaxHeightPx * (tantPerCentGradient ? tantPerCentGradient : containerMaxHeightPx)) / 100}px`
-      : '0',
-    width: '100%',
-    bottom: 0,
-    background: isTruncated && readMore ? `linear-gradient(to bottom, ${fromDark} 0%, ${toDark} 100%)` : '',
-  },
-}}
->
-{children}
-</Box> */
-}
