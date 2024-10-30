@@ -101,12 +101,7 @@ const ProcessHeader = () => {
               </Text>
             )}
             <Box className='md-sizes'>
-              <ReadMoreMarkdownWrapper
-                fromLight={'var(--process-read-more-from-light)'}
-                fromDark={'var(--process-read-more-from-dark)'}
-                toLight={'var(--process-read-more-to-light)'}
-                toDark={'var(--process-read-more-to-dark)'}
-              >
+              <ReadMoreMarkdownWrapper>
                 <ElectionDescription mb={0} fontSize='lg' lineHeight={1.5} color='process.description' />
               </ReadMoreMarkdownWrapper>
             </Box>

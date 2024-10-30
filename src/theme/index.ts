@@ -35,10 +35,10 @@ export const theme = extendTheme(vtheme, {
       ':root': {
         '--box-shadow': '0px 2px 4px lightgray',
         '--box-shadow-darker': '0px 2px 4px #808080b5',
-        '--process-read-more-from-light': 'rgba(245, 245, 247, 0)',
-        '--process-read-more-to-light': '#F5F5F7',
-        '--process-read-more-from-dark': 'rgba(26, 32, 44, 0)',
-        '--process-read-more-to-dark': '#1A202C',
+        '--read-more-from-light': 'rgba(245, 245, 247, 0)',
+        '--read-more-to-light': '#F5F5F7',
+        '--read-more-from-dark': 'rgba(26, 32, 44, 0)',
+        '--read-more-to-dark': '#1A202C',
       },
       '.brand-gradient': {
         bgGradient: 'linear-gradient(to bottom, #B5F492, #338B93)',

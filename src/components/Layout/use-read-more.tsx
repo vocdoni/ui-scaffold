@@ -4,10 +4,10 @@ import { useTranslation } from 'react-i18next'
 
 interface ReadMoreMarkdownWrapperProps {
   children: ReactNode
-  fromLight: string
-  toLight: string
-  fromDark: string
-  toDark: string
+  fromLight?: string
+  toLight?: string
+  fromDark?: string
+  toDark?: string
 }
 
 export const useReadMoreMarkdown = (containerMaxHeightPx: number, tantPerCentGradient?: number) => {
@@ -30,10 +30,10 @@ export const useReadMoreMarkdown = (containerMaxHeightPx: number, tantPerCentGra
 
   const ReadMoreMarkdownWrapper = ({
     children,
-    fromLight,
-    fromDark,
-    toLight,
-    toDark,
+    fromLight = 'var(--read-more-from-light)',
+    fromDark = 'var(--read-more-from-dark)',
+    toLight = 'var(--read-more-to-light)',
+    toDark = 'var(--read-more-to-dark)',
     ...props
   }: ReadMoreMarkdownWrapperProps) => {
     return (
@@ -54,7 +54,6 @@ export const useReadMoreMarkdown = (containerMaxHeightPx: number, tantPerCentGra
           w='full'
           bottom={0}
           pointerEvents='none'
-          bg='red'
           background={isTruncated && readMore ? `linear-gradient(to bottom, ${fromLight} 0%, ${toLight} 100%)` : 'none'}
           _dark={{
             background: isTruncated && readMore ? `linear-gradient(to bottom, ${fromDark} 0%, ${toDark} 100%)` : 'none',
