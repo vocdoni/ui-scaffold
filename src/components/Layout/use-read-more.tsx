@@ -30,10 +30,10 @@ export const useReadMoreMarkdown = (containerMaxHeightPx: number, tantPerCentGra
 
   const ReadMoreMarkdownWrapper = ({
     children,
-    fromLight = 'var(--read-more-from-light)',
-    fromDark = 'var(--read-more-from-dark)',
-    toLight = 'var(--read-more-to-light)',
-    toDark = 'var(--read-more-to-dark)',
+    fromLight = 'var(--chakra-colors-read_more-from-light)',
+    fromDark = 'var(--chakra-colors-read_more-from-dark)',
+    toLight = 'var(--chakra-colors-read_more-to-light)',
+    toDark = 'var(--chakra-colors-read_more-to-dark)',
     ...props
   }: ReadMoreMarkdownWrapperProps) => {
     return (
