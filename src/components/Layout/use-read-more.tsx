@@ -1,6 +1,14 @@
 import { Box, Button } from '@chakra-ui/react'
-import { useEffect, useRef, useState } from 'react'
+import { ReactNode, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+interface ReadMoreMarkdownWrapperProps {
+  children: ReactNode
+  fromLight: string
+  toLight: string
+  fromDark: string
+  toDark: string
+}
 
 export const useReadMoreMarkdown = (containerMaxHeightPx: number, tantPerCentGradient?: number) => {
   const { t } = useTranslation()
@@ -22,12 +30,12 @@ export const useReadMoreMarkdown = (containerMaxHeightPx: number, tantPerCentGra
 
   const ReadMoreMarkdownWrapper = ({
     children,
-    fromLight = 'read_more.from_light',
-    fromDark = 'read_more.from_dark',
-    toLight = 'read_more.to_light',
-    toDark = 'read_more.to_dark',
+    fromLight,
+    fromDark,
+    toLight,
+    toDark,
     ...props
-  }: any) => {
+  }: ReadMoreMarkdownWrapperProps) => {
     return (
       <Box
         {...props}
@@ -35,29 +43,23 @@ export const useReadMoreMarkdown = (containerMaxHeightPx: number, tantPerCentGra
         position='relative'
         height={readMore ? `${containerMaxHeightPx}px` : 'auto'}
         overflow='hidden'
-        _before={{
-          content: '""',
-          position: 'absolute',
-          height: isTruncated
-            ? `${(containerMaxHeightPx * (tantPerCentGradient ? tantPerCentGradient : containerMaxHeightPx)) / 100}px`
-            : '0',
-          width: '100%',
-          bottom: 0,
-          background: isTruncated && readMore ? `linear-gradient(to bottom, ${fromLight} 0%, ${toLight} 100%)` : '',
-        }}
-        _dark={{
-          _before: {
-            content: '""',
-            position: 'absolute',
-            height: isTruncated
-              ? `${(containerMaxHeightPx * (tantPerCentGradient ? tantPerCentGradient : containerMaxHeightPx)) / 100}px`
-              : '0',
-            width: '100%',
-            bottom: 0,
-            background: isTruncated && readMore ? `linear-gradient(to bottom, ${fromDark} 0%, ${toDark} 100%)` : '',
-          },
-        }}
       >
+        <Box
+          position='absolute'
+          height={
+            isTruncated
+              ? `${(containerMaxHeightPx * (tantPerCentGradient ? tantPerCentGradient : containerMaxHeightPx)) / 100}px`
+              : 0
+          }
+          w='full'
+          bottom={0}
+          pointerEvents='none'
+          bg='red'
+          background={isTruncated && readMore ? `linear-gradient(to bottom, ${fromLight} 0%, ${toLight} 100%)` : 'none'}
+          _dark={{
+            background: isTruncated && readMore ? `linear-gradient(to bottom, ${fromDark} 0%, ${toDark} 100%)` : 'none',
+          }}
+        ></Box>
         {children}
       </Box>
     )
@@ -77,4 +79,38 @@ export const useReadMoreMarkdown = (containerMaxHeightPx: number, tantPerCentGra
     ReadMoreMarkdownWrapper,
     ReadMoreMarkdownButton,
   }
+}
+
+{
+  /* <Box
+{...props}
+ref={containerRef}
+position='relative'
+height={readMore ? `${containerMaxHeightPx}px` : 'auto'}
+overflow='hidden'
+_before={{
+  content: '""',
+  position: 'absolute',
+  height: isTruncated
+    ? `${(containerMaxHeightPx * (tantPerCentGradient ? tantPerCentGradient : containerMaxHeightPx)) / 100}px`
+    : '0',
+  width: '100%',
+  bottom: 0,
+  background: isTruncated && readMore ? `linear-gradient(to bottom, ${fromLight} 0%, ${toLight} 100%)` : '',
+}}
+_dark={{
+  _before: {
+    content: '""',
+    position: 'absolute',
+    height: isTruncated
+      ? `${(containerMaxHeightPx * (tantPerCentGradient ? tantPerCentGradient : containerMaxHeightPx)) / 100}px`
+      : '0',
+    width: '100%',
+    bottom: 0,
+    background: isTruncated && readMore ? `linear-gradient(to bottom, ${fromDark} 0%, ${toDark} 100%)` : '',
+  },
+}}
+>
+{children}
+</Box> */
 }

@@ -75,7 +75,12 @@ const ProcessDetailedCardDescription = () => {
   return (
     <>
       {election?.status !== ElectionStatus.CANCELED ? (
-        <ReadMoreMarkdownWrapper>
+        <ReadMoreMarkdownWrapper
+          fromLight={'var(--process-read-more-from-light)'}
+          fromDark={'var(--process-read-more-from-dark)'}
+          toLight={'var(--process-read-more-to-light)'}
+          toDark={'var(--process-read-more-to-dark)'}
+        >
           <ElectionDescription />
         </ReadMoreMarkdownWrapper>
       ) : (

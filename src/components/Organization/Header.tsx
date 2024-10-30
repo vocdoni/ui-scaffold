@@ -92,10 +92,10 @@ const OrganizationHeader = () => {
             </Box>
           </Flex>
           <ReadMoreMarkdownWrapper
-            fromLight={'process.read_more.from.light'}
-            fromDark={'process.read_more.from.dark'}
-            toLight={'process.read_more.to.light'}
-            toDark={'process.read_more.to.dark'}
+            fromLight={'var(--process-read-more-from-light)'}
+            fromDark={'var(--process-read-more-from-dark)'}
+            toLight={'var(--process-read-more-to-light)'}
+            toDark={'var(--process-read-more-to-dark)'}
           >
             <OrganizationDescription fontSize='lg' lineHeight={1.7} />
           </ReadMoreMarkdownWrapper>

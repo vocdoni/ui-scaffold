@@ -67,10 +67,10 @@ export const ProcessView = () => {
         <ElectionTitle variant='contents-title' />
         {election instanceof PublishedElection && election.description && (
           <ReadMoreMarkdownWrapper
-            fromLight={'rgba(242, 242, 242, 0)'}
-            fromDark={'rgba(242, 242, 242, 0)'}
-            toLight={'rgba(242, 242, 242, 1)'}
-            toDark={'rgba(242, 242, 242, 1)'}
+            fromLight={'var(--process-read-more-from-light)'}
+            fromDark={'var(--process-read-more-from-dark)'}
+            toLight={'var(--process-read-more-to-light)'}
+            toDark={'var(--process-read-more-to-dark)'}
           >
             <ElectionDescription mb={0} fontSize='lg' lineHeight={1.5} color='process.description' />
           </ReadMoreMarkdownWrapper>

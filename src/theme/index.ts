@@ -1,4 +1,4 @@
-import { ColorMode, extendTheme } from '@chakra-ui/react'
+import { ColorMode, extendTheme, textDecoration } from '@chakra-ui/react'
 import { darkTheme, lightTheme } from '@rainbow-me/rainbowkit'
 import { theme as vtheme } from '@vocdoni/chakra-components'
 import { breakpoints } from './breakpoints'
@@ -35,9 +35,49 @@ export const theme = extendTheme(vtheme, {
       ':root': {
         '--box-shadow': '0px 2px 4px lightgray',
         '--box-shadow-darker': '0px 2px 4px #808080b5',
+        '--process-read-more-from-light': 'rgba(245, 245, 247, 0)',
+        '--process-read-more-to-light': '#F5F5F7',
+        '--process-read-more-from-dark': 'rgba(26, 32, 44, 0)',
+        '--process-read-more-to-dark': '#1A202C',
       },
       '.brand-gradient': {
         bgGradient: 'linear-gradient(to bottom, #B5F492, #338B93)',
+      },
+      '.md-sizes': {
+        '& :first-of-type': {
+          mt: 0,
+        },
+        'h2[level="1"]': {
+          fontSize: '26px',
+        },
+        'h2[level="2"]': {
+          fontSize: '23px',
+        },
+        'h3[level="3"]': {
+          fontSize: '20px',
+        },
+        p: {
+          fontSize: '18px',
+        },
+        li: {
+          fontSize: '18px',
+        },
+        'li:last-of-type': {
+          mb: '20px',
+        },
+        ul: {
+          fontSize: '18px',
+        },
+        ol: {
+          fontSize: '18px',
+        },
+        a: {
+          fontSize: '18px',
+          textDecoration: 'underline',
+        },
+        pre: {
+          'white-space': 'pre-wrap',
+        },
       },
     },
   },

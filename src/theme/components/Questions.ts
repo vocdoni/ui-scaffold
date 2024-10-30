@@ -99,6 +99,10 @@ const baseStyle = definePartsStyle({
     textAlign: 'start',
     fontSize: 'md !important',
 
+    '& a': {
+      textDecoration: 'underline',
+    },
+
     _dark: {
       color: 'process.questions.title.dark',
     },

@@ -64,14 +64,7 @@ const ProcessAside = () => {
           </Text>
 
           {showVoters && !showVotes && (
-            <Box
-              className='brand-theme'
-              display='flex'
-              flexDirection='row'
-              justifyContent='center'
-              alignItems='center'
-              gap={2}
-            >
+            <Box display='flex' flexDirection='row' justifyContent='center' alignItems='center' gap={2}>
               <Trans
                 i18nKey='aside.votes'
                 components={{
@@ -84,12 +77,12 @@ const ProcessAside = () => {
           )}
 
           {showVotes && (
-            <Flex className='brand-theme' direction='column' justifyContent='center' alignItems='center' gap={2}>
+            <Flex direction='column' justifyContent='center' alignItems='center' gap={2}>
               <Flex direction={'row'} justifyContent='center' alignItems='center' gap={2}>
                 <Trans
                   i18nKey='aside.votes_weight'
                   components={{
-                    span: <Text as='span' fontWeight='bold' fontSize='xl3' textAlign='center' lineHeight={1} />,
+                    span: <Text as='span' fontWeight='bold' fontSize='3xl' textAlign='center' lineHeight={1} />,
                     text: <Text fontSize='xl' textAlign='center' lineHeight={1.3} />,
                   }}
                   count={votes}
