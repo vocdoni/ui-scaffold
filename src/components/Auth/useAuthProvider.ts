@@ -26,6 +26,7 @@ const useSigner = () => {
     // Once the signer is set, try to get the signer address
     // This is an asynchronous call because the address are fetched from the server,
     // and we don't know if we need to create an organization until we try to retrieve the address
+
     try {
       return await signer.getAddress()
     } catch (e) {

@@ -18,15 +18,42 @@ import {
   Text,
   useDisclosure,
   useRadio,
+  useToast,
 } from '@chakra-ui/react'
+import { useMutation } from '@tanstack/react-query'
+import { useOrganization } from '@vocdoni/react-providers'
+import { ensure0x } from '@vocdoni/sdk'
 import { ReactElement } from 'react'
 import { FormProvider, useController, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { HSeparator } from '~components/Auth/SignIn'
+import { useAuth } from '~components/Auth/useAuth'
 import InputBasic from '~components/Layout/InputBasic'
+import { CallbackProvider, useCallbackContext } from '~utils/callback-provider'
+
+type InviteData = {
+  email: string
+  role: string
+}
+
+const useInviteMemberMutation = () => {
+  const { bearedFetch } = useAuth()
+  const { organization } = useOrganization()
+
+  return useMutation<InviteData, Error, InviteData>({
+    mutationFn: async (body) =>
+      await bearedFetch(`organizations/${ensure0x(organization.address)}/members`, {
+        method: 'POST',
+        body,
+      }),
+  })
+}
 
 const InviteForm = () => {
   const { t } = useTranslation()
+  const toast = useToast()
+  const mutation = useInviteMemberMutation()
+  const { success } = useCallbackContext()
 
   const methods = useForm({
     defaultValues: {
@@ -35,9 +62,28 @@ const InviteForm = () => {
     },
   })
 
-  const onSubmit = (data: any) => {
-    console.log(data)
-  }
+  const onSubmit = (data: InviteData) =>
+    mutation.mutate(data, {
+      onSuccess: () => {
+        toast({
+          title: t('invite.success', { defaultValue: 'Invitation sent successfully!' }),
+          description: t('invite.user_invited'),
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        })
+        success()
+      },
+      onError: (error: Error) => {
+        toast({
+          title: t('invite.error', { defaultValue: 'Error' }),
+          description: error.message,
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        })
+      },
+    })
 
   return (
     <FormProvider {...methods}>
@@ -97,32 +143,34 @@ const InviteForm = () => {
 
 export const InviteToTeamModal = (props: ButtonProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+
   return (
     <>
       <Button onClick={onOpen} {...props}>
         <Trans i18nKey='invite_people'>Invite People</Trans>
       </Button>
-
-      <Modal isOpen={isOpen} onClose={onClose} size='xl' closeOnOverlayClick>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader display='flex' flexDirection='column' gap={6}>
-            <Flex justifyContent='space-between' flexDirection='column' gap={1}>
-              <Heading fontSize='2xl'>
-                <Trans i18nKey='invite.title'>Invite people to your team</Trans>
-              </Heading>
-              <Text fontWeight='normal'>
-                <Trans i18nKey='invite.subtitle'>Work together on projects</Trans>
-              </Text>
-            </Flex>
-            <HSeparator />
-          </ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <InviteForm />
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+      <CallbackProvider success={() => onClose()}>
+        <Modal isOpen={isOpen} onClose={onClose} size='xl' closeOnOverlayClick>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader display='flex' flexDirection='column' gap={6}>
+              <Flex justifyContent='space-between' flexDirection='column' gap={1}>
+                <Heading fontSize='2xl'>
+                  <Trans i18nKey='invite.title'>Invite people to your team</Trans>
+                </Heading>
+                <Text fontWeight='normal'>
+                  <Trans i18nKey='invite.subtitle'>Work together on projects</Trans>
+                </Text>
+              </Flex>
+              <HSeparator />
+            </ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <InviteForm />
+            </ModalBody>
+          </ModalContent>
+        </Modal>
+      </CallbackProvider>
     </>
   )
 }

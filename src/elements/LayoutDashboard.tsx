@@ -14,6 +14,7 @@ export type DashboardLayoutContext = {
 
 const LayoutDashboard: React.FC = () => {
   const { account } = useClient()
+
   const [title, setTitle] = useState<string | null>(null)
   const [back, setBack] = useState<string | null>(null)
   const { isOpen, onOpen, onClose } = useDisclosure() // For mobile sidebar toggle
