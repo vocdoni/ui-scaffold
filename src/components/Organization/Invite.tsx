@@ -139,7 +139,6 @@ const RoleRadio = ({ name, fieldName: title, description, value, ...props }: Rol
   const { field } = useController({
     name,
     control,
-    defaultValue: 'guest',
   })
 
   const { getInputProps, getRadioProps } = useRadio({
