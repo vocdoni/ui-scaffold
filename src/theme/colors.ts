@@ -246,6 +246,7 @@ export const colors = {
       light: colorsBase.white.pure,
       dark: colorsBase.blue.grayish,
     },
+    border_dark: colorsBase.white.pure,
     body_text: colorsBase.black,
     subtitle: {
       light: colorsBase.gray.normal,

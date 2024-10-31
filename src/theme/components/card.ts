@@ -50,6 +50,8 @@ export const Card = defineMultiStyleConfig({
         w: { base: '80%', sm: 72 },
         _dark: {
           bgColor: 'pricing_card.bg.dark',
+          border: '0.1px solid',
+          borderColor: 'pricing_card.border_dark',
         },
 
         '& > div:nth-of-type(4)': {
