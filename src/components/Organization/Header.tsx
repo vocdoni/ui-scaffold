@@ -75,7 +75,7 @@ const OrganizationHeader = () => {
               as='p'
               fontSize={32}
               lineHeight={1.5}
-              title={organization?.account.name.default || organization?.address}
+              field={organization?.account.name.default || organization?.address}
               maxW={{ base: '250px', sm: '300px', sm2: '350px', md: '450px', lg: '370px', lg2: '500px', xl: '650px' }}
             />
             <Box>
@@ -84,7 +84,7 @@ const OrganizationHeader = () => {
                   icon={readMore ? <FaEye /> : <FaEyeSlash />}
                   variant='transparent'
                   alignSelf='start'
-                  title={t('organization.title.read_more')}
+                  field={t('organization.title.read_more')}
                   aria-label={t('organization.title.read_more')}
                   onClick={handleReadMore}
                 />

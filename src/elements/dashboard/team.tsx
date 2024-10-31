@@ -2,7 +2,8 @@ import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useOutletContext } from 'react-router-dom'
 import { DashboardContents } from '~components/Layout/Dashboard'
-import Team from '~components/Organization/Dashboard/Team'
+import { InviteToTeamModal } from '~components/Organization/Invite'
+import { TeamMembersList } from '~components/Organization/Team'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 
 const OrganizationTeam = () => {
@@ -15,8 +16,9 @@ const OrganizationTeam = () => {
   }, [setTitle])
 
   return (
-    <DashboardContents>
-      <Team />
+    <DashboardContents display='flex' flexDir='column'>
+      <InviteToTeamModal alignSelf='end' />
+      <TeamMembersList />
     </DashboardContents>
   )
 }

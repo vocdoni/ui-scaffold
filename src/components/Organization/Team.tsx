@@ -1,25 +1,9 @@
-import {
-  Avatar,
-  Badge,
-  Box,
-  Button,
-  Flex,
-  Table,
-  TableContainer,
-  Tbody,
-  Td,
-  Text,
-  Th,
-  Thead,
-  Tr,
-} from '@chakra-ui/react'
+import { Avatar, Badge, Box, Flex, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
-import { useState } from 'react'
 import { Trans } from 'react-i18next'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import QueryDataLayout from '~components/Layout/QueryDataLayout'
-import Invite from './Invite'
 
 type UserInfo = {
   email: string
@@ -48,7 +32,7 @@ const useTeamMembers = ({
   })
 }
 
-const TeamList = () => {
+export const TeamMembersList = () => {
   const { data, isLoading, isError, error } = useTeamMembers()
 
   return (
@@ -67,36 +51,30 @@ const TeamList = () => {
                 <Th>
                   <Trans i18nKey={'team.member_name'}>Name</Trans>
                 </Th>
-                <Th>
-                  <Trans i18nKey={'team.member_permission'}>Permission</Trans>
+                <Th textAlign='center'>
+                  <Trans i18nKey={'team.member_role'}>Role</Trans>
                 </Th>
               </Tr>
             </Thead>
             <Tbody>
-              {data?.members?.map((member, i) => {
-                return (
-                  <Tr key={i}>
-                    <Td>
-                      <Flex>
-                        <Avatar
-                          // src={member.info.}
-                          name={member.info.firstName}
-                          size='sm'
-                        />
-                        <Box ml='3'>
-                          <Text fontWeight='bold'>
-                            {member.info.firstName} {member.info.lastName}
-                          </Text>
-                          <Text fontSize='sm'>{member.info.email}</Text>
-                        </Box>
-                      </Flex>
-                    </Td>
-                    <Td>
-                      <Badge>{member.role}</Badge>
-                    </Td>
-                  </Tr>
-                )
-              })}
+              {data?.members?.map((member, i) => (
+                <Tr key={i}>
+                  <Td>
+                    <Flex>
+                      <Avatar name={member.info.firstName} size='sm' />
+                      <Box ml='3'>
+                        <Text fontWeight='bold'>
+                          {member.info.firstName} {member.info.lastName}
+                        </Text>
+                        <Text fontSize='sm'>{member.info.email}</Text>
+                      </Box>
+                    </Flex>
+                  </Td>
+                  <Td textAlign='center'>
+                    <Badge>{member.role}</Badge>
+                  </Td>
+                </Tr>
+              ))}
             </Tbody>
           </Table>
         </TableContainer>
@@ -104,19 +82,3 @@ const TeamList = () => {
     </QueryDataLayout>
   )
 }
-
-const Team = () => {
-  const [inviteView, setInviteView] = useState(false)
-
-  return (
-    <>
-      <Flex justifyContent='end'>
-        {!inviteView && <Button onClick={() => setInviteView(true)}>Invite People</Button>}
-      </Flex>
-      {inviteView && <Invite setInviteView={setInviteView} />}
-      <TeamList />
-    </>
-  )
-}
-
-export default Team

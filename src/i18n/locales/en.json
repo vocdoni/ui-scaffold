@@ -730,7 +730,7 @@
     "guest_description": "Can only access projects that you specify choose. Tipically use for clients and stackholders.",
     "select_option": "Select an option",
     "subtitle": "Work together on projects",
-    "title": "Invite people to your workspace"
+    "title": "Invite people to your team"
   },
   "keep_me_logged": "Keep me logged in",
   "link": {
