@@ -1,5 +1,4 @@
 import { Box } from '@chakra-ui/react'
-import { PricingModal } from '~components/Dashboard/PricingModal'
 import Benefits from './Benefits'
 import Clients from './Clients'
 import ContactUs from './ContactUs'
@@ -12,7 +11,6 @@ import Support from './Support'
 
 const Home = () => (
   <>
-    <PricingModal isOpenModal={true} onCloseModal={() => {}} />
     <Box position='relative'>
       <Box position='relative' zIndex={10}>
         <CreateProcess />
