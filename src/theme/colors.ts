@@ -241,7 +241,23 @@ export const colors = {
     text_secondary: colorsBase.gray.normal,
     question_index: colorsBase.primary,
   },
-  process_view: {
+  pricing_card: {
+    bg: {
+      light: colorsBase.white.pure,
+      dark: colorsBase.blue.grayish,
+    },
+    body_text: colorsBase.black,
+    subtitle: {
+      light: colorsBase.gray.normal,
+      dark: colorsBase.gray.light,
+    },
+  },
+  pricing_modal: {
+    bg: {
+      light: colorsBase.primary,
+      dark: colorsBase.blue.dark,
+    },
+  },  process_view: {
     bg_light: colorsBase.white.dark,
     bg_dark: colorsBase.blue.dark,
   },

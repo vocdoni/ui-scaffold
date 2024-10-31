@@ -44,16 +44,36 @@ export const Card = defineMultiStyleConfig({
     'pricing-card': {
       container: {
         position: 'relative',
-        bgColor: 'white',
+        borderRadius: 'xl',
+        bgColor: 'pricing_card.bg.light',
         minW: { base: '80%', sm: 72 },
         w: { base: '80%', sm: 72 },
+        _dark: {
+          bgColor: 'pricing_card.bg.dark',
+        },
+
+        '& > div:nth-of-type(4)': {
+          bgColor: '#D2CBB9',
+          w: 'min-content',
+          whiteSpace: 'nowrap',
+          mx: 'auto',
+          py: 1,
+          px: 3,
+          borderRadius: 'full',
+          position: 'absolute',
+          mt: -4,
+          ml: '50%',
+          transform: 'translateX(-50%)',
+          fontSize: 'sm',
+          color: 'black',
+        },
       },
       header: {
         pb: 0,
         minH: 28,
         '& > p:first-of-type': {
           pt: 1.5,
-          color: 'black',
+
           textAlign: 'center',
           fontWeight: 'bold',
           mb: 2.5,
@@ -63,12 +83,23 @@ export const Card = defineMultiStyleConfig({
           fontSize: 'sm',
           textAlign: 'center',
           lineHeight: 1.2,
-          color: 'gray.400',
+          color: 'pricing_card.subtitle.light',
+
+          _dark: {
+            color: 'pricing_card.subtitle.dark',
+          },
         },
       },
       body: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        pt: 0,
         '& > button': {
-          mb: 4,
+          mx: 'auto',
+          mt: 3,
+          mb: 2,
+          w: 'full',
         },
         '& > p:first-of-type': {
           fontWeight: 'extrabold',
@@ -78,10 +109,23 @@ export const Card = defineMultiStyleConfig({
         },
         '& > div:last-of-type': {
           ml: 3,
+
           '& > ul': {
             maxW: 'fit-content',
             mx: 'auto',
             fontSize: 'sm',
+            listStyleType: 'none',
+            '& > li': {
+              position: 'relative',
+              paddingLeft: '1em',
+
+              '&::before': {
+                content: '"- "',
+                position: 'absolute',
+                left: 0,
+                color: 'currentColor',
+              },
+            },
           },
         },
       },
@@ -90,7 +134,7 @@ export const Card = defineMultiStyleConfig({
         justifyContent: 'center',
 
         '& button': {
-          color: 'prcing_card_btn',
+          color: 'pricing_card_btn',
         },
       },
     },
