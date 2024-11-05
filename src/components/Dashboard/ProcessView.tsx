@@ -68,7 +68,7 @@ export const ProcessView = () => {
         {election instanceof PublishedElection && election.description && (
           <>
             <ReadMoreMarkdownWrapper
-              from={'var(--chakra-colors-dashboard-read_more-from-light)'}
+              from={'var(--chakra-colors-dashboard-read_more-from)'}
               toLight={'var(--chakra-colors-dashboard-read_more-to-light)'}
               toDark={'var(--chakra-colors-dashboard-read_more-to-dark)'}
             >
