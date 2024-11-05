@@ -13,11 +13,7 @@ const OrganizationHeader = () => {
   const { organization } = useOrganization()
   const { account } = useClient()
 
-  const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(
-    'rgba(242, 242, 242, 0)',
-    'rgba(242, 242, 242, 1)',
-    110
-  )
+  const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(600, 20)
 
   const { containerRef, isTruncated, readMore, handleReadMore } = useReadMoreTitle()
 
@@ -98,7 +94,7 @@ const OrganizationHeader = () => {
           <ReadMoreMarkdownWrapper>
             <OrganizationDescription fontSize='lg' lineHeight={1.7} />
           </ReadMoreMarkdownWrapper>
-          <ReadMoreMarkdownButton colorScheme='primary' alignSelf='center' />
+          <ReadMoreMarkdownButton alignSelf='center' />
         </Flex>
         <AddressBtn />
       </Flex>
