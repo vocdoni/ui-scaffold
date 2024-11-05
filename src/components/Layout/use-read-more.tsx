@@ -4,9 +4,8 @@ import { useTranslation } from 'react-i18next'
 
 interface ReadMoreMarkdownWrapperProps {
   children: ReactNode
-  fromLight?: string
+  from?: string
   toLight?: string
-  fromDark?: string
   toDark?: string
 }
 
@@ -30,8 +29,7 @@ export const useReadMoreMarkdown = (containerMaxHeightPx: number, tantPerCentGra
 
   const ReadMoreMarkdownWrapper = ({
     children,
-    fromLight = 'var(--chakra-colors-read_more-from-light)',
-    fromDark = 'var(--chakra-colors-read_more-from-dark)',
+    from = 'var(--chakra-colors-read_more-from)',
     toLight = 'var(--chakra-colors-read_more-to-light)',
     toDark = 'var(--chakra-colors-read_more-to-dark)',
     ...props
@@ -54,9 +52,9 @@ export const useReadMoreMarkdown = (containerMaxHeightPx: number, tantPerCentGra
           w='full'
           bottom={0}
           pointerEvents='none'
-          background={isTruncated && readMore ? `linear-gradient(to bottom, ${fromLight} 0%, ${toLight} 100%)` : 'none'}
+          background={isTruncated && readMore ? `linear-gradient(to bottom, ${from} 0%, ${toLight} 100%)` : 'none'}
           _dark={{
-            background: isTruncated && readMore ? `linear-gradient(to bottom, ${fromDark} 0%, ${toDark} 100%)` : 'none',
+            background: isTruncated && readMore ? `linear-gradient(to bottom, ${from} 0%, ${toDark} 100%)` : 'none',
           }}
         ></Box>
         {children}

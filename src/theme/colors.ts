@@ -4,7 +4,6 @@ export const colorsBase = {
     normal: '#3965FF',
     grayish: '#2B2A33',
     dark: '#1A202C',
-    from_dark_readmore: 'rgba(245, 245, 247, 0)',
   },
   gradient: 'linear-gradient(to right, #546E39, #2E441A)',
   gray: {
@@ -17,7 +16,7 @@ export const colorsBase = {
     pure: '#ffffff',
     dark: '#F5F5F7',
     alpha: 'whiteAlpha.300',
-    from_light_readmore: 'rgba(26, 32, 44, 0)',
+    from_read_more: 'rgba(245, 245, 247, 0)',
   },
   yellow: '#FFB116',
 }
@@ -53,6 +52,13 @@ export const colors = {
     invite: {
       bg_checked_light: colorsBase.white.pure,
       bg_checked_dark: colorsBase.blue.dark,
+    },
+    read_more: {
+      from: colorsBase.white.from_read_more,
+      to: {
+        light: colorsBase.white.pure,
+        dark: colorsBase.blue.grayish,
+      },
     },
     sidebar: {
       bg: {
@@ -234,10 +240,7 @@ export const colors = {
     bg_dark: colorsBase.blue.dark,
   },
   read_more: {
-    from: {
-      light: colorsBase.white.from_light_readmore,
-      dark: colorsBase.blue.from_dark_readmore,
-    },
+    from: colorsBase.white.from_read_more,
     to: {
       light: colorsBase.white.dark,
       dark: colorsBase.blue.dark,

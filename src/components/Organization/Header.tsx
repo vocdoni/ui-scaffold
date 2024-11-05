@@ -94,7 +94,7 @@ const OrganizationHeader = () => {
           <ReadMoreMarkdownWrapper>
             <OrganizationDescription fontSize='lg' lineHeight={1.7} />
           </ReadMoreMarkdownWrapper>
-          <ReadMoreMarkdownButton colorScheme='primary' alignSelf='center' />
+          <ReadMoreMarkdownButton alignSelf='center' />
         </Flex>
         <AddressBtn />
       </Flex>
