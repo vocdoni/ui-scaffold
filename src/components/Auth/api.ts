@@ -10,6 +10,7 @@ export enum ApiEndpoints {
   Register = 'users',
   Organizations = 'organizations',
   Organization = 'organizations/{address}',
+  OrganizationPendingMembers = 'organizations/{address}/members/pending',
   OrganizationMembers = 'organizations/{address}/members',
   Verify = 'users/verify',
   VerifyCode = 'users/verify/code',
