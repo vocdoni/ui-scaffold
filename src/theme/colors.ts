@@ -5,6 +5,7 @@ export const colorsBase = {
     grayish: '#2B2A33',
     dark: '#1A202C',
   },
+  gradient: 'linear-gradient(to right, #546E39, #2E441A)',
   gray: {
     light: '#E2E8F0',
     normal: '#718096',
@@ -15,6 +16,7 @@ export const colorsBase = {
     pure: '#ffffff',
     dark: '#F5F5F7',
     alpha: 'whiteAlpha.300',
+    from_read_more: 'rgba(245, 245, 247, 0)',
   },
   yellow: '#FFB116',
 }
@@ -50,6 +52,13 @@ export const colors = {
     invite: {
       bg_checked_light: colorsBase.white.pure,
       bg_checked_dark: colorsBase.blue.dark,
+    },
+    read_more: {
+      from: colorsBase.white.from_read_more,
+      to: {
+        light: colorsBase.white.pure,
+        dark: colorsBase.blue.grayish,
+      },
     },
     sidebar: {
       bg: {
@@ -153,6 +162,58 @@ export const colors = {
     },
   },
   org_text_secondary: colorsBase.gray.normal,
+
+  process: {
+    aside: {
+      bg: colorsBase.gradient,
+      color: colorsBase.white.pure,
+      vote_btn_color: colorsBase.black,
+      vote_btn_bg: colorsBase.primary,
+      verify_link: colorsBase.white.pure,
+    },
+    canceled: colorsBase.primary,
+    info_title: colorsBase.primary,
+    label: colorsBase.gray.normal,
+    questions: {
+      alert: {
+        bg: colorsBase.primary,
+        color: colorsBase.white.pure,
+        link_color: colorsBase.black,
+        link_bg: colorsBase.white.pure,
+      },
+      question_selected: {
+        bg: colorsBase.primary,
+        color: colorsBase.white.pure,
+      },
+      hover: {
+        light: colorsBase.white.pure,
+        dark: colorsBase.blue.grayish,
+      },
+      disabled: {
+        light: colorsBase.white.pure,
+        dark: colorsBase.blue.grayish,
+      },
+      title: {
+        ligth: colorsBase.primary,
+        dark: colorsBase.white.pure,
+      },
+    },
+    paused: colorsBase.primary,
+    results: {
+      alert_bg: colorsBase.primary,
+      alert_color: colorsBase.white.pure,
+      bg: colorsBase.gray.light,
+      description: colorsBase.gray.normal,
+      progressbar_bg: colorsBase.gray.light,
+      title: colorsBase.primary,
+    },
+    tabs: {
+      active_bg: colorsBase.gray.light,
+      hover_bg: colorsBase.gray.light,
+      border_bottom_list: colorsBase.gray.light,
+    },
+  },
+
   process_create: {
     bg: {
       dark: colorsBase.blue.dark,
@@ -174,7 +235,17 @@ export const colors = {
     text_secondary: colorsBase.gray.normal,
     question_index: colorsBase.primary,
   },
-
+  process_view: {
+    bg_light: colorsBase.white.dark,
+    bg_dark: colorsBase.blue.dark,
+  },
+  read_more: {
+    from: colorsBase.white.from_read_more,
+    to: {
+      light: colorsBase.white.dark,
+      dark: colorsBase.blue.dark,
+    },
+  },
   tab: {
     variant: {
       card: {

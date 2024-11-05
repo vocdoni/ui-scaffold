@@ -109,9 +109,43 @@ const card = definePartsStyle({
     p: 0,
   },
 })
+const process = definePartsStyle({
+  root: {},
+  tabpanel: {
+    px: { base: 0, sm: 4 },
+    mb: 0,
+  },
+  tab: {
+    position: 'relative',
+    whiteSpace: 'nowrap',
+    color: 'process.tabs.color',
+    fontWeight: 'normal',
+    borderTopRadius: 'md',
+    fontSize: 'lg',
+
+    _hover: {
+      bgColor: 'process.tabs.hover',
+    },
+    _active: {
+      bgColor: 'process.tabs.active_bg',
+    },
+    _selected: {
+      fontWeight: 'bold',
+      borderBottom: '1px solid',
+    },
+  },
+  tablist: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderBottom: '1px solid',
+    borderColor: 'process.tabs.border_bottom_list',
+  },
+})
 
 const variants = {
   card,
+  process,
 }
 
 export const Tabs = defineMultiStyleConfig({ variants })

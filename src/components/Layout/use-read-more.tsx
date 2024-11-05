@@ -1,18 +1,19 @@
 import { Box, Button } from '@chakra-ui/react'
-import { useEffect, useRef, useState } from 'react'
+import { ReactNode, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-export const useReadMoreMarkdown = (
-  colorFrom: string,
-  colorTo: string,
-  containerMaxHeightPx: number,
-  tantPerCentGradient?: number
-) => {
+interface ReadMoreMarkdownWrapperProps {
+  children: ReactNode
+  from?: string
+  toLight?: string
+  toDark?: string
+}
+
+export const useReadMoreMarkdown = (containerMaxHeightPx: number, tantPerCentGradient?: number) => {
   const { t } = useTranslation()
   const containerRef = useRef<HTMLDivElement>(null)
   const [isTruncated, setIsTruncated] = useState(false)
   const [readMore, setReadMore] = useState(false)
-
   const handleReadMore = () => setReadMore((prev) => !prev)
 
   useEffect(() => {
@@ -26,32 +27,40 @@ export const useReadMoreMarkdown = (
     }
   }, [])
 
-  const ReadMoreMarkdownWrapper = ({ children, from, to, ...props }: any) => (
-    <Box
-      {...props}
-      ref={containerRef}
-      position='relative'
-      height={readMore ? `${containerMaxHeightPx}px` : 'auto'}
-      overflow='hidden'
-      sx={{
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          height: isTruncated
-            ? `${(containerMaxHeightPx * (tantPerCentGradient ? tantPerCentGradient : containerMaxHeightPx)) / 100}px`
-            : '0',
-          width: '100%',
-          bottom: 0,
-          background:
-            isTruncated && readMore
-              ? `linear-gradient(to bottom, ${from ? from : colorFrom} 0%, ${to ? to : colorTo} 100%)`
-              : '',
-        },
-      }}
-    >
-      {children}
-    </Box>
-  )
+  const ReadMoreMarkdownWrapper = ({
+    children,
+    from = 'var(--chakra-colors-read_more-from)',
+    toLight = 'var(--chakra-colors-read_more-to-light)',
+    toDark = 'var(--chakra-colors-read_more-to-dark)',
+    ...props
+  }: ReadMoreMarkdownWrapperProps) => {
+    return (
+      <Box
+        {...props}
+        ref={containerRef}
+        position='relative'
+        height={readMore ? `${containerMaxHeightPx}px` : 'auto'}
+        overflow='hidden'
+      >
+        <Box
+          position='absolute'
+          height={
+            isTruncated
+              ? `${(containerMaxHeightPx * (tantPerCentGradient ? tantPerCentGradient : containerMaxHeightPx)) / 100}px`
+              : 0
+          }
+          w='full'
+          bottom={0}
+          pointerEvents='none'
+          background={isTruncated && readMore ? `linear-gradient(to bottom, ${from} 0%, ${toLight} 100%)` : 'none'}
+          _dark={{
+            background: isTruncated && readMore ? `linear-gradient(to bottom, ${from} 0%, ${toDark} 100%)` : 'none',
+          }}
+        ></Box>
+        {children}
+      </Box>
+    )
+  }
   const ReadMoreMarkdownButton = ({ ...props }: any) =>
     isTruncated ? (
       <Button onClick={handleReadMore} variant='' color='read_more' {...props}>

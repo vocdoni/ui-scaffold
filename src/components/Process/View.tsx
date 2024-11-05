@@ -106,8 +106,19 @@ export const ProcessView = () => {
   }, [formErrors])
 
   return (
-    <Box>
-      <Box className='site-wrapper' mb={44}>
+    <Box
+      position='relative'
+      width='full'
+      m='0 auto'
+      maxW='1920px'
+      px={{
+        base: '10px',
+        sm: '20px',
+        md: '80px',
+      }}
+      mb={{ base: 10, md: 20 }}
+    >
+      <Box>
         <Header />
 
         {election instanceof PublishedElection && election?.streamUri && (
@@ -115,7 +126,7 @@ export const ProcessView = () => {
             maxW={{ base: '800px', lg: videoTop ? '400px' : '800px' }}
             ml={videoTop ? 'auto' : 'none'}
             position={{ base: 'unset', lg: 'sticky' }}
-            top={{ base: 0, lg2: 20 }}
+            top={{ base: 0, xl2: 20 }}
             zIndex={100}
           >
             <AspectRatio ref={videoRef} ratio={16 / 9}>
@@ -124,26 +135,23 @@ export const ProcessView = () => {
           </Box>
         )}
 
-        <Flex direction={{ base: 'column', lg2: 'row' }} alignItems='start' gap={{ lg2: 10 }} mt={20}>
+        <Flex direction={{ base: 'column', xl2: 'row' }} alignItems='start' gap={{ xl2: 10 }} mt={{ xl2: 10 }}>
           <Tabs
-            order={{ base: 2, lg2: 1 }}
+            order={{ base: 2, xl2: 1 }}
             variant='process'
             index={tabIndex}
             onChange={handleTabsChange}
-            flexGrow={0}
-            flexShrink={0}
-            flexBasis={{ base: '100%', md: '60%', lg: '65%', lg2: '70%', xl2: '75%' }}
-            w='full'
+            flex={{ xl2: '1 1 80%' }}
           >
             <TabList>
-              <Tab fontSize='text'>{t('process.questions')}</Tab>
+              <Tab>{t('process.questions')}</Tab>
               {election instanceof PublishedElection && election?.status !== ElectionStatus.CANCELED && (
-                <Tab fontSize='text'>{t('process.results')}</Tab>
+                <Tab>{t('process.results')}</Tab>
               )}
             </TabList>
             <TabPanels>
               <TabPanel>
-                <Box ref={electionRef} className='md-sizes' mb='100px' pt='25px'>
+                <Box ref={electionRef} pt='25px'>
                   <ElectionQuestions
                     onInvalid={(args) => {
                       setFormErrors(args)
@@ -151,40 +159,33 @@ export const ProcessView = () => {
                     confirmContents={(election, answers) => <ConfirmVoteModal election={election} answers={answers} />}
                   />
                 </Box>
-                <Box position='sticky' bottom={0} left={0} pb={1} pt={1} display={{ base: 'none', lg2: 'block' }}>
+                <Box position='sticky' bottom={0} left={0} pb={1} pt={1} display={{ base: 'none', xl2: 'block' }}>
                   <VoteButton setQuestionsTab={setQuestionsTab} />
                 </Box>
               </TabPanel>
-              <TabPanel mb={20}>
+              <TabPanel>
                 <ElectionResults />
               </TabPanel>
             </TabPanels>
           </Tabs>
           <Flex
-            flexGrow={1}
+            flex={{ xl2: '1 1 20%' }}
             flexDirection='column'
-            alignItems={{ base: 'center', lg2: 'start' }}
-            order={{ base: 1, lg2: 2 }}
+            alignItems={{ base: 'center', xl2: 'start' }}
+            order={{ base: 1, xl2: 2 }}
             gap={0}
-            mx={{ base: 'auto', lg2: 0 }}
-            position={{ lg2: 'sticky' }}
+            mx={{ base: 'auto', xl2: 0 }}
+            position={{ xl2: 'sticky' }}
             top={'300px'}
-            mt={10}
-            maxW={{ lg2: '290px' }}
+            mt={1}
+            maxW={{ xl2: '290px' }}
             mb={10}
           >
             <ProcessAside />
           </Flex>
         </Flex>
       </Box>
-      <Box
-        position='sticky'
-        bottom={0}
-        left={0}
-        bgColor='process.aside.aside_footer_mbl_border'
-        pt={1}
-        display={{ base: 'block', lg2: 'none' }}
-      >
+      <Box position='sticky' bottom={0} left={0} pt={1} display={{ base: 'block', xl2: 'none' }}>
         <VoteButton setQuestionsTab={setQuestionsTab} />
       </Box>
       <VotingVoteModal />
@@ -281,7 +282,7 @@ const ConfirmVoteModal = ({ election, answers }: { election: PublishedElection; 
           overflowY='scroll'
           boxShadow='rgba(128, 128, 128, 0.42) 1px 1px 1px 1px'
           px={2}
-          borderRadius='lg2'
+          borderRadius='xl2'
         >
           {election.questions.map((q, i) => (
             <Box key={i}>

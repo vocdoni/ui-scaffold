@@ -64,14 +64,7 @@ const ProcessAside = () => {
           </Text>
 
           {showVoters && !showVotes && (
-            <Box
-              className='brand-theme'
-              display='flex'
-              flexDirection='row'
-              justifyContent='center'
-              alignItems='center'
-              gap={2}
-            >
+            <Box display='flex' flexDirection='row' justifyContent='center' alignItems='center' gap={2}>
               <Trans
                 i18nKey='aside.votes'
                 components={{
@@ -84,12 +77,12 @@ const ProcessAside = () => {
           )}
 
           {showVotes && (
-            <Flex className='brand-theme' direction='column' justifyContent='center' alignItems='center' gap={2}>
+            <Flex direction='column' justifyContent='center' alignItems='center' gap={2}>
               <Flex direction={'row'} justifyContent='center' alignItems='center' gap={2}>
                 <Trans
                   i18nKey='aside.votes_weight'
                   components={{
-                    span: <Text as='span' fontWeight='bold' fontSize='xl3' textAlign='center' lineHeight={1} />,
+                    span: <Text as='span' fontWeight='bold' fontSize='3xl' textAlign='center' lineHeight={1} />,
                     text: <Text fontSize='xl' textAlign='center' lineHeight={1.3} />,
                   }}
                   count={votes}
@@ -159,30 +152,10 @@ const ProcessAside = () => {
         )}
       </Card>
       {(connected || isConnected) && (
-        <Box
-          alignSelf='center'
-          sx={{
-            '& button': {
-              color: 'process.spreadsheet.disconnect_color_desktop',
-              bgColor: 'transparent',
-              borderColor: 'transparent',
-
-              _before: {
-                bgColor: 'transparent',
-              },
-              _after: {
-                bgColor: 'transparent',
-              },
-            },
-          }}
-          mb={{ base: 10, md: 0 }}
-        >
+        <Box alignSelf='center' mb={{ base: 10, md: 0 }}>
           {connected && <SpreadsheetAccess />}
           {isConnected && election?.get('census.type') !== 'spreadsheet' && (
             <Button
-              variant='text'
-              textDecor='underline'
-              _hover={{ textDecor: 'none' }}
               onClick={() => {
                 disconnect()
                 clear()
