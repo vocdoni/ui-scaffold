@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Button,
   ButtonProps,
@@ -13,6 +14,7 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
+  Progress,
   Radio,
   Stack,
   Text,
@@ -20,12 +22,13 @@ import {
   useRadio,
   useToast,
 } from '@chakra-ui/react'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useOrganization } from '@vocdoni/react-providers'
 import { ensure0x } from '@vocdoni/sdk'
 import { ReactElement } from 'react'
 import { FormProvider, useController, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import { ApiEndpoints } from '~components/Auth/api'
 import { HSeparator } from '~components/Auth/SignIn'
 import { useAuth } from '~components/Auth/useAuth'
 import InputBasic from '~components/Layout/InputBasic'
@@ -36,24 +39,54 @@ type InviteData = {
   role: string
 }
 
-const useInviteMemberMutation = () => {
-  const { bearedFetch } = useAuth()
-  const { organization } = useOrganization()
+type Role = {
+  role: string
+  name: string
+  writePermission: boolean
+}
 
-  return useMutation<InviteData, Error, InviteData>({
-    mutationFn: async (body) =>
-      await bearedFetch(`organizations/${ensure0x(organization.address)}/members`, {
-        method: 'POST',
-        body,
-      }),
+// Hook to fetch roles
+const useRoles = () => {
+  const { bearedFetch } = useAuth()
+
+  return useQuery({
+    queryKey: ['organization', 'roles'],
+    queryFn: async () => {
+      const response = await bearedFetch<{ roles: Role[] }>(ApiEndpoints.OrganizationsRoles)
+      return response.roles
+    },
+    staleTime: 60 * 60 * 1000,
+    select: (data) => data.sort((a, b) => a.name.localeCompare(b.name)),
   })
 }
 
+// Hook to handle member invitation mutation
+const useInviteMemberMutation = () => {
+  const { bearedFetch } = useAuth()
+  const { organization } = useOrganization()
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: async (body: InviteData) =>
+      await bearedFetch(ApiEndpoints.OrganizationMembers.replace('{address}', ensure0x(organization.address)), {
+        method: 'POST',
+        body,
+      }),
+    onSuccess: () => {
+      // Invalidate queries to refresh member and pending member lists
+      queryClient.invalidateQueries({ queryKey: ['organizations', 'members', organization.address] })
+      queryClient.invalidateQueries({ queryKey: ['organizations', 'members', 'pending', organization.address] })
+    },
+  })
+}
+
+// Invite form component
 const InviteForm = () => {
   const { t } = useTranslation()
   const toast = useToast()
   const mutation = useInviteMemberMutation()
   const { success } = useCallbackContext()
+  const { data: roles, isLoading: rolesLoading, isError: rolesError, error: rolesFetchError } = useRoles()
 
   const methods = useForm({
     defaultValues: {
@@ -85,6 +118,9 @@ const InviteForm = () => {
       },
     })
 
+  // could be better placed, but I prefered breaking the entire form just in case
+  if (rolesError) return <Alert status='error'>{rolesFetchError?.message || t('error.loading_roles')}</Alert>
+
   return (
     <FormProvider {...methods}>
       <Flex as='form' onSubmit={methods.handleSubmit(onSubmit)} flexDirection='column' gap={6}>
@@ -100,35 +136,23 @@ const InviteForm = () => {
             <Trans i18nKey='invite.select_option'>Select an option</Trans>
           </FormLabel>
           <Stack direction='column' my='10px' gap={0}>
-            <RoleRadio
-              name='role'
-              value='admin'
-              fieldName={<Trans i18nKey='invite.admin'>Admin</Trans>}
-              description={
-                <Trans i18nKey='invite.admin_description'>
-                  Can view, comment, or also create and edit all workspace projects and folders. Typically used for
-                  employees.
-                </Trans>
-              }
-              borderTopRadius='xl'
-            />
-            <RoleRadio
-              name='role'
-              value='manager'
-              fieldName={<Trans i18nKey='invite.manager'>Manager</Trans>}
-              description={<Trans i18nKey='invite.manager_description'>Can manage 😁</Trans>}
-            />
-            <RoleRadio
-              name='role'
-              value='guest'
-              fieldName={<Trans i18nKey='invite.guest'>Guest</Trans>}
-              description={
-                <Trans i18nKey='invite.guest_description'>
-                  Can only access projects that you specify. Typically used for clients and stakeholders.
-                </Trans>
-              }
-              borderBottomRadius='xl'
-            />
+            {rolesLoading && <Progress size='xs' isIndeterminate />}
+            {roles &&
+              roles?.map((role) => (
+                <RoleRadio
+                  key={role.role}
+                  name='role'
+                  value={role.role}
+                  fieldName={<Trans>{role.name}</Trans>}
+                  description={
+                    role.writePermission ? (
+                      <Trans i18nKey='role.write_permission'>Can create and edit content</Trans>
+                    ) : (
+                      <Trans i18nKey='role.read_permission'>Read-only access</Trans>
+                    )
+                  }
+                />
+              ))}
           </Stack>
         </FormControl>
         <Flex justifyContent='center'>
@@ -184,11 +208,7 @@ type RoleRadioProps = FlexProps & {
 
 const RoleRadio = ({ name, fieldName: title, description, value, ...props }: RoleRadioProps) => {
   const { control } = useFormContext()
-  const { field } = useController({
-    name,
-    control,
-  })
-
+  const { field } = useController({ name, control })
   const { getInputProps, getRadioProps } = useRadio({
     value,
     onChange: field.onChange,
@@ -215,10 +235,7 @@ const RoleRadio = ({ name, fieldName: title, description, value, ...props }: Rol
         <Text>{title}</Text>
         <Text fontWeight='normal'>{description}</Text>
       </Box>
-      <Radio
-        isChecked={field.value === value}
-        onChange={() => field.onChange(value)} // Ensure onChange updates form state
-      />
+      <Radio isChecked={field.value === value} onChange={() => field.onChange(value)} />
     </Flex>
   )
 }
