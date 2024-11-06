@@ -1,9 +1,10 @@
-import { Button, Flex, Text } from '@chakra-ui/react'
+import { Button, Flex, Text, useToast } from '@chakra-ui/react'
+import { useMutation } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { NavLink, useNavigate, useOutletContext } from 'react-router-dom'
-import { UnverifiedApiError } from '~components/Auth/api'
+import { api, ApiEndpoints, UnverifiedApiError } from '~components/Auth/api'
 import { ILoginParams } from '~components/Auth/authQueries'
 import { useAuth } from '~components/Auth/useAuth'
 import { VerifyAccountNeeded } from '~components/Auth/Verify'
@@ -19,8 +20,29 @@ type FormData = {
   keepLogedIn: boolean
 } & ILoginParams
 
+const useVerificationCodeStatus = () =>
+  useMutation({
+    mutationFn: async (email: string) => {
+      const response = await api<{ email: string; expiration: string; valid: boolean }>(
+        `${ApiEndpoints.VerifyCode}?email=${encodeURIComponent(email)}`
+      )
+      return response
+    },
+  })
+
+const useResendVerificationCode = () =>
+  useMutation({
+    mutationFn: async (email: string) => {
+      await api(ApiEndpoints.VerifyCode, {
+        method: 'POST',
+        body: { email },
+      })
+    },
+  })
+
 const SignIn = () => {
   const { t } = useTranslation()
+  const toast = useToast()
   const navigate = useNavigate()
   const { setTitle, setSubTitle } = useOutletContext<AuthOutletContextType>()
   const methods = useForm<FormData>()
@@ -33,19 +55,44 @@ const SignIn = () => {
   }, [])
 
   const {
-    login: { mutateAsync: login, isError, error, isPending },
+    login: { mutateAsync: login, isError, error },
   } = useAuth()
   const [verifyNeeded, setVerifyNeeded] = useState(false)
+  const { mutateAsync: checkVerificationCodeStatus } = useVerificationCodeStatus()
+  const resendVerificationCode = useResendVerificationCode()
 
   const onSubmit = async (data: FormData) => {
     await login(data)
       .then(() => navigate(Routes.dashboard.base))
-      .catch((e) => {
-        if (e instanceof UnverifiedApiError) {
-          setVerifyNeeded(true)
-          return
+      .catch(async (e) => {
+        if (e instanceof UnverifiedApiError && email) {
+          try {
+            const verificationData = await checkVerificationCodeStatus(email)
+            if (verificationData.valid) {
+              setVerifyNeeded(true)
+              return
+            }
+            // Code expired, resend verification code
+            await resendVerificationCode.mutateAsync(email)
+            setVerifyNeeded(true)
+            toast({
+              title: t('verification_code_resent', { defaultValue: 'Verification code resent!' }),
+              status: 'success',
+              duration: 5000,
+              isClosable: true,
+            })
+          } catch (error) {
+            toast({
+              title: t('error.title', { defaultValue: 'Error' }),
+              description: (error as Error).message,
+              status: 'error',
+              duration: 5000,
+              isClosable: true,
+            })
+          }
+        } else {
+          throw e
         }
-        throw e
       })
   }
 

@@ -55,7 +55,7 @@ export const useResendVerificationMail = (
 ) => {
   return useMutation<void, Error, IResendVerificationParams>({
     mutationFn: (params: IResendVerificationParams) =>
-      api<void>(ApiEndpoints.VerifyResend, { body: params, method: 'POST' }),
+      api<void>(ApiEndpoints.VerifyCode, { body: params, method: 'POST' }),
     ...options,
   })
 }
