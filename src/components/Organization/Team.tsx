@@ -39,6 +39,7 @@ const useTeamMembers = ({
     queryFn: () =>
       bearedFetch<TeamMembersResponse>(ApiEndpoints.OrganizationMembers.replace('{address}', signerAddress)),
     ...options,
+    select: (data) => data.members,
   })
 }
 
@@ -56,6 +57,7 @@ const usePendingTeamMembers = ({
         ApiEndpoints.OrganizationPendingMembers.replace('{address}', signerAddress)
       ),
     ...options,
+    select: (data) => data.pending,
   })
 }
 
@@ -113,18 +115,18 @@ const TeamMembersTable = ({ members, showExpiration = false }: { members: Member
 
 // Component for active team members
 export const TeamMembersList = () => {
-  const { data, isLoading, isError, error } = useTeamMembers()
+  const { data: members, isLoading, isError, error } = useTeamMembers()
 
   return (
-    <QueryDataLayout isEmpty={!data?.members} isLoading={isLoading} isError={isError} error={error}>
+    <QueryDataLayout isEmpty={!members} isLoading={isLoading} isError={isError} error={error}>
       <Flex direction='column'>
-        <Text fontWeight='bold'>
+        <Text fontWeight='bold' display='flex' gap={3}>
           <Trans i18nKey='team.team_members'>Team members</Trans>
           <Badge ml='1' colorScheme='green'>
-            {data?.members?.length}
+            {members?.length}
           </Badge>
         </Text>
-        <TeamMembersTable members={data?.members || []} />
+        <TeamMembersTable members={members || []} />
       </Flex>
     </QueryDataLayout>
   )
@@ -132,18 +134,18 @@ export const TeamMembersList = () => {
 
 // Component for pending team members
 export const PendingTeamMembersList = () => {
-  const { data, isLoading, isError, error } = usePendingTeamMembers()
+  const { data: pending, isLoading, isError, error } = usePendingTeamMembers()
 
   return (
-    <QueryDataLayout isEmpty={!data?.pending} isLoading={isLoading} isError={isError} error={error}>
+    <QueryDataLayout isEmpty={!pending} isLoading={isLoading} isError={isError} error={error}>
       <Flex direction='column'>
-        <Text fontWeight='bold'>
+        <Text fontWeight='bold' display='flex' gap={3}>
           <Trans i18nKey='team.pending_members'>Pending Invitations</Trans>
           <Badge ml='1' colorScheme='orange'>
-            {data?.pending?.length}
+            {pending?.length}
           </Badge>
         </Text>
-        <TeamMembersTable members={data?.pending || []} showExpiration />
+        <TeamMembersTable members={pending || []} showExpiration />
       </Flex>
     </QueryDataLayout>
   )
