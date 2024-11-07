@@ -1,4 +1,4 @@
-import { Box, Collapse } from '@chakra-ui/react'
+import { Box, Button, Collapse } from '@chakra-ui/react'
 import { OrganizationName } from '@vocdoni/chakra-components'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -6,6 +6,7 @@ import { HiSquares2X2 } from 'react-icons/hi2'
 import { IoIosSettings } from 'react-icons/io'
 import { matchPath, useLocation } from 'react-router-dom'
 import { Routes } from '~src/router/routes'
+import { PricingModal } from '../PricingModal'
 import { DashboardMenuItem } from './Item'
 
 type MenuItem = {
@@ -19,6 +20,7 @@ export const DashboardMenuOptions = () => {
   const { t } = useTranslation()
   const location = useLocation()
   const [openSection, setOpenSection] = useState<string | null>(null)
+  const [modal, setModal] = useState(false)
 
   const menuItems: MenuItem[] = [
     // {
@@ -82,6 +84,8 @@ export const DashboardMenuOptions = () => {
 
   return (
     <Box>
+      <PricingModal isOpenModal={modal} onCloseModal={() => setModal(false)} />
+      <Button onClick={() => setModal(true)}>Open Modal</Button>
       <OrganizationName color='text.secondary' mb={2.5} />
       {menuItems.map((item, index) => (
         <Box key={index}>
