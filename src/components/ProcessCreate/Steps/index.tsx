@@ -26,7 +26,7 @@ const Steps = () => {
 
   return (
     <CspAdminProvider signer={signer}>
-      <Flex flexDirection={{ base: 'column', lg: 'row' }} gap={6} flexGrow={1}>
+      <Flex flexDirection={{ base: 'column', lg: 'row' }} gap={{ base: 6, lg: 20 }} flexGrow={1}>
         <Stepper index={activeStep} orientation={useBreakpointValue({ base: 'horizontal', lg: 'vertical' })}>
           {steps.map((step, index) => (
             <Step key={index}>

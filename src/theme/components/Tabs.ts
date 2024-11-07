@@ -8,7 +8,7 @@ const card = definePartsStyle({
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    columnGap: 10,
     '& > div': {
       display: 'grid',
       gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
@@ -25,23 +25,19 @@ const card = definePartsStyle({
     flex: { md: '0 0 30%' },
     p: 4,
     px: 6,
-    boxShadow: 'var(--box-shadow-darker)',
+    boxShadow: 'var(--box-shadow)',
     bgColor: 'tab.variant.card.bg.light',
     borderBottom: 'none',
-    color: 'white',
     borderRadius: 'xl',
     w: 'full',
 
-    _dark: {
-      bgColor: 'tab.variant.card.bg.dark',
-
-      color: 'navy.700',
-    },
-
     '& > #description': {
-      color: 'tab.variant.card.description',
+      color: 'tab.variant.card.description.light',
       textAlign: 'start',
       fontSize: 'xs',
+      _dark: {
+        color: 'tab.variant.card.description.dark',
+      },
     },
 
     '& #pro-badge': {
@@ -92,7 +88,7 @@ const card = definePartsStyle({
     },
 
     _selected: {
-      boxShadow: 'var(--box-shadow-darker)',
+      boxShadow: 'var(--box-shadow)',
       '& > svg': {
         display: 'block',
       },
@@ -100,13 +96,26 @@ const card = definePartsStyle({
       '& > #empty-check': {
         display: 'none',
       },
+
+      _dark: {
+        boxShadow: 'var(--box-shadow-dark-mode)',
+      },
     },
     _hover: {
-      boxShadow: 'var(--box-shadow)',
+      boxShadow: 'none',
+    },
+    _dark: {
+      bgColor: 'tab.variant.card.bg.dark',
+      boxShadow: 'none',
     },
   },
   tabpanel: {
-    p: 0,
+    bgColor: 'tab.variant.card.bg.light',
+    borderRadius: 'xl',
+
+    _dark: {
+      bgColor: 'tab.variant.card.bg.dark',
+    },
   },
 })
 const process = definePartsStyle({

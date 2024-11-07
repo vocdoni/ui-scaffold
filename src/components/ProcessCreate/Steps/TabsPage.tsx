@@ -75,7 +75,6 @@ export const TabsPage = <Implemented extends string, UnImplemented extends strin
                   icon={CgMoreO}
                   title={t('process_create.census.others_title')}
                   description={t('process_create.census.others_description')}
-                  // transform={showProCards ? 'scale(0.92)' : ''}
                 />
               )}
             </>

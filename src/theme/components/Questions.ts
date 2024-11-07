@@ -18,7 +18,7 @@ const baseStyle = definePartsStyle({
     alignItems: 'center',
     gridTemplateColumns: 'auto 1fr',
     gridTemplateRows: 'auto auto',
-    boxShadow: 'var(--box-shadow-darker)',
+    boxShadow: 'var(--box-shadow)',
     border: 'none',
 
     '& span': {
