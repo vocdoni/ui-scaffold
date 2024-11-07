@@ -42,7 +42,7 @@ export const Checkbox = defineMultiStyleConfig({
         },
 
         _hover: {
-          boxShadow: 'var(--box-shadow-darker)',
+          boxShadow: 'none',
         },
       }),
       control: defineStyle({

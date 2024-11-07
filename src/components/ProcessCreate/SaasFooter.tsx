@@ -3,7 +3,7 @@ import { Button } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccountPlan } from '~components/Account/useAccountPlan'
-import Logo from '~components/Layout/Logo'
+import { VocdoniLogo } from '~components/Layout/Logo'
 
 const SaasFooter = () => {
   const { t } = useTranslation()
@@ -26,7 +26,9 @@ const SaasFooter = () => {
         mt='auto'
       >
         <Flex flexDirection={{ base: 'column', lg: 'row' }} alignItems='center' gap={6} order={{ base: 2, lg: 1 }}>
-          <Logo />
+          <Box minW='100px'>
+            <VocdoniLogo />
+          </Box>
           <Link as={ReactRouterLink} to=''>
             {t('terms_and_conditions', { defaultValue: 'Terms and Conditions' })}
           </Link>
