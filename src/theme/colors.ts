@@ -155,6 +155,7 @@ export const colors = {
       dark: colorsBase.white,
       light: colorsBase.gray.light,
     },
+    disabled: colorsBase.gray.normal,
     hover: {
       dark: colorsBase.white,
       light: colorsBase.gray.light,
