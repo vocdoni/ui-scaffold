@@ -72,7 +72,7 @@ export const theme = extendTheme(vtheme, {
           textDecoration: 'underline',
         },
         pre: {
-          'white-space': 'pre-wrap',
+          whiteSpace: 'pre-wrap',
         },
       },
     },
