@@ -33,7 +33,7 @@ export const theme = extendTheme(vtheme, {
     global: {
       ...editor,
       ':root': {
-        '--box-shadow': '0 0 6px #e3e3e3',
+        '--box-shadow': '0 0 10px #e3e3e3',
         '--box-shadow-dark-mode': '0 0 10px #101010',
       },
       '.brand-gradient': {
