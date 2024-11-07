@@ -1,28 +1,45 @@
 import { Button, Flex, Text } from '@chakra-ui/react'
-import { useEffect } from 'react'
+import { useMutation } from '@tanstack/react-query'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { NavLink, useOutletContext } from 'react-router-dom'
-import { AuthOutletContextType } from '~elements/LayoutAuth'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { Routes } from '~src/router/routes'
 import InputBasic from '../Layout/InputBasic'
+import { api, ApiEndpoints } from './api'
 
-function ForgotPassword() {
+type ForgotPasswordFormValues = {
+  email: string
+}
+
+const PasswordForgotForm: React.FC = () => {
   const { t } = useTranslation()
-  const { setTitle, setSubTitle } = useOutletContext<AuthOutletContextType>()
+  const navigate = useNavigate()
 
-  const methods = useForm({
+  const methods = useForm<ForgotPasswordFormValues>({
     defaultValues: {
       email: '',
     },
   })
 
-  useEffect(() => {
-    setTitle(t('forgot_password_title'))
-    setSubTitle(t('forgot_password_subtitle'))
-  }, [])
+  // Mutation for password recovery using bearedFetch and ApiEndpoints
+  const passwordRecoveryMutation = useMutation({
+    mutationFn: ({ email }: ForgotPasswordFormValues) =>
+      api(ApiEndpoints.PasswordRecovery, {
+        method: 'POST',
+        body: { email },
+      }),
+  })
 
-  const onSubmit = () => {}
+  const onSubmit = (data: ForgotPasswordFormValues) =>
+    passwordRecoveryMutation.mutate(data, {
+      onSuccess: () => {
+        navigate(`${Routes.auth.passwordReset}?email=${encodeURIComponent(data.email)}`)
+      },
+      onError: (error) => {
+        // we actually should not have errors except for internal server errors
+        methods.setError('email', { type: 'manual', message: error.message })
+      },
+    })
 
   return (
     <>
@@ -54,4 +71,4 @@ function ForgotPassword() {
   )
 }
 
-export default ForgotPassword
+export default PasswordForgotForm

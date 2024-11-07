@@ -5,10 +5,11 @@ import { Routes } from '.'
 import { SuspenseLoader } from '../SuspenseLoader'
 
 const NonLoggedRoute = lazy(() => import('../NonLoggedRoute'))
-const SignIn = lazy(() => import('~components/Auth/SignIn'))
+const Signin = lazy(() => import('~elements/account/signin'))
 const SignUp = lazy(() => import('~components/Auth/SignUp'))
 const Verify = lazy(() => import('~components/Auth/Verify'))
-const ForgotPassword = lazy(() => import('~components/Auth/ForgotPassword'))
+const PasswordForgot = lazy(() => import('~elements/account/password'))
+const PasswordReset = lazy(() => import('~elements/account/password/reset'))
 
 const AuthElements = [
   {
@@ -20,7 +21,7 @@ const AuthElements = [
             path: Routes.auth.signIn,
             element: (
               <SuspenseLoader>
-                <SignIn />
+                <Signin />
               </SuspenseLoader>
             ),
           },
@@ -33,18 +34,26 @@ const AuthElements = [
             ),
           },
           {
-            path: Routes.auth.recovery,
-            element: (
-              <SuspenseLoader>
-                <ForgotPassword />
-              </SuspenseLoader>
-            ),
-          },
-          {
             path: Routes.auth.verify,
             element: (
               <SuspenseLoader>
                 <Verify />
+              </SuspenseLoader>
+            ),
+          },
+          {
+            path: Routes.auth.recovery,
+            element: (
+              <SuspenseLoader>
+                <PasswordForgot />
+              </SuspenseLoader>
+            ),
+          },
+          {
+            path: Routes.auth.passwordReset,
+            element: (
+              <SuspenseLoader>
+                <PasswordReset />
               </SuspenseLoader>
             ),
           },
