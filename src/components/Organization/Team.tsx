@@ -68,14 +68,14 @@ const TeamMembersTable = ({ members, showExpiration = false }: { members: Member
           <Th>
             <Trans i18nKey='team.member_name'>Name</Trans>
           </Th>
-          <Th textAlign='center'>
-            <Trans i18nKey='team.member_role'>Role</Trans>
-          </Th>
           {showExpiration && (
             <Th textAlign='center'>
               <Trans i18nKey='team.expiration'>Expiration</Trans>
             </Th>
           )}
+          <Th textAlign='center'>
+            <Trans i18nKey='team.member_role'>Role</Trans>
+          </Th>
         </Tr>
       </Thead>
       <Tbody>
@@ -96,14 +96,14 @@ const TeamMembersTable = ({ members, showExpiration = false }: { members: Member
                 <Text>{member.email}</Text>
               )}
             </Td>
-            <Td textAlign='center'>
-              <Badge>{member.role}</Badge>
-            </Td>
             {showExpiration && member.expiration && (
               <Td textAlign='center'>
                 <Text>{new Date(member.expiration).toLocaleString()}</Text>
               </Td>
             )}
+            <Td textAlign='center' w={10}>
+              <Badge>{member.role}</Badge>
+            </Td>
           </Tr>
         ))}
       </Tbody>

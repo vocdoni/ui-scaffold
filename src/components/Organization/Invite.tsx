@@ -74,8 +74,7 @@ const useInviteMemberMutation = () => {
       }),
     onSuccess: () => {
       // Invalidate queries to refresh member and pending member lists
-      queryClient.invalidateQueries({ queryKey: ['organizations', 'members', organization.address] })
-      queryClient.invalidateQueries({ queryKey: ['organizations', 'members', 'pending', organization.address] })
+      queryClient.invalidateQueries({ queryKey: ['organizations', 'members'] })
     },
   })
 }
