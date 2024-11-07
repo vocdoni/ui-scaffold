@@ -126,20 +126,7 @@ export const Card = defineMultiStyleConfig({
         },
       },
     },
-    preview: {
-      container: {
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 5,
-        p: { base: 3, xl: 6 },
-        bgColor: 'process_create.bg_secondary.light',
-        borderRadius: 'xl',
 
-        _dark: {
-          bgColor: 'process_create.bg_secondary.dark',
-        },
-      },
-    },
     confirm: {
       container: {
         display: 'flex',

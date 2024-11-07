@@ -13,7 +13,7 @@ export const CensusTypes = [
   CensusTypeSpreadsheet as CensusType,
   CensusTypeToken as CensusType,
   CensusTypeWeb3 as CensusType,
-  CensusTypeCsp as CensusType,
+  // CensusTypeCsp as CensusType,
   CensusTypeGitcoin as CensusType,
 ]
 

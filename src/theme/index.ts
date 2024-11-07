@@ -33,8 +33,8 @@ export const theme = extendTheme(vtheme, {
     global: {
       ...editor,
       ':root': {
-        '--box-shadow': '0px 2px 4px lightgray',
-        '--box-shadow-darker': '0px 2px 4px #808080b5',
+        '--box-shadow': '0 0 10px #e3e3e3',
+        '--box-shadow-dark-mode': '0 0 10px #101010',
       },
       '.brand-gradient': {
         bgGradient: 'linear-gradient(to bottom, #B5F492, #338B93)',
@@ -72,7 +72,7 @@ export const theme = extendTheme(vtheme, {
           textDecoration: 'underline',
         },
         pre: {
-          'white-space': 'pre-wrap',
+          whiteSpace: 'pre-wrap',
         },
       },
     },

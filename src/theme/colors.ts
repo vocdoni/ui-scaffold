@@ -7,7 +7,7 @@ export const colorsBase = {
   },
   gradient: 'linear-gradient(to right, #546E39, #2E441A)',
   gray: {
-    light: '#E2E8F0',
+    light: '#CBD5E0',
     normal: '#718096',
   },
   primary: '#546E39',
@@ -147,6 +147,10 @@ export const colors = {
     },
   },
   input: {
+    bg: {
+      light: colorsBase.white.pure,
+      dark: colorsBase.blue.grayish,
+    },
     border: {
       dark: colorsBase.white,
       light: colorsBase.gray.light,
@@ -156,10 +160,7 @@ export const colors = {
       light: colorsBase.gray.light,
     },
     outline: colorsBase.blue.normal,
-    placeholder: {
-      light: colorsBase.gray.normal,
-      dark: colorsBase.white.pure,
-    },
+    placeholder: colorsBase.gray.normal,
   },
   org_text_secondary: colorsBase.gray.normal,
 
@@ -259,7 +260,10 @@ export const colors = {
           dark: colorsBase.blue.grayish,
         },
         border: colorsBase.gray.normal,
-        description: colorsBase.gray.normal,
+        description: {
+          light: colorsBase.gray.normal,
+          dark: colorsBase.white.pure,
+        },
         svg: colorsBase.primary,
       },
     },

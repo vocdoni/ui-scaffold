@@ -1,7 +1,6 @@
 import { ArrowBackIcon } from '@chakra-ui/icons'
 import {
   Box,
-  Card,
   Checkbox,
   Flex,
   FormControl,
@@ -257,7 +256,17 @@ export const Confirm = () => {
           <FormProvider {...methods}>
             <Flex flexDirection={{ base: 'column', xl2: 'row' }} gap={5}>
               <Preview />
-              <Card variant='confirm'>
+              <Flex
+                flex={{ xl2: '0 0 25%' }}
+                flexDirection='column'
+                p={6}
+                bgColor='process_create.bg_secondary.light'
+                borderRadius='xl'
+                minW={'400px'}
+                _dark={{
+                  bgColor: 'process_create.bg_secondary.dark',
+                }}
+              >
                 <CostPreview unpublished={unpublished} />
 
                 <Box>
@@ -331,7 +340,7 @@ export const Confirm = () => {
                     </FormControl>
                   </Flex>
                 </Box>
-              </Card>
+              </Flex>
             </Flex>
           </FormProvider>
         </ElectionProvider>

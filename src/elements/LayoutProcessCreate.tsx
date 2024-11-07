@@ -28,8 +28,6 @@ const LayoutProcessCreate = () => {
           >
             <Logo />
             <Flex gap={6}>
-              <Button borderRadius='xl'>Save draft</Button>
-
               <Button
                 as={ReactRouterLink}
                 onClick={(e) => (window.history.state.idx ? navigate(-1) : navigate(Routes.root))}
