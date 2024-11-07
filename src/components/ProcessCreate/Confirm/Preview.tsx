@@ -1,4 +1,4 @@
-import { Box, Card, ChakraProvider, extendTheme, Flex, Icon, Link, Spinner, Text } from '@chakra-ui/react'
+import { Box, ChakraProvider, extendTheme, Flex, Icon, Link, Spinner, Text } from '@chakra-ui/react'
 import { ElectionDescription, ElectionQuestions, ElectionTitle } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import { IoMdCheckmark, IoMdClose, IoMdCreate } from 'react-icons/io'
@@ -23,7 +23,16 @@ const Preview = () => {
   } = form
 
   return (
-    <Card variant='preview'>
+    <Flex
+      flexDirection='column'
+      gap={5}
+      p={{ base: 3, xl: 6 }}
+      bgColor='process_create.bg_secondary.light'
+      borderRadius='xl'
+      _dark={{
+        bgColor: 'process_create.bg_secondary.dark',
+      }}
+    >
       <Flex flexDirection='column' gap={6}>
         <Flex>
           <Text fontWeight='bold' textTransform='uppercase'>
@@ -134,7 +143,7 @@ const Preview = () => {
           />
         </Link>
       </Flex>
-    </Card>
+    </Flex>
   )
 }
 

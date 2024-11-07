@@ -9,6 +9,13 @@
   overflow: hidden;
 }
 
+.editor-container:hover {
+  border-color: transparent;
+  outline-offset: '0px';
+  outline: '.1px solid';
+  outline: 2px solid #cbd5e0;
+}
+
 .editor-container:focus-within {
   border-color: transparent;
   outline: 2px solid #3965ff;
@@ -26,21 +33,22 @@
   position: relative;
   tab-size: 1;
   outline: 0;
-  padding: 15px 10px;
+  padding: 15px 16px;
   caret-color: #444;
 }
 
 .editor-placeholder {
-  color: #999;
+  color: #718096;
   overflow: hidden;
   position: absolute;
   text-overflow: ellipsis;
   top: 15px;
-  left: 10px;
+  left: 16px;
   font-size: 15px;
   user-select: none;
   display: inline-block;
   pointer-events: none;
+  line-height: 23px;
 }
 
 .editor-text-bold {

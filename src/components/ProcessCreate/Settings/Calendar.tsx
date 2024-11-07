@@ -59,6 +59,9 @@ const Calendar = () => {
     name: ['electionType'],
   })
 
+  const isEndDate = watch('endDate')
+  const isStartDate = watch('startDate')
+
   const showPicker = (ref: MutableRefObject<HTMLInputElement | null | undefined>) => {
     if (ref.current && 'showPicker' in ref.current) ref.current.showPicker()
   }
@@ -113,6 +116,7 @@ const Calendar = () => {
                       }}
                       min={today}
                       onFocus={() => showPicker(startDateRef)}
+                      color={!isStartDate && 'input.placeholder'}
                     />
                     <FormErrorMessage>{errors.startDate?.message?.toString()}</FormErrorMessage>
                   </FormControl>
@@ -124,12 +128,13 @@ const Calendar = () => {
 
         <FormControl isInvalid={!!errors.endDate}>
           <Text variant='process-create-title-sm'>{t('calendar.end_date', { defaultValue: 'End date' })}</Text>
-          <Text variant='process-create-subtitle-sm'>
+          <Text variant='process-create-subtitle-sm' mb={1}>
             {t('calendar.end_date_description', { defaultValue: 'Define the exact date and time of completion' })}
           </Text>
           <Input
             variant='calendar'
             type='datetime-local'
+            placeholder='hello'
             {...endDate}
             ref={(e) => {
               endDate.ref(e)
@@ -137,6 +142,7 @@ const Calendar = () => {
             }}
             min={format(min, DateFormatHtml)}
             onFocus={() => showPicker(endDateRef)}
+            color={!isEndDate && 'input.placeholder'}
           />
           <FormErrorMessage>{errors.endDate?.message?.toString()}</FormErrorMessage>
         </FormControl>

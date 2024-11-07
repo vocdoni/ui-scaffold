@@ -28,20 +28,20 @@ const card = definePartsStyle({
     boxShadow: 'var(--box-shadow-darker)',
     bgColor: 'tab.variant.card.bg.light',
     borderBottom: 'none',
-    color: 'white',
     borderRadius: 'xl',
     w: 'full',
 
     _dark: {
       bgColor: 'tab.variant.card.bg.dark',
-
-      color: 'navy.700',
     },
 
     '& > #description': {
-      color: 'tab.variant.card.description',
+      color: 'tab.variant.card.description.light',
       textAlign: 'start',
       fontSize: 'xs',
+      _dark: {
+        color: 'tab.variant.card.description.dark',
+      },
     },
 
     '& #pro-badge': {
