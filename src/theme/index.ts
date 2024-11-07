@@ -35,6 +35,7 @@ export const theme = extendTheme(vtheme, {
       ':root': {
         '--box-shadow': '0px 2px 4px lightgray',
         '--box-shadow-darker': '0px 2px 4px #808080b5',
+        '--box-shadow-dark-mode': '0px 2px 4px black',
       },
       '.brand-gradient': {
         bgGradient: 'linear-gradient(to bottom, #B5F492, #338B93)',

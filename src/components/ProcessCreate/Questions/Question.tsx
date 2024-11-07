@@ -37,7 +37,7 @@ const Question = ({ index, remove }: Props) => {
         variant='transparent'
         position='absolute'
         right={2}
-        top={8}
+        top={7}
         type='button'
         icon={<DeleteIcon />}
         aria-label={t('form.process_create.question.question_delete', { values: { num: index } })}
@@ -45,7 +45,7 @@ const Question = ({ index, remove }: Props) => {
         ml='auto'
       />
 
-      <FormControl isInvalid={isInvalidFieldMap(errors, `questions.${index}.title`)} mb={2}>
+      <FormControl isInvalid={isInvalidFieldMap(errors, `questions.${index}.title`)} mb={2} maxW='calc(100% - 50px)'>
         <Input
           {...register(`questions.${index}.title`, {
             required: {
@@ -55,7 +55,6 @@ const Question = ({ index, remove }: Props) => {
           })}
           placeholder={t('form.process_create.question.title_placeholder').toString()}
           mb={1}
-          maxW='90%'
         />
         <FormErrorMessage>{fieldMapErrorMessage(errors, `questions.${index}.title`)}</FormErrorMessage>
       </FormControl>

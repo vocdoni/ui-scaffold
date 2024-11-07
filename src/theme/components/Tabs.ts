@@ -33,6 +33,7 @@ const card = definePartsStyle({
 
     _dark: {
       bgColor: 'tab.variant.card.bg.dark',
+      boxShadow: 'var(--box-shadow-dark-mode)',
     },
 
     '& > #description': {
@@ -100,9 +101,16 @@ const card = definePartsStyle({
       '& > #empty-check': {
         display: 'none',
       },
+
+      _dark: {
+        boxShadow: 'var(--box-shadow-dark-mode)',
+      },
     },
     _hover: {
       boxShadow: 'var(--box-shadow)',
+      _dark: {
+        boxShadow: 'none',
+      },
     },
   },
   tabpanel: {

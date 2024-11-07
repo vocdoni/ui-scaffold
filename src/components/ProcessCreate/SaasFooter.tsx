@@ -1,9 +1,9 @@
-import { Box, Flex, Image, Link, Text } from '@chakra-ui/react'
+import { Box, Flex, Link, Text } from '@chakra-ui/react'
 import { Button } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccountPlan } from '~components/Account/useAccountPlan'
-import vcdLogo from '/assets/logo-classic.svg'
+import Logo from '~components/Layout/Logo'
 
 const SaasFooter = () => {
   const { t } = useTranslation()
@@ -26,7 +26,7 @@ const SaasFooter = () => {
         mt='auto'
       >
         <Flex flexDirection={{ base: 'column', lg: 'row' }} alignItems='center' gap={6} order={{ base: 2, lg: 1 }}>
-          <Image src={vcdLogo} w='125px' />
+          <Logo />
           <Link as={ReactRouterLink} to=''>
             {t('terms_and_conditions', { defaultValue: 'Terms and Conditions' })}
           </Link>
