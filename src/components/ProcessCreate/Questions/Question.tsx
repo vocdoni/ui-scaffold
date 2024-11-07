@@ -36,7 +36,7 @@ const Question = ({ index, remove }: Props) => {
       <IconButton
         variant='transparent'
         position='absolute'
-        right={2}
+        right={5}
         top={7}
         type='button'
         icon={<DeleteIcon />}
