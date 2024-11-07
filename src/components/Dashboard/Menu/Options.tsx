@@ -2,10 +2,7 @@ import { Box, Collapse } from '@chakra-ui/react'
 import { OrganizationName } from '@vocdoni/chakra-components'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FaPhoneAlt } from 'react-icons/fa'
-import { FaHouse } from 'react-icons/fa6'
-import { GiHamburgerMenu } from 'react-icons/gi'
-import { HiMiniPencil, HiSquares2X2 } from 'react-icons/hi2'
+import { HiSquares2X2 } from 'react-icons/hi2'
 import { IoIosSettings } from 'react-icons/io'
 import { matchPath, useLocation } from 'react-router-dom'
 import { Routes } from '~src/router/routes'
@@ -24,11 +21,11 @@ export const DashboardMenuOptions = () => {
   const [openSection, setOpenSection] = useState<string | null>(null)
 
   const menuItems: MenuItem[] = [
-    {
-      label: t('organization.dashboard'),
-      icon: FaHouse,
-      route: Routes.dashboard.base,
-    },
+    // {
+    //   label: t('organization.dashboard'),
+    //   icon: FaHouse,
+    //   route: Routes.dashboard.base,
+    // },
     {
       label: t('voting_processes'),
       icon: HiSquares2X2,
@@ -36,35 +33,35 @@ export const DashboardMenuOptions = () => {
         { label: t('all'), route: Routes.dashboard.processes },
         { label: t('active'), route: '#active' },
         { label: t('finished'), route: '#finished' },
-        { label: t('draft'), route: '#draft' },
+        // { label: t('draft'), route: '#draft' },
       ],
     },
-    {
-      label: t('organization.census'),
-      icon: GiHamburgerMenu,
-      route: '#census',
-    },
-    {
-      label: t('user_management'),
-      icon: HiMiniPencil,
-      route: '#user-management',
-    },
+    // {
+    //   label: t('organization.census'),
+    //   icon: GiHamburgerMenu,
+    //   route: '#census',
+    // },
+    // {
+    //   label: t('user_management'),
+    //   icon: HiMiniPencil,
+    //   route: '#user-management',
+    // },
     {
       label: t('settings'),
       icon: IoIosSettings,
       children: [
         { label: t('organization.organization'), route: Routes.dashboard.organization },
         { label: t('team'), route: Routes.dashboard.team },
-        { label: t('billing'), route: '#billing' },
-        { label: t('subscription'), route: '#subscription' },
+        // { label: t('billing'), route: '#billing' },
+        // { label: t('subscription'), route: '#subscription' },
         { label: t('profile'), route: Routes.dashboard.profile },
       ],
     },
-    {
-      label: t('help_and_support'),
-      icon: FaPhoneAlt,
-      route: '#support',
-    },
+    // {
+    //   label: t('help_and_support'),
+    //   icon: FaPhoneAlt,
+    //   route: '#support',
+    // },
   ]
 
   // Check if any child route is active, and open its section
@@ -82,6 +79,10 @@ export const DashboardMenuOptions = () => {
   const handleToggle = (label: string) => {
     setOpenSection((prev) => (prev === label ? null : label))
   }
+
+  useEffect(() => {
+    setOpenSection(() => menuItems[0].label)
+  }, [])
 
   return (
     <Box>

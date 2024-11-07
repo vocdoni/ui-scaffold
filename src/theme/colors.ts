@@ -172,6 +172,10 @@ export const colors = {
       verify_link: colorsBase.white.pure,
     },
     canceled: colorsBase.primary,
+    card_hover: {
+      light: colorsBase.white.dark,
+      dark: colorsBase.blue.dark,
+    },
     info_title: colorsBase.primary,
     label: colorsBase.gray.normal,
     questions: {

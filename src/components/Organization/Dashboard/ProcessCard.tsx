@@ -1,9 +1,8 @@
-import { Box, Flex, Link, Text } from '@chakra-ui/react'
+import { Box, Flex, Text } from '@chakra-ui/react'
 import { ElectionStatusBadge, ElectionTitle, QuestionsTypeBadge } from '@vocdoni/chakra-components'
 import { useElection } from '@vocdoni/react-providers'
 import { ensure0x, InvalidElection } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
-import { FaEye } from 'react-icons/fa'
 import { generatePath, Link as RouterLink } from 'react-router-dom'
 import { useDateFns } from '~i18n/use-date-fns'
 import { Routes } from '~src/router/routes'
@@ -16,15 +15,33 @@ const ProcessCard = () => {
   if (!election || election instanceof InvalidElection) return null
 
   return (
-    <Box w='full' display='flex' gap={5} textDecoration='none' py='10px'>
+    <Box
+      as={RouterLink}
+      to={generatePath(Routes.dashboard.process, { id: ensure0x(election.id) })}
+      w='full'
+      display='flex'
+      gap={5}
+      textDecoration='none'
+      py='10px'
+      borderRadius='xl'
+      _hover={{
+        bgColor: 'process.card_hover.light',
+
+        _dark: {
+          bgColor: 'process.card_hover.dark',
+        },
+      }}
+    >
       <ElectionTitle
         flexGrow={1}
         flexShrink={0}
         flexBasis={48}
-        m={0}
+        mb={0}
+        mt={1}
         fontSize='md'
         textAlign='left'
         fontWeight='500'
+        ml={4}
         isTruncated
       />
       <Box flexGrow={1} flexShrink={0} flexBasis={60} whiteSpace='nowrap' fontWeight='500'>
@@ -49,18 +66,6 @@ const ProcessCard = () => {
       <Flex flexGrow={1} flexShrink={0} flexBasis={24} fontWeight='500'>
         {election.voteCount}/{election.census.size}
       </Flex>
-      <Link
-        as={RouterLink}
-        to={generatePath(Routes.dashboard.process, { id: ensure0x(election.id) })}
-        display='flex'
-        flexGrow={1}
-        flexShrink={0}
-        flexBasis={5}
-        justifyContent='center'
-        alignItems='center'
-      >
-        <FaEye />
-      </Link>
     </Box>
   )
 }
