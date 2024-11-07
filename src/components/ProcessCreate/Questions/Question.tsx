@@ -33,32 +33,28 @@ const Question = ({ index, remove }: Props) => {
 
   return (
     <Box p={6} position='relative'>
-      <IconButton
-        variant='transparent'
-        position='absolute'
-        right={2}
-        top={8}
-        type='button'
-        icon={<DeleteIcon />}
-        aria-label={t('form.process_create.question.question_delete', { values: { num: index } })}
-        onClick={() => remove(index)}
-        ml='auto'
-      />
+      <Flex gap={6} mb={2}>
+        <FormControl isInvalid={isInvalidFieldMap(errors, `questions.${index}.title`)}>
+          <Input
+            {...register(`questions.${index}.title`, {
+              required: {
+                value: true,
+                message: t('form.error.field_is_required'),
+              },
+            })}
+            placeholder={t('form.process_create.question.title_placeholder').toString()}
+            mb={1}
+          />
+          <FormErrorMessage>{fieldMapErrorMessage(errors, `questions.${index}.title`)}</FormErrorMessage>
+        </FormControl>
 
-      <FormControl isInvalid={isInvalidFieldMap(errors, `questions.${index}.title`)} mb={2}>
-        <Input
-          {...register(`questions.${index}.title`, {
-            required: {
-              value: true,
-              message: t('form.error.field_is_required'),
-            },
-          })}
-          placeholder={t('form.process_create.question.title_placeholder').toString()}
-          mb={1}
-          maxW='90%'
+        <IconButton
+          type='button'
+          icon={<DeleteIcon />}
+          aria-label={t('form.process_create.question.question_delete', { values: { num: index } })}
+          onClick={() => remove(index)}
         />
-        <FormErrorMessage>{fieldMapErrorMessage(errors, `questions.${index}.title`)}</FormErrorMessage>
-      </FormControl>
+      </Flex>
       <Editor
         onChange={(text: string) => setValue(`questions.${index}.description`, text)}
         placeholder={t('form.process_create.question.description_placeholder').toString()}

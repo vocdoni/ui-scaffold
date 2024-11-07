@@ -1,4 +1,4 @@
-import { Box, Card, ChakraProvider, extendTheme, Flex, Icon, Link, Spinner, Text } from '@chakra-ui/react'
+import { Box, ChakraProvider, extendTheme, Flex, Icon, Link, Spinner, Text } from '@chakra-ui/react'
 import { ElectionDescription, ElectionQuestions, ElectionTitle } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import { IoMdCheckmark, IoMdClose, IoMdCreate } from 'react-icons/io'
@@ -23,13 +23,22 @@ const Preview = () => {
   } = form
 
   return (
-    <Card variant='preview'>
+    <Flex
+      flexDirection='column'
+      gap={5}
+      p={{ base: 3, xl: 6 }}
+      bgColor='process_create.bg_secondary.light'
+      borderRadius='xl'
+      _dark={{
+        bgColor: 'process_create.bg_secondary.dark',
+      }}
+    >
       <Flex flexDirection='column' gap={6}>
         <Flex>
           <Text fontWeight='bold' textTransform='uppercase'>
             {t('form.process_create.confirm.election_info')}
           </Text>
-          <Link ml='auto' onClick={() => setActiveStep(1)}>
+          <Link ml='auto' onClick={() => setActiveStep(0)}>
             <Icon
               as={IoMdCreate}
               title={t('form.process_create.confirm.edit')}
@@ -81,25 +90,6 @@ const Preview = () => {
             })}
           </Text>
         </Flex>
-        <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 2, md: 0 }}>
-          <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='bold'>
-            {t('form.process_create.confirm.configuration')}
-          </Text>
-          <Box flexBasis={{ base: '100%', md: '65%' }}>
-            <Flex gap={2} alignItems='center'>
-              <Icon as={maxVoteOverwrites ? IoCheckmarkSharp : IoMdClose} boxSize={5} />
-              <Text>{t('form.process_create.confirm.vote_overwrite')}</Text>
-            </Flex>
-            <Flex gap={2} alignItems='center'>
-              <Icon as={secretUntilTheEnd ? IoMdCheckmark : IoMdClose} boxSize={5} />
-              <Text>{t('form.process_create.confirm.secret_until_the_end')}</Text>
-            </Flex>
-            <Flex gap={2} alignItems='center'>
-              <Icon as={anonymous ? IoMdCheckmark : IoMdClose} boxSize={5} />
-              <Text>{t('form.process_create.confirm.anonymous')}</Text>
-            </Flex>
-          </Box>
-        </Flex>
       </Flex>
 
       <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 2, md: 0 }} position='relative'>
@@ -111,7 +101,7 @@ const Preview = () => {
             <ElectionQuestions />
           </ChakraProvider>
         </Box>
-        <Link position='absolute' top={0} right={0} onClick={() => setActiveStep(2)}>
+        <Link position='absolute' top={0} right={0} onClick={() => setActiveStep(1)}>
           <Icon
             as={IoMdCreate}
             title={t('form.process_create.confirm.edit')}
@@ -125,7 +115,33 @@ const Preview = () => {
           {t('form.process_create.confirm.census')}
         </Text>
         <Box w={{ md: '65%' }}>{isLoadingPreview ? <Spinner mt={10} /> : <Census />}</Box>
+        <Link position='absolute' top={0} right={0} onClick={() => setActiveStep(2)}>
+          <Icon
+            as={IoMdCreate}
+            title={t('form.process_create.confirm.edit')}
+            aria-label={t('form.process_create.confirm.edit')}
+          />
+        </Link>
+      </Flex>
 
+      <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 2, md: 0 }} position='relative'>
+        <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='bold'>
+          {t('form.process_create.confirm.configuration')}
+        </Text>
+        <Box flexBasis={{ base: '100%', md: '65%' }}>
+          <Flex gap={2} alignItems='center'>
+            <Icon as={maxVoteOverwrites ? IoCheckmarkSharp : IoMdClose} boxSize={5} />
+            <Text>{t('form.process_create.confirm.vote_overwrite')}</Text>
+          </Flex>
+          <Flex gap={2} alignItems='center'>
+            <Icon as={secretUntilTheEnd ? IoMdCheckmark : IoMdClose} boxSize={5} />
+            <Text>{t('form.process_create.confirm.secret_until_the_end')}</Text>
+          </Flex>
+          <Flex gap={2} alignItems='center'>
+            <Icon as={anonymous ? IoMdCheckmark : IoMdClose} boxSize={5} />
+            <Text>{t('form.process_create.confirm.anonymous')}</Text>
+          </Flex>
+        </Box>
         <Link position='absolute' top={0} right={0} onClick={() => setActiveStep(3)}>
           <Icon
             as={IoMdCreate}
@@ -134,7 +150,7 @@ const Preview = () => {
           />
         </Link>
       </Flex>
-    </Card>
+    </Flex>
   )
 }
 

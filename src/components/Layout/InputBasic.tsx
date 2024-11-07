@@ -1,9 +1,7 @@
-import { FormControl, FormErrorMessage, FormLabel, Icon, Input, InputGroup, InputRightElement } from '@chakra-ui/react'
+import { FormControl, FormErrorMessage, FormLabel, Input } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { MdOutlineRemoveRedEye } from 'react-icons/md'
-import { RiEyeCloseLine } from 'react-icons/ri'
 
 export interface InputBasicProps {
   formValue: string
@@ -41,18 +39,7 @@ const InputBasic = ({
   return (
     <FormControl isInvalid={!!errors[formValue]} isRequired={required}>
       {label && <FormLabel variant='process-create-title-sm'>{label}</FormLabel>}
-      <InputGroup>
-        <Input {...register(formValue, validationRules)} type={type} placeholder={placeholder} />
-        {type === 'password' && (
-          <InputRightElement display='flex' alignItems='center' minH='100%'>
-            <Icon
-              _hover={{ cursor: 'pointer' }}
-              as={show ? RiEyeCloseLine : MdOutlineRemoveRedEye}
-              onClick={handleClick}
-            />
-          </InputRightElement>
-        )}
-      </InputGroup>
+      <Input {...register(formValue, validationRules)} type={type} placeholder={placeholder} />
       <FormErrorMessage mt={2}>{errorMessage || 'Error performing the operation'}</FormErrorMessage>
     </FormControl>
   )
