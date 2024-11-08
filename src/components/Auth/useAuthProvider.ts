@@ -62,7 +62,9 @@ export const useAuthProvider = () => {
         logout()
         throw new Error('No bearer token')
       }
-      headers.append('Authorization', `Bearer ${bearer}`)
+      if (bearer) {
+        headers.append('Authorization', `Bearer ${bearer}`)
+      }
       return api<T>(path, { headers, ...params }).catch((e) => {
         if (e instanceof UnauthorizedApiError) {
           return api<LoginResponse>(ApiEndpoints.Refresh, { headers, method: 'POST' })
