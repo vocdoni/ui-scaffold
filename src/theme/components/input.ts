@@ -32,6 +32,7 @@ const baseStyle = definePartsStyle({
     },
 
     _disabled: {
+      color: 'input.disabled',
       bgColor: 'input.bg.light !important',
       opacity: 1,
     },
