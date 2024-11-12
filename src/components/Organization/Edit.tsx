@@ -87,8 +87,8 @@ const EditOrganization = () => {
       size: values.sizeSelect?.value,
       type: values.typeSelect?.value,
       country: values.countrySelect?.value,
-      timezone: values.timeZoneSelect.value,
-      language: values.languageSelect.value,
+      timezone: values.timeZoneSelect?.value,
+      language: values.languageSelect?.value,
     }
 
     await mutateAsync({ ...organization, ...newInfo })
@@ -180,15 +180,13 @@ const CustomizeOrgForm = () => {
               defaultValue: 'Logo',
             })}
           </FormLabel>
-          <Flex gap={2} alignItems='center'>
+          <Flex alignItems='center' gap={2}>
             <Input
               placeholder={t('edit_saas_profile.upload_file', {
                 defaultValue: 'Upload a file',
               })}
             />
-            <Button bgColor='gray' minH={12} borderRadius='xl'>
-              {t('upload', { defaultValue: 'Upload' })}
-            </Button>
+            <Button minW='min-content'>{t('upload', { defaultValue: 'Upload' })}</Button>
           </Flex>
         </FormControl>
         <Box position='relative' outline='none' border='none'>

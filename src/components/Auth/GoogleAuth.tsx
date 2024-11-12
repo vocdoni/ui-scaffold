@@ -9,6 +9,7 @@ const GoogleAuth = () => {
     <Button
       fontSize='sm'
       bg={'google.bg.light'}
+      isDisabled
       fontWeight='500'
       _hover={'google.hover.light'}
       _active={'google.active.light'}

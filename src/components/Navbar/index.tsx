@@ -1,6 +1,6 @@
 import { Button, ButtonProps, Flex, List, ListItem } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import { Link as ReactRouterLink } from 'react-router-dom'
+import { generatePath, Link as ReactRouterLink } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
 import { ColorModeSwitcher } from '~components/Layout/ColorModeSwitcher'
 import Logo from '~components/Layout/Logo'
@@ -46,7 +46,7 @@ const DashboardButton = (props?: ButtonProps) => {
   return (
     <Button
       as={ReactRouterLink}
-      to={isAuthenticated ? Routes.dashboard.base : Routes.auth.signIn}
+      to={isAuthenticated ? generatePath(Routes.dashboard.processes) : Routes.auth.signIn}
       width='175px'
       height='50px'
       {...props}
