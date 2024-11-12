@@ -18,7 +18,7 @@ const PasswordReset = () => {
     setSubTitle(
       t('password_reset.subtitle', {
         defaultValue:
-          "If your email is an existant account, you'll receive an email with a code to reset your account.",
+          "If your email corresponds to an existing account, you'll receive an email with a code to reset your password.",
       })
     )
   }, [setTitle, setSubTitle, t])
