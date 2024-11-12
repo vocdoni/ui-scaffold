@@ -10,7 +10,7 @@ export enum ApiEndpoints {
   Organization = 'organizations/{address}',
   OrganizationMembers = 'organizations/{address}/members',
   Verify = 'users/verify',
-  VerifyResend = 'users/verify/code',
+  VerifyCode = 'users/verify/code',
 }
 
 interface IApiError {
