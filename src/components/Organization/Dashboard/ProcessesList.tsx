@@ -9,13 +9,12 @@ import ProcessCard from './ProcessCard'
 type Election = PublishedElection | InvalidElection
 
 type ProcessesListProps = {
-  error: Error | null
-  loading: boolean
-  limit?: number
+  error?: Error | null
+  loading?: boolean
   processes?: Election[]
 }
 
-const ProcessesList = ({ loading, processes, error, limit }: ProcessesListProps) => {
+const ProcessesList = ({ loading, processes, error }: ProcessesListProps) => {
   const { t } = useTranslation()
 
   return (
@@ -47,13 +46,11 @@ const ProcessesList = ({ loading, processes, error, limit }: ProcessesListProps)
       <VStack w='full'>
         {processes &&
           processes.length &&
-          processes?.map((election, key) =>
-            limit && key >= limit ? null : (
-              <ElectionProvider election={election} id={election.id} key={election.id}>
-                <ProcessCard />
-              </ElectionProvider>
-            )
-          )}
+          processes?.map((election) => (
+            <ElectionProvider election={election} id={election.id} key={election.id}>
+              <ProcessCard />
+            </ElectionProvider>
+          ))}
         {!loading && (!processes || !processes.length) && <NoElections />}
       </VStack>
     </VStack>

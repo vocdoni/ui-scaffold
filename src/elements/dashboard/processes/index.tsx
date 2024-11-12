@@ -1,6 +1,7 @@
+import { ElectionListWithPagination } from '@vocdoni/sdk'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useOutletContext } from 'react-router-dom'
+import { useLoaderData, useOutletContext } from 'react-router-dom'
 import { DashboardContents } from '~components/Layout/Dashboard'
 import Votings from '~components/Organization/Dashboard/Votings'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
@@ -8,6 +9,7 @@ import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 const OrganizationVotings = () => {
   const { t } = useTranslation()
   const { setBack, setTitle } = useOutletContext<DashboardLayoutContext>()
+  const processes = useLoaderData()
 
   // Set page title
   useEffect(() => {
@@ -17,7 +19,7 @@ const OrganizationVotings = () => {
 
   return (
     <DashboardContents>
-      <Votings />
+      <Votings data={processes as ElectionListWithPagination} />
     </DashboardContents>
   )
 }

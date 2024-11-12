@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HiSquares2X2 } from 'react-icons/hi2'
 import { IoIosSettings } from 'react-icons/io'
-import { matchPath, useLocation } from 'react-router-dom'
+import { generatePath, matchPath, useLocation } from 'react-router-dom'
 import { Routes } from '~src/router/routes'
 import { DashboardMenuItem } from './Item'
 
@@ -30,9 +30,9 @@ export const DashboardMenuOptions = () => {
       label: t('voting_processes'),
       icon: HiSquares2X2,
       children: [
-        { label: t('all'), route: Routes.dashboard.processes },
-        { label: t('active'), route: '#active' },
-        { label: t('finished'), route: '#finished' },
+        { label: t('all'), route: generatePath(Routes.dashboard.processes, { page: 1 }) },
+        { label: t('active'), route: generatePath(Routes.dashboard.processes, { status: 'ready', page: 1 }) },
+        { label: t('finished'), route: generatePath(Routes.dashboard.processes, { status: 'results', page: 1 }) },
         // { label: t('draft'), route: '#draft' },
       ],
     },
