@@ -19,7 +19,7 @@ const ProcessesList = ({ loading, processes, error, limit }: ProcessesListProps)
   const { t } = useTranslation()
 
   return (
-    <VStack w='full' overflowX='scroll' borderRadius='lg' py={{ base: 2.5, lg: 5 }} px={{ base: 5, lg: 10 }}>
+    <VStack w='full' overflowX='auto' borderRadius='lg' py={{ base: 2.5, lg: 5 }} px={{ base: 5, lg: 10 }}>
       {loading && <Progress isIndeterminate w='full' colorScheme='primary' size='xs' />}
       {error && (
         <Alert>

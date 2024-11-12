@@ -44,7 +44,7 @@ const ProcessCard = () => {
         fontWeight='500'
         isTruncated
       />
-      <Box flexGrow={1} flexShrink={0} flexBasis={60} whiteSpace='nowrap' fontWeight='500'>
+      <Box flexGrow={1} flexShrink={0} flexBasis={60} fontWeight='500'>
         <Text as='span'>{format(election.startDate, t('organization.date_format'))}</Text> -{' '}
         <Text as='span'>{format(election.endDate, t('organization.date_format'))}</Text>
       </Box>

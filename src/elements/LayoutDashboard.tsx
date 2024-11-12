@@ -55,16 +55,12 @@ const LayoutDashboard: React.FC = () => {
               {title}
             </Heading>
           )}
-          {/* User profile & menu */}
-          <AccountMenu ml='auto' />
-          {/* Hamburger button to open sidebar on small screens */}
-          <IconButton
-            icon={<HamburgerIcon />}
-            onClick={onOpen}
-            display={{ lg: 'none' }}
-            aria-label='Open menu'
-            ml='auto'
-          />
+          <Box ml='auto' display='flex' gap={3} alignItems='center'>
+            {/* User profile & menu */}
+            <AccountMenu />
+            {/* Hamburger button to open sidebar on small screens */}
+            <IconButton icon={<HamburgerIcon />} onClick={onOpen} display={{ lg: 'none' }} aria-label='Open menu' />
+          </Box>
         </Box>
 
         {/* Sidebar for large screens */}
