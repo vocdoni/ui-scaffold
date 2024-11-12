@@ -20,56 +20,58 @@ const LayoutAuth = () => {
     <Flex
       bgColor={'bg.light'}
       _dark={{ bgColor: 'bg.dark' }}
-      minH='100vh'
+      minH={{ xl: '100vh' }}
       flexDirection={{ base: 'column', xl: 'row' }}
     >
+      <Box position='absolute' top={5} left={2.5}>
+        <NavLink to='/'>
+          <Flex align='center' w='fit-content'>
+            <Icon as={FaChevronLeft} me={2} h={3} w={2} color={'auth.text_color_secondary'} />
+            <Text fontSize='sm' color={'auth.text_color_secondary'}>
+              {t('back', { defaultValue: 'Back' })}
+            </Text>
+          </Flex>
+        </NavLink>
+      </Box>
       <Flex
         flex={{ base: '1 1 100%', xl: '1 1 50%' }}
         flexDirection='column'
-        justifyContent='center'
+        justifyContent='start'
         alignItems='center'
+        px={{
+          base: 2.5,
+          sm: 5,
+        }}
+        pt={20}
+        pb={{ base: 14, xl: 0 }}
       >
-        <Flex flexDirection='column' maxW={245} mx='auto' flexGrow={1}>
-          <Box position='absolute' top={5} left={2.5} minW={{ base: '90%', md: 96 }}>
-            <NavLink to='/'>
-              <Flex align='center' w='fit-content'>
-                <Icon as={FaChevronLeft} me={2} h={3} w={2} color={'auth.text_color_secondary'} />
-                <Text fontSize='sm' color={'auth.text_color_secondary'}>
-                  {t('back', { defaultValue: 'Back' })}
-                </Text>
-              </Flex>
-            </NavLink>
-          </Box>
-          <Flex pt={14} minW='100%' flexGrow={1} flexDirection='column' justifyContent='center' alignItems='center'>
-            <Box maxW={{ base: '90%', md: 96 }} minW={{ base: '90%', md: 96 }}>
-              <Flex direction='column' gap={6}>
-                <Box me='auto'>
-                  <Heading fontSize='4xl' mb={2.5}>
-                    {title}
-                  </Heading>
-                  <Text color={'account.description'} fontWeight='400' fontSize='md'>
-                    {subTitle}
-                  </Text>
-                </Box>
-                <Outlet context={{ setTitle, setSubTitle } satisfies AuthOutletContextType} />
-              </Flex>
+        <Flex flexDirection='column' justifyContent={{ base: 'start', xl: 'center' }} alignItems='center' w='full'>
+          <Flex direction='column' gap={6} w={'100%'} maxW='500px'>
+            <Box me='auto'>
+              <Heading fontSize='4xl' mb={2.5}>
+                {title}
+              </Heading>
+              <Text color={'account.description'} fontWeight='400' fontSize='md'>
+                {subTitle}
+              </Text>
             </Box>
+            <Outlet context={{ setTitle, setSubTitle } satisfies AuthOutletContextType} />
           </Flex>
-          <Text
-            display={{ base: 'none', xl: 'block' }}
-            mt='auto'
-            color={'auth.text_color_secondary'}
-            py={5}
-            textAlign='center'
-          >
-            {t('rights', { defaultValue: '© 2024 Vocdoni Association. All Rights Reserved.' })}
-          </Text>
         </Flex>
+        <Text
+          display={{ base: 'none', xl: 'block' }}
+          mt='auto'
+          color={'auth.text_color_secondary'}
+          py={5}
+          textAlign='center'
+        >
+          {t('rights', { defaultValue: '© 2024 Vocdoni Association. All Rights Reserved.' })}
+        </Text>
       </Flex>
       <AuthBanner>
         <Flex flexGrow={1} alignItems='end' justifyContent='center'>
-          <Box mb={24}>
-            <Text fontSize='5xl' color='white' lineHeight={1} mb={0}>
+          <Box mb={{ base: 10, xl: 24 }}>
+            <Text fontSize='5xl' color='white' lineHeight={1} mb={{ base: 10, xl: 5 }}>
               {t('auth.title', { defaultValue: 'The global voting platform' })}
             </Text>
             <Text fontSize='lg' color='white'>
