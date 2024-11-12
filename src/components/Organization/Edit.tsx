@@ -87,8 +87,8 @@ const EditOrganization = () => {
       size: values.sizeSelect?.value,
       type: values.typeSelect?.value,
       country: values.countrySelect?.value,
-      timezone: values.timeZoneSelect.value,
-      language: values.languageSelect.value,
+      timezone: values.timeZoneSelect?.value,
+      language: values.languageSelect?.value,
     }
 
     await mutateAsync({ ...organization, ...newInfo })
