@@ -9,7 +9,7 @@ import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 const OrganizationVotings = () => {
   const { t } = useTranslation()
   const { setBack, setTitle } = useOutletContext<DashboardLayoutContext>()
-  const processes = useLoaderData()
+  const data = useLoaderData()
 
   // Set page title
   useEffect(() => {
@@ -19,7 +19,7 @@ const OrganizationVotings = () => {
 
   return (
     <DashboardContents>
-      <Votings data={processes as ElectionListWithPagination} />
+      <Votings data={data as ElectionListWithPagination} />
     </DashboardContents>
   )
 }
