@@ -33,9 +33,3 @@ export const paginatedElectionsQuery = (
       status: params.status?.toUpperCase() as FetchElectionsParameters['status'],
     }),
 })
-
-export const usePaginatedElections = (page: number) => {
-  const { client, account } = useClient()
-
-  return useQuery(paginatedElectionsQuery(account, client, { page }))
-}
