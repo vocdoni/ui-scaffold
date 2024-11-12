@@ -134,7 +134,19 @@ const InviteForm = () => {
           <FormLabel fontSize='sm'>
             <Trans i18nKey='invite.select_option'>Select an option</Trans>
           </FormLabel>
-          <Stack direction='column' my='10px' gap={0}>
+          <Stack
+            direction='column'
+            my='10px'
+            gap={0}
+            sx={{
+              '& :first-of-type': {
+                borderTopRadius: 'lg',
+              },
+              '& :last-of-type': {
+                borderBottomRadius: 'lg',
+              },
+            }}
+          >
             {rolesLoading && <Progress size='xs' isIndeterminate />}
             {roles &&
               roles?.map((role) => (
