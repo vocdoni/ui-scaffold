@@ -14,7 +14,7 @@ const OrganizationEdit = () => {
 
   // Set layout variables
   useEffect(() => {
-    setTitle(t('organization.title.dashboard', { defaultValue: 'Organization' }))
+    setTitle(t('organization.organization', { defaultValue: 'Organization' }))
   }, [setTitle])
 
   return (

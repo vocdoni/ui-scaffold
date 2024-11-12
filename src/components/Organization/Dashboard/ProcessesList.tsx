@@ -26,8 +26,8 @@ const ProcessesList = ({ loading, processes, error, limit }: ProcessesListProps)
           <AlertDescription>{error.message.toString()}</AlertDescription>
         </Alert>
       )}
-      <Flex w='full' gap={5} fontSize='sm'>
-        <Text flexGrow={1} flexShrink={0} flexBasis={48} textTransform='uppercase' ml={4}>
+      <Flex w='full' gap={5} fontSize='sm' pl={4}>
+        <Text flexGrow={1} flexShrink={0} flexBasis={48} textTransform='uppercase'>
           {t('process_list.title', { defaultValue: 'Title' })}
         </Text>
         <Text flexGrow={1} flexShrink={0} flexBasis={60} textTransform='uppercase'>

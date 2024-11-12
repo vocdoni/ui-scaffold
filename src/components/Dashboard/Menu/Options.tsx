@@ -80,10 +80,6 @@ export const DashboardMenuOptions = () => {
     setOpenSection((prev) => (prev === label ? null : label))
   }
 
-  useEffect(() => {
-    setOpenSection(() => menuItems[0].label)
-  }, [])
-
   return (
     <Box>
       <OrganizationName color='text.secondary' mb={2.5} />
