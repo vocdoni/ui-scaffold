@@ -59,7 +59,7 @@ const SignIn = () => {
   } = useAuth()
   const [verifyNeeded, setVerifyNeeded] = useState(false)
   const { mutateAsync: checkVerificationCodeStatus } = useVerificationCodeStatus()
-  const resendVerificationCode = useResendVerificationCode()
+  const { mutateAsync: resendVerificationCode } = useResendVerificationCode()
 
   const onSubmit = async (data: FormData) => {
     await login(data)
@@ -73,7 +73,7 @@ const SignIn = () => {
               return
             }
             // Code expired, resend verification code
-            await resendVerificationCode.mutateAsync(email)
+            await resendVerificationCode(email)
             setVerifyNeeded(true)
             toast({
               title: t('verification_code_resent', { defaultValue: 'Verification code resent!' }),
