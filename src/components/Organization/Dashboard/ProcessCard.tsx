@@ -24,7 +24,7 @@ const ProcessCard = () => {
       textDecoration='none'
       py='10px'
       borderRadius='xl'
-      pl={4}
+      px={4}
       _hover={{
         bgColor: 'process.card_hover.light',
 
