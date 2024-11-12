@@ -26,7 +26,7 @@ const VotingsList = () => {
   const { elections, pagination } = data
 
   return (
-    <Flex flexDirection='column' flexGrow={1} gap={5}>
+    <Flex flexDirection='column' flexGrow={1} gap={5} height='full'>
       <ProcessesList processes={elections} error={error} loading={isLoading} />
       <Flex mt='auto' justifyContent='end'>
         {!!elections?.length && <RoutedPagination pagination={pagination} />}
