@@ -1,4 +1,4 @@
-import { Alert, AlertDescription, Box, Flex, Progress, Text, VStack } from '@chakra-ui/react'
+import { Alert, AlertDescription, Flex, Progress, Text, VStack } from '@chakra-ui/react'
 import { ElectionProvider } from '@vocdoni/react-providers'
 import { InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
@@ -26,7 +26,7 @@ const ProcessesList = ({ loading, processes, error, limit }: ProcessesListProps)
           <AlertDescription>{error.message.toString()}</AlertDescription>
         </Alert>
       )}
-      <Flex w='full' gap={5} fontSize='sm'>
+      <Flex w='full' gap={5} fontSize='sm' pl={4}>
         <Text flexGrow={1} flexShrink={0} flexBasis={48} textTransform='uppercase'>
           {t('process_list.title', { defaultValue: 'Title' })}
         </Text>
@@ -42,7 +42,6 @@ const ProcessesList = ({ loading, processes, error, limit }: ProcessesListProps)
         <Text flexGrow={1} flexShrink={0} flexBasis={24} textTransform='uppercase'>
           {t('process_list.voters', { defaultValue: 'Voters' })}
         </Text>
-        <Box flexGrow={1} flexShrink={0} flexBasis={5}></Box>
       </Flex>
       <HSeparator />
       <VStack w='full'>
