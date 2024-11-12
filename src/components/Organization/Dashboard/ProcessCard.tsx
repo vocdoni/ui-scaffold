@@ -24,6 +24,7 @@ const ProcessCard = () => {
       textDecoration='none'
       py='10px'
       borderRadius='xl'
+      pl={4}
       _hover={{
         bgColor: 'process.card_hover.light',
 
@@ -41,7 +42,6 @@ const ProcessCard = () => {
         fontSize='md'
         textAlign='left'
         fontWeight='500'
-        ml={4}
         isTruncated
       />
       <Box flexGrow={1} flexShrink={0} flexBasis={60} whiteSpace='nowrap' fontWeight='500'>
