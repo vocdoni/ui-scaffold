@@ -79,10 +79,8 @@ export const useDashboardRoutes = () => {
                 <DashboardProcesses />
               </SuspenseLoader>
             ),
-            loader: async ({ params }) => {
-              const query = paginatedElectionsQuery(account, client, params)
-              return queryClient.getQueryData(query.queryKey) ?? (await queryClient.fetchQuery(query))
-            },
+            loader: async ({ params }) =>
+              await queryClient.ensureQueryData(paginatedElectionsQuery(account, client, params)),
             errorElement: <Error />,
           },
           {
