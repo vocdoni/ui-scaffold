@@ -1,16 +1,15 @@
 import { Button, Flex, Text, useToast } from '@chakra-ui/react'
 import { useMutation } from '@tanstack/react-query'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { NavLink, useNavigate, useOutletContext } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { api, ApiEndpoints, UnverifiedApiError } from '~components/Auth/api'
 import { ILoginParams } from '~components/Auth/authQueries'
 import { useAuth } from '~components/Auth/useAuth'
 import { VerifyAccountNeeded } from '~components/Auth/Verify'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import InputPassword from '~components/Layout/InputPassword'
-import { AuthOutletContextType } from '~elements/LayoutAuth'
 import { Routes } from '~src/router/routes'
 import CustomCheckbox from '../Layout/CheckboxCustom'
 import InputBasic from '../Layout/InputBasic'
@@ -40,19 +39,15 @@ const useResendVerificationCode = () =>
     },
   })
 
-const SignIn = () => {
+const SignIn = ({ email: emailProp }: { email?: string }) => {
   const { t } = useTranslation()
   const toast = useToast()
   const navigate = useNavigate()
-  const { setTitle, setSubTitle } = useOutletContext<AuthOutletContextType>()
-  const methods = useForm<FormData>()
+  const methods = useForm<FormData>({
+    defaultValues: { email: emailProp },
+  })
   const { handleSubmit, watch } = methods
-  const email = watch('email')
-
-  useEffect(() => {
-    setTitle(t('signin_title'))
-    setSubTitle(t('signin_subtitle'))
-  }, [])
+  const email = watch('email', emailProp)
 
   const {
     login: { mutateAsync: login, isError, error },

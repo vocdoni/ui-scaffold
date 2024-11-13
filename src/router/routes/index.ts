@@ -3,8 +3,9 @@ export const Routes = {
   auth: {
     signIn: '/account/signin',
     signUp: '/account/signup',
-    recovery: '/account/recovery',
+    recovery: '/account/password',
     verify: '/account/verify',
+    passwordReset: '/account/password/reset',
   },
   calculator: '/calculator',
   dashboard: {
