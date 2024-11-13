@@ -406,63 +406,63 @@ const RightSideCalculator = ({
           <RadioGroup value={String(totalTokens)} onChange={(e) => setTotalTokens(Number(e))} px={{ base: 5, lg: 14 }}>
             <Stack>
               <Flex gap={2}>
-                <Radio value='1000' id='1' colorScheme='secondary'></Radio>
-                <Flex as='label' grow={1} htmlFor='1' fontWeight={totalTokens === 1000 ? 'bold' : 'normal'}>
+                <Radio value='200' id='1' colorScheme='secondary'></Radio>
+                <Flex as='label' grow={1} htmlFor='1' fontWeight={totalTokens === 200 ? 'bold' : 'normal'}>
                   <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='start'>
-                    1K Tokens
+                    200 Tokens
                   </Text>
                   <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='center'>
                     1%
                   </Text>
                   <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='end'>
-                    149 €
+                    99 €
                   </Text>
                 </Flex>
               </Flex>
 
               <Flex gap={2}>
-                <Radio value='15000' id='2' colorScheme='secondary'></Radio>
-                <Flex as='label' grow={1} htmlFor='2' fontWeight={totalTokens === 15000 ? 'bold' : 'normal'}>
+                <Radio value='500' id='2' colorScheme='secondary'></Radio>
+                <Flex as='label' grow={1} htmlFor='2' fontWeight={totalTokens === 500 ? 'bold' : 'normal'}>
                   <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='start'>
-                    15K Tokens
+                    500 Tokens
                   </Text>
                   <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='center'>
-                    7%
+                    4%
                   </Text>
                   <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='end'>
-                    697 €
+                    240 €
                   </Text>
                 </Flex>
               </Flex>
               <Flex gap={2}>
-                <Radio value='30000' id='3' colorScheme='secondary'></Radio>
-                <Flex as='label' grow={1} htmlFor='3' fontWeight={totalTokens === 30000 ? 'bold' : 'normal'}>
+                <Radio value='1000' id='3' colorScheme='secondary'></Radio>
+                <Flex as='label' grow={1} htmlFor='3' fontWeight={totalTokens === 1000 ? 'bold' : 'normal'}>
                   <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='start'>
-                    30K Tokens
+                    1K Tokens
                   </Text>
                   <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='center'>
-                    15%
+                    10%
                   </Text>
                   <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='end'>
-                    1275 €
+                    450 €
                   </Text>
                 </Flex>
               </Flex>
               <Flex gap={2}>
-                <Radio value='50000' id='4' colorScheme='secondary'></Radio>
-                <Flex as='label' grow={1} htmlFor='4' fontWeight={totalTokens === 50000 ? 'bold' : 'normal'}>
+                <Radio value='2500' id='4' colorScheme='secondary'></Radio>
+                <Flex as='label' grow={1} htmlFor='4' fontWeight={totalTokens === 2500 ? 'bold' : 'normal'}>
                   <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='start'>
-                    50K Tokens
+                    2.5K Tokens
                   </Text>
                   <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='center'>
-                    21%
+                    20%
                   </Text>
                   <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='end'>
-                    5925 €
+                    1000 €
                   </Text>
                 </Flex>
               </Flex>
-              <Flex gap={2}>
+              {/* <Flex gap={2}>
                 <Radio value='100000' id='5' colorScheme='secondary'></Radio>
                 <Flex as='label' grow={1} htmlFor='5' fontWeight={totalTokens === 100000 ? 'bold' : 'normal'}>
                   <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='start'>
@@ -475,7 +475,7 @@ const RightSideCalculator = ({
                     10500 €
                   </Text>
                 </Flex>
-              </Flex>
+              </Flex> */}
             </Stack>
           </RadioGroup>
           <Box mt='auto'>
