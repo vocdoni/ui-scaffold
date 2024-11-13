@@ -1,4 +1,4 @@
-import { ColorMode, extendTheme, textDecoration } from '@chakra-ui/react'
+import { ColorMode, extendTheme } from '@chakra-ui/react'
 import { darkTheme, lightTheme } from '@rainbow-me/rainbowkit'
 import { theme as vtheme } from '@vocdoni/chakra-components'
 import { breakpoints } from './breakpoints'
@@ -14,15 +14,15 @@ import { Input } from './components/input'
 import { Link } from './components/link'
 import { Modal } from './components/modal'
 import { Pagination } from './components/pagination'
+import { ElectionQuestions } from './components/Questions'
 import { Radio } from './components/radio'
+import { ElectionResults } from './components/results'
 import { Stepper } from './components/stepper'
 import { Tabs } from './components/Tabs'
 import { Text } from './components/text'
 import { Textarea } from './components/textarea'
 import { editor } from './editor'
 import { spacing } from './space'
-import { ElectionQuestions } from './components/Questions'
-import { ElectionResults } from './components/results'
 
 export const theme = extendTheme(vtheme, {
   config: {

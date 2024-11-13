@@ -1,9 +1,8 @@
-import { FormControl, FormErrorMessage, FormLabel, Input } from '@chakra-ui/react'
-import { useState } from 'react'
+import { FormControl, FormErrorMessage, FormLabel, Input, InputProps } from '@chakra-ui/react'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
-export interface InputBasicProps {
+export interface InputBasicProps extends InputProps {
   formValue: string
   label: string
   placeholder?: string
@@ -19,11 +18,9 @@ const InputBasic = ({
   type = 'text',
   required = false,
   validation = {},
+  ...props
 }: InputBasicProps) => {
   const { t } = useTranslation()
-  const [show, setShow] = useState(false)
-  const handleClick = () => setShow(!show)
-
   const {
     register,
     formState: { errors },
@@ -39,7 +36,7 @@ const InputBasic = ({
   return (
     <FormControl isInvalid={!!errors[formValue]} isRequired={required}>
       {label && <FormLabel variant='process-create-title-sm'>{label}</FormLabel>}
-      <Input {...register(formValue, validationRules)} type={type} placeholder={placeholder} />
+      <Input {...register(formValue, validationRules)} type={type} placeholder={placeholder} {...props} />
       <FormErrorMessage mt={2}>{errorMessage || 'Error performing the operation'}</FormErrorMessage>
     </FormControl>
   )
