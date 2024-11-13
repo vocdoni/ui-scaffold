@@ -1,4 +1,5 @@
 export const colorsBase = {
+  beige: '#D2CBB9',
   black: '#000000',
   blue: {
     normal: '#3965FF',
@@ -248,6 +249,10 @@ export const colors = {
     },
     border_dark: colorsBase.white.pure,
     body_text: colorsBase.black,
+    most_popular_plan: {
+      bg: colorsBase.beige,
+      color: colorsBase.black,
+    },
     subtitle: {
       light: colorsBase.gray.normal,
       dark: colorsBase.gray.light,

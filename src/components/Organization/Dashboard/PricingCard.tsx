@@ -45,7 +45,21 @@ const PricingCard = ({
         </Button>
       </CardFooter>
       {popular && (
-        <Box>
+        <Box
+          position='absolute'
+          mt={-4}
+          ml='50%'
+          transform='translateX(-50%)'
+          fontSize='sm'
+          w='min-content'
+          whiteSpace='nowrap'
+          mx='auto'
+          py={1}
+          px={3}
+          borderRadius='full'
+          bgColor='pricing_card.most_popular_plan.bg'
+          color='pricing_card.most_popular_plan.color'
+        >
           <Trans i18nKey='pricing_card.most_popular_plan'>Most popular plan</Trans>
         </Box>
       )}

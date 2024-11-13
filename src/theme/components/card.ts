@@ -53,22 +53,6 @@ export const Card = defineMultiStyleConfig({
           border: '0.1px solid',
           borderColor: 'pricing_card.border_dark',
         },
-
-        '& > div:nth-of-type(4)': {
-          bgColor: '#D2CBB9',
-          w: 'min-content',
-          whiteSpace: 'nowrap',
-          mx: 'auto',
-          py: 1,
-          px: 3,
-          borderRadius: 'full',
-          position: 'absolute',
-          mt: -4,
-          ml: '50%',
-          transform: 'translateX(-50%)',
-          fontSize: 'sm',
-          color: 'black',
-        },
       },
       header: {
         pb: 0,
