@@ -34,7 +34,9 @@ const PricingCard = ({
         <Box>
           <UnorderedList>
             {features.map((feature, idx) => (
-              <ListItem key={idx}>{feature}</ListItem>
+              <ListItem key={idx} listStyleType='-'>
+                {feature}
+              </ListItem>
             ))}
           </UnorderedList>
         </Box>

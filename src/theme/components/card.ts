@@ -95,23 +95,13 @@ export const Card = defineMultiStyleConfig({
         },
         '& > div:last-of-type': {
           ml: 3,
+          border: '1px solid red',
 
           '& > ul': {
             maxW: 'fit-content',
             mx: 'auto',
             fontSize: 'sm',
-            listStyleType: 'none',
-            '& > li': {
-              position: 'relative',
-              paddingLeft: '1em',
-
-              '&::before': {
-                content: '"- "',
-                position: 'absolute',
-                left: 0,
-                color: 'currentColor',
-              },
-            },
+            listStyleType: '"- "',
           },
         },
       },
