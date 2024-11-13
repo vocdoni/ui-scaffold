@@ -55,7 +55,6 @@ const PricingCard = ({
           fontSize='sm'
           w='min-content'
           whiteSpace='nowrap'
-          mx='auto'
           py={1}
           px={3}
           borderRadius='full'

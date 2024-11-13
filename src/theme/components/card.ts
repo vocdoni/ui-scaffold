@@ -95,7 +95,6 @@ export const Card = defineMultiStyleConfig({
         },
         '& > div:last-of-type': {
           ml: 3,
-          border: '1px solid red',
 
           '& > ul': {
             maxW: 'fit-content',

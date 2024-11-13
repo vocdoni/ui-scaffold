@@ -82,7 +82,7 @@ export const PricingModal = ({ isOpenModal, onCloseModal }: { isOpenModal: boole
     },
   ]
   return (
-    <Modal isOpen={isOpenModal} onClose={onCloseModal} variant='pricing-modal'>
+    <Modal isOpen={isOpenModal} onClose={onCloseModal} variant='pricing-modal' size='full'>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>
