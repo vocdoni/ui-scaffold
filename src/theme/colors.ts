@@ -1,4 +1,5 @@
 export const colorsBase = {
+  beige: '#D2CBB9',
   black: '#000000',
   blue: {
     normal: '#3965FF',
@@ -240,6 +241,28 @@ export const colors = {
     text_brand: colorsBase.primary,
     text_secondary: colorsBase.gray.normal,
     question_index: colorsBase.primary,
+  },
+  pricing_card: {
+    bg: {
+      light: colorsBase.white.pure,
+      dark: colorsBase.blue.grayish,
+    },
+    border_dark: colorsBase.white.pure,
+    body_text: colorsBase.black,
+    most_popular_plan: {
+      bg: colorsBase.beige,
+      color: colorsBase.black,
+    },
+    subtitle: {
+      light: colorsBase.gray.normal,
+      dark: colorsBase.gray.light,
+    },
+  },
+  pricing_modal: {
+    bg: {
+      light: colorsBase.primary,
+      dark: colorsBase.blue.dark,
+    },
   },
   process_view: {
     bg_light: colorsBase.white.dark,

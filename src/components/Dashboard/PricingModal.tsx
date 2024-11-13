@@ -82,13 +82,13 @@ export const PricingModal = ({ isOpenModal, onCloseModal }: { isOpenModal: boole
     },
   ]
   return (
-    <Modal isOpen={isOpenModal} onClose={onCloseModal} variant='dashboard-plans'>
+    <Modal isOpen={isOpenModal} onClose={onCloseModal} variant='pricing-modal' size='full'>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>
           <Trans i18nKey='pricing_modal.title'>You need to upgrade to use this feature</Trans>
         </ModalHeader>
-        <ModalCloseButton fontSize='lg' />
+        <ModalCloseButton />
         <ModalBody>
           {cards.map((card, idx) => (
             <PricingCard key={idx} {...card} />
@@ -115,7 +115,7 @@ export const PricingModal = ({ isOpenModal, onCloseModal }: { isOpenModal: boole
             <Text>
               <Trans i18nKey='pricing_modal.help'>Need some help?</Trans>
             </Text>
-            <Button as={ReactRouterLink} colorScheme='white'>
+            <Button as={ReactRouterLink}>
               <Trans i18nKey='contact_us'>Contact us</Trans>
             </Button>
           </Box>

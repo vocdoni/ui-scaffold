@@ -13,11 +13,7 @@ export const Modal = defineMultiStyleConfig({
     },
   },
   variants: {
-    'dashboard-plans': {
-      dialogContainer: {
-        minW: '100vw',
-        minH: '100vh',
-      },
+    'pricing-modal': {
       dialog: {
         borderRadius: 0,
         m: 0,
@@ -25,9 +21,11 @@ export const Modal = defineMultiStyleConfig({
           base: 2.5,
           sm: 5,
         },
-        minW: '100vw',
-        minH: '100vh',
-        bgColor: '#546E39',
+
+        bgColor: 'pricing_modal.bg.light',
+        _dark: {
+          bgColor: 'pricing_modal.bg.dark',
+        },
       },
       header: {
         pt: 12,
