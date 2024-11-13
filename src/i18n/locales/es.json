@@ -831,7 +831,7 @@
   },
   "password": "Contraseña",
   "pricing_card": {
-    "from": "From ${price}/year",
+    "from": "Desde {{price}}/año",
     "most_popular_plan": "Most popular plan",
     "view_features": "View all features"
   },

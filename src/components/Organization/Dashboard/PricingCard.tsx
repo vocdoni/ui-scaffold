@@ -27,7 +27,9 @@ const PricingCard = ({
           <Trans i18nKey='subscribe'>Subscribe</Trans>
         </Button>
         <Text>
-          <Trans i18nKey='pricing_card.from' values={{}}></Trans>
+          <Trans i18nKey='pricing_card.from' values={{ price }}>
+            From ${price}/year
+          </Trans>
         </Text>
         <Box>
           <UnorderedList>
