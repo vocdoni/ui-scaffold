@@ -258,7 +258,8 @@ export const colors = {
       light: colorsBase.primary,
       dark: colorsBase.blue.dark,
     },
-  },  process_view: {
+  },
+  process_view: {
     bg_light: colorsBase.white.dark,
     bg_dark: colorsBase.blue.dark,
   },
