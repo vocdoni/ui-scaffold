@@ -58,10 +58,6 @@ export const useAuthProvider = () => {
 
   const bearedFetch = useCallback(
     <T>(path: string, { headers = new Headers({}), ...params }: ApiParams = {}) => {
-      if (!bearer) {
-        logout()
-        throw new Error('No bearer token')
-      }
       if (bearer) {
         headers.append('Authorization', `Bearer ${bearer}`)
       }
