@@ -167,7 +167,7 @@ const InviteForm = () => {
           </Stack>
         </FormControl>
         <Flex justifyContent='center'>
-          <Button mx='auto' type='submit'>
+          <Button mx='auto' type='submit' isLoading={mutation.isPending}>
             <Trans i18nKey='submit'>Submit</Trans>
           </Button>
         </Flex>
