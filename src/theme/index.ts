@@ -101,6 +101,10 @@ export const theme = extendTheme(vtheme, {
   breakpoints,
   spacing,
   colors,
+  sizes: {
+    'modal-stretch': 'calc(100% + var(--chakra-space-5)*2 + var(--chakra-space-6)*2)',
+    'modal-stretch-lg': 'calc(100% + var(--chakra-space-10)*2 + var(--chakra-space-6)*2)',
+  },
 })
 
 export const rainbowStyles = (colormode: ColorMode) => {

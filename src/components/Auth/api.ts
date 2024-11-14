@@ -1,17 +1,19 @@
 type MethodTypes = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
 export enum ApiEndpoints {
+  InviteAccept = 'organizations/{address}/members/accept',
   Login = 'auth/login',
   Me = 'users/me',
-  InviteAccept = 'organizations/{address}/members/accept',
   Organization = 'organizations/{address}',
   OrganizationMembers = 'organizations/{address}/members',
   OrganizationPendingMembers = 'organizations/{address}/members/pending',
   Organizations = 'organizations',
   OrganizationsRoles = 'organizations/roles',
+  OrganizationSubscription = 'organizations/{address}/subscription',
   Password = 'users/password',
   PasswordRecovery = 'users/password/recovery',
   PasswordReset = 'users/password/reset',
+  Plans = 'plans',
   Refresh = 'auth/refresh',
   Register = 'users',
   Verify = 'users/verify',

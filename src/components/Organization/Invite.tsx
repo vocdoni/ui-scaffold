@@ -30,9 +30,12 @@ import { FormProvider, useController, useForm, useFormContext } from 'react-hook
 import { Trans, useTranslation } from 'react-i18next'
 import { ApiEndpoints } from '~components/Auth/api'
 import { HSeparator } from '~components/Auth/SignIn'
+import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
 import InputBasic from '~components/Layout/InputBasic'
+import { SubscriptionPermission } from '~constants'
 import { CallbackProvider, useCallbackContext } from '~utils/callback-provider'
+import { useTeamMembers } from './Team'
 
 type InviteData = {
   email: string
@@ -178,12 +181,21 @@ const InviteForm = () => {
 
 export const InviteToTeamModal = (props: ButtonProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { permission } = useSubscription()
+  const { t } = useTranslation()
+  const { data: members, isLoading } = useTeamMembers()
+
+  const canInvite = permission(SubscriptionPermission.Memberships) > (members?.length || 0)
 
   return (
     <>
-      <Button onClick={onOpen} {...props}>
-        <Trans i18nKey='invite_people'>Invite People</Trans>
-      </Button>
+      {canInvite ? (
+        <Button onClick={onOpen} {...props} isLoading={isLoading} loadingText={t('loading')}>
+          <Trans i18nKey='invite_people'>Invite People</Trans>
+        </Button>
+      ) : (
+        <Text>You must upgrade!</Text>
+      )}
       <CallbackProvider success={() => onClose()}>
         <Modal isOpen={isOpen} onClose={onClose} size='xl' closeOnOverlayClick>
           <ModalOverlay />

@@ -175,6 +175,8 @@
       "success_title": "Los tokens han sido reclamados correctamente"
     }
   },
+  "confirm_password": "Confirm Password",
+  "confirm_password_placeholder": "Confirm your new password",
   "contact_us": "Contact us",
   "control": "Control:",
   "copy": {
@@ -230,7 +232,6 @@
     "private_org": "Private Organization Details",
     "private_org_description": "Help us tailor your experience with information about your org. We won't share this info",
     "public_info": "Public Organization Information",
-    "subtitle": "Cut cost, Save Time: Secure, Private, and GDPR Compliant",
     "support_during_trial_period": "Support during the trial period",
     "title": "Create Your Organization",
     "unlimited_voting_processes": "Unlimited creation of voting processes",
@@ -264,7 +265,8 @@
     "loading_page": "Error al cargar la página",
     "loading_roles": "Cargando roles",
     "not_found": "Lo sentimos, la página que buscabas no fue encontrada.",
-    "return_to_home": "Ves al inicio"
+    "return_to_home": "Ves al inicio",
+    "title": "Error"
   },
   "error_text": "Lo sentimos, no se encontró la página que buscabas.",
   "faucet": {
@@ -705,11 +707,20 @@
     "title": "<p1>¿Estás</p1><p2>listo para una nueva Era en la gobernanza Web3?</p2>"
   },
   "invite": {
+    "account_not_verified": "Your account is not verified. Please verify your account to continue.",
+    "create_account_subtitle": "You need an account first, in order to accept your invite",
+    "create_account_title": "Create your account",
     "error": "Error",
+    "go_to_verify": "Verify Account",
+    "invalid_link": "Invalid invite link received",
+    "processing": "Processing your invitation...",
     "select_option": "Selecciona una opción",
     "subtitle": "Trabajar junto a otros es la clave para el éxito.",
     "success": "¡Invitación enviada!",
+    "success_description": "You can now sign in",
+    "success_title": "Invitation accepted",
     "title": "Invita gente a tu equipo",
+    "unexpected_error": "",
     "user_invited": "Se ha mandado a {{ email }}"
   },
   "invite_people": "Invitar Gente",
@@ -763,6 +774,8 @@
     "description2": "Como <span>paquete de bienvenida</span>, recibirá {{ faucetAmount }} tokens gratis para comenzar a utilizar nuestra plataforma.",
     "title": "Nueva Organización"
   },
+  "new_password": "New Password",
+  "new_password_placeholder": "Enter your new password",
   "new_voting": "Nueva votación",
   "not_registred_yet": "¿Aún no estás registrado?",
   "open_in_explorer": "Abrir en explorador",
@@ -794,50 +807,52 @@
   "overwrite": "overwrite",
   "password": "Contraseña",
   "password_placeholder": "Min 8 characters",
+  "password_reset": {
+    "subtitle": "If your email corresponds to an existing account, you'll receive an email with a code to reset your password.",
+    "title": "Password reset"
+  },
+  "passwords_do_not_match": "",
   "personalization": "personalization",
   "preview": "Preview",
+  "pricing": {
+    "advanced_analytitcs": "Informes y análisis avanzados",
+    "basic_analytics": "Informes y análisis básicos",
+    "core_voting": "Funciones básicas de votación",
+    "essential_subtitle": "Organizaciones pequeñas o medianas o grupos comunitarios con necesidades básicas de votación.",
+    "essential_title": "Esencial",
+    "features": {
+      "approval": "Votación por aprobación",
+      "email_reminder": "Recordatorios por correo electrónico",
+      "memberships": "Hasta {{ value }} membresías",
+      "personalization": "Personalización",
+      "ranked": "Votación por rango",
+      "sms_notification": "Notificaciones por SMS",
+      "sub_orgs": "Hasta {{ value }} suborganizaciones",
+      "weighted": "Votación ponderada"
+    },
+    "free_subtitle": "Organizaciones pequeñas o grupos comunitarios con necesidades básicas de votación.",
+    "free_title": "Gratis",
+    "gpdr_compilance": "Cumplimiento del GDPR",
+    "help": "¿Necesitas ayuda?",
+    "members_size": "{{ from }}-{{ to }} miembros",
+    "membership_size": "Selecciona el tamaño de tu organización:",
+    "premium_subtitle": "Un volumen más grande que requiere funciones más avanzadas.",
+    "premium_title": "Premium",
+    "priority_support": "Soporte prioritario por tickets",
+    "ticket_support": "Soporte por tickets",
+    "title": "Nuestros planes",
+    "unlimited_yearly_processes": "Procesos anuales ilimitados",
+    "up_to_admins": "Hasta {{ admin }} admin. y {{ org }} organizaciones",
+    "upgrade_title": "Debes actualizar tu plan para usar esta funcionalidad",
+    "yearly_processes_one": "{{ count }} proceso anual",
+    "yearly_processes_many": "",
+    "yearly_processes_other": "{{ count }} procesos anuales",
+    "your_plan": "Actualmente estás suscrito al plan 'Your plan'. Si actualizas, solo te cobraremos la diferencia anual. En el próximo período de facturación, que comienza el 'dd/mm/aa', pagarás por el nuevo plan seleccionado."
+  },
   "pricing_card": {
     "from": "Desde {{price}}/año",
     "most_popular_plan": "Most popular plan",
-    "view_features": "View all features"
-  },
-  "pricing_modal": {
-    "custom_feat": {
-      "account_manager": "Dedicated account manager",
-      "advanced_security": "Advanced security features",
-      "all_votings": "All faetures & voting types",
-      "full_tech_support": "Full technical support (ticket, chat, email)",
-      "unlimited_admins": "Unlimited Admins & suborgs",
-      "unlimited_processes": "Unlimited yearly voting processes",
-      "white_label_solution": "White-label solution"
-    },
-    "custom_subtitle": "Large organizations enterprises, and institutions requiring extensive customization and support.",
-    "custom_title": "Custom Plan",
-    "essential_feat": {
-      "core_voting": "Core voting features",
-      "gpdr_compilance": "GDPR compliance",
-      "report_analytitcs": "Basic reporting and analytics",
-      "ticket_support": "Ticket support",
-      "up_to_admins": "Up to 3 Admins and 1 org",
-      "yearly_processes": "5 yearly voting processes"
-    },
-    "essential_subtitle": "Small or medium-sized orgs or community groups with basic voting needs.",
-    "essential_title": "Essential",
-    "help": "Need some help?",
-    "more_voters": "If you need more voters, you can select it here:",
-    "premium_feat": {
-      "all_essential": "All essential plan features",
-      "custom_subdomain": "Custom subdomain & branding",
-      "gpdr_compilance": "GDPR compliance",
-      "report_analytitcs": "Advanced reporting & analytics",
-      "ticket_support": "Ticket and chat support",
-      "up_to_admins": "Up to 5 Admins",
-      "yearly_processes": "10 yearly voting processes"
-    },
-    "premium_subtitle": "Larger amount that require more advanced features.",
-    "premium_title": "Premium",
-    "title": "You need to upgrade to use this feature",
-    "your_plan": "Currently you are subscribed to the 'Your plan' subscription. If you upgrade, we will only charge the yearly difference. In the next billing period, starting on 'dd/mm/yy' you will pay for the new select plan."
+    "view_features": "Ver todas las características"
   },
   "privacy_policy": "Privacy Policy",
   "process": {
@@ -1008,6 +1023,7 @@
   },
   "ranked": "ranked",
   "remove": "Remove",
+  "reset_password_button": "Reset Password",
   "rights": "© 2024 Asociación Vocdoni. Todos los derechos reservados.",
   "role": {
     "read_permission": "Read-only access",
@@ -1035,21 +1051,27 @@
   "signup_title": "Regístrate",
   "single": "single",
   "skip": "Omitir",
-  "smsNotification": "smsNotification",
-  "submit": "Submit",
-  "subscribe": "Subscribe",
+  "smsNotification": "Notificación SMS",
+  "submit": "Envía",
+  "subscribe": "Suscribirse",
   "subscription": "Suscripción",
   "support": "Soporte",
   "surname": {
-    "label": "Surname",
-    "required": "Surname is required"
+    "label": "Apellido",
+    "required": "El apellido es obligatorio"
   },
-  "team": "Equipo",
+  "team": {
+    "expiration": "Expiración",
+    "member_name": "Nombre",
+    "member_role": "Rol",
+    "pending_members": "Invitaciones pendientes",
+    "team_members": "Miembros del equipo",
+    "title": "Equipo"
+  },
   "teams": "Teams",
   "terms_and_conditions": "Terms and Conditions",
   "terms_of_use": "Condiciones de uso",
   "total_votes_submitted": "Total Votes Submitted",
-  "trust_on_us": "Trust on us",
   "update": "Update",
   "upload": "Upload",
   "uploader": {
@@ -1061,6 +1083,9 @@
     "read_more": "Leer más"
   },
   "user_management": "Gestión de usuarios",
+  "verification_code": "Verification Code",
+  "verification_code_placeholder": "Enter the verification code",
+  "verification_code_resent": "Verification code resent!",
   "verify": {
     "account_created_succesfully": "Account created successfully!",
     "email_sent": "Email sent successfully",
