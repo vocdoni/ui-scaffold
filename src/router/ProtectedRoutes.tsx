@@ -1,10 +1,12 @@
-import { Navigate, Outlet } from 'react-router-dom'
-import { useAuth } from '~components/Auth/useAuth'
+import AccountProtectedRoute from '~src/router/AccountProtectedRoute'
+import OrganizationProtectedRoute from '~src/router/OrganizationProtectedRoute'
 
 const ProtectedRoutes = () => {
-  const { signerAddress } = useAuth()
-
-  return signerAddress ? <Outlet /> : <Navigate to='/' replace={true} />
+  return (
+    <AccountProtectedRoute>
+      <OrganizationProtectedRoute />
+    </AccountProtectedRoute>
+  )
 }
 
 export default ProtectedRoutes

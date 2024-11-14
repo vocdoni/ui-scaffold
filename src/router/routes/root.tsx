@@ -1,16 +1,17 @@
-import { useClient } from '@vocdoni/react-providers'
-import { VocdoniSDKClient } from '@vocdoni/sdk'
-import { lazy } from 'react'
-import { Params } from 'react-router-dom'
+import {useClient} from '@vocdoni/react-providers'
+import {VocdoniSDKClient} from '@vocdoni/sdk'
+import {lazy} from 'react'
+import {Params} from 'react-router-dom'
 // These aren't lazy loaded since they are main layouts and related components
 import Error from '~elements/Error'
 import Layout from '~elements/Layout'
-import { StripeCheckout, StripeReturn } from '~elements/Stripe'
-import { Routes } from '.'
-import { SuspenseLoader } from '../SuspenseLoader'
+import {StripeCheckout, StripeReturn} from '~elements/Stripe'
+import ProtectedRoutes from '~src/router/ProtectedRoutes'
+import {Routes} from '.'
+import {SuspenseLoader} from '../SuspenseLoader'
 
 // Lazy loading helps splitting the final code, which helps downloading the app (theoretically)
-const OrganizationProtectedRoute = lazy(() => import('../OrganizationProtectedRoute'))
+const AccountProtectedRoute = lazy(() => import('../AccountProtectedRoute'))
 
 // elements / pages
 const Faucet = lazy(() => import('~elements/Faucet'))
@@ -76,7 +77,7 @@ const RootElements = (client: VocdoniSDKClient) => [
   {
     element: (
       <SuspenseLoader>
-        <OrganizationProtectedRoute />
+        <ProtectedRoutes />
       </SuspenseLoader>
     ),
     children: [

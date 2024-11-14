@@ -12,6 +12,7 @@ export const Routes = {
   dashboard: {
     base: '/admin',
     organization: '/admin/organization',
+    organizationCreate: '/admin/organization/create',
     process: '/admin/process/:id',
     processes: '/admin/processes/:page?/:status?',
     profile: '/admin/profile',
