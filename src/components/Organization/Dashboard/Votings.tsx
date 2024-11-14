@@ -1,33 +1,30 @@
 import { Flex } from '@chakra-ui/react'
 import { RoutedPagination } from '@vocdoni/chakra-components'
-import { RoutedPaginationProvider, useOrganization, useRoutedPagination } from '@vocdoni/react-providers'
-import { usePaginatedElections } from '~src/queries/organization'
+import { RoutedPaginationProvider, useOrganization } from '@vocdoni/react-providers'
+import { ElectionListWithPagination } from '@vocdoni/sdk'
 import { Routes } from '~src/router/routes'
 import ProcessesList from './ProcessesList'
 
-const Votings = () => {
+const Votings = ({ data }: { data: ElectionListWithPagination }) => {
   const { organization } = useOrganization()
 
   if (!organization) return null
 
   return (
     <RoutedPaginationProvider path={Routes.dashboard.processes}>
-      <VotingsList />
+      <VotingsList data={data} />
     </RoutedPaginationProvider>
   )
 }
 
-const VotingsList = () => {
-  const { page } = useRoutedPagination()
-  const { data, error, isLoading } = usePaginatedElections(page ?? 0)
-
+const VotingsList = ({ data }: { data: ElectionListWithPagination }) => {
   if (!data) return null
 
   const { elections, pagination } = data
 
   return (
     <Flex flexDirection='column' flexGrow={1} gap={5} height='full'>
-      <ProcessesList processes={elections} error={error} loading={isLoading} />
+      <ProcessesList processes={elections} />
       <Flex mt='auto' justifyContent='end'>
         {!!elections?.length && <RoutedPagination pagination={pagination} />}
       </Flex>
