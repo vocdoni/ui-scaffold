@@ -25,7 +25,7 @@ import {
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useOrganization } from '@vocdoni/react-providers'
 import { ensure0x } from '@vocdoni/sdk'
-import { ReactElement } from 'react'
+import { ReactNode } from 'react'
 import { FormProvider, useController, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { ApiEndpoints } from '~components/Auth/api'
@@ -99,7 +99,7 @@ const InviteForm = () => {
       onSuccess: () => {
         toast({
           title: t('invite.success', { defaultValue: 'Invitation sent successfully!' }),
-          description: t('invite.user_invited'),
+          description: t('invite.user_invited', { defaultValue: 'Email sent to {{email}}', email: data.email }),
           status: 'success',
           duration: 5000,
           isClosable: true,
@@ -154,7 +154,7 @@ const InviteForm = () => {
                   key={role.role}
                   name='role'
                   value={role.role}
-                  fieldName={<Trans>{role.name}</Trans>}
+                  fieldName={role.name}
                   description={
                     role.writePermission ? (
                       <Trans i18nKey='role.write_permission'>Can create and edit content</Trans>
@@ -212,8 +212,8 @@ export const InviteToTeamModal = (props: ButtonProps) => {
 
 type RoleRadioProps = FlexProps & {
   name: string
-  fieldName: ReactElement
-  description: ReactElement
+  fieldName: ReactNode
+  description: ReactNode
   value: string
 }
 
