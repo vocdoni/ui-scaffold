@@ -12,9 +12,9 @@ import {
   List,
   ListItem,
   useDisclosure,
-  useOutsideClick,
+  useMediaQuery,
 } from '@chakra-ui/react'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { generatePath, Link as ReactRouterLink } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
@@ -51,9 +51,9 @@ const NavbarMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
         <NavbarMenuContent />
       </Box>
 
-      <Drawer isOpen={isOpen} placement='left' onClose={onClose}>
+      <Drawer isOpen={isOpen} placement='right' onClose={onClose}>
         <DrawerOverlay />
-        <DrawerContent bg='dashboard.sidebar.bg.light' _dark={{ bg: 'dashboard.sidebar.bg.dark' }}>
+        <DrawerContent bg='dashboard.sidebar.bg.light' _dark={{ bg: 'dashboard.sidebar.bg.dark' }} overflow='auto'>
           <Box p={4} display='flex' flexDirection='column' alignItems='start' gap={4}>
             <NavbarMenuContent />
             <NavbarMenuButtons alignSelf='center' />
@@ -66,13 +66,8 @@ const NavbarMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
 
 const NavbarMenuContent = () => {
   const { t } = useTranslation()
-  const ref = useRef()
   const [openSection, setOpenSection] = useState<string | null>(null)
-
-  useOutsideClick({
-    ref: ref,
-    handler: () => setOpenSection(null),
-  })
+  const [isLargerThanXL] = useMediaQuery('(min-width: 1279px)')
 
   const handleToggle = (label: string) => {
     setOpenSection((prev) => (prev === label ? null : label))
@@ -120,17 +115,17 @@ const NavbarMenuContent = () => {
               <DashboardMenuItem
                 label={item.label}
                 route={item.route}
-                isOpen={openSection === item.label}
+                isOpen={isLargerThanXL ? openSection === item.label : true}
                 onToggle={() => handleToggle(item.label)}
                 hasChildren
               />
-              <Collapse in={openSection === item.label}>
+              <Collapse in={isLargerThanXL ? openSection === item.label : true}>
                 <List
-                  ref={ref}
                   zIndex={20}
-                  position='absolute'
+                  position={{ base: 'relative', xl: 'absolute' }}
                   gap={6}
-                  p={6}
+                  px={6}
+                  pt={{ base: 0, xl: 6 }}
                   bgColor={'navbar.bg_light'}
                   _dark={{ bgColor: 'navbar.bg_dark' }}
                 >
