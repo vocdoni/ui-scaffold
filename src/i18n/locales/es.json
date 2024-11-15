@@ -102,8 +102,8 @@
       "votes": "Votos: {{ votes }} ({{ percent }})"
     },
     "schedule": {
-      "created": "Creado hace {{ distance }}",
-      "ended": "Finalizado hace {{ distance }}",
+      "created": "Creado {{ distance }}",
+      "ended": "Finalizado {{ distance }}",
       "from_begin_to_end": "Votación del {{ begin }} al {{ end }}",
       "paused_end": "Finaliza en {{ distance }}",
       "paused_start": "Comienza en {{ distance }}"
