@@ -17,6 +17,13 @@ export const Routes = {
     team: '/admin/team',
   },
   faucet: '/faucet',
+  navbar: {
+    useCases: '/usecases',
+    features: '/features',
+    pricing: '/pricing',
+    demos: '/demos',
+    contactUs: '/contactus',
+  },
   organization: '/organization/:address',
   privacy: '/privacy',
   processes: {

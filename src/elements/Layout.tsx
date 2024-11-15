@@ -1,4 +1,4 @@
-import { Box, Flex, HStack } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
 import { Outlet, ScrollRestoration, useLocation } from 'react-router-dom'
 import Footer from '~components/Layout/Footer'
 import Navbar from '~components/Navbar'
@@ -17,9 +17,16 @@ const Layout = () => {
         bgColor: 'process_view.bg_dark',
       }}
     >
-      <HStack as='header' position='sticky' top={0} w='full' backdropFilter='blur(40px)' zIndex={30}>
+      <Box
+        as='header'
+        position='sticky'
+        zIndex={30}
+        top={0}
+        bgColor={'navbar.bg_light'}
+        _dark={{ bgColor: 'navbar.bg_dark' }}
+      >
         <Navbar />
-      </HStack>
+      </Box>
       <ScrollRestoration />
       <Flex flexDirection='column' as='main' flexGrow={1}>
         <Outlet />
