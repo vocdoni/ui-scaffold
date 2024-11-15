@@ -1,5 +1,5 @@
 import { DefinedInitialDataOptions, QueryKey, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { ApiEndpoints } from '~components/Auth/api'
+import { api, ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 
 export interface Organization {
@@ -65,3 +65,21 @@ export const useUpdateProfile = () => {
     },
   })
 }
+
+type InviteAcceptRequestBody = {
+  code: string
+  user: {
+    firstName: string
+    lastName: string
+    password: string
+  }
+}
+
+export const useSignupFromInvite = (address: string) =>
+  useMutation<AuthResponse, Error, InviteAcceptRequestBody>({
+    mutationFn: (body) =>
+      api<AuthResponse>(ApiEndpoints.InviteAccept.replace('{address}', address), {
+        method: 'POST',
+        body,
+      }),
+  })

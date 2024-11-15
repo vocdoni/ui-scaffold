@@ -45,13 +45,13 @@ export const useAuthProvider = () => {
   const [bearer, setBearer] = useState<string | null>(localStorage.getItem(LocalStorageKeys.Token))
 
   const login = useLogin({
-    onSuccess: (data, variables) => {
+    onSuccess: (data) => {
       storeLogin(data)
     },
   })
   const register = useRegister()
   const mailVerify = useVerifyMail({
-    onSuccess: (data, variables) => {
+    onSuccess: (data) => {
       storeLogin(data)
     },
   })

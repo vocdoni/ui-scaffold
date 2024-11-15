@@ -1,0 +1,14 @@
+import { useSearchParams } from 'react-router-dom'
+import AcceptInvitation from '~components/Account/AcceptInvitation'
+
+const AcceptInvite = () => {
+  const [searchParams] = useSearchParams()
+
+  const code = searchParams.get('code')
+  const address = searchParams.get('address')
+  const email = searchParams.get('email')
+
+  return <AcceptInvitation code={code} address={address} email={email} />
+}
+
+export default AcceptInvite
