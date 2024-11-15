@@ -102,8 +102,8 @@
       "votes": "Vots: {{ votes }} ({{ percent }})"
     },
     "schedule": {
-      "created": "Creat fa {{ distance }}",
-      "ended": "Finalitzat fa {{ distance }}",
+      "created": "Creat {{ distance }}",
+      "ended": "Finalitzat {{ distance }}",
       "from_begin_to_end": "Votació del {{ begin }} al {{ end }}",
       "paused_end": "Finalitza {{ distance }}",
       "paused_start": "Comença {{ distance }}"
