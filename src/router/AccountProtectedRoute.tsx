@@ -1,11 +1,10 @@
 import { useClient } from '@vocdoni/react-providers'
-import { PropsWithChildren } from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
 import { Loading } from '~src/router/SuspenseLoader'
 import { Routes } from './routes'
 
-const AccountProtectedRoute = ({ children = null }: PropsWithChildren) => {
+const AccountProtectedRoute = () => {
   const {
     loaded: { account: fetchLoaded },
     loading: { account: fetchLoading },
@@ -20,7 +19,7 @@ const AccountProtectedRoute = ({ children = null }: PropsWithChildren) => {
     return <Navigate to={Routes.auth.signIn} />
   }
 
-  return children ?? <Outlet />
+  return <Outlet />
 }
 
 export default AccountProtectedRoute
