@@ -1,11 +1,11 @@
-import { Box, Grid, GridItem, Text } from '@chakra-ui/react'
+import { Box, Grid, GridItem, Link, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { Link as ReactRouterLink } from 'react-router-dom'
 import { Routes } from '~src/router/routes'
 
 type UseCasesItem = {
   title: string
-  childrens: Array<{ section: string; url: string }>
+  childrens: Array<{ section: string; url: string; isExternal?: boolean }>
 }
 
 const Footer = () => {
@@ -39,6 +39,7 @@ const Footer = () => {
         {
           section: t('footer.company.blog', { defaultValue: 'Blog' }),
           url: Routes.blog,
+          isExternal: true,
         },
         {
           section: t('footer.company.careers', { defaultValue: 'Careers' }),
@@ -99,7 +100,7 @@ const Footer = () => {
           <GridItem key={index} display='flex' flexDirection='column' pl='40%'>
             <Text fontWeight='bold'>{item.title}</Text>
             {item.childrens.map((link, idx) => (
-              <Link key={idx} to={link.url}>
+              <Link as={ReactRouterLink} key={idx} to={link.url} isExternal={link.isExternal}>
                 {link.section}
               </Link>
             ))}
