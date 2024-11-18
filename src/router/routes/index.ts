@@ -1,7 +1,5 @@
 export const Routes = {
   root: '/',
-  aboutUs: 'about-us',
-  api: '/api',
   auth: {
     signIn: '/account/signin',
     signUp: '/account/signup',
@@ -9,10 +7,8 @@ export const Routes = {
     verify: '/account/verify',
     passwordReset: '/account/password/reset',
   },
-  blog: 'https://blog.vocdoni.io/',
   calculator: '/calculator',
-  careers: '/careers',
-  compliance: '/compliance',
+  contactUs: 'contact-us',
   dashboard: {
     base: '/admin',
     organization: '/admin/organization',
@@ -21,18 +17,13 @@ export const Routes = {
     profile: '/admin/profile',
     team: '/admin/team',
   },
-  documentation: '/documentation',
   faucet: '/faucet',
-  features: '',
   organization: '/organization/:address',
-  pricing: '/pricing',
   privacy: '/privacy',
   processes: {
     create: '/admin/processes/create',
     view: '/processes/:id',
   },
-  security: '/security',
-  support: '/support',
   stripe: {
     checkout: '/stripe/checkout/:amount?',
     return: '/stripe/return/:sessionId',

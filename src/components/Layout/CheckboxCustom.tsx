@@ -1,4 +1,4 @@
-import { Box, Checkbox, Flex, FormControl, FormErrorMessage, FormLabel } from '@chakra-ui/react'
+import { Checkbox, Flex, FormControl, FormErrorMessage, FormLabel, Text } from '@chakra-ui/react'
 import { ReactNode } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -10,7 +10,13 @@ export interface CheckboxCustomProps {
   colorScheme?: string
 }
 
-const CheckboxCustom = ({ formValue, label, required = false, colorScheme = 'brandScheme' }: CheckboxCustomProps) => {
+const CheckboxCustom = ({
+  formValue,
+  label,
+  required = false,
+  colorScheme = 'brandScheme',
+  ...props
+}: CheckboxCustomProps) => {
   const { t } = useTranslation()
   const {
     register,
@@ -24,11 +30,13 @@ const CheckboxCustom = ({ formValue, label, required = false, colorScheme = 'bra
   const errorMessage = (errors[formValue]?.message as string) || ''
 
   return (
-    <FormControl isInvalid={!!errors[formValue]} isRequired={required}>
-      <Flex alignItems='center'>
+    <FormControl isInvalid={!!errors[formValue]} isRequired={required} {...props}>
+      <Flex alignItems='center' cursor='pointer'>
         <Checkbox {...register(formValue, validationRules)} colorScheme={colorScheme} me={2.5} />
-        <FormLabel display='flex' mb={0} fontWeight='normal' fontSize='sm'>
-          <Box>{label}</Box>
+        <FormLabel>
+          <Text as='span' mb={0} fontWeight='normal' fontSize='sm' _hover={{ cursor: 'pointer' }}>
+            {label}
+          </Text>
         </FormLabel>
       </Flex>
       <FormErrorMessage>{errorMessage || 'Error performing the operation'}</FormErrorMessage>
