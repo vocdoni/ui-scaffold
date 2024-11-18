@@ -71,6 +71,13 @@ export const colors = {
   home: {
     trusted_bg: colorsBase.white.pure,
     use_cases_bg: colorsBase.white.pure,
+    start_now: {
+      bg_light: colorsBase.blue.dark,
+      bg_dark: colorsBase.white.pure,
+      btn_bg_dark: colorsBase.blue.dark,
+      color_light: colorsBase.white.pure,
+      color_dark: colorsBase.black,
+    },
   },
   checkbox: {
     bg: colorsBase.primary,
@@ -89,7 +96,6 @@ export const colors = {
       },
     },
   },
-
   google: {
     bg: {
       light: colorsBase.gray.light,

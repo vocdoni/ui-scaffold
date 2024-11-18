@@ -1,6 +1,7 @@
 import Clients from './Clients'
 import CreateProcess from './CreateProcess'
 import Features from './Features'
+import StartNow from './StartNow'
 import UseCases from './UseCases'
 
 const Home = () => (
@@ -9,6 +10,7 @@ const Home = () => (
     <Clients />
     <Features />
     <UseCases />
+    <StartNow />
   </>
 )
 
