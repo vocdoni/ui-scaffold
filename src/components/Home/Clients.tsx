@@ -1,5 +1,6 @@
-import { Box, Card, CardBody, CardHeader, Grid, Image, Text } from '@chakra-ui/react'
+import { Card, CardBody, CardHeader, Grid, Image, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
+import Wrapper from '~components/Layout/Wrapper'
 import barca from '/assets/barca.png'
 import bellpuig from '/assets/bellpuig.svg.png'
 import berga from '/assets/berga.svg.png'
@@ -15,7 +16,7 @@ const Clients = () => {
   const { t } = useTranslation()
 
   return (
-    <Box py={10}>
+    <Wrapper as='section' display='block' py={10}>
       <Text textAlign='center' mb={20}>
         {t('clients', { defaultValue: 'Trusted by leading organizations' })}
       </Text>
@@ -115,7 +116,7 @@ const Clients = () => {
           </CardBody>
         </Card>
       </Grid>
-    </Box>
+    </Wrapper>
   )
 }
 export default Clients

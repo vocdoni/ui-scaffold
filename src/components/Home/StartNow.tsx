@@ -1,20 +1,18 @@
-import { Button, Flex, Text } from '@chakra-ui/react'
+import { Button, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
+import Wrapper from '~components/Layout/Wrapper'
 
 const StartNow = () => {
   const { t } = useTranslation()
 
   return (
-    <Flex
+    <Wrapper
+      as='section'
+      display='flex'
       flexDirection='column'
       justifyContent={'center'}
       alignItems={'center'}
       gap={4}
-      px={{
-        base: '10px',
-        sm: '20px',
-        md: '80px',
-      }}
       py={10}
       bgColor='home.start_now.bg_light'
       color={'home.start_now.color_light'}
@@ -27,7 +25,7 @@ const StartNow = () => {
         {t('', { defaultValue: 'Join thousands of organizations making better decisions with VotingPlatform.' })}
       </Text>
       <Button _dark={{ bgColor: 'home.start_now.btn_bg_dark' }}> {t('', { defaultValue: 'Get Started Now' })}</Button>
-    </Flex>
+    </Wrapper>
   )
 }
 

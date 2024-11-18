@@ -1,5 +1,6 @@
-import { Box, Heading, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
+import { Heading, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
+import Wrapper from '~components/Layout/Wrapper'
 
 type UseCasesItem = {
   tab: string
@@ -52,18 +53,7 @@ const UseCases = () => {
     },
   ]
   return (
-    <Box
-      as='section'
-      width='full'
-      m='0 auto'
-      maxW='1920px'
-      px={{
-        base: '10px',
-        sm: '20px',
-        md: '80px',
-      }}
-      py={10}
-    >
+    <Wrapper as='section' display={'block'} py={10}>
       <Text mx='auto' w='fit-content' mb={10}>
         {t('use_cases', { defaultValue: 'Use Cases' })}
       </Text>
@@ -82,7 +72,7 @@ const UseCases = () => {
           ))}
         </TabPanels>
       </Tabs>
-    </Box>
+    </Wrapper>
   )
 }
 
