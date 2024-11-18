@@ -8,6 +8,7 @@ export const Routes = {
     passwordReset: '/account/password/reset',
   },
   calculator: '/calculator',
+  contactUs: '/contact-us',
   dashboard: {
     base: '/admin',
     organization: '/admin/organization',
@@ -16,15 +17,11 @@ export const Routes = {
     profile: '/admin/profile',
     team: '/admin/team',
   },
+  demos: '/demos',
   faucet: '/faucet',
-  navbar: {
-    useCases: '/usecases',
-    features: '/features',
-    pricing: '/pricing',
-    demos: '/demos',
-    contactUs: '/contactus',
-  },
+  features: '/features',
   organization: '/organization/:address',
+  pricing: '/pricing',
   privacy: '/privacy',
   processes: {
     create: '/admin/processes/create',
@@ -34,6 +31,7 @@ export const Routes = {
     checkout: '/stripe/checkout/:amount?',
     return: '/stripe/return/:sessionId',
   },
+  useCases: '/use-cases',
   terms: '/terms',
 }
 
