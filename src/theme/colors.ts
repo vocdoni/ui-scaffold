@@ -69,51 +69,8 @@ export const colors = {
     },
   },
   home: {
-    benefits: {
-      bg: {
-        light: {
-          white: colorsBase.white.pure,
-          primary: colorsBase.primary,
-        },
-        dark: {
-          primary: colorsBase.primary,
-          dark: colorsBase.blue.grayish,
-        },
-      },
-      color: {
-        light: {
-          bg_white: colorsBase.black,
-          bg_primary: colorsBase.white.pure,
-        },
-        dark: colorsBase.white.pure,
-      },
-    },
-    features_icon: colorsBase.primary,
-    step: {
-      icon: colorsBase.white.pure,
-      icon_bg: colorsBase.primary,
-    },
-    solutions: {
-      light_bg: colorsBase.white.pure,
-      dark_bg: colorsBase.blue.grayish,
-    },
-    support: {
-      bg: {
-        light: colorsBase.primary,
-        dark: colorsBase.primary_dark,
-      },
-      helper: colorsBase.white.pure,
-      title: colorsBase.yellow,
-    },
-    description: {
-      light: colorsBase.gray.normal,
-      dark: colorsBase.white.pure,
-    },
-    footer: {
-      icon: {
-        light: colorsBase.black,
-      },
-    },
+    trusted_bg: colorsBase.white.pure,
+    use_cases_bg: colorsBase.white.pure,
   },
   checkbox: {
     bg: colorsBase.primary,

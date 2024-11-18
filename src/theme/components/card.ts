@@ -40,7 +40,6 @@ export const Card = defineMultiStyleConfig({
         p: 0,
       },
     },
-
     'pricing-card': {
       container: {
         position: 'relative',
@@ -113,7 +112,6 @@ export const Card = defineMultiStyleConfig({
         },
       },
     },
-
     'drag-and-drop': {
       container: {
         flexDirection: 'column',
@@ -131,7 +129,6 @@ export const Card = defineMultiStyleConfig({
         },
       },
     },
-
     'web3-addresses': {
       container: {
         flexDirection: 'column',
@@ -145,7 +142,6 @@ export const Card = defineMultiStyleConfig({
         },
       },
     },
-
     confirm: {
       container: {
         display: 'flex',
@@ -206,6 +202,7 @@ export const Card = defineMultiStyleConfig({
         },
       },
     },
+    features: {},
     benefits: {
       container: {
         w: '350px',

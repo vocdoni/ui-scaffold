@@ -152,9 +152,17 @@ const process = definePartsStyle({
   },
 })
 
+const useCases = definePartsStyle({
+  tablist: { flexWrap: 'wrap', justifyContent: 'center' },
+  tab: { width: '20%', whiteSpace: 'nowrap' },
+  tabpanels: {},
+  tabpanel: {},
+})
+
 const variants = {
   card,
   process,
+  'use-cases': useCases,
 }
 
 export const Tabs = defineMultiStyleConfig({ variants })
