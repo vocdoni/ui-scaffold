@@ -9,18 +9,16 @@ const ProcessCreate = lazy(() => import('~elements/dashboard/processes/create'))
 
 const ProcessCreateElements = [
   {
-    ...ProtectedRoutes({
-      children: [
-        {
-          path: Routes.processes.create,
-          element: (
-            <SuspenseLoader>
-              <ProcessCreate />
-            </SuspenseLoader>
-          ),
-        },
-      ],
-    }),
+    ...ProtectedRoutes([
+      {
+        path: Routes.processes.create,
+        element: (
+          <SuspenseLoader>
+            <ProcessCreate />
+          </SuspenseLoader>
+        ),
+      },
+    ]),
   },
 ]
 

@@ -3,7 +3,7 @@ import OrganizationProtectedRoute from '~src/router/OrganizationProtectedRoute'
 import { RouteObject } from 'react-router-dom'
 import { SuspenseLoader } from '~src/router/SuspenseLoader'
 
-const ProtectedRoutes = ({ children }: { children: RouteObject[] }) => ({
+const ProtectedRoutes = (children: RouteObject[]) => ({
   element: (
     <SuspenseLoader>
       <AccountProtectedRoute />

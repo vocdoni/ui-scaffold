@@ -17,15 +17,14 @@ import { OrganizationCreate } from '~components/Organization/Create'
 
 const CreateOrganization = () => {
   const { t } = useTranslation()
-  const { setTitle, setBackRoute, setSidebar } = useOutletContext<AuthOutletContextType>()
+  const { setTitle, setBack, setSidebar } = useOutletContext<AuthOutletContextType>()
 
-  console.log('window.history.state.idx', window.history.state.idx)
   // Set layout title and subtitle
   useEffect(() => {
     setTitle(t('create_org.title', { defaultValue: 'Create your organization' }))
     setSidebar(CreateOrganizationSidebar)
     if (window.history.state.idx) {
-      setBackRoute(-1)
+      setBack(-1)
     }
   }, [])
 

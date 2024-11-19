@@ -1,14 +1,14 @@
-import { useClient } from '@vocdoni/react-providers'
-import { VocdoniSDKClient } from '@vocdoni/sdk'
-import { lazy } from 'react'
-import { Params } from 'react-router-dom'
+import {useClient} from '@vocdoni/react-providers'
+import {VocdoniSDKClient} from '@vocdoni/sdk'
+import {lazy} from 'react'
+import {Params} from 'react-router-dom'
 // These aren't lazy loaded since they are main layouts and related components
 import Error from '~elements/Error'
 import Layout from '~elements/Layout'
-import { Routes } from '.'
-import { SuspenseLoader } from '../SuspenseLoader'
+import {Routes} from '.'
+import {SuspenseLoader} from '../SuspenseLoader'
 import ProtectedRoutes from '~src/router/ProtectedRoutes'
-import { StripeCheckout, StripeReturn } from '~elements/Stripe'
+import {StripeCheckout, StripeReturn} from '~elements/Stripe'
 
 // elements / pages
 const Faucet = lazy(() => import('~elements/Faucet'))
@@ -72,19 +72,17 @@ const RootElements = (client: VocdoniSDKClient) => [
     ),
   },
   {
-    ...ProtectedRoutes({
-      children: [
-        {
-          path: Routes.stripe.checkout,
-          element: <StripeCheckout />,
-        },
-        {
-          path: Routes.stripe.return,
-          element: <StripeReturn />,
-          errorElement: <Error />,
-        },
-      ],
-    }),
+    ...ProtectedRoutes([
+      {
+        path: Routes.stripe.checkout,
+        element: <StripeCheckout />,
+      },
+      {
+        path: Routes.stripe.return,
+        element: <StripeReturn />,
+        errorElement: <Error />,
+      },
+    ]),
   },
   {
     path: Routes.faucet,
