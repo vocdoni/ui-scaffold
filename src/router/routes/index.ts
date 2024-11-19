@@ -9,6 +9,7 @@ export const Routes = {
     passwordReset: '/account/password/reset',
   },
   calculator: '/calculator',
+  contactUs: 'contact-us',
   dashboard: {
     base: '/admin',
     organization: '/admin/organization',

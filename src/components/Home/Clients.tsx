@@ -1,5 +1,6 @@
 import { Card, CardBody, CardHeader, Grid, Image, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
+import Wrapper from '~components/Layout/Wrapper'
 import barca from '/assets/barca.png'
 import bellpuig from '/assets/bellpuig.svg.png'
 import berga from '/assets/berga.svg.png'
@@ -15,16 +16,9 @@ const Clients = () => {
   const { t } = useTranslation()
 
   return (
-    <>
-      <Text
-        variant='home-description-color'
-        textAlign='center'
-        mb='52px'
-        mt='100px'
-        fontFamily='basier'
-        fontSize='23px'
-      >
-        {t('home.clients_title')}
+    <Wrapper as='section' display='block' py={10}>
+      <Text textAlign='center' mb={20}>
+        {t('clients', { defaultValue: 'Trusted by leading organizations' })}
       </Text>
       <Grid
         as='section'
@@ -38,7 +32,6 @@ const Clients = () => {
         maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '900px' }}
         flexDirection={{ base: 'column', sm: 'row' }}
         justifyContent='center'
-        mb={{ base: '60px' }}
         gridTemplateColumns='repeat(5, 1fr)'
         gridRowGap='50px'
       >
@@ -123,7 +116,7 @@ const Clients = () => {
           </CardBody>
         </Card>
       </Grid>
-    </>
+    </Wrapper>
   )
 }
 export default Clients
