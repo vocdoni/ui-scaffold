@@ -38,6 +38,15 @@ export const Routes = {
     return: '/stripe/return/:sessionId',
   },
   terms: '/terms',
+  useCases: {
+    root: '/use-cases',
+    cityCouncils: '/city-councils',
+    organizations: '/organizations',
+    politicalParties: '/political-parties',
+    coOps: '/coops',
+    web3: '/web3',
+    sportClubs: '/sport-clubs',
+  },
 }
 
 export type RoutesType = typeof Routes
