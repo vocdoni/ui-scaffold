@@ -3,8 +3,8 @@ import { lazy } from 'react'
 import LayoutAuth from '~elements/LayoutAuth'
 import { Routes } from '.'
 import NonLoggedRoute from '../NonLoggedRoute'
+import AccountProtectedRoute from '../AccountProtectedRoute'
 import { SuspenseLoader } from '../SuspenseLoader'
-import AccountProtectedRoute from '~src/router/AccountProtectedRoute'
 
 const AcceptInvite = lazy(() => import('~elements/account/invite'))
 const Signin = lazy(() => import('~elements/account/signin'))
