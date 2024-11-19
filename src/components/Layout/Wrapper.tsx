@@ -9,6 +9,7 @@ const Wrapper = ({ ...props }) => (
       sm: '20px',
       md: '80px',
     }}
+    my={24}
     {...props}
   ></Box>
 )

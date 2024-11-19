@@ -202,6 +202,28 @@ export const Card = defineMultiStyleConfig({
         },
       },
     },
+    'use-cases': {
+      container: {
+        _hover: {
+          cursor: 'pointer',
+
+          '& svg': {
+            transform: 'rotate(45deg)',
+          },
+        },
+      },
+      header: {
+        pb: 0,
+
+        '& > img': {
+          mb: 4,
+        },
+
+        '& > div': {
+          justifyContent: 'space-between',
+        },
+      },
+    },
     features: {},
     benefits: {
       container: {
