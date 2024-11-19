@@ -11,8 +11,8 @@ import {
   IconButton,
   List,
   ListItem,
+  useBreakpointValue,
   useDisclosure,
-  useMediaQuery,
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -67,7 +67,7 @@ const NavbarMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
 const NavbarMenuContent = () => {
   const { t } = useTranslation()
   const [openSection, setOpenSection] = useState<string | null>(null)
-  const [isLargerThanXL] = useMediaQuery('(min-width: 1279px)')
+  const isLargerThanXL = useBreakpointValue({ base: false, xl: true })
 
   const handleToggle = (label: string) => {
     setOpenSection((prev) => (prev === label ? null : label))
