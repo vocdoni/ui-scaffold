@@ -21,6 +21,7 @@ import { useAuth } from '~components/Auth/useAuth'
 import { DashboardMenuItem } from '~components/Dashboard/Menu/Item'
 import { ColorModeSwitcher } from '~components/Layout/ColorModeSwitcher'
 import Logo from '~components/Layout/Logo'
+import { useCases } from '~components/Layout/UseCases'
 import { Routes } from '~src/router/routes'
 
 type MenuItem = {
@@ -66,6 +67,7 @@ const NavbarMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
 
 const NavbarMenuContent = () => {
   const { t } = useTranslation()
+  const useCasesItems = useCases()
   const [openSection, setOpenSection] = useState<string | null>(null)
   const isLargerThanXL = useBreakpointValue({ base: false, xl: true })
 
@@ -75,14 +77,7 @@ const NavbarMenuContent = () => {
   const menuItems: MenuItem[] = [
     {
       label: t('navbar.use_cases', { defaultValue: 'Use Cases' }),
-      children: [
-        { label: 'Use case 1', route: '' },
-        { label: 'Use case 2', route: '' },
-        { label: 'Use case 3', route: '' },
-        { label: 'Use case 1', route: '' },
-        { label: 'Use case 2', route: '' },
-        { label: 'Use case 3', route: '' },
-      ],
+      children: useCasesItems,
     },
     {
       label: t('navbar.features', { defaultValue: 'Features' }),

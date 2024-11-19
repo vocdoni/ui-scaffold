@@ -31,7 +31,15 @@ export const Routes = {
     checkout: '/stripe/checkout/:amount?',
     return: '/stripe/return/:sessionId',
   },
-  useCases: '/use-cases',
+  useCases: {
+    root: '/use-cases',
+    cityCouncils: '/city-councils',
+    organizations: '/organizations',
+    politicalParties: '/political-parties',
+    coOps: '/coops',
+    web3: '/web3',
+    sportClubs: '/sport-clubs',
+  },
   terms: '/terms',
 }
 
