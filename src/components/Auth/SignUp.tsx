@@ -1,50 +1,70 @@
 import { Button, Flex, Link, Text } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { NavLink, Link as ReactRouterLink, useOutletContext } from 'react-router-dom'
+import { Navigate, NavLink, Link as ReactRouterLink } from 'react-router-dom'
 import { IRegisterParams } from '~components/Auth/authQueries'
 import { useAuth } from '~components/Auth/useAuth'
 import { VerifyAccountNeeded } from '~components/Auth/Verify'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import InputPassword from '~components/Layout/InputPassword'
-import { AuthOutletContextType } from '~elements/LayoutAuth'
+import { useSignupFromInvite } from '~src/queries/account'
 import { Routes } from '~src/router/routes'
 import CustomCheckbox from '../Layout/CheckboxCustom'
 import { default as InputBasic } from '../Layout/InputBasic'
 import GoogleAuth from './GoogleAuth'
 import { HSeparator } from './SignIn'
 
+export type InviteFields = {
+  code: string
+  address: string
+  email: string
+}
+
+export type SignupProps = {
+  invite?: InviteFields
+}
+
 type FormData = {
   terms: boolean
 } & IRegisterParams
 
-const SignUp = () => {
+const SignUp = ({ invite }: SignupProps) => {
   const { t } = useTranslation()
-  const { setTitle, setSubTitle } = useOutletContext<AuthOutletContextType>()
-
-  const {
-    register: { mutateAsync: signup, isError, error, isPending },
-  } = useAuth()
-
-  const methods = useForm<FormData>()
+  const { register } = useAuth()
+  const inviteSignup = useSignupFromInvite(invite?.address)
+  const methods = useForm<FormData>({
+    defaultValues: {
+      terms: false,
+      email: invite?.email,
+    },
+  })
   const { handleSubmit, watch } = methods
   const email = watch('email')
 
-  // State to show signup is successful
-  const [isSuccess, setIsSuccess] = useState(false)
+  const isPending = register.isPending || inviteSignup.isPending
+  const isError = register.isError || inviteSignup.isError
+  const error = register.error || inviteSignup.error
 
-  useEffect(() => {
-    setTitle(t('signup_title'))
-    setSubTitle(t('signup_subtitle'))
-  }, [])
+  const onSubmit = (user: FormData) => {
+    if (!invite) {
+      return register.mutate(user)
+    }
 
-  const onSubmit = async (data: FormData) => {
-    await signup(data).then(() => setIsSuccess(true))
+    // if there's an invite, the process' a bit different
+    return inviteSignup.mutate({
+      code: invite.code,
+      user,
+    })
   }
 
-  if (isSuccess) {
+  // normally registered accounts need verification
+  if (register.isSuccess) {
     return <VerifyAccountNeeded email={email} />
+  }
+
+  // accounts coming from invites don't need verification
+  if (inviteSignup.isSuccess) {
+    return <Navigate to={Routes.auth.signIn} />
   }
 
   return (
@@ -69,6 +89,7 @@ const SignUp = () => {
             placeholder={t('email_placeholder', { defaultValue: 'your@email.com' })}
             type='email'
             required
+            isDisabled={!!invite}
           />
           <InputPassword
             formValue='password'

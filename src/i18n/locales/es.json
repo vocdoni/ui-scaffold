@@ -1,7 +1,12 @@
 {
+  "actions": {
+    "save": "Save Changes"
+  },
   "active": "Activo",
   "all": "Todos",
   "already_member": "¿Ya eres miembro?",
+  "anonymous": "anonymous",
+  "approval": "approval",
   "aside": {
     "has_already_voted": "Tu voto ha sido registrado correctamente",
     "is_not_in_census": "No estás en el censo",
@@ -23,19 +28,10 @@
     "subtitle": "Reduce costos, ahorra tiempo: Votación segura, privada y conforme al RGPD",
     "title": "La plataforma global de votación"
   },
+  "avatar": {
+    "hint": "Min 200x200px .PNG or .JPEG"
+  },
   "back": "Atrás",
-  "banner": {
-    "start_now": "¡Crea una votación ahora!",
-    "title": "Voto digital seguro, verificable y flexible"
-  },
-  "banner_voting_types": {
-    "anonymous_description": "La identidad de los votantes permanece completamente confidencial, gracias a la tecnología zk-SNARKS.",
-    "anonymous_title": "100% Anónimo",
-    "flexible_description": "Personaliza tu proceso de votación y censo para satisfacer los requisitos únicos de tu comunidad.",
-    "flexible_title": "Votación Flexible",
-    "token_description": "Vota con tokens ERC20/ERC721 (NFT) o agrega tus propios tokens y vota sin coste de gas con ellos.",
-    "token_title": "Votación con Tokens"
-  },
   "billing": "Facturación",
   "blog": "Blog",
   "calculator": {
@@ -71,6 +67,14 @@
     "vat": "(sin IVA)",
     "vote_overwrite": "Corrección de voto",
     "voting_process_cost": "Coste del proceso de votación:"
+  },
+  "calendar": {
+    "define_active_period": "Define the active period for receiving votes",
+    "end_date": "End date",
+    "end_date_description": "Define the exact date and time of completion",
+    "start_date": "Start date",
+    "subtitle": "Specify the active period for receiving votes",
+    "title": "Calendar"
   },
   "cc": {
     "actions": {
@@ -147,7 +151,6 @@
     "gitcoin_description": "Con este censo, solo los votantes con Gitcoin Passport podrán votar, proporcionando un método de resistencia contra sybil-attack. Puedes definir la puntuación general (GPS) y diferentes stamps que el votante debe tener.",
     "gitcoin_read_more": "<a>Lee más sobre Scorer & Thresholds de Gitcoin</a>",
     "gitcoin_title": "Gitcoin Passport",
-    "pro": "",
     "request_custom_token": "Solicitar Tokens Personalizados",
     "social_address_title": "Usuarios de Github",
     "spreadsheet_title": "Datos personalizados",
@@ -157,6 +160,7 @@
     "token_title": "Censo basado en tokens",
     "wallet_address_title": "Direcciones de billetera"
   },
+  "census_details": "Census Details",
   "claim": {
     "loading_description": "<h3>Autenticación de cartera (Metamask, Rainbow, Coinbase):</h3><p>Para recibir tus tokens, por favor firma la solicitud cuando se te pida.</p><strong>Importante:</strong><p>Si sales de esta página sin firmar, no recibirás los tokens que has pagado.</p><strong>Autenticación de cuenta social (Google, Github, Facebook):</strong><p>Por favor, espera mientras procesamos tu solicitud.</p>",
     "purchase_success": "<title>¡Apreciamos su compra!</title><p>Si tienes alguna pregunta, por favor envía un correo a <mailto>orders@vocdoni.org</mailto></p>",
@@ -171,10 +175,11 @@
       "success_title": "Los tokens han sido reclamados correctamente"
     }
   },
-  "close": "Cerrar",
   "contact_us": "Contact us",
+  "control": "Control:",
   "copy": {
     "address": "Copiar dirección",
+    "copied": "Copied",
     "copied_title": "¡Copiado!"
   },
   "cost_preview": {
@@ -220,6 +225,7 @@
     "credit_card": "No credit card, no automatic renewal.",
     "full_access": "Full access to basic features",
     "header": "Try Vocdoni for free for 7 days",
+    "logout": "If you want to login from another account, please logout",
     "multiple_administrators": "Multiple administrators",
     "private_org": "Private Organization Details",
     "private_org_description": "Help us tailor your experience with information about your org. We won't share this info",
@@ -236,25 +242,27 @@
       "selected_users": "Usuarios seleccionados:"
     }
   },
-  "dashboard": {
-    "card": {
-      "finish": "Termina",
-      "finished": "Terminado",
-      "started": "Empezado",
-      "starts": "Empieza"
-    }
-  },
+  "cumulative": "cumulative",
+  "customization": "Customization",
+  "delete_my_account": "Delete my account",
   "description": "Description",
-  "draft": "Borrador",
-  "edit_my_organization": "Mi entidad",
+  "edit_saas_profile": {
+    "customization_details": "Define the params that will enhance the user experience and customize the voting page",
+    "edited_successfully": "Updated successfully",
+    "header_image": "Header Image",
+    "upload_file": "Upload a file"
+  },
   "email": "Correo electrónico",
-  "enter_email": "Enter email",
+  "email_placeholder": "your@email.com",
+  "emailReminder": "emailReminder",
   "error": {
+    "error_doing_things": "Error al realizar la operación",
     "go_back": "Volver atrás",
     "invalid_cell_data": "Algunas filas no contienen direcciones correctas: {{rows, list}}",
     "invalid_row_length": "Corrige las líneas {{rows, list}} del documento y vuelve a cargarlo",
     "invalid_weight_type": "Se esperaba encontrar el peso en la primera columna en las líneas {{rows, list}}, pero se han encontrado datos inesperados",
     "loading_page": "Error al cargar la página",
+    "loading_roles": "Cargando roles",
     "not_found": "Lo sentimos, la página que buscabas no fue encontrada.",
     "return_to_home": "Ves al inicio"
   },
@@ -279,6 +287,7 @@
     "title": "Faucet de Tokens Vocdoni",
     "tokens_you_own": "Tienes {{ balance }} tokens."
   },
+  "features": "Features",
   "finished": "Finalizado",
   "footer": {
     "company": "Empresa",
@@ -289,10 +298,8 @@
     "demo4": "Votación por Clasificación",
     "demo5": "Presupuestos Participativos",
     "demo6": "Votación Ponderada",
-    "follow_us": "Síguenos",
     "footer_subtitle": "El Protocolo de Votación Global",
     "terms_and_privacy": "<link1>Términos de uso</link1> y <link2>Política de privacidad</link2>",
-    "text": "<p1>El futuro</p1><p2>de la votación en Web3 comienza aquí</p2>",
     "uses_cases": "Casos de Uso",
     "uses_cases1": "Asambleas Generales de Accionistas (AGMs)",
     "uses_cases2": "Elecciones",
@@ -307,57 +314,26 @@
   "form": {
     "account_create": {
       "delete_image": "Eliminar imagen",
-      "description_helper": "Una breve descripción de tu organización",
       "description_placeholder": "Descripción (opcional)",
-      "title_helper": "El nombre de la organización",
-      "title_placeholder": "El nombre de la organización"
+      "title_placeholder": "El nombre de la organización",
+      "website_placeholder": "https://example.com"
     },
-    "edit_profile": {
-      "avatar_helper": "Imagen/logotipo de tu organización",
-      "avatar_placeholder": "URL de la imagen",
-      "btn": "Guardar",
-      "footer": "Editar tu organización generará una solicitud de firma, con un coste de 1 token"
-    },
+    "choose_an_option": "Choose an option",
     "error": {
       "address_already_in_use": "Esta dirección ya está en el censo",
       "address_pattern": "Solo se permiten direcciones hexadecimales (p.ej. 0x031101A...)",
-      "avatar_error": "URL no válida",
       "field_is_required": "Este campo es obligatorio",
       "min_address": "Por favor, proporciona al menos una dirección",
       "min_users_address": "Por favor, proporciona al menos una dirección",
+      "password_min_length": "Min. 8 characters",
       "recipient_address_invalid": "La dirección especificada no parece válida"
     },
     "process_create": {
-      "behavior": {
-        "anonymous": {
-          "description": "La identidad de los votantes será completamente anonimizada, incluyendo para el organizador. Cada votante deberá establecer una contraseña para garantizar la confidencialidad de su identidad.",
-          "title": "Anónimo"
-        },
-        "customization": {
-          "description": "Selecciona tu tema deseado, colores, textos y añade tu marca en la página de votación. También hay opciones más complejas disponibles.",
-          "title": "Personalización"
-        },
-        "overwrite": {
-          "description": "Si se selecciona, los votantes tendrán la opción de corregir su voto una vez.",
-          "title": "Sobrescribir voto"
-        },
-        "secret": {
-          "description": "Los resultados estarán disponibles cuando termine el proceso en lugar de estar disponibles en tiempo real.",
-          "title": "Secreto hasta el final"
-        },
-        "title": "Opciones"
-      },
       "calendar": {
         "date_format": "PPPPpppp",
-        "end_date": "Fecha de finalización",
         "end_date_description": "Esta votación comenzará en {{ date.begin, format }} y terminará en {{ date.end, format }}, durando ~{{ date, duration }}",
-        "end_date_title_helper": "Definir la fecha y hora exactas de conclusión. ",
         "now": "Ahora",
-        "start_date": "Hora de inicio",
-        "start_date_description": "Define el período activo para recibir votos. Si seleccionas \"Ahora\", la propuesta estará activa inmediatamente después de publicarla.",
-        "start_on_a_date": "Comenzar en una fecha",
-        "title": "Calendario",
-        "title_description": "Especificar el período activo para recibir votos."
+        "start_on_a_date": "Comenzar en una fecha"
       },
       "census": {
         "add_button": "Añadir",
@@ -419,14 +395,8 @@
       "confirm_spreadsheet_removal": "Seguro? Piensa que al hacerlo se eliminará el fichero que has cargado.",
       "creating_process": "Creando Proceso de Votación...",
       "meta": {
-        "description": "Proporciona un título y descripción claros. Esto ayudará a los votantes a entender el propósito de la votación.",
-        "description_helper": "Una breve descripción de tu votación",
         "description_label": "Descripción",
-        "description_placeholder": "Descripción (opcional)",
-        "title": "Información de la votación",
-        "title_helper": "Título / propósito del proceso de votación",
-        "title_label": "Título",
-        "title_placeholder": "Título del proceso de votación"
+        "description_placeholder": "Descripción (opcional)"
       },
       "navbar": {
         "close_form_btn": "Cerrar formulario"
@@ -474,13 +444,6 @@
       "spreadsheet_total_rows_one": "El censo tiene un solo registro",
       "spreadsheet_total_rows_many": "",
       "spreadsheet_total_rows_other": "El censo tiene {{ count }} registros",
-      "steps": {
-        "census": "Censo",
-        "checks": "Organización",
-        "confirm": "Confirmar",
-        "info": "Info",
-        "questions": "Preguntas"
-      },
       "success_description": "Redirigiéndote a la página del proceso de votación...",
       "success_title": "Proceso de votación creado con éxito",
       "web3": {
@@ -490,8 +453,19 @@
         "your_wallet_is_added": "Tu dirección de billetera se ha añadido automáticamente al censo. Puedes eliminarla si lo deseas."
       },
       "weighted": "Voto ponderado"
+    },
+    "process_create_saas": {
+      "steps": {
+        "census_title": "Census",
+        "confirm_title": "Confirm",
+        "features_title": "Features",
+        "info_title": "Information",
+        "questions_title": "Questions"
+      }
     }
   },
+  "generate_pdf": "Generate PDF",
+  "generate_pdf_description": "Generate a PDF with the results",
   "get_voc_tokens": {
     "authentification_method": "Seleccione su método de autenticación preferido:",
     "authentification_method_helper": "Puede obtener {{ faucetAmount }} tokens por método de autenticación a la semana",
@@ -505,7 +479,6 @@
     "more_effective": "25: Más efectivo",
     "most_effective": "30: Muy efectivo"
   },
-  "help_and_support": "Ayuda y soporte",
   "home": {
     "benefits": {
       "card_1": {
@@ -732,28 +705,33 @@
     "title": "<p1>¿Estás</p1><p2>listo para una nueva Era en la gobernanza Web3?</p2>"
   },
   "invite": {
-    "admin": "Admin",
-    "admin_description": "Can view, comment, or also create and edit all workspace projects and folders. Typically used for employees.",
-    "guest": "Guest",
-    "guest_description": "Can only access projects that you specify choose. Tipically use for clients and stackholders.",
-    "select_option": "Select an option",
-    "subtitle": "Work together on projects",
-    "title": "Invite people to your workspace"
+    "error": "Error",
+    "select_option": "Selecciona una opción",
+    "subtitle": "Trabajar junto a otros es la clave para el éxito.",
+    "success": "¡Invitación enviada!",
+    "title": "Invita gente a tu equipo",
+    "user_invited": "Se ha mandado a {{ email }}"
   },
+  "invite_people": "Invitar Gente",
   "keep_me_logged": "Mantenerme conectado",
   "link": {
     "discord": "Enlace al Discord de Vocdoni",
     "github": "Enlace al Github de Vocdoni",
     "twitter": "Enlace al Twitter de Vocdoni"
   },
+  "liveStreaming": "liveStreaming",
   "loading": "Cargando...",
   "login": {
     "facebook": "Iniciar sesión usando Facebook",
     "github": "Iniciar sesión con Github",
     "google": "Iniciar sesión con Google"
   },
+  "logo": "Logo",
+  "logout": "Logout",
   "membership_size": {
-    "selector_label": "Membership size"
+    "language": "Default Language",
+    "selector_label": "Membership size",
+    "timezone": "Timezone"
   },
   "menu": {
     "burger_aria_label": "menú de usuario",
@@ -761,6 +739,7 @@
     "copy_aria_label": "copiar dirección",
     "create": "Crear Proceso",
     "create_process": "Nuevo proceso",
+    "dashboard": "Dashboard",
     "documentation": "Documentación",
     "get_more": "Obtener más",
     "languages": "Idiomas",
@@ -768,21 +747,20 @@
     "login": "Iniciar sesión",
     "logout": "Cerrar sesión",
     "my_org": "Mi Org",
-    "new_process": "Crear Votación",
     "organization": "Editar Organización",
     "privacy": "Privacidad",
     "terms": "Términos",
     "wallet": "Billetera"
   },
   "meta": {
-    "length": "{{ length }} / {{ maxLength }} caracteres.",
-    "maxLength": "Longitud máxima alcanzada"
+    "helper": "Provide a clear title and description to help voters understand the vote"
   },
+  "multiple": "multiple",
+  "name": "Name",
   "new_organization": {
     "create_organization_btn": "Crear Organización",
     "description1": "Antes de comenzar a crear su proceso de votación, <span>debe crear una organización</span>, es gratuito. Con una organización, podrá crear una amplia gama de elecciones y dar voz a los miembros de su comunidad.",
     "description2": "Como <span>paquete de bienvenida</span>, recibirá {{ faucetAmount }} tokens gratis para comenzar a utilizar nuestra plataforma.",
-    "name": "Nombre de la organización",
     "title": "Nueva Organización"
   },
   "new_voting": "Nueva votación",
@@ -790,18 +768,9 @@
   "open_in_explorer": "Abrir en explorador",
   "or": "o",
   "org_type_selector": {
-    "assembly": "Assembly",
-    "association": "Association",
-    "chamber": "Chamber",
-    "church": "Church",
-    "city": "City/Municipality",
+    "community": "Community",
     "company": "Company",
-    "cooperative": "Cooperative",
-    "others": "Others",
-    "party": "Party",
-    "selector_label": "Select Organization Type",
-    "union": "Union",
-    "university": "University"
+    "selector_label": "Select Organization Type"
   },
   "organization": {
     "avatar_alt": "Imagen de avatar de la organización {{ name }}",
@@ -816,20 +785,17 @@
       "not_owner": "Esta organización aún no tiene votaciones.",
       "title": "Crea tu primer proceso de votación"
     },
-    "my_entity": "Mi entidad",
     "organization": "Organización",
-    "overview": "Visión general",
-    "required_signin": "Primero debes iniciar sesión",
     "title": {
       "read_more": "Expandir título"
     },
-    "voting_processes_one": "{{ count }} proceso de votación",
-    "voting_processes_many": "",
-    "voting_processes_other": "{{ count }} procesos de votación",
-    "votings_list": "Lista de procesos de votación",
-    "votings_overview": "Visión general de les votaciones"
+    "votings_list": "Lista de procesos de votación"
   },
+  "overwrite": "overwrite",
   "password": "Contraseña",
+  "password_placeholder": "Min 8 characters",
+  "personalization": "personalization",
+  "preview": "Preview",
   "pricing_card": {
     "from": "Desde {{price}}/año",
     "most_popular_plan": "Most popular plan",
@@ -873,6 +839,7 @@
     "title": "You need to upgrade to use this feature",
     "your_plan": "Currently you are subscribed to the 'Your plan' subscription. If you upgrade, we will only charge the yearly difference. In the next billing period, starting on 'dd/mm/yy' you will pay for the new select plan."
   },
+  "privacy_policy": "Privacy Policy",
   "process": {
     "census": "Censo",
     "census_strategies": {
@@ -944,6 +911,7 @@
   },
   "process_actions": {
     "cancel": "Cancelar proceso",
+    "continue": "Continue",
     "end": "Finalizar proceso",
     "pause": "Pausar",
     "start": "Iniciar/Reanudar"
@@ -1020,7 +988,16 @@
         "description": "Selecciona el tipo de votación para esta elección. Si no encuentras lo que necesitas, puedes contactarnos.",
         "title": "Tipos de Votación"
       }
-    }
+    },
+    "title": "Title",
+    "title_placeholder": "Title of the voting process"
+  },
+  "process_list": {
+    "start_end_date": "Start-end date",
+    "status": "Status",
+    "title": "Title",
+    "type": "Type",
+    "voters": "Voters"
   },
   "profile": "Perfil",
   "rainbow": {
@@ -1029,8 +1006,14 @@
     },
     "recovery": "Recuperar cuenta"
   },
-  "retry": "Reintentar",
+  "ranked": "ranked",
+  "remove": "Remove",
   "rights": "© 2024 Asociación Vocdoni. Todos los derechos reservados.",
+  "role": {
+    "read_permission": "Read-only access",
+    "write_permission": "Can create and edit content"
+  },
+  "secretUntilTheEnd": "secretUntilTheEnd",
   "settings": "Configuración",
   "share": {
     "copy": "Copiar",
@@ -1050,13 +1033,24 @@
   "signup_last_name": "Apellido",
   "signup_subtitle": "¡Introduce tu correo electrónico y contraseña para registrarte!",
   "signup_title": "Regístrate",
+  "single": "single",
+  "smsNotification": "smsNotification",
   "submit": "Submit",
   "subscribe": "Subscribe",
   "subscription": "Suscripción",
   "support": "Soporte",
+  "surname": {
+    "label": "Surname",
+    "required": "Surname is required"
+  },
   "team": "Equipo",
+  "teams": "Teams",
+  "terms_and_conditions": "Terms and Conditions",
   "terms_of_use": "Condiciones de uso",
+  "total_votes_submitted": "Total Votes Submitted",
   "trust_on_us": "Trust on us",
+  "update": "Update",
+  "upload": "Upload",
   "uploader": {
     "click_or_drag_and_drop": "<p1>Sube o arrastra y suelta aqui la lista de votantes</p1><p2>(Formap permitidos: CSV, XLSX y ODS)</p2>",
     "drop_here": "Suelta aqui"
@@ -1066,40 +1060,28 @@
     "read_more": "Leer más"
   },
   "user_management": "Gestión de usuarios",
-  "view_pricing": "View Pricing",
-  "voting_processes": "Procesos de votación",
-  "votings": "Votaciones",
-  "web3cards": {
-    "farcaster": {
-      "btn": "Ir a Farcaster.vote",
-      "description": "Con <b>\"Farcaster.vote\"</b> ofrecemos una manera simple y social de votar. Tus miembros solo tienen que votar a través de Farcaster en 2 simples clics. Prueba creando una votación con Farcaster frame",
-      "title": "Farcaster"
-    },
-    "onvote": {
-      "btn": "Crear",
-      "description": "Sistema Web3 de votación <b>segura</b>, <b>sin tasas</b> y <b>transparente</b>. Permite crear <b>censo de tokens, censo multichain, votación anónima</b> y censo sybil-resistant con un tipo de votación flexible.",
-      "title": "Onvote"
-    },
-    "others": {
-      "btn": "Contáctanos",
-      "description": "Hemos construido un conjunto de votaciones que permite una integración fácil con nuestra Blockchain dedicada a votaciones a través de nuestro SDK &; Componentes UI.<br/><br/>¡Empieza a integrarlo ahora!",
-      "title": "Otros"
-    },
-    "plugins": {
-      "btn": "Prueba la Aragon App",
-      "description": "Hemos implementado una <b>solución de votación sin tasas personalizada para la DAO</b> de Aragon, ¡y podemos hacer lo mismo por ti!<br/><br/>Empieza con votación sin tasas!",
-      "title": "Complementos DAO"
-    },
-    "title": "Nuestras soluciones de gobernanza Web3"
+  "verify": {
+    "account_created_succesfully": "Account created successfully!",
+    "email_sent": "Email sent successfully",
+    "follow_email_instructions": "Follow the instructions there to activate your account.",
+    "resend_confirmation_mail": "Resend Email",
+    "verification_email_is_sent": "A verification email has been sent to:",
+    "verify_code": "Verify"
   },
+  "verify_mail": {
+    "error_subtitle": "We found an error verifying your email, please check verification mail to ensure all data is correct",
+    "error_title": "Error verifying {{ email }}",
+    "verifying_subtitle": "Await until we verify your email address. You will be redirect on success.",
+    "verifying_title": "Verifying {{ email }}"
+  },
+  "view_pricing": "View Pricing",
+  "vote_details": "Vote details",
+  "voters": "voters",
+  "voting_link": "Voting Link",
+  "voting_processes": "Procesos de votación",
+  "voting_questions": "Voting Questions",
+  "voting_results": "Voting Results",
   "website": "Website",
-  "welcome": {
-    "description": "Para empezar, debes registrar tu cuenta y tu SIK (clave de identidad segura) firmando dos transacciones (es seguro y gratuito).",
-    "intro": "Con esta dApp puedes crear votaciones anónimas, seguras y verificables.",
-    "step": {
-      "register": "Registrar cuenta",
-      "sik": "Crear SIK"
-    },
-    "title": "Bienvenido a {{ sitename }}"
-  }
+  "weighted": "weighted",
+  "whiteLabel": "whiteLabel"
 }

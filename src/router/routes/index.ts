@@ -1,6 +1,7 @@
 export const Routes = {
   root: '/',
   auth: {
+    acceptInvite: '/account/invite',
     signIn: '/account/signin',
     signUp: '/account/signup',
     recovery: '/account/password',

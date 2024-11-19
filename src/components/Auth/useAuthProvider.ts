@@ -26,6 +26,7 @@ const useSigner = () => {
     // Once the signer is set, try to get the signer address
     // This is an asynchronous call because the address are fetched from the server,
     // and we don't know if we need to create an organization until we try to retrieve the address
+
     try {
       return await signer.getAddress()
     } catch (e) {
@@ -44,13 +45,13 @@ export const useAuthProvider = () => {
   const [bearer, setBearer] = useState<string | null>(localStorage.getItem(LocalStorageKeys.Token))
 
   const login = useLogin({
-    onSuccess: (data, variables) => {
+    onSuccess: (data) => {
       storeLogin(data)
     },
   })
   const register = useRegister()
   const mailVerify = useVerifyMail({
-    onSuccess: (data, variables) => {
+    onSuccess: (data) => {
       storeLogin(data)
     },
   })

@@ -3,16 +3,28 @@ type MethodTypes = 'GET' | 'POST' | 'PUT' | 'DELETE'
 export enum ApiEndpoints {
   Login = 'auth/login',
   Me = 'users/me',
+  InviteAccept = 'organizations/{address}/members/accept',
+  Organization = 'organizations/{address}',
+  OrganizationMembers = 'organizations/{address}/members',
+  OrganizationPendingMembers = 'organizations/{address}/members/pending',
+  Organizations = 'organizations',
+  OrganizationsRoles = 'organizations/roles',
   Password = 'users/password',
   PasswordRecovery = 'users/password/recovery',
   PasswordReset = 'users/password/reset',
   Refresh = 'auth/refresh',
   Register = 'users',
-  Organizations = 'organizations',
-  Organization = 'organizations/{address}',
-  OrganizationMembers = 'organizations/{address}/members',
   Verify = 'users/verify',
   VerifyCode = 'users/verify/code',
+}
+
+export enum ErrorCode {
+  // HTTP errors
+  Unauthorized = 401,
+  // Custom API errors
+  MalformedJSONBody = 40004,
+  UserNotAuthorized = 40001,
+  UserNotVerified = 40014,
 }
 
 interface IApiError {
@@ -71,8 +83,8 @@ export const api = <T>(
           error = { error: sanitized.length ? sanitized : response.statusText }
         }
         // Handle unauthorized error
-        if (response.status === 401) {
-          if (error?.code === 40014) {
+        if (response.status === ErrorCode.Unauthorized) {
+          if (error?.code === ErrorCode.UserNotVerified) {
             throw new UnverifiedApiError(error, response)
           }
           throw new UnauthorizedApiError(error, response)
@@ -82,7 +94,7 @@ export const api = <T>(
       }
       return sanitized ? (JSON.parse(sanitized) as T) : undefined
     })
-    .catch((error: Error) => {
+    .catch((error: Error | IApiError) => {
       throw error
     })
 }

@@ -2,18 +2,19 @@ import { lazy } from 'react'
 // These aren't lazy loaded since they are main layouts and related components
 import LayoutAuth from '~elements/LayoutAuth'
 import { Routes } from '.'
+import NonLoggedRoute from '../NonLoggedRoute'
 import { SuspenseLoader } from '../SuspenseLoader'
 
-const NonLoggedRoute = lazy(() => import('../NonLoggedRoute'))
+const AcceptInvite = lazy(() => import('~elements/account/invite'))
 const Signin = lazy(() => import('~elements/account/signin'))
-const SignUp = lazy(() => import('~components/Auth/SignUp'))
+const Signup = lazy(() => import('~elements/account/signup'))
 const Verify = lazy(() => import('~components/Auth/Verify'))
 const PasswordForgot = lazy(() => import('~elements/account/password'))
 const PasswordReset = lazy(() => import('~elements/account/password/reset'))
 
 const AuthElements = [
   {
-    element: <LayoutAuth />,
+    element: <NonLoggedRoute />,
     children: [
       {
         children: [
@@ -29,7 +30,7 @@ const AuthElements = [
             path: Routes.auth.signUp,
             element: (
               <SuspenseLoader>
-                <SignUp />
+                <Signup />
               </SuspenseLoader>
             ),
           },
@@ -61,15 +62,19 @@ const AuthElements = [
       },
     ],
   },
+  {
+    path: Routes.auth.acceptInvite,
+    element: (
+      <SuspenseLoader>
+        <AcceptInvite />
+      </SuspenseLoader>
+    ),
+  },
 ]
 
 export const useAuthRoutes = () => {
   return {
-    element: (
-      <SuspenseLoader>
-        <NonLoggedRoute />
-      </SuspenseLoader>
-    ),
+    element: <LayoutAuth />,
     children: AuthElements,
   }
 }

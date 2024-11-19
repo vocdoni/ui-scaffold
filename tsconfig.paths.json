@@ -10,6 +10,7 @@
       "~i18n/*": ["i18n/*"],
       "~theme": ["theme/index.ts"],
       "~theme/*" : ["theme/*"],
+      "~utils/*": ["utils/*"],
       "~src/*": ["./*"]
     }
   }
