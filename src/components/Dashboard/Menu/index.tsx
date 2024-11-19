@@ -1,7 +1,7 @@
 import { AddIcon } from '@chakra-ui/icons'
-import { Box, Button, Drawer, DrawerContent, DrawerOverlay } from '@chakra-ui/react'
+import { Box, Button, Drawer, DrawerContent, DrawerOverlay, Link } from '@chakra-ui/react'
 import { Trans } from 'react-i18next'
-import { Link as ReactRouterLink, generatePath } from 'react-router-dom'
+import { Link as RouterLink, generatePath } from 'react-router-dom'
 import LogoutBtn from '~components/Account/LogoutBtn'
 import { HSeparator } from '~components/Auth/SignIn'
 import { ColorModeSwitcher } from '~components/Layout/ColorModeSwitcher'
@@ -39,11 +39,13 @@ const DashboardMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
 // Common menu contents
 const DashboardMenuContent = () => (
   <>
-    <VocdoniLogo w='180px' alignSelf='center' />
+    <Link as={RouterLink} to={Routes.dashboard.base} alignSelf='center'>
+      <VocdoniLogo w='180px' />
+    </Link>
     <HSeparator />
     <DashboardMenuOptions />
     <Button
-      as={ReactRouterLink}
+      as={RouterLink}
       to={generatePath(Routes.processes.create)}
       variant='box-shadow'
       w='full'
