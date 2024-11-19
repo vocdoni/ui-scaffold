@@ -262,7 +262,7 @@
     "invalid_row_length": "Corrige las líneas {{rows, list}} del documento y vuelve a cargarlo",
     "invalid_weight_type": "Se esperaba encontrar el peso en la primera columna en las líneas {{rows, list}}, pero se han encontrado datos inesperados",
     "loading_page": "Error al cargar la página",
-    "loading_roles": "",
+    "loading_roles": "Cargando roles",
     "not_found": "Lo sentimos, la página que buscabas no fue encontrada.",
     "return_to_home": "Ves al inicio"
   },

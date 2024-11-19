@@ -262,7 +262,7 @@
     "invalid_row_length": "Corregeix les línies {{rows, list}} del document i torna a carregar-lo",
     "invalid_weight_type": "S'esperava trobar el pes a la primera col·lumna a les línies {{rows, list}}, però s'han trobat dades inesperades",
     "loading_page": "Càrrega de pàgina errònia",
-    "loading_roles": "",
+    "loading_roles": "Carregant rols",
     "not_found": "Ho sentim, no s'ha trobat la pàgina que estaves buscant.",
     "return_to_home": "Ves a l'inici"
   },
