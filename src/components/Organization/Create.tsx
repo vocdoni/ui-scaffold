@@ -1,4 +1,4 @@
-import { Box, Flex, FlexProps, Heading, Text } from '@chakra-ui/react'
+import { Flex, FlexProps, Text } from '@chakra-ui/react'
 import { Button } from '@vocdoni/chakra-components'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
@@ -33,7 +33,7 @@ const useOrganizationCreate = (options?: Omit<UseMutationOptions<void, Error, Cr
   })
 }
 
-export const OrganizationCreate = ({ children, ...props }: FlexProps) => {
+export const OrganizationCreate = ({ ...props }: FlexProps) => {
   const { t } = useTranslation()
 
   const [isPending, setIsPending] = useState(false)
@@ -87,12 +87,6 @@ export const OrganizationCreate = ({ children, ...props }: FlexProps) => {
           handleSubmit(onSubmit)(e)
         }}
       >
-        {children}
-        <Box me='auto'>
-          <Heading fontSize='36px' mb={4}>
-            <Trans i18nKey='create_org.title'>Create Your Organization</Trans>
-          </Heading>
-        </Box>
         <PublicOrgForm />
         <PrivateOrgForm />
         <Button form='process-create-form' type='submit' isLoading={isPending} mx='auto' mt={8} w='80%'>

@@ -10,9 +10,6 @@ import {SuspenseLoader} from '../SuspenseLoader'
 import ProtectedRoutes from '~src/router/ProtectedRoutes'
 import {StripeCheckout, StripeReturn} from '~elements/Stripe'
 
-// Lazy loading helps splitting the final code, which helps downloading the app (theoretically)
-const AccountProtectedRoute = lazy(() => import('../AccountProtectedRoute'))
-
 // elements / pages
 const Faucet = lazy(() => import('~elements/Faucet'))
 const Home = lazy(() => import('~components/Home'))

@@ -4,6 +4,7 @@ import LayoutAuth from '~elements/LayoutAuth'
 import { Routes } from '.'
 import NonLoggedRoute from '../NonLoggedRoute'
 import { SuspenseLoader } from '../SuspenseLoader'
+import AccountProtectedRoute from '~src/router/AccountProtectedRoute'
 
 const AcceptInvite = lazy(() => import('~elements/account/invite'))
 const Signin = lazy(() => import('~elements/account/signin'))
@@ -11,6 +12,7 @@ const Signup = lazy(() => import('~elements/account/signup'))
 const Verify = lazy(() => import('~components/Auth/Verify'))
 const PasswordForgot = lazy(() => import('~elements/account/password'))
 const PasswordReset = lazy(() => import('~elements/account/password/reset'))
+const CreateOrganization = lazy(() => import('~elements/account/createOrganization'))
 
 const AuthElements = [
   {
@@ -76,5 +78,30 @@ export const useAuthRoutes = () => {
   return {
     element: <LayoutAuth />,
     children: AuthElements,
+  }
+}
+
+export const useCreateOrganizationRoutes = () => {
+  return {
+    element: (
+      <SuspenseLoader>
+        <AccountProtectedRoute />
+      </SuspenseLoader>
+    ),
+    children: [
+      {
+        element: <LayoutAuth />,
+        children: [
+          {
+            path: Routes.dashboard.organizationCreate,
+            element: (
+              <SuspenseLoader>
+                <CreateOrganization />
+              </SuspenseLoader>
+            ),
+          },
+        ],
+      },
+    ],
   }
 }

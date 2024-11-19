@@ -1,13 +1,16 @@
 import { Box, Flex, Heading, Icon, Text } from '@chakra-ui/react'
-import { useState } from 'react'
+import { ReactNode, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaChevronLeft } from 'react-icons/fa'
 import { NavLink, Outlet } from 'react-router-dom'
 import AuthBanner from '~components/Organization/Dashboard/AuthBanner'
+import { History } from 'history'
 
 export type AuthOutletContextType = {
   setTitle: React.Dispatch<React.SetStateAction<string>>
   setSubTitle: React.Dispatch<React.SetStateAction<string>>
+  setBackRoute: React.Dispatch<React.SetStateAction<History.LocationState>>
+  setSidebar: React.Dispatch<React.SetStateAction<ReactNode>>
 }
 
 const LayoutAuth = () => {
@@ -15,6 +18,8 @@ const LayoutAuth = () => {
 
   const [title, setTitle] = useState('')
   const [subTitle, setSubTitle] = useState('')
+  const [sidebar, setSidebar] = useState<ReactNode>(null)
+  const [backRoute, setBackRoute] = useState<History.LocationState>('/')
 
   return (
     <Flex
@@ -24,7 +29,7 @@ const LayoutAuth = () => {
       flexDirection={{ base: 'column', xl: 'row' }}
     >
       <Box position='absolute' top={5} left={2.5}>
-        <NavLink to='/'>
+        <NavLink to={backRoute}>
           <Flex align='center' w='fit-content'>
             <Icon as={FaChevronLeft} me={2} h={3} w={2} color={'auth.text_color_secondary'} />
             <Text fontSize='sm' color={'auth.text_color_secondary'}>
@@ -55,7 +60,7 @@ const LayoutAuth = () => {
                 {subTitle}
               </Text>
             </Box>
-            <Outlet context={{ setTitle, setSubTitle } satisfies AuthOutletContextType} />
+            <Outlet context={{ setTitle, setSubTitle, setSidebar, setBackRoute } satisfies AuthOutletContextType} />
           </Flex>
         </Flex>
         <Text
@@ -69,6 +74,7 @@ const LayoutAuth = () => {
         </Text>
       </Flex>
       <AuthBanner>
+        {sidebar}
         <Flex flexGrow={1} alignItems='end' justifyContent='center'>
           <Box mb={{ base: 10, xl: 24 }}>
             <Text fontSize='5xl' color='white' lineHeight={1} mb={{ base: 10, xl: 5 }}>

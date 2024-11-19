@@ -3,7 +3,6 @@ import {useQueryClient} from '@tanstack/react-query'
 import {useClient} from '@vocdoni/react-providers'
 import {lazy} from 'react'
 import {Params} from 'react-router-dom'
-import CreateOrganization from '~components/Organization/Dashboard/Create'
 import {Profile} from '~elements/dashboard/profile'
 import Error from '~elements/Error'
 import LayoutDashboard from '~elements/LayoutDashboard'
@@ -40,14 +39,6 @@ export const useDashboardRoutes = () => {
           </SuspenseLoader>
         ),
         children: [
-          {
-            path: Routes.dashboard.organizationCreate,
-            element: (
-              <SuspenseLoader>
-                <CreateOrganization />
-              </SuspenseLoader>
-            ),
-          },
           {
             path: Routes.dashboard.profile,
             element: (
