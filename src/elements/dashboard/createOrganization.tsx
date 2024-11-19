@@ -52,7 +52,6 @@ const CreateOrganizationSidebar = () => (
     <Button form='process-create-form' type='submit' mx='auto' mb='32px' w='50%'>
       <Trans i18nKey='view_pricing'>View Pricing</Trans>
     </Button>
-
     <ClientsGrid gridRowGap={16} maxW={'full'} px={0} />
   </Flex>
 )
