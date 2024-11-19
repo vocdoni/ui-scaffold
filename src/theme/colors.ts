@@ -51,7 +51,7 @@ export const colors = {
       dark: colorsBase.white.pure,
     },
     invite: {
-      bg_checked_light: colorsBase.white.pure,
+      bg_checked_light: colorsBase.white.dark,
       bg_checked_dark: colorsBase.blue.dark,
     },
     read_more: {

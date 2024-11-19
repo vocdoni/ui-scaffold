@@ -6,8 +6,8 @@ import { CgMoreO } from 'react-icons/cg'
 import ModalPro from '~components/ProcessCreate/ModalPro'
 import { StepsNavigation } from '~components/ProcessCreate/Steps/Navigation'
 import Wrapper from '~components/ProcessCreate/Steps/Wrapper'
-import { convertParagraphs } from '~constants/components'
 import { Check } from '~theme/icons'
+import { convertParagraphs } from '~utils/components'
 
 /**
  * These components implement the skeleton for tabs pages like questions or census types.
