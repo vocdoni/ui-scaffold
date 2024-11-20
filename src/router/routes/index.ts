@@ -40,6 +40,7 @@ export const Routes = {
     web3: '/web3',
     sportClubs: '/sport-clubs',
   },
+  technology: '/technology',
   terms: '/terms',
 }
 

@@ -9,6 +9,8 @@ export const DashboardMenuItem = ({
   isOpen = false,
   isActive = false,
   onToggle,
+  onMouseEnter,
+  onMouseLeave,
   hasChildren = false,
 }: {
   label: string
@@ -17,6 +19,8 @@ export const DashboardMenuItem = ({
   isOpen?: boolean
   isActive?: boolean
   onToggle?: () => void
+  onMouseEnter?: () => void
+  onMouseLeave?: () => void
   hasChildren?: boolean
 }) => (
   <Button
@@ -29,6 +33,8 @@ export const DashboardMenuItem = ({
     w='full'
     leftIcon={icon ? <Icon as={icon} /> : undefined}
     rightIcon={hasChildren ? isOpen ? <ChevronUpIcon /> : <ChevronDownIcon /> : undefined}
+    onMouseEnter={onMouseEnter}
+    onMouseLeave={onMouseLeave}
   >
     {label}
   </Button>

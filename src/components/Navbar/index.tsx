@@ -14,7 +14,7 @@ import {
   useBreakpointValue,
   useDisclosure,
 } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { generatePath, Link as ReactRouterLink } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
@@ -67,6 +67,7 @@ const NavbarMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
 
 const NavbarMenuContent = () => {
   const { t } = useTranslation()
+  const ref = useRef()
   const useCasesItems = useCases()
   const [openSection, setOpenSection] = useState<string | null>(null)
   const isLargerThanXL = useBreakpointValue({ base: false, xl: true })
@@ -74,30 +75,32 @@ const NavbarMenuContent = () => {
   const handleToggle = (label: string) => {
     setOpenSection((prev) => (prev === label ? null : label))
   }
+
   const menuItems: MenuItem[] = [
     {
       label: t('navbar.use_cases', { defaultValue: 'Use Cases' }),
+      route: Routes.useCases.root,
       children: useCasesItems,
     },
     {
       label: t('navbar.features', { defaultValue: 'Features' }),
-      route: '',
+      route: Routes.features,
     },
     {
       label: t('navbar.pricing', { defaultValue: 'Pricing' }),
-      route: '',
+      route: Routes.pricing,
     },
     {
       label: t('navbar.technolgy', { defaultValue: 'Technology' }),
-      route: '',
+      route: Routes.technology,
     },
     {
       label: t('navbar.demos', { defaultValue: 'Demos' }),
-      route: '',
+      route: Routes.demos,
     },
     {
       label: t('navbar.contact_us', { defaultValue: 'Contact Us' }),
-      route: '',
+      route: Routes.contactUs,
     },
   ]
 
@@ -111,16 +114,18 @@ const NavbarMenuContent = () => {
                 label={item.label}
                 route={item.route}
                 isOpen={isLargerThanXL ? openSection === item.label : true}
-                onToggle={() => handleToggle(item.label)}
+                onMouseEnter={() => handleToggle(item.label)}
+                onMouseLeave={() => setOpenSection(null)}
                 hasChildren
               />
-              <Collapse in={isLargerThanXL ? openSection === item.label : true}>
+              <Collapse ref={ref} in={isLargerThanXL ? openSection === item.label : true}>
                 <List
+                  onMouseEnter={() => handleToggle(item.label)}
+                  onMouseLeave={() => setOpenSection(null)}
                   zIndex={20}
                   position={{ base: 'relative', xl: 'absolute' }}
                   gap={6}
                   px={6}
-                  pt={{ base: 0, xl: 6 }}
                   bgColor={'navbar.bg_light'}
                   _dark={{ bgColor: 'navbar.bg_dark' }}
                 >
