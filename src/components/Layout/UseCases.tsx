@@ -14,7 +14,7 @@ type UseCasesItem = {
   category: string
   label: string
   description: string
-  url: string
+  img: string
   route: string
 }
 
@@ -44,7 +44,7 @@ const UseCases = () => {
           <GridItem key={index}>
             <Card variant={'use-cases'}>
               <CardHeader>
-                <Image src={item.url} />
+                <Image src={item.img} />
                 <Text as={'span'}>{item.category}</Text>
                 <Flex>
                   <Text as={'span'}>{item.label}</Text>
@@ -92,7 +92,7 @@ export const useCases = (): UseCasesItem[] => {
       description: t('use_cases.insitutions_description', {
         defaultValue: 'How do you create compelling presentations that wow your colleagues and impress your managers?',
       }),
-      url: cityCouncilImg,
+      img: cityCouncilImg,
       route: Routes.useCases.cityCouncils,
     },
     {
@@ -102,7 +102,7 @@ export const useCases = (): UseCasesItem[] => {
         defaultValue:
           "Linear helps streamline software projects, sprints, tasks, and bug tracking. Here's how to get started.",
       }),
-      url: organizationsImg,
+      img: organizationsImg,
       route: Routes.useCases.organizations,
     },
     {
@@ -112,7 +112,7 @@ export const useCases = (): UseCasesItem[] => {
         defaultValue:
           'The rise of RESTful APIs has been met by a rise in tools for creating, testing, and managing them.',
       }),
-      url: politicalPartyImg,
+      img: politicalPartyImg,
       route: Routes.useCases.politicalParties,
     },
     {
@@ -121,7 +121,7 @@ export const useCases = (): UseCasesItem[] => {
       description: t('use_cases.sports_and_recreations_description', {
         defaultValue: 'Mental models are simple expressions of complex processes or relationships.',
       }),
-      url: coopsImg,
+      img: coopsImg,
       route: Routes.useCases.coOps,
     },
     {
@@ -130,7 +130,7 @@ export const useCases = (): UseCasesItem[] => {
       description: t('use_cases.community_groups_description', {
         defaultValue: 'Introduction to Wireframing and its Principles. Learn from the best in the industry.',
       }),
-      url: web3Img,
+      img: web3Img,
       route: Routes.useCases.web3,
     },
     {
@@ -139,7 +139,7 @@ export const useCases = (): UseCasesItem[] => {
       description: t('use_cases.community_groups_description', {
         defaultValue: 'Javascript frameworks make development easy with extensive features and functionalities.',
       }),
-      url: sportClubsImg,
+      img: sportClubsImg,
       route: Routes.useCases.sportClubs,
     },
   ]
