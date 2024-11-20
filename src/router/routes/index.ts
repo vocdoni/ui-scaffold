@@ -1,5 +1,7 @@
 export const Routes = {
   root: '/',
+  aboutUs: 'about-us',
+  api: '/api',
   auth: {
     acceptInvite: '/account/invite',
     signIn: '/account/signin',
@@ -8,7 +10,10 @@ export const Routes = {
     verify: '/account/verify',
     passwordReset: '/account/password/reset',
   },
+  blog: 'https://blog.vocdoni.io/',
   calculator: '/calculator',
+  careers: '/careers',
+  compliance: '/compliance',
   dashboard: {
     base: '/admin',
     organization: '/admin/organization',
@@ -17,18 +22,32 @@ export const Routes = {
     profile: '/admin/profile',
     team: '/admin/team',
   },
+  documentation: '/documentation',
   faucet: '/faucet',
+  features: '',
   organization: '/organization/:address',
+  pricing: '/pricing',
   privacy: '/privacy',
   processes: {
     create: '/admin/processes/create',
     view: '/processes/:id',
   },
+  security: '/security',
+  support: '/support',
   stripe: {
     checkout: '/stripe/checkout/:amount?',
     return: '/stripe/return/:sessionId',
   },
   terms: '/terms',
+  useCases: {
+    root: '/use-cases',
+    cityCouncils: '/city-councils',
+    organizations: '/organizations',
+    politicalParties: '/political-parties',
+    coOps: '/coops',
+    web3: '/web3',
+    sportClubs: '/sport-clubs',
+  },
 }
 
 export type RoutesType = typeof Routes
