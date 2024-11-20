@@ -2,14 +2,15 @@ import { Box, Flex, Heading, Icon, Text } from '@chakra-ui/react'
 import { ReactNode, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaChevronLeft } from 'react-icons/fa'
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet, To } from 'react-router-dom'
 import AuthBanner from '~components/Organization/Dashboard/AuthBanner'
-import { History } from 'history'
+
+export type NavigationFunctionParams = To | number
 
 export type AuthOutletContextType = {
   setTitle: React.Dispatch<React.SetStateAction<string>>
   setSubTitle: React.Dispatch<React.SetStateAction<string>>
-  setBack: React.Dispatch<React.SetStateAction<History.LocationState>>
+  setBack: React.Dispatch<React.SetStateAction<NavigationFunctionParams>>
   setSidebar: React.Dispatch<React.SetStateAction<ReactNode>>
 }
 
@@ -19,7 +20,7 @@ const LayoutAuth = () => {
   const [title, setTitle] = useState('')
   const [subTitle, setSubTitle] = useState('')
   const [sidebar, setSidebar] = useState<ReactNode>(null)
-  const [back, setBack] = useState<History.LocationState>('/')
+  const [back, setBack] = useState<NavigationFunctionParams>('/')
 
   return (
     <Flex
@@ -29,7 +30,7 @@ const LayoutAuth = () => {
       flexDirection={{ base: 'column', xl: 'row' }}
     >
       <Box position='absolute' top={5} left={2.5}>
-        <NavLink to={back}>
+        <NavLink to={back as unknown}>
           <Flex align='center' w='fit-content'>
             <Icon as={FaChevronLeft} me={2} h={3} w={2} color={'auth.text_color_secondary'} />
             <Text fontSize='sm' color={'auth.text_color_secondary'}>

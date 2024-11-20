@@ -13,6 +13,8 @@ import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from './Form'
+import { useNavigate } from 'react-router-dom'
+import { Routes } from '~src/router/routes'
 
 type FormData = PrivateOrgFormData & CreateOrgParams
 
@@ -33,9 +35,16 @@ const useOrganizationCreate = (options?: Omit<UseMutationOptions<void, Error, Cr
   })
 }
 
-export const OrganizationCreate = ({ ...props }: FlexProps) => {
+export const OrganizationCreate = ({
+  // todo(kon): maybe remove after clarify how create organization flow works
+  onSuccessRoute = Routes.dashboard.base,
+  ...props
+}: {
+  onSuccessRoute: number | string
+} & FlexProps) => {
   const { t } = useTranslation()
 
+  const navigate = useNavigate()
   const [isPending, setIsPending] = useState(false)
 
   const methods = useForm<FormData>()
@@ -61,11 +70,16 @@ export const OrganizationCreate = ({ ...props }: FlexProps) => {
     })
       .then(() => signer.getAddress()) // Get the address of newly created signer
       .then(() =>
+        // Create the new account on the vochain
         createAccount({
           name: typeof values.name === 'object' ? values.name.default : values.name,
           description: typeof values.description === 'object' ? values.description.default : values.description,
         })
-      ) // Create the new account on the vochain
+      )
+      .then(() => {
+        // In case of success, redirect to the success route
+        navigate(onSuccessRoute as unknown)
+      })
       .finally(() => setIsPending(false))
   }
 

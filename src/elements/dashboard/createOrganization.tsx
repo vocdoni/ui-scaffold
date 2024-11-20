@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useOutletContext } from 'react-router-dom'
 import { AuthOutletContextType } from '~elements/LayoutAuth'
@@ -8,18 +8,21 @@ import { ClientsGrid } from '~components/Home/Clients'
 
 const CreateOrganization = () => {
   const { t } = useTranslation()
-  const { setTitle, setBack, setSidebar } = useOutletContext<AuthOutletContextType>()
+  const { setTitle, setBack: setBackBtn, setSidebar } = useOutletContext<AuthOutletContextType>()
+  const [onSuccessRoute, setOnSuccessRoute] = useState(null)
 
   // Set layout title and subtitle
   useEffect(() => {
     setTitle(t('create_org.title', { defaultValue: 'Create your organization' }))
     setSidebar(CreateOrganizationSidebar)
     if (window.history.state.idx) {
-      setBack(-1)
+      setBackBtn(-1)
+      // todo(kon): maybe remove after clarify how create organization flow works
+      setOnSuccessRoute(-1)
     }
   }, [])
 
-  return <OrganizationCreate />
+  return <OrganizationCreate onSuccessRoute={onSuccessRoute} />
 }
 
 const CreateOrganizationSidebar = () => (
