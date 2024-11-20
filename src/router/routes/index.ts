@@ -9,6 +9,7 @@ export const Routes = {
     passwordReset: '/account/password/reset',
   },
   calculator: '/calculator',
+  contactUs: '/contact-us',
   dashboard: {
     base: '/admin',
     organization: '/admin/organization',
@@ -17,8 +18,11 @@ export const Routes = {
     profile: '/admin/profile',
     team: '/admin/team',
   },
+  demos: '/demos',
   faucet: '/faucet',
+  features: '/features',
   organization: '/organization/:address',
+  pricing: '/pricing',
   privacy: '/privacy',
   processes: {
     create: '/admin/processes/create',
@@ -28,6 +32,16 @@ export const Routes = {
     checkout: '/stripe/checkout/:amount?',
     return: '/stripe/return/:sessionId',
   },
+  useCases: {
+    root: '/use-cases',
+    cityCouncils: '/city-councils',
+    organizations: '/organizations',
+    politicalParties: '/political-parties',
+    coOps: '/coops',
+    web3: '/web3',
+    sportClubs: '/sport-clubs',
+  },
+  technology: '/technology',
   terms: '/terms',
 }
 

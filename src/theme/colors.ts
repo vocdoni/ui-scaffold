@@ -298,6 +298,11 @@ export const colors = {
     border: colorsBase.primary,
   },
 
+  navbar: {
+    bg_light: colorsBase.white.pure,
+    bg_dark: colorsBase.blue.dark,
+  },
+
   text_area: {
     bg_light: colorsBase.white.pure,
     bg_dark: colorsBase.blue.grayish,
