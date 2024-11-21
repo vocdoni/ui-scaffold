@@ -1,16 +1,16 @@
 // These aren't lazy loaded since they are main layouts and related components
-import {useQueryClient} from '@tanstack/react-query'
-import {useClient} from '@vocdoni/react-providers'
-import {lazy} from 'react'
-import {Params} from 'react-router-dom'
-import {Profile} from '~elements/dashboard/profile'
+import { useQueryClient } from '@tanstack/react-query'
+import { useClient } from '@vocdoni/react-providers'
+import { lazy } from 'react'
+import { Params } from 'react-router-dom'
+import { Profile } from '~elements/dashboard/profile'
 import Error from '~elements/Error'
 import LayoutDashboard from '~elements/LayoutDashboard'
-import {paginatedElectionsQuery} from '~src/queries/organization'
+import { paginatedElectionsQuery } from '~src/queries/organization'
 import OrganizationProtectedRoute from '~src/router/OrganizationProtectedRoute'
-import {Routes} from '.'
+import { Routes } from '.'
 import AccountProtectedRoute from '../AccountProtectedRoute'
-import {SuspenseLoader} from '../SuspenseLoader'
+import { SuspenseLoader } from '../SuspenseLoader'
 
 // elements/pages
 const OrganizationEdit = lazy(() => import('~elements/dashboard/organization'))
