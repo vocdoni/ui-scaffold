@@ -1,28 +1,24 @@
-import { useEffect, useState } from 'react'
+import { Box, Button, Flex, Heading, ListItem, Text, UnorderedList } from '@chakra-ui/react'
+import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useOutletContext } from 'react-router-dom'
-import { AuthOutletContextType } from '~elements/LayoutAuth'
-import { Box, Button, Flex, Heading, ListItem, Text, UnorderedList } from '@chakra-ui/react'
-import { OrganizationCreate } from '~components/Organization/Create'
 import { ClientsGrid } from '~components/Home/Clients'
+import { OrganizationCreate } from '~components/Organization/Create'
+import { AuthOutletContextType } from '~elements/LayoutAuth'
+import { Routes } from '~src/router/routes'
 
 const CreateOrganization = () => {
   const { t } = useTranslation()
   const { setTitle, setBack: setBackBtn, setSidebar } = useOutletContext<AuthOutletContextType>()
-  const [onSuccessRoute, setOnSuccessRoute] = useState(null)
 
-  // Set layout title and subtitle
+  // Set layout title and subtitle and back button
   useEffect(() => {
     setTitle(t('create_org.title', { defaultValue: 'Create your organization' }))
     setSidebar(CreateOrganizationSidebar)
-    if (window.history.state.idx) {
-      setBackBtn(-1)
-      // todo(kon): maybe remove after clarify how create organization flow works
-      setOnSuccessRoute(-1)
-    }
+    setBackBtn(Routes.dashboard.base)
   }, [])
 
-  return <OrganizationCreate onSuccessRoute={onSuccessRoute} />
+  return <OrganizationCreate canSkip />
 }
 
 const CreateOrganizationSidebar = () => (

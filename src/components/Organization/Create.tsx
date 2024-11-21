@@ -1,20 +1,20 @@
-import { Flex, FlexProps, Text } from '@chakra-ui/react'
-import { Button } from '@vocdoni/chakra-components'
-import { FormProvider, useForm } from 'react-hook-form'
-import { Trans, useTranslation } from 'react-i18next'
+import { Flex, FlexProps, Stack, Text } from '@chakra-ui/react'
 
 import { useMutation, UseMutationOptions } from '@tanstack/react-query'
+import { Button } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
 import { useState } from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
+import { Trans, useTranslation } from 'react-i18next'
+import { Link as ReactRouterLink, useNavigate } from 'react-router-dom'
 import { CreateOrgParams } from '~components/Account/AccountTypes'
 import LogoutBtn from '~components/Account/LogoutBtn'
 import { useAccountCreate } from '~components/Account/useAccountCreate'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
-import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from './Form'
-import { useNavigate } from 'react-router-dom'
 import { Routes } from '~src/router/routes'
+import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from './Form'
 
 type FormData = PrivateOrgFormData & CreateOrgParams
 
@@ -36,11 +36,12 @@ const useOrganizationCreate = (options?: Omit<UseMutationOptions<void, Error, Cr
 }
 
 export const OrganizationCreate = ({
-  // todo(kon): maybe remove after clarify how create organization flow works
+  canSkip,
   onSuccessRoute = Routes.dashboard.base,
   ...props
 }: {
-  onSuccessRoute: number | string
+  onSuccessRoute?: number | string
+  canSkip?: boolean
 } & FlexProps) => {
   const { t } = useTranslation()
 
@@ -103,9 +104,16 @@ export const OrganizationCreate = ({
       >
         <PublicOrgForm />
         <PrivateOrgForm />
-        <Button form='process-create-form' type='submit' isLoading={isPending} mx='auto' mt={8} w='80%'>
-          {t('organization.create_org')}
-        </Button>
+        <Stack direction={'row'} align={'center'} mx='auto' mt={8} w='80%'>
+          {canSkip && (
+            <Button as={ReactRouterLink} to={Routes.dashboard.base} variant={'outline'} border='none'>
+              {t('skip', { defaultValue: 'Skip' })}
+            </Button>
+          )}
+          <Button form='process-create-form' type='submit' isLoading={isPending}>
+            {t('organization.create_org')}
+          </Button>
+        </Stack>
         <FormSubmitMessage isError={isError} error={error} />
         <Text color={'account_create_text_secondary'} fontSize='sm' textAlign='center' py={5} mt='auto'>
           <Trans i18nKey='create_org.already_profile'>

@@ -3,7 +3,7 @@ import {useEffect} from 'react'
 import {useTranslation} from 'react-i18next'
 import {useNavigate, useSearchParams} from 'react-router-dom'
 import {useAuth} from '~components/Auth/useAuth'
-import {Routes} from '~src/router/routes'
+import {verificationSuccessRedirect} from '~components/Auth/Verify'
 import {Loading} from '~src/router/SuspenseLoader'
 
 /**
@@ -25,7 +25,7 @@ const Verify = () => {
 
   // Trigger email verification on component load
   useEffect(() => {
-    mutateAsync({ email, code }).then(() => navigate(Routes.auth.organizationCreate))
+    mutateAsync({ email, code }).then(() => navigate(verificationSuccessRedirect))
   }, [])
 
   let title = t('verify_mail.verifying_title', { email: email, defaultValue: 'Verifying {{ email }}' })

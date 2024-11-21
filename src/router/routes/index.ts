@@ -2,6 +2,7 @@ export const Routes = {
   root: '/',
   auth: {
     acceptInvite: '/account/invite',
+    organizationCreate: '/account/organizationCreate', // Organization create with account layout
     signIn: '/account/signin',
     signUp: '/account/signup',
     recovery: '/account/password',
@@ -12,7 +13,7 @@ export const Routes = {
   dashboard: {
     base: '/admin',
     organization: '/admin/organization',
-    organizationCreate: '/admin/organization/create',
+    organizationCreate: '/admin/organization/create', // Organization create with dashboard layout
     process: '/admin/process/:id',
     processes: '/admin/processes/:page?/:status?',
     profile: '/admin/profile',

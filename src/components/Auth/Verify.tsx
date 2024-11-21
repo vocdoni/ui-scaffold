@@ -8,6 +8,8 @@ import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import { AuthOutletContextType } from '~elements/LayoutAuth'
 import { Routes } from '~src/router/routes'
 
+export const verificationSuccessRedirect = Routes.auth.organizationCreate
+
 interface IVerifyAccountProps {
   email: string
 }
@@ -21,7 +23,7 @@ const VerifyForm = ({ email }: IVerifyAccountProps) => {
   } = useAuth()
 
   const verify = useCallback(() => {
-    verifyAsync({ email, code }).then(() => navigate(Routes.dashboard.base))
+    verifyAsync({ email, code }).then(() => navigate(verificationSuccessRedirect))
   }, [code, email])
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
