@@ -8,8 +8,8 @@ import { SuspenseLoader } from '../SuspenseLoader'
 
 const AcceptInvite = lazy(() => import('~elements/account/invite'))
 const Signin = lazy(() => import('~elements/account/signin'))
-const Signup = lazy(() => import('~elements/account/signup'))
-const Verify = lazy(() => import('~components/Auth/Verify'))
+const SignUp = lazy(() => import('~components/Auth/SignUp'))
+const Verify = lazy(() => import('~elements/account/verify'))
 const PasswordForgot = lazy(() => import('~elements/account/password'))
 const PasswordReset = lazy(() => import('~elements/account/password/reset'))
 const CreateOrganization = lazy(() => import('~elements/dashboard/createOrganization'))
@@ -32,7 +32,7 @@ const AuthElements = [
             path: Routes.auth.signUp,
             element: (
               <SuspenseLoader>
-                <Signup />
+                <SignUp />
               </SuspenseLoader>
             ),
           },
@@ -93,7 +93,7 @@ export const useCreateOrganizationRoutes = () => {
         element: <LayoutAuth />,
         children: [
           {
-            path: Routes.dashboard.organizationCreate,
+            path: Routes.auth.organizationCreate,
             element: (
               <SuspenseLoader>
                 <CreateOrganization />
