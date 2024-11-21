@@ -1,10 +1,10 @@
-import {Box, Flex, FormControl, FormErrorMessage, Heading, Text} from '@chakra-ui/react'
-import {useEffect} from 'react'
-import {useTranslation} from 'react-i18next'
-import {useNavigate, useSearchParams} from 'react-router-dom'
-import {useAuth} from '~components/Auth/useAuth'
-import {verificationSuccessRedirect} from '~components/Auth/Verify'
-import {Loading} from '~src/router/SuspenseLoader'
+import { Box, Flex, FormControl, FormErrorMessage, Heading, Text } from '@chakra-ui/react'
+import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useAuth } from '~components/Auth/useAuth'
+import { verificationSuccessRedirect } from '~components/Auth/Verify'
+import { Loading } from '~src/router/SuspenseLoader'
 
 /**
  * This page reads the email and code from the URL and triggers the email verification automatically
