@@ -5,7 +5,6 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
 
 const baseStyle = definePartsStyle((props) => ({
   table: {
-    overflow: 'hidden',
     bgColor: 'table.bg.light',
 
     _dark: {
@@ -22,11 +21,6 @@ const baseStyle = definePartsStyle((props) => ({
 }))
 
 const md = definePartsStyle({
-  table: {
-    borderRadius: 'xl',
-  },
-  thead: {},
-  tbody: {},
   tfoot: {
     td: {
       paddingTop: 3,
