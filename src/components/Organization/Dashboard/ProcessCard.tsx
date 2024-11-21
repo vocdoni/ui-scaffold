@@ -1,4 +1,4 @@
-import { Td } from '@chakra-ui/react'
+import { Td, Tr } from '@chakra-ui/react'
 import { ElectionStatusBadge, ElectionTitle, QuestionsTypeBadge } from '@vocdoni/chakra-components'
 import { useElection } from '@vocdoni/react-providers'
 import { InvalidElection } from '@vocdoni/sdk'
@@ -13,7 +13,7 @@ const ProcessCard = () => {
   if (!election || election instanceof InvalidElection) return null
 
   return (
-    <>
+    <Tr>
       <Td>
         <ElectionTitle mb={0} fontSize='md' textAlign='left' fontWeight='500' isTruncated />
       </Td>
@@ -30,7 +30,7 @@ const ProcessCard = () => {
       <Td>
         {election.voteCount}/{election.census.size}
       </Td>
-    </>
+    </Tr>
   )
 }
 

@@ -16,12 +16,18 @@ const baseStyle = definePartsStyle((props) => ({
   th: {
     textTransform: 'normal',
     fontWeight: 600,
-    'padding-top': '160px !important',
     textAlign: 'left',
   },
   td: {},
 }))
 
+const md = definePartsStyle({
+  th: {
+    paddingTop: '160px',
+  },
+})
+
 export const Table = defineMultiStyleConfig({
   baseStyle,
+  sizes: { md },
 })
