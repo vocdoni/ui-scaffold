@@ -2,7 +2,7 @@ export const Routes = {
   root: '/',
   auth: {
     acceptInvite: '/account/invite',
-    organizationCreate: '/account/organizationCreate', // Organization create with account layout
+    organizationCreate: '/account/create-organization', // Organization create with account layout
     signIn: '/account/signin',
     signUp: '/account/signup',
     recovery: '/account/password',

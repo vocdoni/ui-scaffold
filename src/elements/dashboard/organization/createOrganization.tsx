@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useOutletContext } from 'react-router-dom'
 import { DashboardContents } from '~components/Layout/Dashboard'
-import { OrganizationCreate } from '~components/Organization/CreateOrg'
+import { OrganizationCreate } from '~components/Organization/Create'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 
 const DashBoardCreateOrg = () => {
