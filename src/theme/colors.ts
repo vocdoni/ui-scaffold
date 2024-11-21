@@ -9,7 +9,7 @@ export const colorsBase = {
   gradient: 'linear-gradient(to right, #546E39, #2E441A)',
   gray: {
     light: '#CBD5E0',
-    normal: '#718096',
+    normal: '#E9EAEB',
   },
   primary: '#546E39',
   primary_dark: 'rgba(84, 110, 57, 0.2)',
@@ -290,6 +290,21 @@ export const colors = {
         },
         svg: colorsBase.primary,
       },
+    },
+  },
+
+  table: {
+    bg: {
+      light: colorsBase.white.pure,
+      dark: colorsBase.blue.grayish,
+    },
+    thead: {
+      bg_light: colorsBase.gray.normal,
+      bg_dark: colorsBase.blue.grayish,
+    },
+    border_color: {
+      light: colorsBase.gray.normal,
+      dark: colorsBase.blue.dark,
     },
   },
 

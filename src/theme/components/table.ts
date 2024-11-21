@@ -1,32 +1,52 @@
 import { tableAnatomy } from '@chakra-ui/anatomy'
-import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
+import { createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/react'
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(tableAnatomy.keys)
 
 const baseStyle = definePartsStyle((props) => ({
-  container: {
-    border: '3px solid red',
-  },
   table: {
-    borderRadius: 'lg',
+    overflow: 'hidden',
+    bgColor: 'table.bg.light',
+
+    _dark: {
+      bgColor: 'table.bg.dark',
+    },
   },
-  thead: {},
-  th: {},
-  td: {},
+  thead: {
+    bgColor: 'table.thead.bg_light',
+
+    _dark: {
+      bgColor: 'table.thead.bg_dark',
+    },
+  },
 }))
 
 const md = definePartsStyle({
   table: {
-    maxW: '300px !important',
-    overflowX: 'scroll',
-    // border: '2px solid red',
+    borderRadius: 'xl',
   },
-  th: {
-    paddingY: '24px',
+  thead: {},
+  tbody: {},
+  tfoot: {
+    td: {
+      paddingTop: 3,
+      paddingBottom: 4,
+      '& > div': {
+        alignItems: 'end',
+      },
+    },
   },
   td: {
-    color: 'red',
+    paddingY: 4,
     whiteSpace: 'nowrap',
+  },
+  tr: {
+    borderBottom: '2px solid',
+    borderColor: 'table.border_color.light',
+
+    _dark: {
+      borderColor: 'table.border_color.dark',
+    },
   },
 })
 
