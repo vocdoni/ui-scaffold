@@ -1,39 +1,33 @@
 import { Box, Heading, Link, List, ListItem, Text } from '@chakra-ui/react'
+import { t } from 'i18next'
 
 const Privacy = () => (
   <>
     <Box mb={5}>
       <Heading as='h1' size='xl' mb={3}>
-        Privacy Policy
+        {t('privacyPolicy.title')}
       </Heading>
-      <Text>
-        This document outlines the privacy practices for Vocdoni Association ("Vocdoni") concerning the use of its
-        websites and services.
-      </Text>
+      <Text>{t('privacyPolicy.description')}</Text>
     </Box>
 
     <Box mb={5}>
       <Heading as='h2' size='lg' mb={2}>
-        1. Information Collection
+        {t('privacyPolicy.section1Title')}
       </Heading>
       <List spacing={2}>
         <ListItem>
           <Text>
-            <strong>1.1</strong> Vocdoni may collect user personal data such as name, organization name, size, type and
-            email addresses when provided as the organization's contact email, though using personal email addresses for
-            this purpose is not recommended.
+            <strong>1.1</strong> {t('privacyPolicy.section1.item1')}
           </Text>
         </ListItem>
         <ListItem>
           <Text>
-            <strong>1.2</strong> User consent may be required for the use of certain personal data, which can be
-            withdrawn at any time using Vocdoni's contact details provided below.
+            <strong>1.2</strong> {t('privacyPolicy.section1.item2')}
           </Text>
         </ListItem>
         <ListItem>
           <Text>
-            <strong>1.3</strong> Additional personal information may be collected and processed as necessary to deliver
-            services, fulfill contractual obligations, or comply with legal requirements.
+            <strong>1.3</strong> {t('privacyPolicy.section1.item3')}
           </Text>
         </ListItem>
       </List>
@@ -41,57 +35,45 @@ const Privacy = () => (
 
     <Box mb={5}>
       <Heading as='h2' size='lg' mb={2}>
-        2. Method of Collection
+        {t('privacyPolicy.section2Title')}
       </Heading>
-      <Text>
-        Vocdoni processes personal information provided directly by users through various means, including registration
-        on any Vocdoni website, service procurement, or communications.
-      </Text>
+      <Text>{t('privacyPolicy.section2.description')}</Text>
     </Box>
 
     <Box mb={5}>
       <Heading as='h2' size='lg' mb={2}>
-        3. Use of Information
+        {t('privacyPolicy.section3Title')}
       </Heading>
-      <Text>
-        The collected information is used to provide and manage services, conduct marketing and business activities, and
-        support customer service and marketing efforts.
-      </Text>
+      <Text>{t('privacyPolicy.section3.description')}</Text>
     </Box>
 
     <Box mb={5}>
       <Heading as='h2' size='lg' mb={2}>
-        4. Information Sharing
+        {t('privacyPolicy.section4Title')}
       </Heading>
-      <Text>
-        Vocdoni may share personal information with other companies within the Vocdoni Association or third-party
-        service providers assisting with our services.
-      </Text>
+      <Text>{t('privacyPolicy.section4.description')}</Text>
     </Box>
 
     <Box mb={5}>
       <Heading as='h2' size='lg' mb={2}>
-        5. Information Security
+        {t('privacyPolicy.section5Title')}
       </Heading>
-      <Text>Vocdoni commits to securing collected personal information with appropriate measures.</Text>
+      <Text>{t('privacyPolicy.section5.description')}</Text>
     </Box>
 
     <Box mb={5}>
       <Heading as='h2' size='lg' mb={2}>
-        6. Rights of Users
+        {t('privacyPolicy.section6Title')}
       </Heading>
-      <Text>
-        Users have rights to access, correct, delete, and restrict the processing of their data, among other rights
-        outlined herein.
-      </Text>
+      <Text>{t('privacyPolicy.section6.description')}</Text>
     </Box>
 
     <Box mb={5}>
       <Heading as='h2' size='lg' mb={2}>
-        7. Contacting Vocdoni
+        {t('privacyPolicy.section7Title')}
       </Heading>
       <Text>
-        For further details on our data practices or to exercise your rights, please contact us at{' '}
+        {t('privacyPolicy.section7.description')}{' '}
         <Link href='mailto:privacy@vocdoni.org' color='teal.500'>
           privacy@vocdoni.org
         </Link>

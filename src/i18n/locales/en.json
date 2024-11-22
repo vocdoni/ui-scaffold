@@ -823,6 +823,7 @@
     "feature_unavailable": "Oops ... your <2>free plan</2> doesn't support {{feature}}.",
     "satisfaction_rate": "97% satisfaction rate, for only 9€/month."
   },
+  "personalization": "personalization",
   "preview": "Preview",
   "pricing": {
     "advanced_analytitcs": "Advanced reporting and analytics",
@@ -859,6 +860,40 @@
     "view_features": "View all features"
   },
   "privacy_policy": "Privacy Policy",
+  "privacyPolicy": {
+    "description": "This document outlines the privacy practices for Vocdoni Association (\"Vocdoni\") concerning the use of its websites and services.",
+    "section1": {
+      "item1": "Vocdoni may collect user personal data such as name, organization name, size, type and email addresses when provided as the organization's contact email, though using personal email addresses for this purpose is not recommended.",
+      "item2": "User consent may be required for the use of certain personal data, which can be withdrawn at any time using Vocdoni's contact details provided below.",
+      "item3": "Additional personal information may be collected and processed as necessary to deliver services, fulfill contractual obligations, or comply with legal requirements."
+    },
+    "section1Title": "1. Information Collection",
+    "section2": {
+      "description": "Vocdoni processes personal information provided directly by users through various means, including registration on any Vocdoni website, service procurement, or communications."
+    },
+    "section2Title": "2. Method of Collection",
+    "section3": {
+      "description": "The collected information is used to provide and manage services, conduct marketing and business activities, and support customer service and marketing efforts."
+    },
+    "section3Title": "3. Use of Information",
+    "section4": {
+      "description": "Vocdoni may share personal information with other companies within the Vocdoni Association or third-party service providers assisting with our services."
+    },
+    "section4Title": "4. Information Sharing",
+    "section5": {
+      "description": "Vocdoni commits to securing collected personal information with appropriate measures."
+    },
+    "section5Title": "5. Information Security",
+    "section6": {
+      "description": "Users have rights to access, correct, delete, and restrict the processing of their data, among other rights outlined herein."
+    },
+    "section6Title": "6. Rights of Users",
+    "section7": {
+      "description": "For further details on our data practices or to exercise your rights, please contact us at privacy@vocdoni.org."
+    },
+    "section7Title": "7. Contacting Vocdoni",
+    "title": "Privacy Policy"
+  },
   "process": {
     "census": "Census",
     "census_strategies": {
@@ -1069,6 +1104,65 @@
     "title": "Team"
   },
   "teams": "Teams",
+  "terms": {
+    "title": "Terms and Conditions for Vocdoni Association",
+    "section1Title": "1. General Information",
+    "section1": {
+      "description1": "The Vocdoni Association, headquartered in Switzerland, operates the app.vocdoni.io and onvote.app platforms.",
+      "description2": "These platforms prioritize user privacy and data security, ensuring compliance with the European Union's General Data Protection Regulation (GDPR)."
+    },
+    "section2Title": "2. Data Collection and Storage",
+    "section2": {
+      "description": "We emphasize user data security. Here is an overview:",
+      "item1": "We collect and process personal data necessary for service provision.",
+      "item2": "All personal data is stored in encrypted form, ensuring that no personal data is stored in plain text.",
+      "item3": "Metadata submitted by voting organizers may be publicly accessible on IPFS.",
+      "item4": "Additional data may be collected to fulfill legal obligations or provide specialized services."
+    },
+    "section3Title": "3. Data Use and Compliance",
+    "section3": {
+      "item1": "Personal data is processed solely for providing and improving our services.",
+      "item2": "We seek explicit user consent for data processing activities.",
+      "item3": "We do not use collected data for marketing purposes without explicit user consent."
+    },
+    "section4Title": "4. Data Sharing",
+    "section4": {
+      "item1": "Personal data is not shared with third parties except where required by law.",
+      "item2": "Third-party data processors are bound by confidentiality agreements.",
+      "item3": "Any cross-border data transfers include adequate protection measures."
+    },
+    "section5Title": "5. Security Measures",
+    "section5": {
+      "description1": "The Vocdoni Association employs strong security measures to protect personal data.",
+      "description2": "In the event of a data breach, we will promptly notify affected individuals."
+    },
+    "section6Title": "6. User Rights",
+    "section6": {
+      "item1": "Access: Obtain information on the processing of personal data.",
+      "item2": "Correction: Request the correction of inaccurate personal data.",
+      "item3": "Deletion: Request the deletion of personal data under certain circumstances.",
+      "item4": "Restriction: Request that we restrict processing of personal data.",
+      "item5": "Portability: Receive personal data in a structured format.",
+      "item6": "Objection: Object to processing based on legitimate interests.",
+      "item7": "Complaint: Lodge a complaint with the relevant data authority.",
+      "description": "To exercise these rights, contact us using the details below."
+    },
+    "section7Title": "7. Disclaimer",
+    "section7": {
+      "description1": "The Vocdoni Association is not responsible for information submitted by users.",
+      "description2": "We do not track user data beyond what is essential."
+    },
+    "section8Title": "8. Limitation of Liability",
+    "section8": {
+      "item1": "Indirect Damages: The Vocdoni Association shall not be liable for indirect damages.",
+      "item2": "Force Majeure: The Vocdoni Association is not responsible for delays caused by events beyond our control."
+    },
+    "section9Title": "9. Contact Information",
+    "section9": {
+      "description1": "For any queries regarding these Terms and Conditions, please contact us at info (at) vocdoni.org.",
+      "description2": "By continuing to use our services, you confirm your acceptance of these terms."
+    }
+  },
   "terms_and_conditions": "Terms and Conditions",
   "terms_of_use": "Terms of Use",
   "tier_upgrade": {
