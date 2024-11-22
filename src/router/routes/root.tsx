@@ -5,12 +5,10 @@ import { Params } from 'react-router-dom'
 // These aren't lazy loaded since they are main layouts and related components
 import Error from '~elements/Error'
 import Layout from '~elements/Layout'
-import { StripeCheckout, StripeReturn } from '~elements/Stripe'
 import { Routes } from '.'
 import { SuspenseLoader } from '../SuspenseLoader'
-
-// Lazy loading helps splitting the final code, which helps downloading the app (theoretically)
-const OrganizationProtectedRoute = lazy(() => import('../OrganizationProtectedRoute'))
+import ProtectedRoutes from '~src/router/ProtectedRoutes'
+import { StripeCheckout, StripeReturn } from '~elements/Stripe'
 
 // elements / pages
 const Faucet = lazy(() => import('~elements/Faucet'))
@@ -74,12 +72,7 @@ const RootElements = (client: VocdoniSDKClient) => [
     ),
   },
   {
-    element: (
-      <SuspenseLoader>
-        <OrganizationProtectedRoute />
-      </SuspenseLoader>
-    ),
-    children: [
+    ...ProtectedRoutes([
       {
         path: Routes.stripe.checkout,
         element: <StripeCheckout />,
@@ -89,7 +82,7 @@ const RootElements = (client: VocdoniSDKClient) => [
         element: <StripeReturn />,
         errorElement: <Error />,
       },
-    ],
+    ]),
   },
   {
     path: Routes.faucet,

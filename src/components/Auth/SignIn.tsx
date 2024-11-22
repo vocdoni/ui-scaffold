@@ -7,7 +7,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { api, ApiEndpoints, UnverifiedApiError } from '~components/Auth/api'
 import { ILoginParams } from '~components/Auth/authQueries'
 import { useAuth } from '~components/Auth/useAuth'
-import { VerifyAccountNeeded } from '~components/Auth/Verify'
+import { VerificationPending } from '~components/Auth/Verify'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import InputPassword from '~components/Layout/InputPassword'
 import { Routes } from '~src/router/routes'
@@ -22,10 +22,9 @@ type FormData = {
 const useVerificationCodeStatus = () =>
   useMutation({
     mutationFn: async (email: string) => {
-      const response = await api<{ email: string; expiration: string; valid: boolean }>(
+      return await api<{ email: string; expiration: string; valid: boolean }>(
         `${ApiEndpoints.VerifyCode}?email=${encodeURIComponent(email)}`
       )
-      return response
     },
   })
 
@@ -92,7 +91,7 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
   }
 
   if (verifyNeeded) {
-    return <VerifyAccountNeeded email={email} />
+    return <VerificationPending email={email} />
   }
 
   return (
