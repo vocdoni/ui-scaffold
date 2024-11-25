@@ -2,7 +2,6 @@ import { ElectionListWithPagination } from '@vocdoni/sdk'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLoaderData, useOutletContext } from 'react-router-dom'
-import { DashboardContents } from '~components/Layout/Dashboard'
 import Votings from '~components/Organization/Dashboard/Votings'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 
@@ -17,11 +16,7 @@ const OrganizationVotings = () => {
     setBack(null)
   }, [setTitle, setBack])
 
-  return (
-    <DashboardContents>
-      <Votings data={data as ElectionListWithPagination} />
-    </DashboardContents>
-  )
+  return <Votings data={data as ElectionListWithPagination} />
 }
 
 export default OrganizationVotings
