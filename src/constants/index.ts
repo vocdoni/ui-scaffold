@@ -27,10 +27,11 @@ export enum SubscriptionPermission {
   SmsNotification = 'features.smsNotification',
 }
 
-export enum StripeId {
+export enum PlanId {
   Essential = 0,
   Premium = 1,
   Free = 2,
+  Custom = 3,
 }
 
 const evocdoni = import.meta.env.VOCDONI_ENVIRONMENT

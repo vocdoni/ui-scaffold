@@ -22,7 +22,7 @@ export const Subscription = () => {
 
   return (
     <>
-      <SubscriptionModal isOpenModal={isOpen} onCloseModal={onClose} title={t('pricing.title')} />
+      <SubscriptionModal isOpen={isOpen} onClose={onClose} title={t('pricing.title')} />
       <Button onClick={onOpen} alignSelf='end'>
         View Plans & Pricing
       </Button>

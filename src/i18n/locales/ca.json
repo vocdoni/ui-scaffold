@@ -766,6 +766,9 @@
   "meta": {
     "helper": "Provide a clear title and description to help voters understand the vote"
   },
+  "more_than_memberships_one": "més d'{{count}} membre",
+  "more_than_memberships_many": "",
+  "more_than_memberships_other": "més de {{count}} membres",
   "multiple": "multiple",
   "name": "Name",
   "new_organization": {
@@ -813,11 +816,27 @@
   },
   "passwords_do_not_match": "",
   "personalization": "personalization",
+  "plan_upgrade": {
+    "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
+    "feature_available_in": "Feature available in:",
+    "feature_unavailable": "Ups... el teu pla <2>{{ plan }}</2> no suporta {{ feature }}.",
+    "plan": {
+      "basic": "Basic",
+      "custom": "Custom",
+      "free": "Free",
+      "pro": "Pro"
+    },
+    "satisfaction_rate": "97% satisfaction rate, for only 9€/month."
+  },
   "preview": "Preview",
   "pricing": {
     "advanced_analytitcs": "Informes i anàlisis avançades",
+    "all_features": "All features & voting types",
     "basic_analytics": "Informes i anàlisis bàsiques",
     "core_voting": "Funcions bàsiques de votació",
+    "custom_subtitle": "Large organizations enterprises, and institutions requiring extensive customization and support.",
+    "custom_title": "Personalitzat",
+    "dedicated_manager": "Dedicated account manager",
     "essential_subtitle": "Organitzacions petites o mitjanes o grups comunitaris amb necessitats bàsiques de votació.",
     "essential_title": "Essencial",
     "features": {
@@ -844,6 +863,7 @@
     "unlimited_yearly_processes": "Processos anuals il·limitats",
     "up_to_admins": "Fins a {{ admin }} admin. i {{ org }} organitzacions",
     "upgrade_title": "Has d'actualitzar el teu pla per utilitzar aquesta funcionalitat",
+    "white_label": "White label solution",
     "yearly_processes_one": "{{ count }} procés anual",
     "yearly_processes_many": "",
     "yearly_processes_other": "{{ count }} processos anuals",
@@ -1053,7 +1073,6 @@
   "skip": "Ometre",
   "smsNotification": "smsNotification",
   "submit": "Submit",
-  "subscribe": "Subscribe",
   "subscription": "Subscripció",
   "support": "Suport",
   "surname": {
@@ -1071,6 +1090,23 @@
   "teams": "Equips",
   "terms_and_conditions": "Terms and Conditions",
   "terms_of_use": "Condicions d'ús",
+  "tier_upgrade": {
+    "current_plan": "Your current <2>free plan</2> is limited to selecting up to <6>50 voters</6>.",
+    "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
+    "plan": {
+      "basic": "Basic",
+      "custom": "Custom",
+      "free": "Free",
+      "limit": {
+        "basic": "Up to 1500",
+        "custom": "Unlimited",
+        "free": "50 voters",
+        "pro": "Up to 3000"
+      },
+      "pro": "Pro"
+    },
+    "satisfaction_rate": "97% satisfaction rate, starting at 9€/month."
+  },
   "total_votes_submitted": "Total Votes Submitted",
   "update": "Update",
   "upload": "Upload",
@@ -1101,6 +1137,8 @@
     "verifying_title": "Verifying {{ email }}"
   },
   "view_pricing": "View Pricing",
+  "view_pricing_plan": "View Pricing Plan",
+  "view_pricing_plans": "View Pricing Plans",
   "vote_details": "Vote details",
   "voters": "voters",
   "voting_link": "Voting Link",

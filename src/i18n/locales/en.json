@@ -758,6 +758,8 @@
   "meta": {
     "helper": "Provide a clear title and description to help voters understand the vote"
   },
+  "more_than_memberships_one": "more than {{count}} membership",
+  "more_than_memberships_other": "more than {{count}} memberships",
   "multiple": "multiple",
   "name": "Name",
   "new_organization": {
@@ -805,11 +807,27 @@
   },
   "passwords_do_not_match": "",
   "personalization": "personalization",
+  "plan_upgrade": {
+    "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
+    "feature_available_in": "Feature available in:",
+    "feature_unavailable": "Oops ... your <2>free plan</2> doesn't support {{feature}}.",
+    "plan": {
+      "basic": "Basic",
+      "custom": "Custom",
+      "free": "Free",
+      "pro": "Pro"
+    },
+    "satisfaction_rate": "97% satisfaction rate, for only 9€/month."
+  },
   "preview": "Preview",
   "pricing": {
     "advanced_analytitcs": "Advanced reporting and analytics",
+    "all_features": "All features & voting types",
     "basic_analytics": "Basic reporting and analytics",
     "core_voting": "Core voting features",
+    "custom_subtitle": "Large organizations enterprises, and institutions requiring extensive customization and support.",
+    "custom_title": "Custom Plan",
+    "dedicated_manager": "Dedicated account manager",
     "essential_subtitle": "Small or medium-sized orgs or community groups with basic voting needs.",
     "essential_title": "Essential",
     "features": {
@@ -836,6 +854,7 @@
     "unlimited_yearly_processes": "Unlimited yearly voting processes",
     "up_to_admins": "Up to {{ admin }} admin and {{ org }} org",
     "upgrade_title": "You need to upgrade to use this feature",
+    "white_label": "White label solution",
     "yearly_processes_one": "{{ count }} yearly voting process",
     "yearly_processes_other": "{{ count }} yearly voting processes",
     "your_plan": "Currently you are subscribed to the 'Your plan' subscription. If you upgrade, we will only charge the yearly difference. In the next billing period, starting on 'dd/mm/yy' you will pay for the new select plan."
@@ -1041,7 +1060,6 @@
   "skip": "Skip",
   "smsNotification": "smsNotification",
   "submit": "Submit",
-  "subscribe": "Subscribe",
   "subscription": "Subscription",
   "support": "Support",
   "surname": {
@@ -1059,6 +1077,23 @@
   "teams": "Teams",
   "terms_and_conditions": "Terms and Conditions",
   "terms_of_use": "Terms of Use",
+  "tier_upgrade": {
+    "current_plan": "Your current <2>free plan</2> is limited to selecting up to <6>50 voters</6>.",
+    "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
+    "plan": {
+      "basic": "Basic",
+      "custom": "Custom",
+      "free": "Free",
+      "limit": {
+        "basic": "Up to 1500",
+        "custom": "Unlimited",
+        "free": "50 voters",
+        "pro": "Up to 3000"
+      },
+      "pro": "Pro"
+    },
+    "satisfaction_rate": "97% satisfaction rate, starting at 9€/month."
+  },
   "total_votes_submitted": "Total Votes Submitted",
   "update": "Update",
   "upload": "Upload",
@@ -1089,6 +1124,8 @@
     "verifying_title": "Verifying {{ email }}"
   },
   "view_pricing": "View Pricing",
+  "view_pricing_plan": "View Pricing Plan",
+  "view_pricing_plans": "View Pricing Plans",
   "vote_details": "Vote details",
   "voters": "voters",
   "voting_link": "Voting Link",

@@ -766,8 +766,11 @@
   "meta": {
     "helper": "Provide a clear title and description to help voters understand the vote"
   },
+  "more_than_memberships_one": "más de {{count}} membresía",
+  "more_than_memberships_many": "",
+  "more_than_memberships_other": "más de {{count}} membresías",
   "multiple": "multiple",
-  "name": "Name",
+  "name": "Nombre",
   "new_organization": {
     "create_organization_btn": "Crear Organización",
     "description1": "Antes de comenzar a crear su proceso de votación, <span>debe crear una organización</span>, es gratuito. Con una organización, podrá crear una amplia gama de elecciones y dar voz a los miembros de su comunidad.",
@@ -813,11 +816,27 @@
   },
   "passwords_do_not_match": "",
   "personalization": "personalization",
+  "plan_upgrade": {
+    "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
+    "feature_available_in": "Feature available in:",
+    "feature_unavailable": "Oops ... your <2>free plan</2> doesn't support {{feature}}.",
+    "plan": {
+      "basic": "Basic",
+      "custom": "Custom",
+      "free": "Free",
+      "pro": "Pro"
+    },
+    "satisfaction_rate": "97% satisfaction rate, for only 9€/month."
+  },
   "preview": "Preview",
   "pricing": {
     "advanced_analytitcs": "Informes y análisis avanzados",
+    "all_features": "All features & voting types",
     "basic_analytics": "Informes y análisis básicos",
     "core_voting": "Funciones básicas de votación",
+    "custom_subtitle": "Large organizations enterprises, and institutions requiring extensive customization and support.",
+    "custom_title": "Custom Plan",
+    "dedicated_manager": "Dedicated account manager",
     "essential_subtitle": "Organizaciones pequeñas o medianas o grupos comunitarios con necesidades básicas de votación.",
     "essential_title": "Esencial",
     "features": {
@@ -844,6 +863,7 @@
     "unlimited_yearly_processes": "Procesos anuales ilimitados",
     "up_to_admins": "Hasta {{ admin }} admin. y {{ org }} organizaciones",
     "upgrade_title": "Debes actualizar tu plan para usar esta funcionalidad",
+    "white_label": "White label solution",
     "yearly_processes_one": "{{ count }} proceso anual",
     "yearly_processes_many": "",
     "yearly_processes_other": "{{ count }} procesos anuales",
@@ -1053,7 +1073,6 @@
   "skip": "Omitir",
   "smsNotification": "Notificación SMS",
   "submit": "Envía",
-  "subscribe": "Suscribirse",
   "subscription": "Suscripción",
   "support": "Soporte",
   "surname": {
@@ -1071,6 +1090,23 @@
   "teams": "Teams",
   "terms_and_conditions": "Terms and Conditions",
   "terms_of_use": "Condiciones de uso",
+  "tier_upgrade": {
+    "current_plan": "Your current <2>free plan</2> is limited to selecting up to <6>50 voters</6>.",
+    "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
+    "plan": {
+      "basic": "Basic",
+      "custom": "Custom",
+      "free": "Free",
+      "limit": {
+        "basic": "Up to 1500",
+        "custom": "Unlimited",
+        "free": "50 voters",
+        "pro": "Up to 3000"
+      },
+      "pro": "Pro"
+    },
+    "satisfaction_rate": "97% satisfaction rate, starting at 9€/month."
+  },
   "total_votes_submitted": "Total Votes Submitted",
   "update": "Update",
   "upload": "Upload",
@@ -1101,6 +1137,8 @@
     "verifying_title": "Verifying {{ email }}"
   },
   "view_pricing": "View Pricing",
+  "view_pricing_plan": "View Pricing Plan",
+  "view_pricing_plans": "View Pricing Plans",
   "vote_details": "Vote details",
   "voters": "voters",
   "voting_link": "Voting Link",

@@ -6,7 +6,7 @@ import { Params } from 'react-router-dom'
 import Error from '~elements/Error'
 import Layout from '~elements/Layout'
 import PlansPublicPage from '~elements/plans'
-import PublicContentsLayout from '~elements/PublicContents'
+import { PlansLayout, StretchPublicContentsLayout } from '~elements/PublicContents'
 import { StripeCheckout, StripeReturn } from '~elements/Stripe'
 import ProtectedRoutes from '~src/router/ProtectedRoutes'
 import { Routes } from '.'
@@ -86,9 +86,9 @@ const RootElements = (client: VocdoniSDKClient) => [
       </SuspenseLoader>
     ),
   },
-  // Stuff centered in the view
+  // Plans have their own layout
   {
-    element: <PublicContentsLayout />,
+    element: <PlansLayout />,
     children: [
       {
         path: Routes.plans,
@@ -98,6 +98,12 @@ const RootElements = (client: VocdoniSDKClient) => [
           </SuspenseLoader>
         ),
       },
+    ],
+  },
+  // Stuff centered in the view, stretched
+  {
+    element: <StretchPublicContentsLayout />,
+    children: [
       {
         path: Routes.terms,
         element: (

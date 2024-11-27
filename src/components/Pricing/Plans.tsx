@@ -20,7 +20,7 @@ import { Link as ReactRouterLink } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
-import { StripeId } from '~constants'
+import { PlanId } from '~constants'
 import PricingCard from './Card'
 
 export type Plan = {
@@ -64,15 +64,10 @@ export const usePlans = () => {
   })
 }
 
-export const SubscriptionPlans = () => {
+export const usePlanTranslations = () => {
   const { t } = useTranslation()
-  const { data: plans, isLoading } = usePlans()
-  const { permission } = useSubscription()
-
-  const [selectedCensusSize, setSelectedCensusSize] = useState<number | null>(null)
-
   const translations = {
-    [StripeId.Free]: {
+    [PlanId.Free]: {
       title: t('pricing.free_title', { defaultValue: 'Free' }),
       subtitle: t('pricing.free_subtitle', {
         defaultValue: 'Small organizations or community groups with basic voting needs.',
@@ -90,7 +85,7 @@ export const SubscriptionPlans = () => {
         t('pricing.gpdr_compilance', { defaultValue: 'GDPR compliance' }),
       ],
     },
-    [StripeId.Essential]: {
+    [PlanId.Essential]: {
       title: t('pricing.essential_title', { defaultValue: 'Essential' }),
       subtitle: t('pricing.essential_subtitle', {
         defaultValue: 'Small or medium-sized orgs or community groups with basic voting needs.',
@@ -104,7 +99,7 @@ export const SubscriptionPlans = () => {
         t('pricing.gpdr_compilance'),
       ],
     },
-    [StripeId.Premium]: {
+    [PlanId.Premium]: {
       title: t('pricing.premium_title', { defaultValue: 'Premium' }),
       subtitle: t('pricing.premium_subtitle', {
         defaultValue: 'Larger amount that require more advanced features.',
@@ -118,30 +113,69 @@ export const SubscriptionPlans = () => {
         t('pricing.gpdr_compilance'),
       ],
     },
+    [PlanId.Custom]: {
+      title: t('pricing.custom_title', { defaultValue: 'Custom' }),
+      subtitle: t('pricing.custom_subtitle', {
+        defaultValue:
+          'Large organizations, enterprises, and institutions requiring extensive customization and support',
+      }),
+      features: [
+        t('pricing.all_features', { defaultValue: 'All features & voting types' }),
+        t('pricing.up_to_admins', { admin: 10, org: 5 }),
+        t('pricing.unlimited_yearly_processes', { defaultValue: 'Unlimited yearly voting processes' }),
+        t('pricing.white_label', { defaultValue: 'White label solution' }),
+        t('pricing.advanced_analytitcs', { defaultValue: 'Advanced reporting and analytics' }),
+        t('pricing.dedicated_manager', { defaultValue: 'Dedicated account manager' }),
+        t('pricing.priority_support', { defaultValue: 'Priority ticket support' }),
+        t('pricing.gpdr_compilance'),
+      ],
+    },
   }
 
+  return translations
+}
+
+export const SubscriptionPlans = () => {
+  const { t } = useTranslation()
+  const { data: plans, isLoading } = usePlans()
+  const { permission } = useSubscription()
+  const translations = usePlanTranslations()
+
+  const [selectedCensusSize, setSelectedCensusSize] = useState<number | null>(null)
+
   const censusSizeOptions = useMemo(() => {
-    const allTiers = plans
-      // Exclude plans with null censusSizeTiers
-      ?.filter((plan) => plan.censusSizeTiers)
-      .flatMap((plan) =>
-        plan.censusSizeTiers!.map((tier) => {
-          const from = tier.upTo === 100 ? 1 : tier.upTo - 99
-          return {
-            label: t('pricing.members_size', { defaultValue: '{{ from }}-{{ to }} members', from, to: tier.upTo }),
-            value: tier.upTo,
-          }
-        })
-      )
-    const uniqueTiers = Array.from(new Map(allTiers?.map((tier) => [tier.value, tier])).values())
-    return uniqueTiers || []
-  }, [plans])
+    if (!plans) return []
+
+    // Step 1: Merge censusSizeTiers from all plans, removing duplicates
+    const mergedTiers = plans
+      .flatMap((plan) => plan.censusSizeTiers || []) // Combine all tiers
+      .reduce((acc, tier) => {
+        if (!acc.has(tier.upTo)) {
+          acc.set(tier.upTo, tier) // Keep unique `upTo` values
+        }
+        return acc
+      }, new Map<number, { upTo: number }>())
+
+    // Step 2: Create options array from merged and sorted tiers
+    const sortedTiers = Array.from(mergedTiers.values()).sort((a, b) => a.upTo - b.upTo)
+
+    const options = sortedTiers.map((tier, idx) => {
+      const previous = sortedTiers[idx - 1] || { upTo: 0 }
+      const from = previous.upTo + 1
+      return {
+        label: t('pricing.members_size', { defaultValue: '{{ from }}-{{ to }} members', from, to: tier.upTo }),
+        value: tier.upTo,
+      }
+    })
+
+    return options
+  }, [plans, t])
 
   const cards = useMemo(() => {
     if (!plans) return []
 
     return plans.map((plan) => ({
-      popular: plan.default,
+      popular: plan.id === PlanId.Essential,
       title: translations[plan.id]?.title || plan.name,
       subtitle: translations[plan.id]?.subtitle || '',
       price: plan.startingPrice / 100,
@@ -159,7 +193,7 @@ export const SubscriptionPlans = () => {
         <Select options={censusSizeOptions} onChange={(selected) => setSelectedCensusSize(selected?.value || null)} />
       </Flex>
       {isLoading && <Progress colorScheme='brand' size='xs' isIndeterminate />}
-      <Flex gap={5} alignItems='start'>
+      <Flex gap={5} justifyContent='space-evenly' flexWrap='wrap'>
         {cards.map((card, idx) => (
           <PricingCard key={idx} plan={plans[idx]} {...card} />
         ))}
@@ -169,15 +203,15 @@ export const SubscriptionPlans = () => {
 }
 
 export const SubscriptionModal = ({
-  isOpenModal,
-  onCloseModal,
+  isOpen,
+  onClose,
   title,
 }: {
-  isOpenModal: boolean
-  onCloseModal: () => void
+  isOpen: boolean
+  onClose: () => void
   title?: ReactNode
 }) => (
-  <Modal isOpen={isOpenModal} onClose={onCloseModal} variant='pricing-modal' size='full'>
+  <Modal isOpen={isOpen} onClose={onClose} variant='pricing-modal' size='full'>
     <ModalOverlay />
     <ModalContent>
       <ModalHeader>

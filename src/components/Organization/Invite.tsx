@@ -33,6 +33,7 @@ import { HSeparator } from '~components/Auth/SignIn'
 import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
 import InputBasic from '~components/Layout/InputBasic'
+import { usePricingModal } from '~components/Pricing/Modals'
 import { SubscriptionPermission } from '~constants'
 import { CallbackProvider, useCallbackContext } from '~utils/callback-provider'
 import { useTeamMembers } from './Team'
@@ -184,18 +185,34 @@ export const InviteToTeamModal = (props: ButtonProps) => {
   const { permission } = useSubscription()
   const { t } = useTranslation()
   const { data: members, isLoading } = useTeamMembers()
+  const { openModal } = usePricingModal()
 
-  const canInvite = permission(SubscriptionPermission.Memberships) > (members?.length || 0)
+  const memberships = permission(SubscriptionPermission.Memberships)
+  const canInvite = memberships > (members?.length || 0)
 
   return (
     <>
-      {canInvite ? (
-        <Button onClick={onOpen} {...props} isLoading={isLoading} loadingText={t('loading')}>
-          <Trans i18nKey='invite_people'>Invite People</Trans>
-        </Button>
-      ) : (
-        <Text>You must upgrade!</Text>
-      )}
+      <Button
+        onClick={() => {
+          if (canInvite) {
+            onOpen()
+          } else {
+            openModal('planUpgrade', {
+              feature: 'organization.memberships',
+              text: t('more_than_memberships', {
+                defaultValue: 'more than {count} memberships',
+                count: memberships,
+              }),
+              value: members?.length + 1,
+            })
+          }
+        }}
+        {...props}
+        isLoading={isLoading}
+        loadingText={t('loading')}
+      >
+        <Trans i18nKey='invite_people'>Invite People</Trans>
+      </Button>
       <CallbackProvider success={() => onClose()}>
         <Modal isOpen={isOpen} onClose={onClose} size='xl' closeOnOverlayClick>
           <ModalOverlay />
