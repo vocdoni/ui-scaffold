@@ -5,8 +5,10 @@
   "active": "Actiu",
   "all": "Tots",
   "already_member": "Ja ets membre?",
-  "anonymous": "anonymous",
-  "approval": "approval",
+  "anonymous": {
+    "description": "Voters will remain anonymous",
+    "title": "Anonymous"
+  },
   "aside": {
     "has_already_voted": "El teu vot s'ha registrat correctament",
     "is_not_in_census": "No estàs en el cens",
@@ -243,7 +245,6 @@
       "selected_users": "Usuaris seleccionats:"
     }
   },
-  "cumulative": "cumulative",
   "customization": "Customization",
   "delete_my_account": "Delete my account",
   "description": "Description",
@@ -255,7 +256,6 @@
   },
   "email": "Correu electrònic",
   "email_placeholder": "your@email.com",
-  "emailReminder": "emailReminder",
   "error": {
     "error_doing_things": "Error al realizar la operación",
     "go_back": "Torna enrere",
@@ -289,7 +289,17 @@
     "title": "Faucet de Tokens Vocdoni",
     "tokens_you_own": "Tens {{ balance }} tokens."
   },
-  "features": "Features",
+  "features": {
+    "approval": "Votació per aprovació",
+    "email_reminder": "Recordatoris per correu electrònic",
+    "memberships": "Fins a {{ value }} membresies",
+    "personalization": "Personalització",
+    "ranked": "Votació per rang",
+    "sms_notification": "Notificacions per SMS",
+    "sub_orgs": "Fins a {{ value }} suborganitzacions",
+    "title": "Característiques",
+    "weighted": "Votació ponderada"
+  },
   "finished": "Finalitzat",
   "footer": {
     "company": "Empresa",
@@ -730,7 +740,6 @@
     "github": "Enllaç al Github de Vocdoni",
     "twitter": "Enllaç al Twitter de Vocdoni"
   },
-  "liveStreaming": "liveStreaming",
   "loading": "Carregant...",
   "login": {
     "facebook": "Inicia sessió amb Facebook",
@@ -769,7 +778,6 @@
   "more_than_memberships_one": "més d'{{count}} membre",
   "more_than_memberships_many": "",
   "more_than_memberships_other": "més de {{count}} membres",
-  "multiple": "multiple",
   "name": "Name",
   "new_organization": {
     "create_organization_btn": "Crear Organització",
@@ -807,7 +815,10 @@
     },
     "votings_list": "Llista de processos de votació"
   },
-  "overwrite": "overwrite",
+  "overwrite": {
+    "description": "Voters will be able to overwrite their vote once",
+    "title": "Vote overwrite"
+  },
   "password": "Contrasenya",
   "password_placeholder": "Min 8 characters",
   "password_reset": {
@@ -815,17 +826,10 @@
     "title": "Password reset"
   },
   "passwords_do_not_match": "",
-  "personalization": "personalization",
   "plan_upgrade": {
     "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
     "feature_available_in": "Feature available in:",
-    "feature_unavailable": "Ups... el teu pla <2>{{ plan }}</2> no suporta {{ feature }}.",
-    "plan": {
-      "basic": "Basic",
-      "custom": "Custom",
-      "free": "Free",
-      "pro": "Pro"
-    },
+    "feature_unavailable": "Ups... el teu <2>pla {{ plan, lowercase }}</2> no suporta {{ feature }}.",
     "satisfaction_rate": "97% satisfaction rate, for only 9€/month."
   },
   "preview": "Preview",
@@ -839,16 +843,6 @@
     "dedicated_manager": "Dedicated account manager",
     "essential_subtitle": "Organitzacions petites o mitjanes o grups comunitaris amb necessitats bàsiques de votació.",
     "essential_title": "Essencial",
-    "features": {
-      "approval": "Votació per aprovació",
-      "email_reminder": "Recordatoris per correu electrònic",
-      "memberships": "Fins a {{ value }} membresies",
-      "personalization": "Personalització",
-      "ranked": "Votació per rang",
-      "sms_notification": "Notificacions per SMS",
-      "sub_orgs": "Fins a {{ value }} suborganitzacions",
-      "weighted": "Votació ponderada"
-    },
     "free_subtitle": "Organitzacions petites o grups comunitaris amb necessitats bàsiques de votació.",
     "free_title": "Gratuït",
     "gpdr_compilance": "Compliment del GDPR",
@@ -1041,7 +1035,6 @@
     },
     "recovery": "Recuperar compte"
   },
-  "ranked": "ranked",
   "remove": "Remove",
   "reset_password_button": "Reset Password",
   "rights": "© 2024 Associació Vocdoni. Tots els drets reservats.",
@@ -1049,7 +1042,10 @@
     "read_permission": "Read-only access",
     "write_permission": "Can create and edit content"
   },
-  "secretUntilTheEnd": "secretUntilTheEnd",
+  "secret_until_the_end": {
+    "description": "Vote contents will be encrypted till the end of the voting",
+    "title": "Secret until the end"
+  },
   "settings": "Configuració",
   "share": {
     "copy": "Copia",
@@ -1069,9 +1065,7 @@
   "signup_last_name": "Cognom",
   "signup_subtitle": "Introdueix el teu correu electrònic i contrasenya per registrar-te!",
   "signup_title": "Registra't",
-  "single": "single",
   "skip": "Ometre",
-  "smsNotification": "smsNotification",
   "submit": "Submit",
   "subscription": "Subscripció",
   "support": "Suport",
@@ -1145,7 +1139,5 @@
   "voting_processes": "Processos de votació",
   "voting_questions": "Voting Questions",
   "voting_results": "Voting Results",
-  "website": "Website",
-  "weighted": "weighted",
-  "whiteLabel": "whiteLabel"
+  "website": "Website"
 }

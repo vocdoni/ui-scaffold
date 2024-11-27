@@ -15,7 +15,8 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import { dotobject } from '@vocdoni/sdk'
-import { Trans, useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
+import { PlanFeaturesTranslationKeys } from './Features'
 import type { Plan } from './Plans'
 
 type PricingCardProps = {
@@ -27,18 +28,6 @@ type PricingCardProps = {
   isDisabled: boolean
   width?: string
   plan: Plan
-}
-
-// Translation keys for the features
-const translations = {
-  'organization.memberships': 'pricing.features.memberships',
-  'organization.subOrgs': 'pricing.features.sub_orgs',
-  'votingTypes.weighted': 'pricing.features.weighted',
-  'votingTypes.approval': 'pricing.features.approval',
-  'votingTypes.ranked': 'pricing.features.ranked',
-  'features.personalization': 'pricing.features.personalization',
-  'features.emailReminder': 'pricing.features.email_reminder',
-  'features.smsNotification': 'pricing.features.sms_notification',
 }
 
 const PricingCard = ({
@@ -54,7 +43,7 @@ const PricingCard = ({
   const { isOpen, onToggle } = useDisclosure()
 
   // Dynamically map the features from the plan
-  const features = Object.entries(translations)
+  const features = Object.entries(PlanFeaturesTranslationKeys)
     .map(([key, translationKey]) => {
       const value = dotobject(plan, key)
       return value !== undefined
@@ -136,22 +125,6 @@ const PricingCard = ({
       )}
     </Card>
   )
-}
-
-// yeah, it's sad but we need to include all the translations in a way the extractor does not remove them...
-// note this component does not need (and should never) to be included in the app
-const UnusedComponentButRequiredToNotLoseTranslations = () => {
-  const { t } = useTranslation()
-  t('pricing.features.memberships', { defaultValue: 'Up to {{ count }} memberships' })
-  t('pricing.features.sub_orgs', { defaultValue: 'Up to {{ count }} sub-organizations' })
-  t('pricing.features.approval', { defaultValue: 'Approval voting' })
-  t('pricing.features.ranked', { defaultValue: 'Ranked voting' })
-  t('pricing.features.weighted', { defaultValue: 'Weighted voting' })
-  t('pricing.features.personalization', { defaultValue: 'Personalization' })
-  t('pricing.features.email_reminder', { defaultValue: 'Email reminder' })
-  t('pricing.features.sms_notification', { defaultValue: 'SMS notification' })
-
-  return null
 }
 
 export default PricingCard

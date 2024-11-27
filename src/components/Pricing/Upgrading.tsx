@@ -109,18 +109,17 @@ export const PlanUpgrade = ({ feature, text, value }: PlanUpgradeData) => {
         </Text>
         <Flex justify='space-evenly' fontSize='sm' fontWeight='semibold' height={6}>
           {isLoading && <Spinner />}
-          {plans?.map((plan) => (
-            <Fragment key={plan.id}>
+          {plans?.map((plan, key) => (
+            <Fragment key={key}>
               <Flex align='center' gap={1}>
-                {(!value && isFeatureAvailable(plan, feature)) ||
-                (value && isFeatureAvailable(plan, feature, value)) ? (
+                {isFeatureAvailable(plan, feature, value) ? (
                   <Icon as={CheckCircle} color='green.500' fontSize='xl' />
                 ) : (
                   <Icon as={XCircle} color='red.500' fontSize='xl' />
                 )}
                 <Text>{translations[plan.id].title}</Text>
               </Flex>
-              <Divider orientation='vertical' />
+              {key < plans.length - 1 && <Divider orientation='vertical' />}
             </Fragment>
           ))}
         </Flex>

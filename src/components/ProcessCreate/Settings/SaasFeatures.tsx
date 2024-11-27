@@ -4,71 +4,71 @@ import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { IconType } from 'react-icons'
 import { BiCheckDouble } from 'react-icons/bi'
-import { FeaturesKeys, useAccountPlan } from '~components/Account/useAccountPlan'
+import { useSubscription } from '~components/Auth/Subscription'
 
-const useFeaturesTranslations = (): Record<FeaturesKeys, CheckBoxCardProps> => {
+const useProcessFeatures = () => {
   const { t } = useTranslation()
   return useMemo(
     () => ({
       anonymous: {
-        description: t('anonymous', { defaultValue: 'anonymous' }),
-        title: t('anonymous', { defaultValue: 'anonymous' }),
+        title: t('anonymous.title', { defaultValue: 'Anonymous' }),
+        description: t('anonymous.description', { defaultValue: 'Voters will remain anonymous' }),
         boxIcon: BiCheckDouble,
         formKey: 'electionType.anonymous',
       },
       secretUntilTheEnd: {
-        description: t('secretUntilTheEnd', { defaultValue: 'secretUntilTheEnd' }),
-        title: t('secretUntilTheEnd', { defaultValue: 'secretUntilTheEnd' }),
+        title: t('secret_until_the_end.title', { defaultValue: 'Secret until the end' }),
+        description: t('secret_until_the_end.description', {
+          defaultValue: 'Vote contents will be encrypted till the end of the voting',
+        }),
         boxIcon: BiCheckDouble,
         formKey: 'electionType.secretUntilTheEnd',
       },
       overwrite: {
-        description: t('overwrite', { defaultValue: 'overwrite' }),
-        title: t('overwrite', { defaultValue: 'overwrite' }),
+        title: t('overwrite.title', { defaultValue: 'Vote overwrite' }),
+        description: t('overwrite.description', { defaultValue: 'Voters will be able to overwrite their vote once' }),
+        formKey: 'maxVoteOverwrites',
         boxIcon: BiCheckDouble,
       },
-      personalization: {
-        description: t('personalization', { defaultValue: 'personalization' }),
-        title: t('personalization', { defaultValue: 'personalization' }),
-        boxIcon: BiCheckDouble,
-      },
-      emailReminder: {
-        description: t('emailReminder', { defaultValue: 'emailReminder' }),
-        title: t('emailReminder', { defaultValue: 'emailReminder' }),
-        boxIcon: BiCheckDouble,
-      },
-      smsNotification: {
-        description: t('smsNotification', { defaultValue: 'smsNotification' }),
-        title: t('smsNotification', { defaultValue: 'smsNotification' }),
-        boxIcon: BiCheckDouble,
-      },
-      whiteLabel: {
-        description: t('whiteLabel', { defaultValue: 'whiteLabel' }),
-        title: t('whiteLabel', { defaultValue: 'whiteLabel' }),
-        boxIcon: BiCheckDouble,
-      },
-      liveStreaming: {
-        description: t('liveStreaming', { defaultValue: 'liveStreaming' }),
-        title: t('liveStreaming', { defaultValue: 'liveStreaming' }),
-        boxIcon: BiCheckDouble,
-      },
+      // non implemented features...
+      // personalization: {
+      //   title: t('personalization.title', { defaultValue: 'personalization' }),
+      //   description: t('personalization.description', { defaultValue: 'personalization' }),
+      //   boxIcon: BiCheckDouble,
+      // },
+      // emailReminder: {
+      //   title: t('email_reminder.title', { defaultValue: 'Email reminder' }),
+      //   description: t('email_reminder.description', { defaultValue: 'Remind by email' }),
+      //   boxIcon: BiCheckDouble,
+      // },
+      // smsNotification: {
+      //   title: t('sms_notification.title', { defaultValue: 'SMS Notification' }),
+      //   description: t('sms_notification.description', { defaultValue: 'Notify users somehow (?)' }),
+      //   boxIcon: BiCheckDouble,
+      // },
+      // whiteLabel: {
+      //   title: t('white_label.title', { defaultValue: 'White label' }),
+      //   description: t('white_label.description', { defaultValue: 'Customize the process layout entirely adding your own logos and color palette' }),
+      //   boxIcon: BiCheckDouble,
+      // },
+      // liveStreaming: {
+      //   title: t('live_streaming.title', { defaultValue: 'Live Streaming' }),
+      //   description: t('live_streaming.description', { defaultValue: 'IDK what\'s this about' }),
+      //   boxIcon: BiCheckDouble,
+      // },
     }),
     [t]
   )
 }
-export const SaasFeatures = () => {
-  const { data } = useAccountPlan()
-  const translations = useFeaturesTranslations()
-
-  if (!data) return null
+export const Features = () => {
+  const { subscription } = useSubscription()
+  const translations = useProcessFeatures()
 
   return (
     <Flex flexDirection='column' gap={6}>
-      {Object.entries(data.features).map(([feature, inPlan], i) => {
-        const card = translations[feature as FeaturesKeys]
-        if (!card) return null
-        return <CheckBoxCard key={i} isPro={!inPlan} {...card} formKey={card.formKey ?? `saasFeatures.${feature}`} />
-      })}
+      {Object.entries(translations).map(([feature, card], i) => (
+        <CheckBoxCard key={i} {...card} formKey={card.formKey ?? `saasFeatures.${feature}`} />
+      ))}
     </Flex>
   )
 }

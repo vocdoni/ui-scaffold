@@ -470,7 +470,9 @@ const electionFromForm = (form: StepsFormValues) => {
     ),
     startDate: form.electionType.autoStart ? undefined : new Date(form.startDate).getTime(),
     endDate: new Date(form.endDate).getTime(),
-    voteType: { maxVoteOverwrites: Number(form.maxVoteOverwrites) },
+    voteType: {
+      maxVoteOverwrites: Number(form.maxVoteOverwrites),
+    },
     temporarySecretIdentity: form.censusType === 'spreadsheet' && form.electionType.anonymous,
     meta: {
       generated: 'ui-scaffold',

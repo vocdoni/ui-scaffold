@@ -5,8 +5,10 @@
   "active": "Active",
   "all": "All",
   "already_member": "Already a member?",
-  "anonymous": "anonymous",
-  "approval": "approval",
+  "anonymous": {
+    "description": "Voters will remain anonymous",
+    "title": "Anonymous"
+  },
   "aside": {
     "has_already_voted": "Your vote is properly cast",
     "is_not_in_census": "You are not in the census",
@@ -239,7 +241,6 @@
       "selected_users": "Selected users:"
     }
   },
-  "cumulative": "cumulative",
   "customization": "Customization",
   "delete_my_account": "Delete my account",
   "description": "Description",
@@ -251,7 +252,6 @@
   },
   "email": "Email",
   "email_placeholder": "your@email.com",
-  "emailReminder": "emailReminder",
   "error": {
     "error_doing_things": "Error al realizar la operación",
     "go_back": "Go back",
@@ -285,7 +285,17 @@
     "title": "Vocdoni Tokens Faucet",
     "tokens_you_own": "You own {{ balance }} tokens."
   },
-  "features": "Features",
+  "features": {
+    "approval": "Approval voting",
+    "email_reminder": "Email reminders",
+    "memberships": "Up to {{ count }} memberships",
+    "personalization": "Personalization",
+    "ranked": "Ranked voting",
+    "sms_notification": "SMS notifications",
+    "sub_orgs": "Up to {{ count }} sub-organizations",
+    "title": "Features",
+    "weighted": "Weighted voting"
+  },
   "finished": "Finished",
   "footer": {
     "company": "Company",
@@ -722,7 +732,6 @@
     "github": "Link to Vocdoni's github",
     "twitter": "Link to Vocdoni's twitter"
   },
-  "liveStreaming": "liveStreaming",
   "loading": "Loading...",
   "login": {
     "facebook": "Sign in with Facebook",
@@ -760,7 +769,6 @@
   },
   "more_than_memberships_one": "more than {{count}} membership",
   "more_than_memberships_other": "more than {{count}} memberships",
-  "multiple": "multiple",
   "name": "Name",
   "new_organization": {
     "create_organization_btn": "Create Organization",
@@ -798,7 +806,10 @@
     },
     "votings_list": "Votings Processes List"
   },
-  "overwrite": "overwrite",
+  "overwrite": {
+    "description": "Voters will be able to overwrite their vote once",
+    "title": "Vote overwrite"
+  },
   "password": "Password",
   "password_placeholder": "Min 8 characters",
   "password_reset": {
@@ -806,17 +817,10 @@
     "title": "Password reset"
   },
   "passwords_do_not_match": "",
-  "personalization": "personalization",
   "plan_upgrade": {
     "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
     "feature_available_in": "Feature available in:",
     "feature_unavailable": "Oops ... your <2>free plan</2> doesn't support {{feature}}.",
-    "plan": {
-      "basic": "Basic",
-      "custom": "Custom",
-      "free": "Free",
-      "pro": "Pro"
-    },
     "satisfaction_rate": "97% satisfaction rate, for only 9€/month."
   },
   "preview": "Preview",
@@ -830,16 +834,6 @@
     "dedicated_manager": "Dedicated account manager",
     "essential_subtitle": "Small or medium-sized orgs or community groups with basic voting needs.",
     "essential_title": "Essential",
-    "features": {
-      "approval": "Approval voting",
-      "email_reminder": "Email reminders",
-      "memberships": "Up to {{ count }} memberships",
-      "personalization": "Personalization",
-      "ranked": "Ranked voting",
-      "sms_notification": "SMS notifications",
-      "sub_orgs": "Up to {{ count }} sub-organizations",
-      "weighted": "Weighted voting"
-    },
     "free_subtitle": "Small organizations or community groups with basic voting needs.",
     "free_title": "Free",
     "gpdr_compilance": "GDPR compliance",
@@ -1028,7 +1022,6 @@
     },
     "recovery": "Account recovery"
   },
-  "ranked": "ranked",
   "remove": "Remove",
   "reset_password_button": "Reset Password",
   "rights": "© 2024 Vocdoni Association. All Rights Reserved.",
@@ -1036,7 +1029,10 @@
     "read_permission": "Read-only access",
     "write_permission": "Can create and edit content"
   },
-  "secretUntilTheEnd": "secretUntilTheEnd",
+  "secret_until_the_end": {
+    "description": "Vote contents will be encrypted till the end of the voting",
+    "title": "Secret until the end"
+  },
   "settings": "Settings",
   "share": {
     "copy": "Copy",
@@ -1056,9 +1052,7 @@
   "signup_last_name": "Last Name",
   "signup_subtitle": "Enter your email and password to sign up!",
   "signup_title": "Sign Up",
-  "single": "single",
   "skip": "Skip",
-  "smsNotification": "smsNotification",
   "submit": "Submit",
   "subscription": "Subscription",
   "support": "Support",
@@ -1132,7 +1126,5 @@
   "voting_processes": "Voting Processes",
   "voting_questions": "Voting Questions",
   "voting_results": "Voting Results",
-  "website": "Website",
-  "weighted": "weighted",
-  "whiteLabel": "whiteLabel"
+  "website": "Website"
 }

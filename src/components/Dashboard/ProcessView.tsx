@@ -209,7 +209,7 @@ export const ProcessView = () => {
         {/* Features Section */}
         <DashboardBox textAlign='center' display='flex' flexDir='column' gap={3}>
           <Heading as='h4' variant='sidebar-section'>
-            <Trans i18nKey='features'>Features</Trans>
+            <Trans i18nKey='features.title'>Features</Trans>
           </Heading>
           <HStack spacing={3} justifyContent='center'>
             <Text fontSize='sm'>Feature 1</Text>

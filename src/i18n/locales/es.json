@@ -5,8 +5,10 @@
   "active": "Activo",
   "all": "Todos",
   "already_member": "¿Ya eres miembro?",
-  "anonymous": "anonymous",
-  "approval": "approval",
+  "anonymous": {
+    "description": "Voters will remain anonymous",
+    "title": "Anonymous"
+  },
   "aside": {
     "has_already_voted": "Tu voto ha sido registrado correctamente",
     "is_not_in_census": "No estás en el censo",
@@ -243,7 +245,6 @@
       "selected_users": "Usuarios seleccionados:"
     }
   },
-  "cumulative": "cumulative",
   "customization": "Customization",
   "delete_my_account": "Delete my account",
   "description": "Description",
@@ -255,7 +256,6 @@
   },
   "email": "Correo electrónico",
   "email_placeholder": "your@email.com",
-  "emailReminder": "emailReminder",
   "error": {
     "error_doing_things": "Error al realizar la operación",
     "go_back": "Volver atrás",
@@ -289,7 +289,17 @@
     "title": "Faucet de Tokens Vocdoni",
     "tokens_you_own": "Tienes {{ balance }} tokens."
   },
-  "features": "Features",
+  "features": {
+    "approval": "Votación por aprobación",
+    "email_reminder": "Recordatorios por correo electrónico",
+    "memberships": "Hasta {{ value }} membresías",
+    "personalization": "Personalización",
+    "ranked": "Votación por rango",
+    "sms_notification": "Notificaciones por SMS",
+    "sub_orgs": "Hasta {{ value }} suborganizaciones",
+    "title": "Características",
+    "weighted": "Votación ponderada"
+  },
   "finished": "Finalizado",
   "footer": {
     "company": "Empresa",
@@ -730,7 +740,6 @@
     "github": "Enlace al Github de Vocdoni",
     "twitter": "Enlace al Twitter de Vocdoni"
   },
-  "liveStreaming": "liveStreaming",
   "loading": "Cargando...",
   "login": {
     "facebook": "Iniciar sesión usando Facebook",
@@ -769,7 +778,6 @@
   "more_than_memberships_one": "más de {{count}} membresía",
   "more_than_memberships_many": "",
   "more_than_memberships_other": "más de {{count}} membresías",
-  "multiple": "multiple",
   "name": "Nombre",
   "new_organization": {
     "create_organization_btn": "Crear Organización",
@@ -807,7 +815,10 @@
     },
     "votings_list": "Lista de procesos de votación"
   },
-  "overwrite": "overwrite",
+  "overwrite": {
+    "description": "Voters will be able to overwrite their vote once",
+    "title": "Vote overwrite"
+  },
   "password": "Contraseña",
   "password_placeholder": "Min 8 characters",
   "password_reset": {
@@ -815,17 +826,10 @@
     "title": "Password reset"
   },
   "passwords_do_not_match": "",
-  "personalization": "personalization",
   "plan_upgrade": {
     "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
     "feature_available_in": "Feature available in:",
     "feature_unavailable": "Oops ... your <2>free plan</2> doesn't support {{feature}}.",
-    "plan": {
-      "basic": "Basic",
-      "custom": "Custom",
-      "free": "Free",
-      "pro": "Pro"
-    },
     "satisfaction_rate": "97% satisfaction rate, for only 9€/month."
   },
   "preview": "Preview",
@@ -839,16 +843,6 @@
     "dedicated_manager": "Dedicated account manager",
     "essential_subtitle": "Organizaciones pequeñas o medianas o grupos comunitarios con necesidades básicas de votación.",
     "essential_title": "Esencial",
-    "features": {
-      "approval": "Votación por aprobación",
-      "email_reminder": "Recordatorios por correo electrónico",
-      "memberships": "Hasta {{ value }} membresías",
-      "personalization": "Personalización",
-      "ranked": "Votación por rango",
-      "sms_notification": "Notificaciones por SMS",
-      "sub_orgs": "Hasta {{ value }} suborganizaciones",
-      "weighted": "Votación ponderada"
-    },
     "free_subtitle": "Organizaciones pequeñas o grupos comunitarios con necesidades básicas de votación.",
     "free_title": "Gratis",
     "gpdr_compilance": "Cumplimiento del GDPR",
@@ -1041,7 +1035,6 @@
     },
     "recovery": "Recuperar cuenta"
   },
-  "ranked": "ranked",
   "remove": "Remove",
   "reset_password_button": "Reset Password",
   "rights": "© 2024 Asociación Vocdoni. Todos los derechos reservados.",
@@ -1049,7 +1042,10 @@
     "read_permission": "Read-only access",
     "write_permission": "Can create and edit content"
   },
-  "secretUntilTheEnd": "secretUntilTheEnd",
+  "secret_until_the_end": {
+    "description": "Vote contents will be encrypted till the end of the voting",
+    "title": "Secret until the end"
+  },
   "settings": "Configuración",
   "share": {
     "copy": "Copiar",
@@ -1069,9 +1065,7 @@
   "signup_last_name": "Apellido",
   "signup_subtitle": "¡Introduce tu correo electrónico y contraseña para registrarte!",
   "signup_title": "Regístrate",
-  "single": "single",
   "skip": "Omitir",
-  "smsNotification": "Notificación SMS",
   "submit": "Envía",
   "subscription": "Suscripción",
   "support": "Soporte",
@@ -1145,7 +1139,5 @@
   "voting_processes": "Procesos de votación",
   "voting_questions": "Voting Questions",
   "voting_results": "Voting Results",
-  "website": "Website",
-  "weighted": "weighted",
-  "whiteLabel": "whiteLabel"
+  "website": "Website"
 }
