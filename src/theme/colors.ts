@@ -8,7 +8,8 @@ export const colorsBase = {
   },
   gradient: 'linear-gradient(to right, #546E39, #2E441A)',
   gray: {
-    light: 'rgba(255, 255, 255, 0.24)',
+    light2: 'rgba(255, 255, 255, 0.24)',
+    light: '#CBD5E0',
     normal: '#718096',
   },
   primary: '#546E39',
@@ -161,12 +162,12 @@ export const colors = {
     },
     border: {
       dark: colorsBase.white,
-      light: colorsBase.gray.light,
+      light: colorsBase.gray.light2,
     },
     disabled: colorsBase.gray.normal,
     hover: {
       dark: colorsBase.white,
-      light: colorsBase.gray.light,
+      light: colorsBase.gray.light2,
     },
     outline: colorsBase.blue.normal,
     placeholder: colorsBase.gray.normal,

@@ -6,17 +6,12 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
 
 const baseStyle = definePartsStyle({
   container: {
-    bgColor: 'alert.bg.light',
     display: 'grid',
     gridTemplateColumns: { base: '1fr', lg: 'fit-content(50px) 1fr' },
     border: '1px solid',
     borderColor: 'alert.border',
     borderRadius: 'lg',
     width: 'fit-content',
-
-    _dark: {
-      bgColor: 'alert.bg.dark',
-    },
   },
   title: {
     gridColumn: { lg: 2 },
