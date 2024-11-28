@@ -81,14 +81,14 @@ const Calendar = () => {
           </Text>
           <RadioGroup {...useBooleanRadioRegister('electionType.autoStart')} mb={6}>
             <Stack direction={{ base: 'column', lg: 'row' }} gap={5} alignItems='start' justifyContent='start'>
-              <FormControl variant='calendar'>
+              <FormControl w='fit-content'>
                 <Radio value='1' onClick={() => clearErrors('startDate')}>
                   <Text as='span'>{t('form.process_create.calendar.now')}</Text>
                 </Radio>
               </FormControl>
 
               <Box>
-                <FormControl variant='calendar' mb={3}>
+                <FormControl w='fit-content' mb={3}>
                   <Radio value='0'>
                     <Text
                       as='span'

@@ -2,17 +2,19 @@ export const colorsBase = {
   beige: '#D2CBB9',
   black: '#000000',
   blue: {
-    normal: '#3965FF',
+    light: '#63b3ed',
+    normal: '#3965ff',
     grayish: '#2B2A33',
     dark: '#1A202C',
   },
   gradient: 'linear-gradient(to right, #546E39, #2E441A)',
   gray: {
-    light: '#CBD5E0',
+    light: 'rgba(255, 255, 255, 0.24)',
     normal: '#718096',
   },
   primary: '#546E39',
   primary_dark: 'rgba(84, 110, 57, 0.2)',
+  red: '#C53030',
   white: {
     pure: '#ffffff',
     dark: '#F5F5F7',
@@ -116,21 +118,9 @@ export const colors = {
     },
   },
   checkbox: {
-    bg: colorsBase.primary,
-    checked: {
-      border: colorsBase.primary,
-      bg: colorsBase.primary,
-    },
-    icon: colorsBase.white.pure,
-
-    variant: {
-      radiobox: {
-        bg: {
-          light: colorsBase.white.pure,
-          dark: colorsBase.blue.grayish,
-        },
-      },
-    },
+    bg_checked: colorsBase.primary,
+    disabled_border: colorsBase.gray.normal,
+    radiobox_control: colorsBase.gray.light,
   },
 
   google: {
@@ -152,17 +142,29 @@ export const colors = {
       light: colorsBase.white.pure,
       dark: colorsBase.blue.grayish,
     },
-    border: {
-      dark: colorsBase.white,
-      light: colorsBase.gray.light,
+    border: colorsBase.gray.light,
+    element: colorsBase.gray.normal,
+    error: colorsBase.red,
+    drag_and_drop: {
+      border: colorsBase.gray.light,
+      border_active: colorsBase.primary,
+      text: colorsBase.primary,
     },
-    disabled: colorsBase.gray.normal,
-    hover: {
-      dark: colorsBase.white,
-      light: colorsBase.gray.light,
+    dropdown: {
+      check_icon: colorsBase.primary,
+      control: colorsBase.gray.normal,
+      option: colorsBase.black,
+      option_bg_selected: {
+        light: colorsBase.white.dark,
+        dark: colorsBase.blue.dark,
+      },
+      placeholder: colorsBase.gray.normal,
     },
-    outline: colorsBase.blue.normal,
-    placeholder: colorsBase.gray.normal,
+    outline: {
+      light: colorsBase.blue.normal,
+      dark: colorsBase.blue.light,
+    },
+    required_asterisk: colorsBase.primary,
   },
   org_text_secondary: colorsBase.gray.normal,
 

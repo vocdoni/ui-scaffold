@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Card,
   CardBody,
@@ -20,7 +19,7 @@ import { Controller, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { BiCheckDouble, BiDownload } from 'react-icons/bi'
 import { PiWarningCircleLight } from 'react-icons/pi'
-import { RiFileExcel2Line } from 'react-icons/ri'
+import UpLoader from '~components/Layout/Uploader'
 import { CensusSpreadsheetManager } from './CensusSpreadsheetManager'
 import { CsvGenerator } from './generator'
 import { CsvPreview } from './Preview'
@@ -166,25 +165,7 @@ export const CensusCsvManager = () => {
         isInvalid={!!errors?.spreadsheet}
         display={manager?.data.length ? 'none' : 'block'}
       >
-        <Card variant='drag-and-drop'>
-          <input {...getInputProps()} />
-          <Icon as={RiFileExcel2Line} boxSize={20} color='process_create.spreadsheet.file' />
-          <Box>
-            {isDragActive ? (
-              <Text textAlign='center' color='process_create.description'>
-                {t('uploader.drop_here')}
-              </Text>
-            ) : (
-              <Trans
-                i18nKey='uploader.click_or_drag_and_drop'
-                components={{
-                  p1: <Text textAlign='center' color='process_create.description' />,
-                  p2: <Text textAlign='center' fontSize='sm' color='process_create.description' />,
-                }}
-              />
-            )}
-          </Box>
-        </Card>
+        <UpLoader getInputProps={getInputProps} getRootProps={getRootProps} isDragActive={isDragActive} />
         <FormErrorMessage display='flex' justifyContent='center'>
           {errors?.spreadsheet?.message?.toString()}
         </FormErrorMessage>

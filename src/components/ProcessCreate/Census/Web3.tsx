@@ -19,7 +19,7 @@ import { useDropzone } from 'react-dropzone'
 import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { BiCheckDouble } from 'react-icons/bi'
-import { RiFileExcel2Line } from 'react-icons/ri'
+import UpLoader from '~components/Layout/Uploader'
 import { addressTextOverflow, fieldMapErrorMessage, isInvalidFieldMap } from '~constants'
 import { Web3CensusSpreadsheetManager } from './Spreadsheet/Web3CensusSpreadsheetManager'
 
@@ -245,36 +245,7 @@ export const CensusWeb3Addresses = () => {
             )}
           />
           <FormControl isInvalid={!!fileErr}>
-            <Flex
-              flexDirection='column'
-              justifyContent='center'
-              alignItems='center'
-              gap={5}
-              p={10}
-              border='1px dotted'
-              borderColor='process_create.census.drag_and_drop_border'
-              bgColor='process_create.bg'
-              cursor='pointer'
-              {...getRootProps()}
-            >
-              <input {...getInputProps()} />
-              <Icon as={RiFileExcel2Line} boxSize={20} color='process_create.spreadsheet.file' />
-              <Box>
-                {isDragActive ? (
-                  <Text textAlign='center' color='process_create.description'>
-                    {t('uploader.drop_here')}
-                  </Text>
-                ) : (
-                  <Trans
-                    i18nKey='uploader.click_or_drag_and_drop'
-                    components={{
-                      p1: <Text textAlign='center' color='process_create.description' />,
-                      p2: <Text textAlign='center' fontSize='sm' color='process_create.description' />,
-                    }}
-                  />
-                )}
-              </Box>
-            </Flex>
+            <UpLoader getInputProps={getInputProps} getRootProps={getRootProps} isDragActive={isDragActive} />
             <FormErrorMessage>{fileErr}</FormErrorMessage>
           </FormControl>
         </Flex>

@@ -5,72 +5,79 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
 
 const baseStyle = definePartsStyle({
   field: {
-    border: '1px solid',
-    borderColor: 'input.border.light !important',
-    fontSize: '15px',
-    maxW: 60,
-    py: 6,
-    borderRadius: 'xl',
-    minW: 'full',
-    bgColor: 'input.bg.light !important',
-
-    _hover: {
-      outline: '.1px solid',
-      outlineColor: 'input.hover.light',
-      outlineOffset: '0px',
-    },
-
-    _focus: {
-      outline: '1px solid',
-      outlineOffset: '0px',
-      outlineColor: 'input.outline',
-      borderColor: 'transparent',
-    },
-
-    _placeholder: {
-      color: 'input.placeholder',
-    },
-
-    _disabled: {
-      color: 'input.disabled',
-      bgColor: 'input.bg.light !important',
-      opacity: 1,
-    },
+    background: 'revert',
+    borderRadius: 'lg',
+    bgColor: 'input.bg.light',
 
     _dark: {
-      border: '0.1px solid',
-      borderColor: 'input.border.dark',
-      bgColor: 'input.bg.dark !important',
-
-      _hover: {
-        outlineOffset: '0px',
-        outline: '.1px solid',
-        outlineColor: 'input.hover.dark',
-      },
-
-      _focus: {
-        outline: '2px solid',
-        outlineOffset: '0px',
-        outlineColor: 'input.outline',
-        borderColor: 'transparent',
-      },
+      bgColor: 'input.bg.dark',
     },
+  },
+  group: {
+    borderRadius: 'lg',
+  },
+  element: {
+    color: 'input.element',
   },
 })
 
-const variants = {
-  calendar: definePartsStyle({
-    field: {
-      maxW: 64,
-      minW: 64,
-      p: 4,
-      minH: '48px',
-      borderRadius: 'xl',
+const sm = definePartsStyle({
+  field: {
+    paddingY: 2,
+    paddingX: 3,
+  },
+})
+
+const md = definePartsStyle({
+  field: {
+    paddingY: 2.5,
+    paddingX: 3.5,
+  },
+})
+
+const calendar = definePartsStyle({
+  field: {
+    width: 'fit-content',
+    borderRadius: 'lg',
+    border: '1px solid',
+    borderColor: '#e2e8f0',
+    outlineOffset: 0,
+
+    _hover: {
+      outline: '.1px solid',
+      outlineColor: '#e2e8f0',
     },
-  }),
-}
+
+    _focusVisible: {
+      outline: '2px solid',
+      outlineColor: 'input.outline.light',
+    },
+
+    _dark: {
+      border: '1px solid',
+      borderColor: 'input.border',
+
+      _hover: {
+        outline: '1px solid',
+        outlineColor: 'input.border',
+      },
+
+      _focusVisible: {
+        outline: '1px solid',
+        outlineColor: 'input.outline.dark',
+      },
+    },
+  },
+  
+})
 
 export const Input = defineMultiStyleConfig({
   baseStyle,
-  variants,
+  variants: {
+    calendar,
+  },
+  sizes: {
+    sm,
+    md,
+  },
 })

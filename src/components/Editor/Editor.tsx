@@ -79,7 +79,27 @@ const Editor = (props: EditorProps) => {
 
   return (
     <LexicalComposer initialConfig={settings}>
-      <Box className='editor-container' bg={'text_area.bg_light'} _dark={{ bgColor: 'text_area.bg_dark' }}>
+      <Box
+        className='editor-container'
+        bg={'text_area.bg_light'}
+        _dark={{
+          bgColor: 'text_area.bg_dark',
+          borderColor: '#4A5568 !important',
+
+          '.editor-placeholder': {
+            color: 'rgba(255, 255, 255, 0.24)',
+          },
+
+          '&:hover': {
+            outline: '1px solid rgba(255, 255, 255, 0.24)',
+          },
+          '&:focus-within': {
+            borderColor: 'transparent',
+            outline: '2px solid',
+            outlineColor: 'input.outline.dark !important',
+          },
+        }}
+      >
         <ToolbarPlugin setIsLinkEditMode={setIsLinkEditMode} />
         <div className='editor-inner'>
           <RichTextPlugin
