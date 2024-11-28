@@ -23,6 +23,7 @@ import { Text } from './components/text'
 import { Textarea } from './components/textarea'
 import { editor } from './editor'
 import { spacing } from './space'
+import { Menu } from './components/menu'
 
 export const theme = extendTheme(vtheme, {
   config: {
@@ -90,6 +91,7 @@ export const theme = extendTheme(vtheme, {
     Heading,
     Input,
     Link,
+    Menu,
     Modal,
     Pagination,
     Radio,

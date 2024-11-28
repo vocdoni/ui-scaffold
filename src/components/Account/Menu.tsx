@@ -1,5 +1,18 @@
-import { Avatar, Box, BoxProps, IconButton, Menu, MenuButton, MenuItem, MenuList, Spinner } from '@chakra-ui/react'
+import {
+  Avatar,
+  Box,
+  BoxProps,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuItem,
+  MenuList,
+  Spinner,
+} from '@chakra-ui/react'
 import { Trans } from 'react-i18next'
+import { ImProfile } from 'react-icons/im'
+import { TbLogout } from 'react-icons/tb'
 import { Link as RouterLink } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
 import { useProfile } from '~src/queries/account'
@@ -35,9 +48,12 @@ const AccountMenu: React.FC<BoxProps> = (props) => {
         />
         <MenuList>
           <MenuItem as={RouterLink} to={Routes.dashboard.profile}>
+            <ImProfile size={16} />
             <Trans i18nKey='profile'>Profile</Trans>
           </MenuItem>
+          <MenuDivider />
           <MenuItem onClick={logout}>
+            <TbLogout size={20} />
             <Trans i18nKey='logout'>Logout</Trans>
           </MenuItem>
         </MenuList>
