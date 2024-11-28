@@ -3,13 +3,17 @@ import { createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/react'
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(tagAnatomy.keys)
 
-const baseStyle = definePartsStyle({
-  container: {
-    borderRadius: 6,
-    border: '1px solid',
-    borderColor: 'tag.border',
-    width: 'fit-content',
-  },
+const baseStyle = defineStyle((props) => {
+  const { colorScheme } = props
+
+  return {
+    container: {
+      borderRadius: 6,
+      border: '1px solid',
+      borderColor: `${colorScheme}.200`,
+      width: 'auto',
+    },
+  }
 })
 
-export const Tag = defineMultiStyleConfig({ baseStyle })
+export const Tag = defineMultiStyleConfig({ baseStyle, defaultProps: { colorScheme: 'brand' } })
