@@ -10,7 +10,7 @@ import { Card } from './components/card'
 import { Checkbox } from './components/checkbox'
 import { Form } from './components/Form'
 import { ElectionTitle, Heading } from './components/heading'
-// import { Input } from './components/input'
+import { Input } from './components/input'
 import { Link } from './components/link'
 import { Modal } from './components/modal'
 import { Pagination } from './components/pagination'
@@ -88,7 +88,7 @@ export const theme = extendTheme(vtheme, {
     ElectionResults,
     Form,
     Heading,
-    // Input,
+    Input,
     Link,
     Modal,
     Pagination,
