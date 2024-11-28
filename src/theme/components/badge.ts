@@ -10,8 +10,6 @@ const baseStyle = defineStyle((props) => {
     width: 'fit-content',
     fontWeight: 'normal',
     textTransform: 'normal',
-    px: '10px',
-    py: '2px',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -20,14 +18,20 @@ const baseStyle = defineStyle((props) => {
 
 const sm = defineStyle({
   fontSize: 'sm',
+  px: '8px',
+  py: '2px',
 })
 
 const md = defineStyle({
   fontSize: 'md',
+  px: '10px',
+  py: '2px',
 })
 
 const lg = defineStyle({
   fontSize: 'lg',
+  px: '12px',
+  py: '4px',
 })
 
 export const Badge = defineStyleConfig({ baseStyle, sizes: { sm, md, lg } })
