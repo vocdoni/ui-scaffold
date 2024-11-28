@@ -9,6 +9,7 @@ const baseStyle = defineStyle((props) => {
     borderRadius: 'full',
     fontWeight: 'normal',
     textTransform: 'normal',
+    width: 'auto',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
