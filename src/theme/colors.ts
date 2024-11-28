@@ -8,7 +8,7 @@ export const colorsBase = {
   },
   gradient: 'linear-gradient(to right, #546E39, #2E441A)',
   gray: {
-    light: '#CBD5E0',
+    light: 'rgba(255, 255, 255, 0.24)',
     normal: '#718096',
   },
   primary: '#546E39',
@@ -24,6 +24,13 @@ export const colorsBase = {
 
 export const colors = {
   account_create_text_secondary: colorsBase.gray.normal,
+  alert: {
+    bg: {
+      light: colorsBase.white.pure,
+      dark: colorsBase.blue.grayish,
+    },
+    border: colorsBase.gray.light,
+  },
   auth: {
     textColorSecondary: colorsBase.gray.normal,
   },

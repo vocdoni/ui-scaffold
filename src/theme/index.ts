@@ -23,6 +23,7 @@ import { Text } from './components/text'
 import { Textarea } from './components/textarea'
 import { editor } from './editor'
 import { spacing } from './space'
+import { Alert } from './components/alert'
 
 export const theme = extendTheme(vtheme, {
   config: {
@@ -79,6 +80,7 @@ export const theme = extendTheme(vtheme, {
   },
   components: {
     Accordion,
+    Alert,
     Badge,
     Button,
     Card,
