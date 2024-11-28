@@ -4,9 +4,6 @@ import { createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/react'
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(menuAnatomy.keys)
 
 const baseStyle = definePartsStyle({
-  button: {
-    border: '3px solid red',
-  },
   list: {
     p: 0,
     borderRadius: 'lg',
@@ -23,4 +20,5 @@ const baseStyle = definePartsStyle({
     m: 0,
   },
 })
+
 export const Menu = defineMultiStyleConfig({ baseStyle })
