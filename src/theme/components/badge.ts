@@ -1,42 +1,33 @@
-import { defineStyleConfig } from '@chakra-ui/react'
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
 
-export const Badge = defineStyleConfig({
-  baseStyle: {
-    borderRadius: '10px',
-    lineHeight: '100%',
-    padding: '7px',
-    paddingLeft: '12px',
-    paddingRight: '12px',
-  },
-  variants: {
-    outline: {
-      borderRadius: '16px',
-    },
-    brand: {
-      bg: 'brand.500',
-      color: 'white',
+const baseStyle = defineStyle((props) => {
+  const { colorScheme } = props
 
-      _focus: {
-        bg: 'brand.500',
-      },
-      _active: {},
-      _hover: {
-        bg: 'brand.600',
-      },
-
-      _dark: {
-        bg: 'brand.400',
-
-        _hover: {
-          bg: 'brand.400',
-        },
-        _focus: {
-          bg: 'brand.400',
-        },
-        _active: {
-          bg: 'brand.400',
-        },
-      },
-    },
-  },
+  return {
+    border: '1px solid',
+    borderColor: `${colorScheme}.200`,
+    borderRadius: 'full',
+    width: 'fit-content',
+    fontWeight: 'normal',
+    textTransform: 'normal',
+    px: '10px',
+    py: '2px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 })
+
+const sm = defineStyle({
+  fontSize: 'sm',
+})
+
+const md = defineStyle({
+  fontSize: 'md',
+})
+
+const lg = defineStyle({
+  fontSize: 'lg',
+})
+
+export const Badge = defineStyleConfig({ baseStyle, sizes: { sm, md, lg } })
