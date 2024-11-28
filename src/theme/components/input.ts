@@ -68,7 +68,6 @@ const calendar = definePartsStyle({
       },
     },
   },
-  
 })
 
 export const Input = defineMultiStyleConfig({

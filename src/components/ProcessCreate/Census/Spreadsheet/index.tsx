@@ -19,7 +19,7 @@ import { Controller, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { BiCheckDouble, BiDownload } from 'react-icons/bi'
 import { PiWarningCircleLight } from 'react-icons/pi'
-import UpLoader from '~components/Layout/Uploader'
+import UpLoaderCustom from '~components/Layout/UpLoaderCustom'
 import { CensusSpreadsheetManager } from './CensusSpreadsheetManager'
 import { CsvGenerator } from './generator'
 import { CsvPreview } from './Preview'
@@ -165,7 +165,7 @@ export const CensusCsvManager = () => {
         isInvalid={!!errors?.spreadsheet}
         display={manager?.data.length ? 'none' : 'block'}
       >
-        <UpLoader getInputProps={getInputProps} getRootProps={getRootProps} isDragActive={isDragActive} />
+        <UpLoaderCustom getInputProps={getInputProps} getRootProps={getRootProps} isDragActive={isDragActive} />
         <FormErrorMessage display='flex' justifyContent='center'>
           {errors?.spreadsheet?.message?.toString()}
         </FormErrorMessage>

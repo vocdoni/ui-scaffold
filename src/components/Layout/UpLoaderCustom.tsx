@@ -3,7 +3,7 @@ import { DropzoneInputProps, DropzoneRootProps } from 'react-dropzone/.'
 import { Trans, useTranslation } from 'react-i18next'
 import { FiUploadCloud } from 'react-icons/fi'
 
-const UpLoader = ({
+const UpLoaderCustom = ({
   getRootProps,
   getInputProps,
   isDragActive,
@@ -41,7 +41,7 @@ const UpLoader = ({
       <Box>
         {isDragActive ? (
           <Text textAlign='center' color='process_create.description'>
-            {t('uploader.drop_here')}
+            {t('uploaderCustom.drop_here')}
           </Text>
         ) : (
           <Trans
@@ -58,4 +58,4 @@ const UpLoader = ({
   )
 }
 
-export default UpLoader
+export default UpLoaderCustom
