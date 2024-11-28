@@ -303,6 +303,8 @@ export const colors = {
   text_area: {
     bg_light: colorsBase.white.pure,
     bg_dark: colorsBase.blue.grayish,
+    border_dark: colorsBase.gray.light,
+    placeholder: colorsBase.gray.light,
   },
   verify_subtitle: colorsBase.gray.light,
 

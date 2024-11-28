@@ -84,19 +84,20 @@ const Editor = (props: EditorProps) => {
         bg={'text_area.bg_light'}
         _dark={{
           bgColor: 'text_area.bg_dark',
-          borderColor: '#4A5568 !important',
+          borderColor: 'text_area.border_dark',
 
           '.editor-placeholder': {
-            color: 'rgba(255, 255, 255, 0.24)',
+            color: 'text_area.placeholder',
           },
 
-          '&:hover': {
-            outline: '1px solid rgba(255, 255, 255, 0.24)',
+          _hover: {
+            outline: '1px solid',
+            outlineColor: 'text_area.border_dark',
           },
-          '&:focus-within': {
+          _focusWithin: {
             borderColor: 'transparent',
             outline: '2px solid',
-            outlineColor: 'input.outline.dark !important',
+            outlineColor: 'input.outline.dark',
           },
         }}
       >
