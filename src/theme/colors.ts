@@ -292,7 +292,9 @@ export const colors = {
       },
     },
   },
-
+  tag: {
+    border: colorsBase.gray.light,
+  },
   radio: {
     bg: colorsBase.primary,
     border: colorsBase.primary,
