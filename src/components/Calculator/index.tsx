@@ -43,7 +43,10 @@ import { MdOutlineLoop } from 'react-icons/md'
 import { PiNumberSquareOneLight } from 'react-icons/pi'
 import { generatePath, Link as ReactRouterLink, useNavigate } from 'react-router-dom'
 import { useAccount } from 'wagmi'
-import { MinPurchaseTokens, StripeEnabled, TokenPrice } from '~constants'
+import { MinPurchaseTokens, StripeEnabled } from '~constants'
+
+
+
 
 const Calculator = () => {
   const { t } = useTranslation()
@@ -344,7 +347,8 @@ const RightSideCalculator = ({
 }) => {
   const { t } = useTranslation()
 
-  const totalPrice = TokenPrice * totalTokens
+  const tokenPrice = getTokenPrice(totalTokens)
+  const totalPrice = tokenPrice * totalTokens
 
   return (
     <Flex
@@ -364,7 +368,7 @@ const RightSideCalculator = ({
             </Flex>
             <Flex justifyContent='space-between' mb={8}>
               <Text>{t('calculator.price_per_token')}</Text>
-              <Text fontWeight='bold'>0.15 €</Text>
+              <Text fontWeight='bold'>{tokenPrice.toFixed(2)} €</Text>
             </Flex>
             <Flex justifyContent='space-between'>
               <Flex flexDirection='column'>
@@ -462,20 +466,6 @@ const RightSideCalculator = ({
                   </Text>
                 </Flex>
               </Flex>
-              {/* <Flex gap={2}>
-                <Radio value='100000' id='5' colorScheme='secondary'></Radio>
-                <Flex as='label' grow={1} htmlFor='5' fontWeight={totalTokens === 100000 ? 'bold' : 'normal'}>
-                  <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='start'>
-                    +100K Tokens
-                  </Text>
-                  <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='center'>
-                    30%
-                  </Text>
-                  <Text flex='1 1 30%' whiteSpace='nowrap' textAlign='end'>
-                    10500 €
-                  </Text>
-                </Flex>
-              </Flex> */}
             </Stack>
           </RadioGroup>
           <Box mt='auto'>
@@ -524,6 +514,8 @@ const TokensModal = ({
   const { t } = useTranslation()
   const { account } = useClient()
 
+  const tokenPrice = getTokenPrice(totalTokens)
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -538,9 +530,9 @@ const TokensModal = ({
                 p: <Text textAlign='center' />,
               }}
               values={{
-                pricePerToken: TokenPrice.toString(),
+                pricePerToken: tokenPrice.toString(),
                 minimumTokens: MinPurchaseTokens.toString(),
-                totalPrice: (TokenPrice * MinPurchaseTokens).toString(),
+                totalPrice: (tokenPrice * MinPurchaseTokens).toString(),
               }}
             />
           ) : account && account?.balance >= totalTokens ? (
@@ -557,9 +549,9 @@ const TokensModal = ({
                 p: <Text textAlign='center' />,
               }}
               values={{
-                pricePerToken: TokenPrice.toString(),
+                pricePerToken: tokenPrice.toString(),
                 minimumTokens: MinPurchaseTokens.toString(),
-                totalPrice: (TokenPrice * MinPurchaseTokens).toString(),
+                totalPrice: (tokenPrice * MinPurchaseTokens).toString(),
               }}
             />
           ) : null}
@@ -646,6 +638,20 @@ const BuyBtns = ({ totalTokens }: { totalTokens: number }) => {
       <TokensModal isOpen={isOpen} onClose={onClose} totalTokens={totalTokens} />
     </>
   )
+}
+
+
+const getTokenPrice = (totalTokens: number) =>{
+  if (totalTokens <= 500) {
+   return 0.5
+  }
+  if (totalTokens <= 1000) {
+    return 0.48
+  }
+  if (totalTokens <= 2500) {
+    return 0.45
+  }
+  return 0.4
 }
 
 export default Calculator

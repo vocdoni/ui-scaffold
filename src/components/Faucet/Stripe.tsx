@@ -74,6 +74,7 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
   const [customerEmail, setCustomerEmail] = useState<string | null>('')
   const [faucetPackage, setFaucetPackage] = useState<string | undefined>('')
   const [recipient, setRecipient] = useState<string | null>('')
+  const [quantity, setQuantity] = useState<number | null>(0)
   const [packageConsumed, setPackageConsumed] = useState(false)
   const [aborted, setAborted] = useState(false)
   const [error, setError] = useState(false)
@@ -90,6 +91,7 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
         setCustomerEmail(data.customer_email)
         setFaucetPackage(data.faucet_package)
         setRecipient(data.recipient)
+        setQuantity(data.quantity)
         return null
       }
       setError(true)
@@ -131,6 +133,8 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
       toast.closeAll()
 
       setPackageConsumed(true)
+      setQuantity(quantity || 0)
+      setCustomerEmail(customerEmail || '')
       // and update stored balance
       await fetchAccount()
 
@@ -211,6 +215,7 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
           }}
           values={{
             customerEmail: customerEmail,
+            quantity: quantity,
           }}
         />
 
