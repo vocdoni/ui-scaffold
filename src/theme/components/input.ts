@@ -6,16 +6,13 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
 const baseStyle = definePartsStyle({
   field: {
     background: 'revert',
-    borderRadius: 'lg',
     bgColor: 'input.bg.light',
 
     _dark: {
       bgColor: 'input.bg.dark',
     },
   },
-  group: {
-    borderRadius: 'lg',
-  },
+
   element: {
     color: 'input.element',
   },
@@ -25,6 +22,7 @@ const sm = definePartsStyle({
   field: {
     paddingY: 2,
     paddingX: 3,
+    borderRadius: 'lg',
   },
 })
 
@@ -32,6 +30,7 @@ const md = definePartsStyle({
   field: {
     paddingY: 2.5,
     paddingX: 3.5,
+    borderRadius: 'lg',
   },
 })
 

@@ -2,41 +2,51 @@ import { radioAnatomy } from '@chakra-ui/anatomy'
 import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(radioAnatomy.keys)
+const baseStyle = (props: any) => {
+  const { colorScheme } = props
+  return {
+    control: {
+      borderRadius: 'full',
 
-const baseStyle = definePartsStyle({
-  control: {
-    borderRadius: 'full',
+      _checked: {
+        bgColor: `${colorScheme}.500`,
+        borderColor: `${colorScheme}.500`,
 
-    _checked: {
-      bgColor: 'checkbox.bg_checked',
-      borderColor: 'checkbox.bg_checked',
+        _hover: {
+          bgColor: `${colorScheme}.600`,
+          borderColor: `${colorScheme}.600`,
+        },
+      },
 
-      _hover: {
-        bgColor: 'checkbox.bg_checked',
-        borderColor: 'checkbox.bg_checked',
+      _disabled: {
+        borderColor: 'radio.disabled.light',
+
+        _dark: {
+          borderColor: 'radio.disabled.dark',
+        },
       },
     },
+    container: {
+      alignItems: 'start',
 
-    _disabled: {
-      border: '1px solid',
-      borderColor: 'checkbox.disabled_border !important',
-      opacity: 0.4,
+      '& > span:last-of-type': {
+        display: 'flex',
+        flexDirection: 'column',
+      },
     },
-  },
-  container: {
-    alignItems: 'start',
-
-    '& > span:last-of-type': {
-      display: 'flex',
-      flexDirection: 'column',
-    },
-  },
-})
+  }
+}
 
 const sm = definePartsStyle({
   control: {
     width: 4,
     height: 4,
+
+    _checked: {
+      _disabled: {
+        borderWidth: 6,
+      },
+    },
   },
 })
 
@@ -44,6 +54,12 @@ const md = definePartsStyle({
   control: {
     width: 5,
     height: 5,
+
+    _checked: {
+      _disabled: {
+        borderWidth: 7,
+      },
+    },
   },
 })
 
@@ -52,5 +68,8 @@ export const Radio = defineMultiStyleConfig({
   sizes: {
     sm,
     md,
+  },
+  defaultProps: {
+    colorScheme: 'brand',
   },
 })

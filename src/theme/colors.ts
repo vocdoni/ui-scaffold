@@ -121,6 +121,10 @@ export const colors = {
     bg_checked: colorsBase.primary,
     disabled_border: colorsBase.gray.normal,
     radiobox_control: colorsBase.gray.light,
+    disabled: {
+      light: 'gray.300',
+      dark: 'gray.600',
+    },
   },
 
   google: {
@@ -298,6 +302,10 @@ export const colors = {
   radio: {
     bg: colorsBase.primary,
     border: colorsBase.primary,
+    disabled: {
+      light: 'gray.300',
+      dark: 'gray.600',
+    },
   },
 
   text_area: {
@@ -314,17 +322,17 @@ export const colors = {
   },
 
   brand: {
-    50: '#e5ecd8',
-    100: '#cbd9b2',
-    200: '#b1c68b',
-    300: '#97b364',
-    400: '#7d9f3d',
-    500: '#4B702D',
-    600: '#426429',
-    700: '#395824',
-    800: '#304c1f',
-    900: '#273f1a',
-    950: '#1d2f13',
+    50: '#d9e4c4',
+    100: '#b3c77f',
+    200: '#8db13a',
+    300: '#749c2d',
+    400: '#617c29',
+    500: '#546E39',
+    600: '#476232',
+    700: '#3a552b',
+    800: '#2e4924',
+    900: '#233c1d',
+    950: '#1a2e16',
   },
   brandScheme: {
     100: '#E9E3FF',

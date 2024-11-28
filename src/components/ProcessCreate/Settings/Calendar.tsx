@@ -89,7 +89,7 @@ const Calendar = () => {
 
               <Box>
                 <FormControl w='fit-content' mb={3}>
-                  <Radio value='0'>
+                  <Radio value='0' disabled>
                     <Text
                       as='span'
                       onClick={() =>

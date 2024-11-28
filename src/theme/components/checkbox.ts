@@ -8,19 +8,20 @@ const baseStyle = definePartsStyle({
     borderRadius: 4,
 
     _checked: {
-      bgColor: 'checkbox.bg_checked',
-      borderColor: 'checkbox.bg_checked',
+      bgColor: (props) => `${props.colorScheme}.500`,
+      borderColor: (props) => `${props.colorScheme}.500`,
 
       _hover: {
-        bgColor: 'checkbox.bg_checked',
-        borderColor: 'checkbox.bg_checked',
+        bgColor: (props) => `${props.colorScheme}.600`,
+        borderColor: (props) => `${props.colorScheme}.600`,
       },
     },
-
     _disabled: {
-      border: '1px solid',
-      borderColor: 'checkbox.disabled_border !important',
-      opacity: 0.4,
+      borderColor: 'checkbox.disabled.light',
+
+      _dark: {
+        borderColor: 'checkbox.disabled.dark',
+      },
     },
   },
   container: {
@@ -37,6 +38,11 @@ const sm = definePartsStyle({
   control: {
     width: 4,
     height: 4,
+    _checked: {
+      _disabled: {
+        borderWidth: 6,
+      },
+    },
   },
 })
 
@@ -44,6 +50,11 @@ const md = definePartsStyle({
   control: {
     width: 5,
     height: 5,
+    _checked: {
+      _disabled: {
+        borderWidth: 7,
+      },
+    },
   },
 })
 
@@ -129,5 +140,8 @@ export const Checkbox = defineMultiStyleConfig({
   },
   variants: {
     radiobox,
+  },
+  defaultProps: {
+    colorScheme: 'brand',
   },
 })
