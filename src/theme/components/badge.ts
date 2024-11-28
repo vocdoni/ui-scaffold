@@ -7,7 +7,6 @@ const baseStyle = defineStyle((props) => {
     border: '1px solid',
     borderColor: `${colorScheme}.200`,
     borderRadius: 'full',
-    width: 'fit-content',
     fontWeight: 'normal',
     textTransform: 'normal',
     display: 'flex',
