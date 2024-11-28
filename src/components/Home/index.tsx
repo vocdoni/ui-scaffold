@@ -1,4 +1,4 @@
-import { Alert, AlertDescription, AlertIcon, AlertTitle, Box } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import Benefits from './Benefits'
 import Clients from './Clients'
 import ContactUs from './ContactUs'
@@ -12,11 +12,6 @@ import Support from './Support'
 const Home = () => (
   <>
     <Box position='relative'>
-      <Alert status='error'>
-        <AlertIcon />
-        <AlertTitle>Your browser is outdated!</AlertTitle>
-        <AlertDescription>Your Chakra experience may be degraded.</AlertDescription>
-      </Alert>
       <Box position='relative' zIndex={10}>
         <CreateProcess />
         <Clients />
