@@ -1,7 +1,7 @@
 import { createContext, Dispatch, SetStateAction, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
-import { SaasFeatures, SaasFeaturesValues } from '~components/ProcessCreate/StepForm/SaasFeatures'
+import { FeaturesValues, SaasFeatures } from '~components/ProcessCreate/StepForm/Features'
 import { CensusCspValues } from '../StepForm/CensusCsp'
 import { CensusSpreadsheetValues } from '../StepForm/CensusSpreadsheet'
 import { CensusTokenValues } from '../StepForm/CensusToken'
@@ -21,7 +21,7 @@ export interface StepsFormValues
     CensusCspValues,
     CensusGitcoinValues,
     CensusSpreadsheetValues,
-    SaasFeaturesValues {}
+    FeaturesValues {}
 
 export interface StepsState {
   title: string

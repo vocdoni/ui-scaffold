@@ -37,13 +37,11 @@ export const StepsForm = ({ steps, activeStep, next, prev, setActiveStep }: Step
     weightedVote: false,
     questions: [{ options: [{}, {}] }],
     addresses: [],
+    // these do not end up in the election process object, but are required for other purposes
     gpsWeighted: false,
     passportScore: 20,
     stampsUnionType: 'OR',
-    saasFeatures: {
-      anonymous: false,
-      secretUntilTheEnd: true,
-      overwrite: false,
+    features: {
       personalization: false,
       emailReminder: false,
       smsNotification: false,

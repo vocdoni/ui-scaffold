@@ -7,7 +7,7 @@ import { Accordion } from './components/accordion'
 import { Badge } from './components/badge'
 import { Button } from './components/button'
 import { Card } from './components/card'
-import { Checkbox } from './components/checkbox'
+import { Checkbox, DetailedBox } from './components/checkbox'
 import { Form } from './components/Form'
 import { ElectionTitle, Heading } from './components/heading'
 import { Input } from './components/input'
@@ -83,6 +83,7 @@ export const theme = extendTheme(vtheme, {
     Button,
     Card,
     Checkbox,
+    DetailedBox,
     ElectionTitle,
     ElectionQuestions,
     ElectionResults,

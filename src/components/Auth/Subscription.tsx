@@ -4,6 +4,7 @@ import { useClient } from '@vocdoni/react-providers'
 import { dotobject, ensure0x } from '@vocdoni/sdk'
 import { ReactNode, useMemo } from 'react'
 import { useAuth } from '~components/Auth/useAuth'
+import type { Plan } from '~components/Pricing/Plans'
 import { ApiEndpoints } from './api'
 
 type PermissionsContextType = {
@@ -27,27 +28,7 @@ type SubscriptionType = {
     subOrgs: number
     members: number
   }
-  plan: {
-    id: number
-    name: string
-    stripeID: string
-    default: boolean
-    organization: {
-      memberships: number
-      subOrgs: number
-      censusSize: number
-    }
-    votingTypes: {
-      approval: boolean
-      ranked: boolean
-      weighted: boolean
-    }
-    features: {
-      personalization: boolean
-      emailReminder: boolean
-      smsNotification: boolean
-    }
-  }
+  plan: Plan
 }
 
 const [SubscriptionProvider, useSubscription] = createContext<PermissionsContextType>({

@@ -41,6 +41,7 @@ const QuestionsTabs = () => {
     <TabsPage
       definedList={definedVotingTypes}
       unimplementedList={unDefinedVotingTypes}
+      permissionsPath='votingTypes'
       onTabChange={(index: number) => {
         const newQuestionType = definedVotingTypes.defined[index]
         // If the question type not accepts multiquestion and there are multiple questions selcted store only the first

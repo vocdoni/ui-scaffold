@@ -1,14 +1,14 @@
 import { Flex } from '@chakra-ui/react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { FeaturesKeys } from '~components/Pricing/Features'
-import { Features as SaasFeaturesComponent } from '~components/ProcessCreate/Settings/SaasFeatures'
+import { Features as SaasFeaturesComponent } from '~components/ProcessCreate/Settings/Features'
 import { ConfigurationValues } from '~components/ProcessCreate/StepForm/Info'
 import { StepsNavigation } from '~components/ProcessCreate/Steps/Navigation'
 import Wrapper from '~components/ProcessCreate/Steps/Wrapper'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 
-export type SaasFeaturesValues = { saasFeatures: Record<FeaturesKeys, boolean> }
-interface FeaturesForm extends SaasFeaturesValues, ConfigurationValues {}
+export type FeaturesValues = { features: Record<FeaturesKeys, boolean> }
+interface FeaturesForm extends FeaturesValues, ConfigurationValues {}
 
 export const SaasFeatures = () => {
   const { form, setForm, next } = useProcessCreationSteps()

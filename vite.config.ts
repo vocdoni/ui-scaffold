@@ -56,7 +56,7 @@ const viteconfig = ({ mode }) => {
       react(),
       svgr(),
       createHtmlPlugin({
-        template: `public/index.html`,
+        template: `index.html`,
         minify: {
           removeComments: false,
           collapseWhitespace: true,

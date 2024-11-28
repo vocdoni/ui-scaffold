@@ -2,15 +2,7 @@ import { dotobject } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import type { Plan } from './Plans'
 
-export type FeaturesKeys =
-  | 'anonymous'
-  | 'secretUntilTheEnd'
-  | 'overwrite'
-  | 'personalization'
-  | 'emailReminder'
-  | 'smsNotification'
-  | 'whiteLabel'
-  | 'liveStreaming'
+export type FeaturesKeys = 'personalization' | 'emailReminder' | 'smsNotification' | 'whiteLabel' | 'liveStreaming'
 
 // Translation keys for the subscription features
 export const PlanFeaturesTranslationKeys = {
@@ -23,6 +15,15 @@ export const PlanFeaturesTranslationKeys = {
   'features.emailReminder': 'features.email_reminder',
   'features.smsNotification': 'features.sms_notification',
 }
+
+/**
+ * Checks if the specified feature exists in the plan.
+ *
+ * @param plan  - The plan object to check.
+ * @param featurePath  - Dot notation path to the feature (e.g., 'organization.memberships').
+ * @returns boolean - `true` if the feature exists, `false` otherwise.
+ */
+export const hasFeature = (plan: Plan, featurePath: string) => dotobject(plan, featurePath) !== 'undefined'
 
 /**
  * Checks if a given feature exists and meets the required condition in a plan.

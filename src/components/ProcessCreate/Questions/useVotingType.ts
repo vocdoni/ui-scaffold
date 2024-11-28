@@ -5,13 +5,13 @@ import SingleChoice from '~components/ProcessCreate/Questions/SingleChoice'
 import { GenericFeatureObject } from '~components/ProcessCreate/Steps/TabsPage'
 
 export const VotingTypeSingle = 'single'
-export const UnimplementedVotingTypeApproval = 'approval'
+export const VotingTypeApproval = 'approval'
 
 export const MultiQuestionTypes = [VotingTypeSingle]
 
-export type VotingType = typeof VotingTypeSingle | typeof UnimplementedVotingTypeApproval
+export type VotingType = typeof VotingTypeSingle | typeof VotingTypeApproval
 
-export const VotingTypes = [VotingTypeSingle as VotingType, UnimplementedVotingTypeApproval as VotingType]
+export const VotingTypes = [VotingTypeSingle as VotingType, VotingTypeApproval as VotingType]
 
 export const useVotingType = (): GenericFeatureObject<VotingType> => {
   const { t } = useTranslation()
@@ -24,7 +24,7 @@ export const useVotingType = (): GenericFeatureObject<VotingType> => {
         icon: GiChoice,
         component: SingleChoice,
       },
-      [UnimplementedVotingTypeApproval]: {
+      [VotingTypeApproval]: {
         title: t('process_create.question.approval_voting.title'),
         description: t('process_create.question.approval_voting.description'),
         icon: GiChoice,

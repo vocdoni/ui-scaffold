@@ -16,20 +16,22 @@ export const isFeatureAvailable = (
   featurePath: string,
   expectedValue?: number | { operator: '===' | '>' | '>=' | '<' | '<='; value: number }
 ): boolean => {
-  const featureValue = dotobject(plan, featurePath) // Get the feature value using dot notation
+  // Get the feature value using dot notation
+  const featureValue = dotobject(plan, featurePath)
 
+  // If the feature doesn't exist, return false
   if (typeof featureValue === 'undefined') {
-    return false // If the feature doesn't exist, return false
-  }
-
-  // If no expected value is provided, return true if the feature exists
-  if (typeof expectedValue === 'undefined') {
-    return true
+    return false
   }
 
   // Handle exact match or comparison
   if (typeof expectedValue === 'number') {
     return featureValue >= expectedValue // Default to "greater than or equal to" for numbers
+  }
+
+  // Booleans are treated as exact matches
+  if (typeof featureValue === 'boolean') {
+    return featureValue
   }
 
   if (typeof expectedValue === 'object' && expectedValue.operator && expectedValue.value !== undefined) {
