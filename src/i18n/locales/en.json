@@ -1090,6 +1090,7 @@
   },
   "total_votes_submitted": "Total Votes Submitted",
   "update": "Update",
+  "upgrade": "Upgrade",
   "upload": "Upload",
   "uploader": {
     "click_or_drag_and_drop": "<p1>Upload or drag and drop the voter list here</p1><p2>(Allowed formats: CSV, XLSX, and ODS)</p2>",
@@ -1117,6 +1118,7 @@
     "verifying_subtitle": "Await until we verify your email address. You will be redirect on success.",
     "verifying_title": "Verifying {{ email }}"
   },
+  "view_plans_and_pricing": "View Plans & Pricing",
   "view_pricing": "View Pricing",
   "view_pricing_plan": "View Pricing Plan",
   "view_pricing_plans": "View Pricing Plans",

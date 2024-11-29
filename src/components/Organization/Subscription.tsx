@@ -24,7 +24,7 @@ export const Subscription = () => {
     <>
       <SubscriptionModal isOpen={isOpen} onClose={onClose} title={t('pricing.title')} />
       <Button onClick={onOpen} alignSelf='end'>
-        View Plans & Pricing
+        <Trans i18nKey='view_plans_and_pricing'>View Plans & Pricing</Trans>
       </Button>
       <SubscriptionList />
     </>
@@ -68,7 +68,7 @@ export const SubscriptionList = () => {
               {subscription.plan.name} ({subscription.plan.organization.memberships} members)
             </Td>
             <Td>
-              <Tag>undefined</Tag>
+              <Tag>{subscription.plan.startingPrice} €</Tag>
             </Td>
             <Td>
               <Tag>{new Date(subscription.subscriptionDetails.startDate).toLocaleDateString()}</Tag>
