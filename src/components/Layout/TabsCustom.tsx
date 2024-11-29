@@ -1,6 +1,7 @@
 import { Box, Tabs } from '@chakra-ui/react'
-import { Select } from 'chakra-react-select'
+import { ChakraStylesConfig, Select } from 'chakra-react-select'
 import { useState } from 'react'
+import { customStylesSelect } from '~theme/tokenSelectStyles'
 
 type TabOption = {
   label: string
@@ -24,6 +25,7 @@ const TabsCustom = ({ children, tabProps, selectProps, selectBoxProps }: any) =>
           options={tabOptions}
           value={tabOptions.find((option) => option.value === selectedTab)}
           onChange={(option) => setSelectedTab(option?.value ?? 0)}
+          chakraStyles={customStylesSelect as ChakraStylesConfig}
         />
       </Box>
       <Tabs index={selectedTab} onChange={(index) => setSelectedTab(index)} {...tabProps}>

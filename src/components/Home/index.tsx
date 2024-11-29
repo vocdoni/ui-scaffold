@@ -18,11 +18,11 @@ const Home = () => (
           EXAMPLE TabsCustom responsive
         </Text>
         <TabsCustom
-          selectBoxProps={{ display: { lg: 'none' }, maxW: 'fit-content', mx: 'auto' }}
+          selectBoxProps={{ display: { md: 'none' }, maxW: 'fit-content', mx: 'auto' }}
           selectProps={{}}
-          tabProps={{ variant: 'enclosed-colored', isFitted: true }}
+          tabProps={{ variant: 'brand', isFitted: true }}
         >
-          <TabList display={{ base: 'none', lg: 'flex' }}>
+          <TabList display={{ base: 'none', md: 'flex' }}>
             <Tab>One</Tab>
             <Tab>Two</Tab>
             <Tab>Three</Tab>
