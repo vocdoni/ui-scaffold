@@ -138,8 +138,16 @@ export const PlanUpgrade = ({ feature, text, value }: PlanUpgradeData) => {
   )
 }
 
+export type TierUpgradeData = {
+  value: number
+}
+
 export const TierUpgrade = () => {
   const { subscription } = useSubscription()
+  const translations = usePlanTranslations()
+  const plan = translations[subscription.plan.id].title
+  const voters = subscription.subscriptionDetails.maxCensusSize
+
   return (
     <VStack spacing={4} w='full'>
       {/* Header */}
@@ -147,14 +155,14 @@ export const TierUpgrade = () => {
         <Icon as={FaUser} boxSize={6} />
       </Flex>
       <Text fontSize='lg' fontWeight='semibold' textAlign='center'>
-        <Trans i18nKey='tier_upgrade.current_plan'>
+        <Trans i18nKey='tier_upgrade.current_plan' values={{ plan, voters }}>
           Your current{' '}
           <Text as='span' color='green.500'>
-            free plan
+            {plan}
           </Text>{' '}
           is limited to selecting up to{' '}
           <Text as='span' color='green.500'>
-            50 voters
+            {voters} voters
           </Text>
           .
         </Trans>

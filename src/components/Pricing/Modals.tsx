@@ -2,13 +2,13 @@ import { useDisclosure } from '@chakra-ui/hooks'
 import { createContext } from '@chakra-ui/react-utils'
 import React, { ReactNode, useState } from 'react'
 import { SubscriptionModal } from './Plans'
-import { PlanUpgradeData, PlanUpgradeModal, TierUpgradeModal } from './Upgrading'
+import { PlanUpgradeData, PlanUpgradeModal, TierUpgradeData, TierUpgradeModal } from './Upgrading'
 
 // Define types for the context
 type PricingModalType = 'tierUpgrade' | 'planUpgrade' | 'subscription' | null
 
 type PricingModalContextState = {
-  openModal: (type: PricingModalType, modalData?: PlanUpgradeData | null) => void
+  openModal: (type: PricingModalType, modalData?: PlanUpgradeData | TierUpgradeData | null) => void
   closeModal: () => void
   modalType: PricingModalType
   modalData: any

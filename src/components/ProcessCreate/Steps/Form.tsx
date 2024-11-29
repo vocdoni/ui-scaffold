@@ -1,6 +1,14 @@
 import { Stepper } from '@chakra-ui/react'
 import { ElectionResultsTypeNames } from '@vocdoni/sdk'
 import { PropsWithChildren, useEffect, useState } from 'react'
+import { useSubscription } from '~components/Auth/Subscription'
+import { usePricingModal } from '~components/Pricing/Modals'
+import {
+  CensusTypeCsp,
+  CensusTypeGitcoin,
+  CensusTypeSpreadsheet,
+  CensusTypeWeb3,
+} from '~components/Process/Census/CensusType'
 import type { RecursivePartial } from '~constants'
 import { CensusSpreadsheetManager } from '../Census/Spreadsheet/CensusSpreadsheetManager'
 import { StepContents } from './Contents'
@@ -49,10 +57,11 @@ export const StepsForm = ({ steps, activeStep, next, prev, setActiveStep }: Step
       liveStreaming: false,
     },
   })
-
   const [isLoadingPreview, setIsLoadingPreview] = useState(false)
   const [isLoadingCost, setIsLoadingCost] = useState(false)
   const [notEnoughBalance, setNotEnoughBalance] = useState(false)
+  const { permission } = useSubscription()
+  const { openModal } = usePricingModal()
 
   // reinitialize form if we have a draft and `state` is set in the URL
   useEffect(() => {
@@ -77,9 +86,38 @@ export const StepsForm = ({ steps, activeStep, next, prev, setActiveStep }: Step
   }, [])
 
   const setFormInStateAndLocalstorage = async (data: StepsFormValues) => {
+    const maxAllowedCensusSize = permission(`organization.censusSize`)
+    let length: number = maxAllowedCensusSize
+    switch (data.censusType) {
+      case CensusTypeSpreadsheet: {
+        if (!data.spreadsheet) {
+          break
+        }
+        length = data.spreadsheet.data.length || 0
+        break
+      }
+      case CensusTypeWeb3: {
+        if (!data.addresses) {
+          break
+        }
+        length = data.addresses.length || 0
+        break
+      }
+      case CensusTypeGitcoin:
+      case CensusTypeCsp: {
+        // I actually have no idea how should I get the length for these cases 🤔
+      }
+    }
+    if (length > maxAllowedCensusSize) {
+      openModal('tierUpgrade', {
+        value: length,
+      })
+      return false
+    }
     setForm(data)
     localStorage.setItem('form-draft', JSON.stringify(data))
     localStorage.setItem('form-draft-step', (activeStep + 1).toString())
+    return true
   }
 
   const value: StepsContextState = {

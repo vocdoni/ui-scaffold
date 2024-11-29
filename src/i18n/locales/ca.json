@@ -1085,7 +1085,7 @@
   "terms_and_conditions": "Terms and Conditions",
   "terms_of_use": "Condicions d'ús",
   "tier_upgrade": {
-    "current_plan": "Your current <2>free plan</2> is limited to selecting up to <6>50 voters</6>.",
+    "current_plan": "El teu pla <2>{{ plan, lowercase }}</2> està limitat a seleccionar fins a <6>{{voters}} votants</6>.",
     "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
     "plan": {
       "basic": "Basic",

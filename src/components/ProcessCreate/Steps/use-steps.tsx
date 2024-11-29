@@ -33,7 +33,7 @@ export interface StepsContextState {
   form: StepsFormValues
   next: () => void
   prev: () => void
-  setForm: (vals: StepsFormValues) => void
+  setForm: (vals: StepsFormValues) => Promise<boolean>
   steps: StepsState[]
   setActiveStep: Dispatch<SetStateAction<number>>
   isLoadingPreview: boolean
