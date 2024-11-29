@@ -5,7 +5,7 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
 const { definePartsStyle: defineDetailedPartsStyle, defineMultiStyleConfig: defineDetailedMultiStyleConfig } =
   createMultiStyleConfigHelpers(['icon', 'title', 'badge', 'description', 'checkbox'])
 
-export const DetailedBox = defineDetailedMultiStyleConfig({
+export const DetailedCheckbox = defineDetailedMultiStyleConfig({
   baseStyle: defineDetailedPartsStyle((props) => ({
     title: {
       display: 'flex',

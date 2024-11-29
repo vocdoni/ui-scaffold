@@ -192,7 +192,7 @@ const TabCardSkeleton = ({
   needsUpgrade = false,
   ...props
 }: ITabsCardSkeletonProps & TabProps) => {
-  const styles = useMultiStyleConfig('DetailedBox', props)
+  const styles = useMultiStyleConfig('DetailedCheckbox', props)
 
   return (
     <Tab onClick={onClick} mb={5} {...props} sx={styles.checkbox}>

@@ -2,7 +2,7 @@ import { Checkbox, CheckboxProps, Text, useMultiStyleConfig } from '@chakra-ui/r
 import { cloneElement, ReactElement } from 'react'
 import { useFormContext } from 'react-hook-form'
 
-export type DetailedBoxProps = CheckboxProps & {
+export type DetailedCheckboxProps = CheckboxProps & {
   badge?: ReactElement
   description?: string
   icon?: ReactElement
@@ -10,8 +10,8 @@ export type DetailedBoxProps = CheckboxProps & {
   title: string
 }
 
-export const DetailedBox = ({ icon, badge, title, description, name, ...props }: DetailedBoxProps) => {
-  const styles = useMultiStyleConfig('DetailedBox', props)
+export const DetailedCheckbox = ({ icon, badge, title, description, name, ...props }: DetailedCheckboxProps) => {
+  const styles = useMultiStyleConfig('DetailedCheckbox', props)
   const { register } = useFormContext()
 
   return (

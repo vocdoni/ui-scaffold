@@ -4,7 +4,7 @@ import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { BiCheckDouble } from 'react-icons/bi'
 import { useSubscription } from '~components/Auth/Subscription'
-import { DetailedBox } from '~components/Layout/Form/DetailedCheckbox'
+import { DetailedCheckbox } from '~components/Layout/Form/DetailedCheckbox'
 import { usePricingModal } from '~components/Pricing/Modals'
 
 const useProcessFeatures = () => {
@@ -77,7 +77,7 @@ export const Features = () => {
         const needsUpgrade = 'permission' in card && !permission(card.permission)
 
         return (
-          <DetailedBox
+          <DetailedCheckbox
             key={i}
             {...card}
             name={card.name ?? `features.${feature}`}
