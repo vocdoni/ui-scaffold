@@ -3,7 +3,7 @@ import { DropzoneInputProps, DropzoneRootProps } from 'react-dropzone/.'
 import { Trans, useTranslation } from 'react-i18next'
 import { FiUploadCloud } from 'react-icons/fi'
 
-const UploaderCustom = ({
+const Uploader = ({
   getRootProps,
   getInputProps,
   isDragActive,
@@ -58,4 +58,4 @@ const UploaderCustom = ({
   )
 }
 
-export default UploaderCustom
+export default Uploader

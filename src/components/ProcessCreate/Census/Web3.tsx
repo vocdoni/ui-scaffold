@@ -18,7 +18,7 @@ import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { BiCheckDouble } from 'react-icons/bi'
 import { DetailedCheckbox } from '~components/Layout/Form/DetailedCheckbox'
-import UploaderCustom from '~components/Layout/UploaderCustom'
+import Uploader from '~components/Layout/Uploader'
 import { addressTextOverflow, fieldMapErrorMessage, isInvalidFieldMap } from '~constants'
 import { Web3CensusSpreadsheetManager } from './Spreadsheet/Web3CensusSpreadsheetManager'
 
@@ -239,7 +239,7 @@ export const CensusWeb3Addresses = () => {
             )}
           />
           <FormControl isInvalid={!!fileErr}>
-            <UploaderCustom getInputProps={getInputProps} getRootProps={getRootProps} isDragActive={isDragActive} />
+            <Uploader getInputProps={getInputProps} getRootProps={getRootProps} isDragActive={isDragActive} />
             <FormErrorMessage>{fileErr}</FormErrorMessage>
           </FormControl>
         </Flex>

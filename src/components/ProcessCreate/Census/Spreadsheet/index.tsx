@@ -19,7 +19,7 @@ import { useTranslation } from 'react-i18next'
 import { BiCheckDouble, BiDownload } from 'react-icons/bi'
 import { PiWarningCircleLight } from 'react-icons/pi'
 import { DetailedCheckbox } from '~components/Layout/Form/DetailedCheckbox'
-import UploaderCustom from '~components/Layout/UploaderCustom'
+import Uploader from '~components/Layout/Uploader'
 import { CensusSpreadsheetManager } from './CensusSpreadsheetManager'
 import { CsvGenerator } from './generator'
 import { CsvPreview } from './Preview'
@@ -160,7 +160,7 @@ export const CensusCsvManager = () => {
         isInvalid={!!errors?.spreadsheet}
         display={manager?.data.length ? 'none' : 'block'}
       >
-        <UploaderCustom getInputProps={getInputProps} getRootProps={getRootProps} isDragActive={isDragActive} />{' '}
+        <Uploader getInputProps={getInputProps} getRootProps={getRootProps} isDragActive={isDragActive} />{' '}
         <FormErrorMessage display='flex' justifyContent='center'>
           {errors?.spreadsheet?.message?.toString()}
         </FormErrorMessage>
