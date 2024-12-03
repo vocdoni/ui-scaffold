@@ -18,7 +18,6 @@ import { ReactNode, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
-import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
 import { PlanId } from '~constants'
 import PricingCard from './Card'
@@ -138,7 +137,6 @@ export const usePlanTranslations = () => {
 export const SubscriptionPlans = () => {
   const { t } = useTranslation()
   const { data: plans, isLoading } = usePlans()
-  const { permission } = useSubscription()
   const translations = usePlanTranslations()
 
   const [selectedCensusSize, setSelectedCensusSize] = useState<number | null>(null)
@@ -193,7 +191,7 @@ export const SubscriptionPlans = () => {
         <Select options={censusSizeOptions} onChange={(selected) => setSelectedCensusSize(selected?.value || null)} />
       </Flex>
       {isLoading && <Progress colorScheme='brand' size='xs' isIndeterminate />}
-      <Flex gap={5} justifyContent='space-evenly' flexWrap='wrap'>
+      <Flex gap={5} justifyContent='space-evenly' alignItems='start' flexWrap='wrap'>
         {cards.map((card, idx) => (
           <PricingCard key={idx} plan={plans[idx]} {...card} />
         ))}
