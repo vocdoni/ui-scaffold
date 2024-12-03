@@ -1,6 +1,7 @@
 interface ImportMeta {
   env: {
     NODE_ENV: string
+    DEV: boolean
     BASE_URL: string
     VOCDONI_ENVIRONMENT: string
     CUSTOM_FAUCET_URL: string

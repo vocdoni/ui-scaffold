@@ -1,4 +1,4 @@
-import { Box, Button, Collapse, useDisclosure } from '@chakra-ui/react'
+import { Box, Collapse, useDisclosure } from '@chakra-ui/react'
 import { OrganizationName } from '@vocdoni/chakra-components'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -6,7 +6,6 @@ import { HiSquares2X2 } from 'react-icons/hi2'
 import { IoIosSettings } from 'react-icons/io'
 import { generatePath, matchPath, useLocation } from 'react-router-dom'
 import { Routes } from '~src/router/routes'
-import { PricingModal } from '../PricingModal'
 import { DashboardMenuItem } from './Item'
 
 type MenuItem = {
@@ -53,9 +52,9 @@ export const DashboardMenuOptions = () => {
       icon: IoIosSettings,
       children: [
         { label: t('organization.organization'), route: Routes.dashboard.organization },
-        { label: t('team'), route: Routes.dashboard.team },
+        { label: t('team.title'), route: Routes.dashboard.team },
         // { label: t('billing'), route: '#billing' },
-        // { label: t('subscription'), route: '#subscription' },
+        { label: t('subscription'), route: Routes.dashboard.subscription },
         { label: t('profile'), route: Routes.dashboard.profile },
       ],
     },
@@ -84,8 +83,6 @@ export const DashboardMenuOptions = () => {
 
   return (
     <Box>
-      <PricingModal isOpenModal={isOpen} onCloseModal={onClose} />
-      <Button onClick={onOpen}>Open Modal</Button>
       <OrganizationName color='text.secondary' mb={2.5} />
       {menuItems.map((item, index) => (
         <Box key={index}>

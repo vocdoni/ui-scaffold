@@ -28,7 +28,7 @@ type PendingTeamMembersResponse = {
 }
 
 // Fetch hook for team members
-const useTeamMembers = ({
+export const useTeamMembers = ({
   options,
 }: {
   options?: Omit<UseQueryOptions<TeamMembersResponse>, 'queryKey' | 'queryFn'>
@@ -44,7 +44,7 @@ const useTeamMembers = ({
 }
 
 // Fetch hook for pending members
-const usePendingTeamMembers = ({
+export const usePendingTeamMembers = ({
   options,
 }: {
   options?: Omit<UseQueryOptions<PendingTeamMembersResponse>, 'queryKey' | 'queryFn'>
@@ -135,6 +135,8 @@ export const TeamMembersList = () => {
 // Component for pending team members
 export const PendingTeamMembersList = () => {
   const { data: pending, isLoading, isError, error } = usePendingTeamMembers()
+
+  if (!isLoading && !pending.length) return null
 
   return (
     <QueryDataLayout isEmpty={!pending} isLoading={isLoading} isError={isError} error={error}>

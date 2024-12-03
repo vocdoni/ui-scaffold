@@ -1,10 +1,11 @@
 import { Avatar, Badge, Box, HStack, VStack } from '@chakra-ui/react'
 import { OrganizationName } from '@vocdoni/chakra-components'
 import { OrganizationProvider } from '@vocdoni/react-providers'
+import { NoOrganizations } from '~components/Organization/NoOrganizations'
 import { UserRole } from '~src/queries/account'
 
 const Teams = ({ roles }: { roles: UserRole[] }) => {
-  if (!roles) return null
+  if (!roles || !roles.length) return <NoOrganizations />
 
   return (
     <VStack spacing={4} align='stretch'>

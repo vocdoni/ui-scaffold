@@ -5,12 +5,12 @@ import { Params } from 'react-router-dom'
 // These aren't lazy loaded since they are main layouts and related components
 import Error from '~elements/Error'
 import Layout from '~elements/Layout'
+import PlansPublicPage from '~elements/plans'
+import { PlansLayout, StretchPublicContentsLayout } from '~elements/PublicContents'
 import { StripeCheckout, StripeReturn } from '~elements/Stripe'
+import ProtectedRoutes from '~src/router/ProtectedRoutes'
 import { Routes } from '.'
 import { SuspenseLoader } from '../SuspenseLoader'
-
-// Lazy loading helps splitting the final code, which helps downloading the app (theoretically)
-const OrganizationProtectedRoute = lazy(() => import('../OrganizationProtectedRoute'))
 
 // elements / pages
 const Faucet = lazy(() => import('~elements/Faucet'))
@@ -48,7 +48,7 @@ const RootElements = (client: VocdoniSDKClient) => [
     errorElement: <Error />,
   },
   {
-    path: 'organization/:address',
+    path: Routes.organization,
     element: (
       <SuspenseLoader>
         <OrganizationView />
@@ -58,28 +58,7 @@ const RootElements = (client: VocdoniSDKClient) => [
     errorElement: <Error />,
   },
   {
-    path: Routes.terms,
-    element: (
-      <SuspenseLoader>
-        <Terms />
-      </SuspenseLoader>
-    ),
-  },
-  {
-    path: Routes.privacy,
-    element: (
-      <SuspenseLoader>
-        <Privacy />
-      </SuspenseLoader>
-    ),
-  },
-  {
-    element: (
-      <SuspenseLoader>
-        <OrganizationProtectedRoute />
-      </SuspenseLoader>
-    ),
-    children: [
+    ...ProtectedRoutes([
       {
         path: Routes.stripe.checkout,
         element: <StripeCheckout />,
@@ -89,7 +68,7 @@ const RootElements = (client: VocdoniSDKClient) => [
         element: <StripeReturn />,
         errorElement: <Error />,
       },
-    ],
+    ]),
   },
   {
     path: Routes.faucet,
@@ -106,6 +85,42 @@ const RootElements = (client: VocdoniSDKClient) => [
         <Calculator />
       </SuspenseLoader>
     ),
+  },
+  // Plans have their own layout
+  {
+    element: <PlansLayout />,
+    children: [
+      {
+        path: Routes.plans,
+        element: (
+          <SuspenseLoader>
+            <PlansPublicPage />
+          </SuspenseLoader>
+        ),
+      },
+    ],
+  },
+  // Stuff centered in the view, stretched
+  {
+    element: <StretchPublicContentsLayout />,
+    children: [
+      {
+        path: Routes.terms,
+        element: (
+          <SuspenseLoader>
+            <Terms />
+          </SuspenseLoader>
+        ),
+      },
+      {
+        path: Routes.privacy,
+        element: (
+          <SuspenseLoader>
+            <Privacy />
+          </SuspenseLoader>
+        ),
+      },
+    ],
   },
   {
     path: '*',

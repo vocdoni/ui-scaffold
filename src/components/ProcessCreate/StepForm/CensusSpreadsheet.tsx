@@ -20,9 +20,10 @@ export const StepFormCensusSpreadsheet = () => {
     },
   })
 
-  const onSubmit: SubmitHandler<CensusSpreadsheetValues> = (data) => {
-    setForm({ ...form, ...data })
-    next()
+  const onSubmit: SubmitHandler<CensusSpreadsheetValues> = async (data) => {
+    if (await setForm({ ...form, ...data })) {
+      next()
+    }
   }
 
   return (

@@ -1,72 +1,14 @@
-import { Box, Button, Divider, Flex, FormControl, FormErrorMessage, Heading, Input, Text } from '@chakra-ui/react'
+import { Button, Divider, Flex, Input, Text } from '@chakra-ui/react'
 import { useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { Link as ReactRouterLink, useNavigate, useOutletContext, useSearchParams } from 'react-router-dom'
+import { Link as ReactRouterLink, useNavigate, useOutletContext } from 'react-router-dom'
 import { useResendVerificationMail } from '~components/Auth/authQueries'
 import { useAuth } from '~components/Auth/useAuth'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import { AuthOutletContextType } from '~elements/LayoutAuth'
 import { Routes } from '~src/router/routes'
-import { Loading } from '~src/router/SuspenseLoader'
 
-const Verify = () => {
-  const navigate = useNavigate()
-  const { t } = useTranslation()
-  const [searchParams] = useSearchParams()
-  const {
-    mailVerify: { isIdle, isPending, isError: isMutationError, error, mutateAsync },
-  } = useAuth()
-
-  const email = searchParams.get('email')
-  const code = searchParams.get('code')
-  const isLoading = isIdle || isPending
-  const isError = !email || isMutationError || (import.meta.env.VOCDONI_ENVIRONMENT !== 'dev' && !code)
-
-  // Trigger email verification on component load
-  useEffect(() => {
-    mutateAsync({ email, code }).then(() => navigate(Routes.dashboard.base))
-  }, [])
-
-  let title = t('verify_mail.verifying_title', { email: email, defaultValue: 'Verifying {{ email }}' })
-  let subTitle = t('verify_mail.verifying_subtitle', {
-    defaultValue: 'Await until we verify your email address. You will be redirect on success.',
-  })
-  // dev enviorment permits empty code
-  if (isError) {
-    title = t('verify_mail.error_title', { email: email, defaultValue: 'Error verifying {{ email }}' })
-    subTitle = t('verify_mail.error_subtitle', {
-      defaultValue:
-        'We found an error verifying your email, please check verification mail to ensure all data is correct',
-    })
-  }
-
-  return (
-    <Flex direction='column'>
-      <Box me='auto'>
-        <Heading fontSize='36px' mb='10px'>
-          {title}
-        </Heading>
-        <Text mb='36px' ms='4px' color={'verify_subtitle'} fontWeight='400' fontSize='md'>
-          {subTitle}
-        </Text>
-      </Box>
-      {isLoading && !isError && (
-        <Box height={'100px'}>
-          <Loading minHeight={1} />
-        </Box>
-      )}
-      <Box>
-        <FormControl isInvalid={isError}>
-          {isError && (
-            <FormErrorMessage>
-              {error?.message || t('error.error_doing_things', { defaultValue: 'Error al realizar la operación' })}
-            </FormErrorMessage>
-          )}
-        </FormControl>
-      </Box>
-    </Flex>
-  )
-}
+export const verificationSuccessRedirect = Routes.auth.organizationCreate
 
 interface IVerifyAccountProps {
   email: string
@@ -81,7 +23,7 @@ const VerifyForm = ({ email }: IVerifyAccountProps) => {
   } = useAuth()
 
   const verify = useCallback(() => {
-    verifyAsync({ email, code }).then(() => navigate(Routes.dashboard.base))
+    verifyAsync({ email, code }).then(() => navigate(verificationSuccessRedirect))
   }, [code, email])
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -105,7 +47,7 @@ const VerifyForm = ({ email }: IVerifyAccountProps) => {
   )
 }
 
-export const VerifyAccountNeeded = ({ email }: IVerifyAccountProps) => {
+export const VerificationPending = ({ email }: IVerifyAccountProps) => {
   const { t } = useTranslation()
   const { setTitle, setSubTitle } = useOutletContext<AuthOutletContextType>()
   const {
@@ -168,5 +110,3 @@ export const VerifyAccountNeeded = ({ email }: IVerifyAccountProps) => {
     </>
   )
 }
-
-export default Verify
