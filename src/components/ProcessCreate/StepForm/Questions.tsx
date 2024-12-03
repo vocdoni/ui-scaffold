@@ -1,9 +1,9 @@
-import { Flex } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import { FormProvider, SubmitHandler, useFieldArray, useForm, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { useSaasVotingType } from '~components/ProcessCreate/Questions/useSaasVotingType'
-import { MultiQuestionTypes, VotingType } from '~components/ProcessCreate/Questions/useVotingType'
-import { ITabsPageProps, TabsPage } from '~components/ProcessCreate/Steps/TabsPage'
+import { useUnimplementedVotingType } from '~components/ProcessCreate/Questions/useUnimplementedVotingType'
+import { MultiQuestionTypes, useVotingType, VotingType } from '~components/ProcessCreate/Questions/useVotingType'
+import { TabsPage } from '~components/ProcessCreate/Steps/TabsPage'
 import { StepsFormValues, useProcessCreationSteps } from '../Steps/use-steps'
 
 export interface Option {
@@ -21,18 +21,12 @@ export interface QuestionsValues {
   questionType: VotingType | null
 }
 
-const SaasQuestionsTabs = () => {
-  const { pro, inPlan } = useSaasVotingType()
-  return <QuestionsTabs definedList={inPlan} unimplementedList={pro} />
-}
-
-const QuestionsTabs = <Implemented extends string, UnImplemented extends string>({
-  definedList,
-  unimplementedList,
-}: Pick<ITabsPageProps<Implemented, UnImplemented>, 'definedList' | 'unimplementedList'>) => {
+const QuestionsTabs = () => {
   const { t } = useTranslation()
   const { form, setForm } = useProcessCreationSteps()
 
+  const definedVotingTypes = useVotingType()
+  const unDefinedVotingTypes = useUnimplementedVotingType()
   const { questionType } = form
 
   const { watch } = useFormContext()
@@ -45,17 +39,18 @@ const QuestionsTabs = <Implemented extends string, UnImplemented extends string>
 
   return (
     <TabsPage
-      definedList={definedList}
-      unimplementedList={unimplementedList}
+      definedList={definedVotingTypes}
+      unimplementedList={unDefinedVotingTypes}
+      permissionsPath='votingTypes'
       onTabChange={(index: number) => {
-        const newQuestionType = definedList.defined[index]
+        const newQuestionType = definedVotingTypes.defined[index]
         // If the question type not accepts multiquestion and there are multiple questions selcted store only the first
         if (newQuestionType && !MultiQuestionTypes.includes(newQuestionType) && questions.length > 1) {
           replace(questions[0])
         }
         const nform: StepsFormValues = {
           ...form,
-          questionType: newQuestionType as VotingType,
+          questionType: newQuestionType,
         }
         setForm(nform)
       }}
@@ -79,18 +74,11 @@ export const Questions = () => {
     setForm({ ...form, ...data })
     next()
   }
-
   return (
     <FormProvider {...methods}>
-      <Flex
-        as='form'
-        flexGrow={1}
-        flexDirection='column'
-        id='process-create-form'
-        onSubmit={methods.handleSubmit(onSubmit)}
-      >
-        <SaasQuestionsTabs />
-      </Flex>
+      <Box as='form' id='process-create-form' onSubmit={methods.handleSubmit(onSubmit)}>
+        <QuestionsTabs />
+      </Box>
     </FormProvider>
   )
 }

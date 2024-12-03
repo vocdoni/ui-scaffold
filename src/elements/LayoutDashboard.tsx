@@ -1,11 +1,12 @@
 import { HamburgerIcon } from '@chakra-ui/icons'
 import { Box, Grid, Heading, IconButton, useDisclosure } from '@chakra-ui/react'
 import { OrganizationProvider, useClient } from '@vocdoni/react-providers'
-import { useState } from 'react'
+import { PropsWithChildren, useState } from 'react'
 import { MdKeyboardArrowLeft } from 'react-icons/md'
 import { Outlet, Link as ReactRouterLink } from 'react-router-dom'
 import AccountMenu from '~components/Account/Menu'
 import DashboardMenu from '~components/Dashboard/Menu'
+import { PricingModalProvider } from '~components/Pricing/Modals'
 
 export type DashboardLayoutContext = {
   setTitle: (title: string) => void
@@ -13,14 +14,12 @@ export type DashboardLayoutContext = {
 }
 
 const LayoutDashboard: React.FC = () => {
-  const { account } = useClient()
-
   const [title, setTitle] = useState<string | null>(null)
   const [back, setBack] = useState<string | null>(null)
   const { isOpen, onOpen, onClose } = useDisclosure() // For mobile sidebar toggle
 
   return (
-    <OrganizationProvider organization={account}>
+    <DashboardLayoutProviders>
       <Grid
         templateAreas={{
           base: `"header" "main"`,
@@ -72,6 +71,15 @@ const LayoutDashboard: React.FC = () => {
           <Outlet context={{ setTitle, setBack } satisfies DashboardLayoutContext} />
         </Box>
       </Grid>
+    </DashboardLayoutProviders>
+  )
+}
+
+const DashboardLayoutProviders = (props: PropsWithChildren) => {
+  const { account } = useClient()
+  return (
+    <OrganizationProvider organization={account}>
+      <PricingModalProvider {...props} />
     </OrganizationProvider>
   )
 }
