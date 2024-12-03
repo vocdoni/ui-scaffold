@@ -3,11 +3,9 @@ import {
   Box,
   Button,
   Card,
-  Checkbox,
   Flex,
   FormControl,
   FormErrorMessage,
-  Icon,
   IconButton,
   Input,
   Text,
@@ -19,6 +17,7 @@ import { useDropzone } from 'react-dropzone'
 import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { BiCheckDouble } from 'react-icons/bi'
+import { DetailedCheckbox } from '~components/Layout/Form/DetailedCheckbox'
 import UploaderCustom from '~components/Layout/UploaderCustom'
 import { addressTextOverflow, fieldMapErrorMessage, isInvalidFieldMap } from '~constants'
 import { Web3CensusSpreadsheetManager } from './Spreadsheet/Web3CensusSpreadsheetManager'
@@ -227,21 +226,16 @@ export const CensusWeb3Addresses = () => {
             name='weightedVote'
             defaultValue={weighted}
             render={({ field: { onChange, onBlur, value, ref } }) => (
-              <Checkbox
+              <DetailedCheckbox
                 onChange={(event: ChangeEvent<HTMLInputElement>) => setValue('weightedVote', event.target.checked)}
                 onBlur={onBlur}
-                ref={ref}
+                name={'weightedVote'}
                 isChecked={value}
                 variant={'detailed'}
-              >
-                <Flex>
-                  <Icon as={BiCheckDouble} />
-                  <Text>
-                    <Trans i18nKey='form.process_create.weighted'>Weighted vote</Trans>
-                  </Text>
-                </Flex>
-                <Text>{t('form.process_create.spreadsheet.requirements.list_three')}</Text>
-              </Checkbox>
+                icon={<BiCheckDouble />}
+                title={'form.process_create.weighted'}
+                description={'form.process_create.spreadsheet.requirements.list_three'}
+              />
             )}
           />
           <FormControl isInvalid={!!fileErr}>
