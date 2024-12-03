@@ -1,15 +1,15 @@
-import { Box, Flex, Link, Text } from '@chakra-ui/react'
-import { Button } from '@vocdoni/chakra-components'
+import { Box, Flex, Link } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
-import { useAccountPlan } from '~components/Account/useAccountPlan'
+import { useSubscription } from '~components/Auth/Subscription'
 import { VocdoniLogo } from '~components/Layout/Logo'
+import { PlanId } from '~constants'
 
 const SaasFooter = () => {
   const { t } = useTranslation()
-  const { data } = useAccountPlan()
-  const isCustom = data?.plan === 'custom'
-  const isFree = data?.plan === 'free'
+  const { subscription } = useSubscription()
+  const isCustom = subscription?.plan.id === PlanId.Custom
+  const isFree = subscription?.plan.id === PlanId.Free
 
   return (
     <Box bgColor={'process_create.bg_light'} _dark={{ bgColor: 'process_create.bg_dark' }}>
@@ -35,17 +35,7 @@ const SaasFooter = () => {
           <Link as={ReactRouterLink} to=''>
             {t('privacy_policy', { defaultValue: 'Privacy Policy' })}
           </Link>
-          <Link as={ReactRouterLink} to=''>
-            support@vocdoni.org
-          </Link>
-        </Flex>
-        <Flex flexDirection={{ base: 'column', lg: 'row' }} alignItems='center' gap={6} order={{ base: 1, lg: 2 }}>
-          {isFree && (
-            <Text fontWeight='bold' fontSize='xl' mb={0}>
-              $0.00
-            </Text>
-          )}
-          {!isCustom && <Button>UPGRADE TO PREMIUM</Button>}
+          <Link href='mailto:support@vocdoni.org'>support@vocdoni.org</Link>
         </Flex>
       </Flex>
     </Box>

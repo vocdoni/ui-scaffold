@@ -5,8 +5,10 @@
   "active": "Active",
   "all": "All",
   "already_member": "Already a member?",
-  "anonymous": "anonymous",
-  "approval": "approval",
+  "anonymous": {
+    "description": "Voters will remain anonymous",
+    "title": "Anonymous"
+  },
   "aside": {
     "has_already_voted": "Your vote is properly cast",
     "is_not_in_census": "You are not in the census",
@@ -172,6 +174,8 @@
       "success_title": "Tokens were successfully claimed"
     }
   },
+  "confirm_password": "Confirm Password",
+  "confirm_password_placeholder": "Confirm your new password",
   "contact_us": "Contact us",
   "control": "Control:",
   "copy": {
@@ -226,7 +230,6 @@
     "private_org": "Private Organization Details",
     "private_org_description": "Help us tailor your experience with information about your org. We won't share this info",
     "public_info": "Public Organization Information",
-    "subtitle": "Cut cost, Save Time: Secure, Private, and GDPR Compliant",
     "support_during_trial_period": "Support during the trial period",
     "title": "Create Your Organization",
     "unlimited_voting_processes": "Unlimited creation of voting processes",
@@ -238,7 +241,6 @@
       "selected_users": "Selected users:"
     }
   },
-  "cumulative": "cumulative",
   "customization": "Customization",
   "delete_my_account": "Delete my account",
   "description": "Description",
@@ -250,7 +252,6 @@
   },
   "email": "Email",
   "email_placeholder": "your@email.com",
-  "emailReminder": "emailReminder",
   "error": {
     "error_doing_things": "Error al realizar la operación",
     "go_back": "Go back",
@@ -260,7 +261,8 @@
     "loading_page": "Error loading the page",
     "loading_roles": "Loading roles",
     "not_found": "Sorry, the page you are looking for was not found",
-    "return_to_home": "Go to home"
+    "return_to_home": "Go to home",
+    "title": "Error"
   },
   "error_text": "Sorry, the page you were looking for was not found",
   "faucet": {
@@ -283,7 +285,17 @@
     "title": "Vocdoni Tokens Faucet",
     "tokens_you_own": "You own {{ balance }} tokens."
   },
-  "features": "Features",
+  "features": {
+    "approval": "Approval voting",
+    "email_reminder": "Email reminders",
+    "memberships": "Up to {{ count }} memberships",
+    "personalization": "Personalization",
+    "ranked": "Ranked voting",
+    "sms_notification": "SMS notifications",
+    "sub_orgs": "Up to {{ count }} sub-organizations",
+    "title": "Features",
+    "weighted": "Weighted voting"
+  },
   "finished": "Finished",
   "footer": {
     "company": "Company",
@@ -697,11 +709,20 @@
     "title": "<p1>are you</p1><p2>Ready for a new Era of Web3 governance?</p2>"
   },
   "invite": {
+    "account_not_verified": "Your account is not verified. Please verify your account to continue.",
+    "create_account_subtitle": "You need an account first, in order to accept your invite",
+    "create_account_title": "Create your account",
     "error": "Error",
+    "go_to_verify": "Verify Account",
+    "invalid_link": "Invalid invite link received",
+    "processing": "Processing your invitation...",
     "select_option": "Select an option",
     "subtitle": "Work together on projects",
     "success": "Invitation sent successfully!",
+    "success_description": "You can now sign in",
+    "success_title": "Invitation accepted",
     "title": "Invite people to your team",
+    "unexpected_error": "",
     "user_invited": "Email sent to {{email}}"
   },
   "invite_people": "Invite People",
@@ -711,7 +732,6 @@
     "github": "Link to Vocdoni's github",
     "twitter": "Link to Vocdoni's twitter"
   },
-  "liveStreaming": "liveStreaming",
   "loading": "Loading...",
   "login": {
     "facebook": "Sign in with Facebook",
@@ -747,7 +767,8 @@
   "meta": {
     "helper": "Provide a clear title and description to help voters understand the vote"
   },
-  "multiple": "multiple",
+  "more_than_memberships_one": "more than {{count}} membership",
+  "more_than_memberships_other": "more than {{count}} memberships",
   "name": "Name",
   "new_organization": {
     "create_organization_btn": "Create Organization",
@@ -755,6 +776,8 @@
     "description2": "You will have the chance to claim tokens later from the faucet to create proposals and engage with your community.",
     "title": "Create your organization"
   },
+  "new_password": "New Password",
+  "new_password_placeholder": "Enter your new password",
   "new_voting": "New Voting",
   "not_registred_yet": "Not registered yet?",
   "open_in_explorer": "Open in explorer",
@@ -783,53 +806,57 @@
     },
     "votings_list": "Votings Processes List"
   },
-  "overwrite": "overwrite",
+  "overwrite": {
+    "description": "Voters will be able to overwrite their vote once",
+    "title": "Vote overwrite"
+  },
   "password": "Password",
   "password_placeholder": "Min 8 characters",
-  "personalization": "personalization",
+  "password_reset": {
+    "subtitle": "If your email corresponds to an existing account, you'll receive an email with a code to reset your password.",
+    "title": "Password reset"
+  },
+  "passwords_do_not_match": "",
+  "plan_upgrade": {
+    "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
+    "feature_available_in": "Feature available in:",
+    "feature_unavailable": "Oops ... your <2>free plan</2> doesn't support {{feature}}.",
+    "satisfaction_rate": "97% satisfaction rate, for only 9€/month."
+  },
   "preview": "Preview",
+  "pricing": {
+    "advanced_analytitcs": "Advanced reporting and analytics",
+    "all_features": "All features & voting types",
+    "basic_analytics": "Basic reporting and analytics",
+    "core_voting": "Core voting features",
+    "custom_subtitle": "Large organizations enterprises, and institutions requiring extensive customization and support.",
+    "custom_title": "Custom Plan",
+    "dedicated_manager": "Dedicated account manager",
+    "essential_subtitle": "Small or medium-sized orgs or community groups with basic voting needs.",
+    "essential_title": "Essential",
+    "free_subtitle": "Small organizations or community groups with basic voting needs.",
+    "free_title": "Free",
+    "gpdr_compilance": "GDPR compliance",
+    "help": "Need some help?",
+    "members_size": "{{ from }}-{{ to }} members",
+    "membership_size": "Select your membership size:",
+    "premium_subtitle": "Larger amount that require more advanced features.",
+    "premium_title": "Premium",
+    "priority_support": "Priority ticket support",
+    "ticket_support": "Ticket support",
+    "title": "Our plans",
+    "unlimited_yearly_processes": "Unlimited yearly voting processes",
+    "up_to_admins": "Up to {{ admin }} admin and {{ org }} org",
+    "upgrade_title": "You need to upgrade to use this feature",
+    "white_label": "White label solution",
+    "yearly_processes_one": "{{ count }} yearly voting process",
+    "yearly_processes_other": "{{ count }} yearly voting processes",
+    "your_plan": "Currently you are subscribed to the 'Your plan' subscription. If you upgrade, we will only charge the yearly difference. In the next billing period, starting on 'dd/mm/yy' you will pay for the new select plan."
+  },
   "pricing_card": {
     "from": "From ${{ price }}/year",
     "most_popular_plan": "Most popular plan",
     "view_features": "View all features"
-  },
-  "pricing_modal": {
-    "custom_feat": {
-      "account_manager": "Dedicated account manager",
-      "advanced_security": "Advanced security features",
-      "all_votings": "All faetures & voting types",
-      "full_tech_support": "Full technical support (ticket, chat, email)",
-      "unlimited_admins": "Unlimited Admins & suborgs",
-      "unlimited_processes": "Unlimited yearly voting processes",
-      "white_label_solution": "White-label solution"
-    },
-    "custom_subtitle": "Large organizations enterprises, and institutions requiring extensive customization and support.",
-    "custom_title": "Custom Plan",
-    "essential_feat": {
-      "core_voting": "Core voting features",
-      "gpdr_compilance": "GDPR compliance",
-      "report_analytitcs": "Basic reporting and analytics",
-      "ticket_support": "Ticket support",
-      "up_to_admins": "Up to 3 Admins and 1 org",
-      "yearly_processes": "5 yearly voting processes"
-    },
-    "essential_subtitle": "Small or medium-sized orgs or community groups with basic voting needs.",
-    "essential_title": "Essential",
-    "help": "Need some help?",
-    "more_voters": "If you need more voters, you can select it here:",
-    "premium_feat": {
-      "all_essential": "All essential plan features",
-      "custom_subdomain": "Custom subdomain & branding",
-      "gpdr_compilance": "GDPR compliance",
-      "report_analytitcs": "Advanced reporting & analytics",
-      "ticket_support": "Ticket and chat support",
-      "up_to_admins": "Up to 5 Admins",
-      "yearly_processes": "10 yearly voting processes"
-    },
-    "premium_subtitle": "Larger amount that require more advanced features.",
-    "premium_title": "Premium",
-    "title": "You need to upgrade to use this feature",
-    "your_plan": "Currently you are subscribed to the 'Your plan' subscription. If you upgrade, we will only charge the yearly difference. In the next billing period, starting on 'dd/mm/yy' you will pay for the new select plan."
   },
   "privacy_policy": "Privacy Policy",
   "process": {
@@ -995,14 +1022,17 @@
     },
     "recovery": "Account recovery"
   },
-  "ranked": "ranked",
   "remove": "Remove",
+  "reset_password_button": "Reset Password",
   "rights": "© 2024 Vocdoni Association. All Rights Reserved.",
   "role": {
     "read_permission": "Read-only access",
     "write_permission": "Can create and edit content"
   },
-  "secretUntilTheEnd": "secretUntilTheEnd",
+  "secret_until_the_end": {
+    "description": "Vote contents will be encrypted till the end of the voting",
+    "title": "Secret until the end"
+  },
   "settings": "Settings",
   "share": {
     "copy": "Copy",
@@ -1022,24 +1052,45 @@
   "signup_last_name": "Last Name",
   "signup_subtitle": "Enter your email and password to sign up!",
   "signup_title": "Sign Up",
-  "single": "single",
   "skip": "Skip",
-  "smsNotification": "smsNotification",
   "submit": "Submit",
-  "subscribe": "Subscribe",
   "subscription": "Subscription",
   "support": "Support",
   "surname": {
     "label": "Surname",
     "required": "Surname is required"
   },
-  "team": "Team",
+  "team": {
+    "expiration": "Expiration",
+    "member_name": "Name",
+    "member_role": "Role",
+    "pending_members": "Pending Invitations",
+    "team_members": "Team members",
+    "title": "Team"
+  },
   "teams": "Teams",
   "terms_and_conditions": "Terms and Conditions",
   "terms_of_use": "Terms of Use",
+  "tier_upgrade": {
+    "current_plan": "Your current <2>{{ plan, lowercase }}</2> is limited to selecting up to <6>{{ voters }} voters</6>.",
+    "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
+    "plan": {
+      "basic": "Basic",
+      "custom": "Custom",
+      "free": "Free",
+      "limit": {
+        "basic": "Up to 1500",
+        "custom": "Unlimited",
+        "free": "50 voters",
+        "pro": "Up to 3000"
+      },
+      "pro": "Pro"
+    },
+    "satisfaction_rate": "97% satisfaction rate, starting at 9€/month."
+  },
   "total_votes_submitted": "Total Votes Submitted",
-  "trust_on_us": "Trust on us",
   "update": "Update",
+  "upgrade": "Upgrade",
   "upload": "Upload",
   "uploader": {
     "click_or_drag_and_drop": "<p1>Upload or drag and drop the voter list here</p1><p2>(Allowed formats: CSV, XLSX, and ODS)</p2>",
@@ -1050,6 +1101,9 @@
     "read_more": "Read more"
   },
   "user_management": "User Managment",
+  "verification_code": "Verification Code",
+  "verification_code_placeholder": "Enter the verification code",
+  "verification_code_resent": "Verification code resent!",
   "verify": {
     "account_created_succesfully": "Account created successfully!",
     "email_sent": "Email sent successfully",
@@ -1064,14 +1118,15 @@
     "verifying_subtitle": "Await until we verify your email address. You will be redirect on success.",
     "verifying_title": "Verifying {{ email }}"
   },
+  "view_plans_and_pricing": "View Plans & Pricing",
   "view_pricing": "View Pricing",
+  "view_pricing_plan": "View Pricing Plan",
+  "view_pricing_plans": "View Pricing Plans",
   "vote_details": "Vote details",
   "voters": "voters",
   "voting_link": "Voting Link",
   "voting_processes": "Voting Processes",
   "voting_questions": "Voting Questions",
   "voting_results": "Voting Results",
-  "website": "Website",
-  "weighted": "weighted",
-  "whiteLabel": "whiteLabel"
+  "website": "Website"
 }

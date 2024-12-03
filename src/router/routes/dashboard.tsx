@@ -4,6 +4,7 @@ import { useClient } from '@vocdoni/react-providers'
 import { lazy } from 'react'
 import { Params } from 'react-router-dom'
 import { Profile } from '~elements/dashboard/profile'
+import SubscriptionPage from '~elements/dashboard/subscription'
 import Error from '~elements/Error'
 import LayoutDashboard from '~elements/LayoutDashboard'
 import { paginatedElectionsQuery } from '~src/queries/organization'
@@ -110,6 +111,14 @@ export const useDashboardRoutes = () => {
                 ),
               },
             ],
+          },
+          {
+            path: Routes.dashboard.subscription,
+            element: (
+              <SuspenseLoader>
+                <SubscriptionPage />
+              </SuspenseLoader>
+            ),
           },
         ],
       },

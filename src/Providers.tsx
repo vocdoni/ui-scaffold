@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next'
 import { useAccount, useWalletClient, WagmiConfig } from 'wagmi'
 import { SaasAccountProvider } from '~components/Account/SaasAccountContext'
 import { AuthProvider } from '~components/Auth/AuthContext'
+import { SubscriptionProvider } from '~components/Auth/Subscription'
 import { walletClientToSigner } from '~constants/wagmi-adapters'
 import { VocdoniEnvironment } from './constants'
 import { chains, wagmiConfig } from './constants/rainbow'
@@ -32,7 +33,9 @@ export const Providers = () => {
 
 const SaasProviders = ({ children }: PropsWithChildren<{}>) => (
   <AuthProvider>
-    <SaasAccountProvider>{children}</SaasAccountProvider>
+    <SubscriptionProvider>
+      <SaasAccountProvider>{children}</SaasAccountProvider>
+    </SubscriptionProvider>
   </AuthProvider>
 )
 
