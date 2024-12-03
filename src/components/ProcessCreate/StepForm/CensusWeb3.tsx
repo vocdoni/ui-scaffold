@@ -33,15 +33,16 @@ export const StepFormCensusWeb3 = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [addresses])
 
-  const onSubmit: SubmitHandler<CensusWeb3Values> = (data) => {
+  const onSubmit: SubmitHandler<CensusWeb3Values> = async (data) => {
     if (!addresses.length) {
       methods.setError('addresses', {
         type: 'manual',
         message: t('form.error.min_address'),
       })
     } else {
-      setForm({ ...form, ...data })
-      next()
+      if (await setForm({ ...form, ...data })) {
+        next()
+      }
     }
   }
 

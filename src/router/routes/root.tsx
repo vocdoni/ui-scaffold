@@ -5,10 +5,12 @@ import { Params } from 'react-router-dom'
 // These aren't lazy loaded since they are main layouts and related components
 import Error from '~elements/Error'
 import Layout from '~elements/Layout'
+import PlansPublicPage from '~elements/plans'
+import { PlansLayout, StretchPublicContentsLayout } from '~elements/PublicContents'
+import { StripeCheckout, StripeReturn } from '~elements/Stripe'
+import ProtectedRoutes from '~src/router/ProtectedRoutes'
 import { Routes } from '.'
 import { SuspenseLoader } from '../SuspenseLoader'
-import ProtectedRoutes from '~src/router/ProtectedRoutes'
-import { StripeCheckout, StripeReturn } from '~elements/Stripe'
 
 // elements / pages
 const Faucet = lazy(() => import('~elements/Faucet'))
@@ -46,7 +48,7 @@ const RootElements = (client: VocdoniSDKClient) => [
     errorElement: <Error />,
   },
   {
-    path: 'organization/:address',
+    path: Routes.organization,
     element: (
       <SuspenseLoader>
         <OrganizationView />
@@ -54,22 +56,6 @@ const RootElements = (client: VocdoniSDKClient) => [
     ),
     loader: async ({ params }: { params: Params<string> }) => client.fetchAccountInfo(params.address),
     errorElement: <Error />,
-  },
-  {
-    path: Routes.terms,
-    element: (
-      <SuspenseLoader>
-        <Terms />
-      </SuspenseLoader>
-    ),
-  },
-  {
-    path: Routes.privacy,
-    element: (
-      <SuspenseLoader>
-        <Privacy />
-      </SuspenseLoader>
-    ),
   },
   {
     ...ProtectedRoutes([
@@ -99,6 +85,42 @@ const RootElements = (client: VocdoniSDKClient) => [
         <Calculator />
       </SuspenseLoader>
     ),
+  },
+  // Plans have their own layout
+  {
+    element: <PlansLayout />,
+    children: [
+      {
+        path: Routes.plans,
+        element: (
+          <SuspenseLoader>
+            <PlansPublicPage />
+          </SuspenseLoader>
+        ),
+      },
+    ],
+  },
+  // Stuff centered in the view, stretched
+  {
+    element: <StretchPublicContentsLayout />,
+    children: [
+      {
+        path: Routes.terms,
+        element: (
+          <SuspenseLoader>
+            <Terms />
+          </SuspenseLoader>
+        ),
+      },
+      {
+        path: Routes.privacy,
+        element: (
+          <SuspenseLoader>
+            <Privacy />
+          </SuspenseLoader>
+        ),
+      },
+    ],
   },
   {
     path: '*',
