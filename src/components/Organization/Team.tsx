@@ -136,6 +136,8 @@ export const TeamMembersList = () => {
 export const PendingTeamMembersList = () => {
   const { data: pending, isLoading, isError, error } = usePendingTeamMembers()
 
+  if (!isLoading && !pending.length) return null
+
   return (
     <QueryDataLayout isEmpty={!pending} isLoading={isLoading} isError={isError} error={error}>
       <Flex direction='column'>
