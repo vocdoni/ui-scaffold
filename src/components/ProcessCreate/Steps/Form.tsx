@@ -2,7 +2,7 @@ import { Stepper } from '@chakra-ui/react'
 import { ElectionResultsTypeNames } from '@vocdoni/sdk'
 import { PropsWithChildren, useEffect, useState } from 'react'
 import { useSubscription } from '~components/Auth/Subscription'
-import { usePricingModal } from '~components/Pricing/Modals'
+import { usePricingModal } from '~components/Pricing/use-pricing-modal'
 import {
   CensusTypeCsp,
   CensusTypeGitcoin,

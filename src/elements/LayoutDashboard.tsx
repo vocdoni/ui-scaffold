@@ -6,7 +6,7 @@ import { MdKeyboardArrowLeft } from 'react-icons/md'
 import { Outlet, Link as ReactRouterLink } from 'react-router-dom'
 import AccountMenu from '~components/Account/Menu'
 import DashboardMenu from '~components/Dashboard/Menu'
-import { PricingModalProvider } from '~components/Pricing/Modals'
+import { PricingModalProvider } from '~components/Pricing/PricingModalProvider'
 
 export type DashboardLayoutContext = {
   setTitle: (title: string) => void
