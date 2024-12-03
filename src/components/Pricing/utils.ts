@@ -20,7 +20,7 @@ export const isFeatureAvailable = (
   const featureValue = dotobject(plan, featurePath)
 
   // If the feature doesn't exist, return false
-  if (typeof featureValue === 'undefined') {
+  if (typeof featureValue === 'undefined' || featureValue === null) {
     return false
   }
 
