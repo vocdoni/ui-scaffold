@@ -8,7 +8,7 @@ export const colorsBase = {
   },
   gradient: 'linear-gradient(to right, #546E39, #2E441A)',
   gray: {
-    light2: 'rgba(255, 255, 255, 0.24)',
+    light2: '#ffffff3d',
     light: '#CBD5E0',
     normal: '#718096',
   },
