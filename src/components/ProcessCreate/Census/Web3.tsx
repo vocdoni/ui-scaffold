@@ -19,7 +19,7 @@ import { useDropzone } from 'react-dropzone'
 import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { BiCheckDouble } from 'react-icons/bi'
-import UpLoaderCustom from '~components/Layout/UpLoaderCustom'
+import UploaderCustom from '~components/Layout/UpLoaderCustom'
 import { addressTextOverflow, fieldMapErrorMessage, isInvalidFieldMap } from '~constants'
 import { Web3CensusSpreadsheetManager } from './Spreadsheet/Web3CensusSpreadsheetManager'
 
@@ -245,7 +245,7 @@ export const CensusWeb3Addresses = () => {
             )}
           />
           <FormControl isInvalid={!!fileErr}>
-            <UpLoaderCustom getInputProps={getInputProps} getRootProps={getRootProps} isDragActive={isDragActive} />
+            <UploaderCustom getInputProps={getInputProps} getRootProps={getRootProps} isDragActive={isDragActive} />
             <FormErrorMessage>{fileErr}</FormErrorMessage>
           </FormControl>
         </Flex>
