@@ -18,6 +18,7 @@ import { ReactNode, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
+import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
 import { PlanId } from '~constants'
 import PricingCard from './Card'
@@ -136,6 +137,7 @@ export const usePlanTranslations = () => {
 
 export const SubscriptionPlans = () => {
   const { t } = useTranslation()
+  const { subscription } = useSubscription()
   const { data: plans, isLoading } = usePlans()
   const translations = usePlanTranslations()
 
@@ -178,7 +180,9 @@ export const SubscriptionPlans = () => {
       subtitle: translations[plan.id]?.subtitle || '',
       price: plan.startingPrice / 100,
       features: translations[plan.id]?.features || [],
-      isDisabled: selectedCensusSize && !plan.censusSizeTiers?.some((tier) => tier.upTo === selectedCensusSize),
+      isDisabled:
+        (selectedCensusSize && !plan.censusSizeTiers?.some((tier) => tier.upTo === selectedCensusSize)) ||
+        (subscription && plan.id === subscription?.plan.id && !selectedCensusSize),
     }))
   }, [plans, selectedCensusSize, t])
 
