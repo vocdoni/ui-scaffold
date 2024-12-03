@@ -19,7 +19,7 @@ import { useDropzone } from 'react-dropzone'
 import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { BiCheckDouble } from 'react-icons/bi'
-import UploaderCustom from '~components/Layout/UpLoaderCustom'
+import UploaderCustom from '~components/Layout/UploaderCustom'
 import { addressTextOverflow, fieldMapErrorMessage, isInvalidFieldMap } from '~constants'
 import { Web3CensusSpreadsheetManager } from './Spreadsheet/Web3CensusSpreadsheetManager'
 
@@ -209,7 +209,7 @@ export const CensusWeb3Addresses = () => {
               </Flex>
             ))}
           </Card>
-          <Text variant='process-create-subtitle-sm'>{t('form.process_create.web3.your_wallet_is_added')}</Text>
+          <Text>{t('form.process_create.web3.your_wallet_is_added')}</Text>
           <Flex gap={1} justifyContent='center'>
             <Trans
               i18nKey='form.process_create.web3.census_members'
@@ -232,7 +232,7 @@ export const CensusWeb3Addresses = () => {
                 onBlur={onBlur}
                 ref={ref}
                 isChecked={value}
-                variant={'radiobox'}
+                variant={'detailed'}
               >
                 <Flex>
                   <Icon as={BiCheckDouble} />

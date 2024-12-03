@@ -39,7 +39,7 @@ const calendar = definePartsStyle({
     width: 'fit-content',
     borderRadius: 'lg',
     border: '1px solid',
-    borderColor: '#e2e8f0',
+    borderColor: 'input.calendar_border',
     outlineOffset: 0,
 
     _hover: {

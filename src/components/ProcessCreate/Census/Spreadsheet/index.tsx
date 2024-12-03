@@ -3,7 +3,6 @@ import {
   Card,
   CardBody,
   CardFooter,
-  Checkbox,
   Flex,
   FormControl,
   FormErrorMessage,
@@ -16,9 +15,10 @@ import {
 import { ChangeEvent, useCallback, useMemo } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { Controller, useFormContext } from 'react-hook-form'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { BiCheckDouble, BiDownload } from 'react-icons/bi'
 import { PiWarningCircleLight } from 'react-icons/pi'
+import { DetailedCheckbox } from '~components/Layout/Form/DetailedCheckbox'
 import UploaderCustom from '~components/Layout/UploaderCustom'
 import { CensusSpreadsheetManager } from './CensusSpreadsheetManager'
 import { CsvGenerator } from './generator'
@@ -118,7 +118,7 @@ export const CensusCsvManager = () => {
               name='weightedVote'
               defaultValue={weighted}
               render={({ field: { onChange, onBlur, value, ref } }) => (
-                <Checkbox
+                <DetailedCheckbox
                   onChange={(event: ChangeEvent<HTMLInputElement>) => {
                     if (!manager) {
                       return setValue('weightedVote', event.target.checked)
@@ -129,18 +129,13 @@ export const CensusCsvManager = () => {
                     }
                   }}
                   onBlur={onBlur}
-                  ref={ref}
+                  name={'weightedVote'}
                   isChecked={value}
-                  variant={'radiobox'}
-                >
-                  <Flex>
-                    <Icon as={BiCheckDouble} />
-                    <Text>
-                      <Trans i18nKey='form.process_create.weighted'>Weighted vote</Trans>
-                    </Text>
-                  </Flex>
-                  <Text>{t('form.process_create.spreadsheet.requirements.list_three')}</Text>
-                </Checkbox>
+                  variant={'detailed'}
+                  icon={<BiCheckDouble />}
+                  title={'form.process_create.weighted'}
+                  description={'form.process_create.spreadsheet.requirements.list_three'}
+                />
               )}
             />
           </FormControl>

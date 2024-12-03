@@ -3,7 +3,6 @@ import { defineStyleConfig } from '@chakra-ui/react'
 export const Textarea = defineStyleConfig({
   baseStyle: {
     border: '1px solid',
-    borderColor: 'input.border.light',
     fontSize: '15px',
 
     _hover: {
@@ -25,11 +24,9 @@ export const Textarea = defineStyleConfig({
 
     _dark: {
       border: '0.1px solid',
-      borderColor: 'input.border.dark',
       fontSize: '15px',
       _hover: {
         outline: '.1px solid',
-        outlineColor: 'input.hover.dark',
         outlineOffset: '0px',
       },
 

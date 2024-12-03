@@ -9,7 +9,8 @@ export const colorsBase = {
   },
   gradient: 'linear-gradient(to right, #546E39, #2E441A)',
   gray: {
-    light: 'rgba(255, 255, 255, 0.24)',
+    light2: 'rgba(255, 255, 255, 0.24)',
+    light: '#e2e8f0',
     normal: '#718096',
   },
   primary: '#546E39',
@@ -32,6 +33,16 @@ export const colors = {
   bg: {
     light: colorsBase.white.dark,
     dark: colorsBase.blue.dark,
+  },
+  checkbox: {
+    bg_checked: colorsBase.primary,
+    disabled_border: colorsBase.gray.normal,
+    detailed_bg: colorsBase.gray.light,
+    radiobox_control: colorsBase.gray.light2,
+    disabled: {
+      light: 'gray.300',
+      dark: 'gray.600',
+    },
   },
   contents: {
     bg: {
@@ -117,19 +128,10 @@ export const colors = {
       },
     },
   },
-  checkbox: {
-    bg_checked: colorsBase.primary,
-    disabled_border: colorsBase.gray.normal,
-    radiobox_control: colorsBase.gray.light,
-    disabled: {
-      light: 'gray.300',
-      dark: 'gray.600',
-    },
-  },
 
   google: {
     bg: {
-      light: colorsBase.gray.light,
+      light: colorsBase.gray.light2,
       dark: colorsBase.blue.grayish,
     },
     hover: {
@@ -137,7 +139,7 @@ export const colors = {
       dark: colorsBase.white.alpha,
     },
     active: {
-      light: colorsBase.gray.light,
+      light: colorsBase.gray.light2,
       dark: colorsBase.blue.grayish,
     },
   },
@@ -146,7 +148,8 @@ export const colors = {
       light: colorsBase.white.pure,
       dark: colorsBase.blue.grayish,
     },
-    border: colorsBase.gray.light,
+    calendar_border: colorsBase.gray.light,
+    border: colorsBase.gray.light2,
     element: colorsBase.gray.normal,
     error: colorsBase.red,
     drag_and_drop: {
@@ -215,15 +218,15 @@ export const colors = {
     results: {
       alert_bg: colorsBase.primary,
       alert_color: colorsBase.white.pure,
-      bg: colorsBase.gray.light,
+      bg: colorsBase.gray.light2,
       description: colorsBase.gray.normal,
-      progressbar_bg: colorsBase.gray.light,
+      progressbar_bg: colorsBase.gray.light2,
       title: colorsBase.primary,
     },
     tabs: {
-      active_bg: colorsBase.gray.light,
-      hover_bg: colorsBase.gray.light,
-      border_bottom_list: colorsBase.gray.light,
+      active_bg: colorsBase.gray.light2,
+      hover_bg: colorsBase.gray.light2,
+      border_bottom_list: colorsBase.gray.light2,
     },
   },
 
@@ -261,7 +264,7 @@ export const colors = {
     },
     subtitle: {
       light: colorsBase.gray.normal,
-      dark: colorsBase.gray.light,
+      dark: colorsBase.gray.light2,
     },
   },
   pricing_modal: {
@@ -311,10 +314,10 @@ export const colors = {
   text_area: {
     bg_light: colorsBase.white.pure,
     bg_dark: colorsBase.blue.grayish,
-    border_dark: colorsBase.gray.light,
-    placeholder: colorsBase.gray.light,
+    border_dark: colorsBase.gray.light2,
+    placeholder: colorsBase.gray.light2,
   },
-  verify_subtitle: colorsBase.gray.light,
+  verify_subtitle: colorsBase.gray.light2,
 
   wrapper: {
     bg_light: colorsBase.white.pure,
