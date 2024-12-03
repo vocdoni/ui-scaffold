@@ -69,21 +69,23 @@ export const Features = () => {
   const translations = useProcessFeatures()
   const { permission } = useSubscription()
   const { openModal } = usePricingModal()
-  const { setValue, getValues } = useFormContext()
+  const { setValue, watch } = useFormContext()
 
   return (
     <Flex flexDirection='column' gap={6}>
       {Object.entries(translations).map(([feature, card], i) => {
         const needsUpgrade = 'permission' in card && !permission(card.permission)
+        const name = card.name ?? `features.${feature}`
+        const isChecked = watch(name)
 
         return (
           <DetailedCheckbox
             key={i}
             {...card}
-            name={card.name ?? `features.${feature}`}
+            name={name}
             badge={needsUpgrade && <Badge colorScheme='red'>{t('upgrade')}</Badge>}
             icon={card.icon && <Icon as={card.icon} />}
-            isChecked={getValues(card.name)}
+            isChecked={isChecked}
             onChange={(e) => {
               if (!needsUpgrade) {
                 setValue(card.name, e.target.checked)
