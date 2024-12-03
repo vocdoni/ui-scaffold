@@ -8,12 +8,14 @@ const baseStyle = definePartsStyle({
     p: 0,
     borderRadius: 'lg',
     overflow: 'hidden',
+    boxShadow: 'lg',
   },
   item: {
     px: 4,
     py: 2.5,
     display: 'flex',
     gap: 2,
+    fontWeight: 500,
   },
 
   divider: {
