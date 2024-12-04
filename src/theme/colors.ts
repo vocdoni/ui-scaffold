@@ -28,7 +28,7 @@ export const colors = {
   alert: {
     bg: {
       light: colorsBase.white.pure,
-      dark: colorsBase.blue.grayish,
+      dark: colorsBase.blue.dark,
     },
     border: colorsBase.gray.light,
   },

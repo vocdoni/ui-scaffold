@@ -8,19 +8,24 @@ const baseStyle = (props: any) => {
 
   let iconBorderRadius = 'lg'
   let iconColor = '#718096'
-  let iconBoxShadow = '0 0 2px 1px #B0B0B0, 0 0 0 3px white, 0 0 2px 3px #9EABB9'
+  let iconBoxShadow = '0 0 0px 1px white, 0 0 0px 2px #9EABB9, 0 0 0 3px white, 0 0 1px 4px #9EABB9'
+  let iconBoxShadowDark = '0 0 0px 1px #1A202C, 0 0 0px 2px #9EABB9, 0 0 0 3px #1A202C, 0 0 1px 4px #9EABB9'
+
   if (status === 'success') {
     iconBorderRadius = 'full'
     iconColor = '#00FF00'
-    iconBoxShadow = '0 0 2px 1px #32F032, 0 0 0 3px white, 0 0 2px 3px #9EABB9'
+    iconBoxShadow = '0 0 0px 1px white, 0 0 0px 2px #32F032, 0 0 0 3px white, 0 0 2px 4px #32F032'
+    iconBoxShadowDark = '0 0 0px 1px #1A202C, 0 0 0px 2px #32F032, 0 0 0 3px #1A202C, 0 0 0px 4px #32F032'
   } else if (status === 'error') {
     iconBorderRadius = 'full'
     iconColor = '#FF0000'
-    iconBoxShadow = '0 0 2px 1px #F03232, 0 0 0 3px white, 0 0 2px 3px #9EABB9'
+    iconBoxShadow = '0 0 0px 1px white, 0 0 0px 2px #F03232, 0 0 0 3px white, 0 0 2px 4px #F03232'
+    iconBoxShadowDark = '0 0 0px 1px #1A202C, 0 0 0px 2px #F03232, 0 0 0 3px #1A202C, 0 0 0px 4px #F03232'
   } else if (status === 'warning') {
     iconBorderRadius = 'full'
     iconColor = '#FFA500'
-    iconBoxShadow = '0 0 2px 1px #F0B432, 0 0 0 3px white, 0 0 2px 3px #9EABB9'
+    iconBoxShadow = '0 0 0px 1px white, 0 0 0px 2px #F0B432, 0 0 0 3px white, 0 0 2px 4px #F0B432'
+    iconBoxShadow = '0 0 0px 1px #1A202C, 0 0 0px 2px #F0B432, 0 0 0 3px #1A202C, 0 0 0px 4px #F0B432'
   }
 
   return {
@@ -31,7 +36,11 @@ const baseStyle = (props: any) => {
       borderColor: 'alert.border',
       borderRadius: 'lg',
       width: 'fit-content',
-      bgColor: 'white',
+      bgColor: 'alert.bg.light',
+
+      _dark: {
+        bgColor: 'alert.bg.dark',
+      },
     },
     title: {
       gridColumn: { lg: 2 },
@@ -47,6 +56,9 @@ const baseStyle = (props: any) => {
       color: iconColor,
       boxShadow: iconBoxShadow,
       borderRadius: iconBorderRadius,
+      _dark: {
+        boxShadow: iconBoxShadowDark,
+      },
       w: 4,
       h: 4,
     },

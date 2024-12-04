@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react'
+import { Alert, AlertDescription, AlertIcon, AlertTitle, Box } from '@chakra-ui/react'
 import Benefits from './Benefits'
 import Clients from './Clients'
 import ContactUs from './ContactUs'
@@ -13,6 +13,11 @@ const Home = () => (
   <>
     <Box position='relative'>
       <Box position='relative' zIndex={10}>
+        <Alert status='error'>
+          <AlertIcon />
+          <AlertTitle>TITLE</AlertTitle>
+          <AlertDescription>DESCRIPTION</AlertDescription>
+        </Alert>
         <CreateProcess />
         <Clients />
         <Benefits />
