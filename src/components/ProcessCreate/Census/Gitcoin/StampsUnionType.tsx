@@ -1,8 +1,7 @@
-import { Box, Flex, HStack, Text, useRadio, useRadioGroup } from '@chakra-ui/react'
+import { Box, Flex, HStack, Text, useRadio, useRadioGroup, UseRadioProps } from '@chakra-ui/react'
+import { PropsWithChildren } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { UseRadioProps } from '@chakra-ui/radio/dist/use-radio'
-import { PropsWithChildren } from 'react'
 
 export type StampsUnionTypes = 'AND' | 'OR'
 
