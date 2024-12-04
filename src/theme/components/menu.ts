@@ -15,7 +15,7 @@ const baseStyle = definePartsStyle({
     py: 2.5,
     display: 'flex',
     gap: 2,
-    fontWeight: 500,
+    fontWeight: 600,
   },
 
   divider: {
