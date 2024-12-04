@@ -24,7 +24,7 @@ import { Textarea } from './components/textarea'
 import { editor } from './editor'
 import { spacing } from './space'
 import { Tag } from './components/tag'
-import {TabsResponsive} from './components/TabsResponsive'
+import { TabsResponsive } from './components/TabsResponsive'
 
 export const theme = extendTheme(vtheme, {
   config: {
@@ -98,6 +98,8 @@ export const theme = extendTheme(vtheme, {
     Radio,
     Stepper,
     Tabs,
+    TabsResponsive,
+    Tag,
     Text,
     Textarea,
   },
