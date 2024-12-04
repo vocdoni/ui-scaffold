@@ -309,7 +309,6 @@ export const colors = {
       underline_border: colorsBase.gray.light,
     },
   },
-
   radio: {
     bg: colorsBase.primary,
     border: colorsBase.primary,

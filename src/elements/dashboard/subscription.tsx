@@ -2,25 +2,22 @@ import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useOutletContext } from 'react-router-dom'
 import { DashboardContents } from '~components/Layout/Dashboard'
-import { InviteToTeamModal } from '~components/Organization/Invite'
-import { TeamMembers } from '~components/Organization/Team'
+import { Subscription } from '~components/Organization/Subscription'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 
-const OrganizationTeam = () => {
+const SubscriptionPage = () => {
   const { t } = useTranslation()
   const { setTitle } = useOutletContext<DashboardLayoutContext>()
 
-  // Set layout variables
   useEffect(() => {
-    setTitle(t('team.title', { defaultValue: 'Team' }))
-  }, [setTitle])
+    setTitle(t('subscription', { defaultValue: 'Subscription' }))
+  }, [])
 
   return (
     <DashboardContents display='flex' flexDir='column'>
-      <InviteToTeamModal alignSelf='end' />
-      <TeamMembers />
+      <Subscription />
     </DashboardContents>
   )
 }
 
-export default OrganizationTeam
+export default SubscriptionPage

@@ -1,20 +1,7 @@
-import { Flex, Heading, ListItem, Text, UnorderedList } from '@chakra-ui/react'
+import { Heading, ListItem, Text, UnorderedList } from '@chakra-ui/react'
 
 const Terms = () => (
-  <Flex
-    flexDirection='column'
-    gap={5}
-    width='full'
-    maxW='1100px'
-    px={{
-      base: '10px',
-      sm: '20px',
-      md: '80px',
-    }}
-    mb={44}
-    mt={6}
-    mx='auto'
-  >
+  <>
     <Heading as='h1' size='xl'>
       Terms and Conditions for Vocdoni Association
     </Heading>
@@ -173,7 +160,7 @@ const Terms = () => (
       By continuing to use app.vocdoni.io or onvote.app, you confirm your acceptance of these terms and your agreement
       to abide by them.
     </Text>
-  </Flex>
+  </>
 )
 
 export default Terms
