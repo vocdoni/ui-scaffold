@@ -68,7 +68,7 @@ const PricingCard = ({
         </Button>
         <Text>
           <Trans i18nKey='pricing_card.from' values={{ price }}>
-            From ${price}/year
+            From ${{ price }}/year
           </Trans>
         </Text>
         <Box>

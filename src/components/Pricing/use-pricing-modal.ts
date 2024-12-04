@@ -1,6 +1,6 @@
 import { createContext } from '@chakra-ui/react-utils'
-import { PlanUpgradeData } from './PlanUpgrade'
-import { TierUpgradeData } from './TierUpgrade'
+import type { PlanUpgradeData } from './PlanUpgrade'
+import type { TierUpgradeData } from './TierUpgrade'
 
 // Define types for the context
 export type PricingModalType = 'tierUpgrade' | 'planUpgrade' | 'subscription' | null
