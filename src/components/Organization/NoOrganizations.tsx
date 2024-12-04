@@ -1,5 +1,4 @@
-import { Box, Flex } from '@chakra-ui/react'
-import { Button } from '@vocdoni/chakra-components'
+import { Box, Button, Flex } from '@chakra-ui/react'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { DashboardContents } from '~components/Layout/Dashboard'
 import { Routes } from '~src/router/routes'
