@@ -9,6 +9,7 @@ export const Modal = defineMultiStyleConfig({
       bgColor: 'rgba(0 ,0 ,0, 0.8)',
     },
     dialog: {
+      overflow: 'hidden',
       p: { base: 5, lg: 10 },
     },
   },

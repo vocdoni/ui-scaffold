@@ -12,7 +12,7 @@ const OrganizationTeam = () => {
 
   // Set layout variables
   useEffect(() => {
-    setTitle(t('team', { defaultValue: 'Team' }))
+    setTitle(t('team.title', { defaultValue: 'Team' }))
   }, [setTitle])
 
   return (

@@ -1,6 +1,16 @@
-import { AspectRatio, Box, Flex, FormControl, FormLabel, IconButton, Image, Input, Text } from '@chakra-ui/react'
+import {
+  AspectRatio,
+  Box,
+  Button,
+  Flex,
+  FormControl,
+  FormLabel,
+  IconButton,
+  Image,
+  Input,
+  Text,
+} from '@chakra-ui/react'
 import { useMutation, UseMutationOptions } from '@tanstack/react-query'
-import { Button } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
 import { Account } from '@vocdoni/sdk'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'

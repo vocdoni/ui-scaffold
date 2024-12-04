@@ -1,8 +1,24 @@
-import { Box, Flex, Icon, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useDisclosure } from '@chakra-ui/react'
-import { TabProps } from '@chakra-ui/tabs/dist/tab'
-import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import {
+  Badge,
+  Box,
+  Flex,
+  Icon,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  TabProps,
+  Tabs,
+  Text,
+  useDisclosure,
+  useMultiStyleConfig,
+} from '@chakra-ui/react'
+import { useMemo, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import { CgMoreO } from 'react-icons/cg'
+import { useSubscription } from '~components/Auth/Subscription'
+import { hasFeature } from '~components/Pricing/Features'
+import { usePricingModal } from '~components/Pricing/use-pricing-modal'
 import ModalPro from '~components/ProcessCreate/ModalPro'
 import { StepsNavigation } from '~components/ProcessCreate/Steps/Navigation'
 import Wrapper from '~components/ProcessCreate/Steps/Wrapper'
@@ -25,6 +41,7 @@ export interface ITabsPageProps<Implemented extends string, UnImplemented extend
   title: string
   description: string
   selected: string | null
+  permissionsPath?: string
   definedList: GenericFeatureObject<Implemented>
   unimplementedList: GenericFeatureObject<UnImplemented>
 }
@@ -36,17 +53,31 @@ export const TabsPage = <Implemented extends string, UnImplemented extends strin
   title,
   description,
   selected,
+  permissionsPath,
 }: ITabsPageProps<Implemented, UnImplemented>) => {
   const { t } = useTranslation()
   const { isOpen, onOpen, onClose } = useDisclosure()
-
+  const { permission, subscription } = useSubscription()
+  const { openModal } = usePricingModal()
   const { defined, details } = definedList
   const { defined: definedUnim, details: detailsUnim } = unimplementedList
-
+  const [tab, setTab] = useState<number>(defined.findIndex((val) => val === selected))
   const [reason, setReason] = useState('')
   const [showProCards, setShowProCards] = useState(false)
 
   if (!defined || !definedUnim) return null
+
+  // Store upgrade requirements per feature for later use
+  const requireUpgrade = useMemo(
+    () =>
+      defined.map((ct: Implemented) => {
+        if (permissionsPath) {
+          return (hasFeature(subscription.plan, permissionsPath) && permission(`${permissionsPath}.${ct}`)) === false
+        }
+        return false
+      }),
+    [subscription]
+  )
 
   return (
     <Wrapper>
@@ -56,19 +87,48 @@ export const TabsPage = <Implemented extends string, UnImplemented extends strin
           <Text variant='process-create-title'>{title}</Text>
           <Text variant='process-create-subtitle-sm'>{description}</Text>
         </Box>
-        <Tabs defaultIndex={defined.findIndex((val) => val === selected)} onChange={onTabChange} variant='card' isLazy>
+        <Tabs
+          defaultIndex={defined.findIndex((val) => val === selected)}
+          index={tab}
+          onChange={(index: number) => {
+            // Check if the feature requires an account upgrade
+            if (permissionsPath) {
+              const requiresUpgrade = requireUpgrade[index] || false
+              const key = defined[index]
+
+              if (requiresUpgrade) {
+                openModal('planUpgrade', {
+                  feature: `${permissionsPath}.${key}`,
+                  text: details[key].title,
+                })
+                return false
+              }
+            }
+
+            setTab(index)
+            onTabChange(index)
+          }}
+          variant='card'
+          isLazy
+        >
           <TabList mb={10}>
             <>
-              {defined.map((ct: Implemented, index: number) => (
-                <TabCardSkeleton
-                  key={index}
-                  onClick={() => setShowProCards(false)}
-                  icon={details[ct].icon}
-                  title={details[ct].title}
-                  description={details[ct].description}
-                  check
-                />
-              ))}
+              {defined.map((ct: Implemented, index: number) => {
+                const needsUpgrade = requireUpgrade[index] || false
+                return (
+                  <TabCardSkeleton
+                    key={index}
+                    onClick={() => {
+                      setShowProCards(false)
+                    }}
+                    icon={details[ct].icon}
+                    title={details[ct].title}
+                    description={details[ct].description}
+                    check
+                    needsUpgrade={needsUpgrade}
+                  />
+                )
+              })}
               {!!definedUnim.length && (
                 <TabCardSkeleton
                   onClick={() => setShowProCards((prev) => !prev)}
@@ -93,7 +153,7 @@ export const TabsPage = <Implemented extends string, UnImplemented extends strin
                     icon={detailsUnim[ct].icon}
                     title={detailsUnim[ct].title}
                     description={detailsUnim[ct].description}
-                    pro
+                    needsUpgrade
                   />
                 ))}
               </>
@@ -120,7 +180,7 @@ interface ITabsCardSkeletonProps {
   title: string
   description: string
   check?: boolean
-  pro?: boolean
+  needsUpgrade?: boolean
 }
 
 const TabCardSkeleton = ({
@@ -129,25 +189,43 @@ const TabCardSkeleton = ({
   title,
   description,
   check = false,
-  pro = false,
+  needsUpgrade = false,
   ...props
-}: ITabsCardSkeletonProps & TabProps) => (
-  <Tab onClick={onClick} mb={5} {...props}>
-    {check && (
-      <>
-        <Check />
-        <Box id={'empty-check'} />
-      </>
-    )}
-    {pro && (
-      <Box>
-        <Box id={'pro-badge'}>Pro</Box>
+}: ITabsCardSkeletonProps & TabProps) => {
+  const styles = useMultiStyleConfig('DetailedCheckbox', props)
+
+  return (
+    <Tab onClick={onClick} mb={5} {...props} sx={styles.checkbox}>
+      {check && (
+        <>
+          <Check />
+          <Box
+            className='empty'
+            sx={{
+              position: 'absolute',
+              top: '1rem',
+              right: '1rem',
+              w: 5,
+              h: 5,
+              borderRadius: 'full',
+              border: `1px solid`,
+              borderColor: 'tab.variant.card.border',
+              color: 'inherit',
+            }}
+          />
+        </>
+      )}
+
+      <Box sx={styles.title}>
+        <Icon as={icon} sx={styles.icon} />
+        <Box textAlign='start'>{convertParagraphs(title)}</Box>
       </Box>
-    )}
-    <Box id={'title'}>
-      <Icon as={icon} />
-      <Text>{convertParagraphs(title)}</Text>
-    </Box>
-    <Text id={'description'}>{description}</Text>
-  </Tab>
-)
+      <Text sx={styles.description}>{description}</Text>
+      {needsUpgrade && (
+        <Badge colorScheme='red' sx={styles.badge}>
+          <Trans i18nKey='upgrade'>Upgrade</Trans>
+        </Badge>
+      )}
+    </Tab>
+  )
+}

@@ -31,59 +31,13 @@ const card = definePartsStyle({
     borderRadius: 'xl',
     w: 'full',
 
-    '& > #description': {
-      color: 'tab.variant.card.description.light',
-      textAlign: 'start',
-      fontSize: 'xs',
-      _dark: {
-        color: 'tab.variant.card.description.dark',
-      },
-    },
-
-    '& #pro-badge': {
-      bgColor: 'tab.variant.card.badge_bg',
-      borderRadius: '10px',
-      position: 'absolute',
-      top: '3px',
-      right: '3px',
-      px: 4,
-      color: 'badge.pro_color',
-      pt: '2px',
-      fontSize: '12px',
-    },
-
-    '& > #title': {
-      display: 'flex',
-      alignItems: 'center',
-      w: 'full',
-      gap: 3,
-      fontSize: 'sm',
-
-      '& p': {
-        fontWeight: 'bold',
-        textAlign: 'start',
-      },
-    },
-
-    // Empty checkbox
-    '& #empty-check': {
-      position: 'absolute',
-      top: 2.5,
-      right: 2.5,
-      w: 4,
-      h: 4,
-      borderRadius: 'full',
-      border: `1px solid`,
-      borderColor: 'tab.variant.card.border',
-    },
-
     '& > svg': {
       w: 5,
       h: 5,
       color: 'tab.variant.card.svg',
       position: 'absolute',
-      top: 2,
-      right: 2,
+      top: '1rem',
+      right: '1rem',
       display: 'none',
     },
 
@@ -93,7 +47,7 @@ const card = definePartsStyle({
         display: 'block',
       },
 
-      '& > #empty-check': {
+      '& > .empty': {
         display: 'none',
       },
 
