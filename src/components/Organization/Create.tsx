@@ -1,7 +1,6 @@
-import { Flex, FlexProps, Stack, Text } from '@chakra-ui/react'
+import { Button, Flex, FlexProps, Stack, Text } from '@chakra-ui/react'
 
 import { useMutation, UseMutationOptions } from '@tanstack/react-query'
-import { Button } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
 import { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'

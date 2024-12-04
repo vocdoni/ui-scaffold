@@ -7,12 +7,12 @@ import {
   TabList,
   TabPanel,
   TabPanels,
+  TabProps,
   Tabs,
   Text,
   useDisclosure,
   useMultiStyleConfig,
 } from '@chakra-ui/react'
-import { TabProps } from '@chakra-ui/tabs/dist/tab'
 import { useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { CgMoreO } from 'react-icons/cg'
