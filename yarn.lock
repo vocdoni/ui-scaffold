@@ -3125,10 +3125,10 @@
   dependencies:
     "@vocdoni/react-providers" "~0.4.4"
 
-"@vocdoni/proto@1.15.5":
-  version "1.15.5"
-  resolved "https://registry.yarnpkg.com/@vocdoni/proto/-/proto-1.15.5.tgz#3cba2e42b3e8a756fb3c16955a412c8f24e80800"
-  integrity sha512-6Tm8aluCbz10gsVLnyFnsOM7dfFMFD3w8fmG26RQh9fFZJ6eLOf3FKKXC6nlMm3x6a6pKXHEFvT89ePks0WMNA==
+"@vocdoni/proto@1.15.8":
+  version "1.15.8"
+  resolved "https://registry.yarnpkg.com/@vocdoni/proto/-/proto-1.15.8.tgz#a613b014810b36dd757e25453fd31470e3779736"
+  integrity sha512-SQxE0+tKaGiAxty6RvRMFrKArKGKsOw4S/Ph6NODJDhXn2tlbwkVK8hm9/3fRU528I2psABLT4lwe7skETcrNw==
   dependencies:
     long "^5.2.1"
     protobufjs "^7.1.2"
@@ -3145,9 +3145,10 @@
   resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.4.7.tgz#f4ebfc2d237cf864d3c050d186fe919761a23d5f"
   integrity sha512-jTbfyM6KGmhjXMlUQzz+sn2m1cNZJdpADvPA456BA5YPb6CfeLgLzlnxeeeTAVPEnVMuovIQmejuMxvVEfLe4g==
 
-"@vocdoni/sdk@https://github.com/vocdoni/vocdoni-sdk.git#main":
-  version "0.8.1"
-  resolved "https://github.com/vocdoni/vocdoni-sdk.git#ee6390524b82e6ef535da03c0e3bb826e450e622"
+"@vocdoni/sdk@^0.8.0":
+  version "0.8.3"
+  resolved "https://registry.yarnpkg.com/@vocdoni/sdk/-/sdk-0.8.3.tgz#379136c68bd4d098f2aeb9fa0c84eff58eab13ea"
+  integrity sha512-Tu0AzWmYnlpvO8QZaRKKcISAk+kLRTx2rsXZc3S6DICnieu5GHrjx/owveLnCroKYkZ2Y5uNM3BfmMq54kSxIg==
   dependencies:
     "@ethersproject/abstract-signer" "^5.7.0"
     "@ethersproject/address" "^5.7.0"
@@ -3160,7 +3161,7 @@
     "@ethersproject/units" "^5.7.0"
     "@ethersproject/wallet" "^5.7.0"
     "@size-limit/file" "^8.2.4"
-    "@vocdoni/proto" "1.15.5"
+    "@vocdoni/proto" "1.15.8"
     axios "0.28.1"
     blake2b "^2.1.4"
     iso-language-codes "^1.1.0"
