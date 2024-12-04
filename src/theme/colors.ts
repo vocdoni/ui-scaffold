@@ -146,7 +146,7 @@ export const colors = {
   input: {
     bg: {
       light: colorsBase.white.pure,
-      dark: colorsBase.blue.grayish,
+      dark: 'transparent',
     },
     calendar_border: colorsBase.gray.light,
     border: colorsBase.gray.light2,
