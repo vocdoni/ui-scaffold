@@ -305,6 +305,9 @@ export const colors = {
         svg: colorsBase.primary,
       },
     },
+    responsive_tab: {
+      underline_border: colorsBase.gray.light,
+    },
   },
 
   radio: {

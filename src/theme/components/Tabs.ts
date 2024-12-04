@@ -23,6 +23,7 @@ const baseStyle = definePartsStyle(({ colorScheme }: { colorScheme: string }) =>
     },
   },
 }))
+
 const brand = definePartsStyle(({ colorScheme }: { colorScheme: string }) => ({
   tab: {
     borderRadius: 'lg',
