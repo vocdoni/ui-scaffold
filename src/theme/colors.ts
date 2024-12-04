@@ -292,7 +292,6 @@ export const colors = {
       },
     },
   },
-
   radio: {
     bg: colorsBase.primary,
     border: colorsBase.primary,
