@@ -90,6 +90,23 @@ const Editor = (props: EditorProps) => {
             color: 'text_area.placeholder',
           },
 
+          '.toolbar': {
+            bgColor: 'text_area.toolbar_dark.bg',
+            borderColor: 'text_area.toolbar_dark.border',
+          },
+
+          '.toolbar .divider': {
+            bgColor: 'text_area.toolbar_dark.border',
+          },
+
+          '.toolbar .toolbar-item:hover:not([disabled])': {
+            bgColor: 'text_area.toolbar_dark.item_hover',
+          },
+
+          '.toolbar-item:not([disabled])': {
+            bgColor: 'text_area.toolbar_dark.item_bg',
+          },
+
           _hover: {
             outline: '1px solid',
             outlineColor: 'text_area.border_dark',

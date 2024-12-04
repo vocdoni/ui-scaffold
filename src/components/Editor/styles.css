@@ -172,6 +172,7 @@ pre::-webkit-scrollbar-thumb {
   background: #fff;
   padding: 4px;
   vertical-align: middle;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .toolbar button.toolbar-item {

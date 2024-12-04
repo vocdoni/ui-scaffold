@@ -311,8 +311,14 @@ export const colors = {
   },
 
   text_area: {
+    toolbar_dark: {
+      bg: 'transparent',
+      border: colorsBase.gray.light2,
+      item_hover: colorsBase.blue.grayish,
+      item_bg: colorsBase.gray.light2,
+    },
     bg_light: colorsBase.white.pure,
-    bg_dark: colorsBase.blue.grayish,
+    bg_dark: 'transparent',
     border_dark: colorsBase.gray.light2,
     placeholder: colorsBase.gray.light2,
   },
