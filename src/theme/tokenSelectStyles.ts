@@ -3,17 +3,15 @@ import { ChakraStylesConfig } from 'chakra-react-select'
 export const customStylesSelect: ChakraStylesConfig = {
   control: (base) => ({
     ...base,
-    boxShadow: 'var(--box-shadow)',
-    fontWeight: 'bold',
+    p: 0,
   }),
   placeholder: (base) => ({
     ...base,
-    fontWeight: 'normal',
+    color: 'dropdown.placeholder',
   }),
   menu: (base) => ({
     ...base,
     zIndex: 10,
-    boxShadow: 'var(--box-shadow)',
   }),
   menuList: (base) => ({
     ...base,
@@ -21,27 +19,27 @@ export const customStylesSelect: ChakraStylesConfig = {
   }),
   option: (base, state) => ({
     ...base,
-    fontWeight: 'bold',
-    bgColor: state.isSelected && 'primary.600',
-    color: state.isFocused && !state.isSelected ? 'primary.600' : state.isSelected && 'white',
-  }),
-  groupHeading: (base) => ({
-    ...base,
-    fontSize: 'lg',
+    bgColor: state.isSelected && 'input.dropdown.option_bg_selected.light',
+    color: 'input.dropdown.option.light',
+    icon: state.isSelected && 'PONER UN ICON DE CHECK AQUI',
+
+    _dark: {
+      bgColor: state.isSelected && 'input.dropdown.option_bg_selected.dark',
+      color: 'dropdown.option.dark',
+    },
   }),
   dropdownIndicator: (base) => ({
     ...base,
     bgColor: 'transparent',
+    color: 'input.dropdown.control',
+  }),
+  clearIndicator: (base) => ({
+    ...base,
+    bgColor: 'transparent',
+    color: 'input.dropdown.control',
   }),
 }
 
 export const customStylesTokensSelect: ChakraStylesConfig = {
   ...customStylesSelect,
-  option: (base, state) => ({
-    ...base,
-    fontWeight: 'bold',
-    bgColor: state.isSelected && 'primary.600',
-    color: state.isFocused && !state.isSelected ? 'primary.600' : state.isSelected && 'white',
-    pl: 10,
-  }),
 }
