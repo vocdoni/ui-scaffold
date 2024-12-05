@@ -15,7 +15,7 @@ export const AlertIcon = (props: AlertIconProps) => {
   const { status } = useAlertContext()
   const css = status === 'loading' ? styles.spinner : styles.icon
 
-  const IconComponent = icons[status] || <RiErrorWarningLine />
+  const icon = icons[status] || <RiErrorWarningLine />
 
   return (
     <chakra.span
@@ -26,7 +26,7 @@ export const AlertIcon = (props: AlertIconProps) => {
       __css={css}
       {...props}
     >
-      {IconComponent}
+      {icon}
     </chakra.span>
   )
 }
