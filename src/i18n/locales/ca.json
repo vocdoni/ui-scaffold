@@ -832,7 +832,6 @@
     "feature_unavailable": "Ups... el teu <2>pla {{ plan, lowercase }}</2> no suporta {{ feature }}.",
     "satisfaction_rate": "97% satisfaction rate, for only 9€/month."
   },
-  "personalization": "personalization",
   "preview": "Preview",
   "pricing": {
     "advanced_analytitcs": "Informes i anàlisis avançades",
@@ -1108,16 +1107,21 @@
     "label": "Surname",
     "required": "Surname is required"
   },
-  "team": "Equip",
+  "team": {
+    "expiration": "Expiració",
+    "member_name": "Nom",
+    "member_role": "Rol",
+    "pending_members": "Invitacions pendents",
+    "team_members": "Membres de l'equip",
+    "title": "Equip"
+  },
   "teams": "Teams",
   "terms": {
-    "title": "Termes i Condicions de l'Associació Vocdoni",
-    "section1Title": "1. Informació General",
     "section1": {
       "description1": "L'Associació Vocdoni, amb seu a Suïssa, opera les plataformes app.vocdoni.io i onvote.app.",
       "description2": "Aquestes plataformes prioritzen la privacitat de l'usuari i la seguretat de les dades, garantint el compliment del Reglament General de Protecció de Dades (GDPR) de la Unió Europea."
     },
-    "section2Title": "2. Recollida i Emmagatzematge de Dades",
+    "section1Title": "1. Informació General",
     "section2": {
       "description": "Donem prioritat a la seguretat de les dades dels usuaris. A continuació, un resum:",
       "item1": "Recollim i processem dades personals necessàries per a la prestació de serveis.",
@@ -1125,49 +1129,51 @@
       "item3": "Els metadades proporcionades pels organitzadors de votacions poden ser accessibles públicament a l'IPFS.",
       "item4": "Es poden recollir dades addicionals per complir amb obligacions legals o prestar serveis especialitzats."
     },
-    "section3Title": "3. Ús de Dades i Compliment",
+    "section2Title": "2. Recollida i Emmagatzematge de Dades",
     "section3": {
       "item1": "Les dades personals es processen únicament per proporcionar i millorar els nostres serveis.",
       "item2": "Sol·licitem el consentiment explícit de l'usuari per a activitats de processament de dades.",
       "item3": "No utilitzem les dades recollides per a finalitats de màrqueting sense el consentiment explícit de l'usuari."
     },
-    "section4Title": "4. Compartició de Dades",
+    "section3Title": "3. Ús de Dades i Compliment",
     "section4": {
       "item1": "Les dades personals no es comparteixen amb tercers, excepte quan ho exigeixi la llei.",
       "item2": "Els processadors de dades externs estan subjectes a acords de confidencialitat.",
       "item3": "Qualsevol transferència internacional de dades inclou mesures de protecció adequades."
     },
-    "section5Title": "5. Mesures de Seguretat",
+    "section4Title": "4. Compartició de Dades",
     "section5": {
       "description1": "L'Associació Vocdoni aplica mesures fortes de seguretat per protegir les dades personals.",
       "description2": "En cas d'una violació de dades, notificarem ràpidament les persones afectades."
     },
-    "section6Title": "6. Drets dels Usuaris",
+    "section5Title": "5. Mesures de Seguretat",
     "section6": {
+      "description": "Per exercir aquests drets, poseu-vos en contacte amb nosaltres utilitzant les dades a continuació.",
       "item1": "Accés: Obtenir informació sobre el processament de dades personals.",
       "item2": "Correcció: Sol·licitar la correcció de dades personals inexactes.",
       "item3": "Eliminació: Sol·licitar l'eliminació de dades personals en determinades circumstàncies.",
       "item4": "Restricció: Sol·licitar que restringim el processament de dades personals.",
       "item5": "Portabilitat: Rebre dades personals en un format estructurat.",
       "item6": "Oposició: Oposar-se al processament basat en interessos legítims.",
-      "item7": "Queixa: Presentar una queixa davant l'autoritat de protecció de dades corresponent.",
-      "description": "Per exercir aquests drets, poseu-vos en contacte amb nosaltres utilitzant les dades a continuació."
+      "item7": "Queixa: Presentar una queixa davant l'autoritat de protecció de dades corresponent."
     },
-    "section7Title": "7. Exempció de Responsabilitat",
+    "section6Title": "6. Drets dels Usuaris",
     "section7": {
       "description1": "L'Associació Vocdoni no és responsable de la informació proporcionada pels usuaris.",
       "description2": "No rastregem dades dels usuaris més enllà del que és essencial."
     },
-    "section8Title": "8. Limitació de Responsabilitat",
+    "section7Title": "7. Exempció de Responsabilitat",
     "section8": {
       "item1": "Danys Indirectes: L'Associació Vocdoni no serà responsable de danys indirectes.",
       "item2": "Força Major: L'Associació Vocdoni no és responsable de retards causats per esdeveniments fora del nostre control."
     },
-    "section9Title": "9. Informació de Contacte",
+    "section8Title": "8. Limitació de Responsabilitat",
     "section9": {
       "description1": "Per a qualsevol consulta sobre aquests Termes i Condicions, poseu-vos en contacte amb nosaltres a info (at) vocdoni.org.",
       "description2": "En continuar utilitzant els nostres serveis, confirmeu la vostra acceptació d'aquests termes."
-    }
+    },
+    "section9Title": "9. Informació de Contacte",
+    "title": "Termes i Condicions de l'Associació Vocdoni"
   },
   "terms_and_conditions": "Terms and Conditions",
   "terms_of_use": "Condicions d'ús",

@@ -832,7 +832,6 @@
     "feature_unavailable": "Oops ... your <2>free plan</2> doesn't support {{feature}}.",
     "satisfaction_rate": "97% satisfaction rate, for only 9€/month."
   },
-  "personalization": "personalization",
   "preview": "Preview",
   "pricing": {
     "advanced_analytitcs": "Informes y análisis avanzados",
@@ -1118,13 +1117,11 @@
   },
   "teams": "Teams",
   "terms": {
-    "title": "Términos y Condiciones de la Asociación Vocdoni",
-    "section1Title": "1. Información General",
     "section1": {
       "description1": "La Asociación Vocdoni, con sede en Suiza, opera las plataformas app.vocdoni.io y onvote.app.",
       "description2": "Estas plataformas priorizan la privacidad del usuario y la seguridad de los datos, asegurando el cumplimiento del Reglamento General de Protección de Datos (GDPR) de la Unión Europea."
     },
-    "section2Title": "2. Recopilación y Almacenamiento de Datos",
+    "section1Title": "1. Información General",
     "section2": {
       "description": "Damos prioridad a la seguridad de los datos de los usuarios. Aquí hay un resumen:",
       "item1": "Recopilamos y procesamos datos personales necesarios para la prestación de servicios.",
@@ -1132,49 +1129,51 @@
       "item3": "Los metadatos proporcionados por los organizadores de votaciones pueden ser accesibles públicamente en IPFS.",
       "item4": "Se pueden recopilar datos adicionales para cumplir con obligaciones legales o prestar servicios especializados."
     },
-    "section3Title": "3. Uso de Datos y Cumplimiento",
+    "section2Title": "2. Recopilación y Almacenamiento de Datos",
     "section3": {
       "item1": "Los datos personales se procesan únicamente para proporcionar y mejorar nuestros servicios.",
       "item2": "Solicitamos el consentimiento explícito del usuario para actividades de procesamiento de datos.",
       "item3": "No utilizamos los datos recopilados para fines de marketing sin el consentimiento explícito del usuario."
     },
-    "section4Title": "4. Compartición de Datos",
+    "section3Title": "3. Uso de Datos y Cumplimiento",
     "section4": {
       "item1": "Los datos personales no se comparten con terceros, excepto cuando lo exija la ley.",
       "item2": "Los procesadores de datos externos están sujetos a acuerdos de confidencialidad.",
       "item3": "Cualquier transferencia internacional de datos incluye medidas de protección adecuadas."
     },
-    "section5Title": "5. Medidas de Seguridad",
+    "section4Title": "4. Compartición de Datos",
     "section5": {
       "description1": "La Asociación Vocdoni emplea fuertes medidas de seguridad para proteger los datos personales.",
       "description2": "En caso de una violación de datos, notificaremos rápidamente a las personas afectadas."
     },
-    "section6Title": "6. Derechos de los Usuarios",
+    "section5Title": "5. Medidas de Seguridad",
     "section6": {
+      "description": "Para ejercer estos derechos, contáctenos utilizando los detalles a continuación.",
       "item1": "Acceso: Obtener información sobre el procesamiento de datos personales.",
       "item2": "Corrección: Solicitar la corrección de datos personales inexactos.",
       "item3": "Eliminación: Solicitar la eliminación de datos personales en ciertas circunstancias.",
       "item4": "Restricción: Solicitar que restrinjamos el procesamiento de datos personales.",
       "item5": "Portabilidad: Recibir datos personales en un formato estructurado.",
       "item6": "Oposición: Oponerse al procesamiento basado en intereses legítimos.",
-      "item7": "Queja: Presentar una queja ante la autoridad de protección de datos correspondiente.",
-      "description": "Para ejercer estos derechos, contáctenos utilizando los detalles a continuación."
+      "item7": "Queja: Presentar una queja ante la autoridad de protección de datos correspondiente."
     },
-    "section7Title": "7. Exención de Responsabilidad",
+    "section6Title": "6. Derechos de los Usuarios",
     "section7": {
       "description1": "La Asociación Vocdoni no es responsable de la información proporcionada por los usuarios.",
       "description2": "No rastreamos datos de los usuarios más allá de lo esencial."
     },
-    "section8Title": "8. Limitación de Responsabilidad",
+    "section7Title": "7. Exención de Responsabilidad",
     "section8": {
       "item1": "Daños Indirectos: La Asociación Vocdoni no será responsable de daños indirectos.",
       "item2": "Fuerza Mayor: La Asociación Vocdoni no es responsable de retrasos causados por eventos fuera de nuestro control."
     },
-    "section9Title": "9. Información de Contacto",
+    "section8Title": "8. Limitación de Responsabilidad",
     "section9": {
       "description1": "Para cualquier consulta sobre estos Términos y Condiciones, contáctenos en info (at) vocdoni.org.",
       "description2": "Al continuar utilizando nuestros servicios, confirma su aceptación de estos términos."
-    }
+    },
+    "section9Title": "9. Información de Contacto",
+    "title": "Términos y Condiciones de la Asociación Vocdoni"
   },
   "terms_and_conditions": "Terms and Conditions",
   "terms_of_use": "Condiciones de uso",
