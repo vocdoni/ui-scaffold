@@ -21,10 +21,7 @@ export const reactSelectStyles: ChakraStylesConfig = {
     ...base,
     bgColor: state.isSelected && 'input.dropdown.option_bg_selected.light',
 
-    '& > div': {
-      border: '1px solid red',
-      color: 'input.dropdown.option.light !important',
-    },
+    color: 'input.dropdown.option.light',
 
     _dark: {
       bgColor: state.isSelected && 'input.dropdown.option_bg_selected.dark',
