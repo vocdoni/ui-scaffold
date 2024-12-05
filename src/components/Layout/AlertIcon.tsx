@@ -1,11 +1,7 @@
-import { AlertIconProps, chakra, useAlertContext, useAlertStyles } from '@chakra-ui/react'
+import { chakra, useAlertContext, useAlertStyles } from '@chakra-ui/react'
 import { cx } from '@chakra-ui/utils'
 import { FaRegCheckCircle } from 'react-icons/fa'
 import { RiErrorWarningLine } from 'react-icons/ri'
-
-interface AlertIconCustomProps extends AlertIconProps {
-  status: string
-}
 
 const icons = {
   info: <RiErrorWarningLine />,
@@ -14,7 +10,7 @@ const icons = {
   error: <FaRegCheckCircle />,
 }
 
-export const AlertIcon = ({ ...props }: AlertIconCustomProps) => {
+export const AlertIcon = ({ props }) => {
   const styles = useAlertStyles()
   const { status } = useAlertContext()
   const css = status === 'loading' ? styles.spinner : styles.icon
