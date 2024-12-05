@@ -6,21 +6,16 @@ const { defineMultiStyleConfig } = createMultiStyleConfigHelpers(alertAnatomy.ke
 const baseStyle = (props: any) => {
   const { status } = props
 
-  const [infoColor, successColor, errorColor, warningColor] = useToken('colors', [
-    'var(--chakra-colors-alert-info)',
-    'var(--chakra-colors-alert-success)',
-    'var(--chakra-colors-alert-error)',
-    'var(--chakra-colors-alert-warning)',
-  ])
-
   const statusColorMap = {
-    info: infoColor,
-    success: successColor,
-    error: errorColor,
-    warning: warningColor,
+    info: 'var(--chakra-colors-alert-info)',
+    success: 'var(--chakra-colors-alert-success)',
+    error: 'var(--chakra-colors-alert-error)',
+    warning: 'var(--chakra-colors-alert-warning)',
   }
 
   const color = statusColorMap[status]
+
+  console.log(color)
 
   return {
     container: {
@@ -47,7 +42,7 @@ const baseStyle = (props: any) => {
       alignItems: 'center',
       gridColumn: 1,
       color,
-      boxShadow: `0 0 0px 1px var(--chakra-colors-alert-box_shadow_light), 0 0 0px 3px ${color}, 0 0 0 4px var(--chakra-colors-alert-box_shadow_light), 0 0 1px 5px ${color}`,
+      boxShadow: `0 0 0px 1px var(--chakra-colors-alert-box_shadow_light), 0 0 0px 3px  ${color}, 0 0 0 4px var(--chakra-colors-alert-box_shadow_light), 0 0 1px 5px ${color}`,
       borderRadius: 'lg',
       _dark: {
         boxShadow: `0 0 0px 1px var(--chakra-colors-alert-box_shadow_dark), 0 0 0px 3px ${color}, 0 0 0 4px var(--chakra-colors-alert-box_shadow_dark), 0 0 1px 5px ${color}`,
