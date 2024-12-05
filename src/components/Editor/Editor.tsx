@@ -95,16 +95,16 @@ const Editor = (props: EditorProps) => {
             borderColor: 'text_area.toolbar_dark.border',
           },
 
+          '.toolbar button.toolbar-item i.format': {
+            filter: 'invert(1)',
+          },
+
           '.toolbar .divider': {
             bgColor: 'text_area.toolbar_dark.border',
           },
 
           '.toolbar .toolbar-item:hover:not([disabled])': {
             bgColor: 'text_area.toolbar_dark.item_hover',
-          },
-
-          '.toolbar-item:not([disabled])': {
-            bgColor: 'text_area.toolbar_dark.item_bg',
           },
 
           _hover: {

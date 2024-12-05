@@ -312,10 +312,9 @@ export const colors = {
 
   text_area: {
     toolbar_dark: {
-      bg: 'transparent',
+      bg: '#232323',
       border: colorsBase.gray.light2,
       item_hover: colorsBase.blue.grayish,
-      item_bg: colorsBase.gray.light2,
     },
     bg_light: colorsBase.white.pure,
     bg_dark: 'transparent',
