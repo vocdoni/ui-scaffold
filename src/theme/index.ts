@@ -25,6 +25,7 @@ import { editor } from './editor'
 import { spacing } from './space'
 import { Tag } from './components/tag'
 import { Menu } from './components/menu'
+import { Alert } from './components/alert'
 
 export const theme = extendTheme(vtheme, {
   config: {
@@ -81,6 +82,7 @@ export const theme = extendTheme(vtheme, {
   },
   components: {
     Accordion,
+    Alert,
     Badge,
     Button,
     Card,
