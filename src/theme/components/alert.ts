@@ -1,5 +1,5 @@
 import { alertAnatomy } from '@chakra-ui/anatomy'
-import { createMultiStyleConfigHelpers, useToken } from '@chakra-ui/react'
+import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
 
 const { defineMultiStyleConfig } = createMultiStyleConfigHelpers(alertAnatomy.keys)
 
@@ -14,8 +14,6 @@ const baseStyle = (props: any) => {
   }
 
   const color = statusColorMap[status]
-
-  console.log(color)
 
   return {
     container: {
