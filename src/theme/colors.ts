@@ -12,6 +12,8 @@ export const colorsBase = {
     light: '#CBD5E0',
     normal: '#718096',
   },
+  green: '#00FF00',
+  orange: '#FFA500',
   primary: '#546E39',
   primary_dark: 'rgba(84, 110, 57, 0.2)',
   white: {
@@ -31,6 +33,10 @@ export const colors = {
       dark: colorsBase.blue.dark,
     },
     border: colorsBase.gray.light,
+    error: colorsBase.green,
+    info: colorsBase.gray.normal,
+    success: colorsBase.green,
+    warning: colorsBase.orange,
   },
   auth: {
     textColorSecondary: colorsBase.gray.normal,
