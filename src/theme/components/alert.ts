@@ -13,7 +13,7 @@ const baseStyle = (props: any) => {
     warning: 'var(--chakra-colors-alert-warning)',
   }
 
-  const color = statusColorMap[status]
+  const color = statusColorMap[status] || statusColorMap['info']
 
   return {
     container: {
