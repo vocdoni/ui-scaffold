@@ -1,10 +1,8 @@
 import {
-  Box,
   Button,
   Card,
   CardBody,
   CardFooter,
-  Checkbox,
   Flex,
   FormControl,
   FormErrorMessage,
@@ -17,10 +15,11 @@ import {
 import { ChangeEvent, useCallback, useMemo } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { Controller, useFormContext } from 'react-hook-form'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { BiCheckDouble, BiDownload } from 'react-icons/bi'
 import { PiWarningCircleLight } from 'react-icons/pi'
-import { RiFileExcel2Line } from 'react-icons/ri'
+import { DetailedCheckbox } from '~components/Layout/Form/DetailedCheckbox'
+import Uploader from '~components/Layout/Uploader'
 import { CensusSpreadsheetManager } from './CensusSpreadsheetManager'
 import { CsvGenerator } from './generator'
 import { CsvPreview } from './Preview'
@@ -119,7 +118,7 @@ export const CensusCsvManager = () => {
               name='weightedVote'
               defaultValue={weighted}
               render={({ field: { onChange, onBlur, value, ref } }) => (
-                <Checkbox
+                <DetailedCheckbox
                   onChange={(event: ChangeEvent<HTMLInputElement>) => {
                     if (!manager) {
                       return setValue('weightedVote', event.target.checked)
@@ -130,18 +129,13 @@ export const CensusCsvManager = () => {
                     }
                   }}
                   onBlur={onBlur}
-                  ref={ref}
+                  name={'weightedVote'}
                   isChecked={value}
-                  variant={'radiobox'}
-                >
-                  <Flex>
-                    <Icon as={BiCheckDouble} />
-                    <Text>
-                      <Trans i18nKey='form.process_create.weighted'>Weighted vote</Trans>
-                    </Text>
-                  </Flex>
-                  <Text>{t('form.process_create.spreadsheet.requirements.list_three')}</Text>
-                </Checkbox>
+                  variant={'detailed'}
+                  icon={<BiCheckDouble />}
+                  title={'form.process_create.weighted'}
+                  description={'form.process_create.spreadsheet.requirements.list_three'}
+                />
               )}
             />
           </FormControl>
@@ -166,25 +160,7 @@ export const CensusCsvManager = () => {
         isInvalid={!!errors?.spreadsheet}
         display={manager?.data.length ? 'none' : 'block'}
       >
-        <Card variant='drag-and-drop'>
-          <input {...getInputProps()} />
-          <Icon as={RiFileExcel2Line} boxSize={20} color='process_create.spreadsheet.file' />
-          <Box>
-            {isDragActive ? (
-              <Text textAlign='center' color='process_create.description'>
-                {t('uploader.drop_here')}
-              </Text>
-            ) : (
-              <Trans
-                i18nKey='uploader.click_or_drag_and_drop'
-                components={{
-                  p1: <Text textAlign='center' color='process_create.description' />,
-                  p2: <Text textAlign='center' fontSize='sm' color='process_create.description' />,
-                }}
-              />
-            )}
-          </Box>
-        </Card>
+        <Uploader getInputProps={getInputProps} getRootProps={getRootProps} isDragActive={isDragActive} />{' '}
         <FormErrorMessage display='flex' justifyContent='center'>
           {errors?.spreadsheet?.message?.toString()}
         </FormErrorMessage>

@@ -2,7 +2,7 @@ import { Flex } from '@chakra-ui/react'
 import { ElectionResultsTypeNames } from '@vocdoni/sdk'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import CreateProcessMeta from '../Meta'
-import CreateProcessSettings from '../Settings'
+import Calendar from '../Settings/Calendar'
 import { StepsNavigation } from '../Steps/Navigation'
 import Wrapper from '../Steps/Wrapper'
 import { useProcessCreationSteps } from '../Steps/use-steps'
@@ -53,7 +53,7 @@ export const Info = () => {
           gap={8}
         >
           <CreateProcessMeta />
-          <CreateProcessSettings />
+          <Calendar />
         </Flex>
         <StepsNavigation />
       </Wrapper>

@@ -3,11 +3,9 @@ import {
   Box,
   Button,
   Card,
-  Checkbox,
   Flex,
   FormControl,
   FormErrorMessage,
-  Icon,
   IconButton,
   Input,
   Text,
@@ -19,7 +17,8 @@ import { useDropzone } from 'react-dropzone'
 import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { BiCheckDouble } from 'react-icons/bi'
-import { RiFileExcel2Line } from 'react-icons/ri'
+import { DetailedCheckbox } from '~components/Layout/Form/DetailedCheckbox'
+import Uploader from '~components/Layout/Uploader'
 import { addressTextOverflow, fieldMapErrorMessage, isInvalidFieldMap } from '~constants'
 import { Web3CensusSpreadsheetManager } from './Spreadsheet/Web3CensusSpreadsheetManager'
 
@@ -209,7 +208,7 @@ export const CensusWeb3Addresses = () => {
               </Flex>
             ))}
           </Card>
-          <Text variant='process-create-subtitle-sm'>{t('form.process_create.web3.your_wallet_is_added')}</Text>
+          <Text>{t('form.process_create.web3.your_wallet_is_added')}</Text>
           <Flex gap={1} justifyContent='center'>
             <Trans
               i18nKey='form.process_create.web3.census_members'
@@ -227,54 +226,20 @@ export const CensusWeb3Addresses = () => {
             name='weightedVote'
             defaultValue={weighted}
             render={({ field: { onChange, onBlur, value, ref } }) => (
-              <Checkbox
+              <DetailedCheckbox
                 onChange={(event: ChangeEvent<HTMLInputElement>) => setValue('weightedVote', event.target.checked)}
                 onBlur={onBlur}
-                ref={ref}
+                name={'weightedVote'}
                 isChecked={value}
-                variant={'radiobox'}
-              >
-                <Flex>
-                  <Icon as={BiCheckDouble} />
-                  <Text>
-                    <Trans i18nKey='form.process_create.weighted'>Weighted vote</Trans>
-                  </Text>
-                </Flex>
-                <Text>{t('form.process_create.spreadsheet.requirements.list_three')}</Text>
-              </Checkbox>
+                variant={'detailed'}
+                icon={<BiCheckDouble />}
+                title={'form.process_create.weighted'}
+                description={'form.process_create.spreadsheet.requirements.list_three'}
+              />
             )}
           />
           <FormControl isInvalid={!!fileErr}>
-            <Flex
-              flexDirection='column'
-              justifyContent='center'
-              alignItems='center'
-              gap={5}
-              p={10}
-              border='1px dotted'
-              borderColor='process_create.census.drag_and_drop_border'
-              bgColor='process_create.bg'
-              cursor='pointer'
-              {...getRootProps()}
-            >
-              <input {...getInputProps()} />
-              <Icon as={RiFileExcel2Line} boxSize={20} color='process_create.spreadsheet.file' />
-              <Box>
-                {isDragActive ? (
-                  <Text textAlign='center' color='process_create.description'>
-                    {t('uploader.drop_here')}
-                  </Text>
-                ) : (
-                  <Trans
-                    i18nKey='uploader.click_or_drag_and_drop'
-                    components={{
-                      p1: <Text textAlign='center' color='process_create.description' />,
-                      p2: <Text textAlign='center' fontSize='sm' color='process_create.description' />,
-                    }}
-                  />
-                )}
-              </Box>
-            </Flex>
+            <Uploader getInputProps={getInputProps} getRootProps={getRootProps} isDragActive={isDragActive} />
             <FormErrorMessage>{fileErr}</FormErrorMessage>
           </FormControl>
         </Flex>

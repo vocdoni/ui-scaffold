@@ -22,7 +22,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { DefaultCensusSize } from '~constants'
-import { customStylesSelect, customStylesTokensSelect } from '~theme/tokenSelectStyles'
+import { reactSelectStyles } from '~theme/reactSelectStyles'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 import selectComponents, { CryptoAvatar } from './select-components'
 import gitcoinPassportImg from '/assets/gitcoin-passport.png'
@@ -281,7 +281,7 @@ export const CensusTokens = () => {
               >
             }
             chakraStyles={
-              customStylesSelect as ChakraStylesConfig<
+              reactSelectStyles as ChakraStylesConfig<
                 ICensus3SupportedChain,
                 boolean,
                 GroupBase<ICensus3SupportedChain>
@@ -339,7 +339,7 @@ export const CensusTokens = () => {
             isDisabled={!ch || loadingTk}
             isOptionDisabled={(option) => !(option as { synced?: boolean })?.synced}
             components={selectComponentsTokens as Partial<SelectComponentsConfig<unknown, boolean, GroupBase<unknown>>>}
-            chakraStyles={customStylesTokensSelect}
+            chakraStyles={reactSelectStyles}
           />
           <FormErrorMessage>{errors.censusToken && errors.censusToken.message?.toString()}</FormErrorMessage>
         </FormControl>

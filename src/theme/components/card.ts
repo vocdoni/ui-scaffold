@@ -114,24 +114,6 @@ export const Card = defineMultiStyleConfig({
       },
     },
 
-    'drag-and-drop': {
-      container: {
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: 5,
-        p: 10,
-        border: '1px dotted',
-        bgColor: 'process_create.bg_secondary.light',
-        borderRadius: 'xl',
-        cursor: 'pointer',
-
-        _dark: {
-          bgColor: 'process_create.bg_secondary.dark',
-        },
-      },
-    },
-
     'web3-addresses': {
       container: {
         flexDirection: 'column',

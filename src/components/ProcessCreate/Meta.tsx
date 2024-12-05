@@ -24,7 +24,6 @@ const CreateProcessMeta = () => {
             defaultValue: 'Provide a clear title and description to help voters understand the vote',
           })}
         </Text>
-
         <InputBasic
           formValue='title'
           label={t('process_create.title', { defaultValue: 'Title' })}

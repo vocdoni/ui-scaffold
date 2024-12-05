@@ -1,10 +1,10 @@
 .editor-container {
-  border-radius: 0.75rem;
+  border-radius: 8px;
   position: relative;
   line-height: 20px;
   font-weight: 400;
   text-align: left;
-  border: 0.1px solid #e2e8f0;
+  border: 1px solid #e2e8f0;
   margin-bottom: 10px;
   overflow: hidden;
 }
@@ -12,8 +12,7 @@
 .editor-container:hover {
   border-color: transparent;
   outline-offset: '0px';
-  outline: '.1px solid';
-  outline: 2px solid #cbd5e0;
+  outline: 1px solid #cbd5e0;
 }
 
 .editor-container:focus-within {
@@ -28,7 +27,7 @@
 .editor-input {
   min-height: 150px;
   resize: none;
-  font-size: 15px;
+  font-size: 16px;
   caret-color: rgb(5, 5, 5);
   position: relative;
   tab-size: 1;
@@ -44,7 +43,7 @@
   text-overflow: ellipsis;
   top: 15px;
   left: 16px;
-  font-size: 15px;
+  font-size: 16px;
   user-select: none;
   display: inline-block;
   pointer-events: none;
@@ -173,6 +172,7 @@ pre::-webkit-scrollbar-thumb {
   background: #fff;
   padding: 4px;
   vertical-align: middle;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .toolbar button.toolbar-item {
