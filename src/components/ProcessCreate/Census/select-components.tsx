@@ -57,6 +57,7 @@ const OptionToken = (props: OptionProps<any, false, GroupBase<any>>) => {
     data: { type: groupType, name, iconURI, ID, chainID },
     isSelected,
   } = props
+
   if (groupType === 'request') {
     return (
       <chakraComponents.Option {...props}>
@@ -76,7 +77,7 @@ const OptionToken = (props: OptionProps<any, false, GroupBase<any>>) => {
         <Flex justifyContent={'space-between'} alignItems={'center'} w='full'>
           <Flex gap={2} color='black'>
             <CryptoAvatar name={name} icon={iconURI} id={ID} chainId={chainID} />
-            <Text>{children}</Text>
+            <Text color='inherit'>{children}</Text>
           </Flex>
           {isSelected && <CheckIcon color='input.dropdown.check_icon' ml='auto' />}
         </Flex>
