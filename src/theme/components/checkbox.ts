@@ -40,8 +40,13 @@ export const Checkbox = defineMultiStyleConfig({
         alignItems: 'center',
         p: 4,
         border: '1px solid',
-        borderColor: 'checkbox.detailed_bg',
-        borderRadius: 'xl',
+        borderColor: 'checkbox.detailed.border',
+        borderRadius: 'lg',
+        bgColor: 'checkbox.detailed.bg.light',
+
+        _dark: {
+          bgColor: 'checkbox.detailed.bg.light',
+        },
 
         _hover: {
           boxShadow: 'none',

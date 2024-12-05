@@ -52,7 +52,13 @@ export const colors = {
   checkbox: {
     bg_checked: colorsBase.primary,
     disabled_border: colorsBase.gray.normal,
-    detailed_bg: colorsBase.gray.light,
+    detailed: {
+      border: colorsBase.gray.light,
+      bg: {
+        light: colorsBase.white.pure,
+        dark: colorsBase.blue.dark,
+      },
+    },
     radiobox_control: colorsBase.gray.light2,
     disabled: {
       light: 'gray.300',
