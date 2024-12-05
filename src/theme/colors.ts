@@ -37,6 +37,8 @@ export const colors = {
     info: colorsBase.gray.normal,
     success: colorsBase.green,
     warning: colorsBase.orange,
+    box_shadow_light: colorsBase.white.pure,
+    box_shadow_dark: colorsBase.blue.dark,
   },
   auth: {
     textColorSecondary: colorsBase.gray.normal,
