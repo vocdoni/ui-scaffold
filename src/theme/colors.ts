@@ -175,7 +175,8 @@ export const colors = {
     dropdown: {
       check_icon: colorsBase.primary,
       control: colorsBase.gray.normal,
-      option: colorsBase.black,
+      option_dark: colorsBase.white.pure,
+      option_light_selected: colorsBase.black,
       option_bg_selected: {
         light: colorsBase.white.dark,
         dark: colorsBase.blue.dark,
