@@ -889,6 +889,65 @@
     "mail_subject": "Voting platform",
     "modal_title": "Share with friends"
   },
+  "terms": {
+    "section1": {
+      "description1": "The Vocdoni Association, headquartered in Switzerland, operates the app.vocdoni.io and onvote.app platforms.",
+      "description2": "These platforms prioritize user privacy and data security, ensuring compliance with the European Union's General Data Protection Regulation (GDPR)."
+    },
+    "section1Title": "1. General Information",
+    "section2": {
+      "description": "We emphasize user data security. Here is an overview:",
+      "item1": "We collect and process personal data necessary for service provision.",
+      "item2": "All personal data is stored in encrypted form, ensuring that no personal data is stored in plain text.",
+      "item3": "Metadata submitted by voting organizers may be publicly accessible on IPFS.",
+      "item4": "Additional data may be collected to fulfill legal obligations or provide specialized services."
+    },
+    "section2Title": "2. Data Collection and Storage",
+    "section3": {
+      "item1": "Personal data is processed solely for providing and improving our services.",
+      "item2": "We seek explicit user consent for data processing activities.",
+      "item3": "We do not use collected data for marketing purposes without explicit user consent."
+    },
+    "section3Title": "3. Data Use and Compliance",
+    "section4": {
+      "item1": "Personal data is not shared with third parties except where required by law.",
+      "item2": "Third-party data processors are bound by confidentiality agreements.",
+      "item3": "Any cross-border data transfers include adequate protection measures."
+    },
+    "section4Title": "4. Data Sharing",
+    "section5": {
+      "description1": "The Vocdoni Association employs strong security measures to protect personal data.",
+      "description2": "In the event of a data breach, we will promptly notify affected individuals."
+    },
+    "section5Title": "5. Security Measures",
+    "section6": {
+      "description": "To exercise these rights, contact us using the details below.",
+      "item1": "Access: Obtain information on the processing of personal data.",
+      "item2": "Correction: Request the correction of inaccurate personal data.",
+      "item3": "Deletion: Request the deletion of personal data under certain circumstances.",
+      "item4": "Restriction: Request that we restrict processing of personal data.",
+      "item5": "Portability: Receive personal data in a structured format.",
+      "item6": "Objection: Object to processing based on legitimate interests.",
+      "item7": "Complaint: Lodge a complaint with the relevant data authority."
+    },
+    "section6Title": "6. User Rights",
+    "section7": {
+      "description1": "The Vocdoni Association is not responsible for information submitted by users.",
+      "description2": "We do not track user data beyond what is essential."
+    },
+    "section7Title": "7. Disclaimer",
+    "section8": {
+      "item1": "Indirect Damages: The Vocdoni Association shall not be liable for indirect damages.",
+      "item2": "Force Majeure: The Vocdoni Association is not responsible for delays caused by events beyond our control."
+    },
+    "section8Title": "8. Limitation of Liability",
+    "section9": {
+      "description1": "For any queries regarding these Terms and Conditions, please contact us at info (at) vocdoni.org.",
+      "description2": "By continuing to use our services, you confirm your acceptance of these terms."
+    },
+    "section9Title": "9. Contact Information",
+    "title": "Terms and Conditions for Vocdoni Association"
+  },
   "uploader": {
     "click_or_drag_and_drop": "<p1>Upload or drag and drop the voter list here</p1><p2>(Allowed formats: CSV, XLSX, and ODS)</p2>",
     "drop_here": "Drop here"

@@ -5,6 +5,7 @@ import { createBrowserRouter, Params, RouteObject, RouterProvider } from 'react-
 import Error from '~elements/Error'
 import Layout from '~elements/Layout'
 import LayoutProcessCreate from '~elements/LayoutProcessCreate'
+import { StretchPublicContentsLayout } from '~elements/PublicContents'
 import { StripeCheckout, StripeReturn } from '~elements/Stripe'
 import OrganizationProtectedRoute from './OrganizationProtectedRoute'
 import { SuspenseLoader } from './SuspenseLoader'
@@ -65,20 +66,25 @@ export const RoutesProvider = () => {
       errorElement: <Error />,
     },
     {
-      path: 'terms',
-      element: (
-        <SuspenseLoader>
-          <Terms />
-        </SuspenseLoader>
-      ),
-    },
-    {
-      path: 'privacy',
-      element: (
-        <SuspenseLoader>
-          <Privacy />
-        </SuspenseLoader>
-      ),
+      element: <StretchPublicContentsLayout />,
+      children: [
+        {
+          path: 'terms',
+          element: (
+            <SuspenseLoader>
+              <Terms />
+            </SuspenseLoader>
+          ),
+        },
+        {
+          path: 'privacy',
+          element: (
+            <SuspenseLoader>
+              <Privacy />
+            </SuspenseLoader>
+          ),
+        },
+      ],
     },
     {
       path: 'stripe',
