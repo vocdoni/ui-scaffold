@@ -13,6 +13,8 @@ export const colorsBase = {
     light: '#e2e8f0',
     normal: '#718096',
   },
+  green: '#00FF00',
+  orange: '#FFA500',
   primary: '#546E39',
   primary_dark: 'rgba(84, 110, 57, 0.2)',
   red: '#C53030',
@@ -27,6 +29,19 @@ export const colorsBase = {
 
 export const colors = {
   account_create_text_secondary: colorsBase.gray.normal,
+  alert: {
+    bg: {
+      light: colorsBase.white.pure,
+      dark: colorsBase.blue.dark,
+    },
+    border: colorsBase.gray.light,
+    error: colorsBase.green,
+    info: colorsBase.gray.normal,
+    success: colorsBase.green,
+    warning: colorsBase.orange,
+    box_shadow_light: colorsBase.white.pure,
+    box_shadow_dark: colorsBase.blue.dark,
+  },
   auth: {
     textColorSecondary: colorsBase.gray.normal,
   },
