@@ -40,12 +40,13 @@ import {
 import { useEffect, useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
+import { Link as RouterLink, useNavigate } from 'react-router-dom'
 import { IElection, IElectionWithTokenResponse } from 'vocdoni-admin-sdk'
 import { CensusMeta } from '~components/Process/Census/CensusType'
 import { StampsUnionTypes } from '~components/ProcessCreate/Census/Gitcoin/StampsUnionType'
 import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
 import { DefaultCensusSize } from '~constants'
+import { Routes } from '~src/router/routes'
 import { useCspAdmin } from '../Census/Csp/use-csp'
 import Preview from '../Confirm/Preview'
 import { CostPreview } from '../CostPreview'
@@ -320,17 +321,7 @@ export const Confirm = () => {
                         <Trans
                           i18nKey='form.process_create.confirm.confirmation_terms_and_conditions'
                           components={{
-                            customLink: (
-                              <Link
-                                href='https://aragon.org/terms-and-conditions'
-                                target='_blank'
-                                color='link.primary'
-                                textDecoration='underline'
-                                _hover={{
-                                  textDecoration: 'none',
-                                }}
-                              />
-                            ),
+                            customLink: <Link as={RouterLink} to={Routes.terms} />,
                           }}
                         />
                       </Checkbox>
