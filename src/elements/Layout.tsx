@@ -12,9 +12,9 @@ const Layout = () => {
       flexDirection='column'
       minH='100vh'
       mx='auto'
-      bgColor={'process_view.bg_light'}
+      bgColor={'white'}
       _dark={{
-        bgColor: 'process_view.bg_dark',
+        bgColor: '#0C0E12',
       }}
     >
       <HStack as='header' position='sticky' top={0} w='full' backdropFilter='blur(40px)' zIndex={30}>
