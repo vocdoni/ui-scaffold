@@ -3,8 +3,8 @@ export const colorsBase = {
   black: '#000000',
   blue: {
     normal: '#3965FF',
-    grayish: '#2B2A33',
-    dark: '#1A202C',
+    grayish: '#1A202C',
+    dark: '#0c0e12',
   },
   gradient: 'linear-gradient(to right, #546E39, #2E441A)',
   gray: {

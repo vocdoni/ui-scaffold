@@ -12,10 +12,8 @@ const Layout = () => {
       flexDirection='column'
       minH='100vh'
       mx='auto'
-      bgColor={'process_view.bg_light'}
-      _dark={{
-        bgColor: 'process_view.bg_dark',
-      }}
+      bgColor={'bg.light'}
+      _dark={{ bgColor: 'bg.dark' }}
     >
       <HStack as='header' position='sticky' top={0} w='full' backdropFilter='blur(40px)' zIndex={30}>
         <Navbar />
