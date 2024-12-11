@@ -186,18 +186,6 @@
     "copied": "Copied",
     "copied_title": "¡Copiado!"
   },
-  "cost_preview": {
-    "balance": "<span>Dispones de:</span><span2> {{ balance }} tokens</span2>",
-    "button": "Obtener más Tokens",
-    "census_total_one": "<span>Votantes:</span><span>{{ count }} votante</span>",
-    "census_total_many": "",
-    "census_total_other": "<span>Votantes:</span><span>{{ count }} votantes</span>",
-    "duration": "<span>Duración:</span> <span>{{ date, duration }}</span>",
-    "not_enough_tokens": "No tienes suficientes tokens para crear este proceso.",
-    "result": "<span>Después de crear la votación:</span><span2>{{ remainTokens }} tokens</span2>",
-    "subtitle": "Tu proceso de votación",
-    "total": "<span>Total:</span> <span>{{ cost }} tokens</span>"
-  },
   "country_selector": {
     "australia": "Australia",
     "brazil": "Brazil",
@@ -295,6 +283,11 @@
     "memberships": "Hasta {{ value }} membresías",
     "personalization": "Personalización",
     "ranked": "Votación por rango",
+    "section": {
+      "features": "Features",
+      "organization": "Organization",
+      "voting_types": "Voting Types"
+    },
     "sms_notification": "Notificaciones por SMS",
     "sub_orgs": "Hasta {{ value }} suborganizaciones",
     "title": "Características",
@@ -388,8 +381,6 @@
         "confirmation": "Confirmación",
         "confirmation_terms_and_conditions": "Acepto los <customLink>términos y condiciones</customLink> de Vocdoni",
         "confirmation_valid_info": "Confirmo que esta información es correcta y válida",
-        "cost_description": "Basado en diferentes parámetros, como el tamaño del censo, la duración de las elecciones y su comportamiento, aquí veréis el precio de vuestras elecciones.",
-        "cost_title": "Previsión de coste",
         "create_button": "Crear",
         "dates": "Fecha",
         "description": "En esta página, puedes revisar que toda la información sea correcta y editarla en caso de que haya algún error. También puedes verificar el costo del proceso de votación y comprar más créditos en caso de que no tengas suficientes.",
@@ -478,14 +469,6 @@
   },
   "generate_pdf": "Generate PDF",
   "generate_pdf_description": "Generate a PDF with the results",
-  "get_voc_tokens": {
-    "authentification_method": "Seleccione su método de autenticación preferido:",
-    "authentification_method_helper": "Puede obtener {{ faucetAmount }} tokens por método de autenticación a la semana",
-    "button": "Solicitar Tokens",
-    "description": "<text>Para agregar más tokens, debe <strong>iniciar sesión</strong> con una cuenta social (para prevenir el mal uso del grifo).</text><text><strong>Solo solicitamos acceso de lectura.</strong></text>",
-    "info": "<text>Si necesita más, contacte a <mailto>info@onvote.app</mailto></text>",
-    "title": "Obtener VOC Tokens"
-  },
   "gitcoin": {
     "effective": "20: Efectivo",
     "more_effective": "25: Más efectivo",
@@ -837,12 +820,14 @@
     "advanced_analytitcs": "Informes y análisis avanzados",
     "all_features": "All features & voting types",
     "basic_analytics": "Informes y análisis básicos",
+    "compare_features": "Compare all features",
     "core_voting": "Funciones básicas de votación",
     "custom_subtitle": "Large organizations enterprises, and institutions requiring extensive customization and support.",
     "custom_title": "Custom Plan",
     "dedicated_manager": "Dedicated account manager",
     "essential_subtitle": "Organizaciones pequeñas o medianas o grupos comunitarios con necesidades básicas de votación.",
     "essential_title": "Esencial",
+    "features": "Features",
     "free_subtitle": "Organizaciones pequeñas o grupos comunitarios con necesidades básicas de votación.",
     "free_title": "Gratis",
     "gpdr_compilance": "Cumplimiento del GDPR",
@@ -864,6 +849,7 @@
     "your_plan": "Actualmente estás suscrito al plan 'Your plan'. Si actualizas, solo te cobraremos la diferencia anual. En el próximo período de facturación, que comienza el 'dd/mm/aa', pagarás por el nuevo plan seleccionado."
   },
   "pricing_card": {
+    "compare_plans": "Compare all plans",
     "from": "Desde {{price}}/año",
     "most_popular_plan": "Most popular plan",
     "view_features": "Ver todas las características"
