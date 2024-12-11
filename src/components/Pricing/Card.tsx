@@ -1,4 +1,3 @@
-import { CheckIcon, CloseIcon } from '@chakra-ui/icons'
 import {
   Box,
   Button,
@@ -8,7 +7,6 @@ import {
   CardHeader,
   Collapse,
   Flex,
-  Icon,
   ListItem,
   Text,
   UnorderedList,
@@ -17,6 +15,7 @@ import {
 import { dotobject } from '@vocdoni/sdk'
 import { Trans } from 'react-i18next'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { renderBooleanIcon } from '../../utils/icons'
 import { PlanFeaturesTranslationKeys } from './Features'
 import type { Plan } from './Plans'
 
@@ -95,12 +94,7 @@ const PricingCard = ({
               {features.map((feature) => (
                 <ListItem key={feature.key} listStyleType='none' pb={1}>
                   <Flex align='center' gap={2}>
-                    {typeof feature.value === 'boolean' && (
-                      <Icon
-                        as={feature.value ? CheckIcon : CloseIcon}
-                        color={feature.value ? 'green.500' : 'red.500'}
-                      />
-                    )}
+                    {typeof feature.value === 'boolean' && renderBooleanIcon(feature.value)}
                     <Trans i18nKey={feature.label} values={{ value: feature.value }} />
                   </Flex>
                 </ListItem>

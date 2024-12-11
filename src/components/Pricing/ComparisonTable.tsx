@@ -1,7 +1,7 @@
-import { CheckIcon, CloseIcon } from '@chakra-ui/icons'
-import { Box, Icon, Table, Tbody, Td, Text, Th, Thead, Tr, useColorModeValue } from '@chakra-ui/react'
+import { Box, Table, Tbody, Td, Text, Th, Thead, Tr, useColorModeValue } from '@chakra-ui/react'
 import { dotobject } from '@vocdoni/sdk'
 import { Trans } from 'react-i18next'
+import { renderBooleanIcon } from '../../utils/icons'
 import { CategorizedFeatureKeys, CategoryTitleKeys, PlanFeaturesTranslationKeys } from './Features'
 import { Plan } from './Plans'
 
@@ -51,13 +51,7 @@ const ComparisonSectionTable = ({ titleKey, plans, features, category }: Compari
                   const value = dotobject(plan, featurePath)
                   return (
                     <Td key={plan.id} borderColor={borderColor} textAlign='center'>
-                      {typeof value === 'boolean' ? (
-                        <Icon as={value ? CheckIcon : CloseIcon} color={value ? 'green.500' : 'red.500'} />
-                      ) : typeof value === 'number' ? (
-                        value
-                      ) : (
-                        '-'
-                      )}
+                      {typeof value === 'boolean' ? renderBooleanIcon(value) : typeof value === 'number' ? value : '-'}
                     </Td>
                   )
                 })}
