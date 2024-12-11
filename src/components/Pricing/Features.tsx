@@ -16,6 +16,18 @@ export const PlanFeaturesTranslationKeys = {
   'features.smsNotification': 'features.sms_notification',
 }
 
+export const CategorizedFeatureKeys = {
+  votingTypes: ['weighted', 'approval', 'ranked'],
+  features: ['personalization', 'emailReminder', 'smsNotification'],
+  organization: ['memberships', 'subOrgs'],
+}
+
+export const CategoryTitleKeys = {
+  votingTypes: 'features.section.voting_types',
+  features: 'features.section.features',
+  organization: 'features.section.organization',
+}
+
 /**
  * Checks if the specified feature exists in the plan.
  *
@@ -79,7 +91,7 @@ export const isFeatureAvailable = (
 }
 
 // yeah, it's sad but we need to include all the translations in a way the extractor does not remove them...
-// note this component does not need (and should never) to be included in the app
+// note this component does not need to (and should never) be included in the app
 const UnusedComponentButRequiredToNotLoseTranslations = () => {
   const { t } = useTranslation()
   t('features.memberships', { defaultValue: 'Up to {{ count }} memberships' })
@@ -90,6 +102,10 @@ const UnusedComponentButRequiredToNotLoseTranslations = () => {
   t('features.personalization', { defaultValue: 'Personalization' })
   t('features.email_reminder', { defaultValue: 'Email reminder' })
   t('features.sms_notification', { defaultValue: 'SMS notification' })
+  // Section titles
+  t('features.section.voting_types', { defaultValue: 'Voting Types' })
+  t('features.section.features', { defaultValue: 'Features' })
+  t('features.section.organization', { defaultValue: 'Organization' })
 
   return null
 }
