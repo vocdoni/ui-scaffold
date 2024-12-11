@@ -49,7 +49,6 @@ import { DefaultCensusSize } from '~constants'
 import { Routes } from '~src/router/routes'
 import { useCspAdmin } from '../Census/Csp/use-csp'
 import Preview from '../Confirm/Preview'
-import { CostPreview } from '../CostPreview'
 import { CreationProgress, Steps } from '../CreationProgress'
 import { Web3Address } from '../StepForm/CensusWeb3'
 import { Option } from '../StepForm/Questions'
@@ -268,8 +267,6 @@ export const Confirm = () => {
                   bgColor: 'process_create.bg_secondary.dark',
                 }}
               >
-                <CostPreview unpublished={unpublished} />
-
                 <Box>
                   <Text variant='process-create-title' textTransform='uppercase'>
                     {t('form.process_create.confirm.confirmation')}

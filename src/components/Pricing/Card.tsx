@@ -16,6 +16,7 @@ import {
 } from '@chakra-ui/react'
 import { dotobject } from '@vocdoni/sdk'
 import { Trans } from 'react-i18next'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { PlanFeaturesTranslationKeys } from './Features'
 import type { Plan } from './Plans'
 
@@ -41,6 +42,9 @@ const PricingCard = ({
   plan,
 }: PricingCardProps) => {
   const { isOpen, onToggle } = useDisclosure()
+  const location = useLocation()
+  const navigate = useNavigate()
+  const isPlansPage = location.pathname === '/plans'
 
   // Dynamically map the features from the plan
   const features = Object.entries(PlanFeaturesTranslationKeys)
@@ -102,6 +106,11 @@ const PricingCard = ({
                 </ListItem>
               ))}
             </UnorderedList>
+            {!isPlansPage && (
+              <Button mt={4} onClick={() => navigate('/plans')} variant='outline' size='sm' width='full'>
+                <Trans i18nKey='pricing_card.compare_plans'>Compare all plans</Trans>
+              </Button>
+            )}
           </Box>
         </Collapse>
       </CardFooter>

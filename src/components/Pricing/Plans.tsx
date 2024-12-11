@@ -16,12 +16,13 @@ import { useQuery } from '@tanstack/react-query'
 import { Select } from 'chakra-react-select'
 import { ReactNode, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { Link as ReactRouterLink } from 'react-router-dom'
+import { Link as ReactRouterLink, useLocation } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
 import { PlanId } from '~constants'
 import PricingCard from './Card'
+import { ComparisonTable } from './ComparisonTable'
 
 export type Plan = {
   id: number
@@ -140,6 +141,8 @@ export const SubscriptionPlans = () => {
   const { subscription } = useSubscription()
   const { data: plans, isLoading } = usePlans()
   const translations = usePlanTranslations()
+  const location = useLocation()
+  const isPlansPage = location.pathname === '/plans'
 
   const [selectedCensusSize, setSelectedCensusSize] = useState<number | null>(null)
 
@@ -200,6 +203,7 @@ export const SubscriptionPlans = () => {
           <PricingCard key={idx} plan={plans[idx]} {...card} />
         ))}
       </Flex>
+      {isPlansPage && plans && <ComparisonTable plans={plans} />}
     </Flex>
   )
 }
