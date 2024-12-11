@@ -1,5 +1,6 @@
 import { Box, Table, Tbody, Td, Text, Th, Thead, Tr, useColorModeValue } from '@chakra-ui/react'
 import { dotobject } from '@vocdoni/sdk'
+import { forwardRef } from 'react'
 import { Trans } from 'react-i18next'
 import { renderBooleanIcon } from '../../utils/icons'
 import { CategorizedFeatureKeys, CategoryTitleKeys, PlanFeaturesTranslationKeys } from './Features'
@@ -64,12 +65,12 @@ const ComparisonSectionTable = ({ titleKey, plans, features, category }: Compari
   )
 }
 
-export const ComparisonTable = ({ plans }: ComparisonTableProps) => {
+export const ComparisonTable = forwardRef<HTMLDivElement, ComparisonTableProps>(({ plans }, ref) => {
   // Sort plans by price
   const sortedPlans = [...plans].sort((a, b) => a.startingPrice - b.startingPrice)
 
   return (
-    <Box overflowX='auto' mt={8}>
+    <Box ref={ref} overflowX='auto' mt={8}>
       <Text fontSize='2xl' mb={4} textAlign='center'>
         <Trans i18nKey='pricing.compare_features'>Compare all features</Trans>
       </Text>
@@ -85,4 +86,4 @@ export const ComparisonTable = ({ plans }: ComparisonTableProps) => {
       ))}
     </Box>
   )
-}
+})

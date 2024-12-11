@@ -13,6 +13,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import { dotobject } from '@vocdoni/sdk'
+import { RefObject } from 'react'
 import { Trans } from 'react-i18next'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { renderBooleanIcon } from '../../utils/icons'
@@ -28,6 +29,7 @@ type PricingCardProps = {
   isDisabled: boolean
   width?: string
   plan: Plan
+  featuresRef: RefObject<HTMLDivElement>
 }
 
 const PricingCard = ({
@@ -39,6 +41,7 @@ const PricingCard = ({
   features: hardcodedFeatures,
   isDisabled,
   plan,
+  featuresRef,
 }: PricingCardProps) => {
   const { isOpen, onToggle } = useDisclosure()
   const location = useLocation()
@@ -58,6 +61,14 @@ const PricingCard = ({
         : null
     })
     .filter(Boolean)
+
+  const handleViewFeatures = () => {
+    if (isPlansPage && featuresRef.current) {
+      featuresRef.current.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      onToggle()
+    }
+  }
 
   return (
     <Card variant='pricing-card' width={width} mt={4}>
@@ -83,8 +94,10 @@ const PricingCard = ({
             ))}
           </UnorderedList>
         </Box>
-        <Button onClick={onToggle}>
-          <Trans i18nKey='pricing_card.view_features'>{isOpen ? 'Hide features' : 'View all features'}</Trans>
+        <Button onClick={handleViewFeatures}>
+          <Trans i18nKey='pricing_card.view_features'>
+            {isOpen && !isPlansPage ? 'Hide features' : 'View all features'}
+          </Trans>
         </Button>
       </CardBody>
       <CardFooter p={0}>

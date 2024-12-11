@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { Select } from 'chakra-react-select'
-import { ReactNode, useMemo, useState } from 'react'
+import { ReactNode, useMemo, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink, useLocation } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
@@ -143,6 +143,7 @@ export const SubscriptionPlans = () => {
   const translations = usePlanTranslations()
   const location = useLocation()
   const isPlansPage = location.pathname === '/plans'
+  const featuresRef = useRef<HTMLDivElement>(null)
 
   const [selectedCensusSize, setSelectedCensusSize] = useState<number | null>(null)
 
@@ -200,10 +201,10 @@ export const SubscriptionPlans = () => {
       {isLoading && <Progress colorScheme='brand' size='xs' isIndeterminate />}
       <Flex gap={5} justifyContent='space-evenly' alignItems='start' flexWrap='wrap'>
         {cards.map((card, idx) => (
-          <PricingCard key={idx} plan={plans[idx]} {...card} />
+          <PricingCard key={idx} plan={plans[idx]} {...card} featuresRef={featuresRef} />
         ))}
       </Flex>
-      {isPlansPage && plans && <ComparisonTable plans={plans} />}
+      {isPlansPage && plans && <ComparisonTable ref={featuresRef} plans={plans} />}
     </Flex>
   )
 }
