@@ -1,123 +1,184 @@
-import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+import { defineStyle, defineStyleConfig } from '@chakra-ui/styled-system'
+import { mode } from '@chakra-ui/theme-tools'
 
-const solid = (props: any) => {
+const primary = defineStyle((props) => {
   const { colorScheme } = props
+
   return {
-    bg: `${colorScheme}.600`,
     border: '1px solid',
-
+    bg: mode(`${colorScheme}.500`, 'button.dark.primary')(props),
+    borderColor: mode(`${colorScheme}.500`, 'button.dark.primary')(props),
+    color: 'button.variant.primary.color',
     _hover: {
-      bg: `${colorScheme}.700`,
-
+      bg: mode(`${colorScheme}.600`, 'button.dark.secondary')(props),
       _disabled: {
-        color: 'gray.400',
-        bgColor: 'gray.200',
-        borderColor: 'gray.300',
-
-        _dark: {
-          color: '#85888E',
-          borderColor: '#22262F',
-          bgColor: '#22262F',
-        },
+        bg: mode('button.variant.primary.disabled.light.bg', 'button.variant.primary.disabled.dark.bg')(props),
+        color: mode('button.variant.primary.disabled.light.color', 'button.variant.primary.disabled.dark.color')(props),
+        borderColor: mode(
+          'button.variant.primary.disabled.light.border',
+          'button.variant.primary.disabled.dark.border'
+        )(props),
+        opacity: mode(1, 0.4)(props),
       },
     },
-    _focus: {
-      bg: `${colorScheme}.600`,
-    },
-
+    _active: { bg: mode(`${colorScheme}.500`, 'button.dark.primary')(props) },
     _disabled: {
-      color: 'gray.400',
-      bgColor: 'gray.200',
-      borderColor: 'gray.300',
-
-      _dark: {
-        color: '#85888E',
-        borderColor: '#22262F',
-        bgColor: '#22262F',
-      },
+      bg: mode('button.variant.primary.disabled.light.bg', 'button.variant.primary.disabled.dark.bg')(props),
+      color: mode('button.variant.primary.disabled.light.color', 'button.variant.primary.disabled.dark.color')(props),
+      borderColor: mode(
+        'button.variant.primary.disabled.light.border',
+        'button.variant.primary.disabled.dark.border'
+      )(props),
+      opacity: mode(1, 0.4)(props),
     },
   }
-}
+})
 
-const outline2 = (props: any) => {
+const secondary = defineStyle((props) => {
   const { colorScheme } = props
   return {
-    color: `${colorScheme}.800`,
     border: '1px solid',
-    borderColor: `${colorScheme}.300`,
-    bgColor: 'transparent',
+    borderColor:
+      colorScheme === 'gray'
+        ? mode('button.variant.common.border_color.light', 'button.variant.common.border_color.dark')(props)
+        : mode(`${colorScheme}.300`, 'button.variant.common.border_color.dark')(props),
+
+    bgColor: mode('button.variant.common.bg.light', 'button.variant.common.bg.dark')(props),
+
+    color:
+      colorScheme === 'gray'
+        ? mode('button.variant.common.color.light', 'button.variant.common.color.dark')(props)
+        : mode(`${colorScheme}.700`, 'button.variant.common.color.dark')(props),
 
     _hover: {
-      color: `${colorScheme}.800`,
-      border: `${colorScheme}.300`,
-      bgColor: `${colorScheme}.50`,
+      bgColor:
+        colorScheme === 'gray'
+          ? mode('button.variant.common.hover.bg.light', 'button.variant.common.hover.bg.dark')(props)
+          : mode(`${colorScheme}.50`, 'button.variant.common.hover.bg.dark')(props),
+
+      color:
+        colorScheme === 'gray'
+          ? mode('button.variant.common.color.light', 'button.variant.common.color.dark')(props)
+          : mode(`${colorScheme}.800`, 'button.variant.common.color.dark')(props),
 
       _disabled: {
-        color: 'gray.400',
-        bgColor: 'white',
-        borderColor: 'gray.200',
+        borderColor: 'button.variant.common.disabled.border',
+        color: mode('button.variant.common.disabled.color.light', 'button.variant.common.disabled.color.dark')(props),
       },
     },
-
-    _focus: {
-      color: `${colorScheme}.700`,
-      bordeColor: `${colorScheme}.300`,
-      bgColor: 'transparent',
-    },
-
     _disabled: {
-      color: 'gray.400',
-      bgColor: 'white',
-      borderColor: 'gray.200',
-
-      _dark: {
-        color: '#85888E',
-        borderColor: '#22262F',
-        bgColor: 'transparent',
-      },
+      borderColor: 'button.variant.common.disabled.border',
+      color: mode('button.variant.common.disabled.color.light', 'button.variant.common.disabled.color.dark')(props),
     },
   }
+})
+
+const tertiary = defineStyle((props) => {
+  const { colorScheme } = props
+  return {
+    bgColor: mode('button.variant.common.bg.light', 'button.variant.teritary_and_link.bg')(props),
+
+    color:
+      colorScheme === 'gray'
+        ? mode('button.variant.common.color.light', 'button.variant.common.color_gray_dark')(props)
+        : mode(`${colorScheme}.700`, 'button.variant.teritary_and_link.color_dark')(props),
+
+    _hover: {
+      bgColor:
+        colorScheme === 'gray'
+          ? mode('button.variant.common.hover.bg.light', 'button.variant.common.hover.bg.dark')(props)
+          : mode(`${colorScheme}.50`, 'button.variant.common.hover.bg.dark')(props),
+
+      color:
+        colorScheme === 'gray'
+          ? mode('button.variant.common.color.light', 'button.variant.common.color.dark')(props)
+          : mode(`${colorScheme}.800`, 'button.variant.teritary_and_link.color_hover')(props),
+
+      _disabled: {
+        color: mode('button.variant.common.disabled.color.light', 'button.variant.common.disabled.color.dark')(props),
+      },
+    },
+    _disabled: {
+      color: mode('button.variant.common.disabled.color.light', 'button.variant.common.disabled.color.dark')(props),
+    },
+  }
+})
+
+const link = defineStyle((props) => {
+  const { colorScheme } = props
+  return {
+    color:
+      colorScheme === 'gray'
+        ? mode('button.variant.common.color.light', 'button.variant.common.color_gray_dark')(props)
+        : mode(`${colorScheme}.700`, 'button.variant.teritary_and_link.color_dark')(props),
+
+    _hover: {
+      color:
+        colorScheme === 'gray'
+          ? mode('button.variant.common.color.light', 'button.variant.common.color.dark')(props)
+          : mode(`${colorScheme}.800`, 'button.variant.teritary_and_link.color_hover')(props),
+      textDecoration: 'none',
+
+      _disabled: {
+        color: mode('button.variant.common.disabled.color.light', 'button.variant.common.disabled.color.dark')(props),
+      },
+    },
+    _disabled: {
+      color: mode('button.variant.common.disabled.color.light', 'button.variant.common.disabled.color.dark')(props),
+    },
+  }
+})
+
+const sizes = {
+  xl2: defineStyle({
+    px: '22px',
+    py: '16px',
+    borderRadius: '10px',
+    fontSize: 'lg',
+    fontWeight: 'semibold',
+    h: '60px',
+  }),
+  xl: defineStyle({
+    px: '18px',
+    py: '12px',
+    borderRadius: '8px',
+    fontSize: 'md',
+    h: '48px',
+  }),
+  lg: defineStyle({
+    px: '16px',
+    py: '10px',
+    borderRadius: '8px',
+    fontSize: 'md',
+    h: '44px',
+  }),
+  md: defineStyle({
+    px: '14px',
+    py: '10px',
+    borderRadius: '8px',
+    fontSize: 'sm',
+    h: '40px',
+  }),
+  sm: defineStyle({
+    px: '12px',
+    py: '8px',
+    borderRadius: '8px',
+    fontSize: 'sm',
+    h: '36px',
+  }),
 }
-const sm = defineStyle({
-  px: '12px',
-  py: '8px',
-  borderRadius: '8px',
-})
-const md = defineStyle({
-  px: '14px',
-  py: '10px',
-  fontSize: '14px',
-  borderRadius: '8px',
-})
-const lg = defineStyle({
-  px: '16px',
-  py: '10px',
-  fontSize: '18px',
-  borderRadius: '8px',
-})
-const xl = defineStyle({
-  px: '18px',
-  py: '12px',
-  fontSize: '18px',
-  borderRadius: '8px',
-})
-const xl2 = defineStyle({
-  px: '22px',
-  py: '16px',
-  fontSize: '22px',
-  borderRadius: '10px',
-})
 
 export const Button = defineStyleConfig({
   variants: {
-    solid,
-    outline2,
+    primary,
+    secondary,
+    tertiary,
+    link,
   },
-  sizes: {
-    sm,
-    md,
-    lg,
-    xl,
-    xl2,
+  sizes,
+  defaultProps: {
+    variant: 'primary',
+    size: 'md',
+    colorScheme: 'brand',
   },
 })

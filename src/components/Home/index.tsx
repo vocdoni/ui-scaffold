@@ -1,4 +1,5 @@
-import { Box } from '@chakra-ui/react'
+import { EmailIcon } from '@chakra-ui/icons'
+import { Box, Button } from '@chakra-ui/react'
 import Benefits from './Benefits'
 import Clients from './Clients'
 import ContactUs from './ContactUs'
@@ -13,6 +14,26 @@ const Home = () => (
   <>
     <Box position='relative'>
       <Box position='relative' zIndex={10}>
+        <Box mb='50px'>
+          <Button size={'sm'} leftIcon={<EmailIcon />} rightIcon={<EmailIcon />} ml='50px' isDisabled>
+            Button CTA
+          </Button>
+          <Button size={'sm'} leftIcon={<EmailIcon />} rightIcon={<EmailIcon />} ml='50px'>
+            Button CTA
+          </Button>
+          <Button size={'md'} leftIcon={<EmailIcon />} rightIcon={<EmailIcon />} ml='50px'>
+            Button CTA
+          </Button>
+          <Button size={'lg'} leftIcon={<EmailIcon />} rightIcon={<EmailIcon />} ml='50px'>
+            Button CTA
+          </Button>
+          <Button size={'xl'} leftIcon={<EmailIcon />} rightIcon={<EmailIcon />} ml='50px'>
+            Button CTA
+          </Button>
+          <Button size={'xl2'} leftIcon={<EmailIcon />} rightIcon={<EmailIcon />} ml='50px'>
+            Button CTA
+          </Button>
+        </Box>
         <CreateProcess />
         <Clients />
         <Benefits />
