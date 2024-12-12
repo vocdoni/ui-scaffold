@@ -1,6 +1,7 @@
 import { ArrowBackIcon } from '@chakra-ui/icons'
 import {
   Box,
+  Button,
   Checkbox,
   Flex,
   FormControl,
@@ -16,7 +17,6 @@ import {
   useDisclosure,
   useToast,
 } from '@chakra-ui/react'
-import { Button } from '@vocdoni/chakra-components'
 import { ElectionProvider, errorToString, useClient } from '@vocdoni/react-providers'
 import {
   ApprovalElection,
@@ -40,12 +40,13 @@ import {
 import { useEffect, useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
+import { Link as RouterLink, useNavigate } from 'react-router-dom'
 import { IElection, IElectionWithTokenResponse } from 'vocdoni-admin-sdk'
 import { CensusMeta } from '~components/Process/Census/CensusType'
 import { StampsUnionTypes } from '~components/ProcessCreate/Census/Gitcoin/StampsUnionType'
 import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
 import { DefaultCensusSize } from '~constants'
+import { Routes } from '~src/router/routes'
 import { useCspAdmin } from '../Census/Csp/use-csp'
 import Preview from '../Confirm/Preview'
 import { CostPreview } from '../CostPreview'
@@ -320,17 +321,7 @@ export const Confirm = () => {
                         <Trans
                           i18nKey='form.process_create.confirm.confirmation_terms_and_conditions'
                           components={{
-                            customLink: (
-                              <Link
-                                href='https://aragon.org/terms-and-conditions'
-                                target='_blank'
-                                color='link.primary'
-                                textDecoration='underline'
-                                _hover={{
-                                  textDecoration: 'none',
-                                }}
-                              />
-                            ),
+                            customLink: <Link as={RouterLink} to={Routes.terms} />,
                           }}
                         />
                       </Checkbox>
@@ -470,7 +461,9 @@ const electionFromForm = (form: StepsFormValues) => {
     ),
     startDate: form.electionType.autoStart ? undefined : new Date(form.startDate).getTime(),
     endDate: new Date(form.endDate).getTime(),
-    voteType: { maxVoteOverwrites: Number(form.maxVoteOverwrites) },
+    voteType: {
+      maxVoteOverwrites: Number(form.maxVoteOverwrites),
+    },
     temporarySecretIdentity: form.censusType === 'spreadsheet' && form.electionType.anonymous,
     meta: {
       generated: 'ui-scaffold',

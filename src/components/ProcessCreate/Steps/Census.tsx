@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next'
-import { CensusType } from '~components/Process/Census/CensusType'
+import { CensusType, CensusTypeToken } from '~components/Process/Census/CensusType'
+import { TabsPage } from '~components/ProcessCreate/Steps/TabsPage'
 import { useCensusTypes } from '../Census/TypeSelector'
 import { useUnimplementedCensusTypes } from '../Census/UnimplementedTypeSelector'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
-import { TabsPage } from '~components/ProcessCreate/Steps/TabsPage'
 
 export interface CensusValues {
   censusType: CensusType | null
@@ -25,7 +25,7 @@ export const Census = () => {
         const nform: StepsFormValues = { ...form, censusType: definedCensusTypes.defined[index] }
         // ensure maxCensusSize is only set on token-based censuses
         // all other cases are handled automatically via the SDK
-        if (definedCensusTypes.defined[index] !== 'token' && 'maxCensusSize' in nform) {
+        if (definedCensusTypes.defined[index] !== CensusTypeToken && 'maxCensusSize' in nform) {
           delete nform?.maxCensusSize
         }
 

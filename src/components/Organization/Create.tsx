@@ -1,17 +1,18 @@
-import { Box, Flex, FlexProps, Heading, Text } from '@chakra-ui/react'
-import { Button } from '@vocdoni/chakra-components'
-import { FormProvider, useForm } from 'react-hook-form'
-import { Trans, useTranslation } from 'react-i18next'
+import { Button, Flex, FlexProps, Stack, Text } from '@chakra-ui/react'
 
 import { useMutation, UseMutationOptions } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { useState } from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
+import { Trans, useTranslation } from 'react-i18next'
+import { Link as ReactRouterLink, useNavigate } from 'react-router-dom'
 import { CreateOrgParams } from '~components/Account/AccountTypes'
 import LogoutBtn from '~components/Account/LogoutBtn'
 import { useAccountCreate } from '~components/Account/useAccountCreate'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
+import { Routes } from '~src/router/routes'
 import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from './Form'
 
 type FormData = PrivateOrgFormData & CreateOrgParams
@@ -33,9 +34,17 @@ const useOrganizationCreate = (options?: Omit<UseMutationOptions<void, Error, Cr
   })
 }
 
-export const OrganizationCreate = ({ children, ...props }: FlexProps) => {
+export const OrganizationCreate = ({
+  canSkip,
+  onSuccessRoute = Routes.dashboard.base,
+  ...props
+}: {
+  onSuccessRoute?: number | string
+  canSkip?: boolean
+} & FlexProps) => {
   const { t } = useTranslation()
 
+  const navigate = useNavigate()
   const [isPending, setIsPending] = useState(false)
 
   const methods = useForm<FormData>()
@@ -61,11 +70,16 @@ export const OrganizationCreate = ({ children, ...props }: FlexProps) => {
     })
       .then(() => signer.getAddress()) // Get the address of newly created signer
       .then(() =>
+        // Create the new account on the vochain
         createAccount({
           name: typeof values.name === 'object' ? values.name.default : values.name,
           description: typeof values.description === 'object' ? values.description.default : values.description,
         })
-      ) // Create the new account on the vochain
+      )
+      .then(() => {
+        // In case of success, redirect to the success route
+        navigate(onSuccessRoute as unknown)
+      })
       .finally(() => setIsPending(false))
   }
 
@@ -87,24 +101,25 @@ export const OrganizationCreate = ({ children, ...props }: FlexProps) => {
           handleSubmit(onSubmit)(e)
         }}
       >
-        {children}
-        <Box me='auto'>
-          <Heading fontSize='36px' mb={4}>
-            <Trans i18nKey='create_org.title'>Create Your Organization</Trans>
-          </Heading>
-        </Box>
         <PublicOrgForm />
         <PrivateOrgForm />
-        <Button form='process-create-form' type='submit' isLoading={isPending} mx='auto' mt={8} w='80%'>
-          {t('organization.create_org')}
-        </Button>
+        <Stack justify={'center'} direction={'row'} align={'center'} mx='auto' mt={8} w='80%'>
+          {canSkip && (
+            <Button as={ReactRouterLink} to={Routes.dashboard.base} variant='outline' border='none'>
+              {t('skip', { defaultValue: 'Skip' })}
+            </Button>
+          )}
+          <Button form='process-create-form' type='submit' isLoading={isPending}>
+            {t('organization.create_org')}
+          </Button>
+        </Stack>
         <FormSubmitMessage isError={isError} error={error} />
-        <Text color={'account_create_text_secondary'} fontSize='sm' textAlign='center' py={5} mt='auto'>
+        <Text color={'account_create_text_secondary'} fontSize='sm' textAlign='center' mt='auto'>
           <Trans i18nKey='create_org.already_profile'>
             If your organization already have a profile, ask the admin to invite you to your organization.
           </Trans>
         </Text>
-        <Text color={'account_create_text_secondary'} fontSize='sm'>
+        <Text color={'account_create_text_secondary'} fontSize='sm' textAlign='center'>
           <Trans i18nKey='create_org.logout'>If you want to login from another account, please logout</Trans>
         </Text>
         <LogoutBtn />

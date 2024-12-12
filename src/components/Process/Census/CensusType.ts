@@ -11,10 +11,10 @@ export type CensusType =
   | typeof CensusTypeGitcoin
 export const CensusTypes = [
   CensusTypeSpreadsheet as CensusType,
-  CensusTypeToken as CensusType,
-  CensusTypeWeb3 as CensusType,
+  // CensusTypeToken as CensusType,
+  // CensusTypeWeb3 as CensusType,
   // CensusTypeCsp as CensusType,
-  CensusTypeGitcoin as CensusType,
+  // CensusTypeGitcoin as CensusType,
 ]
 
 export type CensusMeta = {

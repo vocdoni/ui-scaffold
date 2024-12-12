@@ -7,7 +7,7 @@ import { Accordion } from './components/accordion'
 import { Badge } from './components/badge'
 import { Button } from './components/button'
 import { Card } from './components/card'
-import { Checkbox } from './components/checkbox'
+import { Checkbox, DetailedCheckbox } from './components/checkbox'
 import { Form } from './components/Form'
 import { ElectionTitle, Heading } from './components/heading'
 import { Input } from './components/input'
@@ -23,6 +23,9 @@ import { Text } from './components/text'
 import { Textarea } from './components/textarea'
 import { editor } from './editor'
 import { spacing } from './space'
+import { Tag } from './components/tag'
+import { Menu } from './components/menu'
+import { Alert } from './components/alert'
 import { Table } from './components/table'
 
 export const theme = extendTheme(vtheme, {
@@ -80,10 +83,12 @@ export const theme = extendTheme(vtheme, {
   },
   components: {
     Accordion,
+    Alert,
     Badge,
     Button,
     Card,
     Checkbox,
+    DetailedCheckbox,
     ElectionTitle,
     ElectionQuestions,
     ElectionResults,
@@ -91,18 +96,24 @@ export const theme = extendTheme(vtheme, {
     Heading,
     Input,
     Link,
+    Menu,
     Modal,
     Pagination,
     Radio,
     Stepper,
     Table,
     Tabs,
+    Tag,
     Text,
     Textarea,
   },
   breakpoints,
   spacing,
   colors,
+  sizes: {
+    'modal-stretch': 'calc(100% + var(--chakra-space-5)*2 + var(--chakra-space-6)*2)',
+    'modal-stretch-lg': 'calc(100% + var(--chakra-space-10)*2 + var(--chakra-space-6)*2)',
+  },
 })
 
 export const rainbowStyles = (colormode: ColorMode) => {

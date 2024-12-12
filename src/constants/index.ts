@@ -12,8 +12,29 @@ export const InnerContentsMaxWidth = {
   xl: '800px',
 }
 
-const evocdoni = import.meta.env.VOCDONI_ENVIRONMENT
+export enum SubscriptionPermission {
+  Name = 'name',
+  StripeID = 'stripeID',
+  Default = 'default',
+  Memberships = 'organization.memberships',
+  SubOrgs = 'organization.subOrgs',
+  CensusSize = 'organization.censusSize',
+  ApprovalVoting = 'votingTypes.approval',
+  RankedVoting = 'votingTypes.ranked',
+  WeightedVoting = 'votingTypes.weighted',
+  Personalization = 'features.personalization',
+  EmailReminder = 'features.emailReminder',
+  SmsNotification = 'features.smsNotification',
+}
 
+export enum PlanId {
+  Essential = 0,
+  Premium = 1,
+  Free = 2,
+  Custom = 3,
+}
+
+const evocdoni = import.meta.env.VOCDONI_ENVIRONMENT
 let explorer = 'https://explorer.vote'
 if (['stg', 'dev'].includes(evocdoni)) {
   explorer = `https://${evocdoni}.explorer.vote`

@@ -1,10 +1,24 @@
-import { Navigate, Outlet } from 'react-router-dom'
-import { useAuth } from '~components/Auth/useAuth'
+import AccountProtectedRoute from '~src/router/AccountProtectedRoute'
+import OrganizationProtectedRoute from '~src/router/OrganizationProtectedRoute'
+import { RouteObject } from 'react-router-dom'
+import { SuspenseLoader } from '~src/router/SuspenseLoader'
 
-const ProtectedRoutes = () => {
-  const { signerAddress } = useAuth()
-
-  return signerAddress ? <Outlet /> : <Navigate to='/' replace={true} />
-}
+const ProtectedRoutes = (children: RouteObject[]) => ({
+  element: (
+    <SuspenseLoader>
+      <AccountProtectedRoute />
+    </SuspenseLoader>
+  ),
+  children: [
+    {
+      element: (
+        <SuspenseLoader>
+          <OrganizationProtectedRoute />
+        </SuspenseLoader>
+      ),
+      children,
+    },
+  ],
+})
 
 export default ProtectedRoutes

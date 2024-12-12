@@ -8,9 +8,12 @@ export const colorsBase = {
   },
   gradient: 'linear-gradient(to right, #546E39, #2E441A)',
   gray: {
+    light2: '#ffffff3d',
     light: '#CBD5E0',
     normal: '#E9EAEB',
   },
+  green: '#00FF00',
+  orange: '#FFA500',
   primary: '#546E39',
   primary_dark: 'rgba(84, 110, 57, 0.2)',
   white: {
@@ -24,6 +27,19 @@ export const colorsBase = {
 
 export const colors = {
   account_create_text_secondary: colorsBase.gray.normal,
+  alert: {
+    bg: {
+      light: colorsBase.white.pure,
+      dark: colorsBase.blue.dark,
+    },
+    border: colorsBase.gray.light,
+    error: colorsBase.green,
+    info: colorsBase.gray.normal,
+    success: colorsBase.green,
+    warning: colorsBase.orange,
+    box_shadow_light: colorsBase.white.pure,
+    box_shadow_dark: colorsBase.blue.dark,
+  },
   auth: {
     textColorSecondary: colorsBase.gray.normal,
   },
@@ -154,12 +170,12 @@ export const colors = {
     },
     border: {
       dark: colorsBase.white,
-      light: colorsBase.gray.light,
+      light: colorsBase.gray.light2,
     },
     disabled: colorsBase.gray.normal,
     hover: {
       dark: colorsBase.white,
-      light: colorsBase.gray.light,
+      light: colorsBase.gray.light2,
     },
     outline: colorsBase.blue.normal,
     placeholder: colorsBase.gray.normal,

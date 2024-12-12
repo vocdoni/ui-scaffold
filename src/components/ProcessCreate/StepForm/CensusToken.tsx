@@ -27,9 +27,10 @@ export const StepFormCensusToken = () => {
     },
   })
 
-  const onSubmit: SubmitHandler<CensusTokenValues> = (data) => {
-    setForm({ ...form, ...data })
-    next()
+  const onSubmit: SubmitHandler<CensusTokenValues> = async (data) => {
+    if (await setForm({ ...form, ...data })) {
+      next()
+    }
   }
   return (
     <>

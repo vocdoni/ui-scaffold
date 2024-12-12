@@ -5,8 +5,10 @@
   "active": "Activo",
   "all": "Todos",
   "already_member": "¿Ya eres miembro?",
-  "anonymous": "anonymous",
-  "approval": "approval",
+  "anonymous": {
+    "description": "Voters will remain anonymous",
+    "title": "Anonymous"
+  },
   "aside": {
     "has_already_voted": "Tu voto ha sido registrado correctamente",
     "is_not_in_census": "No estás en el censo",
@@ -175,6 +177,8 @@
       "success_title": "Los tokens han sido reclamados correctamente"
     }
   },
+  "confirm_password": "Confirm Password",
+  "confirm_password_placeholder": "Confirm your new password",
   "contact_us": "Contact us",
   "control": "Control:",
   "copy": {
@@ -230,7 +234,6 @@
     "private_org": "Private Organization Details",
     "private_org_description": "Help us tailor your experience with information about your org. We won't share this info",
     "public_info": "Public Organization Information",
-    "subtitle": "Cut cost, Save Time: Secure, Private, and GDPR Compliant",
     "support_during_trial_period": "Support during the trial period",
     "title": "Create Your Organization",
     "unlimited_voting_processes": "Unlimited creation of voting processes",
@@ -242,7 +245,6 @@
       "selected_users": "Usuarios seleccionados:"
     }
   },
-  "cumulative": "cumulative",
   "customization": "Customization",
   "delete_my_account": "Delete my account",
   "description": "Description",
@@ -254,7 +256,6 @@
   },
   "email": "Correo electrónico",
   "email_placeholder": "your@email.com",
-  "emailReminder": "emailReminder",
   "error": {
     "error_doing_things": "Error al realizar la operación",
     "go_back": "Volver atrás",
@@ -264,7 +265,8 @@
     "loading_page": "Error al cargar la página",
     "loading_roles": "Cargando roles",
     "not_found": "Lo sentimos, la página que buscabas no fue encontrada.",
-    "return_to_home": "Ves al inicio"
+    "return_to_home": "Ves al inicio",
+    "title": "Error"
   },
   "error_text": "Lo sentimos, no se encontró la página que buscabas.",
   "faucet": {
@@ -287,7 +289,17 @@
     "title": "Faucet de Tokens Vocdoni",
     "tokens_you_own": "Tienes {{ balance }} tokens."
   },
-  "features": "Features",
+  "features": {
+    "approval": "Votación por aprobación",
+    "email_reminder": "Recordatorios por correo electrónico",
+    "memberships": "Hasta {{ value }} membresías",
+    "personalization": "Personalización",
+    "ranked": "Votación por rango",
+    "sms_notification": "Notificaciones por SMS",
+    "sub_orgs": "Hasta {{ value }} suborganizaciones",
+    "title": "Características",
+    "weighted": "Votación ponderada"
+  },
   "finished": "Finalizado",
   "footer": {
     "company": "Empresa",
@@ -705,11 +717,20 @@
     "title": "<p1>¿Estás</p1><p2>listo para una nueva Era en la gobernanza Web3?</p2>"
   },
   "invite": {
+    "account_not_verified": "Your account is not verified. Please verify your account to continue.",
+    "create_account_subtitle": "You need an account first, in order to accept your invite",
+    "create_account_title": "Create your account",
     "error": "Error",
+    "go_to_verify": "Verify Account",
+    "invalid_link": "Invalid invite link received",
+    "processing": "Processing your invitation...",
     "select_option": "Selecciona una opción",
     "subtitle": "Trabajar junto a otros es la clave para el éxito.",
     "success": "¡Invitación enviada!",
+    "success_description": "You can now sign in",
+    "success_title": "Invitation accepted",
     "title": "Invita gente a tu equipo",
+    "unexpected_error": "",
     "user_invited": "Se ha mandado a {{ email }}"
   },
   "invite_people": "Invitar Gente",
@@ -719,7 +740,6 @@
     "github": "Enlace al Github de Vocdoni",
     "twitter": "Enlace al Twitter de Vocdoni"
   },
-  "liveStreaming": "liveStreaming",
   "loading": "Cargando...",
   "login": {
     "facebook": "Iniciar sesión usando Facebook",
@@ -755,14 +775,18 @@
   "meta": {
     "helper": "Provide a clear title and description to help voters understand the vote"
   },
-  "multiple": "multiple",
-  "name": "Name",
+  "more_than_memberships_one": "más de {{count}} membresía",
+  "more_than_memberships_many": "",
+  "more_than_memberships_other": "más de {{count}} membresías",
+  "name": "Nombre",
   "new_organization": {
     "create_organization_btn": "Crear Organización",
     "description1": "Antes de comenzar a crear su proceso de votación, <span>debe crear una organización</span>, es gratuito. Con una organización, podrá crear una amplia gama de elecciones y dar voz a los miembros de su comunidad.",
     "description2": "Como <span>paquete de bienvenida</span>, recibirá {{ faucetAmount }} tokens gratis para comenzar a utilizar nuestra plataforma.",
     "title": "Nueva Organización"
   },
+  "new_password": "New Password",
+  "new_password_placeholder": "Enter your new password",
   "new_voting": "Nueva votación",
   "not_registred_yet": "¿Aún no estás registrado?",
   "open_in_explorer": "Abrir en explorador",
@@ -791,55 +815,94 @@
     },
     "votings_list": "Lista de procesos de votación"
   },
-  "overwrite": "overwrite",
+  "overwrite": {
+    "description": "Voters will be able to overwrite their vote once",
+    "title": "Vote overwrite"
+  },
   "password": "Contraseña",
   "password_placeholder": "Min 8 characters",
-  "personalization": "personalization",
+  "password_reset": {
+    "subtitle": "If your email corresponds to an existing account, you'll receive an email with a code to reset your password.",
+    "title": "Password reset"
+  },
+  "passwords_do_not_match": "",
+  "plan_upgrade": {
+    "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
+    "feature_available_in": "Feature available in:",
+    "feature_unavailable": "Oops ... your <2>free plan</2> doesn't support {{feature}}.",
+    "satisfaction_rate": "97% satisfaction rate, for only 9€/month."
+  },
   "preview": "Preview",
+  "pricing": {
+    "advanced_analytitcs": "Informes y análisis avanzados",
+    "all_features": "All features & voting types",
+    "basic_analytics": "Informes y análisis básicos",
+    "core_voting": "Funciones básicas de votación",
+    "custom_subtitle": "Large organizations enterprises, and institutions requiring extensive customization and support.",
+    "custom_title": "Custom Plan",
+    "dedicated_manager": "Dedicated account manager",
+    "essential_subtitle": "Organizaciones pequeñas o medianas o grupos comunitarios con necesidades básicas de votación.",
+    "essential_title": "Esencial",
+    "free_subtitle": "Organizaciones pequeñas o grupos comunitarios con necesidades básicas de votación.",
+    "free_title": "Gratis",
+    "gpdr_compilance": "Cumplimiento del GDPR",
+    "help": "¿Necesitas ayuda?",
+    "members_size": "{{ from }}-{{ to }} miembros",
+    "membership_size": "Selecciona el tamaño de tu organización:",
+    "premium_subtitle": "Un volumen más grande que requiere funciones más avanzadas.",
+    "premium_title": "Premium",
+    "priority_support": "Soporte prioritario por tickets",
+    "ticket_support": "Soporte por tickets",
+    "title": "Nuestros planes",
+    "unlimited_yearly_processes": "Procesos anuales ilimitados",
+    "up_to_admins": "Hasta {{ admin }} admin. y {{ org }} organizaciones",
+    "upgrade_title": "Debes actualizar tu plan para usar esta funcionalidad",
+    "white_label": "White label solution",
+    "yearly_processes_one": "{{ count }} proceso anual",
+    "yearly_processes_many": "",
+    "yearly_processes_other": "{{ count }} procesos anuales",
+    "your_plan": "Actualmente estás suscrito al plan 'Your plan'. Si actualizas, solo te cobraremos la diferencia anual. En el próximo período de facturación, que comienza el 'dd/mm/aa', pagarás por el nuevo plan seleccionado."
+  },
   "pricing_card": {
     "from": "Desde {{price}}/año",
     "most_popular_plan": "Most popular plan",
-    "view_features": "View all features"
-  },
-  "pricing_modal": {
-    "custom_feat": {
-      "account_manager": "Dedicated account manager",
-      "advanced_security": "Advanced security features",
-      "all_votings": "All faetures & voting types",
-      "full_tech_support": "Full technical support (ticket, chat, email)",
-      "unlimited_admins": "Unlimited Admins & suborgs",
-      "unlimited_processes": "Unlimited yearly voting processes",
-      "white_label_solution": "White-label solution"
-    },
-    "custom_subtitle": "Large organizations enterprises, and institutions requiring extensive customization and support.",
-    "custom_title": "Custom Plan",
-    "essential_feat": {
-      "core_voting": "Core voting features",
-      "gpdr_compilance": "GDPR compliance",
-      "report_analytitcs": "Basic reporting and analytics",
-      "ticket_support": "Ticket support",
-      "up_to_admins": "Up to 3 Admins and 1 org",
-      "yearly_processes": "5 yearly voting processes"
-    },
-    "essential_subtitle": "Small or medium-sized orgs or community groups with basic voting needs.",
-    "essential_title": "Essential",
-    "help": "Need some help?",
-    "more_voters": "If you need more voters, you can select it here:",
-    "premium_feat": {
-      "all_essential": "All essential plan features",
-      "custom_subdomain": "Custom subdomain & branding",
-      "gpdr_compilance": "GDPR compliance",
-      "report_analytitcs": "Advanced reporting & analytics",
-      "ticket_support": "Ticket and chat support",
-      "up_to_admins": "Up to 5 Admins",
-      "yearly_processes": "10 yearly voting processes"
-    },
-    "premium_subtitle": "Larger amount that require more advanced features.",
-    "premium_title": "Premium",
-    "title": "You need to upgrade to use this feature",
-    "your_plan": "Currently you are subscribed to the 'Your plan' subscription. If you upgrade, we will only charge the yearly difference. In the next billing period, starting on 'dd/mm/yy' you will pay for the new select plan."
+    "view_features": "Ver todas las características"
   },
   "privacy_policy": "Privacy Policy",
+  "privacyPolicy": {
+    "description": "Este documento describe las prácticas de privacidad de la Asociación Vocdoni (\"Vocdoni\") con respecto al uso de sus sitios web y servicios.",
+    "section1": {
+      "item1": "Vocdoni puede recopilar datos personales de los usuarios, como nombre, nombre de la organización, tamaño, tipo y direcciones de correo electrónico proporcionadas como correo de contacto de la organización, aunque no se recomienda usar direcciones de correo personales para este propósito.",
+      "item2": "Puede requerirse el consentimiento del usuario para el uso de ciertos datos personales, el cual puede ser retirado en cualquier momento utilizando los datos de contacto de Vocdoni proporcionados a continuación.",
+      "item3": "Información personal adicional puede ser recopilada y procesada según sea necesario para prestar servicios, cumplir con obligaciones contractuales o cumplir con requisitos legales."
+    },
+    "section1Title": "1. Recopilación de Información",
+    "section2": {
+      "description": "Vocdoni procesa la información personal proporcionada directamente por los usuarios a través de diversos medios, incluyendo el registro en cualquier sitio web de Vocdoni, la adquisición de servicios o las comunicaciones."
+    },
+    "section2Title": "2. Método de Recopilación",
+    "section3": {
+      "description": "La información recopilada se utiliza para proporcionar y gestionar servicios, realizar actividades de marketing y negocios, y apoyar los esfuerzos de atención al cliente y marketing."
+    },
+    "section3Title": "3. Uso de la Información",
+    "section4": {
+      "description": "Vocdoni puede compartir información personal con otras empresas dentro de la Asociación Vocdoni o con proveedores de servicios externos que colaboren con nuestros servicios."
+    },
+    "section4Title": "4. Compartición de Información",
+    "section5": {
+      "description": "Vocdoni se compromete a proteger la información personal recopilada con medidas apropiadas."
+    },
+    "section5Title": "5. Seguridad de la Información",
+    "section6": {
+      "description": "Los usuarios tienen derecho a acceder, corregir, eliminar y restringir el procesamiento de sus datos, entre otros derechos descritos en este documento."
+    },
+    "section6Title": "6. Derechos de los Usuarios",
+    "section7": {
+      "description": "Para más detalles sobre nuestras prácticas de datos o para ejercer sus derechos, por favor contáctenos en privacy@vocdoni.org."
+    },
+    "section7Title": "7. Contactar con Vocdoni",
+    "title": "Política de Privacidad"
+  },
   "process": {
     "census": "Censo",
     "census_strategies": {
@@ -1006,14 +1069,17 @@
     },
     "recovery": "Recuperar cuenta"
   },
-  "ranked": "ranked",
   "remove": "Remove",
+  "reset_password_button": "Reset Password",
   "rights": "© 2024 Asociación Vocdoni. Todos los derechos reservados.",
   "role": {
     "read_permission": "Read-only access",
     "write_permission": "Can create and edit content"
   },
-  "secretUntilTheEnd": "secretUntilTheEnd",
+  "secret_until_the_end": {
+    "description": "Vote contents will be encrypted till the end of the voting",
+    "title": "Secret until the end"
+  },
   "settings": "Configuración",
   "share": {
     "copy": "Copiar",
@@ -1033,23 +1099,104 @@
   "signup_last_name": "Apellido",
   "signup_subtitle": "¡Introduce tu correo electrónico y contraseña para registrarte!",
   "signup_title": "Regístrate",
-  "single": "single",
-  "smsNotification": "smsNotification",
-  "submit": "Submit",
-  "subscribe": "Subscribe",
+  "skip": "Omitir",
+  "submit": "Envía",
   "subscription": "Suscripción",
   "support": "Soporte",
   "surname": {
-    "label": "Surname",
-    "required": "Surname is required"
+    "label": "Apellido",
+    "required": "El apellido es obligatorio"
   },
-  "team": "Equipo",
+  "team": {
+    "expiration": "Expiración",
+    "member_name": "Nombre",
+    "member_role": "Rol",
+    "pending_members": "Invitaciones pendientes",
+    "team_members": "Miembros del equipo",
+    "title": "Equipo"
+  },
   "teams": "Teams",
+  "terms": {
+    "section1": {
+      "description1": "La Asociación Vocdoni, con sede en Suiza, opera las plataformas app.vocdoni.io y onvote.app.",
+      "description2": "Estas plataformas priorizan la privacidad del usuario y la seguridad de los datos, asegurando el cumplimiento del Reglamento General de Protección de Datos (GDPR) de la Unión Europea."
+    },
+    "section1Title": "1. Información General",
+    "section2": {
+      "description": "Damos prioridad a la seguridad de los datos de los usuarios. Aquí hay un resumen:",
+      "item1": "Recopilamos y procesamos datos personales necesarios para la prestación de servicios.",
+      "item2": "Todos los datos personales se almacenan en forma encriptada, asegurando que no haya datos personales en texto plano.",
+      "item3": "Los metadatos proporcionados por los organizadores de votaciones pueden ser accesibles públicamente en IPFS.",
+      "item4": "Se pueden recopilar datos adicionales para cumplir con obligaciones legales o prestar servicios especializados."
+    },
+    "section2Title": "2. Recopilación y Almacenamiento de Datos",
+    "section3": {
+      "item1": "Los datos personales se procesan únicamente para proporcionar y mejorar nuestros servicios.",
+      "item2": "Solicitamos el consentimiento explícito del usuario para actividades de procesamiento de datos.",
+      "item3": "No utilizamos los datos recopilados para fines de marketing sin el consentimiento explícito del usuario."
+    },
+    "section3Title": "3. Uso de Datos y Cumplimiento",
+    "section4": {
+      "item1": "Los datos personales no se comparten con terceros, excepto cuando lo exija la ley.",
+      "item2": "Los procesadores de datos externos están sujetos a acuerdos de confidencialidad.",
+      "item3": "Cualquier transferencia internacional de datos incluye medidas de protección adecuadas."
+    },
+    "section4Title": "4. Compartición de Datos",
+    "section5": {
+      "description1": "La Asociación Vocdoni emplea fuertes medidas de seguridad para proteger los datos personales.",
+      "description2": "En caso de una violación de datos, notificaremos rápidamente a las personas afectadas."
+    },
+    "section5Title": "5. Medidas de Seguridad",
+    "section6": {
+      "description": "Para ejercer estos derechos, contáctenos utilizando los detalles a continuación.",
+      "item1": "Acceso: Obtener información sobre el procesamiento de datos personales.",
+      "item2": "Corrección: Solicitar la corrección de datos personales inexactos.",
+      "item3": "Eliminación: Solicitar la eliminación de datos personales en ciertas circunstancias.",
+      "item4": "Restricción: Solicitar que restrinjamos el procesamiento de datos personales.",
+      "item5": "Portabilidad: Recibir datos personales en un formato estructurado.",
+      "item6": "Oposición: Oponerse al procesamiento basado en intereses legítimos.",
+      "item7": "Queja: Presentar una queja ante la autoridad de protección de datos correspondiente."
+    },
+    "section6Title": "6. Derechos de los Usuarios",
+    "section7": {
+      "description1": "La Asociación Vocdoni no es responsable de la información proporcionada por los usuarios.",
+      "description2": "No rastreamos datos de los usuarios más allá de lo esencial."
+    },
+    "section7Title": "7. Exención de Responsabilidad",
+    "section8": {
+      "item1": "Daños Indirectos: La Asociación Vocdoni no será responsable de daños indirectos.",
+      "item2": "Fuerza Mayor: La Asociación Vocdoni no es responsable de retrasos causados por eventos fuera de nuestro control."
+    },
+    "section8Title": "8. Limitación de Responsabilidad",
+    "section9": {
+      "description1": "Para cualquier consulta sobre estos Términos y Condiciones, contáctenos en info (at) vocdoni.org.",
+      "description2": "Al continuar utilizando nuestros servicios, confirma su aceptación de estos términos."
+    },
+    "section9Title": "9. Información de Contacto",
+    "title": "Términos y Condiciones de la Asociación Vocdoni"
+  },
   "terms_and_conditions": "Terms and Conditions",
   "terms_of_use": "Condiciones de uso",
+  "tier_upgrade": {
+    "current_plan": "Tu plan <2>{{ plan, lowercase }}</2> está limitado a seleccionar hasta <6>{{ voters }} votantes</6>.",
+    "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
+    "plan": {
+      "basic": "Basic",
+      "custom": "Custom",
+      "free": "Free",
+      "limit": {
+        "basic": "Up to 1500",
+        "custom": "Unlimited",
+        "free": "50 voters",
+        "pro": "Up to 3000"
+      },
+      "pro": "Pro"
+    },
+    "satisfaction_rate": "97% satisfaction rate, starting at 9€/month."
+  },
   "total_votes_submitted": "Total Votes Submitted",
-  "trust_on_us": "Trust on us",
   "update": "Update",
+  "upgrade": "Amplíalo",
   "upload": "Upload",
   "uploader": {
     "click_or_drag_and_drop": "<p1>Sube o arrastra y suelta aqui la lista de votantes</p1><p2>(Formap permitidos: CSV, XLSX y ODS)</p2>",
@@ -1060,6 +1207,9 @@
     "read_more": "Leer más"
   },
   "user_management": "Gestión de usuarios",
+  "verification_code": "Verification Code",
+  "verification_code_placeholder": "Enter the verification code",
+  "verification_code_resent": "Verification code resent!",
   "verify": {
     "account_created_succesfully": "Account created successfully!",
     "email_sent": "Email sent successfully",
@@ -1074,14 +1224,15 @@
     "verifying_subtitle": "Await until we verify your email address. You will be redirect on success.",
     "verifying_title": "Verifying {{ email }}"
   },
+  "view_plans_and_pricing": "Ver Planes y Precios",
   "view_pricing": "View Pricing",
+  "view_pricing_plan": "View Pricing Plan",
+  "view_pricing_plans": "View Pricing Plans",
   "vote_details": "Vote details",
   "voters": "voters",
   "voting_link": "Voting Link",
   "voting_processes": "Procesos de votación",
   "voting_questions": "Voting Questions",
   "voting_results": "Voting Results",
-  "website": "Website",
-  "weighted": "weighted",
-  "whiteLabel": "whiteLabel"
+  "website": "Website"
 }
