@@ -5,6 +5,7 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
 
 const baseStyle = definePartsStyle((props) => ({
   table: {
+    overflow: 'hidden',
     bgColor: 'table.bg.light',
 
     _dark: {
@@ -13,14 +14,42 @@ const baseStyle = definePartsStyle((props) => ({
   },
   thead: {
     bgColor: 'table.thead.bg_light',
+    borderBottom: '1.5px solid',
+    borderColor: 'table.border_color.light',
+
+    th: {
+      textTransform: 'capitalize',
+    },
 
     _dark: {
       bgColor: 'table.thead.bg_dark',
+      borderColor: 'table.border_color.dark',
+    },
+  },
+  td: {
+    fontWeight: 'normal',
+  },
+  tbody: {
+    '& tr:last-of-type': {
+      borderColor: 'transparent',
+    },
+  },
+  tr: {
+    borderBottom: '1.5px solid',
+    borderColor: 'table.border_color.light',
+
+    _dark: {
+      borderColor: 'table.border_color.dark',
     },
   },
 }))
 
 const md = definePartsStyle({
+  table: {
+    borderRadius: 'lg',
+    border: 'none',
+  },
+
   tfoot: {
     td: {
       paddingTop: 3,
@@ -33,14 +62,7 @@ const md = definePartsStyle({
   td: {
     paddingY: 4,
     whiteSpace: 'nowrap',
-  },
-  tr: {
-    borderBottom: '2px solid',
-    borderColor: 'table.border_color.light',
-
-    _dark: {
-      borderColor: 'table.border_color.dark',
-    },
+    borderColor: 'red',
   },
 })
 

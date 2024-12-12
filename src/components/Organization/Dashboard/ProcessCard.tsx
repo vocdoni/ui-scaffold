@@ -22,7 +22,7 @@ const ProcessCard = () => {
         {format(election.endDate, t('organization.date_format'))}
       </Td>
       <Td>
-        <QuestionsTypeBadge />
+        <QuestionsTypeBadge sx={{ '& label': { fontWeight: 'normal' } }} />
       </Td>
       <Td>
         <ElectionStatusBadge />

@@ -8,6 +8,7 @@ export const colorsBase = {
   },
   gradient: 'linear-gradient(to right, #546E39, #2E441A)',
   gray: {
+    light3: '#fafafa',
     light2: '#ffffff3d',
     light: '#CBD5E0',
     normal: '#E9EAEB',
@@ -315,7 +316,7 @@ export const colors = {
       dark: colorsBase.blue.grayish,
     },
     thead: {
-      bg_light: colorsBase.gray.normal,
+      bg_light: colorsBase.gray.light3,
       bg_dark: colorsBase.blue.grayish,
     },
     border_color: {
