@@ -18,7 +18,7 @@ const baseStyle = definePartsStyle((props) => ({
     borderColor: 'table.border_color.light',
 
     th: {
-      textTransform: 'capitalize',
+      textTransform: 'initial',
     },
 
     _dark: {
