@@ -31,21 +31,34 @@ export type Plan = {
   startingPrice: number
   default: boolean
   organization: {
-    memberships: number
+    members: number
     subOrgs: number
     censusSize: number
+    maxProcesses: number
+    maxCensus: number
+    maxDuration: string
+    customURL: boolean
+    drafts: number
   }
   votingTypes: {
+    single: boolean
+    multiple: boolean
     approval: boolean
+    cumulative: boolean
     ranked: boolean
     weighted: boolean
   }
   features: {
+    anonymous: boolean
+    overwrite: boolean
+    liveResults: boolean
     personalization: boolean
     emailReminder: boolean
     smsNotification: boolean
+    whiteLabel: boolean
+    liveStreaming: boolean
   }
-  censusSizeTiers:
+  censusSizeTiers?:
     | {
         amount: number
         upTo: number
