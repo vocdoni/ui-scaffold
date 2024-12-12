@@ -47,8 +47,7 @@ const DashboardButton = (props?: ButtonProps) => {
     <Button
       as={ReactRouterLink}
       to={isAuthenticated ? generatePath(Routes.dashboard.processes) : Routes.auth.signIn}
-      width='175px'
-      height='50px'
+      size={'lg'}
       {...props}
     >
       {isAuthenticated ? t('menu.dashboard', { defaultValue: 'Dashboard' }) : t('menu.login')}

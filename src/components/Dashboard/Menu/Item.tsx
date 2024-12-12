@@ -25,7 +25,7 @@ export const DashboardMenuItem = ({
     onClick={hasChildren ? onToggle : undefined}
     isActive={isActive} // Set active state
     justifyContent='start'
-    variant='menu'
+    variant='tertiary'
     w='full'
     leftIcon={icon ? <Icon as={icon} /> : undefined}
     rightIcon={hasChildren ? isOpen ? <ChevronUpIcon /> : <ChevronDownIcon /> : undefined}

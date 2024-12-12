@@ -42,8 +42,7 @@ const AccountMenu: React.FC<BoxProps> = (props) => {
               size='sm'
             />
           }
-          size='sm'
-          variant='outline'
+          variant='link'
           aria-label='User menu'
         />
         <MenuList>
