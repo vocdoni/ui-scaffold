@@ -10,6 +10,7 @@ import {
   CensusTypeWeb3,
 } from '~components/Process/Census/CensusType'
 import type { RecursivePartial } from '~constants'
+import { SubscriptionPermission } from '~constants'
 import { CensusSpreadsheetManager } from '../Census/Spreadsheet/CensusSpreadsheetManager'
 import { StepContents } from './Contents'
 import { StepsContext, StepsContextState, StepsFormValues } from './use-steps'
@@ -86,7 +87,7 @@ export const StepsForm = ({ steps, activeStep, next, prev, setActiveStep }: Step
   }, [])
 
   const setFormInStateAndLocalstorage = async (data: StepsFormValues) => {
-    const maxAllowedCensusSize = permission(`organization.censusSize`)
+    const maxAllowedCensusSize = permission(SubscriptionPermission.MaxCensus)
     let length: number = maxAllowedCensusSize
     switch (data.censusType) {
       case CensusTypeSpreadsheet: {

@@ -187,7 +187,7 @@ export const InviteToTeamModal = (props: ButtonProps) => {
   const { data: members, isLoading } = useTeamMembers()
   const { openModal } = usePricingModal()
 
-  const memberships = permission(SubscriptionPermission.Memberships)
+  const memberships = permission(SubscriptionPermission.Members)
   const canInvite = memberships > (members?.length || 0)
 
   return (
@@ -198,7 +198,7 @@ export const InviteToTeamModal = (props: ButtonProps) => {
             onOpen()
           } else {
             openModal('planUpgrade', {
-              feature: 'organization.memberships',
+              feature: 'organization.members',
               text: t('more_than_memberships', {
                 defaultValue: 'more than {count} memberships',
                 count: memberships,
