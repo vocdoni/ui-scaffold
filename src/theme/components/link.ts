@@ -3,7 +3,8 @@ import { defineStyleConfig } from '@chakra-ui/react'
 
 export const Link = defineStyleConfig({
   baseStyle: {
-    textDecoration: 'none',
+    textDecoration: 'underline',
+    color: 'link',
     boxShadow: 'none',
     _focus: {
       boxShadow: 'none',

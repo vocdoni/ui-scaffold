@@ -180,6 +180,7 @@ export const colors = {
     outline: colorsBase.blue.normal,
     placeholder: colorsBase.gray.normal,
   },
+  link: colorsBase.gray.normal,
   org_text_secondary: colorsBase.gray.normal,
 
   process: {
