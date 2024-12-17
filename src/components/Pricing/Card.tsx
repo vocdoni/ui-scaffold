@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/react'
 import { dotobject } from '@vocdoni/sdk'
 import { RefObject } from 'react'
+import { useFormContext } from 'react-hook-form'
 import { Trans } from 'react-i18next'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { renderBooleanIcon } from '../../utils/icons'
@@ -47,6 +48,7 @@ const PricingCard = ({
   const location = useLocation()
   const navigate = useNavigate()
   const isPlansPage = location.pathname === '/plans'
+  const { setValue } = useFormContext()
 
   // Dynamically map the features from the plan
   const features = Object.entries(PlanFeaturesTranslationKeys)
@@ -77,7 +79,11 @@ const PricingCard = ({
         <Text>{subtitle}</Text>
       </CardHeader>
       <CardBody>
-        <Button isDisabled={isDisabled || false}>
+        <Button
+          isDisabled={isDisabled || false}
+          onClick={() => setValue('selectedPlanId', plan.stripeID)}
+          type='submit'
+        >
           <Trans i18nKey='view_pricing_plan'>View Pricing Plan</Trans>
         </Button>
         <Text>

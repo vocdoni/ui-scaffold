@@ -14,7 +14,8 @@ import {
 } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { Select } from 'chakra-react-select'
-import { ReactNode, useMemo, useRef, useState } from 'react'
+import { ReactNode, useMemo, useRef } from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink, useLocation } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
@@ -64,6 +65,11 @@ export type Plan = {
         upTo: number
       }[]
     | null
+}
+
+type FormValues = {
+  censusSize: number | null
+  selectedPlanId: number | null
 }
 
 export const usePlans = () => {
@@ -158,7 +164,22 @@ export const SubscriptionPlans = () => {
   const isPlansPage = location.pathname === '/plans'
   const featuresRef = useRef<HTMLDivElement>(null)
 
-  const [selectedCensusSize, setSelectedCensusSize] = useState<number | null>(null)
+  const methods = useForm<FormValues>({
+    defaultValues: {
+      censusSize: null,
+      selectedPlanId: null,
+    },
+  })
+
+  const { watch, handleSubmit } = methods
+  const selectedCensusSize = watch('censusSize')
+
+  const onSubmit = (data: FormValues) => {
+    console.log({
+      censusSize: data.censusSize,
+      planId: data.selectedPlanId,
+    })
+  }
 
   const censusSizeOptions = useMemo(() => {
     if (!plans) return []
@@ -201,24 +222,31 @@ export const SubscriptionPlans = () => {
         (selectedCensusSize && !plan.censusSizeTiers?.some((tier) => tier.upTo === selectedCensusSize)) ||
         (subscription && plan.id === subscription?.plan.id && !selectedCensusSize),
     }))
-  }, [plans, selectedCensusSize, t])
+  }, [plans, selectedCensusSize, subscription, translations])
 
   return (
-    <Flex flexDir='column' gap={4}>
-      <Flex flexDir='column'>
-        <Text>
-          <Trans i18nKey='pricing.membership_size'>Select your membership size:</Trans>
-        </Text>
-        <Select options={censusSizeOptions} onChange={(selected) => setSelectedCensusSize(selected?.value || null)} />
-      </Flex>
-      {isLoading && <Progress colorScheme='brand' size='xs' isIndeterminate />}
-      <Flex gap={5} justifyContent='space-evenly' alignItems='start' flexWrap='wrap'>
-        {cards.map((card, idx) => (
-          <PricingCard key={idx} plan={plans[idx]} {...card} featuresRef={featuresRef} />
-        ))}
-      </Flex>
-      {isPlansPage && plans && <ComparisonTable ref={featuresRef} plans={plans} />}
-    </Flex>
+    <FormProvider {...methods}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Flex flexDir='column' gap={4}>
+          <Flex flexDir='column'>
+            <Text>
+              <Trans i18nKey='pricing.membership_size'>Select your membership size:</Trans>
+            </Text>
+            <Select
+              options={censusSizeOptions}
+              onChange={(selected) => methods.setValue('censusSize', selected?.value || null)}
+            />
+          </Flex>
+          {isLoading && <Progress colorScheme='brand' size='xs' isIndeterminate />}
+          <Flex gap={5} justifyContent='space-evenly' alignItems='start' flexWrap='wrap'>
+            {cards.map((card, idx) => (
+              <PricingCard key={idx} plan={plans[idx]} {...card} featuresRef={featuresRef} />
+            ))}
+          </Flex>
+          {isPlansPage && plans && <ComparisonTable ref={featuresRef} plans={plans} />}
+        </Flex>
+      </form>
+    </FormProvider>
   )
 }
 
