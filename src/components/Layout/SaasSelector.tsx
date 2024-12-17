@@ -1,9 +1,11 @@
 import { FormControl, FormErrorMessage, FormLabel } from '@chakra-ui/react'
-import { ChakraStylesConfig, GroupBase, Select, Props as SelectProps } from 'chakra-react-select'
+import { Select, Props as SelectProps } from 'chakra-react-select'
 import { Controller, useFormContext } from 'react-hook-form'
 import { ControllerProps } from 'react-hook-form/dist/types'
 import { useTranslation } from 'react-i18next'
+import selectComponents from '~components/ProcessCreate/Census/select-components'
 import { LanguagesSlice } from '~i18n/languages.mjs'
+import { reactSelectStyles } from '~theme/reactSelectStyles'
 
 export type SelectOptionType = {
   label: string
@@ -16,33 +18,6 @@ export type SelectCustomProps = {
   required?: boolean
   controller?: Omit<ControllerProps, 'render' | 'name'>
 } & SelectProps
-
-// todo: move this to theme
-const customStyles: ChakraStylesConfig<any, false, GroupBase<any>> = {
-  control: (provided, state) => ({
-    ...provided,
-    minH: '50px',
-    borderRadius: 'xl',
-    borderColor: state.isFocused ? 'blue.500' : 'secondaryGray.100',
-    boxShadow: 'none',
-    _hover: {
-      borderColor: 'gray.300',
-    },
-    _focus: {
-      borderColor: 'blue.500',
-      boxShadow: 'none',
-      outline: '1px solid #3965FF',
-      outlineOffset: '0px',
-    },
-  }),
-  singleValue: (provided) => ({
-    ...provided,
-  }),
-  placeholder: (provided) => ({
-    ...provided,
-    color: 'gray.300',
-  }),
-}
 
 export const SelectCustom = ({
   name,
@@ -59,6 +34,8 @@ export const SelectCustom = ({
     formState: { errors },
     setValue,
   } = useFormContext()
+
+  const { tokens } = selectComponents
 
   // Function to extract and format error messages
   const getErrorMessage = (error: any): string => {
@@ -94,7 +71,7 @@ export const SelectCustom = ({
             }}
             {...field}
             {...rest}
-            chakraStyles={customStyles}
+            chakraStyles={reactSelectStyles}
             isClearable
             onChange={(selectedOption) => {
               setValue(name, selectedOption)

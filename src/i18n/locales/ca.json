@@ -1195,7 +1195,7 @@
   "upgrade": "Amplia-ho",
   "upload": "Upload",
   "uploader": {
-    "click_or_drag_and_drop": "<p1>Puja o arrossega i deixa anar aquí la llista de votants</p1><p2>(Formats permesos: CSV, XLSX i ODS)</p2>",
+    "click_or_drag_and_drop": "<click>Fes clic per pujar</click> <drag>o arrossega i deixa anar</drag><formats>(Formats permesos: CSV, XLSX i ODS)</formats>",
     "drop_here": "Deixa anar aquí"
   },
   "use_read_more": {

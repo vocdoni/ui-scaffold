@@ -1193,7 +1193,7 @@
   "upgrade": "Amplíalo",
   "upload": "Upload",
   "uploader": {
-    "click_or_drag_and_drop": "<p1>Sube o arrastra y suelta aqui la lista de votantes</p1><p2>(Formap permitidos: CSV, XLSX y ODS)</p2>",
+    "click_or_drag_and_drop": "<click>Haz clic para subir</click> <drag>o arrastra y suelta</drag><formats>(Formatos permitidos: CSV, XLSX y ODS)</formats>",
     "drop_here": "Suelta aqui"
   },
   "use_read_more": {

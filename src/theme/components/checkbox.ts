@@ -39,23 +39,14 @@ export const Checkbox = defineMultiStyleConfig({
         justifyContent: 'center',
         alignItems: 'center',
         p: 4,
-        boxShadow: 'var(--box-shadow)',
-        bgColor: 'checkbox.variant.radiobox.bg.light',
-        borderRadius: 'xl',
-
-        _dark: {
-          bgColor: 'checkbox.variant.radiobox.bg.dark',
-        },
-
-        _hover: {
-          boxShadow: 'none',
-        },
+        border: '1px solid',
+        borderColor: 'checkbox.detailed.border',
+        borderRadius: 'lg',
       }),
       control: defineStyle({
         position: 'absolute',
         right: '1rem',
         top: '1rem',
-        rounded: 'full',
       }),
       label: defineStyle({
         fontSize: 'sm',
