@@ -24,6 +24,8 @@ import { Textarea } from './components/textarea'
 import { editor } from './editor'
 import { spacing } from './space'
 import { Tag } from './components/tag'
+import { Menu } from './components/menu'
+import { Alert } from './components/alert'
 import { TabsResponsive } from './components/TabsResponsive'
 
 export const theme = extendTheme(vtheme, {
@@ -81,6 +83,7 @@ export const theme = extendTheme(vtheme, {
   },
   components: {
     Accordion,
+    Alert,
     Badge,
     Button,
     Card,
@@ -93,6 +96,7 @@ export const theme = extendTheme(vtheme, {
     Heading,
     Input,
     Link,
+    Menu,
     Modal,
     Pagination,
     Radio,

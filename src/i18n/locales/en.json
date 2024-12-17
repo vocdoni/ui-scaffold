@@ -183,17 +183,6 @@
     "copied": "Copied",
     "copied_title": "Copied!"
   },
-  "cost_preview": {
-    "balance": "<span>Your balance:</span><span2> {{ balance }} tokens</span2>",
-    "button": "Get more Tokens",
-    "census_total_one": "<span>Voters:</span><span>{{ count }} voter</span>",
-    "census_total_other": "<span>Voters:</span><span>{{ count }} voters</span>",
-    "duration": "<span>Duration:</span> <span>{{ date, duration }}</span>",
-    "not_enough_tokens": "You don't have enough tokens to create this process.",
-    "result": "<span>Remaining:</span><span2>{{ remainTokens }} tokens</span2>",
-    "subtitle": "Your voting process",
-    "total": "<span>Cost of the vote:</span> <span>{{ cost }} tokens</span>"
-  },
   "country_selector": {
     "australia": "Australia",
     "brazil": "Brazil",
@@ -286,15 +275,29 @@
     "tokens_you_own": "You own {{ balance }} tokens."
   },
   "features": {
+    "anonymous": "Anonymous voting",
     "approval": "Approval voting",
+    "cumulative": "Cumulative voting",
+    "custom_url": "Custom URL",
     "email_reminder": "Email reminders",
+    "live_results": "Live results",
+    "live_streaming": "Live streaming",
     "memberships": "Up to {{ count }} memberships",
+    "multiple": "Multiple choice voting",
+    "overwrite": "Vote overwrite",
     "personalization": "Personalization",
     "ranked": "Ranked voting",
+    "section": {
+      "features": "Features",
+      "organization": "Organization",
+      "voting_types": "Voting Types"
+    },
+    "single": "Single choice voting",
     "sms_notification": "SMS notifications",
     "sub_orgs": "Up to {{ count }} sub-organizations",
     "title": "Features",
-    "weighted": "Weighted voting"
+    "weighted": "Weighted voting",
+    "white_label": "White label"
   },
   "finished": "Finished",
   "footer": {
@@ -381,10 +384,7 @@
         "census_total_people_other": "{{ count }} people will be elegible for voting in this process",
         "configuration": "Configuration",
         "confirmation": "Confirmation",
-        "confirmation_terms_and_conditions": "I agree to the <customLink>Terms and Conditions</customLink>",
         "confirmation_valid_info": "I confirm that all information provided is accurate",
-        "cost_description": "Here's the pricing breakdown for your voting process, determined by parameters such as the census size and election duration.",
-        "cost_title": "Election Price Breakdown",
         "create_button": "Create",
         "dates": "Schedule",
         "description": "On this page, you can verify and edit your information if needed. Additionally, you can review the voting process cost and buy more credits if necessary.",
@@ -470,14 +470,6 @@
   },
   "generate_pdf": "Generate PDF",
   "generate_pdf_description": "Generate a PDF with the results",
-  "get_voc_tokens": {
-    "authentification_method": "Select your prefered authentification method:",
-    "authentification_method_helper": "You can claim {{ faucetAmount }} tokens from the faucet once every {{ waitHours }} hours.",
-    "button": "Request Tokens",
-    "description": "<text>To add more tokens you must <strong>sign in</strong> with a social account (to prevent missuse of the faucet).</text><text><strong>We only request read access.</strong></text>",
-    "info": "<text>If you need more, contact to <mailto>info@onvote.app</mailto></text>",
-    "title": "Get VOC Tokens"
-  },
   "gitcoin": {
     "effective": "20: Effective",
     "more_effective": "25: More Effective",
@@ -828,12 +820,14 @@
     "advanced_analytitcs": "Advanced reporting and analytics",
     "all_features": "All features & voting types",
     "basic_analytics": "Basic reporting and analytics",
+    "compare_features": "Compare all features",
     "core_voting": "Core voting features",
     "custom_subtitle": "Large organizations enterprises, and institutions requiring extensive customization and support.",
     "custom_title": "Custom Plan",
     "dedicated_manager": "Dedicated account manager",
     "essential_subtitle": "Small or medium-sized orgs or community groups with basic voting needs.",
     "essential_title": "Essential",
+    "features": "Features",
     "free_subtitle": "Small organizations or community groups with basic voting needs.",
     "free_title": "Free",
     "gpdr_compilance": "GDPR compliance",
@@ -854,11 +848,46 @@
     "your_plan": "Currently you are subscribed to the 'Your plan' subscription. If you upgrade, we will only charge the yearly difference. In the next billing period, starting on 'dd/mm/yy' you will pay for the new select plan."
   },
   "pricing_card": {
+    "compare_plans": "Compare all plans",
     "from": "From ${{ price }}/year",
     "most_popular_plan": "Most popular plan",
     "view_features": "View all features"
   },
   "privacy_policy": "Privacy Policy",
+  "privacyPolicy": {
+    "description": "This document outlines the privacy practices for Vocdoni Association (\"Vocdoni\") concerning the use of its websites and services.",
+    "section1": {
+      "item1": "Vocdoni may collect user personal data such as name, organization name, size, type and email addresses when provided as the organization's contact email, though using personal email addresses for this purpose is not recommended.",
+      "item2": "User consent may be required for the use of certain personal data, which can be withdrawn at any time using Vocdoni's contact details provided below.",
+      "item3": "Additional personal information may be collected and processed as necessary to deliver services, fulfill contractual obligations, or comply with legal requirements."
+    },
+    "section1Title": "1. Information Collection",
+    "section2": {
+      "description": "Vocdoni processes personal information provided directly by users through various means, including registration on any Vocdoni website, service procurement, or communications."
+    },
+    "section2Title": "2. Method of Collection",
+    "section3": {
+      "description": "The collected information is used to provide and manage services, conduct marketing and business activities, and support customer service and marketing efforts."
+    },
+    "section3Title": "3. Use of Information",
+    "section4": {
+      "description": "Vocdoni may share personal information with other companies within the Vocdoni Association or third-party service providers assisting with our services."
+    },
+    "section4Title": "4. Information Sharing",
+    "section5": {
+      "description": "Vocdoni commits to securing collected personal information with appropriate measures."
+    },
+    "section5Title": "5. Information Security",
+    "section6": {
+      "description": "Users have rights to access, correct, delete, and restrict the processing of their data, among other rights outlined herein."
+    },
+    "section6Title": "6. Rights of Users",
+    "section7": {
+      "description": "For further details on our data practices or to exercise your rights, please contact us at privacy@vocdoni.org."
+    },
+    "section7Title": "7. Contacting Vocdoni",
+    "title": "Privacy Policy"
+  },
   "process": {
     "census": "Census",
     "census_strategies": {
@@ -1069,6 +1098,65 @@
     "title": "Team"
   },
   "teams": "Teams",
+  "terms": {
+    "section1": {
+      "description1": "The Vocdoni Association, headquartered in Switzerland, operates the app.vocdoni.io and onvote.app platforms.",
+      "description2": "These platforms prioritize user privacy and data security, ensuring compliance with the European Union's General Data Protection Regulation (GDPR)."
+    },
+    "section1Title": "1. General Information",
+    "section2": {
+      "description": "We emphasize user data security. Here is an overview:",
+      "item1": "We collect and process personal data necessary for service provision.",
+      "item2": "All personal data is stored in encrypted form, ensuring that no personal data is stored in plain text.",
+      "item3": "Metadata submitted by voting organizers may be publicly accessible on IPFS.",
+      "item4": "Additional data may be collected to fulfill legal obligations or provide specialized services."
+    },
+    "section2Title": "2. Data Collection and Storage",
+    "section3": {
+      "item1": "Personal data is processed solely for providing and improving our services.",
+      "item2": "We seek explicit user consent for data processing activities.",
+      "item3": "We do not use collected data for marketing purposes without explicit user consent."
+    },
+    "section3Title": "3. Data Use and Compliance",
+    "section4": {
+      "item1": "Personal data is not shared with third parties except where required by law.",
+      "item2": "Third-party data processors are bound by confidentiality agreements.",
+      "item3": "Any cross-border data transfers include adequate protection measures."
+    },
+    "section4Title": "4. Data Sharing",
+    "section5": {
+      "description1": "The Vocdoni Association employs strong security measures to protect personal data.",
+      "description2": "In the event of a data breach, we will promptly notify affected individuals."
+    },
+    "section5Title": "5. Security Measures",
+    "section6": {
+      "description": "To exercise these rights, contact us using the details below.",
+      "item1": "Access: Obtain information on the processing of personal data.",
+      "item2": "Correction: Request the correction of inaccurate personal data.",
+      "item3": "Deletion: Request the deletion of personal data under certain circumstances.",
+      "item4": "Restriction: Request that we restrict processing of personal data.",
+      "item5": "Portability: Receive personal data in a structured format.",
+      "item6": "Objection: Object to processing based on legitimate interests.",
+      "item7": "Complaint: Lodge a complaint with the relevant data authority."
+    },
+    "section6Title": "6. User Rights",
+    "section7": {
+      "description1": "The Vocdoni Association is not responsible for information submitted by users.",
+      "description2": "We do not track user data beyond what is essential."
+    },
+    "section7Title": "7. Disclaimer",
+    "section8": {
+      "item1": "Indirect Damages: The Vocdoni Association shall not be liable for indirect damages.",
+      "item2": "Force Majeure: The Vocdoni Association is not responsible for delays caused by events beyond our control."
+    },
+    "section8Title": "8. Limitation of Liability",
+    "section9": {
+      "description1": "For any queries regarding these Terms and Conditions, please contact us at info (at) vocdoni.org.",
+      "description2": "By continuing to use our services, you confirm your acceptance of these terms."
+    },
+    "section9Title": "9. Contact Information",
+    "title": "Terms and Conditions for Vocdoni Association"
+  },
   "terms_and_conditions": "Terms and Conditions",
   "terms_of_use": "Terms of Use",
   "tier_upgrade": {
@@ -1093,7 +1181,7 @@
   "upgrade": "Upgrade",
   "upload": "Upload",
   "uploader": {
-    "click_or_drag_and_drop": "<p1>Upload or drag and drop the voter list here</p1><p2>(Allowed formats: CSV, XLSX, and ODS)</p2>",
+    "click_or_drag_and_drop": "<click>Click to upload</click> <drag>or drag and drop</drag><formats>(Allowed formats: CSV, XLSX, and ODS)</formats>",
     "drop_here": "Drop here"
   },
   "use_read_more": {

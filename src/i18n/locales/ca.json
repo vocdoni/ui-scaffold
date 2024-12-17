@@ -186,18 +186,6 @@
     "copied": "Copied",
     "copied_title": "Copiat!"
   },
-  "cost_preview": {
-    "balance": "<span>Disposes de:</span><span2> {{ balance }} tokens</span2>",
-    "button": "Obtenir més Tokens",
-    "census_total_one": "<span>Votants:</span><span>{{ count }} votant</span>",
-    "census_total_many": "",
-    "census_total_other": "<span>Votants:</span><span>{{ count }} votants</span>",
-    "duration": "<span>Durada:</span> <span>{{ date, duration }}</span>",
-    "not_enough_tokens": "No tens prou tokens per crear aquest procés.",
-    "result": "<span>Després de crear la votació:</span><span2>{{ remainTokens }} tokens</span2>",
-    "subtitle": "El teu procés de votació",
-    "total": "<span>Total:</span> <span>{{ cost }} tokens</span>"
-  },
   "country_selector": {
     "australia": "Australia",
     "brazil": "Brazil",
@@ -290,15 +278,31 @@
     "tokens_you_own": "Tens {{ balance }} tokens."
   },
   "features": {
-    "approval": "Votació per aprovació",
+    "anonymous": "Votacions anònimes",
+    "approval": "Per aprovació",
+    "cumulative": "Votació acumulativa",
+    "custom_url": "Adreça URL personalitzada",
     "email_reminder": "Recordatoris per correu electrònic",
+    "live_results": "Resultats en directe",
+    "live_streaming": "Streaming en directe",
     "memberships": "Fins a {{ value }} membresies",
+    "total_members": "Membresies totals",
+    "multiple": "Múltiples opcions",
+    "overwrite": "Sobre-escriptura del vot",
     "personalization": "Personalització",
-    "ranked": "Votació per rang",
+    "ranked": "Votació ordenada",
+    "section": {
+      "features": "Funcionalitats",
+      "organization": "Organització",
+      "voting_types": "Tipus de votacions"
+    },
+    "single": "Opció única",
     "sms_notification": "Notificacions per SMS",
     "sub_orgs": "Fins a {{ value }} suborganitzacions",
+    "total_orgs": "Sub-organitzacions disponibles",
     "title": "Característiques",
-    "weighted": "Votació ponderada"
+    "weighted": "Amb pes",
+    "white_label": "Marca blanca"
   },
   "finished": "Finalitzat",
   "footer": {
@@ -386,10 +390,7 @@
         "census_total_people_other": "{{ count }} persones podran votar en aquesta votació",
         "configuration": "Configuració",
         "confirmation": "Confirmació",
-        "confirmation_terms_and_conditions": "Accepto els <customLink>termes i condicions</customLink> de Vocdoni",
         "confirmation_valid_info": "Confirmo que aquesta informació és correcta i vàlida",
-        "cost_description": "En funció de diferents paràmetres, com la grandària del cens, la durada de les eleccions i el seu comportament, aquí veureu el preu de les vostres eleccions.",
-        "cost_title": "Previsió de cost",
         "create_button": "Crear",
         "dates": "Data",
         "description": "En aquesta pàgina, podeu revisar que tota la informació sigui correcta i editar-la en cas que hi hagi algun error. També podeu comprovar el cost del procés de votació i comprar més crèdits en cas que no n'hi tingueu prou.",
@@ -478,14 +479,6 @@
   },
   "generate_pdf": "Generate PDF",
   "generate_pdf_description": "Generate a PDF with the results",
-  "get_voc_tokens": {
-    "authentification_method": "Seleccioneu el vostre mètode d'autenticació preferit:",
-    "authentification_method_helper": "Podeu obtenir {{ faucetAmount }} tokens per mètode d'autenticació per setmana",
-    "button": "Sol·licitar Tokens",
-    "description": "<text>Per afegir més tokens, heu d'<strong>iniciar sessió</strong> amb un compte social (per evitar l'ús indegut del faucet).</text><text><strong>Només sol·licitem accés de lectura.</strong></text>",
-    "info": "<text>Si en necessiteu més, poseu-vos en contacte amb <mailto>info@onvote.app</mailto></text>",
-    "title": "Obtenir VOC Tokens"
-  },
   "gitcoin": {
     "effective": "20: Efectiu",
     "more_effective": "25: Més efectiu",
@@ -837,12 +830,14 @@
     "advanced_analytitcs": "Informes i anàlisis avançades",
     "all_features": "All features & voting types",
     "basic_analytics": "Informes i anàlisis bàsiques",
+    "compare_features": "Compara totes les funcionalitats",
     "core_voting": "Funcions bàsiques de votació",
     "custom_subtitle": "Large organizations enterprises, and institutions requiring extensive customization and support.",
     "custom_title": "Personalitzat",
     "dedicated_manager": "Dedicated account manager",
     "essential_subtitle": "Organitzacions petites o mitjanes o grups comunitaris amb necessitats bàsiques de votació.",
     "essential_title": "Essencial",
+    "features": "Features",
     "free_subtitle": "Organitzacions petites o grups comunitaris amb necessitats bàsiques de votació.",
     "free_title": "Gratuït",
     "gpdr_compilance": "Compliment del GDPR",
@@ -864,11 +859,46 @@
     "your_plan": "Actualment estàs subscrit al pla 'Your plan'. Si actualitzes, només et cobrarem la diferència anual. En el següent període de facturació, que comença el 'dd/mm/aa', pagaràs pel nou pla seleccionat."
   },
   "pricing_card": {
+    "compare_plans": "Compare all plans",
     "from": "Des de {{price}}/any",
     "most_popular_plan": "Most popular plan",
     "view_features": "View all features"
   },
   "privacy_policy": "Privacy Policy",
+  "privacyPolicy": {
+    "description": "Aquest document descriu les pràctiques de privacitat de l'Associació Vocdoni (\"Vocdoni\") pel que fa a l'ús dels seus llocs web i serveis.",
+    "section1": {
+      "item1": "Vocdoni pot recollir dades personals dels usuaris, com ara el nom, el nom de l'organització, la seva mida, tipus i adreces de correu electrònic proporcionades com a correu de contacte de l'organització, tot i que no es recomana utilitzar adreces de correu personals per a aquest propòsit.",
+      "item2": "Pot ser necessari el consentiment de l'usuari per utilitzar algunes dades personals, consentiment que pot ser revocat en qualsevol moment utilitzant les dades de contacte de Vocdoni indicades a continuació.",
+      "item3": "Informació personal addicional pot ser recopilada i processada segons sigui necessari per prestar serveis, complir obligacions contractuals o complir amb requisits legals."
+    },
+    "section1Title": "1. Recollida d'Informació",
+    "section2": {
+      "description": "Vocdoni processa la informació personal proporcionada directament pels usuaris mitjançant diversos mitjans, incloent-hi el registre en qualsevol lloc web de Vocdoni, l'adquisició de serveis o les comunicacions."
+    },
+    "section2Title": "2. Mètode de Recollida",
+    "section3": {
+      "description": "La informació recollida s'utilitza per proporcionar i gestionar serveis, dur a terme activitats de màrqueting i negocis, i donar suport als esforços d'atenció al client i màrqueting."
+    },
+    "section3Title": "3. Ús de la Informació",
+    "section4": {
+      "description": "Vocdoni pot compartir informació personal amb altres empreses dins de l'Associació Vocdoni o amb proveïdors de serveis externs que col·laborin amb els nostres serveis."
+    },
+    "section4Title": "4. Compartició d'Informació",
+    "section5": {
+      "description": "Vocdoni es compromet a protegir la informació personal recollida amb mesures adequades."
+    },
+    "section5Title": "5. Seguretat de la Informació",
+    "section6": {
+      "description": "Els usuaris tenen dret a accedir, corregir, eliminar i restringir el processament de les seves dades, entre altres drets descrits en aquest document."
+    },
+    "section6Title": "6. Drets dels Usuaris",
+    "section7": {
+      "description": "Per a més detalls sobre les nostres pràctiques de dades o per exercir els vostres drets, poseu-vos en contacte amb nosaltres a privacy@vocdoni.org."
+    },
+    "section7Title": "7. Contactar amb Vocdoni",
+    "title": "Política de Privacitat"
+  },
   "process": {
     "census": "Cens",
     "census_strategies": {
@@ -1081,11 +1111,70 @@
     "team_members": "Membres de l'equip",
     "title": "Equip"
   },
-  "teams": "Equips",
+  "teams": "Teams",
+  "terms": {
+    "section1": {
+      "description1": "L'Associació Vocdoni, amb seu a Suïssa, opera les plataformes app.vocdoni.io i onvote.app.",
+      "description2": "Aquestes plataformes prioritzen la privacitat de l'usuari i la seguretat de les dades, garantint el compliment del Reglament General de Protecció de Dades (GDPR) de la Unió Europea."
+    },
+    "section1Title": "1. Informació General",
+    "section2": {
+      "description": "Donem prioritat a la seguretat de les dades dels usuaris. A continuació, un resum:",
+      "item1": "Recollim i processem dades personals necessàries per a la prestació de serveis.",
+      "item2": "Totes les dades personals es guarden en forma xifrada, garantint que no hi hagi dades personals en text pla.",
+      "item3": "Els metadades proporcionades pels organitzadors de votacions poden ser accessibles públicament a l'IPFS.",
+      "item4": "Es poden recollir dades addicionals per complir amb obligacions legals o prestar serveis especialitzats."
+    },
+    "section2Title": "2. Recollida i Emmagatzematge de Dades",
+    "section3": {
+      "item1": "Les dades personals es processen únicament per proporcionar i millorar els nostres serveis.",
+      "item2": "Sol·licitem el consentiment explícit de l'usuari per a activitats de processament de dades.",
+      "item3": "No utilitzem les dades recollides per a finalitats de màrqueting sense el consentiment explícit de l'usuari."
+    },
+    "section3Title": "3. Ús de Dades i Compliment",
+    "section4": {
+      "item1": "Les dades personals no es comparteixen amb tercers, excepte quan ho exigeixi la llei.",
+      "item2": "Els processadors de dades externs estan subjectes a acords de confidencialitat.",
+      "item3": "Qualsevol transferència internacional de dades inclou mesures de protecció adequades."
+    },
+    "section4Title": "4. Compartició de Dades",
+    "section5": {
+      "description1": "L'Associació Vocdoni aplica mesures fortes de seguretat per protegir les dades personals.",
+      "description2": "En cas d'una violació de dades, notificarem ràpidament les persones afectades."
+    },
+    "section5Title": "5. Mesures de Seguretat",
+    "section6": {
+      "description": "Per exercir aquests drets, poseu-vos en contacte amb nosaltres utilitzant les dades a continuació.",
+      "item1": "Accés: Obtenir informació sobre el processament de dades personals.",
+      "item2": "Correcció: Sol·licitar la correcció de dades personals inexactes.",
+      "item3": "Eliminació: Sol·licitar l'eliminació de dades personals en determinades circumstàncies.",
+      "item4": "Restricció: Sol·licitar que restringim el processament de dades personals.",
+      "item5": "Portabilitat: Rebre dades personals en un format estructurat.",
+      "item6": "Oposició: Oposar-se al processament basat en interessos legítims.",
+      "item7": "Queixa: Presentar una queixa davant l'autoritat de protecció de dades corresponent."
+    },
+    "section6Title": "6. Drets dels Usuaris",
+    "section7": {
+      "description1": "L'Associació Vocdoni no és responsable de la informació proporcionada pels usuaris.",
+      "description2": "No rastregem dades dels usuaris més enllà del que és essencial."
+    },
+    "section7Title": "7. Exempció de Responsabilitat",
+    "section8": {
+      "item1": "Danys Indirectes: L'Associació Vocdoni no serà responsable de danys indirectes.",
+      "item2": "Força Major: L'Associació Vocdoni no és responsable de retards causats per esdeveniments fora del nostre control."
+    },
+    "section8Title": "8. Limitació de Responsabilitat",
+    "section9": {
+      "description1": "Per a qualsevol consulta sobre aquests Termes i Condicions, poseu-vos en contacte amb nosaltres a info (at) vocdoni.org.",
+      "description2": "En continuar utilitzant els nostres serveis, confirmeu la vostra acceptació d'aquests termes."
+    },
+    "section9Title": "9. Informació de Contacte",
+    "title": "Termes i Condicions de l'Associació Vocdoni"
+  },
   "terms_and_conditions": "Terms and Conditions",
   "terms_of_use": "Condicions d'ús",
   "tier_upgrade": {
-    "current_plan": "El teu pla <2>{{ plan, lowercase }}</2> està limitat a seleccionar fins a <6>{{voters}} votants</6>.",
+    "current_plan": "El teu pla <2>{{ plan, lowercase }}</2> està limitat a seleccionar fins a <6>{{ voters }} votants</6>.",
     "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
     "plan": {
       "basic": "Basic",
@@ -1106,7 +1195,7 @@
   "upgrade": "Amplia-ho",
   "upload": "Upload",
   "uploader": {
-    "click_or_drag_and_drop": "<p1>Puja o arrossega i deixa anar aquí la llista de votants</p1><p2>(Formats permesos: CSV, XLSX i ODS)</p2>",
+    "click_or_drag_and_drop": "<click>Fes clic per pujar</click> <drag>o arrossega i deixa anar</drag><formats>(Formats permesos: CSV, XLSX i ODS)</formats>",
     "drop_here": "Deixa anar aquí"
   },
   "use_read_more": {

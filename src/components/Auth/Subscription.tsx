@@ -16,11 +16,12 @@ type PermissionsContextType = {
 type SubscriptionType = {
   subscriptionDetails: {
     planID: number
-    startDate: string // ISO 8601 Date String
-    endDate: string // ISO 8601 Date String
-    renewalDate: string // ISO 8601 Date String
+    startDate: string
+    endDate: string
+    renewalDate: string
     active: boolean
     maxCensusSize: number
+    email: string
   }
   usage: {
     sentSMS: number

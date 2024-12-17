@@ -31,7 +31,7 @@ const useProcessFeatures = () => {
         description: t('overwrite.description', { defaultValue: 'Voters will be able to overwrite their vote once' }),
         name: 'maxVoteOverwrites',
         icon: BiCheckDouble,
-        permission: 'features.voteOverwrite',
+        permission: 'features.overwrite',
       },
       // non implemented features...
       // personalization: {
