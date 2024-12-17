@@ -1181,7 +1181,7 @@
   "upgrade": "Upgrade",
   "upload": "Upload",
   "uploader": {
-    "click_or_drag_and_drop": "<p1>Upload or drag and drop the voter list here</p1><p2>(Allowed formats: CSV, XLSX, and ODS)</p2>",
+    "click_or_drag_and_drop": "<click>Click to upload</click> <drag>or drag and drop</drag><formats>(Allowed formats: CSV, XLSX, and ODS)</formats>",
     "drop_here": "Drop here"
   },
   "use_read_more": {
