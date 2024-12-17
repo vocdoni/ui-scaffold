@@ -1,9 +1,11 @@
-import { Td, Tr } from '@chakra-ui/react'
+import { Box, Td, Tr } from '@chakra-ui/react'
 import { ElectionStatusBadge, ElectionTitle, QuestionsTypeBadge } from '@vocdoni/chakra-components'
 import { useElection } from '@vocdoni/react-providers'
-import { InvalidElection } from '@vocdoni/sdk'
+import { ensure0x, InvalidElection } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
+import { generatePath, Link as RouterLink } from 'react-router-dom'
 import { useDateFns } from '~i18n/use-date-fns'
+import { Routes } from '~src/router/routes'
 
 const ProcessCard = () => {
   const { election } = useElection()
@@ -30,6 +32,14 @@ const ProcessCard = () => {
       <Td>
         {election.voteCount}/{election.census.size}
       </Td>
+      <Box
+        as={RouterLink}
+        to={generatePath(Routes.dashboard.process, { id: ensure0x(election.id) })}
+        position={'absolute'}
+        w='full'
+        h='full'
+        left='0'
+      />
     </Tr>
   )
 }

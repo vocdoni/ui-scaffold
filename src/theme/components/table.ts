@@ -35,6 +35,7 @@ const baseStyle = definePartsStyle((props) => ({
     },
   },
   tr: {
+    position: 'relative',
     borderBottom: '1.5px solid',
     borderColor: 'table.border_color.light',
 
