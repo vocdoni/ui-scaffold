@@ -227,7 +227,7 @@ export const CensusWeb3Addresses = () => {
             isChecked={weighted}
             variant={'detailed'}
             icon={<BiCheckDouble />}
-            title={'form.process_create.weighted'}
+            title={t('form.process_create.weighted')}
             description={t('form.process_create.spreadsheet.requirements.list_three')}
           />
           <FormControl isInvalid={!!fileErr}>
