@@ -19,10 +19,10 @@ export const PlanFeaturesTranslationKeys = {
   'organization.customURL': 'features.custom_url',
   'votingTypes.weighted': 'features.weighted',
   'votingTypes.approval': 'features.approval',
-  'votingTypes.ranked': 'features.ranked',
+  // 'votingTypes.ranked': 'features.ranked',
   'votingTypes.single': 'features.single',
   'votingTypes.multiple': 'features.multiple',
-  'votingTypes.cumulative': 'features.cumulative',
+  // 'votingTypes.cumulative': 'features.cumulative',
   'features.personalization': 'features.personalization',
   'features.emailReminder': 'features.email_reminder',
   'features.smsNotification': 'features.sms_notification',
@@ -33,13 +33,20 @@ export const PlanFeaturesTranslationKeys = {
   'features.liveResults': 'features.live_results',
 }
 
+// Translation keys for the subscription features in the comparison table
+export const PlanTableFeaturesTranslationKeys = {
+  ...PlanFeaturesTranslationKeys,
+  'organization.members': 'features.total_members',
+  'organization.subOrgs': 'features.total_orgs',
+}
+
 export const CategorizedFeatureKeys = {
-  votingTypes: ['single', 'multiple', 'approval', 'cumulative', 'ranked', 'weighted'],
+  votingTypes: ['single', 'multiple', 'approval', 'weighted' /* 'cumulative', 'ranked' */],
   organization: ['members', 'subOrgs', 'customURL'],
   features: [
-    'personalization',
     'emailReminder',
     'smsNotification',
+    'personalization',
     'whiteLabel',
     'liveStreaming',
     'anonymous',
@@ -58,7 +65,7 @@ export const CategoryTitleKeys = {
  * Checks if the specified feature exists in the plan.
  *
  * @param plan  - The plan object to check.
- * @param featurePath  - Dot notation path to the feature (e.g., 'organization.memberships').
+ * @param featurePath  - Dot notation path to the feature (e.g., 'organization.members').
  * @returns boolean - `true` if the feature exists, `false` otherwise.
  */
 export const hasFeature = (plan: Plan, featurePath: string) => dotobject(plan, featurePath) !== 'undefined'
@@ -67,7 +74,7 @@ export const hasFeature = (plan: Plan, featurePath: string) => dotobject(plan, f
  * Checks if a given feature exists and meets the required condition in a plan.
  *
  * @param plan - The plan object to check.
- * @param featurePath - Dot notation path to the feature (e.g., 'organization.memberships').
+ * @param featurePath - Dot notation path to the feature (e.g., 'organization.members').
  * @param expectedValue - Expected value or comparison object.
  *                         - If a number, checks for >= comparison.
  *                         - If an object, supports { operator, value } (e.g., { operator: '>=', value: 10 }).
@@ -121,7 +128,9 @@ export const isFeatureAvailable = (
 const UnusedComponentButRequiredToNotLoseTranslations = () => {
   const { t } = useTranslation()
   t('features.memberships', { defaultValue: 'Up to {{ count }} memberships' })
+  t('features.total_members', { defaultValue: 'Total available members' })
   t('features.sub_orgs', { defaultValue: 'Up to {{ count }} sub-organizations' })
+  t('features.total_orgs', { defaultValue: 'Total available sub-organizations' })
   t('features.custom_url', { defaultValue: 'Custom URL' })
   t('features.single', { defaultValue: 'Single choice voting' })
   t('features.multiple', { defaultValue: 'Multiple choice voting' })

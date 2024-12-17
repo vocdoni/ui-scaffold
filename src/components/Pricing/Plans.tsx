@@ -14,16 +14,15 @@ import {
 } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { Select } from 'chakra-react-select'
-import { ReactNode, useMemo, useRef } from 'react'
+import { MutableRefObject, ReactNode, useMemo } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { Link as ReactRouterLink, useLocation } from 'react-router-dom'
+import { Link as ReactRouterLink } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
 import { PlanId } from '~constants'
 import PricingCard from './Card'
-import { ComparisonTable } from './ComparisonTable'
 
 export type Plan = {
   id: number
@@ -69,7 +68,8 @@ export type Plan = {
 
 type FormValues = {
   censusSize: number | null
-  selectedPlanId: number | null
+  planId: number | null
+  referrer: string
 }
 
 export const usePlans = () => {
@@ -112,7 +112,7 @@ export const usePlanTranslations = () => {
       }),
       features: [
         t('pricing.core_voting'),
-        t('pricing.up_to_admins', { admin: 3, org: 1 }),
+        t('pricing.up_to_admins', { admin: 1, org: 1 }),
         t('pricing.yearly_processes', { count: 5 }),
         t('pricing.basic_analytics'),
         t('pricing.ticket_support'),
@@ -126,7 +126,7 @@ export const usePlanTranslations = () => {
       }),
       features: [
         t('pricing.core_voting', { defaultValue: 'Core voting features' }),
-        t('pricing.up_to_admins', { admin: 10, org: 5 }),
+        t('pricing.up_to_admins', { admin: 5, org: 1 }),
         t('pricing.unlimited_yearly_processes', { defaultValue: 'Unlimited yearly voting processes' }),
         t('pricing.advanced_analytitcs', { defaultValue: 'Advanced reporting and analytics' }),
         t('pricing.priority_support', { defaultValue: 'Priority ticket support' }),
@@ -155,19 +155,17 @@ export const usePlanTranslations = () => {
   return translations
 }
 
-export const SubscriptionPlans = () => {
+export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObject<HTMLDivElement> }) => {
   const { t } = useTranslation()
   const { subscription } = useSubscription()
   const { data: plans, isLoading } = usePlans()
   const translations = usePlanTranslations()
-  const location = useLocation()
-  const isPlansPage = location.pathname === '/plans'
-  const featuresRef = useRef<HTMLDivElement>(null)
 
   const methods = useForm<FormValues>({
     defaultValues: {
       censusSize: null,
-      selectedPlanId: null,
+      planId: null,
+      referrer: window.location.href,
     },
   })
 
@@ -175,10 +173,7 @@ export const SubscriptionPlans = () => {
   const selectedCensusSize = watch('censusSize')
 
   const onSubmit = (data: FormValues) => {
-    console.log({
-      censusSize: data.censusSize,
-      planId: data.selectedPlanId,
-    })
+    console.log(data)
   }
 
   const censusSizeOptions = useMemo(() => {
@@ -243,7 +238,6 @@ export const SubscriptionPlans = () => {
               <PricingCard key={idx} plan={plans[idx]} {...card} featuresRef={featuresRef} />
             ))}
           </Flex>
-          {isPlansPage && plans && <ComparisonTable ref={featuresRef} plans={plans} />}
         </Flex>
       </form>
     </FormProvider>

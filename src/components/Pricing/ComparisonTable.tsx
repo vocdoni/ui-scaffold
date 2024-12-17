@@ -1,14 +1,12 @@
-import { Box, Table, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
+import { Box, Progress, Table, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
 import { dotobject } from '@vocdoni/sdk'
 import { forwardRef } from 'react'
 import { Trans } from 'react-i18next'
 import { renderBooleanIcon } from '../../utils/icons'
-import { CategorizedFeatureKeys, CategoryTitleKeys, PlanFeaturesTranslationKeys } from './Features'
-import { Plan } from './Plans'
+import { CategorizedFeatureKeys, CategoryTitleKeys, PlanTableFeaturesTranslationKeys } from './Features'
+import { Plan, usePlans } from './Plans'
 
-type ComparisonTableProps = {
-  plans: Plan[]
-}
+type ComparisonTableProps = {}
 
 type ComparisonSectionTableProps = {
   titleKey: string
@@ -38,7 +36,7 @@ const ComparisonSectionTable = ({ titleKey, plans, features, category }: Compari
       <Tbody>
         {features.map((key) => {
           const featurePath = `${category}.${key}`
-          const translationKey = PlanFeaturesTranslationKeys[featurePath]
+          const translationKey = PlanTableFeaturesTranslationKeys[featurePath]
           return (
             <Tr key={key}>
               <Td fontWeight='medium'>
@@ -60,9 +58,12 @@ const ComparisonSectionTable = ({ titleKey, plans, features, category }: Compari
   </Box>
 )
 
-export const ComparisonTable = forwardRef<HTMLDivElement, ComparisonTableProps>(({ plans }, ref) => {
-  // Sort plans by price
-  const sortedPlans = [...plans].sort((a, b) => a.startingPrice - b.startingPrice)
+export const ComparisonTable = forwardRef<HTMLDivElement, ComparisonTableProps>((props, ref) => {
+  const { data: plans, isLoading } = usePlans()
+
+  if (isLoading) {
+    return <Progress size='sm' isIndeterminate colorScheme='brand' />
+  }
 
   return (
     <Box ref={ref} overflowX='auto' mt={8}>
@@ -74,7 +75,7 @@ export const ComparisonTable = forwardRef<HTMLDivElement, ComparisonTableProps>(
         <ComparisonSectionTable
           key={category}
           titleKey={CategoryTitleKeys[category]}
-          plans={sortedPlans}
+          plans={plans}
           features={features}
           category={category}
         />

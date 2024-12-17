@@ -5,7 +5,7 @@ import type { Plan } from './Plans'
  * Checks if a given feature exists and meets the required condition in a plan.
  *
  * @param plan - The plan object to check.
- * @param featurePath - Dot notation path to the feature (e.g., 'organization.memberships').
+ * @param featurePath - Dot notation path to the feature (e.g., 'organization.members').
  * @param expectedValue - Expected value or comparison object.
  *                         - If a number, checks for >= comparison.
  *                         - If an object, supports { operator, value } (e.g., { operator: '>=', value: 10 }).
