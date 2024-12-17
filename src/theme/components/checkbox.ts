@@ -42,15 +42,6 @@ export const Checkbox = defineMultiStyleConfig({
         border: '1px solid',
         borderColor: 'checkbox.detailed.border',
         borderRadius: 'lg',
-        bgColor: 'checkbox.detailed.bg.light',
-
-        _dark: {
-          bgColor: 'checkbox.detailed.bg.light',
-        },
-
-        _hover: {
-          boxShadow: 'none',
-        },
       }),
       control: defineStyle({
         position: 'absolute',

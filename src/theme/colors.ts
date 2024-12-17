@@ -54,10 +54,6 @@ export const colors = {
     disabled_border: colorsBase.gray.normal,
     detailed: {
       border: colorsBase.gray.light,
-      bg: {
-        light: colorsBase.white.pure,
-        dark: colorsBase.blue.dark,
-      },
     },
     radiobox_control: colorsBase.gray.light2,
     disabled: {

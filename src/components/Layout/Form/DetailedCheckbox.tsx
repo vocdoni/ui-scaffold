@@ -22,7 +22,7 @@ export const DetailedCheckbox = ({ icon, badge, title, description, name, ...pro
         {icon && cloneElement(icon, { sx: styles.icon })}
         {t(title)}
       </Text>
-      <Text sx={styles.description}> {t(description)}</Text>
+      <Text sx={styles.description}> {description}</Text>
 
       {badge && cloneElement(badge, { sx: styles.badge })}
     </Checkbox>

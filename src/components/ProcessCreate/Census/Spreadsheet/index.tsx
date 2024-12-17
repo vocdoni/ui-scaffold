@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react'
 import { ChangeEvent, useCallback, useMemo } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { Controller, useFormContext } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { BiCheckDouble, BiDownload } from 'react-icons/bi'
 import { PiWarningCircleLight } from 'react-icons/pi'
@@ -113,30 +113,22 @@ export const CensusCsvManager = () => {
             </ListItem>
           </UnorderedList>
           <FormControl>
-            <Controller
-              control={control}
-              name='weightedVote'
-              defaultValue={weighted}
-              render={({ field: { onChange, onBlur, value, ref } }) => (
-                <DetailedCheckbox
-                  onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                    if (!manager) {
-                      return setValue('weightedVote', event.target.checked)
-                    }
-                    if (window.confirm(t('form.process_create.confirm_spreadsheet_removal'))) {
-                      setValue('spreadsheet', undefined)
-                      setValue('weightedVote', event.target.checked)
-                    }
-                  }}
-                  onBlur={onBlur}
-                  name={'weightedVote'}
-                  isChecked={value}
-                  variant={'detailed'}
-                  icon={<BiCheckDouble />}
-                  title={'form.process_create.weighted'}
-                  description={'form.process_create.spreadsheet.requirements.list_three'}
-                />
-              )}
+            <DetailedCheckbox
+              onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                if (!manager) {
+                  return setValue('weightedVote', event.target.checked)
+                }
+                if (window.confirm(t('form.process_create.confirm_spreadsheet_removal'))) {
+                  setValue('spreadsheet', undefined)
+                  setValue('weightedVote', event.target.checked)
+                }
+              }}
+              isChecked={weighted}
+              name={'weightedVote'}
+              variant={'detailed'}
+              icon={<BiCheckDouble />}
+              title={'form.process_create.weighted'}
+              description={t('form.process_create.spreadsheet.requirements.list_three')}
             />
           </FormControl>
         </Flex>

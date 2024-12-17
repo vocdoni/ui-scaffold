@@ -14,7 +14,7 @@ import {
 import { enforceHexPrefix, errorToString, useClient } from '@vocdoni/react-providers'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
+import { useFieldArray, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { BiCheckDouble } from 'react-icons/bi'
 import { DetailedCheckbox } from '~components/Layout/Form/DetailedCheckbox'
@@ -221,22 +221,14 @@ export const CensusWeb3Addresses = () => {
           </Flex>
         </Box>
         <Flex flexDirection='column' alignItems='start' gap={6}>
-          <Controller
-            control={control}
-            name='weightedVote'
-            defaultValue={weighted}
-            render={({ field: { onChange, onBlur, value, ref } }) => (
-              <DetailedCheckbox
-                onChange={(event: ChangeEvent<HTMLInputElement>) => setValue('weightedVote', event.target.checked)}
-                onBlur={onBlur}
-                name={'weightedVote'}
-                isChecked={value}
-                variant={'detailed'}
-                icon={<BiCheckDouble />}
-                title={'form.process_create.weighted'}
-                description={'form.process_create.spreadsheet.requirements.list_three'}
-              />
-            )}
+          <DetailedCheckbox
+            onChange={(event: ChangeEvent<HTMLInputElement>) => setValue('weightedVote', event.target.checked)}
+            name={'weightedVote'}
+            isChecked={weighted}
+            variant={'detailed'}
+            icon={<BiCheckDouble />}
+            title={'form.process_create.weighted'}
+            description={t('form.process_create.spreadsheet.requirements.list_three')}
           />
           <FormControl isInvalid={!!fileErr}>
             <Uploader getInputProps={getInputProps} getRootProps={getRootProps} isDragActive={isDragActive} />
