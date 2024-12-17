@@ -2,20 +2,22 @@ export const colorsBase = {
   beige: '#D2CBB9',
   black: '#000000',
   blue: {
-    normal: '#3965FF',
-    grayish: '#1A202C',
-    dark: '#0c0e12',
+    light: '#63b3ed',
+    normal: '#3965ff',
+    grayish: '#2B2A33',
+    dark: '#1A202C',
   },
   gradient: 'linear-gradient(to right, #546E39, #2E441A)',
   gray: {
-    light2: '#ffffff3d',
-    light: '#CBD5E0',
+    light2: 'rgba(255, 255, 255, 0.24)',
+    light: '#e2e8f0',
     normal: '#718096',
   },
   green: '#00FF00',
   orange: '#FFA500',
   primary: '#546E39',
   primary_dark: 'rgba(84, 110, 57, 0.2)',
+  red: '#C53030',
   white: {
     pure: '#ffffff',
     dark: '#F5F5F7',
@@ -46,6 +48,18 @@ export const colors = {
   bg: {
     light: colorsBase.white.dark,
     dark: colorsBase.blue.dark,
+  },
+  checkbox: {
+    bg_checked: colorsBase.primary,
+    disabled_border: colorsBase.gray.normal,
+    detailed: {
+      border: colorsBase.gray.light,
+    },
+    radiobox_control: colorsBase.gray.light2,
+    disabled: {
+      light: 'gray.300',
+      dark: 'gray.600',
+    },
   },
   contents: {
     bg: {
@@ -131,27 +145,10 @@ export const colors = {
       },
     },
   },
-  checkbox: {
-    bg: colorsBase.primary,
-    checked: {
-      border: colorsBase.primary,
-      bg: colorsBase.primary,
-    },
-    icon: colorsBase.white.pure,
-
-    variant: {
-      radiobox: {
-        bg: {
-          light: colorsBase.white.pure,
-          dark: colorsBase.blue.grayish,
-        },
-      },
-    },
-  },
 
   google: {
     bg: {
-      light: colorsBase.gray.light,
+      light: colorsBase.gray.light2,
       dark: colorsBase.blue.grayish,
     },
     hover: {
@@ -159,26 +156,40 @@ export const colors = {
       dark: colorsBase.white.alpha,
     },
     active: {
-      light: colorsBase.gray.light,
+      light: colorsBase.gray.light2,
       dark: colorsBase.blue.grayish,
     },
   },
   input: {
     bg: {
       light: colorsBase.white.pure,
-      dark: colorsBase.blue.grayish,
+      dark: 'transparent',
     },
-    border: {
-      dark: colorsBase.white,
-      light: colorsBase.gray.light2,
+    calendar_border: colorsBase.gray.light,
+    border: colorsBase.gray.light2,
+    element: colorsBase.gray.normal,
+    error: colorsBase.red,
+    drag_and_drop: {
+      border: colorsBase.gray.light,
+      border_active: colorsBase.primary,
+      text: colorsBase.primary,
     },
-    disabled: colorsBase.gray.normal,
-    hover: {
-      dark: colorsBase.white,
-      light: colorsBase.gray.light2,
+    dropdown: {
+      check_icon: colorsBase.primary,
+      control: colorsBase.gray.normal,
+      option_dark: colorsBase.white.pure,
+      option_light_selected: colorsBase.black,
+      option_bg_selected: {
+        light: colorsBase.white.dark,
+        dark: colorsBase.blue.dark,
+      },
+      placeholder: colorsBase.gray.normal,
     },
-    outline: colorsBase.blue.normal,
-    placeholder: colorsBase.gray.normal,
+    outline: {
+      light: colorsBase.blue.normal,
+      dark: colorsBase.blue.light,
+    },
+    required_asterisk: colorsBase.primary,
   },
   link: colorsBase.gray.normal,
   org_text_secondary: colorsBase.gray.normal,
@@ -226,15 +237,15 @@ export const colors = {
     results: {
       alert_bg: colorsBase.primary,
       alert_color: colorsBase.white.pure,
-      bg: colorsBase.gray.light,
+      bg: colorsBase.gray.light2,
       description: colorsBase.gray.normal,
-      progressbar_bg: colorsBase.gray.light,
+      progressbar_bg: colorsBase.gray.light2,
       title: colorsBase.primary,
     },
     tabs: {
-      active_bg: colorsBase.gray.light,
-      hover_bg: colorsBase.gray.light,
-      border_bottom_list: colorsBase.gray.light,
+      active_bg: colorsBase.gray.light2,
+      hover_bg: colorsBase.gray.light2,
+      border_bottom_list: colorsBase.gray.light2,
     },
   },
 
@@ -272,7 +283,7 @@ export const colors = {
     },
     subtitle: {
       light: colorsBase.gray.normal,
-      dark: colorsBase.gray.light,
+      dark: colorsBase.gray.light2,
     },
   },
   pricing_modal: {
@@ -312,13 +323,24 @@ export const colors = {
   radio: {
     bg: colorsBase.primary,
     border: colorsBase.primary,
+    disabled: {
+      light: 'gray.300',
+      dark: 'gray.600',
+    },
   },
 
   text_area: {
+    toolbar_dark: {
+      bg: '#232323',
+      border: colorsBase.gray.light2,
+      item_hover: colorsBase.blue.grayish,
+    },
     bg_light: colorsBase.white.pure,
-    bg_dark: colorsBase.blue.grayish,
+    bg_dark: 'transparent',
+    border_dark: colorsBase.gray.light2,
+    placeholder: colorsBase.gray.light2,
   },
-  verify_subtitle: colorsBase.gray.light,
+  verify_subtitle: colorsBase.gray.light2,
 
   wrapper: {
     bg_light: colorsBase.white.pure,
@@ -326,17 +348,17 @@ export const colors = {
   },
 
   brand: {
-    50: '#e5ecd8',
-    100: '#cbd9b2',
-    200: '#b1c68b',
-    300: '#97b364',
-    400: '#7d9f3d',
-    500: '#4B702D',
-    600: '#426429',
-    700: '#395824',
-    800: '#304c1f',
-    900: '#273f1a',
-    950: '#1d2f13',
+    50: '#d9e4c4',
+    100: '#b3c77f',
+    200: '#8db13a',
+    300: '#749c2d',
+    400: '#617c29',
+    500: '#546E39',
+    600: '#476232',
+    700: '#3a552b',
+    800: '#2e4924',
+    900: '#233c1d',
+    950: '#1a2e16',
   },
   brandScheme: {
     100: '#E9E3FF',

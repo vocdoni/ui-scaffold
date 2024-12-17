@@ -183,17 +183,6 @@
     "copied": "Copied",
     "copied_title": "Copied!"
   },
-  "cost_preview": {
-    "balance": "<span>Your balance:</span><span2> {{ balance }} tokens</span2>",
-    "button": "Get more Tokens",
-    "census_total_one": "<span>Voters:</span><span>{{ count }} voter</span>",
-    "census_total_other": "<span>Voters:</span><span>{{ count }} voters</span>",
-    "duration": "<span>Duration:</span> <span>{{ date, duration }}</span>",
-    "not_enough_tokens": "You don't have enough tokens to create this process.",
-    "result": "<span>Remaining:</span><span2>{{ remainTokens }} tokens</span2>",
-    "subtitle": "Your voting process",
-    "total": "<span>Cost of the vote:</span> <span>{{ cost }} tokens</span>"
-  },
   "country_selector": {
     "australia": "Australia",
     "brazil": "Brazil",
@@ -286,15 +275,29 @@
     "tokens_you_own": "You own {{ balance }} tokens."
   },
   "features": {
+    "anonymous": "Anonymous voting",
     "approval": "Approval voting",
+    "cumulative": "Cumulative voting",
+    "custom_url": "Custom URL",
     "email_reminder": "Email reminders",
+    "live_results": "Live results",
+    "live_streaming": "Live streaming",
     "memberships": "Up to {{ count }} memberships",
+    "multiple": "Multiple choice voting",
+    "overwrite": "Vote overwrite",
     "personalization": "Personalization",
     "ranked": "Ranked voting",
+    "section": {
+      "features": "Features",
+      "organization": "Organization",
+      "voting_types": "Voting Types"
+    },
+    "single": "Single choice voting",
     "sms_notification": "SMS notifications",
     "sub_orgs": "Up to {{ count }} sub-organizations",
     "title": "Features",
-    "weighted": "Weighted voting"
+    "weighted": "Weighted voting",
+    "white_label": "White label"
   },
   "finished": "Finished",
   "footer": {
@@ -381,10 +384,7 @@
         "census_total_people_other": "{{ count }} people will be elegible for voting in this process",
         "configuration": "Configuration",
         "confirmation": "Confirmation",
-        "confirmation_terms_and_conditions": "I agree to the <customLink>Terms and Conditions</customLink>",
         "confirmation_valid_info": "I confirm that all information provided is accurate",
-        "cost_description": "Here's the pricing breakdown for your voting process, determined by parameters such as the census size and election duration.",
-        "cost_title": "Election Price Breakdown",
         "create_button": "Create",
         "dates": "Schedule",
         "description": "On this page, you can verify and edit your information if needed. Additionally, you can review the voting process cost and buy more credits if necessary.",
@@ -470,14 +470,6 @@
   },
   "generate_pdf": "Generate PDF",
   "generate_pdf_description": "Generate a PDF with the results",
-  "get_voc_tokens": {
-    "authentification_method": "Select your prefered authentification method:",
-    "authentification_method_helper": "You can claim {{ faucetAmount }} tokens from the faucet once every {{ waitHours }} hours.",
-    "button": "Request Tokens",
-    "description": "<text>To add more tokens you must <strong>sign in</strong> with a social account (to prevent missuse of the faucet).</text><text><strong>We only request read access.</strong></text>",
-    "info": "<text>If you need more, contact to <mailto>info@onvote.app</mailto></text>",
-    "title": "Get VOC Tokens"
-  },
   "gitcoin": {
     "effective": "20: Effective",
     "more_effective": "25: More Effective",
@@ -828,12 +820,14 @@
     "advanced_analytitcs": "Advanced reporting and analytics",
     "all_features": "All features & voting types",
     "basic_analytics": "Basic reporting and analytics",
+    "compare_features": "Compare all features",
     "core_voting": "Core voting features",
     "custom_subtitle": "Large organizations enterprises, and institutions requiring extensive customization and support.",
     "custom_title": "Custom Plan",
     "dedicated_manager": "Dedicated account manager",
     "essential_subtitle": "Small or medium-sized orgs or community groups with basic voting needs.",
     "essential_title": "Essential",
+    "features": "Features",
     "free_subtitle": "Small organizations or community groups with basic voting needs.",
     "free_title": "Free",
     "gpdr_compilance": "GDPR compliance",
@@ -854,6 +848,7 @@
     "your_plan": "Currently you are subscribed to the 'Your plan' subscription. If you upgrade, we will only charge the yearly difference. In the next billing period, starting on 'dd/mm/yy' you will pay for the new select plan."
   },
   "pricing_card": {
+    "compare_plans": "Compare all plans",
     "from": "From ${{ price }}/year",
     "most_popular_plan": "Most popular plan",
     "view_features": "View all features"
@@ -1186,7 +1181,7 @@
   "upgrade": "Upgrade",
   "upload": "Upload",
   "uploader": {
-    "click_or_drag_and_drop": "<p1>Upload or drag and drop the voter list here</p1><p2>(Allowed formats: CSV, XLSX, and ODS)</p2>",
+    "click_or_drag_and_drop": "<click>Click to upload</click> <drag>or drag and drop</drag><formats>(Allowed formats: CSV, XLSX, and ODS)</formats>",
     "drop_here": "Drop here"
   },
   "use_read_more": {
