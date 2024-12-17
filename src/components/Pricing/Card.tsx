@@ -1,22 +1,8 @@
-import { CheckIcon, CloseIcon } from '@chakra-ui/icons'
-import {
-  Box,
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Collapse,
-  Flex,
-  Icon,
-  ListItem,
-  Text,
-  UnorderedList,
-  useDisclosure,
-} from '@chakra-ui/react'
-import { dotobject } from '@vocdoni/sdk'
+import { Box, Button, Card, CardBody, CardHeader, ListItem, Text, UnorderedList } from '@chakra-ui/react'
+import { RefObject } from 'react'
+import { useFormContext } from 'react-hook-form'
 import { Trans } from 'react-i18next'
-import { PlanFeaturesTranslationKeys } from './Features'
+import { Routes } from '~src/router/routes'
 import type { Plan } from './Plans'
 
 type PricingCardProps = {
@@ -28,6 +14,7 @@ type PricingCardProps = {
   isDisabled: boolean
   width?: string
   plan: Plan
+  featuresRef: RefObject<HTMLDivElement>
 }
 
 const PricingCard = ({
@@ -36,25 +23,20 @@ const PricingCard = ({
   price,
   width,
   popular,
-  features: hardcodedFeatures,
+  features,
   isDisabled,
   plan,
+  featuresRef,
 }: PricingCardProps) => {
-  const { isOpen, onToggle } = useDisclosure()
+  const { setValue } = useFormContext()
 
-  // Dynamically map the features from the plan
-  const features = Object.entries(PlanFeaturesTranslationKeys)
-    .map(([key, translationKey]) => {
-      const value = dotobject(plan, key)
-      return value !== undefined
-        ? {
-            key,
-            label: translationKey,
-            value,
-          }
-        : null
-    })
-    .filter(Boolean)
+  const handleViewFeatures = () => {
+    if (featuresRef && featuresRef.current) {
+      featuresRef.current.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      window.open(Routes.plans + '?compare')
+    }
+  }
 
   return (
     <Card variant='pricing-card' width={width} mt={4}>
@@ -63,7 +45,7 @@ const PricingCard = ({
         <Text>{subtitle}</Text>
       </CardHeader>
       <CardBody>
-        <Button isDisabled={isDisabled || false}>
+        <Button isDisabled={isDisabled || false} onClick={() => setValue('planId', plan.id)} type='submit'>
           <Trans i18nKey='view_pricing_plan'>View Pricing Plan</Trans>
         </Button>
         <Text>
@@ -73,38 +55,17 @@ const PricingCard = ({
         </Text>
         <Box>
           <UnorderedList>
-            {hardcodedFeatures.map((feature, idx) => (
+            {features.map((feature, idx) => (
               <ListItem key={idx} listStyleType='-'>
                 {feature}
               </ListItem>
             ))}
           </UnorderedList>
         </Box>
-        <Button onClick={onToggle}>
-          <Trans i18nKey='pricing_card.view_features'>{isOpen ? 'Hide features' : 'View all features'}</Trans>
+        <Button onClick={handleViewFeatures}>
+          <Trans i18nKey='pricing_card.view_features'>View All features</Trans>
         </Button>
       </CardBody>
-      <CardFooter p={0}>
-        <Collapse in={isOpen} animateOpacity>
-          <Box p={4}>
-            <UnorderedList>
-              {features.map((feature) => (
-                <ListItem key={feature.key} listStyleType='none' pb={1}>
-                  <Flex align='center' gap={2}>
-                    {typeof feature.value === 'boolean' && (
-                      <Icon
-                        as={feature.value ? CheckIcon : CloseIcon}
-                        color={feature.value ? 'green.500' : 'red.500'}
-                      />
-                    )}
-                    <Trans i18nKey={feature.label} values={{ value: feature.value }} />
-                  </Flex>
-                </ListItem>
-              ))}
-            </UnorderedList>
-          </Box>
-        </Collapse>
-      </CardFooter>
       {popular && (
         <Box
           position='absolute'
