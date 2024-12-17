@@ -2,7 +2,7 @@ import { Box, Progress, Table, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui
 import { dotobject } from '@vocdoni/sdk'
 import { forwardRef } from 'react'
 import { Trans } from 'react-i18next'
-import { renderBooleanIcon } from '../../utils/icons'
+import { BooleanIcon } from '~components/Layout/BooleanIcon'
 import { CategorizedFeatureKeys, CategoryTitleKeys, PlanTableFeaturesTranslationKeys } from './Features'
 import { Plan, usePlans } from './Plans'
 
@@ -46,7 +46,13 @@ const ComparisonSectionTable = ({ titleKey, plans, features, category }: Compari
                 const value = dotobject(plan, featurePath)
                 return (
                   <Td key={plan.id} textAlign='center'>
-                    {typeof value === 'boolean' ? renderBooleanIcon(value) : typeof value === 'number' ? value : '-'}
+                    {typeof value === 'boolean' ? (
+                      <BooleanIcon value={value} />
+                    ) : typeof value === 'number' ? (
+                      value
+                    ) : (
+                      '-'
+                    )}
                   </Td>
                 )
               })}
