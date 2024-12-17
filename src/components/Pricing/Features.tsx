@@ -2,30 +2,56 @@ import { dotobject } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import type { Plan } from './Plans'
 
-export type FeaturesKeys = 'personalization' | 'emailReminder' | 'smsNotification' | 'whiteLabel' | 'liveStreaming'
+export type FeaturesKeys =
+  | 'personalization'
+  | 'emailReminder'
+  | 'smsNotification'
+  | 'whiteLabel'
+  | 'liveStreaming'
+  | 'anonymous'
+  | 'overwrite'
+  | 'liveResults'
 
 // Translation keys for the subscription features
 export const PlanFeaturesTranslationKeys = {
-  'organization.memberships': 'features.memberships',
+  'organization.members': 'features.memberships',
   'organization.subOrgs': 'features.sub_orgs',
+  'organization.customURL': 'features.custom_url',
   'votingTypes.weighted': 'features.weighted',
   'votingTypes.approval': 'features.approval',
   'votingTypes.ranked': 'features.ranked',
+  'votingTypes.single': 'features.single',
+  'votingTypes.multiple': 'features.multiple',
+  'votingTypes.cumulative': 'features.cumulative',
   'features.personalization': 'features.personalization',
   'features.emailReminder': 'features.email_reminder',
   'features.smsNotification': 'features.sms_notification',
+  'features.whiteLabel': 'features.white_label',
+  'features.liveStreaming': 'features.live_streaming',
+  'features.anonymous': 'features.anonymous',
+  'features.overwrite': 'features.overwrite',
+  'features.liveResults': 'features.live_results',
 }
 
 export const CategorizedFeatureKeys = {
-  votingTypes: ['weighted', 'approval', 'ranked'],
-  features: ['personalization', 'emailReminder', 'smsNotification'],
-  organization: ['memberships', 'subOrgs'],
+  votingTypes: ['single', 'multiple', 'approval', 'cumulative', 'ranked', 'weighted'],
+  organization: ['members', 'subOrgs', 'customURL'],
+  features: [
+    'personalization',
+    'emailReminder',
+    'smsNotification',
+    'whiteLabel',
+    'liveStreaming',
+    'anonymous',
+    'overwrite',
+    'liveResults',
+  ],
 }
 
 export const CategoryTitleKeys = {
   votingTypes: 'features.section.voting_types',
-  features: 'features.section.features',
   organization: 'features.section.organization',
+  features: 'features.section.features',
 }
 
 /**
@@ -96,12 +122,21 @@ const UnusedComponentButRequiredToNotLoseTranslations = () => {
   const { t } = useTranslation()
   t('features.memberships', { defaultValue: 'Up to {{ count }} memberships' })
   t('features.sub_orgs', { defaultValue: 'Up to {{ count }} sub-organizations' })
+  t('features.custom_url', { defaultValue: 'Custom URL' })
+  t('features.single', { defaultValue: 'Single choice voting' })
+  t('features.multiple', { defaultValue: 'Multiple choice voting' })
   t('features.approval', { defaultValue: 'Approval voting' })
+  t('features.cumulative', { defaultValue: 'Cumulative voting' })
   t('features.ranked', { defaultValue: 'Ranked voting' })
   t('features.weighted', { defaultValue: 'Weighted voting' })
   t('features.personalization', { defaultValue: 'Personalization' })
   t('features.email_reminder', { defaultValue: 'Email reminder' })
   t('features.sms_notification', { defaultValue: 'SMS notification' })
+  t('features.white_label', { defaultValue: 'White label' })
+  t('features.live_streaming', { defaultValue: 'Live streaming' })
+  t('features.anonymous', { defaultValue: 'Anonymous voting' })
+  t('features.overwrite', { defaultValue: 'Vote overwrite' })
+  t('features.live_results', { defaultValue: 'Live results' })
   // Section titles
   t('features.section.voting_types', { defaultValue: 'Voting Types' })
   t('features.section.features', { defaultValue: 'Features' })

@@ -278,9 +278,16 @@
     "tokens_you_own": "Tens {{ balance }} tokens."
   },
   "features": {
+    "anonymous": "Anonymous voting",
     "approval": "Votació per aprovació",
+    "cumulative": "Cumulative voting",
+    "custom_url": "Custom URL",
     "email_reminder": "Recordatoris per correu electrònic",
+    "live_results": "Live results",
+    "live_streaming": "Live streaming",
     "memberships": "Fins a {{ value }} membresies",
+    "multiple": "Multiple choice voting",
+    "overwrite": "Vote overwrite",
     "personalization": "Personalització",
     "ranked": "Votació per rang",
     "section": {
@@ -288,10 +295,12 @@
       "organization": "Organization",
       "voting_types": "Voting Types"
     },
+    "single": "Single choice voting",
     "sms_notification": "Notificacions per SMS",
     "sub_orgs": "Fins a {{ value }} suborganitzacions",
     "title": "Característiques",
-    "weighted": "Votació ponderada"
+    "weighted": "Votació ponderada",
+    "white_label": "White label"
   },
   "finished": "Finalitzat",
   "footer": {
@@ -379,7 +388,6 @@
         "census_total_people_other": "{{ count }} persones podran votar en aquesta votació",
         "configuration": "Configuració",
         "confirmation": "Confirmació",
-        "confirmation_terms_and_conditions": "Accepto els <customLink>termes i condicions</customLink> de Vocdoni",
         "confirmation_valid_info": "Confirmo que aquesta informació és correcta i vàlida",
         "create_button": "Crear",
         "dates": "Data",

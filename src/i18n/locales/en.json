@@ -275,9 +275,16 @@
     "tokens_you_own": "You own {{ balance }} tokens."
   },
   "features": {
+    "anonymous": "Anonymous voting",
     "approval": "Approval voting",
+    "cumulative": "Cumulative voting",
+    "custom_url": "Custom URL",
     "email_reminder": "Email reminders",
+    "live_results": "Live results",
+    "live_streaming": "Live streaming",
     "memberships": "Up to {{ count }} memberships",
+    "multiple": "Multiple choice voting",
+    "overwrite": "Vote overwrite",
     "personalization": "Personalization",
     "ranked": "Ranked voting",
     "section": {
@@ -285,10 +292,12 @@
       "organization": "Organization",
       "voting_types": "Voting Types"
     },
+    "single": "Single choice voting",
     "sms_notification": "SMS notifications",
     "sub_orgs": "Up to {{ count }} sub-organizations",
     "title": "Features",
-    "weighted": "Weighted voting"
+    "weighted": "Weighted voting",
+    "white_label": "White label"
   },
   "finished": "Finished",
   "footer": {
@@ -375,7 +384,6 @@
         "census_total_people_other": "{{ count }} people will be elegible for voting in this process",
         "configuration": "Configuration",
         "confirmation": "Confirmation",
-        "confirmation_terms_and_conditions": "I agree to the <customLink>Terms and Conditions</customLink>",
         "confirmation_valid_info": "I confirm that all information provided is accurate",
         "create_button": "Create",
         "dates": "Schedule",
