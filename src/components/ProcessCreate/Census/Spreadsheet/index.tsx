@@ -1,10 +1,8 @@
 import {
-  Box,
   Button,
   Card,
   CardBody,
   CardFooter,
-  Checkbox,
   Flex,
   FormControl,
   FormErrorMessage,
@@ -16,11 +14,12 @@ import {
 } from '@chakra-ui/react'
 import { ChangeEvent, useCallback, useMemo } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { Controller, useFormContext } from 'react-hook-form'
-import { Trans, useTranslation } from 'react-i18next'
+import { useFormContext } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { BiCheckDouble, BiDownload } from 'react-icons/bi'
 import { PiWarningCircleLight } from 'react-icons/pi'
-import { RiFileExcel2Line } from 'react-icons/ri'
+import { DetailedCheckbox } from '~components/Layout/Form/DetailedCheckbox'
+import Uploader from '~components/Layout/Uploader'
 import { CensusSpreadsheetManager } from './CensusSpreadsheetManager'
 import { CsvGenerator } from './generator'
 import { CsvPreview } from './Preview'
@@ -114,35 +113,22 @@ export const CensusCsvManager = () => {
             </ListItem>
           </UnorderedList>
           <FormControl>
-            <Controller
-              control={control}
-              name='weightedVote'
-              defaultValue={weighted}
-              render={({ field: { onChange, onBlur, value, ref } }) => (
-                <Checkbox
-                  onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                    if (!manager) {
-                      return setValue('weightedVote', event.target.checked)
-                    }
-                    if (window.confirm(t('form.process_create.confirm_spreadsheet_removal'))) {
-                      setValue('spreadsheet', undefined)
-                      setValue('weightedVote', event.target.checked)
-                    }
-                  }}
-                  onBlur={onBlur}
-                  ref={ref}
-                  isChecked={value}
-                  variant={'radiobox'}
-                >
-                  <Flex>
-                    <Icon as={BiCheckDouble} />
-                    <Text>
-                      <Trans i18nKey='form.process_create.weighted'>Weighted vote</Trans>
-                    </Text>
-                  </Flex>
-                  <Text>{t('form.process_create.spreadsheet.requirements.list_three')}</Text>
-                </Checkbox>
-              )}
+            <DetailedCheckbox
+              onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                if (!manager) {
+                  return setValue('weightedVote', event.target.checked)
+                }
+                if (window.confirm(t('form.process_create.confirm_spreadsheet_removal'))) {
+                  setValue('spreadsheet', undefined)
+                  setValue('weightedVote', event.target.checked)
+                }
+              }}
+              isChecked={weighted}
+              name={'weightedVote'}
+              variant={'detailed'}
+              icon={<BiCheckDouble />}
+              title={t('form.process_create.weighted')}
+              description={t('form.process_create.spreadsheet.requirements.list_three')}
             />
           </FormControl>
         </Flex>
@@ -166,25 +152,7 @@ export const CensusCsvManager = () => {
         isInvalid={!!errors?.spreadsheet}
         display={manager?.data.length ? 'none' : 'block'}
       >
-        <Card variant='drag-and-drop'>
-          <input {...getInputProps()} />
-          <Icon as={RiFileExcel2Line} boxSize={20} color='process_create.spreadsheet.file' />
-          <Box>
-            {isDragActive ? (
-              <Text textAlign='center' color='process_create.description'>
-                {t('uploader.drop_here')}
-              </Text>
-            ) : (
-              <Trans
-                i18nKey='uploader.click_or_drag_and_drop'
-                components={{
-                  p1: <Text textAlign='center' color='process_create.description' />,
-                  p2: <Text textAlign='center' fontSize='sm' color='process_create.description' />,
-                }}
-              />
-            )}
-          </Box>
-        </Card>
+        <Uploader getInputProps={getInputProps} getRootProps={getRootProps} isDragActive={isDragActive} />{' '}
         <FormErrorMessage display='flex' justifyContent='center'>
           {errors?.spreadsheet?.message?.toString()}
         </FormErrorMessage>

@@ -65,7 +65,7 @@ export const SubscriptionList = () => {
           <Tr>
             <Td display='flex' alignItems='center' gap={3}>
               <Avatar name={subscription.plan.name} size='sm' />
-              {subscription.plan.name} ({subscription.plan.organization.memberships} members)
+              {subscription.plan.name} ({subscription.plan.organization.maxCensus} members)
             </Td>
             <Td>
               <Tag>{subscription.plan.startingPrice} €</Tag>

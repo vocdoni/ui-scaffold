@@ -6,7 +6,6 @@ import {
   Flex,
   FormControl,
   FormErrorMessage,
-  Link,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -39,17 +38,15 @@ import {
 } from '@vocdoni/sdk'
 import { useEffect, useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { Trans, useTranslation } from 'react-i18next'
-import { Link as RouterLink, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 import { IElection, IElectionWithTokenResponse } from 'vocdoni-admin-sdk'
 import { CensusMeta } from '~components/Process/Census/CensusType'
 import { StampsUnionTypes } from '~components/ProcessCreate/Census/Gitcoin/StampsUnionType'
 import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
 import { DefaultCensusSize } from '~constants'
-import { Routes } from '~src/router/routes'
 import { useCspAdmin } from '../Census/Csp/use-csp'
 import Preview from '../Confirm/Preview'
-import { CostPreview } from '../CostPreview'
 import { CreationProgress, Steps } from '../CreationProgress'
 import { Web3Address } from '../StepForm/CensusWeb3'
 import { Option } from '../StepForm/Questions'
@@ -68,7 +65,6 @@ export const Confirm = () => {
   const [sending, setSending] = useState<boolean>(false)
   const [created, setCreated] = useState<string | null>(null)
   const [step, setStep] = useState<Steps>()
-  const [unpublished, setUnpublished] = useState<UnpublishedElection | undefined>()
   const { vocdoniAdminClient } = useCspAdmin()
 
   const methods = useForm({
@@ -78,7 +74,6 @@ export const Confirm = () => {
       strategySize: form.strategySize,
       timeToCreateCensus: form.timeToCreateCensus,
       infoValid: false,
-      termsAndConditions: false,
     },
   })
   const max = methods.watch('maxCensusSize')
@@ -191,20 +186,6 @@ export const Confirm = () => {
     setTimeout(() => navigate(`/processes/${ensure0x(created)}`), 1000)
   }, [created, navigate])
 
-  // fetches census for unpublished elections
-  useEffect(() => {
-    ;(async () => {
-      if (form.censusType === 'gitcoin' && (!form.maxCensusSize || isLoadingPreview)) return
-      setUnpublished(
-        Election.from({
-          ...corelection,
-          // we really don't care about the census, but it's a requirement from the Election.from method
-          census: new WeightedCensus(),
-        } as IElectionParameters)
-      )
-    })()
-  }, [isLoadingPreview, form.maxCensusSize])
-
   // Recalculate the strategy estimation for gitcoin passport
   useEffect(() => {
     ;(async () => {
@@ -256,81 +237,49 @@ export const Confirm = () => {
         <ElectionProvider election={published}>
           <FormProvider {...methods}>
             <Flex flexDirection={{ base: 'column', xl2: 'row' }} gap={5}>
-              <Preview />
               <Flex
-                flex={{ xl2: '0 0 25%' }}
                 flexDirection='column'
-                p={6}
+                gap={5}
+                p={{ base: 3, xl: 6 }}
                 bgColor='process_create.bg_secondary.light'
                 borderRadius='xl'
-                minW={'400px'}
                 _dark={{
                   bgColor: 'process_create.bg_secondary.dark',
                 }}
               >
-                <CostPreview unpublished={unpublished} />
+                <Preview />
 
-                <Box>
-                  <Text variant='process-create-title' textTransform='uppercase'>
+                <Flex
+                  flexDirection={{ base: 'column', md: 'row' }}
+                  gap={{ base: 2, md: 0 }}
+                  as='form'
+                  id='process-create-form'
+                  onSubmit={handleSubmit(onSubmit)}
+                >
+                  <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='bold'>
                     {t('form.process_create.confirm.confirmation')}
                   </Text>
-                  <Flex
-                    as='form'
-                    id='process-create-form'
-                    onSubmit={handleSubmit(onSubmit)}
-                    flexDirection='column'
-                    gap={4}
-                    bgColor='process_create.section'
-                    borderRadius='none'
-                    p={{ base: 3, xl: 6 }}
+                  <FormControl
+                    isInvalid={!!errors.infoValid}
+                    sx={{
+                      '& label': {
+                        display: 'flex',
+                        alignItems: { xl2: 'start' },
+
+                        '& span:first-of-type': {
+                          mt: { xl2: 1.5 },
+                        },
+                      },
+                    }}
                   >
-                    <FormControl
-                      isInvalid={!!errors.infoValid}
-                      sx={{
-                        '& label': {
-                          display: 'flex',
-                          alignItems: { xl2: 'start' },
-
-                          '& span:first-of-type': {
-                            mt: { xl2: 1.5 },
-                          },
-                        },
-                      }}
-                    >
-                      <Checkbox {...register('infoValid', { required: true })}>
-                        {t('form.process_create.confirm.confirmation_valid_info')}
-                      </Checkbox>
-                      <FormErrorMessage>
-                        <Text ml={6}>{t('form.error.field_is_required')}</Text>
-                      </FormErrorMessage>
-                    </FormControl>
-                    <FormControl
-                      isInvalid={!!errors.termsAndConditions}
-                      sx={{
-                        '& label': {
-                          display: 'flex',
-                          alignItems: { xl2: 'start' },
-
-                          '& span:first-of-type': {
-                            mt: { xl2: 1.5 },
-                          },
-                        },
-                      }}
-                    >
-                      <Checkbox {...register('termsAndConditions', { required: true })}>
-                        <Trans
-                          i18nKey='form.process_create.confirm.confirmation_terms_and_conditions'
-                          components={{
-                            customLink: <Link as={RouterLink} to={Routes.terms} />,
-                          }}
-                        />
-                      </Checkbox>
-                      <FormErrorMessage>
-                        <Text ml={6}>{t('form.error.field_is_required')}</Text>
-                      </FormErrorMessage>
-                    </FormControl>
-                  </Flex>
-                </Box>
+                    <Checkbox {...register('infoValid', { required: true })}>
+                      {t('form.process_create.confirm.confirmation_valid_info')}
+                    </Checkbox>
+                    <FormErrorMessage>
+                      <Text ml={6}>{t('form.error.field_is_required')}</Text>
+                    </FormErrorMessage>
+                  </FormControl>
+                </Flex>
               </Flex>
             </Flex>
           </FormProvider>
