@@ -1,5 +1,6 @@
-import { ChevronDownIcon, SearchIcon } from '@chakra-ui/icons'
+import { CheckIcon, ChevronDownIcon, SearchIcon } from '@chakra-ui/icons'
 import { Avatar, Flex, Link, Text } from '@chakra-ui/react'
+import { getNetwork } from '@ethersproject/providers'
 import {
   chakraComponents,
   DropdownIndicatorProps,
@@ -8,13 +9,12 @@ import {
   OptionProps,
   SingleValueProps,
 } from 'chakra-react-select'
+import { useEffect, useState } from 'react'
 import { BsImage } from 'react-icons/bs'
 import { FaEthereum } from 'react-icons/fa'
 import { FaPeopleGroup } from 'react-icons/fa6'
 import ethIcon from '/assets/eth.jpg'
 import polygonIcon from '/assets/polygon-matic.jpg'
-import { useEffect, useState } from 'react'
-import { getNetwork } from '@ethersproject/providers'
 
 const SingleValueToken = (props: SingleValueProps<any, false, GroupBase<any>>) => {
   const {
@@ -55,7 +55,9 @@ const OptionToken = (props: OptionProps<any, false, GroupBase<any>>) => {
   const {
     children,
     data: { type: groupType, name, iconURI, ID, chainID },
+    isSelected,
   } = props
+
   if (groupType === 'request') {
     return (
       <chakraComponents.Option {...props}>
@@ -72,10 +74,12 @@ const OptionToken = (props: OptionProps<any, false, GroupBase<any>>) => {
   } else {
     return (
       <chakraComponents.Option {...props}>
-        <Flex alignItems='center' gap={2}>
-          <CryptoAvatar name={name} icon={iconURI} id={ID} chainId={chainID} />
-
-          <Text>{children}</Text>
+        <Flex justifyContent={'space-between'} alignItems={'center'} w='full'>
+          <Flex gap={2} color='black'>
+            <CryptoAvatar name={name} icon={iconURI} id={ID} chainId={chainID} />
+            <Text color='inherit'>{children}</Text>
+          </Flex>
+          {isSelected && <CheckIcon color='input.dropdown.check_icon' ml='auto' />}
         </Flex>
       </chakraComponents.Option>
     )
@@ -123,14 +127,18 @@ const OptionNetwork = (props: OptionProps<any, false, GroupBase<any>>) => {
   const {
     data: { name, shortName },
     children,
+    isSelected,
   } = props
 
   const iconSource = getIconSource(shortName)
   return (
     <chakraComponents.Option {...props}>
-      <Flex alignItems='center' gap={2}>
-        <CryptoAvatar name={name} icon={iconSource} />
-        <Text>{children}</Text>
+      <Flex justifyContent={'space-between'} alignItems={'center'} w='full'>
+        <Flex gap={2}>
+          <CryptoAvatar name={name} icon={iconSource} />
+          <Text>{children}</Text>
+        </Flex>
+        {isSelected && <CheckIcon color='input.dropdown.check_icon' ml='auto' />}
       </Flex>
     </chakraComponents.Option>
   )

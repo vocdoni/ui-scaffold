@@ -5,21 +5,11 @@ import { useTranslation } from 'react-i18next'
 export interface InputBasicProps extends InputProps {
   formValue: string
   label: string
-  placeholder?: string
-  type?: string
   required?: boolean
   validation?: any
   messageError?: string
 }
-const InputBasic = ({
-  formValue,
-  label,
-  placeholder,
-  type = 'text',
-  required = false,
-  validation = {},
-  ...props
-}: InputBasicProps) => {
+const InputBasic = ({ formValue, label, required = false, validation = {}, ...props }: InputBasicProps) => {
   const { t } = useTranslation()
   const {
     register,
@@ -35,8 +25,8 @@ const InputBasic = ({
 
   return (
     <FormControl isInvalid={!!errors[formValue]} isRequired={required}>
-      {label && <FormLabel variant='process-create-title-sm'>{label}</FormLabel>}
-      <Input {...register(formValue, validationRules)} type={type} placeholder={placeholder} {...props} />
+      {label && <FormLabel>{label}</FormLabel>}
+      <Input {...register(formValue, validationRules)} {...props} />
       <FormErrorMessage mt={2}>{errorMessage || 'Error performing the operation'}</FormErrorMessage>
     </FormControl>
   )

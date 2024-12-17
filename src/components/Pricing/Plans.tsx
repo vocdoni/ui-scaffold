@@ -14,7 +14,8 @@ import {
 } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { Select } from 'chakra-react-select'
-import { ReactNode, useMemo, useState } from 'react'
+import { MutableRefObject, ReactNode, useMemo } from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
@@ -30,26 +31,45 @@ export type Plan = {
   startingPrice: number
   default: boolean
   organization: {
-    memberships: number
+    members: number
     subOrgs: number
     censusSize: number
+    maxProcesses: number
+    maxCensus: number
+    maxDuration: string
+    customURL: boolean
+    drafts: number
   }
   votingTypes: {
+    single: boolean
+    multiple: boolean
     approval: boolean
+    cumulative: boolean
     ranked: boolean
     weighted: boolean
   }
   features: {
+    anonymous: boolean
+    overwrite: boolean
+    liveResults: boolean
     personalization: boolean
     emailReminder: boolean
     smsNotification: boolean
+    whiteLabel: boolean
+    liveStreaming: boolean
   }
-  censusSizeTiers:
+  censusSizeTiers?:
     | {
         amount: number
         upTo: number
       }[]
     | null
+}
+
+type FormValues = {
+  censusSize: number | null
+  planId: number | null
+  referrer: string
 }
 
 export const usePlans = () => {
@@ -92,7 +112,7 @@ export const usePlanTranslations = () => {
       }),
       features: [
         t('pricing.core_voting'),
-        t('pricing.up_to_admins', { admin: 3, org: 1 }),
+        t('pricing.up_to_admins', { admin: 1, org: 1 }),
         t('pricing.yearly_processes', { count: 5 }),
         t('pricing.basic_analytics'),
         t('pricing.ticket_support'),
@@ -106,7 +126,7 @@ export const usePlanTranslations = () => {
       }),
       features: [
         t('pricing.core_voting', { defaultValue: 'Core voting features' }),
-        t('pricing.up_to_admins', { admin: 10, org: 5 }),
+        t('pricing.up_to_admins', { admin: 5, org: 1 }),
         t('pricing.unlimited_yearly_processes', { defaultValue: 'Unlimited yearly voting processes' }),
         t('pricing.advanced_analytitcs', { defaultValue: 'Advanced reporting and analytics' }),
         t('pricing.priority_support', { defaultValue: 'Priority ticket support' }),
@@ -135,13 +155,26 @@ export const usePlanTranslations = () => {
   return translations
 }
 
-export const SubscriptionPlans = () => {
+export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObject<HTMLDivElement> }) => {
   const { t } = useTranslation()
   const { subscription } = useSubscription()
   const { data: plans, isLoading } = usePlans()
   const translations = usePlanTranslations()
 
-  const [selectedCensusSize, setSelectedCensusSize] = useState<number | null>(null)
+  const methods = useForm<FormValues>({
+    defaultValues: {
+      censusSize: null,
+      planId: null,
+      referrer: window.location.href,
+    },
+  })
+
+  const { watch, handleSubmit } = methods
+  const selectedCensusSize = watch('censusSize')
+
+  const onSubmit = (data: FormValues) => {
+    console.log(data)
+  }
 
   const censusSizeOptions = useMemo(() => {
     if (!plans) return []
@@ -184,23 +217,30 @@ export const SubscriptionPlans = () => {
         (selectedCensusSize && !plan.censusSizeTiers?.some((tier) => tier.upTo === selectedCensusSize)) ||
         (subscription && plan.id === subscription?.plan.id && !selectedCensusSize),
     }))
-  }, [plans, selectedCensusSize, t])
+  }, [plans, selectedCensusSize, subscription, translations])
 
   return (
-    <Flex flexDir='column' gap={4}>
-      <Flex flexDir='column'>
-        <Text>
-          <Trans i18nKey='pricing.membership_size'>Select your membership size:</Trans>
-        </Text>
-        <Select options={censusSizeOptions} onChange={(selected) => setSelectedCensusSize(selected?.value || null)} />
-      </Flex>
-      {isLoading && <Progress colorScheme='brand' size='xs' isIndeterminate />}
-      <Flex gap={5} justifyContent='space-evenly' alignItems='start' flexWrap='wrap'>
-        {cards.map((card, idx) => (
-          <PricingCard key={idx} plan={plans[idx]} {...card} />
-        ))}
-      </Flex>
-    </Flex>
+    <FormProvider {...methods}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Flex flexDir='column' gap={4}>
+          <Flex flexDir='column'>
+            <Text>
+              <Trans i18nKey='pricing.membership_size'>Select your membership size:</Trans>
+            </Text>
+            <Select
+              options={censusSizeOptions}
+              onChange={(selected) => methods.setValue('censusSize', selected?.value || null)}
+            />
+          </Flex>
+          {isLoading && <Progress colorScheme='brand' size='xs' isIndeterminate />}
+          <Flex gap={5} justifyContent='space-evenly' alignItems='start' flexWrap='wrap'>
+            {cards.map((card, idx) => (
+              <PricingCard key={idx} plan={plans[idx]} {...card} featuresRef={featuresRef} />
+            ))}
+          </Flex>
+        </Flex>
+      </form>
+    </FormProvider>
   )
 }
 

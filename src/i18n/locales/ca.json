@@ -186,18 +186,6 @@
     "copied": "Copied",
     "copied_title": "Copiat!"
   },
-  "cost_preview": {
-    "balance": "<span>Disposes de:</span><span2> {{ balance }} tokens</span2>",
-    "button": "Obtenir més Tokens",
-    "census_total_one": "<span>Votants:</span><span>{{ count }} votant</span>",
-    "census_total_many": "",
-    "census_total_other": "<span>Votants:</span><span>{{ count }} votants</span>",
-    "duration": "<span>Durada:</span> <span>{{ date, duration }}</span>",
-    "not_enough_tokens": "No tens prou tokens per crear aquest procés.",
-    "result": "<span>Després de crear la votació:</span><span2>{{ remainTokens }} tokens</span2>",
-    "subtitle": "El teu procés de votació",
-    "total": "<span>Total:</span> <span>{{ cost }} tokens</span>"
-  },
   "country_selector": {
     "australia": "Australia",
     "brazil": "Brazil",
@@ -290,15 +278,31 @@
     "tokens_you_own": "Tens {{ balance }} tokens."
   },
   "features": {
-    "approval": "Votació per aprovació",
+    "anonymous": "Votacions anònimes",
+    "approval": "Per aprovació",
+    "cumulative": "Votació acumulativa",
+    "custom_url": "Adreça URL personalitzada",
     "email_reminder": "Recordatoris per correu electrònic",
+    "live_results": "Resultats en directe",
+    "live_streaming": "Streaming en directe",
     "memberships": "Fins a {{ value }} membresies",
+    "total_members": "Membresies totals",
+    "multiple": "Múltiples opcions",
+    "overwrite": "Sobre-escriptura del vot",
     "personalization": "Personalització",
-    "ranked": "Votació per rang",
+    "ranked": "Votació ordenada",
+    "section": {
+      "features": "Funcionalitats",
+      "organization": "Organització",
+      "voting_types": "Tipus de votacions"
+    },
+    "single": "Opció única",
     "sms_notification": "Notificacions per SMS",
     "sub_orgs": "Fins a {{ value }} suborganitzacions",
+    "total_orgs": "Sub-organitzacions disponibles",
     "title": "Característiques",
-    "weighted": "Votació ponderada"
+    "weighted": "Amb pes",
+    "white_label": "Marca blanca"
   },
   "finished": "Finalitzat",
   "footer": {
@@ -386,10 +390,7 @@
         "census_total_people_other": "{{ count }} persones podran votar en aquesta votació",
         "configuration": "Configuració",
         "confirmation": "Confirmació",
-        "confirmation_terms_and_conditions": "Accepto els <customLink>termes i condicions</customLink> de Vocdoni",
         "confirmation_valid_info": "Confirmo que aquesta informació és correcta i vàlida",
-        "cost_description": "En funció de diferents paràmetres, com la grandària del cens, la durada de les eleccions i el seu comportament, aquí veureu el preu de les vostres eleccions.",
-        "cost_title": "Previsió de cost",
         "create_button": "Crear",
         "dates": "Data",
         "description": "En aquesta pàgina, podeu revisar que tota la informació sigui correcta i editar-la en cas que hi hagi algun error. També podeu comprovar el cost del procés de votació i comprar més crèdits en cas que no n'hi tingueu prou.",
@@ -478,14 +479,6 @@
   },
   "generate_pdf": "Generate PDF",
   "generate_pdf_description": "Generate a PDF with the results",
-  "get_voc_tokens": {
-    "authentification_method": "Seleccioneu el vostre mètode d'autenticació preferit:",
-    "authentification_method_helper": "Podeu obtenir {{ faucetAmount }} tokens per mètode d'autenticació per setmana",
-    "button": "Sol·licitar Tokens",
-    "description": "<text>Per afegir més tokens, heu d'<strong>iniciar sessió</strong> amb un compte social (per evitar l'ús indegut del faucet).</text><text><strong>Només sol·licitem accés de lectura.</strong></text>",
-    "info": "<text>Si en necessiteu més, poseu-vos en contacte amb <mailto>info@onvote.app</mailto></text>",
-    "title": "Obtenir VOC Tokens"
-  },
   "gitcoin": {
     "effective": "20: Efectiu",
     "more_effective": "25: Més efectiu",
@@ -837,12 +830,14 @@
     "advanced_analytitcs": "Informes i anàlisis avançades",
     "all_features": "All features & voting types",
     "basic_analytics": "Informes i anàlisis bàsiques",
+    "compare_features": "Compara totes les funcionalitats",
     "core_voting": "Funcions bàsiques de votació",
     "custom_subtitle": "Large organizations enterprises, and institutions requiring extensive customization and support.",
     "custom_title": "Personalitzat",
     "dedicated_manager": "Dedicated account manager",
     "essential_subtitle": "Organitzacions petites o mitjanes o grups comunitaris amb necessitats bàsiques de votació.",
     "essential_title": "Essencial",
+    "features": "Features",
     "free_subtitle": "Organitzacions petites o grups comunitaris amb necessitats bàsiques de votació.",
     "free_title": "Gratuït",
     "gpdr_compilance": "Compliment del GDPR",
@@ -864,6 +859,7 @@
     "your_plan": "Actualment estàs subscrit al pla 'Your plan'. Si actualitzes, només et cobrarem la diferència anual. En el següent període de facturació, que comença el 'dd/mm/aa', pagaràs pel nou pla seleccionat."
   },
   "pricing_card": {
+    "compare_plans": "Compare all plans",
     "from": "Des de {{price}}/any",
     "most_popular_plan": "Most popular plan",
     "view_features": "View all features"
@@ -1178,7 +1174,7 @@
   "terms_and_conditions": "Terms and Conditions",
   "terms_of_use": "Condicions d'ús",
   "tier_upgrade": {
-    "current_plan": "El teu pla <2>{{ plan, lowercase }}</2> està limitat a seleccionar fins a <6>{{voters}} votants</6>.",
+    "current_plan": "El teu pla <2>{{ plan, lowercase }}</2> està limitat a seleccionar fins a <6>{{ voters }} votants</6>.",
     "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
     "plan": {
       "basic": "Basic",
@@ -1199,7 +1195,7 @@
   "upgrade": "Amplia-ho",
   "upload": "Upload",
   "uploader": {
-    "click_or_drag_and_drop": "<p1>Puja o arrossega i deixa anar aquí la llista de votants</p1><p2>(Formats permesos: CSV, XLSX i ODS)</p2>",
+    "click_or_drag_and_drop": "<click>Fes clic per pujar</click> <drag>o arrossega i deixa anar</drag><formats>(Formats permesos: CSV, XLSX i ODS)</formats>",
     "drop_here": "Deixa anar aquí"
   },
   "use_read_more": {
