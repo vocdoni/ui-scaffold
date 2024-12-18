@@ -30,7 +30,9 @@ export const Routes = {
   },
   stripe: {
     checkout: '/stripe/checkout/:amount?',
-    return: '/stripe/return/:sessionId',
+    checkoutReturn: '/stripe/return/:sessionId',
+    subscription: '/stripe/subscription/:lookupKey/:amount?',
+    subscriptionReturn: '/stripe/subscription/return',
   },
   terms: '/terms',
 }
