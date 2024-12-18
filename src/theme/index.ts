@@ -49,31 +49,34 @@ export const theme = extendTheme(vtheme, {
           mt: 0,
         },
         'h2[level="1"]': {
-          fontSize: '26px',
+          fontSize: '36px',
+          lineHeight: '44px',
+          letterSpacing: '-2%',
         },
         'h2[level="2"]': {
-          fontSize: '23px',
+          fontSize: '30px',
+          lineHeight: '38px',
+          letterSpacing: '0%',
         },
         'h3[level="3"]': {
-          fontSize: '20px',
+          fontSize: '24px',
+          lineHeight: '32px',
+          letterSpacing: '0%',
         },
         p: {
-          fontSize: '18px',
+          fontSize: '16px',
+          lineHeight: '24px',
         },
         li: {
-          fontSize: '18px',
+          fontSize: '16px',
+          lineHeight: '24px',
         },
         'li:last-of-type': {
           mb: '20px',
         },
-        ul: {
-          fontSize: '18px',
-        },
-        ol: {
-          fontSize: '18px',
-        },
         a: {
-          fontSize: '18px',
+          fontSize: '16px',
+          lineHeight: '24px',
           textDecoration: 'underline',
         },
         pre: {
