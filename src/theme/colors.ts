@@ -2,6 +2,7 @@ export const colorsBase = {
   beige: '#D2CBB9',
   black: '#000000',
   blue: {
+    bg: '#0C0E12',
     light: '#63b3ed',
     normal: '#3965ff',
     grayish: '#2B2A33',
@@ -12,7 +13,7 @@ export const colorsBase = {
     light3: '#fafafa',
     light2: '#ffffff3d',
     light: '#CBD5E0',
-    normal: '#E9EAEB',
+    normal: '#A0AEC0',
   },
   green: '#00FF00',
   orange: '#FFA500',
@@ -52,7 +53,7 @@ export const colors = {
   },
   bg: {
     light: colorsBase.white.dark,
-    dark: colorsBase.blue.dark,
+    dark: colorsBase.blue.bg,
   },
   button: {
     variant: {
@@ -250,6 +251,7 @@ export const colors = {
     },
     required_asterisk: colorsBase.primary,
   },
+  link: colorsBase.gray.normal,
   org_text_secondary: colorsBase.gray.normal,
 
   process: {
