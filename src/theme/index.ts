@@ -41,9 +41,6 @@ export const theme = extendTheme(vtheme, {
         '--box-shadow': '0 0 10px #e3e3e3',
         '--box-shadow-dark-mode': '0 0 10px #101010',
       },
-      '.brand-gradient': {
-        bgGradient: 'linear-gradient(to bottom, #B5F492, #338B93)',
-      },
       '.md-sizes': {
         '& :first-of-type': {
           mt: 0,

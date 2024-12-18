@@ -16,7 +16,7 @@ interface Props {
 const ProcessCardDetailed = ({ election }: Props) => {
   return (
     <ElectionProvider election={election}>
-      <Card variant='detailed' className='md-sizes-card'>
+      <Card variant='detailed'>
         <CardBody>
           <Link to={`/processes/${enforceHexPrefix(election.id)}`}>
             <ProcessDetailedCardTitle />
