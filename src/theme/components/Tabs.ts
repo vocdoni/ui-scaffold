@@ -3,6 +3,48 @@ import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(tabsAnatomy.keys)
 
+const baseStyle = definePartsStyle(({ colorScheme }: { colorScheme: string }) => ({
+  tab: {
+    borderRadius: 'lg',
+    _selected: {
+      bgColor: `${colorScheme}.200`,
+
+      _dark: {
+        bgColor: `${colorScheme}.300`,
+      },
+    },
+  },
+  tablist: {
+    bgColor: `${colorScheme}.500`,
+    p: 1,
+
+    _dark: {
+      bgColor: `${colorScheme}.600`,
+    },
+  },
+}))
+
+const brand = definePartsStyle(({ colorScheme }: { colorScheme: string }) => ({
+  tab: {
+    borderRadius: 'lg',
+    _selected: {
+      bgColor: `${colorScheme}.200`,
+
+      _dark: {
+        bgColor: `${colorScheme}.300`,
+      },
+    },
+  },
+  tablist: {
+    bgColor: `${colorScheme}.500`,
+    p: 1,
+
+    _dark: {
+      bgColor: `${colorScheme}.600`,
+    },
+  },
+}))
+
 const card = definePartsStyle({
   tablist: {
     display: 'flex',
@@ -106,9 +148,8 @@ const process = definePartsStyle({
   },
 })
 
-const variants = {
-  card,
-  process,
-}
-
-export const Tabs = defineMultiStyleConfig({ variants })
+export const Tabs = defineMultiStyleConfig({
+  baseStyle,
+  variants: { card, process, brand },
+  defaultProps: { colorScheme: 'brandAlpha' },
+})
