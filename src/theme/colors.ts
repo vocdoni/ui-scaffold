@@ -9,9 +9,10 @@ export const colorsBase = {
   },
   gradient: 'linear-gradient(to right, #546E39, #2E441A)',
   gray: {
-    light2: 'rgba(255, 255, 255, 0.24)',
-    light: '#e2e8f0',
-    normal: '#718096',
+    light3: '#fafafa',
+    light2: '#ffffff3d',
+    light: '#CBD5E0',
+    normal: '#E9EAEB',
   },
   green: '#00FF00',
   orange: '#FFA500',
@@ -377,6 +378,22 @@ export const colors = {
       },
     },
   },
+
+  table: {
+    bg: {
+      light: colorsBase.white.pure,
+      dark: colorsBase.blue.grayish,
+    },
+    thead: {
+      bg_light: colorsBase.gray.light3,
+      bg_dark: colorsBase.blue.grayish,
+    },
+    border_color: {
+      light: colorsBase.gray.normal,
+      dark: colorsBase.blue.dark,
+    },
+  },
+
   radio: {
     bg: colorsBase.primary,
     border: colorsBase.primary,

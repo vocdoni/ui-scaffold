@@ -26,6 +26,7 @@ import { spacing } from './space'
 import { Tag } from './components/tag'
 import { Menu } from './components/menu'
 import { Alert } from './components/alert'
+import { Table } from './components/table'
 
 export const theme = extendTheme(vtheme, {
   config: {
@@ -100,6 +101,7 @@ export const theme = extendTheme(vtheme, {
     Pagination,
     Radio,
     Stepper,
+    Table,
     Tabs,
     Tag,
     Text,
