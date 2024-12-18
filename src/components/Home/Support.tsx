@@ -93,7 +93,7 @@ const Support = () => {
           <Button
             as={ReactRouterLink}
             to='mailto:info@vocdoni.org'
-            variant='outline'
+            variant='secondary'
             aria-label={t('home.support.btn_contact')}
             title={t('home.support.btn_contact')}
             target='_blank'
@@ -104,8 +104,8 @@ const Support = () => {
             {t('home.support.btn_contact')}
           </Button>
           <Button
-            variant='outline'
             as={ReactRouterLink}
+            variant='secondary'
             to='https://calendly.com/vocdoni-app/30min'
             aria-label={t('home.support.btn_watch')}
             title={t('home.support.btn_watch')}
