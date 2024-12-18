@@ -9,7 +9,7 @@ const Berga = () => {
       <Image src={bergaImg} width='300px' alt='ajuntament berga escut' mx='auto' />
       <Box>
         <Text as='h1' fontWeight='bold' fontSize='36px' textAlign='center'>
-          Pressupostos Participatius 2024
+          Pressupostos Participatius 2025
         </Text>
         <Text as='h2' fontSize='16px' textAlign='center'>
           Ajuntament de Berga
@@ -17,15 +17,18 @@ const Berga = () => {
       </Box>
       <Text>
         <Text as='h3' fontWeight='bold'>
-          Pressupost Participatiu de Berga 2024
+          Pressupost Participatiu de Berga 2025
         </Text>
         <Text>
           El pressupost participatiu és una eina de participació ciutadana per a què els veïns i les veïnes puguin
           decidir a quins projectes o activitats es destina una part del pressupost públic municipal.
           <br />
-          L'Ajuntament de Berga promou per cinquè any consecutiu el pressupost participatiu. Comptarà amb una partida de
-          30.000€, els quals es podran destinar tant a propostes d'inversió (màxim de 20.000 €) com de programació
-          cultural (màxim de 10.000€).
+          L'Ajuntament de Berga promou per sisé any consecutiu el pressupost participatiu. Comptarà amb una partida de
+          XX.000€, els quals es podran destinar tant a propostes d'inversió (màxim de XX.000 €) com de programació
+          cultural (màxim de XX.000€). En la votació de l'any passat (2024) va resultar guanyadora la millora de
+          l'entorn de la residència Sant Bernabé amb la creació d'un espai de jardí tancat, net i controlat amb
+          col·locació d'una tanca emmarcada dins l'àmbit de "Inversió" i el projecte de Art Urbà: els murs pel canvi
+          dins l'àmbit de "Cultura".
         </Text>
       </Text>
       <Text>
@@ -34,11 +37,13 @@ const Berga = () => {
         </Text>
         <Text>
           El consistori promou per tercer any el pressupost participatiu adreçat a joves de 12 a 15 anys que
-          s'organitzarà a través dels centres educatius de la ciutat. Comptarà amb una partida de 5.000€ que es podran
+          s'organitzarà a través dels centres educatius de la ciutat. Comptarà amb una partida de X.000€ que es podran
           destinar tant a propostes d'inversió com de programació cultural.
           <br />
-          En la segona edició (2023) va resultar guanyadora la realització d'una vetllada de concerts per a l'alumnat
-          dels centres educatius de Berga, que es va dur a terme el dissabte, 16 de setembre.
+          En la tercera edició (2024) va resultar guanyadora la organització d'activitats en oci nocturn: DJs, festa
+          major jove, etc. Dues o tres nits de DJ's, disco mòbil o altres activitats musicals, en places de Berga. Les
+          dates i llocs es definiran si la proposta resulta la guanyadora, tenint en compte les èpoques de l'any en les
+          quals hi ha menys oferta.
         </Text>
       </Text>
       <Box>
@@ -66,7 +71,7 @@ const Berga = () => {
             _active={{
               transform: 'scale(0.9)',
             }}
-            to='/processes/0x6b342d99f2185fb10cc1027db85859b89153e55f3e3899d76e79020c00000001'
+            to='/processes/0xb31dff61814dc4964d7e010b396fd21ec769dec7053d4ada5fca020c00000003'
           >
             <Box>
               <Text fontSize='18px'>Accedeix a la votació Juvenil</Text>
@@ -94,7 +99,7 @@ const Berga = () => {
             _active={{
               transform: 'scale(0.9)',
             }}
-            to='/processes/0x6b342d99f2185fb10cc1027db85859b89153e55f3e3899d76e79020400000000'
+            to='/processes/0xb31dff61814dc4964d7e010b396fd21ec769dec7053d4ada5fca020400000002'
           >
             <Box>
               <Text fontSize='18px'>Accedeix a la votació General</Text>
