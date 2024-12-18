@@ -63,7 +63,6 @@ const md = definePartsStyle({
   td: {
     paddingY: 4,
     whiteSpace: 'nowrap',
-    borderColor: 'red',
   },
 })
 
