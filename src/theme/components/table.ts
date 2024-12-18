@@ -1,5 +1,5 @@
 import { tableAnatomy } from '@chakra-ui/anatomy'
-import { createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/react'
+import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(tableAnatomy.keys)
 
@@ -28,6 +28,7 @@ const baseStyle = definePartsStyle((props) => ({
   },
   td: {
     fontWeight: 'normal',
+    borderBottom: 'none',
   },
   tbody: {
     '& tr:last-of-type': {
