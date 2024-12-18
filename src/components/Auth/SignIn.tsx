@@ -128,7 +128,7 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
               </Text>
             </NavLink>
           </Flex>
-          <Button type='submit' fontSize='sm' variant='brand' fontWeight='500' w='100%' h={50}>
+          <Button type='submit' w='100%' size='xl'>
             {t('signin')}
           </Button>
         </Flex>

@@ -26,6 +26,10 @@ export const colorsBase = {
     from_read_more: 'rgba(245, 245, 247, 0)',
   },
   yellow: '#FFB116',
+  btn: {
+    dark_color: '#CBD5E0',
+    dark_color_secondary: '#22262f',
+  },
 }
 
 export const colors = {
@@ -49,6 +53,60 @@ export const colors = {
   bg: {
     light: colorsBase.white.dark,
     dark: colorsBase.blue.dark,
+  },
+  button: {
+    variant: {
+      primary: {
+        color: colorsBase.white.pure,
+        disabled: {
+          light: {
+            bg: '#EDF2F7',
+            border: '#E2E8F0',
+            color: '#A0AEC0',
+          },
+          dark: {
+            bg: colorsBase.btn.dark_color_secondary,
+            border: colorsBase.btn.dark_color,
+            color: colorsBase.btn.dark_color,
+          },
+        },
+      },
+      common: {
+        bg: {
+          dark: '#13161b',
+          light: colorsBase.white.pure,
+        },
+        border_color: {
+          dark: '#373a41',
+          light: '#d5d7da',
+        },
+        color: {
+          dark: '#cecfd2',
+          light: '#414651',
+        },
+        hover: {
+          bg: {
+            dark: '#22262f',
+            light: '#f6f6f6',
+          },
+        },
+        disabled: {
+          color: {
+            light: '#4A5568',
+            dark: '#e9eaeb',
+          },
+          border: '#CBD5E0',
+        },
+      },
+
+      outline: {
+        color: colorsBase.white.pure,
+      },
+    },
+    dark: {
+      primary: '#7f56d9',
+      secondary: '#6941c6',
+    },
   },
   checkbox: {
     bg_checked: colorsBase.primary,

@@ -44,14 +44,7 @@ const DashboardMenuContent = () => (
     </Link>
     <HSeparator />
     <DashboardMenuOptions />
-    <Button
-      as={RouterLink}
-      to={generatePath(Routes.processes.create)}
-      variant='box-shadow'
-      w='full'
-      my={5}
-      leftIcon={<AddIcon />}
-    >
+    <Button as={RouterLink} to={generatePath(Routes.processes.create)} w='full' my={5} leftIcon={<AddIcon />}>
       <Trans i18nKey='new_voting'>New voting</Trans>
     </Button>
     <LogoutBtn />
