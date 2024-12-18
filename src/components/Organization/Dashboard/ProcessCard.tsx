@@ -32,14 +32,16 @@ const ProcessCard = () => {
       <Td>
         {election.voteCount}/{election.census.size}
       </Td>
-      <Box
-        as={RouterLink}
-        to={generatePath(Routes.dashboard.process, { id: ensure0x(election.id) })}
-        position={'absolute'}
-        w='full'
-        h='full'
-        left='0'
-      />
+      <Td position={'absolute'} w='full' h='full' left='0'>
+        <Box
+          as={RouterLink}
+          to={generatePath(Routes.dashboard.process, { id: ensure0x(election.id) })}
+          position={'absolute'}
+          w='full'
+          h='full'
+          left='0'
+        />
+      </Td>
     </Tr>
   )
 }
