@@ -23,6 +23,9 @@ import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
 import { PlanId } from '~constants'
 import PricingCard from './Card'
+// import { usePaymentModal } from '~components/Pricing/use-payment-modal'
+import { usePricingModal } from './use-pricing-modal'
+
 
 export type Plan = {
   id: number
@@ -160,6 +163,7 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
   const { subscription } = useSubscription()
   const { data: plans, isLoading } = usePlans()
   const translations = usePlanTranslations()
+  const {openModal} = usePricingModal()
 
   const methods = useForm<FormValues>({
     defaultValues: {
@@ -173,7 +177,11 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
   const selectedCensusSize = watch('censusSize')
 
   const onSubmit = (data: FormValues) => {
-    console.log(data)
+    openModal('subscriptionPayment', {
+      amount: data.censusSize,
+      lookupKey: data.planId
+    }
+    )
   }
 
   const censusSizeOptions = useMemo(() => {
@@ -261,7 +269,7 @@ export const SubscriptionModal = ({
       </ModalHeader>
       <ModalCloseButton />
       <ModalBody>
-        <SubscriptionPlans />
+          <SubscriptionPlans />
       </ModalBody>
 
       <ModalFooter>

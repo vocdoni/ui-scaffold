@@ -7,7 +7,7 @@ import Error from '~elements/Error'
 import Layout from '~elements/Layout'
 import PlansPublicPage from '~elements/plans'
 import { PlansLayout, StretchPublicContentsLayout } from '~elements/PublicContents'
-import { StripeCheckout, StripeReturn } from '~elements/Stripe'
+import { StripeCheckout, StripeCheckoutReturn, StripeSubscription, StripeSubscriptionReturn } from '~elements/Stripe'
 import ProtectedRoutes from '~src/router/ProtectedRoutes'
 import { Routes } from '.'
 import { SuspenseLoader } from '../SuspenseLoader'
@@ -64,8 +64,17 @@ const RootElements = (client: VocdoniSDKClient) => [
         element: <StripeCheckout />,
       },
       {
-        path: Routes.stripe.return,
-        element: <StripeReturn />,
+        path: Routes.stripe.checkoutReturn,
+        element: <StripeCheckoutReturn />,
+        errorElement: <Error />,
+      },
+      {
+        path: Routes.stripe.subscription,
+        element: <StripeSubscription />,
+      },
+      {
+        path: Routes.stripe.subscriptionReturn,
+        element: <StripeSubscriptionReturn />,
         errorElement: <Error />,
       },
     ]),

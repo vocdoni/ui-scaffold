@@ -79,7 +79,7 @@ const DashboardLayoutProviders = (props: PropsWithChildren) => {
   const { account } = useClient()
   return (
     <OrganizationProvider organization={account}>
-      <PricingModalProvider {...props} />
+        <PricingModalProvider {...props} />
     </OrganizationProvider>
   )
 }

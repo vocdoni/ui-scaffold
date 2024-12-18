@@ -1,26 +1,27 @@
-import { Box, Button, Flex, Icon, Link, Spinner, Text, useToast } from '@chakra-ui/react'
-import { EmbeddedCheckout, EmbeddedCheckoutProvider } from '@stripe/react-stripe-js'
-import { Stripe } from '@stripe/stripe-js'
-import { loadStripe } from '@stripe/stripe-js/pure'
+import {
+  Box,
+  Button,
+  Flex,
+  Icon,
+  Link,
+  Spinner,
+  Text,
+  useToast,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+} from '@chakra-ui/react'
 import { errorToString, useClient } from '@vocdoni/react-providers'
 import { ensure0x } from '@vocdoni/sdk'
-import { lookup } from 'dns'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { MdHowToVote } from 'react-icons/md'
 import { generatePath, Navigate, Link as ReactRouterLink } from 'react-router-dom'
-import { useAccount } from 'wagmi'
 import { Routes } from '~src/router/routes'
-import { useAuth } from '~components/Auth/useAuth'
-
-const STRIPE_PUBLIC_KEY = import.meta.env.STRIPE_PUBLIC_KEY
-
-type CheckoutFormProps = {
-  amount?: string
-  returnURL?: string
-  lookupKey?: string
-  backendURL?: string
-}
 
 type StatusData = {
   status: string | null
@@ -30,60 +31,17 @@ type StatusData = {
   quantity: number | null
 }
 
-export const CheckoutForm = ({ amount, returnURL, lookupKey, backendURL }: CheckoutFormProps) => {
-  const { address } = useAccount()
-  const { client } = useClient()
-  const { signerAddress } = useAuth()
-  const origin = window.location.origin
-  const [stripePromise, _] = useState<Promise<Stripe | null>>(loadStripe(STRIPE_PUBLIC_KEY))
-
-  const payingAddress = address || signerAddress
-  const fetchClientSecret = useCallback(async () => {
-    if (payingAddress) {
-      let uri = `${client.faucetService.url}/createCheckoutSession/${payingAddress}`
-      if (amount && !isNaN(parseInt(amount, 10))) {
-        uri = `${uri}/${amount}`
-      }
-      if (backendURL) {
-        uri = `${backendURL}/subscriptions/checkout`
-      }
-      let requestBody = {
-        returnURL: returnURL || `${origin}/stripe/return`,
-        referral: origin,
-      }
-      if (lookupKey && lookupKey.length > 0) {
-        requestBody['lookupKey'] = lookupKey
-        requestBody['amount'] = amount
-        requestBody['address'] = payingAddress
-      }
-      // Create a Checkout Session
-      return await fetch(uri, {
-        method: 'POST',
-        body: JSON.stringify(requestBody),
-      })
-        .then((res) => res.json())
-        .then((data) => data.clientSecret)
-    }
-    return await Promise.resolve('')
-  }, [address, signerAddress])
-
-  const options = { fetchClientSecret, clientSecret: '' }
-
-  return (
-    <Box id='checkout' mt={10} mb={24}>
-      <EmbeddedCheckoutProvider stripe={stripePromise} options={options}>
-        <EmbeddedCheckout />
-      </EmbeddedCheckoutProvider>
-    </Box>
-  )
-}
-
-type CheckoutReturnProps = {
+export type SubscriptionReturnData = {
   sessionId: string
   backendURL?: string
 }
 
-export const CheckoutReturn = ({ sessionId, backendURL }: CheckoutReturnProps) => {
+type ModalProps = {
+  isOpen: boolean
+  onClose: () => void
+}
+
+export const SubscriptionReturn = ({ sessionId, backendURL }: SubscriptionReturnData) => {
   const { t } = useTranslation()
   const { client, loaded: accountLoaded, account, fetchAccount } = useClient()
   const toast = useToast()
@@ -282,3 +240,26 @@ export const CheckoutReturn = ({ sessionId, backendURL }: CheckoutReturnProps) =
 
   return null
 }
+
+export const SubscriptionReturnModal = ({ isOpen, onClose, ...props }: ModalProps & SubscriptionReturnData) => (
+  <Modal isOpen={isOpen} onClose={onClose} variant='payment-modal' size='full'>
+    <ModalOverlay />
+    <ModalContent>
+      <ModalCloseButton />
+      <ModalBody>
+        <SubscriptionReturn {...props} />
+      </ModalBody>
+
+      <ModalFooter>
+        <Box>
+          <Text>
+            <Trans i18nKey='pricing.help'>Need some help?</Trans>
+          </Text>
+          <Button as={ReactRouterLink}>
+            <Trans i18nKey='contact_us'>Contact us</Trans>
+          </Button>
+        </Box>
+      </ModalFooter>
+    </ModalContent>
+  </Modal>
+)
