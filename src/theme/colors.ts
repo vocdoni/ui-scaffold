@@ -97,11 +97,9 @@ export const colors = {
           border: '#CBD5E0',
         },
       },
-      teritary_and_link: {
-        color_dark: '#cecfd2',
-        color_hover: '#ececed',
-        color_gray_dark: '#acacac',
-        color_hover_dark: '#f0f0f1',
+
+      outline: {
+        color: colorsBase.white.pure,
       },
     },
     dark: {

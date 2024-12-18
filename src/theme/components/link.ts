@@ -1,4 +1,3 @@
-import { mode } from '@chakra-ui/theme-tools'
 import { defineStyleConfig } from '@chakra-ui/react'
 
 export const Link = defineStyleConfig({

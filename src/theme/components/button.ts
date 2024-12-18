@@ -1,5 +1,4 @@
 import { defineStyle, defineStyleConfig } from '@chakra-ui/styled-system'
-import { mode } from '@chakra-ui/theme-tools'
 
 const primary = defineStyle((props) => {
   const { colorScheme } = props
@@ -40,18 +39,18 @@ const primary = defineStyle((props) => {
     },
   }
 })
-const secondary = defineStyle((props) => {
+const outline = defineStyle((props) => {
   const { colorScheme } = props
+
   return {
     border: '1px solid',
-    borderColor: colorScheme === 'gray' ? 'button.variant.common.border_color.light' : `${colorScheme}.300`,
-
-    color: colorScheme === 'gray' ? 'button.variant.common.color.light' : `${colorScheme}.700`,
+    borderColor: colorScheme === 'gray' ? 'button.variant.common.border_color.light' : `${colorScheme}.600`,
+    color: colorScheme === 'gray' ? 'button.variant.common.color.light' : `${colorScheme}.600`,
 
     _hover: {
-      bgColor: colorScheme === 'gray' ? 'button.variant.common.hover.bg.light' : `${colorScheme}.200`,
-
-      color: colorScheme === 'gray' ? 'button.variant.common.color.light' : `${colorScheme}.800`,
+      bgColor: colorScheme === 'gray' ? 'button.variant.common.hover.bg.light' : `${colorScheme}.700`,
+      borderColor: colorScheme === 'gray' ? 'button.variant.common.border_color.light' : `${colorScheme}.700`,
+      color: colorScheme === 'gray' ? 'button.variant.common.color.light' : 'button.variant.outline.color',
 
       _disabled: {
         borderColor: 'button.variant.common.disabled.border',
@@ -72,17 +71,16 @@ const secondary = defineStyle((props) => {
     },
 
     _dark: {
-      bgColor: colorScheme === 'gray' ? 'button.variant.common.hover.bg.light' : `${colorScheme}.300`,
-      color: 'white',
+      color: colorScheme === 'gray' ? 'button.variant.common.color.light' : 'button.variant.outline.color',
 
       _hover: {
-        bgColor: colorScheme === 'gray' ? 'button.variant.common.hover.bg.light' : `${colorScheme}.600`,
+        bgColor: colorScheme === 'gray' ? 'button.variant.common.hover.bg.light' : `${colorScheme}.700`,
       },
     },
   }
 })
 
-const tertiary = defineStyle((props) => {
+const transparent = defineStyle((props) => {
   const { colorScheme } = props
   return {
     color: colorScheme === 'gray' ? 'button.variant.common.color.light' : `${colorScheme}.700`,
@@ -194,8 +192,8 @@ const sizes = {
 export const Button = defineStyleConfig({
   variants: {
     primary,
-    secondary,
-    tertiary,
+    outline,
+    transparent,
     link,
   },
   sizes,
