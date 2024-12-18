@@ -1,4 +1,3 @@
-import { mode } from '@chakra-ui/theme-tools'
 import { defineStyleConfig } from '@chakra-ui/react'
 
 export const Link = defineStyleConfig({
@@ -14,7 +13,6 @@ export const Link = defineStyleConfig({
     },
     _hover: {
       textDecoration: 'none',
-      border: 'none',
     },
   },
   variants: {

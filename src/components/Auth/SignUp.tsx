@@ -120,7 +120,7 @@ const SignUp = ({ invite }: SignupProps) => {
             required
           />
 
-          <Button isLoading={isPending} type='submit' fontSize='sm' variant='brand' fontWeight='500' w='100%' h={50}>
+          <Button isLoading={isPending} type='submit' size='xl' w='100%'>
             {t('signup_create_account')}
           </Button>
         </Flex>

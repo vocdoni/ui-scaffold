@@ -10,9 +10,10 @@ export const colorsBase = {
   },
   gradient: 'linear-gradient(to right, #546E39, #2E441A)',
   gray: {
-    light2: 'rgba(255, 255, 255, 0.24)',
-    light: '#e2e8f0',
-    normal: '#718096',
+    light3: '#fafafa',
+    light2: '#ffffff3d',
+    light: '#CBD5E0',
+    normal: '#E9EAEB',
   },
   green: '#00FF00',
   orange: '#FFA500',
@@ -26,6 +27,10 @@ export const colorsBase = {
     from_read_more: 'rgba(245, 245, 247, 0)',
   },
   yellow: '#FFB116',
+  btn: {
+    dark_color: '#CBD5E0',
+    dark_color_secondary: '#22262f',
+  },
 }
 
 export const colors = {
@@ -49,6 +54,60 @@ export const colors = {
   bg: {
     light: colorsBase.white.dark,
     dark: colorsBase.blue.bg,
+  },
+  button: {
+    variant: {
+      primary: {
+        color: colorsBase.white.pure,
+        disabled: {
+          light: {
+            bg: '#EDF2F7',
+            border: '#E2E8F0',
+            color: '#A0AEC0',
+          },
+          dark: {
+            bg: colorsBase.btn.dark_color_secondary,
+            border: colorsBase.btn.dark_color,
+            color: colorsBase.btn.dark_color,
+          },
+        },
+      },
+      common: {
+        bg: {
+          dark: '#13161b',
+          light: colorsBase.white.pure,
+        },
+        border_color: {
+          dark: '#373a41',
+          light: '#d5d7da',
+        },
+        color: {
+          dark: '#cecfd2',
+          light: '#414651',
+        },
+        hover: {
+          bg: {
+            dark: '#22262f',
+            light: '#f6f6f6',
+          },
+        },
+        disabled: {
+          color: {
+            light: '#4A5568',
+            dark: '#e9eaeb',
+          },
+          border: '#CBD5E0',
+        },
+      },
+
+      outline: {
+        color: colorsBase.white.pure,
+      },
+    },
+    dark: {
+      primary: '#7f56d9',
+      secondary: '#6941c6',
+    },
   },
   checkbox: {
     bg_checked: colorsBase.primary,
@@ -320,7 +379,26 @@ export const colors = {
         svg: colorsBase.primary,
       },
     },
+    responsive_tab: {
+      underline_border: colorsBase.gray.light,
+    },
   },
+
+  table: {
+    bg: {
+      light: colorsBase.white.pure,
+      dark: colorsBase.blue.grayish,
+    },
+    thead: {
+      bg_light: colorsBase.gray.light3,
+      bg_dark: colorsBase.blue.grayish,
+    },
+    border_color: {
+      light: colorsBase.gray.normal,
+      dark: colorsBase.blue.dark,
+    },
+  },
+
   radio: {
     bg: colorsBase.primary,
     border: colorsBase.primary,
@@ -361,69 +439,17 @@ export const colors = {
     900: '#233c1d',
     950: '#1a2e16',
   },
-  brandScheme: {
-    100: '#E9E3FF',
-    200: '#7551FF',
-    300: '#7551FF',
-    400: '#7551FF',
-    500: '#422AFB',
-    600: '#3311DB',
-    700: '#02044A',
-    800: '#190793',
-    900: '#02044A',
-  },
-  brandTabs: {
-    100: '#E9E3FF',
-    200: '#422AFB',
-    300: '#422AFB',
-    400: '#422AFB',
-    500: '#422AFB',
-    600: '#3311DB',
-    700: '#02044A',
-    800: '#190793',
-    900: '#02044A',
-  },
-  secondaryGray: {
-    100: '#E0E5F2',
-    200: '#E1E9F8',
-    300: '#F4F7FE',
-    400: '#E9EDF7',
-    500: '#8F9BBA',
-    600: '#A3AED0',
-    700: '#707EAE',
-    800: '#707EAE',
-    900: '#1B2559',
-  },
-  red: {
-    100: '#FEEFEE',
-    500: '#EE5D50',
-    600: '#E31A1A',
-  },
-  blue: {
-    50: '#EFF4FB',
-    500: '#3965FF',
-  },
-  orange: {
-    100: '#FFF6DA',
-    500: '#FFB547',
-  },
-  green: {
-    100: '#E6FAF5',
-    500: '#01B574',
-  },
-  navy: {
-    50: '#d0dcfb',
-    100: '#aac0fe',
-    200: '#a3b9f8',
-    300: '#728fea',
-    400: '#3652ba',
-    500: '#1b3bbb',
-    600: '#24388a',
-    700: '#1B254B',
-    800: '#111c44',
-    900: '#0b1437',
-  },
-  gray: {
-    100: '#FAFCFE',
+  brandAlpha: {
+    50: 'red',
+    100: 'blue',
+    200: 'white',
+    300: '#1A202C',
+    400: 'green',
+    500: '#E5E5E7',
+    600: '#2B2A33',
+    700: 'orange',
+    800: 'blue',
+    900: 'white',
+    950: 'black',
   },
 }
