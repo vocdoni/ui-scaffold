@@ -331,11 +331,7 @@ export const Card = defineMultiStyleConfig({
 
           'p:last-of-type': {
             fontSize: '22px',
-            color: 'home.description.light !important',
-
-            _dark: {
-              color: 'home.description.dark !important',
-            },
+            color: 'home.description.light',
           },
         },
       },

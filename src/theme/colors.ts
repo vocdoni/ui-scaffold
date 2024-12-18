@@ -13,7 +13,7 @@ export const colorsBase = {
     light3: '#fafafa',
     light2: '#ffffff3d',
     light: '#CBD5E0',
-    normal: '#E9EAEB',
+    normal: '#A0AEC0',
   },
   green: '#00FF00',
   orange: '#FFA500',
