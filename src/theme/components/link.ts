@@ -13,7 +13,6 @@ export const Link = defineStyleConfig({
     },
     _hover: {
       textDecoration: 'none',
-      border: 'none',
     },
   },
   variants: {
