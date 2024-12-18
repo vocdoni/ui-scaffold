@@ -7,12 +7,10 @@ import ProcessCard from './ProcessCard'
 type Election = PublishedElection | InvalidElection
 
 type ProcessesListProps = {
-  error?: Error | null
-  loading?: boolean
   processes?: Election[]
 }
 
-const ProcessesList = ({ loading, processes, error }: ProcessesListProps) => {
+const ProcessesList = ({ processes }: ProcessesListProps) => {
   const { t } = useTranslation()
 
   return (

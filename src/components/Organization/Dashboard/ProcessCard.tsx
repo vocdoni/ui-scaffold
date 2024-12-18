@@ -15,8 +15,17 @@ const ProcessCard = () => {
   if (!election || election instanceof InvalidElection) return null
 
   return (
-    <Tr>
+    <Tr position='relative'>
       <Td>
+        <Box
+          as={RouterLink}
+          to={generatePath(Routes.dashboard.process, { id: ensure0x(election.id) })}
+          position={'absolute'}
+          w='full'
+          h='full'
+          left={0}
+          top={0}
+        />
         <ElectionTitle mb={0} fontSize='md' textAlign='left' fontWeight='500' isTruncated />
       </Td>
       <Td>
@@ -31,16 +40,6 @@ const ProcessCard = () => {
       </Td>
       <Td>
         {election.voteCount}/{election.census.size}
-      </Td>
-      <Td position={'absolute'} w='full' h='full' left='0'>
-        <Box
-          as={RouterLink}
-          to={generatePath(Routes.dashboard.process, { id: ensure0x(election.id) })}
-          position={'absolute'}
-          w='full'
-          h='full'
-          left='0'
-        />
       </Td>
     </Tr>
   )
