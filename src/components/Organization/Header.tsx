@@ -71,7 +71,6 @@ const OrganizationHeader = () => {
             }}
           >
             <OrganizationName
-              className='brand-theme'
               as='p'
               fontSize={32}
               lineHeight={1.5}
