@@ -4,13 +4,7 @@ export const Link = defineStyleConfig({
   baseStyle: {
     textDecoration: 'underline',
     color: 'link',
-    boxShadow: 'none',
-    _focus: {
-      boxShadow: 'none',
-    },
-    _active: {
-      boxShadow: 'none',
-    },
+
     _hover: {
       textDecoration: 'none',
     },

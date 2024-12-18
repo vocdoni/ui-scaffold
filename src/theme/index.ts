@@ -78,6 +78,7 @@ export const theme = extendTheme(vtheme, {
           fontSize: '16px',
           lineHeight: '24px',
           textDecoration: 'underline',
+          color: 'link',
         },
         pre: {
           whiteSpace: 'pre-wrap',
