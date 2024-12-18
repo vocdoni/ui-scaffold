@@ -1,5 +1,4 @@
-import { Box, Text } from '@chakra-ui/react'
-import ResponsiveTabs from '~components/Layout/ResponsiveTabs'
+import { Box } from '@chakra-ui/react'
 import Benefits from './Benefits'
 import Clients from './Clients'
 import ContactUs from './ContactUs'
@@ -23,12 +22,7 @@ const Home = () => (
   <>
     <Box position='relative'>
       <Box position='relative' zIndex={10}>
-        <Text my={10} textAlign={'center'}>
-          EXAMPLE TabsCustom responsive
-        </Text>
-        <ResponsiveTabs data={exampleTabs} />
         <CreateProcess />
-
         <Clients />
         <Benefits />
         <Features />
