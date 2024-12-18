@@ -22,7 +22,7 @@ const Berga = () => {
         <Text>
           El pressupost participatiu és una eina de participació ciutadana per a què els veïns i les veïnes puguin
           decidir a quins projectes o activitats es destina una part del pressupost públic municipal.
-          <br />
+          <br /><br />
           L'Ajuntament de Berga promou per sisé any consecutiu el pressupost participatiu. Comptarà amb una partida de
           XX.000€, els quals es podran destinar tant a propostes d'inversió (màxim de XX.000 €) com de programació
           cultural (màxim de XX.000€). En la votació de l'any passat (2024) va resultar guanyadora la millora de
@@ -39,11 +39,9 @@ const Berga = () => {
           El consistori promou per tercer any el pressupost participatiu adreçat a joves de 12 a 15 anys que
           s'organitzarà a través dels centres educatius de la ciutat. Comptarà amb una partida de X.000€ que es podran
           destinar tant a propostes d'inversió com de programació cultural.
-          <br />
+          <br /><br />
           En la tercera edició (2024) va resultar guanyadora la organització d'activitats en oci nocturn: DJs, festa
-          major jove, etc. Dues o tres nits de DJ's, disco mòbil o altres activitats musicals, en places de Berga. Les
-          dates i llocs es definiran si la proposta resulta la guanyadora, tenint en compte les èpoques de l'any en les
-          quals hi ha menys oferta.
+          major jove, etc. Dues o tres nits de DJ's, disco mòbil o altres activitats musicals, en places de Berga.
         </Text>
       </Text>
       <Box>
