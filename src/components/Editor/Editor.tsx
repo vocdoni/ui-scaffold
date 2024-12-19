@@ -60,69 +60,11 @@ const Editor = (props: EditorProps) => {
       throw error
     },
     nodes: [
-      {
-        replace: ParagraphNode,
-        with: (node: ParagraphNode) => {
-          const chakraNode = new ChakraTextNode(node.__key)
-          chakraNode.__format = node.__format
-          chakraNode.__indent = node.__indent
-          chakraNode.__dir = node.__dir
-          return chakraNode
-        },
-      },
-      {
-        replace: HeadingNode,
-        with: (node: HeadingNode) => {
-          const chakraNode = new ChakraHeadingNode(node.getTag(), node.__key)
-          chakraNode.__format = node.__format
-          chakraNode.__indent = node.__indent
-          chakraNode.__dir = node.__dir
-          return chakraNode
-        },
-      },
-      {
-        replace: ListNode,
-        with: (node: ListNode) => {
-          const chakraNode = new ChakraListNode(node.getListType(), node.__key)
-          chakraNode.__format = node.__format
-          chakraNode.__indent = node.__indent
-          chakraNode.__dir = node.__dir
-          return chakraNode
-        },
-      },
-      {
-        replace: ListItemNode,
-        with: (node: ListItemNode) => {
-          const chakraNode = new ChakraListItemNode(node.getValue(), node.getChecked(), node.__key)
-          chakraNode.__format = node.__format
-          chakraNode.__indent = node.__indent
-          chakraNode.__dir = node.__dir
-          return chakraNode
-        },
-      },
-      {
-        replace: LinkNode,
-        with: (node: LinkNode) => {
-          const chakraNode = new ChakraLinkNode(
-            node.getURL(),
-            {
-              rel: node.getRel(),
-              target: node.getTarget(),
-              title: node.getTitle(),
-            },
-            node.__key
-          )
-          chakraNode.__format = node.__format
-          chakraNode.__indent = node.__indent
-          chakraNode.__dir = node.__dir
-          return chakraNode
-        },
-      },
-      ChakraTextNode,
-      ChakraHeadingNode,
-      ChakraListNode,
-      ChakraListItemNode,
-      ChakraLinkNode,
+      // Base nodes needed for transformers
+      HeadingNode,
+      ParagraphNode,
+      ListNode,
+      ListItemNode,
       QuoteNode,
       CodeNode,
       CodeHighlightNode,
@@ -130,7 +72,14 @@ const Editor = (props: EditorProps) => {
       TableCellNode,
       TableRowNode,
       AutoLinkNode,
+      LinkNode,
       OverflowNode,
+      // Our custom Chakra nodes
+      ChakraTextNode,
+      ChakraHeadingNode,
+      ChakraListNode,
+      ChakraListItemNode,
+      ChakraLinkNode,
     ],
   }
 

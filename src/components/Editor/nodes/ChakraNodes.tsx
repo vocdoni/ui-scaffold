@@ -1,12 +1,11 @@
 import { Heading, Link, ListItem, OrderedList, Text, UnorderedList } from '@chakra-ui/react'
 import { LinkNode } from '@lexical/link'
-import { ListItemNode, ListNode, ListType, SerializedListItemNode, SerializedListNode } from '@lexical/list'
+import { ListItemNode, ListNode, SerializedListItemNode, SerializedListNode } from '@lexical/list'
 import { HeadingNode, HeadingTagType } from '@lexical/rich-text'
 import {
   $createTextNode,
   DOMConversionMap,
   DOMConversionOutput,
-  NodeKey,
   ParagraphNode,
   SerializedElementNode,
   SerializedParagraphNode,
@@ -19,16 +18,13 @@ type SerializedChakraListNode = SerializedListNode
 type SerializedChakraLinkNode = SerializedElementNode & { url: string }
 
 export class ChakraTextNode extends ParagraphNode {
-  constructor(key?: NodeKey) {
-    super(key)
-  }
-
   static getType(): string {
     return 'chakra-text'
   }
 
   static clone(node: ChakraTextNode): ChakraTextNode {
-    const clone = new ChakraTextNode(node.__key)
+    const clone = new ChakraTextNode()
+    clone.__key = node.__key
     clone.__format = node.__format
     clone.__indent = node.__indent
     clone.__dir = node.__dir
@@ -78,16 +74,13 @@ export class ChakraTextNode extends ParagraphNode {
 }
 
 export class ChakraHeadingNode extends HeadingNode {
-  constructor(tag: HeadingTagType, key?: NodeKey) {
-    super(tag, key)
-  }
-
   static getType(): string {
     return 'chakra-heading'
   }
 
   static clone(node: ChakraHeadingNode): ChakraHeadingNode {
-    const clone = new ChakraHeadingNode(node.getTag(), node.__key)
+    const clone = new ChakraHeadingNode(node.getTag())
+    clone.__key = node.__key
     clone.__format = node.__format
     clone.__indent = node.__indent
     clone.__dir = node.__dir
@@ -116,16 +109,13 @@ export class ChakraHeadingNode extends HeadingNode {
 }
 
 export class ChakraListNode extends ListNode {
-  constructor(listType: ListType, key?: NodeKey) {
-    super(listType, 1, key)
-  }
-
   static getType(): string {
     return 'chakra-list'
   }
 
   static clone(node: ChakraListNode): ChakraListNode {
-    const clone = new ChakraListNode(node.getListType(), node.__key)
+    const clone = new ChakraListNode(node.getListType(), 1)
+    clone.__key = node.__key
     clone.__format = node.__format
     clone.__indent = node.__indent
     clone.__dir = node.__dir
@@ -161,16 +151,13 @@ export class ChakraListNode extends ListNode {
 }
 
 export class ChakraListItemNode extends ListItemNode {
-  constructor(value: number = 1, checked: boolean = false, key?: NodeKey) {
-    super(value, checked, key)
-  }
-
   static getType(): string {
     return 'chakra-list-item'
   }
 
   static clone(node: ChakraListItemNode): ChakraListItemNode {
-    const clone = new ChakraListItemNode(node.getValue(), node.getChecked(), node.__key)
+    const clone = new ChakraListItemNode(node.getValue(), node.getChecked())
+    clone.__key = node.__key
     clone.__format = node.__format
     clone.__indent = node.__indent
     clone.__dir = node.__dir
@@ -207,24 +194,17 @@ export class ChakraListItemNode extends ListItemNode {
 }
 
 export class ChakraLinkNode extends LinkNode {
-  constructor(url: string, attributes = {}, key?: NodeKey) {
-    super(url, attributes, key)
-  }
-
   static getType(): string {
     return 'chakra-link'
   }
 
   static clone(node: ChakraLinkNode): ChakraLinkNode {
-    const clone = new ChakraLinkNode(
-      node.getURL(),
-      {
-        rel: node.getRel(),
-        target: node.getTarget(),
-        title: node.getTitle(),
-      },
-      node.__key
-    )
+    const clone = new ChakraLinkNode(node.getURL(), {
+      rel: node.getRel(),
+      target: node.getTarget(),
+      title: node.getTitle(),
+    })
+    clone.__key = node.__key
     clone.__format = node.__format
     clone.__indent = node.__indent
     clone.__dir = node.__dir
@@ -270,11 +250,11 @@ export function $createChakraHeadingNode(tag: HeadingTagType): ChakraHeadingNode
 }
 
 export function $createChakraListNode(ordered: boolean): ChakraListNode {
-  return new ChakraListNode(ordered ? 'number' : 'bullet')
+  return new ChakraListNode(ordered ? 'number' : 'bullet', 1)
 }
 
-export function $createChakraListItemNode(): ChakraListItemNode {
-  return new ChakraListItemNode()
+export function $createChakraListItemNode(value: number = 1, checked: boolean = false): ChakraListItemNode {
+  return new ChakraListItemNode(value, checked)
 }
 
 export function $createChakraLinkNode(url: string): ChakraLinkNode {
