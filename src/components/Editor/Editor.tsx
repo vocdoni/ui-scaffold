@@ -98,7 +98,7 @@ const Editor = (props: EditorProps) => {
       {
         replace: ListNode,
         with: (node: ListNode) => {
-          const chakraNode = new ChakraListNode(node.getListType(), 1)
+          const chakraNode = new ChakraListNode(node.getListType())
           chakraNode.__format = node.__format
           chakraNode.__indent = node.__indent
           chakraNode.__dir = node.__dir
