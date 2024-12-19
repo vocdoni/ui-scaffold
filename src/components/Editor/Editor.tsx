@@ -1,5 +1,6 @@
 import { CodeHighlightNode, CodeNode } from '@lexical/code'
 import { AutoLinkNode, LinkNode } from '@lexical/link'
+import { ListItemNode, ListNode } from '@lexical/list'
 import { $convertFromMarkdownString, TRANSFORMERS } from '@lexical/markdown'
 import { OverflowNode } from '@lexical/overflow'
 import { CharacterLimitPlugin } from '@lexical/react/LexicalCharacterLimitPlugin'
@@ -59,28 +60,69 @@ const Editor = (props: EditorProps) => {
       throw error
     },
     nodes: [
-      ChakraTextNode,
       {
         replace: ParagraphNode,
         with: (node: ParagraphNode) => {
-          return new ChakraTextNode(node.__key)
+          const chakraNode = new ChakraTextNode(node.__key)
+          chakraNode.__format = node.__format
+          chakraNode.__indent = node.__indent
+          chakraNode.__dir = node.__dir
+          return chakraNode
         },
-        withKlass: ChakraTextNode,
       },
-      ChakraHeadingNode,
       {
         replace: HeadingNode,
         with: (node: HeadingNode) => {
-          return new ChakraHeadingNode(node.__tag, node.__key)
+          const chakraNode = new ChakraHeadingNode(node.getTag(), node.__key)
+          chakraNode.__format = node.__format
+          chakraNode.__indent = node.__indent
+          chakraNode.__dir = node.__dir
+          return chakraNode
         },
-        withKlass: ChakraHeadingNode,
       },
+      {
+        replace: ListNode,
+        with: (node: ListNode) => {
+          const chakraNode = new ChakraListNode(node.getListType(), node.__key)
+          chakraNode.__format = node.__format
+          chakraNode.__indent = node.__indent
+          chakraNode.__dir = node.__dir
+          return chakraNode
+        },
+      },
+      {
+        replace: ListItemNode,
+        with: (node: ListItemNode) => {
+          const chakraNode = new ChakraListItemNode(node.getValue(), node.getChecked(), node.__key)
+          chakraNode.__format = node.__format
+          chakraNode.__indent = node.__indent
+          chakraNode.__dir = node.__dir
+          return chakraNode
+        },
+      },
+      {
+        replace: LinkNode,
+        with: (node: LinkNode) => {
+          const chakraNode = new ChakraLinkNode(
+            node.getURL(),
+            {
+              rel: node.getRel(),
+              target: node.getTarget(),
+              title: node.getTitle(),
+            },
+            node.__key
+          )
+          chakraNode.__format = node.__format
+          chakraNode.__indent = node.__indent
+          chakraNode.__dir = node.__dir
+          return chakraNode
+        },
+      },
+      ChakraTextNode,
+      ChakraHeadingNode,
       ChakraListNode,
       ChakraListItemNode,
       ChakraLinkNode,
-      HeadingNode,
-      // ListNode,
-      // ListItemNode,
       QuoteNode,
       CodeNode,
       CodeHighlightNode,
@@ -88,7 +130,6 @@ const Editor = (props: EditorProps) => {
       TableCellNode,
       TableRowNode,
       AutoLinkNode,
-      LinkNode,
       OverflowNode,
     ],
   }

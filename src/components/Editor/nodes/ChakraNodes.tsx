@@ -19,12 +19,20 @@ type SerializedChakraListNode = SerializedListNode
 type SerializedChakraLinkNode = SerializedElementNode & { url: string }
 
 export class ChakraTextNode extends ParagraphNode {
+  constructor(key?: NodeKey) {
+    super(key)
+  }
+
   static getType(): string {
     return 'chakra-text'
   }
 
   static clone(node: ChakraTextNode): ChakraTextNode {
-    return new ChakraTextNode(node.__key)
+    const clone = new ChakraTextNode(node.__key)
+    clone.__format = node.__format
+    clone.__indent = node.__indent
+    clone.__dir = node.__dir
+    return clone
   }
 
   createDOM(): HTMLElement {
@@ -57,7 +65,7 @@ export class ChakraTextNode extends ParagraphNode {
   }
 
   static importJSON(serializedNode: SerializedChakraTextNode): ChakraTextNode {
-    const node = $createChakraTextNode()
+    const node = new ChakraTextNode()
     node.setFormat(serializedNode.format)
     node.setIndent(serializedNode.indent)
     node.setDirection(serializedNode.direction)
@@ -79,7 +87,11 @@ export class ChakraHeadingNode extends HeadingNode {
   }
 
   static clone(node: ChakraHeadingNode): ChakraHeadingNode {
-    return new ChakraHeadingNode(node.getTag(), node.__key)
+    const clone = new ChakraHeadingNode(node.getTag(), node.__key)
+    clone.__format = node.__format
+    clone.__indent = node.__indent
+    clone.__dir = node.__dir
+    return clone
   }
 
   createDOM(): HTMLElement {
@@ -113,7 +125,11 @@ export class ChakraListNode extends ListNode {
   }
 
   static clone(node: ChakraListNode): ChakraListNode {
-    return new ChakraListNode(node.getListType(), undefined)
+    const clone = new ChakraListNode(node.getListType(), node.__key)
+    clone.__format = node.__format
+    clone.__indent = node.__indent
+    clone.__dir = node.__dir
+    return clone
   }
 
   createDOM(): HTMLElement {
@@ -145,7 +161,7 @@ export class ChakraListNode extends ListNode {
 }
 
 export class ChakraListItemNode extends ListItemNode {
-  constructor(value?: number, checked?: boolean, key?: NodeKey) {
+  constructor(value: number = 1, checked: boolean = false, key?: NodeKey) {
     super(value, checked, key)
   }
 
@@ -154,9 +170,10 @@ export class ChakraListItemNode extends ListItemNode {
   }
 
   static clone(node: ChakraListItemNode): ChakraListItemNode {
-    const clone = new ChakraListItemNode(undefined)
-    clone.setChecked(node.getChecked())
-    clone.setValue(node.getValue())
+    const clone = new ChakraListItemNode(node.getValue(), node.getChecked(), node.__key)
+    clone.__format = node.__format
+    clone.__indent = node.__indent
+    clone.__dir = node.__dir
     return clone
   }
 
@@ -177,9 +194,7 @@ export class ChakraListItemNode extends ListItemNode {
   }
 
   static importJSON(serializedNode: SerializedListItemNode): ChakraListItemNode {
-    const node = $createChakraListItemNode()
-    node.setChecked(serializedNode.checked)
-    node.setValue(serializedNode.value)
+    const node = new ChakraListItemNode(serializedNode.value, serializedNode.checked)
     node.setFormat(serializedNode.format)
     node.setIndent(serializedNode.indent)
     node.setDirection(serializedNode.direction)
@@ -201,15 +216,19 @@ export class ChakraLinkNode extends LinkNode {
   }
 
   static clone(node: ChakraLinkNode): ChakraLinkNode {
-    return new ChakraLinkNode(
+    const clone = new ChakraLinkNode(
       node.getURL(),
       {
         rel: node.getRel(),
         target: node.getTarget(),
         title: node.getTitle(),
       },
-      undefined
+      node.__key
     )
+    clone.__format = node.__format
+    clone.__indent = node.__indent
+    clone.__dir = node.__dir
+    return clone
   }
 
   createDOM(): HTMLElement {
@@ -234,7 +253,7 @@ export class ChakraLinkNode extends LinkNode {
 }
 
 function convertParagraphElement(element: HTMLElement): DOMConversionOutput {
-  const node = $createChakraTextNode()
+  const node = new ChakraTextNode()
   if (element.textContent) {
     const textNode = $createTextNode(element.textContent)
     node.append(textNode)
