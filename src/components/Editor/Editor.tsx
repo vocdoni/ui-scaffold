@@ -84,6 +84,7 @@ const Editor = (props: EditorProps) => {
           chakraNode.__dir = node.__dir
           return chakraNode
         },
+        withKlass: ChakraTextNode,
       },
       {
         replace: HeadingNode,
@@ -94,6 +95,7 @@ const Editor = (props: EditorProps) => {
           chakraNode.__dir = node.__dir
           return chakraNode
         },
+        withKlass: ChakraHeadingNode,
       },
       {
         replace: ListNode,
@@ -104,6 +106,7 @@ const Editor = (props: EditorProps) => {
           chakraNode.__dir = node.__dir
           return chakraNode
         },
+        withKlass: ChakraListNode,
       },
       {
         replace: ListItemNode,
@@ -114,6 +117,7 @@ const Editor = (props: EditorProps) => {
           chakraNode.__dir = node.__dir
           return chakraNode
         },
+        withKlass: ChakraListItemNode,
       },
       {
         replace: LinkNode,
@@ -128,6 +132,7 @@ const Editor = (props: EditorProps) => {
           chakraNode.__dir = node.__dir
           return chakraNode
         },
+        withKlass: ChakraLinkNode,
       },
       // Our custom nodes
       ChakraTextNode,
