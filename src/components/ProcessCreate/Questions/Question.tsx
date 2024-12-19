@@ -64,7 +64,16 @@ const Question = ({ index, remove }: Props) => {
 
       <Options fields={fields} removeOption={removeOption} appendOption={appendOption} index={index} />
 
-      <Text variant='question-index'>{index + 1}</Text>
+      <Text
+        position='absolute'
+        fontSize='100px'
+        bottom={0}
+        right={5}
+        color='process_create.question_index'
+        opacity={0.2}
+      >
+        {index + 1}
+      </Text>
     </Box>
   )
 }
