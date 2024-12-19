@@ -4,7 +4,6 @@ import { ListItemNode, ListNode } from '@lexical/list'
 import { $convertFromMarkdownString, TRANSFORMERS } from '@lexical/markdown'
 import { OverflowNode } from '@lexical/overflow'
 import { CharacterLimitPlugin } from '@lexical/react/LexicalCharacterLimitPlugin'
-import LexicalClickableLinkPlugin from '@lexical/react/LexicalClickableLinkPlugin'
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
 import { ContentEditable } from '@lexical/react/LexicalContentEditable'
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary'
@@ -130,7 +129,6 @@ const Editor = (props: EditorProps) => {
             placeholder={<Placeholder placeholder={props.placeholder} />}
           />
           <HistoryPlugin />
-          <LexicalClickableLinkPlugin />
           <ListPlugin />
           <LinkPlugin />
           <OnChangeMarkdown onChange={props.onChange} transformers={TRANSFORMERS} />
