@@ -44,7 +44,7 @@ const Options = ({ fields, removeOption, appendOption, index }: Props) => {
             </Box>
             {fields.length > 2 && (
               <IconButton
-                variant='transparent'
+                variant={'transparent'}
                 size='xs'
                 type='button'
                 icon={<DeleteIcon />}
@@ -52,6 +52,7 @@ const Options = ({ fields, removeOption, appendOption, index }: Props) => {
                   values: { question: index, option: idx },
                 })}
                 onClick={() => removeOption(idx)}
+                colorScheme='red'
               />
             )}
           </Flex>
