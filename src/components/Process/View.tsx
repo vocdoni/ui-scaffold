@@ -137,8 +137,8 @@ export const ProcessView = () => {
 
         <Flex direction={{ base: 'column', xl2: 'row' }} alignItems='start' gap={{ xl2: 10 }} mt={{ xl2: 10 }}>
           <Tabs
+            isFitted
             order={{ base: 2, xl2: 1 }}
-            variant='process'
             index={tabIndex}
             onChange={handleTabsChange}
             flex={{ xl2: '1 1 80%' }}
