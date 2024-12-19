@@ -4,7 +4,6 @@ import { ListItemNode, ListNode } from '@lexical/list'
 import { $convertFromMarkdownString, TRANSFORMERS } from '@lexical/markdown'
 import { OverflowNode } from '@lexical/overflow'
 import { CharacterLimitPlugin } from '@lexical/react/LexicalCharacterLimitPlugin'
-import LexicalClickableLinkPlugin from '@lexical/react/LexicalClickableLinkPlugin'
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
 import { ContentEditable } from '@lexical/react/LexicalContentEditable'
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary'
@@ -27,6 +26,14 @@ import ToolbarPlugin from './plugins/ToolbarPlugin'
 import exampleTheme from './theme'
 
 import { Box } from '@chakra-ui/react'
+import { ParagraphNode } from 'lexical'
+import {
+  ChakraHeadingNode,
+  ChakraLinkNode,
+  ChakraListItemNode,
+  ChakraListNode,
+  ChakraTextNode,
+} from './nodes/ChakraNodes'
 import './styles.css'
 
 function Placeholder(props: any) {
@@ -48,17 +55,17 @@ const Editor = (props: EditorProps) => {
   const settings = {
     editorState: () => $convertFromMarkdownString(props.defaultValue ?? '', TRANSFORMERS),
     namespace: '',
-    // The editor theme
     theme: exampleTheme,
-    // Handling of errors during update
     onError(error: any) {
       throw error
     },
-    // Any custom nodes go here
     nodes: [
+      // Base nodes needed for transformers
       HeadingNode,
+      ParagraphNode,
       ListNode,
       ListItemNode,
+      LinkNode,
       QuoteNode,
       CodeNode,
       CodeHighlightNode,
@@ -66,8 +73,73 @@ const Editor = (props: EditorProps) => {
       TableCellNode,
       TableRowNode,
       AutoLinkNode,
-      LinkNode,
       OverflowNode,
+      // Node replacements
+      {
+        replace: ParagraphNode,
+        with: (node: ParagraphNode) => {
+          const chakraNode = new ChakraTextNode()
+          chakraNode.__format = node.__format
+          chakraNode.__indent = node.__indent
+          chakraNode.__dir = node.__dir
+          return chakraNode
+        },
+        withKlass: ChakraTextNode,
+      },
+      {
+        replace: HeadingNode,
+        with: (node: HeadingNode) => {
+          const chakraNode = new ChakraHeadingNode(node.getTag())
+          chakraNode.__format = node.__format
+          chakraNode.__indent = node.__indent
+          chakraNode.__dir = node.__dir
+          return chakraNode
+        },
+        withKlass: ChakraHeadingNode,
+      },
+      {
+        replace: ListNode,
+        with: (node: ListNode) => {
+          const chakraNode = new ChakraListNode(node.getListType())
+          chakraNode.__format = node.__format
+          chakraNode.__indent = node.__indent
+          chakraNode.__dir = node.__dir
+          return chakraNode
+        },
+        withKlass: ChakraListNode,
+      },
+      {
+        replace: ListItemNode,
+        with: (node: ListItemNode) => {
+          const chakraNode = new ChakraListItemNode(node.getValue(), node.getChecked())
+          chakraNode.__format = node.__format
+          chakraNode.__indent = node.__indent
+          chakraNode.__dir = node.__dir
+          return chakraNode
+        },
+        withKlass: ChakraListItemNode,
+      },
+      {
+        replace: LinkNode,
+        with: (node: LinkNode) => {
+          const chakraNode = new ChakraLinkNode(node.getURL(), {
+            rel: node.getRel(),
+            target: node.getTarget(),
+            title: node.getTitle(),
+          })
+          chakraNode.__format = node.__format
+          chakraNode.__indent = node.__indent
+          chakraNode.__dir = node.__dir
+          return chakraNode
+        },
+        withKlass: ChakraLinkNode,
+      },
+      // Our custom nodes
+      ChakraTextNode,
+      ChakraHeadingNode,
+      ChakraListNode,
+      ChakraListItemNode,
+      ChakraLinkNode,
     ],
   }
 
@@ -130,7 +202,6 @@ const Editor = (props: EditorProps) => {
             placeholder={<Placeholder placeholder={props.placeholder} />}
           />
           <HistoryPlugin />
-          <LexicalClickableLinkPlugin />
           <ListPlugin />
           <LinkPlugin />
           <OnChangeMarkdown onChange={props.onChange} transformers={TRANSFORMERS} />
