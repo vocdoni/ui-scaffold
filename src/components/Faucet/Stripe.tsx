@@ -164,7 +164,7 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
 
   if (aborted) {
     return (
-      <Box as='section' id='success' className='site-wrapper' mt={10} textAlign='center'>
+      <Box as='section' id='success' mt={10} textAlign='center'>
         <Text>
           <Trans
             i18nKey='claim.signature_aborted'
@@ -183,7 +183,7 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
 
   if (!packageConsumed && !faucetPackage) {
     return (
-      <Box as='section' id='success' className='site-wrapper' textAlign='center' mt={10}>
+      <Box as='section' id='success' textAlign='center' mt={10}>
         <Spinner color='spinner' mb={5} />
         <Box w='fit-content' mx='auto'>
           <Trans
@@ -202,7 +202,7 @@ export const CheckoutReturn = ({ sessionId }: CheckoutReturnProps) => {
 
   if (packageConsumed) {
     return (
-      <Box as='section' id='success' className='site-wrapper' mt={10} textAlign='center'>
+      <Box as='section' id='success' mt={10} textAlign='center'>
         <Trans
           i18nKey='claim.purchase_success'
           components={{
