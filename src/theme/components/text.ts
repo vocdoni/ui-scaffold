@@ -1,47 +1,37 @@
-const variants = {
-  'home-description-color': {
-    color: 'home.description.light',
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+import type { StyleFunctionProps } from '@chakra-ui/styled-system'
 
-    _dark: {
-      color: 'home.description.dark',
-    },
-  },
-  'process-create-title': {
-    fontWeight: 'bold',
-  },
-  'process-create-title-sm': {
-    fontWeight: 'bold',
-    fontSize: 'sm',
-  },
-  'process-create-subtitle': {
-    color: 'process_create.text_secondary',
-  },
-  'process-create-subtitle-sm': {
-    fontSize: 'sm',
-    color: 'process_create.text_secondary',
-  },
-  'process-create-census-title': {
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
-    color: 'process_create.text_brand',
-    mb: 6,
-  },
-  'question-index': {
-    position: 'absolute',
-    fontSize: '100px',
-    bottom: 0,
-    right: 5,
-    color: 'process_create.question_index',
-    opacity: 0.2,
-  },
-
-  'enumeration-title': {
-    color: 'gray.400',
-    fontSize: 'sm',
-    fontWeight: 600,
-  },
+const baseStyle = (options: StyleFunctionProps) => {
+  return { letterSpacing: '0%' }
 }
 
-export const Text = {
-  variants,
+const sizes = {
+  xs: defineStyle({
+    fontSize: '12px',
+    lineHeight: '18px',
+  }),
+  sm: defineStyle({
+    fontSize: '14px',
+    lineHeight: '20px',
+  }),
+  md: defineStyle({
+    fontSize: '16px',
+    lineHeight: '24px',
+  }),
+  lg: defineStyle({
+    fontSize: '18px',
+    lineHeight: '28px',
+  }),
+  xl: defineStyle({
+    fontSize: '20px',
+    lineHeight: '30px',
+  }),
 }
+
+export const Text = defineStyleConfig({
+  baseStyle,
+  sizes,
+  defaultProps: {
+    size: 'md',
+  },
+})
