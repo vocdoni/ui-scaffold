@@ -1,5 +1,5 @@
 import { tabsAnatomy } from '@chakra-ui/anatomy'
-import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
+import { createMultiStyleConfigHelpers, TabPanel } from '@chakra-ui/react'
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(tabsAnatomy.keys)
 
@@ -8,7 +8,6 @@ const baseStyle = definePartsStyle(({ colorScheme }: { colorScheme: string }) =>
     borderRadius: 'lg',
     _selected: {
       bgColor: `${colorScheme}.200`,
-
       _dark: {
         bgColor: `${colorScheme}.300`,
       },
@@ -17,7 +16,6 @@ const baseStyle = definePartsStyle(({ colorScheme }: { colorScheme: string }) =>
   tablist: {
     bgColor: `${colorScheme}.500`,
     p: 1,
-
     _dark: {
       bgColor: `${colorScheme}.600`,
     },
@@ -29,7 +27,6 @@ const brand = definePartsStyle(({ colorScheme }: { colorScheme: string }) => ({
     borderRadius: 'lg',
     _selected: {
       bgColor: `${colorScheme}.200`,
-
       _dark: {
         bgColor: `${colorScheme}.300`,
       },
@@ -38,7 +35,6 @@ const brand = definePartsStyle(({ colorScheme }: { colorScheme: string }) => ({
   tablist: {
     bgColor: `${colorScheme}.500`,
     p: 1,
-
     _dark: {
       bgColor: `${colorScheme}.600`,
     },
@@ -88,11 +84,9 @@ const card = definePartsStyle({
       '& > svg': {
         display: 'block',
       },
-
       '& > .empty': {
         display: 'none',
       },
-
       _dark: {
         boxShadow: 'var(--box-shadow-dark-mode)',
       },
@@ -108,12 +102,12 @@ const card = definePartsStyle({
   tabpanel: {
     bgColor: 'tab.variant.card.bg.light',
     borderRadius: 'xl',
-
     _dark: {
       bgColor: 'tab.variant.card.bg.dark',
     },
   },
 })
+
 const process = definePartsStyle({
   root: {},
   tabpanel: {
@@ -127,7 +121,6 @@ const process = definePartsStyle({
     fontWeight: 'normal',
     borderTopRadius: 'md',
     fontSize: 'lg',
-
     _hover: {
       bgColor: 'process.tabs.hover',
     },
@@ -148,8 +141,63 @@ const process = definePartsStyle({
   },
 })
 
+const basic = ({ colorScheme }: { colorScheme: string }) => ({
+  tablist: {
+    border: 'none',
+    display: 'flex',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+    p: 1,
+    _dark: {
+      backgroundColor: 'transparent',
+      bgColor: `${colorScheme}.700`,
+    },
+  },
+  tab: {
+    mb: '.3px',
+
+    _selected: {
+      fontWeight: 'semibold',
+      bgColor: `${colorScheme}.100`,
+      color: `${colorScheme}.800`,
+    },
+  },
+})
+
+const underline = ({ colorScheme }: { colorScheme: string }) => ({
+  tablist: {
+    display: 'flex',
+    justifyContent: 'center',
+    p: 1,
+    backgroundColor: 'transparent',
+    border: 'none',
+
+    _dark: {
+      backgroundColor: 'transparent',
+    },
+  },
+  tab: {
+    borderRadius: 'none',
+    borderBottom: '1px solid transparent',
+    borderColor: 'tab.responsive_tab.underline_border',
+    _selected: {
+      backgroundColor: 'transparent',
+      borderColor: `${colorScheme}.600`,
+      color: `${colorScheme}.600`,
+      _dark: {
+        backgroundColor: 'transparent',
+        borderColor: `${colorScheme}.700`,
+        color: `${colorScheme}.700`,
+      },
+    },
+    _dark: {
+      backgroundColor: 'transparent',
+    },
+  },
+})
+
 export const Tabs = defineMultiStyleConfig({
   baseStyle,
-  variants: { card, process, brand },
-  defaultProps: { colorScheme: 'brandAlpha' },
+  variants: { card, process, brand, basic, underline },
+  defaultProps: { colorScheme: 'brand', variant: 'underline' },
 })
