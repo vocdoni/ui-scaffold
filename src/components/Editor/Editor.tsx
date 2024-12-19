@@ -26,6 +26,13 @@ import ToolbarPlugin from './plugins/ToolbarPlugin'
 import exampleTheme from './theme'
 
 import { Box } from '@chakra-ui/react'
+import {
+  ChakraHeadingNode,
+  ChakraLinkNode,
+  ChakraListItemNode,
+  ChakraListNode,
+  ChakraTextNode,
+} from './nodes/ChakraNodes'
 import './styles.css'
 
 function Placeholder(props: any) {
@@ -47,14 +54,16 @@ const Editor = (props: EditorProps) => {
   const settings = {
     editorState: () => $convertFromMarkdownString(props.defaultValue ?? '', TRANSFORMERS),
     namespace: '',
-    // The editor theme
     theme: exampleTheme,
-    // Handling of errors during update
     onError(error: any) {
       throw error
     },
-    // Any custom nodes go here
     nodes: [
+      ChakraTextNode,
+      ChakraHeadingNode,
+      ChakraListNode,
+      ChakraListItemNode,
+      ChakraLinkNode,
       HeadingNode,
       ListNode,
       ListItemNode,
