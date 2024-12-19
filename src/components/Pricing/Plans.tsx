@@ -11,6 +11,8 @@ import {
   ModalOverlay,
   Progress,
   Text,
+  Alert,
+  AlertIcon,
 } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { Select } from 'chakra-react-select'
@@ -23,6 +25,7 @@ import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
 import { PlanId } from '~constants'
 import PricingCard from './Card'
+import { usePricingModal } from './use-pricing-modal'
 
 export type Plan = {
   id: number
@@ -160,6 +163,7 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
   const { subscription } = useSubscription()
   const { data: plans, isLoading } = usePlans()
   const translations = usePlanTranslations()
+  const { openModal, closeModal } = usePricingModal()
 
   const methods = useForm<FormValues>({
     defaultValues: {
@@ -173,7 +177,20 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
   const selectedCensusSize = watch('censusSize')
 
   const onSubmit = (data: FormValues) => {
-    console.log(data)
+    if (!data.censusSize) {
+      return (
+        <Alert status='error'>
+          <AlertIcon />
+          {t('pricing.invalid_membership_size')}
+        </Alert>
+      )
+    } else {
+      openModal('subscriptionPayment', {
+        amount: data.censusSize,
+        lookupKey: data.planId,
+        closeModal,
+      })
+    }
   }
 
   const censusSizeOptions = useMemo(() => {
