@@ -1,11 +1,14 @@
 import { Heading, Link, ListItem, OrderedList, Text, UnorderedList } from '@chakra-ui/react'
+import { HeadingNode, HeadingTagType, SerializedHeadingNode } from '@lexical/rich-text'
 import {
   $createTextNode,
   DOMConversionMap,
   DOMConversionOutput,
   ElementNode,
   NodeKey,
+  ParagraphNode,
   SerializedElementNode,
+  SerializedParagraphNode,
 } from 'lexical'
 import { ReactNode } from 'react'
 
@@ -14,7 +17,7 @@ type SerializedChakraHeadingNode = SerializedElementNode & { level: number }
 type SerializedChakraListNode = SerializedElementNode & { ordered: boolean }
 type SerializedChakraLinkNode = SerializedElementNode & { url: string }
 
-export class ChakraTextNode extends ElementNode {
+export class ChakraTextNode extends ParagraphNode {
   static getType(): string {
     return 'chakra-text'
   }
@@ -42,7 +45,7 @@ export class ChakraTextNode extends ElementNode {
     }
   }
 
-  exportJSON(): SerializedChakraTextNode {
+  exportJSON(): SerializedParagraphNode {
     return {
       ...super.exportJSON(),
       type: 'chakra-text',
@@ -63,11 +66,11 @@ export class ChakraTextNode extends ElementNode {
   }
 }
 
-export class ChakraHeadingNode extends ElementNode {
-  __level: 1 | 2 | 3 | 4 | 5 | 6
+export class ChakraHeadingNode extends HeadingNode {
+  __level: HeadingTagType
 
-  constructor(level: 1 | 2 | 3 | 4 | 5 | 6 = 1, key?: NodeKey) {
-    super(key)
+  constructor(level: HeadingTagType = 'h1', key?: NodeKey) {
+    super(level, key)
     this.__level = level
   }
 
@@ -106,17 +109,17 @@ export class ChakraHeadingNode extends ElementNode {
     }
   }
 
-  exportJSON(): SerializedChakraHeadingNode {
+  exportJSON(): SerializedHeadingNode {
     return {
       ...super.exportJSON(),
-      level: this.__level,
+      tag: this.__level,
       type: 'chakra-heading',
       version: 1,
     }
   }
 
-  static importJSON(serializedNode: SerializedChakraHeadingNode): ChakraHeadingNode {
-    const node = $createChakraHeadingNode(serializedNode.level as 1 | 2 | 3 | 4 | 5 | 6)
+  static importJSON(serializedNode: SerializedHeadingNode): ChakraHeadingNode {
+    const node = $createChakraHeadingNode(serializedNode.tag)
     node.setFormat(serializedNode.format)
     node.setIndent(serializedNode.indent)
     node.setDirection(serializedNode.direction)
@@ -124,7 +127,7 @@ export class ChakraHeadingNode extends ElementNode {
   }
 
   decorate(): ReactNode {
-    return <Heading as={`h${this.__level}`}>{this.getTextContent()}</Heading>
+    return <Heading as={`${this.__level}`}>{this.getTextContent()}</Heading>
   }
 }
 
@@ -309,16 +312,7 @@ function convertParagraphElement(element: HTMLElement): DOMConversionOutput {
 
 function convertHeadingElement(element: HTMLElement): DOMConversionOutput {
   const tag = element.tagName.toLowerCase()
-  const levelMap: { [key: string]: 1 | 2 | 3 | 4 | 5 | 6 } = {
-    h1: 1,
-    h2: 2,
-    h3: 3,
-    h4: 4,
-    h5: 5,
-    h6: 6,
-  }
-  const level = levelMap[tag] || 1
-  const node = $createChakraHeadingNode(level)
+  const node = $createChakraHeadingNode(tag as HeadingTagType)
   if (element.textContent) {
     const textNode = $createTextNode(element.textContent)
     node.append(textNode)
@@ -355,7 +349,7 @@ export function $createChakraTextNode(): ChakraTextNode {
   return new ChakraTextNode()
 }
 
-export function $createChakraHeadingNode(level: 1 | 2 | 3 | 4 | 5 | 6): ChakraHeadingNode {
+export function $createChakraHeadingNode(level: HeadingTagType): ChakraHeadingNode {
   return new ChakraHeadingNode(level)
 }
 

@@ -1,6 +1,5 @@
 import { CodeHighlightNode, CodeNode } from '@lexical/code'
 import { AutoLinkNode, LinkNode } from '@lexical/link'
-import { ListItemNode, ListNode } from '@lexical/list'
 import { $convertFromMarkdownString, TRANSFORMERS } from '@lexical/markdown'
 import { OverflowNode } from '@lexical/overflow'
 import { CharacterLimitPlugin } from '@lexical/react/LexicalCharacterLimitPlugin'
@@ -26,6 +25,7 @@ import ToolbarPlugin from './plugins/ToolbarPlugin'
 import exampleTheme from './theme'
 
 import { Box } from '@chakra-ui/react'
+import { ParagraphNode } from 'lexical'
 import {
   ChakraHeadingNode,
   ChakraLinkNode,
@@ -60,13 +60,27 @@ const Editor = (props: EditorProps) => {
     },
     nodes: [
       ChakraTextNode,
+      {
+        replace: ParagraphNode,
+        with: (node: ParagraphNode) => {
+          return new ChakraTextNode(node.__key)
+        },
+        withKlass: ChakraTextNode,
+      },
       ChakraHeadingNode,
+      {
+        replace: HeadingNode,
+        with: (node: HeadingNode) => {
+          return new ChakraHeadingNode(node.__tag, node.__key)
+        },
+        withKlass: ChakraHeadingNode,
+      },
       ChakraListNode,
       ChakraListItemNode,
       ChakraLinkNode,
       HeadingNode,
-      ListNode,
-      ListItemNode,
+      // ListNode,
+      // ListItemNode,
       QuoteNode,
       CodeNode,
       CodeHighlightNode,
