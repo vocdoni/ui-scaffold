@@ -3,10 +3,11 @@ import React, { ReactNode, useState } from 'react'
 import { PlanUpgradeModal, TierUpgradeModal } from './Modals'
 import { SubscriptionModal } from './Plans'
 import { PlanUpgradeData } from './PlanUpgrade'
+import { SubscriptionPaymentData, SubscriptionPaymentModal } from './SubscriptionPayment'
 import { TierUpgradeData } from './TierUpgrade'
 import { PricingModalProviderContext, PricingModalType } from './use-pricing-modal'
 
-type ModalData = PlanUpgradeData | TierUpgradeData | null
+type ModalData = PlanUpgradeData | TierUpgradeData | SubscriptionPaymentData | null
 
 export const PricingModalProvider: React.FC<{ children?: ReactNode }> = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -37,6 +38,15 @@ export const PricingModalProvider: React.FC<{ children?: ReactNode }> = ({ child
         <PlanUpgradeModal isOpen onClose={closeModal} {...(modalData as PlanUpgradeData)} />
       )}
       {modalType === 'subscription' && isOpen && <SubscriptionModal isOpen onClose={closeModal} />}
+      {modalType === 'planUpgrade' && isOpen && (
+        <PlanUpgradeModal isOpen onClose={closeModal} {...(modalData as PlanUpgradeData)} />
+      )}
+      {modalType === 'planUpgrade' && isOpen && (
+        <PlanUpgradeModal isOpen onClose={closeModal} {...(modalData as PlanUpgradeData)} />
+      )}
+      {modalType === 'subscriptionPayment' && isOpen && (
+        <SubscriptionPaymentModal isOpen onClose={closeModal} {...(modalData as SubscriptionPaymentData)} />
+      )}
     </PricingModalProviderContext>
   )
 }
