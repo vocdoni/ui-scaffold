@@ -13,7 +13,7 @@ export const AccountEdit = () => {
       <Tabs w='full' maxW={InnerContentsMaxWidth} mx='auto' isFitted>
         <TabList>
           <Tab>
-            <Trans i18nKey='profile'>Profile</Trans>
+            <Trans i18nKey='profile.title'>Profile</Trans>
           </Tab>
           <Tab>
             <Trans i18nKey='password'>Password</Trans>

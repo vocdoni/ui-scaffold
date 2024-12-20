@@ -48,7 +48,7 @@ const AccountMenu: React.FC<BoxProps> = (props) => {
         <MenuList>
           <MenuItem as={RouterLink} to={Routes.dashboard.profile}>
             <Icon as={UserSquare} />
-            <Trans i18nKey='profile'>Profile</Trans>
+            <Trans i18nKey='profile.title'>Profile</Trans>
           </MenuItem>
           <MenuDivider />
           <MenuItem onClick={logout}>

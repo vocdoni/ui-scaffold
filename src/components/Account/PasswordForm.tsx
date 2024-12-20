@@ -51,13 +51,13 @@ const PasswordForm = () => {
       })
 
       toast({
-        title: t('password.success', { defaultValue: 'Password updated successfully' }),
+        title: t('password_update.success', { defaultValue: 'Password updated successfully' }),
         status: 'success',
       })
       reset()
     } catch (error) {
       toast({
-        title: t('password.error', { defaultValue: 'Failed to update password' }),
+        title: t('password_update.error', { defaultValue: 'Failed to update password' }),
         status: 'error',
       })
     }
@@ -67,25 +67,25 @@ const PasswordForm = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <VStack spacing={6} align='stretch'>
         <FormControl isInvalid={!!errors.oldPassword}>
-          <FormLabel>{t('password.old.label', { defaultValue: 'Current Password' })}</FormLabel>
+          <FormLabel>{t('password_update.old.label', { defaultValue: 'Current Password' })}</FormLabel>
           <Input
             type='password'
             {...register('oldPassword', {
-              required: t('password.old.required', { defaultValue: 'Current password is required' }),
+              required: t('password_update.old.required', { defaultValue: 'Current password is required' }),
             })}
           />
           <FormErrorMessage>{errors.oldPassword?.message}</FormErrorMessage>
         </FormControl>
 
         <FormControl isInvalid={!!errors.newPassword}>
-          <FormLabel>{t('password.new.label', { defaultValue: 'New Password' })}</FormLabel>
+          <FormLabel>{t('password_update.new.label', { defaultValue: 'New Password' })}</FormLabel>
           <Input
             type='password'
             {...register('newPassword', {
-              required: t('password.new.required', { defaultValue: 'Password is required' }),
+              required: t('password_update.new.required', { defaultValue: 'Password is required' }),
               minLength: {
                 value: 8,
-                message: t('password.new.minLength', { defaultValue: 'Password must be at least 8 characters' }),
+                message: t('password_update.new.minLength', { defaultValue: 'Password must be at least 8 characters' }),
               },
             })}
           />
@@ -93,20 +93,20 @@ const PasswordForm = () => {
         </FormControl>
 
         <FormControl isInvalid={!!errors.confirmPassword}>
-          <FormLabel>{t('password.confirm.label', { defaultValue: 'Confirm Password' })}</FormLabel>
+          <FormLabel>{t('password_update.confirm.label', { defaultValue: 'Confirm Password' })}</FormLabel>
           <Input
             type='password'
             {...register('confirmPassword', {
-              required: t('password.confirm.required', { defaultValue: 'Please confirm your password' }),
+              required: t('password_update.confirm.required', { defaultValue: 'Please confirm your password' }),
               validate: (value) =>
-                value === password || t('password.confirm.mismatch', { defaultValue: "Passwords don't match" }),
+                value === password || t('password_update.confirm.mismatch', { defaultValue: "Passwords don't match" }),
             })}
           />
           <FormErrorMessage>{errors.confirmPassword?.message}</FormErrorMessage>
         </FormControl>
 
         <Button type='submit' size='lg' width='100%' isLoading={isSubmitting || updatePassword.isPending} mt={4}>
-          {t('password.actions.update', { defaultValue: 'Update Password' })}
+          {t('password_update.actions.update', { defaultValue: 'Update Password' })}
         </Button>
       </VStack>
     </form>
