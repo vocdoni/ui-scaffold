@@ -160,16 +160,23 @@ export const ProcessView = () => {
             </Heading>
             <HStack justifyContent='space-around'>
               <ActionsProvider>
-                <ActionContinue aria-label={t('process_actions.continue', { defaultValue: 'Continue' })}>
+                <ActionContinue
+                  variant='outline'
+                  aria-label={t('process_actions.continue', { defaultValue: 'Continue' })}
+                >
                   <FaPlay />
                 </ActionContinue>
-                <ActionPause aria-label={t('process_actions.pause', { defaultValue: 'Pause' })}>
+                <ActionPause variant='outline' aria-label={t('process_actions.pause', { defaultValue: 'Pause' })}>
                   <FaPause />
                 </ActionPause>
-                <ActionEnd aria-label={t('process_actions.end', { defaultValue: 'End' })}>
+                <ActionEnd variant='outline' aria-label={t('process_actions.end', { defaultValue: 'End' })}>
                   <FaStop />
                 </ActionEnd>
-                <ActionCancel aria-label={t('process_actions.cancel', { defaultValue: 'Cancel' })}>
+                <ActionCancel
+                  variant='outline'
+                  colorScheme='red'
+                  aria-label={t('process_actions.cancel', { defaultValue: 'Cancel' })}
+                >
                   <FaTrash />
                 </ActionCancel>
               </ActionsProvider>
