@@ -22,6 +22,7 @@ import { ApiEndpoints } from '~components/Auth/api'
 import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
 import { PlanId } from '~constants'
+import { currency } from '~utils/numbers'
 import PricingCard from './Card'
 import { usePricingModal } from './use-pricing-modal'
 
@@ -215,7 +216,7 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
       popular: plan.id === PlanId.Essential,
       title: translations[plan.id]?.title || plan.name,
       subtitle: translations[plan.id]?.subtitle || '',
-      price: plan.startingPrice / 100,
+      price: currency(plan.startingPrice),
       features: translations[plan.id]?.features || [],
       isDisabled:
         (selectedCensusSize && !plan.censusSizeTiers?.some((tier) => tier.upTo === selectedCensusSize)) ||

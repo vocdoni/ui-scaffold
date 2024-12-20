@@ -16,12 +16,12 @@ import { useQueryClient } from '@tanstack/react-query'
 import { useCallback, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
+import { ApiEndpoints } from '~components/Auth/api'
 import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
 import { Routes } from '~src/router/routes'
 
-const STRIPE_PUBLIC_KEY = import.meta.env.STRIPE_PUBLIC_KEY
-const BACKEND_URL = import.meta.env.SAAS_URL
+const stripePublicKey = import.meta.env.STRIPE_PUBLIC_KEY
 
 export type SubscriptionPaymentData = {
   amount: number
@@ -34,65 +34,54 @@ type ModalProps = {
   onClose: () => void
 }
 
+type CheckoutResponse = {
+  clientSecret: string
+  sessionID: string
+}
+
 export const SubscriptionPayment = ({ amount, lookupKey, closeModal }: SubscriptionPaymentData) => {
-  const { signerAddress } = useAuth()
+  const { signerAddress, bearedFetch } = useAuth()
   const { subscription } = useSubscription()
 
-  const [stripePromise, _] = useState<Promise<Stripe | null>>(loadStripe(STRIPE_PUBLIC_KEY))
-  const [sessionID, setSessionID] = useState<string | null>(null)
-  const [paymentCompleted, setPaymentCompleted] = useState<boolean>(false)
+  const [stripePromise, _] = useState<Promise<Stripe | null>>(loadStripe(stripePublicKey))
   const [subscriptionCompleted, setSubscriptionCompleted] = useState<boolean>(false)
+  // store previous plan and tier to check if the subscription was updated
+  const [prevPlan] = useState<number>(subscription.plan.id)
+  const [prevTier] = useState<number>(subscription.subscriptionDetails.maxCensusSize)
+  const [prevDate] = useState<string>(subscription.subscriptionDetails.renewalDate)
 
   const queryClient = useQueryClient()
 
   const fetchClientSecret = useCallback(async () => {
     if (signerAddress) {
-      let uri = `${BACKEND_URL}/subscriptions/checkout`
-      let requestBody = {
+      const body = {
         lookupKey,
         amount,
         address: signerAddress,
       }
       // Create a Checkout Session
-      return await fetch(uri, {
+      return await bearedFetch<CheckoutResponse>(ApiEndpoints.SubscriptionCheckout, {
         method: 'POST',
-        body: JSON.stringify(requestBody),
+        body,
       })
-        .then((res) => res.json())
-        .then((data) => {
-          setSessionID(data.sessionID)
-          return data.clientSecret
-        })
+        // Return the client secret, required by stripe.js
+        .then((data) => data.clientSecret)
     }
     return await Promise.resolve('')
   }, [signerAddress])
 
   const onComplete = async () => {
-    setPaymentCompleted(true)
-    while (!subscription.subscriptionDetails.active) {
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+    while (
+      prevPlan === subscription.plan.id &&
+      prevTier === subscription.subscriptionDetails.maxCensusSize &&
+      prevDate === subscription.subscriptionDetails.renewalDate
+    ) {
       await queryClient.invalidateQueries({ queryKey: ['organizationSubscription'] })
+      await new Promise((resolve) => {
+        return setTimeout(resolve, 200)
+      })
     }
     setSubscriptionCompleted(true)
-    // let qc = queryClient.getQueryCache()
-    // let query = qc.find(['organizationSubscription'] as any)
-    // if (query) {
-    //   const queryOpts = query.options
-    //   const newQueryOpts = queryOptions({
-    //     queryKey: queryOpts.queryKey,
-    //     queryFn: queryOpts.queryFn,
-    //     refetchInterval: (qu) => {
-    //       if (qu.state.data['subscriptionDetails']['active']) {
-    //         query.setOptions(queryOpts)
-    //         queryClient.invalidateQueries({ queryKey: ['organizationSubscription'] })
-    //       } else {
-    //         return 1000
-    //       }
-    //     },
-    //   })
-    //   query.setOptions(newQueryOpts)
-    //   queryClient.invalidateQueries({ queryKey: ['organizationSubscription'] })
-    // }
   }
 
   const options = { fetchClientSecret, clientSecret: '', onComplete }
@@ -103,7 +92,7 @@ export const SubscriptionPayment = ({ amount, lookupKey, closeModal }: Subscript
         <EmbeddedCheckout />
       </EmbeddedCheckoutProvider>
       <Button onClick={() => closeModal()} type='submit' isDisabled={!subscriptionCompleted}>
-        <Trans i18nKey='pricing.close'>Close</Trans>
+        <Trans i18nKey='close'>Close</Trans>
       </Button>
     </Box>
   )

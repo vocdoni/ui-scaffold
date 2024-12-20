@@ -62,7 +62,9 @@ const SubscriptionProviderComponent: React.FC<{ children: ReactNode }> = ({ chil
     }
   }, [subscription])
 
-  return <SubscriptionProvider value={{ permission, subscription, loading: isFetching }} children={children} />
+  const value = { permission, subscription, loading: isFetching }
+
+  return <SubscriptionProvider value={value} children={children} />
 }
 
 export { SubscriptionProviderComponent as SubscriptionProvider, useSubscription }
