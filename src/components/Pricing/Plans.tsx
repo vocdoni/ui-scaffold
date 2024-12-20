@@ -11,13 +11,11 @@ import {
   ModalOverlay,
   Progress,
   Text,
-  Alert,
-  AlertIcon,
 } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { Select } from 'chakra-react-select'
 import { MutableRefObject, ReactNode, useMemo } from 'react'
-import { FormProvider, useForm } from 'react-hook-form'
+import { Controller, FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
@@ -72,7 +70,6 @@ export type Plan = {
 type FormValues = {
   censusSize: number | null
   planId: number | null
-  referrer: string
 }
 
 export const usePlans = () => {
@@ -169,7 +166,6 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
     defaultValues: {
       censusSize: null,
       planId: null,
-      referrer: window.location.href,
     },
   })
 
@@ -177,20 +173,11 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
   const selectedCensusSize = watch('censusSize')
 
   const onSubmit = (data: FormValues) => {
-    if (!data.censusSize) {
-      return (
-        <Alert status='error'>
-          <AlertIcon />
-          {t('pricing.invalid_membership_size')}
-        </Alert>
-      )
-    } else {
-      openModal('subscriptionPayment', {
-        amount: data.censusSize,
-        lookupKey: data.planId,
-        closeModal,
-      })
-    }
+    openModal('subscriptionPayment', {
+      amount: data.censusSize,
+      lookupKey: data.planId,
+      closeModal,
+    })
   }
 
   const censusSizeOptions = useMemo(() => {
@@ -244,10 +231,23 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
             <Text>
               <Trans i18nKey='pricing.membership_size'>Select your membership size:</Trans>
             </Text>
-            <Select
-              options={censusSizeOptions}
-              onChange={(selected) => methods.setValue('censusSize', selected?.value || null)}
+            <Controller
+              name='censusSize'
+              control={methods.control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <Select
+                  options={censusSizeOptions}
+                  onChange={(selected) => field.onChange(selected?.value || null)}
+                  value={censusSizeOptions.find((option) => option.value === field.value)}
+                />
+              )}
             />
+            {methods.formState.errors.censusSize && (
+              <Text color='red.500' fontSize='sm' mt={1}>
+                {t('form.error.field_is_required')}
+              </Text>
+            )}
           </Flex>
           {isLoading && <Progress colorScheme='brand' size='xs' isIndeterminate />}
           <Flex gap={5} justifyContent='space-evenly' alignItems='start' flexWrap='wrap'>
