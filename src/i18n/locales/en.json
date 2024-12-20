@@ -174,6 +174,7 @@
       "success_title": "Tokens were successfully claimed"
     }
   },
+  "close": "Close",
   "confirm_password": "Confirm Password",
   "confirm_password_placeholder": "Confirm your new password",
   "contact_us": "Contact us",
@@ -296,6 +297,8 @@
     "sms_notification": "SMS notifications",
     "sub_orgs": "Up to {{ count }} sub-organizations",
     "title": "Features",
+    "total_members": "Total available members",
+    "total_orgs": "Total available sub-organizations",
     "weighted": "Weighted voting",
     "white_label": "White label"
   },
@@ -808,6 +811,27 @@
     "subtitle": "If your email corresponds to an existing account, you'll receive an email with a code to reset your password.",
     "title": "Password reset"
   },
+  "password_update": {
+    "actions": {
+      "update": "Update Password"
+    },
+    "confirm": {
+      "label": "Confirm Password",
+      "mismatch": "Passwords don't match",
+      "required": "Please confirm your password"
+    },
+    "error": "Failed to update password",
+    "new": {
+      "label": "New Password",
+      "minLength": "Password must be at least 8 characters",
+      "required": "Password is required"
+    },
+    "old": {
+      "label": "Current Password",
+      "required": "Current password is required"
+    },
+    "success": "Password updated successfully"
+  },
   "passwords_do_not_match": "",
   "plan_upgrade": {
     "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
@@ -838,7 +862,6 @@
     "premium_title": "Premium",
     "priority_support": "Priority ticket support",
     "ticket_support": "Ticket support",
-    "title": "Our plans",
     "unlimited_yearly_processes": "Unlimited yearly voting processes",
     "up_to_admins": "Up to {{ admin }} admin and {{ org }} org",
     "upgrade_title": "You need to upgrade to use this feature",
@@ -848,7 +871,6 @@
     "your_plan": "Currently you are subscribed to the 'Your plan' subscription. If you upgrade, we will only charge the yearly difference. In the next billing period, starting on 'dd/mm/yy' you will pay for the new select plan."
   },
   "pricing_card": {
-    "compare_plans": "Compare all plans",
     "from": "From ${{ price }}/year",
     "most_popular_plan": "Most popular plan",
     "view_features": "View all features"
@@ -1044,7 +1066,14 @@
     "type": "Type",
     "voters": "Voters"
   },
-  "profile": "Profile",
+  "profile": {
+    "avatar": {
+      "label": "Avatar"
+    },
+    "error": "Failed to update profile",
+    "success": "Profile updated successfully",
+    "title": "Profile"
+  },
   "rainbow": {
     "group": {
       "recovery": "Recovery"
@@ -1083,12 +1112,18 @@
   "signup_title": "Sign Up",
   "skip": "Skip",
   "submit": "Submit",
-  "subscription": "Subscription",
-  "support": "Support",
-  "surname": {
-    "label": "Surname",
-    "required": "Surname is required"
+  "subscription": {
+    "change_plan_button": "Change",
+    "inactive_subscription_description": "Your subscription is currently inactive. Consider <2>contacting us</2> to reactivate it.",
+    "inactive_subscription_title": "Inactive Subscription",
+    "next_billing": "Next Billing",
+    "price": "Price",
+    "since": "Since",
+    "title": "Subscription",
+    "your_subscription": "Your Subscription"
   },
+  "support": "Support",
+  "surname": "Surname",
   "team": {
     "expiration": "Expiration",
     "member_name": "Name",
@@ -1181,8 +1216,10 @@
   "upgrade": "Upgrade",
   "upload": "Upload",
   "uploader": {
-    "click_or_drag_and_drop": "<click>Click to upload</click> <drag>or drag and drop</drag><formats>(Allowed formats: CSV, XLSX, and ODS)</formats>",
-    "drop_here": "Drop here"
+    "click_or_drag_and_drop": "<click>Click to upload</click> <drag>or drag and drop</drag><formats>(Allowed formats: CSV, XLSX, and ODS)</formats>"
+  },
+  "uploaderCustom": {
+    "drop_here": ""
   },
   "use_read_more": {
     "read_less": "Read less",

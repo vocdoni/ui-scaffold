@@ -10,7 +10,7 @@ const SubscriptionPage = () => {
   const { setTitle } = useOutletContext<DashboardLayoutContext>()
 
   useEffect(() => {
-    setTitle(t('subscription', { defaultValue: 'Subscription' }))
+    setTitle(t('subscription.title', { defaultValue: 'Subscription' }))
   }, [])
 
   return (

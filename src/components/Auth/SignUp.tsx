@@ -94,7 +94,7 @@ const SignUp = ({ invite }: SignupProps) => {
           <InputPassword
             formValue='password'
             label={t('password')}
-            placeholder={t('password_placeholder', { defaultValue: 'Min 8 characters' })}
+            placeholder={t('password_placeholder')}
             type='password'
             required
             validation={{

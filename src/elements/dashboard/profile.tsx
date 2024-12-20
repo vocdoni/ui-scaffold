@@ -11,7 +11,7 @@ export const Profile = () => {
 
   // Set layout variables
   useEffect(() => {
-    setTitle(t('profile'))
+    setTitle(t('profile.title'))
   }, [setTitle])
 
   return (

@@ -5,6 +5,7 @@ import {
   AlertTitle,
   Avatar,
   Button,
+  Link,
   Progress,
   Table,
   TableContainer,
@@ -17,8 +18,10 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { Trans } from 'react-i18next'
+import { Link as RouterLink } from 'react-router-dom'
 import { useSubscription } from '~components/Auth/Subscription'
 import { usePricingModal } from '~components/Pricing/use-pricing-modal'
+import { Routes } from '~src/router/routes'
 import { currency } from '~utils/numbers'
 
 export const Subscription = () => {
@@ -55,7 +58,11 @@ export const SubscriptionList = () => {
           </AlertTitle>
           <AlertDescription>
             <Trans i18nKey='subscription.inactive_subscription_description'>
-              Your subscription is currently inactive. Please enable it to continue using the service.
+              Your subscription is currently inactive. Consider{' '}
+              <Link as={RouterLink} to={Routes.contact}>
+                contacting us
+              </Link>{' '}
+              to reactivate it.
             </Trans>
           </AlertDescription>
         </Alert>
