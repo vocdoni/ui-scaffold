@@ -207,20 +207,8 @@ const CustomizeOrgForm = () => {
             <AspectRatio flexShrink={0} flexGrow={1} ratio={5 / 1} borderRadius='xl' overflow='hidden'>
               <Image src={avatar} fallbackSrc={fallback} />
             </AspectRatio>
-            <Button
-              minH={12}
-              borderRadius='xl'
-              sx={{
-                span: {
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  gap: 2,
-                },
-              }}
-            >
-              <BsFillTrashFill />
-              <Text as='span'>{t('remove', { defaultValue: 'Remove' })}</Text>
+            <Button colorScheme='red' leftIcon={<BsFillTrashFill />}>
+              {t('remove', { defaultValue: 'Remove' })}
             </Button>
           </Flex>
           {correctAvatarFormat(avatar) && (
