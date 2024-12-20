@@ -25,7 +25,7 @@ const Faucet = () => {
 
   return (
     <>
-      <Flex direction='column' gap={4} mt={10} mb={44} className='site-wrapper'>
+      <Flex direction='column' gap={4} mt={10} mb={44}>
         <FaucetView amount={faucetAmount} waitHours={waitHours} />
       </Flex>
     </>

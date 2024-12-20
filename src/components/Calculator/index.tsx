@@ -52,9 +52,9 @@ const Calculator = () => {
 
   return (
     <>
-      <Flex direction='column' gap={4} className='site-wrapper'>
+      <Flex direction='column' gap={4}>
         <Box mx='auto' mb={20}>
-          <Heading as={'h2'} mb={10} className='brand-theme' size={'xl'} textTransform='uppercase'>
+          <Heading as={'h2'} mb={10} size={'xl'} textTransform='uppercase'>
             {t('calculator.title')}
           </Heading>
 

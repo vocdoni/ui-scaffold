@@ -46,14 +46,7 @@ const NeedsAccount = () => {
     <>
       <Wrapper>
         <Box>
-          <Heading
-            className='brand-theme'
-            fontSize='md'
-            my={5}
-            textTransform='uppercase'
-            color='process_create.title'
-            fontWeight='normal'
-          >
+          <Heading fontSize='md' my={5} textTransform='uppercase' color='process_create.title' fontWeight='normal'>
             {t('new_organization.title')}
           </Heading>
           <Box p={10} bgColor='process_create.section'>
