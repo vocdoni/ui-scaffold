@@ -294,6 +294,7 @@ export const colors = {
       },
     },
     paused: colorsBase.primary,
+    read_more_dark: colorsBase.blue.dark2,
     results: {
       alert_bg: colorsBase.primary,
       alert_color: colorsBase.white.pure,
