@@ -10,8 +10,7 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { EmbeddedCheckout, EmbeddedCheckoutProvider } from '@stripe/react-stripe-js'
-import { Stripe } from '@stripe/stripe-js'
-import { loadStripe } from '@stripe/stripe-js/pure'
+import { loadStripe, Stripe } from '@stripe/stripe-js'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { ensure0x } from '@vocdoni/sdk'
 import { useCallback, useState } from 'react'
@@ -20,6 +19,7 @@ import { Link as ReactRouterLink } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
 import { SubscriptionType, useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
+import i18n from '~i18n'
 import { Routes } from '~src/router/routes'
 
 const stripePublicKey = import.meta.env.STRIPE_PUBLIC_KEY
@@ -54,7 +54,11 @@ export const SubscriptionPayment = ({ amount, lookupKey, closeModal }: Subscript
   const { subscription } = useSubscription()
   const { mutateAsync: checkSubscription } = useUpdateSubscription()
 
-  const [stripePromise, _] = useState<Promise<Stripe | null>>(loadStripe(stripePublicKey))
+  const [stripePromise] = useState<Promise<Stripe | null>>(
+    loadStripe(stripePublicKey, {
+      locale: i18n.resolvedLanguage as any,
+    })
+  )
   const [subscriptionCompleted, setSubscriptionCompleted] = useState<boolean>(false)
   const queryClient = useQueryClient()
 
@@ -92,7 +96,11 @@ export const SubscriptionPayment = ({ amount, lookupKey, closeModal }: Subscript
     await queryClient.invalidateQueries({ queryKey: ['organizationSubscription'] })
   }
 
-  const options = { fetchClientSecret, clientSecret: '', onComplete }
+  const options = {
+    fetchClientSecret,
+    clientSecret: '',
+    onComplete,
+  }
 
   return (
     <Box id='checkout' mt={10} mb={24}>
