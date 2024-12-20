@@ -2,11 +2,11 @@ export const colorsBase = {
   beige: '#D2CBB9',
   black: '#000000',
   blue: {
-    bg: '#0C0E12',
     light: '#63b3ed',
     normal: '#3965ff',
     grayish: '#2B2A33',
     dark: '#1A202C',
+    dark2: '#0C0E12',
   },
   gradient: 'linear-gradient(to right, #546E39, #2E441A)',
   gray: {
@@ -53,7 +53,7 @@ export const colors = {
   },
   bg: {
     light: colorsBase.white.dark,
-    dark: colorsBase.blue.bg,
+    dark: colorsBase.blue.dark2,
   },
   button: {
     variant: {
@@ -134,7 +134,7 @@ export const colors = {
   dashboard: {
     bg: {
       light: colorsBase.white.dark,
-      dark: colorsBase.blue.dark,
+      dark: colorsBase.blue.dark2,
     },
     color: {
       light: colorsBase.black,
