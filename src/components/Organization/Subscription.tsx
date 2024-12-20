@@ -1,29 +1,14 @@
-import {
-  Avatar,
-  Button,
-  Progress,
-  Table,
-  TableContainer,
-  Tag,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-  useDisclosure,
-} from '@chakra-ui/react'
-import { Trans, useTranslation } from 'react-i18next'
+import { Avatar, Button, Progress, Table, TableContainer, Tag, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
+import { Trans } from 'react-i18next'
 import { useSubscription } from '~components/Auth/Subscription'
-import { SubscriptionModal } from '~components/Pricing/Plans'
+import { usePricingModal } from '~components/Pricing/use-pricing-modal'
 
 export const Subscription = () => {
-  const { t } = useTranslation()
-  const { isOpen, onClose, onOpen } = useDisclosure()
+  const { openModal } = usePricingModal()
 
   return (
     <>
-      <SubscriptionModal isOpen={isOpen} onClose={onClose} title={t('pricing.title')} />
-      <Button onClick={onOpen} alignSelf='end'>
+      <Button onClick={() => openModal('subscription')} alignSelf='end'>
         <Trans i18nKey='view_plans_and_pricing'>View Plans & Pricing</Trans>
       </Button>
       <SubscriptionList />

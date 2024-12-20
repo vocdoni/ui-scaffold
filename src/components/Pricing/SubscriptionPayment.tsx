@@ -6,19 +6,19 @@ import {
   ModalCloseButton,
   ModalContent,
   ModalFooter,
-  ModalHeader,
   ModalOverlay,
   Text,
 } from '@chakra-ui/react'
-import { useQueryClient, QueryCache, queryOptions } from '@tanstack/react-query'
 import { EmbeddedCheckout, EmbeddedCheckoutProvider } from '@stripe/react-stripe-js'
 import { Stripe } from '@stripe/stripe-js'
 import { loadStripe } from '@stripe/stripe-js/pure'
-import { useCallback, useState, useEffect } from 'react'
+import { useQueryClient } from '@tanstack/react-query'
+import { useCallback, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
-import { useAuth } from '~components/Auth/useAuth'
 import { useSubscription } from '~components/Auth/Subscription'
+import { useAuth } from '~components/Auth/useAuth'
+import { Routes } from '~src/router/routes'
 
 const STRIPE_PUBLIC_KEY = import.meta.env.STRIPE_PUBLIC_KEY
 const BACKEND_URL = import.meta.env.SAAS_URL
@@ -124,7 +124,7 @@ export const SubscriptionPaymentModal = ({ isOpen, onClose, ...props }: ModalPro
             <Text>
               <Trans i18nKey='pricing.help'>Need some help?</Trans>
             </Text>
-            <Button as={ReactRouterLink}>
+            <Button as={ReactRouterLink} to={Routes.contact}>
               <Trans i18nKey='contact_us'>Contact us</Trans>
             </Button>
           </Box>

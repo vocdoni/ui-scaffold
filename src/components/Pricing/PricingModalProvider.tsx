@@ -3,10 +3,9 @@ import React, { ReactNode, useState } from 'react'
 import { PlanUpgradeModal, TierUpgradeModal } from './Modals'
 import { SubscriptionModal } from './Plans'
 import { PlanUpgradeData } from './PlanUpgrade'
+import { SubscriptionPaymentData, SubscriptionPaymentModal } from './SubscriptionPayment'
 import { TierUpgradeData } from './TierUpgrade'
 import { PricingModalProviderContext, PricingModalType } from './use-pricing-modal'
-import { SubscriptionPaymentData } from './SubscriptionPayment'
-import { SubscriptionPaymentModal } from './SubscriptionPayment'
 
 type ModalData = PlanUpgradeData | TierUpgradeData | SubscriptionPaymentData | null
 
