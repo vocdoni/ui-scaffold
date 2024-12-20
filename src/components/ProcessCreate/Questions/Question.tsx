@@ -53,6 +53,7 @@ const Question = ({ index, remove }: Props) => {
           icon={<DeleteIcon />}
           aria-label={t('form.process_create.question.question_delete', { values: { num: index } })}
           onClick={() => remove(index)}
+          colorScheme='red'
         />
       </Flex>
       <Editor
