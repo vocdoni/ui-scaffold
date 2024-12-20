@@ -12,12 +12,13 @@ import {
 import { EmbeddedCheckout, EmbeddedCheckoutProvider } from '@stripe/react-stripe-js'
 import { Stripe } from '@stripe/stripe-js'
 import { loadStripe } from '@stripe/stripe-js/pure'
-import { useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { ensure0x } from '@vocdoni/sdk'
 import { useCallback, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
-import { useSubscription } from '~components/Auth/Subscription'
+import { SubscriptionType, useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
 import { Routes } from '~src/router/routes'
 
@@ -39,17 +40,22 @@ type CheckoutResponse = {
   sessionID: string
 }
 
+const useUpdateSubscription = () => {
+  const { bearedFetch, signerAddress } = useAuth()
+
+  return useMutation<SubscriptionType>({
+    mutationFn: async () =>
+      await bearedFetch(ApiEndpoints.OrganizationSubscription.replace('{address}', ensure0x(signerAddress))),
+  })
+}
+
 export const SubscriptionPayment = ({ amount, lookupKey, closeModal }: SubscriptionPaymentData) => {
   const { signerAddress, bearedFetch } = useAuth()
   const { subscription } = useSubscription()
+  const { mutateAsync: checkSubscription } = useUpdateSubscription()
 
   const [stripePromise, _] = useState<Promise<Stripe | null>>(loadStripe(stripePublicKey))
   const [subscriptionCompleted, setSubscriptionCompleted] = useState<boolean>(false)
-  // store previous plan and tier to check if the subscription was updated
-  const [prevPlan] = useState<number>(subscription.plan.id)
-  const [prevTier] = useState<number>(subscription.subscriptionDetails.maxCensusSize)
-  const [prevDate] = useState<string>(subscription.subscriptionDetails.renewalDate)
-
   const queryClient = useQueryClient()
 
   const fetchClientSecret = useCallback(async () => {
@@ -71,17 +77,19 @@ export const SubscriptionPayment = ({ amount, lookupKey, closeModal }: Subscript
   }, [signerAddress])
 
   const onComplete = async () => {
+    let nsub = await checkSubscription()
     while (
-      prevPlan === subscription.plan.id &&
-      prevTier === subscription.subscriptionDetails.maxCensusSize &&
-      prevDate === subscription.subscriptionDetails.renewalDate
+      nsub.plan.id === subscription.plan.id &&
+      nsub.subscriptionDetails.maxCensusSize === subscription.subscriptionDetails.maxCensusSize &&
+      nsub.subscriptionDetails.renewalDate === subscription.subscriptionDetails.renewalDate
     ) {
-      await queryClient.invalidateQueries({ queryKey: ['organizationSubscription'] })
       await new Promise((resolve) => {
         return setTimeout(resolve, 200)
       })
+      nsub = await checkSubscription()
     }
     setSubscriptionCompleted(true)
+    await queryClient.invalidateQueries({ queryKey: ['organizationSubscription'] })
   }
 
   const options = { fetchClientSecret, clientSecret: '', onComplete }

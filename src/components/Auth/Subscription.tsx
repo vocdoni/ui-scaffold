@@ -13,7 +13,7 @@ type PermissionsContextType = {
   loading: boolean
 }
 
-type SubscriptionType = {
+export type SubscriptionType = {
   subscriptionDetails: {
     planID: number
     startDate: string
