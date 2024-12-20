@@ -177,7 +177,6 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
     openModal('subscriptionPayment', {
       amount: data.censusSize,
       lookupKey: data.planId,
-      closeModal,
     })
   }
 

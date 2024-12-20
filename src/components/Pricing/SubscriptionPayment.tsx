@@ -14,20 +14,19 @@ import { loadStripe, Stripe } from '@stripe/stripe-js'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { ensure0x } from '@vocdoni/sdk'
 import { useCallback, useState } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
 import { SubscriptionType, useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
-import i18n from '~i18n'
 import { Routes } from '~src/router/routes'
+import { usePricingModal } from './use-pricing-modal'
 
 const stripePublicKey = import.meta.env.STRIPE_PUBLIC_KEY
 
 export type SubscriptionPaymentData = {
   amount: number
   lookupKey: number
-  closeModal: () => void
 }
 
 type ModalProps = {
@@ -49,10 +48,12 @@ const useUpdateSubscription = () => {
   })
 }
 
-export const SubscriptionPayment = ({ amount, lookupKey, closeModal }: SubscriptionPaymentData) => {
+export const SubscriptionPayment = ({ amount, lookupKey }: SubscriptionPaymentData) => {
   const { signerAddress, bearedFetch } = useAuth()
+  const { i18n } = useTranslation()
   const { subscription } = useSubscription()
   const { mutateAsync: checkSubscription } = useUpdateSubscription()
+  const { closeModal } = usePricingModal()
 
   const [stripePromise] = useState<Promise<Stripe | null>>(
     loadStripe(stripePublicKey, {
@@ -68,6 +69,7 @@ export const SubscriptionPayment = ({ amount, lookupKey, closeModal }: Subscript
         lookupKey,
         amount,
         address: signerAddress,
+        locale: i18n.resolvedLanguage,
       }
       // Create a Checkout Session
       return await bearedFetch<CheckoutResponse>(ApiEndpoints.SubscriptionCheckout, {
