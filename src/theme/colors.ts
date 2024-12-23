@@ -409,7 +409,7 @@ export const colors = {
       dark: 'gray.600',
     },
   },
-
+  text_area_bg: colorsBase.white.pure,
   text_area: {
     toolbar_dark: {
       bg: '#232323',
