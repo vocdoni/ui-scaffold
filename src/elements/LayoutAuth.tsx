@@ -49,10 +49,15 @@ const LayoutAuth = () => {
           base: 2.5,
           sm: 5,
         }}
-        pt={20}
-        pb={{ base: 14, xl: 0 }}
       >
-        <Flex flexDirection='column' justifyContent={{ base: 'start', xl: 'center' }} alignItems='center' w='full'>
+        <Flex
+          flexDirection='column'
+          justifyContent={{ base: 'start', xl: 'center' }}
+          alignItems='center'
+          w='full'
+          pb={20}
+          pt={10}
+        >
           <Flex direction='column' gap={6} w={'100%'} maxW='500px'>
             <Box me='auto'>
               <Heading fontSize='4xl' mb={2.5}>
