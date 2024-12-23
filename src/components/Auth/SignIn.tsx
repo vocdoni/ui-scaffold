@@ -1,15 +1,16 @@
-import { Button, Flex, Text, useToast } from '@chakra-ui/react'
+import { Button, Flex, Link, Text, useToast } from '@chakra-ui/react'
 import { useMutation } from '@tanstack/react-query'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate, useOutletContext } from 'react-router-dom'
 import { api, ApiEndpoints, UnverifiedApiError } from '~components/Auth/api'
 import { ILoginParams } from '~components/Auth/authQueries'
 import { useAuth } from '~components/Auth/useAuth'
 import { VerificationPending } from '~components/Auth/Verify'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import InputPassword from '~components/Layout/InputPassword'
+import { AuthOutletContextType } from '~elements/LayoutAuth'
 import { Routes } from '~src/router/routes'
 import CustomCheckbox from '../Layout/CheckboxCustom'
 import InputBasic from '../Layout/InputBasic'
@@ -42,9 +43,12 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
   const { t } = useTranslation()
   const toast = useToast()
   const navigate = useNavigate()
+  const { setTitle, setSubTitle } = useOutletContext<AuthOutletContextType>()
   const methods = useForm<FormData>({
     defaultValues: { email: emailProp },
   })
+  const [isErrorA, setIsErrorA] = useState(false)
+  const [isComponentMounted, setIsComponentMounted] = useState(false)
   const { handleSubmit, watch } = methods
   const email = watch('email', emailProp)
 
@@ -54,6 +58,20 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
   const [verifyNeeded, setVerifyNeeded] = useState(false)
   const { mutateAsync: checkVerificationCodeStatus } = useVerificationCodeStatus()
   const { mutateAsync: resendVerificationCode } = useResendVerificationCode()
+
+  useEffect(() => {
+    setTitle(t('signin_title'))
+    setSubTitle(t('signin_subtitle'))
+    setIsComponentMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (isComponentMounted && isError) {
+      setIsErrorA(true)
+    }
+
+    return () => setIsErrorA(false)
+  }, [isError])
 
   const onSubmit = async (data: FormData) => {
     await login(data)
@@ -111,7 +129,6 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
             label={t('email')}
             placeholder={t('email_placeholder', { defaultValue: 'your@email.com' })}
             type='email'
-            required
           />
           <InputPassword
             formValue='password'
@@ -123,7 +140,7 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
             <CustomCheckbox formValue='keepLogedIn' label={t('keep_me_logged', { defaultValue: 'Keep me logged' })} />
 
             <NavLink to={Routes.auth.recovery}>
-              <Text color={'account.link'} fontSize='sm' fontWeight='500' whiteSpace='nowrap'>
+              <Text fontSize='sm' fontWeight='500' whiteSpace='nowrap'>
                 {t('forgot_password')}
               </Text>
             </NavLink>
@@ -137,14 +154,12 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
       <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%' mt={0}>
         <Text fontWeight='400' fontSize='sm'>
           {t('not_registred_yet')}
-          <NavLink to={Routes.auth.signUp}>
-            <Text color={'account.link'} as='span' ms={1} fontWeight='500'>
-              {t('create_account')}
-            </Text>
-          </NavLink>
+          <Link as={NavLink} to={Routes.auth.signUp} ml={1} fontWeight={500}>
+            {t('create_account')}
+          </Link>
         </Text>
       </Flex>
-      <FormSubmitMessage isError={isError} error={error} />
+      <FormSubmitMessage isError={isErrorA} error={error} />
     </>
   )
 }

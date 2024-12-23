@@ -19,7 +19,7 @@ export const colorsBase = {
   orange: '#FFA500',
   primary: '#546E39',
   primary_dark: 'rgba(84, 110, 57, 0.2)',
-  red: '#C53030',
+  red: '#FC8181',
   white: {
     pure: '#ffffff',
     dark: '#F5F5F7',
@@ -51,6 +51,7 @@ export const colors = {
   auth: {
     textColorSecondary: colorsBase.gray.normal,
   },
+  banner_link: colorsBase.white.pure,
   bg: {
     light: colorsBase.white.dark,
     dark: colorsBase.blue.dark2,
