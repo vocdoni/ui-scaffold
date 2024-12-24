@@ -1,6 +1,7 @@
 import { Button, Flex, FlexProps, Stack, Text } from '@chakra-ui/react'
 
-import { useMutation, UseMutationOptions } from '@tanstack/react-query'
+import { useMutation, UseMutationOptions, useQueryClient } from '@tanstack/react-query'
+import { useClient } from '@vocdoni/react-providers'
 import { useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
@@ -10,25 +11,21 @@ import LogoutBtn from '~components/Account/LogoutBtn'
 import { useAccountCreate } from '~components/Account/useAccountCreate'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
+import { useAuthProvider } from '~components/Auth/useAuthProvider'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import { Routes } from '~src/router/routes'
 import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from './Form'
 
 type FormData = PrivateOrgFormData & CreateOrgParams
 
-// This specific error message should be ignored and not displayed in the UI.
-// Context: After login, a RemoteSigner is created and passed to the SDK via the useClient hook.
-// Immediately following this, the provider attempts to fetch the signer's address. However,
-// at this point, the signer has not yet been associated with any organization.
-// As a result, the backend returns an error, which is stored in the provider's state.
-// We rely on this error message for handling because no error code is provided,
-// and the error is not thrown as an exception.
-const IgnoreAccountError = 'this user has not been assigned to any organization'
-
 const useOrganizationCreate = (options?: Omit<UseMutationOptions<void, Error, CreateOrgParams>, 'mutationFn'>) => {
   const { bearedFetch } = useAuth()
+  const client = useQueryClient()
   return useMutation<void, Error, CreateOrgParams>({
     mutationFn: (params: CreateOrgParams) => bearedFetch(ApiEndpoints.Organizations, { body: params, method: 'POST' }),
+    onSuccess: () => {
+      client.invalidateQueries({ queryKey: ['profile'] })
+    },
     ...options,
   })
 }
@@ -47,6 +44,9 @@ export const OrganizationCreate = ({
   const methods = useForm<FormData>()
   const { handleSubmit } = methods
   const [success, setSuccess] = useState<string | null>(null)
+  const { signerRefresh } = useAuthProvider()
+  const { signer } = useClient()
+  const [promiseError, setPromiseError] = useState<Error | null>(null)
 
   const { create: createAccount, error: accountError } = useAccountCreate()
   const { mutateAsync: createSaasAccount, isError: isSaasError, error: saasError } = useOrganizationCreate()
@@ -64,18 +64,28 @@ export const OrganizationCreate = ({
       country: values.countrySelect?.value,
       type: values.typeSelect?.value,
     })
+      // ensure the signer is properly initialized
+      .then(() => {
+        signerRefresh()
+      })
+      // we need to ensure the SDK populated the signer with our account (otherwise "createAccount" would fail)
+      .then(() => signer.getAddress())
+      // then we create the account on the vochain
       .then(() =>
-        // Create the new account on the vochain
         createAccount({
           name: typeof values.name === 'object' ? values.name.default : values.name,
           description: typeof values.description === 'object' ? values.description.default : values.description,
         })
       )
+      // save on success to redirect (cannot directly redirect due to a re-render during the promise chain)
       .then(() => setSuccess(onSuccessRoute as unknown as string))
+      .catch((e) => {
+        setPromiseError(e)
+      })
       .finally(() => setIsPending(false))
   }
 
-  const isError = (!!accountError || isSaasError) && error !== IgnoreAccountError
+  const isError = !!accountError || isSaasError || !!promiseError
 
   // The promise chain breaks the redirection due to some re-render in between, so we need to redirect in an effect
   useEffect(() => {
@@ -112,7 +122,7 @@ export const OrganizationCreate = ({
             {t('organization.create_org')}
           </Button>
         </Stack>
-        <FormSubmitMessage isError={isError} error={error} />
+        <FormSubmitMessage isError={isError} error={error || saasError || promiseError} />
         <Text color={'account_create_text_secondary'} fontSize='sm' textAlign='center' mt='auto'>
           <Trans i18nKey='create_org.already_profile'>
             If your organization already have a profile, ask the admin to invite you to your organization.

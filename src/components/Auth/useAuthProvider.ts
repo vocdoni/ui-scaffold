@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
-import { NoOrganizationsError, RemoteSigner } from '@vocdoni/sdk'
+import { RemoteSigner } from '@vocdoni/sdk'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { api, ApiEndpoints, ApiParams, UnauthorizedApiError } from '~components/Auth/api'
 import { LoginResponse, useLogin, useRegister, useVerifyMail } from '~components/Auth/authQueries'
@@ -22,19 +22,10 @@ const useSigner = () => {
       url: import.meta.env.SAAS_URL,
       token,
     })
-    setSigner(signer)
     // Once the signer is set, try to get the signer address
-    // This is an asynchronous call because the address are fetched from the server,
-    // and we don't know if we need to create an organization until we try to retrieve the address
-
-    try {
-      return await signer.getAddress()
-    } catch (e) {
-      // If is NoOrganizationsError ignore the error
-      if (!(e instanceof NoOrganizationsError)) {
-        throw e
-      }
-    }
+    const address = await signer.getAddress()
+    setSigner(signer)
+    return address
   }, [])
 
   return useMutation<string, Error, string>({ mutationFn: updateSigner })
@@ -93,12 +84,16 @@ export const useAuthProvider = () => {
     clear()
   }, [])
 
-  // If no signer but berarer instantiate the signer
-  // For example when bearer is on local storage but no login was done to instantiate the signer
-  useEffect(() => {
+  const signerRefresh = useCallback(() => {
     if (bearer && !clientSigner) {
       updateSigner(bearer)
     }
+  }, [bearer, clientSigner])
+
+  // If no signer but berarer instantiate the signer
+  // For example when bearer is on local storage but no login was done to instantiate the signer
+  useEffect(() => {
+    signerRefresh()
   }, [bearer, clientSigner])
 
   const isAuthenticated = useMemo(() => !!bearer, [bearer])
@@ -116,5 +111,6 @@ export const useAuthProvider = () => {
     bearedFetch,
     isAuthLoading,
     signerAddress,
+    signerRefresh,
   }
 }

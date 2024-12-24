@@ -6,7 +6,7 @@ export const useAccountCreate = () => {
   const {
     createAccount,
     updateAccount,
-    errors: { account: error },
+    errors: { create: error },
   } = useClient()
 
   // we want to know if account exists, not the organization (slight difference)
