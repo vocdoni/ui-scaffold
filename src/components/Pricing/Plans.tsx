@@ -161,7 +161,7 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
   const { subscription } = useSubscription()
   const { data: plans, isLoading } = usePlans()
   const translations = usePlanTranslations()
-  const { openModal, closeModal } = usePricingModal()
+  const { openModal } = usePricingModal()
 
   const methods = useForm<FormValues>({
     defaultValues: {
