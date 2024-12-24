@@ -196,7 +196,7 @@ const TabCardSkeleton = ({
 
   return (
     <Tab onClick={onClick} mb={5} {...props} sx={styles.checkbox}>
-      {!needsUpgrade && (
+      {check && !needsUpgrade && (
         <>
           <Check />
           <Box
