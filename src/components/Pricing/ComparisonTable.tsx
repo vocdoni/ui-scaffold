@@ -4,7 +4,7 @@ import { forwardRef } from 'react'
 import { Trans } from 'react-i18next'
 import { BooleanIcon } from '~components/Layout/BooleanIcon'
 import { CategorizedFeatureKeys, CategoryTitleKeys, PlanTableFeaturesTranslationKeys } from './Features'
-import { Plan, usePlans } from './Plans'
+import { Plan, usePlans, usePlanTranslations } from './Plans'
 
 type ComparisonTableProps = {}
 
@@ -15,54 +15,57 @@ type ComparisonSectionTableProps = {
   category: string
 }
 
-const ComparisonSectionTable = ({ titleKey, plans, features, category }: ComparisonSectionTableProps) => (
-  <Box mb={8}>
-    <Text fontSize='xl' mb={4}>
-      <Trans i18nKey={titleKey} />
-    </Text>
-    <Table variant='striped' borderWidth={1}>
-      <Thead>
-        <Tr>
-          <Th>
-            <Trans i18nKey='pricing.features'>Features</Trans>
-          </Th>
-          {plans.map((plan) => (
-            <Th key={plan.id} textAlign='center'>
-              {plan.name}
+const ComparisonSectionTable = ({ titleKey, plans, features, category }: ComparisonSectionTableProps) => {
+  const translations = usePlanTranslations()
+  return (
+    <Box mb={8}>
+      <Text fontSize='xl' mb={4}>
+        <Trans i18nKey={titleKey} />
+      </Text>
+      <Table variant='striped' borderWidth={1}>
+        <Thead>
+          <Tr>
+            <Th>
+              <Trans i18nKey='pricing.features'>Features</Trans>
             </Th>
-          ))}
-        </Tr>
-      </Thead>
-      <Tbody>
-        {features.map((key) => {
-          const featurePath = `${category}.${key}`
-          const translationKey = PlanTableFeaturesTranslationKeys[featurePath]
-          return (
-            <Tr key={key}>
-              <Td fontWeight='medium'>
-                <Trans i18nKey={translationKey} />
-              </Td>
-              {plans.map((plan) => {
-                const value = dotobject(plan, featurePath)
-                return (
-                  <Td key={plan.id} textAlign='center'>
-                    {typeof value === 'boolean' ? (
-                      <BooleanIcon value={value} />
-                    ) : typeof value === 'number' ? (
-                      value
-                    ) : (
-                      '-'
-                    )}
-                  </Td>
-                )
-              })}
-            </Tr>
-          )
-        })}
-      </Tbody>
-    </Table>
-  </Box>
-)
+            {plans.map((plan) => (
+              <Th key={plan.id} textAlign='center'>
+                {translations[plan.id].title || plan.name}
+              </Th>
+            ))}
+          </Tr>
+        </Thead>
+        <Tbody>
+          {features.map((key) => {
+            const featurePath = `${category}.${key}`
+            const translationKey = PlanTableFeaturesTranslationKeys[featurePath]
+            return (
+              <Tr key={key}>
+                <Td fontWeight='medium'>
+                  <Trans i18nKey={translationKey} />
+                </Td>
+                {plans.map((plan) => {
+                  const value = dotobject(plan, featurePath)
+                  return (
+                    <Td key={plan.id} textAlign='center'>
+                      {typeof value === 'boolean' ? (
+                        <BooleanIcon value={value} />
+                      ) : typeof value === 'number' ? (
+                        value
+                      ) : (
+                        '-'
+                      )}
+                    </Td>
+                  )
+                })}
+              </Tr>
+            )
+          })}
+        </Tbody>
+      </Table>
+    </Box>
+  )
+}
 
 export const ComparisonTable = forwardRef<HTMLDivElement, ComparisonTableProps>((props, ref) => {
   const { data: plans, isLoading } = usePlans()
