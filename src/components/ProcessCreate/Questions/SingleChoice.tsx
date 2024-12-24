@@ -1,15 +1,12 @@
-import { useTranslation } from 'react-i18next'
-import QuestionPage from './Question'
+import { Trans } from 'react-i18next'
+import Questions from './Questions'
 
-const SingleChoice = () => {
-  const { t } = useTranslation()
-  return (
-    <QuestionPage
-      title={t('form.process_create.question.title')}
-      description={t('form.process_create.question.description')}
-      isMultiQuestion
-    />
-  )
-}
+const SingleChoice = () => (
+  <Questions
+    title={<Trans i18nKey='form.process_create.question.title' />}
+    description={<Trans i18nKey='form.process_create.question.description' />}
+    isMultiQuestion
+  />
+)
 
 export default SingleChoice

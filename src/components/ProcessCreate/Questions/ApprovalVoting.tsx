@@ -1,14 +1,11 @@
-import { useTranslation } from 'react-i18next'
-import QuestionPage from './Question'
+import { Trans } from 'react-i18next'
+import Questions from './Questions'
 
-const ApprovalVoting = () => {
-  const { t } = useTranslation()
-  return (
-    <QuestionPage
-      title={t('form.process_create.question.approval_title')}
-      description={t('form.process_create.question.approval_description')}
-    />
-  )
-}
+const ApprovalVoting = () => (
+  <Questions
+    title={<Trans i18nKey='form.process_create.question.approval_title' />}
+    description={<Trans i18nKey='form.process_create.question.approval_description' />}
+  />
+)
 
 export default ApprovalVoting
