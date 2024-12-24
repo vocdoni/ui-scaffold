@@ -1,7 +1,6 @@
-import { AddIcon, DeleteIcon } from '@chakra-ui/icons'
-import { Box, Button, Flex, FormControl, FormErrorMessage, IconButton, Input, Text } from '@chakra-ui/react'
-import { useEffect } from 'react'
-import { FieldError, useFieldArray, useFormContext } from 'react-hook-form'
+import { DeleteIcon } from '@chakra-ui/icons'
+import { Box, Flex, FormControl, FormErrorMessage, IconButton, Input, Text } from '@chakra-ui/react'
+import { useFieldArray, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import Editor from '~components/Editor/Editor'
 import { fieldMapErrorMessage, isInvalidFieldMap } from '~constants'
@@ -9,10 +8,11 @@ import Options from './Options'
 
 interface Props {
   index: number
-  remove: any
+  remove: (number) => void
+  isMultiQuestion?: boolean
 }
 
-const Question = ({ index, remove }: Props) => {
+export const Question = ({ index, isMultiQuestion, remove }: Props) => {
   const { t } = useTranslation()
   const {
     watch,
@@ -64,87 +64,18 @@ const Question = ({ index, remove }: Props) => {
 
       <Options fields={fields} removeOption={removeOption} appendOption={appendOption} index={index} />
 
-      <Text
-        position='absolute'
-        fontSize='100px'
-        bottom={0}
-        right={5}
-        color='process_create.question_index'
-        opacity={0.2}
-      >
-        {index + 1}
-      </Text>
+      {isMultiQuestion && (
+        <Text
+          position='absolute'
+          fontSize='100px'
+          bottom={0}
+          right={5}
+          color='process_create.question_index'
+          opacity={0.2}
+        >
+          {index + 1}
+        </Text>
+      )}
     </Box>
   )
 }
-
-interface CustomFieldError extends FieldError {
-  index: number
-}
-
-interface IQuestionPageProps {
-  title: string
-  description: string
-  isMultiQuestion?: boolean
-}
-
-const QuestionPage = ({ title, description, isMultiQuestion = false }: IQuestionPageProps) => {
-  const { t } = useTranslation()
-
-  const {
-    watch,
-    formState: { errors },
-  } = useFormContext()
-
-  const { fields, append, remove } = useFieldArray({
-    name: 'questions',
-  })
-
-  const questions = watch('questions')
-
-  // If all questions deleted add a new empty question to the form
-  useEffect(() => {
-    if (questions.length === 0) {
-      append({
-        title: '',
-        description: '',
-        options: [{ option: '' }, { option: '' }],
-      })
-    }
-  }, [questions, append])
-
-  return (
-    <>
-      <Box>
-        <Text variant='process-create-title'>{title}</Text>
-        <Text variant='process-create-subtitle-sm'>{description}</Text>
-      </Box>
-      <Flex flexDirection='column' gap={6}>
-        {fields.map((_, index) => (
-          <Question key={index} index={index} remove={remove} />
-        ))}
-
-        {isMultiQuestion && (
-          <Button
-            type='button'
-            rightIcon={<AddIcon boxSize={3} />}
-            aria-label={t('form.process_create.question.add_question')}
-            onClick={() => {
-              append({
-                title: '',
-                description: '',
-                options: [{ option: '' }, { option: '' }],
-              })
-            }}
-            alignSelf='center'
-            variant={'outline'}
-          >
-            {t('form.process_create.question.add_question')}
-          </Button>
-        )}
-      </Flex>
-    </>
-  )
-}
-
-export default QuestionPage
