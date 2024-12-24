@@ -3,25 +3,6 @@ import { createMultiStyleConfigHelpers, TabPanel } from '@chakra-ui/react'
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(tabsAnatomy.keys)
 
-const baseStyle = definePartsStyle(({ colorScheme }: { colorScheme: string }) => ({
-  tab: {
-    borderRadius: 'lg',
-    _selected: {
-      bgColor: `${colorScheme}.200`,
-      _dark: {
-        bgColor: `${colorScheme}.300`,
-      },
-    },
-  },
-  tablist: {
-    bgColor: `${colorScheme}.500`,
-    p: 1,
-    _dark: {
-      bgColor: `${colorScheme}.600`,
-    },
-  },
-}))
-
 const brand = definePartsStyle(({ colorScheme }: { colorScheme: string }) => ({
   tab: {
     borderRadius: 'lg',
@@ -52,6 +33,7 @@ const card = definePartsStyle({
       gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
       gap: 5,
     },
+    bgColor: 'transparent',
   },
   tab: {
     position: 'relative',
@@ -153,6 +135,7 @@ const basic = ({ colorScheme }: { colorScheme: string }) => ({
       bgColor: `${colorScheme}.700`,
     },
   },
+
   tab: {
     mb: '.3px',
 
@@ -197,7 +180,6 @@ const underline = ({ colorScheme }: { colorScheme: string }) => ({
 })
 
 export const Tabs = defineMultiStyleConfig({
-  baseStyle,
   variants: { card, process, brand, basic, underline },
   defaultProps: { colorScheme: 'brand', variant: 'underline' },
 })
