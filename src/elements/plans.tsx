@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { ComparisonTable } from '~components/Pricing/ComparisonTable'
 import { SubscriptionPlans, usePlans } from '~components/Pricing/Plans'
+import { PricingModalProvider } from '~components/Pricing/PricingModalProvider'
 
 const PlansPublicPage = () => {
   const featuresRef = useRef<HTMLDivElement>(null)
@@ -17,8 +18,10 @@ const PlansPublicPage = () => {
 
   return (
     <>
-      <SubscriptionPlans featuresRef={featuresRef} />
-      <ComparisonTable ref={featuresRef} />
+      <PricingModalProvider>
+        <SubscriptionPlans featuresRef={featuresRef} />
+        <ComparisonTable ref={featuresRef} />
+      </PricingModalProvider>
     </>
   )
 }
