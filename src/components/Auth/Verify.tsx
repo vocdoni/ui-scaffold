@@ -1,4 +1,4 @@
-import { Button, Divider, Flex, Input, Text } from '@chakra-ui/react'
+import { Box, Button, Divider, Flex, Input, Text } from '@chakra-ui/react'
 import { useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink, useNavigate, useOutletContext } from 'react-router-dom'
@@ -7,17 +7,20 @@ import { useAuth } from '~components/Auth/useAuth'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import { AuthOutletContextType } from '~elements/LayoutAuth'
 import { Routes } from '~src/router/routes'
+import { Loading } from '~src/router/SuspenseLoader'
 
 export const verificationSuccessRedirect = Routes.auth.organizationCreate
 
-interface IVerifyAccountProps {
+type VerifyFormProps = {
   email: string
+  initialCode?: string
+  autoSubmit?: boolean
 }
 
-const VerifyForm = ({ email }: IVerifyAccountProps) => {
+const VerifyForm = ({ email, initialCode = '', autoSubmit = false }: VerifyFormProps) => {
   const navigate = useNavigate()
   const { t } = useTranslation()
-  const [code, setCode] = useState('')
+  const [code, setCode] = useState(initialCode)
   const {
     mailVerify: { mutateAsync: verifyAsync, isPending: isVerifyPending, isError: isVerifyError, error: verifyError },
   } = useAuth()
@@ -30,10 +33,25 @@ const VerifyForm = ({ email }: IVerifyAccountProps) => {
     setCode(event.target.value)
   }
 
+  // Auto-submit if code is provided and autoSubmit is true
+  useEffect(() => {
+    if (autoSubmit && code) {
+      verify()
+    }
+  }, [autoSubmit, code])
+
+  if (autoSubmit && code) {
+    return (
+      <Box height={'100px'}>
+        <Loading minHeight={1} />
+      </Box>
+    )
+  }
+
   return (
     <>
-      <Input type={'text'} placeholder={'12345678'} value={code} onChange={handleInputChange} />
-      <Button isDisabled={!code} isLoading={isVerifyPending} onClick={verify}>
+      <Input type={'text'} placeholder={'12345678'} value={code} onChange={handleInputChange} isDisabled={autoSubmit} />
+      <Button isDisabled={!code || (autoSubmit && isVerifyPending)} isLoading={isVerifyPending} onClick={verify}>
         <Trans i18nKey={'verify.verify_code'}>Verify</Trans>
       </Button>
       <FormSubmitMessage
@@ -47,7 +65,7 @@ const VerifyForm = ({ email }: IVerifyAccountProps) => {
   )
 }
 
-export const VerificationPending = ({ email }: IVerifyAccountProps) => {
+export const VerificationPending = ({ email, code }: { email: string; code?: string }) => {
   const { t } = useTranslation()
   const { setTitle, setSubTitle } = useOutletContext<AuthOutletContextType>()
   const {
@@ -85,11 +103,13 @@ export const VerificationPending = ({ email }: IVerifyAccountProps) => {
           })}
         </Text>
       </Flex>
-      <VerifyForm email={email} />
+      <VerifyForm email={email} initialCode={code} autoSubmit={!!code} />
 
-      <Button isLoading={isResendPending} onClick={resendMail}>
-        <Trans i18nKey={'verify.resend_confirmation_mail'}>Resend Email</Trans>
-      </Button>
+      {!code && (
+        <Button isLoading={isResendPending} onClick={resendMail}>
+          <Trans i18nKey={'verify.resend_confirmation_mail'}>Resend Email</Trans>
+        </Button>
+      )}
       <FormSubmitMessage
         isSuccess={isResendSuccess}
         success={t('verify.email_sent', {

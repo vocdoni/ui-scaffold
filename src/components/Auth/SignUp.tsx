@@ -5,7 +5,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { Navigate, NavLink, Link as ReactRouterLink, useOutletContext } from 'react-router-dom'
 import { IRegisterParams } from '~components/Auth/authQueries'
 import { useAuth } from '~components/Auth/useAuth'
-import { VerificationPending } from '~components/Auth/Verify'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import InputPassword from '~components/Layout/InputPassword'
 import { AuthOutletContextType } from '~elements/LayoutAuth'
@@ -69,7 +68,7 @@ const SignUp = ({ invite }: SignupProps) => {
 
   // normally registered accounts need verification
   if (register.isSuccess) {
-    return <VerificationPending email={email} />
+    return <Navigate to={`${Routes.auth.verify}?email=${encodeURIComponent(email)}`} />
   }
 
   // accounts coming from invites don't need verification
