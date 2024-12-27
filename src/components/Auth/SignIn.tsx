@@ -62,7 +62,7 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
     setTitle(t('signin_title'))
     setSubTitle(t('signin_subtitle'))
 
-    // reset the form to clearJ the errors
+    // reset the form to clear the errors
     reset()
   }, [])
 
