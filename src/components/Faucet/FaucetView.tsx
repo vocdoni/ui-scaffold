@@ -17,7 +17,7 @@ export const FaucetView = ({ amount, waitHours }: FaucetViewProps) => {
       <Grid templateColumns={'repeat(1, 1fr)'} gap={2}>
         <GridItem display='flex' justifyContent='center' alignItems='center'>
           <Box>
-            <Heading as={'h2'} className='brand-theme' size={'xl'} textTransform='uppercase'>
+            <Heading as={'h2'} size={'xl'} textTransform='uppercase'>
               {t('faucet.title')}
             </Heading>
             <Text variant='p' mt={10} mb={10}>
@@ -28,7 +28,7 @@ export const FaucetView = ({ amount, waitHours }: FaucetViewProps) => {
         <GridItem display='flex' justifyContent='center' alignItems='center'>
           <Card minWidth={'100%'}>
             <CardBody display='flex' flexDir='column' gap={3}>
-              <Heading as={'h2'} className='brand-theme' size={'sm'} textTransform='uppercase'>
+              <Heading as={'h2'} size={'sm'} textTransform='uppercase'>
                 {t('faucet.request_tokens.title')}
               </Heading>
               <Box>
@@ -45,7 +45,7 @@ export const FaucetView = ({ amount, waitHours }: FaucetViewProps) => {
         <GridItem display='flex' justifyContent='center' alignItems='center' mt={10}>
           <Card minWidth={'100%'}>
             <CardBody display='flex' flexDir='column' gap={3}>
-              <Heading as={'h2'} className='brand-theme' size={'sm'} textTransform='uppercase'>
+              <Heading as={'h2'} size={'sm'} textTransform='uppercase'>
                 {t('faucet.general_information.title')}
               </Heading>
               <Text variant='p'>
