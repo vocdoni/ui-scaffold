@@ -37,7 +37,7 @@ const Benefits = () => {
             right='9%'
           />
         </Box>
-        <Box as='section' id='benefits' mt={{ base: '50px' }}>
+        <Box as='section' id='benefits'>
           <Box
             width='full'
             m='0 auto'
