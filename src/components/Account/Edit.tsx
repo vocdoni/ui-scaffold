@@ -10,10 +10,10 @@ export const AccountEdit = () => {
   const { data: profile } = useProfile()
   return (
     <Flex flexDirection='column' h='100%'>
-      <Tabs w='full' maxW={InnerContentsMaxWidth} mx='auto'>
+      <Tabs w='full' maxW={InnerContentsMaxWidth} mx='auto' isFitted>
         <TabList>
           <Tab>
-            <Trans i18nKey='profile'>Profile</Trans>
+            <Trans i18nKey='profile.title'>Profile</Trans>
           </Tab>
           <Tab>
             <Trans i18nKey='password'>Password</Trans>

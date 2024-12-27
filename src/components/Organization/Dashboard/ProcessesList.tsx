@@ -27,7 +27,7 @@ const ProcessesList = ({ processes }: ProcessesListProps) => {
         </Thead>
         <Tbody>
           {processes &&
-            processes.length &&
+            !!processes.length &&
             processes?.map((election) => (
               <ElectionProvider election={election} id={election.id} key={election.id}>
                 <ProcessCard />

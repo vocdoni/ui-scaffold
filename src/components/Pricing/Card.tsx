@@ -9,7 +9,7 @@ type PricingCardProps = {
   popular: boolean
   title: string
   subtitle: string
-  price: number
+  price: string
   features: string[]
   isDisabled: boolean
   width?: string

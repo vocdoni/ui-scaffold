@@ -177,6 +177,7 @@
       "success_title": "Los tokens han sido reclamados correctamente"
     }
   },
+  "close": "Cerrar",
   "confirm_password": "Confirm Password",
   "confirm_password_placeholder": "Confirm your new password",
   "contact_us": "Contact us",
@@ -299,6 +300,8 @@
     "sms_notification": "Notificaciones por SMS",
     "sub_orgs": "Hasta {{ value }} suborganizaciones",
     "title": "Características",
+    "total_members": "Total available members",
+    "total_orgs": "Total available sub-organizations",
     "weighted": "Votación ponderada",
     "white_label": "White label"
   },
@@ -816,6 +819,27 @@
     "subtitle": "If your email corresponds to an existing account, you'll receive an email with a code to reset your password.",
     "title": "Password reset"
   },
+  "password_update": {
+    "actions": {
+      "update": "Update Password"
+    },
+    "confirm": {
+      "label": "Confirm Password",
+      "mismatch": "Passwords don't match",
+      "required": "Please confirm your password"
+    },
+    "error": "Failed to update password",
+    "new": {
+      "label": "New Password",
+      "minLength": "Password must be at least 8 characters",
+      "required": "Password is required"
+    },
+    "old": {
+      "label": "Current Password",
+      "required": "Current password is required"
+    },
+    "success": "Password updated successfully"
+  },
   "passwords_do_not_match": "",
   "plan_upgrade": {
     "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
@@ -846,7 +870,6 @@
     "premium_title": "Premium",
     "priority_support": "Soporte prioritario por tickets",
     "ticket_support": "Soporte por tickets",
-    "title": "Nuestros planes",
     "unlimited_yearly_processes": "Procesos anuales ilimitados",
     "up_to_admins": "Hasta {{ admin }} admin. y {{ org }} organizaciones",
     "upgrade_title": "Debes actualizar tu plan para usar esta funcionalidad",
@@ -857,7 +880,6 @@
     "your_plan": "Actualmente estás suscrito al plan 'Your plan'. Si actualizas, solo te cobraremos la diferencia anual. En el próximo período de facturación, que comienza el 'dd/mm/aa', pagarás por el nuevo plan seleccionado."
   },
   "pricing_card": {
-    "compare_plans": "Compare all plans",
     "from": "Desde {{price}}/año",
     "most_popular_plan": "Most popular plan",
     "view_features": "Ver todas las características"
@@ -1056,7 +1078,14 @@
     "type": "Type",
     "voters": "Voters"
   },
-  "profile": "Perfil",
+  "profile": {
+    "avatar": {
+      "label": "Avatar"
+    },
+    "error": "Failed to update profile",
+    "success": "Profile updated successfully",
+    "title": "Profile"
+  },
   "rainbow": {
     "group": {
       "recovery": "Recuperación"
@@ -1095,12 +1124,18 @@
   "signup_title": "Regístrate",
   "skip": "Omitir",
   "submit": "Envía",
-  "subscription": "Suscripción",
-  "support": "Soporte",
-  "surname": {
-    "label": "Apellido",
-    "required": "El apellido es obligatorio"
+  "subscription": {
+    "change_plan_button": "Change",
+    "inactive_subscription_description": "Your subscription is currently inactive. Consider <2>contacting us</2> to reactivate it.",
+    "inactive_subscription_title": "Inactive Subscription",
+    "next_billing": "Next Billing",
+    "price": "Price",
+    "since": "Since",
+    "title": "Subscription",
+    "your_subscription": "Your Subscription"
   },
+  "support": "Soporte",
+  "surname": "Surname",
   "team": {
     "expiration": "Expiración",
     "member_name": "Nombre",
@@ -1193,8 +1228,10 @@
   "upgrade": "Amplíalo",
   "upload": "Upload",
   "uploader": {
-    "click_or_drag_and_drop": "<click>Haz clic para subir</click> <drag>o arrastra y suelta</drag><formats>(Formatos permitidos: CSV, XLSX y ODS)</formats>",
-    "drop_here": "Suelta aqui"
+    "click_or_drag_and_drop": "<click>Haz clic para subir</click> <drag>o arrastra y suelta</drag><formats>(Formatos permitidos: CSV, XLSX y ODS)</formats>"
+  },
+  "uploaderCustom": {
+    "drop_here": ""
   },
   "use_read_more": {
     "read_less": "Leer menos",

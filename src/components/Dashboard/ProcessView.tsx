@@ -36,11 +36,12 @@ import { PublishedElection } from '@vocdoni/sdk'
 import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { AiOutlinePieChart, AiOutlineQuestionCircle } from 'react-icons/ai'
-import { FaCopy, FaEye, FaFilePdf } from 'react-icons/fa'
+import { FaCopy, FaEye } from 'react-icons/fa'
 import { FaPause, FaPlay, FaStop, FaTrash } from 'react-icons/fa6'
 import { generatePath, useOutletContext } from 'react-router-dom'
 import { DashboardBox, DashboardContents } from '~components/Layout/Dashboard'
 import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
+import { Features } from '~components/Process/Features'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~src/router/routes'
 
@@ -160,16 +161,23 @@ export const ProcessView = () => {
             </Heading>
             <HStack justifyContent='space-around'>
               <ActionsProvider>
-                <ActionContinue aria-label={t('process_actions.continue', { defaultValue: 'Continue' })}>
+                <ActionContinue
+                  variant='outline'
+                  aria-label={t('process_actions.continue', { defaultValue: 'Continue' })}
+                >
                   <FaPlay />
                 </ActionContinue>
-                <ActionPause aria-label={t('process_actions.pause', { defaultValue: 'Pause' })}>
+                <ActionPause variant='outline' aria-label={t('process_actions.pause', { defaultValue: 'Pause' })}>
                   <FaPause />
                 </ActionPause>
-                <ActionEnd aria-label={t('process_actions.end', { defaultValue: 'End' })}>
+                <ActionEnd variant='outline' aria-label={t('process_actions.end', { defaultValue: 'End' })}>
                   <FaStop />
                 </ActionEnd>
-                <ActionCancel aria-label={t('process_actions.cancel', { defaultValue: 'Cancel' })}>
+                <ActionCancel
+                  variant='outline'
+                  colorScheme='red'
+                  aria-label={t('process_actions.cancel', { defaultValue: 'Cancel' })}
+                >
                   <FaTrash />
                 </ActionCancel>
               </ActionsProvider>
@@ -183,17 +191,11 @@ export const ProcessView = () => {
             <Trans i18nKey='total_votes_submitted'>Total Votes Submitted</Trans>
           </Heading>
           <Box display='flex' alignItems='center' justifyContent='center' gap={3}>
-            <Text fontSize='3xl'>{participation}</Text>
+            <Text fontSize='3xl'>{(election instanceof PublishedElection && election.voteCount) || 0}</Text>
             <Text fontSize='sm' color='gray.600' _dark={{ color: 'gray.400' }}>
-              ({turnout}%)
+              ({participation}%)
             </Text>
           </Box>
-          <Button leftIcon={<FaFilePdf />} colorScheme='green' isDisabled>
-            <Trans i18nKey='generate_pdf'>Generate PDF</Trans>
-          </Button>
-          <Text>
-            <Trans i18nKey='generate_pdf_description'>Generate a PDF with the results</Trans>
-          </Text>
         </DashboardBox>
 
         {/* Census Details */}
@@ -211,11 +213,7 @@ export const ProcessView = () => {
           <Heading as='h4' variant='sidebar-section'>
             <Trans i18nKey='features.title'>Features</Trans>
           </Heading>
-          <HStack spacing={3} justifyContent='center'>
-            <Text fontSize='sm'>Feature 1</Text>
-            <Text fontSize='sm'>Feature 2</Text>
-            <Text fontSize='sm'>Feature 3</Text>
-          </HStack>
+          <Features />
         </DashboardBox>
       </VStack>
     </Grid>

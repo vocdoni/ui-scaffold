@@ -196,7 +196,7 @@ const TabCardSkeleton = ({
 
   return (
     <Tab onClick={onClick} mb={5} {...props} sx={styles.checkbox}>
-      {check && (
+      {check && !needsUpgrade && (
         <>
           <Check />
           <Box
@@ -205,8 +205,8 @@ const TabCardSkeleton = ({
               position: 'absolute',
               top: '1rem',
               right: '1rem',
-              w: 5,
-              h: 5,
+              w: 4,
+              h: 4,
               borderRadius: 'full',
               border: `1px solid`,
               borderColor: 'tab.variant.card.border',

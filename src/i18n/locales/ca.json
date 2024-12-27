@@ -177,6 +177,7 @@
       "success_title": "Els tokens s'han reclamat amb èxit"
     }
   },
+  "close": "Tanca",
   "confirm_password": "Confirm Password",
   "confirm_password_placeholder": "Confirm your new password",
   "contact_us": "Contact us",
@@ -286,7 +287,6 @@
     "live_results": "Resultats en directe",
     "live_streaming": "Streaming en directe",
     "memberships": "Fins a {{ value }} membresies",
-    "total_members": "Membresies totals",
     "multiple": "Múltiples opcions",
     "overwrite": "Sobre-escriptura del vot",
     "personalization": "Personalització",
@@ -299,8 +299,9 @@
     "single": "Opció única",
     "sms_notification": "Notificacions per SMS",
     "sub_orgs": "Fins a {{ value }} suborganitzacions",
-    "total_orgs": "Sub-organitzacions disponibles",
     "title": "Característiques",
+    "total_members": "Membresies totals",
+    "total_orgs": "Sub-organitzacions disponibles",
     "weighted": "Amb pes",
     "white_label": "Marca blanca"
   },
@@ -818,6 +819,27 @@
     "subtitle": "If your email corresponds to an existing account, you'll receive an email with a code to reset your password.",
     "title": "Password reset"
   },
+  "password_update": {
+    "actions": {
+      "update": "Update Password"
+    },
+    "confirm": {
+      "label": "Confirm Password",
+      "mismatch": "Passwords don't match",
+      "required": "Please confirm your password"
+    },
+    "error": "Failed to update password",
+    "new": {
+      "label": "New Password",
+      "minLength": "Password must be at least 8 characters",
+      "required": "Password is required"
+    },
+    "old": {
+      "label": "Current Password",
+      "required": "Current password is required"
+    },
+    "success": "Password updated successfully"
+  },
   "passwords_do_not_match": "",
   "plan_upgrade": {
     "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
@@ -848,7 +870,6 @@
     "premium_title": "Premium",
     "priority_support": "Suport prioritari per tiquets",
     "ticket_support": "Suport per tiquets",
-    "title": "Els nostres plans",
     "unlimited_yearly_processes": "Processos anuals il·limitats",
     "up_to_admins": "Fins a {{ admin }} admin. i {{ org }} organitzacions",
     "upgrade_title": "Has d'actualitzar el teu pla per utilitzar aquesta funcionalitat",
@@ -859,7 +880,6 @@
     "your_plan": "Actualment estàs subscrit al pla 'Your plan'. Si actualitzes, només et cobrarem la diferència anual. En el següent període de facturació, que comença el 'dd/mm/aa', pagaràs pel nou pla seleccionat."
   },
   "pricing_card": {
-    "compare_plans": "Compare all plans",
     "from": "Des de {{price}}/any",
     "most_popular_plan": "Most popular plan",
     "view_features": "View all features"
@@ -1058,7 +1078,14 @@
     "type": "Type",
     "voters": "Voters"
   },
-  "profile": "Perfil",
+  "profile": {
+    "avatar": {
+      "label": "Avatar"
+    },
+    "error": "Failed to update profile",
+    "success": "Profile updated successfully",
+    "title": "Profile"
+  },
   "rainbow": {
     "group": {
       "recovery": "Recuperació"
@@ -1097,12 +1124,18 @@
   "signup_title": "Registra't",
   "skip": "Ometre",
   "submit": "Submit",
-  "subscription": "Subscripció",
-  "support": "Suport",
-  "surname": {
-    "label": "Surname",
-    "required": "Surname is required"
+  "subscription": {
+    "change_plan_button": "Change",
+    "inactive_subscription_description": "La teva suscripció és inactiva actualment. Considera <2>contactar-nos</2> per a reactivar-la.",
+    "inactive_subscription_title": "Inactive Subscription",
+    "next_billing": "Next Billing",
+    "price": "Price",
+    "since": "Since",
+    "title": "Subscription",
+    "your_subscription": "Your Subscription"
   },
+  "support": "Suport",
+  "surname": "Surname",
   "team": {
     "expiration": "Expiració",
     "member_name": "Nom",
@@ -1195,8 +1228,10 @@
   "upgrade": "Amplia-ho",
   "upload": "Upload",
   "uploader": {
-    "click_or_drag_and_drop": "<click>Fes clic per pujar</click> <drag>o arrossega i deixa anar</drag><formats>(Formats permesos: CSV, XLSX i ODS)</formats>",
-    "drop_here": "Deixa anar aquí"
+    "click_or_drag_and_drop": "<click>Fes clic per pujar</click> <drag>o arrossega i deixa anar</drag><formats>(Formats permesos: CSV, XLSX i ODS)</formats>"
+  },
+  "uploaderCustom": {
+    "drop_here": ""
   },
   "use_read_more": {
     "read_less": "Llegeix menys",

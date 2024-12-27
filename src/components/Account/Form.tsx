@@ -72,27 +72,27 @@ const AccountForm = ({ profile }: { profile: User }) => {
         </FormControl>
 
         <FormControl isInvalid={!!errors.firstName}>
-          <FormLabel>{t('name.label', { defaultValue: 'Name' })}</FormLabel>
+          <FormLabel>{t('name', { defaultValue: 'Name' })}</FormLabel>
           <Input
             {...register('firstName', {
-              required: t('name.required', { defaultValue: 'Name is required' }),
+              required: t('form.error.field_is_required'),
             })}
           />
           <FormErrorMessage>{errors.firstName?.message}</FormErrorMessage>
         </FormControl>
 
         <FormControl isInvalid={!!errors.lastName}>
-          <FormLabel>{t('surname.label', { defaultValue: 'Surname' })}</FormLabel>
+          <FormLabel>{t('surname', { defaultValue: 'Surname' })}</FormLabel>
           <Input
             {...register('lastName', {
-              required: t('surname.required', { defaultValue: 'Surname is required' }),
+              required: t('form.error.field_is_required'),
             })}
           />
           <FormErrorMessage>{errors.lastName?.message}</FormErrorMessage>
         </FormControl>
 
         <FormControl isInvalid={!!errors.email}>
-          <FormLabel>{t('email.label', { defaultValue: 'Email' })}</FormLabel>
+          <FormLabel>{t('email', { defaultValue: 'Email' })}</FormLabel>
           <Input {...register('email')} isDisabled type='email' />
           <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
         </FormControl>

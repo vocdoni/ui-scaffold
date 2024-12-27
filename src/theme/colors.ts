@@ -6,13 +6,14 @@ export const colorsBase = {
     normal: '#3965ff',
     grayish: '#2B2A33',
     dark: '#1A202C',
+    dark2: '#0C0E12',
   },
   gradient: 'linear-gradient(to right, #546E39, #2E441A)',
   gray: {
     light3: '#fafafa',
     light2: '#ffffff3d',
     light: '#CBD5E0',
-    normal: '#E9EAEB',
+    normal: '#A0AEC0',
   },
   green: '#00FF00',
   orange: '#FFA500',
@@ -52,7 +53,7 @@ export const colors = {
   },
   bg: {
     light: colorsBase.white.dark,
-    dark: colorsBase.blue.dark,
+    dark: colorsBase.blue.dark2,
   },
   button: {
     variant: {
@@ -133,7 +134,7 @@ export const colors = {
   dashboard: {
     bg: {
       light: colorsBase.white.dark,
-      dark: colorsBase.blue.dark,
+      dark: colorsBase.blue.dark2,
     },
     color: {
       light: colorsBase.black,
@@ -250,6 +251,7 @@ export const colors = {
     },
     required_asterisk: colorsBase.primary,
   },
+  link: colorsBase.gray.normal,
   org_text_secondary: colorsBase.gray.normal,
 
   process: {
@@ -292,6 +294,7 @@ export const colors = {
       },
     },
     paused: colorsBase.primary,
+    read_more_dark: colorsBase.blue.dark2,
     results: {
       alert_bg: colorsBase.primary,
       alert_color: colorsBase.white.pure,
