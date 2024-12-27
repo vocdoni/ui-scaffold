@@ -24,7 +24,7 @@ const InputBasic = ({ formValue, label, required = false, validation = {}, ...pr
   const errorMessage = errors[formValue]?.message?.toString() || ''
 
   return (
-    <FormControl isInvalid={!!errors[formValue]}>
+    <FormControl isInvalid={!!errors[formValue]} isRequired={required}>
       {label && <FormLabel>{label}</FormLabel>}
       <Input {...register(formValue, validationRules)} {...props} />
       <FormErrorMessage mt={2}>{errorMessage || 'Error performing the operation'}</FormErrorMessage>

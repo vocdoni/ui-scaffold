@@ -50,6 +50,7 @@ const SignUp = ({ invite }: SignupProps) => {
   const error = register.error || inviteSignup.error
 
   useEffect(() => {
+    // set SignUp title and description
     setTitle(t('signup_title'))
     setSubTitle(t('signup_subtitle'))
   }, [])

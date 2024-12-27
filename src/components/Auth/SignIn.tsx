@@ -58,8 +58,11 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
   const { mutateAsync: resendVerificationCode } = useResendVerificationCode()
 
   useEffect(() => {
+    // set SignUp title and description
     setTitle(t('signin_title'))
     setSubTitle(t('signin_subtitle'))
+
+    // reset the form to clearJ the errors
     reset()
   }, [])
 
