@@ -11,7 +11,7 @@ import {
   MenuList,
   Spinner,
 } from '@chakra-ui/react'
-import { LogOut01, UserSquare } from '@untitled-ui/icons-react'
+import { LogOut01, Paperclip, UserSquare } from '@untitled-ui/icons-react'
 import { Trans } from 'react-i18next'
 import { Link as RouterLink } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
@@ -50,10 +50,21 @@ const AccountMenu: React.FC<BoxProps> = (props) => {
             <Icon as={UserSquare} />
             <Trans i18nKey='profile.title'>Profile</Trans>
           </MenuItem>
+          <MenuItem as={RouterLink} to='https://developer.vocdoni.io/' target='_blank'>
+            <Icon as={Paperclip} />
+            <Trans i18nKey='menu.documentation'>Documentation</Trans>
+          </MenuItem>
           <MenuDivider />
           <MenuItem onClick={logout}>
             <Icon as={LogOut01} />
             <Trans i18nKey='logout'>Logout</Trans>
+          </MenuItem>
+          <MenuDivider />
+          <MenuItem fontSize={'xs'} as={RouterLink} to={Routes.terms}>
+            <Trans i18nKey='menu.terms'>Terms</Trans>
+          </MenuItem>
+          <MenuItem fontSize={'xs'} as={RouterLink} to={Routes.privacy}>
+            <Trans i18nKey='menu.privacy'>Privacy</Trans>
           </MenuItem>
         </MenuList>
       </Menu>

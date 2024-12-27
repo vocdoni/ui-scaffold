@@ -1,8 +1,7 @@
 import { Button, Flex, FlexProps, Stack, Text } from '@chakra-ui/react'
 
 import { useMutation, UseMutationOptions } from '@tanstack/react-query'
-import { useClient } from '@vocdoni/react-providers'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink, useNavigate } from 'react-router-dom'
@@ -43,14 +42,11 @@ export const OrganizationCreate = ({
   canSkip?: boolean
 } & FlexProps) => {
   const { t } = useTranslation()
-
   const navigate = useNavigate()
   const [isPending, setIsPending] = useState(false)
-
   const methods = useForm<FormData>()
   const { handleSubmit } = methods
-
-  const { signer } = useClient()
+  const [success, setSuccess] = useState<string | null>(null)
 
   const { create: createAccount, error: accountError } = useAccountCreate()
   const { mutateAsync: createSaasAccount, isError: isSaasError, error: saasError } = useOrganizationCreate()
@@ -68,7 +64,6 @@ export const OrganizationCreate = ({
       country: values.countrySelect?.value,
       type: values.typeSelect?.value,
     })
-      .then(() => signer.getAddress()) // Get the address of newly created signer
       .then(() =>
         // Create the new account on the vochain
         createAccount({
@@ -76,14 +71,18 @@ export const OrganizationCreate = ({
           description: typeof values.description === 'object' ? values.description.default : values.description,
         })
       )
-      .then(() => {
-        // In case of success, redirect to the success route
-        navigate(onSuccessRoute as unknown)
-      })
+      .then(() => setSuccess(onSuccessRoute as unknown as string))
       .finally(() => setIsPending(false))
   }
 
   const isError = (!!accountError || isSaasError) && error !== IgnoreAccountError
+
+  // The promise chain breaks the redirection due to some re-render in between, so we need to redirect in an effect
+  useEffect(() => {
+    if (!success) return
+
+    navigate(success)
+  }, [success])
 
   return (
     <FormProvider {...methods}>

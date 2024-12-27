@@ -15,7 +15,7 @@ import { SuspenseLoader } from '../SuspenseLoader'
 
 // elements/pages
 const OrganizationEdit = lazy(() => import('~elements/dashboard/organization'))
-const DashBoardCreateOrg = lazy(() => import('~elements/dashboard/organization/createOrganization'))
+const DashboardCreateOrg = lazy(() => import('~elements/dashboard/organization/create'))
 const DashboardProcesses = lazy(() => import('~elements/dashboard/processes'))
 const DashboardProcessView = lazy(() => import('~elements/dashboard/processes/view'))
 const OrganizationTeam = lazy(() => import('~elements/dashboard/team'))
@@ -53,7 +53,7 @@ export const useDashboardRoutes = () => {
             path: Routes.dashboard.organizationCreate,
             element: (
               <SuspenseLoader>
-                <DashBoardCreateOrg />
+                <DashboardCreateOrg />
               </SuspenseLoader>
             ),
           },
