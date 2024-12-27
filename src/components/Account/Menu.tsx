@@ -60,10 +60,10 @@ const AccountMenu: React.FC<BoxProps> = (props) => {
             <Trans i18nKey='logout'>Logout</Trans>
           </MenuItem>
           <MenuDivider />
-          <MenuItem fontSize={'xs'} as={RouterLink} to={Routes.terms} target='_blank'>
+          <MenuItem fontSize={'xs'} as={RouterLink} to={Routes.terms}>
             <Trans i18nKey='menu.terms'>Terms</Trans>
           </MenuItem>
-          <MenuItem fontSize={'xs'} as={RouterLink} to={Routes.privacy} target='_blank'>
+          <MenuItem fontSize={'xs'} as={RouterLink} to={Routes.privacy}>
             <Trans i18nKey='menu.privacy'>Privacy</Trans>
           </MenuItem>
         </MenuList>
