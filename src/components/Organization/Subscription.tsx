@@ -15,11 +15,17 @@ import {
   Th,
   Thead,
   Tr,
+  useToast,
   VStack,
 } from '@chakra-ui/react'
+import { useClient } from '@vocdoni/react-providers'
+import { ensure0x } from '@vocdoni/sdk'
 import { Trans } from 'react-i18next'
 import { Link as RouterLink } from 'react-router-dom'
+import { useMutation } from 'wagmi'
+import { ApiEndpoints } from '~components/Auth/api'
 import { useSubscription } from '~components/Auth/Subscription'
+import { useAuth } from '~components/Auth/useAuth'
 import { usePricingModal } from '~components/Pricing/use-pricing-modal'
 import { Routes } from '~src/router/routes'
 import { currency } from '~utils/numbers'
@@ -37,8 +43,22 @@ export const Subscription = () => {
   )
 }
 
+const usePortalSession = () => {
+  const { bearedFetch } = useAuth()
+  const { account } = useClient()
+
+  return useMutation({
+    mutationFn: () =>
+      bearedFetch<{ portalURL: string }>(
+        ApiEndpoints.SubscriptionPortal.replace('{address}', ensure0x(account?.address))
+      ),
+  })
+}
+
 export const SubscriptionList = () => {
   const { subscription, loading } = useSubscription()
+  const { mutateAsync, isLoading } = usePortalSession()
+  const toast = useToast()
 
   if (loading) {
     return <Progress size='xs' isIndeterminate />
@@ -47,6 +67,20 @@ export const SubscriptionList = () => {
   if (!subscription) {
     return null
   }
+
+  const handleChangeClick = () =>
+    mutateAsync()
+      .then((res) => {
+        window.open(res.portalURL, '_blank')
+      })
+      .catch(() => {
+        toast({
+          status: 'error',
+          title: 'Request error',
+          description:
+            'There was an error trying to fulfill your request, please retry and, if the problem persists, contact support.',
+        })
+      })
 
   return (
     <VStack gap={4} w='full'>
@@ -101,7 +135,7 @@ export const SubscriptionList = () => {
                 <Tag>{new Date(subscription.subscriptionDetails.renewalDate).toLocaleDateString()}</Tag>
               </Td>
               <Td>
-                <Button variant='outline' size='sm'>
+                <Button variant='outline' size='sm' isLoading={isLoading} onClick={() => handleChangeClick()}>
                   <Trans i18nKey='subscription.change_plan_button'>Change</Trans>
                 </Button>
               </Td>
