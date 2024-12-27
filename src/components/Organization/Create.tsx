@@ -107,7 +107,13 @@ export const OrganizationCreate = ({
         <PrivateOrgForm />
         <Stack justify={'center'} direction={'row'} align={'center'} mx='auto' mt={8} w='80%'>
           {canSkip && (
-            <Button as={ReactRouterLink} to={Routes.dashboard.base} variant='outline' border='none'>
+            <Button
+              as={ReactRouterLink}
+              to={Routes.dashboard.base}
+              variant='outline'
+              border='none'
+              isDisabled={isPending}
+            >
               {t('skip', { defaultValue: 'Skip' })}
             </Button>
           )}
@@ -124,7 +130,7 @@ export const OrganizationCreate = ({
         <Text color={'account_create_text_secondary'} fontSize='sm' textAlign='center'>
           <Trans i18nKey='create_org.logout'>If you want to login from another account, please logout</Trans>
         </Text>
-        <LogoutBtn />
+        <LogoutBtn isDisabled={isPending} />
       </Flex>
     </FormProvider>
   )
