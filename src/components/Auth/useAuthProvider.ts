@@ -1,7 +1,9 @@
+import { useToast } from '@chakra-ui/react'
 import { useMutation } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { NoOrganizationsError, RemoteSigner } from '@vocdoni/sdk'
 import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { api, ApiEndpoints, ApiParams, UnauthorizedApiError } from '~components/Auth/api'
 import { LoginResponse, useLogin, useRegister, useVerifyMail } from '~components/Auth/authQueries'
 
@@ -43,6 +45,8 @@ const useSigner = () => {
 export const useAuthProvider = () => {
   const { signer: clientSigner, clear } = useClient()
   const [bearer, setBearer] = useState<string | null>(localStorage.getItem(LocalStorageKeys.Token))
+  const toast = useToast()
+  const { t } = useTranslation()
 
   const login = useLogin({
     onSuccess: (data) => {
@@ -71,6 +75,13 @@ export const useAuthProvider = () => {
               return api<T>(path, { headers, ...params })
             })
             .catch((e) => {
+              toast({
+                status: 'error',
+                title: t('session_expired', { defaultValue: 'Session expired' }),
+                description: t('session_expired_description', {
+                  defaultValue: 'Session may have been expired and it could not be refreshed, please login again',
+                }),
+              })
               logout()
               throw e
             })
