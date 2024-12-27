@@ -2,13 +2,13 @@ import { Button, Flex, FlexProps, Stack, Text } from '@chakra-ui/react'
 
 import { useMutation, UseMutationOptions, useQueryClient } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
-import { useEffect, useState } from 'react'
+import { Account, RemoteSigner } from '@vocdoni/sdk'
+import { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink, useNavigate } from 'react-router-dom'
 import { CreateOrgParams } from '~components/Account/AccountTypes'
 import LogoutBtn from '~components/Account/LogoutBtn'
-import { useAccountCreate } from '~components/Account/useAccountCreate'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import { useAuthProvider } from '~components/Auth/useAuthProvider'
@@ -43,15 +43,14 @@ export const OrganizationCreate = ({
   const [isPending, setIsPending] = useState(false)
   const methods = useForm<FormData>()
   const { handleSubmit } = methods
-  const [success, setSuccess] = useState<string | null>(null)
-  const { signerRefresh } = useAuthProvider()
-  const { signer } = useClient()
+  const { bearer, signerRefresh } = useAuthProvider()
+  const { client, fetchAccount } = useClient()
   const [promiseError, setPromiseError] = useState<Error | null>(null)
 
-  const { create: createAccount, error: accountError } = useAccountCreate()
   const { mutateAsync: createSaasAccount, isError: isSaasError, error: saasError } = useOrganizationCreate()
 
-  const error = saasError || accountError
+  const error = saasError || promiseError
+  const isError = isSaasError || !!promiseError
 
   const onSubmit = (values: FormData) => {
     setIsPending(true)
@@ -64,35 +63,29 @@ export const OrganizationCreate = ({
       country: values.countrySelect?.value,
       type: values.typeSelect?.value,
     })
-      // ensure the signer is properly initialized
       .then(() => {
-        signerRefresh()
-      })
-      // we need to ensure the SDK populated the signer with our account (otherwise "createAccount" would fail)
-      .then(() => signer.getAddress())
-      // then we create the account on the vochain
-      .then(() =>
-        createAccount({
-          name: typeof values.name === 'object' ? values.name.default : values.name,
-          description: typeof values.description === 'object' ? values.description.default : values.description,
+        const signer = new RemoteSigner({
+          url: import.meta.env.SAAS_URL,
+          token: bearer,
         })
-      )
-      // save on success to redirect (cannot directly redirect due to a re-render during the promise chain)
-      .then(() => setSuccess(onSuccessRoute as unknown as string))
+        client.wallet = signer
+        return client.createAccount({
+          account: new Account({
+            name: typeof values.name === 'object' ? values.name.default : values.name,
+            description: typeof values.description === 'object' ? values.description.default : values.description,
+          }),
+        })
+      })
+      // update state info and redirect
+      .then(() => {
+        fetchAccount().then(() => signerRefresh())
+        return navigate(onSuccessRoute as unknown)
+      })
       .catch((e) => {
         setPromiseError(e)
       })
       .finally(() => setIsPending(false))
   }
-
-  const isError = !!accountError || isSaasError || !!promiseError
-
-  // The promise chain breaks the redirection due to some re-render in between, so we need to redirect in an effect
-  useEffect(() => {
-    if (!success) return
-
-    navigate(success)
-  }, [success])
 
   return (
     <FormProvider {...methods}>
@@ -122,7 +115,7 @@ export const OrganizationCreate = ({
             {t('organization.create_org')}
           </Button>
         </Stack>
-        <FormSubmitMessage isError={isError} error={error || saasError || promiseError} />
+        <FormSubmitMessage isError={isError} error={error} />
         <Text color={'account_create_text_secondary'} fontSize='sm' textAlign='center' mt='auto'>
           <Trans i18nKey='create_org.already_profile'>
             If your organization already have a profile, ask the admin to invite you to your organization.

@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
-import { RemoteSigner } from '@vocdoni/sdk'
+import { NoOrganizationsError, RemoteSigner } from '@vocdoni/sdk'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { api, ApiEndpoints, ApiParams, UnauthorizedApiError } from '~components/Auth/api'
 import { LoginResponse, useLogin, useRegister, useVerifyMail } from '~components/Auth/authQueries'
@@ -23,12 +23,19 @@ const useSigner = () => {
       token,
     })
     // Once the signer is set, try to get the signer address
-    const address = await signer.getAddress()
-    setSigner(signer)
-    return address
+    try {
+      await signer.getAddress()
+      setSigner(signer)
+      return signer
+    } catch (e) {
+      // If is NoOrganizationsError ignore the error
+      if (!(e instanceof NoOrganizationsError)) {
+        throw e
+      }
+    }
   }, [])
 
-  return useMutation<string, Error, string>({ mutationFn: updateSigner })
+  return useMutation<RemoteSigner, Error, string>({ mutationFn: updateSigner })
 }
 
 export const useAuthProvider = () => {
@@ -46,7 +53,7 @@ export const useAuthProvider = () => {
       storeLogin(data)
     },
   })
-  const { mutate: updateSigner, isIdle: signerIdle, isPending: signerPending, data: signerAddress } = useSigner()
+  const { mutateAsync: updateSigner, isIdle: signerIdle, isPending: signerPending } = useSigner()
 
   const bearedFetch = useCallback(
     <T>(path: string, { headers = new Headers({}), ...params }: ApiParams = {}) => {
@@ -85,15 +92,17 @@ export const useAuthProvider = () => {
   }, [])
 
   const signerRefresh = useCallback(() => {
-    if (bearer && !clientSigner) {
-      updateSigner(bearer)
+    if (bearer) {
+      return updateSigner(bearer)
     }
   }, [bearer, clientSigner])
 
   // If no signer but berarer instantiate the signer
   // For example when bearer is on local storage but no login was done to instantiate the signer
   useEffect(() => {
-    signerRefresh()
+    if (!clientSigner) {
+      signerRefresh()
+    }
   }, [bearer, clientSigner])
 
   const isAuthenticated = useMemo(() => !!bearer, [bearer])
@@ -104,13 +113,13 @@ export const useAuthProvider = () => {
 
   return {
     isAuthenticated,
+    bearer,
     login,
     register,
     mailVerify,
     logout,
     bearedFetch,
     isAuthLoading,
-    signerAddress,
     signerRefresh,
   }
 }

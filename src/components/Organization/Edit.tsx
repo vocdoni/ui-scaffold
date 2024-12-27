@@ -35,10 +35,11 @@ import fallback from '/assets/default-avatar.png'
 type FormData = CustomOrgFormData & PrivateOrgFormData & CreateOrgParams
 
 const useOrganizationEdit = (options?: Omit<UseMutationOptions<void, Error, CreateOrgParams>, 'mutationFn'>) => {
-  const { bearedFetch, signerAddress } = useAuth()
+  const { bearedFetch } = useAuth()
+  const { account } = useClient()
   return useMutation<void, Error, CreateOrgParams>({
     mutationFn: (params: CreateOrgParams) =>
-      bearedFetch<void>(ApiEndpoints.Organization.replace('{address}', signerAddress), {
+      bearedFetch<void>(ApiEndpoints.Organization.replace('{address}', account?.address), {
         body: params,
         method: 'PUT',
       }),
