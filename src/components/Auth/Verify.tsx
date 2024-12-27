@@ -1,7 +1,7 @@
-import { Box, Button, Divider, Flex, Input, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Input, Text } from '@chakra-ui/react'
 import { useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { Link as ReactRouterLink, useNavigate, useOutletContext } from 'react-router-dom'
+import { useNavigate, useOutletContext } from 'react-router-dom'
 import { useResendVerificationMail } from '~components/Auth/authQueries'
 import { useAuth } from '~components/Auth/useAuth'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
@@ -118,15 +118,6 @@ export const VerificationPending = ({ email, code }: { email: string; code?: str
         isError={isResendError}
         error={resendError}
       />
-
-      {import.meta.env.VOCDONI_ENVIRONMENT === 'dev' && (
-        <>
-          <Divider />
-          <Button mt={4} as={ReactRouterLink} to={`/account/verify?email=${encodeURIComponent(email)}`}>
-            Mail verification for dev envs
-          </Button>
-        </>
-      )}
     </>
   )
 }
