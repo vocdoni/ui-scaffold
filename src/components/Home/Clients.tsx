@@ -26,6 +26,7 @@ const Clients = () => {
       >
         {t('home.clients_title')}
       </Text>
+      <ClientsGrid />
     </>
   )
 }
@@ -40,17 +41,17 @@ export const ClientsGrid = (props: GridProps) => (
       sm: '20px',
       md: '80px',
     }}
-    maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '900px' }}
+    maxW={{ base: '100%', sm: '80%', lg: '900px' }}
     flexDirection={{ base: 'column', sm: 'row' }}
     justifyContent='center'
-    mb={{ base: '60px' }}
+    mb={{ lg: '60px' }}
     gridTemplateColumns='repeat(5, 1fr)'
-    gridRowGap='50px'
+    gridRowGap={{ base: '0px', sm: '30px', lg: '50px' }}
     {...props}
   >
     <Card variant='client'>
       <CardHeader>
-        <Image src={barca} h={{ base: '32.5px', sm2: '65px', lg: '70px' }} />
+        <Image src={barca} h={{ base: '45.5px', sm2: '65px', lg: '70px' }} />
       </CardHeader>
       <CardBody>
         <Text as='span'>F.C. Barcelona</Text>
@@ -58,7 +59,7 @@ export const ClientsGrid = (props: GridProps) => (
     </Card>
     <Card variant='client'>
       <CardHeader>
-        <Image src={omnium} h={{ base: '27.5px', sm2: '75px', lg: '87px' }} />
+        <Image src={omnium} h={{ base: '52.5px', sm2: '75px', lg: '87px' }} />
       </CardHeader>
       <CardBody>
         <Text as='span'>Omnium Cultural</Text>
@@ -66,7 +67,7 @@ export const ClientsGrid = (props: GridProps) => (
     </Card>
     <Card variant='client'>
       <CardHeader>
-        <Image src={berga} h={{ base: '35px', sm2: '70px', lg: '81px' }} />
+        <Image src={berga} h={{ base: '49px', sm2: '70px', lg: '81px' }} />
       </CardHeader>
       <CardBody>
         <Text as='span'>Ajuntament Berga</Text>
@@ -74,7 +75,7 @@ export const ClientsGrid = (props: GridProps) => (
     </Card>
     <Card variant='client'>
       <CardHeader>
-        <Image src={bisbal} h={{ base: '36px', sm2: '72px', lg: '83px' }} />
+        <Image src={bisbal} h={{ base: '50px', sm2: '72px', lg: '83px' }} />
       </CardHeader>
       <CardBody>
         <Text as='span'>Ajuntament la Bisbal</Text>
@@ -82,7 +83,7 @@ export const ClientsGrid = (props: GridProps) => (
     </Card>
     <Card variant='client'>
       <CardHeader>
-        <Image src={coec} h={{ base: '17.5px', sm2: '35px', lg: '45px' }} />
+        <Image src={coec} h={{ base: '24.5px', sm2: '35px', lg: '45px' }} />
       </CardHeader>
       <CardBody>
         <Text as='span'>COEC</Text>
@@ -90,7 +91,7 @@ export const ClientsGrid = (props: GridProps) => (
     </Card>
     <Card variant='client'>
       <CardHeader>
-        <Image src={erc} h={{ base: '19px', sm2: '38px', lg: '52px' }} />
+        <Image src={erc} h={{ base: '26.5px', sm2: '38px', lg: '52px' }} />
       </CardHeader>
       <CardBody>
         <Text as='span'>Esquerra Republicana</Text>
@@ -98,7 +99,7 @@ export const ClientsGrid = (props: GridProps) => (
     </Card>
     <Card variant='client'>
       <CardHeader>
-        <Image src={bellpuig} h={{ base: '36px', sm2: '72px', lg: '83px' }} />
+        <Image src={bellpuig} h={{ base: '50px', sm2: '72px', lg: '83px' }} />
       </CardHeader>
       <CardBody>
         <Text as='span'>Ajuntament Bellpuig</Text>
@@ -106,7 +107,7 @@ export const ClientsGrid = (props: GridProps) => (
     </Card>
     <Card variant='client'>
       <CardHeader>
-        <Image src={ticanoia} h={{ base: '13px', sm2: '26px', lg: '32px' }} />
+        <Image src={ticanoia} h={{ base: '18px', sm2: '26px', lg: '32px' }} />
       </CardHeader>
       <CardBody>
         <Text as='span'>TIC Anoia</Text>
@@ -114,7 +115,7 @@ export const ClientsGrid = (props: GridProps) => (
     </Card>
     <Card variant='client'>
       <CardHeader>
-        <Image src={decidim} h={{ base: '31px', sm2: '62px', lg: '70px' }} />
+        <Image src={decidim} h={{ base: '43.5px', sm2: '62px', lg: '70px' }} />
       </CardHeader>
       <CardBody>
         <Text as='span'>Decidim</Text>
@@ -122,7 +123,7 @@ export const ClientsGrid = (props: GridProps) => (
     </Card>
     <Card variant='client'>
       <CardHeader>
-        <Image src={bloock} h={{ base: '17.5px', sm2: '35px', lg: '33px' }} />
+        <Image src={bloock} h={{ base: '24.5px', sm2: '35px', lg: '33px' }} />
       </CardHeader>
       <CardBody>
         <Text as='span'>Bloock</Text>

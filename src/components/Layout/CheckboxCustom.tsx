@@ -10,7 +10,7 @@ export interface CheckboxCustomProps {
   colorScheme?: string
 }
 
-const CheckboxCustom = ({ formValue, label, required = false, colorScheme = 'brandScheme' }: CheckboxCustomProps) => {
+const CheckboxCustom = ({ formValue, label, required = false, colorScheme = 'brand' }: CheckboxCustomProps) => {
   const { t } = useTranslation()
   const {
     register,

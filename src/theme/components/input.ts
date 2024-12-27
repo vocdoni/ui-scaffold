@@ -11,6 +11,13 @@ const baseStyle = definePartsStyle({
     _dark: {
       bgColor: 'input.bg.dark',
     },
+
+    _invalid: {
+      _focusVisible: {
+        borderColor: 'input.error',
+        boxShadow: '0px 0px 0px 1px #FC8181',
+      },
+    },
   },
 
   element: {

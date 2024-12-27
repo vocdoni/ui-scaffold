@@ -1,12 +1,14 @@
 import { Button, Flex, Link, Text } from '@chakra-ui/react'
+import { useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { Navigate, NavLink, Link as ReactRouterLink } from 'react-router-dom'
+import { Navigate, NavLink, Link as ReactRouterLink, useOutletContext } from 'react-router-dom'
 import { IRegisterParams } from '~components/Auth/authQueries'
 import { useAuth } from '~components/Auth/useAuth'
 import { VerificationPending } from '~components/Auth/Verify'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import InputPassword from '~components/Layout/InputPassword'
+import { AuthOutletContextType } from '~elements/LayoutAuth'
 import { useSignupFromInvite } from '~src/queries/account'
 import { Routes } from '~src/router/routes'
 import CustomCheckbox from '../Layout/CheckboxCustom'
@@ -32,6 +34,8 @@ const SignUp = ({ invite }: SignupProps) => {
   const { t } = useTranslation()
   const { register } = useAuth()
   const inviteSignup = useSignupFromInvite(invite?.address)
+  const { setTitle, setSubTitle } = useOutletContext<AuthOutletContextType>()
+
   const methods = useForm<FormData>({
     defaultValues: {
       terms: false,
@@ -44,6 +48,12 @@ const SignUp = ({ invite }: SignupProps) => {
   const isPending = register.isPending || inviteSignup.isPending
   const isError = register.isError || inviteSignup.isError
   const error = register.error || inviteSignup.error
+
+  useEffect(() => {
+    // set SignUp title and description
+    setTitle(t('signup_title'))
+    setSubTitle(t('signup_subtitle'))
+  }, [])
 
   const onSubmit = (user: FormData) => {
     if (!invite) {
@@ -87,8 +97,13 @@ const SignUp = ({ invite }: SignupProps) => {
             formValue='email'
             label={t('email')}
             placeholder={t('email_placeholder', { defaultValue: 'your@email.com' })}
-            type='email'
-            required
+            validation={{
+              required: t('form.error.field_is_required'),
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, // Regex para validar emails
+                message: t('form.error.email_invalid', { defaultValue: 'Invalid email address' }),
+              },
+            }}
             isDisabled={!!invite}
           />
           <InputPassword
@@ -96,7 +111,6 @@ const SignUp = ({ invite }: SignupProps) => {
             label={t('password')}
             placeholder={t('password_placeholder')}
             type='password'
-            required
             validation={{
               required: t('form.error.field_is_required'),
               minLength: {
@@ -129,11 +143,9 @@ const SignUp = ({ invite }: SignupProps) => {
       <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%'>
         <Text color='account.description' fontWeight='400' fontSize='sm'>
           {t('already_member')}
-          <NavLink to={Routes.auth.signIn}>
-            <Text color={'account.link'} as='span' ms={1} fontWeight='500'>
-              {t('signin')}
-            </Text>
-          </NavLink>
+          <Link as={NavLink} to={Routes.auth.signIn} ml={1} fontWeight={500}>
+            {t('signin')}
+          </Link>
         </Text>
       </Flex>
       {isError && <FormSubmitMessage isError={isError} error={error} />}

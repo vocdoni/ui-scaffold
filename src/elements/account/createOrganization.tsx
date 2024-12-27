@@ -22,7 +22,7 @@ const CreateOrganization = () => {
 }
 
 const CreateOrganizationSidebar = () => (
-  <Flex flexGrow={1} flexDirection='column' alignItems='center' justifyContent='space-between'>
+  <Flex flexGrow={1} flexDirection='column' alignItems='center' justifyContent='space-between' pt={{ xl: 10 }}>
     <Heading textAlign='center' mb={12} color='white'>
       <Trans i18nKey='create_org.header'>Try Vocdoni for free for 7 days</Trans>
     </Heading>
@@ -48,10 +48,10 @@ const CreateOrganizationSidebar = () => (
     <Text textAlign='center' color='red.700' fontWeight='500' mb='48px'>
       <Trans i18nKey='create_org.credit_card'>No credit card, no automatic renewal.</Trans>
     </Text>
-    <Button form='process-create-form' type='submit' mx='auto' mb='32px' w='50%'>
+    <Button form='process-create-form' type='submit' mx='auto' mb={24} w='50%'>
       <Trans i18nKey='view_pricing'>View Pricing</Trans>
     </Button>
-    <ClientsGrid gridRowGap={16} maxW={'full'} px={0} />
+    <ClientsGrid mb={10} maxW={'full'} px={0} />
   </Flex>
 )
 export default CreateOrganization

@@ -40,18 +40,24 @@ const LayoutAuth = () => {
         </NavLink>
       </Box>
       <Flex
+        position={'relative'}
         flex={{ base: '1 1 100%', xl: '1 1 50%' }}
         flexDirection='column'
-        justifyContent='start'
+        justifyContent='center'
         alignItems='center'
         px={{
           base: 2.5,
           sm: 5,
         }}
-        pt={20}
-        pb={{ base: 14, xl: 0 }}
       >
-        <Flex flexDirection='column' justifyContent={{ base: 'start', xl: 'center' }} alignItems='center' w='full'>
+        <Flex
+          flexDirection='column'
+          justifyContent={{ base: 'start', xl: 'center' }}
+          alignItems='center'
+          w='full'
+          pb={20}
+          pt={10}
+        >
           <Flex direction='column' gap={6} w={'100%'} maxW='500px'>
             <Box me='auto'>
               <Heading fontSize='4xl' mb={2.5}>
@@ -65,6 +71,8 @@ const LayoutAuth = () => {
           </Flex>
         </Flex>
         <Text
+          position={'absolute'}
+          bottom={0}
           display={{ base: 'none', xl: 'block' }}
           mt='auto'
           color={'auth.text_color_secondary'}
@@ -76,7 +84,7 @@ const LayoutAuth = () => {
       </Flex>
       <AuthBanner>
         {sidebar}
-        <Flex flexGrow={1} alignItems='end' justifyContent='center'>
+        <Flex flexGrow={1} alignItems='end' justifyContent='center' w='full'>
           <Box mb={{ base: 10, xl: 24 }}>
             <Text fontSize='5xl' color='white' lineHeight={1} mb={{ base: 10, xl: 5 }}>
               {t('auth.title', { defaultValue: 'The global voting platform' })}

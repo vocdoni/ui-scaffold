@@ -91,7 +91,6 @@ export const OrganizationCreate = ({
         id='process-create-form'
         direction='column'
         gap={6}
-        maxW='90%'
         mx='auto'
         {...props}
         onSubmit={(e) => {
