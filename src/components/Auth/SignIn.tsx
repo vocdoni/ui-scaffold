@@ -47,13 +47,11 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
   const methods = useForm<FormData>({
     defaultValues: { email: emailProp },
   })
-  const [isErrorA, setIsErrorA] = useState(false)
-  const [isComponentMounted, setIsComponentMounted] = useState(false)
   const { handleSubmit, watch } = methods
   const email = watch('email', emailProp)
 
   const {
-    login: { mutateAsync: login, isError, error },
+    login: { mutateAsync: login, isError, error, reset },
   } = useAuth()
   const [verifyNeeded, setVerifyNeeded] = useState(false)
   const { mutateAsync: checkVerificationCodeStatus } = useVerificationCodeStatus()
@@ -62,16 +60,8 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
   useEffect(() => {
     setTitle(t('signin_title'))
     setSubTitle(t('signin_subtitle'))
-    setIsComponentMounted(true)
+    reset()
   }, [])
-
-  useEffect(() => {
-    if (isComponentMounted && isError) {
-      setIsErrorA(true)
-    }
-
-    return () => setIsErrorA(false)
-  }, [isError])
 
   const onSubmit = async (data: FormData) => {
     await login(data)
@@ -159,7 +149,7 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
           </Link>
         </Text>
       </Flex>
-      <FormSubmitMessage isError={isErrorA} error={error} />
+      <FormSubmitMessage isError={isError} error={error} />
     </>
   )
 }
