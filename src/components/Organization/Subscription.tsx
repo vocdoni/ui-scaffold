@@ -27,6 +27,7 @@ import { ApiEndpoints } from '~components/Auth/api'
 import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
 import { usePricingModal } from '~components/Pricing/use-pricing-modal'
+import { PlanId } from '~constants'
 import { Routes } from '~src/router/routes'
 import { currency } from '~utils/numbers'
 
@@ -82,6 +83,8 @@ export const SubscriptionList = () => {
         })
       })
 
+  const isFree = subscription.plan.id === PlanId.Free
+
   return (
     <VStack gap={4} w='full'>
       {!subscription.subscriptionDetails.active && (
@@ -114,7 +117,7 @@ export const SubscriptionList = () => {
               <Th>
                 <Trans i18nKey='subscription.since'>Since</Trans>
               </Th>
-              <Th colSpan={2}>
+              <Th colSpan={isFree ? 1 : 2}>
                 <Trans i18nKey='subscription.next_billing'>Next Billing</Trans>
               </Th>
             </Tr>
@@ -134,11 +137,13 @@ export const SubscriptionList = () => {
               <Td>
                 <Tag>{new Date(subscription.subscriptionDetails.renewalDate).toLocaleDateString()}</Tag>
               </Td>
-              <Td>
-                <Button variant='outline' size='sm' isLoading={isLoading} onClick={() => handleChangeClick()}>
-                  <Trans i18nKey='subscription.change_plan_button'>Change</Trans>
-                </Button>
-              </Td>
+              {!isFree && (
+                <Td>
+                  <Button variant='outline' size='sm' isLoading={isLoading} onClick={() => handleChangeClick()}>
+                    <Trans i18nKey='subscription.change_plan_button'>Change</Trans>
+                  </Button>
+                </Td>
+              )}
             </Tr>
           </Tbody>
         </Table>
