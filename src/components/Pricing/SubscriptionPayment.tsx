@@ -12,6 +12,7 @@ import {
 import { EmbeddedCheckout, EmbeddedCheckoutProvider } from '@stripe/react-stripe-js'
 import { loadStripe, Stripe } from '@stripe/stripe-js'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useClient } from '@vocdoni/react-providers'
 import { ensure0x } from '@vocdoni/sdk'
 import { useCallback, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -40,16 +41,18 @@ type CheckoutResponse = {
 }
 
 const useUpdateSubscription = () => {
-  const { bearedFetch, signerAddress } = useAuth()
+  const { bearedFetch } = useAuth()
+  const { account } = useClient()
 
   return useMutation<SubscriptionType>({
     mutationFn: async () =>
-      await bearedFetch(ApiEndpoints.OrganizationSubscription.replace('{address}', ensure0x(signerAddress))),
+      await bearedFetch(ApiEndpoints.OrganizationSubscription.replace('{address}', ensure0x(account?.address))),
   })
 }
 
 export const SubscriptionPayment = ({ amount, lookupKey }: SubscriptionPaymentData) => {
-  const { signerAddress, bearedFetch } = useAuth()
+  const { bearedFetch } = useAuth()
+  const { signer } = useClient()
   const { i18n } = useTranslation()
   const { subscription } = useSubscription()
   const { mutateAsync: checkSubscription } = useUpdateSubscription()
@@ -64,6 +67,7 @@ export const SubscriptionPayment = ({ amount, lookupKey }: SubscriptionPaymentDa
   const queryClient = useQueryClient()
 
   const fetchClientSecret = useCallback(async () => {
+    const signerAddress = await signer.getAddress()
     if (signerAddress) {
       const body = {
         lookupKey,
@@ -80,7 +84,7 @@ export const SubscriptionPayment = ({ amount, lookupKey }: SubscriptionPaymentDa
         .then((data) => data.clientSecret)
     }
     return await Promise.resolve('')
-  }, [signerAddress])
+  }, [signer])
 
   const onComplete = async () => {
     let nsub = await checkSubscription()
