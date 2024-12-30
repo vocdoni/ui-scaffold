@@ -20,6 +20,7 @@ export enum ApiEndpoints {
   SubscriptionPortal = 'subscriptions/{address}/portal',
   Verify = 'users/verify',
   VerifyCode = 'users/verify/code',
+  Storage = 'storage',
 }
 
 export enum ErrorCode {

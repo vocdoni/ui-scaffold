@@ -26,7 +26,7 @@ const useUploadFile = () => {
     mutationFn: async (file: File) => {
       const formData = new FormData()
       formData.append('file1', file)
-      const response = await bearedFetch<{ urls: string[] }>('/storage', {
+      const response = await bearedFetch<{ urls: string[] }>(ApiEndpoints.Storage, {
         method: 'POST',
         body: formData,
       })
