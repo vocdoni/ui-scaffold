@@ -1,22 +1,11 @@
-import {
-  AspectRatio,
-  Box,
-  Button,
-  Flex,
-  FormControl,
-  FormLabel,
-  IconButton,
-  Image,
-  Input,
-  Text,
-} from '@chakra-ui/react'
+import { AspectRatio, Box, Button, Flex, FormControl, FormLabel, IconButton, Image, Text } from '@chakra-ui/react'
 import { useMutation, UseMutationOptions } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { Account } from '@vocdoni/sdk'
+import { useDropzone } from 'react-dropzone'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { BiTrash } from 'react-icons/bi'
-import { BsFillTrashFill } from 'react-icons/bs'
 import { MdBrowserUpdated } from 'react-icons/md'
 import { CreateOrgParams } from '~components/Account/AccountTypes'
 import { useSaasAccount } from '~components/Account/useSaasAccount'
@@ -24,11 +13,27 @@ import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import { SelectOptionType } from '~components/Layout/SaasSelector'
-import { InnerContentsMaxWidth, REGEX_AVATAR } from '~constants'
+import Uploader from '~components/Layout/Uploader'
+import { InnerContentsMaxWidth } from '~constants'
 import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from './Form'
 import fallback from '/assets/default-avatar.png'
 
 type FormData = PrivateOrgFormData & CreateOrgParams
+
+const useUploadFile = () => {
+  const { bearedFetch } = useAuth()
+  return useMutation({
+    mutationFn: async (file: File) => {
+      const formData = new FormData()
+      formData.append('file1', file)
+      const response = await bearedFetch<{ urls: string[] }>('/storage', {
+        method: 'POST',
+        body: formData,
+      })
+      return response.urls[0]
+    },
+  })
+}
 
 const useOrganizationEdit = (options?: Omit<UseMutationOptions<void, Error, CreateOrgParams>, 'mutationFn'>) => {
   const { bearedFetch } = useAuth()
@@ -156,9 +161,54 @@ export type CustomOrgFormData = {
 const CustomizeOrgForm = () => {
   const { t } = useTranslation()
   const { watch, setValue } = useForm<FormData>()
+  const { mutateAsync: uploadFile, isPending: isUploading } = useUploadFile()
 
-  const avatar = watch('logo')
-  const correctAvatarFormat = (val: string) => REGEX_AVATAR.test(val)
+  const logo = watch('logo')
+  const header = watch('header')
+
+  // Logo upload handler
+  const onLogoUpload = async ([file]: File[]) => {
+    try {
+      const url = await uploadFile(file)
+      setValue('logo', url)
+    } catch (error) {
+      console.error('Error uploading logo:', error)
+    }
+  }
+
+  // Header upload handler
+  const onHeaderUpload = async ([file]: File[]) => {
+    try {
+      const url = await uploadFile(file)
+      setValue('header', url)
+    } catch (error) {
+      console.error('Error uploading header:', error)
+    }
+  }
+
+  const {
+    getRootProps: getLogoRootProps,
+    getInputProps: getLogoInputProps,
+    isDragActive: isLogoDragActive,
+  } = useDropzone({
+    onDrop: onLogoUpload,
+    multiple: false,
+    accept: {
+      'image/*': ['.png', '.jpg', '.jpeg', '.gif'],
+    },
+  })
+
+  const {
+    getRootProps: getHeaderRootProps,
+    getInputProps: getHeaderInputProps,
+    isDragActive: isHeaderDragActive,
+  } = useDropzone({
+    onDrop: onHeaderUpload,
+    multiple: false,
+    accept: {
+      'image/*': ['.png', '.jpg', '.jpeg', '.gif'],
+    },
+  })
 
   return (
     <>
@@ -177,41 +227,53 @@ const CustomizeOrgForm = () => {
               defaultValue: 'Logo',
             })}
           </FormLabel>
-          <Flex alignItems='center' gap={2}>
-            <Input
-              placeholder={t('edit_saas_profile.upload_file', {
-                defaultValue: 'Upload a file',
-              })}
+          <Box mb={4}>
+            <Uploader
+              getRootProps={getLogoRootProps}
+              getInputProps={getLogoInputProps}
+              isDragActive={isLogoDragActive}
             />
-            <Button minW='min-content'>{t('upload', { defaultValue: 'Upload' })}</Button>
-          </Flex>
-        </FormControl>
-        <Box position='relative' outline='none' border='none'>
-          <Text fontSize='sm' fontWeight='500' mb={2}>
-            {t('edit_saas_profile.header_image', { defaultValue: 'Header Image' })}
-          </Text>
-          <Flex gap={2} flexDirection={{ base: 'column', md: 'row' }} alignItems='center'>
-            <AspectRatio flexShrink={0} flexGrow={1} ratio={5 / 1} borderRadius='xl' overflow='hidden'>
-              <Image src={avatar} fallbackSrc={fallback} />
-            </AspectRatio>
-            <Button colorScheme='red' leftIcon={<BsFillTrashFill />}>
-              {t('remove', { defaultValue: 'Remove' })}
-            </Button>
-          </Flex>
-          {correctAvatarFormat(avatar) && (
-            <IconButton
-              aria-label={t('form.account_create.delete_image')}
-              icon={<BiTrash />}
-              onClick={() => setValue('logo', '')}
-              position='absolute'
-              top={2}
-              right={2}
-              cursor='pointer'
-              size='xs'
-              fontSize='md'
-            />
+          </Box>
+          {logo && (
+            <Flex gap={2} alignItems='center' mt={2}>
+              <AspectRatio flexShrink={0} ratio={1} w='100px' borderRadius='xl' overflow='hidden'>
+                <Image src={logo} fallbackSrc={fallback} />
+              </AspectRatio>
+              <IconButton
+                aria-label={t('remove_logo')}
+                icon={<BiTrash />}
+                onClick={() => setValue('logo', '')}
+                size='sm'
+              />
+            </Flex>
           )}
-        </Box>
+        </FormControl>
+
+        <FormControl>
+          <FormLabel display='flex' ms={1} fontSize='sm' fontWeight='500' mb={2}>
+            {t('edit_saas_profile.header_image', { defaultValue: 'Header Image' })}
+          </FormLabel>
+          <Box mb={4}>
+            <Uploader
+              getRootProps={getHeaderRootProps}
+              getInputProps={getHeaderInputProps}
+              isDragActive={isHeaderDragActive}
+            />
+          </Box>
+          {header && (
+            <Flex gap={2} flexDirection={{ base: 'column', md: 'row' }} alignItems='center'>
+              <AspectRatio flexShrink={0} flexGrow={1} ratio={5 / 1} borderRadius='xl' overflow='hidden'>
+                <Image src={header} fallbackSrc={fallback} />
+              </AspectRatio>
+              <IconButton
+                aria-label={t('remove_header')}
+                icon={<BiTrash />}
+                onClick={() => setValue('header', '')}
+                size='sm'
+              />
+            </Flex>
+          )}
+        </FormControl>
       </Flex>
     </>
   )
