@@ -1,5 +1,5 @@
 import { AddIcon } from '@chakra-ui/icons'
-import { Box, Button, Flex, Heading, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { ReactNode, useEffect } from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -33,7 +33,9 @@ const Questions = ({ title, description, isMultiQuestion = false }: QuestionsPro
   return (
     <>
       <Box>
-        <Heading size='xs'>{title}</Heading>
+        <Text fontWeight={'bold'} mb={2}>
+          {title}
+        </Text>
         <Text>{description}</Text>
       </Box>
       <Flex flexDirection='column' gap={6}>

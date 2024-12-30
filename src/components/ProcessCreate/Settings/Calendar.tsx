@@ -68,15 +68,13 @@ const Calendar = () => {
   return (
     <Flex flexDirection='column' gap={6}>
       <Box>
-        <Text variant='process-create-title-sm'>{t('calendar.title', { defaultValue: 'Calendar' })}</Text>
-        <Text variant='process-create-subtitle-sm'>
-          {t('calendar.subtitle', { defaultValue: 'Specify the active period for receiving votes' })}
-        </Text>
+        <Text fontWeight={'bold'}>{t('calendar.title', { defaultValue: 'Calendar' })}</Text>
+        <Text>{t('calendar.subtitle', { defaultValue: 'Specify the active period for receiving votes' })}</Text>
       </Box>
       <Flex flexDirection='column' pl={6}>
         <Box>
-          <Text variant='process-create-title-sm'>{t('calendar.start_date', { defaultValue: 'Start date' })}</Text>
-          <Text variant='process-create-subtitle-sm' mb={2}>
+          <Text fontWeight={'bold'}>{t('calendar.start_date', { defaultValue: 'Start date' })}</Text>
+          <Text mb={2}>
             {t('calendar.define_active_period', { defaultValue: 'Define the active period for receiving votes' })}
           </Text>
           <RadioGroup {...useBooleanRadioRegister('electionType.autoStart')} mb={6}>
@@ -127,8 +125,8 @@ const Calendar = () => {
         </Box>
 
         <FormControl isInvalid={!!errors.endDate}>
-          <Text variant='process-create-title-sm'>{t('calendar.end_date', { defaultValue: 'End date' })}</Text>
-          <Text variant='process-create-subtitle-sm' mb={1}>
+          <Text fontWeight={'bold'}>{t('calendar.end_date', { defaultValue: 'End date' })}</Text>
+          <Text mb={1}>
             {t('calendar.end_date_description', { defaultValue: 'Define the exact date and time of completion' })}
           </Text>
           <Input
