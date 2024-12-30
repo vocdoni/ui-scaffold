@@ -24,13 +24,11 @@ const useSigner = () => {
       url: import.meta.env.SAAS_URL,
       token,
     })
-    setSigner(signer)
     // Once the signer is set, try to get the signer address
-    // This is an asynchronous call because the address are fetched from the server,
-    // and we don't know if we need to create an organization until we try to retrieve the address
-
     try {
-      return await signer.getAddress()
+      await signer.getAddress()
+      setSigner(signer)
+      return signer
     } catch (e) {
       // If is NoOrganizationsError ignore the error
       if (!(e instanceof NoOrganizationsError)) {
@@ -39,7 +37,7 @@ const useSigner = () => {
     }
   }, [])
 
-  return useMutation<string, Error, string>({ mutationFn: updateSigner })
+  return useMutation<RemoteSigner, Error, string>({ mutationFn: updateSigner })
 }
 
 export const useAuthProvider = () => {
@@ -59,7 +57,7 @@ export const useAuthProvider = () => {
       storeLogin(data)
     },
   })
-  const { mutate: updateSigner, isIdle: signerIdle, isPending: signerPending, data: signerAddress } = useSigner()
+  const { mutateAsync: updateSigner, isIdle: signerIdle, isPending: signerPending } = useSigner()
 
   const bearedFetch = useCallback(
     <T>(path: string, { headers = new Headers({}), ...params }: ApiParams = {}) => {
@@ -104,11 +102,17 @@ export const useAuthProvider = () => {
     clear()
   }, [])
 
+  const signerRefresh = useCallback(() => {
+    if (bearer) {
+      return updateSigner(bearer)
+    }
+  }, [bearer, clientSigner])
+
   // If no signer but berarer instantiate the signer
   // For example when bearer is on local storage but no login was done to instantiate the signer
   useEffect(() => {
-    if (bearer && !clientSigner) {
-      updateSigner(bearer)
+    if (!clientSigner) {
+      signerRefresh()
     }
   }, [bearer, clientSigner])
 
@@ -120,12 +124,13 @@ export const useAuthProvider = () => {
 
   return {
     isAuthenticated,
+    bearer,
     login,
     register,
     mailVerify,
     logout,
     bearedFetch,
     isAuthLoading,
-    signerAddress,
+    signerRefresh,
   }
 }

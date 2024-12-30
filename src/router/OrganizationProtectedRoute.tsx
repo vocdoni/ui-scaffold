@@ -1,6 +1,5 @@
 import { Outlet, useOutletContext } from 'react-router-dom'
 import { useAccountHealthTools } from '~components/Account/use-account-health-tools'
-import { useAuth } from '~components/Auth/useAuth'
 import { NoOrganizationsPage } from '~components/Organization/NoOrganizations' // This protected routes are supposed to be inside of a AccountProtectedRoute
 
 // This protected routes are supposed to be inside of a AccountProtectedRoute
@@ -8,9 +7,8 @@ import { NoOrganizationsPage } from '~components/Organization/NoOrganizations' /
 const OrganizationProtectedRoute = () => {
   const context = useOutletContext()
   const { exists } = useAccountHealthTools()
-  const { signerAddress } = useAuth()
 
-  if (!exists && !signerAddress) {
+  if (!exists) {
     return <NoOrganizationsPage />
   }
 
