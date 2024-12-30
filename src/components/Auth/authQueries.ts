@@ -6,6 +6,7 @@ export type LoginResponse = { token: string; expirity: string }
 export interface ILoginParams {
   email: string
   password: string
+  keepMeLoggedIn?: boolean
 }
 
 export interface IRegisterParams {
