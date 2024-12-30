@@ -10,11 +10,11 @@ import { LoginResponse, useLogin, useRegister, useVerifyMail } from '~components
 enum LocalStorageKeys {
   Token = 'authToken',
   Expiry = 'authExpiry',
-  KeepLoggedIn = 'authKeepLoggedIn',
+  RenewSession = 'authRenewSession',
 }
 
 // One week in milliseconds
-const ONE_WEEK = 7 * 24 * 60 * 60 * 1000
+const OneWeek = 7 * 24 * 60 * 60 * 1000
 
 /**
  * Mutation to set the RemoteSigner and check its address
@@ -74,11 +74,11 @@ export const useAuthProvider = () => {
     [bearer]
   )
 
-  const storeLogin = useCallback(({ token, expirity }: LoginResponse, keepMeLoggedIn = false) => {
+  const storeLogin = useCallback(({ token, expirity }: LoginResponse, renewSession = false) => {
     localStorage.setItem(LocalStorageKeys.Token, token)
     localStorage.setItem(LocalStorageKeys.Expiry, expirity)
-    if (keepMeLoggedIn) {
-      localStorage.setItem(LocalStorageKeys.KeepLoggedIn, 'true')
+    if (renewSession) {
+      localStorage.setItem(LocalStorageKeys.RenewSession, 'true')
     }
     setBearer(token)
     updateSigner(token)
@@ -87,7 +87,7 @@ export const useAuthProvider = () => {
   const logout = useCallback(() => {
     localStorage.removeItem(LocalStorageKeys.Token)
     localStorage.removeItem(LocalStorageKeys.Expiry)
-    localStorage.removeItem(LocalStorageKeys.KeepLoggedIn)
+    localStorage.removeItem(LocalStorageKeys.RenewSession)
     setBearer(null)
     clear()
   }, [])
@@ -114,9 +114,9 @@ export const useAuthProvider = () => {
     if (!bearer) return
 
     const expiry = localStorage.getItem(LocalStorageKeys.Expiry)
-    const keepLoggedIn = localStorage.getItem(LocalStorageKeys.KeepLoggedIn)
+    const renewSession = localStorage.getItem(LocalStorageKeys.RenewSession)
 
-    if (!expiry || !keepLoggedIn) return
+    if (!expiry || !renewSession) return
 
     const expiryDate = new Date(expiry)
     const now = new Date()
@@ -129,13 +129,13 @@ export const useAuthProvider = () => {
     }
 
     // If token expires in less than a week, refresh it
-    if (timeUntilExpiry <= ONE_WEEK) {
+    if (timeUntilExpiry <= OneWeek) {
       refreshToken()
     } else {
       // Set up refresh timer for one week before expiry
       const refreshTimeout = setTimeout(() => {
         refreshToken()
-      }, timeUntilExpiry - ONE_WEEK)
+      }, timeUntilExpiry - OneWeek)
 
       return () => clearTimeout(refreshTimeout)
     }
