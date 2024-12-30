@@ -250,7 +250,7 @@
     "invalid_weight_type": "Expecting weight in first column at lines {{rows,list(style:short)}}, but found unexpected data",
     "loading_page": "Error loading the page",
     "loading_roles": "Loading roles",
-    "not_found": "Sorry, the page you are looking for was not found",
+    "not_found": "We can't find that page",
     "return_to_home": "Go to home",
     "title": "Error"
   },

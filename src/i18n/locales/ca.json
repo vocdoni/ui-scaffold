@@ -253,7 +253,7 @@
     "invalid_weight_type": "S'esperava trobar el pes a la primera col·lumna a les línies {{rows, list}}, però s'han trobat dades inesperades",
     "loading_page": "Càrrega de pàgina errònia",
     "loading_roles": "Carregant rols",
-    "not_found": "Ho sentim, no s'ha trobat la pàgina que estaves buscant.",
+    "not_found": "No podem trobar aquesta pàgina",
     "return_to_home": "Ves a l'inici",
     "title": "Error"
   },
