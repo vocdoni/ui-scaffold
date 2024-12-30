@@ -83,12 +83,18 @@ const outline = defineStyle((props) => {
 const transparent = defineStyle((props) => {
   const { colorScheme } = props
   return {
-    color: colorScheme === 'gray' ? 'button.variant.common.color.light' : `${colorScheme}.700`,
+    color: colorScheme === 'gray' ? 'black' : `${colorScheme}.700`,
+
+    _active: {
+      bgColor: colorScheme === 'gray' ? 'gray.200' : `${colorScheme}.50`,
+
+      _dark: {
+        bgColor: colorScheme === 'gray' ? 'gray.700' : `${colorScheme}.50`,
+      },
+    },
 
     _hover: {
-      bgColor: colorScheme === 'gray' ? 'button.variant.common.hover.bg.light' : `${colorScheme}.50`,
-
-      color: colorScheme === 'gray' ? 'button.variant.common.color.light' : `${colorScheme}.800`,
+      bgColor: colorScheme === 'gray' ? 'gray.200' : `${colorScheme}.50`,
 
       _disabled: {
         color: 'button.variant.common.disabled.color.light',
@@ -98,8 +104,7 @@ const transparent = defineStyle((props) => {
       },
 
       _dark: {
-        bgColor: colorScheme === 'gray' ? 'button.variant.common.hover.bg.dark' : `${colorScheme}.50`,
-        color: colorScheme === 'gray' ? 'button.variant.common.color.dark' : `${colorScheme}.800`,
+        bgColor: colorScheme === 'gray' ? 'gray.700' : `${colorScheme}.50`,
       },
     },
     _disabled: {
@@ -110,7 +115,7 @@ const transparent = defineStyle((props) => {
     },
 
     _dark: {
-      color: colorScheme === 'gray' ? 'button.variant.common.color_gray_dark' : `${colorScheme}.700`,
+      color: colorScheme === 'gray' ? 'white' : `${colorScheme}.700`,
     },
   }
 })

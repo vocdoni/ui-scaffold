@@ -1,4 +1,4 @@
-import { Box, Collapse, useDisclosure } from '@chakra-ui/react'
+import { Box, Collapse } from '@chakra-ui/react'
 import { OrganizationName } from '@vocdoni/chakra-components'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -19,7 +19,6 @@ export const DashboardMenuOptions = () => {
   const { t } = useTranslation()
   const location = useLocation()
   const [openSection, setOpenSection] = useState<string | null>(null)
-  const { isOpen, onOpen, onClose } = useDisclosure()
 
   const menuItems: MenuItem[] = [
     // {
@@ -83,7 +82,8 @@ export const DashboardMenuOptions = () => {
 
   return (
     <Box>
-      <OrganizationName color='text.secondary' mb={2.5} />
+      <OrganizationName mb={2} px={3.5} />
+
       {menuItems.map((item, index) => (
         <Box key={index}>
           {item.children ? (
