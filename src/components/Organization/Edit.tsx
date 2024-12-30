@@ -23,16 +23,12 @@ import { useSaasAccount } from '~components/Account/useSaasAccount'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
-import {
-  CustomizationLanguageSelector,
-  CustomizationTimeZoneSelector,
-  SelectOptionType,
-} from '~components/Layout/SaasSelector'
+import { SelectOptionType } from '~components/Layout/SaasSelector'
 import { InnerContentsMaxWidth, REGEX_AVATAR } from '~constants'
 import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from './Form'
 import fallback from '/assets/default-avatar.png'
 
-type FormData = CustomOrgFormData & PrivateOrgFormData & CreateOrgParams
+type FormData = PrivateOrgFormData & CreateOrgParams
 
 const useOrganizationEdit = (options?: Omit<UseMutationOptions<void, Error, CreateOrgParams>, 'mutationFn'>) => {
   const { bearedFetch } = useAuth()
@@ -79,12 +75,6 @@ const EditOrganization = () => {
         value: organization.country || '',
       },
       communications: organization?.communications || false,
-      timeZoneSelect: organization?.timezone && {
-        value: organization.timezone,
-      },
-      languageSelect: organization?.language && {
-        value: organization.language,
-      },
       logo: organization?.account.avatar || '',
       header: organization?.header || '',
     },
@@ -98,8 +88,6 @@ const EditOrganization = () => {
       size: values.sizeSelect?.value,
       type: values.typeSelect?.value,
       country: values.countrySelect?.value,
-      timezone: values.timeZoneSelect?.value,
-      language: values.languageSelect?.value,
     }
 
     await mutateAsync({ ...organization, ...newInfo })
@@ -183,8 +171,6 @@ const CustomizeOrgForm = () => {
         </Text>
       </Box>
       <Flex flexDirection='column' gap={6} px={{ base: 5, md: 10 }}>
-        <CustomizationTimeZoneSelector name={'timeZoneSelect'} />
-        <CustomizationLanguageSelector name={'languageSelect'} />
         <FormControl>
           <FormLabel display='flex' ms={1} fontSize='sm' fontWeight='500' mb={2}>
             {t('logo', {
