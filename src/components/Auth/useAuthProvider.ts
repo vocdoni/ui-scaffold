@@ -131,13 +131,6 @@ export const useAuthProvider = () => {
     // If token expires in less than a week, refresh it
     if (timeUntilExpiry <= OneWeek) {
       refreshToken()
-    } else {
-      // Set up refresh timer for one week before expiry
-      const refreshTimeout = setTimeout(() => {
-        refreshToken()
-      }, timeUntilExpiry - OneWeek)
-
-      return () => clearTimeout(refreshTimeout)
     }
   }, [bearer])
 
