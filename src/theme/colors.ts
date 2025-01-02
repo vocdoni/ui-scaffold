@@ -22,6 +22,7 @@ export const colorsBase = {
   red: '#FC8181',
   white: {
     pure: '#ffffff',
+    light: '#fdfdfd',
     dark: '#F5F5F7',
     alpha: 'whiteAlpha.300',
     from_read_more: 'rgba(245, 245, 247, 0)',
@@ -395,9 +396,16 @@ export const colors = {
       bg_light: colorsBase.gray.light3,
       bg_dark: colorsBase.blue.grayish,
     },
-    border_color: {
-      light: colorsBase.gray.normal,
-      dark: colorsBase.blue.dark,
+    variant: {
+      striped: {
+        light: {
+          tr_odd: colorsBase.white.light,
+        },
+        dark: {
+          tr_odd: colorsBase.blue.dark,
+          tr_even: colorsBase.blue.grayish,
+        },
+      },
     },
   },
 

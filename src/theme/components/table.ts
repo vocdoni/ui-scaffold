@@ -14,8 +14,6 @@ const baseStyle = definePartsStyle((props) => ({
   },
   thead: {
     bgColor: 'table.thead.bg_light',
-    borderBottom: '1.5px solid',
-    borderColor: 'table.border_color.light',
 
     th: {
       textTransform: 'initial',
@@ -37,6 +35,45 @@ const baseStyle = definePartsStyle((props) => ({
   },
   tr: {
     position: 'relative',
+  },
+}))
+
+const striped = definePartsStyle((props) => ({
+  table: {
+    borderBottom: 'none',
+  },
+  thead: {
+    tr: {
+      bgColor: 'white',
+
+      _dark: {
+        bgColor: '#2B2A33',
+      },
+    },
+  },
+  tbody: {
+    tr: {
+      '&:nth-of-type(odd)': {
+        bgColor: 'table.variant.striped.light.tr_odd',
+
+        _dark: {
+          bgColor: 'table.variant.striped.dark.tr_odd',
+        },
+
+        td: {
+          background: 'initial',
+        },
+      },
+      '&:nth-of-type(even)': {
+        _dark: {
+          bgColor: 'table.variant.striped.dark.tr_even',
+        },
+      },
+
+      '&:last-of-type': {
+        border: 'none !important',
+      },
+    },
   },
 }))
 
@@ -64,4 +101,7 @@ const md = definePartsStyle({
 export const Table = defineMultiStyleConfig({
   baseStyle,
   sizes: { md },
+  variants: {
+    striped,
+  },
 })
