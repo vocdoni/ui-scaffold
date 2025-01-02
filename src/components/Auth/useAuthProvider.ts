@@ -4,12 +4,17 @@ import { useClient } from '@vocdoni/react-providers'
 import { NoOrganizationsError, RemoteSigner } from '@vocdoni/sdk'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { api, ApiEndpoints, ApiParams, UnauthorizedApiError } from '~components/Auth/api'
+import { api, ApiEndpoints, ApiParams } from '~components/Auth/api'
 import { LoginResponse, useLogin, useRegister, useVerifyMail } from '~components/Auth/authQueries'
 
 enum LocalStorageKeys {
   Token = 'authToken',
+  Expiry = 'authExpiry',
+  RenewSession = 'authRenewSession',
 }
+
+// One week in milliseconds
+const OneWeek = 7 * 24 * 60 * 60 * 1000
 
 /**
  * Mutation to set the RemoteSigner and check its address
@@ -64,43 +69,70 @@ export const useAuthProvider = () => {
       if (bearer) {
         headers.append('Authorization', `Bearer ${bearer}`)
       }
-      return api<T>(path, { headers, ...params }).catch((e) => {
-        if (e instanceof UnauthorizedApiError) {
-          return api<LoginResponse>(ApiEndpoints.Refresh, { headers, method: 'POST' })
-            .then((data) => {
-              storeLogin(data)
-              headers.set('Authorization', `Bearer ${data.token}`)
-              return api<T>(path, { headers, ...params })
-            })
-            .catch((e) => {
-              toast({
-                status: 'error',
-                title: t('session_expired', { defaultValue: 'Session expired' }),
-                description: t('session_expired_description', {
-                  defaultValue: 'Session may have been expired and it could not be refreshed, please login again',
-                }),
-              })
-              logout()
-              throw e
-            })
-        }
-        throw e
-      })
+      return api<T>(path, { headers, ...params })
     },
     [bearer]
   )
 
-  const storeLogin = useCallback(({ token }: LoginResponse) => {
+  const storeLogin = useCallback(({ token, expirity }: LoginResponse, renewSession = false) => {
     localStorage.setItem(LocalStorageKeys.Token, token)
+    localStorage.setItem(LocalStorageKeys.Expiry, expirity)
+    if (renewSession) {
+      localStorage.setItem(LocalStorageKeys.RenewSession, 'true')
+    }
     setBearer(token)
     updateSigner(token)
   }, [])
 
   const logout = useCallback(() => {
     localStorage.removeItem(LocalStorageKeys.Token)
+    localStorage.removeItem(LocalStorageKeys.Expiry)
+    localStorage.removeItem(LocalStorageKeys.RenewSession)
     setBearer(null)
     clear()
   }, [])
+
+  const refreshToken = useCallback(async () => {
+    try {
+      const response = await api<LoginResponse>(ApiEndpoints.Refresh, { method: 'POST' })
+      storeLogin(response)
+    } catch (e) {
+      toast({
+        status: 'error',
+        title: t('session_expired', { defaultValue: 'Session expired' }),
+        description: t('session_expired_description', {
+          defaultValue: 'Session may have been expired and it could not be refreshed, please login again',
+        }),
+      })
+      logout()
+      throw e
+    }
+  }, [])
+
+  // Handle token refresh
+  useEffect(() => {
+    if (!bearer) return
+
+    const expiry = localStorage.getItem(LocalStorageKeys.Expiry)
+    const renewSession = localStorage.getItem(LocalStorageKeys.RenewSession)
+
+    if (!expiry || !renewSession) return
+
+    const expiryDate = new Date(expiry)
+    const now = new Date()
+    const timeUntilExpiry = expiryDate.getTime() - now.getTime()
+
+    // If token is expired, logout
+    if (timeUntilExpiry <= 0) {
+      logout()
+      return
+    }
+
+    // If token expires in less than a week, refresh it
+    if (timeUntilExpiry <= OneWeek) {
+      refreshToken()
+    }
+  }, [bearer])
 
   const signerRefresh = useCallback(() => {
     if (bearer) {
