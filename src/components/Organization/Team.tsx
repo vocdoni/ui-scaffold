@@ -1,5 +1,6 @@
 import { Avatar, Badge, Box, Flex, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
+import { useClient } from '@vocdoni/react-providers'
 import { Trans } from 'react-i18next'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
@@ -33,11 +34,12 @@ export const useTeamMembers = ({
 }: {
   options?: Omit<UseQueryOptions<TeamMembersResponse>, 'queryKey' | 'queryFn'>
 } = {}) => {
-  const { bearedFetch, signerAddress } = useAuth()
+  const { bearedFetch } = useAuth()
+  const { account } = useClient()
   return useQuery({
-    queryKey: ['organizations', 'members', signerAddress],
+    queryKey: ['organizations', 'members', account?.address],
     queryFn: () =>
-      bearedFetch<TeamMembersResponse>(ApiEndpoints.OrganizationMembers.replace('{address}', signerAddress)),
+      bearedFetch<TeamMembersResponse>(ApiEndpoints.OrganizationMembers.replace('{address}', account?.address)),
     ...options,
     select: (data) => data.members,
   })
@@ -49,12 +51,13 @@ export const usePendingTeamMembers = ({
 }: {
   options?: Omit<UseQueryOptions<PendingTeamMembersResponse>, 'queryKey' | 'queryFn'>
 } = {}) => {
-  const { bearedFetch, signerAddress } = useAuth()
+  const { bearedFetch } = useAuth()
+  const { account } = useClient()
   return useQuery({
-    queryKey: ['organizations', 'members', 'pending', signerAddress],
+    queryKey: ['organizations', 'members', 'pending', account?.address],
     queryFn: () =>
       bearedFetch<PendingTeamMembersResponse>(
-        ApiEndpoints.OrganizationPendingMembers.replace('{address}', signerAddress)
+        ApiEndpoints.OrganizationPendingMembers.replace('{address}', account?.address)
       ),
     ...options,
     select: (data) => data.pending,

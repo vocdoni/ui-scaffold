@@ -29,6 +29,7 @@ export const Question = ({ index, isMultiQuestion, remove }: Props) => {
     name: `questions.${index}.options`,
   })
 
+  const questions = watch('questions')
   const description = watch(`questions.${index}.description`)
 
   return (
@@ -59,6 +60,16 @@ export const Question = ({ index, isMultiQuestion, remove }: Props) => {
           />
           <FormErrorMessage>{fieldMapErrorMessage(errors, `questions.${index}.title`)}</FormErrorMessage>
         </FormControl>
+
+        {questions?.length > 1 && (
+          <IconButton
+            type='button'
+            icon={<DeleteIcon />}
+            aria-label={t('form.process_create.question.question_delete', { values: { num: index } })}
+            onClick={() => remove(index)}
+            colorScheme='red'
+          />
+        )}
       </Flex>
       <Editor
         onChange={(text: string) => setValue(`questions.${index}.description`, text)}

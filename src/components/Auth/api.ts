@@ -17,6 +17,7 @@ export enum ApiEndpoints {
   Refresh = 'auth/refresh',
   Register = 'users',
   SubscriptionCheckout = 'subscriptions/checkout',
+  SubscriptionPortal = 'subscriptions/{address}/portal',
   Verify = 'users/verify',
   VerifyCode = 'users/verify/code',
 }
