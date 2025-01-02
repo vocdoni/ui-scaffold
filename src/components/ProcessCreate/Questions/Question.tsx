@@ -33,20 +33,18 @@ export const Question = ({ index, isMultiQuestion, remove }: Props) => {
 
   return (
     <Box p={6} position='relative'>
-      {!!index && (
-        <HStack mb={2}>
-          <IconButton
-            type='button'
-            icon={<DeleteIcon />}
-            aria-label={t('form.process_create.question.question_delete', { values: { num: index } })}
-            onClick={() => remove(index)}
-            colorScheme='red'
-            size='sm'
-            ml='auto'
-            variant={'transparent'}
-          />
-        </HStack>
-      )}
+      <HStack mb={2}>
+        <IconButton
+          type='button'
+          icon={<DeleteIcon />}
+          aria-label={t('form.process_create.question.question_delete', { values: { num: index } })}
+          onClick={() => remove(index)}
+          colorScheme='red'
+          size='sm'
+          ml='auto'
+          variant={'transparent'}
+        />
+      </HStack>
       <Flex gap={6} mb={2}>
         <FormControl isInvalid={isInvalidFieldMap(errors, `questions.${index}.title`)}>
           <Input
