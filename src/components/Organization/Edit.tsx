@@ -26,9 +26,12 @@ const useUploadFile = () => {
     mutationFn: async (file: File) => {
       const formData = new FormData()
       formData.append('file1', file)
+      const headers = new Headers()
+      headers.append('Content-Type', 'multipart/form-data')
       const response = await bearedFetch<{ urls: string[] }>(ApiEndpoints.Storage, {
         method: 'POST',
         body: formData,
+        headers,
       })
       return response.urls[0]
     },
