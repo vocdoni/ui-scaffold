@@ -70,13 +70,13 @@ export const api = <T>(
   path: string,
   { body, method = 'GET', headers = new Headers({}) }: ApiParams = {}
 ): Promise<T> => {
+  const isFormData = typeof body === 'object' && body instanceof FormData
   // Append headers when not present
-  if (!headers.has('Content-Type')) {
+  if (!headers.has('Content-Type') && !isFormData) {
     headers.append('Content-Type', 'application/json')
   }
   // Format body if it's an object (and not FormData)
-  const formatted =
-    (typeof body === 'object' && body instanceof FormData) || typeof body === 'string' ? body : JSON.stringify(body)
+  const formatted = isFormData || typeof body === 'string' ? body : JSON.stringify(body)
 
   return fetch(`${import.meta.env.SAAS_URL}/${path}`, {
     method,
