@@ -84,8 +84,8 @@ export const TabsPage = <Implemented extends string, UnImplemented extends strin
       <ModalPro isOpen={isOpen} onClose={onClose} reason={reason} />
       <Flex flexDirection='column' gap={5}>
         <Box>
-          <Text variant='process-create-title'>{title}</Text>
-          <Text variant='process-create-subtitle-sm'>{description}</Text>
+          <Text fontWeight={'bold'}>{title}</Text>
+          <Text>{description}</Text>
         </Box>
         <Tabs
           defaultIndex={defined.findIndex((val) => val === selected)}
