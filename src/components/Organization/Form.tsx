@@ -51,9 +51,9 @@ export const PublicOrgForm = () => {
 }
 
 export type PrivateOrgFormData = {
-  sizeSelect: SelectOptionType
-  typeSelect: SelectOptionType
-  countrySelect: SelectOptionType
+  size: SelectOptionType
+  type: SelectOptionType
+  country: SelectOptionType
 }
 
 export const PrivateOrgForm = () => {
@@ -71,10 +71,10 @@ export const PrivateOrgForm = () => {
           </Trans>
         </Text>
       </Box>
-      <Flex px={{ base: 5, md: 10 }} direction={'column'} gap={6}>
-        <MembershipSizeTypesSelector name={'sizeSelect'} required />
-        <OrganzationTypesSelector name={'typeSelect'} required />
-        <CountriesTypesSelector name={'countrySelect'} required />
+      <Flex px={{ base: 5, md: 10 }} direction='column' gap={6}>
+        <MembershipSizeTypesSelector name='size' required />
+        <OrganzationTypesSelector name='type' required />
+        <CountriesTypesSelector name='country' required />
       </Flex>
       <CheckboxCustom
         formValue='communications'

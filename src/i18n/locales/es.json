@@ -1228,7 +1228,7 @@
   "upgrade": "Amplíalo",
   "upload": "Upload",
   "uploader": {
-    "click_or_drag_and_drop": "<click>Haz clic para subir</click> <drag>o arrastra y suelta</drag><formats>(Formatos permitidos: CSV, XLSX y ODS)</formats>"
+    "click_or_drag_and_drop": "<click>Haz clic para subir</click> <drag>o arrastra y suelta</drag><formats>(Formatos permitidos: {{ formats, list }})</formats>"
   },
   "uploaderCustom": {
     "drop_here": ""
