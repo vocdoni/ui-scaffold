@@ -1,5 +1,5 @@
 import { DeleteIcon } from '@chakra-ui/icons'
-import { Box, Flex, FormControl, FormErrorMessage, HStack, IconButton, Input, Text } from '@chakra-ui/react'
+import { Box, Flex, FormControl, FormErrorMessage, IconButton, Input, Text } from '@chakra-ui/react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import Editor from '~components/Editor/Editor'
@@ -34,18 +34,6 @@ export const Question = ({ index, isMultiQuestion, remove }: Props) => {
 
   return (
     <Box p={6} position='relative'>
-      <HStack mb={2}>
-        <IconButton
-          type='button'
-          icon={<DeleteIcon />}
-          aria-label={t('form.process_create.question.question_delete', { values: { num: index } })}
-          onClick={() => remove(index)}
-          colorScheme='red'
-          size='sm'
-          ml='auto'
-          variant={'transparent'}
-        />
-      </HStack>
       <Flex gap={6} mb={2}>
         <FormControl isInvalid={isInvalidFieldMap(errors, `questions.${index}.title`)}>
           <Input
@@ -60,6 +48,16 @@ export const Question = ({ index, isMultiQuestion, remove }: Props) => {
           />
           <FormErrorMessage>{fieldMapErrorMessage(errors, `questions.${index}.title`)}</FormErrorMessage>
         </FormControl>
+
+        {questions?.length > 1 && (
+          <IconButton
+            type='button'
+            icon={<DeleteIcon />}
+            aria-label={t('form.process_create.question.question_delete', { values: { num: index } })}
+            onClick={() => remove(index)}
+            colorScheme='red'
+          />
+        )}
       </Flex>
       <Editor
         onChange={(text: string) => setValue(`questions.${index}.description`, text)}
@@ -72,9 +70,9 @@ export const Question = ({ index, isMultiQuestion, remove }: Props) => {
       {isMultiQuestion && (
         <Text
           position='absolute'
+          fontSize='100px'
           bottom={0}
           right={5}
-          fontSize='100px'
           color='process_create.question_index'
           opacity={0.2}
         >
