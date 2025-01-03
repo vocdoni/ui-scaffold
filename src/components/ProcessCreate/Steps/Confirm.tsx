@@ -230,10 +230,8 @@ export const Confirm = () => {
   return (
     <Wrapper>
       <Box>
-        <Text variant='process-create-title'>{t('form.process_create.confirm.title')}</Text>
-        <Text variant='process-create-subtitle-sm' mb={6}>
-          {t('form.process_create.confirm.description')}
-        </Text>
+        <Text fontWeight={'bold'}>{t('form.process_create.confirm.title')}</Text>
+        <Text mb={6}>{t('form.process_create.confirm.description')}</Text>
         <ElectionProvider election={published}>
           <FormProvider {...methods}>
             <Flex flexDirection={{ base: 'column', xl2: 'row' }} gap={5}>

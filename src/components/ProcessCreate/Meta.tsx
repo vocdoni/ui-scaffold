@@ -35,10 +35,11 @@ const CreateProcessMeta = () => {
               message: t('form.error.password_min_length', { defaultValue: 'Min. 8 characters' }),
             },
           }}
+          labelStyles={{ fontWeight: 'bold' }}
           required
         />
         <Flex flexDirection='column'>
-          <Text variant='process-create-title-sm' mb={2}>
+          <Text fontWeight='bold' mb={2}>
             {t('form.process_create.meta.description_label')}
           </Text>
           <Editor

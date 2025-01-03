@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next'
 import {
   Button,
   Flex,
@@ -17,6 +16,7 @@ import {
   useDisclosure,
   useToast,
 } from '@chakra-ui/react'
+import { useTranslation } from 'react-i18next'
 import { LuShare } from 'react-icons/lu'
 import {
   FacebookShare,
@@ -60,12 +60,12 @@ const ShareModalButton = ({ caption = '', text }: { caption?: string; text?: str
               gap={3}
               justifyContent={'space-between'}
             >
-              <TwitterShare h={iconWidth} w={iconWidth} variant={'icon'} url={url} caption={caption} />
-              <FacebookShare h={iconWidth} w={iconWidth} variant={'icon'} url={url} caption={caption} />
-              <TelegramShare h={iconWidth} w={iconWidth} variant={'icon'} url={url} caption={caption} />
-              <RedditShare h={iconWidth} w={iconWidth} variant={'icon'} url={url} caption={caption} />
-              <MailShare h={iconWidth} w={iconWidth} variant={'icon'} url={url} caption={caption} />
-              <WhatsappShare h={iconWidth} w={iconWidth} variant={'icon'} url={url} caption={caption} />
+              <TwitterShare h={iconWidth} w={iconWidth} url={url} caption={caption} />
+              <FacebookShare h={iconWidth} w={iconWidth} url={url} caption={caption} />
+              <TelegramShare h={iconWidth} w={iconWidth} url={url} caption={caption} />
+              <RedditShare h={iconWidth} w={iconWidth} url={url} caption={caption} />
+              <MailShare h={iconWidth} w={iconWidth} url={url} caption={caption} />
+              <WhatsappShare h={iconWidth} w={iconWidth} url={url} caption={caption} />
             </Flex>
           </ModalBody>
           <ModalFooter mt={8}>
@@ -73,19 +73,14 @@ const ShareModalButton = ({ caption = '', text }: { caption?: string; text?: str
               <InputGroup size='md'>
                 <Input
                   placeholder={rawUrl}
-                  disabled
+                  readOnly
                   isTruncated
-                  sx={{
-                    '::placeholder': {
-                      // Set the font size of the placeholder
-                      fontSize: 'sm', // You can use Chakra's size tokens (sm, md, lg, etc.)
-                    },
+                  _placeholder={{
+                    fontSize: 'xs',
                   }}
                 />
               </InputGroup>
               <Button
-                borderRadius={'unset'}
-                variant={'primary'}
                 onClick={() => {
                   toast({
                     title: t('copy.copied_title'),
