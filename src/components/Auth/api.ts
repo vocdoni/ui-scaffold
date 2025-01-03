@@ -20,6 +20,7 @@ export enum ApiEndpoints {
   SubscriptionPortal = 'subscriptions/{address}/portal',
   Verify = 'users/verify',
   VerifyCode = 'users/verify/code',
+  Storage = 'storage',
 }
 
 export enum ErrorCode {
@@ -69,11 +70,18 @@ export const api = <T>(
   path: string,
   { body, method = 'GET', headers = new Headers({}) }: ApiParams = {}
 ): Promise<T> => {
-  headers.append('Content-Type', 'application/json')
+  const isFormData = typeof body === 'object' && body instanceof FormData
+  // Append headers when not present
+  if (!headers.has('Content-Type') && !isFormData) {
+    headers.append('Content-Type', 'application/json')
+  }
+  // Format body if it's an object (and not FormData)
+  const formatted = isFormData || typeof body === 'string' ? body : JSON.stringify(body)
+
   return fetch(`${import.meta.env.SAAS_URL}/${path}`, {
     method,
     headers,
-    body: JSON.stringify(body),
+    body: formatted,
   })
     .then(async (response) => {
       const sanitized = (await response.text()).replace('\n', '')

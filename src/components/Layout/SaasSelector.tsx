@@ -3,7 +3,6 @@ import { Select, Props as SelectProps } from 'chakra-react-select'
 import { Controller, useFormContext } from 'react-hook-form'
 import { ControllerProps } from 'react-hook-form/dist/types'
 import { useTranslation } from 'react-i18next'
-import selectComponents from '~components/ProcessCreate/Census/select-components'
 import { LanguagesSlice } from '~i18n/languages.mjs'
 import { reactSelectStyles } from '~theme/reactSelectStyles'
 
@@ -34,8 +33,6 @@ export const SelectCustom = ({
     formState: { errors },
     setValue,
   } = useFormContext()
-
-  const { tokens } = selectComponents
 
   // Function to extract and format error messages
   const getErrorMessage = (error: any): string => {
