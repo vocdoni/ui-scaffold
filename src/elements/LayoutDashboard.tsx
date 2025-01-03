@@ -37,7 +37,7 @@ const LayoutDashboard: React.FC = () => {
         gap={6}
       >
         {/* Top Menu */}
-        <Box gridArea='header' pt={6} gap={3} display='flex' alignItems={'center'} mr={{ base: 0, lg: 6 }}>
+        <Box gridArea='header' pt={6} gap={3} display='flex' alignItems='center' mr={{ base: 0, lg: 6 }}>
           {back && (
             <IconButton
               as={ReactRouterLink}

@@ -1216,7 +1216,7 @@
   "upgrade": "Upgrade",
   "upload": "Upload",
   "uploader": {
-    "click_or_drag_and_drop": "<click>Click to upload</click> <drag>or drag and drop</drag><formats>(Allowed formats: CSV, XLSX, and ODS)</formats>"
+    "click_or_drag_and_drop": "<click>Click to upload</click> <drag>or drag and drop</drag><formats>(Allowed formats: {{ formats, list }})</formats>"
   },
   "uploaderCustom": {
     "drop_here": ""
