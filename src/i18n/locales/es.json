@@ -875,7 +875,7 @@
     "yearly_processes_one": "{{ count }} proceso anual",
     "yearly_processes_many": "",
     "yearly_processes_other": "{{ count }} procesos anuales",
-    "your_plan": "Actualmente estás suscrito al plan 'Your plan'. Si actualizas, solo te cobraremos la diferencia anual. En el próximo período de facturación, que comienza el 'dd/mm/aa', pagarás por el nuevo plan seleccionado."
+    "your_plan": "Actualmente estás suscrito al plan <plan>{{ plan }}</plan>. Si actualizas, solo te cobraremos la diferencia anual. En el próximo período de facturación, que comienza el <plan>{{ billing }}</plan>, pagarás íntegramente por el nuevo plan seleccionado."
   },
   "pricing_card": {
     "from": "Desde {{price}}/año",
@@ -1125,6 +1125,7 @@
   "signup_title": "Regístrate",
   "skip": "Omitir",
   "submit": "Envía",
+  "subscribe": "Suscribirse",
   "subscription": {
     "change_plan_button": "Change",
     "inactive_subscription_description": "Your subscription is currently inactive. Consider <2>contacting us</2> to reactivate it.",
