@@ -5,7 +5,7 @@ export const FeaturesBox = (props: FlexProps) => (
     flexDirection='column'
     bg='gray.100'
     _dark={{ bg: 'gray.700' }}
-    px={10}
+    px={4}
     py={6}
     w={{ base: 'modal-stretch', lg: 'modal-stretch-lg' }}
     gap={5}
