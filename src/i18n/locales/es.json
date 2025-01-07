@@ -31,7 +31,8 @@
     "title": "La plataforma global de votación"
   },
   "avatar": {
-    "hint": "Min 200x200px .PNG or .JPEG"
+    "hint": "Min 200x200px .PNG or .JPEG",
+    "label": "Logo/Avatar"
   },
   "back": "Atrás",
   "billing": "Facturación",
@@ -240,13 +241,11 @@
   "edit_saas_profile": {
     "customization_details": "Define the params that will enhance the user experience and customize the voting page",
     "edited_successfully": "Updated successfully",
-    "header_image": "Header Image",
-    "upload_file": "Upload a file"
+    "header_image": "Header Image"
   },
   "email": "Correo electrónico",
   "email_placeholder": "your@email.com",
   "error": {
-    "error_doing_things": "Error al realizar la operación",
     "go_back": "Volver atrás",
     "invalid_cell_data": "Algunas filas no contienen direcciones correctas: {{rows, list}}",
     "invalid_row_length": "Corrige las líneas {{rows, list}} del documento y vuelve a cargarlo",
@@ -284,6 +283,7 @@
     "cumulative": "Cumulative voting",
     "custom_url": "Custom URL",
     "email_reminder": "Recordatorios por correo electrónico",
+    "interruptible": "Interruptible",
     "live_results": "Live results",
     "live_streaming": "Live streaming",
     "memberships": "Hasta {{ value }} membresías",
@@ -330,7 +330,6 @@
   "forgot_password_title": "¿Has olvidado tu contraseña?",
   "form": {
     "account_create": {
-      "delete_image": "Eliminar imagen",
       "description_placeholder": "Descripción (opcional)",
       "title_placeholder": "El nombre de la organización",
       "website_placeholder": "https://example.com"
@@ -339,6 +338,7 @@
     "error": {
       "address_already_in_use": "Esta dirección ya está en el censo",
       "address_pattern": "Solo se permiten direcciones hexadecimales (p.ej. 0x031101A...)",
+      "email_invalid": "Invalid email address",
       "field_is_required": "Este campo es obligatorio",
       "min_address": "Por favor, proporciona al menos una dirección",
       "min_users_address": "Por favor, proporciona al menos una dirección",
@@ -478,8 +478,6 @@
       }
     }
   },
-  "generate_pdf": "Generate PDF",
-  "generate_pdf_description": "Generate a PDF with the results",
   "gitcoin": {
     "effective": "20: Efectivo",
     "more_effective": "25: Más efectivo",
@@ -740,7 +738,6 @@
     "github": "Iniciar sesión con Github",
     "google": "Iniciar sesión con Google"
   },
-  "logo": "Logo",
   "logout": "Logout",
   "membership_size": {
     "language": "Default Language",
@@ -782,6 +779,7 @@
   "new_password": "New Password",
   "new_password_placeholder": "Enter your new password",
   "new_voting": "Nueva votación",
+  "no_results_filtering": "Your current search filter returns no results",
   "not_registred_yet": "¿Aún no estás registrado?",
   "open_in_explorer": "Abrir en explorador",
   "or": "o",
@@ -872,7 +870,7 @@
     "ticket_support": "Soporte por tickets",
     "unlimited_yearly_processes": "Procesos anuales ilimitados",
     "up_to_admins": "Hasta {{ admin }} admin. y {{ org }} organizaciones",
-    "upgrade_title": "Debes actualizar tu plan para usar esta funcionalidad",
+    "upgrade_title": "Actualiza tu subscripción",
     "white_label": "White label solution",
     "yearly_processes_one": "{{ count }} proceso anual",
     "yearly_processes_many": "",
@@ -1092,7 +1090,8 @@
     },
     "recovery": "Recuperar cuenta"
   },
-  "remove": "Remove",
+  "remove_avatar": "Remove avatar",
+  "remove_header": "Remove header",
   "reset_password_button": "Reset Password",
   "rights": "© 2024 Asociación Vocdoni. Todos los derechos reservados.",
   "role": {
@@ -1103,6 +1102,8 @@
     "description": "Vote contents will be encrypted till the end of the voting",
     "title": "Secret until the end"
   },
+  "session_expired": "Session expired",
+  "session_expired_description": "Session may have been expired and it could not be refreshed, please login again",
   "settings": "Configuración",
   "share": {
     "copy": "Copiar",
@@ -1226,12 +1227,9 @@
   "total_votes_submitted": "Total Votes Submitted",
   "update": "Update",
   "upgrade": "Amplíalo",
-  "upload": "Upload",
   "uploader": {
-    "click_or_drag_and_drop": "<click>Haz clic para subir</click> <drag>o arrastra y suelta</drag><formats>(Formatos permitidos: {{ formats, list }})</formats>"
-  },
-  "uploaderCustom": {
-    "drop_here": ""
+    "click_or_drag_and_drop": "<click>Haz clic para subir</click> <drag>o arrastra y suelta</drag><formats>(Formatos permitidos: {{ formats, list }})</formats>",
+    "drop_here": "Suelta aqui"
   },
   "use_read_more": {
     "read_less": "Leer menos",
@@ -1244,14 +1242,17 @@
   "verify": {
     "account_created_succesfully": "Account created successfully!",
     "email_sent": "Email sent successfully",
+    "enter_verification_code": "Enter the verification code sent to your email",
     "follow_email_instructions": "Follow the instructions there to activate your account.",
+    "invalid_verification": "Invalid verification request",
+    "missing_email": "No email address provided for verification",
     "resend_confirmation_mail": "Resend Email",
     "verification_email_is_sent": "A verification email has been sent to:",
-    "verify_code": "Verify"
+    "verify_code": "Verify",
+    "verify_your_email": "Verify your email"
   },
   "verify_mail": {
     "error_subtitle": "We found an error verifying your email, please check verification mail to ensure all data is correct",
-    "error_title": "Error verifying {{ email }}",
     "verifying_subtitle": "Await until we verify your email address. You will be redirect on success.",
     "verifying_title": "Verifying {{ email }}"
   },
