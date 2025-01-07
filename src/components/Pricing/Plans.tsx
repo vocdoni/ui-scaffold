@@ -22,6 +22,7 @@ import { ApiEndpoints } from '~components/Auth/api'
 import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
 import { PlanId } from '~constants'
+import { Routes } from '~src/router/routes'
 import { currency } from '~utils/numbers'
 import PricingCard from './Card'
 import { usePricingModal } from './use-pricing-modal'
@@ -289,32 +290,51 @@ export const SubscriptionModal = ({
   isOpen: boolean
   onClose: () => void
   title?: ReactNode
-}) => (
-  <Modal isOpen={isOpen} onClose={onClose} variant='pricing-modal' size='full'>
-    <ModalOverlay />
-    <ModalContent>
-      <ModalHeader>{title || <Trans i18nKey='pricing.upgrade_title'>Upgrade your subscription</Trans>}</ModalHeader>
-      <ModalCloseButton />
-      <ModalBody>
-        <SubscriptionPlans />
-      </ModalBody>
+}) => {
+  const { subscription } = useSubscription()
+  const translations = usePlanTranslations()
 
-      <ModalFooter>
-        <Text>
-          <Trans i18nKey='pricing.your_plan'>
-            Currently you are subscribed to the 'Your plan' subscription. If you upgrade, we will only charge the yearly
-            difference. In the next billing period, starting on 'dd/mm/yy' you will pay for the new select plan.
-          </Trans>
-        </Text>
-        <Box>
-          <Text>
-            <Trans i18nKey='pricing.help'>Need some help?</Trans>
-          </Text>
-          <Button as={ReactRouterLink}>
-            <Trans i18nKey='contact_us'>Contact us</Trans>
-          </Button>
-        </Box>
-      </ModalFooter>
-    </ModalContent>
-  </Modal>
+  if (!subscription) return null
+
+  const plan = translations[subscription.plan.id].title
+  const billing = new Date(subscription.subscriptionDetails.renewalDate)
+
+  return (
+    <Modal isOpen={isOpen} onClose={onClose} variant='pricing-modal' size='full'>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>{title || <Trans i18nKey='pricing.upgrade_title'>Upgrade your subscription</Trans>}</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+          <SubscriptionPlans />
+        </ModalBody>
+
+        <ModalFooter>
+          {subscription.plan.id !== PlanId.Free && (
+            <Text>
+              <Trans i18nKey='pricing.your_plan' values={{ plan, billing }} components={{ plan: <PlanText /> }}>
+                You're currently subscribed to the {{ plan }} plan. Upgrade now, and you'll only pay the difference for
+                the remaining time in your billing period. Starting from your next billing cycle on dd/mm/yy, you'll be
+                charged the full price for your new plan.
+              </Trans>
+            </Text>
+          )}
+          <Box>
+            <Text>
+              <Trans i18nKey='pricing.help'>Need some help?</Trans>
+            </Text>
+            <Button as={ReactRouterLink} to={Routes.contact} target='_blank'>
+              <Trans i18nKey='contact_us'>Contact us</Trans>
+            </Button>
+          </Box>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+  )
+}
+
+const PlanText = ({ children }: { children?: ReactNode }) => (
+  <Text fontWeight='bold' display='inline'>
+    "{children}"
+  </Text>
 )
