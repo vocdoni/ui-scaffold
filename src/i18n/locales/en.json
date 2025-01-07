@@ -866,7 +866,7 @@
     "white_label": "White label solution",
     "yearly_processes_one": "{{ count }} yearly voting process",
     "yearly_processes_other": "{{ count }} yearly voting processes",
-    "your_plan": "Currently you are subscribed to the 'Your plan' subscription. If you upgrade, we will only charge the yearly difference. In the next billing period, starting on 'dd/mm/yy' you will pay for the new select plan."
+    "your_plan": "You're currently subscribed to the <plan>{{ plan }}</plan> plan. Upgrade now, and you'll only pay the difference for the remaining time in your billing period. Starting from your next billing cycle on <plan>{{ billing }}</plan>, you'll be charged the full price for your new plan."
   },
   "pricing_card": {
     "from": "From ${{ price }}/year",
@@ -1113,6 +1113,7 @@
   "signup_title": "Sign Up",
   "skip": "Skip",
   "submit": "Submit",
+  "subscribe": "Subscribe",
   "subscription": {
     "change_plan_button": "Change",
     "inactive_subscription_description": "Your subscription is currently inactive. Consider <2>contacting us</2> to reactivate it.",

@@ -875,7 +875,7 @@
     "yearly_processes_one": "{{ count }} procés anual",
     "yearly_processes_many": "",
     "yearly_processes_other": "{{ count }} processos anuals",
-    "your_plan": "Actualment estàs subscrit al pla 'Your plan'. Si actualitzes, només et cobrarem la diferència anual. En el següent període de facturació, que comença el 'dd/mm/aa', pagaràs pel nou pla seleccionat."
+    "your_plan": "Actualment estàs subscrit al pla <plan>{{ plan }}</plan>. Si actualitzes, només et cobrarem la diferència anual. En el següent període de facturació, que comença el <plan>{{ billing }}</plan>, pagaràs íntegrament pel nou pla seleccionat."
   },
   "pricing_card": {
     "from": "Des de {{price}}/any",
@@ -1125,6 +1125,7 @@
   "signup_title": "Registra't",
   "skip": "Ometre",
   "submit": "Submit",
+  "subscribe": "Subscribe",
   "subscription": {
     "change_plan_button": "Change",
     "inactive_subscription_description": "La teva suscripció és inactiva actualment. Considera <2>contactar-nos</2> per a reactivar-la.",

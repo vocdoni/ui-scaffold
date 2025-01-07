@@ -46,7 +46,7 @@ const PricingCard = ({
       </CardHeader>
       <CardBody>
         <Button isDisabled={isDisabled || false} onClick={() => setValue('planId', plan.id)} type='submit'>
-          <Trans i18nKey='view_pricing_plan'>View Pricing Plan</Trans>
+          <Trans i18nKey='subscribe'>Subscribe</Trans>
         </Button>
         <Text>
           <Trans i18nKey='pricing_card.from' values={{ price }}>
