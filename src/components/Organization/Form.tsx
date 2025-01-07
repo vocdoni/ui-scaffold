@@ -1,5 +1,5 @@
 import { Box, Flex, FormControl, FormLabel, Text, Textarea } from '@chakra-ui/react'
-import { useForm } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import CheckboxCustom from '~components/Layout/CheckboxCustom'
 import InputBasic from '~components/Layout/InputBasic'
@@ -12,7 +12,7 @@ import {
 
 export const PublicOrgForm = () => {
   const { t } = useTranslation()
-  const { register } = useForm()
+  const { register } = useFormContext()
 
   return (
     <>
