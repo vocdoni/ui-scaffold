@@ -163,9 +163,25 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
   const translations = usePlanTranslations()
   const { openModal } = usePricingModal()
 
+  // Find the best fitting tier for the current subscription's census size
+  const defaultCensusSize = useMemo(() => {
+    if (!plans || !subscription?.subscriptionDetails?.maxCensusSize) return null
+
+    // Get all available tiers across all plans
+    const allTiers = plans.flatMap((plan) => plan.censusSizeTiers || [])
+
+    // Sort by upTo value to find the smallest tier that fits
+    const sortedTiers = allTiers.sort((a, b) => a.upTo - b.upTo)
+
+    // Find the first tier that can accommodate the current census size
+    const bestFitTier = sortedTiers.find((tier) => tier.upTo >= subscription.subscriptionDetails.maxCensusSize)
+
+    return bestFitTier?.upTo || null
+  }, [plans, subscription?.subscriptionDetails?.maxCensusSize])
+
   const methods = useForm<FormValues>({
     defaultValues: {
-      censusSize: null,
+      censusSize: defaultCensusSize,
       planId: null,
     },
   })
