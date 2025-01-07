@@ -215,7 +215,11 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
       popular: plan.id === PlanId.Essential,
       title: translations[plan.id]?.title || plan.name,
       subtitle: translations[plan.id]?.subtitle || '',
-      price: currency(plan.startingPrice),
+      price: currency(
+        selectedCensusSize
+          ? (plan.censusSizeTiers?.find((tier) => tier.upTo === selectedCensusSize)?.amount ?? plan.startingPrice)
+          : plan.startingPrice
+      ),
       features: translations[plan.id]?.features || [],
       isDisabled:
         (selectedCensusSize && !plan.censusSizeTiers?.some((tier) => tier.upTo === selectedCensusSize)) ||
@@ -273,9 +277,7 @@ export const SubscriptionModal = ({
   <Modal isOpen={isOpen} onClose={onClose} variant='pricing-modal' size='full'>
     <ModalOverlay />
     <ModalContent>
-      <ModalHeader>
-        {title || <Trans i18nKey='pricing.upgrade_title'>You need to upgrade to use this feature</Trans>}
-      </ModalHeader>
+      <ModalHeader>{title || <Trans i18nKey='pricing.upgrade_title'>Upgrade your subscription</Trans>}</ModalHeader>
       <ModalCloseButton />
       <ModalBody>
         <SubscriptionPlans />
