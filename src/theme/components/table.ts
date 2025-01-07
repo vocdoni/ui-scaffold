@@ -15,6 +15,15 @@ const baseStyle = definePartsStyle((props) => ({
   thead: {
     bgColor: 'table.thead.bg_light',
 
+    tr: {
+      th: {
+        borderBottomColor: 'var(--chakra-colors-table-variant-striped-light-border)',
+
+        _dark: {
+          borderBottomColor: 'var(--chakra-colors-table-variant-striped-dark-border)',
+        },
+      },
+    },
     th: {
       textTransform: 'initial',
     },
@@ -28,11 +37,7 @@ const baseStyle = definePartsStyle((props) => ({
     fontWeight: 'normal',
     borderBottom: 'none',
   },
-  tbody: {
-    '& tr:last-of-type': {
-      borderColor: 'transparent',
-    },
-  },
+
   tr: {
     position: 'relative',
   },
@@ -42,36 +47,26 @@ const striped = definePartsStyle((props) => ({
   table: {
     borderBottom: 'none',
   },
-  thead: {
-    tr: {
-      bgColor: 'white',
 
+  tbody: {
+    'tr:nth-of-type(2n+1) td': {
+      borderBottomColor: 'var(--chakra-colors-table-variant-striped-light-border)',
+      bgColor: 'table.variant.striped.light.tr_odd',
       _dark: {
-        bgColor: '#2B2A33',
+        borderBottomColor: 'var(--chakra-colors-table-variant-striped-dark-border)',
+        bgColor: 'table.variant.striped.dark.tr_odd',
       },
     },
-  },
-  tbody: {
-    tr: {
-      '&:nth-of-type(odd)': {
-        bgColor: 'table.variant.striped.light.tr_odd',
-
-        _dark: {
-          bgColor: 'table.variant.striped.dark.tr_odd',
-        },
-
-        td: {
-          background: 'initial',
-        },
+    'tr:nth-of-type(2n) td': {
+      borderBottomColor: 'var(--chakra-colors-table-variant-striped-light-border)',
+      _dark: {
+        borderBottomColor: 'var(--chakra-colors-table-variant-striped-dark-border)',
       },
-      '&:nth-of-type(even)': {
-        _dark: {
-          bgColor: 'table.variant.striped.dark.tr_even',
-        },
-      },
+    },
 
-      '&:last-of-type': {
-        border: 'none !important',
+    '& tr:last-of-type': {
+      td: {
+        borderColor: 'transparent !important',
       },
     },
   },
