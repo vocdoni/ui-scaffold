@@ -155,6 +155,39 @@ const link = defineStyle((props) => {
   }
 })
 
+const underline = defineStyle((props) => {
+  const { colorScheme } = props
+  return {
+    color: colorScheme === 'gray' ? 'black' : `${colorScheme}.700`,
+    textDecoration: 'underline',
+
+    _hover: {
+      bgColor: colorScheme === 'gray' ? 'gray.200' : `${colorScheme}.50`,
+
+      _disabled: {
+        color: 'button.variant.common.disabled.color.light',
+        _dark: {
+          color: 'button.variant.common.disabled.color.dark',
+        },
+      },
+
+      _dark: {
+        bgColor: colorScheme === 'gray' ? 'gray.700' : `${colorScheme}.50`,
+      },
+    },
+    _disabled: {
+      color: 'button.variant.common.disabled.color.light',
+      _dark: {
+        color: 'button.variant.common.disabled.color.dark',
+      },
+    },
+
+    _dark: {
+      color: colorScheme === 'gray' ? 'white' : `${colorScheme}.700`,
+    },
+  }
+})
+
 const sizes = {
   xl2: defineStyle({
     px: '22px',
@@ -200,6 +233,7 @@ export const Button = defineStyleConfig({
     outline,
     transparent,
     link,
+    underline,
   },
   sizes,
   defaultProps: {

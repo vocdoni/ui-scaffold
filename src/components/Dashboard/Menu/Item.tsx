@@ -25,12 +25,11 @@ export const DashboardMenuItem = ({
     onClick={hasChildren ? onToggle : undefined}
     isActive={hasChildren ? (isOpen ? true : false) : false} // Set active state
     justifyContent='start'
-    variant='transparent'
+    variant={isActive && !hasChildren ? 'underline' : 'transparent'}
     w='full'
     colorScheme='gray'
     leftIcon={icon ? <Icon as={icon} /> : undefined}
     rightIcon={hasChildren ? isOpen ? <ChevronUpIcon /> : <ChevronDownIcon /> : undefined}
-    textDecoration={isActive && !hasChildren ? 'underline' : undefined}
     mb={hasChildren && 1}
   >
     {label}
