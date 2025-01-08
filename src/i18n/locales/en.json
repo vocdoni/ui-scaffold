@@ -862,11 +862,11 @@
     "ticket_support": "Ticket support",
     "unlimited_yearly_processes": "Unlimited yearly voting processes",
     "up_to_admins": "Up to {{ admin }} admin and {{ org }} org",
-    "upgrade_title": "Upgrade your subscription",
+    "upgrade_title": "Upgrade your plan",
     "white_label": "White label solution",
     "yearly_processes_one": "{{ count }} yearly voting process",
     "yearly_processes_other": "{{ count }} yearly voting processes",
-    "your_plan": "You're currently subscribed to the <plan>{{ plan }}</plan> plan. Upgrade now, and you'll only pay the difference for the remaining time in your billing period. Starting from your next billing cycle on <plan>{{ billing }}</plan>, you'll be charged the full price for your new plan."
+    "your_plan": "You're currently subscribed to the <plan>{{ plan }}</plan> plan. Upgrade now, and you'll only pay the difference for the remaining time in your billing period. Starting from your next billing cycle on <plan>{{ billing, format }}</plan>, you'll be charged the full price for your new plan."
   },
   "pricing_card": {
     "from": "From ${{ price }}/year",
