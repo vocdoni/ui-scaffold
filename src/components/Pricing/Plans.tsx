@@ -291,6 +291,7 @@ export const SubscriptionModal = ({
   onClose: () => void
   title?: ReactNode
 }) => {
+  const { t } = useTranslation()
   const { subscription } = useSubscription()
   const translations = usePlanTranslations()
 
@@ -298,6 +299,8 @@ export const SubscriptionModal = ({
 
   const plan = translations[subscription.plan.id].title
   const billing = new Date(subscription.subscriptionDetails.renewalDate)
+  // the date format used by the billing date
+  const format = t('pricing.date_format', { defaultValue: 'dd/mm/yy' })
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} variant='pricing-modal' size='full'>
@@ -312,7 +315,7 @@ export const SubscriptionModal = ({
         <ModalFooter>
           {subscription.plan.id !== PlanId.Free && (
             <Text>
-              <Trans i18nKey='pricing.your_plan' values={{ plan, billing }} components={{ plan: <PlanText /> }}>
+              <Trans i18nKey='pricing.your_plan' values={{ plan, billing, format }} components={{ plan: <PlanText /> }}>
                 You're currently subscribed to the {{ plan }} plan. Upgrade now, and you'll only pay the difference for
                 the remaining time in your billing period. Starting from your next billing cycle on dd/mm/yy, you'll be
                 charged the full price for your new plan.
@@ -334,7 +337,7 @@ export const SubscriptionModal = ({
 }
 
 const PlanText = ({ children }: { children?: ReactNode }) => (
-  <Text fontWeight='bold' display='inline'>
+  <Text as='span' fontWeight='bold' display='inline'>
     "{children}"
   </Text>
 )
