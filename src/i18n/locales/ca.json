@@ -31,7 +31,8 @@
     "title": "La plataforma global de votació"
   },
   "avatar": {
-    "hint": "Min 200x200px .PNG or .JPEG"
+    "hint": "Min 200x200px .PNG or .JPEG",
+    "label": "Logo/Avatar"
   },
   "back": "Enrere",
   "billing": "Facturació",
@@ -240,13 +241,11 @@
   "edit_saas_profile": {
     "customization_details": "Define the params that will enhance the user experience and customize the voting page",
     "edited_successfully": "Updated successfully",
-    "header_image": "Header Image",
-    "upload_file": "Upload a file"
+    "header_image": "Header Image"
   },
   "email": "Correu electrònic",
   "email_placeholder": "your@email.com",
   "error": {
-    "error_doing_things": "Error al realizar la operación",
     "go_back": "Torna enrere",
     "invalid_cell_data": "Algunes fileres no contenen adreces correctes: {{rows, list}}",
     "invalid_row_length": "Corregeix les línies {{rows, list}} del document i torna a carregar-lo",
@@ -284,6 +283,7 @@
     "cumulative": "Votació acumulativa",
     "custom_url": "Adreça URL personalitzada",
     "email_reminder": "Recordatoris per correu electrònic",
+    "interruptible": "Interruptible",
     "live_results": "Resultats en directe",
     "live_streaming": "Streaming en directe",
     "memberships": "Fins a {{ value }} membresies",
@@ -330,7 +330,6 @@
   "forgot_password_title": "Has oblidat la teva contrasenya?",
   "form": {
     "account_create": {
-      "delete_image": "Eliminar imatge",
       "description_placeholder": "Descripció (opcional)",
       "title_placeholder": "El nom de l'organització",
       "website_placeholder": "https://example.com"
@@ -339,6 +338,7 @@
     "error": {
       "address_already_in_use": "Aquesta adreça ja és al cens",
       "address_pattern": "Només s'admeten adreces hexadecimals (p. ex. 0x031101A...)",
+      "email_invalid": "Invalid email address",
       "field_is_required": "Aquest camp és obligatori",
       "min_address": "Si us plau, proporciona com a mínim una adreça",
       "min_users_address": "Si us plau, proporciona com a mínim una adreça",
@@ -478,8 +478,6 @@
       }
     }
   },
-  "generate_pdf": "Generate PDF",
-  "generate_pdf_description": "Generate a PDF with the results",
   "gitcoin": {
     "effective": "20: Efectiu",
     "more_effective": "25: Més efectiu",
@@ -729,6 +727,7 @@
   },
   "invite_people": "Convida Gent",
   "keep_me_logged": "Mantén-me connectat",
+  "Languages": "Languages",
   "link": {
     "discord": "Enllaç al Discord de Vocdoni",
     "github": "Enllaç al Github de Vocdoni",
@@ -740,7 +739,6 @@
     "github": "Inicia sessió amb Github",
     "google": "Inicia sessió amb Google"
   },
-  "logo": "Logo",
   "logout": "Logout",
   "membership_size": {
     "language": "Default Language",
@@ -782,6 +780,7 @@
   "new_password": "New Password",
   "new_password_placeholder": "Enter your new password",
   "new_voting": "Nova votació",
+  "no_results_filtering": "Your current search filter returns no results",
   "not_registred_yet": "Encara no estàs registrat?",
   "open_in_explorer": "Obre a l'explorador",
   "or": "o",
@@ -1092,7 +1091,8 @@
     },
     "recovery": "Recuperar compte"
   },
-  "remove": "Remove",
+  "remove_avatar": "Remove avatar",
+  "remove_header": "Remove header",
   "reset_password_button": "Reset Password",
   "rights": "© 2024 Associació Vocdoni. Tots els drets reservats.",
   "role": {
@@ -1103,6 +1103,8 @@
     "description": "Vote contents will be encrypted till the end of the voting",
     "title": "Secret until the end"
   },
+  "session_expired": "Session expired",
+  "session_expired_description": "Session may have been expired and it could not be refreshed, please login again",
   "settings": "Configuració",
   "share": {
     "copy": "Copia",
@@ -1226,11 +1228,8 @@
   "total_votes_submitted": "Total Votes Submitted",
   "update": "Update",
   "upgrade": "Amplia-ho",
-  "upload": "Upload",
   "uploader": {
-    "click_or_drag_and_drop": "<click>Fes clic per pujar</click> <drag>o arrossega i deixa anar</drag><formats>(Formats permesos: {{ formats, list }})</formats>"
-  },
-  "uploaderCustom": {
+    "click_or_drag_and_drop": "<click>Fes clic per pujar</click> <drag>o arrossega i deixa anar</drag><formats>(Formats permesos: {{ formats, list }})</formats>",
     "drop_here": ""
   },
   "use_read_more": {
@@ -1244,14 +1243,17 @@
   "verify": {
     "account_created_succesfully": "Account created successfully!",
     "email_sent": "Email sent successfully",
+    "enter_verification_code": "Enter the verification code sent to your email",
     "follow_email_instructions": "Follow the instructions there to activate your account.",
+    "invalid_verification": "Invalid verification request",
+    "missing_email": "No email address provided for verification",
     "resend_confirmation_mail": "Resend Email",
     "verification_email_is_sent": "A verification email has been sent to:",
-    "verify_code": "Verify"
+    "verify_code": "Verify",
+    "verify_your_email": "Verify your email"
   },
   "verify_mail": {
     "error_subtitle": "We found an error verifying your email, please check verification mail to ensure all data is correct",
-    "error_title": "Error verifying {{ email }}",
     "verifying_subtitle": "Await until we verify your email address. You will be redirect on success.",
     "verifying_title": "Verifying {{ email }}"
   },

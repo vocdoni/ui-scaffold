@@ -28,7 +28,8 @@
     "title": "The global voting platform"
   },
   "avatar": {
-    "hint": "Min 200x200px .PNG or .JPEG"
+    "hint": "Min 200x200px .PNG or .JPEG",
+    "label": "Logo/Avatar"
   },
   "back": "Back",
   "billing": "Billing",
@@ -237,13 +238,11 @@
   "edit_saas_profile": {
     "customization_details": "Define the params that will enhance the user experience and customize the voting page",
     "edited_successfully": "Updated successfully",
-    "header_image": "Header Image",
-    "upload_file": "Upload a file"
+    "header_image": "Header Image"
   },
   "email": "Email",
   "email_placeholder": "your@email.com",
   "error": {
-    "error_doing_things": "Error al realizar la operación",
     "go_back": "Go back",
     "invalid_cell_data": "Some rows do not contain correct addresses: {{rows,list(style:short)}}",
     "invalid_row_length": "Correct document lines {{rows,list(style: short)}} and load it again",
@@ -281,6 +280,7 @@
     "cumulative": "Cumulative voting",
     "custom_url": "Custom URL",
     "email_reminder": "Email reminders",
+    "interruptible": "Interruptible",
     "live_results": "Live results",
     "live_streaming": "Live streaming",
     "memberships": "Up to {{ count }} memberships",
@@ -327,7 +327,6 @@
   "forgot_password_title": "Forgot your password?",
   "form": {
     "account_create": {
-      "delete_image": "Delete image",
       "description_placeholder": "Provide a brief description of your organization (optional)",
       "title_placeholder": "Enter your organization's name",
       "website_placeholder": "https://example.com"
@@ -336,6 +335,7 @@
     "error": {
       "address_already_in_use": "Address already in use",
       "address_pattern": "Only hex addresses are allowed (e.g 0x031101A...)",
+      "email_invalid": "Invalid email address",
       "field_is_required": "This field is required",
       "min_address": "Please, provide at least one address",
       "min_users_address": "Please, provide at least one address",
@@ -471,8 +471,6 @@
       }
     }
   },
-  "generate_pdf": "Generate PDF",
-  "generate_pdf_description": "Generate a PDF with the results",
   "gitcoin": {
     "effective": "20: Effective",
     "more_effective": "25: More Effective",
@@ -722,6 +720,7 @@
   },
   "invite_people": "Invite People",
   "keep_me_logged": "Keep me logged in",
+  "Languages": "Languages",
   "link": {
     "discord": "Link to Vocdoni's discord",
     "github": "Link to Vocdoni's github",
@@ -733,7 +732,6 @@
     "github": "Sign in with Github",
     "google": "Sign in with Google"
   },
-  "logo": "Logo",
   "logout": "Logout",
   "membership_size": {
     "language": "Default Language",
@@ -774,6 +772,7 @@
   "new_password": "New Password",
   "new_password_placeholder": "Enter your new password",
   "new_voting": "New Voting",
+  "no_results_filtering": "Your current search filter returns no results",
   "not_registred_yet": "Not registered yet?",
   "open_in_explorer": "Open in explorer",
   "or": "or",
@@ -1080,7 +1079,8 @@
     },
     "recovery": "Account recovery"
   },
-  "remove": "Remove",
+  "remove_avatar": "Remove avatar",
+  "remove_header": "Remove header",
   "reset_password_button": "Reset Password",
   "rights": "© 2024 Vocdoni Association. All Rights Reserved.",
   "role": {
@@ -1091,6 +1091,8 @@
     "description": "Vote contents will be encrypted till the end of the voting",
     "title": "Secret until the end"
   },
+  "session_expired": "Session expired",
+  "session_expired_description": "Session may have been expired and it could not be refreshed, please login again",
   "settings": "Settings",
   "share": {
     "copy": "Copy",
@@ -1214,11 +1216,8 @@
   "total_votes_submitted": "Total Votes Submitted",
   "update": "Update",
   "upgrade": "Upgrade",
-  "upload": "Upload",
   "uploader": {
-    "click_or_drag_and_drop": "<click>Click to upload</click> <drag>or drag and drop</drag><formats>(Allowed formats: {{ formats, list }})</formats>"
-  },
-  "uploaderCustom": {
+    "click_or_drag_and_drop": "<click>Click to upload</click> <drag>or drag and drop</drag><formats>(Allowed formats: {{ formats, list }})</formats>",
     "drop_here": ""
   },
   "use_read_more": {
@@ -1232,14 +1231,17 @@
   "verify": {
     "account_created_succesfully": "Account created successfully!",
     "email_sent": "Email sent successfully",
+    "enter_verification_code": "Enter the verification code sent to your email",
     "follow_email_instructions": "Follow the instructions there to activate your account.",
+    "invalid_verification": "Invalid verification request",
+    "missing_email": "No email address provided for verification",
     "resend_confirmation_mail": "Resend Email",
     "verification_email_is_sent": "A verification email has been sent to:",
-    "verify_code": "Verify"
+    "verify_code": "Verify",
+    "verify_your_email": "Verify your email"
   },
   "verify_mail": {
     "error_subtitle": "We found an error verifying your email, please check verification mail to ensure all data is correct",
-    "error_title": "Error verifying {{ email }}",
     "verifying_subtitle": "Await until we verify your email address. You will be redirect on success.",
     "verifying_title": "Verifying {{ email }}"
   },
