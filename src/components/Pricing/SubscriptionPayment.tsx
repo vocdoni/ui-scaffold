@@ -8,6 +8,7 @@ import {
   ModalFooter,
   ModalOverlay,
   Text,
+  useToast,
 } from '@chakra-ui/react'
 import { EmbeddedCheckout, EmbeddedCheckoutProvider } from '@stripe/react-stripe-js'
 import { loadStripe, Stripe } from '@stripe/stripe-js'
@@ -57,6 +58,7 @@ export const SubscriptionPayment = ({ amount, lookupKey }: SubscriptionPaymentDa
   const { subscription } = useSubscription()
   const { mutateAsync: checkSubscription } = useUpdateSubscription()
   const { closeModal } = usePricingModal()
+  const toast = useToast()
 
   const [stripePromise] = useState<Promise<Stripe | null>>(
     loadStripe(stripePublicKey, {
@@ -82,6 +84,16 @@ export const SubscriptionPayment = ({ amount, lookupKey }: SubscriptionPaymentDa
       })
         // Return the client secret, required by stripe.js
         .then((data) => data.clientSecret)
+        .catch((e) => {
+          toast({
+            status: 'error',
+            title: i18n.t('pricing.error'),
+            description: e.message,
+          })
+          closeModal()
+
+          return null
+        })
     }
     return await Promise.resolve('')
   }, [signer])
