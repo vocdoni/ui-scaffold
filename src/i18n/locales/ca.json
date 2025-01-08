@@ -727,6 +727,7 @@
   },
   "invite_people": "Convida Gent",
   "keep_me_logged": "Mantén-me connectat",
+  "languages": "Languages",
   "link": {
     "discord": "Enllaç al Discord de Vocdoni",
     "github": "Enllaç al Github de Vocdoni",
@@ -854,7 +855,9 @@
     "core_voting": "Funcions bàsiques de votació",
     "custom_subtitle": "Large organizations enterprises, and institutions requiring extensive customization and support.",
     "custom_title": "Personalitzat",
+    "date_format": "dd/mm/yy",
     "dedicated_manager": "Dedicated account manager",
+    "error": "",
     "essential_subtitle": "Organitzacions petites o mitjanes o grups comunitaris amb necessitats bàsiques de votació.",
     "essential_title": "Essencial",
     "features": "Features",

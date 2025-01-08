@@ -1,10 +1,5 @@
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
   Avatar,
   Box,
   BoxProps,
@@ -16,17 +11,15 @@ import {
   MenuItem,
   MenuList,
   Spinner,
-  Text,
   useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react'
 import { LogOut01, Paperclip, UserSquare } from '@untitled-ui/icons-react'
-import { Trans, useTranslation } from 'react-i18next'
-import { FaGlobeAmericas } from 'react-icons/fa'
+import { Trans } from 'react-i18next'
 import { IoMdMoon, IoMdSunny } from 'react-icons/io'
 import { Link as RouterLink } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
-import { LanguagesSlice } from '~i18n/languages.mjs'
+import LanguagesListAccordion from '~components/Layout/LanguagesListAccordion'
 import { useProfile } from '~src/queries/account'
 import { Routes } from '~src/router/routes'
 
@@ -77,7 +70,7 @@ const AccountMenu: React.FC<BoxProps> = (props) => {
               </MenuItem>
               <MenuDivider />
               <MenuItem closeOnSelect={false}>
-                <AccordionLanguages />
+                <LanguagesListAccordion />
               </MenuItem>
               <MenuItem onClick={toggleColorMode} closeOnSelect={true}>
                 <Icon as={SwitchIcon} />
@@ -104,47 +97,3 @@ const AccountMenu: React.FC<BoxProps> = (props) => {
 }
 
 export default AccountMenu
-
-const AccordionLanguages = () => {
-  const { i18n } = useTranslation()
-
-  const languages = LanguagesSlice as { [key: string]: string }
-
-  return (
-    <Accordion allowMultiple m={0} p={0} borderColor='transparent'>
-      <AccordionItem>
-        <AccordionButton
-          as={Button}
-          variant='unstyled'
-          m={0}
-          p={0}
-          h='fit-content'
-          _hover={{ bgColor: 'transparent' }}
-          display={'flex'}
-          alignItems={'center'}
-          fontSize={'md'}
-          leftIcon={<FaGlobeAmericas />}
-        >
-          <Trans i18nKey={'languages'}>Languages</Trans>
-          <AccordionIcon />
-        </AccordionButton>
-        <AccordionPanel pl={7} pb={0}>
-          {Object.keys(languages).map((k: string) => (
-            <Text
-              key={k}
-              onClick={() => {
-                i18n.changeLanguage(k)
-              }}
-              w='full'
-              display='flex'
-              fontWeight={k === i18n.language ? 'extrabold' : ''}
-              borderRadius='none'
-            >
-              {k.toUpperCase()}
-            </Text>
-          ))}
-        </AccordionPanel>
-      </AccordionItem>
-    </Accordion>
-  )
-}

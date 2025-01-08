@@ -727,6 +727,7 @@
   },
   "invite_people": "Invitar Gente",
   "keep_me_logged": "Mantenerme conectado",
+  "languages": "Languages",
   "link": {
     "discord": "Enlace al Discord de Vocdoni",
     "github": "Enlace al Github de Vocdoni",
@@ -854,7 +855,9 @@
     "core_voting": "Funciones básicas de votación",
     "custom_subtitle": "Large organizations enterprises, and institutions requiring extensive customization and support.",
     "custom_title": "Custom Plan",
+    "date_format": "dd/mm/yy",
     "dedicated_manager": "Dedicated account manager",
+    "error": "",
     "essential_subtitle": "Organizaciones pequeñas o medianas o grupos comunitarios con necesidades básicas de votación.",
     "essential_title": "Esencial",
     "features": "Features",
