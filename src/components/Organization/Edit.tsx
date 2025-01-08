@@ -215,7 +215,7 @@ const CustomizeOrgForm = () => {
   // Avatar upload handler
   const onAvatarUpload = onUpload('avatar')
 
-  const allowed = ['PNG', 'JPG', 'JPEG', 'GIF']
+  const allowed = ['PNG', 'JPG', 'JPEG']
   const extensions = allowed.map((ext) => `.${ext.toLowerCase()}`)
 
   const {
