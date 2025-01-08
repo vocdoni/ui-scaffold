@@ -1,13 +1,14 @@
 import { AlertIconProps, chakra, useAlertContext, useAlertStyles } from '@chakra-ui/react'
 import { cx } from '@chakra-ui/utils'
+import { cloneElement } from 'react'
 import { FaRegCheckCircle } from 'react-icons/fa'
 import { RiErrorWarningLine } from 'react-icons/ri'
 
 const icons = {
-  info: <RiErrorWarningLine />,
+  info: <FaRegCheckCircle />,
   warning: <RiErrorWarningLine />,
   success: <RiErrorWarningLine />,
-  error: <FaRegCheckCircle />,
+  error: <RiErrorWarningLine />,
 }
 
 export const AlertIcon = (props: AlertIconProps) => {
@@ -26,7 +27,9 @@ export const AlertIcon = (props: AlertIconProps) => {
       __css={css}
       {...props}
     >
-      {icon}
+      {cloneElement(icon, {
+        color: css.color,
+      })}
     </chakra.span>
   )
 }
