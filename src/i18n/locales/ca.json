@@ -727,7 +727,6 @@
   },
   "invite_people": "Convida Gent",
   "keep_me_logged": "Mantén-me connectat",
-  "Languages": "Languages",
   "link": {
     "discord": "Enllaç al Discord de Vocdoni",
     "github": "Enllaç al Github de Vocdoni",
@@ -871,12 +870,12 @@
     "ticket_support": "Suport per tiquets",
     "unlimited_yearly_processes": "Processos anuals il·limitats",
     "up_to_admins": "Fins a {{ admin }} admin. i {{ org }} organitzacions",
-    "upgrade_title": "Has d'actualitzar el teu pla per utilitzar aquesta funcionalitat",
+    "upgrade_title": "Actualitza el teu pla",
     "white_label": "White label solution",
     "yearly_processes_one": "{{ count }} procés anual",
     "yearly_processes_many": "",
     "yearly_processes_other": "{{ count }} processos anuals",
-    "your_plan": "Actualment estàs subscrit al pla 'Your plan'. Si actualitzes, només et cobrarem la diferència anual. En el següent període de facturació, que comença el 'dd/mm/aa', pagaràs pel nou pla seleccionat."
+    "your_plan": "Actualment estàs subscrit al pla <plan>{{ plan }}</plan>. Si actualitzes, només et cobrarem la diferència anual. En el següent període de facturació, que comença el <plan>{{ billing, format }}</plan>, pagaràs íntegrament pel nou pla seleccionat."
   },
   "pricing_card": {
     "from": "Des de {{price}}/any",
@@ -1126,6 +1125,7 @@
   "signup_title": "Registra't",
   "skip": "Ometre",
   "submit": "Submit",
+  "subscribe": "Subscribe",
   "subscription": {
     "change_plan_button": "Change",
     "inactive_subscription_description": "La teva suscripció és inactiva actualment. Considera <2>contactar-nos</2> per a reactivar-la.",
@@ -1230,7 +1230,7 @@
   "upgrade": "Amplia-ho",
   "uploader": {
     "click_or_drag_and_drop": "<click>Fes clic per pujar</click> <drag>o arrossega i deixa anar</drag><formats>(Formats permesos: {{ formats, list }})</formats>",
-    "drop_here": ""
+    "drop_here": "Deixa anar aquí"
   },
   "use_read_more": {
     "read_less": "Llegeix menys",

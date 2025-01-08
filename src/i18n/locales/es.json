@@ -727,7 +727,6 @@
   },
   "invite_people": "Invitar Gente",
   "keep_me_logged": "Mantenerme conectado",
-  "Languages": "Languages",
   "link": {
     "discord": "Enlace al Discord de Vocdoni",
     "github": "Enlace al Github de Vocdoni",
@@ -871,12 +870,12 @@
     "ticket_support": "Soporte por tickets",
     "unlimited_yearly_processes": "Procesos anuales ilimitados",
     "up_to_admins": "Hasta {{ admin }} admin. y {{ org }} organizaciones",
-    "upgrade_title": "Debes actualizar tu plan para usar esta funcionalidad",
+    "upgrade_title": "Actualiza tu plan",
     "white_label": "White label solution",
     "yearly_processes_one": "{{ count }} proceso anual",
     "yearly_processes_many": "",
     "yearly_processes_other": "{{ count }} procesos anuales",
-    "your_plan": "Actualmente estás suscrito al plan 'Your plan'. Si actualizas, solo te cobraremos la diferencia anual. En el próximo período de facturación, que comienza el 'dd/mm/aa', pagarás por el nuevo plan seleccionado."
+    "your_plan": "Actualmente estás suscrito al plan <plan>{{ plan }}</plan>. Si actualizas, solo te cobraremos la diferencia anual. En el próximo período de facturación, que comienza el <plan>{{ billing, format }}</plan>, pagarás íntegramente por el nuevo plan seleccionado."
   },
   "pricing_card": {
     "from": "Desde {{price}}/año",
@@ -1126,6 +1125,7 @@
   "signup_title": "Regístrate",
   "skip": "Omitir",
   "submit": "Envía",
+  "subscribe": "Suscribirse",
   "subscription": {
     "change_plan_button": "Change",
     "inactive_subscription_description": "Your subscription is currently inactive. Consider <2>contacting us</2> to reactivate it.",
@@ -1230,7 +1230,7 @@
   "upgrade": "Amplíalo",
   "uploader": {
     "click_or_drag_and_drop": "<click>Haz clic para subir</click> <drag>o arrastra y suelta</drag><formats>(Formatos permitidos: {{ formats, list }})</formats>",
-    "drop_here": ""
+    "drop_here": "Suelta aqui"
   },
   "use_read_more": {
     "read_less": "Leer menos",
