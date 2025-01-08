@@ -1,10 +1,11 @@
 import { Avatar, Badge, Box, Flex, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
-import { useClient } from '@vocdoni/react-providers'
+import { enforceHexPrefix, useClient } from '@vocdoni/react-providers'
 import { Trans } from 'react-i18next'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import QueryDataLayout from '~components/Layout/QueryDataLayout'
+import { QueryKeys } from '~src/queries/keys'
 
 // Define types
 type UserInfo = {
@@ -37,9 +38,11 @@ export const useTeamMembers = ({
   const { bearedFetch } = useAuth()
   const { account } = useClient()
   return useQuery({
-    queryKey: ['organizations', 'members', account?.address],
+    queryKey: QueryKeys.organization.members(enforceHexPrefix(account?.address)),
     queryFn: () =>
-      bearedFetch<TeamMembersResponse>(ApiEndpoints.OrganizationMembers.replace('{address}', account?.address)),
+      bearedFetch<TeamMembersResponse>(
+        ApiEndpoints.OrganizationMembers.replace('{address}', enforceHexPrefix(account?.address))
+      ),
     ...options,
     select: (data) => data.members,
   })
@@ -54,10 +57,10 @@ export const usePendingTeamMembers = ({
   const { bearedFetch } = useAuth()
   const { account } = useClient()
   return useQuery({
-    queryKey: ['organizations', 'members', 'pending', account?.address],
+    queryKey: QueryKeys.organization.pendingMembers(enforceHexPrefix(account?.address)),
     queryFn: () =>
       bearedFetch<PendingTeamMembersResponse>(
-        ApiEndpoints.OrganizationPendingMembers.replace('{address}', account?.address)
+        ApiEndpoints.OrganizationPendingMembers.replace('{address}', enforceHexPrefix(account?.address))
       ),
     ...options,
     select: (data) => data.pending,
