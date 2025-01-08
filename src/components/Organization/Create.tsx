@@ -13,6 +13,7 @@ import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import { useAuthProvider } from '~components/Auth/useAuthProvider'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
+import { QueryKeys } from '~src/queries/keys'
 import { Routes } from '~src/router/routes'
 import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from './Form'
 
@@ -24,7 +25,7 @@ const useOrganizationCreate = (options?: Omit<UseMutationOptions<void, Error, Cr
   return useMutation<void, Error, CreateOrgParams>({
     mutationFn: (params: CreateOrgParams) => bearedFetch(ApiEndpoints.Organizations, { body: params, method: 'POST' }),
     onSuccess: () => {
-      client.invalidateQueries({ queryKey: ['profile'] })
+      client.invalidateQueries({ queryKey: QueryKeys.profile })
     },
     ...options,
   })
