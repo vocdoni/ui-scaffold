@@ -870,12 +870,12 @@
     "ticket_support": "Suport per tiquets",
     "unlimited_yearly_processes": "Processos anuals il·limitats",
     "up_to_admins": "Fins a {{ admin }} admin. i {{ org }} organitzacions",
-    "upgrade_title": "Actualitza la teva subscripció",
+    "upgrade_title": "Actualitza el teu pla",
     "white_label": "White label solution",
     "yearly_processes_one": "{{ count }} procés anual",
     "yearly_processes_many": "",
     "yearly_processes_other": "{{ count }} processos anuals",
-    "your_plan": "Actualment estàs subscrit al pla <plan>{{ plan }}</plan>. Si actualitzes, només et cobrarem la diferència anual. En el següent període de facturació, que comença el <plan>{{ billing }}</plan>, pagaràs íntegrament pel nou pla seleccionat."
+    "your_plan": "Actualment estàs subscrit al pla <plan>{{ plan }}</plan>. Si actualitzes, només et cobrarem la diferència anual. En el següent període de facturació, que comença el <plan>{{ billing, format }}</plan>, pagaràs íntegrament pel nou pla seleccionat."
   },
   "pricing_card": {
     "from": "Des de {{price}}/any",

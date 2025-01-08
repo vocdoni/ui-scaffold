@@ -870,12 +870,12 @@
     "ticket_support": "Soporte por tickets",
     "unlimited_yearly_processes": "Procesos anuales ilimitados",
     "up_to_admins": "Hasta {{ admin }} admin. y {{ org }} organizaciones",
-    "upgrade_title": "Actualiza tu subscripción",
+    "upgrade_title": "Actualiza tu plan",
     "white_label": "White label solution",
     "yearly_processes_one": "{{ count }} proceso anual",
     "yearly_processes_many": "",
     "yearly_processes_other": "{{ count }} procesos anuales",
-    "your_plan": "Actualmente estás suscrito al plan <plan>{{ plan }}</plan>. Si actualizas, solo te cobraremos la diferencia anual. En el próximo período de facturación, que comienza el <plan>{{ billing }}</plan>, pagarás íntegramente por el nuevo plan seleccionado."
+    "your_plan": "Actualmente estás suscrito al plan <plan>{{ plan }}</plan>. Si actualizas, solo te cobraremos la diferencia anual. En el próximo período de facturación, que comienza el <plan>{{ billing, format }}</plan>, pagarás íntegramente por el nuevo plan seleccionado."
   },
   "pricing_card": {
     "from": "Desde {{price}}/año",
