@@ -40,10 +40,10 @@ const baseStyle = (props: any) => {
       alignItems: 'center',
       gridColumn: 1,
       color,
-      boxShadow: `0 0 0px 1px var(--chakra-colors-alert-box_shadow_light), 0 0 0px 3px  ${color}, 0 0 0 4px var(--chakra-colors-alert-box_shadow_light), 0 0 1px 5px ${color}`,
+      boxShadow: `0 0 0px 1px var(--chakra-colors-alert-box_shadow_light), 0 0 0px 2px  ${color}, 0 0 0 4px var(--chakra-colors-alert-box_shadow_light), 0 0 1px 5px ${color}`,
       borderRadius: 'lg',
       _dark: {
-        boxShadow: `0 0 0px 1px var(--chakra-colors-alert-box_shadow_dark), 0 0 0px 3px ${color}, 0 0 0 4px var(--chakra-colors-alert-box_shadow_dark), 0 0 1px 5px ${color}`,
+        boxShadow: `0 0 0px 1px var(--chakra-colors-alert-box_shadow_dark), 0 0 0px 2px ${color}, 0 0 0 4px var(--chakra-colors-alert-box_shadow_dark), 0 0 1px 5px ${color}`,
       },
       w: 4,
       h: 4,

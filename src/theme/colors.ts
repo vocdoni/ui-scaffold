@@ -41,7 +41,7 @@ export const colors = {
       dark: colorsBase.blue.dark,
     },
     border: colorsBase.gray.light,
-    error: colorsBase.green,
+    error: colorsBase.red,
     info: colorsBase.gray.normal,
     success: colorsBase.green,
     warning: colorsBase.orange,
