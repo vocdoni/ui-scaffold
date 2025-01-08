@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { FaChevronLeft } from 'react-icons/fa'
 import { NavLink, Outlet, To } from 'react-router-dom'
 import AuthBanner from '~components/Organization/Dashboard/AuthBanner'
+import { useMemo } from 'react'
 
 export type NavigationFunctionParams = To | number
 
@@ -14,77 +15,68 @@ export type AuthOutletContextType = {
   setSidebar: React.Dispatch<React.SetStateAction<ReactNode>>
 }
 
-const images = [
-  '/assets/illustrations/1.png',
-  '/assets/illustrations/2.png',
-  '/assets/illustrations/3.png',
-  '/assets/illustrations/4.png',
-  '/assets/illustrations/5.png',
-  '/assets/illustrations/6.png',
-  '/assets/illustrations/7.png',
-  '/assets/illustrations/8.png',
-  '/assets/illustrations/1.png',
-  '/assets/illustrations/2.png',
-  '/assets/illustrations/3.png',
-  '/assets/illustrations/4.png',
-  '/assets/illustrations/5.png',
-  '/assets/illustrations/6.png',
-  '/assets/illustrations/7.png',
-  '/assets/illustrations/8.png',
-]
-
-//ToDo: Move the text to the i18n file, translate them and call the t() function
-const titles = [
-  'Simplified Setup:',
-  'Flexible Plans:',
-  'Cost Savings:',
-  'Universal Accessibility:',
-  'Trustworthy Technology:',
-  'Empower Participation:',
-  'Seamless Integration:',
-  "Relax, We've Got You Covered:",
-  'Streamline Operations:',
-  'Stay Informed:',
-  'Boost Participation:',
-  'Control Costs:',
-  'Enhanced Flexibility:',
-  'Build Trust:',
-  'Join hundreds of organizations:',
-  'Let us handle the complexity:',
-]
-
-const texts = [
-  'Launch secure and verifiable elections in just a few clicks.',
-  'Adaptable features that scale with your organization.',
-  'Save up to 10x compared to traditional voting methods.',
-  'Organize votes accessible on any device—mobile, tablet, or desktop.',
-  'Advanced encryption ensures your elections are secure and private.',
-  'Foster higher voter turnout with user-friendly tools.',
-  'Easily incorporate your branding and existing workflows.',
-  'Your voting processes are safe, secure, and ready to go.',
-  'Manage multiple elections effortlessly from one dashboard.',
-  'Real-time updates and insights at your fingertips.',
-  'Increase voter engagement with intuitive voting flows.',
-  'Reduce operational expenses for you and your voters.',
-  'Explore advanced options like anonymous voting or weighted votes.',
-  'Transparent and verifiable elections foster confidence in your results.',
-  'Embrace the future of voting. Start today!',
-  'Focus on what matters most.',
-]
-
 const LayoutAuth = () => {
   const { t } = useTranslation()
+
+  const images = [
+    '/assets/illustrations/1.png',
+    '/assets/illustrations/2.png',
+    '/assets/illustrations/3.png',
+    '/assets/illustrations/4.png',
+    '/assets/illustrations/5.png',
+    '/assets/illustrations/6.png',
+    '/assets/illustrations/7.png',
+    '/assets/illustrations/8.png',
+  ]
+
+  const titles = [
+    t('authPage.title.1', { defaultValue: 'Simplified Setup:' }),
+    t('authPage.title.2', { defaultValue: 'Flexible Plans:' }),
+    t('authPage.title.3', { defaultValue: 'Cost Savings:' }),
+    t('authPage.title.4', { defaultValue: 'Universal Accessibility:' }),
+    t('authPage.title.5', { defaultValue: 'Trustworthy Technology:' }),
+    t('authPage.title.6', { defaultValue: 'Empower Participation:' }),
+    t('authPage.title.7', { defaultValue: 'Seamless Integration:' }),
+    t('authPage.title.8', { defaultValue: "Relax, We've Got You Covered:" }),
+    t('authPage.title.9', { defaultValue: 'Streamline Operations:' }),
+    t('authPage.title.10', { defaultValue: 'Stay Informed:' }),
+    t('authPage.title.11', { defaultValue: 'Boost Participation:' }),
+    t('authPage.title.12', { defaultValue: 'Control Costs:' }),
+    t('authPage.title.13', { defaultValue: 'Enhanced Flexibility:' }),
+    t('authPage.title.14', { defaultValue: 'Build Trust:' }),
+    t('authPage.title.15', { defaultValue: 'Join hundreds of organizations:' }),
+    t('authPage.title.16', { defaultValue: 'Let us handle the complexity:' }),
+  ]
+
+  const texts = [
+    t('authPage.text.1', { defaultValue: 'Launch secure and verifiable elections in just a few clicks.' }),
+    t('authPage.text.2', { defaultValue: 'Adaptable features that scale with your organization.' }),
+    t('authPage.text.3', { defaultValue: 'Save up to 10x compared to traditional voting methods.' }),
+    t('authPage.text.4', { defaultValue: 'Organize votes accessible on any device—mobile, tablet, or desktop.' }),
+    t('authPage.text.5', { defaultValue: 'Advanced encryption ensures your elections are secure and private.' }),
+    t('authPage.text.6', { defaultValue: 'Foster higher voter turnout with user-friendly tools.' }),
+    t('authPage.text.7', { defaultValue: 'Easily incorporate your branding and existing workflows.' }),
+    t('authPage.text.8', { defaultValue: 'Your voting processes are safe, secure, and ready to go.' }),
+    t('authPage.text.9', { defaultValue: 'Manage multiple elections effortlessly from one dashboard.' }),
+    t('authPage.text.10', { defaultValue: 'Real-time updates and insights at your fingertips.' }),
+    t('authPage.text.11', { defaultValue: 'Increase voter engagement with intuitive voting flows.' }),
+    t('authPage.text.12', { defaultValue: 'Reduce operational expenses for you and your voters.' }),
+    t('authPage.text.13', { defaultValue: 'Explore advanced options like anonymous voting or weighted votes.' }),
+    t('authPage.text.14', { defaultValue: 'Transparent and verifiable elections foster confidence in your results.' }),
+    t('authPage.text.15', { defaultValue: 'Embrace the future of voting. Start today!' }),
+    t('authPage.text.16', { defaultValue: 'Focus on what matters most.' }),
+  ]
 
   const [title, setTitle] = useState('')
   const [subTitle, setSubTitle] = useState('')
   const [sidebar, setSidebar] = useState<ReactNode>(null)
   const [back, setBack] = useState<NavigationFunctionParams>('/')
 
-  // Generate random indices
-  const [randomIndex] = useState(() => Math.floor(Math.random() * images.length)) // Generate once and keep it
-  const randomImage = images[randomIndex]
-  const randomTitle = titles[randomIndex]
-  const randomText = texts[randomIndex]
+  const [randomImageIndex] = useState(() => Math.floor(Math.random() * images.length)) // Generate once and keep it
+  const [randomTextIndex] = useState(() => Math.floor(Math.random() * texts.length)) // Generate once and keep it
+  const randomTitle = titles[randomTextIndex]
+  const randomText = texts[randomTextIndex]
+  const randomImage = images[randomImageIndex]
 
   return (
     <Flex
