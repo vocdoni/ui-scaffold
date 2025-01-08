@@ -1,4 +1,4 @@
-import { Box, Flex, Icon, Text } from '@chakra-ui/react'
+import { Box, Flex, Icon, Spinner, Text } from '@chakra-ui/react'
 import { DropzoneInputProps, DropzoneRootProps } from 'react-dropzone/.'
 import { Trans, useTranslation } from 'react-i18next'
 import { FiUploadCloud } from 'react-icons/fi'
@@ -7,10 +7,11 @@ export type UploaderProps = {
   getRootProps: <T extends DropzoneRootProps>(props?: T) => T
   getInputProps: <T extends DropzoneInputProps>(props?: T) => T
   isDragActive: boolean
+  isLoading?: boolean
   formats?: string[]
 }
 
-const Uploader = ({ getRootProps, getInputProps, isDragActive, formats }: UploaderProps) => {
+const Uploader = ({ getRootProps, getInputProps, isDragActive, isLoading, formats }: UploaderProps) => {
   const { t } = useTranslation()
 
   if (!formats) {
@@ -44,6 +45,8 @@ const Uploader = ({ getRootProps, getInputProps, isDragActive, formats }: Upload
       <Box>
         {isDragActive ? (
           <Text textAlign='center'>{t('uploader.drop_here')}</Text>
+        ) : isLoading ? (
+          <Spinner />
         ) : (
           <Trans
             i18nKey='uploader.click_or_drag_and_drop'
