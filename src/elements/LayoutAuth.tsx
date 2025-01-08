@@ -14,7 +14,6 @@ export type AuthOutletContextType = {
   setSidebar: React.Dispatch<React.SetStateAction<ReactNode>>
 }
 
-
 const images = [
   '/assets/illustrations/1.png',
   '/assets/illustrations/2.png',
@@ -32,47 +31,46 @@ const images = [
   '/assets/illustrations/6.png',
   '/assets/illustrations/7.png',
   '/assets/illustrations/8.png',
-];
+]
 
 //ToDo: Move the text to the i18n file, translate them and call the t() function
 const titles = [
-  "Simplified Setup:",
-  "Flexible Plans:",
-  "Cost Savings:",
-  "Universal Accessibility:",
-  "Trustworthy Technology:",
-  "Empower Participation:",
-  "Seamless Integration:",
+  'Simplified Setup:',
+  'Flexible Plans:',
+  'Cost Savings:',
+  'Universal Accessibility:',
+  'Trustworthy Technology:',
+  'Empower Participation:',
+  'Seamless Integration:',
   "Relax, We've Got You Covered:",
-  "Streamline Operations:",
-  "Stay Informed:",
-  "Boost Participation:",
-  "Control Costs:",
-  "Enhanced Flexibility:",
-  "Build Trust:",
-  "Join hundreds of organizations:",
-  "Let us handle the complexity:"
-];
+  'Streamline Operations:',
+  'Stay Informed:',
+  'Boost Participation:',
+  'Control Costs:',
+  'Enhanced Flexibility:',
+  'Build Trust:',
+  'Join hundreds of organizations:',
+  'Let us handle the complexity:',
+]
 
 const texts = [
-  "Launch secure and verifiable elections in just a few clicks.",
-  "Adaptable features that scale with your organization.",
-  "Save up to 10x compared to traditional voting methods.",
-  "Organize votes accessible on any device—mobile, tablet, or desktop.",
-  "Advanced encryption ensures your elections are secure and private.",
-  "Foster higher voter turnout with user-friendly tools.",
-  "Easily incorporate your branding and existing workflows.",
-  "Your voting processes are safe, secure, and ready to go.",
-  "Manage multiple elections effortlessly from one dashboard.",
-  "Real-time updates and insights at your fingertips.",
-  "Increase voter engagement with intuitive voting flows.",
-  "Reduce operational expenses for you and your voters.",
-  "Explore advanced options like anonymous voting or weighted votes.",
-  "Transparent and verifiable elections foster confidence in your results.",
-  "Embrace the future of voting. Start today!",
-  "Focus on what matters most."
-];
-
+  'Launch secure and verifiable elections in just a few clicks.',
+  'Adaptable features that scale with your organization.',
+  'Save up to 10x compared to traditional voting methods.',
+  'Organize votes accessible on any device—mobile, tablet, or desktop.',
+  'Advanced encryption ensures your elections are secure and private.',
+  'Foster higher voter turnout with user-friendly tools.',
+  'Easily incorporate your branding and existing workflows.',
+  'Your voting processes are safe, secure, and ready to go.',
+  'Manage multiple elections effortlessly from one dashboard.',
+  'Real-time updates and insights at your fingertips.',
+  'Increase voter engagement with intuitive voting flows.',
+  'Reduce operational expenses for you and your voters.',
+  'Explore advanced options like anonymous voting or weighted votes.',
+  'Transparent and verifiable elections foster confidence in your results.',
+  'Embrace the future of voting. Start today!',
+  'Focus on what matters most.',
+]
 
 const LayoutAuth = () => {
   const { t } = useTranslation()
@@ -83,10 +81,10 @@ const LayoutAuth = () => {
   const [back, setBack] = useState<NavigationFunctionParams>('/')
 
   // Generate random indices
-  const [randomIndex] = useState(() => Math.floor(Math.random() * images.length)); // Generate once and keep it
-  const randomImage = images[randomIndex];
-  const randomTitle = titles[randomIndex];
-  const randomText = texts[randomIndex];
+  const [randomIndex] = useState(() => Math.floor(Math.random() * images.length)) // Generate once and keep it
+  const randomImage = images[randomIndex]
+  const randomTitle = titles[randomIndex]
+  const randomText = texts[randomIndex]
 
   return (
     <Flex
@@ -150,32 +148,28 @@ const LayoutAuth = () => {
       </Flex>
       <AuthBanner>
         {sidebar}
-        <Flex
-          flexGrow={1}
-          alignItems="center"
-          justifyContent="center"
-          w="full"
-          direction={{ base: 'column' }}
-        >
+        <Flex flexGrow={1} alignItems='center' justifyContent='center' w='full' direction={{ base: 'column' }}>
           {/* Random Image Section */}
-          <Box flex="1" textAlign="center" mb={{ base: 4, md: 0 }}>
+          <Box flex='1' textAlign='center' mb={{ base: 4, md: 0 }}>
             <img
               src={randomImage}
-              alt="Dynamic Illustration"
+              alt='Dynamic Illustration'
               style={{
                 filter: 'invert(1)',
                 margin: '0 auto',
                 maxWidth: '100%',
                 height: 'auto',
-                marginTop: '420px'
+                marginTop: '420px',
               }}
             />
           </Box>
 
           {/* Random Text Section */}
-          <Box flex="1" textAlign="left" px={{ base: 4, md: 8 }} marginTop="50px" maxW="500px">
+          <Box flex='1' textAlign='left' px={{ base: 4, md: 8 }} marginTop='50px' maxW='500px'>
             <ul style={{ listStyleType: 'none', padding: 0 }}>
-              <li style={{ color: '#fff', marginBottom: '10px', fontSize: '24px', fontWeight: '600' }}>{randomTitle}</li>
+              <li style={{ color: '#fff', marginBottom: '10px', fontSize: '24px', fontWeight: '600' }}>
+                {randomTitle}
+              </li>
               <li style={{ color: '#fff', marginBottom: '10px', fontSize: '22px' }}>{randomText}</li>
             </ul>
           </Box>
