@@ -878,10 +878,10 @@
   },
   "passwords_do_not_match": "",
   "plan_upgrade": {
-    "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
-    "feature_available_in": "Feature available in:",
+    "dont_limit_yourself": "No et limitis. Uneix-te a la família de 725 organitzacions que confien en <2>Vocdoni</2>.",
+    "feature_available_in": "Funció disponible a:",
     "feature_unavailable": "Ups... el teu <2>pla {{ plan, lowercase }}</2> no suporta {{ feature }}.",
-    "satisfaction_rate": "97% satisfaction rate, for only 9€/month."
+    "satisfaction_rate": "Satisfacció del 97%, per només 9€/mes."
   },
   "preview": "Preview",
   "pricing": {

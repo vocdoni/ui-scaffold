@@ -872,7 +872,7 @@
   "plan_upgrade": {
     "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
     "feature_available_in": "Feature available in:",
-    "feature_unavailable": "Oops ... your <2>free plan</2> doesn't support {{feature}}.",
+    "feature_unavailable": "Oops ... your <2>{{ plan, lowercase }} plan</2> doesn't support {{feature}}.",
     "satisfaction_rate": "97% satisfaction rate, for only 9€/month."
   },
   "preview": "Preview",
