@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next'
 import { FaChevronLeft } from 'react-icons/fa'
 import { NavLink, Outlet, To } from 'react-router-dom'
 import AuthBanner from '~components/Organization/Dashboard/AuthBanner'
-import { useMemo } from 'react'
 
 export type NavigationFunctionParams = To | number
 
@@ -151,13 +150,13 @@ const LayoutAuth = () => {
                 margin: '0 auto',
                 maxWidth: '100%',
                 height: 'auto',
-                marginTop: '420px',
+                marginTop: '60px',
               }}
             />
           </Box>
 
           {/* Random Text Section */}
-          <Box flex='1' textAlign='left' px={{ base: 4, md: 8 }} marginTop='50px' maxW='500px'>
+          <Box flex='1' textAlign='left' px={{ base: 4, md: 8 }} marginY='60px' maxW='500px'>
             <ul style={{ listStyleType: 'none', padding: 0 }}>
               <li style={{ color: '#fff', marginBottom: '10px', fontSize: '24px', fontWeight: '600' }}>
                 {randomTitle}
