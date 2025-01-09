@@ -22,6 +22,7 @@ import { ApiEndpoints } from '~components/Auth/api'
 import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
 import { PlanId } from '~constants'
+import { QueryKeys } from '~src/queries/keys'
 import { Routes } from '~src/router/routes'
 import { currency } from '~utils/numbers'
 import PricingCard from './Card'
@@ -77,7 +78,7 @@ type FormValues = {
 export const usePlans = () => {
   const { bearedFetch } = useAuth()
   return useQuery({
-    queryKey: ['plans'],
+    queryKey: QueryKeys.plans,
     queryFn: () => bearedFetch<Plan[]>(ApiEndpoints.Plans),
     // Sort by price
     select: (data) => data.sort((a, b) => a.startingPrice - b.startingPrice),

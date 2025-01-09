@@ -4,6 +4,7 @@ import { useCallback } from 'react'
 import { OrganizationData } from '~components/Account/AccountTypes'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
+import { QueryKeys } from '~src/queries/keys'
 
 const useSaasOrganization = ({
   options,
@@ -14,7 +15,7 @@ const useSaasOrganization = ({
   const { account } = useClient()
 
   return useQuery({
-    queryKey: ['organizations', 'info', account?.address],
+    queryKey: QueryKeys.organization.info(account?.address),
     queryFn: () => bearedFetch<OrganizationData>(ApiEndpoints.Organization.replace('{address}', account?.address)),
     enabled: !!account?.address,
     ...options,

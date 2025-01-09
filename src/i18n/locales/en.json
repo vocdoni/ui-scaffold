@@ -27,6 +27,44 @@
     "subtitle": "Cut costs, Save Time: Secure, Private, and GDPR Compliant Voting",
     "title": "The global voting platform"
   },
+  "authPage": {
+    "text": {
+      "1": "Launch secure and verifiable elections in just a few clicks.",
+      "2": "Adaptable features that scale with your organization.",
+      "3": "Save up to 10x compared to traditional voting methods.",
+      "4": "Organize votes accessible on any device—mobile, tablet, or desktop.",
+      "5": "Advanced encryption ensures your elections are secure and private.",
+      "6": "Foster higher voter turnout with user-friendly tools.",
+      "7": "Easily incorporate your branding and existing workflows.",
+      "8": "Your voting processes are safe, secure, and ready to go.",
+      "9": "Manage multiple elections effortlessly from one dashboard.",
+      "10": "Real-time updates and insights at your fingertips.",
+      "11": "Increase voter engagement with intuitive voting flows.",
+      "12": "Reduce operational expenses for you and your voters.",
+      "13": "Explore advanced options like anonymous voting or weighted votes.",
+      "14": "Transparent and verifiable elections foster confidence in your results.",
+      "15": "Embrace the future of voting. Start today!",
+      "16": "Focus on what matters most."
+    },
+    "title": {
+      "1": "Simplified Setup:",
+      "2": "Flexible Plans:",
+      "3": "Cost Savings:",
+      "4": "Universal Accessibility:",
+      "5": "Trustworthy Technology:",
+      "6": "Empower Participation:",
+      "7": "Seamless Integration:",
+      "8": "Relax, We've Got You Covered:",
+      "9": "Streamline Operations:",
+      "10": "Stay Informed:",
+      "11": "Boost Participation:",
+      "12": "Control Costs:",
+      "13": "Enhanced Flexibility:",
+      "14": "Build Trust:",
+      "15": "Join hundreds of organizations:",
+      "16": "Let us handle the complexity:"
+    }
+  },
   "avatar": {
     "hint": "Min 200x200px .PNG or .JPEG",
     "label": "Logo/Avatar"

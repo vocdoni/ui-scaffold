@@ -1,4 +1,5 @@
 import { AccountData, FetchElectionsParameters, VocdoniSDKClient } from '@vocdoni/sdk'
+import { QueryKeys } from './keys'
 
 type PaginatedElectionsParams = {
   page?: number
@@ -11,7 +12,7 @@ export const paginatedElectionsQuery = (
   params: PaginatedElectionsParams
 ) => ({
   enabled: !!account?.address,
-  queryKey: ['organization', 'elections', account?.address, params],
+  queryKey: QueryKeys.organization.elections(account?.address, params),
   queryFn: async () =>
     client.fetchElections({
       organizationId: account?.address,

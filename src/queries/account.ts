@@ -1,6 +1,7 @@
 import { DefinedInitialDataOptions, QueryKey, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { api, ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
+import { QueryKeys } from './keys'
 
 export interface Organization {
   address: string
@@ -45,7 +46,7 @@ export const useProfile = (
 
   return useQuery<User>({
     ...options,
-    queryKey: ['profile'],
+    queryKey: QueryKeys.profile,
     queryFn: () => bearedFetch<User>(ApiEndpoints.Me),
   })
 }
@@ -61,7 +62,7 @@ export const useUpdateProfile = () => {
         body,
       }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['profile'] })
+      queryClient.invalidateQueries({ queryKey: QueryKeys.profile })
     },
   })
 }

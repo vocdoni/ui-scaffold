@@ -21,6 +21,7 @@ import { Link as ReactRouterLink } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
 import { SubscriptionType, useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
+import { QueryKeys } from '~src/queries/keys'
 import { Routes } from '~src/router/routes'
 import { usePricingModal } from './use-pricing-modal'
 
@@ -111,7 +112,7 @@ export const SubscriptionPayment = ({ amount, lookupKey }: SubscriptionPaymentDa
       nsub = await checkSubscription()
     }
     setSubscriptionCompleted(true)
-    await queryClient.invalidateQueries({ queryKey: ['organizationSubscription'] })
+    await queryClient.invalidateQueries({ queryKey: QueryKeys.organization.subscription() })
   }
 
   const options = {
