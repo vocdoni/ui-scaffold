@@ -19,7 +19,7 @@ import { Trans } from 'react-i18next'
 import { IoMdMoon, IoMdSunny } from 'react-icons/io'
 import { Link as RouterLink } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
-import LanguagesListAccordion from '~components/Layout/LanguagesListAccordion'
+import LanguagesListAccordion from '~components/Navbar/LanguagesList'
 import { useProfile } from '~src/queries/account'
 import { Routes } from '~src/router/routes'
 
