@@ -155,7 +155,6 @@ export const colors = {
         light: colorsBase.white.pure,
         dark: colorsBase.blue.grayish,
       },
-      description: colorsBase.gray.normal,
       text: {
         light: colorsBase.primary,
         dark: colorsBase.white.pure,

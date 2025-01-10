@@ -74,7 +74,7 @@ export const ProcessView = () => {
               toLight={'var(--chakra-colors-dashboard-read_more-to-light)'}
               toDark={'var(--chakra-colors-dashboard-read_more-to-dark)'}
             >
-              <ElectionDescription fontSize='lg' lineHeight={1.5} color='dashboard.read_more.description' />
+              <ElectionDescription fontSize='lg' lineHeight={1.5} />
             </ReadMoreMarkdownWrapper>
             <ReadMoreMarkdownButton
               alignSelf='start'
