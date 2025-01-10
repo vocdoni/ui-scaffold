@@ -5,8 +5,11 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
 
 const dashboard = definePartsStyle({
   button: {
-    paddingY: '5rem',
-    paddingX: '2rem',
+    borderRadius: 'xl',
+    bg: 'dashboard.sidebar.bg.light',
+    boxShadow: '0 0 10px #e3e3e3',
+    _dark: { bg: 'dashboard.sidebar.bg.dark', boxShadow: '0 0 10px #101010' },
+    p: 4,
   },
   container: {
     border: 'none',

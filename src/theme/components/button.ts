@@ -46,6 +46,7 @@ const outline = defineStyle((props) => {
     border: '1px solid',
     borderColor: colorScheme === 'gray' ? 'button.variant.common.border_color.light' : `${colorScheme}.600`,
     color: colorScheme === 'gray' ? 'button.variant.common.color.light' : `${colorScheme}.600`,
+    textDecoration: 'none',
 
     _hover: {
       bgColor: colorScheme === 'gray' ? 'button.variant.common.hover.bg.light' : `${colorScheme}.700`,
@@ -124,7 +125,7 @@ const link = defineStyle((props) => {
   const { colorScheme } = props
   return {
     color: colorScheme === 'gray' ? 'button.variant.common.color.light' : `${colorScheme}.700`,
-
+    textDecoration: 'underline',
     _hover: {
       color: colorScheme === 'gray' ? 'button.variant.common.color.light' : `${colorScheme}.800`,
       textDecoration: 'none',
@@ -237,7 +238,7 @@ export const Button = defineStyleConfig({
   },
   sizes,
   defaultProps: {
-    variant: 'primary',
+    variant: 'outline',
     size: 'md',
     colorScheme: 'brand',
   },
