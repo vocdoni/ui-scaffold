@@ -4,13 +4,12 @@ import { useTranslation } from 'react-i18next'
 import { FaChevronLeft } from 'react-icons/fa'
 import { NavLink, Outlet, To } from 'react-router-dom'
 import AuthBanner from '~components/Organization/Dashboard/AuthBanner'
-import { useMemo } from 'react'
 
 export type NavigationFunctionParams = To | number
 
 export type AuthOutletContextType = {
   setTitle: React.Dispatch<React.SetStateAction<string>>
-  setSubTitle: React.Dispatch<React.SetStateAction<string>>
+  setSubtitle: React.Dispatch<React.SetStateAction<string>>
   setBack: React.Dispatch<React.SetStateAction<NavigationFunctionParams>>
   setSidebar: React.Dispatch<React.SetStateAction<ReactNode>>
 }
@@ -67,8 +66,8 @@ const LayoutAuth = () => {
     t('authPage.text.16', { defaultValue: 'Focus on what matters most.' }),
   ]
 
-  const [title, setTitle] = useState('')
-  const [subTitle, setSubTitle] = useState('')
+  const [title, setTitle] = useState<string | null>(null)
+  const [subtitle, setSubtitle] = useState<string | null>(null)
   const [sidebar, setSidebar] = useState<ReactNode>(null)
   const [back, setBack] = useState<NavigationFunctionParams>('/')
 
@@ -115,15 +114,21 @@ const LayoutAuth = () => {
           pt={10}
         >
           <Flex direction='column' gap={6} w={'100%'} maxW='500px'>
-            <Box me='auto'>
-              <Heading fontSize='4xl' mb={2.5}>
-                {title}
-              </Heading>
-              <Text color={'account.description'} fontWeight='400' fontSize='md'>
-                {subTitle}
-              </Text>
-            </Box>
-            <Outlet context={{ setTitle, setSubTitle, setSidebar, setBack } satisfies AuthOutletContextType} />
+            {(title || subtitle) && (
+              <Box me='auto'>
+                {title && (
+                  <Heading fontSize='4xl' mb={2.5}>
+                    {title}
+                  </Heading>
+                )}
+                {subtitle && (
+                  <Text color={'account.description'} fontWeight='400' fontSize='md'>
+                    {subtitle}
+                  </Text>
+                )}
+              </Box>
+            )}
+            <Outlet context={{ setTitle, setSubtitle, setSidebar, setBack } satisfies AuthOutletContextType} />
           </Flex>
         </Flex>
         <Text

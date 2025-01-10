@@ -43,7 +43,7 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
   const { t } = useTranslation()
   const toast = useToast()
   const navigate = useNavigate()
-  const { setTitle, setSubTitle } = useOutletContext<AuthOutletContextType>()
+  const { setTitle, setSubtitle } = useOutletContext<AuthOutletContextType>()
   const methods = useForm<FormData>({
     defaultValues: { email: emailProp },
   })
@@ -60,7 +60,7 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
   useEffect(() => {
     // set SignUp title and description
     setTitle(t('signin_title'))
-    setSubTitle(t('signin_subtitle'))
+    setSubtitle(t('signin_subtitle'))
 
     // reset the form to clear the errors
     reset()

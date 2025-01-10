@@ -19,7 +19,7 @@ const AcceptInvitation: React.FC<InviteFields> = ({ address, code, email }) => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const toast = useToast()
-  const { setTitle, setSubTitle } = useOutletContext<AuthOutletContextType>()
+  const { setTitle, setSubtitle } = useOutletContext<AuthOutletContextType>()
 
   const acceptInvitationMutation = useMutation({
     mutationFn: ({ code, address }: { code: string; address: string }) =>
@@ -62,7 +62,7 @@ const AcceptInvitation: React.FC<InviteFields> = ({ address, code, email }) => {
     if (error?.code !== ErrorCode.MalformedJSONBody) return
 
     setTitle(t('invite.create_account_title', { defaultValue: 'Create your account' }))
-    setSubTitle(
+    setSubtitle(
       t('invite.create_account_subtitle', { defaultValue: 'You need an account first, in order to accept your invite' })
     )
   }, [acceptInvitationMutation.isError])

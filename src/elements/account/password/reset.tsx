@@ -7,7 +7,7 @@ import { AuthOutletContextType } from '~elements/LayoutAuth'
 const PasswordReset = () => {
   const [searchParams] = useSearchParams()
   const { t } = useTranslation()
-  const { setTitle, setSubTitle } = useOutletContext<AuthOutletContextType>()
+  const { setTitle, setSubtitle } = useOutletContext<AuthOutletContextType>()
 
   const code = searchParams.get('code') || ''
   const email = searchParams.get('email') || ''
@@ -15,13 +15,13 @@ const PasswordReset = () => {
   // Set layout title and subtitle
   useEffect(() => {
     setTitle(t('password_reset.title', { defaultValue: 'Password reset' }))
-    setSubTitle(
+    setSubtitle(
       t('password_reset.subtitle', {
         defaultValue:
           "If your email corresponds to an existing account, you'll receive an email with a code to reset your password.",
       })
     )
-  }, [setTitle, setSubTitle, t])
+  }, [setTitle, setSubtitle, t])
 
   return <PasswordResetForm code={code} email={email} />
 }
