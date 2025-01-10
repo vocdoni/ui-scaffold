@@ -10,7 +10,10 @@ const baseStyle = definePartsStyle((props) => {
     container: {
       border: '1px solid',
       borderColor: `${colorScheme}.200`,
-      width: 'auto',
+      width: 'fit-content',
+      display: 'flex',
+      justifyContent: 'center',
+
       _dark: {
         borderColor: `${colorScheme}.300`,
       },
