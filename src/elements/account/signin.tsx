@@ -6,12 +6,12 @@ import { AuthOutletContextType } from '~elements/LayoutAuth'
 
 const Signin = () => {
   const { t } = useTranslation()
-  const { setTitle, setSubTitle } = useOutletContext<AuthOutletContextType>()
+  const { setTitle, setSubtitle } = useOutletContext<AuthOutletContextType>()
 
   // Set layout title and subtitle
   useEffect(() => {
     setTitle(t('signin_title'))
-    setSubTitle(t('signin_subtitle'))
+    setSubtitle(t('signin_subtitle'))
   }, [])
 
   return <SignIn />

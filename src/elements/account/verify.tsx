@@ -8,7 +8,7 @@ import { AuthOutletContextType } from '~elements/LayoutAuth'
 const Verify = () => {
   const { t } = useTranslation()
   const [searchParams] = useSearchParams()
-  const { setTitle, setSubTitle } = useOutletContext<AuthOutletContextType>()
+  const { setTitle, setSubtitle } = useOutletContext<AuthOutletContextType>()
 
   const email = searchParams.get('email')
   const code = searchParams.get('code')
@@ -16,14 +16,14 @@ const Verify = () => {
   useEffect(() => {
     if (email && code) {
       setTitle(t('verify_mail.verifying_title', { email: email, defaultValue: 'Verifying {{ email }}' }))
-      setSubTitle(
+      setSubtitle(
         t('verify_mail.verifying_subtitle', {
           defaultValue: 'Await until we verify your email address. You will be redirect on success.',
         })
       )
     } else {
       setTitle(t('verify.verify_your_email', { defaultValue: 'Verify your email' }))
-      setSubTitle(
+      setSubtitle(
         t('verify.enter_verification_code', {
           defaultValue: 'Enter the verification code sent to your email',
         })

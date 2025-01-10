@@ -6,13 +6,13 @@ import { AuthOutletContextType } from '~elements/LayoutAuth'
 
 const PasswordForgot = () => {
   const { t } = useTranslation()
-  const { setTitle, setSubTitle } = useOutletContext<AuthOutletContextType>()
+  const { setTitle, setSubtitle } = useOutletContext<AuthOutletContextType>()
 
   // Set layout title and subtitle
   useEffect(() => {
     setTitle(t('forgot_password_title'))
-    setSubTitle(t('forgot_password_subtitle'))
-  }, [setTitle, setSubTitle, t])
+    setSubtitle(t('forgot_password_subtitle'))
+  }, [setTitle, setSubtitle, t])
 
   return <PasswordForgotForm />
 }

@@ -67,7 +67,7 @@ const VerifyForm = ({ email, initialCode = '', autoSubmit = false }: VerifyFormP
 
 export const VerificationPending = ({ email, code }: { email: string; code?: string }) => {
   const { t } = useTranslation()
-  const { setTitle, setSubTitle } = useOutletContext<AuthOutletContextType>()
+  const { setTitle, setSubtitle } = useOutletContext<AuthOutletContextType>()
   const {
     mutate: resend,
     isError: isResendError,
@@ -78,7 +78,7 @@ export const VerificationPending = ({ email, code }: { email: string; code?: str
 
   useEffect(() => {
     setTitle(t('verify.account_created_succesfully', { defaultValue: 'Account created successfully!' }))
-    setSubTitle(
+    setSubtitle(
       t('verify.verification_email_is_sent', {
         defaultValue: 'A verification email has been sent to:',
       })

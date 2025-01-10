@@ -33,7 +33,7 @@ const SignUp = ({ invite }: SignupProps) => {
   const { t } = useTranslation()
   const { register } = useAuth()
   const inviteSignup = useSignupFromInvite(invite?.address)
-  const { setTitle, setSubTitle } = useOutletContext<AuthOutletContextType>()
+  const { setTitle, setSubtitle } = useOutletContext<AuthOutletContextType>()
 
   const methods = useForm<FormData>({
     defaultValues: {
@@ -51,7 +51,7 @@ const SignUp = ({ invite }: SignupProps) => {
   useEffect(() => {
     // set SignUp title and description
     setTitle(t('signup_title'))
-    setSubTitle(t('signup_subtitle'))
+    setSubtitle(t('signup_subtitle'))
   }, [])
 
   const onSubmit = (user: FormData) => {
