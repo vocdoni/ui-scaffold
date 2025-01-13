@@ -9,58 +9,28 @@ import header from '/shared/votacions_cap.jpg'
 const processes = [
   {
     //1
-    title: "Aprovació, si escau, de l'acta de l'anterior assemblea.",
-    pid: '6b342d99f21863ca71be6765bc582f254eb1c49cf9739bbf798e020c00000009',
+    title: "Votació Coib 1",
+    pid: '6be21a5a9dc00bc6e9d8c567e84ab2221e5c2f9a4b21b66f020b020400000003',
   },
   {
     //2
-    title: 'Aprovació, si escau, del Reglament electoral.',
-    pid: '6b342d99f21863ca71be6765bc582f254eb1c49cf9739bbf798e020c0000000a',
+    title: 'Votació Coib 2',
+    pid: '6be21a5a9dc00bc6e9d8c567e84ab2221e5c2f9a4b21b66f020b020400000003',
   },
   {
     //3
-    title: "Aprovació, si escau, del Reglament de l'Assemblea General Ordinària 2024.",
-    pid: '6b342d99f21863ca71be6765bc582f254eb1c49cf9739bbf798e020c0000000b',
-  },
-  {
-    //4
-    title: "Aprovació, si escau, del projecte d'activitats 2023.",
-    pid: '6b342d99f21863ca71be6765bc582f254eb1c49cf9739bbf798e020c0000000c',
-  },
-  {
-    //5
-    title: "Aprovació, si escau, de l'estat de comptes 2023.",
-    pid: '6b342d99f21863ca71be6765bc582f254eb1c49cf9739bbf798e020c0000000d',
-  },
-  {
-    //6
-    title: "Aprovació, si escau, del Pla d'activitats 2024.",
-    pid: '6b342d99f21863ca71be6765bc582f254eb1c49cf9739bbf798e020c0000000e',
-  },
-  {
-    //7
-    title: "Aprovació, si escau, del Pressupost de l'entitat 2024.",
-    pid: '6b342d99f21863ca71be6765bc582f254eb1c49cf9739bbf798e020c0000000f',
-  },
-  {
-    //8
-    title: "Ratificació de les incorporacions per substitució a l'Executiva 2024-2026.",
-    pid: '6b342d99f21863ca71be6765bc582f254eb1c49cf9739bbf798e020c00000010',
-  },
-  {
-    //9
-    title: "Elecció de nous membres de l'Executiva 2024-2028.",
-    pid: '6b342d99f21863ca71be6765bc582f254eb1c49cf9739bbf798e020c00000011',
-  },
+    title: "Votació Coib3",
+    pid: '6be21a5a9dc00bc6e9d8c567e84ab2221e5c2f9a4b21b66f020b020400000003',
+  }
 ]
 
 const PlataformaWrapper = () => (
   <ElectionProvider id={processes[0].pid}>
-    <PxLL />
+    <Coib />
   </ElectionProvider>
 )
 
-const PxLL = () => {
+const Coib = () => {
   const videoRef = useRef<HTMLDivElement>(null)
   const [videoTop, setVideoTop] = useState<boolean>(false)
   const [connected, setConnected] = useState<boolean>(false)
@@ -102,16 +72,14 @@ const PxLL = () => {
       mx='auto'
       p={5}
       minH='100vh'
-      style={{ marginTop: '-30px' }}
     >
-      <Flex flexDirection='column' gap={10} maxW='850px' mx='auto' p={5} style={{ marginTop: '0px' }}>
-        <Image src={header} alt='Assemblea General de socis' mx='auto' />
+      <Flex flexDirection='column' gap={10} maxW='850px' mx='auto' p={5} style={{ marginTop: '100px' }}>
         <Box>
-          <Text as='h1' fontWeight='bold' fontSize='32px' textAlign='center' style={{ marginTop: '-15px' }}>
+          <Text as='h1' fontWeight='bold' fontSize='36px' textAlign='center' style={{ marginTop: '-15px' }}>
             Assemblea General Ordinària
           </Text>
           <Text as='h2' fontSize='14px' textAlign='center'>
-            Associació Plataforma per la Llengua - Col·lectiu l'Esbarzer <i>(16/03/2024)</i>
+            Col·legi Oficial Infermeres i Infermers de Barcelona <i>(01/02/2025)</i>
           </Text>
         </Box>
       </Flex>
@@ -124,21 +92,20 @@ const PxLL = () => {
       >
         <Box>
           <Text>
-            <Text as='h3' fontWeight='bold'>
+            <Text as='h3' fontWeight='bold' fontSize='20px'>
               Ordre del dia de l'Assemblea General Ordinària
               <br />
               <br />
             </Text>
             <Text fontSize='18px'>
-              <OrderedList ml='15px'>
-                {processes.map((process, index) => (
-                  <ListItem key={index}>{process.title}</ListItem>
-                ))}
-                <div>
-                  <i> - Presentació de candidatura.</i>
-                  <br />
-                  <i> - Votacions.</i>
-                </div>
+              <OrderedList ml='35px'>
+                <ListItem>Benvinguda.</ListItem>
+                <ListItem>Presentació Candidatures.</ListItem>
+                <div style={{color: '#297b90'}}>Votació 1: `Elecció de Candidats`.</div>
+                <ListItem>Pressupost 2024.</ListItem>
+                <div style={{color: '#297b90'}}>Votació 2: `Aprovació Presspost 2024`.</div>
+                <ListItem>Pressupost 2025.</ListItem>
+                <div style={{color: '#297b90'}}>Votació 3: `Aprovació Pressupost 2025`.</div>
                 <ListItem>Torn obert de preguntes.</ListItem>
               </OrderedList>
             </Text>
@@ -147,17 +114,17 @@ const PxLL = () => {
             <Text style={{ marginTop: '30px' }}>
               - Enllaç a documentació externa:{' '}
               <a
-                href='https://www.plataforma-llengua.cat/ago-2024-documentacio/'
+                href=''
                 target='_blank'
-                style={{ textDecoration: 'underline', color: '#e40800' }}
+                style={{ textDecoration: 'underline', color: '#297b90' }}
               >
                 Documentació 🔗
               </a>
               <br />- Enllaç a plataforma de precs i preguntes:{' '}
               <a
-                href='https://www.plataforma-llengua.cat/ago-2024-precs-i-preguntes/'
+                href=''
                 target='_blank'
-                style={{ textDecoration: 'underline', color: '#e40800' }}
+                style={{ textDecoration: 'underline', color: '#297b90' }}
               >
                 Precs i Preguntes 🔗
               </a>
@@ -173,11 +140,11 @@ const PxLL = () => {
               top={20}
               right={10}
               zIndex={100}
-              w={{ base: '100%', lg: '400px' }}
+              w={{ base: '100%', lg: '500px' }}
             >
               <AspectRatio ratio={16 / 9}>
                 <ReactPlayer
-                  url='https://www.youtube.com/embed/xd_H4RCSLxc?si=M5o46L4ctS3yCR8g'
+                  url='https://www.youtube.com/watch?v=0-ULTdNUtDo'
                   width='100%'
                   height='100%'
                   playing
@@ -188,10 +155,12 @@ const PxLL = () => {
           </Box>
         )}
       </Flex>
-      {election && !isAdmin && <SpreadsheetAccess setConnected={setConnected} connected={connected} />}
+      <Box w='800px'>
+        {election && !isAdmin && <SpreadsheetAccess setConnected={setConnected} connected={connected} />}
+      </Box>
       {canViewProcesses && (
-        <Box>
-          <Text alignSelf='start' mb={10} as='h3' fontWeight='bold'>
+        <Box minW='800px'>
+          <Text alignSelf='start' mb={10} as='h3' fontWeight='bold' fontSize='22px'>
             <br />
             Votacions:
           </Text>
@@ -231,16 +200,23 @@ const PxLL = () => {
           </Flex>
         </Box>
       )}
-      <Text style={{ marginBottom: '50px' }}>
-        Per poder accedir a la votació i veure el vídeo en temps real, heu de prémer sobre “Identificar-se”. Us
-        demanarem el vostre DNI/NIE i el codi de pas que heu rebut per correu electrònic. Posteriorment, podreu emetre
-        el vostre vot de forma segura.
-      </Text>
-      <Text style={{ marginBottom: '150px' }}>
+      {canViewProcesses && (
+        <Text style={{ marginBottom: '50px', maxWidth: '800px', textAlign: 'center' }}>
+          Pulseu sobre la votació i s'obrirà una finestra amb tota la informació per votar. Un cop votat, podeu tancar la pestanya per tornar a aquesta pàgina.
+        </Text>
+      )}
+      {!canViewProcesses && (
+        <Text style={{ marginBottom: '50px', maxWidth: '800px', textAlign: 'center' }}>
+          Per poder accedir a la votació i veure el vídeo en temps real, heu de prémer sobre “Identificar-se”. Us
+          demanarem la vostre identificació. Posteriorment, podreu emetre
+          el vostre vot de forma segura.
+        </Text>
+      )}
+      <Text style={{ marginBottom: '150px', maxWidth: '800px', textAlign: 'center' }}>
         <i>
           <strong>
-            En cas de dubte o dificultats tècniques ens pots contactar al telèfon <u>933 211 803</u> o al correu{' '}
-            <u>socis@plataforma-llengua.cat</u>
+            En cas de dubte o dificultats tècniques ens pots contactar al telèfon <u>nº telefon</u> o al correu{' '}
+            <u>info@coib.cat</u>
           </strong>
         </i>
       </Text>

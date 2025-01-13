@@ -13,9 +13,9 @@ export const colorsBase = {
     dark: '#606f88',
   },
   primary: {
-    main: '#FFC900',
-    dark: '#f4c100',
-    dark2: '#f4ad00',
+    main: '#297b90',
+    dark: '#DFE7E9',
+    dark2: '#DFE7E9',
   },
   red: '#E53E3E',
   white: {

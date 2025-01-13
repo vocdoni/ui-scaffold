@@ -29,7 +29,7 @@ jobs:
           CUSTOM_ORGANIZATION_DOMAINS: ${{ secrets.CUSTOM_ORGANIZATION_DOMAINS }}
           CSP_URL: ${{ secrets.CSP_URL }}}
           CSP_PUBKEY: ${{ secrets.CSP_PUBKEY }}
-          THEME: pxll
+          THEME: coib
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2.0
@@ -72,7 +72,7 @@ jobs:
           CSP_URL: ${{ secrets.CSP_URL }}}
           CSP_PUBKEY: ${{ secrets.CSP_PUBKEY }}
           FEATURES: '{"languages":["ca"], "login": ["web2", "recovery", "web3"]}'
-          THEME: pxll
+          THEME: coib
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2.0

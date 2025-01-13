@@ -16,7 +16,6 @@ import { GoBack } from '~theme/icons'
 import { ActionsMenu } from './ActionsMenu'
 import { CreatedBy } from './CreatedBy'
 import { ProcessDate } from './Date'
-import header from '/shared/votacions_cap.jpg'
 
 const ProcessHeader = () => {
   const { t } = useTranslation()
@@ -35,15 +34,12 @@ const ProcessHeader = () => {
 
   return (
     <Box mb={10}>
-      {showOrgInformation && import.meta.env.theme !== 'pxll' && (
+      {showOrgInformation && import.meta.env.theme !== 'coib' && (
         <Button as={Link} to={`/organization/0x${election?.organizationId}`} variant='go-back' mt={5}>
           <GoBack />
           <OrganizationName as='span' />
         </Button>
       )}
-      <Box w='55%' mx='auto' maxH='200px' my='10px' overflow='hidden' mb='30px'>
-        <Image src={header} w='100%' h='auto' objectFit='cover' />
-      </Box>
       <Flex direction={{ base: 'column', lg2: 'row' }} mb={7} gap={10}>
         <Box flexGrow={0} flexShrink={0} flexBasis={{ base: '100%', md: '60%', lg: '65%', lg2: '70%', xl2: '75%' }}>
           <ElectionTitle fontSize={{ base: '32px', md: '34px' }} textAlign='left' my={5} />
@@ -128,7 +124,7 @@ const ProcessHeader = () => {
             </Box>
           )}
 
-          {showOrgInformation && import.meta.env.theme !== 'pxll' && (
+          {showOrgInformation && import.meta.env.theme !== 'coib' && (
             <Box w={{ lg2: 'full' }}>
               <Text fontWeight='bold' mb={1}>
                 {t('process.created_by')}
