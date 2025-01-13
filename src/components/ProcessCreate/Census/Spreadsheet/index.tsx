@@ -107,7 +107,7 @@ export const CensusCsvManager = () => {
             </ListItem>
           </UnorderedList>
           <FormControl
-            bgColor='process_create.bg'
+            bgColor='#DFE7E9'
             borderRadius='md'
             sx={{
               '& > label': {
