@@ -11,14 +11,12 @@ import {
   MenuItem,
   MenuList,
   Spinner,
-  useColorMode,
-  useColorModeValue,
 } from '@chakra-ui/react'
 import { LogOut01, Paperclip, UserSquare } from '@untitled-ui/icons-react'
 import { Trans } from 'react-i18next'
-import { IoMdMoon, IoMdSunny } from 'react-icons/io'
 import { Link as RouterLink } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
+import { DropdownColorModeSwitcher } from '~components/Layout/ColorModeSwitcher'
 import LanguagesListAccordion from '~components/Navbar/LanguagesList'
 import { useProfile } from '~src/queries/account'
 import { Routes } from '~src/router/routes'
@@ -26,9 +24,6 @@ import { Routes } from '~src/router/routes'
 const AccountMenu: React.FC<BoxProps> = (props) => {
   const { logout } = useAuth()
   const { data: profile, isLoading } = useProfile()
-  const { toggleColorMode } = useColorMode()
-  const isLightMode = useColorModeValue(true, false)
-  const SwitchIcon = useColorModeValue(IoMdMoon, IoMdSunny)
 
   if (isLoading) {
     return (
@@ -72,10 +67,7 @@ const AccountMenu: React.FC<BoxProps> = (props) => {
               <MenuItem closeOnSelect={false}>
                 <LanguagesListAccordion />
               </MenuItem>
-              <MenuItem onClick={toggleColorMode} closeOnSelect={true}>
-                <Icon as={SwitchIcon} />
-                <Trans i18nKey={isLightMode ? 'dark_mode' : 'light_mode'}></Trans>
-              </MenuItem>
+              <DropdownColorModeSwitcher />
               <MenuDivider />
               <MenuItem onClick={logout} closeOnSelect={true}>
                 <Icon as={LogOut01} />
