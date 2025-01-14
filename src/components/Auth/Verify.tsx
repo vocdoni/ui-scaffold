@@ -40,7 +40,7 @@ const VerifyForm = ({ email, initialCode = '', autoSubmit = false }: VerifyFormP
     }
   }, [autoSubmit, code])
 
-  if (autoSubmit && code) {
+  if (autoSubmit && code && !isVerifyError) {
     return (
       <Box height={'100px'}>
         <Loading minHeight={1} />
@@ -56,10 +56,13 @@ const VerifyForm = ({ email, initialCode = '', autoSubmit = false }: VerifyFormP
       </Button>
       <FormSubmitMessage
         isError={isVerifyError}
-        error={t('verify_mail.error_subtitle', {
-          defaultValue:
-            'We found an error verifying your email, please check verification mail to ensure all data is correct',
-        })}
+        error={
+          verifyError ||
+          t('verify_mail.error_subtitle', {
+            defaultValue:
+              'We found an error verifying your email, please check verification mail to ensure all data is correct',
+          })
+        }
       />
     </>
   )
