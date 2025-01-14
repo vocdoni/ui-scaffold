@@ -62,7 +62,6 @@ export const PlanUpgrade = ({ feature, text, value }: PlanUpgradeData) => {
                 )}
                 <Text>{translations[plan.id].title}</Text>
               </Flex>
-              {/* {key < plans.length - 1 && <Divider orientation='vertical' />} */}
             </Fragment>
           ))}
         </Flex>
