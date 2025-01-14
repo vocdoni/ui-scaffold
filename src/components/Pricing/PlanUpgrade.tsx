@@ -46,7 +46,7 @@ export const PlanUpgrade = ({ feature, text, value }: PlanUpgradeData) => {
       </VStack>
 
       {/* Feature Availability */}
-      <FeaturesBox>
+      <FeaturesBox _dark={{ bgColor: '#1A202C', boxShadow: '0 0 10px var(--chakra-colors-gray-900)' }}>
         <Text fontSize='md' fontWeight='semibold' textAlign='center' textTransform='uppercase' color='gray.500'>
           <Trans i18nKey='plan_upgrade.feature_available_in'>Feature available in:</Trans>
         </Text>
