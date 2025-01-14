@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Flex, Icon, Spinner, Text, VStack } from '@chakra-ui/react'
+import { Box, Button, Flex, Icon, Spinner, Text, VStack } from '@chakra-ui/react'
 import { CheckCircle, ClockRefresh, XCircle } from '@untitled-ui/icons-react'
 import { Trans } from 'react-i18next'
 import { Fragment } from 'react/jsx-runtime'
@@ -21,31 +21,33 @@ export const PlanUpgrade = ({ feature, text, value }: PlanUpgradeData) => {
   const plan = translations[subscription.plan.id].title
 
   return (
-    <VStack spacing={4} w='full'>
+    <VStack spacing={12} w='full'>
       {/* Header */}
-      <Icon as={ClockRefresh} boxSize={6} color='blue.400' w='100%' h='50px' />
-      <Text fontSize='lg' fontWeight='semibold' textAlign='center'>
-        <Trans i18nKey='plan_upgrade.feature_unavailable' values={{ feature: text, plan }}>
-          Oops ... your{' '}
-          <Text as='span' color='red.500'>
-            {plan}
-          </Text>{' '}
-          doesn't support {{ feature }}.
-        </Trans>
-      </Text>
-      <Text fontSize='sm' color='gray.500' textAlign='center'>
-        <Trans i18nKey='plan_upgrade.dont_limit_yourself'>
-          Don't limit yourself. Join the family of 725 orgs that trust{' '}
-          <Text as='span' fontStyle='italic'>
-            Vocdoni
-          </Text>
-          .
-        </Trans>
-      </Text>
+      <VStack spacing={4}>
+        <Icon as={ClockRefresh} boxSize={6} color='blue.400' w='100%' h='50px' />
+        <Text fontSize='lg' fontWeight='semibold' textAlign='center'>
+          <Trans i18nKey='plan_upgrade.feature_unavailable' values={{ feature: text, plan }}>
+            Oops ... your{' '}
+            <Text as='span' color='red.500' fontSize={'lg'}>
+              {plan}
+            </Text>{' '}
+            doesn't support {{ feature }}.
+          </Trans>
+        </Text>
+        <Text fontSize='sm' color='gray.500' textAlign='center'>
+          <Trans i18nKey='plan_upgrade.dont_limit_yourself'>
+            Don't limit yourself. Join the family of 725 orgs that trust{' '}
+            <Text as='span' fontStyle='italic' fontSize={'sm'}>
+              Vocdoni
+            </Text>
+            .
+          </Trans>
+        </Text>
+      </VStack>
 
       {/* Feature Availability */}
       <FeaturesBox>
-        <Text fontSize='xs' fontWeight='semibold' textAlign='center' textTransform='uppercase' color='gray.500'>
+        <Text fontSize='md' fontWeight='semibold' textAlign='center' textTransform='uppercase' color='gray.500'>
           <Trans i18nKey='plan_upgrade.feature_available_in'>Feature available in:</Trans>
         </Text>
         <Flex justify='space-evenly' fontSize='sm' fontWeight='semibold' height={6}>
@@ -60,7 +62,7 @@ export const PlanUpgrade = ({ feature, text, value }: PlanUpgradeData) => {
                 )}
                 <Text>{translations[plan.id].title}</Text>
               </Flex>
-              {key < plans.length - 1 && <Divider orientation='vertical' />}
+              {/* {key < plans.length - 1 && <Divider orientation='vertical' />} */}
             </Fragment>
           ))}
         </Flex>
@@ -68,7 +70,7 @@ export const PlanUpgrade = ({ feature, text, value }: PlanUpgradeData) => {
 
       {/* Call to Action */}
       <Box>
-        <Button variant='solid' colorScheme='brand' w='full' size='lg' onClick={() => openModal('subscription')}>
+        <Button variant='solid' colorScheme='brand' w='full' size='lg' mb={2} onClick={() => openModal('subscription')}>
           <Trans i18nKey='view_pricing_plans'>View Pricing Plans</Trans>
         </Button>
         <Text fontSize='xs' color='gray.500' textAlign='center'>
