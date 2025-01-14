@@ -9,6 +9,7 @@ export const colorsBase = {
     dark2: '#0C0E12',
   },
   gradient: 'linear-gradient(to right, #2C7D57, #22555A)',
+  gradientBottom: 'linear-gradient(to bottom, #2C7D57, #22555A)',
   gray: {
     light3: '#fafafa',
     light2: '#ffffff3d',
@@ -17,7 +18,7 @@ export const colorsBase = {
   },
   green: '#00FF00',
   orange: '#FFA500',
-  primary: '#276958',
+  primary: '#546E39',
   red: '#FC8181',
   white: {
     pure: '#ffffff',
@@ -197,8 +198,8 @@ export const colors = {
     },
     support: {
       bg: {
-        light: colorsBase.gradient,
-        dark: colorsBase.gradient,
+        light: colorsBase.gradientBottom,
+        dark: colorsBase.gradientBottom,
       },
       helper: colorsBase.white.pure,
       title: colorsBase.yellow,
@@ -464,10 +465,10 @@ export const colors = {
   gradient: {
     50: '#2C7D57',
     100: '#2C7D57',
-    200: 'linear-gradient(to right, #2C7D57, #22555A)',
+    200: 'linear-gradient(to right, #2C7D57, #22555A)', // gradient base
     300: 'linear-gradient(to right, #2C7D57, #2C7D57, #2C7D57, #22555A)',
     400: 'linear-gradient(to right, #2C7D57, #2C7D57)',
-    500: 'linear-gradient(to right, #2C7D57, #22555A)',
+    500: 'linear-gradient(to right, #2C7D57, #22555A)', // gradient base
     600: 'linear-gradient(to right, #2C7D57, #2C7D57, #2C7D57, #22555A)',
     700: 'linear-gradient(to right, #2C7D57, #2C7D57)',
     800: '#2C7D57',
