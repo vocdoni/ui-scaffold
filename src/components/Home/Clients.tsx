@@ -16,14 +16,7 @@ const Clients = () => {
 
   return (
     <>
-      <Text
-        variant='home-description-color'
-        textAlign='center'
-        mb='52px'
-        mt='100px'
-        fontFamily='basier'
-        fontSize='23px'
-      >
+      <Text textAlign='center' mb='52px' mt='100px' fontFamily='basier' fontSize='23px'>
         {t('home.clients_title')}
       </Text>
       <ClientsGrid />

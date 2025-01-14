@@ -61,7 +61,6 @@ const Benefits = () => {
               {t('home.benefits.title')}
             </Text>
             <Text
-              variant='home-description-color'
               mb='60px'
               maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}
               mx='auto'

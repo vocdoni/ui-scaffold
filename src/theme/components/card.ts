@@ -205,19 +205,19 @@ export const Card = defineMultiStyleConfig({
         boxShadow: 'inset 0 -1px 0 1px rgba(255, 255, 255, .2), 0 8px 22px rgba(0, 0, 0, .12)',
 
         '&:nth-of-type(1)': {
-          bgColor: 'home.benefits.bg.light.primary',
+          bg: 'home.benefits.bg.light.primary',
           color: 'home.benefits.color.light.bg_primary',
         },
         '&:nth-of-type(2)': {
-          bgColor: 'home.benefits.bg.light.white',
+          bg: 'home.benefits.bg.light.white',
           color: 'home.benefits.color.light.bg_white',
           _dark: {
-            bgColor: 'home.benefits.bg.dark.dark',
+            bg: 'home.benefits.bg.dark.dark',
             color: 'home.benefits.color.dark',
           },
         },
         '&:nth-of-type(3)': {
-          bgColor: {
+          bg: {
             base: 'home.benefits.bg.light.primary',
             benefits1: 'home.benefits.bg.light.white',
             benefits2: 'home.benefits.bg.light.primary',
@@ -229,7 +229,7 @@ export const Card = defineMultiStyleConfig({
           },
 
           _dark: {
-            bgColor: {
+            bg: {
               base: 'home.benefits.bg.light.primary',
               benefits1: 'home.benefits.bg.dark.dark',
               benefits2: 'home.benefits.bg.light.primary',
@@ -242,7 +242,7 @@ export const Card = defineMultiStyleConfig({
           },
         },
         '&:nth-of-type(4)': {
-          bgColor: {
+          bg: {
             base: 'home.benefits.bg.light.white',
             benefits1: 'home.benefits.bg.light.primary',
             benefits2: 'home.benefits.bg.light.white',
@@ -254,7 +254,7 @@ export const Card = defineMultiStyleConfig({
           },
 
           _dark: {
-            bgColor: {
+            bg: {
               base: 'home.benefits.bg.dark.dark',
               benefits1: 'home.benefits.bg.light.primary',
               benefits2: 'home.benefits.bg.dark.dark',
@@ -267,15 +267,15 @@ export const Card = defineMultiStyleConfig({
           },
         },
         '&:nth-of-type(5)': {
-          bgColor: 'home.benefits.bg.light.primary',
+          bg: 'home.benefits.bg.light.primary',
           color: 'home.benefits.color.light.bg_primary',
         },
         '&:nth-of-type(6)': {
-          bgColor: 'home.benefits.bg.light.white',
+          bg: 'home.benefits.bg.light.white',
           color: 'home.benefits.color.light.bg_white',
 
           _dark: {
-            bgColor: 'home.benefits.bg.dark.dark',
+            bg: 'home.benefits.bg.dark.dark',
             color: 'home.benefits.color.dark',
           },
         },
@@ -311,7 +311,7 @@ export const Card = defineMultiStyleConfig({
           borderRadius: 'lg',
           minW: '45px',
           h: '45px',
-          bgColor: 'home.features_icon',
+          bg: 'home.features_icon',
 
           svg: {
             width: '25px',
@@ -389,7 +389,7 @@ export const Card = defineMultiStyleConfig({
           minW: '45px',
           h: '45px',
           border: '1px solid gray',
-          bgColor: 'home.step.icon_bg',
+          bg: 'home.step.icon_bg',
 
           svg: {
             width: '25px',

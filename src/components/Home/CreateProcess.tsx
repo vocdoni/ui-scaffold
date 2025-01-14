@@ -36,7 +36,6 @@ const CreateProcess = () => {
           {t('home.create_process.title')}
         </Text>
         <Text
-          variant='home-description-color'
           fontSize='24px'
           lineHeight='35px'
           fontFamily='basier'
@@ -50,6 +49,8 @@ const CreateProcess = () => {
           <Button
             as={ReactRouterLink}
             to={Routes.auth.signIn}
+            colorScheme='gradient'
+            variant='primary'
             mb='20px'
             w={{ base: 'full', sm: 'fit-content', lg: 'full' }}
             mx={{ base: 'auto', lg: 'start' }}

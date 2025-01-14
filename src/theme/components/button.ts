@@ -5,12 +5,12 @@ const primary = defineStyle((props) => {
 
   return {
     border: '1px solid',
-    bg: `${colorScheme}.600`,
-    borderColor: `${colorScheme}.600`,
+    bg: `${colorScheme}.500`,
+    borderColor: `${colorScheme}.800`,
     color: 'button.variant.primary.color',
     _hover: {
-      bg: `${colorScheme}.700`,
-      borderColor: `${colorScheme}.700`,
+      bg: `${colorScheme}.600`,
+      borderColor: `${colorScheme}.800`,
       _disabled: {
         bg: 'button.variant.primary.disabled.light.bg',
         color: 'button.variant.primary.disabled.light.color',
@@ -24,7 +24,7 @@ const primary = defineStyle((props) => {
         },
       },
     },
-    _active: { bg: `${colorScheme}.500` },
+    _active: { bg: `${colorScheme}.700` },
     _disabled: {
       bg: 'button.variant.primary.disabled.light.bg',
       color: 'button.variant.primary.disabled.light.color',

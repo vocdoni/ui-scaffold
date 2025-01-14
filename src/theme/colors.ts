@@ -8,7 +8,7 @@ export const colorsBase = {
     dark: '#1A202C',
     dark2: '#0C0E12',
   },
-  gradient: 'linear-gradient(to right, #546E39, #2E441A)',
+  gradient: 'linear-gradient(to right, #2C7D57, #22555A)',
   gray: {
     light3: '#fafafa',
     light2: '#ffffff3d',
@@ -17,8 +17,7 @@ export const colorsBase = {
   },
   green: '#00FF00',
   orange: '#FFA500',
-  primary: '#546E39',
-  primary_dark: 'rgba(84, 110, 57, 0.2)',
+  primary: '#276958',
   red: '#FC8181',
   white: {
     pure: '#ffffff',
@@ -172,10 +171,10 @@ export const colors = {
       bg: {
         light: {
           white: colorsBase.white.pure,
-          primary: colorsBase.primary,
+          primary: colorsBase.gradient,
         },
         dark: {
-          primary: colorsBase.primary,
+          primary: colorsBase.gradient,
           dark: colorsBase.blue.grayish,
         },
       },
@@ -187,10 +186,10 @@ export const colors = {
         dark: colorsBase.white.pure,
       },
     },
-    features_icon: colorsBase.primary,
+    features_icon: colorsBase.gradient,
     step: {
       icon: colorsBase.white.pure,
-      icon_bg: colorsBase.primary,
+      icon_bg: colorsBase.gradient,
     },
     solutions: {
       light_bg: colorsBase.white.pure,
@@ -198,8 +197,8 @@ export const colors = {
     },
     support: {
       bg: {
-        light: colorsBase.primary,
-        dark: colorsBase.primary_dark,
+        light: colorsBase.gradient,
+        dark: colorsBase.gradient,
       },
       helper: colorsBase.white.pure,
       title: colorsBase.yellow,
@@ -437,6 +436,19 @@ export const colors = {
   },
 
   brand: {
+    50: '#cce5de',
+    100: '#99cbbd',
+    200: '#276958',
+    300: '#33967c',
+    400: '#2b846b',
+    500: '#276958',
+    600: '#205345',
+    700: '#193d32',
+    800: '#12271f',
+    900: '#0a130c',
+    950: '#050b07',
+  },
+  brandAlpha: {
     50: '#d9e4c4',
     100: '#b3c77f',
     200: '#8db13a',
@@ -449,17 +461,17 @@ export const colors = {
     900: '#233c1d',
     950: '#1a2e16',
   },
-  brandAlpha: {
-    50: 'red',
-    100: 'blue',
-    200: 'white',
-    300: '#1A202C',
-    400: 'green',
-    500: '#E5E5E7',
-    600: '#2B2A33',
-    700: 'orange',
-    800: 'blue',
-    900: 'white',
-    950: 'black',
+  gradient: {
+    50: '#2C7D57',
+    100: '#2C7D57',
+    200: 'linear-gradient(to right, #2C7D57, #22555A)',
+    300: 'linear-gradient(to right, #2C7D57, #2C7D57, #2C7D57, #22555A)',
+    400: 'linear-gradient(to right, #2C7D57, #2C7D57)',
+    500: 'linear-gradient(to right, #2C7D57, #22555A)',
+    600: 'linear-gradient(to right, #2C7D57, #2C7D57, #2C7D57, #22555A)',
+    700: 'linear-gradient(to right, #2C7D57, #2C7D57)',
+    800: '#2C7D57',
+    900: '#2C7D57',
+    950: '#2C7D57',
   },
 }

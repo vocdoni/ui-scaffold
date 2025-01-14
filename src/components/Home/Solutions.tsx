@@ -34,7 +34,6 @@ const Solutions = () => {
               {t('home.solutions.title')}
             </Text>
             <Text
-              variant='home-description-color'
               maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}
               textAlign={{ base: 'center', xl: 'left' }}
               mx='auto'

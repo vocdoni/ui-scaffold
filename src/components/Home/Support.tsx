@@ -9,9 +9,9 @@ const Support = () => {
   return (
     <Box
       backgroundImage='url("https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b75c38aa4f55_Net.svg")'
-      backgroundColor={'home.support.bg.light'}
+      background={'home.support.bg.light'}
       _dark={{
-        bgColor: 'home.support.bg.dark',
+        background: 'home.support.bg.dark',
       }}
       backgroundRepeat='no-repeat'
       backgroundPosition='right'
@@ -93,19 +93,22 @@ const Support = () => {
           <Button
             as={ReactRouterLink}
             to='mailto:info@vocdoni.org'
-            variant='secondary'
+            variant='outline'
+            colorScheme='whiteAlpha'
             aria-label={t('home.support.btn_contact')}
             title={t('home.support.btn_contact')}
             target='_blank'
             minW='280px'
             height='60px'
             mb='30px'
+            color='white'
           >
             {t('home.support.btn_contact')}
           </Button>
           <Button
             as={ReactRouterLink}
-            variant='secondary'
+            variant='outline'
+            colorScheme='whiteAlpha'
             to='https://calendly.com/vocdoni-app/30min'
             aria-label={t('home.support.btn_watch')}
             title={t('home.support.btn_watch')}
@@ -113,6 +116,7 @@ const Support = () => {
             minW='280px'
             mb='30px'
             height='60px'
+            color='white'
           >
             <FaPhoneVolume size={30} />
             <Text as='span' ml='10px'>
