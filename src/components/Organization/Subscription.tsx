@@ -4,6 +4,7 @@ import {
   AlertIcon,
   AlertTitle,
   Avatar,
+  Box,
   Button,
   Link,
   Progress,
@@ -124,9 +125,11 @@ export const SubscriptionList = () => {
           </Thead>
           <Tbody>
             <Tr>
-              <Td display='flex' alignItems='center' gap={3}>
-                <Avatar name={subscription.plan.name} size='sm' />
-                {subscription.plan.name} ({subscription.plan.organization.maxCensus} members)
+              <Td>
+                <Box display='flex' alignItems='center' gap={3}>
+                  <Avatar name={subscription.plan.name} size='sm' />
+                  {subscription.plan.name} ({subscription.plan.organization.maxCensus} members)
+                </Box>
               </Td>
               <Td>
                 <Tag>{currency(subscription.plan.startingPrice)}</Tag>
