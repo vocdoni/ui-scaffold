@@ -10,8 +10,6 @@ export const colorsBase = {
   },
   gradient: 'linear-gradient(to right, #546E39, #2E441A)',
   gray: {
-    light3: '#fafafa',
-    light2: '#ffffff3d',
     light: '#CBD5E0',
     normal: '#A0AEC0',
   },
@@ -22,7 +20,10 @@ export const colorsBase = {
   red: '#FC8181',
   white: {
     pure: '#ffffff',
+    light: '#fcfcfc',
+    light2: '#ffffff3d',
     dark: '#F5F5F7',
+    dark2: '#EDF2F7',
     alpha: 'whiteAlpha.300',
     from_read_more: 'rgba(245, 245, 247, 0)',
   },
@@ -116,7 +117,7 @@ export const colors = {
     detailed: {
       border: colorsBase.gray.light,
     },
-    radiobox_control: colorsBase.gray.light2,
+    radiobox_control: colorsBase.white.light2,
     disabled: {
       light: 'gray.300',
       dark: 'gray.600',
@@ -145,11 +146,19 @@ export const colors = {
       bg_checked_light: colorsBase.white.dark,
       bg_checked_dark: colorsBase.blue.dark,
     },
+    process_view: {
+      calendar_label: colorsBase.gray.normal,
+      link: colorsBase.blue.normal,
+    },
     read_more: {
       from: colorsBase.white.from_read_more,
       to: {
         light: colorsBase.white.pure,
         dark: colorsBase.blue.grayish,
+      },
+      text: {
+        light: colorsBase.primary,
+        dark: colorsBase.white.pure,
       },
     },
     sidebar: {
@@ -209,7 +218,7 @@ export const colors = {
 
   google: {
     bg: {
-      light: colorsBase.gray.light2,
+      light: colorsBase.white.light2,
       dark: colorsBase.blue.grayish,
     },
     hover: {
@@ -217,7 +226,7 @@ export const colors = {
       dark: colorsBase.white.alpha,
     },
     active: {
-      light: colorsBase.gray.light2,
+      light: colorsBase.white.light2,
       dark: colorsBase.blue.grayish,
     },
   },
@@ -227,7 +236,7 @@ export const colors = {
       dark: 'transparent',
     },
     calendar_border: colorsBase.gray.light,
-    border: colorsBase.gray.light2,
+    border: colorsBase.white.light2,
     element: colorsBase.gray.normal,
     error: colorsBase.red,
     drag_and_drop: {
@@ -299,15 +308,15 @@ export const colors = {
     results: {
       alert_bg: colorsBase.primary,
       alert_color: colorsBase.white.pure,
-      bg: colorsBase.gray.light2,
+      bg: colorsBase.white.light2,
       description: colorsBase.gray.normal,
-      progressbar_bg: colorsBase.gray.light2,
+      progressbar_bg: colorsBase.white.light2,
       title: colorsBase.primary,
     },
     tabs: {
-      active_bg: colorsBase.gray.light2,
-      hover_bg: colorsBase.gray.light2,
-      border_bottom_list: colorsBase.gray.light2,
+      active_bg: colorsBase.white.light2,
+      hover_bg: colorsBase.white.light2,
+      border_bottom_list: colorsBase.white.light2,
     },
   },
 
@@ -345,7 +354,7 @@ export const colors = {
     },
     subtitle: {
       light: colorsBase.gray.normal,
-      dark: colorsBase.gray.light2,
+      dark: colorsBase.white.light2,
     },
   },
   pricing_modal: {
@@ -388,16 +397,27 @@ export const colors = {
 
   table: {
     bg: {
-      light: colorsBase.white.pure,
+      light: colorsBase.white.light2,
+      light_hover: colorsBase.white.dark,
       dark: colorsBase.blue.grayish,
     },
     thead: {
-      bg_light: colorsBase.gray.light3,
+      bg_light: colorsBase.white.light2,
       bg_dark: colorsBase.blue.grayish,
     },
-    border_color: {
-      light: colorsBase.gray.normal,
-      dark: colorsBase.blue.dark,
+    variant: {
+      striped: {
+        light: {
+          tr_even: colorsBase.white.pure,
+          tr_odd: colorsBase.white.dark,
+          hover: '#cce5de',
+        },
+        dark: {
+          tr_even: colorsBase.blue.grayish,
+          tr_odd: colorsBase.blue.dark,
+          hover: '#193d32',
+        },
+      },
     },
   },
 
@@ -413,15 +433,15 @@ export const colors = {
   text_area: {
     toolbar_dark: {
       bg: '#232323',
-      border: colorsBase.gray.light2,
+      border: colorsBase.white.light2,
       item_hover: colorsBase.blue.grayish,
     },
     bg_light: colorsBase.white.pure,
     bg_dark: 'transparent',
-    border_dark: colorsBase.gray.light2,
-    placeholder: colorsBase.gray.light2,
+    border_dark: colorsBase.white.light2,
+    placeholder: colorsBase.white.light2,
   },
-  verify_subtitle: colorsBase.gray.light2,
+  verify_subtitle: colorsBase.white.light2,
 
   wrapper: {
     bg_light: colorsBase.white.pure,

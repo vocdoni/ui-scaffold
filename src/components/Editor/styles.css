@@ -7,17 +7,29 @@
   border: 1px solid #e2e8f0;
   margin-bottom: 10px;
   overflow: hidden;
+  background-color: var(--chakra-colors-contents-bg-light);
+  color: var(--chakra-colors-contents-color-light);
+}
+
+.chakra-ui-dark .editor-container {
+  background-color: var(--chakra-colors-contents-bg-dark);
+  color: var(--chakra-colors-contents-color-dark);
+  border-color: var(--chakra-colors-input-border);
 }
 
 .editor-container:hover {
   border-color: transparent;
   outline-offset: '0px';
-  outline: 1px solid #cbd5e0;
+  outline: 1px solid var(--chakra-colors-gray-300);
+}
+
+.chakra-ui-dark .editor-container:hover {
+  outline-color: var(--chakra-colors-input-outline-dark);
 }
 
 .editor-container:focus-within {
   border-color: transparent;
-  outline: 2px solid #3965ff;
+  outline: 2px solid var(--chakra-colors-input-outline-light);
 }
 
 .editor-inner {
@@ -27,23 +39,27 @@
 .editor-input {
   min-height: 150px;
   resize: none;
-  font-size: 16px;
-  caret-color: rgb(5, 5, 5);
+  font-size: var(--chakra-fontSizes-md);
   position: relative;
   tab-size: 1;
   outline: 0;
   padding: 15px 16px;
-  caret-color: #444;
+  caret-color: var(--chakra-colors-contents-color-light);
+  background-color: transparent;
+}
+
+.chakra-ui-dark .editor-input {
+  caret-color: var(--chakra-colors-contents-color-dark);
 }
 
 .editor-placeholder {
-  color: #718096;
+  color: var(--chakra-colors-input-element);
   overflow: hidden;
   position: absolute;
   text-overflow: ellipsis;
   top: 15px;
   left: 16px;
-  font-size: 16px;
+  font-size: var(--chakra-fontSizes-md);
   user-select: none;
   display: inline-block;
   pointer-events: none;
@@ -71,16 +87,20 @@
 }
 
 .editor-link {
-  color: rgb(33, 111, 219);
+  color: var(--chakra-colors-brand-500);
   text-decoration: none;
+}
+
+.chakra-ui-dark .editor-link {
+  color: var(--chakra-colors-input-outline-dark);
 }
 
 .tree-view-output {
   display: block;
-  background: #222;
-  color: #fff;
+  background: var(--chakra-colors-process_create-bg-dark);
+  color: var(--chakra-colors-contents-color-dark);
   padding: 5px;
-  font-size: 12px;
+  font-size: var(--chakra-fontSizes-xs);
   white-space: pre-wrap;
   margin: 1px auto 10px auto;
   max-height: 250px;
@@ -109,31 +129,37 @@
 }
 
 .editor-heading-h1 {
-  font-size: 24px;
-  color: rgb(5, 5, 5);
+  font-size: var(--chakra-fontSizes-2xl);
+  color: inherit;
   font-weight: 400;
 }
 
 .editor-heading-h2 {
-  font-size: 15px;
-  color: rgb(101, 103, 107);
+  font-size: var(--chakra-fontSizes-xl);
+  color: inherit;
   font-weight: 700;
 }
 
 .editor-heading-h3 {
-  color: rgb(101, 103, 107);
+  font-size: var(--chakra-fontSizes-lg);
+  color: inherit;
   font-weight: 700;
 }
 
 .editor-quote {
   margin: 0;
   margin-left: 20px;
-  font-size: 15px;
-  color: rgb(101, 103, 107);
-  border-left-color: rgb(206, 208, 212);
+  font-size: var(--chakra-fontSizes-md);
+  color: var(--chakra-colors-input-element);
+  border-left-color: var(--chakra-colors-input-outline-light);
   border-left-width: 4px;
   border-left-style: solid;
   padding-left: 16px;
+}
+
+.chakra-ui-dark .editor-quote {
+  color: var(--chakra-colors-input-outline-dark);
+  border-left-color: var(--chakra-colors-input-element);
 }
 
 .editor-list-ol {
@@ -162,17 +188,22 @@ pre::-webkit-scrollbar {
 }
 
 pre::-webkit-scrollbar-thumb {
-  background: #999;
+  background: var(--chakra-colors-input-element);
 }
 
 .toolbar {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 1px;
-  background: #fff;
+  background: var(--chakra-colors-contents-bg-light);
   padding: 4px;
   vertical-align: middle;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--chakra-colors-chakra-border-color);
+}
+
+.chakra-ui-dark .toolbar {
+  background: var(--chakra-colors-contents-bg-dark);
+  border-bottom-color: var(--chakra-colors-input-border);
 }
 
 .toolbar button.toolbar-item {
@@ -209,7 +240,7 @@ pre::-webkit-scrollbar-thumb {
 }
 
 .toolbar button.toolbar-item.active {
-  background-color: rgba(223, 232, 250, 0.3);
+  background-color: var(--chakra-colors-process_create-bg-dark);
 }
 
 .toolbar button.toolbar-item.active i {
@@ -217,13 +248,21 @@ pre::-webkit-scrollbar-thumb {
 }
 
 .toolbar .toolbar-item:hover:not([disabled]) {
-  background-color: #eee;
+  background-color: var(--chakra-colors-input-bg-light);
+}
+
+.chakra-ui-dark .toolbar .toolbar-item:hover:not([disabled]) {
+  background-color: var(--chakra-colors-process_create-bg-dark);
 }
 
 .toolbar .divider {
   width: 1px;
-  background-color: #eee;
+  background-color: var(--chakra-colors-chakra-border-color);
   margin: 0 4px;
+}
+
+.chakra-ui-dark .toolbar .divider {
+  background-color: var(--chakra-colors-input-outline-dark);
 }
 
 .toolbar select.toolbar-item {
@@ -235,8 +274,8 @@ pre::-webkit-scrollbar-thumb {
   vertical-align: middle;
   appearance: none;
   width: 70px;
-  font-size: 14px;
-  color: #777;
+  font-size: var(--chakra-fontSizes-sm);
+  color: var(--chakra-colors-input-element);
   text-overflow: ellipsis;
 }
 
@@ -250,8 +289,8 @@ pre::-webkit-scrollbar-thumb {
   line-height: 20px;
   width: 200px;
   vertical-align: middle;
-  font-size: 14px;
-  color: #777;
+  font-size: var(--chakra-fontSizes-sm);
+  color: var(--chakra-colors-input-element);
   text-overflow: ellipsis;
   width: 70px;
   overflow: hidden;
@@ -296,11 +335,15 @@ i.chevron-down {
 }
 
 #block-controls button:hover {
-  background-color: #efefef;
+  background-color: var(--chakra-colors-input-bg-light);
+}
+
+.chakra-ui-dark #block-controls button:hover {
+  background-color: var(--chakra-colors-process_create-bg-dark);
 }
 
 #block-controls button:focus-visible {
-  border-color: blue;
+  border-color: var(--chakra-colors-brand-500);
 }
 
 #block-controls span.block-type {
@@ -315,29 +358,30 @@ i.chevron-down {
   z-index: 5;
   display: block;
   position: absolute;
-  box-shadow:
-    0 12px 28px 0 rgba(0, 0, 0, 0.2),
-    0 2px 4px 0 rgba(0, 0, 0, 0.1),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  box-shadow: var(--chakra-shadows-lg);
   border-radius: 8px;
   min-width: 100px;
   min-height: 40px;
-  background-color: #fff;
+  background-color: var(--chakra-colors-contents-bg-light);
+}
+
+.chakra-ui-dark .dropdown {
+  background-color: var(--chakra-colors-contents-bg-dark);
 }
 
 .dropdown .item {
   margin: 0 8px 0 8px;
   padding: 8px;
-  color: #050505;
+  color: inherit;
   cursor: pointer;
   line-height: 16px;
-  font-size: 15px;
+  font-size: var(--chakra-fontSizes-md);
   display: flex;
   align-content: center;
   flex-direction: row;
   flex-shrink: 0;
   justify-content: space-between;
-  background-color: #fff;
+  background-color: inherit;
   border-radius: 8px;
   border: 0;
   min-width: 268px;
@@ -359,7 +403,11 @@ i.chevron-down {
 }
 
 .dropdown .item:hover {
-  background-color: #eee;
+  background-color: var(--chakra-colors-input-bg-light);
+}
+
+.chakra-ui-dark .dropdown .item:hover {
+  background-color: var(--chakra-colors-process_create-bg-dark);
 }
 
 .dropdown .item .text {
@@ -379,6 +427,14 @@ i.chevron-down {
   background-size: contain;
 }
 
+.chakra-ui-dark .dropdown .item .icon {
+  filter: invert(1);
+}
+
+.chakra-ui-dark .toolbar .toolbar-item .icon {
+  filter: invert(1);
+}
+
 .link-editor {
   position: absolute;
   z-index: 100;
@@ -386,91 +442,14 @@ i.chevron-down {
   max-width: 300px;
   width: 100%;
   opacity: 0;
-  background-color: #fff;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+  background-color: var(--chakra-colors-contents-bg-light);
+  box-shadow: var(--chakra-shadows-lg);
   border-radius: 8px;
   transition: opacity 0.5s;
 }
 
-.link-editor .link-input {
-  display: block;
-  width: calc(100% - 24px);
-  box-sizing: border-box;
-  margin: 8px 12px;
-  padding: 8px 12px;
-  border-radius: 15px;
-  background-color: #eee;
-  font-size: 15px;
-  color: rgb(5, 5, 5);
-  border: 0;
-  outline: 0;
-  position: relative;
-  font-family: inherit;
-}
-
-.link-editor div.link-edit {
-  background-size: 16px;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 35px;
-  vertical-align: -0.25em;
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  cursor: pointer;
-}
-
-.link-editor .link-input a {
-  color: rgb(33, 111, 219);
-  text-decoration: none;
-  display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  margin-right: 30px;
-  text-overflow: ellipsis;
-}
-
-.link-editor .link-input a:hover {
-  text-decoration: underline;
-}
-
-.link-editor .button {
-  width: 20px;
-  height: 20px;
-  display: inline-block;
-  padding: 6px;
-  border-radius: 8px;
-  cursor: pointer;
-  margin: 0 2px;
-}
-
-.link-editor .button.hovered {
-  width: 20px;
-  height: 20px;
-  display: inline-block;
-  background-color: #eee;
-}
-
-.link-editor .button i,
-.actions i {
-  background-size: contain;
-  display: inline-block;
-  height: 20px;
-  width: 20px;
-  vertical-align: -0.25em;
-}
-
-.characters-limit {
-  pointer-events: none;
-  color: var(--chakra-colors-editor-character_limit);
-  font-size: 0.9em;
-  margin-left: 5px;
-}
-
-.link-editor .button.active,
-.toolbar .button.active {
-  background-color: rgb(223, 232, 250);
+.chakra-ui-dark .link-editor {
+  background-color: var(--chakra-colors-contents-bg-dark);
 }
 
 .link-editor .link-input {
@@ -480,13 +459,17 @@ i.chevron-down {
   margin: 12px 12px;
   padding: 8px 12px;
   border-radius: 15px;
-  background-color: #eee;
-  font-size: 15px;
-  color: rgb(5, 5, 5);
+  background-color: var(--chakra-colors-input-bg-light);
+  font-size: var(--chakra-fontSizes-md);
+  color: inherit;
   border: 0;
   outline: 0;
   position: relative;
   font-family: inherit;
+}
+
+.chakra-ui-dark .link-editor .link-input {
+  background-color: var(--chakra-colors-process_create-bg-dark);
 }
 
 .link-editor .link-view {
@@ -495,18 +478,12 @@ i.chevron-down {
   margin: 8px 12px;
   padding: 8px 12px;
   border-radius: 15px;
-  font-size: 15px;
-  color: rgb(5, 5, 5);
+  font-size: var(--chakra-fontSizes-md);
+  color: inherit;
   border: 0;
   outline: 0;
   position: relative;
   font-family: inherit;
-}
-
-.link-editor .link-view a {
-  display: block;
-  word-break: break-word;
-  width: calc(100% - 33px);
 }
 
 .link-editor div.link-edit {
@@ -533,6 +510,11 @@ i.chevron-down {
   top: 0;
   bottom: 0;
   cursor: pointer;
+}
+
+.chakra-ui-dark .link-editor div.link-trash,
+.chakra-ui-dark .link-editor div.link-edit {
+  filter: invert(1);
 }
 
 .link-editor div.link-cancel {
@@ -564,7 +546,7 @@ i.chevron-down {
 }
 
 .link-editor .link-input a {
-  color: rgb(33, 111, 219);
+  color: var(--chakra-colors-brand-500);
   text-decoration: underline;
   white-space: nowrap;
   overflow: hidden;
@@ -572,19 +554,71 @@ i.chevron-down {
   text-overflow: ellipsis;
 }
 
+.chakra-ui-dark .link-editor .link-input a {
+  color: var(--chakra-colors-input-outline-dark);
+}
+
 .link-editor .link-input a:hover {
   text-decoration: underline;
+}
+
+.link-editor .button {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  padding: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0 2px;
+}
+
+.link-editor .button.hovered {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background-color: var(--chakra-colors-input-bg-light);
+}
+
+.chakra-ui-dark .link-editor .button.hovered {
+  background-color: var(--chakra-colors-process_create-bg-dark);
+}
+
+.link-editor .button i,
+.actions i {
+  background-size: contain;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  vertical-align: -0.25em;
+}
+
+.characters-limit {
+  pointer-events: none;
+  color: var(--chakra-colors-editor-character_limit);
+  font-size: var(--chakra-fontSizes-sm);
+  margin-left: 5px;
+}
+
+.link-editor .button.active,
+.toolbar .button.active {
+  background-color: var(--chakra-colors-process_create-bg-dark);
+}
+
+.link-editor select {
+  padding: 6px;
+  border: none;
+  background-color: var(--chakra-colors-input-bg-light);
+  border-radius: 4px;
+  color: inherit;
+  font-size: var(--chakra-fontSizes-md);
+}
+
+.chakra-ui-dark .link-editor select {
+  background-color: var(--chakra-colors-process_create-bg-dark);
 }
 
 .link-editor .font-size-wrapper,
 .link-editor .font-family-wrapper {
   display: flex;
   margin: 0 4px;
-}
-
-.link-editor select {
-  padding: 6px;
-  border: none;
-  background-color: rgba(0, 0, 0, 0.075);
-  border-radius: 4px;
 }

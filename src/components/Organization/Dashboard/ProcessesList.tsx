@@ -15,7 +15,7 @@ const ProcessesList = ({ processes }: ProcessesListProps) => {
 
   return (
     <TableContainer>
-      <Table>
+      <Table variant='striped'>
         <Thead>
           <Tr>
             <Th>{t('process_list.title', { defaultValue: 'Title' })}</Th>

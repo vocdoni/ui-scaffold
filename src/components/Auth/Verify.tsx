@@ -40,7 +40,7 @@ const VerifyForm = ({ email, initialCode = '', autoSubmit = false }: VerifyFormP
     }
   }, [autoSubmit, code])
 
-  if (autoSubmit && code) {
+  if (autoSubmit && code && !isVerifyError) {
     return (
       <Box height={'100px'}>
         <Loading minHeight={1} />
@@ -56,10 +56,13 @@ const VerifyForm = ({ email, initialCode = '', autoSubmit = false }: VerifyFormP
       </Button>
       <FormSubmitMessage
         isError={isVerifyError}
-        error={t('verify_mail.error_subtitle', {
-          defaultValue:
-            'We found an error verifying your email, please check verification mail to ensure all data is correct',
-        })}
+        error={
+          verifyError ||
+          t('verify_mail.error_subtitle', {
+            defaultValue:
+              'We found an error verifying your email, please check verification mail to ensure all data is correct',
+          })
+        }
       />
     </>
   )
@@ -67,7 +70,7 @@ const VerifyForm = ({ email, initialCode = '', autoSubmit = false }: VerifyFormP
 
 export const VerificationPending = ({ email, code }: { email: string; code?: string }) => {
   const { t } = useTranslation()
-  const { setTitle, setSubTitle } = useOutletContext<AuthOutletContextType>()
+  const { setTitle, setSubtitle } = useOutletContext<AuthOutletContextType>()
   const {
     mutate: resend,
     isError: isResendError,
@@ -78,7 +81,7 @@ export const VerificationPending = ({ email, code }: { email: string; code?: str
 
   useEffect(() => {
     setTitle(t('verify.account_created_succesfully', { defaultValue: 'Account created successfully!' }))
-    setSubTitle(
+    setSubtitle(
       t('verify.verification_email_is_sent', {
         defaultValue: 'A verification email has been sent to:',
       })

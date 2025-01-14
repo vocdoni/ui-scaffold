@@ -879,10 +879,10 @@
   },
   "passwords_do_not_match": "",
   "plan_upgrade": {
-    "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
-    "feature_available_in": "Feature available in:",
-    "feature_unavailable": "Oops ... your <2>free plan</2> doesn't support {{feature}}.",
-    "satisfaction_rate": "97% satisfaction rate, for only 9€/month."
+    "dont_limit_yourself": "No te limites. Únete a la familia de 725 organizaciones que confían en <2>Vocdoni</2>.",
+    "feature_available_in": "Función disponible en:",
+    "feature_unavailable": "Ups... tu <2>plan {{ plan, lowercase }}</2> no admite {{feature}}.",
+    "satisfaction_rate": "97% de satisfacción, por solo 9€/mes."
   },
   "preview": "Preview",
   "pricing": {
@@ -892,7 +892,7 @@
     "compare_features": "Compare all features",
     "core_voting": "Funciones básicas de votación",
     "custom_subtitle": "Large organizations enterprises, and institutions requiring extensive customization and support.",
-    "custom_title": "Custom Plan",
+    "custom_title": "Personalizado",
     "date_format": "dd/mm/yy",
     "dedicated_manager": "Dedicated account manager",
     "error": "",

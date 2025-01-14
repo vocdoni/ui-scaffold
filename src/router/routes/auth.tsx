@@ -2,8 +2,8 @@ import { lazy } from 'react'
 // These aren't lazy loaded since they are main layouts and related components
 import LayoutAuth from '~elements/LayoutAuth'
 import { Routes } from '.'
-import NonLoggedRoute from '../NonLoggedRoute'
 import AccountProtectedRoute from '../AccountProtectedRoute'
+import NonLoggedRoute from '../NonLoggedRoute'
 import { SuspenseLoader } from '../SuspenseLoader'
 
 const AcceptInvite = lazy(() => import('~elements/account/invite'))
