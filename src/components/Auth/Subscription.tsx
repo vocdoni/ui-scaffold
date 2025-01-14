@@ -1,10 +1,11 @@
 import { createContext } from '@chakra-ui/react-utils'
 import { useQuery } from '@tanstack/react-query'
-import { useClient } from '@vocdoni/react-providers'
-import { dotobject, ensure0x } from '@vocdoni/sdk'
+import { enforceHexPrefix, useClient } from '@vocdoni/react-providers'
+import { dotobject } from '@vocdoni/sdk'
 import { ReactNode, useMemo } from 'react'
 import { useAuth } from '~components/Auth/useAuth'
 import type { Plan } from '~components/Pricing/Plans'
+import { QueryKeys } from '~src/queries/keys'
 import { ApiEndpoints } from './api'
 
 type PermissionsContextType = {
@@ -44,10 +45,10 @@ const SubscriptionProviderComponent: React.FC<{ children: ReactNode }> = ({ chil
   // Fetch organization subscription details
   // TODO: In the future, this may be merged with the role permissions (not yet defined)
   const { data: subscription, isFetching } = useQuery({
-    queryKey: ['organizationSubscription', account?.address],
+    queryKey: QueryKeys.organization.subscription(enforceHexPrefix(account?.address)),
     queryFn: () =>
       bearedFetch<SubscriptionType>(
-        ApiEndpoints.OrganizationSubscription.replace('{address}', ensure0x(account?.address))
+        ApiEndpoints.OrganizationSubscription.replace('{address}', enforceHexPrefix(account?.address))
       ),
     // Cache for 15 minutes
     staleTime: 15 * 60 * 1000,

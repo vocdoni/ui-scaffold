@@ -46,6 +46,7 @@ const outline = defineStyle((props) => {
     border: '1px solid',
     borderColor: colorScheme === 'gray' ? 'button.variant.common.border_color.light' : `${colorScheme}.600`,
     color: colorScheme === 'gray' ? 'button.variant.common.color.light' : `${colorScheme}.600`,
+    textDecoration: 'none',
 
     _hover: {
       bgColor: colorScheme === 'gray' ? 'button.variant.common.hover.bg.light' : `${colorScheme}.700`,
@@ -83,12 +84,18 @@ const outline = defineStyle((props) => {
 const transparent = defineStyle((props) => {
   const { colorScheme } = props
   return {
-    color: colorScheme === 'gray' ? 'button.variant.common.color.light' : `${colorScheme}.700`,
+    color: colorScheme === 'gray' ? 'black' : `${colorScheme}.700`,
+
+    _active: {
+      bgColor: colorScheme === 'gray' ? 'gray.200' : `${colorScheme}.50`,
+
+      _dark: {
+        bgColor: colorScheme === 'gray' ? 'gray.700' : `${colorScheme}.50`,
+      },
+    },
 
     _hover: {
-      bgColor: colorScheme === 'gray' ? 'button.variant.common.hover.bg.light' : `${colorScheme}.50`,
-
-      color: colorScheme === 'gray' ? 'button.variant.common.color.light' : `${colorScheme}.800`,
+      bgColor: colorScheme === 'gray' ? 'gray.200' : `${colorScheme}.50`,
 
       _disabled: {
         color: 'button.variant.common.disabled.color.light',
@@ -98,8 +105,7 @@ const transparent = defineStyle((props) => {
       },
 
       _dark: {
-        bgColor: colorScheme === 'gray' ? 'button.variant.common.hover.bg.dark' : `${colorScheme}.50`,
-        color: colorScheme === 'gray' ? 'button.variant.common.color.dark' : `${colorScheme}.800`,
+        bgColor: colorScheme === 'gray' ? 'gray.700' : `${colorScheme}.50`,
       },
     },
     _disabled: {
@@ -110,7 +116,7 @@ const transparent = defineStyle((props) => {
     },
 
     _dark: {
-      color: colorScheme === 'gray' ? 'button.variant.common.color_gray_dark' : `${colorScheme}.700`,
+      color: colorScheme === 'gray' ? 'white' : `${colorScheme}.700`,
     },
   }
 })
@@ -119,7 +125,7 @@ const link = defineStyle((props) => {
   const { colorScheme } = props
   return {
     color: colorScheme === 'gray' ? 'button.variant.common.color.light' : `${colorScheme}.700`,
-
+    textDecoration: 'underline',
     _hover: {
       color: colorScheme === 'gray' ? 'button.variant.common.color.light' : `${colorScheme}.800`,
       textDecoration: 'none',
@@ -146,6 +152,39 @@ const link = defineStyle((props) => {
 
     _dark: {
       color: colorScheme === 'gray' ? 'button.variant.common.color.dark' : `${colorScheme}.700`,
+    },
+  }
+})
+
+const underline = defineStyle((props) => {
+  const { colorScheme } = props
+  return {
+    color: colorScheme === 'gray' ? 'black' : `${colorScheme}.700`,
+    textDecoration: 'underline',
+
+    _hover: {
+      bgColor: colorScheme === 'gray' ? 'gray.200' : `${colorScheme}.50`,
+
+      _disabled: {
+        color: 'button.variant.common.disabled.color.light',
+        _dark: {
+          color: 'button.variant.common.disabled.color.dark',
+        },
+      },
+
+      _dark: {
+        bgColor: colorScheme === 'gray' ? 'gray.700' : `${colorScheme}.50`,
+      },
+    },
+    _disabled: {
+      color: 'button.variant.common.disabled.color.light',
+      _dark: {
+        color: 'button.variant.common.disabled.color.dark',
+      },
+    },
+
+    _dark: {
+      color: colorScheme === 'gray' ? 'white' : `${colorScheme}.700`,
     },
   }
 })
@@ -195,10 +234,11 @@ export const Button = defineStyleConfig({
     outline,
     transparent,
     link,
+    underline,
   },
   sizes,
   defaultProps: {
-    variant: 'primary',
+    variant: 'outline',
     size: 'md',
     colorScheme: 'brand',
   },

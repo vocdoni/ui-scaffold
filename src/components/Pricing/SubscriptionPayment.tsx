@@ -8,10 +8,12 @@ import {
   ModalFooter,
   ModalOverlay,
   Text,
+  useToast,
 } from '@chakra-ui/react'
 import { EmbeddedCheckout, EmbeddedCheckoutProvider } from '@stripe/react-stripe-js'
 import { loadStripe, Stripe } from '@stripe/stripe-js'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useClient } from '@vocdoni/react-providers'
 import { ensure0x } from '@vocdoni/sdk'
 import { useCallback, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -19,6 +21,7 @@ import { Link as ReactRouterLink } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
 import { SubscriptionType, useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
+import { QueryKeys } from '~src/queries/keys'
 import { Routes } from '~src/router/routes'
 import { usePricingModal } from './use-pricing-modal'
 
@@ -40,20 +43,23 @@ type CheckoutResponse = {
 }
 
 const useUpdateSubscription = () => {
-  const { bearedFetch, signerAddress } = useAuth()
+  const { bearedFetch } = useAuth()
+  const { account } = useClient()
 
   return useMutation<SubscriptionType>({
     mutationFn: async () =>
-      await bearedFetch(ApiEndpoints.OrganizationSubscription.replace('{address}', ensure0x(signerAddress))),
+      await bearedFetch(ApiEndpoints.OrganizationSubscription.replace('{address}', ensure0x(account?.address))),
   })
 }
 
 export const SubscriptionPayment = ({ amount, lookupKey }: SubscriptionPaymentData) => {
-  const { signerAddress, bearedFetch } = useAuth()
+  const { bearedFetch } = useAuth()
+  const { signer } = useClient()
   const { i18n } = useTranslation()
   const { subscription } = useSubscription()
   const { mutateAsync: checkSubscription } = useUpdateSubscription()
   const { closeModal } = usePricingModal()
+  const toast = useToast()
 
   const [stripePromise] = useState<Promise<Stripe | null>>(
     loadStripe(stripePublicKey, {
@@ -64,6 +70,7 @@ export const SubscriptionPayment = ({ amount, lookupKey }: SubscriptionPaymentDa
   const queryClient = useQueryClient()
 
   const fetchClientSecret = useCallback(async () => {
+    const signerAddress = await signer.getAddress()
     if (signerAddress) {
       const body = {
         lookupKey,
@@ -78,9 +85,19 @@ export const SubscriptionPayment = ({ amount, lookupKey }: SubscriptionPaymentDa
       })
         // Return the client secret, required by stripe.js
         .then((data) => data.clientSecret)
+        .catch((e) => {
+          toast({
+            status: 'error',
+            title: i18n.t('pricing.error'),
+            description: e.message,
+          })
+          closeModal()
+
+          return null
+        })
     }
     return await Promise.resolve('')
-  }, [signerAddress])
+  }, [signer])
 
   const onComplete = async () => {
     let nsub = await checkSubscription()
@@ -95,7 +112,7 @@ export const SubscriptionPayment = ({ amount, lookupKey }: SubscriptionPaymentDa
       nsub = await checkSubscription()
     }
     setSubscriptionCompleted(true)
-    await queryClient.invalidateQueries({ queryKey: ['organizationSubscription'] })
+    await queryClient.invalidateQueries({ queryKey: QueryKeys.organization.subscription() })
   }
 
   const options = {

@@ -30,8 +30,47 @@
     "subtitle": "Reduce costos, ahorra tiempo: Votación segura, privada y conforme al RGPD",
     "title": "La plataforma global de votación"
   },
+  "authPage": {
+    "text": {
+      "1": "Lanza elecciones seguras y verificables con solo unos clics.",
+      "2": "Funciones adaptables que escalan con tu organización.",
+      "3": "Ahorra hasta 10 veces en comparación con los métodos tradicionales de votación.",
+      "4": "Organiza votos accesibles en cualquier dispositivo: móvil, tablet o escritorio.",
+      "5": "La encriptación avanzada asegura que tus elecciones sean seguras y privadas.",
+      "6": "Fomenta una mayor participación con herramientas fáciles de usar.",
+      "7": "Incorpora fácilmente tu marca y los flujos de trabajo existentes.",
+      "8": "Tus procesos de votación son seguros, confiables y listos para usar.",
+      "9": "Gestiona múltiples elecciones sin esfuerzo desde un único panel.",
+      "10": "Actualizaciones e información en tiempo real al alcance de tu mano.",
+      "11": "Aumenta la participación con flujos de votación intuitivos.",
+      "12": "Reduce los costos operativos para ti y tus votantes.",
+      "13": "Explora opciones avanzadas como votación anónima o votos ponderados.",
+      "14": "Elecciones transparentes y verificables fomentan la confianza en tus resultados.",
+      "15": "Adopta el futuro de la votación. ¡Comienza hoy!",
+      "16": "Enfócate en lo que más importa."
+    },
+    "title": {
+      "1": "Configuración simplificada:",
+      "2": "Planes flexibles:",
+      "3": "Ahorro de costos:",
+      "4": "Accesibilidad universal:",
+      "5": "Tecnología confiable:",
+      "6": "Empodera la participación:",
+      "7": "Integración sin interrupciones:",
+      "8": "Relájate, nosotros nos encargamos de todo:",
+      "9": "Optimiza las operaciones:",
+      "10": "Mantente informado:",
+      "11": "Impulsa la participación:",
+      "12": "Controla los costos:",
+      "13": "Flexibilidad mejorada:",
+      "14": "Genera confianza:",
+      "15": "Únete a cientos de organizaciones:",
+      "16": "Deja que manejemos la complejidad:"
+    }
+  },
   "avatar": {
-    "hint": "Min 200x200px .PNG or .JPEG"
+    "hint": "Min 200x200px .PNG or .JPEG",
+    "label": "Logo/Avatar"
   },
   "back": "Atrás",
   "billing": "Facturación",
@@ -240,20 +279,18 @@
   "edit_saas_profile": {
     "customization_details": "Define the params that will enhance the user experience and customize the voting page",
     "edited_successfully": "Updated successfully",
-    "header_image": "Header Image",
-    "upload_file": "Upload a file"
+    "header_image": "Header Image"
   },
   "email": "Correo electrónico",
   "email_placeholder": "your@email.com",
   "error": {
-    "error_doing_things": "Error al realizar la operación",
     "go_back": "Volver atrás",
     "invalid_cell_data": "Algunas filas no contienen direcciones correctas: {{rows, list}}",
     "invalid_row_length": "Corrige las líneas {{rows, list}} del documento y vuelve a cargarlo",
     "invalid_weight_type": "Se esperaba encontrar el peso en la primera columna en las líneas {{rows, list}}, pero se han encontrado datos inesperados",
     "loading_page": "Error al cargar la página",
     "loading_roles": "Cargando roles",
-    "not_found": "Lo sentimos, la página que buscabas no fue encontrada.",
+    "not_found": "No podemos encontrar esa página",
     "return_to_home": "Ves al inicio",
     "title": "Error"
   },
@@ -284,6 +321,7 @@
     "cumulative": "Cumulative voting",
     "custom_url": "Custom URL",
     "email_reminder": "Recordatorios por correo electrónico",
+    "interruptible": "Interruptible",
     "live_results": "Live results",
     "live_streaming": "Live streaming",
     "memberships": "Hasta {{ value }} membresías",
@@ -330,7 +368,6 @@
   "forgot_password_title": "¿Has olvidado tu contraseña?",
   "form": {
     "account_create": {
-      "delete_image": "Eliminar imagen",
       "description_placeholder": "Descripción (opcional)",
       "title_placeholder": "El nombre de la organización",
       "website_placeholder": "https://example.com"
@@ -339,6 +376,7 @@
     "error": {
       "address_already_in_use": "Esta dirección ya está en el censo",
       "address_pattern": "Solo se permiten direcciones hexadecimales (p.ej. 0x031101A...)",
+      "email_invalid": "Invalid email address",
       "field_is_required": "Este campo es obligatorio",
       "min_address": "Por favor, proporciona al menos una dirección",
       "min_users_address": "Por favor, proporciona al menos una dirección",
@@ -478,8 +516,6 @@
       }
     }
   },
-  "generate_pdf": "Generate PDF",
-  "generate_pdf_description": "Generate a PDF with the results",
   "gitcoin": {
     "effective": "20: Efectivo",
     "more_effective": "25: Más efectivo",
@@ -740,7 +776,6 @@
     "github": "Iniciar sesión con Github",
     "google": "Iniciar sesión con Google"
   },
-  "logo": "Logo",
   "logout": "Logout",
   "membership_size": {
     "language": "Default Language",
@@ -782,6 +817,7 @@
   "new_password": "New Password",
   "new_password_placeholder": "Enter your new password",
   "new_voting": "Nueva votación",
+  "no_results_filtering": "Your current search filter returns no results",
   "not_registred_yet": "¿Aún no estás registrado?",
   "open_in_explorer": "Abrir en explorador",
   "or": "o",
@@ -842,10 +878,10 @@
   },
   "passwords_do_not_match": "",
   "plan_upgrade": {
-    "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
-    "feature_available_in": "Feature available in:",
-    "feature_unavailable": "Oops ... your <2>free plan</2> doesn't support {{feature}}.",
-    "satisfaction_rate": "97% satisfaction rate, for only 9€/month."
+    "dont_limit_yourself": "No te limites. Únete a la familia de 725 organizaciones que confían en <2>Vocdoni</2>.",
+    "feature_available_in": "Función disponible en:",
+    "feature_unavailable": "Ups... tu <2>plan {{ plan, lowercase }}</2> no admite {{feature}}.",
+    "satisfaction_rate": "97% de satisfacción, por solo 9€/mes."
   },
   "preview": "Preview",
   "pricing": {
@@ -856,7 +892,9 @@
     "core_voting": "Funciones básicas de votación",
     "custom_subtitle": "Large organizations enterprises, and institutions requiring extensive customization and support.",
     "custom_title": "Custom Plan",
+    "date_format": "dd/mm/yy",
     "dedicated_manager": "Dedicated account manager",
+    "error": "",
     "essential_subtitle": "Organizaciones pequeñas o medianas o grupos comunitarios con necesidades básicas de votación.",
     "essential_title": "Esencial",
     "features": "Features",
@@ -872,12 +910,12 @@
     "ticket_support": "Soporte por tickets",
     "unlimited_yearly_processes": "Procesos anuales ilimitados",
     "up_to_admins": "Hasta {{ admin }} admin. y {{ org }} organizaciones",
-    "upgrade_title": "Debes actualizar tu plan para usar esta funcionalidad",
+    "upgrade_title": "Actualiza tu plan",
     "white_label": "White label solution",
     "yearly_processes_one": "{{ count }} proceso anual",
     "yearly_processes_many": "",
     "yearly_processes_other": "{{ count }} procesos anuales",
-    "your_plan": "Actualmente estás suscrito al plan 'Your plan'. Si actualizas, solo te cobraremos la diferencia anual. En el próximo período de facturación, que comienza el 'dd/mm/aa', pagarás por el nuevo plan seleccionado."
+    "your_plan": "Actualmente estás suscrito al plan <plan>{{ plan }}</plan>. Si actualizas, solo te cobraremos la diferencia anual. En el próximo período de facturación, que comienza el <plan>{{ billing, format }}</plan>, pagarás íntegramente por el nuevo plan seleccionado."
   },
   "pricing_card": {
     "from": "Desde {{price}}/año",
@@ -1092,7 +1130,8 @@
     },
     "recovery": "Recuperar cuenta"
   },
-  "remove": "Remove",
+  "remove_avatar": "Remove avatar",
+  "remove_header": "Remove header",
   "reset_password_button": "Reset Password",
   "rights": "© 2024 Asociación Vocdoni. Todos los derechos reservados.",
   "role": {
@@ -1103,6 +1142,8 @@
     "description": "Vote contents will be encrypted till the end of the voting",
     "title": "Secret until the end"
   },
+  "session_expired": "Session expired",
+  "session_expired_description": "Session may have been expired and it could not be refreshed, please login again",
   "settings": "Configuración",
   "share": {
     "copy": "Copiar",
@@ -1124,6 +1165,7 @@
   "signup_title": "Regístrate",
   "skip": "Omitir",
   "submit": "Envía",
+  "subscribe": "Suscribirse",
   "subscription": {
     "change_plan_button": "Change",
     "inactive_subscription_description": "Your subscription is currently inactive. Consider <2>contacting us</2> to reactivate it.",
@@ -1226,12 +1268,9 @@
   "total_votes_submitted": "Total Votes Submitted",
   "update": "Update",
   "upgrade": "Amplíalo",
-  "upload": "Upload",
   "uploader": {
-    "click_or_drag_and_drop": "<click>Haz clic para subir</click> <drag>o arrastra y suelta</drag><formats>(Formatos permitidos: CSV, XLSX y ODS)</formats>"
-  },
-  "uploaderCustom": {
-    "drop_here": ""
+    "click_or_drag_and_drop": "<click>Haz clic para subir</click> <drag>o arrastra y suelta</drag><formats>(Formatos permitidos: {{ formats, list }})</formats>",
+    "drop_here": "Suelta aqui"
   },
   "use_read_more": {
     "read_less": "Leer menos",
@@ -1244,14 +1283,17 @@
   "verify": {
     "account_created_succesfully": "Account created successfully!",
     "email_sent": "Email sent successfully",
+    "enter_verification_code": "Enter the verification code sent to your email",
     "follow_email_instructions": "Follow the instructions there to activate your account.",
+    "invalid_verification": "Invalid verification request",
+    "missing_email": "No email address provided for verification",
     "resend_confirmation_mail": "Resend Email",
     "verification_email_is_sent": "A verification email has been sent to:",
-    "verify_code": "Verify"
+    "verify_code": "Verify",
+    "verify_your_email": "Verify your email"
   },
   "verify_mail": {
     "error_subtitle": "We found an error verifying your email, please check verification mail to ensure all data is correct",
-    "error_title": "Error verifying {{ email }}",
     "verifying_subtitle": "Await until we verify your email address. You will be redirect on success.",
     "verifying_title": "Verifying {{ email }}"
   },

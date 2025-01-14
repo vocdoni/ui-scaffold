@@ -22,6 +22,8 @@ import { ApiEndpoints } from '~components/Auth/api'
 import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
 import { PlanId } from '~constants'
+import { QueryKeys } from '~src/queries/keys'
+import { Routes } from '~src/router/routes'
 import { currency } from '~utils/numbers'
 import PricingCard from './Card'
 import { usePricingModal } from './use-pricing-modal'
@@ -76,7 +78,7 @@ type FormValues = {
 export const usePlans = () => {
   const { bearedFetch } = useAuth()
   return useQuery({
-    queryKey: ['plans'],
+    queryKey: QueryKeys.plans,
     queryFn: () => bearedFetch<Plan[]>(ApiEndpoints.Plans),
     // Sort by price
     select: (data) => data.sort((a, b) => a.startingPrice - b.startingPrice),
@@ -163,9 +165,25 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
   const translations = usePlanTranslations()
   const { openModal } = usePricingModal()
 
+  // Find the best fitting tier for the current subscription's census size
+  const defaultCensusSize = useMemo(() => {
+    if (!plans || !subscription?.subscriptionDetails?.maxCensusSize) return null
+
+    // Get all available tiers across all plans
+    const allTiers = plans.flatMap((plan) => plan.censusSizeTiers || [])
+
+    // Sort by upTo value to find the smallest tier that fits
+    const sortedTiers = allTiers.sort((a, b) => a.upTo - b.upTo)
+
+    // Find the first tier that can accommodate the current census size
+    const bestFitTier = sortedTiers.find((tier) => tier.upTo >= subscription.subscriptionDetails.maxCensusSize)
+
+    return bestFitTier?.upTo || null
+  }, [plans, subscription?.subscriptionDetails?.maxCensusSize])
+
   const methods = useForm<FormValues>({
     defaultValues: {
-      censusSize: null,
+      censusSize: defaultCensusSize,
       planId: null,
     },
   })
@@ -215,7 +233,11 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
       popular: plan.id === PlanId.Essential,
       title: translations[plan.id]?.title || plan.name,
       subtitle: translations[plan.id]?.subtitle || '',
-      price: currency(plan.startingPrice),
+      price: currency(
+        selectedCensusSize
+          ? (plan.censusSizeTiers?.find((tier) => tier.upTo === selectedCensusSize)?.amount ?? plan.startingPrice)
+          : plan.startingPrice
+      ),
       features: translations[plan.id]?.features || [],
       isDisabled:
         (selectedCensusSize && !plan.censusSizeTiers?.some((tier) => tier.upTo === selectedCensusSize)) ||
@@ -269,34 +291,54 @@ export const SubscriptionModal = ({
   isOpen: boolean
   onClose: () => void
   title?: ReactNode
-}) => (
-  <Modal isOpen={isOpen} onClose={onClose} variant='pricing-modal' size='full'>
-    <ModalOverlay />
-    <ModalContent>
-      <ModalHeader>
-        {title || <Trans i18nKey='pricing.upgrade_title'>You need to upgrade to use this feature</Trans>}
-      </ModalHeader>
-      <ModalCloseButton />
-      <ModalBody>
-        <SubscriptionPlans />
-      </ModalBody>
+}) => {
+  const { t } = useTranslation()
+  const { subscription } = useSubscription()
+  const translations = usePlanTranslations()
 
-      <ModalFooter>
-        <Text>
-          <Trans i18nKey='pricing.your_plan'>
-            Currently you are subscribed to the 'Your plan' subscription. If you upgrade, we will only charge the yearly
-            difference. In the next billing period, starting on 'dd/mm/yy' you will pay for the new select plan.
-          </Trans>
-        </Text>
-        <Box>
-          <Text>
-            <Trans i18nKey='pricing.help'>Need some help?</Trans>
-          </Text>
-          <Button as={ReactRouterLink}>
-            <Trans i18nKey='contact_us'>Contact us</Trans>
-          </Button>
-        </Box>
-      </ModalFooter>
-    </ModalContent>
-  </Modal>
+  if (!subscription) return null
+
+  const plan = translations[subscription.plan.id].title
+  const billing = new Date(subscription.subscriptionDetails.renewalDate)
+  // the date format used by the billing date
+  const format = t('pricing.date_format', { defaultValue: 'dd/mm/yy' })
+
+  return (
+    <Modal isOpen={isOpen} onClose={onClose} variant='pricing-modal' size='full'>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>{title || <Trans i18nKey='pricing.upgrade_title'>Upgrade your subscription</Trans>}</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+          <SubscriptionPlans />
+        </ModalBody>
+
+        <ModalFooter>
+          {subscription.plan.id !== PlanId.Free && (
+            <Text>
+              <Trans i18nKey='pricing.your_plan' values={{ plan, billing, format }} components={{ plan: <PlanText /> }}>
+                You're currently subscribed to the {{ plan }} plan. Upgrade now, and you'll only pay the difference for
+                the remaining time in your billing period. Starting from your next billing cycle on dd/mm/yy, you'll be
+                charged the full price for your new plan.
+              </Trans>
+            </Text>
+          )}
+          <Box>
+            <Text>
+              <Trans i18nKey='pricing.help'>Need some help?</Trans>
+            </Text>
+            <Button as={ReactRouterLink} to={Routes.contact} target='_blank'>
+              <Trans i18nKey='contact_us'>Contact us</Trans>
+            </Button>
+          </Box>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+  )
+}
+
+const PlanText = ({ children }: { children?: ReactNode }) => (
+  <Text as='span' fontWeight='bold' display='inline'>
+    "{children}"
+  </Text>
 )

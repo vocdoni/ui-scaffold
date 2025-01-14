@@ -142,6 +142,7 @@ export const ProcessView = () => {
             index={tabIndex}
             onChange={handleTabsChange}
             flex={{ xl2: '1 1 80%' }}
+            w='full'
           >
             <TabList>
               <Tab>{t('process.questions')}</Tab>

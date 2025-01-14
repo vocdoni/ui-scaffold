@@ -47,7 +47,7 @@ const ComparisonSectionTable = ({ titleKey, plans, features, category }: Compari
                 {plans.map((plan) => {
                   const value = dotobject(plan, featurePath)
                   return (
-                    <Td key={plan.id} textAlign='center'>
+                    <Td key={plan.id} textAlign='center' w={40}>
                       {typeof value === 'boolean' ? (
                         <BooleanIcon value={value} />
                       ) : typeof value === 'number' ? (

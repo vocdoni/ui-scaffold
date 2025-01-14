@@ -42,7 +42,7 @@ export const colors = {
       dark: colorsBase.blue.dark,
     },
     border: colorsBase.gray.light,
-    error: colorsBase.green,
+    error: colorsBase.red,
     info: colorsBase.gray.normal,
     success: colorsBase.green,
     warning: colorsBase.orange,
@@ -146,11 +146,19 @@ export const colors = {
       bg_checked_light: colorsBase.white.dark,
       bg_checked_dark: colorsBase.blue.dark,
     },
+    process_view: {
+      calendar_label: colorsBase.gray.normal,
+      link: colorsBase.blue.normal,
+    },
     read_more: {
       from: colorsBase.white.from_read_more,
       to: {
         light: colorsBase.white.pure,
         dark: colorsBase.blue.grayish,
+      },
+      text: {
+        light: colorsBase.primary,
+        dark: colorsBase.white.pure,
       },
     },
     sidebar: {

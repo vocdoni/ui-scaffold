@@ -1,18 +1,22 @@
-import { Box, Flex, Icon, Text } from '@chakra-ui/react'
+import { Box, Flex, Icon, Spinner, Text } from '@chakra-ui/react'
 import { DropzoneInputProps, DropzoneRootProps } from 'react-dropzone/.'
 import { Trans, useTranslation } from 'react-i18next'
 import { FiUploadCloud } from 'react-icons/fi'
 
-const Uploader = ({
-  getRootProps,
-  getInputProps,
-  isDragActive,
-}: {
+export type UploaderProps = {
   getRootProps: <T extends DropzoneRootProps>(props?: T) => T
   getInputProps: <T extends DropzoneInputProps>(props?: T) => T
   isDragActive: boolean
-}) => {
+  isLoading?: boolean
+  formats?: string[]
+}
+
+const Uploader = ({ getRootProps, getInputProps, isDragActive, isLoading, formats }: UploaderProps) => {
   const { t } = useTranslation()
+
+  if (!formats) {
+    formats = ['CSV', 'XLSX', 'ODS']
+  }
 
   return (
     <Flex
@@ -36,20 +40,23 @@ const Uploader = ({
         borderRadius='lg'
         p={2}
       >
-        <Icon as={FiUploadCloud} boxSize={10} color='process_create.spreadsheet.file' />
+        <Icon as={FiUploadCloud} boxSize={10} />
       </Flex>
       <Box>
         {isDragActive ? (
-          <Text textAlign='center' color='process_create.description'>
-            {t('uploaderCustom.drop_here')}
-          </Text>
+          <Text textAlign='center'>{t('uploader.drop_here')}</Text>
+        ) : isLoading ? (
+          <Spinner />
         ) : (
           <Trans
             i18nKey='uploader.click_or_drag_and_drop'
             components={{
               click: <Text as='span' textAlign='center' color='input.drag_and_drop.text' />,
               drag: <Text as='span' textAlign='center' />,
-              formats: <Text textAlign='center' fontSize='sm' color='process_create.description' />,
+              formats: <Text textAlign='center' fontSize='sm' />,
+            }}
+            values={{
+              formats,
             }}
           />
         )}

@@ -11,6 +11,7 @@ import {
   Heading,
   HStack,
   Icon,
+  IconButton,
   Link,
   Stack,
   Tag,
@@ -18,6 +19,7 @@ import {
   useClipboard,
   VStack,
 } from '@chakra-ui/react'
+import { BarChart04, Link03, List } from '@untitled-ui/icons-react'
 import {
   ActionCancel,
   ActionContinue,
@@ -35,7 +37,6 @@ import { useElection } from '@vocdoni/react-providers'
 import { PublishedElection } from '@vocdoni/sdk'
 import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { AiOutlinePieChart, AiOutlineQuestionCircle } from 'react-icons/ai'
 import { FaCopy, FaEye } from 'react-icons/fa'
 import { FaPause, FaPlay, FaStop, FaTrash } from 'react-icons/fa6'
 import { generatePath, useOutletContext } from 'react-router-dom'
@@ -48,7 +49,7 @@ import { Routes } from '~src/router/routes'
 export const ProcessView = () => {
   const { setTitle, setBack } = useOutletContext<DashboardLayoutContext>()
   const { id, election, participation, turnout } = useElection()
-  const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(600, 20)
+  const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(70, 40)
 
   const votingLink = `${document.location.origin}${generatePath(Routes.processes.view, { id })}`
   const { hasCopied, onCopy } = useClipboard(votingLink)
@@ -64,66 +65,78 @@ export const ProcessView = () => {
       {/* Main content area */}
       <DashboardContents display='flex' flexDir='column' gap={6} order={{ base: 1, lg: 0 }}>
         {/* Title, schedule, and description */}
-        <ElectionSchedule showRemaining as={Tag} />
-        <ElectionTitle variant='contents-title' />
+        <ElectionSchedule showRemaining as={Tag} variant='solid' color='white' />
+        <ElectionTitle variant='contents-title' mb={0} />
         {election instanceof PublishedElection && election.description && (
-          <>
+          <Box>
             <ReadMoreMarkdownWrapper
               from={'var(--chakra-colors-dashboard-read_more-from)'}
               toLight={'var(--chakra-colors-dashboard-read_more-to-light)'}
               toDark={'var(--chakra-colors-dashboard-read_more-to-dark)'}
             >
-              <ElectionDescription mb={0} fontSize='lg' lineHeight={1.5} color='process.description' />
+              <ElectionDescription fontSize='lg' lineHeight={1.5} />
             </ReadMoreMarkdownWrapper>
-            <ReadMoreMarkdownButton alignSelf='center' />
-          </>
+            <ReadMoreMarkdownButton
+              alignSelf='start'
+              h='fit-content'
+              p={0}
+              mt={4}
+              color='dashboard.read_more.text.light'
+              _dark={{ color: 'dashboard.read_more.text.dark' }}
+            />
+          </Box>
         )}
 
         {/* Calendar */}
-        <DashboardBox display='flex' flexDir='column' gap={4}>
+        <Box>
           <Heading as='h4' variant='contents-section'>
-            <Trans i18nKey='voting_link'>Calendar</Trans>
+            <Trans i18nKey='calendar.title'>Calendar</Trans>
           </Heading>
-          <Box display='flex'>
-            <Box display='flex' flexDirection='column' flex={1}>
-              <Box>
-                <Text variant='enumeration-title'>Start:</Text>
-              </Box>
-              <Text>
+          <DashboardBox display='flex' flexDirection='row' flexWrap={'wrap'} justifyContent={'space-between'}>
+            <Box display='flex' flexDirection='row' gap={2} flex={1}>
+              <Text color={'dashboard.process_view.calendar_label'}>Start</Text>
+              <Text whiteSpace={'nowrap'}>
                 {election instanceof PublishedElection && election.startDate && election.startDate.toLocaleString()}
               </Text>
             </Box>
-            <Box display='flex' flexDirection='column' flex={1}>
-              <Box>
-                <Text variant='enumeration-title'>End:</Text>
-              </Box>
-              <Text>
+            <Box display='flex' flexDirection='row' gap={2} flex={1}>
+              <Text color={'dashboard.process_view.calendar_label'}>End</Text>
+              <Text whiteSpace={'nowrap'}>
                 {election instanceof PublishedElection && election.endDate && election.endDate.toLocaleString()}
               </Text>
             </Box>
-          </Box>
-        </DashboardBox>
+          </DashboardBox>
+        </Box>
 
         {/* Voting link */}
-        <Heading variant='contents-subtitle'>
-          <Trans i18nKey='voting_link'>Voting Link</Trans>
-        </Heading>
-        <DashboardBox display='flex' gap={4} flexDirection={{ base: 'column', xl: 'row' }} alignItems='center'>
-          <Link href={votingLink} isExternal overflowWrap='anywhere' whiteSpace='normal' wordBreak='break-all' flex={1}>
-            {votingLink}
-          </Link>
-          <Button onClick={onCopy} leftIcon={<FaCopy />}>
-            {hasCopied ? <Trans i18nKey='copy.copied'>Copied</Trans> : <Trans i18nKey='share.copy'>Copy</Trans>}
-          </Button>
-          <Button as={Link} href={votingLink} isExternal leftIcon={<FaEye />} colorScheme='blue'>
-            <Trans i18nKey='preview'>Preview</Trans>
-          </Button>
-        </DashboardBox>
+        <Box>
+          <Heading variant='contents-section'>
+            <Trans i18nKey='voting_link'>Voting Link</Trans>
+          </Heading>
+          <DashboardBox display='flex' gap={4} flexDirection={{ base: 'column', xl: 'row' }} alignItems='center'>
+            <Icon as={Link03} color={'dashboard.process_view.link'} />
+            <Link
+              href={votingLink}
+              isExternal
+              overflowWrap='anywhere'
+              whiteSpace='normal'
+              wordBreak='break-all'
+              flex={1}
+            >
+              {votingLink}
+            </Link>
+            <IconButton onClick={onCopy} icon={<FaCopy />} aria-label='' />
+
+            <Button as={Link} href={votingLink} isExternal leftIcon={<FaEye />} colorScheme='blue'>
+              <Trans i18nKey='preview'>Preview</Trans>
+            </Button>
+          </DashboardBox>
+        </Box>
 
         {/* Accordion section for extra info */}
         <Accordion allowToggle variant='dashboard'>
-          <AccordionItem>
-            <DashboardAccordionButton icon={AiOutlinePieChart}>
+          <AccordionItem mb={6}>
+            <DashboardAccordionButton icon={BarChart04}>
               <Trans i18nKey='voting_results'>Voting Results</Trans>
             </DashboardAccordionButton>
             <AccordionPanel>
@@ -132,7 +145,7 @@ export const ProcessView = () => {
           </AccordionItem>
 
           <AccordionItem>
-            <DashboardAccordionButton icon={AiOutlineQuestionCircle}>
+            <DashboardAccordionButton icon={List}>
               <Trans i18nKey='voting_questions'>Voting Questions</Trans>
             </DashboardAccordionButton>
             <AccordionPanel>
@@ -152,11 +165,11 @@ export const ProcessView = () => {
       >
         <Stack flexDir='column'>
           {/* Running label */}
-          <ElectionStatusBadge variant='solid' />
+          <ElectionStatusBadge variant='solid' w='full' py={2} />
 
           {/* Control Panel */}
           <Box>
-            <Heading as='h4' mb={4} variant='sidebar-title'>
+            <Heading as='h4' variant='sidebar-title'>
               <Trans i18nKey='control'>Control:</Trans>
             </Heading>
             <HStack justifyContent='space-around'>
@@ -164,13 +177,22 @@ export const ProcessView = () => {
                 <ActionContinue
                   variant='outline'
                   aria-label={t('process_actions.continue', { defaultValue: 'Continue' })}
+                  colorScheme='green'
                 >
                   <FaPlay />
                 </ActionContinue>
-                <ActionPause variant='outline' aria-label={t('process_actions.pause', { defaultValue: 'Pause' })}>
+                <ActionPause
+                  variant='outline'
+                  aria-label={t('process_actions.pause', { defaultValue: 'Pause' })}
+                  colorScheme='yellow'
+                >
                   <FaPause />
                 </ActionPause>
-                <ActionEnd variant='outline' aria-label={t('process_actions.end', { defaultValue: 'End' })}>
+                <ActionEnd
+                  variant='outline'
+                  aria-label={t('process_actions.end', { defaultValue: 'End' })}
+                  colorScheme='orange'
+                >
                   <FaStop />
                 </ActionEnd>
                 <ActionCancel
@@ -187,9 +209,9 @@ export const ProcessView = () => {
 
         {/* Total Votes Submitted */}
         <DashboardBox textAlign='center' display='flex' flexDir='column' gap={3}>
-          <Heading as='h4' variant='sidebar-section'>
+          <Text fontWeight={'bold'}>
             <Trans i18nKey='total_votes_submitted'>Total Votes Submitted</Trans>
-          </Heading>
+          </Text>
           <Box display='flex' alignItems='center' justifyContent='center' gap={3}>
             <Text fontSize='3xl'>{(election instanceof PublishedElection && election.voteCount) || 0}</Text>
             <Text fontSize='sm' color='gray.600' _dark={{ color: 'gray.400' }}>
@@ -200,9 +222,9 @@ export const ProcessView = () => {
 
         {/* Census Details */}
         <DashboardBox textAlign='center' display='flex' flexDir='column' gap={3}>
-          <Heading as='h4' variant='sidebar-section'>
+          <Text fontWeight={'bold'}>
             <Trans i18nKey='census_details'>Census Details</Trans>
-          </Heading>
+          </Text>
           <Text fontSize='2xl'>
             {election instanceof PublishedElection && election.census.size} <Trans i18nKey='voters'>voters</Trans>
           </Text>
@@ -210,9 +232,9 @@ export const ProcessView = () => {
 
         {/* Features Section */}
         <DashboardBox textAlign='center' display='flex' flexDir='column' gap={3}>
-          <Heading as='h4' variant='sidebar-section'>
+          <Text fontWeight={'bold'}>
             <Trans i18nKey='features.title'>Features</Trans>
-          </Heading>
+          </Text>
           <Features />
         </DashboardBox>
       </VStack>
@@ -227,7 +249,7 @@ type AccordionButtonProps = BoxProps & {
 const DashboardAccordionButton = ({ icon, children, ...rest }: AccordionButtonProps) => (
   <AccordionButton>
     <Box flex='1' textAlign='left' fontWeight={600} display='flex' alignItems='center' gap={4} {...rest}>
-      <Icon as={icon} fontSize='3rem' color='teal.400' /> {children}
+      <Icon as={icon} /> {children}
     </Box>
     <AccordionIcon />
   </AccordionButton>

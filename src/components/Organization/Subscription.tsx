@@ -16,12 +16,19 @@ import {
   Th,
   Thead,
   Tr,
+  useToast,
   VStack,
 } from '@chakra-ui/react'
+import { useClient } from '@vocdoni/react-providers'
+import { ensure0x } from '@vocdoni/sdk'
 import { Trans } from 'react-i18next'
 import { Link as RouterLink } from 'react-router-dom'
+import { useMutation } from 'wagmi'
+import { ApiEndpoints } from '~components/Auth/api'
 import { useSubscription } from '~components/Auth/Subscription'
+import { useAuth } from '~components/Auth/useAuth'
 import { usePricingModal } from '~components/Pricing/use-pricing-modal'
+import { PlanId } from '~constants'
 import { Routes } from '~src/router/routes'
 import { currency } from '~utils/numbers'
 
@@ -38,8 +45,22 @@ export const Subscription = () => {
   )
 }
 
+const usePortalSession = () => {
+  const { bearedFetch } = useAuth()
+  const { account } = useClient()
+
+  return useMutation({
+    mutationFn: () =>
+      bearedFetch<{ portalURL: string }>(
+        ApiEndpoints.SubscriptionPortal.replace('{address}', ensure0x(account?.address))
+      ),
+  })
+}
+
 export const SubscriptionList = () => {
   const { subscription, loading } = useSubscription()
+  const { mutateAsync, isLoading } = usePortalSession()
+  const toast = useToast()
 
   if (loading) {
     return <Progress size='xs' isIndeterminate />
@@ -48,6 +69,22 @@ export const SubscriptionList = () => {
   if (!subscription) {
     return null
   }
+
+  const handleChangeClick = () =>
+    mutateAsync()
+      .then((res) => {
+        window.open(res.portalURL, '_blank')
+      })
+      .catch(() => {
+        toast({
+          status: 'error',
+          title: 'Request error',
+          description:
+            'There was an error trying to fulfill your request, please retry and, if the problem persists, contact support.',
+        })
+      })
+
+  const isFree = subscription.plan.id === PlanId.Free
 
   return (
     <VStack gap={4} w='full'>
@@ -81,7 +118,7 @@ export const SubscriptionList = () => {
               <Th>
                 <Trans i18nKey='subscription.since'>Since</Trans>
               </Th>
-              <Th colSpan={2}>
+              <Th colSpan={isFree ? 1 : 2}>
                 <Trans i18nKey='subscription.next_billing'>Next Billing</Trans>
               </Th>
             </Tr>
@@ -103,11 +140,13 @@ export const SubscriptionList = () => {
               <Td>
                 <Tag>{new Date(subscription.subscriptionDetails.renewalDate).toLocaleDateString()}</Tag>
               </Td>
-              <Td>
-                <Button variant='outline' size='sm'>
-                  <Trans i18nKey='subscription.change_plan_button'>Change</Trans>
-                </Button>
-              </Td>
+              {!isFree && (
+                <Td>
+                  <Button variant='outline' size='sm' isLoading={isLoading} onClick={() => handleChangeClick()}>
+                    <Trans i18nKey='subscription.change_plan_button'>Change</Trans>
+                  </Button>
+                </Td>
+              )}
             </Tr>
           </Tbody>
         </Table>

@@ -35,6 +35,7 @@ import { useAuth } from '~components/Auth/useAuth'
 import InputBasic from '~components/Layout/InputBasic'
 import { usePricingModal } from '~components/Pricing/use-pricing-modal'
 import { SubscriptionPermission } from '~constants'
+import { QueryKeys } from '~src/queries/keys'
 import { CallbackProvider, useCallbackContext } from '~utils/callback-provider'
 import { useTeamMembers } from './Team'
 
@@ -54,7 +55,7 @@ const useRoles = () => {
   const { bearedFetch } = useAuth()
 
   return useQuery({
-    queryKey: ['organization', 'roles'],
+    queryKey: QueryKeys.organization.roles,
     queryFn: async () => {
       const response = await bearedFetch<{ roles: Role[] }>(ApiEndpoints.OrganizationsRoles)
       return response.roles
@@ -78,7 +79,7 @@ const useInviteMemberMutation = () => {
       }),
     onSuccess: () => {
       // Invalidate queries to refresh member and pending member lists
-      queryClient.invalidateQueries({ queryKey: ['organizations', 'members'] })
+      queryClient.invalidateQueries({ queryKey: QueryKeys.organization.members() })
     },
   })
 }

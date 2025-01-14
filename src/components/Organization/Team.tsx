@@ -1,9 +1,11 @@
 import { Avatar, Badge, Box, Flex, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
+import { enforceHexPrefix, useClient } from '@vocdoni/react-providers'
 import { Trans } from 'react-i18next'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import QueryDataLayout from '~components/Layout/QueryDataLayout'
+import { QueryKeys } from '~src/queries/keys'
 
 // Define types
 type UserInfo = {
@@ -33,11 +35,14 @@ export const useTeamMembers = ({
 }: {
   options?: Omit<UseQueryOptions<TeamMembersResponse>, 'queryKey' | 'queryFn'>
 } = {}) => {
-  const { bearedFetch, signerAddress } = useAuth()
+  const { bearedFetch } = useAuth()
+  const { account } = useClient()
   return useQuery({
-    queryKey: ['organizations', 'members', signerAddress],
+    queryKey: QueryKeys.organization.members(enforceHexPrefix(account?.address)),
     queryFn: () =>
-      bearedFetch<TeamMembersResponse>(ApiEndpoints.OrganizationMembers.replace('{address}', signerAddress)),
+      bearedFetch<TeamMembersResponse>(
+        ApiEndpoints.OrganizationMembers.replace('{address}', enforceHexPrefix(account?.address))
+      ),
     ...options,
     select: (data) => data.members,
   })
@@ -49,12 +54,13 @@ export const usePendingTeamMembers = ({
 }: {
   options?: Omit<UseQueryOptions<PendingTeamMembersResponse>, 'queryKey' | 'queryFn'>
 } = {}) => {
-  const { bearedFetch, signerAddress } = useAuth()
+  const { bearedFetch } = useAuth()
+  const { account } = useClient()
   return useQuery({
-    queryKey: ['organizations', 'members', 'pending', signerAddress],
+    queryKey: QueryKeys.organization.pendingMembers(enforceHexPrefix(account?.address)),
     queryFn: () =>
       bearedFetch<PendingTeamMembersResponse>(
-        ApiEndpoints.OrganizationPendingMembers.replace('{address}', signerAddress)
+        ApiEndpoints.OrganizationPendingMembers.replace('{address}', enforceHexPrefix(account?.address))
       ),
     ...options,
     select: (data) => data.pending,
