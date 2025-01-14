@@ -2,6 +2,7 @@ import { Flex } from '@chakra-ui/react'
 import { RoutedPagination } from '@vocdoni/chakra-components'
 import { RoutedPaginationProvider, useOrganization } from '@vocdoni/react-providers'
 import { ElectionListWithPagination } from '@vocdoni/sdk'
+import { DashboardContents } from '~components/Layout/Dashboard'
 import { NoResultsFiltering } from '~components/Layout/NoResultsFiltering'
 import { Routes } from '~src/router/routes'
 import NoElections from '../NoElections'
@@ -30,20 +31,22 @@ const VotingsList = ({ data, status }: VotingsProps) => {
   const { elections, pagination } = data
 
   return (
-    <Flex flexDirection='column' flexGrow={1} gap={5} height='full'>
-      {!!elections?.length ? (
-        <>
-          <ProcessesList processes={elections} />
-          <Flex mt='auto' justifyContent='end'>
-            <RoutedPagination pagination={pagination} />
-          </Flex>
-        </>
-      ) : !!status ? (
-        <NoResultsFiltering />
-      ) : (
-        <NoElections />
-      )}
-    </Flex>
+    <DashboardContents>
+      <Flex flexDirection='column' flexGrow={1} gap={5} height='full'>
+        {!!elections?.length ? (
+          <>
+            <ProcessesList processes={elections} />
+            <Flex mt='auto' justifyContent='end'>
+              <RoutedPagination pagination={pagination} />
+            </Flex>
+          </>
+        ) : !!status ? (
+          <NoResultsFiltering />
+        ) : (
+          <NoElections />
+        )}
+      </Flex>
+    </DashboardContents>
   )
 }
 

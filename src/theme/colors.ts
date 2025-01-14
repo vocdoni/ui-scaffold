@@ -23,6 +23,7 @@ export const colorsBase = {
     light: '#fcfcfc',
     light2: '#ffffff3d',
     dark: '#F5F5F7',
+    dark2: '#EDF2F7',
     alpha: 'whiteAlpha.300',
     from_read_more: 'rgba(245, 245, 247, 0)',
   },
@@ -388,24 +389,25 @@ export const colors = {
 
   table: {
     bg: {
-      light: colorsBase.white.light,
+      light: colorsBase.white.light2,
+      light_hover: colorsBase.white.dark,
       dark: colorsBase.blue.grayish,
     },
     thead: {
-      bg_light: colorsBase.white.light,
+      bg_light: colorsBase.white.light2,
       bg_dark: colorsBase.blue.grayish,
     },
     variant: {
       striped: {
         light: {
-          tr_odd: colorsBase.white.pure,
-          tr_even: colorsBase.white.light,
-          border: colorsBase.gray.light,
+          tr_even: colorsBase.white.pure,
+          tr_odd: colorsBase.white.dark,
+          hover: '#cce5de',
         },
         dark: {
-          tr_odd: colorsBase.blue.dark,
           tr_even: colorsBase.blue.grayish,
-          border: colorsBase.white.light2,
+          tr_odd: colorsBase.blue.dark,
+          hover: '#193d32',
         },
       },
     },
