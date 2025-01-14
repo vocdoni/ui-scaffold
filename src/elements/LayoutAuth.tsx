@@ -1,5 +1,5 @@
 import { Box, Flex, Heading, Icon, Text } from '@chakra-ui/react'
-import { ReactNode, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaChevronLeft } from 'react-icons/fa'
 import { NavLink, Outlet, To } from 'react-router-dom'
@@ -77,6 +77,13 @@ const LayoutAuth = () => {
   const randomText = texts[randomTextIndex]
   const randomImage = images[randomImageIndex]
 
+  // store -1 as back route if there's browser history present
+  useEffect(() => {
+    if (window.history.state.idx) {
+      setBack(-1)
+    }
+  }, [window.history.state.idx])
+
   return (
     <Flex
       bgColor={'bg.light'}
@@ -94,7 +101,7 @@ const LayoutAuth = () => {
           sm: 5,
         }}
       >
-        <Flex w='full' maxW='500px'>
+        <Flex w='full' maxW='500px' mt={30}>
           <NavLink to={back as unknown}>
             <Flex align='center' w='fit-content'>
               <Icon as={FaChevronLeft} me={2} h={3} w={2} color={'auth.text_color_secondary'} />
