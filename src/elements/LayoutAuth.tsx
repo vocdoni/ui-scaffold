@@ -84,61 +84,49 @@ const LayoutAuth = () => {
       minH={{ xl: '100vh' }}
       flexDirection={{ base: 'column', xl: 'row' }}
     >
-      <Box position='absolute' top={5} left={2.5}>
-        <NavLink to={back as unknown}>
-          <Flex align='center' w='fit-content'>
-            <Icon as={FaChevronLeft} me={2} h={3} w={2} color={'auth.text_color_secondary'} />
-            <Text fontSize='sm' color={'auth.text_color_secondary'}>
-              {t('back', { defaultValue: 'Back' })}
-            </Text>
-          </Flex>
-        </NavLink>
-      </Box>
       <Flex
-        position={'relative'}
+        flexDirection={'column'}
         flex={{ base: '1 1 100%', xl: '1 1 50%' }}
-        flexDirection='column'
-        justifyContent='center'
-        alignItems='center'
+        justifyContent={'space-between'}
+        alignItems={'center'}
         px={{
           base: 2.5,
           sm: 5,
         }}
       >
-        <Flex
-          flexDirection='column'
-          justifyContent={{ base: 'start', xl: 'center' }}
-          alignItems='center'
-          w='full'
-          pb={20}
-          pt={10}
-        >
-          <Flex direction='column' gap={6} w={'100%'} maxW='500px'>
-            {(title || subtitle) && (
-              <Box me='auto'>
-                {title && (
-                  <Heading fontSize='4xl' mb={2.5}>
-                    {title}
-                  </Heading>
-                )}
-                {subtitle && (
-                  <Text color={'account.description'} fontWeight='400' fontSize='md'>
-                    {subtitle}
-                  </Text>
-                )}
-              </Box>
-            )}
-            <Outlet context={{ setTitle, setSubtitle, setSidebar, setBack } satisfies AuthOutletContextType} />
-          </Flex>
+        <Flex w='full' maxW='500px'>
+          <NavLink to={back as unknown}>
+            <Flex align='center' w='fit-content'>
+              <Icon as={FaChevronLeft} me={2} h={3} w={2} color={'auth.text_color_secondary'} />
+              <Text fontSize='sm' color={'auth.text_color_secondary'}>
+                {t('back', { defaultValue: 'Back' })}
+              </Text>
+            </Flex>
+          </NavLink>
+        </Flex>
+        <Flex direction='column' gap={6} w={'100%'} maxW='500px'>
+          {(title || subtitle) && (
+            <Box me='auto'>
+              {title && (
+                <Heading fontSize='4xl' mb={2.5}>
+                  {title}
+                </Heading>
+              )}
+              {subtitle && (
+                <Text color={'account.description'} fontWeight='400' fontSize='md'>
+                  {subtitle}
+                </Text>
+              )}
+            </Box>
+          )}
+          <Outlet context={{ setTitle, setSubtitle, setSidebar, setBack } satisfies AuthOutletContextType} />
         </Flex>
         <Text
-          position={'absolute'}
-          bottom={0}
           display={{ base: 'none', xl: 'block' }}
-          mt='auto'
           color={'auth.text_color_secondary'}
           py={5}
           textAlign='center'
+          maxW='500px'
         >
           {t('rights', { defaultValue: '© 2024 Vocdoni Association. All Rights Reserved.' })}
         </Text>
