@@ -31,9 +31,11 @@ export const DropdownColorModeSwitcher = (props) => {
   const { toggleColorMode } = useColorMode()
   const isLightMode = useColorModeValue(true, false)
   const SwitchIcon = useColorModeValue(IoMdMoon, IoMdSunny)
-  
-  return  <MenuItem onClick={toggleColorMode} closeOnSelect={true}>
-  <Icon as={SwitchIcon} />
-  <Trans i18nKey={isLightMode ? 'dark_mode' : 'light_mode'}></Trans>
-</MenuItem>
+
+  return (
+    <MenuItem onClick={toggleColorMode} closeOnSelect={true} {...props}>
+      <Icon as={SwitchIcon} />
+      <Trans i18nKey={isLightMode ? 'dark_mode' : 'light_mode'}>Light mode</Trans>
+    </MenuItem>
+  )
 }
