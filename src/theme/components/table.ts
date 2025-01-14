@@ -7,7 +7,6 @@ const baseStyle = definePartsStyle((props) => ({
   table: {
     overflow: 'hidden',
     bgColor: 'table.bg.light',
-    border: '2px solid red',
 
     _dark: {
       bgColor: 'table.bg.dark',
@@ -55,25 +54,12 @@ const striped = definePartsStyle((props) => ({
       _dark: {
         bgColor: 'table.variant.striped.dark.tr_odd',
       },
-      // borderBottomColor: 'var(--chakra-colors-table-variant-striped-light-border)',
-      // bgColor: 'table.variant.striped.light.tr_odd',
-      // _dark: {
-      //   borderBottomColor: 'var(--chakra-colors-table-variant-striped-dark-border)',
-      //   bgColor: 'table.variant.striped.dark.tr_odd',
-      // },
-      // _hover: {
-      //   bgColor: 'table.bg.striped.light.tr_odd',
-      // },
     },
     'tr:nth-of-type(2n) td': {
       bgColor: 'table.variant.striped.light.tr_even',
       _dark: {
         bgColor: 'table.variant.striped.dark.tr_even',
       },
-      // borderBottomColor: 'var(--chakra-colors-table-variant-striped-light-border)',
-      // _dark: {
-      //   borderBottomColor: 'var(--chakra-colors-table-variant-striped-dark-border)',
-      // },
     },
 
     tr: {
