@@ -1,7 +1,6 @@
-import { Box, Flex, FormControl, FormLabel, Text, Textarea } from '@chakra-ui/react'
+import { Box, Checkbox, Flex, FormControl, FormErrorMessage, FormLabel, Text, Textarea } from '@chakra-ui/react'
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import CheckboxCustom from '~components/Layout/CheckboxCustom'
 import InputBasic from '~components/Layout/InputBasic'
 import {
   CountriesTypesSelector,
@@ -54,10 +53,14 @@ export type PrivateOrgFormData = {
   size: SelectOptionType
   type: SelectOptionType
   country: SelectOptionType
+  communications: boolean
 }
 
 export const PrivateOrgForm = () => {
-  const { t } = useTranslation()
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<PrivateOrgFormData>()
 
   return (
     <>
@@ -76,12 +79,14 @@ export const PrivateOrgForm = () => {
         <OrganzationTypesSelector name='type' required />
         <CountriesTypesSelector name='country' required />
       </Flex>
-      <CheckboxCustom
-        formValue='communications'
-        label={t('create_org.communication', {
-          defaultValue: '  I want to receive communications and be contacted to tailor my governance experience.',
-        })}
-      />
+      <FormControl as='fieldset' isInvalid={!!errors?.communications}>
+        <Checkbox {...register('communications')}>
+          <Trans i18nKey='create_org.communication'>
+            I want to receive communications and be contacted to tailor my governance experience.
+          </Trans>
+        </Checkbox>
+        <FormErrorMessage>{errors?.communications?.message.toString()}</FormErrorMessage>
+      </FormControl>
     </>
   )
 }
