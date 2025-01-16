@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react'
 import { OrganizationName } from '@vocdoni/chakra-components'
-import { OrganizationProvider, useOrganization } from '@vocdoni/react-providers'
+import { useClient } from '@vocdoni/react-providers'
 import { Select } from 'chakra-react-select'
 import { useEffect, useMemo, useState } from 'react'
 import { useQueryClient } from 'wagmi'
@@ -8,35 +8,51 @@ import { useAuth } from '~components/Auth/useAuth'
 import { LocalStorageKeys } from '~components/Auth/useAuthProvider'
 import { Organization, useProfile } from '~src/queries/account'
 
-const OrganizationOption = ({ organization }: { organization: Organization }) => {
-  const { organization: orgData } = useOrganization()
-  return <Box>{orgData?.account?.name?.default || organization.address}</Box>
-}
-
 type SelectOption = {
   value: string
-  label: JSX.Element
+  label: string
   organization: Organization
 }
 
 export const OrganizationSwitcher = () => {
   const { data: profile } = useProfile()
   const [selectedOrg, setSelectedOrg] = useState<string | null>(localStorage.getItem(LocalStorageKeys.SignerAddress))
+  const [names, setNames] = useState<Record<string, string>>({})
   const { signerRefresh } = useAuth()
-  const client = useQueryClient()
+  const queryClient = useQueryClient()
+  const { client } = useClient()
 
+  // Fetch organization names
+  useEffect(() => {
+    if (!profile?.organizations) return
+
+    const fetchOrgNames = async () => {
+      const names: Record<string, string> = {}
+      for (const org of profile.organizations) {
+        const address = org.organization.address
+        try {
+          const data = await client.fetchAccount(address)
+          names[address] = data?.account?.name?.default || address
+        } catch (error) {
+          console.error('Error fetching organization name:', error)
+          names[address] = address
+        }
+      }
+      setNames(names)
+    }
+
+    fetchOrgNames()
+  }, [profile])
+
+  // Populate organizations for the selector
   const organizations = useMemo(() => {
     if (!profile?.organizations) return []
     return profile.organizations.map((org) => ({
       value: org.organization.address,
-      label: (
-        <OrganizationProvider id={org.organization.address}>
-          <OrganizationOption organization={org.organization} />
-        </OrganizationProvider>
-      ),
+      label: names[org.organization.address] || org.organization.address,
       organization: org.organization,
     }))
-  }, [profile])
+  }, [profile, names])
 
   // Set first organization as default if none selected
   useEffect(() => {
@@ -52,7 +68,7 @@ export const OrganizationSwitcher = () => {
     setSelectedOrg(option.value)
     localStorage.setItem(LocalStorageKeys.SignerAddress, option.value)
     // clear all query client query cache
-    client.clear()
+    queryClient.clear()
     // refresh signer
     await signerRefresh()
   }
