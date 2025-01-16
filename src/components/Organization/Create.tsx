@@ -19,10 +19,16 @@ import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from './Form'
 
 type FormData = PrivateOrgFormData & CreateOrgParams
 
-const useOrganizationCreate = (options?: Omit<UseMutationOptions<void, Error, CreateOrgParams>, 'mutationFn'>) => {
+type OrganizationCreateResponse = {
+  address: string
+}
+
+const useOrganizationCreate = (
+  options?: Omit<UseMutationOptions<OrganizationCreateResponse, Error, CreateOrgParams>, 'mutationFn'>
+) => {
   const { bearedFetch } = useAuth()
   const client = useQueryClient()
-  return useMutation<void, Error, CreateOrgParams>({
+  return useMutation<OrganizationCreateResponse, Error, CreateOrgParams>({
     mutationFn: (params: CreateOrgParams) => bearedFetch(ApiEndpoints.Organizations, { body: params, method: 'POST' }),
     onSuccess: () => {
       client.invalidateQueries({ queryKey: QueryKeys.profile })
@@ -65,12 +71,15 @@ export const OrganizationCreate = ({
       type: values.type?.value,
       communications: values.communications,
     })
-      .then(() => {
+      .then(({ address }: { address: string }) => {
         const signer = new RemoteSigner({
           url: import.meta.env.SAAS_URL,
           token: bearer,
         })
+
+        signer.address = address
         client.wallet = signer
+
         return client.createAccount({
           account: new Account({
             name: typeof values.name === 'object' ? values.name.default : values.name,

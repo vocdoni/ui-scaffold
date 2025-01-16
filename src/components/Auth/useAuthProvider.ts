@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { api, ApiEndpoints, ApiParams } from '~components/Auth/api'
 import { LoginResponse, useLogin, useRegister, useVerifyMail } from '~components/Auth/authQueries'
 
-enum LocalStorageKeys {
+export enum LocalStorageKeys {
   Token = 'authToken',
   Expiry = 'authExpiry',
   RenewSession = 'authRenewSession',
@@ -23,12 +23,14 @@ const OneWeek = 7 * 24 * 60 * 60 * 1000
  * to create organization page if not.
  */
 const useSigner = () => {
-  const { setSigner } = useClient()
+  const { setSigner, fetchAccount, client, setClient } = useClient()
 
-  const updateSigner = useCallback(async (token: string) => {
+  const updateSigner = useCallback(async (token?: string) => {
+    const t = token || localStorage.getItem(LocalStorageKeys.Token)
+
     const signer = new RemoteSigner({
       url: import.meta.env.SAAS_URL,
-      token,
+      token: t,
     })
     // Once the signer is set, try to get the signer address
     try {
@@ -49,6 +51,13 @@ const useSigner = () => {
       // Set the signer address and update the client
       signer.address = selectedAddress
       setSigner(signer)
+
+      // update client, since it's the one used for some queries
+      client.wallet = signer
+      setClient(client)
+
+      await fetchAccount()
+
       return signer
     } catch (e) {
       // If is NoOrganizationsError ignore the error
