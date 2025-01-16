@@ -1,8 +1,8 @@
-import { Button, Flex, Link, Text, useToast } from '@chakra-ui/react'
+import { Button, Checkbox, Flex, FormControl, FormErrorMessage, Link, Text, useToast } from '@chakra-ui/react'
 import { useMutation } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { NavLink, useNavigate, useOutletContext } from 'react-router-dom'
 import { api, ApiEndpoints, UnverifiedApiError } from '~components/Auth/api'
 import { ILoginParams } from '~components/Auth/authQueries'
@@ -12,7 +12,6 @@ import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import InputPassword from '~components/Layout/InputPassword'
 import { AuthOutletContextType } from '~elements/LayoutAuth'
 import { Routes } from '~src/router/routes'
-import CustomCheckbox from '../Layout/CheckboxCustom'
 import InputBasic from '../Layout/InputBasic'
 import GoogleAuth from './GoogleAuth'
 
@@ -47,7 +46,12 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
   const methods = useForm<FormData>({
     defaultValues: { email: emailProp },
   })
-  const { handleSubmit, watch } = methods
+  const {
+    handleSubmit,
+    watch,
+    formState: { errors },
+    register,
+  } = methods
   const email = watch('email', emailProp)
 
   const {
@@ -130,7 +134,12 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
             required
           />
           <Flex justifyContent='center' align='center'>
-            <CustomCheckbox formValue='keepLogedIn' label={t('keep_me_logged', { defaultValue: 'Keep me logged' })} />
+            <FormControl as='fieldset' isInvalid={!!errors?.keepLogedIn}>
+              <Checkbox {...register('keepLogedIn')}>
+                <Trans i18nKey='keep_me_logged'>Keep me logged</Trans>
+              </Checkbox>
+              <FormErrorMessage>{errors?.keepLogedIn?.message.toString()}</FormErrorMessage>
+            </FormControl>
 
             <NavLink to={Routes.auth.recovery}>
               <Text fontSize='sm' fontWeight='500' whiteSpace='nowrap'>

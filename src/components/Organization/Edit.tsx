@@ -114,6 +114,7 @@ const EditOrganization = () => {
       size: values.size?.value,
       type: values.type?.value,
       country: values.country?.value,
+      communications: values.communications,
     }
 
     try {

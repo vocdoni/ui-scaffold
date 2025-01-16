@@ -758,6 +758,7 @@
   },
   "invite_people": "Invite People",
   "keep_me_logged": "Keep me logged in",
+  "languages": "Languages",
   "link": {
     "discord": "Link to Vocdoni's discord",
     "github": "Link to Vocdoni's github",
@@ -883,7 +884,7 @@
     "compare_features": "Compare all features",
     "core_voting": "Core voting features",
     "custom_subtitle": "Large organizations enterprises, and institutions requiring extensive customization and support.",
-    "custom_title": "Custom Plan",
+    "custom_title": "Custom",
     "date_format": "dd/mm/yy",
     "dedicated_manager": "Dedicated account manager",
     "error": "",

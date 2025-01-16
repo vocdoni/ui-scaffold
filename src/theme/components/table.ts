@@ -14,9 +14,16 @@ const baseStyle = definePartsStyle((props) => ({
   },
   thead: {
     bgColor: 'table.thead.bg_light',
-    borderBottom: '1.5px solid',
-    borderColor: 'table.border_color.light',
 
+    tr: {
+      th: {
+        borderBottomColor: 'var(--chakra-colors-table-variant-striped-light-border)',
+
+        _dark: {
+          borderBottomColor: 'var(--chakra-colors-table-variant-striped-dark-border)',
+        },
+      },
+    },
     th: {
       textTransform: 'initial',
     },
@@ -30,18 +37,41 @@ const baseStyle = definePartsStyle((props) => ({
     fontWeight: 'normal',
     borderBottom: 'none',
   },
-  tbody: {
-    '& tr:last-of-type': {
-      borderColor: 'transparent',
-    },
-  },
+
   tr: {
     position: 'relative',
-    borderBottom: '1.5px solid',
-    borderColor: 'table.border_color.light',
+  },
+}))
 
-    _dark: {
-      borderColor: 'table.border_color.dark',
+const striped = definePartsStyle((props) => ({
+  table: {
+    borderBottom: 'none',
+  },
+
+  tbody: {
+    'tr:nth-of-type(2n+1) td': {
+      bgColor: 'table.variant.striped.light.tr_odd',
+      _dark: {
+        bgColor: 'table.variant.striped.dark.tr_odd',
+      },
+    },
+    'tr:nth-of-type(2n) td': {
+      bgColor: 'table.variant.striped.light.tr_even',
+      _dark: {
+        bgColor: 'table.variant.striped.dark.tr_even',
+      },
+    },
+
+    tr: {
+      _hover: {
+        '& > td': {
+          bgColor: 'table.variant.striped.light.hover !important',
+
+          _dark: {
+            bgColor: 'table.variant.striped.dark.hover !important',
+          },
+        },
+      },
     },
   },
 }))
@@ -70,4 +100,7 @@ const md = definePartsStyle({
 export const Table = defineMultiStyleConfig({
   baseStyle,
   sizes: { md },
+  variants: {
+    striped,
+  },
 })

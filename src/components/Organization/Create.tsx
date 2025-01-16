@@ -63,6 +63,7 @@ export const OrganizationCreate = ({
       size: values.size?.value,
       country: values.country?.value,
       type: values.type?.value,
+      communications: values.communications,
     })
       .then(() => {
         const signer = new RemoteSigner({

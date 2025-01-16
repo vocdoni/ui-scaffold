@@ -1,4 +1,4 @@
-import { Button, Flex, Link, Text } from '@chakra-ui/react'
+import { Button, Checkbox, Flex, FormControl, FormErrorMessage, Link, Text } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
@@ -10,7 +10,6 @@ import InputPassword from '~components/Layout/InputPassword'
 import { AuthOutletContextType } from '~elements/LayoutAuth'
 import { useSignupFromInvite } from '~src/queries/account'
 import { Routes } from '~src/router/routes'
-import CustomCheckbox from '../Layout/CheckboxCustom'
 import { default as InputBasic } from '../Layout/InputBasic'
 import GoogleAuth from './GoogleAuth'
 import { HSeparator } from './SignIn'
@@ -31,7 +30,7 @@ type FormData = {
 
 const SignUp = ({ invite }: SignupProps) => {
   const { t } = useTranslation()
-  const { register } = useAuth()
+  const { register: signup } = useAuth()
   const inviteSignup = useSignupFromInvite(invite?.address)
   const { setTitle, setSubtitle } = useOutletContext<AuthOutletContextType>()
 
@@ -41,12 +40,17 @@ const SignUp = ({ invite }: SignupProps) => {
       email: invite?.email,
     },
   })
-  const { handleSubmit, watch } = methods
+  const {
+    handleSubmit,
+    watch,
+    register,
+    formState: { errors },
+  } = methods
   const email = watch('email')
 
-  const isPending = register.isPending || inviteSignup.isPending
-  const isError = register.isError || inviteSignup.isError
-  const error = register.error || inviteSignup.error
+  const isPending = signup.isPending || inviteSignup.isPending
+  const isError = signup.isError || inviteSignup.isError
+  const error = signup.error || inviteSignup.error
 
   useEffect(() => {
     // set SignUp title and description
@@ -56,7 +60,7 @@ const SignUp = ({ invite }: SignupProps) => {
 
   const onSubmit = (user: FormData) => {
     if (!invite) {
-      return register.mutate(user)
+      return signup.mutate(user)
     }
 
     // if there's an invite, the process' a bit different
@@ -67,7 +71,7 @@ const SignUp = ({ invite }: SignupProps) => {
   }
 
   // normally registered accounts need verification
-  if (register.isSuccess) {
+  if (signup.isSuccess) {
     return <Navigate to={`${Routes.auth.verify}?email=${encodeURIComponent(email)}`} />
   }
 
@@ -118,20 +122,20 @@ const SignUp = ({ invite }: SignupProps) => {
               },
             }}
           />
-
-          <CustomCheckbox
-            formValue='terms'
-            label={
+          <FormControl as='fieldset' isInvalid={!!errors?.terms}>
+            <Checkbox {...register('terms', { required: t('validation.required') })} isRequired>
               <Trans
                 i18nKey='signup_agree_terms'
                 components={{
                   termsLink: <Link isExternal as={ReactRouterLink} to={Routes.terms} />,
                   privacyLink: <Link isExternal as={ReactRouterLink} to={Routes.privacy} />,
                 }}
-              />
-            }
-            required
-          />
+              >
+                Keep me logged
+              </Trans>
+            </Checkbox>
+            <FormErrorMessage>{errors?.terms?.message.toString()}</FormErrorMessage>
+          </FormControl>
 
           <Button isLoading={isPending} type='submit' size='xl' w='100%'>
             {t('signup_create_account')}

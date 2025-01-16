@@ -6,9 +6,10 @@ export const FeaturesBox = (props: FlexProps) => (
     bg='gray.100'
     _dark={{ bg: 'gray.700' }}
     px={4}
-    py={6}
+    pt={5}
+    pb={6}
     w={{ base: 'modal-stretch', lg: 'modal-stretch-lg' }}
-    gap={5}
+    gap={4}
     boxShadow='0 0 10px var(--chakra-colors-gray-400)'
     {...props}
   />
