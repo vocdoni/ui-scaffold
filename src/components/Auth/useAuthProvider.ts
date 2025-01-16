@@ -11,6 +11,7 @@ enum LocalStorageKeys {
   Token = 'authToken',
   Expiry = 'authExpiry',
   RenewSession = 'authRenewSession',
+  SignerAddress = 'signerAddress',
 }
 
 // One week in milliseconds
@@ -31,7 +32,22 @@ const useSigner = () => {
     })
     // Once the signer is set, try to get the signer address
     try {
-      await signer.getAddress()
+      const addresses = await signer.remoteSignerService.addresses()
+      if (!addresses.length) {
+        throw new Error('No addresses available')
+      }
+
+      // Get stored address from local storage
+      const storedAddress = localStorage.getItem(LocalStorageKeys.SignerAddress)
+
+      // Use stored address if it exists and is in the available addresses, otherwise use first address
+      const selectedAddress = storedAddress && addresses.includes(storedAddress) ? storedAddress : addresses[0]
+
+      // Store the selected address
+      localStorage.setItem(LocalStorageKeys.SignerAddress, selectedAddress)
+
+      // Set the signer address and update the client
+      signer.address = selectedAddress
       setSigner(signer)
       return signer
     } catch (e) {
@@ -88,6 +104,7 @@ export const useAuthProvider = () => {
     localStorage.removeItem(LocalStorageKeys.Token)
     localStorage.removeItem(LocalStorageKeys.Expiry)
     localStorage.removeItem(LocalStorageKeys.RenewSession)
+    localStorage.removeItem(LocalStorageKeys.SignerAddress)
     setBearer(null)
     clear()
   }, [])
