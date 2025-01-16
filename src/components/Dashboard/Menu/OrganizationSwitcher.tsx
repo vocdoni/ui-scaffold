@@ -1,5 +1,6 @@
 import { Box } from '@chakra-ui/react'
 import { OrganizationName } from '@vocdoni/chakra-components'
+import { OrganizationProvider, useOrganization } from '@vocdoni/react-providers'
 import { Select } from 'chakra-react-select'
 import { useEffect, useMemo, useState } from 'react'
 import { useQueryClient } from 'wagmi'
@@ -7,9 +8,14 @@ import { useAuth } from '~components/Auth/useAuth'
 import { LocalStorageKeys } from '~components/Auth/useAuthProvider'
 import { Organization, useProfile } from '~src/queries/account'
 
+const OrganizationOption = ({ organization }: { organization: Organization }) => {
+  const { organization: orgData } = useOrganization()
+  return <Box>{orgData?.account?.name?.default || organization.address}</Box>
+}
+
 type SelectOption = {
   value: string
-  label: string
+  label: JSX.Element
   organization: Organization
 }
 
@@ -23,7 +29,11 @@ export const OrganizationSwitcher = () => {
     if (!profile?.organizations) return []
     return profile.organizations.map((org) => ({
       value: org.organization.address,
-      label: org.organization.address,
+      label: (
+        <OrganizationProvider id={org.organization.address}>
+          <OrganizationOption organization={org.organization} />
+        </OrganizationProvider>
+      ),
       organization: org.organization,
     }))
   }, [profile])
