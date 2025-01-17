@@ -1,5 +1,4 @@
 import { Box, Collapse } from '@chakra-ui/react'
-import { OrganizationName } from '@vocdoni/chakra-components'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HiSquares2X2 } from 'react-icons/hi2'
@@ -7,6 +6,7 @@ import { IoIosSettings } from 'react-icons/io'
 import { generatePath, matchPath, useLocation } from 'react-router-dom'
 import { Routes } from '~src/router/routes'
 import { DashboardMenuItem } from './Item'
+import { OrganizationSwitcher } from './OrganizationSwitcher'
 
 type MenuItem = {
   label: string
@@ -19,7 +19,6 @@ export const DashboardMenuOptions = () => {
   const { t } = useTranslation()
   const location = useLocation()
   const [openSection, setOpenSection] = useState<string | null>(null)
-
   const menuItems: MenuItem[] = [
     // {
     //   label: t('organization.dashboard'),
@@ -82,7 +81,7 @@ export const DashboardMenuOptions = () => {
 
   return (
     <Box>
-      <OrganizationName mb={2} px={3.5} />
+      <OrganizationSwitcher />
 
       {menuItems.map((item, index) => (
         <Box key={index}>
