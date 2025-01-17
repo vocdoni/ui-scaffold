@@ -5,9 +5,7 @@ import { QueryKeys } from './keys'
 
 export interface Organization {
   address: string
-  name: string
   type: string
-  description: string
   size: number
   color: string
   logo: string
