@@ -36,11 +36,6 @@ export const ClientsGrid = (props: GridProps) => (
     as='section'
     width='full'
     m='0 auto'
-    px={{
-      base: '10px',
-      sm: '20px',
-      md: '80px',
-    }}
     maxW={{ base: '100%', sm: '80%', lg: '900px' }}
     flexDirection={{ base: 'column', sm: 'row' }}
     justifyContent='center'

@@ -223,7 +223,6 @@
   "control": "Control:",
   "copy": {
     "address": "Copiar dirección",
-    "copied": "Copied",
     "copied_title": "¡Copiado!"
   },
   "country_selector": {
@@ -766,6 +765,7 @@
   "invite_people": "Invitar Gente",
   "keep_me_logged": "Mantenerme conectado",
   "languages": "Languages",
+  "Light mode": "Light mode",
   "link": {
     "discord": "Enlace al Discord de Vocdoni",
     "github": "Enlace al Github de Vocdoni",
@@ -1278,6 +1278,9 @@
     "read_more": "Leer más"
   },
   "user_management": "Gestión de usuarios",
+  "validation": {
+    "required": ""
+  },
   "verification_code": "Verification Code",
   "verification_code_placeholder": "Enter the verification code",
   "verification_code_resent": "Verification code resent!",

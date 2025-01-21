@@ -220,7 +220,6 @@
   "control": "Control:",
   "copy": {
     "address": "Copy address",
-    "copied": "Copied",
     "copied_title": "Copied!"
   },
   "country_selector": {
@@ -759,6 +758,7 @@
   "invite_people": "Invite People",
   "keep_me_logged": "Keep me logged in",
   "languages": "Languages",
+  "Light mode": "Light mode",
   "link": {
     "discord": "Link to Vocdoni's discord",
     "github": "Link to Vocdoni's github",
@@ -1266,6 +1266,9 @@
     "read_more": "Read more"
   },
   "user_management": "User Managment",
+  "validation": {
+    "required": ""
+  },
   "verification_code": "Verification Code",
   "verification_code_placeholder": "Enter the verification code",
   "verification_code_resent": "Verification code resent!",
