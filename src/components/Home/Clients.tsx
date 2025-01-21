@@ -16,14 +16,7 @@ const Clients = () => {
 
   return (
     <>
-      <Text
-        variant='home-description-color'
-        textAlign='center'
-        mb='52px'
-        mt='100px'
-        fontFamily='basier'
-        fontSize='23px'
-      >
+      <Text textAlign='center' mb='52px' fontFamily='basier' fontSize='23px'>
         {t('home.clients_title')}
       </Text>
       <ClientsGrid />
@@ -36,15 +29,10 @@ export const ClientsGrid = (props: GridProps) => (
     as='section'
     width='full'
     m='0 auto'
-    px={{
-      base: '10px',
-      sm: '20px',
-      md: '80px',
-    }}
     maxW={{ base: '100%', sm: '80%', lg: '900px' }}
     flexDirection={{ base: 'column', sm: 'row' }}
     justifyContent='center'
-    mb={{ lg: '60px' }}
+    mb={{ base: '60px', lg: '100px' }}
     gridTemplateColumns='repeat(5, 1fr)'
     gridRowGap={{ base: '0px', sm: '30px', lg: '50px' }}
     {...props}

@@ -190,7 +190,7 @@ export const Card = defineMultiStyleConfig({
     },
     benefits: {
       container: {
-        w: '350px',
+        w: { base: '350px', md: '380px', xl: '400px', xl2: '420px', xl3: '470px' },
         backdropFilter: 'blur(16px)',
         borderBottomWidth: '0',
         borderBottomColor: 'rgba(255, 255, 255, .15)',

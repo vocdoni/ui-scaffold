@@ -12,18 +12,7 @@ const Process = () => {
   const { t } = useTranslation()
 
   return (
-    <Box
-      as='section'
-      width='full'
-      m='0 auto'
-      px={{
-        base: '10px',
-        sm: '20px',
-        md: '80px',
-      }}
-      py={{ base: '60px', lg: '100px' }}
-      mb={{ base: '60px', xl: '120px' }}
-    >
+    <Box as='section' width='full' m='0 auto' mb={{ base: '60px', lg: '140px' }}>
       <Text
         fontSize={{ base: '40px', xl: '60px' }}
         lineHeight={{ base: '36px', xl: '78px' }}
@@ -35,7 +24,6 @@ const Process = () => {
         {t('home.process.title')}
       </Text>
       <Text
-        variant='home-description-color'
         mb='60px'
         maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}
         mx='auto'
@@ -45,14 +33,26 @@ const Process = () => {
         lineHeight='28px'
         margin='0px auto'
       >
-        {t('home.process.description_1')}
-        {t('home.process.description_2')}
+        {t('home.process.description_1')} {t('home.process.description_2')}
       </Text>
-      <Flex flexDirection={{ base: 'column', lg: 'row' }} gap={{ base: '40px', lg: '60px' }} mt='70px'>
-        <Flex flex='1 1 50%' justifyContent={{ base: 'center', lg: 'end' }} alignItems='center'>
-          <Image src={process} borderRadius='lg' maxW={{ base: '350px', xl: '550px' }} mt='-20px' />
-        </Flex>
-        <Flex flex='1 1' flexBasis={{ lg: '50%' }} flexDirection='column' justifyContent='space-between' gap='40px'>
+      <Flex
+        position={'relative'}
+        flexDirection={{ base: 'column', xl: 'row' }}
+        gap={{ base: '40px', xl: '60px' }}
+        mt={'60px'}
+      >
+        <Flex
+          flex='1 1 50%'
+          justifyContent={{ base: 'center', xl: 'start' }}
+          alignItems='center'
+          position='relative'
+          zIndex={10}
+          flexDirection='column'
+          gap='24px'
+          maxW={{ base: 'full', xl: '660px' }}
+          px={{ base: '30px', xl: 0 }}
+          pr={{ xl: '37px', xl3: 0 }}
+        >
           <Card variant='step'>
             <CardBody>
               <Box>
@@ -97,6 +97,20 @@ const Process = () => {
               </Box>
             </CardBody>
           </Card>
+        </Flex>
+        <Flex justifyContent={{ base: 'center' }} flex='1 1 50%' position='relative'>
+          <Box maxW={{ base: 'full', xl: '660px' }} px={{ base: '30px', xl: 0 }} pl={{ xl: '37px', xl3: 0 }}>
+            <Image
+              src={process}
+              position='relative'
+              top={{ xl: '50%' }}
+              transform={{ xl: 'translateY(-50%)' }}
+              borderRadius='xl'
+              ml={{ base: '0px' }}
+              maxW={{ base: '350px', xl: 'full' }}
+              mx='auto'
+            />
+          </Box>
         </Flex>
       </Flex>
     </Box>

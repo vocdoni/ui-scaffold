@@ -5,16 +5,7 @@ const Faqs = () => {
   const { t } = useTranslation()
 
   return (
-    <Box
-      position='relative'
-      width='full'
-      px={{
-        base: '10px',
-        sm: '20px',
-        md: '80px',
-      }}
-      py={{ base: '60px', lg: '100px' }}
-    >
+    <Box position='relative' width='full' px={{ base: 2, md: 4, lg: 6 }} mb={{ base: '60px', lg: '100px' }}>
       <Image
         src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b72f92aa4f58_diagonal-violet-to-pink.svg'
         position='absolute'
@@ -23,18 +14,7 @@ const Faqs = () => {
         width='300px'
         display={{ base: 'none', xl: 'block' }}
       />
-      <Box
-        width='full'
-        m='0 auto'
-        maxW='1920px'
-        px={{
-          base: '10px',
-          sm: '20px',
-          md: '80px',
-        }}
-        position='relative'
-        zIndex={10}
-      >
+      <Box width='full' m='0 auto' maxW='1920px' px={{ base: 2, md: 4, lg: 6 }} position='relative' zIndex={10}>
         <Text
           fontSize={{ base: '40px', xl: '60px' }}
           lineHeight={{ base: '36px', xl: '78px' }}

@@ -16,19 +16,8 @@ const Features = () => {
   const { t } = useTranslation()
 
   return (
-    <Box
-      id='features'
-      width='full'
-      m='0 auto'
-      maxW='1920px'
-      px={{
-        base: '10px',
-        sm: '20px',
-        md: '80px',
-      }}
-      py={{ base: '60px', lg: '100px' }}
-    >
-      <Box mb='80px' margin='-20px auto 125px' maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}>
+    <Box id='features' width='full' m='0 auto' mb={{ base: '60px', lg: '100px' }}>
+      <Box mx='auto' mb={'60px'} maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}>
         <Text
           fontSize={{ base: '40px', xl: '60px' }}
           lineHeight={{ base: '36px', xl: '78px' }}
@@ -40,8 +29,6 @@ const Features = () => {
           {t('home.features.title')}
         </Text>
         <Text
-          variant='home-description-color'
-          mb='60px'
           maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}
           mx='auto'
           textAlign='center'
@@ -53,7 +40,7 @@ const Features = () => {
         </Text>
       </Box>
 
-      <Flex maxW={{ base: '100%', sm: '70%', sm2: '85%' }} margin='0px auto' flexWrap='wrap' gap={10}>
+      <Flex margin='0px auto' flexWrap='wrap' gap={10}>
         <Card variant='icon-card' flex={{ base: '1 0 100%', lg: '1 1 30%' }} mb='60px'>
           <CardBody>
             <Box>

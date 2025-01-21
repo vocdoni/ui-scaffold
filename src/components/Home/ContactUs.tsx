@@ -12,8 +12,9 @@ const ContactUs = () => {
     <Flex
       as='section'
       id='contactus'
+      position={'relative'}
       flexDirection={{ base: 'column', xl: 'row' }}
-      py={{ base: '60px', xl: 0 }}
+      mb={{ base: '60px', lg: '100px' }}
       gap={{ base: '40px', xl: '60px' }}
       scrollMarginTop='100px'
     >
@@ -25,8 +26,8 @@ const ContactUs = () => {
             top={{ xl: '50%' }}
             transform={{ xl: 'translateY(-50%)' }}
             borderRadius='xl'
-            ml={{ base: '0px', xl: '50px' }}
-            maxW={{ base: '350px', xl: '550px' }}
+            ml={{ base: '0px' }}
+            maxW={{ base: '350px', xl: 'full' }}
             mx='auto'
           />
         </Box>
@@ -34,90 +35,66 @@ const ContactUs = () => {
       <Flex
         flex='1 1 50%'
         justifyContent={{ base: 'center', xl: 'start' }}
-        display={{ xl: 'flex' }}
         alignItems='center'
-        py={{ base: '60px', xl: '100px' }}
         position='relative'
         zIndex={10}
+        flexDirection='column'
+        gap='24px'
+        maxW={{ base: 'full', xl: '660px' }}
+        px={{ base: '30px', xl: 0 }}
+        pr={{ xl: '37px', xl3: 0 }}
       >
-        <Flex
-          flexDirection='column'
-          gap='24px'
-          maxW={{ base: 'full', xl: '660px' }}
-          px={{ base: '30px', xl: 0 }}
-          pr={{ xl: '37px', xl3: 0 }}
-        >
-          <Box>
-            <Text
-              fontSize={{ base: '40px', xl: '60px' }}
-              lineHeight={{ base: '36px', xl: '78px' }}
-              fontWeight='bold'
-              mb='10px'
-              fontFamily='basier'
-              textAlign={{ base: 'center', xl: 'left' }}
-            >
-              {t('home.contactus.title')}
-            </Text>
-          </Box>
-          <Card variant='icon-card' mt='30px' mb='20px'>
-            <CardBody>
-              <Box>
-                <MdDesignServices />
-              </Box>
-              <Box>
-                <Text>{t('home.contactus.card_1.title')}</Text>
-                <Text>{t('home.contactus.card_1.description')}</Text>
-              </Box>
-            </CardBody>
-          </Card>
-          <Card variant='icon-card'>
-            <CardBody>
-              <Box>
-                <FaFingerprint />
-              </Box>
-              <Box>
-                <Text> {t('home.contactus.card_2.title')}</Text>
-                <Text>{t('home.contactus.card_2.description')}</Text>
-              </Box>
-            </CardBody>
-          </Card>
-
-          <Button
-            w={{ base: 'full', sm: 'fit-content', xl: 'full' }}
-            mx='auto'
-            as={ReactRouterLink}
-            to='mailto:info@vocdoni.org'
-            aria-label={t('home.contactus.btn')}
-            title={t('home.contactus.btn')}
-            target='_blank'
-            height='52px'
-            fontSize='20px'
-            mt='30px'
-            px='130px'
+        <Box>
+          <Text
+            fontSize={{ base: '40px', xl: '60px' }}
+            lineHeight={{ base: '36px', xl: '78px' }}
+            fontWeight='bold'
+            mb='10px'
+            fontFamily='basier'
+            textAlign={{ base: 'center', xl: 'left' }}
           >
-            {t('home.contactus.btn')}
-          </Button>
-        </Flex>
-      </Flex>
+            {t('home.contactus.title')}
+          </Text>
+        </Box>
+        <Card variant='icon-card' mt='30px' mb='20px'>
+          <CardBody>
+            <Box>
+              <MdDesignServices />
+            </Box>
+            <Box>
+              <Text>{t('home.contactus.card_1.title')}</Text>
+              <Text>{t('home.contactus.card_1.description')}</Text>
+            </Box>
+          </CardBody>
+        </Card>
+        <Card variant='icon-card'>
+          <CardBody>
+            <Box>
+              <FaFingerprint />
+            </Box>
+            <Box>
+              <Text> {t('home.contactus.card_2.title')}</Text>
+              <Text>{t('home.contactus.card_2.description')}</Text>
+            </Box>
+          </CardBody>
+        </Card>
 
-      <Box
-        position='relative'
-        display={{ base: 'none', xl: 'block' }}
-        w='500px'
-        float='right'
-        marginLeft='-500px'
-        top='10px'
-      >
-        <Image
-          w='100vw'
-          src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6436edfde50ddf8203cfef89_Vector-builders1.png'
-        />
-        <Image
-          position='relative'
-          mt='-300px'
-          src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6436edf13d923ae2692920a9_Vector-builders2.png'
-        />
-      </Box>
+        <Button
+          w={{ base: 'full', sm: 'fit-content', xl: 'full' }}
+          mx='auto'
+          as={ReactRouterLink}
+          to='mailto:info@vocdoni.org'
+          aria-label={t('home.contactus.btn')}
+          title={t('home.contactus.btn')}
+          target='_blank'
+          height='52px'
+          fontSize='20px'
+          mt='30px'
+          px='130px'
+        >
+          {t('home.contactus.btn')}
+        </Button>
+      </Flex>
     </Flex>
   )
 }

@@ -1,11 +1,11 @@
-import { Box, Button, Flex, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Text, useColorModeValue } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { FaPhoneVolume, FaRegCheckCircle } from 'react-icons/fa'
 import { Link as ReactRouterLink } from 'react-router-dom'
 
 const Support = () => {
   const { t } = useTranslation()
-
+  const colorScheme = useColorModeValue('whiteAlpha', 'brand')
   return (
     <Box
       backgroundImage='url("https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b75c38aa4f55_Net.svg")'
@@ -93,7 +93,7 @@ const Support = () => {
           <Button
             as={ReactRouterLink}
             to='mailto:info@vocdoni.org'
-            variant='secondary'
+            colorScheme={colorScheme}
             aria-label={t('home.support.btn_contact')}
             title={t('home.support.btn_contact')}
             target='_blank'
@@ -105,7 +105,7 @@ const Support = () => {
           </Button>
           <Button
             as={ReactRouterLink}
-            variant='secondary'
+            colorScheme={colorScheme}
             to='https://calendly.com/vocdoni-app/30min'
             aria-label={t('home.support.btn_watch')}
             title={t('home.support.btn_watch')}
