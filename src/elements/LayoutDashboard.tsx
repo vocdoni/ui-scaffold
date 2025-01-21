@@ -70,7 +70,14 @@ const LayoutDashboard: React.FC = () => {
         <DashboardMenu isOpen={isOpen} onClose={onClose} />
 
         {/* Main Content */}
-        <Box gridArea='main' mr={{ base: 0, lg: 6 }} mb={4} minW={0} boxShadow='0 0 0 1px rgba(56,60,67,.05),0 1px 3px 0 rgba(56,60,67,.15)' borderRadius='20px'>
+        <Box
+          gridArea='main'
+          mr={{ base: 0, lg: 6 }}
+          mb={4}
+          minW={0}
+          boxShadow='0 0 0 1px rgba(56,60,67,.05),0 1px 3px 0 rgba(56,60,67,.15)'
+          borderRadius='20px'
+        >
           <Outlet context={{ setTitle, setBack } satisfies DashboardLayoutContext} />
         </Box>
       </Grid>

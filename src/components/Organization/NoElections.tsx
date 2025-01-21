@@ -20,10 +20,19 @@ const NoElections = () => {
         <Box>
           {areEqualHexStrings(account?.address, organization?.address) ? (
             <>
-              <Text fontWeight='600' fontSize='lg' m='20px 0px'>{t('organization.elections_list_empty.title')}</Text>
+              <Text fontWeight='600' fontSize='lg' m='20px 0px'>
+                {t('organization.elections_list_empty.title')}
+              </Text>
               <Text>{t('organization.elections_list_empty.description')}</Text>
 
-              <Button mt='40px' w='100%' variant='primary' as={ReactRouterLink} to={Routes.processes.create} colorScheme='gradient'>
+              <Button
+                mt='40px'
+                w='100%'
+                variant='primary'
+                as={ReactRouterLink}
+                to={Routes.processes.create}
+                colorScheme='gradient'
+              >
                 {t('menu.create')}
               </Button>
             </>

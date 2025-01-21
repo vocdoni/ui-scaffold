@@ -121,7 +121,12 @@ const Benefits = () => {
                 <CardBody>{t('home.benefits.card_4.description')}</CardBody>
               </Card>
 
-              <Card variant='benefits' bgColor='home.benefits.dark_bg' color='home.benefits.dark_bg_color' background='linear-gradient(to right, #2C7D57, #22555A)'>
+              <Card
+                variant='benefits'
+                bgColor='home.benefits.dark_bg'
+                color='home.benefits.dark_bg_color'
+                background='linear-gradient(to right, #2C7D57, #22555A)'
+              >
                 <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29a2c93ed6cd6d1faf0_card-feature-img-guarantee.png' />
                 <CardHeader>{t('home.benefits.card_5.title')}</CardHeader>
                 <CardBody>{t('home.benefits.card_5.description')}</CardBody>

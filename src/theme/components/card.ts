@@ -427,7 +427,7 @@ export const Card = defineMultiStyleConfig({
         '& p': {
           fontWeight: 'bold',
           mb: '18px',
-          fontSize: '22px'
+          fontSize: '22px',
         },
       },
       body: {

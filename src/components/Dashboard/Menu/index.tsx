@@ -45,7 +45,14 @@ const DashboardMenuContent = () => (
     <HSeparator />
     <DashboardMenuOptions />
     <Flex mt={'auto'} flexDirection={'column'} alignItems={'center'}>
-      <Button as={RouterLink} to={generatePath(Routes.processes.create)} w='full' my={5} leftIcon={<AddIcon />} variant='primary'>
+      <Button
+        as={RouterLink}
+        to={generatePath(Routes.processes.create)}
+        w='full'
+        my={5}
+        leftIcon={<AddIcon />}
+        variant='primary'
+      >
         <Trans i18nKey='new_voting'>New voting</Trans>
       </Button>
       <LogoutBtn />

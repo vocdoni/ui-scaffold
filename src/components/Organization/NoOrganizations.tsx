@@ -16,10 +16,24 @@ export const NoOrganizations = () => {
           <Text fontWeight='600' fontSize='lg' m='20px 0px'>
             <Trans i18nKey='organization.no_organization_title'>You don't belong to any organization yet!</Trans>
           </Text>
-          <Text mb='20px'><Trans i18nKey='new_organization.description1' components={{ span: <Text as='span' fontWeight='600' color='#000' /> }}></Trans></Text>
-          <Text mb='20px'><Trans i18nKey='create_org.already_profile'></Trans></Text>
+          <Text mb='20px'>
+            <Trans
+              i18nKey='new_organization.description1'
+              components={{ span: <Text as='span' fontWeight='600' color='#000' /> }}
+            ></Trans>
+          </Text>
+          <Text mb='20px'>
+            <Trans i18nKey='create_org.already_profile'></Trans>
+          </Text>
         </Box>
-        <Button mt='40px' w='100%' variant='primary' as={ReactRouterLink} to={Routes.dashboard.organizationCreate} colorScheme='gradient'>
+        <Button
+          mt='40px'
+          w='100%'
+          variant='primary'
+          as={ReactRouterLink}
+          to={Routes.dashboard.organizationCreate}
+          colorScheme='gradient'
+        >
           <Trans i18nKey='create_org.title'>Create your organization</Trans>
         </Button>
       </CardBody>

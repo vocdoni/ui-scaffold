@@ -15,7 +15,7 @@ export const Link = defineStyleConfig({
 
       _dark: {
         color: 'brand.100',
-      }
+      },
     }),
     icon: (props) => ({
       display: 'flex',
@@ -33,7 +33,7 @@ export const Link = defineStyleConfig({
 
       _hover: {
         textDecoration: 'underline',
-      }
+      },
     }),
   },
 })
