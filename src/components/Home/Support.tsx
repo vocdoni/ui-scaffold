@@ -16,7 +16,6 @@ const Support = () => {
       backgroundRepeat='no-repeat'
       backgroundPosition='right'
       mb='100px'
-      background='linear-gradient(to bottom, #2C7D57, #22555A)'
     >
       <Box
         width='full'

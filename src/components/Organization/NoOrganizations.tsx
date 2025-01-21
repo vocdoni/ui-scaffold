@@ -9,7 +9,7 @@ export const NoOrganizations = () => {
   return (
     <Card variant='no-elections' minH='100%' maxW='650' m='80px auto'>
       <CardBody>
-        <Box align='center'>
+        <Box textAlign='center'>
           <Img src={empty} />
         </Box>
         <Box>
