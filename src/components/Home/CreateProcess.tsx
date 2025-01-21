@@ -57,7 +57,7 @@ const CreateProcess = () => {
 
           <Flex
             justifyContent='center'
-            alignItems={{ base: 'center', lg: 'start' }}
+            alignItems={{ base: 'start', md: 'center', lg: 'start' }}
             flexDirection={'column'}
             gap={{ sm: 5, lg: 0 }}
           >
