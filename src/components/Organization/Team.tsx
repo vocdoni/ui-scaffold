@@ -126,9 +126,9 @@ export const TeamMembersList = () => {
   return (
     <QueryDataLayout isEmpty={!members} isLoading={isLoading} isError={isError} error={error}>
       <Flex direction='column'>
-        <Text fontWeight='bold' display='flex' gap={3}>
+        <Text fontWeight='bold' display='flex' gap={3} m='20px 0px 10px'>
           <Trans i18nKey='team.team_members'>Team members</Trans>
-          <Badge ml='1' colorScheme='green'>
+          <Badge ml='1' colorScheme='primary' style={{ borderRadius: '100px', minWidth: '25px', textAlign: 'center' }}>
             {members?.length}
           </Badge>
         </Text>

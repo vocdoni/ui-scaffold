@@ -8,15 +8,18 @@ export const colorsBase = {
     dark: '#1A202C',
     dark2: '#0C0E12',
   },
-  gradient: 'linear-gradient(to right, #2C7D57, #22555A)',
-  gradientBottom: 'linear-gradient(to bottom, #2C7D57, #22555A)',
+  gradient: 'linear-gradient(to right, #2E855B, #22555A)',
+  gradientBottom: 'linear-gradient(to bottom, #2E855B, #22555A)',
   gray: {
     light: '#CBD5E0',
     normal: '#A0AEC0',
+    dark: '#4A5568',
   },
   green: '#00FF00',
   orange: '#FFA500',
-  primary: '#546E39',
+  primary: '#22555A',
+  primary_cta: 'linear-gradient(to bottom, #2C7D57, #22555A)',
+  primary_dark: 'rgba(84, 110, 57, 0.2)',
   red: '#FC8181',
   white: {
     pure: '#ffffff',
@@ -35,7 +38,7 @@ export const colorsBase = {
 }
 
 export const colors = {
-  account_create_text_secondary: colorsBase.gray.normal,
+  account_create_text_secondary: colorsBase.gray.dark,
   alert: {
     bg: {
       light: colorsBase.white.pure,
@@ -104,6 +107,10 @@ export const colors = {
 
       outline: {
         color: colorsBase.white.pure,
+        bg: {
+          dark: '#13161b',
+          light: '#000',
+        },
       },
     },
     dark: {
@@ -466,9 +473,9 @@ export const colors = {
     100: '#b3c77f',
     200: '#8db13a',
     300: '#749c2d',
-    400: '#617c29',
-    500: '#546E39',
-    600: '#476232',
+    400: '#22555A',
+    500: '#22555A',
+    600: '#22555A',
     700: '#3a552b',
     800: '#2e4924',
     900: '#233c1d',

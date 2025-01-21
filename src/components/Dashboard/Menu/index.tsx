@@ -19,6 +19,7 @@ const DashboardMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
       gap={4}
       bg='dashboard.sidebar.bg.light'
       _dark={{ bg: 'dashboard.sidebar.bg.dark' }}
+      boxShadow='3px 0 5px -6px #6c6d75'
     >
       <DashboardMenuContent />
     </Box>
@@ -44,7 +45,7 @@ const DashboardMenuContent = () => (
     <HSeparator />
     <DashboardMenuOptions />
     <Flex mt={'auto'} flexDirection={'column'} alignItems={'center'}>
-      <Button as={RouterLink} to={generatePath(Routes.processes.create)} w='full' my={5} leftIcon={<AddIcon />}>
+      <Button as={RouterLink} to={generatePath(Routes.processes.create)} w='full' my={5} leftIcon={<AddIcon />} variant='primary'>
         <Trans i18nKey='new_voting'>New voting</Trans>
       </Button>
       <LogoutBtn />

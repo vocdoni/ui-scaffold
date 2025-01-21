@@ -4,7 +4,7 @@ import { areEqualHexStrings } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { Routes } from '~src/router/routes'
-import empty from '/assets/empty-list-org.png'
+import empty from '/assets/illustrations/2.png'
 
 const NoElections = () => {
   const { t } = useTranslation()
@@ -12,18 +12,18 @@ const NoElections = () => {
   const { organization } = useOrganization()
 
   return (
-    <Card variant='no-elections' minH='100%'>
+    <Card variant='no-elections' minH='100%' maxW='650' m='80px auto'>
       <CardBody>
-        <Box>
+        <Box align='center'>
           <Img src={empty} alt={t('organization.elections_list_empty.alt')} />
         </Box>
         <Box>
           {areEqualHexStrings(account?.address, organization?.address) ? (
             <>
-              <Text>{t('organization.elections_list_empty.title')}</Text>
+              <Text fontWeight='600' fontSize='lg' m='20px 0px'>{t('organization.elections_list_empty.title')}</Text>
               <Text>{t('organization.elections_list_empty.description')}</Text>
 
-              <Button as={ReactRouterLink} to={Routes.processes.create}>
+              <Button mt='40px' w='100%' variant='primary' as={ReactRouterLink} to={Routes.processes.create} colorScheme='gradient'>
                 {t('menu.create')}
               </Button>
             </>

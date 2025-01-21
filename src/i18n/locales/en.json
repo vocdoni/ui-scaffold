@@ -35,7 +35,7 @@
       "4": "Organize votes accessible on any device—mobile, tablet, or desktop.",
       "5": "Advanced encryption ensures your elections are secure and private.",
       "6": "Foster higher voter turnout with user-friendly tools.",
-      "7": "Easily incorporate your branding and existing workflows.",
+      "7": "Easily incorporate your branding and look'n'feel.",
       "8": "Your voting processes are safe, secure, and ready to go.",
       "9": "Manage multiple elections effortlessly from one dashboard.",
       "10": "Real-time updates and insights at your fingertips.",
@@ -220,7 +220,6 @@
   "control": "Control:",
   "copy": {
     "address": "Copy address",
-    "copied": "Copied",
     "copied_title": "Copied!"
   },
   "country_selector": {
@@ -342,7 +341,9 @@
   },
   "finished": "Finished",
   "footer": {
+    "about_us": "About Us",
     "company": "Company",
+    "contact": "Contact",
     "demo": "Voting Types",
     "demo1": "Single Choice",
     "demo2": "Multiple Choice",
@@ -350,6 +351,7 @@
     "demo4": "Ranked Voting",
     "demo5": "Participatory Budgeting",
     "demo6": "Weighted Voting",
+    "developer_portal": "Developer Portal",
     "footer_subtitle": "The Global Voting Protocol",
     "terms_and_privacy": "<link1>Terms of use</link1> & <link2>Privacy Policy</link2>",
     "uses_cases": "Use Cases",
@@ -753,12 +755,13 @@
     "success_description": "You can now sign in",
     "success_title": "Invitation accepted",
     "title": "Invite people to your team",
-    "unexpected_error": "",
+    "unexpected_error": "Error",
     "user_invited": "Email sent to {{email}}"
   },
   "invite_people": "Invite People",
   "keep_me_logged": "Keep me logged in",
   "languages": "Languages",
+  "Light mode": "Light mode",
   "link": {
     "discord": "Link to Vocdoni's discord",
     "github": "Link to Vocdoni's github",
@@ -832,6 +835,7 @@
       "not_owner": "This organization has no voting processes yet",
       "title": "Create your first voting process"
     },
+    "no_organization_title": "You don't belong to any organization yet!",
     "organization": "Organization",
     "title": {
       "read_more": "Expand title"
@@ -869,7 +873,7 @@
     },
     "success": "Password updated successfully"
   },
-  "passwords_do_not_match": "",
+  "passwords_do_not_match": "Las contraseñas no coinciden",
   "plan_upgrade": {
     "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
     "feature_available_in": "Feature available in:",
@@ -887,7 +891,7 @@
     "custom_title": "Custom",
     "date_format": "dd/mm/yy",
     "dedicated_manager": "Dedicated account manager",
-    "error": "",
+    "error": "Error",
     "essential_subtitle": "Small or medium-sized orgs or community groups with basic voting needs.",
     "essential_title": "Essential",
     "features": "Features",
@@ -1266,6 +1270,9 @@
     "read_more": "Read more"
   },
   "user_management": "User Managment",
+  "validation": {
+    "required": ""
+  },
   "verification_code": "Verification Code",
   "verification_code_placeholder": "Enter the verification code",
   "verification_code_resent": "Verification code resent!",

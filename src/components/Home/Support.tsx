@@ -16,6 +16,7 @@ const Support = () => {
       backgroundRepeat='no-repeat'
       backgroundPosition='right'
       mb='100px'
+      background='linear-gradient(to bottom, #2C7D57, #22555A)'
     >
       <Box
         width='full'
@@ -107,7 +108,7 @@ const Support = () => {
           </Button>
           <Button
             as={ReactRouterLink}
-            variant='outline'
+            variant='primary'
             colorScheme='whiteAlpha'
             to='https://calendly.com/vocdoni-app/30min'
             aria-label={t('home.support.btn_watch')}

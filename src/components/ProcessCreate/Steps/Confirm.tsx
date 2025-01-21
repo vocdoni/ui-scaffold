@@ -285,12 +285,12 @@ export const Confirm = () => {
       </Box>
       <Flex justifyContent='space-between' mt='auto' my={6}>
         <Button colorScheme={'whiteAlpha'} variant={'rounded'} onClick={prev}>
-          <ArrowBackIcon />
+          <ArrowBackIcon mr='10px' />
           <Text as='span'>{t('form.process_create.previous_step')}</Text>
         </Button>
 
         <Button
-          variant={'rounded'}
+          variant={'primary'}
           type='submit'
           form='process-create-form'
           isDisabled={disabled}

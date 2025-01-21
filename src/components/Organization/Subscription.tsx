@@ -87,7 +87,7 @@ export const SubscriptionList = () => {
   const isFree = subscription.plan.id === PlanId.Free
 
   return (
-    <VStack gap={4} w='full'>
+    <VStack gap={4} w='full' mt='8'>
       {!subscription.subscriptionDetails.active && (
         <Alert status='warning' w='full'>
           <AlertIcon />

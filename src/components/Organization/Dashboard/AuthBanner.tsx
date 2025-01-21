@@ -15,7 +15,7 @@ const AuthBanner = ({ children, ...props }: AuthBannerProps) => {
   return (
     <Box
       flex={{ base: '1 1 100%', xl: '1 1 50%' }}
-      background='linear-gradient(to bottom, #B5F492, #338B93)'
+      background='linear-gradient(to bottom, #2C7D57, #22555A)'
       borderBottomLeftRadius={{ xl: '200px' }}
       pt={{ base: 20, xl: 0 }}
       pb={{ xl: 5 }}

@@ -6,8 +6,8 @@
   "all": "Todos",
   "already_member": "¿Ya eres miembro?",
   "anonymous": {
-    "description": "Voters will remain anonymous",
-    "title": "Anonymous"
+    "description": "Los votantes permanecerán anónimos",
+    "title": "Anónimo"
   },
   "aside": {
     "has_already_voted": "Tu voto ha sido registrado correctamente",
@@ -19,7 +19,7 @@
     "submitting": "Enviando",
     "verify_vote_on_explorer": "Verifica el voto en el explorador",
     "votes_one": "<span>1</span> <text>votante</text>",
-    "votes_many": "<span>{{ count }}</span> <text>votantes</text>",
+    "votes_many": "",
     "votes_other": "<span>{{ count }}</span> <text>votantes</text>",
     "votes_weight_one": "<span>1</span> <text>voto</text>",
     "votes_weight_many": "",
@@ -110,12 +110,12 @@
     "voting_process_cost": "Coste del proceso de votación:"
   },
   "calendar": {
-    "define_active_period": "Define the active period for receiving votes",
-    "end_date": "End date",
-    "end_date_description": "Define the exact date and time of completion",
-    "start_date": "Start date",
-    "subtitle": "Specify the active period for receiving votes",
-    "title": "Calendar"
+    "define_active_period": "Define el período activo para recibir votos",
+    "end_date": "Fecha de finalización",
+    "end_date_description": "Define la fecha y hora exacta de finalización",
+    "start_date": "Fecha de inicio",
+    "subtitle": "Especifica el período activo para recibir votos",
+    "title": "Calendario"
   },
   "cc": {
     "actions": {
@@ -223,7 +223,6 @@
   "control": "Control:",
   "copy": {
     "address": "Copiar dirección",
-    "copied": "Copied",
     "copied_title": "¡Copiado!"
   },
   "country_selector": {
@@ -252,20 +251,20 @@
   },
   "create_account": "Crear una cuenta",
   "create_org": {
-    "already_profile": " If your organization already have a profile, ask the admin to invite you to your organization.",
-    "communication": "I want to receive communications and be contacted to tailor my governance experience.",
-    "credit_card": "No credit card, no automatic renewal.",
-    "full_access": "Full access to basic features",
-    "header": "Try Vocdoni for free for 7 days",
-    "logout": "If you want to login from another account, please logout",
-    "multiple_administrators": "Multiple administrators",
-    "private_org": "Private Organization Details",
-    "private_org_description": "Help us tailor your experience with information about your org. We won't share this info",
-    "public_info": "Public Organization Information",
-    "support_during_trial_period": "Support during the trial period",
-    "title": "Create Your Organization",
-    "unlimited_voting_processes": "Unlimited creation of voting processes",
-    "up_to_20_voters": "Up to 20 voters"
+    "already_profile": "Si tu organización ya tiene un perfil, pide al administrador que te invite a tu organización.",
+    "communication": "Quiero recibir comunicaciones y ser contactado para adaptar mi experiencia de gobernanza.",
+    "credit_card": "Sin tarjeta de crédito, sin renovación automática.",
+    "full_access": "Acceso completo a las funciones básicas",
+    "header": "Prueba Vocdoni gratis durante 7 días",
+    "logout": "Si deseas iniciar sesión desde otra cuenta, por favor cierra sesión",
+    "multiple_administrators": "Múltiples administradores",
+    "private_org": "Detalles privados de la organización",
+    "private_org_description": "Ayúdanos a adaptar tu experiencia con información sobre tu organización. No compartiremos esta información",
+    "public_info": "Información pública de la organización",
+    "support_during_trial_period": "Soporte durante el período de prueba",
+    "title": "Crea tu organización",
+    "unlimited_voting_processes": "Creación ilimitada de procesos de votación",
+    "up_to_20_voters": "Hasta 20 votantes"
   },
   "csp_census": {
     "github": {
@@ -282,7 +281,7 @@
     "header_image": "Header Image"
   },
   "email": "Correo electrónico",
-  "email_placeholder": "your@email.com",
+  "email_placeholder": "tu@correo.com",
   "error": {
     "go_back": "Volver atrás",
     "invalid_cell_data": "Algunas filas no contienen direcciones correctas: {{rows, list}}",
@@ -316,36 +315,38 @@
     "tokens_you_own": "Tienes {{ balance }} tokens."
   },
   "features": {
-    "anonymous": "Anonymous voting",
+    "anonymous": "Votación anónima",
     "approval": "Votación por aprobación",
-    "cumulative": "Cumulative voting",
-    "custom_url": "Custom URL",
+    "cumulative": "Votación acumulativa",
+    "custom_url": "URL personalizada",
     "email_reminder": "Recordatorios por correo electrónico",
-    "interruptible": "Interruptible",
-    "live_results": "Live results",
-    "live_streaming": "Live streaming",
+    "interruptible": "Interrumpible",
+    "live_results": "Resultados en tiempo real",
+    "live_streaming": "Transmisión en vivo",
     "memberships": "Hasta {{ value }} membresías",
-    "multiple": "Multiple choice voting",
-    "overwrite": "Vote overwrite",
+    "multiple": "Votación de opción múltiple",
+    "overwrite": "Reemplazo de voto",
     "personalization": "Personalización",
     "ranked": "Votación por rango",
     "section": {
-      "features": "Features",
-      "organization": "Organization",
-      "voting_types": "Voting Types"
+      "features": "Características",
+      "organization": "Organización",
+      "voting_types": "Tipos de votación"
     },
-    "single": "Single choice voting",
+    "single": "Votación de opción única",
     "sms_notification": "Notificaciones por SMS",
     "sub_orgs": "Hasta {{ value }} suborganizaciones",
     "title": "Características",
-    "total_members": "Total available members",
-    "total_orgs": "Total available sub-organizations",
+    "total_members": "Total de miembros disponibles",
+    "total_orgs": "Total de suborganizaciones disponibles",
     "weighted": "Votación ponderada",
-    "white_label": "White label"
+    "white_label": "Marca blanca"
   },
   "finished": "Finalizado",
   "footer": {
+    "about_us": "Sobre Nosotros",
     "company": "Empresa",
+    "contact": "Contacto",
     "demo": "Tipos de Votación",
     "demo1": "Elección Simple",
     "demo2": "Elección Múltiple",
@@ -353,6 +354,7 @@
     "demo4": "Votación por Clasificación",
     "demo5": "Presupuestos Participativos",
     "demo6": "Votación Ponderada",
+    "developer_portal": "Developer Portal",
     "footer_subtitle": "El Protocolo de Votación Global",
     "terms_and_privacy": "<link1>Términos de uso</link1> y <link2>Política de privacidad</link2>",
     "uses_cases": "Casos de Uso",
@@ -372,15 +374,15 @@
       "title_placeholder": "El nombre de la organización",
       "website_placeholder": "https://example.com"
     },
-    "choose_an_option": "Choose an option",
+    "choose_an_option": "Elige una opción",
     "error": {
       "address_already_in_use": "Esta dirección ya está en el censo",
       "address_pattern": "Solo se permiten direcciones hexadecimales (p.ej. 0x031101A...)",
-      "email_invalid": "Invalid email address",
+      "email_invalid": "Correo electrónico incorrecto",
       "field_is_required": "Este campo es obligatorio",
       "min_address": "Por favor, proporciona al menos una dirección",
       "min_users_address": "Por favor, proporciona al menos una dirección",
-      "password_min_length": "Min. 8 characters",
+      "password_min_length": "Min. 8 caracteres",
       "recipient_address_invalid": "La dirección especificada no parece válida"
     },
     "process_create": {
@@ -425,7 +427,7 @@
         "census": "Censo",
         "census_preview_is_shortened": "(la lista previa está limitada a {{ limit }} resultados)",
         "census_total_people_one": "Una persona podrá votar en esta votación",
-        "census_total_people_many": "{{ count }} personas podrán votar en esta votación",
+        "census_total_people_many": "",
         "census_total_people_other": "{{ count }} personas podrán votar en esta votación",
         "configuration": "Configuración",
         "confirmation": "Confirmación",
@@ -437,7 +439,7 @@
         "edit": "Editar",
         "election_info": "Información de Votación",
         "questions_one": "Pregunta",
-        "questions_many": "Preguntas",
+        "questions_many": "",
         "questions_other": "Preguntas",
         "secret_until_the_end": "Secreto hasta el final",
         "title": "Vista previa y costos de votación",
@@ -508,11 +510,11 @@
     },
     "process_create_saas": {
       "steps": {
-        "census_title": "Census",
-        "confirm_title": "Confirm",
-        "features_title": "Features",
-        "info_title": "Information",
-        "questions_title": "Questions"
+        "census_title": "Censo",
+        "confirm_title": "Confirmar",
+        "features_title": "Características",
+        "info_title": "Información",
+        "questions_title": "Preguntas"
       }
     }
   },
@@ -747,18 +749,18 @@
     "title": "<p1>¿Estás</p1><p2>listo para una nueva Era en la gobernanza Web3?</p2>"
   },
   "invite": {
-    "account_not_verified": "Your account is not verified. Please verify your account to continue.",
-    "create_account_subtitle": "You need an account first, in order to accept your invite",
-    "create_account_title": "Create your account",
+    "account_not_verified": "Tu cuenta no está verificada. Por favor, verifica tu cuenta para continuar.",
+    "create_account_subtitle": "Primero necesitas una cuenta para aceptar tu invitación.",
+    "create_account_title": "Crea tu cuenta",
     "error": "Error",
-    "go_to_verify": "Verify Account",
-    "invalid_link": "Invalid invite link received",
-    "processing": "Processing your invitation...",
+    "go_to_verify": "Verificar cuenta",
+    "invalid_link": "Enlace de invitación no válido",
+    "processing": "Procesando tu invitación...",
     "select_option": "Selecciona una opción",
     "subtitle": "Trabajar junto a otros es la clave para el éxito.",
     "success": "¡Invitación enviada!",
-    "success_description": "You can now sign in",
-    "success_title": "Invitation accepted",
+    "success_description": "Ahora te puedes logar",
+    "success_title": "Invitación acceptada",
     "title": "Invita gente a tu equipo",
     "unexpected_error": "",
     "user_invited": "Se ha mandado a {{ email }}"
@@ -766,6 +768,7 @@
   "invite_people": "Invitar Gente",
   "keep_me_logged": "Mantenerme conectado",
   "languages": "Languages",
+  "Light mode": "Light mode",
   "link": {
     "discord": "Enlace al Discord de Vocdoni",
     "github": "Enlace al Github de Vocdoni",
@@ -779,9 +782,9 @@
   },
   "logout": "Logout",
   "membership_size": {
-    "language": "Default Language",
-    "selector_label": "Membership size",
-    "timezone": "Timezone"
+    "language": "Idioma por Defecto",
+    "selector_label": "Nº de Miembros",
+    "timezone": "Zona Horaria"
   },
   "menu": {
     "burger_aria_label": "menú de usuario",
@@ -805,9 +808,9 @@
   "meta": {
     "helper": "Provide a clear title and description to help voters understand the vote"
   },
-  "more_than_memberships_one": "más de {{count}} membresía",
-  "more_than_memberships_many": "",
-  "more_than_memberships_other": "más de {{count}} membresías",
+  "more_than_memberships_one": "más de {{count}} miembros",
+  "more_than_memberships_many": "more than {count} memberships",
+  "more_than_memberships_other": "más de {{count}} miembros",
   "name": "Nombre",
   "new_organization": {
     "create_organization_btn": "Crear Organización",
@@ -815,17 +818,17 @@
     "description2": "Como <span>paquete de bienvenida</span>, recibirá {{ faucetAmount }} tokens gratis para comenzar a utilizar nuestra plataforma.",
     "title": "Nueva Organización"
   },
-  "new_password": "New Password",
-  "new_password_placeholder": "Enter your new password",
+  "new_password": "Nueva contraseña",
+  "new_password_placeholder": "Introduce tu nueva contraseña",
   "new_voting": "Nueva votación",
-  "no_results_filtering": "Your current search filter returns no results",
+  "no_results_filtering": "Tu filtro de búsqueda actual no devuelve resultados",
   "not_registred_yet": "¿Aún no estás registrado?",
-  "open_in_explorer": "Abrir en explorador",
+  "open_in_explorer": "Abrir en el explorador",
   "or": "o",
   "org_type_selector": {
-    "community": "Community",
-    "company": "Company",
-    "selector_label": "Select Organization Type"
+    "community": "Comunidad",
+    "company": "Empresa",
+    "selector_label": "Selecciona el tipo de organización"
   },
   "organization": {
     "avatar_alt": "Imagen de avatar de la organización {{ name }}",
@@ -840,6 +843,7 @@
       "not_owner": "Esta organización aún no tiene votaciones.",
       "title": "Crea tu primer proceso de votación"
     },
+    "no_organization_title": "You don't belong to any organization yet!",
     "organization": "Organización",
     "title": {
       "read_more": "Expandir título"
@@ -847,35 +851,35 @@
     "votings_list": "Lista de procesos de votación"
   },
   "overwrite": {
-    "description": "Voters will be able to overwrite their vote once",
-    "title": "Vote overwrite"
+    "description": "Los votantes podrán modificar su voto una vez",
+    "title": "Modificación de voto"
   },
   "password": "Contraseña",
-  "password_placeholder": "Min 8 characters",
+  "password_placeholder": "Min 8 caracteres",
   "password_reset": {
-    "subtitle": "If your email corresponds to an existing account, you'll receive an email with a code to reset your password.",
-    "title": "Password reset"
+    "subtitle": "Si tu correo electrónico corresponde a una cuenta existente, recibirás un correo con un código para restablecer tu contraseña.",
+    "title": "Restablecimiento de contraseña"
   },
   "password_update": {
     "actions": {
-      "update": "Update Password"
+      "update": "Actualizar contraseña"
     },
     "confirm": {
-      "label": "Confirm Password",
-      "mismatch": "Passwords don't match",
-      "required": "Please confirm your password"
+      "label": "Confirmar contraseña",
+      "mismatch": "Las contraseñas no coinciden",
+      "required": "Por favor, confirma tu contraseña"
     },
-    "error": "Failed to update password",
+    "error": "Error al actualizar la contraseña",
     "new": {
-      "label": "New Password",
-      "minLength": "Password must be at least 8 characters",
-      "required": "Password is required"
+      "label": "Nueva contraseña",
+      "minLength": "La contraseña debe tener al menos 8 caracteres",
+      "required": "Se requiere una contraseña"
     },
     "old": {
-      "label": "Current Password",
-      "required": "Current password is required"
+      "label": "Contraseña actual",
+      "required": "Se requiere la contraseña actual"
     },
-    "success": "Password updated successfully"
+    "success": "Contraseña actualizada con éxito"
   },
   "passwords_do_not_match": "",
   "plan_upgrade": {
@@ -887,18 +891,18 @@
   "preview": "Preview",
   "pricing": {
     "advanced_analytitcs": "Informes y análisis avanzados",
-    "all_features": "All features & voting types",
+    "all_features": "Todas las funciones y tipos de votación",
     "basic_analytics": "Informes y análisis básicos",
-    "compare_features": "Compare all features",
+    "compare_features": "Compara todas las funciones",
     "core_voting": "Funciones básicas de votación",
-    "custom_subtitle": "Large organizations enterprises, and institutions requiring extensive customization and support.",
-    "custom_title": "Personalizado",
-    "date_format": "dd/mm/yy",
-    "dedicated_manager": "Dedicated account manager",
+    "custom_subtitle": "Grandes organizaciones, empresas e instituciones que requieren una personalización y soporte extensivos.",
+    "custom_title": "Plan personalizado",
+    "date_format": "dd/mm/aa",
+    "dedicated_manager": "Gerente de cuenta dedicado",
     "error": "",
     "essential_subtitle": "Organizaciones pequeñas o medianas o grupos comunitarios con necesidades básicas de votación.",
     "essential_title": "Esencial",
-    "features": "Features",
+    "features": "Funciones",
     "free_subtitle": "Organizaciones pequeñas o grupos comunitarios con necesidades básicas de votación.",
     "free_title": "Gratis",
     "gpdr_compilance": "Cumplimiento del GDPR",
@@ -910,20 +914,20 @@
     "priority_support": "Soporte prioritario por tickets",
     "ticket_support": "Soporte por tickets",
     "unlimited_yearly_processes": "Procesos anuales ilimitados",
-    "up_to_admins": "Hasta {{ admin }} admin. y {{ org }} organizaciones",
+    "up_to_admins": "Hasta {{ admin }} administradores y {{ org }} organizaciones",
     "upgrade_title": "Actualiza tu plan",
-    "white_label": "White label solution",
+    "white_label": "Solución de marca blanca",
     "yearly_processes_one": "{{ count }} proceso anual",
-    "yearly_processes_many": "",
+    "yearly_processes_many": "{{ count }} yearly voting process",
     "yearly_processes_other": "{{ count }} procesos anuales",
     "your_plan": "Actualmente estás suscrito al plan <plan>{{ plan }}</plan>. Si actualizas, solo te cobraremos la diferencia anual. En el próximo período de facturación, que comienza el <plan>{{ billing, format }}</plan>, pagarás íntegramente por el nuevo plan seleccionado."
   },
   "pricing_card": {
     "from": "Desde {{price}}/año",
-    "most_popular_plan": "Most popular plan",
+    "most_popular_plan": "Plan más popular",
     "view_features": "Ver todas las características"
   },
-  "privacy_policy": "Privacy Policy",
+  "privacy_policy": "Política de Privacidad",
   "privacyPolicy": {
     "description": "Este documento describe las prácticas de privacidad de la Asociación Vocdoni (\"Vocdoni\") con respecto al uso de sus sitios web y servicios.",
     "section1": {
@@ -1079,7 +1083,7 @@
       "title": "Contáctanos"
     },
     "preview": {
-      "accuracy": "Precisión de los Saldos de Censo Anónimo: "
+      "accuracy": "Precisión del Balance en Censos Anónimos: "
     },
     "question": {
       "approval_voting": {
@@ -1107,23 +1111,23 @@
         "title": "Tipos de Votación"
       }
     },
-    "title": "Title",
-    "title_placeholder": "Title of the voting process"
+    "title": "Título",
+    "title_placeholder": "Título del proceso de votación"
   },
   "process_list": {
-    "start_end_date": "Start-end date",
-    "status": "Status",
-    "title": "Title",
-    "type": "Type",
-    "voters": "Voters"
+    "start_end_date": "Fecha de inicio y fin",
+    "status": "Estado",
+    "title": "Título",
+    "type": "Tipo",
+    "voters": "Votantes"
   },
   "profile": {
     "avatar": {
       "label": "Avatar"
     },
-    "error": "Failed to update profile",
-    "success": "Profile updated successfully",
-    "title": "Profile"
+    "error": "Error al actualizar el perfil",
+    "success": "Perfil actualizado con éxito",
+    "title": "Perfil"
   },
   "rainbow": {
     "group": {
@@ -1131,20 +1135,20 @@
     },
     "recovery": "Recuperar cuenta"
   },
-  "remove_avatar": "Remove avatar",
-  "remove_header": "Remove header",
-  "reset_password_button": "Reset Password",
+  "remove_avatar": "Eliminar avatar",
+  "remove_header": "Eliminar encabezado",
+  "reset_password_button": "Restablecer la contraseña",
   "rights": "© 2024 Asociación Vocdoni. Todos los derechos reservados.",
   "role": {
-    "read_permission": "Read-only access",
-    "write_permission": "Can create and edit content"
+    "read_permission": "Acceso solo lectura",
+    "write_permission": "Puede crear y editar contenido"
   },
   "secret_until_the_end": {
-    "description": "Vote contents will be encrypted till the end of the voting",
-    "title": "Secret until the end"
+    "description": "El contenido del voto estará cifrado hasta el final de la votación",
+    "title": "Secreto hasta el final"
   },
-  "session_expired": "Session expired",
-  "session_expired_description": "Session may have been expired and it could not be refreshed, please login again",
+  "session_expired": "Sesión expirada",
+  "session_expired_description": "La sesión puede haber expirado y no se pudo actualizar, por favor inicia sesión de nuevo",
   "settings": "Configuración",
   "share": {
     "copy": "Copiar",
@@ -1168,17 +1172,17 @@
   "submit": "Envía",
   "subscribe": "Suscribirse",
   "subscription": {
-    "change_plan_button": "Change",
-    "inactive_subscription_description": "Your subscription is currently inactive. Consider <2>contacting us</2> to reactivate it.",
-    "inactive_subscription_title": "Inactive Subscription",
-    "next_billing": "Next Billing",
-    "price": "Price",
-    "since": "Since",
-    "title": "Subscription",
-    "your_subscription": "Your Subscription"
+    "change_plan_button": "Cambiar",
+    "inactive_subscription_description": "Tu suscripción está actualmente inactiva. Considera <2>contactarnos</2> para reactivarla.",
+    "inactive_subscription_title": "Suscripción Inactiva",
+    "next_billing": "Próxima Facturación",
+    "price": "Precio",
+    "since": "Desde",
+    "title": "Suscripción",
+    "your_subscription": "Tu Suscripción"
   },
   "support": "Soporte",
-  "surname": "Surname",
+  "surname": "Apellido",
   "team": {
     "expiration": "Expiración",
     "member_name": "Nombre",
@@ -1253,21 +1257,21 @@
     "current_plan": "Tu plan <2>{{ plan, lowercase }}</2> está limitado a seleccionar hasta <6>{{ voters }} votantes</6>.",
     "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
     "plan": {
-      "basic": "Basic",
+      "basic": "Básico",
       "custom": "Custom",
-      "free": "Free",
+      "free": "Gratis",
       "limit": {
-        "basic": "Up to 1500",
-        "custom": "Unlimited",
-        "free": "50 voters",
-        "pro": "Up to 3000"
+        "basic": "Hasta 1500",
+        "custom": "Ilimitado",
+        "free": "50 votantes",
+        "pro": "Hasta 3000"
       },
       "pro": "Pro"
     },
-    "satisfaction_rate": "97% satisfaction rate, starting at 9€/month."
+    "satisfaction_rate": "97% de tasa de satisfacción, desde 9€/mes."
   },
-  "total_votes_submitted": "Total Votes Submitted",
-  "update": "Update",
+  "total_votes_submitted": "Total de votos enviados",
+  "update": "Actualizar",
   "upgrade": "Amplíalo",
   "uploader": {
     "click_or_drag_and_drop": "<click>Haz clic para subir</click> <drag>o arrastra y suelta</drag><formats>(Formatos permitidos: {{ formats, list }})</formats>",
@@ -1278,35 +1282,38 @@
     "read_more": "Leer más"
   },
   "user_management": "Gestión de usuarios",
-  "verification_code": "Verification Code",
-  "verification_code_placeholder": "Enter the verification code",
-  "verification_code_resent": "Verification code resent!",
+  "validation": {
+    "required": ""
+  },
+  "verification_code": "Código de verificación",
+  "verification_code_placeholder": "Introduce el código de verificación",
+  "verification_code_resent": "¡Código de verificación reenviado!",
   "verify": {
-    "account_created_succesfully": "Account created successfully!",
-    "email_sent": "Email sent successfully",
-    "enter_verification_code": "Enter the verification code sent to your email",
-    "follow_email_instructions": "Follow the instructions there to activate your account.",
-    "invalid_verification": "Invalid verification request",
-    "missing_email": "No email address provided for verification",
-    "resend_confirmation_mail": "Resend Email",
-    "verification_email_is_sent": "A verification email has been sent to:",
-    "verify_code": "Verify",
-    "verify_your_email": "Verify your email"
+    "account_created_succesfully": "¡Cuenta creada con éxito!",
+    "email_sent": "Correo electrónico enviado con éxito",
+    "enter_verification_code": "Introduce el código de verificación enviado a tu correo",
+    "follow_email_instructions": "Sigue las instrucciones en el correo para activar tu cuenta.",
+    "invalid_verification": "Solicitud de verificación inválida",
+    "missing_email": "No se proporcionó dirección de correo para la verificación",
+    "resend_confirmation_mail": "Reenviar correo",
+    "verification_email_is_sent": "Se ha enviado un correo de verificación a:",
+    "verify_code": "Verificar",
+    "verify_your_email": "Verifica tu correo electrónico"
   },
   "verify_mail": {
-    "error_subtitle": "We found an error verifying your email, please check verification mail to ensure all data is correct",
-    "verifying_subtitle": "Await until we verify your email address. You will be redirect on success.",
-    "verifying_title": "Verifying {{ email }}"
+    "error_subtitle": "Encontramos un error al verificar tu correo, por favor revisa el correo de verificación para asegurar que todos los datos sean correctos",
+    "verifying_subtitle": "Espera mientras verificamos tu dirección de correo electrónico. Serás redirigido con éxito.",
+    "verifying_title": "Verificando {{ email }}"
   },
   "view_plans_and_pricing": "Ver Planes y Precios",
-  "view_pricing": "View Pricing",
-  "view_pricing_plan": "View Pricing Plan",
-  "view_pricing_plans": "View Pricing Plans",
-  "vote_details": "Vote details",
-  "voters": "voters",
-  "voting_link": "Voting Link",
+  "view_pricing": "Ver Precios",
+  "view_pricing_plan": "Ver Plan de Precios",
+  "view_pricing_plans": "Ver Planes de Precios",
+  "vote_details": "Detalles de la votación",
+  "voters": "votantes",
+  "voting_link": "Enlace de votación",
   "voting_processes": "Procesos de votación",
-  "voting_questions": "Voting Questions",
-  "voting_results": "Voting Results",
-  "website": "Website"
+  "voting_questions": "Preguntas de votación",
+  "voting_results": "Resultados de la votación",
+  "website": "Sitio web"
 }

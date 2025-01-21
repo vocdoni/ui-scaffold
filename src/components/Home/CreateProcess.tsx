@@ -12,7 +12,7 @@ const CreateProcess = () => {
     <Flex
       as='section'
       width='full'
-      m='0 auto'
+      m='30px auto 20px'
       maxW='1920px'
       px={{
         base: '10px',
@@ -57,6 +57,7 @@ const CreateProcess = () => {
             height='62px'
             fontSize='20px'
             minW='300px'
+            background='linear-gradient(to right, #2C7D57, #22555A)'
           >
             {t('home.create_process.btn')}
           </Button>

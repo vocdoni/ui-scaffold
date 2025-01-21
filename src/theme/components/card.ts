@@ -181,7 +181,7 @@ export const Card = defineMultiStyleConfig({
           fontSize: '12px',
           fontWeight: 'bold',
           color: 'home.description.light',
-          marginTop: '22px',
+          marginTop: '12px',
           _dark: {
             color: 'home.description.dark',
           },
@@ -421,13 +421,13 @@ export const Card = defineMultiStyleConfig({
         borderRadius: 'none',
         borderBottom: '1px solid rgb(229, 229, 229)',
         backgroundColor: 'transparent',
-        fontSize: '22px',
       },
       header: {
         p: 0,
         '& p': {
           fontWeight: 'bold',
           mb: '18px',
+          fontSize: '22px'
         },
       },
       body: {

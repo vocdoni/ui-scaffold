@@ -54,7 +54,7 @@ const Process = () => {
         <Flex flex='1 1' flexBasis={{ lg: '50%' }} flexDirection='column' justifyContent='space-between' gap='40px'>
           <Card variant='step'>
             <CardBody>
-              <Box>
+              <Box background='linear-gradient(to right, #2C7D57, #22555A)'>
                 <PiNumberSquareOneFill />
               </Box>
               <Box>
@@ -65,7 +65,7 @@ const Process = () => {
           </Card>
           <Card variant='step'>
             <CardBody>
-              <Box>
+              <Box background='linear-gradient(to right, #2C7D57, #22555A)'>
                 <PiNumberSquareTwoFill />
               </Box>
               <Box>
@@ -76,7 +76,7 @@ const Process = () => {
           </Card>
           <Card variant='step'>
             <CardBody>
-              <Box>
+              <Box background='linear-gradient(to right, #2C7D57, #22555A)'>
                 <PiNumberSquareThreeFill />
               </Box>
               <Box>
@@ -87,7 +87,7 @@ const Process = () => {
           </Card>
           <Card variant='step'>
             <CardBody>
-              <Box>
+              <Box background='linear-gradient(to right, #2C7D57, #22555A)'>
                 <PiNumberSquareFourFill color='#fff' />
               </Box>
               <Box>
