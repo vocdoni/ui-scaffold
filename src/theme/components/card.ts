@@ -50,8 +50,6 @@ export const Card = defineMultiStyleConfig({
         w: { base: '80%', sm: 72 },
         _dark: {
           bgColor: 'pricing_card.bg.dark',
-          border: '0.1px solid',
-          borderColor: 'pricing_card.border_dark',
         },
       },
       header: {
@@ -86,6 +84,10 @@ export const Card = defineMultiStyleConfig({
           mt: 3,
           mb: 2,
           w: 'full',
+          borderRadius: 'full',
+          height: 0,
+          minH: '30px',
+          py: 2,
         },
         '& > p:first-of-type': {
           fontWeight: 'extrabold',

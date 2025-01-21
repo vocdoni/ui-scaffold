@@ -249,8 +249,8 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Flex flexDir='column' gap={4}>
-          <Flex flexDir='column'>
-            <Text>
+          <Flex flexDir='row' justifyContent={'center'} alignItems={'center'} gap={6} mb={6}>
+            <Text color={'white'}>
               <Trans i18nKey='pricing.membership_size'>Select your membership size:</Trans>
             </Text>
             <Controller
@@ -327,7 +327,7 @@ export const SubscriptionModal = ({
             <Text>
               <Trans i18nKey='pricing.help'>Need some help?</Trans>
             </Text>
-            <Button as={ReactRouterLink} to={Routes.contact} target='_blank'>
+            <Button as={ReactRouterLink} to={Routes.contact} target='_blank' colorScheme='whiteAlpha' color={'white'}>
               <Trans i18nKey='contact_us'>Contact us</Trans>
             </Button>
           </Box>
