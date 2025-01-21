@@ -220,7 +220,6 @@
   "control": "Control:",
   "copy": {
     "address": "Copy address",
-    "copied": "Copied",
     "copied_title": "Copied!"
   },
   "country_selector": {
@@ -271,6 +270,7 @@
     }
   },
   "customization": "Customization",
+  "dark_mode": "Dark mode",
   "delete_my_account": "Delete my account",
   "description": "Description",
   "edit_saas_profile": {
@@ -432,9 +432,9 @@
         "description_election": "Description",
         "edit": "Edit",
         "election_info": "Set up your voting process",
+        "live_results": "",
         "questions_one": "Question",
         "questions_other": "Questions",
-        "secret_until_the_end": "Secret until the end",
         "title": "Preview",
         "title_election": "Title",
         "vote_overwrite": "Vote overwrite"
@@ -759,10 +759,15 @@
   "invite_people": "Invite People",
   "keep_me_logged": "Keep me logged in",
   "languages": "Languages",
+  "light_mode": "Light mode",
   "link": {
     "discord": "Link to Vocdoni's discord",
     "github": "Link to Vocdoni's github",
     "twitter": "Link to Vocdoni's twitter"
+  },
+  "live_results": {
+    "description": "Vote contents will be publicly available till the end of the voting",
+    "title": "Live results"
   },
   "loading": "Loading...",
   "login": {
@@ -1126,10 +1131,6 @@
   "role": {
     "read_permission": "Read-only access",
     "write_permission": "Can create and edit content"
-  },
-  "secret_until_the_end": {
-    "description": "Vote contents will be encrypted till the end of the voting",
-    "title": "Secret until the end"
   },
   "session_expired": "Session expired",
   "session_expired_description": "Session may have been expired and it could not be refreshed, please login again",
