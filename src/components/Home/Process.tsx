@@ -49,7 +49,6 @@ const Process = () => {
           zIndex={10}
           flexDirection='column'
           gap='24px'
-          maxW={{ base: 'full', xl: '660px' }}
           px={{ base: '30px', xl: 0 }}
           pr={{ xl: '37px', xl3: 0 }}
         >
@@ -107,8 +106,8 @@ const Process = () => {
               transform={{ xl: 'translateY(-50%)' }}
               borderRadius='xl'
               ml={{ base: '0px' }}
-              maxW={{ base: '350px', xl: 'full' }}
               mx='auto'
+              w='full'
             />
           </Box>
         </Flex>

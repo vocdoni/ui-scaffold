@@ -35,12 +35,11 @@ const ContactUs = () => {
       <Flex
         flex='1 1 50%'
         justifyContent={{ base: 'center', xl: 'start' }}
-        alignItems='center'
+        alignItems='start'
         position='relative'
         zIndex={10}
         flexDirection='column'
         gap='24px'
-        maxW={{ base: 'full', xl: '660px' }}
         px={{ base: '30px', xl: 0 }}
         pr={{ xl: '37px', xl3: 0 }}
       >
@@ -56,7 +55,7 @@ const ContactUs = () => {
             {t('home.contactus.title')}
           </Text>
         </Box>
-        <Card variant='icon-card' mt='30px' mb='20px'>
+        <Card variant='icon-card'>
           <CardBody>
             <Box>
               <MdDesignServices />
@@ -67,6 +66,7 @@ const ContactUs = () => {
             </Box>
           </CardBody>
         </Card>
+
         <Card variant='icon-card'>
           <CardBody>
             <Box>
@@ -80,7 +80,7 @@ const ContactUs = () => {
         </Card>
 
         <Button
-          w={{ base: 'full', sm: 'fit-content', xl: 'full' }}
+          w={{ base: 'full', sm: 'fit-content' }}
           mx='auto'
           as={ReactRouterLink}
           to='mailto:info@vocdoni.org'

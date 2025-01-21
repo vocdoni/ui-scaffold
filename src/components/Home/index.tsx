@@ -12,7 +12,7 @@ import Support from './Support'
 const Home = () => (
   <>
     <Box position='relative'>
-      <Box position='relative' zIndex={10} maxW='1920px' px={{ base: 2, md: 4, lg: 6 }}>
+      <Box position='relative' zIndex={10} maxW='1920px' px={{ base: 2, md: 4, lg: 6 }} mx='auto'>
         <CreateProcess />
         <Clients />
         <Benefits />
