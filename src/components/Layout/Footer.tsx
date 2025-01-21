@@ -17,9 +17,9 @@ const Footer = () => {
         m='0 auto'
         maxW='1920px'
         px={{
-          base: '10px',
-          sm: '20px',
-          md: '80px',
+          base: 2,
+          sm: 4,
+          lg: 6,
         }}
         pt='24px'
         flexDirection={{ base: 'column', xl: 'row' }}
@@ -108,9 +108,9 @@ const Footer = () => {
         m='0 auto'
         maxW='1920px'
         px={{
-          base: '10px',
-          sm: '20px',
-          md: '80px',
+          base: 2,
+          sm: 4,
+          lg: 6,
         }}
         flexDirection={{ base: 'column', md: 'row' }}
         gap={{ base: '20px', md: '10px' }}
