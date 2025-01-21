@@ -67,7 +67,7 @@ const AccountMenu: React.FC<BoxProps> = (props) => {
                 <Trans i18nKey='menu.documentation'>Documentation</Trans>
               </MenuItem>
               <MenuDivider />
-              <MenuItem closeOnSelect={false}>
+              <MenuItem as='div' role='button' tabIndex={0} closeOnSelect={false}>
                 <LanguagesListAccordion />
               </MenuItem>
               <DropdownColorModeSwitcher />

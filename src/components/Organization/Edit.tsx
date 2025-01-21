@@ -77,13 +77,7 @@ const EditOrganization = () => {
   } = useClient()
   const { organization } = useSaasAccount()
 
-  const {
-    mutateAsync,
-    isPending: isSaasPending,
-    isError: isSaasError,
-    error: saasError,
-    isSuccess,
-  } = useOrganizationEdit()
+  const { mutateAsync, isError: isSaasError, error: saasError, isSuccess } = useOrganizationEdit()
 
   const methods = useForm<FormData>({
     defaultValues: {
