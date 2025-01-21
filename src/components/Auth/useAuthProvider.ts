@@ -1,7 +1,7 @@
 import { useToast } from '@chakra-ui/react'
 import { useMutation } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
-import { NoOrganizationsError, RemoteSigner } from '@vocdoni/sdk'
+import { NoOrganizationsError, RemoteSigner, UnauthorizedError } from '@vocdoni/sdk'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { api, ApiEndpoints, ApiParams } from '~components/Auth/api'
@@ -160,9 +160,15 @@ export const useAuthProvider = () => {
     }
   }, [bearer])
 
-  const signerRefresh = useCallback(() => {
+  const signerRefresh = useCallback(async () => {
     if (bearer) {
-      return updateSigner(bearer)
+      try {
+        return await updateSigner(bearer)
+      } catch (e) {
+        if (e instanceof UnauthorizedError) {
+          logout()
+        }
+      }
     }
   }, [bearer, clientSigner])
 
