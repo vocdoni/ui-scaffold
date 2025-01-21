@@ -13,9 +13,9 @@ const Navbar = () => (
     m='0 auto'
     maxW='1920px'
     px={{
-      base: '10px',
-      sm: '20px',
-      md: '80px',
+      base: 2,
+      sm: 4,
+      lg: 6,
     }}
     w='full'
     mx='auto'
