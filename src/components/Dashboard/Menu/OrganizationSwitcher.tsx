@@ -90,6 +90,7 @@ export const OrganizationSwitcher = () => {
             container: (provided) => ({
               ...provided,
               width: '100%',
+              minWidth: 0,
             }),
           }}
         />

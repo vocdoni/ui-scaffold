@@ -19,7 +19,7 @@ export interface ConfigurationValues {
   electionType: {
     autoStart: boolean
     interruptible: boolean
-    secretUntilTheEnd: boolean
+    liveResults: boolean
     anonymous: boolean
   }
   resultsType: {

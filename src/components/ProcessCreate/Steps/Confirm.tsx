@@ -393,6 +393,10 @@ const electionFromForm = (form: StepsFormValues) => {
   const maxCensusSize = form.maxCensusSize ?? form.spreadsheet?.data.length ?? form.addresses.length
   return {
     ...form,
+    electionType: {
+      ...form.electionType,
+      secretUntilTheEnd: !form.electionType.liveResults,
+    },
     maxCensusSize,
     // map questions back to IQuestion[]
     questions: form.questions.map(
