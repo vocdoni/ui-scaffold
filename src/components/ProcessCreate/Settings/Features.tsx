@@ -18,13 +18,13 @@ const useProcessFeatures = () => {
         name: 'electionType.anonymous',
         permission: 'features.anonymous',
       },
-      secretUntilTheEnd: {
-        title: t('secret_until_the_end.title', { defaultValue: 'Secret until the end' }),
-        description: t('secret_until_the_end.description', {
-          defaultValue: 'Vote contents will be encrypted till the end of the voting',
+      liveResults: {
+        title: t('live_results.title', { defaultValue: 'Live results' }),
+        description: t('live_results.description', {
+          defaultValue: 'Vote contents will be publicly available till the end of the voting',
         }),
         icon: BiCheckDouble,
-        name: 'electionType.secretUntilTheEnd',
+        name: 'electionType.liveResults',
       },
       overwrite: {
         title: t('overwrite.title', { defaultValue: 'Vote overwrite' }),
