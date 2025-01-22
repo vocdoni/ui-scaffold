@@ -123,7 +123,7 @@ const SignUp = ({ invite }: SignupProps) => {
             }}
           />
           <FormControl as='fieldset' isInvalid={!!errors?.terms}>
-            <Checkbox {...register('terms', { required: t('validation.required') })} isRequired>
+            <Checkbox {...register('terms', { required: t('cc.validation.required') })} isRequired>
               <Trans
                 i18nKey='signup_agree_terms'
                 components={{
