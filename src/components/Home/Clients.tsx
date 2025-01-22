@@ -1,4 +1,4 @@
-import { Card, CardBody, CardHeader, Grid, GridProps, Image, Text } from '@chakra-ui/react'
+import { Box, Card, CardBody, CardHeader, Grid, GridProps, Image, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import barca from '/assets/barca.png'
 import bellpuig from '/assets/bellpuig.svg.png'
@@ -11,23 +11,16 @@ import erc from '/assets/erc.svg'
 import omnium from '/assets/omnium.png'
 import ticanoia from '/assets/ticanoia.png'
 
-const Clients = () => {
+const Clients = ({ ...props }) => {
   const { t } = useTranslation()
 
   return (
-    <>
-      <Text
-        variant='home-description-color'
-        textAlign='center'
-        mb='52px'
-        mt='100px'
-        fontFamily='basier'
-        fontSize='23px'
-      >
+    <Box {...props}>
+      <Text variant='home-description-color' textAlign='center' mb='52px' fontFamily='basier' fontSize='23px'>
         {t('home.clients_title')}
       </Text>
       <ClientsGrid />
-    </>
+    </Box>
   )
 }
 
@@ -39,7 +32,6 @@ export const ClientsGrid = (props: GridProps) => (
     maxW={{ base: '100%', sm: '80%', lg: '900px' }}
     flexDirection={{ base: 'column', sm: 'row' }}
     justifyContent='center'
-    mb={{ lg: '60px' }}
     gridTemplateColumns='repeat(5, 1fr)'
     gridRowGap={{ base: '0px', sm: '30px', lg: '50px' }}
     {...props}

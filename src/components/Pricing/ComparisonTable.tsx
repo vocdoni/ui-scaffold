@@ -1,9 +1,7 @@
-import { Box, Flex, Progress, Table, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
+import { Box, Flex, Progress, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
 import { dotobject } from '@vocdoni/sdk'
 import { forwardRef } from 'react'
 import { Trans } from 'react-i18next'
-import Clients from '~components/Home/Clients'
-import Faqs from '~components/Home/Faqs'
 import { BooleanIcon } from '~components/Layout/BooleanIcon'
 import { CategorizedFeatureKeys, CategoryTitleKeys, PlanTableFeaturesTranslationKeys } from './Features'
 import { Plan, usePlans, usePlanTranslations } from './Plans'
@@ -15,56 +13,67 @@ type ComparisonSectionTableProps = {
   plans: Plan[]
   features: string[]
   category: string
+  idx: number
 }
 
-const ComparisonSectionTable = ({ titleKey, plans, features, category }: ComparisonSectionTableProps) => {
+const ComparisonSectionTable = ({ titleKey, plans, features, category, idx }: ComparisonSectionTableProps) => {
   const translations = usePlanTranslations()
+
   return (
     <Box mb={8}>
       <Text fontSize='xl' mb={4} color='comparsions_table_title'>
         <Trans i18nKey={titleKey} />
       </Text>
-      <Table variant='striped' borderWidth={1}>
-        <Thead>
-          <Tr>
-            <Th>
-              <Trans i18nKey='pricing.features'>Features</Trans>
-            </Th>
-            {plans.map((plan) => (
-              <Th key={plan.id} textAlign='center'>
-                {translations[plan.id].title || plan.name}
+      <TableContainer>
+        <Table variant='striped' borderWidth={1}>
+          <Thead>
+            <Tr>
+              <Th>
+                <Trans i18nKey='pricing.features'>Features</Trans>
               </Th>
-            ))}
-          </Tr>
-        </Thead>
-        <Tbody>
-          {features.map((key) => {
-            const featurePath = `${category}.${key}`
-            const translationKey = PlanTableFeaturesTranslationKeys[featurePath]
-            return (
-              <Tr key={key}>
-                <Td fontWeight='medium'>
-                  <Trans i18nKey={translationKey} />
-                </Td>
-                {plans.map((plan) => {
-                  const value = dotobject(plan, featurePath)
-                  return (
-                    <Td key={plan.id} textAlign='center' w={40}>
-                      {typeof value === 'boolean' ? (
-                        <BooleanIcon value={value} />
-                      ) : typeof value === 'number' ? (
-                        value
-                      ) : (
-                        '-'
-                      )}
-                    </Td>
-                  )
-                })}
-              </Tr>
-            )
-          })}
-        </Tbody>
-      </Table>
+              {plans.map((plan) => (
+                <Th key={plan.id} textAlign='center'>
+                  <Flex flexDirection={'column'} justifyContent={'center'}>
+                    <Text as={'span'} textAlign={'center'}>
+                      {translations[plan.id].title}
+                    </Text>
+                    <Text as={'span'} textAlign={'center'} fontWeight={'normal'}>
+                      <Trans i18nKey='pricing_card.from' values={{ price: plan.startingPrice / 100 }}></Trans>
+                    </Text>
+                  </Flex>
+                </Th>
+              ))}
+            </Tr>
+          </Thead>
+          <Tbody>
+            {features.map((key) => {
+              const featurePath = `${category}.${key}`
+              const translationKey = PlanTableFeaturesTranslationKeys[featurePath]
+              return (
+                <Tr key={key}>
+                  <Td fontWeight='medium'>
+                    <Trans i18nKey={translationKey} />
+                  </Td>
+                  {plans.map((plan) => {
+                    const value = dotobject(plan, featurePath)
+                    return (
+                      <Td key={plan.id} textAlign='center' w={40}>
+                        {typeof value === 'boolean' ? (
+                          <BooleanIcon value={value} />
+                        ) : typeof value === 'number' ? (
+                          value
+                        ) : (
+                          '-'
+                        )}
+                      </Td>
+                    )
+                  })}
+                </Tr>
+              )
+            })}
+          </Tbody>
+        </Table>
+      </TableContainer>
     </Box>
   )
 }
@@ -77,81 +86,25 @@ export const ComparisonTable = forwardRef<HTMLDivElement, ComparisonTableProps>(
   }
 
   return (
-    <Box ref={ref} overflowX='auto' mt={8} maxW={'1000px'} mx='auto' border='1px solid red'>
-      <Text fontSize='2xl' mb={4} textAlign='center'>
-        <Trans i18nKey='pricing.compare_features'>Compare all features</Trans>
-      </Text>
-      <Flex justifyContent={'end'} border='1px solid blue' gap={4} my={6}>
-        <Box flex={'1 0 15%'}>
-          <Text fontWeight='bold' textAlign={'center'} mb={2}>
-            Essential Plan
+    <Flex ref={ref} justifyContent={'center'}>
+      <Box maxW='950px' overflowX={'scroll'}>
+        <Box width={'full'} overflowX='auto'>
+          <Text fontSize='2xl' mb={4} textAlign='center'>
+            <Trans i18nKey='pricing.compare_features'>Compare all features</Trans>
           </Text>
-          <Text textAlign={'center'} mb={2}>
-            <Text as={'span'} fontSize={'24px'} fontWeight={'bold'}>
-              $10
-            </Text>
-            /month
-          </Text>
-          <Text textAlign={'center'} fontSize={'sm'}>
-            Basic features for up to 10 users with everything you need
-          </Text>
-        </Box>
-        <Box flex={'1 0 15%'}>
-          <Text fontWeight='bold' textAlign={'center'} mb={2}>
-            Essential Plan
-          </Text>
-          <Text textAlign={'center'} mb={2}>
-            <Text as={'span'} fontSize={'24px'} fontWeight={'bold'}>
-              $10
-            </Text>
-            /month
-          </Text>
-          <Text textAlign={'center'} fontSize={'sm'}>
-            Basic features for up to 10 users with everything you need
-          </Text>
-        </Box>{' '}
-        <Box flex={'1 0 15%'}>
-          <Text fontWeight='bold' textAlign={'center'} mb={2}>
-            Essential Plan
-          </Text>
-          <Text textAlign={'center'} mb={2}>
-            <Text as={'span'} fontSize={'24px'} fontWeight={'bold'}>
-              $10
-            </Text>
-            /month
-          </Text>
-          <Text textAlign={'center'} fontSize={'sm'}>
-            Basic features for up to 10 users with everything you need
-          </Text>
-        </Box>{' '}
-        <Box flex={'1 0 15%'}>
-          <Text fontWeight='bold' textAlign={'center'} mb={2}>
-            Essential Plan
-          </Text>
-          <Text textAlign={'center'} mb={2}>
-            <Text as={'span'} fontSize={'24px'} fontWeight={'bold'}>
-              $10
-            </Text>
-            /month
-          </Text>
-          <Text textAlign={'center'} fontSize={'sm'}>
-            Basic features for up to 10 users with everything you need
-          </Text>
-        </Box>
-      </Flex>
 
-      {Object.entries(CategorizedFeatureKeys).map(([category, features]) => (
-        <ComparisonSectionTable
-          key={category}
-          titleKey={CategoryTitleKeys[category]}
-          plans={plans}
-          features={features}
-          category={category}
-        />
-      ))}
-
-      <Clients />
-      <Faqs />
-    </Box>
+          {Object.entries(CategorizedFeatureKeys).map(([category, features], idx) => (
+            <ComparisonSectionTable
+              key={category}
+              titleKey={CategoryTitleKeys[category]}
+              plans={plans}
+              features={features}
+              category={category}
+              idx={idx}
+            />
+          ))}
+        </Box>
+      </Box>
+    </Flex>
   )
 })
