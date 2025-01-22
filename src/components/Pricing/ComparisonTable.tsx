@@ -21,28 +21,34 @@ const ComparisonSectionTable = ({ titleKey, plans, features, category, idx }: Co
 
   return (
     <Box mb={8}>
-      <Text fontSize='xl' mb={4} color='comparsions_table_title'>
-        <Trans i18nKey={titleKey} />
-      </Text>
       <TableContainer>
         <Table variant='striped' borderWidth={1}>
           <Thead>
             <Tr>
               <Th>
-                <Trans i18nKey='pricing.features'>Features</Trans>
+                <Text as={'span'} color='comparsions_table_title'>
+                  <Trans i18nKey={titleKey} />
+                </Text>
               </Th>
-              {plans.map((plan) => (
-                <Th key={plan.id} textAlign='center'>
-                  <Flex flexDirection={'column'} justifyContent={'center'}>
-                    <Text as={'span'} textAlign={'center'}>
-                      {translations[plan.id].title}
-                    </Text>
-                    <Text as={'span'} textAlign={'center'} fontWeight={'normal'}>
-                      <Trans i18nKey='pricing_card.from' values={{ price: plan.startingPrice / 100 }}></Trans>
-                    </Text>
-                  </Flex>
-                </Th>
-              ))}
+
+              <>
+                {plans.map((plan) => (
+                  <Th key={plan.id} textAlign='center'>
+                    {!idx && (
+                      <Flex flexDirection={'column'} justifyContent={'center'}>
+                        <Text as={'span'} textAlign={'center'}>
+                          {translations[plan.id].title}
+                        </Text>
+                        <Text as={'span'} textAlign={'center'} fontWeight={'normal'}>
+                          <Trans i18nKey='pricing_card.from' values={{ price: plan.startingPrice / 100 }}>
+                            From {{ price: plan.startingPrice }}/year
+                          </Trans>
+                        </Text>
+                      </Flex>
+                    )}
+                  </Th>
+                ))}
+              </>
             </Tr>
           </Thead>
           <Tbody>

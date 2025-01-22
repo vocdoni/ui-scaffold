@@ -910,7 +910,7 @@
     "your_plan": "You're currently subscribed to the <plan>{{ plan }}</plan> plan. Upgrade now, and you'll only pay the difference for the remaining time in your billing period. Starting from your next billing cycle on <plan>{{ billing, format }}</plan>, you'll be charged the full price for your new plan."
   },
   "pricing_card": {
-    "from": "From ${{ price }}/year",
+    "from": "From {{ price }}/year",
     "most_popular_plan": "Most popular plan",
     "view_features": "View all features"
   },
