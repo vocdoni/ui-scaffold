@@ -34,10 +34,9 @@ export const StepsForm = ({ steps, activeStep, next, prev, setActiveStep }: Step
     electionType: {
       autoStart: true,
       interruptible: true,
-      secretUntilTheEnd: true,
+      liveResults: false, // this is secretUntilTheEnd, but reversed
       anonymous: false,
     },
-    // hardcoded while there's no support for creating other types
     resultsType: {
       name: ElectionResultsTypeNames.SINGLE_CHOICE_MULTIQUESTION,
     },
