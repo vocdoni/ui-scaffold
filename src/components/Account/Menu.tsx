@@ -48,20 +48,13 @@ const AccountMenu: React.FC<BoxProps> = (props) => {
                   size='sm'
                 />
               }
-              rightIcon={
-                isOpen ? (
-                  <ChevronUpIcon boxSize={4} mt='-4px' ml='5px' />
-                ) : (
-                  <ChevronDownIcon boxSize={4} mt='-4px' ml='5px' />
-                )
-              }
+              rightIcon={isOpen ? <ChevronUpIcon boxSize={4} /> : <ChevronDownIcon boxSize={4} />}
               aria-label='User menu'
-              sx={{ '& > span': { m: 0 } }}
               display={'flex'}
               alignItems={'center'}
               variant={'unstyled'}
             >
-              <Text ml='5px' fontSize='9px' fontWeight='200' style={{ transform: 'scale(0.9)' }}>
+              <Text fontSize='xs' fontWeight='light'>
                 {profile.email}
               </Text>
             </MenuButton>

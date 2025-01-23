@@ -72,67 +72,37 @@ const Benefits = () => {
             </Text>
 
             <Flex flexWrap='wrap' justifyContent='center' maxW='1240px' mx='auto' gap={10}>
-              <Card variant='benefits' background='linear-gradient(to right, #2C7D57, #22555A)'>
+              <Card variant='benefits'>
                 <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29a3e8913631fd48de5_card-feature-img-control.png' />
                 <CardHeader>{t('home.benefits.card_1.title')}</CardHeader>
                 <CardBody>{t('home.benefits.card_1.description')}</CardBody>
               </Card>
 
-              <Card variant='benefits' bgColor='home.benefits.light_bg' color='home.benefits.bg.light_bg_color'>
+              <Card variant='benefits'>
                 <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29a7812b3fd5db1d246_card-feature-img-agile.png' />
                 <CardHeader>{t('home.benefits.card_2.title')}</CardHeader>
                 <CardBody>{t('home.benefits.card_2.description')}</CardBody>
               </Card>
 
-              <Card
-                variant='benefits'
-                bgColor={{
-                  base: 'home.benefits.dark_bg',
-                  benefits1: 'home.benefits.light_bg',
-                  benefits2: 'home.benefits.dark_bg',
-                }}
-                color={{
-                  base: 'home.benefits.dark_bg_color',
-                  benefits1: 'home.benefits.light_bg_color',
-                  benefits2: 'home.benefits.dark_bg_color',
-                }}
-                background='linear-gradient(to right, #2C7D57, #22555A)'
-              >
+              <Card variant='benefits'>
                 <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29ae37bf52a3ec72b34_card-feature-img-privacy.png' />
                 <CardHeader>{t('home.benefits.card_3.title')}</CardHeader>
                 <CardBody>{t('home.benefits.card_3.description')}</CardBody>
               </Card>
 
-              <Card
-                variant='benefits'
-                bgColor={{
-                  base: 'home.benefits.light_bg',
-                  benefits1: 'home.benefits.dark_bg',
-                  benefits2: 'home.benefits.light_bg',
-                }}
-                color={{
-                  base: 'home.benefits.light_bg_color',
-                  benefits1: 'home.benefits.dark_bg_color',
-                  benefits2: 'home.benefits.light_bg_color',
-                }}
-              >
+              <Card variant='benefits'>
                 <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29a2fc101547d4ca362_card-feature-img-anonymous.png' />
                 <CardHeader>{t('home.benefits.card_4.title')}</CardHeader>
                 <CardBody>{t('home.benefits.card_4.description')}</CardBody>
               </Card>
 
-              <Card
-                variant='benefits'
-                bgColor='home.benefits.dark_bg'
-                color='home.benefits.dark_bg_color'
-                background='linear-gradient(to right, #2C7D57, #22555A)'
-              >
+              <Card variant='benefits'>
                 <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29a2c93ed6cd6d1faf0_card-feature-img-guarantee.png' />
                 <CardHeader>{t('home.benefits.card_5.title')}</CardHeader>
                 <CardBody>{t('home.benefits.card_5.description')}</CardBody>
               </Card>
 
-              <Card variant='benefits' bgColor='home.benefits.light_bg' color='home.benefits.light_bg_color'>
+              <Card variant='benefits'>
                 <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29ad60f67fa065d02bd_card-feature-img-accesible.png' />
                 <CardHeader>{t('home.benefits.card_6.title')}</CardHeader>
                 <CardBody>{t('home.benefits.card_6.description')}</CardBody>

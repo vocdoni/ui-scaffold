@@ -1,17 +1,17 @@
-import { Box, Button, Flex, Card, CardBody, Img, Text } from '@chakra-ui/react'
+import { Box, Button, Card, CardBody, Flex, Img, Text } from '@chakra-ui/react'
+import { Trans } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { DashboardContents } from '~components/Layout/Dashboard'
 import { Routes } from '~src/router/routes'
-import { Trans } from 'react-i18next'
 import empty from '/assets/illustrations/9.png'
 
 export const NoOrganizations = () => {
   return (
     <Card variant='no-elections' minH='100%' maxW='650' m='80px auto'>
       <CardBody>
-        <Box textAlign='center'>
+        <Flex justifyContent={'center'}>
           <Img src={empty} />
-        </Box>
+        </Flex>
         <Box>
           <Text fontWeight='600' fontSize='lg' m='20px 0px'>
             <Trans i18nKey='organization.no_organization_title'>You don't belong to any organization yet!</Trans>

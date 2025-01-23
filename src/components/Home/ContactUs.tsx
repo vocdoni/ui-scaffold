@@ -61,7 +61,7 @@ const ContactUs = () => {
           </Box>
           <Card variant='icon-card' mt='30px' mb='20px'>
             <CardBody>
-              <Box background='linear-gradient(to right, #2C7D57, #22555A)'>
+              <Box>
                 <MdDesignServices />
               </Box>
               <Box>
@@ -72,7 +72,7 @@ const ContactUs = () => {
           </Card>
           <Card variant='icon-card'>
             <CardBody>
-              <Box background='linear-gradient(to right, #2C7D57, #22555A)'>
+              <Box>
                 <FaFingerprint />
               </Box>
               <Box>
@@ -96,7 +96,6 @@ const ContactUs = () => {
             fontSize='20px'
             mt='30px'
             px='130px'
-            background='linear-gradient(to right, #2C7D57, #22555A)'
           >
             {t('home.contactus.btn')}
           </Button>

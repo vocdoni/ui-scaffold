@@ -54,7 +54,7 @@ const LayoutDashboard: React.FC = () => {
             />
           )}
           {title && (
-            <Heading size={'sm'} fontWeight={500} alignSelf='center' mb={0} pl='10px' fontSize='1.5rem'>
+            <Heading size={'xs'} fontWeight={500} alignSelf='center' mb={0} pl='10px'>
               {title}
             </Heading>
           )}

@@ -57,7 +57,6 @@ const CreateProcess = () => {
             height='62px'
             fontSize='20px'
             minW='300px'
-            background='linear-gradient(to right, #2C7D57, #22555A)'
           >
             {t('home.create_process.btn')}
           </Button>

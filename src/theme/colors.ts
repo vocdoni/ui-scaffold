@@ -53,6 +53,7 @@ export const colors = {
     box_shadow_dark: colorsBase.blue.dark,
   },
   auth: {
+    banner_bg: colorsBase.primary_cta,
     textColorSecondary: colorsBase.gray.normal,
   },
   banner_link: colorsBase.white.pure,

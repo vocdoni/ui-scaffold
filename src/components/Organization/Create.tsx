@@ -1,4 +1,4 @@
-import { Button, Flex, FlexProps, Stack, Text } from '@chakra-ui/react'
+import { Button, Flex, FlexProps, Text } from '@chakra-ui/react'
 
 import { useMutation, UseMutationOptions, useQueryClient } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'

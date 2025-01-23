@@ -4,6 +4,10 @@ const primary = defineStyle((props) => {
   const { colorScheme } = props
 
   return {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: '10px',
     border: '1px solid',
     bg: `${colorScheme}.500`,
     borderColor: `${colorScheme}.800`,
@@ -43,6 +47,10 @@ const outline = defineStyle((props) => {
   const { colorScheme } = props
 
   return {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: '10px',
     border: '1px solid',
     borderColor: colorScheme === 'gray' ? 'button.variant.common.border_color.light' : `${colorScheme}.600`,
     color: colorScheme === 'gray' ? 'button.variant.common.color.light' : `${colorScheme}.600`,
@@ -84,6 +92,10 @@ const outline = defineStyle((props) => {
 const transparent = defineStyle((props) => {
   const { colorScheme } = props
   return {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: '10px',
     color: colorScheme === 'gray' ? 'black' : `${colorScheme}.700`,
 
     _active: {

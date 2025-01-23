@@ -151,7 +151,7 @@ const LayoutAuth = () => {
                 margin: '0 auto',
                 maxWidth: '100%',
                 height: 'auto',
-                marginTop: '250px',
+                marginTop: '50px',
               }}
             />
           </Box>

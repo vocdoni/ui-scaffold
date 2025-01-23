@@ -27,22 +27,20 @@ const Clients = () => {
 export const ClientsGrid = (props: GridProps) => (
   <Grid
     as='section'
-    width='60%'
-    m='0 auto'
+    maxWidth={'1400px'}
+    mx='auto'
     px={{
-      base: '10px',
-      sm: '20px',
-      md: '80px',
+      base: 2,
+      sm: 4,
+      lg: 6,
     }}
-    maxW={{ base: '100%' }}
-    flexDirection={{ base: 'row', sm: 'row' }}
-    mb={{ lg: '60px' }}
-    gridTemplateColumns='repeat(10, 1fr)'
+    gridTemplateColumns={{ base: 'repeat(5, 1fr)', md: 'repeat(10, 1fr)' }}
+    justifyContent={'end'}
     {...props}
   >
     <Card variant='client'>
       <CardHeader>
-        <Image src={barca} h={{ base: '45.5px', sm2: '65px', lg: '40px' }} />
+        <Image src={barca} h={'40px'} />
       </CardHeader>
       <CardBody>
         <Text as='span'>F.C. Barcelona</Text>
@@ -50,7 +48,7 @@ export const ClientsGrid = (props: GridProps) => (
     </Card>
     <Card variant='client'>
       <CardHeader>
-        <Image src={omnium} h={{ base: '52.5px', sm2: '75px', lg: '57px' }} />
+        <Image src={omnium} h={'57px'} />
       </CardHeader>
       <CardBody>
         <Text as='span'>Omnium Cultural</Text>
@@ -58,7 +56,7 @@ export const ClientsGrid = (props: GridProps) => (
     </Card>
     <Card variant='client'>
       <CardHeader>
-        <Image src={berga} h={{ base: '49px', sm2: '70px', lg: '41px' }} />
+        <Image src={berga} h={'41px'} />
       </CardHeader>
       <CardBody>
         <Text as='span'>Ajuntament Berga</Text>
@@ -66,7 +64,7 @@ export const ClientsGrid = (props: GridProps) => (
     </Card>
     <Card variant='client'>
       <CardHeader>
-        <Image src={bisbal} h={{ base: '50px', sm2: '72px', lg: '33px' }} />
+        <Image src={bisbal} h={'33px'} />
       </CardHeader>
       <CardBody>
         <Text as='span'>Ajuntament la Bisbal</Text>
@@ -74,7 +72,7 @@ export const ClientsGrid = (props: GridProps) => (
     </Card>
     <Card variant='client'>
       <CardHeader>
-        <Image src={coec} h={{ base: '24.5px', sm2: '35px', lg: '20px' }} />
+        <Image src={coec} h={'20px'} />
       </CardHeader>
       <CardBody>
         <Text as='span'>COEC</Text>
@@ -82,7 +80,7 @@ export const ClientsGrid = (props: GridProps) => (
     </Card>
     <Card variant='client'>
       <CardHeader>
-        <Image src={erc} h={{ base: '26.5px', sm2: '38px', lg: '32px' }} />
+        <Image src={erc} h={'32px'} />
       </CardHeader>
       <CardBody>
         <Text as='span'>Esquerra Republicana</Text>
@@ -90,7 +88,7 @@ export const ClientsGrid = (props: GridProps) => (
     </Card>
     <Card variant='client'>
       <CardHeader>
-        <Image src={bellpuig} h={{ base: '50px', sm2: '72px', lg: '33px' }} />
+        <Image src={bellpuig} h={'33px'} />
       </CardHeader>
       <CardBody>
         <Text as='span'>Ajuntament Bellpuig</Text>
@@ -98,7 +96,7 @@ export const ClientsGrid = (props: GridProps) => (
     </Card>
     <Card variant='client'>
       <CardHeader>
-        <Image src={ticanoia} h={{ base: '18px', sm2: '26px', lg: '18px' }} />
+        <Image src={ticanoia} h={'18px'} />
       </CardHeader>
       <CardBody>
         <Text as='span'>TIC Anoia</Text>
@@ -106,7 +104,7 @@ export const ClientsGrid = (props: GridProps) => (
     </Card>
     <Card variant='client'>
       <CardHeader>
-        <Image src={decidim} h={{ base: '43.5px', sm2: '62px', lg: '30px' }} />
+        <Image src={decidim} h={'30px'} />
       </CardHeader>
       <CardBody>
         <Text as='span'>Decidim</Text>
@@ -114,7 +112,7 @@ export const ClientsGrid = (props: GridProps) => (
     </Card>
     <Card variant='client'>
       <CardHeader>
-        <Image src={bloock} h={{ base: '24.5px', sm2: '35px', lg: '17px' }} />
+        <Image src={bloock} h={'17px'} />
       </CardHeader>
       <CardBody>
         <Text as='span'>Bloock</Text>

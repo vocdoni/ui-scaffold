@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardBody, Img, Text } from '@chakra-ui/react'
+import { Box, Button, Card, CardBody, Flex, Img, Text } from '@chakra-ui/react'
 import { useClient, useOrganization } from '@vocdoni/react-providers'
 import { areEqualHexStrings } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
@@ -14,9 +14,9 @@ const NoElections = () => {
   return (
     <Card variant='no-elections' minH='100%' maxW='650' m='80px auto'>
       <CardBody>
-        <Box textAlign='center'>
+        <Flex justifyContent={'center'}>
           <Img src={empty} alt={t('organization.elections_list_empty.alt')} />
-        </Box>
+        </Flex>
         <Box>
           {areEqualHexStrings(account?.address, organization?.address) ? (
             <>
