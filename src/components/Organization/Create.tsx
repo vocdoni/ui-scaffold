@@ -51,7 +51,7 @@ export const OrganizationCreate = ({
   const methods = useForm<FormData>()
   const { handleSubmit } = methods
   const { bearer, signerRefresh } = useAuthProvider()
-  const { client, fetchAccount, setClient, setSigner } = useClient()
+  const { client, fetchAccount, setClient, setSigner, signer: osigner } = useClient()
   const [promiseError, setPromiseError] = useState<Error | null>(null)
   const [redirect, setRedirect] = useState<To | null>(null)
 
@@ -81,8 +81,11 @@ export const OrganizationCreate = ({
         signer.address = address
         client.wallet = signer
 
-        setSigner(signer)
-        setClient(client)
+        // setting the signer when there's no signer causes the page to reload
+        if (osigner !== null) {
+          setSigner(signer)
+          setClient(client)
+        }
         localStorage.setItem(LocalStorageKeys.SignerAddress, address)
 
         return client.createAccount({
@@ -92,20 +95,24 @@ export const OrganizationCreate = ({
           }),
         })
       })
-      // update state info and redirect
+      // store redirect
       .then(() => {
-        fetchAccount().then(() => signerRefresh())
         setRedirect(onSuccessRoute)
       })
       .catch((e) => {
         setPromiseError(e)
       })
-      .finally(() => setIsPending(false))
+      .finally(() => {
+        setIsPending(false)
+      })
   }
 
   // redirect on success
   useEffect(() => {
     if (!redirect) return
+    // update account and signer
+    fetchAccount().then(() => signerRefresh())
+    // "redirect"
     navigate(redirect)
   }, [redirect])
 
