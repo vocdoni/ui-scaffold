@@ -9,7 +9,7 @@ import header from '/shared/votacions_cap.jpg'
 const processes = [
   {
     //1
-    title: "Votació Coib 1",
+    title: 'Votació Coib 1',
     pid: '6be21a5a9dc00bc6e9d8c567e84ab2221e5c2f9a4b21b66f020b020400000003',
   },
   {
@@ -19,9 +19,9 @@ const processes = [
   },
   {
     //3
-    title: "Votació Coib3",
+    title: 'Votació Coib3',
     pid: '6be21a5a9dc00bc6e9d8c567e84ab2221e5c2f9a4b21b66f020b020400000003',
-  }
+  },
 ]
 
 const PlataformaWrapper = () => (
@@ -72,6 +72,7 @@ const Coib = () => {
       mx='auto'
       p={5}
       minH='100vh'
+      alignItems='center'
     >
       <Flex flexDirection='column' gap={10} maxW='850px' mx='auto' p={5} style={{ marginTop: '100px' }}>
         <Box>
@@ -101,11 +102,11 @@ const Coib = () => {
               <OrderedList ml='35px'>
                 <ListItem>Benvinguda.</ListItem>
                 <ListItem>Presentació Candidatures.</ListItem>
-                <div style={{color: '#297b90'}}>Votació 1: `Elecció de Candidats`.</div>
+                <div style={{ color: '#297b90' }}>Votació 1: `Elecció de Candidats`.</div>
                 <ListItem>Pressupost 2024.</ListItem>
-                <div style={{color: '#297b90'}}>Votació 2: `Aprovació Presspost 2024`.</div>
+                <div style={{ color: '#297b90' }}>Votació 2: `Aprovació Presspost 2024`.</div>
                 <ListItem>Pressupost 2025.</ListItem>
-                <div style={{color: '#297b90'}}>Votació 3: `Aprovació Pressupost 2025`.</div>
+                <div style={{ color: '#297b90' }}>Votació 3: `Aprovació Pressupost 2025`.</div>
                 <ListItem>Torn obert de preguntes.</ListItem>
               </OrderedList>
             </Text>
@@ -113,19 +114,11 @@ const Coib = () => {
           <Text fontSize='18px'>
             <Text style={{ marginTop: '30px' }}>
               - Enllaç a documentació externa:{' '}
-              <a
-                href=''
-                target='_blank'
-                style={{ textDecoration: 'underline', color: '#297b90' }}
-              >
+              <a href='' target='_blank' style={{ textDecoration: 'underline', color: '#297b90' }}>
                 Documentació 🔗
               </a>
               <br />- Enllaç a plataforma de precs i preguntes:{' '}
-              <a
-                href=''
-                target='_blank'
-                style={{ textDecoration: 'underline', color: '#297b90' }}
-              >
+              <a href='' target='_blank' style={{ textDecoration: 'underline', color: '#297b90' }}>
                 Precs i Preguntes 🔗
               </a>
             </Text>
@@ -155,11 +148,9 @@ const Coib = () => {
           </Box>
         )}
       </Flex>
-      <Box w='800px'>
-        {election && !isAdmin && <SpreadsheetAccess setConnected={setConnected} connected={connected} />}
-      </Box>
+      <Box>{election && !isAdmin && <SpreadsheetAccess setConnected={setConnected} connected={connected} />}</Box>
       {canViewProcesses && (
-        <Box minW='800px'>
+        <Box w='90%'>
           <Text alignSelf='start' mb={10} as='h3' fontWeight='bold' fontSize='22px'>
             <br />
             Votacions:
@@ -201,18 +192,18 @@ const Coib = () => {
         </Box>
       )}
       {canViewProcesses && (
-        <Text style={{ marginBottom: '50px', maxWidth: '800px', textAlign: 'center' }}>
-          Pulseu sobre la votació i s'obrirà una finestra amb tota la informació per votar. Un cop votat, podeu tancar la pestanya per tornar a aquesta pàgina.
+        <Text style={{ marginBottom: '50px', textAlign: 'center' }}>
+          Pulseu sobre la votació i s'obrirà una finestra amb tota la informació per votar. Un cop votat, podeu tancar
+          la pestanya per tornar a aquesta pàgina.
         </Text>
       )}
       {!canViewProcesses && (
-        <Text style={{ marginBottom: '50px', maxWidth: '800px', textAlign: 'center' }}>
+        <Text style={{ marginBottom: '50px', textAlign: 'center' }}>
           Per poder accedir a la votació i veure el vídeo en temps real, heu de prémer sobre “Identificar-se”. Us
-          demanarem la vostre identificació. Posteriorment, podreu emetre
-          el vostre vot de forma segura.
+          demanarem la vostre identificació. Posteriorment, podreu emetre el vostre vot de forma segura.
         </Text>
       )}
-      <Text style={{ marginBottom: '150px', maxWidth: '800px', textAlign: 'center' }}>
+      <Text style={{ marginBottom: '150px', textAlign: 'center' }}>
         <i>
           <strong>
             En cas de dubte o dificultats tècniques ens pots contactar al telèfon <u>nº telefon</u> o al correu{' '}

@@ -399,7 +399,7 @@ const electionFromForm = (form: StepsFormValues) => {
             title: { default: q.option },
             value: i,
           })),
-        } as IQuestion)
+        }) as IQuestion
     ),
     startDate: form.electionType.autoStart ? undefined : new Date(form.startDate).getTime(),
     endDate: new Date(form.endDate).getTime(),

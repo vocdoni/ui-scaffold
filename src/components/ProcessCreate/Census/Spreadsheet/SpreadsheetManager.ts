@@ -14,7 +14,10 @@ export class SpreadsheetManager {
   public workBook: WorkBook | undefined
   public errors: number[] = []
 
-  constructor(public file: File, protected headed: boolean = false) {
+  constructor(
+    public file: File,
+    protected headed: boolean = false
+  ) {
     this.reader = new FileReader()
     this.heading = []
     this.filedata = [[]]
