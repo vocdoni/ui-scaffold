@@ -48,7 +48,6 @@
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.0/xlsx-0.20.0.tgz"
   },
   "engines": {
-    "npm": "please use yarn",
     "yarn": "^1.19.x",
     "node": "20.x"
   },
