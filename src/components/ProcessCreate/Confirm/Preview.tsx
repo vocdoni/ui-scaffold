@@ -15,7 +15,7 @@ const Preview = () => {
 
   const {
     description,
-    electionType: { secretUntilTheEnd, anonymous },
+    electionType: { liveResults, anonymous },
     maxVoteOverwrites,
     questions,
     startDate: begin,
@@ -125,8 +125,8 @@ const Preview = () => {
             <Text>{t('form.process_create.confirm.vote_overwrite')}</Text>
           </Flex>
           <Flex gap={2} alignItems='center'>
-            <Icon as={secretUntilTheEnd ? IoMdCheckmark : IoMdClose} boxSize={5} />
-            <Text>{t('form.process_create.confirm.secret_until_the_end')}</Text>
+            <Icon as={liveResults ? IoMdCheckmark : IoMdClose} boxSize={5} />
+            <Text>{t('form.process_create.confirm.live_results')}</Text>
           </Flex>
           <Flex gap={2} alignItems='center'>
             <Icon as={anonymous ? IoMdCheckmark : IoMdClose} boxSize={5} />

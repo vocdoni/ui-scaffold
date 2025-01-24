@@ -272,9 +272,10 @@
       "selected_users": "Usuaris seleccionats:"
     }
   },
-  "customization": "Personalització",
-  "delete_my_account": "Elimina el meu compte",
-  "description": "Descripció",
+  "customization": "Customization",
+  "dark_mode": "Mode fosc",
+  "delete_my_account": "Delete my account",
+  "description": "Description",
   "edit_saas_profile": {
     "customization_details": "Defineix els paràmetres que milloraran l'experiència d'usuari i personalitzaran la pàgina de votació",
     "edited_successfully": "Actualitzat correctament",
@@ -438,10 +439,10 @@
         "description_election": "Descripció",
         "edit": "Editar",
         "election_info": "Informació de la Votació",
+        "live_results": "Resultats en directe",
         "questions_one": "Pregunta",
         "questions_many": "",
         "questions_other": "Preguntes",
-        "secret_until_the_end": "Secret fins el final",
         "title": "Vista prèvia i costos de votació",
         "title_election": "Títol",
         "vote_overwrite": "Sobreescriure vot"
@@ -768,11 +769,15 @@
   "invite_people": "Convidar Membres",
   "keep_me_logged": "Mantenir-me connectat",
   "languages": "Languages",
-  "Light mode": "Light mode",
+  "light_mode": "Mode clar",
   "link": {
     "discord": "Enllaç al Discord de Vocdoni",
     "github": "Enllaç al Github de Vocdoni",
     "twitter": "Enllaç al Twitter de Vocdoni"
+  },
+  "live_results": {
+    "description": "Els continguts dels vots seran públics durant tota la votació.",
+    "title": "Resultats en directe"
   },
   "loading": "Carregant...",
   "login": {
@@ -1142,10 +1147,6 @@
   "role": {
     "read_permission": "Read-only access",
     "write_permission": "Can create and edit content"
-  },
-  "secret_until_the_end": {
-    "description": "Vote contents will be encrypted till the end of the voting",
-    "title": "Secret until the end"
   },
   "session_expired": "Session expired",
   "session_expired_description": "Session may have been expired and it could not be refreshed, please login again",

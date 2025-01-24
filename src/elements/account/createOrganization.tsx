@@ -2,7 +2,6 @@ import { Box, Button, Flex, Heading, ListItem, Text, UnorderedList } from '@chak
 import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useOutletContext } from 'react-router-dom'
-import { ClientsGrid } from '~components/Home/Clients'
 import { OrganizationCreate } from '~components/Organization/Create'
 import { AuthOutletContextType } from '~elements/LayoutAuth'
 import { Routes } from '~src/router/routes'

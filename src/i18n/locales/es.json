@@ -273,6 +273,7 @@
     }
   },
   "customization": "Customization",
+  "dark_mode": "Modo oscuro",
   "delete_my_account": "Delete my account",
   "description": "Description",
   "edit_saas_profile": {
@@ -320,9 +321,9 @@
     "cumulative": "Votación acumulativa",
     "custom_url": "URL personalizada",
     "email_reminder": "Recordatorios por correo electrónico",
-    "interruptible": "Interrumpible",
-    "live_results": "Resultados en tiempo real",
-    "live_streaming": "Transmisión en vivo",
+    "interruptible": "Interruptible",
+    "live_results": "Resultados en directo",
+    "live_streaming": "Live streaming",
     "memberships": "Hasta {{ value }} membresías",
     "multiple": "Votación de opción múltiple",
     "overwrite": "Reemplazo de voto",
@@ -438,10 +439,10 @@
         "description_election": "Descripción",
         "edit": "Editar",
         "election_info": "Información de Votación",
+        "live_results": "Resultados en directo",
         "questions_one": "Pregunta",
         "questions_many": "",
         "questions_other": "Preguntas",
-        "secret_until_the_end": "Secreto hasta el final",
         "title": "Vista previa y costos de votación",
         "title_election": "Título",
         "vote_overwrite": "Sobrescribir voto"
@@ -768,11 +769,15 @@
   "invite_people": "Invitar Gente",
   "keep_me_logged": "Mantenerme conectado",
   "languages": "Languages",
-  "Light mode": "Light mode",
+  "light_mode": "Modo claro",
   "link": {
     "discord": "Enlace al Discord de Vocdoni",
     "github": "Enlace al Github de Vocdoni",
     "twitter": "Enlace al Twitter de Vocdoni"
+  },
+  "live_results": {
+    "description": "Los contenidos de los votos serán públicos durante toda la votación.",
+    "title": "Resultados en directo"
   },
   "loading": "Cargando...",
   "login": {

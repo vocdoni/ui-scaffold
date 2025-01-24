@@ -26,37 +26,36 @@ const Features = () => {
         sm: '20px',
         md: '80px',
       }}
-      py={{ base: '60px', lg: '100px' }}
+      mb={{ base: '75px', lg: '100px' }}
     >
-      <Box mb='80px' margin='-20px auto 125px' maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}>
+      <Box mx='auto' maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}>
         <Text
           fontSize={{ base: '40px', xl: '60px' }}
           lineHeight={{ base: '36px', xl: '78px' }}
           fontWeight='bold'
           textAlign='center'
-          mb='25px'
+          mb={'30px'}
           fontFamily='basier'
         >
           {t('home.features.title')}
         </Text>
         <Text
-          mb='60px'
           maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}
           mx='auto'
+          mb={'60px'}
           textAlign='center'
           fontFamily='basier'
           fontSize='20px'
-          margin='0px auto'
         >
           {t('home.features.subtitle_1')}
         </Text>
       </Box>
 
-      <Flex maxW={{ base: '100%', sm: '70%', sm2: '85%' }} margin='0px auto' flexWrap='wrap' gap={10}>
-        <Card variant='icon-card' flex={{ base: '1 0 100%', lg: '1 1 30%' }} mb='60px'>
+      <Flex maxW={{ base: '100%', sm: '70%', sm2: '85%' }} margin='0px auto' flexWrap='wrap' gap={'30px'}>
+        <Card variant='icon-card' flex={{ base: '1 0 100%', lg: '1 1 30%' }}>
           <CardBody>
-            <Box background='linear-gradient(to right, #2C7D57, #22555A)'>
-              <FaVoteYea min='56px' />
+            <Box>
+              <FaVoteYea />
             </Box>
             <Box>
               <Text>{t('home.features.card_1.title')}</Text>
@@ -64,9 +63,9 @@ const Features = () => {
             </Box>
           </CardBody>
         </Card>
-        <Card variant='icon-card' flex={{ base: '1 0 100%', lg: '1 1 30%' }} mb='60px'>
+        <Card variant='icon-card' flex={{ base: '1 0 100%', lg: '1 1 30%' }}>
           <CardBody>
-            <Box background='linear-gradient(to right, #2C7D57, #22555A)'>
+            <Box>
               <FaPalette />
             </Box>
             <Box>
@@ -75,9 +74,9 @@ const Features = () => {
             </Box>
           </CardBody>
         </Card>
-        <Card variant='icon-card' flex={{ base: '1 0 100%', lg: '1 1 30%' }} mb='60px'>
+        <Card variant='icon-card' flex={{ base: '1 0 100%', lg: '1 1 30%' }}>
           <CardBody>
-            <Box background='linear-gradient(to right, #2C7D57, #22555A)'>
+            <Box>
               <FaUsers />
             </Box>
             <Box>
@@ -86,9 +85,9 @@ const Features = () => {
             </Box>
           </CardBody>
         </Card>
-        <Card variant='icon-card' flex={{ base: '1 0 100%', lg: '1 1 30%' }} mb='60px'>
+        <Card variant='icon-card' flex={{ base: '1 0 100%', lg: '1 1 30%' }}>
           <CardBody>
-            <Box background='linear-gradient(to right, #2C7D57, #22555A)'>
+            <Box>
               <FaUserLock />
             </Box>
             <Box>
@@ -97,9 +96,9 @@ const Features = () => {
             </Box>
           </CardBody>
         </Card>
-        <Card variant='icon-card' flex={{ base: '1 0 100%', lg: '1 1 30%' }} mb='60px'>
+        <Card variant='icon-card' flex={{ base: '1 0 100%', lg: '1 1 30%' }}>
           <CardBody>
-            <Box background='linear-gradient(to right, #2C7D57, #22555A)'>
+            <Box>
               <FaTasks />
             </Box>
             <Box>
@@ -108,9 +107,9 @@ const Features = () => {
             </Box>
           </CardBody>
         </Card>
-        <Card variant='icon-card' flex={{ base: '1 0 100%', lg: '1 1 30%' }} mb='60px'>
+        <Card variant='icon-card' flex={{ base: '1 0 100%', lg: '1 1 30%' }}>
           <CardBody>
-            <Box background='linear-gradient(to right, #2C7D57, #22555A)'>
+            <Box>
               <FaNewspaper />
             </Box>
             <Box>
@@ -119,9 +118,9 @@ const Features = () => {
             </Box>
           </CardBody>
         </Card>
-        <Card variant='icon-card' flex={{ base: '1 0 100%', lg: '1 1 30%' }} mb='60px'>
+        <Card variant='icon-card' flex={{ base: '1 0 100%', lg: '1 1 30%' }}>
           <CardBody>
-            <Box background='linear-gradient(to right, #2C7D57, #22555A)'>
+            <Box>
               <FaLanguage />
             </Box>
             <Box>
@@ -130,9 +129,9 @@ const Features = () => {
             </Box>
           </CardBody>
         </Card>
-        <Card variant='icon-card' flex={{ base: '1 0 100%', lg: '1 1 30%' }} mb='60px'>
+        <Card variant='icon-card' flex={{ base: '1 0 100%', lg: '1 1 30%' }}>
           <CardBody>
-            <Box background='linear-gradient(to right, #2C7D57, #22555A)'>
+            <Box>
               <FaBullseye />
             </Box>
             <Box>
@@ -141,9 +140,9 @@ const Features = () => {
             </Box>
           </CardBody>
         </Card>
-        <Card variant='icon-card' flex={{ base: '1 0 100%', lg: '1 1 30%' }} mb='60px'>
+        <Card variant='icon-card' flex={{ base: '1 0 100%', lg: '1 1 30%' }}>
           <CardBody>
-            <Box background='linear-gradient(to right, #2C7D57, #22555A)'>
+            <Box>
               <FaCubes />
             </Box>
             <Box>

@@ -146,6 +146,7 @@ export const Card = defineMultiStyleConfig({
       container: {
         border: 'none',
         backgroundColor: 'none',
+        w: 'full',
 
         _hover: {
           lg: {
@@ -154,6 +155,7 @@ export const Card = defineMultiStyleConfig({
             },
             '& span': {
               display: 'block',
+              position: 'relative',
             },
           },
         },
@@ -174,6 +176,8 @@ export const Card = defineMultiStyleConfig({
         p: 0,
         fontSize: '10px',
         minH: '50px',
+        display: 'flex',
+        justifyContent: 'center',
 
         span: {
           display: 'none',
@@ -363,11 +367,7 @@ export const Card = defineMultiStyleConfig({
 
           'p:last-of-type': {
             fontSize: '22px',
-            color: 'home.description.light !important',
-
-            _dark: {
-              color: 'home.description.dark !important',
-            },
+            color: 'home.description.light',
           },
         },
       },
@@ -407,11 +407,7 @@ export const Card = defineMultiStyleConfig({
           },
           'p:nth-of-type(2)': {
             fontSize: '22px',
-            color: 'home.description.light !important',
-
-            _dark: {
-              color: 'home.description.dark !important',
-            },
+            color: 'home.description.light',
           },
         },
       },
@@ -427,15 +423,17 @@ export const Card = defineMultiStyleConfig({
         '& p': {
           fontWeight: 'bold',
           mb: '18px',
-          fontSize: '22px',
+          fontSize: 'xl',
         },
       },
       body: {
         p: 0,
+
         mb: '19px',
 
         '& p': {
           color: 'home.description.light !important',
+          fontSize: 'xl',
 
           _dark: {
             color: 'home.description.dark !important',

@@ -285,7 +285,7 @@ export const Confirm = () => {
       </Box>
       <Flex justifyContent='space-between' mt='auto' my={6}>
         <Button colorScheme={'whiteAlpha'} variant={'rounded'} onClick={prev}>
-          <ArrowBackIcon mr='10px' />
+          <ArrowBackIcon />
           <Text as='span'>{t('form.process_create.previous_step')}</Text>
         </Button>
 
@@ -393,6 +393,10 @@ const electionFromForm = (form: StepsFormValues) => {
   const maxCensusSize = form.maxCensusSize ?? form.spreadsheet?.data.length ?? form.addresses.length
   return {
     ...form,
+    electionType: {
+      ...form.electionType,
+      secretUntilTheEnd: !form.electionType.liveResults,
+    },
     maxCensusSize,
     // map questions back to IQuestion[]
     questions: form.questions.map(

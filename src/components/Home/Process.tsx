@@ -21,14 +21,13 @@ const Process = () => {
         sm: '20px',
         md: '80px',
       }}
-      py={{ base: '60px', lg: '100px' }}
-      mb={{ base: '60px', xl: '120px' }}
+      mb={{ base: '75px', lg: '100px' }}
     >
       <Text
         fontSize={{ base: '40px', xl: '60px' }}
         lineHeight={{ base: '36px', xl: '78px' }}
         fontWeight='bold'
-        mb='25px'
+        mb='30px'
         fontFamily='basier'
         textAlign='center'
       >
@@ -42,19 +41,18 @@ const Process = () => {
         fontFamily='basier'
         fontSize='20px'
         lineHeight='28px'
-        margin='0px auto'
       >
         {t('home.process.description_1')}
         {t('home.process.description_2')}
       </Text>
-      <Flex flexDirection={{ base: 'column', lg: 'row' }} gap={{ base: '40px', lg: '60px' }} mt='70px'>
+      <Flex flexDirection={{ base: 'column', lg: 'row' }} gap={'30px'}>
         <Flex flex='1 1 50%' justifyContent={{ base: 'center', lg: 'end' }} alignItems='center'>
           <Image src={process} borderRadius='lg' maxW={{ base: '350px', xl: '550px' }} mt='-20px' />
         </Flex>
         <Flex flex='1 1' flexBasis={{ lg: '50%' }} flexDirection='column' justifyContent='space-between' gap='40px'>
           <Card variant='step'>
             <CardBody>
-              <Box background='linear-gradient(to right, #2C7D57, #22555A)'>
+              <Box>
                 <PiNumberSquareOneFill />
               </Box>
               <Box>
@@ -65,7 +63,7 @@ const Process = () => {
           </Card>
           <Card variant='step'>
             <CardBody>
-              <Box background='linear-gradient(to right, #2C7D57, #22555A)'>
+              <Box>
                 <PiNumberSquareTwoFill />
               </Box>
               <Box>
@@ -76,7 +74,7 @@ const Process = () => {
           </Card>
           <Card variant='step'>
             <CardBody>
-              <Box background='linear-gradient(to right, #2C7D57, #22555A)'>
+              <Box>
                 <PiNumberSquareThreeFill />
               </Box>
               <Box>
@@ -87,7 +85,7 @@ const Process = () => {
           </Card>
           <Card variant='step'>
             <CardBody>
-              <Box background='linear-gradient(to right, #2C7D57, #22555A)'>
+              <Box>
                 <PiNumberSquareFourFill color='#fff' />
               </Box>
               <Box>

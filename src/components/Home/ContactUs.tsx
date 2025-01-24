@@ -13,7 +13,7 @@ const ContactUs = () => {
       as='section'
       id='contactus'
       flexDirection={{ base: 'column', xl: 'row' }}
-      py={{ base: '60px', xl: 0 }}
+      mb={{ base: '75px', lg: '100px' }}
       gap={{ base: '40px', xl: '60px' }}
       scrollMarginTop='100px'
     >
@@ -36,13 +36,12 @@ const ContactUs = () => {
         justifyContent={{ base: 'center', xl: 'start' }}
         display={{ xl: 'flex' }}
         alignItems='center'
-        py={{ base: '60px', xl: '100px' }}
         position='relative'
         zIndex={10}
       >
         <Flex
           flexDirection='column'
-          gap='24px'
+          gap='30px'
           maxW={{ base: 'full', xl: '660px' }}
           px={{ base: '30px', xl: 0 }}
           pr={{ xl: '37px', xl3: 0 }}
@@ -52,7 +51,6 @@ const ContactUs = () => {
               fontSize={{ base: '40px', xl: '60px' }}
               lineHeight={{ base: '36px', xl: '78px' }}
               fontWeight='bold'
-              mb='10px'
               fontFamily='basier'
               textAlign={{ base: 'center', xl: 'left' }}
             >
@@ -61,7 +59,7 @@ const ContactUs = () => {
           </Box>
           <Card variant='icon-card' mt='30px' mb='20px'>
             <CardBody>
-              <Box background='linear-gradient(to right, #2C7D57, #22555A)'>
+              <Box>
                 <MdDesignServices />
               </Box>
               <Box>
@@ -72,7 +70,7 @@ const ContactUs = () => {
           </Card>
           <Card variant='icon-card'>
             <CardBody>
-              <Box background='linear-gradient(to right, #2C7D57, #22555A)'>
+              <Box>
                 <FaFingerprint />
               </Box>
               <Box>
@@ -96,7 +94,6 @@ const ContactUs = () => {
             fontSize='20px'
             mt='30px'
             px='130px'
-            background='linear-gradient(to right, #2C7D57, #22555A)'
           >
             {t('home.contactus.btn')}
           </Button>
