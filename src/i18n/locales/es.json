@@ -1148,10 +1148,6 @@
     "read_permission": "Acceso solo lectura",
     "write_permission": "Puede crear y editar contenido"
   },
-  "secret_until_the_end": {
-    "description": "El contenido del voto estará cifrado hasta el final de la votación",
-    "title": "Secreto hasta el final"
-  },
   "session_expired": "Sesión expirada",
   "session_expired_description": "La sesión puede haber expirado y no se pudo actualizar, por favor inicia sesión de nuevo",
   "settings": "Configuración",
@@ -1287,9 +1283,6 @@
     "read_more": "Leer más"
   },
   "user_management": "Gestión de usuarios",
-  "validation": {
-    "required": ""
-  },
   "verification_code": "Código de verificación",
   "verification_code_placeholder": "Introduce el código de verificación",
   "verification_code_resent": "¡Código de verificación reenviado!",

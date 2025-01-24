@@ -51,7 +51,12 @@ const VerifyForm = ({ email, initialCode = '', autoSubmit = false }: VerifyFormP
   return (
     <>
       <Input type={'text'} placeholder={'12345678'} value={code} onChange={handleInputChange} isDisabled={autoSubmit} />
-      <Button variant='primary' isDisabled={!code || (autoSubmit && isVerifyPending)} isLoading={isVerifyPending} onClick={verify}>
+      <Button
+        variant='primary'
+        isDisabled={!code || (autoSubmit && isVerifyPending)}
+        isLoading={isVerifyPending}
+        onClick={verify}
+      >
         <Trans i18nKey={'verify.verify_code'}>Verify</Trans>
       </Button>
       <FormSubmitMessage

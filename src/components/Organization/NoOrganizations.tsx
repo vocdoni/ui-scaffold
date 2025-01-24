@@ -20,10 +20,18 @@ export const NoOrganizations = () => {
             <Trans
               i18nKey='new_organization.description1'
               components={{ span: <Text as='span' fontWeight='600' color='#000' /> }}
-            ></Trans>
+            >
+              Set up your{' '}
+              <Text as='span' fontWeight='bold'>
+                organization for free
+              </Text>{' '}
+              and start creating voting processes to engage with your community.
+            </Trans>
           </Text>
           <Text mb='20px'>
-            <Trans i18nKey='create_org.already_profile'></Trans>
+            <Trans i18nKey='create_org.already_profile'>
+              If your organization already have a profile, ask the admin to invite you to your organization.
+            </Trans>
           </Text>
         </Box>
         <Button

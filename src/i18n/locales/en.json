@@ -248,7 +248,7 @@
   },
   "create_account": "Create an Account",
   "create_org": {
-    "already_profile": " If your organization already have a profile, ask the admin to invite you to your organization.",
+    "already_profile": "If your organization already have a profile, ask the admin to invite you to your organization.",
     "communication": "I want to receive communications and be contacted to tailor my governance experience.",
     "credit_card": "No credit card, no automatic renewal.",
     "full_access": "Full access to basic features",
@@ -1271,9 +1271,6 @@
     "read_more": "Read more"
   },
   "user_management": "User Managment",
-  "validation": {
-    "required": ""
-  },
   "verification_code": "Verification Code",
   "verification_code_placeholder": "Enter the verification code",
   "verification_code_resent": "Verification code resent!",
