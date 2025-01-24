@@ -290,7 +290,7 @@ export const Confirm = () => {
         </Button>
 
         <Button
-          variant={'rounded'}
+          variant={'primary'}
           type='submit'
           form='process-create-form'
           isDisabled={disabled}

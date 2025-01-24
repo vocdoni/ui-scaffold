@@ -142,7 +142,14 @@ const LayoutAuth = () => {
         {sidebar}
         <Flex flexGrow={1} alignItems='center' justifyContent='center' w='full' direction={{ base: 'column' }}>
           {/* Random Image Section */}
-          <Box flex='1' textAlign='center' mb={{ base: 4, md: 0 }}>
+          <Flex
+            flex='1'
+            justifyContent={'center'}
+            alignItems={'center'}
+            flexDirection={'column'}
+            textAlign='center'
+            mb={{ base: 4, md: 0 }}
+          >
             <img
               src={randomImage}
               alt='Dynamic Illustration'
@@ -154,19 +161,18 @@ const LayoutAuth = () => {
                 marginTop: '50px',
               }}
             />
-          </Box>
-
-          {/* Random Text Section */}
-          <Box flex='1' textAlign='left' px={{ base: 4, md: 8 }} marginY='50px' maxW='500px'>
-            <ul style={{ listStyleType: 'none', padding: 0 }}>
-              <li style={{ color: '#fff', marginBottom: '10px', fontSize: '24px', fontWeight: '600' }}>
-                {randomTitle}
-              </li>
-              <li style={{ color: '#fff', marginBottom: '10px', fontSize: '22px' }}>{randomText}</li>
-            </ul>
-          </Box>
+            {/* Random Text Section */}
+            <Box textAlign='left' px={{ base: 4, md: 8 }} marginY='50px' maxW='500px'>
+              <ul style={{ listStyleType: 'none', padding: 0 }}>
+                <li style={{ color: '#fff', marginBottom: '10px', fontSize: '24px', fontWeight: '600' }}>
+                  {randomTitle}
+                </li>
+                <li style={{ color: '#fff', marginBottom: '10px', fontSize: '22px' }}>{randomText}</li>
+              </ul>
+            </Box>
+          </Flex>
         </Flex>
-        <Flex flexGrow={1} alignItems='end' justifyContent='center' w='full'>
+        <Flex alignItems='end' justifyContent='center' w='full'>
           <Box mb={{ base: 10, xl: 24 }}>
             <Text fontSize='5xl' color='white' lineHeight={1} mb={{ base: 10, xl: 5 }}>
               {t('auth.title', { defaultValue: 'The global voting platform' })}

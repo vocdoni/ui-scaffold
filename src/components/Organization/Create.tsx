@@ -1,4 +1,4 @@
-import { Button, Flex, FlexProps, Stack, Text } from '@chakra-ui/react'
+import { Button, Flex, FlexProps, Text } from '@chakra-ui/react'
 
 import { useMutation, UseMutationOptions, useQueryClient } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
@@ -117,6 +117,7 @@ export const OrganizationCreate = ({
         direction='column'
         gap={6}
         mx='auto'
+        maxW='900px'
         {...props}
         onSubmit={(e) => {
           e.stopPropagation()
@@ -126,28 +127,26 @@ export const OrganizationCreate = ({
       >
         <PublicOrgForm />
         <PrivateOrgForm />
-        <Stack justify={'center'} direction={'row'} align={'center'} mx='auto' mt={8} w='80%'>
-          {canSkip && (
-            <Button
-              as={ReactRouterLink}
-              to={Routes.dashboard.base}
-              variant='outline'
-              border='none'
-              isDisabled={isPending}
-            >
-              {t('skip', { defaultValue: 'Skip' })}
-            </Button>
-          )}
-          <Button form='process-create-form' type='submit' isLoading={isPending}>
-            {t('organization.create_org')}
-          </Button>
-        </Stack>
+        <Button form='process-create-form' type='submit' isLoading={isPending} variant='primary' colorScheme='gradient'>
+          {t('organization.create_org')}
+        </Button>
         <FormSubmitMessage isError={isError} error={error} />
         <Text color={'account_create_text_secondary'} fontSize='sm' textAlign='center' mt='auto'>
           <Trans i18nKey='create_org.already_profile'>
             If your organization already have a profile, ask the admin to invite you to your organization.
           </Trans>
         </Text>
+        {canSkip && (
+          <Button
+            as={ReactRouterLink}
+            to={Routes.dashboard.base}
+            variant='outline'
+            border='none'
+            isDisabled={isPending}
+          >
+            {t('skip', { defaultValue: 'Skip' })}
+          </Button>
+        )}
         <Text color={'account_create_text_secondary'} fontSize='sm' textAlign='center'>
           <Trans i18nKey='create_org.logout'>If you want to login from another account, please logout</Trans>
         </Text>
