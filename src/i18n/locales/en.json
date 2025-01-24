@@ -35,7 +35,7 @@
       "4": "Organize votes accessible on any device—mobile, tablet, or desktop.",
       "5": "Advanced encryption ensures your elections are secure and private.",
       "6": "Foster higher voter turnout with user-friendly tools.",
-      "7": "Easily incorporate your branding and existing workflows.",
+      "7": "Easily incorporate your branding and look'n'feel.",
       "8": "Your voting processes are safe, secure, and ready to go.",
       "9": "Manage multiple elections effortlessly from one dashboard.",
       "10": "Real-time updates and insights at your fingertips.",
@@ -220,7 +220,6 @@
   "control": "Control:",
   "copy": {
     "address": "Copy address",
-    "copied": "Copied",
     "copied_title": "Copied!"
   },
   "country_selector": {
@@ -249,7 +248,7 @@
   },
   "create_account": "Create an Account",
   "create_org": {
-    "already_profile": " If your organization already have a profile, ask the admin to invite you to your organization.",
+    "already_profile": "If your organization already have a profile, ask the admin to invite you to your organization.",
     "communication": "I want to receive communications and be contacted to tailor my governance experience.",
     "credit_card": "No credit card, no automatic renewal.",
     "full_access": "Full access to basic features",
@@ -271,6 +270,7 @@
     }
   },
   "customization": "Customization",
+  "dark_mode": "Dark mode",
   "delete_my_account": "Delete my account",
   "description": "Description",
   "edit_saas_profile": {
@@ -342,7 +342,9 @@
   },
   "finished": "Finished",
   "footer": {
+    "about_us": "About Us",
     "company": "Company",
+    "contact": "Contact",
     "demo": "Voting Types",
     "demo1": "Single Choice",
     "demo2": "Multiple Choice",
@@ -350,6 +352,7 @@
     "demo4": "Ranked Voting",
     "demo5": "Participatory Budgeting",
     "demo6": "Weighted Voting",
+    "developer_portal": "Developer Portal",
     "footer_subtitle": "The Global Voting Protocol",
     "terms_and_privacy": "<link1>Terms of use</link1> & <link2>Privacy Policy</link2>",
     "uses_cases": "Use Cases",
@@ -432,9 +435,9 @@
         "description_election": "Description",
         "edit": "Edit",
         "election_info": "Set up your voting process",
+        "live_results": "",
         "questions_one": "Question",
         "questions_other": "Questions",
-        "secret_until_the_end": "Secret until the end",
         "title": "Preview",
         "title_election": "Title",
         "vote_overwrite": "Vote overwrite"
@@ -753,16 +756,21 @@
     "success_description": "You can now sign in",
     "success_title": "Invitation accepted",
     "title": "Invite people to your team",
-    "unexpected_error": "",
+    "unexpected_error": "Error",
     "user_invited": "Email sent to {{email}}"
   },
   "invite_people": "Invite People",
   "keep_me_logged": "Keep me logged in",
   "languages": "Languages",
+  "light_mode": "Light mode",
   "link": {
     "discord": "Link to Vocdoni's discord",
     "github": "Link to Vocdoni's github",
     "twitter": "Link to Vocdoni's twitter"
+  },
+  "live_results": {
+    "description": "Vote contents will be publicly available till the end of the voting",
+    "title": "Live results"
   },
   "loading": "Loading...",
   "login": {
@@ -832,6 +840,7 @@
       "not_owner": "This organization has no voting processes yet",
       "title": "Create your first voting process"
     },
+    "no_organization_title": "You don't belong to any organization yet!",
     "organization": "Organization",
     "title": {
       "read_more": "Expand title"
@@ -869,7 +878,7 @@
     },
     "success": "Password updated successfully"
   },
-  "passwords_do_not_match": "",
+  "passwords_do_not_match": "Las contraseñas no coinciden",
   "plan_upgrade": {
     "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
     "feature_available_in": "Feature available in:",
@@ -887,7 +896,7 @@
     "custom_title": "Custom",
     "date_format": "dd/mm/yy",
     "dedicated_manager": "Dedicated account manager",
-    "error": "",
+    "error": "Error",
     "essential_subtitle": "Small or medium-sized orgs or community groups with basic voting needs.",
     "essential_title": "Essential",
     "features": "Features",
@@ -1126,10 +1135,6 @@
   "role": {
     "read_permission": "Read-only access",
     "write_permission": "Can create and edit content"
-  },
-  "secret_until_the_end": {
-    "description": "Vote contents will be encrypted till the end of the voting",
-    "title": "Secret until the end"
   },
   "session_expired": "Session expired",
   "session_expired_description": "Session may have been expired and it could not be refreshed, please login again",

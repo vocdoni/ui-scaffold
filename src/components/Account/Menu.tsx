@@ -11,6 +11,7 @@ import {
   MenuItem,
   MenuList,
   Spinner,
+  Text,
 } from '@chakra-ui/react'
 import { LogOut01, Paperclip, UserSquare } from '@untitled-ui/icons-react'
 import { Trans } from 'react-i18next'
@@ -47,13 +48,16 @@ const AccountMenu: React.FC<BoxProps> = (props) => {
                   size='sm'
                 />
               }
-              rightIcon={isOpen ? <ChevronUpIcon boxSize={7} /> : <ChevronDownIcon boxSize={7} />}
+              rightIcon={<Icon as={isOpen ? ChevronUpIcon : ChevronDownIcon} boxSize={4} />}
               aria-label='User menu'
-              sx={{ '& > span': { m: 0 } }}
               display={'flex'}
               alignItems={'center'}
               variant={'unstyled'}
-            />
+            >
+              <Text fontSize='xs' fontWeight='light'>
+                {profile.email}
+              </Text>
+            </MenuButton>
             <MenuList>
               <MenuItem as={RouterLink} to={Routes.dashboard.profile} closeOnSelect={true}>
                 <Icon as={UserSquare} />
@@ -64,7 +68,7 @@ const AccountMenu: React.FC<BoxProps> = (props) => {
                 <Trans i18nKey='menu.documentation'>Documentation</Trans>
               </MenuItem>
               <MenuDivider />
-              <MenuItem closeOnSelect={false}>
+              <MenuItem as='div' role='button' tabIndex={0} closeOnSelect={false}>
                 <LanguagesListAccordion />
               </MenuItem>
               <DropdownColorModeSwitcher />

@@ -123,7 +123,7 @@ const SignUp = ({ invite }: SignupProps) => {
             }}
           />
           <FormControl as='fieldset' isInvalid={!!errors?.terms}>
-            <Checkbox {...register('terms', { required: t('validation.required') })} isRequired>
+            <Checkbox {...register('terms', { required: t('cc.validation.required') })} isRequired>
               <Trans
                 i18nKey='signup_agree_terms'
                 components={{
@@ -137,7 +137,7 @@ const SignUp = ({ invite }: SignupProps) => {
             <FormErrorMessage>{errors?.terms?.message.toString()}</FormErrorMessage>
           </FormControl>
 
-          <Button isLoading={isPending} type='submit' size='xl' w='100%'>
+          <Button isLoading={isPending} type='submit' size='xl' w='100%' variant='primary' colorScheme='gradient'>
             {t('signup_create_account')}
           </Button>
         </Flex>
@@ -146,7 +146,7 @@ const SignUp = ({ invite }: SignupProps) => {
       <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%'>
         <Text color='account.description' fontWeight='400' fontSize='sm'>
           {t('already_member')}
-          <Link as={NavLink} to={Routes.auth.signIn} ml={1} fontWeight={500}>
+          <Link as={NavLink} to={Routes.auth.signIn} ml={1} fontWeight={500} variant='primary'>
             {t('signin')}
           </Link>
         </Text>

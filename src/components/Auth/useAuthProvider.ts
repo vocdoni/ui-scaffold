@@ -1,16 +1,17 @@
 import { useToast } from '@chakra-ui/react'
 import { useMutation } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
-import { NoOrganizationsError, RemoteSigner } from '@vocdoni/sdk'
+import { NoOrganizationsError, RemoteSigner, UnauthorizedError } from '@vocdoni/sdk'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { api, ApiEndpoints, ApiParams } from '~components/Auth/api'
 import { LoginResponse, useLogin, useRegister, useVerifyMail } from '~components/Auth/authQueries'
 
-enum LocalStorageKeys {
+export enum LocalStorageKeys {
   Token = 'authToken',
   Expiry = 'authExpiry',
   RenewSession = 'authRenewSession',
+  SignerAddress = 'signerAddress',
 }
 
 // One week in milliseconds
@@ -22,17 +23,41 @@ const OneWeek = 7 * 24 * 60 * 60 * 1000
  * to create organization page if not.
  */
 const useSigner = () => {
-  const { setSigner } = useClient()
+  const { setSigner, fetchAccount, client, setClient } = useClient()
 
-  const updateSigner = useCallback(async (token: string) => {
+  const updateSigner = useCallback(async (token?: string) => {
+    const t = token || localStorage.getItem(LocalStorageKeys.Token)
+
     const signer = new RemoteSigner({
       url: import.meta.env.SAAS_URL,
-      token,
+      token: t,
     })
     // Once the signer is set, try to get the signer address
     try {
-      await signer.getAddress()
+      const addresses = await signer.remoteSignerService.addresses()
+      if (!addresses.length) {
+        throw new Error('No addresses available')
+      }
+
+      // Get stored address from local storage
+      const storedAddress = localStorage.getItem(LocalStorageKeys.SignerAddress)
+
+      // Use stored address if it exists and is in the available addresses, otherwise use first address
+      const selectedAddress = storedAddress && addresses.includes(storedAddress) ? storedAddress : addresses[0]
+
+      // Store the selected address
+      localStorage.setItem(LocalStorageKeys.SignerAddress, selectedAddress)
+
+      // Set the signer address and update the client
+      signer.address = selectedAddress
       setSigner(signer)
+
+      // update client, since it's the one used for some queries
+      client.wallet = signer
+      setClient(client)
+
+      await fetchAccount()
+
       return signer
     } catch (e) {
       // If is NoOrganizationsError ignore the error
@@ -88,6 +113,7 @@ export const useAuthProvider = () => {
     localStorage.removeItem(LocalStorageKeys.Token)
     localStorage.removeItem(LocalStorageKeys.Expiry)
     localStorage.removeItem(LocalStorageKeys.RenewSession)
+    localStorage.removeItem(LocalStorageKeys.SignerAddress)
     setBearer(null)
     clear()
   }, [])
@@ -134,9 +160,15 @@ export const useAuthProvider = () => {
     }
   }, [bearer])
 
-  const signerRefresh = useCallback(() => {
+  const signerRefresh = useCallback(async () => {
     if (bearer) {
-      return updateSigner(bearer)
+      try {
+        return await updateSigner(bearer)
+      } catch (e) {
+        if (e instanceof UnauthorizedError) {
+          logout()
+        }
+      }
     }
   }, [bearer, clientSigner])
 

@@ -2,7 +2,6 @@ import { Box, Button, Flex, Heading, ListItem, Text, UnorderedList } from '@chak
 import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useOutletContext } from 'react-router-dom'
-import { ClientsGrid } from '~components/Home/Clients'
 import { OrganizationCreate } from '~components/Organization/Create'
 import { AuthOutletContextType } from '~elements/LayoutAuth'
 import { Routes } from '~src/router/routes'
@@ -14,7 +13,7 @@ const CreateOrganization = () => {
   // Set layout title and subtitle and back button
   useEffect(() => {
     setTitle(t('create_org.title', { defaultValue: 'Create your organization' }))
-    setSidebar(CreateOrganizationSidebar)
+    //setSidebar(CreateOrganizationSidebar)
     setBackBtn(Routes.dashboard.base)
   }, [])
 
@@ -51,7 +50,7 @@ const CreateOrganizationSidebar = () => (
     <Button form='process-create-form' type='submit' mx='auto' mb={24} w='50%'>
       <Trans i18nKey='view_pricing'>View Pricing</Trans>
     </Button>
-    <ClientsGrid mb={10} maxW={'full'} px={0} />
   </Flex>
 )
+
 export default CreateOrganization

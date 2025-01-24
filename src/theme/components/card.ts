@@ -146,6 +146,7 @@ export const Card = defineMultiStyleConfig({
       container: {
         border: 'none',
         backgroundColor: 'none',
+        w: 'full',
 
         _hover: {
           lg: {
@@ -154,6 +155,7 @@ export const Card = defineMultiStyleConfig({
             },
             '& span': {
               display: 'block',
+              position: 'relative',
             },
           },
         },
@@ -174,6 +176,8 @@ export const Card = defineMultiStyleConfig({
         p: 0,
         fontSize: '10px',
         minH: '50px',
+        display: 'flex',
+        justifyContent: 'center',
 
         span: {
           display: 'none',
@@ -181,7 +185,7 @@ export const Card = defineMultiStyleConfig({
           fontSize: '12px',
           fontWeight: 'bold',
           color: 'home.description.light',
-          marginTop: '22px',
+          marginTop: '12px',
           _dark: {
             color: 'home.description.dark',
           },
@@ -205,19 +209,19 @@ export const Card = defineMultiStyleConfig({
         boxShadow: 'inset 0 -1px 0 1px rgba(255, 255, 255, .2), 0 8px 22px rgba(0, 0, 0, .12)',
 
         '&:nth-of-type(1)': {
-          bgColor: 'home.benefits.bg.light.primary',
+          bg: 'home.benefits.bg.light.primary',
           color: 'home.benefits.color.light.bg_primary',
         },
         '&:nth-of-type(2)': {
-          bgColor: 'home.benefits.bg.light.white',
+          bg: 'home.benefits.bg.light.white',
           color: 'home.benefits.color.light.bg_white',
           _dark: {
-            bgColor: 'home.benefits.bg.dark.dark',
+            bg: 'home.benefits.bg.dark.dark',
             color: 'home.benefits.color.dark',
           },
         },
         '&:nth-of-type(3)': {
-          bgColor: {
+          bg: {
             base: 'home.benefits.bg.light.primary',
             benefits1: 'home.benefits.bg.light.white',
             benefits2: 'home.benefits.bg.light.primary',
@@ -229,7 +233,7 @@ export const Card = defineMultiStyleConfig({
           },
 
           _dark: {
-            bgColor: {
+            bg: {
               base: 'home.benefits.bg.light.primary',
               benefits1: 'home.benefits.bg.dark.dark',
               benefits2: 'home.benefits.bg.light.primary',
@@ -242,7 +246,7 @@ export const Card = defineMultiStyleConfig({
           },
         },
         '&:nth-of-type(4)': {
-          bgColor: {
+          bg: {
             base: 'home.benefits.bg.light.white',
             benefits1: 'home.benefits.bg.light.primary',
             benefits2: 'home.benefits.bg.light.white',
@@ -254,7 +258,7 @@ export const Card = defineMultiStyleConfig({
           },
 
           _dark: {
-            bgColor: {
+            bg: {
               base: 'home.benefits.bg.dark.dark',
               benefits1: 'home.benefits.bg.light.primary',
               benefits2: 'home.benefits.bg.dark.dark',
@@ -267,15 +271,15 @@ export const Card = defineMultiStyleConfig({
           },
         },
         '&:nth-of-type(5)': {
-          bgColor: 'home.benefits.bg.light.primary',
+          bg: 'home.benefits.bg.light.primary',
           color: 'home.benefits.color.light.bg_primary',
         },
         '&:nth-of-type(6)': {
-          bgColor: 'home.benefits.bg.light.white',
+          bg: 'home.benefits.bg.light.white',
           color: 'home.benefits.color.light.bg_white',
 
           _dark: {
-            bgColor: 'home.benefits.bg.dark.dark',
+            bg: 'home.benefits.bg.dark.dark',
             color: 'home.benefits.color.dark',
           },
         },
@@ -311,7 +315,7 @@ export const Card = defineMultiStyleConfig({
           borderRadius: 'lg',
           minW: '45px',
           h: '45px',
-          bgColor: 'home.features_icon',
+          bg: 'home.features_icon',
 
           svg: {
             width: '25px',
@@ -363,11 +367,7 @@ export const Card = defineMultiStyleConfig({
 
           'p:last-of-type': {
             fontSize: '22px',
-            color: 'home.description.light !important',
-
-            _dark: {
-              color: 'home.description.dark !important',
-            },
+            color: 'home.description.light',
           },
         },
       },
@@ -389,7 +389,7 @@ export const Card = defineMultiStyleConfig({
           minW: '45px',
           h: '45px',
           border: '1px solid gray',
-          bgColor: 'home.step.icon_bg',
+          bg: 'home.step.icon_bg',
 
           svg: {
             width: '25px',
@@ -407,11 +407,7 @@ export const Card = defineMultiStyleConfig({
           },
           'p:nth-of-type(2)': {
             fontSize: '22px',
-            color: 'home.description.light !important',
-
-            _dark: {
-              color: 'home.description.dark !important',
-            },
+            color: 'home.description.light',
           },
         },
       },
@@ -421,21 +417,23 @@ export const Card = defineMultiStyleConfig({
         borderRadius: 'none',
         borderBottom: '1px solid rgb(229, 229, 229)',
         backgroundColor: 'transparent',
-        fontSize: '22px',
       },
       header: {
         p: 0,
         '& p': {
           fontWeight: 'bold',
           mb: '18px',
+          fontSize: 'xl',
         },
       },
       body: {
         p: 0,
+
         mb: '19px',
 
         '& p': {
           color: 'home.description.light !important',
+          fontSize: 'xl',
 
           _dark: {
             color: 'home.description.dark !important',

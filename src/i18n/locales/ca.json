@@ -1,13 +1,13 @@
 {
   "actions": {
-    "save": "Save Changes"
+    "save": "Guarda els canvis"
   },
   "active": "Actiu",
   "all": "Tots",
   "already_member": "Ja ets membre?",
   "anonymous": {
-    "description": "Voters will remain anonymous",
-    "title": "Anonymous"
+    "description": "Els votants romandran anònims",
+    "title": "Anònim"
   },
   "aside": {
     "has_already_voted": "El teu vot s'ha registrat correctament",
@@ -19,7 +19,7 @@
     "submitting": "Enviant",
     "verify_vote_on_explorer": "Verifica el vot a l'explorador",
     "votes_one": "<span>1</span> <text>votant</text>",
-    "votes_many": "<span>{{ count }}</span> <text>votants</text>",
+    "votes_many": "",
     "votes_other": "<span>{{ count }}</span> <text>votants</text>",
     "votes_weight_one": "<span>1</span> <text>vot</text>",
     "votes_weight_many": "",
@@ -35,17 +35,17 @@
       "1": "Llança eleccions segures i verificables amb només uns clics.",
       "2": "Característiques adaptables que es poden escalar amb la teva organització.",
       "3": "Estalvia fins a 10 vegades en comparació amb els mètodes tradicionals de votació.",
-      "4": "Organitza vots accessibles en qualsevol dispositiu: mòbil, tauleta o escriptori.",
-      "5": "La xifra avançada d'encriptació garanteix que les teves eleccions siguin segures i privades.",
+      "4": "Organitza votacions accessibles en qualsevol dispositiu: mòbil, tauleta o escriptori.",
+      "5": "L'encriptació garanteix que les teves eleccions siguin segures i privades.",
       "6": "Fomenta una participació més alta amb eines fàcils d'usar.",
-      "7": "Incorpora fàcilment la teva marca i els fluxos de treball existents.",
+      "7": "Incorpora fàcilment la teva imatge corporativa a la votació.",
       "8": "Els teus processos de votació són segurs, fiables i llestos per funcionar.",
-      "9": "Gestiona múltiples eleccions sense esforç des d'un únic tauler.",
+      "9": "Gestiona múltiples eleccions sense esforç des d'un únic lloc.",
       "10": "Actualitzacions i anàlisis en temps real a les teves mans.",
       "11": "Augmenta la participació amb fluxos de votació intuïtius.",
       "12": "Redueix les despeses operatives per a tu i els teus votants.",
       "13": "Explora opcions avançades com el vot secret o els vots ponderats.",
-      "14": "Les eleccions transparents i verificables fomenten la confiança en els teus resultats.",
+      "14": "Les eleccions transparents i verificables fomenten la confiança en els resultats.",
       "15": "Abraça el futur de la votació. Comença avui!",
       "16": "Centra't en el que importa més."
     },
@@ -57,7 +57,7 @@
       "5": "Tecnologia fiable:",
       "6": "Potencia la participació:",
       "7": "Integració sense fissures:",
-      "8": "Relaxat, ens encarreguem de tot:",
+      "8": "Relaxa't, ens encarreguem de tot:",
       "9": "Optimitza les operacions:",
       "10": "Mantingue't informat:",
       "11": "Impulsa la participació:",
@@ -154,7 +154,7 @@
       "paused_start": "Comença {{ distance }}"
     },
     "spreadsheet": {
-      "access_button": "Identifica't",
+      "access_button": "Identificar-se",
       "anon_sik_helper": "Això garanteix que el teu vot sigui anònim",
       "anon_sik_label": "Defineix una contrasenya per al teu vot",
       "close": "Tanca",
@@ -223,7 +223,6 @@
   "control": "Control:",
   "copy": {
     "address": "Copia l'adreça",
-    "copied": "Copied",
     "copied_title": "Copiat!"
   },
   "country_selector": {
@@ -252,20 +251,20 @@
   },
   "create_account": "Crea un compte",
   "create_org": {
-    "already_profile": " If your organization already have a profile, ask the admin to invite you to your organization.",
-    "communication": "I want to receive communications and be contacted to tailor my governance experience.",
-    "credit_card": "No credit card, no automatic renewal.",
-    "full_access": "Full access to basic features",
-    "header": "Try Vocdoni for free for 7 days",
-    "logout": "If you want to login from another account, please logout",
-    "multiple_administrators": "Multiple administrators",
-    "private_org": "Private Organization Details",
-    "private_org_description": "Help us tailor your experience with information about your org. We won't share this info",
-    "public_info": "Public Organization Information",
-    "support_during_trial_period": "Support during the trial period",
-    "title": "Create Your Organization",
-    "unlimited_voting_processes": "Unlimited creation of voting processes",
-    "up_to_20_voters": "Up to 20 voters"
+    "already_profile": "Si la teva organització ja té un perfil, demana a l'administrador que et convidi a l'organització.",
+    "communication": "Vull rebre comunicacions i ser contactat per adaptar la meva experiència de governança.",
+    "credit_card": "Sense targeta de crèdit, sense renovació automàtica.",
+    "full_access": "Accés complet a les funcionalitats bàsiques",
+    "header": "Prova Vocdoni gratuïtament durant 7 dies",
+    "logout": "Si vols iniciar sessió des d'un altre compte, si us plau tanca la sessió",
+    "multiple_administrators": "Múltiples administradors",
+    "private_org": "Detalls privats de l'organització",
+    "private_org_description": "Ajuda'ns a adaptar la teva experiència amb informació sobre la teva organització. No compartirem aquesta informació",
+    "public_info": "Informació pública de l'organització",
+    "support_during_trial_period": "Suport durant el període de prova",
+    "title": "Crea la teva organització",
+    "unlimited_voting_processes": "Creació il·limitada de processos de votació",
+    "up_to_20_voters": "Fins a 20 votants"
   },
   "csp_census": {
     "github": {
@@ -274,12 +273,13 @@
     }
   },
   "customization": "Customization",
+  "dark_mode": "Mode fosc",
   "delete_my_account": "Delete my account",
   "description": "Description",
   "edit_saas_profile": {
-    "customization_details": "Define the params that will enhance the user experience and customize the voting page",
-    "edited_successfully": "Updated successfully",
-    "header_image": "Header Image"
+    "customization_details": "Defineix els paràmetres que milloraran l'experiència d'usuari i personalitzaran la pàgina de votació",
+    "edited_successfully": "Actualitzat correctament",
+    "header_image": "Imatge de capçalera"
   },
   "email": "Correu electrònic",
   "email_placeholder": "your@email.com",
@@ -345,7 +345,9 @@
   },
   "finished": "Finalitzat",
   "footer": {
+    "about_us": "Sobre Nosaltres",
     "company": "Empresa",
+    "contact": "Contacte",
     "demo": "Tipus de Votació",
     "demo1": "Elecció Simple",
     "demo2": "Elecció Múltiple",
@@ -353,6 +355,7 @@
     "demo4": "Votació per Classificació",
     "demo5": "Pressupostos Participatius",
     "demo6": "Votació Ponderada",
+    "developer_portal": "Developer Portal",
     "footer_subtitle": "El Protocol de Votació Global",
     "terms_and_privacy": "<link1>Termes d'ús</link1> i <link2>Política de privacitat</link2>",
     "uses_cases": "Casos d'Ús",
@@ -372,7 +375,7 @@
       "title_placeholder": "El nom de l'organització",
       "website_placeholder": "https://example.com"
     },
-    "choose_an_option": "Choose an option",
+    "choose_an_option": "Tria una opció",
     "error": {
       "address_already_in_use": "Aquesta adreça ja és al cens",
       "address_pattern": "Només s'admeten adreces hexadecimals (p. ex. 0x031101A...)",
@@ -425,7 +428,7 @@
         "census": "Cens",
         "census_preview_is_shortened": "(la llista prèvia està limitada a {{ limit }} resultats)",
         "census_total_people_one": "Una persona podrà votar en aquesta votació",
-        "census_total_people_many": "{{ count }} persones podran votar en aquesta votació",
+        "census_total_people_many": "",
         "census_total_people_other": "{{ count }} persones podran votar en aquesta votació",
         "configuration": "Configuració",
         "confirmation": "Confirmació",
@@ -436,10 +439,10 @@
         "description_election": "Descripció",
         "edit": "Editar",
         "election_info": "Informació de la Votació",
+        "live_results": "Resultats en directe",
         "questions_one": "Pregunta",
-        "questions_many": "Preguntes",
+        "questions_many": "",
         "questions_other": "Preguntes",
-        "secret_until_the_end": "Secret fins el final",
         "title": "Vista prèvia i costos de votació",
         "title_election": "Títol",
         "vote_overwrite": "Sobreescriure vot"
@@ -675,7 +678,7 @@
         "description": "Permet als votants emetre els seus vots a través de diversos canals, incloent navegadors web, telèfons, tauletes, etc., assegurant accessibilitat i comoditat per a tots els participants.",
         "title": "Suport multiplataforma"
       },
-      "subtitle_1": "Desbloqueja el potencial de la plataforma plena de funcionalitats de Vocdoni, oferint un valor excepcional tant per als organitzadors com per als votants. Personalitza els teus processos de votació de manera fluida, assegura eleccions segures i transparents, i capacita els participants amb opcions intuïtives i accessibles. Amb l'aplicació Vocdoni, experimenta el poder d'un compromís millorat, eficiència i confiança en cada experiència de votació.",
+      "subtitle_1": "Organitza votacions segures i transparents amb Vocdoni, oferint una experiència senzilla tant per als organitzadors com per als votants. Adapta els processos de votació segons les teves necessitats, garantint la seguretat i la transparència en tot moment. Amb Vocdoni, cada votació és accessible i fàcil d'utilitzar, ajudant a augmentar la participació i la confiança sense complicacions.",
       "title": "Característiques"
     },
     "process": {
@@ -763,13 +766,18 @@
     "unexpected_error": "",
     "user_invited": "Email enviat a {{email}}"
   },
-  "invite_people": "Convida Gent",
-  "keep_me_logged": "Mantén-me connectat",
+  "invite_people": "Convidar Membres",
+  "keep_me_logged": "Mantenir-me connectat",
   "languages": "Languages",
+  "light_mode": "Mode clar",
   "link": {
     "discord": "Enllaç al Discord de Vocdoni",
     "github": "Enllaç al Github de Vocdoni",
     "twitter": "Enllaç al Twitter de Vocdoni"
+  },
+  "live_results": {
+    "description": "Els continguts dels vots seran públics durant tota la votació.",
+    "title": "Resultats en directe"
   },
   "loading": "Carregant...",
   "login": {
@@ -806,7 +814,7 @@
     "helper": "Provide a clear title and description to help voters understand the vote"
   },
   "more_than_memberships_one": "més d'{{count}} membre",
-  "more_than_memberships_many": "",
+  "more_than_memberships_many": "more than {count} memberships",
   "more_than_memberships_other": "més de {{count}} membres",
   "name": "Name",
   "new_organization": {
@@ -840,6 +848,7 @@
       "not_owner": "Aquesta organització encara no té votacions.",
       "title": "Crea la teva primera elecció"
     },
+    "no_organization_title": "You don't belong to any organization yet!",
     "organization": "Organització",
     "title": {
       "read_more": "Expandir títol"
@@ -877,7 +886,7 @@
     },
     "success": "Password updated successfully"
   },
-  "passwords_do_not_match": "",
+  "passwords_do_not_match": "Els passwords no coincideixen",
   "plan_upgrade": {
     "dont_limit_yourself": "No et limitis. Uneix-te a la família de 725 organitzacions que confien en <2>Vocdoni</2>.",
     "feature_available_in": "Funció disponible a:",
@@ -895,7 +904,7 @@
     "custom_title": "Personalitzat",
     "date_format": "dd/mm/yy",
     "dedicated_manager": "Dedicated account manager",
-    "error": "",
+    "error": "Error",
     "essential_subtitle": "Organitzacions petites o mitjanes o grups comunitaris amb necessitats bàsiques de votació.",
     "essential_title": "Essencial",
     "features": "Features",
@@ -914,7 +923,7 @@
     "upgrade_title": "Actualitza el teu pla",
     "white_label": "White label solution",
     "yearly_processes_one": "{{ count }} procés anual",
-    "yearly_processes_many": "",
+    "yearly_processes_many": "{{ count }} yearly voting process",
     "yearly_processes_other": "{{ count }} processos anuals",
     "your_plan": "Actualment estàs subscrit al pla <plan>{{ plan }}</plan>. Si actualitzes, només et cobrarem la diferència anual. En el següent període de facturació, que comença el <plan>{{ billing, format }}</plan>, pagaràs íntegrament pel nou pla seleccionat."
   },
@@ -1139,10 +1148,6 @@
     "read_permission": "Read-only access",
     "write_permission": "Can create and edit content"
   },
-  "secret_until_the_end": {
-    "description": "Vote contents will be encrypted till the end of the voting",
-    "title": "Secret until the end"
-  },
   "session_expired": "Session expired",
   "session_expired_description": "Session may have been expired and it could not be refreshed, please login again",
   "settings": "Configuració",
@@ -1163,7 +1168,7 @@
   "signup_first_name": "Nom",
   "signup_last_name": "Cognom",
   "signup_subtitle": "Introdueix el teu correu electrònic i contrasenya per registrar-te!",
-  "signup_title": "Registra't",
+  "signup_title": "Registrar-se",
   "skip": "Ometre",
   "submit": "Submit",
   "subscribe": "Subscribe",
@@ -1268,7 +1273,7 @@
   },
   "total_votes_submitted": "Total Votes Submitted",
   "update": "Update",
-  "upgrade": "Amplia-ho",
+  "upgrade": "Upgrade",
   "uploader": {
     "click_or_drag_and_drop": "<click>Fes clic per pujar</click> <drag>o arrossega i deixa anar</drag><formats>(Formats permesos: {{ formats, list }})</formats>",
     "drop_here": "Deixa anar aquí"

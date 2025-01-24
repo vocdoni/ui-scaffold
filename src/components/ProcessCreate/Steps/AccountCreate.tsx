@@ -30,7 +30,13 @@ const AccountCreate = () => {
           components={{
             span: <Text as='span' fontWeight='bold' />,
           }}
-        />
+        >
+          Set up your{' '}
+          <Text as='span' fontWeight='bold'>
+            organization for free
+          </Text>{' '}
+          and start creating voting processes to engage with your community.
+        </Trans>
       </Text>
       <Text mb={5}>
         <Trans
@@ -39,7 +45,10 @@ const AccountCreate = () => {
             span: <Text as='span' fontWeight='bold' />,
           }}
           values={{ faucetAmount }}
-        />
+        >
+          You will have the chance to claim tokens later from the faucet to create proposals and engage with your
+          community.
+        </Trans>
       </Text>
     </AccountCreationForm>
   )

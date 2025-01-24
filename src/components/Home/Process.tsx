@@ -21,21 +21,19 @@ const Process = () => {
         sm: '20px',
         md: '80px',
       }}
-      py={{ base: '60px', lg: '100px' }}
-      mb={{ base: '60px', xl: '120px' }}
+      mb={{ base: '75px', lg: '100px' }}
     >
       <Text
         fontSize={{ base: '40px', xl: '60px' }}
         lineHeight={{ base: '36px', xl: '78px' }}
         fontWeight='bold'
-        mb='25px'
+        mb='30px'
         fontFamily='basier'
         textAlign='center'
       >
         {t('home.process.title')}
       </Text>
       <Text
-        variant='home-description-color'
         mb='60px'
         maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}
         mx='auto'
@@ -43,12 +41,11 @@ const Process = () => {
         fontFamily='basier'
         fontSize='20px'
         lineHeight='28px'
-        margin='0px auto'
       >
         {t('home.process.description_1')}
         {t('home.process.description_2')}
       </Text>
-      <Flex flexDirection={{ base: 'column', lg: 'row' }} gap={{ base: '40px', lg: '60px' }} mt='70px'>
+      <Flex flexDirection={{ base: 'column', lg: 'row' }} gap={'30px'}>
         <Flex flex='1 1 50%' justifyContent={{ base: 'center', lg: 'end' }} alignItems='center'>
           <Image src={process} borderRadius='lg' maxW={{ base: '350px', xl: '550px' }} mt='-20px' />
         </Flex>

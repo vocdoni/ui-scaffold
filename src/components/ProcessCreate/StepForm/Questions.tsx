@@ -24,18 +24,22 @@ export interface QuestionsValues {
 const QuestionsTabs = () => {
   const { t } = useTranslation()
   const { form, setForm } = useProcessCreationSteps()
-
-  const definedVotingTypes = useVotingType()
-  const unDefinedVotingTypes = useUnimplementedVotingType()
-  const { questionType } = form
-
-  const { watch } = useFormContext()
-
+  const {
+    watch,
+    register,
+    setValue,
+    trigger,
+    formState: { errors },
+  } = useFormContext()
   const { replace } = useFieldArray({
     name: `questions`,
   })
-
+  const definedVotingTypes = useVotingType()
+  const unDefinedVotingTypes = useUnimplementedVotingType()
   const questions = watch('questions')
+
+  // required in order to force users to select a type, although the error is not visible
+  register('questionType', { required: t('form.error.field_is_required') })
 
   return (
     <TabsPage
@@ -48,6 +52,10 @@ const QuestionsTabs = () => {
         if (newQuestionType && !MultiQuestionTypes.includes(newQuestionType) && questions.length > 1) {
           replace(questions[0])
         }
+
+        setValue('questionType', newQuestionType, { shouldValidate: true })
+        trigger('questionType')
+
         const nform: StepsFormValues = {
           ...form,
           questionType: newQuestionType,
@@ -56,7 +64,7 @@ const QuestionsTabs = () => {
       }}
       title={t('process_create.question.voting_type.title')}
       description={t('process_create.question.voting_type.description')}
-      selected={questionType}
+      selected={form.questionType}
     />
   )
 }
