@@ -11,7 +11,7 @@ import erc from '/assets/erc.svg'
 import omnium from '/assets/omnium.png'
 import ticanoia from '/assets/ticanoia.png'
 
-const Clients = ({ ...props }) => {
+const Clients = () => {
   const { t } = useTranslation()
 
   return (
