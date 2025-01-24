@@ -59,10 +59,10 @@ const Footer = () => {
               whiteSpace='nowrap'
               target='_blank'
             >
-              About Us
+              {t('footer.about_us')}
             </Link>
             <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io/contact' target='_blank'>
-              Contact
+              {t('footer.contact')}
             </Link>
             <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io/api' target='_blank'>
               SDK
@@ -74,7 +74,7 @@ const Footer = () => {
               whiteSpace='nowrap'
               target='_blank'
             >
-              Developer Portal
+              {t('footer.developer_portal')}
             </Link>
             <Link fontWeight='bold' variant='footer' href='https://blog.vocdoni.io' target='_blank'>
               Blog

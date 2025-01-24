@@ -126,11 +126,11 @@ export const TeamMembersList = () => {
   return (
     <QueryDataLayout isEmpty={!members} isLoading={isLoading} isError={isError} error={error}>
       <Flex direction='column'>
-        <Text fontWeight='bold' display='flex' gap={3}>
+        <Text fontWeight='bold' display='flex' gap={3} m='20px 0px 10px'>
           <Trans i18nKey='team.team_members'>Team members</Trans>
-          <Badge ml='1' colorScheme='green'>
+          <Box ml='1' borderRadius='full' px={'9px'} textAlign={'center'} border='.1px solid' fontWeight={'light'}>
             {members?.length}
-          </Badge>
+          </Box>
         </Text>
         <TeamMembersTable members={members || []} />
       </Flex>

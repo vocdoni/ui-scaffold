@@ -35,7 +35,7 @@ const NotFound = () => {
           {t('error.not_found')}
         </Text>
 
-        <Flex gap={2} justifyContent={'center'}>
+        <Flex gap={2} justifyContent={'center'} mt={'150px'}>
           {!idx && (
             <Button variant='outline' onClick={() => navigate(-1)}>
               {t('error.go_back')}
