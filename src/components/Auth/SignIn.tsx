@@ -147,7 +147,7 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
               </Text>
             </NavLink>
           </Flex>
-          <Button type='submit' w='100%' size='xl'>
+          <Button type='submit' w='100%' size='xl' variant='primary' colorScheme='gradient'>
             {t('signin')}
           </Button>
         </Flex>
@@ -156,7 +156,7 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
       <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%' mt={0}>
         <Text fontWeight='400' fontSize='sm'>
           {t('not_registred_yet')}
-          <Link as={NavLink} to={Routes.auth.signUp} ml={1} fontWeight={500}>
+          <Link variant='primary' as={NavLink} to={Routes.auth.signUp} ml={1} fontWeight={500}>
             {t('create_account')}
           </Link>
         </Text>
