@@ -13,7 +13,7 @@ const ContactUs = () => {
       as='section'
       id='contactus'
       flexDirection={{ base: 'column', xl: 'row' }}
-      py={{ base: '60px', xl: 0 }}
+      mb={{ base: '75px', lg: '100px' }}
       gap={{ base: '40px', xl: '60px' }}
       scrollMarginTop='100px'
     >
@@ -36,13 +36,12 @@ const ContactUs = () => {
         justifyContent={{ base: 'center', xl: 'start' }}
         display={{ xl: 'flex' }}
         alignItems='center'
-        py={{ base: '60px', xl: '100px' }}
         position='relative'
         zIndex={10}
       >
         <Flex
           flexDirection='column'
-          gap='24px'
+          gap='30px'
           maxW={{ base: 'full', xl: '660px' }}
           px={{ base: '30px', xl: 0 }}
           pr={{ xl: '37px', xl3: 0 }}
@@ -52,7 +51,6 @@ const ContactUs = () => {
               fontSize={{ base: '40px', xl: '60px' }}
               lineHeight={{ base: '36px', xl: '78px' }}
               fontWeight='bold'
-              mb='10px'
               fontFamily='basier'
               textAlign={{ base: 'center', xl: 'left' }}
             >

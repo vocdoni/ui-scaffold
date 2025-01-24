@@ -48,7 +48,7 @@ const AccountMenu: React.FC<BoxProps> = (props) => {
                   size='sm'
                 />
               }
-              rightIcon={isOpen ? <ChevronUpIcon boxSize={4} /> : <ChevronDownIcon boxSize={4} />}
+              rightIcon={<Icon as={isOpen ? ChevronUpIcon : ChevronDownIcon} boxSize={4} />}
               aria-label='User menu'
               display={'flex'}
               alignItems={'center'}

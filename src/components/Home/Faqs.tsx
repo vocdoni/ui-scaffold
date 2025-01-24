@@ -13,7 +13,7 @@ const Faqs = () => {
         sm: '20px',
         md: '80px',
       }}
-      py={{ base: '60px', lg: '100px' }}
+      mb={{ base: '75px', lg: '100px' }}
     >
       <Image
         src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b72f92aa4f58_diagonal-violet-to-pink.svg'
@@ -40,7 +40,7 @@ const Faqs = () => {
           lineHeight={{ base: '36px', xl: '78px' }}
           fontWeight='bold'
           textAlign='center'
-          mb='25px'
+          mb='30px'
           fontFamily='basier'
         >
           {t('home.faqs.title')}
@@ -53,7 +53,6 @@ const Faqs = () => {
           fontSize='20px'
           color='home.description'
           lineHeight='28px'
-          margin='0px auto 80px'
           textAlign='center'
         >
           {t('home.faqs.subtitle')}

@@ -47,21 +47,20 @@ const Benefits = () => {
               sm: '20px',
               md: '80px',
             }}
-            pb={{ base: '60px', lg: '100px' }}
-            pt={{ base: '60px' }}
+            mb={{ base: '75px', lg: '100px' }}
           >
             <Text
               fontSize={{ base: '40px', xl: '60px' }}
               lineHeight={{ base: '36px', xl: '78px' }}
               fontWeight='bold'
               textAlign='center'
-              mb='25px'
+              mb={'30px'}
               fontFamily='basier'
             >
               {t('home.benefits.title')}
             </Text>
             <Text
-              mb='60px'
+              mb={'60px'}
               maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}
               mx='auto'
               textAlign='center'
@@ -71,7 +70,7 @@ const Benefits = () => {
               {t('home.benefits.subtitle_1')}
             </Text>
 
-            <Flex flexWrap='wrap' justifyContent='center' maxW='1240px' mx='auto' gap={10}>
+            <Flex flexWrap='wrap' justifyContent='center' maxW='1240px' mx='auto' gap={'30px'}>
               <Card variant='benefits'>
                 <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29a3e8913631fd48de5_card-feature-img-control.png' />
                 <CardHeader>{t('home.benefits.card_1.title')}</CardHeader>

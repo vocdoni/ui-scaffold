@@ -12,7 +12,9 @@ const CreateProcess = () => {
     <Flex
       as='section'
       width='full'
-      m='30px auto 20px'
+      mt={{ base: '40px', lg: '60px' }}
+      mb={{ base: '75px', lg: '100px' }}
+      mx='auto'
       maxW='1920px'
       px={{
         base: '10px',
@@ -29,8 +31,7 @@ const CreateProcess = () => {
           lineHeight={{ base: '54px', md: '58px', md2: '64px', lg2: '78px' }}
           fontWeight='600'
           fontFamily='basier'
-          mb='10px'
-          mt='80px'
+          mb={'40px'}
           textAlign={{ base: 'center', lg: 'start' }}
         >
           {t('home.create_process.title')}
@@ -39,8 +40,7 @@ const CreateProcess = () => {
           fontSize='24px'
           lineHeight='35px'
           fontFamily='basier'
-          mt='52px'
-          mb='52px'
+          mb={'40px'}
           textAlign={{ base: 'center', lg: 'start' }}
         >
           {t('home.create_process.subtitle')}
@@ -68,7 +68,7 @@ const CreateProcess = () => {
             gap={{ sm: 5, lg: 0 }}
           >
             <Text display='flex' alignItems='center' gap={1} ml='3'>
-              <FaRegCheckCircle />
+              <FaRegCheckCircle size={'30px'} />
               {t('home.create_process.helper_1')}
             </Text>
             <Text display='none' alignItems='center' gap={1} ml='3' mt='1'>
