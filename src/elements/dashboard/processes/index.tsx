@@ -4,12 +4,13 @@ import { useTranslation } from 'react-i18next'
 import { useLoaderData, useOutletContext, useParams } from 'react-router-dom'
 import { DashboardContents } from '~components/Layout/Dashboard'
 import Votings from '~components/Organization/Dashboard/Votings'
+import ProcessStatusFilter from '~components/Process/ProcessStatusFilters'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 
 const OrganizationVotings = () => {
   const { t } = useTranslation()
   const { setBack, setTitle } = useOutletContext<DashboardLayoutContext>()
-  const data = useLoaderData()
+  const data = useLoaderData() as ElectionListWithPagination
   const { status } = useParams<{ status?: string }>()
 
   // Set page title
@@ -19,7 +20,8 @@ const OrganizationVotings = () => {
   }, [setTitle, setBack])
 
   return (
-    <DashboardContents>
+    <DashboardContents display='flex' flexDirection='column'>
+      <ProcessStatusFilter status={status} alignSelf='end' />
       <Votings data={data as ElectionListWithPagination} status={status} />
     </DashboardContents>
   )
