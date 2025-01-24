@@ -1,4 +1,5 @@
 import { dotobject } from '@vocdoni/sdk'
+import axios, { CancelTokenSource } from 'axios'
 import { FieldErrors, FieldValues, useFormContext } from 'react-hook-form'
 
 export const FormatDate = 'dd/MM/yyyy'
@@ -127,3 +128,26 @@ export type RecursivePartial<T> = {
       ? RecursivePartial<T[P]>
       : T[P]
 }
+
+// The following is a trick in order to avoid a race condition that happened
+// sometimes (< 3% of the times) for people having a metamask wallet connected
+// to the application. Wallets load the first thing when you refresh a page, because
+// they're browser extensions. Sometimes though, the wallet may load a bit later,
+// causing its `fetchAccount` call to be computed after the same call done by the
+// remote signer. This caused the remote signer to be set with the wrong address
+// only in part of the state, causing the app to crash in some points with an
+// "Unknown account" error.
+const cancelTokenMap = new Map<string, CancelTokenSource>()
+axios.interceptors.request.use((config) => {
+  if (config.url && config.url.match(/v2\/accounts\//)) {
+    if (cancelTokenMap.has(config.url)) {
+      cancelTokenMap.get(config.url)?.cancel(`Cancel duplicated call to ${config.url}`)
+    }
+
+    const newCancelTokenSource = axios.CancelToken.source()
+    cancelTokenMap.set(config.url, newCancelTokenSource)
+    config.cancelToken = newCancelTokenSource.token
+  }
+
+  return config
+})
