@@ -27,7 +27,7 @@ const card = definePartsStyle({
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    columnGap: 10,
+    justifyContent: 'space-between',
     '& > div': {
       display: 'grid',
       gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
