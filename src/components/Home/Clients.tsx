@@ -38,7 +38,6 @@ export const ClientsGrid = (props: GridProps) => (
     gridTemplateColumns={{ base: 'repeat(5, 1fr)', md: 'repeat(10, 1fr)' }}
     justifyContent={'end'}
     w='full'
-    border='1px solid red'
     {...props}
   >
     <Card variant='client'>
