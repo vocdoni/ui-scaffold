@@ -177,7 +177,7 @@ export const Card = defineMultiStyleConfig({
       body: {
         p: 0,
         fontSize: '10px',
-        minH: '50px',
+        minH: '60px',
         display: 'flex',
         justifyContent: 'center',
 

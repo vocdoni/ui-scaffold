@@ -1,4 +1,4 @@
-import { Box, Card, CardBody, CardHeader, Grid, GridProps, Image, Text } from '@chakra-ui/react'
+import { Card, CardBody, CardHeader, Grid, GridProps, Image, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import barca from '/assets/barca.png'
 import bellpuig from '/assets/bellpuig.svg.png'
@@ -37,6 +37,8 @@ export const ClientsGrid = (props: GridProps) => (
     }}
     gridTemplateColumns={{ base: 'repeat(5, 1fr)', md: 'repeat(10, 1fr)' }}
     justifyContent={'end'}
+    w='full'
+    border='1px solid red'
     {...props}
   >
     <Card variant='client'>
