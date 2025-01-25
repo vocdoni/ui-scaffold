@@ -49,7 +49,7 @@ const Navbar = () => {
 
         {!isConnected && (
           <>
-            <ListItem mt='-30px'>
+            <ListItem mt='-20px'>
               <Button
                 onClick={() => {
                   if (openConnectModal) openConnectModal()
@@ -58,7 +58,7 @@ const Navbar = () => {
                 Admin
               </Button>
             </ListItem>
-            <ListItem mt='-30px'>
+            <ListItem mt='-20px'>
               <LanguagesMenu />
             </ListItem>
           </>

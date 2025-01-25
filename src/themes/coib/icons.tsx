@@ -7,6 +7,6 @@ export const Close = IoCloseOutline
 
 export const Check = AiFillCheckCircle
 
-export const Logo = () => <Img src='/assets/coib.png' alt='coib icon' maxWidth={80} />
+export const Logo = () => <Img src='/assets/coib.png' alt='coib icon' maxWidth={80} h='100px' />
 
 export const GoBack = () => <Icon as={FaRegArrowAltCircleLeft} mt='1.5px' boxSize={5} />

@@ -192,7 +192,7 @@ const Coib = () => {
         </Box>
       )}
       {canViewProcesses && (
-        <Text style={{ marginBottom: '50px', textAlign: 'center' }}>
+        <Text style={{ marginTop: '50px', maxWidth: '800px', textAlign: 'center' }}>
           Pulseu sobre la votació i s'obrirà una finestra amb tota la informació per votar. Un cop votat, podeu tancar
           la pestanya per tornar a aquesta pàgina.
         </Text>
