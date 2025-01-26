@@ -25,6 +25,7 @@ import { IoMdMoon, IoMdSunny } from 'react-icons/io'
 import { IoPricetagOutline } from 'react-icons/io5'
 import { RiContactsBook3Line } from 'react-icons/ri'
 import { generatePath, Link as ReactRouterLink, Link as RouterLink } from 'react-router-dom'
+import { isExternal } from 'util/types'
 import { useAuth } from '~components/Auth/useAuth'
 import { DashboardMenuItem } from '~components/Dashboard/Menu/Item'
 import { ColorModeSwitcher } from '~components/Layout/ColorModeSwitcher'
@@ -36,6 +37,7 @@ type MenuItem = {
   icon: any
   label: string
   route?: string
+  isExternal?: boolean
 }
 
 const Navbar = () => {
@@ -157,6 +159,7 @@ const NavMenu = ({ display, children }: { display?: any; children?: any }) => {
       icon: <IoPricetagOutline />,
       label: t('navbar.pricing', { defaultValue: 'Pricing' }),
       route: Routes.plans,
+      isExternal: true,
     },
     {
       icon: <RiContactsBook3Line />,
@@ -178,6 +181,7 @@ const NavMenu = ({ display, children }: { display?: any; children?: any }) => {
             fontSize={'md'}
             h={'fit-content'}
             leftIcon={isMobile ? item.icon : undefined}
+            isExternal={isExternal}
           />
         </ListItem>
       ))}
