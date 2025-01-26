@@ -56,6 +56,7 @@ const SignUp = ({ invite }: SignupProps) => {
     // set SignUp title and description
     setTitle(t('signup_title'))
     setSubtitle(t('signup_subtitle'))
+    signup.reset()
   }, [])
 
   const onSubmit = (user: FormData) => {
