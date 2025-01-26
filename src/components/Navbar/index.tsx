@@ -19,6 +19,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import { LogOut01 } from '@untitled-ui/icons-react'
+import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { IoMdMoon, IoMdSunny } from 'react-icons/io'
 import { IoPricetagOutline } from 'react-icons/io5'
@@ -78,6 +79,15 @@ const DesktopNav = ({ display }: { display?: any }) => {
 const Mobile = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { logout } = useAuth()
+  const isXlSize = useBreakpointValue({
+    base: false,
+    xl: true,
+  })
+
+  useEffect(() => {
+    if (isXlSize) onClose()
+  }, [isXlSize])
+
   return (
     <>
       <IconButton
@@ -93,23 +103,40 @@ const Mobile = () => {
             <Box p={4} display='flex' flexDirection='column' gap={4}>
               <NavMenu>
                 <Divider />
-                <DashboardButton />
+                <ListItem>
+                  <DashboardButton />
+                </ListItem>
                 <Divider />
                 <ListItem>
                   <LanguagesListAccordion />
                 </ListItem>
                 <ListItemColorModeSwitcher />
                 <Divider />
-                <ListItem onClick={logout} display={'flex'} alignItems={'center'} gap={2} fontWeight={'semibold'}>
-                  <Icon as={LogOut01} />
-                  <Trans i18nKey='logout'>Logout</Trans>
+                <ListItem>
+                  <Button
+                    variant={'unstyled'}
+                    onClick={logout}
+                    display={'flex'}
+                    alignItems={'center'}
+                    gap={2}
+                    h='fit-content'
+                  >
+                    <Icon as={LogOut01} />
+                    <Text as={'span'} fontWeight={'semibold'}>
+                      <Trans i18nKey='logout'>Logout</Trans>
+                    </Text>
+                  </Button>
                 </ListItem>
                 <Divider />
-                <ListItem fontSize={'xs'} fontWeight={'semibold'} as={RouterLink} to={Routes.terms}>
-                  <Trans i18nKey='menu.terms'>Terms</Trans>
+                <ListItem>
+                  <Text fontSize={'xs'} fontWeight={'semibold'} as={RouterLink} to={Routes.terms}>
+                    <Trans i18nKey='menu.terms'>Terms</Trans>
+                  </Text>
                 </ListItem>
-                <ListItem fontSize={'xs'} fontWeight={'semibold'} as={RouterLink} to={Routes.privacy}>
-                  <Trans i18nKey='menu.privacy'>Privacy</Trans>
+                <ListItem>
+                  <Text fontSize={'xs'} fontWeight={'semibold'} as={RouterLink} to={Routes.privacy}>
+                    <Trans i18nKey='menu.privacy'>Privacy</Trans>
+                  </Text>
                 </ListItem>
               </NavMenu>
             </Box>
@@ -172,6 +199,7 @@ const ListItemColorModeSwitcher = ({ ...props }) => {
       alignItems={'center'}
       gap={2}
       fontWeight={'semibold'}
+      role='button'
       {...props}
     >
       <Icon as={SwitchIcon} />
