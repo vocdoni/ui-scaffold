@@ -172,8 +172,9 @@ const NavMenu = ({ display, children }: { display?: any; children?: any }) => {
       {menuItems.map((item, index) => (
         <ListItem key={index}>
           <DashboardMenuItem
+            as={item.isExternal ? <ReactRouterLink to={item.route} /> : <Button />}
             label={item.label}
-            route={item.route}
+            route={!item.isExternal && item.route}
             variant='unstyled'
             fontWeight='semibold'
             display='flex'
