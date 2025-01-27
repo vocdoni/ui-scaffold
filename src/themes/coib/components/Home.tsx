@@ -198,8 +198,7 @@ const Coib = () => {
       )}
       {!canViewProcesses && (
         <Text style={{ marginBottom: '50px', textAlign: 'center' }}>
-          Per poder accedir a la votació i veure el vídeo en temps real, heu de prémer sobre “Identificar-se”.
-          <br />
+          Per poder accedir a la votació i veure el vídeo en temps real, heu de prémer sobre “Identificar-se”.<br />
           Us demanarem la vostre identificació. Posteriorment, podreu emetre el vostre vot de forma segura.
         </Text>
       )}
