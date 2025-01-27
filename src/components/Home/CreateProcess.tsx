@@ -61,21 +61,13 @@ const CreateProcess = () => {
             {t('home.create_process.btn')}
           </Button>
 
-          <Flex
-            justifyContent='center'
-            alignItems={{ base: 'center', lg: 'start' }}
-            flexDirection={{ base: 'column', sm: 'row', lg: 'column' }}
-            gap={{ sm: 5, lg: 0 }}
-          >
-            <Text display='flex' alignItems='center' gap={1} ml='3'>
-              <FaRegCheckCircle size={'30px'} />
-              {t('home.create_process.helper_1')}
-            </Text>
-            <Text display='none' alignItems='center' gap={1} ml='3' mt='1'>
+          <Text display='flex' alignItems='center' gap={1}>
+            <Box flex={'0 0 24px'}>
               <FaRegCheckCircle />
-              {t('home.create_process.helper_2')}
-            </Text>
-          </Flex>
+            </Box>
+
+            {t('home.create_process.helper_1')}
+          </Text>
         </Box>
       </Box>
       <Box flex='1 1 50%' display={{ lg: 'flex' }} justifyContent='center' alignItems='center'>
