@@ -428,7 +428,10 @@ export const colors = {
       },
     },
   },
-
+  toast: {
+    light: colorsBase.black,
+    dark: colorsBase.white.pure,
+  },
   radio: {
     bg: colorsBase.primary,
     border: colorsBase.primary,
