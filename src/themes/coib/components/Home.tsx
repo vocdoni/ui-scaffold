@@ -151,7 +151,7 @@ const Coib = () => {
       <Box>{election && !isAdmin && <SpreadsheetAccess setConnected={setConnected} connected={connected} />}</Box>
       {canViewProcesses && (
         <Box w='90%'>
-          <Text alignSelf='start' mb={10} as='h3' fontWeight='bold' fontSize='22px' style='margin-top:-30px;'>
+          <Text alignSelf='start' mb={10} as='h3' fontWeight='bold' fontSize='22px' style={{ marginTop: '-30px' }}>
             Votacions:
           </Text>
           <Flex gap={5} flexDirection={{ base: 'column' }}>
