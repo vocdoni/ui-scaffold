@@ -42,7 +42,7 @@ const ProcessHeader = () => {
       )}
       <Flex direction={{ base: 'column', lg2: 'row' }} mb={7} gap={10}>
         <Box flexGrow={0} flexShrink={0} flexBasis={{ base: '100%', md: '60%', lg: '65%', lg2: '70%', xl2: '75%' }}>
-          <ElectionTitle fontSize={{ base: '32px', md: '34px' }} textAlign='left' my={5} />
+          <ElectionTitle fontSize={{ base: '32px', md: '34px' }} textAlign='left' my={5} mt='100px' />
           <Flex
             gap={4}
             flexDirection={{ base: 'column', xl: 'row' }}

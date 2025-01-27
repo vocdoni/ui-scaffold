@@ -220,6 +220,7 @@ export const SpreadsheetAccess = ({
         }}
         sx={styles.disconnect}
         isDisabled={voting}
+        śtyle='background:none;color:#333;'
       >
         {localize('spreadsheet.logout')}
       </Button>
@@ -228,7 +229,7 @@ export const SpreadsheetAccess = ({
 
   return (
     <>
-      <Button onClick={onOpen} sx={styles.button}>
+      <Button onClick={onOpen} sx={styles.button} style='width:250px;height:50px;'>
         {localize('spreadsheet.access_button')}
       </Button>
       <Modal isOpen={isOpen} onClose={() => !loading && onClose()}>

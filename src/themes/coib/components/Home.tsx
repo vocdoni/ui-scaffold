@@ -9,19 +9,21 @@ import header from '/shared/votacions_cap.jpg'
 const processes = [
   {
     //1
-    title: 'Votació Coib 1',
-    pid: '6be21a5a9dc00bc6e9d8c567e84ab2221e5c2f9a4b21b66f020b020400000003',
+    title: 'Aprovació dels pressupostos 2025',
+    pid: '0x6be21a5a9dc0692e163a34937bd757b9c913c8759a40707e3a25020400000000',
   },
   {
     //2
-    title: 'Votació Coib 2',
-    pid: '6be21a5a9dc00bc6e9d8c567e84ab2221e5c2f9a4b21b66f020b020400000003',
+    title: 'Elecció Junta Directiva',
+    pid: '0x6be21a5a9dc0692e163a34937bd757b9c913c8759a40707e3a25020400000001',
   },
+  /*
   {
     //3
     title: 'Votació Coib3',
     pid: '6be21a5a9dc00bc6e9d8c567e84ab2221e5c2f9a4b21b66f020b020400000003',
   },
+  */
 ]
 
 const PlataformaWrapper = () => (
@@ -101,12 +103,10 @@ const Coib = () => {
             <Text fontSize='18px'>
               <OrderedList ml='35px'>
                 <ListItem>Benvinguda.</ListItem>
+                <ListItem>Presentació Pressupost 2025.</ListItem>
+                <div style={{ color: '#297b90' }}>Votació: `Aprovació dels pressupostos 2025`.</div>
                 <ListItem>Presentació Candidatures.</ListItem>
-                <div style={{ color: '#297b90' }}>Votació 1: `Elecció de Candidats`.</div>
-                <ListItem>Pressupost 2024.</ListItem>
-                <div style={{ color: '#297b90' }}>Votació 2: `Aprovació Presspost 2024`.</div>
-                <ListItem>Pressupost 2025.</ListItem>
-                <div style={{ color: '#297b90' }}>Votació 3: `Aprovació Pressupost 2025`.</div>
+                <div style={{ color: '#297b90' }}>Votació: `Elecció Junta Directiva`.</div>
                 <ListItem>Torn obert de preguntes.</ListItem>
               </OrderedList>
             </Text>
@@ -151,8 +151,7 @@ const Coib = () => {
       <Box>{election && !isAdmin && <SpreadsheetAccess setConnected={setConnected} connected={connected} />}</Box>
       {canViewProcesses && (
         <Box w='90%'>
-          <Text alignSelf='start' mb={10} as='h3' fontWeight='bold' fontSize='22px'>
-            <br />
+          <Text alignSelf='start' mb={10} as='h3' fontWeight='bold' fontSize='22px' style='margin-top:-30px;'>
             Votacions:
           </Text>
           <Flex gap={5} flexDirection={{ base: 'column' }}>
@@ -199,8 +198,9 @@ const Coib = () => {
       )}
       {!canViewProcesses && (
         <Text style={{ marginBottom: '50px', textAlign: 'center' }}>
-          Per poder accedir a la votació i veure el vídeo en temps real, heu de prémer sobre “Identificar-se”. Us
-          demanarem la vostre identificació. Posteriorment, podreu emetre el vostre vot de forma segura.
+          Per poder accedir a la votació i veure el vídeo en temps real, heu de prémer sobre “Identificar-se”.
+          <br />
+          Us demanarem la vostre identificació. Posteriorment, podreu emetre el vostre vot de forma segura.
         </Text>
       )}
       <Text style={{ marginBottom: '150px', textAlign: 'center' }}>
