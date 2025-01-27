@@ -306,10 +306,6 @@ export const colors = {
         light: colorsBase.white.pure,
         dark: colorsBase.blue.grayish,
       },
-      title: {
-        ligth: colorsBase.primary,
-        dark: colorsBase.white.pure,
-      },
     },
     paused: colorsBase.primary,
     read_more_dark: colorsBase.blue.dark2,

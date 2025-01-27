@@ -7,6 +7,7 @@ import { ReactNode, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { MdKeyboardArrowLeft } from 'react-icons/md'
 import { generatePath, Link as ReactRouterLink } from 'react-router-dom'
+import { useAuth } from '~components/Auth/useAuth'
 import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
 import { ShareModalButton } from '~components/Share'
 import { Routes } from '~src/router/routes'
@@ -25,6 +26,7 @@ const ProcessHeader = () => {
   const [censusInfo, setCensusInfo] = useState<CensusInfo>()
   const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(600, 20)
   const strategy = useStrategy()
+  const { isAuthenticated } = useAuth()
 
   // Get the census info to show the total size if the maxCensusSize is less than the total size
   useEffect(() => {
@@ -47,12 +49,13 @@ const ProcessHeader = () => {
 
   return (
     <Box>
-      {showOrgInformation && (
+      {showOrgInformation && isAuthenticated && (
         <IconButton
           as={ReactRouterLink}
           to={generatePath(Routes.organization, { address: ensure0x(election?.organizationId) })}
           aria-label='Back'
           icon={<MdKeyboardArrowLeft />}
+          w='fit-content'
         />
       )}
       {election?.header && (
@@ -60,8 +63,8 @@ const ProcessHeader = () => {
           <Image src={election?.header} w='100%' h='auto' objectFit='cover' />
         </Box>
       )}
-      <Flex direction={{ base: 'column', xl2: 'row' }} mb={7} gap={10}>
-        <Box flex={{ xl2: '1 1 80%' }}>
+      <Flex direction={{ base: 'column', xl2: 'row' }} gap={6}>
+        <Box flex={{ xl2: '0 0 75%' }}>
           <ElectionTitle fontSize='4xl' textAlign='left' my={5} />
           <Flex flexDirection={{ base: 'column', xl: 'row' }} mb={4} justifyContent='space-between'>
             <Flex gap={2} flexDirection={{ base: 'column', xl: 'row' }} alignItems={{ base: 'start', xl: 'center' }}>
@@ -106,13 +109,15 @@ const ProcessHeader = () => {
         </Box>
 
         <Flex
-          flex={{ xl2: '1 1 20%' }}
+          display={{ base: 'none', xl2: 'flex' }}
+          flex={{ xl2: '0 0 25%' }}
           position='relative'
           flexDirection={{ base: 'row', xl2: 'column' }}
           alignItems='start'
           flexWrap='wrap'
           justifyContent={{ base: 'center', xl2: 'start' }}
           gap={{ base: 4, sm: 10, xl2: 4 }}
+          // ml={{ xl2: 10 }}
           opacity={0.85}
           _hover={{
             opacity: 1,

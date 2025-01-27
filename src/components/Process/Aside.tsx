@@ -193,7 +193,6 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
       justifyContent='center'
       alignItems='center'
       background='transparent'
-      color='process.aside.color'
       py={3}
       px={{ base: 3, lg2: 0 }}
       {...props}
@@ -234,7 +233,7 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
       {isAbleToVote && (
         <>
           <CVoteButton
-            w='60%'
+            w='100%'
             fontSize='lg'
             height='50px'
             onClick={setQuestionsTab}
