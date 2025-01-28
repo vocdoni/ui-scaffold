@@ -67,7 +67,12 @@ const DashboardMenuContent = () => (
     </Link>
     <HSeparator />
     <DashboardMenuOptions />
-    <Flex flexDirection={'column'} alignItems={'center'} display={{ lg: 'none' }}>
+    <Flex
+      flexDirection={'column'}
+      alignItems={'center'}
+      justifyContent={'center'}
+      display={{ base: 'flex', lg: 'none' }}
+    >
       <Button
         as={RouterLink}
         to={generatePath(Routes.processes.create)}
