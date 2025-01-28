@@ -25,7 +25,6 @@ import { IoMdMoon, IoMdSunny } from 'react-icons/io'
 import { IoPricetagOutline } from 'react-icons/io5'
 import { RiContactsBook3Line } from 'react-icons/ri'
 import { generatePath, Link as ReactRouterLink, Link as RouterLink } from 'react-router-dom'
-import { isExternal } from 'util/types'
 import { useAuth } from '~components/Auth/useAuth'
 import { DashboardMenuItem } from '~components/Dashboard/Menu/Item'
 import { ColorModeSwitcher } from '~components/Layout/ColorModeSwitcher'
@@ -37,10 +36,11 @@ type MenuItem = {
   icon: any
   label: string
   route?: string
-  isExternal?: boolean
 }
 
 const Navbar = () => {
+  const { isAuthenticated } = useAuth()
+  const reducedMenu = location.pathname.startsWith('/processes') && !isAuthenticated
   return (
     <Flex
       width='full'
@@ -58,19 +58,21 @@ const Navbar = () => {
     >
       <Flex justifyContent='space-between' alignItems='center' zIndex={1} w='100%'>
         <Logo />
-        <DesktopNav display={{ base: 'none', xl: 'flex' }} />
-        <Mobile />
+        <DesktopNav display={{ base: reducedMenu ? 'flex' : 'none', xl: 'flex' }} />
+        {!reducedMenu && <Mobile />}
       </Flex>
     </Flex>
   )
 }
 
 const DesktopNav = ({ display }: { display?: any }) => {
+  const { isAuthenticated } = useAuth()
+  const reducedMenu = location.pathname.startsWith('/processes') && !isAuthenticated
   return (
     <>
-      <NavMenu display={display} />
+      {!reducedMenu && <NavMenu display={display} />}
       <Flex alignItems={'center'} display={display ? display : 'flex'}>
-        <DashboardButton />
+        {!reducedMenu && <DashboardButton />}
         <LanguagesMenu />
         <ColorModeSwitcher />
       </Flex>
@@ -109,6 +111,7 @@ const Mobile = () => {
                   <DashboardButton />
                 </ListItem>
                 <Divider />
+
                 <ListItem>
                   <LanguagesListAccordion />
                 </ListItem>
@@ -143,8 +146,6 @@ const Mobile = () => {
               </NavMenu>
             </Box>
           </DrawerContent>
-
-          {/* <DashboardButton variant={'unstyled'} /> */}
         </DrawerContent>
       </Drawer>
     </>
@@ -154,12 +155,13 @@ const Mobile = () => {
 const NavMenu = ({ display, children }: { display?: any; children?: any }) => {
   const { t } = useTranslation()
   const isMobile = useBreakpointValue({ base: true, xl: false })
+  const { isAuthenticated } = useAuth()
+  const reducedMenu = location.pathname.startsWith('/processes') && !isAuthenticated
   const menuItems: MenuItem[] = [
     {
       icon: <IoPricetagOutline />,
       label: t('navbar.pricing', { defaultValue: 'Pricing' }),
       route: Routes.plans,
-      isExternal: true,
     },
     {
       icon: <RiContactsBook3Line />,
@@ -169,24 +171,26 @@ const NavMenu = ({ display, children }: { display?: any; children?: any }) => {
   ]
   return (
     <List as='nav' display={display ? display : 'flex'} flexDirection={{ base: 'column', xl: 'row' }} gap={4}>
-      {menuItems.map((item, index) => (
-        <ListItem key={index}>
-          <DashboardMenuItem
-            as={item.isExternal ? ReactRouterLink : Button}
-            to={item.isExternal && item.route}
-            label={item.label}
-            route={!item.isExternal && item.route}
-            variant='unstyled'
-            fontWeight='semibold'
-            display='flex'
-            alignItems='center'
-            fontSize={'md'}
-            h={'fit-content'}
-            leftIcon={isMobile ? item.icon : undefined}
-            isExternal={isExternal}
-          />
-        </ListItem>
-      ))}
+      {!reducedMenu && (
+        <>
+          {menuItems.map((item, index) => (
+            <ListItem key={index}>
+              <DashboardMenuItem
+                label={item.label}
+                route={item.route}
+                variant='unstyled'
+                fontWeight='semibold'
+                display='flex'
+                alignItems='center'
+                fontSize={'md'}
+                h={'fit-content'}
+                leftIcon={isMobile ? item.icon : undefined}
+              />
+            </ListItem>
+          ))}
+        </>
+      )}
+
       <>{children}</>
     </List>
   )
