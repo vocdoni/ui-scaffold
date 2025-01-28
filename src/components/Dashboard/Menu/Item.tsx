@@ -28,9 +28,12 @@ export const DashboardMenuItem = ({
     variant={isActive && !hasChildren ? 'underline' : 'transparent'}
     w='full'
     colorScheme='gray'
-    leftIcon={icon ? <Icon as={icon} /> : undefined}
+    leftIcon={icon ? <Icon as={icon} mt='0px' /> : undefined}
     rightIcon={hasChildren ? isOpen ? <ChevronUpIcon /> : <ChevronDownIcon /> : undefined}
     mb={hasChildren && 1}
+    fontWeight={isActive ? '600' : '100'}
+    fontSize='16px'
+    fontFamily='basier'
   >
     {label}
   </Button>

@@ -138,6 +138,7 @@ const EditOrganization = () => {
           gap={6}
           maxW={InnerContentsMaxWidth}
           mx='auto'
+          my='30px'
           onSubmit={handleSubmit(onSubmit)}
         >
           <PublicOrgForm />

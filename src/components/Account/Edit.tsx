@@ -9,7 +9,7 @@ import Teams from './Teams'
 export const AccountEdit = () => {
   const { data: profile } = useProfile()
   return (
-    <Flex flexDirection='column' h='100%'>
+    <Flex flexDirection='column' h='97%' mt='20px'>
       <Tabs w='full' maxW={InnerContentsMaxWidth} mx='auto' isFitted>
         <TabList>
           <Tab>
