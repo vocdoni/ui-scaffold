@@ -21,6 +21,7 @@ const LayoutDashboard: React.FC = () => {
   return (
     <DashboardLayoutProviders>
       <Grid
+        position={'relative'}
         templateAreas={{
           base: `"header" "main"`,
           lg: `"sidebar header" "sidebar main"`,
@@ -31,14 +32,14 @@ const LayoutDashboard: React.FC = () => {
         }}
         templateRows='auto 1fr'
         minH='100vh'
-        height='100vh'
+        height='100%'
         px={{ base: 2, md: 4, lg: 0 }}
         bg='dashboard.bg.light'
         _dark={{ bg: 'dashboard.bg.dark' }}
-        gap={6}
+        columnGap={6}
       >
         {/* Top Menu */}
-        <Box gridArea='header' pt={6} gap={3} display='flex' alignItems='center' mr={{ base: 0, lg: 6 }}>
+        <Box gridArea='header' pt={6} gap={3} display='flex' alignItems='center' mr={{ base: 0, lg: 6 }} mb={6}>
           {back && (
             <IconButton
               as={ReactRouterLink}
@@ -71,10 +72,13 @@ const LayoutDashboard: React.FC = () => {
 
         {/* Main Content */}
         <Box
+          position={'relative'}
           gridArea='main'
           mr={{ base: 0, lg: 6 }}
           mb={4}
           minW={0}
+          gridRowStart={2}
+          gridRowEnd={4}
           boxShadow='0 0 0 1px rgba(56,60,67,.05),0 1px 3px 0 rgba(56,60,67,.15)'
           borderRadius='20px'
         >
