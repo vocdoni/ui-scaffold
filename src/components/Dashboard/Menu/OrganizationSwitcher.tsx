@@ -36,7 +36,7 @@ export const OrganizationSwitcher = () => {
       for (const org of profile.organizations) {
         const address = org.organization.address
         try {
-          const data = await client.fetchAccount(address)
+          const data = await client.fetchAccountInfo(address)
           names[address] = data?.account?.name?.default || address
         } catch (error) {
           console.error('Error fetching organization name:', error)
@@ -67,6 +67,16 @@ export const OrganizationSwitcher = () => {
       localStorage.setItem(LocalStorageKeys.SignerAddress, firstOrgAddress)
     }
   }, [organizations, selectedOrg])
+
+  // Sync selected organization with localStorage when profile changes
+  useEffect(() => {
+    if (!profile?.organizations) return
+
+    const storedAddress = localStorage.getItem(LocalStorageKeys.SignerAddress)
+    if (storedAddress !== selectedOrg) {
+      setSelectedOrg(storedAddress)
+    }
+  }, [profile])
 
   const handleOrgChange = async (option: SelectOption | null) => {
     if (!option) return
