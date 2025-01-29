@@ -10,12 +10,12 @@ const processes = [
   {
     //1
     title: 'Aprovació dels pressupostos 2025',
-    pid: '0x6be21a5a9dc0692e163a34937bd757b9c913c8759a40707e3a25020400000000',
+    pid: '6be21a5a9dc0708cb5cdb0bc8dd0d73b14bbe23a857d95f24819020000000000',
   },
   {
     //2
     title: 'Elecció Junta Directiva',
-    pid: '0x6be21a5a9dc0692e163a34937bd757b9c913c8759a40707e3a25020400000001',
+    pid: '6be21a5a9dc0708cb5cdb0bc8dd0d73b14bbe23a857d95f24819020000000001',
   },
   /*
   {
