@@ -1,21 +1,20 @@
-import { AspectRatio, Box, Flex, Image, Link, ListItem, OrderedList, Spinner, Text } from '@chakra-ui/react'
+import { AspectRatio, Box, Flex, Link, ListItem, OrderedList, Spinner, Text } from '@chakra-ui/react'
 import { ElectionProvider, useClient, useElection } from '@vocdoni/react-providers'
 import { useEffect, useRef, useState } from 'react'
 import ReactPlayer from 'react-player'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { SpreadsheetAccess } from '~components/Process/SpreadsheetAccess'
-import header from '/shared/votacions_cap.jpg'
 
 const processes = [
   {
     //1
     title: 'Aprovació dels pressupostos 2025',
-    pid: '6be21a5a9dc0708cb5cdb0bc8dd0d73b14bbe23a857d95f24819020000000000',
+    pid: '6be21a5a9dc0708cb5cdb0bc8dd0d73b14bbe23a857d95f24819020c00000008',
   },
   {
     //2
     title: 'Elecció Junta Directiva',
-    pid: '6be21a5a9dc0708cb5cdb0bc8dd0d73b14bbe23a857d95f24819020000000001',
+    pid: '6be21a5a9dc0708cb5cdb0bc8dd0d73b14bbe23a857d95f24819020c00000009',
   },
   /*
   {
@@ -198,7 +197,8 @@ const Coib = () => {
       )}
       {!canViewProcesses && (
         <Text style={{ marginBottom: '50px', textAlign: 'center' }}>
-          Per poder accedir a la votació i veure el vídeo en temps real, heu de prémer sobre “Identificar-se”.<br />
+          Per poder accedir a la votació i veure el vídeo en temps real, heu de prémer sobre “Identificar-se”.
+          <br />
           Us demanarem la vostre identificació. Posteriorment, podreu emetre el vostre vot de forma segura.
         </Text>
       )}
