@@ -44,6 +44,10 @@ export const colors = {
       light: colorsBase.white.pure,
       dark: colorsBase.blue.dark,
     },
+    color: {
+      light: colorsBase.black,
+      dark: colorsBase.white.pure,
+    },
     border: colorsBase.gray.light,
     error: colorsBase.red,
     info: colorsBase.gray.normal,
@@ -429,10 +433,7 @@ export const colors = {
       },
     },
   },
-  toast: {
-    light: colorsBase.black,
-    dark: colorsBase.white.pure,
-  },
+
   radio: {
     bg: colorsBase.primary,
     border: colorsBase.primary,
