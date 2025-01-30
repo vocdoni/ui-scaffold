@@ -129,6 +129,7 @@
     },
     "confirm": {
       "cancel": "Cancel",
+      "cancel_button": "Cancel",
       "confirm": "Confirm Vote",
       "title": "Confirm"
     },
@@ -562,7 +563,6 @@
     "create_process": {
       "btn": "Try it for free",
       "helper_1": "Voting processes ready in just 10 minutes for your voters, seamlessly compatible with mobile devices.",
-      "helper_2": "Free up to 100 voters",
       "subtitle": "Vocdoni APP delivers an affordable, easy-to-use, and GDPR-compliant voting experience that anyone can use from anywhere with their PC, laptop, tablet and mobile. Powered by our own Blockchain.",
       "title": "Secure, Cost-Effective and Verifiable Voting Solution"
     },
@@ -899,7 +899,6 @@
     "error": "Error",
     "essential_subtitle": "Small or medium-sized orgs or community groups with basic voting needs.",
     "essential_title": "Essential",
-    "features": "Features",
     "free_subtitle": "Small organizations or community groups with basic voting needs.",
     "free_title": "Free",
     "gpdr_compilance": "GDPR compliance",
@@ -1271,9 +1270,6 @@
     "read_more": "Read more"
   },
   "user_management": "User Managment",
-  "validation": {
-    "required": ""
-  },
   "verification_code": "Verification Code",
   "verification_code_placeholder": "Enter the verification code",
   "verification_code_resent": "Verification code resent!",
