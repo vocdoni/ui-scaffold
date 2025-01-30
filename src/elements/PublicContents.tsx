@@ -42,7 +42,8 @@ export const PublicContentsLayout = () => (
 export const PlansLayout = () => (
   <Flex
     flexDirection='column'
-    gap={5}
+    gap={{ base: '60px', lg: '100px' }}
+    mt={{ base: 10, lg: 14 }}
     width='full'
     mx='auto'
     maxW='1400px'
