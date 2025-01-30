@@ -11,29 +11,6 @@ import { DashboardMenuOptions } from './Options'
 const DashboardMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => (
   <>
     {/* Sidebar for large screens */}
-    <Flex
-      flexDirection={'column'}
-      alignItems={'center'}
-      display={{ base: 'none', lg: 'flex' }}
-      position={'sticky'}
-      bottom={'10px'}
-      justifyContent={'center'}
-      bg='dashboard.sidebar.bg.light'
-      _dark={{ bg: 'dashboard.sidebar.bg.dark' }}
-      pb={2}
-    >
-      <Button
-        as={RouterLink}
-        to={generatePath(Routes.processes.create)}
-        w='full'
-        my={5}
-        leftIcon={<AddIcon />}
-        variant='primary'
-      >
-        <Trans i18nKey='new_voting'>New voting</Trans>
-      </Button>
-      <LogoutBtn />
-    </Flex>
     <Box
       gridArea='sidebar'
       p={4}
@@ -43,7 +20,9 @@ const DashboardMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
       bg='dashboard.sidebar.bg.light'
       _dark={{ bg: 'dashboard.sidebar.bg.dark' }}
       boxShadow='3px 0 5px -6px #6c6d75'
-      h='100%'
+      position={'fixed'}
+      height={'100vh'}
+      gridAutoColumns={'auto 1fr auto'}
     >
       <DashboardMenuContent />
     </Box>
@@ -59,6 +38,7 @@ const DashboardMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
     </Drawer>
   </>
 )
+
 // Common menu contents
 const DashboardMenuContent = () => (
   <>
@@ -67,12 +47,7 @@ const DashboardMenuContent = () => (
     </Link>
     <HSeparator />
     <DashboardMenuOptions />
-    <Flex
-      flexDirection={'column'}
-      alignItems={'center'}
-      justifyContent={'center'}
-      display={{ base: 'flex', lg: 'none' }}
-    >
+    <Flex mt={'auto'} flexDirection={'column'} alignItems={'center'}>
       <Button
         as={RouterLink}
         to={generatePath(Routes.processes.create)}
