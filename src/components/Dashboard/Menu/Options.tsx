@@ -21,9 +21,9 @@ export const DashboardMenuOptions = () => {
   const [openSection, setOpenSection] = useState<string | null>(null)
   const menuItems: MenuItem[] = [
     {
-     label: t('organization.dashboard'),
-     icon: HiHome,
-     route: Routes.dashboard.base,
+      label: t('organization.dashboard'),
+      icon: HiHome,
+      route: Routes.dashboard.base,
     },
     {
       label: t('voting_processes'),

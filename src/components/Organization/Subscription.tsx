@@ -134,23 +134,41 @@ export const SubscriptionList = () => {
                 </Box>
               </Td>
               <Td>
-                <Tag style={{ border: '0px', padding:'6px 15px', color:'#193d32', margin: '0px auto' }}>{currency(subscription.plan.startingPrice)}</Tag>
+                <Tag style={{ border: '0px', padding: '6px 15px', color: '#193d32', margin: '0px auto' }}>
+                  {currency(subscription.plan.startingPrice)}
+                </Tag>
               </Td>
               <Td>
-                <Tag style={{ border: '0px', padding:'6px 15px', color:'#193d32', margin: '0px auto' }}>{new Date(subscription.subscriptionDetails.startDate).toLocaleDateString()}</Tag>
+                <Tag style={{ border: '0px', padding: '6px 15px', color: '#193d32', margin: '0px auto' }}>
+                  {new Date(subscription.subscriptionDetails.startDate).toLocaleDateString()}
+                </Tag>
               </Td>
               <Td>
-                <Tag style={{ border: '0px', padding:'6px 15px', color:'#193d32', margin: '0px auto' }}>{new Date(subscription.subscriptionDetails.renewalDate).toLocaleDateString()}</Tag>
+                <Tag style={{ border: '0px', padding: '6px 15px', color: '#193d32', margin: '0px auto' }}>
+                  {new Date(subscription.subscriptionDetails.renewalDate).toLocaleDateString()}
+                </Tag>
               </Td>
               {isFree ? (
                 <Td>
-                  <Button style={{ margin: '0px auto' }} variant='primary' size='sm' isLoading={isLoading} onClick={() => openModal('subscription')}>
+                  <Button
+                    style={{ margin: '0px auto' }}
+                    variant='primary'
+                    size='sm'
+                    isLoading={isLoading}
+                    onClick={() => openModal('subscription')}
+                  >
                     <Trans i18nKey='upgrade'>Upgrade</Trans>
                   </Button>
                 </Td>
               ) : (
                 <Td>
-                  <Button style={{ margin: '0px auto' }} variant='outline' size='sm' isLoading={isLoading} onClick={() => handleChangeClick()}>
+                  <Button
+                    style={{ margin: '0px auto' }}
+                    variant='outline'
+                    size='sm'
+                    isLoading={isLoading}
+                    onClick={() => handleChangeClick()}
+                  >
                     <Trans i18nKey='subscription.change_plan_button'>Change</Trans>
                   </Button>
                 </Td>
