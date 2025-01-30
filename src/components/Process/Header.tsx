@@ -1,16 +1,13 @@
 import { InfoIcon, WarningIcon } from '@chakra-ui/icons'
-import { Box, Flex, Icon, IconButton, Image, Text, Tooltip } from '@chakra-ui/react'
+import { Box, Flex, Icon, Image, Text, Tooltip } from '@chakra-ui/react'
 import { ElectionDescription, ElectionSchedule, ElectionStatusBadge, ElectionTitle } from '@vocdoni/chakra-components'
 import { useClient, useElection, useOrganization } from '@vocdoni/react-providers'
-import { CensusType, ElectionStatus, ensure0x, InvalidElection, PublishedElection, Strategy } from '@vocdoni/sdk'
+import { CensusType, ElectionStatus, InvalidElection, PublishedElection, Strategy } from '@vocdoni/sdk'
 import { ReactNode, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { MdKeyboardArrowLeft } from 'react-icons/md'
-import { generatePath, Link as ReactRouterLink } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
 import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
 import { ShareModalButton } from '~components/Share'
-import { Routes } from '~src/router/routes'
 import { ActionsMenu } from './ActionsMenu'
 import { StampIcon } from './Census/StampIcon'
 import { CreatedBy } from './CreatedBy'
@@ -49,15 +46,6 @@ const ProcessHeader = () => {
 
   return (
     <Box>
-      {showOrgInformation && isAuthenticated && (
-        <IconButton
-          as={ReactRouterLink}
-          to={generatePath(Routes.organization, { address: ensure0x(election?.organizationId) })}
-          aria-label='Back'
-          icon={<MdKeyboardArrowLeft />}
-          w='fit-content'
-        />
-      )}
       {election?.header && (
         <Box w='100%' mx='auto' maxH='300px' my='30px' overflow='hidden'>
           <Image src={election?.header} w='100%' h='auto' objectFit='cover' />
