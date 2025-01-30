@@ -113,7 +113,7 @@ export const ProcessView = () => {
           <Heading variant='contents-section'>
             <Trans i18nKey='voting_link'>Voting Link</Trans>
           </Heading>
-          <DashboardBox display='flex' gap={4} flexDirection={{ base: 'column', xl: 'row' }} alignItems='center'>
+          <DashboardBox display='flex' gap={4} flexDirection={{ base: 'column', lg: 'row' }} alignItems='center'>
             <Icon as={Link03} color={'dashboard.process_view.link'} />
             <Link
               href={votingLink}
@@ -161,7 +161,7 @@ export const ProcessView = () => {
         gap={{ base: 4, lg: 10 }}
         align='stretch'
         display={{ base: 'flex', lg: 'flex' }}
-        flexDirection={{ base: 'column', md: 'row', lg: 'column' }}
+        flexDirection={{ base: 'column', lg: 'column' }}
       >
         <Stack flexDir='column'>
           {/* Running label */}
@@ -213,7 +213,7 @@ export const ProcessView = () => {
             <Trans i18nKey='total_votes_submitted'>Total Votes Submitted</Trans>
           </Text>
           <Box display='flex' alignItems='center' justifyContent='center' gap={3}>
-            <Text fontSize='3xl'>{(election instanceof PublishedElection && election.voteCount) || 0}</Text>
+            <Text fontSize='3lg'>{(election instanceof PublishedElection && election.voteCount) || 0}</Text>
             <Text fontSize='sm' color='gray.600' _dark={{ color: 'gray.400' }}>
               ({participation}%)
             </Text>
@@ -225,7 +225,7 @@ export const ProcessView = () => {
           <Text fontWeight={'bold'}>
             <Trans i18nKey='census_details'>Census Details</Trans>
           </Text>
-          <Text fontSize='2xl'>
+          <Text fontSize='2lg'>
             {election instanceof PublishedElection && election.census.size} <Trans i18nKey='voters'>voters</Trans>
           </Text>
         </DashboardBox>
