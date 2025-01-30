@@ -17,6 +17,7 @@ export const translations = (t: TFunction<string, string>) => ({
     title: t('cc.confirm.title').toString(),
     cancel: t('cc.confirm.cancel').toString(),
     confirm: t('cc.confirm.confirm').toString(),
+    cancel_button: t('cc.confirm.cancel_button').toString(),
   },
   // questions and vote button
   vote: {

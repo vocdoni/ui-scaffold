@@ -12,6 +12,9 @@ export const Modal = defineMultiStyleConfig({
       overflow: 'hidden',
       p: { base: 5, lg: 10 },
     },
+    footer: {
+      justifyContent: 'center',
+    },
   },
   variants: {
     'pricing-modal': {

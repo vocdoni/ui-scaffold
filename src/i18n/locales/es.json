@@ -132,6 +132,7 @@
     },
     "confirm": {
       "cancel": "Cancelar",
+      "cancel_button": "Cancelar",
       "confirm": "Confirmar Voto",
       "title": "Confirmar"
     },
@@ -569,7 +570,6 @@
     "create_process": {
       "btn": "Prueba gratis",
       "helper_1": "Procesos de votación listos en 10 min. para tus votantes y adaptados a móbiles",
-      "helper_2": "Gratis hasta 100 votantes",
       "subtitle": "La aplicación Vocdoni ofrece una experiencia de votación asequible, fácil de usar y compatible con el GDPR que cualquier persona puede utilizar desde cualquier lugar con su PC, portátil, tableta o teléfono. Impulsado por nuestra propia Blockchain.",
       "title": "Votación segura, rápida y verificable"
     },
@@ -907,7 +907,6 @@
     "error": "",
     "essential_subtitle": "Organizaciones pequeñas o medianas o grupos comunitarios con necesidades básicas de votación.",
     "essential_title": "Esencial",
-    "features": "Funciones",
     "free_subtitle": "Organizaciones pequeñas o grupos comunitarios con necesidades básicas de votación.",
     "free_title": "Gratis",
     "gpdr_compilance": "Cumplimiento del GDPR",

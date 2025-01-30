@@ -129,6 +129,7 @@
     },
     "confirm": {
       "cancel": "Cancel",
+      "cancel_button": "Cancel",
       "confirm": "Confirm Vote",
       "title": "Confirm"
     },
@@ -562,7 +563,6 @@
     "create_process": {
       "btn": "Try it for free",
       "helper_1": "Voting processes ready in just 10 minutes for your voters, seamlessly compatible with mobile devices.",
-      "helper_2": "Free up to 100 voters",
       "subtitle": "Vocdoni APP delivers an affordable, easy-to-use, and GDPR-compliant voting experience that anyone can use from anywhere with their PC, laptop, tablet and mobile. Powered by our own Blockchain.",
       "title": "Secure, Cost-Effective and Verifiable Voting Solution"
     },
@@ -899,7 +899,6 @@
     "error": "Error",
     "essential_subtitle": "Small or medium-sized orgs or community groups with basic voting needs.",
     "essential_title": "Essential",
-    "features": "Features",
     "free_subtitle": "Small organizations or community groups with basic voting needs.",
     "free_title": "Free",
     "gpdr_compilance": "GDPR compliance",
@@ -919,7 +918,7 @@
     "your_plan": "You're currently subscribed to the <plan>{{ plan }}</plan> plan. Upgrade now, and you'll only pay the difference for the remaining time in your billing period. Starting from your next billing cycle on <plan>{{ billing, format }}</plan>, you'll be charged the full price for your new plan."
   },
   "pricing_card": {
-    "from": "From ${{ price }}/year",
+    "from": "From {{ price }}/year",
     "most_popular_plan": "Most popular plan",
     "view_features": "View all features"
   },
