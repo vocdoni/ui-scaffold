@@ -45,12 +45,17 @@ const PricingCard = ({
         <Text>{subtitle}</Text>
       </CardHeader>
       <CardBody>
-        <Button isDisabled={isDisabled || false} onClick={() => setValue('planId', plan.id)} type='submit'>
+        <Button
+          isDisabled={isDisabled || false}
+          onClick={() => setValue('planId', plan.id)}
+          type='submit'
+          variant={'solid'}
+        >
           <Trans i18nKey='subscribe'>Subscribe</Trans>
         </Button>
-        <Text>
+        <Text mt={4}>
           <Trans i18nKey='pricing_card.from' values={{ price }}>
-            From ${{ price }}/year
+            From {{ price }}/year
           </Trans>
         </Text>
         <Box>
@@ -62,7 +67,7 @@ const PricingCard = ({
             ))}
           </UnorderedList>
         </Box>
-        <Button onClick={handleViewFeatures}>
+        <Button onClick={handleViewFeatures} variant={'transparent'}>
           <Trans i18nKey='pricing_card.view_features'>View All features</Trans>
         </Button>
       </CardBody>
