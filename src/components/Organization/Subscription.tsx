@@ -85,6 +85,7 @@ export const SubscriptionList = () => {
       })
 
   const isFree = subscription.plan.id === PlanId.Free
+  const { openModal } = usePricingModal()
 
   return (
     <VStack gap={4} w='full' mt='8'>
@@ -112,19 +113,20 @@ export const SubscriptionList = () => {
               <Th>
                 <Trans i18nKey='subscription.your_subscription'>Your Subscription</Trans>
               </Th>
-              <Th>
+              <Th textAlign='center'>
                 <Trans i18nKey='subscription.price'>Price</Trans>
               </Th>
-              <Th>
+              <Th textAlign='center'>
                 <Trans i18nKey='subscription.since'>Since</Trans>
               </Th>
-              <Th colSpan={isFree ? 1 : 2}>
+              <Th textAlign='center'>
                 <Trans i18nKey='subscription.next_billing'>Next Billing</Trans>
               </Th>
+              <Th textAlign='center'>Action</Th>
             </Tr>
           </Thead>
           <Tbody>
-            <Tr>
+            <Tr h='75px'>
               <Td>
                 <Box display='flex' alignItems='center' gap={3}>
                   <Avatar name={subscription.plan.name} size='sm' />
@@ -132,17 +134,23 @@ export const SubscriptionList = () => {
                 </Box>
               </Td>
               <Td>
-                <Tag>{currency(subscription.plan.startingPrice)}</Tag>
+                <Tag style={{ border: '0px', padding:'6px 15px', color:'#193d32', margin: '0px auto' }}>{currency(subscription.plan.startingPrice)}</Tag>
               </Td>
               <Td>
-                <Tag>{new Date(subscription.subscriptionDetails.startDate).toLocaleDateString()}</Tag>
+                <Tag style={{ border: '0px', padding:'6px 15px', color:'#193d32', margin: '0px auto' }}>{new Date(subscription.subscriptionDetails.startDate).toLocaleDateString()}</Tag>
               </Td>
               <Td>
-                <Tag>{new Date(subscription.subscriptionDetails.renewalDate).toLocaleDateString()}</Tag>
+                <Tag style={{ border: '0px', padding:'6px 15px', color:'#193d32', margin: '0px auto' }}>{new Date(subscription.subscriptionDetails.renewalDate).toLocaleDateString()}</Tag>
               </Td>
-              {!isFree && (
+              {isFree ? (
                 <Td>
-                  <Button variant='outline' size='sm' isLoading={isLoading} onClick={() => handleChangeClick()}>
+                  <Button style={{ margin: '0px auto' }} variant='primary' size='sm' isLoading={isLoading} onClick={() => openModal('subscription')}>
+                    <Trans i18nKey='upgrade'>Upgrade</Trans>
+                  </Button>
+                </Td>
+              ) : (
+                <Td>
+                  <Button style={{ margin: '0px auto' }} variant='outline' size='sm' isLoading={isLoading} onClick={() => handleChangeClick()}>
                     <Trans i18nKey='subscription.change_plan_button'>Change</Trans>
                   </Button>
                 </Td>
