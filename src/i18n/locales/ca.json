@@ -1283,6 +1283,9 @@
     "read_more": "Llegeix més"
   },
   "user_management": "Gestió d'usuaris",
+  "validation": {
+    "required": ""
+  },
   "verification_code": "Verification Code",
   "verification_code_placeholder": "Enter the verification code",
   "verification_code_resent": "Verification code resent!",
