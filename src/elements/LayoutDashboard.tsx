@@ -23,22 +23,22 @@ const LayoutDashboard: React.FC = () => {
       <Grid
         templateAreas={{
           base: `"header" "main"`,
-          lg: `"sidebar header" "sidebar main"`,
+          xl: `"sidebar header" "sidebar main"`,
         }}
         templateColumns={{
           base: '1fr',
-          lg: '215px 1fr',
+          xl: '215px 1fr',
         }}
         templateRows='auto 1fr'
         minH='100vh'
         height='100%'
-        px={{ base: 2, md: 4, lg: 0 }}
+        px={{ base: 2, md: 4, xl: 0 }}
         bg='dashboard.bg.light'
         _dark={{ bg: 'dashboard.bg.dark' }}
         gap={6}
       >
         {/* Top Menu */}
-        <Box gridArea='header' pt={6} gap={3} display='flex' alignItems='center' mr={{ base: 0, lg: 6 }}>
+        <Box gridArea='header' pt={6} gap={3} display='flex' alignItems='center' mr={{ base: 0, xl: 6 }}>
           {back && (
             <IconButton
               as={ReactRouterLink}
@@ -62,7 +62,7 @@ const LayoutDashboard: React.FC = () => {
             {/* User profile & menu */}
             <AccountMenu />
             {/* Hamburger button to open sidebar on small screens */}
-            <IconButton icon={<HamburgerIcon />} onClick={onOpen} display={{ lg: 'none' }} aria-label='Open menu' />
+            <IconButton icon={<HamburgerIcon />} onClick={onOpen} display={{ xl: 'none' }} aria-label='Open menu' />
           </Box>
         </Box>
 
@@ -72,7 +72,7 @@ const LayoutDashboard: React.FC = () => {
         {/* Main Content */}
         <Box
           gridArea='main'
-          mr={{ base: 0, lg: 6 }}
+          mr={{ base: 0, xl: 6 }}
           mb={4}
           minW={0}
           boxShadow='0 0 0 1px rgba(56,60,67,.05),0 1px 3px 0 rgba(56,60,67,.15)'
