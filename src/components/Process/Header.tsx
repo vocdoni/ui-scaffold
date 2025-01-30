@@ -105,7 +105,6 @@ const ProcessHeader = () => {
           flexWrap='wrap'
           justifyContent={{ base: 'center', xl2: 'start' }}
           gap={{ base: 4, sm: 10, xl2: 4 }}
-          // ml={{ xl2: 10 }}
           opacity={0.85}
           _hover={{
             opacity: 1,
