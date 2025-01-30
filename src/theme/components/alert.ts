@@ -30,9 +30,17 @@ const baseStyle = (props: any) => {
     },
     title: {
       gridColumn: { lg: 2 },
+      color: 'alert.color.light',
+      _dark: {
+        color: 'alert.color.dark',
+      },
     },
     description: {
       gridColumn: { lg: 2 },
+      color: 'alert.color.light',
+      _dark: {
+        color: 'alert.color.dark',
+      },
     },
     icon: {
       display: 'flex',
