@@ -51,9 +51,9 @@ const ProcessHeader = () => {
           <Image src={election?.header} w='100%' h='auto' objectFit='cover' />
         </Box>
       )}
-      <Flex direction={{ base: 'column', xl2: 'row' }} gap={6}>
+      <Flex direction={{ base: 'column', xl2: 'row' }} gap={{ base: 6, lg: 10, xl: 20 }}>
         <Box flex={{ xl2: '0 0 75%' }}>
-          <ElectionTitle fontSize='4xl' textAlign='left' my={5} />
+          <ElectionTitle fontSize='4xl' textAlign='left' mb={5} />
           <Flex flexDirection={{ base: 'column', xl: 'row' }} mb={4} justifyContent='space-between'>
             <Flex gap={2} flexDirection={{ base: 'column', xl: 'row' }} alignItems={{ base: 'start', xl: 'center' }}>
               <Flex gap={3} justifyContent={'space-between'} w={{ base: '100%', xl: 'fit-content' }}>
@@ -67,6 +67,7 @@ const ProcessHeader = () => {
                   <ShareModalButton
                     caption={t('share.election_share_text')}
                     text={t('share.election_share_btn_text')}
+                    size='xs'
                   />
                 </Box>
               </Flex>
@@ -78,7 +79,11 @@ const ProcessHeader = () => {
               </Flex>
             </Flex>
             <Box display={{ base: 'none', xl: 'flex' }}>
-              <ShareModalButton caption={t('share.election_share_text')} text={t('share.election_share_btn_text')} />
+              <ShareModalButton
+                caption={t('share.election_share_text')}
+                text={t('share.election_share_btn_text')}
+                size='xs'
+              />
             </Box>
           </Flex>
           <Flex flexDirection='column'>
@@ -98,7 +103,7 @@ const ProcessHeader = () => {
 
         <Flex
           display={{ base: 'none', xl2: 'flex' }}
-          flex={{ xl2: '0 0 25%' }}
+          flexGrow={{ xl2: 1 }}
           position='relative'
           flexDirection={{ base: 'row', xl2: 'column' }}
           alignItems='start'
