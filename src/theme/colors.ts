@@ -44,6 +44,10 @@ export const colors = {
       light: colorsBase.white.pure,
       dark: colorsBase.blue.dark,
     },
+    color: {
+      light: colorsBase.black,
+      dark: colorsBase.white.pure,
+    },
     border: colorsBase.gray.light,
     error: colorsBase.red,
     info: colorsBase.gray.normal,
@@ -131,6 +135,7 @@ export const colors = {
       dark: 'gray.600',
     },
   },
+  comparsions_table_title: colorsBase.primary,
   contents: {
     bg: {
       light: colorsBase.white.pure,

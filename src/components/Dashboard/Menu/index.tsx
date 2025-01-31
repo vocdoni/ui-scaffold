@@ -14,12 +14,16 @@ const DashboardMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
     <Box
       gridArea='sidebar'
       p={4}
-      display={{ base: 'none', lg: 'flex' }}
+      display={{ base: 'none', xl: 'flex' }}
       flexDirection='column'
       gap={4}
       bg='dashboard.sidebar.bg.light'
       _dark={{ bg: 'dashboard.sidebar.bg.dark' }}
       boxShadow='3px 0 5px -6px #6c6d75'
+      position={'fixed'}
+      height={'100vh'}
+      gridAutoColumns={'auto 1fr auto'}
+      maxW={'220px'}
     >
       <DashboardMenuContent />
     </Box>
