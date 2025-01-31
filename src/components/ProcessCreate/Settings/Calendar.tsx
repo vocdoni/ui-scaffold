@@ -3,6 +3,7 @@ import {
   Alert,
   AlertIcon,
   Box,
+  Button,
   Card,
   CardBody,
   CardHeader,
@@ -17,8 +18,9 @@ import {
 } from '@chakra-ui/react'
 import { MutableRefObject, useEffect, useRef, useState } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useSubscription } from '~components/Auth/Subscription'
+import { usePricingModal } from '~components/Pricing/use-pricing-modal'
 import { SubscriptionPermission, useBooleanRadioRegister } from '~constants'
 import { useDateFns } from '~i18n/use-date-fns'
 
@@ -26,6 +28,7 @@ const DateFormatHtml = 'yyyy-MM-dd HH:mm'
 
 const Calendar = () => {
   const { permission } = useSubscription()
+  const { openModal } = usePricingModal()
   const maxDuration = permission(SubscriptionPermission.MaxDuration)
   const [durationExceeded, setDurationExceeded] = useState(false)
   const { t } = useTranslation()
@@ -52,7 +55,27 @@ const Calendar = () => {
       message: t('form.error.field_is_required'),
     },
   })
-  const endDate = register('endDate', { required })
+  const validateDuration = (value: string) => {
+    if (!value || !maxDuration) return true
+
+    const startDate = begin && !autoStart ? new Date(begin) : new Date()
+    const endDate = new Date(value)
+    const durationDays = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)
+    const maxDurationDays = parseInt(maxDuration)
+
+    return (
+      durationDays <= maxDurationDays ||
+      t('form.error.max_duration_exceeded', {
+        defaultValue: 'The selected duration exceeds the maximum allowed duration of {{days}} days for your plan.',
+        days: maxDuration,
+      })
+    )
+  }
+
+  const endDate = register('endDate', {
+    required,
+    validate: validateDuration,
+  })
   const begin = watch('startDate')
   const end = watch('endDate')
   const autoStart = watch('electionType.autoStart')
@@ -171,16 +194,19 @@ const Calendar = () => {
         <Alert status='error' mt={4}>
           <AlertIcon />
           <Text>
-            {t('calendar.max_duration_exceeded', {
-              defaultValue:
-                'The selected duration exceeds the maximum allowed duration of {{days}} days for your plan.',
-              days: maxDuration,
-            })}
+            <Trans i18nKey='calendar.max_duration_exceeded'>
+              The selected duration exceeds the maximum allowed duration of {{ maxDuration }} days for your plan. Reduce
+              the voting length or{' '}
+              <Button variant='link' onClick={() => openModal('subscription')}>
+                upgrade your plan
+              </Button>
+              .
+            </Trans>
           </Text>
         </Alert>
       )}
 
-      {end && (
+      {end && !durationExceeded && (
         <Card variant='calendar'>
           <CardHeader>
             <InfoIcon />
