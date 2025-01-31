@@ -37,7 +37,7 @@ export const Subscription = () => {
 
   return (
     <VStack gap={4} w='full'>
-      <Button onClick={() => openModal('subscription')} alignSelf='end'>
+      <Button as={RouterLink} to={Routes.plans} alignSelf='end'>
         <Trans i18nKey='view_plans_and_pricing'>View Plans & Pricing</Trans>
       </Button>
       <SubscriptionList />
