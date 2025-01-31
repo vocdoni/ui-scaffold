@@ -28,6 +28,7 @@ import { Menu } from './components/menu'
 import { Alert } from './components/alert'
 import { Table } from './components/table'
 import { TabsResponsive } from './components/TabsResponsive'
+import { SpreadsheetAccess } from './components/SpreadsheetAccess'
 
 export const theme = extendTheme(vtheme, {
   config: {
@@ -103,6 +104,7 @@ export const theme = extendTheme(vtheme, {
     Pagination,
     Radio,
     Stepper,
+    SpreadsheetAccess,
     Table,
     Tabs,
     TabsResponsive,

@@ -27,7 +27,7 @@ import {
   WhatsappShare,
 } from '~components/Share/index'
 
-const ShareModalButton = ({ caption = '', text }: { caption?: string; text?: string }) => {
+const ShareModalButton = ({ caption = '', text, size = 'sm' }: { caption?: string; text?: string; size?: string }) => {
   const { t } = useTranslation()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const rawUrl = document.location.href.split('#')[0] // Remove the PK after the hash
@@ -39,10 +39,10 @@ const ShareModalButton = ({ caption = '', text }: { caption?: string; text?: str
 
   return (
     <>
-      <Button onClick={onOpen} variant={'icon'}>
+      <Button onClick={onOpen} variant={'icon'} fontSize={size}>
         <Icon as={LuShare} title={t('share.icon_title')} aria-label={t('share.icon_title')} />
         {text && (
-          <Text pl={2} as='span'>
+          <Text pl={2} as='span' fontSize={size}>
             {text}
           </Text>
         )}
