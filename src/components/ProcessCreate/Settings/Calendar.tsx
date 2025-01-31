@@ -1,5 +1,7 @@
 import { InfoIcon } from '@chakra-ui/icons'
 import {
+  Alert,
+  AlertIcon,
   Box,
   Card,
   CardBody,
@@ -13,15 +15,19 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react'
-import { MutableRefObject, useRef, useState } from 'react'
+import { MutableRefObject, useEffect, useRef, useState } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { useBooleanRadioRegister } from '~constants'
+import { useSubscription } from '~components/Auth/Subscription'
+import { SubscriptionPermission, useBooleanRadioRegister } from '~constants'
 import { useDateFns } from '~i18n/use-date-fns'
 
 const DateFormatHtml = 'yyyy-MM-dd HH:mm'
 
 const Calendar = () => {
+  const { permission } = useSubscription()
+  const maxDuration = permission(SubscriptionPermission.MaxDuration)
+  const [durationExceeded, setDurationExceeded] = useState(false)
   const { t } = useTranslation()
 
   const {
@@ -65,6 +71,21 @@ const Calendar = () => {
   const showPicker = (ref: MutableRefObject<HTMLInputElement | null | undefined>) => {
     if (ref.current && 'showPicker' in ref.current) ref.current.showPicker()
   }
+
+  useEffect(() => {
+    if (!end || !maxDuration) return
+
+    const startDate = begin && !autoStart ? new Date(begin) : new Date()
+    const endDate = new Date(end)
+
+    // Convert maxDuration from string to days
+    const maxDurationDays = parseInt(maxDuration)
+
+    // Calculate duration in days
+    const durationDays = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)
+
+    setDurationExceeded(durationDays > maxDurationDays)
+  }, [begin, end, autoStart, maxDuration])
   return (
     <Flex flexDirection='column' gap={6}>
       <Box>
@@ -145,6 +166,19 @@ const Calendar = () => {
           <FormErrorMessage>{errors.endDate?.message?.toString()}</FormErrorMessage>
         </FormControl>
       </Flex>
+
+      {durationExceeded && (
+        <Alert status='error' mt={4}>
+          <AlertIcon />
+          <Text>
+            {t('calendar.max_duration_exceeded', {
+              defaultValue:
+                'The selected duration exceeds the maximum allowed duration of {{days}} days for your plan.',
+              days: maxDuration,
+            })}
+          </Text>
+        </Alert>
+      )}
 
       {end && (
         <Card variant='calendar'>
