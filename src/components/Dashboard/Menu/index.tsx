@@ -23,7 +23,7 @@ const DashboardMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
       position={'fixed'}
       height={'100vh'}
       gridAutoColumns={'auto 1fr auto'}
-      maxW={'220px'}
+      maxW={'250px'}
     >
       <DashboardMenuContent />
     </Box>
