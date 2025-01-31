@@ -135,13 +135,13 @@ export const ProcessView = () => {
           </Box>
         )}
 
-        <Flex direction={{ base: 'column', xl2: 'row' }} alignItems='start' gap={{ xl2: 10 }} mt={{ xl2: 10 }}>
+        <Flex direction={{ base: 'column', xl2: 'row' }} alignItems='start' gap={{ base: 6, lg: 12, xl: 20 }} mt={6}>
           <Tabs
             isFitted
             order={{ base: 2, xl2: 1 }}
             index={tabIndex}
             onChange={handleTabsChange}
-            flex={{ xl2: '1 1 80%' }}
+            flex={{ xl2: '0 0 75%' }}
             w='full'
           >
             <TabList>
@@ -152,7 +152,7 @@ export const ProcessView = () => {
             </TabList>
             <TabPanels>
               <TabPanel>
-                <Box ref={electionRef} pt='25px'>
+                <Box ref={electionRef}>
                   <ElectionQuestions
                     onInvalid={(args) => {
                       setFormErrors(args)
@@ -160,7 +160,15 @@ export const ProcessView = () => {
                     confirmContents={(election, answers) => <ConfirmVoteModal election={election} answers={answers} />}
                   />
                 </Box>
-                <Box position='sticky' bottom={0} left={0} pb={1} pt={1} display={{ base: 'none', xl2: 'block' }}>
+                <Box
+                  position='sticky'
+                  bottom={0}
+                  left={0}
+                  pb={1}
+                  pt={1}
+                  display={{ base: 'none', xl2: 'block' }}
+                  color='red'
+                >
                   <VoteButton setQuestionsTab={setQuestionsTab} />
                 </Box>
               </TabPanel>
@@ -170,7 +178,7 @@ export const ProcessView = () => {
             </TabPanels>
           </Tabs>
           <Flex
-            flex={{ xl2: '1 1 20%' }}
+            flexGrow={{ xl2: 1 }}
             flexDirection='column'
             alignItems={{ base: 'center', xl2: 'start' }}
             order={{ base: 1, xl2: 2 }}

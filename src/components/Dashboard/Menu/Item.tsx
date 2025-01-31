@@ -10,6 +10,8 @@ export const DashboardMenuItem = ({
   isActive = false,
   onToggle,
   hasChildren = false,
+  variant,
+  ...props
 }: {
   label: string
   route?: string
@@ -18,6 +20,8 @@ export const DashboardMenuItem = ({
   isActive?: boolean
   onToggle?: () => void
   hasChildren?: boolean
+  variant?: string
+  [key: string]: any
 }) => (
   <Button
     as={route ? ReactRouterLink : undefined}
@@ -25,7 +29,7 @@ export const DashboardMenuItem = ({
     onClick={hasChildren ? onToggle : undefined}
     isActive={hasChildren ? (isOpen ? true : false) : false} // Set active state
     justifyContent='start'
-    variant={isActive && !hasChildren ? 'underline' : 'transparent'}
+    variant={variant ? variant : isActive && !hasChildren ? 'underline' : 'transparent'}
     w='full'
     colorScheme='gray'
     leftIcon={icon ? <Icon as={icon} mt='0px' /> : undefined}
@@ -34,6 +38,7 @@ export const DashboardMenuItem = ({
     fontWeight={isActive ? '600' : '100'}
     fontSize='16px'
     fontFamily='basier'
+    {...props}
   >
     {label}
   </Button>

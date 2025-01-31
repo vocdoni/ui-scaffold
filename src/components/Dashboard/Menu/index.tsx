@@ -20,10 +20,10 @@ const DashboardMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
       bg='dashboard.sidebar.bg.light'
       _dark={{ bg: 'dashboard.sidebar.bg.dark' }}
       boxShadow='3px 0 5px -6px #6c6d75'
-      position={'fixed'}
-      height={'100vh'}
-      gridAutoColumns={'auto 1fr auto'}
-      maxW={'220px'}
+      position='fixed'
+      height='100vh'
+      gridAutoColumns='auto 1fr auto'
+      w='250px'
     >
       <DashboardMenuContent />
     </Box>
@@ -48,7 +48,7 @@ const DashboardMenuContent = () => (
     </Link>
     <HSeparator mb='10px' />
     <DashboardMenuOptions />
-    <Flex mt={'auto'} flexDirection={'column'} alignItems={'center'}>
+    <Flex mt='auto' flexDirection='column' alignItems='center'>
       <Button
         as={RouterLink}
         to={generatePath(Routes.processes.create)}

@@ -85,6 +85,7 @@ export const LanguagesListAccordion = () => {
           _hover={{ bgColor: 'transparent' }}
           display={'flex'}
           alignItems={'center'}
+          justifyContent={'start'}
           fontSize={'md'}
           leftIcon={<FaGlobeAmericas />}
         >

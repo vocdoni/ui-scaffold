@@ -6,6 +6,7 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 
 const baseStyle = definePartsStyle({
   alert: {
+    width: 'full',
     px: { base: 3, sm: 5 },
     py: 7,
     mb: '30px',
@@ -22,7 +23,6 @@ const baseStyle = definePartsStyle({
     border: 'none',
 
     '& span': {
-      color: 'white',
       ml: { base: 2, lg: 10, xl: 2 },
       gridRow: '1/3',
       gridColumn: '1/2',
@@ -66,6 +66,11 @@ const baseStyle = definePartsStyle({
       display: 'flex',
       flexDirection: 'column',
       gap: 10,
+      pt: { base: 6, xl: 10 },
+      mb: { base: 8, xl: 12 },
+      '& > div:first-of-type': {
+        display: 'none',
+      },
     },
   },
 
@@ -86,25 +91,15 @@ const baseStyle = definePartsStyle({
     textAlign: 'start',
     lineHeight: 1.3,
     fontSize: 'xl !important',
-    color: 'process.questions.title.light',
-
-    _dark: {
-      color: 'process.questions.title.dark',
-    },
   },
 
   description: {
     px: 1,
-    color: 'process.questions.description',
     textAlign: 'start',
     fontSize: 'md !important',
 
     '& a': {
       textDecoration: 'underline',
-    },
-
-    _dark: {
-      color: 'process.questions.title.dark',
     },
   },
 
