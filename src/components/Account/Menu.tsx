@@ -29,7 +29,7 @@ const AccountMenu: React.FC<BoxProps> = (props) => {
   if (isLoading) {
     return (
       <Box {...props}>
-        <Spinner />
+        <Spinner minH='35px' minW='35px' />
       </Box>
     )
   }
