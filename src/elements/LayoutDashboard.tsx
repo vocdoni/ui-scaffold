@@ -27,7 +27,7 @@ const LayoutDashboard: React.FC = () => {
         }}
         templateColumns={{
           base: '1fr',
-          xl: '215px 1fr',
+          xl: '250px 1fr',
         }}
         templateRows='auto 1fr'
         minH='100vh'
