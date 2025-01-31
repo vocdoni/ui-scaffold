@@ -24,6 +24,7 @@ const DashboardMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
       height={'100vh'}
       gridAutoColumns={'auto 1fr auto'}
       maxW={'250px'}
+      minW={'250px'}
     >
       <DashboardMenuContent />
     </Box>
