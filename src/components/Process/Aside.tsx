@@ -64,16 +64,16 @@ const ProcessAside = () => {
           </Text>
 
           {showVoters && !showVotes && (
-            <Box display='flex' flexDirection='row' justifyContent='center' alignItems='center' gap={2}>
+            <Flex direction={'row'} justifyContent='center' alignItems='center' gap={2}>
               <Trans
                 i18nKey='aside.votes'
                 components={{
-                  span: <Text as='span' fontWeight='bold' fontSize='xl3' textAlign='center' lineHeight={1} />,
-                  text: <Text fontSize='xl' textAlign='center' lineHeight={1.3} />,
+                  span: <Text as='span' fontWeight='bold' fontSize='3xl' lineHeight={1} />,
+                  text: <Text fontSize='xl' lineHeight={1.3} />,
                 }}
                 count={votersCount}
               />
-            </Box>
+            </Flex>
           )}
 
           {showVotes && (
@@ -82,8 +82,8 @@ const ProcessAside = () => {
                 <Trans
                   i18nKey='aside.votes_weight'
                   components={{
-                    span: <Text as='span' fontWeight='bold' fontSize='3xl' textAlign='center' lineHeight={1} />,
-                    text: <Text fontSize='xl' textAlign='center' lineHeight={1.3} />,
+                    span: <Text as='span' fontWeight='bold' fontSize='3xl' lineHeight={1} />,
+                    text: <Text fontSize='xl' lineHeight={1.3} />,
                   }}
                   count={votes}
                 />
@@ -94,8 +94,8 @@ const ProcessAside = () => {
                   <Trans
                     i18nKey='aside.votes'
                     components={{
-                      span: <Text as='span' fontWeight='bold' fontSize='md' textAlign='center' lineHeight={1} mr={2} />,
-                      text: <Text fontSize='md' textAlign='center' lineHeight={1.3} />,
+                      span: <Text as='span' fontWeight='bold' fontSize='md' lineHeight={1} mr={2} />,
+                      text: <Text fontSize='md' lineHeight={1.3} />,
                     }}
                     count={election?.voteCount}
                   />
@@ -193,7 +193,6 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
       justifyContent='center'
       alignItems='center'
       background='transparent'
-      color='process.aside.color'
       py={3}
       px={{ base: 3, lg2: 0 }}
       {...props}
@@ -234,8 +233,9 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
       {isAbleToVote && (
         <>
           <CVoteButton
-            w='60%'
+            w='100%'
             fontSize='lg'
+            variant={'primary'}
             height='50px'
             onClick={setQuestionsTab}
             mb={4}
