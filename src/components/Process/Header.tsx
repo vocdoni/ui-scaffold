@@ -193,6 +193,7 @@ const ProcessHeader = () => {
           {election?.status === ElectionStatus.PAUSED && election?.organizationId !== account?.address && (
             <Flex
               color='process.paused'
+              _dark={{ color: 'whiteg' }}
               gap={2}
               alignItems='center'
               border='1px solid'
