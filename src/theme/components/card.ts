@@ -484,6 +484,7 @@ export const Card = defineMultiStyleConfig({
         boxShadow: 'var(--box-shadow-banner)',
         borderRadius: 'lg',
         fontSize: 'text',
+        w: 'full',
       },
     },
   },

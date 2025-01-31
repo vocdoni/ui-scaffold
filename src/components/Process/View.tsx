@@ -178,7 +178,7 @@ export const ProcessView = () => {
             </TabPanels>
           </Tabs>
           <Flex
-            flex={{ xl2: '0 0 25%' }}
+            flexGrow={{ xl2: 1 }}
             flexDirection='column'
             alignItems={{ base: 'center', xl2: 'start' }}
             order={{ base: 1, xl2: 2 }}

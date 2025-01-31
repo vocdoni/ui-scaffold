@@ -5,7 +5,6 @@ import { useClient, useElection, useOrganization } from '@vocdoni/react-provider
 import { CensusType, ElectionStatus, InvalidElection, PublishedElection, Strategy } from '@vocdoni/sdk'
 import { ReactNode, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useAuth } from '~components/Auth/useAuth'
 import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
 import { ShareModalButton } from '~components/Share'
 import { ActionsMenu } from './ActionsMenu'
@@ -23,7 +22,6 @@ const ProcessHeader = () => {
   const [censusInfo, setCensusInfo] = useState<CensusInfo>()
   const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(600, 20)
   const strategy = useStrategy()
-  const { isAuthenticated } = useAuth()
 
   // Get the census info to show the total size if the maxCensusSize is less than the total size
   useEffect(() => {
