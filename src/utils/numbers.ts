@@ -7,12 +7,12 @@ export const currency = (amount: number, currency: string = 'EUR') => {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
     currencyDisplay: 'symbol',
-  });
+  })
 
   // Ensure the € sign is placed after the amount
   if (currency === 'EUR' && !formatted.endsWith('€')) {
-    return `${formatted.replace('€', '').trim()} €`;
+    return `${formatted.replace('€', '').trim()} €`
   }
 
-  return formatted;
+  return formatted
 }
