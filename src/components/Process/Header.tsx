@@ -1,15 +1,12 @@
 import { InfoIcon, WarningIcon } from '@chakra-ui/icons'
-import { Box, Flex, Icon, IconButton, Image, Text, Tooltip } from '@chakra-ui/react'
+import { Box, Flex, Icon, Image, Text, Tooltip } from '@chakra-ui/react'
 import { ElectionDescription, ElectionSchedule, ElectionStatusBadge, ElectionTitle } from '@vocdoni/chakra-components'
 import { useClient, useElection, useOrganization } from '@vocdoni/react-providers'
-import { CensusType, ElectionStatus, ensure0x, InvalidElection, PublishedElection, Strategy } from '@vocdoni/sdk'
+import { CensusType, ElectionStatus, InvalidElection, PublishedElection, Strategy } from '@vocdoni/sdk'
 import { ReactNode, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { MdKeyboardArrowLeft } from 'react-icons/md'
-import { generatePath, Link as ReactRouterLink } from 'react-router-dom'
 import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
 import { ShareModalButton } from '~components/Share'
-import { Routes } from '~src/router/routes'
 import { ActionsMenu } from './ActionsMenu'
 import { StampIcon } from './Census/StampIcon'
 import { CreatedBy } from './CreatedBy'
@@ -47,22 +44,14 @@ const ProcessHeader = () => {
 
   return (
     <Box>
-      {showOrgInformation && (
-        <IconButton
-          as={ReactRouterLink}
-          to={generatePath(Routes.organization, { address: ensure0x(election?.organizationId) })}
-          aria-label='Back'
-          icon={<MdKeyboardArrowLeft />}
-        />
-      )}
       {election?.header && (
         <Box w='100%' mx='auto' maxH='300px' my='30px' overflow='hidden'>
           <Image src={election?.header} w='100%' h='auto' objectFit='cover' />
         </Box>
       )}
-      <Flex direction={{ base: 'column', xl2: 'row' }} mb={7} gap={10}>
-        <Box flex={{ xl2: '1 1 80%' }}>
-          <ElectionTitle fontSize='4xl' textAlign='left' my={5} />
+      <Flex direction={{ base: 'column', xl2: 'row' }} gap={{ base: 6, lg: 10, xl: 20 }}>
+        <Box flex={{ xl2: '0 0 75%' }}>
+          <ElectionTitle fontSize='4xl' textAlign='left' mb={5} />
           <Flex flexDirection={{ base: 'column', xl: 'row' }} mb={4} justifyContent='space-between'>
             <Flex gap={2} flexDirection={{ base: 'column', xl: 'row' }} alignItems={{ base: 'start', xl: 'center' }}>
               <Flex gap={3} justifyContent={'space-between'} w={{ base: '100%', xl: 'fit-content' }}>
@@ -76,6 +65,7 @@ const ProcessHeader = () => {
                   <ShareModalButton
                     caption={t('share.election_share_text')}
                     text={t('share.election_share_btn_text')}
+                    size='xs'
                   />
                 </Box>
               </Flex>
@@ -87,7 +77,11 @@ const ProcessHeader = () => {
               </Flex>
             </Flex>
             <Box display={{ base: 'none', xl: 'flex' }}>
-              <ShareModalButton caption={t('share.election_share_text')} text={t('share.election_share_btn_text')} />
+              <ShareModalButton
+                caption={t('share.election_share_text')}
+                text={t('share.election_share_btn_text')}
+                size='xs'
+              />
             </Box>
           </Flex>
           <Flex flexDirection='column'>
@@ -106,7 +100,8 @@ const ProcessHeader = () => {
         </Box>
 
         <Flex
-          flex={{ xl2: '1 1 20%' }}
+          display={{ base: 'none', xl2: 'flex' }}
+          flexGrow={{ xl2: 1 }}
           position='relative'
           flexDirection={{ base: 'row', xl2: 'column' }}
           alignItems='start'
@@ -198,6 +193,7 @@ const ProcessHeader = () => {
           {election?.status === ElectionStatus.PAUSED && election?.organizationId !== account?.address && (
             <Flex
               color='process.paused'
+              _dark={{ color: 'white' }}
               gap={2}
               alignItems='center'
               border='1px solid'

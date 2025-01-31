@@ -19,7 +19,7 @@ const Layout = () => {
         <Navbar />
       </HStack>
       <ScrollRestoration />
-      <Flex flexDirection='column' as='main' flexGrow={1}>
+      <Flex flexDirection='column' as='main' flexGrow={1} mt={{ base: 4, lg: 6 }}>
         <Outlet />
       </Flex>
       <Box
