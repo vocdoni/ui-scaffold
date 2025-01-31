@@ -17,7 +17,7 @@ const CreateOrganization = () => {
     setBackBtn(Routes.dashboard.base)
   }, [])
 
-  return <OrganizationCreate canSkip />
+  return <OrganizationCreate canSkip onSuccessRoute={Routes.dashboard.base} />
 }
 
 const CreateOrganizationSidebar = () => (

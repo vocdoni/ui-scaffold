@@ -17,10 +17,7 @@ export const NoOrganizations = () => {
             <Trans i18nKey='organization.no_organization_title'>You don't belong to any organization yet!</Trans>
           </Text>
           <Text mb='20px'>
-            <Trans
-              i18nKey='new_organization.description1'
-              components={{ span: <Text as='span' fontWeight='600' color='#000' /> }}
-            >
+            <Trans i18nKey='new_organization.description1' components={{ span: <Text as='span' fontWeight='600' /> }}>
               Set up your{' '}
               <Text as='span' fontWeight='bold'>
                 organization for free
