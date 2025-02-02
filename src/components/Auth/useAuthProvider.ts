@@ -113,7 +113,6 @@ export const useAuthProvider = () => {
     localStorage.removeItem(LocalStorageKeys.Token)
     localStorage.removeItem(LocalStorageKeys.Expiry)
     localStorage.removeItem(LocalStorageKeys.RenewSession)
-    localStorage.removeItem(LocalStorageKeys.SignerAddress)
     setBearer(null)
     clear()
   }, [])
