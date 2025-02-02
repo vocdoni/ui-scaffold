@@ -44,7 +44,7 @@ const DashboardMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
 const DashboardMenuContent = () => (
   <>
     <Link as={RouterLink} to={Routes.dashboard.base} alignSelf='center'>
-      <VocdoniLogo w='130px' m='5px auto' />
+      <VocdoniLogo w='130px' mx='5px' />
     </Link>
     <HSeparator mb='10px' />
     <DashboardMenuOptions />
