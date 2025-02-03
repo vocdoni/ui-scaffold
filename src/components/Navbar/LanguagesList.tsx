@@ -106,7 +106,7 @@ export const LanguagesListAccordion = () => {
               m={0}
               h={'fit-content'}
               w={'fit-content'}
-              mt='5px'
+              my='5px'
             >
               {k.toUpperCase()}
             </Button>
