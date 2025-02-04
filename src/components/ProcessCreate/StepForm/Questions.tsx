@@ -24,13 +24,7 @@ export interface QuestionsValues {
 const QuestionsTabs = () => {
   const { t } = useTranslation()
   const { form, setForm } = useProcessCreationSteps()
-  const {
-    watch,
-    register,
-    setValue,
-    trigger,
-    formState: { errors },
-  } = useFormContext()
+  const { watch, register, setValue, trigger, getValues } = useFormContext()
   const { replace } = useFieldArray({
     name: `questions`,
   })
@@ -75,6 +69,7 @@ export const Questions = () => {
   const methods = useForm<QuestionsValues>({
     defaultValues: {
       questions: form.questions,
+      questionType: form.questionType,
     },
   })
 
