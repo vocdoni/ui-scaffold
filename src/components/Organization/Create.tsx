@@ -3,7 +3,7 @@ import { Button, Flex, FlexProps, Text } from '@chakra-ui/react'
 import { useMutation, UseMutationOptions, useQueryClient } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { Account, RemoteSigner } from '@vocdoni/sdk'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink, To, useNavigate } from 'react-router-dom'
@@ -21,17 +21,60 @@ type FormData = PrivateOrgFormData & CreateOrgParams
 
 type OrganizationCreateResponse = {
   address: string
+  account: Account
+  signer: RemoteSigner
+  client: ReturnType<typeof useClient>['client']
 }
 
 const useOrganizationCreate = (
-  options?: Omit<UseMutationOptions<OrganizationCreateResponse, Error, CreateOrgParams>, 'mutationFn'>
+  options?: Omit<UseMutationOptions<OrganizationCreateResponse, Error, FormData>, 'mutationFn'>
 ) => {
   const { bearedFetch } = useAuth()
-  const client = useQueryClient()
-  return useMutation<OrganizationCreateResponse, Error, CreateOrgParams>({
-    mutationFn: (params: CreateOrgParams) => bearedFetch(ApiEndpoints.Organizations, { body: params, method: 'POST' }),
-    onSuccess: () => {
-      client.invalidateQueries({ queryKey: QueryKeys.profile })
+  const { client, setSigner, signer: csigner } = useClient()
+  const { bearer, signerRefresh } = useAuthProvider()
+  const qclient = useQueryClient()
+
+  return useMutation<OrganizationCreateResponse, Error, FormData>({
+    mutationFn: async (values: FormData) => {
+      // Create account on the saas to generate new priv keys
+      const { address }: { address: string } = await bearedFetch(ApiEndpoints.Organizations, {
+        body: {
+          name: values.name,
+          website: values.website,
+          description: values.description,
+          size: values.size?.value,
+          country: values.country?.value,
+          type: values.type?.value,
+          communications: values.communications,
+        },
+        method: 'POST',
+      })
+
+      const signer = new RemoteSigner({
+        url: import.meta.env.SAAS_URL,
+        token: bearer,
+      })
+
+      signer.address = address
+      client.wallet = signer
+
+      const account = new Account({
+        name: typeof values.name === 'object' ? values.name.default : values.name,
+        description: typeof values.description === 'object' ? values.description.default : values.description,
+      })
+
+      await client.createAccount({ account })
+
+      localStorage.setItem(LocalStorageKeys.SignerAddress, address)
+      qclient.invalidateQueries({ queryKey: QueryKeys.profile })
+
+      // Refresh the signer if it was already set
+      if (csigner !== null) {
+        setSigner(signer)
+        await signerRefresh()
+      }
+
+      return { address, account, signer, client }
     },
     ...options,
   })
@@ -49,72 +92,32 @@ export const OrganizationCreate = ({
   const navigate = useNavigate()
   const [isPending, setIsPending] = useState(false)
   const methods = useForm<FormData>()
+  const { fetchAccount } = useClient()
   const { handleSubmit } = methods
-  const { bearer, signerRefresh } = useAuthProvider()
-  const { client, fetchAccount, setClient, setSigner, signer: osigner } = useClient()
-  const [promiseError, setPromiseError] = useState<Error | null>(null)
-  const [redirect, setRedirect] = useState<To | null>(null)
 
-  const { mutateAsync: createSaasAccount, isError: isSaasError, error: saasError } = useOrganizationCreate()
+  const {
+    mutateAsync: createOrganization,
+    isError,
+    error,
+  } = useOrganizationCreate({
+    onSuccess: async ({ signer }) => {
+      navigate(onSuccessRoute)
+      setTimeout(async () => {
+        await fetchAccount()
+      }, 50)
+    },
+  })
 
-  const error = saasError || promiseError
-  const isError = isSaasError || !!promiseError
-
-  const onSubmit = (values: FormData) => {
+  const onSubmit = async (values: FormData) => {
     setIsPending(true)
-    // Create account on the saas to generate new priv keys
-    createSaasAccount({
-      name: values.name,
-      website: values.website,
-      description: values.description,
-      size: values.size?.value,
-      country: values.country?.value,
-      type: values.type?.value,
-      communications: values.communications,
-    })
-      .then(({ address }: { address: string }) => {
-        const signer = new RemoteSigner({
-          url: import.meta.env.SAAS_URL,
-          token: bearer,
-        })
-
-        signer.address = address
-        client.wallet = signer
-
-        // setting the signer when there's no signer causes the page to reload
-        if (osigner !== null) {
-          setSigner(signer)
-          setClient(client)
-        }
-        localStorage.setItem(LocalStorageKeys.SignerAddress, address)
-
-        return client.createAccount({
-          account: new Account({
-            name: typeof values.name === 'object' ? values.name.default : values.name,
-            description: typeof values.description === 'object' ? values.description.default : values.description,
-          }),
-        })
-      })
-      // store redirect
-      .then(() => {
-        setRedirect(onSuccessRoute)
-      })
-      .catch((e) => {
-        setPromiseError(e)
-      })
-      .finally(() => {
-        setIsPending(false)
-      })
+    try {
+      await createOrganization(values)
+    } catch (e) {
+      // Error handling is managed by react-query
+    } finally {
+      setIsPending(false)
+    }
   }
-
-  // redirect on success
-  useEffect(() => {
-    if (!redirect) return
-    // update account and signer
-    fetchAccount().then(() => signerRefresh())
-    // "redirect"
-    navigate(redirect)
-  }, [redirect])
 
   return (
     <FormProvider {...methods}>
