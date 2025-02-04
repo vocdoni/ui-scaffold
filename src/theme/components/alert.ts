@@ -19,6 +19,7 @@ const baseStyle = (props: any) => {
     container: {
       display: 'grid',
       gridTemplateColumns: { base: '1fr', lg: 'fit-content(50px) 1fr' },
+      gridColumnGap: 2,
       border: '1px solid',
       borderColor: 'alert.border',
       borderRadius: 'lg',
@@ -43,10 +44,6 @@ const baseStyle = (props: any) => {
       },
     },
     icon: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      gridColumn: 1,
       color,
       boxShadow: `0 0 0px 1px var(--chakra-colors-alert-box_shadow_light), 0 0 0px 2px  ${color}, 0 0 0 4px var(--chakra-colors-alert-box_shadow_light), 0 0 1px 5px ${color}`,
       borderRadius: 'lg',
