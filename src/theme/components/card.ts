@@ -288,12 +288,13 @@ export const Card = defineMultiStyleConfig({
       },
       header: {
         p: '30px',
-        pb: '20px',
-        fontSize: { base: '28.5px', sm: '28px' },
-        lineHeight: { base: '38px', sm: '37px' },
+        pb: '30px',
+        fontSize: { base: '22px', sm: '22px' },
+        lineHeight: { base: '26px', sm: '26px' },
         fontWeight: 'bold',
         textAlign: 'left',
         fontFamily: 'basier',
+        paddingTop: '0px',
       },
       body: {
         p: '30px',

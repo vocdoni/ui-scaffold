@@ -16,17 +16,22 @@ const Support = () => {
       backgroundRepeat='no-repeat'
       backgroundPosition='right'
       mb='100px'
+      boxShadow='inset 0 -1px 0 1px rgba(68, 67, 67, 0.38),0 8px 22px rgba(0, 0, 0, 0.44)'
+      maxW='1500px'
+      mx='auto'
+      borderRadius={{ base: '0px', lg: '16px' }}
+      w='96%'
     >
       <Box
         width='full'
         m='0 auto'
-        maxW='1920px'
+        maxW='1600px'
         px={{
           base: '10px',
           sm: '20px',
-          md: '80px',
+          md: '40px',
         }}
-        py={{ base: '60px', lg: '200px' }}
+        py={{ base: '60px', lg: '80px' }}
         position='relative'
         overflow='hidden'
       >
@@ -37,7 +42,7 @@ const Support = () => {
           bgColor='#738A57cf'
           position='absolute'
           right='25px'
-          top='-250px'
+          top='-240px'
           display={{ base: 'none', lg: 'block' }}
         />
         <Box

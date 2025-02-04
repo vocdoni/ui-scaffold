@@ -16,7 +16,7 @@ const Clients = () => {
 
   return (
     <>
-      <Text textAlign='center' mb={'40px'} fontFamily='basier' fontSize='23px' fontWeight='400'>
+      <Text textAlign='center' mb={'40px'} fontFamily='basier' fontSize='18px' fontWeight='400'>
         {t('home.clients_title')}
       </Text>
       <ClientsGrid />
@@ -29,7 +29,7 @@ export const ClientsGrid = (props: GridProps) => (
     as='section'
     maxWidth={'1400px'}
     mx='auto'
-    mb={{ base: '45px', lg: '60px' }}
+    mb={{ base: '25px', lg: '30px' }}
     px={{
       base: 2,
       sm: 4,

@@ -15,7 +15,16 @@ const Layout = () => {
       bgColor={'bg.light'}
       _dark={{ bgColor: 'bg.dark' }}
     >
-      <HStack as='header' position='sticky' top={0} w='full' backdropFilter='blur(40px)' zIndex={30}>
+      <HStack
+        as='header'
+        top={0}
+        w='96%'
+        mx='auto'
+        px={{
+          base: '10px'
+        }}
+        py='0px'
+      >
         <Navbar />
       </HStack>
       <ScrollRestoration />
@@ -26,6 +35,8 @@ const Layout = () => {
         as='footer'
         mt='auto'
         bgColor={`${location.pathname.startsWith('/organization') ? 'footer.gray' : 'footer.white'}`}
+        w='96%'
+        mx='auto'
       >
         <Footer />
       </Box>

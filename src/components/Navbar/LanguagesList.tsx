@@ -56,6 +56,7 @@ export const LanguagesMenu = () => {
             sx={{ span: { margin: 'px' } }}
             rightIcon={isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
             minW='none'
+            marginLeft={4}
           >
             <FaGlobeAmericas />
           </MenuButton>

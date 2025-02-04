@@ -9,7 +9,7 @@ const Solutions = () => {
     <Flex
       id='solutions'
       as='section'
-      maxW='1920px'
+      maxW='1600px'
       mb={{ base: '75px', lg: '100px' }}
       mx='auto'
       px={{
@@ -19,15 +19,16 @@ const Solutions = () => {
       }}
       flexDirection={{ base: 'column', xl: 'row' }}
       gap={{ base: '40px', xl: '60px' }}
+      mt='80px'
     >
       <Flex flex='1 1 50%' justifyContent='center' alignItems='center'>
         <Flex flexDirection='column' gap='24px'>
           <Box>
             <Text
-              fontSize={{ base: '40px', xl: '60px' }}
-              lineHeight={{ base: '36px', xl: '78px' }}
+              fontSize={{ base: '32px', xl: '42px' }}
+              lineHeight={{ base: '36px', xl: '46px' }}
               fontWeight='bold'
-              mb='30px'
+              mb='10px'
               fontFamily='basier'
               textAlign={{ base: 'center', xl: 'left' }}
             >
@@ -51,7 +52,7 @@ const Solutions = () => {
               </Box>
               <Box>
                 <Text>{t('home.solutions.card_1.title')}</Text>
-                <Text>{t('home.solutions.card_1.description')}</Text>
+                <Text fontSize='20px'>{t('home.solutions.card_1.description')}</Text>
               </Box>
             </CardBody>
           </Card>
@@ -62,7 +63,7 @@ const Solutions = () => {
               </Box>
               <Box>
                 <Text>{t('home.solutions.card_2.title')}</Text>
-                <Text>{t('home.solutions.card_2.description')}</Text>
+                <Text fontSize='20px'>{t('home.solutions.card_2.description')}</Text>
               </Box>
             </CardBody>
           </Card>
@@ -73,7 +74,7 @@ const Solutions = () => {
               </Box>
               <Box>
                 <Text>{t('home.solutions.card_3.title')}</Text>
-                <Text>{t('home.solutions.card_3.description')}</Text>
+                <Text fontSize='20px'>{t('home.solutions.card_3.description')}</Text>
               </Box>
             </CardBody>
           </Card>

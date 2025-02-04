@@ -1,8 +1,14 @@
-import { Box, Card, CardBody, CardHeader, Flex, Image, Text } from '@chakra-ui/react'
+import { Box, Card, CardBody, CardHeader, Flex, Image, Text, Button } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
+import { useState } from 'react'
 
 const Faqs = () => {
   const { t } = useTranslation()
+  const [showAll, setShowAll] = useState(false)
+  const faqs = []
+  for (let i = 1; i <= 45; i++) {
+    faqs.push('faq_' + i)
+  }
 
   return (
     <Box
@@ -15,14 +21,6 @@ const Faqs = () => {
       }}
       mb={{ base: '75px', lg: '100px' }}
     >
-      <Image
-        src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b72f92aa4f58_diagonal-violet-to-pink.svg'
-        position='absolute'
-        left='-40px'
-        mt='-75px'
-        width='300px'
-        display={{ base: 'none', xl: 'block' }}
-      />
       <Box
         width='full'
         m='0 auto'
@@ -36,11 +34,11 @@ const Faqs = () => {
         zIndex={10}
       >
         <Text
-          fontSize={{ base: '40px', xl: '60px' }}
-          lineHeight={{ base: '36px', xl: '78px' }}
+          fontSize={{ base: '32px', xl: '42px' }}
+          lineHeight={{ base: '36px', xl: '46px' }}
           fontWeight='bold'
           textAlign='center'
-          mb='30px'
+          mb='10px'
           fontFamily='basier'
         >
           {t('home.faqs.title')}
@@ -58,71 +56,32 @@ const Faqs = () => {
           {t('home.faqs.subtitle')}
         </Text>
         <Flex flexWrap='wrap' gap={10}>
-          <Card variant='faqs' flex={{ base: '1 1 100%', xl: '1 1 45%' }} mb='30px'>
-            <CardHeader>
-              <Text>{t('home.faqs.faq_1.title')}</Text>
-            </CardHeader>
-            <CardBody>
-              <Text>{t('home.faqs.faq_1.description')}</Text>
-            </CardBody>
-          </Card>
-          <Card variant='faqs' flex={{ base: '1 1 100%', xl: '1 1 45%' }} mb='30px'>
-            <CardHeader>
-              <Text>{t('home.faqs.faq_2.title')}</Text>
-            </CardHeader>
-            <CardBody>
-              <Text>{t('home.faqs.faq_2.description')}</Text>
-            </CardBody>
-          </Card>
-          <Card variant='faqs' flex={{ base: '1 1 100%', xl: '1 1 45%' }} mb='30px'>
-            <CardHeader>
-              <Text>{t('home.faqs.faq_3.title')}</Text>
-            </CardHeader>
-            <CardBody>
-              <Text>{t('home.faqs.faq_3.description')}</Text>
-            </CardBody>
-          </Card>
-          <Card variant='faqs' flex={{ base: '1 1 100%', xl: '1 1 45%' }} mb='30px'>
-            <CardHeader>
-              <Text>{t('home.faqs.faq_8.title')}</Text>
-            </CardHeader>
-            <CardBody>
-              <Text>{t('home.faqs.faq_8.description')}</Text>
-            </CardBody>
-          </Card>
-          <Card variant='faqs' flex={{ base: '1 1 100%', xl: '1 1 45%' }} mb='30px'>
-            <CardHeader>
-              <Text>{t('home.faqs.faq_4.title')}</Text>
-            </CardHeader>
-            <CardBody>
-              <Text>{t('home.faqs.faq_4.description')}</Text>
-            </CardBody>
-          </Card>
-          <Card variant='faqs' flex={{ base: '1 1 100%', xl: '1 1 45%' }} mb='30px'>
-            <CardHeader>
-              <Text>{t('home.faqs.faq_5.title')}</Text>
-            </CardHeader>
-            <CardBody>
-              <Text>{t('home.faqs.faq_5.description')}</Text>
-            </CardBody>
-          </Card>
-          <Card variant='faqs' flex={{ base: '1 1 100%', xl: '1 1 45%' }} mb='30px' border={{ xl: 'none' }}>
-            <CardHeader>
-              <Text>{t('home.faqs.faq_6.title')}</Text>
-            </CardHeader>
-            <CardBody>
-              <Text>{t('home.faqs.faq_6.description')}</Text>
-            </CardBody>
-          </Card>
-          <Card variant='faqs' flex={{ base: '1 1 100%', xl: '1 1 45%' }} mb='30px' border='none'>
-            <CardHeader>
-              <Text>{t('home.faqs.faq_7.title')}</Text>
-            </CardHeader>
-            <CardBody>
-              <Text>{t('home.faqs.faq_7.description')}</Text>
-            </CardBody>
-          </Card>
+          {faqs.map((faq, index) => (
+            <Card
+              key={faq}
+              variant='faqs'
+              flex={{ base: '1 1 100%', xl: '1 1 45%' }}
+              mb='30px'
+              display={showAll || index < 8 ? '' : 'none'}
+            >
+              <CardHeader>
+                <Text>{t(`home.faqs.${faq}.title`)}</Text>
+              </CardHeader>
+              <CardBody>
+                <Text>{t(`home.faqs.${faq}.description`)}</Text>
+              </CardBody>
+            </Card>
+          ))}
         </Flex>
+        {showAll ? (
+          <Button mx='auto' mt={4} onClick={() => setShowAll(false)}>
+            {t('home.faqs.show_less')}
+          </Button>
+        ) : (
+          <Button mx='auto' mt={4} onClick={() => setShowAll(true)}>
+            {t('home.faqs.show_more')}
+          </Button>
+        )}
       </Box>
     </Box>
   )

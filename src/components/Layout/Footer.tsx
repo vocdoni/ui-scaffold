@@ -13,14 +13,6 @@ const Footer = () => {
   return (
     <>
       <Flex
-        width='full'
-        m='0 auto'
-        maxW='1920px'
-        px={{
-          base: '10px',
-          sm: '20px',
-          md: '80px',
-        }}
         pt='24px'
         flexDirection={{ base: 'column', xl: 'row' }}
         alignItems='start'
@@ -106,12 +98,6 @@ const Footer = () => {
       <Flex
         width='full'
         m='0 auto'
-        maxW='1920px'
-        px={{
-          base: '10px',
-          sm: '20px',
-          md: '80px',
-        }}
         flexDirection={{ base: 'column', md: 'row' }}
         gap={{ base: '20px', md: '10px' }}
         justifyContent='space-between'

@@ -12,8 +12,8 @@ const CreateProcess = () => {
     <Flex
       as='section'
       width='full'
-      mt={{ base: '40px', lg: '60px' }}
-      mb={{ base: '75px', lg: '100px' }}
+      mt={{ base: '20px', lg: '40px' }}
+      mb={{ base: '40px', lg: '40px' }}
       mx='auto'
       maxW='1920px'
       px={{
@@ -27,8 +27,8 @@ const CreateProcess = () => {
     >
       <Box flex='1 1 50%'>
         <Text
-          fontSize={{ base: '48px', md: '52px', md2: '56px', lg2: '64px' }}
-          lineHeight={{ base: '54px', md: '58px', md2: '64px', lg2: '78px' }}
+          fontSize={{ base: '42px', md: '48px', md2: '50px', lg2: '58px' }}
+          lineHeight={{ base: '48px', md: '52px', md2: '58px', lg2: '64px' }}
           fontWeight='600'
           fontFamily='basier'
           mb={'40px'}
