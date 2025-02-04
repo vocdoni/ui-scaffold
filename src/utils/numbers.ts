@@ -5,6 +5,6 @@ export const currency = (amount: number, currency: string = 'EUR') =>
     style: 'currency',
     currency,
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
+    maximumFractionDigits: 2,
     currencyDisplay: 'symbol',
   })
