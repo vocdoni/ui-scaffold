@@ -14,6 +14,7 @@ const ProcessStatusFilter = ({ status, ...rest }: ProcessStatusFilterProps) => (
       as={NavLink}
       to={generatePath(Routes.dashboard.processes, { page: 1 })}
       isActive={status === undefined}
+      p='15px 22px'
     >
       <Trans i18nKey='all'>All</Trans>
     </Button>
@@ -22,6 +23,7 @@ const ProcessStatusFilter = ({ status, ...rest }: ProcessStatusFilterProps) => (
       as={NavLink}
       to={generatePath(Routes.dashboard.processes, { status: 'ready', page: 1 })}
       isActive={status === 'ready'}
+      p='15px 22px'
     >
       <Trans i18nKey='active'>Active</Trans>
     </Button>
@@ -30,6 +32,7 @@ const ProcessStatusFilter = ({ status, ...rest }: ProcessStatusFilterProps) => (
       as={NavLink}
       to={generatePath(Routes.dashboard.processes, { status: 'results', page: 1 })}
       isActive={status === 'results'}
+      p='15px 22px'
     >
       <Trans i18nKey='finished'>Finished</Trans>
     </Button>

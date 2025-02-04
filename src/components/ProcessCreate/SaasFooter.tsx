@@ -1,15 +1,10 @@
 import { Box, Flex, Link } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
-import { useSubscription } from '~components/Auth/Subscription'
 import { VocdoniLogo } from '~components/Layout/Logo'
-import { PlanId } from '~constants'
 
 const SaasFooter = () => {
   const { t } = useTranslation()
-  const { subscription } = useSubscription()
-  const isCustom = subscription?.plan.id === PlanId.Custom
-  const isFree = subscription?.plan.id === PlanId.Free
 
   return (
     <Box bgColor={'process_create.bg_light'} _dark={{ bgColor: 'process_create.bg_dark' }}>
@@ -29,13 +24,15 @@ const SaasFooter = () => {
           <Box minW='100px'>
             <VocdoniLogo />
           </Box>
-          <Link as={ReactRouterLink} to=''>
+          <Link variant='footer' as={ReactRouterLink} to='' mt='5px' fontSize={'sm'}>
             {t('terms_and_conditions', { defaultValue: 'Terms and Conditions' })}
           </Link>
-          <Link as={ReactRouterLink} to=''>
+          <Link variant='footer' as={ReactRouterLink} to='' mt='5px' fontSize={'sm'}>
             {t('privacy_policy', { defaultValue: 'Privacy Policy' })}
           </Link>
-          <Link href='mailto:support@vocdoni.org'>support@vocdoni.org</Link>
+          <Link variant='footer' mt='5px' href='mailto:support@vocdoni.org' fontSize={'sm'}>
+            support@vocdoni.org
+          </Link>
         </Flex>
       </Flex>
     </Box>

@@ -88,7 +88,7 @@ const PasswordResetForm: React.FC<PasswordResetFormProps> = ({ code, email }) =>
             {resetPasswordMutation.error.message}
           </Alert>
         )}
-        <Button type='submit' fontSize='sm' variant='brand' fontWeight='500' w='100%' h={50}>
+        <Button type='submit' fontSize='sm' variant='primary' fontWeight='500' w='100%' h={50}>
           <Trans i18nKey='reset_password_button'>Reset Password</Trans>
         </Button>
       </Flex>
