@@ -359,7 +359,8 @@ export const colors = {
     border_dark: colorsBase.white.pure,
     body_text: colorsBase.black,
     most_popular_plan: {
-      color: colorsBase.white.pure,
+      bg: colorsBase.beige,
+      color: colorsBase.black,
     },
     subtitle: {
       light: colorsBase.gray.normal,
