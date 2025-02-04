@@ -5,9 +5,9 @@ import { DashboardContents } from '~components/Layout/Dashboard'
 import { Routes } from '~src/router/routes'
 import empty from '/assets/illustrations/9.png'
 
-export const NoOrganizations = () => {
+export const NoOrganizations = ({ ...props }) => {
   return (
-    <Card variant='no-elections' minH='100%' maxW='650' m='80px auto'>
+    <Card variant='no-elections' minH='100%' maxW='650' m='80px auto' {...props}>
       <CardBody>
         <Flex justifyContent={'center'}>
           <Img src={empty} />

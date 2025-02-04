@@ -43,7 +43,7 @@ export const Subscription = () => {
         <Button as={ReactRouterLink} to={Routes.plans} alignSelf='end'>
           <Trans i18nKey='view_plans_and_pricing'>View Plans & Pricing</Trans>
         </Button>
-        <NoOrganizations />
+        <NoOrganizations my={0} />
       </VStack>
     )
   return (
