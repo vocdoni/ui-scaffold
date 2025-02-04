@@ -22,6 +22,7 @@ export const AlertIcon = (props: AlertIconProps) => {
     <chakra.span
       display='inherit'
       data-status={status}
+      alignSelf='center'
       {...props}
       className={cx('chakra-alert__icon', props.className)}
       __css={css}
