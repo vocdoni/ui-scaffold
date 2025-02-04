@@ -43,7 +43,7 @@ export const theme = extendTheme(vtheme, {
         '--box-shadow-dark-mode': '0 0 10px #101010',
       },
       body: {
-        bg: props.colorMode === 'dark' ? 'var(--chakra-colors-bg-dark)' : 'var(--chakra-colors-bg-light)',
+        bg: props.colorMode === 'dark' ? 'bg.dark' : 'bg.light',
       },
       '.md-sizes': {
         '& :first-of-type': {
