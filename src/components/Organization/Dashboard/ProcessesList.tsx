@@ -14,7 +14,7 @@ const ProcessesList = ({ processes }: ProcessesListProps) => {
   const { t } = useTranslation()
 
   return (
-    <TableContainer>
+    <TableContainer mt='40px'>
       <Table variant='striped'>
         <Thead>
           <Tr>
