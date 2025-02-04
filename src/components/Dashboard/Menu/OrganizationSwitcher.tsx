@@ -89,7 +89,7 @@ export const OrganizationSwitcher = () => {
   }
 
   return (
-    <Box mb={2} px={3.5} display='flex' alignItems='center' gap={2} justifyContent='space-between'>
+    <Box mb={3} px={3.5} display='flex' alignItems='center' gap={2} justifyContent='space-between'>
       {organizations.length > 1 ? (
         <Select
           value={organizations.find((org) => org.value === selectedOrg)}

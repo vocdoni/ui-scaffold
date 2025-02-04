@@ -48,7 +48,7 @@ const CreateProcess = () => {
         <Box maxW={{ lg: '90%' }}>
           <Button
             as={ReactRouterLink}
-            to={Routes.auth.signIn}
+            to={Routes.auth.signUp}
             colorScheme='gradient'
             variant='primary'
             mb='20px'

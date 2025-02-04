@@ -349,6 +349,7 @@ export const colors = {
     text_brand: colorsBase.primary,
     text_secondary: colorsBase.gray.normal,
     question_index: colorsBase.primary,
+    footer_link: colorsBase.gray.dark,
   },
   pricing_card: {
     bg: {
