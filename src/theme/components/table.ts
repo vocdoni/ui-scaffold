@@ -76,6 +76,29 @@ const striped = definePartsStyle((props) => ({
   },
 }))
 
+const subscription = definePartsStyle((props) => ({
+  thead: {
+    tr: {
+      th: {
+        '&:not(:first-of-type)': {
+          textAlign: 'center',
+        },
+      },
+    },
+  },
+  tbody: {
+    tr: {
+      minH: '75px',
+
+      td: {
+        '&:not(:first-of-type) *': {
+          mx: 'auto',
+        },
+      },
+    },
+  },
+}))
+
 const md = definePartsStyle({
   table: {
     borderRadius: 'lg',
@@ -102,5 +125,6 @@ export const Table = defineMultiStyleConfig({
   sizes: { md },
   variants: {
     striped,
+    subscription,
   },
 })

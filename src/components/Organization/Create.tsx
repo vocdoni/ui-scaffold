@@ -100,7 +100,7 @@ export const OrganizationCreate = ({
     isError,
     error,
   } = useOrganizationCreate({
-    onSuccess: async ({ signer }) => {
+    onSuccess: async () => {
       navigate(onSuccessRoute)
       setTimeout(async () => {
         await fetchAccount()

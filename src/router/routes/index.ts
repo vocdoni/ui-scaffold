@@ -12,7 +12,7 @@ export const Routes = {
   calculator: '/calculator',
   contact: 'https://www.vocdoni.io/contact',
   dashboard: {
-    base: '/admin',
+    base: '/admin/dashboard',
     organization: '/admin/organization',
     organizationCreate: '/admin/organization/create', // Organization create with dashboard layout
     process: '/admin/process/:id',
