@@ -8,11 +8,10 @@ const baseStyle = definePartsStyle((props) => {
 
   return {
     container: {
-      border: '1px solid',
-      borderColor: `${colorScheme}.200`,
       width: 'fit-content',
       display: 'flex',
       justifyContent: 'center',
+      padding: '6px 15px',
 
       _dark: {
         borderColor: `${colorScheme}.300`,
@@ -21,4 +20,7 @@ const baseStyle = definePartsStyle((props) => {
   }
 })
 
-export const Tag = defineMultiStyleConfig({ baseStyle, defaultProps: { colorScheme: 'brand' } })
+export const Tag = defineMultiStyleConfig({
+  baseStyle,
+  defaultProps: { colorScheme: 'brand' },
+})

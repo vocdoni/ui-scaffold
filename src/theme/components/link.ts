@@ -29,7 +29,7 @@ export const Link = defineStyleConfig({
     }),
     footer: (props) => ({
       textDecoration: 'none',
-      color: '#555',
+      color: 'process_create.footer_link',
 
       _hover: {
         textDecoration: 'underline',

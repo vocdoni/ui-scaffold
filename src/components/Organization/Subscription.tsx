@@ -37,7 +37,7 @@ export const Subscription = () => {
 
   return (
     <VStack gap={4} w='full'>
-      <Button onClick={() => openModal('subscription')} alignSelf='end'>
+      <Button as={RouterLink} to={Routes.plans} alignSelf='end'>
         <Trans i18nKey='view_plans_and_pricing'>View Plans & Pricing</Trans>
       </Button>
       <SubscriptionList />
@@ -85,6 +85,7 @@ export const SubscriptionList = () => {
       })
 
   const isFree = subscription.plan.id === PlanId.Free
+  const { openModal } = usePricingModal()
 
   return (
     <VStack gap={4} w='full' mt='8'>
@@ -106,7 +107,7 @@ export const SubscriptionList = () => {
         </Alert>
       )}
       <TableContainer w='full'>
-        <Table size='sm'>
+        <Table size='sm' variant={'subscription'}>
           <Thead>
             <Tr>
               <Th>
@@ -118,8 +119,11 @@ export const SubscriptionList = () => {
               <Th>
                 <Trans i18nKey='subscription.since'>Since</Trans>
               </Th>
-              <Th colSpan={isFree ? 1 : 2}>
+              <Th>
                 <Trans i18nKey='subscription.next_billing'>Next Billing</Trans>
+              </Th>
+              <Th>
+                <Trans i18nKey='subscription.action'>Action</Trans>
               </Th>
             </Tr>
           </Thead>
@@ -140,7 +144,13 @@ export const SubscriptionList = () => {
               <Td>
                 <Tag>{new Date(subscription.subscriptionDetails.renewalDate).toLocaleDateString()}</Tag>
               </Td>
-              {!isFree && (
+              {isFree ? (
+                <Td>
+                  <Button variant='primary' size='sm' isLoading={isLoading} onClick={() => openModal('subscription')}>
+                    <Trans i18nKey='upgrade'>Upgrade</Trans>
+                  </Button>
+                </Td>
+              ) : (
                 <Td>
                   <Button variant='outline' size='sm' isLoading={isLoading} onClick={() => handleChangeClick()}>
                     <Trans i18nKey='subscription.change_plan_button'>Change</Trans>
