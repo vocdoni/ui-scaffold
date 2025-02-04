@@ -110,9 +110,7 @@ const TeamMembersTable = ({ members, showExpiration = false }: { members: Member
               </Td>
             )}
             <Td textAlign='center' w={10}>
-              <Badge p='8px 20px' textTransform='capitalize' border='1px solid #999'>
-                {member.role}
-              </Badge>
+              <Badge>{member.role}</Badge>
             </Td>
           </Tr>
         ))}
