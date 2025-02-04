@@ -1,4 +1,5 @@
 {
+  "{{price}} <2>/ year</2>": "{{price}} <2>/ year</2>",
   "actions": {
     "save": "Save Changes"
   },
@@ -558,6 +559,10 @@
         "description": "Vocdoni offers both self-service and custom, key-in-hand solutions tailored to your needs.",
         "title": "We will be with you every step of the way"
       },
+      "card_3": {
+        "description": "",
+        "title": ""
+      },
       "title": "Let’s work together to find the best solution"
     },
     "create_process": {
@@ -631,6 +636,8 @@
         "description": "Vocdoni ensures the integrity of each voting process by recording each vote as a tamper-proof blockchain transaction, providing transparency and verifiability to all stakeholders. Vocdoni's rigorous security measures safeguard against tampering and manipulation, ensuring that every vote is accurately recorded and counted.",
         "title": "How does Vocdoni ensure the integrity of voting processes?"
       },
+      "show_less": "",
+      "show_more": "",
       "subtitle": "Below you'll find answers to our users’ most frequent questions. Provide clarity and confidence to your digital voting experience.",
       "title": "Frequently Asked Questions"
     },
@@ -809,6 +816,10 @@
   "more_than_memberships_one": "more than {{count}} membership",
   "more_than_memberships_other": "more than {{count}} memberships",
   "name": "Name",
+  "navbar": {
+    "contact": "Contact Us",
+    "pricing": "Pricing"
+  },
   "new_organization": {
     "create_organization_btn": "Create Organization",
     "description1": "Set up your <span>organization for free</span> and start creating voting processes to engage with your community.",
@@ -817,7 +828,13 @@
   },
   "new_password": "New Password",
   "new_password_placeholder": "Enter your new password",
+  "new_process": {
+    "title": "Create your first voting process"
+  },
   "new_voting": "New Voting",
+  "no_process": {
+    "description1": "You can start by <2>create a voting process.</2> We will guide you trough the process of defining the voting information, params and census. Is as easy as it gets."
+  },
   "no_results_filtering": "Your current search filter returns no results",
   "not_registred_yet": "Not registered yet?",
   "open_in_explorer": "Open in explorer",
@@ -841,6 +858,7 @@
       "title": "Create your first voting process"
     },
     "no_organization_title": "You don't belong to any organization yet!",
+    "no_process_title": "You don't have any voting process",
     "organization": "Organization",
     "title": {
       "read_more": "Expand title"
@@ -892,24 +910,30 @@
     "basic_analytics": "Basic reporting and analytics",
     "compare_features": "Compare all features",
     "core_voting": "Core voting features",
-    "custom_subtitle": "Large organizations enterprises, and institutions requiring extensive customization and support.",
-    "custom_title": "Custom",
+    "premium_subtitle": "Large organizations enterprises, and institutions requiring extensive customization and support.",
+    "premium_title": "Premium",
     "date_format": "dd/mm/yy",
     "dedicated_manager": "Dedicated account manager",
+    "demo": "Start exploring for free",
     "error": "Error",
-    "essential_subtitle": "Small or medium-sized orgs or community groups with basic voting needs.",
+    "essential_subtitle": "Perfect for medium orgs or groups with fundamental voting needs.",
     "essential_title": "Essential",
-    "free_subtitle": "Small organizations or community groups with basic voting needs.",
+    "extra_voter_cost": "Only {{price}}€ per extra voter",
+    "free_subtitle": "For small orgs or community groups with up to 50 members.",
     "free_title": "Free",
-    "gpdr_compilance": "GDPR compliance",
+    "gpdr_compilance": "GDPR compilant",
     "help": "Need some help?",
     "members_size": "{{ from }}-{{ to }} members",
-    "membership_size": "Select your membership size:",
-    "premium_subtitle": "Larger amount that require more advanced features.",
-    "premium_title": "Premium",
+    "membership_description": "*Each plan <1>includes a default number of voters</1>, and you can add extra if needed. The voter limit you select defines the maximum nº of participants. For example, if your plan includes 500 voters, you can run elections with up to 500 participants. <3></3><4></4>Need more? <6>Select the the nº of voters</6> or upgrade to a higher-tier plan.",
+    "membership_size_title": "How many voters do you need*?",
+    "plan_members": "Includes up to {{base}} voters",
+    "pro_subtitle": "Larger amount that require more advanced features.",
+    "pro_title": "Pro",
     "priority_support": "Priority ticket support",
     "ticket_support": "Ticket support",
+    "title": "Voting processes at the <1>lowest cost per voter</1>",
     "unlimited_yearly_processes": "Unlimited yearly voting processes",
+    "up_to_1_admin": "{{ admin }} administrator",
     "up_to_admins": "Up to {{ admin }} admin and {{ org }} org",
     "upgrade_title": "Upgrade your plan",
     "white_label": "White label solution",
@@ -918,8 +942,8 @@
     "your_plan": "You're currently subscribed to the <plan>{{ plan }}</plan> plan. Upgrade now, and you'll only pay the difference for the remaining time in your billing period. Starting from your next billing cycle on <plan>{{ billing, format }}</plan>, you'll be charged the full price for your new plan."
   },
   "pricing_card": {
-    "from": "From {{ price }}/year",
-    "most_popular_plan": "Most popular plan",
+    "from": "From ${{ price }}/year",
+    "most_popular_plan": "Recommended",
     "view_features": "View all features"
   },
   "privacy_policy": "Privacy Policy",
@@ -1127,6 +1151,7 @@
     },
     "recovery": "Account recovery"
   },
+  "register": "Register",
   "remove_avatar": "Remove avatar",
   "remove_header": "Remove header",
   "reset_password_button": "Reset Password",
@@ -1245,14 +1270,14 @@
     "current_plan": "Your current <2>{{ plan, lowercase }}</2> is limited to selecting up to <6>{{ voters }} voters</6>.",
     "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
     "plan": {
-      "basic": "Basic",
-      "custom": "Custom",
+      "basic": "Essential",
+      "custom": "Premium",
       "free": "Free",
       "limit": {
-        "basic": "Up to 1500",
-        "custom": "Unlimited",
+        "basic": "Up to 500",
+        "custom": "Up to 2500",
         "free": "50 voters",
-        "pro": "Up to 3000"
+        "pro": "Up to 1000"
       },
       "pro": "Pro"
     },
