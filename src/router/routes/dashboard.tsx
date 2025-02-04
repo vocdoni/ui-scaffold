@@ -20,6 +20,7 @@ const DashboardProcesses = lazy(() => import('~elements/dashboard/processes'))
 const DashboardProcessView = lazy(() => import('~elements/dashboard/processes/view'))
 const OrganizationTeam = lazy(() => import('~elements/dashboard/team'))
 
+
 // others
 const OrganizationDashboard = lazy(() => import('~components/Organization/Dashboard'))
 

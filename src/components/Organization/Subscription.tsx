@@ -22,8 +22,9 @@ import {
 import { useClient } from '@vocdoni/react-providers'
 import { ensure0x } from '@vocdoni/sdk'
 import { Trans } from 'react-i18next'
-import { Link as RouterLink } from 'react-router-dom'
+import { Link as ReactRouterLink, Link as RouterLink } from 'react-router-dom'
 import { useMutation } from 'wagmi'
+import { useAccountHealthTools } from '~components/Account/use-account-health-tools'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
@@ -31,10 +32,20 @@ import { usePricingModal } from '~components/Pricing/use-pricing-modal'
 import { PlanId } from '~constants'
 import { Routes } from '~src/router/routes'
 import { currency } from '~utils/numbers'
+import { NoOrganizations } from './NoOrganizations'
 
 export const Subscription = () => {
   const { openModal } = usePricingModal()
-
+  const { exists } = useAccountHealthTools()
+  if (!exists)
+    return (
+      <VStack gap={4} w='full'>
+        <Button as={ReactRouterLink} to={Routes.plans} alignSelf='end'>
+          <Trans i18nKey='view_plans_and_pricing'>View Plans & Pricing</Trans>
+        </Button>
+        <NoOrganizations />
+      </VStack>
+    )
   return (
     <VStack gap={4} w='full'>
       <Button onClick={() => openModal('subscription')} alignSelf='end'>
