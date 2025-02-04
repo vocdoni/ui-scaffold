@@ -22,9 +22,8 @@ import {
 import { useClient } from '@vocdoni/react-providers'
 import { ensure0x } from '@vocdoni/sdk'
 import { Trans } from 'react-i18next'
-import { Link as ReactRouterLink, Link as RouterLink } from 'react-router-dom'
+import { Link as RouterLink } from 'react-router-dom'
 import { useMutation } from 'wagmi'
-import { useAccountHealthTools } from '~components/Account/use-account-health-tools'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
@@ -32,23 +31,13 @@ import { usePricingModal } from '~components/Pricing/use-pricing-modal'
 import { PlanId } from '~constants'
 import { Routes } from '~src/router/routes'
 import { currency } from '~utils/numbers'
-import { NoOrganizations } from './NoOrganizations'
 
 export const Subscription = () => {
   const { openModal } = usePricingModal()
-  const { exists } = useAccountHealthTools()
-  if (!exists)
-    return (
-      <VStack gap={4} w='full'>
-        <Button as={ReactRouterLink} to={Routes.plans} alignSelf='end'>
-          <Trans i18nKey='view_plans_and_pricing'>View Plans & Pricing</Trans>
-        </Button>
-        <NoOrganizations my={0} />
-      </VStack>
-    )
+
   return (
     <VStack gap={4} w='full'>
-      <Button as={RouterLink} to={Routes.plans} alignSelf='end'>
+      <Button onClick={() => openModal('subscription')} alignSelf='end'>
         <Trans i18nKey='view_plans_and_pricing'>View Plans & Pricing</Trans>
       </Button>
       <SubscriptionList />
@@ -96,7 +85,6 @@ export const SubscriptionList = () => {
       })
 
   const isFree = subscription.plan.id === PlanId.Free
-  const { openModal } = usePricingModal()
 
   return (
     <VStack gap={4} w='full' mt='8'>
@@ -118,7 +106,7 @@ export const SubscriptionList = () => {
         </Alert>
       )}
       <TableContainer w='full'>
-        <Table size='sm' variant={'subscription'}>
+        <Table size='sm'>
           <Thead>
             <Tr>
               <Th>
@@ -130,11 +118,8 @@ export const SubscriptionList = () => {
               <Th>
                 <Trans i18nKey='subscription.since'>Since</Trans>
               </Th>
-              <Th>
+              <Th colSpan={isFree ? 1 : 2}>
                 <Trans i18nKey='subscription.next_billing'>Next Billing</Trans>
-              </Th>
-              <Th>
-                <Trans i18nKey='subscription.action'>Action</Trans>
               </Th>
             </Tr>
           </Thead>
@@ -155,13 +140,7 @@ export const SubscriptionList = () => {
               <Td>
                 <Tag>{new Date(subscription.subscriptionDetails.renewalDate).toLocaleDateString()}</Tag>
               </Td>
-              {isFree ? (
-                <Td>
-                  <Button variant='primary' size='sm' isLoading={isLoading} onClick={() => openModal('subscription')}>
-                    <Trans i18nKey='upgrade'>Upgrade</Trans>
-                  </Button>
-                </Td>
-              ) : (
+              {!isFree && (
                 <Td>
                   <Button variant='outline' size='sm' isLoading={isLoading} onClick={() => handleChangeClick()}>
                     <Trans i18nKey='subscription.change_plan_button'>Change</Trans>
