@@ -73,6 +73,7 @@ const SignUp = ({ invite }: SignupProps) => {
 
   // normally registered accounts need verification
   if (signup.isSuccess) {
+    signup.reset()
     return <Navigate to={`${Routes.auth.verify}?email=${encodeURIComponent(email)}`} />
   }
 
