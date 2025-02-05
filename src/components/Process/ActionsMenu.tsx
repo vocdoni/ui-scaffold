@@ -1,20 +1,10 @@
-import {
-  As,
-  Icon,
-  IconButton,
-  Menu,
-  MenuButton,
-  MenuDivider,
-  MenuItem,
-  MenuList,
-  MenuListProps,
-} from '@chakra-ui/react'
+import { As, Icon, IconButton, Menu, MenuButton, MenuItem, MenuList, MenuListProps } from '@chakra-ui/react'
 import { ActionsProvider, Button } from '@vocdoni/chakra-components'
 import { useActions, useClient, useElection } from '@vocdoni/react-providers'
 import { ElectionStatus } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import { FaCog } from 'react-icons/fa'
-import { RiCloseCircleLine, RiPauseCircleLine, RiPlayCircleLine, RiStopCircleLine } from 'react-icons/ri'
+import { RiPauseCircleLine, RiPlayCircleLine, RiStopCircleLine } from 'react-icons/ri'
 
 export const ActionsMenu = (props: MenuListProps) => {
   const { account } = useClient()
@@ -27,7 +17,7 @@ export const ActionsMenu = (props: MenuListProps) => {
 
   return (
     <Menu closeOnSelect={false}>
-      <MenuButton as={IconButton} aria-label='Actions' icon={<FaCog />} variant='ghost' />
+      <MenuButton as={IconButton} aria-label='Actions' icon={<FaCog />} variant='ghost' colorScheme='black' />
       <ActionsProvider>
         <ActionsMenuList {...props} />
       </ActionsProvider>
@@ -96,24 +86,6 @@ const ActionsMenuList = (props: MenuListProps) => {
         }}
       >
         {t('process_actions.end')}
-      </MenuItem>
-      <MenuDivider m={1} />
-      <MenuItem
-        as={Button}
-        leftIcon={<ActionIcon icon={RiCloseCircleLine} />}
-        onClick={cancel}
-        justifyContent='start'
-        isLoading={loading.cancel}
-        variant='solid'
-        colorScheme='gray'
-        sx={{
-          '& span': {
-            display: 'flex',
-            alignItems: 'center',
-          },
-        }}
-      >
-        {t('process_actions.cancel')}
       </MenuItem>
     </MenuList>
   )

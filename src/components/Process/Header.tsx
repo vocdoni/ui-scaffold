@@ -1,5 +1,5 @@
 import { WarningIcon } from '@chakra-ui/icons'
-import { Box, Button, Flex, Icon, Image, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Icon, Text } from '@chakra-ui/react'
 import {
   ElectionDescription,
   ElectionSchedule,
@@ -91,6 +91,7 @@ const ProcessHeader = () => {
           flexGrow={1}
           fontSize='sm'
           opacity={0.85}
+          mt={100}
           _hover={{
             opacity: 1,
           }}

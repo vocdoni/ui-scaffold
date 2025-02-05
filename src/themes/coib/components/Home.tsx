@@ -2,6 +2,7 @@ import { Box, Flex, Link, ListItem, OrderedList, Spinner, Text } from '@chakra-u
 import { ElectionProvider, useClient, useElection } from '@vocdoni/react-providers'
 import { useEffect, useRef, useState } from 'react'
 import { Link as ReactRouterLink } from 'react-router-dom'
+import { ActionsMenu } from '~components/Process/ActionsMenu'
 import { SpreadsheetAccess } from '~components/Process/SpreadsheetAccess'
 
 const processes = [
@@ -128,36 +129,43 @@ const Coib = () => {
           </Text>
           <Flex gap={5} flexDirection={{ base: 'column' }}>
             {processes.map((process, index) => (
-              <Link
-                key={index}
-                as={ReactRouterLink}
-                flexGrow={1}
-                display='flex'
-                justifyContent='center'
-                alignItems='center'
-                flexWrap='wrap'
-                h={{ base: '100px' }}
-                borderRadius='md'
-                color='black'
-                textDecoration='none'
-                textAlign='center'
-                fontWeight='bold'
-                boxShadow='0px 0px 10px 2px lightgray'
-                _hover={{
-                  bgColor: 'lightgray',
-                }}
-                _active={{
-                  transform: 'scale(0.9)',
-                }}
-                to={`/processes/${process.pid}/${window.location.hash}`}
-                isExternal={!isAdmin}
-              >
-                <Box>
-                  <Text fontSize='18px'>
-                    {index + 1}: {process.title}
-                  </Text>
-                </Box>
-              </Link>
+              <Flex>
+                <Link
+                  key={index}
+                  as={ReactRouterLink}
+                  flexGrow={1}
+                  display='flex'
+                  justifyContent='center'
+                  alignItems='center'
+                  flexWrap='wrap'
+                  h={{ base: '100px' }}
+                  borderRadius='md'
+                  color='black'
+                  textDecoration='none'
+                  textAlign='center'
+                  fontWeight='bold'
+                  boxShadow='0px 0px 10px 2px lightgray'
+                  _hover={{
+                    bgColor: 'lightgray',
+                  }}
+                  _active={{
+                    transform: 'scale(0.9)',
+                  }}
+                  to={`/processes/${process.pid}/${window.location.hash}`}
+                  isExternal={!isAdmin}
+                >
+                  <Box>
+                    <Text fontSize='18px'>
+                      {index + 1}: {process.title}
+                    </Text>
+                  </Box>
+                </Link>
+                {isAdmin && (
+                  <ElectionProvider id={process.pid}>
+                    <ActionsMenu />
+                  </ElectionProvider>
+                )}
+              </Flex>
             ))}
           </Flex>
         </Box>
