@@ -1,7 +1,6 @@
-import { AspectRatio, Box, Flex, Link, ListItem, OrderedList, Spinner, Text } from '@chakra-ui/react'
+import { Box, Flex, Link, ListItem, OrderedList, Spinner, Text } from '@chakra-ui/react'
 import { ElectionProvider, useClient, useElection } from '@vocdoni/react-providers'
 import { useEffect, useRef, useState } from 'react'
-import ReactPlayer from 'react-player'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { SpreadsheetAccess } from '~components/Process/SpreadsheetAccess'
 
@@ -121,29 +120,6 @@ const Coib = () => {
             </Text>
           </Text>
         </Box>
-        {canViewProcesses && (
-          <Box>
-            <Box ref={videoRef} />
-            <Box
-              ml={videoTop ? 'auto' : 'none'}
-              position={{ lg: videoTop ? 'fixed' : 'initial' }}
-              top={20}
-              right={10}
-              zIndex={100}
-              w={{ base: '100%', lg: '500px' }}
-            >
-              <AspectRatio ratio={16 / 9}>
-                <ReactPlayer
-                  url='https://www.youtube.com/watch?v=0-ULTdNUtDo'
-                  width='100%'
-                  height='100%'
-                  playing
-                  controls
-                />
-              </AspectRatio>
-            </Box>
-          </Box>
-        )}
       </Flex>
       <Box>{election && !isAdmin && <SpreadsheetAccess setConnected={setConnected} connected={connected} />}</Box>
       {canViewProcesses && (
