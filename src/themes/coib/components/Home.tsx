@@ -8,21 +8,19 @@ import { SpreadsheetAccess } from '~components/Process/SpreadsheetAccess'
 const processes = [
   {
     //1
-    title: 'Aprovació dels pressupostos 2025',
-    pid: '6be21a5a9dc0708cb5cdb0bc8dd0d73b14bbe23a857d95f24819020c00000008',
+    title: "Aproveció de la memòria d'activitats corresponent a l'exercici 2024",
+    pid: '6be21a5a9dc0708cb5cdb0bc8dd0d73b14bbe23a857d95f24819020000000014',
   },
   {
     //2
-    title: 'Elecció Junta Directiva',
-    pid: '6be21a5a9dc0708cb5cdb0bc8dd0d73b14bbe23a857d95f24819020c00000009',
+    title: "Aprovació de l'estat de comptes i la liquidació de l'exercici de l'any 2024",
+    pid: '6be21a5a9dc0708cb5cdb0bc8dd0d73b14bbe23a857d95f24819020000000013',
   },
-  /*
   {
     //3
-    title: 'Votació Coib3',
-    pid: '6be21a5a9dc00bc6e9d8c567e84ab2221e5c2f9a4b21b66f020b020400000003',
+    title: 'Aprovació dels pressupostos 2025',
+    pid: '6be21a5a9dc0708cb5cdb0bc8dd0d73b14bbe23a857d95f24819020000000012',
   },
-  */
 ]
 
 const PlataformaWrapper = () => (
