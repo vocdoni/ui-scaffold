@@ -178,7 +178,7 @@ const Coib = () => {
       <Text style={{ marginBottom: '150px', textAlign: 'center' }}>
         <i>
           <strong>
-            En cas de dubte o dificultats tècniques ens pots contactar al telèfon <u>nº telefon</u> o al correu{' '}
+            En cas de dubte o dificultats tècniques ens pots contactar al telèfon <u>900 705 705</u> o al correu{' '}
             <u>info@coib.cat</u>
           </strong>
         </i>
