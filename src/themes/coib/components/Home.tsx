@@ -7,17 +7,17 @@ import { SpreadsheetAccess } from '~components/Process/SpreadsheetAccess'
 const processes = [
   {
     //1
-    title: "Aproveció de la memòria d'activitats corresponent a l'exercici 2024",
+    title: "Aprovació memòria d'activitats 2024",
     pid: '6be21a5a9dc0708cb5cdb0bc8dd0d73b14bbe23a857d95f24819020000000014',
   },
   {
     //2
-    title: "Aprovació de l'estat de comptes i la liquidació de l'exercici de l'any 2024",
+    title: "Aprovació estat de comptes i la liquidació de l'exerici 2024",
     pid: '6be21a5a9dc0708cb5cdb0bc8dd0d73b14bbe23a857d95f24819020000000013',
   },
   {
     //3
-    title: 'Aprovació dels pressupostos 2025',
+    title: 'Aprovació del pressupost 2025',
     pid: '6be21a5a9dc0708cb5cdb0bc8dd0d73b14bbe23a857d95f24819020000000012',
   },
 ]
@@ -99,10 +99,9 @@ const Coib = () => {
             <Text fontSize='18px'>
               <OrderedList ml='35px'>
                 <ListItem>Benvinguda.</ListItem>
-                <ListItem>Presentació Pressupost 2025.</ListItem>
-                <div style={{ color: '#297b90' }}>Votació: `Aprovació dels pressupostos 2025`.</div>
-                <ListItem>Presentació Candidatures.</ListItem>
-                <div style={{ color: '#297b90' }}>Votació: `Elecció Junta Directiva`.</div>
+                <ListItem>Aprovació memòria d'activitats 2024.</ListItem>
+                <ListItem>Aprovació estat de comptes i la liquidació de l'exerici 2024.</ListItem>
+                <ListItem>Aprovació del pressupost 2025.</ListItem>
                 <ListItem>Torn obert de preguntes.</ListItem>
               </OrderedList>
             </Text>
