@@ -34,6 +34,43 @@ export const translations = (t: TFunction<string, string>) => ({
     wrong_data_title: t('cc.errors.wrong_data_title').toString(),
     wrong_data_description: t('cc.errors.wrong_data_description').toString(),
   },
+  loading: t('cc.loading', { defaultValue: 'Loading...' }).toString(),
+  pagination: {
+    total_results: t('cc.pagination.total_results', {
+      defaultValue: 'Showing a total of {{ count }} results',
+    }).toString(),
+  },
+  question_types: {
+    approval_tooltip: t('cc.question_types.approval_tooltip', {
+      defaultValue:
+        "Approval voting lets you vote for as many options as you like. The one with the most votes wins. It's a simple way to show your support for all the choices you approve of.",
+    }).toString(),
+    approval_title: t('cc.question_types.approval_title', {
+      defaultValue: 'Approval Voting',
+    }).toString(),
+    singlechoice_title: t('cc.question_types.singlechoice_title', {
+      defaultValue: 'Single Choice {{ weighted }}',
+    }).toString(),
+    multichoice_tooltip: t('cc.question_types.multichoice_tooltip', {
+      defaultValue:
+        'Multichoice voting lets you vote for up to {{maxcount}} options (defined by the voting organizer). The one with the most votes wins.',
+    }).toString(),
+    multichoice_title: t('cc.question_types.multichoice_title', {
+      defaultValue: 'Multichoice Voting {{ weighted }}',
+    }).toString(),
+    multichoice_desc: t('cc.question_types.multichoice_desc', {
+      defaultValue: 'Select up to {{maxcount}} options',
+    }).toString(),
+    multichoice_desc_abstain: t('cc.question_types.multichoice_desc_abstain', {
+      defaultValue: ' (or abstain)',
+    }).toString(),
+    multichoice_cannot_abstain: t('cc.question_types.multichoice_cannot_abstain', {
+      defaultValue: 'Too many options selected',
+    }).toString(),
+    weighted_voting: t('cc.question_types.weighted_voting', {
+      defaultValue: 'Weighted Voting',
+    }).toString(),
+  },
   // results component
   results: {
     date_format: t('cc.results.date_format').toString(),
