@@ -16,7 +16,7 @@ const Features = () => {
   const { t } = useTranslation()
 
   return (
-    <Box id='features' width='full' mb={{ base: '100px', lg: '200px' }}>
+    <Box id='features' width='full' mb={{ base: '100px', xl: '200px' }}>
       <Box mx='auto'>
         <Text
           fontSize={{ base: '32px', xl: '42px' }}

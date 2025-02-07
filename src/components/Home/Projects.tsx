@@ -20,6 +20,7 @@ const Support = () => {
       display='flex'
       flexDirection={{ base: 'column', xl: 'row' }}
       gap={6}
+      
     >
       <Box>
         <Text
