@@ -12,45 +12,33 @@ const Process = () => {
   const { t } = useTranslation()
 
   return (
-    <Box
-      as='section'
-      width='full'
-      m='0 auto'
-      px={{
-        base: '10px',
-        sm: '20px',
-        md: '40px',
-      }}
-      mb={{ base: '75px', lg: '100px' }}
-      minH={{ base: '75vh' }}
-    >
+    <Box as='section' width='full' m='0 auto' mb={{ base: '100px', lg: '160px' }} minH={{ base: '75vh' }}>
       <Text
         fontSize={{ base: '40px', xl: '46px' }}
         lineHeight={{ base: '36px', xl: '50px' }}
         fontWeight='bold'
-        mb='10px'
+        mb={'30px'}
         fontFamily='basier'
         textAlign='center'
       >
         {t('home.process.title')}
       </Text>
-      <Text
-        mb='80px'
-        maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '1024px' }}
-        mx='auto'
-        textAlign='center'
-        fontFamily='basier'
-        fontSize='20px'
-        lineHeight='28px'
-      >
+      <Text mb={'60px'} maxW={'90%'} mx='auto' textAlign='center' fontFamily='basier' fontSize='20px' lineHeight='28px'>
         {t('home.process.description_1')}
         {t('home.process.description_2')}
       </Text>
-      <Flex flexDirection={{ base: 'column', lg: 'row' }} gap={'30px'} margin={{ base: '0px auto' }}>
+      <Flex flexDirection={{ base: 'column', lg: 'row' }} gap={{ base: '60px', lg: '30px' }}>
         <Flex flex='1 1 40%' justifyContent={{ base: 'center', lg: 'end' }} alignItems='center'>
           <Image src={process} borderRadius='lg' maxW={{ base: '350px', xl: '550px' }} m={{ base: '-20px auto 0px' }} />
         </Flex>
-        <Flex flex='1 1' flexBasis={{ lg: '45%' }} flexDirection='column' justifyContent='space-between' gap='40px'>
+        <Flex
+          flex='1 1'
+          flexBasis={{ lg: '45%' }}
+          flexDirection='column'
+          justifyContent='space-between'
+          alignItems={{ base: 'center', lg: 'start' }}
+          gap='40px'
+        >
           <Card variant='step' maxW={{ base: '700px' }}>
             <CardBody>
               <Box>

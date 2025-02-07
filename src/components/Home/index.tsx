@@ -6,13 +6,13 @@ import CreateProcess from './CreateProcess'
 import Faqs from './Faqs'
 import Features from './Features'
 import Process from './Process'
+import Projects from './Projects'
 import Solutions from './Solutions'
 import Support from './Support'
-import Projects from './Projects'
 
 const Home = () => (
   <>
-    <Box position='relative' maxW='1600px' mx='auto'>
+    <Box position='relative'>
       <Box position='relative' zIndex={10}>
         <CreateProcess />
         <Clients />

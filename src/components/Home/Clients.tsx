@@ -29,7 +29,7 @@ export const ClientsGrid = (props: GridProps) => (
     as='section'
     maxWidth={'1400px'}
     mx='auto'
-    mb={{ base: '25px', lg: '30px' }}
+    mb={{ base: '40px', lg: '80px' }}
     px={{
       base: 2,
       sm: 4,

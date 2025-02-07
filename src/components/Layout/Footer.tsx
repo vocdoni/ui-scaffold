@@ -17,6 +17,7 @@ const Footer = () => {
         flexDirection={{ base: 'column', xl: 'row' }}
         alignItems='start'
         pb={{ base: '50px', xl: '24px' }}
+        gap={6}
       >
         <Box flex='1 1 33%'>
           <Image src={vcdLogo} w='125px' mb='12px' filter={invert} />
@@ -31,11 +32,12 @@ const Footer = () => {
           gap={{ base: '30px', sm2: 0 }}
           mt={1}
           ml={{ xl: 10 }}
+          w='full'
         >
           <Flex
-            flexDirection={{ base: 'column', xl: 'row' }}
+            flexDirection={{ base: 'column', sm2: 'row' }}
             justifyContent='space-between'
-            gap={{ base: '40px', xl: '90px' }}
+            gap={{ base: '0px', xl: '90px' }}
             w='full'
           >
             <Text fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px' display='none'>

@@ -13,16 +13,8 @@ const CreateProcess = () => {
       as='section'
       width='full'
       mt={{ base: '20px', lg: '40px' }}
-      mb={{ base: '40px', lg: '40px' }}
-      mx='auto'
-      maxW='1920px'
-      px={{
-        base: '10px',
-        sm: '20px',
-        md: '80px',
-      }}
+      mb={{ base: '80px', lg: '120px' }}
       flexDirection={{ base: 'column', lg: 'row' }}
-      py={{ base: '0px', sm: '15px', md: '30px', md2: '30px', lg: '30px' }}
       gap={{ base: '40px', lg: '60px' }}
     >
       <Box flex='1 1 50%'>

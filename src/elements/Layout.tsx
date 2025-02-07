@@ -17,26 +17,41 @@ const Layout = () => {
     >
       <HStack
         as='header'
+        position='sticky'
         top={0}
-        w='96%'
-        mx='auto'
-        px={{
-          base: '10px'
-        }}
-        py='0px'
+        w='full'
+        backdropFilter='blur(40px)'
+        zIndex={30}
+        px={{ base: 4, md: 6, xl: 10 }}
+        maxW={'1920px'}
+        mx={'auto'}
       >
         <Navbar />
       </HStack>
       <ScrollRestoration />
-      <Flex flexDirection='column' as='main' flexGrow={1} mt={{ base: 4, lg: 6 }}>
+      <Flex
+        flexDirection='column'
+        as='main'
+        flexGrow={1}
+        mt={{ base: 4, lg: 6 }}
+        maxW='1600px'
+        mx='auto'
+        px={{
+          base: '10px',
+          sm: '20px',
+          md: '80px',
+        }}
+      >
         <Outlet />
       </Flex>
       <Box
         as='footer'
-        mt='auto'
         bgColor={`${location.pathname.startsWith('/organization') ? 'footer.gray' : 'footer.white'}`}
-        w='96%'
-        mx='auto'
+        w='full'
+        backdropFilter='blur(40px)'
+        px={{ base: 4, md: 6, xl: 10 }}
+        maxW={'1920px'}
+        mx={'auto'}
       >
         <Footer />
       </Box>
