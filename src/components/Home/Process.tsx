@@ -45,46 +45,40 @@ const Process = () => {
           alignItems={{ base: 'center', lg: 'start' }}
           gap='40px'
         >
-          <Card variant='step' maxW={{ base: '700px' }}>
+          <Card variant='icon-card' maxW={{ base: '700px' }}>
             <CardBody>
               <Box>
                 <PiNumberSquareOneFill />
               </Box>
               <Box>
-                <Text style={{ fontSize: '22px', marginTop: '4px', marginBottom: '6px' }}>
-                  {t('home.process.step_1.title')}
-                </Text>
+                <Text>{t('home.process.step_1.title')}</Text>
                 <Text textAlign='justify'>{t('home.process.step_1.description')}</Text>
               </Box>
             </CardBody>
           </Card>
-          <Card variant='step' maxW={{ base: '700px' }}>
+          <Card variant='icon-card' maxW={{ base: '700px' }}>
             <CardBody>
               <Box>
                 <PiNumberSquareTwoFill />
               </Box>
               <Box>
-                <Text style={{ fontSize: '22px', marginTop: '4px', marginBottom: '6px' }}>
-                  {t('home.process.step_2.title')}
-                </Text>
+                <Text>{t('home.process.step_2.title')}</Text>
                 <Text textAlign='justify'>{t('home.process.step_2.description')}</Text>
               </Box>
             </CardBody>
           </Card>
-          <Card variant='step' maxW={{ base: '700px' }}>
+          <Card variant='icon-card' maxW={{ base: '700px' }}>
             <CardBody>
               <Box>
                 <PiNumberSquareThreeFill />
               </Box>
               <Box>
-                <Text style={{ fontSize: '22px', marginTop: '4px', marginBottom: '6px' }}>
-                  {t('home.process.step_3.title')}
-                </Text>
+                <Text>{t('home.process.step_3.title')}</Text>
                 <Text textAlign='justify'>{t('home.process.step_3.description')}</Text>
               </Box>
             </CardBody>
           </Card>
-          <Card variant='step' maxW={{ base: '700px' }}>
+          <Card variant='icon-card' maxW={{ base: '700px' }}>
             <CardBody>
               <Box>
                 <PiNumberSquareFourFill color='#fff' />

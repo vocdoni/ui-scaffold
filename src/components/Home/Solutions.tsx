@@ -25,13 +25,7 @@ const Solutions = () => {
             >
               {t('home.solutions.title')}
             </Text>
-            <Text
-              textAlign={{ base: 'center', xl: 'start' }}
-              fontFamily='basier'
-              fontSize='20px'
-              lineHeight='28px'
-              mb={'60px'}
-            >
+            <Text textAlign={{ base: 'center', xl: 'start' }} fontFamily='basier' lineHeight='28px' mb={'60px'}>
               {t('home.solutions.subtitle_1')}
             </Text>
           </Box>
@@ -46,7 +40,7 @@ const Solutions = () => {
                 </Box>
                 <Box>
                   <Text>{t('home.solutions.card_1.title')}</Text>
-                  <Text fontSize='20px'>{t('home.solutions.card_1.description')}</Text>
+                  <Text>{t('home.solutions.card_1.description')}</Text>
                 </Box>
               </CardBody>
             </Card>
@@ -60,7 +54,7 @@ const Solutions = () => {
                 </Box>
                 <Box>
                   <Text>{t('home.solutions.card_2.title')}</Text>
-                  <Text fontSize='20px'>{t('home.solutions.card_2.description')}</Text>
+                  <Text>{t('home.solutions.card_2.description')}</Text>
                 </Box>
               </CardBody>
             </Card>
@@ -74,7 +68,7 @@ const Solutions = () => {
                 </Box>
                 <Box>
                   <Text>{t('home.solutions.card_3.title')}</Text>
-                  <Text fontSize='20px'>{t('home.solutions.card_3.description')}</Text>
+                  <Text>{t('home.solutions.card_3.description')}</Text>
                 </Box>
               </CardBody>
             </Card>
