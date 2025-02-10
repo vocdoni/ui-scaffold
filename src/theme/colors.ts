@@ -14,6 +14,7 @@ export const colorsBase = {
     light: '#CBD5E0',
     normal: '#A0AEC0',
     dark: '#4A5568',
+    dark2: '#333',
   },
   green: '#079455',
   orange: '#FFA500',
@@ -219,7 +220,7 @@ export const colors = {
       title: colorsBase.yellow,
     },
     description: {
-      light: colorsBase.gray.normal,
+      light: colorsBase.gray.dark2,
       dark: colorsBase.white.pure,
     },
     footer: {

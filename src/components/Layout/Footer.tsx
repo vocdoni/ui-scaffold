@@ -20,7 +20,7 @@ const Footer = () => {
         gap={6}
       >
         <Box flex='1 1 33%'>
-          <Image src={vcdLogo} w='125px' mb='12px' filter={invert} />
+          <Image src={vcdLogo} w='125px' mb='12px' filter={invert} alt={t('vocdoni logo')} />
           <Text fontSize='16px' lineHeight='28px'>
             {t('footer.footer_subtitle')}
           </Text>

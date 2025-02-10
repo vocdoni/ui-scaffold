@@ -39,7 +39,10 @@ const Solutions = () => {
             <Card variant='image-card'>
               <CardBody>
                 <Box>
-                  <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b771a2aa4f48_large-organizations-api-icon.svg' />
+                  <Image
+                    role='none'
+                    src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b771a2aa4f48_large-organizations-api-icon.svg'
+                  />
                 </Box>
                 <Box>
                   <Text>{t('home.solutions.card_1.title')}</Text>
@@ -50,7 +53,10 @@ const Solutions = () => {
             <Card variant='image-card'>
               <CardBody>
                 <Box>
-                  <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b73337aa4f63_services-suppliers-icon.svg' />
+                  <Image
+                    role='none'
+                    src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b73337aa4f63_services-suppliers-icon.svg'
+                  />
                 </Box>
                 <Box>
                   <Text>{t('home.solutions.card_2.title')}</Text>
@@ -61,7 +67,10 @@ const Solutions = () => {
             <Card variant='image-card'>
               <CardBody>
                 <Box>
-                  <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b79b4caa4f51_gov-institutions-api-icon.svg' />
+                  <Image
+                    role='none'
+                    src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398d7c1bcc2b79b4caa4f51_gov-institutions-api-icon.svg'
+                  />
                 </Box>
                 <Box>
                   <Text>{t('home.solutions.card_3.title')}</Text>
@@ -78,7 +87,7 @@ const Solutions = () => {
           order={{ base: 1, xl: 2 }}
           mb={{ base: '100px', xl: 0 }}
         >
-          <Image src={solutions} borderRadius='lg' maxW={{ base: '250px', xl: '550px' }} />
+          <Image role='none' src={solutions} borderRadius='lg' maxW={{ base: '250px', xl: '550px' }} />
           <Box position={'absolute'}>
             <Card variant='solutions' mb={4}>
               <FaCircleCheck size={22} />

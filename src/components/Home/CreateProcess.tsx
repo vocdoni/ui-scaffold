@@ -63,7 +63,7 @@ const CreateProcess = () => {
         </Box>
       </Box>
       <Box flex='1 1 50%' display={{ lg: 'flex' }} justifyContent='center' alignItems='center'>
-        <Image src={devices} w={{ base: '535px', lg: '100%' }} mx='auto' />
+        <Image src={devices} w={{ base: '535px', lg: '100%' }} mx='auto' role='none' />
       </Box>
     </Flex>
   )

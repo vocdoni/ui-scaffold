@@ -28,7 +28,7 @@ const ContactUs = () => {
         maxW={{ base: '400px', xl: 'none' }}
         mx='auto'
       >
-        <Image src={advFeature} borderRadius='xl' />
+        <Image role='none' src={advFeature} borderRadius='xl' />
       </Box>
       <Flex
         flex='1 1 40%'

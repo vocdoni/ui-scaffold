@@ -827,15 +827,18 @@ export const Card = defineMultiStyleConfig({
             fontSize: '22px',
             lineHeight: '32px',
             textAlign: { base: 'center', lg: 'start' },
-            mb: { base: '10px', lg: '24px' },
+            mb: '5px',
           },
 
           'p:last-of-type': {
             fontSize: '22px',
-            color: 'home.description.light',
             textAlign: { base: 'center', lg: 'start' },
             maxW: { base: '100%', sm: '70%', lg: '100%' },
             mx: 'auto',
+            color: 'home.description.light',
+            _dark: {
+              color: 'home.description.dark',
+            },
           },
         },
       },

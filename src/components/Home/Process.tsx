@@ -29,7 +29,13 @@ const Process = () => {
       </Text>
       <Flex flexDirection={{ base: 'column', lg: 'row' }} gap={{ base: '60px', lg: '30px' }}>
         <Flex flex='1 1 40%' justifyContent={{ base: 'center', lg: 'end' }} alignItems='center'>
-          <Image src={process} borderRadius='lg' maxW={{ base: '350px', xl: '550px' }} m={{ base: '-20px auto 0px' }} />
+          <Image
+            role='none'
+            src={process}
+            borderRadius='lg'
+            maxW={{ base: '350px', xl: '550px' }}
+            m={{ base: '-20px auto 0px' }}
+          />
         </Flex>
         <Flex
           flex='1 1'
