@@ -36,11 +36,14 @@ export const theme = extendTheme(vtheme, {
     useSystemColorMode: true,
   },
   styles: {
-    global: {
+    global: (props) => ({
       ...editor,
       ':root': {
         '--box-shadow': '0 0 10px #e3e3e3',
         '--box-shadow-dark-mode': '0 0 10px #101010',
+      },
+      body: {
+        bg: props.colorMode === 'dark' ? 'bg.dark' : 'bg.light',
       },
       '.md-sizes': {
         '& :first-of-type': {
@@ -82,7 +85,7 @@ export const theme = extendTheme(vtheme, {
           whiteSpace: 'pre-wrap',
         },
       },
-    },
+    }),
   },
   components: {
     Accordion,

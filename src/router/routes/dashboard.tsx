@@ -110,15 +110,15 @@ export const useDashboardRoutes = () => {
                   </SuspenseLoader>
                 ),
               },
+              {
+                path: Routes.dashboard.subscription,
+                element: (
+                  <SuspenseLoader>
+                    <SubscriptionPage />
+                  </SuspenseLoader>
+                ),
+              },
             ],
-          },
-          {
-            path: Routes.dashboard.subscription,
-            element: (
-              <SuspenseLoader>
-                <SubscriptionPage />
-              </SuspenseLoader>
-            ),
           },
         ],
       },
