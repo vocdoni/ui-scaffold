@@ -34,7 +34,7 @@ export const CsvPreview = ({ manager, upload }: CsvPreviewProps) => {
             </Text>
           </Box>
         </Flex>
-        <Button colorScheme='primary' variant='ghost' border='1px solid' flexShrink={0} {...upload}>
+        <Button colorScheme='primary' variant='transparent' border='1px solid' flexShrink={0} {...upload}>
           {t('form.process_create.spreadsheet.preview.upload_new_list')}
         </Button>
       </Flex>

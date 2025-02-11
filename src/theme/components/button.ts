@@ -127,7 +127,7 @@ const transparent = defineStyle((props) => {
     },
 
     _dark: {
-      color: 'white',
+      color: colorScheme === 'gray' ? 'white' : `${colorScheme}.700`,
     },
   }
 })

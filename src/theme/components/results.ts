@@ -29,7 +29,10 @@ const baseStyle = definePartsStyle({
         maxW: '100%',
         flexBasis: '33%',
         flexGrow: 1,
-        color: 'process.results.description',
+        color: 'process.results.description.light',
+        _dark: {
+          color: 'process.results.description.dark',
+        },
       },
       '& p:nth-of-type(2)': {
         mx: 4,
@@ -75,9 +78,12 @@ const baseStyle = definePartsStyle({
     fontWeight: 700,
     fontSize: 'xl',
     lineHeight: 7,
-    color: 'process.results.title',
     textAlign: { base: 'center', md: 'start' },
     mb: 3,
+    color: 'process.results.title.light',
+    _dark: {
+      color: 'process.results.title.dark',
+    },
   },
 
   wrapper: {

@@ -164,13 +164,14 @@ const underline = ({ colorScheme }: { colorScheme: string }) => ({
     borderBottom: '1px solid transparent',
     borderColor: 'tab.responsive_tab.underline_border',
     _selected: {
+      fontWeight: 'extrabold',
       backgroundColor: 'transparent',
       borderColor: `${colorScheme}.600`,
       color: `${colorScheme}.600`,
       _dark: {
         backgroundColor: 'transparent',
-        borderColor: `${colorScheme}.700`,
-        color: `${colorScheme}.700`,
+        borderColor: 'white',
+        color: 'white',
       },
     },
     _dark: {

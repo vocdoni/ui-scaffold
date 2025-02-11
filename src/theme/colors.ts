@@ -290,8 +290,14 @@ export const colors = {
       light: colorsBase.white.dark,
       dark: colorsBase.blue.dark,
     },
-    info_title: colorsBase.primary,
-    label: colorsBase.gray.normal,
+    info_title: {
+      light: colorsBase.primary,
+      dark: colorsBase.white.pure,
+    },
+    label: {
+      light: colorsBase.gray.dark,
+      dark: colorsBase.white.pure,
+    },
     questions: {
       alert: {
         bg: colorsBase.primary,
@@ -318,9 +324,15 @@ export const colors = {
       alert_bg: colorsBase.primary,
       alert_color: colorsBase.white.pure,
       bg: colorsBase.white.light2,
-      description: colorsBase.gray.normal,
+      description: {
+        light: colorsBase.gray.dark,
+        dark: colorsBase.white.pure,
+      },
       progressbar_bg: colorsBase.white.light2,
-      title: colorsBase.primary,
+      title: {
+        light: colorsBase.primary,
+        dark: colorsBase.white.pure,
+      },
     },
     tabs: {
       active_bg: colorsBase.white.light2,

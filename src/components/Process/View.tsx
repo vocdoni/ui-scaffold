@@ -4,6 +4,7 @@ import {
   Box,
   Button,
   Flex,
+  Image,
   Link,
   ListItem,
   Modal,
@@ -106,18 +107,7 @@ export const ProcessView = () => {
   }, [formErrors])
 
   return (
-    <Box
-      position='relative'
-      width='full'
-      m='0 auto'
-      maxW='1920px'
-      px={{
-        base: '10px',
-        sm: '20px',
-        md: '80px',
-      }}
-      mb={{ base: 10, md: 20 }}
-    >
+    <Box position='relative' mb={{ base: 10, md: 20 }}>
       <Box>
         <Header />
 
@@ -234,8 +224,8 @@ const SuccessVoteModal = () => {
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>
-          <Text>{t('process.success_modal.title')}</Text>
-          <Box bgImage={successImg} />
+          <Text mb={3}>{t('process.success_modal.title')}</Text>
+          <Image src={successImg} borderRadius={'lg'} />
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
@@ -280,8 +270,9 @@ const ConfirmVoteModal = ({ election, answers }: { election: PublishedElection; 
 
   return (
     <>
+      <ModalCloseButton />
       <ModalHeader>
-        <Box bgImage={`url(${confirmImg})`} />
+        <Image src={confirmImg} borderRadius={'lg'} />
       </ModalHeader>
       <ModalBody display='flex' flexDirection='column' gap={5} p={0} mb={2}>
         <Text>{t('process.spreadsheet.confirm.description')}</Text>
@@ -357,9 +348,6 @@ const ConfirmVoteModal = ({ election, answers }: { election: PublishedElection; 
         )}
       </ModalBody>
       <ModalFooter sx={styles.footer}>
-        <Button onClick={cancel!} variant='ghost' sx={styles.cancel}>
-          {t('cc.confirm.cancel')}
-        </Button>
         <Button onClick={proceed!} sx={styles.confirm}>
           {t('cc.confirm.confirm')}
         </Button>
