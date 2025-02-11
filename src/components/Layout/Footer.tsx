@@ -74,27 +74,6 @@ const Footer = () => {
               Blog
             </Link>
           </Flex>
-          <Flex flexDirection='column' gap='10px' display='none'>
-            <Text fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px'>
-              {t('footer.uses_cases')}
-            </Text>
-            <Link variant='footer'>{t('footer.uses_cases1')}</Link>
-            <Link variant='footer'>{t('footer.uses_cases2')}</Link>
-            <Link variant='footer'>{t('footer.uses_cases3')}</Link>
-            <Link variant='footer'>{t('footer.uses_cases4')}</Link>
-            <Link variant='footer'>{t('footer.uses_cases5')}</Link>
-          </Flex>
-          <Flex flexDirection='column' gap='10px' display='none'>
-            <Text fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px'>
-              {t('footer.demo')}
-            </Text>
-            <Link variant='footer'>{t('footer.demo1')}</Link>
-            <Link variant='footer'>{t('footer.demo2')}</Link>
-            <Link variant='footer'>{t('footer.demo3')}</Link>
-            <Link variant='footer'>{t('footer.demo4')}</Link>
-            <Link variant='footer'>{t('footer.demo5')}</Link>
-            <Link variant='footer'>{t('footer.demo6')}</Link>
-          </Flex>
         </Flex>
       </Flex>
       <Flex
