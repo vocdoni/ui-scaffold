@@ -1,5 +1,5 @@
-import ShareButton, { ShareButtonProps } from '~components/Share/ShareButton'
 import { FaTwitter } from 'react-icons/fa'
+import ShareButton, { ShareButtonProps } from '~components/Share/ShareButton'
 
 const TwitterShare = ({ url, caption, ...rest }: ShareButtonProps) => {
   const linked = encodeURIComponent(`${caption} — ${document.location.href}`)

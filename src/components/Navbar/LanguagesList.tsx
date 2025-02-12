@@ -42,7 +42,7 @@ export const LanguagesList = ({ closeOnSelect }: { closeOnSelect: boolean }) => 
   )
 }
 
-export const LanguagesMenu = () => {
+export const LanguagesMenu = ({ ...props }) => {
   const { t } = useTranslation()
 
   return (
@@ -52,10 +52,10 @@ export const LanguagesMenu = () => {
           <MenuButton
             as={Button}
             aria-label={t('menu.burger_aria_label')}
-            variant='rounded-ghost'
-            sx={{ span: { margin: 'px' } }}
+            variant='transparent'
             rightIcon={isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
             minW='none'
+            {...props}
           >
             <FaGlobeAmericas />
           </MenuButton>

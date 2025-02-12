@@ -5,6 +5,20 @@
   "active": "Actiu",
   "all": "Tots",
   "already_member": "Ja ets membre?",
+  "alt": {
+    "images": {
+      "barca": "escut del Barça",
+      "bellpuig": "escut de l'Ajuntament de Bellpuig",
+      "berga": "escut de l'Ajuntament de Berga",
+      "bisbal": "escut de l'Ajuntament de la Bisbal",
+      "bloock": "logo Bloock",
+      "coec": "logo COEC",
+      "decidim": "logo Decidim",
+      "esquerra": "logo Esquerra Republicana de Catalunya",
+      "omnium": "logo Òmnium Cultural",
+      "ticanoia": "logo TIC Anoia"
+    }
+  },
   "anonymous": {
     "description": "Els votants romandran anònims",
     "title": "Anònim"
@@ -113,6 +127,7 @@
     "define_active_period": "Define the active period for receiving votes",
     "end_date": "End date",
     "end_date_description": "Define the exact date and time of completion",
+    "max_duration_exceeded": "The selected duration exceeds the maximum allowed duration of {{maxDuration}} days for your plan. Reduce the voting length or <4>upgrade your plan</4>.",
     "start_date": "Start date",
     "subtitle": "Specify the active period for receiving votes",
     "title": "Calendar"
@@ -382,6 +397,7 @@
       "address_pattern": "Només s'admeten adreces hexadecimals (p. ex. 0x031101A...)",
       "email_invalid": "Invalid email address",
       "field_is_required": "Aquest camp és obligatori",
+      "max_duration_exceeded": "The selected duration exceeds the maximum allowed duration of {{days}} days for your plan.",
       "min_address": "Si us plau, proporciona com a mínim una adreça",
       "min_users_address": "Si us plau, proporciona com a mínim una adreça",
       "password_min_length": "Min. 8 characters",
@@ -528,15 +544,15 @@
   "home": {
     "benefits": {
       "card_1": {
-        "description": "La nostra solució és 10 vegades més econòmica, millorant la democràcia fent que la votació sigui accessible per a tothom.",
-        "title": "10 vegades més econòmic"
+        "description": "La nostra solució és 10 vegades més econòmica, millorant la democràcia i fent la votació assequible per a tothom.",
+        "title": "10x més econòmic"
       },
       "card_2": {
         "description": "Estalvieu temps i esforç amb els processos optimitzats de Vocdoni, disfrutant de menors costos operatius.",
         "title": "Redueix Costs"
       },
       "card_3": {
-        "description": "Augmenta la participació i la implicació amb una plataforma fàcil d'usar accessible per a tothom, independentment de la competència tècnica.",
+        "description": "Augmenta la participació amb una plataforma fàcil d'usar accessible per a tothom, independentment de la competència tècnica.",
         "title": "Participació incrementada"
       },
       "card_4": {
@@ -544,34 +560,38 @@
         "title": "Votació sense esforç"
       },
       "card_5": {
-        "description": "Tingues la seguretat que els mètodes criptogràfics avançats garanteixen la màxima seguretat mentre es manté l'anonimat del votant i la integritat del vot.",
-        "title": "Seguretat basada en Blockchain"
+        "description": "Els mètodes criptogràfics avançats garanteixen la màxima seguretat mentre es manté l'anonimat del votant i la integritat del vot.",
+        "title": "Màxima seguretat"
       },
       "card_6": {
-        "description": "Fomentar la confiança i la transparència impulsades per la tecnologia blockchain, oferint als stakeholders una visibilitat sense igual en la integritat dels processos de votació.",
+        "description": "Generem confiança i transparència amb blockchain, oferint a tothom una visió clara i segura de cada vot i del procés de votació.",
         "title": "Auditable i de codi obert"
       },
-      "subtitle_1": "Quan tries Vocdoni, obtens beneficis dissenyats especialment per a les teves necessitats de votació. La nostra tecnologia avançada facilita la transició cap a la democràcia digital per a organitzacions, comunitats i governs. Aquí et mostrem com Vocdoni afegeix valor:",
+      "subtitle_1": "Amb Vocdoni, gaudeixes d'una tecnologia avançada adaptada a les teves necessitats de votació. Facilitem la transició a la democràcia digital per a organitzacions, comunitats i governs. Descobreix com aportem valor:",
       "title": "Avantatges"
     },
     "clients_title": "Més de 100 organitzacions confien en nosaltres",
     "contactus": {
       "btn": "Contacta'ns",
       "card_1": {
-        "description": "Explica les teves necessitats i crearem una solució personalitzada per als teus reptes.",
-        "title": "Solucions a mida per a les teves necessitats úniques"
+        "description": "Dissenyem votacions fetes a mida per cobrir les teves necessitats específiques.",
+        "title": "Solucions personalitzades"
       },
       "card_2": {
-        "description": "Vocdoni ofereix tant solucions d'autoatenció com solucions personalitzades clau en mà adaptades a les teves necessitats.",
-        "title": "Estarem amb tu en tot moment"
+        "description": "Des d’auto-servei fins a solucions clau en mà, ens adaptem al teu projecte.",
+        "title": "Flexibilitat total"
       },
-      "title": "Col·laborem per crear la votació perfecte"
+      "card_3": {
+        "description": "T’assessorem en tot el procés per garantir una experiència de votació impecable.",
+        "title": "Acompanyament expert"
+      },
+      "title": "Votacions a mida, adaptades a tu"
     },
     "create_process": {
       "btn": "Prova-ho gratis",
       "helper_1": "Processos de votació preparats en 10 min. per als teus votants i compatibles amb dispositius mòbils",
-      "subtitle": "L'aplicació de Vocdoni ofereix una experiència de votació assequible, fàcil d'utilitzar i compatible amb les lleis de GDPR, que qualsevol persona pot utilitzar des del seu PC, portàtil, tauleta o telèfon. Impulsat per la nostra pròpia Blockchain.",
-      "title": "Votació segura, ràpida i verificable"
+      "subtitle": "L'aplicació de Vocdoni ofereix una experiència de votació assequible, fàcil d'utilitzar i compatible amb les lleis de GDPR. Vota des del teu PC, portàtil, tauleta o telèfon.",
+      "title": "Votació digital segura, ràpida i verificable"
     },
     "demo": {
       "btn": "Veure Totes les Demostracions",
@@ -607,104 +627,254 @@
     },
     "faqs": {
       "faq_1": {
-        "description": "Vocdoni es distingeix per la seva experiència d'usuari fluïda, característiques de seguretat avançades i transparència incomparable. La nostra plataforma utilitza tecnologia de vanguardia com ara proves de coneixement zero i una cadena de blocs personalitzada per garantir una votació segura i anònima, alhora que proporciona un procés de votació transparent i verificable.",
-        "title": "Què fa que Vocdoni sigui diferent d'altres plataformes de votació?"
+        "description": "Vocdoni és una plataforma de vot digital basada en tecnologia blockchain, que ofereix processos de votació segurs, transparents i verificables.",
+        "title": "Què és Vocdoni?"
+      },
+      "faq_10": {
+        "description": "Oferim suport tècnic per ajudar els votants a resoldre qualsevol incidència. A més, el sistema està dissenyat perquè sigui intuïtu i accessible per a tothom.",
+        "title": "Què passa si un votant té problemes per accedir o votar?"
+      },
+      "faq_11": {
+        "description": "Vocdoni és resistent a atacs gràcies a l’ús de blockchain i altres mesures de seguretat avançades. Els sistemes tradicionals poden ser vulnerables a manipulacions, però en Vocdoni cada vot està protegit criptogràficament i és impossible d’alterar.",
+        "title": "Quina seguretat ofereix Vocdoni contra atacs informàtics?"
+      },
+      "faq_12": {
+        "description": "Vocdoni permet realitzar qualsevol tipus de votació: eleccions internes, assemblees, referèndums, enquestes i processos participatius. La plataforma s’adapta a les necessitats de governs, empreses, cooperatives, associacions i altres organitzacions.",
+        "title": "Quins tipus de votacions puc fer amb Vocdoni?"
+      },
+      "faq_13": {
+        "description": "No. Els votants reben un enllaç segur o una credencial única que els permet votar sense necessitat de registrar-se, simplificant l’experiència i garantint l’anonimat.",
+        "title": "Els votants necessiten crear un compte per votar?"
+      },
+      "faq_14": {
+        "description": "Depèn de la configuració de la votació. En alguns casos, es permet als votants canviar el seu vot fins que es tanqui el procés.",
+        "title": "Es poden modificar els vots un cop emesos?"
+      },
+      "faq_15": {
+        "description": "Sí, la plataforma permet configuracions avançades com el vot ponderat (on un vot val més segons determinats criteris) i el vot delegat (on un usuari pot cedir el seu vot a una altra persona).",
+        "title": "Vocdoni permet el vot ponderat o delegat?"
+      },
+      "faq_16": {
+        "description": "Sí, es pot combinar la votació digital amb la votació presencial i després integrar els resultats en un recompte unificat. Oferim diversos sistemes per realitzar votacions híbrides.",
+        "title": "Es poden fer votacions híbrides (digitals i presencials)?"
+      },
+      "faq_17": {
+        "description": "Això depèn de les regles de cada procés. Es poden establir criteris de desempat abans d’iniciar la votació, com segones rondes o normes específiques per determinar el guanyador.",
+        "title": "Què passa si hi ha un empat en una votació?"
+      },
+      "faq_18": {
+        "description": "Els resultats es generen automàticament un cop tancada la votació. No cal recompte manual, i es poden verificar immediatament gràcies a la tecnologia blockchain.",
+        "title": "Quant de temps triguen a publicar-se els resultats?"
+      },
+      "faq_19": {
+        "description": "Sí, Vocdoni permet configurar votacions privades on només poden accedir els membres d’un cens determinat.",
+        "title": "Es poden fer votacions totalment privades?"
       },
       "faq_2": {
-        "description": "Sí, Vocdoni segueix estrictament les directrius del GDPR, garantint que les dades de l'usuari es tractin amb el màxim respecte i confidencialitat. La nostra plataforma prioritza la privacitat i la seguretat de les dades en cada etapa del procés de votació.",
-        "title": "Vocdoni compleix amb els reglaments de privacitat de dades?"
+        "description": "Vocdoni utilitza una combinació de blockchain, criptografia avançada i proves de coneixement zero per garantir la seguretat, anonimat i verificabilitat de les votacions.",
+        "title": "Com funciona Vocdoni?"
+      },
+      "faq_20": {
+        "description": "Qualsevol persona pot verificar els resultats gràcies a la transparència de la blockchain. A més, oferim eines per auditar el procés de votació i garantir-ne la fiabilitat.",
+        "title": "Com es pot verificar que els resultats són correctes?"
+      },
+      "faq_21": {
+        "description": "Sí. La plataforma està dissenyada seguint els estàndards d’accessibilitat (WCAG), fent-la apta per a persones amb discapacitats visuals, auditives o motrius.",
+        "title": "Vocdoni és accessible per a persones amb discapacitat?"
+      },
+      "faq_22": {
+        "description": "Vocdoni funciona a qualsevol dispositiu amb connexió a internet, incloent ordinadors, tauletes i mòbils. La plataforma està optimitzada per a tots els navegadors moderns sense necessitat de descàrregues o instal·lacions.",
+        "title": "Quins dispositius són compatibles amb Vocdoni?"
+      },
+      "faq_23": {
+        "description": "Els votants poden rebre una invitació per correu electrònic, SMS o a través d’un enllaç segur compartit per l’organització.",
+        "title": "Com es convida els votants a participar en una votació?"
+      },
+      "faq_24": {
+        "description": "Vocdoni pot gestionar des de petits grups fins a votacions massives amb centenars de milers de participants, gràcies a la seva infraestructura escalable basada en blockchain.",
+        "title": "Quants votants pot gestionar Vocdoni alhora?"
+      },
+      "faq_25": {
+        "description": "Sí, la plataforma permet definir rols i permisos per als administradors, limitant l’accés a certes funcionalitats segons les necessitats de l’organització.",
+        "title": "Es poden establir diferents nivells d’accés per als administradors?"
+      },
+      "faq_26": {
+        "description": "Vocdoni permet diversos mètodes d'autenticació, com correu electrònic, eID, codi SMS, signatura electrònica o integració amb sistemes d’identificació existents.",
+        "title": "Com puc assegurar-me que només les persones autoritzades poden votar?"
+      },
+      "faq_27": {
+        "description": "Oferim suport tècnic i eines de recuperació per garantir que tots els votants puguin exercir el seu dret a vot sense problemes.",
+        "title": "Què passa si un votant té problemes tècnics durant la votació?"
+      },
+      "faq_28": {
+        "description": "Cens tancat: Només poden votar persones prèviament registrades en el cens. Cens obert: Qualsevol persona que compleixi certs criteris (per exemple, verificació per eID) pot votar.",
+        "title": "Quina diferència hi ha entre un cens tancat i un cens obert?"
+      },
+      "faq_29": {
+        "description": "Els observadors poden verificar el procés electoral en temps real i auditar els resultats mitjançant les eines de transparència i verificació de Vocdoni.",
+        "title": "Com funciona la verificació dels resultats per part d’observadors?"
       },
       "faq_3": {
-        "description": "Absolutament! Vocdoni ofereix opcions de personalització per alinear-se amb la marca de la vostra organització, assegurant una integració perfecta amb els vostres sistemes existents i mantenint una experiència de marca consistent per als votants. Poseu-vos en contacte amb nosaltres per saber-ne més!",
-        "title": "Es pot personalitzar Vocdoni per ajustar-se a la marca de la nostra organització?"
+        "description": "Vocdoni ofereix transparència, seguretat, resistència a manipulacions i accessibilitat global sense necessitat d’infraestructura física.",
+        "title": "Quins avantatges té Vocdoni sobre els sistemes de votació tradicionals?"
+      },
+      "faq_30": {
+        "description": "Sí, pots definir dates i hores exactes per a l’inici i la finalització de la votació, evitant la necessitat d’una intervenció manual.",
+        "title": "Puc programar una votació perquè s’iniciï i acabi automàticament?"
+      },
+      "faq_31": {
+        "description": "Sí, la plataforma admet diferents formats de votació, incloent preguntes de selecció múltiple, vot ponderat i sistemes com el vot preferencial o STV.",
+        "title": "Es poden fer preguntes amb múltiples opcions de resposta?"
+      },
+      "faq_32": {
+        "description": "Sí, Vocdoni facilita la participació en processos deliberatius, assemblees i mecanismes de governança, adaptant-se a diversos sistemes de presa de decisions.",
+        "title": "Vocdoni és adequat per a processos de presa de decisions col·laboratius?"
+      },
+      "faq_33": {
+        "description": "Sí, Vocdoni permet implementar mètodes de votació més sofisticats segons les necessitats de cada organització o procés electoral.",
+        "title": "Es poden integrar mètodes de votació avançats com Quadratic Voting o Approval Voting?"
+      },
+      "faq_34": {
+        "description": "Depenent de la configuració de la votació, es pot optar per resultats en temps real o per un recompte final un cop tancada la votació.",
+        "title": "Els resultats són accessibles en temps real?"
+      },
+      "faq_35": {
+        "description": "Gràcies a la transparència i verificabilitat de la blockchain, qualsevol participant o observador pot auditar els resultats per detectar possibles anomalies.",
+        "title": "Com es poden impugnar els resultats d’una votació?"
+      },
+      "faq_36": {
+        "description": "Sí, pots carregar fàcilment un cens predefinit mitjançant un fitxer CSV o integrar-lo amb bases de dades existents.",
+        "title": "És possible importar un cens de votants existent?"
+      },
+      "faq_37": {
+        "description": "Sí, seguim les millors pràctiques de seguretat i transparència i podem adaptar-nos a normatives específiques de diferents països i institucions.",
+        "title": "Vocdoni compleix amb normatives de vot electrònic oficials?"
+      },
+      "faq_38": {
+        "description": "Sí, és una eina ideal per a consultes públiques, referèndums i processos de participació ciutadana de qualsevol escala.",
+        "title": "Vocdoni pot gestionar referèndums i consultes ciutadanes?"
+      },
+      "faq_39": {
+        "description": "Els plans de Vocdoni inclouen un nombre base de votants, però pots afegir-ne més segons les necessitats de la teva organització. La plataforma és escalable per gestionar des de petites assemblees fins a grans eleccions.",
+        "title": "Hi ha límits en el nombre de votants o processos de votació?"
       },
       "faq_4": {
-        "description": "Oferim les biblioteques Vocdoni SDK i Vocdoni UI Components, dissenyades per a una integració fàcil amb el teu programari o plataforma. Les hem creat per prioritzar la facilitat d'ús en nom dels desenvolupadors i permetre resultats des del primer dia. El nostre equip d'experts et guiarà a través del procés d'integració per garantir una transició fluida i una interrupció mínima en les teves operacions.",
-        "title": "Quan fàcil és integrar Vocdoni amb els nostres sistemes existents?"
+        "description": "Vocdoni està pensat per a governs, empreses, cooperatives, associacions i qualsevol organització que necessiti un sistema de vot segur i transparent.",
+        "title": "Qui pot utilitzar Vocdoni?"
+      },
+      "faq_40": {
+        "description": "Sí, Vocdoni permet votacions ponderades, on cada vot pot tenir un valor diferent en funció de criteris definits per l'organització.",
+        "title": "Es poden establir diferents pesos de vot?"
+      },
+      "faq_41": {
+        "description": "Vocdoni està dissenyat per ser accessible des de qualsevol dispositiu i navegador. En cas de problemes, oferim suport tècnic i opcions de recuperació de vot per garantir que ningú es quedi sense participar.",
+        "title": "Què passa si un votant té problemes tècnics durant la votació?"
+      },
+      "faq_42": {
+        "description": "Vocdoni utilitza encriptació avançada, proves de coneixement zero i una arquitectura descentralitzada basada en blockchain per garantir la seguretat i resistència contra atacs.",
+        "title": "Com es protegeix el sistema contra atacs cibernètics?"
+      },
+      "faq_43": {
+        "description": "Sí, suportem diferents sistemes de vot, incloent-hi votació per majoria simple, votació preferencial (com el sistema STV), preguntes de resposta múltiple i més.",
+        "title": "Es poden crear preguntes amb opcions múltiples o votacions preferencials?"
+      },
+      "faq_44": {
+        "description": "Sí, oferim la possibilitat de fer votacions de prova perquè els organitzadors i votants es familiaritzin amb el sistema abans d’una elecció oficial.",
+        "title": "És possible fer proves abans d’una votació real?"
+      },
+      "faq_45": {
+        "description": "Pots registrar-te i començar a crear votacions en pocs minuts. Si necessites suport o una configuració personalitzada, el nostre equip està disponible per ajudar-te.",
+        "title": "Com puc començar a utilitzar Vocdoni?"
       },
       "faq_5": {
-        "description": "Vocdoni ofereix un suport complet per ajudar-vos en cada pas del vostre viatge de votació. Des de la configuració inicial i la personalització fins al manteniment continu i la resolució de problemes, el nostre equip de suport dedicat està aquí per ajudar-vos a maximitzar el valor de la nostra plataforma.",
-        "title": "Quin tipus de suport ofereix Vocdoni?"
+        "description": "Depèn del marc legal de cada país. Vocdoni compleix amb les millors pràctiques de seguretat i privacitat i pot adaptar-se a normatives específiques.",
+        "title": "És legal el vot electrònic amb Vocdoni?"
       },
       "faq_6": {
-        "description": "Sí, Vocdoni està preparat per gestionar eleccions de qualsevol magnitud, des de petites votacions comunitàries fins a eleccions públiques a gran escala. La nostra infraestructura escalable garanteix un rendiment fiable fins i tot durant els períodes de votació més alts, permetent-vos involucrar els votants de manera eficaç i eficient.",
-        "title": "Pot Vocdoni gestionar eleccions a gran escala?"
+        "description": "Vocdoni utilitza encriptació avançada, blockchain i tècniques criptogràfiques com zk-SNARKs per garantir la privacitat i seguretat dels vots.",
+        "title": "Com garanteix Vocdoni la seguretat del vot?"
       },
       "faq_7": {
-        "description": "La seguretat és la nostra prioritat a Vocdoni. La nostra plataforma utilitza tècniques criptogràfiques avançades i tecnologia blockchain per garantir el màxim nivell de seguretat, mantenint la integritat del vot i protegint l'anonimat del votant. Amb Vocdoni, podeu confiar que el vostre procés de votació és segur i a prova de manipulacions.",
-        "title": "Quan segur és la plataforma de Vocdoni?"
+        "description": "Sí, gràcies a la blockchain, qualsevol persona pot verificar la integritat dels resultats sense comprometre l'anonimat dels votants.",
+        "title": "És possible auditar una votació feta amb Vocdoni?"
       },
       "faq_8": {
-        "description": "Vocdoni garanteix la integritat de cada procés de votació en registrar cada vot com a transacció de cadena de blocs a prova de manipulacions, proporcionant transparència i verificabilitat a tots els interessats. Les rigoroses mesures de seguretat de Vocdoni protegeixen contra manipulacions i frau, assegurant que cada vot es registri i compti amb precisió.",
-        "title": "Com garantit Vocdoni la integritat dels processos de votació?"
+        "description": "Els votants només necessiten un dispositiu amb connexió a Internet i un navegador web. No calen aplicacions o programes específics.",
+        "title": "Quins requisits tècnics necessiten els votants?"
       },
+      "faq_9": {
+        "description": "Vocdoni utilitza tècniques criptogràfiques avançades, com les proves de coneixement zero (zk-SNARKs), per garantir que ningú pugui vincular un vot amb la identitat d’un votant.",
+        "title": "Com es protegeix l’anonimat dels votants?"
+      },
+      "show_less": "Mostrar Menys",
+      "show_more": "Mostrar Més",
       "subtitle": "A continuació trobaràs respostes a les preguntes més freqüents dels nostres usuaris. Proporciona claredat i confiança a la teva experiència de votació digital.",
       "title": "Preguntes Freqüents"
     },
     "features": {
       "card_1": {
-        "description": "Des de referèndums simples de sí/no fins a eleccions complexes de preferència classificada, Vocdoni admet una àmplia gamma de tipus de votació per adaptar-se a qualsevol procés de presa de decisions.",
+        "description": "Des de referèndums simples fins a eleccions complexes, Vocdoni s’adapta a qualsevol procés de presa de decisions.",
         "title": "Votació flexible"
       },
       "card_2": {
-        "description": "Personalitza cada aspecte del teu procés de votació, des del branding i els temes fins al disseny de les paperetes, assegurant una integració perfecta amb la identitat de la teva organització.",
-        "title": "Personalització completa"
+        "description": "Configura el branding, el disseny de paperetes i cada detall perquè s’integri perfectament amb la identitat de la teva organització.",
+        "title": "Personalització total"
       },
       "card_3": {
-        "description": "Amb interfícies intuïtives i un procés d'integració guiat, Vocdoni assegura que tant els organitzadors com els votants puguin navegar fàcilment per la plataforma des del primer dia.",
-        "title": "Fàcil pels usuaris"
+        "description": "Interfícies clares i un procés guiat perquè tant organitzadors com votants ho tinguin fàcil des del primer moment.",
+        "title": "Fàcil i intuïtiu"
       },
       "card_4": {
-        "description": "Utilitzant mètodes d'autenticació robustos com ara l'autenticació de dos factors, Vocdoni protegeix contra l'accés no autoritzat i garanteix la integritat de cada vot.",
+        "description": "Protecció avançada amb autenticació de dos factors i altres mètodes robustos per garantir la integritat del vot.",
         "title": "Autenticació segura"
       },
       "card_5": {
-        "description": "Crea llistes de votants personalitzades (cens personalitzat, OAuth, CRMs, etc.), permetent una difusió dirigida i experiències de votació adaptades a diferents segments de la teva audiència.",
+        "description": "Gestiona votants amb integracions flexibles (OAuth, CRMs, censos propis) per a una difusió i experiència òptimes.",
         "title": "Censos personalitzats"
       },
       "card_6": {
-        "description": "Utilitzant la nostra blockchain descentralitzada especialitzada per a votacions, es garanteix l'anonimat i la privadesa del votant, assegurant un procés lliure de censura i interferències.",
-        "title": "Protocol Votació Descentralitzat"
+        "description": "Blockchain especialitzada per garantir anonimat, privadesa i un procés lliure de censura i interferències.",
+        "title": "Protocol Descentralitzat"
       },
       "card_7": {
-        "description": "Atrau una audiència diversa amb suport multilingüe, permetent als participants seleccionar el seu idioma preferit per a experiències de votació inclusives i accessibles.",
-        "title": "Suport multilingüe"
+        "description": "Permet als participants votar en el seu idioma preferit per una experiència inclusiva.",
+        "title": "Multilingüe i accessible"
       },
       "card_8": {
-        "description": "Superviseu el progrés i els resultats de la votació en temps real, amb actualitzacions instantànies i notificacions que mantinguin informats els organitzadors i els participants durant tot el procés de votació.",
-        "title": "Actualitzacions en temps real"
+        "description": "Supervisa el procés de votació amb actualitzacions instantànies i notificacions per a organitzadors i participants.",
+        "title": "Resultats en temps real"
       },
       "card_9": {
-        "description": "Permet als votants emetre els seus vots a través de diversos canals, incloent navegadors web, telèfons, tauletes, etc., assegurant accessibilitat i comoditat per a tots els participants.",
+        "description": "Vota des de qualsevol dispositiu: web, mòbil o tauleta, garantint màxima accessibilitat i comoditat.",
         "title": "Suport multiplataforma"
       },
-      "subtitle_1": "Organitza votacions segures i transparents amb Vocdoni, oferint una experiència senzilla tant per als organitzadors com per als votants. Adapta els processos de votació segons les teves necessitats, garantint la seguretat i la transparència en tot moment. Amb Vocdoni, cada votació és accessible i fàcil d'utilitzar, ajudant a augmentar la participació i la confiança sense complicacions.",
+      "subtitle_1": "Organitza votacions segures i transparents de manera senzilla tant per a organitzadors com per als votants. Adapta els processos a les teves necessitats, garantint seguretat i transparència en tot moment. Fàcil, flexible, accessible i pensat per impulsar la participació i la confiança.",
       "title": "Característiques"
     },
     "process": {
-      "description_1": "L'aplicació Vocdoni et permet crear un procés de votació en 4 senzills passos. ",
-      "description_2": "Amb un clic, pots configurar si vols votació anònima o resultats d'elecció en directe, triar entre diversos tipus d'eleccions, carregar el teu cens de votants i molt més.",
+      "description_1": "Amb Vocdoni, crea una votació en 4 senzills passos: ",
+      "description_2": "defineix continguts, preguntes i opcions, i configura fàcilment privacitat, duració, tipus d'elecció i cens amb un sol clic.",
       "step_1": {
-        "description": "Obtingueu un control total amb l'opció d'autoservei de la nostra plataforma, que ofereix una flexibilitat sense igual. Necessiteu personalització o orientació? Us tenim cobert!",
-        "title": "Inicieu el vostre propi procés de votació"
+        "description": "Defineix tots els paràmetres de la votació, selecciona el tipus d’elecció i carrega el cens de votants.",
+        "title": "Crea la teva votació"
       },
       "step_2": {
-        "description": "Se t'assessorarà durant el procés de creació per seleccionar el teu tipus d'elecció, introduir les preguntes i opcions, seleccionar opcions de configuració i registrar votants.",
-        "title": "Configureu i publiqueu"
+        "description": "Segueix un procés guiat per definir preguntes, opcions i paràmetres de seguretat abans de llançar la votació.",
+        "title": "Configura i publica"
       },
       "step_3": {
-        "description": "Els votants s'autentiquen i envien els seus vots de manera fluida a través del nostre flux d'usuari amigable, dissenyat per a l'accessibilitat universal en tots els dispositius.",
+        "description": "Els votants s’autentiquen i voten fàcilment des de qualsevol dispositiu amb una experiència intuïtiva.",
         "title": "Període de votació"
       },
       "step_4": {
-        "description": "Tan fàcil com això. Un cop acabat, els resultats es calcularan automàticament, es publicaran i estaran disponibles per a tothom.",
-        "title": "Obtén els resultats"
+        "description": "Un cop finalitzada la votació, els resultats es calculen automàticament i es publiquen amb total transparència.",
+        "title": " Resultats instantanis"
       },
-      "title": "Un senzill procés de 4 passos"
+      "title": "Un procés de votació en només 4 passos"
     },
     "solutions": {
       "card_1": {
-        "description": "Optimitzeu la presa de decisions amb una votació segura i transparent. Involucreu els membres de manera efectiva, estalvieu en costos administratius i fomenta una cultura de participació i transparència.",
+        "description": "Agilitza la presa de decisions amb votacions segures i transparents. Involucra els membres, redueix costos i fomenta la participació.",
         "title": "Organitzacions"
       },
       "card_2": {
@@ -712,14 +882,14 @@
         "title": "Comunitats"
       },
       "card_3": {
-        "description": "Augmenta la participació dels votants, redueix els costos electorals i millora la confiança ciutadana amb processos de votació segurs i verificables.",
+        "description": "Augmenta la participació, redueix els costos electorals i millora la confiança ciutadana amb processos de votació segurs i verificables.",
         "title": "Governs i Institucions Públiques"
       },
       "img_card_1": "Organitzacions",
       "img_card_2": "Comunitats",
       "img_card_3": "Governs i Institucions Públiques",
-      "subtitle_1": "Oferim solucions per a una àmplia gamma de casos d'ús, demostrant la versatilitat de l'aplicació Vocdoni.",
-      "title": "La nostra solució s'adapta a les vostres necessitats"
+      "subtitle_1": "Vocdoni ofereix solucions versàtils per a una àmplia gamma de casos d’ús.",
+      "title": "Una solució adaptada a les vostres necessitats"
     },
     "support": {
       "btn_contact": "Contacta amb nosaltres",
@@ -728,8 +898,8 @@
       "helper_1": "Suport d'experts gratuït per trucada",
       "helper_2": "Redueix els costos i les hores de treball",
       "helper_3": "Costs competitiu",
-      "subtitle": "Podem ajudar-te a crear l'experiència de votació perfecta.",
-      "title": "Dona veu a la teva comunitat"
+      "subtitle": "T'ajudem a crear l'experiència de votació ideal.",
+      "title": "Dóna veu a la teva comunitat"
     }
   },
   "home_features": {
@@ -817,6 +987,10 @@
   "more_than_memberships_many": "more than {count} memberships",
   "more_than_memberships_other": "més de {{count}} membres",
   "name": "Name",
+  "navbar": {
+    "contact": "Contact Us",
+    "pricing": "Pricing"
+  },
   "new_organization": {
     "create_organization_btn": "Crear Organització",
     "description1": "Abans de començar a crear el vostre procés de votació, <span>heu de crear una organització</span>, és gratuït. Amb una organització, podreu crear una àmplia gamma d'eleccions i donar veu als membres de la vostra comunitat.",
@@ -912,7 +1086,8 @@
     "gpdr_compilance": "Compliment del GDPR",
     "help": "Necessites ajuda?",
     "members_size": "{{ from }}-{{ to }} membres",
-    "membership_size": "Selecciona la mida de la teva organització:",
+    "membership_size": "Select your membership size:",
+    "membership_size_title": "How many voters do you need*?",
     "premium_subtitle": "Un volum més gran que requereix funcions més avançades.",
     "premium_title": "Premium",
     "priority_support": "Suport prioritari per tiquets",
@@ -928,7 +1103,7 @@
   },
   "pricing_card": {
     "from": "Des de {{price}}/any",
-    "most_popular_plan": "Most popular plan",
+    "most_popular_plan": "Recomanat",
     "view_features": "View all features"
   },
   "privacy_policy": "Privacy Policy",
@@ -1306,6 +1481,7 @@
   "view_pricing": "View Pricing",
   "view_pricing_plan": "View Pricing Plan",
   "view_pricing_plans": "View Pricing Plans",
+  "vocdoni logo": "",
   "vote_details": "Vote details",
   "voters": "voters",
   "voting_link": "Voting Link",

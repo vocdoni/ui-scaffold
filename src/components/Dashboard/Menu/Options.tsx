@@ -1,8 +1,8 @@
 import { Box, Collapse } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { HiSquares2X2, HiHome } from 'react-icons/hi2'
-import { IoIosSettings, IoMdHome } from 'react-icons/io'
+import { HiHome, HiSquares2X2 } from 'react-icons/hi2'
+import { IoIosSettings } from 'react-icons/io'
 import { matchPath, useLocation } from 'react-router-dom'
 import { Routes } from '~src/router/routes'
 import { DashboardMenuItem } from './Item'
@@ -113,6 +113,7 @@ export const DashboardMenuOptions = () => {
               route={item.route}
               icon={item.icon}
               isActive={Boolean(matchPath({ path: item.route || '', end: true }, location.pathname))}
+              onToggle={() => setOpenSection(null)}
             />
           )}
         </Box>

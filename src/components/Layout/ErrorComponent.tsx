@@ -1,5 +1,5 @@
-import { Flex, FlexProps, Text } from '@chakra-ui/react'
 import { WarningIcon } from '@chakra-ui/icons'
+import { Flex, FlexProps, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 
 const ErrorComponent = ({ error, ...props }: { error: Error | string } & FlexProps) => {

@@ -12,12 +12,10 @@ export const ColorModeSwitcher: React.FC<ColorModeSwitcherProps> = (props) => {
 
   return (
     <IconButton
-      variant='primary'
-      colorScheme='gradient'
-      marginLeft={2}
+      variant='transparent'
+      colorScheme='blackAlpha'
       size='md'
       fontSize='lg'
-      color='white'
       onClick={toggleColorMode}
       borderRadius='full'
       icon={<SwitchIcon />}

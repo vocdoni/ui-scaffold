@@ -16,22 +16,11 @@ const Features = () => {
   const { t } = useTranslation()
 
   return (
-    <Box
-      id='features'
-      width='full'
-      m='0 auto'
-      maxW='1920px'
-      px={{
-        base: '10px',
-        sm: '20px',
-        md: '80px',
-      }}
-      mb={{ base: '75px', lg: '100px' }}
-    >
-      <Box mx='auto' maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}>
+    <Box id='features' width='full' mb={{ base: '100px', xl: '200px' }}>
+      <Box mx='auto'>
         <Text
-          fontSize={{ base: '40px', xl: '60px' }}
-          lineHeight={{ base: '36px', xl: '78px' }}
+          fontSize={{ base: '32px', xl: '42px' }}
+          lineHeight={{ base: '36px', xl: '46px' }}
           fontWeight='bold'
           textAlign='center'
           mb={'30px'}
@@ -40,18 +29,19 @@ const Features = () => {
           {t('home.features.title')}
         </Text>
         <Text
-          maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}
+          maxW={'90%'}
           mx='auto'
           mb={'60px'}
           textAlign='center'
           fontFamily='basier'
           fontSize='20px'
+          lineHeight='28px'
         >
           {t('home.features.subtitle_1')}
         </Text>
       </Box>
 
-      <Flex maxW={{ base: '100%', sm: '70%', sm2: '85%' }} margin='0px auto' flexWrap='wrap' gap={'30px'}>
+      <Flex mx='auto' flexWrap='wrap' gap={{ base: '45px', lg: '30px' }}>
         <Card variant='icon-card' flex={{ base: '1 0 100%', lg: '1 1 30%' }}>
           <CardBody>
             <Box>

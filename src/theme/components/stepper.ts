@@ -1,4 +1,3 @@
-import { mode } from '@chakra-ui/theme-tools'
 import { stepperAnatomy } from '@chakra-ui/anatomy'
 import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
 
@@ -32,6 +31,10 @@ const baseStyle = definePartsStyle((props) => ({
     mt: 1.5,
     fontSize: 'xs',
     display: { base: 'none', lg: 'block' },
+    '&[data-status=active]': {
+      fontWeight: 'bold',
+      color: 'process_create.stepper.color',
+    },
   },
 }))
 
