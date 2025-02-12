@@ -1,4 +1,3 @@
-import { mode } from '@chakra-ui/theme-tools'
 import { stepperAnatomy } from '@chakra-ui/anatomy'
 import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
 

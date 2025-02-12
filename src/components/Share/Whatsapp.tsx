@@ -1,5 +1,5 @@
-import ShareButton, { ShareButtonProps } from '~components/Share/ShareButton'
 import { IoLogoWhatsapp } from 'react-icons/io'
+import ShareButton, { ShareButtonProps } from '~components/Share/ShareButton'
 import objectToGetParams from '~components/Share/utils'
 
 // THX https://github.com/nygardk/react-share/blob/master/src/WhatsappShareButton.ts

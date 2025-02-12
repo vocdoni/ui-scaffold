@@ -1,7 +1,7 @@
 import { Flex, FormLabel, Input, List, ListItem, useToast } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
-import UserCard from './UserCard'
 import { useTranslation } from 'react-i18next'
+import UserCard from './UserCard'
 
 const GithubUserSearch = ({ ...props }) => {
   const toast = useToast()
