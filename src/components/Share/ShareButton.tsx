@@ -1,6 +1,6 @@
 import { Icon, Link } from '@chakra-ui/react'
-import { IconType } from 'react-icons'
 import { useTranslation } from 'react-i18next'
+import { IconType } from 'react-icons'
 
 export type ShareButtonProps = { url: string; caption: string } & ShareIconProps
 
