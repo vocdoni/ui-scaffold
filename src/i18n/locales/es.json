@@ -5,6 +5,20 @@
   "active": "Activo",
   "all": "Todos",
   "already_member": "¿Ya eres miembro?",
+  "alt": {
+    "images": {
+      "barca": "escut del Barça",
+      "bellpuig": "escut de l'Ajuntament de Bellpuig",
+      "berga": "escut de l'Ajuntament de Berga",
+      "bisbal": "escut de l'Ajuntament de la Bisbal",
+      "bloock": "logo Bloock",
+      "coec": "logo COEC",
+      "decidim": "logo Decidim",
+      "esquerra": "logo Esquerra Republicana de Catalunya",
+      "omnium": "logo Òmnium Cultural",
+      "ticanoia": "logo TIC Anoia"
+    }
+  },
   "anonymous": {
     "description": "Los votantes permanecerán anónimos",
     "title": "Anónimo"
@@ -113,6 +127,7 @@
     "define_active_period": "Define el período activo para recibir votos",
     "end_date": "Fecha de finalización",
     "end_date_description": "Define la fecha y hora exacta de finalización",
+    "max_duration_exceeded": "The selected duration exceeds the maximum allowed duration of {{maxDuration}} days for your plan. Reduce the voting length or <4>upgrade your plan</4>.",
     "start_date": "Fecha de inicio",
     "subtitle": "Especifica el período activo para recibir votos",
     "title": "Calendario"
@@ -382,6 +397,7 @@
       "address_pattern": "Solo se permiten direcciones hexadecimales (p.ej. 0x031101A...)",
       "email_invalid": "Correo electrónico incorrecto",
       "field_is_required": "Este campo es obligatorio",
+      "max_duration_exceeded": "The selected duration exceeds the maximum allowed duration of {{days}} days for your plan.",
       "min_address": "Por favor, proporciona al menos una dirección",
       "min_users_address": "Por favor, proporciona al menos una dirección",
       "password_min_length": "Min. 8 caracteres",
@@ -565,6 +581,10 @@
         "description": "Vocdoni ofrece tanto soluciones de autoservicio como soluciones personalizadas llave-en-mano adaptadas a tus necesidades.",
         "title": "Te acompañamos en cada paso"
       },
+      "card_3": {
+        "description": "",
+        "title": ""
+      },
       "title": "Trabajemos juntos para encontrar tu votación ideal"
     },
     "create_process": {
@@ -610,17 +630,161 @@
         "description": "Vocdoni se destaca por su experiencia de usuario fluida, seguridad avanzada y transparencia. Nuestra plataforma utiliza tecnología de vanguardia como pruebas de conocimiento cero y una Blockchain especializada para garantizar una votación segura y anónima, al tiempo que proporciona un proceso de votación rápido, seguro y verificable.",
         "title": "¿Qué hace único a Vocdoni?"
       },
+      "faq_10": {
+        "description": "",
+        "title": ""
+      },
+      "faq_11": {
+        "description": "",
+        "title": ""
+      },
+      "faq_12": {
+        "description": "",
+        "title": ""
+      },
+      "faq_13": {
+        "description": "",
+        "title": ""
+      },
+      "faq_14": {
+        "description": "",
+        "title": ""
+      },
+      "faq_15": {
+        "description": "",
+        "title": ""
+      },
+      "faq_16": {
+        "description": "",
+        "title": ""
+      },
+      "faq_17": {
+        "description": "",
+        "title": ""
+      },
+      "faq_18": {
+        "description": "",
+        "title": ""
+      },
+      "faq_19": {
+        "description": "",
+        "title": ""
+      },
       "faq_2": {
         "description": "Sí, cumplimos estrictamente con el GDPR, asegurando el tratamiento confidencial y respetuoso de los datos de usuario.",
         "title": "¿Cumple Vocdoni con el GDPR?"
+      },
+      "faq_20": {
+        "description": "",
+        "title": ""
+      },
+      "faq_21": {
+        "description": "",
+        "title": ""
+      },
+      "faq_22": {
+        "description": "",
+        "title": ""
+      },
+      "faq_23": {
+        "description": "",
+        "title": ""
+      },
+      "faq_24": {
+        "description": "",
+        "title": ""
+      },
+      "faq_25": {
+        "description": "",
+        "title": ""
+      },
+      "faq_26": {
+        "description": "",
+        "title": ""
+      },
+      "faq_27": {
+        "description": "",
+        "title": ""
+      },
+      "faq_28": {
+        "description": "",
+        "title": ""
+      },
+      "faq_29": {
+        "description": "",
+        "title": ""
       },
       "faq_3": {
         "description": "¡Por supuesto! Ofrecemos personalización para integrarse perfectamente con tu marca y sistemas existentes.",
         "title": "¿Se puede personalizar Vocdoni?"
       },
+      "faq_30": {
+        "description": "",
+        "title": ""
+      },
+      "faq_31": {
+        "description": "",
+        "title": ""
+      },
+      "faq_32": {
+        "description": "",
+        "title": ""
+      },
+      "faq_33": {
+        "description": "",
+        "title": ""
+      },
+      "faq_34": {
+        "description": "",
+        "title": ""
+      },
+      "faq_35": {
+        "description": "",
+        "title": ""
+      },
+      "faq_36": {
+        "description": "",
+        "title": ""
+      },
+      "faq_37": {
+        "description": "",
+        "title": ""
+      },
+      "faq_38": {
+        "description": "",
+        "title": ""
+      },
+      "faq_39": {
+        "description": "",
+        "title": ""
+      },
       "faq_4": {
         "description": "Ofrecemos las bibliotecas Vocdoni SDK y Vocdoni UI Components, diseñadas para una integración fácil con tu software o plataforma. Las creamos para priorizar la facilidad de uso en nombre de los desarrolladores y permitir resultados desde el primer día. Nuestro equipo de expertos te guiará a través del proceso de integración para garantizar una transición fluida y una interrupción mínima en tus operaciones.",
         "title": "¿Es fácil integrar Vocdoni?"
+      },
+      "faq_40": {
+        "description": "",
+        "title": ""
+      },
+      "faq_41": {
+        "description": "",
+        "title": ""
+      },
+      "faq_42": {
+        "description": "",
+        "title": ""
+      },
+      "faq_43": {
+        "description": "",
+        "title": ""
+      },
+      "faq_44": {
+        "description": "",
+        "title": ""
+      },
+      "faq_45": {
+        "description": "",
+        "title": ""
       },
       "faq_5": {
         "description": "Ofrecemos soporte completo para asegurar que aproveches al máximo nuestra plataforma, desde la configuración inicial hasta el mantenimiento continuo.",
@@ -638,6 +802,12 @@
         "description": "Vocdoni garantiza la integridad de cada proceso de votación al registrar cada voto como una transacción de cadena de bloques a prueba de manipulaciones, proporcionando transparencia y verificabilidad a todos los interesados. Las rigurosas medidas de seguridad de Vocdoni protegen contra manipulaciones y fraudes, asegurando que cada voto se registre y cuente con precisión.",
         "title": "¿Cómo asegura Vocdoni la integridad de los procesos de votación?"
       },
+      "faq_9": {
+        "description": "",
+        "title": ""
+      },
+      "show_less": "",
+      "show_more": "",
       "subtitle": "A continuación encontrarás respuestas a las preguntas más frecuentes de nuestros usuarios. Proporciona claridad y confianza a tu experiencia de votación digital.",
       "title": "Preguntas Frecuentes"
     },
@@ -817,6 +987,10 @@
   "more_than_memberships_many": "more than {count} memberships",
   "more_than_memberships_other": "más de {{count}} miembros",
   "name": "Nombre",
+  "navbar": {
+    "contact": "Contact Us",
+    "pricing": "Pricing"
+  },
   "new_organization": {
     "create_organization_btn": "Crear Organización",
     "description1": "Antes de comenzar a crear su proceso de votación, <span>debe crear una organización</span>, es gratuito. Con una organización, podrá crear una amplia gama de elecciones y dar voz a los miembros de su comunidad.",
@@ -912,7 +1086,8 @@
     "gpdr_compilance": "Cumplimiento del GDPR",
     "help": "¿Necesitas ayuda?",
     "members_size": "{{ from }}-{{ to }} miembros",
-    "membership_size": "Selecciona el tamaño de tu organización:",
+    "membership_size": "Select your membership size:",
+    "membership_size_title": "How many voters do you need*?",
     "premium_subtitle": "Un volumen más grande que requiere funciones más avanzadas.",
     "premium_title": "Premium",
     "priority_support": "Soporte prioritario por tickets",
@@ -928,7 +1103,7 @@
   },
   "pricing_card": {
     "from": "Desde {{price}}/año",
-    "most_popular_plan": "Plan más popular",
+    "most_popular_plan": "Recomendado",
     "view_features": "Ver todas las características"
   },
   "privacy_policy": "Política de Privacidad",
@@ -1306,6 +1481,7 @@
   "view_pricing": "Ver Precios",
   "view_pricing_plan": "Ver Plan de Precios",
   "view_pricing_plans": "Ver Planes de Precios",
+  "vocdoni logo": "",
   "vote_details": "Detalles de la votación",
   "voters": "votantes",
   "voting_link": "Enlace de votación",

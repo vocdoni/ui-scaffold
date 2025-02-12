@@ -288,12 +288,13 @@ export const Card = defineMultiStyleConfig({
       },
       header: {
         p: '30px',
-        pb: '20px',
-        fontSize: { base: '28.5px', sm: '28px' },
-        lineHeight: { base: '38px', sm: '37px' },
+        pb: '30px',
+        fontSize: { base: '22px', sm: '22px' },
+        lineHeight: { base: '26px', sm: '26px' },
         fontWeight: 'bold',
         textAlign: 'left',
         fontFamily: 'basier',
+        paddingTop: '0px',
       },
       body: {
         p: '30px',
@@ -308,9 +309,11 @@ export const Card = defineMultiStyleConfig({
       body: {
         p: 0,
         display: 'flex',
-        gap: '24px',
+        flexDirection: { base: 'column', lg: 'row' },
+        gap: { base: '10px', lg: '24px' },
 
         'div:first-of-type': {
+          alignSelf: { base: 'center', lg: 'start' },
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -329,15 +332,21 @@ export const Card = defineMultiStyleConfig({
         'div:last-of-type': {
           'p:first-of-type': {
             fontWeight: '600',
-            mb: '15px',
-            fontSize: '26px',
+            fontSize: '22px',
             lineHeight: '32px',
-            mr: 2,
+            textAlign: { base: 'center', lg: 'start' },
+            mb: '6px',
           },
 
           'p:last-of-type': {
             fontSize: '22px',
+            textAlign: { base: 'center', lg: 'start' },
+            maxW: { base: '100%', sm: '70%', lg: '100%' },
+            mx: 'auto',
             color: 'home.description.light',
+            _dark: {
+              color: 'home.description.dark',
+            },
           },
         },
       },
@@ -349,71 +358,39 @@ export const Card = defineMultiStyleConfig({
       body: {
         p: 0,
         display: 'flex',
-        gap: '24px',
-        alignItems: 'center',
+        flexDirection: { base: 'column', lg: 'row' },
+        gap: { base: '10px', lg: '24px' },
 
         'div:first-of-type': {
+          alignSelf: { base: 'center', lg: 'start' },
           backgroundColor: 'transparent',
-          w: '120px',
-          h: '120px',
-          minW: '120px',
+          w: { base: '80px', xl: '120px' },
+          h: { base: '80px', xl: '120px' },
+          minW: { base: '80px', xl: '120px' },
         },
 
         'div:last-of-type': {
           'p:first-of-type': {
             fontWeight: '600',
-            mb: '15px',
             fontSize: '26px',
             lineHeight: '32px',
+            textAlign: { base: 'center', lg: 'start' },
           },
 
           'p:last-of-type': {
             fontSize: '22px',
+            textAlign: { base: 'center', lg: 'start' },
+            maxW: { base: '100%', sm: '70%', lg: '100%' },
+            mx: 'auto',
             color: 'home.description.light',
+            _dark: {
+              color: 'home.description.dark',
+            },
           },
         },
       },
     },
-    step: {
-      container: {
-        backgroundColor: 'transparent',
-      },
-      body: {
-        p: 0,
-        display: 'flex',
-        gap: '24px',
 
-        'div:first-of-type': {
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          borderRadius: 'lg',
-          minW: '45px',
-          h: '45px',
-          border: '1px solid gray',
-          bg: 'home.step.icon_bg',
-
-          svg: {
-            width: '25px',
-            height: '25px',
-            color: 'home.step.icon',
-          },
-        },
-
-        'div:last-of-type': {
-          'p:first-of-type': {
-            fontSize: '26px',
-            lineHeight: '32px',
-            fontWeight: 'bold',
-            mb: '15px',
-          },
-          'p:nth-of-type(2)': {
-            fontSize: '22px',
-            color: 'home.description.light',
-          },
-        },
-      },
-    },
     faqs: {
       container: {
         borderRadius: 'none',
@@ -422,24 +399,20 @@ export const Card = defineMultiStyleConfig({
       },
       header: {
         p: 0,
-        '& p': {
-          fontWeight: 'bold',
-          mb: '18px',
-          fontSize: 'xl',
-        },
+        fontWeight: 'bold',
+        mb: '18px',
+        fontSize: 'xl',
+        textAlign: 'center',
       },
       body: {
+        textAlign: 'center',
         p: 0,
-
         mb: '19px',
+        color: 'home.description.light !important',
+        fontSize: 'xl',
 
-        '& p': {
-          color: 'home.description.light !important',
-          fontSize: 'xl',
-
-          _dark: {
-            color: 'home.description.dark !important',
-          },
+        _dark: {
+          color: 'home.description.dark !important',
         },
       },
     },

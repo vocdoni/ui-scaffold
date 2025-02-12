@@ -13,21 +13,14 @@ const Footer = () => {
   return (
     <>
       <Flex
-        width='full'
-        m='0 auto'
-        maxW='1920px'
-        px={{
-          base: '10px',
-          sm: '20px',
-          md: '80px',
-        }}
         pt='24px'
         flexDirection={{ base: 'column', xl: 'row' }}
         alignItems='start'
         pb={{ base: '50px', xl: '24px' }}
+        gap={6}
       >
         <Box flex='1 1 33%'>
-          <Image src={vcdLogo} w='125px' mb='12px' filter={invert} />
+          <Image src={vcdLogo} w='125px' mb='12px' filter={invert} alt={t('vocdoni logo')} />
           <Text fontSize='16px' lineHeight='28px'>
             {t('footer.footer_subtitle')}
           </Text>
@@ -39,11 +32,12 @@ const Footer = () => {
           gap={{ base: '30px', sm2: 0 }}
           mt={1}
           ml={{ xl: 10 }}
+          w='full'
         >
           <Flex
-            flexDirection={{ base: 'column', xl: 'row' }}
+            flexDirection={{ base: 'column', sm2: 'row' }}
             justifyContent='space-between'
-            gap={{ base: '40px', xl: '90px' }}
+            gap={{ base: '0px', xl: '90px' }}
             w='full'
           >
             <Text fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px' display='none'>
@@ -85,12 +79,6 @@ const Footer = () => {
       <Flex
         width='full'
         m='0 auto'
-        maxW='1920px'
-        px={{
-          base: '10px',
-          sm: '20px',
-          md: '80px',
-        }}
         flexDirection={{ base: 'column', md: 'row' }}
         gap={{ base: '20px', md: '10px' }}
         justifyContent='space-between'

@@ -42,22 +42,11 @@ const Navbar = () => {
   const { isAuthenticated } = useAuth()
   const reducedMenu = location.pathname.startsWith('/processes') && !isAuthenticated
   return (
-    <Flex
-      width='full'
-      m='0 auto'
-      maxW='1920px'
-      px={{
-        base: 2,
-        sm: 4,
-        lg: 6,
-      }}
-      w='full'
-      mx='auto'
-      py={{ base: 4, md: 6 }}
-      position='relative'
-    >
+    <Flex width='full' m='0 auto' mx='auto' py={{ base: 4, md: 6 }} position='relative'>
       <Flex justifyContent='space-between' alignItems='center' zIndex={1} w='100%'>
-        <Logo />
+        <Flex w='248.67px'>
+          <Logo />
+        </Flex>
         <DesktopNav display={{ base: reducedMenu ? 'flex' : 'none', xl: 'flex' }} />
         {!reducedMenu && <Mobile />}
       </Flex>
@@ -73,7 +62,7 @@ const DesktopNav = ({ display }: { display?: any }) => {
       {!reducedMenu && <NavMenu display={display} />}
       <Flex alignItems={'center'} display={display ? display : 'flex'}>
         {!reducedMenu && <DashboardButton />}
-        <LanguagesMenu />
+        <LanguagesMenu ml={'18px'} />
         <ColorModeSwitcher />
       </Flex>
     </>
@@ -229,6 +218,8 @@ const DashboardButton = (props?: ButtonProps) => {
       colorScheme='gradient'
       variant='primary'
       p='10px 30px'
+      height='36px'
+      fontSize='12px'
       {...props}
     >
       {isAuthenticated ? t('menu.dashboard', { defaultValue: 'Dashboard' }) : t('menu.login')}
