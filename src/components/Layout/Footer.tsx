@@ -20,7 +20,7 @@ const Footer = () => {
         gap={6}
       >
         <Box flex='1 1 33%'>
-          <Image src={vcdLogo} w='125px' mb='12px' filter={invert} />
+          <Image src={vcdLogo} w='125px' mb='12px' filter={invert} alt={t('vocdoni logo')} />
           <Text fontSize='16px' lineHeight='28px'>
             {t('footer.footer_subtitle')}
           </Text>
@@ -73,27 +73,6 @@ const Footer = () => {
             <Link fontWeight='bold' variant='footer' href='https://blog.vocdoni.io' target='_blank'>
               Blog
             </Link>
-          </Flex>
-          <Flex flexDirection='column' gap='10px' display='none'>
-            <Text fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px'>
-              {t('footer.uses_cases')}
-            </Text>
-            <Link variant='footer'>{t('footer.uses_cases1')}</Link>
-            <Link variant='footer'>{t('footer.uses_cases2')}</Link>
-            <Link variant='footer'>{t('footer.uses_cases3')}</Link>
-            <Link variant='footer'>{t('footer.uses_cases4')}</Link>
-            <Link variant='footer'>{t('footer.uses_cases5')}</Link>
-          </Flex>
-          <Flex flexDirection='column' gap='10px' display='none'>
-            <Text fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px'>
-              {t('footer.demo')}
-            </Text>
-            <Link variant='footer'>{t('footer.demo1')}</Link>
-            <Link variant='footer'>{t('footer.demo2')}</Link>
-            <Link variant='footer'>{t('footer.demo3')}</Link>
-            <Link variant='footer'>{t('footer.demo4')}</Link>
-            <Link variant='footer'>{t('footer.demo5')}</Link>
-            <Link variant='footer'>{t('footer.demo6')}</Link>
           </Flex>
         </Flex>
       </Flex>

@@ -1,5 +1,5 @@
-import ShareButton, { ShareButtonProps } from '~components/Share/ShareButton'
 import { FaReddit } from 'react-icons/fa'
+import ShareButton, { ShareButtonProps } from '~components/Share/ShareButton'
 
 const RedditShare = ({ url, caption, ...rest }: ShareButtonProps) => {
   const reddit = `https://reddit.com/submit?url=${url}&title=${caption}`

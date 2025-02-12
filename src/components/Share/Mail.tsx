@@ -1,7 +1,7 @@
-import ShareButton, { ShareButtonProps } from '~components/Share/ShareButton'
-import { IoMdMail } from 'react-icons/io'
-import objectToGetParams from '~components/Share/utils'
 import { useTranslation } from 'react-i18next'
+import { IoMdMail } from 'react-icons/io'
+import ShareButton, { ShareButtonProps } from '~components/Share/ShareButton'
+import objectToGetParams from '~components/Share/utils'
 
 const MailShare = ({ subject, url, caption, ...rest }: ShareButtonProps & { subject?: string }) => {
   const { t } = useTranslation()

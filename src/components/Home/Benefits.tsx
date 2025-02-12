@@ -22,37 +22,55 @@ const Benefits = () => {
 
       <Flex flexWrap='wrap' justifyContent='center' maxW='1240px' mx='auto' gap={'30px'}>
         <Card variant='benefits'>
-          <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29a3e8913631fd48de5_card-feature-img-control.png' />
+          <Image
+            role='none'
+            src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29a3e8913631fd48de5_card-feature-img-control.png'
+          />
           <CardHeader>{t('home.benefits.card_1.title')}</CardHeader>
           <CardBody>{t('home.benefits.card_1.description')}</CardBody>
         </Card>
 
         <Card variant='benefits'>
-          <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29a7812b3fd5db1d246_card-feature-img-agile.png' />
+          <Image
+            role='none'
+            src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29a7812b3fd5db1d246_card-feature-img-agile.png'
+          />
           <CardHeader>{t('home.benefits.card_2.title')}</CardHeader>
           <CardBody>{t('home.benefits.card_2.description')}</CardBody>
         </Card>
 
         <Card variant='benefits'>
-          <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29ae37bf52a3ec72b34_card-feature-img-privacy.png' />
+          <Image
+            role='none'
+            src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29ae37bf52a3ec72b34_card-feature-img-privacy.png'
+          />
           <CardHeader>{t('home.benefits.card_3.title')}</CardHeader>
           <CardBody>{t('home.benefits.card_3.description')}</CardBody>
         </Card>
 
         <Card variant='benefits'>
-          <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29a2fc101547d4ca362_card-feature-img-anonymous.png' />
+          <Image
+            role='none'
+            src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29a2fc101547d4ca362_card-feature-img-anonymous.png'
+          />
           <CardHeader>{t('home.benefits.card_4.title')}</CardHeader>
           <CardBody>{t('home.benefits.card_4.description')}</CardBody>
         </Card>
 
         <Card variant='benefits'>
-          <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29a2c93ed6cd6d1faf0_card-feature-img-guarantee.png' />
+          <Image
+            role='none'
+            src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29a2c93ed6cd6d1faf0_card-feature-img-guarantee.png'
+          />
           <CardHeader>{t('home.benefits.card_5.title')}</CardHeader>
           <CardBody>{t('home.benefits.card_5.description')}</CardBody>
         </Card>
 
         <Card variant='benefits'>
-          <Image src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29ad60f67fa065d02bd_card-feature-img-accesible.png' />
+          <Image
+            role='none'
+            src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29ad60f67fa065d02bd_card-feature-img-accesible.png'
+          />
           <CardHeader>{t('home.benefits.card_6.title')}</CardHeader>
           <CardBody>{t('home.benefits.card_6.description')}</CardBody>
         </Card>

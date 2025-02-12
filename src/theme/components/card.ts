@@ -335,15 +335,18 @@ export const Card = defineMultiStyleConfig({
             fontSize: '22px',
             lineHeight: '32px',
             textAlign: { base: 'center', lg: 'start' },
-            mb: { base: '10px', lg: '24px' },
+            mb: '6px',
           },
 
           'p:last-of-type': {
             fontSize: '22px',
-            color: 'home.description.light',
             textAlign: { base: 'center', lg: 'start' },
             maxW: { base: '100%', sm: '70%', lg: '100%' },
             mx: 'auto',
+            color: 'home.description.light',
+            _dark: {
+              color: 'home.description.dark',
+            },
           },
         },
       },
@@ -372,65 +375,22 @@ export const Card = defineMultiStyleConfig({
             fontSize: '26px',
             lineHeight: '32px',
             textAlign: { base: 'center', lg: 'start' },
-            mb: { base: '10px', lg: '24px' },
           },
 
           'p:last-of-type': {
             fontSize: '22px',
-            color: 'home.description.light',
             textAlign: { base: 'center', lg: 'start' },
             maxW: { base: '100%', sm: '70%', lg: '100%' },
             mx: 'auto',
+            color: 'home.description.light',
+            _dark: {
+              color: 'home.description.dark',
+            },
           },
         },
       },
     },
-    step: {
-      container: {
-        backgroundColor: 'transparent',
-      },
-      body: {
-        p: 0,
-        display: 'flex',
-        flexDirection: { base: 'column', lg: 'row' },
-        gap: { base: '10px', lg: '24px' },
 
-        'div:first-of-type': {
-          alignSelf: { base: 'center', lg: 'start' },
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          borderRadius: 'lg',
-          minW: '45px',
-          h: '45px',
-          border: '1px solid gray',
-          bg: 'home.step.icon_bg',
-
-          svg: {
-            width: '25px',
-            height: '25px',
-            color: 'home.step.icon',
-          },
-        },
-
-        'div:last-of-type': {
-          'p:first-of-type': {
-            fontWeight: '600',
-            fontSize: '22px',
-            lineHeight: '32px',
-            textAlign: { base: 'center', lg: 'start' },
-            mb: { base: '10px', lg: '24px' },
-          },
-          'p:nth-of-type(2)': {
-            fontSize: '22px',
-            color: 'home.description.light',
-            textAlign: { base: 'center', lg: 'start' },
-            maxW: { base: '100%', sm: '70%', lg: '100%' },
-            mx: 'auto',
-          },
-        },
-      },
-    },
     faqs: {
       container: {
         borderRadius: 'none',
@@ -442,8 +402,10 @@ export const Card = defineMultiStyleConfig({
         fontWeight: 'bold',
         mb: '18px',
         fontSize: 'xl',
+        textAlign: 'center',
       },
       body: {
+        textAlign: 'center',
         p: 0,
         mb: '19px',
         color: 'home.description.light !important',

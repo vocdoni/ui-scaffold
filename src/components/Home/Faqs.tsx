@@ -194,18 +194,7 @@ const Faqs = () => {
 
   return (
     <Box position='relative' width='full' mb={{ base: '100px', lg: '160px' }}>
-      <Box
-        width='full'
-        m='0 auto'
-        maxW='1920px'
-        px={{
-          base: '10px',
-          sm: '20px',
-          md: '80px',
-        }}
-        position='relative'
-        zIndex={10}
-      >
+      <Box width='full' m='0 auto' maxW='1920px' position='relative' zIndex={10}>
         <Text
           fontSize={{ base: '32px', xl: '42px' }}
           lineHeight={{ base: '36px', xl: '46px' }}
@@ -232,7 +221,7 @@ const Faqs = () => {
           {faqs.map((el, idx) => {
             if (!showAll && idx > 7) return null
             return (
-              <Card key={idx} variant='faqs' flex={{ base: '1 1 100%', xl: '1 1 45%' }} mb='30px'>
+              <Card key={idx} variant='faqs' flex={{ base: '1 1 100%', lg: '1 1 45%' }} mb='30px'>
                 <CardHeader>{el.title}</CardHeader>
                 <CardBody>{el.description}</CardBody>
               </Card>

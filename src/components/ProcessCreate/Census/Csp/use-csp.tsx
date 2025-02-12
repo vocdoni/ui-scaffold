@@ -1,6 +1,6 @@
+import { Signer, Wallet } from 'ethers'
 import { ReactNode, createContext, useContext, useEffect, useState } from 'react'
 import { CspAdminClientOptions, VocdoniAdminSDKClient } from 'vocdoni-admin-sdk'
-import { Wallet, Signer } from 'ethers'
 
 export const CspAdminContext = createContext<any>(null)
 

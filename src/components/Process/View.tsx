@@ -1,4 +1,3 @@
-import { WarningIcon } from '@chakra-ui/icons'
 import {
   AspectRatio,
   Box,
@@ -23,20 +22,18 @@ import {
   Text,
   UnorderedList,
   useDisclosure,
-  useMultiStyleConfig,
   VStack,
 } from '@chakra-ui/react'
-import { ElectionQuestions, ElectionResults, environment, useConfirm } from '@vocdoni/chakra-components'
+import { ElectionQuestions, ElectionResults, environment } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
-import { ElectionResultsTypeNames, ElectionStatus, PublishedElection } from '@vocdoni/sdk'
+import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { useEffect, useRef, useState } from 'react'
-import { FieldValues } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import ReactPlayer from 'react-player'
 import { FacebookShare, RedditShare, TelegramShare, TwitterShare } from '~components/Share'
 import ProcessAside, { VoteButton } from './Aside'
+import { ConfirmVoteModal } from './ConfirmVoteModal'
 import Header from './Header'
-import confirmImg from '/assets/spreadsheet-confirm-modal.jpg'
 import successImg from '/assets/spreadsheet-success-modal.jpg'
 
 export const ProcessView = () => {
@@ -257,102 +254,6 @@ const SuccessVoteModal = () => {
         </ModalFooter>
       </ModalContent>
     </Modal>
-  )
-}
-
-const ConfirmVoteModal = ({ election, answers }: { election: PublishedElection; answers: FieldValues }) => {
-  const { t } = useTranslation()
-  const styles = useMultiStyleConfig('ConfirmModal')
-  const { cancel, proceed } = useConfirm()
-
-  const canAbstain =
-    election.resultsType.name === ElectionResultsTypeNames.MULTIPLE_CHOICE && election.resultsType.properties.canAbstain
-
-  return (
-    <>
-      <ModalCloseButton />
-      <ModalHeader>
-        <Image src={confirmImg} borderRadius={'lg'} />
-      </ModalHeader>
-      <ModalBody display='flex' flexDirection='column' gap={5} p={0} mb={2}>
-        <Text>{t('process.spreadsheet.confirm.description')}</Text>
-        <Flex
-          flexDirection='column'
-          maxH='200px'
-          overflowY='scroll'
-          boxShadow='rgba(128, 128, 128, 0.42) 1px 1px 1px 1px'
-          px={2}
-          borderRadius='xl2'
-        >
-          {election.questions.map((q, i) => (
-            <Box key={i}>
-              <Box py={2}>
-                <Text display='flex' flexDirection='column' gap={1} mb={1}>
-                  <Trans
-                    i18nKey='process.spreadsheet.confirm.question'
-                    components={{
-                      span: <Text as='span' fontWeight='bold' whiteSpace='nowrap' />,
-                    }}
-                    values={{
-                      answer: q.title.default,
-                      number: i + 1,
-                    }}
-                  />
-                </Text>
-                {election.resultsType.name === ElectionResultsTypeNames.SINGLE_CHOICE_MULTIQUESTION ? (
-                  <Text display='flex' flexDirection='column' gap={1}>
-                    <Trans
-                      i18nKey='process.spreadsheet.confirm.option'
-                      components={{
-                        span: <Text as='span' fontWeight='bold' whiteSpace='nowrap' />,
-                      }}
-                      values={{
-                        answer: q.choices[Number(answers[i])].title.default,
-                        number: i + 1,
-                      }}
-                    />
-                  </Text>
-                ) : (
-                  <Text display='flex' flexDirection='column' gap={1}>
-                    <Trans
-                      i18nKey='process.spreadsheet.confirm.options'
-                      components={{
-                        span: <Text as='span' fontWeight='bold' whiteSpace='nowrap' />,
-                      }}
-                      values={{
-                        answers:
-                          answers[0].length === 0
-                            ? t('process.spreadsheet.confirm.blank_vote')
-                            : answers[0]
-                                .map((a: string) => q.choices[Number(a)].title.default)
-                                .map((a: string) => `- ${a}`)
-                                .join('<br />'),
-                      }}
-                    />
-                  </Text>
-                )}
-              </Box>
-              {i + 1 !== election.questions.length && <Box h='1px' bgColor='lightgray' />}
-            </Box>
-          ))}
-        </Flex>
-        {canAbstain && answers[0].length < election.voteType.maxCount! && (
-          <Flex direction={'row'} py={2} gap={2} alignItems={'center'} color={'primary.main'}>
-            <WarningIcon />
-            <Text display='flex' flexDirection='column' gap={1}>
-              {t('process.spreadsheet.confirm.abstain_count', {
-                count: election.voteType.maxCount! - answers[0].length,
-              })}
-            </Text>
-          </Flex>
-        )}
-      </ModalBody>
-      <ModalFooter sx={styles.footer}>
-        <Button onClick={proceed!} sx={styles.confirm}>
-          {t('cc.confirm.confirm')}
-        </Button>
-      </ModalFooter>
-    </>
   )
 }
 

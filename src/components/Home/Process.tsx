@@ -29,7 +29,13 @@ const Process = () => {
       </Text>
       <Flex flexDirection={{ base: 'column', lg: 'row' }} gap={{ base: '60px', lg: '30px' }}>
         <Flex flex='1 1 40%' justifyContent={{ base: 'center', lg: 'end' }} alignItems='center'>
-          <Image src={process} borderRadius='lg' maxW={{ base: '350px', xl: '550px' }} m={{ base: '-20px auto 0px' }} />
+          <Image
+            role='none'
+            src={process}
+            borderRadius='lg'
+            maxW={{ base: '350px', xl: '550px' }}
+            m={{ base: '-20px auto 0px' }}
+          />
         </Flex>
         <Flex
           flex='1 1'
@@ -39,46 +45,40 @@ const Process = () => {
           alignItems={{ base: 'center', lg: 'start' }}
           gap='40px'
         >
-          <Card variant='step' maxW={{ base: '700px' }}>
+          <Card variant='icon-card' maxW={{ base: '700px' }}>
             <CardBody>
               <Box>
                 <PiNumberSquareOneFill />
               </Box>
               <Box>
-                <Text style={{ fontSize: '22px', marginTop: '4px', marginBottom: '6px' }}>
-                  {t('home.process.step_1.title')}
-                </Text>
+                <Text>{t('home.process.step_1.title')}</Text>
                 <Text textAlign='justify'>{t('home.process.step_1.description')}</Text>
               </Box>
             </CardBody>
           </Card>
-          <Card variant='step' maxW={{ base: '700px' }}>
+          <Card variant='icon-card' maxW={{ base: '700px' }}>
             <CardBody>
               <Box>
                 <PiNumberSquareTwoFill />
               </Box>
               <Box>
-                <Text style={{ fontSize: '22px', marginTop: '4px', marginBottom: '6px' }}>
-                  {t('home.process.step_2.title')}
-                </Text>
+                <Text>{t('home.process.step_2.title')}</Text>
                 <Text textAlign='justify'>{t('home.process.step_2.description')}</Text>
               </Box>
             </CardBody>
           </Card>
-          <Card variant='step' maxW={{ base: '700px' }}>
+          <Card variant='icon-card' maxW={{ base: '700px' }}>
             <CardBody>
               <Box>
                 <PiNumberSquareThreeFill />
               </Box>
               <Box>
-                <Text style={{ fontSize: '22px', marginTop: '4px', marginBottom: '6px' }}>
-                  {t('home.process.step_3.title')}
-                </Text>
+                <Text>{t('home.process.step_3.title')}</Text>
                 <Text textAlign='justify'>{t('home.process.step_3.description')}</Text>
               </Box>
             </CardBody>
           </Card>
-          <Card variant='step' maxW={{ base: '700px' }}>
+          <Card variant='icon-card' maxW={{ base: '700px' }}>
             <CardBody>
               <Box>
                 <PiNumberSquareFourFill color='#fff' />

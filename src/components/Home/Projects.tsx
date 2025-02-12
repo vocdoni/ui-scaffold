@@ -70,9 +70,12 @@ const Support = () => {
           height='60px'
           color='white'
           mx='auto'
-          maxW='200px'
-          fontSize='18px'
+          maxW='300px'
+          minW='220px'
+          fontSize='16px'
           mt='10px'
+          border='2px solid #fff'
+          fontWeight='900'
         >
           {t('home.support.btn_contact')}
         </Button>
