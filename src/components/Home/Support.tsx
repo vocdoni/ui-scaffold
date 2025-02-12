@@ -13,23 +13,16 @@ const Support = () => {
       _dark={{
         background: 'home.support.bg.dark',
       }}
-      backgroundRepeat='no-repeat'
-      backgroundPosition='right'
-      mb='100px'
+      mb={{ base: '100px', lg: '160px' }}
+      boxShadow='inset 0 -1px 0 1px rgba(68, 67, 67, 0.38),0 8px 22px rgba(0, 0, 0, 0.44)'
+      maxW='1500px'
+      borderRadius={{ base: '0px', md: '16px' }}
+      mx='auto'
+      display='flex'
+      flexDirection={{ base: 'column', xl: 'row' }}
+      gap={6}
     >
-      <Box
-        width='full'
-        m='0 auto'
-        maxW='1920px'
-        px={{
-          base: '10px',
-          sm: '20px',
-          md: '80px',
-        }}
-        py={{ base: '60px', lg: '200px' }}
-        position='relative'
-        overflow='hidden'
-      >
+      <Box width='full' m='0 auto' position='relative' overflow='hidden' px={'40px'} py={'60px'}>
         <Box
           w='356px'
           h='356px'
@@ -37,7 +30,7 @@ const Support = () => {
           bgColor='#738A57cf'
           position='absolute'
           right='25px'
-          top='-250px'
+          top='-240px'
           display={{ base: 'none', lg: 'block' }}
         />
         <Box
@@ -51,9 +44,9 @@ const Support = () => {
           display={{ base: 'none', lg: 'block' }}
         />
         <Text
-          fontSize='20px'
-          lineHeight='24px'
-          mb='6px'
+          fontSize={{ base: '20px', md: '14px' }}
+          lineHeight={{ base: '20px', md: '14px' }}
+          mb={{ base: '10px', md: '6px' }}
           color='home.support.title'
           textAlign='center'
           fontWeight='bold'
@@ -61,9 +54,9 @@ const Support = () => {
           {t('home.support.header')}
         </Text>
         <Text
-          fontSize='60px'
-          lineHeight='68px'
-          mb='10px'
+          fontSize={{ base: '40px', md: '68px' }}
+          lineHeight={{ base: '40px', md: '68px' }}
+          mb={{ base: '20px', md: '10px' }}
           color='white'
           textAlign='center'
           fontFamily='basier'
@@ -73,9 +66,9 @@ const Support = () => {
           {t('home.support.title')}
         </Text>
         <Text
-          fontSize='22px'
-          lineHeight='28px'
-          mb='50px'
+          fontSize={{ base: '20px', md: '22px' }}
+          lineHeight={{ base: '26px', md: '28px' }}
+          mb={{ base: '30px', md: '50px' }}
           color='white'
           textAlign='center'
           fontFamily='basier'
@@ -87,8 +80,8 @@ const Support = () => {
           flexDirection={{ base: 'column', lg: 'row' }}
           justifyContent='center'
           alignItems='center'
-          gap='10px'
           mb='40px'
+          gap={'15px'}
         >
           <Button
             as={ReactRouterLink}
@@ -98,9 +91,7 @@ const Support = () => {
             aria-label={t('home.support.btn_contact')}
             title={t('home.support.btn_contact')}
             target='_blank'
-            minW='280px'
             height='60px'
-            mb='30px'
             color='white'
           >
             {t('home.support.btn_contact')}
@@ -113,8 +104,6 @@ const Support = () => {
             aria-label={t('home.support.btn_watch')}
             title={t('home.support.btn_watch')}
             target='_blank'
-            minW='280px'
-            mb='30px'
             height='60px'
             color='white'
           >

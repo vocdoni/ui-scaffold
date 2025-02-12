@@ -12,23 +12,15 @@ const CreateProcess = () => {
     <Flex
       as='section'
       width='full'
-      mt={{ base: '40px', lg: '60px' }}
-      mb={{ base: '75px', lg: '100px' }}
-      mx='auto'
-      maxW='1920px'
-      px={{
-        base: '10px',
-        sm: '20px',
-        md: '80px',
-      }}
+      mt={{ base: '20px', lg: '40px' }}
+      mb={{ base: '80px', lg: '120px' }}
       flexDirection={{ base: 'column', lg: 'row' }}
-      py={{ base: '0px', sm: '15px', md: '30px', md2: '30px', lg: '30px' }}
       gap={{ base: '40px', lg: '60px' }}
     >
       <Box flex='1 1 50%'>
         <Text
-          fontSize={{ base: '48px', md: '52px', md2: '56px', lg2: '64px' }}
-          lineHeight={{ base: '54px', md: '58px', md2: '64px', lg2: '78px' }}
+          fontSize={{ base: '42px', md: '48px', md2: '50px', lg2: '58px' }}
+          lineHeight={{ base: '48px', md: '52px', md2: '58px', lg2: '64px' }}
           fontWeight='600'
           fontFamily='basier'
           mb={'40px'}
@@ -71,7 +63,7 @@ const CreateProcess = () => {
         </Box>
       </Box>
       <Box flex='1 1 50%' display={{ lg: 'flex' }} justifyContent='center' alignItems='center'>
-        <Image src={devices} w={{ base: '535px', lg: '100%' }} mx='auto' />
+        <Image src={devices} w={{ base: '535px', lg: '100%' }} mx='auto' role='none' />
       </Box>
     </Flex>
   )

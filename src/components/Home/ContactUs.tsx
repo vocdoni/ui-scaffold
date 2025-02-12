@@ -13,26 +13,25 @@ const ContactUs = () => {
       as='section'
       id='contactus'
       flexDirection={{ base: 'column', xl: 'row' }}
-      mb={{ base: '75px', lg: '100px' }}
-      gap={{ base: '40px', xl: '60px' }}
+      mb={{ base: '100px', lg: '160px' }}
+      gap={{ base: '100px', lg: '60px', xl: '120px' }}
       scrollMarginTop='100px'
+      minH={{ base: '60vh' }}
     >
-      <Flex justifyContent={{ base: 'center' }} flex='1 1 50%' position='relative'>
-        <Box maxW={{ base: 'full', xl: '660px' }} px={{ base: '30px', xl: 0 }} pl={{ xl: '37px', xl3: 0 }}>
-          <Image
-            src={advFeature}
-            position='relative'
-            top={{ xl: '50%' }}
-            transform={{ xl: 'translateY(-50%)' }}
-            borderRadius='xl'
-            ml={{ base: '0px', xl: '50px' }}
-            maxW={{ base: '350px', xl: '550px' }}
-            mx='auto'
-          />
-        </Box>
-      </Flex>
+      <Box
+        flex='1 1'
+        flexBasis={{ lg: '45%' }}
+        position='relative'
+        display={'flex'}
+        justifyContent={'center'}
+        alignItems={'center'}
+        maxW={{ base: '400px', xl: 'none' }}
+        mx='auto'
+      >
+        <Image role='none' src={advFeature} borderRadius='xl' />
+      </Box>
       <Flex
-        flex='1 1 50%'
+        flex='1 1 40%'
         justifyContent={{ base: 'center', xl: 'start' }}
         display={{ xl: 'flex' }}
         alignItems='center'
@@ -42,28 +41,31 @@ const ContactUs = () => {
         <Flex
           flexDirection='column'
           gap='30px'
-          maxW={{ base: 'full', xl: '660px' }}
+          maxW={{ base: 'full', xl: '960px' }}
           px={{ base: '30px', xl: 0 }}
           pr={{ xl: '37px', xl3: 0 }}
         >
           <Box>
             <Text
-              fontSize={{ base: '40px', xl: '60px' }}
-              lineHeight={{ base: '36px', xl: '78px' }}
+              fontSize={{ base: '32px', xl: '42px' }}
+              lineHeight={{ base: '36px', xl: '46px' }}
               fontWeight='bold'
               fontFamily='basier'
               textAlign={{ base: 'center', xl: 'left' }}
+              marginBottom='10px'
             >
               {t('home.contactus.title')}
             </Text>
           </Box>
-          <Card variant='icon-card' mt='30px' mb='20px'>
+          <Card variant='icon-card' mt='10px'>
             <CardBody>
               <Box>
                 <MdDesignServices />
               </Box>
               <Box>
-                <Text>{t('home.contactus.card_1.title')}</Text>
+                <Text style={{ fontSize: '22px', marginTop: '6px', marginBottom: '6px' }}>
+                  {t('home.contactus.card_1.title')}
+                </Text>
                 <Text>{t('home.contactus.card_1.description')}</Text>
               </Box>
             </CardBody>
@@ -74,8 +76,29 @@ const ContactUs = () => {
                 <FaFingerprint />
               </Box>
               <Box>
-                <Text> {t('home.contactus.card_2.title')}</Text>
+                <Text style={{ fontSize: '22px', marginTop: '6px', marginBottom: '6px' }}>
+                  {t('home.contactus.card_2.title')}
+                </Text>
                 <Text>{t('home.contactus.card_2.description')}</Text>
+              </Box>
+            </CardBody>
+          </Card>
+          <Card variant='icon-card' mb={'30px'}>
+            <CardBody>
+              <Box>
+                <FaFingerprint />
+              </Box>
+              <Box>
+                <Text style={{ fontSize: '22px', marginTop: '6px', marginBottom: '6px' }}>
+                  {t('home.contactus.card_3.title', {
+                    defaultValue: 'Expert Guidance',
+                  })}
+                </Text>
+                <Text>
+                  {t('home.contactus.card_3.description', {
+                    defaultValue: 'We advise you throughout the process to ensure a flawless voting experience.',
+                  })}
+                </Text>
               </Box>
             </CardBody>
           </Card>
@@ -92,32 +115,12 @@ const ContactUs = () => {
             target='_blank'
             height='52px'
             fontSize='20px'
-            mt='30px'
-            px='130px'
+            px={{ md: '130px' }}
           >
             {t('home.contactus.btn')}
           </Button>
         </Flex>
       </Flex>
-
-      <Box
-        position='relative'
-        display={{ base: 'none', xl: 'block' }}
-        w='500px'
-        float='right'
-        marginLeft='-500px'
-        top='10px'
-      >
-        <Image
-          w='100vw'
-          src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6436edfde50ddf8203cfef89_Vector-builders1.png'
-        />
-        <Image
-          position='relative'
-          mt='-300px'
-          src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6436edf13d923ae2692920a9_Vector-builders2.png'
-        />
-      </Box>
     </Flex>
   )
 }
