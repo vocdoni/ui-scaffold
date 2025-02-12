@@ -32,6 +32,10 @@ const baseStyle = definePartsStyle((props) => ({
     mt: 1.5,
     fontSize: 'xs',
     display: { base: 'none', lg: 'block' },
+    '&[data-status=active]': {
+      fontWeight: 'bold',
+      color: 'process_create.stepper.color',
+    },
   },
 }))
 
