@@ -113,6 +113,7 @@ export const DashboardMenuOptions = () => {
               route={item.route}
               icon={item.icon}
               isActive={Boolean(matchPath({ path: item.route || '', end: true }, location.pathname))}
+              onToggle={() => setOpenSection(null)}
             />
           )}
         </Box>
