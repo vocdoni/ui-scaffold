@@ -16,6 +16,7 @@ import {
 import { useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { CgMoreO } from 'react-icons/cg'
+import { PiMedal } from 'react-icons/pi'
 import { useSubscription } from '~components/Auth/Subscription'
 import { hasFeature } from '~components/Pricing/Features'
 import { usePricingModal } from '~components/Pricing/use-pricing-modal'
@@ -195,7 +196,7 @@ const TabCardSkeleton = ({
   const styles = useMultiStyleConfig('DetailedCheckbox', props)
 
   return (
-    <Tab onClick={onClick} mb={5} {...props} sx={styles.checkbox}>
+    <Tab onClick={onClick} {...props} sx={styles.checkbox}>
       {check && !needsUpgrade && (
         <>
           <Check />
@@ -222,7 +223,8 @@ const TabCardSkeleton = ({
       </Box>
       <Text sx={styles.description}>{description}</Text>
       {needsUpgrade && (
-        <Badge colorScheme='red' sx={styles.badge}>
+        <Badge colorScheme='blue' mt={'4px'} sx={styles.badge}>
+          <PiMedal />
           <Trans i18nKey='upgrade'>Upgrade</Trans>
         </Badge>
       )}

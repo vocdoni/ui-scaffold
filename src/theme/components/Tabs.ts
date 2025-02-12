@@ -28,6 +28,8 @@ const card = definePartsStyle({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
+    columnGap: '5%',
+    rowGap: 8,
     '& > div': {
       display: 'grid',
       gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
@@ -79,6 +81,9 @@ const card = definePartsStyle({
     _dark: {
       bgColor: 'tab.variant.card.bg.dark',
       boxShadow: 'none',
+    },
+    '&:nth-of-type(2)': {
+      mr: 'auto',
     },
   },
   tabpanel: {
