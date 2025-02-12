@@ -26,10 +26,10 @@ export const DashboardMenuItem = ({
   <Button
     as={route ? ReactRouterLink : undefined}
     to={route ? generatePath(route) : undefined}
-    onClick={hasChildren ? onToggle : undefined}
+    onClick={onToggle}
     isActive={hasChildren ? (isOpen ? true : false) : false} // Set active state
     justifyContent='start'
-    variant={variant ? variant : isActive && !hasChildren ? 'underline' : 'transparent'}
+    variant={isActive ? (hasChildren ? 'none' : 'underline') : !hasChildren && isOpen ? 'underline' : 'transparent'}
     w='full'
     colorScheme='gray'
     leftIcon={icon ? <Icon as={icon} mt='0px' /> : undefined}
