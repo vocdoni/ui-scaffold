@@ -217,11 +217,11 @@ const Faqs = () => {
         >
           {t('home.faqs.subtitle')}
         </Text>
-        <Flex flexWrap={'wrap'} gap={10}>
+        <Flex flexWrap={'wrap'}>
           {faqs.map((el, idx) => {
             if (!showAll && idx > 7) return null
             return (
-              <Card key={idx} variant='faqs' flex={{ base: '1 1 100%', lg: '1 1 45%' }} mb='30px'>
+              <Card key={idx} variant='faqs' flex={{ base: '1 1 100%', lg: '1 1 45%' }}>
                 <CardHeader>{el.title}</CardHeader>
                 <CardBody>{el.description}</CardBody>
               </Card>
