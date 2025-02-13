@@ -1,5 +1,6 @@
 import { Box, Flex, Link, ListItem, OrderedList, Spinner, Text } from '@chakra-ui/react'
 import { ElectionProvider, useClient, useElection } from '@vocdoni/react-providers'
+import { Crisp } from 'crisp-sdk-web'
 import { useEffect, useRef, useState } from 'react'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { ActionsMenu } from '~components/Process/ActionsMenu'
@@ -35,6 +36,13 @@ const Coib = () => {
   const [connected, setConnected] = useState<boolean>(false)
   const { loading, loaded, election } = useElection()
   const { account, connected: aconnected } = useClient()
+
+  // Crisp config
+  useEffect(() => {
+    if (!connected) return
+
+    Crisp.configure('855c1c0c-673c-4cf2-bc92-1471d743b8d2')
+  }, [connected])
 
   useEffect(() => {
     const handleScroll = () => {
