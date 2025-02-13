@@ -6,7 +6,6 @@ import { Params } from 'react-router-dom'
 import Error from '~elements/Error'
 import Layout from '~elements/Layout'
 import PlansPublicPage from '~elements/plans'
-import { PlansLayout, StretchPublicContentsLayout } from '~elements/PublicContents'
 import { StripeCheckout, StripeReturn } from '~elements/Stripe'
 import ProtectedRoutes from '~src/router/ProtectedRoutes'
 import { Routes } from '.'
@@ -86,41 +85,29 @@ const RootElements = (client: VocdoniSDKClient) => [
       </SuspenseLoader>
     ),
   },
-  // Plans have their own layout
   {
-    element: <PlansLayout />,
-    children: [
-      {
-        path: Routes.plans,
-        element: (
-          <SuspenseLoader>
-            <PlansPublicPage />
-          </SuspenseLoader>
-        ),
-      },
-    ],
+    path: Routes.plans,
+    element: (
+      <SuspenseLoader>
+        <PlansPublicPage />
+      </SuspenseLoader>
+    ),
   },
-  // Stuff centered in the view, stretched
   {
-    element: <StretchPublicContentsLayout />,
-    children: [
-      {
-        path: Routes.terms,
-        element: (
-          <SuspenseLoader>
-            <Terms />
-          </SuspenseLoader>
-        ),
-      },
-      {
-        path: Routes.privacy,
-        element: (
-          <SuspenseLoader>
-            <Privacy />
-          </SuspenseLoader>
-        ),
-      },
-    ],
+    path: Routes.terms,
+    element: (
+      <SuspenseLoader>
+        <Terms />
+      </SuspenseLoader>
+    ),
+  },
+  {
+    path: Routes.privacy,
+    element: (
+      <SuspenseLoader>
+        <Privacy />
+      </SuspenseLoader>
+    ),
   },
   {
     path: '*',
