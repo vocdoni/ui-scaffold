@@ -3,8 +3,11 @@ import { defineStyleConfig } from '@chakra-ui/react'
 export const Link = defineStyleConfig({
   baseStyle: {
     textDecoration: 'underline',
-    color: 'link',
+    color: 'link.light',
 
+    _dark: {
+      color: 'link.dark',
+    },
     _hover: {
       textDecoration: 'none',
     },

@@ -51,11 +51,14 @@ const baseStyle = definePartsStyle({
     textOverflow: 'ellipsis',
     overflow: 'hidden',
     whiteSpace: 'nowrap',
-    color: 'process.questions.alert.link_color',
+    color: 'link.light',
     backgroundColor: 'process.questions.alert.link_bg',
     borderRadius: 'md',
     fontSize: 'sm',
 
+    _dark: {
+      color: 'link.light',
+    },
     _hover: {
       textDecoration: 'none',
     },

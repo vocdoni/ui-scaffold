@@ -275,7 +275,10 @@ export const colors = {
     },
     required_asterisk: colorsBase.primary,
   },
-  link: colorsBase.gray.normal,
+  link: {
+    light: colorsBase.gray.dark,
+    dark: colorsBase.gray.normal,
+  },
   org_text_secondary: colorsBase.gray.normal,
 
   process: {
@@ -302,8 +305,6 @@ export const colors = {
     questions: {
       alert: {
         bg: colorsBase.primary,
-        color: colorsBase.white.pure,
-        link_color: colorsBase.black,
         link_bg: colorsBase.white.pure,
       },
       question_selected: {
