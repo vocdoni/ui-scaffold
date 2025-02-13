@@ -431,7 +431,9 @@ export const colors = {
       },
     },
   },
-
+  usecases: {
+    subtitle: colorsBase.primary,
+  },
   radio: {
     bg: colorsBase.primary,
     border: colorsBase.primary,

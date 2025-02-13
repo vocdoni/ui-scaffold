@@ -3,6 +3,7 @@ import { VocdoniSDKClient } from '@vocdoni/sdk'
 import { lazy } from 'react'
 import { Params } from 'react-router-dom'
 // These aren't lazy loaded since they are main layouts and related components
+import UseCases from '~components/UseCases'
 import Error from '~elements/Error'
 import Layout from '~elements/Layout'
 import PlansPublicPage from '~elements/plans'
@@ -83,6 +84,14 @@ const RootElements = (client: VocdoniSDKClient) => [
     element: (
       <SuspenseLoader>
         <Calculator />
+      </SuspenseLoader>
+    ),
+  },
+  {
+    path: Routes.usecases.base,
+    element: (
+      <SuspenseLoader>
+        <UseCases />
       </SuspenseLoader>
     ),
   },
