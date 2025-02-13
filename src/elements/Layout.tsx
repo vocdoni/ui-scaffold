@@ -41,6 +41,7 @@ const Layout = () => {
           sm: '20px',
           md: '80px',
         }}
+        w='full'
       >
         <Outlet />
       </Flex>

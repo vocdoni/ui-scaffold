@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   Flex,
+  Image,
   Link,
   ListItem,
   Modal,
@@ -103,18 +104,7 @@ export const ProcessView = () => {
   }, [formErrors])
 
   return (
-    <Box
-      position='relative'
-      width='full'
-      m='0 auto'
-      maxW='1920px'
-      px={{
-        base: '10px',
-        sm: '20px',
-        md: '80px',
-      }}
-      mb={{ base: 10, md: 20 }}
-    >
+    <Box position='relative' mb={{ base: 10, md: 20 }}>
       <Box>
         <Header />
 
@@ -231,8 +221,8 @@ const SuccessVoteModal = () => {
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>
-          <Text>{t('process.success_modal.title')}</Text>
-          <Box bgImage={successImg} />
+          <Text mb={3}>{t('process.success_modal.title')}</Text>
+          <Image src={successImg} borderRadius={'lg'} />
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
