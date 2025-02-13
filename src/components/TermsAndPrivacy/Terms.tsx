@@ -1,11 +1,11 @@
-import { Heading, ListItem, Text, UnorderedList } from '@chakra-ui/react'
+import { Flex, Heading, ListItem, Text, UnorderedList } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 
 const Terms = () => {
   const { t } = useTranslation()
 
   return (
-    <>
+    <Flex flexDirection='column' gap={5} width='full' mx='auto'>
       <Heading as='h1' size='md'>
         {t('terms.title')}
       </Heading>
@@ -84,7 +84,7 @@ const Terms = () => {
       </Heading>
       <Text>{t('terms.section9.description1')}</Text>
       <Text>{t('terms.section9.description2')}</Text>
-    </>
+    </Flex>
   )
 }
 
