@@ -2,6 +2,7 @@ import { HamburgerIcon } from '@chakra-ui/icons'
 import {
   Box,
   Button,
+  ButtonGroup,
   ButtonProps,
   Divider,
   Drawer,
@@ -24,9 +25,8 @@ import { Trans, useTranslation } from 'react-i18next'
 import { IoMdMoon, IoMdSunny } from 'react-icons/io'
 import { IoPricetagOutline } from 'react-icons/io5'
 import { RiContactsBook3Line } from 'react-icons/ri'
-import { generatePath, Link as ReactRouterLink, Link as RouterLink } from 'react-router-dom'
+import { generatePath, Link as ReactRouterLink, Link as RouterLink, useMatch } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
-import { DashboardMenuItem } from '~components/Dashboard/Menu/Item'
 import { ColorModeSwitcher } from '~components/Layout/ColorModeSwitcher'
 import Logo from '~components/Layout/Logo'
 import { Routes } from '~src/router/routes'
@@ -40,7 +40,8 @@ type MenuItem = {
 
 const Navbar = () => {
   const { isAuthenticated } = useAuth()
-  const reducedMenu = location.pathname.startsWith('/processes') && !isAuthenticated
+  const isOnProcessesPage = useMatch('/processes/*')
+  const reducedMenu = !!isOnProcessesPage && !isAuthenticated
   return (
     <Flex width='full' m='0 auto' mx='auto' py={{ base: 4, md: 6 }} position='relative'>
       <Flex justifyContent='space-between' alignItems='center' zIndex={1} w='100%'>
@@ -56,7 +57,8 @@ const Navbar = () => {
 
 const DesktopNav = ({ display }: { display?: any }) => {
   const { isAuthenticated } = useAuth()
-  const reducedMenu = location.pathname.startsWith('/processes') && !isAuthenticated
+  const isOnProcessesPage = useMatch('/processes/*')
+  const reducedMenu = !!isOnProcessesPage && !isAuthenticated
   return (
     <>
       {!reducedMenu && <NavMenu display={display} />}
@@ -104,7 +106,9 @@ const Mobile = () => {
                 <ListItem>
                   <LanguagesListAccordion />
                 </ListItem>
-                <ListItemColorModeSwitcher />
+                <ListItem>
+                  <ListItemColorModeSwitcher />
+                </ListItem>
                 <Divider />
                 <ListItem>
                   <Button
@@ -145,7 +149,8 @@ const NavMenu = ({ display, children }: { display?: any; children?: any }) => {
   const { t } = useTranslation()
   const isMobile = useBreakpointValue({ base: true, xl: false })
   const { isAuthenticated } = useAuth()
-  const reducedMenu = location.pathname.startsWith('/processes') && !isAuthenticated
+  const isOnProcessesPage = useMatch('/processes/*')
+  const reducedMenu = !!isOnProcessesPage && !isAuthenticated
   const menuItems: MenuItem[] = [
     {
       icon: <IoPricetagOutline />,
@@ -164,17 +169,20 @@ const NavMenu = ({ display, children }: { display?: any; children?: any }) => {
         <>
           {menuItems.map((item, index) => (
             <ListItem key={index}>
-              <DashboardMenuItem
-                label={item.label}
-                route={item.route}
+              <Button
+                as={ReactRouterLink}
+                to={item.route}
                 variant='unstyled'
                 fontWeight='semibold'
                 display='flex'
                 alignItems='center'
+                justifyContent={'start'}
                 fontSize={'md'}
                 h={'fit-content'}
                 leftIcon={isMobile ? item.icon : undefined}
-              />
+              >
+                {item.label}
+              </Button>
             </ListItem>
           ))}
         </>
@@ -191,19 +199,17 @@ const ListItemColorModeSwitcher = ({ ...props }) => {
   const SwitchIcon = useColorModeValue(IoMdMoon, IoMdSunny)
 
   return (
-    <ListItem
+    <ButtonGroup
       onClick={toggleColorMode}
       display={'flex'}
       justifyContent={'start'}
       alignItems={'center'}
-      gap={2}
       fontWeight={'semibold'}
-      role='button'
       {...props}
     >
       <Icon as={SwitchIcon} />
       <Text as='span'>{isLightMode ? t('dark_mode') : t('light_mode')}</Text>
-    </ListItem>
+    </ButtonGroup>
   )
 }
 const DashboardButton = (props?: ButtonProps) => {
