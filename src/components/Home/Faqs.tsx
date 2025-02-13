@@ -217,7 +217,7 @@ const Faqs = () => {
         >
           {t('home.faqs.subtitle')}
         </Text>
-        <Flex flexWrap={'wrap'}>
+        <Flex flexWrap={'wrap'} gap={6}>
           {faqs.map((el, idx) => {
             if (!showAll && idx > 7) return null
             return (

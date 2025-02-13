@@ -402,7 +402,7 @@ export const Card = defineMultiStyleConfig({
           border: 'none',
         },
         '&:nth-last-of-type(2)': {
-          border: { base: 'none', lg: '1px solid rgb(229, 229, 229)' },
+          borderBottom: { base: '1px solid rgb(229, 229, 229)', lg: 'none' },
         },
       },
       header: {
