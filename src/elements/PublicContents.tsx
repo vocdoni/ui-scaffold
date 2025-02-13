@@ -21,20 +21,7 @@ export const StretchPublicContentsLayout = () => (
 )
 
 export const PublicContentsLayout = () => (
-  <Flex
-    flexDirection='column'
-    gap={5}
-    width='full'
-    mx='auto'
-    maxW='1920px'
-    px={{
-      base: '10px',
-      sm: '20px',
-      md: '80px',
-    }}
-    mb={44}
-    mt={6}
-  >
+  <Flex flexDirection='column' gap={5} width='full' mx='auto' maxW='1920px' mb={44} mt={6}>
     <Outlet />
   </Flex>
 )
