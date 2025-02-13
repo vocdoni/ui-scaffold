@@ -11,7 +11,6 @@ const baseStyle = definePartsStyle({
     py: 7,
     mb: '30px',
     borderRadius: '8px',
-    color: 'process.questions.alert.color',
     bgColor: 'process.questions.alert.bg',
     display: 'grid',
     columnGap: 4,
@@ -19,7 +18,6 @@ const baseStyle = definePartsStyle({
     alignItems: 'center',
     gridTemplateColumns: 'auto 1fr',
     gridTemplateRows: 'auto auto',
-    boxShadow: 'var(--box-shadow)',
     border: 'none',
 
     '& span': {
@@ -32,6 +30,7 @@ const baseStyle = definePartsStyle({
   alertTitle: {
     fontSize: 'lg',
     mb: 3,
+    color: 'white',
   },
 
   alertDescription: {
@@ -41,6 +40,7 @@ const baseStyle = definePartsStyle({
     justifyContent: 'center',
     alignItems: { md: 'center' },
     whiteSpace: { base: 'pre-wrap', lg2: 'nowrap' },
+    color: 'white',
   },
 
   alertLink: {
@@ -51,11 +51,14 @@ const baseStyle = definePartsStyle({
     textOverflow: 'ellipsis',
     overflow: 'hidden',
     whiteSpace: 'nowrap',
-    color: 'process.questions.alert.link_color',
+    color: 'link.light',
     backgroundColor: 'process.questions.alert.link_bg',
     borderRadius: 'md',
     fontSize: 'sm',
 
+    _dark: {
+      color: 'link.light',
+    },
     _hover: {
       textDecoration: 'none',
     },
