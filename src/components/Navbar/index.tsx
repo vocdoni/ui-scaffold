@@ -40,7 +40,7 @@ type MenuItem = {
 
 const Navbar = () => {
   const { isAuthenticated } = useAuth()
-  const isOnProcessesPage = useMatch('/processes/*')
+  const isOnProcessesPage = useMatch(Routes.processes.view)
   const reducedMenu = !!isOnProcessesPage && !isAuthenticated
   return (
     <Flex width='full' m='0 auto' mx='auto' py={{ base: 4, md: 6 }} position='relative'>
@@ -57,7 +57,7 @@ const Navbar = () => {
 
 const DesktopNav = ({ display }: { display?: any }) => {
   const { isAuthenticated } = useAuth()
-  const isOnProcessesPage = useMatch('/processes/*')
+  const isOnProcessesPage = useMatch(Routes.processes.view)
   const reducedMenu = !!isOnProcessesPage && !isAuthenticated
   return (
     <>
@@ -149,7 +149,7 @@ const NavMenu = ({ display, children }: { display?: any; children?: any }) => {
   const { t } = useTranslation()
   const isMobile = useBreakpointValue({ base: true, xl: false })
   const { isAuthenticated } = useAuth()
-  const isOnProcessesPage = useMatch('/processes/*')
+  const isOnProcessesPage = useMatch(Routes.processes.view)
   const reducedMenu = !!isOnProcessesPage && !isAuthenticated
   const menuItems: MenuItem[] = [
     {
