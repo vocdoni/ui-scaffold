@@ -20,16 +20,14 @@ const PlansPublicPage = () => {
   }, [location.search, isLoading])
 
   return (
-    <>
-      <PricingModalProvider>
-        <Flex flexDirection='column' gap={{ base: '60px', lg: '100px' }} width='full' mx='auto'>
-          <SubscriptionPlans featuresRef={featuresRef} />
-          <ComparisonTable ref={featuresRef} />
-          <Clients />
-          <Faqs />
-        </Flex>
-      </PricingModalProvider>
-    </>
+    <PricingModalProvider>
+      <Flex flexDirection='column' gap={{ base: '60px', lg: '100px' }} width='full' mx='auto'>
+        <SubscriptionPlans featuresRef={featuresRef} />
+        <ComparisonTable ref={featuresRef} />
+        <Clients />
+        <Faqs />
+      </Flex>
+    </PricingModalProvider>
   )
 }
 
