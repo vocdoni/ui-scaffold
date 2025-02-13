@@ -33,7 +33,8 @@ const Layout = () => {
         flexDirection='column'
         as='main'
         flexGrow={1}
-        mt={{ base: 4, lg: 6 }}
+        mt={{ base: 4, lg: 6, xl: 10 }}
+        mb={{ base: 20, lg: 32 }}
         maxW='1600px'
         mx='auto'
         px={{

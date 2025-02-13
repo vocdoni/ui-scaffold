@@ -193,7 +193,7 @@ const Faqs = () => {
   ]
 
   return (
-    <Box position='relative' width='full' mb={{ base: '100px', lg: '160px' }}>
+    <Box position='relative' width='full'>
       <Box width='full' m='0 auto' maxW='1920px' position='relative' zIndex={10}>
         <Text
           fontSize={{ base: '32px', xl: '42px' }}

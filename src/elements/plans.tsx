@@ -1,3 +1,4 @@
+import { Flex } from '@chakra-ui/react'
 import { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import Clients from '~components/Home/Clients'
@@ -21,10 +22,12 @@ const PlansPublicPage = () => {
   return (
     <>
       <PricingModalProvider>
-        <SubscriptionPlans featuresRef={featuresRef} />
-        <ComparisonTable ref={featuresRef} />
-        <Clients />
-        <Faqs />
+        <Flex flexDirection='column' gap={{ base: '60px', lg: '100px' }} width='full' mx='auto'>
+          <SubscriptionPlans featuresRef={featuresRef} />
+          <ComparisonTable ref={featuresRef} />
+          <Clients />
+          <Faqs />
+        </Flex>
       </PricingModalProvider>
     </>
   )

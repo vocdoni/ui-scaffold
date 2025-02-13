@@ -1,10 +1,10 @@
-import { Box, Heading, Link, List, ListItem, Text } from '@chakra-ui/react'
+import { Box, Flex, Heading, Link, List, ListItem, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 
 const Privacy = () => {
   const { t } = useTranslation()
   return (
-    <>
+    <Flex flexDirection='column' gap={5} width='full' mx='auto'>
       <Box mb={5}>
         <Heading as='h1' size='md' mb={3}>
           {t('privacyPolicy.title')}
@@ -82,7 +82,7 @@ const Privacy = () => {
           .
         </Text>
       </Box>
-    </>
+    </Flex>
   )
 }
 
