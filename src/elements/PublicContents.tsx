@@ -47,11 +47,6 @@ export const PlansLayout = () => (
     width='full'
     mx='auto'
     maxW='1400px'
-    px={{
-      base: '10px',
-      sm: '20px',
-      md: '80px',
-    }}
     mb={44}
   >
     <Outlet />
