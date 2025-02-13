@@ -6,14 +6,14 @@ const Privacy = () => {
   return (
     <>
       <Box mb={5}>
-        <Heading as='h1' size='xl' mb={3}>
+        <Heading as='h1' size='md' mb={3}>
           {t('privacyPolicy.title')}
         </Heading>
         <Text>{t('privacyPolicy.description')}</Text>
       </Box>
 
       <Box mb={5}>
-        <Heading as='h2' size='lg' mb={2}>
+        <Heading as='h2' size='xs' mb={2}>
           {t('privacyPolicy.section1Title')}
         </Heading>
         <List spacing={2}>
@@ -36,42 +36,42 @@ const Privacy = () => {
       </Box>
 
       <Box mb={5}>
-        <Heading as='h2' size='lg' mb={2}>
+        <Heading as='h2' size='xs' mb={2}>
           {t('privacyPolicy.section2Title')}
         </Heading>
         <Text>{t('privacyPolicy.section2.description')}</Text>
       </Box>
 
       <Box mb={5}>
-        <Heading as='h2' size='lg' mb={2}>
+        <Heading as='h2' size='xs' mb={2}>
           {t('privacyPolicy.section3Title')}
         </Heading>
         <Text>{t('privacyPolicy.section3.description')}</Text>
       </Box>
 
       <Box mb={5}>
-        <Heading as='h2' size='lg' mb={2}>
+        <Heading as='h2' size='xs' mb={2}>
           {t('privacyPolicy.section4Title')}
         </Heading>
         <Text>{t('privacyPolicy.section4.description')}</Text>
       </Box>
 
       <Box mb={5}>
-        <Heading as='h2' size='lg' mb={2}>
+        <Heading as='h2' size='xs' mb={2}>
           {t('privacyPolicy.section5Title')}
         </Heading>
         <Text>{t('privacyPolicy.section5.description')}</Text>
       </Box>
 
       <Box mb={5}>
-        <Heading as='h2' size='lg' mb={2}>
+        <Heading as='h2' size='xs' mb={2}>
           {t('privacyPolicy.section6Title')}
         </Heading>
         <Text>{t('privacyPolicy.section6.description')}</Text>
       </Box>
 
       <Box mb={5}>
-        <Heading as='h2' size='lg' mb={2}>
+        <Heading as='h2' size='xs' mb={2}>
           {t('privacyPolicy.section7Title')}
         </Heading>
         <Text>
