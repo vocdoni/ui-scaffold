@@ -1,7 +1,7 @@
 import { Box, Flex, Link, ListItem, OrderedList, Spinner, Text } from '@chakra-ui/react'
 import { ElectionProvider, useClient, useElection } from '@vocdoni/react-providers'
 import { Crisp } from 'crisp-sdk-web'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { ActionsMenu } from '~components/Process/ActionsMenu'
 import { SpreadsheetAccess } from '~components/Process/SpreadsheetAccess'
@@ -31,8 +31,6 @@ const PlataformaWrapper = () => (
 )
 
 const Coib = () => {
-  const videoRef = useRef<HTMLDivElement>(null)
-  const [videoTop, setVideoTop] = useState<boolean>(false)
   const [connected, setConnected] = useState<boolean>(false)
   const { loading, loaded, election } = useElection()
   const { account, connected: aconnected } = useClient()
@@ -43,24 +41,6 @@ const Coib = () => {
 
     Crisp.configure('855c1c0c-673c-4cf2-bc92-1471d743b8d2')
   }, [connected])
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!videoRef.current) return
-
-      const rect = videoRef.current.getBoundingClientRect()
-      if (rect.top <= 10) {
-        setVideoTop(true)
-      } else {
-        setVideoTop(false)
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
 
   if (loading && !loaded) {
     return <Spinner />
