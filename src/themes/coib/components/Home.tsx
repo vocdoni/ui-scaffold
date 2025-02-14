@@ -48,6 +48,7 @@ const Coib = () => {
 
   const isAdmin = aconnected && account?.address === election?.organizationId
   const canViewProcesses = connected || isAdmin
+  const isEnabled = new Date().getTime() >= new Date('2025-03-18T02:00:00Z').getTime()
 
   return (
     <Flex
@@ -67,49 +68,57 @@ const Coib = () => {
             Assemblea General Ordinària
           </Text>
           <Text as='h2' fontSize='14px' textAlign='center'>
-            Col·legi Oficial Infermeres i Infermers de Barcelona <i>(01/02/2025)</i>
+            Col·legi Oficial Infermeres i Infermers de Barcelona
           </Text>
         </Box>
       </Flex>
-      <Flex
-        flexDirection={{ base: 'column', lg: 'row' }}
-        gap={10}
-        maxW='1200px'
-        mx='auto'
-        style={{ marginTop: '-20px' }}
-      >
-        <Box>
-          <Text>
-            <Text as='h3' fontWeight='bold' fontSize='20px'>
-              Ordre del dia de l'Assemblea General Ordinària
-              <br />
-              <br />
-            </Text>
-            <Text fontSize='18px'>
-              <OrderedList ml='35px'>
-                <ListItem>Benvinguda.</ListItem>
-                <ListItem>Aprovació memòria d'activitats 2024.</ListItem>
-                <ListItem>Aprovació estat de comptes i la liquidació de l'exerici 2024.</ListItem>
-                <ListItem>Aprovació del pressupost 2025.</ListItem>
-                <ListItem>Torn obert de preguntes.</ListItem>
-              </OrderedList>
-            </Text>
-          </Text>
-          <Text fontSize='18px'>
-            <Text style={{ marginTop: '30px' }}>
-              - Enllaç a documentació externa:{' '}
-              <a href='' target='_blank' style={{ textDecoration: 'underline', color: '#297b90' }}>
-                Documentació 🔗
-              </a>
-              <br />- Enllaç a plataforma de precs i preguntes:{' '}
-              <a href='' target='_blank' style={{ textDecoration: 'underline', color: '#297b90' }}>
-                Precs i Preguntes 🔗
-              </a>
-            </Text>
-          </Text>
-        </Box>
-      </Flex>
-      <Box>{election && !isAdmin && <SpreadsheetAccess setConnected={setConnected} connected={connected} />}</Box>
+      {isEnabled ? (
+        <>
+          <Flex
+            flexDirection={{ base: 'column', lg: 'row' }}
+            gap={10}
+            maxW='1200px'
+            mx='auto'
+            style={{ marginTop: '-20px' }}
+          >
+            <Box>
+              <Box>
+                <Text as='h3' fontWeight='bold' fontSize='20px'>
+                  Ordre del dia de l'Assemblea General Ordinària
+                  <br />
+                  <br />
+                </Text>
+                <Text fontSize='18px'>
+                  <OrderedList ml='35px'>
+                    <ListItem>Benvinguda.</ListItem>
+                    <ListItem>Aprovació memòria d'activitats 2024.</ListItem>
+                    <ListItem>Aprovació estat de comptes i la liquidació de l'exerici 2024.</ListItem>
+                    <ListItem>Aprovació del pressupost 2025.</ListItem>
+                    <ListItem>Torn obert de preguntes.</ListItem>
+                  </OrderedList>
+                </Text>
+              </Box>
+              <Box fontSize='18px'>
+                <Text style={{ marginTop: '30px' }}>
+                  - Enllaç a documentació externa:{' '}
+                  <a href='' target='_blank' style={{ textDecoration: 'underline', color: '#297b90' }}>
+                    Documentació 🔗
+                  </a>
+                  <br />- Enllaç a plataforma de precs i preguntes:{' '}
+                  <a href='' target='_blank' style={{ textDecoration: 'underline', color: '#297b90' }}>
+                    Precs i Preguntes 🔗
+                  </a>
+                </Text>
+              </Box>
+            </Box>
+          </Flex>
+          <Box>{election && !isAdmin && <SpreadsheetAccess setConnected={setConnected} connected={connected} />}</Box>
+        </>
+      ) : (
+        <Text fontWeight='bold' mb={10} fontSize='xl'>
+          La pàgina de l'Assemblea General Ordinària s'habilitarà el dia 18 de març
+        </Text>
+      )}
       {canViewProcesses && (
         <Box w='90%'>
           <Text alignSelf='start' mb={10} as='h3' fontWeight='bold' fontSize='22px' style={{ marginTop: '-30px' }}>
@@ -164,7 +173,7 @@ const Coib = () => {
           la pestanya per tornar a aquesta pàgina.
         </Text>
       )}
-      {!canViewProcesses && (
+      {isEnabled && !canViewProcesses && (
         <Text style={{ marginBottom: '50px', textAlign: 'center' }}>
           Per poder accedir a la votació i veure el vídeo en temps real, heu de prémer sobre “Identificar-se”.
           <br />
