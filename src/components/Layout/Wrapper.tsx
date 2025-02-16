@@ -1,4 +1,5 @@
 import { Box, Flex } from '@chakra-ui/react'
+import CookieBanner from './CookieBanner'
 
 const Wrapper = ({ ...props }) => (
   <Box bg={'wrapper.bg_light'} _dark={{ bgColor: 'wrapper.bg_dark' }}>
@@ -14,6 +15,7 @@ const Wrapper = ({ ...props }) => (
       }}
       {...props}
     ></Flex>
+    <CookieBanner />
   </Box>
 )
 
