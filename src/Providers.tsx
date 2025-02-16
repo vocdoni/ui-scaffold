@@ -16,6 +16,7 @@ import { translations } from './i18n/components'
 import { datesLocale } from './i18n/locales'
 import { RoutesProvider } from './router/Router'
 import { RainbowKitTheme, Theme } from './Theme'
+import Wrapper from '~components/Layout/Wrapper'
 
 const queryClient = new QueryClient()
 
@@ -58,10 +59,12 @@ export const AppProviders = () => {
         datesLocale={datesLocale(i18n.language)}
         options={{ faucet_url: import.meta.env.CUSTOM_FAUCET_URL }}
       >
-        <SaasProviders>
-          <ColorModeScript />
-          <RoutesProvider />
-        </SaasProviders>
+        <Wrapper>
+          <SaasProviders>
+            <ColorModeScript />
+            <RoutesProvider />
+          </SaasProviders>
+        </Wrapper>
       </ClientProvider>
     </RainbowKitTheme>
   )
