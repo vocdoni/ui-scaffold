@@ -49,28 +49,58 @@ export const theme = extendTheme(vtheme, {
         '& :first-of-type': {
           mt: 0,
         },
+        h1: {
+          fontSize: '36px',
+          lineHeight: '44px',
+          letterSpacing: '-2%',
+          mb: '30px',
+        },
         'h2[level="1"]': {
           fontSize: '36px',
           lineHeight: '44px',
           letterSpacing: '-2%',
+        },
+        h2: {
+          fontSize: '30px',
+          lineHeight: '38px',
+          letterSpacing: '0%',
+          mb: '25px',
         },
         'h2[level="2"]': {
           fontSize: '30px',
           lineHeight: '38px',
           letterSpacing: '0%',
         },
+        h3: {
+          fontSize: '24px',
+          lineHeight: '32px',
+          letterSpacing: '0%',
+          mb: '20px',
+        },
         'h3[level="3"]': {
           fontSize: '24px',
           lineHeight: '32px',
           letterSpacing: '0%',
         },
+        h4: {
+          fontSize: '20px',
+          lineHeight: '28px',
+          letterSpacing: '0%',
+          mb: '20px',
+        },
         p: {
           fontSize: '16px',
           lineHeight: '24px',
+          mb: '20px',
+
+          '&:not(:has(+ p))': {
+            mb: '30px',
+          },
         },
         li: {
           fontSize: '16px',
           lineHeight: '24px',
+          ml: '20px',
         },
         'li:last-of-type': {
           mb: '20px',
@@ -83,6 +113,14 @@ export const theme = extendTheme(vtheme, {
         },
         pre: {
           whiteSpace: 'pre-wrap',
+        },
+        img: {
+          maxW: { base: '100%', sm: '90%', sm2: '300px', lg: '450px' },
+          float: { sm2: 'right' },
+          borderRadius: '16px',
+          'margin-bottom': '10px',
+          'margin-left': { base: '0px', sm2: '20px' },
+          mx: 'auto',
         },
       },
     }),

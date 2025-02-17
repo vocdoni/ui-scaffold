@@ -50,7 +50,6 @@ const outline = defineStyle((props) => {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    gap: '10px',
     border: '1px solid',
     borderColor: colorScheme === 'gray' ? 'button.variant.common.border_color.light' : `${colorScheme}.600`,
     color: colorScheme === 'gray' ? 'button.variant.common.color.light' : `${colorScheme}.600`,

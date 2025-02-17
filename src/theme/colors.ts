@@ -433,6 +433,14 @@ export const colors = {
   },
   usecases: {
     subtitle: colorsBase.primary,
+    description: {
+      light: colorsBase.gray.dark,
+      dark: colorsBase.white.pure,
+    },
+    eyebrow: {
+      light: colorsBase.primary,
+      dark: colorsBase.white.pure,
+    },
   },
   radio: {
     bg: colorsBase.primary,

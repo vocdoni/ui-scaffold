@@ -1,5 +1,10 @@
 import { Box, Card, CardBody, CardHeader, Flex, Heading, Text } from '@chakra-ui/react'
-import { Trans } from 'react-i18next'
+import { ArrowUpRight } from '@untitled-ui/icons-react'
+import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { generatePath, Link as ReactRouterLink, useNavigate, useParams } from 'react-router-dom'
+import { Routes } from '~routes'
+import UseCase from './view'
 import cityCouncils from '/assets/agm.avif'
 import web3 from '/assets/budgeting.avif'
 import politicalParties from '/assets/elections.avif'
@@ -8,45 +13,75 @@ import sportClubs from '/assets/online-voting.avif'
 import coops from '/assets/software-integration.avif'
 
 const UseCases = () => {
-  const UseCases = [
+  const { i18n, t } = useTranslation()
+  const params = useParams()
+  const navigate = useNavigate()
+  const [markdownContent, setMarkdownContent] = useState(null)
+  const currentLanguage = i18n.language
+
+  const Cases = [
     {
-      title: 'City Councils',
-      eyebrow: 'Institutions ans Public sector',
-      description: 'How do you create compelling presentations that wow your colleagues and impress yout managers?',
+      title: t('usecases.city_councils.title'),
+      eyebrow: t('usecases.city_councils.eyebrow'),
+      description: t('usecases.city_councils.description'),
       image: cityCouncils,
+      case: 'city-councils',
     },
     {
-      title: 'Organizations',
-      eyebrow: 'Professional Collages',
-      description:
-        "Linear helps streamline software projects, sprints, tasks, and bug tracking. Here's how to get started.",
+      title: t('usecases.organizations.title'),
+      eyebrow: t('usecases.organizations.eyebrow'),
+      description: t('usecases.organizations.description'),
       image: organizations,
+      case: 'community-organizations',
     },
     {
-      title: 'Political Parties',
-      eyebrow: 'Software Engineering',
-      description: 'The rise of RESTful APIs has been met by a rise in tools for creating, testing, and managing them.',
+      title: t('usecases.political_parties.title'),
+      eyebrow: t('usecases.political_parties.eyebrow'),
+      description: t('usecases.political_parties.description'),
       image: politicalParties,
+      case: 'political-parties',
     },
     {
-      title: 'Co-ops',
-      eyebrow: 'Product',
-      description: 'Mental models are simple expressions of complex processes or relationships.',
+      title: t('usecases.coops.title'),
+      eyebrow: t('usecases.coops.eyebrow'),
+      description: t('usecases.coops.description'),
       image: coops,
+      case: 'integrators',
     },
     {
-      title: 'Web 3',
-      eyebrow: 'Design',
-      description: 'Introduction to Wireframing and its Principles. Lear from the best in the industry.',
+      title: t('usecases.web3.title'),
+      eyebrow: t('usecases.web3.eyebrow'),
+      description: t('usecases.web3.description'),
       image: web3,
+      case: 'professional-associations',
     },
     {
-      title: 'Sport Clubs',
-      eyebrow: 'Software Engineering',
-      description: 'JavaScript frameworks make developlment easy with extensive features and functionalities',
+      title: t('usecases.sport_clubs.title'),
+      eyebrow: t('usecases.sport_clubs.eyebrow'),
+      description: t('usecases.sport_clubs.description'),
       image: sportClubs,
+      case: 'sports-clubs',
     },
   ]
+
+  useEffect(() => {
+    const fetchMarkdown = async () => {
+      try {
+        const response = await fetch(`/use-cases/${currentLanguage}/${params.case}.md`)
+        const text = await response.text()
+        setMarkdownContent(text)
+      } catch (err) {
+        navigate(Routes.usecases)
+      }
+    }
+
+    fetchMarkdown()
+  }, [params, currentLanguage])
+
+  if (markdownContent) {
+    return <UseCase markdownContent={markdownContent} />
+  }
+
   return (
     <Box w='full'>
       <Text
@@ -68,10 +103,12 @@ const UseCases = () => {
         elections with out cutting-edge software. Know more about our success stories and understand how we can help
         you, we adapt to all verticals
       </Text>
-      <Flex rowGap={10} columnGap={'5%'} flexWrap={'wrap'} maxW={{ xl: '85%' }} mx='auto'>
-        {UseCases.map((el) => (
+      <Flex rowGap={14} columnGap={'5%'} flexWrap={'wrap'} maxW={{ xl: '85%' }} mx='auto'>
+        {Cases.map((el) => (
           <Card
             key={el.title}
+            as={ReactRouterLink}
+            to={`${generatePath(Routes.usecases, { case: el.case })}`}
             flex={{ base: '0 0 100%', md: '0 0 47.5%', xl: '0 0 30%' }}
             bgColor={'transparent'}
             boxShadow={'none'}
@@ -84,17 +121,30 @@ const UseCases = () => {
               bgSize='cover'
               bgPosition='center'
               bgRepeat='no-repeat'
+              borderRadius={'lg'}
             ></CardHeader>
 
-            <CardBody p={0} py={6}>
-              <Text pb={2}>
-                <Trans>{el.eyebrow}</Trans>
+            <CardBody p={0} pt={2}>
+              <Text
+                color={'usecases.eyebrow.light'}
+                _dark={{ color: 'usecases.eyebrow.dark' }}
+                fontWeight={'600'}
+                fontSize={'xs'}
+              >
+                {el.eyebrow}
               </Text>
-              <Text pb={1}>
-                <Trans>{el.title}</Trans>
-              </Text>
-              <Text>
-                <Trans>{el.description}</Trans>
+              <Flex justifyContent={'space-between'} alignItems={'center'} pb={1}>
+                <Text fontWeight={'bold'} fontSize={'lg'}>
+                  {el.title}
+                </Text>
+                <ArrowUpRight />
+              </Flex>
+              <Text
+                color={'usecases.description.light'}
+                _dark={{ color: 'usecases.description.dark' }}
+                lineHeight={1.3}
+              >
+                {el.description}
               </Text>
             </CardBody>
           </Card>

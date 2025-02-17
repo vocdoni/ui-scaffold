@@ -160,7 +160,7 @@ const NavMenu = ({ display, children }: { display?: any; children?: any }) => {
     {
       icon: <RiContactsBook3Line />,
       label: t('navbar.usecases', { defaultValue: 'Use Cases' }),
-      route: Routes.usecases.base,
+      route: Routes.usecases,
     },
   ]
   return (

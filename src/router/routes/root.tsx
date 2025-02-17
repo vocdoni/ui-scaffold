@@ -88,7 +88,7 @@ const RootElements = (client: VocdoniSDKClient) => [
     ),
   },
   {
-    path: Routes.usecases.base,
+    path: Routes.usecases,
     element: (
       <SuspenseLoader>
         <UseCases />
