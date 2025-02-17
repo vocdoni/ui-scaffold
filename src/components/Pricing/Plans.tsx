@@ -15,7 +15,7 @@ import {
   Card,
   CardHeader,
   CardBody,
-  Image
+  Image,
 } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { Select } from 'chakra-react-select'
@@ -278,27 +278,38 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
         </Trans>
       </Text>
       <Text fontSize='20px' fontWeight='100' textAlign='center' fontFamily='basier' w='90%' mx='auto'>
-        Encuentre la solución ideal que se adapte a sus necesidades de votación. Ofrecemos opciones flexibles y transparentes para cualquier tipo de organización y acto electoral. Para más detalles, consulte a nuestros asesores
+        Encuentre la solución ideal que se adapte a sus necesidades de votación. Ofrecemos opciones flexibles y
+        transparentes para cualquier tipo de organización y acto electoral. Para más detalles, consulte a nuestros
+        asesores
       </Text>
 
       <Box
-        position="fixed"
-        bottom="20px"
-        right="20px"
-        maxWidth="12%"
-        border="1px solid #ccc"
-        padding="25px"
-        textAlign="center"
-        borderRadius="12px"
-        backgroundColor="#fff"
+        position='fixed'
+        bottom='20px'
+        right='20px'
+        maxWidth='12%'
+        border='1px solid #ccc'
+        padding='25px'
+        textAlign='center'
+        borderRadius='12px'
+        backgroundColor='#fff'
         minW='225px'
         zIndex='1000'
-        boxShadow='inset 0 -1px 0 1px rgba(255, 255, 255, .2),0 8px 22px rgba(0, 0, 0, .12)'>
-        <Text fontSize='16px' fontWeight='600' mb='20px'>¿Do you need more than 10K voters?</Text>
-        <Text fontSize='12px' mb='20px'>Get a tailored price from our experts</Text>
-        <Box position="absolute" top='5px' right='10px'>x</Box>
+        boxShadow='inset 0 -1px 0 1px rgba(255, 255, 255, .2),0 8px 22px rgba(0, 0, 0, .12)'
+      >
+        <Text fontSize='16px' fontWeight='600' mb='20px'>
+          ¿Do you need more than 10K voters?
+        </Text>
+        <Text fontSize='12px' mb='20px'>
+          Get a tailored price from our experts
+        </Text>
+        <Box position='absolute' top='5px' right='10px'>
+          x
+        </Box>
 
-        <Button variant='primary' mx='auto' minW='80%'>Contact us!</Button>
+        <Button variant='primary' mx='auto' minW='80%'>
+          Contact us!
+        </Button>
       </Box>
 
       <Box as='section' id='benefits' width='full' mx='auto' my={{ base: '50px' }}>
@@ -308,16 +319,48 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
               role='none'
               src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29a3e8913631fd48de5_card-feature-img-control.png'
             />
-            <CardHeader fontSize='32px' mt='-20px'>Subscription Plans</CardHeader>
+            <CardHeader fontSize='32px' mt='-20px'>
+              Subscription Plans
+            </CardHeader>
             <CardBody>
               <Text mb='20px' fontSize='18px'>
-                Effortless, secure, and configurable digital voting at your fingertips.
-                A ready-to-use, guided self-service platform designed for flexible and reliable voting processes.
+                Effortless, secure, and configurable digital voting at your fingertips. A ready-to-use, guided
+                self-service platform designed for flexible and reliable voting processes.
               </Text>
 
-              <Flex gap='2' ml='20px' color='home.support.helper' opacity='.8' fontSize='17px' lineHeight='32px' alignItems='center'><FaRegCheckCircle /> Easy to set up and manage</Flex>
-              <Flex gap='2' ml='20px' color='home.support.helper' opacity='.8' fontSize='17px' lineHeight='32px' alignItems='center'><FaRegCheckCircle /> Customizable voting configurations</Flex>
-              <Flex gap='2' ml='20px' color='home.support.helper' opacity='.8' fontSize='17px' lineHeight='32px' alignItems='center'><FaRegCheckCircle /> Scalable for organizations up to 10k voters</Flex>
+              <Flex
+                gap='2'
+                ml='20px'
+                color='home.support.helper'
+                opacity='.8'
+                fontSize='17px'
+                lineHeight='32px'
+                alignItems='center'
+              >
+                <FaRegCheckCircle /> Easy to set up and manage
+              </Flex>
+              <Flex
+                gap='2'
+                ml='20px'
+                color='home.support.helper'
+                opacity='.8'
+                fontSize='17px'
+                lineHeight='32px'
+                alignItems='center'
+              >
+                <FaRegCheckCircle /> Customizable voting configurations
+              </Flex>
+              <Flex
+                gap='2'
+                ml='20px'
+                color='home.support.helper'
+                opacity='.8'
+                fontSize='17px'
+                lineHeight='32px'
+                alignItems='center'
+              >
+                <FaRegCheckCircle /> Scalable for organizations up to 10k voters
+              </Flex>
 
               <Button
                 variant='outline'
@@ -341,16 +384,24 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
               role='none'
               src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29a7812b3fd5db1d246_card-feature-img-agile.png'
             />
-            <CardHeader fontSize='32px' mt='-20px'>Soluciones a medida</CardHeader>
+            <CardHeader fontSize='32px' mt='-20px'>
+              Soluciones a medida
+            </CardHeader>
             <CardBody>
               <Text mb='20px' fontSize='18px'>
-                For organizations with complex needs and high-stakes voting processes.
-                A key-in-hand service with custom features, expert support, and unlimited census capacity.
+                For organizations with complex needs and high-stakes voting processes. A key-in-hand service with custom
+                features, expert support, and unlimited census capacity.
               </Text>
 
-              <Flex gap='2' ml='20px' opacity='.8' fontSize='17px' lineHeight='32px' alignItems='center'><FaRegCheckCircle /> Fully customized voting workflows</Flex>
-              <Flex gap='2' ml='20px' opacity='.8' fontSize='17px' lineHeight='32px' alignItems='center'><FaRegCheckCircle /> High-security standards and compliance</Flex>
-              <Flex gap='2' ml='20px' opacity='.8' fontSize='17px' lineHeight='32px' alignItems='center'><FaRegCheckCircle /> Scalable for large-scale elections</Flex>
+              <Flex gap='2' ml='20px' opacity='.8' fontSize='17px' lineHeight='32px' alignItems='center'>
+                <FaRegCheckCircle /> Fully customized voting workflows
+              </Flex>
+              <Flex gap='2' ml='20px' opacity='.8' fontSize='17px' lineHeight='32px' alignItems='center'>
+                <FaRegCheckCircle /> High-security standards and compliance
+              </Flex>
+              <Flex gap='2' ml='20px' opacity='.8' fontSize='17px' lineHeight='32px' alignItems='center'>
+                <FaRegCheckCircle /> Scalable for large-scale elections
+              </Flex>
 
               <Button
                 as={ReactRouterLink}
@@ -377,7 +428,6 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
 
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>
-
           <Text
             fontSize={{ base: '28px', md: '32px', md2: '38px', lg2: '42px' }}
             lineHeight={{ base: '32px', md: '36px', md2: '42px', lg2: '46px' }}
@@ -387,13 +437,13 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
             mb={'10px'}
             mt='150px'
           >
-            <Trans>
-              Vocdoni Voting - Licencia Anual
-            </Trans>
+            <Trans>Vocdoni Voting - Licencia Anual</Trans>
           </Text>
           <Text fontSize='20px' fontWeight='100' textAlign='center' fontFamily='basier' w='80%' mx='auto'>
-            Elige uno de los paquetes de subscripción en función del número de titulares de licencia que haya en tu organización o personaliza el tamaño.
-            You can get started at no cost with our Free plan <i>(limited to 50 voters)</i>. Upgrade at any moment to unlock larger voter capacity, advanced features and more.
+            Elige uno de los paquetes de subscripción en función del número de titulares de licencia que haya en tu
+            organización o personaliza el tamaño. You can get started at no cost with our Free plan{' '}
+            <i>(limited to 50 voters)</i>. Upgrade at any moment to unlock larger voter capacity, advanced features and
+            more.
           </Text>
 
           <Flex flexDir='column' gap={4}>
