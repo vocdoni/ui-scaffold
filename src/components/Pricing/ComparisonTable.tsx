@@ -95,7 +95,7 @@ export const ComparisonTable = forwardRef<HTMLDivElement, ComparisonTableProps>(
     <Flex ref={ref} justifyContent={'center'}>
       <Box maxW='950px' overflowX={'scroll'}>
         <Box width={'full'} overflowX='auto'>
-          <Text fontSize='2xl' mb={4} textAlign='center'>
+          <Text fontSize='2xl' mb={8} textAlign='center'>
             <Trans i18nKey='pricing.compare_features'>Compare all features</Trans>
           </Text>
 

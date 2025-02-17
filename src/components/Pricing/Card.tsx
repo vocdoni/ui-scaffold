@@ -30,46 +30,64 @@ const PricingCard = ({
 }: PricingCardProps) => {
   const { setValue } = useFormContext()
 
-  const handleViewFeatures = () => {
-    if (featuresRef && featuresRef.current) {
-      featuresRef.current.scrollIntoView({ behavior: 'smooth' })
-    } else {
-      window.open(Routes.plans + '?compare')
-    }
-  }
-
   return (
-    <Card variant='pricing-card' width={width} mt={4}>
+    <Card variant='pricing-card' width={width} mt={4} boxShadow='0 0 10px #e3e3e3'>
       <CardHeader>
         <Text>{title}</Text>
         <Text>{subtitle}</Text>
       </CardHeader>
       <CardBody>
-        <Button
-          isDisabled={isDisabled || false}
-          onClick={() => setValue('planId', plan.id)}
-          type='submit'
-          variant={'solid'}
-        >
-          <Trans i18nKey='subscribe'>Subscribe</Trans>
-        </Button>
-        <Text mt={4}>
-          <Trans i18nKey='pricing_card.from' values={{ price }}>
-            From {{ price }}/year
-          </Trans>
-        </Text>
-        <Box>
+        <Box fontSize='30px' m='15px 0px 10px' textAlign='center'>
+          {plan.startingPrice === 0 ? (
+            <>
+              <Text fontSize='30px' mt='10px'>
+                0 €{' '}
+                <Text display='inline' fontSize='10px' color='#888'>
+                  (forever)
+                </Text>
+              </Text>
+              <Text fontSize='16px' mt='20px' color='#666'>
+                {features[features.length - 1]}
+              </Text>
+            </>
+          ) : (
+            <>
+              <Trans i18nKey='' values={{ price }}>
+                {{ price }}{' '}
+                <Text display='inline' fontSize='10px'>
+                  / year
+                </Text>
+              </Trans>
+              <Text fontSize='16px' mt='10px' color='#666'>
+                {features[features.length - 1]}
+              </Text>
+            </>
+          )}
+        </Box>
+        {plan.startingPrice === 0 ? (
+          <Button isDisabled={isDisabled || false} onClick={() => setValue('planId', plan.id)} type='submit'>
+            <Trans i18nKey='register'>Register</Trans>
+          </Button>
+        ) : (
+          <Button
+            variant='primary'
+            isDisabled={isDisabled || false}
+            onClick={() => setValue('planId', plan.id)}
+            type='submit'
+            style={{ height: '40px' }}
+          >
+            <Trans i18nKey='subscribe'>Subscribe</Trans>
+          </Button>
+        )}
+        <Box mt='20px' mb='10px'>
           <UnorderedList>
-            {features.map((feature, idx) => (
+            {features.slice(0, -1).map((feature, idx) => (
               <ListItem key={idx} listStyleType='-'>
                 {feature}
               </ListItem>
             ))}
           </UnorderedList>
         </Box>
-        <Button onClick={handleViewFeatures} variant={'transparent'}>
-          <Trans i18nKey='pricing_card.view_features'>View All features</Trans>
-        </Button>
       </CardBody>
       {popular && (
         <Box
@@ -81,12 +99,12 @@ const PricingCard = ({
           w='min-content'
           whiteSpace='nowrap'
           py={1}
-          px={3}
+          px={5}
           borderRadius='full'
-          bgColor='pricing_card.most_popular_plan.bg'
+          bgColor='brand.300'
           color='pricing_card.most_popular_plan.color'
         >
-          <Trans i18nKey='pricing_card.most_popular_plan'>Most popular plan</Trans>
+          <Trans i18nKey='pricing_card.most_popular_plan'>Recommended</Trans>
         </Box>
       )}
     </Card>

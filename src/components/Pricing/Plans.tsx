@@ -11,6 +11,11 @@ import {
   ModalOverlay,
   Progress,
   Text,
+  Icon,
+  Card,
+  CardHeader,
+  CardBody,
+  Image
 } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { Select } from 'chakra-react-select'
@@ -27,6 +32,8 @@ import { Routes } from '~src/router/routes'
 import { currency } from '~utils/numbers'
 import PricingCard from './Card'
 import { usePricingModal } from './use-pricing-modal'
+import { AddIcon } from '@chakra-ui/icons'
+import { FaPhoneVolume, FaRegCheckCircle } from 'react-icons/fa'
 
 export type Plan = {
   id: number
@@ -93,25 +100,24 @@ export const usePlanTranslations = () => {
     [PlanId.Free]: {
       title: t('pricing.free_title', { defaultValue: 'Free' }),
       subtitle: t('pricing.free_subtitle', {
-        defaultValue: 'Small organizations or community groups with basic voting needs.',
+        defaultValue: 'For small orgs or communities with up to 50 members.',
       }),
       features: [
         t('pricing.core_voting', { defaultValue: 'Core voting features' }),
-        t('pricing.up_to_admins', {
-          defaultValue: 'Up to {{ admin }} admin and {{ org }} org',
+        t('pricing.up_to_1_admin', {
+          defaultValue: '{{ admin }} administrator',
           admin: 1,
-          org: 1,
         }),
-        t('pricing.yearly_processes', { defaultValue: '{{ count }} yearly voting process', count: 1 }),
-        t('pricing.basic_analytics', { defaultValue: 'Basic reporting and analytics' }),
-        t('pricing.ticket_support', { defaultValue: 'Ticket support' }),
-        t('pricing.gpdr_compilance', { defaultValue: 'GDPR compliance' }),
+        t('pricing.yearly_processes', { defaultValue: '{{ count }} yearly voting process', count: 5 }),
+        t('pricing.gpdr_compilance', { defaultValue: 'GDPR compilant' }),
+        t('pricing.demo', { defaultValue: 'Start exploring for free' }),
+        t('pricing.free_plan_members', { defaultValue: 'Max. 50 voters' }),
       ],
     },
     [PlanId.Essential]: {
       title: t('pricing.essential_title', { defaultValue: 'Essential' }),
       subtitle: t('pricing.essential_subtitle', {
-        defaultValue: 'Small or medium-sized orgs or community groups with basic voting needs.',
+        defaultValue: 'Perfect medium orgs or groups with fundamental voting needs, supporting up to 500 voters.',
       }),
       features: [
         t('pricing.core_voting'),
@@ -120,6 +126,8 @@ export const usePlanTranslations = () => {
         t('pricing.basic_analytics'),
         t('pricing.ticket_support'),
         t('pricing.gpdr_compilance'),
+        t('pricing.extra_voter_cost', { defaultValue: 'Only {{price}}€ per extra voter', price: '0.30' }),
+        t('pricing.plan_members', { defaultValue: 'Includes up to {{base}} voters', base: '500' }),
       ],
     },
     [PlanId.Premium]: {
@@ -134,6 +142,8 @@ export const usePlanTranslations = () => {
         t('pricing.advanced_analytitcs', { defaultValue: 'Advanced reporting and analytics' }),
         t('pricing.priority_support', { defaultValue: 'Priority ticket support' }),
         t('pricing.gpdr_compilance'),
+        t('pricing.extra_voter_cost', { defaultValue: 'Only {{price}}€ per extra voter', price: '0.26' }),
+        t('pricing.plan_members', { defaultValue: 'Includes up to {{base}} voters', base: '1000' }),
       ],
     },
     [PlanId.Custom]: {
@@ -147,10 +157,10 @@ export const usePlanTranslations = () => {
         t('pricing.up_to_admins', { admin: 10, org: 5 }),
         t('pricing.unlimited_yearly_processes', { defaultValue: 'Unlimited yearly voting processes' }),
         t('pricing.white_label', { defaultValue: 'White label solution' }),
-        t('pricing.advanced_analytitcs', { defaultValue: 'Advanced reporting and analytics' }),
         t('pricing.dedicated_manager', { defaultValue: 'Dedicated account manager' }),
         t('pricing.priority_support', { defaultValue: 'Priority ticket support' }),
-        t('pricing.gpdr_compilance'),
+        t('pricing.extra_voter_cost', { defaultValue: 'Only {{price}}€ per extra voter', price: '0.22' }),
+        t('pricing.plan_members', { defaultValue: 'Includes up to {{base}} voters', base: '2500' }),
       ],
     },
   }
@@ -230,7 +240,7 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
     if (!plans) return []
 
     return plans.map((plan) => ({
-      popular: plan.id === PlanId.Essential,
+      popular: plan.id === PlanId.Premium,
       title: translations[plan.id]?.title || plan.name,
       subtitle: translations[plan.id]?.subtitle || '',
       price: currency(
@@ -245,20 +255,226 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
     }))
   }, [plans, selectedCensusSize, subscription, translations])
 
+  const handleViewFeatures = () => {
+    if (featuresRef && featuresRef.current) {
+      featuresRef.current.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      window.open(Routes.plans + '?compare')
+    }
+  }
+
   return (
-    <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Flex flexDir='column' gap={4}>
-          <Flex
-            flexDir={{ base: 'column', lg: 'row' }}
-            justifyContent={'center'}
-            alignItems={'center'}
-            gap={{ base: 2, lg: 4 }}
-            mb={{ base: 4, lg: 6 }}
+    <Box>
+      <Text
+        fontSize={{ base: '28px', md: '32px', md2: '38px', lg2: '42px' }}
+        lineHeight={{ base: '32px', md: '36px', md2: '42px', lg2: '46px' }}
+        fontWeight='300'
+        fontFamily='basier'
+        textAlign='center'
+        mb={'10px'}
+      >
+        <Trans i18nKey='pricing.title'>
+          Voting processes at the <strong>lowest cost per voter</strong>
+        </Trans>
+      </Text>
+      <Text fontSize='20px' fontWeight='100' textAlign='center' fontFamily='basier' w='90%' mx='auto'>
+        Encuentre la solución ideal que se adapte a sus necesidades de votación. Ofrecemos opciones flexibles y transparentes para cualquier tipo de organización y acto electoral. Para más detalles, consulte a nuestros asesores
+      </Text>
+
+      <Box
+        position="fixed"
+        bottom="20px"
+        right="20px"
+        maxWidth="12%"
+        border="1px solid #ccc"
+        padding="25px"
+        textAlign="center"
+        borderRadius="12px"
+        backgroundColor="#fff"
+        minW='225px'
+        zIndex='1000'
+        boxShadow='inset 0 -1px 0 1px rgba(255, 255, 255, .2),0 8px 22px rgba(0, 0, 0, .12)'>
+        <Text fontSize='16px' fontWeight='600' mb='20px'>¿Do you need more than 10K voters?</Text>
+        <Text fontSize='12px' mb='20px'>Get a tailored price from our experts</Text>
+        <Box position="absolute" top='5px' right='10px'>x</Box>
+
+        <Button variant='primary' mx='auto' minW='80%'>Contact us!</Button>
+      </Box>
+
+      <Box as='section' id='benefits' width='full' mx='auto' my={{ base: '50px' }}>
+        <Flex flexWrap='wrap' justifyContent='center' maxW='1240px' mx='auto' gap={'30px'}>
+          <Card variant='benefits' w='42%'>
+            <Image
+              role='none'
+              src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29a3e8913631fd48de5_card-feature-img-control.png'
+            />
+            <CardHeader fontSize='32px' mt='-20px'>Subscription Plans</CardHeader>
+            <CardBody>
+              <Text mb='20px' fontSize='18px'>
+                Effortless, secure, and configurable digital voting at your fingertips.
+                A ready-to-use, guided self-service platform designed for flexible and reliable voting processes.
+              </Text>
+
+              <Flex gap='2' ml='20px' color='home.support.helper' opacity='.8' fontSize='17px' lineHeight='32px' alignItems='center'><FaRegCheckCircle /> Easy to set up and manage</Flex>
+              <Flex gap='2' ml='20px' color='home.support.helper' opacity='.8' fontSize='17px' lineHeight='32px' alignItems='center'><FaRegCheckCircle /> Customizable voting configurations</Flex>
+              <Flex gap='2' ml='20px' color='home.support.helper' opacity='.8' fontSize='17px' lineHeight='32px' alignItems='center'><FaRegCheckCircle /> Scalable for organizations up to 10k voters</Flex>
+
+              <Button
+                variant='outline'
+                colorScheme='whiteAlpha'
+                aria-label={t('home.support.btn_contact')}
+                title={t('home.support.btn_contact')}
+                target='_blank'
+                height='50px'
+                color='white'
+                mt='30px'
+                mx='auto'
+                minW='280px'
+              >
+                Get Started
+              </Button>
+            </CardBody>
+          </Card>
+
+          <Card variant='benefits' w='42%'>
+            <Image
+              role='none'
+              src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29a7812b3fd5db1d246_card-feature-img-agile.png'
+            />
+            <CardHeader fontSize='32px' mt='-20px'>Soluciones a medida</CardHeader>
+            <CardBody>
+              <Text mb='20px' fontSize='18px'>
+                For organizations with complex needs and high-stakes voting processes.
+                A key-in-hand service with custom features, expert support, and unlimited census capacity.
+              </Text>
+
+              <Flex gap='2' ml='20px' opacity='.8' fontSize='17px' lineHeight='32px' alignItems='center'><FaRegCheckCircle /> Fully customized voting workflows</Flex>
+              <Flex gap='2' ml='20px' opacity='.8' fontSize='17px' lineHeight='32px' alignItems='center'><FaRegCheckCircle /> High-security standards and compliance</Flex>
+              <Flex gap='2' ml='20px' opacity='.8' fontSize='17px' lineHeight='32px' alignItems='center'><FaRegCheckCircle /> Scalable for large-scale elections</Flex>
+
+              <Button
+                as={ReactRouterLink}
+                variant='primary'
+                to='https://calendly.com/vocdoni-app/30min'
+                aria-label={t('home.support.btn_watch')}
+                title={t('home.support.btn_watch')}
+                target='_blank'
+                height='50px'
+                color='white'
+                mt='30px'
+                mx='auto'
+                w='280px'
+              >
+                <FaPhoneVolume size={30} />
+                <Text as='span' ml='10px'>
+                  {t('home.support.btn_watch')}
+                </Text>
+              </Button>
+            </CardBody>
+          </Card>
+        </Flex>
+      </Box>
+
+      <FormProvider {...methods}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+
+          <Text
+            fontSize={{ base: '28px', md: '32px', md2: '38px', lg2: '42px' }}
+            lineHeight={{ base: '32px', md: '36px', md2: '42px', lg2: '46px' }}
+            fontWeight='300'
+            fontFamily='basier'
+            textAlign='center'
+            mb={'10px'}
+            mt='150px'
           >
-            <Text>
-              <Trans i18nKey='pricing.membership_size'>Select your membership size:</Trans>
-            </Text>
+            <Trans>
+              Vocdoni Voting - Licencia Anual
+            </Trans>
+          </Text>
+          <Text fontSize='20px' fontWeight='100' textAlign='center' fontFamily='basier' w='80%' mx='auto'>
+            Elige uno de los paquetes de subscripción en función del número de titulares de licencia que haya en tu organización o personaliza el tamaño.
+            You can get started at no cost with our Free plan <i>(limited to 50 voters)</i>. Upgrade at any moment to unlock larger voter capacity, advanced features and more.
+          </Text>
+
+          <Flex flexDir='column' gap={4}>
+            {/* SELECT VOTERS CARD */}
+            <Card p='20px 40px' borderRadius='12px' mb='20px' mt='50px'>
+              <Flex flexDir='row'>
+                <Flex width='70%' flexDir='column'>
+                  <Text fontSize='22px' fontWeight='200' mt='20px'>
+                    <Trans i18nKey='pricing.membership_size_title'>How many voters do you need*?</Trans>
+                  </Text>
+                  <Text fontSize='11px' color='#888'>
+                    Calculate added costs per vote
+                  </Text>
+
+                  <Flex flexDir='row' gap={4} m='40px 0px'>
+                    <Controller
+                      name='censusSize'
+                      control={methods.control}
+                      rules={{ required: true }}
+                      render={({ field }) => (
+                        <>
+                          {[100, 500, 1000, 2500, 5000, 10000].map((value) => (
+                            <Button
+                              key={value}
+                              w='105px'
+                              h='68px'
+                              flexDir='column'
+                              fontSize='20px'
+                              fontWeight='600'
+                              onClick={() =>
+                                field.onChange(censusSizeOptions.find((option) => option.value === value)?.value)
+                              }
+                              bg={field.value === value ? '#276958' : ''} // Change background color based on the active button
+                              color={field.value === value ? 'white' : ''} // Change text color based on active button
+                              _hover={{ bg: field.value === value ? 'primary.500' : 'primary.100' }} // Change hover state
+                            >
+                              {value}
+                              <Text fontSize='10px' fontWeight='100' mt='-15px'>
+                                voters
+                              </Text>
+                            </Button>
+                          ))}
+                        </>
+                      )}
+                    />
+                    <Button w='105px' h='65px' flexDir='column' fontSize='20px' fontWeight='600'>
+                      +10000
+                      <Text fontSize='10px' fontWeight='100' mt='-15px'>
+                        voters
+                      </Text>
+                    </Button>
+                  </Flex>
+                </Flex>
+                <Flex width='30%'>
+                  <Text
+                    color='#999'
+                    width='90%'
+                    margin='0px auto;'
+                    marginRight='-20px'
+                    style={{ transform: 'scale(0.9)' }}
+                  >
+                    <Trans i18nKey='pricing.membership_description'>
+                      *Each plan <strong>includes a default number of voters</strong>, and you can add extra if needed.
+                      The voter limit you select defines the maximum nº of participants. For example, if your plan
+                      includes 500 voters, you can run elections with up to 500 participants. <br />
+                      <br />
+                      Need more? <strong>Select the the nº of voters</strong> or upgrade to a higher-tier plan.
+                    </Trans>
+                  </Text>
+                </Flex>
+              </Flex>
+            </Card>
+
+            {/* PLANS SECTION */}
+            <Flex gap={5} justifyContent='space-evenly' alignItems='start' flexWrap='wrap' mt='20px'>
+              {cards.map((card, idx) => (
+                <PricingCard key={idx} plan={plans[idx]} {...card} featuresRef={featuresRef} />
+              ))}
+            </Flex>
+
+            {/*
             <Controller
               name='censusSize'
               control={methods.control}
@@ -276,16 +492,21 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
                 {t('form.error.field_is_required')}
               </Text>
             )}
+            */}
+
+            {/*
+              {isLoading && <Progress colorScheme='brand' size='xs' isIndeterminate />}
+            */}
           </Flex>
-          {isLoading && <Progress colorScheme='brand' size='xs' isIndeterminate />}
-          <Flex gap={5} justifyContent='space-evenly' alignItems='start' flexWrap='wrap'>
-            {cards.map((card, idx) => (
-              <PricingCard key={idx} plan={plans[idx]} {...card} featuresRef={featuresRef} />
-            ))}
-          </Flex>
-        </Flex>
-      </form>
-    </FormProvider>
+        </form>
+      </FormProvider>
+      <Box m='40px auto 0px'>
+        <Button onClick={handleViewFeatures} w='300px' m='10px auto'>
+          <Icon mr={2} as={AddIcon} />
+          <Trans i18nKey='pricing_card.view_features'>View All features</Trans>
+        </Button>
+      </Box>
+    </Box>
   )
 }
 
@@ -333,7 +554,7 @@ export const SubscriptionModal = ({
             <Text>
               <Trans i18nKey='pricing.help'>Need some help?</Trans>
             </Text>
-            <Button as={ReactRouterLink} to={Routes.contact} target='_blank' colorScheme='whiteAlpha' color={'white'}>
+            <Button variant='brand' as={ReactRouterLink} to={Routes.contact} target='_blank'>
               <Trans i18nKey='contact_us'>Contact us</Trans>
             </Button>
           </Box>
