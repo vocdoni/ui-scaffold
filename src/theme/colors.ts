@@ -280,7 +280,12 @@ export const colors = {
     dark: colorsBase.gray.normal,
   },
   org_text_secondary: colorsBase.gray.normal,
-
+  plans: {
+    cards: {
+      light: colorsBase.white.pure,
+      dark: colorsBase.blue.grayish,
+    },
+  },
   process: {
     aside: {
       bg: colorsBase.gradient,
@@ -376,10 +381,7 @@ export const colors = {
       bg: colorsBase.beige,
       color: colorsBase.black,
     },
-    subtitle: {
-      light: colorsBase.gray.normal,
-      dark: colorsBase.white.light2,
-    },
+    subtitle: colorsBase.gray.normal,
   },
   pricing_modal: {
     bg: {

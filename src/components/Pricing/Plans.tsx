@@ -1,7 +1,13 @@
+import { AddIcon } from '@chakra-ui/icons'
 import {
   Box,
   Button,
+  Card,
+  CardBody,
+  CardHeader,
   Flex,
+  Icon,
+  Image,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -9,19 +15,13 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Progress,
   Text,
-  Icon,
-  Card,
-  CardHeader,
-  CardBody,
-  Image,
 } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
-import { Select } from 'chakra-react-select'
 import { MutableRefObject, ReactNode, useMemo } from 'react'
 import { Controller, FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import { FaPhoneVolume, FaRegCheckCircle } from 'react-icons/fa'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useSubscription } from '~components/Auth/Subscription'
@@ -32,8 +32,6 @@ import { Routes } from '~src/router/routes'
 import { currency } from '~utils/numbers'
 import PricingCard from './Card'
 import { usePricingModal } from './use-pricing-modal'
-import { AddIcon } from '@chakra-ui/icons'
-import { FaPhoneVolume, FaRegCheckCircle } from 'react-icons/fa'
 
 export type Plan = {
   id: number
@@ -292,10 +290,11 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
         padding='25px'
         textAlign='center'
         borderRadius='12px'
-        backgroundColor='#fff'
         minW='225px'
         zIndex='1000'
         boxShadow='inset 0 -1px 0 1px rgba(255, 255, 255, .2),0 8px 22px rgba(0, 0, 0, .12)'
+        bgColor={'plans.cards.light'}
+        _dark={{ bgColor: 'plans.cards.dark' }}
       >
         <Text fontSize='16px' fontWeight='600' mb='20px'>
           ¿Do you need more than 10K voters?
@@ -312,119 +311,127 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
         </Button>
       </Box>
 
-      <Box as='section' id='benefits' width='full' mx='auto' my={{ base: '50px' }}>
-        <Flex flexWrap='wrap' justifyContent='center' maxW='1240px' mx='auto' gap={'30px'}>
-          <Card variant='benefits' w='42%'>
-            <Image
-              role='none'
-              src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29a3e8913631fd48de5_card-feature-img-control.png'
-            />
-            <CardHeader fontSize='32px' mt='-20px'>
-              Subscription Plans
-            </CardHeader>
-            <CardBody>
-              <Text mb='20px' fontSize='18px'>
-                Effortless, secure, and configurable digital voting at your fingertips. A ready-to-use, guided
-                self-service platform designed for flexible and reliable voting processes.
+      <Flex
+        flexWrap='wrap'
+        justifyContent='center'
+        maxW='1240px'
+        columnGap={{ sm: 6, sm2: 10, lg: 14 }}
+        rowGap={8}
+        as='section'
+        id='benefits'
+        width='full'
+        mx='auto'
+        my={{ base: '50px' }}
+      >
+        <Card variant='benefits' flex={{ base: '1 1 100%', sm: '0 0 75%', sm2: '0 0 60%', lg: '0 0 40%' }}>
+          <Image
+            role='none'
+            src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29a3e8913631fd48de5_card-feature-img-control.png'
+          />
+          <CardHeader fontSize='32px' mt='-20px'>
+            Subscription Plans
+          </CardHeader>
+          <CardBody>
+            <Text mb='20px' fontSize='18px'>
+              Effortless, secure, and configurable digital voting at your fingertips. A ready-to-use, guided
+              self-service platform designed for flexible and reliable voting processes.
+            </Text>
+
+            <Flex
+              gap='2'
+              ml='20px'
+              color='home.support.helper'
+              opacity='.8'
+              fontSize='17px'
+              lineHeight='32px'
+              alignItems='center'
+            >
+              <FaRegCheckCircle /> Easy to set up and manage
+            </Flex>
+            <Flex
+              gap='2'
+              ml='20px'
+              color='home.support.helper'
+              opacity='.8'
+              fontSize='17px'
+              lineHeight='32px'
+              alignItems='center'
+            >
+              <FaRegCheckCircle /> Customizable voting configurations
+            </Flex>
+            <Flex
+              gap='2'
+              ml='20px'
+              color='home.support.helper'
+              opacity='.8'
+              fontSize='17px'
+              lineHeight='32px'
+              alignItems='center'
+            >
+              <FaRegCheckCircle /> Scalable for organizations up to 10k voters
+            </Flex>
+
+            <Button
+              variant='outline'
+              colorScheme='whiteAlpha'
+              aria-label={t('home.support.btn_contact')}
+              title={t('home.support.btn_contact')}
+              height='50px'
+              color='white'
+              mt='30px'
+              mx='auto'
+              minW='280px'
+            >
+              Get Started
+            </Button>
+          </CardBody>
+        </Card>
+
+        <Card variant='benefits' flex={{ base: '1 1 100%', sm: '0 0 75%', sm2: '0 0 60%', lg: '0 0 40%' }}>
+          <Image
+            role='none'
+            src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29a7812b3fd5db1d246_card-feature-img-agile.png'
+          />
+          <CardHeader fontSize='32px' mt='-20px'>
+            Soluciones a medida
+          </CardHeader>
+          <CardBody>
+            <Text mb='20px' fontSize='18px'>
+              For organizations with complex needs and high-stakes voting processes. A key-in-hand service with custom
+              features, expert support, and unlimited census capacity.
+            </Text>
+
+            <Flex gap='2' ml='20px' opacity='.8' fontSize='17px' lineHeight='32px' alignItems='center'>
+              <FaRegCheckCircle /> Fully customized voting workflows
+            </Flex>
+            <Flex gap='2' ml='20px' opacity='.8' fontSize='17px' lineHeight='32px' alignItems='center'>
+              <FaRegCheckCircle /> High-security standards and compliance
+            </Flex>
+            <Flex gap='2' ml='20px' opacity='.8' fontSize='17px' lineHeight='32px' alignItems='center'>
+              <FaRegCheckCircle /> Scalable for large-scale elections
+            </Flex>
+
+            <Button
+              as={ReactRouterLink}
+              variant='primary'
+              to='https://calendly.com/vocdoni-app/30min'
+              aria-label={t('home.support.btn_watch')}
+              title={t('home.support.btn_watch')}
+              target='_blank'
+              height='50px'
+              color='white'
+              mt='30px'
+              mx='auto'
+              w='280px'
+            >
+              <FaPhoneVolume size={30} />
+              <Text as='span' ml='10px'>
+                {t('home.support.btn_watch')}
               </Text>
-
-              <Flex
-                gap='2'
-                ml='20px'
-                color='home.support.helper'
-                opacity='.8'
-                fontSize='17px'
-                lineHeight='32px'
-                alignItems='center'
-              >
-                <FaRegCheckCircle /> Easy to set up and manage
-              </Flex>
-              <Flex
-                gap='2'
-                ml='20px'
-                color='home.support.helper'
-                opacity='.8'
-                fontSize='17px'
-                lineHeight='32px'
-                alignItems='center'
-              >
-                <FaRegCheckCircle /> Customizable voting configurations
-              </Flex>
-              <Flex
-                gap='2'
-                ml='20px'
-                color='home.support.helper'
-                opacity='.8'
-                fontSize='17px'
-                lineHeight='32px'
-                alignItems='center'
-              >
-                <FaRegCheckCircle /> Scalable for organizations up to 10k voters
-              </Flex>
-
-              <Button
-                variant='outline'
-                colorScheme='whiteAlpha'
-                aria-label={t('home.support.btn_contact')}
-                title={t('home.support.btn_contact')}
-                target='_blank'
-                height='50px'
-                color='white'
-                mt='30px'
-                mx='auto'
-                minW='280px'
-              >
-                Get Started
-              </Button>
-            </CardBody>
-          </Card>
-
-          <Card variant='benefits' w='42%'>
-            <Image
-              role='none'
-              src='https://assets-global.website-files.com/6398d7c1bcc2b775ebaa4f2f/6398f29a7812b3fd5db1d246_card-feature-img-agile.png'
-            />
-            <CardHeader fontSize='32px' mt='-20px'>
-              Soluciones a medida
-            </CardHeader>
-            <CardBody>
-              <Text mb='20px' fontSize='18px'>
-                For organizations with complex needs and high-stakes voting processes. A key-in-hand service with custom
-                features, expert support, and unlimited census capacity.
-              </Text>
-
-              <Flex gap='2' ml='20px' opacity='.8' fontSize='17px' lineHeight='32px' alignItems='center'>
-                <FaRegCheckCircle /> Fully customized voting workflows
-              </Flex>
-              <Flex gap='2' ml='20px' opacity='.8' fontSize='17px' lineHeight='32px' alignItems='center'>
-                <FaRegCheckCircle /> High-security standards and compliance
-              </Flex>
-              <Flex gap='2' ml='20px' opacity='.8' fontSize='17px' lineHeight='32px' alignItems='center'>
-                <FaRegCheckCircle /> Scalable for large-scale elections
-              </Flex>
-
-              <Button
-                as={ReactRouterLink}
-                variant='primary'
-                to='https://calendly.com/vocdoni-app/30min'
-                aria-label={t('home.support.btn_watch')}
-                title={t('home.support.btn_watch')}
-                target='_blank'
-                height='50px'
-                color='white'
-                mt='30px'
-                mx='auto'
-                w='280px'
-              >
-                <FaPhoneVolume size={30} />
-                <Text as='span' ml='10px'>
-                  {t('home.support.btn_watch')}
-                </Text>
-              </Button>
-            </CardBody>
-          </Card>
-        </Flex>
-      </Box>
+            </Button>
+          </CardBody>
+        </Card>
+      </Flex>
 
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -448,9 +455,16 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
 
           <Flex flexDir='column' gap={4}>
             {/* SELECT VOTERS CARD */}
-            <Card p='20px 40px' borderRadius='12px' mb='20px' mt='50px'>
-              <Flex flexDir='row'>
-                <Flex width='70%' flexDir='column'>
+            <Box
+              bgColor={'plans.cards.light'}
+              _dark={{ bgColor: 'plans.cards.dark' }}
+              p='20px 40px'
+              borderRadius='12px'
+              mb='40px'
+              mt='50px'
+            >
+              <Flex flexDir='row' flexWrap={'wrap'} gap={0}>
+                <Flex flex={{ base: '1 1 100%', lg: '1 1 60%' }} flexDir='column'>
                   <Text fontSize='22px' fontWeight='200' mt='20px'>
                     <Trans i18nKey='pricing.membership_size_title'>How many voters do you need*?</Trans>
                   </Text>
@@ -458,7 +472,7 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
                     Calculate added costs per vote
                   </Text>
 
-                  <Flex flexDir='row' gap={4} m='40px 0px'>
+                  <Flex flexDir='row' flexWrap={'wrap'} gap={4} mt='40px' mb='20px'>
                     <Controller
                       name='censusSize'
                       control={methods.control}
@@ -497,14 +511,8 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
                     </Button>
                   </Flex>
                 </Flex>
-                <Flex width='30%'>
-                  <Text
-                    color='#999'
-                    width='90%'
-                    margin='0px auto;'
-                    marginRight='-20px'
-                    style={{ transform: 'scale(0.9)' }}
-                  >
+                <Flex flex={{ base: '1 1 100%', lg: '0 0 25%' }}>
+                  <Text color='#999'>
                     <Trans i18nKey='pricing.membership_description'>
                       *Each plan <strong>includes a default number of voters</strong>, and you can add extra if needed.
                       The voter limit you select defines the maximum nº of participants. For example, if your plan
@@ -515,7 +523,7 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
                   </Text>
                 </Flex>
               </Flex>
-            </Card>
+            </Box>
 
             {/* PLANS SECTION */}
             <Flex gap={5} justifyContent='space-evenly' alignItems='start' flexWrap='wrap' mt='20px'>

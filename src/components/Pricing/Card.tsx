@@ -2,7 +2,6 @@ import { Box, Button, Card, CardBody, CardHeader, ListItem, Text, UnorderedList 
 import { RefObject } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Trans } from 'react-i18next'
-import { Routes } from '~src/router/routes'
 import type { Plan } from './Plans'
 
 type PricingCardProps = {
@@ -31,7 +30,7 @@ const PricingCard = ({
   const { setValue } = useFormContext()
 
   return (
-    <Card variant='pricing-card' width={width} mt={4} boxShadow='0 0 10px #e3e3e3'>
+    <Card variant='pricing-card' width={width} mt={4}>
       <CardHeader>
         <Text>{title}</Text>
         <Text>{subtitle}</Text>
@@ -42,11 +41,11 @@ const PricingCard = ({
             <>
               <Text fontSize='30px' mt='10px'>
                 0 €{' '}
-                <Text display='inline' fontSize='10px' color='#888'>
+                <Text display='inline' fontSize='10px' color='#888' _dark={{ color: 'white' }}>
                   (forever)
                 </Text>
               </Text>
-              <Text fontSize='16px' mt='20px' color='#666'>
+              <Text fontSize='16px' mt='20px' color='#666' _dark={{ color: 'white' }}>
                 {features[features.length - 1]}
               </Text>
             </>
@@ -58,7 +57,7 @@ const PricingCard = ({
                   / year
                 </Text>
               </Trans>
-              <Text fontSize='16px' mt='10px' color='#666'>
+              <Text fontSize='16px' mt='10px' color='#666' _dark={{ color: 'white' }}>
                 {features[features.length - 1]}
               </Text>
             </>
