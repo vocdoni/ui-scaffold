@@ -1,8 +1,17 @@
-import { Box, Button, Card, CardBody, CardHeader, Flex, Text } from '@chakra-ui/react'
+import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
+  Box,
+  Button,
+  Text,
+} from '@chakra-ui/react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-const Faqs = () => {
+const Faqs = ({ ...props }) => {
   const { t } = useTranslation()
   const [showAll, setShowAll] = useState(false)
   const faqs = [
@@ -193,7 +202,7 @@ const Faqs = () => {
   ]
 
   return (
-    <Box position='relative' width='full'>
+    <Box position='relative' width='full' {...props}>
       <Box width='full' m='0 auto' maxW='1920px' position='relative' zIndex={10}>
         <Text
           fontSize={{ base: '32px', xl: '42px' }}
@@ -217,17 +226,24 @@ const Faqs = () => {
         >
           {t('home.faqs.subtitle')}
         </Text>
-        <Flex flexWrap={'wrap'} gap={6}>
+        <Accordion allowToggle display={'flex'} flexWrap={'wrap'}>
           {faqs.map((el, idx) => {
             if (!showAll && idx > 7) return null
             return (
-              <Card key={idx} variant='faqs' flex={{ base: '1 1 100%', lg: '1 1 45%' }}>
-                <CardHeader>{el.title}</CardHeader>
-                <CardBody>{el.description}</CardBody>
-              </Card>
+              <AccordionItem flex={{ base: '1 1 100%', lg: '1 1 45%' }}>
+                <h2>
+                  <AccordionButton>
+                    <Box as='span' flex='1' textAlign='left'>
+                      {el.title}
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>{el.description}</AccordionPanel>
+              </AccordionItem>
             )
           })}
-        </Flex>
+        </Accordion>
         <Button mx='auto' mt={4} onClick={() => setShowAll((prev) => !prev)}>
           {showAll ? t('home.faqs.show_less') : t('home.faqs.show_more')}
         </Button>

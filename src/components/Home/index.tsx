@@ -22,7 +22,7 @@ const Home = () => (
         <Solutions />
         <ContactUs />
         <Process />
-        <Faqs />
+        <Faqs  mb={{ base: '100px', lg: '160px' }}/>
         <Support />
       </Box>
     </Box>
