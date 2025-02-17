@@ -1,4 +1,5 @@
 {
+  "{{price}} <2>/ year</2>": "{{price}} <2>/ year</2>",
   "actions": {
     "save": "Guarda els canvis"
   },
@@ -155,6 +156,21 @@
     "errors": {
       "wrong_data_description": "Les dades especificades no són correctes",
       "wrong_data_title": "Dades incorrectes"
+    },
+    "loading": "Loading...",
+    "pagination": {
+      "total_results": "Showing a total of {{ count }} results"
+    },
+    "question_types": {
+      "approval_title": "Approval Voting",
+      "approval_tooltip": "Approval voting lets you vote for as many options as you like. The one with the most votes wins. It's a simple way to show your support for all the choices you approve of.",
+      "multichoice_cannot_abstain": "Too many options selected",
+      "multichoice_desc": "Select up to {{maxcount}} options",
+      "multichoice_desc_abstain": " (or abstain)",
+      "multichoice_title": "Multichoice Voting {{ weighted }}",
+      "multichoice_tooltip": "Multichoice voting lets you vote for up to {{maxcount}} options (defined by the voting organizer). The one with the most votes wins.",
+      "singlechoice_title": "Single Choice {{ weighted }}",
+      "weighted_voting": "Weighted Voting"
     },
     "results": {
       "date_format": "PPpp",
@@ -364,22 +380,9 @@
     "about_us": "Sobre Nosaltres",
     "company": "Empresa",
     "contact": "Contacte",
-    "demo": "Tipus de Votació",
-    "demo1": "Elecció Simple",
-    "demo2": "Elecció Múltiple",
-    "demo3": "Votació per Aprovació",
-    "demo4": "Votació per Classificació",
-    "demo5": "Pressupostos Participatius",
-    "demo6": "Votació Ponderada",
     "developer_portal": "Developer Portal",
     "footer_subtitle": "El Protocol de Votació Global",
-    "terms_and_privacy": "<link1>Termes d'ús</link1> i <link2>Política de privacitat</link2>",
-    "uses_cases": "Casos d'Ús",
-    "uses_cases1": "Assemblees Generals d'Accionistes (AGMs)",
-    "uses_cases2": "Eleccions",
-    "uses_cases3": "Pressupostos Participatius",
-    "uses_cases4": "Votació Digital",
-    "uses_cases5": "Enquesta Digital Tancada"
+    "terms_and_privacy": "<link1>Termes d'ús</link1> i <link2>Política de privacitat</link2>"
   },
   "forgot_password": "Has oblidat la contrasenya?",
   "forgot_password_reset_link": "Envia l'enllaç per restablir la contrasenya",
@@ -627,11 +630,11 @@
     },
     "faqs": {
       "faq_1": {
-        "description": "Vocdoni és una plataforma de vot digital basada en tecnologia blockchain, que ofereix processos de votació segurs, transparents i verificables.",
-        "title": "Què és Vocdoni?"
+        "description": "Vocdoni ofereix un sistema de votació digital segur, transparent i universal. Utilitza tecnologia blockchain i proves de coneixement zero per garantir un vot anònim i verificable, sense necessitat de confiar en tercers. A més, és fàcil d’usar i escalable per a qualsevol tipus d’elecció.",
+        "title": "Què fa especial Vocdoni?"
       },
       "faq_10": {
-        "description": "Oferim suport tècnic per ajudar els votants a resoldre qualsevol incidència. A més, el sistema està dissenyat perquè sigui intuïtu i accessible per a tothom.",
+        "description": "Oferim suport tècnic per ajudar els votants a resoldre qualsevol incidència. A més, el sistema està dissenyat perquè sigui intuïtiu i accessible per a tothom.",
         "title": "Què passa si un votant té problemes per accedir o votar?"
       },
       "faq_11": {
@@ -655,7 +658,7 @@
         "title": "Vocdoni permet el vot ponderat o delegat?"
       },
       "faq_16": {
-        "description": "Sí, es pot combinar la votació digital amb la votació presencial i després integrar els resultats en un recompte unificat. Oferim diversos sistemes per realitzar votacions híbrides.",
+        "description": "Sí, es pot combinar la votació digital amb la votació presencial i després integrar els resultats en un recompte unificat. Oferim diversos sistemes per realitzar votacions híbrides, des d’una única urna digital on els votants presencials voten físicament a través d’un ordinador o tauleta, fins a sistemes mixtos on els resultats es computen per separat i s’unifiquen posteriorment.",
         "title": "Es poden fer votacions híbrides (digitals i presencials)?"
       },
       "faq_17": {
@@ -671,8 +674,8 @@
         "title": "Es poden fer votacions totalment privades?"
       },
       "faq_2": {
-        "description": "Vocdoni utilitza una combinació de blockchain, criptografia avançada i proves de coneixement zero per garantir la seguretat, anonimat i verificabilitat de les votacions.",
-        "title": "Com funciona Vocdoni?"
+        "description": "Sí. Complim estrictament amb el GDPR i altres regulacions de privacitat. La informació dels votants es tracta de manera segura i només s’utilitza per al procés de votació, sense compartir-se amb tercers.",
+        "title": "Vocdoni compleix amb la normativa de protecció de dades?"
       },
       "faq_20": {
         "description": "Qualsevol persona pot verificar els resultats gràcies a la transparència de la blockchain. A més, oferim eines per auditar el procés de votació i garantir-ne la fiabilitat.",
@@ -707,7 +710,7 @@
         "title": "Què passa si un votant té problemes tècnics durant la votació?"
       },
       "faq_28": {
-        "description": "Cens tancat: Només poden votar persones prèviament registrades en el cens. Cens obert: Qualsevol persona que compleixi certs criteris (per exemple, verificació per eID) pot votar.",
+        "description": "\n • Cens tancat: Només poden votar persones prèviament registrades en el cens.\n • Cens obert: Qualsevol persona que compleixi certs criteris (per exemple, verificació per eID) pot votar.",
         "title": "Quina diferència hi ha entre un cens tancat i un cens obert?"
       },
       "faq_29": {
@@ -715,8 +718,8 @@
         "title": "Com funciona la verificació dels resultats per part d’observadors?"
       },
       "faq_3": {
-        "description": "Vocdoni ofereix transparència, seguretat, resistència a manipulacions i accessibilitat global sense necessitat d’infraestructura física.",
-        "title": "Quins avantatges té Vocdoni sobre els sistemes de votació tradicionals?"
+        "description": "Sí! Pots adaptar Vocdoni a la teva identitat visual i necessitats específiques. Oferim opcions de personalització perquè l’experiència de votació mantingui la coherència amb la teva marca.",
+        "title": "Es pot personalitzar la plataforma per a la meva organització?"
       },
       "faq_30": {
         "description": "Sí, pots definir dates i hores exactes per a l’inici i la finalització de la votació, evitant la necessitat d’una intervenció manual.",
@@ -759,8 +762,8 @@
         "title": "Hi ha límits en el nombre de votants o processos de votació?"
       },
       "faq_4": {
-        "description": "Vocdoni està pensat per a governs, empreses, cooperatives, associacions i qualsevol organització que necessiti un sistema de vot segur i transparent.",
-        "title": "Qui pot utilitzar Vocdoni?"
+        "description": "Cada vot es registra a la blockchain, fent-lo immutable i verificable per qualsevol. Això evita fraus i manipulacions, garantint un procés transparent i segur.",
+        "title": "Com es garanteix la integritat del vot?"
       },
       "faq_40": {
         "description": "Sí, Vocdoni permet votacions ponderades, on cada vot pot tenir un valor diferent en funció de criteris definits per l'organització.",
@@ -787,16 +790,16 @@
         "title": "Com puc començar a utilitzar Vocdoni?"
       },
       "faq_5": {
-        "description": "Depèn del marc legal de cada país. Vocdoni compleix amb les millors pràctiques de seguretat i privacitat i pot adaptar-se a normatives específiques.",
-        "title": "És legal el vot electrònic amb Vocdoni?"
+        "description": "Sí. Disposem de SDKs i components UI per facilitar la integració amb la teva plataforma o aplicació. El nostre equip d'experts també pot assessorar-te durant el procés.",
+        "title": "És fàcil integrar Vocdoni amb el nostre sistema?"
       },
       "faq_6": {
-        "description": "Vocdoni utilitza encriptació avançada, blockchain i tècniques criptogràfiques com zk-SNARKs per garantir la privacitat i seguretat dels vots.",
-        "title": "Com garanteix Vocdoni la seguretat del vot?"
+        "description": "Oferim assistència en cada pas: des de la configuració inicial fins al suport tècnic durant el procés de votació. Disposem de documentació detallada, canals de comunicació i suport personalitzat per a necessitats específiques.",
+        "title": "Quin tipus de suport ofereix Vocdoni?"
       },
       "faq_7": {
-        "description": "Sí, gràcies a la blockchain, qualsevol persona pot verificar la integritat dels resultats sense comprometre l'anonimat dels votants.",
-        "title": "És possible auditar una votació feta amb Vocdoni?"
+        "description": "Sí, Vocdoni està dissenyat per gestionar processos amb qualsevol volum de votants, des de petites comunitats fins a grans eleccions institucionals. La nostra infraestructura és escalable i resistent, garantint un rendiment fiable en tot moment.",
+        "title": "Pot gestionar eleccions a gran escala?"
       },
       "faq_8": {
         "description": "Els votants només necessiten un dispositiu amb connexió a Internet i un navegador web. No calen aplicacions o programes específics.",
@@ -999,7 +1002,13 @@
   },
   "new_password": "New Password",
   "new_password_placeholder": "Enter your new password",
+  "new_process": {
+    "title": "Create your first voting process"
+  },
   "new_voting": "Nova votació",
+  "no_process": {
+    "description1": "You can start by <2>create a voting process.</2> We will guide you trough the process of defining the voting information, params and census. Is as easy as it gets."
+  },
   "no_results_filtering": "Your current search filter returns no results",
   "not_registred_yet": "Encara no estàs registrat?",
   "open_in_explorer": "Obre a l'explorador",
@@ -1023,6 +1032,7 @@
       "title": "Crea la teva primera elecció"
     },
     "no_organization_title": "You don't belong to any organization yet!",
+    "no_process_title": "You don't have any voting process",
     "organization": "Organització",
     "title": {
       "read_more": "Expandir títol"
@@ -1078,21 +1088,27 @@
     "custom_title": "Personalitzat",
     "date_format": "dd/mm/yy",
     "dedicated_manager": "Dedicated account manager",
+    "demo": "Start exploring for free",
     "error": "Error",
     "essential_subtitle": "Organitzacions petites o mitjanes o grups comunitaris amb necessitats bàsiques de votació.",
     "essential_title": "Essencial",
+    "extra_voter_cost": "Only {{price}}€ per extra voter",
+    "free_plan_members": "Max. 50 voters",
     "free_subtitle": "Organitzacions petites o grups comunitaris amb necessitats bàsiques de votació.",
     "free_title": "Gratuït",
     "gpdr_compilance": "Compliment del GDPR",
     "help": "Necessites ajuda?",
     "members_size": "{{ from }}-{{ to }} membres",
-    "membership_size": "Select your membership size:",
+    "membership_description": "*Each plan <1>includes a default number of voters</1>, and you can add extra if needed. The voter limit you select defines the maximum nº of participants. For example, if your plan includes 500 voters, you can run elections with up to 500 participants. <3></3><4></4>Need more? <6>Select the the nº of voters</6> or upgrade to a higher-tier plan.",
     "membership_size_title": "How many voters do you need*?",
+    "plan_members": "Includes up to {{base}} voters",
     "premium_subtitle": "Un volum més gran que requereix funcions més avançades.",
     "premium_title": "Premium",
     "priority_support": "Suport prioritari per tiquets",
     "ticket_support": "Suport per tiquets",
+    "title": "Voting processes at the <1>lowest cost per voter</1>",
     "unlimited_yearly_processes": "Processos anuals il·limitats",
+    "up_to_1_admin": "{{ admin }} administrator",
     "up_to_admins": "Fins a {{ admin }} admin. i {{ org }} organitzacions",
     "upgrade_title": "Actualitza el teu pla",
     "white_label": "White label solution",
@@ -1179,9 +1195,6 @@
     "share_title": "Comparteix a {{ network }}",
     "spreadsheet": {
       "confirm": {
-        "abstain_count_one": "Atenció! T'estàs abstenint d'una opció",
-        "abstain_count_many": "",
-        "abstain_count_other": "Atenció! T'estàs abstenint de {{ count }} opcions",
         "blank_vote": "No s'han seleccionat opcions, enviant vot en blanc",
         "description": "Abans de votar, reviseu que tot sigui correcte.",
         "option": "<strong>Opció {{ number }}:</strong> {{ answer }}",
@@ -1314,6 +1327,7 @@
     },
     "recovery": "Recuperar compte"
   },
+  "register": "Register",
   "remove_avatar": "Remove avatar",
   "remove_header": "Remove header",
   "reset_password_button": "Reset Password",
