@@ -1,13 +1,4 @@
-import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Box,
-  Button,
-  Text,
-} from '@chakra-ui/react'
+import { Box, Button, Card, CardBody, CardHeader, Flex, Text } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -226,24 +217,17 @@ const Faqs = ({ ...props }) => {
         >
           {t('home.faqs.subtitle')}
         </Text>
-        <Accordion allowToggle display={'flex'} flexWrap={'wrap'}>
+        <Flex flexWrap={'wrap'} gap={6}>
           {faqs.map((el, idx) => {
             if (!showAll && idx > 7) return null
             return (
-              <AccordionItem flex={{ base: '1 1 100%', lg: '1 1 45%' }}>
-                <h2>
-                  <AccordionButton>
-                    <Box as='span' flex='1' textAlign='left'>
-                      {el.title}
-                    </Box>
-                    <AccordionIcon />
-                  </AccordionButton>
-                </h2>
-                <AccordionPanel pb={4}>{el.description}</AccordionPanel>
-              </AccordionItem>
+              <Card key={idx} variant='faqs' flex={{ base: '1 1 100%', lg: '1 1 45%' }}>
+                <CardHeader>{el.title}</CardHeader>
+                <CardBody>{el.description}</CardBody>
+              </Card>
             )
           })}
-        </Accordion>
+        </Flex>
         <Button mx='auto' mt={4} onClick={() => setShowAll((prev) => !prev)}>
           {showAll ? t('home.faqs.show_less') : t('home.faqs.show_more')}
         </Button>
