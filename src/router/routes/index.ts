@@ -36,7 +36,7 @@ export const Routes = {
   terms: '/terms',
   usecases: {
     base: '/use-cases',
-    view: '/use-cases/:lng?/:case?',
+    view: '/use-cases/:lang?/:case?',
   },
 }
 

@@ -63,20 +63,6 @@ const UseCases = () => {
     },
   ]
 
-  // useEffect(() => {
-  //   const fetchMarkdown = async () => {
-  //     try {
-  //       const response = await fetch(`/use-cases/${currentLanguage}/${params.case}.md`)
-  //       const text = await response.text()
-  //       setMarkdownContent(text)
-  //     } catch (err) {
-  //       navigate(Routes.usecases.base)
-  //     }
-  //   }
-
-  //   fetchMarkdown()
-  // }, [params, currentLanguage])
-
   return (
     <Box w='full'>
       <Text
@@ -103,7 +89,7 @@ const UseCases = () => {
           <Card
             key={el.title}
             as={ReactRouterLink}
-            to={`${generatePath(Routes.usecases.view, { lng: currentLanguage, case: el.case })}`}
+            to={`${generatePath(Routes.usecases.view, { lang: currentLanguage, case: el.case })}`}
             flex={{ base: '0 0 100%', md: '0 0 47.5%', xl: '0 0 30%' }}
             bgColor={'transparent'}
             boxShadow={'none'}

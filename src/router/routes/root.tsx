@@ -127,8 +127,9 @@ const RootElements = (client: VocdoniSDKClient) => [
       </SuspenseLoader>
     ),
     loader: async ({ params }: { params: Params<string> }) => {
-      const response = await fetch(`/use-cases/${params.lng}/${params.case}.md`)
+      const response = await fetch(`/use-cases/${params.lang}/${params.case}.md`)
       const md = await response.text()
+      if (!md) throw Error()
       return md
     },
     errorElement: <NotFound />,
