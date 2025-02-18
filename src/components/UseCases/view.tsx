@@ -1,15 +1,16 @@
 import { Box, Button } from '@chakra-ui/react'
 import { ArrowLeft } from '@untitled-ui/icons-react'
 import Markdown from 'react-markdown'
-import { Link as ReactRouterLink } from 'react-router-dom'
+import { Link as ReactRouterLink, useLoaderData } from 'react-router-dom'
 import { Routes } from '~routes'
 
-const UseCase = ({ markdownContent }): any => {
+const UseCase = () => {
+  const md = useLoaderData()
   return (
     <Box>
       <Button
         as={ReactRouterLink}
-        to={Routes.usecases}
+        to={Routes.usecases.base}
         aria-label='go back'
         leftIcon={<ArrowLeft />}
         mb={6}
@@ -20,7 +21,7 @@ const UseCase = ({ markdownContent }): any => {
         Use Cases
       </Button>
       <Box className='md-sizes'>
-        <Markdown>{markdownContent}</Markdown>
+        <Markdown>{String(md)}</Markdown>
       </Box>
     </Box>
   )

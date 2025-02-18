@@ -4,6 +4,7 @@ import { lazy } from 'react'
 import { Params } from 'react-router-dom'
 // These aren't lazy loaded since they are main layouts and related components
 import UseCases from '~components/UseCases'
+import UseCase from '~components/UseCases/view'
 import Error from '~elements/Error'
 import Layout from '~elements/Layout'
 import PlansPublicPage from '~elements/plans'
@@ -111,12 +112,26 @@ const RootElements = (client: VocdoniSDKClient) => [
     ),
   },
   {
-    path: Routes.usecases,
+    path: Routes.usecases.base,
     element: (
       <SuspenseLoader>
         <UseCases />
       </SuspenseLoader>
     ),
+  },
+  {
+    path: Routes.usecases.view,
+    element: (
+      <SuspenseLoader>
+        <UseCase />
+      </SuspenseLoader>
+    ),
+    loader: async ({ params }: { params: Params<string> }) => {
+      const response = await fetch(`/use-cases/${params.lng}/${params.case}.md`)
+      const md = await response.text()
+      return md
+    },
+    errorElement: <NotFound />,
   },
   {
     path: '*',

@@ -1,10 +1,9 @@
 import { Box, Card, CardBody, CardHeader, Flex, Heading, Text } from '@chakra-ui/react'
 import { ArrowUpRight } from '@untitled-ui/icons-react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { generatePath, Link as ReactRouterLink, useNavigate, useParams } from 'react-router-dom'
 import { Routes } from '~routes'
-import UseCase from './view'
 import cityCouncils from '/assets/agm.avif'
 import web3 from '/assets/budgeting.avif'
 import politicalParties from '/assets/elections.avif'
@@ -64,23 +63,19 @@ const UseCases = () => {
     },
   ]
 
-  useEffect(() => {
-    const fetchMarkdown = async () => {
-      try {
-        const response = await fetch(`/use-cases/${currentLanguage}/${params.case}.md`)
-        const text = await response.text()
-        setMarkdownContent(text)
-      } catch (err) {
-        navigate(Routes.usecases)
-      }
-    }
+  // useEffect(() => {
+  //   const fetchMarkdown = async () => {
+  //     try {
+  //       const response = await fetch(`/use-cases/${currentLanguage}/${params.case}.md`)
+  //       const text = await response.text()
+  //       setMarkdownContent(text)
+  //     } catch (err) {
+  //       navigate(Routes.usecases.base)
+  //     }
+  //   }
 
-    fetchMarkdown()
-  }, [params, currentLanguage])
-
-  if (markdownContent) {
-    return <UseCase markdownContent={markdownContent} />
-  }
+  //   fetchMarkdown()
+  // }, [params, currentLanguage])
 
   return (
     <Box w='full'>
@@ -108,7 +103,7 @@ const UseCases = () => {
           <Card
             key={el.title}
             as={ReactRouterLink}
-            to={`${generatePath(Routes.usecases, { case: el.case })}`}
+            to={`${generatePath(Routes.usecases.view, { lng: currentLanguage, case: el.case })}`}
             flex={{ base: '0 0 100%', md: '0 0 47.5%', xl: '0 0 30%' }}
             bgColor={'transparent'}
             boxShadow={'none'}

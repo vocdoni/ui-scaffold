@@ -161,7 +161,7 @@ const link = defineStyle((props) => {
     },
 
     _dark: {
-      color: colorScheme === 'gray' ? 'button.variant.common.color.dark' : `${colorScheme}.700`,
+      color: 'white',
     },
   }
 })
