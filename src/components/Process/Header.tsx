@@ -56,7 +56,7 @@ const ProcessHeader = () => {
             <Flex gap={2} flexDirection={{ base: 'column', xl: 'row' }} alignItems={{ base: 'start', xl: 'center' }}>
               <Flex gap={3} justifyContent={'space-between'} w={{ base: '100%', xl: 'fit-content' }}>
                 <Flex gap={2} alignItems='center'>
-                  <Text as='span' color='process.label'>
+                  <Text as='span' color='process.label.light' _dark={{ color: 'process.label.dark' }}>
                     {t('process.state')}
                   </Text>
                   <ElectionStatusBadge />
@@ -70,10 +70,14 @@ const ProcessHeader = () => {
                 </Box>
               </Flex>
               <Flex flexDirection='row' alignItems='center' gap={1} flexWrap='wrap'>
-                <Text as='span' color='process.label'>
+                <Text as='span' color='process.label.light' _dark={{ color: 'process.label.dark' }}>
                   {t('process.schedule')}
                 </Text>
-                <ElectionSchedule textAlign='left' color='process.info_title' />
+                <ElectionSchedule
+                  textAlign='left'
+                  color='process.info_title.light'
+                  _dark={{ color: 'process.info_title.dark' }}
+                />
               </Flex>
             </Flex>
             <Box display={{ base: 'none', xl: 'flex' }}>

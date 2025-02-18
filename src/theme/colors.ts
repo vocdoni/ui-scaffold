@@ -16,7 +16,7 @@ export const colorsBase = {
     dark: '#4A5568',
     dark2: '#333',
   },
-  green: '#079455',
+  green: '#c6f6d5',
   orange: '#FFA500',
   primary: '#22555A',
   primary_cta: 'linear-gradient(to bottom, #2C7D57, #22555A)',
@@ -275,7 +275,10 @@ export const colors = {
     },
     required_asterisk: colorsBase.primary,
   },
-  link: colorsBase.gray.normal,
+  link: {
+    light: colorsBase.gray.dark,
+    dark: colorsBase.gray.normal,
+  },
   org_text_secondary: colorsBase.gray.normal,
 
   process: {
@@ -291,13 +294,17 @@ export const colors = {
       light: colorsBase.white.dark,
       dark: colorsBase.blue.dark,
     },
-    info_title: colorsBase.primary,
-    label: colorsBase.gray.normal,
+    info_title: {
+      light: colorsBase.primary,
+      dark: colorsBase.white.pure,
+    },
+    label: {
+      light: colorsBase.gray.dark,
+      dark: colorsBase.white.pure,
+    },
     questions: {
       alert: {
         bg: colorsBase.primary,
-        color: colorsBase.white.pure,
-        link_color: colorsBase.black,
         link_bg: colorsBase.white.pure,
       },
       question_selected: {
@@ -319,9 +326,15 @@ export const colors = {
       alert_bg: colorsBase.primary,
       alert_color: colorsBase.white.pure,
       bg: colorsBase.white.light2,
-      description: colorsBase.gray.normal,
+      description: {
+        light: colorsBase.gray.dark,
+        dark: colorsBase.white.pure,
+      },
       progressbar_bg: colorsBase.white.light2,
-      title: colorsBase.primary,
+      title: {
+        light: colorsBase.primary,
+        dark: colorsBase.white.pure,
+      },
     },
     tabs: {
       active_bg: colorsBase.white.light2,

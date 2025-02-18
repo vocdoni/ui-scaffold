@@ -1,22 +1,22 @@
-import { Heading, ListItem, Text, UnorderedList } from '@chakra-ui/react'
+import { Flex, Heading, ListItem, Text, UnorderedList } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 
 const Terms = () => {
   const { t } = useTranslation()
 
   return (
-    <>
-      <Heading as='h1' size='xl'>
+    <Flex flexDirection='column' gap={5} width='full' mx='auto'>
+      <Heading as='h1' size='md'>
         {t('terms.title')}
       </Heading>
 
-      <Heading as='h2' size='lg'>
+      <Heading as='h2' size='xs'>
         {t('terms.section1Title')}
       </Heading>
       <Text>{t('terms.section1.description1')}</Text>
       <Text>{t('terms.section1.description2')}</Text>
 
-      <Heading as='h2' size='lg'>
+      <Heading as='h2' size='xs'>
         {t('terms.section2Title')}
       </Heading>
       <Text>{t('terms.section2.description')}</Text>
@@ -27,7 +27,7 @@ const Terms = () => {
         <ListItem>{t('terms.section2.item4')}</ListItem>
       </UnorderedList>
 
-      <Heading as='h2' size='lg'>
+      <Heading as='h2' size='xs'>
         {t('terms.section3Title')}
       </Heading>
       <UnorderedList>
@@ -36,7 +36,7 @@ const Terms = () => {
         <ListItem>{t('terms.section3.item3')}</ListItem>
       </UnorderedList>
 
-      <Heading as='h2' size='lg'>
+      <Heading as='h2' size='xs'>
         {t('terms.section4Title')}
       </Heading>
       <UnorderedList>
@@ -45,13 +45,13 @@ const Terms = () => {
         <ListItem>{t('terms.section4.item3')}</ListItem>
       </UnorderedList>
 
-      <Heading as='h2' size='lg'>
+      <Heading as='h2' size='xs'>
         {t('terms.section5Title')}
       </Heading>
       <Text>{t('terms.section5.description1')}</Text>
       <Text>{t('terms.section5.description2')}</Text>
 
-      <Heading as='h2' size='lg'>
+      <Heading as='h2' size='xs'>
         {t('terms.section6Title')}
       </Heading>
       <UnorderedList>
@@ -65,13 +65,13 @@ const Terms = () => {
       </UnorderedList>
       <Text>{t('terms.section6.description')}</Text>
 
-      <Heading as='h2' size='lg'>
+      <Heading as='h2' size='xs'>
         {t('terms.section7Title')}
       </Heading>
       <Text>{t('terms.section7.description1')}</Text>
       <Text>{t('terms.section7.description2')}</Text>
 
-      <Heading as='h2' size='lg'>
+      <Heading as='h2' size='xs'>
         {t('terms.section8Title')}
       </Heading>
       <UnorderedList>
@@ -79,12 +79,12 @@ const Terms = () => {
         <ListItem>{t('terms.section8.item2')}</ListItem>
       </UnorderedList>
 
-      <Heading as='h2' size='lg'>
+      <Heading as='h2' size='xs'>
         {t('terms.section9Title')}
       </Heading>
       <Text>{t('terms.section9.description1')}</Text>
       <Text>{t('terms.section9.description2')}</Text>
-    </>
+    </Flex>
   )
 }
 

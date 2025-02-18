@@ -1,4 +1,14 @@
-import { Box, Button, Flex, ModalBody, ModalFooter, ModalHeader, Text, useMultiStyleConfig } from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  Flex,
+  Image,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+  Text,
+  useMultiStyleConfig,
+} from '@chakra-ui/react'
 import { useConfirm } from '@vocdoni/chakra-components'
 import { ElectionResultsTypeNames, IQuestion, PublishedElection } from '@vocdoni/sdk'
 import { FieldValues } from 'react-hook-form'
@@ -13,7 +23,7 @@ export const ConfirmVoteModal = ({ election, answers }: { election: PublishedEle
   return (
     <>
       <ModalHeader>
-        <Box bgImage={`url(${confirmImg})`} />
+        <Image src={confirmImg} borderRadius={'lg'} />
       </ModalHeader>
       <ModalBody display='flex' flexDirection='column' gap={5} p={0} mb={2}>
         <Text>{t('process.spreadsheet.confirm.description')}</Text>

@@ -2,6 +2,7 @@ import { Box, Flex, Link } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { VocdoniLogo } from '~components/Layout/Logo'
+import { Routes } from '~routes'
 
 const SaasFooter = () => {
   const { t } = useTranslation()
@@ -24,10 +25,10 @@ const SaasFooter = () => {
           <Box minW='100px'>
             <VocdoniLogo />
           </Box>
-          <Link variant='footer' as={ReactRouterLink} to='' mt='5px' fontSize={'sm'}>
+          <Link variant='footer' as={ReactRouterLink} to={Routes.terms} mt='5px' fontSize={'sm'}>
             {t('terms_and_conditions', { defaultValue: 'Terms and Conditions' })}
           </Link>
-          <Link variant='footer' as={ReactRouterLink} to='' mt='5px' fontSize={'sm'}>
+          <Link variant='footer' as={ReactRouterLink} to={Routes.privacy} mt='5px' fontSize={'sm'}>
             {t('privacy_policy', { defaultValue: 'Privacy Policy' })}
           </Link>
           <Link variant='footer' mt='5px' href='mailto:support@vocdoni.org' fontSize={'sm'}>

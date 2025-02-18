@@ -77,6 +77,12 @@ const baseStyle = definePartsStyle({
       color: 'white',
     },
   },
+
+  close: {
+    display: 'none',
+  },
+
+  input: { mb: 5 },
 })
 
 export const SpreadsheetAccess = defineMultiStyleConfig({
