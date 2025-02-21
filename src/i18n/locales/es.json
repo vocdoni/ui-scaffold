@@ -283,6 +283,24 @@
     "up_to_20_voters": "Hasta 20 votantes"
   },
   "csp_census": {
+    "auth": {
+      "step0": {
+        "birth_date_label": "Fecha de nacimiento",
+        "document_label": "Documento",
+        "document_placeholder": "Introduce tu número de documento",
+        "submit": "Continuar",
+        "title": "Autenticación"
+      },
+      "step1": {
+        "resend": "Not received the code? <2>Re-send</2>",
+        "submit": "Verificar",
+        "title": "Código de verificación",
+        "validation": {
+          "length": "El código debe tener 4 dígitos",
+          "required": "El código es obligatorio"
+        }
+      }
+    },
     "github": {
       "error_fetching_users": "Error al recuperar usuarios",
       "selected_users": "Usuarios seleccionados:"
