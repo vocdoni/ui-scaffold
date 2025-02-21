@@ -5,6 +5,7 @@ import {
   Card,
   CardBody,
   CardHeader,
+  CloseButton,
   Flex,
   Icon,
   IconButton,
@@ -19,11 +20,11 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
+import { ArrowBlockUp } from '@untitled-ui/icons-react'
 import { MutableRefObject, ReactNode, useMemo, useState } from 'react'
 import { Controller, FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaPhoneVolume, FaRegCheckCircle } from 'react-icons/fa'
-import { MdOutlineContactSupport } from 'react-icons/md'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useSubscription } from '~components/Auth/Subscription'
@@ -283,60 +284,67 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
         transparentes para cualquier tipo de organización y acto electoral. Para más detalles, consulte a nuestros
         asesores
       </Text>
-
-      {helper ? (
-        <Box
-          position='fixed'
-          bottom='20px'
-          right='20px'
-          maxWidth='12%'
-          border='1px solid #ccc'
-          padding='25px'
-          textAlign='center'
-          borderRadius='12px'
-          minW='225px'
-          zIndex='1000'
-          boxShadow='inset 0 -1px 0 1px rgba(255, 255, 255, .2),0 8px 22px rgba(0, 0, 0, .12)'
-          bgColor={'plans.cards.light'}
-          _dark={{ bgColor: 'plans.cards.dark' }}
-        >
-          <Text fontSize='16px' fontWeight='600' mb='20px'>
-            ¿Do you need more than 10K voters?
-          </Text>
-          <Text fontSize='12px' mb='20px'>
-            Get a tailored price from our experts
-          </Text>
-          <Box position='absolute' top='5px' right='10px' onClick={() => setHelper(false)}>
-            x
-          </Box>
-
-          <Button variant='primary' mx='auto' minW='80%'>
-            Contact us!
-          </Button>
-        </Box>
-      ) : (
-        <>
-          <IconButton
-            icon={<MdOutlineContactSupport size={'40px'} />}
-            onClick={() => setHelper(true)}
-            aria-label=''
-            position='fixed'
+      <Box position={'fixed'} bottom={0} left='50%' transform='translateX(-50%)' w='full' maxW={'1920px'} zIndex={100}>
+        {helper ? (
+          <Box
+            position={'absolute'}
             bottom='20px'
-            right='20px'
+            right={{ base: 4, md: 6, xl: 10 }}
+            maxWidth='12%'
             border='1px solid #ccc'
-            padding='10px'
+            padding='25px'
             textAlign='center'
-            borderRadius='full'
+            borderRadius='12px'
+            minW='225px'
             zIndex='1000'
-            minH={0}
-            minW={0}
-            h={'fit-content'}
             boxShadow='inset 0 -1px 0 1px rgba(255, 255, 255, .2),0 8px 22px rgba(0, 0, 0, .12)'
             bgColor={'plans.cards.light'}
-            _dark={{ color: 'white', bgColor: 'plans.cards.dark' }}
-          />
-        </>
-      )}
+            _dark={{ bgColor: 'plans.cards.dark' }}
+          >
+            <Text fontSize='16px' fontWeight='600' mb='20px'>
+              ¿Do you need more than 10K voters?
+            </Text>
+            <Text fontSize='12px' mb='20px'>
+              Get a tailored price from our experts
+            </Text>
+            <Button
+              position='absolute'
+              variant={'link'}
+              top='5px'
+              right='10px'
+              onClick={() => setHelper(false)}
+              rightIcon={<CloseButton />}
+            />
+
+            <Button variant='primary' mx='auto' minW='80%'>
+              Contact us!
+            </Button>
+          </Box>
+        ) : (
+          <>
+            <IconButton
+              icon={<ArrowBlockUp />}
+              onClick={() => setHelper(true)}
+              position='absolute'
+              aria-label=''
+              bottom='0px'
+              right={{ base: 4, md: 6, xl: 10 }}
+              border='1px solid #ccc'
+              padding='10px'
+              textAlign='center'
+              borderTopRadius={'lg'}
+              borderBottomRadius={'none'}
+              zIndex='1000'
+              minH={0}
+              minW={0}
+              h={'fit-content'}
+              boxShadow='inset 0 -1px 0 1px rgba(255, 255, 255, .2),0 8px 22px rgba(0, 0, 0, .12)'
+              bgColor={'plans.cards.light'}
+              _dark={{ color: 'white', bgColor: 'plans.cards.dark' }}
+            />
+          </>
+        )}
+      </Box>
 
       <Flex
         flexWrap='wrap'
