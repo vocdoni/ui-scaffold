@@ -3,6 +3,10 @@ import { useQueryClient } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { lazy } from 'react'
 import { Params } from 'react-router-dom'
+import { CensusListElement } from '~elements/census'
+import { CensusCreateElement } from '~elements/census/create'
+import { CensusParticipantsElement } from '~elements/census/participants'
+import { CensusViewElement } from '~elements/census/view'
 import { Profile } from '~elements/dashboard/profile'
 import SubscriptionPage from '~elements/dashboard/subscription'
 import Error from '~elements/Error'
@@ -117,6 +121,22 @@ export const useDashboardRoutes = () => {
                     <SubscriptionPage />
                   </SuspenseLoader>
                 ),
+              },
+              {
+                path: Routes.dashboard.census.list,
+                element: <CensusListElement />,
+              },
+              {
+                path: Routes.dashboard.census.create,
+                element: <CensusCreateElement />,
+              },
+              {
+                path: Routes.dashboard.census.view,
+                element: <CensusViewElement />,
+              },
+              {
+                path: Routes.dashboard.census.participants,
+                element: <CensusParticipantsElement />,
               },
             ],
           },

@@ -1,6 +1,7 @@
 import { Box, Collapse } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { GiHamburgerMenu } from 'react-icons/gi'
 import { HiHome, HiSquares2X2 } from 'react-icons/hi2'
 import { IoIosSettings } from 'react-icons/io'
 import { matchPath, useLocation } from 'react-router-dom'
@@ -30,11 +31,11 @@ export const DashboardMenuOptions = () => {
       icon: HiSquares2X2,
       route: Routes.dashboard.processes,
     },
-    // {
-    //   label: t('organization.census'),
-    //   icon: GiHamburgerMenu,
-    //   route: '#census',
-    // },
+    {
+      label: t('organization.census'),
+      icon: GiHamburgerMenu,
+      route: Routes.dashboard.census.list,
+    },
     // {
     //   label: t('user_management'),
     //   icon: HiMiniPencil,

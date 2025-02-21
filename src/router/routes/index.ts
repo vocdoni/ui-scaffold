@@ -20,6 +20,12 @@ export const Routes = {
     profile: '/admin/profile',
     team: '/admin/team',
     subscription: '/admin/subscription',
+    census: {
+      list: '/admin/census',
+      view: '/admin/census/:id',
+      create: '/admin/census/create',
+      participants: '/admin/census/:id/participants',
+    },
   },
   plans: '/plans',
   faucet: '/faucet',
