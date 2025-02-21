@@ -14,7 +14,6 @@ const UseCase = () => {
 
   useEffect(() => {
     if (i18n.language !== params.lang) {
-      console.log(i18n.language, params.lang)
       navigate(generatePath(Routes.usecases.view, { lang: i18n.language, case: params.case }))
     }
   }, [i18n.language])
