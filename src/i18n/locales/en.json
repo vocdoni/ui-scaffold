@@ -1447,34 +1447,34 @@
   },
   "usecases": {
     "city_councils": {
-      "description": "How do you create compelling presentations that wow your colleagues and impress yout managers?',",
+      "description": "Improving Participatory Democracy on City Councils with Vocdoni",
       "eyebrow": "Institutions ans Public Sector",
       "title": "City Councils"
     },
-    "coops": {
-      "description": "Mental models are simple expressions of complex processes or relationships.",
-      "eyebrow": "Product",
-      "title": "Co-ops"
-    },
-    "organizations": {
-      "description": "Linear helps streamline software projects, sprints, tasks, and bug tracking. Here's how to get started.",
+    "community_organizations": {
+      "description": "Engaging Membership and Maintaining Integrity with Vocdoni",
       "eyebrow": "Professional Collages",
-      "title": "Organizations"
+      "title": "Community Organizations"
+    },
+    "integrators": {
+      "description": "Embedding Digital Voting Software with Vocdoni",
+      "eyebrow": "Product",
+      "title": "Integrators"
     },
     "political_parties": {
-      "description": "The rise of RESTful APIs has been met by a rise in tools for creating, testing, and managing them.",
+      "description": "Improving Participatory Democracy in Political Parties with Vocdoni",
       "eyebrow": "Software Engineering",
       "title": "Political Parties"
     },
+    "professional_associations": {
+      "description": "Engaging Membership and Lowering Administrative Burden with Vocdoni",
+      "eyebrow": "Design",
+      "title": "Professional Associations"
+    },
     "sport_clubs": {
-      "description": "JavaScript frameworks make developlment easy with extensive features and functionalities",
+      "description": "Engaging Membership and Lowering Administrative Burden with Vocdoni",
       "eyebrow": "Software Engineering",
       "title": "Sport Clubs"
-    },
-    "web3": {
-      "description": "Introduction to Wireframing and its Principles. Lear from the best in the industry.",
-      "eyebrow": "Design",
-      "title": "Web 3"
     }
   },
   "user_management": "User Managment",

@@ -445,6 +445,13 @@ export const colors = {
     },
   },
   usecases: {
+    banner: {
+      bg: {
+        light: colorsBase.white.pure,
+        dark: colorsBase.blue.dark,
+      },
+      subtitle: colorsBase.gray.dark2,
+    },
     subtitle: colorsBase.primary,
     description: {
       light: colorsBase.gray.dark,

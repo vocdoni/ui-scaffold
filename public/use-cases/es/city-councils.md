@@ -1,79 +1,77 @@
-# City Councils
+# **Consejos municipales**
 
 ![Ejemplo](/assets/agm.avif)
 
-**Improving Participatory Democracy on City Councils with Vocdoni**
+## **Mejorando la democracia participativa en los consejos municipales con Vocdoni**
 
-City Councils are at the forefront of using innovative and interactive methods for determining how municipalities are democratically governed. They are in the unique position of regularly fostering the trust of community members and achieving the high participation levels needed to engage in more direct forms of democracy,[1] but they lack the resources to develop their own solutions. Municipal governments are often hindered by high election costs,[2] a lack of poll workers due to polling place harassment, and a significant burden of maintaining election security.[3] City Councils need efficient voting technology that encourages participation by being flexible and easy to use while decreasing their security and administration costs.
+Los Consejos Municipales están a la vanguardia de la implementación de métodos innovadores e interactivos para determinar cómo se gobiernan democráticamente los municipios. Están en una posición única para fomentar la confianza de la comunidad y lograr los altos niveles de participación necesarios para las formas directas de democracia.[^1] Sin embargo, a menudo carecen de los recursos para desarrollar sus propias soluciones. Los gobiernos municipales enfrentan desafíos como los altos costos de las elecciones,[^2] la falta de trabajadores electorales debido al acoso en los lugares de votación y las importantes cargas de seguridad electoral.[^3] Los Consejos Municipales necesitan una tecnología de votación eficiente que sea flexible, fácil de usar y reduzca los costos de seguridad y administración.
 
-Vocdoni can be a game-changing solution for City Council elections. Our voting system fulfills the requirements of municipal governments by allowing residents to participate in a wide range of governance processes easily from their own devices, all the while providing high levels of security and transparency worthy of the voters' trust. Our adaptable voting protocol supports several democratic decision-making tools at a low cost from within a single interface. The award-winning Vocdoni protocol has been used by many government entities, with reliable and powerful results.
+Vocdoni puede ser una solución revolucionaria para las elecciones del Consejo Municipal. Nuestro sistema de votación permite a los residentes participar fácilmente en los procesos de gobernanza desde sus propios dispositivos, proporcionando altos niveles de seguridad y transparencia. Vocdoni admite varias herramientas de toma de decisiones democráticas a un bajo costo, todo dentro de una sola interfaz. El galardonado protocolo Vocdoni ha sido utilizado con éxito por muchas entidades gubernamentales, entregando resultados confiables y poderosos.
 
-## The Future of Digital Democracy in Municipal Elections
+## **El Futuro de la democracia digital en las elecciones municipales**
 
-The most successful city councils are those that engage frequently and directly with residents, building trust and showing constituents that their opinions are valued. As online voting tools become more flexible, inexpensive, and easy to use, several democratic processes become increasingly common and essential for effective participatory governance.
+Los consejos municipales más exitosos son aquellos que se comunican frecuente y directamente con los residentes, construyendo confianza y demostrando que las opiniones de los constituyentes son importantes. A medida que las herramientas de votación en línea se vuelven más flexibles, asequibles y fáciles de usar, los procesos democráticos se vuelven cada vez más esenciales para una gobernanza participativa eficaz.
 
-### These include:
+### **Procesos democráticos clave**
 
-#### **Referenda on Local Issues**
+#### **Referéndums sobre temas locales**
 
-Binding polls on specific issues, giving residents a voice in policy decisions such as zoning laws, public projects, or bylaw changes. Constituents can approve or reject a policy proposal directly from their phones.
+Las encuestas vinculantes sobre temas específicos, como leyes de zonificación, proyectos públicos o cambios en los estatutos, permiten a los residentes tener una voz directa en las decisiones políticas. Los constituyentes pueden aprobar o rechazar propuestas directamente desde sus teléfonos.
 
-Vocdoni lowers the cost and labor of administering polls so that these referenda become reasonable to administer regularly for individual policies. Similarly, it lowers the barrier to entry and drastically increases the ease with which residents can cast their votes, enabling regular participation in lower-stakes policy polls. Vocdoni’s real-time result tracking and universal verifiability ensure that all votes are counted accurately and transparently.
+Vocdoni reduce el costo y el trabajo de administrar estas encuestas, haciéndolas viables para realizarse de forma regular. El sistema aumenta la participación al simplificar el proceso de votación, permitiendo que los residentes voten con facilidad. El seguimiento en tiempo real de los resultados y la verificabilidad universal de Vocdoni aseguran transparencia y precisión.
 
-#### **Budget Approvals**
+#### **Aprobación de presupuestos**
 
-Elections to approve or reject a proposed municipal budget. Detailed budget proposals are presented to residents, who can then vote to approve or reject these proposals.
+Elecciones para aprobar o rechazar un presupuesto municipal propuesto. Se presentan a los residentes propuestas detalladas de presupuestos, quienes votan sobre si aprobarlas o rechazarlas.
 
-Vocdoni provides a clear and straightforward voting process, enabling residents to make informed decisions on budget approvals with ease and confidence. The adaptable interface could include a summary of a budget proposal, embed a video explaining the implications of the proposal, direct voters through a detailed graphic explanation of the proposed budget, or all of the above.
+Vocdoni simplifica el proceso de votación, ayudando a los residentes a tomar decisiones informadas sobre la aprobación del presupuesto. La interfaz adaptable puede mostrar resúmenes del presupuesto, videos explicando las propuestas y ayudas visuales para guiar a los votantes durante el proceso.
 
-#### **Participatory Budgeting**
+#### **Presupuestación participativa**
 
-A democratic process in which community members decide how to allocate a portion of a municipal or public budget from a set of options proposed by community members. Residents propose and vote on various budgetary allocations. Proposals receive funds either by receiving the most votes or in proportion to their number of votes.
+Un proceso democrático en el cual los miembros de la comunidad deciden cómo asignar una porción de un presupuesto municipal o público de un conjunto de opciones propuestas por los residentes. Las propuestas se votan y los fondos se asignan en función de los votos recibidos.
 
-Vocdoni ensures a secure and inclusive participatory budgeting process, encouraging more residents to take part in local decision-making and fostering a sense of community ownership. The interface can be customized to creatively exhibit the various proposals and give voters a sense of how their funds will be allocated.
+Vocdoni garantiza un proceso de presupuestación participativa seguro e inclusivo, fomentando que más residentes participen en la toma de decisiones locales y promoviendo un sentido de propiedad comunitaria. La interfaz puede mostrar creativamente varias propuestas, dando a los votantes una idea clara de cómo se asignarán sus fondos.
 
-#### **Public Opinion Polling**
+#### **Encuestas de opinión pública**
 
-Surveys to gauge public opinion on various issues or proposals. Residents participate in non-binding polls that gather opinions on specific topics or future initiatives.
+Encuestas para medir la opinión pública sobre diversos temas o propuestas. Los residentes participan en encuestas no vinculantes para recabar opiniones sobre temas específicos o iniciativas futuras.
 
-Vocdoni provides an efficient platform for conducting public opinion polls, offering insights into community preferences and guiding council decisions.
+Vocdoni proporciona una plataforma eficiente para realizar encuestas de opinión pública, ofreciendo información sobre las preferencias de la comunidad y guiando las decisiones del consejo.
 
-#### **Special Elections**
+#### **Elecciones especiales**
 
-Elections to fill vacancies or address urgent issues that arise between regular election cycles. Special elections must be conducted swiftly and securely, ensuring minimal disruption to governance.
+Elecciones para llenar vacantes o abordar problemas urgentes entre los ciclos electorales regulares. Las elecciones especiales deben llevarse a cabo rápidamente y con seguridad, asegurando una mínima interrupción en la gobernanza.
 
-Vocdoni allows for the rapid organization and execution of special elections, maintaining the continuity of governance and representation. The high levels of built-in security and universal verifiability mean voters can trust the results, allowing special elections to be organized rapidly but not sloppily.
+Vocdoni permite la rápida organización y ejecución de elecciones especiales, manteniendo la continuidad de la gobernanza. Los altos niveles de seguridad integrados y la verificabilidad universal aseguran la confianza de los votantes, permitiendo que estas elecciones se organicen de manera rápida y eficiente.
 
-## Case Study: Bellpuig Council
+## **Estudio de caso: consejo de Bellpuig**
 
-### First Public Institution in Spain Holds Vocdoni Referendum
+### **Primera institución pública en España realiza un referéndum con Vocdoni**
 
-Bellpuig Mayor Jordi Estiarte reached out to Vocdoni with the goal of digitalizing his town’s voting processes as part of an election promise to increase direct citizen participation.
+El alcalde de Bellpuig, Jordi Estiarte, se puso en contacto con Vocdoni con el objetivo de digitalizar los procesos de votación de su municipio como parte de una promesa electoral para aumentar la participación ciudadana directa.
 
-Vocdoni is a digital voting system built using decentralized technology. It meets the highest standards of security, auditability, and accessibility required for public and private governance while remaining versatile and cost-effective.
+Vocdoni es un sistema de votación digital construido con tecnología descentralizada. Cumple con los más altos estándares de seguridad, auditabilidad y accesibilidad requeridos para la gobernanza pública y privada, manteniéndose versátil y rentable.
 
-Bellpuig is a town of around 5,000 people, in the county of Urgell in Catalonia, Spain. The mountainous region boasts striking natural scenery and beautiful Renaissance religious architecture, including the tomb of Catalan statesman Ramón de Cardona.
+Bellpuig, un pueblo de unas 5,000 personas en Cataluña, España, cuenta con paisajes naturales impresionantes y una hermosa arquitectura religiosa renacentista, incluyendo la tumba del estadista catalán Ramón de Cardona.
 
-Institutional integration is key to further acceptance and implementation. Bellpuig Council’s partnership with Vocdoni validates the demand for guaranteed, universally verifiable, and censorship-resistant electronic voting. It is a sure sign that mainstream understanding of the potential value of utilizing decentralized technologies like blockchain to securely and transparently conduct public governance is increasing.
+La integración institucional es clave para la mayor aceptación e implementación. La asociación del Consejo de Bellpuig con Vocdoni valida la demanda de un voto electrónico garantizado, verificable universalmente y resistente a la censura. Esta asociación señala que las tecnologías descentralizadas como blockchain son cada vez más vistas como herramientas valiosas para realizar una gobernanza pública segura y transparente.
 
-### **Voting with Vocdoni**
+### **Votación con Vocdoni**
 
-All 3,458 citizens eligible to vote—those over 16—received a document in the post explaining the public consultation. It also contained an individualized QR code that enabled them to vote remotely 24/7 after scanning it and introducing their access details. Residents needing support or those without electronic devices, such as the elderly, could otherwise vote in person, using the same QR code, at a polling station set up inside the town hall. This ensured that no one would be excluded from the civic right to democracy.
+Todos los 3,458 ciudadanos elegibles para votar—aquellos mayores de 16 años—recibieron un documento por correo explicando la consulta pública. También contenía un código QR individualizado, permitiendo votar de forma remota las 24 horas del día, los 7 días de la semana, después de escanearlo e ingresar sus datos de acceso. Los residentes que necesitaban apoyo o aquellos sin dispositivos electrónicos, como los ancianos, podían votar en persona en una estación de votación instalada dentro del ayuntamiento usando el mismo código QR. Esto aseguraba que nadie quedara excluido de ejercer su derecho cívico.
 
-1095 residents exercised their right to vote in this governance process (31.67% of eligible voters) – an unprecedentedly high turnout for a non-binding local referendum. There were 632 ‘Yes’ votes, 436 ‘No’ votes, and 27 blank ballots.
+1,095 residentes votaron en este proceso de gobernanza (31.67% de los votantes elegibles)—una participación sin precedentes para un referéndum local no vinculante. Hubo 632 votos afirmativos, 436 votos negativos y 27 votos en blanco.
 
-### **Digital Governance in Bellpuig**
+### **Gobernanza digital en Bellpuig**
 
-Bellpuig’s council initially transitioned to an online consultation due to the pandemic, but swiftly realized all the benefits it had to offer.
+El consejo de Bellpuig inicialmente transicionó a consultas en línea debido a la pandemia, pero rápidamente reconoció sus beneficios.
 
-> _"We thought that this was the direction where consultations would be headed anyway... Citizens can make their voice heard in the comfort of their homes or workplace. Even if they’re abroad traveling, they can still exercise their right to vote from across the globe."_ – Mayor Jordi Estiarte
+> _"Pensamos que esta era la dirección hacia la que las consultas iban a avanzar de todos modos... Los ciudadanos pueden hacer oír su voz desde la comodidad de sus hogares o lugares de trabajo. Incluso si están en el extranjero, aún pueden ejercer su derecho al voto desde cualquier parte del mundo."_ – Alcalde Jordi Estiarte
 
-This referendum, the first-ever **100% digital consultation held by a public institution in Spain**, demonstrates the tangible value of accessible, transparent, and secure digital governance for democracy and society.
+Este referéndum, la primera **consulta 100% digital realizada por una institución pública en España**, demuestra el valor tangible de la gobernanza digital accesible, transparente y segura para la democracia y la sociedad.
 
----
+### **Referencias**
 
-### References:
-
-[1] Centre on Constitutional Change. _Local Turnout in Europe: The Roots of Municipal Politics._  
-[2] Clark, Alistair. _The Cost of Democracy._  
-[3] Brennan Center for Justice. _Local Election Officials Survey – May 2024._
+1. Centre on Constitutional Change. _Local Turnout in Europe: The Roots of Municipal Politics._
+2. Clark, Alistair. _The Cost of Democracy._
+3. Brennan Center for Justice. _Local Election Officials Survey – Mayo 2024._

@@ -79,10 +79,12 @@ const outline = defineStyle((props) => {
     },
 
     _dark: {
-      color: colorScheme === 'gray' ? 'button.variant.common.color.light' : 'button.variant.outline.color',
+      color: 'white',
+      borderColor: 'white',
 
       _hover: {
         bgColor: colorScheme === 'gray' ? 'button.variant.common.hover.bg.light' : `${colorScheme}.700`,
+        borderColor: colorScheme === 'gray' ? 'button.variant.common.hover.bg.light' : `${colorScheme}.700`,
       },
     },
   }

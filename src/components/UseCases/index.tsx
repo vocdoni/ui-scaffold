@@ -1,21 +1,17 @@
-import { Box, Card, CardBody, CardHeader, Flex, Heading, Text } from '@chakra-ui/react'
+import { Box, Button, Card, CardBody, CardHeader, Flex, Heading, Text } from '@chakra-ui/react'
 import { ArrowUpRight } from '@untitled-ui/icons-react'
-import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { generatePath, Link as ReactRouterLink, useNavigate, useParams } from 'react-router-dom'
+import { Trans, useTranslation } from 'react-i18next'
+import { generatePath, Link as ReactRouterLink } from 'react-router-dom'
 import { Routes } from '~routes'
 import cityCouncils from '/assets/agm.avif'
 import web3 from '/assets/budgeting.avif'
-import politicalParties from '/assets/elections.avif'
-import organizations from '/assets/online-survey.avif'
-import sportClubs from '/assets/online-voting.avif'
+import organizations from '/assets/community.webp'
 import coops from '/assets/software-integration.avif'
+import sportClubs from '/assets/sport.jpeg'
+import politicalParties from '/assets/voting.webp'
 
 const UseCases = () => {
   const { i18n, t } = useTranslation()
-  const params = useParams()
-  const navigate = useNavigate()
-  const [markdownContent, setMarkdownContent] = useState(null)
   const currentLanguage = i18n.language
 
   const Cases = [
@@ -27,9 +23,9 @@ const UseCases = () => {
       case: 'city-councils',
     },
     {
-      title: t('usecases.organizations.title'),
-      eyebrow: t('usecases.organizations.eyebrow'),
-      description: t('usecases.organizations.description'),
+      title: t('usecases.community_organizations.title'),
+      eyebrow: t('usecases.community_organizations.eyebrow'),
+      description: t('usecases.community_organizations.description'),
       image: organizations,
       case: 'community-organizations',
     },
@@ -41,16 +37,16 @@ const UseCases = () => {
       case: 'political-parties',
     },
     {
-      title: t('usecases.coops.title'),
-      eyebrow: t('usecases.coops.eyebrow'),
-      description: t('usecases.coops.description'),
+      title: t('usecases.integrators.title'),
+      eyebrow: t('usecases.integrators.eyebrow'),
+      description: t('usecases.integrators.description'),
       image: coops,
       case: 'integrators',
     },
     {
-      title: t('usecases.web3.title'),
-      eyebrow: t('usecases.web3.eyebrow'),
-      description: t('usecases.web3.description'),
+      title: t('usecases.professional_associations.title'),
+      eyebrow: t('usecases.professional_associations.eyebrow'),
+      description: t('usecases.professional_associations.description'),
       image: web3,
       case: 'professional-associations',
     },
@@ -74,17 +70,19 @@ const UseCases = () => {
         _dark={{ color: 'white' }}
         mb={6}
       >
-        Use cases
+        <Trans i18nKey={'usecases.eyebrow'}>Use Cases</Trans>
       </Text>
       <Heading as={'h1'} size='md' mb={6} textAlign={'center'}>
-        Our success stories
+        <Trans i18nKey={'usecases.title'}>Our success stories</Trans>
       </Heading>
       <Text textAlign={'center'} maxW='700px' mx='auto' mb={20}>
-        Vocdoni helped a wide range of organizations and institutions improve their participatory processes, voting and
-        elections with out cutting-edge software. Know more about our success stories and understand how we can help
-        you, we adapt to all verticals
+        <Trans i18nKey={'usecases.description'}>
+          Vocdoni helped a wide range of organizations and institutions improve their participatory processes, voting
+          and elections with out cutting-edge software. Know more about our success stories and understand how we can
+          help you, we adapt to all verticals
+        </Trans>
       </Text>
-      <Flex rowGap={14} columnGap={'5%'} flexWrap={'wrap'} maxW={{ xl: '85%' }} mx='auto'>
+      <Flex rowGap={14} columnGap={'5%'} flexWrap={'wrap'} mx='auto' mb={24}>
         {Cases.map((el) => (
           <Card
             key={el.title}
@@ -131,6 +129,30 @@ const UseCases = () => {
           </Card>
         ))}
       </Flex>
+      <Box
+        maxW={{ lg: '95%' }}
+        mx='auto'
+        py={'100px'}
+        bgColor={'usecases.banner.bg.light'}
+        _dark={{ bgColor: 'usecases.banner.bg.dark' }}
+      >
+        <Heading as={'h3'} size={'xs'} textAlign={'center'} mb={4}>
+          <Trans i18nKey={'usecases.banner.title'}>Use Cases</Trans>
+        </Heading>
+        <Text textAlign={'center'} mb={6} color={'usecases.banner.subtitle'} _dark={{ color: 'white' }}>
+          <Trans i18nKey={'usecases.banner.subtitle'}>
+            Join our network of +500 organizations using our secure voting platform
+          </Trans>
+        </Text>
+        <Flex justifyContent={'center'} gap={4}>
+          <Button>
+            <Trans i18nKey={'usecases.banner.chat'}>Chat to sales</Trans>
+          </Button>
+          <Button variant={'primary'}>
+            <Trans i18nKey={'home.create_process.btn'}> Try it for free</Trans>
+          </Button>
+        </Flex>
+      </Box>
     </Box>
   )
 }

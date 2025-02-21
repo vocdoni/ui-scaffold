@@ -18,6 +18,7 @@ const UseCase = () => {
       navigate(generatePath(Routes.usecases.view, { lang: i18n.language, case: params.case }))
     }
   }, [i18n.language])
+
   return (
     <Box>
       <Button

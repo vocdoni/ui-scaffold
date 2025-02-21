@@ -1458,34 +1458,34 @@
   },
   "usecases": {
     "city_councils": {
-      "description": "",
-      "eyebrow": "",
-      "title": ""
+      "description": "Millorar la democràcia participativa als ajuntaments amb Vocdoni",
+      "eyebrow": "Institucions i sector públic",
+      "title": "Ajuntaments"
     },
-    "coops": {
-      "description": "",
-      "eyebrow": "",
-      "title": ""
+    "community_organizations": {
+      "description": "Impulsar la participació dels membres i mantenir la integritat amb Vocdoni",
+      "eyebrow": "Col·legis professionals",
+      "title": "Organitzacions comunitàries"
     },
-    "organizations": {
-      "description": "",
-      "eyebrow": "",
-      "title": ""
+    "integrators": {
+      "description": "Integrar programari de vot digital amb Vocdoni",
+      "eyebrow": "Producte",
+      "title": "Integradors"
     },
     "political_parties": {
-      "description": "",
-      "eyebrow": "",
-      "title": ""
+      "description": "Millorar la democràcia participativa als partits polítics amb Vocdoni",
+      "eyebrow": "Enginyeria de programari",
+      "title": "Partits polítics"
+    },
+    "professional_associations": {
+      "description": "Fomentar la participació dels membres i reduir la càrrega administrativa amb Vocdoni",
+      "eyebrow": "Disseny",
+      "title": "Associacions professionals"
     },
     "sport_clubs": {
-      "description": "",
-      "eyebrow": "",
-      "title": ""
-    },
-    "web3": {
-      "description": "",
-      "eyebrow": "",
-      "title": ""
+      "description": "Fomentar la participació dels membres i reduir la càrrega administrativa amb Vocdoni",
+      "eyebrow": "Enginyeria de programari",
+      "title": "Clubs esportius"
     }
   },
   "user_management": "Gestió d'usuaris",

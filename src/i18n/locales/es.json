@@ -1458,34 +1458,34 @@
   },
   "usecases": {
     "city_councils": {
-      "description": "",
-      "eyebrow": "",
-      "title": ""
+      "description": "Mejorar la democracia participativa en los ayuntamientos con Vocdoni",
+      "eyebrow": "Instituciones y sector público",
+      "title": "Ayuntamientos"
     },
-    "coops": {
-      "description": "",
-      "eyebrow": "",
-      "title": ""
+    "community_organizations": {
+      "description": "Impulsar la participación de los miembros y mantener la integridad con Vocdoni",
+      "eyebrow": "Colegios profesionales",
+      "title": "Organizaciones comunitarias"
     },
-    "organizations": {
-      "description": "",
-      "eyebrow": "",
-      "title": ""
+    "integrators": {
+      "description": "Integrar software de votación digital con Vocdoni",
+      "eyebrow": "Producto",
+      "title": "Integradores"
     },
     "political_parties": {
-      "description": "",
-      "eyebrow": "",
-      "title": ""
+      "description": "Mejorar la democracia participativa en los partidos políticos con Vocdoni",
+      "eyebrow": "Ingeniería de software",
+      "title": "Partidos políticos"
+    },
+    "professional_associations": {
+      "description": "Fomentar la participación de los miembros y reducir la carga administrativa con Vocdoni",
+      "eyebrow": "Diseño",
+      "title": "Asociaciones profesionales"
     },
     "sport_clubs": {
-      "description": "",
-      "eyebrow": "",
-      "title": ""
-    },
-    "web3": {
-      "description": "",
-      "eyebrow": "",
-      "title": ""
+      "description": "Fomentar la participación de los miembros y reducir la carga administrativa con Vocdoni",
+      "eyebrow": "Ingeniería de software",
+      "title": "Clubes deportivos"
     }
   },
   "user_management": "Gestión de usuarios",

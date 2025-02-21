@@ -1,79 +1,59 @@
 # Clubs Esportius
 
-![Exemple](/assets/online-voting.avif)
+![Exemple](/assets/sport.jpeg)
 
-**Fomentant la participació i reduint la càrrega administrativa amb Vocdoni**
+## **Impulsant la participació i reduint la càrrega administrativa amb Vocdoni**
 
-Els clubs esportius poden estar sotmesos a un escrutini públic gairebé tan intens com els governs, i les eleccions dels càrrecs del club requereixen alts nivells de seguretat i confiança pública. Les dificultats tècniques poden generar acusacions de frau, de manera que els clubs necessiten sistemes de votació capaços de gestionar un gran volum de vots sense problemes. Al mateix temps, però, els clubs esportius no són governs; en comptes d'estar subjectes a estrictes regulacions electorals, han de rendir comptes davant una base de socis voluntaris. Per mantenir una comunitat activa i compromesa,[1] és essencial garantir que els socis se sentin escoltats, realitzant consultes freqüents i votacions sobre despeses importants, canvis en les polítiques del club i altres decisions rellevants. Els clubs esportius necessiten tecnologia de votació segura i escalable que pugui adaptar-se a diferents tipus de presa de decisions, alhora que redueixi la càrrega administrativa dels responsables del club.
+Els clubs esportius poden enfrontar-se a gairebé el mateix nivell d'escrutini públic que els governs, amb eleccions dels directius del club que requereixen alts nivells de seguretat i confiança pública. Les dificultats tècniques poden portar a acusacions de frau, per la qual cosa els clubs esportius necessiten sistemes de votació que puguin garantir la gestió d'un gran nombre de vots de manera fluida. No obstant això, els clubs esportius no són governs; en lloc de sotmetre’s a regulacions electorals estrictes, són responsables davant una base de membres voluntaris. Per mantenir una comunitat activa i compromesa,[1] han d'assegurar-se que els membres se sentin escoltats, implicant-los regularment i celebrant consultes per aprovar despeses importants, canvis en les polítiques del club i altres decisions rellevants. Els clubs esportius necessiten una tecnologia de votació segura i escalable que pugui adaptar-se a diferents tipus de presa de decisions mentre redueix la càrrega administrativa per als líders del club.
 
-Vocdoni pot ser una solució revolucionària per als clubs esportius. El nostre sistema de votació compleix els requisits tant per a eleccions oficials a gran escala com per a processos més freqüents de participació comunitària, com enquestes d’opinió i votacions sobre decisions polítiques. Els socis poden confiar en la transparència i seguretat del sistema mentre hi participen des dels seus propis dispositius, amb una interfície més propera a una xarxa social que no pas a una votació governamental tradicional. Vocdoni proporciona als clubs un sistema de votació premiat, utilitzat per moltes entitats governamentals.
+Vocdoni pot ser una solució revolucionària per als clubs esportius. El nostre sistema de votació compleix els requisits tant per a eleccions oficials a gran escala com per a processos més freqüents de participació dels membres, com enquestes d'opinió i votacions sobre decisions polítiques. Els membres poden confiar en la transparència i seguretat del nostre sistema mentre participen des dels seus propis dispositius, amb una interfície que se sent més propera a una xarxa social que a una votació governamental impersonal. Vocdoni ofereix als clubs un sistema de votació premiat i utilitzat per nombroses entitats governamentals.
 
-## El Futur de la Democràcia Digital als Clubs Esportius
+## **El futur de la democràcia digital als clubs esportius**
 
-Les investigacions indiquen que les organitzacions més exitoses són aquelles amb una base de socis activa i compromesa. Captar nous membres pot ser almenys cinc vegades més costós que retenir els actuals, i en un context empresarial, "augmentar la taxa de retenció de clients un 5% incrementa els beneficis entre un 25% i un 95%".[2] La participació dels socis és clau per mantenir una comunitat activa, i els experts recomanen consultes freqüents de baix esforç i interaccions significatives que donin als membres una sensació de propietat sobre l’organització.[3]
+La investigació demostra que les organitzacions més exitoses són aquelles amb una base de membres activa i compromesa. Captar nous membres pot ser fins a cinc vegades més costós que retenir els membres actuals, i en un context empresarial, "augmentar la taxa de retenció de clients en un 5% incrementa els beneficis entre un 25% i un 95%."[2] La implicació dels membres és clau per mantenir una comunitat activa, i els experts recomanen consultes freqüents i de baix esforç, així com interaccions significatives on els membres sentin propietat sobre l'organització.[3] En el cas d'eleccions tradicionals dins del club, la manca de seguretat o de transparència pot reduir significativament la participació dels membres,[4] disminuint així el seu sentiment de pertinença al club.
 
-En el cas d’eleccions tradicionals, la desconfiança en la seguretat del procés electoral o la manca de transparència poden reduir significativament la participació,[4] afectant el sentiment de pertinença dels socis. Els clubs esportius ja generen un alt nivell de confiança entre els membres de la comunitat, i aquest efecte s'estén, enfortint i augmentant la confiança en les comunitats properes.[5] Els dirigents dels clubs poden reforçar encara més aquesta confiança amb eleccions verificables universalment i diverses formes de democràcia directa entre els socis.
+Els clubs esportius ja generen alts nivells de confiança entre els membres de la comunitat, un efecte que es trasllada a la resta de la societat, enfortint la cohesió i confiança de les comunitats properes.[5] Els directius del club poden convertir-se en líders en la construcció de confiança comunitària mitjançant eleccions universalment verificables i diversos tipus de democràcia directa per als membres.
 
-### Això inclou:
+## **Això inclou:**
 
-#### **Elecció dels Càrrecs del Club**
+### **Elecció dels directius del club**
 
-Eleccions tradicionals a gran escala amb la participació de tots els membres actius de l'associació. Els socis voten entre una llista de candidats. Vocdoni redueix el cost d’administrar aquestes eleccions garantint al mateix temps alts nivells de seguretat. El nostre sistema flexible permet diferents tipus de votació, com el vot preferencial, i pot gestionar fàcilment milions de votants. Els socis poden votar des dels seus telèfons o ordinadors, i la verificació en temps real i la traçabilitat universal garanteixen que tots els vots es comptabilitzin amb precisió i transparència.
+Elecció tradicional a gran escala amb la participació de tots els membres actius de l'associació. Els membres voten entre una llista de candidats.
+Vocdoni redueix el cost d'administrar eleccions a gran escala mentre manté alts nivells de seguretat. El nostre sistema flexible permet diferents tipus de votació, com el vot per preferència, i pot gestionar fàcilment eleccions amb milions de votants. Els membres poden votar des dels seus mòbils o ordinadors. El seguiment de resultats en temps real i la verificabilitat universal de Vocdoni garanteixen que tots els vots es comptin de manera precisa i transparent.
 
-#### **Aprovació de Despeses Importants**
+### **Aprovació de despeses importants**
 
-Eleccions per aprovar o rebutjar una despesa proposada, com la renovació d’un estadi. Les propostes de pressupost detallades es presenten als socis, que poden votar per aprovar-les o rebutjar-les. Vocdoni proporciona un procés de votació clar i senzill, permetent als membres prendre decisions informades amb confiança. La interfície adaptable pot incloure un resum de la proposta, un vídeo explicatiu, representacions gràfiques del pressupost o del projecte de millora, o totes aquestes opcions combinades.
+Eleccions per aprovar o rebutjar una despesa proposada, com ara la renovació d'un estadi. Es presenten propostes detallades de pressupost als membres, que poden votar a favor o en contra. Vocdoni proporciona un procés de votació clar i senzill, permetent als membres prendre decisions informades amb facilitat i confiança. La interfície adaptable pot incloure un resum de la proposta, un vídeo explicatiu sobre les seves implicacions, representacions gràfiques del pressupost o millores planificades, o totes aquestes opcions alhora.
 
-#### **Canvis en les Polítiques del Club**
+### **Canvis en les polítiques del club**
 
-Tot i que moltes polítiques són determinades per organismes governamentals, els socis se senten més vinculats al club si poden influir en els canvis normatius. Vocdoni redueix dràsticament el cost d’un procés de votació segur i transparent. També redueix la càrrega per als votants, amb un registre i flux de votació senzill des dels seus propis dispositius. Això permet processos democràtics més freqüents i interactius, obrint la porta a més decisions aprovades per la comunitat.
+Tot i que moltes polítiques estan determinades per organismes rectors, els membres se senten més identificats amb l'associació si tenen veu en els canvis de política.
+Vocdoni redueix dràsticament el cost d'un procés de votació segur i transparent. També facilita el procés als votants, amb un registre i flux de votació integrats als seus propis dispositius. Això permet processos democràtics més freqüents i interactius, fent possible que més decisions siguin sotmeses a aprovació comunitària. Les eleccions poden ser simples decisions de sí/no sobre una proposta concreta o un procés més iteratiu on la comunitat pugui escollir entre diverses esmenes a una política.
 
-#### **Enquestes als Socis**
+### **Consultes als membres**
 
-Consultes per conèixer l’opinió de la comunitat sobre diferents temes o iniciatives futures. Vocdoni ofereix una plataforma eficient per dur a terme enquestes d’opinió, ajudant els clubs a entendre millor les preferències dels seus socis i a prendre decisions basades en aquestes dades. La realització d’enquestes no vinculants augmenta la satisfacció dels socis i fomenta la seva participació futura.[6]
+Enquestes per mesurar l'opinió de la comunitat sobre diferents temes o iniciatives futures. Els membres participen en enquestes no vinculants per recollir opinions sobre temes específics.
+Vocdoni ofereix una plataforma eficient per dur a terme enquestes d'opinió, proporcionant informació valuosa sobre les preferències de la comunitat i orientant les decisions de l'associació. Les consultes no vinculants augmenten la satisfacció dels membres i fan que la base de membres es mantingui activa en el futur.[6]
 
-## Cas d’Estudi:
+## Cas d'estudi:
 
-### **El FC Barcelona es Digitalitza: Un Sistema de Votació Blockchain Segur i Transparent amb Vocdoni**
+### **El FC Barcelona es digitalitza: Un sistema de votació segur i transparent basat en blockchain amb Vocdoni**
 
 **Revolucionant la participació dels aficionats amb eleccions digitals**
 
-El FC Barcelona, un dels clubs de futbol més prestigiosos del món, s’enfrontava a un repte important: com implicar la seva base global de seguidors en les decisions de governança garantint seguretat, transparència i accessibilitat. Les eleccions del _Consell Consultiu de Penyes_ s’havien fet tradicionalment de manera presencial, limitant la participació als qui es trobaven físicament a Barcelona. Per superar aquest obstacle, el club va recórrer a Vocdoni per realitzar la seva primera elecció completament digital.
+El FC Barcelona, un dels clubs de futbol més reconeguts del món, s'enfrontava a un gran repte: com implicar la seva base global d'aficionats en les decisions de governança, garantint alhora seguretat, transparència i accessibilitat. Les eleccions del _Consell Consultiu de Penyes_ es realitzaven tradicionalment en persona, limitant la participació als que es trobaven físicament a Barcelona. Per superar aquest obstacle, el club va optar per Vocdoni, aprofitant el seu innovador sistema de votació basat en blockchain per dur a terme la seva primera elecció completament digital.
 
-### **Com va funcionar: Un procés de votació segur, transparent i senzill**
+### **Com va funcionar: Un procés de votació fluïd, segur i transparent**
 
-L’elecció es va dissenyar per permetre als membres de les _penyes_ d’arreu del món votar remotament amb total seguretat. Vocdoni va proporcionar una plataforma de votació basada en blockchain que era inviolable, verificable i garantida per la privacitat.
+L'elecció va permetre als membres de les penyes votar remotament, assegurant alhora la integritat del procés. La tecnologia de Vocdoni va proporcionar una plataforma de votació resistent a manipulacions, verificable universalment i que preservava la privacitat.
 
-**Principals característiques del sistema:**
+### **Per què això és rellevant per a altres clubs esportius**
 
-1. **Votació segura i anònima amb 2FA**  
-   Els participants havien d’autenticar-se amb doble factor d’autenticació (2FA), verificant la seva identitat mitjançant credencials de soci i un codi únic rebut per SMS.
+Aquesta implementació amb èxit del FC Barcelona serveix de model per a altres clubs esportius que volen millorar el compromís democràtic.
 
-2. **Xifrat d’extrem a extrem i verificabilitat universal**  
-   Vocdoni va implementar tècniques criptogràfiques avançades per garantir que els vots fossin comptabilitzats sense comprometre l’anonimat dels votants.
+### Referències:
 
-3. **Urna pública i transparent**  
-   La votació es va registrar a la blockchain, permetent que qualsevol observador verifiqués el procés sense necessitat de confiar en una autoritat central.
-
-4. **Resistència a la censura i fiabilitat**  
-   Gràcies a la seva infraestructura descentralitzada, cap entitat única podia manipular el procés o bloquejar l’accés dels votants.
-
-### **Resultats i Impacte**
-
-- **Més participació:** Milers de socis internacionals van poder votar a distància.
-- **Seguretat millorada:** La blockchain va garantir la immutabilitat de cada vot.
-- **Costos reduïts:** Es van reduir les despeses logístiques i administratives.
-- **Més transparència i confiança:** Tothom podia auditar el procés.
-
-## **Per què és rellevant per a altres clubs esportius?**
-
-L’èxit del FC Barcelona amb Vocdoni serveix de model per a altres clubs que volen fomentar la democràcia interna i millorar la participació dels seus socis.
-
----
-
-### Referències
-
-[1][3][6] Jacobs, Sheri. _The Art of Membership_.  
-[2] Gallo, Amy. _The Value of Keeping the Right Customers_.  
-[4] Mærøe, Anders et al. _E-participatory Budgeting_.  
+[1][3][6] Jacobs, Sheri. _The Art of Membership_. San Francisco: Jossey-Bass, 2014.  
+[2] Gallo, Amy. _The Value of Keeping the Right Customers_. HBR, 2014.  
+[4] Mærøe, Anders et al. _E-participatory Budgeting_, 2020.  
 [5] Burrmann, Ulrike et al. _Social Trust Among Sport Club Members_.
