@@ -20,11 +20,10 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
-import { ArrowBlockUp } from '@untitled-ui/icons-react'
 import { MutableRefObject, ReactNode, useMemo, useState } from 'react'
 import { Controller, FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { FaPhoneVolume, FaRegCheckCircle } from 'react-icons/fa'
+import { FaPhoneVolume, FaQuestion, FaRegCheckCircle } from 'react-icons/fa'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useSubscription } from '~components/Auth/Subscription'
@@ -323,7 +322,7 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
         ) : (
           <>
             <IconButton
-              icon={<ArrowBlockUp />}
+              icon={<FaQuestion />}
               onClick={() => setHelper(true)}
               position='absolute'
               aria-label=''
