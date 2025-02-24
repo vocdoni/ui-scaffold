@@ -12,5 +12,12 @@ export const DashboardBox = (props: BoxProps) => (
 )
 
 export const DashboardContents = (props: BoxProps) => (
-  <DashboardBox borderRadius='lg' height='100%' py={{ base: 4, lg: 10 }} px={{ base: 4, lg: 10 }} {...props} />
+  <DashboardBox
+    boxShadow='0 0 0 1px rgba(56,60,67,.05),0 1px 3px 0 rgba(56,60,67,.15)'
+    borderRadius='20px'
+    height='100%'
+    py={{ base: 4, lg: 10 }}
+    px={{ base: 4, lg: 10 }}
+    {...props}
+  />
 )
