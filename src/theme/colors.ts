@@ -385,8 +385,8 @@ export const colors = {
   },
   pricing_modal: {
     bg: {
-      light: colorsBase.primary,
-      dark: colorsBase.blue.dark,
+      light: colorsBase.white.dark,
+      dark: colorsBase.blue.dark2,
     },
   },
   process_view: {

@@ -34,7 +34,6 @@ export const Modal = defineMultiStyleConfig({
       header: {
         pt: 12,
         textAlign: 'center',
-        color: 'white',
         fontSize: '2xl',
       },
       body: {
@@ -94,7 +93,6 @@ export const Modal = defineMultiStyleConfig({
       closeButton: {
         top: { base: 2.5, md: 12 },
         right: { base: 2.5, md: 12 },
-        color: 'white',
 
         '& svg': {
           width: { md: 6 },
