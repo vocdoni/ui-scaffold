@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom'
 import Clients from '~components/Home/Clients'
 import Faqs from '~components/Home/Faqs'
 import { ComparisonTable } from '~components/Pricing/ComparisonTable'
-import { SubscriptionPlans, usePlans } from '~components/Pricing/Plans'
+import { SubscriptionPlans, SubscriptionPlansCards, usePlans } from '~components/Pricing/Plans'
 import { PricingModalProvider } from '~components/Pricing/PricingModalProvider'
 
 const PlansPublicPage = () => {
@@ -22,6 +22,7 @@ const PlansPublicPage = () => {
   return (
     <PricingModalProvider>
       <Flex flexDirection='column' gap={{ base: '60px', lg: '100px' }} width='full' mx='auto'>
+        <SubscriptionPlansCards />
         <SubscriptionPlans featuresRef={featuresRef} />
         <ComparisonTable ref={featuresRef} />
         <Clients />

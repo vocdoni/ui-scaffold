@@ -168,101 +168,8 @@ export const usePlanTranslations = () => {
   return translations
 }
 
-export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObject<HTMLDivElement> }) => {
+export const SubscriptionPlansCards = () => {
   const { t } = useTranslation()
-  const { subscription } = useSubscription()
-  const { data: plans, isLoading } = usePlans()
-  const translations = usePlanTranslations()
-  const { openModal } = usePricingModal()
-  const [helper, setHelper] = useState(false)
-
-  // Find the best fitting tier for the current subscription's census size
-  const defaultCensusSize = useMemo(() => {
-    if (!plans || !subscription?.subscriptionDetails?.maxCensusSize) return null
-
-    // Get all available tiers across all plans
-    const allTiers = plans.flatMap((plan) => plan.censusSizeTiers || [])
-
-    // Sort by upTo value to find the smallest tier that fits
-    const sortedTiers = allTiers.sort((a, b) => a.upTo - b.upTo)
-
-    // Find the first tier that can accommodate the current census size
-    const bestFitTier = sortedTiers.find((tier) => tier.upTo >= subscription.subscriptionDetails.maxCensusSize)
-
-    return bestFitTier?.upTo || null
-  }, [plans, subscription?.subscriptionDetails?.maxCensusSize])
-
-  const methods = useForm<FormValues>({
-    defaultValues: {
-      censusSize: defaultCensusSize,
-      planId: null,
-    },
-  })
-
-  const { watch, handleSubmit } = methods
-  const selectedCensusSize = watch('censusSize')
-
-  const onSubmit = (data: FormValues) => {
-    openModal('subscriptionPayment', {
-      amount: data.censusSize,
-      lookupKey: data.planId,
-    })
-  }
-
-  const censusSizeOptions = useMemo(() => {
-    if (!plans) return []
-
-    // Step 1: Merge censusSizeTiers from all plans, removing duplicates
-    const mergedTiers = plans
-      .flatMap((plan) => plan.censusSizeTiers || []) // Combine all tiers
-      .reduce((acc, tier) => {
-        if (!acc.has(tier.upTo)) {
-          acc.set(tier.upTo, tier) // Keep unique `upTo` values
-        }
-        return acc
-      }, new Map<number, { upTo: number }>())
-
-    // Step 2: Create options array from merged and sorted tiers
-    const sortedTiers = Array.from(mergedTiers.values()).sort((a, b) => a.upTo - b.upTo)
-
-    const options = sortedTiers.map((tier, idx) => {
-      const previous = sortedTiers[idx - 1] || { upTo: 0 }
-      const from = previous.upTo + 1
-      return {
-        label: t('pricing.members_size', { defaultValue: '{{ from }}-{{ to }} members', from, to: tier.upTo }),
-        value: tier.upTo,
-      }
-    })
-
-    return options
-  }, [plans, t])
-
-  const cards = useMemo(() => {
-    if (!plans) return []
-
-    return plans.map((plan) => ({
-      popular: plan.id === PlanId.Premium,
-      title: translations[plan.id]?.title || plan.name,
-      subtitle: translations[plan.id]?.subtitle || '',
-      price: currency(
-        selectedCensusSize
-          ? (plan.censusSizeTiers?.find((tier) => tier.upTo === selectedCensusSize)?.amount ?? plan.startingPrice)
-          : plan.startingPrice
-      ),
-      features: translations[plan.id]?.features || [],
-      isDisabled:
-        (selectedCensusSize && !plan.censusSizeTiers?.some((tier) => tier.upTo === selectedCensusSize)) ||
-        (subscription && plan.id === subscription?.plan.id && !selectedCensusSize),
-    }))
-  }, [plans, selectedCensusSize, subscription, translations])
-
-  const handleViewFeatures = () => {
-    if (featuresRef && featuresRef.current) {
-      featuresRef.current.scrollIntoView({ behavior: 'smooth' })
-    } else {
-      window.open(Routes.plans + '?compare')
-    }
-  }
 
   return (
     <Box>
@@ -283,68 +190,6 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
         transparentes para cualquier tipo de organización y acto electoral. Para más detalles, consulte a nuestros
         asesores
       </Text>
-      <Box position={'fixed'} bottom={0} left='50%' transform='translateX(-50%)' w='full' maxW={'1920px'} zIndex={100}>
-        {helper ? (
-          <Box
-            position={'absolute'}
-            bottom='20px'
-            right={{ base: 4, md: 6, xl: 10 }}
-            maxWidth='12%'
-            border='1px solid #ccc'
-            padding='25px'
-            textAlign='center'
-            borderRadius='12px'
-            minW='225px'
-            zIndex='1000'
-            boxShadow='inset 0 -1px 0 1px rgba(255, 255, 255, .2),0 8px 22px rgba(0, 0, 0, .12)'
-            bgColor={'plans.cards.light'}
-            _dark={{ bgColor: 'plans.cards.dark' }}
-          >
-            <Text fontSize='16px' fontWeight='600' mb='20px'>
-              ¿Do you need more than 10K voters?
-            </Text>
-            <Text fontSize='12px' mb='20px'>
-              Get a tailored price from our experts
-            </Text>
-            <Button
-              position='absolute'
-              variant={'link'}
-              top='5px'
-              right='10px'
-              onClick={() => setHelper(false)}
-              rightIcon={<CloseButton />}
-            />
-
-            <Button variant='primary' mx='auto' minW='80%'>
-              Contact us!
-            </Button>
-          </Box>
-        ) : (
-          <>
-            <IconButton
-              icon={<FaQuestion />}
-              onClick={() => setHelper(true)}
-              position='absolute'
-              aria-label=''
-              bottom='0px'
-              right={{ base: 4, md: 6, xl: 10 }}
-              border='1px solid #ccc'
-              padding='10px'
-              textAlign='center'
-              borderTopRadius={'lg'}
-              borderBottomRadius={'none'}
-              zIndex='1000'
-              minH={0}
-              minW={0}
-              h={'fit-content'}
-              boxShadow='inset 0 -1px 0 1px rgba(255, 255, 255, .2),0 8px 22px rgba(0, 0, 0, .12)'
-              bgColor={'plans.cards.light'}
-              _dark={{ color: 'white', bgColor: 'plans.cards.dark' }}
-            />
-          </>
-        )}
-      </Box>
-
       <Flex
         flexWrap='wrap'
         justifyContent='center'
@@ -466,7 +311,108 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
           </CardBody>
         </Card>
       </Flex>
+    </Box>
+  )
+}
 
+export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObject<HTMLDivElement> }) => {
+  const { t } = useTranslation()
+  const { subscription } = useSubscription()
+  const { data: plans, isLoading } = usePlans()
+  const translations = usePlanTranslations()
+  const { openModal } = usePricingModal()
+  const [helper, setHelper] = useState(false)
+
+  // Find the best fitting tier for the current subscription's census size
+  const defaultCensusSize = useMemo(() => {
+    if (!plans || !subscription?.subscriptionDetails?.maxCensusSize) return null
+
+    // Get all available tiers across all plans
+    const allTiers = plans.flatMap((plan) => plan.censusSizeTiers || [])
+
+    // Sort by upTo value to find the smallest tier that fits
+    const sortedTiers = allTiers.sort((a, b) => a.upTo - b.upTo)
+
+    // Find the first tier that can accommodate the current census size
+    const bestFitTier = sortedTiers.find((tier) => tier.upTo >= subscription.subscriptionDetails.maxCensusSize)
+
+    return bestFitTier?.upTo || null
+  }, [plans, subscription?.subscriptionDetails?.maxCensusSize])
+
+  const methods = useForm<FormValues>({
+    defaultValues: {
+      censusSize: defaultCensusSize,
+      planId: null,
+    },
+  })
+
+  const { watch, handleSubmit } = methods
+  const selectedCensusSize = watch('censusSize')
+
+  const onSubmit = (data: FormValues) => {
+    openModal('subscriptionPayment', {
+      amount: data.censusSize,
+      lookupKey: data.planId,
+    })
+  }
+
+  const censusSizeOptions = useMemo(() => {
+    if (!plans) return []
+
+    // Step 1: Merge censusSizeTiers from all plans, removing duplicates
+    const mergedTiers = plans
+      .flatMap((plan) => plan.censusSizeTiers || []) // Combine all tiers
+      .reduce((acc, tier) => {
+        if (!acc.has(tier.upTo)) {
+          acc.set(tier.upTo, tier) // Keep unique `upTo` values
+        }
+        return acc
+      }, new Map<number, { upTo: number }>())
+
+    // Step 2: Create options array from merged and sorted tiers
+    const sortedTiers = Array.from(mergedTiers.values()).sort((a, b) => a.upTo - b.upTo)
+
+    const options = sortedTiers.map((tier, idx) => {
+      const previous = sortedTiers[idx - 1] || { upTo: 0 }
+      const from = previous.upTo + 1
+      return {
+        label: t('pricing.members_size', { defaultValue: '{{ from }}-{{ to }} members', from, to: tier.upTo }),
+        value: tier.upTo,
+      }
+    })
+
+    return options
+  }, [plans, t])
+
+  const cards = useMemo(() => {
+    if (!plans) return []
+
+    return plans.map((plan) => ({
+      popular: plan.id === PlanId.Premium,
+      title: translations[plan.id]?.title || plan.name,
+      subtitle: translations[plan.id]?.subtitle || '',
+      price: currency(
+        selectedCensusSize
+          ? (plan.censusSizeTiers?.find((tier) => tier.upTo === selectedCensusSize)?.amount ?? plan.startingPrice)
+          : plan.startingPrice
+      ),
+      features: translations[plan.id]?.features || [],
+      isDisabled:
+        (selectedCensusSize && !plan.censusSizeTiers?.some((tier) => tier.upTo === selectedCensusSize)) ||
+        (subscription && plan.id === subscription?.plan.id && !selectedCensusSize),
+    }))
+  }, [plans, selectedCensusSize, subscription, translations])
+
+  const handleViewFeatures = () => {
+    if (featuresRef && featuresRef.current) {
+      featuresRef.current.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      window.open(Routes.plans + '?compare')
+    }
+  }
+
+  return (
+    <Box>
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Text
@@ -476,7 +422,6 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
             fontFamily='basier'
             textAlign='center'
             mb={'10px'}
-            mt='150px'
           >
             <Trans>Vocdoni Voting - Licencia Anual</Trans>
           </Text>
@@ -567,28 +512,28 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
             </Flex>
 
             {/*
-            <Controller
-              name='censusSize'
-              control={methods.control}
-              rules={{ required: true }}
-              render={({ field }) => (
-                <Select
-                  options={censusSizeOptions}
-                  onChange={(selected) => field.onChange(selected?.value || null)}
-                  value={censusSizeOptions.find((option) => option.value === field.value)}
-                />
-              )}
-            />
-            {methods.formState.errors.censusSize && (
-              <Text color='red.500' fontSize='sm' mt={1}>
-                {t('form.error.field_is_required')}
-              </Text>
-            )}
-            */}
+       <Controller
+         name='censusSize'
+         control={methods.control}
+         rules={{ required: true }}
+         render={({ field }) => (
+           <Select
+             options={censusSizeOptions}
+             onChange={(selected) => field.onChange(selected?.value || null)}
+             value={censusSizeOptions.find((option) => option.value === field.value)}
+           />
+         )}
+       />
+       {methods.formState.errors.censusSize && (
+         <Text color='red.500' fontSize='sm' mt={1}>
+           {t('form.error.field_is_required')}
+         </Text>
+       )}
+       */}
 
             {/*
-              {isLoading && <Progress colorScheme='brand' size='xs' isIndeterminate />}
-            */}
+         {isLoading && <Progress colorScheme='brand' size='xs' isIndeterminate />}
+       */}
           </Flex>
         </form>
       </FormProvider>
@@ -597,6 +542,67 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
           <Icon mr={2} as={AddIcon} />
           <Trans i18nKey='pricing_card.view_features'>View All features</Trans>
         </Button>
+      </Box>
+      <Box position={'fixed'} bottom={0} left='50%' transform='translateX(-50%)' w='full' maxW={'1920px'} zIndex={100}>
+        {helper ? (
+          <Box
+            position={'absolute'}
+            bottom='20px'
+            right={{ base: 4, md: 6, xl: 10 }}
+            maxWidth='12%'
+            border='1px solid #ccc'
+            padding='25px'
+            textAlign='center'
+            borderRadius='12px'
+            minW='225px'
+            zIndex='1000'
+            boxShadow='inset 0 -1px 0 1px rgba(255, 255, 255, .2),0 8px 22px rgba(0, 0, 0, .12)'
+            bgColor={'plans.cards.light'}
+            _dark={{ bgColor: 'plans.cards.dark' }}
+          >
+            <Text fontSize='16px' fontWeight='600' mb='20px'>
+              ¿Do you need more than 10K voters?
+            </Text>
+            <Text fontSize='12px' mb='20px'>
+              Get a tailored price from our experts
+            </Text>
+            <Button
+              position='absolute'
+              variant={'link'}
+              top='5px'
+              right='10px'
+              onClick={() => setHelper(false)}
+              rightIcon={<CloseButton />}
+            />
+
+            <Button variant='primary' mx='auto' minW='80%'>
+              Contact us!
+            </Button>
+          </Box>
+        ) : (
+          <>
+            <IconButton
+              icon={<FaQuestion />}
+              onClick={() => setHelper(true)}
+              position='absolute'
+              aria-label=''
+              bottom='0px'
+              right={{ base: 4, md: 6, xl: 10 }}
+              border='1px solid #ccc'
+              padding='10px'
+              textAlign='center'
+              borderTopRadius={'lg'}
+              borderBottomRadius={'none'}
+              zIndex='1000'
+              minH={0}
+              minW={0}
+              h={'fit-content'}
+              boxShadow='inset 0 -1px 0 1px rgba(255, 255, 255, .2),0 8px 22px rgba(0, 0, 0, .12)'
+              bgColor={'plans.cards.light'}
+              _dark={{ color: 'white', bgColor: 'plans.cards.dark' }}
+            />
+          </>
+        )}
       </Box>
     </Box>
   )
