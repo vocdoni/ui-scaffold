@@ -95,7 +95,7 @@
     "coming_soon": "Coming soon",
     "contact": "If you have any question, check our <faqsLink>FAQ</faqsLink> or <customLink>contact</customLink> our support team",
     "contact_us": "Contact Us",
-    "description": "<p>Vocdoni uses its own public voting blockchain (Vochain) to ensure maximum security, end-to-end verifiability, and a censorship-resistant voting process. To use this infrastructure, users need to expend tokens (a credit representation of the usage of the Vochain) to create the necessary election. Various parameters, such as census size and duration, determine the final voting cost.</p><p>Here you can simulate the cost of your voting process and purchase the needed tokens.</p>",
+    "description": "<p>Vocdoni uses its own public voting blockchain (Vochain) to ensure maximum security, verifiability and censorship resistance. Users need tokens to create elections, and final cost depends on census size and duration.</p>",
     "discount": "Discount",
     "duration": "Duration (days)",
     "encrypted": "Encrypted",
@@ -452,7 +452,7 @@
         "description_election": "Description",
         "edit": "Edit",
         "election_info": "Set up your voting process",
-        "live_results": "",
+        "live_results": "Live results",
         "questions_one": "Question",
         "questions_other": "Questions",
         "title": "Preview",
@@ -553,14 +553,14 @@
         "title": "Effortless Participation"
       },
       "card_5": {
-        "description": "Rest assured with advanced cryptographic methods ensuring the utmost security, maintaining voter anonymity and vote integrity.",
+        "description": "Rest assured that advanced cryptographic methods ensure maximum security while maintaining voter anonymity and vote integrity.",
         "title": "Blockchain Based Security"
       },
       "card_6": {
-        "description": "Foster trust and transparency powered by blockchain technology, offering stakeholders unparalleled visibility into the integrity of voting processes.",
+        "description": "Foster trust and transparency through blockchain technology, offering full visibility into voting integrity.",
         "title": "Auditable & Open-Source"
       },
-      "subtitle_1": "Clients who choose Vocdoni unlock a world of benefits tailored to meet their unique voting needs. With our cutting-edge technology, organizations, communities, and governments experience a seamless transition to digital democracy. Here's how Vocdoni adds value:",
+      "subtitle_1": "Clients who choose Vocdoni get benefits designed for their voting needs. Our technology enables the transition to digital democracy for organizations, communities and governments. Discover how Vocdoni adds value:",
       "title": "Advantages"
     },
     "clients_title": "Trusted by 100+ organizations",
@@ -575,10 +575,10 @@
         "title": "We will be with you every step of the way"
       },
       "card_3": {
-        "description": "",
-        "title": ""
+        "description": "We guide you through the entire process to ensure a flawless voting experience.",
+        "title": "Expert Support"
       },
-      "title": "Let’s work together to find the best solution"
+      "title": "Let's work together to find the best solution"
     },
     "create_process": {
       "btn": "Try it for free",
@@ -624,160 +624,160 @@
         "title": "What makes Vocdoni different from other voting platforms?"
       },
       "faq_10": {
-        "description": "",
-        "title": ""
+        "description": "We provide technical support to help voters resolve any issues. Additionally, the system is designed to be intuitive and accessible to everyone.",
+        "title": "What happens if a voter has problems accessing or voting?"
       },
       "faq_11": {
-        "description": "",
-        "title": ""
+        "description": "Vocdoni is resistant to attacks thanks to blockchain and other advanced security measures. Traditional systems may be vulnerable to manipulation, but in Vocdoni each vote is cryptographically protected and impossible to alter.",
+        "title": "What security does Vocdoni offer against cyber attacks?"
       },
       "faq_12": {
-        "description": "",
-        "title": ""
+        "description": "Vocdoni allows you to conduct any type of voting: internal elections, assemblies, referendums, surveys, and participatory processes. The platform adapts to the needs of governments, companies, cooperatives, associations, and other organizations.",
+        "title": "What types of voting can I do with Vocdoni?"
       },
       "faq_13": {
-        "description": "",
-        "title": ""
+        "description": "No. Voters receive a secure link or unique credential that allows them to vote without needing to register, simplifying the experience and ensuring anonymity.",
+        "title": "Do voters need to create an account to vote?"
       },
       "faq_14": {
-        "description": "",
-        "title": ""
+        "description": "It depends on the voting configuration. In some cases, voters are allowed to change their vote until the process closes.",
+        "title": "Can votes be modified once cast?"
       },
       "faq_15": {
-        "description": "",
-        "title": ""
+        "description": "Yes, the platform allows advanced configurations such as weighted voting (where a vote is worth more based on certain criteria) and delegated voting (where a user can transfer their vote to another person).",
+        "title": "Does Vocdoni allow weighted or delegated voting?"
       },
       "faq_16": {
-        "description": "",
-        "title": ""
+        "description": "Yes, digital voting can be combined with in-person voting and then integrate the results into a unified count. We offer various systems to conduct hybrid voting.",
+        "title": "Can hybrid (digital and in-person) voting be conducted?"
       },
       "faq_17": {
-        "description": "",
-        "title": ""
+        "description": "This depends on the rules of each process. Tiebreaker criteria can be established before starting the vote, such as second rounds or specific rules to determine the winner.",
+        "title": "What happens if there's a tie in a vote?"
       },
       "faq_18": {
-        "description": "",
-        "title": ""
+        "description": "Results are generated automatically once voting closes. No manual counting is needed, and results can be verified immediately thanks to blockchain technology.",
+        "title": "How long does it take for results to be published?"
       },
       "faq_19": {
-        "description": "",
-        "title": ""
+        "description": "Yes, Vocdoni allows you to configure private voting where only members of a specific census can access.",
+        "title": "Can completely private voting be conducted?"
       },
       "faq_2": {
         "description": "Yes, Vocdoni strictly adheres to GDPR guidelines, ensuring that user data is handled with the utmost care and confidentiality. Our platform prioritizes data privacy and security at every stage of the voting process.",
         "title": "Is Vocdoni compliant with data privacy regulations?"
       },
       "faq_20": {
-        "description": "",
-        "title": ""
+        "description": "Anyone can verify the results thanks to blockchain transparency. Additionally, we provide tools to audit the voting process and ensure its reliability.",
+        "title": "How can the correctness of results be verified?"
       },
       "faq_21": {
-        "description": "",
-        "title": ""
+        "description": "Yes. The platform is designed following accessibility standards (WCAG), making it suitable for people with visual, auditory, or motor disabilities.",
+        "title": "Is Vocdoni accessible for people with disabilities?"
       },
       "faq_22": {
-        "description": "",
-        "title": ""
+        "description": "Vocdoni works on any device with internet connection, including computers, tablets, and mobile phones. The platform is optimized for all modern browsers without requiring downloads or installations.",
+        "title": "Which devices are compatible with Vocdoni?"
       },
       "faq_23": {
-        "description": "",
-        "title": ""
+        "description": "Voters can receive an invitation via email, SMS, or through a secure link shared by the organization.",
+        "title": "How are voters invited to participate in a vote?"
       },
       "faq_24": {
-        "description": "",
-        "title": ""
+        "description": "Vocdoni can handle everything from small groups to massive votes with hundreds of thousands of participants, thanks to its scalable blockchain-based infrastructure.",
+        "title": "How many voters can Vocdoni handle simultaneously?"
       },
       "faq_25": {
-        "description": "",
-        "title": ""
+        "description": "Yes, the platform allows you to define roles and permissions for administrators, limiting access to certain functionalities according to organizational needs.",
+        "title": "Can different access levels be set for administrators?"
       },
       "faq_26": {
-        "description": "",
-        "title": ""
+        "description": "Vocdoni supports various authentication methods, such as email, eID, SMS code, electronic signature, or integration with existing identification systems.",
+        "title": "How can I ensure only authorized people can vote?"
       },
       "faq_27": {
-        "description": "",
-        "title": ""
+        "description": "We offer technical support and recovery tools to ensure all voters can exercise their right to vote without problems.",
+        "title": "What happens if a voter has technical problems during voting?"
       },
       "faq_28": {
-        "description": "",
-        "title": ""
+        "description": "Closed census: Only people previously registered in the census can vote. Open census: Anyone meeting certain criteria (e.g., eID verification) can vote.",
+        "title": "What's the difference between a closed and open census?"
       },
       "faq_29": {
-        "description": "",
-        "title": ""
+        "description": "Observers can verify the electoral process in real-time and audit results using Vocdoni's transparency and verification tools.",
+        "title": "How does result verification work for observers?"
       },
       "faq_3": {
         "description": "Absolutely! Vocdoni offers customization options to align with your organization's branding, ensuring a seamless integration with your existing systems and maintaining a consistent brand experience for voters. Contact us to know more!",
         "title": "Can Vocdoni be customized to fit our organization's branding?"
       },
       "faq_30": {
-        "description": "",
-        "title": ""
+        "description": "Yes, you can set exact dates and times for the start and end of voting, eliminating the need for manual intervention.",
+        "title": "Can I schedule a vote to start and end automatically?"
       },
       "faq_31": {
-        "description": "",
-        "title": ""
+        "description": "Yes, the platform supports different voting formats, including multiple-choice questions, weighted voting, and systems like preferential voting or STV.",
+        "title": "Can questions have multiple response options?"
       },
       "faq_32": {
-        "description": "",
-        "title": ""
+        "description": "Yes, Vocdoni facilitates participation in deliberative processes, assemblies, and governance mechanisms, adapting to various decision-making systems.",
+        "title": "Is Vocdoni suitable for collaborative decision-making processes?"
       },
       "faq_33": {
-        "description": "",
-        "title": ""
+        "description": "Yes, Vocdoni allows implementing more sophisticated voting methods according to the needs of each organization or electoral process.",
+        "title": "Can advanced voting methods like Quadratic Voting or Approval Voting be integrated?"
       },
       "faq_34": {
-        "description": "",
-        "title": ""
+        "description": "Depending on the voting configuration, you can opt for real-time results or a final count once voting closes.",
+        "title": "Are results accessible in real-time?"
       },
       "faq_35": {
-        "description": "",
-        "title": ""
+        "description": "Thanks to blockchain transparency and verifiability, any participant or observer can audit the results to detect possible anomalies.",
+        "title": "How can voting results be challenged?"
       },
       "faq_36": {
-        "description": "",
-        "title": ""
+        "description": "Yes, you can easily upload a predefined census via CSV file or integrate it with existing databases.",
+        "title": "Is it possible to import an existing voter census?"
       },
       "faq_37": {
-        "description": "",
-        "title": ""
+        "description": "Yes, we follow best security and transparency practices and can adapt to specific regulations from different countries and institutions.",
+        "title": "Does Vocdoni comply with official electronic voting regulations?"
       },
       "faq_38": {
-        "description": "",
-        "title": ""
+        "description": "Yes, it's an ideal tool for public consultations, referendums, and citizen participation processes of any scale.",
+        "title": "Can Vocdoni handle referendums and citizen consultations?"
       },
       "faq_39": {
-        "description": "",
-        "title": ""
+        "description": "Vocdoni plans include a base number of voters, but you can add more according to your organization's needs. The platform is scalable to handle everything from small assemblies to large elections.",
+        "title": "Are there limits on the number of voters or voting processes?"
       },
       "faq_4": {
         "description": "We offer the Vocdoni SDK & Vocdoni UI Components libraries, designed for easy integration with your software or platform. We created them to prioritize ease of use on behalf of developers and to enable results from day one. Our team of experts will guide you through the integration process to ensure a smooth transition and minimal disruption to your operations.",
         "title": "How easy is it to integrate Vocdoni with our existing systems?"
       },
       "faq_40": {
-        "description": "",
-        "title": ""
+        "description": "Yes, Vocdoni allows weighted voting, where each vote can have a different value based on criteria defined by the organization.",
+        "title": "Can different voting weights be established?"
       },
       "faq_41": {
-        "description": "",
-        "title": ""
+        "description": "Vocdoni is designed to be accessible from any device and browser. In case of problems, we offer technical support and vote recovery options to ensure no one is left without participating.",
+        "title": "What happens if a voter has technical problems during voting?"
       },
       "faq_42": {
-        "description": "",
-        "title": ""
+        "description": "Vocdoni uses advanced encryption, zero-knowledge proofs, and a decentralized blockchain architecture to ensure security and resistance against attacks.",
+        "title": "How is the system protected against cyber attacks?"
       },
       "faq_43": {
-        "description": "",
-        "title": ""
+        "description": "Yes, we support different voting systems, including simple majority voting, preferential voting (like STV system), multiple-choice questions, and more.",
+        "title": "Can questions with multiple options or preferential voting be created?"
       },
       "faq_44": {
-        "description": "",
-        "title": ""
+        "description": "Yes, we offer the possibility to conduct test voting so organizers and voters can familiarize themselves with the system before an official election.",
+        "title": "Is it possible to test before a real vote?"
       },
       "faq_45": {
-        "description": "",
-        "title": ""
+        "description": "You can register and start creating votes in just minutes. If you need support or custom configuration, our team is available to help you.",
+        "title": "How can I start using Vocdoni?"
       },
       "faq_5": {
         "description": "Vocdoni offers comprehensive support to assist you at every step of your voting journey. From initial setup and customization to ongoing maintenance and troubleshooting, our dedicated support team is here to help you maximize the value of our platform.",
@@ -792,16 +792,16 @@
         "title": "How secure is the Vocdoni platform?"
       },
       "faq_8": {
-        "description": "Vocdoni ensures the integrity of each voting process by recording each vote as a tamper-proof blockchain transaction, providing transparency and verifiability to all stakeholders. Vocdoni's rigorous security measures safeguard against tampering and manipulation, ensuring that every vote is accurately recorded and counted.",
+        "description": "Vocdoni ensures voting process integrity by recording each vote as an immutable blockchain transaction, providing transparency and verifiability.",
         "title": "How does Vocdoni ensure the integrity of voting processes?"
       },
       "faq_9": {
-        "description": "",
-        "title": ""
+        "description": "Vocdoni uses advanced cryptographic techniques, such as zero-knowledge proofs (zk-SNARKs), to ensure that no one can link a vote with a voter's identity.",
+        "title": "How is voter anonymity protected?"
       },
-      "show_less": "",
-      "show_more": "",
-      "subtitle": "Below you'll find answers to our users’ most frequent questions. Provide clarity and confidence to your digital voting experience.",
+      "show_less": "Show Less",
+      "show_more": "Show More",
+      "subtitle": "Below you'll find answers to our users' most frequent questions. Provide clarity and confidence to your digital voting experience.",
       "title": "Frequently Asked Questions"
     },
     "features": {
@@ -1274,7 +1274,7 @@
         "title": "Single Choice"
       },
       "voting_type": {
-        "description": "Select the voting type for this election. If you don't find what you need can contact us.",
+        "description": "Select the voting type for this election. Contact us if you need other options.",
         "title": "Voting Types"
       }
     },
@@ -1362,7 +1362,7 @@
     },
     "section1Title": "1. General Information",
     "section2": {
-      "description": "We emphasize user data security. Here is an overview:",
+      "description": "We prioritize user data security. Here's the summary:",
       "item1": "We collect and process personal data necessary for service provision.",
       "item2": "All personal data is stored in encrypted form, ensuring that no personal data is stored in plain text.",
       "item3": "Metadata submitted by voting organizers may be publicly accessible on IPFS.",
@@ -1469,7 +1469,7 @@
   "view_pricing": "View Pricing",
   "view_pricing_plan": "View Pricing Plan",
   "view_pricing_plans": "View Pricing Plans",
-  "vocdoni logo": "",
+  "vocdoni logo": "Vocdoni logo",
   "vote_details": "Vote details",
   "voters": "voters",
   "voting_link": "Voting Link",
