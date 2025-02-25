@@ -66,7 +66,9 @@ Tots els 3.458 ciutadans amb dret a vot—els majors de 16 anys—van rebre un d
 
 El consell de Bellpuig va començar a utilitzar la consulta en línia a causa de la pandèmia, però ràpidament va reconèixer els seus beneficis.
 
-> _"Vam pensar que aquesta seria la direcció cap on anirien les consultes... Els ciutadans poden fer sentir la seva veu des de la comoditat de les seves cases o llocs de treball. Fins i tot si són a l'estranger, poden exercir el seu dret a votar des de qualsevol lloc del món."_ – Alcalde Jordi Estiarte
+> _"Vam pensar que aquesta seria la direcció cap on anirien les consultes... Els ciutadans poden fer sentir la seva veu des de la comoditat de les seves cases o llocs de treball. Fins i tot si són a l'estranger, poden exercir el seu dret a votar des de qualsevol lloc del món."_
+
+> Alcalde Jordi Estiarte
 
 Aquest referèndum, la primera **consulta 100% digital realitzada per una institució pública a Espanya**, demostra el valor tangible de la governança digital accessible, transparent i segura per a la democràcia i la societat.
 

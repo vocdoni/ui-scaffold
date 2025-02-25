@@ -66,7 +66,9 @@ All 3,458 citizens eligible to vote—those over 16—received a document in the
 
 Bellpuig’s council initially transitioned to online consultation due to the pandemic but quickly recognized its benefits.
 
-> _"We thought that this was the direction where consultations would be headed anyway... Citizens can make their voice heard in the comfort of their homes or workplaces. Even if they’re abroad, they can still exercise their right to vote from anywhere in the world."_ – Mayor Jordi Estiarte
+> _"We thought that this was the direction where consultations would be headed anyway... Citizens can make their voice heard in the comfort of their homes or workplaces. Even if they’re abroad, they can still exercise their right to vote from anywhere in the world."_
+>
+> Mayor Jordi Estiarte
 
 This referendum, the first-ever **100% digital consultation held by a public institution in Spain**, demonstrates the tangible value of accessible, transparent, and secure digital governance for democracy and society.
 

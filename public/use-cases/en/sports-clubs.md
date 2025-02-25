@@ -1,4 +1,4 @@
-# Sports clubs
+# **Sports clubs**
 
 ![Exemple](/assets/sport.jpeg)
 
@@ -138,7 +138,7 @@ of the voting system included:
 
 This successful implementation by FC Barcelona serves as a model for other sports clubs looking to enhance democratic engagement.
 
-### References:
+### **References**
 
 [1][3][6] Jacobs, Sheri. _The Art of Membership_. San Francisco: Jossey-Bass, 2014.  
 [2] Gallo, Amy. _The Value of Keeping the Right Customers_. HBR, 2014.  

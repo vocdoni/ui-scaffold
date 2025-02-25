@@ -69,7 +69,7 @@ As political organizations face growing scrutiny over electoral integrity, digit
 - Reduce operational costs and administrative burdens.  
   By embracing blockchain-based digital voting, political parties can build a more transparent, secure, and democratic future, ensuring that every member’s voice is heard without compromise.
 
-### References:
+### **References**
 
 [1] Brennan Center for Justice. _The Iowa Caucus Exposed the Threat of ‘Voter Fraud’ Fearmongering._  
 [2] Jacobs, Sheri. _The Art of Membership_. San Francisco: Jossey-Bass, 2014.  

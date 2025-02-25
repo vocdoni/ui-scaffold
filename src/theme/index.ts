@@ -93,9 +93,30 @@ export const theme = extendTheme(vtheme, {
           lineHeight: '24px',
           mb: '20px',
 
-          '&:not(:has(+ p))': {
-            mb: '30px',
+          '&:not(:has(+ p, + ul, + ol, + blockquote, + li))': {
+            mb: '60px',
           },
+          '&:has(img:only-child)': {
+            mb: 0,
+          },
+        },
+        blockquote: {
+          px: 6,
+          mb: '20px',
+          borderRadius: 'lg',
+
+          '& em': {
+            fontWeight: 600,
+          },
+          '& p:first-of-type': {
+            mb: '10px',
+          },
+          '& p:last-of-type': {
+            mb: 0,
+          },
+        },
+        ul: {
+          mb: '60px',
         },
         li: {
           fontSize: '16px',
@@ -103,7 +124,15 @@ export const theme = extendTheme(vtheme, {
           ml: '20px',
         },
         'li:last-of-type': {
-          mb: '20px',
+          mb: '60px',
+        },
+        ol: {
+          fontSize: '16px',
+          lineHeight: '24px',
+          ml: '20px',
+        },
+        'ol:last-of-type': {
+          mb: '60px',
         },
         a: {
           fontSize: '16px',
@@ -115,12 +144,14 @@ export const theme = extendTheme(vtheme, {
           whiteSpace: 'pre-wrap',
         },
         img: {
-          maxW: { base: '100%', sm: '90%', sm2: '300px', lg: '450px' },
-          float: { sm2: 'right' },
-          borderRadius: '16px',
-          'margin-bottom': '10px',
-          'margin-left': { base: '0px', sm2: '20px' },
-          mx: 'auto',
+          '&:first-of-type': {
+            maxW: { base: '100%', sm: '90%', sm2: '300px', lg: '450px' },
+            float: { sm2: 'right' },
+            borderRadius: '16px',
+            'margin-bottom': '10px',
+            'margin-left': { base: '0px', sm2: '20px' },
+            mx: 'auto',
+          },
         },
       },
     }),

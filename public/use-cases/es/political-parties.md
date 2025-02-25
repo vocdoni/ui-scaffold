@@ -69,7 +69,7 @@ A medida que las organizaciones políticas enfrentan un creciente escrutinio sob
 - Reducir los costos operativos y la carga administrativa.  
   Al adoptar la votación digital basada en blockchain, los partidos políticos pueden construir un futuro más transparente, seguro y democrático, asegurando que la voz de cada miembro sea escuchada sin compromiso.
 
-### Referencias:
+### **Referencias**
 
 [1] Brennan Center for Justice. _The Iowa Caucus Exposed the Threat of ‘Voter Fraud’ Fearmongering._  
 [2] Jacobs, Sheri. _The Art of Membership_. San Francisco: Jossey-Bass, 2014.  

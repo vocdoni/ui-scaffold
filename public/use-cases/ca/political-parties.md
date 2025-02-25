@@ -69,7 +69,7 @@ A mesura que les organitzacions polítiques s'enfronten a un augment del control
 - Reduir els costos operatius i la càrrega administrativa.  
   En adoptar la votació digital basada en blockchain, els partits polítics poden construir un futur més transparent, segur i democràtic, assegurant que la veu de cada membre sigui escoltada sense compromís.
 
-### Referències:
+### **Referències**
 
 [1] Brennan Center for Justice. _The Iowa Caucus Exposed the Threat of ‘Voter Fraud’ Fearmongering._  
 [2] Jacobs, Sheri. _The Art of Membership_. San Francisco: Jossey-Bass, 2014.  

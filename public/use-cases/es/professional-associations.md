@@ -68,7 +68,7 @@ COEIC necesitaba un sistema de votación que ofreciera integridad, seguridad y f
 - Reducción de costos logísticos
 - Mejor accesibilidad e inclusión
 
-### Referencias:
+### **Referencias**
 
 [1][2][4] Jacobs, Sheri. _The Art of Membership_. San Francisco: Jossey-Bass, 2014.  
 [3] Mærøe, Anders et al. _E-participatory Budgeting Processes_, 2020.

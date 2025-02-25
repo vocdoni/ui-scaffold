@@ -1,4 +1,4 @@
-# Clubes deportivos
+# **Clubes deportivos**
 
 ![Ejemplo](/assets/sport.jpeg)
 
@@ -72,7 +72,7 @@ La elección se diseñó para permitir que los miembros de las peñas de todo el
 
 Esta implementación exitosa en el FC Barcelona sirve como modelo para otros clubes que buscan mejorar la participación democrática.
 
-### Referencias:
+### **Referencias**
 
 [1][3][6] Jacobs, Sheri. _The Art of Membership_. San Francisco: Jossey-Bass, 2014.  
 [2] Gallo, Amy. _The Value of Keeping the Right Customers_. HBR, 2014.  

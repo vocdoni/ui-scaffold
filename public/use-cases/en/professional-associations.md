@@ -80,7 +80,7 @@ By adopting Vocdoni’s blockchain-based voting system, COEIC successfully enhan
 - **Reduced logistical costs:** Digital voting eliminated the need for paper ballots, physical polling locations, and manual vote counting, making the process more efficient and cost-effective.
 - **Improved accessibility and engagement:** The ability to follow the AGO live and access documents in a user-friendly interface made participation easier and more inclusive.
 
-### References:
+### **References**
 
 [1][2][4] Jacobs, Sheri. _The Art of Membership_. San Francisco: Jossey-Bass, 2014.  
 [3] Mærøe, Anders et al. _E-participatory Budgeting Processes_, 2020.

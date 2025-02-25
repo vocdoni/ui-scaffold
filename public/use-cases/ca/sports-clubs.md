@@ -1,4 +1,4 @@
-# Clubs Esportius
+# **Clubs Esportius**
 
 ![Exemple](/assets/sport.jpeg)
 
@@ -51,7 +51,7 @@ L'elecció va permetre als membres de les penyes votar remotament, assegurant al
 
 Aquesta implementació amb èxit del FC Barcelona serveix de model per a altres clubs esportius que volen millorar el compromís democràtic.
 
-### Referències:
+### **Referències**
 
 [1][3][6] Jacobs, Sheri. _The Art of Membership_. San Francisco: Jossey-Bass, 2014.  
 [2] Gallo, Amy. _The Value of Keeping the Right Customers_. HBR, 2014.  

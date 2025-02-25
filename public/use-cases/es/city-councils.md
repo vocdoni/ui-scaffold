@@ -66,7 +66,9 @@ Todos los 3,458 ciudadanos elegibles para votar—aquellos mayores de 16 años�
 
 El consejo de Bellpuig inicialmente transicionó a consultas en línea debido a la pandemia, pero rápidamente reconoció sus beneficios.
 
-> _"Pensamos que esta era la dirección hacia la que las consultas iban a avanzar de todos modos... Los ciudadanos pueden hacer oír su voz desde la comodidad de sus hogares o lugares de trabajo. Incluso si están en el extranjero, aún pueden ejercer su derecho al voto desde cualquier parte del mundo."_ – Alcalde Jordi Estiarte
+> _"Pensamos que esta era la dirección hacia la que las consultas iban a avanzar de todos modos... Los ciudadanos pueden hacer oír su voz desde la comodidad de sus hogares o lugares de trabajo. Incluso si están en el extranjero, aún pueden ejercer su derecho al voto desde cualquier parte del mundo."_
+>
+> Alcalde Jordi Estiarte
 
 Este referéndum, la primera **consulta 100% digital realizada por una institución pública en España**, demuestra el valor tangible de la gobernanza digital accesible, transparente y segura para la democracia y la sociedad.
 
