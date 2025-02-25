@@ -1,8 +1,8 @@
-# **Sports clubs**
+# Sports clubs
 
 ![Exemple](/assets/sport.jpeg)
 
-## **Engaging membership and lowering administrative burden with Vocdoni**
+## Engaging membership and lowering administrative burden with Vocdoni
 
 Sports clubs can face nearly as much public scrutiny as governments, with elections of club  
 officials requiring high levels of security and public confidence. Technical difficulties can lead to  
@@ -23,7 +23,7 @@ interface that feels more like a social media platform than an impersonal govern
 Vocdoni gives organizations access to an award-winning voting system that is relied on by many  
 government entities.
 
-## **The future of digital democracy in sports clubs**
+## The future of digital democracy in sports clubs
 
 Research shows that the most successful organizations are those with an active and committed  
 member base. Recruiting new members is at least five times more costly than retaining the  
@@ -40,9 +40,9 @@ spills over and increases the strength and trust of surrounding communities.[5] 
 further become leaders in building community trust with universally verifiable elections and  
 various types of direct member democracy.
 
-## **These include:**
+## These include:
 
-### **Election of club officials**
+### Election of club officials
 
 Traditional large-scale election including all active members of the association. Members vote  
 from a list of candidates.  
@@ -52,7 +52,7 @@ can easily handle elections containing millions of voters. Members can vote from
 computers. Vocdoni’s real-time result tracking and universal verifiability ensure that all votes are  
 counted accurately and transparently.
 
-### **Approval of major expenditures**
+### Approval of major expenditures
 
 Elections to approve or reject a proposed expenditure, such as a stadium renovation. Detailed  
 budget proposals are presented to members, who can then vote to approve or reject them.  
@@ -62,7 +62,7 @@ could include a summary of a proposal, embed a video explaining the implications
 proposal, include graphic representations of the budget or planned improvement, or all of the  
 above.
 
-### **Changes to club policies**
+### Changes to club policies
 
 While many policies are determined by governing bodies, members feel more ownership of the  
 association if they are allowed to have a say on policy changes.  
@@ -73,7 +73,7 @@ decisions can be put to community approval. Elections could be simple yes/no dec
 single proposal or could include a more iterative community-driven process to choose between  
 and approve various amendments to a policy.
 
-### **Member polling**
+### Member polling
 
 Surveys to gauge community opinion on various issues or proposals. Members participate in  
 non-binding polls that gather opinions on specific topics or future initiatives.  
@@ -84,7 +84,7 @@ the future.[6]
 
 ## Case study:
 
-### **FC Barcelona goes digital: A secure and transparent blockchain voting system with Vocdoni**
+### FC Barcelona goes digital: A secure and transparent blockchain voting system with Vocdoni
 
 **Revolutionizing fan engagement with digital elections**
 
@@ -95,7 +95,7 @@ traditionally been held in person, limiting participation to those physically pr
 To overcome this barrier, FC Barcelona turned to Vocdoni, leveraging its cutting-edge  
 blockchain-based voting system to conduct its first fully digital election.
 
-### **How it worked: A seamless, secure, and transparent voting process**
+### How it worked: A seamless, secure, and transparent voting process
 
 The election was designed to enable fan club members (_penyes_) from around the world to vote  
 remotely while ensuring the integrity of the process. Vocdoni’s technology provided a  
@@ -127,18 +127,18 @@ of the voting system included:
    manipulate or block the process. If any node in the system was compromised, voters could  
    seamlessly connect through other gateways, ensuring uninterrupted access.
 
-### **Results & impact**
+### Results & impact
 
 - **Increased participation:** Thousands of international members could cast their votes remotely, ensuring broader representation.
 - **Enhanced security & fraud prevention:** The blockchain recorded every vote immutably, preventing tampering.
 - **Lower costs & operational efficiency:** Digital voting significantly reduced logistical and administrative expenses.
 - **Improved transparency & trust:** The system’s open-source nature allowed anyone to audit the process.
 
-## **Why this matters for other sports organizations**
+## Why this matters for other sports organizations
 
 This successful implementation by FC Barcelona serves as a model for other sports clubs looking to enhance democratic engagement.
 
-### **References**
+### References
 
 [1][3][6] Jacobs, Sheri. _The Art of Membership_. San Francisco: Jossey-Bass, 2014.  
 [2] Gallo, Amy. _The Value of Keeping the Right Customers_. HBR, 2014.  

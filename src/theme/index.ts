@@ -50,39 +50,46 @@ export const theme = extendTheme(vtheme, {
           mt: 0,
         },
         h1: {
+          fontWeight: 600,
           fontSize: '36px',
           lineHeight: '44px',
           letterSpacing: '-2%',
           mb: '30px',
         },
         'h2[level="1"]': {
+          fontWeight: 600,
           fontSize: '36px',
           lineHeight: '44px',
           letterSpacing: '-2%',
         },
         h2: {
+          fontWeight: 600,
           fontSize: '30px',
           lineHeight: '38px',
           letterSpacing: '0%',
           mb: '25px',
         },
         'h2[level="2"]': {
+          fontWeight: 600,
           fontSize: '30px',
           lineHeight: '38px',
           letterSpacing: '0%',
         },
         h3: {
+          fontWeight: 600,
           fontSize: '24px',
           lineHeight: '32px',
           letterSpacing: '0%',
           mb: '20px',
         },
         'h3[level="3"]': {
+          fontWeight: 600,
           fontSize: '24px',
           lineHeight: '32px',
           letterSpacing: '0%',
         },
         h4: {
+          fontWeight: 600,
           fontSize: '20px',
           lineHeight: '28px',
           letterSpacing: '0%',
@@ -122,6 +129,9 @@ export const theme = extendTheme(vtheme, {
           fontSize: '16px',
           lineHeight: '24px',
           ml: '20px',
+          '& p': {
+            mb: '10px',
+          },
         },
         'li:last-of-type': {
           mb: '60px',
