@@ -15,6 +15,21 @@ export const Pagination = defineVoteWeightTipStyle({
       flexWrap: 'wrap',
       rowGap: '2',
       ml: 'auto',
+
+      '& a': {
+        bgColor: 'transparent !important',
+        color: 'black',
+        borderColor: 'black',
+
+        _hover: {
+          color: 'black',
+        },
+
+        _dark: {
+          color: 'white',
+          borderColor: 'white',
+        },
+      },
     },
     totalResults: {},
   }),
