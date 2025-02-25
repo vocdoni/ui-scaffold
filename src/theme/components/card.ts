@@ -410,16 +410,14 @@ export const Card = defineMultiStyleConfig({
         fontWeight: 'bold',
         mb: '18px',
         fontSize: 'xl',
-        textAlign: 'center',
       },
       body: {
-        textAlign: 'center',
         p: 0,
-        color: 'home.description.light !important',
+        color: 'home.description.light',
         fontSize: 'xl',
 
         _dark: {
-          color: 'home.description.dark !important',
+          color: 'home.description.dark',
         },
       },
     },
