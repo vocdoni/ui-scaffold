@@ -1,8 +1,8 @@
-import { Box, Button, Card, CardBody, CardHeader, Flex, Text } from '@chakra-ui/react'
+import { Box, BoxProps, Button, Card, CardBody, CardHeader, Flex, Text } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-const Faqs = ({ ...props }) => {
+const Faqs = (props: BoxProps) => {
   const { t } = useTranslation()
   const [showAll, setShowAll] = useState(false)
   const faqs = [

@@ -1,4 +1,4 @@
-import { Box, Card, CardBody, CardHeader, Grid, GridProps, Image, Text } from '@chakra-ui/react'
+import { Box, BoxProps, Card, CardBody, CardHeader, Grid, GridProps, Image, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import barca from '/assets/barca.png'
 import bellpuig from '/assets/bellpuig.svg.png'
@@ -11,12 +11,12 @@ import erc from '/assets/erc.svg'
 import omnium from '/assets/omnium.png'
 import ticanoia from '/assets/ticanoia.png'
 
-const Clients = ({ ...props }) => {
+const Clients = (props: BoxProps) => {
   const { t } = useTranslation()
 
   return (
     <Box {...props}>
-      <Text textAlign='center' mb={'40px'} fontFamily='basier' fontSize='18px' fontWeight='400'>
+      <Text textAlign='center' mb={10} fontFamily='basier' fontSize={'lg'} fontWeight='400'>
         {t('home.clients_title')}
       </Text>
       <ClientsGrid />
