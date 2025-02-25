@@ -12,6 +12,7 @@ const OrganizationVotings = () => {
   const { setBack, setTitle } = useOutletContext<DashboardLayoutContext>()
   const data = useLoaderData() as ElectionListWithPagination
   const { status } = useParams<{ status?: string }>()
+  const { elections } = data
 
   // Set page title
   useEffect(() => {
@@ -21,7 +22,7 @@ const OrganizationVotings = () => {
 
   return (
     <DashboardContents display='flex' flexDirection='column'>
-      <ProcessStatusFilter status={status} alignSelf='end' />
+      {elections.length && <ProcessStatusFilter status={status} alignSelf='end' />}
       <Votings data={data as ElectionListWithPagination} status={status} />
     </DashboardContents>
   )
