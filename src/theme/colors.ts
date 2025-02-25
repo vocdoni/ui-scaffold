@@ -280,7 +280,10 @@ export const colors = {
     dark: colorsBase.gray.normal,
   },
   org_text_secondary: colorsBase.gray.normal,
-
+  page_button: {
+    light: colorsBase.white.dark,
+    dark: colorsBase.blue.dark,
+  },
   process: {
     aside: {
       bg: colorsBase.gradient,

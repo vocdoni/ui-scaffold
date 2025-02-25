@@ -13,7 +13,7 @@ import { ElectionTitle, Heading } from './components/heading'
 import { Input } from './components/input'
 import { Link } from './components/link'
 import { Modal } from './components/modal'
-import { Pagination } from './components/pagination'
+import { PageButton, Pagination } from './components/pagination'
 import { ElectionQuestions } from './components/Questions'
 import { Radio } from './components/radio'
 import { ElectionResults } from './components/results'
@@ -104,6 +104,7 @@ export const theme = extendTheme(vtheme, {
     Link,
     Menu,
     Modal,
+    PageButton,
     Pagination,
     Radio,
     Stepper,
