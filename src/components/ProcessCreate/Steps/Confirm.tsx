@@ -6,12 +6,6 @@ import {
   Flex,
   FormControl,
   FormErrorMessage,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
   Text,
   useDisclosure,
   useToast,
@@ -47,7 +41,7 @@ import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGi
 import { DefaultCensusSize } from '~constants'
 import { useCspAdmin } from '../Census/Csp/use-csp'
 import Preview from '../Confirm/Preview'
-import { CreationProgress, Steps } from '../CreationProgress'
+import { Steps } from '../CreationProgress'
 import { Web3Address } from '../StepForm/CensusWeb3'
 import { Option } from '../StepForm/Questions'
 import { StepsFormValues, useProcessCreationSteps } from './use-steps'
@@ -298,19 +292,6 @@ export const Confirm = () => {
           {t('form.process_create.confirm.create_button')}
         </Button>
       </Flex>
-      <Modal isOpen={isOpen} onClose={onClose} closeOnEsc={!!error} closeOnOverlayClick={!!error} isCentered>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>
-            <Text>{t('form.process_create.creating_process')}</Text>
-            <Box />
-          </ModalHeader>
-          {error && <ModalCloseButton />}
-          <ModalBody>
-            <CreationProgress error={error} sending={sending} step={step} />
-          </ModalBody>
-        </ModalContent>
-      </Modal>
     </Wrapper>
   )
 }
