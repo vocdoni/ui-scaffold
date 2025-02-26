@@ -34,7 +34,7 @@ export const StepFormCensusToken = () => {
   }
   return (
     <>
-      <Text>{t('census.token_title')}</Text>
+      <Text fontWeight={'bold'}>{t('census.token_title')}</Text>
       <Text mb={6}>
         <Trans
           i18nKey='census.token_description'
