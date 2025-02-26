@@ -95,21 +95,17 @@ export const CensusCsvManager = () => {
         alignItems={{ base: 'start', lg: 'stretch' }}
         justifyContent='center'
       >
-        <Flex flexDirection='column' gap={6} flex='1 1 60%'>
-          <Flex alignItems='center' gap={1}>
+        <Flex flexDirection='column' flex='1 1 60%'>
+          <Flex alignItems='center' gap={1} mt={3} mb={2}>
             <Icon as={PiWarningCircleLight} />
             <Text mt={0.5}>{t('form.process_create.spreadsheet.requirements.title')}</Text>
           </Flex>
-          <UnorderedList>
+          <UnorderedList mb={6}>
             <ListItem mb={2}>
-              <Text variant='process-create-subtitle-sm'>
-                {t('form.process_create.spreadsheet.requirements.list_one')}
-              </Text>
+              <Text>{t('form.process_create.spreadsheet.requirements.list_one')}</Text>
             </ListItem>
             <ListItem>
-              <Text variant='process-create-subtitle-sm'>
-                {t('form.process_create.spreadsheet.requirements.list_two')}
-              </Text>
+              <Text>{t('form.process_create.spreadsheet.requirements.list_two')}</Text>
             </ListItem>
           </UnorderedList>
           <FormControl>

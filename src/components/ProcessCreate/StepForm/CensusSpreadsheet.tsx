@@ -28,7 +28,7 @@ export const StepFormCensusSpreadsheet = () => {
 
   return (
     <>
-      <Text variant='process-create-census-title'>{t('census.spreadsheet_title')}</Text>
+      <Text fontWeight={'bold'}>{t('census.spreadsheet_title')}</Text>
       <FormProvider {...methods}>
         <Box as='form' id='process-create-form' onSubmit={methods.handleSubmit(onSubmit)}>
           <CensusCsvManager />

@@ -3,7 +3,6 @@ import { Box, Button, Flex } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { Outlet, Link as ReactRouterLink, ScrollRestoration, useNavigate } from 'react-router-dom'
 import { ColorModeSwitcher } from '~components/Layout/ColorModeSwitcher'
-import Logo from '~components/Layout/Logo'
 import SaasFooter from '~components/ProcessCreate/SaasFooter'
 import { Routes } from '~src/router/routes'
 
@@ -21,22 +20,20 @@ const LayoutProcessCreate = () => {
             maxW='2000px'
             w='full'
             mx='auto'
-            justifyContent='space-between'
+            justifyContent='end'
             alignItems='center'
             px={{ base: 2.5, sm: 5, lg: 10 }}
             py={{ base: 3, sm: 3, lg: 6 }}
+            gap={6}
           >
-            <Logo />
-            <Flex gap={6}>
-              <Button
-                as={ReactRouterLink}
-                onClick={(e) => (window.history.state.idx ? navigate(-1) : navigate(Routes.root))}
-                rightIcon={<CloseIcon boxSize={3} />}
-              >
-                {t('form.process_create.navbar.close_form_btn')}
-              </Button>
-              <ColorModeSwitcher />
-            </Flex>
+            <Button
+              as={ReactRouterLink}
+              onClick={(e) => (window.history.state.idx ? navigate(-1) : navigate(Routes.root))}
+              rightIcon={<CloseIcon boxSize={3} />}
+            >
+              {t('form.process_create.navbar.close_form_btn')}
+            </Button>
+            <ColorModeSwitcher />
           </Flex>
 
           <Box

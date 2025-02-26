@@ -230,7 +230,9 @@ export const Confirm = () => {
   return (
     <Wrapper>
       <Box>
-        <Text fontWeight={'bold'}>{t('form.process_create.confirm.title')}</Text>
+        <Text fontWeight={'bold'} mb={2}>
+          {t('form.process_create.confirm.title')}
+        </Text>
         <Text mb={6}>{t('form.process_create.confirm.description')}</Text>
         <ElectionProvider election={published}>
           <FormProvider {...methods}>
@@ -257,19 +259,7 @@ export const Confirm = () => {
                   <Text flexBasis='30%' flexGrow={0} flexShrink={0} fontWeight='bold'>
                     {t('form.process_create.confirm.confirmation')}
                   </Text>
-                  <FormControl
-                    isInvalid={!!errors.infoValid}
-                    sx={{
-                      '& label': {
-                        display: 'flex',
-                        alignItems: { xl2: 'start' },
-
-                        '& span:first-of-type': {
-                          mt: { xl2: 1.5 },
-                        },
-                      },
-                    }}
-                  >
+                  <FormControl isInvalid={!!errors.infoValid}>
                     <Checkbox {...register('infoValid', { required: true })}>
                       {t('form.process_create.confirm.confirmation_valid_info')}
                     </Checkbox>
@@ -284,7 +274,15 @@ export const Confirm = () => {
         </ElectionProvider>
       </Box>
       <Flex justifyContent='space-between' mt='auto' my={6}>
-        <Button colorScheme={'whiteAlpha'} variant={'rounded'} onClick={prev}>
+        <Button
+          colorScheme={'whiteAlpha'}
+          variant={'rounded'}
+          onClick={prev}
+          display={'flex'}
+          justifyContent={'center'}
+          alignItems={'center'}
+          gap={2}
+        >
           <ArrowBackIcon />
           <Text as='span'>{t('form.process_create.previous_step')}</Text>
         </Button>

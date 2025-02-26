@@ -452,7 +452,7 @@
         "confirmation_valid_info": "Confirmo que esta información es correcta y válida",
         "create_button": "Crear",
         "dates": "Fecha",
-        "description": "En esta página, puedes revisar que toda la información sea correcta y editarla en caso de que haya algún error. También puedes verificar el costo del proceso de votación y comprar más créditos en caso de que no tengas suficientes.",
+        "description": "En esta página, puedes revisar que toda la información sea correcta y editarla en caso de que haya algún error.",
         "description_election": "Descripción",
         "edit": "Editar",
         "election_info": "Información de Votación",
@@ -460,7 +460,7 @@
         "questions_one": "Pregunta",
         "questions_many": "",
         "questions_other": "Preguntas",
-        "title": "Vista previa y costos de votación",
+        "title": "Vista previa",
         "title_election": "Título",
         "vote_overwrite": "Sobrescribir voto"
       },

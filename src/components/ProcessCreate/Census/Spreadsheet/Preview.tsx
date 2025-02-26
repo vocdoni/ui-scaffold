@@ -1,4 +1,4 @@
-import { Badge, Box, Button, Flex, FormControl, FormLabel, Icon, Input, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, FormControl, FormLabel, Icon, Input, Text } from '@chakra-ui/react'
 import { DropzoneRootProps } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
 import { RiFileExcel2Line } from 'react-icons/ri'
@@ -39,10 +39,11 @@ export const CsvPreview = ({ manager, upload }: CsvPreviewProps) => {
         </Button>
       </Flex>
 
-      <Box bgColor='process_create.spreadsheet.preview_bg_interior' p={5} borderRadius='lg'>
-        <Badge>{t('form.process_create.spreadsheet.preview.title')}</Badge>
+      <Box bgColor='process_create.spreadsheet.preview_bg_interior' px={5} borderRadius='lg'>
+        <Text fontWeight={'bold'} fontSize={'lg'}>
+          {t('form.process_create.spreadsheet.preview.title')}
+        </Text>
         <Text my={3}>{t('form.process_create.spreadsheet.preview.description')}</Text>
-
         <Flex flexDirection='column' gap={3} w={{ base: '70%', md: '50%' }} mx='auto'>
           {manager.header.map((field) => (
             <FormControl key={field}>

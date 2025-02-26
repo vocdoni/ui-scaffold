@@ -452,7 +452,7 @@
         "confirmation_valid_info": "Confirmo que aquesta informació és correcta i vàlida",
         "create_button": "Crear",
         "dates": "Data",
-        "description": "En aquesta pàgina, podeu revisar que tota la informació sigui correcta i editar-la en cas que hi hagi algun error. També podeu comprovar el cost del procés de votació i comprar més crèdits en cas que no n'hi tingueu prou.",
+        "description": "En aquesta pàgina, podeu revisar que tota la informació sigui correcta i editar-la en cas que hi hagi algun error.",
         "description_election": "Descripció",
         "edit": "Editar",
         "election_info": "Informació de la Votació",
@@ -460,7 +460,7 @@
         "questions_one": "Pregunta",
         "questions_many": "",
         "questions_other": "Preguntes",
-        "title": "Vista prèvia i costos de votació",
+        "title": "Vista prèvia",
         "title_election": "Títol",
         "vote_overwrite": "Sobreescriure vot"
       },

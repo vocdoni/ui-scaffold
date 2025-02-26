@@ -1,6 +1,11 @@
 import { defineStyle } from '@chakra-ui/react'
 
 const sizes = {
+  xxs: defineStyle({
+    fontSize: '20px',
+    lineHeight: '25px',
+    letterSpacing: '0%',
+  }),
   xs: defineStyle({
     fontSize: '24px',
     lineHeight: '32px',

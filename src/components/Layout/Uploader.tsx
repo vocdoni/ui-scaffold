@@ -51,7 +51,7 @@ const Uploader = ({ getRootProps, getInputProps, isDragActive, isLoading, format
           <Trans
             i18nKey='uploader.click_or_drag_and_drop'
             components={{
-              click: <Text as='span' textAlign='center' color='input.drag_and_drop.text' />,
+              click: <Text as='span' textAlign='center' color='input.drag_and_drop.text' _dark={{ color: 'white' }} />,
               drag: <Text as='span' textAlign='center' />,
               formats: <Text textAlign='center' fontSize='sm' />,
             }}

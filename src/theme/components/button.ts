@@ -95,6 +95,7 @@ const transparent = defineStyle((props) => {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    gap: 2,
     color: colorScheme === 'gray' ? 'black' : `${colorScheme}.700`,
 
     _active: {

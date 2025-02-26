@@ -88,6 +88,7 @@ export const TabsPage = <Implemented extends string, UnImplemented extends strin
           <Text fontWeight={'bold'}>{title}</Text>
           <Text>{description}</Text>
         </Box>
+
         <Tabs
           defaultIndex={defined.findIndex((val) => val === selected)}
           index={tab}

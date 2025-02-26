@@ -7,6 +7,7 @@ const baseStyle = definePartsStyle((props) => ({
   indicator: {
     '&[data-status=complete]': {
       background: 'process_create.stepper.bg',
+      color: 'white',
     },
     '&[data-status=active]': {
       borderColor: 'process_create.stepper.color',
@@ -34,6 +35,9 @@ const baseStyle = definePartsStyle((props) => ({
     '&[data-status=active]': {
       fontWeight: 'bold',
       color: 'process_create.stepper.color',
+      _dark: {
+        color: 'white',
+      },
     },
   },
 }))

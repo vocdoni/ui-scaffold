@@ -39,8 +39,8 @@ export const StepFormCensusGitcoin = () => {
   }
   return (
     <>
-      <Text variant='process-create-census-title'>{t('census.gitcoin_title')}</Text>
-      <Text variant='process-create-subtitle-sm' mb={6}>
+      <Text fontWeight={'bold'}>{t('census.gitcoin_title')}</Text>
+      <Text mb={6}>
         {t('census.gitcoin_description')} <br />
         <Trans
           i18nKey='census.gitcoin_read_more'

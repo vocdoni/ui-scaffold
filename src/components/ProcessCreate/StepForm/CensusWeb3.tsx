@@ -48,7 +48,7 @@ export const StepFormCensusWeb3 = () => {
 
   return (
     <>
-      <Text variant='process-create-census-title'>{t('census.wallet_address_title')}</Text>
+      <Text fontWeight={'bold'}>{t('census.wallet_address_title')}</Text>
 
       <FormProvider {...methods}>
         <Box as='form' id='process-create-form' onSubmit={methods.handleSubmit(onSubmit)}>
