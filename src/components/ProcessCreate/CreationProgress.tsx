@@ -18,7 +18,6 @@ type CreationProgressProps = {
 
 const EmptyCreationStepsState = {
   [ElectionCreationSteps.CENSUS_CREATED]: false,
-  [ElectionCreationSteps.SIGN_TX]: false,
   [ElectionCreationSteps.DONE]: false,
 }
 type CreationStepsState = typeof EmptyCreationStepsState
@@ -28,7 +27,6 @@ export const CreationProgress = ({ error, sending, step }: CreationProgressProps
   const { t } = useTranslation()
   const labels: { [key: string]: string } = {
     [ElectionCreationSteps.CENSUS_CREATED]: t('process_create.creation_steps.census_created'),
-    [ElectionCreationSteps.SIGN_TX]: t('process_create.creation_steps.sign_tx'),
     [ElectionCreationSteps.DONE]: t('process_create.creation_steps.done'),
   }
 
@@ -55,9 +53,9 @@ export const CreationProgress = ({ error, sending, step }: CreationProgressProps
       <List spacing={3} pb={3}>
         {Object.keys(labels).map((key, index) => (
           <ListItem key={key} display='flex' alignItems='center' gap={2}>
-            {steps[key as keyof CreationStepsState] ? (
+            {index === 0 ? (
               <Flex justifyContent='center' alignItems='center' gap={2}>
-                <Flex justifyContent='center' alignItems='center'>
+                <Flex justifyContent='center' alignItems='center' minW={6} minH={6}>
                   <Check />
                 </Flex>
                 <Text fontWeight='bold' color='primary.main'>
