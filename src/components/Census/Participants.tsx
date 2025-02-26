@@ -17,60 +17,44 @@ import {
 } from '@chakra-ui/react'
 import { useOrganization } from '@vocdoni/react-providers'
 import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { Trans } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Routes } from '~routes'
-import { useAddParticipants, useCensusInfo, usePublishCensus } from '~src/queries/census'
-
-interface ParticipantInput {
-  id: string
-  email?: string
-  phone?: string
-}
+import { ParticipantPayload, useAddParticipants, useCensusInfo, usePublishCensus } from '~src/queries/census'
 
 const CensusParticipants = () => {
   const navigate = useNavigate()
   const { organization } = useOrganization()
   const { id } = useParams<{ id: string }>()
-  const [participants, setParticipants] = useState<ParticipantInput[]>([])
-  const [participantId, setParticipantId] = useState('')
-  const [participantEmail, setParticipantEmail] = useState('')
-  const [participantPhone, setParticipantPhone] = useState('')
-
   const { data: census } = useCensusInfo(id!)
   const addParticipants = useAddParticipants(id!)
   const publishCensus = usePublishCensus(id!)
 
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { isSubmitting },
+  } = useForm<ParticipantPayload>()
+
+  const [participants, setParticipants] = useState<ParticipantPayload[]>([])
+
   if (!organization || !census) return null
 
-  const handleAddParticipant = (e: React.FormEvent) => {
-    e.preventDefault()
+  const handleAddParticipant = (data: ParticipantPayload) => {
+    if (!data.email && !data.phone) return
 
-    if (!participantId) return
-    if (!participantEmail && !participantPhone) return
-
-    setParticipants([
-      ...participants,
-      {
-        id: participantId,
-        email: participantEmail || undefined,
-        phone: participantPhone || undefined,
-      },
-    ])
-
-    // Clear form
-    setParticipantId('')
-    setParticipantEmail('')
-    setParticipantPhone('')
+    setParticipants((prev) => [...prev, data])
+    reset()
   }
 
-  const handleSubmit = async () => {
+  const handleSaveAndPublish = async () => {
     if (!participants.length) return
 
     await addParticipants.mutateAsync({ participants })
     await publishCensus.mutateAsync()
 
-    // Navigate back to census list
     navigate(Routes.dashboard.census.list)
   }
 
@@ -80,44 +64,29 @@ const CensusParticipants = () => {
         <Trans>Add Participants</Trans>
       </Heading>
 
-      <form onSubmit={handleAddParticipant}>
+      <form onSubmit={handleSubmit(handleAddParticipant)}>
         <VStack spacing={4} align='stretch' maxW='md' mb={8}>
-          <FormControl isRequired>
+          <FormControl>
             <FormLabel>
-              <Trans>Participant ID</Trans>
+              <Trans>ParticipantNo</Trans>
             </FormLabel>
-            <Input
-              value={participantId}
-              onChange={(e) => setParticipantId(e.target.value)}
-              placeholder='Enter participant ID'
-            />
+            <Input type='participantNo' placeholder='Participant number' {...register('participantNo')} />
           </FormControl>
-
           <FormControl>
             <FormLabel>
               <Trans>Email</Trans>
             </FormLabel>
-            <Input
-              type='email'
-              value={participantEmail}
-              onChange={(e) => setParticipantEmail(e.target.value)}
-              placeholder='Enter email'
-            />
+            <Input type='email' placeholder='Enter email' {...register('email')} />
           </FormControl>
 
           <FormControl>
             <FormLabel>
               <Trans>Phone</Trans>
             </FormLabel>
-            <Input
-              type='tel'
-              value={participantPhone}
-              onChange={(e) => setParticipantPhone(e.target.value)}
-              placeholder='Enter phone number'
-            />
+            <Input type='tel' placeholder='Enter phone number' {...register('phone')} />
           </FormControl>
 
-          <Button type='submit' colorScheme='primary'>
+          <Button type='submit' colorScheme='primary' isLoading={isSubmitting}>
             <Trans>Add Participant</Trans>
           </Button>
         </VStack>
@@ -153,8 +122,8 @@ const CensusParticipants = () => {
               </Tr>
             ) : (
               participants.map((participant) => (
-                <Tr key={participant.id}>
-                  <Td>{participant.id}</Td>
+                <Tr key={participant.participantNo}>
+                  <Td>{participant.participantNo}</Td>
                   <Td>{participant.email || '-'}</Td>
                   <Td>{participant.phone || '-'}</Td>
                 </Tr>
@@ -170,7 +139,7 @@ const CensusParticipants = () => {
         </Button>
         <Button
           colorScheme='primary'
-          onClick={handleSubmit}
+          onClick={handleSaveAndPublish}
           isLoading={addParticipants.isPending || publishCensus.isPending}
           isDisabled={participants.length === 0}
         >

@@ -1,5 +1,20 @@
 import { ViewIcon } from '@chakra-ui/icons'
-import { Box, Button, Flex, Heading, IconButton, Table, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
+import {
+  Alert,
+  AlertDescription,
+  Box,
+  Button,
+  Flex,
+  Heading,
+  IconButton,
+  Table,
+  Tbody,
+  Td,
+  Text,
+  Th,
+  Thead,
+  Tr,
+} from '@chakra-ui/react'
 import { useOrganization } from '@vocdoni/react-providers'
 import { Trans } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
@@ -12,7 +27,7 @@ const CensusList = () => {
 
   if (!organization) return null
 
-  const { data: censuses } = useCensusList(organization.address)
+  const { data: censuses, error, isError } = useCensusList(organization.address)
 
   const handleViewCensus = (census: Census) => {
     navigate(Routes.dashboard.census.view.replace(':id', census.id))
@@ -74,6 +89,11 @@ const CensusList = () => {
           )}
         </Tbody>
       </Table>
+      {isError && (
+        <Alert status='error'>
+          <AlertDescription>{error.message}</AlertDescription>
+        </Alert>
+      )}
     </Box>
   )
 }

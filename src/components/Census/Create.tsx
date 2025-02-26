@@ -20,13 +20,13 @@ const CreateCensus = () => {
   if (!organization) return null
 
   const onSubmit = async (values: CensusCreatePayload) => {
-    const censusId = await createCensus.mutateAsync({
+    const { censusID } = await createCensus.mutateAsync({
       ...values,
       orgAddress: organization.address,
     })
 
     // Navigate to participants page
-    navigate(Routes.dashboard.census.participants.replace(':id', censusId))
+    navigate(Routes.dashboard.census.participants.replace(':id', censusID))
   }
 
   return (

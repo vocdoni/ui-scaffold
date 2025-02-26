@@ -1,4 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { ensure0x } from '@vocdoni/sdk'
 import { useAuth } from '~components/Auth/useAuth'
 import { QueryKeys } from './keys'
 
@@ -11,20 +12,23 @@ export interface Census {
 
 export type CensusCreatePayload = Pick<Census, 'type' | 'orgAddress'>
 
-interface PublishedCensus {
+export interface PublishedCensus {
   census: Census
   uri: string
   root: string
 }
 
-interface Participant {
+export interface Participant {
   id: string
+  participantNo: string
   email?: string
   phone?: string
 }
 
+export type ParticipantPayload = Omit<Participant, 'id'>
+
 interface AddParticipantsPayload {
-  participants: Participant[]
+  participants: ParticipantPayload[]
 }
 
 // Get census list
@@ -33,7 +37,7 @@ export const useCensusList = (orgAddress: string) => {
 
   return useQuery({
     queryKey: QueryKeys.census.list(orgAddress),
-    queryFn: () => bearedFetch<Census[]>(`census?orgAddress=${orgAddress}`),
+    queryFn: () => bearedFetch<Census[]>(`census?orgAddress=${ensure0x(orgAddress)}`),
   })
 }
 
@@ -54,7 +58,7 @@ export const useCreateCensus = () => {
 
   return useMutation({
     mutationFn: (payload: CensusCreatePayload) =>
-      bearedFetch<string>('census', {
+      bearedFetch<{ censusID: string }>('census', {
         method: 'POST',
         body: payload,
       }),
