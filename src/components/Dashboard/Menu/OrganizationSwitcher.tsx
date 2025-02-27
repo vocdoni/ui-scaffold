@@ -1,22 +1,40 @@
-import { Box, IconButton } from '@chakra-ui/react'
-import { PlusSquare } from '@untitled-ui/icons-react'
-import { OrganizationName } from '@vocdoni/chakra-components'
+import { Avatar, Box, Text } from '@chakra-ui/react'
 import { useClient } from '@vocdoni/react-providers'
 import { Select } from 'chakra-react-select'
 import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useQueryClient } from 'wagmi'
 import { useAuth } from '~components/Auth/useAuth'
 import { LocalStorageKeys } from '~components/Auth/useAuthProvider'
-import { Organization, useProfile } from '~src/queries/account'
+import { useProfile } from '~src/queries/account'
 import { Routes } from '~src/router/routes'
+import { orgSwitcherSelectStyles } from '~theme/orgSwitcherSelectStyles'
+
+import { AddIcon } from '@chakra-ui/icons'
+import { Flex } from '@chakra-ui/react'
+import { chakraComponents, OptionProps } from 'chakra-react-select'
 
 type SelectOption = {
   value: string
   label: string
-  organization: Organization
+  icon?: any
+  avatar?: any
 }
+const CustomOption = (props: OptionProps<SelectOption>) => (
+  <chakraComponents.Option {...props}>
+    <Flex alignItems='center'>
+      {props.label === 'Add new organization' ? (
+        <AddIcon ml={1.5} mr={3} boxSize={3} />
+      ) : (
+        <Avatar src={props.data.icon} size='xs' mr={2} />
+      )}
+      <Text maxW='140px' fontSize={'xs'} isTruncated>
+        {props.data.label}
+      </Text>
+    </Flex>
+  </chakraComponents.Option>
+)
 
 export const OrganizationSwitcher = () => {
   const { t } = useTranslation()
@@ -26,6 +44,7 @@ export const OrganizationSwitcher = () => {
   const { signerRefresh } = useAuth()
   const queryClient = useQueryClient()
   const { client } = useClient()
+  const navigate = useNavigate()
 
   // Fetch organization names
   useEffect(() => {
@@ -56,7 +75,17 @@ export const OrganizationSwitcher = () => {
       value: org.organization.address,
       label: names[org.organization.address] || org.organization.address,
       organization: org.organization,
+      avatar: profile.organizations[0]?.organization.logo || '',
     }))
+  }, [profile, names])
+
+  useEffect(() => {
+    organizations.push({
+      value: 'Add new organization',
+      label: 'Add new organization',
+      avatar: null,
+      organization: null,
+    })
   }, [profile, names])
 
   // Set first organization as default if none selected
@@ -80,6 +109,10 @@ export const OrganizationSwitcher = () => {
 
   const handleOrgChange = async (option: SelectOption | null) => {
     if (!option) return
+    if (option.label === 'Add new organization') {
+      navigate(Routes.dashboard.organizationCreate)
+      return
+    }
     setSelectedOrg(option.value)
     localStorage.setItem(LocalStorageKeys.SignerAddress, option.value)
     // clear all query client query cache
@@ -90,31 +123,13 @@ export const OrganizationSwitcher = () => {
 
   return (
     <Box mb={3} px={3.5} display='flex' alignItems='center' gap={2} justifyContent='space-between'>
-      {organizations.length > 1 ? (
-        <Select
-          value={organizations.find((org) => org.value === selectedOrg)}
-          onChange={handleOrgChange}
-          options={organizations}
-          size='sm'
-          chakraStyles={{
-            container: (provided) => ({
-              ...provided,
-              width: '100%',
-              minWidth: 0,
-            }),
-          }}
-        />
-      ) : (
-        <OrganizationName mb={2} px={3.5} />
-      )}
-      <IconButton
-        size='xs'
-        as={Link}
-        variant='solid'
-        colorScheme='gray'
-        aria-label={t('create_org.title')}
-        icon={<PlusSquare />}
-        to={Routes.dashboard.organizationCreate}
+      <Select
+        value={organizations.find((org) => org.value === selectedOrg)}
+        onChange={handleOrgChange}
+        options={organizations}
+        size='sm'
+        chakraStyles={orgSwitcherSelectStyles}
+        components={{ Option: CustomOption }}
       />
     </Box>
   )

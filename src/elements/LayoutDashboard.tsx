@@ -1,12 +1,13 @@
-import { HamburgerIcon } from '@chakra-ui/icons'
-import { Box, Grid, Heading, IconButton, useDisclosure } from '@chakra-ui/react'
+import { AddIcon, HamburgerIcon } from '@chakra-ui/icons'
+import { Box, Button, Grid, Heading, IconButton, useDisclosure } from '@chakra-ui/react'
 import { OrganizationProvider, useClient } from '@vocdoni/react-providers'
 import { PropsWithChildren, useState } from 'react'
-import { MdKeyboardArrowLeft } from 'react-icons/md'
-import { Outlet, Link as ReactRouterLink } from 'react-router-dom'
-import AccountMenu from '~components/Account/Menu'
+import { Trans } from 'react-i18next'
+import { MdKeyboardArrowLeft, MdWavingHand } from 'react-icons/md'
+import { Outlet, Link as ReactRouterLink, Link as RouterLink, generatePath } from 'react-router-dom'
 import DashboardMenu from '~components/Dashboard/Menu'
 import { PricingModalProvider } from '~components/Pricing/PricingModalProvider'
+import { Routes } from '~src/router/routes'
 
 export type DashboardLayoutContext = {
   setTitle: (title: string) => void
@@ -35,10 +36,10 @@ const LayoutDashboard: React.FC = () => {
         px={{ base: 2, md: 4, xl: 0 }}
         bg='dashboard.bg.light'
         _dark={{ bg: 'dashboard.bg.dark' }}
-        gap={6}
+        columnGap={6}
       >
         {/* Top Menu */}
-        <Box gridArea='header' pt={6} gap={3} display='flex' alignItems='center' mr={{ base: 0, xl: 6 }}>
+        <Box gridArea='header' pt={0} gap={3} display='flex' alignItems='center' mr={{ base: 0, xl: 6 }}>
           {back && (
             <IconButton
               as={ReactRouterLink}
@@ -59,8 +60,27 @@ const LayoutDashboard: React.FC = () => {
             </Heading>
           )}
           <Box ml='auto' display='flex' gap={3} alignItems='center'>
-            {/* User profile & menu */}
-            <AccountMenu />
+            <Button
+              as={RouterLink}
+              to={generatePath(Routes.processes.create)}
+              w='full'
+              my={5}
+              leftIcon={<AddIcon />}
+              variant='primary'
+            >
+              <Trans i18nKey='new_voting'>New voting</Trans>
+            </Button>
+            <Button
+              as={RouterLink}
+              to={generatePath(Routes.processes.create)}
+              w='full'
+              my={5}
+              leftIcon={<MdWavingHand />}
+              variant='transparent'
+              display={{ base: 'none', xl: 'block' }}
+            >
+              <Trans i18nKey='need_help'>Do you need help?</Trans>
+            </Button>
             {/* Hamburger button to open sidebar on small screens */}
             <IconButton icon={<HamburgerIcon />} onClick={onOpen} display={{ xl: 'none' }} aria-label='Open menu' />
           </Box>

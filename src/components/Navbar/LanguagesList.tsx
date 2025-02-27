@@ -68,7 +68,7 @@ export const LanguagesMenu = ({ ...props }) => {
   )
 }
 
-export const LanguagesListAccordion = () => {
+export const LanguagesListAccordion = ({ ...props }) => {
   const { i18n } = useTranslation()
 
   const languages = LanguagesSlice as { [key: string]: string }
@@ -88,6 +88,7 @@ export const LanguagesListAccordion = () => {
           justifyContent={'start'}
           fontSize={'md'}
           leftIcon={<FaGlobeAmericas />}
+          {...props}
         >
           <Trans i18nKey={'languages'}>Languages</Trans>
           <AccordionIcon />

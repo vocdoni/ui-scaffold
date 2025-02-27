@@ -35,7 +35,7 @@ export const DashboardMenuItem = ({
     leftIcon={icon ? <Icon as={icon} mt='0px' /> : undefined}
     rightIcon={hasChildren ? isOpen ? <ChevronUpIcon /> : <ChevronDownIcon /> : undefined}
     mb={hasChildren && 1}
-    fontWeight={isActive ? '600' : '100'}
+    fontWeight={isActive ? '600' : 'light'}
     fontSize='md'
     fontFamily='basier'
     {...props}

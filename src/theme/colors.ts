@@ -40,6 +40,7 @@ export const colorsBase = {
 
 export const colors = {
   account_create_text_secondary: colorsBase.gray.dark,
+  account_menu_bg: { light: colorsBase.white.dark, dark: colorsBase.blue.dark },
   alert: {
     bg: {
       light: colorsBase.white.pure,
@@ -452,6 +453,10 @@ export const colors = {
       light: 'gray.300',
       dark: 'gray.600',
     },
+  },
+  switcher_account: {
+    option_selected_bg: colorsBase.primary,
+    option_selected_color: colorsBase.white.pure,
   },
   text_area_bg: colorsBase.white.pure,
   text_area: {

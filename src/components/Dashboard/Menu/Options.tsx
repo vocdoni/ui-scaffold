@@ -1,123 +1,130 @@
-import { Box, Collapse } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { Box, Flex, Text, useMediaQuery } from '@chakra-ui/react'
+import { LogOut01, Paperclip, UserSquare } from '@untitled-ui/icons-react'
 import { useTranslation } from 'react-i18next'
+import { IconType } from 'react-icons'
 import { HiHome, HiSquares2X2 } from 'react-icons/hi2'
-import { IoIosSettings } from 'react-icons/io'
+import { IoIosWallet } from 'react-icons/io'
+import { MdPeopleAlt, MdSpeakerNotes, MdWavingHand } from 'react-icons/md'
+import { RiOrganizationChart, RiPriceTag2Fill, RiSpeakFill } from 'react-icons/ri'
 import { matchPath, useLocation } from 'react-router-dom'
+import { DropdownColorModeSwitcherItem } from '~components/Layout/ColorModeSwitcher'
+import LanguagesListAccordion from '~components/Navbar/LanguagesList'
 import { Routes } from '~src/router/routes'
 import { DashboardMenuItem } from './Item'
 import { OrganizationSwitcher } from './OrganizationSwitcher'
 
-type MenuItem = {
-  label: string
-  icon?: any
+type MenuItemBase = {
+  component?: JSX.Element
+  label?: any
+  icon?: IconType
   route?: string
-  children?: MenuItem[]
+  styles?: any
+}
+
+type MenuSection = {
+  title: string
+  items: MenuItemBase[]
+  desktop?: boolean
 }
 
 export const DashboardMenuOptions = () => {
   const { t } = useTranslation()
   const location = useLocation()
-  const [openSection, setOpenSection] = useState<string | null>(null)
-  const menuItems: MenuItem[] = [
+  const [isDesktop] = useMediaQuery('(min-width: 80em)')
+  // const { subscription } = useSubscription()
+
+  const menuItems: MenuSection[] = [
     {
-      label: t('organization.dashboard'),
-      icon: HiHome,
-      route: Routes.dashboard.base,
-    },
-    {
-      label: t('voting_processes'),
-      icon: HiSquares2X2,
-      route: Routes.dashboard.processes,
-    },
-    // {
-    //   label: t('organization.census'),
-    //   icon: GiHamburgerMenu,
-    //   route: '#census',
-    // },
-    // {
-    //   label: t('user_management'),
-    //   icon: HiMiniPencil,
-    //   route: '#user-management',
-    // },
-    {
-      label: t('settings'),
-      icon: IoIosSettings,
-      children: [
-        { label: t('organization.organization'), route: Routes.dashboard.organization },
-        { label: t('team.title'), route: Routes.dashboard.team },
-        // { label: t('billing'), route: '#billing' },
-        { label: t('subscription.title'), route: Routes.dashboard.subscription },
-        { label: t('profile.title'), route: Routes.dashboard.profile },
+      title: 'General',
+      items: [
+        {
+          label: t('organization.dashboard'),
+          icon: HiHome,
+          route: Routes.dashboard.base,
+        },
+        {
+          label: t('voting_processes'),
+          icon: HiSquares2X2,
+          route: Routes.dashboard.processes,
+        },
       ],
+      desktop: true,
     },
-    // {
-    //   label: t('help_and_support'),
-    //   icon: FaPhoneAlt,
-    //   route: '#support',
-    // },
+    {
+      title: 'Settings',
+      items: [
+        { label: t('organization.organization'), icon: RiOrganizationChart, route: Routes.dashboard.organization },
+        { label: t('team.title'), icon: MdPeopleAlt, route: Routes.dashboard.team },
+        { label: t('subscription.title'), icon: IoIosWallet, route: Routes.dashboard.subscription },
+      ],
+      desktop: true,
+    },
+    {
+      title: 'Subscription',
+      items: [
+        {
+          label: (
+            <Flex w='100%' justify='space-between' align='center'>
+              <Text>Free Plan</Text>
+              {/* <Text color='gray'>{subscription.plan.organization.maxCensus} max</Text> */}
+            </Flex>
+          ),
+          icon: RiPriceTag2Fill,
+          route: Routes.plans,
+          styles: { as: 'span', _hover: { bg: 'none' } },
+        },
+      ],
+      desktop: true,
+    },
+    {
+      title: 'Others',
+      items: [
+        { label: t('profile.title'), icon: UserSquare, route: Routes.dashboard.profile },
+        { label: t('menu.documentation'), icon: Paperclip, route: 'https://developer.vocdoni.io/' },
+        { label: t('contact_us'), icon: MdSpeakerNotes, route: 'https://developer.vocdoni.io/' },
+        { label: t('feedback'), icon: RiSpeakFill, route: 'https://developer.vocdoni.io/' },
+        { label: t('help_docs'), icon: MdWavingHand, route: 'https://developer.vocdoni.io/' },
+        { component: <LanguagesListAccordion fontWeight={'normal'} variant='transparent' m='default' p='default' /> },
+        { component: <DropdownColorModeSwitcherItem /> },
+        { label: 'Logout', icon: LogOut01, route: Routes.dashboard.team },
+        { label: 'Terms', route: Routes.terms },
+        { label: 'Privacy', route: Routes.privacy },
+      ],
+      desktop: false,
+    },
   ]
-
-  // Check if any child route is active, and open its section
-  useEffect(() => {
-    menuItems.forEach((item) => {
-      if (
-        item.children &&
-        item.children.some((child) => matchPath({ path: child.route || '', end: true }, location.pathname))
-      ) {
-        setOpenSection((prev) => (prev !== item.label ? item.label : prev))
-      }
-    })
-  }, [location.pathname])
-
-  const handleToggle = (label: string) => {
-    setOpenSection((prev) => (prev === label ? null : label))
-  }
-
+  // if (!subscription) return
   return (
     <Box>
+      <Text color={'gray'} mb={2}>
+        Workspace
+      </Text>
       <OrganizationSwitcher />
-
-      {menuItems.map((item, index) => (
-        <Box key={index}>
-          {item.children ? (
-            <>
-              <DashboardMenuItem
-                label={item.label}
-                icon={item.icon}
-                route={item.route}
-                isOpen={openSection === item.label}
-                isActive={item.children.some((child) =>
-                  matchPath({ path: child.route || '', end: true }, location.pathname)
-                )}
-                onToggle={() => handleToggle(item.label)}
-                hasChildren
-              />
-              <Collapse in={openSection === item.label}>
-                <Box pl={6}>
-                  {item.children.map((child, childIndex) => (
+      <Box py={4}>
+        {menuItems
+          .filter((el) => !isDesktop || el.desktop)
+          .map((el, idx) => (
+            <Box key={idx} mb={4}>
+              <Text color={'gray'}>{el.title}</Text>
+              {el.items.map((item, index) => (
+                <>
+                  {item.component ? (
+                    item.component
+                  ) : (
                     <DashboardMenuItem
-                      key={childIndex}
-                      label={child.label}
-                      route={child.route}
-                      icon={null}
-                      isActive={Boolean(matchPath({ path: child.route || '', end: true }, location.pathname))}
+                      key={index}
+                      label={item.label}
+                      route={item.route}
+                      icon={item.icon}
+                      isActive={Boolean(matchPath({ path: item.route || '', end: true }, location.pathname))}
+                      {...item.styles}
                     />
-                  ))}
-                </Box>
-              </Collapse>
-            </>
-          ) : (
-            <DashboardMenuItem
-              label={item.label}
-              route={item.route}
-              icon={item.icon}
-              isActive={Boolean(matchPath({ path: item.route || '', end: true }, location.pathname))}
-              onToggle={() => setOpenSection(null)}
-            />
-          )}
-        </Box>
-      ))}
+                  )}
+                </>
+              ))}
+            </Box>
+          ))}
+      </Box>
     </Box>
   )
 }
