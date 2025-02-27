@@ -281,6 +281,7 @@ export const colors = {
   },
   org_text_secondary: colorsBase.gray.normal,
   page_button: {
+    active: '#cce5de',
     light: colorsBase.white.dark,
     dark: colorsBase.blue.dark,
   },

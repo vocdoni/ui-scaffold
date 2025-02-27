@@ -31,12 +31,11 @@ const pageButtonBaseStyle = {
   },
 
   _dark: {
-    color: 'white',
-    borderColor: 'white',
+    color: 'black',
+  },
 
-    _hover: {
-      bgColor: 'page_button.dark !important',
-    },
+  _active: {
+    bgColor: 'page_button.active !important',
   },
 }
 
