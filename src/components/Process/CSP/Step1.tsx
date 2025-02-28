@@ -4,26 +4,30 @@ import {
   FormErrorMessage,
   HStack,
   Link,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
   PinInput,
   PinInputField,
   Text,
-  useDisclosure,
   VStack,
 } from '@chakra-ui/react'
+import { useClient, useElection } from '@vocdoni/react-providers'
+import { PublishedElection, VocdoniSDKClient } from '@vocdoni/sdk'
 import { Controller, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import { useCspAuthContext } from './CSPStepsProvider'
+import { useTwoFactorAuth } from './basics'
 
+// Define the form data structure
 type CSPStep1FormData = {
   code: string
 }
 
-export const Step1Base = () => {
+export const Step1Base = ({ election }: { election: PublishedElection }) => {
+  const { authData } = useCspAuthContext()
+  const { env, generateSigner } = useClient()
+  const {
+    setClient,
+    actions: { csp1 },
+  } = useElection()
   const { t } = useTranslation()
   const {
     handleSubmit,
@@ -35,8 +39,31 @@ export const Step1Base = () => {
     },
   })
 
-  const onSubmit = (values: CSPStep1FormData) => {
-    console.log('values:', values)
+  const auth = useTwoFactorAuth<1>(election, 1)
+
+  const onSubmit = async (values: CSPStep1FormData) => {
+    try {
+      const { tokenR } = await auth.mutateAsync({
+        authToken: authData.authToken,
+        authData: [values.code],
+      })
+
+      console.log('tokenR:', tokenR)
+      localStorage.setItem('tokenR', tokenR)
+      csp1(tokenR)
+
+      const wallet = generateSigner()
+      const client = new VocdoniSDKClient({
+        env,
+        wallet,
+        electionId: election.id,
+      })
+
+      setClient(client)
+      // Aquí podrías manejar el siguiente paso o finalizar la autenticación
+    } catch (error) {
+      console.error('Authentication failed:', error)
+    }
   }
 
   return (
@@ -53,9 +80,9 @@ export const Step1Base = () => {
                     defaultValue: 'Code is required',
                   }),
                   minLength: {
-                    value: 4,
+                    value: 6,
                     message: t('csp_census.auth.step1.validation.length', {
-                      defaultValue: 'Code must be 4 digits',
+                      defaultValue: 'Code must be 6 digits',
                     }),
                   },
                 }}
@@ -65,11 +92,13 @@ export const Step1Base = () => {
                     value={value}
                     onChange={(val) => {
                       onChange(val)
-                      if (val.length === 4) {
+                      if (val.length === 6) {
                         handleSubmit(onSubmit)()
                       }
                     }}
                   >
+                    <PinInputField />
+                    <PinInputField />
                     <PinInputField />
                     <PinInputField />
                     <PinInputField />
@@ -89,34 +118,11 @@ export const Step1Base = () => {
             </Text>
           </FormControl>
 
-          <Button type='submit' colorScheme='primary' w='full'>
-            {t('csp_census.auth.step1.submit', {
-              defaultValue: 'Authenticate',
-            })}
+          <Button type='submit' colorScheme='primary' w='full' isLoading={auth.isPending}>
+            {t('csp_census.auth.step1.submit', { defaultValue: 'Authenticate' })}
           </Button>
         </VStack>
       </form>
     </VStack>
-  )
-}
-
-export const Step1Modal = () => {
-  const { isOpen, onClose } = useDisclosure({
-    defaultIsOpen: true,
-  })
-
-  return (
-    <Modal isOpen={isOpen} onClose={onClose} isCentered>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>
-          <Trans i18nKey='csp_census.auth.step1.title'>Authentication</Trans>
-        </ModalHeader>
-        <ModalCloseButton />
-        <ModalBody pb={6}>
-          <Step1Base />
-        </ModalBody>
-      </ModalContent>
-    </Modal>
   )
 }

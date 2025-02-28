@@ -2,12 +2,13 @@ import { Box, Button, Card, Flex, Link, Text } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { VoteButton as CVoteButton, environment, SpreadsheetAccess, VoteWeight } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
-import { dotobject, ElectionStatus, formatUnits, InvalidElection, PublishedElection } from '@vocdoni/sdk'
+import { CensusType, dotobject, ElectionStatus, formatUnits, InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount, useDisconnect } from 'wagmi'
 import { CensusMeta } from './Census/CensusType'
+import { CspAuth } from './CSP/CSPAuthModal'
 
 const results = (result: number, decimals?: number) =>
   decimals ? parseInt(formatUnits(BigInt(result), decimals), 10) : result
@@ -186,6 +187,8 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
   }
 
   const isWeighted = Number(election?.census.weight) !== election?.census.size
+  const isSpreadsheet = census?.type === 'spreadsheet'
+  const isCSP = election.census.type === CensusType.CSP
 
   return (
     <Flex
@@ -197,7 +200,8 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
       px={{ base: 3, lg2: 0 }}
       {...props}
     >
-      {census?.type !== 'spreadsheet' && !connected && (
+      {isCSP && !connected && <CspAuth />}
+      {!isCSP && !isSpreadsheet && !connected && (
         <ConnectButton.Custom>
           {({ account, chain, openConnectModal, authenticationStatus, mounted }) => {
             const ready = mounted && authenticationStatus !== 'loading'
@@ -229,7 +233,7 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
           }}
         </ConnectButton.Custom>
       )}
-      {census?.type === 'spreadsheet' && !connected && <SpreadsheetAccess />}
+      {isSpreadsheet && !connected && <SpreadsheetAccess />}
       {isAbleToVote && (
         <>
           <CVoteButton

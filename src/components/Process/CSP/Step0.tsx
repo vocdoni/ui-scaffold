@@ -1,81 +1,91 @@
 import {
+  Alert,
+  AlertDescription,
   Button,
   FormControl,
+  FormHelperText,
   FormLabel,
   Input,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
   Stack,
-  useDisclosure,
+  Text,
   VStack,
 } from '@chakra-ui/react'
+import { PublishedElection } from '@vocdoni/sdk'
 import { useForm } from 'react-hook-form'
-import { Trans, useTranslation } from 'react-i18next'
+import { AlertIcon } from '~components/Layout/AlertIcon'
+import { useCspAuthContext } from './CSPStepsProvider'
+import { CSPStep0FormData, CSPStep0RequestData, useTwoFactorAuth } from './basics'
 
-interface CSPStep0FormData {
-  document: string
-  birthDate: string
-}
-
-export const Step0Base = () => {
-  const { t } = useTranslation()
+export const Step0Base = ({ election }: { election: PublishedElection }) => {
+  const { setCurrentStep, setAuthData } = useCspAuthContext()
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<CSPStep0FormData>()
+  const auth = useTwoFactorAuth<0>(election, 0)
 
-  const onSubmit = (values: CSPStep0FormData) => {
-    console.log('values', values)
+  const onSubmit = async (values: CSPStep0FormData) => {
+    const form: CSPStep0RequestData = {
+      participantNo: values.participantNo,
+    }
+
+    if (values.contact?.includes('@')) {
+      form.email = values.contact
+    } else {
+      form.phone = values.contact
+    }
+
+    try {
+      const { authToken } = await auth.mutateAsync(form)
+
+      // Store auth token in global context and proceed to the next step
+      setAuthData((prev) => ({ ...prev, authToken }))
+      setCurrentStep(1)
+    } catch (error) {
+      console.error('CSP auth failed:', error)
+    }
   }
 
   return (
     <VStack spacing={6} align='stretch' w='full'>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={4}>
-          <FormControl isInvalid={!!errors.document}>
-            <FormLabel>{t('csp_census.auth.step0.document_label')}</FormLabel>
-            <Input
-              {...register('document', { required: true })}
-              placeholder={t('csp_census.auth.step0.document_placeholder')}
-            />
+          <FormControl isInvalid={!!errors.participantNo}>
+            <FormLabel>Núm. de col·legiat/da</FormLabel>
+            <Input {...register('participantNo', { required: true })} />
           </FormControl>
 
-          <FormControl isInvalid={!!errors.birthDate}>
-            <FormLabel>{t('csp_census.auth.step0.birth_date_label')}</FormLabel>
-            <Input {...register('birthDate', { required: true })} type='date' />
+          <FormControl isInvalid={!!errors.contact}>
+            <FormLabel>Correu electrònic o telèfon mòbil</FormLabel>
+            <Input {...register('contact', { required: true })} />
+            <FormHelperText>
+              <strong>Important:</strong> Ha de coincidir amb el registrat al COIB.
+            </FormHelperText>
           </FormControl>
+          {auth.isError && (
+            <Alert status='error'>
+              <AlertIcon />
+              <AlertDescription>{auth.error.message}</AlertDescription>
+            </Alert>
+          )}
 
-          <Button type='submit' colorScheme='primary' w='full'>
-            {t('csp_census.auth.step0.submit')}
+          <Text>
+            Rebràs un codi únic al mitjà seleccionat per verificar la teva identitat i completar l'autenticació
+          </Text>
+
+          <Button
+            type='submit'
+            colorScheme='brand'
+            variant='solid'
+            borderRadius='full'
+            w='full'
+            isLoading={auth.isPending}
+          >
+            Rebre Codi
           </Button>
         </Stack>
       </form>
     </VStack>
-  )
-}
-
-export const Step0Modal = () => {
-  const { isOpen, onClose } = useDisclosure({
-    defaultIsOpen: true,
-  })
-
-  return (
-    <Modal isOpen={isOpen} onClose={onClose} isCentered>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>
-          <Trans i18nKey='csp_census.auth.step0.title'>Authentication</Trans>
-        </ModalHeader>
-        <ModalCloseButton />
-        <ModalBody pb={6}>
-          <Step0Base />
-        </ModalBody>
-      </ModalContent>
-    </Modal>
   )
 }
