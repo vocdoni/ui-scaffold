@@ -49,7 +49,6 @@ export const Step1Base = ({ election }: { election: PublishedElection }) => {
       })
 
       console.log('tokenR:', tokenR)
-      localStorage.setItem('tokenR', tokenR)
       csp1(tokenR)
 
       const wallet = generateSigner()
