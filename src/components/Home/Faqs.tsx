@@ -1,8 +1,8 @@
-import { Box, Button, Card, CardBody, CardHeader, Flex, Text } from '@chakra-ui/react'
+import { Box, BoxProps, Button, Card, CardBody, CardHeader, Flex, Text } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-const Faqs = () => {
+const Faqs = (props: BoxProps) => {
   const { t } = useTranslation()
   const [showAll, setShowAll] = useState(false)
   const faqs = [
@@ -193,7 +193,7 @@ const Faqs = () => {
   ]
 
   return (
-    <Box position='relative' width='full'>
+    <Box position='relative' width='full' {...props}>
       <Box width='full' m='0 auto' maxW='1920px' position='relative' zIndex={10}>
         <Text
           fontSize={{ base: '32px', xl: '42px' }}

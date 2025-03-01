@@ -21,10 +21,10 @@ const PlansPublicPage = () => {
 
   return (
     <PricingModalProvider>
-      <Flex flexDirection='column' gap={{ base: '60px', lg: '100px' }} width='full' mx='auto'>
+      <Flex flexDirection='column' gap={12} width='full' mx='auto'>
         <SubscriptionPlans featuresRef={featuresRef} />
         <ComparisonTable ref={featuresRef} />
-        <Clients />
+        <Clients mt={'60px'} />
         <Faqs />
       </Flex>
     </PricingModalProvider>

@@ -1,3 +1,4 @@
+import { useOrganization } from '@vocdoni/react-providers'
 import { ElectionListWithPagination } from '@vocdoni/sdk'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -12,6 +13,7 @@ const OrganizationVotings = () => {
   const { setBack, setTitle } = useOutletContext<DashboardLayoutContext>()
   const data = useLoaderData() as ElectionListWithPagination
   const { status } = useParams<{ status?: string }>()
+  const { organization } = useOrganization()
 
   // Set page title
   useEffect(() => {
@@ -21,7 +23,7 @@ const OrganizationVotings = () => {
 
   return (
     <DashboardContents display='flex' flexDirection='column'>
-      <ProcessStatusFilter status={status} alignSelf='end' />
+      {!!organization.electionIndex && <ProcessStatusFilter status={status} alignSelf='end' />}
       <Votings data={data as ElectionListWithPagination} status={status} />
     </DashboardContents>
   )

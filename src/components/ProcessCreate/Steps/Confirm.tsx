@@ -16,6 +16,7 @@ import {
   useDisclosure,
   useToast,
 } from '@chakra-ui/react'
+import { useQueryClient } from '@tanstack/react-query'
 import { ElectionProvider, errorToString, useClient } from '@vocdoni/react-providers'
 import {
   ApprovalElection,
@@ -45,6 +46,7 @@ import { CensusMeta } from '~components/Process/Census/CensusType'
 import { StampsUnionTypes } from '~components/ProcessCreate/Census/Gitcoin/StampsUnionType'
 import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
 import { DefaultCensusSize } from '~constants'
+import { QueryKeys } from '~src/queries/keys'
 import { useCspAdmin } from '../Census/Csp/use-csp'
 import Preview from '../Confirm/Preview'
 import { CreationProgress, Steps } from '../CreationProgress'
@@ -66,6 +68,7 @@ export const Confirm = () => {
   const [created, setCreated] = useState<string | null>(null)
   const [step, setStep] = useState<Steps>()
   const { vocdoniAdminClient } = useCspAdmin()
+  const qclient = useQueryClient()
 
   const methods = useForm({
     defaultValues: {
@@ -129,6 +132,11 @@ export const Confirm = () => {
         description: t('form.process_create.success_description'),
         status: 'success',
         duration: 4000,
+      })
+
+      // clear process list cache
+      qclient.resetQueries({
+        queryKey: QueryKeys.organization.elections(),
       })
 
       // fetch account to update the election index and account balance
