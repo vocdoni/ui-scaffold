@@ -25,7 +25,7 @@ export type TwoFactorResponse<T extends number> = T extends 0 ? Step0Response : 
 export const useTwoFactorAuth = <T extends number>(process: PublishedElection, step: T) =>
   useMutation<TwoFactorResponse<T>, Error, Record<string, any>>({
     mutationFn: async (payload: Record<string, any>) => {
-      const response = await fetch(`${process.census.censusURI}/${process.id}/auth/${step}`, {
+      const response = await fetch(`${process.census.censusURI}/auth/${step}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
