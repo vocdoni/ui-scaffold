@@ -77,7 +77,7 @@ const LayoutDashboard: React.FC = () => {
               my={5}
               leftIcon={<MdWavingHand />}
               variant='transparent'
-              display={{ base: 'none', xl: 'block' }}
+              display={{ base: 'none', xl: 'flex' }}
             >
               <Trans i18nKey='need_help'>Do you need help?</Trans>
             </Button>

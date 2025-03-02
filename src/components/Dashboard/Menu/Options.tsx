@@ -71,7 +71,7 @@ export const DashboardMenuOptions = () => {
           ),
           icon: RiPriceTag2Fill,
           route: Routes.plans,
-          styles: { as: 'span', _hover: { bg: 'none' } },
+          styles: { as: 'span', _hover: { bg: 'none' }, _active: { bg: 'nonr' } },
         },
       ],
       desktop: true,
