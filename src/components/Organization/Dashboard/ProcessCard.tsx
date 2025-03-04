@@ -39,7 +39,7 @@ const ProcessCard = () => {
         <ElectionStatusBadge />
       </Td>
       <Td>
-        {election.voteCount}/{election.census.size}
+        {election.voteCount}/{election.census.size || election.maxCensusSize}
       </Td>
     </Tr>
   )
