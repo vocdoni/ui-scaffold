@@ -243,16 +243,7 @@ export const Confirm = () => {
         <ElectionProvider election={published}>
           <FormProvider {...methods}>
             <Flex flexDirection={{ base: 'column', xl2: 'row' }} gap={5}>
-              <Flex
-                flexDirection='column'
-                gap={5}
-                p={{ base: 3, xl: 6 }}
-                bgColor='process_create.bg_secondary.light'
-                borderRadius='xl'
-                _dark={{
-                  bgColor: 'process_create.bg_secondary.dark',
-                }}
-              >
+              <Flex flexDirection='column' gap={5} p={{ base: 3, xl: 6 }} borderRadius='xl'>
                 <Preview />
 
                 <Flex

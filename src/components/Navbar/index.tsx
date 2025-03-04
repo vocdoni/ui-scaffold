@@ -226,6 +226,8 @@ const DashboardButton = (props?: ButtonProps) => {
       p='10px 30px'
       height='36px'
       fontSize='12px'
+      color='white'
+      _dark={{ color: 'white' }}
       {...props}
     >
       {isAuthenticated ? t('menu.dashboard', { defaultValue: 'Dashboard' }) : t('menu.login')}

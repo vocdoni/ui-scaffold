@@ -8,7 +8,7 @@ const SaasFooter = () => {
   const { t } = useTranslation()
 
   return (
-    <Box bgColor={'process_create.bg_light'} _dark={{ bgColor: 'process_create.bg_dark' }}>
+    <Box>
       <Flex
         as='footer'
         maxW='2000px'

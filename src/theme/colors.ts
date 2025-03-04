@@ -1,12 +1,13 @@
 export const colorsBase = {
   beige: '#D2CBB9',
-  black: '#000000',
+  black: {
+    grayish: '#2f2e30',
+    dark: '#1a191b',
+    pure: '#000000',
+  },
   blue: {
     light: '#63b3ed',
     normal: '#3965ff',
-    grayish: '#2B2A33',
-    dark: '#1A202C',
-    dark2: '#0C0E12',
   },
   gradient: 'linear-gradient(to right, #2E855B, #22555A)',
   gradientBottom: 'linear-gradient(to bottom, #2E855B, #22555A)',
@@ -43,10 +44,10 @@ export const colors = {
   alert: {
     bg: {
       light: colorsBase.white.pure,
-      dark: colorsBase.blue.dark,
+      dark: colorsBase.black.grayish,
     },
     color: {
-      light: colorsBase.black,
+      light: colorsBase.black.pure,
       dark: colorsBase.white.pure,
     },
     border: colorsBase.gray.light,
@@ -55,7 +56,7 @@ export const colors = {
     success: colorsBase.green,
     warning: colorsBase.orange,
     box_shadow_light: colorsBase.white.pure,
-    box_shadow_dark: colorsBase.blue.dark,
+    box_shadow_dark: colorsBase.black.dark,
   },
   auth: {
     banner_bg: colorsBase.primary_cta,
@@ -64,7 +65,7 @@ export const colors = {
   banner_link: colorsBase.white.pure,
   bg: {
     light: colorsBase.white.dark,
-    dark: colorsBase.blue.dark2,
+    dark: colorsBase.black.dark,
   },
   button: {
     variant: {
@@ -140,25 +141,25 @@ export const colors = {
   contents: {
     bg: {
       light: colorsBase.white.pure,
-      dark: colorsBase.blue.grayish,
+      dark: colorsBase.black.grayish,
     },
     color: {
-      light: colorsBase.black,
+      light: colorsBase.black.pure,
       dark: colorsBase.white.pure,
     },
   },
   dashboard: {
     bg: {
       light: colorsBase.white.dark,
-      dark: colorsBase.blue.dark2,
+      dark: colorsBase.black.dark,
     },
     color: {
-      light: colorsBase.black,
+      light: colorsBase.black.pure,
       dark: colorsBase.white.pure,
     },
     invite: {
       bg_checked_light: colorsBase.white.dark,
-      bg_checked_dark: colorsBase.blue.dark,
+      bg_checked_dark: colorsBase.black.grayish,
     },
     process_view: {
       calendar_label: colorsBase.gray.normal,
@@ -168,7 +169,7 @@ export const colors = {
       from: colorsBase.white.from_read_more,
       to: {
         light: colorsBase.white.pure,
-        dark: colorsBase.blue.grayish,
+        dark: colorsBase.black.grayish,
       },
       text: {
         light: colorsBase.primary,
@@ -178,7 +179,7 @@ export const colors = {
     sidebar: {
       bg: {
         light: colorsBase.white.pure,
-        dark: colorsBase.blue.grayish,
+        dark: colorsBase.black.grayish,
       },
     },
   },
@@ -191,12 +192,12 @@ export const colors = {
         },
         dark: {
           primary: colorsBase.gradient,
-          dark: colorsBase.blue.grayish,
+          dark: colorsBase.black.grayish,
         },
       },
       color: {
         light: {
-          bg_white: colorsBase.black,
+          bg_white: colorsBase.black.pure,
           bg_primary: colorsBase.white.pure,
         },
         dark: colorsBase.white.pure,
@@ -209,7 +210,7 @@ export const colors = {
     },
     solutions: {
       light_bg: colorsBase.white.pure,
-      dark_bg: colorsBase.blue.grayish,
+      dark_bg: colorsBase.black.grayish,
     },
     support: {
       bg: {
@@ -225,7 +226,7 @@ export const colors = {
     },
     footer: {
       icon: {
-        light: colorsBase.black,
+        light: colorsBase.black.pure,
       },
     },
   },
@@ -233,7 +234,7 @@ export const colors = {
   google: {
     bg: {
       light: colorsBase.white.light2,
-      dark: colorsBase.blue.grayish,
+      dark: colorsBase.black.grayish,
     },
     hover: {
       light: colorsBase.white.pure,
@@ -241,7 +242,7 @@ export const colors = {
     },
     active: {
       light: colorsBase.white.light2,
-      dark: colorsBase.blue.grayish,
+      dark: colorsBase.black.grayish,
     },
   },
   input: {
@@ -262,10 +263,10 @@ export const colors = {
       check_icon: colorsBase.primary,
       control: colorsBase.gray.normal,
       option_dark: colorsBase.white.pure,
-      option_light_selected: colorsBase.black,
+      option_light_selected: colorsBase.black.pure,
       option_bg_selected: {
         light: colorsBase.white.dark,
-        dark: colorsBase.blue.dark,
+        dark: colorsBase.black.dark,
       },
       placeholder: colorsBase.gray.normal,
     },
@@ -285,14 +286,14 @@ export const colors = {
     aside: {
       bg: colorsBase.gradient,
       color: colorsBase.white.pure,
-      vote_btn_color: colorsBase.black,
+      vote_btn_color: colorsBase.black.pure,
       vote_btn_bg: colorsBase.primary,
       verify_link: colorsBase.white.pure,
     },
     canceled: colorsBase.primary,
     card_hover: {
       light: colorsBase.white.dark,
-      dark: colorsBase.blue.dark,
+      dark: colorsBase.black.dark,
     },
     info_title: {
       light: colorsBase.primary,
@@ -313,15 +314,15 @@ export const colors = {
       },
       hover: {
         light: colorsBase.white.pure,
-        dark: colorsBase.blue.grayish,
+        dark: colorsBase.black.grayish,
       },
       disabled: {
         light: colorsBase.white.pure,
-        dark: colorsBase.blue.grayish,
+        dark: colorsBase.black.grayish,
       },
     },
     paused: colorsBase.primary,
-    read_more_dark: colorsBase.blue.dark2,
+    read_more_dark: colorsBase.black.grayish,
     results: {
       alert_bg: colorsBase.primary,
       alert_color: colorsBase.white.pure,
@@ -345,11 +346,11 @@ export const colors = {
 
   process_create: {
     bg: {
-      dark: colorsBase.blue.dark,
+      dark: 'red',
       light: colorsBase.white.dark,
     },
     bg_secondary: {
-      dark: colorsBase.blue.grayish,
+      dark: colorsBase.black.grayish,
       light: colorsBase.white.pure,
     },
     stepper: {
@@ -357,7 +358,7 @@ export const colors = {
       color: colorsBase.primary,
     },
     calendar_bg: {
-      dark: colorsBase.blue.grayish,
+      dark: colorsBase.black.grayish,
       light: colorsBase.white.pure,
     },
     text_brand: colorsBase.primary,
@@ -368,13 +369,13 @@ export const colors = {
   pricing_card: {
     bg: {
       light: colorsBase.white.pure,
-      dark: colorsBase.blue.grayish,
+      dark: colorsBase.black.grayish,
     },
     border_dark: colorsBase.white.pure,
-    body_text: colorsBase.black,
+    body_text: colorsBase.black.pure,
     most_popular_plan: {
       bg: colorsBase.beige,
-      color: colorsBase.black,
+      color: colorsBase.black.pure,
     },
     subtitle: {
       light: colorsBase.gray.normal,
@@ -384,18 +385,18 @@ export const colors = {
   pricing_modal: {
     bg: {
       light: colorsBase.primary,
-      dark: colorsBase.blue.dark,
+      dark: colorsBase.black.dark,
     },
   },
   process_view: {
     bg_light: colorsBase.white.dark,
-    bg_dark: colorsBase.blue.dark,
+    bg_dark: colorsBase.black.dark,
   },
   read_more: {
     from: colorsBase.white.from_read_more,
     to: {
       light: colorsBase.white.dark,
-      dark: colorsBase.blue.dark,
+      dark: colorsBase.black.dark,
     },
   },
   tab: {
@@ -404,7 +405,7 @@ export const colors = {
         badge_bg: colorsBase.primary,
         bg: {
           light: colorsBase.white.pure,
-          dark: colorsBase.blue.grayish,
+          dark: colorsBase.black.grayish,
         },
         border: colorsBase.gray.normal,
         description: {
@@ -423,11 +424,11 @@ export const colors = {
     bg: {
       light: colorsBase.white.light2,
       light_hover: colorsBase.white.dark,
-      dark: colorsBase.blue.grayish,
+      dark: colorsBase.black.grayish,
     },
     thead: {
       bg_light: colorsBase.white.light2,
-      bg_dark: colorsBase.blue.grayish,
+      bg_dark: colorsBase.black.grayish,
     },
     variant: {
       striped: {
@@ -437,8 +438,8 @@ export const colors = {
           hover: '#cce5de',
         },
         dark: {
-          tr_even: colorsBase.blue.grayish,
-          tr_odd: colorsBase.blue.dark,
+          tr_even: colorsBase.black.grayish,
+          tr_odd: colorsBase.black.dark,
           hover: '#193d32',
         },
       },
@@ -458,7 +459,7 @@ export const colors = {
     toolbar_dark: {
       bg: '#232323',
       border: colorsBase.white.light2,
-      item_hover: colorsBase.blue.grayish,
+      item_hover: colorsBase.black.grayish,
     },
     bg_light: colorsBase.white.pure,
     bg_dark: 'transparent',
@@ -469,21 +470,39 @@ export const colors = {
 
   wrapper: {
     bg_light: colorsBase.white.pure,
-    bg_dark: colorsBase.blue.grayish,
+    bg_dark: colorsBase.black.grayish,
   },
 
+  // brand: {
+  //   50: '#9ebab1', // oultine light hover bg
+  //   100: '#87a99e', // outline light active bg ----------- outline dark color and border color
+  //   200: '#70998c', // primary dark mode bg
+  //   300: '#59897a', // primary dark mode hover bg
+  //   400: '#417969', // primary dark mode active bg
+  //   500: '#276958', // primary light mode bg
+  //   600: '#205345', // primary light mode hover bg  ------ outline light color and border color
+  //   700: '#193d32', // primary light mode active bg
+  //   800: 'rgba(112, 153, 140, 0.12)', //  oultine dark hover bg (use 200 in rgba and 0.12 transparency)
+  //   900: 'rgba(112, 153, 140, 0.24)', //  oultine dark active bg (use 200 in rgba and 0.24 transparency)
+  //   950: '',
+  // },
   brand: {
-    50: '#cce5de',
-    100: '#99cbbd',
-    200: '#276958',
-    300: '#33967c',
-    400: '#2b846b',
-    500: '#276958',
-    600: '#205345',
-    700: '#193d32',
-    800: '#12271f',
-    900: '#0a130c',
-    950: '#050b07',
+    50: '#cce5de', // primary light color
+    100: '#99cbbd', // primary light bg
+    200: '#276958', // primary light bg hover
+    300: '#33967c', // primary light active
+    400: '#2b846b', // primary dark color
+    500: '#276958', // primary dark bg
+    600: '#205345', // primary dark bg hover
+    700: '#193d32', // primary dark bg active
+    800: '#12271f', // outline light color
+    850: '#12271f', // outline light border
+    950: '#050b07', // outline light bg hover
+    1000: '#050b07', // outline light bg active
+    1050: '#12271f', // outline dark color
+    1100: '#12271f', // outline dark border
+    1150: '#050b07', // outline dark bg hover
+    1200: '#050b07', // outline dark bg active
   },
   brandAlpha: {
     50: '#d9e4c4',
