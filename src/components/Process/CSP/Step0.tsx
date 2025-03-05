@@ -74,14 +74,7 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
             Rebràs un codi únic al mitjà seleccionat per verificar la teva identitat i completar l'autenticació
           </Text>
 
-          <Button
-            type='submit'
-            colorScheme='brand'
-            variant='solid'
-            borderRadius='full'
-            w='full'
-            isLoading={auth.isPending}
-          >
+          <Button type='submit' variant='primary' borderRadius='full' w='full' isLoading={auth.isPending}>
             Rebre Codi
           </Button>
         </Stack>

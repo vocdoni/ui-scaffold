@@ -18,7 +18,7 @@ export const colorsBase = {
   },
   green: '#c6f6d5',
   orange: '#FFA500',
-  primary: '#22555A',
+  primary: '#297b90',
   primary_cta: 'linear-gradient(to bottom, #2C7D57, #22555A)',
   primary_dark: 'rgba(84, 110, 57, 0.2)',
   red: '#FC8181',

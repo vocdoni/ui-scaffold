@@ -57,9 +57,9 @@ const Coib = () => {
       minH='100vh'
       alignItems='center'
     >
-      <Flex flexDirection='column' gap={10} maxW='850px' mx='auto' p={5} style={{ marginTop: '100px' }}>
+      <Flex flexDirection='column' gap={10} maxW='850px' mx='auto' p={5}>
         <Box>
-          <Text as='h1' fontWeight='bold' fontSize='32px' textAlign='center' style={{ marginTop: '-15px' }}>
+          <Text as='h1' fontWeight='bold' fontSize='32px' textAlign='center'>
             Participa a la prova pilot de vot telemàtic del COIB!
           </Text>
           <Text as='h2' fontSize='16px' textAlign='center'>
@@ -90,7 +90,9 @@ const Coib = () => {
           La prova pilot estarà oberta de 17h. a 19h. del Dijous, 06 de Març del 2025.
         </Text>
       </Flex>
-      <Box>{election && !isAdmin && !connected && <CspAuth />}</Box>
+      <Box w='50%' mx='auto'>
+        {election && !isAdmin && !connected && <CspAuth />}
+      </Box>
       {canViewProcesses && (
         <Box w='90%'>
           <Text alignSelf='start' mb={10} as='h3' fontWeight='bold' fontSize='22px' style={{ marginTop: '-30px' }}>

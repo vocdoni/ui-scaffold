@@ -24,18 +24,14 @@ export const CspAuthModal = () => {
 
   return (
     <>
-      <Button onClick={onOpen} variant='solid'>
+      <Button onClick={onOpen} variant='primary' size='xl' w='full' borderRadius='full'>
         <Trans i18nKey='cc.spreadsheet.access_button'>Login</Trans>
       </Button>
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader textAlign='center' pt={0}>
-            {currentStep === 0 ? (
-              <Trans i18nKey='csp_census.auth.step0.title'>Authentication Step 1</Trans>
-            ) : (
-              <Trans i18nKey='csp_census.auth.step1.title'>Authentication Step 2</Trans>
-            )}
+            Autenticació
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
