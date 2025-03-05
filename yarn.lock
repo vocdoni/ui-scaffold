@@ -2732,15 +2732,16 @@
   dependencies:
     crypto-js "^4.2.0"
 
-"@vocdoni/react-providers@~0.5.1":
-  version "0.5.4"
-  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.5.4.tgz#638edb351446789ceab99bd7828f02a345fb2569"
-  integrity sha512-3m1b9KnM/2xeRmsBg9yR9wj5tOEEbMcU1lqzRvAU+HPeTsth5qU9g6P3XjuFTU00Z7jaGVdm4Xa/ltN/+HKNAg==
+"@vocdoni/react-providers@./vocdoni-react-providers-v0.5.5.tgz", "@vocdoni/react-providers@~0.5.1":
+  version "0.5.5"
+  resolved "./vocdoni-react-providers-v0.5.5.tgz#a967419fac9be350d757f527139578dc75ffb9cd"
+  dependencies:
+    up-fetch "^1.3.6"
 
-"@vocdoni/sdk@~0.9.1":
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/@vocdoni/sdk/-/sdk-0.9.1.tgz#084df69b456ba91557cdf088103bfd6739f4dd43"
-  integrity sha512-Cs2wse//UHdwZ5NTuJf5XqTqUQSYocTDzH14EwwUQWC4geGNiJNl7FWda+bKzBYTGWgPnOlr/Ez6JEJokDKPgQ==
+"@vocdoni/sdk@~0.9.2":
+  version "0.9.2"
+  resolved "https://registry.yarnpkg.com/@vocdoni/sdk/-/sdk-0.9.2.tgz#a969ad1f8cc479619f58c16e81e4246321158ac6"
+  integrity sha512-jssec34EoC9nM5gaFRS+GZnc0KVd2YYnj6NR8BvSpH09eVXmQKgDmBSztUzqkZQeIHLhmU+itKHyeLsE4N7mlw==
   dependencies:
     "@ethersproject/abstract-signer" "^5.7.0"
     "@ethersproject/address" "^5.7.0"
@@ -2756,6 +2757,7 @@
     "@vocdoni/proto" "1.15.9"
     axios "0.28.1"
     blake2b "^2.1.4"
+    blakejs "^1.2.1"
     blindsecp256k1 "^0.0.9"
     buffer "^6.0.3"
     circomlibjs vocdoni/circomlibjs#f/browser
@@ -3978,6 +3980,11 @@ cosmiconfig@^8.1.3:
     js-yaml "^4.1.0"
     parse-json "^5.2.0"
     path-type "^4.0.0"
+
+crisp-sdk-web@^1.0.25:
+  version "1.0.25"
+  resolved "https://registry.yarnpkg.com/crisp-sdk-web/-/crisp-sdk-web-1.0.25.tgz#5566227dfcc018435b228db2f998d66581e5fdef"
+  integrity sha512-CWTHFFeHRV0oqiXoPh/aIAKhFs6xcIM4NenGPnClAMCZUDQgQsF1OWmZWmnVNjJriXUmWRgDfeUxcxygS0dCRA==
 
 cross-fetch@^3.1.4:
   version "3.1.8"
@@ -8671,6 +8678,11 @@ untun@^0.1.3:
     citty "^0.1.5"
     consola "^3.2.3"
     pathe "^1.1.1"
+
+up-fetch@^1.3.6:
+  version "1.3.6"
+  resolved "https://registry.yarnpkg.com/up-fetch/-/up-fetch-1.3.6.tgz#daac8ac05cdd6a93a2730bb3f8048c1c1de16bb4"
+  integrity sha512-aNEen00EU2VOrNcaiSaTlrIHMLz5imGiWJ23uzg44gZNCIcVL1P1EygJodJkIKmKODbjEKX4RLgTap5CuTbLtA==
 
 update-browserslist-db@^1.0.13:
   version "1.0.13"
