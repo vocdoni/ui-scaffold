@@ -1,8 +1,9 @@
-import { Box, Flex, Link, Spinner, Text } from '@chakra-ui/react'
+import { AspectRatio, Box, Flex, Heading, Link, Spinner, Text } from '@chakra-ui/react'
 import { ElectionProvider, useClient, useElection } from '@vocdoni/react-providers'
 import { InvalidElection } from '@vocdoni/sdk'
 import { Crisp } from 'crisp-sdk-web'
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import ReactPlayer from 'react-player'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { ActionsMenu } from '~components/Process/ActionsMenu'
 import { CspAuth } from '~components/Process/CSP/CSPAuthModal'
@@ -12,7 +13,7 @@ const processes = [
   {
     //1
     title: 'Votació de prova',
-    pid: '6be21a5a9dc062941a9f8100853833da70d15acc4148e60e4c22030000000002',
+    pid: '6be21a5a9dc0a552a379b4ac7eef330c2bcb3ebd57b2a1f91651030000000000',
   },
 ]
 
@@ -25,6 +26,26 @@ const CoibWrapper = () => (
 const Coib = () => {
   const { loading, loaded, election, connected } = useElection()
   const { account, connected: aconnected } = useClient()
+  const videoRef = useRef<HTMLDivElement>(null)
+  const [videoTop, setVideoTop] = useState<boolean>(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!videoRef.current) return
+
+      const rect = videoRef.current.getBoundingClientRect()
+      if (rect.top <= 10) {
+        setVideoTop(true)
+      } else {
+        setVideoTop(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   // Crisp config
   useEffect(() => {
@@ -59,36 +80,57 @@ const Coib = () => {
     >
       <Flex flexDirection='column' gap={10} maxW='850px' mx='auto' p={5}>
         <Box>
-          <Text as='h1' fontWeight='bold' fontSize='32px' textAlign='center'>
+          <Heading as='h1' fontWeight='bold' fontSize='32px' textAlign='center'>
             Participa a la prova pilot de vot telemàtic del COIB!
-          </Text>
+          </Heading>
           <Text as='h2' fontSize='16px' textAlign='center'>
             Col·legi Oficial Infermeres i Infermers de Barcelona
           </Text>
         </Box>
       </Flex>
-      <Flex flexDirection={{ base: 'column' }} gap={10} maxW='850px' mx='auto' style={{ marginTop: '0px' }}>
-        <Box>
-          <Box>
-            <Text as='h3' fontSize='20px'>
+      <Flex gap={5}>
+        <Flex flexDirection={{ base: 'column' }} gap={10} maxW='850px' mx='auto' style={{ marginTop: '0px' }}>
+          <Box display='flex' flexDirection='column' gap={5}>
+            <Text fontSize='20px'>
               El COIB vol modernitzar els seus processos i adaptar-se a les noves necessitats tecnològiques, oferint als
               col·legiats eines més àgils, segures i accessibles. Per això, consolidar el vot en remot en els processos
               participatius del Col·legi és una prioritat.
-              <br />
-              <br />
+            </Text>
+            <Text fontSize='20px'>
               Per assegurar l’èxit de la iniciativa, agrairem comptar amb la teva participació en aquesta prova pilot.
               La prova estarà oberta de 17 h a 19 h. i disponible per a totes les col·legiades.
-              <br />
-              <br />
-              Recorda: és important comptar amb les dades personals actualitzades al COIB
-              <br />
-              <br />
             </Text>
+            <Text fontSize='20px'>Recorda: és important comptar amb les dades personals actualitzades al COIB</Text>
           </Box>
-        </Box>
-        <Text fontWeight='bold' mb={10} textAlign='center' fontSize='24px'>
-          La prova pilot estarà oberta de 17h. a 19h. del Dijous, 06 de Març del 2025.
-        </Text>
+          {!connected && (
+            <Text fontWeight='bold' mb={10} textAlign='center' fontSize='24px'>
+              La prova pilot estarà oberta de 17h. a 19h. del Dijous, 06 de Març del 2025.
+            </Text>
+          )}
+        </Flex>
+        {connected && (
+          <Box>
+            <Box ref={videoRef} />
+            <Box
+              ml={videoTop ? 'auto' : 'none'}
+              position={{ lg: videoTop ? 'fixed' : 'initial' }}
+              top={20}
+              right={10}
+              zIndex={100}
+              w={{ base: '100%', lg: '400px' }}
+            >
+              <AspectRatio ratio={16 / 9}>
+                <ReactPlayer
+                  url='https://www.youtube.com/watch?v=VNIGhwxPAcE'
+                  width='100%'
+                  height='100%'
+                  playing
+                  controls
+                />
+              </AspectRatio>
+            </Box>
+          </Box>
+        )}
       </Flex>
       <Box w='50%' mx='auto'>
         {election && !isAdmin && !connected && <CspAuth />}

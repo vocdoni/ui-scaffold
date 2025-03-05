@@ -17,7 +17,6 @@ const Layout = () => {
     >
       <HStack
         as='header'
-        position='sticky'
         top={0}
         w='full'
         backdropFilter='blur(40px)'
