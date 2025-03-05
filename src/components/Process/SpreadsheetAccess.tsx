@@ -220,7 +220,6 @@ export const SpreadsheetAccess = ({
         }}
         sx={styles.disconnect}
         isDisabled={voting}
-        śtyle='background:none;color:#333;'
       >
         {localize('spreadsheet.logout')}
       </Button>
