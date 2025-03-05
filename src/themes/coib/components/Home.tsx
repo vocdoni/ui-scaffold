@@ -62,18 +62,18 @@ const Coib = () => {
       minH='100vh'
       alignItems='center'
     >
-      <Flex flexDirection='column' gap={10} maxW='850px' mx='auto' p={5} style={{ marginTop: '100px' }}>
-        <Box>
-          <Text as='h1' fontWeight='bold' fontSize='36px' textAlign='center' style={{ marginTop: '-15px' }}>
-            Assemblea General Ordinària
-          </Text>
-          <Text as='h2' fontSize='14px' textAlign='center'>
-            Col·legi Oficial Infermeres i Infermers de Barcelona
-          </Text>
-        </Box>
-      </Flex>
       {isEnabled ? (
         <>
+          <Flex flexDirection='column' gap={10} maxW='850px' mx='auto' p={5} style={{ marginTop: '100px' }}>
+            <Box>
+              <Text as='h1' fontWeight='bold' fontSize='36px' textAlign='center' style={{ marginTop: '-15px' }}>
+                Assemblea General Ordinària
+              </Text>
+              <Text as='h2' fontSize='14px' textAlign='center'>
+                Col·legi Oficial Infermeres i Infermers de Barcelona
+              </Text>
+            </Box>
+          </Flex>
           <Flex
             flexDirection={{ base: 'column', lg: 'row' }}
             gap={10}
@@ -115,9 +115,41 @@ const Coib = () => {
           <Box>{election && !isAdmin && <SpreadsheetAccess setConnected={setConnected} connected={connected} />}</Box>
         </>
       ) : (
-        <Text fontWeight='bold' mb={10} fontSize='xl'>
-          La pàgina de l'Assemblea General Ordinària s'habilitarà el dia 18 de març
-        </Text>
+        <>
+          <Flex flexDirection='column' gap={10} maxW='850px' mx='auto' p={5} style={{ marginTop: '100px' }}>
+            <Box>
+              <Text as='h1' fontWeight='bold' fontSize='32px' textAlign='center' style={{ marginTop: '-15px' }}>
+                Participa a la prova pilot de vot telemàtic del COIB!
+              </Text>
+              <Text as='h2' fontSize='16px' textAlign='center'>
+                Col·legi Oficial Infermeres i Infermers de Barcelona
+              </Text>
+            </Box>
+          </Flex>
+          <Flex flexDirection={{ base: 'column' }} gap={10} maxW='850px' mx='auto' style={{ marginTop: '0px' }}>
+            <Box>
+              <Box>
+                <Text as='h3' fontSize='20px'>
+                  El COIB vol modernitzar els seus processos i adaptar-se a les noves necessitats tecnològiques, oferint
+                  als col·legiats eines més àgils, segures i accessibles. Per això, consolidar el vot en remot en els
+                  processos participatius del Col·legi és una prioritat.
+                  <br />
+                  <br />
+                  Per assegurar l’èxit de la iniciativa, agrairem comptar amb la teva participació en aquesta prova
+                  pilot. La prova estarà oberta de 17 h a 19 h. i disponible per a totes les col·legiades.
+                  <br />
+                  <br />
+                  Recorda: és important comptar amb les dades personals actualitzades al COIB
+                  <br />
+                  <br />
+                </Text>
+              </Box>
+            </Box>
+            <Text fontWeight='bold' mb={10} textAlign='center' fontSize='24px'>
+              La prova pilot estarà oberta de 17h. a 19h. del Dijous, 06 de Març del 2025.
+            </Text>
+          </Flex>
+        </>
       )}
       {canViewProcesses && (
         <Box w='90%'>
