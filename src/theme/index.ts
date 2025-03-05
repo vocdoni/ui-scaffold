@@ -4,6 +4,7 @@ import { theme as vtheme } from '@vocdoni/chakra-components'
 import { breakpoints } from './breakpoints'
 import { colors } from './colors'
 import { Accordion } from './components/accordion'
+import { Alert } from './components/alert'
 import { Badge } from './components/badge'
 import { Button } from './components/button'
 import { Card } from './components/card'
@@ -12,28 +13,27 @@ import { Form } from './components/Form'
 import { ElectionTitle, Heading } from './components/heading'
 import { Input } from './components/input'
 import { Link } from './components/link'
+import { Menu } from './components/menu'
 import { Modal } from './components/modal'
 import { Pagination } from './components/pagination'
 import { ElectionQuestions } from './components/Questions'
 import { Radio } from './components/radio'
 import { ElectionResults } from './components/results'
+import { SpreadsheetAccess } from './components/SpreadsheetAccess'
 import { Stepper } from './components/stepper'
+import { Table } from './components/table'
 import { Tabs } from './components/Tabs'
+import { TabsResponsive } from './components/TabsResponsive'
+import { Tag } from './components/tag'
 import { Text } from './components/text'
 import { Textarea } from './components/textarea'
 import { editor } from './editor'
 import { spacing } from './space'
-import { Tag } from './components/tag'
-import { Menu } from './components/menu'
-import { Alert } from './components/alert'
-import { Table } from './components/table'
-import { TabsResponsive } from './components/TabsResponsive'
-import { SpreadsheetAccess } from './components/SpreadsheetAccess'
 
 export const theme = extendTheme(vtheme, {
   config: {
-    initialColorMode: 'system',
-    useSystemColorMode: true,
+    initialColorMode: 'light',
+    useSystemColorMode: false,
   },
   styles: {
     global: (props) => ({
