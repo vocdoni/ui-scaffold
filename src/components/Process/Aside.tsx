@@ -174,7 +174,13 @@ const ProcessAside = () => {
 export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () => void }) => {
   const { t } = useTranslation()
 
-  const { election, connected, isAbleToVote, isInCensus } = useElection()
+  const {
+    election,
+    connected,
+    isAbleToVote,
+    isInCensus,
+    actions: { clear },
+  } = useElection()
   const { isConnected } = useAccount()
 
   if (election instanceof InvalidElection || election?.status === ElectionStatus.CANCELED) {
@@ -200,7 +206,6 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
       px={{ base: 3, lg2: 0 }}
       {...props}
     >
-      {isCSP && !connected && <CspAuth />}
       {!isCSP && !isSpreadsheet && !connected && (
         <ConnectButton.Custom>
           {({ account, chain, openConnectModal, authenticationStatus, mounted }) => {
@@ -252,6 +257,8 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
           {isWeighted && <VoteWeight />}
         </>
       )}
+      {isCSP && !connected && <CspAuth />}
+      {isCSP && connected && <Button onClick={clear}>logout</Button>}
     </Flex>
   )
 }

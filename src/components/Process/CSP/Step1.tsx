@@ -9,8 +9,8 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react'
-import { useClient, useElection } from '@vocdoni/react-providers'
-import { PublishedElection, VocdoniSDKClient } from '@vocdoni/sdk'
+import { useElection } from '@vocdoni/react-providers'
+import { PublishedElection } from '@vocdoni/sdk'
 import { Controller, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { useCspAuthContext } from './CSPStepsProvider'
@@ -23,9 +23,7 @@ type CSPStep1FormData = {
 
 export const Step1Base = ({ election }: { election: PublishedElection }) => {
   const { authData } = useCspAuthContext()
-  const { env, generateSigner } = useClient()
   const {
-    setClient,
     actions: { csp1 },
   } = useElection()
   const { t } = useTranslation()
@@ -50,15 +48,6 @@ export const Step1Base = ({ election }: { election: PublishedElection }) => {
 
       console.log('tokenR:', authToken)
       csp1(authToken)
-
-      const wallet = generateSigner()
-      const client = new VocdoniSDKClient({
-        env,
-        wallet,
-        electionId: election.id,
-      })
-
-      setClient(client)
       // Aquí podrías manejar el siguiente paso o finalizar la autenticación
     } catch (error) {
       console.error('Authentication failed:', error)

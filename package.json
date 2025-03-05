@@ -31,6 +31,7 @@
     "@vocdoni/rainbowkit-wallets": "^0.2.2",
     "@vocdoni/sdk": "~0.9.1",
     "chakra-react-select": "^5.0.1",
+    "crisp-sdk-web": "^1.0.25",
     "date-fns": "^4.1.0",
     "framer-motion": "^10.12.18",
     "i18next": "^23.16.0",
