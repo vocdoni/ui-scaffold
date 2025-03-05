@@ -17,7 +17,7 @@ export type Step0Response = {
 }
 
 export type Step1Response = {
-  tokenR: string
+  authToken: string
 }
 
 export type TwoFactorResponse<T extends number> = T extends 0 ? Step0Response : T extends 1 ? Step1Response : unknown

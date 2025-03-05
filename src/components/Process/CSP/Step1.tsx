@@ -43,13 +43,13 @@ export const Step1Base = ({ election }: { election: PublishedElection }) => {
 
   const onSubmit = async (values: CSPStep1FormData) => {
     try {
-      const { tokenR } = await auth.mutateAsync({
+      const { authToken } = await auth.mutateAsync({
         authToken: authData.authToken,
         authData: [values.code],
       })
 
-      console.log('tokenR:', tokenR)
-      csp1(tokenR)
+      console.log('tokenR:', authToken)
+      csp1(authToken)
 
       const wallet = generateSigner()
       const client = new VocdoniSDKClient({
