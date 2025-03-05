@@ -53,6 +53,7 @@ const ProcessAside = () => {
   }
 
   const votersCount = election?.voteCount
+  const isCsp = election.census.type === CensusType.CSP
 
   return (
     <>
@@ -107,7 +108,10 @@ const ProcessAside = () => {
           )}
         </Flex>
 
-        {census?.type !== 'spreadsheet' &&
+        {isCsp && !connected && <CspAuth />}
+
+        {!isCsp &&
+          census?.type !== 'spreadsheet' &&
           !isConnected &&
           !connected &&
           election?.status !== ElectionStatus.CANCELED && (
@@ -258,7 +262,11 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
         </>
       )}
       {isCSP && !connected && <CspAuth />}
-      {isCSP && connected && <Button onClick={clear}>logout</Button>}
+      {isCSP && connected && (
+        <Button onClick={clear} variant={'link'}>
+          {t('cc.spreadsheet.logout')}
+        </Button>
+      )}
     </Flex>
   )
 }
