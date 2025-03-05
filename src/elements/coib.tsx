@@ -12,7 +12,7 @@ const processes = [
   {
     //1
     title: "Aprovació memòria d'activitats 2024",
-    pid: '6be21a5a9dc0419e93eb5d77170b4fbc42c599cd7b0e33c43c98030000000002',
+    pid: '6be21a5a9dc062941a9f8100853833da70d15acc4148e60e4c22030000000002',
   },
 ]
 
