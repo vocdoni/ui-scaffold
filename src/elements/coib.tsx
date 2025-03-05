@@ -11,7 +11,7 @@ import Error from './Error'
 const processes = [
   {
     //1
-    title: "Aprovació memòria d'activitats 2024",
+    title: 'Votació de prova',
     pid: '6be21a5a9dc062941a9f8100853833da70d15acc4148e60e4c22030000000002',
   },
 ]
