@@ -11,6 +11,7 @@ import {
   Flex,
   Icon,
   IconButton,
+  Image,
   List,
   ListItem,
   Text,
@@ -28,7 +29,6 @@ import { RiContactsBook3Line } from 'react-icons/ri'
 import { generatePath, Link as ReactRouterLink, Link as RouterLink, useMatch } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
 import { ColorModeSwitcher } from '~components/Layout/ColorModeSwitcher'
-import Logo from '~components/Layout/Logo'
 import { Routes } from '~src/router/routes'
 import LanguagesListAccordion, { LanguagesMenu } from './LanguagesList'
 
@@ -39,17 +39,18 @@ type MenuItem = {
 }
 
 const Navbar = () => {
-  const { isAuthenticated } = useAuth()
-  const isOnProcessesPage = useMatch(Routes.processes.view)
-  const reducedMenu = !!isOnProcessesPage && !isAuthenticated
+  // const { isAuthenticated } = useAuth()
+  // const isOnProcessesPage = useMatch(Routes.processes.view)
+  // const reducedMenu = !!isOnProcessesPage && !isAuthenticated
   return (
     <Flex width='full' m='0 auto' mx='auto' py={{ base: 4, md: 6 }} position='relative'>
       <Flex justifyContent='space-between' alignItems='center' zIndex={1} w='100%'>
         <Flex w='248.67px'>
-          <Logo />
+          {/* <Logo /> */}
+          <Image src='/assets/coib.png' alt='logo COIB' />
         </Flex>
-        <DesktopNav display={{ base: reducedMenu ? 'flex' : 'none', xl: 'flex' }} />
-        {!reducedMenu && <Mobile />}
+        {/* <DesktopNav display={{ base: reducedMenu ? 'flex' : 'none', xl: 'flex' }} />
+        {!reducedMenu && <Mobile />} */}
       </Flex>
     </Flex>
   )

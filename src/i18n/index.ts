@@ -13,7 +13,7 @@ i18n
   .use(initReactI18next)
   .init(
     {
-      fallbackLng: 'en',
+      fallbackLng: 'ca',
       debug: import.meta.env.NODE_ENV === 'development',
       defaultNS: 'translation',
       interpolation: {
