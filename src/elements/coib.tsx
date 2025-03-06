@@ -13,7 +13,7 @@ const processes = [
   {
     //1
     title: 'Votació de prova',
-    pid: '6be21a5a9dc0a552a379b4ac7eef330c2bcb3ebd57b2a1f91651030000000000',
+    pid: '6b342d99f218b4867dc894611dfc9ef3475723c741bc653dcb69030400000000',
   },
 ]
 
