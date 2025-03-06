@@ -49,10 +49,8 @@ const Coib = () => {
 
   // Crisp config
   useEffect(() => {
-    if (!connected) return
-
     Crisp.configure('855c1c0c-673c-4cf2-bc92-1471d743b8d2')
-  }, [connected])
+  }, [])
 
   if (loading && !loaded) {
     return <Spinner />
