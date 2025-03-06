@@ -37,7 +37,7 @@ export const useCensusList = (orgAddress: string) => {
 
   return useQuery({
     queryKey: QueryKeys.census.list(orgAddress),
-    queryFn: () => bearedFetch<Census[]>(`census?orgAddress=${ensure0x(orgAddress)}`),
+    queryFn: () => bearedFetch<Census[]>(`organizations/${ensure0x(orgAddress)}/censuses`),
   })
 }
 
