@@ -108,8 +108,6 @@ const ProcessAside = () => {
           )}
         </Flex>
 
-        {isCsp && !connected && <CspAuth />}
-
         {!isCsp &&
           census?.type !== 'spreadsheet' &&
           !isConnected &&
