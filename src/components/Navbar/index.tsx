@@ -162,6 +162,11 @@ const NavMenu = ({ display, children }: { display?: any; children?: any }) => {
       label: t('navbar.contact', { defaultValue: 'Contact Us' }),
       route: Routes.contact,
     },
+    {
+      icon: <RiContactsBook3Line />,
+      label: t('navbar.usecases', { defaultValue: 'Use Cases' }),
+      route: Routes.usecases.base,
+    },
   ]
   return (
     <List as='nav' display={display ? display : 'flex'} flexDirection={{ base: 'column', xl: 'row' }} gap={4}>

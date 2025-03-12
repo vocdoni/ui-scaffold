@@ -3,7 +3,9 @@ import { VocdoniSDKClient } from '@vocdoni/sdk'
 import { lazy } from 'react'
 import { Params } from 'react-router-dom'
 // These aren't lazy loaded since they are main layouts and related components
-import Error from '~elements/Error'
+import UseCases from '~components/UseCases'
+import UseCase from '~components/UseCases/view'
+import ErrorElement from '~elements/Error'
 import Layout from '~elements/Layout'
 import PlansPublicPage from '~elements/plans'
 import { StripeCheckout, StripeReturn } from '~elements/Stripe'
@@ -44,7 +46,7 @@ const RootElements = (client: VocdoniSDKClient) => [
       </SuspenseLoader>
     ),
     loader: async ({ params }: { params: Params<string> }) => client.fetchElection(params.id),
-    errorElement: <Error />,
+    errorElement: <ErrorElement />,
   },
   {
     path: Routes.organization,
@@ -54,7 +56,7 @@ const RootElements = (client: VocdoniSDKClient) => [
       </SuspenseLoader>
     ),
     loader: async ({ params }: { params: Params<string> }) => client.fetchAccountInfo(params.address),
-    errorElement: <Error />,
+    errorElement: <ErrorElement />,
   },
   {
     ...ProtectedRoutes([
@@ -65,7 +67,7 @@ const RootElements = (client: VocdoniSDKClient) => [
       {
         path: Routes.stripe.return,
         element: <StripeReturn />,
-        errorElement: <Error />,
+        errorElement: <ErrorElement />,
       },
     ]),
   },
@@ -108,6 +110,29 @@ const RootElements = (client: VocdoniSDKClient) => [
         <Privacy />
       </SuspenseLoader>
     ),
+  },
+  {
+    path: Routes.usecases.base,
+    element: (
+      <SuspenseLoader>
+        <UseCases />
+      </SuspenseLoader>
+    ),
+  },
+  {
+    path: Routes.usecases.view,
+    element: (
+      <SuspenseLoader>
+        <UseCase />
+      </SuspenseLoader>
+    ),
+    loader: async ({ params }: { params: Params<string> }) => {
+      const response = await fetch(`${import.meta.env.BASE_URL}use-cases/${params.lang}/${params.case}.md`)
+      const md = await response.text()
+      if (!md) throw new Error('Error fetching MD')
+      return md
+    },
+    errorElement: <NotFound />,
   },
   {
     path: '*',
