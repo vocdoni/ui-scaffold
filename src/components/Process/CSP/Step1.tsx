@@ -1,18 +1,8 @@
-import {
-  Button,
-  FormControl,
-  FormErrorMessage,
-  HStack,
-  Link,
-  PinInput,
-  PinInputField,
-  Text,
-  VStack,
-} from '@chakra-ui/react'
+import { Button, FormControl, FormErrorMessage, HStack, PinInput, PinInputField, VStack } from '@chakra-ui/react'
 import { useElection } from '@vocdoni/react-providers'
 import { PublishedElection } from '@vocdoni/sdk'
 import { Controller, useForm } from 'react-hook-form'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { useCspAuthContext } from './CSPStepsProvider'
 import { useTwoFactorAuth } from './basics'
 
@@ -46,7 +36,7 @@ export const Step1Base = ({ election }: { election: PublishedElection }) => {
         authData: [values.code],
       })
 
-      console.log('tokenR:', authToken)
+      console.log('token:', authToken)
       csp1(authToken)
       // Aquí podrías manejar el siguiente paso o finalizar la autenticación
     } catch (error) {
@@ -96,14 +86,6 @@ export const Step1Base = ({ election }: { election: PublishedElection }) => {
               />
             </HStack>
             {errors.code && <FormErrorMessage textAlign='center'>{errors.code.message}</FormErrorMessage>}
-            <Text textAlign='center' mt={2} fontSize='sm' color='gray.600'>
-              <Trans i18nKey='csp_census.auth.step1.resend'>
-                Not received the code?{' '}
-                <Link color='primary.500' onClick={() => console.log('resend')}>
-                  Re-send
-                </Link>
-              </Trans>
-            </Text>
           </FormControl>
 
           <Button type='submit' colorScheme='primary' w='full' isLoading={auth.isPending}>
