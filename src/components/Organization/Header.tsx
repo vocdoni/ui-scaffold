@@ -1,6 +1,6 @@
 import { AspectRatio, Box, Flex, IconButton } from '@chakra-ui/react'
 import { OrganizationImage as Avatar, OrganizationDescription, OrganizationName } from '@vocdoni/chakra-components'
-import { useClient, useOrganization } from '@vocdoni/react-providers'
+import { useOrganization } from '@vocdoni/react-providers'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
@@ -11,7 +11,6 @@ import fallback from '/assets/default-avatar.png'
 const OrganizationHeader = () => {
   const { t } = useTranslation()
   const { organization } = useOrganization()
-  const { account } = useClient()
 
   const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(600, 20)
 

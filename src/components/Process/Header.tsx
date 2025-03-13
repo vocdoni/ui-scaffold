@@ -1,9 +1,9 @@
-import { InfoIcon, WarningIcon } from '@chakra-ui/icons'
-import { Box, Flex, Icon, Image, Text, Tooltip } from '@chakra-ui/react'
+import { WarningIcon } from '@chakra-ui/icons'
+import { Box, Flex, Icon, Image, Text } from '@chakra-ui/react'
 import { ElectionDescription, ElectionSchedule, ElectionStatusBadge, ElectionTitle } from '@vocdoni/chakra-components'
 import { useClient, useElection, useOrganization } from '@vocdoni/react-providers'
 import { CensusType, ElectionStatus, InvalidElection, PublishedElection, Strategy } from '@vocdoni/sdk'
-import { ReactNode, useEffect, useState } from 'react'
+import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
 import { ShareModalButton } from '~components/Share'
@@ -18,29 +18,13 @@ const ProcessHeader = () => {
   const { t } = useTranslation()
   const { election } = useElection()
   const { organization, loaded } = useOrganization()
-  const { account, client } = useClient()
-  const [censusInfo, setCensusInfo] = useState<CensusInfo>()
+  const { account } = useClient()
   const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(600, 20)
   const strategy = useStrategy()
-
-  // Get the census info to show the total size if the maxCensusSize is less than the total size
-  useEffect(() => {
-    ;(async () => {
-      try {
-        if (!client || !(election instanceof PublishedElection) || !election?.census?.censusId) return
-        const censusInfo: CensusInfo = await client.fetchCensusInfo(election.census.censusId)
-        setCensusInfo(censusInfo)
-      } catch (e) {
-        // If the census info is not available, just ignore it
-        setCensusInfo(undefined)
-      }
-    })()
-  }, [election, client])
 
   if (!(election instanceof PublishedElection)) return null
 
   const showOrgInformation = !loaded || (loaded && organization?.account?.name)
-  const showTotalCensusSize = censusInfo?.size && election?.maxCensusSize && election.maxCensusSize < censusInfo.size
 
   return (
     <Box>
@@ -134,34 +118,8 @@ const ProcessHeader = () => {
             </Box>
           )}
           <Box cursor='help'>
-            <Text fontWeight='bold'>
-              {t('process.census')} {showTotalCensusSize && <InfoIcon ml={1} />}
-            </Text>
-            {showTotalCensusSize ? (
-              <Tooltip
-                hasArrow
-                bg='primary.600'
-                color='white'
-                placement='top'
-                label={t('process.total_census_size_tooltip', {
-                  censusSize: censusInfo?.size,
-                  maxCensusSize: election?.maxCensusSize,
-                  percent:
-                    censusInfo?.size && election?.maxCensusSize
-                      ? Math.round((election?.maxCensusSize / censusInfo?.size) * 100)
-                      : 0,
-                })}
-              >
-                <Text>
-                  {t('process.total_census_size', {
-                    censusSize: censusInfo?.size,
-                    maxCensusSize: election?.maxCensusSize,
-                  })}
-                </Text>
-              </Tooltip>
-            ) : (
-              <Text>{t('process.people_in_census', { count: election?.maxCensusSize })}</Text>
-            )}
+            <Text fontWeight='bold'>{t('process.census')}</Text>
+            <Text>{t('process.people_in_census', { count: election?.maxCensusSize })}</Text>
           </Box>
           {election?.meta?.census && (
             <>

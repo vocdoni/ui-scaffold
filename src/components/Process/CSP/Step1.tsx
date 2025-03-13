@@ -36,7 +36,7 @@ export const Step1Base = ({ election }: { election: PublishedElection }) => {
         authData: [values.code],
       })
 
-      console.log('tokenR:', authToken)
+      console.log('token:', authToken)
       csp1(authToken)
       // Aquí podrías manejar el siguiente paso o finalizar la autenticación
     } catch (error) {
