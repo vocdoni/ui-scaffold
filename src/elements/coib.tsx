@@ -11,9 +11,16 @@ import Error from './Error'
 
 const processes = [
   {
-    //1
-    title: 'Votació de prova',
-    pid: '6b342d99f218b4867dc894611dfc9ef3475723c741bc653dcb69030400000000',
+    title: "Aprovació memòria d'activitats 2024",
+    pid: 'b31dff61814df6a8386f3ee7ed3b64ca313d6ff82368b6fce609030400000006',
+  },
+  {
+    title: "Aproves l'estat de comptes i la liquidació de l'exercici de l'any 2024?",
+    pid: 'b31dff61814df6a8386f3ee7ed3b64ca313d6ff82368b6fce609030400000007',
+  },
+  {
+    title: "Aproves el pressupost per a l'exercici de l'any 2025?",
+    pid: 'b31dff61814df6a8386f3ee7ed3b64ca313d6ff82368b6fce609030400000008',
   },
 ]
 
