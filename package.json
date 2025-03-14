@@ -55,7 +55,7 @@
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
   },
   "engines": {
-    "yarn": "^1.19.x",
+    "yarn": "^1.22.22",
     "node": "20.x"
   },
   "scripts": {
@@ -98,7 +98,7 @@
     "vite-plugin-svgr": "^4.2.0",
     "vite-tsconfig-paths": "^4.2.1"
   },
-  "packageManager": "yarn@1.22.19",
+  "packageManager": "yarn@1.22.22",
   "resolutions": {
     "i18next": "^23.16.0",
     "@vocdoni/sdk": "~0.9.2",
