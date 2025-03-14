@@ -1,4 +1,4 @@
-import { AspectRatio, Box, Flex, Heading, Link, Spinner, Text } from '@chakra-ui/react'
+import { AspectRatio, Box, Button, Flex, Heading, Link, Spinner, Text } from '@chakra-ui/react'
 import { ElectionProvider, useClient, useElection } from '@vocdoni/react-providers'
 import { InvalidElection } from '@vocdoni/sdk'
 import { Crisp } from 'crisp-sdk-web'
@@ -18,7 +18,7 @@ const CoibWrapper = () => (
 )
 
 const Coib = () => {
-  const { loading, loaded, election, connected } = useElection()
+  const { loading, loaded, election, connected, clearClient } = useElection()
   const { account, connected: aconnected } = useClient()
   const videoRef = useRef<HTMLDivElement>(null)
   const [videoTop, setVideoTop] = useState<boolean>(false)
@@ -171,6 +171,11 @@ const Coib = () => {
             ))}
           </Flex>
         </Box>
+      )}
+      {election && !isAdmin && connected && (
+        <Button variant='link' onClick={clearClient}>
+          Tanca la sessió
+        </Button>
       )}
       {canViewProcesses && (
         <Text style={{ marginTop: '50px', maxWidth: '800px', textAlign: 'center' }}>
