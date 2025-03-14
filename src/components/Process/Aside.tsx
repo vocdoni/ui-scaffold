@@ -260,11 +260,6 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
         </>
       )}
       {isCSP && !connected && <CspAuth />}
-      {isCSP && connected && (
-        <Button onClick={clear} variant={'link'}>
-          {t('cc.spreadsheet.logout')}
-        </Button>
-      )}
     </Flex>
   )
 }
