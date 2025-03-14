@@ -2732,9 +2732,9 @@
   dependencies:
     crypto-js "^4.2.0"
 
-"@vocdoni/react-providers@./vocdoni-react-providers-v0.5.6-beta0.tgz", "@vocdoni/react-providers@~0.5.1":
-  version "0.5.6-beta0"
-  resolved "./vocdoni-react-providers-v0.5.6-beta0.tgz#196b1f862d8d7c3f6d8d9697ddf539621db3b440"
+"@vocdoni/react-providers@./vocdoni-react-providers-v0.5.6-beta3.tgz", "@vocdoni/react-providers@~0.5.1":
+  version "0.5.6-beta3"
+  resolved "./vocdoni-react-providers-v0.5.6-beta3.tgz#70685c04f566f5994b7ee127ba62128205f171a5"
   dependencies:
     up-fetch "^1.3.6"
 

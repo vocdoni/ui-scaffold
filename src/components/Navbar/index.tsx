@@ -26,7 +26,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { IoMdMoon, IoMdSunny } from 'react-icons/io'
 import { IoPricetagOutline } from 'react-icons/io5'
 import { RiContactsBook3Line } from 'react-icons/ri'
-import { generatePath, Link as ReactRouterLink, Link as RouterLink, useMatch } from 'react-router-dom'
+import { generatePath, Link, Link as ReactRouterLink, Link as RouterLink, useMatch } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
 import { ColorModeSwitcher } from '~components/Layout/ColorModeSwitcher'
 import { Routes } from '~src/router/routes'
@@ -47,7 +47,9 @@ const Navbar = () => {
       <Flex justifyContent='space-between' alignItems='center' zIndex={1} w='100%'>
         <Flex w='248.67px'>
           {/* <Logo /> */}
-          <Image src='/assets/coib.png' alt='logo COIB' />
+          <Link to='/'>
+            <Image src='/assets/coib.png' alt='logo COIB' />
+          </Link>
         </Flex>
         {/* <DesktopNav display={{ base: reducedMenu ? 'flex' : 'none', xl: 'flex' }} />
         {!reducedMenu && <Mobile />} */}
