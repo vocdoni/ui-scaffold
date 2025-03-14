@@ -122,7 +122,7 @@ const Coib = () => {
             >
               <AspectRatio ratio={16 / 9}>
                 <ReactPlayer
-                  url='https://www.youtube.com/watch?v=VNIGhwxPAcE'
+                  url='https://youtube.com/live/NRE8ifln5b0?feature=share'
                   width='100%'
                   height='100%'
                   playing
