@@ -9,19 +9,10 @@ import { ActionsMenu } from '~components/Process/ActionsMenu'
 import { CspAuth } from '~components/Process/CSP/CSPAuthModal'
 import Error from './Error'
 
-const processes = [
-  {
-    title: "Aprovació memòria d'activitats 2024",
-    pid: '6b342d99f218e81e7f8eaee1dd336e01d02d800919efe0f1f0ab030400000003',
-  },
-  {
-    title: "Aproves l'estat de comptes i la liquidació de l'exercici de l'any 2024?",
-    pid: '6b342d99f218e81e7f8eaee1dd336e01d02d800919efe0f1f0ab030400000002',
-  },
-]
+const processes = import.meta.env.PROCESS_IDS
 
 const CoibWrapper = () => (
-  <ElectionProvider id={processes[0].pid}>
+  <ElectionProvider id={processes[0]}>
     <Coib />
   </ElectionProvider>
 )
@@ -144,40 +135,38 @@ const Coib = () => {
           <Flex gap={5} flexDirection={{ base: 'column' }}>
             {processes.map((process, index) => (
               <Flex key={index}>
-                <Link
-                  as={ReactRouterLink}
-                  isExternal
-                  flexGrow={1}
-                  display='flex'
-                  justifyContent='center'
-                  alignItems='center'
-                  flexWrap='wrap'
-                  h={{ base: '100px' }}
-                  borderRadius='md'
-                  color='black'
-                  textDecoration='none'
-                  textAlign='center'
-                  fontWeight='bold'
-                  boxShadow='0px 0px 10px 2px lightgray'
-                  _hover={{
-                    bgColor: 'lightgray',
-                  }}
-                  _active={{
-                    transform: 'scale(0.9)',
-                  }}
-                  to={`/processes/${process.pid}/${window.location.hash}`}
-                >
-                  <Box>
-                    <Text fontSize='18px'>
-                      {index + 1}: {process.title}
-                    </Text>
-                  </Box>
-                </Link>
-                {isAdmin && (
-                  <ElectionProvider id={process.pid}>
-                    <ActionsMenu />
-                  </ElectionProvider>
-                )}
+                <ElectionProvider id={process}>
+                  <Link
+                    as={ReactRouterLink}
+                    flexGrow={1}
+                    isExternal
+                    display='flex'
+                    justifyContent='center'
+                    alignItems='center'
+                    flexWrap='wrap'
+                    h={{ base: '100px' }}
+                    borderRadius='md'
+                    color='black'
+                    textDecoration='none'
+                    textAlign='center'
+                    fontWeight='bold'
+                    boxShadow='0px 0px 10px 2px lightgray'
+                    _hover={{
+                      bgColor: 'lightgray',
+                    }}
+                    _active={{
+                      transform: 'scale(0.9)',
+                    }}
+                    to={`/processes/${process}/${window.location.hash}`}
+                  >
+                    <Box>
+                      <Text fontSize='18px'>
+                        {index + 1}: <ElectionDetail />
+                      </Text>
+                    </Box>
+                  </Link>
+                  {isAdmin && <ActionsMenu />}
+                </ElectionProvider>
               </Flex>
             ))}
           </Flex>
@@ -206,6 +195,14 @@ const Coib = () => {
       </Text>
     </Flex>
   )
+}
+
+const ElectionDetail = () => {
+  const { election } = useElection()
+
+  if (!election || election instanceof InvalidElection) return null
+
+  return <>{election.title.default}</>
 }
 
 export default CoibWrapper

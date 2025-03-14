@@ -26,7 +26,6 @@ export const Step1Base = ({ election }: { election: PublishedElection }) => {
       code: '',
     },
   })
-
   const auth = useTwoFactorAuth<1>(election, 1)
 
   const onSubmit = async (values: CSPStep1FormData) => {
@@ -36,7 +35,6 @@ export const Step1Base = ({ election }: { election: PublishedElection }) => {
         authData: [values.code],
       })
 
-      console.log('token:', authToken)
       csp1(authToken)
       // Aquí podrías manejar el siguiente paso o finalizar la autenticación
     } catch (error) {

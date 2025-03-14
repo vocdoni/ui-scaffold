@@ -32,6 +32,13 @@ const viteconfig = ({ mode }) => {
     saasUrl = saasUrl.slice(0, -1)
   }
 
+  let pids = []
+  try {
+    pids = JSON.parse(process.env.PROCESS_IDS)
+  } catch (e) {
+    pids = []
+  }
+
   return defineConfig({
     base,
     build: {
@@ -50,6 +57,7 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.title': JSON.stringify(title),
       'import.meta.env.STRIPE_PUBLIC_KEY': JSON.stringify(process.env.STRIPE_PUBLIC_KEY),
       'import.meta.env.SAAS_URL': JSON.stringify(saasUrl),
+      'import.meta.env.PROCESS_IDS': JSON.stringify(pids),
     },
     plugins: [
       tsconfigPaths(),

@@ -176,13 +176,7 @@ const ProcessAside = () => {
 export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () => void }) => {
   const { t } = useTranslation()
 
-  const {
-    election,
-    connected,
-    isAbleToVote,
-    isInCensus,
-    actions: { clear },
-  } = useElection()
+  const { election, connected, isAbleToVote, isInCensus } = useElection()
   const { isConnected } = useAccount()
 
   if (election instanceof InvalidElection || election?.status === ElectionStatus.CANCELED) {
