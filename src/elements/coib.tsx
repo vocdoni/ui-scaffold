@@ -12,15 +12,11 @@ import Error from './Error'
 const processes = [
   {
     title: "Aprovació memòria d'activitats 2024",
-    pid: 'b31dff61814df6a8386f3ee7ed3b64ca313d6ff82368b6fce609030400000006',
+    pid: '6b342d99f218e81e7f8eaee1dd336e01d02d800919efe0f1f0ab030400000003',
   },
   {
     title: "Aproves l'estat de comptes i la liquidació de l'exercici de l'any 2024?",
-    pid: 'b31dff61814df6a8386f3ee7ed3b64ca313d6ff82368b6fce609030400000007',
-  },
-  {
-    title: "Aproves el pressupost per a l'exercici de l'any 2025?",
-    pid: 'b31dff61814df6a8386f3ee7ed3b64ca313d6ff82368b6fce609030400000008',
+    pid: '6b342d99f218e81e7f8eaee1dd336e01d02d800919efe0f1f0ab030400000002',
   },
 ]
 
