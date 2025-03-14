@@ -146,6 +146,7 @@ const Coib = () => {
               <Flex key={index}>
                 <Link
                   as={ReactRouterLink}
+                  isExternal
                   flexGrow={1}
                   display='flex'
                   justifyContent='center'
