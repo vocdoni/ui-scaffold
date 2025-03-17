@@ -24,4 +24,4 @@ const baseStyle = (props: any) => {
   }
 }
 
-export const Alert = defineMultiStyleConfig({})
+export const Alert = defineMultiStyleConfig({ baseStyle })
