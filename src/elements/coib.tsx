@@ -81,7 +81,13 @@ const Coib = () => {
         </Box>
       </Flex>
       <Flex gap={5}>
-        <Flex flexDirection={{ base: 'column' }} gap={10} maxW='850px' mx='auto' style={{ marginTop: '0px' }}>
+        <Flex
+          flexDirection={{ base: 'column', lg: 'row' }}
+          gap={10}
+          maxW='850px'
+          mx='auto'
+          style={{ marginTop: '0px' }}
+        >
           <Box display='flex' flexDirection='column' gap={5}>
             <Text fontSize='20px'>
               El COIB vol modernitzar els seus processos i adaptar-se a les noves necessitats tecnològiques, oferint als
@@ -99,30 +105,30 @@ const Coib = () => {
               La prova pilot estarà oberta de 17h. a 19h. del Dijous, 06 de Març del 2025.
             </Text>
           )}
-        </Flex>
-        {connected && (
-          <Box>
-            <Box ref={videoRef} />
-            <Box
-              ml={videoTop ? 'auto' : 'none'}
-              position={{ lg: videoTop ? 'fixed' : 'initial' }}
-              top={20}
-              right={10}
-              zIndex={100}
-              w={{ base: '100%', lg: '400px' }}
-            >
-              <AspectRatio ratio={16 / 9}>
-                <ReactPlayer
-                  url='https://youtube.com/live/NRE8ifln5b0?feature=share'
-                  width='100%'
-                  height='100%'
-                  playing
-                  controls
-                />
-              </AspectRatio>
+          {connected && (
+            <Box>
+              <Box ref={videoRef} />
+              <Box
+                ml={videoTop ? 'auto' : 'none'}
+                position={{ lg: videoTop ? 'fixed' : 'initial' }}
+                top={20}
+                right={10}
+                zIndex={100}
+                w={{ base: 'full', lg: '400px' }}
+              >
+                <AspectRatio ratio={16 / 9}>
+                  <ReactPlayer
+                    url='https://youtube.com/live/NRE8ifln5b0?feature=share'
+                    width='100%'
+                    height='100%'
+                    playing
+                    controls
+                  />
+                </AspectRatio>
+              </Box>
             </Box>
-          </Box>
-        )}
+          )}
+        </Flex>
       </Flex>
       <Box w='50%' mx='auto'>
         {election && !isAdmin && !connected && <CspAuth />}
