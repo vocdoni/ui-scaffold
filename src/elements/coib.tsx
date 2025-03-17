@@ -94,25 +94,25 @@ const Coib = () => {
               <br />
               <br />
             </Text>
-            <Text fontSize='18px'>
-              <OrderedList ml='35px'>
-                <ListItem>Benvinguda.</ListItem>
-                <ListItem>Aprovació memòria d'activitats 2024.</ListItem>
-                <ListItem>Aprovació estat de comptes i la liquidació de l'exerici 2024.</ListItem>
-                <ListItem>Aprovació del pressupost 2025.</ListItem>
-                <ListItem>Torn obert de preguntes.</ListItem>
-              </OrderedList>
-            </Text>
+            <OrderedList ml='35px' fontSize='18px'>
+              <ListItem>Benvinguda.</ListItem>
+              <ListItem>Aprovació memòria d'activitats 2024.</ListItem>
+              <ListItem>Aprovació estat de comptes i la liquidació de l'exerici 2024.</ListItem>
+              <ListItem>Aprovació del pressupost 2025.</ListItem>
+              <ListItem>Torn obert de preguntes.</ListItem>
+            </OrderedList>
             <Box fontSize='18px'>
               <Text style={{ marginTop: '30px' }}>
                 - Enllaç a documentació externa:{' '}
-                <a href='' target='_blank' style={{ textDecoration: 'underline', color: '#297b90' }}>
+                <Link href='' target='_blank'>
                   Documentació 🔗
-                </a>
-                <br />- Enllaç a plataforma de precs i preguntes:{' '}
-                <a href='' target='_blank' style={{ textDecoration: 'underline', color: '#297b90' }}>
+                </Link>
+              </Text>
+              <Text>
+                - Enllaç a plataforma de precs i preguntes:{' '}
+                <Link href='' target='_blank'>
                   Precs i Preguntes 🔗
-                </a>
+                </Link>
               </Text>
             </Box>
           </Box>
