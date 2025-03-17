@@ -9,7 +9,7 @@ import { Badge } from './components/badge'
 import { Button } from './components/button'
 import { Card } from './components/card'
 import { Checkbox, DetailedCheckbox } from './components/checkbox'
-import { Form } from './components/Form'
+import { Form, FormLabel } from './components/Form'
 import { ElectionTitle, Heading } from './components/heading'
 import { Input } from './components/input'
 import { Link } from './components/link'
@@ -99,6 +99,7 @@ export const theme = extendTheme(vtheme, {
     ElectionQuestions,
     ElectionResults,
     Form,
+    FormLabel,
     Heading,
     Input,
     Link,

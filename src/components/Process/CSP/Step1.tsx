@@ -1,4 +1,13 @@
-import { Button, FormControl, FormErrorMessage, HStack, PinInput, PinInputField, VStack } from '@chakra-ui/react'
+import {
+  Button,
+  FormControl,
+  FormErrorMessage,
+  FormHelperText,
+  HStack,
+  PinInput,
+  PinInputField,
+  VStack,
+} from '@chakra-ui/react'
 import { useElection } from '@vocdoni/react-providers'
 import { PublishedElection } from '@vocdoni/sdk'
 import { Controller, useForm } from 'react-hook-form'
@@ -84,6 +93,7 @@ export const Step1Base = ({ election }: { election: PublishedElection }) => {
               />
             </HStack>
             {errors.code && <FormErrorMessage textAlign='center'>{errors.code.message}</FormErrorMessage>}
+            <FormHelperText>Si fas servir email, no oblidis revisar el correu brossa</FormHelperText>
           </FormControl>
 
           <Button type='submit' colorScheme='primary' w='full' isLoading={auth.isPending}>

@@ -31,6 +31,14 @@ export const Checkbox = defineMultiStyleConfig({
     colorScheme: 'brand',
   },
   variants: {
+    inline: definePartsStyle({
+      container: {
+        display: 'inline',
+      },
+      control: {
+        marginTop: 2,
+      },
+    }),
     detailed: definePartsStyle({
       container: defineStyle({
         position: 'relative',

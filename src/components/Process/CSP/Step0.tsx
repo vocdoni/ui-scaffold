@@ -2,17 +2,21 @@ import {
   Alert,
   AlertDescription,
   Button,
+  Checkbox,
   FormControl,
   FormHelperText,
   FormLabel,
   Input,
+  Link,
   Stack,
   Text,
   VStack,
 } from '@chakra-ui/react'
 import { PublishedElection } from '@vocdoni/sdk'
 import { useForm } from 'react-hook-form'
+import { Link as RouterLink } from 'react-router-dom'
 import { AlertIcon } from '~components/Layout/AlertIcon'
+import { Routes } from '~routes'
 import { useCspAuthContext } from './CSPStepsProvider'
 import { CSPStep0FormData, CSPStep0RequestData, useTwoFactorAuth } from './basics'
 
@@ -51,12 +55,12 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
     <VStack spacing={6} align='stretch' w='full'>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={4}>
-          <FormControl isInvalid={!!errors.participantNo}>
+          <FormControl isInvalid={!!errors.participantNo} isRequired>
             <FormLabel>Núm. de col·legiat/da</FormLabel>
             <Input {...register('participantNo', { required: true })} />
           </FormControl>
 
-          <FormControl isInvalid={!!errors.contact}>
+          <FormControl isInvalid={!!errors.contact} isRequired>
             <FormLabel>Correu electrònic o telèfon mòbil</FormLabel>
             <Input {...register('contact', { required: true })} />
             <FormHelperText>
@@ -70,14 +74,28 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
             </Alert>
           )}
 
-          <Text>
-            Rebràs un codi únic al mitjà seleccionat per verificar la teva identitat i completar l'autenticació (si fas
-            servir email, no oblidis revisar el correu brossa).
-          </Text>
+          <FormControl isRequired>
+            <Checkbox size='sm' variant='inline' colorScheme='blue'>
+              Accepto els{' '}
+              <Link as={RouterLink} to={Routes.terms} isExternal>
+                Termes i Condicions
+              </Link>{' '}
+              i la{' '}
+              <Link as={RouterLink} to={Routes.privacy} isExternal>
+                Política de Privacitat
+              </Link>
+              . Entenc que les dades només s'utilitzen per verificar la meva identitat, l'enviament d'un codi de
+              verificació, i no es guarden.
+            </Checkbox>
+          </FormControl>
 
-          <Button type='submit' variant='primary' borderRadius='full' w='full' isLoading={auth.isPending}>
+          <Button type='submit' variant='primary' borderRadius='full' w='full' isLoading={auth.isPending} mt={2}>
             Rebre Codi
           </Button>
+
+          <Text textAlign='center' fontSize='sm'>
+            Rebràs un codi únic al mitjà seleccionat per verificar la teva identitat i completar l'autenticació
+          </Text>
         </Stack>
       </form>
     </VStack>
