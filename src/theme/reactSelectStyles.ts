@@ -7,7 +7,6 @@ export const reactSelectStyles: ChakraStylesConfig = {
   }),
   placeholder: (base) => ({
     ...base,
-    color: 'dropdown.placeholder',
   }),
   menu: (base) => ({
     ...base,
@@ -19,11 +18,15 @@ export const reactSelectStyles: ChakraStylesConfig = {
   }),
   option: (base, state) => ({
     ...base,
-    bgColor: state.isSelected && 'input.dropdown.option_bg_selected.light',
-    color: state.isSelected && 'input.dropdown.option_light_selected',
+
+    bgColor: state.isSelected && 'transparent',
+    color: state.isSelected && 'black',
+    fontWeight: state.isSelected && '600',
+
     _dark: {
-      bgColor: state.isSelected && 'input.dropdown.option_bg_selected.dark',
-      color: 'input.dropdown.option',
+      bgColor: state.isSelected && 'transparent',
+      color: state.isSelected && 'white',
+      fontWeight: state.isSelected && '600',
     },
   }),
   dropdownIndicator: (base) => ({

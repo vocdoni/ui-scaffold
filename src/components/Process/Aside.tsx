@@ -160,6 +160,7 @@ const ProcessAside = () => {
                 disconnect()
                 clear()
               }}
+              variant={'underline'}
             >
               {t('cc.spreadsheet.logout')}
             </Button>
@@ -235,7 +236,7 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
           <CVoteButton
             w='100%'
             fontSize='lg'
-            variant={'primary'}
+            variant={'solid'}
             height='50px'
             onClick={setQuestionsTab}
             mb={4}

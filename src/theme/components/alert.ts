@@ -1,16 +1,18 @@
 import { alertAnatomy } from '@chakra-ui/anatomy'
-import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
+import { createMultiStyleConfigHelpers, useColorMode } from '@chakra-ui/react'
 
 const { defineMultiStyleConfig } = createMultiStyleConfigHelpers(alertAnatomy.keys)
 
 const baseStyle = (props: any) => {
   const { status } = props
+  const colorMode = useColorMode()
+  const lightMode = colorMode.colorMode === 'light'
 
   const statusColorMap = {
-    info: 'var(--chakra-colors-alert-info)',
-    success: 'var(--chakra-colors-alert-success)',
-    error: 'var(--chakra-colors-alert-error)',
-    warning: 'var(--chakra-colors-alert-warning)',
+    info: lightMode ? 'var(--chakra-colors-alert-info-light)' : 'var(--chakra-colors-alert-info-dark)',
+    success: lightMode ? 'var(--chakra-colors-alert-success-light)' : 'var(--chakra-colors-alert-success-dark)',
+    error: lightMode ? 'var(--chakra-colors-alert-error-light)' : 'var(--chakra-colors-alert-error-dark)',
+    warning: lightMode ? 'var(--chakra-colors-alert-warning-light)' : 'var(--chakra-colors-alert-warning-dark)',
   }
 
   const color = statusColorMap[status] || statusColorMap['info']
@@ -20,12 +22,13 @@ const baseStyle = (props: any) => {
       display: 'grid',
       gridTemplateColumns: { base: '1fr', lg: 'fit-content(50px) 1fr' },
       border: '1px solid',
-      borderColor: 'alert.border',
+      borderColor: 'alert.border.light',
       borderRadius: 'lg',
       width: 'fit-content',
       bgColor: 'alert.bg.light',
       _dark: {
         bgColor: 'alert.bg.dark',
+        borderColor: 'alert.border.dark',
       },
     },
     title: {

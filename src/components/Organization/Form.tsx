@@ -68,7 +68,7 @@ export const PrivateOrgForm = () => {
         <Text fontWeight='bold' mb={2.5}>
           <Trans i18nKey='create_org.private_org'>Private Organization Details</Trans>
         </Text>
-        <Text color={'org_text_secondary'} fontSize='sm'>
+        <Text color={'text_secondary.light'} _dark={{ color: 'text_secondary.dark' }} fontSize='sm'>
           <Trans i18nKey='create_org.private_org_description'>
             Help us tailor your experience with information about your org. We won't share this info
           </Trans>

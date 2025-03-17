@@ -113,12 +113,14 @@ const Calendar = () => {
     <Flex flexDirection='column' gap={6}>
       <Box>
         <Text fontWeight={'bold'}>{t('calendar.title', { defaultValue: 'Calendar' })}</Text>
-        <Text>{t('calendar.subtitle', { defaultValue: 'Specify the active period for receiving votes' })}</Text>
+        <Text fontSize={'sm'} color={'text_secondary.light'} _dark={{ color: 'text_secondary.dark' }}>
+          {t('calendar.subtitle', { defaultValue: 'Specify the active period for receiving votes' })}
+        </Text>
       </Box>
       <Flex flexDirection='column' pl={6}>
         <Box>
           <Text fontWeight={'bold'}>{t('calendar.start_date', { defaultValue: 'Start date' })}</Text>
-          <Text mb={2}>
+          <Text fontSize={'sm'} color={'text_secondary.light'} _dark={{ color: 'text_secondary.dark' }} mb={2}>
             {t('calendar.define_active_period', { defaultValue: 'Define the active period for receiving votes' })}
           </Text>
           <RadioGroup {...useBooleanRadioRegister('electionType.autoStart')} mb={6}>
@@ -170,7 +172,7 @@ const Calendar = () => {
 
         <FormControl isInvalid={!!errors.endDate}>
           <Text fontWeight={'bold'}>{t('calendar.end_date', { defaultValue: 'End date' })}</Text>
-          <Text mb={1}>
+          <Text fontSize={'sm'} color={'text_secondary.light'} _dark={{ color: 'text_secondary.dark' }} mb={1}>
             {t('calendar.end_date_description', { defaultValue: 'Define the exact date and time of completion' })}
           </Text>
           <Input

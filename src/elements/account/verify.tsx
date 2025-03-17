@@ -38,7 +38,7 @@ const Verify = () => {
           <Heading fontSize='36px' mb='10px'>
             {t('verify.invalid_verification', { defaultValue: 'Invalid verification request' })}
           </Heading>
-          <Text mb='36px' ms='4px' color={'verify_subtitle'} fontWeight='400' fontSize='md'>
+          <Text mb='36px' ms='4px' fontWeight='400' fontSize='md'>
             {t('verify.missing_email', {
               defaultValue: 'No email address provided for verification',
             })}

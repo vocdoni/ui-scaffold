@@ -13,7 +13,7 @@ const Support = () => {
       _dark={{
         background: 'home.support.bg.dark',
       }}
-      mb={{ base: '100px', lg: '160px' }}
+      mb={{ base: '60px', lg: '80px' }}
       boxShadow='inset 0 -1px 0 1px rgba(68, 67, 67, 0.38),0 8px 22px rgba(0, 0, 0, 0.44)'
       maxW='1500px'
       borderRadius={{ base: '0px', md: '16px' }}
@@ -87,25 +87,24 @@ const Support = () => {
             as={ReactRouterLink}
             to='mailto:info@vocdoni.org'
             variant='outline'
-            colorScheme='whiteAlpha'
+            colorScheme='white'
+            color={'white'}
             aria-label={t('home.support.btn_contact')}
             title={t('home.support.btn_contact')}
             target='_blank'
             height='60px'
-            color='white'
           >
             {t('home.support.btn_contact')}
           </Button>
           <Button
             as={ReactRouterLink}
-            variant='primary'
-            colorScheme='whiteAlpha'
+            variant='outline'
+            colorScheme='white'
             to='https://calendly.com/vocdoni-app/30min'
             aria-label={t('home.support.btn_watch')}
             title={t('home.support.btn_watch')}
             target='_blank'
             height='60px'
-            color='white'
           >
             <FaPhoneVolume size={30} />
             <Text as='span' ml='10px'>

@@ -25,7 +25,7 @@ const Solutions = () => {
             >
               {t('home.solutions.title')}
             </Text>
-            <Text textAlign={{ base: 'center', xl: 'start' }} fontFamily='basier' lineHeight='28px' mb={'60px'}>
+            <Text textAlign={{ base: 'center', xl: 'start' }} fontFamily='basier' fontSize={'xl'} mb={'60px'}>
               {t('home.solutions.subtitle_1')}
             </Text>
           </Box>

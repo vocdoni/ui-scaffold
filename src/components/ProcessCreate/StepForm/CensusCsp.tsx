@@ -39,7 +39,7 @@ export const StepFormCensusCsp = () => {
 
   return (
     <>
-      <Text variant='process-create-census-title'>{t('census.social_address_title')}</Text>
+      <Text fontWeight={'bold'}>{t('census.social_address_title')}</Text>
       <FormProvider {...methods}>
         <Box as='form' id='process-create-form' onSubmit={methods.handleSubmit(onSubmit)}>
           <CensusCspList initialUsers={userList} />

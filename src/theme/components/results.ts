@@ -69,9 +69,12 @@ const baseStyle = definePartsStyle({
     py: 8,
     my: 4,
     color: 'process.results.alert_color',
-    bgColor: 'process.results.alert_bg',
+    bgColor: 'process.results.alert_bg.light',
     borderRadius: 'lg',
     whiteSpace: 'wrap',
+    _dark: {
+      bgColor: 'process.results.alert_bg.dark',
+    },
   },
 
   title: {

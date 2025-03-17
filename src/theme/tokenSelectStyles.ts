@@ -20,12 +20,11 @@ export const customStylesSelect: ChakraStylesConfig = {
   option: (base, state) => ({
     ...base,
     bgColor: state.isSelected && 'input.dropdown.option_bg_selected.light',
-    color: 'input.dropdown.option.light',
     icon: state.isSelected && 'PONER UN ICON DE CHECK AQUI',
 
     _dark: {
       bgColor: state.isSelected && 'input.dropdown.option_bg_selected.dark',
-      color: 'dropdown.option.dark',
+     
     },
   }),
   dropdownIndicator: (base) => ({

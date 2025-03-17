@@ -44,6 +44,7 @@ export const theme = extendTheme(vtheme, {
       },
       body: {
         bg: props.colorMode === 'dark' ? 'bg.dark' : 'bg.light',
+        color: props.colorMode === 'dark' ? 'text.dark' : 'text.light',
       },
       '.md-sizes': {
         '& :first-of-type': {

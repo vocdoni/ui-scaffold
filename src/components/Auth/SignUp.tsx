@@ -139,7 +139,7 @@ const SignUp = ({ invite }: SignupProps) => {
             <FormErrorMessage>{errors?.terms?.message.toString()}</FormErrorMessage>
           </FormControl>
 
-          <Button isLoading={isPending} type='submit' size='xl' w='100%' variant='primary' colorScheme='gradient'>
+          <Button isLoading={isPending} type='submit' size='xl' w='100%' variant='solid' colorScheme='gradient'>
             {t('signup_create_account')}
           </Button>
         </Flex>

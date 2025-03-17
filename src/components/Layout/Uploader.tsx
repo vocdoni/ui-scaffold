@@ -26,7 +26,10 @@ const Uploader = ({ getRootProps, getInputProps, isDragActive, isLoading, format
       gap={5}
       p={10}
       border={'1px solid'}
-      borderColor={isDragActive ? 'input.drag_and_drop.border_active' : 'input.drag_and_drop.border'}
+      borderColor={isDragActive ? 'input.drag_and_drop.border_active.light' : 'input.drag_and_drop.border.light'}
+      _dark={{
+        borderColor: isDragActive ? 'input.drag_and_drop.border_active.dark' : 'input.drag_and_drop.border.dark',
+      }}
       cursor='pointer'
       borderRadius={12}
       {...getRootProps()}
@@ -51,7 +54,14 @@ const Uploader = ({ getRootProps, getInputProps, isDragActive, isLoading, format
           <Trans
             i18nKey='uploader.click_or_drag_and_drop'
             components={{
-              click: <Text as='span' textAlign='center' color='input.drag_and_drop.text' />,
+              click: (
+                <Text
+                  as='span'
+                  textAlign='center'
+                  color='input.drag_and_drop.text.light'
+                  _dark={{ color: 'input.drag_and_drop.text.dark' }}
+                />
+              ),
               drag: <Text as='span' textAlign='center' />,
               formats: <Text textAlign='center' fontSize='sm' />,
             }}

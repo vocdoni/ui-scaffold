@@ -19,7 +19,7 @@ const CreateProcessMeta = () => {
   return (
     <>
       <Flex flexDirection='column' gap={6}>
-        <Text variant='process-create-subtitle'>
+        <Text>
           {t('meta.helper', {
             defaultValue: 'Provide a clear title and description to help voters understand the vote',
           })}

@@ -17,7 +17,7 @@ const LogoutBtn = (props?: ButtonProps) => {
   }
 
   return (
-    <Button variant='link' {...props} onClick={logout}>
+    <Button variant='link' colorScheme='colorMode' {...props} onClick={logout}>
       {t('menu.logout')}
     </Button>
   )

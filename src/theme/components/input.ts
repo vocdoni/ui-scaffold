@@ -46,7 +46,7 @@ const calendar = definePartsStyle({
     width: 'fit-content',
     borderRadius: 'lg',
     border: '1px solid',
-    borderColor: 'input.calendar_border',
+    borderColor: 'input.border.light',
     outlineOffset: 0,
 
     _hover: {
@@ -61,11 +61,11 @@ const calendar = definePartsStyle({
 
     _dark: {
       border: '1px solid',
-      borderColor: 'input.border',
+      borderColor: 'input.border.dark',
 
       _hover: {
         outline: '1px solid',
-        outlineColor: 'input.border',
+        outlineColor: 'input.border.dark',
       },
 
       _focusVisible: {

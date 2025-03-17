@@ -13,34 +13,34 @@ const baseStyle = definePartsStyle({
     border: '1px solid',
     bg: '#276958',
     borderColor: '#12271f',
-    color: 'button.variant.primary.color',
+    color: 'spreadsheet_access_btn.primary.color',
 
     _hover: {
       bg: '#205345',
       borderColor: '#12271f',
       _disabled: {
-        bg: 'button.variant.primary.disabled.light.bg',
-        color: 'button.variant.primary.disabled.light.color',
-        borderColor: 'button.variant.primary.disabled.light.border',
+        bg: 'spreadsheet_access_btn.primary.disabled.light.bg',
+        color: 'spreadsheet_access_btn.primary.disabled.light.color',
+        borderColor: 'spreadsheet_access_btn.primary.disabled.light.border',
         opacity: 1,
         _dark: {
-          bg: 'button.variant.primary.disabled.dark.bg',
-          color: 'button.variant.primary.disabled.dark.color',
-          borderColor: 'button.variant.primary.disabled.dark.border',
+          bg: 'spreadsheet_access_btn.primary.disabled.dark.bg',
+          color: 'spreadsheet_access_btn.primary.disabled.dark.color',
+          borderColor: 'spreadsheet_access_btn.primary.disabled.dark.border',
           opacity: 0.4,
         },
       },
     },
     _active: { bg: '#193d32' },
     _disabled: {
-      bg: 'button.variant.primary.disabled.light.bg',
-      color: 'button.variant.primary.disabled.light.color',
-      borderColor: 'button.variant.primary.disabled.light.border',
+      bg: 'spreadsheet_access_btn.primary.disabled.light.bg',
+      color: 'spreadsheet_access_btn.primary.disabled.light.color',
+      borderColor: 'spreadsheet_access_btn.primary.disabled.light.border',
       opacity: 1,
       _dark: {
-        bg: 'button.variant.primary.disabled.dark.bg',
-        color: 'button.variant.primary.disabled.dark.color',
-        borderColor: 'button.variant.primary.disabled.dark.border',
+        bg: 'spreadsheet_access_btn.primary.disabled.dark.bg',
+        color: 'spreadsheet_access_btn.primary.disabled.dark.color',
+        borderColor: 'spreadsheet_access_btn.primary.disabled.dark.border',
         opacity: 0.4,
       },
     },
@@ -49,15 +49,16 @@ const baseStyle = definePartsStyle({
     color: 'black',
     textDecoration: 'underline',
     border: 'none',
+    bgColor: 'transparent',
     _hover: {
       color: 'gray.800',
       textDecoration: 'none',
 
       _disabled: {
-        color: 'button.variant.common.disabled.color.light',
+        color: 'spreadsheet_access_btn.common.disabled.color.light',
 
         _dark: {
-          color: 'button.variant.common.disabled.color.dark',
+          color: 'spreadsheet_access_btn.common.disabled.color.dark',
         },
       },
 
@@ -66,15 +67,18 @@ const baseStyle = definePartsStyle({
       },
     },
     _disabled: {
-      color: 'button.variant.common.disabled.color.light',
+      color: 'spreadsheet_access_btn.common.disabled.color.light',
 
       _dark: {
-        color: 'button.variant.common.disabled.color.light',
+        color: 'spreadsheet_access_btn.common.disabled.color.light',
       },
     },
 
     _dark: {
       color: 'white',
+      _hover: {
+        color: 'white',
+      },
     },
   },
 

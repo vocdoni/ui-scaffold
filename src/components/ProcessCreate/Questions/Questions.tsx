@@ -33,10 +33,10 @@ const Questions = ({ title, description, isMultiQuestion = false }: QuestionsPro
   return (
     <>
       <Box>
-        <Text fontWeight={'bold'} mb={2}>
-          {title}
+        <Text fontWeight={'bold'}>{title}</Text>
+        <Text fontSize={'sm'} color={'text_secondary.light'} _dark={{ color: 'text_secondary.dark' }}>
+          {description}
         </Text>
-        <Text>{description}</Text>
       </Box>
       <Flex flexDirection='column' gap={6}>
         {fields.map((_, index) => (

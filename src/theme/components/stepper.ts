@@ -6,19 +6,33 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
 const baseStyle = definePartsStyle((props) => ({
   indicator: {
     '&[data-status=complete]': {
-      background: 'process_create.stepper.bg',
+      background: 'process_create.stepper.bg.light',
+      color: 'process_create.stepper.color_icon.light',
+      _dark: {
+        background: 'process_create.stepper.bg.dark',
+        color: 'process_create.stepper.color_icon.dark',
+      },
     },
     '&[data-status=active]': {
-      borderColor: 'process_create.stepper.color',
-      background: 'process_create.stepper.bg',
-      color: 'white',
+      borderColor: 'process_create.stepper.color.light',
+      background: 'process_create.stepper.bg.light',
+      color: 'process_create.stepper.color_icon.light',
+
+      _dark: {
+        borderColor: 'process_create.stepper.color.dark',
+        background: 'process_create.stepper.bg.dark',
+        color: 'process_create.stepper.color_icon.dark',
+      },
     },
   },
   separator: {
     display: { base: 'none', lg: 'inline-block' },
     mt: { lg: 2 },
     '&[data-status=complete]': {
-      background: 'process_create.stepper.bg',
+      background: 'process_create.stepper.bg.light',
+      _dark: {
+        background: 'process_create.stepper.bg.dark',
+      },
     },
   },
   stepper: {
@@ -33,7 +47,10 @@ const baseStyle = definePartsStyle((props) => ({
     display: { base: 'none', lg: 'block' },
     '&[data-status=active]': {
       fontWeight: 'bold',
-      color: 'process_create.stepper.color',
+      color: 'process_create.stepper.color.light',
+      _dark: {
+        color: 'process_create.stepper.color.dark',
+      },
     },
   },
 }))

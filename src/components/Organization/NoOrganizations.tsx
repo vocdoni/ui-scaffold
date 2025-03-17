@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardBody, Flex, Img, Text } from '@chakra-ui/react'
+import { Box, Button, Card, CardBody, Flex, Img, Text, useColorModeValue } from '@chakra-ui/react'
 import { Trans } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { DashboardContents } from '~components/Layout/Dashboard'
@@ -6,6 +6,8 @@ import { Routes } from '~src/router/routes'
 import empty from '/assets/illustrations/9.png'
 
 export const NoOrganizations = () => {
+  const invert = useColorModeValue('invert(0%)', 'invert(100%)')
+
   return (
     <Flex flexDirection={'column'}>
       <Button as={ReactRouterLink} to={Routes.plans} alignSelf='end'>
@@ -14,7 +16,7 @@ export const NoOrganizations = () => {
       <Card variant='no-elections' minH='100%' maxW='650' m='80px auto'>
         <CardBody>
           <Flex justifyContent={'center'}>
-            <Img src={empty} />
+            <Img src={empty} filter={invert} />
           </Flex>
           <Box>
             <Text fontWeight='600' fontSize='lg' m='20px 0px'>
@@ -38,7 +40,7 @@ export const NoOrganizations = () => {
           <Button
             mt='40px'
             w='100%'
-            variant='primary'
+            variant='solid'
             as={ReactRouterLink}
             to={Routes.dashboard.organizationCreate}
             colorScheme='gradient'

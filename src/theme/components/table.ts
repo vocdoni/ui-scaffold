@@ -66,9 +66,11 @@ const striped = definePartsStyle((props) => ({
       _hover: {
         '& > td': {
           bgColor: 'table.variant.striped.light.hover !important',
+          color: 'table.variant.striped.light.hover_color !important',
 
           _dark: {
             bgColor: 'table.variant.striped.dark.hover !important',
+            color: 'table.variant.striped.dark.hover_color !important',
           },
         },
       },

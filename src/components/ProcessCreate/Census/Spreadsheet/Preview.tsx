@@ -15,12 +15,12 @@ export const CsvPreview = ({ manager, upload }: CsvPreviewProps) => {
   if (!manager || !manager?.data) return null
 
   return (
-    <Box borderRadius='lg' bgColor='process_create.spreadsheet.preview_bg'>
+    <Box borderRadius='lg'>
       <Flex
         alignItems='center'
         flexDirection={{ base: 'column', xl: 'row' }}
-        justifyContent='space-between'
-        gap={3}
+        justifyContent={'space-between'}
+        gap={10}
         mb={5}
       >
         <Flex gap={2} flexDirection={{ base: 'column', xl: 'row' }} alignItems='center'>
@@ -29,17 +29,15 @@ export const CsvPreview = ({ manager, upload }: CsvPreviewProps) => {
             <Text fontSize='lg' isTruncated>
               {manager.file.name}
             </Text>
-            <Text color='process_create.spreadsheet.total_rows_text'>
-              {t('form.process_create.spreadsheet_total_rows', { count: manager.data.length })}
-            </Text>
+            <Text>{t('form.process_create.spreadsheet_total_rows', { count: manager.data.length })}</Text>
           </Box>
         </Flex>
-        <Button colorScheme='primary' variant='transparent' border='1px solid' flexShrink={0} {...upload}>
+        <Button variant='outline' colorScheme='whiteBlack' mr={5} flexShrink={0} {...upload}>
           {t('form.process_create.spreadsheet.preview.upload_new_list')}
         </Button>
       </Flex>
 
-      <Box bgColor='process_create.spreadsheet.preview_bg_interior' p={5} borderRadius='lg'>
+      <Box p={5}>
         <Badge>{t('form.process_create.spreadsheet.preview.title')}</Badge>
         <Text my={3}>{t('form.process_create.spreadsheet.preview.description')}</Text>
 

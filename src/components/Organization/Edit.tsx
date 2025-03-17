@@ -242,7 +242,7 @@ const CustomizeOrgForm = () => {
     <>
       <Box>
         <Text fontWeight='bold'>{t('customization', { defaultValue: 'Customization' })}</Text>
-        <Text color={'org_text_secondary'} fontSize='sm'>
+        <Text color={'text_secondary.light'} _dark={{ color: 'text_secondary.dark' }} fontSize='sm'>
           {t('edit_saas_profile.customization_details', {
             defaultValue: 'Define the params that will enhance the user experience and customize the voting page',
           })}

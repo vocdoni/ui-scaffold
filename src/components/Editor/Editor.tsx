@@ -81,9 +81,9 @@ const Editor = (props: EditorProps) => {
     <LexicalComposer initialConfig={settings}>
       <Box
         className='editor-container'
-        bg={'text_area.bg_light'}
+        bg={'text_area.bg.light'}
         _dark={{
-          bgColor: 'text_area.bg_dark',
+          bgColor: 'text_area.bg.dark',
           borderColor: 'text_area.border_dark',
 
           '.editor-placeholder': {

@@ -28,7 +28,7 @@ const FormSubmitMessage = ({
     return (
       <FormControl isInvalid={isError}>
         <Box pt={2} {...boxProps}>
-          <FormErrorMessage>
+          <FormErrorMessage wordBreak={'break-all'}>
             {typeof error === 'string' ? error : error?.message || 'Error performing the operation'}
           </FormErrorMessage>
         </Box>

@@ -172,7 +172,8 @@ const NavMenu = ({ display, children }: { display?: any; children?: any }) => {
               <Button
                 as={ReactRouterLink}
                 to={item.route}
-                variant='unstyled'
+                variant='transparent'
+                colorScheme='colorMode'
                 fontWeight='semibold'
                 display='flex'
                 alignItems='center'
@@ -221,13 +222,10 @@ const DashboardButton = (props?: ButtonProps) => {
       as={ReactRouterLink}
       to={isAuthenticated ? generatePath(Routes.dashboard.base) : Routes.auth.signIn}
       size={'lg'}
-      colorScheme='gradient'
-      variant='primary'
+      variant='solid'
       p='10px 30px'
       height='36px'
       fontSize='12px'
-      color='white'
-      _dark={{ color: 'white' }}
       {...props}
     >
       {isAuthenticated ? t('menu.dashboard', { defaultValue: 'Dashboard' }) : t('menu.login')}

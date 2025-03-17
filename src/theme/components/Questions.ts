@@ -11,7 +11,7 @@ const baseStyle = definePartsStyle({
     py: 7,
     mb: '30px',
     borderRadius: '8px',
-    bgColor: 'process.questions.alert.bg',
+    bgColor: 'process.questions.alert.bg.light',
     display: 'grid',
     columnGap: 4,
     justifyContent: 'center',
@@ -24,6 +24,10 @@ const baseStyle = definePartsStyle({
       ml: { base: 2, lg: 10, xl: 2 },
       gridRow: '1/3',
       gridColumn: '1/2',
+    },
+
+    _dark: {
+      bgColor: 'process.questions.alert.bg.dark',
     },
   },
 
@@ -137,8 +141,7 @@ const baseStyle = definePartsStyle({
             bgColor: 'transparent',
           },
 
-          background: 'process.questions.question_selected.bg',
-          borderColor: 'white',
+          borderColor: 'white !important',
           borderWidth: '1px',
           bgSize: '15px',
           bgRepeat: 'no-repeat',
@@ -147,8 +150,8 @@ const baseStyle = definePartsStyle({
 
           _hover: {
             border: 'none',
-            background: 'process.questions.question_selected.bg',
-            borderColor: 'process.questions.question_selected.bg',
+            // background: 'process.questions.question_selected.bg',
+            // borderColor: 'process.questions.question_selected.bg',
             bgSize: '15px',
             bgRepeat: 'no-repeat',
             bgPosition: 'center',
@@ -176,8 +179,11 @@ const baseStyle = definePartsStyle({
 
       '& input:checked ~ span:nth-of-type(2)': {
         color: 'process.questions.question_selected.color',
-        bgColor: 'process.questions.question_selected.bg',
+        bgColor: 'process.questions.question_selected.bg.light',
         w: '100%',
+        _dark: {
+          bgColor: 'process.questions.question_selected.bg.dark',
+        },
       },
     },
   },

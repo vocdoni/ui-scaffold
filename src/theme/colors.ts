@@ -3,36 +3,41 @@ export const colorsBase = {
   black: {
     grayish: '#2f2e30',
     dark: '#1a191b',
-    pure: '#000000',
   },
   blue: {
-    light: '#63b3ed',
-    normal: '#3965ff',
+    light: '#3182ce',
+    dark: '#63b3ed',
   },
-  gradient: 'linear-gradient(to right, #2E855B, #22555A)',
-  gradientBottom: 'linear-gradient(to bottom, #2E855B, #22555A)',
+  gradient: 'linear-gradient(to right, #9cd594, #3b6930)',
   gray: {
+    blue: '#e2e8f0',
     light: '#CBD5E0',
     normal: '#A0AEC0',
     dark: '#4A5568',
-    dark2: '#333',
   },
-  green: '#c6f6d5',
-  orange: '#FFA500',
-  primary: '#22555A',
-  primary_cta: 'linear-gradient(to bottom, #2C7D57, #22555A)',
-  primary_dark: 'rgba(84, 110, 57, 0.2)',
-  red: '#FC8181',
+  green: {
+    light: '#3b6930',
+    dark: '#9cd594',
+  },
+  orange: {
+    light: '#FFA500',
+    dark: '#F6AD55',
+  },
+  primary: {
+    light: '#3b6930',
+    dark: '#9cd594',
+  },
+  red: {
+    light: '#E53E3E',
+    dark: '#F56565',
+  },
   white: {
     pure: '#ffffff',
-    light: '#fcfcfc',
-    light2: '#ffffff3d',
+    light: '#ffffff3d',
     dark: '#F5F5F7',
-    dark2: '#EDF2F7',
     alpha: 'whiteAlpha.300',
     from_read_more: 'rgba(245, 245, 247, 0)',
   },
-  yellow: '#FFB116',
   btn: {
     dark_color: '#CBD5E0',
     dark_color_secondary: '#22262f',
@@ -40,130 +45,132 @@ export const colorsBase = {
 }
 
 export const colors = {
-  account_create_text_secondary: colorsBase.gray.dark,
   alert: {
     bg: {
       light: colorsBase.white.pure,
       dark: colorsBase.black.grayish,
     },
+    border: {
+      light: colorsBase.gray.light,
+      dark: colorsBase.white.light,
+    },
     color: {
-      light: colorsBase.black.pure,
+      light: colorsBase.black.dark,
       dark: colorsBase.white.pure,
     },
-    border: colorsBase.gray.light,
-    error: colorsBase.red,
-    info: colorsBase.gray.normal,
-    success: colorsBase.green,
-    warning: colorsBase.orange,
-    box_shadow_light: colorsBase.white.pure,
-    box_shadow_dark: colorsBase.black.dark,
+    error: {
+      light: colorsBase.red.light,
+      dark: colorsBase.red.dark,
+    },
+    info: {
+      light: colorsBase.blue.light,
+      dark: colorsBase.blue.dark,
+    },
+    success: {
+      light: colorsBase.green.light,
+      dark: colorsBase.green.dark,
+    },
+    warning: {
+      light: colorsBase.orange.light,
+      dark: colorsBase.orange.dark,
+    },
   },
-  auth: {
-    banner_bg: colorsBase.primary_cta,
-    textColorSecondary: colorsBase.gray.normal,
+  auth_banner: {
+    bg: colorsBase.gradient,
+    link: colorsBase.white.pure,
   },
-  banner_link: colorsBase.white.pure,
   bg: {
     light: colorsBase.white.dark,
     dark: colorsBase.black.dark,
   },
-  button: {
-    variant: {
-      primary: {
-        color: colorsBase.white.pure,
-        disabled: {
-          light: {
-            bg: '#EDF2F7',
-            border: '#E2E8F0',
-            color: '#A0AEC0',
-          },
-          dark: {
-            bg: colorsBase.btn.dark_color_secondary,
-            border: colorsBase.btn.dark_color,
-            color: colorsBase.btn.dark_color,
-          },
-        },
-      },
-      common: {
-        bg: {
-          dark: '#13161b',
-          light: colorsBase.white.pure,
-        },
-        border_color: {
-          dark: '#373a41',
-          light: '#d5d7da',
-        },
-        color: {
-          dark: '#cecfd2',
-          light: '#414651',
-        },
-        hover: {
-          bg: {
-            dark: '#22262f',
-            light: '#f6f6f6',
-          },
-        },
-        disabled: {
-          color: {
-            light: '#4A5568',
-            dark: '#e9eaeb',
-          },
-          border: '#CBD5E0',
-        },
-      },
-
-      outline: {
-        color: colorsBase.white.pure,
-        bg: {
-          dark: '#13161b',
-          light: '#000',
-        },
-      },
-    },
-    dark: {
-      primary: '#7f56d9',
-      secondary: '#6941c6',
-    },
-  },
-  checkbox: {
-    bg_checked: colorsBase.primary,
-    disabled_border: colorsBase.gray.normal,
-    detailed: {
-      border: colorsBase.gray.light,
-    },
-    radiobox_control: colorsBase.white.light2,
-    disabled: {
-      light: 'gray.300',
-      dark: 'gray.600',
-    },
-  },
-  comparsions_table_title: colorsBase.primary,
   contents: {
     bg: {
       light: colorsBase.white.pure,
       dark: colorsBase.black.grayish,
     },
     color: {
-      light: colorsBase.black.pure,
+      light: colorsBase.black.dark,
       dark: colorsBase.white.pure,
     },
   },
-  dashboard: {
+  checkbox_detailed_border: {
+    light: colorsBase.gray.light,
+    dark: colorsBase.white.light,
+  },
+  input: {
     bg: {
+      light: colorsBase.white.pure,
+      dark: 'transparent',
+    },
+    border: {
+      light: colorsBase.gray.light,
+      dark: colorsBase.white.light,
+    },
+    drag_and_drop: {
+      border: {
+        light: colorsBase.gray.light,
+        dark: colorsBase.white.light,
+      },
+      border_active: {
+        light: colorsBase.primary.light,
+        dark: colorsBase.primary.dark,
+      },
+      text: {
+        light: colorsBase.primary.light,
+        dark: colorsBase.primary.dark,
+      },
+    },
+    dropdown: {
+      check_icon: {
+        light: colorsBase.primary.light,
+        dark: colorsBase.primary.dark,
+      },
+      control: colorsBase.gray.normal,
+
+      option_bg_selected: {
+        light: colorsBase.white.dark,
+        dark: colorsBase.black.dark,
+      },
+      placeholder: colorsBase.gray.normal,
+    },
+    element: colorsBase.gray.normal,
+    error: {
+      light: colorsBase.red.light,
+      dark: colorsBase.red.dark,
+    },
+    outline: {
+      light: colorsBase.blue.light,
+      dark: colorsBase.blue.dark,
+    },
+    required_asterisk: {
+      light: colorsBase.primary.light,
+      dark: colorsBase.primary.dark,
+    },
+  },
+  link: {
+    light: colorsBase.gray.dark,
+    dark: colorsBase.gray.normal,
+  },
+  text: {
+    light: colorsBase.black.dark,
+    dark: colorsBase.white.pure,
+  },
+  text_brand: {
+    light: colorsBase.primary.light,
+    dark: colorsBase.primary.dark,
+  },
+  text_secondary: {
+    light: colorsBase.gray.dark,
+    dark: colorsBase.gray.normal,
+  },
+  dashboard: {
+    invite_bg_checked_: {
       light: colorsBase.white.dark,
-      dark: colorsBase.black.dark,
-    },
-    color: {
-      light: colorsBase.black.pure,
-      dark: colorsBase.white.pure,
-    },
-    invite: {
-      bg_checked_light: colorsBase.white.dark,
-      bg_checked_dark: colorsBase.black.grayish,
+      dark: colorsBase.black.grayish,
     },
     process_view: {
       calendar_label: colorsBase.gray.normal,
-      link: colorsBase.blue.normal,
+      link: colorsBase.blue.light,
     },
     read_more: {
       from: colorsBase.white.from_read_more,
@@ -172,7 +179,7 @@ export const colors = {
         dark: colorsBase.black.grayish,
       },
       text: {
-        light: colorsBase.primary,
+        light: colorsBase.black.dark,
         dark: colorsBase.white.pure,
       },
     },
@@ -197,7 +204,7 @@ export const colors = {
       },
       color: {
         light: {
-          bg_white: colorsBase.black.pure,
+          bg_white: colorsBase.black.dark,
           bg_primary: colorsBase.white.pure,
         },
         dark: colorsBase.white.pure,
@@ -214,90 +221,54 @@ export const colors = {
     },
     support: {
       bg: {
-        light: colorsBase.gradientBottom,
-        dark: colorsBase.gradientBottom,
+        light: colorsBase.gradient,
+        dark: colorsBase.gradient,
       },
       helper: colorsBase.white.pure,
-      title: colorsBase.yellow,
+      title: colorsBase.orange.dark,
     },
     description: {
-      light: colorsBase.gray.dark2,
+      light: colorsBase.gray.dark,
       dark: colorsBase.white.pure,
     },
     footer: {
       icon: {
-        light: colorsBase.black.pure,
+        light: colorsBase.black.dark,
       },
     },
   },
-
-  google: {
-    bg: {
-      light: colorsBase.white.light2,
-      dark: colorsBase.black.grayish,
-    },
-    hover: {
-      light: colorsBase.white.pure,
-      dark: colorsBase.white.alpha,
-    },
-    active: {
-      light: colorsBase.white.light2,
-      dark: colorsBase.black.grayish,
-    },
-  },
-  input: {
+  pricing_card: {
     bg: {
       light: colorsBase.white.pure,
-      dark: 'transparent',
+      dark: colorsBase.black.grayish,
     },
-    calendar_border: colorsBase.gray.light,
-    border: colorsBase.white.light2,
-    element: colorsBase.gray.normal,
-    error: colorsBase.red,
-    drag_and_drop: {
-      border: colorsBase.gray.light,
-      border_active: colorsBase.primary,
-      text: colorsBase.primary,
+    border_dark: colorsBase.white.pure,
+    body_text: colorsBase.black.dark,
+    most_popular_plan: {
+      bg: colorsBase.beige,
+      color: colorsBase.black.dark,
     },
-    dropdown: {
-      check_icon: colorsBase.primary,
-      control: colorsBase.gray.normal,
-      option_dark: colorsBase.white.pure,
-      option_light_selected: colorsBase.black.pure,
-      option_bg_selected: {
-        light: colorsBase.white.dark,
-        dark: colorsBase.black.dark,
-      },
-      placeholder: colorsBase.gray.normal,
+    subtitle: {
+      light: colorsBase.gray.normal,
+      dark: colorsBase.white.light,
     },
-    outline: {
-      light: colorsBase.blue.normal,
-      dark: colorsBase.blue.light,
-    },
-    required_asterisk: colorsBase.primary,
   },
-  link: {
-    light: colorsBase.gray.dark,
-    dark: colorsBase.gray.normal,
+  pricing_modal_bg: {
+    light: colorsBase.primary.light,
+    dark: colorsBase.black.dark,
   },
-  org_text_secondary: colorsBase.gray.normal,
-
   process: {
-    aside: {
-      bg: colorsBase.gradient,
-      color: colorsBase.white.pure,
-      vote_btn_color: colorsBase.black.pure,
-      vote_btn_bg: colorsBase.primary,
-      verify_link: colorsBase.white.pure,
+    canceled: {
+      light: colorsBase.primary.light,
+      dark: colorsBase.primary.dark,
     },
-    canceled: colorsBase.primary,
     card_hover: {
       light: colorsBase.white.dark,
       dark: colorsBase.black.dark,
     },
     info_title: {
-      light: colorsBase.primary,
-      dark: colorsBase.white.pure,
+      light: colorsBase.primary.light,
+      dark: colorsBase.primary.dark,
     },
     label: {
       light: colorsBase.gray.dark,
@@ -305,11 +276,17 @@ export const colors = {
     },
     questions: {
       alert: {
-        bg: colorsBase.primary,
+        bg: {
+          light: colorsBase.primary.light,
+          dark: colorsBase.primary.light,
+        },
         link_bg: colorsBase.white.pure,
       },
       question_selected: {
-        bg: colorsBase.primary,
+        bg: {
+          light: colorsBase.primary.light,
+          dark: colorsBase.primary.dark,
+        },
         color: colorsBase.white.pure,
       },
       hover: {
@@ -321,76 +298,64 @@ export const colors = {
         dark: colorsBase.black.grayish,
       },
     },
-    paused: colorsBase.primary,
+    paused: {
+      light: colorsBase.primary.light,
+      dark: colorsBase.primary.dark,
+    },
     read_more_dark: colorsBase.black.grayish,
     results: {
-      alert_bg: colorsBase.primary,
+      alert_bg: {
+        light: colorsBase.primary.light,
+        dark: colorsBase.primary.dark,
+      },
       alert_color: colorsBase.white.pure,
-      bg: colorsBase.white.light2,
+      bg: colorsBase.white.light,
       description: {
         light: colorsBase.gray.dark,
         dark: colorsBase.white.pure,
       },
-      progressbar_bg: colorsBase.white.light2,
+      progressbar_bg: colorsBase.white.light,
       title: {
-        light: colorsBase.primary,
-        dark: colorsBase.white.pure,
+        light: colorsBase.primary.light,
+        dark: colorsBase.primary.dark,
       },
     },
     tabs: {
-      active_bg: colorsBase.white.light2,
-      hover_bg: colorsBase.white.light2,
-      border_bottom_list: colorsBase.white.light2,
+      active_bg: colorsBase.white.light,
+      hover_bg: colorsBase.white.light,
+      border_bottom_list: colorsBase.white.light,
     },
   },
-
   process_create: {
-    bg: {
-      dark: 'red',
-      light: colorsBase.white.dark,
-    },
-    bg_secondary: {
-      dark: colorsBase.black.grayish,
-      light: colorsBase.white.pure,
+    calendar_alert_border: {
+      light: colorsBase.gray.light,
+      dark: colorsBase.white.light,
     },
     stepper: {
-      bg: colorsBase.primary,
-      color: colorsBase.primary,
+      bg: {
+        light: colorsBase.primary.light,
+        dark: colorsBase.primary.dark,
+      },
+      color: {
+        light: colorsBase.primary.light,
+        dark: colorsBase.primary.dark,
+      },
+      color_icon: {
+        light: colorsBase.white.pure,
+        dark: colorsBase.black.dark,
+      },
     },
-    calendar_bg: {
-      dark: colorsBase.black.grayish,
-      light: colorsBase.white.pure,
-    },
-    text_brand: colorsBase.primary,
-    text_secondary: colorsBase.gray.normal,
-    question_index: colorsBase.primary,
-    footer_link: colorsBase.gray.dark,
-  },
-  pricing_card: {
-    bg: {
-      light: colorsBase.white.pure,
-      dark: colorsBase.black.grayish,
-    },
-    border_dark: colorsBase.white.pure,
-    body_text: colorsBase.black.pure,
-    most_popular_plan: {
-      bg: colorsBase.beige,
-      color: colorsBase.black.pure,
-    },
-    subtitle: {
-      light: colorsBase.gray.normal,
-      dark: colorsBase.white.light2,
+
+    question_index: {
+      light: colorsBase.primary.light,
+      dark: colorsBase.primary.dark,
     },
   },
-  pricing_modal: {
-    bg: {
-      light: colorsBase.primary,
-      dark: colorsBase.black.dark,
+  radio: {
+    disabled: {
+      light: 'gray.300',
+      dark: 'gray.600',
     },
-  },
-  process_view: {
-    bg_light: colorsBase.white.dark,
-    bg_dark: colorsBase.black.dark,
   },
   read_more: {
     from: colorsBase.white.from_read_more,
@@ -399,35 +364,26 @@ export const colors = {
       dark: colorsBase.black.dark,
     },
   },
-  tab: {
-    variant: {
-      card: {
-        badge_bg: colorsBase.primary,
-        bg: {
-          light: colorsBase.white.pure,
-          dark: colorsBase.black.grayish,
-        },
-        border: colorsBase.gray.normal,
-        description: {
-          light: colorsBase.gray.normal,
-          dark: colorsBase.white.pure,
-        },
-        svg: colorsBase.primary,
-      },
+  tab_card: {
+    bg: {
+      light: colorsBase.white.pure,
+      dark: colorsBase.black.grayish,
     },
-    responsive_tab: {
-      underline_border: colorsBase.gray.light,
+    checkbox_border: colorsBase.gray.normal,
+    svg: {
+      light: colorsBase.primary.light,
+      dark: colorsBase.primary.dark,
     },
   },
-
+  tab_underline_border: colorsBase.gray.light,
   table: {
     bg: {
-      light: colorsBase.white.light2,
+      light: colorsBase.white.light,
       light_hover: colorsBase.white.dark,
       dark: colorsBase.black.grayish,
     },
     thead: {
-      bg_light: colorsBase.white.light2,
+      bg_light: colorsBase.white.light,
       bg_dark: colorsBase.black.grayish,
     },
     variant: {
@@ -435,74 +391,62 @@ export const colors = {
         light: {
           tr_even: colorsBase.white.pure,
           tr_odd: colorsBase.white.dark,
-          hover: '#cce5de',
+          hover: colorsBase.primary.light,
+          hover_color: colorsBase.white.pure,
         },
         dark: {
           tr_even: colorsBase.black.grayish,
           tr_odd: colorsBase.black.dark,
-          hover: '#193d32',
+          hover: colorsBase.primary.dark,
+          hover_color: colorsBase.black.dark,
         },
       },
     },
   },
-
-  radio: {
-    bg: colorsBase.primary,
-    border: colorsBase.primary,
-    disabled: {
-      light: 'gray.300',
-      dark: 'gray.600',
-    },
-  },
-  text_area_bg: colorsBase.white.pure,
   text_area: {
     toolbar_dark: {
       bg: '#232323',
-      border: colorsBase.white.light2,
+      border: colorsBase.white.light,
       item_hover: colorsBase.black.grayish,
     },
-    bg_light: colorsBase.white.pure,
-    bg_dark: 'transparent',
-    border_dark: colorsBase.white.light2,
-    placeholder: colorsBase.white.light2,
+    bg: {
+      light: colorsBase.white.pure,
+      dark: 'transparent',
+    },
+    border_dark: colorsBase.white.light,
+    placeholder: colorsBase.white.light,
   },
-  verify_subtitle: colorsBase.white.light2,
-
-  wrapper: {
-    bg_light: colorsBase.white.pure,
-    bg_dark: colorsBase.black.grayish,
+  wrapper_bg: {
+    light: colorsBase.white.pure,
+    dark: colorsBase.black.grayish,
   },
 
-  // brand: {
-  //   50: '#9ebab1', // oultine light hover bg
-  //   100: '#87a99e', // outline light active bg ----------- outline dark color and border color
-  //   200: '#70998c', // primary dark mode bg
-  //   300: '#59897a', // primary dark mode hover bg
-  //   400: '#417969', // primary dark mode active bg
-  //   500: '#276958', // primary light mode bg
-  //   600: '#205345', // primary light mode hover bg  ------ outline light color and border color
-  //   700: '#193d32', // primary light mode active bg
-  //   800: 'rgba(112, 153, 140, 0.12)', //  oultine dark hover bg (use 200 in rgba and 0.12 transparency)
-  //   900: 'rgba(112, 153, 140, 0.24)', //  oultine dark active bg (use 200 in rgba and 0.24 transparency)
-  //   950: '',
-  // },
   brand: {
-    50: '#cce5de', // primary light color
-    100: '#99cbbd', // primary light bg
-    200: '#276958', // primary light bg hover
-    300: '#33967c', // primary light active
-    400: '#2b846b', // primary dark color
-    500: '#276958', // primary dark bg
-    600: '#205345', // primary dark bg hover
-    700: '#193d32', // primary dark bg active
-    800: '#12271f', // outline light color
-    850: '#12271f', // outline light border
-    950: '#050b07', // outline light bg hover
-    1000: '#050b07', // outline light bg active
-    1050: '#12271f', // outline dark color
-    1100: '#12271f', // outline dark border
-    1150: '#050b07', // outline dark bg hover
-    1200: '#050b07', // outline dark bg active
+    50: '#F0FFF4', // outline light hover bg
+    100: '#C6F6D5', // outline light active bg
+    200: '#9cd594', // primary dark mode bg ----------- outline dark color and border color
+    300: '#95c98c', // primary dark mode hover bg
+    400: '#8bbc83', // primary dark mode active bg
+    500: '#3b6930', // primary light mode bg
+    600: '#507846', // primary light mode hover bg  ------ outline light color and border color
+    700: '#4f7445', // primary light mode active bg
+    800: 'rgba(156, 213, 148, 0.12)', //  oultine dark hover bg (use 200 in rgba and 0.12 transparency)
+    900: 'rgba(156, 213, 148, 0.24)', //  oultine dark active bg (use 200 in rgba and 0.24 transparency)
+    950: '',
+  },
+
+  white: {
+    50: 'rgba(245, 245, 247, 0.2)',
+    100: 'rgba(245, 245, 247, 0.4)',
+    200: 'white',
+    300: 'white',
+    400: 'white',
+    500: 'white',
+    600: 'white',
+    700: 'white',
+    800: 'rgba(245, 245, 247, 0.2)',
+    900: 'rgba(245, 245, 247, 0.4)', 
+    950: '',
   },
   brandAlpha: {
     50: '#d9e4c4',
@@ -520,12 +464,12 @@ export const colors = {
   gradient: {
     50: '#2C7D57',
     100: '#2C7D57',
-    200: 'linear-gradient(to right, #2C7D57, #22555A)', // gradient base
-    300: 'linear-gradient(to right, #2C7D57, #2C7D57, #2C7D57, #22555A)',
-    400: 'linear-gradient(to right, #2C7D57, #2C7D57)',
-    500: 'linear-gradient(to right, #2C7D57, #22555A)', // gradient base
-    600: 'linear-gradient(to right, #2C7D57, #2C7D57, #2C7D57, #22555A)',
-    700: 'linear-gradient(to right, #2C7D57, #2C7D57)',
+    200: 'linear-gradient(to right, #9cd594, #3b6930)', // gradient base
+    300: 'linear-gradient(to right, #9cd594, #9cd594, #9cd594, #9cd594, #3b6930)',
+    400: 'linear-gradient(to right, #9cd594, #9cd594)',
+    500: 'linear-gradient(to right, #4f7445, #8bbc83)', // gradient base
+    600: 'linear-gradient(to right, #4f7445, #4f7445, #4f7445, #4f7445, #8bbc83)',
+    700: 'linear-gradient(to right, #4f7445, #4f7445)',
     800: '#2C7D57',
     900: '#2C7D57',
     950: '#2C7D57',

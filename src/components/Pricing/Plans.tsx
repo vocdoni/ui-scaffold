@@ -13,7 +13,7 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
-import { Select } from 'chakra-react-select'
+import { Select, SingleValue } from 'chakra-react-select'
 import { MutableRefObject, ReactNode, useMemo } from 'react'
 import { Controller, FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
@@ -21,9 +21,11 @@ import { Link as ReactRouterLink } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
+import { SelectOptionType } from '~components/Layout/SaasSelector'
 import { PlanId } from '~constants'
 import { QueryKeys } from '~src/queries/keys'
 import { Routes } from '~src/router/routes'
+import { reactSelectStyles } from '~theme/reactSelectStyles'
 import { currency } from '~utils/numbers'
 import PricingCard from './Card'
 import { usePricingModal } from './use-pricing-modal'
@@ -266,8 +268,11 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
               render={({ field }) => (
                 <Select
                   options={censusSizeOptions}
-                  onChange={(selected) => field.onChange(selected?.value || null)}
+                  onChange={(selected: SingleValue<SelectOptionType>) =>
+                    field.onChange(selected ? selected.value : null)
+                  }
                   value={censusSizeOptions.find((option) => option.value === field.value)}
+                  chakraStyles={reactSelectStyles}
                 />
               )}
             />
@@ -333,7 +338,7 @@ export const SubscriptionModal = ({
             <Text>
               <Trans i18nKey='pricing.help'>Need some help?</Trans>
             </Text>
-            <Button as={ReactRouterLink} to={Routes.contact} target='_blank' colorScheme='whiteAlpha' color={'white'}>
+            <Button as={ReactRouterLink} to={Routes.contact} target='_blank' colorScheme='white'>
               <Trans i18nKey='contact_us'>Contact us</Trans>
             </Button>
           </Box>

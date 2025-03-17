@@ -26,9 +26,9 @@ export const Modal = defineMultiStyleConfig({
           sm: 5,
         },
 
-        bgColor: 'pricing_modal.bg.light',
+        bgColor: 'pricing_modal_bg.light',
         _dark: {
-          bgColor: 'pricing_modal.bg.dark',
+          bgColor: 'pricing_modal_bg.dark',
         },
       },
       header: {

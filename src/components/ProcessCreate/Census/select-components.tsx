@@ -79,7 +79,13 @@ const OptionToken = (props: OptionProps<any, false, GroupBase<any>>) => {
             <CryptoAvatar name={name} icon={iconURI} id={ID} chainId={chainID} />
             <Text color='inherit'>{children}</Text>
           </Flex>
-          {isSelected && <CheckIcon color='input.dropdown.check_icon' ml='auto' />}
+          {isSelected && (
+            <CheckIcon
+              color='input.dropdown.check_icon.light'
+              _dark={{ color: 'input.dropdown.check_icon.dark' }}
+              ml='auto'
+            />
+          )}
         </Flex>
       </chakraComponents.Option>
     )
@@ -138,7 +144,13 @@ const OptionNetwork = (props: OptionProps<any, false, GroupBase<any>>) => {
           <CryptoAvatar name={name} icon={iconSource} />
           <Text>{children}</Text>
         </Flex>
-        {isSelected && <CheckIcon color='input.dropdown.check_icon' ml='auto' />}
+        {isSelected && (
+          <CheckIcon
+            color='input.dropdown.check_icon.light'
+            _dark={{ color: 'input.dropdown.check_icon.dark' }}
+            ml='auto'
+          />
+        )}
       </Flex>
     </chakraComponents.Option>
   )

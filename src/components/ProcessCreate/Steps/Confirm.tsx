@@ -239,7 +239,9 @@ export const Confirm = () => {
     <Wrapper>
       <Box>
         <Text fontWeight={'bold'}>{t('form.process_create.confirm.title')}</Text>
-        <Text mb={6}>{t('form.process_create.confirm.description')}</Text>
+        <Text color={'text_secondary.light'} _dark={{ color: 'text_secondary.dark' }} mb={6}>
+          {t('form.process_create.confirm.description')}
+        </Text>
         <ElectionProvider election={published}>
           <FormProvider {...methods}>
             <Flex flexDirection={{ base: 'column', xl2: 'row' }} gap={5}>
@@ -264,7 +266,7 @@ export const Confirm = () => {
                         alignItems: { xl2: 'start' },
 
                         '& span:first-of-type': {
-                          mt: { xl2: 1.5 },
+                          mt: { xl2: '2.5px' },
                         },
                       },
                     }}
@@ -289,7 +291,7 @@ export const Confirm = () => {
         </Button>
 
         <Button
-          variant={'primary'}
+          variant={'solid'}
           type='submit'
           form='process-create-form'
           isDisabled={disabled}

@@ -8,8 +8,7 @@ const baseStyle = definePartsStyle((props) => {
 
   return {
     container: {
-      width: 'fit-content',
-      display: 'flex',
+      display: 'inline-flex',
       justifyContent: 'center',
       padding: '6px 15px',
 

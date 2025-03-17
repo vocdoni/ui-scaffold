@@ -3,10 +3,20 @@ import { createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/react'
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(checkboxAnatomy.keys)
 const { definePartsStyle: defineDetailedPartsStyle, defineMultiStyleConfig: defineDetailedMultiStyleConfig } =
-  createMultiStyleConfigHelpers(['icon', 'title', 'badge', 'description', 'checkbox'])
+  createMultiStyleConfigHelpers(['icon', 'circle', 'checkbox', 'title', 'badge', 'description', 'checkbox'])
 
 export const DetailedCheckbox = defineDetailedMultiStyleConfig({
   baseStyle: defineDetailedPartsStyle((props) => ({
+    circle: {
+      position: 'absolute',
+      top: '18px',
+      right: '18px',
+      w: 4,
+      h: 4,
+      borderRadius: 'full',
+      border: `1px solid`,
+      borderColor: 'tab_card.checkbox_border',
+    },
     title: {
       display: 'flex',
       alignItems: 'center',
@@ -22,6 +32,8 @@ export const DetailedCheckbox = defineDetailedMultiStyleConfig({
     description: {
       textAlign: 'start',
       fontSize: 'sm',
+      color: 'text_secondary.light',
+      _dark: { color: 'text_secondary.dark' },
     },
   })),
 })
@@ -29,6 +41,11 @@ export const DetailedCheckbox = defineDetailedMultiStyleConfig({
 export const Checkbox = defineMultiStyleConfig({
   defaultProps: {
     colorScheme: 'brand',
+  },
+  baseStyle: {
+    control: {
+      borderRadius: 'full',
+    },
   },
   variants: {
     detailed: definePartsStyle({
@@ -40,13 +57,18 @@ export const Checkbox = defineMultiStyleConfig({
         alignItems: 'center',
         p: 4,
         border: '1px solid',
-        borderColor: 'checkbox.detailed.border',
+        borderColor: 'checkbox_detailed_border.light',
         borderRadius: 'lg',
+
+        _dark: {
+          borderColor: 'checkbox_detailed_border.dark',
+        },
       }),
       control: defineStyle({
         position: 'absolute',
         right: '1rem',
         top: '1rem',
+        borderRadius: 'full',
       }),
       label: defineStyle({
         fontSize: 'sm',

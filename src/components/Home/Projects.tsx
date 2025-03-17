@@ -63,18 +63,16 @@ const Support = () => {
           as={ReactRouterLink}
           to='mailto:info@vocdoni.org'
           variant='outline'
-          colorScheme='whiteAlpha'
+          colorScheme='white'
           aria-label={t('home.support.btn_contact')}
           title={t('home.support.btn_contact')}
           target='_blank'
           height='60px'
-          color='white'
           mx='auto'
           maxW='300px'
           minW='220px'
           fontSize='16px'
           mt='10px'
-          border='2px solid #fff'
           fontWeight='900'
         >
           {t('home.support.btn_contact')}

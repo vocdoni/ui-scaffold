@@ -5,10 +5,18 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
 
 const baseStyle = definePartsStyle({
   requiredIndicator: {
-    color: 'input.required_asterisk',
+    color: 'input.required_asterisk.light',
 
     _groupInvalid: {
-      color: 'input.error',
+      color: 'input.error.light',
+    },
+
+    _dark: {
+      color: 'input.required_asterisk.dark',
+
+      _groupInvalid: {
+        color: 'input.error.dark',
+      },
     },
   },
 })

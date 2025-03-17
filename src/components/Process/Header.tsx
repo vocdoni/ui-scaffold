@@ -121,7 +121,7 @@ const ProcessHeader = () => {
             {election?.status !== ElectionStatus.CANCELED ? (
               <ProcessDate />
             ) : (
-              <Text color='process.canceled' fontWeight='bold'>
+              <Text color='process.canceled.light' _dark={{ color: 'process.canceled.dark' }} fontWeight='bold'>
                 {t('process.status.canceled')}
               </Text>
             )}
@@ -196,12 +196,12 @@ const ProcessHeader = () => {
           )}
           {election?.status === ElectionStatus.PAUSED && election?.organizationId !== account?.address && (
             <Flex
-              color='process.paused'
-              _dark={{ color: 'white' }}
+              color='process.paused.light'
+              _dark={{ color: 'process.paused.dark', borderColor: 'process.paused.dark' }}
               gap={2}
               alignItems='center'
               border='1px solid'
-              borderColor='process.paused'
+              borderColor='process.paused.light'
               borderRadius='lg'
               p={2}
             >

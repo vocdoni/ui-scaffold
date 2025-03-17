@@ -137,11 +137,17 @@ export const OrganizationCreate = ({
       >
         <PublicOrgForm />
         <PrivateOrgForm />
-        <Button form='process-create-form' type='submit' isLoading={isPending} variant='primary' colorScheme='gradient'>
+        <Button form='process-create-form' type='submit' isLoading={isPending} variant='solid' colorScheme='gradient'>
           {t('organization.create_org')}
         </Button>
         <FormSubmitMessage isError={isError} error={error} />
-        <Text color={'account_create_text_secondary'} fontSize='sm' textAlign='center' mt='auto'>
+        <Text
+          color={'text_secondary.light'}
+          _dark={{ color: 'text_secondary.dark' }}
+          fontSize='sm'
+          textAlign='center'
+          mt='auto'
+        >
           <Trans i18nKey='create_org.already_profile'>
             If your organization already have a profile, ask the admin to invite you to your organization.
           </Trans>
@@ -150,14 +156,15 @@ export const OrganizationCreate = ({
           <Button
             as={ReactRouterLink}
             to={Routes.dashboard.base}
-            variant='outline'
+            variant='link'
+            colorScheme='colorMode'
             border='none'
             isDisabled={isPending}
           >
             {t('skip', { defaultValue: 'Skip' })}
           </Button>
         )}
-        <Text color={'account_create_text_secondary'} fontSize='sm' textAlign='center'>
+        <Text color={'text_secondary.light'} _dark={{ color: 'text_secondary.dark' }} fontSize='sm' textAlign='center'>
           <Trans i18nKey='create_org.logout'>If you want to login from another account, please logout</Trans>
         </Text>
         <LogoutBtn isDisabled={isPending} />

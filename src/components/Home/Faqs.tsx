@@ -1,4 +1,4 @@
-import { Box, BoxProps, Button, Card, CardBody, CardHeader, Flex, Text } from '@chakra-ui/react'
+import { Box, BoxProps, Button, Card, CardBody, CardHeader, Flex, Text, VStack } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -193,45 +193,45 @@ const Faqs = (props: BoxProps) => {
   ]
 
   return (
-    <Box position='relative' width='full' {...props}>
-      <Box width='full' m='0 auto' maxW='1920px' position='relative' zIndex={10}>
-        <Text
-          fontSize={{ base: '32px', xl: '42px' }}
-          lineHeight={{ base: '36px', xl: '46px' }}
-          fontWeight='bold'
-          textAlign='center'
-          mb='10px'
-          fontFamily='basier'
-        >
-          {t('home.faqs.title')}
-        </Text>
-        <Text
-          mb='60px'
-          maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}
-          mx='auto'
-          fontFamily='basier'
-          fontSize='20px'
-          color='home.description'
-          lineHeight='28px'
-          textAlign='center'
-        >
-          {t('home.faqs.subtitle')}
-        </Text>
-        <Flex flexWrap={'wrap'} gap={6}>
-          {faqs.map((el, idx) => {
-            if (!showAll && idx > 7) return null
-            return (
-              <Card key={idx} variant='faqs' flex={{ base: '1 1 100%', lg: '1 1 45%' }}>
-                <CardHeader>{el.title}</CardHeader>
-                <CardBody>{el.description}</CardBody>
-              </Card>
-            )
-          })}
-        </Flex>
-        <Button mx='auto' mt={4} onClick={() => setShowAll((prev) => !prev)}>
+    <Box width='full' m='0 auto' maxW='1920px' position='relative' zIndex={10} {...props}>
+      <Text
+        fontSize={{ base: '32px', xl: '42px' }}
+        lineHeight={{ base: '36px', xl: '46px' }}
+        fontWeight='bold'
+        textAlign='center'
+        mb='30px'
+        fontFamily='basier'
+      >
+        {t('home.faqs.title')}
+      </Text>
+      <Text
+        mb='40px'
+        maxW={{ base: '100%', sm: '70%', sm2: '80%', lg: '840px' }}
+        mx='auto'
+        fontFamily='basier'
+        fontSize='20px'
+        color='home.description'
+        lineHeight='28px'
+        textAlign='center'
+      >
+        {t('home.faqs.subtitle')}
+      </Text>
+      <Flex flexWrap={'wrap'} gap={6}>
+        {faqs.map((el, idx) => {
+          if (!showAll && idx > 7) return null
+          return (
+            <Card key={idx} variant='faqs' flex={{ base: '1 1 100%', lg: '1 1 45%' }}>
+              <CardHeader>{el.title}</CardHeader>
+              <CardBody>{el.description}</CardBody>
+            </Card>
+          )
+        })}
+      </Flex>
+      <VStack mt={4}>
+        <Button variant={'transparent'} colorScheme='colorMode' onClick={() => setShowAll((prev) => !prev)}>
           {showAll ? t('home.faqs.show_less') : t('home.faqs.show_more')}
         </Button>
-      </Box>
+      </VStack>
     </Box>
   )
 }

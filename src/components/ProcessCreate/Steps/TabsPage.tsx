@@ -86,7 +86,9 @@ export const TabsPage = <Implemented extends string, UnImplemented extends strin
       <Flex flexDirection='column' gap={5}>
         <Box>
           <Text fontWeight={'bold'}>{title}</Text>
-          <Text>{description}</Text>
+          <Text fontSize={'sm'} color={'text_secondary.light'} _dark={{ color: 'text_secondary.dark' }}>
+            {description}
+          </Text>
         </Box>
         <Tabs
           defaultIndex={defined.findIndex((val) => val === selected)}
@@ -200,20 +202,7 @@ const TabCardSkeleton = ({
       {check && !needsUpgrade && (
         <>
           <Check />
-          <Box
-            className='empty'
-            sx={{
-              position: 'absolute',
-              top: '1rem',
-              right: '1rem',
-              w: 4,
-              h: 4,
-              borderRadius: 'full',
-              border: `1px solid`,
-              borderColor: 'tab.variant.card.border',
-              color: 'inherit',
-            }}
-          />
+          <Box className='empty' sx={styles.circle} />
         </>
       )}
 

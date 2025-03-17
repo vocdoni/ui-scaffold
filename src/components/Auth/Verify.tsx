@@ -52,7 +52,7 @@ const VerifyForm = ({ email, initialCode = '', autoSubmit = false }: VerifyFormP
     <>
       <Input type={'text'} placeholder={'12345678'} value={code} onChange={handleInputChange} isDisabled={autoSubmit} />
       <Button
-        variant='primary'
+        variant='solid'
         isDisabled={!code || (autoSubmit && isVerifyPending)}
         isLoading={isVerifyPending}
         onClick={verify}

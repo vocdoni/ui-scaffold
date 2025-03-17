@@ -73,7 +73,8 @@ export const Question = ({ index, isMultiQuestion, remove }: Props) => {
           fontSize='100px'
           bottom={0}
           right={5}
-          color='process_create.question_index'
+          color='process_create.question_index.light'
+          _dark={{ color: 'process_create.question_index.dark' }}
           opacity={0.2}
         >
           {index + 1}

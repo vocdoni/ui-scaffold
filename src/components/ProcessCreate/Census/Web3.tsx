@@ -213,8 +213,8 @@ export const CensusWeb3Addresses = () => {
             <Trans
               i18nKey='form.process_create.web3.census_members'
               components={{
-                span: <Text as='span' fontWeight='bold' variant='process-create-subtitle-sm' />,
-                text: <Text variant='process-create-subtitle-sm' />,
+                span: <Text as='span' fontWeight='bold' />,
+                text: <Text />,
               }}
               count={fields.length}
             />

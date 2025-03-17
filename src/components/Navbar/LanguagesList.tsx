@@ -53,6 +53,7 @@ export const LanguagesMenu = ({ ...props }) => {
             as={Button}
             aria-label={t('menu.burger_aria_label')}
             variant='transparent'
+            colorScheme='colorMode'
             rightIcon={isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
             minW='none'
             {...props}
@@ -78,7 +79,8 @@ export const LanguagesListAccordion = () => {
       <AccordionItem>
         <AccordionButton
           as={Button}
-          variant='unstyled'
+          variant='transparent'
+          colorScheme='colorMode'
           m={0}
           p={0}
           h='fit-content'

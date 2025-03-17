@@ -6,7 +6,7 @@ const baseStyle = defineStyle((props) => ({
   borderRadius: 'full',
   fontWeight: 'normal',
   textTransform: 'capitalize',
-  display: 'flex',
+  display: 'inline-flex',
   justifyContent: 'center',
   alignItems: 'center',
   gap: 1,

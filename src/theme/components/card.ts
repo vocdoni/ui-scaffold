@@ -7,12 +7,16 @@ export const Card = defineMultiStyleConfig({
   variants: {
     calendar: {
       container: {
-        border: '1px solid #4E525C',
+        border: '1px solid',
+        borderColor: 'process_create.calendar_alert_border.light !important',
         flexDirection: 'row',
         p: 5,
         gap: 5,
         bgColor: 'transparent',
         borderRadius: 'xl',
+        _dark: {
+          borderColor: 'process_create.calendar_alert_border.dark !important',
+        },
       },
       header: {
         p: 0,
@@ -67,10 +71,10 @@ export const Card = defineMultiStyleConfig({
           fontSize: 'sm',
           textAlign: 'center',
           lineHeight: 1.2,
-          color: 'pricing_card.subtitle.light',
+          color: 'text_secondary.light',
 
           _dark: {
-            color: 'pricing_card.subtitle.dark',
+            color: 'text_secondary.dark',
           },
         },
       },
@@ -323,20 +327,20 @@ export const Card = defineMultiStyleConfig({
         'div:last-of-type': {
           'p:first-of-type': {
             fontWeight: '600',
-            fontSize: '22px',
-            lineHeight: '32px',
+            fontSize: 'xl',
+
             textAlign: { base: 'center', lg: 'start' },
             mb: '6px',
           },
 
           'p:last-of-type': {
-            fontSize: '22px',
+            fontSize: 'lg',
             textAlign: { base: 'center', lg: 'start' },
             maxW: { base: '100%', sm: '70%', lg: '100%' },
             mx: 'auto',
-            color: 'home.description.light',
+            color: 'text_secondary.light',
             _dark: {
-              color: 'home.description.dark',
+              color: 'text_secondary.dark',
             },
           },
         },
@@ -363,19 +367,19 @@ export const Card = defineMultiStyleConfig({
         'div:last-of-type': {
           'p:first-of-type': {
             fontWeight: '600',
-            fontSize: '26px',
-            lineHeight: '32px',
+            fontSize: 'xl',
+            mb: 1,
             textAlign: { base: 'center', lg: 'start' },
           },
 
           'p:last-of-type': {
-            fontSize: '22px',
+            fontSize: 'lg',
             textAlign: { base: 'center', lg: 'start' },
             maxW: { base: '100%', sm: '70%', lg: '100%' },
             mx: 'auto',
-            color: 'home.description.light',
+            color: 'text_secondary.light',
             _dark: {
-              color: 'home.description.dark',
+              color: 'text_secondary.dark',
             },
           },
         },
@@ -404,11 +408,10 @@ export const Card = defineMultiStyleConfig({
       },
       body: {
         p: 0,
-        color: 'home.description.light',
         fontSize: 'xl',
-
+        color: 'text_secondary.light',
         _dark: {
-          color: 'home.description.dark',
+          color: 'text_secondary.dark',
         },
       },
     },
@@ -423,18 +426,21 @@ export const Card = defineMultiStyleConfig({
         p: 3,
         bgColor: 'home.solutions.light_bg',
         fontWeight: 'bold',
+        color: 'text_secondary.light',
 
         _dark: {
           bgColor: 'home.solutions.dark_bg',
+          color: 'text_secondary.dark',
         },
       },
     },
     'no-elections': {
       container: {
-        bgColor: 'bg_secondary.light',
+        bg: 'transparent',
+        color: 'text_secondary.light',
 
         _dark: {
-          bgColor: 'bg_secondary.dark',
+          color: 'text_secondary.dark',
         },
       },
     },

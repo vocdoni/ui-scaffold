@@ -1,8 +1,8 @@
-import { Box, Flex, Heading, Icon, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Heading, Icon, Text } from '@chakra-ui/react'
 import { ReactNode, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaChevronLeft } from 'react-icons/fa'
-import { NavLink, Outlet, To } from 'react-router-dom'
+import { Outlet, Link as ReactRouterLink, To } from 'react-router-dom'
 import AuthBanner from '~components/Organization/Dashboard/AuthBanner'
 
 export type NavigationFunctionParams = To | number
@@ -102,14 +102,14 @@ const LayoutAuth = () => {
         }}
       >
         <Flex w='full' maxW='500px' mt={30}>
-          <NavLink to={back as unknown}>
+          <Button as={ReactRouterLink} variant={'transparent'} colorScheme='colorMode' to={back as unknown}>
             <Flex align='center' w='fit-content'>
               <Icon as={FaChevronLeft} me={2} h={3} w={2} color={'auth.text_color_secondary'} />
               <Text fontSize='sm' color={'auth.text_color_secondary'}>
                 {t('back', { defaultValue: 'Back' })}
               </Text>
             </Flex>
-          </NavLink>
+          </Button>
         </Flex>
         <Flex direction='column' gap={6} w={'100%'} maxW='500px'>
           {(title || subtitle) && (

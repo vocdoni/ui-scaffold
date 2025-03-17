@@ -45,7 +45,7 @@ export const TabsResponsive: ComponentStyleConfig = {
       tab: {
         borderRadius: 'none',
         borderBottom: '1px solid transparent',
-        borderColor: 'tab.responsive_tab.underline_border',
+        borderColor: 'tab_underline_border',
         _selected: {
           borderColor: `${colorScheme}.400`,
           borderBottomWidth: '2px',

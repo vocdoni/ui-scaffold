@@ -13,8 +13,8 @@ const baseStyle = (props: any) => {
         borderColor: `${colorScheme}.500`,
 
         _hover: {
-          bgColor: `${colorScheme}.600`,
-          borderColor: `${colorScheme}.600`,
+          bgColor: `${colorScheme}.700`,
+          borderColor: `${colorScheme}.700`,
         },
       },
 
@@ -23,6 +23,18 @@ const baseStyle = (props: any) => {
 
         _dark: {
           borderColor: 'radio.disabled.dark',
+        },
+      },
+
+      _dark: {
+        _checked: {
+          bgColor: `${colorScheme}.200`,
+          borderColor: `${colorScheme}.200`,
+
+          _hover: {
+            bgColor: `${colorScheme}.400`,
+            borderColor: `${colorScheme}.400`,
+          },
         },
       },
     },

@@ -26,7 +26,7 @@ const ComparisonSectionTable = ({ titleKey, plans, features, category, idx }: Co
           <Thead>
             <Tr>
               <Th>
-                <Text as={'span'} color='comparsions_table_title'>
+                <Text as={'span'} color='text_brand.light' _dark={{ color: 'text_brand.dark' }}>
                   <Trans i18nKey={titleKey} />
                 </Text>
               </Th>

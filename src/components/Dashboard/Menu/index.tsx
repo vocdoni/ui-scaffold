@@ -55,7 +55,7 @@ const DashboardMenuContent = () => (
         w='full'
         my={5}
         leftIcon={<AddIcon />}
-        variant='primary'
+        variant='solid'
       >
         <Trans i18nKey='new_voting'>New voting</Trans>
       </Button>

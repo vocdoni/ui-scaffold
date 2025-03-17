@@ -95,19 +95,19 @@ export const CensusCsvManager = () => {
         alignItems={{ base: 'start', lg: 'stretch' }}
         justifyContent='center'
       >
-        <Flex flexDirection='column' gap={6} flex='1 1 60%'>
+        <Flex flexDirection='column' gap={4} flex='1 1 60%'>
           <Flex alignItems='center' gap={1}>
             <Icon as={PiWarningCircleLight} />
             <Text mt={0.5}>{t('form.process_create.spreadsheet.requirements.title')}</Text>
           </Flex>
           <UnorderedList>
             <ListItem mb={2}>
-              <Text variant='process-create-subtitle-sm'>
+              <Text fontSize={'sm'} color={'text_secondary.light'} _dark={{ color: 'text_secondary.dark' }}>
                 {t('form.process_create.spreadsheet.requirements.list_one')}
               </Text>
             </ListItem>
             <ListItem>
-              <Text variant='process-create-subtitle-sm'>
+              <Text fontSize={'sm'} color={'text_secondary.light'} _dark={{ color: 'text_secondary.dark' }}>
                 {t('form.process_create.spreadsheet.requirements.list_two')}
               </Text>
             </ListItem>
@@ -138,7 +138,7 @@ export const CensusCsvManager = () => {
           </CardBody>
           <CardFooter>
             <Link download={'census-template.csv'} href={template.url}>
-              <Button variant={'outline'} leftIcon={<BiDownload />}>
+              <Button variant={'outline'} colorScheme='whiteBlack' leftIcon={<BiDownload />}>
                 {t('form.process_create.spreadsheet.download_template_btn')}
               </Button>
             </Link>

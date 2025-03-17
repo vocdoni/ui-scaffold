@@ -48,7 +48,7 @@ const card = definePartsStyle({
     p: 4,
     px: 6,
     boxShadow: 'var(--box-shadow)',
-    bgColor: 'tab.variant.card.bg.light',
+    bgColor: 'tab_card.bg.light',
     borderBottom: 'none',
     borderRadius: 'xl',
     w: 'full',
@@ -56,11 +56,19 @@ const card = definePartsStyle({
     '& > svg': {
       w: 5,
       h: 5,
-      color: 'tab.variant.card.svg',
+      color: 'tab_card.svg.light',
       position: 'absolute',
       top: '1rem',
       right: '1rem',
       display: 'none',
+    },
+
+    _dark: {
+      bgColor: 'tab_card.bg.dark',
+      boxShadow: 'none',
+      '& > svg': {
+        color: 'tab_card.svg.dark',
+      },
     },
 
     _selected: {
@@ -78,19 +86,16 @@ const card = definePartsStyle({
     _hover: {
       boxShadow: 'none',
     },
-    _dark: {
-      bgColor: 'tab.variant.card.bg.dark',
-      boxShadow: 'none',
-    },
+
     '&:nth-of-type(2)': {
       mr: 'auto',
     },
   },
   tabpanel: {
-    bgColor: 'tab.variant.card.bg.light',
+    bgColor: 'tab_card.bg.light',
     borderRadius: 'xl',
     _dark: {
-      bgColor: 'tab.variant.card.bg.dark',
+      bgColor: 'tab_card.bg.dark',
     },
   },
 })

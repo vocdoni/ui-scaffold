@@ -1,7 +1,7 @@
 import { Box, Flex } from '@chakra-ui/react'
 
 const Wrapper = ({ ...props }) => (
-  <Box bg={'wrapper.bg_light'} _dark={{ bgColor: 'wrapper.bg_dark' }}>
+  <Box bg={'wrapper_bg.light'} _dark={{ bgColor: 'wrapper_bg.dark' }}>
     <Flex
       minH='100vh'
       position='relative'

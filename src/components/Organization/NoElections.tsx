@@ -28,7 +28,7 @@ const NoElections = () => {
               <Button
                 mt='40px'
                 w='100%'
-                variant='primary'
+                variant='solid'
                 as={ReactRouterLink}
                 to={Routes.processes.create}
                 colorScheme='gradient'

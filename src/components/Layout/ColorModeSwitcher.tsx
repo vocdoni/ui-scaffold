@@ -13,7 +13,7 @@ export const ColorModeSwitcher: React.FC<ColorModeSwitcherProps> = (props) => {
   return (
     <IconButton
       variant='transparent'
-      colorScheme='blackAlpha'
+      colorScheme='colorMode'
       size='md'
       fontSize='lg'
       onClick={toggleColorMode}
