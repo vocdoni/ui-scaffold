@@ -73,7 +73,7 @@ const Coib = () => {
       <Flex flexDirection='column' gap={10} maxW='850px' mx='auto' p={5}>
         <Box>
           <Heading as='h1' fontWeight='bold' fontSize='32px' textAlign='center'>
-            Participa a la prova pilot de vot telemàtic del COIB!
+            Assemblea General Ordinària
           </Heading>
           <Text as='h2' fontSize='16px' textAlign='center'>
             Col·legi Oficial Infermeres i Infermers de Barcelona
