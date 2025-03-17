@@ -1,4 +1,15 @@
-import { Button, FormControl, FormErrorMessage, HStack, PinInput, PinInputField, VStack } from '@chakra-ui/react'
+import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  Button,
+  FormControl,
+  FormErrorMessage,
+  HStack,
+  PinInput,
+  PinInputField,
+  VStack,
+} from '@chakra-ui/react'
 import { useElection } from '@vocdoni/react-providers'
 import { PublishedElection } from '@vocdoni/sdk'
 import { Controller, useForm } from 'react-hook-form'
@@ -87,6 +98,12 @@ export const Step1Base = ({ election }: { election: PublishedElection }) => {
             </HStack>
             {errors.code && <FormErrorMessage textAlign='center'>{errors.code.message}</FormErrorMessage>}
           </FormControl>
+          {auth.isError && (
+            <Alert status='error'>
+              <AlertIcon />
+              <AlertDescription>{auth.error.message}</AlertDescription>
+            </Alert>
+          )}
 
           <Button type='submit' colorScheme='primary' w='full' isLoading={auth.isPending}>
             {t('csp_census.auth.step1.submit', { defaultValue: 'Authenticate' })}
