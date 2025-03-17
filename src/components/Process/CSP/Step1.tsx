@@ -1,4 +1,7 @@
 import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
   Button,
   FormControl,
   FormErrorMessage,
@@ -95,6 +98,12 @@ export const Step1Base = ({ election }: { election: PublishedElection }) => {
             {errors.code && <FormErrorMessage textAlign='center'>{errors.code.message}</FormErrorMessage>}
             <FormHelperText>Si fas servir email, no oblidis revisar el correu brossa</FormHelperText>
           </FormControl>
+          {auth.isError && (
+            <Alert status='error'>
+              <AlertIcon />
+              <AlertDescription>{auth.error.message}</AlertDescription>
+            </Alert>
+          )}
 
           <Button type='submit' colorScheme='primary' w='full' isLoading={auth.isPending}>
             {t('csp_census.auth.step1.submit', { defaultValue: 'Authenticate' })}
