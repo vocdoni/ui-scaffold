@@ -76,7 +76,7 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
 
           <FormControl isRequired>
             <Checkbox size='sm' variant='inline' colorScheme='blue'>
-              Accepto els{' '}
+              He llegit i accepto els{` `}
               <Link as={RouterLink} to={Routes.terms} isExternal>
                 Termes i Condicions
               </Link>{' '}
@@ -84,10 +84,14 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
               <Link as={RouterLink} to={Routes.privacy} isExternal>
                 Política de Privacitat
               </Link>
-              . Entenc que les dades només s'utilitzen per verificar la meva identitat, l'enviament d'un codi de
-              verificació, i no es guarden.
+              .
             </Checkbox>
           </FormControl>
+
+          <Text fontSize='xs'>
+            💡 Les teves dades s'utlilitzaran només per verificar la teva identitat. Vocdoni no emmagatzema dades
+            personals.
+          </Text>
 
           <Button type='submit' variant='primary' borderRadius='full' w='full' isLoading={auth.isPending} mt={2}>
             Rebre Codi
