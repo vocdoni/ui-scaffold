@@ -1,4 +1,4 @@
-import { AspectRatio, Box, Button, Flex, Heading, Link, Spinner, Text } from '@chakra-ui/react'
+import { AspectRatio, Box, Button, Flex, Heading, Link, ListItem, OrderedList, Spinner, Text } from '@chakra-ui/react'
 import { ElectionProvider, useClient, useElection } from '@vocdoni/react-providers'
 import { InvalidElection } from '@vocdoni/sdk'
 import { Crisp } from 'crisp-sdk-web'
@@ -88,23 +88,34 @@ const Coib = () => {
           mx='auto'
           style={{ marginTop: '0px' }}
         >
-          <Box display='flex' flexDirection='column' gap={5}>
-            <Text fontSize='20px'>
-              El COIB vol modernitzar els seus processos i adaptar-se a les noves necessitats tecnològiques, oferint als
-              col·legiats eines més àgils, segures i accessibles. Per això, consolidar el vot en remot en els processos
-              participatius del Col·legi és una prioritat.
+          <Box>
+            <Text as='h3' fontWeight='bold' fontSize='20px'>
+              Ordre del dia de l'Assemblea General Ordinària
+              <br />
+              <br />
             </Text>
-            <Text fontSize='20px'>
-              Per assegurar l’èxit de la iniciativa, agrairem comptar amb la teva participació en aquesta prova pilot.
-              La prova estarà oberta de 17 h a 19 h. i disponible per a totes les col·legiades.
+            <Text fontSize='18px'>
+              <OrderedList ml='35px'>
+                <ListItem>Benvinguda.</ListItem>
+                <ListItem>Aprovació memòria d'activitats 2024.</ListItem>
+                <ListItem>Aprovació estat de comptes i la liquidació de l'exerici 2024.</ListItem>
+                <ListItem>Aprovació del pressupost 2025.</ListItem>
+                <ListItem>Torn obert de preguntes.</ListItem>
+              </OrderedList>
             </Text>
-            <Text fontSize='20px'>Recorda: és important comptar amb les dades personals actualitzades al COIB</Text>
+            <Box fontSize='18px'>
+              <Text style={{ marginTop: '30px' }}>
+                - Enllaç a documentació externa:{' '}
+                <a href='' target='_blank' style={{ textDecoration: 'underline', color: '#297b90' }}>
+                  Documentació 🔗
+                </a>
+                <br />- Enllaç a plataforma de precs i preguntes:{' '}
+                <a href='' target='_blank' style={{ textDecoration: 'underline', color: '#297b90' }}>
+                  Precs i Preguntes 🔗
+                </a>
+              </Text>
+            </Box>
           </Box>
-          {!connected && (
-            <Text fontWeight='bold' mb={10} textAlign='center' fontSize='24px'>
-              La prova pilot estarà oberta de 17h. a 19h. del Dijous, 06 de Març del 2025.
-            </Text>
-          )}
           {connected && (
             <Box>
               <Box ref={videoRef} />
