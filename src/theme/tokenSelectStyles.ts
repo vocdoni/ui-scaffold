@@ -24,7 +24,6 @@ export const customStylesSelect: ChakraStylesConfig = {
 
     _dark: {
       bgColor: state.isSelected && 'input.dropdown.option_bg_selected.dark',
-     
     },
   }),
   dropdownIndicator: (base) => ({
