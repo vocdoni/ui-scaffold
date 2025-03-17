@@ -34,6 +34,10 @@ export const Routes = {
     return: '/stripe/return/:sessionId',
   },
   terms: '/terms',
+  usecases: {
+    base: '/use-cases',
+    view: '/use-cases/:lang?/:case?',
+  },
 }
 
 export type RoutesType = typeof Routes
