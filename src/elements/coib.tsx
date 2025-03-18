@@ -103,15 +103,12 @@ const Coib = () => {
             </OrderedList>
             <Box fontSize='18px'>
               <Text style={{ marginTop: '30px' }}>
-                - Enllaç a documentació externa:{' '}
-                <Link href='' target='_blank'>
-                  Documentació 🔗
-                </Link>
-              </Text>
-              <Text>
-                - Enllaç a plataforma de precs i preguntes:{' '}
-                <Link href='' target='_blank'>
-                  Precs i Preguntes 🔗
+                - Enllaç a la documentació externa:{' '}
+                <Link
+                  href='https://pbcoib.blob.core.windows.net/coib-publish/invar/97848814-4a8d-4b20-9e25-9f8d02ae2815'
+                  isExternal
+                >
+                  Memòria COIB 🔗
                 </Link>
               </Text>
             </Box>
