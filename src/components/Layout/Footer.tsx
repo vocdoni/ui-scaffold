@@ -43,34 +43,34 @@ const Footer = () => {
             <Text fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px' display='none'>
               {t('footer.company')}
             </Text>
-            <Link fontWeight='bold' variant='link_no_underline' href='https://www.vocdoni.io' target='_blank'>
+            <Link fontWeight='bold' variant='hover_underline' href='https://www.vocdoni.io' target='_blank'>
               Vocdoni
             </Link>
             <Link
               fontWeight='bold'
-              variant='link_no_underline'
+              variant='hover_underline'
               href='https://www.vocdoni.io/about'
               whiteSpace='nowrap'
               target='_blank'
             >
               {t('footer.about_us')}
             </Link>
-            <Link fontWeight='bold' variant='link_no_underline' href='https://www.vocdoni.io/contact' target='_blank'>
+            <Link fontWeight='bold' variant='hover_underline' href='https://www.vocdoni.io/contact' target='_blank'>
               {t('footer.contact')}
             </Link>
-            <Link fontWeight='bold' variant='link_no_underline' href='https://www.vocdoni.io/api' target='_blank'>
+            <Link fontWeight='bold' variant='hover_underline' href='https://www.vocdoni.io/api' target='_blank'>
               SDK
             </Link>
             <Link
               fontWeight='bold'
-              variant='link_no_underline'
+              variant='hover_underline'
               href='https://developer.vocdoni.io'
               whiteSpace='nowrap'
               target='_blank'
             >
               {t('footer.developer_portal')}
             </Link>
-            <Link fontWeight='bold' variant='link_no_underline' href='https://blog.vocdoni.io' target='_blank'>
+            <Link fontWeight='bold' variant='hover_underline' href='https://blog.vocdoni.io' target='_blank'>
               Blog
             </Link>
           </Flex>
@@ -90,8 +90,8 @@ const Footer = () => {
           <Trans
             i18nKey='footer.terms_and_privacy'
             components={{
-              link1: <Link as={ReactRouterLink} variant={'link_no_underline'} to={Routes.terms} />,
-              link2: <Link as={ReactRouterLink} variant={'link_no_underline'} to={Routes.privacy} />,
+              link1: <Link as={ReactRouterLink} variant={'hover_underline'} to={Routes.terms} />,
+              link2: <Link as={ReactRouterLink} variant={'hover_underline'} to={Routes.privacy} />,
             }}
           />
         </Text>

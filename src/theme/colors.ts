@@ -237,7 +237,7 @@ export const colors = {
       },
     },
   },
-  link_no_underline: {
+  link_hover_underline: {
     light: colorsBase.black.dark,
     dark: colorsBase.white.pure,
   },
