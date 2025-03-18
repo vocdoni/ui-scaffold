@@ -1,7 +1,8 @@
-import { Box, Td, Tr } from '@chakra-ui/react'
+import { Box, Td, Tr, useColorMode } from '@chakra-ui/react'
 import { ElectionStatusBadge, ElectionTitle, QuestionsTypeBadge } from '@vocdoni/chakra-components'
 import { useElection } from '@vocdoni/react-providers'
 import { ensure0x, InvalidElection } from '@vocdoni/sdk'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { generatePath, Link as RouterLink } from 'react-router-dom'
 import { useDateFns } from '~i18n/use-date-fns'
@@ -11,16 +12,18 @@ const ProcessCard = () => {
   const { election } = useElection()
   const { format } = useDateFns()
   const { t } = useTranslation()
+  const { colorMode } = useColorMode()
+  const [isHovered, setIsHovered] = useState(false)
 
   if (!election || election instanceof InvalidElection) return null
 
   return (
-    <Tr position='relative'>
+    <Tr position='relative' onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
       <Td>
         <Box
           as={RouterLink}
           to={generatePath(Routes.dashboard.process, { id: ensure0x(election.id) })}
-          position={'absolute'}
+          position='absolute'
           w='full'
           h='full'
           left={0}
@@ -36,7 +39,7 @@ const ProcessCard = () => {
         <QuestionsTypeBadge sx={{ '& label': { fontWeight: 'normal' } }} />
       </Td>
       <Td>
-        <ElectionStatusBadge />
+        <ElectionStatusBadge colorScheme={colorMode === 'dark' && isHovered ? 'black' : 'green'} />
       </Td>
       <Td>
         {election.voteCount}/{election.census.size}
