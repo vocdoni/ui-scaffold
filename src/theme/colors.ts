@@ -237,6 +237,10 @@ export const colors = {
       },
     },
   },
+  link_no_underline: {
+    light: colorsBase.black.dark,
+    dark: colorsBase.white.pure,
+  },
   pricing_card: {
     bg: {
       light: colorsBase.white.pure,

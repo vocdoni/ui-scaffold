@@ -25,13 +25,13 @@ const SaasFooter = () => {
           <Box minW='100px'>
             <VocdoniLogo />
           </Box>
-          <Link variant='footer' as={ReactRouterLink} to={Routes.terms} mt='5px' fontSize={'sm'}>
+          <Link variant='link_no_underline' as={ReactRouterLink} to={Routes.terms} mt='5px' fontSize={'sm'}>
             {t('terms_and_conditions', { defaultValue: 'Terms and Conditions' })}
           </Link>
-          <Link variant='footer' as={ReactRouterLink} to={Routes.privacy} mt='5px' fontSize={'sm'}>
+          <Link variant='link_no_underline' as={ReactRouterLink} to={Routes.privacy} mt='5px' fontSize={'sm'}>
             {t('privacy_policy', { defaultValue: 'Privacy Policy' })}
           </Link>
-          <Link variant='footer' mt='5px' href='mailto:support@vocdoni.org' fontSize={'sm'}>
+          <Link variant='link_no_underline' mt='5px' href='mailto:support@vocdoni.org' fontSize={'sm'}>
             support@vocdoni.org
           </Link>
         </Flex>

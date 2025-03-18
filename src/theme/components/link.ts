@@ -30,11 +30,14 @@ export const Link = defineStyleConfig({
       border: '1px solid',
       cursor: 'pointer',
     }),
-    footer: (props) => ({
+    link_no_underline: (props) => ({
       textDecoration: 'none',
-
+      color: 'link_no_underline.light',
       _hover: {
         textDecoration: 'underline',
+      },
+      _dark: {
+        color: 'link_no_underline.dark',
       },
     }),
   },
