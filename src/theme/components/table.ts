@@ -68,9 +68,25 @@ const striped = definePartsStyle((props) => ({
           bgColor: 'table.variant.striped.light.hover !important',
           color: 'table.variant.striped.light.hover_color !important',
 
+          '& .check': {
+            color: 'table.variant.striped.light.icon_check_hover !important',
+          },
+
+          '& .cross': {
+            color: 'table.variant.striped.light.icon_cross_hover !important',
+          },
+
           _dark: {
             bgColor: 'table.variant.striped.dark.hover !important',
             color: 'table.variant.striped.dark.hover_color !important',
+
+            '& .check': {
+              color: 'table.variant.striped.dark.icon_check_hover !important',
+            },
+
+            '& .cross': {
+              color: 'table.variant.striped.dark.icon_cross_hover !important',
+            },
           },
         },
       },
