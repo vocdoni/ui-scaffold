@@ -1,16 +1,26 @@
 import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
 
-const baseStyle = defineStyle((props) => ({
-  border: '1px solid',
-  borderColor: `${props.colorScheme}.200`,
-  borderRadius: 'full',
-  fontWeight: 'normal',
-  textTransform: 'capitalize',
-  display: 'inline-flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  gap: 1,
-}))
+const baseStyle = defineStyle((props) => {
+  const { colorScheme } = props
+
+  return {
+    border: '1px solid',
+    borderColor: `${colorScheme}.200`,
+    borderRadius: 'full',
+    fontWeight: 'normal',
+    textTransform: 'capitalize',
+    display: 'inline-flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 1,
+    bgColor: `${colorScheme}.500`,
+    color: 'white',
+    _dark: {
+      bgColor: `${colorScheme}.200`,
+      color: 'black',
+    },
+  }
+})
 
 const xs = defineStyle({
   fontSize: '12px',

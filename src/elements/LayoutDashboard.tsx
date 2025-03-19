@@ -50,7 +50,7 @@ const LayoutDashboard: React.FC = () => {
               aria-label='Back'
               icon={<MdKeyboardArrowLeft />}
               colorScheme='brand'
-              color='black'
+              variant={'outline'}
             />
           )}
           {title && (

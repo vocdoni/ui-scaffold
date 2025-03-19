@@ -65,7 +65,7 @@ export const ProcessView = () => {
       {/* Main content area */}
       <DashboardContents display='flex' flexDir='column' gap={6} order={{ base: 1, lg: 0 }}>
         {/* Title, schedule, and description */}
-        <ElectionSchedule showRemaining as={Tag} variant='solid' color='white' />
+        <ElectionSchedule showRemaining as={Tag} variant='solid' w={'fit-content'} />
         <ElectionTitle variant='contents-title' mb={0} />
         {election instanceof PublishedElection && election.description && (
           <Box>

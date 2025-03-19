@@ -26,6 +26,20 @@ export const colorsBase = {
   primary: {
     light: '#3b6930',
     dark: '#9cd594',
+    button: {
+      light: {
+        active: '#8bbc83',
+        hover: '#507846',
+        outline_active: '#C6F6D5',
+        outline_hover: '#F0FFF4',
+      },
+      dark: {
+        active: '#4f7445',
+        hover: '#95c98c',
+        outline_active: 'rgba(156, 213, 148, 0.24)',
+        outline_hover: 'rgba(156, 213, 148, 0.12)',
+      },
+    },
   },
   red: {
     light: '#E53E3E',
@@ -282,7 +296,7 @@ export const colors = {
       alert: {
         bg: {
           light: colorsBase.primary.light,
-          dark: colorsBase.primary.light,
+          dark: colorsBase.primary.dark,
         },
         link_bg: colorsBase.white.pure,
       },
@@ -379,6 +393,13 @@ export const colors = {
       dark: colorsBase.primary.dark,
     },
   },
+  spreadsheet_access: {
+    bg: {
+      light: colorsBase.primary.light,
+      dark: colorsBase.primary.dark,
+    },
+    hover: {},
+  },
   tab_underline_border: colorsBase.gray.light,
   table: {
     bg: {
@@ -434,16 +455,16 @@ export const colors = {
   },
 
   brand: {
-    50: '#F0FFF4', // outline light hover bg
-    100: '#C6F6D5', // outline light active bg
-    200: '#9cd594', // primary dark mode bg ----------- outline dark color and border color
-    300: '#95c98c', // primary dark mode hover bg
-    400: '#8bbc83', // primary dark mode active bg
-    500: '#3b6930', // primary light mode bg
-    600: '#507846', // primary light mode hover bg  ------ outline light color and border color
-    700: '#4f7445', // primary light mode active bg
-    800: 'rgba(156, 213, 148, 0.12)', //  oultine dark hover bg (use 200 in rgba and 0.12 transparency)
-    900: 'rgba(156, 213, 148, 0.24)', //  oultine dark active bg (use 200 in rgba and 0.24 transparency)
+    50: colorsBase.primary.button.light.outline_hover, // outline light hover bg
+    100: colorsBase.primary.button.light.outline_active, // outline light active bg
+    200: colorsBase.primary.dark, // primary dark mode bg ----------- outline dark color and border color
+    300: colorsBase.primary.button.dark.hover, // primary dark mode hover bg
+    400: colorsBase.primary.button.dark.active, // primary dark mode active bg
+    500: colorsBase.primary.light, // primary light mode bg
+    600: colorsBase.primary.button.light.hover, // primary light mode hover bg  ------ outline light color and border color
+    700: colorsBase.primary.button.light.active, // primary light mode active bg
+    800: colorsBase.primary.button.dark.outline_hover, //  oultine dark hover bg (use 200 in rgba and 0.12 transparency)
+    900: colorsBase.primary.button.dark.outline_active, //  oultine dark active bg (use 200 in rgba and 0.24 transparency)
     950: '',
   },
 

@@ -68,12 +68,18 @@ const baseStyle = definePartsStyle({
     px: 8,
     py: 8,
     my: 4,
+    mt: 6,
     color: 'process.results.alert_color',
     bgColor: 'process.results.alert_bg.light',
     borderRadius: 'lg',
     whiteSpace: 'wrap',
+
+    '& svg': {
+      color: 'red',
+    },
     _dark: {
       bgColor: 'process.results.alert_bg.dark',
+      color: 'black',
     },
   },
 
@@ -93,6 +99,7 @@ const baseStyle = definePartsStyle({
     display: 'flex',
     flexDirection: 'column',
     gap: 10,
+    border: '1px solid red',
   },
 })
 

@@ -39,7 +39,7 @@ const ProcessCard = () => {
         <QuestionsTypeBadge sx={{ '& label': { fontWeight: 'normal' } }} />
       </Td>
       <Td>
-        <ElectionStatusBadge colorScheme={colorMode === 'dark' && isHovered ? 'black' : 'green'} />
+        <ElectionStatusBadge colorScheme={colorMode === 'dark' && isHovered ? 'black' : 'brand'} />
       </Td>
       <Td>
         {election.voteCount}/{election.census.size}

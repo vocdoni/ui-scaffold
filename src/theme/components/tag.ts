@@ -11,9 +11,24 @@ const baseStyle = definePartsStyle((props) => {
       display: 'inline-flex',
       justifyContent: 'center',
       padding: '6px 15px',
+    },
+  }
+})
 
+const solid = definePartsStyle((props) => {
+  const { colorScheme } = props
+
+  return {
+    container: {
+      bgColor: `${colorScheme}.500`,
+      color: 'white !important',
       _dark: {
-        borderColor: `${colorScheme}.300`,
+        bgColor: `${colorScheme}.200`,
+        color: 'black !important',
+
+        _hover: {
+          color: 'black !important',
+        },
       },
     },
   }
@@ -21,5 +36,8 @@ const baseStyle = definePartsStyle((props) => {
 
 export const Tag = defineMultiStyleConfig({
   baseStyle,
-  defaultProps: { colorScheme: 'brand' },
+  variants: {
+    solid,
+  },
+  defaultProps: { colorScheme: 'brand', variant: 'solid' },
 })

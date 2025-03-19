@@ -6,6 +6,7 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 
 const baseStyle = definePartsStyle({
   alert: {
+    mt: 6,
     width: 'full',
     px: { base: 3, sm: 5 },
     py: 7,
@@ -24,6 +25,7 @@ const baseStyle = definePartsStyle({
       ml: { base: 2, lg: 10, xl: 2 },
       gridRow: '1/3',
       gridColumn: '1/2',
+      color: 'white',
     },
 
     _dark: {
@@ -35,6 +37,9 @@ const baseStyle = definePartsStyle({
     fontSize: 'lg',
     mb: 3,
     color: 'white',
+    _dark: {
+      color: 'black',
+    },
   },
 
   alertDescription: {
@@ -45,6 +50,10 @@ const baseStyle = definePartsStyle({
     alignItems: { md: 'center' },
     whiteSpace: { base: 'pre-wrap', lg2: 'nowrap' },
     color: 'white',
+
+    _dark: {
+      color: 'black',
+    },
   },
 
   alertLink: {
@@ -61,7 +70,7 @@ const baseStyle = definePartsStyle({
     fontSize: 'sm',
 
     _dark: {
-      color: 'link.light',
+      color: 'black',
     },
     _hover: {
       textDecoration: 'none',
@@ -75,6 +84,7 @@ const baseStyle = definePartsStyle({
       gap: 10,
       pt: { base: 6, xl: 10 },
       mb: { base: 8, xl: 12 },
+
       '& > div:first-of-type': {
         display: 'none',
       },

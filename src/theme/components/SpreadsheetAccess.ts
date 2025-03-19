@@ -1,5 +1,6 @@
 import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
 import { spreadsheetAccessAnatomy } from '@vocdoni/chakra-components'
+import { colorsBase } from '~theme/colors'
 
 const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpers(spreadsheetAccessAnatomy)
 
@@ -10,48 +11,51 @@ const baseStyle = definePartsStyle({
     justifyContent: 'center',
     alignItems: 'center',
     gap: '10px',
-    border: '1px solid',
-    bg: '#276958',
-    borderColor: '#12271f',
-    color: 'spreadsheet_access_btn.primary.color',
+    color: 'white',
+    bgColor: colorsBase.primary.light,
 
     _hover: {
-      bg: '#205345',
-      borderColor: '#12271f',
-      _disabled: {
-        bg: 'spreadsheet_access_btn.primary.disabled.light.bg',
-        color: 'spreadsheet_access_btn.primary.disabled.light.color',
-        borderColor: 'spreadsheet_access_btn.primary.disabled.light.border',
-        opacity: 1,
-        _dark: {
-          bg: 'spreadsheet_access_btn.primary.disabled.dark.bg',
-          color: 'spreadsheet_access_btn.primary.disabled.dark.color',
-          borderColor: 'spreadsheet_access_btn.primary.disabled.dark.border',
-          opacity: 0.4,
-        },
-      },
+      bgColor: colorsBase.primary.button.light.hover,
     },
-    _active: { bg: '#193d32' },
+
+    _active: {
+      bgColor: colorsBase.primary.button.light.active,
+    },
+
     _disabled: {
-      bg: 'spreadsheet_access_btn.primary.disabled.light.bg',
-      color: 'spreadsheet_access_btn.primary.disabled.light.color',
-      borderColor: 'spreadsheet_access_btn.primary.disabled.light.border',
+      bg: '#EDF2F7',
+      border: '#E2E8F0',
+      color: '#A0AEC0',
       opacity: 1,
-      _dark: {
-        bg: 'spreadsheet_access_btn.primary.disabled.dark.bg',
-        color: 'spreadsheet_access_btn.primary.disabled.dark.color',
-        borderColor: 'spreadsheet_access_btn.primary.disabled.dark.border',
+    },
+
+    _dark: {
+      color: 'black',
+      bgColor: colorsBase.primary.dark,
+
+      _hover: {
+        bgColor: colorsBase.primary.button.dark.hover,
+      },
+
+      _active: {
+        bgColor: colorsBase.primary.button.dark.active,
+      },
+
+      _disabled: {
+        bg: '#22262f',
+        color: '#22262f',
+        borderColor: '#22262f',
         opacity: 0.4,
       },
     },
   },
   disconnect: {
-    color: 'black',
     textDecoration: 'underline',
     border: 'none',
-    bgColor: 'transparent',
+    bgColor: 'transparent !important',
+    color: 'black',
     _hover: {
-      color: 'gray.800',
+      color: 'black',
       textDecoration: 'none',
 
       _disabled: {
@@ -73,9 +77,9 @@ const baseStyle = definePartsStyle({
         color: 'spreadsheet_access_btn.common.disabled.color.light',
       },
     },
-
     _dark: {
       color: 'white',
+
       _hover: {
         color: 'white',
       },
