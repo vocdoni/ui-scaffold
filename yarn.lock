@@ -2725,10 +2725,10 @@
     long "^5.2.1"
     protobufjs "^7.1.2"
 
-"@vocdoni/rainbowkit-wallets@^0.2.2":
-  version "0.2.5"
-  resolved "https://registry.yarnpkg.com/@vocdoni/rainbowkit-wallets/-/rainbowkit-wallets-0.2.5.tgz#d114fe87b09f79ff8be4191b02d4268332346dda"
-  integrity sha512-vbYG3uGFT3Xo568e7nD8yt5CbUYcX6rT7o+ipXlb7gzj6j/P4ZSIgfAQZNEIGDZj5qfjJqmY4Po+nS/U3gozgA==
+"@vocdoni/rainbowkit-wallets@^0.2.6":
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/@vocdoni/rainbowkit-wallets/-/rainbowkit-wallets-0.2.6.tgz#595b4f5d690759332e366a58445a57116e7d6f6f"
+  integrity sha512-16VID35u+/GJfyT8ccOHmicI6KgXZiIfHPlncVJ7yWH2VFsuRHutecv0UE1WuioB7YCgJtGYcKspuwJJnZpSaw==
   dependencies:
     crypto-js "^4.2.0"
 
@@ -8032,8 +8032,8 @@ snarkjs@vocdoni/snarkjs#f/browser:
   resolved "https://codeload.github.com/vocdoni/snarkjs/tar.gz/5ba4333d0b6df8098219bca9b1f288a30d066d0e"
   dependencies:
     bfj "^7.0.2"
-    circom_runtime "0.1.25"
-    ffjavascript "0.3.0"
+    circom_runtime "0.1.23"
+    ffjavascript "0.2.59"
 
 socks-proxy-agent@^8.0.3:
   version "8.0.4"

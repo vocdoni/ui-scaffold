@@ -188,6 +188,8 @@ export const useAuthProvider = () => {
   return {
     isAuthenticated,
     bearer,
+    setBearer,
+    updateSigner,
     login,
     register,
     mailVerify,

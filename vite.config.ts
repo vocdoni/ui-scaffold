@@ -32,6 +32,8 @@ const viteconfig = ({ mode }) => {
     saasUrl = saasUrl.slice(0, -1)
   }
 
+  let oauthUrl = process.env.OAUTH_URL || 'https://oauth.vocdoni.io'
+
   return defineConfig({
     base,
     build: {
@@ -50,6 +52,7 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.title': JSON.stringify(title),
       'import.meta.env.STRIPE_PUBLIC_KEY': JSON.stringify(process.env.STRIPE_PUBLIC_KEY),
       'import.meta.env.SAAS_URL': JSON.stringify(saasUrl),
+      'import.meta.env.OAUTH_URL': JSON.stringify(oauthUrl),
     },
     plugins: [
       tsconfigPaths(),

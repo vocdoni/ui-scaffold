@@ -1,7 +1,7 @@
 import { connectorsForWallets, Wallet } from '@rainbow-me/rainbowkit'
 import '@rainbow-me/rainbowkit/styles.css'
 import { coinbaseWallet, metaMaskWallet, rainbowWallet, walletConnectWallet } from '@rainbow-me/rainbowkit/wallets'
-import { oAuthWallet, privateKeyWallet } from '@vocdoni/rainbowkit-wallets'
+import { privateKeyWallet, saasOAuthWallet } from '@vocdoni/rainbowkit-wallets'
 import { configureChains, createConfig } from 'wagmi'
 import {
   arbitrum,
@@ -70,36 +70,47 @@ const featuredConnectors = () => {
   const web2: WalletGroup = {
     groupName: 'Social',
     wallets: [
-      oAuthWallet({
-        id: 'github',
-        chains,
-        name: 'Github',
-        iconUrl: 'https://authjs.dev/img/providers/github-dark.svg',
-        options: {
-          oAuthServiceUrl: 'https://oauth.vocdoni.io/',
-          oAuthServiceProvider: 'github',
-        },
-      }) as unknown as Wallet,
-      oAuthWallet({
+      // oAuthWallet({
+      //   id: 'github',
+      //   chains,
+      //   name: 'Github',
+      //   iconUrl: 'https://authjs.dev/img/providers/github-dark.svg',
+      //   options: {
+      //     oAuthServiceUrl: 'https://oauth.vocdoni.io/',
+      //     oAuthServiceProvider: 'github',
+      //   },
+      // }) as unknown as Wallet,
+      // oAuthWallet({
+      //   id: 'google',
+      //   chains,
+      //   name: 'Google',
+      //   iconUrl: 'https://authjs.dev/img/providers/google.svg',
+      //   options: {
+      //     oAuthServiceUrl: 'http://localhost:8080/',
+      //     oAuthServiceProvider: 'google',
+      //   },
+      // }) as unknown as Wallet,
+      // oAuthWallet({
+      //   id: 'facebook',
+      //   chains,
+      //   name: 'Facebook',
+      //   iconUrl: 'https://authjs.dev/img/providers/facebook.svg',
+      //   options: {
+      //     oAuthServiceUrl: 'https://oauth.vocdoni.io/',
+      //     oAuthServiceProvider: 'facebook',
+      //   },
+      // }),
+      saasOAuthWallet({
         id: 'google',
         chains,
         name: 'Google',
         iconUrl: 'https://authjs.dev/img/providers/google.svg',
         options: {
-          oAuthServiceUrl: 'https://oauth.vocdoni.io/',
+          oAuthServiceUrl: import.meta.env.OAUTH_URL,
           oAuthServiceProvider: 'google',
+          saasBackendUrl: import.meta.env.SAAS_URL,
         },
       }) as unknown as Wallet,
-      oAuthWallet({
-        id: 'facebook',
-        chains,
-        name: 'Facebook',
-        iconUrl: 'https://authjs.dev/img/providers/facebook.svg',
-        options: {
-          oAuthServiceUrl: 'https://oauth.vocdoni.io/',
-          oAuthServiceProvider: 'facebook',
-        },
-      }),
     ],
   }
 
