@@ -6,56 +6,6 @@ on:
     - d/**
   pull_request:
 jobs:
-  build-dev-vocdoni:
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20.x
-
-      - name: Cache Node.js modules
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Install
-        run: yarn
-
-      - name: Lint
-        run: yarn lint
-
-      - name: Build vocdoni app dev
-        run: yarn build
-        env:
-          VOCDONI_ENVIRONMENT: dev
-          CUSTOM_ORGANIZATION_DOMAINS: ${{ secrets.CUSTOM_ORGANIZATION_DOMAINS }}
-          CSP_URL: ${{ secrets.CSP_URL }}}
-          CSP_PUBKEY: ${{ secrets.CSP_PUBKEY }}
-          STRIPE_PUBLIC_KEY: pk_test_51P6vaOI1T5UnHYElxQ2aqpc7DZET6spnYww8ItU7rOv94OTHlGzvh4fK3Z5HVTGT2KmGLnDCcUnvBUjODYiL61W600XBPAnoZZ
-
-      - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v2.0
-        with:
-          publish-dir: './dist'
-          # keep as a non existant branch, because we don't want to publish this
-          production-branch: develop
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: 'Vocdoni DEV Deploy from GitHub Actions'
-          enable-pull-request-comment: true
-          enable-commit-comment: true
-          overwrites-pull-request-comment: true
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: 5bddb63a-3f70-4de9-9fa8-89afc6f813a8
-        timeout-minutes: 1
-
   build-stg-vocdoni:
     runs-on: ubuntu-22.04
     steps:
@@ -89,6 +39,7 @@ jobs:
           CSP_URL: ${{ secrets.CSP_URL }}}
           CSP_PUBKEY: ${{ secrets.CSP_PUBKEY }}
           STRIPE_PUBLIC_KEY: pk_test_51PNuOtDW6VLep8WG8WFS7KZocugbzYbkuNn94WAxuGZUa1maPK7kv5BnEPN3x5bXLaCYhHRkBmmGJVVvcDkbbnbS00V4LExTPD
+          SAAS_URL: https://saas-api-stg.vocdoni.net
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2.0
