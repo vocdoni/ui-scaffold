@@ -47,7 +47,7 @@ import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~src/router/routes'
 
 export const ProcessView = () => {
-  const { setTitle, setBack } = useOutletContext<DashboardLayoutContext>()
+  const { setBreadcrumb } = useOutletContext<DashboardLayoutContext>()
   const { id, election, participation, turnout } = useElection()
   const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(70, 40)
 
@@ -56,9 +56,11 @@ export const ProcessView = () => {
   const { t } = useTranslation()
 
   useEffect(() => {
-    setTitle(t('vote_details', { defaultValue: 'Vote details' }))
-    setBack(generatePath(Routes.dashboard.processes))
-  }, [setTitle, setBack, t])
+    setBreadcrumb([
+      { title: t('organization.dashboard'), route: Routes.dashboard.base },
+      { title: t('vote_details', { defaultValue: 'Vote details' }), route: Routes.dashboard.organization },
+    ])
+  }, [setBreadcrumb])
 
   return (
     <Grid templateColumns={{ base: '1fr', md: '1fr', lg: '1fr 350px' }} position='relative' gap={6} height='full'>

@@ -6,16 +6,20 @@ import { DashboardContents } from '~components/Layout/Dashboard'
 import QueryDataLayout from '~components/Layout/QueryDataLayout'
 import EditOrganization from '~components/Organization/Edit'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
+import { Routes } from '~routes'
 
 const OrganizationEdit = () => {
   const { t } = useTranslation()
   const { isLoading, isError, error } = useSaasAccount()
-  const { setTitle } = useOutletContext<DashboardLayoutContext>()
+  const { setBreadcrumb } = useOutletContext<DashboardLayoutContext>()
 
   // Set layout variables
   useEffect(() => {
-    setTitle(t('organization.organization', { defaultValue: 'Organization' }))
-  }, [setTitle])
+    setBreadcrumb([
+      { title: t('organization.dashboard'), route: Routes.dashboard.base },
+      { title: t('organization.organization', { defaultValue: 'Organization' }), route: Routes.dashboard.organization },
+    ])
+  }, [setBreadcrumb])
 
   return (
     <QueryDataLayout isLoading={isLoading} isError={isError} error={error}>

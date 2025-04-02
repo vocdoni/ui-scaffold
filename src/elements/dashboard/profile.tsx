@@ -4,15 +4,19 @@ import { useOutletContext } from 'react-router-dom'
 import { AccountEdit } from '~components/Account/Edit'
 import { DashboardContents } from '~components/Layout/Dashboard'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
+import { Routes } from '~routes'
 
 export const Profile = () => {
   const { t } = useTranslation()
-  const { setTitle } = useOutletContext<DashboardLayoutContext>()
+  const { setBreadcrumb } = useOutletContext<DashboardLayoutContext>()
 
   // Set layout variables
   useEffect(() => {
-    setTitle(t('profile.title'))
-  }, [setTitle])
+    setBreadcrumb([
+      { title: t('organization.dashboard'), route: Routes.dashboard.base },
+      { title: t('profile.title', { defaultValue: 'Profile' }), route: Routes.dashboard.profile },
+    ])
+  }, [setBreadcrumb])
 
   return (
     <DashboardContents>

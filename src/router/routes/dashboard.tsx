@@ -9,6 +9,7 @@ import Error from '~elements/Error'
 import LayoutDashboard from '~elements/LayoutDashboard'
 import { paginatedElectionsQuery } from '~src/queries/organization'
 import OrganizationProtectedRoute from '~src/router/OrganizationProtectedRoute'
+import ProtectedRoutes from '~src/router/ProtectedRoutes'
 import { Routes } from '.'
 import AccountProtectedRoute from '../AccountProtectedRoute'
 import { SuspenseLoader } from '../SuspenseLoader'
@@ -19,6 +20,7 @@ const DashboardCreateOrg = lazy(() => import('~elements/dashboard/organization/c
 const DashboardProcesses = lazy(() => import('~elements/dashboard/processes'))
 const DashboardProcessView = lazy(() => import('~elements/dashboard/processes/view'))
 const OrganizationTeam = lazy(() => import('~elements/dashboard/team'))
+const ProcessCreate = lazy(() => import('~elements/dashboard/processes/create'))
 
 // others
 const OrganizationDashboard = lazy(() => import('~components/Organization/Dashboard'))
@@ -117,6 +119,18 @@ export const useDashboardRoutes = () => {
                     <SubscriptionPage />
                   </SuspenseLoader>
                 ),
+              },
+              {
+                ...ProtectedRoutes([
+                  {
+                    path: Routes.processes.create,
+                    element: (
+                      <SuspenseLoader>
+                        <ProcessCreate />
+                      </SuspenseLoader>
+                    ),
+                  },
+                ]),
               },
             ],
           },

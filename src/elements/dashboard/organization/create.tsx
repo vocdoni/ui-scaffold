@@ -9,12 +9,14 @@ import { Routes } from '~src/router/routes'
 const DashBoardCreateOrg = () => {
   const { t } = useTranslation()
   const [onSuccessRoute, setOnSuccessRoute] = useState<To>(Routes.dashboard.base)
-  const { setTitle } = useOutletContext<DashboardLayoutContext>()
+  const { setBreadcrumb } = useOutletContext<DashboardLayoutContext>()
 
   // Set layout title and subtitle and back button
   useEffect(() => {
-    setTitle(t('create_org.title', { defaultValue: 'Organization' }))
-
+    setBreadcrumb([
+      { title: t('organization.dashboard'), route: Routes.dashboard.base },
+      { title: t('create_org.title', { defaultValue: 'Organization' }), route: Routes.dashboard.organizationCreate },
+    ])
     if (window.history.state.idx) {
       setOnSuccessRoute(-1 as unknown)
     }
