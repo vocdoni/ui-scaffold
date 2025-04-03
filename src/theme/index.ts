@@ -33,8 +33,8 @@ import { radii } from './radius'
 
 export const theme = extendTheme(vtheme, {
   config: {
-    initialColorMode: 'system',
-    useSystemColorMode: true,
+    initialColorMode: 'light',
+    useSystemColorMode: false,
   },
   styles: {
     global: (props) => ({
