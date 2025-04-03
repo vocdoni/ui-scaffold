@@ -472,9 +472,6 @@
         "description_label": "Descripció",
         "description_placeholder": "Descripció (opcional)"
       },
-      "navbar": {
-        "close_form_btn": "Tanca el formulari"
-      },
       "next_step": "Següent",
       "previous_step": "Anterior",
       "question": {
@@ -543,6 +540,7 @@
     "more_effective": "25: Més efectiu",
     "most_effective": "30: Molt efectiu"
   },
+  "help": "Necessites ajuda?",
   "home": {
     "benefits": {
       "card_1": {
@@ -1457,6 +1455,11 @@
     "read_more": "Llegeix més"
   },
   "usecases": {
+    "banner": {
+      "chat": "Chat to sales",
+      "subtitle": "Join our network of +500 organizations using our secure voting platform",
+      "title": "Use Cases"
+    },
     "city_councils": {
       "description": "Millorar la democràcia participativa als ajuntaments amb Vocdoni",
       "eyebrow": "Institucions i sector públic",
@@ -1467,6 +1470,8 @@
       "eyebrow": "Col·legis professionals",
       "title": "Organitzacions comunitàries"
     },
+    "description": "Vocdoni helped a wide range of organizations and institutions improve their participatory processes, voting and elections with out cutting-edge software. Know more about our success stories and understand how we can help you, we adapt to all verticals",
+    "eyebrow": "Use Cases",
     "integrators": {
       "description": "Integrar programari de vot digital amb Vocdoni",
       "eyebrow": "Producte",
@@ -1486,7 +1491,8 @@
       "description": "Fomentar la participació dels membres i reduir la càrrega administrativa amb Vocdoni",
       "eyebrow": "Enginyeria de programari",
       "title": "Clubs esportius"
-    }
+    },
+    "title": "Our success stories"
   },
   "user_management": "Gestió d'usuaris",
   "verification_code": "Verification Code",

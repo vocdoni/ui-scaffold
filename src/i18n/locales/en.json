@@ -467,9 +467,6 @@
         "description_label": "Description",
         "description_placeholder": "Provide more details about your voting process."
       },
-      "navbar": {
-        "close_form_btn": "Close form"
-      },
       "next_step": "Next",
       "previous_step": "Previous",
       "question": {
@@ -536,6 +533,7 @@
     "more_effective": "25: More Effective",
     "most_effective": "30: Most Effective"
   },
+  "help": "Do you need help?",
   "home": {
     "benefits": {
       "card_1": {
@@ -1446,6 +1444,11 @@
     "read_more": "Read more"
   },
   "usecases": {
+    "banner": {
+      "chat": "Chat to sales",
+      "subtitle": "Join our network of +500 organizations using our secure voting platform",
+      "title": "Use Cases"
+    },
     "city_councils": {
       "description": "Improving Participatory Democracy on City Councils with Vocdoni",
       "eyebrow": "Institutions ans Public Sector",
@@ -1456,6 +1459,8 @@
       "eyebrow": "Professional Collages",
       "title": "Community Organizations"
     },
+    "description": "Vocdoni helped a wide range of organizations and institutions improve their participatory processes, voting and elections with out cutting-edge software. Know more about our success stories and understand how we can help you, we adapt to all verticals",
+    "eyebrow": "Use Cases",
     "integrators": {
       "description": "Embedding Digital Voting Software with Vocdoni",
       "eyebrow": "Product",
@@ -1475,7 +1480,8 @@
       "description": "Engaging Membership and Lowering Administrative Burden with Vocdoni",
       "eyebrow": "Software Engineering",
       "title": "Sport Clubs"
-    }
+    },
+    "title": "Our success stories"
   },
   "user_management": "User Managment",
   "verification_code": "Verification Code",

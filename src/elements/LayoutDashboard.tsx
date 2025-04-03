@@ -11,13 +11,11 @@ import {
   useBreakpointValue,
   useDisclosure,
 } from '@chakra-ui/react'
-import { generatePath, Link as ReactRouterLink } from 'react-router-dom'
-
 import { ChevronRight, HelpCircle, LayoutRight, Plus } from '@untitled-ui/icons-react'
 import { OrganizationProvider, useClient } from '@vocdoni/react-providers'
 import { PropsWithChildren, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { Outlet } from 'react-router-dom'
+import { generatePath, Outlet, Link as ReactRouterLink } from 'react-router-dom'
 import DashboardMenu from '~components/Dashboard/Menu'
 import { PricingModalProvider } from '~components/Pricing/PricingModalProvider'
 import { Routes } from '~routes'
@@ -110,8 +108,13 @@ const LayoutDashboard: React.FC = () => {
             </Box>
 
             <Flex gap={2} ml='auto' alignItems={'center'}>
-              <Button leftIcon={<HelpCircle />} colorScheme='gray'>
-                Do you need help?
+              <Button
+                as={ReactRouterLink}
+                to={generatePath(Routes.processes.create)}
+                leftIcon={<HelpCircle />}
+                colorScheme='gray'
+              >
+                <Trans i18nKey='help'>Do you need help?</Trans>
               </Button>
               <Button leftIcon={<Plus />} colorScheme='black'>
                 <Trans i18nKey='new_voting'>New vote</Trans>
