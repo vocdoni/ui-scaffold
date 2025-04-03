@@ -32,9 +32,7 @@ type BreadcrumbItem = {
 
 const LayoutDashboard: React.FC = () => {
   const { t } = useTranslation()
-  const [breadcrumb, setBreadcrumb] = useState<BreadcrumbItem[]>([
-    { title: t('organization.dashboard'), route: Routes.dashboard.base },
-  ])
+  const [breadcrumb, setBreadcrumb] = useState<BreadcrumbItem[]>([])
   const { isOpen, onOpen, onClose } = useDisclosure() // For mobile sidebar toggle
   const isMobile = useBreakpointValue({ base: true, md: false })
   const [reduced, setReduced] = useState(false)
@@ -73,6 +71,25 @@ const LayoutDashboard: React.FC = () => {
 
             <Box as='nav'>
               <OrderedList display={'flex'} alignItems={'center'} gap={1.5} styleType={"''"} ml={0}>
+                {!!breadcrumb.length ? (
+                  <>
+                    <ListItem>
+                      <Link
+                        as={ReactRouterLink}
+                        to={generatePath(Routes.dashboard.base)}
+                        variant={'breadcrumb'}
+                        onClick={() => setBreadcrumb([])}
+                      >
+                        {t('organization.dashboard')}
+                      </Link>
+                    </ListItem>
+                    <ListItem display={'flex'} justifyContent={'center'} alignItems={'center'}>
+                      <Icon as={ChevronRight} />
+                    </ListItem>
+                  </>
+                ) : (
+                  <Text>{t('organization.dashboard')}</Text>
+                )}
                 {breadcrumb.map((el, idx) => (
                   <>
                     <ListItem key={idx}>

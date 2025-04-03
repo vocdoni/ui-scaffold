@@ -12,7 +12,6 @@ const SubscriptionPage = () => {
 
   useEffect(() => {
     setBreadcrumb([
-      { title: t('organization.dashboard'), route: Routes.dashboard.base },
       { title: t('subscription.title', { defaultValue: 'Subscription' }), route: Routes.dashboard.subscription },
     ])
   }, [setBreadcrumb])

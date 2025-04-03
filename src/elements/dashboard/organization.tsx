@@ -16,7 +16,6 @@ const OrganizationEdit = () => {
   // Set layout variables
   useEffect(() => {
     setBreadcrumb([
-      { title: t('organization.dashboard'), route: Routes.dashboard.base },
       { title: t('organization.organization', { defaultValue: 'Organization' }), route: Routes.dashboard.organization },
     ])
   }, [setBreadcrumb])

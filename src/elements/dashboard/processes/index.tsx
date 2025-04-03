@@ -19,7 +19,6 @@ const OrganizationVotings = () => {
   // Set page title
   useEffect(() => {
     setBreadcrumb([
-      { title: t('organization.dashboard'), route: Routes.dashboard.base },
       {
         title: t('organization.votings_list', { defaultValue: 'Voting processes list' }),
         route: Routes.dashboard.base,

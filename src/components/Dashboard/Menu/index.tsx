@@ -19,6 +19,7 @@ const DashboardMenu = ({ isOpen, onClose, reduced }: { isOpen: boolean; onClose:
       w='full'
       h='100vh'
       borderRight='var(--border)'
+      p={2}
     >
       <DashboardMenuContent />
     </Box>
