@@ -34,7 +34,6 @@ export const Routes = {
   processes: {
     create: '/admin/processes/create',
     view: '/processes/:id',
-    bundle: '/bundle/:id',
   },
   stripe: {
     checkout: '/stripe/checkout/:amount?',

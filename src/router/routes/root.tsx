@@ -3,11 +3,9 @@ import { VocdoniSDKClient } from '@vocdoni/sdk'
 import { lazy } from 'react'
 import { Params } from 'react-router-dom'
 // These aren't lazy loaded since they are main layouts and related components
-import CoibWrapper from '~elements/coib'
 import Error from '~elements/Error'
 import Layout from '~elements/Layout'
 import PlansPublicPage from '~elements/plans'
-import ProcessBundle from '~elements/processes/bundle'
 import { StripeCheckout, StripeReturn } from '~elements/Stripe'
 import ProtectedRoutes from '~src/router/ProtectedRoutes'
 import { Routes } from '.'
@@ -15,7 +13,7 @@ import { SuspenseLoader } from '../SuspenseLoader'
 
 // elements / pages
 const Faucet = lazy(() => import('~elements/Faucet'))
-// const Home = lazy(() => import('~components/Home'))
+const Home = lazy(() => import('~components/Home'))
 const NotFound = lazy(() => import('~elements/NotFound'))
 const Process = lazy(() => import('~elements/processes/view'))
 const OrganizationView = lazy(() => import('~elements/organization/view'))
@@ -25,42 +23,24 @@ const Terms = lazy(() => import('~components/TermsAndPrivacy/Terms'))
 const Privacy = lazy(() => import('~components/TermsAndPrivacy/Privacy'))
 const Calculator = lazy(() => import('~components/Calculator'))
 
-// const domains = import.meta.env.CUSTOM_ORGANIZATION_DOMAINS
+const domains = import.meta.env.CUSTOM_ORGANIZATION_DOMAINS
 
 const RootElements = (client: VocdoniSDKClient) => [
   {
     index: true,
-    element: (
-      <SuspenseLoader>
-        <CoibWrapper />
-      </SuspenseLoader>
-    ),
+    element: <SuspenseLoader>{domains[window.location.hostname] ? <OrganizationView /> : <Home />}</SuspenseLoader>,
+    loader: async () => {
+      if (domains[window.location.hostname]) {
+        return client.fetchAccountInfo(domains[window.location.hostname])
+      }
+      return null
+    },
   },
-  // {
-  //   index: true,
-  //   element: <SuspenseLoader>{domains[window.location.hostname] ? <OrganizationView /> : <Home />}</SuspenseLoader>,
-  //   loader: async () => {
-  //     if (domains[window.location.hostname]) {
-  //       return client.fetchAccountInfo(domains[window.location.hostname])
-  //     }
-  //     return null
-  //   },
-  // },
   {
     path: Routes.processes.view,
     element: (
       <SuspenseLoader>
         <Process />
-      </SuspenseLoader>
-    ),
-    loader: async ({ params }: { params: Params<string> }) => client.fetchElection(params.id),
-    errorElement: <Error />,
-  },
-  {
-    path: Routes.processes.bundle,
-    element: (
-      <SuspenseLoader>
-        <ProcessBundle />
       </SuspenseLoader>
     ),
     loader: async ({ params }: { params: Params<string> }) => client.fetchElection(params.id),
