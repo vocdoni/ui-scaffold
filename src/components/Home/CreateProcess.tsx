@@ -53,13 +53,13 @@ const CreateProcess = () => {
             {t('home.create_process.btn')}
           </Button>
 
-          <Text display='flex' alignItems='center' gap={1}>
+          <Box display='flex' alignItems='center' gap={1}>
             <Box flex={'0 0 24px'}>
               <FaRegCheckCircle />
             </Box>
 
             {t('home.create_process.helper_1')}
-          </Text>
+          </Box>
         </Box>
       </Box>
       <Box flex='1 1 50%' display={{ lg: 'flex' }} justifyContent='center' alignItems='center'>
