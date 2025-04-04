@@ -2710,12 +2710,12 @@
     "@types/babel__core" "^7.20.5"
     react-refresh "^0.14.2"
 
-"@vocdoni/chakra-components@^0.9.8":
-  version "0.9.8"
-  resolved "https://registry.yarnpkg.com/@vocdoni/chakra-components/-/chakra-components-0.9.8.tgz#99a16a227cbde36fbb1ce255e466a1a122e329c6"
-  integrity sha512-jbLw60J/TWjlTFlvkTBcj6TA25ZmiWtXbRe7gqYRFRn+jYT6GFaGDvl/C0L8W8iv73tgK5BI/PRkBYJh5Duxxg==
+"@vocdoni/chakra-components@^0.9.16-beta1":
+  version "0.9.16-beta1"
+  resolved "https://registry.yarnpkg.com/@vocdoni/chakra-components/-/chakra-components-0.9.16-beta1.tgz#0e89fbb55cd8d3e80374bcf32eafe0e11a1b5333"
+  integrity sha512-+IxeDVme679fWu7ChhFeVJ8q6fE4hUz3Mcf2bwVTguDLGXH5MfPanZJhKtMPetZQWwk/Hu58G/62VHffSsDEVw==
   dependencies:
-    "@vocdoni/react-providers" "~0.5.1"
+    "@vocdoni/react-providers" "~0.5.6-beta1"
 
 "@vocdoni/proto@1.15.9":
   version "1.15.9"
@@ -2732,10 +2732,12 @@
   dependencies:
     crypto-js "^4.2.0"
 
-"@vocdoni/react-providers@~0.5.1":
-  version "0.5.4"
-  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.5.4.tgz#638edb351446789ceab99bd7828f02a345fb2569"
-  integrity sha512-3m1b9KnM/2xeRmsBg9yR9wj5tOEEbMcU1lqzRvAU+HPeTsth5qU9g6P3XjuFTU00Z7jaGVdm4Xa/ltN/+HKNAg==
+"@vocdoni/react-providers@~0.5.6-beta1":
+  version "0.5.6-beta2"
+  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.5.6-beta2.tgz#36dce7d8148a2ff0188bfd3fc2f3b7c890086901"
+  integrity sha512-al39aO0Zw82LStfLuEHJZh2r75ZiG5+pQAOMlCuNRS1zIq7tUqOowHVKZwGrQPTjt7QHAXGbc/rdla+Vb/GJOw==
+  dependencies:
+    up-fetch "^1.3.6"
 
 "@vocdoni/sdk@~0.9.1":
   version "0.9.1"
@@ -8671,6 +8673,11 @@ untun@^0.1.3:
     citty "^0.1.5"
     consola "^3.2.3"
     pathe "^1.1.1"
+
+up-fetch@^1.3.6:
+  version "1.3.6"
+  resolved "https://registry.yarnpkg.com/up-fetch/-/up-fetch-1.3.6.tgz#daac8ac05cdd6a93a2730bb3f8048c1c1de16bb4"
+  integrity sha512-aNEen00EU2VOrNcaiSaTlrIHMLz5imGiWJ23uzg44gZNCIcVL1P1EygJodJkIKmKODbjEKX4RLgTap5CuTbLtA==
 
 update-browserslist-db@^1.0.13:
   version "1.0.13"
