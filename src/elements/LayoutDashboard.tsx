@@ -76,25 +76,28 @@ const LayoutDashboard: React.FC = () => {
                         as={ReactRouterLink}
                         to={generatePath(Routes.dashboard.base)}
                         variant={'breadcrumb'}
+                        fontSize={'sm'}
                         onClick={() => setBreadcrumb([])}
                       >
                         {t('organization.dashboard')}
                       </Link>
                     </ListItem>
-                    <ListItem display={'flex'} justifyContent={'center'} alignItems={'center'}>
+                    <ListItem display={'flex'} justifyContent={'center'} alignItems={'center'} fontSize={'sm'}>
                       <Icon as={ChevronRight} />
                     </ListItem>
                   </>
                 ) : (
-                  <Text>{t('organization.dashboard')}</Text>
+                  <ListItem>{t('organization.dashboard')}</ListItem>
                 )}
                 {breadcrumb.map((el, idx) => (
                   <>
                     <ListItem key={idx}>
                       {idx === breadcrumb.length - 1 ? (
-                        <Text as='span'>{el.title}</Text>
+                        <Text as='span' fontSize={'sm'}>
+                          {el.title}
+                        </Text>
                       ) : (
-                        <Link as={ReactRouterLink} to={generatePath(el.route)} variant={'breadcrumb'}>
+                        <Link as={ReactRouterLink} to={generatePath(el.route)} variant={'breadcrumb'} fontSize={'sm'}>
                           {el.title}
                         </Link>
                       )}
@@ -113,10 +116,11 @@ const LayoutDashboard: React.FC = () => {
                 to={generatePath(Routes.processes.create)}
                 leftIcon={<HelpCircle />}
                 colorScheme='gray'
+                size={'sm'}
               >
                 <Trans i18nKey='help'>Do you need help?</Trans>
               </Button>
-              <Button leftIcon={<Plus />} colorScheme='black'>
+              <Button leftIcon={<Plus />} colorScheme='black' size={'sm'}>
                 <Trans i18nKey='new_voting'>New vote</Trans>
               </Button>
             </Flex>
