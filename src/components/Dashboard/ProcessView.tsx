@@ -35,32 +35,22 @@ import {
 } from '@vocdoni/chakra-components'
 import { useElection } from '@vocdoni/react-providers'
 import { PublishedElection } from '@vocdoni/sdk'
-import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaCopy, FaEye } from 'react-icons/fa'
 import { FaPause, FaPlay, FaStop, FaTrash } from 'react-icons/fa6'
-import { generatePath, useOutletContext } from 'react-router-dom'
+import { generatePath } from 'react-router-dom'
 import { DashboardBox, DashboardContents } from '~components/Layout/Dashboard'
 import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
 import { Features } from '~components/Process/Features'
-import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~src/router/routes'
 
 export const ProcessView = () => {
-  const { setBreadcrumb } = useOutletContext<DashboardLayoutContext>()
   const { id, election, participation, turnout } = useElection()
   const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(70, 40)
 
   const votingLink = `${document.location.origin}${generatePath(Routes.processes.view, { id })}`
   const { hasCopied, onCopy } = useClipboard(votingLink)
   const { t } = useTranslation()
-
-  useEffect(() => {
-    setBreadcrumb([
-      { title: t('organization.dashboard'), route: Routes.dashboard.base },
-      { title: t('vote_details', { defaultValue: 'Vote details' }), route: Routes.dashboard.organization },
-    ])
-  }, [setBreadcrumb])
 
   return (
     <Grid templateColumns={{ base: '1fr', md: '1fr', lg: '1fr 350px' }} position='relative' gap={6} height='full'>
