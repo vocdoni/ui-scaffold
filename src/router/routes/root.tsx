@@ -8,6 +8,7 @@ import UseCase from '~components/UseCases/view'
 import ErrorElement from '~elements/Error'
 import Layout from '~elements/Layout'
 import PlansPublicPage from '~elements/plans'
+import Sequencer from '~elements/Sequencer'
 import { StripeCheckout, StripeReturn } from '~elements/Stripe'
 import ProtectedRoutes from '~src/router/ProtectedRoutes'
 import { Routes } from '.'
@@ -60,15 +61,8 @@ const RootElements = (client: VocdoniSDKClient) => [
   },
   {
     ...ProtectedRoutes([
-      {
-        path: Routes.stripe.checkout,
-        element: <StripeCheckout />,
-      },
-      {
-        path: Routes.stripe.return,
-        element: <StripeReturn />,
-        errorElement: <ErrorElement />,
-      },
+      { path: Routes.stripe.checkout, element: <StripeCheckout /> },
+      { path: Routes.stripe.return, element: <StripeReturn />, errorElement: <ErrorElement /> },
     ]),
   },
   {
@@ -120,6 +114,14 @@ const RootElements = (client: VocdoniSDKClient) => [
     ),
   },
   {
+    path: Routes.sequencer,
+    element: (
+      <SuspenseLoader>
+        <Sequencer />
+      </SuspenseLoader>
+    ),
+  },
+  {
     path: Routes.usecases.view,
     element: (
       <SuspenseLoader>
@@ -147,9 +149,5 @@ const RootElements = (client: VocdoniSDKClient) => [
 export const useRootRoutes = () => {
   const { client } = useClient()
 
-  return {
-    path: Routes.root,
-    element: <Layout />,
-    children: RootElements(client),
-  }
+  return { path: Routes.root, element: <Layout />, children: RootElements(client) }
 }

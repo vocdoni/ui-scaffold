@@ -21,23 +21,15 @@ export const Routes = {
     team: '/admin/team',
     subscription: '/admin/subscription',
   },
+  sequencer: '/sequencer',
   plans: '/plans',
   faucet: '/faucet',
   organization: '/organization/:address',
   privacy: '/privacy',
-  processes: {
-    create: '/admin/processes/create',
-    view: '/processes/:id',
-  },
-  stripe: {
-    checkout: '/stripe/checkout/:amount?',
-    return: '/stripe/return/:sessionId',
-  },
+  processes: { create: '/admin/processes/create', view: '/processes/:id' },
+  stripe: { checkout: '/stripe/checkout/:amount?', return: '/stripe/return/:sessionId' },
   terms: '/terms',
-  usecases: {
-    base: '/use-cases',
-    view: '/use-cases/:lang?/:case?',
-  },
+  usecases: { base: '/use-cases', view: '/use-cases/:lang?/:case?' },
 }
 
 export type RoutesType = typeof Routes
