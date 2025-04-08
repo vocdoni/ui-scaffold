@@ -4,14 +4,17 @@ import { useOutletContext } from 'react-router-dom'
 import { DashboardContents } from '~components/Layout/Dashboard'
 import { Subscription } from '~components/Organization/Subscription'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
+import { Routes } from '~routes'
 
 const SubscriptionPage = () => {
   const { t } = useTranslation()
-  const { setTitle } = useOutletContext<DashboardLayoutContext>()
+  const { setBreadcrumb } = useOutletContext<DashboardLayoutContext>()
 
   useEffect(() => {
-    setTitle(t('subscription.title', { defaultValue: 'Subscription' }))
-  }, [])
+    setBreadcrumb([
+      { title: t('subscription.title', { defaultValue: 'Subscription' }), route: Routes.dashboard.subscription },
+    ])
+  }, [setBreadcrumb])
 
   return (
     <DashboardContents display='flex' flexDir='column'>

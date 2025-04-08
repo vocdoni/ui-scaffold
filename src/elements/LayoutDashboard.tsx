@@ -1,79 +1,133 @@
-import { HamburgerIcon } from '@chakra-ui/icons'
-import { Box, Grid, Heading, IconButton, useDisclosure } from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  Flex,
+  Icon,
+  IconButton,
+  Link,
+  ListItem,
+  OrderedList,
+  Text,
+  useBreakpointValue,
+  useDisclosure,
+} from '@chakra-ui/react'
+import { ChevronRight, HelpCircle, LayoutRight, Plus } from '@untitled-ui/icons-react'
 import { OrganizationProvider, useClient } from '@vocdoni/react-providers'
 import { PropsWithChildren, useState } from 'react'
-import { MdKeyboardArrowLeft } from 'react-icons/md'
-import { Outlet, Link as ReactRouterLink } from 'react-router-dom'
-import AccountMenu from '~components/Account/Menu'
+import { Trans, useTranslation } from 'react-i18next'
+import { generatePath, Outlet, Link as ReactRouterLink } from 'react-router-dom'
 import DashboardMenu from '~components/Dashboard/Menu'
 import { PricingModalProvider } from '~components/Pricing/PricingModalProvider'
+import { Routes } from '~routes'
 
 export type DashboardLayoutContext = {
-  setTitle: (title: string) => void
-  setBack: (back: string) => void
+  setBreadcrumb: any
+}
+type BreadcrumbItem = {
+  title: string
+  route: string
 }
 
 const LayoutDashboard: React.FC = () => {
-  const [title, setTitle] = useState<string | null>(null)
-  const [back, setBack] = useState<string | null>(null)
+  const { t } = useTranslation()
+  const [breadcrumb, setBreadcrumb] = useState<BreadcrumbItem[]>([])
   const { isOpen, onOpen, onClose } = useDisclosure() // For mobile sidebar toggle
+  const isMobile = useBreakpointValue({ base: true, md: false })
+  const [reduced, setReduced] = useState(false)
 
   return (
     <DashboardLayoutProviders>
-      <Grid
-        templateAreas={{
-          base: `"header" "main"`,
-          xl: `"sidebar header" "sidebar main"`,
-        }}
-        templateColumns={{
-          base: '1fr',
-          xl: '250px 1fr',
-        }}
-        templateRows='auto 1fr'
-        minH='100vh'
-        height='100%'
-        px={{ base: 2, md: 4, xl: 0 }}
-        bg='dashboard.bg.light'
-        _dark={{ bg: 'dashboard.bg.dark' }}
-        gap={6}
-      >
-        {/* Top Menu */}
-        <Box gridArea='header' pt={6} gap={3} display='flex' alignItems='center' mr={{ base: 0, xl: 6 }}>
-          {back && (
-            <IconButton
-              as={ReactRouterLink}
-              to={back}
-              onClick={() => {
-                setBack(null)
-                setTitle(null)
-              }}
-              aria-label='Back'
-              icon={<MdKeyboardArrowLeft />}
-              colorScheme='brand'
-              color='black'
-            />
-          )}
-          {title && (
-            <Heading size={'sm'} fontWeight={500} alignSelf='center' mb={0} pl='10px' fontSize='1.5rem'>
-              {title}
-            </Heading>
-          )}
-          <Box ml='auto' display='flex' gap={3} alignItems='center'>
-            {/* User profile & menu */}
-            <AccountMenu />
-            {/* Hamburger button to open sidebar on small screens */}
-            <IconButton icon={<HamburgerIcon />} onClick={onOpen} display={{ xl: 'none' }} aria-label='Open menu' />
-          </Box>
-        </Box>
-
+      <Flex minH='100svh' w='full'>
         {/* Sidebar for large screens */}
-        <DashboardMenu isOpen={isOpen} onClose={onClose} />
+        <DashboardMenu isOpen={isOpen} onClose={onClose} reduced={reduced} />
 
         {/* Main Content */}
-        <Box gridArea='main' mr={{ base: 0, xl: 6 }} mb={4} minW={0}>
-          <Outlet context={{ setTitle, setBack } satisfies DashboardLayoutContext} />
-        </Box>
-      </Grid>
+        <Flex flex='1 1 0' flexDirection={'column'}>
+          {/* Top Menu */}
+          <Box
+            position={'sticky'}
+            bgColor='white'
+            top={0}
+            px={4}
+            gap={4}
+            display='flex'
+            h={16}
+            flexShrink={0}
+            alignItems='center'
+            borderBottom='var(--border)'
+          >
+            <IconButton
+              icon={<LayoutRight />}
+              aria-label='Open menu'
+              variant={'transparent'}
+              colorScheme='gray'
+              size={'xs'}
+              onClick={isMobile ? onOpen : () => setReduced((prev) => !prev)}
+            />
+
+            <Box borderRight={'var(--border)'} h={6} />
+
+            <Box as='nav'>
+              <OrderedList display={'flex'} alignItems={'center'} gap={1.5} styleType={"''"} ml={0}>
+                {!!breadcrumb.length ? (
+                  <>
+                    <ListItem>
+                      <Link
+                        as={ReactRouterLink}
+                        to={generatePath(Routes.dashboard.base)}
+                        variant={'breadcrumb'}
+                        fontSize={'sm'}
+                        onClick={() => setBreadcrumb([])}
+                      >
+                        {t('organization.dashboard')}
+                      </Link>
+                    </ListItem>
+                    <ListItem display={'flex'} justifyContent={'center'} alignItems={'center'} fontSize={'sm'}>
+                      <Icon as={ChevronRight} />
+                    </ListItem>
+                  </>
+                ) : (
+                  <ListItem>{t('organization.dashboard')}</ListItem>
+                )}
+                {breadcrumb.map((el, idx) => (
+                  <>
+                    <ListItem key={idx}>
+                      {idx === breadcrumb.length - 1 ? (
+                        <Text as='span' fontSize={'sm'}>
+                          {el.title}
+                        </Text>
+                      ) : (
+                        <Link as={ReactRouterLink} to={generatePath(el.route)} variant={'breadcrumb'} fontSize={'sm'}>
+                          {el.title}
+                        </Link>
+                      )}
+                    </ListItem>
+                    <ListItem display={'flex'} justifyContent={'center'} alignItems={'center'}>
+                      {idx < breadcrumb.length - 1 && <Icon as={ChevronRight} />}
+                    </ListItem>
+                  </>
+                ))}
+              </OrderedList>
+            </Box>
+
+            <Flex gap={2} ml='auto' alignItems={'center'}>
+              <Button
+                as={ReactRouterLink}
+                to={generatePath(Routes.processes.create)}
+                leftIcon={<HelpCircle />}
+                colorScheme='gray'
+                size={'sm'}
+              >
+                <Trans i18nKey='help'>Do you need help?</Trans>
+              </Button>
+              <Button leftIcon={<Plus />} colorScheme='black' size={'sm'}>
+                <Trans i18nKey='new_voting'>New vote</Trans>
+              </Button>
+            </Flex>
+          </Box>
+          <Outlet context={{ setBreadcrumb } satisfies DashboardLayoutContext} />
+        </Flex>
+      </Flex>
     </DashboardLayoutProviders>
   )
 }

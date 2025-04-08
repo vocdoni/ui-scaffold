@@ -1,6 +1,5 @@
 import { Button, Flex, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
 import { Trans } from 'react-i18next'
-import { InnerContentsMaxWidth } from '~constants'
 import { useProfile } from '~src/queries/account'
 import AccountForm from './Form'
 import PasswordForm from './PasswordForm'
@@ -10,7 +9,7 @@ export const AccountEdit = () => {
   const { data: profile } = useProfile()
   return (
     <Flex flexDirection='column'>
-      <Tabs w='full' maxW={InnerContentsMaxWidth} mx='auto' isFitted>
+      <Tabs w='full' mx='auto' isFitted>
         <TabList>
           <Tab>
             <Trans i18nKey='profile.title'>Profile</Trans>

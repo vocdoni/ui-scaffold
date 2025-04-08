@@ -5,15 +5,16 @@ import { DashboardContents } from '~components/Layout/Dashboard'
 import { InviteToTeamModal } from '~components/Organization/Invite'
 import { TeamMembers } from '~components/Organization/Team'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
+import { Routes } from '~routes'
 
 const OrganizationTeam = () => {
   const { t } = useTranslation()
-  const { setTitle } = useOutletContext<DashboardLayoutContext>()
+  const { setBreadcrumb } = useOutletContext<DashboardLayoutContext>()
 
   // Set layout variables
   useEffect(() => {
-    setTitle(t('team.title', { defaultValue: 'Team' }))
-  }, [setTitle])
+    setBreadcrumb([{ title: t('team.title', { defaultValue: 'Team' }), route: Routes.dashboard.team }])
+  }, [setBreadcrumb])
 
   return (
     <DashboardContents display='flex' flexDir='column'>
