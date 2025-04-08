@@ -28,12 +28,13 @@ import { Tag } from './components/tag'
 import { Text } from './components/text'
 import { Textarea } from './components/textarea'
 import { editor } from './editor'
-import { spacing } from './space'
+import { radii } from './radius'
+import { space } from './space'
 
 export const theme = extendTheme(vtheme, {
   config: {
-    initialColorMode: 'system',
-    useSystemColorMode: true,
+    initialColorMode: 'light',
+    useSystemColorMode: false,
   },
   styles: {
     global: (props) => ({
@@ -41,10 +42,9 @@ export const theme = extendTheme(vtheme, {
       ':root': {
         '--box-shadow': '0 0 10px #e3e3e3',
         '--box-shadow-dark-mode': '0 0 10px #101010',
+        '--border': '1px solid rgb(228, 228, 231)',
       },
-      body: {
-        bg: props.colorMode === 'dark' ? 'bg.dark' : 'bg.light',
-      },
+
       '.md-sizes': {
         '& :first-of-type': {
           mt: 0,
@@ -195,8 +195,9 @@ export const theme = extendTheme(vtheme, {
     Textarea,
   },
   breakpoints,
-  spacing,
+  space,
   colors,
+  radii,
   sizes: {
     'modal-stretch': 'calc(100% + var(--chakra-space-5)*2 + var(--chakra-space-6)*2)',
     'modal-stretch-lg': 'calc(100% + var(--chakra-space-10)*2 + var(--chakra-space-6)*2)',

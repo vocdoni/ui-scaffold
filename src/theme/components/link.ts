@@ -2,8 +2,8 @@ import { defineStyleConfig } from '@chakra-ui/react'
 
 export const Link = defineStyleConfig({
   baseStyle: {
-    textDecoration: 'underline',
     color: 'link.light',
+    textDecoration: 'underline',
 
     _dark: {
       color: 'link.dark',
@@ -13,6 +13,14 @@ export const Link = defineStyleConfig({
     },
   },
   variants: {
+    breadcrumb: (props) => ({
+      color: 'rgb(113, 113, 122)',
+      textDecoration: 'none',
+
+      _hover: {
+        color: 'black',
+      },
+    }),
     primary: (props) => ({
       color: 'brand.600',
 

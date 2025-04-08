@@ -26,7 +26,6 @@ import { useAuth } from '~components/Auth/useAuth'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import { SelectOptionType } from '~components/Layout/SaasSelector'
 import Uploader from '~components/Layout/Uploader'
-import { InnerContentsMaxWidth } from '~constants'
 import { QueryKeys } from '~src/queries/keys'
 import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from './Form'
 import fallback from '/assets/default-avatar.png'
@@ -131,28 +130,12 @@ const EditOrganization = () => {
   return (
     <FormProvider {...methods}>
       <Box height='100%' overflowY='auto'>
-        <Flex
-          as='form'
-          id='process-create-form'
-          direction='column'
-          gap={6}
-          maxW={InnerContentsMaxWidth}
-          mx='auto'
-          my='10px'
-          onSubmit={handleSubmit(onSubmit)}
-        >
+        <Flex as='form' id='process-create-form' direction='column' gap={6} onSubmit={handleSubmit(onSubmit)}>
           <PublicOrgForm />
           <PrivateOrgForm />
           <CustomizeOrgForm />
           <Flex align='center' direction={'column'}>
-            <Button
-              type={'submit'}
-              leftIcon={<MdBrowserUpdated />}
-              isLoading={isPending}
-              aria-label=''
-              w='full'
-              maxW='400px'
-            >
+            <Button type={'submit'} leftIcon={<MdBrowserUpdated />} isLoading={isPending} aria-label='' w='full'>
               {t('update', {
                 defaultValue: 'Update',
               })}

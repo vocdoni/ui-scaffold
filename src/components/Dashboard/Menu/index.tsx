@@ -8,22 +8,18 @@ import { VocdoniLogo } from '~components/Layout/Logo'
 import { Routes } from '~src/router/routes'
 import { DashboardMenuOptions } from './Options'
 
-const DashboardMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => (
+const DashboardMenu = ({ isOpen, onClose, reduced }: { isOpen: boolean; onClose: () => void; reduced: boolean }) => (
   <>
     {/* Sidebar for large screens */}
     <Box
-      gridArea='sidebar'
-      p={4}
-      display={{ base: 'none', xl: 'flex' }}
-      flexDirection='column'
-      gap={4}
-      bg='dashboard.sidebar.bg.light'
-      _dark={{ bg: 'dashboard.sidebar.bg.dark' }}
-      boxShadow='3px 0 5px -6px #6c6d75'
-      position='fixed'
-      height='100vh'
-      gridAutoColumns='auto 1fr auto'
-      w='250px'
+      display={{ base: 'none', md: reduced ? 'none' : 'block' }}
+      position={'sticky'}
+      top={0}
+      maxW={'256px'}
+      w='full'
+      h='100vh'
+      borderRight='var(--border)'
+      p={2}
     >
       <DashboardMenuContent />
     </Box>
@@ -57,7 +53,7 @@ const DashboardMenuContent = () => (
         leftIcon={<AddIcon />}
         variant='primary'
       >
-        <Trans i18nKey='new_voting'>New voting</Trans>
+        <Trans i18nKey='new_voting'>New vote</Trans>
       </Button>
       <LogoutBtn />
     </Flex>
