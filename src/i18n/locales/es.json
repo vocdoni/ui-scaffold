@@ -3,6 +3,7 @@
     "save": "Save Changes"
   },
   "active": "Activo",
+  "add_new_org": "Añadir una nueva organización",
   "all": "Todos",
   "already_member": "¿Ya eres miembro?",
   "alt": {
@@ -132,6 +133,7 @@
     "subtitle": "Especifica el período activo para recibir votos",
     "title": "Calendario"
   },
+  "call_us": "Llámanos",
   "cc": {
     "actions": {
       "cancel": "Cancelar el proceso inmediatamente, sin permitir nuevos votos y sin contar ningún resultado (precaución: no puede revertirse)",
@@ -303,6 +305,7 @@
       "selected_users": "Usuarios seleccionados:"
     }
   },
+  "current": "Actual",
   "customization": "Customization",
   "dark_mode": "Modo oscuro",
   "delete_my_account": "Delete my account",
@@ -533,13 +536,15 @@
         "info_title": "Información",
         "questions_title": "Preguntas"
       }
-    }
+    },
+    "select_language": "Idioma"
   },
   "gitcoin": {
     "effective": "20: Efectivo",
     "more_effective": "25: Más efectivo",
     "most_effective": "30: Muy efectivo"
   },
+  "guides": "Guías",
   "help": "¿Necesitas ayuda?",
   "home": {
     "benefits": {
@@ -938,6 +943,11 @@
   },
   "invite_people": "Invitar Gente",
   "keep_me_logged": "Mantenerme conectado",
+  "language": {
+    "catalan": "Català",
+    "english": "English",
+    "spanish": "Castellano"
+  },
   "languages": "Languages",
   "light_mode": "Modo claro",
   "link": {
@@ -956,6 +966,7 @@
     "google": "Iniciar sesión con Google"
   },
   "logout": "Logout",
+  "memberbase": "Base de miembros",
   "membership_size": {
     "language": "Idioma por Defecto",
     "selector_label": "Nº de Miembros",
@@ -992,6 +1003,10 @@
     "pricing": "Pricing",
     "usecases": "Use Cases"
   },
+  "need_help": {
+    "description": "¿Necesitas ayuda con tu primer proceso de votación? Mira este tutorial o programa una llamada.",
+    "title": "Primeros pasos"
+  },
   "new_organization": {
     "create_organization_btn": "Crear Organización",
     "description1": "Antes de comenzar a crear su proceso de votación, <span>debe crear una organización</span>, es gratuito. Con una organización, podrá crear una amplia gama de elecciones y dar voz a los miembros de su comunidad.",
@@ -1012,7 +1027,6 @@
   },
   "organization": {
     "avatar_alt": "Imagen de avatar de la organización {{ name }}",
-    "census": "Censo",
     "create_org": "Crear Organización",
     "dashboard": "Dashboard",
     "date_format": "d MMM y",
@@ -1030,6 +1044,7 @@
     },
     "votings_list": "Lista de procesos de votación"
   },
+  "organizations": "Organizations",
   "overwrite": {
     "description": "Los votantes podrán modificar su voto una vez",
     "title": "Modificación de voto"
@@ -1068,6 +1083,7 @@
     "feature_unavailable": "Ups... tu <2>plan {{ plan, lowercase }}</2> no admite {{feature}}.",
     "satisfaction_rate": "97% de satisfacción, por solo 9€/mes."
   },
+  "preferences": "Preferencias",
   "preview": "Preview",
   "pricing": {
     "advanced_analytitcs": "Informes y análisis avanzados",
@@ -1320,6 +1336,7 @@
     "read_permission": "Acceso solo lectura",
     "write_permission": "Puede crear y editar contenido"
   },
+  "schedule_a_call": "Programar una llamada",
   "session_expired": "Sesión expirada",
   "session_expired_description": "La sesión puede haber expirado y no se pudo actualizar, por favor inicia sesión de nuevo",
   "settings": "Configuración",
@@ -1494,7 +1511,6 @@
     },
     "title": "Our success stories"
   },
-  "user_management": "Gestión de usuarios",
   "verification_code": "Código de verificación",
   "verification_code_placeholder": "Introduce el código de verificación",
   "verification_code_resent": "¡Código de verificación reenviado!",
@@ -1520,7 +1536,6 @@
   "view_pricing_plan": "Ver Plan de Precios",
   "view_pricing_plans": "Ver Planes de Precios",
   "vocdoni logo": "",
-  "vote_details": "Detalles de la votación",
   "voters": "votantes",
   "voting_link": "Enlace de votación",
   "voting_processes": "Procesos de votación",

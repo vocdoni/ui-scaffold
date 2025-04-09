@@ -1,16 +1,32 @@
-import { Box, IconButton } from '@chakra-ui/react'
-import { PlusSquare } from '@untitled-ui/icons-react'
+import {
+  Box,
+  Button,
+  Flex,
+  HStack,
+  Icon,
+  Popover,
+  PopoverBody,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTrigger,
+  Tag,
+  Text,
+  useBreakpointValue,
+} from '@chakra-ui/react'
+import { ChevronSelectorVertical, Plus } from '@untitled-ui/icons-react'
 import { OrganizationName } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
-import { Select } from 'chakra-react-select'
-import { useEffect, useMemo, useState } from 'react'
+import { useContext, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { LuGalleryVerticalEnd } from 'react-icons/lu'
+import { Link as ReactRouterLink } from 'react-router-dom'
 import { useQueryClient } from 'wagmi'
+import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
 import { LocalStorageKeys } from '~components/Auth/useAuthProvider'
+import { DashboardLayoutContext } from '~elements/LayoutDashboard'
+import { Routes } from '~routes'
 import { Organization, useProfile } from '~src/queries/account'
-import { Routes } from '~src/router/routes'
 
 type SelectOption = {
   value: string
@@ -18,7 +34,7 @@ type SelectOption = {
   organization: Organization
 }
 
-export const OrganizationSwitcher = () => {
+export const OrganizationSwitcher = ({ ...props }) => {
   const { t } = useTranslation()
   const { data: profile } = useProfile()
   const [selectedOrg, setSelectedOrg] = useState<string | null>(localStorage.getItem(LocalStorageKeys.SignerAddress))
@@ -26,6 +42,14 @@ export const OrganizationSwitcher = () => {
   const { signerRefresh } = useAuth()
   const queryClient = useQueryClient()
   const { client } = useClient()
+  const { reduced } = useContext(DashboardLayoutContext)
+  const { subscription } = useSubscription()
+  const variant = useBreakpointValue({
+    base: false,
+    md: true,
+  })
+
+  const placement = variant ? 'right-end' : 'auto'
 
   // Fetch organization names
   useEffect(() => {
@@ -87,35 +111,92 @@ export const OrganizationSwitcher = () => {
     // refresh signer
     await signerRefresh()
   }
-
+  if (!subscription) return
   return (
-    <Box mb={3} px={3.5} display='flex' alignItems='center' gap={2} justifyContent='space-between'>
-      {organizations.length > 1 ? (
-        <Select
-          value={organizations.find((org) => org.value === selectedOrg)}
-          onChange={handleOrgChange}
-          options={organizations}
-          size='sm'
-          chakraStyles={{
-            container: (provided) => ({
-              ...provided,
-              width: '100%',
-              minWidth: 0,
-            }),
-          }}
-        />
-      ) : (
-        <OrganizationName mb={2} px={3.5} />
-      )}
-      <IconButton
-        size='xs'
-        as={Link}
-        variant='solid'
-        colorScheme='gray'
-        aria-label={t('create_org.title')}
-        icon={<PlusSquare />}
-        to={Routes.dashboard.organizationCreate}
-      />
-    </Box>
+    <Popover placement={placement}>
+      <PopoverTrigger>
+        <Box
+          display='flex'
+          alignItems='center'
+          gap={2}
+          justifyContent='space-between'
+          _hover={{ cursor: 'pointer' }}
+          {...props}
+        >
+          {reduced ? (
+            <Icon as={LuGalleryVerticalEnd} boxSize={4} />
+          ) : (
+            <>
+              <HStack>
+                <Icon as={LuGalleryVerticalEnd} boxSize={4} ml={2} mr={2} />
+                <Flex flexDirection={'column'} justifyContent={'start'} gap={0.5} fontSize={'sm'}>
+                  <OrganizationName lineHeight={'14px'} fontWeight={500} maxW={'165px'} isTruncated />
+                  <Text
+                    as={'span'}
+                    lineHeight={'14px'}
+                    color='dashboard.org_switcher.subscription_plan'
+                    fontSize={'xs'}
+                    maxW={'165px'}
+                    isTruncated
+                  >
+                    {subscription.plan.name.split(' ')[0]}
+                  </Text>
+                </Flex>
+              </HStack>
+              <ChevronSelectorVertical width='16' height='16' color='dashboard.org_switcher.icon' />
+            </>
+          )}
+        </Box>
+      </PopoverTrigger>
+      <PopoverContent zIndex={100} maxW='229px'>
+        <PopoverHeader minH={'unset'}>
+          <Text size='xs' mb={2} fontWeight={600} color={'dashboard.org_switcher.number'}>
+            {t('organizations', { defaultValue: 'Organizations' })} ({organizations.length})
+          </Text>
+          <HStack>
+            <Flex
+              justifyContent={'center'}
+              alignItems={'center'}
+              border='var(--border)'
+              w='22px'
+              h='22px'
+              borderRadius='xs'
+            >
+              <Icon as={LuGalleryVerticalEnd} boxSize={4} ml={2} mr={2} />
+            </Flex>
+            <OrganizationName lineHeight={'14px'} fontWeight={500} maxW={'80px'} isTruncated />
+            <Tag colorScheme='gray' ml='auto'>
+              {t('current', { defaultValue: 'Current' })}
+            </Tag>
+          </HStack>
+        </PopoverHeader>
+        <PopoverBody minH={'unset'}>
+          <Button
+            as={ReactRouterLink}
+            variant='unstyled'
+            colorScheme='gray'
+            display={'flex'}
+            justifyContent={'start'}
+            gap={2}
+            w='full'
+            minH={'0'}
+            aria-label={t('create_org.title')}
+            to={Routes.dashboard.organizationCreate}
+          >
+            <Flex
+              justifyContent={'center'}
+              alignItems={'center'}
+              border='var(--border)'
+              w='22px'
+              h='22px'
+              borderRadius='xs'
+            >
+              <Icon as={Plus} boxSize={4} ml={2} mr={2} />
+            </Flex>
+            {t('add_new_org', { defaultValue: 'Add a new organization' })}
+          </Button>
+        </PopoverBody>
+      </PopoverContent>
+    </Popover>
   )
 }

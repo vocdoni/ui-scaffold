@@ -3,8 +3,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { lazy } from 'react'
 import { Params } from 'react-router-dom'
-import { Profile } from '~elements/dashboard/profile'
-import SubscriptionPage from '~elements/dashboard/subscription'
+import Settings from '~elements/dashboard/settings'
 import Error from '~elements/Error'
 import LayoutDashboard from '~elements/LayoutDashboard'
 import { paginatedElectionsQuery } from '~src/queries/organization'
@@ -15,11 +14,9 @@ import AccountProtectedRoute from '../AccountProtectedRoute'
 import { SuspenseLoader } from '../SuspenseLoader'
 
 // elements/pages
-const OrganizationEdit = lazy(() => import('~elements/dashboard/organization'))
 const DashboardCreateOrg = lazy(() => import('~elements/dashboard/organization/create'))
 const DashboardProcesses = lazy(() => import('~elements/dashboard/processes'))
 const DashboardProcessView = lazy(() => import('~elements/dashboard/processes/view'))
-const OrganizationTeam = lazy(() => import('~elements/dashboard/team'))
 const ProcessCreate = lazy(() => import('~elements/dashboard/processes/create'))
 
 // others
@@ -43,14 +40,6 @@ export const useDashboardRoutes = () => {
           </SuspenseLoader>
         ),
         children: [
-          {
-            path: Routes.dashboard.profile,
-            element: (
-              <SuspenseLoader>
-                <Profile />
-              </SuspenseLoader>
-            ),
-          },
           {
             path: Routes.dashboard.organizationCreate,
             element: (
@@ -85,14 +74,7 @@ export const useDashboardRoutes = () => {
                 loader: async ({ params }: { params: Params<string> }) => client.fetchElection(params.id),
                 errorElement: <Error />,
               },
-              {
-                path: Routes.dashboard.organization,
-                element: (
-                  <SuspenseLoader>
-                    <OrganizationEdit />
-                  </SuspenseLoader>
-                ),
-              },
+
               {
                 path: Routes.dashboard.processes,
                 element: (
@@ -105,18 +87,10 @@ export const useDashboardRoutes = () => {
                 errorElement: <Error />,
               },
               {
-                path: Routes.dashboard.team,
+                path: Routes.dashboard.settings,
                 element: (
                   <SuspenseLoader>
-                    <OrganizationTeam />
-                  </SuspenseLoader>
-                ),
-              },
-              {
-                path: Routes.dashboard.subscription,
-                element: (
-                  <SuspenseLoader>
-                    <SubscriptionPage />
+                    <Settings />
                   </SuspenseLoader>
                 ),
               },

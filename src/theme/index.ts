@@ -4,7 +4,6 @@ import { theme as vtheme } from '@vocdoni/chakra-components'
 import { breakpoints } from './breakpoints'
 import { colors } from './colors'
 import { Accordion } from './components/accordion'
-import { Alert } from './components/alert'
 import { Badge } from './components/badge'
 import { Button } from './components/button'
 import { Card } from './components/card'
@@ -13,28 +12,38 @@ import { Form } from './components/Form'
 import { ElectionTitle, Heading } from './components/heading'
 import { Input } from './components/input'
 import { Link } from './components/link'
-import { Menu } from './components/menu'
 import { Modal } from './components/modal'
 import { Pagination } from './components/pagination'
 import { ElectionQuestions } from './components/Questions'
 import { Radio } from './components/radio'
 import { ElectionResults } from './components/results'
-import { SpreadsheetAccess } from './components/SpreadsheetAccess'
 import { Stepper } from './components/stepper'
-import { Table } from './components/table'
 import { Tabs } from './components/Tabs'
-import { TabsResponsive } from './components/TabsResponsive'
-import { Tag } from './components/tag'
 import { Text } from './components/text'
 import { Textarea } from './components/textarea'
 import { editor } from './editor'
-import { radii } from './radius'
 import { space } from './space'
+import { Tag } from './components/tag'
+import { Menu } from './components/menu'
+import { Alert } from './components/alert'
+import { Table } from './components/table'
+import { TabsResponsive } from './components/TabsResponsive'
+import { SpreadsheetAccess } from './components/SpreadsheetAccess'
+import { radii } from './radius'
+import '@fontsource/inter/index.css'
+import '@fontsource/inter/500.css'
+import { Tooltip } from './components/tooltip'
+import { Popover } from './components/popover'
 
 export const theme = extendTheme(vtheme, {
   config: {
     initialColorMode: 'light',
     useSystemColorMode: false,
+  },
+  fonts: {
+    body: `"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif`,
+    heading: `"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif`,
+    mono: `'Menlo', monospace`,
   },
   styles: {
     global: (props) => ({
@@ -184,6 +193,7 @@ export const theme = extendTheme(vtheme, {
     Menu,
     Modal,
     Pagination,
+    Popover,
     Radio,
     Stepper,
     SpreadsheetAccess,
@@ -193,6 +203,7 @@ export const theme = extendTheme(vtheme, {
     Tag,
     Text,
     Textarea,
+    Tooltip,
   },
   breakpoints,
   space,

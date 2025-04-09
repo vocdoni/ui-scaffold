@@ -1,6 +1,7 @@
 import { defineStyle, defineStyleConfig } from '@chakra-ui/styled-system'
 
 const baseStyle = {
+  minW: 0,
   '& > span': {
     m: 0,
   },
@@ -220,7 +221,7 @@ const sizes = {
     borderRadius: 'sm',
     fontSize: 'sm',
     gap: '4px',
-    h: '28px',
+    h: '32px',
 
     ':has(> svg:only-child)': {
       w: '28px',
@@ -246,6 +247,6 @@ export const Button = defineStyleConfig({
   defaultProps: {
     variant: 'primary',
     size: 'md',
-    colorScheme: 'brand',
+    colorScheme: 'black',
   },
 })

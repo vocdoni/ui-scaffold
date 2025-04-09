@@ -1,3 +1,5 @@
+import { Breadcrumb } from '@chakra-ui/react'
+
 export const colorsBase = {
   beige: '#D2CBB9',
   black: '#000000',
@@ -38,7 +40,46 @@ export const colorsBase = {
   },
 }
 
+export const newColorsBase = {
+  gray: {
+    normal: 'rgb(113, 113, 122)',
+  },
+}
+
 export const colors = {
+  dashboard: {
+    breadcrumb: newColorsBase.gray.normal,
+    org_switcher: {
+      subscription_plan: newColorsBase.gray.normal,
+      icon: newColorsBase.gray.normal,
+      number: newColorsBase.gray.normal,
+    },
+    profile: {
+      email: newColorsBase.gray.normal,
+      icon: newColorsBase.gray.normal,
+    },
+    schedule_call_description: newColorsBase.gray.normal,
+    //
+    invite: colorsBase.white.dark,
+    process_view: {
+      calendar_label: colorsBase.gray.normal,
+      link: colorsBase.blue.normal,
+    },
+    read_more: {
+      from: colorsBase.white.from_read_more,
+      to: {
+        light: colorsBase.white.pure,
+        dark: colorsBase.blue.grayish,
+      },
+      text: {
+        light: colorsBase.primary,
+        dark: colorsBase.white.pure,
+      },
+    },
+  },
+
+  //
+
   account_create_text_secondary: colorsBase.gray.dark,
   alert: {
     bg: {
@@ -147,41 +188,7 @@ export const colors = {
       dark: colorsBase.white.pure,
     },
   },
-  dashboard: {
-    bg: {
-      light: colorsBase.white.dark,
-      dark: colorsBase.blue.dark2,
-    },
-    color: {
-      light: colorsBase.black,
-      dark: colorsBase.white.pure,
-    },
-    invite: {
-      bg_checked_light: colorsBase.white.dark,
-      bg_checked_dark: colorsBase.blue.dark,
-    },
-    process_view: {
-      calendar_label: colorsBase.gray.normal,
-      link: colorsBase.blue.normal,
-    },
-    read_more: {
-      from: colorsBase.white.from_read_more,
-      to: {
-        light: colorsBase.white.pure,
-        dark: colorsBase.blue.grayish,
-      },
-      text: {
-        light: colorsBase.primary,
-        dark: colorsBase.white.pure,
-      },
-    },
-    sidebar: {
-      bg: {
-        light: colorsBase.white.pure,
-        dark: colorsBase.blue.grayish,
-      },
-    },
-  },
+
   home: {
     benefits: {
       bg: {

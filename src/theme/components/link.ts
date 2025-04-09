@@ -14,7 +14,7 @@ export const Link = defineStyleConfig({
   },
   variants: {
     breadcrumb: (props) => ({
-      color: 'rgb(113, 113, 122)',
+      color: 'dashboard.breadcrumb',
       textDecoration: 'none',
 
       _hover: {

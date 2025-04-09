@@ -18,6 +18,8 @@ export const Routes = {
     process: '/admin/process/:id',
     processes: '/admin/processes/:page?/:status?',
     profile: '/admin/profile',
+
+    settings: '/admin/settings',
     team: '/admin/team',
     subscription: '/admin/subscription',
   },
