@@ -1,4 +1,4 @@
-import { Box, BoxProps } from '@chakra-ui/react'
+import { Box, BoxProps, Flex } from '@chakra-ui/react'
 
 export const DashboardBox = (props: BoxProps) => (
   <Box
@@ -12,12 +12,5 @@ export const DashboardBox = (props: BoxProps) => (
 )
 
 export const DashboardContents = (props: BoxProps) => (
-  <DashboardBox
-    boxShadow='0 0 0 1px rgba(56,60,67,.05),0 1px 3px 0 rgba(56,60,67,.15)'
-    borderRadius='20px'
-    height='100%'
-    py={{ base: 4, lg: 10 }}
-    px={{ base: 4, lg: 10 }}
-    {...props}
-  />
+  <Flex flexDirection={'column'} maxW={'1536px'} w='full' mx='auto' p={6} {...props} />
 )

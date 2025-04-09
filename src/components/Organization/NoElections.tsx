@@ -12,7 +12,7 @@ const NoElections = () => {
   const { organization } = useOrganization()
 
   return (
-    <Card variant='no-elections' minH='100%' maxW='650' m='80px auto'>
+    <Card variant='no-elections' minH='100%'>
       <CardBody>
         <Flex justifyContent={'center'}>
           <Img src={empty} alt={t('organization.elections_list_empty.alt')} />

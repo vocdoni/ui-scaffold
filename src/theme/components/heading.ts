@@ -1,5 +1,9 @@
 import { defineStyle } from '@chakra-ui/react'
 
+const baseStyle = () => {
+  return { fontWeight: 'normal' }
+}
+
 const sizes = {
   xs: defineStyle({
     fontSize: '24px',
@@ -26,7 +30,7 @@ const sizes = {
     lineHeight: '72px',
     letterSpacing: '-2%',
   }),
-  xl2: defineStyle({
+  '2xl': defineStyle({
     fontSize: '72px',
     lineHeight: '90px',
     letterSpacing: '-2%',
@@ -72,6 +76,7 @@ const sidebarSection = defineStyle({
 })
 
 export const Heading = {
+  baseStyle,
   sizes,
   variants: {
     ['contents-title']: contentsTitle,

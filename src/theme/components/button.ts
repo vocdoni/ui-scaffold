@@ -1,90 +1,106 @@
 import { defineStyle, defineStyleConfig } from '@chakra-ui/styled-system'
 
+const baseStyle = {
+  '& > span': {
+    m: 0,
+  },
+}
+
+const disabled = {
+  bg: '#F5F5F5 !important',
+  borderColor: '#E9EAEB !important',
+  color: '#A4A7AE !important',
+  opacity: 1,
+
+  _hover: {
+    bg: '#F5F5F5 !important',
+    borderColor: '#E9EAEB !important',
+    color: '#A4A7AE !important',
+  },
+}
+
 const primary = defineStyle((props) => {
   const { colorScheme } = props
 
   return {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: '10px',
-    border: '1px solid',
-    bg: `${colorScheme}.500`,
-    borderColor: `${colorScheme}.800`,
-    color: 'button.variant.primary.color',
+    bg: `${colorScheme}.600`,
+    color: colorScheme === 'gray' ? 'black' : 'white',
+    gap: 4,
+
     _hover: {
-      bg: `${colorScheme}.600`,
-      borderColor: `${colorScheme}.800`,
-      _disabled: {
-        bg: 'button.variant.primary.disabled.light.bg',
-        color: 'button.variant.primary.disabled.light.color',
-        borderColor: 'button.variant.primary.disabled.light.border',
-        opacity: 1,
-        _dark: {
-          bg: 'button.variant.primary.disabled.dark.bg',
-          color: 'button.variant.primary.disabled.dark.color',
-          borderColor: 'button.variant.primary.disabled.dark.border',
-          opacity: 0.4,
-        },
-      },
+      bg: `${colorScheme}.700`,
     },
-    _active: { bg: `${colorScheme}.700` },
+    _active: {
+      bg: `${colorScheme}.700`,
+    },
+
     _disabled: {
-      bg: 'button.variant.primary.disabled.light.bg',
-      color: 'button.variant.primary.disabled.light.color',
-      borderColor: 'button.variant.primary.disabled.light.border',
-      opacity: 1,
-      _dark: {
-        bg: 'button.variant.primary.disabled.dark.bg',
-        color: 'button.variant.primary.disabled.dark.color',
-        borderColor: 'button.variant.primary.disabled.dark.border',
-        opacity: 0.4,
-      },
+      ...disabled,
+    },
+
+    '& svg': {
+      h: 4,
+      w: 4,
     },
   }
 })
+
 const outline = defineStyle((props) => {
   const { colorScheme } = props
 
   return {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    border: '1px solid',
-    borderColor: colorScheme === 'gray' ? 'button.variant.common.border_color.light' : `${colorScheme}.600`,
-    color: colorScheme === 'gray' ? 'button.variant.common.color.light' : `${colorScheme}.600`,
-    textDecoration: 'none',
+    bg: 'transparent',
+    color: `${colorScheme}.700`,
+    borderColor: `${colorScheme}.300`,
 
     _hover: {
-      bgColor: colorScheme === 'gray' ? 'button.variant.common.hover.bg.light' : `${colorScheme}.700`,
-      borderColor: colorScheme === 'gray' ? 'button.variant.common.border_color.light' : `${colorScheme}.700`,
-      color: colorScheme === 'gray' ? 'button.variant.common.color.light' : 'button.variant.outline.color',
-
-      _disabled: {
-        borderColor: 'button.variant.common.disabled.border',
-        color: 'button.variant.common.disabled.color.light',
-
-        _dark: {
-          color: 'button.variant.common.disabled.color.dark',
-        },
-      },
+      bg: `${colorScheme}.50`,
+      color: `${colorScheme}.800`,
+      borderColor: `${colorScheme}.300`,
     },
+    _active: {
+      bg: `${colorScheme}.50`,
+      color: `${colorScheme}.800`,
+      borderColor: `${colorScheme}.300`,
+    },
+
     _disabled: {
-      borderColor: 'button.variant.common.disabled.border',
-      color: 'button.variant.common.disabled.color.light',
-
-      _dark: {
-        color: 'button.variant.common.disabled.color.dark',
-      },
-    },
-
-    _dark: {
-      color: 'white',
-      borderColor: 'white',
+      ...disabled,
+      bgColor: 'white !important',
+      borderColor: '#E9EAEB !important',
 
       _hover: {
-        bgColor: colorScheme === 'gray' ? 'button.variant.common.hover.bg.light' : `${colorScheme}.700`,
-        borderColor: colorScheme === 'gray' ? 'button.variant.common.hover.bg.light' : `${colorScheme}.700`,
+        bgColor: 'white !important',
+        borderColor: '#E9EAEB !important',
+      },
+    },
+  }
+})
+
+const link = defineStyle((props) => {
+  const { colorScheme } = props
+
+  return {
+    bg: 'transparent',
+    color: `${colorScheme}.700`,
+    borderRadius: '3px !important',
+
+    _hover: {
+      color: `${colorScheme}.800`,
+      textDecoration: 'none',
+    },
+    _active: {
+      color: `${colorScheme}.800`,
+    },
+
+    _disabled: {
+      ...disabled,
+      bgColor: 'white !important',
+      borderColor: '#E9EAEB !important',
+
+      _hover: {
+        bgColor: 'white !important',
+        borderColor: '#E9EAEB !important',
       },
     },
   }
@@ -98,16 +114,8 @@ const transparent = defineStyle((props) => {
     alignItems: 'center',
     color: colorScheme === 'gray' ? 'black' : `${colorScheme}.700`,
 
-    _active: {
-      bgColor: colorScheme === 'gray' ? 'gray.200' : `${colorScheme}.50`,
-
-      _dark: {
-        bgColor: colorScheme === 'gray' ? 'gray.700' : `${colorScheme}.50`,
-      },
-    },
-
     _hover: {
-      bgColor: colorScheme === 'gray' ? 'gray.200' : `${colorScheme}.50`,
+      bgColor: colorScheme === 'gray' ? 'hsl(240 4.8% 95.9%)' : `${colorScheme}.50`,
 
       _disabled: {
         color: 'button.variant.common.disabled.color.light',
@@ -115,55 +123,13 @@ const transparent = defineStyle((props) => {
           color: 'button.variant.common.disabled.color.dark',
         },
       },
-
-      _dark: {
-        bgColor: colorScheme === 'gray' ? 'gray.700' : `${colorScheme}.50`,
-      },
     },
+
     _disabled: {
       color: 'button.variant.common.disabled.color.light',
       _dark: {
         color: 'button.variant.common.disabled.color.dark',
       },
-    },
-
-    _dark: {
-      color: 'white',
-    },
-  }
-})
-
-const link = defineStyle((props) => {
-  const { colorScheme } = props
-  return {
-    color: colorScheme === 'gray' ? 'button.variant.common.color.light' : `${colorScheme}.700`,
-    textDecoration: 'underline',
-    _hover: {
-      color: colorScheme === 'gray' ? 'button.variant.common.color.light' : `${colorScheme}.800`,
-      textDecoration: 'none',
-
-      _disabled: {
-        color: 'button.variant.common.disabled.color.light',
-
-        _dark: {
-          color: 'button.variant.common.disabled.color.dark',
-        },
-      },
-
-      _dark: {
-        color: colorScheme === 'gray' ? 'button.variant.common.color.dark' : `${colorScheme}.800`,
-      },
-    },
-    _disabled: {
-      color: 'button.variant.common.disabled.color.light',
-
-      _dark: {
-        color: 'button.variant.common.disabled.color.light',
-      },
-    },
-
-    _dark: {
-      color: 'white',
     },
   }
 })
@@ -205,38 +171,65 @@ const sizes = {
   xl2: defineStyle({
     px: '22px',
     py: '16px',
-    borderRadius: '10px',
+    borderRadius: 'lg',
     fontSize: 'lg',
     fontWeight: 'semibold',
+    gap: '8px',
     h: '60px',
   }),
   xl: defineStyle({
     px: '18px',
     py: '12px',
-    borderRadius: '8px',
+    borderRadius: 'md',
     fontSize: 'md',
+    gap: '6px',
     h: '48px',
   }),
   lg: defineStyle({
     px: '16px',
     py: '10px',
-    borderRadius: '8px',
+    borderRadius: 'md',
     fontSize: 'md',
+    gap: '6px',
     h: '44px',
   }),
   md: defineStyle({
     px: '14px',
     py: '10px',
-    borderRadius: '8px',
+    borderRadius: 'md',
     fontSize: 'sm',
+    gap: '4px',
     h: '40px',
   }),
   sm: defineStyle({
     px: '12px',
     py: '8px',
-    borderRadius: '8px',
+    borderRadius: 'md',
     fontSize: 'sm',
+    gap: '4px',
     h: '36px',
+
+    '& svg': {
+      h: 4,
+      w: 4,
+    },
+  }),
+  xs: defineStyle({
+    px: '12px',
+    py: '8px',
+    borderRadius: 'sm',
+    fontSize: 'sm',
+    gap: '4px',
+    h: '28px',
+
+    ':has(> svg:only-child)': {
+      w: '28px',
+
+      '& svg': {
+        h: 4,
+        w: 4,
+      },
+    },
   }),
 }
 
@@ -248,9 +241,10 @@ export const Button = defineStyleConfig({
     link,
     underline,
   },
+  baseStyle,
   sizes,
   defaultProps: {
-    variant: 'outline',
+    variant: 'primary',
     size: 'md',
     colorScheme: 'brand',
   },

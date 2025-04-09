@@ -29,7 +29,7 @@ export const DashboardMenuItem = ({
     onClick={onToggle}
     isActive={hasChildren ? (isOpen ? true : false) : false} // Set active state
     justifyContent='start'
-    variant={isActive ? (hasChildren ? 'none' : 'underline') : !hasChildren && isOpen ? 'underline' : 'transparent'}
+    variant={'transparent'}
     w='full'
     colorScheme='gray'
     leftIcon={icon ? <Icon as={icon} mt='0px' /> : undefined}
