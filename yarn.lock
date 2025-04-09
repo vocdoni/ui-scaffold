@@ -8034,8 +8034,8 @@ snarkjs@vocdoni/snarkjs#f/browser:
   resolved "https://codeload.github.com/vocdoni/snarkjs/tar.gz/5ba4333d0b6df8098219bca9b1f288a30d066d0e"
   dependencies:
     bfj "^7.0.2"
-    circom_runtime "0.1.23"
-    ffjavascript "0.2.59"
+    circom_runtime "0.1.25"
+    ffjavascript "0.3.0"
 
 socks-proxy-agent@^8.0.3:
   version "8.0.4"
