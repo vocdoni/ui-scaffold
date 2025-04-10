@@ -50,17 +50,17 @@ export const DashboardMenuOptions = () => {
     {
       label: t('support'),
       icon: LifeBuoy01,
-      route: Routes.dashboard.base,
+      route: '',
     },
     {
       label: t('call_us', { defaultValue: 'Call us' }),
       icon: Phone,
-      route: Routes.dashboard.base,
+      route: '',
     },
     {
       label: t('guides', { defaultValue: 'Guides' }),
       icon: BookOpen01,
-      route: Routes.dashboard.base,
+      route: '',
     },
   ]
 
@@ -136,26 +136,33 @@ export const DashboardMenuOptions = () => {
           </Text>
 
           <UnorderedList display={'flex'} flexDirection={'column'} gap={1} listStyleType={"''"} ml={0}>
-            {menuItemsHelp.map((item, index) => (
-              <ListItem key={index}>
-                <Button
-                  as={ReactRouterLink}
-                  to={generatePath(item.route)}
-                  leftIcon={<Icon as={item.icon} width='16px' height='16px' />}
-                  variant={'transparent'}
-                  size='xs'
-                  colorScheme='gray'
-                  justifyContent={'start'}
-                  gap={4}
-                  p={2}
-                  fontWeight={400}
-                  isActive={Boolean(matchPath({ path: item.route || '', end: true }, location.pathname)) && true}
-                  isDisabled
-                >
-                  {item.label}
-                </Button>
-              </ListItem>
-            ))}
+            {menuItemsHelp.map((item, index) => {
+              const isDisabled = !item.route
+              const as = isDisabled ? 'button' : ReactRouterLink
+              return (
+                <ListItem key={index}>
+                  <Button
+                    as={as}
+                    {...(!isDisabled && { to: generatePath(item.route) })}
+                    onClick={(e) => {
+                      if (isDisabled) e.preventDefault()
+                    }}
+                    leftIcon={<Icon as={item.icon} width='16px' height='16px' />}
+                    variant={'transparent'}
+                    size='xs'
+                    colorScheme='gray'
+                    justifyContent={'start'}
+                    gap={4}
+                    p={2}
+                    fontWeight={400}
+                    isActive={Boolean(matchPath({ path: item.route || '', end: true }, location.pathname)) && true}
+                    isDisabled
+                  >
+                    {item.label}
+                  </Button>
+                </ListItem>
+              )
+            })}
           </UnorderedList>
         </Box>
       )}
