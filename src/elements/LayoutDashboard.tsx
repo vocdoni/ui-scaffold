@@ -36,10 +36,11 @@ export const DashboardLayoutContext = createContext<DashboardLayoutContextType |
 const LayoutDashboard: React.FC = () => {
   const { t } = useTranslation()
   const [breadcrumb, setBreadcrumb] = useState<BreadcrumbItem[]>([])
-  const { isOpen, onOpen, onClose } = useDisclosure() // For mobile sidebar toggle
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const isMobile = useBreakpointValue({ base: true, md: false })
   const [reduced, setReduced] = useState(false)
 
+  // Close/reduce the sidebar when the screen size changes
   useEffect(() => {
     if (isMobile) setReduced(false)
     if (!isMobile) onClose()
