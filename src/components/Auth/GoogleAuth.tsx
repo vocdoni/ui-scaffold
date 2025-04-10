@@ -1,4 +1,4 @@
-import { Button, Icon } from '@chakra-ui/react'
+import { Button, Icon, useToast } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FcGoogle } from 'react-icons/fc'
@@ -10,18 +10,30 @@ const GoogleAuth = () => {
   const { setBearer, updateSigner } = useAuth()
   const { isConnected } = useAccount()
   const { t } = useTranslation()
+  const toast = useToast()
 
   const { connector } = googleWallet.createConnector()
-  const { connect, isLoading } = useConnect()
+  const { connect, isLoading, isError, error } = useConnect()
 
   useEffect(() => {
+    if (isError) {
+      console.error('Google OAuth error', error?.message || '')
+      toast({
+        status: 'error',
+        title: t('google_oauth_error', { defaultValue: 'Google OAuth Error' }),
+        description: t('google_oauth_error_description', {
+          defaultValue: 'Google OAuth error, please try again',
+        }),
+      })
+      return
+    }
     if (isConnected) {
       const token = localStorage.getItem('authToken')
       setBearer(token)
       updateSigner(token)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isConnected])
+  }, [isConnected, isError])
 
   return (
     <Button

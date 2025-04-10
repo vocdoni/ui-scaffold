@@ -10,7 +10,7 @@ const LogoutBtn = (props?: ButtonProps) => {
   const navigate = useNavigate()
 
   const logout = () => {
-    setTimeout(async () => {
+    setTimeout(() => {
       authLogout()
     }, 100)
     navigate(Routes.root)
