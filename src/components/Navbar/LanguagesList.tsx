@@ -94,8 +94,7 @@ export const LanguageListDashboard = ({ ...props }) => {
       display={'flex'}
       justifyContent={'space-between'}
       alignItems={'center'}
-      padding='0 !important'
-      py={1.5}
+     
       {...props}
     >
       <FormLabel fontSize={'14px'} m='0' fontWeight={400}>

@@ -1,19 +1,5 @@
-import {
-  Box,
-  Button,
-  Flex,
-  HStack,
-  Icon,
-  Popover,
-  PopoverBody,
-  PopoverContent,
-  PopoverHeader,
-  PopoverTrigger,
-  Tag,
-  Text,
-  useBreakpointValue,
-} from '@chakra-ui/react'
-import { ChevronSelectorVertical, Plus } from '@untitled-ui/icons-react'
+import { Button, Flex, HStack, Icon, PopoverBody, PopoverFooter, Tag, Text, useBreakpointValue } from '@chakra-ui/react'
+import { Plus } from '@untitled-ui/icons-react'
 import { OrganizationName } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
 import { useContext, useEffect, useMemo, useState } from 'react'
@@ -113,90 +99,58 @@ export const OrganizationSwitcher = ({ ...props }) => {
   }
   if (!subscription) return
   return (
-    <Popover placement={placement}>
-      <PopoverTrigger>
-        <Box
-          display='flex'
-          alignItems='center'
-          gap={2}
-          justifyContent='space-between'
-          _hover={{ cursor: 'pointer' }}
-          {...props}
-        >
-          {reduced ? (
-            <Icon as={LuGalleryVerticalEnd} boxSize={4} />
-          ) : (
-            <>
-              <HStack>
-                <Icon as={LuGalleryVerticalEnd} boxSize={4} ml={2} mr={2} />
-                <Flex flexDirection={'column'} justifyContent={'start'} gap={0.5} fontSize={'sm'}>
-                  <OrganizationName lineHeight={'14px'} fontWeight={500} maxW={'165px'} isTruncated />
-                  <Text
-                    as={'span'}
-                    lineHeight={'14px'}
-                    color='dashboard.org_switcher.subscription_plan'
-                    fontSize={'xs'}
-                    maxW={'165px'}
-                    isTruncated
-                  >
-                    {subscription.plan.name.split(' ')[0]}
-                  </Text>
-                </Flex>
-              </HStack>
-              <ChevronSelectorVertical width='16' height='16' color='dashboard.org_switcher.icon' />
-            </>
-          )}
-        </Box>
-      </PopoverTrigger>
-      <PopoverContent zIndex={100} maxW='229px'>
-        <PopoverHeader minH={'unset'}>
-          <Text size='xs' mb={2} fontWeight={600} color={'dashboard.org_switcher.number'}>
-            {t('organizations', { defaultValue: 'Organizations' })} ({organizations.length})
-          </Text>
-          <HStack>
-            <Flex
-              justifyContent={'center'}
-              alignItems={'center'}
-              border='var(--border)'
-              w='22px'
-              h='22px'
-              borderRadius='xs'
-            >
-              <Icon as={LuGalleryVerticalEnd} boxSize={4} ml={2} mr={2} />
-            </Flex>
-            <OrganizationName lineHeight={'14px'} fontWeight={500} maxW={'80px'} isTruncated />
-            <Tag colorScheme='gray' ml='auto'>
-              {t('current', { defaultValue: 'Current' })}
-            </Tag>
-          </HStack>
-        </PopoverHeader>
-        <PopoverBody minH={'unset'}>
-          <Button
-            as={ReactRouterLink}
-            variant='unstyled'
-            colorScheme='gray'
-            display={'flex'}
-            justifyContent={'start'}
-            gap={2}
-            w='full'
-            minH={'0'}
-            aria-label={t('create_org.title')}
-            to={Routes.dashboard.organizationCreate}
+    <>
+      <PopoverBody minH={'unset'}>
+        <Text size='xs' fontWeight={600} color={'dashboard.org_switcher.number'} px={1.5} py={2}>
+          {t('organizations', { defaultValue: 'Organizations' })} ({organizations.length})
+        </Text>
+        <HStack p={2} mb={1}>
+          <Flex
+            justifyContent={'center'}
+            alignItems={'center'}
+            border='var(--border)'
+            w='22px'
+            h='22px'
+            borderRadius='xs'
           >
-            <Flex
-              justifyContent={'center'}
-              alignItems={'center'}
-              border='var(--border)'
-              w='22px'
-              h='22px'
-              borderRadius='xs'
-            >
-              <Icon as={Plus} boxSize={4} ml={2} mr={2} />
-            </Flex>
+            <Icon as={LuGalleryVerticalEnd} boxSize={4} ml={2} mr={2} />
+          </Flex>
+          <OrganizationName fontSize={'14px'} lineHeight={'14px'} fontWeight={500} maxW={'80px'} isTruncated />
+          <Tag colorScheme='gray' ml='auto'>
+            {t('current', { defaultValue: 'Current' })}
+          </Tag>
+        </HStack>
+      </PopoverBody>
+      <PopoverFooter minH={'unset'}>
+        <Button
+          as={ReactRouterLink}
+          aria-label={t('create_org.title')}
+          to={Routes.dashboard.organizationCreate}
+          variant={'transparent'}
+          colorScheme='gray'
+          w='full'
+          px={2}
+          py={1.5}
+          h={'unset'}
+          borderRadius={'xs'}
+          mt={1}
+          sx={{ '& span:nth-of-type(2)': { marginLeft: 'auto' } }}
+        >
+          <Flex
+            justifyContent={'center'}
+            alignItems={'center'}
+            border='var(--border)'
+            w='22px'
+            h='22px'
+            borderRadius='xs'
+          >
+            <Icon as={Plus} boxSize={4} ml={2} mr={2} />
+          </Flex>
+          <Text as={'span'} h='unset' fontWeight={'bold'} size={'sm'}>
             {t('add_new_org', { defaultValue: 'Add a new organization' })}
-          </Button>
-        </PopoverBody>
-      </PopoverContent>
-    </Popover>
+          </Text>
+        </Button>
+      </PopoverFooter>
+    </>
   )
 }

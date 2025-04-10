@@ -965,7 +965,7 @@
     "github": "Inicia sessió amb Github",
     "google": "Inicia sessió amb Google"
   },
-  "logout": "Logout",
+  "logout": "Tanca la sessió",
   "memberbase": "Base de membres",
   "membership_size": {
     "language": "Default Language",
@@ -1337,6 +1337,10 @@
     "write_permission": "Can create and edit content"
   },
   "schedule_a_call": "Programar una trucada",
+  "section": {
+    "help": "Ajuda",
+    "platform": "Plataforma"
+  },
   "session_expired": "Session expired",
   "session_expired_description": "Session may have been expired and it could not be refreshed, please login again",
   "settings": "Configuració",
@@ -1373,6 +1377,7 @@
   },
   "support": "Suport",
   "surname": "Surname",
+  "switch_organization": "Canvia d'organització",
   "team": {
     "expiration": "Expiració",
     "member_name": "Nom",
@@ -1511,6 +1516,7 @@
     },
     "title": "Our success stories"
   },
+  "user_settings": "Configuració de l'usuari",
   "verification_code": "Verification Code",
   "verification_code_placeholder": "Enter the verification code",
   "verification_code_resent": "Verification code resent!",

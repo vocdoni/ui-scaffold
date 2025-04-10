@@ -1326,6 +1326,10 @@
     "write_permission": "Can create and edit content"
   },
   "schedule_a_call": "Schedule a call",
+  "section": {
+    "help": "Help",
+    "platform": "Platform"
+  },
   "session_expired": "Session expired",
   "session_expired_description": "Session may have been expired and it could not be refreshed, please login again",
   "settings": "Settings",
@@ -1362,6 +1366,7 @@
   },
   "support": "Support",
   "surname": "Surname",
+  "switch_organization": "Switch organization",
   "team": {
     "expiration": "Expiration",
     "member_name": "Name",
@@ -1500,6 +1505,7 @@
     },
     "title": "Our success stories"
   },
+  "user_settings": "User settings",
   "verification_code": "Verification Code",
   "verification_code_placeholder": "Enter the verification code",
   "verification_code_resent": "Verification code resent!",

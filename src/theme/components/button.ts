@@ -2,6 +2,8 @@ import { defineStyle, defineStyleConfig } from '@chakra-ui/styled-system'
 
 const baseStyle = {
   minW: 0,
+  fontWeight: 'bold',
+
   '& > span': {
     m: 0,
   },

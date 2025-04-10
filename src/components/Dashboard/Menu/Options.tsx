@@ -68,11 +68,9 @@ export const DashboardMenuOptions = () => {
     <Flex flexDirection={'column'} gap={8}>
       <Box>
         {!reduced && (
-          <Box mx={2}>
-            <Text fontWeight={'600'} fontSize={'12px'}>
-              Platform
-            </Text>
-          </Box>
+          <Text mx={2} fontWeight={'bold'} size={'xs'}>
+            {t('section.platform', { defaultValue: 'Platform' })}
+          </Text>
         )}
         <UnorderedList display={'flex'} flexDirection={'column'} gap={1} listStyleType={"''"} ml={'0'}>
           {menuItemsPlatform.map((item, index) => {
@@ -97,7 +95,9 @@ export const DashboardMenuOptions = () => {
                         gap={4}
                         p={2}
                         fontWeight={
-                          Boolean(matchPath({ path: item.route || '', end: true }, location.pathname)) ? 'bold' : 400
+                          Boolean(matchPath({ path: item.route || '', end: true }, location.pathname))
+                            ? 'bold'
+                            : 'normal'
                         }
                         isDisabled={!item.route}
                       >
@@ -121,7 +121,7 @@ export const DashboardMenuOptions = () => {
                       gap={4}
                       p={2}
                       fontWeight={
-                        Boolean(matchPath({ path: item.route || '', end: true }, location.pathname)) ? 'bold' : 400
+                        Boolean(matchPath({ path: item.route || '', end: true }, location.pathname)) ? 'bold' : 'normal'
                       }
                       isDisabled={!item.route}
                     >
@@ -136,11 +136,10 @@ export const DashboardMenuOptions = () => {
       </Box>
       {!reduced && (
         <Box>
-          <Box mx={2}>
-            <Text fontWeight={'600'} fontSize={'12px'}>
-              Help
-            </Text>
-          </Box>
+          <Text mx={2} fontWeight={'bold'} size={'xs'}>
+            {t('section.help', { defaultValue: 'Help' })}
+          </Text>
+
           <UnorderedList display={'flex'} flexDirection={'column'} gap={1} listStyleType={"''"} ml={0}>
             {menuItemsHelp.map((item, index) => (
               <ListItem key={index}>

@@ -12,16 +12,13 @@ const baseStyle = definePartsStyle({
     border: 'none',
   },
   header: {
-    px: 1,
-    py: 2,
+    p: 0,
   },
   body: {
-    px: 1,
-    py: 2,
+    p: 0,
   },
   footer: {
-    px: 1,
-    py: 2,
+    p: 0,
   },
 })
 export const Popover = defineMultiStyleConfig({ baseStyle })

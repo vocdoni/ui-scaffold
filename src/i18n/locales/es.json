@@ -965,7 +965,7 @@
     "github": "Iniciar sesión con Github",
     "google": "Iniciar sesión con Google"
   },
-  "logout": "Logout",
+  "logout": "Cerrar sesión",
   "memberbase": "Base de miembros",
   "membership_size": {
     "language": "Idioma por Defecto",
@@ -1337,6 +1337,10 @@
     "write_permission": "Puede crear y editar contenido"
   },
   "schedule_a_call": "Programar una llamada",
+  "section": {
+    "help": "Ayuda",
+    "platform": "Platforma"
+  },
   "session_expired": "Sesión expirada",
   "session_expired_description": "La sesión puede haber expirado y no se pudo actualizar, por favor inicia sesión de nuevo",
   "settings": "Configuración",
@@ -1373,6 +1377,7 @@
   },
   "support": "Soporte",
   "surname": "Apellido",
+  "switch_organization": "Cambiar de organización",
   "team": {
     "expiration": "Expiración",
     "member_name": "Nombre",
@@ -1511,6 +1516,7 @@
     },
     "title": "Our success stories"
   },
+  "user_settings": "Configuración del usuario",
   "verification_code": "Código de verificación",
   "verification_code_placeholder": "Introduce el código de verificación",
   "verification_code_resent": "¡Código de verificación reenviado!",

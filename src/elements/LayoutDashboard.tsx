@@ -13,7 +13,7 @@ import {
 } from '@chakra-ui/react'
 import { ChevronRight, HelpCircle, LayoutRight, Plus } from '@untitled-ui/icons-react'
 import { OrganizationProvider, useClient } from '@vocdoni/react-providers'
-import { createContext, PropsWithChildren, useState } from 'react'
+import { createContext, PropsWithChildren, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { generatePath, Outlet, Link as ReactRouterLink } from 'react-router-dom'
 import DashboardMenu from '~components/Dashboard/Menu'
@@ -40,6 +40,11 @@ const LayoutDashboard: React.FC = () => {
   const isMobile = useBreakpointValue({ base: true, md: false })
   const [reduced, setReduced] = useState(false)
 
+  useEffect(() => {
+    if (isMobile) setReduced(false)
+    if (!isMobile) onClose()
+  }, [isMobile])
+
   return (
     <DashboardLayoutContext.Provider value={{ reduced }}>
       <DashboardLayoutProviders>
@@ -60,6 +65,7 @@ const LayoutDashboard: React.FC = () => {
               flexShrink={0}
               alignItems='center'
               borderBottom='var(--border)'
+              zIndex={100}
             >
               <IconButton
                 icon={<LayoutRight />}
@@ -76,7 +82,7 @@ const LayoutDashboard: React.FC = () => {
                 <OrderedList display={'flex'} alignItems={'center'} gap={1.5} styleType={"''"} ml={0}>
                   {!!breadcrumb.length ? (
                     <>
-                      <ListItem>
+                      <ListItem display={{ base: 'none', md: 'block' }}>
                         <Link
                           as={ReactRouterLink}
                           to={generatePath(Routes.dashboard.base)}
@@ -87,16 +93,21 @@ const LayoutDashboard: React.FC = () => {
                           {t('organization.dashboard')}
                         </Link>
                       </ListItem>
-                      <ListItem display={'flex'} justifyContent={'center'} alignItems={'center'} fontSize={'sm'}>
+                      <ListItem
+                        display={{ base: 'none', md: 'flex' }}
+                        justifyContent={'center'}
+                        alignItems={'center'}
+                        fontSize={'sm'}
+                      >
                         <Icon as={ChevronRight} />
                       </ListItem>
                     </>
                   ) : (
-                    <ListItem>{t('organization.dashboard')}</ListItem>
+                    <ListItem display={{ base: 'none', md: 'block' }}>{t('organization.dashboard')}</ListItem>
                   )}
                   {breadcrumb.map((el, idx) => (
                     <>
-                      <ListItem key={idx}>
+                      <ListItem key={idx} display={{ base: idx === breadcrumb.length - 1 && 'block', md: 'block' }}>
                         {idx === breadcrumb.length - 1 ? (
                           <Text as='span' fontSize={'sm'}>
                             {el.title}
@@ -107,7 +118,7 @@ const LayoutDashboard: React.FC = () => {
                           </Link>
                         )}
                       </ListItem>
-                      <ListItem display={'flex'} justifyContent={'center'} alignItems={'center'}>
+                      <ListItem display={{ base: 'none', md: 'flex' }} justifyContent={'center'} alignItems={'center'}>
                         {idx < breadcrumb.length - 1 && <Icon as={ChevronRight} />}
                       </ListItem>
                     </>
@@ -122,7 +133,7 @@ const LayoutDashboard: React.FC = () => {
                   leftIcon={<HelpCircle />}
                   colorScheme='gray'
                   size={'sm'}
-                  display={{ base: 'none', md: 'flex' }}
+                  display={{ base: 'none', lg: 'flex' }}
                 >
                   <Trans i18nKey='help'>{t('help', { defaultValue: 'Do you need help?' })}</Trans>
                 </Button>
@@ -133,7 +144,7 @@ const LayoutDashboard: React.FC = () => {
                   colorScheme='gray'
                   size={'sm'}
                   aria-label='help'
-                  display={{ base: 'flex', md: 'none' }}
+                  display={{ base: 'flex', lg: 'none' }}
                 />
                 <Button
                   as={ReactRouterLink}
@@ -141,7 +152,7 @@ const LayoutDashboard: React.FC = () => {
                   leftIcon={<Plus />}
                   colorScheme='black'
                   size={'sm'}
-                  display={{ base: 'none', md: 'flex' }}
+                  display={{ base: 'none', lg: 'flex' }}
                 >
                   <Trans i18nKey='new_voting'>New vote</Trans>
                 </Button>
@@ -152,7 +163,7 @@ const LayoutDashboard: React.FC = () => {
                   colorScheme='black'
                   size={'sm'}
                   aria-label='new vote'
-                  display={{ base: 'flex', md: 'none' }}
+                  display={{ base: 'flex', lg: 'none' }}
                 />
               </Flex>
             </Box>

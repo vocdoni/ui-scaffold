@@ -41,14 +41,19 @@ export const colorsBase = {
 }
 
 export const newColorsBase = {
+  white: '#ffffff',
   gray: {
-    normal: 'rgb(113, 113, 122)',
+    light: '#fbfbfb',
+    normal: '#71717A',
   },
 }
 
 export const colors = {
   dashboard: {
+    aside_bg: newColorsBase.gray.light,
+    back: newColorsBase.gray.normal,
     breadcrumb: newColorsBase.gray.normal,
+    chevron: newColorsBase.gray.normal,
     org_switcher: {
       subscription_plan: newColorsBase.gray.normal,
       icon: newColorsBase.gray.normal,
@@ -58,7 +63,10 @@ export const colors = {
       email: newColorsBase.gray.normal,
       icon: newColorsBase.gray.normal,
     },
-    schedule_call_description: newColorsBase.gray.normal,
+    schedule_call: {
+      bg: newColorsBase.white,
+      description: newColorsBase.gray.normal,
+    },
     //
     invite: colorsBase.white.dark,
     process_view: {

@@ -31,7 +31,6 @@ import { TabsResponsive } from './components/TabsResponsive'
 import { SpreadsheetAccess } from './components/SpreadsheetAccess'
 import { radii } from './radius'
 import '@fontsource/inter/index.css'
-import '@fontsource/inter/500.css'
 import { Tooltip } from './components/tooltip'
 import { Popover } from './components/popover'
 
@@ -44,6 +43,9 @@ export const theme = extendTheme(vtheme, {
     body: `"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif`,
     heading: `"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif`,
     mono: `'Menlo', monospace`,
+  },
+  fontWeights: {
+    bold: '500',
   },
   styles: {
     global: (props) => ({

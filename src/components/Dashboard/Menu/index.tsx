@@ -1,13 +1,14 @@
-import { Box, Button, CloseButton, Drawer, DrawerContent, DrawerOverlay, Text } from '@chakra-ui/react'
+import { Box, Button, CloseButton, Drawer, DrawerContent, DrawerOverlay, Flex, Text } from '@chakra-ui/react'
 import { Calendar, Plus } from '@untitled-ui/icons-react'
 import { useContext, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { generatePath, Link as ReactRouterLink, Link as RouterLink } from 'react-router-dom'
 import { DashboardBox } from '~components/Layout/Dashboard'
+import { VocdoniLogo } from '~components/Layout/Logo'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~src/router/routes'
+import { LogoMbl } from '~theme/icons'
 import { DashboardMenuOptions } from './Options'
-import { OrganizationSwitcher } from './OrganizationSwitcher'
 import UserProfile from './UserProfile'
 
 const DashboardMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
@@ -17,6 +18,7 @@ const DashboardMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
     <>
       {/* Sidebar for large screens */}
       <Box
+        bgColor='dashboard.aside_bg'
         display={{ base: 'none', md: 'flex' }}
         flexDirection={'column'}
         position={'sticky'}
@@ -36,10 +38,8 @@ const DashboardMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
       {/* Sidebar for small screens */}
       <Drawer isOpen={isOpen} placement='left' onClose={onClose}>
         <DrawerOverlay />
-        <DrawerContent>
-          <Box p={4} display='flex' flexDirection='column' gap={4}>
-            <DashboardMenuContent />
-          </Box>
+        <DrawerContent p={2}>
+          <DashboardMenuContent />
         </DrawerContent>
       </Drawer>
     </>
@@ -50,11 +50,20 @@ const DashboardMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
 const DashboardMenuContent = () => {
   const { t } = useTranslation()
   const { reduced } = useContext(DashboardLayoutContext)
-  const [closeScheudleACall, setCloseScheudleACall] = useState(false)
+  const [closeScheduleACall, setCloseScheduleACall] = useState(false)
 
   return (
     <>
-      <OrganizationSwitcher h={'47px'} p={2} mb={2} />
+      <Flex
+        as={ReactRouterLink}
+        to={Routes.dashboard.base}
+        justifyContent={'center'}
+        alignItems={'center'}
+        h='47px'
+        mb={2}
+      >
+        {reduced ? <LogoMbl maxW='32px' /> : <VocdoniLogo width={'148px'} />}
+      </Flex>
       <Button
         as={RouterLink}
         to={generatePath(Routes.processes.create)}
@@ -72,46 +81,48 @@ const DashboardMenuContent = () => {
 
       <DashboardMenuOptions />
 
-      {!closeScheudleACall && (
-        <DashboardBox
-          position={'relative'}
-          flexDirection={'column'}
-          display={reduced ? 'none' : 'flex'}
-          mt='auto'
-          gap={2}
-          p={4}
-          borderRadius='lg'
-        >
-          <CloseButton
-            onClick={() => setCloseScheudleACall(true)}
-            position={'absolute'}
-            top={1}
-            right={1}
-            color='gray'
-          />
-          <Text fontSize={'sm'} fontWeight={'bold'}>
-            {t('need_help.title', { defaultValue: 'First steps' })}
-          </Text>
-          <Text fontSize={'xs'} lineHeight={'16px'} color='dashboard.schedule_call_description'>
-            {t('need_help.description', {
-              defaultValue:
-                'Do you need some help with your first voting process? Watch this tutorial or schedule a call.',
-            })}
-          </Text>
-          <Button
-            as={ReactRouterLink}
-            to={generatePath(Routes.processes.create)}
-            leftIcon={<Calendar />}
-            colorScheme='gray'
-            w='full'
-            size={'sm'}
-            fontSize={'12px'}
+      <Box mt='auto'>
+        {!closeScheduleACall && (
+          <DashboardBox
+            position={'relative'}
+            flexDirection={'column'}
+            display={reduced ? 'none' : 'flex'}
+            gap={2}
+            p={4}
+            borderRadius='lg'
+            bgColor={'dashboard.schedule_call.bg'}
           >
-            {t('schedule_a_call', { defaultValue: ' Schedule a call' })}
-          </Button>
-        </DashboardBox>
-      )}
-      <UserProfile />
+            <CloseButton
+              onClick={() => setCloseScheduleACall(true)}
+              position={'absolute'}
+              top={1}
+              right={1}
+              color='gray'
+            />
+            <Text fontSize={'sm'} fontWeight={'bold'}>
+              {t('need_help.title', { defaultValue: 'First steps' })}
+            </Text>
+            <Text fontSize={'xs'} lineHeight={'16px'} color='dashboard.schedule_call.description'>
+              {t('need_help.description', {
+                defaultValue:
+                  'Do you need some help with your first voting process? Watch this tutorial or schedule a call.',
+              })}
+            </Text>
+            <Button
+              as={ReactRouterLink}
+              to={generatePath(Routes.processes.create)}
+              leftIcon={<Calendar />}
+              colorScheme='gray'
+              w='full'
+              size={'sm'}
+              fontSize={'12px'}
+            >
+              {t('schedule_a_call', { defaultValue: ' Schedule a call' })}
+            </Button>
+          </DashboardBox>
+        )}
+        <UserProfile />
+      </Box>
     </>
   )
 }
