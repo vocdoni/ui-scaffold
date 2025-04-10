@@ -7,7 +7,6 @@ import { DashboardBox } from '~components/Layout/Dashboard'
 import { VocdoniLogo } from '~components/Layout/Logo'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~src/router/routes'
-import { LogoMbl } from '~theme/icons'
 import { DashboardMenuOptions } from './Options'
 import UserProfile from './UserProfile'
 
@@ -62,7 +61,7 @@ const DashboardMenuContent = () => {
         h='47px'
         mb={2}
       >
-        {reduced ? <LogoMbl maxW='32px' /> : <VocdoniLogo width={'148px'} />}
+        <VocdoniLogo width={reduced ? '32px' : '148px'} minimal={reduced} />
       </Flex>
       <Button
         as={RouterLink}

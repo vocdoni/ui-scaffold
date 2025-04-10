@@ -31,6 +31,7 @@ import { TabsResponsive } from './components/TabsResponsive'
 import { SpreadsheetAccess } from './components/SpreadsheetAccess'
 import { radii } from './radius'
 import '@fontsource/inter/index.css'
+import '@fontsource/inter/500.css'
 import { Tooltip } from './components/tooltip'
 import { Popover } from './components/popover'
 

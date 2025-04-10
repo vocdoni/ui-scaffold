@@ -94,11 +94,6 @@ export const DashboardMenuOptions = () => {
                         justifyContent={'start'}
                         gap={4}
                         p={2}
-                        fontWeight={
-                          Boolean(matchPath({ path: item.route || '', end: true }, location.pathname))
-                            ? 'bold'
-                            : 'normal'
-                        }
                         isDisabled={!item.route}
                       >
                         {!reduced && item.label}
@@ -120,9 +115,8 @@ export const DashboardMenuOptions = () => {
                       justifyContent={'start'}
                       gap={4}
                       p={2}
-                      fontWeight={
-                        Boolean(matchPath({ path: item.route || '', end: true }, location.pathname)) ? 'bold' : 'normal'
-                      }
+                      fontWeight={400}
+                      isActive={Boolean(matchPath({ path: item.route || '', end: true }, location.pathname)) && true}
                       isDisabled={!item.route}
                     >
                       {!reduced && item.label}
@@ -153,9 +147,8 @@ export const DashboardMenuOptions = () => {
                   justifyContent={'start'}
                   gap={4}
                   p={2}
-                  fontWeight={
-                    Boolean(matchPath({ path: item.route || '', end: true }, location.pathname)) ? 'bold' : 400
-                  }
+                  fontWeight={400}
+                  isActive={Boolean(matchPath({ path: item.route || '', end: true }, location.pathname)) && true}
                   isDisabled
                 >
                   {item.label}

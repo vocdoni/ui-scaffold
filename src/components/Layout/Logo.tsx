@@ -26,7 +26,7 @@ export const VocdoniLogo = ({ minimal = false, ...props }: VocdoniLogoProps) => 
   const fill = useColorModeValue('black', 'white')
 
   // Adjust viewBox depending on whether minimal is true or false
-  const viewBox = minimal ? '0 0 165 155' : '0 0 1000 215'
+  const viewBox = minimal ? '120 120 32 27.3' : '0 0 1000 215'
 
   return (
     <chakra.svg viewBox={viewBox} fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>

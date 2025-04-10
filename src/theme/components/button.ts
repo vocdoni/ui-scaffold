@@ -134,6 +134,10 @@ const transparent = defineStyle((props) => {
         color: 'button.variant.common.disabled.color.dark',
       },
     },
+
+    _active: {
+      fontWeight: 'bold',
+    },
   }
 })
 
