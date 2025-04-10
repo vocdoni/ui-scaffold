@@ -50,17 +50,17 @@ export const DashboardMenuOptions = () => {
     {
       label: t('support'),
       icon: LifeBuoy01,
-      route: '',
+      route: Routes.dashboard.base,
     },
     {
       label: t('call_us', { defaultValue: 'Call us' }),
       icon: Phone,
-      route: '',
+      route: Routes.dashboard.base,
     },
     {
       label: t('guides', { defaultValue: 'Guides' }),
       icon: BookOpen01,
-      route: '',
+      route: Routes.dashboard.base,
     },
   ]
 
