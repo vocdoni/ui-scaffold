@@ -138,7 +138,7 @@ const LayoutDashboard: React.FC = () => {
                   size={'sm'}
                   display={{ base: 'none', lg: 'flex' }}
                 >
-                  <Trans i18nKey='help'>{t('help', { defaultValue: 'Do you need help?' })}</Trans>
+                  <Trans i18nKey='help'>Do you need help?</Trans>
                 </Button>
                 <IconButton
                   icon={<HelpCircle />}

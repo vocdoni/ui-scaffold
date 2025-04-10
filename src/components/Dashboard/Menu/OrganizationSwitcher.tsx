@@ -91,11 +91,16 @@ export const OrganizationSwitcher = ({ ...props }) => {
   }
 
   if (!subscription) return
+
+  const numOrgs = organizations.length
+
   return (
     <>
       <PopoverBody minH={'unset'}>
         <Text size='xs' fontWeight={600} color={'dashboard.org_switcher.number'} px={1.5} py={2}>
-          <Trans i18nKey={'organizations'} values={{ numOrgs: organizations.length }} />
+          <Trans i18nKey='organizations' values={{ numOrgs }}>
+            Organizations ({numOrgs})
+          </Trans>
         </Text>
         <Flex flexDirection={'column'} maxH={'130px'} overflowY={'scroll'}>
           {organizations.length > 1 ? (
