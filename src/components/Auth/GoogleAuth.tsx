@@ -1,10 +1,9 @@
 import { Button, Icon } from '@chakra-ui/react'
-import { saasOAuthWallet } from '@vocdoni/rainbowkit-wallets'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FcGoogle } from 'react-icons/fc'
 import { useAccount, useConnect } from 'wagmi'
-import { chains } from '~constants/rainbow'
+import { googleWallet } from '~constants/rainbow'
 import { useAuth } from './useAuth'
 
 const GoogleAuth = () => {
@@ -12,19 +11,7 @@ const GoogleAuth = () => {
   const { isConnected } = useAccount()
   const { t } = useTranslation()
 
-  const oauthWallet = saasOAuthWallet({
-    id: 'google',
-    chains,
-    name: 'Google',
-    iconUrl: 'https://authjs.dev/img/providers/google.svg',
-    options: {
-      oAuthServiceUrl: import.meta.env.OAUTH_URL,
-      oAuthServiceProvider: 'google',
-      saasBackendUrl: import.meta.env.SAAS_URL,
-    },
-  })
-  const { connector } = oauthWallet.createConnector()
-
+  const { connector } = googleWallet.createConnector()
   const { connect, isLoading } = useConnect()
 
   useEffect(() => {
