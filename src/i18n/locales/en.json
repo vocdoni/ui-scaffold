@@ -1036,7 +1036,7 @@
     },
     "votings_list": "Votings Processes List"
   },
-  "organizations": "Organizations",
+  "organizations": "Organizations ({{ numOrgs }})",
   "overwrite": {
     "description": "Voters will be able to overwrite their vote once",
     "title": "Vote overwrite"

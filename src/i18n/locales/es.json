@@ -1044,7 +1044,7 @@
     },
     "votings_list": "Lista de procesos de votación"
   },
-  "organizations": "Organizations",
+  "organizations": "Organizations ({{ numOrgs }})",
   "overwrite": {
     "description": "Los votantes podrán modificar su voto una vez",
     "title": "Modificación de voto"

@@ -1044,7 +1044,7 @@
     },
     "votings_list": "Llista de processos de votació"
   },
-  "organizations": "Organizations",
+  "organizations": "Organizations ({{ numOrgs }})",
   "overwrite": {
     "description": "Voters will be able to overwrite their vote once",
     "title": "Vote overwrite"

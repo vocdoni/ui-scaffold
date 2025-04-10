@@ -139,8 +139,8 @@ export const DashboardMenuOptions = () => {
             {menuItemsHelp.map((item, index) => (
               <ListItem key={index}>
                 <Button
-                  // as={ReactRouterLink}
-                  // to={generatePath(item.route)}
+                  as={ReactRouterLink}
+                  to={generatePath(item.route)}
                   leftIcon={<Icon as={item.icon} width='16px' height='16px' />}
                   variant={'transparent'}
                   size='xs'

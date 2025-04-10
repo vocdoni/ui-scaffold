@@ -3,7 +3,7 @@ import { Plus } from '@untitled-ui/icons-react'
 import { OrganizationName } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
 import { useEffect, useMemo, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { LuGalleryVerticalEnd } from 'react-icons/lu'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useQueryClient } from 'wagmi'
@@ -95,7 +95,7 @@ export const OrganizationSwitcher = ({ ...props }) => {
     <>
       <PopoverBody minH={'unset'}>
         <Text size='xs' fontWeight={600} color={'dashboard.org_switcher.number'} px={1.5} py={2}>
-          {t('organizations', { defaultValue: 'Organizations' })} ({organizations.length})
+          <Trans i18nKey={'organizations'} values={{ numOrgs: organizations.length }} />
         </Text>
         <Flex flexDirection={'column'} maxH={'130px'} overflowY={'scroll'}>
           {organizations.length > 1 ? (
