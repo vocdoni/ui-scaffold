@@ -1,123 +1,171 @@
-import { Box, Collapse } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { Box, Button, Flex, Icon, ListItem, Text, Tooltip, UnorderedList } from '@chakra-ui/react'
+import { BookOpen01, Home02, LifeBuoy01, Mail04, Phone, Settings01, Users01 } from '@untitled-ui/icons-react'
+import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
-import { HiHome, HiSquares2X2 } from 'react-icons/hi2'
-import { IoIosSettings } from 'react-icons/io'
-import { matchPath, useLocation } from 'react-router-dom'
+import { Link as ReactRouterLink, generatePath, matchPath, useLocation } from 'react-router-dom'
+import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~src/router/routes'
-import { DashboardMenuItem } from './Item'
-import { OrganizationSwitcher } from './OrganizationSwitcher'
 
-type MenuItem = {
+type MenuItems = {
   label: string
   icon?: any
   route?: string
   children?: MenuItem[]
 }
 
+type MenuItem = {
+  label: string
+  icon?: any
+  route?: string
+}
+
 export const DashboardMenuOptions = () => {
   const { t } = useTranslation()
   const location = useLocation()
-  const [openSection, setOpenSection] = useState<string | null>(null)
-  const menuItems: MenuItem[] = [
+  const { reduced } = useContext(DashboardLayoutContext)
+
+  const menuItemsPlatform: MenuItem[] = [
     {
       label: t('organization.dashboard'),
-      icon: HiHome,
+      icon: Home02,
       route: Routes.dashboard.base,
     },
     {
       label: t('voting_processes'),
-      icon: HiSquares2X2,
+      icon: Mail04,
       route: Routes.dashboard.processes,
     },
-    // {
-    //   label: t('organization.census'),
-    //   icon: GiHamburgerMenu,
-    //   route: '#census',
-    // },
-    // {
-    //   label: t('user_management'),
-    //   icon: HiMiniPencil,
-    //   route: '#user-management',
-    // },
+    {
+      label: t('memberbase'),
+      icon: Users01,
+      route: '',
+    },
     {
       label: t('settings'),
-      icon: IoIosSettings,
-      children: [
-        { label: t('organization.organization'), route: Routes.dashboard.organization },
-        { label: t('team.title'), route: Routes.dashboard.team },
-        // { label: t('billing'), route: '#billing' },
-        { label: t('subscription.title'), route: Routes.dashboard.subscription },
-        { label: t('profile.title'), route: Routes.dashboard.profile },
-      ],
+      icon: Settings01,
+      route: Routes.dashboard.settings,
     },
-    // {
-    //   label: t('help_and_support'),
-    //   icon: FaPhoneAlt,
-    //   route: '#support',
-    // },
+  ]
+  const menuItemsHelp: MenuItem[] = [
+    {
+      label: t('support'),
+      icon: LifeBuoy01,
+      route: '',
+    },
+    {
+      label: t('call_us', { defaultValue: 'Call us' }),
+      icon: Phone,
+      route: '',
+    },
+    {
+      label: t('guides', { defaultValue: 'Guides' }),
+      icon: BookOpen01,
+      route: '',
+    },
   ]
 
-  // Check if any child route is active, and open its section
-  useEffect(() => {
-    menuItems.forEach((item) => {
-      if (
-        item.children &&
-        item.children.some((child) => matchPath({ path: child.route || '', end: true }, location.pathname))
-      ) {
-        setOpenSection((prev) => (prev !== item.label ? item.label : prev))
-      }
-    })
-  }, [location.pathname])
-
-  const handleToggle = (label: string) => {
-    setOpenSection((prev) => (prev === label ? null : label))
-  }
-
   return (
-    <Box>
-      <OrganizationSwitcher />
+    <Flex flexDirection={'column'} gap={8}>
+      <Box>
+        {!reduced && (
+          <Text mx={2} fontWeight={'bold'} size={'xs'}>
+            {t('section.platform', { defaultValue: 'Platform' })}
+          </Text>
+        )}
+        <UnorderedList display={'flex'} flexDirection={'column'} gap={1} listStyleType={"''"} ml={'0'}>
+          {menuItemsPlatform.map((item, index) => {
+            const isDisabled = !item.route
+            const as = isDisabled ? 'button' : ReactRouterLink
 
-      {menuItems.map((item, index) => (
-        <Box key={index}>
-          {item.children ? (
-            <>
-              <DashboardMenuItem
-                label={item.label}
-                icon={item.icon}
-                route={item.route}
-                isOpen={openSection === item.label}
-                isActive={item.children.some((child) =>
-                  matchPath({ path: child.route || '', end: true }, location.pathname)
+            return (
+              <React.Fragment key={index}>
+                {reduced ? (
+                  <ListItem>
+                    <Tooltip label={item.label} placement='right-end'>
+                      <Button
+                        as={as}
+                        {...(!isDisabled && { to: generatePath(item.route) })}
+                        onClick={(e) => {
+                          if (isDisabled) e.preventDefault()
+                        }}
+                        leftIcon={<Icon as={item.icon} width='16px' height='16px' />}
+                        variant='transparent'
+                        size='xs'
+                        colorScheme='gray'
+                        justifyContent='start'
+                        gap={4}
+                        p={2}
+                        isDisabled={isDisabled}
+                      >
+                        {!reduced && item.label}
+                      </Button>
+                    </Tooltip>
+                  </ListItem>
+                ) : (
+                  <ListItem>
+                    <Button
+                      as={as}
+                      {...(!isDisabled && { to: generatePath(item.route) })}
+                      onClick={(e) => {
+                        if (isDisabled) e.preventDefault()
+                      }}
+                      leftIcon={<Icon as={item.icon} width='16px' height='16px' />}
+                      variant='transparent'
+                      size='xs'
+                      colorScheme='gray'
+                      justifyContent='start'
+                      gap={4}
+                      p={2}
+                      fontWeight={400}
+                      isActive={Boolean(matchPath({ path: item.route || '', end: true }, location.pathname)) && true}
+                      isDisabled={isDisabled}
+                    >
+                      {!reduced && item.label}
+                    </Button>
+                  </ListItem>
                 )}
-                onToggle={() => handleToggle(item.label)}
-                hasChildren
-              />
-              <Collapse in={openSection === item.label}>
-                <Box pl={6}>
-                  {item.children.map((child, childIndex) => (
-                    <DashboardMenuItem
-                      key={childIndex}
-                      label={child.label}
-                      route={child.route}
-                      icon={null}
-                      isActive={Boolean(matchPath({ path: child.route || '', end: true }, location.pathname))}
-                    />
-                  ))}
-                </Box>
-              </Collapse>
-            </>
-          ) : (
-            <DashboardMenuItem
-              label={item.label}
-              route={item.route}
-              icon={item.icon}
-              isActive={Boolean(matchPath({ path: item.route || '', end: true }, location.pathname))}
-              onToggle={() => setOpenSection(null)}
-            />
-          )}
+              </React.Fragment>
+            )
+          })}
+        </UnorderedList>
+      </Box>
+      {!reduced && (
+        <Box>
+          <Text mx={2} fontWeight={'bold'} size={'xs'}>
+            {t('section.help', { defaultValue: 'Help' })}
+          </Text>
+
+          <UnorderedList display={'flex'} flexDirection={'column'} gap={1} listStyleType={"''"} ml={0}>
+            {menuItemsHelp.map((item, index) => {
+              const isDisabled = !item.route
+              const as = isDisabled ? 'button' : ReactRouterLink
+              return (
+                <ListItem key={index}>
+                  <Button
+                    as={as}
+                    {...(!isDisabled && { to: generatePath(item.route) })}
+                    onClick={(e) => {
+                      if (isDisabled) e.preventDefault()
+                    }}
+                    leftIcon={<Icon as={item.icon} width='16px' height='16px' />}
+                    variant={'transparent'}
+                    size='xs'
+                    colorScheme='gray'
+                    justifyContent={'start'}
+                    gap={4}
+                    p={2}
+                    fontWeight={400}
+                    isActive={Boolean(matchPath({ path: item.route || '', end: true }, location.pathname)) && true}
+                    isDisabled
+                  >
+                    {item.label}
+                  </Button>
+                </ListItem>
+              )
+            })}
+          </UnorderedList>
         </Box>
-      ))}
-    </Box>
+      )}
+    </Flex>
   )
 }

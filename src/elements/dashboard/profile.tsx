@@ -12,7 +12,7 @@ export const Profile = () => {
 
   // Set layout variables
   useEffect(() => {
-    setBreadcrumb([{ title: t('profile.title', { defaultValue: 'Profile' }), route: Routes.dashboard.profile }])
+    setBreadcrumb([{ title: t('profile.title'), route: Routes.dashboard.profile }])
   }, [setBreadcrumb])
 
   return (

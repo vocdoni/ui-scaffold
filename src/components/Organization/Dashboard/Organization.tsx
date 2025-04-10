@@ -1,0 +1,17 @@
+import { useTranslation } from 'react-i18next'
+import { useSaasAccount } from '~components/Account/useSaasAccount'
+import QueryDataLayout from '~components/Layout/QueryDataLayout'
+import EditOrganization from '~components/Organization/Edit'
+
+const OrganizationEdit = () => {
+  const { t } = useTranslation()
+  const { isLoading, isError, error } = useSaasAccount()
+
+  return (
+    <QueryDataLayout isLoading={isLoading} isError={isError} error={error}>
+      <EditOrganization />
+    </QueryDataLayout>
+  )
+}
+
+export default OrganizationEdit

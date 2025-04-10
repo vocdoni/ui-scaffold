@@ -3,6 +3,7 @@
     "save": "Guarda els canvis"
   },
   "active": "Actiu",
+  "add_new_org": "Afegir una nova organització",
   "all": "Tots",
   "already_member": "Ja ets membre?",
   "alt": {
@@ -132,6 +133,7 @@
     "subtitle": "Specify the active period for receiving votes",
     "title": "Calendar"
   },
+  "call_us": "Truca'ns",
   "cc": {
     "actions": {
       "cancel": "Cancel·la immediatament el procés de votació, sense permetre nous vots i sense comptabilitzar resultats (precaució: no es pot desfer)",
@@ -303,6 +305,7 @@
       "selected_users": "Usuaris seleccionats:"
     }
   },
+  "current": "Actual",
   "customization": "Customization",
   "dark_mode": "Mode fosc",
   "delete_my_account": "Delete my account",
@@ -533,13 +536,15 @@
         "info_title": "Information",
         "questions_title": "Questions"
       }
-    }
+    },
+    "select_language": "Idioma"
   },
   "gitcoin": {
     "effective": "20: Efectiu",
     "more_effective": "25: Més efectiu",
     "most_effective": "30: Molt efectiu"
   },
+  "guides": "Guies",
   "help": "Necessites ajuda?",
   "home": {
     "benefits": {
@@ -938,6 +943,11 @@
   },
   "invite_people": "Convidar Membres",
   "keep_me_logged": "Mantenir-me connectat",
+  "language": {
+    "catalan": "Català",
+    "english": "English",
+    "spanish": "Castellano"
+  },
   "languages": "Languages",
   "light_mode": "Mode clar",
   "link": {
@@ -955,7 +965,8 @@
     "github": "Inicia sessió amb Github",
     "google": "Inicia sessió amb Google"
   },
-  "logout": "Logout",
+  "logout": "Tanca la sessió",
+  "memberbase": "Base de membres",
   "membership_size": {
     "language": "Default Language",
     "selector_label": "Membership size",
@@ -992,6 +1003,10 @@
     "pricing": "Pricing",
     "usecases": "Use Cases"
   },
+  "need_help": {
+    "description": "Necessites ajuda amb el teu primer procés de votació? Mira aquest tutorial o programa una trucada.",
+    "title": "Primers passos"
+  },
   "new_organization": {
     "create_organization_btn": "Crear Organització",
     "description1": "Abans de començar a crear el vostre procés de votació, <span>heu de crear una organització</span>, és gratuït. Amb una organització, podreu crear una àmplia gamma d'eleccions i donar veu als membres de la vostra comunitat.",
@@ -1012,7 +1027,6 @@
   },
   "organization": {
     "avatar_alt": "Imatge d'avatar de l'organització {{ name }}",
-    "census": "Cens",
     "create_org": "Crear Organitzaciò",
     "dashboard": "Dashboard",
     "date_format": "d MMM y",
@@ -1030,6 +1044,7 @@
     },
     "votings_list": "Llista de processos de votació"
   },
+  "organizations": "Organizations ({{ numOrgs }})",
   "overwrite": {
     "description": "Voters will be able to overwrite their vote once",
     "title": "Vote overwrite"
@@ -1068,6 +1083,7 @@
     "feature_unavailable": "Ups... el teu <2>pla {{ plan, lowercase }}</2> no suporta {{ feature }}.",
     "satisfaction_rate": "Satisfacció del 97%, per només 9€/mes."
   },
+  "preferences": "Preferències",
   "preview": "Preview",
   "pricing": {
     "advanced_analytitcs": "Informes i anàlisis avançades",
@@ -1320,6 +1336,11 @@
     "read_permission": "Read-only access",
     "write_permission": "Can create and edit content"
   },
+  "schedule_a_call": "Programar una trucada",
+  "section": {
+    "help": "Ajuda",
+    "platform": "Plataforma"
+  },
   "session_expired": "Session expired",
   "session_expired_description": "Session may have been expired and it could not be refreshed, please login again",
   "settings": "Configuració",
@@ -1356,6 +1377,7 @@
   },
   "support": "Suport",
   "surname": "Surname",
+  "switch_organization": "Canvia d'organització",
   "team": {
     "expiration": "Expiració",
     "member_name": "Nom",
@@ -1494,7 +1516,7 @@
     },
     "title": "Our success stories"
   },
-  "user_management": "Gestió d'usuaris",
+  "user_settings": "Configuració de l'usuari",
   "verification_code": "Verification Code",
   "verification_code_placeholder": "Enter the verification code",
   "verification_code_resent": "Verification code resent!",
@@ -1520,7 +1542,6 @@
   "view_pricing_plan": "View Pricing Plan",
   "view_pricing_plans": "View Pricing Plans",
   "vocdoni logo": "",
-  "vote_details": "Vote details",
   "voters": "voters",
   "voting_link": "Voting Link",
   "voting_processes": "Processos de votació",

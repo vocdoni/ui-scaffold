@@ -1,63 +1,129 @@
-import { AddIcon } from '@chakra-ui/icons'
-import { Box, Button, Drawer, DrawerContent, DrawerOverlay, Flex, Link } from '@chakra-ui/react'
-import { Trans } from 'react-i18next'
-import { Link as RouterLink, generatePath } from 'react-router-dom'
-import LogoutBtn from '~components/Account/LogoutBtn'
-import { HSeparator } from '~components/Auth/SignIn'
+import { Box, Button, CloseButton, Drawer, DrawerContent, DrawerOverlay, Flex, Text } from '@chakra-ui/react'
+import { Calendar, Plus } from '@untitled-ui/icons-react'
+import { useContext, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import { generatePath, Link as ReactRouterLink, Link as RouterLink } from 'react-router-dom'
+import { DashboardBox } from '~components/Layout/Dashboard'
 import { VocdoniLogo } from '~components/Layout/Logo'
+import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~src/router/routes'
 import { DashboardMenuOptions } from './Options'
+import UserProfile from './UserProfile'
 
-const DashboardMenu = ({ isOpen, onClose, reduced }: { isOpen: boolean; onClose: () => void; reduced: boolean }) => (
-  <>
-    {/* Sidebar for large screens */}
-    <Box
-      display={{ base: 'none', md: reduced ? 'none' : 'block' }}
-      position={'sticky'}
-      top={0}
-      maxW={'256px'}
-      w='full'
-      h='100vh'
-      borderRight='var(--border)'
-      p={2}
-    >
-      <DashboardMenuContent />
-    </Box>
+const DashboardMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+  const { reduced } = useContext(DashboardLayoutContext)
 
-    {/* Sidebar for small screens */}
-    <Drawer isOpen={isOpen} placement='left' onClose={onClose}>
-      <DrawerOverlay />
-      <DrawerContent bg='dashboard.sidebar.bg.light' _dark={{ bg: 'dashboard.sidebar.bg.dark' }}>
-        <Box p={4} display='flex' flexDirection='column' gap={4}>
+  return (
+    <>
+      {/* Sidebar for large screens */}
+      <Box
+        bgColor='dashboard.aside_bg'
+        display={{ base: 'none', md: 'flex' }}
+        flexDirection={'column'}
+        position={'sticky'}
+        top={0}
+        minW={reduced ? '48px' : '255px'}
+        maxW={reduced ? '48px' : '255px'}
+        w={reduced ? '48px' : '255px'}
+        h='100vh'
+        borderRight='var(--border)'
+        p={2}
+        zIndex={100}
+        transition='width .3s ease, min-width .3s ease, max-width .3s ease'
+      >
+        <DashboardMenuContent />
+      </Box>
+
+      {/* Sidebar for small screens */}
+      <Drawer isOpen={isOpen} placement='left' onClose={onClose}>
+        <DrawerOverlay />
+        <DrawerContent p={2}>
           <DashboardMenuContent />
-        </Box>
-      </DrawerContent>
-    </Drawer>
-  </>
-)
+        </DrawerContent>
+      </Drawer>
+    </>
+  )
+}
 
 // Common menu contents
-const DashboardMenuContent = () => (
-  <>
-    <Link as={RouterLink} to={Routes.dashboard.base} alignSelf='center'>
-      <VocdoniLogo w='130px' mx='5px' />
-    </Link>
-    <HSeparator mb='10px' />
-    <DashboardMenuOptions />
-    <Flex mt='auto' flexDirection='column' alignItems='center'>
+const DashboardMenuContent = () => {
+  const { t } = useTranslation()
+  const { reduced } = useContext(DashboardLayoutContext)
+  const [closeScheduleACall, setCloseScheduleACall] = useState(false)
+
+  return (
+    <>
+      <Flex
+        as={ReactRouterLink}
+        to={Routes.dashboard.base}
+        justifyContent={'center'}
+        alignItems={'center'}
+        h='47px'
+        mb={2}
+      >
+        <VocdoniLogo width={reduced ? '32px' : '148px'} minimal={reduced} />
+      </Flex>
       <Button
         as={RouterLink}
         to={generatePath(Routes.processes.create)}
         w='full'
-        my={5}
-        leftIcon={<AddIcon />}
+        minW={0}
+        leftIcon={<Plus width={'16px'} />}
         variant='primary'
+        colorScheme='black'
+        mt={'8px'}
+        mb={'32px'}
+        size={'xs'}
       >
-        <Trans i18nKey='new_voting'>New vote</Trans>
+        {!reduced && <Trans i18nKey='new_voting'>New vote</Trans>}
       </Button>
-      <LogoutBtn />
-    </Flex>
-  </>
-)
+
+      <DashboardMenuOptions />
+
+      <Box mt='auto'>
+        {!closeScheduleACall && (
+          <DashboardBox
+            position={'relative'}
+            flexDirection={'column'}
+            display={reduced ? 'none' : 'flex'}
+            gap={2}
+            p={4}
+            borderRadius='lg'
+            bgColor={'dashboard.schedule_call.bg'}
+          >
+            <CloseButton
+              onClick={() => setCloseScheduleACall(true)}
+              position={'absolute'}
+              top={1}
+              right={1}
+              color='gray'
+            />
+            <Text fontSize={'sm'} fontWeight={'bold'}>
+              {t('need_help.title', { defaultValue: 'First steps' })}
+            </Text>
+            <Text fontSize={'xs'} lineHeight={'16px'} color='dashboard.schedule_call.description'>
+              {t('need_help.description', {
+                defaultValue:
+                  'Do you need some help with your first voting process? Watch this tutorial or schedule a call.',
+              })}
+            </Text>
+            <Button
+              as={ReactRouterLink}
+              to={generatePath(Routes.processes.create)}
+              leftIcon={<Calendar />}
+              colorScheme='gray'
+              w='full'
+              size={'sm'}
+              fontSize={'12px'}
+            >
+              {t('schedule_a_call', { defaultValue: ' Schedule a call' })}
+            </Button>
+          </DashboardBox>
+        )}
+        <UserProfile />
+      </Box>
+    </>
+  )
+}
 
 export default DashboardMenu
