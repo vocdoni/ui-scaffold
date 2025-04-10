@@ -90,8 +90,6 @@ export const OrganizationSwitcher = ({ ...props }) => {
     await signerRefresh()
   }
 
-  console.log(organizations)
-  console.log(selectedOrg)
   if (!subscription) return
   return (
     <>
@@ -102,7 +100,13 @@ export const OrganizationSwitcher = ({ ...props }) => {
         <Flex flexDirection={'column'} maxH={'130px'} overflowY={'scroll'}>
           {organizations.length > 1 ? (
             organizations.map((org, idx) => (
-              <Button key={idx} variant={'transparent'} colorScheme='gray' justifyContent={'start'}>
+              <Button
+                key={idx}
+                onClick={() => handleOrgChange(org)}
+                variant={'transparent'}
+                colorScheme='gray'
+                justifyContent={'start'}
+              >
                 <Flex
                   justifyContent={'center'}
                   alignItems={'center'}
