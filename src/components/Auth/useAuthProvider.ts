@@ -4,6 +4,7 @@ import { useClient } from '@vocdoni/react-providers'
 import { NoOrganizationsError, RemoteSigner, UnauthorizedError } from '@vocdoni/sdk'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useDisconnect } from 'wagmi'
 import { api, ApiEndpoints, ApiParams } from '~components/Auth/api'
 import { LoginResponse, useLogin, useRegister, useVerifyMail } from '~components/Auth/authQueries'
 
@@ -74,6 +75,7 @@ export const useAuthProvider = () => {
   const { signer: clientSigner, clear } = useClient()
   const [bearer, setBearer] = useState<string | null>(localStorage.getItem(LocalStorageKeys.Token))
   const toast = useToast()
+  const { disconnect } = useDisconnect()
   const { t } = useTranslation()
 
   const login = useLogin({
@@ -115,6 +117,7 @@ export const useAuthProvider = () => {
     localStorage.removeItem(LocalStorageKeys.RenewSession)
     setBearer(null)
     clear()
+    disconnect()
   }, [])
 
   const refreshToken = useCallback(async () => {
