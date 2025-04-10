@@ -25,28 +25,27 @@ import {
 import { publicProvider } from 'wagmi/providers/public'
 import i18n from '~i18n'
 
-export const { chains, publicClient } = configureChains(
-  [
-    mainnet,
-    arbitrum,
-    avalanche,
-    base,
-    bsc,
-    eos,
-    fantom,
-    gnosis,
-    goerli,
-    hardhat,
-    localhost,
-    optimism,
-    polygon,
-    polygonMumbai,
-    polygonZkEvm,
-    zkSync,
-    zora,
-  ],
-  [publicProvider()]
-)
+export const usedChains = [
+  mainnet,
+  arbitrum,
+  avalanche,
+  base,
+  bsc,
+  eos,
+  fantom,
+  gnosis,
+  goerli,
+  hardhat,
+  localhost,
+  optimism,
+  polygon,
+  polygonMumbai,
+  polygonZkEvm,
+  zkSync,
+  zora,
+]
+
+export const { chains, publicClient } = configureChains(usedChains, [publicProvider()])
 
 const appName = 'Vocdoni UI Scaffold'
 const projectId = '641a1f59121ad0b519cca3a699877a08'
