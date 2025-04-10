@@ -3,6 +3,7 @@
     "save": "Save Changes"
   },
   "active": "Active",
+  "add_new_org": "Add a new organization",
   "all": "All",
   "already_member": "Already a member?",
   "alt": {
@@ -129,6 +130,7 @@
     "subtitle": "Specify the active period for receiving votes",
     "title": "Calendar"
   },
+  "call_us": "Call us",
   "cc": {
     "actions": {
       "cancel": "Cancel the process immediately, not allowing new votes and not counting any results (caution: it cannot be reverted)",
@@ -300,6 +302,7 @@
       "selected_users": "Selected users:"
     }
   },
+  "current": "Current",
   "customization": "Customization",
   "dark_mode": "Dark mode",
   "delete_my_account": "Delete my account",
@@ -526,13 +529,15 @@
         "info_title": "Information",
         "questions_title": "Questions"
       }
-    }
+    },
+    "select_language": "Language"
   },
   "gitcoin": {
     "effective": "20: Effective",
     "more_effective": "25: More Effective",
     "most_effective": "30: Most Effective"
   },
+  "guides": "Guides",
   "help": "Do you need help?",
   "home": {
     "benefits": {
@@ -931,6 +936,11 @@
   },
   "invite_people": "Invite People",
   "keep_me_logged": "Keep me logged in",
+  "language": {
+    "catalan": "Català",
+    "english": "English",
+    "spanish": "Castellano"
+  },
   "languages": "Languages",
   "light_mode": "Light mode",
   "link": {
@@ -949,6 +959,7 @@
     "google": "Sign in with Google"
   },
   "logout": "Logout",
+  "memberbase": "Memberbase",
   "membership_size": {
     "language": "Default Language",
     "selector_label": "Membership size",
@@ -984,6 +995,10 @@
     "pricing": "Pricing",
     "usecases": "Use Cases"
   },
+  "need_help": {
+    "description": "Do you need some help with your first voting process? Watch this tutorial or schedule a call.",
+    "title": "First steps"
+  },
   "new_organization": {
     "create_organization_btn": "Create Organization",
     "description1": "Set up your <span>organization for free</span> and start creating voting processes to engage with your community.",
@@ -1004,7 +1019,6 @@
   },
   "organization": {
     "avatar_alt": "Avatar image of {{ name }} organization",
-    "census": "Census",
     "create_org": "Create Organization",
     "dashboard": "Dashboard",
     "date_format": "d MMM y",
@@ -1022,6 +1036,7 @@
     },
     "votings_list": "Votings Processes List"
   },
+  "organizations": "Organizations ({{ numOrgs }})",
   "overwrite": {
     "description": "Voters will be able to overwrite their vote once",
     "title": "Vote overwrite"
@@ -1060,6 +1075,7 @@
     "feature_unavailable": "Oops ... your <2>{{ plan, lowercase }} plan</2> doesn't support {{feature}}.",
     "satisfaction_rate": "97% satisfaction rate, for only 9€/month."
   },
+  "preferences": "Preferences",
   "preview": "Preview",
   "pricing": {
     "advanced_analytitcs": "Advanced reporting and analytics",
@@ -1309,6 +1325,11 @@
     "read_permission": "Read-only access",
     "write_permission": "Can create and edit content"
   },
+  "schedule_a_call": "Schedule a call",
+  "section": {
+    "help": "Help",
+    "platform": "Platform"
+  },
   "session_expired": "Session expired",
   "session_expired_description": "Session may have been expired and it could not be refreshed, please login again",
   "settings": "Settings",
@@ -1345,6 +1366,7 @@
   },
   "support": "Support",
   "surname": "Surname",
+  "switch_organization": "Switch organization",
   "team": {
     "expiration": "Expiration",
     "member_name": "Name",
@@ -1483,7 +1505,7 @@
     },
     "title": "Our success stories"
   },
-  "user_management": "User Managment",
+  "user_settings": "User settings",
   "verification_code": "Verification Code",
   "verification_code_placeholder": "Enter the verification code",
   "verification_code_resent": "Verification code resent!",
@@ -1509,7 +1531,6 @@
   "view_pricing_plan": "View Pricing Plan",
   "view_pricing_plans": "View Pricing Plans",
   "vocdoni logo": "Vocdoni logo",
-  "vote_details": "Vote details",
   "voters": "voters",
   "voting_link": "Voting Link",
   "voting_processes": "Voting Processes",

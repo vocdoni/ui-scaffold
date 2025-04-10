@@ -16,6 +16,7 @@ import { Link } from './components/link'
 import { Menu } from './components/menu'
 import { Modal } from './components/modal'
 import { Pagination } from './components/pagination'
+import { Popover } from './components/popover'
 import { ElectionQuestions } from './components/Questions'
 import { Radio } from './components/radio'
 import { ElectionResults } from './components/results'
@@ -27,14 +28,26 @@ import { TabsResponsive } from './components/TabsResponsive'
 import { Tag } from './components/tag'
 import { Text } from './components/text'
 import { Textarea } from './components/textarea'
+import { Tooltip } from './components/tooltip'
 import { editor } from './editor'
 import { radii } from './radius'
 import { space } from './space'
+
+import '@fontsource/inter/500.css'
+import '@fontsource/inter/index.css'
 
 export const theme = extendTheme(vtheme, {
   config: {
     initialColorMode: 'light',
     useSystemColorMode: false,
+  },
+  fonts: {
+    body: `"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif`,
+    heading: `"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif`,
+    mono: `'Menlo', monospace`,
+  },
+  fontWeights: {
+    bold: '500',
   },
   styles: {
     global: (props) => ({
@@ -184,6 +197,7 @@ export const theme = extendTheme(vtheme, {
     Menu,
     Modal,
     Pagination,
+    Popover,
     Radio,
     Stepper,
     SpreadsheetAccess,
@@ -193,6 +207,7 @@ export const theme = extendTheme(vtheme, {
     Tag,
     Text,
     Textarea,
+    Tooltip,
   },
   breakpoints,
   space,

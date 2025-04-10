@@ -267,7 +267,7 @@ const RoleRadio = ({ name, fieldName: title, description, value, ...props }: Rol
       gap={5}
       padding={6}
       cursor='pointer'
-      _checked={{ bg: 'dashboard.invite.bg_checked_light', _dark: { bg: 'dashboard.invite.bg_checked_dark' } }}
+      _checked={{ bg: 'dashboard.invite' }}
       {...props}
       {...radio}
     >

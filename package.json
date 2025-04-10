@@ -13,6 +13,7 @@
     "@ethersproject/abstract-signer": "^5.7.0",
     "@ethersproject/address": "^5.7.0",
     "@ethersproject/providers": "^5.7.0",
+    "@fontsource/inter": "^5.2.5",
     "@lexical/code": "^0.18.0",
     "@lexical/link": "^0.18.0",
     "@lexical/list": "^0.18.0",

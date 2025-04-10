@@ -11,11 +11,11 @@ const baseStyle = definePartsStyle((props) => {
       width: 'fit-content',
       display: 'flex',
       justifyContent: 'center',
-      padding: '6px 15px',
-
-      _dark: {
-        borderColor: `${colorScheme}.300`,
-      },
+      borderRadius: 'xs',
+      fontWeight: 500,
+      py: 0.5,
+      px: 1.5,
+      color: colorScheme === 'gray' ? 'gray' : 'black',
     },
   }
 })
