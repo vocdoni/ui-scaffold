@@ -3,6 +3,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { lazy } from 'react'
 import { Params } from 'react-router-dom'
+import { Profile } from '~elements/dashboard/profile'
 import Settings from '~elements/dashboard/settings'
 import Error from '~elements/Error'
 import LayoutDashboard from '~elements/LayoutDashboard'
@@ -91,6 +92,14 @@ export const useDashboardRoutes = () => {
                 element: (
                   <SuspenseLoader>
                     <Settings />
+                  </SuspenseLoader>
+                ),
+              },
+              {
+                path: Routes.dashboard.profile,
+                element: (
+                  <SuspenseLoader>
+                    <Profile />
                   </SuspenseLoader>
                 ),
               },

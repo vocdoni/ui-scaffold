@@ -13,7 +13,7 @@ import {
 } from '@chakra-ui/react'
 import { ChevronRight, HelpCircle, LayoutRight, Plus } from '@untitled-ui/icons-react'
 import { OrganizationProvider, useClient } from '@vocdoni/react-providers'
-import { createContext, PropsWithChildren, useEffect, useState } from 'react'
+import React, { createContext, PropsWithChildren, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { generatePath, Outlet, Link as ReactRouterLink } from 'react-router-dom'
 import DashboardMenu from '~components/Dashboard/Menu'
@@ -106,23 +106,25 @@ const LayoutDashboard: React.FC = () => {
                   ) : (
                     <ListItem display={{ base: 'none', md: 'block' }}>{t('organization.dashboard')}</ListItem>
                   )}
-                  {breadcrumb.map((el, idx) => (
-                    <>
-                      <ListItem key={idx} display={{ base: idx === breadcrumb.length - 1 && 'block', md: 'block' }}>
-                        {idx === breadcrumb.length - 1 ? (
-                          <Text as='span' fontSize={'sm'}>
+                  {breadcrumb.map((el, index) => (
+                    <React.Fragment key={index}>
+                      <ListItem display={{ base: index === breadcrumb.length - 1 ? 'block' : 'none', md: 'block' }}>
+                        {index === breadcrumb.length - 1 ? (
+                          <Text as='span' fontSize='sm'>
                             {el.title}
                           </Text>
                         ) : (
-                          <Link as={ReactRouterLink} to={generatePath(el.route)} variant={'breadcrumb'} fontSize={'sm'}>
+                          <Link as={ReactRouterLink} to={generatePath(el.route)} variant='breadcrumb' fontSize='sm'>
                             {el.title}
                           </Link>
                         )}
                       </ListItem>
-                      <ListItem display={{ base: 'none', md: 'flex' }} justifyContent={'center'} alignItems={'center'}>
-                        {idx < breadcrumb.length - 1 && <Icon as={ChevronRight} />}
-                      </ListItem>
-                    </>
+                      {index < breadcrumb.length - 1 && (
+                        <ListItem display={{ base: 'none', md: 'flex' }} justifyContent='center' alignItems='center'>
+                          <Icon as={ChevronRight} />
+                        </ListItem>
+                      )}
+                    </React.Fragment>
                   ))}
                 </OrderedList>
               </Box>

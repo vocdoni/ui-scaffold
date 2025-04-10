@@ -1,8 +1,8 @@
-import { Button, Flex, HStack, Icon, PopoverBody, PopoverFooter, Tag, Text, useBreakpointValue } from '@chakra-ui/react'
+import { Button, Flex, HStack, Icon, PopoverBody, PopoverFooter, Tag, Text } from '@chakra-ui/react'
 import { Plus } from '@untitled-ui/icons-react'
 import { OrganizationName } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
-import { useContext, useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { LuGalleryVerticalEnd } from 'react-icons/lu'
 import { Link as ReactRouterLink } from 'react-router-dom'
@@ -10,7 +10,6 @@ import { useQueryClient } from 'wagmi'
 import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
 import { LocalStorageKeys } from '~components/Auth/useAuthProvider'
-import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~routes'
 import { Organization, useProfile } from '~src/queries/account'
 
@@ -28,14 +27,7 @@ export const OrganizationSwitcher = ({ ...props }) => {
   const { signerRefresh } = useAuth()
   const queryClient = useQueryClient()
   const { client } = useClient()
-  const { reduced } = useContext(DashboardLayoutContext)
   const { subscription } = useSubscription()
-  const variant = useBreakpointValue({
-    base: false,
-    md: true,
-  })
-
-  const placement = variant ? 'right-end' : 'auto'
 
   // Fetch organization names
   useEffect(() => {
@@ -97,6 +89,9 @@ export const OrganizationSwitcher = ({ ...props }) => {
     // refresh signer
     await signerRefresh()
   }
+
+  console.log(organizations)
+  console.log(selectedOrg)
   if (!subscription) return
   return (
     <>
@@ -104,22 +99,47 @@ export const OrganizationSwitcher = ({ ...props }) => {
         <Text size='xs' fontWeight={600} color={'dashboard.org_switcher.number'} px={1.5} py={2}>
           {t('organizations', { defaultValue: 'Organizations' })} ({organizations.length})
         </Text>
-        <HStack p={2} mb={1}>
-          <Flex
-            justifyContent={'center'}
-            alignItems={'center'}
-            border='var(--border)'
-            w='22px'
-            h='22px'
-            borderRadius='xs'
-          >
-            <Icon as={LuGalleryVerticalEnd} boxSize={4} ml={2} mr={2} />
-          </Flex>
-          <OrganizationName fontSize={'14px'} lineHeight={'14px'} fontWeight={500} maxW={'80px'} isTruncated />
-          <Tag colorScheme='gray' ml='auto'>
-            {t('current', { defaultValue: 'Current' })}
-          </Tag>
-        </HStack>
+        <Flex flexDirection={'column'} maxH={'130px'} overflowY={'scroll'}>
+          {organizations.length > 1 ? (
+            organizations.map((org, idx) => (
+              <Button key={idx} variant={'transparent'} colorScheme='gray' justifyContent={'start'}>
+                <Flex
+                  justifyContent={'center'}
+                  alignItems={'center'}
+                  border='var(--border)'
+                  w='22px'
+                  h='22px'
+                  borderRadius='xs'
+                >
+                  <Icon as={LuGalleryVerticalEnd} boxSize={4} ml={2} mr={2} />
+                </Flex>
+                {org.label}
+                {org.value === selectedOrg && (
+                  <Tag colorScheme='gray' ml='auto !important'>
+                    {t('current', { defaultValue: 'Current' })}
+                  </Tag>
+                )}
+              </Button>
+            ))
+          ) : (
+            <HStack p={2} mb={1}>
+              <Flex
+                justifyContent={'center'}
+                alignItems={'center'}
+                border='var(--border)'
+                w='22px'
+                h='22px'
+                borderRadius='xs'
+              >
+                <Icon as={LuGalleryVerticalEnd} boxSize={4} ml={2} mr={2} />
+              </Flex>
+              <OrganizationName fontSize={'14px'} lineHeight={'14px'} fontWeight={500} maxW={'80px'} isTruncated />
+              <Tag colorScheme='gray' ml='auto'>
+                {t('current', { defaultValue: 'Current' })}
+              </Tag>
+            </HStack>
+          )}
+        </Flex>
       </PopoverBody>
       <PopoverFooter minH={'unset'}>
         <Button

@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Icon, ListItem, Text, Tooltip, UnorderedList } from '@chakra-ui/react'
 import { BookOpen01, Home02, LifeBuoy01, Mail04, Phone, Settings01, Users01 } from '@untitled-ui/icons-react'
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink, generatePath, matchPath, useLocation } from 'react-router-dom'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
@@ -76,10 +76,11 @@ export const DashboardMenuOptions = () => {
           {menuItemsPlatform.map((item, index) => {
             const isDisabled = !item.route
             const as = isDisabled ? 'button' : ReactRouterLink
+
             return (
-              <>
+              <React.Fragment key={index}>
                 {reduced ? (
-                  <ListItem key={index}>
+                  <ListItem>
                     <Tooltip label={item.label} placement='right-end'>
                       <Button
                         as={as}
@@ -88,20 +89,20 @@ export const DashboardMenuOptions = () => {
                           if (isDisabled) e.preventDefault()
                         }}
                         leftIcon={<Icon as={item.icon} width='16px' height='16px' />}
-                        variant={'transparent'}
+                        variant='transparent'
                         size='xs'
                         colorScheme='gray'
-                        justifyContent={'start'}
+                        justifyContent='start'
                         gap={4}
                         p={2}
-                        isDisabled={!item.route}
+                        isDisabled={isDisabled}
                       >
                         {!reduced && item.label}
                       </Button>
                     </Tooltip>
                   </ListItem>
                 ) : (
-                  <ListItem key={index}>
+                  <ListItem>
                     <Button
                       as={as}
                       {...(!isDisabled && { to: generatePath(item.route) })}
@@ -109,21 +110,21 @@ export const DashboardMenuOptions = () => {
                         if (isDisabled) e.preventDefault()
                       }}
                       leftIcon={<Icon as={item.icon} width='16px' height='16px' />}
-                      variant={'transparent'}
+                      variant='transparent'
                       size='xs'
                       colorScheme='gray'
-                      justifyContent={'start'}
+                      justifyContent='start'
                       gap={4}
                       p={2}
                       fontWeight={400}
                       isActive={Boolean(matchPath({ path: item.route || '', end: true }, location.pathname)) && true}
-                      isDisabled={!item.route}
+                      isDisabled={isDisabled}
                     >
                       {!reduced && item.label}
                     </Button>
                   </ListItem>
                 )}
-              </>
+              </React.Fragment>
             )
           })}
         </UnorderedList>

@@ -22,9 +22,11 @@ import {
 } from '@untitled-ui/icons-react'
 import { useContext, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
 import { LanguageListDashboard } from '~components/Navbar/LanguagesList'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
+import { Routes } from '~routes'
 import { useProfile } from '~src/queries/account'
 import { OrganizationSwitcher } from './OrganizationSwitcher'
 
@@ -157,6 +159,8 @@ const UserProfile = () => {
                   <Trans i18nKey={'switch_organization'} />
                 </Button>
                 <Button
+                  as={ReactRouterLink}
+                  to={Routes.dashboard.profile}
                   variant={'transparent'}
                   colorScheme='gray'
                   justifyContent={'start'}

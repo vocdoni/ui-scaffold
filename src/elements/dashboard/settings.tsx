@@ -6,7 +6,6 @@ import { useSaasAccount } from '~components/Account/useSaasAccount'
 import { DashboardContents } from '~components/Layout/Dashboard'
 import QueryDataLayout from '~components/Layout/QueryDataLayout'
 import OrganizationEdit from '~components/Organization/Dashboard/Organization'
-import { Profile } from '~components/Organization/Dashboard/Profile'
 import SubscriptionPage from '~components/Organization/Dashboard/Subscription'
 import OrganizationTeam from '~components/Organization/Dashboard/Team'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
@@ -27,7 +26,6 @@ const Settings = () => {
     { label: t('team.title'), component: <OrganizationTeam /> },
     // { label: t('billing'), route: '#billing' },
     { label: t('subscription.title'), component: <SubscriptionPage /> },
-    { label: t('profile.title'), component: <Profile /> },
   ]
 
   // Set layout variables
