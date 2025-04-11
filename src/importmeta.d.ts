@@ -18,5 +18,6 @@ interface ImportMeta {
     DEFAULT_CENSUS_SIZE: number
     STRIPE_PUBLIC_KEY: string
     SAAS_URL: string
+    OAUTH_URL: string
   }
 }
