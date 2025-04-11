@@ -2,8 +2,10 @@ import { Button, Icon, useToast } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FcGoogle } from 'react-icons/fc'
-import { useAccount, useConnect } from 'wagmi'
+import { useNavigate } from 'react-router-dom'
+import { useAccount, useConnect, useDisconnect } from 'wagmi'
 import { googleWallet } from '~constants/rainbow'
+import { Routes } from '~routes'
 import { useAuth } from './useAuth'
 
 const GoogleAuth = () => {
@@ -11,13 +13,20 @@ const GoogleAuth = () => {
   const { isConnected } = useAccount()
   const { t } = useTranslation()
   const toast = useToast()
+  const navigate = useNavigate()
 
   const { connector } = googleWallet.createConnector()
-  const { connect, isLoading, isError, error } = useConnect()
+  const { connectAsync, isLoading } = useConnect()
+  const { disconnect } = useDisconnect()
 
-  useEffect(() => {
-    if (isError) {
-      console.error('Google OAuth error', error?.message || '')
+  const handleLogin = async () => {
+    try {
+      const result = await connectAsync({ connector })
+      if ('newAccount' in result && !result.newAccount) {
+        return navigate(Routes.auth.organizationCreate)
+      }
+    } catch (err) {
+      console.error('Google OAuth error', err)
       toast({
         status: 'error',
         title: t('google_oauth_error', { defaultValue: 'Google OAuth Error' }),
@@ -25,15 +34,21 @@ const GoogleAuth = () => {
           defaultValue: 'Google OAuth error, please try again',
         }),
       })
-      return
+      disconnect()
     }
+  }
+
+  // Connects the signer when the user is connected
+  // This could be moved to the handleLogin method if we refactor the rainbowkit
+  // wallets to return this info rather than storing it to local storage
+  useEffect(() => {
     if (isConnected) {
       const token = localStorage.getItem('authToken')
       setBearer(token)
       updateSigner(token)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isConnected, isError])
+  }, [isConnected])
 
   return (
     <Button
@@ -41,7 +56,7 @@ const GoogleAuth = () => {
       bg={'google.bg.dark'}
       fontWeight='500'
       isLoading={isLoading}
-      onClick={() => connect({ connector })}
+      onClick={handleLogin}
       _hover={'google.hover.light'}
       _active={'google.active.light'}
       _focus={'google.active.light'}
