@@ -2,6 +2,7 @@ import {
   Alert,
   AlertIcon,
   Box,
+  Button,
   Flex,
   FlexProps,
   FormControl,
@@ -22,7 +23,6 @@ import {
   Textarea,
   useDisclosure,
 } from '@chakra-ui/react'
-import { Button } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
 import { Account } from '@vocdoni/sdk'
 import { useCallback, useEffect, useState } from 'react'

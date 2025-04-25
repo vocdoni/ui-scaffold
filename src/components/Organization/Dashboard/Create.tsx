@@ -1,4 +1,4 @@
-import { Button } from '@vocdoni/chakra-components'
+import { Button } from '@chakra-ui/react'
 import { useClient } from '@vocdoni/react-providers'
 import { useTranslation } from 'react-i18next'
 import { AccountCreate } from '~components/Account/Create'

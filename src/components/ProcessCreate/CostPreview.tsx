@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   ButtonProps,
   Flex,
   Icon,
@@ -17,7 +18,6 @@ import {
   UnorderedList,
   useDisclosure,
 } from '@chakra-ui/react'
-import { Button } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
 import { UnpublishedElection } from '@vocdoni/sdk'
 import { useEffect, useRef, useState } from 'react'

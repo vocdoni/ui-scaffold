@@ -2,6 +2,7 @@ import { InfoOutlineIcon } from '@chakra-ui/icons'
 import {
   AspectRatio,
   Box,
+  Button,
   Flex,
   FormControl,
   FormErrorMessage,
@@ -12,7 +13,6 @@ import {
   Text,
   Textarea,
 } from '@chakra-ui/react'
-import { Button } from '@vocdoni/chakra-components'
 import { errorToString, useClient, useOrganization } from '@vocdoni/react-providers'
 import { Account } from '@vocdoni/sdk'
 import { useState } from 'react'
