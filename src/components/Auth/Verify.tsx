@@ -51,24 +51,27 @@ const VerifyForm = ({ email, initialCode = '', autoSubmit = false }: VerifyFormP
   return (
     <>
       <Input type={'text'} placeholder={'12345678'} value={code} onChange={handleInputChange} isDisabled={autoSubmit} />
-      <Button
-        variant='primary'
-        isDisabled={!code || (autoSubmit && isVerifyPending)}
-        isLoading={isVerifyPending}
-        onClick={verify}
-      >
-        <Trans i18nKey={'verify.verify_code'}>Verify</Trans>
-      </Button>
-      <FormSubmitMessage
-        isError={isVerifyError}
-        error={
-          verifyError ||
-          t('verify_mail.error_subtitle', {
-            defaultValue:
-              'We found an error verifying your email, please check verification mail to ensure all data is correct',
-          })
-        }
-      />
+      <Box>
+        <Button
+          variant='primary'
+          isDisabled={!code || (autoSubmit && isVerifyPending)}
+          isLoading={isVerifyPending}
+          onClick={verify}
+          w='full'
+        >
+          <Trans i18nKey={'verify.verify_code'}>Verify</Trans>
+        </Button>
+        <FormSubmitMessage
+          isError={isVerifyError}
+          error={
+            verifyError ||
+            t('verify_mail.error_subtitle', {
+              defaultValue:
+                'We found an error verifying your email, please check verification mail to ensure all data is correct',
+            })
+          }
+        />
+      </Box>
     </>
   )
 }
@@ -101,20 +104,20 @@ export const VerificationPending = ({ email, code }: { email: string; code?: str
 
   return (
     <>
-      <Flex flexDirection='column' gap={6}>
-        <Text mb='36px' ms='4px' color={'account.description'} fontWeight='bold' fontSize='md'>
+      <Flex flexDirection='column' gap={4}>
+        <Text ms='4px' fontWeight='bold' fontSize='md'>
           {email}
         </Text>
-        <Text mb='36px' ms='4px' color={'account.description'} fontWeight='400' fontSize='md'>
+        <Text ms='4px' fontWeight='400' fontSize='sm' color='auth.secondary_text'>
           {t('verify.follow_email_instructions', {
             defaultValue: 'Follow the instructions there to activate your account.',
           })}
         </Text>
+        <VerifyForm email={email} initialCode={code} autoSubmit={!!code} />
       </Flex>
-      <VerifyForm email={email} initialCode={code} autoSubmit={!!code} />
 
       {!code && (
-        <Button isLoading={isResendPending} onClick={resendMail}>
+        <Button variant={'outline'} isLoading={isResendPending} onClick={resendMail} mt={6} w='full'>
           <Trans i18nKey={'verify.resend_confirmation_mail'}>Resend Email</Trans>
         </Button>
       )}

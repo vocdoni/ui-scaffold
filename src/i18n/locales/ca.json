@@ -5,7 +5,7 @@
   "active": "Actiu",
   "add_new_org": "Afegir una nova organització",
   "all": "Tots",
-  "already_member": "Ja ets membre?",
+  "already_member": "Ja tens un compte?",
   "alt": {
     "images": {
       "barca": "escut del Barça",
@@ -40,10 +40,6 @@
     "votes_weight_many": "",
     "votes_weight_other": "<span>{{ count }}</span> <text>vots</text>",
     "voting_anonymous_advice": "Si us plau, espera mentre la màgia té lloc 🪄.\nAixò pot trigar uns minuts; no tanquis la finestra."
-  },
-  "auth": {
-    "subtitle": "Redueix costos, estalvia temps: Votació segura, privada i complint amb el RGPD",
-    "title": "La plataforma global de votació"
   },
   "authPage": {
     "text": {
@@ -282,7 +278,6 @@
     "united_kingdom": "United Kingdom",
     "united_states": "United States"
   },
-  "create_account": "Crea un compte",
   "create_org": {
     "already_profile": "Si la teva organització ja té un perfil, demana a l'administrador que et convidi a l'organització.",
     "communication": "Vull rebre comunicacions i ser contactat per adaptar la meva experiència de governança.",
@@ -316,7 +311,7 @@
     "header_image": "Imatge de capçalera"
   },
   "email": "Correu electrònic",
-  "email_placeholder": "your@email.com",
+  "email_placeholder": "nom@email.com",
   "error": {
     "go_back": "Torna enrere",
     "invalid_cell_data": "Algunes fileres no contenen adreces correctes: {{rows, list}}",
@@ -386,7 +381,6 @@
     "footer_subtitle": "El Protocol de Votació Global",
     "terms_and_privacy": "<link1>Termes d'ús</link1> i <link2>Política de privacitat</link2>"
   },
-  "forgot_password": "Has oblidat la contrasenya?",
   "forgot_password_reset_link": "Envia l'enllaç per restablir la contrasenya",
   "forgot_password_subtitle": "No hi ha cap problema. Només cal que ens facilitis la teva adreça de correu electrònic i t'enviarem un enllaç per restablir la contrasenya, amb el qual podràs escollir-ne una de nova.",
   "forgot_password_title": "Has oblidat la teva contrasenya?",
@@ -539,11 +533,16 @@
     },
     "select_language": "Idioma"
   },
+  "form_error": {
+    "passwords_must_match": ""
+  },
   "gitcoin": {
     "effective": "20: Efectiu",
     "more_effective": "25: Més efectiu",
     "most_effective": "30: Molt efectiu"
   },
+  "google_oauth_error": "Google OAuth Error",
+  "google_oauth_error_description": "Google OAuth error, please try again",
   "guides": "Guies",
   "help": "Necessites ajuda?",
   "home": {
@@ -942,7 +941,6 @@
     "user_invited": "Email enviat a {{email}}"
   },
   "invite_people": "Convidar Membres",
-  "keep_me_logged": "Mantenir-me connectat",
   "language": {
     "catalan": "Català",
     "english": "English",
@@ -1017,9 +1015,9 @@
   "new_password_placeholder": "Enter your new password",
   "new_voting": "Nova votació",
   "no_results_filtering": "Your current search filter returns no results",
-  "not_registred_yet": "Encara no estàs registrat?",
+  "not_registred_yet": "No tens un compte?",
   "open_in_explorer": "Obre a l'explorador",
-  "or": "o",
+  "or": "o continua amb",
   "org_type_selector": {
     "community": "Community",
     "company": "Company",
@@ -1051,6 +1049,7 @@
   },
   "password": "Contrasenya",
   "password_placeholder": "Min 8 characters",
+  "password_placeholder_confirm": "Confirma la Contrasenya",
   "password_reset": {
     "subtitle": "If your email corresponds to an existing account, you'll receive an email with a code to reset your password.",
     "title": "Password reset"
@@ -1076,7 +1075,7 @@
     },
     "success": "Password updated successfully"
   },
-  "passwords_do_not_match": "Els passwords no coincideixen",
+  "passwords_do_not_match": "Les contrasenyes no coincideixen",
   "plan_upgrade": {
     "dont_limit_yourself": "No et limitis. Uneix-te a la família de 725 organitzacions que confien en <2>Vocdoni</2>.",
     "feature_available_in": "Funció disponible a:",
@@ -1322,12 +1321,6 @@
     "success": "Profile updated successfully",
     "title": "Profile"
   },
-  "rainbow": {
-    "group": {
-      "recovery": "Recuperació"
-    },
-    "recovery": "Recuperar compte"
-  },
   "remove_avatar": "Remove avatar",
   "remove_header": "Remove header",
   "reset_password_button": "Reset Password",
@@ -1354,14 +1347,14 @@
   },
   "signin": "Inicia sessió",
   "signin_google": "Inicia sessió amb Google",
-  "signin_subtitle": "Introdueix el teu correu electrònic i contrasenya per iniciar sessió!",
-  "signin_title": "Inicia sessió",
-  "signup_agree_terms": "Crear un compte implica que acceptes els <termsLink>Termes i Condicions</termsLink> i <privacyLink>la nostra Política de Privacitat</privacyLink>",
+  "signin_subtitle": "Introdueix la teva informació per començar",
+  "signin_title": "Benvingut",
+  "signup_agree_promotions": "Accepto rebre promocions i ofertes per als serveis de votació digital oferts per Vocdoni.",
+  "signup_agree_terms": "Accepto els <termsLink>Termes del servei</termsLink> i la <privacyLink>Política de privacitat</privacyLink>",
   "signup_create_account": "Crea el meu compte",
-  "signup_first_name": "Nom",
-  "signup_last_name": "Cognom",
-  "signup_subtitle": "Introdueix el teu correu electrònic i contrasenya per registrar-te!",
-  "signup_title": "Registrar-se",
+  "signup_name": "Nom Complet",
+  "signup_subtitle": "Continua per accedir al teu compte",
+  "signup_title": "Crea un compte",
   "skip": "Ometre",
   "submit": "Submit",
   "subscribe": "Subscribe",

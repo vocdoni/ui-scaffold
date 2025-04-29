@@ -5,7 +5,7 @@
   "active": "Active",
   "add_new_org": "Add a new organization",
   "all": "All",
-  "already_member": "Already a member?",
+  "already_member": "Already have an account?",
   "alt": {
     "images": {
       "barca": "Barça crest",
@@ -37,10 +37,6 @@
     "votes_weight_one": "<span>1</span> <text>vote</text>",
     "votes_weight_other": "<span>{{ count }}</span> <text>votes</text>",
     "voting_anonymous_advice": "Please wait while the anonymous magic happens 🪄.\nThis can take up to several minutes; don't close the window."
-  },
-  "auth": {
-    "subtitle": "Cut costs, Save Time: Secure, Private, and GDPR Compliant Voting",
-    "title": "The global voting platform"
   },
   "authPage": {
     "text": {
@@ -279,7 +275,6 @@
     "united_kingdom": "United Kingdom",
     "united_states": "United States"
   },
-  "create_account": "Create an Account",
   "create_org": {
     "already_profile": "If your organization already have a profile, ask the admin to invite you to your organization.",
     "communication": "I want to receive communications and be contacted to tailor my governance experience.",
@@ -313,7 +308,7 @@
     "header_image": "Header Image"
   },
   "email": "Email",
-  "email_placeholder": "your@email.com",
+  "email_placeholder": "name@email.com",
   "error": {
     "go_back": "Go back",
     "invalid_cell_data": "Some rows do not contain correct addresses: {{rows,list(style:short)}}",
@@ -383,7 +378,6 @@
     "footer_subtitle": "The Global Voting Protocol",
     "terms_and_privacy": "<link1>Terms of use</link1> & <link2>Privacy Policy</link2>"
   },
-  "forgot_password": "Forgot password?",
   "forgot_password_reset_link": "Email password reset link",
   "forgot_password_subtitle": "No problem. Just let us know your email address and we'll email you a password reset link that will allow you to choose a new one.",
   "forgot_password_title": "Forgot your password?",
@@ -532,11 +526,16 @@
     },
     "select_language": "Language"
   },
+  "form_error": {
+    "passwords_must_match": ""
+  },
   "gitcoin": {
     "effective": "20: Effective",
     "more_effective": "25: More Effective",
     "most_effective": "30: Most Effective"
   },
+  "google_oauth_error": "Google OAuth Error",
+  "google_oauth_error_description": "Google OAuth error, please try again",
   "guides": "Guides",
   "help": "Do you need help?",
   "home": {
@@ -935,7 +934,6 @@
     "user_invited": "Email sent to {{email}}"
   },
   "invite_people": "Invite People",
-  "keep_me_logged": "Keep me logged in",
   "language": {
     "catalan": "Català",
     "english": "English",
@@ -1009,9 +1007,9 @@
   "new_password_placeholder": "Enter your new password",
   "new_voting": "New Vote",
   "no_results_filtering": "Your current search filter returns no results",
-  "not_registred_yet": "Not registered yet?",
+  "not_registred_yet": "Don't have an account?",
   "open_in_explorer": "Open in explorer",
-  "or": "or",
+  "or": "or continue with",
   "org_type_selector": {
     "community": "Community",
     "company": "Company",
@@ -1043,6 +1041,7 @@
   },
   "password": "Password",
   "password_placeholder": "Min 8 characters",
+  "password_placeholder_confirm": "Confirm Password",
   "password_reset": {
     "subtitle": "If your email corresponds to an existing account, you'll receive an email with a code to reset your password.",
     "title": "Password reset"
@@ -1068,7 +1067,7 @@
     },
     "success": "Password updated successfully"
   },
-  "passwords_do_not_match": "Las contraseñas no coinciden",
+  "passwords_do_not_match": "Passwords doesn't match",
   "plan_upgrade": {
     "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
     "feature_available_in": "Feature available in:",
@@ -1311,12 +1310,6 @@
     "success": "Profile updated successfully",
     "title": "Profile"
   },
-  "rainbow": {
-    "group": {
-      "recovery": "Recovery"
-    },
-    "recovery": "Account recovery"
-  },
   "remove_avatar": "Remove avatar",
   "remove_header": "Remove header",
   "reset_password_button": "Reset Password",
@@ -1341,16 +1334,16 @@
     "mail_subject": "Voting platform",
     "modal_title": "Share with friends"
   },
-  "signin": "Sign In",
+  "signin": "Log In",
   "signin_google": "Sign in with Google",
-  "signin_subtitle": "Enter your email and password to sign in!",
-  "signin_title": "Sign In",
-  "signup_agree_terms": "By creating an account means you agree to the <termsLink>Terms and Conditions</termsLink> and <privacyLink>our Privacy Policy</privacyLink>",
+  "signin_subtitle": "Continue to acces your account",
+  "signin_title": "Welcome",
+  "signup_agree_promotions": "I agree to receive promotions and offers for digital voting services offered by Vocdoni.",
+  "signup_agree_terms": "I agree to the <termsLink>Terms of Service</termsLink> and <privacyLink>Privacy Policy</privacyLink>",
   "signup_create_account": "Create my account",
-  "signup_first_name": "First Name",
-  "signup_last_name": "Last Name",
-  "signup_subtitle": "Enter your email and password to sign up!",
-  "signup_title": "Sign Up",
+  "signup_name": "Full Name",
+  "signup_subtitle": "Enter your information to get started",
+  "signup_title": "Create an account",
   "skip": "Skip",
   "submit": "Submit",
   "subscribe": "Subscribe",

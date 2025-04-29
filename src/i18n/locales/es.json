@@ -5,7 +5,7 @@
   "active": "Activo",
   "add_new_org": "Añadir una nueva organización",
   "all": "Todos",
-  "already_member": "¿Ya eres miembro?",
+  "already_member": "Ya tienes una cuenta?",
   "alt": {
     "images": {
       "barca": "escudo del Barça",
@@ -40,10 +40,6 @@
     "votes_weight_many": "",
     "votes_weight_other": "<span>{{ count }}</span> <text>votos</text>",
     "voting_anonymous_advice": "Por favor, espera mientras sucede la magia 🪄.\nEsto puede tardar varios minutos; no cierres la ventana."
-  },
-  "auth": {
-    "subtitle": "Reduce costos, ahorra tiempo: Votación segura, privada y conforme al RGPD",
-    "title": "La plataforma global de votación"
   },
   "authPage": {
     "text": {
@@ -282,7 +278,6 @@
     "united_kingdom": "United Kingdom",
     "united_states": "United States"
   },
-  "create_account": "Crear una cuenta",
   "create_org": {
     "already_profile": "Si tu organización ya tiene un perfil, pide al administrador que te invite a tu organización.",
     "communication": "Quiero recibir comunicaciones y ser contactado para adaptar mi experiencia de gobernanza.",
@@ -316,7 +311,7 @@
     "header_image": "Header Image"
   },
   "email": "Correo electrónico",
-  "email_placeholder": "tu@correo.com",
+  "email_placeholder": "nombre@correo.com",
   "error": {
     "go_back": "Volver atrás",
     "invalid_cell_data": "Algunas filas no contienen direcciones correctas: {{rows, list}}",
@@ -386,7 +381,6 @@
     "footer_subtitle": "El Protocolo de Votación Global",
     "terms_and_privacy": "<link1>Términos de uso</link1> y <link2>Política de privacidad</link2>"
   },
-  "forgot_password": "¿Olvidaste tu contraseña?",
   "forgot_password_reset_link": "Enviar enlace para restablecer la contraseña",
   "forgot_password_subtitle": "No hay problema. Solo tienes que darnos tu dirección de correo electrónico y te enviaremos un enlace para restablecer la contraseña, con el cual podrás elegir una nueva.",
   "forgot_password_title": "¿Has olvidado tu contraseña?",
@@ -539,11 +533,16 @@
     },
     "select_language": "Idioma"
   },
+  "form_error": {
+    "passwords_must_match": ""
+  },
   "gitcoin": {
     "effective": "20: Efectivo",
     "more_effective": "25: Más efectivo",
     "most_effective": "30: Muy efectivo"
   },
+  "google_oauth_error": "Google OAuth Error",
+  "google_oauth_error_description": "Google OAuth error, please try again",
   "guides": "Guías",
   "help": "¿Necesitas ayuda?",
   "home": {
@@ -942,7 +941,6 @@
     "user_invited": "Se ha mandado a {{ email }}"
   },
   "invite_people": "Invitar Gente",
-  "keep_me_logged": "Mantenerme conectado",
   "language": {
     "catalan": "Català",
     "english": "English",
@@ -1017,9 +1015,9 @@
   "new_password_placeholder": "Introduce tu nueva contraseña",
   "new_voting": "Nueva votación",
   "no_results_filtering": "Tu filtro de búsqueda actual no devuelve resultados",
-  "not_registred_yet": "¿Aún no estás registrado?",
+  "not_registred_yet": "¿No tienes una cuenta?",
   "open_in_explorer": "Abrir en el explorador",
-  "or": "o",
+  "or": "o continua con",
   "org_type_selector": {
     "community": "Comunidad",
     "company": "Empresa",
@@ -1051,6 +1049,7 @@
   },
   "password": "Contraseña",
   "password_placeholder": "Min 8 caracteres",
+  "password_placeholder_confirm": "Confirmar Contraseña",
   "password_reset": {
     "subtitle": "Si tu correo electrónico corresponde a una cuenta existente, recibirás un correo con un código para restablecer tu contraseña.",
     "title": "Restablecimiento de contraseña"
@@ -1076,7 +1075,7 @@
     },
     "success": "Contraseña actualizada con éxito"
   },
-  "passwords_do_not_match": "",
+  "passwords_do_not_match": "Las contraseñas no coinciden",
   "plan_upgrade": {
     "dont_limit_yourself": "No te limites. Únete a la familia de 725 organizaciones que confían en <2>Vocdoni</2>.",
     "feature_available_in": "Función disponible en:",
@@ -1322,12 +1321,6 @@
     "success": "Perfil actualizado con éxito",
     "title": "Perfil"
   },
-  "rainbow": {
-    "group": {
-      "recovery": "Recuperación"
-    },
-    "recovery": "Recuperar cuenta"
-  },
   "remove_avatar": "Eliminar avatar",
   "remove_header": "Eliminar encabezado",
   "reset_password_button": "Restablecer la contraseña",
@@ -1354,14 +1347,14 @@
   },
   "signin": "Iniciar sesión",
   "signin_google": "Iniciar sesión con Google",
-  "signin_subtitle": "¡Introduce tu correo electrónico y contraseña para iniciar sesión!",
-  "signin_title": "Iniciar sesión",
-  "signup_agree_terms": "Crear una cuenta implica que aceptas los <termsLink>Términos y Condiciones</termsLink> y <privacyLink>nuestra Política de Privacidad</privacyLink>",
+  "signin_subtitle": "Introduce tu información para comenzar",
+  "signin_title": "Crea una cuenta",
+  "signup_agree_promotions": "Acepto recibir promociones y ofertas para los servicios de votación digital ofrecidos por Vocdoni.",
+  "signup_agree_terms": "Acepto los <termsLink>Términos del servicio</termsLink> y la <privacyLink>Política de privacidad</privacyLink>",
   "signup_create_account": "Crear mi cuenta",
-  "signup_first_name": "Nombre",
-  "signup_last_name": "Apellido",
-  "signup_subtitle": "¡Introduce tu correo electrónico y contraseña para registrarte!",
-  "signup_title": "Regístrate",
+  "signup_name": "Nombre completo",
+  "signup_subtitle": "Continúa para acceder a tu cuenta",
+  "signup_title": "Bienvenido",
   "skip": "Omitir",
   "submit": "Envía",
   "subscribe": "Suscribirse",

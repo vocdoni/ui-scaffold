@@ -12,7 +12,7 @@ import { useSignupFromInvite } from '~src/queries/account'
 import { Routes } from '~src/router/routes'
 import { default as InputBasic } from '../Layout/InputBasic'
 import GoogleAuth from './GoogleAuth'
-import { HSeparator } from './SignIn'
+import { OrSeparator } from './SignIn'
 
 export type InviteFields = {
   code: string
@@ -26,6 +26,7 @@ export type SignupProps = {
 
 type FormData = {
   terms: boolean
+  promotions: boolean
 } & IRegisterParams
 
 const SignUp = ({ invite }: SignupProps) => {
@@ -47,6 +48,7 @@ const SignUp = ({ invite }: SignupProps) => {
     formState: { errors },
   } = methods
   const email = watch('email')
+  const password = watch('password')
 
   const isPending = signup.isPending || inviteSignup.isPending
   const isError = signup.isError || inviteSignup.isError
@@ -84,75 +86,117 @@ const SignUp = ({ invite }: SignupProps) => {
 
   return (
     <>
-      <GoogleAuth />
-      <Flex align='center'>
-        <HSeparator />
-        <Text color='gray.400' mx={3.5}>
-          {t('or')}
-        </Text>
-        <HSeparator />
-      </Flex>
       <FormProvider {...methods}>
         <Flex as='form' onSubmit={handleSubmit(onSubmit)} flexDirection='column' gap={6}>
-          <Flex flexDirection={{ base: 'column', md: 'row' }} gap={{ md: 4 }}>
-            <InputBasic formValue='firstName' label={t('signup_first_name')} placeholder={'John'} required />
-            <InputBasic formValue='lastName' label={t('signup_last_name')} placeholder={'Doe'} required />
-          </Flex>
-          <InputBasic
-            formValue='email'
-            label={t('email')}
-            placeholder={t('email_placeholder', { defaultValue: 'your@email.com' })}
-            validation={{
-              required: t('form.error.field_is_required'),
-              pattern: {
-                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, // Regex para validar emails
-                message: t('form.error.email_invalid', { defaultValue: 'Invalid email address' }),
-              },
-            }}
-            isDisabled={!!invite}
-          />
-          <InputPassword
-            formValue='password'
-            label={t('password')}
-            placeholder={t('password_placeholder')}
-            type='password'
-            validation={{
-              required: t('form.error.field_is_required'),
-              minLength: {
-                value: 8,
-                message: t('form.error.password_min_length', { defaultValue: 'Min. 8 characters' }),
-              },
-            }}
-          />
-          <FormControl as='fieldset' isInvalid={!!errors?.terms}>
-            <Checkbox {...register('terms', { required: t('cc.validation.required') })} isRequired>
-              <Trans
-                i18nKey='signup_agree_terms'
-                components={{
-                  termsLink: <Link isExternal as={ReactRouterLink} to={Routes.terms} />,
-                  privacyLink: <Link isExternal as={ReactRouterLink} to={Routes.privacy} />,
-                }}
+          <Flex flexDirection={'column'} gap={4} mb={4}>
+            <InputBasic formValue='firstName' label={t('signup_name')} placeholder={'John Doe'} />
+            <InputBasic formValue='lastName' label={'Last name'} placeholder={'Last name ex'} />
+            <InputBasic
+              formValue='email'
+              label={t('email')}
+              placeholder={t('email_placeholder', { defaultValue: 'your@email.com' })}
+              validation={{
+                required: t('form.error.field_is_required'),
+                pattern: {
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, // Regex para validar emails
+                  message: t('form.error.email_invalid', { defaultValue: 'Invalid email address' }),
+                },
+              }}
+              isDisabled={!!invite}
+            />
+            <InputPassword
+              formValue='password'
+              label={t('password')}
+              placeholder={'• • • • • • • •'}
+              type='password'
+              validation={{
+                required: t('form.error.field_is_required'),
+                minLength: {
+                  value: 8,
+                  message: t('form.error.password_min_length', { defaultValue: 'Min. 8 characters' }),
+                },
+              }}
+            />
+            <InputPassword
+              formValue='confirm_password'
+              label={t('confirm_password')}
+              placeholder={'• • • • • • • •'}
+              type='password'
+              validation={{
+                required: t('form.error.field_is_required'),
+                validate: (value) => value === password || t('passwords_do_not_match'),
+              }}
+            />
+            <FormControl as='fieldset' isInvalid={!!errors?.terms}>
+              <Checkbox
+                {...register('terms', { required: t('cc.validation.required') })}
+                color='auth.checkboxes_text'
+                isRequired
               >
-                Keep me logged
-              </Trans>
-            </Checkbox>
-            <FormErrorMessage>{errors?.terms?.message.toString()}</FormErrorMessage>
-          </FormControl>
-
-          <Button isLoading={isPending} type='submit' size='xl' w='100%' variant='primary' colorScheme='gradient'>
+                <Text fontSize={'14px'}>
+                  <Trans
+                    i18nKey='signup_agree_terms'
+                    components={{
+                      termsLink: (
+                        <Link
+                          isExternal
+                          as={ReactRouterLink}
+                          to={Routes.terms}
+                          color={'auth.checkboxes_text'}
+                          fontSize={'14px'}
+                        />
+                      ),
+                      privacyLink: (
+                        <Link
+                          isExternal
+                          as={ReactRouterLink}
+                          to={Routes.privacy}
+                          color={'auth.checkboxes_text'}
+                          fontSize={'14px'}
+                        />
+                      ),
+                    }}
+                  ></Trans>
+                </Text>
+              </Checkbox>
+              <FormErrorMessage>{errors?.terms?.message.toString()}</FormErrorMessage>
+            </FormControl>
+            <FormControl as='fieldset'>
+              <Checkbox {...register('promotions')} color='auth.checkboxes_text'>
+                <Text fontSize={'14px'}>
+                  <Trans
+                    i18nKey='signup_agree_promotions'
+                    defaultValue='I agree to receive promotions and offers for digital voting services offered by Vocdoni.'
+                  ></Trans>
+                </Text>
+              </Checkbox>
+              <FormErrorMessage>{errors?.terms?.message.toString()}</FormErrorMessage>
+            </FormControl>
+          </Flex>
+          <Button isLoading={isPending} type='submit' w='100%' variant='primary'>
             {t('signup_create_account')}
           </Button>
+          <OrSeparator />
         </Flex>
       </FormProvider>
 
-      <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%'>
-        <Text color='account.description' fontWeight='400' fontSize='sm'>
-          {t('already_member')}
-          <Link as={NavLink} to={Routes.auth.signIn} ml={1} fontWeight={500} variant='primary'>
-            {t('signin')}
-          </Link>
-        </Text>
-      </Flex>
+      <GoogleAuth />
+
+      <Text
+        color='account.description'
+        display={'flex'}
+        justifyContent='center'
+        alignItems='start'
+        maxW='100%'
+        mt={6}
+        fontSize='sm'
+        fontWeight={'bold'}
+      >
+        {t('already_member')}
+        <Link as={NavLink} to={Routes.auth.signIn} ml={1} fontWeight={'bold'} variant={'unstyled'} fontSize='sm'>
+          {t('signin')}
+        </Link>
+      </Text>
       {isError && <FormSubmitMessage isError={isError} error={error} />}
     </>
   )
