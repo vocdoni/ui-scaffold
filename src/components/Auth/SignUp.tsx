@@ -90,7 +90,6 @@ const SignUp = ({ invite }: SignupProps) => {
         <Flex as='form' onSubmit={handleSubmit(onSubmit)} flexDirection='column' gap={6}>
           <Flex flexDirection={'column'} gap={4} mb={4}>
             <InputBasic formValue='firstName' label={t('signup_name')} placeholder={'John Doe'} />
-            <InputBasic formValue='lastName' label={'Last name'} placeholder={'Last name ex'} />
             <InputBasic
               formValue='email'
               label={t('email')}
