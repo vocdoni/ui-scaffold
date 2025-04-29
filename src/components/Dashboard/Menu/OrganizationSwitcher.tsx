@@ -156,6 +156,8 @@ export const OrganizationSwitcher = ({ ...props }) => {
           aria-label={t('create_org.title')}
           to={Routes.dashboard.organizationCreate}
           variant={'transparent'}
+          justifyContent={'start'}
+          gap={2}
           colorScheme='gray'
           w='full'
           px={2}
