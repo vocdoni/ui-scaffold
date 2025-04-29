@@ -68,7 +68,7 @@ export const DashboardMenuOptions = () => {
     <Flex flexDirection={'column'} gap={8}>
       <Box>
         {!reduced && (
-          <Text mx={2} fontWeight={'bold'} size={'xs'}>
+          <Text mx={2} mb={2} fontWeight={'bold'} size={'xs'}>
             {t('section.platform', { defaultValue: 'Platform' })}
           </Text>
         )}
@@ -131,7 +131,7 @@ export const DashboardMenuOptions = () => {
       </Box>
       {!reduced && (
         <Box>
-          <Text mx={2} fontWeight={'bold'} size={'xs'}>
+          <Text mx={2} mb={2} fontWeight={'bold'} size={'xs'}>
             {t('section.help', { defaultValue: 'Help' })}
           </Text>
 
