@@ -59,7 +59,8 @@ const LayoutDashboard: React.FC = () => {
               position={'sticky'}
               bgColor='white'
               top={0}
-              px={4}
+              pr={4}
+              pl={2}
               gap={4}
               display='flex'
               h={16}

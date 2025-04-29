@@ -12,18 +12,30 @@ import {
   useSteps,
 } from '@chakra-ui/react'
 import { useClient } from '@vocdoni/react-providers'
+import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useOutletContext } from 'react-router-dom'
 import { DashboardContents } from '~components/Layout/Dashboard'
+import { DashboardLayoutContext } from '~elements/LayoutDashboard'
+import { Routes } from '~routes'
 import { CspAdminProvider } from '../Census/Csp/use-csp'
 import { StepsForm } from './Form'
 import { useStepContents } from './use-steps'
 
 const Steps = () => {
+  const { t } = useTranslation()
+  const { setBreadcrumb } = useOutletContext<DashboardLayoutContext>()
   const steps = useStepContents()
   const { activeStep, setActiveStep } = useSteps({
     index: 0,
     count: steps.length,
   })
   const { signer } = useClient()
+
+  // Set layout variables
+  useEffect(() => {
+    setBreadcrumb([{ title: t('new_voting'), route: Routes.processes.create }])
+  }, [setBreadcrumb])
 
   return (
     <CspAdminProvider signer={signer}>
