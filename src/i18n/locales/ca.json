@@ -85,7 +85,7 @@
   },
   "avatar": {
     "hint": "Min 200x200px .PNG or .JPEG",
-    "label": "Logo/Avatar"
+    "label": "Avatar de l'organització"
   },
   "back": "Enrere",
   "billing": "Facturació",
@@ -292,8 +292,9 @@
     "logout": "Si vols iniciar sessió des d'un altre compte, si us plau tanca la sessió",
     "multiple_administrators": "Múltiples administradors",
     "private_org": "Detalls privats de l'organització",
-    "private_org_description": "Ajuda'ns a adaptar la teva experiència amb informació sobre la teva organització. No compartirem aquesta informació",
-    "public_info": "Informació pública de l'organització",
+    "private_org_description": "Ajuda'ns a adaptar la teva experiència amb informació sobre la teva organització. No compartirem aquesta informació.",
+    "public_info": "Perfil públic",
+    "public_info_description": "Aquesta informació es mostra en diversos llocs, incloses les pàgines de votació.",
     "support_during_trial_period": "Suport durant el període de prova",
     "title": "Crea la teva organització",
     "unlimited_voting_processes": "Creació il·limitada de processos de votació",
@@ -306,14 +307,11 @@
     }
   },
   "current": "Actual",
-  "customization": "Customization",
   "dark_mode": "Mode fosc",
   "delete_my_account": "Delete my account",
   "description": "Description",
   "edit_saas_profile": {
-    "customization_details": "Defineix els paràmetres que milloraran l'experiència d'usuari i personalitzaran la pàgina de votació",
-    "edited_successfully": "Actualitzat correctament",
-    "header_image": "Imatge de capçalera"
+    "edited_successfully": "Actualitzat correctament"
   },
   "email": "Correu electrònic",
   "email_placeholder": "your@email.com",
@@ -544,6 +542,8 @@
     "more_effective": "25: Més efectiu",
     "most_effective": "30: Molt efectiu"
   },
+  "google_oauth_error": "Google OAuth Error",
+  "google_oauth_error_description": "Google OAuth error, please try again",
   "guides": "Guies",
   "help": "Necessites ajuda?",
   "home": {
@@ -1038,13 +1038,14 @@
       "title": "Crea la teva primera elecció"
     },
     "no_organization_title": "You don't belong to any organization yet!",
-    "organization": "Organització",
+    "organization": "Detalls de l'organització",
     "title": {
       "read_more": "Expandir títol"
     },
     "votings_list": "Llista de processos de votació"
   },
   "organizations": "Organizations ({{ numOrgs }})",
+  "other_details": "Altres detalls",
   "overwrite": {
     "description": "Voters will be able to overwrite their vote once",
     "title": "Vote overwrite"
@@ -1322,14 +1323,7 @@
     "success": "Profile updated successfully",
     "title": "Profile"
   },
-  "rainbow": {
-    "group": {
-      "recovery": "Recuperació"
-    },
-    "recovery": "Recuperar compte"
-  },
   "remove_avatar": "Remove avatar",
-  "remove_header": "Remove header",
   "reset_password_button": "Reset Password",
   "rights": "© 2024 Associació Vocdoni. Tots els drets reservats.",
   "role": {
@@ -1469,8 +1463,7 @@
   "update": "Update",
   "upgrade": "Upgrade",
   "uploader": {
-    "click_or_drag_and_drop": "<click>Fes clic per pujar</click> <drag>o arrossega i deixa anar</drag><formats>(Formats permesos: {{ formats, list }})</formats>",
-    "drop_here": "Deixa anar aquí"
+    "click_or_drag_and_drop": "<click>Fes clic per pujar</click><formats>(Formats permesos: {{ formats, list }})</formats>"
   },
   "use_read_more": {
     "read_less": "Llegeix menys",

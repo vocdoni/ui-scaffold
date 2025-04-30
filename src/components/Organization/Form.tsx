@@ -1,4 +1,4 @@
-import { Box, Checkbox, Flex, FormControl, FormErrorMessage, FormLabel, Text, Textarea } from '@chakra-ui/react'
+import { Box, Flex, FormControl, FormLabel, Text, Textarea } from '@chakra-ui/react'
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import InputBasic from '~components/Layout/InputBasic'
@@ -14,14 +14,8 @@ export const PublicOrgForm = () => {
   const { register } = useFormContext()
 
   return (
-    <>
-      <Box me='auto'>
-        <Text fontWeight='bold'>
-          <Trans i18nKey='create_org.public_info'>Public Organization Information</Trans>
-        </Text>
-      </Box>
-
-      <Flex flexDirection='column' gap={6} px={{ base: 5, md: 10 }}>
+    <Box w='full'>
+      <Flex flexDirection='column' gap={6}>
         <InputBasic
           formValue='name'
           label={t('name', { defaultValue: 'Name' })}
@@ -30,6 +24,12 @@ export const PublicOrgForm = () => {
           })}
           required
         />
+        <FormControl>
+          <FormLabel ms='4px' fontSize='sm' fontWeight='500'>
+            <Trans i18nKey='description'>Description</Trans>
+          </FormLabel>
+          <Textarea {...register('description')} placeholder={t('form.account_create.description_placeholder')} />
+        </FormControl>
         <InputBasic
           formValue='website'
           label={t('website', { defaultValue: 'Website' })}
@@ -37,15 +37,8 @@ export const PublicOrgForm = () => {
             defaultValue: 'https://example.com',
           })}
         />
-
-        <FormControl>
-          <FormLabel ms='4px' fontSize='sm' fontWeight='500'>
-            <Trans i18nKey='description'>Description</Trans>
-          </FormLabel>
-          <Textarea {...register('description')} placeholder={t('form.account_create.description_placeholder')} />
-        </FormControl>
       </Flex>
-    </>
+    </Box>
   )
 }
 
@@ -64,29 +57,25 @@ export const PrivateOrgForm = () => {
 
   return (
     <>
-      <Box>
-        <Text fontWeight='bold' mb={2.5}>
-          <Trans i18nKey='create_org.private_org'>Private Organization Details</Trans>
+      <Box mb={4}>
+        <Text fontWeight='bold' mb={4} size='lg'>
+          <Trans i18nKey='create_org.private_org'>Other Details</Trans>
         </Text>
-        <Text color={'org_text_secondary'} fontSize='sm'>
+        <Text color='rgb(115, 115, 115)' size='sm'>
           <Trans i18nKey='create_org.private_org_description'>
-            Help us tailor your experience with information about your org. We won't share this info
+            This information is private and used for internal configuration.{' '}
           </Trans>
         </Text>
       </Box>
-      <Flex px={{ base: 5, md: 10 }} direction='column' gap={6}>
-        <MembershipSizeTypesSelector name='size' required />
-        <OrganzationTypesSelector name='type' required />
-        <CountriesTypesSelector name='country' required />
+      <Flex direction={{ base: 'column', lg: 'row' }} gap={6} mb={6}>
+        <Flex flex='1 1 50%' gap={6} flexDirection={'column'}>
+          <MembershipSizeTypesSelector name='size' required />
+          <OrganzationTypesSelector name='type' required />
+        </Flex>
+        <Box flex='1 1 50%'>
+          <CountriesTypesSelector name='country' required />
+        </Box>
       </Flex>
-      <FormControl as='fieldset' isInvalid={!!errors?.communications}>
-        <Checkbox {...register('communications')}>
-          <Trans i18nKey='create_org.communication'>
-            I want to receive communications and be contacted to tailor my governance experience.
-          </Trans>
-        </Checkbox>
-        <FormErrorMessage>{errors?.communications?.message.toString()}</FormErrorMessage>
-      </FormControl>
     </>
   )
 }

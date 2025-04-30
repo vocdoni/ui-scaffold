@@ -85,7 +85,7 @@
   },
   "avatar": {
     "hint": "Min 200x200px .PNG or .JPEG",
-    "label": "Logo/Avatar"
+    "label": "Avatar de la organización"
   },
   "back": "Atrás",
   "billing": "Facturación",
@@ -292,8 +292,9 @@
     "logout": "Si deseas iniciar sesión desde otra cuenta, por favor cierra sesión",
     "multiple_administrators": "Múltiples administradores",
     "private_org": "Detalles privados de la organización",
-    "private_org_description": "Ayúdanos a adaptar tu experiencia con información sobre tu organización. No compartiremos esta información",
-    "public_info": "Información pública de la organización",
+    "private_org_description": "Ayúdanos a adaptar tu experiencia con información sobre tu organización. No compartiremos esta información.",
+    "public_info": "Perfil público",
+    "public_info_description": "Esta información se muestra en varios lugares, incluidas las páginas de votación.",
     "support_during_trial_period": "Soporte durante el período de prueba",
     "title": "Crea tu organización",
     "unlimited_voting_processes": "Creación ilimitada de procesos de votación",
@@ -306,14 +307,11 @@
     }
   },
   "current": "Actual",
-  "customization": "Customization",
   "dark_mode": "Modo oscuro",
   "delete_my_account": "Delete my account",
   "description": "Description",
   "edit_saas_profile": {
-    "customization_details": "Define the params that will enhance the user experience and customize the voting page",
-    "edited_successfully": "Updated successfully",
-    "header_image": "Header Image"
+    "edited_successfully": "Updated successfully"
   },
   "email": "Correo electrónico",
   "email_placeholder": "tu@correo.com",
@@ -544,6 +542,8 @@
     "more_effective": "25: Más efectivo",
     "most_effective": "30: Muy efectivo"
   },
+  "google_oauth_error": "Google OAuth Error",
+  "google_oauth_error_description": "Google OAuth error, please try again",
   "guides": "Guías",
   "help": "¿Necesitas ayuda?",
   "home": {
@@ -1038,13 +1038,14 @@
       "title": "Crea tu primer proceso de votación"
     },
     "no_organization_title": "You don't belong to any organization yet!",
-    "organization": "Organización",
+    "organization": "Detalles de la organización",
     "title": {
       "read_more": "Expandir título"
     },
     "votings_list": "Lista de procesos de votación"
   },
   "organizations": "Organizations ({{ numOrgs }})",
+  "other_details": "Otros detalles",
   "overwrite": {
     "description": "Los votantes podrán modificar su voto una vez",
     "title": "Modificación de voto"
@@ -1322,14 +1323,7 @@
     "success": "Perfil actualizado con éxito",
     "title": "Perfil"
   },
-  "rainbow": {
-    "group": {
-      "recovery": "Recuperación"
-    },
-    "recovery": "Recuperar cuenta"
-  },
   "remove_avatar": "Eliminar avatar",
-  "remove_header": "Eliminar encabezado",
   "reset_password_button": "Restablecer la contraseña",
   "rights": "© 2024 Asociación Vocdoni. Todos los derechos reservados.",
   "role": {
@@ -1469,8 +1463,7 @@
   "update": "Actualizar",
   "upgrade": "Amplíalo",
   "uploader": {
-    "click_or_drag_and_drop": "<click>Haz clic para subir</click> <drag>o arrastra y suelta</drag><formats>(Formatos permitidos: {{ formats, list }})</formats>",
-    "drop_here": "Suelta aqui"
+    "click_or_drag_and_drop": "<click>Haz clic para subir</click><formats>(Formatos permitidos: {{ formats, list }})</formats>"
   },
   "use_read_more": {
     "read_less": "Leer menos",

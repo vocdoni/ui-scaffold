@@ -82,7 +82,7 @@
   },
   "avatar": {
     "hint": "Min 200x200px .PNG or .JPEG",
-    "label": "Logo/Avatar"
+    "label": "Organization Avatar"
   },
   "back": "Back",
   "billing": "Billing",
@@ -288,9 +288,10 @@
     "header": "Try Vocdoni for free for 7 days",
     "logout": "If you want to login from another account, please logout",
     "multiple_administrators": "Multiple administrators",
-    "private_org": "Private Organization Details",
-    "private_org_description": "Help us tailor your experience with information about your org. We won't share this info",
-    "public_info": "Public Organization Information",
+    "private_org": "Other Details",
+    "private_org_description": "  This information is private and used for internal configuration.",
+    "public_info": "Public Profile",
+    "public_info_description": "This information is shown in various places including the voting pages.",
     "support_during_trial_period": "Support during the trial period",
     "title": "Create Your Organization",
     "unlimited_voting_processes": "Unlimited creation of voting processes",
@@ -303,14 +304,11 @@
     }
   },
   "current": "Current",
-  "customization": "Customization",
   "dark_mode": "Dark mode",
   "delete_my_account": "Delete my account",
   "description": "Description",
   "edit_saas_profile": {
-    "customization_details": "Define the params that will enhance the user experience and customize the voting page",
-    "edited_successfully": "Updated successfully",
-    "header_image": "Header Image"
+    "edited_successfully": "Updated successfully"
   },
   "email": "Email",
   "email_placeholder": "your@email.com",
@@ -537,6 +535,8 @@
     "more_effective": "25: More Effective",
     "most_effective": "30: Most Effective"
   },
+  "google_oauth_error": "Google OAuth Error",
+  "google_oauth_error_description": "Google OAuth error, please try again",
   "guides": "Guides",
   "help": "Do you need help?",
   "home": {
@@ -1030,13 +1030,14 @@
       "title": "Create your first voting process"
     },
     "no_organization_title": "You don't belong to any organization yet!",
-    "organization": "Organization",
+    "organization": "Organization Details",
     "title": {
       "read_more": "Expand title"
     },
     "votings_list": "Votings Processes List"
   },
   "organizations": "Organizations ({{ numOrgs }})",
+  "other_details": "other details",
   "overwrite": {
     "description": "Voters will be able to overwrite their vote once",
     "title": "Vote overwrite"
@@ -1311,14 +1312,7 @@
     "success": "Profile updated successfully",
     "title": "Profile"
   },
-  "rainbow": {
-    "group": {
-      "recovery": "Recovery"
-    },
-    "recovery": "Account recovery"
-  },
   "remove_avatar": "Remove avatar",
-  "remove_header": "Remove header",
   "reset_password_button": "Reset Password",
   "rights": "© 2024 Vocdoni Association. All Rights Reserved.",
   "role": {
@@ -1458,8 +1452,7 @@
   "update": "Update",
   "upgrade": "Upgrade",
   "uploader": {
-    "click_or_drag_and_drop": "<click>Click to upload</click> <drag>or drag and drop</drag><formats>(Allowed formats: {{ formats, list }})</formats>",
-    "drop_here": "Drop here"
+    "click_or_drag_and_drop": "<click>Click to upload</click><formats>(Allowed formats: {{ formats, list }})</formats>"
   },
   "use_read_more": {
     "read_less": "Read less",
