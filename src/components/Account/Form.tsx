@@ -1,18 +1,27 @@
 import {
-  Avatar,
   Button,
-  Flex,
   FormControl,
   FormErrorMessage,
   FormLabel,
+  HStack,
+  IconButton,
   Input,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
   Text,
+  useDisclosure,
   useToast,
   VStack,
 } from '@chakra-ui/react'
+import { Pencil01 } from '@untitled-ui/icons-react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { User, useUpdateProfile } from '~src/queries/account'
+import PasswordForm from './PasswordForm'
 
 interface ProfileFormData {
   firstName: string
@@ -24,6 +33,7 @@ const AccountForm = ({ profile }: { profile: User }) => {
   const { t } = useTranslation()
   const toast = useToast()
   const updateProfile = useUpdateProfile()
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   const {
     register,
@@ -59,49 +69,72 @@ const AccountForm = ({ profile }: { profile: User }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <VStack spacing={8} align='stretch'>
-        <FormControl isDisabled style={{ cursor: 'not-allowed' }}>
-          <FormLabel>{t('profile.avatar.label', { defaultValue: 'Avatar' })}</FormLabel>
-          <Flex align='center' gap={4}>
-            <Avatar size='lg' name={profile ? `${profile.firstName} ${profile.lastName}` : undefined} />
-            <Text color='gray.500' fontSize='sm'>
-              {t('avatar.hint', { defaultValue: 'Min 200x200px .PNG or .JPEG' })}
+    <>
+      {' '}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Text size={'2xl'} fontWeight={'extrabold'} mb={1.5}>
+          {t('account.title', { defaultValue: 'Account Information' })}
+        </Text>
+        <Text size={'sm'} color={'rgb(115, 115, 115)'} mb={6}>
+          {t('account.subtitle', { defaultValue: 'Update your account details and personal information' })}{' '}
+        </Text>
+        <VStack spacing={8} align='stretch'>
+          <FormControl isInvalid={!!errors.firstName}>
+            <FormLabel fontSize={'14px'}>{t('name', { defaultValue: 'Name' })}</FormLabel>
+            <Input
+              {...register('firstName', {
+                required: t('form.error.field_is_required'),
+              })}
+            />
+            <FormErrorMessage>{errors.firstName?.message}</FormErrorMessage>
+          </FormControl>
+
+          <FormControl isInvalid={!!errors.email}>
+            <FormLabel fontSize={'14px'}>{t('email', { defaultValue: 'Email' })}</FormLabel>
+            <Input {...register('email')} isDisabled type='email' />
+            <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
+          </FormControl>
+
+          <FormControl>
+            <FormLabel fontSize={'14px'}>{t('password', { defaultValue: 'Email' })}</FormLabel>
+            <HStack gap={2}>
+              <Input placeholder={'• • • • • • • •'} type='password' isDisabled />
+              <IconButton
+                onClick={onOpen}
+                icon={<Pencil01 />}
+                aria-label='change password'
+                variant={'outline'}
+                size='sm'
+                w='40px'
+                h='40px'
+              />
+            </HStack>
+          </FormControl>
+
+          <Button type='submit' size='lg' isLoading={isSubmitting || updateProfile.isPending} alignSelf={'start'}>
+            {t('actions.save', { defaultValue: 'Save Changes' })}
+          </Button>
+        </VStack>
+      </form>{' '}
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalCloseButton fontSize={10} />
+          <ModalHeader>
+            <Text size={'lg'}>{t('change_password.title', { defaultValue: 'Change Password' })}</Text>
+            <Text color='rgb(115, 115, 115)' mb={6} fontWeight={'normal'} size={'sm'}>
+              {t('change_password.subtitle', {
+                defaultValue: 'Enter your current password and a new password to update your credentials.',
+              })}
             </Text>
-          </Flex>
-        </FormControl>
+          </ModalHeader>
 
-        <FormControl isInvalid={!!errors.firstName}>
-          <FormLabel>{t('name', { defaultValue: 'Name' })}</FormLabel>
-          <Input
-            {...register('firstName', {
-              required: t('form.error.field_is_required'),
-            })}
-          />
-          <FormErrorMessage>{errors.firstName?.message}</FormErrorMessage>
-        </FormControl>
-
-        <FormControl isInvalid={!!errors.lastName}>
-          <FormLabel>{t('surname', { defaultValue: 'Surname' })}</FormLabel>
-          <Input
-            {...register('lastName', {
-              required: t('form.error.field_is_required'),
-            })}
-          />
-          <FormErrorMessage>{errors.lastName?.message}</FormErrorMessage>
-        </FormControl>
-
-        <FormControl isInvalid={!!errors.email}>
-          <FormLabel>{t('email', { defaultValue: 'Email' })}</FormLabel>
-          <Input {...register('email')} isDisabled type='email' />
-          <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
-        </FormControl>
-
-        <Button type='submit' size='lg' isLoading={isSubmitting || updateProfile.isPending}>
-          {t('actions.save', { defaultValue: 'Save Changes' })}
-        </Button>
-      </VStack>
-    </form>
+          <ModalBody>
+            <PasswordForm />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+    </>
   )
 }
 

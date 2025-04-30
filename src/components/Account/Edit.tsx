@@ -1,42 +1,38 @@
-import { Button, Flex, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
-import { Trans } from 'react-i18next'
+import { Box, Button, Flex, Text } from '@chakra-ui/react'
+import { Trans, useTranslation } from 'react-i18next'
+import { DashboardBox } from '~components/Layout/Dashboard'
 import { useProfile } from '~src/queries/account'
 import AccountForm from './Form'
-import PasswordForm from './PasswordForm'
-import Teams from './Teams'
 
 export const AccountEdit = () => {
+  const { t } = useTranslation()
   const { data: profile } = useProfile()
   return (
-    <Flex flexDirection='column'>
-      <Tabs w='full' mx='auto' isFitted>
-        <TabList>
-          <Tab>
-            <Trans i18nKey='profile.title'>Profile</Trans>
-          </Tab>
-          <Tab>
-            <Trans i18nKey='password'>Password</Trans>
-          </Tab>
-          <Tab>
-            <Trans i18nKey='teams'>Teams</Trans>
-          </Tab>
-        </TabList>
+    <Flex flexDirection='column' gap={6}>
+      <DashboardBox px={6} pb={6} pt={4}>
+        <AccountForm profile={profile} />
+      </DashboardBox>
 
-        <TabPanels>
-          <TabPanel>
-            <AccountForm profile={profile} />
-          </TabPanel>
-          <TabPanel>
-            <PasswordForm />
-          </TabPanel>
-          <TabPanel>
-            <Teams roles={profile?.organizations} />
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
-      <Button colorScheme='red' variant='outline' alignSelf='center' mt='auto' isDisabled>
-        <Trans i18nKey='delete_my_account'>Delete my account</Trans>
-      </Button>
+      <DashboardBox p={6}>
+        <Text size={'2xl'} fontWeight={'600'} mb={1.5}>
+          {t('delete.danger_title', { defaultValue: 'Danger Zone' })}
+        </Text>
+        <Text size='sm' color='rgb(115, 115, 115)' mb={6}>
+          {t('delete.dange_subtitle', { defaultValue: 'Permanently delete your account and all associated data' })}
+        </Text>
+        <Box h='1px' borderBottom={'var(--border)'} mb={6}></Box>
+        <Text size={'lg'} fontWeight={'600'}>
+          {t('delete.delete_title', { defaultValue: 'Delete Account' })}
+        </Text>
+        <Text size='sm' color='rgb(115, 115, 115)' mb={4}>
+          {t('delete.delete_subtitle', {
+            defaultValue: 'Once you delete your account, there is no going back. This action cannot be undone.',
+          })}
+        </Text>
+        <Button colorScheme='red' alignSelf='center' mt='auto'>
+          <Trans i18nKey='delete_my_account'>Delete Account</Trans>
+        </Button>
+      </DashboardBox>
     </Flex>
   )
 }

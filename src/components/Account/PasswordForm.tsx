@@ -41,8 +41,6 @@ const PasswordForm = () => {
     formState: { errors, isSubmitting },
   } = useForm<PasswordFormData>()
 
-  const password = watch('newPassword')
-
   const onSubmit = async (data: PasswordFormData) => {
     try {
       await updatePassword.mutateAsync({
@@ -92,21 +90,9 @@ const PasswordForm = () => {
           <FormErrorMessage>{errors.newPassword?.message}</FormErrorMessage>
         </FormControl>
 
-        <FormControl isInvalid={!!errors.confirmPassword}>
-          <FormLabel>{t('password_update.confirm.label', { defaultValue: 'Confirm Password' })}</FormLabel>
-          <Input
-            type='password'
-            {...register('confirmPassword', {
-              required: t('password_update.confirm.required', { defaultValue: 'Please confirm your password' }),
-              validate: (value) =>
-                value === password || t('password_update.confirm.mismatch', { defaultValue: "Passwords don't match" }),
-            })}
-          />
-          <FormErrorMessage>{errors.confirmPassword?.message}</FormErrorMessage>
-        </FormControl>
-
-        <Button type='submit' size='lg' width='100%' isLoading={isSubmitting || updatePassword.isPending} mt={4}>
-          {t('password_update.actions.update', { defaultValue: 'Update Password' })}
+        {/* DEBERIA SUBSTITUIR ESTE BOTON POR EL MODAL FOOTER EN CASO DE PASAR MODAL FOOTER */}
+        <Button type='submit' size='lg' isLoading={isSubmitting || updatePassword.isPending} mt={4} alignSelf={'end'}>
+          {t('password_update.actions.save', { defaultValue: 'Save Password' })}
         </Button>
       </VStack>
     </form>
