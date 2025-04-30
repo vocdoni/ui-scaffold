@@ -64,6 +64,9 @@ export const useDashboardRoutes = () => {
                     <OrganizationDashboard />
                   </SuspenseLoader>
                 ),
+                loader: async ({ params }) =>
+                  await queryClient.ensureQueryData(paginatedElectionsQuery(account, client, params)),
+                errorElement: <Error />,
               },
               {
                 path: Routes.dashboard.process,
@@ -75,7 +78,6 @@ export const useDashboardRoutes = () => {
                 loader: async ({ params }: { params: Params<string> }) => client.fetchElection(params.id),
                 errorElement: <Error />,
               },
-
               {
                 path: Routes.dashboard.processes,
                 element: (

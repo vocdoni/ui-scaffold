@@ -1,15 +1,20 @@
 import { Box, Button, Flex, Heading, Text } from '@chakra-ui/react'
 import { ArrowUpRight, Calendar, Mail04, Plus, Users01 } from '@untitled-ui/icons-react'
 import { useOrganization } from '@vocdoni/react-providers'
+import { ElectionListWithPagination } from '@vocdoni/sdk'
 import { useEffect } from 'react'
 import { Trans } from 'react-i18next'
-import { generatePath, Link as ReactRouterLink, useOutletContext } from 'react-router-dom'
+import { generatePath, Link as ReactRouterLink, useLoaderData, useOutletContext } from 'react-router-dom'
 import { DashboardBox, DashboardContents } from '~components/Layout/Dashboard'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~routes'
+import { useProfile } from '~src/queries/account'
+import ProcessesList from './ProcessesList'
 
 const OrganizationDashboard = () => {
   const { organization } = useOrganization()
+  const { data: profile } = useProfile()
+  const { elections } = useLoaderData() as ElectionListWithPagination
   const { setBreadcrumb } = useOutletContext<DashboardLayoutContext>()
 
   if (!organization) return null
@@ -32,7 +37,7 @@ const OrganizationDashboard = () => {
             </Text>{' '}
             Hello{' '}
             <Text as={'span'} size='2xl'>
-              John
+              {profile.firstName}
             </Text>
             !
           </Text>
@@ -92,18 +97,36 @@ const OrganizationDashboard = () => {
               Your organization's latest voting activities
             </Text>
           </Box>
-          <Flex flexGrow={1} flexDirection={'column'} justifyContent={'center'} alignItems={'center'} gap={4}>
-            <Text color='rgb(115, 115, 115)'>No voting processes found</Text>
-            <Button
-              as={ReactRouterLink}
-              to={generatePath(Routes.processes.create)}
-              colorScheme='gray'
-              variant={'outline'}
-            >
-              Create your first vote
-            </Button>
+          <Flex
+            flexGrow={1}
+            flexDirection={'column'}
+            justifyContent={!elections ? 'center' : 'start'}
+            alignItems={'center'}
+            gap={4}
+          >
+            {!elections ? (
+              <>
+                <Text color='rgb(115, 115, 115)'>No voting processes found</Text>
+                <Button
+                  as={ReactRouterLink}
+                  to={generatePath(Routes.processes.create)}
+                  colorScheme='gray'
+                  variant={'outline'}
+                >
+                  Create your first vote
+                </Button>
+              </>
+            ) : (
+              <ProcessesList processes={elections} />
+            )}
           </Flex>
-          <Button rightIcon={<ArrowUpRight />} variant={'transparent'} alignSelf={'end'}>
+          <Button
+            as={ReactRouterLink}
+            to={generatePath(Routes.dashboard.processes)}
+            rightIcon={<ArrowUpRight />}
+            variant={'transparent'}
+            alignSelf={'end'}
+          >
             View all processes
           </Button>
         </DashboardBox>
