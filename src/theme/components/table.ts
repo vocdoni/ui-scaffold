@@ -99,6 +99,40 @@ const subscription = definePartsStyle((props) => ({
   },
 }))
 
+const processes = definePartsStyle((props) => ({
+  table: {
+    overflow: 'auto',
+  },
+  thead: {
+    th: {
+      px: 4,
+      fontWeight: '500',
+      color: '#737373',
+      '&[data-is-numeric=true]': {
+        textAlign: 'right',
+      },
+    },
+  },
+  tr: {
+    borderBottom: '1px solid #e5e5e5',
+  },
+  tbody: {
+    tr: {
+      _hover: {
+        bgColor: 'rgba(245, 245, 245, 0.5)',
+      },
+    },
+  },
+  td: {
+    color: '#0a0a0a',
+    fontSize: '14px',
+    px: 4,
+    '&[data-is-numeric=true]': {
+      textAlign: 'right',
+    },
+  },
+}))
+
 const md = definePartsStyle({
   table: {
     borderRadius: 'lg',
@@ -126,5 +160,6 @@ export const Table = defineMultiStyleConfig({
   variants: {
     striped,
     subscription,
+    processes,
   },
 })

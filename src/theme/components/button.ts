@@ -249,6 +249,5 @@ export const Button = defineStyleConfig({
   defaultProps: {
     variant: 'primary',
     size: 'md',
-    colorScheme: 'black',
   },
 })

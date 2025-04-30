@@ -49,7 +49,7 @@ export const useDashboardRoutes = () => {
               </SuspenseLoader>
             ),
           },
-          // Protected routes if no account created without organization
+          // Protected routes if account created without organization
           {
             element: (
               <SuspenseLoader>
@@ -75,7 +75,6 @@ export const useDashboardRoutes = () => {
                 loader: async ({ params }: { params: Params<string> }) => client.fetchElection(params.id),
                 errorElement: <Error />,
               },
-
               {
                 path: Routes.dashboard.processes,
                 element: (
