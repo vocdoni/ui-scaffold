@@ -54,7 +54,8 @@
     "voting_anonymous_advice": "Por favor, espera mientras sucede la magia 🪄.\nEsto puede tardar varios minutos; no cierres la ventana."
   },
   "avatar": {
-    "label": "Logo/Avatar"
+    "hint": "Min 200x200px .PNG or .JPEG",
+    "label": "Avatar de la organización"
   },
   "back": "Atrás",
   "billing": "Facturación",
@@ -242,10 +243,13 @@
     "communication": "Quiero recibir comunicaciones y ser contactado para adaptar mi experiencia de gobernanza.",
     "create_button": "Create your organization",
     "private_org": "Detalles privados de la organización",
-    "private_org_description": "Ayúdanos a adaptar tu experiencia con información sobre tu organización. No compartiremos esta información",
-    "public_info": "Información pública de la organización",
-    "subtitle": "Cut cost, Save Time: Secure, Private, and GDPR Compliant",
-    "title": "Organization"
+    "private_org_description": "Ayúdanos a adaptar tu experiencia con información sobre tu organización. No compartiremos esta información.",
+    "public_info": "Perfil público",
+    "public_info_description": "Esta información se muestra en varios lugares, incluidas las páginas de votación.",
+    "support_during_trial_period": "Soporte durante el período de prueba",
+    "title": "Crea tu organización",
+    "unlimited_voting_processes": "Creación ilimitada de procesos de votación",
+    "up_to_20_voters": "Hasta 20 votantes"
   },
   "csp_census": {
     "github": {
@@ -254,7 +258,6 @@
     }
   },
   "current": "Actual",
-  "customization": "Customization",
   "dark_mode": "Modo oscuro",
   "dashboard": {
     "actions": {
@@ -286,9 +289,7 @@
   "do_it_later": "Do it later",
   "do_you_need_help": "Do you need help?",
   "edit_saas_profile": {
-    "customization_details": "Define the params that will enhance the user experience and customize the voting page",
-    "edited_successfully": "Updated successfully",
-    "header_image": "Header Image"
+    "edited_successfully": "Updated successfully"
   },
   "election": {
     "ends_on": "Ends on {{date}}",
@@ -1023,13 +1024,14 @@
       "title": "Crea tu primer proceso de votación"
     },
     "no_organization_title": "You don't belong to any organization yet!",
-    "organization": "Organización",
+    "organization": "Detalles de la organización",
     "title": {
       "read_more": "Expandir título"
     },
     "votings_list": "Lista de procesos de votación"
   },
   "organizations": "Organizations ({{ numOrgs }})",
+  "other_details": "Otros detalles",
   "overwrite": {
     "description": "Los votantes podrán modificar su voto una vez",
     "title": "Modificación de voto"
@@ -1314,7 +1316,6 @@
   },
   "questions_and_results": "Questions and results",
   "remove_avatar": "Eliminar avatar",
-  "remove_header": "Eliminar encabezado",
   "reset_password_button": "Restablecer la contraseña",
   "result_visibility": "Results visibility",
   "results_state": {
@@ -1481,8 +1482,7 @@
   "update": "Actualizar",
   "upgrade": "Amplíalo",
   "uploader": {
-    "click_or_drag_and_drop": "<click>Haz clic para subir</click> <drag>o arrastra y suelta</drag><formats>(Formatos permitidos: {{ formats, list }})</formats>",
-    "drop_here": "Suelta aqui"
+    "click_or_drag_and_drop": "<click>Haz clic para subir</click><formats>(Formatos permitidos: {{ formats, list }})</formats>"
   },
   "use_read_more": {
     "read_less": "Leer menos",

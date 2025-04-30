@@ -54,7 +54,8 @@
     "voting_anonymous_advice": "Si us plau, espera mentre la màgia té lloc 🪄.\nAixò pot trigar uns minuts; no tanquis la finestra."
   },
   "avatar": {
-    "label": "Logo/Avatar"
+    "hint": "Min 200x200px .PNG or .JPEG",
+    "label": "Avatar de l'organització"
   },
   "back": "Enrere",
   "billing": "Facturació",
@@ -242,10 +243,13 @@
     "communication": "Vull rebre comunicacions i ser contactat per adaptar la meva experiència de governança.",
     "create_button": "Create your organization",
     "private_org": "Detalls privats de l'organització",
-    "private_org_description": "Ajuda'ns a adaptar la teva experiència amb informació sobre la teva organització. No compartirem aquesta informació",
-    "public_info": "Informació pública de l'organització",
-    "subtitle": "Cut cost, Save Time: Secure, Private, and GDPR Compliant",
-    "title": "Organization"
+    "private_org_description": "Ajuda'ns a adaptar la teva experiència amb informació sobre la teva organització. No compartirem aquesta informació.",
+    "public_info": "Perfil públic",
+    "public_info_description": "Aquesta informació es mostra en diversos llocs, incloses les pàgines de votació.",
+    "support_during_trial_period": "Suport durant el període de prova",
+    "title": "Crea la teva organització",
+    "unlimited_voting_processes": "Creació il·limitada de processos de votació",
+    "up_to_20_voters": "Fins a 20 votants"
   },
   "csp_census": {
     "github": {
@@ -254,7 +258,6 @@
     }
   },
   "current": "Actual",
-  "customization": "Customization",
   "dark_mode": "Mode fosc",
   "dashboard": {
     "actions": {
@@ -286,9 +289,7 @@
   "do_it_later": "Do it later",
   "do_you_need_help": "Do you need help?",
   "edit_saas_profile": {
-    "customization_details": "Defineix els paràmetres que milloraran l'experiència d'usuari i personalitzaran la pàgina de votació",
-    "edited_successfully": "Actualitzat correctament",
-    "header_image": "Imatge de capçalera"
+    "edited_successfully": "Actualitzat correctament"
   },
   "election": {
     "ends_on": "Ends on {{date}}",
@@ -1023,13 +1024,14 @@
       "title": "Crea la teva primera elecció"
     },
     "no_organization_title": "You don't belong to any organization yet!",
-    "organization": "Organització",
+    "organization": "Detalls de l'organització",
     "title": {
       "read_more": "Expandir títol"
     },
     "votings_list": "Llista de processos de votació"
   },
   "organizations": "Organizations ({{ numOrgs }})",
+  "other_details": "Altres detalls",
   "overwrite": {
     "description": "Voters will be able to overwrite their vote once",
     "title": "Vote overwrite"
@@ -1314,7 +1316,6 @@
   },
   "questions_and_results": "Questions and results",
   "remove_avatar": "Remove avatar",
-  "remove_header": "Remove header",
   "reset_password_button": "Reset Password",
   "result_visibility": "Results visibility",
   "results_state": {
@@ -1481,8 +1482,7 @@
   "update": "Update",
   "upgrade": "Upgrade",
   "uploader": {
-    "click_or_drag_and_drop": "<click>Fes clic per pujar</click> <drag>o arrossega i deixa anar</drag><formats>(Formats permesos: {{ formats, list }})</formats>",
-    "drop_here": "Deixa anar aquí"
+    "click_or_drag_and_drop": "<click>Fes clic per pujar</click><formats>(Formats permesos: {{ formats, list }})</formats>"
   },
   "use_read_more": {
     "read_less": "Llegeix menys",

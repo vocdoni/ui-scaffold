@@ -1,9 +1,8 @@
-import { Button, HStack } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { Box, Heading, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useOutletContext } from 'react-router-dom'
 import { useSaasAccount } from '~components/Account/useSaasAccount'
-import { DashboardContents } from '~components/Layout/Dashboard'
 import QueryDataLayout from '~components/Layout/QueryDataLayout'
 import OrganizationEdit from '~components/Organization/Dashboard/Organization'
 import SubscriptionPage from '~components/Organization/Dashboard/Subscription'
@@ -18,7 +17,6 @@ type MenuItem = {
 const Settings = () => {
   const { t } = useTranslation()
   const { isLoading, isError, error } = useSaasAccount()
-  const [view, setView] = useState<any>()
   const { setBreadcrumb } = useOutletContext<DashboardLayoutContext>()
 
   const menuItems: MenuItem[] = [
@@ -34,18 +32,29 @@ const Settings = () => {
   }, [setBreadcrumb])
 
   return (
-    <QueryDataLayout isLoading={isLoading} isError={isError} error={error}>
-      <DashboardContents>
-        <HStack>
-          {menuItems.map((item, index) => (
-            <Button key={index} onClick={() => setView(item.component)} variant={'transparent'}>
-              {item.label}
-            </Button>
-          ))}
-        </HStack>
-        {view && <>{view}</>}
-      </DashboardContents>
-    </QueryDataLayout>
+    <Box p={6}>
+      <Heading size={'xs'} fontWeight={'extrabold'}>
+        Vocdoni Coop Settings
+      </Heading>
+      <Text mb={4} color='rgb(115, 115, 115)'>
+        Manage your organization, team members and your subscription plan
+      </Text>
+      <QueryDataLayout isLoading={isLoading} isError={isError} error={error}>
+        <Tabs variant={'settings'}>
+          <TabList mb={6}>
+            {menuItems.map((item, index) => (
+              <Tab key={index}>{item.label}</Tab>
+            ))}
+          </TabList>
+
+          <TabPanels>
+            {menuItems.map((item, index) => (
+              <TabPanel key={index}>{item.component}</TabPanel>
+            ))}
+          </TabPanels>
+        </Tabs>
+      </QueryDataLayout>
+    </Box>
   )
 }
 

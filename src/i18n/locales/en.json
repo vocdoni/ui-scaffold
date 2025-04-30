@@ -51,7 +51,8 @@
     "voting_anonymous_advice": "Please wait while the anonymous magic happens 🪄.\nThis can take up to several minutes; don't close the window."
   },
   "avatar": {
-    "label": "Logo/Avatar"
+    "hint": "Min 200x200px .PNG or .JPEG",
+    "label": "Organization Avatar"
   },
   "back": "Back",
   "billing": "Billing",
@@ -237,12 +238,19 @@
   "create_org": {
     "already_profile": "If your organization already has a profile, <2>access the dashboard</2> and contact the administrator to invite you",
     "communication": "I want to receive communications and be contacted to tailor my governance experience.",
-    "create_button": "Create your organization",
-    "private_org": "Private Organization Details",
-    "private_org_description": "Help us tailor your experience with information about your org. We won't share this info",
-    "public_info": "Public Organization Information",
-    "subtitle": "Cut cost, Save Time: Secure, Private, and GDPR Compliant",
-    "title": "Tell us about your organization"
+    "credit_card": "No credit card, no automatic renewal.",
+    "full_access": "Full access to basic features",
+    "header": "Try Vocdoni for free for 7 days",
+    "logout": "If you want to login from another account, please logout",
+    "multiple_administrators": "Multiple administrators",
+    "private_org": "Other Details",
+    "private_org_description": "  This information is private and used for internal configuration.",
+    "public_info": "Public Profile",
+    "public_info_description": "This information is shown in various places including the voting pages.",
+    "support_during_trial_period": "Support during the trial period",
+    "title": "Create Your Organization",
+    "unlimited_voting_processes": "Unlimited creation of voting processes",
+    "up_to_20_voters": "Up to 20 voters"
   },
   "csp_census": {
     "github": {
@@ -251,7 +259,6 @@
     }
   },
   "current": "Current",
-  "customization": "Customization",
   "dark_mode": "Dark mode",
   "dashboard": {
     "actions": {
@@ -283,9 +290,7 @@
   "do_it_later": "Do it later",
   "do_you_need_help": "Do you need help?",
   "edit_saas_profile": {
-    "customization_details": "Define the params that will enhance the user experience and customize the voting page",
-    "edited_successfully": "Updated successfully",
-    "header_image": "Header Image"
+    "edited_successfully": "Updated successfully"
   },
   "election": {
     "ends_on": "Ends on {{date}}",
@@ -1015,13 +1020,14 @@
       "title": "Create your first voting process"
     },
     "no_organization_title": "You don't belong to any organization yet!",
-    "organization": "Organization",
+    "organization": "Organization Details",
     "title": {
       "read_more": "Expand title"
     },
     "votings_list": "Votings Processes List"
   },
   "organizations": "Organizations ({{ numOrgs }})",
+  "other_details": "other details",
   "overwrite": {
     "description": "Voters will be able to overwrite their vote once",
     "title": "Vote overwrite"
@@ -1303,7 +1309,6 @@
   },
   "questions_and_results": "Questions and results",
   "remove_avatar": "Remove avatar",
-  "remove_header": "Remove header",
   "reset_password_button": "Reset Password",
   "result_visibility": "Results visibility",
   "results_state": {
@@ -1470,8 +1475,7 @@
   "update": "Update",
   "upgrade": "Upgrade",
   "uploader": {
-    "click_or_drag_and_drop": "<click>Click to upload</click> <drag>or drag and drop</drag><formats>(Allowed formats: {{ formats, list }})</formats>",
-    "drop_here": "Drop here"
+    "click_or_drag_and_drop": "<click>Click to upload</click><formats>(Allowed formats: {{ formats, list }})</formats>"
   },
   "use_read_more": {
     "read_less": "Read less",

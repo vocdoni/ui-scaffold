@@ -6,6 +6,7 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
+  Heading,
   IconButton,
   Image,
   Text,
@@ -16,12 +17,12 @@ import { Account } from '@vocdoni/sdk'
 import { useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { FormProvider, SubmitHandler, useForm, useFormContext } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { BiTrash } from 'react-icons/bi'
-import { MdBrowserUpdated } from 'react-icons/md'
 import { CreateOrgParams } from '~components/Account/AccountTypes'
 import { useSaasAccount } from '~components/Account/useSaasAccount'
 import { ApiEndpoints } from '~components/Auth/api'
+import { HSeparator } from '~components/Auth/SignIn'
 import { useAuth } from '~components/Auth/useAuth'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import { SelectOptionType } from '~components/Layout/SaasSelector'
@@ -129,27 +130,56 @@ const EditOrganization = () => {
 
   return (
     <FormProvider {...methods}>
-      <Box height='100%' overflowY='auto'>
-        <Flex as='form' id='process-create-form' direction='column' gap={6} onSubmit={handleSubmit(onSubmit)}>
-          <PublicOrgForm />
-          <PrivateOrgForm />
+      <Flex as='form' id='process-create-form' onSubmit={handleSubmit(onSubmit)} flexDirection={'column'}>
+        <Heading size='xs' fontWeight={'extrabold'}>
+          Organization Details
+        </Heading>
+        <Text mb={6} color='rgb(115, 115, 115)' size='sm'>
+          Manage your organization's profile and configuration settings.
+        </Text>
+        <Box me='auto'>
+          <Text fontWeight='bold' mb={4} size='lg'>
+            <Trans i18nKey='create_org.public_info'>Public Profile</Trans>
+          </Text>
+          <Text color='rgb(115, 115, 115)' size={'sm'} mb={4}>
+            <Trans i18nKey='create_org.public_info_description'>
+              This information is shown in various places including the voting pages.
+            </Trans>
+          </Text>
+        </Box>
+        <Flex gap={6} flexDirection={{ base: 'column', lg: 'row' }}>
           <CustomizeOrgForm />
-          <Flex align='center' direction={'column'}>
-            <Button type={'submit'} leftIcon={<MdBrowserUpdated />} isLoading={isPending} aria-label='' w='full'>
-              {t('update', {
-                defaultValue: 'Update',
-              })}
-            </Button>
-            <FormSubmitMessage
-              isLoading={isPending}
-              isError={isError}
-              error={error}
-              isSuccess={isSuccess}
-              success={t('edit_saas_profile.edited_successfully', { defaultValue: 'Updated successfully' })}
-            />
-          </Flex>
+          <PublicOrgForm />
         </Flex>
-      </Box>
+        <Flex align='center' my={6}>
+          <HSeparator />
+          <Text
+            color='rgb(115, 115, 115)'
+            fontWeight={'bold'}
+            mx={3.5}
+            whiteSpace={'nowrap'}
+            size='xs'
+            textTransform={'uppercase'}
+          >
+            {t('other_details')}
+          </Text>
+          <HSeparator />
+        </Flex>
+        <PrivateOrgForm />
+
+        <Flex align='center' direction={'column'} alignSelf={'end'}>
+          <Button type={'submit'} isLoading={isPending} aria-label='' w='full'>
+            {t('actions.save')}
+          </Button>
+          <FormSubmitMessage
+            isLoading={isPending}
+            isError={isError}
+            error={error}
+            isSuccess={isSuccess}
+            success={t('edit_saas_profile.edited_successfully', { defaultValue: 'Updated successfully' })}
+          />
+        </Flex>
+      </Flex>
     </FormProvider>
   )
 }
@@ -171,7 +201,6 @@ const CustomizeOrgForm = () => {
   const { mutateAsync: uploadFile, isPending } = useUploadFile()
 
   const avatar = watch('avatar')
-  const header = watch('header')
 
   // Common upload handler
   const onUpload =
@@ -209,91 +238,40 @@ const CustomizeOrgForm = () => {
     },
   })
 
-  const {
-    getRootProps: getHeaderRootProps,
-    getInputProps: getHeaderInputProps,
-    isDragActive: isHeaderDragActive,
-  } = useDropzone({
-    onDrop: onHeaderUpload,
-    multiple: false,
-    accept: {
-      'image/png': extensions,
-    },
-  })
-
   return (
-    <>
-      <Box>
-        <Text fontWeight='bold'>{t('customization', { defaultValue: 'Customization' })}</Text>
-        <Text color={'org_text_secondary'} fontSize='sm'>
-          {t('edit_saas_profile.customization_details', {
-            defaultValue: 'Define the params that will enhance the user experience and customize the voting page',
+    <Flex flexDirection='column' gap={6}>
+      <FormControl isInvalid={!!errors?.avatar}>
+        <FormLabel display='flex' ms={1} fontSize='sm' fontWeight='500' mb={2}>
+          {t('avatar.label', {
+            defaultValue: 'Logo/Avatar',
           })}
-        </Text>
-      </Box>
-      <Flex flexDirection='column' gap={6} px={{ base: 5, md: 10 }}>
-        <FormControl isInvalid={!!errors?.avatar}>
-          <FormLabel display='flex' ms={1} fontSize='sm' fontWeight='500' mb={2}>
-            {t('avatar.label', {
-              defaultValue: 'Logo/Avatar',
-            })}
-          </FormLabel>
-          {avatar ? (
-            <Flex gap={2} alignItems='center' mt={2}>
-              <AspectRatio flexShrink={0} ratio={1} w='100px' borderRadius='xl' overflow='hidden'>
-                <Image src={avatar} fallbackSrc={fallback} />
-              </AspectRatio>
-              <IconButton
-                aria-label={t('remove_avatar', { defaultValue: 'Remove avatar' })}
-                icon={<BiTrash />}
-                onClick={() => setValue('avatar', '')}
-                size='sm'
-              />
-            </Flex>
-          ) : (
-            <Box mb={4}>
-              <Uploader
-                getRootProps={getAvatarRootProps}
-                getInputProps={getAvatarInputProps}
-                isDragActive={isAvatarDragActive}
-                isLoading={isPending}
-                formats={allowed}
-              />
-            </Box>
-          )}
-          <FormErrorMessage>{errors?.avatar?.message?.toString()}</FormErrorMessage>
-        </FormControl>
-
-        <FormControl>
-          <FormLabel display='flex' ms={1} fontSize='sm' fontWeight='500' mb={2}>
-            {t('edit_saas_profile.header_image', { defaultValue: 'Header Image' })}
-          </FormLabel>
-          {header ? (
-            <Flex gap={2} flexDirection={{ base: 'column', md: 'row' }} alignItems='center'>
-              <AspectRatio flexShrink={0} flexGrow={1} ratio={5 / 1} borderRadius='xl' overflow='hidden'>
-                <Image src={header} fallbackSrc={fallback} />
-              </AspectRatio>
-              <IconButton
-                aria-label={t('remove_header', { defaultValue: 'Remove header' })}
-                icon={<BiTrash />}
-                onClick={() => setValue('header', '')}
-                size='sm'
-              />
-            </Flex>
-          ) : (
-            <Box mb={4}>
-              <Uploader
-                getRootProps={getHeaderRootProps}
-                getInputProps={getHeaderInputProps}
-                isDragActive={isHeaderDragActive}
-                formats={allowed}
-                isLoading={isPending}
-              />
-            </Box>
-          )}
-        </FormControl>
-      </Flex>
-    </>
+        </FormLabel>
+        {avatar ? (
+          <Flex gap={2} alignItems='center' mt={2}>
+            <AspectRatio flexShrink={0} ratio={1} w='128px' h='128px' borderRadius='full' overflow='hidden'>
+              <Image src={avatar} fallbackSrc={fallback} />
+            </AspectRatio>
+            <IconButton
+              aria-label={t('remove_avatar', { defaultValue: 'Remove avatar' })}
+              icon={<BiTrash />}
+              onClick={() => setValue('avatar', '')}
+              size='sm'
+            />
+          </Flex>
+        ) : (
+          <Box mb={4}>
+            <Uploader
+              getRootProps={getAvatarRootProps}
+              getInputProps={getAvatarInputProps}
+              isDragActive={isAvatarDragActive}
+              isLoading={isPending}
+              formats={allowed}
+            />
+          </Box>
+        )}
+        <FormErrorMessage>{errors?.avatar?.message?.toString()}</FormErrorMessage>
+      </FormControl>
+    </Flex>
   )
 }
 
