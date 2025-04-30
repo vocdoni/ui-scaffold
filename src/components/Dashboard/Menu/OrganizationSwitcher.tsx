@@ -90,8 +90,6 @@ export const OrganizationSwitcher = ({ ...props }) => {
     await signerRefresh()
   }
 
-  if (!subscription) return
-
   const numOrgs = organizations.length
 
   return (
@@ -102,16 +100,37 @@ export const OrganizationSwitcher = ({ ...props }) => {
             Organizations ({numOrgs})
           </Trans>
         </Text>
-        <Flex flexDirection={'column'} maxH={'130px'} overflowY={'scroll'}>
-          {organizations.length > 1 ? (
-            organizations.map((org, idx) => (
-              <Button
-                key={idx}
-                onClick={() => handleOrgChange(org)}
-                variant={'transparent'}
-                colorScheme='gray'
-                justifyContent={'start'}
-              >
+        {!!subscription && (
+          <Flex flexDirection={'column'} maxH={'130px'} overflowY={'scroll'}>
+            {organizations.length > 1 ? (
+              organizations.map((org, idx) => (
+                <Button
+                  key={idx}
+                  onClick={() => handleOrgChange(org)}
+                  variant={'transparent'}
+                  colorScheme='gray'
+                  justifyContent={'start'}
+                >
+                  <Flex
+                    justifyContent={'center'}
+                    alignItems={'center'}
+                    border='var(--border)'
+                    w='22px'
+                    h='22px'
+                    borderRadius='xs'
+                  >
+                    <Icon as={LuGalleryVerticalEnd} boxSize={4} ml={2} mr={2} />
+                  </Flex>
+                  {org.label}
+                  {org.value === selectedOrg && (
+                    <Tag colorScheme='gray' ml='auto !important'>
+                      {t('current', { defaultValue: 'Current' })}
+                    </Tag>
+                  )}
+                </Button>
+              ))
+            ) : (
+              <HStack p={2} mb={1}>
                 <Flex
                   justifyContent={'center'}
                   alignItems={'center'}
@@ -122,33 +141,14 @@ export const OrganizationSwitcher = ({ ...props }) => {
                 >
                   <Icon as={LuGalleryVerticalEnd} boxSize={4} ml={2} mr={2} />
                 </Flex>
-                {org.label}
-                {org.value === selectedOrg && (
-                  <Tag colorScheme='gray' ml='auto !important'>
-                    {t('current', { defaultValue: 'Current' })}
-                  </Tag>
-                )}
-              </Button>
-            ))
-          ) : (
-            <HStack p={2} mb={1}>
-              <Flex
-                justifyContent={'center'}
-                alignItems={'center'}
-                border='var(--border)'
-                w='22px'
-                h='22px'
-                borderRadius='xs'
-              >
-                <Icon as={LuGalleryVerticalEnd} boxSize={4} ml={2} mr={2} />
-              </Flex>
-              <OrganizationName fontSize={'14px'} lineHeight={'14px'} fontWeight={500} maxW={'80px'} isTruncated />
-              <Tag colorScheme='gray' ml='auto'>
-                {t('current', { defaultValue: 'Current' })}
-              </Tag>
-            </HStack>
-          )}
-        </Flex>
+                <OrganizationName fontSize={'14px'} lineHeight={'14px'} fontWeight={500} maxW={'80px'} isTruncated />
+                <Tag colorScheme='gray' ml='auto'>
+                  {t('current', { defaultValue: 'Current' })}
+                </Tag>
+              </HStack>
+            )}
+          </Flex>
+        )}
       </PopoverBody>
       <PopoverFooter minH={'unset'}>
         <Button
