@@ -8,13 +8,12 @@ import { Routes } from '~src/router/routes'
 
 const CreateOrganization = () => {
   const { t } = useTranslation()
-  const { setTitle, setBack: setBackBtn, setSidebar } = useOutletContext<AuthOutletContextType>()
+  const { setTitle } = useOutletContext<AuthOutletContextType>()
 
   // Set layout title and subtitle and back button
   useEffect(() => {
     setTitle(t('create_org.title', { defaultValue: 'Create your organization' }))
     //setSidebar(CreateOrganizationSidebar)
-    setBackBtn(Routes.dashboard.base)
   }, [])
 
   return <OrganizationCreate canSkip onSuccessRoute={Routes.dashboard.base} />
