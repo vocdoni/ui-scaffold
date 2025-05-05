@@ -1,6 +1,10 @@
 {
   "actions": {
-    "save": "Guarda els canvis"
+    "create_first_vote": "Veure tots els processos",
+    "create_new_vote": "Crear una nova votació",
+    "manage_team": "Gestionar equip",
+    "save": "Desar els canvis",
+    "view_active_votes": "Veure votacions actives"
   },
   "active": "Actiu",
   "add_new_org": "Afegir una nova organització",
@@ -308,6 +312,17 @@
   "current": "Actual",
   "customization": "Customization",
   "dark_mode": "Mode fosc",
+  "dashboard_empty_processes": {
+    "common_tasks_actions": "Common tasks and actions",
+    "create_first_vote": "Create your first vote",
+    "hello": "Hello",
+    "hello_description": "",
+    "how_first_vote": "How to create your first vote",
+    "quick_actions": "Quick Actions",
+    "recent_voting_description": "Your organization's latest voting activities",
+    "recent_voting_title": "Recent Voting Processes",
+    "title": "Here's an overview of your organization's voting activities"
+  },
   "delete_my_account": "Delete my account",
   "description": "Description",
   "edit_saas_profile": {
@@ -544,6 +559,8 @@
     "more_effective": "25: Més efectiu",
     "most_effective": "30: Molt efectiu"
   },
+  "google_oauth_error": "Google OAuth Error",
+  "google_oauth_error_description": "Google OAuth error, please try again",
   "guides": "Guies",
   "help": "Necessites ajuda?",
   "home": {
@@ -1321,12 +1338,6 @@
     "error": "Failed to update profile",
     "success": "Profile updated successfully",
     "title": "Profile"
-  },
-  "rainbow": {
-    "group": {
-      "recovery": "Recuperació"
-    },
-    "recovery": "Recuperar compte"
   },
   "remove_avatar": "Remove avatar",
   "remove_header": "Remove header",

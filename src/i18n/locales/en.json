@@ -1,6 +1,10 @@
 {
   "actions": {
-    "save": "Save Changes"
+    "create_first_vote": "View all processes",
+    "create_new_vote": "Create new vote",
+    "manage_team": "Manage team",
+    "save": "Save Changes",
+    "view_active_votes": "View active votes"
   },
   "active": "Active",
   "add_new_org": "Add a new organization",
@@ -305,6 +309,17 @@
   "current": "Current",
   "customization": "Customization",
   "dark_mode": "Dark mode",
+  "dashboard_empty_processes": {
+    "common_tasks_actions": "Common tasks and actions",
+    "create_first_vote": "Create your first vote",
+    "hello": "Hello",
+    "hello_description": "",
+    "how_first_vote": "How to create your first vote",
+    "quick_actions": "Quick Actions",
+    "recent_voting_description": "Your organization's latest voting activities",
+    "recent_voting_title": "Recent Voting Processes",
+    "title": "Here's an overview of your organization's voting activities"
+  },
   "delete_my_account": "Delete my account",
   "description": "Description",
   "edit_saas_profile": {
@@ -537,6 +552,8 @@
     "more_effective": "25: More Effective",
     "most_effective": "30: Most Effective"
   },
+  "google_oauth_error": "Google OAuth Error",
+  "google_oauth_error_description": "Google OAuth error, please try again",
   "guides": "Guides",
   "help": "Do you need help?",
   "home": {
@@ -1310,12 +1327,6 @@
     "error": "Failed to update profile",
     "success": "Profile updated successfully",
     "title": "Profile"
-  },
-  "rainbow": {
-    "group": {
-      "recovery": "Recovery"
-    },
-    "recovery": "Account recovery"
   },
   "remove_avatar": "Remove avatar",
   "remove_header": "Remove header",

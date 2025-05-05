@@ -3,17 +3,15 @@ import { ArrowUpRight, Calendar, Mail04, Plus, Users01 } from '@untitled-ui/icon
 import { useOrganization } from '@vocdoni/react-providers'
 import { ElectionListWithPagination } from '@vocdoni/sdk'
 import { useEffect } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { generatePath, Link as ReactRouterLink, useLoaderData, useOutletContext } from 'react-router-dom'
 import { DashboardBox, DashboardContents } from '~components/Layout/Dashboard'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~routes'
 import { useProfile } from '~src/queries/account'
-import ProcessesList from './ProcessesList'
 
 const OrganizationDashboard = () => {
   const { organization } = useOrganization()
-  const { data: profile } = useProfile()
   const { elections } = useLoaderData() as ElectionListWithPagination
   const { setBreadcrumb } = useOutletContext<DashboardLayoutContext>()
 
@@ -24,23 +22,41 @@ const OrganizationDashboard = () => {
   }, [setBreadcrumb])
 
   return (
-    <DashboardContents>
+    <DashboardContents>{!!elections.length ? <EmptyVotingsList /> : <Text>(Empty for now)</Text>}</DashboardContents>
+  )
+}
+
+const EmptyVotingsList = () => {
+  const { t } = useTranslation()
+  const { data: profile } = useProfile()
+  return (
+    <>
       <Heading size={'xs'} fontWeight={'extrabold'} mb={1}>
-        Welcome to Vocdoni Coop
+        {t('dashboard_empty_processes.title', { defaultValue: 'Welcome to Vocdoni Coop' })}
       </Heading>
-      <Text mb={6}>Here's an overview of your organization's voting activities</Text>
+      <Text mb={6}>
+        {t('dashboard_empty_processes.title', {
+          defaultValue: "Here's an overview of your organization's voting activities",
+        })}
+      </Text>
       <DashboardBox p={6} mb={8} display={'flex'} gap={10}>
         <Box flex='1 1 60%'>
           <Text fontWeight={'extrabold'} mb={2} size='2xl'>
             <Text as={'span'} fontSize={'24px'}>
               👋
             </Text>{' '}
-            Hello{' '}
+            {t('dashboard_empty_processes.hello', { defaultValue: 'Hello' })}{' '}
             <Text as={'span'} size='2xl'>
               {profile.firstName}
             </Text>
             !
           </Text>
+          <Trans
+            i18nKey='dashboard_empty_processes.hello_description'
+            components={{
+              text: <Text color='rgb(115, 115, 115)' mb={4} />,
+            }}
+          ></Trans>
           <Text color='rgb(115, 115, 115)' mb={4}>
             You're currently on the Free plan, which gives you access to almost everything for up to 50 members.
           </Text>
@@ -72,7 +88,7 @@ const OrganizationDashboard = () => {
         </Box>
         <Flex display={{ base: 'none', lg: 'flex' }} flex={'1 1 33%'} flexDirection={'column'}>
           <Text size={'lg'} fontWeight={'bold'} textAlign={'center'} mb={2}>
-            How to create your first vote
+            {t('dashboard_empty_processes.how_first_vote', { defaultValue: 'How to create your first vote' })}
           </Text>
           <Box
             flexGrow={1}
@@ -91,34 +107,27 @@ const OrganizationDashboard = () => {
         <DashboardBox p={6} minH={'324px'} flex='1 1 66%' display={'flex'} flexDirection={'column'}>
           <Box>
             <Text fontWeight={'extrabold'} mb={1.5} size='2xl'>
+              {t('dashboard_empty_processes.recent_voting_title', { defaultValue: 'Recent Voting Processes' })}
               Recent Voting Processes
             </Text>
             <Text color='rgb(115, 115, 115)' mb={4} size={'sm'}>
-              Your organization's latest voting activities
+              {t('dashboard_empty_processes.recent_voting_description', {
+                defaultValue: "Your organization's latest voting activities",
+              })}
             </Text>
           </Box>
-          <Flex
-            flexGrow={1}
-            flexDirection={'column'}
-            justifyContent={!elections ? 'center' : 'start'}
-            alignItems={'center'}
-            gap={4}
-          >
-            {!elections ? (
-              <>
-                <Text color='rgb(115, 115, 115)'>No voting processes found</Text>
-                <Button
-                  as={ReactRouterLink}
-                  to={generatePath(Routes.processes.create)}
-                  colorScheme='gray'
-                  variant={'outline'}
-                >
-                  Create your first vote
-                </Button>
-              </>
-            ) : (
-              <ProcessesList processes={elections} />
-            )}
+          <Flex flexGrow={1} flexDirection={'column'} justifyContent={'center'} alignItems={'center'} gap={4}>
+            <Text color='rgb(115, 115, 115)'>No voting processes found</Text>
+            <Button
+              as={ReactRouterLink}
+              to={generatePath(Routes.processes.create)}
+              colorScheme='gray'
+              variant={'outline'}
+            >
+              {t('dashboard_empty_processes.create_first_vote', {
+                defaultValue: 'Create your first vote',
+              })}
+            </Button>
           </Flex>
           <Button
             as={ReactRouterLink}
@@ -127,15 +136,21 @@ const OrganizationDashboard = () => {
             variant={'transparent'}
             alignSelf={'end'}
           >
-            View all processes
+            {t('actions.create_first_vote', {
+              defaultValue: 'View all processes',
+            })}
           </Button>
         </DashboardBox>
         <DashboardBox p={6} flex='1 1 33%'>
           <Text fontWeight={'extrabold'} mb={1.5} size='2xl'>
-            Quick Actions
+            {t('dashboard_empty_processes.quick_actions', {
+              defaultValue: 'Quick Actions',
+            })}
           </Text>
           <Text color='rgb(115, 115, 115)' size={'sm'} mb={6}>
-            Common tasks and actions{' '}
+            {t('dashboard_empty_processes.common_tasks_actions', {
+              defaultValue: 'Common tasks and actions',
+            })}{' '}
           </Text>
           <Flex flexDirection={'column'} gap={4}>
             <Button
@@ -148,7 +163,9 @@ const OrganizationDashboard = () => {
               size='lg'
               fontWeight={'bold'}
             >
-              Create new vote
+              {t('actions.create_new_vote', {
+                defaultValue: 'Create new vote',
+              })}
             </Button>
             <Button
               as={ReactRouterLink}
@@ -160,7 +177,9 @@ const OrganizationDashboard = () => {
               size='lg'
               fontWeight={'bold'}
             >
-              View active votes
+              {t('actions.view_active_votes', {
+                defaultValue: 'View active votes',
+              })}
             </Button>
             <Button
               as={ReactRouterLink}
@@ -172,12 +191,14 @@ const OrganizationDashboard = () => {
               size='lg'
               fontWeight={'bold'}
             >
-              Manage team
+              {t('actions.manage_team', {
+                defaultValue: 'Manage team',
+              })}
             </Button>
           </Flex>
         </DashboardBox>
       </Flex>
-    </DashboardContents>
+    </>
   )
 }
 

@@ -1,6 +1,10 @@
 {
   "actions": {
-    "save": "Save Changes"
+    "create_first_vote": "Ver todos los procesos",
+    "create_new_vote": "Crear nueva votación",
+    "manage_team": "Gestionar equipo",
+    "save": "Guardar cambios",
+    "view_active_votes": "Ver votaciones activas"
   },
   "active": "Activo",
   "add_new_org": "Añadir una nueva organización",
@@ -308,6 +312,17 @@
   "current": "Actual",
   "customization": "Customization",
   "dark_mode": "Modo oscuro",
+  "dashboard_empty_processes": {
+    "common_tasks_actions": "Common tasks and actions",
+    "create_first_vote": "Create your first vote",
+    "hello": "Hello",
+    "hello_description": "",
+    "how_first_vote": "How to create your first vote",
+    "quick_actions": "Quick Actions",
+    "recent_voting_description": "Your organization's latest voting activities",
+    "recent_voting_title": "Recent Voting Processes",
+    "title": "Here's an overview of your organization's voting activities"
+  },
   "delete_my_account": "Delete my account",
   "description": "Description",
   "edit_saas_profile": {
@@ -544,6 +559,8 @@
     "more_effective": "25: Más efectivo",
     "most_effective": "30: Muy efectivo"
   },
+  "google_oauth_error": "Google OAuth Error",
+  "google_oauth_error_description": "Google OAuth error, please try again",
   "guides": "Guías",
   "help": "¿Necesitas ayuda?",
   "home": {
@@ -1321,12 +1338,6 @@
     "error": "Error al actualizar el perfil",
     "success": "Perfil actualizado con éxito",
     "title": "Perfil"
-  },
-  "rainbow": {
-    "group": {
-      "recovery": "Recuperación"
-    },
-    "recovery": "Recuperar cuenta"
   },
   "remove_avatar": "Eliminar avatar",
   "remove_header": "Eliminar encabezado",
