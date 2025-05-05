@@ -41,44 +41,6 @@
     "votes_weight_other": "<span>{{ count }}</span> <text>votos</text>",
     "voting_anonymous_advice": "Por favor, espera mientras sucede la magia 🪄.\nEsto puede tardar varios minutos; no cierres la ventana."
   },
-  "authPage": {
-    "text": {
-      "1": "Lanza elecciones seguras y verificables con solo unos clics.",
-      "2": "Funciones adaptables que escalan con tu organización.",
-      "3": "Ahorra hasta 10 veces en comparación con los métodos tradicionales de votación.",
-      "4": "Organiza votos accesibles en cualquier dispositivo: móvil, tablet o escritorio.",
-      "5": "La encriptación avanzada asegura que tus elecciones sean seguras y privadas.",
-      "6": "Fomenta una mayor participación con herramientas fáciles de usar.",
-      "7": "Incorpora fácilmente tu marca y los flujos de trabajo existentes.",
-      "8": "Tus procesos de votación son seguros, confiables y listos para usar.",
-      "9": "Gestiona múltiples elecciones sin esfuerzo desde un único panel.",
-      "10": "Actualizaciones e información en tiempo real al alcance de tu mano.",
-      "11": "Aumenta la participación con flujos de votación intuitivos.",
-      "12": "Reduce los costos operativos para ti y tus votantes.",
-      "13": "Explora opciones avanzadas como votación anónima o votos ponderados.",
-      "14": "Elecciones transparentes y verificables fomentan la confianza en tus resultados.",
-      "15": "Adopta el futuro de la votación. ¡Comienza hoy!",
-      "16": "Enfócate en lo que más importa."
-    },
-    "title": {
-      "1": "Configuración simplificada:",
-      "2": "Planes flexibles:",
-      "3": "Ahorro de costos:",
-      "4": "Accesibilidad universal:",
-      "5": "Tecnología confiable:",
-      "6": "Empodera la participación:",
-      "7": "Integración sin interrupciones:",
-      "8": "Relájate, nosotros nos encargamos de todo:",
-      "9": "Optimiza las operaciones:",
-      "10": "Mantente informado:",
-      "11": "Impulsa la participación:",
-      "12": "Controla los costos:",
-      "13": "Flexibilidad mejorada:",
-      "14": "Genera confianza:",
-      "15": "Únete a cientos de organizaciones:",
-      "16": "Deja que manejemos la complejidad:"
-    }
-  },
   "avatar": {
     "hint": "Min 200x200px .PNG or .JPEG",
     "label": "Logo/Avatar"
@@ -1352,7 +1314,8 @@
   "signup_agree_promotions": "Acepto recibir promociones y ofertas para los servicios de votación digital ofrecidos por Vocdoni.",
   "signup_agree_terms": "Acepto los <termsLink>Términos del servicio</termsLink> y la <privacyLink>Política de privacidad</privacyLink>",
   "signup_create_account": "Crear mi cuenta",
-  "signup_name": "Nombre completo",
+  "signup_firstname": "Nombre",
+  "signup_lastname": "Apellido",
   "signup_subtitle": "Continúa para acceder a tu cuenta",
   "signup_title": "Bienvenido",
   "skip": "Omitir",

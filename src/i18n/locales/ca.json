@@ -41,44 +41,6 @@
     "votes_weight_other": "<span>{{ count }}</span> <text>vots</text>",
     "voting_anonymous_advice": "Si us plau, espera mentre la màgia té lloc 🪄.\nAixò pot trigar uns minuts; no tanquis la finestra."
   },
-  "authPage": {
-    "text": {
-      "1": "Llança eleccions segures i verificables amb només uns clics.",
-      "2": "Característiques adaptables que es poden escalar amb la teva organització.",
-      "3": "Estalvia fins a 10 vegades en comparació amb els mètodes tradicionals de votació.",
-      "4": "Organitza votacions accessibles en qualsevol dispositiu: mòbil, tauleta o escriptori.",
-      "5": "L'encriptació garanteix que les teves eleccions siguin segures i privades.",
-      "6": "Fomenta una participació més alta amb eines fàcils d'usar.",
-      "7": "Incorpora fàcilment la teva imatge corporativa a la votació.",
-      "8": "Els teus processos de votació són segurs, fiables i llestos per funcionar.",
-      "9": "Gestiona múltiples eleccions sense esforç des d'un únic lloc.",
-      "10": "Actualitzacions i anàlisis en temps real a les teves mans.",
-      "11": "Augmenta la participació amb fluxos de votació intuïtius.",
-      "12": "Redueix les despeses operatives per a tu i els teus votants.",
-      "13": "Explora opcions avançades com el vot secret o els vots ponderats.",
-      "14": "Les eleccions transparents i verificables fomenten la confiança en els resultats.",
-      "15": "Abraça el futur de la votació. Comença avui!",
-      "16": "Centra't en el que importa més."
-    },
-    "title": {
-      "1": "Configuració simplificada:",
-      "2": "Plans flexibles:",
-      "3": "Estalvi de costos:",
-      "4": "Accessibilitat universal:",
-      "5": "Tecnologia fiable:",
-      "6": "Potencia la participació:",
-      "7": "Integració sense fissures:",
-      "8": "Relaxa't, ens encarreguem de tot:",
-      "9": "Optimitza les operacions:",
-      "10": "Mantingue't informat:",
-      "11": "Impulsa la participació:",
-      "12": "Controla els costos:",
-      "13": "Flexibilitat millorada:",
-      "14": "Construeix confiança:",
-      "15": "Uneix-te a centenars d'organitzacions:",
-      "16": "Deixa'ns gestionar la complexitat:"
-    }
-  },
   "avatar": {
     "hint": "Min 200x200px .PNG or .JPEG",
     "label": "Logo/Avatar"
@@ -1352,7 +1314,8 @@
   "signup_agree_promotions": "Accepto rebre promocions i ofertes per als serveis de votació digital oferts per Vocdoni.",
   "signup_agree_terms": "Accepto els <termsLink>Termes del servei</termsLink> i la <privacyLink>Política de privacitat</privacyLink>",
   "signup_create_account": "Crea el meu compte",
-  "signup_name": "Nom Complet",
+  "signup_firstname": "Nom",
+  "signup_lastname": "Cognom",
   "signup_subtitle": "Continua per accedir al teu compte",
   "signup_title": "Crea un compte",
   "skip": "Ometre",

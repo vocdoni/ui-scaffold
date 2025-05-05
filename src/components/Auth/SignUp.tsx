@@ -89,11 +89,13 @@ const SignUp = ({ invite }: SignupProps) => {
       <FormProvider {...methods}>
         <Flex as='form' onSubmit={handleSubmit(onSubmit)} flexDirection='column' gap={6}>
           <Flex flexDirection={'column'} gap={4} mb={4}>
-            <InputBasic formValue='firstName' label={t('signup_name')} placeholder={'John Doe'} />
+            <InputBasic formValue='firstName' label={t('signup_firstname')} placeholder={'John'} />
+            <InputBasic formValue='lastName' label={t('signup_lastname')} placeholder={'Doe'} />
+
             <InputBasic
               formValue='email'
               label={t('email')}
-              placeholder={t('email_placeholder', { defaultValue: 'your@email.com' })}
+              placeholder={'johndoe@example.com'}
               validation={{
                 required: t('form.error.field_is_required'),
                 pattern: {
@@ -114,16 +116,6 @@ const SignUp = ({ invite }: SignupProps) => {
                   value: 8,
                   message: t('form.error.password_min_length', { defaultValue: 'Min. 8 characters' }),
                 },
-              }}
-            />
-            <InputPassword
-              formValue='confirm_password'
-              label={t('confirm_password')}
-              placeholder={'• • • • • • • •'}
-              type='password'
-              validation={{
-                required: t('form.error.field_is_required'),
-                validate: (value) => value === password || t('passwords_do_not_match'),
               }}
             />
             <FormControl as='fieldset' isInvalid={!!errors?.terms}>
