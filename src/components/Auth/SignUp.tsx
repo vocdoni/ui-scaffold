@@ -119,11 +119,7 @@ const SignUp = ({ invite }: SignupProps) => {
               }}
             />
             <FormControl as='fieldset' isInvalid={!!errors?.terms}>
-              <Checkbox
-                {...register('terms', { required: t('cc.validation.required') })}
-                color='auth.checkboxes_text'
-                isRequired
-              >
+              <Checkbox {...register('terms', { required: t('cc.validation.required') })} color='auth.checkboxes_text'>
                 <Text fontSize={'14px'}>
                   <Trans
                     i18nKey='signup_agree_terms'
