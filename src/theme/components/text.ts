@@ -26,6 +26,11 @@ const sizes = {
     fontSize: '20px',
     lineHeight: '30px',
   }),
+  '2xl': defineStyle({
+    fontSize: '24px',
+    lineHeight: '24px',
+    letterSpacing: '-0.6%',
+  }),
 }
 
 export const Text = defineStyleConfig({
