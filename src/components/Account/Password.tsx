@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react'
 import { useMutation } from '@tanstack/react-query'
 import { Pencil01 } from '@untitled-ui/icons-react'
-import React from 'react'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { ApiEndpoints } from '~components/Auth/api'
@@ -57,7 +57,7 @@ const PasswordForm = ({ onSuccess }: PasswordFormProps) => {
 
   const { formRef, setIsSubmitting, onClose } = useModalForm()
 
-  React.useEffect(() => {
+  useEffect(() => {
     setIsSubmitting(isSubmitting)
   }, [isSubmitting, setIsSubmitting])
 
