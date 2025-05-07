@@ -1,39 +1,33 @@
 import { defineStyle } from '@chakra-ui/react'
 
 const baseStyle = () => {
-  return { fontWeight: 'normal' }
+  return { height: 'fit-content', letterSpacing: '-0.6px', fontWeight: 'normal' }
 }
 
 const sizes = {
   xs: defineStyle({
     fontSize: '24px',
-    lineHeight: '32px',
-    letterSpacing: '0%',
+    lineHeight: '28px',
   }),
   sm: defineStyle({
     fontSize: '30px',
     lineHeight: '38px',
-    letterSpacing: '0%',
   }),
   md: defineStyle({
     fontSize: '36px',
     lineHeight: '44px',
-    letterSpacing: '-2%',
   }),
   lg: defineStyle({
     fontSize: '48px',
     lineHeight: '60px',
-    letterSpacing: '-2%',
   }),
   xl: defineStyle({
     fontSize: '60px',
     lineHeight: '72px',
-    letterSpacing: '-2%',
   }),
   '2xl': defineStyle({
     fontSize: '72px',
     lineHeight: '90px',
-    letterSpacing: '-2%',
   }),
 }
 

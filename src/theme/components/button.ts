@@ -34,7 +34,7 @@ const primary = defineStyle((props) => {
       bg: `${colorScheme}.700`,
     },
     _active: {
-      bg: `${colorScheme}.700`,
+      bg: `${colorScheme}.800`,
     },
 
     _disabled: {
@@ -54,17 +54,13 @@ const outline = defineStyle((props) => {
   return {
     bg: 'transparent',
     color: `${colorScheme}.700`,
-    borderColor: `${colorScheme}.300`,
+    borderColor: '#e5e5e5',
 
     _hover: {
-      bg: `${colorScheme}.50`,
-      color: `${colorScheme}.800`,
-      borderColor: `${colorScheme}.300`,
+      bgColor: colorScheme === 'black' ? 'rgba(244, 244, 245, 0.8)' : `${colorScheme}.300`,
     },
     _active: {
-      bg: `${colorScheme}.50`,
-      color: `${colorScheme}.800`,
-      borderColor: `${colorScheme}.300`,
+      bg: colorScheme === 'black' ? 'rgba(244, 244, 245, 0.8)' : `${colorScheme}.600`,
     },
 
     _disabled: {
@@ -202,7 +198,7 @@ const sizes = {
   }),
   md: defineStyle({
     px: '14px',
-    py: '10px',
+    py: '8px',
     borderRadius: 'md',
     fontSize: 'sm',
     gap: '4px',
