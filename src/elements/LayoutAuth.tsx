@@ -1,5 +1,6 @@
 import { Box, Flex, Heading, Text } from '@chakra-ui/react'
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Outlet, To } from 'react-router-dom'
 
 export type NavigationFunctionParams = To | number
@@ -9,33 +10,41 @@ export type AuthOutletContextType = {
   setSubtitle: React.Dispatch<React.SetStateAction<string>>
 }
 
-const useTestimonials = () => {
+export const useTestimonials = () => {
+  const { t } = useTranslation()
+
   const testimonials = [
     {
       image: '/assets/testimonials/ceec.webp',
-      text:
-        'We chose Vocdoni because it guarantees secure, reliable, and transparent' +
-        ' participation for all our members in our Annual General Meeting.',
+      text: t('testimonials.ceec.text', {
+        defaultValue:
+          'We chose Vocdoni because it guarantees secure, reliable, and transparent participation for all our members in our Annual General Meeting.',
+      }),
       author: 'Ton Barnils',
-      position: 'CEO',
+      position: t('testimonials.ceec.position', { defaultValue: 'CEO' }),
       company: 'Centre Excursionista de Catalunya',
     },
     {
       image: '/assets/testimonials/auth.png',
-      text: 'Vocdoni has transformed how we conduct our voting processes',
+      text: t('testimonials.auth.text', {
+        defaultValue: 'Vocdoni has transformed how we conduct our voting processes',
+      }),
       author: 'John Doe',
-      position: 'President',
+      position: t('testimonials.auth.position', { defaultValue: 'President' }),
       company: 'COIB',
     },
   ]
 
-  return testimonials[Math.floor(Math.random() * testimonials.length)]
+  const getRandomTestimonial = () => testimonials[Math.floor(Math.random() * testimonials.length)]
+
+  return { testimonials, getRandomTestimonial }
 }
 
 const LayoutAuth = () => {
   const [title, setTitle] = useState<string | null>(null)
   const [subtitle, setSubtitle] = useState<string | null>(null)
-  const testimonial = useMemo(() => useTestimonials(), [])
+  const { getRandomTestimonial } = useTestimonials()
+  const [testimonial] = useState(() => getRandomTestimonial())
 
   return (
     <Flex justifyContent={'center'} alignItems={'center'} minH={'100vh'} p={{ base: 6, md: 10 }} bgColor={'auth.bg'}>
