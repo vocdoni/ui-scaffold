@@ -29,7 +29,7 @@ const sm = definePartsStyle({
   field: {
     paddingY: 2,
     paddingX: 3,
-    borderRadius: 'lg',
+    borderRadius: 'sm',
   },
 })
 
@@ -37,7 +37,7 @@ const md = definePartsStyle({
   field: {
     paddingY: 2.5,
     paddingX: 3.5,
-    borderRadius: 'lg',
+    borderRadius: 'sm',
   },
 })
 

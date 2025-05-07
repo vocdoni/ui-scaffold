@@ -13,8 +13,6 @@ export const Modal = defineMultiStyleConfig({
     },
     dialog: {
       overflow: 'hidden',
-      p: { base: 5, lg: 10 },
-      m: 0,
     },
     footer: {
       justifyContent: 'center',

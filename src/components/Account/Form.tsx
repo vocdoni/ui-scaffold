@@ -4,24 +4,15 @@ import {
   FormErrorMessage,
   FormLabel,
   HStack,
-  IconButton,
   Input,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
   Text,
-  useDisclosure,
   useToast,
   VStack,
 } from '@chakra-ui/react'
-import { Pencil01 } from '@untitled-ui/icons-react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { User, useUpdateProfile } from '~src/queries/account'
-import PasswordForm from './PasswordForm'
+import { ChangePasswordButton } from './Password'
 
 interface ProfileFormData {
   firstName: string
@@ -33,8 +24,6 @@ const AccountForm = ({ profile }: { profile: User }) => {
   const { t } = useTranslation()
   const toast = useToast()
   const updateProfile = useUpdateProfile()
-  const { isOpen, onOpen, onClose } = useDisclosure()
-
   const {
     register,
     handleSubmit,
@@ -79,15 +68,26 @@ const AccountForm = ({ profile }: { profile: User }) => {
           {t('account.subtitle', { defaultValue: 'Update your account details and personal information' })}{' '}
         </Text>
         <VStack spacing={8} align='stretch'>
-          <FormControl isInvalid={!!errors.firstName}>
-            <FormLabel fontSize={'14px'}>{t('name', { defaultValue: 'Name' })}</FormLabel>
-            <Input
-              {...register('firstName', {
-                required: t('form.error.field_is_required'),
-              })}
-            />
-            <FormErrorMessage>{errors.firstName?.message}</FormErrorMessage>
-          </FormControl>
+          <HStack>
+            <FormControl isInvalid={!!errors.firstName}>
+              <FormLabel fontSize={'14px'}>{t('name', { defaultValue: 'Name' })}</FormLabel>
+              <Input
+                {...register('firstName', {
+                  required: t('form.error.field_is_required'),
+                })}
+              />
+              <FormErrorMessage>{errors.firstName?.message}</FormErrorMessage>
+            </FormControl>
+            <FormControl isInvalid={!!errors.lastName}>
+              <FormLabel fontSize={'14px'}>{t('lastname', { defaultValue: 'Last name' })}</FormLabel>
+              <Input
+                {...register('lastName', {
+                  required: t('form.error.field_is_required'),
+                })}
+              />
+              <FormErrorMessage>{errors.lastName?.message}</FormErrorMessage>
+            </FormControl>
+          </HStack>
 
           <FormControl isInvalid={!!errors.email}>
             <FormLabel fontSize={'14px'}>{t('email', { defaultValue: 'Email' })}</FormLabel>
@@ -96,18 +96,10 @@ const AccountForm = ({ profile }: { profile: User }) => {
           </FormControl>
 
           <FormControl>
-            <FormLabel fontSize={'14px'}>{t('password', { defaultValue: 'Email' })}</FormLabel>
+            <FormLabel fontSize={'14px'}>{t('password', { defaultValue: 'Password' })}</FormLabel>
             <HStack gap={2}>
               <Input placeholder={'• • • • • • • •'} type='password' isDisabled />
-              <IconButton
-                onClick={onOpen}
-                icon={<Pencil01 />}
-                aria-label='change password'
-                variant={'outline'}
-                size='sm'
-                w='40px'
-                h='40px'
-              />
+              <ChangePasswordButton />
             </HStack>
           </FormControl>
 
@@ -115,25 +107,7 @@ const AccountForm = ({ profile }: { profile: User }) => {
             {t('actions.save', { defaultValue: 'Save Changes' })}
           </Button>
         </VStack>
-      </form>{' '}
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalCloseButton fontSize={10} />
-          <ModalHeader>
-            <Text size={'lg'}>{t('change_password.title', { defaultValue: 'Change Password' })}</Text>
-            <Text color='rgb(115, 115, 115)' mb={6} fontWeight={'normal'} size={'sm'}>
-              {t('change_password.subtitle', {
-                defaultValue: 'Enter your current password and a new password to update your credentials.',
-              })}
-            </Text>
-          </ModalHeader>
-
-          <ModalBody>
-            <PasswordForm />
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+      </form>
     </>
   )
 }
