@@ -1,8 +1,6 @@
 import { Box, Flex, Heading, Text } from '@chakra-ui/react'
-import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { useMemo, useState } from 'react'
 import { Outlet, To } from 'react-router-dom'
-import img from '/assets/auth.png'
 
 export type NavigationFunctionParams = To | number
 
@@ -11,11 +9,33 @@ export type AuthOutletContextType = {
   setSubtitle: React.Dispatch<React.SetStateAction<string>>
 }
 
-const LayoutAuth = () => {
-  const { t } = useTranslation()
+const useTestimonials = () => {
+  const testimonials = [
+    {
+      image: '/assets/testimonials/ceec.webp',
+      text:
+        'We chose Vocdoni because it guarantees secure, reliable, and transparent' +
+        ' participation for all our members in our Annual General Meeting.',
+      author: 'Ton Barnils',
+      position: 'CEO',
+      company: 'Centre Excursionista de Catalunya',
+    },
+    {
+      image: '/assets/testimonials/auth.png',
+      text: 'Vocdoni has transformed how we conduct our voting processes',
+      author: 'John Doe',
+      position: 'President',
+      company: 'COIB',
+    },
+  ]
 
+  return testimonials[Math.floor(Math.random() * testimonials.length)]
+}
+
+const LayoutAuth = () => {
   const [title, setTitle] = useState<string | null>(null)
   const [subtitle, setSubtitle] = useState<string | null>(null)
+  const testimonial = useMemo(() => useTestimonials(), [])
 
   return (
     <Flex justifyContent={'center'} alignItems={'center'} minH={'100vh'} p={{ base: 6, md: 10 }} bgColor={'auth.bg'}>
@@ -51,17 +71,17 @@ const LayoutAuth = () => {
           flexDirection={'column'}
           flex={'0 0 50%'}
           display={{ base: 'none', md: 'block' }}
-          bgImage={`linear-gradient(to top, rgb(17 24 39 / 0.8), rgb(17 24 39 / 0.3)), url(${img})`}
+          bgImage={`linear-gradient(to top, rgb(17 24 39 / 0.8), rgb(17 24 39 / 0.3)), url(${testimonial.image})`}
           bgSize='cover'
           bgPosition='center'
           minH='100%'
         >
           <Box position={'absolute'} left={0} bottom={0} right={0} p={8}>
             <Text bottom={0} size='lg' fontWeight={'bold'} mb={2} color='auth.image_color'>
-              "Vocdoni has transformed how we conduct our voting processes"
+              {testimonial.text}
             </Text>
             <Text color='#ffffffb3' size={'sm'}>
-              — John Doe, President @ COIB
+              — {testimonial.author}, {testimonial.position} @ {testimonial.company}
             </Text>
           </Box>
         </Flex>

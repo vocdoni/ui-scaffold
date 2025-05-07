@@ -13,7 +13,6 @@ const CreateOrganization = () => {
   // Set layout title and subtitle and back button
   useEffect(() => {
     setTitle(t('create_org.title', { defaultValue: 'Create your organization' }))
-    //setSidebar(CreateOrganizationSidebar)
   }, [])
 
   return <OrganizationCreate canSkip onSuccessRoute={Routes.dashboard.base} />
