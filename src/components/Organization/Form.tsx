@@ -3,7 +3,7 @@ import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import InputBasic from '~components/Layout/InputBasic'
 import {
-  CountriesTypesSelector,
+  CountrySelector,
   MembershipSizeTypesSelector,
   OrganzationTypesSelector,
   SelectOptionType,
@@ -77,7 +77,7 @@ export const PrivateOrgForm = () => {
       <Flex px={{ base: 5, md: 10 }} direction='column' gap={6}>
         <MembershipSizeTypesSelector name='size' required />
         <OrganzationTypesSelector name='type' required />
-        <CountriesTypesSelector name='country' required />
+        <CountrySelector name='country' required />
       </Flex>
       <FormControl as='fieldset' isInvalid={!!errors?.communications}>
         <Checkbox {...register('communications')}>
