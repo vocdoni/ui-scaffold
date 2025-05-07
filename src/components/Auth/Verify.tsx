@@ -63,13 +63,10 @@ const VerifyForm = ({ email, initialCode = '', autoSubmit = false }: VerifyFormP
         </Button>
         <FormSubmitMessage
           isError={isVerifyError}
-          error={
-            verifyError ||
-            t('verify_mail.error_subtitle', {
-              defaultValue:
-                'We found an error verifying your email, please check verification mail to ensure all data is correct',
-            })
-          }
+          error={t('verify_mail.error_subtitle', {
+            defaultValue:
+              'We found an error verifying your email, please check verification mail to ensure all data is correct',
+          })}
         />
       </Box>
     </>
