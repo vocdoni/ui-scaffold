@@ -8,6 +8,7 @@ const baseStyle = definePartsStyle({
     label: {
       fontSize: '14px',
       fontWeight: 'bold',
+      marginLeft: 0,
     },
   },
   requiredIndicator: {

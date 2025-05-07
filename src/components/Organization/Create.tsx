@@ -8,7 +8,6 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink, To, useNavigate } from 'react-router-dom'
 import { CreateOrgParams } from '~components/Account/AccountTypes'
-import LogoutBtn from '~components/Account/LogoutBtn'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import { LocalStorageKeys, useAuthProvider } from '~components/Auth/useAuthProvider'
@@ -82,11 +81,13 @@ const useOrganizationCreate = (
 
 export const OrganizationCreate = ({
   canSkip,
+  minified,
   onSuccessRoute = Routes.dashboard.base,
   ...props
 }: {
   onSuccessRoute?: To
   canSkip?: boolean
+  minified?: boolean
 } & FlexProps) => {
   const { t } = useTranslation()
   const navigate = useNavigate()
@@ -127,7 +128,6 @@ export const OrganizationCreate = ({
         direction='column'
         gap={6}
         mx='auto'
-        maxW='900px'
         {...props}
         onSubmit={(e) => {
           e.stopPropagation()
@@ -135,15 +135,15 @@ export const OrganizationCreate = ({
           handleSubmit(onSubmit)(e)
         }}
       >
-        <PublicOrgForm />
-        <PrivateOrgForm />
+        <PublicOrgForm minified={minified} />
+        <PrivateOrgForm minified={minified} />
         <Button form='process-create-form' type='submit' isLoading={isPending} variant='primary' colorScheme='gradient'>
           {t('organization.create_org')}
         </Button>
         <FormSubmitMessage isError={isError} error={error} />
         <Text color={'account_create_text_secondary'} fontSize='sm' textAlign='center' mt='auto'>
           <Trans i18nKey='create_org.already_profile'>
-            If your organization already have a profile, ask the admin to invite you to your organization.
+            If your organization already has a profile, ask the admin to invite you to your organization.
           </Trans>
         </Text>
         {canSkip && (
@@ -154,13 +154,9 @@ export const OrganizationCreate = ({
             border='none'
             isDisabled={isPending}
           >
-            {t('skip', { defaultValue: 'Skip' })}
+            {t('do_it_later', { defaultValue: 'Do it later' })}
           </Button>
         )}
-        <Text color={'account_create_text_secondary'} fontSize='sm' textAlign='center'>
-          <Trans i18nKey='create_org.logout'>If you want to login from another account, please logout</Trans>
-        </Text>
-        <LogoutBtn isDisabled={isPending} />
       </Flex>
     </FormProvider>
   )

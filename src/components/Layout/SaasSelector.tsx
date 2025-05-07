@@ -69,6 +69,7 @@ export const SelectCustom = ({
             }}
             {...field}
             {...rest}
+            isRequired={false} // we don't want HTML5 validation
             chakraStyles={reactSelectStyles}
             isClearable
             onChange={(selectedOption) => {
@@ -162,7 +163,7 @@ export const CountrySelector = ({ ...props }: Omit<SelectCustomProps, 'options'>
   )
 }
 
-export const MembershipSizeTypesSelector = ({ defaultValue, ...props }: Omit<SelectCustomProps, 'options'>) => {
+export const MembershipSizeSelector = ({ defaultValue, ...props }: Omit<SelectCustomProps, 'options'>) => {
   const { t } = useTranslation()
   const listSizes: SelectOptionType[] = [
     { label: '0-100', value: '0-100' },

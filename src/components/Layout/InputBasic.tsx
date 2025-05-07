@@ -34,7 +34,11 @@ const InputBasic = ({
   return (
     <FormControl isInvalid={!!errors[formValue]} isRequired={required}>
       {label && <FormLabel sx={labelStyles}>{label}</FormLabel>}
-      <Input {...register(formValue, validationRules)} {...props} />
+      <Input
+        {...register(formValue, validationRules)}
+        {...props}
+        required={false} // we don't want HTML5 validation
+      />
       <FormErrorMessage mt={2}>{errorMessage || 'Error performing the operation'}</FormErrorMessage>
     </FormControl>
   )

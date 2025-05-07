@@ -118,6 +118,17 @@ const SignUp = ({ invite }: SignupProps) => {
                 },
               }}
             />
+            <FormControl as='fieldset'>
+              <Checkbox {...register('promotions')} color='auth.checkboxes_text'>
+                <Text fontSize={'14px'}>
+                  <Trans
+                    i18nKey='signup_agree_promotions'
+                    defaultValue='I agree to receive promotions and offers for digital voting services offered by Vocdoni.'
+                  ></Trans>
+                </Text>
+              </Checkbox>
+              <FormErrorMessage>{errors?.terms?.message.toString()}</FormErrorMessage>
+            </FormControl>
             <FormControl as='fieldset' isInvalid={!!errors?.terms}>
               <Checkbox {...register('terms', { required: t('cc.validation.required') })} color='auth.checkboxes_text'>
                 <Text fontSize={'14px'}>
@@ -143,17 +154,6 @@ const SignUp = ({ invite }: SignupProps) => {
                         />
                       ),
                     }}
-                  ></Trans>
-                </Text>
-              </Checkbox>
-              <FormErrorMessage>{errors?.terms?.message.toString()}</FormErrorMessage>
-            </FormControl>
-            <FormControl as='fieldset'>
-              <Checkbox {...register('promotions')} color='auth.checkboxes_text'>
-                <Text fontSize={'14px'}>
-                  <Trans
-                    i18nKey='signup_agree_promotions'
-                    defaultValue='I agree to receive promotions and offers for digital voting services offered by Vocdoni.'
                   ></Trans>
                 </Text>
               </Checkbox>
