@@ -15,7 +15,7 @@ import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
-import { ModalForm, useModalForm } from '~components/shared/ModalForm'
+import { ModalForm, useModalForm } from '~components/Layout/Form/ModalForm'
 
 interface PasswordFormData {
   oldPassword: string
