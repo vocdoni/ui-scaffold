@@ -1,4 +1,4 @@
-import { FormControl, FormErrorMessage, FormLabel, Spinner } from '@chakra-ui/react'
+import { Alert, FormControl, FormErrorMessage, FormLabel } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { Select, Props as SelectProps } from 'chakra-react-select'
 import { Controller, useFormContext } from 'react-hook-form'
@@ -148,11 +148,12 @@ export const CountrySelector = ({ ...props }: Omit<SelectCustomProps, 'options'>
     staleTime: Infinity, // Countries list won't change often
   })
 
-  if (isLoading) return <Spinner />
-  if (error) return <div>Error loading countries</div>
+  if (error) return <Alert status='error'>{error.message}</Alert>
+
   return (
     <SelectCustom
       options={countries}
+      isLoading={isLoading}
       label={t('country_selector.selector_label', { defaultValue: 'Country' })}
       defaultValue={defaultVal}
       controller={{ defaultValue: defaultVal }}
