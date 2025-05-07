@@ -1,5 +1,5 @@
-import { Box, Button, Flex, Text } from '@chakra-ui/react'
-import { Trans, useTranslation } from 'react-i18next'
+import { Flex } from '@chakra-ui/react'
+import { useTranslation } from 'react-i18next'
 import { DashboardBox } from '~components/Layout/Dashboard'
 import { useProfile } from '~src/queries/account'
 import AccountForm from './Form'
@@ -13,6 +13,8 @@ export const AccountEdit = () => {
         <AccountForm profile={profile} />
       </DashboardBox>
 
+      {/*
+      I hate leaving code like this commented out, but we're gonna need it in the future
       <DashboardBox p={6}>
         <Text size={'2xl'} fontWeight={'600'} mb={1.5}>
           {t('delete.danger_title', { defaultValue: 'Danger Zone' })}
@@ -32,7 +34,7 @@ export const AccountEdit = () => {
         <Button colorScheme='red' alignSelf='center' mt='auto'>
           <Trans i18nKey='delete_my_account'>Delete Account</Trans>
         </Button>
-      </DashboardBox>
+      </DashboardBox> */}
     </Flex>
   )
 }
