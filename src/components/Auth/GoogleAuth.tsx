@@ -1,7 +1,7 @@
 import { Button, Icon, useToast } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FcGoogle } from 'react-icons/fc'
+import { BsGoogle } from 'react-icons/bs'
 import { useAccount, useConnect } from 'wagmi'
 import { googleWallet } from '~constants/rainbow'
 import { useAuth } from './useAuth'
@@ -42,8 +42,8 @@ const GoogleAuth = () => {
       onClick={() => connect({ connector })}
       w='full'
       fontWeight={'bold'}
+      leftIcon={<Icon as={BsGoogle} />}
     >
-      <Icon as={FcGoogle} w={5} h={5} me={2} />
       {t('signin_google')}
     </Button>
   )
