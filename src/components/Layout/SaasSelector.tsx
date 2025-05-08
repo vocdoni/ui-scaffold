@@ -67,11 +67,11 @@ export const SelectCustom = ({
               }
               return option.label
             }}
+            isClearable={!required}
+            isRequired={false} // we don't want HTML5 validation
             {...field}
             {...rest}
-            isRequired={false} // we don't want HTML5 validation
             chakraStyles={reactSelectStyles}
-            isClearable
             onChange={(selectedOption) => {
               setValue(name, selectedOption)
             }}
