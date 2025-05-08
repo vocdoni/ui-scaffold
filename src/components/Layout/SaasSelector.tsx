@@ -83,7 +83,7 @@ export const SelectCustom = ({
   )
 }
 
-export const OrganzationTypesSelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) => {
+export const OrganzationTypeSelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) => {
   const { t } = useTranslation()
 
   const orgTypes: SelectOptionType[] = [

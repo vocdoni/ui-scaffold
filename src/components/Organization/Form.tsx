@@ -5,7 +5,7 @@ import InputBasic from '~components/Layout/InputBasic'
 import {
   CountrySelector,
   MembershipSizeSelector,
-  OrganzationTypesSelector,
+  OrganzationTypeSelector,
   SelectOptionType,
 } from '~components/Layout/SaasSelector'
 
@@ -79,7 +79,7 @@ export const PrivateOrgForm = ({ minified }: { minified?: boolean }) => {
         </Box>
       )}
       <MembershipSizeSelector name='size' required />
-      <OrganzationTypesSelector name='type' required />
+      <OrganzationTypeSelector name='type' required />
       <CountrySelector name='country' required />
       {!minified && (
         <FormControl as='fieldset' isInvalid={!!errors?.communications}>
