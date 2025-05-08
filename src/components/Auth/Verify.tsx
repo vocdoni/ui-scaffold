@@ -8,6 +8,7 @@ import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import { AuthOutletContextType } from '~elements/LayoutAuth'
 import { Routes } from '~src/router/routes'
 import { Loading } from '~src/router/SuspenseLoader'
+import { UnauthorizedApiError } from './api'
 
 export const verificationSuccessRedirect = Routes.auth.organizationCreate
 
@@ -68,9 +69,13 @@ const VerifyForm = ({ email, initialCode = '', autoSubmit = false }: VerifyFormP
         </Button>
         <FormSubmitMessage
           isError={isVerifyError}
-          error={t('verify_mail.error_subtitle', {
-            defaultValue: 'The code you entered is incorrect. Please try again',
-          })}
+          error={
+            verifyError instanceof UnauthorizedApiError
+              ? t('verify_mail.error_subtitle', {
+                  defaultValue: 'The code you entered is incorrect. Please try again',
+                })
+              : verifyError && verifyError.message
+          }
         />
       </Box>
     </>
