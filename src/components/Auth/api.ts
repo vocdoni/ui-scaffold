@@ -50,23 +50,13 @@ export class ApiError extends Error {
   }
 }
 
-export class UnauthorizedApiError extends ApiError {
-  constructor(apiError?: IApiError, response?: Response) {
-    super(apiError, response)
-  }
-}
+export class UnauthorizedApiError extends ApiError {}
 
-export class UnverifiedApiError extends ApiError {
-  constructor(apiError?: IApiError, response?: Response) {
-    super(apiError, response)
-  }
-}
+export class BadRequestApiError extends ApiError {}
 
-export class UserAlreadyVerifiedApiError extends ApiError {
-  constructor(apiError?: IApiError, response?: Response) {
-    super(apiError, response)
-  }
-}
+export class UnverifiedApiError extends ApiError {}
+
+export class UserAlreadyVerifiedApiError extends ApiError {}
 
 export type ApiParams = {
   body?: unknown
@@ -103,14 +93,18 @@ export const api = <T>(
           error = { error: sanitized.length ? sanitized : response.statusText }
         }
         // Handle unauthorized error
-        if ([ErrorCode.BadRequest, ErrorCode.Unauthorized].includes(response.status)) {
+        if (response.status === ErrorCode.Unauthorized) {
           if (error?.code === ErrorCode.UserNotVerified) {
             throw new UnverifiedApiError(error, response)
           }
+          throw new UnauthorizedApiError(error, response)
+        }
+
+        if (response.status === ErrorCode.BadRequest) {
           if (error?.code === ErrorCode.UserAlreadyVerified) {
             throw new UserAlreadyVerifiedApiError(error, response)
           }
-          throw new UnauthorizedApiError(error, response)
+          throw new BadRequestApiError(error, response)
         }
 
         throw new ApiError(error, response)
