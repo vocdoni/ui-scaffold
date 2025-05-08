@@ -1,8 +1,8 @@
-import { Button, Checkbox, Flex, FormControl, FormErrorMessage, Link, Text, useToast } from '@chakra-ui/react'
+import { Box, Button, Flex, Link, Text, useToast } from '@chakra-ui/react'
 import { useMutation } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { NavLink, useNavigate, useOutletContext } from 'react-router-dom'
 import { api, ApiEndpoints, UnverifiedApiError } from '~components/Auth/api'
 import { ILoginParams } from '~components/Auth/authQueries'
@@ -46,12 +46,7 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
   const methods = useForm<FormData>({
     defaultValues: { email: emailProp },
   })
-  const {
-    handleSubmit,
-    watch,
-    formState: { errors },
-    register,
-  } = methods
+  const { handleSubmit, watch } = methods
   const email = watch('email', emailProp)
 
   const {
@@ -111,56 +106,37 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
 
   return (
     <>
-      <GoogleAuth />
-      <Flex align='center'>
-        <HSeparator />
-        <Text color='gray.400' mx={3.5}>
-          {t('or')}
-        </Text>
-        <HSeparator />
-      </Flex>
       <FormProvider {...methods}>
-        <Flex as='form' onSubmit={handleSubmit(onSubmit)} flexDirection='column' gap={6}>
-          <InputBasic
-            formValue='email'
-            label={t('email')}
-            placeholder={t('email_placeholder', { defaultValue: 'your@email.com' })}
-            type='email'
-          />
-          <InputPassword
-            formValue='password'
-            label={t('password')}
-            placeholder={t('password_placeholder', { defaultValue: 'Enter your password' })}
-            required
-          />
-          <Flex justifyContent='center' align='center'>
-            <FormControl as='fieldset' isInvalid={!!errors?.keepLogedIn}>
-              <Checkbox {...register('keepLogedIn')}>
-                <Trans i18nKey='keep_me_logged'>Keep me logged</Trans>
-              </Checkbox>
-              <FormErrorMessage>{errors?.keepLogedIn?.message.toString()}</FormErrorMessage>
-            </FormControl>
-
-            <NavLink to={Routes.auth.recovery}>
-              <Text fontSize='sm' fontWeight='500' whiteSpace='nowrap'>
-                {t('forgot_password')}
-              </Text>
-            </NavLink>
+        <Box as='form' onSubmit={handleSubmit(onSubmit)} mb={6}>
+          <Flex flexDirection={'column'} gap={4} mb={4}>
+            <InputBasic
+              formValue='email'
+              label={t('email')}
+              placeholder={t('email_placeholder', { defaultValue: 'your@email.com' })}
+              type='email'
+            />
+            <InputPassword
+              formValue='password'
+              label={t('password')}
+              placeholder={t('password_placeholder', { defaultValue: 'Enter your password' })}
+              required
+            />
           </Flex>
-          <Button type='submit' w='100%' size='xl' variant='primary' colorScheme='gradient'>
+
+          <Button type='submit' w='100%'>
             {t('signin')}
           </Button>
-        </Flex>
+        </Box>
+        <OrSeparator />
+        <GoogleAuth />
       </FormProvider>
 
-      <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%' mt={0}>
-        <Text fontWeight='400' fontSize='sm'>
-          {t('not_registred_yet')}
-          <Link variant='primary' as={NavLink} to={Routes.auth.signUp} ml={1} fontWeight={500}>
-            {t('create_account')}
-          </Link>
-        </Text>
-      </Flex>
+      <Text display={'flex'} justifyContent={'center'} alignItems={'center'} fontWeight='bold' fontSize='sm' mt={6}>
+        {t('not_registred_yet')}
+        <Link as={NavLink} to={Routes.auth.signUp} ml={1} fontWeight={'bold'} variant={'unstyled'} fontSize='sm'>
+          {t('signup_title')}
+        </Link>
+      </Text>
       <FormSubmitMessage isError={isError} error={error} />
     </>
   )
@@ -169,6 +145,20 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
 export const HSeparator = (props: { variant?: string; [x: string]: any }) => {
   const { variant, ...rest } = props
   return <Flex h='px' w='100%' bg='rgba(135, 140, 189, 0.3)' {...rest} />
+}
+
+export const OrSeparator = () => {
+  const { t } = useTranslation()
+
+  return (
+    <Flex align='center' mb={4}>
+      <HSeparator />
+      <Text color='auth.or' fontWeight={'bold'} mx={3.5} whiteSpace={'nowrap'} size='xs' textTransform={'uppercase'}>
+        {t('or')}
+      </Text>
+      <HSeparator />
+    </Flex>
+  )
 }
 
 export default SignIn

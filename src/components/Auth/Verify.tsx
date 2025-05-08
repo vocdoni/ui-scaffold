@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Input, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, HStack, PinInput, PinInputField, Text } from '@chakra-ui/react'
 import { useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate, useOutletContext } from 'react-router-dom'
@@ -8,6 +8,7 @@ import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import { AuthOutletContextType } from '~elements/LayoutAuth'
 import { Routes } from '~src/router/routes'
 import { Loading } from '~src/router/SuspenseLoader'
+import { UnauthorizedApiError } from './api'
 
 export const verificationSuccessRedirect = Routes.auth.organizationCreate
 
@@ -29,13 +30,9 @@ const VerifyForm = ({ email, initialCode = '', autoSubmit = false }: VerifyFormP
     verifyAsync({ email, code }).then(() => navigate(verificationSuccessRedirect))
   }, [code, email])
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCode(event.target.value)
-  }
-
-  // Auto-submit if code is provided and autoSubmit is true
+  // Auto-submit if code is provided and autoSubmit is true, or when all 6 characters are entered
   useEffect(() => {
-    if (autoSubmit && code) {
+    if ((autoSubmit && code) || (!autoSubmit && code?.length === 6)) {
       verify()
     }
   }, [autoSubmit, code])
@@ -50,25 +47,37 @@ const VerifyForm = ({ email, initialCode = '', autoSubmit = false }: VerifyFormP
 
   return (
     <>
-      <Input type={'text'} placeholder={'12345678'} value={code} onChange={handleInputChange} isDisabled={autoSubmit} />
-      <Button
-        variant='primary'
-        isDisabled={!code || (autoSubmit && isVerifyPending)}
-        isLoading={isVerifyPending}
-        onClick={verify}
-      >
-        <Trans i18nKey={'verify.verify_code'}>Verify</Trans>
-      </Button>
-      <FormSubmitMessage
-        isError={isVerifyError}
-        error={
-          verifyError ||
-          t('verify_mail.error_subtitle', {
-            defaultValue:
-              'We found an error verifying your email, please check verification mail to ensure all data is correct',
-          })
-        }
-      />
+      <HStack width='100%' justifyContent='space-between'>
+        <PinInput value={code} onChange={setCode} isDisabled={autoSubmit} type='alphanumeric'>
+          <PinInputField />
+          <PinInputField />
+          <PinInputField />
+          <PinInputField />
+          <PinInputField />
+          <PinInputField />
+        </PinInput>
+      </HStack>
+      <Box>
+        <Button
+          variant='primary'
+          isDisabled={!code || (autoSubmit && isVerifyPending)}
+          isLoading={isVerifyPending}
+          onClick={verify}
+          w='full'
+        >
+          <Trans i18nKey={'verify.verify_code'}>Verify</Trans>
+        </Button>
+        <FormSubmitMessage
+          isError={isVerifyError}
+          error={
+            verifyError instanceof UnauthorizedApiError
+              ? t('verify_mail.error_subtitle', {
+                  defaultValue: 'The code you entered is incorrect. Please try again',
+                })
+              : verifyError && verifyError.message
+          }
+        />
+      </Box>
     </>
   )
 }
@@ -101,20 +110,22 @@ export const VerificationPending = ({ email, code }: { email: string; code?: str
 
   return (
     <>
-      <Flex flexDirection='column' gap={6}>
-        <Text mb='36px' ms='4px' color={'account.description'} fontWeight='bold' fontSize='md'>
-          {email}
+      <Flex flexDirection='column' gap={4}>
+        <Text fontWeight='bold' fontSize='md' color='auth.secondary_text'>
+          <Trans i18nKey='verify.sent_to_email' values={{ email }}>
+            Email sent to {email}
+          </Trans>
         </Text>
-        <Text mb='36px' ms='4px' color={'account.description'} fontWeight='400' fontSize='md'>
-          {t('verify.follow_email_instructions', {
-            defaultValue: 'Follow the instructions there to activate your account.',
+        <Text fontWeight='bold' fontSize='sm'>
+          {t('verify.enter_code', {
+            defaultValue: 'Enter the code below to activate your account',
           })}
         </Text>
+        <VerifyForm email={email} initialCode={code} autoSubmit={!!code} />
       </Flex>
-      <VerifyForm email={email} initialCode={code} autoSubmit={!!code} />
 
       {!code && (
-        <Button isLoading={isResendPending} onClick={resendMail}>
+        <Button variant={'outline'} isLoading={isResendPending} onClick={resendMail} mt={6} w='full'>
           <Trans i18nKey={'verify.resend_confirmation_mail'}>Resend Email</Trans>
         </Button>
       )}

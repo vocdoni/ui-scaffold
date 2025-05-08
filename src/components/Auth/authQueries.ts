@@ -13,6 +13,7 @@ export interface IRegisterParams {
   lastName: string
   email: string
   password: string
+  confirm_password: string
 }
 
 export interface IVerifyParams {

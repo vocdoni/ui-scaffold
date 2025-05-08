@@ -30,8 +30,8 @@ export const NoOrganizations = () => {
               </Trans>
             </Text>
             <Text mb='20px'>
-              <Trans i18nKey='create_org.already_profile'>
-                If your organization already have a profile, ask the admin to invite you to your organization.
+              <Trans i18nKey='new_organization.onboarding'>
+                If your organization is already on Vocdoni, ask its administrator to invite you.
               </Trans>
             </Text>
           </Box>

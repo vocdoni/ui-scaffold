@@ -21,12 +21,9 @@ export const Link = defineStyleConfig({
         color: 'black',
       },
     }),
-    primary: (props) => ({
-      color: 'brand.600',
-
-      _dark: {
-        color: 'brand.100',
-      },
+    unstyled: (props) => ({
+      textDecoration: 'none',
+      color: 'black',
     }),
     icon: (props) => ({
       display: 'flex',
