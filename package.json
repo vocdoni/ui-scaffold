@@ -54,7 +54,7 @@
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
   },
   "engines": {
-    "yarn": "^1.19.x",
+    "yarn": "^1.22.x",
     "node": "20.x"
   },
   "scripts": {
