@@ -28,7 +28,14 @@ export const DetailedCheckbox = defineDetailedMultiStyleConfig({
 
 export const Checkbox = defineMultiStyleConfig({
   defaultProps: {
-    colorScheme: 'brand',
+    colorScheme: 'black',
+  },
+  baseStyle: {
+    control: {
+      minW: '18px',
+      height: '18px',
+      borderRadius: '4px',
+    },
   },
   variants: {
     detailed: definePartsStyle({

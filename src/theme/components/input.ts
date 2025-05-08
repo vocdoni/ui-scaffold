@@ -5,23 +5,11 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
 
 const baseStyle = definePartsStyle({
   field: {
-    background: 'revert',
-    bgColor: 'input.bg.light',
-
-    _dark: {
-      bgColor: 'input.bg.dark',
+    fontSize: '14px',
+    _placeholder: {
+      color: 'input.placeholder',
+      fontSize: '14px',
     },
-
-    _invalid: {
-      _focusVisible: {
-        borderColor: 'input.error',
-        boxShadow: '0px 0px 0px 1px #FC8181',
-      },
-    },
-  },
-
-  element: {
-    color: 'input.element',
   },
 })
 
@@ -75,14 +63,31 @@ const calendar = definePartsStyle({
     },
   },
 })
+const def = definePartsStyle({
+  field: {
+    background: 'revert',
+    bgColor: 'input.bg',
+    border: '1px solid',
+    borderColor: 'input.border',
+    boxShadow: 'none !important',
+    _focusVisible: {
+      outlineColor: 'input.outline',
+      boxShadow: 'none !important',
+    },
+  },
+})
 
 export const Input = defineMultiStyleConfig({
   baseStyle,
   variants: {
     calendar,
+    def,
   },
   sizes: {
     sm,
     md,
+  },
+  defaultProps: {
+    variant: 'def',
   },
 })
