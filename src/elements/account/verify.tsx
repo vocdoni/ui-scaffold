@@ -18,14 +18,14 @@ const Verify = () => {
       setTitle(t('verify_mail.verifying_title', { email: email, defaultValue: 'Verifying {{ email }}' }))
       setSubtitle(
         t('verify_mail.verifying_subtitle', {
-          defaultValue: 'Await until we verify your email address. You will be redirect on success.',
+          defaultValue: 'Await while we verify your email address. You will be redirect on success.',
         })
       )
     } else {
       setTitle(t('verify.verify_your_email', { defaultValue: 'Verify your email' }))
       setSubtitle(
         t('verify.enter_verification_code', {
-          defaultValue: 'Enter the verification code sent to your email',
+          defaultValue: "We've sent you a verification email. Please follow the instructions to activate your account.",
         })
       )
     }

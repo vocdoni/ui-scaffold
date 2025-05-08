@@ -1476,18 +1476,6 @@
   "verification_code": "Código de verificación",
   "verification_code_placeholder": "Introduce el código de verificación",
   "verification_code_resent": "¡Código de verificación reenviado!",
-  "verify": {
-    "account_created_succesfully": "¡Cuenta creada con éxito!",
-    "email_sent": "Correo electrónico enviado con éxito",
-    "enter_verification_code": "Introduce el código de verificación enviado a tu correo",
-    "follow_email_instructions": "Sigue las instrucciones en el correo para activar tu cuenta.",
-    "invalid_verification": "Solicitud de verificación inválida",
-    "missing_email": "No se proporcionó dirección de correo para la verificación",
-    "resend_confirmation_mail": "Reenviar correo",
-    "verification_email_is_sent": "Se ha enviado un correo de verificación a:",
-    "verify_code": "Verificar",
-    "verify_your_email": "Verifica tu correo electrónico"
-  },
   "verify_mail": {
     "error_subtitle": "Encontramos un error al verificar tu correo, por favor revisa el correo de verificación para asegurar que todos los datos sean correctos",
     "verifying_subtitle": "Espera mientras verificamos tu dirección de correo electrónico. Serás redirigido con éxito.",

@@ -50,7 +50,7 @@ const VerifyForm = ({ email, initialCode = '', autoSubmit = false }: VerifyFormP
 
   return (
     <>
-      <Input type={'text'} placeholder={'12345678'} value={code} onChange={handleInputChange} isDisabled={autoSubmit} />
+      <Input placeholder='12345678' value={code} onChange={handleInputChange} isDisabled={autoSubmit} />
       <Box>
         <Button
           variant='primary'
@@ -64,8 +64,7 @@ const VerifyForm = ({ email, initialCode = '', autoSubmit = false }: VerifyFormP
         <FormSubmitMessage
           isError={isVerifyError}
           error={t('verify_mail.error_subtitle', {
-            defaultValue:
-              'We found an error verifying your email, please check verification mail to ensure all data is correct',
+            defaultValue: 'The code you entered is incorrect. Please try again',
           })}
         />
       </Box>
@@ -102,12 +101,14 @@ export const VerificationPending = ({ email, code }: { email: string; code?: str
   return (
     <>
       <Flex flexDirection='column' gap={4}>
-        <Text ms='4px' fontWeight='bold' fontSize='md'>
-          {email}
+        <Text fontWeight='bold' fontSize='md' color='auth.secondary_text'>
+          <Trans i18nKey='verify.sent_to_email' values={{ email }}>
+            Email sent to {email}
+          </Trans>
         </Text>
-        <Text ms='4px' fontWeight='400' fontSize='sm' color='auth.secondary_text'>
-          {t('verify.follow_email_instructions', {
-            defaultValue: 'Follow the instructions there to activate your account.',
+        <Text fontWeight='bold' fontSize='sm'>
+          {t('verify.enter_code', {
+            defaultValue: 'Enter the code below to activate your account',
           })}
         </Text>
         <VerifyForm email={email} initialCode={code} autoSubmit={!!code} />

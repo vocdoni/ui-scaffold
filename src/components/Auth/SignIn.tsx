@@ -46,12 +46,7 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
   const methods = useForm<FormData>({
     defaultValues: { email: emailProp },
   })
-  const {
-    handleSubmit,
-    watch,
-    formState: { errors },
-    register,
-  } = methods
+  const { handleSubmit, watch } = methods
   const email = watch('email', emailProp)
 
   const {
