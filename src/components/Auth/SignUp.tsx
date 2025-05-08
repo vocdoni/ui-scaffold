@@ -89,15 +89,15 @@ const SignUp = ({ invite }: SignupProps) => {
       <FormProvider {...methods}>
         <Flex as='form' onSubmit={handleSubmit(onSubmit)} flexDirection='column' gap={6}>
           <Flex flexDirection={'column'} gap={4} mb={4}>
-            <InputBasic formValue='firstName' label={t('signup_firstname')} placeholder={'John'} />
-            <InputBasic formValue='lastName' label={t('signup_lastname')} placeholder={'Doe'} />
+            <InputBasic formValue='firstName' label={t('signup_firstname')} placeholder='John' required />
+            <InputBasic formValue='lastName' label={t('signup_lastname')} placeholder='Doe' required />
 
             <InputBasic
               formValue='email'
               label={t('email')}
               placeholder={'johndoe@example.com'}
+              required
               validation={{
-                required: t('form.error.field_is_required'),
                 pattern: {
                   value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, // Regex para validar emails
                   message: t('form.error.email_invalid', { defaultValue: 'Invalid email address' }),
@@ -110,8 +110,8 @@ const SignUp = ({ invite }: SignupProps) => {
               label={t('password')}
               placeholder={'• • • • • • • •'}
               type='password'
+              required
               validation={{
-                required: t('form.error.field_is_required'),
                 minLength: {
                   value: 8,
                   message: t('form.error.password_min_length', { defaultValue: 'Min. 8 characters' }),
