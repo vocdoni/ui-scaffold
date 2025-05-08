@@ -1478,7 +1478,7 @@
     "verify_your_email": "Verify your email"
   },
   "verify_mail": {
-    "error_subtitle": "We found an error verifying your email, please check verification mail to ensure all data is correct",
+    "error_subtitle": "The code you entered is incorrect. Please try again.",
     "verifying_subtitle": "Await until we verify your email address. You will be redirect on success.",
     "verifying_title": "Verifying {{ email }}"
   },
