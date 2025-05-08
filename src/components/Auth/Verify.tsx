@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Input, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, HStack, PinInput, PinInputField, Text } from '@chakra-ui/react'
 import { useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate, useOutletContext } from 'react-router-dom'
@@ -29,13 +29,9 @@ const VerifyForm = ({ email, initialCode = '', autoSubmit = false }: VerifyFormP
     verifyAsync({ email, code }).then(() => navigate(verificationSuccessRedirect))
   }, [code, email])
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCode(event.target.value)
-  }
-
-  // Auto-submit if code is provided and autoSubmit is true
+  // Auto-submit if code is provided and autoSubmit is true, or when all 6 characters are entered
   useEffect(() => {
-    if (autoSubmit && code) {
+    if ((autoSubmit && code) || (!autoSubmit && code?.length === 6)) {
       verify()
     }
   }, [autoSubmit, code])
@@ -50,7 +46,16 @@ const VerifyForm = ({ email, initialCode = '', autoSubmit = false }: VerifyFormP
 
   return (
     <>
-      <Input placeholder='12345678' value={code} onChange={handleInputChange} isDisabled={autoSubmit} />
+      <HStack width='100%' justifyContent='space-between'>
+        <PinInput value={code} onChange={setCode} isDisabled={autoSubmit}>
+          <PinInputField />
+          <PinInputField />
+          <PinInputField />
+          <PinInputField />
+          <PinInputField />
+          <PinInputField />
+        </PinInput>
+      </HStack>
       <Box>
         <Button
           variant='primary'
