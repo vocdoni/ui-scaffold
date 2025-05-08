@@ -1,5 +1,10 @@
 {
+  "account": {
+    "subtitle": "Update your account details and personal information",
+    "title": "Account Information"
+  },
   "actions": {
+    "cancel": "Cancel",
     "save": "Save Changes"
   },
   "active": "Active",
@@ -39,7 +44,6 @@
     "voting_anonymous_advice": "Please wait while the anonymous magic happens 🪄.\nThis can take up to several minutes; don't close the window."
   },
   "avatar": {
-    "hint": "Min 200x200px .PNG or .JPEG",
     "label": "Logo/Avatar"
   },
   "back": "Back",
@@ -190,6 +194,10 @@
     "wallet_address_title": "Wallet addresses"
   },
   "census_details": "Census Details",
+  "change_password": {
+    "subtitle": "Enter your current password and a new password to update your credentials.",
+    "title": "Change Password"
+  },
   "claim": {
     "loading_description": "<h3>Wallet Authentication (Metamask, Rainbow, Coinbase):</h3><p>To receive your tokens, please sign the request when prompted.</p><strong>Important:</strong><p>If you leave this page without signing, you will not receive your paid tokens.</p><line/><h3>Social Account Authentication (Google, Github, Facebook):</h3><p>Please wait while we process your request.</p>",
     "purchase_success": "<title>We appreciate your business!</title><p>If you have any questions, please email <mailto>orders@vocdoni.org</mailto></p>",
@@ -214,44 +222,17 @@
     "copied_title": "Copied!"
   },
   "country_selector": {
-    "australia": "Australia",
-    "brazil": "Brazil",
-    "canada": "Canada",
-    "china": "China",
-    "france": "France",
-    "germany": "Germany",
-    "india": "India",
-    "italy": "Italy",
-    "japan": "Japan",
-    "mexico": "Mexico",
-    "netherlands": "Netherlands",
-    "new_zealand": "New Zealand",
-    "other": "Other",
-    "russia": "Russia",
     "selector_label": "Country",
-    "south_africa": "South Africa",
-    "south_korea": "South Korea",
-    "spain": "Spain",
-    "sweden": "Sweden",
-    "switzerland": "Switzerland",
-    "united_kingdom": "United Kingdom",
-    "united_states": "United States"
+    "spain": "Spain"
   },
   "create_org": {
-    "already_profile": "If your organization already have a profile, ask the admin to invite you to your organization.",
+    "already_profile": "If your organization already has a profile, <2>access the dashboard</2> and contact the administrator to invite you",
     "communication": "I want to receive communications and be contacted to tailor my governance experience.",
-    "credit_card": "No credit card, no automatic renewal.",
-    "full_access": "Full access to basic features",
-    "header": "Try Vocdoni for free for 7 days",
-    "logout": "If you want to login from another account, please logout",
-    "multiple_administrators": "Multiple administrators",
     "private_org": "Private Organization Details",
     "private_org_description": "Help us tailor your experience with information about your org. We won't share this info",
     "public_info": "Public Organization Information",
-    "support_during_trial_period": "Support during the trial period",
-    "title": "Tell us about your organization",
-    "unlimited_voting_processes": "Unlimited creation of voting processes",
-    "up_to_20_voters": "Up to 20 voters"
+    "subtitle": "Cut cost, Save Time: Secure, Private, and GDPR Compliant",
+    "title": "Tell us about your organization"
   },
   "csp_census": {
     "github": {
@@ -262,8 +243,8 @@
   "current": "Current",
   "customization": "Customization",
   "dark_mode": "Dark mode",
-  "delete_my_account": "Delete Account",
   "description": "Description",
+  "do_it_later": "Do it later",
   "edit_saas_profile": {
     "customization_details": "Define the params that will enhance the user experience and customize the voting page",
     "edited_successfully": "Updated successfully",
@@ -902,6 +883,7 @@
     "spanish": "Castellano"
   },
   "languages": "Languages",
+  "lastname": "Last name",
   "light_mode": "Light mode",
   "link": {
     "discord": "Link to Vocdoni's discord",
@@ -963,6 +945,7 @@
     "create_organization_btn": "Create Organization",
     "description1": "Set up your <span>organization for free</span> and start creating voting processes to engage with your community.",
     "description2": "You will have the chance to claim tokens later from the faucet to create proposals and engage with your community.",
+    "onboarding": "If your organization is already on Vocdoni, ask its administrator to invite you.",
     "title": "Create your organization"
   },
   "new_password": "New Password",
@@ -1010,12 +993,7 @@
   },
   "password_update": {
     "actions": {
-      "update": "Update Password"
-    },
-    "confirm": {
-      "label": "Confirm Password",
-      "mismatch": "Passwords don't match",
-      "required": "Please confirm your password"
+      "save": "Save Password"
     },
     "error": "Failed to update password",
     "new": {
@@ -1265,9 +1243,6 @@
     "voters": "Voters"
   },
   "profile": {
-    "avatar": {
-      "label": "Avatar"
-    },
     "error": "Failed to update profile",
     "success": "Profile updated successfully",
     "title": "Profile"
@@ -1307,7 +1282,6 @@
   "signup_lastname": "Last name",
   "signup_subtitle": "Enter your information to get started",
   "signup_title": "Sign up",
-  "skip": "Skip",
   "submit": "Submit",
   "subscribe": "Subscribe",
   "subscription": {
@@ -1321,7 +1295,6 @@
     "your_subscription": "Your Subscription"
   },
   "support": "Support",
-  "surname": "Surname",
   "switch_organization": "Switch organization",
   "team": {
     "expiration": "Expiration",
@@ -1331,7 +1304,6 @@
     "team_members": "Team members",
     "title": "Team"
   },
-  "teams": "Teams",
   "terms": {
     "section1": {
       "description1": "The Vocdoni Association, headquartered in Switzerland, operates the app.vocdoni.io and onvote.app platforms.",
@@ -1393,6 +1365,16 @@
   },
   "terms_and_conditions": "Terms and Conditions",
   "terms_of_use": "Terms of Use",
+  "testimonials": {
+    "auth": {
+      "position": "President",
+      "text": "Vocdoni has transformed how we conduct our voting processes"
+    },
+    "ceec": {
+      "position": "CEO",
+      "text": "We chose Vocdoni because it guarantees secure, reliable, and transparent participation for all our members in our Annual General Meeting."
+    }
+  },
   "tier_upgrade": {
     "current_plan": "Your current <2>{{ plan, lowercase }}</2> is limited to selecting up to <6>{{ voters }} voters</6>.",
     "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
@@ -1468,11 +1450,12 @@
   "verify": {
     "account_created_succesfully": "Account created successfully!",
     "email_sent": "Email sent successfully",
+    "enter_code": "Enter the code below to activate your account",
     "enter_verification_code": "We've sent you a verification email. Please follow the instructions to activate your account.",
-    "follow_email_instructions": "Follow the instructions there to activate your account.",
     "invalid_verification": "Invalid verification request",
     "missing_email": "No email address provided for verification",
     "resend_confirmation_mail": "Resend Email",
+    "sent_to_email": "Email sent to {email}",
     "verification_email_is_sent": "A verification email has been sent to:",
     "verify_code": "Verify",
     "verify_your_email": "Verify your email"
@@ -1483,8 +1466,6 @@
     "verifying_title": "Verifying {{ email }}"
   },
   "view_plans_and_pricing": "View Plans & Pricing",
-  "view_pricing": "View Pricing",
-  "view_pricing_plan": "View Pricing Plan",
   "view_pricing_plans": "View Pricing Plans",
   "vocdoni logo": "Vocdoni logo",
   "voters": "voters",

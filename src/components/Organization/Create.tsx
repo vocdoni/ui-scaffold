@@ -1,4 +1,4 @@
-import { Button, Flex, FlexProps, Text } from '@chakra-ui/react'
+import { Button, Flex, FlexProps, Link, Text } from '@chakra-ui/react'
 
 import { useMutation, UseMutationOptions, useQueryClient } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
@@ -143,7 +143,11 @@ export const OrganizationCreate = ({
         <FormSubmitMessage isError={isError} error={error} />
         <Text color={'account_create_text_secondary'} fontSize='sm' textAlign='center' mt='auto'>
           <Trans i18nKey='create_org.already_profile'>
-            If your organization already has a profile, ask the admin to invite you to your organization.
+            If your organization already has a profile,{' '}
+            <Link as={ReactRouterLink} to={Routes.dashboard.base}>
+              access the dashboard
+            </Link>{' '}
+            and contact the administrator to invite you
           </Trans>
         </Text>
         {canSkip && (
