@@ -23,7 +23,7 @@ const GoogleAuth = () => {
     try {
       const result = await connectAsync({ connector })
       if ('newAccount' in result && !result.newAccount) {
-        return navigate(Routes.auth.organizationCreate)
+        return navigate(Routes.dashboard.organizationCreate)
       }
     } catch (err) {
       console.error('Google OAuth error', err)
