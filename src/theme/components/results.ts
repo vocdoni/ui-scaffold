@@ -96,3 +96,31 @@ const baseStyle = definePartsStyle({
 export const ElectionResults = defineMultiStyleConfig({
   baseStyle,
 })
+
+const dashboardBaseStyle = definePartsStyle({
+  title: {
+    // border: '1px solid red',
+  },
+  body: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  question: {},
+  choiceTitle: {
+    border: '1px solid red',
+    order: 1,
+  },
+  choiceVotes: {
+    border: '1px solid orange',
+    order: 2,
+  },
+  progress: {
+    border: '1px solid blue',
+    h: 8,
+    order: 0,
+  },
+})
+
+export const DashboardElectionResults = defineMultiStyleConfig({
+  baseStyle: dashboardBaseStyle,
+})

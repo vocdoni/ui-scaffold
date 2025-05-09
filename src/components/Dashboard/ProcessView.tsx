@@ -1,13 +1,10 @@
 import {
-  Accordion,
   AccordionButton,
   AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
   Box,
   BoxProps,
+  ChakraProvider,
   Flex,
-  Heading,
   HStack,
   Icon,
   IconButton,
@@ -19,12 +16,10 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import {
-  BarChart04,
   Calendar,
   Clock,
   Copy01,
   Eye,
-  List,
   PauseCircle,
   PlayCircle,
   Settings01,
@@ -39,7 +34,6 @@ import {
   ActionPause,
   ActionsProvider,
   ElectionDescription,
-  ElectionQuestions,
   ElectionResults,
   ElectionStatusBadge,
   ElectionTitle,
@@ -50,9 +44,17 @@ import { formatDate } from 'date-fns'
 import { ReactNode, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { generatePath } from 'react-router-dom'
-import { DashboardBox, DashboardContents, Sidebar, SidebarContents, SidebarProps } from '~components/Layout/Dashboard'
+import {
+  DashboardBox,
+  DashboardContents,
+  Heading,
+  Sidebar,
+  SidebarContents,
+  SidebarProps,
+} from '~components/Layout/Dashboard'
 import { Features } from '~components/Process/Features'
 import { Routes } from '~src/router/routes'
+import { dashboard } from '~theme'
 
 export const ProcessView = () => {
   const { t } = useTranslation()
@@ -93,7 +95,7 @@ export const ProcessView = () => {
 
         {/* Schedule */}
         <DashboardBox display='flex' flexDirection='column' flexWrap={'wrap'} justifyContent={'space-between'} gap={4}>
-          <Heading size='sm' fontSize='2xl' fontWeight={600} as='h3' display='flex' alignItems='center'>
+          <Heading>
             <Icon as={Calendar} mr={2} />
             <Trans i18nKey='calendar.title'>Schedule</Trans>
           </Heading>
@@ -131,7 +133,7 @@ export const ProcessView = () => {
 
         <DashboardBox>
           <Box>
-            <Heading size='sm' fontSize='2xl' fontWeight={600} as='h3' display='flex' alignItems='center'>
+            <Heading>
               <Icon as={Share04} mr={2} />
               <Trans i18nKey='voting_link.title'>Voting Link</Trans>
             </Heading>
@@ -163,26 +165,15 @@ export const ProcessView = () => {
           </Flex>
         </DashboardBox>
 
-        {/* Accordion section for extra info */}
-        <Accordion allowToggle variant='dashboard'>
-          <AccordionItem mb={6}>
-            <DashboardAccordionButton icon={BarChart04}>
-              <Trans i18nKey='voting_results'>Voting Results</Trans>
-            </DashboardAccordionButton>
-            <AccordionPanel>
-              <ElectionResults />
-            </AccordionPanel>
-          </AccordionItem>
-
-          <AccordionItem>
-            <DashboardAccordionButton icon={List}>
-              <Trans i18nKey='voting_questions'>Voting Questions</Trans>
-            </DashboardAccordionButton>
-            <AccordionPanel>
-              <ElectionQuestions />
-            </AccordionPanel>
-          </AccordionItem>
-        </Accordion>
+        {/* Questions & Results */}
+        <DashboardBox>
+          <Heading as='h4'>
+            <Trans i18nKey='voting_results'>Voting Results</Trans>
+          </Heading>
+          <ChakraProvider theme={dashboard}>
+            <ElectionResults />
+          </ChakraProvider>
+        </DashboardBox>
       </Box>
 
       <ProcessViewSidebar show={showSidebar} />

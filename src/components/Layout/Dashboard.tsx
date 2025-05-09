@@ -1,4 +1,4 @@
-import { Box, BoxProps, Flex, Slide } from '@chakra-ui/react'
+import { Box, BoxProps, Heading as CHeading, Flex, HeadingProps, Slide } from '@chakra-ui/react'
 
 export const DashboardBox = (props: BoxProps) => (
   <Box
@@ -18,6 +18,10 @@ export const DashboardBox = (props: BoxProps) => (
 
 export const DashboardContents = (props: BoxProps) => (
   <Flex flexDirection={'column'} maxW='1536px' w='full' mx='auto' p={6} {...props} />
+)
+
+export const Heading = (props: HeadingProps) => (
+  <CHeading size='sm' fontSize='2xl' fontWeight={600} as='h3' display='flex' alignItems='center' {...props} />
 )
 
 export type SidebarProps = BoxProps & {
