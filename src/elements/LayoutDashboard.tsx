@@ -137,6 +137,7 @@ const LayoutDashboard: React.FC = () => {
                   leftIcon={<HelpCircle />}
                   colorScheme='gray'
                   size={'sm'}
+                  variant='outline'
                   display={{ base: 'none', lg: 'flex' }}
                 >
                   <Trans i18nKey='help'>Do you need help?</Trans>

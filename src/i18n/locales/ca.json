@@ -86,15 +86,6 @@
     "vote_overwrite": "Correcció de vot",
     "voting_process_cost": "Cost del procés de votació:"
   },
-  "calendar": {
-    "define_active_period": "Define the active period for receiving votes",
-    "end_date": "End date",
-    "end_date_description": "Define the exact date and time of completion",
-    "max_duration_exceeded": "The selected duration exceeds the maximum allowed duration of {{maxDuration}} days for your plan. Reduce the voting length or <4>upgrade your plan</4>.",
-    "start_date": "Start date",
-    "subtitle": "Specify the active period for receiving votes",
-    "title": "Calendar"
-  },
   "call_us": "Truca'ns",
   "cc": {
     "actions": {

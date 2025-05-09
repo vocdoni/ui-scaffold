@@ -86,15 +86,6 @@
     "vote_overwrite": "Corrección de voto",
     "voting_process_cost": "Coste del proceso de votación:"
   },
-  "calendar": {
-    "define_active_period": "Define el período activo para recibir votos",
-    "end_date": "Fecha de finalización",
-    "end_date_description": "Define la fecha y hora exacta de finalización",
-    "max_duration_exceeded": "The selected duration exceeds the maximum allowed duration of {{maxDuration}} days for your plan. Reduce the voting length or <4>upgrade your plan</4>.",
-    "start_date": "Fecha de inicio",
-    "subtitle": "Especifica el período activo para recibir votos",
-    "title": "Calendario"
-  },
   "call_us": "Llámanos",
   "cc": {
     "actions": {

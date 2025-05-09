@@ -60,13 +60,15 @@ const contentsSection = defineStyle({
 })
 
 const sidebarTitle = defineStyle({
-  fontWeight: 600,
+  fontWeight: 500,
   fontSize: 'lg',
+  lineHeight: 1,
 })
 
 const sidebarSection = defineStyle({
-  fontWeight: 600,
-  fontSize: 'md',
+  fontWeight: 500,
+  fontSize: 'sm',
+  lineHeight: 1,
 })
 
 export const Heading = {

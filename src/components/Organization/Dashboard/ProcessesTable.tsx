@@ -19,7 +19,7 @@ import { DotsVertical, InfoCircle, SearchSm, Share04 } from '@untitled-ui/icons-
 import { ElectionStatusBadge, QuestionsTypeBadge } from '@vocdoni/chakra-components'
 import { ElectionProvider, useElection } from '@vocdoni/react-providers'
 import { ElectionStatus, ensure0x, InvalidElection, PublishedElection } from '@vocdoni/sdk'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { generatePath, Link as RouterLink } from 'react-router-dom'
 import PaginatedTableFooter from '~components/Layout/Pagination/PaginatedTableFooter'
 import { useDateFns } from '~i18n/use-date-fns'
@@ -90,11 +90,11 @@ const ProcessRow = () => {
         ([ElectionStatus.ENDED, ElectionStatus.ONGOING].includes(election.status) &&
           !election.electionType.secretUntilTheEnd) ? (
           <Tag colorScheme='gray' size='sm'>
-            Live
+            <Trans i18nKey='process_list.results_live'>Live</Trans>
           </Tag>
         ) : (
           <Tag colorScheme='gray' size='sm'>
-            Not yet
+            <Trans i18nKey='process_list.not_yet'>Not yet</Trans>
           </Tag>
         )}
       </Td>

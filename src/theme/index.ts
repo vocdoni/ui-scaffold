@@ -34,6 +34,7 @@ import { radii } from './radius'
 import { space } from './space'
 
 import '@fontsource/inter/500.css'
+import '@fontsource/inter/600.css'
 import '@fontsource/inter/700.css'
 import '@fontsource/inter/index.css'
 
@@ -48,8 +49,9 @@ export const theme = extendTheme(vtheme, {
     mono: `'Menlo', monospace`,
   },
   fontWeights: {
-    bold: '500',
-    extrabold: '700',
+    bold: 500,
+    bolder: 600,
+    extrabold: 700,
   },
   styles: {
     global: (props) => ({
