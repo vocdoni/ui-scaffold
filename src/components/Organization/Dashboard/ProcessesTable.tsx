@@ -11,17 +11,17 @@ import {
   Tag,
   Tbody,
   Td,
-  Text,
   Th,
   Thead,
   Tr,
 } from '@chakra-ui/react'
 import { DotsVertical, InfoCircle, SearchSm, Share04 } from '@untitled-ui/icons-react'
-import { ElectionStatusBadge, QuestionsTypeBadge, RoutedPagination } from '@vocdoni/chakra-components'
-import { ElectionProvider, useElection, useRoutedPagination } from '@vocdoni/react-providers'
+import { ElectionStatusBadge, QuestionsTypeBadge } from '@vocdoni/chakra-components'
+import { ElectionProvider, useElection } from '@vocdoni/react-providers'
 import { ElectionStatus, ensure0x, InvalidElection, PublishedElection } from '@vocdoni/sdk'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { generatePath, Link as RouterLink } from 'react-router-dom'
+import PaginatedTableFooter from '~components/Layout/Pagination/PaginatedTableFooter'
 import { useDateFns } from '~i18n/use-date-fns'
 import { Routes } from '~src/router/routes'
 
@@ -60,38 +60,14 @@ const ProcessesTable = ({ processes }: ProcessesListProps) => {
         </Tbody>
       </Table>
       <Box p={4}>
-        <ProcessesPaginator />
+        <PaginatedTableFooter />
       </Box>
     </Box>
   )
 }
 
-const ProcessesPaginator = () => {
-  const { pagination } = useRoutedPagination()
-
-  if (!pagination) return null
-
-  const page = pagination.currentPage + 1
-  const total = pagination.lastPage + 1
-
-  return (
-    <Box display='flex' flexDirection='row' alignItems='center' gap={5} justifyContent='end'>
-      <Text size='sm'>
-        <Trans i18nKey='pagination.page_out_of' values={{ page, total }}>
-          Page {{ page }} of {{ total }}
-        </Trans>
-      </Text>
-      <RoutedPagination
-        pagination={pagination}
-        size='xs'
-        buttonProps={{ size: 'xs', variant: 'ghost', colorScheme: 'gray' }}
-      />
-    </Box>
-  )
-}
-
 const ProcessRow = () => {
-  const { election, client } = useElection()
+  const { election } = useElection()
   const { format } = useDateFns()
   const { t } = useTranslation()
 
