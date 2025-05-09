@@ -6,12 +6,12 @@ import {
   AccordionPanel,
   Box,
   BoxProps,
-  Button,
   Flex,
   Heading,
   HStack,
   Icon,
   IconButton,
+  Input,
   Link,
   Stack,
   Text,
@@ -22,10 +22,13 @@ import {
   BarChart04,
   Calendar,
   Clock,
+  Copy01,
+  Eye,
   List,
   PauseCircle,
   PlayCircle,
   Settings01,
+  Share04,
   StopCircle,
   Trash01,
 } from '@untitled-ui/icons-react'
@@ -46,7 +49,6 @@ import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { formatDate } from 'date-fns'
 import { ReactNode, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { FaCopy, FaEye } from 'react-icons/fa'
 import { generatePath } from 'react-router-dom'
 import { DashboardBox, DashboardContents, Sidebar, SidebarContents, SidebarProps } from '~components/Layout/Dashboard'
 import { Features } from '~components/Process/Features'
@@ -89,20 +91,20 @@ export const ProcessView = () => {
           <ElectionDescription color='gray.500' />
         </Box>
 
-        {/* Calendar */}
+        {/* Schedule */}
         <DashboardBox display='flex' flexDirection='column' flexWrap={'wrap'} justifyContent={'space-between'} gap={4}>
           <Heading size='sm' fontSize='2xl' fontWeight={600} as='h3' display='flex' alignItems='center'>
             <Icon as={Calendar} mr={2} />
             <Trans i18nKey='calendar.title'>Schedule</Trans>
           </Heading>
           <HStack>
-            <CalendarField
+            <ScheduleField
               icon={Calendar}
               date={election instanceof PublishedElection && election.startDate}
               format={t('dashboard.process_view.date_format', 'MMMM do, y')}
               text={t('start_date', 'Start Date')}
             />
-            <CalendarField
+            <ScheduleField
               icon={Clock}
               date={election instanceof PublishedElection && election.startDate}
               format={t('dashboard.process_view.time_format', 'p')}
@@ -110,13 +112,13 @@ export const ProcessView = () => {
             />
           </HStack>
           <HStack>
-            <CalendarField
+            <ScheduleField
               icon={Calendar}
               date={election instanceof PublishedElection && election.endDate}
               format={t('dashboard.process_view.date_format', 'MMMM do, y')}
               text={t('end_date', 'End Date')}
             />
-            <CalendarField
+            <ScheduleField
               icon={Clock}
               date={election instanceof PublishedElection && election.endDate}
               format={t('dashboard.process_view.time_format', 'p')}
@@ -127,27 +129,37 @@ export const ProcessView = () => {
 
         {/* Voting link */}
 
-        <DashboardBox display='flex' gap={4} flexDirection={'column'} alignItems='center'>
-          <Heading variant='contents-section'>
-            <Trans i18nKey='voting_link'>Voting Link</Trans>
-          </Heading>
+        <DashboardBox>
+          <Box>
+            <Heading size='sm' fontSize='2xl' fontWeight={600} as='h3' display='flex' alignItems='center'>
+              <Icon as={Share04} mr={2} />
+              <Trans i18nKey='voting_link.title'>Voting Link</Trans>
+            </Heading>
+            <Text color='gray.500' fontSize='sm'>
+              <Trans i18nKey='voting_link.description'>
+                Share this link with your voters to participate in the voting process
+              </Trans>
+            </Text>
+          </Box>
 
-          <Flex justifyContent={'space-between'}>
-            <Link
+          <Flex justifyContent='space-between' gap={2}>
+            <Input readOnly value={votingLink} />
+            <IconButton
+              variant='outline'
+              onClick={onCopy}
+              icon={<Icon as={Copy01} />}
+              title={t('copy.copy', 'Copy')}
+              aria-label={t('copy.copy')}
+            />
+            <IconButton
+              as={Link}
               href={votingLink}
               isExternal
-              overflowWrap='anywhere'
-              whiteSpace='normal'
-              wordBreak='break-all'
-              flex={1}
-            >
-              {votingLink}
-            </Link>
-            <IconButton onClick={onCopy} icon={<FaCopy />} aria-label='' />
-
-            <Button as={Link} href={votingLink} isExternal leftIcon={<FaEye />} colorScheme='blue'>
-              <Trans i18nKey='preview'>Preview</Trans>
-            </Button>
+              icon={<Icon as={Eye} />}
+              variant='outline'
+              title={t('preview', 'Preview')}
+              aria-label={t('preview')}
+            />
           </Flex>
         </DashboardBox>
 
@@ -178,7 +190,7 @@ export const ProcessView = () => {
   )
 }
 
-const CalendarField = ({
+const ScheduleField = ({
   date,
   format,
   icon,

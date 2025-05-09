@@ -1,7 +1,19 @@
 import { Box, BoxProps, Flex, Slide } from '@chakra-ui/react'
 
 export const DashboardBox = (props: BoxProps) => (
-  <Box borderRadius='md' boxShadow='sm' border='var(--border)' px={6} py={4} {...props} />
+  <Box
+    borderRadius='md'
+    boxShadow='sm'
+    border='var(--border)'
+    px={6}
+    py={4}
+    display='flex'
+    flexDirection='column'
+    flexWrap={'wrap'}
+    justifyContent={'space-between'}
+    gap={4}
+    {...props}
+  />
 )
 
 export const DashboardContents = (props: BoxProps) => (
