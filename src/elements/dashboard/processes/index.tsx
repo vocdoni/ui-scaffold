@@ -1,5 +1,4 @@
 import { Heading, Text } from '@chakra-ui/react'
-import { useOrganization } from '@vocdoni/react-providers'
 import { ElectionListWithPagination } from '@vocdoni/sdk'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -14,7 +13,6 @@ const OrganizationVotings = () => {
   const { setBreadcrumb } = useOutletContext<DashboardLayoutContext>()
   const data = useLoaderData() as ElectionListWithPagination
   const { status } = useParams<{ status?: string }>()
-  const { organization } = useOrganization()
 
   // Set page title
   useEffect(() => {
