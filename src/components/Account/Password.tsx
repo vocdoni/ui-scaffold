@@ -1,9 +1,21 @@
-import { Button, FormControl, FormErrorMessage, FormLabel, Input, useToast, VStack } from '@chakra-ui/react'
+import {
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  IconButton,
+  Input,
+  useDisclosure,
+  useToast,
+  VStack,
+} from '@chakra-ui/react'
 import { useMutation } from '@tanstack/react-query'
+import { Pencil01 } from '@untitled-ui/icons-react'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
+import { ModalForm, useModalForm } from '~components/Layout/Form/ModalForm'
 
 interface PasswordFormData {
   oldPassword: string
@@ -11,7 +23,7 @@ interface PasswordFormData {
   confirmPassword: string
 }
 
-export interface UpdatePasswordParams {
+interface UpdatePasswordParams {
   oldPassword: string
   newPassword: string
 }
@@ -28,20 +40,26 @@ const useUpdatePassword = () => {
   })
 }
 
-const PasswordForm = () => {
+interface PasswordFormProps {
+  onSuccess?: () => void
+}
+
+const PasswordForm = ({ onSuccess }: PasswordFormProps) => {
   const { t } = useTranslation()
   const toast = useToast()
   const updatePassword = useUpdatePassword()
-
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     formState: { errors, isSubmitting },
   } = useForm<PasswordFormData>()
 
-  const password = watch('newPassword')
+  const { formRef, setIsSubmitting, onClose } = useModalForm()
+
+  useEffect(() => {
+    setIsSubmitting(isSubmitting)
+  }, [isSubmitting, setIsSubmitting])
 
   const onSubmit = async (data: PasswordFormData) => {
     try {
@@ -55,6 +73,8 @@ const PasswordForm = () => {
         status: 'success',
       })
       reset()
+      onSuccess?.()
+      onClose()
     } catch (error) {
       toast({
         title: t('password_update.error', { defaultValue: 'Failed to update password' }),
@@ -64,7 +84,13 @@ const PasswordForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      onSubmit={(e) => {
+        e.stopPropagation()
+        handleSubmit(onSubmit)(e)
+      }}
+      ref={formRef}
+    >
       <VStack spacing={6} align='stretch'>
         <FormControl isInvalid={!!errors.oldPassword}>
           <FormLabel>{t('password_update.old.label', { defaultValue: 'Current Password' })}</FormLabel>
@@ -91,26 +117,49 @@ const PasswordForm = () => {
           />
           <FormErrorMessage>{errors.newPassword?.message}</FormErrorMessage>
         </FormControl>
-
-        <FormControl isInvalid={!!errors.confirmPassword}>
-          <FormLabel>{t('password_update.confirm.label', { defaultValue: 'Confirm Password' })}</FormLabel>
-          <Input
-            type='password'
-            {...register('confirmPassword', {
-              required: t('password_update.confirm.required', { defaultValue: 'Please confirm your password' }),
-              validate: (value) =>
-                value === password || t('password_update.confirm.mismatch', { defaultValue: "Passwords don't match" }),
-            })}
-          />
-          <FormErrorMessage>{errors.confirmPassword?.message}</FormErrorMessage>
-        </FormControl>
-
-        <Button type='submit' size='lg' width='100%' isLoading={isSubmitting || updatePassword.isPending} mt={4}>
-          {t('password_update.actions.update', { defaultValue: 'Update Password' })}
-        </Button>
       </VStack>
     </form>
   )
 }
 
-export default PasswordForm
+interface ChangePasswordModalProps {
+  isOpen: boolean
+  onClose: () => void
+}
+
+const ChangePasswordModal = ({ isOpen, onClose }: ChangePasswordModalProps) => {
+  const { t } = useTranslation()
+
+  return (
+    <ModalForm
+      isOpen={isOpen}
+      onClose={onClose}
+      title={t('change_password.title', { defaultValue: 'Change Password' })}
+      subtitle={t('change_password.subtitle', {
+        defaultValue: 'Enter your current password and a new password to update your credentials.',
+      })}
+      submitText={t('password_update.actions.save', { defaultValue: 'Save Password' })}
+    >
+      <PasswordForm />
+    </ModalForm>
+  )
+}
+
+export const ChangePasswordButton = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  return (
+    <>
+      <IconButton
+        onClick={onOpen}
+        icon={<Pencil01 />}
+        aria-label='change password'
+        variant={'outline'}
+        size='sm'
+        w='40px'
+        h='40px'
+      />
+      <ChangePasswordModal isOpen={isOpen} onClose={onClose} />
+    </>
+  )
+}

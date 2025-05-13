@@ -8,12 +8,32 @@ export const Modal = defineMultiStyleConfig({
     overlay: {
       bgColor: 'rgba(0 ,0 ,0, 0.8)',
     },
+    dialogContainer: {
+      alignItems: 'center',
+    },
     dialog: {
       overflow: 'hidden',
-      p: { base: 5, lg: 10 },
     },
     footer: {
       justifyContent: 'center',
+    },
+    closeButton: {
+      top: 3,
+      w: 6,
+      h: 6,
+
+      '& svg': {
+        w: 2.5,
+        h: 2.5,
+      },
+
+      _hover: {
+        bgColor: 'transparent',
+      },
+
+      _active: {
+        border: '2px solid black',
+      },
     },
   },
   variants: {

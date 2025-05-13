@@ -25,11 +25,13 @@ export enum ApiEndpoints {
 
 export enum ErrorCode {
   // HTTP errors
+  BadRequest = 400,
   Unauthorized = 401,
   // Custom API errors
   MalformedJSONBody = 40004,
   UserNotAuthorized = 40001,
   UserNotVerified = 40014,
+  UserAlreadyVerified = 40015,
 }
 
 interface IApiError {
@@ -48,17 +50,13 @@ export class ApiError extends Error {
   }
 }
 
-export class UnauthorizedApiError extends ApiError {
-  constructor(apiError?: IApiError, response?: Response) {
-    super(apiError, response)
-  }
-}
+export class UnauthorizedApiError extends ApiError {}
 
-export class UnverifiedApiError extends ApiError {
-  constructor(apiError?: IApiError, response?: Response) {
-    super(apiError, response)
-  }
-}
+export class BadRequestApiError extends ApiError {}
+
+export class UnverifiedApiError extends ApiError {}
+
+export class UserAlreadyVerifiedApiError extends ApiError {}
 
 export type ApiParams = {
   body?: unknown
@@ -100,6 +98,13 @@ export const api = <T>(
             throw new UnverifiedApiError(error, response)
           }
           throw new UnauthorizedApiError(error, response)
+        }
+
+        if (response.status === ErrorCode.BadRequest) {
+          if (error?.code === ErrorCode.UserAlreadyVerified) {
+            throw new UserAlreadyVerifiedApiError(error, response)
+          }
+          throw new BadRequestApiError(error, response)
         }
 
         throw new ApiError(error, response)

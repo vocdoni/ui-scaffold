@@ -1,4 +1,5 @@
-import { FormControl, FormErrorMessage, FormLabel } from '@chakra-ui/react'
+import { Alert, FormControl, FormErrorMessage, FormLabel } from '@chakra-ui/react'
+import { useQuery } from '@tanstack/react-query'
 import { Select, Props as SelectProps } from 'chakra-react-select'
 import { Controller, useFormContext } from 'react-hook-form'
 import { ControllerProps } from 'react-hook-form/dist/types'
@@ -66,10 +67,11 @@ export const SelectCustom = ({
               }
               return option.label
             }}
+            isClearable={!required}
+            isRequired={false} // we don't want HTML5 validation
             {...field}
             {...rest}
             chakraStyles={reactSelectStyles}
-            isClearable
             onChange={(selectedOption) => {
               setValue(name, selectedOption)
             }}
@@ -81,7 +83,7 @@ export const SelectCustom = ({
   )
 }
 
-export const OrganzationTypesSelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) => {
+export const OrganzationTypeSelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) => {
   const { t } = useTranslation()
 
   const orgTypes: SelectOptionType[] = [
@@ -98,37 +100,61 @@ export const OrganzationTypesSelector = ({ ...props }: Omit<SelectCustomProps, '
   )
 }
 
-export const CountriesTypesSelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) => {
+export const CountrySelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) => {
   const { t } = useTranslation()
 
   const defaultVal = { label: t('country_selector.spain', { defaultValue: 'Spain' }), value: 'ES' }
 
-  const countries: SelectOptionType[] = [
-    defaultVal,
-    { label: t('country_selector.australia', { defaultValue: 'Australia' }), value: 'AU' },
-    { label: t('country_selector.brazil', { defaultValue: 'Brazil' }), value: 'BR' },
-    { label: t('country_selector.canada', { defaultValue: 'Canada' }), value: 'CA' },
-    { label: t('country_selector.china', { defaultValue: 'China' }), value: 'CN' },
-    { label: t('country_selector.france', { defaultValue: 'France' }), value: 'FR' },
-    { label: t('country_selector.germany', { defaultValue: 'Germany' }), value: 'DE' },
-    { label: t('country_selector.india', { defaultValue: 'India' }), value: 'IN' },
-    { label: t('country_selector.italy', { defaultValue: 'Italy' }), value: 'IT' },
-    { label: t('country_selector.japan', { defaultValue: 'Japan' }), value: 'JP' },
-    { label: t('country_selector.mexico', { defaultValue: 'Mexico' }), value: 'MX' },
-    { label: t('country_selector.netherlands', { defaultValue: 'Netherlands' }), value: 'NL' },
-    { label: t('country_selector.new_zealand', { defaultValue: 'New Zealand' }), value: 'NZ' },
-    { label: t('country_selector.russia', { defaultValue: 'Russia' }), value: 'RU' },
-    { label: t('country_selector.south_africa', { defaultValue: 'South Africa' }), value: 'ZA' },
-    { label: t('country_selector.south_korea', { defaultValue: 'South Korea' }), value: 'KR' },
-    { label: t('country_selector.sweden', { defaultValue: 'Sweden' }), value: 'SE' },
-    { label: t('country_selector.switzerland', { defaultValue: 'Switzerland' }), value: 'CH' },
-    { label: t('country_selector.united_kingdom', { defaultValue: 'United Kingdom' }), value: 'GB' },
-    { label: t('country_selector.united_states', { defaultValue: 'United States' }), value: 'US' },
-    { label: t('country_selector.other', { defaultValue: 'Other' }), value: 'OT' },
-  ]
+  // Priority countries in the desired order
+  const priorityCountries = ['ES', 'FR', 'DE', 'GB', 'IT', 'US']
+
+  const {
+    data: countries,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ['countries'],
+    queryFn: async () => {
+      const response = await fetch('https://restcountries.com/v3.1/all')
+      if (!response.ok) {
+        throw new Error('Failed to fetch countries')
+      }
+      const data = await response.json()
+
+      // Transform and sort the data
+      const transformedCountries = data.map((country: any) => ({
+        label: country.name.common,
+        value: country.cca2,
+      }))
+
+      // Custom sort function
+      return transformedCountries.sort((a: SelectOptionType, b: SelectOptionType) => {
+        const aIndex = priorityCountries.indexOf(a.value)
+        const bIndex = priorityCountries.indexOf(b.value)
+
+        // If both countries are priority countries, sort by priority order
+        if (aIndex !== -1 && bIndex !== -1) {
+          return aIndex - bIndex
+        }
+
+        // If only a is a priority country, it comes first
+        if (aIndex !== -1) return -1
+        // If only b is a priority country, it comes first
+        if (bIndex !== -1) return 1
+
+        // For non-priority countries, sort alphabetically
+        return a.label.localeCompare(b.label)
+      })
+    },
+    staleTime: Infinity, // Countries list won't change often
+  })
+
+  if (error) return <Alert status='error'>{error.message}</Alert>
+
   return (
     <SelectCustom
       options={countries}
+      isLoading={isLoading}
       label={t('country_selector.selector_label', { defaultValue: 'Country' })}
       defaultValue={defaultVal}
       controller={{ defaultValue: defaultVal }}
@@ -137,7 +163,7 @@ export const CountriesTypesSelector = ({ ...props }: Omit<SelectCustomProps, 'op
   )
 }
 
-export const MembershipSizeTypesSelector = ({ defaultValue, ...props }: Omit<SelectCustomProps, 'options'>) => {
+export const MembershipSizeSelector = ({ defaultValue, ...props }: Omit<SelectCustomProps, 'options'>) => {
   const { t } = useTranslation()
   const listSizes: SelectOptionType[] = [
     { label: '0-100', value: '0-100' },

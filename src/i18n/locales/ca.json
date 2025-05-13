@@ -1,15 +1,16 @@
 {
+  "account": {
+    "subtitle": "Update your account details and personal information",
+    "title": "Account Information"
+  },
   "actions": {
-    "create_first_vote": "Veure tots els processos",
-    "create_new_vote": "Crear una nova votació",
-    "manage_team": "Gestionar equip",
-    "save": "Desar els canvis",
-    "view_active_votes": "Veure votacions actives"
+    "cancel": "Cancel",
+    "save": "Guarda els canvis"
   },
   "active": "Actiu",
   "add_new_org": "Afegir una nova organització",
   "all": "Tots",
-  "already_member": "Ja ets membre?",
+  "already_member": "Ja tens un compte?",
   "alt": {
     "images": {
       "barca": "escut del Barça",
@@ -45,50 +46,7 @@
     "votes_weight_other": "<span>{{ count }}</span> <text>vots</text>",
     "voting_anonymous_advice": "Si us plau, espera mentre la màgia té lloc 🪄.\nAixò pot trigar uns minuts; no tanquis la finestra."
   },
-  "auth": {
-    "subtitle": "Redueix costos, estalvia temps: Votació segura, privada i complint amb el RGPD",
-    "title": "La plataforma global de votació"
-  },
-  "authPage": {
-    "text": {
-      "1": "Llança eleccions segures i verificables amb només uns clics.",
-      "2": "Característiques adaptables que es poden escalar amb la teva organització.",
-      "3": "Estalvia fins a 10 vegades en comparació amb els mètodes tradicionals de votació.",
-      "4": "Organitza votacions accessibles en qualsevol dispositiu: mòbil, tauleta o escriptori.",
-      "5": "L'encriptació garanteix que les teves eleccions siguin segures i privades.",
-      "6": "Fomenta una participació més alta amb eines fàcils d'usar.",
-      "7": "Incorpora fàcilment la teva imatge corporativa a la votació.",
-      "8": "Els teus processos de votació són segurs, fiables i llestos per funcionar.",
-      "9": "Gestiona múltiples eleccions sense esforç des d'un únic lloc.",
-      "10": "Actualitzacions i anàlisis en temps real a les teves mans.",
-      "11": "Augmenta la participació amb fluxos de votació intuïtius.",
-      "12": "Redueix les despeses operatives per a tu i els teus votants.",
-      "13": "Explora opcions avançades com el vot secret o els vots ponderats.",
-      "14": "Les eleccions transparents i verificables fomenten la confiança en els resultats.",
-      "15": "Abraça el futur de la votació. Comença avui!",
-      "16": "Centra't en el que importa més."
-    },
-    "title": {
-      "1": "Configuració simplificada:",
-      "2": "Plans flexibles:",
-      "3": "Estalvi de costos:",
-      "4": "Accessibilitat universal:",
-      "5": "Tecnologia fiable:",
-      "6": "Potencia la participació:",
-      "7": "Integració sense fissures:",
-      "8": "Relaxa't, ens encarreguem de tot:",
-      "9": "Optimitza les operacions:",
-      "10": "Mantingue't informat:",
-      "11": "Impulsa la participació:",
-      "12": "Controla els costos:",
-      "13": "Flexibilitat millorada:",
-      "14": "Construeix confiança:",
-      "15": "Uneix-te a centenars d'organitzacions:",
-      "16": "Deixa'ns gestionar la complexitat:"
-    }
-  },
   "avatar": {
-    "hint": "Min 200x200px .PNG or .JPEG",
     "label": "Logo/Avatar"
   },
   "back": "Enrere",
@@ -239,6 +197,10 @@
     "wallet_address_title": "Adreces de cartera"
   },
   "census_details": "Census Details",
+  "change_password": {
+    "subtitle": "Enter your current password and a new password to update your credentials.",
+    "title": "Change Password"
+  },
   "claim": {
     "loading_description": "<h3>Autenticació de cartera (Metamask, Rainbow, Coinbase):</h3><p>Per rebre els teus tokens, si us plau, signa la sol·licitud quan se't demani.</p><strong>Important:</strong><p>Si surts d'aquesta pàgina sense signar, no rebràs els tokens que has pagat.</p><strong>Autenticació de compte social (Google, Github, Facebook):</strong><p>Si us plau, espera mentre processem la teva sol·licitud.</p>",
     "purchase_success": "<title>Apreciem la seva compra!</title><p>Si tens alguna pregunta, envia un correu a <mailto>orders@vocdoni.org</mailto></p>",
@@ -263,45 +225,17 @@
     "copied_title": "Copiat!"
   },
   "country_selector": {
-    "australia": "Australia",
-    "brazil": "Brazil",
-    "canada": "Canada",
-    "china": "China",
-    "france": "France",
-    "germany": "Germany",
-    "india": "India",
-    "italy": "Italy",
-    "japan": "Japan",
-    "mexico": "Mexico",
-    "netherlands": "Netherlands",
-    "new_zealand": "New Zealand",
-    "other": "Other",
-    "russia": "Russia",
     "selector_label": "Country",
-    "south_africa": "South Africa",
-    "south_korea": "South Korea",
-    "spain": "Spain",
-    "sweden": "Sweden",
-    "switzerland": "Switzerland",
-    "united_kingdom": "United Kingdom",
-    "united_states": "United States"
+    "spain": "Spain"
   },
-  "create_account": "Crea un compte",
   "create_org": {
-    "already_profile": "Si la teva organització ja té un perfil, demana a l'administrador que et convidi a l'organització.",
+    "already_profile": "If your organization already has a profile, <2>access the dashboard</2> and contact the administrator to invite you",
     "communication": "Vull rebre comunicacions i ser contactat per adaptar la meva experiència de governança.",
-    "credit_card": "Sense targeta de crèdit, sense renovació automàtica.",
-    "full_access": "Accés complet a les funcionalitats bàsiques",
-    "header": "Prova Vocdoni gratuïtament durant 7 dies",
-    "logout": "Si vols iniciar sessió des d'un altre compte, si us plau tanca la sessió",
-    "multiple_administrators": "Múltiples administradors",
     "private_org": "Detalls privats de l'organització",
     "private_org_description": "Ajuda'ns a adaptar la teva experiència amb informació sobre la teva organització. No compartirem aquesta informació",
     "public_info": "Informació pública de l'organització",
-    "support_during_trial_period": "Suport durant el període de prova",
-    "title": "Crea la teva organització",
-    "unlimited_voting_processes": "Creació il·limitada de processos de votació",
-    "up_to_20_voters": "Fins a 20 votants"
+    "subtitle": "Cut cost, Save Time: Secure, Private, and GDPR Compliant",
+    "title": "Organization"
   },
   "csp_census": {
     "github": {
@@ -325,13 +259,14 @@
   },
   "delete_my_account": "Delete my account",
   "description": "Description",
+  "do_it_later": "Do it later",
   "edit_saas_profile": {
     "customization_details": "Defineix els paràmetres que milloraran l'experiència d'usuari i personalitzaran la pàgina de votació",
     "edited_successfully": "Actualitzat correctament",
     "header_image": "Imatge de capçalera"
   },
   "email": "Correu electrònic",
-  "email_placeholder": "your@email.com",
+  "email_placeholder": "nom@email.com",
   "error": {
     "go_back": "Torna enrere",
     "invalid_cell_data": "Algunes fileres no contenen adreces correctes: {{rows, list}}",
@@ -401,7 +336,6 @@
     "footer_subtitle": "El Protocol de Votació Global",
     "terms_and_privacy": "<link1>Termes d'ús</link1> i <link2>Política de privacitat</link2>"
   },
-  "forgot_password": "Has oblidat la contrasenya?",
   "forgot_password_reset_link": "Envia l'enllaç per restablir la contrasenya",
   "forgot_password_subtitle": "No hi ha cap problema. Només cal que ens facilitis la teva adreça de correu electrònic i t'enviarem un enllaç per restablir la contrasenya, amb el qual podràs escollir-ne una de nova.",
   "forgot_password_title": "Has oblidat la teva contrasenya?",
@@ -553,6 +487,9 @@
       }
     },
     "select_language": "Idioma"
+  },
+  "form_error": {
+    "passwords_must_match": ""
   },
   "gitcoin": {
     "effective": "20: Efectiu",
@@ -959,13 +896,13 @@
     "user_invited": "Email enviat a {{email}}"
   },
   "invite_people": "Convidar Membres",
-  "keep_me_logged": "Mantenir-me connectat",
   "language": {
     "catalan": "Català",
     "english": "English",
     "spanish": "Castellano"
   },
   "languages": "Languages",
+  "lastname": "Last name",
   "light_mode": "Mode clar",
   "link": {
     "discord": "Enllaç al Discord de Vocdoni",
@@ -1028,15 +965,16 @@
     "create_organization_btn": "Crear Organització",
     "description1": "Abans de començar a crear el vostre procés de votació, <span>heu de crear una organització</span>, és gratuït. Amb una organització, podreu crear una àmplia gamma d'eleccions i donar veu als membres de la vostra comunitat.",
     "description2": "Com a <span>paquet de benvinguda</span>, rebràs {{ faucetAmount }} tokens gratuïts per començar a utilitzar la nostra plataforma.",
+    "onboarding": "If your organization is already on Vocdoni, ask its administrator to invite you.",
     "title": "Nova Organització"
   },
   "new_password": "New Password",
   "new_password_placeholder": "Enter your new password",
   "new_voting": "Nova votació",
   "no_results_filtering": "Your current search filter returns no results",
-  "not_registred_yet": "Encara no estàs registrat?",
+  "not_registred_yet": "No tens un compte?",
   "open_in_explorer": "Obre a l'explorador",
-  "or": "o",
+  "or": "o continua amb",
   "org_type_selector": {
     "community": "Community",
     "company": "Company",
@@ -1068,18 +1006,14 @@
   },
   "password": "Contrasenya",
   "password_placeholder": "Min 8 characters",
+  "password_placeholder_confirm": "Confirma la Contrasenya",
   "password_reset": {
     "subtitle": "If your email corresponds to an existing account, you'll receive an email with a code to reset your password.",
     "title": "Password reset"
   },
   "password_update": {
     "actions": {
-      "update": "Update Password"
-    },
-    "confirm": {
-      "label": "Confirm Password",
-      "mismatch": "Passwords don't match",
-      "required": "Please confirm your password"
+      "save": "Save Password"
     },
     "error": "Failed to update password",
     "new": {
@@ -1093,7 +1027,7 @@
     },
     "success": "Password updated successfully"
   },
-  "passwords_do_not_match": "Els passwords no coincideixen",
+  "passwords_do_not_match": "Les contrasenyes no coincideixen",
   "plan_upgrade": {
     "dont_limit_yourself": "No et limitis. Uneix-te a la família de 725 organitzacions que confien en <2>Vocdoni</2>.",
     "feature_available_in": "Funció disponible a:",
@@ -1332,9 +1266,6 @@
     "voters": "Voters"
   },
   "profile": {
-    "avatar": {
-      "label": "Avatar"
-    },
     "error": "Failed to update profile",
     "success": "Profile updated successfully",
     "title": "Profile"
@@ -1365,15 +1296,15 @@
   },
   "signin": "Inicia sessió",
   "signin_google": "Inicia sessió amb Google",
-  "signin_subtitle": "Introdueix el teu correu electrònic i contrasenya per iniciar sessió!",
-  "signin_title": "Inicia sessió",
-  "signup_agree_terms": "Crear un compte implica que acceptes els <termsLink>Termes i Condicions</termsLink> i <privacyLink>la nostra Política de Privacitat</privacyLink>",
+  "signin_subtitle": "Introdueix la teva informació per començar",
+  "signin_title": "Benvingut",
+  "signup_agree_promotions": "Accepto rebre promocions i ofertes per als serveis de votació digital oferts per Vocdoni.",
+  "signup_agree_terms": "Accepto els <termsLink>Termes del servei</termsLink> i la <privacyLink>Política de privacitat</privacyLink>",
   "signup_create_account": "Crea el meu compte",
-  "signup_first_name": "Nom",
-  "signup_last_name": "Cognom",
-  "signup_subtitle": "Introdueix el teu correu electrònic i contrasenya per registrar-te!",
-  "signup_title": "Registrar-se",
-  "skip": "Ometre",
+  "signup_firstname": "Nom",
+  "signup_lastname": "Cognom",
+  "signup_subtitle": "Continua per accedir al teu compte",
+  "signup_title": "Crea un compte",
   "submit": "Submit",
   "subscribe": "Subscribe",
   "subscription": {
@@ -1387,7 +1318,6 @@
     "your_subscription": "Your Subscription"
   },
   "support": "Suport",
-  "surname": "Surname",
   "switch_organization": "Canvia d'organització",
   "team": {
     "expiration": "Expiració",
@@ -1397,7 +1327,6 @@
     "team_members": "Membres de l'equip",
     "title": "Equip"
   },
-  "teams": "Teams",
   "terms": {
     "section1": {
       "description1": "L'Associació Vocdoni, amb seu a Suïssa, opera les plataformes app.vocdoni.io i onvote.app.",
@@ -1459,6 +1388,16 @@
   },
   "terms_and_conditions": "Terms and Conditions",
   "terms_of_use": "Condicions d'ús",
+  "testimonials": {
+    "auth": {
+      "position": "President",
+      "text": "Vocdoni has transformed how we conduct our voting processes"
+    },
+    "ceec": {
+      "position": "CEO",
+      "text": "We chose Vocdoni because it guarantees secure, reliable, and transparent participation for all our members in our Annual General Meeting."
+    }
+  },
   "tier_upgrade": {
     "current_plan": "El teu pla <2>{{ plan, lowercase }}</2> està limitat a seleccionar fins a <6>{{ voters }} votants</6>.",
     "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
@@ -1534,23 +1473,22 @@
   "verify": {
     "account_created_succesfully": "Account created successfully!",
     "email_sent": "Email sent successfully",
-    "enter_verification_code": "Enter the verification code sent to your email",
-    "follow_email_instructions": "Follow the instructions there to activate your account.",
+    "enter_code": "Enter the code below to activate your account",
+    "enter_verification_code": "We've sent you a verification email. Please follow the instructions to activate your account.",
     "invalid_verification": "Invalid verification request",
     "missing_email": "No email address provided for verification",
     "resend_confirmation_mail": "Resend Email",
+    "sent_to_email": "Email sent to {email}",
     "verification_email_is_sent": "A verification email has been sent to:",
     "verify_code": "Verify",
     "verify_your_email": "Verify your email"
   },
   "verify_mail": {
-    "error_subtitle": "We found an error verifying your email, please check verification mail to ensure all data is correct",
-    "verifying_subtitle": "Await until we verify your email address. You will be redirect on success.",
+    "error_subtitle": "The code you entered is incorrect. Please try again",
+    "verifying_subtitle": "Await while we verify your email address. You will be redirect on success.",
     "verifying_title": "Verifying {{ email }}"
   },
   "view_plans_and_pricing": "Veure Plans i Preus",
-  "view_pricing": "View Pricing",
-  "view_pricing_plan": "View Pricing Plan",
   "view_pricing_plans": "View Pricing Plans",
   "vocdoni logo": "",
   "voters": "voters",

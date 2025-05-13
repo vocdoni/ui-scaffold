@@ -34,9 +34,7 @@ import { radii } from './radius'
 import { space } from './space'
 
 import '@fontsource/inter/500.css'
-import '@fontsource/inter/600.css'
 import '@fontsource/inter/700.css'
-import '@fontsource/inter/800.css'
 import '@fontsource/inter/index.css'
 
 export const theme = extendTheme(vtheme, {
@@ -51,6 +49,7 @@ export const theme = extendTheme(vtheme, {
   },
   fontWeights: {
     bold: '500',
+    extrabold: '700',
   },
   styles: {
     global: (props) => ({
@@ -59,6 +58,7 @@ export const theme = extendTheme(vtheme, {
         '--box-shadow': '0 0 10px #e3e3e3',
         '--box-shadow-dark-mode': '0 0 10px #101010',
         '--border': '1px solid rgb(228, 228, 231)',
+        '--shadow-sm': '0 1px 2px 0 rgb(0 0 0/0.05)',
       },
 
       '.md-sizes': {

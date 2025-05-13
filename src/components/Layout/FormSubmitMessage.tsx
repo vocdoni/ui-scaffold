@@ -1,4 +1,4 @@
-import { Box, BoxProps, FormControl, FormErrorMessage } from '@chakra-ui/react'
+import { BoxProps, Flex, FormControl, FormErrorMessage, Text } from '@chakra-ui/react'
 
 const FormSubmitMessage = ({
   isLoading,
@@ -19,19 +19,21 @@ const FormSubmitMessage = ({
   }
   if (isSuccess) {
     return (
-      <Box pt={2} {...boxProps}>
-        {success}
-      </Box>
+      <Flex w='full' justifyContent={'center'} pt={2} {...boxProps}>
+        <Text as={'span'} size={'sm'}>
+          {success}
+        </Text>
+      </Flex>
     )
   }
   if (isError) {
     return (
       <FormControl isInvalid={isError}>
-        <Box pt={2} {...boxProps}>
+        <Flex justifyContent={'center'} w='full' {...boxProps}>
           <FormErrorMessage>
             {typeof error === 'string' ? error : error?.message || 'Error performing the operation'}
           </FormErrorMessage>
-        </Box>
+        </Flex>
       </FormControl>
     )
   }

@@ -44,11 +44,26 @@ export const newColorsBase = {
   white: '#ffffff',
   gray: {
     light: '#fbfbfb',
+    light2: '#f5f5f5',
+    light3: '#e5e5e5',
     normal: '#71717A',
+    normal2: '#737373',
+  },
+  black: {
+    light: '#0a0a0a',
   },
 }
 
 export const colors = {
+  auth: {
+    bg: newColorsBase.gray.light2,
+    border: newColorsBase.gray.light3,
+    card_bg: newColorsBase.white,
+    checkboxes_text: newColorsBase.gray.normal2,
+    image_color: newColorsBase.white,
+    or: newColorsBase.gray.normal2,
+    secondary_text: newColorsBase.gray.normal2,
+  },
   dashboard: {
     aside_bg: newColorsBase.gray.light,
     back: newColorsBase.gray.normal,
@@ -85,6 +100,44 @@ export const colors = {
       },
     },
   },
+  input: {
+    bg: newColorsBase.white,
+    border: newColorsBase.gray.light3,
+    outline: newColorsBase.black.light,
+    placeholder: newColorsBase.gray.normal2,
+  },
+
+  // input: {
+  //   bg: {
+  //     light: colorsBase.white.pure,
+  //     dark: 'transparent',
+  //   },
+  //   calendar_border: colorsBase.gray.light,
+  //   border: colorsBase.white.light2,
+  //   element: colorsBase.gray.normal,
+  //   error: colorsBase.red,
+  //   drag_and_drop: {
+  //     border: colorsBase.gray.light,
+  //     border_active: colorsBase.primary,
+  //     text: colorsBase.primary,
+  //   },
+  //   dropdown: {
+  //     check_icon: colorsBase.primary,
+  //     control: colorsBase.gray.normal,
+  //     option_dark: colorsBase.white.pure,
+  //     option_light_selected: colorsBase.black,
+  //     option_bg_selected: {
+  //       light: colorsBase.white.dark,
+  //       dark: colorsBase.blue.dark,
+  //     },
+  //     placeholder: colorsBase.gray.normal,
+  //   },
+  //   outline: {
+  //     light: colorsBase.blue.normal,
+  //     dark: colorsBase.blue.light,
+  //   },
+  //   required_asterisk: colorsBase.primary,
+  // },
 
   //
 
@@ -105,10 +158,6 @@ export const colors = {
     warning: colorsBase.orange,
     box_shadow_light: colorsBase.white.pure,
     box_shadow_dark: colorsBase.blue.dark,
-  },
-  auth: {
-    banner_bg: colorsBase.primary_cta,
-    textColorSecondary: colorsBase.gray.normal,
   },
   banner_link: colorsBase.white.pure,
   bg: {
@@ -259,37 +308,7 @@ export const colors = {
       dark: colorsBase.blue.grayish,
     },
   },
-  input: {
-    bg: {
-      light: colorsBase.white.pure,
-      dark: 'transparent',
-    },
-    calendar_border: colorsBase.gray.light,
-    border: colorsBase.white.light2,
-    element: colorsBase.gray.normal,
-    error: colorsBase.red,
-    drag_and_drop: {
-      border: colorsBase.gray.light,
-      border_active: colorsBase.primary,
-      text: colorsBase.primary,
-    },
-    dropdown: {
-      check_icon: colorsBase.primary,
-      control: colorsBase.gray.normal,
-      option_dark: colorsBase.white.pure,
-      option_light_selected: colorsBase.black,
-      option_bg_selected: {
-        light: colorsBase.white.dark,
-        dark: colorsBase.blue.dark,
-      },
-      placeholder: colorsBase.gray.normal,
-    },
-    outline: {
-      light: colorsBase.blue.normal,
-      dark: colorsBase.blue.light,
-    },
-    required_asterisk: colorsBase.primary,
-  },
+
   link: {
     light: colorsBase.gray.dark,
     dark: colorsBase.gray.normal,
@@ -516,6 +535,12 @@ export const colors = {
     800: 'rgb(1, 1, 1)',
     900: 'rgb(24, 24, 27)',
     950: 'rgb(24, 24, 27)',
+  },
+
+  red: {
+    600: 'rgb(239, 68, 68)',
+    700: 'rgba(239, 68, 68, 0.978)',
+    800: 'rgba(239, 68, 68, 0.9)',
   },
 
   gray: {
