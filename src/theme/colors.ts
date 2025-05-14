@@ -1,5 +1,3 @@
-import { Breadcrumb } from '@chakra-ui/react'
-
 export const colorsBase = {
   beige: '#D2CBB9',
   black: '#000000',
@@ -548,7 +546,7 @@ export const colors = {
     100: 'rgba(244, 244, 245, 0.8)',
     200: 'rgba(244, 244, 245, 0.8)',
     300: 'rgba(244, 244, 245, 0.8)',
-    400: 'rgba(244, 244, 245, 0.8)',
+    400: 'rgb(115, 115, 115)',
     500: 'rgba(244, 244, 245, 0.8)',
     600: 'rgba(244, 244, 245, 0.8)',
     700: 'rgba(244, 244, 245, 0.992)',
