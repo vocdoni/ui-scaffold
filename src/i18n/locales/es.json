@@ -5,7 +5,11 @@
   },
   "actions": {
     "cancel": "Cancel",
-    "save": "Save Changes"
+    "create_first_vote": "View all processes",
+    "create_new_vote": "Create new vote",
+    "manage_team": "Manage team",
+    "save": "Save Changes",
+    "view_active_votes": "View active votes"
   },
   "active": "Activo",
   "add_new_org": "Añadir una nueva organización",
@@ -248,6 +252,7 @@
   "dark_mode": "Modo oscuro",
   "dashboard_empty_processes": {
     "common_tasks_actions": "Common tasks and actions",
+    "create_first_organization": "Create your first organization",
     "create_first_vote": "Create your first vote",
     "hello": "Hello",
     "hello_description": "",
@@ -257,7 +262,6 @@
     "recent_voting_title": "Recent Voting Processes",
     "title": "Here's an overview of your organization's voting activities"
   },
-  "delete_my_account": "Delete my account",
   "description": "Description",
   "do_it_later": "Do it later",
   "edit_saas_profile": {
@@ -992,6 +996,7 @@
       "not_owner": "Esta organización aún no tiene votaciones.",
       "title": "Crea tu primer proceso de votación"
     },
+    "ends_on": "Ends on {{date}}",
     "no_organization_title": "You don't belong to any organization yet!",
     "organization": "Organización",
     "title": {
@@ -1286,6 +1291,10 @@
   "session_expired": "Sesión expirada",
   "session_expired_description": "La sesión puede haber expirado y no se pudo actualizar, por favor inicia sesión de nuevo",
   "settings": "Configuración",
+  "setup": {
+    "progress": "Your progress",
+    "title": "Complete your setup"
+  },
   "share": {
     "copy": "Copiar",
     "election_share_btn_text": "Comparte",

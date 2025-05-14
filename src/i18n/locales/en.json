@@ -5,7 +5,11 @@
   },
   "actions": {
     "cancel": "Cancel",
-    "save": "Save Changes"
+    "create_first_vote": "View all processes",
+    "create_new_vote": "Create new vote",
+    "manage_team": "Manage team",
+    "save": "Save Changes",
+    "view_active_votes": "View active votes"
   },
   "active": "Active",
   "add_new_org": "Add a new organization",
@@ -245,8 +249,9 @@
   "dark_mode": "Dark mode",
   "dashboard_empty_processes": {
     "common_tasks_actions": "Common tasks and actions",
+    "create_first_organization": "Create your first organization",
     "create_first_vote": "Create your first vote",
-    "hello": "Hello",
+    "hello": "{{ emoji }} Hello {{ name }}!",
     "hello_description": "",
     "how_first_vote": "How to create your first vote",
     "quick_actions": "Quick Actions",
@@ -254,7 +259,6 @@
     "recent_voting_title": "Recent Voting Processes",
     "title": "Here's an overview of your organization's voting activities"
   },
-  "delete_my_account": "Delete my account",
   "description": "Description",
   "do_it_later": "Do it later",
   "edit_saas_profile": {
@@ -962,7 +966,7 @@
   },
   "new_password": "New Password",
   "new_password_placeholder": "Enter your new password",
-  "new_voting": "New Vote",
+  "new_voting": "New vote",
   "no_results_filtering": "Your current search filter returns no results",
   "not_registred_yet": "Don't have an account?",
   "open_in_explorer": "Open in explorer",
@@ -984,6 +988,7 @@
       "not_owner": "This organization has no voting processes yet",
       "title": "Create your first voting process"
     },
+    "ends_on": "Ends on {{date}}",
     "no_organization_title": "You don't belong to any organization yet!",
     "organization": "Organization",
     "title": {
@@ -1275,6 +1280,10 @@
   "session_expired": "Session expired",
   "session_expired_description": "Session may have been expired and it could not be refreshed, please login again",
   "settings": "Settings",
+  "setup": {
+    "progress": "Your progress",
+    "title": "Complete your setup"
+  },
   "share": {
     "copy": "Copy",
     "election_share_btn_text": "Share",
