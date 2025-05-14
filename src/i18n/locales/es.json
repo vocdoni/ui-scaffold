@@ -130,7 +130,7 @@
       "date_format": "d 'de' MMMM 'de' y 'a' 'las' H:mm",
       "secret_until_the_end": "Los resultados se harán públicos cuando el proceso finalice el {{ endDate }}.",
       "title": "Resultados para \"{{ title }}\"",
-      "votes": "Votos: {{ votes }} ({{ percent }})"
+      "votes": "{{ percent }}"
     },
     "schedule": {
       "created": "Creado {{ distance }}",

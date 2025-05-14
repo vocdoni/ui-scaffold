@@ -3,7 +3,6 @@ import {
   AccordionIcon,
   Box,
   BoxProps,
-  ChakraProvider,
   Flex,
   HStack,
   Icon,
@@ -54,7 +53,6 @@ import {
 } from '~components/Layout/Dashboard'
 import { Features } from '~components/Process/Features'
 import { Routes } from '~src/router/routes'
-import { dashboard } from '~theme'
 
 export const ProcessView = () => {
   const { t } = useTranslation()
@@ -167,12 +165,10 @@ export const ProcessView = () => {
 
         {/* Questions & Results */}
         <DashboardBox>
-          <Heading as='h4'>
-            <Trans i18nKey='voting_results'>Voting Results</Trans>
+          <Heading as='h4' alignContent='center' justifyContent='space-between'>
+            <Trans i18nKey='questions_and_results'>Questions and results</Trans>
           </Heading>
-          <ChakraProvider theme={dashboard}>
-            <ElectionResults />
-          </ChakraProvider>
+          <ElectionResults />
         </DashboardBox>
       </Box>
 

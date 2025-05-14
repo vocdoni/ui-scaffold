@@ -19,7 +19,7 @@ import { Pagination, PaginationButton } from './components/pagination'
 import { Popover } from './components/popover'
 import { ElectionQuestions } from './components/Questions'
 import { Radio } from './components/radio'
-import { DashboardElectionResults, ElectionResults } from './components/results'
+import { ElectionResults } from './components/results'
 import { SpreadsheetAccess } from './components/SpreadsheetAccess'
 import { Stepper } from './components/stepper'
 import { Table } from './components/table'
@@ -222,12 +222,6 @@ export const theme = extendTheme(vtheme, {
   sizes: {
     'modal-stretch': 'calc(100% + var(--chakra-space-5)*2 + var(--chakra-space-6)*2)',
     'modal-stretch-lg': 'calc(100% + var(--chakra-space-10)*2 + var(--chakra-space-6)*2)',
-  },
-})
-
-export const dashboard = extendTheme(vtheme, {
-  components: {
-    ElectionResults: DashboardElectionResults,
   },
 })
 
