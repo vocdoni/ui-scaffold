@@ -1,6 +1,8 @@
 import {
   AccordionButton,
   AccordionIcon,
+  Badge,
+  BadgeProps,
   Box,
   BoxProps,
   Flex,
@@ -11,6 +13,7 @@ import {
   Link,
   Stack,
   Text,
+  Tooltip,
   useClipboard,
   VStack,
 } from '@chakra-ui/react'
@@ -19,6 +22,7 @@ import {
   Clock,
   Copy01,
   Eye,
+  InfoCircle,
   PauseCircle,
   PlayCircle,
   Settings01,
@@ -167,6 +171,7 @@ export const ProcessView = () => {
         <DashboardBox>
           <Heading as='h4' alignContent='center' justifyContent='space-between'>
             <Trans i18nKey='questions_and_results'>Questions and results</Trans>
+            <ResultsStateBadge />
           </Heading>
           <ElectionResults />
         </DashboardBox>
@@ -175,6 +180,45 @@ export const ProcessView = () => {
       <ProcessViewSidebar show={showSidebar} />
     </DashboardContents>
   )
+}
+
+const ResultsStateBadge = (props: BadgeProps) => {
+  const { election } = useElection()
+  const { t } = useTranslation()
+
+  if (!(election instanceof PublishedElection)) return null
+
+  if ([ElectionStatus.ONGOING, ElectionStatus.RESULTS].includes(election.status)) {
+    let color = 'blue'
+    let text = t('results_state.live_results', 'Live results')
+    let tooltip = t(
+      'results_state.live_results_tooltip',
+      'This voting process shows live results. However, it is still in progress, so the results may change before the vote ends.'
+    )
+    if (election.status === ElectionStatus.ONGOING && election.electionType.secretUntilTheEnd) {
+      color = 'orange'
+      text = t('results_state.secret_until_end', 'Awaiting results')
+      tooltip = t(
+        'results_state.secret_until_end_tooltip',
+        'Results are hidden and will only be available once voting ends'
+      )
+    }
+    if (election.status === ElectionStatus.RESULTS) {
+      color = 'green'
+      text = t('results_state.results_available', 'Results available')
+      tooltip = null
+    }
+    return (
+      <Tooltip label={tooltip} isDisabled={!tooltip} placement='top'>
+        <Badge colorScheme={color} {...props}>
+          {text}
+          {tooltip && <Icon as={InfoCircle} />}
+        </Badge>
+      </Tooltip>
+    )
+  }
+
+  return null
 }
 
 const ScheduleField = ({
