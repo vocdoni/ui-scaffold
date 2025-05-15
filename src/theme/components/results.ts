@@ -24,7 +24,7 @@ const baseStyle = definePartsStyle({
     top: 0,
     left: 0,
     bottom: 0,
-    zIndex: 1,
+    zIndex: 'sidebar',
     color: 'black',
     display: 'flex',
     alignItems: 'center',
@@ -36,7 +36,7 @@ const baseStyle = definePartsStyle({
     right: 0,
     top: 0,
     bottom: 0,
-    zIndex: 1,
+    zIndex: 'sidebar',
     display: 'flex',
     alignItems: 'center',
     pr: 2,
@@ -44,7 +44,7 @@ const baseStyle = definePartsStyle({
   },
   progress: {
     h: 8,
-    zIndex: 0,
+    zIndex: 'background',
     bg: 'gray.100',
     borderRadius: 'sm',
     '& > div': {

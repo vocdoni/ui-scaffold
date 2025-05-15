@@ -1,16 +1,16 @@
 import {
-  AccordionButton,
-  AccordionIcon,
   Badge,
   BadgeProps,
   Box,
-  BoxProps,
+  Button,
   Flex,
+  HeadingProps,
   HStack,
   Icon,
   IconButton,
   Input,
   Link,
+  Progress,
   Stack,
   Text,
   Tooltip,
@@ -46,6 +46,7 @@ import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { formatDate } from 'date-fns'
 import { ReactNode, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { LuEye, LuSearch, LuShield, LuUsers, LuVote } from 'react-icons/lu'
 import { generatePath } from 'react-router-dom'
 import {
   DashboardBox,
@@ -55,7 +56,6 @@ import {
   SidebarContents,
   SidebarProps,
 } from '~components/Layout/Dashboard'
-import { Features } from '~components/Process/Features'
 import { Routes } from '~src/router/routes'
 
 export const ProcessView = () => {
@@ -102,31 +102,39 @@ export const ProcessView = () => {
             <Trans i18nKey='calendar.title'>Schedule</Trans>
           </Heading>
           <HStack>
-            <ScheduleField
+            <SettingsField
               icon={Calendar}
-              date={election instanceof PublishedElection && election.startDate}
-              format={t('dashboard.process_view.date_format', 'MMMM do, y')}
-              text={t('start_date', 'Start Date')}
+              text={t('start_date', 'Start date')}
+              subtext={
+                election instanceof PublishedElection &&
+                formatDate(election.startDate, t('dashboard.process_view.date_format', 'MMMM do, y'))
+              }
             />
-            <ScheduleField
+            <SettingsField
               icon={Clock}
-              date={election instanceof PublishedElection && election.startDate}
-              format={t('dashboard.process_view.time_format', 'p')}
-              text={t('start_time', 'Start Time')}
+              text={t('start_time', 'Start time')}
+              subtext={
+                election instanceof PublishedElection &&
+                formatDate(election.startDate, t('dashboard.process_view.time_format', 'p'))
+              }
             />
           </HStack>
           <HStack>
-            <ScheduleField
+            <SettingsField
               icon={Calendar}
-              date={election instanceof PublishedElection && election.endDate}
-              format={t('dashboard.process_view.date_format', 'MMMM do, y')}
-              text={t('end_date', 'End Date')}
+              text={t('end_date', 'End date')}
+              subtext={
+                election instanceof PublishedElection &&
+                formatDate(election.endDate, t('dashboard.process_view.date_format', 'MMMM do, y'))
+              }
             />
-            <ScheduleField
+            <SettingsField
               icon={Clock}
-              date={election instanceof PublishedElection && election.endDate}
-              format={t('dashboard.process_view.time_format', 'p')}
-              text={t('end_time', 'End Time')}
+              text={t('end_time', 'End time')}
+              subtext={
+                election instanceof PublishedElection &&
+                formatDate(election.endDate, t('dashboard.process_view.time_format', 'p'))
+              }
             />
           </HStack>
         </DashboardBox>
@@ -221,62 +229,23 @@ const ResultsStateBadge = (props: BadgeProps) => {
   return null
 }
 
-const ScheduleField = ({
-  date,
-  format,
-  icon,
-  text,
-}: {
-  date?: Date
-  format: string
-  icon: typeof Calendar
-  text: ReactNode
-}) => {
-  const { t } = useTranslation()
-
-  return (
-    <Box display='flex' gap={2} flex={1} alignItems='center'>
-      <Box
-        color='gray.600'
-        bg='gray.100'
-        display='flex'
-        alignItems='center'
-        justifyContent='center'
-        h='full'
-        p={2}
-        borderRadius='md'
-      >
-        <Icon as={icon} boxSize={5} color='gray.500' />
-      </Box>
-      <Box flex={1} display='flex' flexDirection='column'>
-        <Text fontSize='sm' fontWeight='bold'>
-          {text}
-        </Text>
-        <Text whiteSpace='nowrap' color='gray.500' fontSize='sm'>
-          {date && formatDate(date, format)}
-        </Text>
-      </Box>
-    </Box>
-  )
-}
-
 const ProcessViewSidebar = (props: SidebarProps) => {
-  const { election, participation } = useElection()
+  const { election, participation, client } = useElection()
   const { t } = useTranslation()
 
   return (
     <Sidebar {...props}>
       <Stack flexDir='column'>
         <SidebarContents borderBottom='1px solid' borderColor='gray.200'>
-          <Heading as='h4' variant='sidebar-title' pt={4}>
+          <SidebarTitle>
             <Trans i18nKey='vote_information'>Vote information</Trans>
-          </Heading>
+          </SidebarTitle>
         </SidebarContents>
         <SidebarContents>
           <VStack align='stretch'>
-            <Heading as='h5' variant='sidebar-section' py={4}>
-              Control panel
-            </Heading>
+            <SidebarSubtitle>
+              <Trans i18nKey='control_panel'>Control panel</Trans>
+            </SidebarSubtitle>
             <ActionsProvider>
               {election instanceof PublishedElection && election.status === ElectionStatus.ONGOING && (
                 <ActionPause variant='outline' aria-label={t('process_actions.pause', { defaultValue: 'Pause' })}>
@@ -310,54 +279,122 @@ const ProcessViewSidebar = (props: SidebarProps) => {
                 </Text>
               </ActionCancel>
             </ActionsProvider>
+            <SidebarSubtitle>
+              <Trans i18nKey='voting_status'>Voting status</Trans>
+            </SidebarSubtitle>
+            {/* Total Votes Submitted */}
+            <DashboardBox display='flex' flexDir='column' gap={3} alignContent='start'>
+              <Box display='flex' justifyContent='space-between' w='full'>
+                <Box display='flex' gap={2} alignItems='center'>
+                  <Icon as={LuVote} />
+                  <Text textTransform='capitalize'>
+                    <Trans i18nKey='total_votes'>Total votes</Trans>
+                  </Text>
+                </Box>
+                <Text fontWeight='bold'>{(election instanceof PublishedElection && election.voteCount) || 0}</Text>
+              </Box>
+              <Box pb={6} borderBottom='1px solid' borderColor='gray.200'>
+                <Box display='flex' w='full' justifyContent='space-between' alignItems='center' fontSize='xs' mb={1}>
+                  <Box>
+                    <Trans i18nKey='turnout'>Turnout</Trans>
+                  </Box>
+                  <Box>{participation}%</Box>
+                </Box>
+                <Progress size='xs' colorScheme='gray' w='full' value={participation} />
+              </Box>
+              <Box display='flex' justifyContent='space-between' fontSize='sm'>
+                <Text display='flex' gap={2} alignItems='center' fontSize='inherit'>
+                  <Icon as={LuUsers} />
+                  <Trans i18nKey='census_size'>Census size</Trans>
+                </Text>
+                <Text fontSize='inherit'>{election instanceof PublishedElection && election.census.size}</Text>
+              </Box>
+            </DashboardBox>
+
+            {/* Voting settings */}
+            <SidebarSubtitle>
+              <Trans i18nKey='voting_settings'>Voting settings</Trans>
+            </SidebarSubtitle>
+            <SettingsField
+              icon={LuEye}
+              text={t('result_visibility', 'Results visibility')}
+              subtext={
+                election instanceof PublishedElection &&
+                (election.electionType.secretUntilTheEnd
+                  ? t('results_state.hidden_until_end', 'Hidden until the end')
+                  : t('results_state.live_results', 'Live results'))
+              }
+            />
+            <SettingsField
+              icon={LuShield}
+              text={t('anonymous_voting', 'Anonymous voting')}
+              subtext={
+                election instanceof PublishedElection &&
+                (election.electionType.anonymous
+                  ? t('results_state.enabled', 'Enabled')
+                  : t('results_state.not_enabled', 'Not enabled'))
+              }
+            />
+            <SettingsField
+              icon={LuVote}
+              text={t('vote_overwrite', 'Vote overwrite')}
+              subtext={
+                election instanceof PublishedElection &&
+                (election.electionType.anonymous
+                  ? t('results_state.enabled', 'Enabled')
+                  : t('results_state.not_enabled', 'Not enabled'))
+              }
+            />
+
+            {/* Additional actions */}
+            <SidebarSubtitle>
+              <Trans i18nKey='additional_actions'>Additional actions</Trans>
+            </SidebarSubtitle>
+            <Button
+              as={Link}
+              variant='outline'
+              w='full'
+              size='sm'
+              href={`${client.explorerUrl}/process/${election.id}`}
+              justifyContent='start'
+              leftIcon={<Icon as={LuSearch} />}
+              isExternal
+            >
+              <Trans i18nKey='view_in_explorer'>View in explorer</Trans>
+            </Button>
           </VStack>
         </SidebarContents>
       </Stack>
-      <VStack px={4} gap={6} align='stretch'>
-        {/* Total Votes Submitted */}
-        <DashboardBox textAlign='center' display='flex' flexDir='column' gap={3}>
-          <Text fontWeight={'bold'}>
-            <Trans i18nKey='total_votes_submitted'>Total Votes Submitted</Trans>
-          </Text>
-          <Box display='flex' alignItems='center' justifyContent='center' gap={3}>
-            <Text fontSize='3lg'>{(election instanceof PublishedElection && election.voteCount) || 0}</Text>
-            <Text fontSize='sm' color='gray.600' _dark={{ color: 'gray.400' }}>
-              ({participation}%)
-            </Text>
-          </Box>
-        </DashboardBox>
-
-        {/* Census Details */}
-        <DashboardBox textAlign='center' display='flex' flexDir='column' gap={3}>
-          <Text fontWeight={'bold'}>
-            <Trans i18nKey='census_details'>Census Details</Trans>
-          </Text>
-          <Text fontSize='2lg'>
-            {election instanceof PublishedElection && election.census.size} <Trans i18nKey='voters'>voters</Trans>
-          </Text>
-        </DashboardBox>
-
-        {/* Features Section */}
-        <DashboardBox textAlign='center' display='flex' flexDir='column' gap={3}>
-          <Text fontWeight={'bold'}>
-            <Trans i18nKey='features.title'>Features</Trans>
-          </Text>
-          <Features />
-        </DashboardBox>
-      </VStack>
     </Sidebar>
   )
 }
 
-type AccordionButtonProps = BoxProps & {
-  icon: any
-}
-
-const DashboardAccordionButton = ({ icon, children, ...rest }: AccordionButtonProps) => (
-  <AccordionButton>
-    <Box flex='1' textAlign='left' fontWeight={600} display='flex' alignItems='center' gap={4} {...rest}>
-      <Icon as={icon} /> {children}
+const SettingsField = ({ subtext, icon, text }: { subtext?: string; icon: typeof Calendar; text: ReactNode }) => (
+  <Box display='flex' gap={2} flex={1} alignItems='center'>
+    <Box
+      color='gray.600'
+      bg='gray.100'
+      display='flex'
+      alignItems='center'
+      justifyContent='center'
+      h='full'
+      p={2}
+      borderRadius='md'
+    >
+      <Icon as={icon} boxSize={5} color='gray.500' />
     </Box>
-    <AccordionIcon />
-  </AccordionButton>
+    <Box flex={1} display='flex' flexDirection='column'>
+      <Text fontSize='sm' fontWeight='bold' textTransform='capitalize'>
+        {text}
+      </Text>
+      <Text whiteSpace='nowrap' color='gray.500' fontSize='sm'>
+        {subtext}
+      </Text>
+    </Box>
+  </Box>
 )
+
+const SidebarTitle = (props: HeadingProps) => (
+  <Heading as='h4' fontSize='lg' fontWeight='bold' variant='sidebar-title' {...props} />
+)
+const SidebarSubtitle = (props: HeadingProps) => <Heading as='h5' fontSize='sm' variant='sidebar-subtitle' {...props} />

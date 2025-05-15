@@ -5,8 +5,7 @@ export const DashboardBox = (props: BoxProps) => (
     borderRadius='md'
     boxShadow='sm'
     border='var(--border)'
-    px={6}
-    py={4}
+    p={4}
     display='flex'
     flexDirection='column'
     flexWrap={'wrap'}

@@ -223,6 +223,10 @@ export const theme = extendTheme(vtheme, {
     'modal-stretch': 'calc(100% + var(--chakra-space-5)*2 + var(--chakra-space-6)*2)',
     'modal-stretch-lg': 'calc(100% + var(--chakra-space-10)*2 + var(--chakra-space-6)*2)',
   },
+  zIndices: {
+    background: 0,
+    sidebar: 1,
+  },
 })
 
 export const rainbowStyles = (colormode: ColorMode) => {
