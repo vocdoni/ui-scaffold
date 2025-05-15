@@ -7,7 +7,7 @@ import { Routes } from '~routes'
 
 export type BreadcrumbItem = {
   title: string
-  route: string
+  route?: string
 }
 
 export type BreadcrumbProps = {
@@ -51,12 +51,12 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ breadcrumb, setBreadcrumb }) =>
 
             {/* Item */}
             <Box display={{ base: index === breadcrumb.length - 1 ? 'block' : 'none', md: 'block' }}>
-              {index === breadcrumb.length - 1 ? (
-                <Text fontSize='sm'>{item.title}</Text>
-              ) : (
+              {item.route ? (
                 <Link as={ReactRouterLink} to={generatePath(item.route)} variant='breadcrumb' fontSize='sm'>
                   {item.title}
                 </Link>
+              ) : (
+                <Text fontSize='sm'>{item.title}</Text>
               )}
             </Box>
           </React.Fragment>
