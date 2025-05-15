@@ -7,7 +7,8 @@ const dashboard = definePartsStyle({
   button: {
     borderRadius: 'xl',
     bg: 'dashboard.sidebar.bg.light',
-    boxShadow: '0 0 10px #e3e3e3',
+    border: 'var(--border)',
+    boxShadow: 'sm',
     _dark: { bg: 'dashboard.sidebar.bg.dark', boxShadow: '0 0 10px #101010' },
     p: 4,
   },

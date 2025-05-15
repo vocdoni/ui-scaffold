@@ -143,7 +143,7 @@ const UnusedComponentButRequiredToNotLoseTranslations = () => {
   t('features.sms_notification', { defaultValue: 'SMS notification' })
   t('features.white_label', { defaultValue: 'White label' })
   t('features.live_streaming', { defaultValue: 'Live streaming' })
-  t('features.anonymous', { defaultValue: 'Anonymous voting' })
+  t('features.anonymous_voting', { defaultValue: 'Anonymous voting' })
   t('features.overwrite', { defaultValue: 'Vote overwrite' })
   t('features.live_results', { defaultValue: 'Live results' })
   // Section titles

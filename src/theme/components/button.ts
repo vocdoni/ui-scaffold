@@ -49,34 +49,6 @@ const primary = defineStyle((props) => {
   }
 })
 
-const outline = defineStyle((props) => {
-  const { colorScheme } = props
-
-  return {
-    bg: 'transparent',
-    color: `${colorScheme}.700`,
-    borderColor: '#e5e5e5',
-
-    _hover: {
-      bgColor: colorScheme === 'black' ? 'rgba(244, 244, 245, 0.8)' : `${colorScheme}.300`,
-    },
-    _active: {
-      bg: colorScheme === 'black' ? 'rgba(244, 244, 245, 0.8)' : `${colorScheme}.600`,
-    },
-
-    _disabled: {
-      ...disabled,
-      bgColor: 'white !important',
-      borderColor: '#E9EAEB !important',
-
-      _hover: {
-        bgColor: 'white !important',
-        borderColor: '#E9EAEB !important',
-      },
-    },
-  }
-})
-
 const link = defineStyle((props) => {
   const { colorScheme } = props
 
@@ -250,7 +222,6 @@ const sizes = {
 export const Button = defineStyleConfig({
   variants: {
     primary,
-    outline,
     transparent,
     link,
     underline,
@@ -260,6 +231,5 @@ export const Button = defineStyleConfig({
   defaultProps: {
     variant: 'primary',
     size: 'md',
-    colorScheme: 'black',
   },
 })

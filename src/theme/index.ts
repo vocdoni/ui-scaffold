@@ -15,7 +15,7 @@ import { Input } from './components/input'
 import { Link } from './components/link'
 import { Menu } from './components/menu'
 import { Modal } from './components/modal'
-import { Pagination } from './components/pagination'
+import { Pagination, PaginationButton } from './components/pagination'
 import { Popover } from './components/popover'
 import { ElectionQuestions } from './components/Questions'
 import { Radio } from './components/radio'
@@ -34,6 +34,7 @@ import { radii } from './radius'
 import { space } from './space'
 
 import '@fontsource/inter/500.css'
+import '@fontsource/inter/600.css'
 import '@fontsource/inter/700.css'
 import '@fontsource/inter/index.css'
 
@@ -48,8 +49,9 @@ export const theme = extendTheme(vtheme, {
     mono: `'Menlo', monospace`,
   },
   fontWeights: {
-    bold: '500',
-    extrabold: '700',
+    bold: 500,
+    bolder: 600,
+    extrabold: 700,
   },
   styles: {
     global: (props) => ({
@@ -200,6 +202,7 @@ export const theme = extendTheme(vtheme, {
     Menu,
     Modal,
     Pagination,
+    PaginationButton,
     Popover,
     Radio,
     Stepper,
@@ -219,6 +222,10 @@ export const theme = extendTheme(vtheme, {
   sizes: {
     'modal-stretch': 'calc(100% + var(--chakra-space-5)*2 + var(--chakra-space-6)*2)',
     'modal-stretch-lg': 'calc(100% + var(--chakra-space-10)*2 + var(--chakra-space-6)*2)',
+  },
+  zIndices: {
+    background: 0,
+    sidebar: 1,
   },
 })
 
