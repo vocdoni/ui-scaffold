@@ -1,7 +1,6 @@
 import { ColorMode, extendTheme } from '@chakra-ui/react'
 import { darkTheme, lightTheme } from '@rainbow-me/rainbowkit'
 import { theme as vtheme } from '@vocdoni/chakra-components'
-import { breakpoints } from './breakpoints'
 import { colors } from './colors'
 import { Accordion } from './components/accordion'
 import { Alert } from './components/alert'
@@ -31,7 +30,6 @@ import { Textarea } from './components/textarea'
 import { Tooltip } from './components/tooltip'
 import { editor } from './editor'
 import { radii } from './radius'
-import { space } from './space'
 
 import '@fontsource/inter/500.css'
 import '@fontsource/inter/600.css'
@@ -215,8 +213,6 @@ export const theme = extendTheme(vtheme, {
     Textarea,
     Tooltip,
   },
-  breakpoints,
-  space,
   colors,
   radii,
   sizes: {

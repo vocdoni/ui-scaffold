@@ -38,10 +38,10 @@ const LayoutDashboard: React.FC = () => {
           {/* Sidebar for large screens */}
           <DashboardMenu isOpen={isOpen} onClose={onClose} />
 
-          <Flex flex='1 1 0' flexDirection={'column'}>
+          <Flex flex='1 1 0' flexDirection='column'>
             {/* Top Menu */}
             <Box
-              position={'sticky'}
+              position='sticky'
               bgColor='white'
               top={0}
               pr={4}
@@ -59,7 +59,7 @@ const LayoutDashboard: React.FC = () => {
                 aria-label='Open menu'
                 variant='transparent'
                 colorScheme='gray'
-                size={'xs'}
+                size='xs'
                 onClick={isMobile ? onOpen : () => setReduced((prev) => !prev)}
               />
 
@@ -78,7 +78,7 @@ const LayoutDashboard: React.FC = () => {
                   to={generatePath(Routes.processes.create)}
                   leftIcon={<Plus />}
                   colorScheme='black'
-                  size={'sm'}
+                  size='sm'
                 >
                   <Text fontSize='sm' display={{ base: 'none', lg: 'flex' }}>
                     <Trans i18nKey='new_voting'>New vote</Trans>
