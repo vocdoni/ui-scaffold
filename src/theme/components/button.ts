@@ -9,11 +9,11 @@ const primary = defineStyle((props) => {
     alignItems: 'center',
     gap: '10px',
     border: '1px solid',
-    bg: `#297b90`,
+    bg: `#FF2243`,
     borderColor: `#DFE7E9`,
     color: 'button.variant.primary.color',
     _hover: {
-      bg: `#1d6173`,
+      bg: `#b02a37`,
       borderColor: `#DFE7E9`,
       _disabled: {
         bg: 'button.variant.primary.disabled.light.bg',

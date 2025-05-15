@@ -3,7 +3,7 @@ import { VocdoniSDKClient } from '@vocdoni/sdk'
 import { lazy } from 'react'
 import { Params } from 'react-router-dom'
 // These aren't lazy loaded since they are main layouts and related components
-import CoibWrapper from '~elements/coib'
+import AlhoraWrapper from '~elements/alhora'
 import Error from '~elements/Error'
 import Layout from '~elements/Layout'
 import PlansPublicPage from '~elements/plans'
@@ -32,7 +32,7 @@ const RootElements = (client: VocdoniSDKClient) => [
     index: true,
     element: (
       <SuspenseLoader>
-        <CoibWrapper />
+        <AlhoraWrapper />
       </SuspenseLoader>
     ),
   },

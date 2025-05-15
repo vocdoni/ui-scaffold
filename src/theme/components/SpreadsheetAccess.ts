@@ -11,13 +11,13 @@ const baseStyle = definePartsStyle({
     alignItems: 'center',
     gap: '10px',
     border: '1px solid',
-    bg: '#276958',
-    borderColor: '#12271f',
+    bg: '#FF2243',
+    borderColor: '#FF2243',
     color: 'button.variant.primary.color',
 
     _hover: {
       bg: '#205345',
-      borderColor: '#12271f',
+      borderColor: '#FF2243',
       _disabled: {
         bg: 'button.variant.primary.disabled.light.bg',
         color: 'button.variant.primary.disabled.light.color',
@@ -31,7 +31,7 @@ const baseStyle = definePartsStyle({
         },
       },
     },
-    _active: { bg: '#193d32' },
+    _active: { bg: '#b02a37' },
     _disabled: {
       bg: 'button.variant.primary.disabled.light.bg',
       color: 'button.variant.primary.disabled.light.color',

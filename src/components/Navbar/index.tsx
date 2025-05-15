@@ -48,7 +48,7 @@ const Navbar = () => {
         <Flex w='248.67px'>
           {/* <Logo /> */}
           <Link to='/'>
-            <Image src='/assets/coib.png' alt='logo COIB' />
+            <Image src='/assets/alhora.svg' alt='logo Alhora' />
           </Link>
         </Flex>
         {/* <DesktopNav display={{ base: reducedMenu ? 'flex' : 'none', xl: 'flex' }} />

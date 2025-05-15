@@ -1,7 +1,6 @@
 import { AspectRatio, Box, Button, Flex, Heading, Link, ListItem, OrderedList, Spinner, Text } from '@chakra-ui/react'
 import { ElectionProvider, useClient, useElection } from '@vocdoni/react-providers'
 import { InvalidElection } from '@vocdoni/sdk'
-import { Crisp } from 'crisp-sdk-web'
 import { useEffect, useRef, useState } from 'react'
 import ReactPlayer from 'react-player'
 import { Link as ReactRouterLink } from 'react-router-dom'
@@ -9,15 +8,16 @@ import { ActionsMenu } from '~components/Process/ActionsMenu'
 import { CspAuth } from '~components/Process/CSP/CSPAuthModal'
 import Error from './Error'
 
-const processes = import.meta.env.PROCESS_IDS
+// const processes = import.meta.env.PROCESS_IDS
+const processes = ["6be21a5a9dc0f7be137b346a86ca830f9028e5116ea746137bbf020400000000"]
 
-const CoibWrapper = () => (
+const AlhoraWrapper = () => (
   <ElectionProvider id={processes[0]}>
-    <Coib />
+    <Alhora />
   </ElectionProvider>
 )
 
-const Coib = () => {
+const Alhora = () => {
   const { loading, loaded, election, connected, clearClient } = useElection()
   const { account, connected: aconnected } = useClient()
   const videoRef = useRef<HTMLDivElement>(null)
@@ -39,11 +39,6 @@ const Coib = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [])
-
-  // Crisp config
-  useEffect(() => {
-    Crisp.configure('855c1c0c-673c-4cf2-bc92-1471d743b8d2')
   }, [])
 
   if (loading && !loaded) {
@@ -76,7 +71,7 @@ const Coib = () => {
             Assemblea General Ordinària
           </Heading>
           <Text as='h2' fontSize='16px' textAlign='center'>
-            Col·legi Oficial Infermeres i Infermers de Barcelona
+            Alhora
           </Text>
         </Box>
       </Flex>
@@ -105,10 +100,10 @@ const Coib = () => {
               <Text style={{ marginTop: '30px' }}>
                 - Enllaç a la documentació externa:{' '}
                 <Link
-                  href='https://pbcoib.blob.core.windows.net/coib-publish/invar/97848814-4a8d-4b20-9e25-9f8d02ae2815'
+                  href='https://alhora.cat'
                   isExternal
                 >
-                  Memòria COIB 🔗
+                  Memòria Alhora 🔗
                 </Link>
               </Text>
             </Box>
@@ -126,7 +121,7 @@ const Coib = () => {
               >
                 <AspectRatio ratio={16 / 9}>
                   <ReactPlayer
-                    url='https://youtube.com/live/NRE8ifln5b0?feature=share'
+                    url='https://www.youtube.com/watch?v=ydYDqZQpim8'
                     width='100%'
                     height='100%'
                     playing
@@ -199,7 +194,7 @@ const Coib = () => {
       )}
       {isEnabled && !canViewProcesses && (
         <Text style={{ marginBottom: '50px', textAlign: 'center' }}>
-          Per poder accedir a la votació i veure el vídeo en temps real, heu de prémer sobre “Identificar-se”.
+          Per poder accedir a la votació heu de prémer sobre “Identificar-se”.
           <br />
           Us demanarem la vostre identificació. Posteriorment, podreu emetre el vostre vot de forma segura.
         </Text>
@@ -207,8 +202,8 @@ const Coib = () => {
       <Text style={{ marginBottom: '150px', textAlign: 'center' }}>
         <i>
           <strong>
-            En cas de dubte o dificultats tècniques ens pots contactar al telèfon <u>900 705 705</u> o al correu{' '}
-            <u>info@coib.cat</u>
+            En cas de dubte o dificultats tècniques ens pots contactar al telèfon <u>XXXXXXXX</u> o al correu{' '}
+            <u>info@alhora.cat</u>
           </strong>
         </i>
       </Text>
@@ -224,4 +219,4 @@ const ElectionDetail = () => {
   return <>{election.title.default}</>
 }
 
-export default CoibWrapper
+export default AlhoraWrapper

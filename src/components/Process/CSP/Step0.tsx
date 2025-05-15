@@ -56,15 +56,15 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={4}>
           <FormControl isInvalid={!!errors.participantNo} isRequired>
-            <FormLabel>Núm. de col·legiat/da</FormLabel>
+            <FormLabel>DNI</FormLabel>
             <Input {...register('participantNo', { required: true })} />
           </FormControl>
 
           <FormControl isInvalid={!!errors.contact} isRequired>
-            <FormLabel>Correu electrònic o telèfon mòbil</FormLabel>
+            <FormLabel>Correu electrònic</FormLabel>
             <Input {...register('contact', { required: true })} />
             <FormHelperText>
-              <strong>Important:</strong> Ha de coincidir amb el registrat al COIB.
+              <strong>Important:</strong> Ha de coincidir amb el registrat al Alhora.
             </FormHelperText>
           </FormControl>
           {auth.isError && (
@@ -89,8 +89,7 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
           </FormControl>
 
           <Text fontSize='xs'>
-            💡 Les teves dades s'utlilitzaran només per verificar la teva identitat. Vocdoni no emmagatzema dades
-            personals.
+            💡 Les teves dades s'utlilitzaran només per verificar la teva identitat. Vocdoni no emmagatzema dades personals.
           </Text>
 
           <Button type='submit' variant='primary' borderRadius='full' w='full' isLoading={auth.isPending} mt={2}>
@@ -98,7 +97,7 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
           </Button>
 
           <Text textAlign='center' fontSize='sm'>
-            Rebràs un codi únic al mitjà seleccionat per verificar la teva identitat i completar l'autenticació
+            Rebràs un codi únic al correu especificat per verificar la teva identitat i completar l'autenticació
           </Text>
         </Stack>
       </form>

@@ -49,6 +49,8 @@ export const Step1Base = ({ election }: { election: PublishedElection }) => {
 
       csp1(authToken)
       // Aquí podrías manejar el siguiente paso o finalizar la autenticación
+
+      // TODO: redirect to the process
     } catch (error) {
       console.error('Authentication failed:', error)
     }
