@@ -112,7 +112,7 @@ const Calendar = () => {
   return (
     <Flex flexDirection='column' gap={6}>
       <Box>
-        <Text fontWeight={'bold'}>{t('calendar.title', { defaultValue: 'Calendar' })}</Text>
+        <Text fontWeight={'bold'}>{t('calendar.title', { defaultValue: 'Schedule' })}</Text>
         <Text>{t('calendar.subtitle', { defaultValue: 'Specify the active period for receiving votes' })}</Text>
       </Box>
       <Flex flexDirection='column' pl={6}>

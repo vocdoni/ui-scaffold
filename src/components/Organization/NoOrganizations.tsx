@@ -43,7 +43,7 @@ export const NoOrganizations = () => {
             to={Routes.dashboard.organizationCreate}
             colorScheme='gradient'
           >
-            <Trans i18nKey='create_org.title'>Create your organization</Trans>
+            <Trans i18nKey='create_org.create_button'>Create your organization</Trans>
           </Button>
         </CardBody>
       </Card>

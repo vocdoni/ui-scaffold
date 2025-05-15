@@ -5,10 +5,12 @@
   },
   "actions": {
     "cancel": "Cancel",
-    "save": "Save Changes"
+    "save": "Save Changes",
+    "save_changes": "Save Changes"
   },
   "active": "Active",
   "add_new_org": "Add a new organization",
+  "additional_actions": "Additional actions",
   "all": "All",
   "already_member": "Already have an account?",
   "alt": {
@@ -29,6 +31,7 @@
     "description": "Voters will remain anonymous",
     "title": "Anonymous"
   },
+  "anonymous_voting": "Anonymous voting",
   "aside": {
     "has_already_voted": "Your vote is properly cast",
     "is_not_in_census": "You are not in the census",
@@ -82,6 +85,15 @@
     "vat": "(without VAT)",
     "vote_overwrite": "Vote overwrite",
     "voting_process_cost": "Voting process cost:"
+  },
+  "calendar": {
+    "define_active_period": "Define the active period for receiving votes",
+    "end_date": "End date",
+    "end_date_description": "Define the exact date and time of completion",
+    "max_duration_exceeded": "The selected duration exceeds the maximum allowed duration of {{maxDuration}} days for your plan. Reduce the voting length or <4>upgrade your plan</4>.",
+    "start_date": "Start date",
+    "subtitle": "Specify the active period for receiving votes",
+    "title": "Calendar"
   },
   "call_us": "Call us",
   "cc": {
@@ -185,6 +197,7 @@
     "wallet_address_title": "Wallet addresses"
   },
   "census_details": "Census Details",
+  "census_size": "Census size",
   "change_password": {
     "subtitle": "Enter your current password and a new password to update your credentials.",
     "title": "Change Password"
@@ -207,10 +220,11 @@
   "confirm_password": "Confirm Password",
   "confirm_password_placeholder": "Confirm your new password",
   "contact_us": "Contact us",
-  "control": "Control:",
+  "control_panel": "Control panel",
   "copy": {
     "address": "Copy address",
-    "copied_title": "Copied!"
+    "copied_title": "Copied!",
+    "copy": "Copy"
   },
   "country_selector": {
     "selector_label": "Country",
@@ -219,6 +233,7 @@
   "create_org": {
     "already_profile": "If your organization already has a profile, <2>access the dashboard</2> and contact the administrator to invite you",
     "communication": "I want to receive communications and be contacted to tailor my governance experience.",
+    "create_button": "Create your organization",
     "private_org": "Private Organization Details",
     "private_org_description": "Help us tailor your experience with information about your org. We won't share this info",
     "public_info": "Public Organization Information",
@@ -234,8 +249,18 @@
   "current": "Current",
   "customization": "Customization",
   "dark_mode": "Dark mode",
+  "dashboard": {
+    "actions": {
+      "toggle_sidebar": "Toggle sidebar"
+    },
+    "process_view": {
+      "date_format": "MMMM do, y",
+      "time_format": "p"
+    }
+  },
   "description": "Description",
   "do_it_later": "Do it later",
+  "do_you_need_help": "Do you need help?",
   "edit_saas_profile": {
     "customization_details": "Define the params that will enhance the user experience and customize the voting page",
     "edited_successfully": "Updated successfully",
@@ -243,6 +268,8 @@
   },
   "email": "Email",
   "email_placeholder": "name@email.com",
+  "end_date": "End date",
+  "end_time": "End time",
   "error": {
     "go_back": "Go back",
     "invalid_cell_data": "Some rows do not contain correct addresses: {{rows,list(style:short)}}",
@@ -277,6 +304,7 @@
   },
   "features": {
     "anonymous": "Anonymous voting",
+    "anonymous_voting": "Anonymous voting",
     "approval": "Approval voting",
     "cumulative": "Cumulative voting",
     "custom_url": "Custom URL",
@@ -297,7 +325,6 @@
     "single": "Single choice voting",
     "sms_notification": "SMS notifications",
     "sub_orgs": "Up to {{ count }} sub-organizations",
-    "title": "Features",
     "total_members": "Total available members",
     "total_orgs": "Total available sub-organizations",
     "weighted": "Weighted voting",
@@ -471,7 +498,6 @@
   "google_oauth_error": "Google OAuth Error",
   "google_oauth_error_description": "Google OAuth error, please try again",
   "guides": "Guides",
-  "help": "Do you need help?",
   "home": {
     "benefits": {
       "card_1": {
@@ -975,6 +1001,10 @@
     "description": "Voters will be able to overwrite their vote once",
     "title": "Vote overwrite"
   },
+  "pagination": {
+    "page_out_of": "Page {{page}} of {{total}}",
+    "rows_per_page": "Rows per page"
+  },
   "password": "Password",
   "password_placeholder": "Min 8 characters",
   "password_placeholder_confirm": "Confirm Password",
@@ -1227,20 +1257,36 @@
     "title_placeholder": "Title of the voting process"
   },
   "process_list": {
-    "start_end_date": "Start-end date",
+    "end_date": "End date",
+    "not_yet": "Not yet",
+    "recount": "Recount",
+    "results": "Results",
+    "results_live": "Live",
+    "start_date": "Start date",
     "status": "Status",
     "title": "Title",
-    "type": "Type",
-    "voters": "Voters"
+    "type": "Type"
   },
   "profile": {
     "error": "Failed to update profile",
     "success": "Profile updated successfully",
     "title": "Profile"
   },
+  "questions_and_results": "Questions and results",
   "remove_avatar": "Remove avatar",
   "remove_header": "Remove header",
   "reset_password_button": "Reset Password",
+  "result_visibility": "Results visibility",
+  "results_state": {
+    "enabled": "Enabled",
+    "hidden_until_end": "Hidden until the end",
+    "live_results": "Live results",
+    "live_results_tooltip": "This voting process shows live results. However, it is still in progress, so the results may change before the vote ends.",
+    "not_enabled": "Not enabled",
+    "results_available": "Results available",
+    "secret_until_end": "Awaiting results",
+    "secret_until_end_tooltip": "Results are hidden and will only be available once voting ends"
+  },
   "rights": "© 2024 Vocdoni Association. All Rights Reserved.",
   "role": {
     "read_permission": "Read-only access",
@@ -1273,6 +1319,8 @@
   "signup_lastname": "Last name",
   "signup_subtitle": "Enter your information to get started",
   "signup_title": "Sign up",
+  "start_date": "Start date",
+  "start_time": "Start time",
   "submit": "Submit",
   "subscribe": "Subscribe",
   "subscription": {
@@ -1383,7 +1431,9 @@
     },
     "satisfaction_rate": "97% satisfaction rate, starting at 9€/month."
   },
+  "total_votes": "Total votes",
   "total_votes_submitted": "Total Votes Submitted",
+  "turnout": "Turnout",
   "update": "Update",
   "upgrade": "Upgrade",
   "uploader": {
@@ -1456,14 +1506,19 @@
     "verifying_subtitle": "Await until we verify your email address. You will be redirect on success.",
     "verifying_title": "Verifying {{ email }}"
   },
+  "view_in_explorer": "View in explorer",
   "view_plans_and_pricing": "View Plans & Pricing",
   "view_pricing_plans": "View Pricing Plans",
   "vocdoni logo": "Vocdoni logo",
-  "voters": "voters",
-  "voting_link": "Voting Link",
+  "vote_information": "Vote information",
+  "vote_overwrite": "Vote overwrite",
+  "voting_link": {
+    "description": "Share this link with your voters to participate in the voting process",
+    "title": "Voting Link"
+  },
   "voting_processes": "Voting processes",
   "voting_processes_description": "Manage and monitor your voting processes",
-  "voting_questions": "Voting Questions",
-  "voting_results": "Voting Results",
+  "voting_settings": "Voting settings",
+  "voting_status": "Voting status",
   "website": "Website"
 }

@@ -14,7 +14,10 @@ const DashBoardCreateOrg = () => {
   // Set layout title and subtitle and back button
   useEffect(() => {
     setBreadcrumb([
-      { title: t('create_org.title', { defaultValue: 'Organization' }), route: Routes.dashboard.organizationCreate },
+      {
+        title: t('create_org.title', { defaultValue: 'Tell us about your organization' }),
+        route: Routes.dashboard.organizationCreate,
+      },
     ])
     if (window.history.state.idx) {
       setOnSuccessRoute(-1 as unknown)

@@ -5,10 +5,12 @@
   },
   "actions": {
     "cancel": "Cancel",
-    "save": "Save Changes"
+    "save": "Save Changes",
+    "save_changes": "Save Changes"
   },
   "active": "Activo",
   "add_new_org": "Añadir una nueva organización",
+  "additional_actions": "Additional actions",
   "all": "Todos",
   "already_member": "Ya tienes una cuenta?",
   "alt": {
@@ -29,6 +31,7 @@
     "description": "Los votantes permanecerán anónimos",
     "title": "Anónimo"
   },
+  "anonymous_voting": "Anonymous voting",
   "aside": {
     "has_already_voted": "Tu voto ha sido registrado correctamente",
     "is_not_in_census": "No estás en el censo",
@@ -85,6 +88,15 @@
     "vat": "(sin IVA)",
     "vote_overwrite": "Corrección de voto",
     "voting_process_cost": "Coste del proceso de votación:"
+  },
+  "calendar": {
+    "define_active_period": "Define the active period for receiving votes",
+    "end_date": "End date",
+    "end_date_description": "Define the exact date and time of completion",
+    "max_duration_exceeded": "The selected duration exceeds the maximum allowed duration of {{maxDuration}} days for your plan. Reduce the voting length or <4>upgrade your plan</4>.",
+    "start_date": "Start date",
+    "subtitle": "Specify the active period for receiving votes",
+    "title": "Calendar"
   },
   "call_us": "Llámanos",
   "cc": {
@@ -188,6 +200,7 @@
     "wallet_address_title": "Direcciones de billetera"
   },
   "census_details": "Census Details",
+  "census_size": "Census size",
   "change_password": {
     "subtitle": "Enter your current password and a new password to update your credentials.",
     "title": "Change Password"
@@ -210,10 +223,11 @@
   "confirm_password": "Confirm Password",
   "confirm_password_placeholder": "Confirm your new password",
   "contact_us": "Contact us",
-  "control": "Control:",
+  "control_panel": "Control panel",
   "copy": {
     "address": "Copiar dirección",
-    "copied_title": "¡Copiado!"
+    "copied_title": "¡Copiado!",
+    "copy": "Copy"
   },
   "country_selector": {
     "selector_label": "Country",
@@ -222,6 +236,7 @@
   "create_org": {
     "already_profile": "If your organization already has a profile, <2>access the dashboard</2> and contact the administrator to invite you",
     "communication": "Quiero recibir comunicaciones y ser contactado para adaptar mi experiencia de gobernanza.",
+    "create_button": "Create your organization",
     "private_org": "Detalles privados de la organización",
     "private_org_description": "Ayúdanos a adaptar tu experiencia con información sobre tu organización. No compartiremos esta información",
     "public_info": "Información pública de la organización",
@@ -237,8 +252,18 @@
   "current": "Actual",
   "customization": "Customization",
   "dark_mode": "Modo oscuro",
+  "dashboard": {
+    "actions": {
+      "toggle_sidebar": "Toggle sidebar"
+    },
+    "process_view": {
+      "date_format": "MMMM do, y",
+      "time_format": "p"
+    }
+  },
   "description": "Description",
   "do_it_later": "Do it later",
+  "do_you_need_help": "Do you need help?",
   "edit_saas_profile": {
     "customization_details": "Define the params that will enhance the user experience and customize the voting page",
     "edited_successfully": "Updated successfully",
@@ -246,6 +271,8 @@
   },
   "email": "Correo electrónico",
   "email_placeholder": "nombre@correo.com",
+  "end_date": "End date",
+  "end_time": "End time",
   "error": {
     "go_back": "Volver atrás",
     "invalid_cell_data": "Algunas filas no contienen direcciones correctas: {{rows, list}}",
@@ -280,6 +307,7 @@
   },
   "features": {
     "anonymous": "Votación anónima",
+    "anonymous_voting": "Anonymous voting",
     "approval": "Votación por aprobación",
     "cumulative": "Votación acumulativa",
     "custom_url": "URL personalizada",
@@ -300,7 +328,6 @@
     "single": "Votación de opción única",
     "sms_notification": "Notificaciones por SMS",
     "sub_orgs": "Hasta {{ value }} suborganizaciones",
-    "title": "Características",
     "total_members": "Total de miembros disponibles",
     "total_orgs": "Total de suborganizaciones disponibles",
     "weighted": "Votación ponderada",
@@ -478,7 +505,6 @@
   "google_oauth_error": "Google OAuth Error",
   "google_oauth_error_description": "Google OAuth error, please try again",
   "guides": "Guías",
-  "help": "¿Necesitas ayuda?",
   "home": {
     "benefits": {
       "card_1": {
@@ -983,6 +1009,10 @@
     "description": "Los votantes podrán modificar su voto una vez",
     "title": "Modificación de voto"
   },
+  "pagination": {
+    "page_out_of": "Page {{page}} of {{total}}",
+    "rows_per_page": "Rows per page"
+  },
   "password": "Contraseña",
   "password_placeholder": "Min 8 caracteres",
   "password_placeholder_confirm": "Confirmar Contraseña",
@@ -1238,20 +1268,36 @@
     "title_placeholder": "Título del proceso de votación"
   },
   "process_list": {
-    "start_end_date": "Fecha de inicio y fin",
+    "end_date": "End date",
+    "not_yet": "Not yet",
+    "recount": "Recount",
+    "results": "Results",
+    "results_live": "Live",
+    "start_date": "Start date",
     "status": "Estado",
     "title": "Título",
-    "type": "Tipo",
-    "voters": "Votantes"
+    "type": "Tipo"
   },
   "profile": {
     "error": "Error al actualizar el perfil",
     "success": "Perfil actualizado con éxito",
     "title": "Perfil"
   },
+  "questions_and_results": "Questions and results",
   "remove_avatar": "Eliminar avatar",
   "remove_header": "Eliminar encabezado",
   "reset_password_button": "Restablecer la contraseña",
+  "result_visibility": "Results visibility",
+  "results_state": {
+    "enabled": "Enabled",
+    "hidden_until_end": "Hidden until the end",
+    "live_results": "Live results",
+    "live_results_tooltip": "This voting process shows live results. However, it is still in progress, so the results may change before the vote ends.",
+    "not_enabled": "Not enabled",
+    "results_available": "Results available",
+    "secret_until_end": "Awaiting results",
+    "secret_until_end_tooltip": "Results are hidden and will only be available once voting ends"
+  },
   "rights": "© 2024 Asociación Vocdoni. Todos los derechos reservados.",
   "role": {
     "read_permission": "Acceso solo lectura",
@@ -1284,6 +1330,8 @@
   "signup_lastname": "Apellido",
   "signup_subtitle": "Continúa para acceder a tu cuenta",
   "signup_title": "Bienvenido",
+  "start_date": "Start date",
+  "start_time": "Start time",
   "submit": "Envía",
   "subscribe": "Suscribirse",
   "subscription": {
@@ -1394,7 +1442,9 @@
     },
     "satisfaction_rate": "97% de tasa de satisfacción, desde 9€/mes."
   },
+  "total_votes": "Total votes",
   "total_votes_submitted": "Total de votos enviados",
+  "turnout": "Turnout",
   "update": "Actualizar",
   "upgrade": "Amplíalo",
   "uploader": {
@@ -1467,14 +1517,19 @@
     "verifying_subtitle": "Espera mientras verificamos tu dirección de correo electrónico. Serás redirigido con éxito.",
     "verifying_title": "Verificando {{ email }}"
   },
+  "view_in_explorer": "View in explorer",
   "view_plans_and_pricing": "Ver Planes y Precios",
   "view_pricing_plans": "Ver Planes de Precios",
   "vocdoni logo": "",
-  "voters": "votantes",
-  "voting_link": "Enlace de votación",
+  "vote_information": "Vote information",
+  "vote_overwrite": "Vote overwrite",
+  "voting_link": {
+    "description": "Share this link with your voters to participate in the voting process",
+    "title": "Voting Link"
+  },
   "voting_processes": "Procesos de votación",
   "voting_processes_description": "Gestiona y supervisa tus procesos de votación",
-  "voting_questions": "Preguntas de votación",
-  "voting_results": "Resultados de la votación",
+  "voting_settings": "Voting settings",
+  "voting_status": "Voting status",
   "website": "Sitio web"
 }
