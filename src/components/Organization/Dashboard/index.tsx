@@ -1,7 +1,6 @@
 import {
   Accordion,
   AccordionButton,
-  AccordionIcon,
   AccordionItem,
   AccordionPanel,
   AspectRatio,
@@ -28,7 +27,10 @@ import { PublishedElection } from '@vocdoni/sdk'
 import { format } from 'date-fns'
 import { Trans, useTranslation } from 'react-i18next'
 import { generatePath, Link as ReactRouterLink } from 'react-router-dom'
+import { useSubscription } from '~components/Auth/Subscription'
 import { DashboardBox, DashboardContents } from '~components/Layout/Dashboard'
+import InvertedAccordionIcon from '~components/Layout/InvertedAccordionIcon'
+import { usePlanTranslations } from '~components/Pricing/Plans'
 import { Routes } from '~routes'
 import { useProfile } from '~src/queries/account'
 import { paginatedElectionsQuery, useSetupChecklist } from '~src/queries/organization'
@@ -38,11 +40,11 @@ const OrganizationDashboard = () => {
 
   return (
     <DashboardContents>
-      <Heading size={'xs'} fontWeight={'extrabold'} mb={1}>
+      <Heading size='xs' fontWeight='extrabold' mb={1}>
         {t('dashboard_empty_processes.title', { defaultValue: 'Welcome to Vocdoni Coop' })}
       </Heading>
-      <Text mb={6}>
-        {t('dashboard_empty_processes.title', {
+      <Text color='gray.500' mb={6}>
+        {t('dashboard_empty_processes.subtitle', {
           defaultValue: "Here's an overview of your organization's voting activities",
         })}
       </Text>
@@ -55,86 +57,99 @@ const OrganizationDashboard = () => {
 
 const Tutorial = () => {
   const { t } = useTranslation()
-  const { data: profile } = useProfile()
+  const { data: profile, isLoading } = useProfile()
+  const translations = usePlanTranslations()
+  const { subscription, loading } = useSubscription()
   const { isOpen, onClose } = useDisclosure({ defaultIsOpen: true })
 
   if (!isOpen) return null
 
+  const plan = subscription ? translations[subscription.plan.id] : undefined
+
   return (
-    <>
-      {isOpen && (
-        <DashboardBox p={6} mb={8} display='flex' gap={10} position='relative'>
-          <IconButton
-            aria-label='Close'
-            icon={<XClose />}
-            size='sm'
-            variant='ghost'
-            colorScheme='gray'
-            position='absolute'
-            top={2}
-            right={2}
-            onClick={onClose}
+    <DashboardBox p={6} mb={8} display='flex' gap={10} position='relative'>
+      <IconButton
+        aria-label='Close'
+        icon={<XClose />}
+        size='sm'
+        variant='ghost'
+        colorScheme='white'
+        position='absolute'
+        top={2}
+        right={2}
+        onClick={onClose}
+      />
+      <Box flex='1 1 60%'>
+        <Text fontWeight='extrabold' mb={2} fontSize='2xl'>
+          <Trans
+            i18nKey='dashboard_empty_processes.hello'
+            defaultValue='👋 Hello {{name}}!'
+            values={{ name: profile?.firstName }}
           />
-          <Box flex='1 1 60%'>
-            <Text fontWeight='extrabold' mb={2} fontSize='2xl'>
-              <Trans
-                i18nKey='dashboard_empty_processes.hello'
-                defaultValue='Hello'
-                values={{ emoji: '👋', name: profile?.firstName }}
-                components={{
-                  emoji: <Text as='span' fontSize='24px' />,
-                  name: <Text as='span' fontSize='2xl' />,
-                }}
-              />
-            </Text>
-            <Text color='gray.400' mb={4}>
-              You're currently on the Free plan, which gives you access to almost everything for up to 50 members.
-            </Text>
-            <Text color='gray.400' mb={4}>
-              So go ahead, explore the platform, create your first vote, and see just how easy secure digital governance
-              can be! But if you need help, just schedule a call with our experts!
-            </Text>
-            <Flex gap={3} flexDirection={{ base: 'column', sm: 'row' }}>
-              <Button
-                as={ReactRouterLink}
-                to={generatePath(Routes.processes.create)}
-                leftIcon={<Plus />}
-                colorScheme='black'
-                size={'md'}
-              >
-                <Trans i18nKey='new_voting'>New vote</Trans>
-              </Button>
-              <Button
-                as={ReactRouterLink}
-                to={generatePath(Routes.processes.create)}
-                leftIcon={<Calendar />}
-                colorScheme='black'
-                variant={'outline'}
-                size={'md'}
-              >
-                <Trans i18nKey='home.support.btn_watch'></Trans>
-              </Button>
-            </Flex>
-          </Box>
-          <Flex display={{ base: 'none', lg: 'flex' }} flex={'1 1 33%'} flexDirection={'column'}>
-            <Text size={'lg'} fontWeight={'bold'} textAlign={'center'} mb={2}>
-              {t('dashboard_empty_processes.how_first_vote', { defaultValue: 'How to create your first vote' })}
-            </Text>
-            <AspectRatio ratio={16 / 9}>
-              <Box
-                as='iframe'
-                src='https://www.youtube.com/embed/arZZw8NyPq8'
-                title='YouTube video player'
-                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                allowFullScreen
-                border='0'
-                borderRadius={'md'}
-              />
-            </AspectRatio>
-          </Flex>
-        </DashboardBox>
-      )}
-    </>
+        </Text>
+        {loading || isLoading ? (
+          <Progress colorScheme='brand' size='xs' isIndeterminate mb={4} />
+        ) : !subscription ? (
+          <Text color='gray.500' mb={4}>
+            {t('dashboard_empty_processes.no_subscription', {
+              defaultValue: 'No subscription available. Please create an organization to activate your plan.',
+            })}
+          </Text>
+        ) : (
+          <Text color='gray.500' mb={4}>
+            <Trans
+              i18nKey='plan.details'
+              values={{ title: plan.title, subtitle: plan.subtitle }}
+              defaultValue="You're currently on the {{ title }} plan, {{ subtitle }}"
+            />
+          </Text>
+        )}
+        <Text color='gray.500' mb={4}>
+          <Trans i18nKey='plan.encouragement'>
+            So go ahead, explore the platform, create your first vote, and see just how easy secure digital governance
+            can be! But if you need help, just schedule a call with our experts!
+          </Trans>
+        </Text>
+        <Flex gap={3} flexDirection={{ base: 'column', sm: 'row' }}>
+          <Button
+            as={ReactRouterLink}
+            to={generatePath(Routes.processes.create)}
+            leftIcon={<Plus />}
+            colorScheme='gray'
+            size='md'
+          >
+            <Trans i18nKey='new_voting'>New vote</Trans>
+          </Button>
+          <Button
+            as={ReactRouterLink}
+            to={generatePath(Routes.processes.create)}
+            leftIcon={<Calendar />}
+            colorScheme='gray'
+            variant='outline'
+            size='md'
+          >
+            <Trans i18nKey='home.support.btn_watch' />
+          </Button>
+        </Flex>
+      </Box>
+      <Flex display={{ base: 'none', lg: 'flex' }} flex='1 1 33%' flexDirection='column'>
+        <Text size='lg' fontWeight='bold' textAlign='center' mb={2}>
+          {t('dashboard_empty_processes.how_first_vote', {
+            defaultValue: 'How to create your first vote',
+          })}
+        </Text>
+        <AspectRatio ratio={16 / 9}>
+          <Box
+            as='iframe'
+            src='https://www.youtube.com/embed/arZZw8NyPq8'
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+            allowFullScreen
+            border='0'
+            borderRadius='md'
+          />
+        </AspectRatio>
+      </Flex>
+    </DashboardBox>
   )
 }
 
@@ -146,7 +161,7 @@ const Setup = () => {
   return (
     isOpen && (
       <Box position='fixed' bottom={4} right={4} w='sm' bg='white' borderRadius='lg' boxShadow='xl' zIndex='overlay'>
-        <Accordion allowMultiple defaultIndex={[0]}>
+        <Accordion allowToggle>
           <AccordionItem>
             <Flex p={3}>
               <Flex flex='1' align='center'>
@@ -159,7 +174,7 @@ const Setup = () => {
               </Flex>
               <Flex>
                 <AccordionButton as={Button} variant='ghost' size='sm' colorScheme='gray' p={1} minW='unset'>
-                  <AccordionIcon />
+                  <InvertedAccordionIcon />
                 </AccordionButton>
                 <IconButton
                   aria-label='Close'
@@ -179,7 +194,7 @@ const Setup = () => {
               </Flex>
               <Progress
                 value={progress}
-                colorScheme='black'
+                colorScheme='gray'
                 size='sm'
                 borderRadius='md'
                 sx={{
@@ -212,19 +227,19 @@ const OrganizationProcesses = () => {
 
   return (
     <Flex flexDirection={{ base: 'column', md: 'row' }} gap={4}>
-      <DashboardBox p={6} minH={'324px'} flex='1 1 66%' display='flex' flexDirection='column'>
+      <DashboardBox p={6} minH='324px' flex='1 1 66%' display='flex' flexDirection='column'>
         <Box mb={4}>
           <Text fontWeight='extrabold' mb={1.5} fontSize='2xl'>
             {t('dashboard_empty_processes.recent_voting_title', { defaultValue: 'Recent Voting Processes' })}
           </Text>
-          <Text color='gray.400' fontSize='sm'>
+          <Text color='gray.500' fontSize='sm'>
             {t('dashboard_empty_processes.recent_voting_description', {
               defaultValue: "Your organization's latest voting activities",
             })}
           </Text>
         </Box>
         <Flex flexDirection='column' flex='1'>
-          <Processes organization={organization} />
+          <Processes />
         </Flex>
       </DashboardBox>
       {organization && <QuickActions />}
@@ -232,9 +247,10 @@ const OrganizationProcesses = () => {
   )
 }
 
-const Processes = ({ organization }) => {
+const Processes = () => {
   const { t } = useTranslation()
   const { client, account } = useClient()
+  const { organization } = useOrganization()
 
   const { queryKey, queryFn } = paginatedElectionsQuery(account, client, {})
 
@@ -248,56 +264,56 @@ const Processes = ({ organization }) => {
     enabled: !!organization,
   })
 
-  // Helper UI components
-  const CenteredMessage = ({ children, action }: { children: React.ReactNode; action?: React.ReactNode }) => (
-    <Flex flexGrow={1} flexDir='column' justify='center' align='center' gap={4}>
-      <Text color='gray.400'>{children}</Text>
-      {action}
-    </Flex>
-  )
-
-  if (!organization) {
-    return (
-      <CenteredMessage
-        action={
-          <Button
-            as={ReactRouterLink}
-            to={generatePath(Routes.dashboard.organizationCreate)}
-            colorScheme='black'
-            variant='outline'
-          >
-            {t('dashboard_empty_processes.create_first_organization', {
-              defaultValue: 'Create your first organization',
-            })}
-          </Button>
-        }
-      >
-        No organization found
-      </CenteredMessage>
-    )
-  }
-
   if (isLoading) {
-    return <CenteredMessage>Loading...</CenteredMessage>
+    return <Progress colorScheme='brand' size='xs' isIndeterminate />
   }
 
   if (isError) {
-    return <CenteredMessage>Error loading voting processes</CenteredMessage>
+    return (
+      <Flex flexGrow={1} flexDir='column' justify='center' align='center' gap={4}>
+        <Text color='gray.500'>
+          {t('dashboard_empty_processes.error_loading_processes', {
+            defaultValue: 'Error loading voting processes',
+          })}
+        </Text>
+      </Flex>
+    )
+  }
+
+  if (!organization) {
+    return (
+      <Flex flexGrow={1} flexDir='column' justify='center' align='center' gap={4}>
+        <Text color='gray.500'>
+          {t('dashboard_empty_processes.no_organization', { defaultValue: 'No organization found' })}
+        </Text>
+        <Button
+          as={ReactRouterLink}
+          to={generatePath(Routes.dashboard.organizationCreate)}
+          colorScheme='gray'
+          variant='outline'
+        >
+          {t('dashboard_empty_processes.create_first_organization', {
+            defaultValue: 'Create your first organization',
+          })}
+        </Button>
+      </Flex>
+    )
   }
 
   if (!elections?.elections?.length) {
     return (
-      <CenteredMessage
-        action={
-          <Button as={ReactRouterLink} to={generatePath(Routes.processes.create)} colorScheme='black' variant='outline'>
-            {t('dashboard_empty_processes.create_first_vote', {
-              defaultValue: 'Create your first vote',
-            })}
-          </Button>
-        }
-      >
-        No voting processes found
-      </CenteredMessage>
+      <Flex flexGrow={1} flexDir='column' justify='center' align='center' gap={4}>
+        <Text color='gray.500'>
+          {t('dashboard_empty_processes.empty', {
+            defaultValue: 'No voting processes found',
+          })}
+        </Text>
+        <Button as={ReactRouterLink} to={generatePath(Routes.processes.create)} colorScheme='gray' variant='outline'>
+          {t('dashboard_empty_processes.create_first_vote', {
+            defaultValue: 'Create your first vote',
+          })}
+        </Button>
+      </Flex>
     )
   }
 
@@ -311,8 +327,8 @@ const Processes = ({ organization }) => {
             <Flex align='center'>
               <Box>
                 <ElectionTitle mb={0} fontSize='md' textAlign='left' fontWeight='500' isTruncated />
-                <Text fontSize='sm' color='gray.400'>
-                  {t('organization.ends_on', {
+                <Text fontSize='sm' color='gray.500'>
+                  {t('election.ends_on', {
                     defaultValue: 'Ends on {{date}}',
                     date: format(election.endDate, t('organization.date_format')),
                   })}
@@ -321,7 +337,9 @@ const Processes = ({ organization }) => {
               <Spacer />
               <Flex align='center' gap={2}>
                 <ElectionStatusBadge />
-                <Text fontWeight='bold'>{election.voteCount} votes</Text>
+                <Text fontWeight='bold'>
+                  {t('election.total_votes', { defaultValue: '{{totalVotes}} votes', totalVotes: election.voteCount })}
+                </Text>
               </Flex>
             </Flex>
           </ElectionProvider>
@@ -357,26 +375,26 @@ const QuickActions = () => {
   const { t } = useTranslation()
   return (
     <DashboardBox p={6} flex='1 1 33%'>
-      <Text fontWeight={'extrabold'} mb={1.5} size='2xl'>
+      <Text fontWeight='extrabold' mb={1.5} size='2xl'>
         {t('dashboard_empty_processes.quick_actions', {
           defaultValue: 'Quick Actions',
         })}
       </Text>
-      <Text color='gray.400' size={'sm'} mb={6}>
+      <Text color='gray.500' size='sm' mb={6}>
         {t('dashboard_empty_processes.common_tasks_actions', {
           defaultValue: 'Common tasks and actions',
-        })}{' '}
+        })}
       </Text>
-      <Flex flexDirection={'column'} gap={4}>
+      <Flex flexDirection='column' gap={4}>
         <Button
           as={ReactRouterLink}
           to={generatePath(Routes.processes.create)}
-          colorScheme='black'
-          variant={'outline'}
-          justifyContent={'start'}
+          colorScheme='gray'
+          variant='outline'
+          justifyContent='start'
           leftIcon={<Plus />}
           size='lg'
-          fontWeight={'bold'}
+          fontWeight='bold'
         >
           {t('actions.create_new_vote', {
             defaultValue: 'Create new vote',
@@ -385,12 +403,12 @@ const QuickActions = () => {
         <Button
           as={ReactRouterLink}
           to={generatePath(Routes.dashboard.processes)}
-          colorScheme='black'
-          variant={'outline'}
-          justifyContent={'start'}
+          colorScheme='gray'
+          variant='outline'
+          justifyContent='start'
           leftIcon={<Mail04 />}
           size='lg'
-          fontWeight={'bold'}
+          fontWeight='bold'
         >
           {t('actions.view_active_votes', {
             defaultValue: 'View active votes',
@@ -399,12 +417,12 @@ const QuickActions = () => {
         <Button
           as={ReactRouterLink}
           to={generatePath(Routes.dashboard.settings)}
-          colorScheme='black'
-          variant={'outline'}
-          justifyContent={'start'}
+          colorScheme='gray'
+          variant='outline'
+          justifyContent='start'
           leftIcon={<Users01 />}
           size='lg'
-          fontWeight={'bold'}
+          fontWeight='bold'
         >
           {t('actions.manage_team', {
             defaultValue: 'Manage team',
