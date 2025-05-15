@@ -1,7 +1,12 @@
-import { AccountData, FetchElectionsParameters, VocdoniSDKClient } from '@vocdoni/sdk'
+import {
+  AccountData,
+  FetchElectionsParameters,
+  FetchElectionsParametersWithPagination,
+  VocdoniSDKClient,
+} from '@vocdoni/sdk'
 import { QueryKeys } from './keys'
 
-type PaginatedElectionsParams = {
+type PaginatedElectionsParams = Partial<Pick<FetchElectionsParametersWithPagination, 'limit'>> & {
   page?: number
   status?: FetchElectionsParameters['status']
 }
@@ -18,5 +23,6 @@ export const paginatedElectionsQuery = (
       organizationId: account?.address,
       page: params.page ? Number(params.page) - 1 : 0,
       status: params.status?.toUpperCase() as FetchElectionsParameters['status'],
+      limit: params.limit,
     }),
 })

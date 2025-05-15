@@ -2,7 +2,7 @@
 import { useQueryClient } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { lazy } from 'react'
-import { Params } from 'react-router-dom'
+import { LoaderFunctionArgs, Params } from 'react-router-dom'
 import { Profile } from '~elements/dashboard/profile'
 import Settings from '~elements/dashboard/settings'
 import Error from '~elements/Error'
@@ -10,6 +10,7 @@ import LayoutDashboard from '~elements/LayoutDashboard'
 import { paginatedElectionsQuery } from '~src/queries/organization'
 import OrganizationProtectedRoute from '~src/router/OrganizationProtectedRoute'
 import ProtectedRoutes from '~src/router/ProtectedRoutes'
+import { getPaginationParams } from '~src/utils/pagination'
 import { Routes } from '.'
 import AccountProtectedRoute from '../AccountProtectedRoute'
 import { SuspenseLoader } from '../SuspenseLoader'
@@ -49,7 +50,7 @@ export const useDashboardRoutes = () => {
               </SuspenseLoader>
             ),
           },
-          // Protected routes if no account created without organization
+          // Protected routes if account created without organization
           {
             element: (
               <SuspenseLoader>
@@ -75,7 +76,6 @@ export const useDashboardRoutes = () => {
                 loader: async ({ params }: { params: Params<string> }) => client.fetchElection(params.id),
                 errorElement: <Error />,
               },
-
               {
                 path: Routes.dashboard.processes,
                 element: (
@@ -83,8 +83,14 @@ export const useDashboardRoutes = () => {
                     <DashboardProcesses />
                   </SuspenseLoader>
                 ),
-                loader: async ({ params }) =>
-                  await queryClient.ensureQueryData(paginatedElectionsQuery(account, client, params)),
+                loader: async ({ params, request }: LoaderFunctionArgs) => {
+                  const url = new URL(request.url)
+                  const queryParams = getPaginationParams(url.searchParams)
+                  // we want our route params to override the query params
+                  const mergedParams = { ...queryParams, ...params }
+
+                  return await queryClient.ensureQueryData(paginatedElectionsQuery(account, client, mergedParams))
+                },
                 errorElement: <Error />,
               },
               {

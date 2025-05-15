@@ -2743,9 +2743,9 @@
     crypto-js "^4.2.0"
 
 "@vocdoni/react-providers@~0.5.6-beta1":
-  version "0.5.6-beta2"
-  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.5.6-beta2.tgz#36dce7d8148a2ff0188bfd3fc2f3b7c890086901"
-  integrity sha512-al39aO0Zw82LStfLuEHJZh2r75ZiG5+pQAOMlCuNRS1zIq7tUqOowHVKZwGrQPTjt7QHAXGbc/rdla+Vb/GJOw==
+  version "0.5.6-beta3"
+  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.5.6-beta3.tgz#8f5cb8b7316e46639940ea7c449d6493831e7889"
+  integrity sha512-gT6bxuNISR2zg7bk/clx2ilV7Re07Wt05M83dNj5cfAdlQCTUUHBzZHhUmSJWqc+z0ieBOUsgCA1XYSLAnJlAg==
   dependencies:
     up-fetch "^1.3.6"
 

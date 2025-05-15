@@ -1,0 +1,145 @@
+import {
+  Box,
+  Icon,
+  IconButton,
+  Link,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Table,
+  Tag,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
+} from '@chakra-ui/react'
+import { DotsVertical, InfoCircle, SearchSm, Share04 } from '@untitled-ui/icons-react'
+import { ElectionStatusBadge, QuestionsTypeBadge } from '@vocdoni/chakra-components'
+import { ElectionProvider, useElection } from '@vocdoni/react-providers'
+import { ElectionStatus, ensure0x, InvalidElection, PublishedElection } from '@vocdoni/sdk'
+import { Trans, useTranslation } from 'react-i18next'
+import { generatePath, Link as RouterLink } from 'react-router-dom'
+import PaginatedTableFooter from '~components/Layout/Pagination/PaginatedTableFooter'
+import { useDateFns } from '~i18n/use-date-fns'
+import { Routes } from '~src/router/routes'
+
+type Election = PublishedElection | InvalidElection
+
+type ProcessesListProps = {
+  processes?: Election[]
+}
+
+const ProcessesTable = ({ processes }: ProcessesListProps) => {
+  const { t } = useTranslation()
+
+  return (
+    <Box border='1px solid #e5e5e5' borderRadius='sm'>
+      <Table variant='processes'>
+        <Thead>
+          <Tr>
+            <Th>{t('process_list.title', { defaultValue: 'Title' })}</Th>
+            <Th>{t('process_list.start_date', { defaultValue: 'Start date' })}</Th>
+            <Th>{t('process_list.end_date', { defaultValue: 'End date' })}</Th>
+            <Th>{t('process_list.type', { defaultValue: 'Type' })}</Th>
+            <Th>{t('process_list.status', { defaultValue: 'Status' })}</Th>
+            <Th isNumeric>{t('process_list.recount', { defaultValue: 'Recount' })}</Th>
+            <Th>{t('process_list.results', { defaultValue: 'Results' })}</Th>
+            <Th>&nbsp;</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {processes &&
+            !!processes.length &&
+            processes?.map((election) => (
+              <ElectionProvider election={election} id={election.id} key={election.id}>
+                <ProcessRow />
+              </ElectionProvider>
+            ))}
+        </Tbody>
+      </Table>
+      <Box p={4}>
+        <PaginatedTableFooter />
+      </Box>
+    </Box>
+  )
+}
+
+const ProcessRow = () => {
+  const { election } = useElection()
+  const { format } = useDateFns()
+  const { t } = useTranslation()
+
+  if (!election || election instanceof InvalidElection) return null
+
+  return (
+    <Tr position='relative'>
+      <Td>{election.title.default}</Td>
+      <Td>{format(election.startDate, t('organization.date_format'))}</Td>
+      <Td>{format(election.endDate, t('organization.date_format'))}</Td>
+      <Td>
+        <QuestionsTypeBadge sx={{ '& label': { fontWeight: 'normal' } }} />
+      </Td>
+      <Td>
+        <ElectionStatusBadge size='sm' />
+      </Td>
+      <Td isNumeric>{election.voteCount}</Td>
+      <Td>
+        {ElectionStatus.RESULTS === election.status ||
+        ([ElectionStatus.ENDED, ElectionStatus.ONGOING].includes(election.status) &&
+          !election.electionType.secretUntilTheEnd) ? (
+          <Tag colorScheme='gray' size='sm'>
+            <Trans i18nKey='process_list.results_live'>Live</Trans>
+          </Tag>
+        ) : (
+          <Tag colorScheme='gray' size='sm'>
+            <Trans i18nKey='process_list.not_yet'>Not yet</Trans>
+          </Tag>
+        )}
+      </Td>
+      <Td isNumeric>
+        <ProcessContextMenu />
+      </Td>
+    </Tr>
+  )
+}
+
+const ProcessContextMenu = () => {
+  const { election, client } = useElection()
+
+  if (!election || election instanceof InvalidElection) return null
+
+  return (
+    <Menu>
+      <MenuButton as={IconButton} icon={<DotsVertical />} variant='ghost' size='sm' />
+      <MenuList>
+        <MenuItem
+          as={RouterLink}
+          to={generatePath(Routes.dashboard.process, { id: ensure0x(election.id) })}
+          icon={<Icon as={InfoCircle} boxSize={4} />}
+        >
+          More info
+        </MenuItem>
+        <MenuItem
+          as={RouterLink}
+          to={generatePath(Routes.processes.view, { id: ensure0x(election.id) })}
+          icon={<Icon as={Share04} boxSize={4} />}
+          target='_blank'
+        >
+          Public voting page
+        </MenuItem>
+        <MenuItem
+          as={Link}
+          href={`${client.explorerUrl}/process/${election.id}`}
+          icon={<Icon as={SearchSm} boxSize={4} />}
+          isExternal
+        >
+          Explorer
+        </MenuItem>
+      </MenuList>
+    </Menu>
+  )
+}
+
+export default ProcessesTable

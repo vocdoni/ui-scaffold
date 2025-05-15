@@ -72,7 +72,7 @@ const LayoutDashboard: React.FC = () => {
               <IconButton
                 icon={<LayoutRight />}
                 aria-label='Open menu'
-                variant={'transparent'}
+                variant='transparent'
                 colorScheme='gray'
                 size={'xs'}
                 onClick={isMobile ? onOpen : () => setReduced((prev) => !prev)}
@@ -131,44 +131,22 @@ const LayoutDashboard: React.FC = () => {
               </Box>
 
               <Flex gap={2} ml='auto' alignItems={'center'}>
-                <Button
-                  as={ReactRouterLink}
-                  to={generatePath(Routes.processes.create)}
-                  leftIcon={<HelpCircle />}
-                  colorScheme='gray'
-                  size={'sm'}
-                  display={{ base: 'none', lg: 'flex' }}
-                >
-                  <Trans i18nKey='help'>Do you need help?</Trans>
+                <Button leftIcon={<HelpCircle />} colorScheme='gray' size={'sm'} variant='outline'>
+                  <Text display={{ base: 'none', lg: 'flex' }} fontSize='sm'>
+                    <Trans i18nKey='do_you_need_help'>Do you need help?</Trans>
+                  </Text>
                 </Button>
-                <IconButton
-                  icon={<HelpCircle />}
-                  as={ReactRouterLink}
-                  to={generatePath(Routes.processes.create)}
-                  colorScheme='gray'
-                  size={'sm'}
-                  aria-label='help'
-                  display={{ base: 'flex', lg: 'none' }}
-                />
                 <Button
                   as={ReactRouterLink}
                   to={generatePath(Routes.processes.create)}
                   leftIcon={<Plus />}
                   colorScheme='black'
                   size={'sm'}
-                  display={{ base: 'none', lg: 'flex' }}
                 >
-                  <Trans i18nKey='new_voting'>New vote</Trans>
+                  <Text fontSize='sm' display={{ base: 'none', lg: 'flex' }}>
+                    <Trans i18nKey='new_voting'>New vote</Trans>
+                  </Text>
                 </Button>
-                <IconButton
-                  icon={<Plus />}
-                  as={ReactRouterLink}
-                  to={generatePath(Routes.processes.create)}
-                  colorScheme='black'
-                  size={'sm'}
-                  aria-label='new vote'
-                  display={{ base: 'flex', lg: 'none' }}
-                />
               </Flex>
             </Box>
             <Outlet context={{ setBreadcrumb } satisfies DashboardLayoutContext} />
