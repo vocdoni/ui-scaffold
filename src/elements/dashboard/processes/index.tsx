@@ -6,7 +6,6 @@ import { useLoaderData, useOutletContext, useParams } from 'react-router-dom'
 import { DashboardContents } from '~components/Layout/Dashboard'
 import Votings from '~components/Organization/Dashboard/Votings'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
-import { Routes } from '~routes'
 
 const OrganizationVotings = () => {
   const { t } = useTranslation()
@@ -18,8 +17,7 @@ const OrganizationVotings = () => {
   useEffect(() => {
     setBreadcrumb([
       {
-        title: t('organization.votings_list', { defaultValue: 'Voting processes list' }),
-        route: Routes.dashboard.base,
+        title: t('voting_processes', { defaultValue: 'Voting processes' }),
       },
     ])
   }, [setBreadcrumb])
