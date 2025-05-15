@@ -251,12 +251,17 @@
     "common_tasks_actions": "Common tasks and actions",
     "create_first_organization": "Create your first organization",
     "create_first_vote": "Create your first vote",
-    "hello": "{{ emoji }} Hello {{ name }}!",
+    "empty": "No voting processes found",
+    "error_loading_processes": "Error loading voting processes",
+    "hello": "👋 Hello {{name}}!",
     "hello_description": "",
     "how_first_vote": "How to create your first vote",
+    "no_organization": "No organization found",
+    "no_subscription": "No subscription available. Please create an organization to activate your plan.",
     "quick_actions": "Quick Actions",
     "recent_voting_description": "Your organization's latest voting activities",
     "recent_voting_title": "Recent Voting Processes",
+    "subtitle": "Here's an overview of your organization's voting activities",
     "title": "Here's an overview of your organization's voting activities"
   },
   "description": "Description",
@@ -265,6 +270,10 @@
     "customization_details": "Define the params that will enhance the user experience and customize the voting page",
     "edited_successfully": "Updated successfully",
     "header_image": "Header Image"
+  },
+  "election": {
+    "ends_on": "Ends on {{date}}",
+    "total_votes": "{{totalVotes}} votes"
   },
   "email": "Email",
   "email_placeholder": "name@email.com",
@@ -988,7 +997,6 @@
       "not_owner": "This organization has no voting processes yet",
       "title": "Create your first voting process"
     },
-    "ends_on": "Ends on {{date}}",
     "no_organization_title": "You don't belong to any organization yet!",
     "organization": "Organization",
     "title": {
@@ -1025,6 +1033,10 @@
     "success": "Password updated successfully"
   },
   "passwords_do_not_match": "Passwords doesn't match",
+  "plan": {
+    "details": "You're currently on the {{ title }} plan, {{ subtitle }}",
+    "encouragement": "So go ahead, explore the platform, create your first vote, and see just how easy secure digital governance\n              can be! But if you need help, just schedule a call with our experts!"
+  },
   "plan_upgrade": {
     "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
     "feature_available_in": "Feature available in:",
