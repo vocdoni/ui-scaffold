@@ -1,32 +1,18 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Icon,
-  IconButton,
-  Link,
-  ListItem,
-  OrderedList,
-  Text,
-  useBreakpointValue,
-  useDisclosure,
-} from '@chakra-ui/react'
-import { ChevronRight, HelpCircle, LayoutRight, Plus } from '@untitled-ui/icons-react'
+import { Box, Button, Flex, IconButton, Text, useBreakpointValue, useDisclosure } from '@chakra-ui/react'
+import { HelpCircle, LayoutLeft, Plus } from '@untitled-ui/icons-react'
 import { OrganizationProvider, useClient } from '@vocdoni/react-providers'
 import React, { createContext, PropsWithChildren, useEffect, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import { generatePath, Outlet, Link as ReactRouterLink } from 'react-router-dom'
+import Breadcrumb, { BreadcrumbItem } from '~components/Dashboard/Breadcrumb'
 import DashboardMenu from '~components/Dashboard/Menu'
 import { PricingModalProvider } from '~components/Pricing/PricingModalProvider'
 import { Routes } from '~routes'
 
 export type DashboardLayoutContext = {
-  setBreadcrumb: any
+  setBreadcrumb: (items: BreadcrumbItem[]) => void
 }
-type BreadcrumbItem = {
-  title: string
-  route: string
-}
+
 export type DashboardLayoutContextType = {
   reduced: boolean
 }
@@ -34,7 +20,6 @@ export type DashboardLayoutContextType = {
 export const DashboardLayoutContext = createContext<DashboardLayoutContextType | undefined>(undefined)
 
 const LayoutDashboard: React.FC = () => {
-  const { t } = useTranslation()
   const [breadcrumb, setBreadcrumb] = useState<BreadcrumbItem[]>([])
   const { isOpen, onOpen, onClose } = useDisclosure()
   const isMobile = useBreakpointValue({ base: true, md: false })
@@ -70,7 +55,7 @@ const LayoutDashboard: React.FC = () => {
               zIndex={100}
             >
               <IconButton
-                icon={<LayoutRight />}
+                icon={<LayoutLeft />}
                 aria-label='Open menu'
                 variant='transparent'
                 colorScheme='gray'
@@ -80,55 +65,7 @@ const LayoutDashboard: React.FC = () => {
 
               <Box borderRight={'var(--border)'} h={6} />
 
-              <Box as='nav'>
-                <OrderedList display={'flex'} alignItems={'center'} gap={1.5} styleType={"''"} ml={0}>
-                  {!!breadcrumb.length ? (
-                    <>
-                      <ListItem display={{ base: 'none', md: 'block' }}>
-                        <Link
-                          as={ReactRouterLink}
-                          to={generatePath(Routes.dashboard.base)}
-                          variant={'breadcrumb'}
-                          fontSize={'sm'}
-                          onClick={() => setBreadcrumb([])}
-                        >
-                          {t('organization.dashboard')}
-                        </Link>
-                      </ListItem>
-                      <ListItem
-                        display={{ base: 'none', md: 'flex' }}
-                        justifyContent={'center'}
-                        alignItems={'center'}
-                        fontSize={'sm'}
-                      >
-                        <Icon as={ChevronRight} />
-                      </ListItem>
-                    </>
-                  ) : (
-                    <ListItem display={{ base: 'none', md: 'block' }}>{t('organization.dashboard')}</ListItem>
-                  )}
-                  {breadcrumb.map((el, index) => (
-                    <React.Fragment key={index}>
-                      <ListItem display={{ base: index === breadcrumb.length - 1 ? 'block' : 'none', md: 'block' }}>
-                        {index === breadcrumb.length - 1 ? (
-                          <Text as='span' fontSize='sm'>
-                            {el.title}
-                          </Text>
-                        ) : (
-                          <Link as={ReactRouterLink} to={generatePath(el.route)} variant='breadcrumb' fontSize='sm'>
-                            {el.title}
-                          </Link>
-                        )}
-                      </ListItem>
-                      {index < breadcrumb.length - 1 && (
-                        <ListItem display={{ base: 'none', md: 'flex' }} justifyContent='center' alignItems='center'>
-                          <Icon as={ChevronRight} />
-                        </ListItem>
-                      )}
-                    </React.Fragment>
-                  ))}
-                </OrderedList>
-              </Box>
+              <Breadcrumb breadcrumb={breadcrumb} setBreadcrumb={setBreadcrumb} />
 
               <Flex gap={2} ml='auto' alignItems={'center'}>
                 <Button leftIcon={<HelpCircle />} colorScheme='gray' size={'sm'} variant='outline'>
