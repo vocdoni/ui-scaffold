@@ -5,10 +5,12 @@
   },
   "actions": {
     "cancel": "Cancel",
-    "save": "Guarda els canvis"
+    "save": "Guarda els canvis",
+    "save_changes": "Save Changes"
   },
   "active": "Actiu",
   "add_new_org": "Afegir una nova organització",
+  "additional_actions": "Additional actions",
   "all": "Tots",
   "already_member": "Ja tens un compte?",
   "alt": {
@@ -29,6 +31,7 @@
     "description": "Els votants romandran anònims",
     "title": "Anònim"
   },
+  "anonymous_voting": "Anonymous voting",
   "aside": {
     "has_already_voted": "El teu vot s'ha registrat correctament",
     "is_not_in_census": "No estàs en el cens",
@@ -139,7 +142,7 @@
       "date_format": "PPpp",
       "secret_until_the_end": "Els resultats es faran públics quan el procés finalitzi el {{ endDate }}",
       "title": "Resultats per a \"{{ title }}\"",
-      "votes": "Vots: {{ votes }} ({{ percent }})"
+      "votes": "{{ percent }}"
     },
     "schedule": {
       "created": "Creat {{ distance }}",
@@ -197,6 +200,7 @@
     "wallet_address_title": "Adreces de cartera"
   },
   "census_details": "Census Details",
+  "census_size": "Census size",
   "change_password": {
     "subtitle": "Enter your current password and a new password to update your credentials.",
     "title": "Change Password"
@@ -219,10 +223,11 @@
   "confirm_password": "Confirm Password",
   "confirm_password_placeholder": "Confirm your new password",
   "contact_us": "Contact us",
-  "control": "Control:",
+  "control_panel": "Control panel",
   "copy": {
     "address": "Copia l'adreça",
-    "copied_title": "Copiat!"
+    "copied_title": "Copiat!",
+    "copy": "Copy"
   },
   "country_selector": {
     "selector_label": "Country",
@@ -231,6 +236,7 @@
   "create_org": {
     "already_profile": "If your organization already has a profile, <2>access the dashboard</2> and contact the administrator to invite you",
     "communication": "Vull rebre comunicacions i ser contactat per adaptar la meva experiència de governança.",
+    "create_button": "Create your organization",
     "private_org": "Detalls privats de l'organització",
     "private_org_description": "Ajuda'ns a adaptar la teva experiència amb informació sobre la teva organització. No compartirem aquesta informació",
     "public_info": "Informació pública de l'organització",
@@ -246,8 +252,18 @@
   "current": "Actual",
   "customization": "Customization",
   "dark_mode": "Mode fosc",
+  "dashboard": {
+    "actions": {
+      "toggle_sidebar": "Toggle sidebar"
+    },
+    "process_view": {
+      "date_format": "MMMM do, y",
+      "time_format": "p"
+    }
+  },
   "description": "Description",
   "do_it_later": "Do it later",
+  "do_you_need_help": "Do you need help?",
   "edit_saas_profile": {
     "customization_details": "Defineix els paràmetres que milloraran l'experiència d'usuari i personalitzaran la pàgina de votació",
     "edited_successfully": "Actualitzat correctament",
@@ -255,6 +271,8 @@
   },
   "email": "Correu electrònic",
   "email_placeholder": "nom@email.com",
+  "end_date": "End date",
+  "end_time": "End time",
   "error": {
     "go_back": "Torna enrere",
     "invalid_cell_data": "Algunes fileres no contenen adreces correctes: {{rows, list}}",
@@ -289,6 +307,7 @@
   },
   "features": {
     "anonymous": "Votacions anònimes",
+    "anonymous_voting": "Anonymous voting",
     "approval": "Per aprovació",
     "cumulative": "Votació acumulativa",
     "custom_url": "Adreça URL personalitzada",
@@ -309,7 +328,6 @@
     "single": "Opció única",
     "sms_notification": "Notificacions per SMS",
     "sub_orgs": "Fins a {{ value }} suborganitzacions",
-    "title": "Característiques",
     "total_members": "Membresies totals",
     "total_orgs": "Sub-organitzacions disponibles",
     "weighted": "Amb pes",
@@ -487,7 +505,6 @@
   "google_oauth_error": "Google OAuth Error",
   "google_oauth_error_description": "Google OAuth error, please try again",
   "guides": "Guies",
-  "help": "Necessites ajuda?",
   "home": {
     "benefits": {
       "card_1": {
@@ -992,6 +1009,10 @@
     "description": "Voters will be able to overwrite their vote once",
     "title": "Vote overwrite"
   },
+  "pagination": {
+    "page_out_of": "Page {{page}} of {{total}}",
+    "rows_per_page": "Rows per page"
+  },
   "password": "Contrasenya",
   "password_placeholder": "Min 8 characters",
   "password_placeholder_confirm": "Confirma la Contrasenya",
@@ -1247,20 +1268,36 @@
     "title_placeholder": "Title of the voting process"
   },
   "process_list": {
-    "start_end_date": "Start-end date",
+    "end_date": "End date",
+    "not_yet": "Not yet",
+    "recount": "Recount",
+    "results": "Results",
+    "results_live": "Live",
+    "start_date": "Start date",
     "status": "Status",
     "title": "Title",
-    "type": "Type",
-    "voters": "Voters"
+    "type": "Type"
   },
   "profile": {
     "error": "Failed to update profile",
     "success": "Profile updated successfully",
     "title": "Profile"
   },
+  "questions_and_results": "Questions and results",
   "remove_avatar": "Remove avatar",
   "remove_header": "Remove header",
   "reset_password_button": "Reset Password",
+  "result_visibility": "Results visibility",
+  "results_state": {
+    "enabled": "Enabled",
+    "hidden_until_end": "Hidden until the end",
+    "live_results": "Live results",
+    "live_results_tooltip": "This voting process shows live results. However, it is still in progress, so the results may change before the vote ends.",
+    "not_enabled": "Not enabled",
+    "results_available": "Results available",
+    "secret_until_end": "Awaiting results",
+    "secret_until_end_tooltip": "Results are hidden and will only be available once voting ends"
+  },
   "rights": "© 2024 Associació Vocdoni. Tots els drets reservats.",
   "role": {
     "read_permission": "Read-only access",
@@ -1293,6 +1330,8 @@
   "signup_lastname": "Cognom",
   "signup_subtitle": "Continua per accedir al teu compte",
   "signup_title": "Crea un compte",
+  "start_date": "Start date",
+  "start_time": "Start time",
   "submit": "Submit",
   "subscribe": "Subscribe",
   "subscription": {
@@ -1403,7 +1442,9 @@
     },
     "satisfaction_rate": "97% satisfaction rate, starting at 9€/month."
   },
+  "total_votes": "Total votes",
   "total_votes_submitted": "Total Votes Submitted",
+  "turnout": "Turnout",
   "update": "Update",
   "upgrade": "Upgrade",
   "uploader": {
@@ -1476,13 +1517,19 @@
     "verifying_subtitle": "Await while we verify your email address. You will be redirect on success.",
     "verifying_title": "Verifying {{ email }}"
   },
+  "view_in_explorer": "View in explorer",
   "view_plans_and_pricing": "Veure Plans i Preus",
   "view_pricing_plans": "View Pricing Plans",
   "vocdoni logo": "",
-  "voters": "voters",
-  "voting_link": "Voting Link",
+  "vote_information": "Vote information",
+  "vote_overwrite": "Vote overwrite",
+  "voting_link": {
+    "description": "Share this link with your voters to participate in the voting process",
+    "title": "Voting Link"
+  },
   "voting_processes": "Processos de votació",
-  "voting_questions": "Voting Questions",
-  "voting_results": "Voting Results",
+  "voting_processes_description": "Gestiona i supervisa els teus processos de votació",
+  "voting_settings": "Voting settings",
+  "voting_status": "Voting status",
   "website": "Website"
 }

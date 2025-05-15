@@ -104,7 +104,7 @@ const AccountForm = ({ profile }: { profile: User }) => {
           </FormControl>
 
           <Button type='submit' size='lg' isLoading={isSubmitting || updateProfile.isPending} alignSelf={'start'}>
-            {t('actions.save', { defaultValue: 'Save Changes' })}
+            {t('actions.save_changes', { defaultValue: 'Save Changes' })}
           </Button>
         </VStack>
       </form>

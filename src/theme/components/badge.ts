@@ -3,9 +3,7 @@ import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
 const baseStyle = defineStyle((props) => ({
   border: '1px solid',
   borderColor: `${props.colorScheme}.200`,
-  borderRadius: 'full',
-  fontWeight: 'normal',
-  textTransform: 'capitalize',
+  textTransform: 'normal',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
