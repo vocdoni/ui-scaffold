@@ -340,7 +340,7 @@ const ProcessViewSidebar = (props: SidebarProps) => {
               text={t('vote_overwrite', 'Vote overwrite')}
               subtext={
                 election instanceof PublishedElection &&
-                (election.electionType.anonymous
+                (election.voteType.maxVoteOverwrites
                   ? t('results_state.enabled', 'Enabled')
                   : t('results_state.not_enabled', 'Not enabled'))
               }
