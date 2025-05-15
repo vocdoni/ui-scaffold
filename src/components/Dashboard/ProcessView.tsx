@@ -4,10 +4,12 @@ import {
   Box,
   Button,
   Flex,
+  forwardRef,
   HeadingProps,
   HStack,
   Icon,
   IconButton,
+  IconProps,
   Input,
   Link,
   Progress,
@@ -17,19 +19,6 @@ import {
   useClipboard,
   VStack,
 } from '@chakra-ui/react'
-import {
-  Calendar,
-  Clock,
-  Copy01,
-  Eye,
-  InfoCircle,
-  PauseCircle,
-  PlayCircle,
-  Settings01,
-  Share04,
-  StopCircle,
-  Trash01,
-} from '@untitled-ui/icons-react'
 import {
   ActionCancel,
   ActionContinue,
@@ -46,7 +35,23 @@ import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { formatDate } from 'date-fns'
 import { ReactNode, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { LuEye, LuSearch, LuShield, LuUsers, LuVote } from 'react-icons/lu'
+import {
+  LuCalendar,
+  LuClock,
+  LuCopy,
+  LuExternalLink,
+  LuEye,
+  LuInfo,
+  LuPause,
+  LuPlayCircle,
+  LuSearch,
+  LuSettings,
+  LuShield,
+  LuStopCircle,
+  LuTrash2,
+  LuUsers,
+  LuVote,
+} from 'react-icons/lu'
 import { generatePath } from 'react-router-dom'
 import {
   DashboardBox,
@@ -84,7 +89,7 @@ export const ProcessView = () => {
           <ElectionStatusBadge />
           <IconButton
             aria-label={t('dashboard.actions.toggle_sidebar', { defaultValue: 'Toggle sidebar' })}
-            icon={<Icon as={Settings01} />}
+            icon={<Icon as={LuSettings} />}
             variant='outline'
             onClick={() => setShowSidebar((prev) => !prev)}
           />
@@ -98,12 +103,12 @@ export const ProcessView = () => {
         {/* Schedule */}
         <DashboardBox display='flex' flexDirection='column' flexWrap={'wrap'} justifyContent={'space-between'} gap={4}>
           <Heading>
-            <Icon as={Calendar} mr={2} />
+            <Icon as={LuCalendar} />
             <Trans i18nKey='calendar.title'>Schedule</Trans>
           </Heading>
           <HStack>
             <SettingsField
-              icon={Calendar}
+              icon={LuCalendar}
               text={t('start_date', 'Start date')}
               subtext={
                 election instanceof PublishedElection &&
@@ -111,7 +116,7 @@ export const ProcessView = () => {
               }
             />
             <SettingsField
-              icon={Clock}
+              icon={LuClock}
               text={t('start_time', 'Start time')}
               subtext={
                 election instanceof PublishedElection &&
@@ -121,7 +126,7 @@ export const ProcessView = () => {
           </HStack>
           <HStack>
             <SettingsField
-              icon={Calendar}
+              icon={LuCalendar}
               text={t('end_date', 'End date')}
               subtext={
                 election instanceof PublishedElection &&
@@ -129,7 +134,7 @@ export const ProcessView = () => {
               }
             />
             <SettingsField
-              icon={Clock}
+              icon={LuClock}
               text={t('end_time', 'End time')}
               subtext={
                 election instanceof PublishedElection &&
@@ -144,7 +149,7 @@ export const ProcessView = () => {
         <DashboardBox>
           <Box>
             <Heading>
-              <Icon as={Share04} mr={2} />
+              <Icon as={LuExternalLink} />
               <Trans i18nKey='voting_link.title'>Voting Link</Trans>
             </Heading>
             <Text color='gray.500' fontSize='sm'>
@@ -159,7 +164,7 @@ export const ProcessView = () => {
             <IconButton
               variant='outline'
               onClick={onCopy}
-              icon={<Icon as={Copy01} />}
+              icon={<Icon as={LuCopy} />}
               title={t('copy.copy', 'Copy')}
               aria-label={t('copy.copy')}
             />
@@ -167,7 +172,7 @@ export const ProcessView = () => {
               as={Link}
               href={votingLink}
               isExternal
-              icon={<Icon as={Eye} />}
+              icon={<Icon as={LuEye} />}
               variant='outline'
               title={t('preview', 'Preview')}
               aria-label={t('preview')}
@@ -220,7 +225,7 @@ const ResultsStateBadge = (props: BadgeProps) => {
       <Tooltip label={tooltip} isDisabled={!tooltip} placement='top'>
         <Badge colorScheme={color} {...props}>
           {text}
-          {tooltip && <Icon as={InfoCircle} />}
+          {tooltip && <Icon as={LuInfo} />}
         </Badge>
       </Tooltip>
     )
@@ -249,7 +254,7 @@ const ProcessViewSidebar = (props: SidebarProps) => {
             <ActionsProvider>
               {election instanceof PublishedElection && election.status === ElectionStatus.ONGOING && (
                 <ActionPause variant='outline' aria-label={t('process_actions.pause', { defaultValue: 'Pause' })}>
-                  <Icon as={PauseCircle} color='yellow.500' mr={3} />
+                  <ControlIcon as={LuPause} color='orange.400' />
                   <Text as='span' flex={1} textAlign='left' fontSize='sm'>
                     Pause vote
                   </Text>
@@ -260,20 +265,20 @@ const ProcessViewSidebar = (props: SidebarProps) => {
                   variant='outline'
                   aria-label={t('process_actions.continue', { defaultValue: 'Continue' })}
                 >
-                  <Icon as={PlayCircle} color='green.400' mr={3} />
+                  <ControlIcon as={LuPlayCircle} color='green.400' />
                   <Text as='span' flex={1} textAlign='left' fontSize='sm'>
                     Resume
                   </Text>
                 </ActionContinue>
               )}
               <ActionEnd variant='outline' aria-label={t('process_actions.end', { defaultValue: 'End' })}>
-                <Icon as={StopCircle} color='orange.400' mr={3} />
+                <ControlIcon as={LuStopCircle} color='red.500' />
                 <Text as='span' flex={1} textAlign='left' fontSize='sm'>
                   End vote
                 </Text>
               </ActionEnd>
               <ActionCancel variant='outline' aria-label={t('process_actions.cancel', { defaultValue: 'Cancel' })}>
-                <Icon as={Trash01} color='red.400' mr={3} />
+                <ControlIcon as={LuTrash2} color='red.400' />
                 <Text as='span' flex={1} textAlign='left' fontSize='sm'>
                   Cancel vote
                 </Text>
@@ -369,7 +374,7 @@ const ProcessViewSidebar = (props: SidebarProps) => {
   )
 }
 
-const SettingsField = ({ subtext, icon, text }: { subtext?: string; icon: typeof Calendar; text: ReactNode }) => (
+const SettingsField = ({ subtext, icon, text }: { subtext?: string; icon: typeof LuCalendar; text: ReactNode }) => (
   <Box display='flex' gap={2} flex={1} alignItems='center'>
     <Box
       color='gray.600'
@@ -398,3 +403,4 @@ const SidebarTitle = (props: HeadingProps) => (
   <Heading as='h4' fontSize='lg' fontWeight='bold' variant='sidebar-title' {...props} />
 )
 const SidebarSubtitle = (props: HeadingProps) => <Heading as='h5' fontSize='sm' variant='sidebar-subtitle' {...props} />
+const ControlIcon = forwardRef<IconProps, 'svg'>((props, ref) => <Icon mr={3} boxSize={4} ref={ref} {...props} />)
