@@ -9,7 +9,7 @@ import { CspAuth } from '~components/Process/CSP/CSPAuthModal'
 import Error from './Error'
 
 // const processes = import.meta.env.PROCESS_IDS
-const processes = ["6be21a5a9dc0f7be137b346a86ca830f9028e5116ea746137bbf020400000000"]
+const processes = ['6be21a5a9dc0f7be137b346a86ca830f9028e5116ea746137bbf020400000000']
 
 const AlhoraWrapper = () => (
   <ElectionProvider id={processes[0]}>
@@ -99,10 +99,7 @@ const Alhora = () => {
             <Box fontSize='18px'>
               <Text style={{ marginTop: '30px' }}>
                 - Enllaç a la documentació externa:{' '}
-                <Link
-                  href='https://alhora.cat'
-                  isExternal
-                >
+                <Link href='https://alhora.cat' isExternal>
                   Memòria Alhora 🔗
                 </Link>
               </Text>

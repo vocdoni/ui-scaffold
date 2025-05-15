@@ -89,7 +89,8 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
           </FormControl>
 
           <Text fontSize='xs'>
-            💡 Les teves dades s'utlilitzaran només per verificar la teva identitat. Vocdoni no emmagatzema dades personals.
+            💡 Les teves dades s'utlilitzaran només per verificar la teva identitat. Vocdoni no emmagatzema dades
+            personals.
           </Text>
 
           <Button type='submit' variant='primary' borderRadius='full' w='full' isLoading={auth.isPending} mt={2}>
