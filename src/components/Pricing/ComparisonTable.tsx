@@ -88,7 +88,7 @@ export const ComparisonTable = forwardRef<HTMLDivElement, ComparisonTableProps>(
   const { data: plans, isLoading } = usePlans()
 
   if (isLoading) {
-    return <Progress size='sm' isIndeterminate colorScheme='brand' />
+    return <Progress size='sm' isIndeterminate />
   }
 
   return (

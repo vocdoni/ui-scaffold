@@ -522,68 +522,20 @@ export const colors = {
   },
 
   black: {
-    50: 'rgb(24, 24, 27)',
-    100: 'rgb(24, 24, 27)',
-    200: 'rgb(24, 24, 27)',
-    300: 'rgb(24, 24, 27)',
-    400: 'rgb(24, 24, 27)',
-    500: 'rgb(24, 24, 27)',
-    600: 'rgb(24, 24, 27)',
-    700: 'rgb(1, 1, 1)',
-    800: 'rgb(1, 1, 1)',
-    900: 'rgb(24, 24, 27)',
-    950: 'rgb(24, 24, 27)',
-  },
-
-  red: {
-    600: 'rgb(239, 68, 68)',
-    700: 'rgba(239, 68, 68, 0.978)',
-    800: 'rgba(239, 68, 68, 0.9)',
+    // comments refer to button styles
+    50: '#e5e5e5', // ghost hover (light)
+    100: '#cccccc', // hover (light)
+    200: '#999999', // outline hover / ghost active (light)
+    300: '#666666', // outline active (light)
+    500: '#000000', // base solid
+    600: '#1a1a1a', // solid hover
+    700: '#2e2e2e', // solid active
+    800: '#3f3f3f', // link active (dark)
   },
 
   gray: {
     100: 'whitesmoke',
     400: '#b2b2b2',
     500: '#737373',
-  },
-
-  brand: {
-    50: '#cce5de',
-    100: '#99cbbd',
-    200: '#276958',
-    300: '#33967c',
-    400: '#2b846b',
-    500: '#276958',
-    600: '#205345',
-    700: '#193d32',
-    800: '#12271f',
-    900: '#0a130c',
-    950: '#050b07',
-  },
-  brandAlpha: {
-    50: '#d9e4c4',
-    100: '#b3c77f',
-    200: '#8db13a',
-    300: '#749c2d',
-    400: '#22555A',
-    500: '#22555A',
-    600: '#22555A',
-    700: '#3a552b',
-    800: '#2e4924',
-    900: '#233c1d',
-    950: '#1a2e16',
-  },
-  gradient: {
-    50: '#2C7D57',
-    100: '#2C7D57',
-    200: 'linear-gradient(to right, #2C7D57, #22555A)', // gradient base
-    300: 'linear-gradient(to right, #2C7D57, #2C7D57, #2C7D57, #22555A)',
-    400: 'linear-gradient(to right, #2C7D57, #2C7D57)',
-    500: 'linear-gradient(to right, #2C7D57, #22555A)', // gradient base
-    600: 'linear-gradient(to right, #2C7D57, #2C7D57, #2C7D57, #22555A)',
-    700: 'linear-gradient(to right, #2C7D57, #2C7D57)',
-    800: '#2C7D57',
-    900: '#2C7D57',
-    950: '#2C7D57',
   },
 }

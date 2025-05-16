@@ -54,14 +54,14 @@ const LayoutAuth = () => {
         boxShadow={'var(--shadow-sm)'}
         border='1px solid'
         borderColor='auth.border'
-        borderRadius='lg'
+        borderRadius='md'
         bgColor={'auth.card_bg'}
       >
         <Box p={{ base: 6, sm: 8 }} flex={{ base: '1 1 100%', md: '0 0 50%' }}>
           {(title || subtitle) && (
             <Box mb={6}>
               {title && (
-                <Heading size='xs' fontWeight='extrabold' mb={1} letterSpacing={'-0.6px'}>
+                <Heading size='lg' fontWeight='extrabold' mb={1} letterSpacing={'-0.6px'}>
                   {title}
                 </Heading>
               )}
@@ -83,6 +83,7 @@ const LayoutAuth = () => {
           bgSize='cover'
           bgPosition='center'
           minH='100%'
+          borderRightRadius='md'
         >
           <Box position='absolute' left={0} bottom={0} right={0} p={8}>
             <Text bottom={0} size='lg' fontWeight='bold' mb={2} color='auth.image_color'>

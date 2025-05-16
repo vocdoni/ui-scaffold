@@ -277,7 +277,7 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
               </Text>
             )}
           </Flex>
-          {isLoading && <Progress colorScheme='brand' size='xs' isIndeterminate />}
+          {isLoading && <Progress isIndeterminate />}
           <Flex gap={5} justifyContent='space-evenly' alignItems='start' flexWrap='wrap'>
             {cards.map((card, idx) => (
               <PricingCard key={idx} plan={plans[idx]} {...card} featuresRef={featuresRef} />

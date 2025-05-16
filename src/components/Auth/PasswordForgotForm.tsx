@@ -52,7 +52,7 @@ const PasswordForgotForm: React.FC = () => {
             type='email'
             required
           />
-          <Button type='submit' fontSize='sm' variant='primary' fontWeight='500' w='100%' h={50}>
+          <Button type='submit' fontSize='sm' colorScheme='black' fontWeight='500' w='100%' h={50}>
             {t('forgot_password_reset_link')}
           </Button>
         </Flex>

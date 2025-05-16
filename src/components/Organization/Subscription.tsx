@@ -63,7 +63,7 @@ export const SubscriptionList = () => {
   const toast = useToast()
 
   if (loading) {
-    return <Progress size='xs' isIndeterminate />
+    return <Progress isIndeterminate />
   }
 
   if (!subscription) {
