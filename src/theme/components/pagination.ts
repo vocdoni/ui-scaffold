@@ -1,8 +1,8 @@
 import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
-import { PaginationAnatomy } from '@vocdoni/chakra-components'
+import { paginationAnatomy } from '@vocdoni/chakra-components'
 
 const { defineMultiStyleConfig: defineVoteWeightTipStyle, definePartsStyle: defineVoteWeightParts } =
-  createMultiStyleConfigHelpers(PaginationAnatomy)
+  createMultiStyleConfigHelpers(paginationAnatomy)
 
 export const Pagination = defineVoteWeightTipStyle({
   baseStyle: defineVoteWeightParts({
