@@ -48,7 +48,7 @@ const InputPassword = ({
     <FormControl isInvalid={!!errors[formValue]} isRequired={required}>
       {label && <FormLabel variant='process-create-title-sm'>{label}</FormLabel>}
       <InputGroup>
-        <Input {...register(formValue, validationRules)} type={inputType} placeholder={placeholder} />
+        <Input {...register(formValue, validationRules)} type={inputType} placeholder={placeholder} required={false} />
         <InputRightElement display='flex' alignItems='center' minH='100%'>
           <Icon
             _hover={{ cursor: 'pointer' }}
