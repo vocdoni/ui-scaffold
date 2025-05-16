@@ -26,7 +26,7 @@ import { HSeparator } from '~components/Auth/SignIn'
 import { useAuth } from '~components/Auth/useAuth'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import { SelectOptionType } from '~components/Layout/SaasSelector'
-import Uploader from '~components/Layout/Uploader'
+import { ImageUploader } from '~components/Layout/Uploader'
 import { QueryKeys } from '~src/queries/keys'
 import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from './Form'
 import fallback from '/assets/default-avatar.png'
@@ -260,7 +260,7 @@ const CustomizeOrgForm = () => {
           </Flex>
         ) : (
           <Box mb={4}>
-            <Uploader
+            <ImageUploader
               getRootProps={getAvatarRootProps}
               getInputProps={getAvatarInputProps}
               isDragActive={isAvatarDragActive}
