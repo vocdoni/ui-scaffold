@@ -31,9 +31,7 @@ const VotingsList = ({ data, status }: VotingsProps) => {
   return (
     <Flex flexDirection='column' flexGrow={1} gap={5} height='full'>
       {!!elections?.length ? (
-        <>
-          <ProcessesTable processes={elections} />
-        </>
+        <ProcessesTable processes={elections} />
       ) : !!status ? (
         <NoResultsFiltering />
       ) : (
