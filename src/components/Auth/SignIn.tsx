@@ -123,7 +123,7 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
             />
           </Flex>
 
-          <Button type='submit' w='100%'>
+          <Button type='submit' w='full' colorScheme='black'>
             {t('signin')}
           </Button>
         </Box>

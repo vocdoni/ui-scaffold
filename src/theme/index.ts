@@ -35,6 +35,7 @@ import '@fontsource/inter/500.css'
 import '@fontsource/inter/600.css'
 import '@fontsource/inter/700.css'
 import '@fontsource/inter/index.css'
+import { Progress } from './components/progress'
 
 export const theme = extendTheme(vtheme, {
   config: {
@@ -202,6 +203,7 @@ export const theme = extendTheme(vtheme, {
     Pagination,
     PaginationButton,
     Popover,
+    Progress,
     Radio,
     Stepper,
     SpreadsheetAccess,

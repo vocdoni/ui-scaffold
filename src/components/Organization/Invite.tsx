@@ -152,7 +152,7 @@ const InviteForm = () => {
               },
             }}
           >
-            {rolesLoading && <Progress size='xs' isIndeterminate />}
+            {rolesLoading && <Progress isIndeterminate />}
             {roles &&
               roles?.map((role) => (
                 <RoleRadio

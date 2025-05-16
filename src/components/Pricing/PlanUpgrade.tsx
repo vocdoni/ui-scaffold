@@ -69,7 +69,7 @@ export const PlanUpgrade = ({ feature, text, value }: PlanUpgradeData) => {
 
       {/* Call to Action */}
       <Box>
-        <Button variant='solid' colorScheme='brand' w='full' size='lg' mb={2} onClick={() => openModal('subscription')}>
+        <Button variant='solid' colorScheme='black' w='full' size='lg' mb={2} onClick={() => openModal('subscription')}>
           <Trans i18nKey='view_pricing_plans'>View Pricing Plans</Trans>
         </Button>
         <Text fontSize='xs' color='gray.500' textAlign='center'>

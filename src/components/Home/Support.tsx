@@ -98,8 +98,7 @@ const Support = () => {
           </Button>
           <Button
             as={ReactRouterLink}
-            variant='primary'
-            colorScheme='whiteAlpha'
+            colorScheme='black'
             to='https://calendly.com/vocdoni-app/30min'
             aria-label={t('home.support.btn_watch')}
             title={t('home.support.btn_watch')}
