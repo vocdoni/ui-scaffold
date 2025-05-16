@@ -115,12 +115,24 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
               placeholder={t('email_placeholder', { defaultValue: 'your@email.com' })}
               type='email'
             />
-            <InputPassword
-              formValue='password'
-              label={t('password')}
-              placeholder={t('password_placeholder', { defaultValue: 'Enter your password' })}
-              required
-            />
+            <Flex flexDir='column' gap={0}>
+              <InputPassword
+                formValue='password'
+                label={t('password')}
+                placeholder={t('password_placeholder', { defaultValue: 'Enter your password' })}
+                required
+              />
+              <Link
+                as={NavLink}
+                to={Routes.auth.passwordReset}
+                fontSize='xs'
+                fontWeight='bold'
+                alignSelf='end'
+                color='gray.500'
+              >
+                {t('forgot_password_title')}
+              </Link>
+            </Flex>
           </Flex>
           <Button type='submit' w='full' colorScheme='black'>
             {t('signin')}
