@@ -108,7 +108,7 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
     <>
       <FormProvider {...methods}>
         <Box as='form' onSubmit={handleSubmit(onSubmit)} mb={6}>
-          <Flex flexDirection={'column'} gap={4} mb={4}>
+          <Flex flexDirection='column' gap={4} mb={4}>
             <InputBasic
               formValue='email'
               label={t('email')}
@@ -122,7 +122,6 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
               required
             />
           </Flex>
-
           <Button type='submit' w='full' colorScheme='black'>
             {t('signin')}
           </Button>
@@ -144,7 +143,7 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
 
 export const HSeparator = (props: { variant?: string; [x: string]: any }) => {
   const { variant, ...rest } = props
-  return <Flex h='px' w='100%' bg='rgba(135, 140, 189, 0.3)' {...rest} />
+  return <Flex h='px' w='full' bg='rgba(135, 140, 189, 0.3)' {...rest} />
 }
 
 export const OrSeparator = () => {
