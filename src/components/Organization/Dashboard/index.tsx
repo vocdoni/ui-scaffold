@@ -39,8 +39,8 @@ const OrganizationDashboard = () => {
   const { t } = useTranslation()
 
   return (
-    <DashboardContents>
-      <Heading size='xs' fontWeight='extrabold' mb={1}>
+    <DashboardContents p={0}>
+      <Heading size='lg' fontWeight='extrabold' mb={1}>
         {t('dashboard_empty_processes.title', { defaultValue: 'Welcome to Vocdoni Coop' })}
       </Heading>
       <Text color='gray.500' mb={6}>
@@ -67,7 +67,7 @@ const Tutorial = () => {
   const plan = subscription ? translations[subscription.plan.id] : undefined
 
   return (
-    <DashboardBox p={6} mb={8} display='flex' gap={10} position='relative'>
+    <DashboardBox p={6} mb={8} display='flex' gap={10} position='relative' flexDirection='row'>
       <IconButton
         aria-label='Close'
         icon={<XClose />}
@@ -160,12 +160,24 @@ const Setup = () => {
 
   return (
     isOpen && (
-      <Box position='fixed' bottom={4} right={4} w='sm' bg='white' borderRadius='lg' boxShadow='xl' zIndex='overlay'>
-        <Accordion allowToggle>
-          <AccordionItem>
-            <Flex p={3}>
+      <Box
+        position='fixed'
+        bottom={6}
+        right={6}
+        p={0}
+        w='xs'
+        bg='white'
+        borderRadius='2xl'
+        boxShadow='xl'
+        zIndex='overlay'
+        border='1px solid'
+        borderColor='gray.200'
+      >
+        <Accordion allowToggle border='none'>
+          <AccordionItem border='none' alignItems='center'>
+            <Flex px={4} py={3}>
               <Flex flex='1' align='center'>
-                <Icon as={CheckCircle} mr={2} />
+                <Icon as={CheckCircle} mr={2} boxSize={5} />
                 <Text fontWeight='bold'>
                   {t('setup.title', {
                     defaultValue: 'Complete your setup',
@@ -173,42 +185,52 @@ const Setup = () => {
                 </Text>
               </Flex>
               <Flex>
-                <AccordionButton as={Button} variant='ghost' size='sm' colorScheme='gray' p={1} minW='unset'>
-                  <InvertedAccordionIcon />
-                </AccordionButton>
+                <AccordionButton
+                  p={0}
+                  as={IconButton}
+                  variant='ghost'
+                  h='28px'
+                  minW='28px'
+                  colorScheme='gray'
+                  color='black'
+                  icon={<InvertedAccordionIcon />}
+                ></AccordionButton>
                 <IconButton
                   aria-label='Close'
                   icon={<XClose />}
-                  size='sm'
+                  h='28px'
+                  minW='28px'
                   variant='ghost'
                   colorScheme='gray'
-                  ml={2}
+                  color='black'
                   onClick={onClose}
                 />
               </Flex>
             </Flex>
-            <AccordionPanel pt={4} pb={2}>
-              <Flex justify='space-between' align='center' mb={2}>
-                <Text fontSize='sm'>{t('setup.progress', { defaultValue: 'Your progress' })}</Text>
-                <Text fontSize='sm'>{Math.round(progress)}%</Text>
+            <AccordionPanel p={0}>
+              <Flex flexDirection='column' px={4} py={2}>
+                <Flex justify='space-between' align='center'>
+                  <Text fontSize='xs'>{t('setup.progress', { defaultValue: 'Your progress' })}</Text>
+                  <Text fontSize='xs'>{Math.round(progress)}%</Text>
+                </Flex>
+                <Progress
+                  value={progress}
+                  colorScheme='gray'
+                  size='sm'
+                  borderRadius='md'
+                  sx={{
+                    '& > [role="progressbar"]': {
+                      borderRadius: '0',
+                    },
+                  }}
+                />
               </Flex>
-              <Progress
-                value={progress}
-                colorScheme='gray'
-                size='sm'
-                borderRadius='md'
-                sx={{
-                  '& > [role="progressbar"]': {
-                    borderRadius: '0',
-                  },
-                }}
-              />
-              <Stack spacing={5} direction='column' mt={4} mb={4}>
+              <Stack spacing={2} direction='column' p={3} pt={2}>
                 {checklist.map((checkbox, index) => (
-                  <Checkbox key={checkbox.id} colorScheme='gray' isChecked={checkbox.completed} size='sm'>
-                    <HStack ml={2} spacing={2} align='center'>
+                  <Checkbox key={checkbox.id} colorScheme='gray' isChecked={checkbox.completed} size='sm' p={2}>
+                    <HStack ml={1} spacing={2} align='center'>
                       <Icon as={checkbox.icon} boxSize={4} />
-                      <Text>{checkbox.label}</Text>
+                      <Text size='sm'>{checkbox.label}</Text>
                     </HStack>
                   </Checkbox>
                 ))}
