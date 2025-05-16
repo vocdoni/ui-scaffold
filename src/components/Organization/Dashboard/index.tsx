@@ -20,12 +20,12 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
-import { ArrowUpRight, Calendar, CheckCircle, Mail04, Plus, Users01, XClose } from '@untitled-ui/icons-react'
 import { ElectionStatusBadge, ElectionTitle } from '@vocdoni/chakra-components'
 import { ElectionProvider, useClient, useOrganization } from '@vocdoni/react-providers'
 import { PublishedElection } from '@vocdoni/sdk'
 import { format } from 'date-fns'
 import { Trans, useTranslation } from 'react-i18next'
+import { LuArrowUpRight, LuCalendar, LuCheckCircle2, LuPlus, LuUsers, LuVote, LuX } from 'react-icons/lu'
 import { generatePath, Link as ReactRouterLink } from 'react-router-dom'
 import { useSubscription } from '~components/Auth/Subscription'
 import { DashboardBox, DashboardContents } from '~components/Layout/Dashboard'
@@ -67,10 +67,10 @@ const Tutorial = () => {
   const plan = subscription ? translations[subscription.plan.id] : undefined
 
   return (
-    <DashboardBox p={6} mb={8} display='flex' gap={10} position='relative' flexDirection='row'>
+    <DashboardBox p={6} mb={12} display='flex' gap={10} position='relative' flexDirection='row'>
       <IconButton
         aria-label='Close'
-        icon={<XClose />}
+        icon={<Icon as={LuX} />}
         size='sm'
         variant='ghost'
         colorScheme='white'
@@ -114,7 +114,7 @@ const Tutorial = () => {
           <Button
             as={ReactRouterLink}
             to={generatePath(Routes.processes.create)}
-            leftIcon={<Plus />}
+            leftIcon={<Icon as={LuPlus} />}
             colorScheme='gray'
             size='md'
           >
@@ -123,7 +123,7 @@ const Tutorial = () => {
           <Button
             as={ReactRouterLink}
             to={generatePath(Routes.processes.create)}
-            leftIcon={<Calendar />}
+            leftIcon={<Icon as={LuCalendar} boxSize={4} mr={2} />}
             colorScheme='gray'
             variant='outline'
             size='md'
@@ -177,7 +177,7 @@ const Setup = () => {
           <AccordionItem border='none' alignItems='center'>
             <Flex px={4} py={3}>
               <Flex flex='1' align='center'>
-                <Icon as={CheckCircle} mr={2} boxSize={5} />
+                <Icon as={LuCheckCircle2} mr={2} boxSize={5} />
                 <Text fontWeight='bold'>
                   {t('setup.title', {
                     defaultValue: 'Complete your setup',
@@ -193,11 +193,11 @@ const Setup = () => {
                   minW='28px'
                   colorScheme='gray'
                   color='black'
-                  icon={<InvertedAccordionIcon />}
+                  icon={<Icon as={InvertedAccordionIcon} />}
                 ></AccordionButton>
                 <IconButton
                   aria-label='Close'
-                  icon={<XClose />}
+                  icon={<Icon as={LuX} />}
                   h='28px'
                   minW='28px'
                   variant='ghost'
@@ -225,7 +225,7 @@ const Setup = () => {
                   }}
                 />
               </Flex>
-              <Stack spacing={2} direction='column' p={3} pt={2}>
+              <Stack spacing={3} direction='column' p={3} pt={2}>
                 {checklist.map((checkbox, index) => (
                   <Checkbox key={checkbox.id} colorScheme='gray' isChecked={checkbox.completed} size='sm' p={2}>
                     <HStack ml={1} spacing={2} align='center'>
@@ -386,7 +386,7 @@ const Processes = () => {
           {t('actions.create_first_vote', {
             defaultValue: 'View all processes',
           })}
-          <Icon as={ArrowUpRight} boxSize={4} />
+          <Icon as={LuArrowUpRight} boxSize={4} />
         </Link>
       </Flex>
     </Flex>
@@ -396,7 +396,7 @@ const Processes = () => {
 const QuickActions = () => {
   const { t } = useTranslation()
   return (
-    <DashboardBox p={6} flex='1 1 33%'>
+    <DashboardBox p={6} flex='1 1 33%' justifyContent='normal' gap={0}>
       <Text fontWeight='extrabold' mb={1.5} size='2xl'>
         {t('dashboard_empty_processes.quick_actions', {
           defaultValue: 'Quick Actions',
@@ -414,7 +414,7 @@ const QuickActions = () => {
           colorScheme='gray'
           variant='outline'
           justifyContent='start'
-          leftIcon={<Plus />}
+          leftIcon={<Icon as={LuPlus} mr={2} />}
           size='lg'
           fontWeight='bold'
         >
@@ -428,7 +428,7 @@ const QuickActions = () => {
           colorScheme='gray'
           variant='outline'
           justifyContent='start'
-          leftIcon={<Mail04 />}
+          leftIcon={<Icon as={LuVote} mr={2} />}
           size='lg'
           fontWeight='bold'
         >
@@ -442,7 +442,7 @@ const QuickActions = () => {
           colorScheme='gray'
           variant='outline'
           justifyContent='start'
-          leftIcon={<Users01 />}
+          leftIcon={<Icon as={LuUsers} mr={2} />}
           size='lg'
           fontWeight='bold'
         >

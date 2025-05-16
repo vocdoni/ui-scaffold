@@ -1,10 +1,10 @@
-import { Calendar, File05, Mail04, Users01 } from '@untitled-ui/icons-react'
 import {
   AccountData,
   FetchElectionsParameters,
   FetchElectionsParametersWithPagination,
   VocdoniSDKClient,
 } from '@vocdoni/sdk'
+import { LuCalendar, LuFileSpreadsheet, LuUsers, LuVote } from 'react-icons/lu'
 import { QueryKeys } from './keys'
 
 type PaginatedElectionsParams = Partial<Pick<FetchElectionsParametersWithPagination, 'limit'>> & {
@@ -40,25 +40,25 @@ export const useSetupChecklist = () => {
     {
       id: 1,
       label: 'Set up your organization details',
-      icon: Users01,
+      icon: LuUsers,
       completed: true,
     },
     {
       id: 2,
       label: 'Upload your memberbase',
-      icon: File05,
+      icon: LuFileSpreadsheet,
       completed: false,
     },
     {
       id: 3,
       label: 'Create your first vote',
-      icon: Mail04,
+      icon: LuVote,
       completed: false,
     },
     {
       id: 4,
       label: 'Book a free call with our experts',
-      icon: Calendar,
+      icon: LuCalendar,
       completed: true,
     },
   ]
