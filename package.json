@@ -97,7 +97,6 @@
     "vite-plugin-svgr": "^4.2.0",
     "vite-tsconfig-paths": "^4.2.1"
   },
-  "packageManager": "yarn@1.22.19",
   "resolutions": {
     "i18next": "^23.16.0",
     "@vocdoni/sdk": "~0.9.1",
