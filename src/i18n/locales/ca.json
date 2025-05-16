@@ -5,8 +5,12 @@
   },
   "actions": {
     "cancel": "Cancel",
+    "create_first_vote": "View all processes",
+    "create_new_vote": "Create new vote",
+    "manage_team": "Manage team",
     "save": "Guarda els canvis",
-    "save_changes": "Save Changes"
+    "save_changes": "Save Changes",
+    "view_active_votes": "View active votes"
   },
   "active": "Actiu",
   "add_new_org": "Afegir una nova organització",
@@ -261,6 +265,23 @@
       "time_format": "p"
     }
   },
+  "dashboard_empty_processes": {
+    "common_tasks_actions": "Common tasks and actions",
+    "create_first_organization": "Create your first organization",
+    "create_first_vote": "Create your first vote",
+    "empty": "No voting processes found",
+    "error_loading_processes": "Error loading voting processes",
+    "hello": "👋 Hello {{name}}!",
+    "hello_description": "",
+    "how_first_vote": "How to create your first vote",
+    "no_organization": "No organization found",
+    "no_subscription": "No subscription available. Please create an organization to activate your plan.",
+    "quick_actions": "Quick Actions",
+    "recent_voting_description": "Your organization's latest voting activities",
+    "recent_voting_title": "Recent Voting Processes",
+    "subtitle": "Here's an overview of your organization's voting activities",
+    "title": "Here's an overview of your organization's voting activities"
+  },
   "description": "Description",
   "do_it_later": "Do it later",
   "do_you_need_help": "Do you need help?",
@@ -268,6 +289,10 @@
     "customization_details": "Defineix els paràmetres que milloraran l'experiència d'usuari i personalitzaran la pàgina de votació",
     "edited_successfully": "Actualitzat correctament",
     "header_image": "Imatge de capçalera"
+  },
+  "election": {
+    "ends_on": "Ends on {{date}}",
+    "total_votes": "{{totalVotes}} votes"
   },
   "email": "Correu electrònic",
   "email_placeholder": "nom@email.com",
@@ -1037,6 +1062,10 @@
     "success": "Password updated successfully"
   },
   "passwords_do_not_match": "Les contrasenyes no coincideixen",
+  "plan": {
+    "details": "You're currently on the {{ title }} plan, {{ subtitle }}",
+    "encouragement": "So go ahead, explore the platform, create your first vote, and see just how easy secure digital governance\n              can be! But if you need help, just schedule a call with our experts!"
+  },
   "plan_upgrade": {
     "dont_limit_yourself": "No et limitis. Uneix-te a la família de 725 organitzacions que confien en <2>Vocdoni</2>.",
     "feature_available_in": "Funció disponible a:",
@@ -1311,6 +1340,10 @@
   "session_expired": "Session expired",
   "session_expired_description": "Session may have been expired and it could not be refreshed, please login again",
   "settings": "Configuració",
+  "setup": {
+    "progress": "Your progress",
+    "title": "Complete your setup"
+  },
   "share": {
     "copy": "Copia",
     "election_share_btn_text": "Comparteix",
