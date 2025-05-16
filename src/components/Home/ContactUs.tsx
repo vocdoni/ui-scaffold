@@ -108,9 +108,8 @@ const ContactUs = () => {
             mx='auto'
             as={ReactRouterLink}
             to='mailto:info@vocdoni.org'
-            colorScheme={'gradient'}
-            variant={'primary'}
             aria-label={t('home.contactus.btn')}
+            colorScheme='black'
             title={t('home.contactus.btn')}
             target='_blank'
             height='52px'

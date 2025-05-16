@@ -148,7 +148,7 @@ const UseCases = () => {
           <Button>
             <Trans i18nKey={'usecases.banner.chat'}>Chat to sales</Trans>
           </Button>
-          <Button variant={'primary'}>
+          <Button colorScheme='black'>
             <Trans i18nKey={'home.create_process.btn'}> Try it for free</Trans>
           </Button>
         </Flex>
