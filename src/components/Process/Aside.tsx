@@ -235,7 +235,7 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
           <CVoteButton
             w='100%'
             fontSize='lg'
-            variant={'primary'}
+            colorScheme='black'
             height='50px'
             onClick={setQuestionsTab}
             mb={4}
