@@ -45,9 +45,7 @@ export const Sidebar = ({ show, ...props }: SidebarProps) => (
       bg='white'
       borderLeft='1px solid'
       borderColor='gray.200'
-      overflowY='auto'
       as='aside'
-      gap={6}
       display='flex'
       flexDirection='column'
       {...props}

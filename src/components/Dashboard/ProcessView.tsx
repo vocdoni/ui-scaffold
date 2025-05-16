@@ -13,7 +13,6 @@ import {
   Input,
   Link,
   Progress,
-  Stack,
   Text,
   Tooltip,
   useClipboard,
@@ -240,136 +239,134 @@ const ProcessViewSidebar = (props: SidebarProps) => {
 
   return (
     <Sidebar {...props}>
-      <Stack flexDir='column'>
-        <SidebarContents borderBottom='1px solid' borderColor='gray.200'>
-          <SidebarTitle>
-            <Trans i18nKey='vote_information'>Vote information</Trans>
-          </SidebarTitle>
-        </SidebarContents>
-        <SidebarContents>
-          <VStack align='stretch'>
-            <SidebarSubtitle>
-              <Trans i18nKey='control_panel'>Control panel</Trans>
-            </SidebarSubtitle>
-            <ActionsProvider>
-              {election instanceof PublishedElection && election.status === ElectionStatus.ONGOING && (
-                <ActionPause variant='outline' aria-label={t('process_actions.pause', { defaultValue: 'Pause' })}>
-                  <ControlIcon as={LuPause} color='orange.400' />
-                  <Text as='span' flex={1} textAlign='left' fontSize='sm'>
-                    Pause vote
-                  </Text>
-                </ActionPause>
-              )}
-              {election instanceof PublishedElection && election.status === ElectionStatus.PAUSED && (
-                <ActionContinue
-                  variant='outline'
-                  aria-label={t('process_actions.continue', { defaultValue: 'Continue' })}
-                >
-                  <ControlIcon as={LuPlayCircle} color='green.400' />
-                  <Text as='span' flex={1} textAlign='left' fontSize='sm'>
-                    Resume
-                  </Text>
-                </ActionContinue>
-              )}
-              <ActionEnd variant='outline' aria-label={t('process_actions.end', { defaultValue: 'End' })}>
-                <ControlIcon as={LuStopCircle} color='red.500' />
+      <SidebarContents borderBottom='1px solid' borderColor='gray.200'>
+        <SidebarTitle>
+          <Trans i18nKey='vote_information'>Vote information</Trans>
+        </SidebarTitle>
+      </SidebarContents>
+      <SidebarContents flex='1' overflowY='auto'>
+        <VStack align='stretch'>
+          <SidebarSubtitle>
+            <Trans i18nKey='control_panel'>Control panel</Trans>
+          </SidebarSubtitle>
+          <ActionsProvider>
+            {election instanceof PublishedElection && election.status === ElectionStatus.ONGOING && (
+              <ActionPause variant='outline' aria-label={t('process_actions.pause', { defaultValue: 'Pause' })}>
+                <ControlIcon as={LuPause} color='orange.400' />
                 <Text as='span' flex={1} textAlign='left' fontSize='sm'>
-                  End vote
+                  Pause vote
                 </Text>
-              </ActionEnd>
-              <ActionCancel variant='outline' aria-label={t('process_actions.cancel', { defaultValue: 'Cancel' })}>
-                <ControlIcon as={LuTrash2} color='red.400' />
+              </ActionPause>
+            )}
+            {election instanceof PublishedElection && election.status === ElectionStatus.PAUSED && (
+              <ActionContinue
+                variant='outline'
+                aria-label={t('process_actions.continue', { defaultValue: 'Continue' })}
+              >
+                <ControlIcon as={LuPlayCircle} color='green.400' />
                 <Text as='span' flex={1} textAlign='left' fontSize='sm'>
-                  Cancel vote
+                  Resume
                 </Text>
-              </ActionCancel>
-            </ActionsProvider>
-            <SidebarSubtitle>
-              <Trans i18nKey='voting_status'>Voting status</Trans>
-            </SidebarSubtitle>
-            {/* Total Votes Submitted */}
-            <DashboardBox display='flex' flexDir='column' gap={3} alignContent='start'>
-              <Box display='flex' justifyContent='space-between' w='full'>
-                <Box display='flex' gap={2} alignItems='center'>
-                  <Icon as={LuVote} />
-                  <Text textTransform='capitalize'>
-                    <Trans i18nKey='total_votes'>Total votes</Trans>
-                  </Text>
-                </Box>
-                <Text fontWeight='bold'>{(election instanceof PublishedElection && election.voteCount) || 0}</Text>
-              </Box>
-              <Box pb={6} borderBottom='1px solid' borderColor='gray.200'>
-                <Box display='flex' w='full' justifyContent='space-between' alignItems='center' fontSize='xs' mb={1}>
-                  <Box>
-                    <Trans i18nKey='turnout'>Turnout</Trans>
-                  </Box>
-                  <Box>{participation}%</Box>
-                </Box>
-                <Progress size='xs' colorScheme='gray' w='full' value={participation} />
-              </Box>
-              <Box display='flex' justifyContent='space-between' fontSize='sm'>
-                <Text display='flex' gap={2} alignItems='center' fontSize='inherit'>
-                  <Icon as={LuUsers} />
-                  <Trans i18nKey='census_size'>Census size</Trans>
+              </ActionContinue>
+            )}
+            <ActionEnd variant='outline' aria-label={t('process_actions.end', { defaultValue: 'End' })}>
+              <ControlIcon as={LuStopCircle} color='red.500' />
+              <Text as='span' flex={1} textAlign='left' fontSize='sm'>
+                End vote
+              </Text>
+            </ActionEnd>
+            <ActionCancel variant='outline' aria-label={t('process_actions.cancel', { defaultValue: 'Cancel' })}>
+              <ControlIcon as={LuTrash2} color='red.400' />
+              <Text as='span' flex={1} textAlign='left' fontSize='sm'>
+                Cancel vote
+              </Text>
+            </ActionCancel>
+          </ActionsProvider>
+          <SidebarSubtitle>
+            <Trans i18nKey='voting_status'>Voting status</Trans>
+          </SidebarSubtitle>
+          {/* Total Votes Submitted */}
+          <DashboardBox display='flex' flexDir='column' gap={3} alignContent='start'>
+            <Box display='flex' justifyContent='space-between' w='full'>
+              <Box display='flex' gap={2} alignItems='center'>
+                <Icon as={LuVote} />
+                <Text textTransform='capitalize'>
+                  <Trans i18nKey='total_votes'>Total votes</Trans>
                 </Text>
-                <Text fontSize='inherit'>{election instanceof PublishedElection && election.census.size}</Text>
               </Box>
-            </DashboardBox>
+              <Text fontWeight='bold'>{(election instanceof PublishedElection && election.voteCount) || 0}</Text>
+            </Box>
+            <Box pb={6} borderBottom='1px solid' borderColor='gray.200'>
+              <Box display='flex' w='full' justifyContent='space-between' alignItems='center' fontSize='xs' mb={1}>
+                <Box>
+                  <Trans i18nKey='turnout'>Turnout</Trans>
+                </Box>
+                <Box>{participation}%</Box>
+              </Box>
+              <Progress size='xs' colorScheme='gray' w='full' value={participation} />
+            </Box>
+            <Box display='flex' justifyContent='space-between' fontSize='sm'>
+              <Text display='flex' gap={2} alignItems='center' fontSize='inherit'>
+                <Icon as={LuUsers} />
+                <Trans i18nKey='census_size'>Census size</Trans>
+              </Text>
+              <Text fontSize='inherit'>{election instanceof PublishedElection && election.census.size}</Text>
+            </Box>
+          </DashboardBox>
 
-            {/* Voting settings */}
-            <SidebarSubtitle>
-              <Trans i18nKey='voting_settings'>Voting settings</Trans>
-            </SidebarSubtitle>
-            <SettingsField
-              icon={LuEye}
-              text={t('result_visibility', 'Results visibility')}
-              subtext={
-                election instanceof PublishedElection &&
-                (election.electionType.secretUntilTheEnd
-                  ? t('results_state.hidden_until_end', 'Hidden until the end')
-                  : t('results_state.live_results', 'Live results'))
-              }
-            />
-            <SettingsField
-              icon={LuShield}
-              text={t('anonymous_voting', 'Anonymous voting')}
-              subtext={
-                election instanceof PublishedElection &&
-                (election.electionType.anonymous
-                  ? t('results_state.enabled', 'Enabled')
-                  : t('results_state.not_enabled', 'Not enabled'))
-              }
-            />
-            <SettingsField
-              icon={LuVote}
-              text={t('vote_overwrite', 'Vote overwrite')}
-              subtext={
-                election instanceof PublishedElection &&
-                (election.voteType.maxVoteOverwrites
-                  ? t('results_state.enabled', 'Enabled')
-                  : t('results_state.not_enabled', 'Not enabled'))
-              }
-            />
+          {/* Voting settings */}
+          <SidebarSubtitle>
+            <Trans i18nKey='voting_settings'>Voting settings</Trans>
+          </SidebarSubtitle>
+          <SettingsField
+            icon={LuEye}
+            text={t('result_visibility', 'Results visibility')}
+            subtext={
+              election instanceof PublishedElection &&
+              (election.electionType.secretUntilTheEnd
+                ? t('results_state.hidden_until_end', 'Hidden until the end')
+                : t('results_state.live_results', 'Live results'))
+            }
+          />
+          <SettingsField
+            icon={LuShield}
+            text={t('anonymous_voting', 'Anonymous voting')}
+            subtext={
+              election instanceof PublishedElection &&
+              (election.electionType.anonymous
+                ? t('results_state.enabled', 'Enabled')
+                : t('results_state.not_enabled', 'Not enabled'))
+            }
+          />
+          <SettingsField
+            icon={LuVote}
+            text={t('vote_overwrite', 'Vote overwrite')}
+            subtext={
+              election instanceof PublishedElection &&
+              (election.voteType.maxVoteOverwrites
+                ? t('results_state.enabled', 'Enabled')
+                : t('results_state.not_enabled', 'Not enabled'))
+            }
+          />
 
-            {/* Additional actions */}
-            <SidebarSubtitle>
-              <Trans i18nKey='additional_actions'>Additional actions</Trans>
-            </SidebarSubtitle>
-            <Button
-              as={Link}
-              variant='outline'
-              w='full'
-              size='sm'
-              href={`${client.explorerUrl}/process/${election.id}`}
-              justifyContent='start'
-              leftIcon={<Icon as={LuSearch} />}
-              isExternal
-            >
-              <Trans i18nKey='view_in_explorer'>View in explorer</Trans>
-            </Button>
-          </VStack>
-        </SidebarContents>
-      </Stack>
+          {/* Additional actions */}
+          <SidebarSubtitle>
+            <Trans i18nKey='additional_actions'>Additional actions</Trans>
+          </SidebarSubtitle>
+          <Button
+            as={Link}
+            variant='outline'
+            w='full'
+            size='sm'
+            href={`${client.explorerUrl}/process/${election.id}`}
+            justifyContent='start'
+            leftIcon={<Icon as={LuSearch} />}
+            isExternal
+          >
+            <Trans i18nKey='view_in_explorer'>View in explorer</Trans>
+          </Button>
+        </VStack>
+      </SidebarContents>
     </Sidebar>
   )
 }
