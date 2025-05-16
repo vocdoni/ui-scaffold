@@ -1,4 +1,4 @@
-import { Alert, FormControl, FormErrorMessage, FormLabel } from '@chakra-ui/react'
+import { Alert, FormControl, FormErrorMessage, FormLabel, Progress } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { Select, Props as SelectProps } from 'chakra-react-select'
 import { Controller, useFormContext } from 'react-hook-form'
@@ -148,6 +148,8 @@ export const CountrySelector = ({ ...props }: Omit<SelectCustomProps, 'options'>
     },
     staleTime: Infinity, // Countries list won't change often
   })
+
+  if (isLoading) return <Progress size='xs' isIndeterminate colorScheme='gray' />
 
   if (error) return <Alert status='error'>{error.message}</Alert>
 
