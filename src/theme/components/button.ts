@@ -29,7 +29,6 @@ const primary = defineStyle((props) => {
     bg: `${colorScheme}.600`,
     color: colorScheme === 'gray' ? 'black' : 'white',
     gap: 4,
-    fontWeight: 500,
 
     _hover: {
       bg: `${colorScheme}.700`,
@@ -87,7 +86,7 @@ const transparent = defineStyle((props) => {
     color: colorScheme === 'gray' ? 'black' : `${colorScheme}.700`,
 
     _hover: {
-      bgColor: 'none',
+      bgColor: colorScheme === 'gray' ? 'hsl(240 4.8% 95.9%)' : `${colorScheme}.50`,
 
       _disabled: {
         color: 'button.variant.common.disabled.color.light',
@@ -168,11 +167,6 @@ const sizes = {
     fontSize: 'md',
     gap: '6px',
     h: '44px',
-
-    '& svg': {
-      h: 4,
-      w: 4,
-    },
   }),
   md: defineStyle({
     px: '14px',
@@ -181,11 +175,6 @@ const sizes = {
     fontSize: 'sm',
     gap: '4px',
     h: '40px',
-
-    '& svg': {
-      h: 4,
-      w: 4,
-    },
   }),
   sm: defineStyle({
     px: '12px',
