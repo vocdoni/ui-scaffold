@@ -126,12 +126,12 @@ export const TeamMembersList = () => {
   return (
     <QueryDataLayout isEmpty={!members} isLoading={isLoading} isError={isError} error={error}>
       <Flex direction='column'>
-        <Text fontWeight='bold' display='flex' gap={3} m='20px 0px 10px'>
+        <Flex fontWeight='bold' gap={3} m='20px 0px 10px' align='center'>
           <Trans i18nKey='team.team_members'>Team members</Trans>
           <Box ml='1' borderRadius='full' px={'9px'} textAlign={'center'} border='.1px solid' fontWeight={'light'}>
             {members?.length}
           </Box>
-        </Text>
+        </Flex>
         <TeamMembersTable members={members || []} />
       </Flex>
     </QueryDataLayout>
