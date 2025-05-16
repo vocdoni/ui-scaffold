@@ -77,7 +77,7 @@ export const TierUpgrade = () => {
       </FeaturesBox>
 
       {/* Call to Action */}
-      <Button variant='solid' colorScheme='brand' w='full' size='lg'>
+      <Button variant='solid' colorScheme='black' w='full' size='lg'>
         <Trans i18nKey='view_pricing_plans'>View Pricing Plans</Trans>
       </Button>
       <Text fontSize='xs' color='gray.500' textAlign='center'>

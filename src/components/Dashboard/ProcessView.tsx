@@ -303,7 +303,7 @@ const ProcessViewSidebar = (props: SidebarProps) => {
                 </Box>
                 <Box>{participation}%</Box>
               </Box>
-              <Progress size='xs' colorScheme='gray' w='full' value={participation} />
+              <Progress colorScheme='gray' w='full' value={participation} />
             </Box>
             <Box display='flex' justifyContent='space-between' fontSize='sm'>
               <Text display='flex' gap={2} alignItems='center' fontSize='inherit'>

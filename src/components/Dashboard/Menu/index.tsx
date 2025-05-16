@@ -69,7 +69,6 @@ const DashboardMenuContent = () => {
         w='full'
         minW={0}
         leftIcon={<Plus width={'16px'} />}
-        variant='primary'
         colorScheme='black'
         mt={'8px'}
         mb={'32px'}

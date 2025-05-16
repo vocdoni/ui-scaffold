@@ -137,7 +137,7 @@ export const OrganizationCreate = ({
       >
         <PublicOrgForm minified={minified} />
         <PrivateOrgForm minified={minified} />
-        <Button form='process-create-form' type='submit' isLoading={isPending} variant='primary' colorScheme='gradient'>
+        <Button form='process-create-form' type='submit' isLoading={isPending} colorScheme='black'>
           {t('organization.create_org')}
         </Button>
         <FormSubmitMessage isError={isError} error={error} />

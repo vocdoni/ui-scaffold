@@ -226,8 +226,7 @@ const DashboardButton = (props?: ButtonProps) => {
       as={ReactRouterLink}
       to={isAuthenticated ? generatePath(Routes.dashboard.base) : Routes.auth.signIn}
       size={'lg'}
-      colorScheme='gradient'
-      variant='primary'
+      colorScheme='black'
       p='10px 30px'
       height='36px'
       fontSize='12px'
