@@ -22,32 +22,6 @@ const disabled = {
   },
 }
 
-const primary = defineStyle((props) => {
-  const { colorScheme } = props
-
-  return {
-    bg: `${colorScheme}.600`,
-    color: colorScheme === 'gray' ? 'black' : 'white',
-    gap: 4,
-
-    _hover: {
-      bg: `${colorScheme}.700`,
-    },
-    _active: {
-      bg: `${colorScheme}.800`,
-    },
-
-    _disabled: {
-      ...disabled,
-    },
-
-    '& svg': {
-      h: 4,
-      w: 4,
-    },
-  }
-})
-
 const link = defineStyle((props) => {
   const { colorScheme } = props
 
@@ -210,15 +184,10 @@ const sizes = {
 
 export const Button = defineStyleConfig({
   variants: {
-    primary,
     transparent,
     link,
     underline,
   },
   baseStyle,
   sizes,
-  defaultProps: {
-    variant: 'primary',
-    size: 'md',
-  },
 })
