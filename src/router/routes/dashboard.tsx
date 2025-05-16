@@ -22,7 +22,7 @@ const DashboardProcessView = lazy(() => import('~elements/dashboard/processes/vi
 const ProcessCreate = lazy(() => import('~elements/dashboard/processes/create'))
 
 // others
-const OrganizationDashboard = lazy(() => import('~components/Organization/Dashboard'))
+const Dashboard = lazy(() => import('~elements/dashboard'))
 
 export const useDashboardRoutes = () => {
   const queryClient = useQueryClient()
@@ -50,7 +50,16 @@ export const useDashboardRoutes = () => {
               </SuspenseLoader>
             ),
           },
-          // Protected routes if account created without organization
+          {
+            path: Routes.dashboard.base,
+            element: (
+              <SuspenseLoader>
+                <Dashboard />
+              </SuspenseLoader>
+            ),
+            errorElement: <Error />,
+          },
+          // Protected routes if no account created without organization
           {
             element: (
               <SuspenseLoader>
@@ -58,14 +67,6 @@ export const useDashboardRoutes = () => {
               </SuspenseLoader>
             ),
             children: [
-              {
-                path: Routes.dashboard.base,
-                element: (
-                  <SuspenseLoader>
-                    <OrganizationDashboard />
-                  </SuspenseLoader>
-                ),
-              },
               {
                 path: Routes.dashboard.process,
                 element: (

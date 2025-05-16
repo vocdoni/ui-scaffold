@@ -5,8 +5,12 @@
   },
   "actions": {
     "cancel": "Cancel",
+    "create_first_vote": "View all processes",
+    "create_new_vote": "Create new vote",
+    "manage_team": "Manage team",
     "save": "Save Changes",
-    "save_changes": "Save Changes"
+    "save_changes": "Save Changes",
+    "view_active_votes": "View active votes"
   },
   "active": "Active",
   "add_new_org": "Add a new organization",
@@ -258,6 +262,23 @@
       "time_format": "p"
     }
   },
+  "dashboard_empty_processes": {
+    "common_tasks_actions": "Common tasks and actions",
+    "create_first_organization": "Create your first organization",
+    "create_first_vote": "Create your first vote",
+    "empty": "No voting processes found",
+    "error_loading_processes": "Error loading voting processes",
+    "hello": "👋 Hello {{name}}!",
+    "hello_description": "",
+    "how_first_vote": "How to create your first vote",
+    "no_organization": "No organization found",
+    "no_subscription": "No subscription available. Please create an organization to activate your plan.",
+    "quick_actions": "Quick Actions",
+    "recent_voting_description": "Your organization's latest voting activities",
+    "recent_voting_title": "Recent Voting Processes",
+    "subtitle": "Here's an overview of your organization's voting activities",
+    "title": "Here's an overview of your organization's voting activities"
+  },
   "description": "Description",
   "do_it_later": "Do it later",
   "do_you_need_help": "Do you need help?",
@@ -265,6 +286,10 @@
     "customization_details": "Define the params that will enhance the user experience and customize the voting page",
     "edited_successfully": "Updated successfully",
     "header_image": "Header Image"
+  },
+  "election": {
+    "ends_on": "Ends on {{date}}",
+    "total_votes": "{{totalVotes}} votes"
   },
   "email": "Email",
   "email_placeholder": "name@email.com",
@@ -967,7 +992,7 @@
   },
   "new_password": "New Password",
   "new_password_placeholder": "Enter your new password",
-  "new_voting": "New Vote",
+  "new_voting": "New vote",
   "no_results_filtering": "Your current search filter returns no results",
   "not_registred_yet": "Don't have an account?",
   "open_in_explorer": "Open in explorer",
@@ -1029,6 +1054,10 @@
     "success": "Password updated successfully"
   },
   "passwords_do_not_match": "Passwords doesn't match",
+  "plan": {
+    "details": "You're currently on the {{ title }} plan, {{ subtitle }}",
+    "encouragement": "So go ahead, explore the platform, create your first vote, and see just how easy secure digital governance\n              can be! But if you need help, just schedule a call with our experts!"
+  },
   "plan_upgrade": {
     "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
     "feature_available_in": "Feature available in:",
@@ -1300,6 +1329,10 @@
   "session_expired": "Session expired",
   "session_expired_description": "Session may have been expired and it could not be refreshed, please login again",
   "settings": "Settings",
+  "setup": {
+    "progress": "Your progress",
+    "title": "Complete your setup"
+  },
   "share": {
     "copy": "Copy",
     "election_share_btn_text": "Share",
