@@ -519,10 +519,17 @@
     },
     "select_language": "Idioma",
     "support": {
+      "billing_issue": "Billing issue",
       "description": "Description",
+      "description_placeholder": "Describe your issue in detail",
       "name": "Name",
       "name_placeholder": "Your Name",
-      "selector_label": "Type of Issue"
+      "open_ticket": "Open a Support Ticket",
+      "selector_label": "Type of Issue",
+      "submit_ticket": "Submit Ticket",
+      "subtitle": "Submit a ticket and our support team will get back to you as soon as possible.",
+      "technical_issue": "Technical issue",
+      "voting_issue": "Voting issue"
     }
   },
   "form_error": {
@@ -1032,11 +1039,28 @@
     "organization": "Detalls de l'organització",
     "title": {
       "read_more": "Expandir títol"
-    },
-    "votings_list": "Llista de processos de votació"
+    }
   },
   "organization_settings": {
+    "phone_support": {
+      "description": "Available for Unlimited plan subscribers only.",
+      "info": "Please have your organization ID ready when calling.",
+      "locked": "Phone Support is available with an Unlimited plan",
+      "locked_description": "Upgrade to our Unlimited plan to get priority phone support with dedicated agents.",
+      "organization_id": "Your Organization ID",
+      "organization_id_description": "Please provide this ID when contacting support",
+      "priority_support_line": "Priority Support Line",
+      "priority_support_line_description": "Available Monday–Friday, 9:00–18:00 CET",
+      "schedule_call": "Schedule a Call",
+      "title": "Phone Support",
+      "unlock": "Unlock Phone Support",
+      "view_documentation": "View Documentation"
+    },
     "subtitle": "Manage your organization, team members and your subscription plan",
+    "support": {
+      "description": "Get help and support for your organization.",
+      "title": "Support"
+    },
     "title": "{{organization}} Settings"
   },
   "organizations": "Organizations ({{ numOrgs }})",
@@ -1390,9 +1414,7 @@
     "title": "Subscription",
     "your_subscription": "Your Subscription"
   },
-  "support": {
-    "title": "Support"
-  },
+  "support": "Support",
   "switch_organization": "Canvia d'organització",
   "team": {
     "expiration": "Expiració",
