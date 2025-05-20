@@ -51,11 +51,10 @@
     "voting_anonymous_advice": "Please wait while the anonymous magic happens 🪄.\nThis can take up to several minutes; don't close the window."
   },
   "avatar": {
-    "hint": "Min 200x200px .PNG or .JPEG",
     "label": "Organization Avatar"
   },
   "back": "Back",
-  "billing": "Billing",
+  "billing_details": "Billing Details",
   "blog": "Blog",
   "calculator": {
     "anonymous": "Anonymous",
@@ -232,27 +231,20 @@
     "copy": "Copy"
   },
   "country_selector": {
-    "selector_label": "Country",
-    "spain": "Spain"
+    "selector_label": "Country"
   },
   "create_org": {
     "already_profile": "If your organization already has a profile, <2>access the dashboard</2> and contact the administrator to invite you",
     "communication": "I want to receive communications and be contacted to tailor my governance experience.",
     "create_button": "Create your organization",
-    "private_org": "Private Organization Details",
+    "organization_details": "Organization Details",
+    "organization_details_description": "Manage your organization's profile and configuration settings.",
+    "private_org": "Other Details",
     "private_org_description": "Help us tailor your experience with information about your org. We won't share this info",
-    "public_info": "Public Organization Information",
-    "subtitle": "Cut cost, Save Time: Secure, Private, and GDPR Compliant",
-    "title": "Tell us about your organization",
-    "credit_card": "No credit card, no automatic renewal.",
-    "full_access": "Full access to basic features",
-    "header": "Try Vocdoni for free for 7 days",
-    "logout": "If you want to login from another account, please logout",
-    "multiple_administrators": "Multiple administrators",
+    "public_info": "Public Profile",
     "public_info_description": "This information is shown in various places including the voting pages.",
-    "support_during_trial_period": "Support during the trial period",
-    "unlimited_voting_processes": "Unlimited creation of voting processes",
-    "up_to_20_voters": "Up to 20 voters"
+    "subtitle": "Cut cost, Save Time: Secure, Private, and GDPR Compliant",
+    "title": "Tell us about your organization"
   },
   "csp_census": {
     "github": {
@@ -377,6 +369,7 @@
   "form": {
     "account_create": {
       "description_placeholder": "Provide a brief description of your organization (optional)",
+      "title": "Organization Name",
       "title_placeholder": "Enter your organization's name",
       "website_placeholder": "https://example.com"
     },
@@ -517,7 +510,13 @@
         "questions_title": "Questions"
       }
     },
-    "select_language": "Language"
+    "select_language": "Language",
+    "support": {
+      "description": "Description",
+      "name": "Name",
+      "name_placeholder": "Your Name",
+      "selector_label": "Type of Issue"
+    }
   },
   "form_error": {
     "passwords_must_match": ""
@@ -953,7 +952,7 @@
   "memberbase": "Memberbase",
   "membership_size": {
     "language": "Default Language",
-    "selector_label": "Membership size",
+    "selector_label": "Membership Size",
     "timezone": "Timezone"
   },
   "menu": {
@@ -1007,7 +1006,7 @@
   "org_type_selector": {
     "community": "Community",
     "company": "Company",
-    "selector_label": "Select Organization Type"
+    "selector_label": "Organization Type"
   },
   "organization": {
     "avatar_alt": "Avatar image of {{ name }} organization",
@@ -1027,6 +1026,10 @@
       "read_more": "Expand title"
     },
     "votings_list": "Votings Processes List"
+  },
+  "organization_settings": {
+    "subtitle": "Manage your organization, team members and your subscription plan",
+    "title": "{{organization}} Settings"
   },
   "organizations": "Organizations ({{ numOrgs }})",
   "other_details": "other details",
@@ -1062,6 +1065,9 @@
     "success": "Password updated successfully"
   },
   "passwords_do_not_match": "Passwords doesn't match",
+  "personalization": {
+    "title": "Personalization"
+  },
   "plan": {
     "details": "You're currently on the {{ title }} plan, {{ subtitle }}",
     "encouragement": "So go ahead, explore the platform, create your first vote, and see just how easy secure digital governance\n              can be! But if you need help, just schedule a call with our experts!"
@@ -1370,15 +1376,17 @@
     "next_billing": "Next Billing",
     "price": "Price",
     "since": "Since",
-    "title": "Subscription",
+    "title": "Subscription Plan",
     "your_subscription": "Your Subscription"
   },
   "support": "Support",
   "switch_organization": "Switch organization",
   "team": {
     "expiration": "Expiration",
+    "expires_in": "Expires in {{time}}",
     "member_name": "Name",
     "member_role": "Role",
+    "pending_invitation": "Invitation Pending",
     "pending_members": "Pending Invitations",
     "team_members": "Team members",
     "title": "Team"
@@ -1474,10 +1482,11 @@
   "total_votes": "Total votes",
   "total_votes_submitted": "Total Votes Submitted",
   "turnout": "Turnout",
-  "update": "Update",
   "upgrade": "Upgrade",
   "uploader": {
-    "click_or_drag_and_drop": "<click>Click to upload</click><formats>(Allowed formats: {{ formats, list }})</formats>"
+    "click_or_drag_and_drop": "<click>Click to upload or drag and drop</click><formats>(Allowed formats: {{ formats, list }})</formats>",
+    "click_or_drag_and_drop_image": "Upload Image",
+    "drop_here": ""
   },
   "use_read_more": {
     "read_less": "Read less",
