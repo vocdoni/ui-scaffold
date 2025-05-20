@@ -1,10 +1,7 @@
-import { useTranslation } from 'react-i18next'
-import { Subscription } from '~components/Organization/Subscription'
+import { SubscriptionPlans } from '~components/Pricing/Plans'
 
 const SubscriptionPage = () => {
-  const { t } = useTranslation()
-
-  return <Subscription />
+  return <SubscriptionPlans />
 }
 
 export default SubscriptionPage
