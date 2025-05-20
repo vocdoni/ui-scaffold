@@ -61,6 +61,7 @@ export type Plan = {
     smsNotification: boolean
     whiteLabel: boolean
     liveStreaming: boolean
+    phoneSupport: boolean
   }
   censusSizeTiers?:
     | {
