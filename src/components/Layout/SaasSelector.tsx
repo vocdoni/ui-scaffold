@@ -1,6 +1,6 @@
-import { Alert, FormControl, FormErrorMessage, FormLabel, Progress } from '@chakra-ui/react'
+import { Alert, Box, Flex, FormControl, FormErrorMessage, FormLabel, Progress, Text } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
-import { Select, Props as SelectProps } from 'chakra-react-select'
+import { Select, Props as SelectProps, components } from 'chakra-react-select'
 import { Controller, useFormContext } from 'react-hook-form'
 import { ControllerProps } from 'react-hook-form/dist/types'
 import { useTranslation } from 'react-i18next'
@@ -12,12 +12,33 @@ export type SelectOptionType = {
   value: string
 }
 
+export type CountryOptionType = SelectOptionType & {
+  flag: string
+}
+
 export type SelectCustomProps = {
   name: string
   label?: string
   required?: boolean
   controller?: Omit<ControllerProps, 'render' | 'name'>
 } & SelectProps
+
+const CountryOption = (props: any) => {
+  const { data, selectProps } = props
+
+  const fullOption = (selectProps.options as CountryOptionType[]).find((opt) => opt.value === data.value) || data
+
+  return (
+    <components.SingleValue {...props}>
+      <Flex align='center' gap={2}>
+        <Box as='span' role='img'>
+          {fullOption.flag}
+        </Box>
+        <Text fontWeight='bold'>{fullOption.label}</Text>
+      </Flex>
+    </components.SingleValue>
+  )
+}
 
 export const SelectCustom = ({
   name,
@@ -94,7 +115,7 @@ export const OrganzationTypeSelector = ({ ...props }: Omit<SelectCustomProps, 'o
   return (
     <SelectCustom
       options={orgTypes}
-      label={t('org_type_selector.selector_label', { defaultValue: 'Select Organization Type' })}
+      label={t('org_type_selector.selector_label', { defaultValue: 'Organization Type' })}
       {...props}
     />
   )
@@ -102,8 +123,6 @@ export const OrganzationTypeSelector = ({ ...props }: Omit<SelectCustomProps, 'o
 
 export const CountrySelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) => {
   const { t } = useTranslation()
-
-  const defaultVal = { label: t('country_selector.spain', { defaultValue: 'Spain' }), value: 'ES' }
 
   // Priority countries in the desired order
   const priorityCountries = ['ES', 'FR', 'DE', 'GB', 'IT', 'US']
@@ -125,6 +144,7 @@ export const CountrySelector = ({ ...props }: Omit<SelectCustomProps, 'options'>
       const transformedCountries = data.map((country: any) => ({
         label: country.name.common,
         value: country.cca2,
+        flag: country.flag,
       }))
 
       // Custom sort function
@@ -153,6 +173,8 @@ export const CountrySelector = ({ ...props }: Omit<SelectCustomProps, 'options'>
 
   if (error) return <Alert status='error'>{error.message}</Alert>
 
+  const defaultVal = countries.find((country: CountryOptionType) => country.value === 'ES')
+
   return (
     <SelectCustom
       options={countries}
@@ -160,6 +182,7 @@ export const CountrySelector = ({ ...props }: Omit<SelectCustomProps, 'options'>
       label={t('country_selector.selector_label', { defaultValue: 'Country' })}
       defaultValue={defaultVal}
       controller={{ defaultValue: defaultVal }}
+      components={{ SingleValue: CountryOption }}
       {...props}
     />
   )
@@ -180,7 +203,7 @@ export const MembershipSizeSelector = ({ defaultValue, ...props }: Omit<SelectCu
   return (
     <SelectCustom
       options={listSizes}
-      label={t('membership_size.selector_label', { defaultValue: 'Membership size' })}
+      label={t('membership_size.selector_label', { defaultValue: 'Membership Size' })}
       {...props}
     />
   )
@@ -226,6 +249,23 @@ export const CustomizationLanguageSelector = ({ ...props }: Omit<SelectCustomPro
     <SelectCustom
       options={languages}
       label={t('membership_size.language', { defaultValue: 'Default Language' })}
+      {...props}
+    />
+  )
+}
+
+export const IssueTypeSelector = ({ defaultValue, ...props }: Omit<SelectCustomProps, 'options'>) => {
+  const { t } = useTranslation()
+  const listSizes: SelectOptionType[] = [
+    { label: t('form.support.voting_issue', { defaultValue: 'Voting issue' }), value: 'voting-issue' },
+    { label: t('form.support.billing_issue', { defaultValue: 'Billing issue' }), value: 'billing-issue' },
+    { label: t('form.support.technical_issue', { defaultValue: 'Technical issue' }), value: 'technical-issue' },
+  ]
+
+  return (
+    <SelectCustom
+      options={listSizes}
+      label={t('form.support.selector_label', { defaultValue: 'Type of Issue' })}
       {...props}
     />
   )
