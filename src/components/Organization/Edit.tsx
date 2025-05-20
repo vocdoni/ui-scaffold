@@ -17,7 +17,7 @@ import { Account } from '@vocdoni/sdk'
 import { useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { FormProvider, SubmitHandler, useForm, useFormContext } from 'react-hook-form'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { BiTrash } from 'react-icons/bi'
 import { CreateOrgParams } from '~components/Account/AccountTypes'
 import { useSaasAccount } from '~components/Account/useSaasAccount'
@@ -131,20 +131,22 @@ const EditOrganization = () => {
   return (
     <FormProvider {...methods}>
       <Flex as='form' id='process-create-form' onSubmit={handleSubmit(onSubmit)} flexDirection={'column'}>
-        <Heading size='xs' fontWeight={'extrabold'}>
-          Organization Details
+        <Heading size='md' fontWeight='extrabold'>
+          {t('create_org.organization_details', { defaultValue: 'Organization Details' })}
         </Heading>
-        <Text mb={6} color='rgb(115, 115, 115)' size='sm'>
-          Manage your organization's profile and configuration settings.
+        <Text mb={6} color='gray.500' size='sm'>
+          {t('create_org.organization_details_description', {
+            defaultValue: "Manage your organization's profile and configuration settings.",
+          })}
         </Text>
         <Box me='auto'>
           <Text fontWeight='bold' mb={4} size='lg'>
-            <Trans i18nKey='create_org.public_info'>Public Profile</Trans>
+            {t('create_org.public_info', { defaultValue: 'Public Profile' })}
           </Text>
-          <Text color='rgb(115, 115, 115)' size={'sm'} mb={4}>
-            <Trans i18nKey='create_org.public_info_description'>
-              This information is shown in various places including the voting pages.
-            </Trans>
+          <Text color='gray.500' size='sm' mb={4}>
+            {t('create_org.public_info_description', {
+              defaultValue: 'This information is shown in various places including the voting pages.',
+            })}
           </Text>
         </Box>
         <Flex gap={6} flexDirection={{ base: 'column', lg: 'row' }}>
@@ -153,23 +155,16 @@ const EditOrganization = () => {
         </Flex>
         <Flex align='center' my={6}>
           <HSeparator />
-          <Text
-            color='rgb(115, 115, 115)'
-            fontWeight={'bold'}
-            mx={3.5}
-            whiteSpace={'nowrap'}
-            size='xs'
-            textTransform={'uppercase'}
-          >
-            {t('other_details')}
+          <Text color='gray.500' fontWeight='bold' mx={3.5} whiteSpace='nowrap' size='xs' textTransform='uppercase'>
+            {t('other_details', { defaultValue: 'Other Details' })}
           </Text>
           <HSeparator />
         </Flex>
         <PrivateOrgForm />
 
-        <Flex align='center' direction={'column'} alignSelf={'end'}>
-          <Button type={'submit'} isLoading={isPending} aria-label='' w='full'>
-            {t('actions.save')}
+        <Flex align='center' direction='column' alignSelf='end'>
+          <Button type='submit' isLoading={isPending} aria-label='' w='full'>
+            {t('actions.save', { defaultValue: 'Save' })}
           </Button>
           <FormSubmitMessage
             isLoading={isPending}
@@ -239,39 +234,60 @@ const CustomizeOrgForm = () => {
   })
 
   return (
-    <Flex flexDirection='column' gap={6}>
-      <FormControl isInvalid={!!errors?.avatar}>
-        <FormLabel display='flex' ms={1} fontSize='sm' fontWeight='500' mb={2}>
+    <Box flex='0 0 auto'>
+      <FormControl as={Box} isInvalid={!!errors?.avatar}>
+        <FormLabel fontSize='sm' fontWeight='500' mb={2}>
           {t('avatar.label', {
             defaultValue: 'Logo/Avatar',
           })}
         </FormLabel>
-        {avatar ? (
-          <Flex gap={2} alignItems='center' mt={2}>
-            <AspectRatio flexShrink={0} ratio={1} w='128px' h='128px' borderRadius='full' overflow='hidden'>
-              <Image src={avatar} fallbackSrc={fallback} />
-            </AspectRatio>
-            <IconButton
-              aria-label={t('remove_avatar', { defaultValue: 'Remove avatar' })}
-              icon={<BiTrash />}
-              onClick={() => setValue('avatar', '')}
-              size='sm'
-            />
-          </Flex>
-        ) : (
-          <Box mb={4}>
-            <ImageUploader
-              getRootProps={getAvatarRootProps}
-              getInputProps={getAvatarInputProps}
-              isDragActive={isAvatarDragActive}
-              isLoading={isPending}
-              formats={allowed}
-            />
-          </Box>
-        )}
+        <Box position='relative' borderRadius='full' px={6}>
+          {avatar ? (
+            <Box position='relative'>
+              <AspectRatio ratio={1} w='full' borderRadius='full' overflow='hidden'>
+                <Image src={avatar} fallbackSrc={fallback} alt='Avatar preview' />
+              </AspectRatio>
+              <Flex
+                position='absolute'
+                top={0}
+                left={0}
+                w='full'
+                h='full'
+                align='center'
+                justify='center'
+                bg='blackAlpha.400'
+                opacity={0}
+                _hover={{ opacity: 1 }}
+                transition='opacity 0.2s'
+                borderRadius='full'
+              >
+                <IconButton
+                  icon={<BiTrash />}
+                  aria-label={t('remove_avatar', { defaultValue: 'Remove avatar' })}
+                  onClick={() => setValue('avatar', '')}
+                  size='sm'
+                  variant='ghost'
+                  color='white'
+                  bg='red.500'
+                  _hover={{ bg: 'red.600' }}
+                />
+              </Flex>
+            </Box>
+          ) : (
+            <Box mb={4}>
+              <ImageUploader
+                getRootProps={getAvatarRootProps}
+                getInputProps={getAvatarInputProps}
+                isDragActive={isAvatarDragActive}
+                isLoading={isPending}
+                formats={allowed}
+              />
+            </Box>
+          )}
+        </Box>
         <FormErrorMessage>{errors?.avatar?.message?.toString()}</FormErrorMessage>
       </FormControl>
-    </Flex>
+    </Box>
   )
 }
 
