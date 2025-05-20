@@ -1,7 +1,25 @@
-import { Avatar, Badge, Box, Flex, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
+import {
+  Avatar,
+  Badge,
+  Box,
+  Flex,
+  HStack,
+  Icon,
+  IconButton,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Text,
+  Th,
+  Thead,
+  Tr,
+} from '@chakra-ui/react'
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
 import { enforceHexPrefix, useClient } from '@vocdoni/react-providers'
-import { Trans } from 'react-i18next'
+import { formatDistanceToNow } from 'date-fns'
+import { Trans, useTranslation } from 'react-i18next'
+import { LuEllipsis, LuMail } from 'react-icons/lu'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import QueryDataLayout from '~components/Layout/QueryDataLayout'
@@ -160,9 +178,63 @@ export const PendingTeamMembersList = () => {
 }
 
 // Wrapper component to include both team members and pending members lists
-export const TeamMembers = () => (
-  <Flex direction='column' gap={6}>
-    <TeamMembersList />
-    <PendingTeamMembersList />
-  </Flex>
-)
+export const TeamMembers = () => {
+  const { t } = useTranslation()
+  const { data: members, isLoading: membersIsLoading, isError: membersIsError, error: membersError } = useTeamMembers()
+  const {
+    data: pending,
+    isLoading: pendingIsLoading,
+    isError: pendingIsError,
+    error: pendingError,
+  } = usePendingTeamMembers()
+
+  if (membersIsLoading || pendingIsLoading) return null
+
+  const allMembers = [...members, ...pending]
+
+  return (
+    <QueryDataLayout
+      isEmpty={!allMembers || allMembers.length === 0}
+      isLoading={membersIsLoading || pendingIsLoading}
+      isError={membersIsError || pendingIsError}
+      error={membersError || pendingError}
+    >
+      <Flex direction='column'>
+        {allMembers.map((member, i) => {
+          const isPending = !member.info
+          const name = isPending
+            ? t('team.pending_invitation', { defaultValue: 'Invitation Pending' })
+            : `${member.info.firstName} ${member.info.lastName}`
+          const email = isPending ? member.email : member.info.email
+          const avatarName = !isPending && `${member.info.firstName} ${member.info.lastName}`
+
+          return (
+            <Flex alignItems='center' p={2} key={i}>
+              <Avatar name={avatarName} icon={isPending && <Icon as={LuMail} />} />
+              <Box ml='3'>
+                <HStack align='center'>
+                  <Text fontWeight='bold'>{name}</Text>
+                  <Badge variant='subtle'>{member.role}</Badge>
+                </HStack>
+                <Flex direction='column'>
+                  <Text fontSize='sm' color='gray.500'>
+                    {email}
+                  </Text>
+                  {member.expiration && (
+                    <Text fontSize='xs' color='gray.500'>
+                      {t('team.expires_in', {
+                        defaultValue: 'Expires in {{time}}',
+                        time: formatDistanceToNow(new Date(member.expiration)),
+                      })}
+                    </Text>
+                  )}
+                </Flex>
+              </Box>
+              <IconButton icon={<Icon as={LuEllipsis} />} aria-label='settings' variant='ghost' ml='auto' />
+            </Flex>
+          )
+        })}
+      </Flex>
+    </QueryDataLayout>
+  )
+}
