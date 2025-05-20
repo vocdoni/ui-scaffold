@@ -103,39 +103,27 @@ export const colors = {
     border: newColorsBase.gray.light3,
     outline: newColorsBase.black.light,
     placeholder: newColorsBase.gray.normal2,
+    calendar_border: colorsBase.gray.light,
+    element: colorsBase.gray.normal,
+    error: colorsBase.red,
+    drag_and_drop: {
+      border: colorsBase.gray.light,
+      border_active: colorsBase.primary,
+      text: colorsBase.primary,
+    },
+    dropdown: {
+      check_icon: colorsBase.primary,
+      control: colorsBase.gray.normal,
+      option_dark: colorsBase.white.pure,
+      option_light_selected: colorsBase.black,
+      option_bg_selected: {
+        light: colorsBase.white.dark,
+        dark: colorsBase.blue.dark,
+      },
+      placeholder: colorsBase.gray.normal,
+    },
+    required_asterisk: colorsBase.primary,
   },
-
-  // input: {
-  //   bg: {
-  //     light: colorsBase.white.pure,
-  //     dark: 'transparent',
-  //   },
-  //   calendar_border: colorsBase.gray.light,
-  //   border: colorsBase.white.light2,
-  //   element: colorsBase.gray.normal,
-  //   error: colorsBase.red,
-  //   drag_and_drop: {
-  //     border: colorsBase.gray.light,
-  //     border_active: colorsBase.primary,
-  //     text: colorsBase.primary,
-  //   },
-  //   dropdown: {
-  //     check_icon: colorsBase.primary,
-  //     control: colorsBase.gray.normal,
-  //     option_dark: colorsBase.white.pure,
-  //     option_light_selected: colorsBase.black,
-  //     option_bg_selected: {
-  //       light: colorsBase.white.dark,
-  //       dark: colorsBase.blue.dark,
-  //     },
-  //     placeholder: colorsBase.gray.normal,
-  //   },
-  //   outline: {
-  //     light: colorsBase.blue.normal,
-  //     dark: colorsBase.blue.light,
-  //   },
-  //   required_asterisk: colorsBase.primary,
-  // },
 
   //
 
