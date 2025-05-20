@@ -438,7 +438,7 @@ const QuickActions = () => {
         </Button>
         <Button
           as={ReactRouterLink}
-          to={generatePath(Routes.dashboard.settings)}
+          to={generatePath(Routes.dashboard.settings.base)}
           colorScheme='gray'
           variant='outline'
           justifyContent='start'
