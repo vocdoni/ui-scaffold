@@ -20,5 +20,6 @@ interface ImportMeta {
     SAAS_URL: string
     OAUTH_URL: string
     PRIORITY_SUPPORT_PHONE: string
+    CALCOM_EVENT_SLUG: string
   }
 }

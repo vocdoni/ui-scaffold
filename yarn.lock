@@ -414,6 +414,26 @@
     "@babel/helper-validator-identifier" "^7.25.7"
     to-fast-properties "^2.0.0"
 
+"@calcom/embed-core@1.5.3":
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/@calcom/embed-core/-/embed-core-1.5.3.tgz#07f115d7d3e475b49c699ea5190a9f3093326066"
+  integrity sha512-GeId9gaByJ5EWiPmuvelZOvFWPOTWkcWZr5vGTCbIUTX125oE5yn0n8lDF1MJk5Xj1WO+/dk9jKIE08Ad9ytiQ==
+
+"@calcom/embed-react@^1.5.3":
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/@calcom/embed-react/-/embed-react-1.5.3.tgz#632825e7a7ef9a09f832984fe09a23ea13bc2e06"
+  integrity sha512-JCgge04pc8fhdvUmPNVLhW8/lCWK+AAziKecKWWPfv1nn2s+qKP2BwsEAnxhxK9yPOBgE1EIEgmYkrrNB1iajA==
+  dependencies:
+    "@calcom/embed-core" "1.5.3"
+    "@calcom/embed-snippet" "1.3.3"
+
+"@calcom/embed-snippet@1.3.3":
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/@calcom/embed-snippet/-/embed-snippet-1.3.3.tgz#86e6a6d01d0fd0df46d1434e3e699d1df9938469"
+  integrity sha512-pqqKaeLB8R6BvyegcpI9gAyY6Xyx1bKYfWvIGOvIbTpguWyM1BBBVcT9DCeGe8Zw7Ujp5K56ci7isRUrT2Uadg==
+  dependencies:
+    "@calcom/embed-core" "1.5.3"
+
 "@chakra-ui/anatomy@2.3.5":
   version "2.3.5"
   resolved "https://registry.yarnpkg.com/@chakra-ui/anatomy/-/anatomy-2.3.5.tgz#41da569971ef7224aa2f01312c541469b69adbf8"
@@ -3660,12 +3680,7 @@ camelcase@^6.2.0:
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-6.3.0.tgz#5685b95eb209ac9c0c177467778c9c84df58ba9a"
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
-caniuse-lite@^1.0.30001580:
-  version "1.0.30001718"
-  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001718.tgz"
-  integrity sha512-AflseV1ahcSunK53NfEs9gFWgOEmzr0f+kaMFA4xiLZlr9Hzt7HxcSpIFcnNCUkz6R6dWKa54rUz3HUmI3nVcw==
-
-caniuse-lite@^1.0.30001663:
+caniuse-lite@^1.0.30001580, caniuse-lite@^1.0.30001663:
   version "1.0.30001718"
   resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001718.tgz"
   integrity sha512-AflseV1ahcSunK53NfEs9gFWgOEmzr0f+kaMFA4xiLZlr9Hzt7HxcSpIFcnNCUkz6R6dWKa54rUz3HUmI3nVcw==
