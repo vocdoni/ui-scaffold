@@ -1,7 +1,9 @@
-import { Box, Flex, Heading, Text } from '@chakra-ui/react'
+import { Box, Flex, Heading, Icon, Link, Text } from '@chakra-ui/react'
 import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { Outlet, To } from 'react-router-dom'
+import { Trans, useTranslation } from 'react-i18next'
+import { LuArrowLeft } from 'react-icons/lu'
+import { Outlet, Link as RouterLink, To } from 'react-router-dom'
+import { Routes } from '~routes'
 
 export type NavigationFunctionParams = To | number
 
@@ -36,63 +38,69 @@ export const useTestimonials = () => {
   ]
 
   const getRandomTestimonial = () => testimonials[Math.floor(Math.random() * testimonials.length)]
+  const [testimonial] = useState(() => getRandomTestimonial())
 
-  return { testimonials, getRandomTestimonial }
+  return { testimonials, getRandomTestimonial, testimonial }
 }
 
 const LayoutAuth = () => {
   const [title, setTitle] = useState<string | null>(null)
   const [subtitle, setSubtitle] = useState<string | null>(null)
-  const { getRandomTestimonial } = useTestimonials()
-  const [testimonial] = useState(() => getRandomTestimonial())
+  const { testimonial } = useTestimonials()
 
   return (
     <Flex justifyContent='center' alignItems='center' minH='100vh' p={{ base: 6, md: 10 }} bgColor='auth.bg'>
-      <Flex
-        w='full'
-        maxW={{ base: 'sm', md: '3xl' }}
-        boxShadow={'var(--shadow-sm)'}
-        border='1px solid'
-        borderColor='auth.border'
-        borderRadius='md'
-        bgColor={'auth.card_bg'}
-      >
-        <Box p={{ base: 6, sm: 8 }} flex={{ base: '1 1 100%', md: '0 0 50%' }}>
-          {(title || subtitle) && (
-            <Box mb={6}>
-              {title && (
-                <Heading size='lg' fontWeight='extrabold' mb={1} letterSpacing={'-0.6px'}>
-                  {title}
-                </Heading>
-              )}
-              {subtitle && (
-                <Text color={'auth.secondary_text'} size='sm'>
-                  {subtitle}
-                </Text>
-              )}
-            </Box>
-          )}
-          <Outlet context={{ setTitle, setSubtitle } satisfies AuthOutletContextType} />
-        </Box>
+      <Flex w='full' maxW={{ base: 'sm', md: '3xl' }} flexDir='column' gap={2}>
+        <Link as={RouterLink} to={Routes.root} display='flex' alignItems='center' alignSelf='start'>
+          <Icon as={LuArrowLeft} />
+          <Trans i18nKey='auth.go_home'>Home</Trans>
+        </Link>
         <Flex
-          position='relative'
-          flexDirection='column'
-          flex={'0 0 50%'}
-          display={{ base: 'none', md: 'block' }}
-          bgImage={`linear-gradient(to top, rgb(17 24 39 / 0.8), rgb(17 24 39 / 0.3)), url(${testimonial.image})`}
-          bgSize='cover'
-          bgPosition='center'
-          minH='100%'
-          borderRightRadius='md'
+          w='full'
+          maxW={{ base: 'sm', md: '3xl' }}
+          boxShadow={'var(--shadow-sm)'}
+          border='1px solid'
+          borderColor='auth.border'
+          borderRadius='md'
+          bgColor={'auth.card_bg'}
         >
-          <Box position='absolute' left={0} bottom={0} right={0} p={8}>
-            <Text bottom={0} size='lg' fontWeight='bold' mb={2} color='auth.image_color'>
-              {testimonial.text}
-            </Text>
-            <Text color='#ffffffb3' size='sm'>
-              — {testimonial.author}, {testimonial.position} @ {testimonial.company}
-            </Text>
+          <Box p={{ base: 6, sm: 8 }} flex={{ base: '1 1 100%', md: '0 0 50%' }}>
+            {(title || subtitle) && (
+              <Box mb={6}>
+                {title && (
+                  <Heading size='lg' fontWeight='extrabold' mb={1} letterSpacing={'-0.6px'}>
+                    {title}
+                  </Heading>
+                )}
+                {subtitle && (
+                  <Text color={'auth.secondary_text'} size='sm'>
+                    {subtitle}
+                  </Text>
+                )}
+              </Box>
+            )}
+            <Outlet context={{ setTitle, setSubtitle } satisfies AuthOutletContextType} />
           </Box>
+          <Flex
+            position='relative'
+            flexDirection='column'
+            flex={'0 0 50%'}
+            display={{ base: 'none', md: 'block' }}
+            bgImage={`linear-gradient(to top, rgb(17 24 39 / 0.8), rgb(17 24 39 / 0.3)), url(${testimonial.image})`}
+            bgSize='cover'
+            bgPosition='center'
+            minH='100%'
+            borderRightRadius='md'
+          >
+            <Box position='absolute' left={0} bottom={0} right={0} p={8}>
+              <Text bottom={0} size='lg' fontWeight='bold' mb={2} color='auth.image_color'>
+                {testimonial.text}
+              </Text>
+              <Text color='#ffffffb3' size='sm'>
+                — {testimonial.author}, {testimonial.position} @ {testimonial.company}
+              </Text>
+            </Box>
+          </Flex>
         </Flex>
       </Flex>
     </Flex>
