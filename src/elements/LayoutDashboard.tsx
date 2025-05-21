@@ -4,6 +4,7 @@ import { OrganizationProvider, useClient } from '@vocdoni/react-providers'
 import React, { createContext, PropsWithChildren, useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { generatePath, Outlet, Link as ReactRouterLink } from 'react-router-dom'
+import { BookerModalButton } from '~components/Dashboard/Booker'
 import Breadcrumb, { BreadcrumbItem } from '~components/Dashboard/Breadcrumb'
 import DashboardMenu from '~components/Dashboard/Menu'
 import { PricingModalProvider } from '~components/Pricing/PricingModalProvider'
@@ -68,11 +69,11 @@ const LayoutDashboard: React.FC = () => {
               <Breadcrumb breadcrumb={breadcrumb} setBreadcrumb={setBreadcrumb} />
 
               <Flex gap={2} ml='auto' alignItems={'center'}>
-                <Button leftIcon={<HelpCircle />} colorScheme='gray' size={'sm'}>
+                <BookerModalButton leftIcon={<HelpCircle />} colorScheme='gray' size={'sm'}>
                   <Text display={{ base: 'none', lg: 'flex' }} fontSize='sm'>
                     <Trans i18nKey='do_you_need_help'>Do you need help?</Trans>
                   </Text>
-                </Button>
+                </BookerModalButton>
                 <Button
                   as={ReactRouterLink}
                   to={generatePath(Routes.processes.create)}

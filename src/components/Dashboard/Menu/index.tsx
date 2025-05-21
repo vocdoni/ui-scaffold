@@ -1,5 +1,5 @@
 import { Box, Button, CloseButton, Drawer, DrawerContent, DrawerOverlay, Flex, Text } from '@chakra-ui/react'
-import { Calendar, Plus } from '@untitled-ui/icons-react'
+import { Plus } from '@untitled-ui/icons-react'
 import { useContext, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { generatePath, Link as ReactRouterLink, Link as RouterLink } from 'react-router-dom'
@@ -7,6 +7,7 @@ import { DashboardBox } from '~components/Layout/Dashboard'
 import { VocdoniLogo } from '~components/Layout/Logo'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~src/router/routes'
+import { BookerModalButton } from '../Booker'
 import { DashboardMenuOptions } from './Options'
 import UserProfile from './UserProfile'
 
@@ -106,17 +107,7 @@ const DashboardMenuContent = () => {
                   'Do you need some help with your first voting process? Watch this tutorial or schedule a call.',
               })}
             </Text>
-            <Button
-              as={ReactRouterLink}
-              to={generatePath(Routes.processes.create)}
-              leftIcon={<Calendar />}
-              colorScheme='gray'
-              w='full'
-              size={'sm'}
-              fontSize={'12px'}
-            >
-              {t('schedule_a_call', { defaultValue: ' Schedule a call' })}
-            </Button>
+            <BookerModalButton variant='solid' colorScheme='gray' w='full' size={'sm'} fontSize={'12px'} />
           </DashboardBox>
         )}
         <UserProfile />

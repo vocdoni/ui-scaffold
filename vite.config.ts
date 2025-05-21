@@ -55,6 +55,7 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.SAAS_URL': JSON.stringify(saasUrl),
       'import.meta.env.OAUTH_URL': JSON.stringify(oauthUrl),
       'import.meta.env.PRIORITY_SUPPORT_PHONE': JSON.stringify(prioritySupportPhone),
+      'import.meta.env.CALCOM_EVENT_SLUG': JSON.stringify(process.env.CALCOM_EVENT_SLUG),
     },
     plugins: [
       tsconfigPaths(),
