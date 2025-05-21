@@ -25,9 +25,10 @@ import { ElectionProvider, useClient, useOrganization } from '@vocdoni/react-pro
 import { PublishedElection } from '@vocdoni/sdk'
 import { format } from 'date-fns'
 import { Trans, useTranslation } from 'react-i18next'
-import { LuArrowUpRight, LuCalendar, LuCheck, LuPlus, LuUsers, LuVote, LuX } from 'react-icons/lu'
+import { LuArrowUpRight, LuCheck, LuPlus, LuUsers, LuVote, LuX } from 'react-icons/lu'
 import { generatePath, Link as ReactRouterLink } from 'react-router-dom'
 import { useSubscription } from '~components/Auth/Subscription'
+import { BookerModalButton } from '~components/Dashboard/Booker'
 import { DashboardBox, DashboardContents } from '~components/Layout/Dashboard'
 import InvertedAccordionIcon from '~components/Layout/InvertedAccordionIcon'
 import { usePlanTranslations } from '~components/Pricing/Plans'
@@ -120,16 +121,7 @@ const Tutorial = () => {
           >
             <Trans i18nKey='new_voting'>New vote</Trans>
           </Button>
-          <Button
-            as={ReactRouterLink}
-            to={generatePath(Routes.processes.create)}
-            leftIcon={<Icon as={LuCalendar} boxSize={4} mr={2} />}
-            colorScheme='gray'
-            variant='outline'
-            size='md'
-          >
-            <Trans i18nKey='home.support.btn_watch' />
-          </Button>
+          <BookerModalButton />
         </Flex>
       </Box>
       <Flex display={{ base: 'none', lg: 'flex' }} flex='1 1 33%' flexDirection='column'>

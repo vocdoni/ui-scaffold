@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@calcom/embed-react": "^1.5.3",
     "@chakra-ui/anatomy": "^2.3.4",
     "@chakra-ui/icons": "^2.2.4",
     "@chakra-ui/react": "^2.10.4",

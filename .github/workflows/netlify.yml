@@ -38,6 +38,7 @@ jobs:
           CUSTOM_ORGANIZATION_DOMAINS: ${{ secrets.CUSTOM_ORGANIZATION_DOMAINS }}
           STRIPE_PUBLIC_KEY: pk_test_51PNuOtDW6VLep8WG8WFS7KZocugbzYbkuNn94WAxuGZUa1maPK7kv5BnEPN3x5bXLaCYhHRkBmmGJVVvcDkbbnbS00V4LExTPD
           CUSTOM_FAUCET_URL: https://api-dev.faucet.vocdoni.net/v2
+          CALCOM_EVENT_SLUG: ${{ secrets.CALCOM_EVENT_SLUG }}
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2.0
