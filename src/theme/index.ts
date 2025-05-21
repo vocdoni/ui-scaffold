@@ -23,7 +23,6 @@ import { SpreadsheetAccess } from './components/SpreadsheetAccess'
 import { Stepper } from './components/stepper'
 import { Table } from './components/table'
 import { Tabs } from './components/Tabs'
-import { TabsResponsive } from './components/TabsResponsive'
 import { Tag } from './components/tag'
 import { Text } from './components/text'
 import { Textarea } from './components/textarea'
@@ -209,7 +208,6 @@ export const theme = extendTheme(vtheme, {
     SpreadsheetAccess,
     Table,
     Tabs,
-    TabsResponsive,
     Tag,
     Text,
     Textarea,
