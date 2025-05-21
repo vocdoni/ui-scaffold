@@ -31,7 +31,7 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
 
   const onSubmit = async (values: CSPStep0FormData) => {
     const form: CSPStep0RequestData = {
-      participantNo: values.participantNo
+      participantNo: values.participantNo,
     }
 
     if (values.contact?.includes('@')) {
