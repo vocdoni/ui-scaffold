@@ -10,8 +10,13 @@ const baseStyle = definePartsStyle({
     boxShadow: 'md',
   },
   item: {
+    _selected: {
+      bg: 'gray.200',
+      color: 'black',
+    },
     _focus: {
-      bg: 'whitesmoke',
+      bg: 'gray.100',
+      color: 'black',
     },
   },
 

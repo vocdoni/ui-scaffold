@@ -51,8 +51,7 @@ const AccountMenu: React.FC<BoxProps> = (props) => {
               rightIcon={<Icon as={isOpen ? ChevronUpIcon : ChevronDownIcon} boxSize={4} />}
               aria-label='User menu'
               display={'flex'}
-              alignItems={'center'}
-              variant={'unstyled'}
+              alignItems='center'
             >
               <Text fontSize='xs' fontWeight='light'>
                 {profile.email}

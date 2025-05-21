@@ -135,24 +135,8 @@ const SignUp = ({ invite }: SignupProps) => {
                   <Trans
                     i18nKey='signup_agree_terms'
                     components={{
-                      termsLink: (
-                        <Link
-                          isExternal
-                          as={ReactRouterLink}
-                          to={Routes.terms}
-                          color={'auth.checkboxes_text'}
-                          fontSize={'14px'}
-                        />
-                      ),
-                      privacyLink: (
-                        <Link
-                          isExternal
-                          as={ReactRouterLink}
-                          to={Routes.privacy}
-                          color={'auth.checkboxes_text'}
-                          fontSize={'14px'}
-                        />
-                      ),
+                      termsLink: <Link isExternal as={ReactRouterLink} to={Routes.terms} fontSize={'14px'} />,
+                      privacyLink: <Link isExternal as={ReactRouterLink} to={Routes.privacy} fontSize={'14px'} />,
                     }}
                   ></Trans>
                 </Text>
@@ -180,7 +164,7 @@ const SignUp = ({ invite }: SignupProps) => {
         fontWeight={'bold'}
       >
         {t('already_member')}
-        <Link as={NavLink} to={Routes.auth.signIn} ml={1} fontWeight={'bold'} variant={'unstyled'} fontSize='sm'>
+        <Link as={NavLink} to={Routes.auth.signIn} ml={1} fontWeight={'bold'} fontSize='sm'>
           {t('signin')}
         </Link>
       </Text>

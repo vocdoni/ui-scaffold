@@ -123,7 +123,6 @@ export const LanguagesListAccordion = () => {
       <AccordionItem>
         <AccordionButton
           as={Button}
-          variant='unstyled'
           m={0}
           p={0}
           h='fit-content'
@@ -140,7 +139,6 @@ export const LanguagesListAccordion = () => {
         <AccordionPanel pb={0}>
           {Object.keys(languages).map((k: string) => (
             <Button
-              variant={'unstyled'}
               key={k}
               onClick={() => {
                 i18n.changeLanguage(k)

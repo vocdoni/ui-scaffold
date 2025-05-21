@@ -112,7 +112,7 @@ const UserProfile = () => {
                 <Button
                   onClick={() => setSwitchOrg(false)}
                   leftIcon={<ChevronLeft width='12px' height='12px' />}
-                  variant={'unstyled'}
+                  variant={'link'}
                   display={'flex'}
                   alignItems={'center'}
                   fontSize={'xs'}
