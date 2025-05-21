@@ -2,14 +2,10 @@ import { defineStyleConfig } from '@chakra-ui/react'
 
 export const Link = defineStyleConfig({
   baseStyle: {
-    color: 'link.light',
-    textDecoration: 'underline',
-
-    _dark: {
-      color: 'link.dark',
-    },
+    color: 'gray.800',
     _hover: {
       textDecoration: 'none',
+      color: 'gray.500',
     },
   },
   variants: {
@@ -20,10 +16,6 @@ export const Link = defineStyleConfig({
       _hover: {
         color: 'black',
       },
-    }),
-    unstyled: (props) => ({
-      textDecoration: 'none',
-      color: 'black',
     }),
     icon: (props) => ({
       display: 'flex',

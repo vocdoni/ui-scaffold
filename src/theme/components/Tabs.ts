@@ -1,27 +1,7 @@
 import { tabsAnatomy } from '@chakra-ui/anatomy'
-import { createMultiStyleConfigHelpers, TabPanel } from '@chakra-ui/react'
-import { BiBorderRadius } from 'react-icons/bi'
+import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(tabsAnatomy.keys)
-
-const brand = definePartsStyle(({ colorScheme }: { colorScheme: string }) => ({
-  tab: {
-    borderRadius: 'lg',
-    _selected: {
-      bgColor: `${colorScheme}.200`,
-      _dark: {
-        bgColor: `${colorScheme}.300`,
-      },
-    },
-  },
-  tablist: {
-    bgColor: `${colorScheme}.500`,
-    p: 1,
-    _dark: {
-      bgColor: `${colorScheme}.600`,
-    },
-  },
-}))
 
 const card = definePartsStyle({
   tablist: {
@@ -214,6 +194,6 @@ const settings = ({ colorScheme }: { colorScheme: string }) => ({
 })
 
 export const Tabs = defineMultiStyleConfig({
-  variants: { card, process, brand, basic, underline, settings },
-  defaultProps: { colorScheme: 'brand', variant: 'underline' },
+  variants: { card, process, basic, underline, settings },
+  defaultProps: { variant: 'underline' },
 })

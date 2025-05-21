@@ -73,5 +73,5 @@ export const TabsResponsive: ComponentStyleConfig = {
       },
     },
   },
-  defaultProps: { colorScheme: 'brandAlpha', variant: 'basic' },
+  defaultProps: { variant: 'basic' },
 }
