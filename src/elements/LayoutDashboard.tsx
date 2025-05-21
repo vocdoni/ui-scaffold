@@ -68,7 +68,7 @@ const LayoutDashboard: React.FC = () => {
               <Breadcrumb breadcrumb={breadcrumb} setBreadcrumb={setBreadcrumb} />
 
               <Flex gap={2} ml='auto' alignItems={'center'}>
-                <Button leftIcon={<HelpCircle />} colorScheme='gray' size={'sm'} variant='outline'>
+                <Button leftIcon={<HelpCircle />} colorScheme='gray' size={'sm'}>
                   <Text display={{ base: 'none', lg: 'flex' }} fontSize='sm'>
                     <Trans i18nKey='do_you_need_help'>Do you need help?</Trans>
                   </Text>

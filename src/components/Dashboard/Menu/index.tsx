@@ -111,7 +111,6 @@ const DashboardMenuContent = () => {
               to={generatePath(Routes.processes.create)}
               leftIcon={<Calendar />}
               colorScheme='gray'
-              variant='outline'
               w='full'
               size={'sm'}
               fontSize={'12px'}

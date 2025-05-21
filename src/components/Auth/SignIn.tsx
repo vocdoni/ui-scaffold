@@ -122,14 +122,7 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
                 placeholder={t('password_placeholder', { defaultValue: 'Enter your password' })}
                 required
               />
-              <Link
-                as={NavLink}
-                to={Routes.auth.passwordReset}
-                fontSize='xs'
-                fontWeight='bold'
-                alignSelf='end'
-                color='gray.500'
-              >
+              <Link as={NavLink} to={Routes.auth.passwordReset} fontSize='xs' fontWeight='bold' alignSelf='end'>
                 {t('forgot_password_title')}
               </Link>
             </Flex>
@@ -144,7 +137,7 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
 
       <Text display={'flex'} justifyContent={'center'} alignItems={'center'} fontWeight='bold' fontSize='sm' mt={6}>
         {t('not_registred_yet')}
-        <Link as={NavLink} to={Routes.auth.signUp} ml={1} fontWeight={'bold'} variant={'unstyled'} fontSize='sm'>
+        <Link as={NavLink} to={Routes.auth.signUp} ml={1} fontWeight={'bold'} fontSize='sm'>
           {t('signup_title')}
         </Link>
       </Text>

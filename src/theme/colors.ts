@@ -295,10 +295,6 @@ export const colors = {
     },
   },
 
-  link: {
-    light: colorsBase.gray.dark,
-    dark: colorsBase.gray.normal,
-  },
   org_text_secondary: colorsBase.gray.normal,
 
   process: {
