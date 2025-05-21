@@ -30,7 +30,15 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
   const auth = useTwoFactorAuth<0>(election, 0)
 
   const onSubmit = async (values: CSPStep0FormData) => {
-    form.email = values.contact
+    const form: CSPStep0RequestData = {
+      participantNo: values.participantNo
+    }
+
+    if (values.contact?.includes('@')) {
+      form.email = values.contact
+    } else {
+      form.phone = values.contact
+    }
 
     try {
       const { authToken } = await auth.mutateAsync(form)
