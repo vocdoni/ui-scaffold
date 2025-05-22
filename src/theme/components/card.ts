@@ -46,26 +46,22 @@ export const Card = defineMultiStyleConfig({
         position: 'relative',
         borderRadius: 'xl',
         bgColor: 'pricing_card.bg.light',
-        minW: { base: '80%', sm: 72 },
-        w: { base: '80%', sm: 72 },
         _dark: {
           bgColor: 'pricing_card.bg.dark',
         },
+        p: 4,
       },
       header: {
-        pb: 0,
+        p: 0,
         minH: 28,
         '& > p:first-of-type': {
           pt: 1.5,
-
-          textAlign: 'center',
-          fontWeight: 'bold',
-          mb: 2.5,
+          fontWeight: 'extrabold',
+          mb: 1.5,
           fontSize: 'lg',
         },
         '& > p:nth-of-type(2)': {
           fontSize: 'sm',
-          textAlign: 'center',
           lineHeight: 1.2,
           color: 'pricing_card.subtitle.light',
 
@@ -77,41 +73,27 @@ export const Card = defineMultiStyleConfig({
       body: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
-        pt: 0,
+        justifyContent: 'start',
+        p: 0,
+        '& > div > ul': {
+          m: 0,
+          maxW: 'fit-content',
+          fontSize: 'sm',
+          listStyleType: 'none',
+        },
+      },
+      footer: {
+        p: 0,
+        display: 'flex',
         '& > button': {
           mx: 'auto',
           mt: 3,
           mb: 2,
           w: 'full',
-          borderRadius: 'full',
-          height: 0,
-          minH: '30px',
-          py: 2,
-        },
-        '& > p:first-of-type': {
-          fontWeight: 'extrabold',
-          textAlign: 'center',
-          fontSize: 'xl',
-          mb: 4,
-        },
-        '& > div:last-of-type': {
-          ml: 3,
-
-          '& > ul': {
-            maxW: 'fit-content',
-            mx: 'auto',
-            fontSize: 'sm',
-            listStyleType: '"- "',
-          },
-        },
-      },
-      footer: {
-        display: 'flex',
-        justifyContent: 'center',
-
-        '& button': {
-          color: 'pricing_card_btn',
+          borderRadius: 'md',
+          border: '1px',
+          borderColor: 'gray.300',
+          p: 4,
         },
       },
     },

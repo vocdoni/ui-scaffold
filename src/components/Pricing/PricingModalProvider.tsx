@@ -38,12 +38,6 @@ export const PricingModalProvider: React.FC<{ children?: ReactNode }> = ({ child
         <PlanUpgradeModal isOpen onClose={closeModal} {...(modalData as PlanUpgradeData)} />
       )}
       {modalType === 'subscription' && isOpen && <SubscriptionModal isOpen onClose={closeModal} />}
-      {modalType === 'planUpgrade' && isOpen && (
-        <PlanUpgradeModal isOpen onClose={closeModal} {...(modalData as PlanUpgradeData)} />
-      )}
-      {modalType === 'planUpgrade' && isOpen && (
-        <PlanUpgradeModal isOpen onClose={closeModal} {...(modalData as PlanUpgradeData)} />
-      )}
       {modalType === 'subscriptionPayment' && isOpen && (
         <SubscriptionPaymentModal isOpen onClose={closeModal} {...(modalData as SubscriptionPaymentData)} />
       )}

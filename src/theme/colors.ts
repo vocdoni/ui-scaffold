@@ -393,8 +393,8 @@ export const colors = {
     border_dark: colorsBase.white.pure,
     body_text: colorsBase.black,
     most_popular_plan: {
-      bg: colorsBase.beige,
-      color: colorsBase.black,
+      bg: colorsBase.black,
+      color: colorsBase.white.pure,
     },
     subtitle: {
       light: colorsBase.gray.normal,
