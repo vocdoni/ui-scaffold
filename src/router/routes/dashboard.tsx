@@ -2,9 +2,8 @@
 import { useQueryClient } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { lazy } from 'react'
-import { LoaderFunctionArgs, Params } from 'react-router-dom'
+import { LoaderFunctionArgs, Navigate, Params } from 'react-router-dom'
 import OrganizationEdit from '~components/Organization/Dashboard/Organization'
-import OrganizationPersonalization from '~components/Organization/Dashboard/Personalization'
 import SubscriptionPage from '~components/Organization/Dashboard/Subscription'
 import OrganizationSupport from '~components/Organization/Dashboard/Support'
 import OrganizationTeam from '~components/Organization/Dashboard/Team'
@@ -108,6 +107,10 @@ export const useDashboardRoutes = () => {
                 ),
                 children: [
                   {
+                    index: true,
+                    element: <Navigate to={Routes.dashboard.settings.organization} replace />,
+                  },
+                  {
                     path: Routes.dashboard.settings.organization,
                     element: (
                       <SuspenseLoader>
@@ -120,14 +123,6 @@ export const useDashboardRoutes = () => {
                     element: (
                       <SuspenseLoader>
                         <OrganizationTeam />
-                      </SuspenseLoader>
-                    ),
-                  },
-                  {
-                    path: Routes.dashboard.settings.personalization,
-                    element: (
-                      <SuspenseLoader>
-                        <OrganizationPersonalization />
                       </SuspenseLoader>
                     ),
                   },

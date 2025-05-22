@@ -1,8 +1,9 @@
-import { Box, Heading, Tab, TabList, Tabs, Text } from '@chakra-ui/react'
+import { Heading, Tab, TabList, Tabs, Text } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Outlet, useLocation, useNavigate, useOutletContext } from 'react-router-dom'
 import { useSaasAccount } from '~components/Account/useSaasAccount'
+import { DashboardContents } from '~components/Layout/Dashboard'
 import QueryDataLayout from '~components/Layout/QueryDataLayout'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~src/router/routes'
@@ -32,16 +33,8 @@ const Settings = () => {
       route: Routes.dashboard.settings.team,
     },
     {
-      label: t('personalization.title', { defaultValue: 'Personalization' }),
-      route: Routes.dashboard.settings.personalization,
-    },
-    {
       label: t('subscription.title', { defaultValue: 'Subscription Plan' }),
       route: Routes.dashboard.settings.subscription,
-    },
-    {
-      label: t('billing_details', { defaultValue: 'Billing Details' }),
-      href: 'https://vocdoni.org',
     },
     {
       label: t('support', { defaultValue: 'Support' }),
@@ -57,7 +50,7 @@ const Settings = () => {
   }, [setBreadcrumb])
 
   return (
-    <Box p={6}>
+    <DashboardContents>
       <Heading size='md' fontWeight='extrabold'>
         {t('organization_settings.title', {
           defaultValue: '{{organization}} Settings',
@@ -80,20 +73,14 @@ const Settings = () => {
           }}
         >
           <TabList mb={6}>
-            {menuItems.map((item, index) =>
-              item.href ? (
-                <Tab key={index} as='a' href={item.href} target='_blank' rel='noopener noreferrer'>
-                  {item.label}
-                </Tab>
-              ) : (
-                <Tab key={index}>{item.label}</Tab>
-              )
-            )}
+            {menuItems.map((item, index) => (
+              <Tab key={index}>{item.label}</Tab>
+            ))}
           </TabList>
           <Outlet />
         </Tabs>
       </QueryDataLayout>
-    </Box>
+    </DashboardContents>
   )
 }
 

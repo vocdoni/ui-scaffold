@@ -22,7 +22,6 @@ export const Routes = {
       base: '/admin/settings',
       organization: '/admin/settings/organization',
       team: '/admin/settings/team',
-      personalization: '/admin/settings/personalization',
       subscription: '/admin/settings/subscription',
       support: '/admin/settings/support',
     },
