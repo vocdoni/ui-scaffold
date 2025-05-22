@@ -256,6 +256,7 @@
     }
   },
   "current": "Actual",
+  "current_plan": "Current Plan",
   "dark_mode": "Modo oscuro",
   "dashboard": {
     "actions": {
@@ -929,7 +930,6 @@
     "go_to_verify": "Verificar cuenta",
     "invalid_link": "Enlace de invitación no válido",
     "processing": "Procesando tu invitación...",
-    "select_option": "Selecciona una opción",
     "subtitle": "Trabajar junto a otros es la clave para el éxito.",
     "success": "¡Invitación enviada!",
     "success_description": "Ahora te puedes logar",
@@ -1053,13 +1053,17 @@
       "priority_support_line_description": "Available Monday–Friday, 9:00–18:00 CET",
       "schedule_call": "Schedule a Call",
       "title": "Phone Support",
-      "unlock": "Unlock Phone Support",
-      "view_documentation": "View Documentation"
+      "unlock": "Unlock Phone Support"
     },
     "subtitle": "Manage your organization, team members and your subscription plan",
     "support": {
       "description": "Get help and support for your organization.",
       "title": "Support"
+    },
+    "team": {
+      "add_team_member": "Add team member",
+      "subtitle": "Manage your organization's team members and their permissions.",
+      "title": "Team Members"
     },
     "title": "{{organization}} Settings"
   },
@@ -1097,9 +1101,6 @@
     "success": "Contraseña actualizada con éxito"
   },
   "passwords_do_not_match": "Las contraseñas no coinciden",
-  "personalization": {
-    "title": "Personalization"
-  },
   "plan": {
     "details": "You're currently on the {{ title }} plan, {{ subtitle }}",
     "encouragement": "So go ahead, explore the platform, create your first vote, and see just how easy secure digital governance\n              can be! But if you need help, just schedule a call with our experts!"
@@ -1146,6 +1147,7 @@
     "your_plan": "Actualmente estás suscrito al plan <plan>{{ plan }}</plan>. Si actualizas, solo te cobraremos la diferencia anual. En el próximo período de facturación, que comienza el <plan>{{ billing, format }}</plan>, pagarás íntegramente por el nuevo plan seleccionado."
   },
   "pricing_card": {
+    "comparison_table_from": "From {{price}}/year",
     "from": "Desde {{price}}/año",
     "most_popular_plan": "Recomendado",
     "view_features": "Ver todas las características"
@@ -1366,8 +1368,11 @@
   },
   "rights": "© 2024 Asociación Vocdoni. Todos los derechos reservados.",
   "role": {
-    "read_permission": "Acceso solo lectura",
-    "write_permission": "Puede crear y editar contenido"
+    "full_access": "(Full access)",
+    "read_only": "(Read-only)"
+  },
+  "role_selector": {
+    "selector_label": "Role"
   },
   "schedule_a_call": "Programar una llamada",
   "section": {
@@ -1414,16 +1419,20 @@
     "title": "Suscripción",
     "your_subscription": "Tu Suscripción"
   },
+  "subscription_plan": {
+    "subtitle": "Manage your subscription plan and billing cycle.",
+    "title": "Subscription Plan"
+  },
   "support": "Support",
   "switch_organization": "Cambiar de organización",
   "team": {
-    "expiration": "Expiración",
     "expires_in": "Expires in {{time}}",
-    "member_name": "Nombre",
-    "member_role": "Rol",
+    "only_one_member": {
+      "add_first_member": "Add Your First Team Member",
+      "subtitle": "Add team members to collaborate on your organization",
+      "title": "No team members"
+    },
     "pending_invitation": "Invitation Pending",
-    "pending_members": "Invitaciones pendientes",
-    "team_members": "Miembros del equipo",
     "title": "Equipo"
   },
   "terms": {

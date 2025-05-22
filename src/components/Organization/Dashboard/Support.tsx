@@ -6,6 +6,7 @@ import {
   FormLabel,
   Heading,
   Icon,
+  Progress,
   SimpleGrid,
   Stack,
   Text,
@@ -21,11 +22,16 @@ import { useSubscription } from '~components/Auth/Subscription'
 import InputBasic from '~components/Layout/InputBasic'
 import { IssueTypeSelector, SelectOptionType } from '~components/Layout/SaasSelector'
 import { Routes } from '~src/router/routes'
+import { maskValue } from '~utils/strings'
 
 type FormData = {
   name: string
   issueType: SelectOptionType
   description: string
+}
+
+type SubscriptionLockedContentProps = {
+  children: (args: { isLocked: boolean }) => React.ReactNode
 }
 
 const OrganizationSupport = () => {
@@ -44,7 +50,7 @@ const OrganizationSupport = () => {
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6}>
         <SupportTicketForm />
         <SubscriptionLockedContent>
-          <PhoneSupportCard />
+          {({ isLocked }) => <PhoneSupportCard isLocked={isLocked} />}
         </SubscriptionLockedContent>
       </SimpleGrid>
     </Box>
@@ -93,11 +99,11 @@ const SupportTicketForm = () => {
   )
 }
 
-const SubscriptionLockedContent = ({ children }) => {
+const SubscriptionLockedContent = ({ children }: SubscriptionLockedContentProps) => {
   const { t } = useTranslation()
   const { subscription, loading } = useSubscription()
 
-  if (loading) return null
+  if (loading) return <Progress size='xs' isIndeterminate colorScheme='gray' />
 
   const hasPhoneSupport = subscription?.plan.features.phoneSupport
   const isLocked = !hasPhoneSupport
@@ -105,12 +111,12 @@ const SubscriptionLockedContent = ({ children }) => {
   return (
     <Box position='relative' borderWidth='1px' borderRadius='lg' overflow='hidden'>
       <Box
-        filter={isLocked ? 'blur(4px)' : 'none'}
         pointerEvents={isLocked ? 'none' : 'auto'}
+        filter={isLocked ? 'blur(5px)' : ''}
         transition='filter 0.2s ease'
         zIndex={0}
       >
-        {children}
+        {children({ isLocked })}
       </Box>
       {isLocked && (
         <Box
@@ -141,7 +147,7 @@ const SubscriptionLockedContent = ({ children }) => {
           <Button
             as={ReactRouterLink}
             to={generatePath(Routes.dashboard.settings.subscription)}
-            leftIcon={<Icon as={LuSparkles} />}
+            leftIcon={<Icon as={LuSparkles} mr={2} />}
             colorScheme='blackAlpha'
           >
             {t('organization_settings.phone_support.unlock', {
@@ -154,11 +160,12 @@ const SubscriptionLockedContent = ({ children }) => {
   )
 }
 
-const PhoneSupportCard = () => {
+const PhoneSupportCard = ({ isLocked }) => {
   const { t } = useTranslation()
   const { organization, isLoading } = useSaasAccount()
+  const prioritySupportPhone = import.meta.env.PRIORITY_SUPPORT_PHONE
 
-  if (isLoading) return null
+  if (isLoading) return <Progress size='xs' isIndeterminate colorScheme='gray' />
 
   return (
     <Box p={6}>
@@ -195,7 +202,7 @@ const PhoneSupportCard = () => {
               })}
             </Text>
             <Text fontSize='lg' fontWeight='extrabold'>
-              +34 900 123 456
+              {maskValue(prioritySupportPhone, isLocked)}
             </Text>
             <Text fontSize='sm' color='gray.500'>
               {t('organization_settings.phone_support.priority_support_line_description', {
@@ -227,7 +234,7 @@ const PhoneSupportCard = () => {
               })}
             </Text>
             <Text fontFamily='mono' color='gray.800'>
-              {organization.address}
+              {maskValue(organization.address, isLocked)}
             </Text>
             <Text fontSize='sm' color='gray.500'>
               {t('organization_settings.phone_support.organization_id_description', {
@@ -256,21 +263,9 @@ const PhoneSupportCard = () => {
           aria-label={t('organization_settings.phone_support.schedule_call', { defaultValue: 'Schedule a Call' })}
           title={t('organization_settings.phone_support.schedule_call', { defaultValue: 'Schedule a Call' })}
           target='_blank'
+          disabled={isLocked}
         >
           {t('organization_settings.phone_support.schedule_call', { defaultValue: 'Schedule a Call' })}
-        </Button>
-        <Button
-          as={ReactRouterLink}
-          variant='outline'
-          colorScheme='gray'
-          to='https://developer.vocdoni.io/intro'
-          aria-label={t('organization_settings.phone_support.view_documentation', {
-            defaultValue: 'View Documentation',
-          })}
-          title={t('organization_settings.phone_support.view_documentation', { defaultValue: 'View Documentation' })}
-          target='_blank'
-        >
-          {t('organization_settings.phone_support.view_documentation', { defaultValue: 'View Documentation' })}
         </Button>
       </Stack>
     </Box>

@@ -253,6 +253,7 @@
     }
   },
   "current": "Current",
+  "current_plan": "Current Plan",
   "dark_mode": "Dark mode",
   "dashboard": {
     "actions": {
@@ -922,7 +923,6 @@
     "go_to_verify": "Verify Account",
     "invalid_link": "Invalid invite link received",
     "processing": "Processing your invitation...",
-    "select_option": "Select an option",
     "subtitle": "Work together on projects",
     "success": "Invitation sent successfully!",
     "success_description": "You can now sign in",
@@ -1045,13 +1045,17 @@
       "priority_support_line_description": "Available Monday–Friday, 9:00–18:00 CET",
       "schedule_call": "Schedule a Call",
       "title": "Phone Support",
-      "unlock": "Unlock Phone Support",
-      "view_documentation": "View Documentation"
+      "unlock": "Unlock Phone Support"
     },
     "subtitle": "Manage your organization, team members and your subscription plan",
     "support": {
       "description": "Get help and support for your organization.",
       "title": "Support"
+    },
+    "team": {
+      "add_team_member": "Add team member",
+      "subtitle": "Manage your organization's team members and their permissions.",
+      "title": "Team Members"
     },
     "title": "{{organization}} Settings"
   },
@@ -1089,9 +1093,6 @@
     "success": "Password updated successfully"
   },
   "passwords_do_not_match": "Passwords doesn't match",
-  "personalization": {
-    "title": "Personalization"
-  },
   "plan": {
     "details": "You're currently on the {{ title }} plan, {{ subtitle }}",
     "encouragement": "So go ahead, explore the platform, create your first vote, and see just how easy secure digital governance\n              can be! But if you need help, just schedule a call with our experts!"
@@ -1137,8 +1138,9 @@
     "your_plan": "You're currently subscribed to the <plan>{{ plan }}</plan> plan. Upgrade now, and you'll only pay the difference for the remaining time in your billing period. Starting from your next billing cycle on <plan>{{ billing, format }}</plan>, you'll be charged the full price for your new plan."
   },
   "pricing_card": {
-    "from": "From ${{ price }}/year",
-    "most_popular_plan": "Recommended",
+    "comparison_table_from": "From {{ price }}/year",
+    "from": "<price>{{ price }}</price><time>/year</time>",
+    "most_popular_plan": "Most Popular",
     "view_features": "View all features"
   },
   "privacy_policy": "Privacy Policy",
@@ -1355,8 +1357,11 @@
   },
   "rights": "© 2024 Vocdoni Association. All Rights Reserved.",
   "role": {
-    "read_permission": "Read-only access",
-    "write_permission": "Can create and edit content"
+    "full_access": "(Full access)",
+    "read_only": "(Read-only)"
+  },
+  "role_selector": {
+    "selector_label": "Role"
   },
   "schedule_a_call": "Schedule a call",
   "section": {
@@ -1403,16 +1408,20 @@
     "title": "Subscription Plan",
     "your_subscription": "Your Subscription"
   },
+  "subscription_plan": {
+    "subtitle": "Manage your subscription plan and billing cycle.",
+    "title": "Subscription Plan"
+  },
   "support": "Support",
   "switch_organization": "Switch organization",
   "team": {
-    "expiration": "Expiration",
     "expires_in": "Expires in {{time}}",
-    "member_name": "Name",
-    "member_role": "Role",
+    "only_one_member": {
+      "add_first_member": "Add Your First Team Member",
+      "subtitle": "Add team members to collaborate on your organization",
+      "title": "No team members"
+    },
     "pending_invitation": "Invitation Pending",
-    "pending_members": "Pending Invitations",
-    "team_members": "Team members",
     "title": "Team"
   },
   "terms": {

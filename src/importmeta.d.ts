@@ -19,5 +19,6 @@ interface ImportMeta {
     STRIPE_PUBLIC_KEY: string
     SAAS_URL: string
     OAUTH_URL: string
+    PRIORITY_SUPPORT_PHONE: string
   }
 }

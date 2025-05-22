@@ -53,6 +53,7 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.STRIPE_PUBLIC_KEY': JSON.stringify(process.env.STRIPE_PUBLIC_KEY),
       'import.meta.env.SAAS_URL': JSON.stringify(saasUrl),
       'import.meta.env.OAUTH_URL': JSON.stringify(oauthUrl),
+      'import.meta.env.PRIORITY_SUPPORT_PHONE': JSON.stringify(process.env.PRIORITY_SUPPORT_PHONE),
     },
     plugins: [
       tsconfigPaths(),

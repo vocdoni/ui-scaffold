@@ -256,6 +256,7 @@
     }
   },
   "current": "Actual",
+  "current_plan": "Current Plan",
   "dark_mode": "Mode fosc",
   "dashboard": {
     "actions": {
@@ -929,7 +930,6 @@
     "go_to_verify": "Verifica Compte",
     "invalid_link": "Enllaç d'invitació no vàlid",
     "processing": "Processant la teva invitació...",
-    "select_option": "Selecciona una opció",
     "subtitle": "Treballeu conjuntament en projectes",
     "success": "Invitació enviada correctament!",
     "success_description": "Ja pots iniciar sessió",
@@ -1053,13 +1053,17 @@
       "priority_support_line_description": "Available Monday–Friday, 9:00–18:00 CET",
       "schedule_call": "Schedule a Call",
       "title": "Phone Support",
-      "unlock": "Unlock Phone Support",
-      "view_documentation": "View Documentation"
+      "unlock": "Unlock Phone Support"
     },
     "subtitle": "Manage your organization, team members and your subscription plan",
     "support": {
       "description": "Get help and support for your organization.",
       "title": "Support"
+    },
+    "team": {
+      "add_team_member": "Add team member",
+      "subtitle": "Manage your organization's team members and their permissions.",
+      "title": "Team Members"
     },
     "title": "{{organization}} Settings"
   },
@@ -1097,9 +1101,6 @@
     "success": "Password updated successfully"
   },
   "passwords_do_not_match": "Les contrasenyes no coincideixen",
-  "personalization": {
-    "title": "Personalization"
-  },
   "plan": {
     "details": "You're currently on the {{ title }} plan, {{ subtitle }}",
     "encouragement": "So go ahead, explore the platform, create your first vote, and see just how easy secure digital governance\n              can be! But if you need help, just schedule a call with our experts!"
@@ -1146,6 +1147,7 @@
     "your_plan": "Actualment estàs subscrit al pla <plan>{{ plan }}</plan>. Si actualitzes, només et cobrarem la diferència anual. En el següent període de facturació, que comença el <plan>{{ billing, format }}</plan>, pagaràs íntegrament pel nou pla seleccionat."
   },
   "pricing_card": {
+    "comparison_table_from": "From {{price}}/year",
     "from": "Des de {{price}}/any",
     "most_popular_plan": "Recomanat",
     "view_features": "View all features"
@@ -1366,8 +1368,11 @@
   },
   "rights": "© 2024 Associació Vocdoni. Tots els drets reservats.",
   "role": {
-    "read_permission": "Read-only access",
-    "write_permission": "Can create and edit content"
+    "full_access": "(Full access)",
+    "read_only": "(Read-only)"
+  },
+  "role_selector": {
+    "selector_label": "Role"
   },
   "schedule_a_call": "Programar una trucada",
   "section": {
@@ -1414,16 +1419,20 @@
     "title": "Subscription",
     "your_subscription": "Your Subscription"
   },
+  "subscription_plan": {
+    "subtitle": "Manage your subscription plan and billing cycle.",
+    "title": "Subscription Plan"
+  },
   "support": "Support",
   "switch_organization": "Canvia d'organització",
   "team": {
-    "expiration": "Expiració",
     "expires_in": "Expires in {{time}}",
-    "member_name": "Nom",
-    "member_role": "Rol",
+    "only_one_member": {
+      "add_first_member": "Add Your First Team Member",
+      "subtitle": "Add team members to collaborate on your organization",
+      "title": "No team members"
+    },
     "pending_invitation": "Invitation Pending",
-    "pending_members": "Invitacions pendents",
-    "team_members": "Membres de l'equip",
     "title": "Equip"
   },
   "terms": {
