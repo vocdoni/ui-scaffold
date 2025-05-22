@@ -24,6 +24,7 @@ import { useSaasAccount } from '~components/Account/useSaasAccount'
 import { ApiEndpoints } from '~components/Auth/api'
 import { HSeparator } from '~components/Auth/SignIn'
 import { useAuth } from '~components/Auth/useAuth'
+import { DashboardBox } from '~components/Layout/Dashboard'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import { SelectOptionType } from '~components/Layout/SaasSelector'
 import { ImageUploader } from '~components/Layout/Uploader'
@@ -129,53 +130,55 @@ const EditOrganization = () => {
   const error = saasError || updateError
 
   return (
-    <FormProvider {...methods}>
-      <Flex as='form' id='process-create-form' onSubmit={handleSubmit(onSubmit)} flexDirection={'column'}>
-        <Heading size='md' fontWeight='extrabold'>
-          {t('create_org.organization_details', { defaultValue: 'Organization Details' })}
-        </Heading>
-        <Text mb={6} color='gray.500' size='sm'>
-          {t('create_org.organization_details_description', {
-            defaultValue: "Manage your organization's profile and configuration settings.",
-          })}
-        </Text>
-        <Box me='auto'>
-          <Text fontWeight='bold' mb={4} size='lg'>
-            {t('create_org.public_info', { defaultValue: 'Public Profile' })}
-          </Text>
-          <Text color='gray.500' size='sm' mb={4}>
-            {t('create_org.public_info_description', {
-              defaultValue: 'This information is shown in various places including the voting pages.',
+    <DashboardBox p={6}>
+      <FormProvider {...methods}>
+        <Flex as='form' id='process-create-form' onSubmit={handleSubmit(onSubmit)} flexDirection='column'>
+          <Heading size='md' fontWeight='extrabold'>
+            {t('create_org.organization_details', { defaultValue: 'Organization Details' })}
+          </Heading>
+          <Text mb={6} color='gray.500' size='sm'>
+            {t('create_org.organization_details_description', {
+              defaultValue: "Manage your organization's profile and configuration settings.",
             })}
           </Text>
-        </Box>
-        <Flex gap={6} flexDirection={{ base: 'column', lg: 'row' }}>
-          <CustomizeOrgForm />
-          <PublicOrgForm />
-        </Flex>
-        <Flex align='center' my={6}>
-          <HSeparator />
-          <Text color='gray.500' fontWeight='bold' mx={3.5} whiteSpace='nowrap' size='xs' textTransform='uppercase'>
-            {t('other_details', { defaultValue: 'Other Details' })}
-          </Text>
-          <HSeparator />
-        </Flex>
-        <PrivateOrgForm />
+          <Box me='auto'>
+            <Text fontWeight='bold' mb={4} size='lg'>
+              {t('create_org.public_info', { defaultValue: 'Public Profile' })}
+            </Text>
+            <Text color='gray.500' size='sm' mb={4}>
+              {t('create_org.public_info_description', {
+                defaultValue: 'This information is shown in various places including the voting pages.',
+              })}
+            </Text>
+          </Box>
+          <Flex gap={6} flexDirection={{ base: 'column', lg: 'row' }}>
+            <CustomizeOrgForm />
+            <PublicOrgForm />
+          </Flex>
+          <Flex align='center' my={6}>
+            <HSeparator />
+            <Text color='gray.500' fontWeight='bold' mx={3.5} whiteSpace='nowrap' size='xs' textTransform='uppercase'>
+              {t('other_details', { defaultValue: 'Other Details' })}
+            </Text>
+            <HSeparator />
+          </Flex>
+          <PrivateOrgForm />
 
-        <Flex align='center' direction='column' alignSelf='end'>
-          <Button type='submit' isLoading={isPending} aria-label='' w='full'>
-            {t('actions.save', { defaultValue: 'Save' })}
-          </Button>
-          <FormSubmitMessage
-            isLoading={isPending}
-            isError={isError}
-            error={error}
-            isSuccess={isSuccess}
-            success={t('edit_saas_profile.edited_successfully', { defaultValue: 'Updated successfully' })}
-          />
+          <Flex align='center' direction='column' alignSelf='end'>
+            <Button type='submit' isLoading={isPending} aria-label='' w='full'>
+              {t('actions.save', { defaultValue: 'Save' })}
+            </Button>
+            <FormSubmitMessage
+              isLoading={isPending}
+              isError={isError}
+              error={error}
+              isSuccess={isSuccess}
+              success={t('edit_saas_profile.edited_successfully', { defaultValue: 'Updated successfully' })}
+            />
+          </Flex>
         </Flex>
-      </Flex>
-    </FormProvider>
+      </FormProvider>
+    </DashboardBox>
   )
 }
 
