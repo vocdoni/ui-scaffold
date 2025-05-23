@@ -23,8 +23,7 @@ const PaginatedTableFooter = () => {
         </Text>
         <RoutedPagination
           pagination={pagination}
-          size='xs'
-          buttonProps={{ size: 'xs', variant: 'ghost', colorScheme: 'gray' }}
+          buttonProps={{ size: 'xs', colorScheme: 'gray', variant: 'outline' }}
         />
       </Box>
     </Box>
