@@ -74,7 +74,7 @@ const useSendSupportTicket = (options?: Omit<UseMutationOptions<void, Error, Sup
 
   return useMutation<void, Error, SupportTicket>({
     mutationFn: (params: SupportTicket) =>
-      bearedFetch<void>(ApiEndpoints.OrganizationsTicket.replace('{address}', account?.address), {
+      bearedFetch<void>(ApiEndpoints.OrganizationsSupport.replace('{address}', account?.address), {
         body: params,
         method: 'POST',
       }),
