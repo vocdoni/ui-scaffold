@@ -51,10 +51,10 @@
     "voting_anonymous_advice": "Please wait while the anonymous magic happens 🪄.\nThis can take up to several minutes; don't close the window."
   },
   "avatar": {
-    "label": "Logo/Avatar"
+    "label": "Organization Avatar"
   },
   "back": "Back",
-  "billing": "Billing",
+  "billing_details": "Billing Details",
   "blog": "Blog",
   "calculator": {
     "anonymous": "Anonymous",
@@ -231,16 +231,18 @@
     "copy": "Copy"
   },
   "country_selector": {
-    "selector_label": "Country",
-    "spain": "Spain"
+    "selector_label": "Country"
   },
   "create_org": {
     "already_profile": "If your organization already has a profile, <2>access the dashboard</2> and contact the administrator to invite you",
     "communication": "I want to receive communications and be contacted to tailor my governance experience.",
     "create_button": "Create your organization",
-    "private_org": "Private Organization Details",
+    "organization_details": "Organization Details",
+    "organization_details_description": "Manage your organization's profile and configuration settings.",
+    "private_org": "Other Details",
     "private_org_description": "Help us tailor your experience with information about your org. We won't share this info",
-    "public_info": "Public Organization Information",
+    "public_info": "Public Profile",
+    "public_info_description": "This information is shown in various places including the voting pages.",
     "subtitle": "Cut cost, Save Time: Secure, Private, and GDPR Compliant",
     "title": "Tell us about your organization"
   },
@@ -251,7 +253,7 @@
     }
   },
   "current": "Current",
-  "customization": "Customization",
+  "current_plan": "Current Plan",
   "dark_mode": "Dark mode",
   "dashboard": {
     "actions": {
@@ -283,9 +285,7 @@
   "do_it_later": "Do it later",
   "do_you_need_help": "Do you need help?",
   "edit_saas_profile": {
-    "customization_details": "Define the params that will enhance the user experience and customize the voting page",
-    "edited_successfully": "Updated successfully",
-    "header_image": "Header Image"
+    "edited_successfully": "Updated successfully"
   },
   "election": {
     "ends_on": "Ends on {{date}}",
@@ -370,6 +370,7 @@
   "form": {
     "account_create": {
       "description_placeholder": "Provide a brief description of your organization (optional)",
+      "title": "Organization Name",
       "title_placeholder": "Enter your organization's name",
       "website_placeholder": "https://example.com"
     },
@@ -510,7 +511,20 @@
         "questions_title": "Questions"
       }
     },
-    "select_language": "Language"
+    "select_language": "Language",
+    "support": {
+      "billing_issue": "Billing issue",
+      "description": "Description",
+      "description_placeholder": "Describe your issue in detail",
+      "name": "Name",
+      "name_placeholder": "Your Name",
+      "open_ticket": "Open a Support Ticket",
+      "selector_label": "Type of Issue",
+      "submit_ticket": "Submit Ticket",
+      "subtitle": "Submit a ticket and our support team will get back to you as soon as possible.",
+      "technical_issue": "Technical issue",
+      "voting_issue": "Voting issue"
+    }
   },
   "form_error": {
     "passwords_must_match": ""
@@ -909,7 +923,6 @@
     "go_to_verify": "Verify Account",
     "invalid_link": "Invalid invite link received",
     "processing": "Processing your invitation...",
-    "select_option": "Select an option",
     "subtitle": "Work together on projects",
     "success": "Invitation sent successfully!",
     "success_description": "You can now sign in",
@@ -946,7 +959,7 @@
   "memberbase": "Memberbase",
   "membership_size": {
     "language": "Default Language",
-    "selector_label": "Membership size",
+    "selector_label": "Membership Size",
     "timezone": "Timezone"
   },
   "menu": {
@@ -1000,7 +1013,7 @@
   "org_type_selector": {
     "community": "Community",
     "company": "Company",
-    "selector_label": "Select Organization Type"
+    "selector_label": "Organization Type"
   },
   "organization": {
     "avatar_alt": "Avatar image of {{ name }} organization",
@@ -1015,13 +1028,39 @@
       "title": "Create your first voting process"
     },
     "no_organization_title": "You don't belong to any organization yet!",
-    "organization": "Organization",
+    "organization": "Organization Details",
     "title": {
       "read_more": "Expand title"
+    }
+  },
+  "organization_settings": {
+    "phone_support": {
+      "description": "Available for Unlimited plan subscribers only.",
+      "info": "Please have your organization ID ready when calling.",
+      "locked": "Phone Support is available with an Unlimited plan",
+      "locked_description": "Upgrade to our Unlimited plan to get priority phone support with dedicated agents.",
+      "organization_id": "Your Organization ID",
+      "organization_id_description": "Please provide this ID when contacting support",
+      "priority_support_line": "Priority Support Line",
+      "priority_support_line_description": "Available Monday–Friday, 9:00–18:00 CET",
+      "schedule_call": "Schedule a Call",
+      "title": "Phone Support",
+      "unlock": "Unlock Phone Support"
     },
-    "votings_list": "Votings Processes List"
+    "subtitle": "Manage your organization, team members and your subscription plan",
+    "support": {
+      "description": "Get help and support for your organization.",
+      "title": "Support"
+    },
+    "team": {
+      "add_team_member": "Add team member",
+      "subtitle": "Manage your organization's team members and their permissions.",
+      "title": "Team Members"
+    },
+    "title": "{{organization}} Settings"
   },
   "organizations": "Organizations ({{ numOrgs }})",
+  "other_details": "other details",
   "overwrite": {
     "description": "Voters will be able to overwrite their vote once",
     "title": "Vote overwrite"
@@ -1099,8 +1138,9 @@
     "your_plan": "You're currently subscribed to the <plan>{{ plan }}</plan> plan. Upgrade now, and you'll only pay the difference for the remaining time in your billing period. Starting from your next billing cycle on <plan>{{ billing, format }}</plan>, you'll be charged the full price for your new plan."
   },
   "pricing_card": {
-    "from": "From ${{ price }}/year",
-    "most_popular_plan": "Recommended",
+    "comparison_table_from": "From {{ price }}/year",
+    "from": "<price>{{ price }}</price><time>/year</time>",
+    "most_popular_plan": "Most Popular",
     "view_features": "View all features"
   },
   "privacy_policy": "Privacy Policy",
@@ -1303,7 +1343,6 @@
   },
   "questions_and_results": "Questions and results",
   "remove_avatar": "Remove avatar",
-  "remove_header": "Remove header",
   "reset_password_button": "Reset Password",
   "result_visibility": "Results visibility",
   "results_state": {
@@ -1318,8 +1357,11 @@
   },
   "rights": "© 2024 Vocdoni Association. All Rights Reserved.",
   "role": {
-    "read_permission": "Read-only access",
-    "write_permission": "Can create and edit content"
+    "full_access": "(Full access)",
+    "read_only": "(Read-only)"
+  },
+  "role_selector": {
+    "selector_label": "Role"
   },
   "schedule_a_call": "Schedule a call",
   "section": {
@@ -1363,17 +1405,23 @@
     "next_billing": "Next Billing",
     "price": "Price",
     "since": "Since",
-    "title": "Subscription",
+    "title": "Subscription Plan",
     "your_subscription": "Your Subscription"
+  },
+  "subscription_plan": {
+    "subtitle": "Manage your subscription plan and billing cycle.",
+    "title": "Subscription Plan"
   },
   "support": "Support",
   "switch_organization": "Switch organization",
   "team": {
-    "expiration": "Expiration",
-    "member_name": "Name",
-    "member_role": "Role",
-    "pending_members": "Pending Invitations",
-    "team_members": "Team members",
+    "expires_in": "Expires in {{time}}",
+    "only_one_member": {
+      "add_first_member": "Add Your First Team Member",
+      "subtitle": "Add team members to collaborate on your organization",
+      "title": "No team members"
+    },
+    "pending_invitation": "Invitation Pending",
     "title": "Team"
   },
   "terms": {
@@ -1467,11 +1515,11 @@
   "total_votes": "Total votes",
   "total_votes_submitted": "Total Votes Submitted",
   "turnout": "Turnout",
-  "update": "Update",
   "upgrade": "Upgrade",
   "uploader": {
-    "click_or_drag_and_drop": "<click>Click to upload</click> <drag>or drag and drop</drag><formats>(Allowed formats: {{ formats, list }})</formats>",
-    "drop_here": "Drop here"
+    "click_or_drag_and_drop": "<click>Click to upload or drag and drop</click><formats>(Allowed formats: {{ formats, list }})</formats>",
+    "click_or_drag_and_drop_image": "Upload Image",
+    "drop_here": ""
   },
   "use_read_more": {
     "read_less": "Read less",

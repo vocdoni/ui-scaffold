@@ -19,6 +19,7 @@ export type SubscriptionType = {
     planID: number
     startDate: string
     endDate: string
+    lastPaymentDate: string
     renewalDate: string
     active: boolean
     maxCensusSize: number

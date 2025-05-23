@@ -3,6 +3,7 @@ import { dotobject } from '@vocdoni/sdk'
 import { forwardRef } from 'react'
 import { Trans } from 'react-i18next'
 import { BooleanIcon } from '~components/Layout/BooleanIcon'
+import { currency } from '~utils/numbers'
 import { CategorizedFeatureKeys, CategoryTitleKeys, PlanTableFeaturesTranslationKeys } from './Features'
 import { Plan, usePlans, usePlanTranslations } from './Plans'
 
@@ -40,7 +41,10 @@ const ComparisonSectionTable = ({ titleKey, plans, features, category, idx }: Co
                           {translations[plan.id].title}
                         </Text>
                         <Text as={'span'} textAlign={'center'} fontWeight={'normal'}>
-                          <Trans i18nKey='pricing_card.from' values={{ price: plan.startingPrice / 100 }}>
+                          <Trans
+                            i18nKey='pricing_card.comparison_table_from'
+                            values={{ price: currency(plan.startingPrice) }}
+                          >
                             From {{ price: plan.startingPrice }}/year
                           </Trans>
                         </Text>

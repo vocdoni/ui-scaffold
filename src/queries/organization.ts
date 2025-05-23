@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query'
 import {
   AccountData,
   FetchElectionsParameters,
@@ -5,6 +6,8 @@ import {
   VocdoniSDKClient,
 } from '@vocdoni/sdk'
 import { LuCalendar, LuFileSpreadsheet, LuUsers, LuVote } from 'react-icons/lu'
+import { ApiEndpoints } from '~components/Auth/api'
+import { useAuth } from '~components/Auth/useAuth'
 import { QueryKeys } from './keys'
 
 type PaginatedElectionsParams = Partial<Pick<FetchElectionsParametersWithPagination, 'limit'>> & {
@@ -17,6 +20,17 @@ type SetupChecklistItem = {
   label: string
   icon: any
   completed: boolean
+}
+
+type Role = {
+  role: string
+  name: string
+  writePermission: boolean
+}
+
+type OrganizationType = {
+  name: string
+  type: string
 }
 
 export const paginatedElectionsQuery = (
@@ -70,4 +84,32 @@ export const useSetupChecklist = () => {
     checklist,
     progress,
   }
+}
+
+export const useRoles = () => {
+  const { bearedFetch } = useAuth()
+
+  return useQuery({
+    queryKey: QueryKeys.organization.roles,
+    queryFn: async () => {
+      const response = await bearedFetch<{ roles: Role[] }>(ApiEndpoints.OrganizationsRoles)
+      return response.roles
+    },
+    staleTime: 60 * 60 * 1000,
+    select: (data) => data.sort((a, b) => a.name.localeCompare(b.name)),
+  })
+}
+
+export const useOrganizationTypes = () => {
+  const { bearedFetch } = useAuth()
+
+  return useQuery({
+    queryKey: QueryKeys.organization.roles,
+    queryFn: async () => {
+      const response = await bearedFetch<{ types: OrganizationType[] }>(ApiEndpoints.OrganizationsTypes)
+      return response.types
+    },
+    staleTime: 60 * 60 * 1000,
+    select: (data) => data.sort((a, b) => a.name.localeCompare(b.name)),
+  })
 }

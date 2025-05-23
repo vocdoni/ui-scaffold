@@ -25,7 +25,7 @@ import { ElectionProvider, useClient, useOrganization } from '@vocdoni/react-pro
 import { PublishedElection } from '@vocdoni/sdk'
 import { format } from 'date-fns'
 import { Trans, useTranslation } from 'react-i18next'
-import { LuArrowUpRight, LuCalendar, LuCheckCircle2, LuPlus, LuUsers, LuVote, LuX } from 'react-icons/lu'
+import { LuArrowUpRight, LuCalendar, LuCheck, LuPlus, LuUsers, LuVote, LuX } from 'react-icons/lu'
 import { generatePath, Link as ReactRouterLink } from 'react-router-dom'
 import { useSubscription } from '~components/Auth/Subscription'
 import { DashboardBox, DashboardContents } from '~components/Layout/Dashboard'
@@ -115,7 +115,7 @@ const Tutorial = () => {
             as={ReactRouterLink}
             to={generatePath(Routes.processes.create)}
             leftIcon={<Icon as={LuPlus} />}
-            colorScheme='black'
+            colorScheme='gray'
             size='md'
           >
             <Trans i18nKey='new_voting'>New vote</Trans>
@@ -177,7 +177,7 @@ const Setup = () => {
           <AccordionItem border='none' alignItems='center'>
             <Flex px={4} py={3}>
               <Flex flex='1' align='center'>
-                <Icon as={LuCheckCircle2} mr={2} boxSize={5} />
+                <Icon as={LuCheck} mr={2} boxSize={5} />
                 <Text fontWeight='bold'>
                   {t('setup.title', {
                     defaultValue: 'Complete your setup',
@@ -438,7 +438,7 @@ const QuickActions = () => {
         </Button>
         <Button
           as={ReactRouterLink}
-          to={generatePath(Routes.dashboard.settings)}
+          to={generatePath(Routes.dashboard.settings.base)}
           colorScheme='gray'
           variant='outline'
           justifyContent='start'

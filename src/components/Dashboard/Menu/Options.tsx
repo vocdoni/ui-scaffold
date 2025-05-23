@@ -43,7 +43,7 @@ export const DashboardMenuOptions = () => {
     {
       label: t('settings'),
       icon: Settings01,
-      route: Routes.dashboard.settings,
+      route: Routes.dashboard.settings.base,
     },
   ]
   const menuItemsHelp: MenuItem[] = [

@@ -2,7 +2,11 @@
 import { useQueryClient } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { lazy } from 'react'
-import { LoaderFunctionArgs, Params } from 'react-router-dom'
+import { LoaderFunctionArgs, Navigate, Params } from 'react-router-dom'
+import OrganizationEdit from '~components/Organization/Dashboard/Organization'
+import SubscriptionPage from '~components/Organization/Dashboard/Subscription'
+import OrganizationSupport from '~components/Organization/Dashboard/Support'
+import OrganizationTeam from '~components/Organization/Dashboard/Team'
 import { Profile } from '~elements/dashboard/profile'
 import Settings from '~elements/dashboard/settings'
 import Error from '~elements/Error'
@@ -95,12 +99,50 @@ export const useDashboardRoutes = () => {
                 errorElement: <Error />,
               },
               {
-                path: Routes.dashboard.settings,
+                path: Routes.dashboard.settings.base,
                 element: (
                   <SuspenseLoader>
                     <Settings />
                   </SuspenseLoader>
                 ),
+                children: [
+                  {
+                    index: true,
+                    element: <Navigate to={Routes.dashboard.settings.organization} replace />,
+                  },
+                  {
+                    path: Routes.dashboard.settings.organization,
+                    element: (
+                      <SuspenseLoader>
+                        <OrganizationEdit />
+                      </SuspenseLoader>
+                    ),
+                  },
+                  {
+                    path: Routes.dashboard.settings.team,
+                    element: (
+                      <SuspenseLoader>
+                        <OrganizationTeam />
+                      </SuspenseLoader>
+                    ),
+                  },
+                  {
+                    path: Routes.dashboard.settings.subscription,
+                    element: (
+                      <SuspenseLoader>
+                        <SubscriptionPage />
+                      </SuspenseLoader>
+                    ),
+                  },
+                  {
+                    path: Routes.dashboard.settings.support,
+                    element: (
+                      <SuspenseLoader>
+                        <OrganizationSupport />
+                      </SuspenseLoader>
+                    ),
+                  },
+                ],
               },
               {
                 path: Routes.dashboard.profile,

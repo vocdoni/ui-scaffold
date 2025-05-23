@@ -1,11 +1,15 @@
-import { Avatar, Badge, Box, Flex, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
+import { Avatar, Badge, Box, Flex, HStack, Icon, Progress, Text } from '@chakra-ui/react'
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
 import { enforceHexPrefix, useClient } from '@vocdoni/react-providers'
-import { Trans } from 'react-i18next'
+import { formatDistanceToNow } from 'date-fns'
+import { useTranslation } from 'react-i18next'
+import { LuMail, LuPlus, LuUserPlus } from 'react-icons/lu'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import QueryDataLayout from '~components/Layout/QueryDataLayout'
 import { QueryKeys } from '~src/queries/keys'
+import { ucfirst } from '~utils/strings'
+import { InviteToTeamModal } from './Invite'
 
 // Define types
 type UserInfo = {
@@ -67,102 +71,102 @@ export const usePendingTeamMembers = ({
   })
 }
 
-// Reusable table component for both active and pending members
-const TeamMembersTable = ({ members, showExpiration = false }: { members: Member[]; showExpiration?: boolean }) => (
-  <TableContainer>
-    <Table>
-      <Thead>
-        <Tr>
-          <Th>
-            <Trans i18nKey='team.member_name'>Name</Trans>
-          </Th>
-          {showExpiration && (
-            <Th textAlign='center'>
-              <Trans i18nKey='team.expiration'>Expiration</Trans>
-            </Th>
-          )}
-          <Th textAlign='center'>
-            <Trans i18nKey='team.member_role'>Role</Trans>
-          </Th>
-        </Tr>
-      </Thead>
-      <Tbody>
-        {members.map((member, i) => (
-          <Tr key={i}>
-            <Td>
-              {member.info ? (
-                <Flex>
-                  <Avatar name={member.info.firstName} size='sm' />
-                  <Box ml='3'>
-                    <Text fontWeight='bold'>
-                      {member.info.firstName} {member.info.lastName}
-                    </Text>
-                    <Text fontSize='sm'>{member.info.email}</Text>
-                  </Box>
-                </Flex>
-              ) : (
-                <Text>{member.email}</Text>
-              )}
-            </Td>
-            {showExpiration && member.expiration && (
-              <Td textAlign='center'>
-                <Text>{new Date(member.expiration).toLocaleString()}</Text>
-              </Td>
-            )}
-            <Td textAlign='center' w={10}>
-              <Badge>{member.role}</Badge>
-            </Td>
-          </Tr>
-        ))}
-      </Tbody>
-    </Table>
-  </TableContainer>
-)
+export const useAllTeamMembers = () => {
+  const {
+    data: membersData,
+    isLoading: membersLoading,
+    isError: membersError,
+    error: membersFetchError,
+  } = useTeamMembers()
 
-// Component for active team members
-export const TeamMembersList = () => {
-  const { data: members, isLoading, isError, error } = useTeamMembers()
+  const {
+    data: pendingData,
+    isLoading: pendingLoading,
+    isError: pendingError,
+    error: pendingFetchError,
+  } = usePendingTeamMembers()
+
+  return {
+    members: [...(membersData || []), ...(pendingData || [])],
+    isLoading: membersLoading || pendingLoading,
+    isError: membersError || pendingError,
+    error: membersFetchError || pendingFetchError,
+  }
+}
+
+const TeamMembersEmpty = () => {
+  const { t } = useTranslation()
 
   return (
-    <QueryDataLayout isEmpty={!members} isLoading={isLoading} isError={isError} error={error}>
-      <Flex direction='column'>
-        <Text fontWeight='bold' display='flex' gap={3} m='20px 0px 10px'>
-          <Trans i18nKey='team.team_members'>Team members</Trans>
-          <Box ml='1' borderRadius='full' px={'9px'} textAlign={'center'} border='.1px solid' fontWeight={'light'}>
-            {members?.length}
-          </Box>
+    <Flex alignItems='center' direction='column' p={10} gap={6}>
+      <Flex alignItems='center' direction='column'>
+        <Icon as={LuUserPlus} boxSize={20} color='gray.500' />
+        <Text size='lg' fontWeight='extrabold'>
+          {t('team.only_one_member.title', { defaultValue: 'No team members' })}
         </Text>
-        <TeamMembersTable members={members || []} />
+        <Text color='gray.500'>
+          {t('team.only_one_member.subtitle', {
+            defaultValue: 'Add team members to collaborate on your organization',
+          })}
+        </Text>
       </Flex>
-    </QueryDataLayout>
+      <InviteToTeamModal leftIcon={<Icon mr={2} as={LuPlus} />}>
+        {t('team.only_one_member.add_first_member', { defaultValue: 'Add Your First Team Member' })}
+      </InviteToTeamModal>
+    </Flex>
   )
 }
 
-// Component for pending team members
-export const PendingTeamMembersList = () => {
-  const { data: pending, isLoading, isError, error } = usePendingTeamMembers()
-
-  if (!isLoading && !pending.length) return null
+const TeamMembersList = ({ members }: { members: Member[] }) => {
+  const { t } = useTranslation()
 
   return (
-    <QueryDataLayout isEmpty={!pending} isLoading={isLoading} isError={isError} error={error}>
-      <Flex direction='column'>
-        <Text fontWeight='bold' display='flex' gap={3}>
-          <Trans i18nKey='team.pending_members'>Pending Invitations</Trans>
-          <Badge ml='1' colorScheme='orange'>
-            {pending?.length}
-          </Badge>
-        </Text>
-        <TeamMembersTable members={pending || []} showExpiration />
-      </Flex>
-    </QueryDataLayout>
+    <Flex direction='column'>
+      {members.map((member, i) => {
+        const isPending = !member.info
+        const name = isPending
+          ? t('team.pending_invitation', { defaultValue: 'Invitation Pending' })
+          : `${member.info.firstName} ${member.info.lastName}`
+        const email = isPending ? member.email : member.info.email
+        const avatarName = !isPending && `${member.info.firstName} ${member.info.lastName}`
+
+        return (
+          <Flex alignItems='center' p={2} key={i}>
+            <Avatar name={avatarName} icon={isPending && <Icon as={LuMail} />} />
+            <Box ml='3'>
+              <HStack align='center'>
+                <Text fontWeight='bold'>{name}</Text>
+                <Badge variant='subtle'>{ucfirst(member.role)}</Badge>
+              </HStack>
+              <Flex direction='column'>
+                <Text fontSize='sm' color='gray.500'>
+                  {email}
+                </Text>
+                {member.expiration && (
+                  <Text fontSize='xs' color='gray.500'>
+                    {t('team.expires_in', {
+                      defaultValue: 'Expires in {{time}}',
+                      time: formatDistanceToNow(new Date(member.expiration)),
+                    })}
+                  </Text>
+                )}
+              </Flex>
+            </Box>
+          </Flex>
+        )
+      })}
+    </Flex>
   )
 }
 
-// Wrapper component to include both team members and pending members lists
-export const TeamMembers = () => (
-  <Flex direction='column' gap={6}>
-    <TeamMembersList />
-    <PendingTeamMembersList />
-  </Flex>
-)
+export const TeamMembers = () => {
+  const { members, isLoading, isError, error } = useAllTeamMembers()
+
+  if (isLoading) return <Progress isIndeterminate />
+
+  return (
+    <QueryDataLayout isEmpty={!members || members.length === 0} isLoading={isLoading} isError={isError} error={error}>
+      {members.length === 1 ? <TeamMembersEmpty /> : <TeamMembersList members={members} />}
+    </QueryDataLayout>
+  )
+}
