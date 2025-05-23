@@ -6,6 +6,7 @@ export enum ApiEndpoints {
   Me = 'users/me',
   Organization = 'organizations/{address}',
   OrganizationMembers = 'organizations/{address}/members',
+  OrganizationMember = 'organizations/{address}/members/{memberId}',
   OrganizationPendingMembers = 'organizations/{address}/members/pending',
   Organizations = 'organizations',
   OrganizationsRoles = 'organizations/roles',
