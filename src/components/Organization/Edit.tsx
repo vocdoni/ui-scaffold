@@ -218,8 +218,6 @@ const CustomizeOrgForm = () => {
       }
     }
 
-  // Header upload handler
-  const onHeaderUpload = onUpload('header')
   // Avatar upload handler
   const onAvatarUpload = onUpload('avatar')
 
