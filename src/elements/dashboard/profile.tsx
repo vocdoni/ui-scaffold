@@ -6,7 +6,7 @@ import { DashboardContents } from '~components/Layout/Dashboard'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~routes'
 
-export const Profile = () => {
+const Profile = () => {
   const { t } = useTranslation()
   const { setBreadcrumb } = useOutletContext<DashboardLayoutContext>()
 
@@ -21,3 +21,5 @@ export const Profile = () => {
     </DashboardContents>
   )
 }
+
+export default Profile
