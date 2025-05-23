@@ -58,9 +58,8 @@ const UserProfile = () => {
           alignItems={'center'}
           gap={2}
           w='full'
-          justifyContent={'start'}
-          variant={'unstyled'}
-          colorScheme='white'
+          justifyContent='start'
+          variant='unstyled'
           mt={2}
           p={reduced ? 0 : 2}
           minW={0}

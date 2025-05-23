@@ -1,4 +1,13 @@
-import { Icon, IconButton, IconButtonProps, MenuItem, useColorMode, useColorModeValue } from '@chakra-ui/react'
+import {
+  ButtonGroup,
+  Icon,
+  IconButton,
+  IconButtonProps,
+  MenuItem,
+  Text,
+  useColorMode,
+  useColorModeValue,
+} from '@chakra-ui/react'
 import * as React from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { IoMdMoon, IoMdSunny } from 'react-icons/io'
@@ -12,8 +21,7 @@ export const ColorModeSwitcher: React.FC<ColorModeSwitcherProps> = (props) => {
 
   return (
     <IconButton
-      variant='transparent'
-      colorScheme='blackAlpha'
+      colorScheme='gray'
       size='md'
       fontSize='lg'
       onClick={toggleColorMode}
@@ -35,5 +43,26 @@ export const DropdownColorModeSwitcher = ({ ...props }) => {
       <Icon as={SwitchIcon} />
       {!isLightMode ? <Trans i18nKey='light_mode'>Light mode</Trans> : <Trans i18nKey='dark_mode'>Dark mode</Trans>}
     </MenuItem>
+  )
+}
+
+export const ListItemColorModeSwitcher = ({ ...props }) => {
+  const { t } = useTranslation()
+  const { toggleColorMode } = useColorMode()
+  const isLightMode = useColorModeValue(true, false)
+  const SwitchIcon = useColorModeValue(IoMdMoon, IoMdSunny)
+
+  return (
+    <ButtonGroup
+      onClick={toggleColorMode}
+      display={'flex'}
+      justifyContent={'start'}
+      alignItems={'center'}
+      fontWeight={'semibold'}
+      {...props}
+    >
+      <Icon as={SwitchIcon} />
+      <Text as='span'>{isLightMode ? t('dark_mode') : t('light_mode')}</Text>
+    </ButtonGroup>
   )
 }

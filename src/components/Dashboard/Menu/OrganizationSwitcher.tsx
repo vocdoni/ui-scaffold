@@ -91,7 +91,7 @@ export const OrganizationSwitcher = () => {
   return (
     <>
       <PopoverBody minH={'unset'}>
-        <Text size='xs' fontWeight={600} color={'dashboard.org_switcher.number'} px={1.5} py={2}>
+        <Text size='xs' fontWeight={600} px={1.5} py={2}>
           <Trans i18nKey='organizations' values={{ numOrgs }}>
             Organizations ({numOrgs})
           </Trans>

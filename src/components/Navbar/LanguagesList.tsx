@@ -58,7 +58,8 @@ export const LanguagesMenu = ({ ...props }) => {
           <MenuButton
             as={Button}
             aria-label={t('menu.burger_aria_label')}
-            variant='transparent'
+            variant='solid'
+            colorScheme='gray'
             rightIcon={isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
             minW='none'
             {...props}

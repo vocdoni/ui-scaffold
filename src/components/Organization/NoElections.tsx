@@ -15,7 +15,7 @@ const NoElections = () => {
     <Card variant='no-elections' minH='100%'>
       <CardBody>
         <Flex justifyContent={'center'}>
-          <Img src={empty} alt={t('organization.elections_list_empty.alt')} />
+          <Img src={empty} alt={t('organization.elections_list_empty.alt')} _dark={{ filter: 'invert(70%)' }} />
         </Flex>
         <Box>
           {areEqualHexStrings(account?.address, organization?.address) ? (
