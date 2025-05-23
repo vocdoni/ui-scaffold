@@ -1,4 +1,4 @@
-import { Alert, Box, Flex, FormControl, FormErrorMessage, FormLabel, Icon, Progress, Text } from '@chakra-ui/react'
+import { Alert, Box, Flex, FormControl, FormErrorMessage, FormLabel, Icon, Text } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { Select, Props as SelectProps, components } from 'chakra-react-select'
 import { Controller, useFormContext } from 'react-hook-form'
@@ -95,14 +95,13 @@ export const SelectCustom = ({
 
 export const OrganzationTypeSelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) => {
   const { t } = useTranslation()
-  const { data, isLoading, isError, error } = useOrganizationTypes()
-
-  if (isError) return <Alert status='error'>{error?.message || t('error.loading_types')}</Alert>
-
+  const { data = [], isLoading, isError, error } = useOrganizationTypes()
   const orgTypes: SelectOptionType[] = data.map((type: any) => ({
     label: type.name,
     value: type.type,
   }))
+
+  if (isError) return <Alert status='error'>{error?.message || t('error.loading_types')}</Alert>
 
   return (
     <SelectCustom
@@ -142,7 +141,7 @@ export const CountrySelector = ({ ...props }: Omit<SelectCustomProps, 'options'>
   const priorityCountries = ['ES', 'FR', 'DE', 'GB', 'IT', 'US']
 
   const {
-    data: countries,
+    data = [],
     isLoading,
     error,
   } = useQuery({
@@ -182,14 +181,13 @@ export const CountrySelector = ({ ...props }: Omit<SelectCustomProps, 'options'>
     },
     staleTime: Infinity, // Countries list won't change often
   })
+  const defaultVal = data.find((country: CountryOptionType) => country.value === 'ES')
 
   if (error) return <Alert status='error'>{error.message}</Alert>
 
-  const defaultVal = countries.find((country: CountryOptionType) => country.value === 'ES')
-
   return (
     <SelectCustom
-      options={countries}
+      options={data}
       isLoading={isLoading}
       label={t('country_selector.selector_label', { defaultValue: 'Country' })}
       defaultValue={defaultVal}
@@ -319,11 +317,7 @@ export const createRoleDisplay = (type: 'Option' | 'SingleValue') => {
 
 export const RoleSelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) => {
   const { t } = useTranslation()
-  const { data, isLoading: rolesLoading, isError: rolesError, error: rolesFetchError } = useRoles()
-
-  if (rolesLoading) return <Progress isIndeterminate colorScheme='gray' />
-
-  if (rolesError) return <Alert status='error'>{rolesFetchError?.message || t('error.loading_roles')}</Alert>
+  const { data = [], isLoading: rolesLoading, isError: rolesError, error: rolesFetchError } = useRoles()
 
   const roles: SelectOptionType[] = data.map((role: any) => ({
     label: role.name,
@@ -332,8 +326,11 @@ export const RoleSelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) =
   }))
   const defaultVal = roles.find((role: RoleOptionType) => role.value === 'viewer')
 
+  if (rolesError) return <Alert status='error'>{rolesFetchError?.message || t('error.loading_roles')}</Alert>
+
   return (
     <SelectCustom
+      isLoading={rolesLoading}
       options={roles}
       label={t('role_selector.selector_label', { defaultValue: 'Role' })}
       components={{ SingleValue: createRoleDisplay('SingleValue'), Option: createRoleDisplay('Option') }}
