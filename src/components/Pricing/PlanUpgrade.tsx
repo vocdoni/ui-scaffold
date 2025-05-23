@@ -1,8 +1,9 @@
 import { Box, Button, Flex, Icon, Spinner, Text, VStack } from '@chakra-ui/react'
-import { CheckCircle, ClockRefresh, XCircle } from '@untitled-ui/icons-react'
+import { ClockRefresh } from '@untitled-ui/icons-react'
 import { Trans } from 'react-i18next'
 import { Fragment } from 'react/jsx-runtime'
 import { useSubscription } from '~components/Auth/Subscription'
+import { BooleanIcon } from '~components/Layout/BooleanIcon'
 import { FeaturesBox } from './FeaturesBox'
 import { usePlanTranslations, usePlans } from './Plans'
 import { usePricingModal } from './use-pricing-modal'
@@ -55,11 +56,7 @@ export const PlanUpgrade = ({ feature, text, value }: PlanUpgradeData) => {
           {plans?.map((plan, key) => (
             <Fragment key={key}>
               <Flex align='center' gap={1}>
-                {isFeatureAvailable(plan, feature, value) ? (
-                  <Icon as={CheckCircle} color='green.500' fontSize='xl' />
-                ) : (
-                  <Icon as={XCircle} color='red.500' fontSize='xl' />
-                )}
+                <BooleanIcon value={isFeatureAvailable(plan, feature, value)} />
                 <Text>{translations[plan.id].title}</Text>
               </Flex>
             </Fragment>

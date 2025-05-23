@@ -1,7 +1,7 @@
 import { Box, Flex, Icon, Link, Text } from '@chakra-ui/react'
-import { ChevronRight } from '@untitled-ui/icons-react'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import { LuChevronRight } from 'react-icons/lu'
 import { generatePath, Link as ReactRouterLink } from 'react-router-dom'
 import { Routes } from '~routes'
 
@@ -44,8 +44,9 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ breadcrumb, setBreadcrumb }) =>
             {/* Chevron */}
             {(index === 0 || index > 0) && (
               <Icon
-                as={ChevronRight}
+                as={LuChevronRight}
                 display={{ base: index === breadcrumb.length - 1 ? 'block' : 'none', md: 'block' }}
+                boxSize={3}
               />
             )}
 
