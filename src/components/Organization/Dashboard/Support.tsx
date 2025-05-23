@@ -303,21 +303,6 @@ const PhoneSupportCard = ({ isLocked }) => {
           })}
         </Text>
       </Flex>
-
-      <Stack spacing={3}>
-        <Button
-          as={ReactRouterLink}
-          variant='outline'
-          colorScheme='gray'
-          to='https://calendly.com/vocdoni-app/30min'
-          aria-label={t('organization_settings.phone_support.schedule_call', { defaultValue: 'Schedule a Call' })}
-          title={t('organization_settings.phone_support.schedule_call', { defaultValue: 'Schedule a Call' })}
-          target='_blank'
-          disabled={isLocked}
-        >
-          {t('organization_settings.phone_support.schedule_call', { defaultValue: 'Schedule a Call' })}
-        </Button>
-      </Stack>
     </Box>
   )
 }
