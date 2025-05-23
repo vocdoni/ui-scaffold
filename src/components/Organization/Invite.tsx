@@ -17,47 +17,18 @@ import {
   useRadio,
   useToast,
 } from '@chakra-ui/react'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useOrganization } from '@vocdoni/react-providers'
-import { ensure0x } from '@vocdoni/sdk'
 import { ReactNode } from 'react'
 import { FormProvider, useController, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { ApiEndpoints } from '~components/Auth/api'
 import { HSeparator } from '~components/Auth/SignIn'
 import { useSubscription } from '~components/Auth/Subscription'
-import { useAuth } from '~components/Auth/useAuth'
 import InputBasic from '~components/Layout/InputBasic'
 import { RoleSelector } from '~components/Layout/SaasSelector'
 import { usePricingModal } from '~components/Pricing/use-pricing-modal'
 import { SubscriptionPermission } from '~constants'
-import { QueryKeys } from '~src/queries/keys'
+import { useInviteMemberMutation } from '~src/queries/organization'
 import { CallbackProvider, useCallbackContext } from '~utils/callback-provider'
-import { useTeamMembers } from './Team'
-
-type InviteData = {
-  email: string
-  role: string
-}
-
-// Hook to handle member invitation mutation
-const useInviteMemberMutation = () => {
-  const { bearedFetch } = useAuth()
-  const { organization } = useOrganization()
-  const queryClient = useQueryClient()
-
-  return useMutation({
-    mutationFn: async (body: InviteData) =>
-      await bearedFetch(ApiEndpoints.OrganizationMembers.replace('{address}', ensure0x(organization.address)), {
-        method: 'POST',
-        body,
-      }),
-    onSuccess: () => {
-      // Invalidate queries to refresh member and pending member lists
-      queryClient.invalidateQueries({ queryKey: QueryKeys.organization.members() })
-    },
-  })
-}
+import { useAllTeamMembers } from './Team'
 
 // Invite form component
 const InviteForm = () => {
@@ -72,28 +43,31 @@ const InviteForm = () => {
     },
   })
 
-  const onSubmit = (data: InviteData) =>
-    mutation.mutate(data, {
-      onSuccess: () => {
-        toast({
-          title: t('invite.success', { defaultValue: 'Invitation sent successfully!' }),
-          description: t('invite.user_invited', { defaultValue: 'Email sent to {{email}}', email: data.email }),
-          status: 'success',
-          duration: 5000,
-          isClosable: true,
-        })
-        success()
-      },
-      onError: (error: Error) => {
-        toast({
-          title: t('invite.error', { defaultValue: 'Error' }),
-          description: error.message,
-          status: 'error',
-          duration: 5000,
-          isClosable: true,
-        })
-      },
-    })
+  const onSubmit = (data) =>
+    mutation.mutate(
+      { email: data.email, role: data.role.value },
+      {
+        onSuccess: () => {
+          toast({
+            title: t('invite.success', { defaultValue: 'Invitation sent successfully!' }),
+            description: t('invite.user_invited', { defaultValue: 'Email sent to {{email}}', email: data.email }),
+            status: 'success',
+            duration: 5000,
+            isClosable: true,
+          })
+          success()
+        },
+        onError: (error: Error) => {
+          toast({
+            title: t('invite.error', { defaultValue: 'Error' }),
+            description: error.message,
+            status: 'error',
+            duration: 5000,
+            isClosable: true,
+          })
+        },
+      }
+    )
 
   return (
     <FormProvider {...methods}>
@@ -120,7 +94,7 @@ export const InviteToTeamModal = (props: ButtonProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { permission } = useSubscription()
   const { t } = useTranslation()
-  const { data: members, isLoading } = useTeamMembers()
+  const { members, isLoading } = useAllTeamMembers()
   const { openModal } = usePricingModal()
 
   const memberships = permission(SubscriptionPermission.Members)
