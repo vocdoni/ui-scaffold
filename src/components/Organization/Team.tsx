@@ -1,18 +1,35 @@
-import { Avatar, Badge, Box, Flex, HStack, Icon, Progress, Text } from '@chakra-ui/react'
+import {
+  Avatar,
+  Badge,
+  Box,
+  Button,
+  Flex,
+  HStack,
+  Icon,
+  IconButton,
+  Popover,
+  PopoverContent,
+  PopoverFooter,
+  PopoverTrigger,
+  Progress,
+  Text,
+} from '@chakra-ui/react'
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
 import { enforceHexPrefix, useClient } from '@vocdoni/react-providers'
 import { formatDistanceToNow } from 'date-fns'
 import { useTranslation } from 'react-i18next'
-import { LuMail, LuPlus, LuUserPlus } from 'react-icons/lu'
+import { LuEllipsis, LuMail, LuPlus, LuRefreshCw, LuUserCog, LuUserPlus } from 'react-icons/lu'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import QueryDataLayout from '~components/Layout/QueryDataLayout'
 import { QueryKeys } from '~src/queries/keys'
+import { useInviteMemberMutation, useRemoveMemberMutation } from '~src/queries/organization'
 import { ucfirst } from '~utils/strings'
 import { InviteToTeamModal } from './Invite'
 
 // Define types
 type UserInfo = {
+  id: number
   email: string
   firstName: string
   lastName: string
@@ -117,6 +134,68 @@ const TeamMembersEmpty = () => {
   )
 }
 
+const MemberActions = ({ member }) => {
+  const id = member.info?.id
+  const inviteMember = useInviteMemberMutation()
+  const removeMemberById = useRemoveMemberMutation()
+
+  const resendInvitation = () => {
+    inviteMember.mutate(member, {
+      onSuccess: () => {
+        console.log('Invitation resent')
+      },
+      onError: (error: Error) => {
+        console.log('error', error)
+      },
+    })
+  }
+
+  const removeMember = () => {
+    removeMemberById.mutate(id, {
+      onSuccess: () => {
+        console.log('Member removed')
+      },
+      onError: (error: Error) => {
+        console.log('error', error)
+      },
+    })
+  }
+
+  return (
+    <Popover isLazy>
+      <PopoverTrigger>
+        <IconButton icon={<Icon as={LuEllipsis} />} ml='auto' variant='transparent' aria-label='Options' />
+      </PopoverTrigger>
+      <PopoverContent w='auto'>
+        <Text fontWeight='extrabold' p={2} fontSize='sm'>
+          Actions
+        </Text>
+        {id ? (
+          <>
+            <Button leftIcon={<Icon mr={2} as={LuUserCog} />} fontSize='sm' variant='transparent'>
+              Change Role
+            </Button>
+            <PopoverFooter>
+              <Button variant='transparent' colorScheme='red' fontSize='sm' onClick={() => removeMember()}>
+                Remove member
+              </Button>
+            </PopoverFooter>
+          </>
+        ) : (
+          <Button
+            leftIcon={<Icon mr={2} as={LuRefreshCw} />}
+            fontSize='sm'
+            variant='transparent'
+            onClick={() => resendInvitation()}
+          >
+            Resend Invitation
+          </Button>
+        )}
+      </PopoverContent>
+    </Popover>
+  )
+}
+
 const TeamMembersList = ({ members }: { members: Member[] }) => {
   const { t } = useTranslation()
 
@@ -152,6 +231,7 @@ const TeamMembersList = ({ members }: { members: Member[] }) => {
                 )}
               </Flex>
             </Box>
+            <MemberActions member={member} />
           </Flex>
         )
       })}
