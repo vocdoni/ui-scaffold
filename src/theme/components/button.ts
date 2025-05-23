@@ -51,37 +51,19 @@ const link = defineStyle((props) => {
   }
 })
 
-const transparent = defineStyle((props) => {
-  const { colorScheme } = props
-  return {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: colorScheme === 'gray' ? 'black' : `${colorScheme}.700`,
+const listmenu = defineStyle(({ colorMode }) => ({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontWeight: 'normal',
 
-    _hover: {
-      bgColor: colorScheme === 'gray' ? 'hsl(240 4.8% 95.9%)' : `${colorScheme}.50`,
-
-      _disabled: {
-        color: 'button.variant.common.disabled.color.light',
-        _dark: {
-          color: 'button.variant.common.disabled.color.dark',
-        },
-      },
-    },
-
-    _disabled: {
-      color: 'button.variant.common.disabled.color.light',
-      _dark: {
-        color: 'button.variant.common.disabled.color.dark',
-      },
-    },
-
-    _active: {
-      fontWeight: 'bold',
-    },
-  }
-})
+  _active: {
+    fontWeight: 'bold',
+  },
+  _hover: {
+    bg: colorMode === 'light' ? 'gray.100' : 'gray.700',
+  },
+}))
 
 const underline = defineStyle((props) => {
   const { colorScheme } = props
@@ -184,7 +166,7 @@ const sizes = {
 
 export const Button = defineStyleConfig({
   variants: {
-    transparent,
+    listmenu,
     link,
     underline,
   },

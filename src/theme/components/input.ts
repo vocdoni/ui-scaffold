@@ -65,8 +65,6 @@ const calendar = definePartsStyle({
 })
 const def = definePartsStyle({
   field: {
-    background: 'revert',
-    bgColor: 'input.bg',
     border: '1px solid',
     borderColor: 'input.border',
     boxShadow: 'none !important',

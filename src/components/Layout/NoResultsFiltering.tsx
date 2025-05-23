@@ -6,7 +6,7 @@ export const NoResultsFiltering = () => (
   <Card variant='no-elections' minH='100%' maxW='650' m='80px auto'>
     <CardBody>
       <Flex justifyContent={'center'}>
-        <Img src={empty} />
+        <Img src={empty} _dark={{ filter: 'invert(70%)' }} />
       </Flex>
       <Box mt='50px' textAlign='center'>
         <Text as='h3' fontSize='md' fontWeight='bold'>

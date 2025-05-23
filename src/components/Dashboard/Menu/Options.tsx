@@ -82,7 +82,7 @@ export const DashboardMenuOptions = () => {
                           if (isDisabled) e.preventDefault()
                         }}
                         leftIcon={<Icon as={item.icon} width='16px' height='16px' />}
-                        variant='transparent'
+                        variant='listmenu'
                         size='xs'
                         colorScheme='gray'
                         justifyContent='start'
@@ -103,7 +103,7 @@ export const DashboardMenuOptions = () => {
                         if (isDisabled) e.preventDefault()
                       }}
                       leftIcon={<Icon as={item.icon} width='16px' height='16px' />}
-                      variant='transparent'
+                      variant='listmenu'
                       size='xs'
                       colorScheme='gray'
                       justifyContent='start'
@@ -141,7 +141,7 @@ export const DashboardMenuOptions = () => {
                       if (isDisabled) e.preventDefault()
                     }}
                     leftIcon={<Icon as={item.icon} width='16px' height='16px' />}
-                    variant={'transparent'}
+                    variant='listmenu'
                     size='xs'
                     colorScheme='gray'
                     justifyContent={'start'}
