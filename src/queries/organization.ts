@@ -1,6 +1,8 @@
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useOrganization } from '@vocdoni/react-providers'
 import {
   AccountData,
+  ensure0x,
   FetchElectionsParameters,
   FetchElectionsParametersWithPagination,
   VocdoniSDKClient,
@@ -31,6 +33,11 @@ type Role = {
 type OrganizationType = {
   name: string
   type: string
+}
+
+type InviteData = {
+  email: string
+  role: string
 }
 
 export const paginatedElectionsQuery = (
@@ -111,5 +118,44 @@ export const useOrganizationTypes = () => {
     },
     staleTime: 60 * 60 * 1000,
     select: (data) => data.sort((a, b) => a.name.localeCompare(b.name)),
+  })
+}
+
+export const useInviteMemberMutation = () => {
+  const { bearedFetch } = useAuth()
+  const { organization } = useOrganization()
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: async (body: InviteData) =>
+      await bearedFetch(ApiEndpoints.OrganizationMembers.replace('{address}', ensure0x(organization.address)), {
+        method: 'POST',
+        body,
+      }),
+    onSuccess: () => {
+      // Invalidate queries to refresh member and pending member lists
+      queryClient.invalidateQueries({ queryKey: QueryKeys.organization.members() })
+    },
+  })
+}
+
+export const useRemoveMemberMutation = () => {
+  const { bearedFetch } = useAuth()
+  const { organization } = useOrganization()
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: async (id: number) =>
+      await bearedFetch(
+        ApiEndpoints.OrganizationMember.replace('{address}', ensure0x(organization.address)).replace(
+          '{memberId}',
+          String(id)
+        ),
+        { method: 'DELETE' }
+      ),
+    onSuccess: () => {
+      // Invalidate queries to refresh member and pending member lists
+      queryClient.invalidateQueries({ queryKey: QueryKeys.organization.members() })
+    },
   })
 }
