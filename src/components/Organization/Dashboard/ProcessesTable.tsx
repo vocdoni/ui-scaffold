@@ -36,7 +36,7 @@ const ProcessesTable = ({ processes }: ProcessesListProps) => {
 
   return (
     <Box border='1px solid #e5e5e5' borderRadius='sm'>
-      <Table variant='processes'>
+      <Table>
         <Thead>
           <Tr>
             <Th>{t('process_list.title', { defaultValue: 'Title' })}</Th>

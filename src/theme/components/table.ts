@@ -3,8 +3,9 @@ import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(tableAnatomy.keys)
 
-const baseStyle = definePartsStyle((props) => ({
+const striped = definePartsStyle((props) => ({
   table: {
+    borderBottom: 'none',
     overflow: 'hidden',
     bgColor: 'table.bg.light',
 
@@ -12,15 +13,16 @@ const baseStyle = definePartsStyle((props) => ({
       bgColor: 'table.bg.dark',
     },
   },
+
   thead: {
     bgColor: 'table.thead.bg_light',
 
     tr: {
       th: {
-        borderBottomColor: 'var(--chakra-colors-table-variant-striped-light-border)',
+        borderBottomColor: 'table.variant.striped.light.border',
 
         _dark: {
-          borderBottomColor: 'var(--chakra-colors-table-variant-striped-dark-border)',
+          borderBottomColor: 'table.variant.striped.dark.border',
         },
       },
     },
@@ -32,20 +34,6 @@ const baseStyle = definePartsStyle((props) => ({
       bgColor: 'table.thead.bg_dark',
       borderColor: 'table.border_color.dark',
     },
-  },
-  td: {
-    fontWeight: 'normal',
-    borderBottom: 'none',
-  },
-
-  tr: {
-    position: 'relative',
-  },
-}))
-
-const striped = definePartsStyle((props) => ({
-  table: {
-    borderBottom: 'none',
   },
 
   tbody: {
@@ -74,32 +62,14 @@ const striped = definePartsStyle((props) => ({
       },
     },
   },
-}))
 
-const subscription = definePartsStyle((props) => ({
-  thead: {
-    tr: {
-      th: {
-        '&:not(:first-of-type)': {
-          textAlign: 'center',
-        },
-      },
-    },
-  },
-  tbody: {
-    tr: {
-      minH: '75px',
-
-      td: {
-        '&:not(:first-of-type) *': {
-          mx: 'auto',
-        },
-      },
-    },
+  td: {
+    fontWeight: 'normal',
+    borderBottom: 'none',
   },
 }))
 
-const processes = definePartsStyle((props) => ({
+const simple = definePartsStyle((props) => ({
   table: {
     overflow: 'auto',
   },
@@ -114,7 +84,9 @@ const processes = definePartsStyle((props) => ({
     },
   },
   tr: {
-    borderBottom: '1px solid #e5e5e5',
+    ['td,th']: {
+      borderBottom: '1px solid #e5e5e5',
+    },
   },
   tbody: {
     tr: {
@@ -133,33 +105,9 @@ const processes = definePartsStyle((props) => ({
   },
 }))
 
-const md = definePartsStyle({
-  table: {
-    borderRadius: 'lg',
-    border: 'none',
-  },
-
-  tfoot: {
-    td: {
-      paddingTop: 3,
-      paddingBottom: 4,
-      '& > div': {
-        alignItems: 'end',
-      },
-    },
-  },
-  td: {
-    paddingY: 4,
-    whiteSpace: 'nowrap',
-  },
-})
-
 export const Table = defineMultiStyleConfig({
-  baseStyle,
-  sizes: { md },
   variants: {
     striped,
-    subscription,
-    processes,
+    simple,
   },
 })
