@@ -26,7 +26,6 @@ export const ColorModeSwitcher: React.FC<ColorModeSwitcherProps> = (props) => {
 }
 
 export const DropdownColorModeSwitcher = ({ ...props }) => {
-  const { t } = useTranslation()
   const { toggleColorMode } = useColorMode()
   const isLightMode = useColorModeValue(true, false)
   const SwitchIcon = useColorModeValue(IoMdMoon, IoMdSunny)

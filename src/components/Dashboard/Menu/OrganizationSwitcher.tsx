@@ -5,7 +5,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { LuGalleryVerticalEnd, LuPlus } from 'react-icons/lu'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useQueryClient } from 'wagmi'
-import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
 import { LocalStorageKeys } from '~components/Auth/useAuthProvider'
 import { Routes } from '~routes'
@@ -17,7 +16,7 @@ type SelectOption = {
   organization: Organization
 }
 
-export const OrganizationSwitcher = ({ ...props }) => {
+export const OrganizationSwitcher = () => {
   const { t } = useTranslation()
   const { data: profile } = useProfile()
   const [selectedOrg, setSelectedOrg] = useState<string | null>(localStorage.getItem(LocalStorageKeys.SignerAddress))
@@ -25,7 +24,6 @@ export const OrganizationSwitcher = ({ ...props }) => {
   const { signerRefresh } = useAuth()
   const queryClient = useQueryClient()
   const { client } = useClient()
-  const { subscription } = useSubscription()
 
   // Fetch organization names
   useEffect(() => {
