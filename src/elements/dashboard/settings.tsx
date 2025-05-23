@@ -1,5 +1,5 @@
 import { Heading, Tab, TabList, Tabs, Text } from '@chakra-ui/react'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Outlet, useLocation, useNavigate, useOutletContext } from 'react-router-dom'
 import { useSaasAccount } from '~components/Account/useSaasAccount'
@@ -42,12 +42,21 @@ const Settings = () => {
     },
   ]
 
-  const currentTabIndex = menuItems.findIndex((item) => (item.route ? location.pathname.endsWith(item.route) : false))
+  const currentTabIndex = useMemo(
+    () => menuItems.findIndex((item) => (item.route ? location.pathname.endsWith(item.route) : false)),
+    [location.pathname, menuItems]
+  )
 
   // Set layout variables
   useEffect(() => {
-    setBreadcrumb([{ title: t('settings', { defaultValue: 'Settings' }), route: Routes.dashboard.settings.base }])
-  }, [setBreadcrumb])
+    const currentTab = menuItems[currentTabIndex] || menuItems[0]
+    setBreadcrumb([
+      { title: t('settings', { defaultValue: 'Settings' }), route: Routes.dashboard.settings.base },
+      {
+        title: currentTab.label,
+      },
+    ])
+  }, [setBreadcrumb, currentTabIndex])
 
   return (
     <DashboardContents>
