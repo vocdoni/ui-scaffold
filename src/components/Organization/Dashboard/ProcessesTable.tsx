@@ -15,11 +15,11 @@ import {
   Thead,
   Tr,
 } from '@chakra-ui/react'
-import { DotsVertical, InfoCircle, SearchSm, Share04 } from '@untitled-ui/icons-react'
 import { ElectionStatusBadge, QuestionsTypeBadge } from '@vocdoni/chakra-components'
 import { ElectionProvider, useElection } from '@vocdoni/react-providers'
 import { ElectionStatus, ensure0x, InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { Trans, useTranslation } from 'react-i18next'
+import { LuEllipsisVertical, LuExternalLink, LuInfo, LuSearch } from 'react-icons/lu'
 import { generatePath, Link as RouterLink } from 'react-router-dom'
 import PaginatedTableFooter from '~components/Layout/Pagination/PaginatedTableFooter'
 import { useDateFns } from '~i18n/use-date-fns'
@@ -112,19 +112,19 @@ const ProcessContextMenu = () => {
 
   return (
     <Menu>
-      <MenuButton as={IconButton} icon={<DotsVertical />} variant='ghost' size='sm' />
+      <MenuButton as={IconButton} icon={<LuEllipsisVertical />} variant='ghost' size='sm' />
       <MenuList>
         <MenuItem
           as={RouterLink}
           to={generatePath(Routes.dashboard.process, { id: ensure0x(election.id) })}
-          icon={<Icon as={InfoCircle} boxSize={4} />}
+          icon={<Icon as={LuInfo} boxSize={4} />}
         >
           More info
         </MenuItem>
         <MenuItem
           as={RouterLink}
           to={generatePath(Routes.processes.view, { id: ensure0x(election.id) })}
-          icon={<Icon as={Share04} boxSize={4} />}
+          icon={<Icon as={LuExternalLink} boxSize={4} />}
           target='_blank'
         >
           Public voting page
@@ -132,7 +132,7 @@ const ProcessContextMenu = () => {
         <MenuItem
           as={Link}
           href={`${client.explorerUrl}/process/${election.id}`}
-          icon={<Icon as={SearchSm} boxSize={4} />}
+          icon={<Icon as={LuSearch} boxSize={4} />}
           isExternal
         >
           Explorer

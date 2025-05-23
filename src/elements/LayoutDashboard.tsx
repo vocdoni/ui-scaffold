@@ -1,8 +1,8 @@
-import { Box, Button, Flex, IconButton, Text, useBreakpointValue, useDisclosure } from '@chakra-ui/react'
-import { HelpCircle, LayoutLeft, Plus } from '@untitled-ui/icons-react'
+import { Box, Button, Flex, Icon, IconButton, Text, useBreakpointValue, useDisclosure } from '@chakra-ui/react'
 import { OrganizationProvider, useClient } from '@vocdoni/react-providers'
 import React, { createContext, PropsWithChildren, useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
+import { LuCircleHelp, LuPanelLeft, LuPlus } from 'react-icons/lu'
 import { generatePath, Outlet, Link as ReactRouterLink } from 'react-router-dom'
 import { BookerModalButton } from '~components/Dashboard/Booker'
 import Breadcrumb, { BreadcrumbItem } from '~components/Dashboard/Breadcrumb'
@@ -56,7 +56,7 @@ const LayoutDashboard: React.FC = () => {
               zIndex={100}
             >
               <IconButton
-                icon={<LayoutLeft />}
+                icon={<LuPanelLeft />}
                 aria-label='Open menu'
                 variant='transparent'
                 colorScheme='gray'
@@ -68,20 +68,20 @@ const LayoutDashboard: React.FC = () => {
 
               <Breadcrumb breadcrumb={breadcrumb} setBreadcrumb={setBreadcrumb} />
 
-              <Flex gap={2} ml='auto' alignItems={'center'}>
-                <BookerModalButton leftIcon={<HelpCircle />} colorScheme='gray' size={'sm'}>
-                  <Text display={{ base: 'none', lg: 'flex' }} fontSize='sm'>
+              <Flex gap={2} ml='auto' alignItems='center'>
+                <BookerModalButton leftIcon={<Icon as={LuCircleHelp} />} colorScheme='gray' variant='solid' size='sm'>
+                  <Text display={{ base: 'none', lg: 'flex' }} fontSize='sm' ml={2}>
                     <Trans i18nKey='do_you_need_help'>Do you need help?</Trans>
                   </Text>
                 </BookerModalButton>
                 <Button
                   as={ReactRouterLink}
                   to={generatePath(Routes.processes.create)}
-                  leftIcon={<Plus />}
+                  leftIcon={<Icon as={LuPlus} />}
                   colorScheme='black'
                   size='sm'
                 >
-                  <Text fontSize='sm' display={{ base: 'none', lg: 'flex' }}>
+                  <Text fontSize='sm' display={{ base: 'none', lg: 'flex' }} ml={2}>
                     <Trans i18nKey='new_voting'>New vote</Trans>
                   </Text>
                 </Button>
