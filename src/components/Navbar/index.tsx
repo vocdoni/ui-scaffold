@@ -2,7 +2,6 @@ import { HamburgerIcon } from '@chakra-ui/icons'
 import {
   Box,
   Button,
-  ButtonGroup,
   ButtonProps,
   Divider,
   Drawer,
@@ -15,19 +14,16 @@ import {
   ListItem,
   Text,
   useBreakpointValue,
-  useColorMode,
-  useColorModeValue,
   useDisclosure,
 } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { IoMdMoon, IoMdSunny } from 'react-icons/io'
 import { IoPricetagOutline } from 'react-icons/io5'
 import { LuLogOut } from 'react-icons/lu'
 import { RiContactsBook3Line } from 'react-icons/ri'
 import { generatePath, Link as ReactRouterLink, Link as RouterLink, useMatch } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
-import { ColorModeSwitcher } from '~components/Layout/ColorModeSwitcher'
+import { ColorModeSwitcher, ListItemColorModeSwitcher } from '~components/Layout/ColorModeSwitcher'
 import Logo from '~components/Layout/Logo'
 import { Routes } from '~src/router/routes'
 import LanguagesListAccordion, { LanguagesMenu } from './LanguagesList'
@@ -195,26 +191,6 @@ const NavMenu = ({ display, children }: { display?: any; children?: any }) => {
 
       <>{children}</>
     </List>
-  )
-}
-const ListItemColorModeSwitcher = ({ ...props }) => {
-  const { t } = useTranslation()
-  const { toggleColorMode } = useColorMode()
-  const isLightMode = useColorModeValue(true, false)
-  const SwitchIcon = useColorModeValue(IoMdMoon, IoMdSunny)
-
-  return (
-    <ButtonGroup
-      onClick={toggleColorMode}
-      display={'flex'}
-      justifyContent={'start'}
-      alignItems={'center'}
-      fontWeight={'semibold'}
-      {...props}
-    >
-      <Icon as={SwitchIcon} />
-      <Text as='span'>{isLightMode ? t('dark_mode') : t('light_mode')}</Text>
-    </ButtonGroup>
   )
 }
 const DashboardButton = (props?: ButtonProps) => {

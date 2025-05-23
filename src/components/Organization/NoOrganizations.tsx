@@ -14,7 +14,7 @@ export const NoOrganizations = () => {
       <Card variant='no-elections' minH='100%' maxW='650' m='80px auto'>
         <CardBody>
           <Flex justifyContent={'center'}>
-            <Img src={empty} />
+            <Img src={empty} _dark={{ filter: 'invert(70%)' }} />
           </Flex>
           <Box>
             <Text fontWeight='600' fontSize='lg' m='20px 0px'>

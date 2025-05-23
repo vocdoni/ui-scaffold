@@ -81,6 +81,7 @@ const simple = definePartsStyle((props) => ({
       '&[data-is-numeric=true]': {
         textAlign: 'right',
       },
+      textTransform: 'none',
     },
   },
   tr: {

@@ -158,12 +158,12 @@ const Setup = () => {
         right={6}
         p={0}
         w='xs'
-        bg='white'
         borderRadius='2xl'
         boxShadow='xl'
         zIndex='overlay'
         border='1px solid'
-        borderColor='gray.200'
+        _light={{ borderColor: 'gray.200', bgColor: 'white' }}
+        _dark={{ borderColor: 'black.700', bgColor: 'black.650' }}
       >
         <Accordion allowToggle border='none'>
           <AccordionItem border='none' alignItems='center'>
@@ -184,7 +184,6 @@ const Setup = () => {
                   h='28px'
                   minW='28px'
                   colorScheme='gray'
-                  color='black'
                   icon={<Icon as={InvertedAccordionIcon} />}
                 ></AccordionButton>
                 <IconButton
@@ -194,7 +193,6 @@ const Setup = () => {
                   minW='28px'
                   variant='ghost'
                   colorScheme='gray'
-                  color='black'
                   onClick={onClose}
                 />
               </Flex>

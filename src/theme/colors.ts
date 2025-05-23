@@ -67,6 +67,10 @@ export const colors = {
     back: newColorsBase.gray.normal,
     breadcrumb: newColorsBase.gray.normal,
     chevron: newColorsBase.gray.normal,
+    menu: {
+      dark: '#18181b',
+      light: '#fbfbfb',
+    },
     org_switcher: {
       subscription_plan: newColorsBase.gray.normal,
       icon: newColorsBase.gray.normal,
@@ -511,10 +515,11 @@ export const colors = {
     // comments refer to button styles
     50: '#e5e5e5', // ghost hover (light)
     100: '#cccccc', // hover (light)
-    200: '#999999', // outline hover / ghost active (light)
-    300: '#666666', // outline active (light)
+    200: '#fafafa', // outline hover / ghost active (light)
+    300: '#bbbbbb', // outline active (light)
     500: '#000000', // base solid
-    600: '#1a1a1a', // solid hover
+    600: '#353535', // solid hover
+    650: '#0a0a0a', // custom
     700: '#2e2e2e', // solid active
     800: '#3f3f3f', // link active (dark)
   },

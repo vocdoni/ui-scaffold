@@ -18,7 +18,9 @@ const DashboardMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
     <>
       {/* Sidebar for large screens */}
       <Box
-        bgColor='dashboard.aside_bg'
+        borderRight='1px solid'
+        _light={{ bgColor: 'dashboard.menu.light', borderRightColor: 'gray.200' }}
+        _dark={{ bgColor: 'dashboard.menu.dark', borderRightColor: 'black.700' }}
         display={{ base: 'none', md: 'flex' }}
         flexDirection={'column'}
         position={'sticky'}
@@ -27,7 +29,6 @@ const DashboardMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
         maxW={reduced ? '48px' : '255px'}
         w={reduced ? '48px' : '255px'}
         h='100vh'
-        borderRight='var(--border)'
         p={2}
         zIndex={100}
         transition='width .3s ease, min-width .3s ease, max-width .3s ease'
@@ -88,15 +89,16 @@ const DashboardMenuContent = () => {
             display={reduced ? 'none' : 'flex'}
             gap={2}
             p={4}
-            borderRadius='lg'
-            bgColor={'dashboard.schedule_call.bg'}
+            _dark={{ borderColor: 'black.600', bgColor: 'black.650' }}
+            _light={{ borderColor: 'gray.200', bgColor: 'white' }}
           >
             <CloseButton
               onClick={() => setCloseScheduleACall(true)}
               position={'absolute'}
               top={1}
               right={1}
-              color='gray'
+              colorScheme='gray'
+              size='sm'
             />
             <Text fontSize={'sm'} fontWeight={'bold'}>
               {t('need_help.title', { defaultValue: 'First steps' })}

@@ -35,7 +35,7 @@ const LayoutDashboard: React.FC = () => {
   return (
     <DashboardLayoutContext.Provider value={{ reduced }}>
       <DashboardLayoutProviders>
-        <Flex minH='100svh' w='full'>
+        <Flex minH='100svh' w='full' _dark={{ bg: 'black.650' }}>
           {/* Sidebar for large screens */}
           <DashboardMenu isOpen={isOpen} onClose={onClose} />
 
@@ -44,6 +44,9 @@ const LayoutDashboard: React.FC = () => {
             <Box
               position='sticky'
               bgColor='white'
+              borderBottom='1px solid'
+              _dark={{ bgColor: 'black.650', borderBottomColor: 'black.700' }}
+              _light={{ borderBottomColor: 'gray.200' }}
               top={0}
               pr={4}
               pl={2}
@@ -52,13 +55,11 @@ const LayoutDashboard: React.FC = () => {
               h={16}
               flexShrink={0}
               alignItems='center'
-              borderBottom='var(--border)'
               zIndex={100}
             >
               <IconButton
                 icon={<LuPanelLeft />}
                 aria-label='Open menu'
-                variant='transparent'
                 colorScheme='gray'
                 size='xs'
                 onClick={isMobile ? onOpen : () => setReduced((prev) => !prev)}
@@ -70,7 +71,7 @@ const LayoutDashboard: React.FC = () => {
 
               <Flex gap={2} ml='auto' alignItems='center'>
                 <BookerModalButton leftIcon={<Icon as={LuCircleHelp} />} colorScheme='gray' variant='solid' size='sm'>
-                  <Text display={{ base: 'none', lg: 'flex' }} fontSize='sm' ml={2}>
+                  <Text as='span' display={{ base: 'none', lg: 'flex' }} fontSize='sm' ml={2}>
                     <Trans i18nKey='do_you_need_help'>Do you need help?</Trans>
                   </Text>
                 </BookerModalButton>
@@ -81,7 +82,7 @@ const LayoutDashboard: React.FC = () => {
                   colorScheme='black'
                   size='sm'
                 >
-                  <Text fontSize='sm' display={{ base: 'none', lg: 'flex' }} ml={2}>
+                  <Text as='span' fontSize='sm' display={{ base: 'none', lg: 'flex' }} ml={2}>
                     <Trans i18nKey='new_voting'>New vote</Trans>
                   </Text>
                 </Button>
