@@ -195,19 +195,4 @@ const UserProfile = () => {
   )
 }
 
-const UserInfo = () => {
-  const { data: profile } = useProfile()
-
-  return (
-    <Flex flexDirection={'column'} justifyContent={'start'} gap={0.5} ml={0}>
-      <Text fontWeight='light' size='sm' lineHeight={'14px'} textAlign={'start'} maxW={'165px'} isTruncated>
-        {profile.firstName}
-      </Text>
-      <Text fontWeight='light' size='xs' lineHeight={'14px'} color='dashboard.profile.email' maxW={'165px'} isTruncated>
-        {profile.email}
-      </Text>
-    </Flex>
-  )
-}
-
 export default UserProfile

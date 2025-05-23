@@ -53,7 +53,7 @@ export const LanguagesMenu = ({ ...props }) => {
 
   return (
     <Menu>
-      {({ isOpen, onClose }) => (
+      {({ isOpen }) => (
         <>
           <MenuButton
             as={Button}
