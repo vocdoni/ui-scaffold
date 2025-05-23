@@ -154,5 +154,3 @@ export const SubscriptionList = () => {
     </VStack>
   )
 }
-
-export const SubscriptionHistory = () => {}
