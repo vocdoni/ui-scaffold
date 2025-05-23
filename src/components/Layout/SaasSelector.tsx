@@ -5,8 +5,8 @@ import { Controller, useFormContext } from 'react-hook-form'
 import { ControllerProps } from 'react-hook-form/dist/types'
 import { useTranslation } from 'react-i18next'
 import { LuEye, LuKey, LuUserRoundCog, LuUsers } from 'react-icons/lu'
-import { useRoles } from '~components/Organization/Invite'
 import { LanguagesSlice } from '~i18n/languages.mjs'
+import { useOrganizationTypes, useRoles } from '~src/queries/organization'
 import { reactSelectStyles } from '~theme/reactSelectStyles'
 
 export type SelectOptionType = {
@@ -95,14 +95,18 @@ export const SelectCustom = ({
 
 export const OrganzationTypeSelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) => {
   const { t } = useTranslation()
+  const { data, isLoading, isError, error } = useOrganizationTypes()
 
-  const orgTypes: SelectOptionType[] = [
-    { label: t('org_type_selector.company', { defaultValue: 'Company' }), value: 'company' },
-    { label: t('org_type_selector.community', { defaultValue: 'Community' }), value: 'community' },
-  ]
+  if (isError) return <Alert status='error'>{error?.message || t('error.loading_types')}</Alert>
+
+  const orgTypes: SelectOptionType[] = data.map((type: any) => ({
+    label: type.name,
+    value: type.type,
+  }))
 
   return (
     <SelectCustom
+      isLoading={isLoading}
       options={orgTypes}
       label={t('org_type_selector.selector_label', { defaultValue: 'Organization Type' })}
       {...props}
@@ -178,8 +182,6 @@ export const CountrySelector = ({ ...props }: Omit<SelectCustomProps, 'options'>
     },
     staleTime: Infinity, // Countries list won't change often
   })
-
-  if (isLoading) return <Progress size='xs' isIndeterminate colorScheme='gray' />
 
   if (error) return <Alert status='error'>{error.message}</Alert>
 
@@ -323,13 +325,11 @@ export const RoleSelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) =
 
   if (rolesError) return <Alert status='error'>{rolesFetchError?.message || t('error.loading_roles')}</Alert>
 
-  const roles: SelectOptionType[] = data.map((role: any) => {
-    return {
-      label: role.name,
-      value: role.role,
-      writePermission: role.writePermission,
-    }
-  })
+  const roles: SelectOptionType[] = data.map((role: any) => ({
+    label: role.name,
+    value: role.role,
+    writePermission: role.writePermission,
+  }))
   const defaultVal = roles.find((role: RoleOptionType) => role.value === 'viewer')
 
   return (
