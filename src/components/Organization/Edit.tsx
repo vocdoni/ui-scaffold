@@ -162,7 +162,9 @@ const EditOrganization = () => {
             </Text>
             <HSeparator />
           </Flex>
-          <PrivateOrgForm />
+          <Flex gap={3} flexDirection='column'>
+            <PrivateOrgForm />
+          </Flex>
 
           <Flex align='center' direction='column' alignSelf='end'>
             <Button type='submit' isLoading={isPending} aria-label='' w='full'>
