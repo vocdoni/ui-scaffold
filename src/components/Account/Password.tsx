@@ -9,10 +9,10 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { useMutation } from '@tanstack/react-query'
-import { Pencil01 } from '@untitled-ui/icons-react'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { LuPencil } from 'react-icons/lu'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import { ModalForm, useModalForm } from '~components/Layout/Form/ModalForm'
@@ -152,7 +152,7 @@ export const ChangePasswordButton = () => {
     <>
       <IconButton
         onClick={onOpen}
-        icon={<Pencil01 />}
+        icon={<LuPencil />}
         aria-label='change password'
         variant={'outline'}
         size='sm'

@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   Flex,
+  Icon,
   Popover,
   PopoverBody,
   PopoverContent,
@@ -12,16 +13,9 @@ import {
   Text,
   useBreakpointValue,
 } from '@chakra-ui/react'
-import {
-  Building03,
-  ChevronLeft,
-  ChevronRight,
-  ChevronSelectorVertical,
-  LogOut01,
-  UserEdit,
-} from '@untitled-ui/icons-react'
 import { useContext, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { LuBuilding, LuChevronLeft, LuChevronRight, LuChevronsUpDown, LuLogOut, LuUserPen } from 'react-icons/lu'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
 import { LanguageListDashboard } from '~components/Navbar/LanguagesList'
@@ -57,11 +51,7 @@ const UserProfile = () => {
               borderRadius={'8px'}
             />
           }
-          rightIcon={
-            !reduced && (
-              <ChevronSelectorVertical width='16' height='16' color='var(--chakra-colors-dashboard-chevron)' />
-            )
-          }
+          rightIcon={!reduced && <Icon as={LuChevronsUpDown} color='dashboard.chevron' />}
           aria-label='User menu'
           size='xl'
           display={'flex'}
@@ -95,7 +85,7 @@ const UserProfile = () => {
           )}
         </Button>
       </PopoverTrigger>
-      <PopoverContent zIndex={100} maxW='250px' height={'259px'}>
+      <PopoverContent maxW='250px'>
         <PopoverHeader>
           <Box display={'flex'} gap={2} alignItems={'center'} justifyContent={'start'} px={1} py={1.5} mb={1}>
             <Avatar
@@ -111,7 +101,7 @@ const UserProfile = () => {
               {switchOrg ? (
                 <Button
                   onClick={() => setSwitchOrg(false)}
-                  leftIcon={<ChevronLeft width='12px' height='12px' />}
+                  leftIcon={<Icon as={LuChevronLeft} />}
                   variant={'link'}
                   display={'flex'}
                   alignItems={'center'}
@@ -147,8 +137,8 @@ const UserProfile = () => {
                   onClick={() => setSwitchOrg(true)}
                   variant={'transparent'}
                   colorScheme='gray'
-                  leftIcon={<Building03 width={'16px'} />}
-                  rightIcon={<ChevronRight width={'16px'} />}
+                  leftIcon={<LuBuilding />}
+                  rightIcon={<LuChevronRight />}
                   w='full'
                   px={2}
                   py={1.5}
@@ -164,7 +154,7 @@ const UserProfile = () => {
                   variant={'transparent'}
                   colorScheme='gray'
                   justifyContent={'start'}
-                  leftIcon={<UserEdit width={'16px'} />}
+                  leftIcon={<LuUserPen />}
                   w='full'
                   px={2}
                   py={1.5}
@@ -188,7 +178,7 @@ const UserProfile = () => {
                 variant={'transparent'}
                 colorScheme='gray'
                 justifyContent={'start'}
-                leftIcon={<LogOut01 width={'16px'} />}
+                leftIcon={<LuLogOut />}
                 w='full'
                 px={2}
                 py={1.5}

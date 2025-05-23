@@ -1,7 +1,7 @@
-import { Box, Button, CloseButton, Drawer, DrawerContent, DrawerOverlay, Flex, Text } from '@chakra-ui/react'
-import { Plus } from '@untitled-ui/icons-react'
+import { Box, Button, CloseButton, Drawer, DrawerContent, DrawerOverlay, Flex, Icon, Text } from '@chakra-ui/react'
 import { useContext, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { LuPlus } from 'react-icons/lu'
 import { generatePath, Link as ReactRouterLink, Link as RouterLink } from 'react-router-dom'
 import { DashboardBox } from '~components/Layout/Dashboard'
 import { VocdoniLogo } from '~components/Layout/Logo'
@@ -69,7 +69,7 @@ const DashboardMenuContent = () => {
         to={generatePath(Routes.processes.create)}
         w='full'
         minW={0}
-        leftIcon={<Plus width={'16px'} />}
+        leftIcon={<Icon as={LuPlus} boxSize={4} />}
         colorScheme='black'
         mt={'8px'}
         mb={'32px'}

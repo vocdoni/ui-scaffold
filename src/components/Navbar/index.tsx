@@ -19,11 +19,11 @@ import {
   useColorModeValue,
   useDisclosure,
 } from '@chakra-ui/react'
-import { LogOut01 } from '@untitled-ui/icons-react'
 import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { IoMdMoon, IoMdSunny } from 'react-icons/io'
 import { IoPricetagOutline } from 'react-icons/io5'
+import { LuLogOut } from 'react-icons/lu'
 import { RiContactsBook3Line } from 'react-icons/ri'
 import { generatePath, Link as ReactRouterLink, Link as RouterLink, useMatch } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
@@ -119,7 +119,7 @@ const Mobile = () => {
                     gap={2}
                     h='fit-content'
                   >
-                    <Icon as={LogOut01} />
+                    <Icon as={LuLogOut} />
                     <Text as={'span'} fontWeight={'semibold'}>
                       <Trans i18nKey='logout'>Logout</Trans>
                     </Text>

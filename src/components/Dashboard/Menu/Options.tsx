@@ -1,7 +1,7 @@
 import { Box, Button, Flex, Icon, ListItem, Text, Tooltip, UnorderedList } from '@chakra-ui/react'
-import { BookOpen01, Home02, LifeBuoy01, Mail04, Phone, Settings01, Users01 } from '@untitled-ui/icons-react'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
+import { LuBookOpen, LuHouse, LuLifeBuoy, LuPhone, LuSettings, LuUsers, LuVote } from 'react-icons/lu'
 import { Link as ReactRouterLink, generatePath, matchPath, useLocation } from 'react-router-dom'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~src/router/routes'
@@ -20,39 +20,39 @@ export const DashboardMenuOptions = () => {
   const menuItemsPlatform: MenuItem[] = [
     {
       label: t('organization.dashboard'),
-      icon: Home02,
+      icon: LuHouse,
       route: Routes.dashboard.base,
     },
     {
       label: t('voting_processes'),
-      icon: Mail04,
+      icon: LuVote,
       route: Routes.dashboard.processes,
     },
     {
       label: t('memberbase'),
-      icon: Users01,
+      icon: LuUsers,
       route: '',
     },
     {
       label: t('settings'),
-      icon: Settings01,
+      icon: LuSettings,
       route: Routes.dashboard.settings.base,
     },
   ]
   const menuItemsHelp: MenuItem[] = [
     {
       label: t('support'),
-      icon: LifeBuoy01,
+      icon: LuLifeBuoy,
       route: '',
     },
     {
       label: t('call_us', { defaultValue: 'Call us' }),
-      icon: Phone,
+      icon: LuPhone,
       route: '',
     },
     {
       label: t('guides', { defaultValue: 'Guides' }),
-      icon: BookOpen01,
+      icon: LuBookOpen,
       route: '',
     },
   ]

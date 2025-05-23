@@ -1,9 +1,8 @@
 import { Button, Flex, Icon, PopoverBody, PopoverFooter, Tag, Text } from '@chakra-ui/react'
-import { Plus } from '@untitled-ui/icons-react'
 import { useClient } from '@vocdoni/react-providers'
 import { useEffect, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { LuGalleryVerticalEnd } from 'react-icons/lu'
+import { LuGalleryVerticalEnd, LuPlus } from 'react-icons/lu'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useQueryClient } from 'wagmi'
 import { useSubscription } from '~components/Auth/Subscription'
@@ -153,7 +152,7 @@ export const OrganizationSwitcher = ({ ...props }) => {
             h='22px'
             borderRadius='xs'
           >
-            <Icon as={Plus} boxSize={4} ml={2} mr={2} />
+            <Icon as={LuPlus} boxSize={4} ml={2} mr={2} />
           </Flex>
           <Text as={'span'} h='unset' fontWeight={'bold'} size={'sm'}>
             {t('add_new_org', { defaultValue: 'Add a new organization' })}
