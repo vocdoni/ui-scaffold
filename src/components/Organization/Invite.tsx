@@ -17,7 +17,7 @@ import {
   useRadio,
   useToast,
 } from '@chakra-ui/react'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useOrganization } from '@vocdoni/react-providers'
 import { ensure0x } from '@vocdoni/sdk'
 import { ReactNode } from 'react'
@@ -38,27 +38,6 @@ import { useTeamMembers } from './Team'
 type InviteData = {
   email: string
   role: string
-}
-
-type Role = {
-  role: string
-  name: string
-  writePermission: boolean
-}
-
-// Hook to fetch roles
-export const useRoles = () => {
-  const { bearedFetch } = useAuth()
-
-  return useQuery({
-    queryKey: QueryKeys.organization.roles,
-    queryFn: async () => {
-      const response = await bearedFetch<{ roles: Role[] }>(ApiEndpoints.OrganizationsRoles)
-      return response.roles
-    },
-    staleTime: 60 * 60 * 1000,
-    select: (data) => data.sort((a, b) => a.name.localeCompare(b.name)),
-  })
 }
 
 // Hook to handle member invitation mutation
