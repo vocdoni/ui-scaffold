@@ -88,7 +88,7 @@ const Tutorial = () => {
           />
         </Text>
         {loading || isLoading ? (
-          <Progress colorScheme='brand' size='xs' isIndeterminate mb={4} />
+          <Progress isIndeterminate mb={4} />
         ) : !subscription ? (
           <Text color='gray.500' mb={4}>
             {t('dashboard_empty_processes.no_subscription', {
@@ -287,7 +287,7 @@ const Processes = () => {
   })
 
   if (isLoading) {
-    return <Progress colorScheme='brand' size='xs' isIndeterminate />
+    return <Progress isIndeterminate />
   }
 
   if (isError) {
