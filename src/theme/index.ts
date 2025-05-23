@@ -14,7 +14,7 @@ import { Input } from './components/input'
 import { Link } from './components/link'
 import { Menu } from './components/menu'
 import { Modal } from './components/modal'
-import { Pagination, PaginationButton } from './components/pagination'
+import { Pagination } from './components/pagination'
 import { Popover } from './components/popover'
 import { ElectionQuestions } from './components/Questions'
 import { Radio } from './components/radio'
@@ -200,7 +200,6 @@ export const theme = extendTheme(vtheme, {
     Menu,
     Modal,
     Pagination,
-    PaginationButton,
     Popover,
     Progress,
     Radio,
