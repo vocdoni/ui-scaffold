@@ -45,7 +45,7 @@ export const Subscription = () => {
   )
 }
 
-const usePortalSession = () => {
+export const usePortalSession = () => {
   const { bearedFetch } = useAuth()
   const { account } = useClient()
 

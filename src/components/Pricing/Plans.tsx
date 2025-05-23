@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { Select } from 'chakra-react-select'
-import { MutableRefObject, ReactNode, useMemo } from 'react'
+import { MutableRefObject, ReactNode, useEffect, useMemo } from 'react'
 import { Controller, FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
@@ -61,6 +61,7 @@ export type Plan = {
     smsNotification: boolean
     whiteLabel: boolean
     liveStreaming: boolean
+    phoneSupport: boolean
   }
   censusSizeTiers?:
     | {
@@ -158,7 +159,13 @@ export const usePlanTranslations = () => {
   return translations
 }
 
-export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObject<HTMLDivElement> }) => {
+export const SubscriptionPlans = ({
+  featuresRef,
+  hidePlanActions,
+}: {
+  featuresRef?: MutableRefObject<HTMLDivElement>
+  hidePlanActions?: boolean
+}) => {
   const { t } = useTranslation()
   const { subscription } = useSubscription()
   const { data: plans, isLoading } = usePlans()
@@ -183,7 +190,7 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
 
   const methods = useForm<FormValues>({
     defaultValues: {
-      censusSize: defaultCensusSize,
+      censusSize: null,
       planId: null,
     },
   })
@@ -229,58 +236,74 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
   const cards = useMemo(() => {
     if (!plans) return []
 
-    return plans.map((plan) => ({
-      popular: plan.id === PlanId.Essential,
-      title: translations[plan.id]?.title || plan.name,
-      subtitle: translations[plan.id]?.subtitle || '',
-      price: currency(
-        selectedCensusSize
-          ? (plan.censusSizeTiers?.find((tier) => tier.upTo === selectedCensusSize)?.amount ?? plan.startingPrice)
-          : plan.startingPrice
-      ),
-      features: translations[plan.id]?.features || [],
-      isDisabled:
-        (selectedCensusSize && !plan.censusSizeTiers?.some((tier) => tier.upTo === selectedCensusSize)) ||
-        (subscription && plan.id === subscription?.plan.id && !selectedCensusSize),
-    }))
+    return plans.map((plan) => {
+      return {
+        popular: plan.id === PlanId.Essential,
+        title: translations[plan.id]?.title || plan.name,
+        subtitle: translations[plan.id]?.subtitle || '',
+        price: currency(
+          selectedCensusSize
+            ? (plan.censusSizeTiers?.find((tier) => tier.upTo === selectedCensusSize)?.amount ?? plan.startingPrice)
+            : plan.startingPrice
+        ),
+        features: translations[plan.id]?.features || [],
+        isCurrentPlan: subscription && plan.id === subscription?.plan.id,
+        isDisabled:
+          selectedCensusSize && plan.censusSizeTiers?.some((tier) => tier.upTo === selectedCensusSize) === false,
+      }
+    })
   }, [plans, selectedCensusSize, subscription, translations])
+
+  useEffect(() => {
+    if (defaultCensusSize !== null && !methods.getValues('censusSize')) {
+      methods.setValue('censusSize', defaultCensusSize)
+    }
+  }, [defaultCensusSize, methods])
 
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Flex flexDir='column' gap={4}>
-          <Flex
-            flexDir={{ base: 'column', lg: 'row' }}
-            justifyContent={'center'}
-            alignItems={'center'}
-            gap={{ base: 2, lg: 4 }}
-            mb={{ base: 4, lg: 6 }}
-          >
-            <Text>
-              <Trans i18nKey='pricing.membership_size'>Select your membership size:</Trans>
-            </Text>
-            <Controller
-              name='censusSize'
-              control={methods.control}
-              rules={{ required: true }}
-              render={({ field }) => (
-                <Select
-                  options={censusSizeOptions}
-                  onChange={(selected) => field.onChange(selected?.value || null)}
-                  value={censusSizeOptions.find((option) => option.value === field.value)}
-                />
-              )}
-            />
-            {methods.formState.errors.censusSize && (
-              <Text color='red.500' fontSize='sm' mt={1}>
-                {t('form.error.field_is_required')}
+          {!hidePlanActions && (
+            <Flex
+              flexDir={{ base: 'column', lg: 'row' }}
+              justifyContent={'center'}
+              alignItems={'center'}
+              gap={{ base: 2, lg: 4 }}
+              mb={{ base: 4, lg: 6 }}
+            >
+              <Text>
+                <Trans i18nKey='pricing.membership_size'>Select your membership size:</Trans>
               </Text>
-            )}
-          </Flex>
+              <Controller
+                name='censusSize'
+                control={methods.control}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <Select
+                    options={censusSizeOptions}
+                    onChange={(selected) => field.onChange(selected?.value || null)}
+                    value={censusSizeOptions.find((option) => option.value === field.value)}
+                  />
+                )}
+              />
+              {methods.formState.errors.censusSize && (
+                <Text color='red.500' fontSize='sm' mt={1}>
+                  {t('form.error.field_is_required')}
+                </Text>
+              )}
+            </Flex>
+          )}
           {isLoading && <Progress isIndeterminate />}
-          <Flex gap={5} justifyContent='space-evenly' alignItems='start' flexWrap='wrap'>
+          <Flex wrap='wrap' gap={6}>
             {cards.map((card, idx) => (
-              <PricingCard key={idx} plan={plans[idx]} {...card} featuresRef={featuresRef} />
+              <PricingCard
+                key={idx}
+                plan={plans[idx]}
+                {...card}
+                hidePlanActions={hidePlanActions}
+                featuresRef={featuresRef}
+              />
             ))}
           </Flex>
         </Flex>

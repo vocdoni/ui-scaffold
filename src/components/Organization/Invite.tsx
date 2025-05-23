@@ -1,12 +1,9 @@
 import {
-  Alert,
   Box,
   Button,
   ButtonProps,
   Flex,
   FlexProps,
-  FormControl,
-  FormLabel,
   Heading,
   Modal,
   ModalBody,
@@ -14,15 +11,13 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
-  Progress,
   Radio,
-  Stack,
   Text,
   useDisclosure,
   useRadio,
   useToast,
 } from '@chakra-ui/react'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useOrganization } from '@vocdoni/react-providers'
 import { ensure0x } from '@vocdoni/sdk'
 import { ReactNode } from 'react'
@@ -33,6 +28,7 @@ import { HSeparator } from '~components/Auth/SignIn'
 import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
 import InputBasic from '~components/Layout/InputBasic'
+import { RoleSelector } from '~components/Layout/SaasSelector'
 import { usePricingModal } from '~components/Pricing/use-pricing-modal'
 import { SubscriptionPermission } from '~constants'
 import { QueryKeys } from '~src/queries/keys'
@@ -42,27 +38,6 @@ import { useTeamMembers } from './Team'
 type InviteData = {
   email: string
   role: string
-}
-
-type Role = {
-  role: string
-  name: string
-  writePermission: boolean
-}
-
-// Hook to fetch roles
-const useRoles = () => {
-  const { bearedFetch } = useAuth()
-
-  return useQuery({
-    queryKey: QueryKeys.organization.roles,
-    queryFn: async () => {
-      const response = await bearedFetch<{ roles: Role[] }>(ApiEndpoints.OrganizationsRoles)
-      return response.roles
-    },
-    staleTime: 60 * 60 * 1000,
-    select: (data) => data.sort((a, b) => a.name.localeCompare(b.name)),
-  })
 }
 
 // Hook to handle member invitation mutation
@@ -90,12 +65,10 @@ const InviteForm = () => {
   const toast = useToast()
   const mutation = useInviteMemberMutation()
   const { success } = useCallbackContext()
-  const { data: roles, isLoading: rolesLoading, isError: rolesError, error: rolesFetchError } = useRoles()
 
   const methods = useForm({
     defaultValues: {
       email: '',
-      role: 'admin',
     },
   })
 
@@ -122,9 +95,6 @@ const InviteForm = () => {
       },
     })
 
-  // could be better placed, but I prefered breaking the entire form just in case
-  if (rolesError) return <Alert status='error'>{rolesFetchError?.message || t('error.loading_roles')}</Alert>
-
   return (
     <FormProvider {...methods}>
       <Flex as='form' onSubmit={methods.handleSubmit(onSubmit)} flexDirection='column' gap={6}>
@@ -135,42 +105,7 @@ const InviteForm = () => {
           type='email'
           required
         />
-        <FormControl>
-          <FormLabel fontSize='sm'>
-            <Trans i18nKey='invite.select_option'>Select an option</Trans>
-          </FormLabel>
-          <Stack
-            direction='column'
-            my='10px'
-            gap={0}
-            sx={{
-              '& :first-of-type': {
-                borderTopRadius: 'lg',
-              },
-              '& :last-of-type': {
-                borderBottomRadius: 'lg',
-              },
-            }}
-          >
-            {rolesLoading && <Progress isIndeterminate />}
-            {roles &&
-              roles?.map((role) => (
-                <RoleRadio
-                  key={role.role}
-                  name='role'
-                  value={role.role}
-                  fieldName={role.name}
-                  description={
-                    role.writePermission ? (
-                      <Trans i18nKey='role.write_permission'>Can create and edit content</Trans>
-                    ) : (
-                      <Trans i18nKey='role.read_permission'>Read-only access</Trans>
-                    )
-                  }
-                />
-              ))}
-          </Stack>
-        </FormControl>
+        <RoleSelector name='role' required />
         <Flex justifyContent='center'>
           <Button mx='auto' type='submit' isLoading={mutation.isPending}>
             <Trans i18nKey='submit'>Submit</Trans>
@@ -211,9 +146,7 @@ export const InviteToTeamModal = (props: ButtonProps) => {
         {...props}
         isLoading={isLoading}
         loadingText={t('loading')}
-      >
-        <Trans i18nKey='invite_people'>Invite People</Trans>
-      </Button>
+      />
       <CallbackProvider success={() => onClose()}>
         <Modal isOpen={isOpen} onClose={onClose} size='xl' closeOnOverlayClick>
           <ModalOverlay />

@@ -36,17 +36,17 @@ import { ReactNode, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import {
   LuCalendar,
+  LuCirclePlay,
+  LuCircleStop,
   LuClock,
   LuCopy,
   LuExternalLink,
   LuEye,
   LuInfo,
   LuPause,
-  LuPlayCircle,
   LuSearch,
   LuSettings,
   LuShield,
-  LuStopCircle,
   LuTrash2,
   LuUsers,
   LuVote,
@@ -263,14 +263,14 @@ const ProcessViewSidebar = (props: SidebarProps) => {
                 variant='outline'
                 aria-label={t('process_actions.continue', { defaultValue: 'Continue' })}
               >
-                <ControlIcon as={LuPlayCircle} color='green.400' />
+                <ControlIcon as={LuCirclePlay} color='green.400' />
                 <Text as='span' flex={1} textAlign='left' fontSize='sm'>
                   Resume
                 </Text>
               </ActionContinue>
             )}
             <ActionEnd variant='outline' aria-label={t('process_actions.end', { defaultValue: 'End' })}>
-              <ControlIcon as={LuStopCircle} color='red.500' />
+              <ControlIcon as={LuCircleStop} color='red.500' />
               <Text as='span' flex={1} textAlign='left' fontSize='sm'>
                 End vote
               </Text>

@@ -1,7 +1,20 @@
-import { Box, Button, Card, CardBody, CardHeader, ListItem, Text, UnorderedList } from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Flex,
+  ListIcon,
+  ListItem,
+  Text,
+  UnorderedList,
+} from '@chakra-ui/react'
 import { RefObject } from 'react'
 import { useFormContext } from 'react-hook-form'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
+import { LuCheck } from 'react-icons/lu'
 import { Routes } from '~src/router/routes'
 import type { Plan } from './Plans'
 
@@ -12,6 +25,8 @@ type PricingCardProps = {
   price: string
   features: string[]
   isDisabled: boolean
+  isCurrentPlan: boolean
+  hidePlanActions?: boolean
   width?: string
   plan: Plan
   featuresRef: RefObject<HTMLDivElement>
@@ -25,9 +40,12 @@ const PricingCard = ({
   popular,
   features,
   isDisabled,
+  isCurrentPlan,
+  hidePlanActions,
   plan,
   featuresRef,
 }: PricingCardProps) => {
+  const { t } = useTranslation()
   const { setValue } = useFormContext()
 
   const handleViewFeatures = () => {
@@ -39,51 +57,75 @@ const PricingCard = ({
   }
 
   return (
-    <Card variant='pricing-card' width={width} mt={4}>
+    <Card
+      position='relative'
+      flex={1}
+      variant='pricing-card'
+      align='stretch'
+      width={width}
+      border='1px'
+      bgColor={isCurrentPlan ? 'gray.100' : 'white'}
+      borderColor={popular ? 'pricing_card.most_popular_plan.border' : 'gray.200'}
+    >
       <CardHeader>
         <Text>{title}</Text>
         <Text>{subtitle}</Text>
       </CardHeader>
       <CardBody>
-        <Button
-          isDisabled={isDisabled || false}
-          onClick={() => setValue('planId', plan.id)}
-          type='submit'
-          variant={'solid'}
-        >
-          <Trans i18nKey='subscribe'>Subscribe</Trans>
-        </Button>
-        <Text mt={4}>
-          <Trans i18nKey='pricing_card.from' values={{ price }}>
-            From {{ price }}/year
-          </Trans>
-        </Text>
-        <Box>
+        <Flex direction='column'>
+          <Flex align='center'>
+            <Trans
+              i18nKey='pricing_card.from'
+              values={{ price }}
+              components={{
+                price: <Text size='2xl' fontWeight='extrabold' />,
+                time: <Text size='sm' color='gray.500' />,
+              }}
+            >
+              {{ price }}/year
+            </Trans>
+          </Flex>
           <UnorderedList>
             {features.map((feature, idx) => (
-              <ListItem key={idx} listStyleType='-'>
+              <ListItem key={idx}>
+                <ListIcon as={LuCheck} color='green.500' />
                 {feature}
               </ListItem>
             ))}
           </UnorderedList>
-        </Box>
-        <Button onClick={handleViewFeatures} variant={'transparent'}>
-          <Trans i18nKey='pricing_card.view_features'>View All features</Trans>
-        </Button>
+          {!hidePlanActions && (
+            <Button onClick={handleViewFeatures} variant='transparent' m={0}>
+              <Trans i18nKey='pricing_card.view_features'>View All features</Trans>
+            </Button>
+          )}
+        </Flex>
       </CardBody>
+      <CardFooter>
+        <Button
+          isDisabled={isDisabled || isCurrentPlan}
+          onClick={() => setValue('planId', plan.id)}
+          type='submit'
+          variant={popular ? 'solid' : 'outline'}
+          colorScheme='gray'
+        >
+          {isCurrentPlan
+            ? t('current_plan', { defaultValue: 'Current Plan' })
+            : t('subscribe', { defaultValue: 'Subscribe' })}
+        </Button>
+      </CardFooter>
       {popular && (
         <Box
           position='absolute'
-          mt={-4}
-          ml='50%'
-          transform='translateX(-50%)'
+          top={0}
+          left='50%'
+          transform='translate(-50%, -50%)'
           fontSize='sm'
           w='min-content'
           whiteSpace='nowrap'
           py={1}
           px={3}
           borderRadius='full'
-          bgColor='pricing_card.most_popular_plan.bg'
+          backgroundColor='pricing_card.most_popular_plan.bg'
           color='pricing_card.most_popular_plan.color'
         >
           <Trans i18nKey='pricing_card.most_popular_plan'>Most popular plan</Trans>

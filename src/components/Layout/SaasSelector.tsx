@@ -1,15 +1,25 @@
-import { Alert, FormControl, FormErrorMessage, FormLabel } from '@chakra-ui/react'
+import { Alert, Box, Flex, FormControl, FormErrorMessage, FormLabel, Icon, Text } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
-import { Select, Props as SelectProps } from 'chakra-react-select'
+import { Select, Props as SelectProps, components } from 'chakra-react-select'
 import { Controller, useFormContext } from 'react-hook-form'
 import { ControllerProps } from 'react-hook-form/dist/types'
 import { useTranslation } from 'react-i18next'
+import { LuEye, LuKey, LuUserRoundCog, LuUsers } from 'react-icons/lu'
 import { LanguagesSlice } from '~i18n/languages.mjs'
+import { useOrganizationTypes, useRoles } from '~src/queries/organization'
 import { reactSelectStyles } from '~theme/reactSelectStyles'
 
 export type SelectOptionType = {
   label: string
   value: string
+}
+
+export type CountryOptionType = SelectOptionType & {
+  flag: string
+}
+
+export type RoleOptionType = SelectOptionType & {
+  writePermission: boolean
 }
 
 export type SelectCustomProps = {
@@ -85,31 +95,53 @@ export const SelectCustom = ({
 
 export const OrganzationTypeSelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) => {
   const { t } = useTranslation()
+  const { data = [], isLoading, isError, error } = useOrganizationTypes()
+  const orgTypes: SelectOptionType[] = data.map((type: any) => ({
+    label: type.name,
+    value: type.type,
+  }))
 
-  const orgTypes: SelectOptionType[] = [
-    { label: t('org_type_selector.company', { defaultValue: 'Company' }), value: 'company' },
-    { label: t('org_type_selector.community', { defaultValue: 'Community' }), value: 'community' },
-  ]
+  if (isError) return <Alert status='error'>{error?.message || t('error.loading_types')}</Alert>
 
   return (
     <SelectCustom
+      isLoading={isLoading}
       options={orgTypes}
-      label={t('org_type_selector.selector_label', { defaultValue: 'Select Organization Type' })}
+      label={t('org_type_selector.selector_label', { defaultValue: 'Organization Type' })}
       {...props}
     />
   )
 }
 
+export const createCountryDisplay = (type: 'Option' | 'SingleValue') => {
+  const BaseComponent = components[type]
+
+  return (props: any) => {
+    const { data, selectProps } = props
+
+    const fullOption = (selectProps.options as CountryOptionType[]).find((opt) => opt.value === data.value) || data
+
+    return (
+      <BaseComponent {...props}>
+        <Flex align='center' gap={2}>
+          <Box as='span' role='img'>
+            {fullOption.flag}
+          </Box>
+          <Text fontWeight='bold'>{fullOption.label}</Text>
+        </Flex>
+      </BaseComponent>
+    )
+  }
+}
+
 export const CountrySelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) => {
   const { t } = useTranslation()
-
-  const defaultVal = { label: t('country_selector.spain', { defaultValue: 'Spain' }), value: 'ES' }
 
   // Priority countries in the desired order
   const priorityCountries = ['ES', 'FR', 'DE', 'GB', 'IT', 'US']
 
   const {
-    data: countries,
+    data = [],
     isLoading,
     error,
   } = useQuery({
@@ -125,6 +157,7 @@ export const CountrySelector = ({ ...props }: Omit<SelectCustomProps, 'options'>
       const transformedCountries = data.map((country: any) => ({
         label: country.name.common,
         value: country.cca2,
+        flag: country.flag,
       }))
 
       // Custom sort function
@@ -148,16 +181,18 @@ export const CountrySelector = ({ ...props }: Omit<SelectCustomProps, 'options'>
     },
     staleTime: Infinity, // Countries list won't change often
   })
+  const defaultVal = data.find((country: CountryOptionType) => country.value === 'ES')
 
   if (error) return <Alert status='error'>{error.message}</Alert>
 
   return (
     <SelectCustom
-      options={countries}
+      options={data}
       isLoading={isLoading}
       label={t('country_selector.selector_label', { defaultValue: 'Country' })}
       defaultValue={defaultVal}
       controller={{ defaultValue: defaultVal }}
+      components={{ SingleValue: createCountryDisplay('SingleValue'), Option: createCountryDisplay('Option') }}
       {...props}
     />
   )
@@ -178,7 +213,7 @@ export const MembershipSizeSelector = ({ defaultValue, ...props }: Omit<SelectCu
   return (
     <SelectCustom
       options={listSizes}
-      label={t('membership_size.selector_label', { defaultValue: 'Membership size' })}
+      label={t('membership_size.selector_label', { defaultValue: 'Membership Size' })}
       {...props}
     />
   )
@@ -224,6 +259,87 @@ export const CustomizationLanguageSelector = ({ ...props }: Omit<SelectCustomPro
     <SelectCustom
       options={languages}
       label={t('membership_size.language', { defaultValue: 'Default Language' })}
+      {...props}
+    />
+  )
+}
+
+export const IssueTypeSelector = ({ defaultValue, ...props }: Omit<SelectCustomProps, 'options'>) => {
+  const { t } = useTranslation()
+  const listSizes: SelectOptionType[] = [
+    { label: t('form.support.voting_issue', { defaultValue: 'Voting issue' }), value: 'voting-issue' },
+    { label: t('form.support.billing_issue', { defaultValue: 'Billing issue' }), value: 'billing-issue' },
+    { label: t('form.support.technical_issue', { defaultValue: 'Technical issue' }), value: 'technical-issue' },
+  ]
+
+  return (
+    <SelectCustom
+      options={listSizes}
+      label={t('form.support.selector_label', { defaultValue: 'Type of Issue' })}
+      {...props}
+    />
+  )
+}
+
+const roleIcons: Record<string, JSX.Element> = {
+  Admin: <Icon as={LuKey} />,
+  Manager: <Icon as={LuUserRoundCog} />,
+  Viewer: <Icon as={LuEye} />,
+  Any: <Icon as={LuUsers} />,
+}
+
+export const createRoleDisplay = (type: 'Option' | 'SingleValue') => {
+  const BaseComponent = components[type]
+
+  return (props: any) => {
+    const { t } = useTranslation()
+    const { data } = props
+    const accessLabel = data.writePermission
+      ? t('role.full_access', { defaultValue: '(Full access)' })
+      : t('role.read_only', { defaultValue: '(Read-only)' })
+    const icon = roleIcons[data.label]
+
+    return (
+      <BaseComponent {...props}>
+        <Flex align='center' gap={2} alignItems='center'>
+          <Box as='span' role='img'>
+            {icon}
+          </Box>
+          <Text fontWeight='bold'>{data.label}</Text>
+          <Text fontSize='sm' color='gray.500'>
+            {accessLabel}
+          </Text>
+        </Flex>
+      </BaseComponent>
+    )
+  }
+}
+
+export const RoleSelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) => {
+  const { t } = useTranslation()
+  const { data = [], isLoading: rolesLoading, isError: rolesError, error: rolesFetchError } = useRoles()
+
+  const roles: SelectOptionType[] = data.map((role: any) => ({
+    label: role.name,
+    value: role.role,
+    writePermission: role.writePermission,
+  }))
+  const defaultVal = roles.find((role: RoleOptionType) => role.value === 'viewer')
+
+  if (rolesError) return <Alert status='error'>{rolesFetchError?.message || t('error.loading_roles')}</Alert>
+
+  return (
+    <SelectCustom
+      isLoading={rolesLoading}
+      options={roles}
+      label={t('role_selector.selector_label', { defaultValue: 'Role' })}
+      components={{ SingleValue: createRoleDisplay('SingleValue'), Option: createRoleDisplay('Option') }}
+      defaultValue={defaultVal}
+      controller={{ defaultValue: defaultVal }}
+      menuPortalTarget={document.body}
+      styles={{
+        menuPortal: (base) => ({ ...base, zIndex: 1600 }),
+      }}
       {...props}
     />
   )
