@@ -6,13 +6,6 @@ import { Link as ReactRouterLink, generatePath, matchPath, useLocation } from 'r
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~src/router/routes'
 
-type MenuItems = {
-  label: string
-  icon?: any
-  route?: string
-  children?: MenuItem[]
-}
-
 type MenuItem = {
   label: string
   icon?: any
