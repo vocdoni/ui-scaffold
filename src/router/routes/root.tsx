@@ -3,12 +3,8 @@ import { VocdoniSDKClient } from '@vocdoni/sdk'
 import { lazy } from 'react'
 import { Params } from 'react-router-dom'
 // These aren't lazy loaded since they are main layouts and related components
-import UseCases from '~components/UseCases'
-import UseCase from '~components/UseCases/view'
 import ErrorElement from '~elements/Error'
 import Layout from '~elements/Layout'
-import PlansPublicPage from '~elements/plans'
-import { StripeCheckout, StripeReturn } from '~elements/Stripe'
 import ProtectedRoutes from '~src/router/ProtectedRoutes'
 import { Routes } from '.'
 import { SuspenseLoader } from '../SuspenseLoader'
@@ -19,6 +15,11 @@ const Home = lazy(() => import('~components/Home'))
 const NotFound = lazy(() => import('~elements/NotFound'))
 const Process = lazy(() => import('~elements/processes/view'))
 const OrganizationView = lazy(() => import('~elements/organization/view'))
+const PlansPublicPage = lazy(() => import('~elements/plans'))
+const UseCases = lazy(() => import('~components/UseCases'))
+const UseCase = lazy(() => import('~components/UseCases/view'))
+const StripeCheckout = lazy(() => import('~elements/Stripe').then((module) => ({ default: module.StripeCheckout })))
+const StripeReturn = lazy(() => import('~elements/Stripe').then((module) => ({ default: module.StripeReturn })))
 
 // others
 const Terms = lazy(() => import('~components/TermsAndPrivacy/Terms'))
@@ -62,11 +63,19 @@ const RootElements = (client: VocdoniSDKClient) => [
     ...ProtectedRoutes([
       {
         path: Routes.stripe.checkout,
-        element: <StripeCheckout />,
+        element: (
+          <SuspenseLoader>
+            <StripeCheckout />
+          </SuspenseLoader>
+        ),
       },
       {
         path: Routes.stripe.return,
-        element: <StripeReturn />,
+        element: (
+          <SuspenseLoader>
+            <StripeReturn />
+          </SuspenseLoader>
+        ),
         errorElement: <ErrorElement />,
       },
     ]),

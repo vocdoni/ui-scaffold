@@ -3,12 +3,6 @@ import { useQueryClient } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { lazy } from 'react'
 import { LoaderFunctionArgs, Navigate, Params } from 'react-router-dom'
-import OrganizationEdit from '~components/Organization/Dashboard/Organization'
-import SubscriptionPage from '~components/Organization/Dashboard/Subscription'
-import OrganizationSupport from '~components/Organization/Dashboard/Support'
-import OrganizationTeam from '~components/Organization/Dashboard/Team'
-import { Profile } from '~elements/dashboard/profile'
-import Settings from '~elements/dashboard/settings'
 import Error from '~elements/Error'
 import LayoutDashboard from '~elements/LayoutDashboard'
 import { paginatedElectionsQuery } from '~src/queries/organization'
@@ -24,6 +18,12 @@ const DashboardCreateOrg = lazy(() => import('~elements/dashboard/organization/c
 const DashboardProcesses = lazy(() => import('~elements/dashboard/processes'))
 const DashboardProcessView = lazy(() => import('~elements/dashboard/processes/view'))
 const ProcessCreate = lazy(() => import('~elements/dashboard/processes/create'))
+const OrganizationEdit = lazy(() => import('~components/Organization/Dashboard/Organization'))
+const SubscriptionPage = lazy(() => import('~components/Organization/Dashboard/Subscription'))
+const OrganizationSupport = lazy(() => import('~components/Organization/Dashboard/Support'))
+const OrganizationTeam = lazy(() => import('~components/Organization/Dashboard/Team'))
+const Profile = lazy(() => import('~elements/dashboard/profile'))
+const Settings = lazy(() => import('~elements/dashboard/settings'))
 
 // others
 const Dashboard = lazy(() => import('~elements/dashboard'))
