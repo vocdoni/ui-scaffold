@@ -10,6 +10,7 @@ export enum ApiEndpoints {
   Organizations = 'organizations',
   OrganizationsRoles = 'organizations/roles',
   OrganizationSubscription = 'organizations/{address}/subscription',
+  OrganizationsTicket = 'organizations/{address}/ticket',
   Password = 'users/password',
   PasswordRecovery = 'users/password/recovery',
   PasswordReset = 'users/password/reset',

@@ -13,20 +13,31 @@ import {
   Textarea,
   VStack,
 } from '@chakra-ui/react'
-import { FormProvider, useForm } from 'react-hook-form'
+import { useMutation, UseMutationOptions } from '@tanstack/react-query'
+import { useClient } from '@vocdoni/react-providers'
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { LuInfo, LuLock, LuSparkles } from 'react-icons/lu'
 import { generatePath, Link as ReactRouterLink } from 'react-router-dom'
 import { useSaasAccount } from '~components/Account/useSaasAccount'
+import { ApiEndpoints } from '~components/Auth/api'
 import { useSubscription } from '~components/Auth/Subscription'
+import { useAuth } from '~components/Auth/useAuth'
+import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import InputBasic from '~components/Layout/InputBasic'
 import { IssueTypeSelector, SelectOptionType } from '~components/Layout/SaasSelector'
 import { Routes } from '~src/router/routes'
 import { maskValue } from '~utils/strings'
 
 type FormData = {
-  name: string
-  issueType: SelectOptionType
+  title: string
+  type: SelectOptionType
+  description: string
+}
+
+type SupportTicket = {
+  title: string
+  type: string
   description: string
 }
 
@@ -57,14 +68,46 @@ const OrganizationSupport = () => {
   )
 }
 
+const useSendSupportTicket = (options?: Omit<UseMutationOptions<void, Error, SupportTicket>, 'mutationFn'>) => {
+  const { bearedFetch } = useAuth()
+  const { account } = useClient()
+
+  return useMutation<void, Error, SupportTicket>({
+    mutationFn: (params: SupportTicket) =>
+      bearedFetch<void>(ApiEndpoints.OrganizationsTicket.replace('{address}', account?.address), {
+        body: params,
+        method: 'POST',
+      }),
+    ...options,
+  })
+}
+
 const SupportTicketForm = () => {
   const { t } = useTranslation()
   const methods = useForm<FormData>({})
-  const { handleSubmit, register } = methods
+  const { handleSubmit, register, reset } = methods
+  const { mutateAsync, isError, error, isSuccess } = useSendSupportTicket({
+    onSuccess: () => {
+      reset()
+    },
+  })
+
+  const onSubmit: SubmitHandler<FormData> = async (values: FormData) => {
+    const ticket = {
+      ...values,
+      type: values.type?.value,
+    }
+    try {
+      await mutateAsync(ticket)
+    } catch (e) {
+      console.error('Form submit failed:', e)
+    } finally {
+    }
+  }
 
   return (
     <FormProvider {...methods}>
-      <Box as='form' p={6} borderWidth='1px' borderRadius='lg' onSubmit={handleSubmit((data) => console.log(data))}>
+      <Box as='form' p={6} borderWidth='1px' borderRadius='lg' onSubmit={handleSubmit(onSubmit)}>
         <Heading size='md' mb={2}>
           {t('form.support.open_ticket', { defaultValue: 'Open a Support Ticket' })}
         </Heading>
@@ -75,14 +118,14 @@ const SupportTicketForm = () => {
         </Text>
         <VStack spacing={4} align='stretch'>
           <InputBasic
-            formValue='name'
+            formValue='title'
             label={t('form.support.name', { defaultValue: 'Name' })}
             placeholder={t('form.support.name_placeholder', {
               defaultValue: 'Your Name',
             })}
             required
           />
-          <IssueTypeSelector name='issueType' required />
+          <IssueTypeSelector name='type' required />
           <FormControl isRequired={true}>
             <FormLabel>{t('form.support.description', { defaultValue: 'Description' })}</FormLabel>
             <Textarea
@@ -93,6 +136,13 @@ const SupportTicketForm = () => {
           <Button type='submit' colorScheme='blackAlpha' mt={4}>
             {t('form.support.submit_ticket', { defaultValue: 'Submit Ticket' })}
           </Button>
+          <FormSubmitMessage
+            // isLoading={isPending}
+            isError={isError}
+            error={error}
+            isSuccess={isSuccess}
+            success={t('edit_saas_profile.edited_successfully', { defaultValue: 'Updated successfully' })}
+          />
         </VStack>
       </Box>
     </FormProvider>
