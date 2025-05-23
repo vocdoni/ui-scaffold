@@ -451,11 +451,13 @@ export const colors = {
           tr_even: colorsBase.white.pure,
           tr_odd: colorsBase.white.dark,
           hover: '#cce5de',
+          border: '#dfdfdf',
         },
         dark: {
           tr_even: colorsBase.blue.grayish,
           tr_odd: colorsBase.blue.dark,
           hover: '#193d32',
+          border: '#606060',
         },
       },
     },
