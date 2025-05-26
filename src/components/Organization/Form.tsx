@@ -15,7 +15,7 @@ import InputBasic from '~components/Layout/InputBasic'
 import {
   CountrySelector,
   MembershipSizeSelector,
-  OrganzationTypeSelector,
+  OrganizationTypeSelector,
   SelectOptionType,
 } from '~components/Layout/SaasSelector'
 
@@ -82,7 +82,7 @@ export const PrivateOrgForm = ({ minified }: { minified?: boolean }) => {
       )}
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6}>
         <MembershipSizeSelector name='size' required />
-        <OrganzationTypeSelector name='type' required />
+        <OrganizationTypeSelector name='type' required />
         <CountrySelector name='country' required />
       </SimpleGrid>
       {!minified && (
