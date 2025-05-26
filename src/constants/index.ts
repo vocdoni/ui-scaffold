@@ -41,10 +41,10 @@ export enum SubscriptionPermission {
 }
 
 export enum PlanId {
-  Essential = 0,
-  Premium = 1,
-  Free = 2,
-  Custom = 3,
+  Essential = 1,
+  Premium = 2,
+  Free = 3,
+  Custom = 4,
 }
 
 const evocdoni = import.meta.env.VOCDONI_ENVIRONMENT
