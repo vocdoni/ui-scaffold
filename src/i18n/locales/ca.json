@@ -305,6 +305,7 @@
     "invalid_weight_type": "S'esperava trobar el pes a la primera col·lumna a les línies {{rows, list}}, però s'han trobat dades inesperades",
     "loading_page": "Càrrega de pàgina errònia",
     "loading_roles": "Carregant rols",
+    "loading_types": "",
     "not_found": "No podem trobar aquesta pàgina",
     "return_to_home": "Ves a l'inici",
     "title": "Error"
@@ -523,13 +524,13 @@
       "billing_issue": "Billing issue",
       "description": "Description",
       "description_placeholder": "Describe your issue in detail",
-      "name": "Name",
-      "name_placeholder": "Your Name",
       "open_ticket": "Open a Support Ticket",
       "selector_label": "Type of Issue",
       "submit_ticket": "Submit Ticket",
       "subtitle": "Submit a ticket and our support team will get back to you as soon as possible.",
       "technical_issue": "Technical issue",
+      "title": "Title",
+      "title_placeholder": "Briefly describe your issue",
       "voting_issue": "Voting issue"
     }
   },
@@ -1019,8 +1020,6 @@
   "open_in_explorer": "Obre a l'explorador",
   "or": "o continua amb",
   "org_type_selector": {
-    "community": "Community",
-    "company": "Company",
     "selector_label": "Select Organization Type"
   },
   "organization": {
@@ -1369,7 +1368,19 @@
   "rights": "© 2024 Associació Vocdoni. Tots els drets reservats.",
   "role": {
     "full_access": "(Full access)",
-    "read_only": "(Read-only)"
+    "read_only": "(Read-only)",
+    "read_permission": "Read-only access",
+    "update": {
+      "cancel": "Cancel",
+      "current_role": "Current Role",
+      "error": "Error updating role",
+      "new_role": "New role",
+      "save": "Update role",
+      "subtitle": "Update the permissions for this team member by changing their role.",
+      "success": "Role updated successfully",
+      "title": "Change team member role"
+    },
+    "write_permission": "Can create and edit content"
   },
   "role_selector": {
     "selector_label": "Role"
@@ -1426,6 +1437,14 @@
   "support": "Support",
   "switch_organization": "Canvia d'organització",
   "team": {
+    "actions": {
+      "change_role": "Change Role",
+      "remove_member": "Remove Member",
+      "resend_invitation": "Resend Invitation",
+      "resend_invitation_error": "Error resending invitation",
+      "resend_invitation_success": "Invitation resent successfully",
+      "title": "Actions"
+    },
     "expires_in": "Expires in {{time}}",
     "only_one_member": {
       "add_first_member": "Add Your First Team Member",
@@ -1433,6 +1452,14 @@
       "title": "No team members"
     },
     "pending_invitation": "Invitation Pending",
+    "remove_member": {
+      "cancel": "Cancel",
+      "confirm": "Remove",
+      "confirmation": "This will remove {{name}} from your team. They will no longer have access to your organization.",
+      "error": "Error removing member",
+      "success": "Member removed successfully",
+      "title": "Are you sure?"
+    },
     "title": "Equip"
   },
   "terms": {
