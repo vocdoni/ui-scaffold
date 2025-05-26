@@ -53,6 +53,9 @@
     "votes_weight_other": "<span>{{ count }}</span> <text>votos</text>",
     "voting_anonymous_advice": "Por favor, espera mientras sucede la magia 🪄.\nEsto puede tardar varios minutos; no cierres la ventana."
   },
+  "auth": {
+    "go_home": "Home"
+  },
   "avatar": {
     "label": "Avatar de la organización"
   },
@@ -103,6 +106,7 @@
     "title": "Calendar"
   },
   "call_us": "Llámanos",
+  "cancel": "Cancel",
   "cc": {
     "actions": {
       "cancel": "Cancelar el proceso inmediatamente, sin permitir nuevos votos y sin contar ningún resultado (precaución: no puede revertirse)",
@@ -1050,7 +1054,6 @@
       "organization_id_description": "Please provide this ID when contacting support",
       "priority_support_line": "Priority Support Line",
       "priority_support_line_description": "Available Monday–Friday, 9:00–18:00 CET",
-      "schedule_call": "Schedule a Call",
       "title": "Phone Support",
       "unlock": "Unlock Phone Support"
     },
@@ -1385,11 +1388,11 @@
   "role_selector": {
     "selector_label": "Role"
   },
-  "schedule_a_call": "Programar una llamada",
   "section": {
     "help": "Ayuda",
     "platform": "Platforma"
   },
+  "send_invitation": "Send invitation",
   "session_expired": "Sesión expirada",
   "session_expired_description": "La sesión puede haber expirado y no se pudo actualizar, por favor inicia sesión de nuevo",
   "settings": "Configuración",
@@ -1418,7 +1421,6 @@
   "signup_title": "Bienvenido",
   "start_date": "Start date",
   "start_time": "Start time",
-  "submit": "Envía",
   "subscribe": "Suscribirse",
   "subscription": {
     "change_plan_button": "Cambiar",
