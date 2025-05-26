@@ -31,7 +31,7 @@ import { CallbackProvider, useCallbackContext } from '~utils/callback-provider'
 import { useAllTeamMembers } from './Team'
 
 // Invite form component
-const InviteForm = () => {
+const InviteForm = ({ onClose }) => {
   const { t } = useTranslation()
   const toast = useToast()
   const mutation = useInviteMemberMutation()
@@ -80,9 +80,12 @@ const InviteForm = () => {
           required
         />
         <RoleSelector name='role' required />
-        <Flex justifyContent='center'>
-          <Button mx='auto' type='submit' isLoading={mutation.isPending}>
-            <Trans i18nKey='submit'>Submit</Trans>
+        <Flex justifyContent='flex-end' gap={2}>
+          <Button onClick={onClose} colorScheme='gray' variant='outline'>
+            <Trans i18nKey='cancel'>Cancel</Trans>
+          </Button>
+          <Button colorScheme='black' type='submit' isLoading={mutation.isPending}>
+            <Trans i18nKey='send_invitation'>Send invitation</Trans>
           </Button>
         </Flex>
       </Flex>
@@ -138,7 +141,7 @@ export const InviteToTeamModal = (props: ButtonProps) => {
             </ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-              <InviteForm />
+              <InviteForm onClose={onClose} />
             </ModalBody>
           </ModalContent>
         </Modal>
