@@ -119,9 +119,9 @@ const SupportTicketForm = () => {
         <VStack spacing={4} align='stretch'>
           <InputBasic
             formValue='title'
-            label={t('form.support.name', { defaultValue: 'Name' })}
-            placeholder={t('form.support.name_placeholder', {
-              defaultValue: 'Your Name',
+            label={t('form.support.title', { defaultValue: 'Title' })}
+            placeholder={t('form.support.title_placeholder', {
+              defaultValue: 'Briefly describe your issue',
             })}
             required
           />
@@ -137,7 +137,6 @@ const SupportTicketForm = () => {
             {t('form.support.submit_ticket', { defaultValue: 'Submit Ticket' })}
           </Button>
           <FormSubmitMessage
-            // isLoading={isPending}
             isError={isError}
             error={error}
             isSuccess={isSuccess}
