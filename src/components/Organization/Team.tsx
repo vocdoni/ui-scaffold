@@ -387,16 +387,11 @@ const MemberActions = ({ member }) => {
           </Text>
           {id ? (
             <>
-              <Button
-                onClick={openRoleModal}
-                leftIcon={<Icon mr={2} as={LuUserCog} />}
-                fontSize='sm'
-                variant='transparent'
-              >
+              <Button onClick={openRoleModal} leftIcon={<Icon mr={2} as={LuUserCog} />} fontSize='sm' variant='ghost'>
                 {t('team.actions.change_role', { defaultValue: 'Change Role' })}
               </Button>
               <PopoverFooter>
-                <Button variant='transparent' colorScheme='red' fontSize='sm' onClick={openRemoveModal}>
+                <Button variant='ghost' colorScheme='red' fontSize='sm' onClick={openRemoveModal}>
                   {t('team.actions.remove_member', { defaultValue: 'Remove Member' })}
                 </Button>
               </PopoverFooter>
@@ -405,7 +400,7 @@ const MemberActions = ({ member }) => {
             <Button
               leftIcon={<Icon mr={2} as={LuRefreshCw} />}
               fontSize='sm'
-              variant='transparent'
+              variant='ghost'
               onClick={resendInvitation}
             >
               {t('team.actions.resend_invitation', { defaultValue: 'Resend Invitation' })}
