@@ -111,7 +111,7 @@ export const useOrganizationTypes = () => {
   const { bearedFetch } = useAuth()
 
   return useQuery({
-    queryKey: QueryKeys.organization.roles,
+    queryKey: QueryKeys.organization.types,
     queryFn: async () => {
       const response = await bearedFetch<{ types: OrganizationType[] }>(ApiEndpoints.OrganizationsTypes)
       return response.types
