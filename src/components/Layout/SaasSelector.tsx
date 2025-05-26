@@ -93,7 +93,7 @@ export const SelectCustom = ({
   )
 }
 
-export const OrganzationTypeSelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) => {
+export const OrganizationTypeSelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) => {
   const { t } = useTranslation()
   const { data = [], isLoading, isError, error } = useOrganizationTypes()
   const orgTypes: SelectOptionType[] = data.map((type: any) => ({
@@ -281,11 +281,11 @@ export const IssueTypeSelector = ({ defaultValue, ...props }: Omit<SelectCustomP
   )
 }
 
-const roleIcons: Record<string, JSX.Element> = {
-  Admin: <Icon as={LuKey} />,
-  Manager: <Icon as={LuUserRoundCog} />,
-  Viewer: <Icon as={LuEye} />,
-  Any: <Icon as={LuUsers} />,
+export const roleIcons: Record<string, JSX.Element> = {
+  admin: <Icon as={LuKey} />,
+  manager: <Icon as={LuUserRoundCog} />,
+  viewer: <Icon as={LuEye} />,
+  any: <Icon as={LuUsers} />,
 }
 
 export const createRoleDisplay = (type: 'Option' | 'SingleValue') => {
@@ -297,7 +297,7 @@ export const createRoleDisplay = (type: 'Option' | 'SingleValue') => {
     const accessLabel = data.writePermission
       ? t('role.full_access', { defaultValue: '(Full access)' })
       : t('role.read_only', { defaultValue: '(Read-only)' })
-    const icon = roleIcons[data.label]
+    const icon = roleIcons[data.value]
 
     return (
       <BaseComponent {...props}>
