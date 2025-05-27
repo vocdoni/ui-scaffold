@@ -77,7 +77,6 @@ const simple = definePartsStyle((props) => ({
     th: {
       px: 4,
       fontWeight: '500',
-      color: '#737373',
       '&[data-is-numeric=true]': {
         textAlign: 'right',
       },
@@ -92,12 +91,11 @@ const simple = definePartsStyle((props) => ({
   tbody: {
     tr: {
       _hover: {
-        bgColor: 'rgba(245, 245, 245, 0.5)',
+        bgColor: props.colorMode === 'dark' ? 'gray.900' : 'gray.50',
       },
     },
   },
   td: {
-    color: '#0a0a0a',
     fontSize: '14px',
     px: 4,
     '&[data-is-numeric=true]': {

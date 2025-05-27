@@ -54,6 +54,9 @@ export const theme = extendTheme(vtheme, {
   styles: {
     global: (props) => ({
       ...editor,
+      body: {
+        bg: props.colorMode === 'dark' ? 'gray.650' : 'white',
+      },
       ':root': {
         '--box-shadow': '0 0 10px #e3e3e3',
         '--box-shadow-dark-mode': '0 0 10px #101010',

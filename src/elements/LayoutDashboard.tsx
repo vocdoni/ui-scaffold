@@ -43,9 +43,8 @@ const LayoutDashboard: React.FC = () => {
             {/* Top Menu */}
             <Box
               position='sticky'
-              bgColor='white'
               borderBottom='1px solid'
-              _dark={{ bgColor: 'black.650', borderBottomColor: 'black.700' }}
+              _dark={{ borderBottomColor: 'black.700' }}
               _light={{ borderBottomColor: 'gray.200' }}
               top={0}
               pr={4}
