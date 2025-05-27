@@ -23,22 +23,24 @@ const listmenu = defineStyle(({ colorMode }) => ({
 }))
 
 const sizes = {
+  lg: defineStyle({
+    py: 7,
+    px: 6,
+    fontSize: 'md',
+  }),
   md: defineStyle({
     py: 6,
     px: 5,
-    borderRadius: 'sm',
     fontSize: 'sm',
   }),
   sm: defineStyle({
     py: 5,
     px: 4,
-    borderRadius: 'sm',
     fontSize: 'sm',
   }),
   xs: defineStyle({
     py: 4,
     px: 3,
-    borderRadius: 'sm',
     fontSize: 'sm',
   }),
 }
