@@ -122,7 +122,7 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
                 placeholder={t('password_placeholder', { defaultValue: 'Enter your password' })}
                 required
               />
-              <Link as={NavLink} to={Routes.auth.passwordReset} fontSize='xs' fontWeight='bold' alignSelf='end'>
+              <Link as={NavLink} to={Routes.auth.recovery} fontSize='xs' fontWeight='bold' alignSelf='end'>
                 {t('forgot_password_title')}
               </Link>
             </Flex>
