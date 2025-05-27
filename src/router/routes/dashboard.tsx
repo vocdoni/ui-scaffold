@@ -63,6 +63,14 @@ export const useDashboardRoutes = () => {
             ),
             errorElement: <Error />,
           },
+          {
+            path: Routes.dashboard.profile,
+            element: (
+              <SuspenseLoader>
+                <Profile />
+              </SuspenseLoader>
+            ),
+          },
           // Protected routes if no account created without organization
           {
             element: (
@@ -143,14 +151,6 @@ export const useDashboardRoutes = () => {
                     ),
                   },
                 ],
-              },
-              {
-                path: Routes.dashboard.profile,
-                element: (
-                  <SuspenseLoader>
-                    <Profile />
-                  </SuspenseLoader>
-                ),
               },
               {
                 ...ProtectedRoutes([
