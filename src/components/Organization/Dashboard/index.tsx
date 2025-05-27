@@ -117,11 +117,10 @@ const Tutorial = () => {
             to={generatePath(Routes.processes.create)}
             leftIcon={<Icon as={LuPlus} />}
             colorScheme='gray'
-            size='md'
           >
             <Trans i18nKey='new_voting'>New vote</Trans>
           </Button>
-          <BookerModalButton />
+          <BookerModalButton size='sm' />
         </Flex>
       </Box>
       <Flex display={{ base: 'none', lg: 'flex' }} flex='1 1 33%' flexDirection='column'>
@@ -405,7 +404,6 @@ const QuickActions = () => {
           variant='outline'
           justifyContent='start'
           leftIcon={<Icon as={LuPlus} mr={2} />}
-          size='lg'
           fontWeight='bold'
         >
           {t('actions.create_new_vote', {
@@ -419,7 +417,6 @@ const QuickActions = () => {
           variant='outline'
           justifyContent='start'
           leftIcon={<Icon as={LuVote} mr={2} />}
-          size='lg'
           fontWeight='bold'
         >
           {t('actions.view_active_votes', {
@@ -433,7 +430,6 @@ const QuickActions = () => {
           variant='outline'
           justifyContent='start'
           leftIcon={<Icon as={LuUsers} mr={2} />}
-          size='lg'
           fontWeight='bold'
         >
           {t('actions.manage_team', {
