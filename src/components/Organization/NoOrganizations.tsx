@@ -11,7 +11,7 @@ export const NoOrganizations = () => {
       <Button as={ReactRouterLink} to={Routes.plans} alignSelf='end'>
         <Trans i18nKey='view_plans_and_pricing'>View Plans & Pricing</Trans>
       </Button>
-      <Card variant='no-elections' minH='100%' maxW='650' m='80px auto'>
+      <Card variant='no-elections' minH='100%' maxW='650' mx='auto'>
         <CardBody>
           <Flex justifyContent={'center'}>
             <Img src={empty} _dark={{ filter: 'invert(70%)' }} />
