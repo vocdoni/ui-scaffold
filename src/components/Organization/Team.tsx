@@ -22,15 +22,19 @@ import {
   PopoverFooter,
   PopoverTrigger,
   Progress,
+  Radio,
   RadioGroup,
+  RadioProps,
   Stack,
   Text,
   useDisclosure,
+  useRadioGroupContext,
   useToast,
 } from '@chakra-ui/react'
 import { useMutation, useQuery, useQueryClient, UseQueryOptions } from '@tanstack/react-query'
 import { enforceHexPrefix, useClient } from '@vocdoni/react-providers'
 import { formatDistanceToNow } from 'date-fns'
+import { ReactNode } from 'react'
 import { Controller, FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuEllipsis, LuMail, LuPlus, LuRefreshCw, LuUserCog, LuUserPlus } from 'react-icons/lu'
@@ -38,10 +42,11 @@ import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import QueryDataLayout from '~components/Layout/QueryDataLayout'
 import { roleIcons } from '~components/Layout/SaasSelector'
+import { useProfile } from '~src/queries/account'
 import { QueryKeys } from '~src/queries/keys'
 import { useInviteMemberMutation, useRemoveMemberMutation, useRoles } from '~src/queries/organization'
 import { ucfirst } from '~utils/strings'
-import { InviteToTeamModal, RoleRadio } from './Invite'
+import { InviteToTeamModal } from './Invite'
 
 // Define types
 type UserInfo = {
@@ -64,6 +69,12 @@ type TeamMembersResponse = {
 
 type PendingTeamMembersResponse = {
   pending: Member[]
+}
+
+type RoleRadioProps = RadioProps & {
+  fieldName: ReactNode
+  description: ReactNode
+  value: string
 }
 
 interface UpdateRoleParams {
@@ -159,7 +170,39 @@ const useUpdateRole = () => {
   })
 }
 
-const RoleRadioGroup = () => {
+const RoleRadio = ({ fieldName: title, description, value, isDisabled, ...props }: RoleRadioProps) => {
+  const group = useRadioGroupContext()
+  const isSelected = group?.value === value
+
+  return (
+    <Box
+      as='label'
+      border='1px solid'
+      borderRadius='md'
+      borderColor={isSelected ? 'gray.500' : 'gray.200'}
+      bg={isSelected && 'gray.50'}
+      p={2}
+      cursor={isDisabled ? 'not-allowed' : 'pointer'}
+      opacity={isDisabled ? 0.6 : 1}
+      _hover={!isDisabled ? { borderColor: 'gray.400' } : undefined}
+    >
+      <Flex align='start' gap={4}>
+        <Radio value={value} isChecked={isSelected} mt={1} isDisabled={isDisabled} {...props} />
+        <Box flex='1'>
+          <Flex gap={2} align='center' mb={1}>
+            <Text>{roleIcons[value]}</Text>
+            <Text fontWeight='semibold'>{title}</Text>
+          </Flex>
+          <Text fontSize='sm' color='gray.600'>
+            {description}
+          </Text>
+        </Box>
+      </Flex>
+    </Box>
+  )
+}
+
+const RoleRadioGroup = ({ currentRole }) => {
   const { t } = useTranslation()
   const { data: roles, isLoading: rolesLoading, isError: rolesError, error: rolesFetchError } = useRoles()
   const { control } = useFormContext()
@@ -181,6 +224,7 @@ const RoleRadioGroup = () => {
                   key={role.role}
                   value={role.role}
                   fieldName={role.name}
+                  isDisabled={role.role === currentRole}
                   description={
                     role.writePermission ? (
                       <Trans i18nKey='role.write_permission'>Can create and edit content</Trans>
@@ -232,7 +276,7 @@ const ChangeRoleForm = ({ member, onSubmit, onClose }) => {
             <Text fontWeight='semibold'>{ucfirst(currentRole)}</Text>
           </Flex>
         </Box>
-        <RoleRadioGroup />
+        <RoleRadioGroup currentRole={currentRole} />
         <Flex gap={2} justifyContent='flex-end' mt={4}>
           <Button colorScheme='black' onClick={onClose}>
             {t('role.update.cancel', { defaultValue: 'Cancel' })}
@@ -416,11 +460,17 @@ const MemberActions = ({ member }) => {
   const { t } = useTranslation()
   const { isOpen: isRoleModalOpen, onOpen: openRoleModal, onClose: closeRoleModal } = useDisclosure()
   const { isOpen: isRemoveModalOpen, onOpen: openRemoveModal, onClose: closeRemoveModal } = useDisclosure()
+  const { data: profile, isLoading } = useProfile()
   const hasId = Boolean(member.info?.id)
+  const isCurrentUser = member?.info.id === profile?.id
+
+  if (isLoading) return <Progress isIndeterminate />
+
+  if (isCurrentUser) return null
 
   return (
     <>
-      <Popover isLazy>
+      <Popover placement='bottom-end' isLazy>
         <PopoverTrigger>
           <IconButton icon={<Icon as={LuEllipsis} />} ml='auto' variant='transparent' aria-label='Options' />
         </PopoverTrigger>
