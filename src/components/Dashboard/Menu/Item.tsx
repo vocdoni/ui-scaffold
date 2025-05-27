@@ -27,7 +27,7 @@ export const DashboardMenuItemButton = forwardRef(
           if (isDisabled) e.preventDefault()
         }}
         variant='listmenu'
-        size='xs'
+        size='sm'
         colorScheme='gray'
         justifyContent='start'
         gap={4}
