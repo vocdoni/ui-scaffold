@@ -1588,7 +1588,7 @@
     "invalid_verification": "Invalid verification request",
     "missing_email": "No email address provided for verification",
     "resend_confirmation_mail": "Resend Email",
-    "sent_to_email": "Email sent to {email}",
+    "sent_to_email": "Email sent to {{email}}",
     "verification_email_is_sent": "A verification email has been sent to:",
     "verify_code": "Verify",
     "verify_your_email": "Verify your email"
