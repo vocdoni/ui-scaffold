@@ -1,8 +1,8 @@
-import { Button, Flex, Link, Text } from '@chakra-ui/react'
+import { Button, Flex } from '@chakra-ui/react'
 import { useMutation } from '@tanstack/react-query'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { Link as RouterLink, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Routes } from '~src/router/routes'
 import InputBasic from '../Layout/InputBasic'
 import { api, ApiEndpoints } from './api'
@@ -57,14 +57,6 @@ const PasswordForgotForm: React.FC = () => {
           </Button>
         </Flex>
       </FormProvider>
-      <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%' mt={0}>
-        <Text fontWeight='400' fontSize='sm'>
-          {t('already_member')}
-          <Link as={RouterLink} to={Routes.auth.signIn} ml={1} fontWeight={500}>
-            {t('signin')}
-          </Link>
-        </Text>
-      </Flex>
     </>
   )
 }
