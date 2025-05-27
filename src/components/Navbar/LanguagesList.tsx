@@ -5,21 +5,25 @@ import {
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
+  Box,
   Button,
+  Flex,
+  FormControl,
+  FormLabel,
+  Icon,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
+  Text,
 } from '@chakra-ui/react'
+import { Select } from 'chakra-react-select'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaGlobeAmericas } from 'react-icons/fa'
+import { LuCheck } from 'react-icons/lu'
+import i18n from '~i18n'
 import { LanguagesSlice } from '~i18n/languages.mjs'
-
-import { FormControl, FormLabel } from '@chakra-ui/react'
-import { Select } from 'chakra-react-select'
-
 import { selectStyles } from '~theme/selectStyles'
-import { formatLanguageOptionLabel } from '~theme/selectStylesLabel'
 
 export const LanguagesList = ({ closeOnSelect }: { closeOnSelect: boolean }) => {
   const { i18n } = useTranslation()
@@ -78,6 +82,22 @@ interface LanguageOption {
   value: string
   label: string
 }
+
+const LanguageOptionLabel = ({ value, label }, { context }) => {
+  const isSelected = value === i18n.language
+
+  return (
+    <Flex alignItems='center' gap={2} w='full' px={1}>
+      {context === 'menu' && (
+        <Box w='1rem' display='flex' alignItems='center' justifyContent='center'>
+          {isSelected && <Icon as={LuCheck} boxSize='3' />}
+        </Box>
+      )}
+      <Text w='full'>{label}</Text>
+    </Flex>
+  )
+}
+
 export const LanguageListDashboard = ({ ...props }) => {
   const { t, i18n } = useTranslation()
 
@@ -104,10 +124,11 @@ export const LanguageListDashboard = ({ ...props }) => {
           }
         }}
         isClearable={false}
+        isSearchable={false}
         size='sm'
         placeholder={t('form.choose_an_option', { defaultValue: 'Choose an option' })}
         menuPlacement='top'
-        formatOptionLabel={formatLanguageOptionLabel(i18n)}
+        formatOptionLabel={LanguageOptionLabel}
         chakraStyles={selectStyles}
       />
     </FormControl>
