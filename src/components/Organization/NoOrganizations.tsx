@@ -8,7 +8,7 @@ import empty from '/assets/illustrations/9.png'
 export const NoOrganizations = () => {
   return (
     <Flex flexDirection={'column'}>
-      <Button as={ReactRouterLink} to={Routes.plans} alignSelf='end'>
+      <Button as={ReactRouterLink} to={Routes.plans} alignSelf='end' colorScheme='gray' size='xs'>
         <Trans i18nKey='view_plans_and_pricing'>View Plans & Pricing</Trans>
       </Button>
       <Card variant='no-elections' minH='100%' maxW='650' mx='auto'>

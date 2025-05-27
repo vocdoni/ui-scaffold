@@ -1,23 +1,18 @@
-import { Box, Button, Flex, Icon, ListItem, Text, Tooltip, UnorderedList } from '@chakra-ui/react'
-import React, { useContext } from 'react'
+import { Box, Flex, ListItem, Text, UnorderedList } from '@chakra-ui/react'
+import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { LuBookOpen, LuHouse, LuLifeBuoy, LuPhone, LuSettings, LuUsers, LuVote } from 'react-icons/lu'
-import { Link as ReactRouterLink, generatePath, matchPath, useLocation } from 'react-router-dom'
+import { Link as ReactRouterLink, matchPath, useLocation } from 'react-router-dom'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~src/router/routes'
-
-type MenuItem = {
-  label: string
-  icon?: any
-  route?: string
-}
+import { DashboardMenuItem, DashboardMenuItemButton } from './Item'
 
 export const DashboardMenuOptions = () => {
   const { t } = useTranslation()
   const location = useLocation()
   const { reduced } = useContext(DashboardLayoutContext)
 
-  const menuItemsPlatform: MenuItem[] = [
+  const menuItemsPlatform: DashboardMenuItem[] = [
     {
       label: t('organization.dashboard'),
       icon: LuHouse,
@@ -39,7 +34,7 @@ export const DashboardMenuOptions = () => {
       route: Routes.dashboard.settings.base,
     },
   ]
-  const menuItemsHelp: MenuItem[] = [
+  const menuItemsHelp: DashboardMenuItem[] = [
     {
       label: t('support'),
       icon: LuLifeBuoy,
@@ -71,53 +66,13 @@ export const DashboardMenuOptions = () => {
             const as = isDisabled ? 'button' : ReactRouterLink
 
             return (
-              <React.Fragment key={index}>
-                {reduced ? (
-                  <ListItem>
-                    <Tooltip label={item.label} placement='right-end'>
-                      <Button
-                        as={as}
-                        {...(!isDisabled && { to: generatePath(item.route) })}
-                        onClick={(e) => {
-                          if (isDisabled) e.preventDefault()
-                        }}
-                        leftIcon={<Icon as={item.icon} width='16px' height='16px' />}
-                        variant='listmenu'
-                        size='xs'
-                        colorScheme='gray'
-                        justifyContent='start'
-                        gap={4}
-                        p={2}
-                        isDisabled={isDisabled}
-                      >
-                        {!reduced && item.label}
-                      </Button>
-                    </Tooltip>
-                  </ListItem>
-                ) : (
-                  <ListItem>
-                    <Button
-                      as={as}
-                      {...(!isDisabled && { to: generatePath(item.route) })}
-                      onClick={(e) => {
-                        if (isDisabled) e.preventDefault()
-                      }}
-                      leftIcon={<Icon as={item.icon} width='16px' height='16px' />}
-                      variant='listmenu'
-                      size='xs'
-                      colorScheme='gray'
-                      justifyContent='start'
-                      gap={4}
-                      p={2}
-                      fontWeight={400}
-                      isActive={Boolean(matchPath({ path: item.route || '', end: true }, location.pathname)) && true}
-                      isDisabled={isDisabled}
-                    >
-                      {!reduced && item.label}
-                    </Button>
-                  </ListItem>
-                )}
-              </React.Fragment>
+              <ListItem key={index}>
+                <DashboardMenuItemButton
+                  item={item}
+                  reduced={reduced}
+                  isActive={Boolean(matchPath({ path: item.route || '', end: true }, location.pathname)) && true}
+                />
+              </ListItem>
             )
           })}
         </UnorderedList>
@@ -130,29 +85,9 @@ export const DashboardMenuOptions = () => {
 
           <UnorderedList display={'flex'} flexDirection={'column'} gap={1} listStyleType={"''"} ml={0}>
             {menuItemsHelp.map((item, index) => {
-              const isDisabled = !item.route
-              const as = isDisabled ? 'button' : ReactRouterLink
               return (
                 <ListItem key={index}>
-                  <Button
-                    as={as}
-                    {...(!isDisabled && { to: generatePath(item.route) })}
-                    onClick={(e) => {
-                      if (isDisabled) e.preventDefault()
-                    }}
-                    leftIcon={<Icon as={item.icon} width='16px' height='16px' />}
-                    variant='listmenu'
-                    size='xs'
-                    colorScheme='gray'
-                    justifyContent={'start'}
-                    gap={4}
-                    p={2}
-                    fontWeight={400}
-                    isActive={Boolean(matchPath({ path: item.route || '', end: true }, location.pathname)) && true}
-                    isDisabled
-                  >
-                    {item.label}
-                  </Button>
+                  <DashboardMenuItemButton item={item} reduced={reduced} />
                 </ListItem>
               )
             })}
