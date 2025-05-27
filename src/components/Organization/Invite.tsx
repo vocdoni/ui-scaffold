@@ -1,9 +1,7 @@
 import {
-  Box,
   Button,
   ButtonProps,
   Flex,
-  FlexProps,
   Heading,
   Modal,
   ModalBody,
@@ -11,19 +9,16 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
-  Radio,
   Text,
   useDisclosure,
-  useRadioGroupContext,
   useToast,
 } from '@chakra-ui/react'
-import { ReactNode } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { HSeparator } from '~components/Auth/SignIn'
 import { useSubscription } from '~components/Auth/Subscription'
 import InputBasic from '~components/Layout/InputBasic'
-import { roleIcons, RoleSelector } from '~components/Layout/SaasSelector'
+import { RoleSelector } from '~components/Layout/SaasSelector'
 import { usePricingModal } from '~components/Pricing/use-pricing-modal'
 import { SubscriptionPermission } from '~constants'
 import { useInviteMemberMutation } from '~src/queries/organization'
@@ -147,41 +142,5 @@ export const InviteToTeamModal = (props: ButtonProps) => {
         </Modal>
       </CallbackProvider>
     </>
-  )
-}
-
-type RoleRadioProps = FlexProps & {
-  fieldName: ReactNode
-  description: ReactNode
-  value: string
-}
-
-export const RoleRadio = ({ fieldName: title, description, value, ...props }: RoleRadioProps) => {
-  const group = useRadioGroupContext()
-
-  return (
-    <Box
-      as='label'
-      border='1px solid'
-      borderRadius='md'
-      borderColor={group?.value === value ? 'gray.500' : 'gray.200'}
-      bg={group?.value === value && 'gray.50'}
-      p={2}
-      cursor='pointer'
-      _hover={{ borderColor: 'gray.400' }}
-    >
-      <Flex align='start' gap={4}>
-        <Radio value={value} isChecked={group?.value === value} mt={1} {...props} />
-        <Box flex='1'>
-          <Flex gap={2} align='center' mb={1}>
-            <Text>{roleIcons[value]}</Text>
-            <Text fontWeight='semibold'>{title}</Text>
-          </Flex>
-          <Text fontSize='sm' color='gray.600'>
-            {description}
-          </Text>
-        </Box>
-      </Flex>
-    </Box>
   )
 }
