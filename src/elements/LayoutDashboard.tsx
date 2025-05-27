@@ -71,7 +71,7 @@ const LayoutDashboard: React.FC = () => {
 
               <Flex gap={2} ml='auto' alignItems='center'>
                 <BookerModalButton leftIcon={<Icon as={LuCircleHelp} />} colorScheme='gray' variant='solid' size='sm'>
-                  <Text as='span' display={{ base: 'none', lg: 'flex' }} fontSize='sm' ml={2}>
+                  <Text as='span' display={{ base: 'none', lg: 'flex' }} fontSize='sm'>
                     <Trans i18nKey='do_you_need_help'>Do you need help?</Trans>
                   </Text>
                 </BookerModalButton>
@@ -82,7 +82,7 @@ const LayoutDashboard: React.FC = () => {
                   colorScheme='black'
                   size='sm'
                 >
-                  <Text as='span' fontSize='sm' display={{ base: 'none', lg: 'flex' }} ml={2}>
+                  <Text as='span' fontSize='sm' display={{ base: 'none', lg: 'flex' }}>
                     <Trans i18nKey='new_voting'>New vote</Trans>
                   </Text>
                 </Button>
