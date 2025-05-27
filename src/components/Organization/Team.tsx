@@ -31,7 +31,7 @@ import {
 import { useMutation, useQuery, useQueryClient, UseQueryOptions } from '@tanstack/react-query'
 import { enforceHexPrefix, useClient } from '@vocdoni/react-providers'
 import { formatDistanceToNow } from 'date-fns'
-import { Controller, FormProvider, useForm } from 'react-hook-form'
+import { Controller, FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuEllipsis, LuMail, LuPlus, LuRefreshCw, LuUserCog, LuUserPlus } from 'react-icons/lu'
 import { ApiEndpoints } from '~components/Auth/api'
@@ -159,15 +159,99 @@ const useUpdateRole = () => {
   })
 }
 
-export const ChangeRoleModal = ({ isOpen, onClose, member, ...props }) => {
-  const toast = useToast()
+const RoleRadioGroup = () => {
   const { t } = useTranslation()
   const { data: roles, isLoading: rolesLoading, isError: rolesError, error: rolesFetchError } = useRoles()
+  const { control } = useFormContext()
+
+  if (rolesError) return <Alert status='error'>{rolesFetchError?.message || t('error.loading_roles')}</Alert>
+
+  return (
+    <FormControl>
+      <FormLabel fontSize='sm'>{t('role.update.new_role', { defaultValue: 'New role' })}</FormLabel>
+      {rolesLoading && <Progress isIndeterminate />}
+      <Controller
+        name='role'
+        control={control}
+        render={({ field }) => (
+          <RadioGroup {...field} colorScheme='gray'>
+            <Stack direction='column' gap={2}>
+              {roles?.map((role) => (
+                <RoleRadio
+                  key={role.role}
+                  value={role.role}
+                  fieldName={role.name}
+                  description={
+                    role.writePermission ? (
+                      <Trans i18nKey='role.write_permission'>Can create and edit content</Trans>
+                    ) : (
+                      <Trans i18nKey='role.read_permission'>Read-only access</Trans>
+                    )
+                  }
+                />
+              ))}
+            </Stack>
+          </RadioGroup>
+        )}
+      />
+    </FormControl>
+  )
+}
+
+const ChangeRoleForm = ({ member, onSubmit, onClose }) => {
+  const { t } = useTranslation()
   const methods = useForm()
-  const updateRole = useUpdateRole()
 
   const currentRole = member?.role
   const fullName = `${member?.info?.firstName} ${member?.info?.lastName}`
+
+  return (
+    <FormProvider {...methods}>
+      <Flex as='form' direction='column' gap={4} onSubmit={methods.handleSubmit(onSubmit)}>
+        <Flex border='1px solid' borderColor='gray.200' p={4} borderRadius='md' alignItems='center' bg='gray.50'>
+          <Avatar name={fullName} />
+          <Box ml='3'>
+            <HStack align='center'>
+              <Text fontWeight='bold'>{fullName}</Text>
+            </HStack>
+            <Flex direction='column'>
+              <Text fontSize='sm' color='gray.500'>
+                {member?.info.email}
+              </Text>
+            </Flex>
+          </Box>
+        </Flex>
+        <Text fontSize='sm' fontWeight='bold'>
+          {t('role.update.current_role', {
+            defaultValue: 'Current Role',
+          })}
+        </Text>
+        <Box p={2} border='1px solid' borderColor='gray.200' borderRadius='md'>
+          <Flex gap={2} align='center'>
+            <Text>{roleIcons[currentRole]}</Text>
+            <Text fontWeight='semibold'>{ucfirst(currentRole)}</Text>
+          </Flex>
+        </Box>
+        <RoleRadioGroup />
+        <Flex gap={2} justifyContent='flex-end' mt={4}>
+          <Button colorScheme='black' onClick={onClose}>
+            {t('role.update.cancel', { defaultValue: 'Cancel' })}
+          </Button>
+          <Button variant='outline' type='submit'>
+            {t('role.update.save', {
+              defaultValue: 'Update role',
+            })}
+          </Button>
+        </Flex>
+      </Flex>
+    </FormProvider>
+  )
+}
+
+const ChangeRoleModal = ({ isOpen, onClose, member, ...props }) => {
+  const toast = useToast()
+  const { t } = useTranslation()
+  const updateRole = useUpdateRole()
 
   const onSubmit = (data) => {
     updateRole.mutate(
@@ -195,8 +279,6 @@ export const ChangeRoleModal = ({ isOpen, onClose, member, ...props }) => {
     )
   }
 
-  if (rolesError) return <Alert status='error'>{rolesFetchError?.message || t('error.loading_roles')}</Alert>
-
   return (
     <Modal isOpen={isOpen} onClose={onClose} size='xl' closeOnOverlayClick {...props}>
       <ModalOverlay />
@@ -215,72 +297,7 @@ export const ChangeRoleModal = ({ isOpen, onClose, member, ...props }) => {
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <FormProvider {...methods}>
-            <Flex as='form' direction='column' gap={4} onSubmit={methods.handleSubmit(onSubmit)}>
-              <Flex border='1px solid' borderColor='gray.200' p={4} borderRadius='md' alignItems='center' bg='gray.50'>
-                <Avatar name={fullName} />
-                <Box ml='3'>
-                  <HStack align='center'>
-                    <Text fontWeight='bold'>{fullName}</Text>
-                  </HStack>
-                  <Flex direction='column'>
-                    <Text fontSize='sm' color='gray.500'>
-                      {member?.info.email}
-                    </Text>
-                  </Flex>
-                </Box>
-              </Flex>
-              <Text fontSize='sm' fontWeight='bold'>
-                {t('role.update.current_role', {
-                  defaultValue: 'Current Role',
-                })}
-              </Text>
-              <Box p={2} border='1px solid' borderColor='gray.200' borderRadius='md'>
-                <Flex gap={2} align='center'>
-                  <Text>{roleIcons[currentRole]}</Text>
-                  <Text fontWeight='semibold'>{ucfirst(currentRole)}</Text>
-                </Flex>
-              </Box>
-              <FormControl>
-                <FormLabel fontSize='sm'>{t('role.update.new_role', { defaultValue: 'New role' })}</FormLabel>
-                {rolesLoading && <Progress isIndeterminate />}
-                <Controller
-                  name='role'
-                  control={methods.control}
-                  render={({ field }) => (
-                    <RadioGroup {...field} colorScheme='gray'>
-                      <Stack direction='column' gap={2}>
-                        {roles?.map((role) => (
-                          <RoleRadio
-                            key={role.role}
-                            value={role.role}
-                            fieldName={role.name}
-                            description={
-                              role.writePermission ? (
-                                <Trans i18nKey='role.write_permission'>Can create and edit content</Trans>
-                              ) : (
-                                <Trans i18nKey='role.read_permission'>Read-only access</Trans>
-                              )
-                            }
-                          />
-                        ))}
-                      </Stack>
-                    </RadioGroup>
-                  )}
-                />
-              </FormControl>
-              <Flex gap={2} justifyContent='flex-end' mt={4}>
-                <Button colorScheme='black' onClick={onClose}>
-                  {t('role.update.cancel', { defaultValue: 'Cancel' })}
-                </Button>
-                <Button variant='outline' type='submit'>
-                  {t('role.update.save', {
-                    defaultValue: 'Update role',
-                  })}
-                </Button>
-              </Flex>
-            </Flex>
-          </FormProvider>
+          <ChangeRoleForm member={member} onSubmit={onSubmit} onClose={onClose} />
         </ModalBody>
       </ModalContent>
     </Modal>
@@ -343,14 +360,10 @@ const RemoveMemberModal = ({ isOpen, onClose, member }) => {
   )
 }
 
-const MemberActions = ({ member }) => {
+const PendingInvitationActions = ({ member }) => {
   const { t } = useTranslation()
   const toast = useToast()
-  const { isOpen: isRoleModalOpen, onOpen: openRoleModal, onClose: closeRoleModal } = useDisclosure()
-  const { isOpen: isRemoveModalOpen, onOpen: openRemoveModal, onClose: closeRemoveModal } = useDisclosure()
   const inviteMember = useInviteMemberMutation()
-
-  const id = member.info?.id
 
   // This function is not working right now.
   const resendInvitation = () => {
@@ -376,6 +389,36 @@ const MemberActions = ({ member }) => {
   }
 
   return (
+    <Button leftIcon={<Icon as={LuRefreshCw} />} fontSize='sm' variant='ghost' onClick={resendInvitation}>
+      {t('team.actions.resend_invitation', { defaultValue: 'Resend Invitation' })}
+    </Button>
+  )
+}
+
+const ActiveMemberActions = ({ onOpenRole, onOpenRemove }) => {
+  const { t } = useTranslation()
+
+  return (
+    <>
+      <Button onClick={onOpenRole} leftIcon={<Icon as={LuUserCog} />} fontSize='sm' variant='ghost'>
+        {t('team.actions.change_role', { defaultValue: 'Change Role' })}
+      </Button>
+      <PopoverFooter>
+        <Button variant='ghost' colorScheme='red' fontSize='sm' onClick={onOpenRemove}>
+          {t('team.actions.remove_member', { defaultValue: 'Remove Member' })}
+        </Button>
+      </PopoverFooter>
+    </>
+  )
+}
+
+const MemberActions = ({ member }) => {
+  const { t } = useTranslation()
+  const { isOpen: isRoleModalOpen, onOpen: openRoleModal, onClose: closeRoleModal } = useDisclosure()
+  const { isOpen: isRemoveModalOpen, onOpen: openRemoveModal, onClose: closeRemoveModal } = useDisclosure()
+  const hasId = Boolean(member.info?.id)
+
+  return (
     <>
       <Popover isLazy>
         <PopoverTrigger>
@@ -385,30 +428,14 @@ const MemberActions = ({ member }) => {
           <Text fontWeight='extrabold' p={2} fontSize='sm'>
             {t('team.actions.title', { defaultValue: 'Actions' })}
           </Text>
-          {id ? (
-            <>
-              <Button onClick={openRoleModal} leftIcon={<Icon mr={2} as={LuUserCog} />} fontSize='sm' variant='ghost'>
-                {t('team.actions.change_role', { defaultValue: 'Change Role' })}
-              </Button>
-              <PopoverFooter>
-                <Button variant='ghost' colorScheme='red' fontSize='sm' onClick={openRemoveModal}>
-                  {t('team.actions.remove_member', { defaultValue: 'Remove Member' })}
-                </Button>
-              </PopoverFooter>
-            </>
+          {hasId ? (
+            <ActiveMemberActions onOpenRole={openRoleModal} onOpenRemove={openRemoveModal} />
           ) : (
-            <Button
-              leftIcon={<Icon mr={2} as={LuRefreshCw} />}
-              fontSize='sm'
-              variant='ghost'
-              onClick={resendInvitation}
-            >
-              {t('team.actions.resend_invitation', { defaultValue: 'Resend Invitation' })}
-            </Button>
+            <PendingInvitationActions member={member} />
           )}
         </PopoverContent>
       </Popover>
-      {member.info && (
+      {hasId && (
         <>
           <ChangeRoleModal isOpen={isRoleModalOpen} onClose={closeRoleModal} member={member} />
           <RemoveMemberModal isOpen={isRemoveModalOpen} onClose={closeRemoveModal} member={member} />
