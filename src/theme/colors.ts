@@ -102,34 +102,6 @@ export const colors = {
       },
     },
   },
-  input: {
-    bg: newColorsBase.white,
-    border: newColorsBase.gray.light3,
-    outline: newColorsBase.black.light,
-    placeholder: newColorsBase.gray.normal2,
-    calendar_border: colorsBase.gray.light,
-    element: colorsBase.gray.normal,
-    error: colorsBase.red,
-    drag_and_drop: {
-      border: colorsBase.gray.light,
-      border_active: colorsBase.primary,
-      text: colorsBase.primary,
-    },
-    dropdown: {
-      check_icon: colorsBase.primary,
-      control: colorsBase.gray.normal,
-      option_dark: colorsBase.white.pure,
-      option_light_selected: colorsBase.black,
-      option_bg_selected: {
-        light: colorsBase.white.dark,
-        dark: colorsBase.blue.dark,
-      },
-      placeholder: colorsBase.gray.normal,
-    },
-    required_asterisk: colorsBase.primary,
-  },
-
-  //
 
   account_create_text_secondary: colorsBase.gray.dark,
   alert: {

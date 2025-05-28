@@ -148,7 +148,6 @@ const Calendar = () => {
                 {!autoStart && (
                   <FormControl isInvalid={!!errors.startDate}>
                     <Input
-                      variant='calendar'
                       disabled={getValues().electionType.autoStart}
                       type='datetime-local'
                       {...startDate}
@@ -174,7 +173,6 @@ const Calendar = () => {
             {t('calendar.end_date_description', { defaultValue: 'Define the exact date and time of completion' })}
           </Text>
           <Input
-            variant='calendar'
             type='datetime-local'
             placeholder='hello'
             {...endDate}
@@ -185,6 +183,7 @@ const Calendar = () => {
             min={format(min, DateFormatHtml)}
             onFocus={() => showPicker(endDateRef)}
             color={!isEndDate && 'input.placeholder'}
+            w='fit-content'
           />
           <FormErrorMessage>{errors.endDate?.message?.toString()}</FormErrorMessage>
         </FormControl>
