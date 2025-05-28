@@ -1,5 +1,5 @@
 import { Box, Text } from '@chakra-ui/react'
-import { Select } from 'chakra-react-select'
+import { GroupBase, Props, Select } from 'chakra-react-select'
 import { useTranslation } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom'
 
@@ -11,7 +11,14 @@ const rowsPerPageOptions = [
   { value: 50, label: '50' },
 ]
 
-const RowsPerPageSelect = () => {
+type OptionType = {
+  label: string
+  value: string
+}
+
+type SelectProps = Props<OptionType, false, GroupBase<OptionType>>
+
+const RowsPerPageSelect = (props: SelectProps) => {
   const [searchParams, setSearchParams] = useSearchParams()
   const { t } = useTranslation()
 
@@ -33,12 +40,7 @@ const RowsPerPageSelect = () => {
         isSearchable={false}
         isClearable={false}
         size='sm'
-        chakraStyles={{
-          container: (provided) => ({
-            ...provided,
-            width: '100px',
-          }),
-        }}
+        {...props}
       />
     </Box>
   )
