@@ -5,6 +5,7 @@ const baseStyle = definePartsStyle({
   content: {
     bg: 'chakra.body.bg',
     padding: 1,
+    borderColor: 'table.border',
   },
   header: {
     p: 0,

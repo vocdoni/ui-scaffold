@@ -22,6 +22,20 @@ const listmenu = defineStyle(({ colorMode }) => ({
   },
 }))
 
+const profilemenu = defineStyle((props) => ({
+  ...theme.components.Button.variants.ghost(props),
+  w: 'full',
+  px: 2,
+  py: 1.5,
+  borderRadius: 'xs',
+  display: 'flex',
+  justifyContent: 'start',
+}))
+
+const unstyled = defineStyle(() => ({
+  textAlign: 'left',
+}))
+
 const sizes = {
   lg: defineStyle({
     py: 7,
@@ -48,7 +62,9 @@ const sizes = {
 export const Button = defineStyleConfig({
   variants: {
     ...theme.components.Button.variants,
+    unstyled,
     listmenu,
+    profilemenu,
   },
   baseStyle,
   sizes,
