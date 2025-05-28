@@ -86,6 +86,28 @@ export const theme = extendTheme(vtheme, {
           _dark: 'gray.700',
         },
       },
+      tabs: {
+        tab: {
+          color: {
+            _light: 'gray.500',
+            _dark: 'gray.400',
+          },
+          active: {
+            color: {
+              _light: 'black',
+              _dark: 'white',
+            },
+            bg: {
+              _light: 'white',
+              _dark: 'black',
+            },
+          },
+        },
+        bg: {
+          _light: 'gray.100',
+          _dark: 'black.700',
+        },
+      },
     },
   },
   styles: {

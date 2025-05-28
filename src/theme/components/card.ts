@@ -44,7 +44,7 @@ export const Card = defineMultiStyleConfig({
     'pricing-card': {
       container: {
         position: 'relative',
-        borderRadius: 'xl',
+        borderRadius: 'md',
         bgColor: 'pricing_card.bg.light',
         _dark: {
           bgColor: 'pricing_card.bg.dark',

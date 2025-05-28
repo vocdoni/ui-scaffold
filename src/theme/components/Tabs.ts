@@ -76,100 +76,10 @@ const card = definePartsStyle({
   },
 })
 
-const process = definePartsStyle({
-  root: {},
-  tabpanel: {
-    px: { base: 0, sm: 4 },
-    mb: 0,
-  },
-  tab: {
-    position: 'relative',
-    whiteSpace: 'nowrap',
-    color: 'process.tabs.color',
-    fontWeight: 'normal',
-    borderTopRadius: 'md',
-    fontSize: 'lg',
-    _hover: {
-      bgColor: 'process.tabs.hover',
-    },
-    _active: {
-      bgColor: 'process.tabs.active_bg',
-    },
-    _selected: {
-      fontWeight: 'bold',
-      borderBottom: '1px solid',
-    },
-  },
-  tablist: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderBottom: '1px solid',
-    borderColor: 'process.tabs.border_bottom_list',
-  },
-})
-
-const basic = ({ colorScheme }: { colorScheme: string }) => ({
-  tablist: {
-    border: 'none',
-    display: 'flex',
-    justifyContent: 'center',
-    backgroundColor: 'transparent',
-    p: 1,
-    _dark: {
-      backgroundColor: 'transparent',
-      bgColor: `${colorScheme}.700`,
-    },
-  },
-
-  tab: {
-    mb: '.3px',
-
-    _selected: {
-      fontWeight: 'semibold',
-      bgColor: `${colorScheme}.100`,
-      color: `${colorScheme}.800`,
-    },
-  },
-})
-
-const underline = ({ colorScheme }: { colorScheme: string }) => ({
-  tablist: {
-    display: 'flex',
-    justifyContent: 'center',
-    p: 1,
-    backgroundColor: 'transparent',
-    border: 'none',
-
-    _dark: {
-      backgroundColor: 'transparent',
-    },
-  },
-  tab: {
-    borderRadius: 'none',
-    borderBottom: '1px solid transparent',
-    borderColor: 'tab.responsive_tab.underline_border',
-    _selected: {
-      fontWeight: 'extrabold',
-      backgroundColor: 'transparent',
-      borderColor: `${colorScheme}.600`,
-      color: `${colorScheme}.600`,
-      _dark: {
-        backgroundColor: 'transparent',
-        borderColor: 'white',
-        color: 'white',
-      },
-    },
-    _dark: {
-      backgroundColor: 'transparent',
-    },
-  },
-})
-
-const settings = ({ colorScheme }: { colorScheme: string }) => ({
+const settings = definePartsStyle({
   tablist: {
     p: 1,
-    bgColor: '#f5f5f5',
+    bgColor: 'tabs.bg',
     borderRadius: 'sm',
     w: 'fit-content',
   },
@@ -177,23 +87,22 @@ const settings = ({ colorScheme }: { colorScheme: string }) => ({
     py: 1.5,
     px: 3,
     borderRadius: 'sm',
-    fontWeight: 'bold',
-    color: 'rgb(115, 115, 115)',
-    fontSize: '14px',
+    fontWeight: 'normal',
+    color: 'tabs.tab.color',
+    fontSize: 'sm',
     _selected: {
-      bgColor: 'white',
-      color: 'black',
+      bgColor: 'tabs.tab.active.bg',
+      color: 'tabs.tab.active.color',
     },
   },
   tabpanel: {
     borderRadius: 'md',
     boxShadow: '0 1px 2px 0 rgb(0 0 0/0.05)',
-    border: 'var(--border)',
     p: 6,
   },
 })
 
 export const Tabs = defineMultiStyleConfig({
-  variants: { card, process, basic, underline, settings },
-  defaultProps: { variant: 'underline' },
+  variants: { card, settings },
+  defaultProps: { variant: 'settings' },
 })
