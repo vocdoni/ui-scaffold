@@ -1,14 +1,4 @@
-import {
-  Box,
-  Checkbox,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  SimpleGrid,
-  Text,
-  Textarea,
-  VStack,
-} from '@chakra-ui/react'
+import { Box, Checkbox, FormControl, FormErrorMessage, FormLabel, Text, Textarea, VStack } from '@chakra-ui/react'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import InputBasic from '~components/Layout/InputBasic'
@@ -80,11 +70,9 @@ export const PrivateOrgForm = ({ minified }: { minified?: boolean }) => {
           </Text>
         </Box>
       )}
-      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6}>
-        <MembershipSizeSelector name='size' required />
-        <OrganizationTypeSelector name='type' required />
-        <CountrySelector name='country' required />
-      </SimpleGrid>
+      <MembershipSizeSelector name='size' required />
+      <OrganizationTypeSelector name='type' required />
+      <CountrySelector name='country' required />
       {!minified && (
         <FormControl as='fieldset' isInvalid={!!errors?.communications}>
           <Checkbox {...register('communications')}>

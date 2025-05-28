@@ -9,6 +9,7 @@ import {
   Heading,
   IconButton,
   Image,
+  SimpleGrid,
   Text,
 } from '@chakra-ui/react'
 import { useMutation, UseMutationOptions, useQueryClient } from '@tanstack/react-query'
@@ -162,9 +163,9 @@ const EditOrganization = () => {
             </Text>
             <HSeparator />
           </Flex>
-          <Flex gap={3} flexDirection='column'>
+          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6}>
             <PrivateOrgForm />
-          </Flex>
+          </SimpleGrid>
 
           <Flex align='center' direction='column' alignSelf='end'>
             <Button type='submit' isLoading={isPending} aria-label='' w='full'>
