@@ -617,7 +617,7 @@ const ActiveMemberActions = ({ openChangeRole, openRemoveMember }: ActiveMemberA
         {t('team.actions.change_role', { defaultValue: 'Change Role' })}
       </MenuItem>
       <MenuDivider />
-      <MenuItem color='red' fontSize='sm' onClick={openRemoveMember}>
+      <MenuItem color='red.400' fontSize='sm' onClick={openRemoveMember}>
         {t('team.actions.remove_member', { defaultValue: 'Remove Member' })}
       </MenuItem>
     </>
