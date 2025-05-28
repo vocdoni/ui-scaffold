@@ -1,14 +1,15 @@
 import { Button, Flex, Icon, PopoverBody, PopoverFooter, Stack, Tag, Text } from '@chakra-ui/react'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { useEffect, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuPlus, LuSquareStack } from 'react-icons/lu'
 import { Link as ReactRouterLink } from 'react-router-dom'
-import { useQueryClient } from 'wagmi'
 import { useAuth } from '~components/Auth/useAuth'
 import { LocalStorageKeys } from '~components/Auth/useAuthProvider'
 import { Routes } from '~routes'
 import { Organization, useProfile } from '~src/queries/account'
+import { QueryKeys } from '~src/queries/keys'
 
 type SelectOption = {
   value: string
@@ -20,19 +21,17 @@ export const OrganizationSwitcher = () => {
   const { t } = useTranslation()
   const { data: profile } = useProfile()
   const [selectedOrg, setSelectedOrg] = useState<string | null>(localStorage.getItem(LocalStorageKeys.SignerAddress))
-  const [names, setNames] = useState<Record<string, string>>({})
   const { signerRefresh } = useAuth()
   const queryClient = useQueryClient()
   const { client } = useClient()
 
-  // Fetch organization names
-  useEffect(() => {
-    if (!profile?.organizations) return
+  const addresses = useMemo(() => profile?.organizations?.map((org) => org.organization.address) || [], [profile])
 
-    const fetchOrgNames = async () => {
+  const { data: names = {} } = useQuery({
+    queryKey: QueryKeys.organization.names,
+    queryFn: async () => {
       const names: Record<string, string> = {}
-      for (const org of profile.organizations) {
-        const address = org.organization.address
+      for (const address of addresses) {
         try {
           const data = await client.fetchAccountInfo(address)
           names[address] = data?.account?.name?.default || address
@@ -41,11 +40,10 @@ export const OrganizationSwitcher = () => {
           names[address] = address
         }
       }
-      setNames(names)
-    }
-
-    fetchOrgNames()
-  }, [profile])
+      return names
+    },
+    enabled: addresses.length > 0,
+  })
 
   // Populate organizations for the selector
   const organizations = useMemo(() => {
