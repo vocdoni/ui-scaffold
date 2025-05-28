@@ -51,12 +51,21 @@ export const theme = extendTheme(vtheme, {
     bolder: 600,
     extrabold: 700,
   },
+  semanticTokens: {
+    colors: {
+      chakra: {
+        body: {
+          bg: {
+            _dark: 'black.650',
+            _light: 'white',
+          },
+        },
+      },
+    },
+  },
   styles: {
     global: (props) => ({
       ...editor,
-      body: {
-        bg: props.colorMode === 'dark' ? 'gray.650' : 'white',
-      },
       ':root': {
         '--box-shadow': '0 0 10px #e3e3e3',
         '--box-shadow-dark-mode': '0 0 10px #101010',
