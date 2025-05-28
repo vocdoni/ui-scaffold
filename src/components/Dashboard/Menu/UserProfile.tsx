@@ -55,7 +55,7 @@ const UserProfile = () => {
             />
           }
           rightIcon={!reduced && <Icon as={LuChevronsUpDown} color='dashboard.chevron' />}
-          aria-label='User menu'
+          aria-label={t('user_menu', 'User menu')}
           size='xl'
           display={'flex'}
           alignItems={'center'}
@@ -104,25 +104,17 @@ const UserProfile = () => {
                 <Button
                   onClick={() => setSwitchOrg(false)}
                   leftIcon={<Icon as={LuChevronLeft} />}
-                  variant={'link'}
-                  display={'flex'}
-                  alignItems={'center'}
-                  fontSize={'xs'}
-                  h={'unset'}
-                  lineHeight={'14px'}
+                  variant='link'
+                  display='flex'
+                  alignItems='center'
+                  fontSize='xs'
+                  h='unset'
                   color='dashboard.back'
                 >
                   {t('back')}
                 </Button>
               ) : (
-                <Text
-                  fontWeight='light'
-                  size='xs'
-                  lineHeight={'14px'}
-                  color='dashboard.profile.email'
-                  maxW={'165px'}
-                  isTruncated
-                >
+                <Text fontWeight='light' size='xs' color='dashboard.profile.email' maxW='165px' isTruncated>
                   {profile.email}
                 </Text>
               )}
@@ -134,7 +126,7 @@ const UserProfile = () => {
         ) : (
           <>
             <PopoverBody>
-              <Box borderBottom='1px solid rgba(244, 244, 245, 0.8)' py={1}>
+              <Box borderBottom='1px solid' borderBottomColor='table.border' py={1}>
                 <Button
                   colorScheme='gray'
                   variant='profilemenu'
