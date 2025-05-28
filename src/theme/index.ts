@@ -61,6 +61,12 @@ export const theme = extendTheme(vtheme, {
           },
         },
       },
+      input: {
+        placeholder: {
+          _light: 'gray.500',
+          _dark: 'gray.400',
+        },
+      },
     },
   },
   styles: {
