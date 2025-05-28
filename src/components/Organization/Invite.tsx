@@ -25,8 +25,12 @@ import { useInviteMemberMutation } from '~src/queries/organization'
 import { CallbackProvider, useCallbackContext } from '~utils/callback-provider'
 import { useAllTeamMembers } from './Team'
 
+type InviteFormProps = {
+  onClose: () => void
+}
+
 // Invite form component
-const InviteForm = ({ onClose }) => {
+const InviteForm = ({ onClose }: InviteFormProps) => {
   const { t } = useTranslation()
   const toast = useToast()
   const mutation = useInviteMemberMutation()
