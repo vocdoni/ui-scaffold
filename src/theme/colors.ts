@@ -53,15 +53,6 @@ export const newColorsBase = {
 }
 
 export const colors = {
-  auth: {
-    bg: newColorsBase.gray.light2,
-    border: newColorsBase.gray.light3,
-    card_bg: newColorsBase.white,
-    checkboxes_text: newColorsBase.gray.normal2,
-    image_color: newColorsBase.white,
-    or: newColorsBase.gray.normal2,
-    secondary_text: newColorsBase.gray.normal2,
-  },
   dashboard: {
     aside_bg: newColorsBase.gray.light,
     back: newColorsBase.gray.normal,
@@ -490,6 +481,7 @@ export const colors = {
     200: '#fafafa', // outline hover / ghost active (light)
     300: '#bbbbbb', // outline active (light)
     500: '#000000', // base solid
+    550: '#262626', // custom (auth bg)
     600: '#353535', // solid hover
     650: '#0a0a0a', // custom
     700: '#2e2e2e', // solid active

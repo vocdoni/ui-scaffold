@@ -58,11 +58,9 @@ const LayoutAuth = () => {
         <Flex
           w='full'
           maxW={{ base: 'sm', md: '3xl' }}
-          boxShadow={'var(--shadow-sm)'}
-          border='1px solid'
-          borderColor='auth.border'
-          borderRadius='md'
-          bgColor={'auth.card_bg'}
+          _light={{ border: '1px solid', borderColor: 'auth.card.border' }}
+          borderRadius='sm'
+          bgColor='auth.card.bg'
         >
           <Box p={{ base: 6, sm: 8 }} flex={{ base: '1 1 100%', md: '0 0 50%' }}>
             {(title || subtitle) && (
@@ -73,7 +71,7 @@ const LayoutAuth = () => {
                   </Heading>
                 )}
                 {subtitle && (
-                  <Text color={'auth.secondary_text'} size='sm'>
+                  <Text color='gray.500' size='sm'>
                     {subtitle}
                   </Text>
                 )}
@@ -90,13 +88,13 @@ const LayoutAuth = () => {
             bgSize='cover'
             bgPosition='center'
             minH='100%'
-            borderRightRadius='md'
+            borderRightRadius='sm'
           >
             <Box position='absolute' left={0} bottom={0} right={0} p={8}>
-              <Text bottom={0} size='lg' fontWeight='bold' mb={2} color='auth.image_color'>
+              <Text bottom={0} size='lg' fontWeight='bold' mb={2} color='gray.100'>
                 {testimonial.text}
               </Text>
-              <Text color='#ffffffb3' size='sm'>
+              <Text color='gray.400' size='sm'>
                 — {testimonial.author}, {testimonial.position} @ {testimonial.company}
               </Text>
             </Box>

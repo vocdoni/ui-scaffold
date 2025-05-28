@@ -3,6 +3,12 @@ import { defineStyleConfig } from '@chakra-ui/react'
 export const Link = defineStyleConfig({
   baseStyle: {
     color: 'gray.800',
+    _dark: {
+      color: 'gray.400',
+      _hover: {
+        color: 'gray.200',
+      },
+    },
     _hover: {
       textDecoration: 'none',
       color: 'gray.500',

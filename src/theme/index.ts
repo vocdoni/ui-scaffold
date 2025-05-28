@@ -61,6 +61,19 @@ export const theme = extendTheme(vtheme, {
           },
         },
       },
+      auth: {
+        bg: {
+          _dark: 'black.550',
+          _light: 'gray.50',
+        },
+        card: {
+          bg: {
+            _dark: 'black',
+            _light: 'white',
+          },
+          border: 'gray.200',
+        },
+      },
       input: {
         placeholder: {
           _light: 'gray.500',
