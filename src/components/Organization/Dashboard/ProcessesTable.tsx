@@ -35,7 +35,7 @@ const ProcessesTable = ({ processes }: ProcessesListProps) => {
   const { t } = useTranslation()
 
   return (
-    <Box border='1px solid #e5e5e5' borderRadius='sm'>
+    <Box border='1px solid' borderColor='table.border' borderRadius='sm'>
       <Table>
         <Thead>
           <Tr>
