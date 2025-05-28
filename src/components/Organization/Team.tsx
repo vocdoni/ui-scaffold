@@ -11,20 +11,24 @@ import {
   HStack,
   Icon,
   IconButton,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuGroup,
+  MenuItem,
+  MenuList,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
   ModalHeader,
   ModalOverlay,
-  Popover,
-  PopoverContent,
-  PopoverFooter,
-  PopoverTrigger,
+  ModalProps,
   Progress,
   Radio,
   RadioGroup,
   RadioProps,
+  Spinner,
   Stack,
   Text,
   useDisclosure,
@@ -44,8 +48,7 @@ import QueryDataLayout from '~components/Layout/QueryDataLayout'
 import { roleIcons } from '~components/Layout/SaasSelector'
 import { useProfile } from '~src/queries/account'
 import { QueryKeys } from '~src/queries/keys'
-import { useInviteMemberMutation, useRemoveMemberMutation, useRoles } from '~src/queries/organization'
-import { ucfirst } from '~utils/strings'
+import { useRemoveMemberMutation, useRoles } from '~src/queries/organization'
 import { InviteToTeamModal } from './Invite'
 
 // Define types
@@ -56,19 +59,50 @@ type UserInfo = {
   lastName: string
 }
 
-type Member = {
-  info?: UserInfo
-  email?: string
+type ActiveMember = {
+  info: UserInfo
   role: string
   expiration?: string
 }
 
-type TeamMembersResponse = {
-  members: Member[]
+type PendingMember = {
+  id: string
+  email: string
+  role: string
+  expiration?: string
+  info?: undefined
 }
 
-type PendingTeamMembersResponse = {
-  pending: Member[]
+type Member = ActiveMember | PendingMember
+
+const isActiveMember = (member: Member): member is ActiveMember => !!member.info
+
+type WithDisclosure = {
+  isOpen: boolean
+  onClose: () => void
+}
+
+type MemberModalProps<T extends Member> = Omit<ModalProps, 'children' | 'isOpen' | 'onClose'> & {
+  isOpen: boolean
+  onClose: () => void
+  member: T
+}
+
+type ActiveMemberModalProps = MemberModalProps<ActiveMember>
+type PendingMemberModalProps = MemberModalProps<PendingMember>
+
+type UpdateRoleBody = {
+  role: string
+}
+
+type UpdateRoleParams = {
+  id: string
+  body: UpdateRoleBody
+}
+
+type ChangeRoleFormProps = {
+  member: ActiveMember
+  onClose: () => void
 }
 
 type RoleRadioProps = RadioProps & {
@@ -77,11 +111,35 @@ type RoleRadioProps = RadioProps & {
   value: string
 }
 
-interface UpdateRoleParams {
-  id: string
-  body: {
-    role: string
-  }
+type RoleRadioGroupProps = {
+  currentRole: string
+}
+
+type TeamMembersResponse = {
+  members: Member[]
+}
+
+type PendingTeamMembersResponse = {
+  pending: PendingMember[]
+}
+
+type MemberActionsProps = {
+  member: Member
+}
+
+type PendingInvitationActionsProps = {
+  member: PendingMember
+  closeMenu: () => void
+  openCancelInvitation: () => void
+}
+
+type ActiveMemberActionsProps = {
+  openChangeRole: () => void
+  openRemoveMember: () => void
+}
+
+type TeamMembersListProps = {
+  members: Member[]
 }
 
 // Fetch hook for team members
@@ -170,6 +228,46 @@ const useUpdateRole = () => {
   })
 }
 
+const useCancelInvitation = () => {
+  const { bearedFetch } = useAuth()
+  const { account } = useClient()
+  const client = useQueryClient()
+
+  return useMutation<void, Error, string>({
+    mutationFn: async (id) =>
+      await bearedFetch<void>(
+        ApiEndpoints.OrganizationPendingMember.replace('{address}', enforceHexPrefix(account?.address)).replace(
+          '{inviteId}',
+          id
+        ),
+        { method: 'DELETE' }
+      ),
+    onSuccess: () => {
+      client.invalidateQueries({
+        queryKey: QueryKeys.organization.pendingMembers(),
+      })
+    },
+  })
+}
+
+const useResendInvitationMutation = () => {
+  const { bearedFetch } = useAuth()
+  const { account } = useClient()
+
+  return useMutation<void, Error, string>({
+    mutationFn: async (id) =>
+      await bearedFetch<void>(
+        ApiEndpoints.OrganizationPendingMember.replace('{address}', enforceHexPrefix(account?.address)).replace(
+          '{inviteId}',
+          id
+        ),
+        {
+          method: 'PUT',
+        }
+      ),
+  })
+}
+
 const RoleRadio = ({ fieldName: title, description, value, isDisabled, ...props }: RoleRadioProps) => {
   const group = useRadioGroupContext()
   const isSelected = group?.value === value
@@ -202,7 +300,7 @@ const RoleRadio = ({ fieldName: title, description, value, isDisabled, ...props 
   )
 }
 
-const RoleRadioGroup = ({ currentRole }) => {
+const RoleRadioGroup = ({ currentRole }: RoleRadioGroupProps) => {
   const { t } = useTranslation()
   const { data: roles, isLoading: rolesLoading, isError: rolesError, error: rolesFetchError } = useRoles()
   const { control } = useFormContext()
@@ -242,9 +340,37 @@ const RoleRadioGroup = ({ currentRole }) => {
   )
 }
 
-const ChangeRoleForm = ({ member, onSubmit, onClose }) => {
+const ChangeRoleForm = ({ member, onClose }: ChangeRoleFormProps) => {
+  const toast = useToast()
   const { t } = useTranslation()
-  const methods = useForm()
+  const methods = useForm<UpdateRoleBody>()
+  const updateRole = useUpdateRole()
+
+  const onSubmit = (body: UpdateRoleBody) => {
+    updateRole.mutate(
+      { id: member?.info.id.toString(), body },
+      {
+        onSuccess: (): void => {
+          toast({
+            title: t('role.update.success', { defaultValue: 'Role updated successfully' }),
+            status: 'success',
+            duration: 5000,
+            isClosable: true,
+          })
+          onClose()
+        },
+        onError: (error: Error): void => {
+          toast({
+            title: t('role.update.error', { defaultValue: 'Error updating role' }),
+            description: error.message,
+            status: 'error',
+            duration: 5000,
+            isClosable: true,
+          })
+        },
+      }
+    )
+  }
 
   const currentRole = member?.role
   const fullName = `${member?.info?.firstName} ${member?.info?.lastName}`
@@ -273,7 +399,9 @@ const ChangeRoleForm = ({ member, onSubmit, onClose }) => {
         <Box p={2} border='1px solid' borderColor='gray.200' borderRadius='md'>
           <Flex gap={2} align='center'>
             <Text>{roleIcons[currentRole]}</Text>
-            <Text fontWeight='semibold'>{ucfirst(currentRole)}</Text>
+            <Text fontWeight='semibold' textTransform='capitalize'>
+              {currentRole}
+            </Text>
           </Flex>
         </Box>
         <RoleRadioGroup currentRole={currentRole} />
@@ -281,7 +409,7 @@ const ChangeRoleForm = ({ member, onSubmit, onClose }) => {
           <Button colorScheme='black' onClick={onClose}>
             {t('role.update.cancel', { defaultValue: 'Cancel' })}
           </Button>
-          <Button variant='outline' type='submit'>
+          <Button isLoading={updateRole.isPending} variant='outline' type='submit'>
             {t('role.update.save', {
               defaultValue: 'Update role',
             })}
@@ -292,39 +420,11 @@ const ChangeRoleForm = ({ member, onSubmit, onClose }) => {
   )
 }
 
-const ChangeRoleModal = ({ isOpen, onClose, member, ...props }) => {
-  const toast = useToast()
+const ChangeRoleModal = ({ isOpen, onClose, member, ...props }: ActiveMemberModalProps) => {
   const { t } = useTranslation()
-  const updateRole = useUpdateRole()
-
-  const onSubmit = (data) => {
-    updateRole.mutate(
-      { id: member?.info.id, body: data },
-      {
-        onSuccess: () => {
-          toast({
-            title: t('role.update.success', { defaultValue: 'Role updated successfully' }),
-            status: 'success',
-            duration: 5000,
-            isClosable: true,
-          })
-          onClose()
-        },
-        onError: (error) => {
-          toast({
-            title: t('role.update.error', { defaultValue: 'Error updating role' }),
-            description: error.message,
-            status: 'error',
-            duration: 5000,
-            isClosable: true,
-          })
-        },
-      }
-    )
-  }
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size='xl' closeOnOverlayClick {...props}>
+    <Modal isOpen={isOpen} onClose={onClose} size='xl' closeOnOverlayClick={false} {...props}>
       <ModalOverlay />
       <ModalContent py={4}>
         <ModalHeader display='flex' flexDirection='column' gap={6}>
@@ -341,22 +441,22 @@ const ChangeRoleModal = ({ isOpen, onClose, member, ...props }) => {
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <ChangeRoleForm member={member} onSubmit={onSubmit} onClose={onClose} />
+          <ChangeRoleForm member={member} onClose={onClose} />
         </ModalBody>
       </ModalContent>
     </Modal>
   )
 }
 
-const RemoveMemberModal = ({ isOpen, onClose, member }) => {
+const RemoveMemberModal = ({ isOpen, onClose, member, ...props }: ActiveMemberModalProps) => {
   const { t } = useTranslation()
   const toast = useToast()
-  const removeMemberById = useRemoveMemberMutation()
+  const removeMember = useRemoveMemberMutation()
 
   const id = member.info?.id
 
-  const removeMember = () => {
-    removeMemberById.mutate(id, {
+  const removeMemberHandler = () => {
+    removeMember.mutate(id, {
       onSuccess: () => {
         toast({
           title: t('team.remove_member.success', { defaultValue: 'Member removed successfully' }),
@@ -378,7 +478,7 @@ const RemoveMemberModal = ({ isOpen, onClose, member }) => {
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size='xl' closeOnOverlayClick={false}>
+    <Modal isOpen={isOpen} onClose={onClose} size='xl' closeOnOverlayClick={false} {...props}>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>{t('team.remove_member.title', { defaultValue: 'Are you sure?' })}</ModalHeader>
@@ -387,14 +487,14 @@ const RemoveMemberModal = ({ isOpen, onClose, member }) => {
             {t('team.remove_member.confirmation', {
               defaultValue:
                 'This will remove {{name}} from your team. They will no longer have access to your organization.',
-              name: member?.info ? `${member.info.firstName} ${member.info.lastName}` : member.email,
+              name: `${member.info.firstName} ${member.info.lastName}`,
             })}
           </Text>
           <Flex justifyContent='flex-end' mt={4} gap={2}>
             <Button variant='outline' onClick={onClose}>
               {t('team.remove_member.cancel', { defaultValue: 'Cancel' })}
             </Button>
-            <Button colorScheme='red' onClick={removeMember}>
+            <Button isLoading={removeMember.isPending} colorScheme='red' onClick={removeMemberHandler}>
               {t('team.remove_member.confirm', { defaultValue: 'Remove' })}
             </Button>
           </Flex>
@@ -404,17 +504,16 @@ const RemoveMemberModal = ({ isOpen, onClose, member }) => {
   )
 }
 
-const PendingInvitationActions = ({ member }) => {
+const CancelInvitationModal = ({ isOpen, onClose, member, ...props }: PendingMemberModalProps) => {
   const { t } = useTranslation()
   const toast = useToast()
-  const inviteMember = useInviteMemberMutation()
+  const cancelInvitation = useCancelInvitation()
 
-  // This function is not working right now.
-  const resendInvitation = () => {
-    inviteMember.mutate(member, {
+  const cancelInvitationHandler = () => {
+    cancelInvitation.mutate(member.id, {
       onSuccess: () => {
         toast({
-          title: t('team.actions.resend_invitation_success', { defaultValue: 'Invitation resent successfully' }),
+          title: t('team.actions.cancel_invitation_success', { defaultValue: 'Invitation cancelled successfully' }),
           status: 'success',
           duration: 5000,
           isClosable: true,
@@ -422,7 +521,7 @@ const PendingInvitationActions = ({ member }) => {
       },
       onError: (error: Error) => {
         toast({
-          title: t('team.actions.resend_invitation_error', { defaultValue: 'Error resending invitation' }),
+          title: t('team.actions.cancel_invitation_error', { defaultValue: 'Error cancelling invitation' }),
           description: error.message,
           status: 'error',
           duration: 5000,
@@ -433,63 +532,151 @@ const PendingInvitationActions = ({ member }) => {
   }
 
   return (
-    <Button leftIcon={<Icon as={LuRefreshCw} />} fontSize='sm' variant='ghost' onClick={resendInvitation}>
-      {t('team.actions.resend_invitation', { defaultValue: 'Resend Invitation' })}
-    </Button>
+    <Modal isOpen={isOpen} onClose={onClose} size='xl' closeOnOverlayClick={false} {...props}>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>{t('team.cancel_invitation.title', { defaultValue: 'Are you sure?' })}</ModalHeader>
+        <ModalBody>
+          <Text>
+            {t('team.cancel_invitation.confirmation', {
+              defaultValue: 'This will cancel the invitation. The person will not be able to join your organization.',
+            })}
+          </Text>
+          <Flex justifyContent='flex-end' mt={4} gap={2}>
+            <Button variant='outline' onClick={onClose}>
+              {t('team.cancel_invitation.cancel', { defaultValue: 'Cancel' })}
+            </Button>
+            <Button isLoading={cancelInvitation.isPending} colorScheme='red' onClick={cancelInvitationHandler}>
+              {t('team.cancel_invitation.confirm', { defaultValue: 'Cancel invitation' })}
+            </Button>
+          </Flex>
+        </ModalBody>
+      </ModalContent>
+    </Modal>
   )
 }
 
-const ActiveMemberActions = ({ onOpenRole, onOpenRemove }) => {
+const PendingInvitationActions = ({ member, closeMenu, openCancelInvitation }: PendingInvitationActionsProps) => {
   const { t } = useTranslation()
+  const toast = useToast()
+  const resendInvitation = useResendInvitationMutation()
+  const isLoading = resendInvitation.isPending
+
+  const resendInvitationHandler = () => {
+    resendInvitation.mutate(member.id, {
+      onSuccess: () => {
+        toast({
+          title: t('team.actions.resend_invitation_success', {
+            defaultValue: 'Invitation resent to {{email}} successfully',
+            email: member?.email,
+          }),
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        })
+        closeMenu()
+      },
+      onError: (error: Error) => {
+        toast({
+          title: t('team.actions.resend_invitation_error', {
+            defaultValue: 'Error resending invitation to {{email}}',
+            email: member?.email,
+          }),
+          description: error.message,
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        })
+      },
+    })
+  }
 
   return (
     <>
-      <Button onClick={onOpenRole} leftIcon={<Icon as={LuUserCog} />} fontSize='sm' variant='ghost'>
-        {t('team.actions.change_role', { defaultValue: 'Change Role' })}
-      </Button>
-      <PopoverFooter>
-        <Button variant='ghost' colorScheme='red' fontSize='sm' onClick={onOpenRemove}>
-          {t('team.actions.remove_member', { defaultValue: 'Remove Member' })}
-        </Button>
-      </PopoverFooter>
+      <MenuItem
+        icon={isLoading ? <Spinner size='xs' /> : <Icon as={LuRefreshCw} />}
+        fontSize='sm'
+        isDisabled={isLoading}
+        onClick={resendInvitationHandler}
+      >
+        {t('team.actions.resend_invitation', { defaultValue: 'Resend Invitation' })}
+      </MenuItem>
+      <MenuItem color='red' fontSize='sm' isDisabled={isLoading} onClick={openCancelInvitation}>
+        {t('team.actions.cancel_invitation', { defaultValue: 'Cancel Invitation' })}
+      </MenuItem>
     </>
   )
 }
 
-const MemberActions = ({ member }) => {
+const ActiveMemberActions = ({ openChangeRole, openRemoveMember }: ActiveMemberActionsProps) => {
   const { t } = useTranslation()
-  const { isOpen: isRoleModalOpen, onOpen: openRoleModal, onClose: closeRoleModal } = useDisclosure()
-  const { isOpen: isRemoveModalOpen, onOpen: openRemoveModal, onClose: closeRemoveModal } = useDisclosure()
-  const { data: profile, isLoading } = useProfile()
-  const hasId = Boolean(member.info?.id)
-  const isCurrentUser = member?.info.id === profile?.id
-
-  if (isLoading) return <Progress isIndeterminate />
-
-  if (isCurrentUser) return null
 
   return (
     <>
-      <Popover placement='bottom-end' isLazy>
-        <PopoverTrigger>
-          <IconButton icon={<Icon as={LuEllipsis} />} ml='auto' variant='transparent' aria-label='Options' />
-        </PopoverTrigger>
-        <PopoverContent w='auto'>
-          <Text fontWeight='extrabold' p={2} fontSize='sm'>
-            {t('team.actions.title', { defaultValue: 'Actions' })}
-          </Text>
-          {hasId ? (
-            <ActiveMemberActions onOpenRole={openRoleModal} onOpenRemove={openRemoveModal} />
-          ) : (
-            <PendingInvitationActions member={member} />
-          )}
-        </PopoverContent>
-      </Popover>
-      {hasId && (
+      <MenuItem onClick={openChangeRole} fontSize='sm' icon={<Icon boxSize={4} as={LuUserCog} />}>
+        {t('team.actions.change_role', { defaultValue: 'Change Role' })}
+      </MenuItem>
+      <MenuDivider />
+      <MenuItem color='red' fontSize='sm' onClick={openRemoveMember}>
+        {t('team.actions.remove_member', { defaultValue: 'Remove Member' })}
+      </MenuItem>
+    </>
+  )
+}
+
+const MemberActions = ({ member }: MemberActionsProps) => {
+  const { t } = useTranslation()
+  const { data: profile, isLoading } = useProfile()
+  const { isOpen: isMenuOpen, onOpen: openMenu, onClose: closeMenu } = useDisclosure()
+
+  const isCurrentUser = String(member.info?.id) === String(profile?.id)
+  if (isCurrentUser) return null
+
+  // Disclosures para los modales
+  const roleModal = useDisclosure()
+  const removeModal = useDisclosure()
+  const cancelModal = useDisclosure()
+
+  return (
+    <>
+      <Menu
+        closeOnSelect={false}
+        isOpen={isMenuOpen}
+        onOpen={openMenu}
+        onClose={closeMenu}
+        placement='bottom-end'
+        isLazy
+      >
+        <MenuButton
+          as={IconButton}
+          isLoading={isLoading}
+          icon={<Icon as={LuEllipsis} />}
+          ml='auto'
+          variant='transparent'
+          aria-label='Options'
+          onClick={openMenu}
+        />
+        <MenuList minW='unset'>
+          <MenuGroup title={t('team.actions.title', { defaultValue: 'Actions' })}>
+            {isActiveMember(member) ? (
+              <ActiveMemberActions openChangeRole={roleModal.onOpen} openRemoveMember={removeModal.onOpen} />
+            ) : (
+              <PendingInvitationActions
+                member={member}
+                openCancelInvitation={cancelModal.onOpen}
+                closeMenu={closeMenu}
+              />
+            )}
+          </MenuGroup>
+        </MenuList>
+      </Menu>
+      {isActiveMember(member) ? (
         <>
-          <ChangeRoleModal isOpen={isRoleModalOpen} onClose={closeRoleModal} member={member} />
-          <RemoveMemberModal isOpen={isRemoveModalOpen} onClose={closeRemoveModal} member={member} />
+          <ChangeRoleModal isOpen={roleModal.isOpen} onClose={roleModal.onClose} member={member} />
+          <RemoveMemberModal isOpen={removeModal.isOpen} onClose={removeModal.onClose} member={member} />
         </>
+      ) : (
+        <CancelInvitationModal isOpen={cancelModal.isOpen} onClose={cancelModal.onClose} member={member} />
       )}
     </>
   )
@@ -502,8 +689,8 @@ const TeamMembersEmpty = () => {
     <Flex alignItems='center' direction='column' p={10} gap={6}>
       <Flex alignItems='center' direction='column'>
         <Icon as={LuUserPlus} boxSize={20} color='gray.500' />
-        <Text size='lg' fontWeight='extrabold'>
-          {t('team.only_one_member.title', { defaultValue: 'No team members' })}
+        <Text fontSize='lg' fontWeight='extrabold'>
+          {t('team.only_one_member.title', { defaultValue: "You're the only team member of this organization" })}
         </Text>
         <Text color='gray.500'>
           {t('team.only_one_member.subtitle', {
@@ -512,32 +699,34 @@ const TeamMembersEmpty = () => {
         </Text>
       </Flex>
       <InviteToTeamModal leftIcon={<Icon mr={2} as={LuPlus} />}>
-        {t('team.only_one_member.add_first_member', { defaultValue: 'Add Your First Team Member' })}
+        {t('team.only_one_member.add_team_member', { defaultValue: 'Add team member' })}
       </InviteToTeamModal>
     </Flex>
   )
 }
 
-const TeamMembersList = ({ members }: { members: Member[] }) => {
+const TeamMembersList = ({ members }: TeamMembersListProps) => {
   const { t } = useTranslation()
 
   return (
     <Flex direction='column'>
       {members.map((member, i) => {
-        const isPending = !member.info
-        const name = isPending
-          ? t('team.pending_invitation', { defaultValue: 'Invitation Pending' })
-          : `${member.info.firstName} ${member.info.lastName}`
-        const email = isPending ? member.email : member.info.email
-        const avatarName = !isPending && `${member.info.firstName} ${member.info.lastName}`
+        const isActive = isActiveMember(member)
+        const name = isActive
+          ? `${member.info.firstName} ${member.info.lastName}`
+          : t('team.pending_invitation', { defaultValue: 'Invitation Pending' })
+        const email = isActive ? member.info.email : member.email
+        const avatarName = isActive && `${member.info.firstName} ${member.info.lastName}`
 
         return (
           <Flex alignItems='center' p={2} key={i}>
-            <Avatar name={avatarName} icon={isPending && <Icon as={LuMail} />} />
+            <Avatar name={avatarName} icon={!isActive && <Icon as={LuMail} />} />
             <Box ml='3'>
               <HStack align='center'>
                 <Text fontWeight='bold'>{name}</Text>
-                <Badge variant='subtle'>{ucfirst(member.role)}</Badge>
+                <Badge variant='subtle' textTransform='capitalize'>
+                  {member.role}
+                </Badge>
               </HStack>
               <Flex direction='column'>
                 <Text fontSize='sm' color='gray.500'>

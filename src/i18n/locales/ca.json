@@ -1440,6 +1440,9 @@
   "switch_organization": "Canvia d'organització",
   "team": {
     "actions": {
+      "cancel_invitation": "Cancel Invitation",
+      "cancel_invitation_error": "Error cancelling invitation",
+      "cancel_invitation_success": "Invitation cancelled successfully",
       "change_role": "Change Role",
       "remove_member": "Remove Member",
       "resend_invitation": "Resend Invitation",
@@ -1447,11 +1450,17 @@
       "resend_invitation_success": "Invitation resent successfully",
       "title": "Actions"
     },
+    "cancel_invitation": {
+      "cancel": "Cancel",
+      "confirm": "Cancel invitation",
+      "confirmation": "This will cancel the invitation. The person will not be able to join your organization.",
+      "title": "Are you sure?"
+    },
     "expires_in": "Expires in {{time}}",
     "only_one_member": {
-      "add_first_member": "Add Your First Team Member",
+      "add_team_member": "Add team member",
       "subtitle": "Add team members to collaborate on your organization",
-      "title": "No team members"
+      "title": "You're the only team member of this organization"
     },
     "pending_invitation": "Invitation Pending",
     "remove_member": {
