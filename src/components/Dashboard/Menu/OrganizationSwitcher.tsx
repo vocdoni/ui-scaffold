@@ -1,8 +1,8 @@
-import { Button, Flex, Icon, PopoverBody, PopoverFooter, Tag, Text } from '@chakra-ui/react'
+import { Button, Flex, Icon, PopoverBody, PopoverFooter, Stack, Tag, Text } from '@chakra-ui/react'
 import { useClient } from '@vocdoni/react-providers'
 import { useEffect, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { LuGalleryVerticalEnd, LuPlus } from 'react-icons/lu'
+import { LuPlus, LuSquareStack } from 'react-icons/lu'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useQueryClient } from 'wagmi'
 import { useAuth } from '~components/Auth/useAuth'
@@ -98,29 +98,25 @@ export const OrganizationSwitcher = () => {
         </Text>
         <Flex flexDirection={'column'} maxH={'130px'} overflowY={'scroll'}>
           {organizations.map((org, idx) => (
-            <Button
-              key={idx}
-              onClick={() => handleOrgChange(org)}
-              variant={'transparent'}
-              colorScheme='gray'
-              justifyContent={'start'}
-            >
-              <Flex
-                justifyContent={'center'}
-                alignItems={'center'}
-                border='var(--border)'
-                w='22px'
-                h='22px'
-                borderRadius='xs'
-              >
-                <Icon as={LuGalleryVerticalEnd} boxSize={4} ml={2} mr={2} />
-              </Flex>
-              {org.label}
-              {org.value === selectedOrg && (
-                <Tag colorScheme='gray' ml='auto !important'>
-                  {t('current', { defaultValue: 'Current' })}
-                </Tag>
-              )}
+            <Button key={idx} onClick={() => handleOrgChange(org)} variant='profilemenu' py={5}>
+              <Stack direction='row' w='full'>
+                <Icon
+                  as={LuSquareStack}
+                  border='1px solid'
+                  borderColor='table.border'
+                  borderRadius='xs'
+                  p={1}
+                  boxSize={6}
+                />
+                <Text as='span' fontSize='sm'>
+                  {org.label}
+                </Text>
+                {org.value === selectedOrg && (
+                  <Tag colorScheme='gray' ml='auto !important'>
+                    {t('current', { defaultValue: 'Current' })}
+                  </Tag>
+                )}
+              </Stack>
             </Button>
           ))}
         </Flex>

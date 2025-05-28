@@ -110,7 +110,7 @@ export const LanguageListDashboard = ({ ...props }) => {
   const selectedLanguage = languageOptions.find((opt) => opt.value === i18n.language)
 
   return (
-    <FormControl w='full' display={'flex'} justifyContent={'space-between'} alignItems={'center'} {...props}>
+    <FormControl w='full' display='flex' justifyContent='space-between' alignItems='center' {...props}>
       <FormLabel fontSize={'14px'} m='0' fontWeight={400}>
         {t('form.select_language', { defaultValue: 'Language' })}
       </FormLabel>

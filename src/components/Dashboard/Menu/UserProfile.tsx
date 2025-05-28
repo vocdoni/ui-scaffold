@@ -3,6 +3,8 @@ import {
   Box,
   Button,
   Flex,
+  FormControl,
+  FormLabel,
   Icon,
   Popover,
   PopoverBody,
@@ -18,6 +20,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { LuBuilding, LuChevronLeft, LuChevronRight, LuChevronsUpDown, LuLogOut, LuUserPen } from 'react-icons/lu'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
+import { ThemeToggleGroup } from '~components/Layout/ColorModeSwitcher'
 import { LanguageListDashboard } from '~components/Navbar/LanguagesList'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~routes'
@@ -133,32 +136,20 @@ const UserProfile = () => {
             <PopoverBody>
               <Box borderBottom='1px solid rgba(244, 244, 245, 0.8)' py={1}>
                 <Button
-                  onClick={() => setSwitchOrg(true)}
-                  variant={'transparent'}
                   colorScheme='gray'
+                  variant='profilemenu'
+                  onClick={() => setSwitchOrg(true)}
                   leftIcon={<LuBuilding />}
-                  rightIcon={<LuChevronRight />}
-                  w='full'
-                  px={2}
-                  py={1.5}
-                  h={'unset'}
-                  borderRadius={'xs'}
-                  sx={{ '& span:nth-of-type(2)': { marginLeft: 'auto' } }}
                 >
                   <Trans i18nKey={'switch_organization'} />
+                  <Icon as={LuChevronRight} marginLeft='auto' />
                 </Button>
                 <Button
+                  colorScheme='gray'
+                  variant='profilemenu'
                   as={ReactRouterLink}
                   to={Routes.dashboard.profile}
-                  variant={'transparent'}
-                  colorScheme='gray'
-                  justifyContent={'start'}
                   leftIcon={<LuUserPen />}
-                  w='full'
-                  px={2}
-                  py={1.5}
-                  h={'unset'}
-                  borderRadius={'xs'}
                 >
                   <Trans i18nKey={'user_settings'} />
                 </Button>
@@ -167,23 +158,17 @@ const UserProfile = () => {
                 <Text fontWeight={600} size={'sm'} px={2} py={1.5}>
                   {t('preferences', { defaultValue: 'Preferences' })}
                 </Text>
-
+                <FormControl display='flex' justifyContent='space-between' p={2} alignItems='center'>
+                  <FormLabel m={0} htmlFor='theme-toggle'>
+                    <Trans i18nKey='theme'>Theme</Trans>
+                  </FormLabel>
+                  <ThemeToggleGroup />
+                </FormControl>
                 <LanguageListDashboard px={2} py={1.5} />
               </Box>
             </PopoverBody>
             <PopoverFooter pt={1}>
-              <Button
-                onClick={logout}
-                variant={'transparent'}
-                colorScheme='gray'
-                justifyContent={'start'}
-                leftIcon={<LuLogOut />}
-                w='full'
-                px={2}
-                py={1.5}
-                h={'unset'}
-                borderRadius={'xs'}
-              >
+              <Button colorScheme='gray' variant='profilemenu' onClick={logout} leftIcon={<LuLogOut />}>
                 <Trans i18nKey={'logout'} />
               </Button>
             </PopoverFooter>

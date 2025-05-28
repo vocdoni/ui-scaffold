@@ -1,10 +1,6 @@
 import { ChakraStylesConfig } from 'chakra-react-select'
 
 export const selectStyles: ChakraStylesConfig = {
-  container: (base) => ({
-    ...base,
-    border: 'none',
-  }),
   dropdownIndicator: (base) => ({
     ...base,
     m: 0,

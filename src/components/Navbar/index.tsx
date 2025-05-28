@@ -23,7 +23,7 @@ import { LuLogOut } from 'react-icons/lu'
 import { RiContactsBook3Line } from 'react-icons/ri'
 import { generatePath, Link as ReactRouterLink, Link as RouterLink, useMatch } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
-import { ColorModeSwitcher, ListItemColorModeSwitcher } from '~components/Layout/ColorModeSwitcher'
+import { ColorModeSwitcher } from '~components/Layout/ColorModeSwitcher'
 import Logo from '~components/Layout/Logo'
 import { Routes } from '~src/router/routes'
 import LanguagesListAccordion, { LanguagesMenu } from './LanguagesList'
@@ -103,7 +103,7 @@ const Mobile = () => {
                   <LanguagesListAccordion />
                 </ListItem>
                 <ListItem>
-                  <ListItemColorModeSwitcher />
+                  <ColorModeSwitcher />
                 </ListItem>
                 <Divider />
                 <ListItem>

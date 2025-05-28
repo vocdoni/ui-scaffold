@@ -8,16 +8,16 @@ const baseStyle = definePartsStyle((props) => ({
     p: 1,
     borderRadius: 'sm',
     boxShadow: 'md',
-    bg: props.colorMode === 'dark' ? 'black.800' : 'white',
+    bg: 'chakra.body.bg',
   },
   item: {
-    bg: props.colorMode === 'dark' ? 'black.800' : 'white',
+    bg: 'chakra.body.bg',
     _selected: {
-      bg: props.colorMode === 'dark' ? 'black.650' : 'gray.100',
+      bg: props.colorMode === 'dark' ? 'black.700' : 'gray.100',
       color: props.colorMode === 'dark' ? 'white' : 'black',
     },
     _focus: {
-      bg: props.colorMode === 'dark' ? 'black.700' : 'gray.100',
+      bg: props.colorMode === 'dark' ? 'black.800' : 'gray.100',
       color: props.colorMode === 'dark' ? 'white' : 'black',
     },
   },
