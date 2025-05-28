@@ -2,7 +2,7 @@ import { Box, Button, Flex, Link, Text, useToast } from '@chakra-ui/react'
 import { useMutation } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { NavLink, useNavigate, useOutletContext } from 'react-router-dom'
 import { api, ApiEndpoints, UnverifiedApiError } from '~components/Auth/api'
 import { ILoginParams } from '~components/Auth/authQueries'
@@ -157,8 +157,8 @@ export const OrSeparator = () => {
   return (
     <Flex align='center' mb={4}>
       <HSeparator />
-      <Text color='auth.or' fontWeight={'bold'} mx={3.5} whiteSpace={'nowrap'} size='xs' textTransform={'uppercase'}>
-        {t('or')}
+      <Text color='gray.500' fontWeight='bold' mx={3.5} whiteSpace='nowrap' size='xs' textTransform='uppercase'>
+        <Trans i18nKey='or_continue_with'>or continue with</Trans>
       </Text>
       <HSeparator />
     </Flex>
