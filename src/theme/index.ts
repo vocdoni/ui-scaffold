@@ -80,6 +80,12 @@ export const theme = extendTheme(vtheme, {
           _dark: 'gray.400',
         },
       },
+      table: {
+        border: {
+          _light: 'gray.200',
+          _dark: 'gray.700',
+        },
+      },
     },
   },
   styles: {

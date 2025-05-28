@@ -85,13 +85,14 @@ const simple = definePartsStyle((props) => ({
   },
   tr: {
     ['td,th']: {
-      borderBottom: '1px solid #e5e5e5',
+      borderBottom: '1px solid',
+      borderColor: 'table.border',
     },
   },
   tbody: {
     tr: {
       _hover: {
-        bgColor: props.colorMode === 'dark' ? 'gray.900' : 'gray.50',
+        bgColor: props.colorMode === 'dark' ? 'black.700' : 'gray.50',
       },
     },
   },
