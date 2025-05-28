@@ -46,6 +46,7 @@ const LayoutDashboard: React.FC = () => {
               borderBottom='1px solid'
               _dark={{ borderBottomColor: 'black.700' }}
               _light={{ borderBottomColor: 'gray.200' }}
+              bgColor='chakra.body.bg'
               top={0}
               pr={4}
               pl={2}
