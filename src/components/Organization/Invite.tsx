@@ -9,13 +9,11 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
-  Text,
   useDisclosure,
   useToast,
 } from '@chakra-ui/react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { HSeparator } from '~components/Auth/SignIn'
 import { useSubscription } from '~components/Auth/Subscription'
 import InputBasic from '~components/Layout/InputBasic'
 import { RoleSelector } from '~components/Layout/SaasSelector'
@@ -127,16 +125,13 @@ export const InviteToTeamModal = (props: ButtonProps) => {
         <Modal isOpen={isOpen} onClose={onClose} size='xl' closeOnOverlayClick>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader display='flex' flexDirection='column' gap={6}>
-              <Flex justifyContent='space-between' flexDirection='column' gap={1}>
-                <Heading fontSize='2xl'>
-                  <Trans i18nKey='invite.title'>Invite people to your team</Trans>
-                </Heading>
-                <Text fontWeight='normal'>
-                  <Trans i18nKey='invite.subtitle'>Work together on projects</Trans>
-                </Text>
-              </Flex>
-              <HSeparator />
+            <ModalHeader>
+              <Heading>
+                <Trans i18nKey='invite.title'>Add team member</Trans>
+              </Heading>
+              <Trans i18nKey='invite.subtitle'>
+                Send an invitation to join your organization. They'll receive an email with instructions.
+              </Trans>
             </ModalHeader>
             <ModalCloseButton />
             <ModalBody>

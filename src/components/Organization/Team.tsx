@@ -77,11 +77,6 @@ type Member = ActiveMember | PendingMember
 
 const isActiveMember = (member: Member): member is ActiveMember => !!member.info
 
-type WithDisclosure = {
-  isOpen: boolean
-  onClose: () => void
-}
-
 type MemberModalProps<T extends Member> = Omit<ModalProps, 'children' | 'isOpen' | 'onClose'> & {
   isOpen: boolean
   onClose: () => void
@@ -427,17 +422,13 @@ const ChangeRoleModal = ({ isOpen, onClose, member, ...props }: ActiveMemberModa
     <Modal isOpen={isOpen} onClose={onClose} size='xl' closeOnOverlayClick={false} {...props}>
       <ModalOverlay />
       <ModalContent py={4}>
-        <ModalHeader display='flex' flexDirection='column' gap={6}>
-          <Flex justifyContent='space-between' flexDirection='column' gap={1}>
-            <Heading fontSize='md' fontWeight='extrabold'>
-              {t('role.update.title', { defaultValue: 'Change team member role' })}
-            </Heading>
-            <Text fontSize='sm' color='gray.500'>
-              {t('role.update.subtitle', {
-                defaultValue: 'Update the permissions for this team member by changing their role.',
-              })}
-            </Text>
-          </Flex>
+        <ModalHeader>
+          <Heading fontSize='md' fontWeight='extrabold'>
+            {t('role.update.title', { defaultValue: 'Change team member role' })}
+          </Heading>
+          <Trans i18nKey='role.update.subtitle'>
+            Update the permissions for this team member by changing their role.
+          </Trans>
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
@@ -481,7 +472,9 @@ const RemoveMemberModal = ({ isOpen, onClose, member, ...props }: ActiveMemberMo
     <Modal isOpen={isOpen} onClose={onClose} size='xl' closeOnOverlayClick={false} {...props}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>{t('team.remove_member.title', { defaultValue: 'Are you sure?' })}</ModalHeader>
+        <ModalHeader>
+          <Heading>{t('team.remove_member.title', { defaultValue: 'Are you sure?' })}</Heading>
+        </ModalHeader>
         <ModalBody>
           <Text>
             {t('team.remove_member.confirmation', {
@@ -532,12 +525,14 @@ const CancelInvitationModal = ({ isOpen, onClose, member, ...props }: PendingMem
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size='xl' closeOnOverlayClick={false} {...props}>
+    <Modal isOpen={isOpen} onClose={onClose} size='xl' closeOnOverlayClick {...props}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>{t('team.cancel_invitation.title', { defaultValue: 'Are you sure?' })}</ModalHeader>
+        <ModalHeader>
+          <Heading>{t('team.cancel_invitation.title', { defaultValue: 'Are you sure?' })}</Heading>
+        </ModalHeader>
         <ModalBody>
-          <Text>
+          <Text color='texts.subtle'>
             {t('team.cancel_invitation.confirmation', {
               defaultValue: 'This will cancel the invitation. The person will not be able to join your organization.',
             })}
@@ -652,7 +647,7 @@ const MemberActions = ({ member }: MemberActionsProps) => {
           isLoading={isLoading}
           icon={<Icon as={LuEllipsis} />}
           ml='auto'
-          variant='transparent'
+          variant='ghost'
           aria-label='Options'
           onClick={openMenu}
         />
