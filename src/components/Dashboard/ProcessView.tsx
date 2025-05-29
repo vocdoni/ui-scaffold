@@ -239,7 +239,7 @@ const ProcessViewSidebar = (props: SidebarProps) => {
 
   return (
     <Sidebar {...props}>
-      <SidebarContents borderBottom='1px solid' borderColor='gray.200'>
+      <SidebarContents borderBottom='1px solid' borderColor='table.border'>
         <SidebarTitle>
           <Trans i18nKey='vote_information'>Vote information</Trans>
         </SidebarTitle>
@@ -296,7 +296,7 @@ const ProcessViewSidebar = (props: SidebarProps) => {
               </Box>
               <Text fontWeight='bold'>{(election instanceof PublishedElection && election.voteCount) || 0}</Text>
             </Box>
-            <Box pb={6} borderBottom='1px solid' borderColor='gray.200'>
+            <Box pb={6} borderBottom='1px solid' borderColor='table.border'>
               <Box display='flex' w='full' justifyContent='space-between' alignItems='center' fontSize='xs' mb={1}>
                 <Box>
                   <Trans i18nKey='turnout'>Turnout</Trans>
@@ -376,6 +376,7 @@ const SettingsField = ({ subtext, icon, text }: { subtext?: string; icon: typeof
     <Box
       color='gray.600'
       bg='gray.100'
+      _dark={{ bg: 'black.700', color: 'gray.400' }}
       display='flex'
       alignItems='center'
       justifyContent='center'
@@ -383,7 +384,7 @@ const SettingsField = ({ subtext, icon, text }: { subtext?: string; icon: typeof
       p={2}
       borderRadius='md'
     >
-      <Icon as={icon} boxSize={5} color='gray.500' />
+      <Icon as={icon} boxSize={5} />
     </Box>
     <Box flex={1} display='flex' flexDirection='column'>
       <Text fontSize='sm' fontWeight='bold' textTransform='capitalize'>

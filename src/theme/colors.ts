@@ -95,23 +95,6 @@ export const colors = {
   },
 
   account_create_text_secondary: colorsBase.gray.dark,
-  alert: {
-    bg: {
-      light: colorsBase.white.pure,
-      dark: colorsBase.blue.dark,
-    },
-    color: {
-      light: colorsBase.black,
-      dark: colorsBase.white.pure,
-    },
-    border: colorsBase.gray.light,
-    error: colorsBase.red,
-    info: colorsBase.gray.normal,
-    success: colorsBase.green,
-    warning: colorsBase.orange,
-    box_shadow_light: colorsBase.white.pure,
-    box_shadow_dark: colorsBase.blue.dark,
-  },
   banner_link: colorsBase.white.pure,
   bg: {
     light: colorsBase.white.dark,

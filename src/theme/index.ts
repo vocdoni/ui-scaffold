@@ -3,7 +3,6 @@ import { darkTheme, lightTheme } from '@rainbow-me/rainbowkit'
 import { theme as vtheme } from '@vocdoni/chakra-components'
 import { colors } from './colors'
 import { Accordion } from './components/accordion'
-import { Alert } from './components/alert'
 import { Badge } from './components/badge'
 import { Button } from './components/button'
 import { Card } from './components/card'
@@ -83,7 +82,7 @@ export const theme = extendTheme(vtheme, {
       table: {
         border: {
           _light: 'gray.200',
-          _dark: 'gray.700',
+          _dark: 'black.700',
         },
       },
       tabs: {
@@ -243,7 +242,6 @@ export const theme = extendTheme(vtheme, {
   },
   components: {
     Accordion,
-    Alert,
     Badge,
     Button,
     Card,
@@ -279,7 +277,10 @@ export const theme = extendTheme(vtheme, {
   },
   zIndices: {
     background: 0,
-    sidebar: 1,
+    contents: 1,
+    sidebar: 2,
+    modal: 1400,
+    hovering: 1500,
   },
 })
 
