@@ -1,115 +1,49 @@
 import { modalAnatomy as parts } from '@chakra-ui/anatomy'
 import { createMultiStyleConfigHelpers } from '@chakra-ui/styled-system'
 
-const { defineMultiStyleConfig } = createMultiStyleConfigHelpers(parts.keys)
+const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpers(parts.keys)
 
-export const Modal = defineMultiStyleConfig({
-  baseStyle: {
-    overlay: {
-      bgColor: 'rgba(0 ,0 ,0, 0.8)',
-    },
-    dialogContainer: {
-      alignItems: 'center',
-    },
-    dialog: {
-      overflow: 'hidden',
-    },
-    footer: {
-      justifyContent: 'center',
-    },
-    closeButton: {
-      top: 3,
-      w: 6,
-      h: 6,
-
-      '& svg': {
-        w: 2.5,
-        h: 2.5,
-      },
-
-      _hover: {
-        bgColor: 'transparent',
-      },
-
-      _active: {
-        border: '2px solid black',
-      },
+const baseStyle = definePartsStyle({
+  overlay: {
+    bgColor: 'rgba(0 ,0 ,0, 0.8)',
+  },
+  dialogContainer: {
+    alignItems: 'center',
+  },
+  dialog: {
+    overflow: 'hidden',
+    bgColor: 'chakra.body.bg',
+    border: '1px solid',
+    borderColor: 'table.border',
+  },
+  footer: {
+    justifyContent: 'center',
+  },
+  header: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 1,
+    fontWeight: 'normal',
+    fontSize: 'sm',
+    color: 'texts.subtle',
+    // we usually add <Heading> inside the header
+    '& > *': {
+      fontSize: 'lg',
+      color: 'texts.primary',
+      m: 0,
     },
   },
+})
+
+export const Modal = defineMultiStyleConfig({
+  baseStyle,
   variants: {
     'pricing-modal': {
-      dialog: {
-        borderRadius: 0,
-        m: 0,
-        px: {
-          base: 2.5,
-          sm: 5,
-        },
-
-        bgColor: 'pricing_modal.bg.light',
-        _dark: {
-          bgColor: 'pricing_modal.bg.dark',
-        },
-      },
       header: {
-        pt: 12,
+        mt: 8,
         textAlign: 'center',
         color: 'white',
         fontSize: '2xl',
-      },
-      body: {
-        px: 0,
-        pt: 8,
-        display: 'flex',
-        justifyContent: { base: 'start', lg: 'center' },
-        alignItems: 'start',
-        gap: '10px',
-        overflowX: 'auto',
-      },
-      footer: {
-        pt: 12,
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 5,
-        justifyContent: 'center',
-        color: 'white',
-
-        '& > div:first-of-type': {
-          display: 'flex',
-          flexDirection: { base: 'column', md: 'row' },
-          justifyContent: 'center',
-          alignItems: { base: 'start', md: 'center' },
-          gap: 2.5,
-
-          '& p': {
-            textAlign: 'center',
-            maxW: '800px',
-            fontWeight: 'bold',
-            whiteSpace: { md: 'nowrap' },
-          },
-        },
-        '& > p': {
-          textAlign: 'center',
-          maxW: '800px',
-          fontWeight: 'normal',
-        },
-
-        '& > div:nth-of-type(2)': {
-          display: 'flex',
-          alignItems: 'center',
-          gap: 2.5,
-
-          '& > p': {
-            whiteSpace: 'nowrap',
-          },
-        },
-        '& > div:last-of-type': {
-          width: 'content',
-          ml: { md: 'auto' },
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-        },
       },
       closeButton: {
         top: { base: 2.5, md: 12 },
@@ -117,8 +51,8 @@ export const Modal = defineMultiStyleConfig({
         color: 'white',
 
         '& svg': {
-          width: { md: 6 },
-          height: { md: 6 },
+          width: 6,
+          height: 6,
         },
       },
     },

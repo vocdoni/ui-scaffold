@@ -107,6 +107,16 @@ export const theme = extendTheme(vtheme, {
           _dark: 'black.700',
         },
       },
+      texts: {
+        primary: {
+          _light: 'black',
+          _dark: 'white',
+        },
+        subtle: {
+          _light: 'gray.500',
+          _dark: 'gray.400',
+        },
+      },
     },
   },
   styles: {
