@@ -44,9 +44,9 @@ export const Sidebar = ({ show, ...props }: SidebarProps) => (
   >
     <Box
       height='100%'
-      bg='white'
+      bg='chakra.body.bg'
       borderLeft='1px solid'
-      borderColor='gray.200'
+      borderColor='table.border'
       as='aside'
       display='flex'
       flexDirection='column'

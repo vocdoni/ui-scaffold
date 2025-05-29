@@ -41,6 +41,7 @@ const baseStyle = definePartsStyle({
     alignItems: 'center',
     pr: 2,
     fontSize: 'sm',
+    color: 'black',
   },
   progress: {
     h: 8,
