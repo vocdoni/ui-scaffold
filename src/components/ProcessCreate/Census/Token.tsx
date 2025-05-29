@@ -17,12 +17,11 @@ import {
 } from '@chakra-ui/react'
 import { errorToString, useClient } from '@vocdoni/react-providers'
 import { Census3Token, EnvOptions, ICensus3SupportedChain, TokenSummary, VocdoniCensus3Client } from '@vocdoni/sdk'
-import { ChakraStylesConfig, GroupBase, Select, SelectComponentsConfig, SelectInstance } from 'chakra-react-select'
+import { GroupBase, Select, SelectComponentsConfig, SelectInstance } from 'chakra-react-select'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { DefaultCensusSize } from '~constants'
-import { reactSelectStyles } from '~theme/reactSelectStyles'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 import selectComponents, { CryptoAvatar } from './select-components'
 import gitcoinPassportImg from '/assets/gitcoin-passport.png'
@@ -280,13 +279,6 @@ export const CensusTokens = () => {
                 SelectComponentsConfig<ICensus3SupportedChain, boolean, GroupBase<ICensus3SupportedChain>>
               >
             }
-            chakraStyles={
-              reactSelectStyles as ChakraStylesConfig<
-                ICensus3SupportedChain,
-                boolean,
-                GroupBase<ICensus3SupportedChain>
-              >
-            }
           />
           <FormErrorMessage>{errors.chain && errors.chain.message?.toString()}</FormErrorMessage>
         </FormControl>
@@ -339,7 +331,6 @@ export const CensusTokens = () => {
             isDisabled={!ch || loadingTk}
             isOptionDisabled={(option) => !(option as { synced?: boolean })?.synced}
             components={selectComponentsTokens as Partial<SelectComponentsConfig<unknown, boolean, GroupBase<unknown>>>}
-            chakraStyles={reactSelectStyles}
           />
           <FormErrorMessage>{errors.censusToken && errors.censusToken.message?.toString()}</FormErrorMessage>
         </FormControl>

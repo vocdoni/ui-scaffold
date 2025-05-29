@@ -1,21 +1,15 @@
 import { Alert, Box, Flex, FormControl, FormErrorMessage, FormLabel, Icon, Text } from '@chakra-ui/react'
-import { useQuery } from '@tanstack/react-query'
-import { Select, Props as SelectProps, components } from 'chakra-react-select'
+import { Select, Props as SelectProps, chakraComponents } from 'chakra-react-select'
 import { Controller, useFormContext } from 'react-hook-form'
 import { ControllerProps } from 'react-hook-form/dist/types'
 import { useTranslation } from 'react-i18next'
 import { LuEye, LuKey, LuUserRoundCog, LuUsers } from 'react-icons/lu'
 import { LanguagesSlice } from '~i18n/languages.mjs'
 import { useOrganizationTypes, useRoles } from '~src/queries/organization'
-import { reactSelectStyles } from '~theme/reactSelectStyles'
 
 export type SelectOptionType = {
   label: string
   value: string
-}
-
-export type CountryOptionType = SelectOptionType & {
-  flag: string
 }
 
 export type RoleOptionType = SelectOptionType & {
@@ -81,7 +75,6 @@ export const SelectCustom = ({
             isRequired={false} // we don't want HTML5 validation
             {...field}
             {...rest}
-            chakraStyles={reactSelectStyles}
             onChange={(selectedOption) => {
               setValue(name, selectedOption)
             }}
@@ -108,91 +101,6 @@ export const OrganizationTypeSelector = ({ ...props }: Omit<SelectCustomProps, '
       isLoading={isLoading}
       options={orgTypes}
       label={t('org_type_selector.selector_label', { defaultValue: 'Organization Type' })}
-      {...props}
-    />
-  )
-}
-
-export const createCountryDisplay = (type: 'Option' | 'SingleValue') => {
-  const BaseComponent = components[type]
-
-  return (props: any) => {
-    const { data, selectProps } = props
-
-    const fullOption = (selectProps.options as CountryOptionType[]).find((opt) => opt.value === data.value) || data
-
-    return (
-      <BaseComponent {...props}>
-        <Flex align='center' gap={2}>
-          <Box as='span' role='img'>
-            {fullOption.flag}
-          </Box>
-          <Text fontWeight='bold'>{fullOption.label}</Text>
-        </Flex>
-      </BaseComponent>
-    )
-  }
-}
-
-export const CountrySelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) => {
-  const { t } = useTranslation()
-
-  // Priority countries in the desired order
-  const priorityCountries = ['ES', 'FR', 'DE', 'GB', 'IT', 'US']
-
-  const {
-    data = [],
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ['countries'],
-    queryFn: async () => {
-      const response = await fetch('https://restcountries.com/v3.1/all')
-      if (!response.ok) {
-        throw new Error('Failed to fetch countries')
-      }
-      const data = await response.json()
-
-      // Transform and sort the data
-      const transformedCountries = data.map((country: any) => ({
-        label: country.name.common,
-        value: country.cca2,
-        flag: country.flag,
-      }))
-
-      // Custom sort function
-      return transformedCountries.sort((a: SelectOptionType, b: SelectOptionType) => {
-        const aIndex = priorityCountries.indexOf(a.value)
-        const bIndex = priorityCountries.indexOf(b.value)
-
-        // If both countries are priority countries, sort by priority order
-        if (aIndex !== -1 && bIndex !== -1) {
-          return aIndex - bIndex
-        }
-
-        // If only a is a priority country, it comes first
-        if (aIndex !== -1) return -1
-        // If only b is a priority country, it comes first
-        if (bIndex !== -1) return 1
-
-        // For non-priority countries, sort alphabetically
-        return a.label.localeCompare(b.label)
-      })
-    },
-    staleTime: Infinity, // Countries list won't change often
-  })
-  const defaultVal = data.find((country: CountryOptionType) => country.value === 'ES')
-
-  if (error) return <Alert status='error'>{error.message}</Alert>
-
-  return (
-    <SelectCustom
-      options={data}
-      isLoading={isLoading}
-      label={t('country_selector.selector_label', { defaultValue: 'Country' })}
-      defaultValue={defaultVal}
-      controller={{ defaultValue: defaultVal }}
-      components={{ SingleValue: createCountryDisplay('SingleValue'), Option: createCountryDisplay('Option') }}
       {...props}
     />
   )
@@ -289,7 +197,7 @@ export const roleIcons: Record<string, JSX.Element> = {
 }
 
 export const createRoleDisplay = (type: 'Option' | 'SingleValue') => {
-  const BaseComponent = components[type]
+  const BaseComponent = chakraComponents[type]
 
   return (props: any) => {
     const { t } = useTranslation()

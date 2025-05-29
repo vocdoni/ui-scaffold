@@ -92,9 +92,7 @@ const EditOrganization = () => {
       type: organization?.type && {
         value: organization.type,
       },
-      country: organization?.country && {
-        value: organization.country || '',
-      },
+      country: organization?.country,
       communications: organization?.communications || false,
       avatar: organization?.account.avatar || '',
       header: organization?.account.header || '',

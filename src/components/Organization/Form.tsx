@@ -1,13 +1,9 @@
 import { Box, Checkbox, FormControl, FormErrorMessage, FormLabel, Text, Textarea, VStack } from '@chakra-ui/react'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { CountrySelector } from '~components/Layout/Form/CountrySelector'
 import InputBasic from '~components/Layout/InputBasic'
-import {
-  CountrySelector,
-  MembershipSizeSelector,
-  OrganizationTypeSelector,
-  SelectOptionType,
-} from '~components/Layout/SaasSelector'
+import { MembershipSizeSelector, OrganizationTypeSelector, SelectOptionType } from '~components/Layout/SaasSelector'
 
 export const PublicOrgForm = ({ minified }: { minified?: boolean }) => {
   const { t } = useTranslation()
@@ -72,7 +68,7 @@ export const PrivateOrgForm = ({ minified }: { minified?: boolean }) => {
       )}
       <MembershipSizeSelector name='size' required />
       <OrganizationTypeSelector name='type' required />
-      <CountrySelector name='country' required />
+      <CountrySelector name='country' />
       {!minified && (
         <FormControl as='fieldset' isInvalid={!!errors?.communications}>
           <Checkbox {...register('communications')}>

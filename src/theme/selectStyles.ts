@@ -19,4 +19,9 @@ export const selectStyles: ChakraStylesConfig = {
     p: 1,
     borderRadius: 'sm',
   }),
+  placeholder: (base) => ({
+    ...base,
+    py: 2,
+    px: 3,
+  }),
 }
